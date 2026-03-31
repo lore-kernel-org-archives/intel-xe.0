@@ -4,58 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBDCD109B462
-	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 12:57:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9089F109B46C
+	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 13:29:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 676E710EC7F;
-	Tue, 31 Mar 2026 12:57:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5389610E251;
+	Tue, 31 Mar 2026 13:29:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PqPkod4Y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WGAxjt/o";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CD8610EC51;
- Tue, 31 Mar 2026 12:57:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4AD4D10E251;
+ Tue, 31 Mar 2026 13:29:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774961852; x=1806497852;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=ODPVfFtPpNPEzmNBiVGykna8wT8htt4X/R1Ucwv1OOc=;
- b=PqPkod4YFDQDupX8RcQBefeYseXjtgo1jZtQZLISgRnvGtP4WDAOlNXA
- zubNlx+eOTCsTbiLMyE7uTY2PjatPZM7F4dibe+QJt5a5J/lkb9dPS13p
- v0SeKBnyTlI5/wBezNMVIIdwhQvn1F8g0ujhHysYpgZsjG/FkiBXU7Yyx
- zyQzd+aXVD6HzgPEKNUzMtTh0wU5wkjrjNbhfBJIrmDiZ/lvfsrJJ/Gij
- vB1tyRpHyeZs0bf8+yyNbpgZzZOvZvZ8aeJGumMTVJZxmQem60unI3h2b
- 3tGATYaMJ7iByPnji6Jr0gsPSn2VYGzPb6JsNV+dhNYPTS/lCOKkzCHk2 Q==;
-X-CSE-ConnectionGUID: YZtT488ESkWtwq3vfuBsJg==
-X-CSE-MsgGUID: sQ6/x8YvR/CLuWB8AfZjdg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="75867241"
-X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="75867241"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 05:57:32 -0700
-X-CSE-ConnectionGUID: yWTsGHowSxSVXHRcqY/sFQ==
-X-CSE-MsgGUID: zj4BKb3lR/Kj2cZezlK0Cw==
+ t=1774963745; x=1806499745;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=J/2wVUcQIJYHvpJSvYaAS0J1N5hy6AUn7vIa1PObqJY=;
+ b=WGAxjt/oztDuLYAODyhPhrdvevvbopa7RIYfFFuqEPp9QLsjvFmNSz7s
+ m1dpYItcs4toJAFoGL0q0njHJvnCr2Alm9tv3sysSi7uZlA2WAKEp+Gus
+ 6HtV9wY6880uvvSjeL9lhBlZlimCNM9kvlJjAeKK7KkLXLgCHn6qGAY5G
+ 1yukKRrW9yJOPJAStP1WyCsM+znNcFOEfGtOON9Gfm43zAXLR4Anl8ZnW
+ q/5NEwkZpCnawOWqbf+Xl5u0O2F5wOr5gpWFHZgnHC5PqUL2kHi+oTDEm
+ lXfu1h+bsmZivqJqb2KgB42icpeQOKy3hulPreyYlPqSplQ2cJU+dYC5/ g==;
+X-CSE-ConnectionGUID: k5rogWeRSW+bI/76TtWtWA==
+X-CSE-MsgGUID: rqfislY9TseVWN6BxAunug==
+X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="79835720"
+X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="79835720"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2026 06:29:05 -0700
+X-CSE-ConnectionGUID: xfnoHEp2TH6T9D+u8pVozA==
+X-CSE-MsgGUID: Kbeh4ic7S8m1K45Scew/tw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="223480535"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.73])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 05:57:30 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Luca Coelho <luciano.coelho@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, ville.syrjala@linux.intel.com
-Subject: Re: [PATCH v2 7/8] drm/i915/display: move pre-HSW clock gating init
- to display
-In-Reply-To: <20260331121608.1016333-8-luciano.coelho@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260331121608.1016333-1-luciano.coelho@intel.com>
- <20260331121608.1016333-8-luciano.coelho@intel.com>
-Date: Tue, 31 Mar 2026 15:57:27 +0300
-Message-ID: <3a079495743029f8f00a90eb4401fba17aa7578a@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="231295833"
+Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.244.24])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2026 06:29:03 -0700
+Date: Tue, 31 Mar 2026 16:28:58 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 1/5] drm/{i915, xe}: convert VLV sideband display
+ wrappers into real functions
+Message-ID: <acvMGpZbVVjd6tKO@intel.com>
+References: <cover.1774957233.git.jani.nikula@intel.com>
+ <57740dc3a820cb5fc1cfcd28e4be58b2cb48020d.1774957233.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <57740dc3a820cb5fc1cfcd28e4be58b2cb48020d.1774957233.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,340 +72,377 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 31 Mar 2026, Luca Coelho <luciano.coelho@intel.com> wrote:
-> Move the remaining pre-HSW display clock gating programming into
-> display.
->
-> This also drops display register includes from intel_clock_gating.c.
->
-> Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+On Tue, Mar 31, 2026 at 02:40:54PM +0300, Jani Nikula wrote:
+> Convert the VLV sideband static inline wrappers into real
+> functions. This will help the follow-up work of moving the VLV sideband
+> to the display parent interface.
+> 
+> The downside is that we'll have to build vlv_sideband.c as part of xe
+> build, to avoid a plethora of stubs.
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> 
 > ---
->  .../i915/display/intel_display_clock_gating.c |  95 ++++++++++++++++
->  .../i915/display/intel_display_clock_gating.h |   6 +
->  drivers/gpu/drm/i915/intel_clock_gating.c     | 103 +-----------------
->  3 files changed, 107 insertions(+), 97 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
-> index d5085ce7adae..6867963868a7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
-> @@ -6,11 +6,13 @@
->  #include <drm/intel/intel_gmd_misc_regs.h>
+> 
+> 'git show --color-moved' will help review
+
+If only --color-moved and --word-diff could play nice...
+
+For some other other patches --word-diff alone seemed pretty good
+fortunately.
+
+Series is
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/display/vlv_sideband.c | 125 +++++++++++++++
+>  drivers/gpu/drm/i915/display/vlv_sideband.h | 165 ++++----------------
+>  drivers/gpu/drm/xe/Makefile                 |   3 +-
+>  3 files changed, 156 insertions(+), 137 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/vlv_sideband.c b/drivers/gpu/drm/i915/display/vlv_sideband.c
+> index e18045f2b89d..2472e0412728 100644
+> --- a/drivers/gpu/drm/i915/display/vlv_sideband.c
+> +++ b/drivers/gpu/drm/i915/display/vlv_sideband.c
+> @@ -8,6 +8,71 @@
+>  #include "intel_dpio_phy.h"
+>  #include "vlv_sideband.h"
 >  
->  #include "intel_de.h"
-> +#include "i9xx_plane_regs.h"
->  #include "intel_display.h"
->  #include "intel_display_clock_gating.h"
->  #include "intel_display_regs.h"
+> +void vlv_bunit_get(struct drm_device *drm)
+> +{
+> +	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_BUNIT));
+> +}
+> +
+> +u32 vlv_bunit_read(struct drm_device *drm, u32 reg)
+> +{
+> +	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_BUNIT, reg);
+> +}
+> +
+> +void vlv_bunit_write(struct drm_device *drm, u32 reg, u32 val)
+> +{
+> +	vlv_iosf_sb_write(drm, VLV_IOSF_SB_BUNIT, reg, val);
+> +}
+> +
+> +void vlv_bunit_put(struct drm_device *drm)
+> +{
+> +	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_BUNIT));
+> +}
+> +
+> +void vlv_cck_get(struct drm_device *drm)
+> +{
+> +	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_CCK));
+> +}
+> +
+> +u32 vlv_cck_read(struct drm_device *drm, u32 reg)
+> +{
+> +	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_CCK, reg);
+> +}
+> +
+> +void vlv_cck_write(struct drm_device *drm, u32 reg, u32 val)
+> +{
+> +	vlv_iosf_sb_write(drm, VLV_IOSF_SB_CCK, reg, val);
+> +}
+> +
+> +void vlv_cck_put(struct drm_device *drm)
+> +{
+> +	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_CCK));
+> +}
+> +
+> +void vlv_ccu_get(struct drm_device *drm)
+> +{
+> +	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_CCU));
+> +}
+> +
+> +u32 vlv_ccu_read(struct drm_device *drm, u32 reg)
+> +{
+> +	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_CCU, reg);
+> +}
+> +
+> +void vlv_ccu_write(struct drm_device *drm, u32 reg, u32 val)
+> +{
+> +	vlv_iosf_sb_write(drm, VLV_IOSF_SB_CCU, reg, val);
+> +}
+> +
+> +void vlv_ccu_put(struct drm_device *drm)
+> +{
+> +	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_CCU));
+> +}
+> +
+> +void vlv_dpio_get(struct drm_device *drm)
+> +{
+> +	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_DPIO) | BIT(VLV_IOSF_SB_DPIO_2));
+> +}
+> +
+>  static enum vlv_iosf_sb_unit vlv_dpio_phy_to_unit(struct intel_display *display,
+>  						  enum dpio_phy phy)
+>  {
+> @@ -48,3 +113,63 @@ void vlv_dpio_write(struct drm_device *drm,
 >  
->  #include "i915_drv.h"
-> +#include "i915_reg.h"
-
-Auch, another one I should've spotted in v1. We can't use i915_reg.h
-either, we've already eradicated it from display code and xe compat
-code.
-
-If there are display registers still remaining in i915_reg.h, they need
-to be moved to display headers.
-
-
-BR,
-Jani.
-
->  
->  static void intel_display_gen9_init_clock_gating(struct intel_display *display,
->  						 bool has_llc)
-> @@ -167,3 +169,96 @@ void intel_display_hsw_init_clock_gating(struct intel_display *display)
->  			     HSW_UNMASK_VBL_TO_REGS_IN_SRD);
->  	}
+>  	vlv_iosf_sb_write(drm, unit, reg, val);
 >  }
 > +
-> +void intel_display_disable_trickle_feed(struct intel_display *display)
+> +void vlv_dpio_put(struct drm_device *drm)
 > +{
-> +	enum pipe pipe;
-> +
-> +	for_each_pipe(display, pipe) {
-> +		intel_de_rmw(display, DSPCNTR(display, pipe), 0,
-> +			     DISP_TRICKLE_FEED_DISABLE);
-> +
-> +		intel_de_rmw(display, DSPSURF(display, pipe), 0, 0);
-> +		intel_de_posting_read(display, DSPSURF(display, pipe));
-> +	}
+> +	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_DPIO) | BIT(VLV_IOSF_SB_DPIO_2));
 > +}
 > +
-> +void intel_display_ilk_init_clock_gating(struct intel_display *display)
+> +void vlv_flisdsi_get(struct drm_device *drm)
 > +{
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
-> +	u32 dspclk_gate = ILK_VRHUNIT_CLOCK_GATE_DISABLE;
-> +
-> +	/*
-> +	 * Required for FBC
-> +	 * WaFbcDisableDpfcClockGating:ilk
-> +	 */
-> +	dspclk_gate |= ILK_DPFCRUNIT_CLOCK_GATE_DISABLE |
-> +		       ILK_DPFCUNIT_CLOCK_GATE_DISABLE |
-> +		       ILK_DPFDUNIT_CLOCK_GATE_ENABLE;
-> +
-> +	intel_de_write(display, ILK_DISPLAY_CHICKEN2,
-> +		       intel_de_read(display, ILK_DISPLAY_CHICKEN2) |
-> +		       ILK_DPARB_GATE | ILK_VSDPFD_FULL);
-> +	dspclk_gate |= ILK_DPARBUNIT_CLOCK_GATE_ENABLE;
-> +	intel_de_write(display, DISP_ARB_CTL,
-> +		       intel_de_read(display, DISP_ARB_CTL) |
-> +		       DISP_FBC_WM_DIS);
-> +
-> +	if (IS_IRONLAKE_M(i915)) {
-> +		/* WaFbcAsynchFlipDisableFbcQueue:ilk */
-> +		intel_de_rmw(display, ILK_DISPLAY_CHICKEN1, 0, ILK_FBCQ_DIS);
-> +		intel_de_rmw(display, ILK_DISPLAY_CHICKEN2, 0, ILK_DPARB_GATE);
-> +	}
-> +
-> +	intel_de_write(display, ILK_DSPCLK_GATE_D, dspclk_gate);
-> +	intel_de_rmw(display, ILK_DISPLAY_CHICKEN2, 0, ILK_ELPIN_409_SELECT);
-> +
-> +	intel_display_disable_trickle_feed(display);
+> +	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_FLISDSI));
 > +}
 > +
-> +void intel_display_gen6_init_clock_gating(struct intel_display *display)
+> +u32 vlv_flisdsi_read(struct drm_device *drm, u32 reg)
 > +{
-> +	u32 dspclk_gate = ILK_VRHUNIT_CLOCK_GATE_DISABLE;
-> +
-> +	intel_de_write(display, ILK_DSPCLK_GATE_D, dspclk_gate);
-> +	intel_de_rmw(display, ILK_DISPLAY_CHICKEN2, 0, ILK_ELPIN_409_SELECT);
-> +
-> +	intel_de_write(display, ILK_DISPLAY_CHICKEN1,
-> +		       intel_de_read(display, ILK_DISPLAY_CHICKEN1) |
-> +		       ILK_FBCQ_DIS | ILK_PABSTRETCH_DIS);
-> +	intel_de_write(display, ILK_DISPLAY_CHICKEN2,
-> +		       intel_de_read(display, ILK_DISPLAY_CHICKEN2) |
-> +		       ILK_DPARB_GATE | ILK_VSDPFD_FULL);
-> +	intel_de_write(display, ILK_DSPCLK_GATE_D,
-> +		       intel_de_read(display, ILK_DSPCLK_GATE_D) |
-> +		       ILK_DPARBUNIT_CLOCK_GATE_ENABLE |
-> +		       ILK_DPFDUNIT_CLOCK_GATE_ENABLE);
-> +
-> +	intel_display_disable_trickle_feed(display);
+> +	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_FLISDSI, reg);
 > +}
 > +
-> +void intel_display_ivb_init_clock_gating(struct intel_display *display)
+> +void vlv_flisdsi_write(struct drm_device *drm, u32 reg, u32 val)
 > +{
-> +	intel_de_write(display, ILK_DSPCLK_GATE_D, ILK_VRHUNIT_CLOCK_GATE_DISABLE);
-> +	intel_de_rmw(display, ILK_DISPLAY_CHICKEN1, 0, ILK_FBCQ_DIS);
+> +	vlv_iosf_sb_write(drm, VLV_IOSF_SB_FLISDSI, reg, val);
 > +}
 > +
-> +void intel_display_g4x_init_clock_gating(struct intel_display *display)
+> +void vlv_flisdsi_put(struct drm_device *drm)
 > +{
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
-> +	u32 dspclk_gate = VRHUNIT_CLOCK_GATE_DISABLE |
-> +			  OVRUNIT_CLOCK_GATE_DISABLE |
-> +			  OVCUNIT_CLOCK_GATE_DISABLE;
-> +
-> +	if (IS_GM45(i915))
-> +		dspclk_gate |= DSSUNIT_CLOCK_GATE_DISABLE;
-> +
-> +	intel_de_write(display, DSPCLK_GATE_D, dspclk_gate);
-> +
-> +	intel_display_disable_trickle_feed(display);
+> +	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_FLISDSI));
 > +}
 > +
-> +void intel_display_i965gm_init_clock_gating(struct intel_display *display)
+> +void vlv_nc_get(struct drm_device *drm)
 > +{
-> +	intel_de_write(display, DSPCLK_GATE_D, 0);
+> +	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_NC));
 > +}
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gating.h b/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
-> index e0300dc8b041..b6dd34ca92dd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
-> @@ -17,5 +17,11 @@ void intel_display_bdw_clock_gating_disable_fbcq(struct intel_display *display);
->  void intel_display_bdw_clock_gating_vblank_in_srd(struct intel_display *display);
->  void intel_display_bdw_clock_gating_kvm_notif(struct intel_display *display);
->  void intel_display_hsw_init_clock_gating(struct intel_display *display);
-> +void intel_display_disable_trickle_feed(struct intel_display *display);
-> +void intel_display_ilk_init_clock_gating(struct intel_display *display);
-> +void intel_display_gen6_init_clock_gating(struct intel_display *display);
-> +void intel_display_ivb_init_clock_gating(struct intel_display *display);
-> +void intel_display_g4x_init_clock_gating(struct intel_display *display);
-> +void intel_display_i965gm_init_clock_gating(struct intel_display *display);
+> +
+> +u32 vlv_nc_read(struct drm_device *drm, u8 addr)
+> +{
+> +	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_NC, addr);
+> +}
+> +
+> +void vlv_nc_put(struct drm_device *drm)
+> +{
+> +	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_NC));
+> +}
+> +
+> +void vlv_punit_get(struct drm_device *drm)
+> +{
+> +	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_PUNIT));
+> +}
+> +
+> +u32 vlv_punit_read(struct drm_device *drm, u32 addr)
+> +{
+> +	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_PUNIT, addr);
+> +}
+> +
+> +int vlv_punit_write(struct drm_device *drm, u32 addr, u32 val)
+> +{
+> +	return vlv_iosf_sb_write(drm, VLV_IOSF_SB_PUNIT, addr, val);
+> +}
+> +
+> +void vlv_punit_put(struct drm_device *drm)
+> +{
+> +	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_PUNIT));
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/vlv_sideband.h b/drivers/gpu/drm/i915/display/vlv_sideband.h
+> index 2c240d81fead..065273726379 100644
+> --- a/drivers/gpu/drm/i915/display/vlv_sideband.h
+> +++ b/drivers/gpu/drm/i915/display/vlv_sideband.h
+> @@ -4,7 +4,6 @@
+>  #ifndef _VLV_SIDEBAND_H_
+>  #define _VLV_SIDEBAND_H_
 >  
->  #endif /* __INTEL_DISPLAY_CLOCK_GATING_H__ */
-> diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c b/drivers/gpu/drm/i915/intel_clock_gating.c
-> index 47b437a82f4e..12559db84cf4 100644
-> --- a/drivers/gpu/drm/i915/intel_clock_gating.c
-> +++ b/drivers/gpu/drm/i915/intel_clock_gating.c
-> @@ -29,11 +29,8 @@
->  #include <drm/intel/intel_gmd_misc_regs.h>
->  #include <drm/intel/intel_gmd_interrupt_regs.h>
+> -#include <linux/bitops.h>
+>  #include <linux/types.h>
 >  
-> -#include "display/i9xx_plane_regs.h"
-> -#include "display/intel_display.h"
->  #include "display/intel_display_clock_gating.h"
->  #include "display/intel_display_core.h"
-> -#include "display/intel_display_regs.h"
->  #include "gt/intel_engine_regs.h"
->  #include "gt/intel_gt.h"
->  #include "gt/intel_gt_mcr.h"
-> @@ -68,74 +65,15 @@ static void glk_init_clock_gating(struct drm_i915_private *i915)
->  	intel_display_glk_init_clock_gating(i915->display);
->  }
+>  #include "vlv_iosf_sb.h"
+> @@ -13,144 +12,38 @@
+>  enum dpio_phy;
+>  struct drm_device;
 >  
-> -static void g4x_disable_trickle_feed(struct drm_i915_private *dev_priv)
+> -static inline void vlv_bunit_get(struct drm_device *drm)
 > -{
-> -	struct intel_display *display = dev_priv->display;
-> -	enum pipe pipe;
-> -
-> -	for_each_pipe(display, pipe) {
-> -		intel_uncore_rmw(&dev_priv->uncore, DSPCNTR(display, pipe),
-> -				 0, DISP_TRICKLE_FEED_DISABLE);
-> -
-> -		intel_uncore_rmw(&dev_priv->uncore, DSPSURF(display, pipe),
-> -				 0, 0);
-> -		intel_uncore_posting_read(&dev_priv->uncore,
-> -					  DSPSURF(display, pipe));
-> -	}
+> -	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_BUNIT));
+> -}
+> +void vlv_bunit_get(struct drm_device *drm);
+> +u32 vlv_bunit_read(struct drm_device *drm, u32 reg);
+> +void vlv_bunit_write(struct drm_device *drm, u32 reg, u32 val);
+> +void vlv_bunit_put(struct drm_device *drm);
+>  
+> -static inline u32 vlv_bunit_read(struct drm_device *drm, u32 reg)
+> -{
+> -	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_BUNIT, reg);
+> -}
+> +void vlv_cck_get(struct drm_device *drm);
+> +u32 vlv_cck_read(struct drm_device *drm, u32 reg);
+> +void vlv_cck_write(struct drm_device *drm, u32 reg, u32 val);
+> +void vlv_cck_put(struct drm_device *drm);
+>  
+> -static inline void vlv_bunit_write(struct drm_device *drm, u32 reg, u32 val)
+> -{
+> -	vlv_iosf_sb_write(drm, VLV_IOSF_SB_BUNIT, reg, val);
+> -}
+> +void vlv_ccu_get(struct drm_device *drm);
+> +u32 vlv_ccu_read(struct drm_device *drm, u32 reg);
+> +void vlv_ccu_write(struct drm_device *drm, u32 reg, u32 val);
+> +void vlv_ccu_put(struct drm_device *drm);
+>  
+> -static inline void vlv_bunit_put(struct drm_device *drm)
+> -{
+> -	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_BUNIT));
 > -}
 > -
->  static void ilk_init_clock_gating(struct drm_i915_private *i915)
->  {
-> -	u32 dspclk_gate = ILK_VRHUNIT_CLOCK_GATE_DISABLE;
+> -static inline void vlv_cck_get(struct drm_device *drm)
+> -{
+> -	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_CCK));
+> -}
 > -
-> -	/*
-> -	 * Required for FBC
-> -	 * WaFbcDisableDpfcClockGating:ilk
-> -	 */
-> -	dspclk_gate |= ILK_DPFCRUNIT_CLOCK_GATE_DISABLE |
-> -		   ILK_DPFCUNIT_CLOCK_GATE_DISABLE |
-> -		   ILK_DPFDUNIT_CLOCK_GATE_ENABLE;
+> -static inline u32 vlv_cck_read(struct drm_device *drm, u32 reg)
+> -{
+> -	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_CCK, reg);
+> -}
 > -
->  	intel_uncore_write(&i915->uncore, PCH_3DCGDIS0,
->  			   MARIUNIT_CLOCK_GATE_DISABLE |
->  			   SVSMUNIT_CLOCK_GATE_DISABLE);
->  	intel_uncore_write(&i915->uncore, PCH_3DCGDIS1,
->  			   VFMUNIT_CLOCK_GATE_DISABLE);
+> -static inline void vlv_cck_write(struct drm_device *drm, u32 reg, u32 val)
+> -{
+> -	vlv_iosf_sb_write(drm, VLV_IOSF_SB_CCK, reg, val);
+> -}
+> -
+> -static inline void vlv_cck_put(struct drm_device *drm)
+> -{
+> -	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_CCK));
+> -}
+> -
+> -static inline void vlv_ccu_get(struct drm_device *drm)
+> -{
+> -	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_CCU));
+> -}
+> -
+> -static inline u32 vlv_ccu_read(struct drm_device *drm, u32 reg)
+> -{
+> -	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_CCU, reg);
+> -}
+> -
+> -static inline void vlv_ccu_write(struct drm_device *drm, u32 reg, u32 val)
+> -{
+> -	vlv_iosf_sb_write(drm, VLV_IOSF_SB_CCU, reg, val);
+> -}
+> -
+> -static inline void vlv_ccu_put(struct drm_device *drm)
+> -{
+> -	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_CCU));
+> -}
+> -
+> -static inline void vlv_dpio_get(struct drm_device *drm)
+> -{
+> -	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_DPIO) | BIT(VLV_IOSF_SB_DPIO_2));
+> -}
+> -
+> -#ifdef I915
+> +void vlv_dpio_get(struct drm_device *drm);
+>  u32 vlv_dpio_read(struct drm_device *drm, enum dpio_phy phy, int reg);
+> -void vlv_dpio_write(struct drm_device *drm,
+> -		    enum dpio_phy phy, int reg, u32 val);
+> -#else
+> -static inline u32 vlv_dpio_read(struct drm_device *drm, int phy, int reg)
+> -{
+> -	return 0;
+> -}
+> -static inline void vlv_dpio_write(struct drm_device *drm,
+> -				  int phy, int reg, u32 val)
+> -{
+> -}
+> -#endif
+> -
+> -static inline void vlv_dpio_put(struct drm_device *drm)
+> -{
+> -	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_DPIO) | BIT(VLV_IOSF_SB_DPIO_2));
+> -}
+> -
+> -static inline void vlv_flisdsi_get(struct drm_device *drm)
+> -{
+> -	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_FLISDSI));
+> -}
+> -
+> -static inline u32 vlv_flisdsi_read(struct drm_device *drm, u32 reg)
+> -{
+> -	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_FLISDSI, reg);
+> -}
+> -
+> -static inline void vlv_flisdsi_write(struct drm_device *drm, u32 reg, u32 val)
+> -{
+> -	vlv_iosf_sb_write(drm, VLV_IOSF_SB_FLISDSI, reg, val);
+> -}
+> -
+> -static inline void vlv_flisdsi_put(struct drm_device *drm)
+> -{
+> -	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_FLISDSI));
+> -}
+> -
+> -static inline void vlv_nc_get(struct drm_device *drm)
+> -{
+> -	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_NC));
+> -}
+> -
+> -static inline u32 vlv_nc_read(struct drm_device *drm, u8 addr)
+> -{
+> -	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_NC, addr);
+> -}
+> -
+> -static inline void vlv_nc_put(struct drm_device *drm)
+> -{
+> -	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_NC));
+> -}
+> -
+> -static inline void vlv_punit_get(struct drm_device *drm)
+> -{
+> -	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_PUNIT));
+> -}
+> -
+> -static inline u32 vlv_punit_read(struct drm_device *drm, u32 addr)
+> -{
+> -	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_PUNIT, addr);
+> -}
+> -
+> -static inline int vlv_punit_write(struct drm_device *drm, u32 addr, u32 val)
+> -{
+> -	return vlv_iosf_sb_write(drm, VLV_IOSF_SB_PUNIT, addr, val);
+> -}
+> -
+> -static inline void vlv_punit_put(struct drm_device *drm)
+> -{
+> -	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_PUNIT));
+> -}
+> +void vlv_dpio_write(struct drm_device *drm, enum dpio_phy phy, int reg, u32 val);
+> +void vlv_dpio_put(struct drm_device *drm);
+> +
+> +void vlv_flisdsi_get(struct drm_device *drm);
+> +u32 vlv_flisdsi_read(struct drm_device *drm, u32 reg);
+> +void vlv_flisdsi_write(struct drm_device *drm, u32 reg, u32 val);
+> +void vlv_flisdsi_put(struct drm_device *drm);
+> +
+> +void vlv_nc_get(struct drm_device *drm);
+> +u32 vlv_nc_read(struct drm_device *drm, u8 addr);
+> +void vlv_nc_put(struct drm_device *drm);
+> +
+> +void vlv_punit_get(struct drm_device *drm);
+> +u32 vlv_punit_read(struct drm_device *drm, u32 addr);
+> +int vlv_punit_write(struct drm_device *drm, u32 addr, u32 val);
+> +void vlv_punit_put(struct drm_device *drm);
 >  
-> -	/*
-> -	 * According to the spec the following bits should be set in
-> -	 * order to enable memory self-refresh
-> -	 * The bit 22/21 of 0x42004
-> -	 * The bit 5 of 0x42020
-> -	 * The bit 15 of 0x45000
-> -	 */
-> -	intel_uncore_write(&i915->uncore, ILK_DISPLAY_CHICKEN2,
-> -			   (intel_uncore_read(&i915->uncore, ILK_DISPLAY_CHICKEN2) |
-> -			    ILK_DPARB_GATE | ILK_VSDPFD_FULL));
-> -	dspclk_gate |= ILK_DPARBUNIT_CLOCK_GATE_ENABLE;
-> -	intel_uncore_write(&i915->uncore, DISP_ARB_CTL,
-> -			   (intel_uncore_read(&i915->uncore, DISP_ARB_CTL) |
-> -			    DISP_FBC_WM_DIS));
-> -
-> -	/*
-> -	 * Based on the document from hardware guys the following bits
-> -	 * should be set unconditionally in order to enable FBC.
-> -	 * The bit 22 of 0x42000
-> -	 * The bit 22 of 0x42004
-> -	 * The bit 7,8,9 of 0x42020.
-> -	 */
-> -	if (IS_IRONLAKE_M(i915)) {
-> -		/* WaFbcAsynchFlipDisableFbcQueue:ilk */
-> -		intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN1, 0, ILK_FBCQ_DIS);
-> -		intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN2, 0, ILK_DPARB_GATE);
-> -	}
-> -
-> -	intel_uncore_write(&i915->uncore, ILK_DSPCLK_GATE_D, dspclk_gate);
-> -
-> -	intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN2, 0, ILK_ELPIN_409_SELECT);
-> -
-> -	g4x_disable_trickle_feed(i915);
-> -
-> +	intel_display_ilk_init_clock_gating(i915->display);
->  	intel_pch_init_clock_gating(i915->display);
->  }
+>  #endif /* _VLV_SIDEBAND_H_ */
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index 9dacb0579a7d..7960c2db33bd 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -332,7 +332,8 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+>  	i915-display/skl_prefill.o \
+>  	i915-display/skl_scaler.o \
+>  	i915-display/skl_universal_plane.o \
+> -	i915-display/skl_watermark.o
+> +	i915-display/skl_watermark.o \
+> +	i915-display/vlv_sideband.o
 >  
-> @@ -152,11 +90,7 @@ static void gen6_check_mch_setup(struct drm_i915_private *i915)
->  
->  static void gen6_init_clock_gating(struct drm_i915_private *i915)
->  {
-> -	u32 dspclk_gate = ILK_VRHUNIT_CLOCK_GATE_DISABLE;
-> -
-> -	intel_uncore_write(&i915->uncore, ILK_DSPCLK_GATE_D, dspclk_gate);
-> -
-> -	intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN2, 0, ILK_ELPIN_409_SELECT);
-> +	intel_display_gen6_init_clock_gating(i915->display);
->  
->  	intel_uncore_write(&i915->uncore, GEN6_UCGCTL1,
->  			   intel_uncore_read(&i915->uncore, GEN6_UCGCTL1) |
-> @@ -191,19 +125,6 @@ static void gen6_init_clock_gating(struct drm_i915_private *i915)
->  	 *
->  	 * WaFbcAsynchFlipDisableFbcQueue:snb
->  	 */
-> -	intel_uncore_write(&i915->uncore, ILK_DISPLAY_CHICKEN1,
-> -			   intel_uncore_read(&i915->uncore, ILK_DISPLAY_CHICKEN1) |
-> -			   ILK_FBCQ_DIS | ILK_PABSTRETCH_DIS);
-> -	intel_uncore_write(&i915->uncore, ILK_DISPLAY_CHICKEN2,
-> -			   intel_uncore_read(&i915->uncore, ILK_DISPLAY_CHICKEN2) |
-> -			   ILK_DPARB_GATE | ILK_VSDPFD_FULL);
-> -	intel_uncore_write(&i915->uncore, ILK_DSPCLK_GATE_D,
-> -			   intel_uncore_read(&i915->uncore, ILK_DSPCLK_GATE_D) |
-> -			   ILK_DPARBUNIT_CLOCK_GATE_ENABLE  |
-> -			   ILK_DPFDUNIT_CLOCK_GATE_ENABLE);
-> -
-> -	g4x_disable_trickle_feed(i915);
-> -
->  	intel_pch_init_clock_gating(i915->display);
->  
->  	gen6_check_mch_setup(i915);
-> @@ -335,10 +256,7 @@ static void ivb_init_clock_gating(struct drm_i915_private *i915)
->  {
->  	struct intel_display *display = i915->display;
->  
-> -	intel_uncore_write(&i915->uncore, ILK_DSPCLK_GATE_D, ILK_VRHUNIT_CLOCK_GATE_DISABLE);
-> -
-> -	/* WaFbcAsynchFlipDisableFbcQueue:ivb */
-> -	intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN1, 0, ILK_FBCQ_DIS);
-> +	intel_display_ivb_init_clock_gating(display);
->  
->  	/* WaDisableBackToBackFlipFix:ivb */
->  	intel_uncore_write(&i915->uncore, IVB_CHICKEN3,
-> @@ -367,7 +285,7 @@ static void ivb_init_clock_gating(struct drm_i915_private *i915)
->  	intel_uncore_rmw(&i915->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
->  			 0, GEN7_SQ_CHICKEN_MBCUNIT_SQINTMOB);
->  
-> -	g4x_disable_trickle_feed(i915);
-> +	intel_display_disable_trickle_feed(display);
->  
->  	intel_uncore_rmw(&i915->uncore, GEN6_MBCUNIT_SNPCR, GEN6_MBC_SNPCR_MASK,
->  			 GEN6_MBC_SNPCR_MED);
-> @@ -440,21 +358,12 @@ static void chv_init_clock_gating(struct drm_i915_private *i915)
->  
->  static void g4x_init_clock_gating(struct drm_i915_private *i915)
->  {
-> -	u32 dspclk_gate;
-> -
->  	intel_uncore_write(&i915->uncore, RENCLK_GATE_D1, 0);
->  	intel_uncore_write(&i915->uncore, RENCLK_GATE_D2, VF_UNIT_CLOCK_GATE_DISABLE |
->  			   GS_UNIT_CLOCK_GATE_DISABLE |
->  			   CL_UNIT_CLOCK_GATE_DISABLE);
->  	intel_uncore_write(&i915->uncore, RAMCLK_GATE_D, 0);
-> -	dspclk_gate = VRHUNIT_CLOCK_GATE_DISABLE |
-> -		OVRUNIT_CLOCK_GATE_DISABLE |
-> -		OVCUNIT_CLOCK_GATE_DISABLE;
-> -	if (IS_GM45(i915))
-> -		dspclk_gate |= DSSUNIT_CLOCK_GATE_DISABLE;
-> -	intel_uncore_write(&i915->uncore, DSPCLK_GATE_D, dspclk_gate);
-> -
-> -	g4x_disable_trickle_feed(i915);
-> +	intel_display_g4x_init_clock_gating(i915->display);
->  }
->  
->  static void i965gm_init_clock_gating(struct drm_i915_private *i915)
-> @@ -463,7 +372,7 @@ static void i965gm_init_clock_gating(struct drm_i915_private *i915)
->  
->  	intel_uncore_write(uncore, RENCLK_GATE_D1, I965_RCC_CLOCK_GATE_DISABLE);
->  	intel_uncore_write(uncore, RENCLK_GATE_D2, 0);
-> -	intel_uncore_write(uncore, DSPCLK_GATE_D, 0);
-> +	intel_display_i965gm_init_clock_gating(i915->display);
->  	intel_uncore_write(uncore, RAMCLK_GATE_D, 0);
->  	intel_uncore_write16(uncore, DEUC, 0);
->  	intel_uncore_write(uncore,
+>  ifeq ($(CONFIG_ACPI),y)
+>  	xe-$(CONFIG_DRM_XE_DISPLAY) += \
+> -- 
+> 2.47.3
 
 -- 
-Jani Nikula, Intel
+Ville Syrjälä
+Intel
