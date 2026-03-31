@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DE2CFF60F9
-	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 09:49:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04D18FF60F9
+	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 09:49:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1359210E9FC;
-	Tue, 31 Mar 2026 09:49:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B62E310E960;
+	Tue, 31 Mar 2026 09:49:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y0Y8UIzB";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AUQiRzxS";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADD4E10E9FC;
- Tue, 31 Mar 2026 09:49:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A65B89518;
+ Tue, 31 Mar 2026 09:49:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774950568; x=1806486568;
+ t=1774950574; x=1806486574;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=xG1qfyOvJN6gc/Pe+Ulx4zBfNQMT7BDLkmU5k1tvQT0=;
- b=Y0Y8UIzBQUyqynvePqAq5vAxbLrS9M1zSB0tmdKNgCjdq1t3OXQdiyw/
- frVVUtS2/AlFyG8seVuDkryhE66REwE9uwR00oAeNBoe3PNav3xeYyfLE
- E4xpF7epXLm0Fxf90ptGxpYCCSsfe5l/nCvGlYbGvf5hANZ+mO0kLtN8U
- xQ8spDG15H7RoCA3SXPl8uzYSSHk02Qmq2Zn6jmf/qdsxKQ2z4br0hz3Q
- E1yjvOAxnz5ruT24NIGh/L6DFdVpApGF3uENq2pbKRYZXnTqagoP7GkqL
- 7iPJ/P4UvVWyUtWFB2BweKTGvRUsg5yiF54AxlkbYYl+mmhWXmV/eg5s6 A==;
-X-CSE-ConnectionGUID: myo7PuhgSpmEjkVVperj/w==
-X-CSE-MsgGUID: nKdDHUqeTruqtuKHXUbZxw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11744"; a="101414040"
-X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="101414040"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 02:49:28 -0700
-X-CSE-ConnectionGUID: QMr87mNLS4KZtFT+F9gDKw==
-X-CSE-MsgGUID: PaKn6izqS2WmmRrPVs7Nuw==
+ bh=aRttpi89yR/mtcwVjkHuyM7vSdty8C72wUOxOOXXQmc=;
+ b=AUQiRzxSEhSkY7HjlMG3b4PfFCore6x254s5PhpiiwGO0tHabeNcZ2L/
+ LYmI/NdVitCjUJ7qh0qV1/dv34vgktW1i2JE31tHGiV/ZKAY2i31zAyUE
+ SCWMr46B887nH0xjdhxTBbL/Kv2cDnwMp3j97nK4EBquVFDiSZPRarwsH
+ U5nW8G7zYti66Vng1hBeJlwmyYPTSNoxLnN9UIM+MCgasNXEmQTOjzBrT
+ JzQ8nVgtARUUgtRro9a4pCcbwZx9oKkTZPupPh1BGg9mM3hOwuZlMRJWR
+ 9fx7ly1Dv/Talbt/ZOOfjFmUMNRQ/Z5Fv+aOC18dw5ESXiYp7pxVRS2Se g==;
+X-CSE-ConnectionGUID: 5m9zEV5iQ1e3021LW4+PFg==
+X-CSE-MsgGUID: 3FILUd92ToqgBwowVhnx5w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11744"; a="86257528"
+X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="86257528"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2026 02:49:34 -0700
+X-CSE-ConnectionGUID: t+sgIEWzTM2VyO+XZO6t3w==
+X-CSE-MsgGUID: wOY8hy1vS/yjhrMh4pWnUA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="231252223"
+X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="230791478"
 Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.73])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 02:49:27 -0700
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2026 02:49:31 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
  =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v2 1/5] drm/xe/fbdev: put intel_fbdev_fb_prefer_stolen()
- behind IS_ENABLED(CONFIG_DRM_FBDEV_EMULATION)
-Date: Tue, 31 Mar 2026 12:49:14 +0300
-Message-ID: <245880a591fe5267a1c06bfbbcc42a4dd9f2e4ee.1774950508.git.jani.nikula@intel.com>
+Subject: [PATCH v2 2/5] drm/{i915,
+ xe}/fbdev: drop drm device parameter from intel_fbdev_fb_fill_info()
+Date: Tue, 31 Mar 2026 12:49:15 +0300
+Message-ID: <6c617dc41c07b0e3e9af01b82d0d1dadbd4760fc.1774950508.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1774950508.git.jani.nikula@intel.com>
 References: <cover.1774950508.git.jani.nikula@intel.com>
@@ -73,29 +73,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Unify the behaviour with i915. Similar to commit b63c6b9b7f5e
-("drm/i915/fbdev: fix link failure without FBDEV emulation"). The
-difference is that unlike i915, xe doesn't build
-display/intel_fbdev_fb.c conditional to CONFIG_DRM_FBDEV_EMULATION.
+The struct drm_device *drm parameter of intel_fbdev_fb_fill_info() is
+redundant, as you can obtain the same information via obj->dev. Drop the
+drm parameter, and move obj as first (or the context) parameter.
 
 Reviewed-by: Michał Grzelak <michal.grzelak@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_initial_plane.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/i915/display/intel_fbdev.c    | 2 +-
+ drivers/gpu/drm/i915/display/intel_fbdev_fb.c | 8 ++++----
+ drivers/gpu/drm/i915/display/intel_fbdev_fb.h | 4 ++--
+ drivers/gpu/drm/xe/display/intel_fbdev_fb.c   | 6 +++---
+ 4 files changed, 10 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-index 8bcae552dddc..d44746f4966c 100644
---- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
-+++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-@@ -86,6 +86,7 @@ initial_plane_bo(struct xe_device *xe,
- 		flags |= XE_BO_FLAG_STOLEN;
+diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+index bdaaf3edba0c..6401aaaba199 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbdev.c
++++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+@@ -327,7 +327,7 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
  
- 		if (IS_ENABLED(CONFIG_FRAMEBUFFER_CONSOLE) &&
-+		    IS_ENABLED(CONFIG_DRM_FBDEV_EMULATION) &&
- 		    !intel_fbdev_fb_prefer_stolen(&xe->drm, plane_config->size)) {
- 			drm_info(&xe->drm, "Initial FB size exceeds half of stolen, discarding\n");
- 			return NULL;
+ 	obj = intel_fb_bo(&fb->base);
+ 
+-	ret = intel_fbdev_fb_fill_info(display->drm, info, obj, vma);
++	ret = intel_fbdev_fb_fill_info(obj, info, vma);
+ 	if (ret)
+ 		goto out_unpin;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
+index 6f84eb6355de..a696ce42d10b 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
+@@ -66,10 +66,10 @@ void intel_fbdev_fb_bo_destroy(struct drm_gem_object *obj)
+ 	drm_gem_object_put(obj);
+ }
+ 
+-int intel_fbdev_fb_fill_info(struct drm_device *drm, struct fb_info *info,
+-			     struct drm_gem_object *_obj, struct i915_vma *vma)
++int intel_fbdev_fb_fill_info(struct drm_gem_object *_obj, struct fb_info *info,
++			     struct i915_vma *vma)
+ {
+-	struct drm_i915_private *i915 = to_i915(drm);
++	struct drm_i915_private *i915 = to_i915(_obj->dev);
+ 	struct drm_i915_gem_object *obj = to_intel_bo(_obj);
+ 	struct i915_gem_ww_ctx ww;
+ 	void __iomem *vaddr;
+@@ -101,7 +101,7 @@ int intel_fbdev_fb_fill_info(struct drm_device *drm, struct fb_info *info,
+ 
+ 		vaddr = i915_vma_pin_iomap(vma);
+ 		if (IS_ERR(vaddr)) {
+-			drm_err(drm,
++			drm_err(&i915->drm,
+ 				"Failed to remap framebuffer into virtual memory (%pe)\n", vaddr);
+ 			ret = PTR_ERR(vaddr);
+ 			continue;
+diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h b/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
+index 34ed2b9c2b4f..ddba45e9839d 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
++++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
+@@ -17,8 +17,8 @@ struct i915_vma;
+ u32 intel_fbdev_fb_pitch_align(u32 stride);
+ struct drm_gem_object *intel_fbdev_fb_bo_create(struct drm_device *drm, int size);
+ void intel_fbdev_fb_bo_destroy(struct drm_gem_object *obj);
+-int intel_fbdev_fb_fill_info(struct drm_device *drm, struct fb_info *info,
+-			     struct drm_gem_object *obj, struct i915_vma *vma);
++int intel_fbdev_fb_fill_info(struct drm_gem_object *obj, struct fb_info *info,
++			     struct i915_vma *vma);
+ bool intel_fbdev_fb_prefer_stolen(struct drm_device *drm, unsigned int size);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+index d7030e4d814c..23fa54ee781e 100644
+--- a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
++++ b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+@@ -91,11 +91,11 @@ void intel_fbdev_fb_bo_destroy(struct drm_gem_object *obj)
+ 	xe_bo_unpin_map_no_vm(gem_to_xe_bo(obj));
+ }
+ 
+-int intel_fbdev_fb_fill_info(struct drm_device *drm, struct fb_info *info,
+-			     struct drm_gem_object *_obj, struct i915_vma *vma)
++int intel_fbdev_fb_fill_info(struct drm_gem_object *_obj, struct fb_info *info,
++			     struct i915_vma *vma)
+ {
+ 	struct xe_bo *obj = gem_to_xe_bo(_obj);
+-	struct pci_dev *pdev = to_pci_dev(drm->dev);
++	struct pci_dev *pdev = to_pci_dev(_obj->dev->dev);
+ 
+ 	if (!(obj->flags & XE_BO_FLAG_SYSTEM)) {
+ 		if (obj->flags & XE_BO_FLAG_STOLEN)
 -- 
 2.47.3
 
