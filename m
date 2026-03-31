@@ -4,27 +4,161 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68AB7109B489
-	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 15:49:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F0F210F92E0
+	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 16:14:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 263D310EBBF;
-	Tue, 31 Mar 2026 15:49:00 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32AAA10EBBF;
- Tue, 31 Mar 2026 15:48:59 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7729062593628969396=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3443610E1FE;
+	Tue, 31 Mar 2026 16:14:25 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IFOiA49z";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B78D510E1FE
+ for <intel-xe@lists.freedesktop.org>; Tue, 31 Mar 2026 16:14:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1774973664; x=1806509664;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=ma/P0Zq6lHzhZQZw1/5cybf69Akbp442r9yDyp2QmcQ=;
+ b=IFOiA49zKXplvPFfKpEMH15vWZqHbgSLL1r5VV8TanNdOcVKBaKN4WU4
+ ArGLK+W5Frh2vsWc6tVRTB7eykhL6giv8XmpNsQr9gVuKOYKBNAw8EZam
+ lK/zudhogarIVxrj/A3HYKWnRceR3LAjy/nopH5LZT9crglgUdC+o3KPp
+ atjQXoe4RuxOkDSZl4kretH9CNuA1q1GxwSBOwnzTux5N25bgK177tFAe
+ 4ukzrNdx2+Ko/mjNgl2MD3O0+62ppu8Ix5yNlzOp9Dfr5m3wrrK0psMIT
+ DuCvR/sWwUErJ27U+tTpKYMdhgd+rmSRhOf+kri+WL/ftn9Yd65eUAqYU w==;
+X-CSE-ConnectionGUID: kBQPpQ40QuKN4ihs1cAjow==
+X-CSE-MsgGUID: vv+q1CPWT9mNDTdpm1pYug==
+X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="93383070"
+X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="93383070"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2026 09:14:23 -0700
+X-CSE-ConnectionGUID: HKPBRCz+TZ+HrU/lDS7inQ==
+X-CSE-MsgGUID: H8y4tttpRtqMV3rVlZ3HOw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="228013149"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2026 09:14:23 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Tue, 31 Mar 2026 09:14:22 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Tue, 31 Mar 2026 09:14:22 -0700
+Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.42) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Tue, 31 Mar 2026 09:14:21 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=MeTwkCA1qZ/mpgMXIHTS4Kk4Ba5eRMZ3ePHeC76hddVK8coypFP78JfFWTKtv/R+dFcy4TbX4Eee986reSxQDhIN3DqeLnHfs3+9kQOLBcLCKXadM3XQOCULugtkOcULezH0i/RpaQ+ShApi4N9YVp3jUoDb5PNL7D3BWp8kYP7osSIBM08u23VhPUmq/AQAZvGaHw3JqQuNUrvfPlDSAyy/eN2KIavH700YcYTCONog9Ek7QThMvN0vTIocZpb9upXGAnV8RFa+acS7+QZqmweUXSyMhEpQ44XI+bQfh8VFEARBjPNysWcAGwg3U0KhqBGvkivj5YrW+fT3uBzk/A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9UEu7C8zvCRpRamh8OaXoRJ9RZvDj1FYKCdGOhLVZq4=;
+ b=cw8QEMPwi1QL2aaXgQLd4uifGpGETulQIphDYX9dQ2pjYhtwtxv9KIUXEI6CNcLyz1Og+DUiZseyPwJKDnbBKyECZknoF1hHIMsZblxnd2Rb1vtK/QZmqngXrXuOCJWgwSmYOeN/tstj+6PRMEiFYvU1DHLx1pMTXzHUD+LactQBUJgk7ugZpEXH2DUUb4H5ncQoIGHwZ8MNvgEL3vmEYuXJxsB3dxv86vx5tjViwxsgemBTzYd0G8pVz+gfbE4Jelq0fELQJQda9Jj8iLW/tFC3cakX+0l4FP2psWWEKStpjFYgafWBa40uo5o0adocXj1LfBRe/FU9vADks3EIZA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
+ SJ1PR11MB6297.namprd11.prod.outlook.com (2603:10b6:a03:458::8) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9769.15; Tue, 31 Mar 2026 16:14:19 +0000
+Received: from DS0PR11MB7958.namprd11.prod.outlook.com
+ ([fe80::8cb2:cffc:b684:9a99]) by DS0PR11MB7958.namprd11.prod.outlook.com
+ ([fe80::8cb2:cffc:b684:9a99%6]) with mapi id 15.20.9769.014; Tue, 31 Mar 2026
+ 16:14:19 +0000
+Message-ID: <ab19a31f-03f1-4d21-b135-82e3417a2876@intel.com>
+Date: Tue, 31 Mar 2026 21:44:10 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 07/11] drm/xe/xe_ras: Add structures and commands for
+ Uncorrectable Core Compute Errors
+To: Raag Jadav <raag.jadav@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
+ <rodrigo.vivi@intel.com>, <aravind.iddamsetty@linux.intel.com>,
+ <badal.nilawar@intel.com>, <ravi.kishore.koppuravuri@intel.com>,
+ <mallesh.koujalagi@intel.com>
+References: <20260302102155.4074630-13-riana.tauro@intel.com>
+ <20260302102155.4074630-20-riana.tauro@intel.com>
+ <aahesvXwzXJZbOSF@black.igk.intel.com>
+Content-Language: en-US
+From: "Tauro, Riana" <riana.tauro@intel.com>
+In-Reply-To: <aahesvXwzXJZbOSF@black.igk.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA1P287CA0015.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a00:35::30) To DS0PR11MB7958.namprd11.prod.outlook.com
+ (2603:10b6:8:f9::19)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFULL=3A_failure_for_Introduce_Xe_Correctable_E?=
- =?utf-8?q?rror_Handling_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Raag Jadav" <raag.jadav@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 31 Mar 2026 15:48:59 -0000
-Message-ID: <177497213919.417276.7536611571073972009@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260331102346.1034100-1-raag.jadav@intel.com>
-In-Reply-To: <20260331102346.1034100-1-raag.jadav@intel.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|SJ1PR11MB6297:EE_
+X-MS-Office365-Filtering-Correlation-Id: f13caf04-95e8-4f29-6b80-08de8f408f8a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|376014|1800799024|18002099003|22082099003|56012099003; 
+X-Microsoft-Antispam-Message-Info: 9n/TTFN0XadjYZbiZ1YBM/7U8YRRHnPZiiE0W4pQP2s1qVjgrPcs+9VpIST6N6pilJExXv/4jLJhk0OQeMgpAuAXe1c7pO1yugc0E+zV9DZXQxKErgFLFKL7V2Uqgf8+24jCGhnO5nj9S6WXkhE02GPWVaLvD22kE+WcQbqcNb+XvCom7O7TIypzUYWQN8sswyM//MOqLJJm9zKjAAdBrI0QVOtV4gvAPwOQO0obX1yMa3vcTGXTwfXGGLTQU6460lL9bLPiZLVCtFH0LcCA/hvHS7ahe1kvUQkbRvDgmwUFePITBg0ZJQfprrFuxyTjXUWhcyR3MxH9ToKivcCE26Sfbfelft75KYWQZNfi/VIKcGI9GWb4jg9MOanpzgdPlvwmT/GZ74hvAYuR12Iu8Vy8t/6pSNviCsBgXhPFbR4g/oHAOpO8x1oJAZN830pObCPGOe9/L+cjzKdBg/oBCbioj5i993q8PX3UWKQlxPQo+zhMpoHys/k2F7T1dgdvAc/7lfyZa3rh+H2j7TZVChXrBhYpZbx/xItxREgZ7D9ONNWmaoMkyx29uLqauk80lk4/b80MNinImBD3lYW5J73yckbH/wb6JHbyCY2+B1t09f6fw9C5Q8a4oEf3mmoSILUqxbVkhasrBgVFO2fNWvfsOvQoFIJcS0lyRjQe4uObj98TXaJR1+12ToTkvAJSyv/IV3Kxa9k0YUdC7eG8JOk7Ene6H2tW246l7MluKdw=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(18002099003)(22082099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bjFNUlZ6MXB6K1hnTmVnKzJPVmFvSnA0RUZ1YlJMSzBObUFpejZHRytlMTRp?=
+ =?utf-8?B?ZkZScThzWk13L2VjaStmQWdWbVFuMFVYM1MrOHBmdzk1cnFsZTYyd3h3UGxI?=
+ =?utf-8?B?OS8wMUNWOGtvYmxyWFliampFajNSSnZieTgrZlVJYzkzZzhGS3FVMkdzV294?=
+ =?utf-8?B?ZEU3aUNsTm1LUHNwMnZHNjNWekRkb0x6QWtIVHNScWFJb2JFelkrRDlWNXRT?=
+ =?utf-8?B?dFBrczh3elMzamFWNFJUdHJnSFdKVWxvSTI5STc0NHdiOExZRVBucGJ5QzVz?=
+ =?utf-8?B?RFpsNkUwNGFqTGNOWkh6MnE0TlN2UFBHcUpKa2FYYTRGVXViUUJ1S1NSbmtw?=
+ =?utf-8?B?ZTRONE5ueTBXbFBQSEtkeHVkVmN5Vll2VXpIcWpITktaTE85dE5hV2tMM0pC?=
+ =?utf-8?B?eWtDSlFlLzZEUklWdW5WWEVkTUJrUU81ZTRPelhKKzNqMjVxc1JjRlNyZTVm?=
+ =?utf-8?B?MFptMGRPdWs5aTR5ZXIrZEFoRTkzYWJ4anROUWs0NUtYNGVrNk1FVWlyTGlI?=
+ =?utf-8?B?WWtHK1N5QURhTmEzRm5vL2s1TXR1L2JPdzlSekFSc3lsUExlZW1UU0kwdHlP?=
+ =?utf-8?B?eEM5aXNXb3g0eU1DU1lPaXpVSmE2YVkycUV3cXBUZDZ2L2NJalZpdDN5bUMw?=
+ =?utf-8?B?bWpPaGE4RXU2cW10MjhSZEp2TXgrWFRMcXBpemFMT2pWWkU4QTVRL2p1a3Y1?=
+ =?utf-8?B?ZGRWQWZyUVVCQlNhWDdldnFEcG5iM0VmeWxqNEpjaWlFY1VPQnVTR1gzS0F5?=
+ =?utf-8?B?QTB1R2grMVhzQlZLN3A3QThVTm1ieWtmR3dZZzlzN21mSG9hYWg0TmhJMGtZ?=
+ =?utf-8?B?bzBQSlpocHo3SFJ6M3V3RnM0emtkOE1sbjdCNkJ6OS8weUZIMEhkd3d2ZU9X?=
+ =?utf-8?B?aEVDSkFnQzhIeVpDcWN3MGdTZ244SEFOZ05DRVlRNGF6eENxZHREaHBKcTMx?=
+ =?utf-8?B?eWkzbmpUT2JiNUxYMHNEeGp5bDB4K2FkSHlqbkdRMno1SlIxdFpOa3IxTGdu?=
+ =?utf-8?B?Ymg0MmtRMk9mNVAzQ0NtajZsZnlWVGdIRDQxZ0hpejNaK21VZzJIYlptRkhU?=
+ =?utf-8?B?MmRDWjZFZkxCbjl1UE42QXh5QmM2bjdydDN0NUZaWHlmSVJoOTFmdytZNmtI?=
+ =?utf-8?B?OHRMeHJJdlMySDRpRVNjUTVuRDZhVzAyT0FZWkNkc3QzMEp6QnZIK3UyRGlO?=
+ =?utf-8?B?OUVodnJiRGJKWjk5Z0lMYVdFZnVreGkxby9QOUNBY0pBWnVDdHF3Q0UvWFlm?=
+ =?utf-8?B?Z1dLc00zZnRVb3BmTmRoZkJYL3dzU3EvVXhZb2xRc1BKeFNoMHozc0NrT0c2?=
+ =?utf-8?B?eklTekxpODZJeWMzN1hOSDFLVWNZMmE0UXlDc3pvMXZxODRKeStuREVLcXF0?=
+ =?utf-8?B?aEl6NnYzZ0VEZGQ3czUranpoZytLUXNTVENSeS85dVYyWERFVVAyL3F1ZGl4?=
+ =?utf-8?B?YSs0bUxDck9PdS9XS2RjRko5U2xycG9WdFFCQ09LMzJsdVBEQ1lVQjZ2ZjVD?=
+ =?utf-8?B?bWNiODJMbUNaaFZUN1BFcThYc0IzcXpqRlg2L3JFcWRNRTVsSk4yOWJaY3Fs?=
+ =?utf-8?B?MC9rMlBXSnhvclVhQUQ2ZVJaVitiNEt2d0JsbkY0b1JRbVFiYjJqZE5LR3R6?=
+ =?utf-8?B?blNHWlVlWG94VkhDLzVCYVI3RVpBYXdPeSt3TXBsdjd5NDRYZ3UyWHZFcDlO?=
+ =?utf-8?B?dys5Y2ZkenNzenozWXV1YXJleDVJM3JydWNuV21LWHFVelovVlRML1JLanpB?=
+ =?utf-8?B?M084M1lDNm9aZis1Ymo2a2VwZUVNLzdqN2NNSU1CdWllL2MyMkRvREh0eW9p?=
+ =?utf-8?B?U2JLU3lSWjQ2V2VSTlVoUG91eEZMWjIvNnpoUVM1OE5SbS84NVlhRGNDSy81?=
+ =?utf-8?B?b01YV0hZZGRPWit6STNhTS80enVUbmJMVFBZM2NNR2FkYksvRDg1Yis4MGtR?=
+ =?utf-8?B?VElITFdTVG1rOXdDSFUxMzYxVS9abkhISzBSbTlVcFRwUEEySXNLWE9CYkZ4?=
+ =?utf-8?B?YTNseEQ3Q05lQ2dMUmxLSktuT2RBT0NTd3Y3cGptckhJWFN5b0hsMjA5T1NY?=
+ =?utf-8?B?SHdEMUJHTi9qSkFMTWdPbGtHZFBEcUI5S0hpSWcxbkJWV1RCekFpMUloeENK?=
+ =?utf-8?B?L3hpdHpvdXY0RGlCYjBrQmQvYmR2YzhzMXFRenppZ1JuaHdKS2lwSkk1MjVa?=
+ =?utf-8?B?OFA0a2JGOXhiY0ZKb0ZxNDZ3ZmN0cjRwWjQ1K3BFWXJUNUh3NFlwZ3lHZXI0?=
+ =?utf-8?B?NXdmOG9obW1xMFpuUXFXVE1QRHdSQVoxaWJ1TkRFc21kdzFoTTlNWkhlWFRW?=
+ =?utf-8?B?NXduM2FWUHZGR1orVktPRjdrNlpXV1Q0QXlXeHZKYmtScWNHQ0RkZz09?=
+X-Exchange-RoutingPolicyChecked: qLKAUmBrfRolfLzag+YhcjwCa/wRTEQJ1mL93JgkAqYvVKVFn7YbVcDm8RJC87LKrEWKVtbU8sfazR5c0DduTaIj/58TBhUEg9JKwiTDBDjfb1thCxz/iKjseuqPYx3VKnDCYkydP3qpL73qQOhUspoligpcOeeK/LgGe7R//bPrPjDQpwCwcgSZ3/tuch5e+/W2TCbd7qTHNghwTolgud/zsqvAsDt3Hh0yfCnbryBPkHFSrcyOZvGemZi1CT4Uhj33W29G1gQHARnjz8AgmB8spsl27sX2wworZyIoXhF5eicFAtZ7m7nbqONocSSCXnowUuLNU7Vxk7vVoxL9IQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: f13caf04-95e8-4f29-6b80-08de8f408f8a
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7958.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Mar 2026 16:14:19.2530 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: HVUimhOyzhQOr9IK9IG0XfFmGrfoph7kZyIk7BTSgTV14rz4Q8nGEcgrdVWkCmkl+lLgbZ/EQwwMHT+h/WyZSQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR11MB6297
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,190 +170,44 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7729062593628969396==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 3/4/2026 10:02 PM, Raag Jadav wrote:
+> On Mon, Mar 02, 2026 at 03:52:02PM +0530, Riana Tauro wrote:
+>> Add the sysctrl commands and response structures for Uncorrectable
+>> Core Compute errors.
+> ...
+>
+>> +static inline const char *severity_to_str(struct xe_device *xe, u32 severity)
+>> +{
+>> +	if (severity >= XE_RAS_SEVERITY_MAX)
+>> +		return "Unknown Severity";
+>> +
+>> +	return xe_ras_severities[severity];
+> Rather,
+>
+> 	return sev < XE_RAS_SEV_MAX ? xe_ras_severities[sev] : "Unknown";
+I can make this change
+>
+> and since this should ideally never happen, I'd also add a
+>
+> 	xe_assert(xe, sev < XE_RAS_SEV_MAX);
+This is only used in debug builds.  Won't be useful anyway..
 
-Series: Introduce Xe Correctable Error Handling (rev4)
-URL   : https://patchwork.freedesktop.org/series/160184/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from xe-4826-e15bf8dd9e5cd3aa1352b5b9a16eeffd3b1b193d_FULL -> xe-pw-160184v4_FULL
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-160184v4_FULL absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-160184v4_FULL, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (2 -> 2)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-160184v4_FULL:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_fault_injection@inject-fault-probe-function-xe_guc_ct_init:
-    - shard-lnl:          [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4826-e15bf8dd9e5cd3aa1352b5b9a16eeffd3b1b193d/shard-lnl-8/igt@xe_fault_injection@inject-fault-probe-function-xe_guc_ct_init.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160184v4/shard-lnl-1/igt@xe_fault_injection@inject-fault-probe-function-xe_guc_ct_init.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-160184v4_FULL that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1:
-    - shard-lnl:          [FAIL][3] ([Intel XE#301]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4826-e15bf8dd9e5cd3aa1352b5b9a16eeffd3b1b193d/shard-lnl-2/igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160184v4/shard-lnl-7/igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1.html
-
-  * igt@kms_psr_stress_test@invalidate-primary-flip-overlay:
-    - shard-lnl:          [SKIP][5] ([Intel XE#4692] / [Intel XE#7508]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4826-e15bf8dd9e5cd3aa1352b5b9a16eeffd3b1b193d/shard-lnl-8/igt@kms_psr_stress_test@invalidate-primary-flip-overlay.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160184v4/shard-lnl-2/igt@kms_psr_stress_test@invalidate-primary-flip-overlay.html
-
-  * igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma:
-    - shard-lnl:          [FAIL][7] ([Intel XE#5625]) -> [PASS][8] +1 other test pass
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4826-e15bf8dd9e5cd3aa1352b5b9a16eeffd3b1b193d/shard-lnl-1/igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160184v4/shard-lnl-7/igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma.html
-
-  
-  [Intel XE#301]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/301
-  [Intel XE#4692]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4692
-  [Intel XE#5625]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5625
-  [Intel XE#7508]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7508
-
-
-Build changes
--------------
-
-  * IGT: IGT_8838 -> IGT_8839
-  * Linux: xe-4826-e15bf8dd9e5cd3aa1352b5b9a16eeffd3b1b193d -> xe-pw-160184v4
-
-  IGT_8838: 75e860f605d698d0184d36091816814eb7de6ca5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8839: 8839
-  xe-4826-e15bf8dd9e5cd3aa1352b5b9a16eeffd3b1b193d: e15bf8dd9e5cd3aa1352b5b9a16eeffd3b1b193d
-  xe-pw-160184v4: 160184v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160184v4/index.html
-
---===============7729062593628969396==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Introduce Xe Correctable Error Handling (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160184/">https://patchwork.freedesktop.org/series/160184/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160184v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160184v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4826-e15bf8dd9e5cd3aa1352b5b9a16eeffd3b1b193d_FULL -&gt; xe-pw-160184v4_FULL</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-160184v4_FULL absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-160184v4_FULL, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (2 -&gt; 2)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-160184v4_FULL:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_fault_injection@inject-fault-probe-function-xe_guc_ct_init:<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4826-e15bf8dd9e5cd3aa1352b5b9a16eeffd3b1b193d/shard-lnl-8/igt@xe_fault_injection@inject-fault-probe-function-xe_guc_ct_init.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160184v4/shard-lnl-1/igt@xe_fault_injection@inject-fault-probe-function-xe_guc_ct_init.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-160184v4_FULL that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4826-e15bf8dd9e5cd3aa1352b5b9a16eeffd3b1b193d/shard-lnl-2/igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/301">Intel XE#301</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160184v4/shard-lnl-7/igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr_stress_test@invalidate-primary-flip-overlay:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4826-e15bf8dd9e5cd3aa1352b5b9a16eeffd3b1b193d/shard-lnl-8/igt@kms_psr_stress_test@invalidate-primary-flip-overlay.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4692">Intel XE#4692</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7508">Intel XE#7508</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160184v4/shard-lnl-2/igt@kms_psr_stress_test@invalidate-primary-flip-overlay.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4826-e15bf8dd9e5cd3aa1352b5b9a16eeffd3b1b193d/shard-lnl-1/igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5625">Intel XE#5625</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160184v4/shard-lnl-7/igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8838 -&gt; IGT_8839</li>
-<li>Linux: xe-4826-e15bf8dd9e5cd3aa1352b5b9a16eeffd3b1b193d -&gt; xe-pw-160184v4</li>
-</ul>
-<p>IGT_8838: 75e860f605d698d0184d36091816814eb7de6ca5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8839: 8839<br />
-  xe-4826-e15bf8dd9e5cd3aa1352b5b9a16eeffd3b1b193d: e15bf8dd9e5cd3aa1352b5b9a16eeffd3b1b193d<br />
-  xe-pw-160184v4: 160184v4</p>
-
-</body>
-</html>
-
---===============7729062593628969396==--
+Thanks
+Riana
+>> +}
+>> +
+>> +static inline const char *comp_to_str(struct xe_device *xe, u32 comp)
+>> +{
+>> +	if (comp >= XE_RAS_COMPONENT_MAX)
+>> +		return "Unknown Component";
+>> +
+>> +	return xe_ras_components[comp];
+> Ditto.
+>
+> Raag
+>
+>> +}
