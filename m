@@ -4,60 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F4A010F92E9
-	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 18:34:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F11CB10F92EB
+	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 18:49:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 319A310EB91;
-	Tue, 31 Mar 2026 18:34:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AECAA10E295;
+	Tue, 31 Mar 2026 18:49:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LWO5VHln";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M/JCyK9X";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76BB810EB35;
- Tue, 31 Mar 2026 18:34:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D5FEF10E295
+ for <intel-xe@lists.freedesktop.org>; Tue, 31 Mar 2026 18:49:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774982087; x=1806518087;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=GvymCEhcbfDRlsmJG/pyC77U67kcCR8vN6NYq8dtFfM=;
- b=LWO5VHlnAHPxSWgFM/tgU0zR/K/5FFCi4Qcn1zQFEB5v/E2Mz42Hx5E8
- IPHBHUaJBm4OSCvEkXaY/ybzjoT6KY5STzcBmpux+B9lHrFVcjFZSdS6L
- A/8Ar94BZ4hyqNinvXAJ8mmIKl4dUWKwAXCoCadj5rO34eUh4PbBsuwty
- Ha17KILV1CZ0PI8m5h8XnBv5tNcVsadpzuJGivoxsSzlz/R6NFVYrGMHR
- XE5ixH5aY+O45hJcAQsCzb9K6jraErcSLczuWfT2siZ8RRTKzn66VOPzn
- uhzqGa6cP/LeZdjhZ1z6nOXaycC3XMfTLkmOpKb63sXhRfjMnRXy9IEjE g==;
-X-CSE-ConnectionGUID: 4FeDGKJfQP6NNmfpJ7wviQ==
-X-CSE-MsgGUID: wZx7hcRbT+6CBp709bfFJw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="86705198"
-X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="86705198"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 11:34:46 -0700
-X-CSE-ConnectionGUID: xpSLWUKqTlWi59A2rOuYIg==
-X-CSE-MsgGUID: bsYZQnszRR2BU+lWRULoow==
+ t=1774982980; x=1806518980;
+ h=date:from:to:cc:subject:message-id;
+ bh=eIZKtxYF76W65kSx3i5vL8BLY01sfzNH2Pt9bbyg5JQ=;
+ b=M/JCyK9XHimGJBkJjGbxd1MO1HAdyjXk91qAwte2cXQXr8WTYx9WFc31
+ uCZL7bg5b7+TSUGhXxoOLMA1jnnjYKlWa/e6kPh6LOl3nex/IyWX5FTvC
+ 9zw2qXHH+na99NVbvQDIDz2oOUcGwnNVmcdDjg50EAZjh3fYBd0sAm9uW
+ O+x+Tn4xRXrNNWsgx74yC9WyUH48bfiojcwSmEJz8NZ8YgTHXoQYVW5E8
+ uA4eeVHLmodEClafmj0btot7x8OJ21BMM5l5M7uCeNAY3bi2Fj+Qw3Z3n
+ Q2ie6SmWBCe3YKwRm5+P7NH8ql/6JYv3ji0J2TGritwtQDBu6DzdJscOB g==;
+X-CSE-ConnectionGUID: E9FZtBITRuOMXvGchdW2sw==
+X-CSE-MsgGUID: CSjN44Z8Sf28KQK224l+hw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="76122458"
+X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="76122458"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2026 11:49:39 -0700
+X-CSE-ConnectionGUID: Ym+/b9g0TzuoI2JKCYiCPA==
+X-CSE-MsgGUID: Qu74roe6RCaSoFZTDTNqxA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="256944523"
-Received: from administrator-system-product-name.igk.intel.com (HELO
- dev-417.igk.intel.com) ([10.91.214.181])
- by orviesa002.jf.intel.com with ESMTP; 31 Mar 2026 11:34:46 -0700
-From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v1 13/16] drm/i915/buf_trans: compute Snps's VS/PE Override
- index
-Date: Tue, 31 Mar 2026 20:33:29 +0200
-Message-ID: <20260331183332.1773886-14-michal.grzelak@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20260331183332.1773886-1-michal.grzelak@intel.com>
-References: <20260331183332.1773886-1-michal.grzelak@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-Content-Transfer-Encoding: 8bit
+X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="230882178"
+Received: from lkp-server01.sh.intel.com (HELO 283bf2e1b94a) ([10.239.97.150])
+ by orviesa004.jf.intel.com with ESMTP; 31 Mar 2026 11:49:37 -0700
+Received: from kbuild by 283bf2e1b94a with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1w7e9e-0000000049T-3lWq;
+ Tue, 31 Mar 2026 18:49:34 +0000
+Date: Wed, 01 Apr 2026 02:49:04 +0800
+From: kernel test robot <lkp@intel.com>
+To: Anoop Vijay <anoop.c.vijay@intel.com>
+Cc: oe-kbuild-all@lists.linux.dev, intel-xe@lists.freedesktop.org,
+ Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Subject: [drm-xe:drm-xe-next 1071/1074]
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:347:20: sparse: sparse: cast to
+ restricted __le32
+Message-ID: <202604010228.Z20DhK4g-lkp@intel.com>
+User-Agent: s-nail v14.9.25
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,77 +66,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add support for VS/PE Override on Snps platforms. Basing on the mode &
-CRTC type found, compute the most appropriate index. Assume default
-index as 0.
+tree:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+head:   72d918472886b6e1b998b756303816737929ef0a
+commit: 1f95f618182b5c99d46378141e0fb84f09bf914b [1071/1074] drm/xe/xe_sysctrl: Add System Controller mailbox communication support
+config: sparc64-randconfig-r134-20260331 (https://download.01.org/0day-ci/archive/20260401/202604010228.Z20DhK4g-lkp@intel.com/config)
+compiler: clang version 23.0.0git (https://github.com/llvm/llvm-project 2cd67b8b69f78e3f95918204320c3075a74ba16c)
+sparse: v0.6.5-rc1
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260401/202604010228.Z20DhK4g-lkp@intel.com/reproduce)
 
-Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
----
- .../drm/i915/display/intel_ddi_buf_trans.c    | 37 +++++++++++++++++++
- 1 file changed, 37 insertions(+)
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202604010228.Z20DhK4g-lkp@intel.com/
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-index e94b1eb84e58..6978ad32ef2a 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-@@ -1786,6 +1786,36 @@ xe3plpd_get_lt_buf_trans(struct intel_encoder *encoder,
- 		return intel_get_buf_trans(&xe3plpd_lt_trans_dp14, n_entries);
- }
- 
-+static enum snps_vswing_preemph_index
-+_compute_index_snps_c10(const struct intel_crtc_state *crtc_state)
-+{
-+        if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP)) {
-+		if (crtc_state->port_clock > 270000)
-+                        return MTL_C10_VS_PE_DP14_HBR2_HBR3;
-+                else
-+                        return MTL_C10_VS_PE_DP14_RBR_HBR;
-+        } else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP)){
-+		if (crtc_state->port_clock > 540000)
-+                        return MTL_C10_VS_PE_EDP_HBR3;
-+                else
-+                        return MTL_C10_VS_PE_EDP_NON_HBR3;
-+        }
-+
-+        return (enum snps_vswing_preemph_index) 0;
-+}
-+
-+static enum snps_vswing_preemph_index
-+_compute_index_snps_c20(const struct intel_crtc_state *crtc_state)
-+{
-+        if (intel_crtc_has_dp_encoder(crtc_state) && intel_dp_is_uhbr(crtc_state)) {
-+                return MTL_C20_VS_PE_DP20;
-+        } else if (!intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
-+                return MTL_C20_VS_PE_DP14;
-+        }
-+
-+        return (enum snps_vswing_preemph_index) 0;
-+}
-+
- static enum lt_vswing_preemph_index
- _compute_index_lt(const struct intel_crtc_state *crtc_state)
- {
-@@ -1814,6 +1844,11 @@ vswing_preemph_compute_index(struct intel_encoder *encoder,
- 
- 	if (HAS_LT_PHY(display)) {
- 		index.lt = _compute_index_lt(crtc_state);
-+	} else if (DISPLAY_VER(display) >= 14) {
-+		if (intel_encoder_is_c10phy(encoder))
-+			index.snps = _compute_index_snps_c10(crtc_state);
-+		else
-+			index.snps = _compute_index_snps_c20(crtc_state);
- 	} else {
- 		drm_dbg_kms(display->drm, "using default VS/PE Override index");
- 		index = (union ddi_vswing_preemph_index) 0;
-@@ -1828,6 +1863,8 @@ vswing_preemph_cast_index(struct intel_display *display,
- {
- 	if (HAS_LT_PHY(display)) {
- 		return index.lt;
-+	} else if (DISPLAY_VER(display) >= 14) {
-+		return index.snps;
- 	}
- 
- 	return 0;
+sparse warnings: (new ones prefixed by >>)
+>> drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:347:20: sparse: sparse: cast to restricted __le32
+>> drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:347:20: sparse: sparse: cast to restricted __le32
+>> drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:347:20: sparse: sparse: cast to restricted __le32
+>> drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:347:20: sparse: sparse: cast to restricted __le32
+>> drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:347:20: sparse: sparse: cast to restricted __le32
+>> drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:347:20: sparse: sparse: cast to restricted __le32
+>> drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:347:20: sparse: sparse: cast to restricted __le32
+>> drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:347:20: sparse: sparse: cast to restricted __le32
+>> drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:347:20: sparse: sparse: cast to restricted __le32
+>> drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:347:20: sparse: sparse: cast to restricted __le32
+>> drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:347:20: sparse: sparse: cast to restricted __le32
+>> drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:347:20: sparse: sparse: cast to restricted __le32
+   drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:348:24: sparse: sparse: cast to restricted __le32
+   drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:348:24: sparse: sparse: cast to restricted __le32
+   drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:348:24: sparse: sparse: cast to restricted __le32
+   drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:348:24: sparse: sparse: cast to restricted __le32
+   drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:348:24: sparse: sparse: cast to restricted __le32
+   drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:348:24: sparse: sparse: cast to restricted __le32
+   drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:348:24: sparse: sparse: cast to restricted __le32
+   drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:348:24: sparse: sparse: cast to restricted __le32
+   drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:348:24: sparse: sparse: cast to restricted __le32
+   drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:348:24: sparse: sparse: cast to restricted __le32
+   drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:348:24: sparse: sparse: cast to restricted __le32
+   drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:348:24: sparse: sparse: cast to restricted __le32
+
+vim +347 drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
+
+   309	
+   310	/**
+   311	 * xe_sysctrl_send_command() - Send mailbox command to System Controller
+   312	 * @sc: System Controller instance
+   313	 * @cmd: Command descriptor containing request header and payload buffers
+   314	 * @rdata_len: Pointer to store actual response data length
+   315	 *
+   316	 * Sends a mailbox command to System Controller firmware using
+   317	 * System Controller mailbox and waits for a response.
+   318	 *
+   319	 * Request payload is provided via @cmd->data_in and @cmd->data_in_len.
+   320	 * If a response is expected, @cmd->data_out must point to a buffer of
+   321	 * size @cmd->data_out_len supplied by caller.
+   322	 *
+   323	 * On success, @rdata_len is updated with number of valid response bytes
+   324	 * returned by firmware, bounded by @cmd->data_out_len.
+   325	 *
+   326	 * Return: 0 on success, or negative errno on failure.
+   327	 */
+   328	int xe_sysctrl_send_command(struct xe_sysctrl *sc,
+   329				    struct xe_sysctrl_mailbox_command *cmd,
+   330				    size_t *rdata_len)
+   331	{
+   332		struct xe_device *xe = sc_to_xe(sc);
+   333		u8 group_id, command_code;
+   334		u8 *mbox_cmd = NULL;
+   335		size_t cmd_size = 0;
+   336		int ret;
+   337	
+   338		guard(xe_pm_runtime_noresume)(xe);
+   339	
+   340		if (!xe->info.has_sysctrl)
+   341			return -ENODEV;
+   342	
+   343		xe_assert(xe, cmd->data_in || cmd->data_out);
+   344		xe_assert(xe, !cmd->data_in || cmd->data_in_len);
+   345		xe_assert(xe, !cmd->data_out || cmd->data_out_len);
+   346	
+ > 347		group_id = XE_SYSCTRL_APP_HDR_GROUP_ID(&cmd->header);
+
 -- 
-2.45.2
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
