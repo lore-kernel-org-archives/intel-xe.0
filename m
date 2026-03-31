@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D82B6109B46D
-	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 14:11:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE37E109B46F
+	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 14:30:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DA4810E9B0;
-	Tue, 31 Mar 2026 14:11:02 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H6RdVxlh";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39B2110E9B0
- for <intel-xe@lists.freedesktop.org>; Tue, 31 Mar 2026 14:11:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774966261; x=1806502261;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=CfVo0FlYdZPuyV+Ze4bzo2E4ViSzCLQDEFCB2iGoQ8k=;
- b=H6RdVxlhPeHTIcj8DPZBjTglbYBweKhaLKMh8eON3Qb0d1gMia1aCWd6
- Ykg7Ws0V+G3klWxVkUplgwxlhhCKh/cj3wWrjKr+LbVmXFXgie197K3+P
- PxEb7TSWjUXk9B0oFs1e/Q0MWXFpqOZIOj2Q0hokNkGPDjV72JKY6q4sM
- f3sySIaNLfOUNqdEI13K8bjA5xBURDhSuhGwP9sxu0/4ESnUN3oNXhe4m
- tG/0ejurdqVfCp5rhrdlnzkGmaL7FtqcdmICxU0K/Viw+dvydMOIJtB+r
- 4unelbT+Y2Hr30n2Z8OzAqn+0a4mJWB6brswfxiAATmgwWGTuDq1sq2c8 g==;
-X-CSE-ConnectionGUID: YBvc/f27R8iFlYX4Paat6w==
-X-CSE-MsgGUID: Ytwudo51TSKDJoZt4u4MYA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="75875477"
-X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="75875477"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 07:11:01 -0700
-X-CSE-ConnectionGUID: JdBxsAgcRSqLloRAfGkKZQ==
-X-CSE-MsgGUID: MjwVK8yPR0q7S3LUJzRhzA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="249590289"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO [10.245.244.19])
- ([10.245.244.19])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 07:11:00 -0700
-Message-ID: <7e23b76c-2c39-40f6-abd0-cd50de5f6240@intel.com>
-Date: Tue, 31 Mar 2026 15:10:57 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CA8710E0A8;
+	Tue, 31 Mar 2026 14:30:07 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D40E310E0A8;
+ Tue, 31 Mar 2026 14:30:05 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4647342882951183920=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe_pat: Print PAT_ATS during register dump
-To: =?UTF-8?Q?Zbigniew_Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>,
- intel-xe@lists.freedesktop.org
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=5Fpat=3A_Print_PAT?=
+ =?utf-8?q?=5FATS_during_register_dump?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Zbigniew_Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 31 Mar 2026 14:30:05 -0000
+Message-ID: <177496740584.415443.13974968377007773051@a3b018990fe9>
+X-Patchwork-Hint: ignore
 References: <20260331134330.2535519-2-zbigniew.kempczynski@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
 In-Reply-To: <20260331134330.2535519-2-zbigniew.kempczynski@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,41 +36,140 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 31/03/2026 14:43, Zbigniew Kempczyński wrote:
-> For Xe2 and beyond we miss printing PAT_ATS register.
-> 
-> Signed-off-by: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
+--===============4647342882951183920==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Nit: commit title drm/xe/pat:
+== Series Details ==
 
-> ---
->   drivers/gpu/drm/xe/xe_pat.c | 8 ++++++++
->   1 file changed, 8 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
-> index 356f53bdb83c..75aaae7b003d 100644
-> --- a/drivers/gpu/drm/xe/xe_pat.c
-> +++ b/drivers/gpu/drm/xe/xe_pat.c
-> @@ -531,6 +531,14 @@ static int xe2_dump(struct xe_gt *gt, struct drm_printer *p)
->   	drm_printf(p, "Page Table Access:\n");
->   	xe->pat.ops->entry_dump(p, "PTA_MODE", pat, false);
->   
-> +	if (xe_gt_is_media_type(gt))
-> +		pat = xe_mmio_read32(&gt->mmio, XE_REG(_PAT_ATS));
-> +	else
-> +		pat = xe_gt_mcr_unicast_read_any(gt, XE_REG_MCR(_PAT_ATS));
-> +
-> +	drm_printf(p, "PCIe ATS/PASID:\n");
-> +	xe->pat.ops->entry_dump(p, "PAT_ATS ", pat, false);
+Series: drm/xe_pat: Print PAT_ATS during register dump
+URL   : https://patchwork.freedesktop.org/series/164167/
+State : success
 
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+== Summary ==
 
-> +
->   	return 0;
->   }
->   
+CI Bug Log - changes from xe-4827-779129c7868f4c7205901d6e57b25de52b411d1c_BAT -> xe-pw-164167v1_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-164167v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4827-779129c7868f4c7205901d6e57b25de52b411d1c/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164167v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
+    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#7483]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4827-779129c7868f4c7205901d6e57b25de52b411d1c/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164167v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+
+  
+  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
+
+
+Build changes
+-------------
+
+  * Linux: xe-4827-779129c7868f4c7205901d6e57b25de52b411d1c -> xe-pw-164167v1
+
+  IGT_8839: 8839
+  xe-4827-779129c7868f4c7205901d6e57b25de52b411d1c: 779129c7868f4c7205901d6e57b25de52b411d1c
+  xe-pw-164167v1: 164167v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164167v1/index.html
+
+--===============4647342882951183920==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe_pat: Print PAT_ATS during register dump</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164167/">https://patchwork.freedesktop.org/series/164167/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164167v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164167v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4827-779129c7868f4c7205901d6e57b25de52b411d1c_BAT -&gt; xe-pw-164167v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-164167v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4827-779129c7868f4c7205901d6e57b25de52b411d1c/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164167v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4827-779129c7868f4c7205901d6e57b25de52b411d1c/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164167v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4827-779129c7868f4c7205901d6e57b25de52b411d1c -&gt; xe-pw-164167v1</li>
+</ul>
+<p>IGT_8839: 8839<br />
+  xe-4827-779129c7868f4c7205901d6e57b25de52b411d1c: 779129c7868f4c7205901d6e57b25de52b411d1c<br />
+  xe-pw-164167v1: 164167v1</p>
+
+</body>
+</html>
+
+--===============4647342882951183920==--
