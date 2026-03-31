@@ -4,161 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CFAD1061B37
-	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 12:07:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 056241061B39
+	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 12:12:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0EF6110E994;
-	Tue, 31 Mar 2026 12:07:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B601310E958;
+	Tue, 31 Mar 2026 12:12:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PYakbmud";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="Ed5S7gSR";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0374910E98C;
- Tue, 31 Mar 2026 12:07:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774958821; x=1806494821;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=CypItGztI2ynqGc2YY4HRBbkDcj7q6S3VkfBHXQKyZM=;
- b=PYakbmudpZ8iFwGS59it5JtRRURLcmN1iHWrPwxOSYv7q3EY3IpbfsIF
- H5ySziv+PPfN5Qg6jBqInDqLg5VE49+uHt7TMSqczW4rrRFw+daxVe+J1
- tygQi0bKQ8DnIz2j+mViHafhqB0L2V78mN/Zi84wx+b6hW4FhpSUfsOYc
- dK9KjN+cjShJRsUNXuIqtdxlGdOn15qGGXjZtjLH47rDTno/KMcu1e4xH
- HlhWgepvMpPtYmdoXoUL8H5psaW3f/DVFuz015t8OF+vBEuKOULqayKnY
- cCn9nJjL2YMuDmerbaGtjCNvIacuiUIop3+RmIjzkQRy6/fWx75unMEZf w==;
-X-CSE-ConnectionGUID: uYgJEZcVR42mTjOZU4Q8Cg==
-X-CSE-MsgGUID: 5hVNWevEQoqkONpksRPXMg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11744"; a="75986691"
-X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="75986691"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 05:07:01 -0700
-X-CSE-ConnectionGUID: 3X/LviZNQ9GdggXTaAqoNw==
-X-CSE-MsgGUID: S940zDxHRJSD/xGOPGlyHQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="231174662"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 05:07:00 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 31 Mar 2026 05:06:59 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Tue, 31 Mar 2026 05:06:59 -0700
-Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.45) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 31 Mar 2026 05:06:59 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=U3ytXuqren+5uheFJped6jsZmnv2+fVO+peg1iandwYQ0ydMrSfvZghIRzjxgjJwAjHVWkWi478jtsIz/ygCXIAH8JmOty9H8S0zcm6idrUucbnEFLXRjDr0hr+MtKRlKiB5cz5JsYKCL3HCzrXVEOR0r4TQaTQTsis0ZVBhNdIRtMbA2Bhr1OYB2/Wg+So7W+Uyx57xug9FSTLtFTxREfuc3oSziK1w+CuXY/Qzxudb7k0ddd6MF6/9fKqCbhQu4NCz1rxcDaENu6phBfdvYUaZPwZoLQIbfCko/sITEAb9ZnjemFaK2K/8f7Tk6jj2g3/KcY/8MnQVAsQGAWtxUg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xad/O2PHKAMvHkEpSYbC7gMtmy97iPzjyUkUXE0tDyM=;
- b=gWby3D5WVlDa5vAUYQQbLGSPu2dIMTZHfSlliUBuFY2lN27oBlHhA0s/oInqg+I9/ye4PRCt7A3p87WLNFgRuXrZVVuog7Tj3mH3XEiVG1bXX0cGzKlng6U+8UmNNYZ2cy5HJb/kV7QU++V4BtPtrTskykPOwkwFPGYrgG2gIs2E1Qt5BgPaiEyas2uu1a4bQrGHnLhzLICTrE6Y39BdwmP6aTHkC9MVCJv22ZPEuqsczkBShqCTI7zdhg065rLEFTpHZlJE7dr8LvhjvJ3LrJcndd/bAoi7HRAY8ZGV3KaUUJVkYgGtzrtbLF68CT7DtX+cpZ1B3LpZv8kmTqIOVw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by MW3PR11MB4699.namprd11.prod.outlook.com (2603:10b6:303:54::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.15; Tue, 31 Mar
- 2026 12:06:56 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::68b9:ea3c:8166:3cc4]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::68b9:ea3c:8166:3cc4%4]) with mapi id 15.20.9723.013; Tue, 31 Mar 2026
- 12:06:56 +0000
-Message-ID: <ac9b9de8-f575-4994-8f9f-4d8ec6850a1e@intel.com>
-Date: Tue, 31 Mar 2026 17:36:48 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 19/19] drm/i915/dp: Always enable AS SDP if supported by
- source + sink
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <dri-devel@lists.freedesktop.org>, <jouni.hogander@intel.com>,
- <animesh.manna@intel.com>
-References: <20260330040656.4116502-1-ankit.k.nautiyal@intel.com>
- <20260330040656.4116502-20-ankit.k.nautiyal@intel.com>
- <acrUAfRP4nLXSBMD@intel.com>
-Content-Language: en-US
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <acrUAfRP4nLXSBMD@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5PR01CA0107.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1d1::10) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com
+ [136.143.188.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2DE810E958;
+ Tue, 31 Mar 2026 12:12:50 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1774959168; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=mB+bYdQaVQKjQJMEgS6+7Orri/2hSQSsU4fESrfzdYM9oEHwR93qXEh0n2oJl30hi5KsK1LYLyWJe0BqUw1iHG3oqgknvCyJsSiihFSFwP8tLqNC2CJIxBI5AMAgWEKytB3/ZXWVnOq1qEEvmWAIv3JAlvpCiAkGT6ZIU6ccIdk=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1774959168;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=5sOvhoHZSW+OQe8QyBxFtsVVu8nL41LWEj1KoksKUSA=; 
+ b=S7EYEXvXTm9X+fA0eGtlw50+gAdiZ81A/zQlrYJnziDbuJO8by/2RwftD8TW8/bYNOwmdVb1j8vRDYBdo+VuRhvGuDtO2zTWF/pU308I64FhjeG9jOtFUlVMYid4waxrKRxvVFA13Z19DF5Nf+JHwm2Unc/GK06evHYZc8SrnGk=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+ dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1774959168; 
+ s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+ h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+ bh=5sOvhoHZSW+OQe8QyBxFtsVVu8nL41LWEj1KoksKUSA=;
+ b=Ed5S7gSR5Qy/zDeQtXzwoVSN2+hyVccpai+Sl8OjzVuD8OTkMLFNVgT0RPqjdFO7
+ dVJ2xZcrxzxjTASD4xHLNxhTPn7VBzOWLJ5VTHm2QWzP1IrGYzWciPulvNgXYsBgbY1
+ uzBe4BHZBDGs8PNlh2c2rWk/W+zfSZg5p7xYh6Zs=
+Received: by mx.zohomail.com with SMTPS id 1774959166710407.8067483053901;
+ Tue, 31 Mar 2026 05:12:46 -0700 (PDT)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: intel-gfx@lists.freedesktop.org,
+ Ville Syrjala <ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 2/9] drm/i915/hdmi: Restructure the sink/output format
+ selection
+Date: Tue, 31 Mar 2026 14:12:43 +0200
+Message-ID: <2868694.iZASKD2KPV@workhorse>
+In-Reply-To: <20260330235339.29479-3-ville.syrjala@linux.intel.com>
+References: <20260330235339.29479-1-ville.syrjala@linux.intel.com>
+ <20260330235339.29479-3-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|MW3PR11MB4699:EE_
-X-MS-Office365-Filtering-Correlation-Id: 485a86a3-4447-4f68-0683-08de8f1e00f4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|56012099003|22082099003|18002099003; 
-X-Microsoft-Antispam-Message-Info: +3u+JhYPUTEksyvwqzztYgNKP79hK4zTV+OSWPy9FWPNJLoNJEw8GzwLr1SwDLqw+oMgnYxn+hewqGEmPiS9ve9qt+c4iYP5qxljWgKo55KzVGKadXurJrWG1OFD7HrU1+6SFvz3jA0czPwjbnOgmMRIuhsl6llh1lWA2nV5C01LyuFImNrbO5B9AnQ7io7y+LbzqfJb2DHKRhOizTsF5ZhjPuBufvEmzY5RqLksn1SBdDZ6vY/et+qKaWXzqy1tHnT6vyFj0ABd9mmRnnRl3p423IqJlhEZlktyR4frFh81HkaA1QIa+UIGaYoKCC8GR6lvzNHY7XPs4I/ZcQepQeoIuVgKLaaLzyH9TESTQkuTEVa3bLhVfAiWPZUevXwziV+jCDSENBJjHkDA6lf7E1FJ02ohHt2Qstql9pwa0W9lN/hGEjahsKWohuaZ91c0rOI71C8w9tdBDiXG5xCrxGT5fSoUQUwOdJ0NjNB0HTgjd0H3wAC50voDKIiq7mAAGGDhXgPraAiUN6EEA1T7ldp77tQs3k/WjQVvl6OeahIqiIvxFced82WPAWN53qPeUTqupdvd8vg/iAlBoFXd0/j1wOa5JckOKeXtfBqGPet9+B+4MsFHOgsHYl7GSLIBBcGTVGIyUbIjsTuYPMDxJ2gnWx4n3J7GD5+/wMQDZsGPMrsZaDRmvNZmn181R1xQ7NobPd3uZ7jjXu4o5RaZsL5O65EinrwXSPf4Ze5u0z4=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(56012099003)(22082099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?V3pkMzR3UW1hVjV6N3JOeEFqOFBDRzNFTW8yOHgwV01wTU1TZkdKMmtHSHpB?=
- =?utf-8?B?THVhUHhIVnI2bTREcUgzMFNZZ0kvU20xVWpMZ0czR1ZvSzdHL292b3dJRVpm?=
- =?utf-8?B?QS9nVGxhcU95WG9qZG00VHNHanVCcDc4emNPRWpOd1hoanB4TVgxQ2dQdDVZ?=
- =?utf-8?B?akVtT2ZJWlowc3pFeENjMS8zY2NOY0J4dXVFcUVVd1ExTklEWHNaQ3BId1JI?=
- =?utf-8?B?ZExEQU1yeEl4U29CWndXTTBSd0MxakNVYTRJaWtOejgyYTdxSkRXekNrbDYz?=
- =?utf-8?B?R01IMmlxM2w1RCtpTnB0T3lXeWtxR2dKZWJ5ZG1abVoxTmQzV0RiL3lJakFT?=
- =?utf-8?B?cHJ5VThMaTBhbzU3dVBLMU15aFBUemd1N3lNUDhEN3pBVW9KY0JYcGlsc3Nq?=
- =?utf-8?B?K2xGSjZ5NUVMb2grUkhLdXg3bWIxZWR4a3N0YnQ5YVp3cEl0VVF1dHhEaWN0?=
- =?utf-8?B?ZmhBbmJOWjFvOWNMZHlQOFU5WHlhNkR4QVIzN2tKR2JYY3U5UnU3NnZJSjhK?=
- =?utf-8?B?MWEva3J1WEdUOW1vMU5KRHFVVWIzWTBqb0RobVlzcDVsSlpQMWhSdW55ekUr?=
- =?utf-8?B?ZzRpQjdJNTdmUXlRem1MWWsyUW9TdU5WNld4SUJRVHlsUmxYNThvM3FxUjhL?=
- =?utf-8?B?NE1wU1lDM0MrZnJPcDU4N0h1M2wvM1g5RExreXRvVEltMis5NWtlZVJ5ZW16?=
- =?utf-8?B?Q0ZHcmY4WG5SVnZvSXFoN2t1WE1pZjlvOG5LRlBLYnd2UUZwRWhNNVViNUZK?=
- =?utf-8?B?bXpKYXd0aFQxOTlaT3p4cEVFb3BIc1NEc0l3RmI4cGpaaFEyMlowcDNITys1?=
- =?utf-8?B?cll5YlZVSm5NS1NraHpjUzBOVFZvSHlZMTEyS2ZLWGtZMlJlNGNLZ0NyN25S?=
- =?utf-8?B?Rk1rWjVZRzFmNkdtRlgwMitGYnU0N1kzRVN5ZFJVWFpOMDVnNUJ2YjZ4ZjJZ?=
- =?utf-8?B?NW10TVNBb2ZSUUR2Y0hSYXZBd1FUV09tNHBqNjhXZCtza3RtNW1HaGNJN3A0?=
- =?utf-8?B?Z3ZoMFVTK1VMMmdQTVYwNWVsU3J4bnNYTWhwa05TekVZVHc4c3JUWTFsTXlo?=
- =?utf-8?B?eW5xSHo0QzhoSW9yQVllRjV3citQU2h4ellvajhBVnpiTDZVeE14Ti9ZN1Q0?=
- =?utf-8?B?K21tRm8yV2JUMWVRejZrL3BxdkU0R3V3UDRnNUxYUWltanFKbDFoblRramlU?=
- =?utf-8?B?MGxYU3FhaGNudGhkOW13NHNKZndSZXk2aU1zRG9tUmdidlRTVmtiNnlXdTIv?=
- =?utf-8?B?VDM5eDd1bVFCWnp4ODU5Z0M5eDFiSmZ5VUF1OVQxMi9raWZPS2VvRjYzNUFh?=
- =?utf-8?B?UVNNWUw5WnRXNllSeUU4NU4vdzJjK0NCZkh5dWNPdU45SU5pRW9kYmY0azlC?=
- =?utf-8?B?RG9wbnlTdjN0bDNEcGZla1lYbDJyK0FjeTNaWGdlQURIWFpNQ3dQZGNaYjd2?=
- =?utf-8?B?Zlg1dE01UUEvMU9neGhBMUhmZS8zWnNVOFNrMVlvN21UOHc0NzlGWjlkR00w?=
- =?utf-8?B?Ry9kQUVxMTRRRW9ZNzRiaHVVVzJNRklmTTR1Y0ZSUHlka2JkVVpEbngzUlVG?=
- =?utf-8?B?c2VPV3U5bFJjUWNQcFBjZStNTFZVaW5pUmt2UTdrcVpzTWZZOGVCZjBTMHg1?=
- =?utf-8?B?K0hGL0tsY3JEeTVFaWQ5b29lQWx1d0xyM2RhcnVhQ1BBU2E5S3RzQURuZlcr?=
- =?utf-8?B?L2d3amhTREd2a3FidCsxMU1SVm9DZnRFWVBhME1qQktTSjlUWlh4Q3hwSk04?=
- =?utf-8?B?NVd6bWpaVFJQSlpFUGJUanQwaTAwZHRsdEhzczRwY2tNRWtvZnB3ajZBeWp1?=
- =?utf-8?B?clhxeXdReGI5U0FYR05EdXkzaVRWRDFRZ2d1aXRQTDBxUU9lWkQ4a0JQZENW?=
- =?utf-8?B?U2M3VFRaVjVnL1VNZUo4WTh1ZVBHWVpXN0lNSUhRWEljTndHSFNmUXA5ZU52?=
- =?utf-8?B?ODRpOTh0NkZLeUFQTVZqdGVtM0RJN2xDa2plaTlXdHVQcUk1aDhvaVNpYmQx?=
- =?utf-8?B?b2pzazFyd1dTR25jNDBpTXUwZ1kxc21JK212dGJxNW5wQ0dRK0ZxZmQ2eDFm?=
- =?utf-8?B?Nnc5VlBQbTF6cjBvdjFJZmpNZ2ZOSGlPUUg1U1dkUTVpTlMydmxMdXFRaFdk?=
- =?utf-8?B?cS9aSE1vOVhTbFF2UkQvR2JnajJSQjVtU1ZURlpVeXBBM3JSUHpPUHFkelF3?=
- =?utf-8?B?VlRrWnZaS2RpRVUwaWdOTEVnWHZ0Rnk1SVdlRlU0ZU1EeDF1MHB4MXZ4emFw?=
- =?utf-8?B?ZTFvcDBSOWRwcmpUY1dxTHNDbjZ2M3ZRNXM3M0s2Y2xKMC9lZVFkYWU5UDVJ?=
- =?utf-8?B?dGNic3hUK0M4TEFEbjR0cU8zNHdiYk5JVEtZdUN4T3lHYmVzMUJHZnNRdGIy?=
- =?utf-8?Q?xqyVfLqqUH0e6+78=3D?=
-X-Exchange-RoutingPolicyChecked: OtbYPNBR3nCplwGUwMtSxulycB892jPSvEjytLqpckm7P+U85s+mH2mFggvhTSSx3tcSSa1fUOrrvcGQWZiCmxBdRzwxjh07SdB0ll3m25uoo/J9dxy8e7HZF7udMKlbDd8cjeAhzAqPkMqx3KY6EQ4/Mit6WshjwjPuIKBvALuacS+F1+tqRyxNXl4XDd5Ssb5xdBFGg/0j5C4PsYkvNsOxDqTpHIf06Gueo4+J5rdoCvpRR7iY1ETv7hnWkbmyYngKxiWa2wPmUV843ew15h1ccoJYYnjjp9H44p6FxGSCRjTXv70GrbUqMhEzYENiZD17et4E0aHTF0OHx2hAYQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 485a86a3-4447-4f68-0683-08de8f1e00f4
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Mar 2026 12:06:56.4444 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 8ml5uHUQo9NUAttqaHHVtuvQInhhFey4zUUlbXC9faVsqtjh85VpMl0yJoenYUxNaoGU4ASsVGFelyvw7ZMMpDgdgdkjWQOkckf6R/G5D5M=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4699
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -173,61 +65,265 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Tuesday, 31 March 2026 01:53:32 Central European Summer Time Ville Syrja=
+la wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>=20
+> intel_hdmi_compute_output_format() is a bit of a mess. Try to
+> restructure it into a more readable form.
+>=20
+> Right now we basically have two main code paths:
+> - YCbCr 4:2:0 only modes
+> - everything else including YCbCr 4:2:0 also modes
+>=20
+> Those two basically do the same two steps (try 4:2:0 and try 4:4:4)
+> but in opposite orders. Let's write that out in a more explicit
+> if-else form. And since I'm running out of function names I'll
+> rename the function with that high level logic into
+> intel_hdmi_compute_formats() and it will call (the new) with
+> intel_hdmi_compute_output_format() with an explicit sink_format
+> as needed.
+>=20
+> Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_hdmi.c | 112 ++++++++++++++--------
+>  1 file changed, 70 insertions(+), 42 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/=
+i915/display/intel_hdmi.c
+> index 072b0554cc24..16873fc7bcb9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -2021,6 +2021,30 @@ intel_hdmi_mode_clock_valid(struct drm_connector *=
+_connector, int clock,
+>  	return status;
+>  }
+> =20
+> +static enum drm_mode_status
+> +intel_hdmi_sink_format_valid(struct intel_connector *connector,
+> +			     const struct drm_display_mode *mode,
+> +			     bool has_hdmi_sink,
+> +			     enum intel_output_format sink_format)
+> +{
+> +	const struct drm_display_info *info =3D &connector->base.display_info;
+> +
+> +	switch (sink_format) {
+> +	case INTEL_OUTPUT_FORMAT_YCBCR420:
+> +		if (!has_hdmi_sink ||
+> +		    !connector->base.ycbcr_420_allowed ||
+> +		    !drm_mode_is_420(info, mode))
+> +			return MODE_NO_420;
+> +
+> +		return MODE_OK;
+> +	case INTEL_OUTPUT_FORMAT_RGB:
+> +		return MODE_OK;
+> +	default:
+> +		MISSING_CASE(sink_format);
+> +		return MODE_BAD;
+> +	}
+> +}
 
-On 3/31/2026 1:20 AM, Ville Syrjälä wrote:
-> On Mon, Mar 30, 2026 at 09:36:56AM +0530, Ankit Nautiyal wrote:
->> Currently AS SDP is only configured when VRR is enabled. However, other
->> use cases like CMRR, Panel Replay, etc. also send information to the sink
->> via AS SDPs.
->>
->> With optimized guardband, we also need to account for wakeup time and other
->> relevant details that depend on the AS SDP position whenever AS SDP is
->> enabled. If a feature enabling AS SDP gets turned on later (after modeset),
->> the guardband might not be sufficient and may need to increase, triggering
->> a full modeset.
->>
->> To avoid this, always send AS SDP whenever the source and sink both
->> support it.
->>
->> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->> ---
->>   drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
->> index 7da3dee226a0..81be0767927e 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> @@ -3136,7 +3136,7 @@ static bool intel_dp_can_use_as_sdp(struct intel_dp *intel_dp,
->>   	if (drm_dp_is_branch(intel_dp->dpcd))
->>   		return false;
->>   
->> -	return crtc_state->vrr.enable;
->> +	return true;
-> I think what we actually want is something like
->
-> ...
-> 	if (pr_auxless_alpm &&
-> 	    DP_PANEL_REPLAY_ASYNC_VIDEO_TIMING_NOT_SUPPORTED_IN_PR)
-> 		return true;
-> 	return intel_vrr_possible();
-> }
->
-> That way non-VRR PR panels that don't need the AS SDP to maintain
-> the synchronization can avoid the AS SDP, and thus potentially use
-> a smaller guardband.
+I think this here is missing INTEL_OUTPUT_FORMAT_YCBCR444 as a case.
+The following diff adding it for both intel_hdmi_sink_format_valid
+and intel_hdmi_sink_bpc_possible that I quickly whipped up may be the
+way to go, but I'm unsure about the interaction between the two:
+
+=2D--
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i9=
+15/display/intel_hdmi.c
+index 6bc1689cbf93..38b9924ebef0 100644
+=2D-- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -1966,6 +1966,8 @@ static bool intel_hdmi_sink_bpc_possible(struct drm_c=
+onnector *_connector,
+=20
+                if (sink_format =3D=3D INTEL_OUTPUT_FORMAT_YCBCR420)
+                        return hdmi->y420_dc_modes & DRM_EDID_YCBCR420_DC_3=
+6;
++               else if (sink_format =3D=3D INTEL_OUTPUT_FORMAT_YCBCR444)
++                       return info->edid_hdmi_ycbcr444_dc_modes & DRM_EDID=
+_HDMI_DC_36;
+                else
+                        return info->edid_hdmi_rgb444_dc_modes & DRM_EDID_H=
+DMI_DC_36;
+        case 10:
+@@ -1974,6 +1976,8 @@ static bool intel_hdmi_sink_bpc_possible(struct drm_c=
+onnector *_connector,
+=20
+                if (sink_format =3D=3D INTEL_OUTPUT_FORMAT_YCBCR420)
+                        return hdmi->y420_dc_modes & DRM_EDID_YCBCR420_DC_3=
+0;
++               else if (sink_format =3D=3D INTEL_OUTPUT_FORMAT_YCBCR444)
++                       return info->edid_hdmi_ycbcr444_dc_modes & DRM_EDID=
+_HDMI_DC_30;
+                else
+                        return info->edid_hdmi_rgb444_dc_modes & DRM_EDID_H=
+DMI_DC_30;
+        case 8:
+@@ -2038,6 +2042,11 @@ intel_hdmi_sink_format_valid(struct intel_connector =
+*connector,
+=20
+                return MODE_OK;
+        case INTEL_OUTPUT_FORMAT_RGB:
++               return MODE_OK;
++       case INTEL_OUTPUT_FORMAT_YCBCR444:
++               if (!(info->color_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_YCB=
+CR444)))
++                       return MODE_BAD;
++
+                return MODE_OK;
+        default:
+                MISSING_CASE(sink_format);
+=2D--
+
+It does work for me though at YCBCr 4:4:4 @ 12bpc, 10bpc and 8bpc, so both =
+info
+members this relies on are populated correctly.
+
+> +
+>  static enum drm_mode_status
+>  intel_hdmi_mode_valid(struct drm_connector *_connector,
+>  		      const struct drm_display_mode *mode)
+> @@ -2246,20 +2270,6 @@ static bool intel_hdmi_has_audio(struct intel_enco=
+der *encoder,
+>  		return intel_conn_state->force_audio =3D=3D HDMI_AUDIO_ON;
+>  }
+> =20
+> -static enum intel_output_format
+> -intel_hdmi_sink_format(const struct intel_crtc_state *crtc_state,
+> -		       struct intel_connector *connector,
+> -		       bool ycbcr_420_output)
+> -{
+> -	if (!crtc_state->has_hdmi_sink)
+> -		return INTEL_OUTPUT_FORMAT_RGB;
+> -
+> -	if (connector->base.ycbcr_420_allowed && ycbcr_420_output)
+> -		return INTEL_OUTPUT_FORMAT_YCBCR420;
+> -	else
+> -		return INTEL_OUTPUT_FORMAT_RGB;
+> -}
+> -
+>  static enum intel_output_format
+>  intel_hdmi_output_format(const struct intel_crtc_state *crtc_state)
+>  {
+> @@ -2268,37 +2278,55 @@ intel_hdmi_output_format(const struct intel_crtc_=
+state *crtc_state)
+> =20
+>  static int intel_hdmi_compute_output_format(struct intel_encoder *encode=
+r,
+>  					    struct intel_crtc_state *crtc_state,
+> -					    const struct drm_connector_state *conn_state,
+> -					    bool respect_downstream_limits)
+> +					    struct intel_connector *connector,
+> +					    bool respect_downstream_limits,
+> +					    enum intel_output_format sink_format)
+>  {
+> -	struct intel_display *display =3D to_intel_display(encoder);
+> -	struct intel_connector *connector =3D to_intel_connector(conn_state->co=
+nnector);
+>  	const struct drm_display_mode *adjusted_mode =3D &crtc_state->hw.adjust=
+ed_mode;
+> -	const struct drm_display_info *info =3D &connector->base.display_info;
+> -	bool ycbcr_420_only =3D drm_mode_is_420_only(info, adjusted_mode);
+> -	int ret;
+> =20
+> -	crtc_state->sink_format =3D
+> -		intel_hdmi_sink_format(crtc_state, connector, ycbcr_420_only);
+> -
+> -	if (ycbcr_420_only && crtc_state->sink_format !=3D INTEL_OUTPUT_FORMAT_=
+YCBCR420) {
+> -		drm_dbg_kms(display->drm,
+> -			    "YCbCr 4:2:0 mode but YCbCr 4:2:0 output not possible. Falling ba=
+ck to RGB.\n");
+> -		crtc_state->sink_format =3D INTEL_OUTPUT_FORMAT_RGB;
+> -	}
+> +	if (intel_hdmi_sink_format_valid(connector, adjusted_mode,
+> +					 crtc_state->has_hdmi_sink, sink_format) !=3D MODE_OK)
+> +		return -EINVAL;
+> =20
+> +	crtc_state->sink_format =3D sink_format;
+>  	crtc_state->output_format =3D intel_hdmi_output_format(crtc_state);
+> -	ret =3D intel_hdmi_compute_clock(encoder, crtc_state, respect_downstrea=
+m_limits);
+> -	if (ret) {
+> -		if (crtc_state->sink_format =3D=3D INTEL_OUTPUT_FORMAT_YCBCR420 ||
+> -		    !crtc_state->has_hdmi_sink ||
+> -		    !connector->base.ycbcr_420_allowed ||
+> -		    !drm_mode_is_420_also(info, adjusted_mode))
+> -			return ret;
+> -
+> -		crtc_state->sink_format =3D INTEL_OUTPUT_FORMAT_YCBCR420;
+> -		crtc_state->output_format =3D intel_hdmi_output_format(crtc_state);
+> -		ret =3D intel_hdmi_compute_clock(encoder, crtc_state, respect_downstre=
+am_limits);
+> +
+> +	return intel_hdmi_compute_clock(encoder, crtc_state, respect_downstream=
+_limits);
+> +}
+> +
+> +static int intel_hdmi_compute_formats(struct intel_encoder *encoder,
+> +				      struct intel_crtc_state *crtc_state,
+> +				      const struct drm_connector_state *conn_state,
+> +				      bool respect_downstream_limits)
+> +{
+> +	struct intel_display *display =3D to_intel_display(encoder);
+> +	struct intel_connector *connector =3D to_intel_connector(conn_state->co=
+nnector);
+> +	const struct drm_display_mode *adjusted_mode =3D &crtc_state->hw.adjust=
+ed_mode;
+> +	const struct drm_display_info *info =3D &connector->base.display_info;
+> +	int ret;
+> +
+> +	if (drm_mode_is_420_only(info, adjusted_mode)) {
+> +		ret =3D intel_hdmi_compute_output_format(encoder, crtc_state, connecto=
+r,
+> +						       respect_downstream_limits,
+> +						       INTEL_OUTPUT_FORMAT_YCBCR420);
+> +
+> +		if (ret) {
+> +			drm_dbg_kms(display->drm,
+> +				    "YCbCr 4:2:0 mode but YCbCr 4:2:0 output not possible. Falling b=
+ack to RGB.\n");
+> +
+> +			ret =3D intel_hdmi_compute_output_format(encoder, crtc_state, connect=
+or,
+> +							       respect_downstream_limits,
+> +							       INTEL_OUTPUT_FORMAT_RGB);
+> +		}
+> +	} else {
+> +		ret =3D intel_hdmi_compute_output_format(encoder, crtc_state, connecto=
+r,
+> +						       respect_downstream_limits,
+> +						       INTEL_OUTPUT_FORMAT_RGB);
+> +
+> +		if (ret && drm_mode_is_420_also(info, adjusted_mode))
+> +			ret =3D intel_hdmi_compute_output_format(encoder, crtc_state, connect=
+or,
+> +							       respect_downstream_limits,
+> +							       INTEL_OUTPUT_FORMAT_YCBCR420);
+>  	}
+> =20
+>  	return ret;
+> @@ -2375,9 +2403,9 @@ int intel_hdmi_compute_config(struct intel_encoder =
+*encoder,
+>  	 * Try to respect downstream TMDS clock limits first, if
+>  	 * that fails assume the user might know something we don't.
+>  	 */
+> -	ret =3D intel_hdmi_compute_output_format(encoder, pipe_config, conn_sta=
+te, true);
+> +	ret =3D intel_hdmi_compute_formats(encoder, pipe_config, conn_state, tr=
+ue);
+>  	if (ret)
+> -		ret =3D intel_hdmi_compute_output_format(encoder, pipe_config, conn_st=
+ate, false);
+> +		ret =3D intel_hdmi_compute_formats(encoder, pipe_config, conn_state, f=
+alse);
+>  	if (ret) {
+>  		drm_dbg_kms(display->drm,
+>  			    "unsupported HDMI clock (%d kHz), rejecting mode\n",
+>=20
 
 
-Hmm.. makes sense. I will change this as suggested.
 
 
-Thanks,
-
-Ankit
-
-
->>   }
->>   
->>   static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
->> -- 
->> 2.45.2
