@@ -4,37 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0F5C1061B21
-	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 10:23:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F22D5FF60FB
+	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 10:27:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6346B10E96A;
-	Tue, 31 Mar 2026 10:23:32 +0000 (UTC)
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 377EC10E96A;
- Tue, 31 Mar 2026 10:23:31 +0000 (UTC)
-Received: from 87-93-178-238.bb.dnainternet.fi ([87.93.178.238]
- helo=[192.168.101.111])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
- id 1w7WFq-00000003psw-2Z2b; Tue, 31 Mar 2026 13:23:27 +0300
-Message-ID: <11921b4e0817dd78656754a3074d49968ae3b84d.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Cc: Luca Coelho <luciano.coelho@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com
-Date: Tue, 31 Mar 2026 13:23:24 +0300
-In-Reply-To: <acuftvIa8GY4i57d@intel.com>
-References: <20260324143420.310800-1-luciano.coelho@intel.com>
- <20260324143420.310800-7-luciano.coelho@intel.com>
- <acK9lVDxOV_hXPiN@intel.com>
- <d916a82d01456ede8a080484998b74af19286df5.camel@coelho.fi>
- <acuftvIa8GY4i57d@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-9 
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACD9710E9EA;
+	Tue, 31 Mar 2026 10:27:20 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TEZ8T2xl";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF4CC10E9EA
+ for <intel-xe@lists.freedesktop.org>; Tue, 31 Mar 2026 10:27:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1774952840; x=1806488840;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=wfncumLUi0/x7FmG1+8M4E3KQ8hXOl5cj3gP27o8KrA=;
+ b=TEZ8T2xlXu4/u8oapDATNq4zgXAygfbVyLi8Rrqp5kcm46Jz3QxhCHmC
+ E8/korIUCpl1UQeqCzvfRT0rRNEm6YmDcPsMgCbJfz2A/D7herUUg1KnE
+ FctgiZc9qXS2IVAMLkZEutbVBvKDXk/24wtauLpaNNnz7Lw1ubzQ4hQ39
+ Pt1Q76+EiThenAY66jAcB7q3ASB8k3QfSEGtty8guxbDXCcsN/xnDewdV
+ oUggaZvZ4kdjAVfxdZvr+HGalI20ZevNz/WY6PwaN7XfZ27QOzors6Is5
+ OfWXk3i0sypkbW3GG7qJKbiZAdmHMXUsAR+GWueBgYEuL2TFxh3Inw5JY g==;
+X-CSE-ConnectionGUID: xY6jHQ4oTJe/OnENGVujnA==
+X-CSE-MsgGUID: qx6qBRegQMK/dvBk9U3EoQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11744"; a="86655528"
+X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="86655528"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2026 03:27:20 -0700
+X-CSE-ConnectionGUID: XWUPy5PkSym4CFEqN2Leug==
+X-CSE-MsgGUID: MNxJIsVMSAqyPMOfp3WdCA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="226576941"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by orviesa007.jf.intel.com with ESMTP; 31 Mar 2026 03:27:16 -0700
+From: Raag Jadav <raag.jadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com, riana.tauro@intel.com,
+ michal.wajdeczko@intel.com, matthew.d.roper@intel.com,
+ umesh.nerlige.ramappa@intel.com, mallesh.koujalagi@intel.com,
+ soham.purkait@intel.com, anoop.c.vijay@intel.com,
+ aravind.iddamsetty@linux.intel.com, Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v4 0/3] Introduce Xe Correctable Error Handling
+Date: Tue, 31 Mar 2026 15:53:42 +0530
+Message-ID: <20260331102346.1034100-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: Re: [PATCH 6/8] drm/i915/display: move HSW and BDW clock gating
- init to display
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,109 +67,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2026-03-31 at 13:19 +0300, Ville Syrj=C3=A4l=C3=A4 wrote:
-> On Tue, Mar 31, 2026 at 01:03:42PM +0300, Luca Coelho wrote:
-> > On Tue, 2026-03-24 at 18:36 +0200, Ville Syrj=C3=A4l=C3=A4 wrote:
-> > > On Tue, Mar 24, 2026 at 04:29:55PM +0200, Luca Coelho wrote:
-> > > > Move the HSW and BDW display clock gating programming into the disp=
-lay
-> > > > code.  In this case we need two different helpers, because the comm=
-on
-> > > > code between these two is split in the middle.
-> > > >=20
-> > > > Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
-> > > > ---
-> > > >  .../i915/display/intel_display_clock_gating.c | 33 +++++++++++++++=
-++++
-> > > >  .../i915/display/intel_display_clock_gating.h |  6 ++++
-> > > >  drivers/gpu/drm/i915/intel_clock_gating.c     | 31 +++------------=
---
-> > > >  3 files changed, 43 insertions(+), 27 deletions(-)
-> > > >=20
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gatin=
-g.c b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
-> > > > index e3b7522b4101..0b2edf6acb79 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
-> > > > @@ -123,3 +123,36 @@ void intel_display_glk_init_clock_gating(struc=
-t intel_display *display)
-> > > >  		       intel_de_read(display, GEN9_CLKGATE_DIS_0) |
-> > > >  		       PWM1_GATING_DIS | PWM2_GATING_DIS);
-> > > >  }
-> > > > +
-> > > > +static void
-> > > > +intel_display_hsw_init_clock_gating_common(struct intel_display *d=
-isplay,
-> > > > +					   u32 unmask_vbl)
-> > >=20
-> > > Passing that as a parameter feels a bit obfuscated.
-> > >=20
-> > > > +{
-> > > > +	enum pipe pipe;
-> > > > +
-> > > > +	/* WaPsrDPAMaskVBlankInSRD:hsw */
-> > > > +	intel_de_rmw(display, CHICKEN_PAR1_1, 0, HSW_MASK_VBL_TO_PIPE_IN_=
-SRD);
-> > > > +
-> > > > +	for_each_pipe(display, pipe) {
-> > > > +		/* WaPsrDPRSUnmaskVBlankInSRD:hsw,bdw */
-> > > > +		intel_de_rmw(display, CHICKEN_PIPESL_1(pipe), 0, unmask_vbl);
-> > >=20
-> > > If we want to share the function then I'd probably just do
-> > > a platform check here.
-> >=20
-> > True, I'll skip passing it and just add the platform check in this
-> > function.
-> >=20
-> >=20
-> > >=20
-> > > > +	}
-> > > > +}
-> > > > +
-> > > > +void intel_display_bdw_hsw_init_clock_gating(struct intel_display =
-*display)
-> > > > +{
-> > > > +	/* WaFbcAsynchFlipDisableFbcQueue:hsw,bdw */
-> > > > +	intel_de_rmw(display, CHICKEN_PIPESL_1(PIPE_A), 0, HSW_FBCQ_DIS);
-> > > > +}
-> > >=20
-> > > Why do we have two different functions that shared by
-> > > both platforms?
-> >=20
-> > It's because for BDW there is this one in between the two common calls:
-> >=20
-> > 	/* WaSwitchSolVfFArbitrationPriority:bdw */
-> > 	intel_uncore_rmw(&i915->uncore, GAM_ECOCHK, 0, HSW_ECOCHK_ARB_PRIO_SOL=
-);
-> >=20
-> > ...this is probably independent from the other two and it may be okay
-> > to move it before the common code, but I wanted to avoid that.
-> >=20
-> > Do you think it's safe to change the order from:
-> >=20
-> > 1. CHICKEN_PIPESL_1
-> > 2. GAM_ECOCHK
-> > 3. CHICKEN_PAR1_1
-> >=20
-> > ...to this?
-> >=20
-> > 1. GAM_ECOCHK
-> > 2. CHICKEN_PIPESL_1
-> > 3. CHICKEN_PAR1_1
-> >=20
-> > If that's the case, then it can be simplified.
->=20
-> There shouldn't be any ordering requirements here. But if you're
-> a it paranoid then you could do the reordering as a separate
-> step, just in case someone has to bisect it.
+This series builds on top of system controller series[1] and adds initial
+support for correctable error handling in xe. This serves as a foundation
+for RAS infrastructure and will be further extended to facilitate other
+RAS features.
 
-Great, thanks for the insight.  I'll keep it separate for now.  The
-same thing for the KVM notification thingy... I'll keep it separate,
-but then we can combine the 3 separate steps into one to ease bisecting
-and making it clear that it's a functional change (while the initial
-patches should not make any functional changes, just move things
-around).
+Detailed description in commit message.
 
---
-Cheers,
-Luca.
+[1] https://patchwork.freedesktop.org/series/159554/
+
+v2: Use system_percpu_wq instead of dedicated (Matthew Brost)
+    Handle unexpected response length (Mallesh)
+
+v3: Handle event flood (Mallesh)
+
+v4: Handle IRQ before sysctrl initialization (Mallesh)
+    Fix Severity/Component logging (Mallesh)
+    s/xe_ras_error/xe_ras_error_class (Riana)
+
+Raag Jadav (3):
+  drm/xe/sysctrl: Add system controller interrupt handler
+  drm/xe/sysctrl: Add system controller event support
+  drm/xe/ras: Introduce correctable error handling
+
+ drivers/gpu/drm/xe/Makefile                 |  2 +
+ drivers/gpu/drm/xe/regs/xe_irq_regs.h       |  1 +
+ drivers/gpu/drm/xe/xe_irq.c                 |  2 +
+ drivers/gpu/drm/xe/xe_ras.c                 | 90 +++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ras.h                 | 14 ++++
+ drivers/gpu/drm/xe/xe_ras_types.h           | 73 +++++++++++++++++
+ drivers/gpu/drm/xe/xe_sysctrl.c             | 46 +++++++++--
+ drivers/gpu/drm/xe/xe_sysctrl.h             |  2 +
+ drivers/gpu/drm/xe/xe_sysctrl_event.c       | 89 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sysctrl_event_types.h | 52 ++++++++++++
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox.h     | 10 +++
+ drivers/gpu/drm/xe/xe_sysctrl_types.h       |  7 ++
+ 12 files changed, 382 insertions(+), 6 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_ras.c
+ create mode 100644 drivers/gpu/drm/xe/xe_ras.h
+ create mode 100644 drivers/gpu/drm/xe/xe_ras_types.h
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_event.c
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_event_types.h
+
+-- 
+2.43.0
+
