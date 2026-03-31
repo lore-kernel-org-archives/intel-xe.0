@@ -4,53 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B341109B467
-	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 13:35:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5098E109B46C
+	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 13:43:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEA7910E1DE;
-	Tue, 31 Mar 2026 13:35:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 013C110E2E3;
+	Tue, 31 Mar 2026 13:43:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="HMGWt68q";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l0aiRZLL";
 	dkim-atps=neutral
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com
- [136.143.188.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09BF510E1DE;
- Tue, 31 Mar 2026 13:35:11 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1774964109; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=nh024V5/6apg0ZihOIWYvLW4Me1c/q02G6xc8/dlc07Ik/aVdrPdnOYhBYdTX3K3thbxZKJDK4DvQWirzIj6q8dotTvMEhZxTPm4At6gA6/Hbqju7FkTLHME4tWYLRFi3FMqTxb0yi2OK0kueNrFAGSIJ3V/RmbWRvXzSMGnFEc=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1774964109;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=hc7ZXy7iPAJ9l43ijItZ3lwM+XClvjkTosZx6H9KVOs=; 
- b=FfBNmzzPw+dYMc2/4AS3rHPQn3i6khzXML9/64NxTgjrYoX21JKR/6hZ8LWAYo/Fgvwe8wrjiQ3usV1ciHJgS5q2hEc+SQp42xCn/5OV5rP7aN2ALiGxAXrFivmztiFcP00puLHOOqm+at7kbepiSrjj4XJBBQHtpFdomjiaM6A=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1774964109; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
- bh=hc7ZXy7iPAJ9l43ijItZ3lwM+XClvjkTosZx6H9KVOs=;
- b=HMGWt68qXJTtYjlXS2AaYs61bBvo6FTWvBXNszZR88aykgtwvK6DM2/7+hGR8+7q
- ZfTFfgEoRAOsECvC5++vxlVaojPT5782r2yKFHO1LOiA/xy81vIhHi1xsOKEStTBlP8
- 4uX64q8fpIekJahB1H+aU17/TDeOlN3Bpsv1uFeI=
-Received: by mx.zohomail.com with SMTPS id 1774964107929434.5571937826678;
- Tue, 31 Mar 2026 06:35:07 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: intel-gfx@lists.freedesktop.org,
- Ville Syrjala <ville.syrjala@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 4/9] drm/i915/dp: Restructure the sink/output format
- selection
-Date: Tue, 31 Mar 2026 15:35:04 +0200
-Message-ID: <2479715.CQOukoFCf9@workhorse>
-In-Reply-To: <20260330235339.29479-5-ville.syrjala@linux.intel.com>
-References: <20260330235339.29479-1-ville.syrjala@linux.intel.com>
- <20260330235339.29479-5-ville.syrjala@linux.intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC30610E2E3
+ for <intel-xe@lists.freedesktop.org>; Tue, 31 Mar 2026 13:43:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1774964625; x=1806500625;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=bCecvUzReXj6RGqV7eZ+BolnS1hfTXuviHAn64nNji0=;
+ b=l0aiRZLLjV6ut8CfS7nXwE5fqqXTP8hlmqgMZqb/8eQQHhmA5iHA2npM
+ 0U4KDMf9gXDyLsCVq+mxWbEFqOaSMrTnlTsvFHclPH/OJHSawVVz6VQ/7
+ Nkhsp8REZlMqbOP3EYd/rbj/9lEBH2ve/zBICt3W19WctyIQbMhN/z9sE
+ QlztHZJ32BZkHmPbMRqPMGaAhwbU996ZjwIik1rpQxVLOkezFOi06Kwq/
+ FADcs+CMGKohPhHdZtjIWg8M32Pin2GlaOZkYR+t0MaSPnshgkm2qj1ty
+ sNckUAmbHTX8lbiRhK3KBO4LDnDlS1ZepG+UG4mrfJQo1Ak0UJffLMKaO w==;
+X-CSE-ConnectionGUID: s5e+Tr5ZRT6FwL4IHj2ibQ==
+X-CSE-MsgGUID: Bjq21x7XTQeoEmJWkg4w6w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="75941060"
+X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="75941060"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2026 06:43:44 -0700
+X-CSE-ConnectionGUID: KL/Mw+/BRAKfbW86HShLLQ==
+X-CSE-MsgGUID: dsm3mwFKSdajkDPUdKrbKg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="226239624"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.212])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2026 06:43:43 -0700
+From: =?UTF-8?q?Zbigniew=20Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Zbigniew=20Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>, 
+ Matthew Auld <matthew.auld@intel.com>
+Subject: [PATCH] drm/xe_pat: Print PAT_ATS during register dump
+Date: Tue, 31 Mar 2026 15:43:31 +0200
+Message-ID: <20260331134330.2535519-2-zbigniew.kempczynski@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,220 +67,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tuesday, 31 March 2026 01:53:34 Central European Summer Time Ville Syrja=
-la wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->=20
-> Restructure intel_dp_compute_output_format() to resemble the new
-> intel_hdmi_compute_output_formats().
->=20
-> Again, we basically have two main code paths:
-> - YCbCr 4:2:0 only modes
-> - everything else including YCbCr 4:2:0 also modes
->=20
-> Take the exact same approach with the DP code, making the
-> format selection much less convoluted.
->=20
-> Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 98 +++++++++++++++++--------
->  1 file changed, 69 insertions(+), 29 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
-15/display/intel_dp.c
-> index 4955bd8b11d7..230b45acde29 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -1371,6 +1371,28 @@ intel_dp_mode_valid_downstream(struct intel_connec=
-tor *connector,
->  	return MODE_OK;
->  }
-> =20
-> +static enum drm_mode_status
-> +intel_dp_sink_format_valid(struct intel_connector *connector,
-> +			   const struct drm_display_mode *mode,
-> +			   enum intel_output_format sink_format)
-> +{
-> +	const struct drm_display_info *info =3D &connector->base.display_info;
-> +
-> +	switch (sink_format) {
-> +	case INTEL_OUTPUT_FORMAT_YCBCR420:
-> +		if (!connector->base.ycbcr_420_allowed ||
-> +		    !drm_mode_is_420(info, mode))
-> +			return MODE_NO_420;
-> +
-> +		return MODE_OK;
-> +	case INTEL_OUTPUT_FORMAT_RGB:
-> +		return MODE_OK;
-> +	default:
-> +		MISSING_CASE(sink_format);
-> +		return MODE_BAD;
-> +	}
-> +}
-> +
+For Xe2 and beyond we miss printing PAT_ATS register.
 
-I think here we'll want another
-=2D--
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915=
-/display/intel_dp.c
-index e23162fc3f8b..a1dc089c54f5 100644
-=2D-- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1373,6 +1373,11 @@ intel_dp_sink_format_valid(struct intel_connector *c=
-onnector,
-=20
-                return MODE_OK;
-        case INTEL_OUTPUT_FORMAT_RGB:
-+               return MODE_OK;
-+       case INTEL_OUTPUT_FORMAT_YCBCR444:
-+               if (!(info->color_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_YCB=
-CR444)))
-+                       return MODE_BAD;
+Signed-off-by: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+---
+ drivers/gpu/drm/xe/xe_pat.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
+index 356f53bdb83c..75aaae7b003d 100644
+--- a/drivers/gpu/drm/xe/xe_pat.c
++++ b/drivers/gpu/drm/xe/xe_pat.c
+@@ -531,6 +531,14 @@ static int xe2_dump(struct xe_gt *gt, struct drm_printer *p)
+ 	drm_printf(p, "Page Table Access:\n");
+ 	xe->pat.ops->entry_dump(p, "PTA_MODE", pat, false);
+ 
++	if (xe_gt_is_media_type(gt))
++		pat = xe_mmio_read32(&gt->mmio, XE_REG(_PAT_ATS));
++	else
++		pat = xe_gt_mcr_unicast_read_any(gt, XE_REG_MCR(_PAT_ATS));
 +
-                return MODE_OK;
-        default:
-                MISSING_CASE(sink_format);
-=2D--
-
-though this time, no bpc related changes. With that fixed, I get
-YCbCr444 at 10bpc as well as 8bpc. Can't test 4:2:0 for what appears
-to be unrelated userspace reasons, though the KMS property's enum
-value is exposed properly.
-
->  int intel_dp_max_hdisplay_per_pipe(struct intel_display *display)
->  {
->  	return DISPLAY_VER(display) >=3D 30 ? 6144 : 5120;
-> @@ -3330,41 +3352,59 @@ static int
->  intel_dp_compute_output_format(struct intel_encoder *encoder,
->  			       struct intel_crtc_state *crtc_state,
->  			       struct drm_connector_state *conn_state,
-> -			       bool respect_downstream_limits)
-> +			       bool respect_downstream_limits,
-> +			       enum intel_output_format sink_format)
->  {
-> -	struct intel_display *display =3D to_intel_display(encoder);
->  	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
->  	struct intel_connector *connector =3D intel_dp->attached_connector;
-> -	const struct drm_display_info *info =3D &connector->base.display_info;
->  	const struct drm_display_mode *adjusted_mode =3D &crtc_state->hw.adjust=
-ed_mode;
-> -	bool ycbcr_420_only;
-> -	int ret;
-> =20
-> -	ycbcr_420_only =3D drm_mode_is_420_only(info, adjusted_mode);
-> -
-> -	if (ycbcr_420_only && !connector->base.ycbcr_420_allowed) {
-> -		drm_dbg_kms(display->drm,
-> -			    "YCbCr 4:2:0 mode but YCbCr 4:2:0 output not possible. Falling ba=
-ck to RGB.\n");
-> -		crtc_state->sink_format =3D INTEL_OUTPUT_FORMAT_RGB;
-> -	} else {
-> -		crtc_state->sink_format =3D intel_dp_sink_format(connector, adjusted_m=
-ode);
-> -	}
-> +	if (intel_dp_sink_format_valid(connector, adjusted_mode,
-> +				       sink_format) !=3D MODE_OK)
-> +		return -EINVAL;
-> =20
-> +	crtc_state->sink_format =3D sink_format;
->  	crtc_state->output_format =3D intel_dp_output_format(connector, crtc_st=
-ate->sink_format);
-> =20
-> -	ret =3D intel_dp_compute_link_config(encoder, crtc_state, conn_state,
-> -					   respect_downstream_limits);
-> -	if (ret) {
-> -		if (crtc_state->sink_format =3D=3D INTEL_OUTPUT_FORMAT_YCBCR420 ||
-> -		    !connector->base.ycbcr_420_allowed ||
-> -		    !drm_mode_is_420_also(info, adjusted_mode))
-> -			return ret;
-> -
-> -		crtc_state->sink_format =3D INTEL_OUTPUT_FORMAT_YCBCR420;
-> -		crtc_state->output_format =3D intel_dp_output_format(connector,
-> -								   crtc_state->sink_format);
-> -		ret =3D intel_dp_compute_link_config(encoder, crtc_state, conn_state,
-> -						   respect_downstream_limits);
-> +	return intel_dp_compute_link_config(encoder, crtc_state, conn_state,
-> +					    respect_downstream_limits);
-
-With the removal of intel_dp_sink_format in this function, I wonder
-if we can get rid of it entirely now. It's only called in
-intel_dp_mode_min_link_bpp_x16, which seems to be used for bandwidth
-limitation calculations (where YCbCr444 vs RGB444 doesn't matter, so
-we're fine in that regard).
-
-Judging by the "min" in the function name, I assume it should be
-using INTEL_OUTPUT_FORMAT_YCBCR420 in drm_mode_is_420_also cases,
-whereas right now it only gets this from intel_dp_sink_format if
-the mode is drm_mode_is_420_only. So I think removing
-intel_dp_sink_format entirely as a follow-up, and folding a
-corrected minimum bandwidth computation that uses 420 if
-drm_mode_is_420 into intel_dp_mode_min_link_bpp_x16 would make
-sense, unless I'm totally misunderstanding the code here.
-
-> +}
-> +
-> +static int
-> +intel_dp_compute_formats(struct intel_encoder *encoder,
-> +			 struct intel_crtc_state *crtc_state,
-> +			 struct drm_connector_state *conn_state,
-> +			 bool respect_downstream_limits)
-> +{
-> +	struct intel_display *display =3D to_intel_display(encoder);
-> +	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
-> +	struct intel_connector *connector =3D intel_dp->attached_connector;
-> +	const struct drm_display_info *info =3D &connector->base.display_info;
-> +	const struct drm_display_mode *adjusted_mode =3D &crtc_state->hw.adjust=
-ed_mode;
-> +	int ret;
-> +
-> +	if (drm_mode_is_420_only(info, adjusted_mode)) {
-> +		ret =3D intel_dp_compute_output_format(encoder, crtc_state, conn_state,
-> +						     respect_downstream_limits,
-> +						     INTEL_OUTPUT_FORMAT_YCBCR420);
-> +
-> +		if (ret) {
-> +			drm_dbg_kms(display->drm,
-> +				    "YCbCr 4:2:0 mode but YCbCr 4:2:0 output not possible. Falling b=
-ack to RGB.\n");
-> +
-> +			ret =3D intel_dp_compute_output_format(encoder, crtc_state, conn_stat=
-e,
-> +							     respect_downstream_limits,
-> +							     INTEL_OUTPUT_FORMAT_RGB);
-> +		}
-> +	} else {
-> +		ret =3D intel_dp_compute_output_format(encoder, crtc_state, conn_state,
-> +						     respect_downstream_limits,
-> +						     INTEL_OUTPUT_FORMAT_RGB);
-> +
-> +		if (ret && drm_mode_is_420_also(info, adjusted_mode))
-> +			ret =3D intel_dp_compute_output_format(encoder, crtc_state, conn_stat=
-e,
-> +							     respect_downstream_limits,
-> +							     INTEL_OUTPUT_FORMAT_YCBCR420);
->  	}
-> =20
->  	return ret;
-> @@ -3539,9 +3579,9 @@ intel_dp_compute_config(struct intel_encoder *encod=
-er,
->  	 * Try to respect downstream TMDS clock limits first, if
->  	 * that fails assume the user might know something we don't.
->  	 */
-> -	ret =3D intel_dp_compute_output_format(encoder, pipe_config, conn_state=
-, true);
-> +	ret =3D intel_dp_compute_formats(encoder, pipe_config, conn_state, true=
-);
->  	if (ret)
-> -		ret =3D intel_dp_compute_output_format(encoder, pipe_config, conn_stat=
-e, false);
-> +		ret =3D intel_dp_compute_formats(encoder, pipe_config, conn_state, fal=
-se);
->  	if (ret)
->  		return ret;
-> =20
->=20
-
-
-
++	drm_printf(p, "PCIe ATS/PASID:\n");
++	xe->pat.ops->entry_dump(p, "PAT_ATS ", pat, false);
++
+ 	return 0;
+ }
+ 
+-- 
+2.43.0
 
