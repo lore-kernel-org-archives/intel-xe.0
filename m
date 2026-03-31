@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FAB010F92F2
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F04F10F92F4
 	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 18:34:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 15FEC10EB73;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5471210EB79;
 	Tue, 31 Mar 2026 18:34:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KzKq9Rei";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AkV6oldK";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 815E310EB62;
- Tue, 31 Mar 2026 18:34:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9202C10EB3E;
+ Tue, 31 Mar 2026 18:34:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774982084; x=1806518084;
+ t=1774982081; x=1806518081;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Od0D1Tyo7F2jCotEsZ1WhvgEtNG5Zk+1Z6xkSDyW82o=;
- b=KzKq9ReiWMtFLducga+JPNSrulSUk73LaSTBcBxssAey/D1ArnPUtFDS
- 0tKXzCZycRGT28nEemSk9TkCvPB8JqYZTsXtOKyrKOwkbCNJIUCw/LY2d
- ubN4BKlKjARt1TjCnOU2sHOw0lvChjy2Fxue8b+C8M4K/oHEEwMMAxSrh
- 4a4CZ57IWBfgTvqJngAbfELDzKEdOO2MCTTkYUwd3+1YKPjTKJxZ6Q6AH
- 7ci0bRyWUO7+kIVUd5WaMTHdtqr/mtN1hXrJFMy5kd5zqHmL3FuLJYMuF
- zUl8Uy14O3+YjAaW8OosIH3yvR6Auq/9sEbR+a103IcffZpsx+n+kgvi+ g==;
-X-CSE-ConnectionGUID: Ym2JUhrwR4CyY3QLU5aC2A==
-X-CSE-MsgGUID: WjJalE+DS1WW+NIBU/eBsg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="86705191"
-X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="86705191"
+ bh=aoCJ+n+O2leYv1C9SUYgQjRsBpE3Ud0N+0JlyRaNPJs=;
+ b=AkV6oldKxB9bllA2zqUGOQHJ14z3sWNX23r8nXkfZO7r5pWxWhH0Wt7s
+ C/T9ZTZA6sC6S//UKtM2GLO5TCX/9ecGlOV2Ut21D3SxuEASRCtbqTd/i
+ LQJ/DLAz07vCwHukKiYujK1rQpyH6lI0YdoZFqI+jKZ6MwJe0UGt0Nwwl
+ US1bZL11WGWOFYaJFpQstYTS9eRb1qePdKDui6k2fkN25ZvlOhs0CPqXD
+ 4U+rxcW3mjjQ5srqc3D3P2kypHPev2ZaX9bqjqbLwXri9OujeycT99eWp
+ DFiKuDTsW9dN7n9QxlyquVViMvZmyGXA0pZtX2x5CG46m7JnCk2S+gcOM Q==;
+X-CSE-ConnectionGUID: dZtghR3tQTKkxgZa/f81BQ==
+X-CSE-MsgGUID: ymrccJMiQ2WV63RD1c4NFQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="86705184"
+X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="86705184"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 11:34:43 -0700
-X-CSE-ConnectionGUID: bOOC0qVQRQOVPoWmNnFdKQ==
-X-CSE-MsgGUID: Q1ekhwb1TxC1QOvJK6DD9w==
+ 31 Mar 2026 11:34:40 -0700
+X-CSE-ConnectionGUID: sqQ8yvYuQ9WIatYTMLnMqg==
+X-CSE-MsgGUID: VlLNFyryR4ORMY+9PW0hZQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="256944510"
+X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="256944495"
 Received: from administrator-system-product-name.igk.intel.com (HELO
  dev-417.igk.intel.com) ([10.91.214.181])
- by orviesa002.jf.intel.com with ESMTP; 31 Mar 2026 11:34:43 -0700
+ by orviesa002.jf.intel.com with ESMTP; 31 Mar 2026 11:34:40 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@linux.intel.com>,
  =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v1 11/16] drm/i915/buf_trans: override encoder->get_buf_trans
- when asked
-Date: Tue, 31 Mar 2026 20:33:27 +0200
-Message-ID: <20260331183332.1773886-12-michal.grzelak@intel.com>
+Subject: [PATCH v1 09/16] drm/i915/bios: print VS/PE Override port info
+Date: Tue, 31 Mar 2026 20:33:25 +0200
+Message-ID: <20260331183332.1773886-10-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260331183332.1773886-1-michal.grzelak@intel.com>
 References: <20260331183332.1773886-1-michal.grzelak@intel.com>
@@ -72,113 +71,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Overwrite encoder->get_buf_trans with override_buf_trans() hook when
-port asks to override default Vswing / Preemphasis tables.
-
-Overriding proper consists of:
-1) getting buffers' table via cached pointer in intel_encoder;
-2) checking if the index to the table has already been computed;
-3) computing & storing the most appropriate index;
-4) accessing desired buf_trans with the index;
-5) pointing allocated buf_trans_entry to the accessed buf_trans.
-
-Assume 0 as the default index when finding the most specific index
-failed.
-
-There are no changes to intel_ddi_dp_level() since selection of correct
-row of intel_ddi_buf_trans_entry is same as when no override request has
-been done.
-
-vswing_preemph_compute_index() feels like should be done in
-override_vswing_preemph() during parse_ddi_ports() from intel_bios.c
-instead of override_buf_trans(). Points 2) & 3) then could be omitted
-from override_buf_trans(). In reality it is not trivial because index
-computation depends on port_clock properties from crtc_state. Checking
-those in intel_bios.c is out of my idea as of now.
+Issue a debug message when port asks to override default Vswing /
+Preemphasis tables.
 
 Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
 ---
- .../drm/i915/display/intel_ddi_buf_trans.c    | 55 +++++++++++++++++++
- 1 file changed, 55 insertions(+)
+ drivers/gpu/drm/i915/display/intel_bios.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-index de5f6f89374e..06c2869d3e7a 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-@@ -3,6 +3,8 @@
-  * Copyright © 2020 Intel Corporation
-  */
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index 016696de2870..f94093379df0 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -2904,6 +2904,11 @@ static void print_ddi_port(const struct intel_bios_encoder_data *devdata)
+ 			    "Port %c supports dynamic DDI allocation in TCSS\n",
+ 			    port_name(port));
  
-+#include <drm/drm_print.h>
++	if (intel_bios_encoder_overrides_vswing(devdata))
++		drm_dbg_kms(display->drm,
++			    "Port %c overrides VBT vswing/preemphasis tables\n",
++			    port_name(port));
 +
- #include "intel_cx0_phy.h"
- #include "intel_ddi.h"
- #include "intel_ddi_buf_trans.h"
-@@ -1784,6 +1786,56 @@ xe3plpd_get_lt_buf_trans(struct intel_encoder *encoder,
- 		return intel_get_buf_trans(&xe3plpd_lt_trans_dp14, n_entries);
- }
- 
-+static union ddi_vswing_preemph_index
-+vswing_preemph_compute_index(struct intel_encoder *encoder,
-+			     const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(encoder);
-+	union ddi_vswing_preemph_index index;
-+
-+	drm_dbg_kms(display->drm, "using default VS/PE Override index");
-+	index = (union ddi_vswing_preemph_index) 0;
-+
-+	return index;
-+}
-+
-+static int
-+vswing_preemph_cast_index(struct intel_display *display,
-+			   union ddi_vswing_preemph_index index)
-+{
-+	return 0;
-+}
-+
-+static const struct intel_ddi_buf_trans *
-+override_buf_trans(struct intel_encoder *encoder,
-+		   const struct intel_crtc_state *crtc_state,
-+		   int *n_entries)
-+{
-+	struct intel_display *display = to_intel_display(encoder);
-+
-+	struct intel_ddi_buf_trans *buf_trans;
-+	struct ddi_vswing_preemph *vswing_preemph;
-+	union ddi_vswing_preemph_index index;
-+	u32 idx;
-+
-+	index = encoder->vswing_preemph->index;
-+	idx = vswing_preemph_cast_index(display, index);
-+
-+	if (idx < 0) {
-+		index = vswing_preemph_compute_index(encoder, crtc_state);
-+		vswing_preemph = (void *) encoder->vswing_preemph;
-+		vswing_preemph->index = index;
-+		idx = vswing_preemph_cast_index(display, index);
-+	}
-+
-+	buf_trans = (void *) encoder->vswing_preemph->buf_trans;
-+
-+	buf_trans->entries = display->vbt.vswing_preemph.bufs_table[idx];
-+	buf_trans->num_entries = display->vbt.vswing_preemph.num_rows;
-+
-+	return intel_get_buf_trans(buf_trans, n_entries);
-+}
-+
- void intel_ddi_buf_trans_init(struct intel_encoder *encoder)
- {
- 	struct intel_display *display = to_intel_display(encoder);
-@@ -1851,4 +1903,7 @@ void intel_ddi_buf_trans_init(struct intel_encoder *encoder)
- 
- 		MISSING_CASE(pdev->device);
- 	}
-+
-+	if (encoder->vswing_preemph->buf_trans)
-+		encoder->get_buf_trans = override_buf_trans;
- }
+ 	hdmi_level_shift = intel_bios_hdmi_level_shift(devdata);
+ 	if (hdmi_level_shift >= 0) {
+ 		drm_dbg_kms(display->drm,
 -- 
 2.45.2
 
