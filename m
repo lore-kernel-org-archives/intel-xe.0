@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F11CB10F92EB
-	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 18:49:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D94110F92EB
+	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 18:53:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AECAA10E295;
-	Tue, 31 Mar 2026 18:49:41 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M/JCyK9X";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D5FEF10E295
- for <intel-xe@lists.freedesktop.org>; Tue, 31 Mar 2026 18:49:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774982980; x=1806518980;
- h=date:from:to:cc:subject:message-id;
- bh=eIZKtxYF76W65kSx3i5vL8BLY01sfzNH2Pt9bbyg5JQ=;
- b=M/JCyK9XHimGJBkJjGbxd1MO1HAdyjXk91qAwte2cXQXr8WTYx9WFc31
- uCZL7bg5b7+TSUGhXxoOLMA1jnnjYKlWa/e6kPh6LOl3nex/IyWX5FTvC
- 9zw2qXHH+na99NVbvQDIDz2oOUcGwnNVmcdDjg50EAZjh3fYBd0sAm9uW
- O+x+Tn4xRXrNNWsgx74yC9WyUH48bfiojcwSmEJz8NZ8YgTHXoQYVW5E8
- uA4eeVHLmodEClafmj0btot7x8OJ21BMM5l5M7uCeNAY3bi2Fj+Qw3Z3n
- Q2ie6SmWBCe3YKwRm5+P7NH8ql/6JYv3ji0J2TGritwtQDBu6DzdJscOB g==;
-X-CSE-ConnectionGUID: E9FZtBITRuOMXvGchdW2sw==
-X-CSE-MsgGUID: CSjN44Z8Sf28KQK224l+hw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="76122458"
-X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="76122458"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 11:49:39 -0700
-X-CSE-ConnectionGUID: Ym+/b9g0TzuoI2JKCYiCPA==
-X-CSE-MsgGUID: Qu74roe6RCaSoFZTDTNqxA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="230882178"
-Received: from lkp-server01.sh.intel.com (HELO 283bf2e1b94a) ([10.239.97.150])
- by orviesa004.jf.intel.com with ESMTP; 31 Mar 2026 11:49:37 -0700
-Received: from kbuild by 283bf2e1b94a with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1w7e9e-0000000049T-3lWq;
- Tue, 31 Mar 2026 18:49:34 +0000
-Date: Wed, 01 Apr 2026 02:49:04 +0800
-From: kernel test robot <lkp@intel.com>
-To: Anoop Vijay <anoop.c.vijay@intel.com>
-Cc: oe-kbuild-all@lists.linux.dev, intel-xe@lists.freedesktop.org,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: [drm-xe:drm-xe-next 1071/1074]
- drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:347:20: sparse: sparse: cast to
- restricted __le32
-Message-ID: <202604010228.Z20DhK4g-lkp@intel.com>
-User-Agent: s-nail v14.9.25
+	by gabe.freedesktop.org (Postfix) with ESMTP id F099510ED09;
+	Tue, 31 Mar 2026 18:53:12 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 198DC10ED09;
+ Tue, 31 Mar 2026 18:53:11 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/uapi=3A_Update_xe?=
+ =?utf-8?q?=5Fdrm=2Eh_documentation_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Shuicheng Lin" <shuicheng.lin@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 31 Mar 2026 18:53:11 -0000
+Message-ID: <177498319108.419941.18269868651226315059@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260331172049.3053871-7-shuicheng.lin@intel.com>
+In-Reply-To: <20260331172049.3053871-7-shuicheng.lin@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,90 +36,95 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-head:   72d918472886b6e1b998b756303816737929ef0a
-commit: 1f95f618182b5c99d46378141e0fb84f09bf914b [1071/1074] drm/xe/xe_sysctrl: Add System Controller mailbox communication support
-config: sparc64-randconfig-r134-20260331 (https://download.01.org/0day-ci/archive/20260401/202604010228.Z20DhK4g-lkp@intel.com/config)
-compiler: clang version 23.0.0git (https://github.com/llvm/llvm-project 2cd67b8b69f78e3f95918204320c3075a74ba16c)
-sparse: v0.6.5-rc1
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260401/202604010228.Z20DhK4g-lkp@intel.com/reproduce)
+== Series Details ==
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202604010228.Z20DhK4g-lkp@intel.com/
+Series: drm/xe/uapi: Update xe_drm.h documentation (rev2)
+URL   : https://patchwork.freedesktop.org/series/161217/
+State : warning
 
-sparse warnings: (new ones prefixed by >>)
->> drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:347:20: sparse: sparse: cast to restricted __le32
->> drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:347:20: sparse: sparse: cast to restricted __le32
->> drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:347:20: sparse: sparse: cast to restricted __le32
->> drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:347:20: sparse: sparse: cast to restricted __le32
->> drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:347:20: sparse: sparse: cast to restricted __le32
->> drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:347:20: sparse: sparse: cast to restricted __le32
->> drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:347:20: sparse: sparse: cast to restricted __le32
->> drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:347:20: sparse: sparse: cast to restricted __le32
->> drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:347:20: sparse: sparse: cast to restricted __le32
->> drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:347:20: sparse: sparse: cast to restricted __le32
->> drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:347:20: sparse: sparse: cast to restricted __le32
->> drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:347:20: sparse: sparse: cast to restricted __le32
-   drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:348:24: sparse: sparse: cast to restricted __le32
-   drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:348:24: sparse: sparse: cast to restricted __le32
-   drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:348:24: sparse: sparse: cast to restricted __le32
-   drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:348:24: sparse: sparse: cast to restricted __le32
-   drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:348:24: sparse: sparse: cast to restricted __le32
-   drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:348:24: sparse: sparse: cast to restricted __le32
-   drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:348:24: sparse: sparse: cast to restricted __le32
-   drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:348:24: sparse: sparse: cast to restricted __le32
-   drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:348:24: sparse: sparse: cast to restricted __le32
-   drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:348:24: sparse: sparse: cast to restricted __le32
-   drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:348:24: sparse: sparse: cast to restricted __le32
-   drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:348:24: sparse: sparse: cast to restricted __le32
+== Summary ==
 
-vim +347 drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit dbf47dfc035705bd62d29ad39b816c8c4bb59849
+Author: Shuicheng Lin <shuicheng.lin@intel.com>
+Date:   Tue Mar 31 17:20:55 2026 +0000
 
-   309	
-   310	/**
-   311	 * xe_sysctrl_send_command() - Send mailbox command to System Controller
-   312	 * @sc: System Controller instance
-   313	 * @cmd: Command descriptor containing request header and payload buffers
-   314	 * @rdata_len: Pointer to store actual response data length
-   315	 *
-   316	 * Sends a mailbox command to System Controller firmware using
-   317	 * System Controller mailbox and waits for a response.
-   318	 *
-   319	 * Request payload is provided via @cmd->data_in and @cmd->data_in_len.
-   320	 * If a response is expected, @cmd->data_out must point to a buffer of
-   321	 * size @cmd->data_out_len supplied by caller.
-   322	 *
-   323	 * On success, @rdata_len is updated with number of valid response bytes
-   324	 * returned by firmware, bounded by @cmd->data_out_len.
-   325	 *
-   326	 * Return: 0 on success, or negative errno on failure.
-   327	 */
-   328	int xe_sysctrl_send_command(struct xe_sysctrl *sc,
-   329				    struct xe_sysctrl_mailbox_command *cmd,
-   330				    size_t *rdata_len)
-   331	{
-   332		struct xe_device *xe = sc_to_xe(sc);
-   333		u8 group_id, command_code;
-   334		u8 *mbox_cmd = NULL;
-   335		size_t cmd_size = 0;
-   336		int ret;
-   337	
-   338		guard(xe_pm_runtime_noresume)(xe);
-   339	
-   340		if (!xe->info.has_sysctrl)
-   341			return -ENODEV;
-   342	
-   343		xe_assert(xe, cmd->data_in || cmd->data_out);
-   344		xe_assert(xe, !cmd->data_in || cmd->data_in_len);
-   345		xe_assert(xe, !cmd->data_out || cmd->data_out_len);
-   346	
- > 347		group_id = XE_SYSCTRL_APP_HDR_GROUP_ID(&cmd->header);
+    drm/xe/uapi: Fix doc formatting and completeness in xe_drm.h
+    
+    - Fix missing leading space before closing */ in
+      comment block
+    - Add DRM_IOCTL_XE_EXEC_QUEUE_SET_PROPERTY to the
+      IOCTL overview list
+    - Add missing query types to the device query doc list:
+      DRM_XE_DEVICE_QUERY_UC_FW_VERSION,
+      DRM_XE_DEVICE_QUERY_OA_UNITS,
+      DRM_XE_DEVICE_QUERY_EU_STALL
+    - Fix ioctl's -> ioctls (not possessive, 2 occurrences)
+    
+    Assisted-by: GitHub Copilot:claude-opus-4.6
+    Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
++ /mt/dim checkpatch 779129c7868f4c7205901d6e57b25de52b411d1c drm-intel
+5bcb69fbe054 drm/xe/uapi: Fix typos and spelling errors in xe_drm.h documentation
+-:16: WARNING:BAD_SIGN_OFF: Non-standard signature: Assisted-by:
+#16: 
+Assisted-by: GitHub Copilot:claude-opus-4.6
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+-:16: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'GitHub Copilot:claude-opus-4.6'
+#16: 
+Assisted-by: GitHub Copilot:claude-opus-4.6
+
+total: 1 errors, 1 warnings, 0 checks, 46 lines checked
+5dc63d029f43 drm/xe/uapi: Fix grammar errors in xe_drm.h documentation
+-:19: WARNING:BAD_SIGN_OFF: Non-standard signature: Assisted-by:
+#19: 
+Assisted-by: GitHub Copilot:claude-opus-4.6
+
+-:19: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'GitHub Copilot:claude-opus-4.6'
+#19: 
+Assisted-by: GitHub Copilot:claude-opus-4.6
+
+total: 1 errors, 1 warnings, 0 checks, 81 lines checked
+f47bfd3064ac drm/xe/uapi: Fix wrong names and references in xe_drm.h
+-:26: WARNING:BAD_SIGN_OFF: Non-standard signature: Assisted-by:
+#26: 
+Assisted-by: GitHub Copilot:claude-opus-4.6
+
+-:26: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'GitHub Copilot:claude-opus-4.6'
+#26: 
+Assisted-by: GitHub Copilot:claude-opus-4.6
+
+total: 1 errors, 1 warnings, 0 checks, 104 lines checked
+4d5ccee5ad3f drm/xe/uapi: Fix code examples in xe_drm.h documentation
+-:16: WARNING:BAD_SIGN_OFF: Non-standard signature: Assisted-by:
+#16: 
+Assisted-by: GitHub Copilot:claude-opus-4.6
+
+-:16: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'GitHub Copilot:claude-opus-4.6'
+#16: 
+Assisted-by: GitHub Copilot:claude-opus-4.6
+
+total: 1 errors, 1 warnings, 0 checks, 36 lines checked
+dbf47dfc0357 drm/xe/uapi: Fix doc formatting and completeness in xe_drm.h
+-:16: WARNING:BAD_SIGN_OFF: Non-standard signature: Assisted-by:
+#16: 
+Assisted-by: GitHub Copilot:claude-opus-4.6
+
+-:16: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'GitHub Copilot:claude-opus-4.6'
+#16: 
+Assisted-by: GitHub Copilot:claude-opus-4.6
+
+total: 1 errors, 1 warnings, 0 checks, 37 lines checked
+
+
