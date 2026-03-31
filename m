@@ -4,71 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FB5FFF60FB
-	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 10:19:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1079FF60FB
+	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 10:19:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E19C610E8E0;
-	Tue, 31 Mar 2026 10:19:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E29410E913;
+	Tue, 31 Mar 2026 10:19:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OTL/A8Zu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WcPY/1+0";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B144E10E8E0;
- Tue, 31 Mar 2026 10:19:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8010510E905;
+ Tue, 31 Mar 2026 10:19:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774952345; x=1806488345;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=blz/jUK8AtcaMi8EKklPzfx4JUx4Tdr61s7OVRw3Rl0=;
- b=OTL/A8ZuPCfypViYy4TGQq+4C0d6O8gdM7/SqO1u9Mo1bfPD9zOprnZx
- 7/3XO8uhgaSRK0LuLow1zYDDs5ipjq/489Nnaba7n475wQAv9HnkJki5Z
- hhrpgj30MweDPTcZMFjRhrYLrX48SkluwcNVwIvox6R3FxaGp/5sGQrMz
- W9VAKx8JD7Of+jslRANbg4B41hYddkr7kIysPVc/co/Hh/YhPHpdCAQ0b
- tDgr43a+nPAImIHaPVicWeYgcsGZJ3s3DwxPBib5BLoMGulG4OqQg5clX
- sVUkUqJFBpkTV0ELnA4gNoNEGzp8iBc5WPPqndj8yb5kdD3uF0LQkucNk g==;
-X-CSE-ConnectionGUID: uYsSETx9TlG8CLXs0Ub8+g==
-X-CSE-MsgGUID: 6j/hPR+ITU6v+N+dI0SR7Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11744"; a="101416702"
-X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="101416702"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 03:19:04 -0700
-X-CSE-ConnectionGUID: d5Zw98KhQpm13p8szeFkBw==
-X-CSE-MsgGUID: gyJmIAwEQLWN0YQkUMVi4Q==
+ t=1774952381; x=1806488381;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=0CqLQulycl6ub3BKI2WyyXy1Bq5+fOPJSeHqGMIAWYk=;
+ b=WcPY/1+0zbx62gCzCVDxnAUxYZNmVYaK15BMVykDpIDT7o3cLbi1yQ5T
+ FAnLWmNIG0TNG82GDYWMuXQ+M4PraBcdUPyzWBgfD2at87kIwxvdGO5no
+ Dnfdl+/aKScOoTOeEqmNUyAxliL0xsQUKHwhFSmr4XHNhShNUTiYse/r3
+ gx1ayszf1n5lhQVW00krdGZBLI4Q3A5YBxnFhH07hYg3etF7N8uNMKChL
+ UMESKSHG6J63QjslWDK2WZwEF5pU5JhENHdJ4X587hJnTcqnudQ9iA/py
+ 9DOOAGwBd74c86IsxoMgt5oz6hkA37EIZKQJ/jkOjtrk9dawBHzXbw260 A==;
+X-CSE-ConnectionGUID: 3yHmbihuTr+4ANH5xRvcNA==
+X-CSE-MsgGUID: Ka1XtwaZTc29IpTt4dQP3A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11744"; a="75847663"
+X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="75847663"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2026 03:19:40 -0700
+X-CSE-ConnectionGUID: xZDCCDZuQRaHxyJeuXwqLg==
+X-CSE-MsgGUID: 5Osby3SDTbOYiei9Ryb+Iw==
 X-ExtLoop1: 1
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO [10.245.244.28])
- ([10.245.244.28])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 03:18:59 -0700
-Message-ID: <7971009f03546a98f6137b18195b135e5e2eeee8.camel@linux.intel.com>
-Subject: Re: [PATCH 5/5] drm/exec, drm/xe, drm/amdgpu: Add an accessor for
- struct drm_exec::ticket
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
- intel-xe@lists.freedesktop.org
-Cc: Felix Kuehling <Felix.Kuehling@amd.com>, Alex Deucher	
- <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>, Simona
- Vetter	 <simona@ffwll.ch>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>,  Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Danilo Krummrich
- <dakr@kernel.org>,  Matthew Brost <matthew.brost@intel.com>, Alice Ryhl
- <aliceryhl@google.com>, Rob Clark	 <robin.clark@oss.qualcomm.com>, Dmitry
- Baryshkov <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul	 <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>, 
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org
-Date: Tue, 31 Mar 2026 12:18:56 +0200
-In-Reply-To: <ac68886e-d4f0-408b-9ddc-909cda18c6f5@amd.com>
-References: <20260331092023.81616-1-thomas.hellstrom@linux.intel.com>
- <20260331092023.81616-6-thomas.hellstrom@linux.intel.com>
- <ac68886e-d4f0-408b-9ddc-909cda18c6f5@amd.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="230797138"
+Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.244.24])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2026 03:19:38 -0700
+Date: Tue, 31 Mar 2026 13:19:34 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Luca Coelho <luca@coelho.fi>
+Cc: Luca Coelho <luciano.coelho@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com
+Subject: Re: [PATCH 6/8] drm/i915/display: move HSW and BDW clock gating init
+ to display
+Message-ID: <acuftvIa8GY4i57d@intel.com>
+References: <20260324143420.310800-1-luciano.coelho@intel.com>
+ <20260324143420.310800-7-luciano.coelho@intel.com>
+ <acK9lVDxOV_hXPiN@intel.com>
+ <d916a82d01456ede8a080484998b74af19286df5.camel@coelho.fi>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <d916a82d01456ede8a080484998b74af19286df5.camel@coelho.fi>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,158 +75,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+On Tue, Mar 31, 2026 at 01:03:42PM +0300, Luca Coelho wrote:
+> On Tue, 2026-03-24 at 18:36 +0200, Ville Syrjälä wrote:
+> > On Tue, Mar 24, 2026 at 04:29:55PM +0200, Luca Coelho wrote:
+> > > Move the HSW and BDW display clock gating programming into the display
+> > > code.  In this case we need two different helpers, because the common
+> > > code between these two is split in the middle.
+> > > 
+> > > Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+> > > ---
+> > >  .../i915/display/intel_display_clock_gating.c | 33 +++++++++++++++++++
+> > >  .../i915/display/intel_display_clock_gating.h |  6 ++++
+> > >  drivers/gpu/drm/i915/intel_clock_gating.c     | 31 +++--------------
+> > >  3 files changed, 43 insertions(+), 27 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
+> > > index e3b7522b4101..0b2edf6acb79 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
+> > > @@ -123,3 +123,36 @@ void intel_display_glk_init_clock_gating(struct intel_display *display)
+> > >  		       intel_de_read(display, GEN9_CLKGATE_DIS_0) |
+> > >  		       PWM1_GATING_DIS | PWM2_GATING_DIS);
+> > >  }
+> > > +
+> > > +static void
+> > > +intel_display_hsw_init_clock_gating_common(struct intel_display *display,
+> > > +					   u32 unmask_vbl)
+> > 
+> > Passing that as a parameter feels a bit obfuscated.
+> > 
+> > > +{
+> > > +	enum pipe pipe;
+> > > +
+> > > +	/* WaPsrDPAMaskVBlankInSRD:hsw */
+> > > +	intel_de_rmw(display, CHICKEN_PAR1_1, 0, HSW_MASK_VBL_TO_PIPE_IN_SRD);
+> > > +
+> > > +	for_each_pipe(display, pipe) {
+> > > +		/* WaPsrDPRSUnmaskVBlankInSRD:hsw,bdw */
+> > > +		intel_de_rmw(display, CHICKEN_PIPESL_1(pipe), 0, unmask_vbl);
+> > 
+> > If we want to share the function then I'd probably just do
+> > a platform check here.
+> 
+> True, I'll skip passing it and just add the platform check in this
+> function.
+> 
+> 
+> > 
+> > > +	}
+> > > +}
+> > > +
+> > > +void intel_display_bdw_hsw_init_clock_gating(struct intel_display *display)
+> > > +{
+> > > +	/* WaFbcAsynchFlipDisableFbcQueue:hsw,bdw */
+> > > +	intel_de_rmw(display, CHICKEN_PIPESL_1(PIPE_A), 0, HSW_FBCQ_DIS);
+> > > +}
+> > 
+> > Why do we have two different functions that shared by
+> > both platforms?
+> 
+> It's because for BDW there is this one in between the two common calls:
+> 
+> 	/* WaSwitchSolVfFArbitrationPriority:bdw */
+> 	intel_uncore_rmw(&i915->uncore, GAM_ECOCHK, 0, HSW_ECOCHK_ARB_PRIO_SOL);
+> 
+> ...this is probably independent from the other two and it may be okay
+> to move it before the common code, but I wanted to avoid that.
+> 
+> Do you think it's safe to change the order from:
+> 
+> 1. CHICKEN_PIPESL_1
+> 2. GAM_ECOCHK
+> 3. CHICKEN_PAR1_1
+> 
+> ...to this?
+> 
+> 1. GAM_ECOCHK
+> 2. CHICKEN_PIPESL_1
+> 3. CHICKEN_PAR1_1
+> 
+> If that's the case, then it can be simplified.
 
-On Tue, 2026-03-31 at 11:46 +0200, Christian K=C3=B6nig wrote:
-> On 3/31/26 11:20, Thomas Hellstr=C3=B6m wrote:
-> > Drivers were accessing this drm_exec member directly.
->=20
-> I don't see a problem with that as long as we have documented that
-> this is allowed.
+There shouldn't be any ordering requirements here. But if you're
+a it paranoid then you could do the reordering as a separate
+step, just in case someone has to bisect it.
 
-It's more of forward-looking for the case I mentioned in the cover-
-letter. If drm_exec becomes a subclass of a drm_transaction or
-whatever, then this would likely be &exec->txn.ticket;
-
-Could ofc postpone that to any such refactor, but since the patch is up
-for review...
-
-Thanks,
-Thomas
-
-
->=20
-> Regards,
-> Christian.
->=20
-> > Provide an accessor, drm_exec_ticket() to avoid that.
-> >=20
-> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> > ---
-> > =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c | 4 ++--
-> > =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 6 +++---
-> > =C2=A0drivers/gpu/drm/xe/xe_validation.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 4 ++--
-> > =C2=A0include/drm/drm_exec.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 5 +++++
-> > =C2=A04 files changed, 12 insertions(+), 7 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-> > b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-> > index 29b400cdd6d5..8a4fb9a62485 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-> > @@ -2998,7 +2998,7 @@ int
-> > amdgpu_amdkfd_gpuvm_restore_process_bos(void *info, struct
-> > dma_fence __rcu *
-> > =C2=A0	/* Validate PDs, PTs and evicted DMABuf imports last.
-> > Otherwise BO
-> > =C2=A0	 * validations above would invalidate DMABuf imports
-> > again.
-> > =C2=A0	 */
-> > -	ret =3D process_validate_vms(process_info, &exec.ticket);
-> > +	ret =3D process_validate_vms(process_info,
-> > drm_exec_ticket(exec));
-> > =C2=A0	if (ret) {
-> > =C2=A0		pr_debug("Validating VMs failed, ret: %d\n", ret);
-> > =C2=A0		goto validate_map_fail;
-> > @@ -3039,7 +3039,7 @@ int
-> > amdgpu_amdkfd_gpuvm_restore_process_bos(void *info, struct
-> > dma_fence __rcu *
-> > =C2=A0			goto validate_map_fail;
-> > =C2=A0		}
-> > =C2=A0
-> > -		ret =3D amdgpu_vm_handle_moved(adev, peer_vm,
-> > &exec.ticket);
-> > +		ret =3D amdgpu_vm_handle_moved(adev, peer_vm,
-> > drm_exec_ticket(exec));
-> > =C2=A0		if (ret) {
-> > =C2=A0			dev_dbg(adev->dev,
-> > =C2=A0				"Memory eviction: handle moved
-> > failed, pid %8d. Try again.\n",
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> > b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> > index c4ee19603460..c725a7976c63 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> > @@ -1157,7 +1157,7 @@ static int amdgpu_cs_vm_handling(struct
-> > amdgpu_cs_parser *p)
-> > =C2=A0			return r;
-> > =C2=A0	}
-> > =C2=A0
-> > -	r =3D amdgpu_vm_handle_moved(adev, vm, &p->exec.ticket);
-> > +	r =3D amdgpu_vm_handle_moved(adev, vm, drm_exec_ticket(&p-
-> > >exec));
-> > =C2=A0	if (r)
-> > =C2=A0		return r;
-> > =C2=A0
-> > @@ -1358,7 +1358,7 @@ static int amdgpu_cs_submit(struct
-> > amdgpu_cs_parser *p,
-> > =C2=A0	cs->out.handle =3D seq;
-> > =C2=A0	leader->uf_sequence =3D seq;
-> > =C2=A0
-> > -	amdgpu_vm_bo_trace_cs(&fpriv->vm, &p->exec.ticket);
-> > +	amdgpu_vm_bo_trace_cs(&fpriv->vm, drm_exec_ticket(&p-
-> > >exec));
-> > =C2=A0	for (i =3D 0; i < p->gang_size; ++i) {
-> > =C2=A0		amdgpu_job_free_resources(p->jobs[i]);
-> > =C2=A0		trace_amdgpu_cs_ioctl(p->jobs[i]);
-> > @@ -1793,7 +1793,7 @@ int amdgpu_cs_find_mapping(struct
-> > amdgpu_cs_parser *parser,
-> > =C2=A0	*map =3D mapping;
-> > =C2=A0
-> > =C2=A0	/* Double check that the BO is reserved by this CS */
-> > -	if (dma_resv_locking_ctx((*bo)->tbo.base.resv) !=3D &parser-
-> > >exec.ticket)
-> > +	if (dma_resv_locking_ctx((*bo)->tbo.base.resv) !=3D
-> > drm_exec_ticket(&parser->exec))
-> > =C2=A0		return -EINVAL;
-> > =C2=A0
-> > =C2=A0	/* Make sure VRAM is allocated contigiously */
-> > diff --git a/drivers/gpu/drm/xe/xe_validation.c
-> > b/drivers/gpu/drm/xe/xe_validation.c
-> > index a611438eaafe..8dff4d0ec895 100644
-> > --- a/drivers/gpu/drm/xe/xe_validation.c
-> > +++ b/drivers/gpu/drm/xe/xe_validation.c
-> > @@ -156,7 +156,7 @@ int xe_validation_ctx_init(struct
-> > xe_validation_ctx *ctx, struct xe_validation_d
-> > =C2=A0
-> > =C2=A0#ifdef CONFIG_DEBUG_WW_MUTEX_SLOWPATH
-> > =C2=A0/*
-> > - * This abuses both drm_exec and ww_mutex internals and should be
-> > + * This abuses ww_mutex internals and should be
-> > =C2=A0 * replaced by checking for -EDEADLK when we can make TTM
-> > =C2=A0 * stop converting -EDEADLK to -ENOMEM.
-> > =C2=A0 * An alternative is to not have exhaustive eviction with
-> > @@ -164,7 +164,7 @@ int xe_validation_ctx_init(struct
-> > xe_validation_ctx *ctx, struct xe_validation_d
-> > =C2=A0 */
-> > =C2=A0static bool xe_validation_contention_injected(struct drm_exec
-> > *exec)
-> > =C2=A0{
-> > -	return !!exec->ticket.contending_lock;
-> > +	return !!drm_exec_ticket(exec)->contending_lock;
-> > =C2=A0}
-> > =C2=A0
-> > =C2=A0#else
-> > diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
-> > index 5ed5be1f8244..50d056a87de0 100644
-> > --- a/include/drm/drm_exec.h
-> > +++ b/include/drm/drm_exec.h
-> > @@ -151,6 +151,11 @@ static inline bool
-> > drm_exec_is_contended(struct drm_exec *exec)
-> > =C2=A0		goto *__drm_exec_retry_ptr;		\
-> > =C2=A0	} while (0)
-> > =C2=A0
-> > +static inline struct ww_acquire_ctx *drm_exec_ticket(struct
-> > drm_exec *exec)
-> > +{
-> > +	return &exec->ticket;
-> > +}
-> > +
-> > =C2=A0void drm_exec_init(struct drm_exec *exec, u32 flags, unsigned nr)=
-;
-> > =C2=A0void drm_exec_fini(struct drm_exec *exec);
-> > =C2=A0bool drm_exec_cleanup(struct drm_exec *exec);
+-- 
+Ville Syrjälä
+Intel
