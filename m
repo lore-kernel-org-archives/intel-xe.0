@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8E3D10F92EB
-	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 18:34:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9727110F92EB
+	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 18:34:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16A9D10EAE3;
-	Tue, 31 Mar 2026 18:34:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5572210EB13;
+	Tue, 31 Mar 2026 18:34:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lbMjZWoj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Yjs/fmp5";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 924A210EABC;
- Tue, 31 Mar 2026 18:34:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 343BC10EB09;
+ Tue, 31 Mar 2026 18:34:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774982070; x=1806518070;
+ t=1774982072; x=1806518072;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=BtL7hERd3zA1BXWdxm5RaE/r6rgForx4nQ9b7r5jTp4=;
- b=lbMjZWojmEfVVo6mXnp86mbOGYA1Q+3LldJxGOR9F8R7dRdIjaCcuBrZ
- T2pj7C83BTTpP1Xyu1Lzdjn2h9NIr0p8SMLqfL3qMW1wUUwa9ttS/wfek
- neovYDbBH/fFChQP5WV4StWUj42opyUNbF0vBnZsv3gLXOvcXaYwi+0V+
- l03Yso7ZeyCFAtASS71R66wIG+DmNjAM0mxt3iIztZA0gURqzhAi1/pO5
- gLpwVnwk3lfgzqVb2iBfZEj1Tuq6dNOSBxvX9W4R8kDN9HyBuXLRSGqVH
- bZrkigVY0Gk7cPgHoO+D3AkhhLWrciWRKrQjEXpPdannkxPDAp42Wr+pK A==;
-X-CSE-ConnectionGUID: digShnnXRwimqaPKQ1RhvA==
-X-CSE-MsgGUID: MzkmIpobQ4m6edql+NePNg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="86705147"
-X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="86705147"
+ bh=HED23QZTBIh8aN2pgZToeFOzHgcQhA6fiI8jyCKxxlo=;
+ b=Yjs/fmp5Cpuohz3MCTT5+HxX14u7nXPoRMqXteaCDVhyd8+BFm/fOnWE
+ 7i3UnykM8nXS5Ois/y7HD28ODD9RChSOGLafN0rkQEj/OybsZ3aBk8Bcd
+ JnTVGxHz/shE3arethAUiaJx+EKVEOgQe6V/AdhwdL2ggy3JeaHLt1nfb
+ G4A86Oi7V8dK5rhJnzBMwU9wlhtcpH1+bY676Vyi0LiAAOxXpyfeMDS30
+ 0MVQxNutNsjr+tsz0ltwlJ058bFdajK+gRTwz3ZOLoqs9dGXzNx6VP4xt
+ RWTQeVL/kLVfRrnjKQliyq+Iq4iuIUGpbPr3LFVikFzlggCwG1lCPHyrU w==;
+X-CSE-ConnectionGUID: SIaOw0u7QI6515RhcpMbiQ==
+X-CSE-MsgGUID: 8L5GeBo4QHOasyzOgqgp8A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="86705161"
+X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="86705161"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 11:34:29 -0700
-X-CSE-ConnectionGUID: JKUzveQhRx2wWxpvMVcOxQ==
-X-CSE-MsgGUID: 3q0LR0KJRTCMVHFULk7cKA==
+ 31 Mar 2026 11:34:32 -0700
+X-CSE-ConnectionGUID: Eau3cGrER2m5rXW5Gtj0Cg==
+X-CSE-MsgGUID: /1Sl8uOMSSqA1M1xShG+Lg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="256944432"
+X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="256944446"
 Received: from administrator-system-product-name.igk.intel.com (HELO
  dev-417.igk.intel.com) ([10.91.214.181])
- by orviesa002.jf.intel.com with ESMTP; 31 Mar 2026 11:34:29 -0700
+ by orviesa002.jf.intel.com with ESMTP; 31 Mar 2026 11:34:31 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@linux.intel.com>,
  =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v1 01/16] drm/i915/lt: align xe3plpd with VS/PE Override layout
-Date: Tue, 31 Mar 2026 20:33:17 +0200
-Message-ID: <20260331183332.1773886-2-michal.grzelak@intel.com>
+Subject: [PATCH v1 03/16] drm/i915/buf_trans: describe VS/PE Override layout
+Date: Tue, 31 Mar 2026 20:33:19 +0200
+Message-ID: <20260331183332.1773886-4-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260331183332.1773886-1-michal.grzelak@intel.com>
 References: <20260331183332.1773886-1-michal.grzelak@intel.com>
@@ -71,130 +71,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Align struct xe3plpd_lt_phy_buf_trans to match layout found in
-Vswing / Preemphasis Override tables.
+Name indices of each present VS/PE Override table. Reflect tables'
+layout by grouping indices into enums. Pack & unify all enums into union
+ddi_vswing_preemph_index.
 
-Move txswing & txswing_level to the end of the struct. Keep order
-between txswing & txswing_level columns in xe3plpd_lt_* tables.
+Naming of the data structures is far from perfect and should be a
+subject to renaming.
 
-Move post_cursor from third field to second.
+Capture Vswing / Preemphasis Override tables' layout from MTL onward.
+Add a placeholder for ICL+.
 
 Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
 ---
- .../drm/i915/display/intel_ddi_buf_trans.c    | 72 +++++++++----------
- .../drm/i915/display/intel_ddi_buf_trans.h    |  6 +-
- 2 files changed, 39 insertions(+), 39 deletions(-)
+ .../drm/i915/display/intel_ddi_buf_trans.h    | 35 +++++++++++++++++++
+ 1 file changed, 35 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-index 395dba8c9e4d..de5f6f89374e 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-@@ -1118,50 +1118,50 @@ static const struct intel_ddi_buf_trans mtl_c20_trans_uhbr = {
- 
- /* DP1.4 */
- static const union intel_ddi_buf_trans_entry _xe3plpd_lt_trans_dp14[] = {
--	{ .lt = { 1, 0, 0, 21, 0  } },
--	{ .lt = { 1, 1, 0, 24, 3  } },
--	{ .lt = { 1, 2, 0, 28, 7  } },
--	{ .lt = { 0, 3, 0, 35, 13 } },
--	{ .lt = { 1, 1, 0, 27, 0  } },
--	{ .lt = { 1, 2, 0, 31, 4  } },
--	{ .lt = { 0, 3, 0, 39, 9  } },
--	{ .lt = { 1, 2, 0, 35, 0  } },
--	{ .lt = { 0, 3, 0, 41, 7  } },
--	{ .lt = { 0, 3, 0, 48, 0  } },
-+	{ .lt = { 21, 0, 0 , 1, 0 } },
-+	{ .lt = { 24, 0, 3 , 1, 1 } },
-+	{ .lt = { 28, 0, 7 , 1, 2 } },
-+	{ .lt = { 35, 0, 13, 0, 3 } },
-+	{ .lt = { 27, 0, 0 , 1, 1 } },
-+	{ .lt = { 31, 0, 4 , 1, 2 } },
-+	{ .lt = { 39, 0, 9 , 0, 3 } },
-+	{ .lt = { 35, 0, 0 , 1, 2 } },
-+	{ .lt = { 41, 0, 7 , 0, 3 } },
-+	{ .lt = { 48, 0, 0 , 0, 3 } },
- };
- 
- /* DP2.1 */
- static const union intel_ddi_buf_trans_entry _xe3plpd_lt_trans_uhbr[] = {
--	{ .lt = { 0, 0, 0, 48, 0  } },
--	{ .lt = { 0, 0, 0, 43, 5  } },
--	{ .lt = { 0, 0, 0, 40, 8  } },
--	{ .lt = { 0, 0, 0, 37, 11 } },
--	{ .lt = { 0, 0, 0, 33, 15 } },
--	{ .lt = { 0, 0, 2, 46, 0  } },
--	{ .lt = { 0, 0, 2, 42, 4  } },
--	{ .lt = { 0, 0, 2, 38, 8  } },
--	{ .lt = { 0, 0, 2, 35, 11 } },
--	{ .lt = { 0, 0, 2, 33, 13 } },
--	{ .lt = { 0, 0, 4, 44, 0  } },
--	{ .lt = { 0, 0, 4, 40, 4  } },
--	{ .lt = { 0, 0, 4, 37, 7  } },
--	{ .lt = { 0, 0, 4, 33, 11 } },
--	{ .lt = { 0, 0, 8, 40, 0  } },
--	{ .lt = { 1, 0, 2, 26, 2  } },
-+	{ .lt = { 48, 0, 0 , 0, 0 } },
-+	{ .lt = { 43, 0, 5 , 0, 0 } },
-+	{ .lt = { 40, 0, 8 , 0, 0 } },
-+	{ .lt = { 37, 0, 11, 0, 0 } },
-+	{ .lt = { 33, 0, 15, 0, 0 } },
-+	{ .lt = { 46, 2, 0 , 0, 0 } },
-+	{ .lt = { 42, 2, 4 , 0, 0 } },
-+	{ .lt = { 38, 2, 8 , 0, 0 } },
-+	{ .lt = { 35, 2, 11, 0, 0 } },
-+	{ .lt = { 33, 2, 13, 0, 0 } },
-+	{ .lt = { 44, 4, 0 , 0, 0 } },
-+	{ .lt = { 40, 4, 4 , 0, 0 } },
-+	{ .lt = { 37, 4, 7 , 0, 0 } },
-+	{ .lt = { 33, 4, 11, 0, 0 } },
-+	{ .lt = { 40, 8, 0 , 0, 0 } },
-+	{ .lt = { 26, 2, 2 , 1, 0 } },
- };
- 
- /* eDp */
- static const union intel_ddi_buf_trans_entry _xe3plpd_lt_trans_edp[] = {
--	{ .lt = { 1, 0, 0, 12, 0 } },
--	{ .lt = { 1, 1, 0, 13, 1 } },
--	{ .lt = { 1, 2, 0, 15, 3 } },
--	{ .lt = { 1, 3, 0, 19, 7 } },
--	{ .lt = { 1, 1, 0, 14, 0 } },
--	{ .lt = { 1, 2, 0, 16, 2 } },
--	{ .lt = { 1, 3, 0, 21, 5 } },
--	{ .lt = { 1, 2, 0, 18, 0 } },
--	{ .lt = { 1, 3, 0, 22, 4 } },
--	{ .lt = { 1, 3, 0, 26, 0 } },
-+	{ .lt = { 12, 0, 0, 1, 0 } },
-+	{ .lt = { 13, 0, 1, 1, 1 } },
-+	{ .lt = { 15, 0, 3, 1, 2 } },
-+	{ .lt = { 19, 0, 7, 1, 3 } },
-+	{ .lt = { 14, 0, 0, 1, 1 } },
-+	{ .lt = { 16, 0, 2, 1, 2 } },
-+	{ .lt = { 21, 0, 5, 1, 3 } },
-+	{ .lt = { 18, 0, 0, 1, 2 } },
-+	{ .lt = { 22, 0, 4, 1, 3 } },
-+	{ .lt = { 26, 0, 0, 1, 3 } },
- };
- 
- static const struct intel_ddi_buf_trans xe3plpd_lt_trans_dp14 = {
 diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
-index cec332090a20..7703c6c0a0cb 100644
+index bea6fb2ec6f4..20bf1d749344 100644
 --- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
 +++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
-@@ -51,11 +51,11 @@ struct dg2_snps_phy_buf_trans {
+@@ -74,6 +74,41 @@ struct intel_ddi_buf_trans {
+ 	u8 hdmi_default_entry;
  };
  
- struct xe3plpd_lt_phy_buf_trans {
--	u8 txswing;
--	u8 txswing_level;
--	u8 pre_cursor;
- 	u8 main_cursor;
-+	u8 pre_cursor;
- 	u8 post_cursor;
-+	u8 txswing;
-+	u8 txswing_level;
- };
++enum lt_vswing_preemph_index {
++        XE3P_VS_PE_UNSET = -1,
++	XE3P_VS_PE_DEFAULT = 0,
++        XE3P_VS_PE_EDP = 3,
++        XE3P_VS_PE_DP14 = 4,
++        XE3P_VS_PE_DP21 = 5
++};
++
++enum snps_vswing_preemph_index {
++        MTL_C10_VS_PE_UNSET = -1,
++        MTL_C10_VS_PE_DP14_RBR_HBR = 0,
++        MTL_C10_VS_PE_DP14_HBR2_HBR3 = 1,
++        MTL_C10_VS_PE_EDP_NON_HBR3 = 2,
++        MTL_C10_VS_PE_EDP_HBR3 = 3,
++
++        MTL_C20_VS_PE_DP14 = 4,
++        MTL_C20_VS_PE_DP20 = 5
++};
++
++enum icl_vswing_preemph_index {
++        ICL_VS_PE_UNSET = -1,
++        ICL_VS_PE_DEFAULT = 0
++};
++
++union ddi_vswing_preemph_index {
++        enum lt_vswing_preemph_index lt;
++        enum snps_vswing_preemph_index snps;
++        enum icl_vswing_preemph_index icl;
++};
++
++struct ddi_vswing_preemph {
++        struct intel_ddi_buf_trans *buf_trans;
++        union ddi_vswing_preemph_index index;
++};
++
+ bool is_hobl_buf_trans(const struct intel_ddi_buf_trans *table);
  
- union intel_ddi_buf_trans_entry {
+ void intel_ddi_buf_trans_init(struct intel_encoder *encoder);
 -- 
 2.45.2
 
