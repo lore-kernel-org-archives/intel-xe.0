@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B948410F92EF
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F4A010F92E9
 	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 18:34:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7633110EB92;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 319A310EB91;
 	Tue, 31 Mar 2026 18:34:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l9xuioD4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LWO5VHln";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 145AE10EB35;
- Tue, 31 Mar 2026 18:34:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76BB810EB35;
+ Tue, 31 Mar 2026 18:34:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774982089; x=1806518089;
+ t=1774982087; x=1806518087;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=hBKR3rxZcRtSA/sU2Nad/sUDTkpZ5wnMoFqvZa7GMSI=;
- b=l9xuioD4ktffjkSEy6EZkZGmnzC5XQpHa6e691CqF2kwLE3cOEqzdtfK
- WLA81YcCVmmiqcEUdlLn/529GDxMEtLJa4nmH0BLaVRu2phom0BtCzoyB
- vaDTafHoMtdCmqebgrfsxBhXud7U3rI8A68adAgjUx3WuF0NOxM+fFVb5
- TXG0WYzrPIEUOY8HjU5evZk6Prd5MeQofM5WNaMQ1RNjWmBe5cToewc37
- WIVx7Vgod8UCyHzHQoZ+4wsLRyembhqtnabDk7i9fEyOKGZUbdXrpIgif
- ZXQNYemrj3onSawcr27dcTrXWU5bTagWkQYvRahT2aRPJvuWh1/s/oyLs g==;
-X-CSE-ConnectionGUID: O9HQfcHNRrKTEohVoSfHJQ==
-X-CSE-MsgGUID: Uw91/VlUTLi27geHXywK8w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="86705203"
-X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="86705203"
+ bh=GvymCEhcbfDRlsmJG/pyC77U67kcCR8vN6NYq8dtFfM=;
+ b=LWO5VHlnAHPxSWgFM/tgU0zR/K/5FFCi4Qcn1zQFEB5v/E2Mz42Hx5E8
+ IPHBHUaJBm4OSCvEkXaY/ybzjoT6KY5STzcBmpux+B9lHrFVcjFZSdS6L
+ A/8Ar94BZ4hyqNinvXAJ8mmIKl4dUWKwAXCoCadj5rO34eUh4PbBsuwty
+ Ha17KILV1CZ0PI8m5h8XnBv5tNcVsadpzuJGivoxsSzlz/R6NFVYrGMHR
+ XE5ixH5aY+O45hJcAQsCzb9K6jraErcSLczuWfT2siZ8RRTKzn66VOPzn
+ uhzqGa6cP/LeZdjhZ1z6nOXaycC3XMfTLkmOpKb63sXhRfjMnRXy9IEjE g==;
+X-CSE-ConnectionGUID: 4FeDGKJfQP6NNmfpJ7wviQ==
+X-CSE-MsgGUID: wZx7hcRbT+6CBp709bfFJw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="86705198"
+X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="86705198"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 11:34:49 -0700
-X-CSE-ConnectionGUID: DQFyxoakQW+9eAxJ1MvVbA==
-X-CSE-MsgGUID: +Zm73rpBTYuT9NlM9Rsapw==
+ 31 Mar 2026 11:34:46 -0700
+X-CSE-ConnectionGUID: xpSLWUKqTlWi59A2rOuYIg==
+X-CSE-MsgGUID: bsYZQnszRR2BU+lWRULoow==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="256944540"
+X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="256944523"
 Received: from administrator-system-product-name.igk.intel.com (HELO
  dev-417.igk.intel.com) ([10.91.214.181])
- by orviesa002.jf.intel.com with ESMTP; 31 Mar 2026 11:34:48 -0700
+ by orviesa002.jf.intel.com with ESMTP; 31 Mar 2026 11:34:46 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@linux.intel.com>,
  =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v1 15/16] drm/i915/bios: search for VBT #57 by default
-Date: Tue, 31 Mar 2026 20:33:31 +0200
-Message-ID: <20260331183332.1773886-16-michal.grzelak@intel.com>
+Subject: [PATCH v1 13/16] drm/i915/buf_trans: compute Snps's VS/PE Override
+ index
+Date: Tue, 31 Mar 2026 20:33:29 +0200
+Message-ID: <20260331183332.1773886-14-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260331183332.1773886-1-michal.grzelak@intel.com>
 References: <20260331183332.1773886-1-michal.grzelak@intel.com>
@@ -71,26 +72,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Start searching for Vswing / Preemphasis Override Block on VBT parsing.
+Add support for VS/PE Override on Snps platforms. Basing on the mode &
+CRTC type found, compute the most appropriate index. Assume default
+index as 0.
 
 Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c | 2 ++
- 1 file changed, 2 insertions(+)
+ .../drm/i915/display/intel_ddi_buf_trans.c    | 37 +++++++++++++++++++
+ 1 file changed, 37 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index a0a5399711d6..89c479925f6d 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -206,6 +206,8 @@ static const struct {
- 	  .min_size = sizeof(struct bdb_mipi_sequence) },
- 	{ .section_id = BDB_COMPRESSION_PARAMETERS,
- 	  .min_size = sizeof(struct bdb_compression_parameters), },
-+	{ .section_id = BDB_VSWING_PREEMPH,
-+	  .min_size = sizeof(struct bdb_vswing_preemph), },
- 	{ .section_id = BDB_GENERIC_DTD,
- 	  .min_size = sizeof(struct bdb_generic_dtd), },
- };
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+index e94b1eb84e58..6978ad32ef2a 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+@@ -1786,6 +1786,36 @@ xe3plpd_get_lt_buf_trans(struct intel_encoder *encoder,
+ 		return intel_get_buf_trans(&xe3plpd_lt_trans_dp14, n_entries);
+ }
+ 
++static enum snps_vswing_preemph_index
++_compute_index_snps_c10(const struct intel_crtc_state *crtc_state)
++{
++        if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP)) {
++		if (crtc_state->port_clock > 270000)
++                        return MTL_C10_VS_PE_DP14_HBR2_HBR3;
++                else
++                        return MTL_C10_VS_PE_DP14_RBR_HBR;
++        } else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP)){
++		if (crtc_state->port_clock > 540000)
++                        return MTL_C10_VS_PE_EDP_HBR3;
++                else
++                        return MTL_C10_VS_PE_EDP_NON_HBR3;
++        }
++
++        return (enum snps_vswing_preemph_index) 0;
++}
++
++static enum snps_vswing_preemph_index
++_compute_index_snps_c20(const struct intel_crtc_state *crtc_state)
++{
++        if (intel_crtc_has_dp_encoder(crtc_state) && intel_dp_is_uhbr(crtc_state)) {
++                return MTL_C20_VS_PE_DP20;
++        } else if (!intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
++                return MTL_C20_VS_PE_DP14;
++        }
++
++        return (enum snps_vswing_preemph_index) 0;
++}
++
+ static enum lt_vswing_preemph_index
+ _compute_index_lt(const struct intel_crtc_state *crtc_state)
+ {
+@@ -1814,6 +1844,11 @@ vswing_preemph_compute_index(struct intel_encoder *encoder,
+ 
+ 	if (HAS_LT_PHY(display)) {
+ 		index.lt = _compute_index_lt(crtc_state);
++	} else if (DISPLAY_VER(display) >= 14) {
++		if (intel_encoder_is_c10phy(encoder))
++			index.snps = _compute_index_snps_c10(crtc_state);
++		else
++			index.snps = _compute_index_snps_c20(crtc_state);
+ 	} else {
+ 		drm_dbg_kms(display->drm, "using default VS/PE Override index");
+ 		index = (union ddi_vswing_preemph_index) 0;
+@@ -1828,6 +1863,8 @@ vswing_preemph_cast_index(struct intel_display *display,
+ {
+ 	if (HAS_LT_PHY(display)) {
+ 		return index.lt;
++	} else if (DISPLAY_VER(display) >= 14) {
++		return index.snps;
+ 	}
+ 
+ 	return 0;
 -- 
 2.45.2
 
