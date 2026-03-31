@@ -4,135 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49887FF60F7
-	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 09:46:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB10DFF60F9
+	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 09:48:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 83F8A10E9F9;
-	Tue, 31 Mar 2026 09:46:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8466910E973;
+	Tue, 31 Mar 2026 09:48:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="TCED0JKj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hpD8UyLN";
 	dkim-atps=neutral
-Received: from PH8PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11012034.outbound.protection.outlook.com [40.107.209.34])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16C4410E9F9;
- Tue, 31 Mar 2026 09:46:52 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yr47DFdjAgOvGVf/WoWWVAex6UCK6ahlNxXCkOHZRlO1dETd1LyqaVTcfA+cvNdWNjqZ/wKsBiU0t/yfRx0io+SWyZytCNFto5UTOyR3aUqeXtVJnJ2w6bBeWJi4uSaxbAlHfP/BzNt2ka4Lc7ZFuDHycmQJEEfnX0c0/6LJG3ahhDo1UCa0o0Bsu/9lTKIHoXFl4EpJ2AXJD319i+S8qlucSgBeGxhMP95EtkwDgX60tCLviaj5eoNhHNRLcoM+b6exe0ShkBg5vnCffwdr8/1n0gWjqYlPgR0eo3KL/otX1r/emQnDoQ8FzepGFMM64//yaN1quBHa+gVd5I2rQA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/ISJK8XWJAC0Hpkw6jQsnuYqpA1s+yZTQhivQ4OrxKs=;
- b=RtDMb+tEl0MMP760b7n9mQQM7WyWxr5+22rdEfKW+AslVCGKUjmypjnqbc0ceJB7a2nEpAe/poly+3skdyXT/uQLLMKQZq6OETryPe9H6rb0WRgxqHNcs3LRPJrNzAWfdCoQyOddCosWnGi2w9r6n+fluDyBhd1Z6kJx/m2KfFm90KmIP2rCK5sFgMxIJ4yay0p/rqDYX4mkHOADYs0FTFYgI693ifo9MW17n+hB5INWj18COpj0Gy36CJY+r47i99usFaJf+MnyOGwpNLbW7SKpnFT8S77QtPRuNyjcns4hW0z7UWbThEjX87U9gKLXrJG3tm6zQCLV2Zz/e01zCQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/ISJK8XWJAC0Hpkw6jQsnuYqpA1s+yZTQhivQ4OrxKs=;
- b=TCED0JKjgdhBYol6gZI/YouruBAaSxTyDhcbEjuvD7Qu07xI0HIf6dD9lwlV57uhRNdrjO7LOTOGa+R3vrV0pbibECnAsQqn5cmrhHUdYGYVmPb75QgthTFXSrDXM46fem6QkUW0QpDGTv2LidWKvXVymz5ub/qMQUm83xFKYns=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by DS7PR12MB5790.namprd12.prod.outlook.com (2603:10b6:8:75::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.15; Tue, 31 Mar
- 2026 09:46:47 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.20.9769.014; Tue, 31 Mar 2026
- 09:46:47 +0000
-Message-ID: <ac68886e-d4f0-408b-9ddc-909cda18c6f5@amd.com>
-Date: Tue, 31 Mar 2026 11:46:39 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] drm/exec, drm/xe, drm/amdgpu: Add an accessor for
- struct drm_exec::ticket
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Danilo Krummrich <dakr@kernel.org>, Matthew Brost <matthew.brost@intel.com>,
- Alice Ryhl <aliceryhl@google.com>, Rob Clark <robin.clark@oss.qualcomm.com>,
- Dmitry Baryshkov <lumag@kernel.org>, Abhinav Kumar
- <abhinav.kumar@linux.dev>, Jessica Zhang <jesszhan0024@gmail.com>,
- Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org
-References: <20260331092023.81616-1-thomas.hellstrom@linux.intel.com>
- <20260331092023.81616-6-thomas.hellstrom@linux.intel.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20260331092023.81616-6-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR4P281CA0156.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:ba::18) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 298AD10E29D;
+ Tue, 31 Mar 2026 09:48:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1774950492; x=1806486492;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=Thr3fBuFUevzQGZm8ctnVcohTkoiA9EbvZmTYaXqvxI=;
+ b=hpD8UyLNYqoVhZDvME1yp5ZLlU0rOZPG5RIFGd646YU9Nt6vLE9pDSwX
+ VYkbJTly7zNQ44nR4fcKU6aJyrXoht+jXopQCUMwoN09TmcoEOPWtJ2Pc
+ rrKyo+0TvCgyz+Tq65FI+h6n9wLcpTItKfMTPSIs4glz+y225c5DHUZGV
+ n53p1RuVqsWaySb1JkzaqPknc2W8r7phmT+Zb5tso8egkDU3/aRzDHPqp
+ tdf/26A5YMTX4M898wXrXZ6zRG8niaUMTDUFYAW12fBQwJCmQQs/Hd2KG
+ KGsfynv9/OrGKsS2a8UhyL43RIRUKsy4duO7sPITKKQLuCVZAMrPifZ/J w==;
+X-CSE-ConnectionGUID: 1HCDLtvdQOKWey8+cFOoaQ==
+X-CSE-MsgGUID: vH3RUIdTT4yAW4NSVwj7MA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11744"; a="78550668"
+X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="78550668"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2026 02:48:11 -0700
+X-CSE-ConnectionGUID: bOSPu/UUQgSBnQivu8Q9pA==
+X-CSE-MsgGUID: xO4T7tiGQaqAXon91+s3fQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="221916909"
+Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.244.24])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2026 02:48:10 -0700
+Date: Tue, 31 Mar 2026 12:48:06 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, Nemesa Garg <nemesa.garg@intel.com>
+Subject: Re: [PATCH 9/9] drm/i915/casf: Integrate the sharpness filter
+ properly into the scaler code
+Message-ID: <acuYVhpNeDzvHJ7e@intel.com>
+References: <20260326223139.19116-1-ville.syrjala@linux.intel.com>
+ <20260326223139.19116-10-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|DS7PR12MB5790:EE_
-X-MS-Office365-Filtering-Correlation-Id: 50bc9d59-c5d2-435e-dfa4-08de8f0a6ce1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|7416014|376014|56012099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: /MRL6+5ZwL22Z7KRF1MgzHtEYVofYO1+Qu7BRsKIChjjYZ48KxCcx+7Exz0hT2+8hWxh6z7TeD4tvz/T9vJnkRx16CnW+1X/lSwQZYW79pql058ambmw9I6moZVzTIKPWAtLLFfoi8zdB88n5c2LGOHc8YfrcaTbNEwRqlo35s2qA1Bo/LQKHu+omUj8dftWmelvH6alVV2UWQ2FsD92kcIChfu4DElzC1IfUk40JM58V0js4UDz/qekC+vz67vr7wqygHhHe6NrU5vVfJHQ2m1OIVgzHnIJ1N1zsHokPr/HC3xZsbgTkX/rDiQjSzmEMK6S28vU+e63CP1K68gy6fwI/X9gGetg5ejlCdTQTul+3jMkhOtE5owVs2dFyX/W1Zg2Ky2M5Te4rjmsyKuBnyxuUgcWG7tX3byMPPtBchVGZP2sSDxPUIdb6UYxqLtCOHtT+h0Lc6HphU3TqZi+l/c0nbXSBQq0VaSfE7nB5WCG7kMIfoqQmMg8Jd0LXvYyAAqAFuIrrFX9SdAfIK8h0C8lTaM8FWSKaCNxl1rzaDNIRGbl0bkgqE2CLw5XbpkkGTXsVwvLlZHeaqZGEW/ehA0DvUr0cIiBZLJLONcOgM3sUn7UUsLhKMtdxe7AwwWtWBwLUgD3zEqWCDqGMlWhRqtAsOGHLMEycLI9lp+R/JWs9+jrF+trg7zCVArubocdeMkmm+mEKipd0fl+spuGdZShyMkIqFbw57EqISwvBKg=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(7416014)(376014)(56012099003)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MkFaTHpYdkZPemRkRVJZY3k1cVRwZ1lUZFB6clpNVmlnK3JnNlVkYTl1aWlT?=
- =?utf-8?B?ZHpFTytidjBIQWxxaDVlT285ZVB4b2FoTHdOdzJpYTNOdzFkaDhoRU41dnpl?=
- =?utf-8?B?bXB5Q0tWV1hSMk1UQUx5TW1aMVlvR2podzR2WDlHeEFVNkVRcEpNaVN2RFFs?=
- =?utf-8?B?TXZnY2hXUGVUSmRzOVI5ZXcycnVrVy83SlpzeGRxVWtwL0FiQWtZejRnSDZy?=
- =?utf-8?B?amw3SHdER2kxamJQY1hJWUdkK1FxZXd0VE04TkVrWjhrbVlOYTlMZDlBRTdv?=
- =?utf-8?B?Rkp0THVqVzJrTU93K2t0NHBQUXNzMkpkcVBzZU02eEduYys3NEZPd1NaUnNK?=
- =?utf-8?B?cGVMM2FsKzFhR01abE1VSVlYSjJoUlJPc1pCNm5QRHFuVEZ6T0UyWEVIaTNh?=
- =?utf-8?B?TVY5Z2JxalpvSmpDVmY1YlM4eUZ3QkMrYXZsRWdYMWhEMlM4TEozUEhBSCsv?=
- =?utf-8?B?bnBNQm1oRGw0emU4RGlhZnUvbXczVjExcDVxZFNCaVhvS3VOMHRPQzI5TGZx?=
- =?utf-8?B?U1FMU2p5b1A1Kzh2UFFHSHR3VVU3SFg0T1F1RHJEZDRxUWlXUFdTR1FTUU52?=
- =?utf-8?B?ZGJYWUJualNyc3VhMkovY1E0T2x3ZHNuNHRUNlp0QVFqUWM2dmhCT25jZEJE?=
- =?utf-8?B?d2RuZTUyK0E2RTJPZGNaTzdrcDVhVklDVjBmYWtRZk5ZV0ozeXBTODNQUDdw?=
- =?utf-8?B?OWtMckJjQ2RvQWlvUUcxcGlPNjJCSGNqTDFtdkhkVm1Fc0JieGJCd2tFenkw?=
- =?utf-8?B?N0FJVzgzRXFXdHdaeVVzRTlxcXI3akNwb1FEWUVabVNxTWw4Q2Q5MkNVTWwz?=
- =?utf-8?B?SVQzbGtrNk1iZzNqVjNKdTE5ZEsrVFB1OGFPTXZ6RWdTTGVFMFRLMGdEYVBp?=
- =?utf-8?B?N3RYTkxRS2FDdi9OT1ZPTlpKdVlrSk9pQ0dINWVxUUMxTUY3V1lYTFY1MXJI?=
- =?utf-8?B?L0hROHliVTBHQ3VISFBJcnpqOHlZV3ZaK0lSTUpqUWlEVEU0NGphRytpUmNM?=
- =?utf-8?B?MTAxNHZ4Ykx0cTNhQjFPTUZpVDdoK0NhbC8ra2xGUkJhQk1iaHZNKzR3ekd4?=
- =?utf-8?B?ZlM5QXRPR1hyVitoOGh4b2U3U1hOWGdsemRIam0wM2phMVhtWlZvNWpsQUFu?=
- =?utf-8?B?aEYzOHRZcjhXNHY5cHcwemdWSFNWRlVJRWNIdjZjS0tYNStMdEoyK3AwY2xQ?=
- =?utf-8?B?ZnpYamJhSTdNQUtUTGxveUJmNEpHVlI4WkpQVnlLa2N5NVQwbHJtMGR6ZGlD?=
- =?utf-8?B?LzFpVkVEK3YvZDhsRVNwbnB6VW9PSlliWmNOSlBuWFdIWGgwMlk3amJhTG1E?=
- =?utf-8?B?RTYxWWRLZy9CT3dLMWIzQTZCdUVrQmxZWkkvVElZVU1yUFN3enk5ZVVHZGFw?=
- =?utf-8?B?Wkh1T1hNM2F4TjFYVDByUlZoMnRqRWV6ZStlVTFmTURkTXl5U0lieUJUWm13?=
- =?utf-8?B?TGxaaTBkazRrby9XQkxHTmY4SVp1Y3p1YjhvUDhSN1ltdkhYemd3Z2ZCRVpZ?=
- =?utf-8?B?czAva216M3JpTWJYUTYxNGRyVFAwdFlkczgzcU1iR2ZBck8xeDl0N1MvQUpx?=
- =?utf-8?B?YmNISGI0Tjg4RGZZbC9FSVo0NHUrb1M0SXFyQkpmV2tmbUQ2NDVtQ08vVkVC?=
- =?utf-8?B?T25sdkpySzlrNWZzRHBKRlM0THRNSUwyVzVvYW8xR2V1TjEzRDhxcjRESU5a?=
- =?utf-8?B?Z2VJeStoOE1kbCtET1l5cGs5eTU3eDhGSDNCaUhxc1lDSGdodnJHaWc5ekhS?=
- =?utf-8?B?bDczcUNpZkREaDJHMkNTbUF0bGhwamUzbkpndVp2OHh6NVVKOFVndkFVMGJU?=
- =?utf-8?B?YXRuSXdKR1VLcWpPWTh5NWV4MDh6MzV4TnlMNkNuN1pNOC9mbHRPRi8ydGVt?=
- =?utf-8?B?Mmdib0NVZjBWWjVMRUZCbGN4MVFuRXVjeHZhLzBad09XRnA4SDNIZy9yb3J4?=
- =?utf-8?B?LzBZa0ZRaUFjK3F6ck1yajhaK01QQ3FQM2NVVHpzWGNweTVZUUVYeDcxNXNE?=
- =?utf-8?B?c1JlcFE0MXN3MURzUlo3anN1U05pWStPZzZ5QlRQZU4wS0x2NGxKR3JPbUpE?=
- =?utf-8?B?K3VSM0M0ZGk1YWQ0c0w2NllkVDFOSWVSMVdsd016V2lNVzQ2VkVSYlFJeDFH?=
- =?utf-8?B?c1VrRGVabUg2dkIrSHRha21MSEpDYWRMZ0ZYTzEzK3ArZE5xMmU4c0xzZWhR?=
- =?utf-8?B?eXJRaFdPWVpyeTBrSVRXU2Zpa2ZyVHBLdmVlLzhFSEJKV0RELzRVaE91NHpT?=
- =?utf-8?B?WlIrWU11ZzRlSi9kT0o4WU1LM0hnQmp4Vm1LVmRtT3cwVTIvR3ZXOUUxb2o4?=
- =?utf-8?Q?YrOe3/0A5U5NBCzRRj?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 50bc9d59-c5d2-435e-dfa4-08de8f0a6ce1
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Mar 2026 09:46:47.5655 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: KGQtcWtR+vHM3mAOHa/j7eF3sN6nnPMcbNDvyuEPTGvSsZN3hihdSh1BQzd3tPdL
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB5790
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260326223139.19116-10-ville.syrjala@linux.intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -147,113 +72,282 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 3/31/26 11:20, Thomas Hellstr√∂m wrote:
-> Drivers were accessing this drm_exec member directly.
-
-I don't see a problem with that as long as we have documented that this is allowed.
-
-Regards,
-Christian.
-
-> Provide an accessor, drm_exec_ticket() to avoid that.
+On Fri, Mar 27, 2026 at 12:31:39AM +0200, Ville Syrjala wrote:
+> From: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
 > 
-> Signed-off-by: Thomas Hellstr√∂m <thomas.hellstrom@linux.intel.com>
+> The sharpness filter is just a special mode of the pipe scaler.
+> It doesn't warrant all this special casing everywhere. Just
+> integrate it properly into the scaler code so that it's treated
+> no different from the other pipe scaler uses (scaling,centering,
+> YCbCr 4:2:0 output).
+> 
+> Cc: Nemesa Garg <nemesa.garg@intel.com>
+> Signed-off-by: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
 > ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c | 4 ++--
->  drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c           | 6 +++---
->  drivers/gpu/drm/xe/xe_validation.c               | 4 ++--
->  include/drm/drm_exec.h                           | 5 +++++
->  4 files changed, 12 insertions(+), 7 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_casf.c    | 62 ++------------
+>  drivers/gpu/drm/i915/display/intel_casf.h    |  6 +-
+>  drivers/gpu/drm/i915/display/intel_display.c | 34 +-------
+>  drivers/gpu/drm/i915/display/intel_pfit.c    | 13 ++-
+>  drivers/gpu/drm/i915/display/skl_scaler.c    | 85 ++++++++------------
+>  drivers/gpu/drm/i915/display/skl_scaler.h    |  2 -
+>  6 files changed, 53 insertions(+), 149 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-> index 29b400cdd6d5..8a4fb9a62485 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-> @@ -2998,7 +2998,7 @@ int amdgpu_amdkfd_gpuvm_restore_process_bos(void *info, struct dma_fence __rcu *
->  	/* Validate PDs, PTs and evicted DMABuf imports last. Otherwise BO
->  	 * validations above would invalidate DMABuf imports again.
->  	 */
-> -	ret = process_validate_vms(process_info, &exec.ticket);
-> +	ret = process_validate_vms(process_info, drm_exec_ticket(exec));
->  	if (ret) {
->  		pr_debug("Validating VMs failed, ret: %d\n", ret);
->  		goto validate_map_fail;
-> @@ -3039,7 +3039,7 @@ int amdgpu_amdkfd_gpuvm_restore_process_bos(void *info, struct dma_fence __rcu *
->  			goto validate_map_fail;
->  		}
->  
-> -		ret = amdgpu_vm_handle_moved(adev, peer_vm, &exec.ticket);
-> +		ret = amdgpu_vm_handle_moved(adev, peer_vm, drm_exec_ticket(exec));
->  		if (ret) {
->  			dev_dbg(adev->dev,
->  				"Memory eviction: handle moved failed, pid %8d. Try again.\n",
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> index c4ee19603460..c725a7976c63 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> @@ -1157,7 +1157,7 @@ static int amdgpu_cs_vm_handling(struct amdgpu_cs_parser *p)
->  			return r;
->  	}
->  
-> -	r = amdgpu_vm_handle_moved(adev, vm, &p->exec.ticket);
-> +	r = amdgpu_vm_handle_moved(adev, vm, drm_exec_ticket(&p->exec));
->  	if (r)
->  		return r;
->  
-> @@ -1358,7 +1358,7 @@ static int amdgpu_cs_submit(struct amdgpu_cs_parser *p,
->  	cs->out.handle = seq;
->  	leader->uf_sequence = seq;
->  
-> -	amdgpu_vm_bo_trace_cs(&fpriv->vm, &p->exec.ticket);
-> +	amdgpu_vm_bo_trace_cs(&fpriv->vm, drm_exec_ticket(&p->exec));
->  	for (i = 0; i < p->gang_size; ++i) {
->  		amdgpu_job_free_resources(p->jobs[i]);
->  		trace_amdgpu_cs_ioctl(p->jobs[i]);
-> @@ -1793,7 +1793,7 @@ int amdgpu_cs_find_mapping(struct amdgpu_cs_parser *parser,
->  	*map = mapping;
->  
->  	/* Double check that the BO is reserved by this CS */
-> -	if (dma_resv_locking_ctx((*bo)->tbo.base.resv) != &parser->exec.ticket)
-> +	if (dma_resv_locking_ctx((*bo)->tbo.base.resv) != drm_exec_ticket(&parser->exec))
->  		return -EINVAL;
->  
->  	/* Make sure VRAM is allocated contigiously */
-> diff --git a/drivers/gpu/drm/xe/xe_validation.c b/drivers/gpu/drm/xe/xe_validation.c
-> index a611438eaafe..8dff4d0ec895 100644
-> --- a/drivers/gpu/drm/xe/xe_validation.c
-> +++ b/drivers/gpu/drm/xe/xe_validation.c
-> @@ -156,7 +156,7 @@ int xe_validation_ctx_init(struct xe_validation_ctx *ctx, struct xe_validation_d
->  
->  #ifdef CONFIG_DEBUG_WW_MUTEX_SLOWPATH
->  /*
-> - * This abuses both drm_exec and ww_mutex internals and should be
-> + * This abuses ww_mutex internals and should be
->   * replaced by checking for -EDEADLK when we can make TTM
->   * stop converting -EDEADLK to -ENOMEM.
->   * An alternative is to not have exhaustive eviction with
-> @@ -164,7 +164,7 @@ int xe_validation_ctx_init(struct xe_validation_ctx *ctx, struct xe_validation_d
->   */
->  static bool xe_validation_contention_injected(struct drm_exec *exec)
->  {
-> -	return !!exec->ticket.contending_lock;
-> +	return !!drm_exec_ticket(exec)->contending_lock;
+> diff --git a/drivers/gpu/drm/i915/display/intel_casf.c b/drivers/gpu/drm/i915/display/intel_casf.c
+> index 21e84a4f9ff5..c2d2746c5f04 100644
+> --- a/drivers/gpu/drm/i915/display/intel_casf.c
+> +++ b/drivers/gpu/drm/i915/display/intel_casf.c
+> @@ -75,20 +75,6 @@ static void intel_casf_filter_lut_load(const struct intel_crtc_state *crtc_state
+>  			       sharpness_lut[i]);
 >  }
 >  
->  #else
-> diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
-> index 5ed5be1f8244..50d056a87de0 100644
-> --- a/include/drm/drm_exec.h
-> +++ b/include/drm/drm_exec.h
-> @@ -151,6 +151,11 @@ static inline bool drm_exec_is_contended(struct drm_exec *exec)
->  		goto *__drm_exec_retry_ptr;		\
->  	} while (0)
+> -void intel_casf_update_strength(const struct intel_crtc_state *crtc_state)
+> -{
+> -	struct intel_display *display = to_intel_display(crtc_state);
+> -	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> -	int win_size;
+> -
+> -	intel_de_rmw(display, SHARPNESS_CTL(crtc->pipe), FILTER_STRENGTH_MASK,
+> -		     FILTER_STRENGTH(crtc_state->pch_pfit.casf.strength));
+> -
+> -	win_size = intel_de_read(display, SKL_PS_WIN_SZ(crtc->pipe, 1));
+> -
+> -	intel_de_write_fw(display, SKL_PS_WIN_SZ(crtc->pipe, 1), win_size);
+> -}
+> -
+>  static void intel_casf_compute_win_size(struct intel_crtc_state *crtc_state)
+>  {
+>  	const struct drm_display_mode *mode = &crtc_state->hw.adjusted_mode;
+> @@ -102,19 +88,15 @@ static void intel_casf_compute_win_size(struct intel_crtc_state *crtc_state)
+>  		crtc_state->pch_pfit.casf.win_size = SHARPNESS_FILTER_SIZE_7X7;
+>  }
 >  
-> +static inline struct ww_acquire_ctx *drm_exec_ticket(struct drm_exec *exec)
-> +{
-> +	return &exec->ticket;
-> +}
+> +static void intel_casf_scaler_compute_coef(struct intel_crtc_state *crtc_state);
 > +
->  void drm_exec_init(struct drm_exec *exec, u32 flags, unsigned nr);
->  void drm_exec_fini(struct drm_exec *exec);
->  bool drm_exec_cleanup(struct drm_exec *exec);
+>  int intel_casf_compute_config(struct intel_crtc_state *crtc_state)
+>  {
+>  	struct intel_display *display = to_intel_display(crtc_state);
+>  
+> -	if (!HAS_CASF(display))
+> +	if (crtc_state->hw.sharpness_strength == 0)
+>  		return 0;
+>  
+> -	if (crtc_state->hw.sharpness_strength == 0) {
+> -		crtc_state->pch_pfit.casf.enable = false;
+> -		crtc_state->pch_pfit.casf.strength = 0;
+> -		return 0;
+> -	}
+> -
+>  	/* CASF with joiner not supported in hardware */
+>  	if (crtc_state->joiner_pipes) {
+>  		drm_dbg_kms(display->drm, "CASF not supported with joiner\n");
+> @@ -136,7 +118,7 @@ int intel_casf_compute_config(struct intel_crtc_state *crtc_state)
+>  
+>  	intel_casf_compute_win_size(crtc_state);
+>  
+> -	intel_casf_scaler_compute_config(crtc_state);
+> +	intel_casf_scaler_compute_coef(crtc_state);
+>  
+>  	return 0;
+>  }
+> @@ -161,14 +143,6 @@ void intel_casf_sharpness_get_config(struct intel_crtc_state *crtc_state)
+>  	}
+>  }
+>  
+> -bool intel_casf_needs_scaler(const struct intel_crtc_state *crtc_state)
+> -{
+> -	if (crtc_state->pch_pfit.casf.enable)
+> -		return true;
+> -
+> -	return false;
+> -}
+> -
+>  static int casf_coeff_tap(int i)
+>  {
+>  	return i % SCALER_FILTER_NUM_TAPS;
+> @@ -240,7 +214,7 @@ static void convert_sharpness_coef_binary(struct scaler_filter_coeff *coeff,
+>  	}
+>  }
+>  
+> -void intel_casf_scaler_compute_config(struct intel_crtc_state *crtc_state)
+> +static void intel_casf_scaler_compute_coef(struct intel_crtc_state *crtc_state)
+>  {
+>  	const u16 *filtercoeff;
+>  	u16 filter_coeff[SCALER_FILTER_NUM_TAPS];
+> @@ -264,32 +238,8 @@ void intel_casf_scaler_compute_config(struct intel_crtc_state *crtc_state)
+>  	}
+>  }
+>  
+> -void intel_casf_enable(const struct intel_crtc_state *crtc_state)
+> +void intel_casf_setup(const struct intel_crtc_state *crtc_state)
+>  {
+> -	struct intel_display *display = to_intel_display(crtc_state);
+> -	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> -	u32 sharpness_ctl;
+> -
+>  	intel_casf_filter_lut_load(crtc_state);
+> -
+>  	intel_casf_write_coeff(crtc_state);
+> -
+> -	sharpness_ctl = FILTER_EN | FILTER_STRENGTH(crtc_state->pch_pfit.casf.strength);
+> -
+> -	sharpness_ctl |= crtc_state->pch_pfit.casf.win_size;
+> -
+> -	intel_de_write(display, SHARPNESS_CTL(crtc->pipe), sharpness_ctl);
+> -
+> -	skl_scaler_setup_casf(crtc_state);
+> -}
+> -
+> -void intel_casf_disable(const struct intel_crtc_state *crtc_state)
+> -{
+> -	struct intel_display *display = to_intel_display(crtc_state);
+> -	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> -
+> -	intel_de_write(display, SKL_PS_CTRL(crtc->pipe, 1), 0);
+> -	intel_de_write(display, SKL_PS_WIN_POS(crtc->pipe, 1), 0);
+> -	intel_de_write(display, SHARPNESS_CTL(crtc->pipe), 0);
+> -	intel_de_write(display, SKL_PS_WIN_SZ(crtc->pipe, 1), 0);
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_casf.h b/drivers/gpu/drm/i915/display/intel_casf.h
+> index c4f984b73348..3ebb7522af0a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_casf.h
+> +++ b/drivers/gpu/drm/i915/display/intel_casf.h
+> @@ -11,11 +11,7 @@
+>  struct intel_crtc_state;
+>  
+>  int intel_casf_compute_config(struct intel_crtc_state *crtc_state);
+> -void intel_casf_update_strength(const struct intel_crtc_state *new_crtc_state);
+>  void intel_casf_sharpness_get_config(struct intel_crtc_state *crtc_state);
+> -void intel_casf_enable(const struct intel_crtc_state *crtc_state);
+> -void intel_casf_disable(const struct intel_crtc_state *crtc_state);
+> -void intel_casf_scaler_compute_config(struct intel_crtc_state *crtc_state);
+> -bool intel_casf_needs_scaler(const struct intel_crtc_state *crtc_state);
+> +void intel_casf_setup(const struct intel_crtc_state *crtc_state);
+>  
+>  #endif /* __INTEL_CASF_H__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index e02e69467871..58a654ca0d20 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -58,7 +58,6 @@
+>  #include "intel_audio.h"
+>  #include "intel_bo.h"
+>  #include "intel_bw.h"
+> -#include "intel_casf.h"
+>  #include "intel_cdclk.h"
+>  #include "intel_clock_gating.h"
+>  #include "intel_color.h"
+> @@ -988,24 +987,6 @@ static bool audio_disabling(const struct intel_crtc_state *old_crtc_state,
+>  		 memcmp(old_crtc_state->eld, new_crtc_state->eld, MAX_ELD_BYTES) != 0);
+>  }
+>  
+> -static bool intel_casf_enabling(const struct intel_crtc_state *new_crtc_state,
+> -				const struct intel_crtc_state *old_crtc_state)
+> -{
+> -	if (!new_crtc_state->hw.active)
+> -		return false;
+> -
+> -	return is_enabling(pch_pfit.casf.enable, old_crtc_state, new_crtc_state);
+> -}
+> -
+> -static bool intel_casf_disabling(const struct intel_crtc_state *old_crtc_state,
+> -				 const struct intel_crtc_state *new_crtc_state)
+> -{
+> -	if (!new_crtc_state->hw.active)
+> -		return false;
+> -
+> -	return is_disabling(pch_pfit.casf.enable, old_crtc_state, new_crtc_state);
+> -}
+> -
+>  static bool intel_crtc_lobf_enabling(const struct intel_crtc_state *old_crtc_state,
+>  				     const struct intel_crtc_state *new_crtc_state)
+>  {
+> @@ -1187,9 +1168,6 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
+>  	if (audio_disabling(old_crtc_state, new_crtc_state))
+>  		intel_encoders_audio_disable(state, crtc);
+>  
+> -	if (intel_casf_disabling(old_crtc_state, new_crtc_state))
+> -		intel_casf_disable(new_crtc_state);
+> -
+>  	intel_drrs_deactivate(old_crtc_state);
+>  
+>  	if (hsw_ips_pre_update(state, crtc))
+> @@ -4308,14 +4286,9 @@ static int intel_crtc_atomic_check(struct intel_atomic_state *state,
+>  		return ret;
+>  	}
+>  
+> -	ret = intel_casf_compute_config(crtc_state);
+> -	if (ret)
+> -		return ret;
+> -
+>  	if (DISPLAY_VER(display) >= 9) {
+>  		if (intel_crtc_needs_modeset(crtc_state) ||
+> -		    intel_crtc_needs_fastset(crtc_state) ||
+> -		    intel_casf_needs_scaler(crtc_state)) {
+> +		    intel_crtc_needs_fastset(crtc_state)) {
+>  			ret = skl_update_scaler_crtc(crtc_state);
+>  			if (ret)
+>  				return ret;
+> @@ -6817,11 +6790,6 @@ static void intel_pre_update_crtc(struct intel_atomic_state *state,
+>  			intel_vrr_set_transcoder_timings(new_crtc_state);
+>  	}
+>  
+> -	if (intel_casf_enabling(new_crtc_state, old_crtc_state))
+> -		intel_casf_enable(new_crtc_state);
+> -	else if (new_crtc_state->pch_pfit.casf.strength != old_crtc_state->pch_pfit.casf.strength)
+> -		intel_casf_update_strength(new_crtc_state);
+> -
+>  	intel_fbc_update(state, crtc);
+>  
+>  	drm_WARN_ON(display->drm, !intel_display_power_is_enabled(display, POWER_DOMAIN_DC_OFF));
+> diff --git a/drivers/gpu/drm/i915/display/intel_pfit.c b/drivers/gpu/drm/i915/display/intel_pfit.c
+> index 6dda496190e0..e04ca960f115 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pfit.c
+> +++ b/drivers/gpu/drm/i915/display/intel_pfit.c
+> @@ -186,6 +186,7 @@ static int pch_panel_fitting(struct intel_crtc_state *crtc_state,
+>  			     const struct drm_connector_state *conn_state)
+>  {
+>  	struct intel_display *display = to_intel_display(crtc_state);
+> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>  	const struct drm_display_mode *adjusted_mode =
+>  		&crtc_state->hw.adjusted_mode;
+>  	int pipe_src_w = drm_rect_width(&crtc_state->pipe_src);
+> @@ -195,7 +196,8 @@ static int pch_panel_fitting(struct intel_crtc_state *crtc_state,
+>  	/* Native modes don't need fitting */
+>  	if (adjusted_mode->crtc_hdisplay == pipe_src_w &&
+>  	    adjusted_mode->crtc_vdisplay == pipe_src_h &&
+> -	    crtc_state->output_format != INTEL_OUTPUT_FORMAT_YCBCR420)
+> +	    crtc_state->output_format != INTEL_OUTPUT_FORMAT_YCBCR420 &&
+> +	    crtc_state->hw.sharpness_strength == 0)
+>  		return 0;
+>  
+>  	switch (conn_state->scaling_mode) {
+> @@ -249,6 +251,15 @@ static int pch_panel_fitting(struct intel_crtc_state *crtc_state,
+>  		return -EINVAL;
+>  	}
+>  
+> +	if (crtc_state->hw.sharpness_strength &&
+> +	    (width != pipe_src_w || height != pipe_src_h ||
+> +	     crtc_state->output_format != INTEL_OUTPUT_FORMAT_RGB)) {
 
+We should probably also reject
+ sharpness_strength != 0 && scaling_filter != DEFAULT
+
+I suppose it's not strictly needed because we only allow sharpness
+with 1:1 scaling, and that makes the nearest neighbor filter a NOP.
+But probably a good idea to make the uapi behaviour consistent,
+especially if we later add other filter modes that maybe aren't 
+NOPs.
+
+> +		drm_dbg_kms(display->drm,
+> +			    "[CRTC:%d:%s] no scaling/YCbCr output with sharpness filter\n",
+> +			    crtc->base.base.id, crtc->base.name);
+> +		return -EINVAL;
+> +	}
+> +
+>  	drm_rect_init(&crtc_state->pch_pfit.dst,
+>  		      x, y, width, height);
+>  	crtc_state->pch_pfit.enabled = true;
+
+-- 
+Ville Syrj‰l‰
+Intel
