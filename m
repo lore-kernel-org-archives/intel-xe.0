@@ -4,58 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E4B61061B21
-	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 10:27:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A327B1061B21
+	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 10:33:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8B9F10EA15;
-	Tue, 31 Mar 2026 10:27:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F3B110EA35;
+	Tue, 31 Mar 2026 10:33:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="axHoxbws";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="V3L9lwL5";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B124C10E9F8
- for <intel-xe@lists.freedesktop.org>; Tue, 31 Mar 2026 10:27:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774952851; x=1806488851;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=59XahOtyDOG9xBMaRRJpml3lhXuiydJ+DvpXAGXB6kI=;
- b=axHoxbws3zdgbxzXnJXxodJFrtES2SgWrNEddCA2SNtnKuCNK/PVFaAG
- g97l4I9XkqIOkQnZkW3XnW3ZWe+PKL6mxX6bub1r3ybPcdOhmKsP77gkQ
- eA3+fdntQc/uWj4V0ZoGAqu26cvYsJ4NjfBF+Di9KtUbmxD5Glt5s3G7X
- 2VYVBsNu3zsRD2stwvuh8PX4930T9jcCa0A4kngNX0odrPRl67SO2LcuY
- iozyohURRkbmQYYDttG33ThxLB7e7X+cV/LSoqde7GSm6ivAufMlrlHV3
- vtYSTNEdzg3eB7ORhllS4Pnp8eOia9MdvaelfC4Qw3+kafNAB/rjZ1Q6E Q==;
-X-CSE-ConnectionGUID: jk2162tIRjKEOxsTfMNpIw==
-X-CSE-MsgGUID: 3vgPW3AyTHqoM7QYMseMtw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11744"; a="86655543"
-X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="86655543"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 03:27:31 -0700
-X-CSE-ConnectionGUID: 1kbXpVcIQxK6iMEOF7KEjg==
-X-CSE-MsgGUID: nYkFiguLSp6h5sZp1PXDHQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="226576950"
-Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by orviesa007.jf.intel.com with ESMTP; 31 Mar 2026 03:27:27 -0700
-From: Raag Jadav <raag.jadav@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com, riana.tauro@intel.com,
- michal.wajdeczko@intel.com, matthew.d.roper@intel.com,
- umesh.nerlige.ramappa@intel.com, mallesh.koujalagi@intel.com,
- soham.purkait@intel.com, anoop.c.vijay@intel.com,
- aravind.iddamsetty@linux.intel.com, Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v4 3/3] drm/xe/ras: Introduce correctable error handling
-Date: Tue, 31 Mar 2026 15:53:45 +0530
-Message-ID: <20260331102346.1034100-4-raag.jadav@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260331102346.1034100-1-raag.jadav@intel.com>
-References: <20260331102346.1034100-1-raag.jadav@intel.com>
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 585BC10EA22;
+ Tue, 31 Mar 2026 10:33:30 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1774953194; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=iq7d+EpWYAvrctcfxZoQjNJuhB62URk7xlbwaLsDMTNXTWCyQ4LwDyZ6I27wYYHAMP4YPM0hYR/rK8AWX1jqBcjhxQf8J51b99OQ+VF9yVDhEqMQMfzMcWZJUV2pGlG6D+JYKcdc63sYSJlX24pWsFdQZX2jKMN+WnVHhppSgRQ=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1774953194;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=WONs+triHAG3oxKIDY5u6sC91+pizMI0mnGHgeGpMWA=; 
+ b=Vh9zaiChMYD6vskfjYkgIBkCpQIQmnxaqlBcmk8+El0hVORrkZFIntq9a8X6fTa7guKBYxcQC8K42tY0FIF9ir+fsdg58kFS9D0UjA9+cfr6iNC4IkwitdRA9MKj5MscyrlksfUfeV18AJAKMPFxt2cNzDqpvvQDy/G0UyUF4yQ=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+ dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1774953194; 
+ s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+ h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+ bh=WONs+triHAG3oxKIDY5u6sC91+pizMI0mnGHgeGpMWA=;
+ b=V3L9lwL5t+B5HbtOLDaYfqYdeaZCN8rQT1mGU46AB79OOrvLI8lwlaGUlxYG0lKq
+ G6V26eWcMkIy5x3/sgiT2LdI+GDuyPfzNDQ6VB5oOYteJoe+EnPXzgWeohswEwhMpkq
+ 0cS3rPBVWJ25PctJ4X+Zp9Z74BEt6x2M/ZP7K/Yo=
+Received: by mx.zohomail.com with SMTPS id 1774953193153170.1511210439279;
+ Tue, 31 Mar 2026 03:33:13 -0700 (PDT)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: Ville =?UTF-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: Maxime Ripard <mripard@kernel.org>,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Sandy Huang <hjc@rock-chips.com>,
+ Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
+ kernel@collabora.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-doc@vger.kernel.org, Werner Sembach <wse@tuxedocomputers.com>,
+ Andri Yngvason <andri@yngvason.is>, Marius Vlad <marius.vlad@collabora.com>
+Subject: Re: [PATCH v11 03/22] drm: Add new general DRM property "color format"
+Date: Tue, 31 Mar 2026 12:33:00 +0200
+Message-ID: <5583906.GXAFRqVoOG@workhorse>
+In-Reply-To: <acsNoCDsPtEhtkRn@intel.com>
+References: <20260324-color-format-v11-0-605559af4fb4@collabora.com>
+ <acclgID7lSVNten2@intel.com> <acsNoCDsPtEhtkRn@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,254 +89,287 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add initial support for correctable error handling which is serviced
-using system controller event. Currently we only log the errors in
-dmesg but this serves as a foundation for RAS infrastructure and will
-be further extended to facilitate other RAS features.
+On Tuesday, 31 March 2026 01:56:16 Central European Summer Time Ville Syrj=
+=C3=A4l=C3=A4 wrote:
+> On Sat, Mar 28, 2026 at 02:49:04AM +0200, Ville Syrj=C3=A4l=C3=A4 wrote:
+> > On Fri, Mar 27, 2026 at 01:56:06PM +0100, Nicolas Frattaroli wrote:
+> > > On Thursday, 26 March 2026 18:58:25 Central European Standard Time Vi=
+lle Syrj=C3=A4l=C3=A4 wrote:
+> > > > On Thu, Mar 26, 2026 at 06:02:47PM +0100, Maxime Ripard wrote:
+> > > > > On Wed, Mar 25, 2026 at 08:43:15PM +0200, Ville Syrj=C3=A4l=C3=A4=
+ wrote:
+> > > > > > On Wed, Mar 25, 2026 at 03:56:58PM +0100, Maxime Ripard wrote:
+> > > > > > > On Wed, Mar 25, 2026 at 01:03:07PM +0200, Ville Syrj=C3=A4l=
+=C3=A4 wrote:
+> > > > > > > > On Wed, Mar 25, 2026 at 09:24:27AM +0100, Maxime Ripard wro=
+te:
+> > > > > > > > > On Tue, Mar 24, 2026 at 09:53:35PM +0200, Ville Syrj=C3=
+=A4l=C3=A4 wrote:
+> > > > > > > > > > On Tue, Mar 24, 2026 at 08:10:11PM +0100, Nicolas Fratt=
+aroli wrote:
+> > > > > > > > > > > On Tuesday, 24 March 2026 18:00:45 Central European S=
+tandard Time Ville Syrj=C3=A4l=C3=A4 wrote:
+> > > > > > > > > > > > On Tue, Mar 24, 2026 at 05:01:07PM +0100, Nicolas F=
+rattaroli wrote:
+> > > > > > > > > > > > > +enum drm_connector_color_format {
+> > > > > > > > > > > > > +	/**
+> > > > > > > > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_AUTO: The driver=
+ or display protocol
+> > > > > > > > > > > > > +	 * helpers should pick a suitable color format.=
+ All implementations of a
+> > > > > > > > > > > > > +	 * specific display protocol must behave the sa=
+me way with "AUTO", but
+> > > > > > > > > > > > > +	 * different display protocols do not necessari=
+ly have the same "AUTO"
+> > > > > > > > > > > > > +	 * semantics.
+> > > > > > > > > > > > > +	 *
+> > > > > > > > > > > > > +	 * For HDMI, "AUTO" picks RGB, but falls back t=
+o YCbCr 4:2:0 if the
+> > > > > > > > > > > > > +	 * bandwidth required for full-scale RGB is not=
+ available, or the mode
+> > > > > > > > > > > > > +	 * is YCbCr 4:2:0-only, as long as the mode and=
+ output both support
+> > > > > > > > > > > > > +	 * YCbCr 4:2:0.
+> > > > > > > > > > > > > +	 *
+> > > > > > > > > > > > > +	 * For display protocols other than HDMI, the r=
+ecursive bridge chain
+> > > > > > > > > > > > > +	 * format selection picks the first chain of br=
+idge formats that works,
+> > > > > > > > > > > > > +	 * as has already been the case before the intr=
+oduction of the "color
+> > > > > > > > > > > > > +	 * format" property. Non-HDMI bridges should th=
+erefore either sort their
+> > > > > > > > > > > > > +	 * bus output formats by preference, or agree o=
+n a unified auto format
+> > > > > > > > > > > > > +	 * selection logic that's implemented in a comm=
+on state helper (like
+> > > > > > > > > > > > > +	 * how HDMI does it).
+> > > > > > > > > > > > > +	 */
+> > > > > > > > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_AUTO =3D 0,
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +	/**
+> > > > > > > > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_RGB444: RGB outp=
+ut format
+> > > > > > > > > > > > > +	 */
+> > > > > > > > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_RGB444,
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +	/**
+> > > > > > > > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR444: YCbCr =
+4:4:4 output format (ie.
+> > > > > > > > > > > > > +	 * not subsampled)
+> > > > > > > > > > > > > +	 */
+> > > > > > > > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR444,
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +	/**
+> > > > > > > > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR422: YCbCr =
+4:2:2 output format (ie.
+> > > > > > > > > > > > > +	 * with horizontal subsampling)
+> > > > > > > > > > > > > +	 */
+> > > > > > > > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR422,
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +	/**
+> > > > > > > > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR420: YCbCr =
+4:2:0 output format (ie.
+> > > > > > > > > > > > > +	 * with horizontal and vertical subsampling)
+> > > > > > > > > > > > > +	 */
+> > > > > > > > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR420,
+> > > > > > > > > > > >=20
+> > > > > > > > > > > > Seems like this should document what the quantizati=
+on range
+> > > > > > > > > > > > should be for each format.
+> > > > > > > > > > > >=20
+> > > > > > > > > > >=20
+> > > > > > > > > > > I don't think so? If you want per-component bit depth=
+ values,
+> > > > > > > > > > > DRM_FORMAT_* defines would be the appropriate values =
+to use. This
+> > > > > > > > > > > enum is more abstract than that, and is there to comm=
+unicate
+> > > > > > > > > > > YUV vs. RGB and chroma subsampling, with bit depth be=
+ing handled
+> > > > > > > > > > > by other properties.
+> > > > > > > > > > >=20
+> > > > > > > > > > > If you mean the factor used for subsampling, then tha=
+t'd only be
+> > > > > > > > > > > relevant if YCBCR410 was supported where one chroma p=
+lane isn't
+> > > > > > > > > > > halved but quartered in resolution. I suspect 4:1:0 w=
+ill never
+> > > > > > > > > > > be added; no digital display protocol standard suppor=
+ts it to my
+> > > > > > > > > > > knowledge, and hopefully none ever will.
+> > > > > > > > > >=20
+> > > > > > > > > > No, I mean the quantization range (16-235 vs. 0-255 etc=
+).
+> > > > > > > > > >=20
+> > > > > > > > > > The i915 behaviour is that YCbCr is always limited rang=
+e,
+> > > > > > > > > > RGB can either be full or limited range depending on th=
+e=20
+> > > > > > > > > > "Broadcast RGB" property and other related factors.
+> > > > > > > > >=20
+> > > > > > > > > So far the HDMI state has both the format and quantizatio=
+n range as
+> > > > > > > > > different fields. I'm not sure we need to document the ra=
+nge in the
+> > > > > > > > > format field, maybe only mention it's not part of the for=
+mat but has a
+> > > > > > > > > field of its own?
+> > > > > > > >=20
+> > > > > > > > I think we only have it for RGB (on some drivers only?). Fo=
+r YCbCr
+> > > > > > > > I think the assumption is limited range everywhere.
+> > > > > > > >=20
+> > > > > > > > But I'm not really concerned about documenting struct membe=
+rs.
+> > > > > > > > What I'm talking about is the *uapi* docs. Surely userspace
+> > > > > > > > will want to know what the new property actually does so the
+> > > > > > > > uapi needs to be documented properly. And down the line some
+> > > > > > > > new driver might also implement the wrong behaviour if there
+> > > > > > > > is no clear specification.
+> > > > > > >=20
+> > > > > > > Ack
+> > > > > > >=20
+> > > > > > > > So I'm thinking (or perhaps hoping) the rule might be somet=
+hing like:
+> > > > > > > > - YCbCr limited range=20
+> > > > > > > > - RGB full range if "Broadcast RGB" property is not present
+> > > > > > >=20
+> > > > > > > Isn't it much more complicated than that for HDMI though? My
+> > > > > > > recollection was that any VIC but VIC1 would be limited range=
+, and
+> > > > > > > anything else full range?
+> > > > > >=20
+> > > > > > Do we have some driver that implements the CTA-861 CE vs. IT mo=
+de
+> > > > > > logic but doesn't expose the "Broadcast RGB" property? I was ho=
+ping
+> > > > > > those would always go hand in hand now.
+> > > > >=20
+> > > > > I'm not sure. i915 and the HDMI state helpers handle it properly =
+(I
+> > > > > think?) but it looks like only vc4 registers the Broadcast RGB pr=
+operty
+> > > > > and uses the HDMI state helpers.
+> > > > >=20
+> > > > > And it looks like amdgpu registers Broadcast RGB but doesn't use
+> > > > > drm_default_rgb_quant_range() which seems suspicious?
+> > > >=20
+> > > > If they want just manual full vs. limited then they should
+> > > > limit the property to not expose the "auto" option at all.
+> > > >=20
+> > > > amdgpu also ties this in with the "colorspace" property, which
+> > > > originally in i915 only controlled the infoframes/etc. But on
+> > > > amdgpu it now controls various aspects of output color
+> > > > transformation. The end result is that the property is a complete
+> > > > mess with most of the values making no sense. And for whatever
+> > > > reason everyone involved refused to remove/deprecate the
+> > > > nonsensical values :/
+> > > >=20
+> > > > Looks like this series should make sure the documentation for
+> > > > the "colorspace" property is in sync with the new property
+> > > > as well. Currently now it's giving conflicting information.
+> > > >=20
+> > >=20
+> > > I take it the problematic information is in
+> > >=20
+> > >     * DOC: standard connector properties
+> > >     *
+> > >     * Colorspace:
+> > >=20
+> > > and probably specifically BT2020_YCC's (and BT2020_RGB's?) insistence
+> > > that they "produce RGB content".
+> > >=20
+> > > I think we probably just have to change the statement "The variants
+> > > BT2020_RGB and BT2020_YCC are equivalent and the driver chooses betwe=
+en
+> > > RGB and YCbCr on its own."
+> > >=20
+> > > The "on its own" here would get turned into "based on the color format
+> > > property".
+> > >=20
+> > > Speaking of i915, that patch is one of the very few (5) patches in
+> > > this series still lacking a review (hint hint nudge nudge). I'd like
+> > > to get some more feedback on the remaining patches before I send out
+> > > another revision, so that it's hopefully not just docs changes (I
+> > > know better than to think those patches must be perfect and won't
+> > > need revision.)
+> >=20
+> > The i915 code around this is already a big mess, and I don't really
+> > adding to that mess. So I think we'll need to do some refactoring before
+> > we add anything there. I already started typing something and so far
+> > it looks fairly straightforward, so I should have something soon.
+>=20
+> OK, posted something
+> https://lore.kernel.org/intel-gfx/20260330235339.29479-1-ville.syrjala@li=
+nux.intel.com/T/#m7c349478ca6c856fbc68d5e2178f1aa31678a05f
 
-Signed-off-by: Raag Jadav <raag.jadav@intel.com>
----
-v4: Fix Severity/Component logging (Mallesh)
-v4: s/xe_ras_error/xe_ras_error_class (Riana)
----
- drivers/gpu/drm/xe/Makefile           |  1 +
- drivers/gpu/drm/xe/xe_ras.c           | 90 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_ras.h           | 14 +++++
- drivers/gpu/drm/xe/xe_ras_types.h     | 73 ++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_sysctrl_event.c |  3 +-
- 5 files changed, 180 insertions(+), 1 deletion(-)
- create mode 100644 drivers/gpu/drm/xe/xe_ras.c
- create mode 100644 drivers/gpu/drm/xe/xe_ras.h
- create mode 100644 drivers/gpu/drm/xe/xe_ras_types.h
+Thanks! I'll take a look at this today to get a more solid idea of
+where the pain points you highlighted are.
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 593b359bbaca..1ecafb854355 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -113,6 +113,7 @@ xe-y += xe_bb.o \
- 	xe_pxp_submit.o \
- 	xe_query.o \
- 	xe_range_fence.o \
-+	xe_ras.o \
- 	xe_reg_sr.o \
- 	xe_reg_whitelist.o \
- 	xe_ring_ops.o \
-diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-new file mode 100644
-index 000000000000..4048350def97
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -0,0 +1,90 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+#include "xe_assert.h"
-+#include "xe_printk.h"
-+#include "xe_ras.h"
-+#include "xe_ras_types.h"
-+#include "xe_sysctrl.h"
-+#include "xe_sysctrl_event_types.h"
-+
-+/* Severity of detected errors  */
-+enum xe_ras_severity {
-+	XE_RAS_SEV_NOT_SUPPORTED = 0,
-+	XE_RAS_SEV_CORRECTABLE,
-+	XE_RAS_SEV_UNCORRECTABLE,
-+	XE_RAS_SEV_INFORMATIONAL,
-+	XE_RAS_SEV_MAX
-+};
-+
-+/* Major IP blocks/components where errors can originate */
-+enum xe_ras_component {
-+	XE_RAS_COMP_NOT_SUPPORTED = 0,
-+	XE_RAS_COMP_DEVICE_MEMORY,
-+	XE_RAS_COMP_CORE_COMPUTE,
-+	XE_RAS_COMP_RESERVED,
-+	XE_RAS_COMP_PCIE,
-+	XE_RAS_COMP_FABRIC,
-+	XE_RAS_COMP_SOC_INTERNAL,
-+	XE_RAS_COMP_MAX
-+};
-+
-+static const char *const xe_ras_severities[] = {
-+	[XE_RAS_SEV_NOT_SUPPORTED]		= "Not Supported",
-+	[XE_RAS_SEV_CORRECTABLE]		= "Correctable",
-+	[XE_RAS_SEV_UNCORRECTABLE]		= "Uncorrectable",
-+	[XE_RAS_SEV_INFORMATIONAL]		= "Informational",
-+};
-+static_assert(ARRAY_SIZE(xe_ras_severities) == XE_RAS_SEV_MAX);
-+
-+static const char *const xe_ras_components[] = {
-+	[XE_RAS_COMP_NOT_SUPPORTED]		= "Not Supported",
-+	[XE_RAS_COMP_DEVICE_MEMORY]		= "Device Memory",
-+	[XE_RAS_COMP_CORE_COMPUTE]		= "Core Compute",
-+	[XE_RAS_COMP_RESERVED]			= "Reserved",
-+	[XE_RAS_COMP_PCIE]			= "PCIe",
-+	[XE_RAS_COMP_FABRIC]			= "Fabric",
-+	[XE_RAS_COMP_SOC_INTERNAL]		= "SoC Internal",
-+};
-+static_assert(ARRAY_SIZE(xe_ras_components) == XE_RAS_COMP_MAX);
-+
-+static inline const char *sev_to_str(struct xe_device *xe, u32 sev)
-+{
-+	xe_assert(xe, sev < XE_RAS_SEV_MAX);
-+
-+	return sev < XE_RAS_SEV_MAX ? xe_ras_severities[sev] : "Unknown";
-+}
-+
-+static inline const char *comp_to_str(struct xe_device *xe, u32 comp)
-+{
-+	xe_assert(xe, comp < XE_RAS_COMP_MAX);
-+
-+	return comp < XE_RAS_COMP_MAX ? xe_ras_components[comp] : "Unknown";
-+}
-+
-+void xe_ras_threshold_crossed(struct xe_sysctrl *sc, struct xe_sysctrl_event_response *response)
-+{
-+	struct xe_ras_threshold_crossed_data *pending = (void *)&response->data;
-+	struct xe_ras_error_class *errors = pending->counters;
-+	struct xe_device *xe = sc_to_xe(sc);
-+	u32 cid, sev, comp, inst, cause;
-+	u8 tile;
-+
-+	BUILD_BUG_ON(sizeof(response->data) < sizeof(*pending));
-+	xe_assert(xe, pending->ncounters < XE_RAS_NUM_COUNTERS);
-+	xe_warn(xe, "[RAS]: counter threshold crossed, %u new errors\n", pending->ncounters);
-+
-+	for (cid = 0; cid < pending->ncounters && cid < XE_RAS_NUM_COUNTERS; cid++) {
-+		sev = errors[cid].common.severity;
-+		comp = errors[cid].common.component;
-+
-+		tile = errors[cid].product.unit.tile;
-+		inst = errors[cid].product.unit.instance;
-+		cause = errors[cid].product.cause.cause;
-+
-+		xe_warn(xe, "[RAS]: Tile:%u Instance:%u Component:%s Error:%s Cause:%#x\n",
-+			tile, inst, comp_to_str(xe, comp), sev_to_str(xe, sev), cause);
-+	}
-+}
-diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
-new file mode 100644
-index 000000000000..92ee93d4e877
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_ras.h
-@@ -0,0 +1,14 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+#ifndef _XE_RAS_H_
-+#define _XE_RAS_H_
-+
-+struct xe_sysctrl;
-+struct xe_sysctrl_event_response;
-+
-+void xe_ras_threshold_crossed(struct xe_sysctrl *sc, struct xe_sysctrl_event_response *response);
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
-new file mode 100644
-index 000000000000..0e3ba9e81538
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_ras_types.h
-@@ -0,0 +1,73 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+#ifndef _XE_RAS_TYPES_H_
-+#define _XE_RAS_TYPES_H_
-+
-+#include <linux/types.h>
-+
-+#define XE_RAS_NUM_COUNTERS			16
-+
-+/**
-+ * struct xe_ras_error_common - Error fields that are common across all products
-+ */
-+struct xe_ras_error_common {
-+	/** @severity: Error severity */
-+	u8 severity;
-+	/** @component: IP block where error originated */
-+	u8 component;
-+} __packed;
-+
-+/**
-+ * struct xe_ras_error_unit - Error unit information
-+ */
-+struct xe_ras_error_unit {
-+	/** @tile: Tile identifier */
-+	u8 tile;
-+	/** @instance: Instance identifier specific to IP */
-+	u32 instance;
-+} __packed;
-+
-+/**
-+ * struct xe_ras_error_cause - Error cause information
-+ */
-+struct xe_ras_error_cause {
-+	/** @cause: Cause/checker */
-+	u32 cause;
-+	/** @reserved: For future use */
-+	u8 reserved;
-+} __packed;
-+
-+/**
-+ * struct xe_ras_error_product - Error fields that are specific to the product
-+ */
-+struct xe_ras_error_product {
-+	/** @unit: Unit within IP block */
-+	struct xe_ras_error_unit unit;
-+	/** @cause: Cause/checker */
-+	struct xe_ras_error_cause cause;
-+} __packed;
-+
-+/**
-+ * struct xe_ras_error_class - Combines common and product-specific parts
-+ */
-+struct xe_ras_error_class {
-+	/** @common: Common error type and component */
-+	struct xe_ras_error_common common;
-+	/** @product: Product-specific unit and cause */
-+	struct xe_ras_error_product product;
-+} __packed;
-+
-+/**
-+ * struct xe_ras_threshold_crossed_data - Data for threshold crossed event
-+ */
-+struct xe_ras_threshold_crossed_data {
-+	/** @ncounters: Number of error counters that crossed thresholds */
-+	u32 ncounters;
-+	/** @counters: Array of error counters that crossed threshold */
-+	struct xe_ras_error_class counters[XE_RAS_NUM_COUNTERS];
-+} __packed;
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl_event.c b/drivers/gpu/drm/xe/xe_sysctrl_event.c
-index 800d100f09c5..139ecd4aafcd 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl_event.c
-+++ b/drivers/gpu/drm/xe/xe_sysctrl_event.c
-@@ -6,6 +6,7 @@
- #include "xe_device.h"
- #include "xe_irq.h"
- #include "xe_printk.h"
-+#include "xe_ras.h"
- #include "xe_sysctrl.h"
- #include "xe_sysctrl_event_types.h"
- #include "xe_sysctrl_mailbox.h"
-@@ -38,7 +39,7 @@ static void xe_sysctrl_get_pending_event(struct xe_sysctrl *sc,
- 		}
- 
- 		if (response.event == XE_SYSCTRL_EVENT_THRESHOLD_CROSSED) {
--			xe_warn(xe, "[RAS]: error counter threshold crossed\n");
-+			xe_ras_threshold_crossed(sc, &response);
- 		} else {
- 			xe_err(xe, "sysctrl: unexpected event %#x\n", response.event);
- 			return;
--- 
-2.43.0
+I'll also rebase/reimplement my i915 color format implementation
+(sans the DP-MST part, as discussed) on top of this on the next
+revision. I was never fully happy with the current one due to the
+logic being shoehorned into the already existing i915 fallback
+format logic, so I'm quite happy to have another opportunity to
+implement it with less historic baggage.
+
+> Are the wayland/compositor/color management folks on board with
+> these new properties? I don't think I see the usual suspects on
+> the cc list.
+
+I don't know which precise group of people you refer to, but at
+least from the Collabora side of things, the userspace Wayland
+people are on board with these new properties. In Weston, we use
+it to implement the Weston frontend's "color-format" option in a
+WIP branch at
+
+https://gitlab.freedesktop.org/wayland/weston/-/merge_requests/1859
+
+I've also been made aware that LibreELEC is aware, and will look
+into making use of it rather than their own kernel patches.
+
+Kind regards,
+Nicolas Frattaroli
+
+> >=20
+> > While doing that several questions came to my mind though:
+> >=20
+> > * More interactions with the colorspace property, but I sent
+> >   a separate mail already about that
+> >=20
+> > * Which conversion matrix to use, and the answer I suspect
+> >   should be "ask the colorspace property", as mentioned in the
+> >   other mail
+> >=20
+> > * Should we flat out reject color formats (and I suppose also
+> >   colorspace prop values) the sink doesn't claim to support?
+> >=20
+> >   If yes, then I think we'll have to forget about adding anything=20
+> >   to i915 MST code. The way the MST stuff works is that if one
+> >   stream needs a modeset then all the related streams get modeset
+> >   as well. Thus if the user replaces a monitor getting fed with a
+> >   YCbCr stream just as another stream is being modeset, then the
+> >   entire atomic commit could fail due to the YCbCr stream getting
+> >   rejected.
+> >=20
+> >   I think eventually we might have to invent some mechanism where
+> >   all the input into the modeset computation is cached somehow,
+> >   and said cache updated only on explicit userspace modesets.
+> >   Either that or we have to come up  with a way to skip some of
+> >   the calculations that depend on external factors. Either way
+> >   it's going to be a pain.
+> >=20
+> >   OTOH if we don't mind feeding the sink with stuff it can't
+> >   understand, then I suppose we might add YCbCr 4:4:4 support
+> >   for MST. It shouldn't be any different from RGB apart from
+> >   the RGB->YCbCr conversion, which is handled elsewhere. But
+> >   YCbCr 4:2:0 is definitely out either way, the MST code has
+> >   no support for that currently.
+> >=20
+>=20
+>=20
+
+
+
 
