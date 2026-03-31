@@ -4,76 +4,146 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE71410F9302
-	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 21:46:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6449010F9302
+	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 21:53:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 760E610EBCC;
-	Tue, 31 Mar 2026 21:46:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2274810EC06;
+	Tue, 31 Mar 2026 21:53:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mBHh8com";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R6jqZrkQ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91A2F10EBAA;
- Tue, 31 Mar 2026 21:46:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F09710EC06
+ for <intel-xe@lists.freedesktop.org>; Tue, 31 Mar 2026 21:53:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774993618; x=1806529618;
+ t=1774994007; x=1806530007;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=8CzbMDSvZeJn5Itl+zxEgLTb8DbCHtZJcrvef0FzJ7o=;
- b=mBHh8comPCLf2oQqrq+fZhrRFiVkpzO91UK0yeekRC2XWo3BWr38F+JZ
- fRtamaK6a9Smr0FnR1C3mkMiXSaO5Byf+5NVBTaGlOpp0M4P+X498Oo7b
- UNHc3cqdfCuwQuaywTbi3kG47jblvfhdZqFwLxe5gbvfO/E+g9Ue6vp5E
- 6ESHuBEpQwmL1YaMPjBJgIICpNJd5+Ml/xfa7BoyMXfwk09NFVkEkR3bU
- sOIUhFk8yjznSY1X44iAqfrmI/xlRvlODYrE8jMTvbNPsI0YO67WfHeNh
- 2xZPxOuxPlmcLIX8f0OVYpxtKHhanxph5QvVpFDJYSIi6It1GesY4eQDO Q==;
-X-CSE-ConnectionGUID: zxhSlixoROWjXxpq5vS5sw==
-X-CSE-MsgGUID: x9JncpZ1TZ6fp4RKNhcVhw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="78617179"
-X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="78617179"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 14:46:57 -0700
-X-CSE-ConnectionGUID: 1kJXuaA0SWyUtve3PNRyOQ==
-X-CSE-MsgGUID: 3YgiorwjS56PbqxV7jYLCA==
+ in-reply-to:mime-version;
+ bh=HqyMft9HkHG1N5fXlYhZuGKJ/J57DD/UjH7uS+8CO6A=;
+ b=R6jqZrkQ1Yw4oyfAUiuEpDFKNUTXr+1RyUopD5pU8nsBJrMTlinOWgB5
+ SKmPJIqv6a9whfS23m2aGVUvJaegVU09QGLZnJLr72jm0AqToC1aafDJ9
+ sxrwSInDiikEMqaaz1TQYQo9+o7P7BBuRDgw7zLhkHku043Vp30vYZRIr
+ tMV5UbVDeuoRRz02HG9HNp+33u90qXlyudEyo6w9hzGx8q0PItIVig0ef
+ FLJimPU1VWQovKkOaeULaKt4DFcFQzee/VfH8jpJW07TpZ0lP6mg1LaBT
+ 8lcE+850QzILWUgprcYh67vRE9tCxwbxs0uslZZ4wO4ixDmcgRKEBh/cR w==;
+X-CSE-ConnectionGUID: 4i9y8lTbSWuszFI/1E6eZA==
+X-CSE-MsgGUID: y+Wt3ZaaQrqMHXHwjItbWA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="75984726"
+X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="75984726"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2026 14:53:27 -0700
+X-CSE-ConnectionGUID: BBqvjZsTTwWUPowLPN+emQ==
+X-CSE-MsgGUID: SnrnwbH9ThGzMtzcDeoemA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="223607882"
-Received: from igk-lkp-server01.igk.intel.com (HELO 9958d990ccf2)
- ([10.211.93.152])
- by fmviesa008.fm.intel.com with ESMTP; 31 Mar 2026 14:46:52 -0700
-Received: from kbuild by 9958d990ccf2 with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1w7gvB-000000008Y1-3uYK;
- Tue, 31 Mar 2026 21:46:49 +0000
-Date: Tue, 31 Mar 2026 23:46:28 +0200
-From: kernel test robot <lkp@intel.com>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Danilo Krummrich <dakr@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>, Alice Ryhl <aliceryhl@google.com>,
- Rob Clark <robin.clark@oss.qualcomm.com>,
- Dmitry Baryshkov <lumag@kernel.org>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org
-Subject: Re: [PATCH 5/5] drm/exec, drm/xe, drm/amdgpu: Add an accessor for
- struct drm_exec::ticket
-Message-ID: <202603312339.70s7djVd-lkp@intel.com>
-References: <20260331092023.81616-6-thomas.hellstrom@linux.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="230557432"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2026 14:53:27 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Tue, 31 Mar 2026 14:53:26 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Tue, 31 Mar 2026 14:53:26 -0700
+Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.31) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Tue, 31 Mar 2026 14:53:22 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=HdEd8Rv3HDTtB1kP9B62fHmeWEVXSQcrAHh/wCm5d9OXZhNAv2t2kHrjqaIeeEcmRkKMOIO/EJaeiRraU9bGetgZHCMX/TXoi5y7jyietCk8IqjON4w1VdRZIKZl68bhSgGGr9afEPnme/AKlwDNrnX5UdK5Cmd5ctVtrph3/0NtXGv7FC1PXvNFKD6jyhEVDi372zlcr+wUuQwhOgo7w+UhHGmZUKb5i8XnwCL3b4Vw78MRQe6C/GNMPPcDVf4kr1D97bXFQ6SqjtjxzLNBOEmXmgCkbanI9MxBjEud383+DuWFFKsn2GoV6lmuvk73zKU6bHVzm81/2W4EeA5ugQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8VJxHWodDG5Heqo7YQ1qityM5rWAo8SuIW+79MIpp68=;
+ b=c5B/vRtRtcja2oqBueZK2rgHSw4IF3CYZZB68r+4qQt1SXojJOnm8UesH1O4DrxIPnu1zFzpV6/8qdO03YKTQXNx3pUT6su615uAHNgWCO5u6yD2d9sT7enTxwGkUopr53gYAa/lKOGbjBdXQQLlrabpxUCUoj4uTvv/sDZo8tovxYpLoKaFiUWFixTnZCMskPDU4ndYe6AfZf3F4g0f+cvNI3HHaCHKlngY8esbxjGvDtgLNScXdcMYvY2st39YuH4V50MTeaDsGd6bQ8swyo9M14B+e1kWbZ9FxNbEdPUvjSVCCBb0YTJ1XYQ9nWnhP7tynZ8uI0HK5NP/Oc6UVQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
+ by DM3PPF4D011AE7D.namprd11.prod.outlook.com (2603:10b6:f:fc00::f20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.15; Tue, 31 Mar
+ 2026 21:53:20 +0000
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::7b65:81e6:c6c4:449e]) by DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::7b65:81e6:c6c4:449e%7]) with mapi id 15.20.9769.014; Tue, 31 Mar 2026
+ 21:53:20 +0000
+Date: Tue, 31 Mar 2026 14:53:18 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+CC: Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
+Subject: Re: =?utf-8?B?4pyXIFhlLkNJLkZVTEw=?= =?utf-8?Q?=3A?= failure for
+ drm/xe_pat: Print PAT_ATS during register dump
+Message-ID: <20260331215318.GO2729713@mdroper-desk1.amr.corp.intel.com>
+References: <20260331134330.2535519-2-zbigniew.kempczynski@intel.com>
+ <177498329364.419941.17938652378811281140@a3b018990fe9>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20260331092023.81616-6-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <177498329364.419941.17938652378811281140@a3b018990fe9>
+X-ClientProxiedBy: SJ0PR05CA0110.namprd05.prod.outlook.com
+ (2603:10b6:a03:334::25) To DS0PR11MB8182.namprd11.prod.outlook.com
+ (2603:10b6:8:163::17)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|DM3PPF4D011AE7D:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5b5e829a-33cf-41b6-9383-08de8f6fec68
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|376014|366016|56012099003|22082099003|18002099003; 
+X-Microsoft-Antispam-Message-Info: VEWjYOXtAX3zUHMgUGbsE4A5G7phXBqJ+Nphr74ajDYvIdo9LV7kVI3styTTKtq+/4SHcCK7CaMutMZpT19aBuJBzcsn4z/YhUGkdS3Il9gq53ICFHdjUQdDbSxKN1Xn1WrDdJ4ardiuKxzDtohGUYd99IOrO1T1PByqKayxDDB85QvpA32RpAuuWkxO1Yx/vdxGHGBST4AbMuWBilusDMW9w1b3IJ/JTf3eNGILqeUB+YnVWlshOKvpscepj/T6LKkNI++MhfTRSMgiSRsSo7/N4NYdoAv4j+7X+X1ISTdk7P9EEarojTpfqi4KJKNT/RI/os2giUW4pRoIFmB9ylg9NfRpeLXGGnjGsPj45SRCzCTClxnNBFzXN4JeWuR5UYod3wsGztJ+TJWvSDO4VUVmbw/+osejl/hLozNSZZRP3auwSsQxjM2lLYlMy97WogXb7Qzw0HZG7WhfuL8Gw9jSlR88HR8NxzY0mdXjXiBiTaotiEq6aoC2hrSlXc/T9x9MBcsdVfu3qzdvzWVx5H0wJh28PSZOom4au34hAyIxqwn2s7yDdc+iaje6TNDKUKNIZYKL7Ch5QPsZMMP2Of2Oa1/fQ8HGtDnmiW5aquP5Kq+eJ4d50fT1ogfPO8osrOQWAh8yHZt7CBzXBmdy8jD8LTftt5ns5kMLIucHnZR+ERBtxa+exAjI6wobtz0V
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(56012099003)(22082099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?dFkPDc4e3hS3jTAeHdKdUZCFK4OTrCVPk/DWDOnvGn38ecZdIT+CxAiNE7qw?=
+ =?us-ascii?Q?BjU0tPb4H89wRC+3yclnjreAgAI71EuxGdMbj7a3OpraiR7GY7oRbGt7syU+?=
+ =?us-ascii?Q?LXx1L6M2l2lSINltPVZzKVqdIoWswRcbqnLwNjLYodwowRMrcTIBygbJXmO4?=
+ =?us-ascii?Q?u9IJ54wGXyZ9hEch6J88sd2BAXmEcRjR+lDS8/YKw8lA1InEQgTPf2aWuHtj?=
+ =?us-ascii?Q?8JuBIyPxUgCqQQTWoo5NTkHhYGpatV1/XD0gKc5YmvLHEVkE77qCH2Z89APU?=
+ =?us-ascii?Q?AwKn49cMHkDhNSAt1+up3SRQ1JAoQCgOD0Bxhh8lJvmCW6ZlmX8nHrYrYhc4?=
+ =?us-ascii?Q?W6l7JB8rU6xfz8WB3kdCMOURWTslQS/5c1Bydill8lHqDRhUzqWPSJerxMhi?=
+ =?us-ascii?Q?Nr7YlUNmr0uS/gejjDb094qLjLY6VeuYK2sIfNrOpotALKqkBEViDVyp88nH?=
+ =?us-ascii?Q?4dMSc9k/f2fsTINygkbrwkbHqspwdNLWOZGmMoR0GgqlVBwUMIUOp9Y5fg5i?=
+ =?us-ascii?Q?E3O4tdYWw2OTkjd+SctKUMScTVqjkt/ooatCxLPKPHoOu0ij8Yt/wBeUpDw1?=
+ =?us-ascii?Q?rmRz98N7ySn0uI9YFRa94ipfjbeLcFZLu05A3GgLwe41b6V5hf4YKc14R3Yr?=
+ =?us-ascii?Q?OrHY41HYhT3jqe/qKovugYR71lVnXHrOU1+bsV2JmAaHbvHEaQJAYRzqjCYo?=
+ =?us-ascii?Q?2v9GzPj6AJ14H+3Hr6jC/Ij9+ahc/d7UhfZicaV1K/OgvHWS7lMQyRmXc2x2?=
+ =?us-ascii?Q?0zlvwjXdIOH32uIGMMQzwlzIl7gz/VwxbUkyP3Kd2lpvMvZvLnBXkSlVtY+g?=
+ =?us-ascii?Q?hv6uy7+y+HGgbwP3bcKxljDNKWHsYVLbcUGL3ubRLSosDoirAVBk4W33kVXV?=
+ =?us-ascii?Q?QPjl3h1yjfdU3NYVK0ZusVpnZ/vbGSHDd0ElFkOSC9jY4xCBFEh7FWaCVuJs?=
+ =?us-ascii?Q?etTRe84qqz1WWBqBf/grjqFXFs4tD6DO7BMA0zWpf9HsqcXU4BWiCGp6WuSt?=
+ =?us-ascii?Q?IVi2uLhydA6rtOgVEByPuU35cH/2TE4eprLzDLXJmEE79FU7MsOtq6bncEU6?=
+ =?us-ascii?Q?Arbb2UfAi/fOJL9qrm9ql8uHTo0xsIjZbM5mYUXIjzPZCcdrwKUL/jHlytoX?=
+ =?us-ascii?Q?jojDeYXgwgF9kmgNcWODneZ3Btb0UhgHRhsonSGKupnOa5JBurKIvHorkOiw?=
+ =?us-ascii?Q?nsrZWr2piK5mTXFjEUeTQx8rNZTm7fYRsOhgz6k0+zyaAjroT2z9B4+YMlCl?=
+ =?us-ascii?Q?1xdpPNrzOAgA701DW1jaBhsN7EFYfJ2l/1K7Bbk0L5dtHcuBJTb3jz0L/HpC?=
+ =?us-ascii?Q?rCHVUslJjByqGvXGNTq/B1XJQWZ3t7NlHytkvor+o5q9+Q8vxw3u83zspk+X?=
+ =?us-ascii?Q?o1PSHHkBki131yNrsqxQi6aVPL4sz9T7xba0Q11gOQQkc+l54eHCzjHfBdTK?=
+ =?us-ascii?Q?nzdQVSRS4ywFQhKtsOP8t8rimmSdZOZTMCq+3iWAHql4JXL9n/Y8SpSZH1Ly?=
+ =?us-ascii?Q?FP7eyVch359uQJuMYj7iC67x1HiAUEec6sjS/zKo62WcC3n8WC8Y/PCJ1qbf?=
+ =?us-ascii?Q?M5U/OdX6tQ4czSFtVGvU7N2sLd+wM5hFuDZjrKe0GtcSWe+Z5xO7xuwABK1C?=
+ =?us-ascii?Q?2YqbwIHsFmGKBFZcSlPgliFqh8+ogl9VPWKIWWz2F3hsIcXi/+NnJ8WwpF0I?=
+ =?us-ascii?Q?oYS9BpaYDqVBv6DZJKv1C61tJcdxXbt2ZU1YzMZ3JuNXwIiJ8NxBxtQdrDDz?=
+ =?us-ascii?Q?bLjl3Vu6iBsWpbEL94OASKtTSIHvs+o=3D?=
+X-Exchange-RoutingPolicyChecked: Bceqx9bnF1cFOrtkP2PT6hMZP4w45aYtD5hHVc0316LjDAFj0m+JKi3SOcJd2T6WBa/itx2UOaiQ+J8Tb0LN6bMg56+HHU4cMIFpeM4VOOHa1Qta/a4B1hE8fTBb8zu7ZtJw1fFGrL795ty1uNJ1aGWKjH9B0GOL5h4XevWhxP3i/atTmdgS8LOgI8aq5KT4pOhXbW7Y58KcLPLHGVX91q0NURZAXHx8CYSMhPUKF+D7ukNUkpUrlLZSbEX2V6BQGPpG4DK+r0Dhrd3z4/y6fVGgJB5s0UojQVzWno9uf2I+sGMJyXFR97ujbWjJ9jaIN6YL4OEI8i4ctkvHMhMMCg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5b5e829a-33cf-41b6-9383-08de8f6fec68
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Mar 2026 21:53:20.5236 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: A2bhj0l3pQQuj22mOwYYVSSl2AA+p3b7at3w62nvUEsnScwqxwwN6XczmnLOxVW7xEB5AUUM0ON5x8M++3ri1E2ZsUeoAPsbUkV+0YTxoog=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PPF4D011AE7D
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,285 +158,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Thomas,
+On Tue, Mar 31, 2026 at 06:54:53PM -0000, Patchwork wrote:
+> == Series Details ==
+> 
+> Series: drm/xe_pat: Print PAT_ATS during register dump
+> URL   : https://patchwork.freedesktop.org/series/164167/
+> State : failure
+> 
+> == Summary ==
+> 
+> CI Bug Log - changes from xe-4827-779129c7868f4c7205901d6e57b25de52b411d1c_FULL -> xe-pw-164167v1_FULL
+> ====================================================
+> 
+> Summary
+> -------
+> 
+>   **FAILURE**
+> 
+>   Serious unknown changes coming with xe-pw-164167v1_FULL absolutely need to be
+>   verified manually.
+>   
+>   If you think the reported changes have nothing to do with the changes
+>   introduced in xe-pw-164167v1_FULL, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+>   to document this new failure mode, which will reduce false positives in CI.
+> 
+>   
+> 
+> Participating hosts (2 -> 2)
+> ------------------------------
+> 
+>   No changes in participating hosts
+> 
+> Possible new issues
+> -------------------
+> 
+>   Here are the unknown changes that may have been introduced in xe-pw-164167v1_FULL:
+> 
+> ### IGT changes ###
+> 
+> #### Possible regressions ####
+> 
+>   * igt@xe_fault_injection@inject-fault-probe-function-xe_guc_ct_init:
+>     - shard-lnl:          [PASS][1] -> [ABORT][2]
+>    [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4827-779129c7868f4c7205901d6e57b25de52b411d1c/shard-lnl-2/igt@xe_fault_injection@inject-fault-probe-function-xe_guc_ct_init.html
+>    [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164167v1/shard-lnl-8/igt@xe_fault_injection@inject-fault-probe-function-xe_guc_ct_init.html
 
-kernel test robot noticed the following build errors:
+This looks like some memory corruption unrelated to the change happening
+here.
 
-[auto build test ERROR on drm-misc/drm-misc-next]
-[also build test ERROR on next-20260331]
-[cannot apply to drm-xe/drm-xe-next linus/master v6.16-rc1]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Thomas-Hellstr-m/drm-exec-Remove-the-index-parameter-from-drm_exec_for_each_locked_obj-_reverse/20260331-220349
-base:   https://gitlab.freedesktop.org/drm/misc/kernel.git drm-misc-next
-patch link:    https://lore.kernel.org/r/20260331092023.81616-6-thomas.hellstrom%40linux.intel.com
-patch subject: [PATCH 5/5] drm/exec, drm/xe, drm/amdgpu: Add an accessor for struct drm_exec::ticket
-config: x86_64-rhel-9.4 (https://download.01.org/0day-ci/archive/20260331/202603312339.70s7djVd-lkp@intel.com/config)
-compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260331/202603312339.70s7djVd-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202603312339.70s7djVd-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c: In function 'amdgpu_amdkfd_gpuvm_restore_process_bos':
->> drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c:3001:66: error: incompatible type for argument 1 of 'drm_exec_ticket'
-    3001 |         ret = process_validate_vms(process_info, drm_exec_ticket(exec));
-         |                                                                  ^~~~
-         |                                                                  |
-         |                                                                  struct drm_exec
-   In file included from drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c:30:
-   include/drm/drm_exec.h:154:71: note: expected 'struct drm_exec *' but argument is of type 'struct drm_exec'
-     154 | static inline struct ww_acquire_ctx *drm_exec_ticket(struct drm_exec *exec)
-         |                                                      ~~~~~~~~~~~~~~~~~^~~~
-   drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c:3042:77: error: incompatible type for argument 1 of 'drm_exec_ticket'
-    3042 |                 ret = amdgpu_vm_handle_moved(adev, peer_vm, drm_exec_ticket(exec));
-         |                                                                             ^~~~
-         |                                                                             |
-         |                                                                             struct drm_exec
-   include/drm/drm_exec.h:154:71: note: expected 'struct drm_exec *' but argument is of type 'struct drm_exec'
-     154 | static inline struct ww_acquire_ctx *drm_exec_ticket(struct drm_exec *exec)
-         |                                                      ~~~~~~~~~~~~~~~~~^~~~
+Applied to drm-xe-next (with the suggested subject prefix tweak).
+Thanks for the patch and review.
 
 
-vim +/drm_exec_ticket +3001 drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+Matt
 
-  2897	
-  2898	/** amdgpu_amdkfd_gpuvm_restore_process_bos - Restore all BOs for the given
-  2899	 *   KFD process identified by process_info
-  2900	 *
-  2901	 * @process_info: amdkfd_process_info of the KFD process
-  2902	 *
-  2903	 * After memory eviction, restore thread calls this function. The function
-  2904	 * should be called when the Process is still valid. BO restore involves -
-  2905	 *
-  2906	 * 1.  Release old eviction fence and create new one
-  2907	 * 2.  Get two copies of PD BO list from all the VMs. Keep one copy as pd_list.
-  2908	 * 3   Use the second PD list and kfd_bo_list to create a list (ctx.list) of
-  2909	 *     BOs that need to be reserved.
-  2910	 * 4.  Reserve all the BOs
-  2911	 * 5.  Validate of PD and PT BOs.
-  2912	 * 6.  Validate all KFD BOs using kfd_bo_list and Map them and add new fence
-  2913	 * 7.  Add fence to all PD and PT BOs.
-  2914	 * 8.  Unreserve all BOs
-  2915	 */
-  2916	int amdgpu_amdkfd_gpuvm_restore_process_bos(void *info, struct dma_fence __rcu **ef)
-  2917	{
-  2918		struct amdkfd_process_info *process_info = info;
-  2919		struct amdgpu_vm *peer_vm;
-  2920		struct kgd_mem *mem;
-  2921		struct list_head duplicate_save;
-  2922		struct amdgpu_sync sync_obj;
-  2923		unsigned long failed_size = 0;
-  2924		unsigned long total_size = 0;
-  2925		struct drm_exec exec;
-  2926		int ret;
-  2927	
-  2928		INIT_LIST_HEAD(&duplicate_save);
-  2929	
-  2930		mutex_lock(&process_info->lock);
-  2931	
-  2932		drm_exec_init(&exec, DRM_EXEC_IGNORE_DUPLICATES, 0);
-  2933		drm_exec_until_all_locked(&exec) {
-  2934			list_for_each_entry(peer_vm, &process_info->vm_list_head,
-  2935					    vm_list_node) {
-  2936				ret = amdgpu_vm_lock_pd(peer_vm, &exec, 2);
-  2937				drm_exec_retry_on_contention(&exec);
-  2938				if (unlikely(ret)) {
-  2939					pr_err("Locking VM PD failed, ret: %d\n", ret);
-  2940					goto ttm_reserve_fail;
-  2941				}
-  2942			}
-  2943	
-  2944			/* Reserve all BOs and page tables/directory. Add all BOs from
-  2945			 * kfd_bo_list to ctx.list
-  2946			 */
-  2947			list_for_each_entry(mem, &process_info->kfd_bo_list,
-  2948					    validate_list) {
-  2949				struct drm_gem_object *gobj;
-  2950	
-  2951				gobj = &mem->bo->tbo.base;
-  2952				ret = drm_exec_prepare_obj(&exec, gobj, 1);
-  2953				drm_exec_retry_on_contention(&exec);
-  2954				if (unlikely(ret)) {
-  2955					pr_err("drm_exec_prepare_obj failed, ret: %d\n", ret);
-  2956					goto ttm_reserve_fail;
-  2957				}
-  2958			}
-  2959		}
-  2960	
-  2961		amdgpu_sync_create(&sync_obj);
-  2962	
-  2963		/* Validate BOs managed by KFD */
-  2964		list_for_each_entry(mem, &process_info->kfd_bo_list,
-  2965				    validate_list) {
-  2966	
-  2967			struct amdgpu_bo *bo = mem->bo;
-  2968			uint32_t domain = mem->domain;
-  2969			struct dma_resv_iter cursor;
-  2970			struct dma_fence *fence;
-  2971	
-  2972			total_size += amdgpu_bo_size(bo);
-  2973	
-  2974			ret = amdgpu_amdkfd_bo_validate(bo, domain, false);
-  2975			if (ret) {
-  2976				pr_debug("Memory eviction: Validate BOs failed\n");
-  2977				failed_size += amdgpu_bo_size(bo);
-  2978				ret = amdgpu_amdkfd_bo_validate(bo,
-  2979							AMDGPU_GEM_DOMAIN_GTT, false);
-  2980				if (ret) {
-  2981					pr_debug("Memory eviction: Try again\n");
-  2982					goto validate_map_fail;
-  2983				}
-  2984			}
-  2985			dma_resv_for_each_fence(&cursor, bo->tbo.base.resv,
-  2986						DMA_RESV_USAGE_KERNEL, fence) {
-  2987				ret = amdgpu_sync_fence(&sync_obj, fence, GFP_KERNEL);
-  2988				if (ret) {
-  2989					pr_debug("Memory eviction: Sync BO fence failed. Try again\n");
-  2990					goto validate_map_fail;
-  2991				}
-  2992			}
-  2993		}
-  2994	
-  2995		if (failed_size)
-  2996			pr_debug("0x%lx/0x%lx in system\n", failed_size, total_size);
-  2997	
-  2998		/* Validate PDs, PTs and evicted DMABuf imports last. Otherwise BO
-  2999		 * validations above would invalidate DMABuf imports again.
-  3000		 */
-> 3001		ret = process_validate_vms(process_info, drm_exec_ticket(exec));
-  3002		if (ret) {
-  3003			pr_debug("Validating VMs failed, ret: %d\n", ret);
-  3004			goto validate_map_fail;
-  3005		}
-  3006	
-  3007		/* Update mappings managed by KFD. */
-  3008		list_for_each_entry(mem, &process_info->kfd_bo_list,
-  3009				    validate_list) {
-  3010			struct kfd_mem_attachment *attachment;
-  3011	
-  3012			list_for_each_entry(attachment, &mem->attachments, list) {
-  3013				if (!attachment->is_mapped)
-  3014					continue;
-  3015	
-  3016				kfd_mem_dmaunmap_attachment(mem, attachment);
-  3017				ret = update_gpuvm_pte(mem, attachment, &sync_obj);
-  3018				if (ret) {
-  3019					pr_debug("Memory eviction: update PTE failed. Try again\n");
-  3020					goto validate_map_fail;
-  3021				}
-  3022			}
-  3023		}
-  3024	
-  3025		/* Update mappings not managed by KFD */
-  3026		list_for_each_entry(peer_vm, &process_info->vm_list_head,
-  3027				vm_list_node) {
-  3028			struct amdgpu_device *adev = amdgpu_ttm_adev(
-  3029				peer_vm->root.bo->tbo.bdev);
-  3030	
-  3031			struct amdgpu_fpriv *fpriv =
-  3032				container_of(peer_vm, struct amdgpu_fpriv, vm);
-  3033	
-  3034			ret = amdgpu_vm_bo_update(adev, fpriv->prt_va, false);
-  3035			if (ret) {
-  3036				dev_dbg(adev->dev,
-  3037					"Memory eviction: handle PRT moved failed, pid %8d. Try again.\n",
-  3038					pid_nr(process_info->pid));
-  3039				goto validate_map_fail;
-  3040			}
-  3041	
-  3042			ret = amdgpu_vm_handle_moved(adev, peer_vm, drm_exec_ticket(exec));
-  3043			if (ret) {
-  3044				dev_dbg(adev->dev,
-  3045					"Memory eviction: handle moved failed, pid %8d. Try again.\n",
-  3046					pid_nr(process_info->pid));
-  3047				goto validate_map_fail;
-  3048			}
-  3049		}
-  3050	
-  3051		/* Update page directories */
-  3052		ret = process_update_pds(process_info, &sync_obj);
-  3053		if (ret) {
-  3054			pr_debug("Memory eviction: update PDs failed. Try again\n");
-  3055			goto validate_map_fail;
-  3056		}
-  3057	
-  3058		/* Sync with fences on all the page tables. They implicitly depend on any
-  3059		 * move fences from amdgpu_vm_handle_moved above.
-  3060		 */
-  3061		ret = process_sync_pds_resv(process_info, &sync_obj);
-  3062		if (ret) {
-  3063			pr_debug("Memory eviction: Failed to sync to PD BO moving fence. Try again\n");
-  3064			goto validate_map_fail;
-  3065		}
-  3066	
-  3067		/* Wait for validate and PT updates to finish */
-  3068		amdgpu_sync_wait(&sync_obj, false);
-  3069	
-  3070		/* The old eviction fence may be unsignaled if restore happens
-  3071		 * after a GPU reset or suspend/resume. Keep the old fence in that
-  3072		 * case. Otherwise release the old eviction fence and create new
-  3073		 * one, because fence only goes from unsignaled to signaled once
-  3074		 * and cannot be reused. Use context and mm from the old fence.
-  3075		 *
-  3076		 * If an old eviction fence signals after this check, that's OK.
-  3077		 * Anyone signaling an eviction fence must stop the queues first
-  3078		 * and schedule another restore worker.
-  3079		 */
-  3080		if (dma_fence_is_signaled(&process_info->eviction_fence->base)) {
-  3081			struct amdgpu_amdkfd_fence *new_fence =
-  3082				amdgpu_amdkfd_fence_create(
-  3083					process_info->eviction_fence->base.context,
-  3084					process_info->eviction_fence->mm,
-  3085					NULL, process_info->context_id);
-  3086	
-  3087			if (!new_fence) {
-  3088				pr_err("Failed to create eviction fence\n");
-  3089				ret = -ENOMEM;
-  3090				goto validate_map_fail;
-  3091			}
-  3092			dma_fence_put(&process_info->eviction_fence->base);
-  3093			process_info->eviction_fence = new_fence;
-  3094			replace_eviction_fence(ef, dma_fence_get(&new_fence->base));
-  3095		} else {
-  3096			WARN_ONCE(*ef != &process_info->eviction_fence->base,
-  3097				  "KFD eviction fence doesn't match KGD process_info");
-  3098		}
-  3099	
-  3100		/* Attach new eviction fence to all BOs except pinned ones */
-  3101		list_for_each_entry(mem, &process_info->kfd_bo_list, validate_list) {
-  3102			if (mem->bo->tbo.pin_count)
-  3103				continue;
-  3104	
-  3105			dma_resv_add_fence(mem->bo->tbo.base.resv,
-  3106					   &process_info->eviction_fence->base,
-  3107					   DMA_RESV_USAGE_BOOKKEEP);
-  3108		}
-  3109		/* Attach eviction fence to PD / PT BOs and DMABuf imports */
-  3110		list_for_each_entry(peer_vm, &process_info->vm_list_head,
-  3111				    vm_list_node) {
-  3112			struct amdgpu_bo *bo = peer_vm->root.bo;
-  3113	
-  3114			dma_resv_add_fence(bo->tbo.base.resv,
-  3115					   &process_info->eviction_fence->base,
-  3116					   DMA_RESV_USAGE_BOOKKEEP);
-  3117		}
-  3118	
-  3119	validate_map_fail:
-  3120		amdgpu_sync_free(&sync_obj);
-  3121	ttm_reserve_fail:
-  3122		drm_exec_fini(&exec);
-  3123		mutex_unlock(&process_info->lock);
-  3124		return ret;
-  3125	}
-  3126	
+> 
+>   
+> Known issues
+> ------------
+> 
+>   Here are the changes found in xe-pw-164167v1_FULL that come from known issues:
+> 
+> ### IGT changes ###
+> 
+> #### Issues hit ####
+> 
+>   * igt@kms_flip@flip-vs-expired-vblank@b-edp1:
+>     - shard-lnl:          [PASS][3] -> [FAIL][4] ([Intel XE#301]) +1 other test fail
+>    [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4827-779129c7868f4c7205901d6e57b25de52b411d1c/shard-lnl-2/igt@kms_flip@flip-vs-expired-vblank@b-edp1.html
+>    [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164167v1/shard-lnl-8/igt@kms_flip@flip-vs-expired-vblank@b-edp1.html
+> 
+>   
+>   [Intel XE#301]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/301
+> 
+> 
+> Build changes
+> -------------
+> 
+>   * Linux: xe-4827-779129c7868f4c7205901d6e57b25de52b411d1c -> xe-pw-164167v1
+> 
+>   IGT_8839: 8839
+>   xe-4827-779129c7868f4c7205901d6e57b25de52b411d1c: 779129c7868f4c7205901d6e57b25de52b411d1c
+>   xe-pw-164167v1: 164167v1
+> 
+> == Logs ==
+> 
+> For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164167v1/index.html
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
