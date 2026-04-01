@@ -4,161 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F35E8D35160
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Apr 2026 09:32:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9798ED35164
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Apr 2026 09:36:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B18EE10ECD5;
-	Wed,  1 Apr 2026 09:32:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46A5D10F05C;
+	Wed,  1 Apr 2026 09:36:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VD3oW/VV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jmhERhPS";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B30010ECD5
- for <intel-xe@lists.freedesktop.org>; Wed,  1 Apr 2026 09:32:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9AFA10F059;
+ Wed,  1 Apr 2026 09:36:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775035967; x=1806571967;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=/issFm8KSrp4SnC9Js1mJFmfQzeFKYs4nSiMKhN/bn4=;
- b=VD3oW/VVkC0n/K9HmqWpgEnQTPFaYOjkPBJvY+MD/N08OUY+bjtkAnf/
- qrryk11XOuGYl2txlscEiIBtPrba2nnOLbtvlpa5CIax2RokQmDGyHIS2
- rOGHGlkontZCYptAQm3Vw2rxX71t/dWEFZaihGTiimOYhGtjlOIDiG23B
- 3mMJxM5vl6UP94o3CO90xxPpAIEWwSXVtHeQqw/l0mhYi2MPFsiXQk5xk
- P3cXVUfu2Dslw+lkWBzaPljqT0/cXJfNv4wNqqFiR8ecQhXdiTaUjVqbS
- aJuxZadopvQ/iaZsToQEDBDbZgRoyL+HFa63jlM3Cc/YXPH/UmE3cCeHt w==;
-X-CSE-ConnectionGUID: o2YGve7YQg6AMh1zwF2v1w==
-X-CSE-MsgGUID: aWTYCYq0QzKdSciW06kXEA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="87143650"
-X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="87143650"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2026 02:32:46 -0700
-X-CSE-ConnectionGUID: 5UmxW+BVThSTA05l81f8Uw==
-X-CSE-MsgGUID: hvLks5Z2SBmPJhgPyVJHcw==
+ t=1775036210; x=1806572210;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=5fWZid7FFcOhN+mcQS1hb2PSkUhDbMDNG/3v20HGiZ8=;
+ b=jmhERhPSZ9A3wLu91w4ewx0UbzapzBhA1hVUldGks0mV41/wHadNLHwK
+ eiliLQgBFd7Nbv4E4z7LGkcMesCBlGJ2OJK0e2Nku1JxhGcxxQqpwgfu3
+ 9N94sw7+n0QJ5kXNStRiZgQn6qhjpXVcTFYf+qasTCFgBbcj96Z8k3+ZL
+ Lp7L2zqOiD0irxZnWKJfIrX9R7pQkbdGDNK8P6QJwDCPOlscsyDIJWJUN
+ RIohwzRNHyZZh7olRloZoD9JM5jvTpUr9DInAapmlza7xzm5enjgLlRQC
+ ddUgrRSuYFY6YiZ7Lr5dBPLVfQ54BGzUc6LCbqDgJn4V/TfOuLx7/VAh4 Q==;
+X-CSE-ConnectionGUID: VXr9rkGfR7qayk7HYy888Q==
+X-CSE-MsgGUID: sd+De3viQKOTTS9bM8bUIA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="86684822"
+X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="86684822"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2026 02:36:50 -0700
+X-CSE-ConnectionGUID: mMdBP1RIT4ilhalIp9YSIA==
+X-CSE-MsgGUID: K8FAI4D3Ri2UMTS3Xxi7FA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="249841364"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2026 02:32:12 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 1 Apr 2026 02:32:11 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 1 Apr 2026 02:32:11 -0700
-Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.24) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 1 Apr 2026 02:32:11 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QoBK+r7K7erY7Z0g8xwcqwLoTrJXzuuqL65M0m0ckk03Z3OXS5nmX8NORYgS3conmuN4cm9C2lCGQZdHcwMfIzEBq+kWJJb7DylcXPvFZPQkAlxssbmXJbvmxb6T2NltqJaZQ26NjWs7BjL446ir+UtCpTQJYBkoh+dwTV1Ce+/G851zGLj+hzX7pGMO0S4fAvGUSLoVgdGkCbpPXLVR4HhNMtdVVjn7kEIgcLhLuCZKSF85WuK8lMjQEdbHs8UJyH6KRO8DKqcOonXqHSmI/PbZTKS1oskbcf62qVYIDbLYcr+sJedLWfipUf9/iOiSXkmagEQDVz0KAluUgEYfDA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ku3Fj461jEdVNhOe1IMaIPEJNEZeERwKHT9LOASHLQg=;
- b=eYBo901IBDmeiSOAiCLkc1oSQuUIgxboPzryYGhQ+c4qpELpAvUwzizLb0GvScE54EEJF/cBoiLlEDQiuYlwVu0A3xLDdDzirE4jAcGflCNESruS5xyFJ3geNpjQ5oNS86oPcLhgXqZGN9yhi4ps9otLvcH7qBswN0IMcB0398g4q6QZ0JTBiPMdJxDKpg9+dqNLwkLFYkGNPhdhFnvX6hRRi3CzS+CNwznu0xL+g8zC/SVEqhNqv2TSKbwFnuLEGeLIm6M2W1N18zaYK53h8MvRwGp9fJcAd2oAt/WY2POt5ET1ny6dnVu0fD3IycHrK4hke9Cka3ABeNpN8jpR2w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6207.namprd11.prod.outlook.com (2603:10b6:208:3c5::21)
- by SJ0PR11MB6742.namprd11.prod.outlook.com (2603:10b6:a03:47b::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.15; Wed, 1 Apr
- 2026 09:32:07 +0000
-Received: from MN0PR11MB6207.namprd11.prod.outlook.com
- ([fe80::52eb:929f:a8b2:139d]) by MN0PR11MB6207.namprd11.prod.outlook.com
- ([fe80::52eb:929f:a8b2:139d%5]) with mapi id 15.20.9769.014; Wed, 1 Apr 2026
- 09:32:06 +0000
-Message-ID: <31d8faec-78f8-4740-ad6a-19ccb8677fb4@intel.com>
-Date: Wed, 1 Apr 2026 15:01:56 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/3] drm/xe/ras: Introduce correctable error handling
-To: Raag Jadav <raag.jadav@intel.com>
-CC: <matthew.brost@intel.com>, <rodrigo.vivi@intel.com>,
- <riana.tauro@intel.com>, <michal.wajdeczko@intel.com>,
- <matthew.d.roper@intel.com>, <umesh.nerlige.ramappa@intel.com>,
- <soham.purkait@intel.com>, <anoop.c.vijay@intel.com>,
- <aravind.iddamsetty@linux.intel.com>, <intel-xe@lists.freedesktop.org>
-References: <20260331102346.1034100-1-raag.jadav@intel.com>
- <20260331102346.1034100-4-raag.jadav@intel.com>
-Content-Language: en-US
-From: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>
-In-Reply-To: <20260331102346.1034100-4-raag.jadav@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5PR01CA0199.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1b2::11) To MN0PR11MB6207.namprd11.prod.outlook.com
- (2603:10b6:208:3c5::21)
+X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="231559566"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.152])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2026 02:36:48 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 1/5] drm/{i915, xe}: convert VLV sideband display
+ wrappers into real functions
+In-Reply-To: <acvMGpZbVVjd6tKO@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <cover.1774957233.git.jani.nikula@intel.com>
+ <57740dc3a820cb5fc1cfcd28e4be58b2cb48020d.1774957233.git.jani.nikula@intel.com>
+ <acvMGpZbVVjd6tKO@intel.com>
+Date: Wed, 01 Apr 2026 12:36:44 +0300
+Message-ID: <b2e71477fc6a2f96c2ea48f9359c9601ef8b2c23@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6207:EE_|SJ0PR11MB6742:EE_
-X-MS-Office365-Filtering-Correlation-Id: 89371969-4263-4a18-bcdb-08de8fd18a77
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|22082099003|18002099003|56012099003; 
-X-Microsoft-Antispam-Message-Info: zqGNmfA6u4e2ux8oKMontC6CXm9ACGjAOhqnAyyd5F/CuDZeaGNBrF9p1a/UQsK9J/euJkILSaTvS/A7kDh4rqs9OpWPt49Kmez5tlpw1WeObBYtOV8c+ETFP8dzxIVH0SlJnL50g+2Do3zJZzEuF6X2dPb3ey6fZJMyYmKz/8dkF9x06ASzGEYGw5hM+QYVQqT3THcPrT9V3gzbe8weTN2YAU2wSGICmerCAEPcsdUTUq4sPIRRiKh0Pq48DIkL8k7EIOQKcUWug81SuYcrpicwLeORUVe24ozOtM3aRSO+vAJ/etZzvqnK6haU+mV2yRFbveoKD0tqcYEdnunfMixuWYJ1WNKVSWbwHrsSjTwTruM7Di1d3dCHOY3H+6LKsqGeb3khFmP8Cl9wdG9NSc+B3dFTC5RmeG6x3g6WsFpdERFmg9ebRyAQRoiLogs+jV6Gr09UAk0I1J6rb01McROeRkzORv51MNrZWzCmO/yOXg/iU0umoM0v6BW/yEFcN6hDM+aNxGpzPz8m2vcQnwZcGC3Lb+o3Z9Xzbhm5Vb6PFjgFZcsRF4yIUyHcUjNGRg5nlx52r1F237B6pdnyhmedqb4vLXO2roxbx5IhOWETrXT4EPHMJWr009iAU3vfN6PISr5K+oAp4rmQ0VlrkmuHg7mUdrR82jNdcfNeMyp38s3lr5QJLPOcQMC/L3xVG4xECQfYr2vLLvgWrOb2aGu16LBGCtd0xqgfGqsxCjU=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6207.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(22082099003)(18002099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?a1VaQjdEbTRYVDFPQWF5VkVVTnFWNnBHRnZMN3JYVm5mMkJSeFFnWHA0b0s5?=
- =?utf-8?B?NkVsZjZyeVBSNE5jdFE2SFlLQmdGL3ZweUdrcGRoMkRiMkhMVENrVHNMZW1u?=
- =?utf-8?B?OGl1ek9zcEU2ajhMZjY5YnFEc3NMMjhYVTdPWFpzYitxMEhaaVc0WWV6aTZE?=
- =?utf-8?B?dkxheWlSK0xtOGhJUFhFdlBOSi80TkgwK0FEZmtIcHBLV0dqY2RNNFY4WHQv?=
- =?utf-8?B?ejZNVzJMTGtxOFNxMFlZVXJuTnF1ZXlKNjkvVFBtLytMdUNHK2Zrbzk1elgz?=
- =?utf-8?B?dlNpMGdMeEVDNUxLdFB5aWRqbUVFV0ZEWEFaYm81RkZmMmlVbVMrV04zWWY4?=
- =?utf-8?B?NW1ZUUlla2xuYU5hdWxIYWJlemF0OHhQYmc5YWUzWlQwNVdid0dxRnJKOENl?=
- =?utf-8?B?cmU0K0J2ZU5PTlp0QVIxUitYcHJIL1RJQnVjcUZLck1hNjM0S3N2aEUwM3c2?=
- =?utf-8?B?U29CTE1sWnZ4SWEzWk95MWRTV3BXbkZoU3FQbDBRV3hIYUtCTDJYTndCRFpC?=
- =?utf-8?B?eXFTRHFuTUIxRzFrRThRaktURGhBd3pvZTRFRUhzU3pBcXdvZmFYa1oxME90?=
- =?utf-8?B?TnFOTnRSc3k5RDUxVDZTUGxhVUREQW40TU9tTXlZTkg4V3VDNDY0anQ0Y25a?=
- =?utf-8?B?azRHV01YN1BuQnZMZVlJVE5XY2M4bDVQK2hnb1g2bGNFYzFjSFJDbEtFNzFP?=
- =?utf-8?B?bWFyQ0Y2bmt1QVB6ejZpNFdPY2pzbnUzNzdldDA3NlNSRDZLRnhiamMrWXpB?=
- =?utf-8?B?cHZRazNTVjlhMjFoVWg4Q1d3MFZwVUs2TWhpZWxieitnKzlSa1I1d0VkWWtG?=
- =?utf-8?B?U1dRRlBkc0hoTHdVaDY0ZHdtL3cvMnlJRWFZR1hBMWliOFUrMFI1MGpvdkVZ?=
- =?utf-8?B?WXNtYU9KOXNsemxYSS9DWlRSdTBjRnp5K3pyOUVlMWplaUNMR2hIdGhVYTBE?=
- =?utf-8?B?ejBTa1ExQkNjSm5hM2F5QkZFYS85WXcyeXFsVVIxZkpDQWhNT2lrTWJZQk5s?=
- =?utf-8?B?NTJ0NFEvc01QUHVialoxYWI5VUZvZ2NlSGJSSnRzbGNlYXdVSUpsQlZ3cEkr?=
- =?utf-8?B?dUFsVFBkSklnck1qZ3JqeU9xVDhlS2NucWI2TEJzZW1NTTZCdHR3NDFMR3l2?=
- =?utf-8?B?MkV5Y0FBV0FiQzhQY2pjaS9JLzdEY0VCUzV1Mm9EZG5tQUd6YjlrYTlKRFhq?=
- =?utf-8?B?ZnArU3dEeDNvcUcwamFTeHBjWlN4YUZGRFJwK1JBbWVma1Z6QS9BSXBiT0Yr?=
- =?utf-8?B?MlB4cFQ0LzVJdUVObUZNcXZzUFB0bmVacm1PMHJRbXN6L1YrZ3Y3MUo1UDhu?=
- =?utf-8?B?VkpDN0lrRzhuVHNNZFNndEZ1b0RVaXNaWXdOUFlWckJubHVOU2YyT3haQVhM?=
- =?utf-8?B?VVloQU1mejE1anBTR21zcjBVVm5nU3ptVHliM09XdHlEZlplMjl1elk4NStI?=
- =?utf-8?B?MHkwYzRGRFBrbDVmUDM1TnBxeHhSWkY4ODVGazlaZGQ2Z2s5amJxMHVrcTha?=
- =?utf-8?B?MEhvdzJaa2NWRXZDRmZJQ3A0dHRub2tMS0taY3h3dzFHcmxjbmhweEV2b0wx?=
- =?utf-8?B?TjQydk1FSGh3K1ZzUlJjWUlhSnhUbElidzNqU05VbmU1L1hkMlprSkFGY2Qv?=
- =?utf-8?B?QnFGZ2ZKTVBwY2JhTkdleWZOWDJhd252OUQvVitPYTJ4RHZRa24vdUZkWVRH?=
- =?utf-8?B?emdSRnNDd2ZWZUZ4ZmRPOG5hOEMvVE5Hai9oWVdnOTJIT3l6aWY5eGI2SlZY?=
- =?utf-8?B?dFFlUkNVM2tpckVvZWQ1NkRDUlU2M0dNSHU4SXhQRVFDeE1LRUU3d3JVSEts?=
- =?utf-8?B?OHB3M05FMGJnaW5hdkh6QXpMQjZlamwvVUF5Y2s0OGJjZjBndWpmc1RKZ2g2?=
- =?utf-8?B?T0VMNEVWMnNLWHMvYmYrMWMwYzdNM2sxVEVHdHgwS3NOL1Z2Zk5aTjdEL1JI?=
- =?utf-8?B?cER1RVVVa2lFNVhJUU01azlQNjljTndiaUdocVZNeERtOEYwOTAvSjlJZ2kr?=
- =?utf-8?B?ejF6bVRsazQyUDFkY2tBdWh6QVVhKzMxTU9FblJLWFIwTmpUYkhmVjNUczJx?=
- =?utf-8?B?TXZjam5CNWxWT0VUbStqdDFqYm1CVUhtVWpBZ0QzaHNBYTF4QmNmb3JneStG?=
- =?utf-8?B?ZzZtL1QvaTc4UnJpcTBvemVoYUg3MFk0eStIWWV3K0loUlNGMWJXY3FaZm1y?=
- =?utf-8?B?V3NoYXYrN3JxRlBYaFVWb1l4dWM3QTBCSFlaakg1aWVRL3JWS3Rpa3RmSUEz?=
- =?utf-8?B?NUQ1WDdRNy94YmZndXh6YWdzNFJyWUdCNzVYMVVhZmg2UndSY3FOMG5MdU9u?=
- =?utf-8?B?Um91Ti8xN3l5dlJ1UEtxTGtLMURTbU5OanpiSVJEV3UwMVNobytDNW4wMW82?=
- =?utf-8?Q?8GljIb3CE7NI4IhA=3D?=
-X-Exchange-RoutingPolicyChecked: HGsSSuNtd09xi2Jny79TkBJ8DYH4LdexfXgsC6XWbV41p5e3d7eUr2XdNf0XfC9ITK5Ohc1ztr0qxT6W+lkN7RRtXcu8itFkuN5KaGjMSKFw3ykN16yNG3ibtULkNlx6dWdK9hkxI4nycYF8CAgqZ+L6+cfRq+RubbEFnIGWxY1EJHXGNXF5u0yoeBLnK/TmqTLUM6wJOKICA1MivNgqfdAYl17oEk0BYWCH88kmfOC1wVooGpey7r93YGfoP6Wkfyaq5cPuak4qCF9woX7+2m9XE1X6wQGCJR+enSf/k19NvcRQgjhulKvtgdbaefTGZFe0JNvlD+CMcr5vUFZ+uA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 89371969-4263-4a18-bcdb-08de8fd18a77
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6207.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Apr 2026 09:32:06.8470 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0+PLCikFrCmYho+NtiZN5oM17q69ssD8NXK1Ho7c0MbRHMYwILct9Q/eG2yBBTIRSqcpM+PCX9+ro7zsoMcrT+xXgFRXGzctrL8s3WOh774=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB6742
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -173,262 +72,398 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-On 31-03-2026 03:53 pm, Raag Jadav wrote:
-> Add initial support for correctable error handling which is serviced
-> using system controller event. Currently we only log the errors in
-> dmesg but this serves as a foundation for RAS infrastructure and will
-> be further extended to facilitate other RAS features.
+On Tue, 31 Mar 2026, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Tue, Mar 31, 2026 at 02:40:54PM +0300, Jani Nikula wrote:
+>> Convert the VLV sideband static inline wrappers into real
+>> functions. This will help the follow-up work of moving the VLV sideband
+>> to the display parent interface.
+>>=20
+>> The downside is that we'll have to build vlv_sideband.c as part of xe
+>> build, to avoid a plethora of stubs.
+>>=20
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>>=20
+>> ---
+>>=20
+>> 'git show --color-moved' will help review
 >
-> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> ---
-> v4: Fix Severity/Component logging (Mallesh)
-> v4: s/xe_ras_error/xe_ras_error_class (Riana)
-> ---
->   drivers/gpu/drm/xe/Makefile           |  1 +
->   drivers/gpu/drm/xe/xe_ras.c           | 90 +++++++++++++++++++++++++++
->   drivers/gpu/drm/xe/xe_ras.h           | 14 +++++
->   drivers/gpu/drm/xe/xe_ras_types.h     | 73 ++++++++++++++++++++++
->   drivers/gpu/drm/xe/xe_sysctrl_event.c |  3 +-
->   5 files changed, 180 insertions(+), 1 deletion(-)
->   create mode 100644 drivers/gpu/drm/xe/xe_ras.c
->   create mode 100644 drivers/gpu/drm/xe/xe_ras.h
->   create mode 100644 drivers/gpu/drm/xe/xe_ras_types.h
+> If only --color-moved and --word-diff could play nice...
+
+Aye.
+
+> For some other other patches --word-diff alone seemed pretty good
+> fortunately.
+
+--word-diff-regex=3D"\w+" or some other tweak also improves it sometimes.
+
+> Series is
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+
+Thanks, pushed the lot to din.
+
+BR,
+Jani.
+
 >
-> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> index 593b359bbaca..1ecafb854355 100644
-> --- a/drivers/gpu/drm/xe/Makefile
-> +++ b/drivers/gpu/drm/xe/Makefile
-> @@ -113,6 +113,7 @@ xe-y += xe_bb.o \
->   	xe_pxp_submit.o \
->   	xe_query.o \
->   	xe_range_fence.o \
-> +	xe_ras.o \
->   	xe_reg_sr.o \
->   	xe_reg_whitelist.o \
->   	xe_ring_ops.o \
-> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-> new file mode 100644
-> index 000000000000..4048350def97
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_ras.c
-> @@ -0,0 +1,90 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright © 2026 Intel Corporation
-> + */
-> +
-> +#include "xe_assert.h"
-> +#include "xe_printk.h"
-> +#include "xe_ras.h"
-> +#include "xe_ras_types.h"
-> +#include "xe_sysctrl.h"
-> +#include "xe_sysctrl_event_types.h"
-> +
-> +/* Severity of detected errors  */
-> +enum xe_ras_severity {
-> +	XE_RAS_SEV_NOT_SUPPORTED = 0,
-> +	XE_RAS_SEV_CORRECTABLE,
-> +	XE_RAS_SEV_UNCORRECTABLE,
-> +	XE_RAS_SEV_INFORMATIONAL,
-> +	XE_RAS_SEV_MAX
-> +};
-> +
-> +/* Major IP blocks/components where errors can originate */
-> +enum xe_ras_component {
-> +	XE_RAS_COMP_NOT_SUPPORTED = 0,
-> +	XE_RAS_COMP_DEVICE_MEMORY,
-> +	XE_RAS_COMP_CORE_COMPUTE,
-> +	XE_RAS_COMP_RESERVED,
-> +	XE_RAS_COMP_PCIE,
-> +	XE_RAS_COMP_FABRIC,
-> +	XE_RAS_COMP_SOC_INTERNAL,
-> +	XE_RAS_COMP_MAX
-> +};
-> +
-> +static const char *const xe_ras_severities[] = {
-> +	[XE_RAS_SEV_NOT_SUPPORTED]		= "Not Supported",
-> +	[XE_RAS_SEV_CORRECTABLE]		= "Correctable",
-> +	[XE_RAS_SEV_UNCORRECTABLE]		= "Uncorrectable",
-> +	[XE_RAS_SEV_INFORMATIONAL]		= "Informational",
-> +};
-Please use a blank line after structure declaration
-> +static_assert(ARRAY_SIZE(xe_ras_severities) == XE_RAS_SEV_MAX);
-> +
-> +static const char *const xe_ras_components[] = {
-> +	[XE_RAS_COMP_NOT_SUPPORTED]		= "Not Supported",
-> +	[XE_RAS_COMP_DEVICE_MEMORY]		= "Device Memory",
-> +	[XE_RAS_COMP_CORE_COMPUTE]		= "Core Compute",
-> +	[XE_RAS_COMP_RESERVED]			= "Reserved",
-> +	[XE_RAS_COMP_PCIE]			= "PCIe",
-> +	[XE_RAS_COMP_FABRIC]			= "Fabric",
-> +	[XE_RAS_COMP_SOC_INTERNAL]		= "SoC Internal",
-> +};
-Same here
-> +static_assert(ARRAY_SIZE(xe_ras_components) == XE_RAS_COMP_MAX);
-> +
-> +static inline const char *sev_to_str(struct xe_device *xe, u32 sev)
-> +{
-> +	xe_assert(xe, sev < XE_RAS_SEV_MAX);
-> +
-> +	return sev < XE_RAS_SEV_MAX ? xe_ras_severities[sev] : "Unknown";
-> +}
-> +
-> +static inline const char *comp_to_str(struct xe_device *xe, u32 comp)
-> +{
-> +	xe_assert(xe, comp < XE_RAS_COMP_MAX);
-> +
-> +	return comp < XE_RAS_COMP_MAX ? xe_ras_components[comp] : "Unknown";
-> +}
-> +
-> +void xe_ras_threshold_crossed(struct xe_sysctrl *sc, struct xe_sysctrl_event_response *response)
-> +{
-> +	struct xe_ras_threshold_crossed_data *pending = (void *)&response->data;
-> +	struct xe_ras_error_class *errors = pending->counters;
-> +	struct xe_device *xe = sc_to_xe(sc);
-> +	u32 cid, sev, comp, inst, cause;
-> +	u8 tile;
-> +
-> +	BUILD_BUG_ON(sizeof(response->data) < sizeof(*pending));
-> +	xe_assert(xe, pending->ncounters < XE_RAS_NUM_COUNTERS);
+>> ---
+>>  drivers/gpu/drm/i915/display/vlv_sideband.c | 125 +++++++++++++++
+>>  drivers/gpu/drm/i915/display/vlv_sideband.h | 165 ++++----------------
+>>  drivers/gpu/drm/xe/Makefile                 |   3 +-
+>>  3 files changed, 156 insertions(+), 137 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/vlv_sideband.c b/drivers/gpu/d=
+rm/i915/display/vlv_sideband.c
+>> index e18045f2b89d..2472e0412728 100644
+>> --- a/drivers/gpu/drm/i915/display/vlv_sideband.c
+>> +++ b/drivers/gpu/drm/i915/display/vlv_sideband.c
+>> @@ -8,6 +8,71 @@
+>>  #include "intel_dpio_phy.h"
+>>  #include "vlv_sideband.h"
+>>=20=20
+>> +void vlv_bunit_get(struct drm_device *drm)
+>> +{
+>> +	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_BUNIT));
+>> +}
+>> +
+>> +u32 vlv_bunit_read(struct drm_device *drm, u32 reg)
+>> +{
+>> +	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_BUNIT, reg);
+>> +}
+>> +
+>> +void vlv_bunit_write(struct drm_device *drm, u32 reg, u32 val)
+>> +{
+>> +	vlv_iosf_sb_write(drm, VLV_IOSF_SB_BUNIT, reg, val);
+>> +}
+>> +
+>> +void vlv_bunit_put(struct drm_device *drm)
+>> +{
+>> +	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_BUNIT));
+>> +}
+>> +
+>> +void vlv_cck_get(struct drm_device *drm)
+>> +{
+>> +	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_CCK));
+>> +}
+>> +
+>> +u32 vlv_cck_read(struct drm_device *drm, u32 reg)
+>> +{
+>> +	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_CCK, reg);
+>> +}
+>> +
+>> +void vlv_cck_write(struct drm_device *drm, u32 reg, u32 val)
+>> +{
+>> +	vlv_iosf_sb_write(drm, VLV_IOSF_SB_CCK, reg, val);
+>> +}
+>> +
+>> +void vlv_cck_put(struct drm_device *drm)
+>> +{
+>> +	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_CCK));
+>> +}
+>> +
+>> +void vlv_ccu_get(struct drm_device *drm)
+>> +{
+>> +	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_CCU));
+>> +}
+>> +
+>> +u32 vlv_ccu_read(struct drm_device *drm, u32 reg)
+>> +{
+>> +	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_CCU, reg);
+>> +}
+>> +
+>> +void vlv_ccu_write(struct drm_device *drm, u32 reg, u32 val)
+>> +{
+>> +	vlv_iosf_sb_write(drm, VLV_IOSF_SB_CCU, reg, val);
+>> +}
+>> +
+>> +void vlv_ccu_put(struct drm_device *drm)
+>> +{
+>> +	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_CCU));
+>> +}
+>> +
+>> +void vlv_dpio_get(struct drm_device *drm)
+>> +{
+>> +	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_DPIO) | BIT(VLV_IOSF_SB_DPIO_2));
+>> +}
+>> +
+>>  static enum vlv_iosf_sb_unit vlv_dpio_phy_to_unit(struct intel_display =
+*display,
+>>  						  enum dpio_phy phy)
+>>  {
+>> @@ -48,3 +113,63 @@ void vlv_dpio_write(struct drm_device *drm,
+>>=20=20
+>>  	vlv_iosf_sb_write(drm, unit, reg, val);
+>>  }
+>> +
+>> +void vlv_dpio_put(struct drm_device *drm)
+>> +{
+>> +	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_DPIO) | BIT(VLV_IOSF_SB_DPIO_2));
+>> +}
+>> +
+>> +void vlv_flisdsi_get(struct drm_device *drm)
+>> +{
+>> +	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_FLISDSI));
+>> +}
+>> +
+>> +u32 vlv_flisdsi_read(struct drm_device *drm, u32 reg)
+>> +{
+>> +	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_FLISDSI, reg);
+>> +}
+>> +
+>> +void vlv_flisdsi_write(struct drm_device *drm, u32 reg, u32 val)
+>> +{
+>> +	vlv_iosf_sb_write(drm, VLV_IOSF_SB_FLISDSI, reg, val);
+>> +}
+>> +
+>> +void vlv_flisdsi_put(struct drm_device *drm)
+>> +{
+>> +	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_FLISDSI));
+>> +}
+>> +
+>> +void vlv_nc_get(struct drm_device *drm)
+>> +{
+>> +	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_NC));
+>> +}
+>> +
+>> +u32 vlv_nc_read(struct drm_device *drm, u8 addr)
+>> +{
+>> +	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_NC, addr);
+>> +}
+>> +
+>> +void vlv_nc_put(struct drm_device *drm)
+>> +{
+>> +	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_NC));
+>> +}
+>> +
+>> +void vlv_punit_get(struct drm_device *drm)
+>> +{
+>> +	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_PUNIT));
+>> +}
+>> +
+>> +u32 vlv_punit_read(struct drm_device *drm, u32 addr)
+>> +{
+>> +	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_PUNIT, addr);
+>> +}
+>> +
+>> +int vlv_punit_write(struct drm_device *drm, u32 addr, u32 val)
+>> +{
+>> +	return vlv_iosf_sb_write(drm, VLV_IOSF_SB_PUNIT, addr, val);
+>> +}
+>> +
+>> +void vlv_punit_put(struct drm_device *drm)
+>> +{
+>> +	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_PUNIT));
+>> +}
+>> diff --git a/drivers/gpu/drm/i915/display/vlv_sideband.h b/drivers/gpu/d=
+rm/i915/display/vlv_sideband.h
+>> index 2c240d81fead..065273726379 100644
+>> --- a/drivers/gpu/drm/i915/display/vlv_sideband.h
+>> +++ b/drivers/gpu/drm/i915/display/vlv_sideband.h
+>> @@ -4,7 +4,6 @@
+>>  #ifndef _VLV_SIDEBAND_H_
+>>  #define _VLV_SIDEBAND_H_
+>>=20=20
+>> -#include <linux/bitops.h>
+>>  #include <linux/types.h>
+>>=20=20
+>>  #include "vlv_iosf_sb.h"
+>> @@ -13,144 +12,38 @@
+>>  enum dpio_phy;
+>>  struct drm_device;
+>>=20=20
+>> -static inline void vlv_bunit_get(struct drm_device *drm)
+>> -{
+>> -	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_BUNIT));
+>> -}
+>> +void vlv_bunit_get(struct drm_device *drm);
+>> +u32 vlv_bunit_read(struct drm_device *drm, u32 reg);
+>> +void vlv_bunit_write(struct drm_device *drm, u32 reg, u32 val);
+>> +void vlv_bunit_put(struct drm_device *drm);
+>>=20=20
+>> -static inline u32 vlv_bunit_read(struct drm_device *drm, u32 reg)
+>> -{
+>> -	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_BUNIT, reg);
+>> -}
+>> +void vlv_cck_get(struct drm_device *drm);
+>> +u32 vlv_cck_read(struct drm_device *drm, u32 reg);
+>> +void vlv_cck_write(struct drm_device *drm, u32 reg, u32 val);
+>> +void vlv_cck_put(struct drm_device *drm);
+>>=20=20
+>> -static inline void vlv_bunit_write(struct drm_device *drm, u32 reg, u32=
+ val)
+>> -{
+>> -	vlv_iosf_sb_write(drm, VLV_IOSF_SB_BUNIT, reg, val);
+>> -}
+>> +void vlv_ccu_get(struct drm_device *drm);
+>> +u32 vlv_ccu_read(struct drm_device *drm, u32 reg);
+>> +void vlv_ccu_write(struct drm_device *drm, u32 reg, u32 val);
+>> +void vlv_ccu_put(struct drm_device *drm);
+>>=20=20
+>> -static inline void vlv_bunit_put(struct drm_device *drm)
+>> -{
+>> -	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_BUNIT));
+>> -}
+>> -
+>> -static inline void vlv_cck_get(struct drm_device *drm)
+>> -{
+>> -	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_CCK));
+>> -}
+>> -
+>> -static inline u32 vlv_cck_read(struct drm_device *drm, u32 reg)
+>> -{
+>> -	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_CCK, reg);
+>> -}
+>> -
+>> -static inline void vlv_cck_write(struct drm_device *drm, u32 reg, u32 v=
+al)
+>> -{
+>> -	vlv_iosf_sb_write(drm, VLV_IOSF_SB_CCK, reg, val);
+>> -}
+>> -
+>> -static inline void vlv_cck_put(struct drm_device *drm)
+>> -{
+>> -	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_CCK));
+>> -}
+>> -
+>> -static inline void vlv_ccu_get(struct drm_device *drm)
+>> -{
+>> -	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_CCU));
+>> -}
+>> -
+>> -static inline u32 vlv_ccu_read(struct drm_device *drm, u32 reg)
+>> -{
+>> -	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_CCU, reg);
+>> -}
+>> -
+>> -static inline void vlv_ccu_write(struct drm_device *drm, u32 reg, u32 v=
+al)
+>> -{
+>> -	vlv_iosf_sb_write(drm, VLV_IOSF_SB_CCU, reg, val);
+>> -}
+>> -
+>> -static inline void vlv_ccu_put(struct drm_device *drm)
+>> -{
+>> -	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_CCU));
+>> -}
+>> -
+>> -static inline void vlv_dpio_get(struct drm_device *drm)
+>> -{
+>> -	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_DPIO) | BIT(VLV_IOSF_SB_DPIO_2));
+>> -}
+>> -
+>> -#ifdef I915
+>> +void vlv_dpio_get(struct drm_device *drm);
+>>  u32 vlv_dpio_read(struct drm_device *drm, enum dpio_phy phy, int reg);
+>> -void vlv_dpio_write(struct drm_device *drm,
+>> -		    enum dpio_phy phy, int reg, u32 val);
+>> -#else
+>> -static inline u32 vlv_dpio_read(struct drm_device *drm, int phy, int re=
+g)
+>> -{
+>> -	return 0;
+>> -}
+>> -static inline void vlv_dpio_write(struct drm_device *drm,
+>> -				  int phy, int reg, u32 val)
+>> -{
+>> -}
+>> -#endif
+>> -
+>> -static inline void vlv_dpio_put(struct drm_device *drm)
+>> -{
+>> -	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_DPIO) | BIT(VLV_IOSF_SB_DPIO_2));
+>> -}
+>> -
+>> -static inline void vlv_flisdsi_get(struct drm_device *drm)
+>> -{
+>> -	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_FLISDSI));
+>> -}
+>> -
+>> -static inline u32 vlv_flisdsi_read(struct drm_device *drm, u32 reg)
+>> -{
+>> -	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_FLISDSI, reg);
+>> -}
+>> -
+>> -static inline void vlv_flisdsi_write(struct drm_device *drm, u32 reg, u=
+32 val)
+>> -{
+>> -	vlv_iosf_sb_write(drm, VLV_IOSF_SB_FLISDSI, reg, val);
+>> -}
+>> -
+>> -static inline void vlv_flisdsi_put(struct drm_device *drm)
+>> -{
+>> -	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_FLISDSI));
+>> -}
+>> -
+>> -static inline void vlv_nc_get(struct drm_device *drm)
+>> -{
+>> -	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_NC));
+>> -}
+>> -
+>> -static inline u32 vlv_nc_read(struct drm_device *drm, u8 addr)
+>> -{
+>> -	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_NC, addr);
+>> -}
+>> -
+>> -static inline void vlv_nc_put(struct drm_device *drm)
+>> -{
+>> -	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_NC));
+>> -}
+>> -
+>> -static inline void vlv_punit_get(struct drm_device *drm)
+>> -{
+>> -	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_PUNIT));
+>> -}
+>> -
+>> -static inline u32 vlv_punit_read(struct drm_device *drm, u32 addr)
+>> -{
+>> -	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_PUNIT, addr);
+>> -}
+>> -
+>> -static inline int vlv_punit_write(struct drm_device *drm, u32 addr, u32=
+ val)
+>> -{
+>> -	return vlv_iosf_sb_write(drm, VLV_IOSF_SB_PUNIT, addr, val);
+>> -}
+>> -
+>> -static inline void vlv_punit_put(struct drm_device *drm)
+>> -{
+>> -	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_PUNIT));
+>> -}
+>> +void vlv_dpio_write(struct drm_device *drm, enum dpio_phy phy, int reg,=
+ u32 val);
+>> +void vlv_dpio_put(struct drm_device *drm);
+>> +
+>> +void vlv_flisdsi_get(struct drm_device *drm);
+>> +u32 vlv_flisdsi_read(struct drm_device *drm, u32 reg);
+>> +void vlv_flisdsi_write(struct drm_device *drm, u32 reg, u32 val);
+>> +void vlv_flisdsi_put(struct drm_device *drm);
+>> +
+>> +void vlv_nc_get(struct drm_device *drm);
+>> +u32 vlv_nc_read(struct drm_device *drm, u8 addr);
+>> +void vlv_nc_put(struct drm_device *drm);
+>> +
+>> +void vlv_punit_get(struct drm_device *drm);
+>> +u32 vlv_punit_read(struct drm_device *drm, u32 addr);
+>> +int vlv_punit_write(struct drm_device *drm, u32 addr, u32 val);
+>> +void vlv_punit_put(struct drm_device *drm);
+>>=20=20
+>>  #endif /* _VLV_SIDEBAND_H_ */
+>> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+>> index 9dacb0579a7d..7960c2db33bd 100644
+>> --- a/drivers/gpu/drm/xe/Makefile
+>> +++ b/drivers/gpu/drm/xe/Makefile
+>> @@ -332,7 +332,8 @@ xe-$(CONFIG_DRM_XE_DISPLAY) +=3D \
+>>  	i915-display/skl_prefill.o \
+>>  	i915-display/skl_scaler.o \
+>>  	i915-display/skl_universal_plane.o \
+>> -	i915-display/skl_watermark.o
+>> +	i915-display/skl_watermark.o \
+>> +	i915-display/vlv_sideband.o
+>>=20=20
+>>  ifeq ($(CONFIG_ACPI),y)
+>>  	xe-$(CONFIG_DRM_XE_DISPLAY) +=3D \
+>> --=20
+>> 2.47.3
 
-Boundary check is required, in production line xe_assert as no_op.
-
-Thanks,
-
--/Mallesh
-
-> +	xe_warn(xe, "[RAS]: counter threshold crossed, %u new errors\n", pending->ncounters);
-> +
-> +	for (cid = 0; cid < pending->ncounters && cid < XE_RAS_NUM_COUNTERS; cid++) {
-> +		sev = errors[cid].common.severity;
-> +		comp = errors[cid].common.component;
-> +
-> +		tile = errors[cid].product.unit.tile;
-> +		inst = errors[cid].product.unit.instance;
-> +		cause = errors[cid].product.cause.cause;
-> +
-> +		xe_warn(xe, "[RAS]: Tile:%u Instance:%u Component:%s Error:%s Cause:%#x\n",
-> +			tile, inst, comp_to_str(xe, comp), sev_to_str(xe, sev), cause);
-> +	}
-> +}
-> diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
-> new file mode 100644
-> index 000000000000..92ee93d4e877
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_ras.h
-> @@ -0,0 +1,14 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2026 Intel Corporation
-> + */
-> +
-> +#ifndef _XE_RAS_H_
-> +#define _XE_RAS_H_
-> +
-> +struct xe_sysctrl;
-> +struct xe_sysctrl_event_response;
-> +
-> +void xe_ras_threshold_crossed(struct xe_sysctrl *sc, struct xe_sysctrl_event_response *response);
-> +
-> +#endif
-> diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
-> new file mode 100644
-> index 000000000000..0e3ba9e81538
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_ras_types.h
-> @@ -0,0 +1,73 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2026 Intel Corporation
-> + */
-> +
-> +#ifndef _XE_RAS_TYPES_H_
-> +#define _XE_RAS_TYPES_H_
-> +
-> +#include <linux/types.h>
-> +
-> +#define XE_RAS_NUM_COUNTERS			16
-> +
-> +/**
-> + * struct xe_ras_error_common - Error fields that are common across all products
-> + */
-> +struct xe_ras_error_common {
-> +	/** @severity: Error severity */
-> +	u8 severity;
-> +	/** @component: IP block where error originated */
-> +	u8 component;
-> +} __packed;
-> +
-> +/**
-> + * struct xe_ras_error_unit - Error unit information
-> + */
-> +struct xe_ras_error_unit {
-> +	/** @tile: Tile identifier */
-> +	u8 tile;
-> +	/** @instance: Instance identifier specific to IP */
-> +	u32 instance;
-> +} __packed;
-> +
-> +/**
-> + * struct xe_ras_error_cause - Error cause information
-> + */
-> +struct xe_ras_error_cause {
-> +	/** @cause: Cause/checker */
-> +	u32 cause;
-> +	/** @reserved: For future use */
-> +	u8 reserved;
-> +} __packed;
-> +
-> +/**
-> + * struct xe_ras_error_product - Error fields that are specific to the product
-> + */
-> +struct xe_ras_error_product {
-> +	/** @unit: Unit within IP block */
-> +	struct xe_ras_error_unit unit;
-> +	/** @cause: Cause/checker */
-> +	struct xe_ras_error_cause cause;
-> +} __packed;
-> +
-> +/**
-> + * struct xe_ras_error_class - Combines common and product-specific parts
-> + */
-> +struct xe_ras_error_class {
-> +	/** @common: Common error type and component */
-> +	struct xe_ras_error_common common;
-> +	/** @product: Product-specific unit and cause */
-> +	struct xe_ras_error_product product;
-> +} __packed;
-> +
-> +/**
-> + * struct xe_ras_threshold_crossed_data - Data for threshold crossed event
-> + */
-> +struct xe_ras_threshold_crossed_data {
-> +	/** @ncounters: Number of error counters that crossed thresholds */
-> +	u32 ncounters;
-> +	/** @counters: Array of error counters that crossed threshold */
-> +	struct xe_ras_error_class counters[XE_RAS_NUM_COUNTERS];
-> +} __packed;
-> +
-> +#endif
-> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_event.c b/drivers/gpu/drm/xe/xe_sysctrl_event.c
-> index 800d100f09c5..139ecd4aafcd 100644
-> --- a/drivers/gpu/drm/xe/xe_sysctrl_event.c
-> +++ b/drivers/gpu/drm/xe/xe_sysctrl_event.c
-> @@ -6,6 +6,7 @@
->   #include "xe_device.h"
->   #include "xe_irq.h"
->   #include "xe_printk.h"
-> +#include "xe_ras.h"
->   #include "xe_sysctrl.h"
->   #include "xe_sysctrl_event_types.h"
->   #include "xe_sysctrl_mailbox.h"
-> @@ -38,7 +39,7 @@ static void xe_sysctrl_get_pending_event(struct xe_sysctrl *sc,
->   		}
->   
->   		if (response.event == XE_SYSCTRL_EVENT_THRESHOLD_CROSSED) {
-> -			xe_warn(xe, "[RAS]: error counter threshold crossed\n");
-> +			xe_ras_threshold_crossed(sc, &response);
->   		} else {
->   			xe_err(xe, "sysctrl: unexpected event %#x\n", response.event);
->   			return;
+--=20
+Jani Nikula, Intel
