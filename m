@@ -4,162 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFA07D3515C
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Apr 2026 09:56:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15030D35168
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Apr 2026 10:02:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 584A310E332;
-	Wed,  1 Apr 2026 09:56:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C29F010E628;
+	Wed,  1 Apr 2026 10:02:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RaIdlsgm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JHtYzMWs";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD99E10ECD8
- for <intel-xe@lists.freedesktop.org>; Wed,  1 Apr 2026 09:56:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7168A10E51B;
+ Wed,  1 Apr 2026 10:02:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775037401; x=1806573401;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=zgY00vjCgDQjOxeTd0I385OFN1pSpl14QGshg+pi59c=;
- b=RaIdlsgm1mDcMrg1qIVayzyEtVaglDglc1ob9JktAozmLdysPas2oOIi
- BouSb6TqVX/Lptsg/5rlLRe4Ygd/tjP3+8e6XsTmseZEIFVJ6nkY66aB3
- 7hSqjuQx6fGTKkPH4WkasE+p+uwiXNsQQIkaeKLBPPqG2itJVT48he/yC
- M55621h4tIwScsyL1DikBFyReSeIim9mL64bZeqArq664dZBhoFHVHZI1
- hOmI0cfTHRj0LdblBxj4I+xOFs91fmt4FskJlPwN8NnQ7MypFlK1M61IZ
- EMhTpVr2GsG7KBcQQ7X44dFQ5jXoEU+YkRRvYRE7fprGo7/UwBLbrlmFp g==;
-X-CSE-ConnectionGUID: aZGmxK3IRX6i4l7t5Bra6A==
-X-CSE-MsgGUID: fjKmw2tHQXSwQDU5QiMtwA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="75242820"
-X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="75242820"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2026 02:56:40 -0700
-X-CSE-ConnectionGUID: CJbNZ5G7TMSoeg8NzJyzsw==
-X-CSE-MsgGUID: hANw46THTOaVJgLrMpochw==
+ t=1775037747; x=1806573747;
+ h=date:from:to:cc:subject:in-reply-to:message-id:
+ references:mime-version;
+ bh=aTIoQqT8t8nzJeWXByiXioHmBiQnxFbHyCZwQa4Lvcg=;
+ b=JHtYzMWsvdioEOXGSI3zzrZZH4MysNUOCjONDU4PGDWq8OWsgI57h1UN
+ OUnobhA1yxQgdGC2pXVPt8ptcdisWTTI/N+nHL0Nlavof7ER9cpliF1iP
+ NzYVvNvqLwPHHmp6l3JDgx0fOFTQO7R8GCTxm7G+ludUAkB1wletLlZiA
+ E+WCx5wtMhy8TIhpWnfdysHMdmV7zEqvG7iPGT4F4mGsR1ERwmS6ZnYI5
+ VBCDLgsfPTBDT1C7lM2kWHaqYDtshqB4kVKlXB3ZG8lEocBVC6UCwhfre
+ vP8+k7iyTy6fGFtkLjliunPPEjcm843QAk+a6lNHKtK4Gyg864yz7XZ+V Q==;
+X-CSE-ConnectionGUID: sku56EQCT9mLbQBxPDteGQ==
+X-CSE-MsgGUID: upSsrPd1Rg+Tfd17Y+lx+w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="76084243"
+X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="76084243"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2026 03:02:26 -0700
+X-CSE-ConnectionGUID: qY35MH84QUSfX1Brr0NAaQ==
+X-CSE-MsgGUID: H6Ri5C//SYC5m2QGXAhYFg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="223339603"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2026 02:56:40 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 1 Apr 2026 02:56:40 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 1 Apr 2026 02:56:40 -0700
-Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.13) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 1 Apr 2026 02:56:39 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=UAPIZc9wJ24OPQ7UgW1POqO4HOfLxvYOLjaSW8s8Vpyj6NREVf2Wc/FD54e+UDs5qVIXLIuBAk+Ys4iz5DeJmLVSv7CJyF8VlZtaDYpCIy/ic1ia1tdV5cz8enLE1YxRtndOIgKxsDsAM/nHVQjsMh6hBTaehaZVizYv91WEF6ivL6Nw1YaAVzC/6JipHXDGmRrf4jcytvXHhJykNusc+2QjnQRWb5bkaU2kc1jOYrtqIBy5Cidi1L2Gjk7PWUVK848DJz5UWkVXK/JAk3mPWamWxWDN3s3HgwqRSXByLYbvM3XPiN2q/LR27mERJyg2YCNB8fnf7QY0ca0ZIt7Fzw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GkLaCdRmI7+cvdriZce6VRMMv8B5PpErv5It6jAzGjs=;
- b=jRpTH1InFXGFSeEWbpf8PkF2WgYPDC+qcfmqyODZoKZquW3GQ+TAzR/F6gJ2BqB2PjmHQELJhdPHrmNlNMYLFxDAogoexHnKRV6jNSAH2IrlB2mXmp5Zd2yEk3wuZamTRwSawk7zkEH1uqTJ1aVrGRZKmCvBLdsLW2flT9W4iiToMX6v+KLduemEyW2sOqCNBeU9AgRXFm1jbIeulSelV4xtuhb+zRSe1454qmsH5LZpm4Qgv0Fyxjup6K83foRIXzPBaC5flKVI5nTQW36cH9g4so6LpJZA4V17RUl2OMwVJawJLGV/xycuk1kkXkC6bBI08+IOT7QLxW0q+13DsA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6207.namprd11.prod.outlook.com (2603:10b6:208:3c5::21)
- by PH7PR11MB7641.namprd11.prod.outlook.com (2603:10b6:510:27b::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.15; Wed, 1 Apr
- 2026 09:56:37 +0000
-Received: from MN0PR11MB6207.namprd11.prod.outlook.com
- ([fe80::52eb:929f:a8b2:139d]) by MN0PR11MB6207.namprd11.prod.outlook.com
- ([fe80::52eb:929f:a8b2:139d%5]) with mapi id 15.20.9769.014; Wed, 1 Apr 2026
- 09:56:37 +0000
-Message-ID: <29060666-f93b-44af-96e0-576b41db6ff8@intel.com>
-Date: Wed, 1 Apr 2026 15:26:28 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] drm/xe/sysctrl: Add system controller interrupt
- handler
-To: Raag Jadav <raag.jadav@intel.com>, <intel-xe@lists.freedesktop.org>
-CC: <matthew.brost@intel.com>, <rodrigo.vivi@intel.com>,
- <riana.tauro@intel.com>, <michal.wajdeczko@intel.com>,
- <matthew.d.roper@intel.com>, <umesh.nerlige.ramappa@intel.com>,
- <soham.purkait@intel.com>, <anoop.c.vijay@intel.com>,
- <aravind.iddamsetty@linux.intel.com>
-References: <20260331102346.1034100-1-raag.jadav@intel.com>
- <20260331102346.1034100-2-raag.jadav@intel.com>
-Content-Language: en-US
-From: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>
-In-Reply-To: <20260331102346.1034100-2-raag.jadav@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA0PR01CA0036.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:81::12) To MN0PR11MB6207.namprd11.prod.outlook.com
- (2603:10b6:208:3c5::21)
+X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="222266186"
+Received: from administrator-system-product-name.igk.intel.com
+ ([10.91.214.181])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2026 03:02:24 -0700
+Date: Wed, 1 Apr 2026 12:02:22 +0200 (CEST)
+From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
+To: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
+cc: =?ISO-8859-15?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ Nemesa Garg <nemesa.garg@intel.com>
+Subject: Re: [PATCH 3/9] drm/i915/casf: Move the casf state to better place
+In-Reply-To: <e65216e2-461a-9286-644c-1653d12aad87@intel.com>
+Message-ID: <e23a0dc1-832a-db15-0166-5ac29105fde5@intel.com>
+References: <20260326223139.19116-1-ville.syrjala@linux.intel.com>
+ <20260326223139.19116-4-ville.syrjala@linux.intel.com>
+ <e45e984b-2087-2683-0cfb-33569562f1f1@intel.com> <acZcKlDoZBwZT9wD@intel.com>
+ <e65216e2-461a-9286-644c-1653d12aad87@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6207:EE_|PH7PR11MB7641:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8d5bc5dc-7355-4955-707f-08de8fd4f709
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|18002099003|22082099003|56012099003; 
-X-Microsoft-Antispam-Message-Info: nAig1bcCxKbAT+/lhxOcMFuwh4YTWe404AhflKIEAf663o4cFILpT3DqrFLmimdO9/53da9nRbhuJfeE/Wx75ES2eqh7ed7gEKUxj+Eoi17NOSa8Bn8mPHTfwA5mfBAlAvbvWe1U3w9FvTJx9v+Yk3UbZU60IpG/cx5mEqYtXgF3FP5PslpLLlMgpp7i+Z92p8HZNw2ImXmd2L3aWRq90W0qqyyXHGKBTK7eEpPdDf1+VaMacqRAN3DGg9B48JeFASqg8hu38wMVw7bQpCu1JzrrDyFKArWnlwt0BUlZoN4KgH1bUY1hXkLKtvXGAAPcnjv7FWCU9qvX0sRlU0Bt8U3yVqFxSQ+qkxTGmrLPWQUicLOC5ekU2kv7AUsJf1h82rW7K1op8t9mtsOIl7uB1WhgrFFXAQVca3xjB9nOekj1IMjx35usM/cehcyjI89tfj9tN9RwEfBdJFzN+huYOzwprjzDw9ZQkqFDBgTBZM6NxnDznlKGYxfhiRH+CqJI0Jjjg7O1vr8EtBWKhJilDS2e/5mOr0UAE2aPzgONY1s+kmIkn07/cM8Z/lBZnkkIc8nS64FojvWBwzYmM/CCKIuCmdoIMQLosXnTUNW4+MOuQ+X4ZUJ8PiedDfnKuSgzdDC29R/gHpn3NwD1TiNoMfWl3vo/W355bZyDrQD4z1aA3n51l47S3/83Bsc59AokbIbk7wkLEvt4XJgf5cGeHw0DP5in1YSLksPdUFQ6+Uk=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6207.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(18002099003)(22082099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aklzMmZCU3JtU3pMSC9BWlhHcWRiMkFQdnZrdmRCQlRJRDhPUWFDL2EvdDRM?=
- =?utf-8?B?TWx3R3BZd2doeFh5ckhEWnNuNUMwUVRRZk0wSDhWbVppb1R4anNRL1pMbnhz?=
- =?utf-8?B?MHV0S3BEZXBwRWpMNEpDbkc1ZzFxQzJhaEZUUGFQeloxUUszcDdGRVJ3Ymox?=
- =?utf-8?B?c09uVlhHUmxwQlRlZmxpcWVTc2pXMXBTV2lWeGpEZFROeFV3UnBmOHB2TCtU?=
- =?utf-8?B?NUJ5cS9CSW9EM1d0RE5IYW5vVy9ZeWZIaDRPZmUzL3c5NlJFalc3T2plemFR?=
- =?utf-8?B?Y2ZYMHBiMzkzc2JYSlNHemUvRzl5R01RYWdrNFQ3ekhScGlobHFONkF3Nkth?=
- =?utf-8?B?RHdsMUNOaDFMb0xXTW4yZnF1S3VzOGlqajl5c3NkOUZHanRyV2VEU0NlOGVI?=
- =?utf-8?B?a1RJRW42UVk1amZMWWhVcVd4Y3o1NkhzdzN6a3d5dDdyNzlodXRSVFJDOCs5?=
- =?utf-8?B?VTR5cWxwQytWaEtTclBDQ1crZEc5T2UzMjdodnAxeFRjZXBSQXBMaXp3enFN?=
- =?utf-8?B?a0tvZXBvZUlXZ1NKcmdmRnNVSjRaSnR2N2RRYnFiRkJJeXRnS0M2WEpuZVZL?=
- =?utf-8?B?UU8yLzQxZ2NoNTNXbW4wNDZMbks5K1MzcW4zU1VlZm94Yk1sVWl0MDJ0eEQ0?=
- =?utf-8?B?aXRSYm45c25wd0hON3ZUbjBFVWpTc1g4NlJkVk8yL3hZbDZMa3UxaFlpbHlO?=
- =?utf-8?B?MjFwcDluWUowdndibmh3alA1VXJYTnVISGF3YnlEU3dmR2loRnpQV09BaHBm?=
- =?utf-8?B?dXNsRTg0VitPT05WTEVVOWlON3kwSjF5bmFWbWM5QzJDNzVhektTRUhJbzFL?=
- =?utf-8?B?V0RaQzFVTE1kOHZWYmJGRWZHMHFpT21qWHNMRUlyVXg0VGlxVVE4dXgzNTdY?=
- =?utf-8?B?VFMvTk82K3I5Mm85SjZwZjJkblk1MTM0Tk9kWHZGSndmb1VUMmFrUGpKVzBJ?=
- =?utf-8?B?WmJBV1lreGlKd210V2haMW5QM2I5bEVweDVDb1hXWmxXWnVGOW1vME44bUhQ?=
- =?utf-8?B?eENKQllSek4rNUhjVUhtMXNBWEdKK2o5WDRwd0h6Smc2VWYzampROVU4N09H?=
- =?utf-8?B?V05HbzVJd0QzblQva0Rxa3JQMXNJWDlSa3ovUWo4UWU3VFNuTE5YV1kvMWxu?=
- =?utf-8?B?bDVrZjJaa1JrT3J2VjBDazVxVi90Wml4aVd0V3ZGTi81UmVjeGprVXlGYzl4?=
- =?utf-8?B?OU5MVjNtUGpvZTV4NXM5UHR3ZnRWR3phaTZXdTB3SDkvVmxSdE41bTNGSUZL?=
- =?utf-8?B?UkNIRUdiVkRPS3YrQllNV21CeXM5cmlmekF0MXY2YS9lMmFDSnFCT3NETndV?=
- =?utf-8?B?NHhGZ3hVU2pxMzd0K1FaYWRPNlR4RGdHV1RXRTRPMEUwdlZOOXFyQWxsZUFj?=
- =?utf-8?B?d1VZbDdvUXVBSmJFTFd2RmhKSit5WWxJTytkQkhZbThCM3o1NDB6UUVOb0pI?=
- =?utf-8?B?RDMwOXp6bTkydm5NejFmb2VkMU1yT3dYVCsxNktVeU5zZkhSWEdvTURaMkd0?=
- =?utf-8?B?M0gzYitVcVVrK1VuZVlYQkVNbDhuN0w4b1JQR0FIWjh6bXcvREhqbWdFV3hh?=
- =?utf-8?B?ZkNlUnBYUjZRUlpFREdlaXZPeDlySTVOUGQvZEd6NGg0LzZFb2F0cUE0U1pw?=
- =?utf-8?B?bDk3aXNscEJKb3hGZGg1ZXc3Vm9ReVBvbmlGTFBzTm1pU2thSHRBSjdjMlF4?=
- =?utf-8?B?SFU1bVlVV1c3aEdiR21wRWxaZ1BHSU9EZU4zcFZwdnVCd0RuUFZZUU5NYyt3?=
- =?utf-8?B?YkY3Njl0ME5lY1lTOFJvOVdxb1I2MHBFZ0Y5dmFJT01mSFdqZ1dIVzRFZ3F4?=
- =?utf-8?B?Tk1zSWdBcVk1Wm1JUHFOMW9hc1R0NEI2OGZWVEE2SmR0cmtEWVVmU0xLbE5P?=
- =?utf-8?B?L2lYV1VuYTZYb1BLcGpMRlBOcnUraXRxM2xna3FqUVFmUWsrL2FyTk15dzUr?=
- =?utf-8?B?SjFnMHZtcDJjS1lwdFJVenUrY2YrOUx5MEZCT2lTQW5scVQzSlRFTGNFMnJa?=
- =?utf-8?B?TEVKemVSTXZycmMyUjF3bGtZWlRUdGpYblpEQVVtVWFXWURPQ3g3M0d5NjBX?=
- =?utf-8?B?eldvdnN1ZmdiVWFLbEtxRHN5Q3Z5cEFCRzJwaXpSeHdqeXlBT25YbnZGV3p1?=
- =?utf-8?B?Q0xsQ1ZRRGJxMDAzV0NFb2E1emVQUitDUFhjOUhPL2VScmt0SFR3aTFrUWVL?=
- =?utf-8?B?TEVSVUh5Qmk2RDlyOHZ2R1lDQlBOaEJ1TVFVNGFtTnJITDltUEZUbmxNWGpY?=
- =?utf-8?B?bG9WYXp5WDhxZnFUMTQvOC96VWZvdVpuWjN4ZC85c3YvclZVSHRaYm8vNFJX?=
- =?utf-8?B?MVJCcG15dXFGWjR6ditDYURrdGljdTFSL0EvL0NQNUo0R1ZqRzVJeUFnNXBw?=
- =?utf-8?Q?OOO6xFx0Pqw5JLGA=3D?=
-X-Exchange-RoutingPolicyChecked: HletZBR8Cj3ibVxJSE3ydACaope2PgctqxwGjfh+Mt9ko7/aQNof5LqlcU9Oee+we17RQoIctjrIKioJcExj7q5G/4DozCd0p/GvbrpWxEn4fgK4PB/ydFMfThWcUpowifZgFi6v8qLwYxJ2L0jNZtuukv3o1iyLgNr8HBNFdzOc5ETOj9PFNbJd0sxZmC6jQyjgZerp17kPtGnIO0FI3utcVmMEOKwt7MZVdqYZBk/sORIaRXG7ItOeG3dZB8u9/3FR0rHKiwElZ+pGdAFFHU8IQKjw1i21ea5Llp26WkxQf5YtQEUzzWQt5S2gJnTp/lKB5LxS0mEqL55MDLH+gQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8d5bc5dc-7355-4955-707f-08de8fd4f709
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6207.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Apr 2026 09:56:37.4652 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: b77Uj1VUG3/m4owuiIBKli+t1hD9PxhfAIMp2Oyd+MXvTTwXzryDwf1RXwS4DpAhnIEh+qpG6s6oN+YtUFeKB8H8MKqUOV3X65tZsFzAqx0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7641
-X-OriginatorOrg: intel.com
+Content-Type: multipart/mixed; boundary="8323329-524334150-1775037745=:1776952"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -174,172 +71,376 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-On 31-03-2026 03:53 pm, Raag Jadav wrote:
-> Add system controller interrupt handler which is denoted by 11th bit in
-> GFX master interrupt register. While at it, add worker for scheduling
-> system controller work.
->
-> Co-developed-by: Soham Purkait <soham.purkait@intel.com>
-> Signed-off-by: Soham Purkait <soham.purkait@intel.com>
-> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-LGTM,
-Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+--8323329-524334150-1775037745=:1776952
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8BIT
 
-> ---
-> v2: Use system_percpu_wq instead of dedicated (Matthew Brost)
-> v4: Handle IRQ before sysctrl initialization (Mallesh)
-> ---
->   drivers/gpu/drm/xe/regs/xe_irq_regs.h |  1 +
->   drivers/gpu/drm/xe/xe_irq.c           |  2 ++
->   drivers/gpu/drm/xe/xe_sysctrl.c       | 39 ++++++++++++++++++++++-----
->   drivers/gpu/drm/xe/xe_sysctrl.h       |  1 +
->   drivers/gpu/drm/xe/xe_sysctrl_types.h |  7 +++++
->   5 files changed, 44 insertions(+), 6 deletions(-)
+On Sat, 28 Mar 2026, Michał Grzelak wrote:
+> On Fri, 27 Mar 2026, Ville Syrjälä wrote:
+>> On Fri, Mar 27, 2026 at 10:10:26AM +0100, Michał Grzelak wrote:
+>>> On Thu, 26 Mar 2026, Ville Syrjala wrote:
+>>>> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>>>> 
+>>>> The casf state is placed inside the 'hw' state for some reason.
+>>>> That is only really meant for things we have to duplicate from
+>>>> the uapi state. The rest can live on its own in our actual state.
+>>>> 
+>>>> And since casf is just one aspect of the pfit/pipe scaler the
+>>>> proper place for it seems to be under pch_pfit.
+>>>> 
+>>>> Cc: Nemesa Garg <nemesa.garg@intel.com>
+>>>> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>>>> ---
+>>>> drivers/gpu/drm/i915/display/intel_casf.c     | 40 +++++++++----------
+>>>> .../drm/i915/display/intel_crtc_state_dump.c  |  6 +--
+>>>> drivers/gpu/drm/i915/display/intel_display.c  | 12 +++---
+>>>> .../drm/i915/display/intel_display_types.h    |  2 +-
+>>>> drivers/gpu/drm/i915/display/skl_scaler.c     |  4 +-
+>>>> 5 files changed, 32 insertions(+), 32 deletions(-)
+>>>> 
+>>>> diff --git a/drivers/gpu/drm/i915/display/intel_casf.c 
+>>>> b/drivers/gpu/drm/i915/display/intel_casf.c
+>>>> index 4316d8214e80..5a8ffb40d30d 100644
+>>>> --- a/drivers/gpu/drm/i915/display/intel_casf.c
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_casf.c
+>>>> @@ -82,7 +82,7 @@ void intel_casf_update_strength(struct intel_crtc_state 
+>>>> *crtc_state)
+>>>> 	int win_size;
+>>>>
+>>>> 	intel_de_rmw(display, SHARPNESS_CTL(crtc->pipe), 
+>>>> FILTER_STRENGTH_MASK,
+>>>> -		     FILTER_STRENGTH(crtc_state->hw.casf_params.strength));
+>>>> +		     FILTER_STRENGTH(crtc_state->pch_pfit.casf.strength));
+>>>>
+>>>> 	win_size = intel_de_read(display, SKL_PS_WIN_SZ(crtc->pipe, 1));
+>>>> 
+>>>> @@ -95,11 +95,11 @@ static void intel_casf_compute_win_size(struct 
+>>>> intel_crtc_state *crtc_state)
+>>>> 	u32 total_pixels = mode->hdisplay * mode->vdisplay;
+>>>>
+>>>> 	if (total_pixels <= MAX_PIXELS_FOR_3_TAP_FILTER)
+>>>> -		crtc_state->hw.casf_params.win_size = 
+>>>> SHARPNESS_FILTER_SIZE_3X3;
+>>>> +		crtc_state->pch_pfit.casf.win_size = 
+>>>> SHARPNESS_FILTER_SIZE_3X3;
+>>>> 	else if (total_pixels <= MAX_PIXELS_FOR_5_TAP_FILTER)
+>>>> -		crtc_state->hw.casf_params.win_size = 
+>>>> SHARPNESS_FILTER_SIZE_5X5;
+>>>> +		crtc_state->pch_pfit.casf.win_size = 
+>>>> SHARPNESS_FILTER_SIZE_5X5;
+>>>> 	else
+>>>> -		crtc_state->hw.casf_params.win_size = 
+>>>> SHARPNESS_FILTER_SIZE_7X7;
+>>>> +		crtc_state->pch_pfit.casf.win_size = 
+>>>> SHARPNESS_FILTER_SIZE_7X7;
+>>>> }
+>>>> 
+>>>> int intel_casf_compute_config(struct intel_crtc_state *crtc_state)
+>>>> @@ -110,8 +110,8 @@ int intel_casf_compute_config(struct intel_crtc_state 
+>>>> *crtc_state)
+>>>> 		return 0;
+>>>>
+>>>> 	if (crtc_state->hw.sharpness_strength == 0) {
+>>>> -		crtc_state->hw.casf_params.enable = false;
+>>>> -		crtc_state->hw.casf_params.strength = 0;
+>>>> +		crtc_state->pch_pfit.casf.enable = false;
+>>>> +		crtc_state->pch_pfit.casf.strength = 0;
+>>>> 		return 0;
+>>>> 	}
+>>>> 
+>>>> @@ -121,7 +121,7 @@ int intel_casf_compute_config(struct intel_crtc_state 
+>>>> *crtc_state)
+>>>> 		return -EINVAL;
+>>>> 	}
+>>>> 
+>>>> -	crtc_state->hw.casf_params.enable = true;
+>>>> +	crtc_state->pch_pfit.casf.enable = true;
+>>>>
+>>>> 	/*
+>>>> 	 * HW takes a value in form (1.0 + strength) in 4.4 fixed format.
+>>>> @@ -131,7 +131,7 @@ int intel_casf_compute_config(struct intel_crtc_state 
+>>>> *crtc_state)
+>>>> 	 * 6.3125 in 4.4 format is b01100101 which is equal to 101.
+>>>> 	 * Also 85 + 16 = 101.
+>>>> 	 */
+>>>> -	crtc_state->hw.casf_params.strength =
+>>>> +	crtc_state->pch_pfit.casf.strength =
+>>>> 		min(crtc_state->hw.sharpness_strength, 0xEF) + 0x10;
+>>>>
+>>>> 	intel_casf_compute_win_size(crtc_state);
+>>>> @@ -151,19 +151,19 @@ void intel_casf_sharpness_get_config(struct 
+>>>> intel_crtc_state *crtc_state)
+>>>> 	if (sharp & FILTER_EN) {
+>>>> 		if (drm_WARN_ON(display->drm,
+>>>> 				REG_FIELD_GET(FILTER_STRENGTH_MASK, sharp) < 
+>>>> 16))
+>>>> -			crtc_state->hw.casf_params.strength = 0;
+>>>> +			crtc_state->pch_pfit.casf.strength = 0;
+>>>> 		else
+>>>> -			crtc_state->hw.casf_params.strength =
+>>>> +			crtc_state->pch_pfit.casf.strength =
+>>>> 				REG_FIELD_GET(FILTER_STRENGTH_MASK, sharp);
+>>>> -		crtc_state->hw.casf_params.enable = true;
+>>>> -		crtc_state->hw.casf_params.win_size =
+>>>> +		crtc_state->pch_pfit.casf.enable = true;
+>>>> +		crtc_state->pch_pfit.casf.win_size =
+>>>> 			REG_FIELD_GET(FILTER_SIZE_MASK, sharp);
+>>>> 	}
+>>>> }
+>>>> 
+>>>> bool intel_casf_needs_scaler(const struct intel_crtc_state *crtc_state)
+>>>> {
+>>>> -	if (crtc_state->hw.casf_params.enable)
+>>>> +	if (crtc_state->pch_pfit.casf.enable)
+>>>> 		return true;
+>>>>
+>>>> 	return false;
+>>>> @@ -179,7 +179,7 @@ static u32 casf_coeff(struct intel_crtc_state 
+>>>> *crtc_state, int t)
+>>>> 	struct scaler_filter_coeff value;
+>>>> 	u32 coeff;
+>>>> 
+>>>> -	value = crtc_state->hw.casf_params.coeff[t];
+>>>> +	value = crtc_state->pch_pfit.casf.coeff[t];
+>>> 
+>>> Unrelated topic: how you see such renaming?:
+>>> 
+>>> int t -> int tap
+>> 
+>> Probably a good idea. One character variable names aren't what
+>> you'd call descriptive. This probably got copied from the
+>> nearest neighbor filter code, so a rename should happen there too.
+>> 
+>> Or even better if someone gets rid of the duplicated code entirely
+>> and consolidates all the filter coefficient code to one place.
 >
-> diff --git a/drivers/gpu/drm/xe/regs/xe_irq_regs.h b/drivers/gpu/drm/xe/regs/xe_irq_regs.h
-> index 9d74f454d3ff..1d6b976c4de0 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_irq_regs.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_irq_regs.h
-> @@ -22,6 +22,7 @@
->   #define   DISPLAY_IRQ				REG_BIT(16)
->   #define   SOC_H2DMEMINT_IRQ			REG_BIT(13)
->   #define   I2C_IRQ				REG_BIT(12)
-> +#define   SYSCTRL_IRQ				REG_BIT(11)
->   #define   GT_DW_IRQ(x)				REG_BIT(x)
->   
->   /*
-> diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-> index 9a775c6588dc..e9f0b3cad06d 100644
-> --- a/drivers/gpu/drm/xe/xe_irq.c
-> +++ b/drivers/gpu/drm/xe/xe_irq.c
-> @@ -24,6 +24,7 @@
->   #include "xe_mmio.h"
->   #include "xe_pxp.h"
->   #include "xe_sriov.h"
-> +#include "xe_sysctrl.h"
->   #include "xe_tile.h"
->   
->   /*
-> @@ -525,6 +526,7 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
->   				xe_heci_csc_irq_handler(xe, master_ctl);
->   			xe_display_irq_handler(xe, master_ctl);
->   			xe_i2c_irq_handler(xe, master_ctl);
-> +			xe_sysctrl_irq_handler(xe, master_ctl);
->   			xe_mert_irq_handler(xe, master_ctl);
->   			gu_misc_iir = gu_misc_irq_ack(xe, master_ctl);
->   		}
-> diff --git a/drivers/gpu/drm/xe/xe_sysctrl.c b/drivers/gpu/drm/xe/xe_sysctrl.c
-> index 2bcef304eb9a..afa9654668a2 100644
-> --- a/drivers/gpu/drm/xe/xe_sysctrl.c
-> +++ b/drivers/gpu/drm/xe/xe_sysctrl.c
-> @@ -8,6 +8,7 @@
->   
->   #include <drm/drm_managed.h>
->   
-> +#include "regs/xe_irq_regs.h"
->   #include "regs/xe_sysctrl_regs.h"
->   #include "xe_device.h"
->   #include "xe_mmio.h"
-> @@ -30,10 +31,16 @@
->   static void sysctrl_fini(void *arg)
->   {
->   	struct xe_device *xe = arg;
-> +	struct xe_sysctrl *sc = &xe->sc;
->   
-> +	cancel_work_sync(&sc->work);
->   	xe->soc_remapper.set_sysctrl_region(xe, 0);
->   }
->   
-> +static void xe_sysctrl_work(struct work_struct *work)
-> +{
-> +}
-> +
->   /**
->    * xe_sysctrl_init() - Initialize System Controller subsystem
->    * @xe: xe device instance
-> @@ -55,11 +62,7 @@ int xe_sysctrl_init(struct xe_device *xe)
->   	if (!xe->info.has_sysctrl)
->   		return 0;
->   
-> -	xe->soc_remapper.set_sysctrl_region(xe, SYSCTRL_MAILBOX_INDEX);
-> -
-> -	ret = devm_add_action_or_reset(xe->drm.dev, sysctrl_fini, xe);
-> -	if (ret)
-> -		return ret;
-> +	xe_assert(xe, xe->soc_remapper.set_sysctrl_region);
->   
->   	sc->mmio = devm_kzalloc(xe->drm.dev, sizeof(*sc->mmio), GFP_KERNEL);
->   	if (!sc->mmio)
-> @@ -73,9 +76,33 @@ int xe_sysctrl_init(struct xe_device *xe)
->   	if (ret)
->   		return ret;
->   
-> +	ret = devm_mutex_init(xe->drm.dev, &sc->work_lock);
-> +	if (ret)
-> +		return ret;
-> +
-> +	xe->soc_remapper.set_sysctrl_region(xe, SYSCTRL_MAILBOX_INDEX);
->   	xe_sysctrl_mailbox_init(sc);
-> +	INIT_WORK(&sc->work, xe_sysctrl_work);
->   
-> -	return 0;
-> +	return devm_add_action_or_reset(xe->drm.dev, sysctrl_fini, xe);
-> +}
-> +
-> +/**
-> + * xe_sysctrl_irq_handler() - Handler for System Controller interrupts
-> + * @xe: xe device instance
-> + * @master_ctl: interrupt register
-> + *
-> + * Handle interrupts generated by System Controller.
-> + */
-> +void xe_sysctrl_irq_handler(struct xe_device *xe, u32 master_ctl)
-> +{
-> +	struct xe_sysctrl *sc = &xe->sc;
-> +
-> +	if (!xe->info.has_sysctrl || !sc->work.func)
-> +		return;
-> +
-> +	if (master_ctl & SYSCTRL_IRQ)
-> +		schedule_work(&sc->work);
->   }
->   
->   /**
-> diff --git a/drivers/gpu/drm/xe/xe_sysctrl.h b/drivers/gpu/drm/xe/xe_sysctrl.h
-> index f3b0f3716b2f..f7469bfc9324 100644
-> --- a/drivers/gpu/drm/xe/xe_sysctrl.h
-> +++ b/drivers/gpu/drm/xe/xe_sysctrl.h
-> @@ -17,6 +17,7 @@ static inline struct xe_device *sc_to_xe(struct xe_sysctrl *sc)
->   }
->   
->   int xe_sysctrl_init(struct xe_device *xe);
-> +void xe_sysctrl_irq_handler(struct xe_device *xe, u32 master_ctl);
->   void xe_sysctrl_pm_resume(struct xe_device *xe);
->   
->   #endif
-> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_types.h b/drivers/gpu/drm/xe/xe_sysctrl_types.h
-> index 8217f6befe70..13fbf2990280 100644
-> --- a/drivers/gpu/drm/xe/xe_sysctrl_types.h
-> +++ b/drivers/gpu/drm/xe/xe_sysctrl_types.h
-> @@ -8,6 +8,7 @@
->   
->   #include <linux/mutex.h>
->   #include <linux/types.h>
-> +#include <linux/workqueue_types.h>
->   
->   struct xe_mmio;
->   
-> @@ -27,6 +28,12 @@ struct xe_sysctrl {
->   
->   	/** @phase_bit: Message boundary phase toggle bit (0 or 1) */
->   	bool phase_bit;
-> +
-> +	/** @work: Pending events work */
-> +	struct work_struct work;
-> +
-> +	/** @work_lock: Mutex protecting pending events */
-> +	struct mutex work_lock;
->   };
->   
->   #endif
+> I'd give it a shot but I genuinely don't know where to search for
+> nearest neighbor filter. I searched for possible declarations of int t,
+> but it didn't show anything relevant. Can you point to where should I
+> start looking?
+
+Nevermind the question, apparently I crossed my eyes when looking at
+cscope's search. *facepalm*.
+
+BR,
+Michał
+
+>>>> 	value.sign = 0;
+>>>>
+>>>> 	coeff = value.sign << 15 | value.exp << 12 | value.mantissa << 3;
+>>>> @@ -189,7 +189,7 @@ static u32 casf_coeff(struct intel_crtc_state 
+>>>> *crtc_state, int t)
+>>>> /*
+>>>>  * 17 phase of 7 taps requires 119 coefficients in 60 dwords per set.
+>>>>  * To enable casf:  program scaler coefficients with the coeffients
+>>>> - * that are calculated and stored in hw.casf_params.coeff as per
+>>>> + * that are calculated and stored in pch_pfit.casf.coeff as per
+>>>>  * SCALER_COEFFICIENT_FORMAT
+>>>>  */
+>>>> static void intel_casf_write_coeff(struct intel_crtc_state *crtc_state)
+>>>> @@ -247,9 +247,9 @@ void intel_casf_scaler_compute_config(struct 
+>>>> intel_crtc_state *crtc_state)
+>>>> 	u16 sumcoeff = 0;
+>>> 
+>>> Unrelated to the change: some variables have been named as sumcoeff and
+>>> others as filter_*coeff{_1,_2,_3}*. How you see renaming:
+>>> 
+>>> u16 sumcoeff -> u16 sum_coeff
+>>> 
+>>> But I might be again missing common codestyle.
+>> 
+>> We generally use the underscore_style for things. So I wouldn't
+>> mind the rename.
+>
+> In that case I should probably rename filtercoeff as well. But since
+> filter_coeff is already used and global, I guess it would require more
+> vigilance then the simple rename above. Do you have any hints on how to
+> handle it without breaking everything?
+>
+> BR,
+> Michał
+>
+>> 
+>>> 
+>>> Reviewed-by: Michał Grzelak <michal.grzelak@intel.com>
+>> 
+>> Ta.
+>> 
+>>> 
+>>> BR,
+>>> Michał
+>>>
+>>>> 	int i;
+>>>> 
+>>>> -	if (crtc_state->hw.casf_params.win_size == 0)
+>>>> +	if (crtc_state->pch_pfit.casf.win_size == 0)
+>>>> 		filtercoeff = filtercoeff_1;
+>>>> -	else if (crtc_state->hw.casf_params.win_size == 1)
+>>>> +	else if (crtc_state->pch_pfit.casf.win_size == 1)
+>>>> 		filtercoeff = filtercoeff_2;
+>>>> 	else
+>>>> 		filtercoeff = filtercoeff_3;
+>>>> @@ -259,7 +259,7 @@ void intel_casf_scaler_compute_config(struct 
+>>>> intel_crtc_state *crtc_state)
+>>>>
+>>>> 	for (i = 0; i < SCALER_FILTER_NUM_TAPS; i++) {
+>>>> 		filter_coeff[i] = (*(filtercoeff + i) * 100 / sumcoeff);
+>>>> - 
+>>>> convert_sharpness_coef_binary(&crtc_state->hw.casf_params.coeff[i],
+>>>> + 
+>>>> convert_sharpness_coef_binary(&crtc_state->pch_pfit.casf.coeff[i],
+>>>> 					      filter_coeff[i]);
+>>>> 	}
+>>>> }
+>>>> @@ -274,9 +274,9 @@ void intel_casf_enable(struct intel_crtc_state 
+>>>> *crtc_state)
+>>>>
+>>>> 	intel_casf_write_coeff(crtc_state);
+>>>> 
+>>>> -	sharpness_ctl = FILTER_EN | 
+>>>> FILTER_STRENGTH(crtc_state->hw.casf_params.strength);
+>>>> +	sharpness_ctl = FILTER_EN | 
+>>>> FILTER_STRENGTH(crtc_state->pch_pfit.casf.strength);
+>>>> 
+>>>> -	sharpness_ctl |= crtc_state->hw.casf_params.win_size;
+>>>> +	sharpness_ctl |= crtc_state->pch_pfit.casf.win_size;
+>>>>
+>>>> 	intel_de_write(display, SHARPNESS_CTL(crtc->pipe), sharpness_ctl);
+>>>> 
+>>>> diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c 
+>>>> b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+>>>> index 10a9b51337fa..95993f8e5d0d 100644
+>>>> --- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+>>>> @@ -382,9 +382,9 @@ void intel_crtc_state_dump(const struct 
+>>>> intel_crtc_state *pipe_config,
+>>>> 	intel_vdsc_state_dump(&p, 0, pipe_config);
+>>>>
+>>>> 	drm_printf(&p, "sharpness strength: %d, sharpness tap size: %d, 
+>>>> sharpness enable: %d\n",
+>>>> -		   pipe_config->hw.casf_params.strength,
+>>>> -		   pipe_config->hw.casf_params.win_size,
+>>>> -		   pipe_config->hw.casf_params.enable);
+>>>> +		   pipe_config->pch_pfit.casf.strength,
+>>>> +		   pipe_config->pch_pfit.casf.win_size,
+>>>> +		   pipe_config->pch_pfit.casf.enable);
+>>>> 
+>>>> dump_planes:
+>>>> 	if (!state)
+>>>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c 
+>>>> b/drivers/gpu/drm/i915/display/intel_display.c
+>>>> index a02c58b5a34d..e02e69467871 100644
+>>>> --- a/drivers/gpu/drm/i915/display/intel_display.c
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>>>> @@ -994,7 +994,7 @@ static bool intel_casf_enabling(const struct 
+>>>> intel_crtc_state *new_crtc_state,
+>>>> 	if (!new_crtc_state->hw.active)
+>>>> 		return false;
+>>>> 
+>>>> -	return is_enabling(hw.casf_params.enable, old_crtc_state, 
+>>>> new_crtc_state);
+>>>> +	return is_enabling(pch_pfit.casf.enable, old_crtc_state, 
+>>>> new_crtc_state);
+>>>> }
+>>>> 
+>>>> static bool intel_casf_disabling(const struct intel_crtc_state 
+>>>> *old_crtc_state,
+>>>> @@ -1003,7 +1003,7 @@ static bool intel_casf_disabling(const struct 
+>>>> intel_crtc_state *old_crtc_state,
+>>>> 	if (!new_crtc_state->hw.active)
+>>>> 		return false;
+>>>> 
+>>>> -	return is_disabling(hw.casf_params.enable, old_crtc_state, 
+>>>> new_crtc_state);
+>>>> +	return is_disabling(pch_pfit.casf.enable, old_crtc_state, 
+>>>> new_crtc_state);
+>>>> }
+>>>> 
+>>>> static bool intel_crtc_lobf_enabling(const struct intel_crtc_state 
+>>>> *old_crtc_state,
+>>>> @@ -5370,12 +5370,12 @@ intel_pipe_config_compare(const struct 
+>>>> intel_crtc_state *current_config,
+>>>>
+>>>> 		PIPE_CONF_CHECK_BOOL(pch_pfit.enabled);
+>>>> 		PIPE_CONF_CHECK_RECT(pch_pfit.dst);
+>>>> +		PIPE_CONF_CHECK_BOOL(pch_pfit.casf.enable);
+>>>> +		PIPE_CONF_CHECK_I(pch_pfit.casf.win_size);
+>>>> +		PIPE_CONF_CHECK_I(pch_pfit.casf.strength);
+>>>>
+>>>> 		PIPE_CONF_CHECK_I(scaler_state.scaler_id);
+>>>> 		PIPE_CONF_CHECK_I(pixel_rate);
+>>>> -		PIPE_CONF_CHECK_BOOL(hw.casf_params.enable);
+>>>> -		PIPE_CONF_CHECK_I(hw.casf_params.win_size);
+>>>> -		PIPE_CONF_CHECK_I(hw.casf_params.strength);
+>>>>
+>>>> 		PIPE_CONF_CHECK_X(gamma_mode);
+>>>> 		if (display->platform.cherryview)
+>>>> @@ -6819,7 +6819,7 @@ static void intel_pre_update_crtc(struct 
+>>>> intel_atomic_state *state,
+>>>>
+>>>> 	if (intel_casf_enabling(new_crtc_state, old_crtc_state))
+>>>> 		intel_casf_enable(new_crtc_state);
+>>>> -	else if (new_crtc_state->hw.casf_params.strength != 
+>>>> old_crtc_state->hw.casf_params.strength)
+>>>> +	else if (new_crtc_state->pch_pfit.casf.strength != 
+>>>> old_crtc_state->pch_pfit.casf.strength)
+>>>> 		intel_casf_update_strength(new_crtc_state);
+>>>>
+>>>> 	intel_fbc_update(state, crtc);
+>>>> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h 
+>>>> b/drivers/gpu/drm/i915/display/intel_display_types.h
+>>>> index af0d870de342..ca2581fb7bbd 100644
+>>>> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+>>>> @@ -1037,7 +1037,6 @@ struct intel_crtc_state {
+>>>> 		struct drm_display_mode mode, pipe_mode, adjusted_mode;
+>>>> 		enum drm_scaling_filter scaling_filter;
+>>>> 		u8 sharpness_strength;
+>>>> -		struct intel_casf casf_params;
+>>>> 	} hw;
+>>>>
+>>>> 	/* actual state of LUTs */
+>>>> @@ -1224,6 +1223,7 @@ struct intel_crtc_state {
+>>>>
+>>>> 	/* Panel fitter placement and size for Ironlake+ */
+>>>> 	struct {
+>>>> +		struct intel_casf casf;
+>>>> 		struct drm_rect dst;
+>>>> 		bool enabled;
+>>>> 		bool force_thru;
+>>>> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c 
+>>>> b/drivers/gpu/drm/i915/display/skl_scaler.c
+>>>> index cfa17ddb4018..e9fe5c0bf6ff 100644
+>>>> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
+>>>> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+>>>> @@ -986,13 +986,13 @@ void skl_scaler_get_config(struct intel_crtc_state 
+>>>> *crtc_state)
+>>>> 		if (HAS_CASF(display) && id == 1)
+>>>> 			intel_casf_sharpness_get_config(crtc_state);
+>>>> 
+>>>> -		if (!crtc_state->hw.casf_params.enable)
+>>>> +		if (!crtc_state->pch_pfit.casf.enable)
+>>>> 			crtc_state->pch_pfit.enabled = true;
+>>>>
+>>>> 		pos = intel_de_read(display, SKL_PS_WIN_POS(crtc->pipe, i));
+>>>> 		size = intel_de_read(display, SKL_PS_WIN_SZ(crtc->pipe, i));
+>>>> 
+>>>> -		if (!crtc_state->hw.casf_params.enable)
+>>>> +		if (!crtc_state->pch_pfit.casf.enable)
+>>>> 			drm_rect_init(&crtc_state->pch_pfit.dst,
+>>>> 				      REG_FIELD_GET(PS_WIN_XPOS_MASK, pos),
+>>>> 				      REG_FIELD_GET(PS_WIN_YPOS_MASK, pos),
+>>>> --
+>>>> 2.52.0
+>>>> 
+>>>> 
+>> 
+>> 
+>> -- 
+>> Ville Syrjälä
+>> Intel
+>
+--8323329-524334150-1775037745=:1776952--
