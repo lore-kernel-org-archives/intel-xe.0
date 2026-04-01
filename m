@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5525F10F9315
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Apr 2026 01:31:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AABA610F9317
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Apr 2026 01:40:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF82310E99E;
-	Wed,  1 Apr 2026 01:31:23 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JOCUpiIo";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0641B10E99E
- for <intel-xe@lists.freedesktop.org>; Wed,  1 Apr 2026 01:31:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775007082; x=1806543082;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=LBBciOesyTS297Y8fKj0ypr3RsztpiUhEWjep+6LKLQ=;
- b=JOCUpiIoKKH0wBkqhbYld4zCXYTkNq1EtcTQ5i6raJbXK2wasnS2bFjP
- ByMIOQ3uKiY02F+jaCVT0ZfuwXMVw6G+McJvXnpHa+XPtIUT1gM/+TkBi
- gjp+AAd9x1aXmhAb/zMZ5LVqMpFEVEz/exC2i87XYAfRcXGoveFeFWXSr
- ThYrbIqc/DxngRDrdp+Kyo+Ncy0QOBDUtKv1VD996UZEkXi1yGBoHpUpb
- MWFt8heLZGJPByK3RFDQfSonzSMIZ4i8EItAKmVyp4wyiHgjSw7jG73jS
- LOxVwbQgrAj5wYDUik2kcuhjzN8TpWenhM2rASBJOpXy2UswgSHDGS+8c Q==;
-X-CSE-ConnectionGUID: cz+iPjxGRQ666VBUhOPxMA==
-X-CSE-MsgGUID: pGu00+17TqKRzulgIzZxLg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="78630477"
-X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="78630477"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 18:31:22 -0700
-X-CSE-ConnectionGUID: 4mf858X1TLOsWGwdNOjRwA==
-X-CSE-MsgGUID: wXHLFiwPS6Orl23kpPuxsA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="230954736"
-Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.39.23])
- by orviesa004.jf.intel.com with ESMTP; 31 Mar 2026 18:31:21 -0700
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
-Subject: [PATCH] drm/xe: Fix bug in idledly unit conversion
-Date: Tue, 31 Mar 2026 18:27:10 -0700
-Message-Id: <20260401012710.4165547-1-vinay.belgaumkar@intel.com>
-X-Mailer: git-send-email 2.38.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 436BB10EBE0;
+	Wed,  1 Apr 2026 01:40:17 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C58610EBE0;
+ Wed,  1 Apr 2026 01:40:16 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8210367836700280244=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFULL=3A_failure_for_drm/xe/uapi=3A_Update_xe?=
+ =?utf-8?q?=5Fdrm=2Eh_documentation_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Shuicheng Lin" <shuicheng.lin@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 01 Apr 2026 01:40:16 -0000
+Message-ID: <177500761603.420766.12270121507554741012@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260331172049.3053871-7-shuicheng.lin@intel.com>
+In-Reply-To: <20260331172049.3053871-7-shuicheng.lin@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,33 +36,133 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We only need to convert to picosecond units before writing to RING_IDLEDLY.
+--===============8210367836700280244==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Fixes: 7c53ff050ba8 ("drm/xe: Apply Wa_16023105232")
-Cc: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
----
- drivers/gpu/drm/xe/xe_hw_engine.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 337baf0a6e87..6dd05fac6595 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -597,9 +597,8 @@ static void adjust_idledly(struct xe_hw_engine *hwe)
- 		maxcnt *= maxcnt_units_ns;
- 
- 		if (xe_gt_WARN_ON(gt, idledly >= maxcnt || inhibit_switch)) {
--			idledly = DIV_ROUND_CLOSEST(((maxcnt - 1) * maxcnt_units_ns),
-+			idledly = DIV_ROUND_CLOSEST(((maxcnt - 1) * 1000),
- 						    idledly_units_ps);
--			idledly = DIV_ROUND_CLOSEST(idledly, 1000);
- 			xe_mmio_write32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base), idledly);
- 		}
- 	}
--- 
-2.38.1
+Series: drm/xe/uapi: Update xe_drm.h documentation (rev2)
+URL   : https://patchwork.freedesktop.org/series/161217/
+State : failure
 
+== Summary ==
+
+CI Bug Log - changes from xe-4827-779129c7868f4c7205901d6e57b25de52b411d1c_FULL -> xe-pw-161217v2_FULL
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-161217v2_FULL absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-161217v2_FULL, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (2 -> 2)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-161217v2_FULL:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_fault_injection@inject-fault-probe-function-xe_guc_ct_init:
+    - shard-lnl:          [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4827-779129c7868f4c7205901d6e57b25de52b411d1c/shard-lnl-2/igt@xe_fault_injection@inject-fault-probe-function-xe_guc_ct_init.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161217v2/shard-lnl-1/igt@xe_fault_injection@inject-fault-probe-function-xe_guc_ct_init.html
+
+  
+
+
+Build changes
+-------------
+
+  * Linux: xe-4827-779129c7868f4c7205901d6e57b25de52b411d1c -> xe-pw-161217v2
+
+  IGT_8839: 8839
+  xe-4827-779129c7868f4c7205901d6e57b25de52b411d1c: 779129c7868f4c7205901d6e57b25de52b411d1c
+  xe-pw-161217v2: 161217v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161217v2/index.html
+
+--===============8210367836700280244==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/uapi: Update xe_drm.h documentation (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161217/">https://patchwork.freedesktop.org/series/161217/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161217v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161217v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4827-779129c7868f4c7205901d6e57b25de52b411d1c_FULL -&gt; xe-pw-161217v2_FULL</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-161217v2_FULL absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-161217v2_FULL, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (2 -&gt; 2)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-161217v2_FULL:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_fault_injection@inject-fault-probe-function-xe_guc_ct_init:<ul>
+<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4827-779129c7868f4c7205901d6e57b25de52b411d1c/shard-lnl-2/igt@xe_fault_injection@inject-fault-probe-function-xe_guc_ct_init.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161217v2/shard-lnl-1/igt@xe_fault_injection@inject-fault-probe-function-xe_guc_ct_init.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4827-779129c7868f4c7205901d6e57b25de52b411d1c -&gt; xe-pw-161217v2</li>
+</ul>
+<p>IGT_8839: 8839<br />
+  xe-4827-779129c7868f4c7205901d6e57b25de52b411d1c: 779129c7868f4c7205901d6e57b25de52b411d1c<br />
+  xe-pw-161217v2: 161217v2</p>
+
+</body>
+</html>
+
+--===============8210367836700280244==--
