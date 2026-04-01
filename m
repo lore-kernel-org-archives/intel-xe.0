@@ -4,58 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 286CB10FCAC0
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Apr 2026 18:21:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07735D3517F
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Apr 2026 20:14:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACA5F10EED1;
-	Wed,  1 Apr 2026 18:21:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B674710E5ED;
+	Wed,  1 Apr 2026 20:14:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YjQhh0BG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NNHQ7Ua+";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3347A10EED1
- for <intel-xe@lists.freedesktop.org>; Wed,  1 Apr 2026 18:21:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0086310E5ED
+ for <intel-xe@lists.freedesktop.org>; Wed,  1 Apr 2026 20:14:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775067673; x=1806603673;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=PZQ8k8QQC/RhZBZoXkr1LvEjGePoWVJDvRlg+ETQ5C0=;
- b=YjQhh0BG6WpClLQqOyZpEW+IsKOZoXmYrOAscX0EnLaGMKhsGVse1kpx
- izWTCw52pfNrNY9UqcWhfeAzR1ttgpQWJ1rk27TGsZQ+jLhj8+lTkbfwg
- PD+pbbbEaUqCF34jB/TAcK2KXWYLjJQBVOFvUQWkkYxp9LBzHIjC0eE2j
- edoiZPdb0Z6038szqrxVWCpxeTZhs0+vJCZTQLiPe/72NaD90ZeSuRiM4
- Mzr/hX2tzX1F5dKAkwD3bmHDwf2QryyQZ68tVJwTbW4G8/j3bJWCWh5AY
- 5ZxTu9tvqmguIHy+4heciF6t2DQOBIR06Y3Fj2GTj2+ak1U+VG0vzdNvs g==;
-X-CSE-ConnectionGUID: fiwDOAqQQM66hGs7lUiMXg==
-X-CSE-MsgGUID: 7LyMlU++TDe5cIzAbn3uIA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="76002502"
-X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="76002502"
+ t=1775074473; x=1806610473;
+ h=from:date:subject:mime-version:content-transfer-encoding:
+ message-id:to:cc;
+ bh=Y6ndLoKJ4G53RM4FKd2A9XPwMv33uMIFn+kegBHtOGE=;
+ b=NNHQ7Ua+7Ai26LwciLOiXXGaHTbQL3mjP99pgmac1IeDBG3UG0E6ymit
+ UXTRRbt4BNZIkZOgTaa+sb8jqZsxHFyAKKVzEgcWlwTkeKBIHPj853S2y
+ u82HSTwf42bxgdWGI/mMPxCqjKqA089bF8s2y1EvIDTX0zX0dg4F5VbpJ
+ MVImg/6rvdt5qgwP/RS0sJ3hlffuRUczVpHzJX7uLRnzzTMO+67orkhGt
+ e6WWskOCccNwN+5GF+x04X/79PqN47udKD/UeLk5Ys1iz4+3M9AvVVF88
+ v7Rdymh53oEw9/2PnbbJRQf+qQOCGhck244g40cSdfzsEjgHtZUH9GZvj Q==;
+X-CSE-ConnectionGUID: rQ9/dTk0R5upAbUe70KTIw==
+X-CSE-MsgGUID: v2ompixdTsSdDwYKJCa+vQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11746"; a="76185714"
+X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="76185714"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2026 11:21:12 -0700
-X-CSE-ConnectionGUID: +LxDMWLJSmiNOGGiE1Fw6A==
-X-CSE-MsgGUID: 9RtQ0N4OQ6SRxH/JW6E0sQ==
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2026 13:14:32 -0700
+X-CSE-ConnectionGUID: bkR326e2RyCIfcmH4Qn8Mg==
+X-CSE-MsgGUID: RVR0pdMlRDeE2WilbjyQ4g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="264685155"
-Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2026 11:21:10 -0700
-Date: Wed, 1 Apr 2026 20:21:06 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>
-Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com, riana.tauro@intel.com,
- michal.wajdeczko@intel.com, matthew.d.roper@intel.com,
- umesh.nerlige.ramappa@intel.com, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v1 1/3] drm/xe/cri: Setup hardware error routing
-Message-ID: <ac1iEsWnV-6_KW7T@black.igk.intel.com>
-References: <20260217114656.2546878-1-raag.jadav@intel.com>
- <20260217114656.2546878-2-raag.jadav@intel.com>
- <6c7b27a8-d5bc-4854-8252-8b38e269f80b@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="264712176"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.39.133])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2026 13:14:32 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+Date: Wed, 01 Apr 2026 13:12:44 -0700
+Subject: [PATCH] drm/xe: Drop redundant rtp entries for Wa_14019988906 &
+ Wa_14019877138
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6c7b27a8-d5bc-4854-8252-8b38e269f80b@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260401-wa_merge_conflict-v1-1-b477ab53fedc@intel.com>
+X-B4-Tracking: v=1; b=H4sIADx8zWkC/x3MTQqAIBBA4avErBNU+oGuEhE2jTVQFhoViHdPW
+ n6L9yIE8kwBuiKCp5sDHy5DlQXgatxCguds0FI3spJKPGbcyS804uHsxngJtGTqGVG3k4TcnZ4
+ sv/+zH1L6AAmibpNjAAAA
+X-Change-ID: 20260401-wa_merge_conflict-cfea5dcc27b0
+To: intel-xe@lists.freedesktop.org
+Cc: Dave Airlie <airlied@redhat.com>, Matt Roper <matthew.d.roper@intel.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3274;
+ i=matthew.d.roper@intel.com; h=from:subject:message-id;
+ bh=Y6ndLoKJ4G53RM4FKd2A9XPwMv33uMIFn+kegBHtOGE=;
+ b=owEBbQKS/ZANAwAKAU15JAXIcpAEAcsmYgBpzXyn5b2KN2C2+WK5N+gp7+KUX4Ay4BeWFCewa
+ YW5FtZJEhCJAjMEAAEKAB0WIQTCZ8MJRH/rTz8hbaxNeSQFyHKQBAUCac18pwAKCRBNeSQFyHKQ
+ BJQvD/4oJlPWNWN8eK6E+FncriSvcVijJaQ0TiMBKOLkvVeF87PZx1ckMWMECszBEGs5uzV9Zsy
+ dLXozlj63PMkb1fbm4YM0NFUELvsEdsK5KWRzepWjzyvB7Eea4Iz17aGWyj5cIjBp0AajNK4gfj
+ me9P2xUepK9f+1sSBvTxvHAKfzmBLhwvZEQcOrewvX+g6T0lnL1qzhRykvepGL8QAN48dIFultX
+ KUjeW6Jk2m774CqSpUOYdLXpoDUfWfwtojv5iWTVWWfDX6AZ0BrsmC5IKPjJG0gbKWeMLSCWF3R
+ 95N83ZhuxBTaL0qU3bobTM3FGlQYg0VZgRYZp2XrZ4EX0U75DURluNRkrQoCyepOOCcyYemCbtU
+ Jhx8phkbG3jr+/xqV9Y2sJ2pRUvAxpcGNSbTgaqtDLFazznWzjA8whGfl6x/qld0Zn5hk9UZyLM
+ Vh0nQ0/LtH1F2+h35TWt/92Gzo5FvlaTO97weTwLasGsBGfD+ZLzNd8bQnPzsZ9OEsK04AiZ3cr
+ 8ZQVlflKmbIkuUamKyxxQoH40yOSG487oxW6NUr9VKL2COWxZmNcEBLhp3VEgrBsaTnA9eu57X3
+ szrG/xL3RUbi4fDk68JInWxajmJP9PSio4LEisEXfU8VXa0COPxRsLztjr54OUZngVWGFqAJqKQ
+ yke0YltF1hnhQPw==
+X-Developer-Key: i=matthew.d.roper@intel.com; a=openpgp;
+ fpr=C267C309447FEB4F3F216DAC4D792405C8729004
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,82 +88,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Mar 26, 2026 at 06:19:00PM +0530, Mallesh, Koujalagi wrote:
-> On 17-02-2026 05:16 pm, Raag Jadav wrote:
-> > Setup hardware error routing based on XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET
-> > which will be used for debug cases on Crescent Island.
-> > 
-> > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> > ---
-> >   drivers/gpu/drm/xe/regs/xe_hw_error_regs.h |  5 +++++
-> >   drivers/gpu/drm/xe/xe_hw_error.c           | 22 +++++++++++++++++++++-
-> >   drivers/gpu/drm/xe/xe_hw_error.h           |  1 +
-> >   3 files changed, 27 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/regs/xe_hw_error_regs.h b/drivers/gpu/drm/xe/regs/xe_hw_error_regs.h
-> > index c146b9ef44eb..88593f0a48fd 100644
-> > --- a/drivers/gpu/drm/xe/regs/xe_hw_error_regs.h
-> > +++ b/drivers/gpu/drm/xe/regs/xe_hw_error_regs.h
-> > @@ -11,6 +11,11 @@
-> >   #define HEC_UNCORR_FW_ERR_DW0(base)                    XE_REG((base) + 0x124)
-> > +#define DEV_ERR_ROUTING_CTRL			XE_REG(0x100170)
-> > +#define   FATAL_ERR_ROUTING			BIT(2)
-> > +#define   NONFATAL_ERR_ROUTING			BIT(1)
-> > +#define   CORR_ERR_ROUTING			BIT(0)
-> > +
-> >   #define DEV_ERR_STAT_NONFATAL			0x100178
-> >   #define DEV_ERR_STAT_CORRECTABLE		0x10017c
-> >   #define DEV_ERR_STAT_REG(x)			XE_REG(_PICK_EVEN((x), \
-> > diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
-> > index 8c65291f36fc..eb557266d083 100644
-> > --- a/drivers/gpu/drm/xe/xe_hw_error.c
-> > +++ b/drivers/gpu/drm/xe/xe_hw_error.c
-> > @@ -146,6 +146,23 @@ void xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl)
-> >   			hw_error_source_handler(tile, hw_err);
-> >   }
-> > +/**
-> > + * xe_hw_error_irq_route - irq routing of hw errors
-> > + * @xe: xe device instance
-> > + *
-> > + * Set irq routing of hw errors.
-> > + */
-> > +void xe_hw_error_irq_route(struct xe_device *xe)
-> > +{
-> > +	u32 mask = CORR_ERR_ROUTING | NONFATAL_ERR_ROUTING | FATAL_ERR_ROUTING;
-> > +	bool irq = xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET;
-> 
-> What happen when wedge mode change during execution?
+There appears to have been a silent merge conflict between some commits
+updating the workaround tables on Xe's -fixes and -next branches:
 
-This needs to be called when it happens. The only place I could find as
-of now is through debugfs, will add in this in v2.
+ - Commit bc6387a2e0c1 ("drm/xe/xe2_hpg: Fix handling of Wa_14019988906
+   & Wa_14019877138") from the fixes branch moved the Xe2_HPG instance
+   of two workarounds touching the PSS_CHICKEN register from the
+   engine_was[] table to the lrc_was[] table; the equivalent
+   implementation for all other platforms/IPs were already properly
+   located on lrc_was[].  This commit on the fixes branch is a
+   cherry-pick of commit e04c609eedf4 ("drm/xe/xe2_hpg: Fix handling of
+   Wa_14019988906 & Wa_14019877138") that already existed on the next
+   branch.
 
-Raag
+ - Commit 55b19abb6c44 ("drm/xe: Consolidate workaround entries for
+   Wa_14019877138") and commit c2142a1a8415 ("drm/xe: Consolidate
+   workaround entries for Wa_14019988906") consolidated the individual
+   entries per IP generation for each workaround into single, larger
+   range-based entries.
 
-> > +	struct xe_tile *tile;
-> > +	u8 id;
-> > +
-> > +	for_each_tile(tile, xe, id)
-> > +		xe_mmio_rmw32(&tile->mmio, DEV_ERR_ROUTING_CTRL, mask, irq ? mask : 0);
-> > +}
-> > +
-> >   /*
-> >    * Process hardware errors during boot
-> >    */
-> > @@ -178,5 +195,8 @@ void xe_hw_error_init(struct xe_device *xe)
-> >   	INIT_WORK(&tile->csc_hw_error_work, csc_hw_error_work);
-> > -	process_hw_errors(xe);
-> > +	if (xe->info.platform == XE_CRESCENTISLAND)
-> > +		xe_hw_error_irq_route(xe);
-> > +	else
-> > +		process_hw_errors(xe);
-> >   }
-> > diff --git a/drivers/gpu/drm/xe/xe_hw_error.h b/drivers/gpu/drm/xe/xe_hw_error.h
-> > index d86e28c5180c..8f155b66b5f1 100644
-> > --- a/drivers/gpu/drm/xe/xe_hw_error.h
-> > +++ b/drivers/gpu/drm/xe/xe_hw_error.h
-> > @@ -11,5 +11,6 @@ struct xe_tile;
-> >   struct xe_device;
-> >   void xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl);
-> > +void xe_hw_error_irq_route(struct xe_device *xe);
-> >   void xe_hw_error_init(struct xe_device *xe);
-> >   #endif
+During merge conflict resolution the Xe2_HPG-specific entries (i.e.,
+those with rule "GRAPHICS_VERSION_RANGE(2001, 2002)") were accidentally
+resurrected, even though the table already contains the consolidated
+entries that match a superset of thse ranges.  These redundant entries
+don't cause any build failures but do trigger a dmesg error during probe
+on BMG-G21 devices:
+
+  xe 0000:03:00.0: [drm] *ERROR* Tile0: GT0: discarding save-restore reg 7044 (clear: 00000400, set: 00000400, masked: yes, mcr: yes): ret=-22
+  xe 0000:03:00.0: [drm] *ERROR* Tile0: GT0: discarding save-restore reg 7044 (clear: 00000020, set: 00000020, masked: yes, mcr: yes): ret=-22
+
+Re-drop the Xe2_HPG-specific table entries to eliminate the error.
+
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/7433
+Fixes: 17b95278ae6a ("Merge tag 'drm-xe-next-2026-03-02' of https://gitlab.freedesktop.org/drm/xe/kernel into drm-next")
+Cc: Dave Airlie <airlied@redhat.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/xe/xe_wa.c | 8 --------
+ 1 file changed, 8 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index c3fef8fd73f7b8c064dcab79235a0e4e4d4dc086..2ec70be78bf90a252e7503bec2195442972384c2 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -751,14 +751,6 @@ static const struct xe_rtp_entry_sr lrc_was[] = {
+ 	  XE_RTP_RULES(GRAPHICS_VERSION(2001), ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(SET(WM_CHICKEN3, HIZ_PLANE_COMPRESSION_DIS))
+ 	},
+-	{ XE_RTP_NAME("14019988906"),
+-	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, 2002), ENGINE_CLASS(RENDER)),
+-	  XE_RTP_ACTIONS(SET(XEHP_PSS_CHICKEN, FLSH_IGNORES_PSD))
+-	},
+-	{ XE_RTP_NAME("14019877138"),
+-	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, 2002), ENGINE_CLASS(RENDER)),
+-	  XE_RTP_ACTIONS(SET(XEHP_PSS_CHICKEN, FD_END_COLLECT))
+-	},
+ 	{ XE_RTP_NAME("14021490052"),
+ 	  XE_RTP_RULES(GRAPHICS_VERSION(2001), ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(SET(FF_MODE,
+
+---
+base-commit: 35dad892ec87d448384f492ba061d0da7e3710a5
+change-id: 20260401-wa_merge_conflict-cfea5dcc27b0
+
+Best regards,
+-- 
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
+
