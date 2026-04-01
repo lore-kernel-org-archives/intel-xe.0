@@ -4,57 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1102A10F6FBF
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Apr 2026 16:14:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B022910F6FBF
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Apr 2026 16:19:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C499210E553;
-	Wed,  1 Apr 2026 16:14:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F6BC10EDEF;
+	Wed,  1 Apr 2026 16:19:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VAYKsXF7";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="QdwcxziO";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 524D410E553
- for <intel-xe@lists.freedesktop.org>; Wed,  1 Apr 2026 16:14:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775060087; x=1806596087;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=N6ptffLhHr0Hsn5Rmh8zlIL9MnY8CYy6OTHoj6+DEPY=;
- b=VAYKsXF7t6otkDvm6G6AWtrpo/NexykYrudpvIBe6g9ZQ0P/Trkrc+zZ
- E2ZajlL6TliZYePPJOfaJRDlp3y6pB1/e3Ck0caP8eyLZkH5Qr/2wlsQu
- SKhiVdw8rS7geWryeweU1zni7rw/p5E1jFg2nWbqjT80n+QXkS2IivmA9
- tQDfmKJLz7XcRvlJQB81Nh6GVSAAJPJlNM0KzzN8L+vj1vtTPssPh3y70
- TFMUmZ87RJTW+m0y+sLTvMCuNrbbEXgr7m89ZXCXQabWtW5WyTLXiNwt0
- sGOpwuVKPBGQAgpI+Z6Ohr6W9oDteKfkC1sI4BTzUsRbcHxKr2lWQCJX+ g==;
-X-CSE-ConnectionGUID: /4grbgkeSY+9/5IhTPiRyg==
-X-CSE-MsgGUID: SUMB8mekSLqfDa75cpyBOQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="98717148"
-X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="98717148"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2026 09:14:47 -0700
-X-CSE-ConnectionGUID: 3+qK6NYnQRKbFZ+N6Y4dPA==
-X-CSE-MsgGUID: LdZoxMsPS5GniQmIXsTelA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="222354414"
-Received: from ksatya-dev.iind.intel.com ([10.190.229.161])
- by fmviesa010.fm.intel.com with ESMTP; 01 Apr 2026 09:14:45 -0700
-From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Maarten Lankhorst <dev@lankhorst.se>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v3 3/3] drm/xe/vf: Use drm mm instead of drm sa for CCS
- read/write
-Date: Wed,  1 Apr 2026 16:15:28 +0000
-Message-ID: <20260401161528.1990499-4-satyanarayana.k.v.p@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260401161528.1990499-1-satyanarayana.k.v.p@intel.com>
-References: <20260401161528.1990499-1-satyanarayana.k.v.p@intel.com>
+Received: from lankhorst.se (unknown [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC76810EDEF;
+ Wed,  1 Apr 2026 16:19:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1775060342;
+ bh=Ox5N/EQWGT6jxdtcCGMpXBmaSsSunHevEAW5VY5jkHI=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=QdwcxziOOpH5WpYMKQVc0f+eq5b+1MZ5ORgf3fhc9VENZzefDn3/SHUjW8Yt0XJOL
+ 4R+BZ6nyeUqP8yUhrsWdAqPKOe+ksFm0lJJfdGd+Z3Ry17iQrzkj3x3IWPgZ4fQfbH
+ eyQN+m9J0RWKbUdcLSofDsD6UBvhBnMDIy1Eewx0xc+Q6HuRVpK1tpjqGFpz1oLFyS
+ XbCcAIIO4uYv7DjNALUFhaktIvpVUXl7ZIXWtAbIylKqQihfA3KhAZQ55FqC74984T
+ 67v+aOc4TYG/U4N0aeCTPOonBg3XUvHUrbVj1E4fGJ5V5bG7qLuyTIu+DEf0DNQhFg
+ U8zysh5YGBcyA==
+Message-ID: <6f14905d-74bd-4722-ba67-08361e779c17@lankhorst.se>
+Date: Wed, 1 Apr 2026 18:19:00 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] drm/i915/display: Sync state to BIOS for seamless
+ handoff
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Juasheem Sultan <jdsultan@google.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Manasi Navare <navaremanasi@google.com>,
+ Drew Davenport <ddavenport@google.com>, Sean Paul <seanpaul@google.com>,
+ Samuel Jacob <samjaco@google.com>, Rajat Jain <rajatja@google.com>
+References: <20260317220908.130968-1-jdsultan@google.com>
+ <20260317220908.130968-3-jdsultan@google.com>
+ <08c99b0d-6adb-423b-9c4b-2e8add00f5d3@lankhorst.se>
+ <CAH6Pru5Me2pY31JF2GP61k3gy8XDaLfmH7U6jpAwXoYvGEZBwA@mail.gmail.com>
+ <acZX6htfhw4v0G8c@intel.com>
+Content-Language: en-US
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <acZX6htfhw4v0G8c@intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -71,339 +63,176 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The suballocator algorithm tracks a hole cursor at the last allocation
-and tries to allocate after it. This is optimized for fence-ordered
-progress, where older allocations are expected to become reusable first.
+Hey,
 
-In fence-enabled mode, that ordering assumption holds. In fence-disabled
-mode, allocations may be freed in arbitrary order, so limiting allocation
-to the current hole window can miss valid free space and fail allocations
-despite sufficient total space.
+Den 2026-03-27 kl. 11:11, skrev Ville Syrjälä:
+> On Thu, Mar 26, 2026 at 04:10:13PM -0700, Juasheem Sultan wrote:
+>> Hi,
+>>
+>> Thanks for looking at this.
+>>
+>> You're saying instead of manually adopting the state that I should focus on
+>> modifying the comparisons that we do to determine if we can perform a
+>> fastset?
+> 
+> We don't want any fuzzy fastset hacks anywhere. I intentionally killed
+> all that stuff because it was making it impossible to trust that the
+> software state actually represents what the hardware is doing.
+> 
+> Someone needs to figure out what exactly is the difference between
+> the states between the GOP and the driver, and then figure out where
+> that difference is coming from.
 
-Use DRM memory manager instead of sub-allocator to get rid of this issue
-as CCS read/write operations do not use fences.
+In some cases the firmware may have different considerations for setting a mode,
+not necesssarily worse than what the display driver is using, just different.
 
-Fixes: 864690cf4dd62 ("drm/xe/vf: Attach and detach CCS copy commands with BO")
-Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Maarten Lankhorst <dev@lankhorst.se>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In this case userspace requests a mode for example 1920x1080, but it doesn't
+particularly care what pll's are used or anything nor has it a way to specify
+it at all.
 
----
-V2 -> V3:
-- Used xe_mem_pool_init() and xe_mem_pool_shadow_init() to allocate BB
-pools.
+Until there is a major change like disabling the screen, what are the downsides
+taking over the inherited mode from the firmware, and postponing changing the
+display mode?
 
-V1 -> V2:
-- Renamed xe_drm_mm to xe_mm_suballoc (Thomas)
----
- drivers/gpu/drm/xe/xe_bo_types.h           |  3 +-
- drivers/gpu/drm/xe/xe_migrate.c            | 56 ++++++++++++----------
- drivers/gpu/drm/xe/xe_sriov_vf_ccs.c       | 48 +++++++++----------
- drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h |  5 +-
- 4 files changed, 56 insertions(+), 56 deletions(-)
+Having a flicker-free boot is a desired feature to have, and something intel
+handles a lot better than the other drivers.
 
-diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-index ff8317bfc1ae..50eec31cb717 100644
---- a/drivers/gpu/drm/xe/xe_bo_types.h
-+++ b/drivers/gpu/drm/xe/xe_bo_types.h
-@@ -18,6 +18,7 @@
- #include "xe_ggtt_types.h"
- 
- struct xe_device;
-+struct xe_mm_sa_bb;
- struct xe_vm;
- 
- #define XE_BO_MAX_PLACEMENTS	3
-@@ -88,7 +89,7 @@ struct xe_bo {
- 	bool ccs_cleared;
- 
- 	/** @bb_ccs: BB instructions of CCS read/write. Valid only for VF */
--	struct xe_bb *bb_ccs[XE_SRIOV_VF_CCS_CTX_COUNT];
-+	struct xe_mem_pool_bb *bb_ccs[XE_SRIOV_VF_CCS_CTX_COUNT];
- 
- 	/**
- 	 * @cpu_caching: CPU caching mode. Currently only used for userspace
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index fc918b4fba54..fb6827ecea4b 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -29,6 +29,7 @@
- #include "xe_hw_engine.h"
- #include "xe_lrc.h"
- #include "xe_map.h"
-+#include "xe_mem_pool.h"
- #include "xe_mocs.h"
- #include "xe_printk.h"
- #include "xe_pt.h"
-@@ -1166,11 +1167,12 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
- 	u32 batch_size, batch_size_allocated;
- 	struct xe_device *xe = gt_to_xe(gt);
- 	struct xe_res_cursor src_it, ccs_it;
-+	struct xe_mem_pool_manager *bb_pool;
- 	struct xe_sriov_vf_ccs_ctx *ctx;
--	struct xe_sa_manager *bb_pool;
- 	u64 size = xe_bo_size(src_bo);
--	struct xe_bb *bb = NULL;
-+	struct xe_mem_pool_bb *bb;
- 	u64 src_L0, src_L0_ofs;
-+	struct xe_bb xe_bb_tmp;
- 	u32 src_L0_pt;
- 	int err;
- 
-@@ -1208,18 +1210,18 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
- 		size -= src_L0;
- 	}
- 
--	bb = xe_bb_alloc(gt);
-+	bb = xe_pool_bb_alloc();
- 	if (IS_ERR(bb))
- 		return PTR_ERR(bb);
- 
- 	bb_pool = ctx->mem.ccs_bb_pool;
--	scoped_guard(mutex, xe_sa_bo_swap_guard(bb_pool)) {
--		xe_sa_bo_swap_shadow(bb_pool);
-+	scoped_guard(mutex, xe_mem_pool_bo_swap_guard(bb_pool)) {
-+		xe_mem_pool_swap_shadow_locked(bb_pool);
- 
--		err = xe_bb_init(bb, bb_pool, batch_size);
-+		err = xe_pool_bb_insert(bb, bb_pool, batch_size);
- 		if (err) {
- 			xe_gt_err(gt, "BB allocation failed.\n");
--			xe_bb_free(bb, NULL);
-+			kfree(bb);
- 			return err;
- 		}
- 
-@@ -1227,6 +1229,7 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
- 		size = xe_bo_size(src_bo);
- 		batch_size = 0;
- 
-+		xe_bb_tmp = (struct xe_bb){ .cs = bb->cs, .len = 0 };
- 		/*
- 		 * Emit PTE and copy commands here.
- 		 * The CCS copy command can only support limited size. If the size to be
-@@ -1255,24 +1258,27 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
- 			xe_assert(xe, IS_ALIGNED(ccs_it.start, PAGE_SIZE));
- 			batch_size += EMIT_COPY_CCS_DW;
- 
--			emit_pte(m, bb, src_L0_pt, false, true, &src_it, src_L0, src);
-+			emit_pte(m, &xe_bb_tmp, src_L0_pt, false, true, &src_it, src_L0, src);
- 
--			emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src);
-+			emit_pte(m, &xe_bb_tmp, ccs_pt, false, false, &ccs_it, ccs_size, src);
- 
--			bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
--			flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs, src_is_pltt,
-+			xe_bb_tmp.len = emit_flush_invalidate(xe_bb_tmp.cs, xe_bb_tmp.len,
-+							      flush_flags);
-+			flush_flags = xe_migrate_ccs_copy(m, &xe_bb_tmp, src_L0_ofs, src_is_pltt,
- 							  src_L0_ofs, dst_is_pltt,
- 							  src_L0, ccs_ofs, true);
--			bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
-+			xe_bb_tmp.len = emit_flush_invalidate(xe_bb_tmp.cs, xe_bb_tmp.len,
-+							      flush_flags);
- 
- 			size -= src_L0;
- 		}
- 
--		xe_assert(xe, (batch_size_allocated == bb->len));
-+		xe_assert(xe, (batch_size_allocated == xe_bb_tmp.len));
-+		bb->len = xe_bb_tmp.len;
- 		src_bo->bb_ccs[read_write] = bb;
- 
- 		xe_sriov_vf_ccs_rw_update_bb_addr(ctx);
--		xe_sa_bo_sync_shadow(bb->bo);
-+		xe_mem_pool_sync_shadow_locked(bb_pool, &bb->node);
- 	}
- 
- 	return 0;
-@@ -1297,10 +1303,10 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
- void xe_migrate_ccs_rw_copy_clear(struct xe_bo *src_bo,
- 				  enum xe_sriov_vf_ccs_rw_ctxs read_write)
- {
--	struct xe_bb *bb = src_bo->bb_ccs[read_write];
-+	struct xe_mem_pool_bb *bb = src_bo->bb_ccs[read_write];
- 	struct xe_device *xe = xe_bo_device(src_bo);
-+	struct xe_mem_pool_manager *bb_pool;
- 	struct xe_sriov_vf_ccs_ctx *ctx;
--	struct xe_sa_manager *bb_pool;
- 	u32 *cs;
- 
- 	xe_assert(xe, IS_SRIOV_VF(xe));
-@@ -1308,17 +1314,17 @@ void xe_migrate_ccs_rw_copy_clear(struct xe_bo *src_bo,
- 	ctx = &xe->sriov.vf.ccs.contexts[read_write];
- 	bb_pool = ctx->mem.ccs_bb_pool;
- 
--	guard(mutex) (xe_sa_bo_swap_guard(bb_pool));
--	xe_sa_bo_swap_shadow(bb_pool);
--
--	cs = xe_sa_bo_cpu_addr(bb->bo);
--	memset(cs, MI_NOOP, bb->len * sizeof(u32));
--	xe_sriov_vf_ccs_rw_update_bb_addr(ctx);
-+	scoped_guard(mutex, xe_mem_pool_bo_swap_guard(bb_pool)) {
-+		xe_mem_pool_swap_shadow_locked(bb_pool);
- 
--	xe_sa_bo_sync_shadow(bb->bo);
-+		cs = xe_mem_pool_manager_cpu_addr(bb_pool) + bb->node.start;
-+		memset(cs, MI_NOOP, bb->len * sizeof(u32));
-+		xe_sriov_vf_ccs_rw_update_bb_addr(ctx);
- 
--	xe_bb_free(bb, NULL);
--	src_bo->bb_ccs[read_write] = NULL;
-+		xe_mem_pool_sync_shadow_locked(bb_pool, &bb->node);
-+		xe_pool_bb_free(bb);
-+		src_bo->bb_ccs[read_write] = NULL;
-+	}
- }
- 
- /**
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-index db023fb66a27..3a0abe519536 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-@@ -14,9 +14,9 @@
- #include "xe_guc.h"
- #include "xe_guc_submit.h"
- #include "xe_lrc.h"
-+#include "xe_mem_pool.h"
- #include "xe_migrate.h"
- #include "xe_pm.h"
--#include "xe_sa.h"
- #include "xe_sriov_printk.h"
- #include "xe_sriov_vf.h"
- #include "xe_sriov_vf_ccs.h"
-@@ -141,43 +141,39 @@ static u64 get_ccs_bb_pool_size(struct xe_device *xe)
- 
- static int alloc_bb_pool(struct xe_tile *tile, struct xe_sriov_vf_ccs_ctx *ctx)
- {
-+	struct xe_mem_pool_manager *pool_manager;
- 	struct xe_device *xe = tile_to_xe(tile);
--	struct xe_sa_manager *sa_manager;
- 	u64 bb_pool_size;
--	int offset, err;
-+	int err, flags;
- 
- 	bb_pool_size = get_ccs_bb_pool_size(xe);
- 	xe_sriov_info(xe, "Allocating %s CCS BB pool size = %lldMB\n",
- 		      ctx->ctx_id ? "Restore" : "Save", bb_pool_size / SZ_1M);
- 
--	sa_manager = __xe_sa_bo_manager_init(tile, bb_pool_size, SZ_4K, SZ_16,
--					     XE_SA_BO_MANAGER_FLAG_SHADOW);
-+	flags = XE_MEM_POOL_BO_FLAG_INIT_CMD_NOOP |
-+		XE_MEM_POOL_BO_FLAG_INIT_CMD_BB_END_HIGHEST;
- 
--	if (IS_ERR(sa_manager)) {
--		xe_sriov_err(xe, "Suballocator init failed with error: %pe\n",
--			     sa_manager);
--		err = PTR_ERR(sa_manager);
-+	pool_manager = xe_mem_pool_init(tile, bb_pool_size, flags);
-+	if (IS_ERR(pool_manager)) {
-+		xe_sriov_err(xe, "xe_mem_pool_init init failed with error: %pe\n",
-+			     pool_manager);
-+		err = PTR_ERR(pool_manager);
- 		return err;
- 	}
- 
--	offset = 0;
--	xe_map_memset(xe, &sa_manager->bo->vmap, offset, MI_NOOP,
--		      bb_pool_size);
--	xe_map_memset(xe, &sa_manager->shadow->vmap, offset, MI_NOOP,
--		      bb_pool_size);
--
--	offset = bb_pool_size - sizeof(u32);
--	xe_map_wr(xe, &sa_manager->bo->vmap, offset, u32, MI_BATCH_BUFFER_END);
--	xe_map_wr(xe, &sa_manager->shadow->vmap, offset, u32, MI_BATCH_BUFFER_END);
--
--	ctx->mem.ccs_bb_pool = sa_manager;
-+	err = xe_mem_pool_shadow_init(pool_manager, flags);
-+	if (err) {
-+		xe_sriov_err(xe, "Shadow pool init failed with error: %d\n", err);
-+		return err;
-+	}
- 
-+	ctx->mem.ccs_bb_pool = pool_manager;
- 	return 0;
- }
- 
- static void ccs_rw_update_ring(struct xe_sriov_vf_ccs_ctx *ctx)
- {
--	u64 addr = xe_sa_manager_gpu_addr(ctx->mem.ccs_bb_pool);
-+	u64 addr = xe_mem_pool_manager_gpu_addr(ctx->mem.ccs_bb_pool);
- 	struct xe_lrc *lrc = xe_exec_queue_lrc(ctx->mig_q);
- 	u32 dw[10], i = 0;
- 
-@@ -388,7 +384,7 @@ int xe_sriov_vf_ccs_init(struct xe_device *xe)
- #define XE_SRIOV_VF_CCS_RW_BB_ADDR_OFFSET	(2 * sizeof(u32))
- void xe_sriov_vf_ccs_rw_update_bb_addr(struct xe_sriov_vf_ccs_ctx *ctx)
- {
--	u64 addr = xe_sa_manager_gpu_addr(ctx->mem.ccs_bb_pool);
-+	u64 addr = xe_mem_pool_manager_gpu_addr(ctx->mem.ccs_bb_pool);
- 	struct xe_lrc *lrc = xe_exec_queue_lrc(ctx->mig_q);
- 	struct xe_device *xe = gt_to_xe(ctx->mig_q->gt);
- 
-@@ -412,8 +408,8 @@ int xe_sriov_vf_ccs_attach_bo(struct xe_bo *bo)
- 	struct xe_device *xe = xe_bo_device(bo);
- 	enum xe_sriov_vf_ccs_rw_ctxs ctx_id;
- 	struct xe_sriov_vf_ccs_ctx *ctx;
-+	struct xe_mem_pool_bb *bb;
- 	struct xe_tile *tile;
--	struct xe_bb *bb;
- 	int err = 0;
- 
- 	xe_assert(xe, IS_VF_CCS_READY(xe));
-@@ -445,7 +441,7 @@ int xe_sriov_vf_ccs_detach_bo(struct xe_bo *bo)
- {
- 	struct xe_device *xe = xe_bo_device(bo);
- 	enum xe_sriov_vf_ccs_rw_ctxs ctx_id;
--	struct xe_bb *bb;
-+	struct xe_mem_pool_bb *bb;
- 
- 	xe_assert(xe, IS_VF_CCS_READY(xe));
- 
-@@ -471,8 +467,8 @@ int xe_sriov_vf_ccs_detach_bo(struct xe_bo *bo)
-  */
- void xe_sriov_vf_ccs_print(struct xe_device *xe, struct drm_printer *p)
- {
--	struct xe_sa_manager *bb_pool;
- 	enum xe_sriov_vf_ccs_rw_ctxs ctx_id;
-+	struct xe_mem_pool_manager *bb_pool;
- 
- 	if (!IS_VF_CCS_READY(xe))
- 		return;
-@@ -485,7 +481,7 @@ void xe_sriov_vf_ccs_print(struct xe_device *xe, struct drm_printer *p)
- 
- 		drm_printf(p, "ccs %s bb suballoc info\n", ctx_id ? "write" : "read");
- 		drm_printf(p, "-------------------------\n");
--		drm_suballoc_dump_debug_info(&bb_pool->base, p, xe_sa_manager_gpu_addr(bb_pool));
-+		xe_mem_pool_dump(bb_pool, p);
- 		drm_puts(p, "\n");
- 	}
- }
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h b/drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h
-index 22c499943d2a..84584a9b2a4e 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h
-@@ -17,9 +17,6 @@ enum xe_sriov_vf_ccs_rw_ctxs {
- 	XE_SRIOV_VF_CCS_CTX_COUNT
- };
- 
--struct xe_migrate;
--struct xe_sa_manager;
--
- /**
-  * struct xe_sriov_vf_ccs_ctx - VF CCS migration context data.
-  */
-@@ -33,7 +30,7 @@ struct xe_sriov_vf_ccs_ctx {
- 	/** @mem: memory data */
- 	struct {
- 		/** @mem.ccs_bb_pool: Pool from which batch buffers are allocated. */
--		struct xe_sa_manager *ccs_bb_pool;
-+		struct xe_mem_pool_manager *ccs_bb_pool;
- 	} mem;
- };
- 
--- 
-2.43.0
+Kind regards,
+~Maarten Lankhorst
+
+>>
+>> -Juasheem
+>>
+>> On Wed, Mar 18, 2026 at 5:00 AM Maarten Lankhorst <dev@lankhorst.se> wrote:
+>>
+>>> Hey,
+>>>
+>>> Den 2026-03-17 kl. 23:09, skrev Juasheem Sultan:
+>>>> Align DP timings and C10 PLL state with BIOS values if within a 0.5%
+>>>> clock threshold. This prevents minor mismatches from triggering a full
+>>>> modeset during the first atomic commit, ensuring a flicker-free handoff.
+>>>>
+>>>> Signed-off-by: Juasheem Sultan <jdsultan@google.com>
+>>>> ---
+>>>>  drivers/gpu/drm/i915/display/intel_display.c | 67 ++++++++++++++++++++
+>>>>  1 file changed, 67 insertions(+)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+>>> b/drivers/gpu/drm/i915/display/intel_display.c
+>>>> index c4246481fc2f..22e5e931f134 100644
+>>>> --- a/drivers/gpu/drm/i915/display/intel_display.c
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>>>> @@ -6397,6 +6397,71 @@ static int
+>>> intel_atomic_check_config_and_link(struct intel_atomic_state *state)
+>>>>
+>>>>       return ret;
+>>>>  }
+>>>> +
+>>>> +// Helper function to sanitize pll state
+>>>> +static void intel_sanitize_pll_state(struct intel_crtc_state
+>>> *old_crtc_state,
+>>>> +             struct intel_crtc_state *new_crtc_state)
+>>>> +{
+>>>> +     int j;
+>>>> +
+>>>> +     for (j = 4; j < 9; j++) {
+>>>> +             if (new_crtc_state->dpll_hw_state.cx0pll.c10.pll[j] !=
+>>>> +
+>>>  old_crtc_state->dpll_hw_state.cx0pll.c10.pll[j]) {
+>>>> +                     new_crtc_state->dpll_hw_state.cx0pll.c10.pll[j] =
+>>>> +
+>>>  old_crtc_state->dpll_hw_state.cx0pll.c10.pll[j];
+>>>> +             }
+>>>> +     }
+>>>> +}
+>>>> +
+>>>> +/*
+>>>> + * intel_dp_sanitize_seamless_boot - Snap driver state to BIOS state
+>>> for seamless handoff.
+>>>> + * @state: the atomic state to sanitize
+>>>> + *
+>>>> + * This function compares the driver's calculated new_state with the
+>>> inherited BIOS state
+>>>> + * (old_state). If they are within a small threshold (e.g., 0.5% for
+>>> clock), it "snaps"
+>>>> + * the new_state to match the BIOS state exactly. This prevents minor
+>>> state mismatches
+>>>> + * that would otherwise force a full modeset (and a screen flicker)
+>>> during the initial
+>>>> + * kernel handoff.
+>>>> + */
+>>>> +static void intel_dp_sanitize_seamless_boot(struct intel_atomic_state
+>>> *state)
+>>>> +{
+>>>> +     struct intel_display *display = to_intel_display(state);
+>>>> +     struct intel_crtc_state *new_crtc_state, *old_crtc_state;
+>>>> +     struct intel_crtc *crtc;
+>>>> +     struct intel_encoder *encoder;
+>>>> +     int i;
+>>>> +
+>>>> +     for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+>>> new_crtc_state, i) {
+>>>> +             /*
+>>>> +              * We must check old_crtc_state->inherited because
+>>> new_crtc_state->inherited
+>>>> +              * is cleared at the start of intel_atomic_check for
+>>> userspace commits.
+>>>> +              */
+>>>> +             if (!old_crtc_state->inherited ||
+>>> !new_crtc_state->hw.active)
+>>>> +                     continue;
+>>>> +
+>>>> +             if (intel_crtc_has_dp_encoder(new_crtc_state)) {
+>>>> +                     int old_clock =
+>>> old_crtc_state->hw.adjusted_mode.crtc_clock;
+>>>> +                     int new_clock =
+>>> new_crtc_state->hw.adjusted_mode.crtc_clock;
+>>>> +                     int threshold = old_clock / 200; /* 0.5% */
+>>>> +
+>>>> +                     if (abs(new_clock - old_clock) <= threshold) {
+>>>> +                             new_crtc_state->hw.pipe_mode.crtc_clock =
+>>> old_clock;
+>>>> +
+>>>  new_crtc_state->hw.adjusted_mode.crtc_clock = old_clock;
+>>>> +                             new_crtc_state->pixel_rate =
+>>> old_crtc_state->pixel_rate;
+>>>> +                             new_crtc_state->dp_m_n =
+>>> old_crtc_state->dp_m_n;
+>>>> +                     }
+>>>> +             }
+>>>> +
+>>>> +             for_each_intel_encoder_mask(display->drm, encoder,
+>>>> +                             new_crtc_state->uapi.encoder_mask) {
+>>>> +                     if (intel_encoder_is_c10phy(encoder)) {
+>>>> +                             if
+>>> (!new_crtc_state->dpll_hw_state.cx0pll.ssc_enabled)
+>>>> +
+>>>  intel_sanitize_pll_state(old_crtc_state, new_crtc_state);
+>>>> +                     }
+>>>> +             }
+>>>> +     }
+>>>> +}
+>>>> +
+>>>>  /**
+>>>>   * intel_atomic_check - validate state object
+>>>>   * @dev: drm device
+>>>> @@ -6447,6 +6512,8 @@ int intel_atomic_check(struct drm_device *dev,
+>>>>       if (ret)
+>>>>               goto fail;
+>>>>
+>>>> +     intel_dp_sanitize_seamless_boot(state);
+>>>> +
+>>>>       for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+>>>>               if (!intel_crtc_needs_modeset(new_crtc_state))
+>>>>                       continue;
+>>>
+>>> This might fix boot state, but in a way that complicates the code
+>>> considerably.
+>>>
+>>> Have you considered updating intel_pipe_config_compare instead?
+>>>
+>>> Kind regards,
+>>> ~Maarten Lankhorst
+>>>
+> 
 
