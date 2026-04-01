@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0ACB0D3515F
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Apr 2026 09:03:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8DC1D35161
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Apr 2026 09:03:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A547D10ECB4;
-	Wed,  1 Apr 2026 09:03:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9427B10EF5D;
+	Wed,  1 Apr 2026 09:03:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QRtdP1Mk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EG59xB6K";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6106C10EC69;
- Wed,  1 Apr 2026 09:03:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63DD110ECFB;
+ Wed,  1 Apr 2026 09:03:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775034214; x=1806570214;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=P01rPyDQb8v14s6w4AeK3invk9ww9B3ykAc85s245tk=;
- b=QRtdP1Mkx4oUBez2cMzB11oecpgsWxNNOSRYAcRTuQxe3WkYAMYId248
- vH8AiXuFagPfrHTJpxlPMYfMmLv9nyLF8AQQDJ4aH1F1viDEsLLOwkBnw
- oCPNGiH8GmOG6GFoMn84Gcizy8zKwNkELF/rYigGLEbaqjZUOkIkEhHtR
- 6O026p6tW4AXLJD+oFuN2Haqo5Fq3sRyQPY8g1vJNNS52e6hMvT9QXef1
- 4umER0qjYzFDq6VnPPt2Fophj1RSJskqsVj+i3D3PY2hGq6qua+EX399g
- ytrpA2gxr2PWUmB2I03o8hU8D7HV2XaQFYmSBcIWypt7Z64gdecu44DoK g==;
-X-CSE-ConnectionGUID: Vhuh5vQvT326D+dMscf84g==
-X-CSE-MsgGUID: Oh8pnVnNTbeXN1bPFR4vvA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="75238091"
-X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="75238091"
+ t=1775034220; x=1806570220;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=ttNQ2g8OZ/aDV2y5mC9zMTdyVBoIvin+li42MXqLzSQ=;
+ b=EG59xB6KOOPnxP0wJLuV9f3Bn1A9lIcif9nLOo/ANnqQHSLZDabUzhm7
+ siCcTxCbbuP2K83dXiK8v83ImLFmRVNy3JgQvxUgoXllZHhngWxSNMR9Y
+ kLWyu3TIewrKVgm26OjzyY6ztRTgK+0vZPPxQsE2p3qeqF8t9rgtkEH+C
+ yqHA/wu+aHRGJ2MHM/wO29AdAt2qIzzOscuCU8UlneW7LYhwku4mwykoY
+ 08F3e1CCBi4aP/Z5Ljg797MOkFwQI7w1YCZZQQs35+jlWOTxeRgbLsxp/
+ JYOPgwBGIONQOFvA5hOWB5rfHb0im6xmBZX5bbuhMPlEpn6Ii8AfVBiQO A==;
+X-CSE-ConnectionGUID: uSa/9MWhRVWJ6LzQi5z8CQ==
+X-CSE-MsgGUID: 5p5ZgnWERpuFEUJU5XlEOA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="75238106"
+X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="75238106"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2026 02:03:34 -0700
-X-CSE-ConnectionGUID: Ok59AQs+Q3mGB0JK5EFlxA==
-X-CSE-MsgGUID: us1YGKGUS3Sa3SQaSJUTCw==
+ 01 Apr 2026 02:03:40 -0700
+X-CSE-ConnectionGUID: 9WXeqK4+Ri2I4TQc+a9t8w==
+X-CSE-MsgGUID: d9zjw7yKQgurunuPuDhRHw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="228232875"
+X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="228232903"
 Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by fmviesa004.fm.intel.com with ESMTP; 01 Apr 2026 02:03:26 -0700
+ by fmviesa004.fm.intel.com with ESMTP; 01 Apr 2026 02:03:37 -0700
 From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: uma.shankar@intel.com, chaitanya.kumar.borah@intel.com,
  pranay.samala@intel.com
-Subject: [PATCH 1/3] drm/i915/display: Copy color pipeline from plane in the
- primary joiner pipe
-Date: Wed,  1 Apr 2026 14:08:39 +0530
-Message-Id: <20260401083841.4081587-1-chaitanya.kumar.borah@intel.com>
+Subject: [PATCH 3/3] drm/i915/display: Do not program color pipeline for Y
+ plane
+Date: Wed,  1 Apr 2026 14:08:41 +0530
+Message-Id: <20260401083841.4081587-3-chaitanya.kumar.borah@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20260401083841.4081587-1-chaitanya.kumar.borah@intel.com>
+References: <20260401083841.4081587-1-chaitanya.kumar.borah@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,33 +68,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When copying plane color state in a joiner configuration, use the plane in
-the primary joiner pipe since it carries the pipeline number selected by
-the user-space.
+The Y plane is only responsible for fetching luma data from a YCbCr
+frame buffer. After chroma upsampling, pixel data is forwarded
+through the UV plane for further processing. Programming the color
+pipeline on the Y plane is therefore unnecessary.
 
-This assumes that all pipes in the joiner are symmetric in their plane
-color capabilities.
+The Y plane may still carry color pipeline state due to state copying
+between the Y and UV planes. The hw state copying needs to be more
+nuanced but until then, skip programming the color pipeline for the
+Y plane.
 
-Cc: stable@vger.kernel.org # v6.19+
-Fixes: a78f1b6baf4d ("drm/i915/color: Add framework to program CSC")
 Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_plane.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_plane.c b/drivers/gpu/drm/i915/display/intel_plane.c
-index 5390ceb21ca4..82f445c83158 100644
---- a/drivers/gpu/drm/i915/display/intel_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_plane.c
-@@ -373,7 +373,7 @@ intel_plane_color_copy_uapi_to_hw_state(struct intel_plane_state *plane_state,
- 	bool changed = false;
- 	int i = 0;
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index 11ba42c67e3e..2f622a2d5e04 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -1567,7 +1567,8 @@ icl_plane_update_noarm(struct intel_dsb *dsb,
+ 	plane_color_ctl = plane_state->color_ctl |
+ 		glk_plane_color_ctl_crtc(crtc_state);
  
--	iter_colorop = plane_state->uapi.color_pipeline;
-+	iter_colorop = from_plane_state->uapi.color_pipeline;
+-	intel_color_plane_program_pipeline(dsb, plane_state);
++	if (!plane_state->is_y_plane)
++		intel_color_plane_program_pipeline(dsb, plane_state);
  
- 	while (iter_colorop) {
- 		for_each_new_colorop_in_state(state, colorop, new_colorop_state, i) {
+ 	/* The scaler will handle the output position */
+ 	if (plane_state->scaler_id >= 0) {
 -- 
 2.25.1
 
