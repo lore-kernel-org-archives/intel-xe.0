@@ -4,56 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCD3710F6FD6
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Apr 2026 15:53:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0EF4210F6FD9
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Apr 2026 16:14:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F3B210E5F9;
-	Wed,  1 Apr 2026 15:53:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B304E10E26A;
+	Wed,  1 Apr 2026 16:14:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZrVrTcto";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jAM32RZU";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A11910E5F9
- for <intel-xe@lists.freedesktop.org>; Wed,  1 Apr 2026 15:53:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E5F1010E26A
+ for <intel-xe@lists.freedesktop.org>; Wed,  1 Apr 2026 16:14:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775058794; x=1806594794;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=dUWBvWxTerV6L/nOJFdu4Jfu2+k94Jhb6Ccc/GSmtBk=;
- b=ZrVrTctoIaxHf5DmzoXHDU2JnjsCsJJUcNeQmsztmL0y9JcfvaSi9XqC
- Ti3nW4zFXmttBjVkjvmKeKZJVYcK0MQmyBk0lTgnrw2yxKeumyHzbGGBA
- KWJBwDFQySjrCWfCZ/9TO0Fn8yi1SGlMW4wr1SzSj1nVC0jJiZ9uW4s2A
- ZwF1nc1OvWksBCZhlu9Bj/yFQB+wPbSGs6qHF0w52D+QxSJ1GaP8TsHdx
- ctg0felzoftMUbWAQoeNifFvseGbjILbt3rxOXI6vAy/h38W/vDz5FKaO
- r/z0VRIBoGAc+WW8mdTN46r5vbg+oJ6s+o/apUv35DA/ZmwKMJ4qTN+Du Q==;
-X-CSE-ConnectionGUID: sr+WLwFBSFqrqu3dXgtPfw==
-X-CSE-MsgGUID: j5+GQVnoTLyaSw92A6BCkg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="76164437"
-X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="76164437"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2026 08:53:14 -0700
-X-CSE-ConnectionGUID: pYfd0AdVSVKWc9O3HH7Mtw==
-X-CSE-MsgGUID: kmh/Opc0Tm2thikh8s/5qg==
+ t=1775060081; x=1806596081;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=/GESJgjTnLv2iTVRP2nOF7DSyMeZF/1LvPQqeszyNwU=;
+ b=jAM32RZUAcx7YaxdYjJncnWsDYEUnFxIAClzaY+zBtdOdt7W5fhSLaHe
+ MQ47A/YHkYW320fhtBK5aLMUMH2YhPI5JiKzmKLHnytjd2soaQh5MeqQr
+ Ugvrr7p+Zzk1C8CXMTbwuKnFJXolFKrDJhoHhTf2ZQ21czh4/VtdXM4+x
+ +wwI8Blm3+rrhrPpZG56/Z6e0inWwj78mjLo4A4p/b2uZS3mfcbkr0bEc
+ qLZAvFNQBg6+jM6+6SnyarErXzwzoVPT8/4tHepVkQZXeeyPmu7Gwt7aN
+ 0Hmi9INf9Zg931XFWtVAbTgcw9sTgWg3OBHV0zCOj+wjTZUSbLOdMRIab w==;
+X-CSE-ConnectionGUID: LfCIOd25RIeC7iruVDeX4Q==
+X-CSE-MsgGUID: mWGWuKAdToKUic6V6jBLgA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="98717125"
+X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="98717125"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2026 09:14:40 -0700
+X-CSE-ConnectionGUID: vYidhZoTT+6TQQcFhyDBpQ==
+X-CSE-MsgGUID: GzTNQGpUS7mFwLidc/ylAw==
 X-ExtLoop1: 1
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.182])
- ([10.245.244.182])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2026 08:53:13 -0700
-Message-ID: <eb862036-67a7-4d3c-b4ad-f876e2da6a39@intel.com>
-Date: Wed, 1 Apr 2026 16:53:10 +0100
+X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="222354391"
+Received: from ksatya-dev.iind.intel.com ([10.190.229.161])
+ by fmviesa010.fm.intel.com with ESMTP; 01 Apr 2026 09:14:39 -0700
+From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Subject: [PATCH v3 0/3] USE drm mm instead of drm SA for CCS read/write
+Date: Wed,  1 Apr 2026 16:15:25 +0000
+Message-ID: <20260401161528.1990499-1-satyanarayana.k.v.p@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] drm/xe/vm: Add missing pad and extensions check
-To: Jonathan Cavitt <jonathan.cavitt@intel.com>, intel-xe@lists.freedesktop.org
-Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com
-References: <20260331181216.37775-2-jonathan.cavitt@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20260331181216.37775-2-jonathan.cavitt@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,34 +64,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 31/03/2026 19:12, Jonathan Cavitt wrote:
-> Add missing pad and extensions check to xe_vm_get_property_ioctl
-> 
-> v2:
-> - Combine with other check (Auld)
-> 
-> Fixes: 50c577eab051 ("drm/xe/xe_vm: Implement xe_vm_get_property_ioctl")
-> Suggested-by: Matthew Auld <matthew.auld@intel.com>
-> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+The suballocator algorithm tracks a hole cursor at the last allocation
+and tries to allocate after it. This is optimized for fence-ordered
+progress, where older allocations are expected to become reusable first.
 
-Pushed now. Thanks.
+In fence-enabled mode, that ordering assumption holds. In fence-disabled
+mode, allocations may be freed in arbitrary order, so limiting allocation
+to the current hole window can miss valid free space and fail allocations
+despite sufficient total space.
 
-> ---
->   drivers/gpu/drm/xe/xe_vm.c | 3 ++-
->   1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 56e2db50bb36..1720205c09ca 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -4156,7 +4156,8 @@ int xe_vm_get_property_ioctl(struct drm_device *drm, void *data,
->   	int ret = 0;
->   
->   	if (XE_IOCTL_DBG(xe, (args->reserved[0] || args->reserved[1] ||
-> -			      args->reserved[2])))
-> +			      args->reserved[2] || args->extensions ||
-> +			      args->pad)))
->   		return -EINVAL;
->   
->   	vm = xe_vm_lookup(xef, args->vm_id);
+Use DRM memory manager instead of sub-allocator to get rid of this issue
+as CCS read/write operations do not use fences.
+
+Used drm mm instead of drm sa based on comments from
+https://lore.kernel.org/all/bbf0d48d-a95a-46e1-ac8f-e8a0daa81365@amd.com/
+
+---
+V2 -> V3:
+- Used xe_mem_pool_init() and xe_mem_pool_shadow_init() to allocate BB
+pools.
+- Renamed xe_mm_suballoc to xe_mem_pool_manager
+- Splitted xe_mm_suballoc_manager_init() into xe_mem_pool_init() and
+xe_mem_pool_shadow_init() (Michal)
+- Made xe_mm_sa_manager structure private. (Matt)
+- Introduced init flags to initialize allocated pools.
+
+V1 -> V2:
+- Renamed xe_drm_mm to xe_mm_suballoc (Thomas)
+- Removed memset from xe_drm_mm_bb_insert() (Matt).
+- Removed memset during manager init and insert (Matt)
+
+Satyanarayana K V P (3):
+  drm/xe/mm: add XE MEM POOL manager with shadow support
+  drm/xe/mm: Add batch buffer allocation functions for xe_mem_pool
+    manager
+  drm/xe/vf: Use drm mm instead of drm sa for CCS read/write
+
+ drivers/gpu/drm/xe/Makefile                |   1 +
+ drivers/gpu/drm/xe/xe_bb.c                 |  58 ++++
+ drivers/gpu/drm/xe/xe_bb.h                 |   6 +
+ drivers/gpu/drm/xe/xe_bo_types.h           |   3 +-
+ drivers/gpu/drm/xe/xe_mem_pool.c           | 379 +++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_mem_pool.h           |  33 ++
+ drivers/gpu/drm/xe/xe_mem_pool_types.h     |  30 ++
+ drivers/gpu/drm/xe/xe_migrate.c            |  56 +--
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs.c       |  48 ++-
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h |   5 +-
+ 10 files changed, 563 insertions(+), 56 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_mem_pool.c
+ create mode 100644 drivers/gpu/drm/xe/xe_mem_pool.h
+ create mode 100644 drivers/gpu/drm/xe/xe_mem_pool_types.h
+
+-- 
+2.43.0
 
