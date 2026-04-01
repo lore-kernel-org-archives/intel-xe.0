@@ -4,67 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7EAF2109B497
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Apr 2026 18:04:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 286CB10FCAC0
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Apr 2026 18:21:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9DA010EE94;
-	Wed,  1 Apr 2026 18:04:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACA5F10EED1;
+	Wed,  1 Apr 2026 18:21:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="AjQZlhlE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YjQhh0BG";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9770510EE94
- for <intel-xe@lists.freedesktop.org>; Wed,  1 Apr 2026 18:04:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1775066659;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=YHfausQ4IwtvMkybG2aXvWsg8wsDkjntzxDmbQVjIVI=;
- b=AjQZlhlE90zH2AzqxFhWh0Eh6XgEQZ4iThuhOkPsV652l+WsypAlc1I1WXL9g7PwCcoHD3
- 9SSSYXcKRZK2/wSJsck4xiPEFoVZkVfj3HYZgj2KvdHz2o0CjIV/KNZ6boCyEQHC0FlVVN
- vvlBTDb2coSL/0PP/D7oICNBLojeqvY=
-Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-150-kqARiL1nPcOtGWdsxsHEjQ-1; Wed,
- 01 Apr 2026 14:04:18 -0400
-X-MC-Unique: kqARiL1nPcOtGWdsxsHEjQ-1
-X-Mimecast-MFC-AGG-ID: kqARiL1nPcOtGWdsxsHEjQ_1775066656
-Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 6223A1800372; Wed,  1 Apr 2026 18:04:16 +0000 (UTC)
-Received: from [10.22.81.104] (unknown [10.22.81.104])
- by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id B0A5630001A2; Wed,  1 Apr 2026 18:04:14 +0000 (UTC)
-Message-ID: <55434043-ec42-4c3a-a534-4f7a46f4fb17@redhat.com>
-Date: Wed, 1 Apr 2026 14:04:13 -0400
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3347A10EED1
+ for <intel-xe@lists.freedesktop.org>; Wed,  1 Apr 2026 18:21:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1775067673; x=1806603673;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=PZQ8k8QQC/RhZBZoXkr1LvEjGePoWVJDvRlg+ETQ5C0=;
+ b=YjQhh0BG6WpClLQqOyZpEW+IsKOZoXmYrOAscX0EnLaGMKhsGVse1kpx
+ izWTCw52pfNrNY9UqcWhfeAzR1ttgpQWJ1rk27TGsZQ+jLhj8+lTkbfwg
+ PD+pbbbEaUqCF34jB/TAcK2KXWYLjJQBVOFvUQWkkYxp9LBzHIjC0eE2j
+ edoiZPdb0Z6038szqrxVWCpxeTZhs0+vJCZTQLiPe/72NaD90ZeSuRiM4
+ Mzr/hX2tzX1F5dKAkwD3bmHDwf2QryyQZ68tVJwTbW4G8/j3bJWCWh5AY
+ 5ZxTu9tvqmguIHy+4heciF6t2DQOBIR06Y3Fj2GTj2+ak1U+VG0vzdNvs g==;
+X-CSE-ConnectionGUID: fiwDOAqQQM66hGs7lUiMXg==
+X-CSE-MsgGUID: 7LyMlU++TDe5cIzAbn3uIA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="76002502"
+X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="76002502"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2026 11:21:12 -0700
+X-CSE-ConnectionGUID: +LxDMWLJSmiNOGGiE1Fw6A==
+X-CSE-MsgGUID: 9RtQ0N4OQ6SRxH/JW6E0sQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="264685155"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2026 11:21:10 -0700
+Date: Wed, 1 Apr 2026 20:21:06 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>
+Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com, riana.tauro@intel.com,
+ michal.wajdeczko@intel.com, matthew.d.roper@intel.com,
+ umesh.nerlige.ramappa@intel.com, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v1 1/3] drm/xe/cri: Setup hardware error routing
+Message-ID: <ac1iEsWnV-6_KW7T@black.igk.intel.com>
+References: <20260217114656.2546878-1-raag.jadav@intel.com>
+ <20260217114656.2546878-2-raag.jadav@intel.com>
+ <6c7b27a8-d5bc-4854-8252-8b38e269f80b@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] workqueue: Add pool_workqueue to pending_pwqs list
- when unplugging multiple inactive works
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Carlos Santa <carlos.santa@intel.com>,
- Ryan Neph <ryanneph@google.com>, stable@vger.kernel.org,
- Tejun Heo <tj@kernel.org>, Lai Jiangshan <jiangshanlai@gmail.com>
-References: <20260401010739.1053192-1-matthew.brost@intel.com>
- <8eaf9c5e-70fc-4d68-a919-df371bb38283@redhat.com>
- <ac08UdszEeEI2iJj@gsse-cloud1.jf.intel.com>
-From: Waiman Long <longman@redhat.com>
-In-Reply-To: <ac08UdszEeEI2iJj@gsse-cloud1.jf.intel.com>
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
-X-Mimecast-MFC-PROC-ID: 0JtRpx6PAGwdLMRllSd2d0GEkYpAt2wOOLawc81Rn7w_1775066656
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6c7b27a8-d5bc-4854-8252-8b38e269f80b@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,148 +70,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 4/1/26 11:40 AM, Matthew Brost wrote:
-> On Wed, Apr 01, 2026 at 10:44:55AM -0400, Waiman Long wrote:
->> On 3/31/26 9:07 PM, Matthew Brost wrote:
->>> In unplug_oldest_pwq(), the first inactive work item on the
->>> pool_workqueue is activated correctly. However, if multiple inactive
->>> works exist on the same pool_workqueue, subsequent works fail to
->>> activate because wq_node_nr_active.pending_pwqs is empty — the list
->>> insertion is skipped when the pool_workqueue is plugged.
->>>
->>> Fix this by checking for additional inactive works in
->>> unplug_oldest_pwq() and updating wq_node_nr_active.pending_pwqs
->>> accordingly.
->>>
->>> v2:
->>>    - Use pwq_activate_first_inactive(pwq, false) rather than open coding
->>>      list operations (Tejun)
->>>
->>> Cc: Carlos Santa <carlos.santa@intel.com>
->>> Cc: Ryan Neph <ryanneph@google.com>
->>> Cc: stable@vger.kernel.org
->>> Cc: Tejun Heo <tj@kernel.org>
->>> Cc: Lai Jiangshan <jiangshanlai@gmail.com>
->>> Cc: Waiman Long <longman@redhat.com>
->>> Cc: linux-kernel@vger.kernel.org
->>> Fixes: 4c065dbce1e8 ("workqueue: Enable unbound cpumask update on ordered workqueues")
->>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->>>
->>> ---
->>>
->>> This bug was first reported by Google, where the Xe driver appeared to
->>> hang due to a fencing signal not completing. We traced the issue to work
->>> items not being scheduled, and it can be trivially reproduced on drm-tip
->>> with the following commands:
->>>
->>> shell0:
->>> for i in {1..100}; do echo "Run $i"; xe_exec_threads --r \
->>> threads-rebind-bindexecqueue; done
->>>
->>> shell1:
->>> for i in {1..1000}; do echo "toggle $i"; echo f > \
->>> /sys/devices/virtual/workqueue/cpumask; echo ff > \
->>> /sys/devices/virtual/workqueue/cpumask; echo fff > \
->>> /sys/devices/virtual/workqueue/cpumask ; echo ffff > \
->>> /sys/devices/virtual/workqueue/cpumask; sleep .1; done
->>> ---
->>>    kernel/workqueue.c | 11 ++++++++++-
->>>    1 file changed, 10 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/kernel/workqueue.c b/kernel/workqueue.c
->>> index b77119d71641..bee3f37fffde 100644
->>> --- a/kernel/workqueue.c
->>> +++ b/kernel/workqueue.c
->>> @@ -1849,8 +1849,17 @@ static void unplug_oldest_pwq(struct workqueue_struct *wq)
->>>    	raw_spin_lock_irq(&pwq->pool->lock);
->>>    	if (pwq->plugged) {
->>>    		pwq->plugged = false;
->>> -		if (pwq_activate_first_inactive(pwq, true))
->>> +		if (pwq_activate_first_inactive(pwq, true)) {
->>> +			/*
->>> +			 * pwq is unbound. Additional inactive work_items need
->>> +			 * to reinsert the pwq into nna->pending_pwqs, which
->>> +			 * was skipped while pwq->plugged was true. See
->>> +			 * pwq_tryinc_nr_active() for additional details.
->>> +			 */
->>> +			pwq_activate_first_inactive(pwq, false);
->>> +
->>>    			kick_pool(pwq->pool);
->>> +		}
->>>    	}
->>>    	raw_spin_unlock_irq(&pwq->pool->lock);
->>>    }
->> Thanks for fixing this bug. However, calling pwq_activate_first_inactive
-> No problem — I think this one has been lurking around for a while, and
-> we’ve just papered over it in Xe for a couple of years.
->
->> twice can be a bit hard to understand. Will modifying pwq_tryinc_nr_active()
-> I actually think it makes quite a bit of sense, as it matches what
-> __queue_work does if two items are added back-to-back on an ordered
-> workqueue — the first one updates the nr_active counts and activates,
-> and the second one updates the pending_pwqs.
-This patch works because only an ordered workqueue with a max_active of 
-1 can be plugged. Perhaps you should put the note above into the comment 
-too.
->> like the following works?
->>
-> My initial thought was that your snippet should work — in fact, it does
-> for a while (drm-tip hangs almost immediately), but eventually I do get
-> a hang when running my reproducer, whereas with this patch I don’t. I
-> can’t reason exactly why — maybe it’s because
-> node_activate_pending_pwq() can find a plugged pwq, but that’s just a
-> guess.
+On Thu, Mar 26, 2026 at 06:19:00PM +0530, Mallesh, Koujalagi wrote:
+> On 17-02-2026 05:16 pm, Raag Jadav wrote:
+> > Setup hardware error routing based on XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET
+> > which will be used for debug cases on Crescent Island.
+> > 
+> > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> > ---
+> >   drivers/gpu/drm/xe/regs/xe_hw_error_regs.h |  5 +++++
+> >   drivers/gpu/drm/xe/xe_hw_error.c           | 22 +++++++++++++++++++++-
+> >   drivers/gpu/drm/xe/xe_hw_error.h           |  1 +
+> >   3 files changed, 27 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/regs/xe_hw_error_regs.h b/drivers/gpu/drm/xe/regs/xe_hw_error_regs.h
+> > index c146b9ef44eb..88593f0a48fd 100644
+> > --- a/drivers/gpu/drm/xe/regs/xe_hw_error_regs.h
+> > +++ b/drivers/gpu/drm/xe/regs/xe_hw_error_regs.h
+> > @@ -11,6 +11,11 @@
+> >   #define HEC_UNCORR_FW_ERR_DW0(base)                    XE_REG((base) + 0x124)
+> > +#define DEV_ERR_ROUTING_CTRL			XE_REG(0x100170)
+> > +#define   FATAL_ERR_ROUTING			BIT(2)
+> > +#define   NONFATAL_ERR_ROUTING			BIT(1)
+> > +#define   CORR_ERR_ROUTING			BIT(0)
+> > +
+> >   #define DEV_ERR_STAT_NONFATAL			0x100178
+> >   #define DEV_ERR_STAT_CORRECTABLE		0x10017c
+> >   #define DEV_ERR_STAT_REG(x)			XE_REG(_PICK_EVEN((x), \
+> > diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
+> > index 8c65291f36fc..eb557266d083 100644
+> > --- a/drivers/gpu/drm/xe/xe_hw_error.c
+> > +++ b/drivers/gpu/drm/xe/xe_hw_error.c
+> > @@ -146,6 +146,23 @@ void xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl)
+> >   			hw_error_source_handler(tile, hw_err);
+> >   }
+> > +/**
+> > + * xe_hw_error_irq_route - irq routing of hw errors
+> > + * @xe: xe device instance
+> > + *
+> > + * Set irq routing of hw errors.
+> > + */
+> > +void xe_hw_error_irq_route(struct xe_device *xe)
+> > +{
+> > +	u32 mask = CORR_ERR_ROUTING | NONFATAL_ERR_ROUTING | FATAL_ERR_ROUTING;
+> > +	bool irq = xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET;
+> 
+> What happen when wedge mode change during execution?
 
-That may be the case. Thanks for checking it anyway.
+This needs to be called when it happens. The only place I could find as
+of now is through debugfs, will add in this in v2.
 
-Acked-by: Waiman Long <longman@redhat.com>
+Raag
 
-> Matt
->   
->> Thanks,
->> Longman
->>
->> diff --git a/kernel/workqueue.c b/kernel/workqueue.c
->> index b77119d71641..b35e6e62e474 100644
->> --- a/kernel/workqueue.c
->> +++ b/kernel/workqueue.c
->> @@ -1738,9 +1738,6 @@ static bool pwq_tryinc_nr_active(struct pool_workqueue *pwq, bool fill)
->>                  goto out;
->>          }
->> -       if (unlikely(pwq->plugged))
->> -               return false;
->> -
->>          /*
->>           * Unbound workqueue uses per-node shared nr_active $nna. If @pwq is
->>           * already waiting on $nna, pwq_dec_nr_active() will maintain the
->> @@ -1749,13 +1746,19 @@ static bool pwq_tryinc_nr_active(struct pool_workqueue *pwq, bool fill)
->>           * We need to ignore the pending test after max_active has increased as
->>           * pwq_dec_nr_active() can only maintain the concurrency level but not
->>           * increase it. This is indicated by @fill.
->> +        *
->> +        * If @pwq is plugged, we need to make sure that it is linked to a
->> +        * pending_pwqs of a $nna.
->> +        *
->>           */
->> -       if (!list_empty(&pwq->pending_node) && likely(!fill))
->> +       if (!list_empty(&pwq->pending_node) && likely(!fill || pwq->plugged))
->>                  goto out;
->> -       obtained = tryinc_node_nr_active(nna);
->> -       if (obtained)
->> -               goto out;
->> +       if (likely(!pwq->plugged)) {
->> +               obtained = tryinc_node_nr_active(nna);
->> +               if (obtained)
->> +                       goto out;
->> +       }
->>          /*
->>           * Lockless acquisition failed. Lock, add ourself to $nna->pending_pwqs
->> @@ -1773,7 +1776,8 @@ static bool pwq_tryinc_nr_active(struct pool_workqueue *pwq, bool fill)
->>          smp_mb();
->> -       obtained = tryinc_node_nr_active(nna);
->> +       if (likely(!pwq->plugged))
->> +               obtained = tryinc_node_nr_active(nna);
->>          /*
->>           * If @fill, @pwq might have already been pending. Being spuriously
->>
-
+> > +	struct xe_tile *tile;
+> > +	u8 id;
+> > +
+> > +	for_each_tile(tile, xe, id)
+> > +		xe_mmio_rmw32(&tile->mmio, DEV_ERR_ROUTING_CTRL, mask, irq ? mask : 0);
+> > +}
+> > +
+> >   /*
+> >    * Process hardware errors during boot
+> >    */
+> > @@ -178,5 +195,8 @@ void xe_hw_error_init(struct xe_device *xe)
+> >   	INIT_WORK(&tile->csc_hw_error_work, csc_hw_error_work);
+> > -	process_hw_errors(xe);
+> > +	if (xe->info.platform == XE_CRESCENTISLAND)
+> > +		xe_hw_error_irq_route(xe);
+> > +	else
+> > +		process_hw_errors(xe);
+> >   }
+> > diff --git a/drivers/gpu/drm/xe/xe_hw_error.h b/drivers/gpu/drm/xe/xe_hw_error.h
+> > index d86e28c5180c..8f155b66b5f1 100644
+> > --- a/drivers/gpu/drm/xe/xe_hw_error.h
+> > +++ b/drivers/gpu/drm/xe/xe_hw_error.h
+> > @@ -11,5 +11,6 @@ struct xe_tile;
+> >   struct xe_device;
+> >   void xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl);
+> > +void xe_hw_error_irq_route(struct xe_device *xe);
+> >   void xe_hw_error_init(struct xe_device *xe);
+> >   #endif
