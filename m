@@ -4,161 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 827F3D3517D
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Apr 2026 13:00:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AD74D3517C
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Apr 2026 13:10:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2109D10EDB8;
-	Wed,  1 Apr 2026 13:00:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4179310ECE6;
+	Wed,  1 Apr 2026 13:10:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YJE/UzrT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HaeEu7DU";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6396F10F0BC;
- Wed,  1 Apr 2026 13:00:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D01B10ECE6;
+ Wed,  1 Apr 2026 13:10:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775048427; x=1806584427;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=jgUj7SPr4HZOHhaoa9D5GbYJJ7CSw/D/GJxGcxJJY/Y=;
- b=YJE/UzrTFkyaktpoSNFeYluXNu8sD0lNwJ/Bx/1zWW7PveRCwWkVIpMy
- 4pSSW3n6uA451t4JIevHZCjvBFZ2ZT2X3sI9bEAfpxibrijfA/Q0izyx8
- bQ89GQrAHGbbP/se6GMf9G8r6aGR3NQjz11bUg7gCAWx6m8GTJzFCTpwM
- Ztc/isSRWv4exFrPse1K/+ltO/LNYHDMbi9LkzyLTNXMlHQ917+KQw8UT
- ERCmSVKR+RcU+DsR4OTzqbZAsZ4NL3KrOVgvrog/Rl7j1eUPJdC7TbgOx
- K7TzyCLzeDPNhu2RoH0kTXpdOWe6lL6NUUPrQXK8xv8JNs64mVuJF3WRB g==;
-X-CSE-ConnectionGUID: fxaXjP5BQlCYEQavAa4aKw==
-X-CSE-MsgGUID: C+dEC0mPRHCYvS2nQNoh0g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="76097978"
-X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="76097978"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2026 06:00:26 -0700
-X-CSE-ConnectionGUID: o13NixDwRheLuRa2wWVISg==
-X-CSE-MsgGUID: D9QIPj65Ty2mUvpKhPsALA==
+ t=1775049022; x=1806585022;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=NxcqYI/Vl6hCqyZ88eE6A8UknJy2km/M2CSURZNTVqg=;
+ b=HaeEu7DUszGLnOuZy+LZSSGsb3b/RPUvFBRXEZkRSKlScMym2cVZ6uJr
+ rO8qeaujwkyFWCRsRuF4zAcOvONFIWCiAS+4VkqbdaGTFQVSlmJXR+lJ+
+ 5NtniFiRZui+J/ZwDw6ETv4Qfnj32EjlEyGqX+rMfSY7nShyiB8dKTr93
+ vR/aNqOAR4pkVMqR3ampzUb9L0GWHqRnphNYQFYg355EUF7QT2cqHMTkF
+ LbCRujABZP6wq8773HZU6ZxQvYH7O7kT5ZiASIt3wluJdTX5hv8nRq/k6
+ 8OeoEXeWBCAzVyuMHglAwlcREDaBMfUEjL31kxJnrKvh9lG5VFE/pZaRa Q==;
+X-CSE-ConnectionGUID: 8bTueVkxQvyBmurPgBFIgA==
+X-CSE-MsgGUID: dsg9HPJ5SvuRprHwf15DYA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="76144677"
+X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="76144677"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2026 06:10:21 -0700
+X-CSE-ConnectionGUID: EdoJeFc1SyGkSHAaDxJZxg==
+X-CSE-MsgGUID: wGnweDFvR2SBhQNIED5cjA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="231465144"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2026 06:00:25 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 1 Apr 2026 06:00:25 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 1 Apr 2026 06:00:25 -0700
-Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.35) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 1 Apr 2026 06:00:24 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Nc1mt23XuWjWolF52vHntfsZdep9z1tYwBM4mDlhfwcuTnW4soiqojLLfL/K9kCzRA3gcUElBjx4hllFaPlpaOLPdThBRMUVEUUGoISnoR7yWqsZbC1GaR60XVSh5arKdyvb0U4ZVKSOK19kUfwxFU3t3n+Sz3QCV6v5S/GhIjqKbm10FudXJvxblPfJ4VqC2+JhgMiiOq/USZbFGvBU+2vkbtl8NGZ73+/aOUv5b7vEu4CMc0rWr0OFgvS7B23f4J1ojvnVtpdPCN2Fs31V3kbD9dbI7OzMFjT07Uc2kGr/KviW3Kx2Rp8k6aGsv1zmkEpZUdETSGi1MfLMkxVnBA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kH2XAZUwjPxR9L31Xm2E7eoBUCdi7kJH4Tixo+uS+Kw=;
- b=Q6xGlczC4bc+RXuHCwQJIyb5wDSDEcrgzEH8hkiTxhWBg61Ig5xU0WjijFDuRdthvigoR82Upuk8pWodMb60oFtExxZJ1r2GpVlVmFjCyEx5Nzpzq79m+lP8Pkh4IBhAK1JSHScJ3c/NT4zPVaGTDZ3D+xdFylk3C/oeheheRcxlK8gqq17brotSkJwYJipefnQJ++QfyxdSnrYiL4e4zM/5GEuVSVyY+cyClq1Wc7VC72Yl7CRGf6TtbxzEfBnTH4HlGegKZEkupyYm8F0aVe4fWj8M+3a85G7kjegfzuh/6/cDTIFmQktoFIfcH+gJ7CmO61d35GqW7xERn3P+AQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by PH3PPF681F257FD.namprd11.prod.outlook.com (2603:10b6:518:1::d29) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.15; Wed, 1 Apr
- 2026 13:00:22 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::68b9:ea3c:8166:3cc4]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::68b9:ea3c:8166:3cc4%4]) with mapi id 15.20.9769.016; Wed, 1 Apr 2026
- 13:00:22 +0000
-Message-ID: <45c89720-1214-40c4-a7f3-7f36376cfb04@intel.com>
-Date: Wed, 1 Apr 2026 18:30:14 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] drm/i915/hdmi: Poll for 200 msec for
- TMDS_Scrambler_Status
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>,
- =?UTF-8?B?SsOpcsO0bWUgVG9sbGV0?= <jerome.tollet@gmail.com>, Jani Nikula
- <jani.nikula@linux.intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
-CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-References: <CADN_a6OKUQ6fgu-JjNvwFb_MV8dxTDhppoq4DDnQ9p_t-JZ8yg@mail.gmail.com>
- <IA0PR11MB7307698A73C8C19F2A8C275CBA50A@IA0PR11MB7307.namprd11.prod.outlook.com>
-Content-Language: en-US
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <IA0PR11MB7307698A73C8C19F2A8C275CBA50A@IA0PR11MB7307.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5PR01CA0115.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1a7::9) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
+X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="257153139"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.152])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2026 06:10:20 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 1/2] drm/i915: Track fence region ID in plane state
+In-Reply-To: <20260331162138.19258-1-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260331162138.19258-1-ville.syrjala@linux.intel.com>
+Date: Wed, 01 Apr 2026 16:10:16 +0300
+Message-ID: <4dee82289c67c00562cbb4fcc8a16c8b3c7a6e4c@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|PH3PPF681F257FD:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6c8d096f-fc54-46f2-6989-08de8feea21a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|56012099003|18002099003|22082099003; 
-X-Microsoft-Antispam-Message-Info: VETEouqQSW15eAVk6WCR5wr+AzWfHmuMXiUc3/RFeexlbxMyVkyUB2KYcNYsPK2bdAXXwKS7Bx8XX/b97Vr4fM2oV6U6iHhXkBb6O0I6niQ0vU6c1AcCtom9N3xT/zkGuyWJtRKksmoEZkcuwjfVbcuPcJgRD45qfada2BHU8FfNIhpbtoO/qSy6WdhjkmxfDtmp5qolmcgLHaYvMrm3iXeJNuK3iFS3kEh7QIlyc0Oefa6+xw3iSM9IQoiN96kVcWwuDIEgAhf3q2vMChFk0aTvaavlsXLxUkSllW9plBIM8o6roquPXYOX1CVjAmdkpiOl6qWVFbHEkmuSAbgCCQXFmUkgFEzeph7OOvxEQOQvvak26zX3MUwsUk6YcH1x/F5utKLmjsuzfWf44Hq5xlBspLUHX3Wjr4RNj9sYP0aLZ3WfIr2nfM+67cKiwHDUUfzAsGkwTxu1AwT79GRYgHaHSXbsMbKSzX6MbmSDiIbn8hkjxvlSI8V55w7WCW5TSMTInMTUTsmIbZI+ZrzLBRi4bGd37QRPHH8xt23BkxjBowwW9M8aD8AXE7OaoXMSVzUP1PovHSg26MxZbR1adC/21csQTVdDob++JdVr1KzHM1EujYUP4nYYBcTQYaKmrOCdiG4QEUcpX5Nu53LDJk6tfgdamt0WCUML0K8ioR3GYI+IJG/fS+LPfvycLWNm
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(56012099003)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eHhwK1VHS2kxMTRhZktScU1FTzJZejRWNVZ4alVnZ28rdGZReE5kK2NVSzhS?=
- =?utf-8?B?aG1XSXMxb216a1RadnM0VkJyN0JCTHI4YldWalBPMVZzUGo5SGhQTXpjS3ND?=
- =?utf-8?B?VlV2MTVta1VneUlVWFRGcGg4eWVoYTl4WWpyVEpndnI4YkFEWnJEVGd3V1E2?=
- =?utf-8?B?NDBOVzZrSkI4b0FKWHowKzArUmlveTV1WXM3YjhjbkE0YUVkUmxZL3Z5VjJ6?=
- =?utf-8?B?NEVZL1lpZDFwZEdMNVJNU3c0cDBvOTdQcENnbU9JdDZoR044dXd4MUVUZXZR?=
- =?utf-8?B?Rytld1BkZUx3UWU3VWlEUU53M2ZBLythM29nRGprdEpIaWl1R3ExclNJd0tq?=
- =?utf-8?B?TzlwK3hUN0cyODdFT090OUt6b1crOW9FS0NRTXp6dlV6MGMwbkYwNGlRQW5s?=
- =?utf-8?B?aTBPNWpUdnZQQ0xLd21ZMFpIc1hMSTRkVVdrNkdQUTEwZStrZWFLbDdkMWFt?=
- =?utf-8?B?WEtuaGNndlpqNTBuUnh2UHdnZkZreU92UE82dFUrSEUrV21NblQxRnBKa2w1?=
- =?utf-8?B?Sm1MMWVldWd3UXJkbm5OZEY3OVFmanJTY3FwUmpCQzlVRWxFekdPOVQ1Wk9v?=
- =?utf-8?B?VUJhT3NaMmE2RFlyVmgva0t3Qm1iUG95ZktoYURmTWdURzBuY3JrVlhTTW5s?=
- =?utf-8?B?Q2pUMmZWclUyUHh4WjNxNS91RkkxbHpJTzhjRUxNZUVyVGJCb3FuRHY4WXlK?=
- =?utf-8?B?RVJxdXIrNmZWek1qdUgxTllOZ0grSzlUVWJhNDhKbk96elpuREtaZm1ZQWF3?=
- =?utf-8?B?L0ppb3RsMk9LZTRwbjRhYnJDS1IyWTQ0YnVuS3doRmEvT3JZdlJGY1FSUTRP?=
- =?utf-8?B?cVVSMG9KRktYQVdvWEhnZXB4NEhtb3hhMTJQUDByL2VDQUVFbGxKR1ZDejdh?=
- =?utf-8?B?S1E5SmRyQzlNQ3EvOVpjTEQ2MXBLT244MERGbXU5cHB5QysyWlpNMFhaUWRP?=
- =?utf-8?B?NmtyNVpNbEIxWUdPV09LRzBwOUxJa2U3aGkyYUZWOVJXOWxZdDZGcTB3R1RZ?=
- =?utf-8?B?V3diUTVFNlJTYy9QTUl1NXdBa3IxaGpCN05XOS9wSWluRExJdWJVUHRwRFJZ?=
- =?utf-8?B?OFJlNjFqeiswRXgwL2ZJZG5TQ1N2L3drSnFMTDc5VnZ6UWxEeHFLNlBvbk1E?=
- =?utf-8?B?S2RGcGpKSmRCa0VUblU5UElVUjlBdVUwMHY2TWF4ZTVZb1VEUUptSGZWZlF6?=
- =?utf-8?B?OGhzV1poTGErTjFxbHFoVmVkVEtjQTNDYjBkSnltNTRtMVZvZHNUdlQ0S0pi?=
- =?utf-8?B?Tmp1Rjg3SmJhaklMcHhKQW1HbU5KemtmcXJjRXZIU0dmLy9LT2VIOUUxS0lk?=
- =?utf-8?B?RkxETU9SOTJXekhHbkZOejd0NXVSa09GUWVXSEVjRVBjS1FOTCt4WHF5M1FC?=
- =?utf-8?B?Z0tJaUhKdUhKeGtHMWhab091VXNDL2pLdGIrVzQ0NW9tTHBEckpSUkN0Y1hz?=
- =?utf-8?B?NUtldDNoNGk1aVhraEpYdWdET291V0dVbktndHRvbk1lbGFad0ZYaVlhOFp1?=
- =?utf-8?B?bUFOU2h5UVBMTUVmeTZURDhqQTFxU201eTl2MXEwU2N6NzlIYUhQUFFMZmI0?=
- =?utf-8?B?d09Jc2dyKzJqNHJyMmpaR1NuUnhvSTdVWWlwWDFaR1Q5QnR2bkgzSFNUMHMz?=
- =?utf-8?B?K0h3SXB2dzFBK1pDbEJiMUw3bUNvTkNQcFEzbFNmSGZSZWNwRmY0eEZBekJU?=
- =?utf-8?B?QkdJMVVGVmZPN2NtbDFZdGtiK3R1czhQN1pjU2RZa1FKR3JWZHcxYU9YWEg0?=
- =?utf-8?B?U3hWVVZtVjhXQ052ZVdIT2pvQ0RnLzZ6VHVsc2xRdmd0ZjdEUzFycUo3UUlX?=
- =?utf-8?B?TnRxaUFibmFyQ0FTSG1Vbk9jMzJjM0o4c2JJZzBPMEpSLzF6eG1odExxN25B?=
- =?utf-8?B?UEYvQTdUQTB5cnFNWjN1T2lqY05yYlc2YTM0eHdSMlYvREhEbXhOZWRPcFgy?=
- =?utf-8?B?KzRScWpVaXJ0UUhkSDcvU3JnSGk2ai9uUkl5azRLajhVK2Fzd2JYdVY5L3pN?=
- =?utf-8?B?WmxTN2N3Nm8wS2VQcTdELzEvL25jbmZGQVhEckxBUzA3SlRjbDlPb09UMGM3?=
- =?utf-8?B?MEJGRjIxQVVaa3B1ZUhFakdBTnhSaTJTS09wMGtNSUYzVE5Zc1VCc3JWWFdG?=
- =?utf-8?B?VHR1blhYbTlUSktuNHE0TTZJY1Z2UEdmc2VlYzA4SXB1dG9TR2piMGoyQ3ht?=
- =?utf-8?B?cFNEQ1JPZE5YQk0wTHdsNitmalFhOGord3cyUFZ2U0lDNkM3R1Z4cnphSExS?=
- =?utf-8?B?NmNaK3FlMTZJK3J5dVZyTjhjcy9UWFVuMHAyMjQ2cjdwVlAxd1NaUzYwVFg3?=
- =?utf-8?B?Tk8vMUVTUWQ3STQzUFNtOHVJRnZ4TlJ2WmpML1BTZE9KbXd0WVNLQzcyMlJJ?=
- =?utf-8?Q?lf43r3IEff+yIX6c=3D?=
-X-Exchange-RoutingPolicyChecked: fQnyEkqxU6/J61oxdJq0pTQAOExSjxaMeHUOkybRPU8UvWV5uLIGl29uWyOfY2Ck5Lfg/8c9HYRu6Bqi2Pc7zvrkBia1ZBx1rI6K5mn1M6hHUktwSlidHzcQerR6+vLQoaOdlFGyW6ZbM7qxnFEC9bkIw8gKz5iHg2KpmUXXyy+kSBUtmsuQXupIP+ukRrLFDxK5jzsxSO19iCMNfuEd7FxaqNcVKViBDZtL2AW0tEBF3cradu+vkfoxCStSqzv1tP9mJjhUkLItKQ+o36Gcra2mpojMKEPhTwzsjv9/zJwA3CW5zWfIwWooSfvc6OWxw3PGhJeGdMpn2+O7p0T0Fw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6c8d096f-fc54-46f2-6989-08de8feea21a
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Apr 2026 13:00:22.1157 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gl6JxLsGTz1MTiWBK6ipn/AgNyCg549HvbLqgL1M9Cm1mUFsLx2+i5ubCfIc7wn7iT9sVgRqRdOBijDilALEfZ6UIev09yPpTQJbRH7vztE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH3PPF681F257FD
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -173,132 +70,388 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-On 4/1/2026 3:11 PM, Murthy, Arun R wrote:
+On Tue, 31 Mar 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
->> -----Original Message-----
->> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Jérôme
->> Tollet
->> Sent: Thursday, January 8, 2026 2:38 PM
->> To: Jani Nikula <jani.nikula@linux.intel.com>; Vivi, Rodrigo
->> <rodrigo.vivi@intel.com>; Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>
->> Cc: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
->> Subject: [PATCH v2] drm/i915/hdmi: Poll for 200 msec for
->> TMDS_Scrambler_Status
->>
->> Hello,
->> As per HDMI 2.0 specification, after scrambled video transmission begins,  the
->> source must poll the TMDS_Scrambler_Status bit until it reads 1 or  until a
->> timeout of 200 ms.
->>
->>   Add a polling step after enabling the HDMI port to verify scrambling  status,
->> following the spec requirement.
->>
->>   Without the wait for the scrambling bit to set, some HDMI 2.0 monitors fail  to
->> decode the signal at 4K@60Hz (594 MHz) when SCDC scrambling is not yet
->> fully configured by the sink.
->>
->>   v2:
->>    - Instead of the fixed delay, poll for TMDS scramble status for 200 msec
->>      as per the HDMI spec. (Ankit)
->>
->>   Reported-by: Jerome Tollet <jerome.tollet@gmail.com>
->>   Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6868
->>   Link: https://lore.kernel.org/dri-devel/20251230091037.5603-1-
->> jerome.tollet@gmail.com/
->>   Signed-off-by: Jerome Tollet <jerome.tollet@gmail.com>
->>   Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->>   ---
->>    drivers/gpu/drm/i915/display/intel_ddi.c  |  2 ++
->>    drivers/gpu/drm/i915/display/intel_hdmi.c | 25 +++++++++++++++++++++++
->>    drivers/gpu/drm/i915/display/intel_hdmi.h |  2 ++
->>    3 files changed, 29 insertions(+)
->>
->>   diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
->> b/drivers/gpu/drm/i915/display/intel_ddi.c
->>   index cb91d07cdaa6..c708b713f0e8 100644
->>   --- a/drivers/gpu/drm/i915/display/intel_ddi.c
->>   +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
->>   @@ -3506,6 +3506,8 @@ static void intel_ddi_enable_hdmi(struct
->> intel_atomic_state *state,
->>    }
->>
->>    intel_ddi_buf_enable(encoder, buf_ctl);  +  +
->> intel_hdmi_poll_for_scrambling_enable(crtc_state, connector);
->>    }
->>
->>    static void intel_ddi_enable(struct intel_atomic_state *state,  diff --git
->> a/drivers/gpu/drm/i915/display/intel_hdmi.c
->> b/drivers/gpu/drm/i915/display/intel_hdmi.c
->>   index 055e68810d0d..958d939ae6ee 100644
->>   --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
->>   +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
->>   @@ -2694,6 +2694,31 @@ intel_hdmi_add_properties(struct intel_hdmi
->> *intel_hdmi, struct drm_connector *_
->>    drm_connector_attach_max_bpc_property(&connector->base, 8, 12);
->>    }
->>
->>   +/*
->>   + * As Per HDMI 2.0 spec: after scrambled video transmission begins,  + * poll
->> TMDS_Scrambler_Status until it reads 1, for up to 200 ms.
->>   + */
-> Can you point out to the section in the spec?
+> Get rid of the needlessly complicated PLANE_HAS_FENCE +
+> intel_parent_vma_fence_id() dance by simply tracking the
+> fence_id directly in the plane state.
 
-HDMI Specification 2.0
-
-Section 6.1.3 Control
-
-Subsection 6.1.3.1 Scrambling Control
-
-Mentions about the polling for TMDS_Scrambler_bit for 200msec.
-
-
-Regards,
-
-Ankit
+This is good cleanup, but I still dread what to do about the whole
+{intel,xe}_fb_pin.[ch] interface. Needs to be moved to the parent
+interface, but there's just too much direct display structure poking
+from the i915 and xe cores there. Ugh.
 
 >
-> Apart from that, patch looks good to be as this polling will be done only if scrambling is enabled and this is mandated in the HDMI spec.
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  .../drm/i915/display/intel_display_types.h    |  5 +--
+>  drivers/gpu/drm/i915/display/intel_fb_pin.c   | 33 ++++++++++---------
+>  drivers/gpu/drm/i915/display/intel_fb_pin.h   |  5 ++-
+>  drivers/gpu/drm/i915/display/intel_fbc.c      | 11 ++-----
+>  drivers/gpu/drm/i915/display/intel_fbdev.c    | 14 ++++----
+>  drivers/gpu/drm/i915/display/intel_plane.c    |  3 +-
+>  drivers/gpu/drm/i915/i915_initial_plane.c     |  2 +-
+>  drivers/gpu/drm/xe/display/xe_fb_pin.c        |  8 ++---
+>  drivers/gpu/drm/xe/display/xe_initial_plane.c |  2 +-
+>  9 files changed, 42 insertions(+), 41 deletions(-)
 >
-> Thanks and Regards,
-> Arun R Murthy
-> -------------------
->
->>   +void
->>   +intel_hdmi_poll_for_scrambling_enable(const struct intel_crtc_state
->> *crtc_state,
->>   +       struct drm_connector *_connector)
->>   +{
->>   + struct intel_connector *connector = to_intel_connector(_connector);  + struct
->> intel_display *display = to_intel_display(crtc_state);  + bool scrambling_enabled
->> = false;  + int ret;  +  + if (!crtc_state->hdmi_scrambling)  + return;  +  + /* Poll
->> for a max of 200 msec as per HDMI spec */  + ret =
->> poll_timeout_us(scrambling_enabled =
->> drm_scdc_get_scrambling_status(&connector->base),
->>   +       scrambling_enabled, 1000, 200 * 1000, false);
->>   + if (ret)
->>   + drm_dbg_kms(display->drm,
->>   +     "[CONNECTOR:%d:%s] Timed out waiting for scrambling enable\n",
->>   +     connector->base.base.id, connector->base.name);
->>   +}
->>   +
->>    /*
->>     * intel_hdmi_handle_sink_scrambling: handle sink scrambling/clock ratio
->> setup
->>     * @encoder: intel_encoder
->>   diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.h
->> b/drivers/gpu/drm/i915/display/intel_hdmi.h
->>   index be2fad57e4ad..0fa3661568e8 100644
->>   --- a/drivers/gpu/drm/i915/display/intel_hdmi.h
->>   +++ b/drivers/gpu/drm/i915/display/intel_hdmi.h
->>   @@ -70,5 +70,7 @@ void hsw_read_infoframe(struct intel_encoder *encoder,
->>    const struct intel_crtc_state *crtc_state,
->>    unsigned int type,
->>    void *frame, ssize_t len);
->>   +void intel_hdmi_poll_for_scrambling_enable(const struct intel_crtc_state
->> *crtc_state,
->>   +    struct drm_connector *_connector);
->>
->>    #endif /* __INTEL_HDMI_H__ */
->>   --
->>   2.45.2
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index e2496db1642a..73eb4f38620c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -683,14 +683,15 @@ struct intel_plane_state {
+>=20=20
+>  	struct i915_vma *ggtt_vma;
+>  	struct i915_vma *dpt_vma;
+> -	unsigned long flags;
+> -#define PLANE_HAS_FENCE BIT(0)
+>=20=20
+>  	struct intel_fb_view view;
+>=20=20
+>  	/* for legacy cursor fb unpin */
+>  	struct drm_vblank_work unpin_work;
+>=20=20
+> +	/* fenced region ID (-1 if none) */
+> +	s8 fence_id;
+
+I guess I would've made this an int for consistency with all the
+parameters and local variables.
+
+> +
+>  	/* Plane pxp decryption state */
+>  	bool decrypt;
+>=20=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/dr=
+m/i915/display/intel_fb_pin.c
+> index 738d77a1468a..0b8b057647af 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
+> @@ -26,7 +26,6 @@ static struct i915_vma *
+>  intel_fb_pin_to_dpt(const struct drm_framebuffer *fb,
+>  		    const struct i915_gtt_view *view,
+>  		    unsigned int alignment,
+> -		    unsigned long *out_flags,
+>  		    struct intel_dpt *dpt)
+>  {
+>  	struct drm_device *dev =3D fb->dev;
+> @@ -115,8 +114,7 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
+>  		     unsigned int alignment,
+>  		     unsigned int phys_alignment,
+>  		     unsigned int vtd_guard,
+> -		     bool uses_fence,
+> -		     unsigned long *out_flags)
+> +		     int *out_fence_id)
+>  {
+>  	struct drm_device *dev =3D fb->dev;
+>  	struct intel_display *display =3D to_intel_display(dev);
+> @@ -177,7 +175,10 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *f=
+b,
+>  		goto err_unpin;
+>  	}
+>=20=20
+> -	if (uses_fence && i915_vma_is_map_and_fenceable(vma)) {
+> +	if (out_fence_id)
+> +		*out_fence_id =3D -1;
+> +
+> +	if (out_fence_id && i915_vma_is_map_and_fenceable(vma)) {
+>  		/*
+>  		 * Install a fence for tiled scan-out. Pre-i965 always needs a
+>  		 * fence, whereas 965+ only requires a fence if using
+> @@ -203,7 +204,7 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
+>  		ret =3D 0;
+>=20=20
+>  		if (vma->fence)
+> -			*out_flags |=3D PLANE_HAS_FENCE;
+> +			*out_fence_id |=3D vma->fence->id;
+>  	}
+>=20=20
+>  	i915_vma_get(vma);
+> @@ -225,9 +226,9 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
+>  	return vma;
+>  }
+>=20=20
+> -void intel_fb_unpin_vma(struct i915_vma *vma, unsigned long flags)
+> +void intel_fb_unpin_vma(struct i915_vma *vma, int fence_id)
+>  {
+> -	if (flags & PLANE_HAS_FENCE)
+> +	if (fence_id >=3D 0)
+>  		i915_vma_unpin_fence(vma);
+>  	i915_vma_unpin(vma);
+>  	i915_vma_put(vma);
+> @@ -271,17 +272,18 @@ int intel_plane_pin_fb(struct intel_plane_state *pl=
+ane_state,
+>  	struct i915_vma *vma;
+>=20=20
+>  	if (!intel_fb_uses_dpt(&fb->base)) {
+> +		int fence_id =3D -1;
+> +
+>  		vma =3D intel_fb_pin_to_ggtt(&fb->base, &plane_state->view.gtt,
+>  					   intel_plane_fb_min_alignment(plane_state),
+>  					   intel_plane_fb_min_phys_alignment(plane_state),
+>  					   intel_plane_fb_vtd_guard(plane_state),
+> -					   intel_plane_uses_fence(plane_state),
+> -					   &plane_state->flags);
+> +					   intel_plane_uses_fence(plane_state) ? &fence_id : NULL);
+
+E.g. here you could pass &plane_state->fence_id direcly if it was an int
+and ditch the local variable.
+
+>  		if (IS_ERR(vma))
+>  			return PTR_ERR(vma);
+>=20=20
+>  		plane_state->ggtt_vma =3D vma;
+> -
+> +		plane_state->fence_id =3D fence_id;
+>  	} else {
+>  		unsigned int alignment =3D intel_plane_fb_min_alignment(plane_state);
+>=20=20
+> @@ -292,8 +294,7 @@ int intel_plane_pin_fb(struct intel_plane_state *plan=
+e_state,
+>  		plane_state->ggtt_vma =3D vma;
+>=20=20
+>  		vma =3D intel_fb_pin_to_dpt(&fb->base, &plane_state->view.gtt,
+> -					  alignment, &plane_state->flags,
+> -					  fb->dpt);
+> +					  alignment, fb->dpt);
+>  		if (IS_ERR(vma)) {
+>  			i915_dpt_unpin_from_ggtt(fb->dpt);
+>  			plane_state->ggtt_vma =3D NULL;
+> @@ -338,12 +339,14 @@ void intel_plane_unpin_fb(struct intel_plane_state =
+*old_plane_state)
+>=20=20
+>  	if (!intel_fb_uses_dpt(&fb->base)) {
+>  		vma =3D fetch_and_zero(&old_plane_state->ggtt_vma);
+> -		if (vma)
+> -			intel_fb_unpin_vma(vma, old_plane_state->flags);
+> +		if (vma) {
+> +			intel_fb_unpin_vma(vma, old_plane_state->fence_id);
+> +			old_plane_state->fence_id =3D -1;
+> +		}
+>  	} else {
+>  		vma =3D fetch_and_zero(&old_plane_state->dpt_vma);
+>  		if (vma)
+> -			intel_fb_unpin_vma(vma, old_plane_state->flags);
+> +			intel_fb_unpin_vma(vma, -1);
+>=20=20
+>  		vma =3D fetch_and_zero(&old_plane_state->ggtt_vma);
+>  		if (vma)
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.h b/drivers/gpu/dr=
+m/i915/display/intel_fb_pin.h
+> index 81ab79da1af7..2eca42b74c4a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb_pin.h
+> +++ b/drivers/gpu/drm/i915/display/intel_fb_pin.h
+> @@ -20,10 +20,9 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
+>  		     unsigned int alignment,
+>  		     unsigned int phys_alignment,
+>  		     unsigned int vtd_guard,
+> -		     bool uses_fence,
+> -		     unsigned long *out_flags);
+> +		     int *out_fence_id);
+>=20=20
+> -void intel_fb_unpin_vma(struct i915_vma *vma, unsigned long flags);
+> +void intel_fb_unpin_vma(struct i915_vma *vma, int fence_id);
+>=20=20
+>  int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
+>  		       const struct intel_plane_state *old_plane_state);
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i=
+915/display/intel_fbc.c
+> index ea0ce00c8474..677ac5be749b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+> @@ -1458,13 +1458,10 @@ static void intel_fbc_update_state(struct intel_a=
+tomic_state *state,
+>=20=20
+>  	fbc_state->fence_y_offset =3D intel_plane_fence_y_offset(plane_state);
+>=20=20
+> -	drm_WARN_ON(display->drm, plane_state->flags & PLANE_HAS_FENCE &&
+> +	drm_WARN_ON(display->drm, plane_state->fence_id >=3D 0 &&
+>  		    !intel_fbc_has_fences(display));
+>=20=20
+> -	if (plane_state->flags & PLANE_HAS_FENCE)
+> -		fbc_state->fence_id =3D intel_parent_vma_fence_id(display, plane_state=
+->ggtt_vma);
+> -	else
+> -		fbc_state->fence_id =3D -1;
+> +	fbc_state->fence_id =3D plane_state->fence_id;
+>=20=20
+>  	fbc_state->cfb_stride =3D intel_fbc_cfb_stride(plane_state);
+>  	fbc_state->cfb_size =3D intel_fbc_cfb_size(plane_state);
+> @@ -1487,9 +1484,7 @@ static bool intel_fbc_is_fence_ok(const struct inte=
+l_plane_state *plane_state)
+>  	 * so have no fence associated with it) due to aperture constraints
+>  	 * at the time of pinning.
+>  	 */
+> -	return DISPLAY_VER(display) >=3D 9 ||
+> -		(plane_state->flags & PLANE_HAS_FENCE &&
+> -		 intel_parent_vma_fence_id(display, plane_state->ggtt_vma) !=3D -1);
+> +	return DISPLAY_VER(display) >=3D 9 || plane_state->fence_id >=3D 0;
+>  }
+>=20=20
+>  static bool intel_fbc_is_cfb_ok(const struct intel_plane_state *plane_st=
+ate)
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm=
+/i915/display/intel_fbdev.c
+> index bdaaf3edba0c..0d7be5186393 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> @@ -60,7 +60,7 @@
+>  struct intel_fbdev {
+>  	struct intel_framebuffer *fb;
+>  	struct i915_vma *vma;
+> -	unsigned long vma_flags;
+> +	s8 fence_id;
+
+Ditto.
+
+Regardless,
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+
+>  };
+>=20=20
+>  static struct intel_fbdev *to_intel_fbdev(struct drm_fb_helper *fb_helpe=
+r)
+> @@ -141,7 +141,7 @@ static void intel_fbdev_fb_destroy(struct fb_info *in=
+fo)
+>  	 * the info->screen_base mmaping. Leaking the VMA is simpler than
+>  	 * trying to rectify all the possible error paths leading here.
+>  	 */
+> -	intel_fb_unpin_vma(ifbdev->vma, ifbdev->vma_flags);
+> +	intel_fb_unpin_vma(ifbdev->vma, ifbdev->fence_id);
+>  	drm_framebuffer_remove(fb_helper->fb);
+>=20=20
+>  	drm_client_release(&fb_helper->client);
+> @@ -269,9 +269,9 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_help=
+er *helper,
+>  	struct fb_info *info =3D helper->info;
+>  	struct ref_tracker *wakeref;
+>  	struct i915_vma *vma;
+> -	unsigned long flags =3D 0;
+>  	bool prealloc =3D false;
+>  	struct drm_gem_object *obj;
+> +	int fence_id =3D -1;
+>  	int ret;
+>=20=20
+>  	ifbdev->fb =3D NULL;
+> @@ -314,7 +314,7 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_help=
+er *helper,
+>  				   fb->min_alignment, 0,
+>  				   intel_fb_view_vtd_guard(&fb->base, &fb->normal_view,
+>  							   DRM_MODE_ROTATE_0),
+> -				   false, &flags);
+> +				   &fence_id);
+>  	if (IS_ERR(vma)) {
+>  		ret =3D PTR_ERR(vma);
+>  		goto out_unlock;
+> @@ -345,14 +345,14 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_he=
+lper *helper,
+>  	drm_dbg_kms(display->drm, "allocated %dx%d fb\n", fb->base.width, fb->b=
+ase.height);
+>  	ifbdev->fb =3D fb;
+>  	ifbdev->vma =3D vma;
+> -	ifbdev->vma_flags =3D flags;
+> +	ifbdev->fence_id =3D fence_id;
+>=20=20
+>  	intel_display_rpm_put(display, wakeref);
+>=20=20
+>  	return 0;
+>=20=20
+>  out_unpin:
+> -	intel_fb_unpin_vma(vma, flags);
+> +	intel_fb_unpin_vma(vma, fence_id);
+>  out_unlock:
+>  	intel_display_rpm_put(display, wakeref);
+>=20=20
+> @@ -539,6 +539,8 @@ void intel_fbdev_setup(struct intel_display *display)
+>  	if (!ifbdev)
+>  		return;
+>=20=20
+> +	ifbdev->fence_id =3D -1;
+> +
+>  	display->fbdev.fbdev =3D ifbdev;
+>  	if (intel_fbdev_init_bios(display, ifbdev))
+>  		preferred_bpp =3D intel_fbdev_color_mode(ifbdev->fb->base.format);
+> diff --git a/drivers/gpu/drm/i915/display/intel_plane.c b/drivers/gpu/drm=
+/i915/display/intel_plane.c
+> index 5390ceb21ca4..f15dd9e91243 100644
+> --- a/drivers/gpu/drm/i915/display/intel_plane.c
+> +++ b/drivers/gpu/drm/i915/display/intel_plane.c
+> @@ -70,6 +70,7 @@ static void intel_plane_state_reset(struct intel_plane_=
+state *plane_state,
+>  	__drm_atomic_helper_plane_state_reset(&plane_state->uapi, &plane->base);
+>=20=20
+>  	plane_state->scaler_id =3D -1;
+> +	plane_state->fence_id =3D -1;
+>  }
+>=20=20
+>  struct intel_plane *intel_plane_alloc(void)
+> @@ -137,7 +138,7 @@ intel_plane_duplicate_state(struct drm_plane *plane)
+>=20=20
+>  	intel_state->ggtt_vma =3D NULL;
+>  	intel_state->dpt_vma =3D NULL;
+> -	intel_state->flags =3D 0;
+> +	intel_state->fence_id =3D -1;
+>  	intel_state->damage =3D DRM_RECT_INIT(0, 0, 0, 0);
+>=20=20
+>  	/* add reference to fb */
+> diff --git a/drivers/gpu/drm/i915/i915_initial_plane.c b/drivers/gpu/drm/=
+i915/i915_initial_plane.c
+> index 390a9248d631..db51a468ddd4 100644
+> --- a/drivers/gpu/drm/i915/i915_initial_plane.c
+> +++ b/drivers/gpu/drm/i915/i915_initial_plane.c
+> @@ -268,7 +268,7 @@ i915_initial_plane_setup(struct drm_plane_state *_pla=
+ne_state,
+>  	plane_state->ggtt_vma =3D i915_vma_get(vma);
+>  	if (intel_plane_uses_fence(plane_state) &&
+>  	    i915_vma_pin_fence(vma) =3D=3D 0 && vma->fence)
+> -		plane_state->flags |=3D PLANE_HAS_FENCE;
+> +		plane_state->fence_id =3D vma->fence->id;
+>=20=20
+>  	plane_state->surf =3D i915_ggtt_offset(plane_state->ggtt_vma);
+>=20=20
+> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/=
+display/xe_fb_pin.c
+> index e45a1e7a4670..739d9c019094 100644
+> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> @@ -418,15 +418,15 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *=
+fb,
+>  		     unsigned int alignment,
+>  		     unsigned int phys_alignment,
+>  		     unsigned int vtd_guard,
+> -		     bool uses_fence,
+> -		     unsigned long *out_flags)
+> +		     int *out_fence_id)
+>  {
+> -	*out_flags =3D 0;
+> +	if (out_fence_id)
+> +		*out_fence_id =3D -1;
+>=20=20
+>  	return __xe_pin_fb_vma(to_intel_framebuffer(fb), view, alignment);
+>  }
+>=20=20
+> -void intel_fb_unpin_vma(struct i915_vma *vma, unsigned long flags)
+> +void intel_fb_unpin_vma(struct i915_vma *vma, int fence_id)
+>  {
+>  	__xe_unpin_fb_vma(vma);
+>  }
+> diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/=
+drm/xe/display/xe_initial_plane.c
+> index 8bcae552dddc..09ec8f94bf57 100644
+> --- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
+> +++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
+> @@ -153,7 +153,7 @@ xe_initial_plane_setup(struct drm_plane_state *_plane=
+_state,
+>  	struct i915_vma *vma;
+>=20=20
+>  	vma =3D intel_fb_pin_to_ggtt(fb, &plane_state->view.gtt,
+> -				   0, 0, 0, false, &plane_state->flags);
+> +				   0, 0, 0, NULL);
+>  	if (IS_ERR(vma))
+>  		return PTR_ERR(vma);
+
+--=20
+Jani Nikula, Intel
