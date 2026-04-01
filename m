@@ -4,28 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DABA1D35163
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Apr 2026 09:44:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32B5ED35162
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Apr 2026 09:45:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F0E910EBF8;
-	Wed,  1 Apr 2026 09:44:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8CAB10E2DE;
+	Wed,  1 Apr 2026 09:45:24 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F64F10EBF8;
- Wed,  1 Apr 2026 09:44:55 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1923470450220170409=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07BC910E2DE;
+ Wed,  1 Apr 2026 09:45:24 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1/3?=
- =?utf-8?q?=5D_drm/i915/display=3A_Copy_color_pipeline_from_plane_in_the_pri?=
- =?utf-8?q?mary_joiner_pipe?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/=7Bi915=2C_xe=7D=3A_m?=
+ =?utf-8?q?ove_fbdev_fb_calls_to_parent_interface_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 01 Apr 2026 09:44:55 -0000
-Message-ID: <177503669504.422485.3873174458333687580@a3b018990fe9>
+Date: Wed, 01 Apr 2026 09:45:24 -0000
+Message-ID: <177503672401.422485.15076293660145800609@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260401083841.4081587-1-chaitanya.kumar.borah@intel.com>
-In-Reply-To: <20260401083841.4081587-1-chaitanya.kumar.borah@intel.com>
+References: <cover.1774950508.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1774950508.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,162 +40,64 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1923470450220170409==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: series starting with [1/3] drm/i915/display: Copy color pipeline from plane in the primary joiner pipe
-URL   : https://patchwork.freedesktop.org/series/164227/
-State : success
+Series: drm/{i915, xe}: move fbdev fb calls to parent interface (rev2)
+URL   : https://patchwork.freedesktop.org/series/164151/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4831-ec2d5f6e76f906370ac56a3d6056891e321b299f_BAT -> xe-pw-164227v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 3b6f02704353b856b4f9fe021b89529514dc702c
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Tue Mar 31 12:49:18 2026 +0300
 
-Summary
--------
+    drm/xe: pass struct xe_device to xe_display_bo_fbdev_prefer_stolen()
+    
+    This is xe core code, use struct xe_device for simplicity.
+    
+    Reviewed-by: Michał Grzelak <michal.grzelak@intel.com>
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 5d36e6d54e963f0c1137aaf2249d2baa781f08c2 drm-intel
+601c604054c7 drm/xe/fbdev: put intel_fbdev_fb_prefer_stolen() behind IS_ENABLED(CONFIG_DRM_FBDEV_EMULATION)
+36d8ffde4988 drm/{i915, xe}/fbdev: drop drm device parameter from intel_fbdev_fb_fill_info()
+5d1eb7882aa0 drm/{i915, xe}: move fbdev fb calls to parent interface
+-:121: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
+#121: FILE: drivers/gpu/drm/i915/display/intel_fbdev.c:218:
++	mode_cmd->pitches[0] = intel_bo_fbdev_pitch_align(display, mode_cmd->width * DIV_ROUND_UP(sizes->surface_bpp, 8));
 
-  **SUCCESS**
+-:159: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#159: 
+deleted file mode 100644
 
-  No regressions found.
+-:717: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#717: FILE: drivers/gpu/drm/xe/display/xe_display_bo.c:163:
++			drm_info(&xe->drm, "Allocated fbdev into stolen failed: %li\n", PTR_ERR(obj));
 
-  
+-:726: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#726: FILE: drivers/gpu/drm/xe/display/xe_display_bo.c:172:
++						XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
 
-Participating hosts (13 -> 13)
-------------------------------
+-:745: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#745: FILE: drivers/gpu/drm/xe/display/xe_display_bo.c:191:
++static int xe_display_bo_fbdev_fill_info(struct drm_gem_object *_obj, struct fb_info *info,
++			     struct i915_vma *vma)
 
-  No changes in participating hosts
+-:846: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#846: FILE: include/drm/intel/display_parent_interface.h:51:
++	int (*fbdev_fill_info)(struct drm_gem_object *obj, struct fb_info *info, struct i915_vma *vma);
 
-Known issues
-------------
-
-  Here are the changes found in xe-pw-164227v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4831-ec2d5f6e76f906370ac56a3d6056891e321b299f/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164227v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#7483]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4831-ec2d5f6e76f906370ac56a3d6056891e321b299f/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164227v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [FAIL][5] ([Intel XE#6519]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4831-ec2d5f6e76f906370ac56a3d6056891e321b299f/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164227v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  * igt@xe_waitfence@reltime:
-    - bat-dg2-oem2:       [FAIL][7] ([Intel XE#6520]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4831-ec2d5f6e76f906370ac56a3d6056891e321b299f/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164227v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-
-  
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
-  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
+total: 0 errors, 5 warnings, 1 checks, 477 lines checked
+9383f0e53245 drm/i915: pass struct drm_i915_private to i915_bo_fbdev_prefer_stolen()
+3b6f02704353 drm/xe: pass struct xe_device to xe_display_bo_fbdev_prefer_stolen()
 
 
-Build changes
--------------
-
-  * Linux: xe-4831-ec2d5f6e76f906370ac56a3d6056891e321b299f -> xe-pw-164227v1
-
-  IGT_8839: 8839
-  xe-4831-ec2d5f6e76f906370ac56a3d6056891e321b299f: ec2d5f6e76f906370ac56a3d6056891e321b299f
-  xe-pw-164227v1: 164227v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164227v1/index.html
-
---===============1923470450220170409==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/3] drm/i915/display: Copy color pipeline from plane in the primary joiner pipe</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164227/">https://patchwork.freedesktop.org/series/164227/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164227v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164227v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4831-ec2d5f6e76f906370ac56a3d6056891e321b299f_BAT -&gt; xe-pw-164227v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-164227v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4831-ec2d5f6e76f906370ac56a3d6056891e321b299f/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164227v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4831-ec2d5f6e76f906370ac56a3d6056891e321b299f/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164227v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@engine:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4831-ec2d5f6e76f906370ac56a3d6056891e321b299f/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164227v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@reltime:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4831-ec2d5f6e76f906370ac56a3d6056891e321b299f/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164227v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4831-ec2d5f6e76f906370ac56a3d6056891e321b299f -&gt; xe-pw-164227v1</li>
-</ul>
-<p>IGT_8839: 8839<br />
-  xe-4831-ec2d5f6e76f906370ac56a3d6056891e321b299f: ec2d5f6e76f906370ac56a3d6056891e321b299f<br />
-  xe-pw-164227v1: 164227v1</p>
-
-</body>
-</html>
-
---===============1923470450220170409==--
