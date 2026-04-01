@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FA4410FCADC
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Apr 2026 21:11:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0678010FCADC
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Apr 2026 21:26:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1BBD10E492;
-	Wed,  1 Apr 2026 21:11:49 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 882D610E492;
- Wed,  1 Apr 2026 21:11:48 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6557549955312757951=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6A8910E105;
+	Wed,  1 Apr 2026 21:26:42 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hZnuuMVa";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16E0410ED1D
+ for <intel-xe@lists.freedesktop.org>; Wed,  1 Apr 2026 21:26:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1775078802; x=1806614802;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=SCKcPQulLwwDmBGxlykN3ml62U5oLzdTlzYyjyLY0J8=;
+ b=hZnuuMVaWfUcbBH1dfxK2baJfU3u9DCjmVKNZhKvBlumzhZx6BRN/PYP
+ /s/BK3NR0Pd/PssoLLVNFBeNmfb4uVYZtC42Y1YvldjzXNK8J3/OU5LOE
+ BI8rTcexpA82cGMzrRWeMvppx4xctTZH0UFQaHC5oUJbluk5B/rjiQ8lz
+ qHi5Mh/1dJZnP4+zYZTv1jfPNwjPsTe5kP9W3JO5ecN+lhrwwek85ZifT
+ EMrpZlOh2TphXbpFUOgKf9aCuwaXt8wkHltDmeXbuJbY7WrYc4y5p9m/c
+ iiyx68/APe0QZ0QPwQFBafGlvuQp7tNDq+7Po2sYuvFN7parD5IHCvzxg w==;
+X-CSE-ConnectionGUID: JJKOaYUmTWWTwGlk+vdhng==
+X-CSE-MsgGUID: oNM92/rJTJu5UdpYoYqCsQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11746"; a="93520490"
+X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="93520490"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2026 14:26:42 -0700
+X-CSE-ConnectionGUID: RTXQBm6LSIeDjftMSqxtcg==
+X-CSE-MsgGUID: WEAlFczRSoeHgcsRqIFGPg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="223498620"
+Received: from xwang-desk.fm.intel.com ([10.121.64.134])
+ by fmviesa007.fm.intel.com with ESMTP; 01 Apr 2026 14:26:41 -0700
+From: Xin Wang <x.wang@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Xin Wang <x.wang@intel.com>,
+ Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Subject: [PATCH v4 1/2] drm/xe: improve readability of debugfs engine info
+ output
+Date: Wed,  1 Apr 2026 14:26:36 -0700
+Message-ID: <20260401212637.732424-2-x.wang@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260401212637.732424-1-x.wang@intel.com>
+References: <20260324212348.4142888-1-x.wang@intel.com>
+ <20260401212637.732424-1-x.wang@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFULL=3A_failure_for_USE_drm_mm_instead_of_drm_?=
- =?utf-8?q?SA_for_CCS_read/write_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 01 Apr 2026 21:11:48 -0000
-Message-ID: <177507790853.425430.18204801237937220425@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260401161528.1990499-1-satyanarayana.k.v.p@intel.com>
-In-Reply-To: <20260401161528.1990499-1-satyanarayana.k.v.p@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,230 +65,91 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6557549955312757951==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Improve the readability of the info debugfs output by replacing
+raw numeric engine masks with human-readable engine and class
+names.
 
-== Series Details ==
+Also print per-GT engine capability data in a form that is easier
+to inspect manually and simpler for userspace tests to consume.
 
-Series: USE drm mm instead of drm SA for CCS read/write (rev3)
-URL   : https://patchwork.freedesktop.org/series/163588/
-State : failure
+This avoids requiring userspace to duplicate kernel mask decoding
+logic when validating engine capabilities.
 
-== Summary ==
+Signed-off-by: Xin Wang <x.wang@intel.com>
+Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+---
+ drivers/gpu/drm/xe/xe_debugfs.c | 38 +++++++++++++++++++++++++++++----
+ 1 file changed, 34 insertions(+), 4 deletions(-)
 
-CI Bug Log - changes from xe-4833-5d36e6d54e963f0c1137aaf2249d2baa781f08c2_FULL -> xe-pw-163588v3_FULL
-====================================================
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index 844cfafe1ec7..9986a0310c36 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -15,9 +15,11 @@
+ #include "xe_bo.h"
+ #include "xe_device.h"
+ #include "xe_force_wake.h"
++#include "xe_gt.h"
+ #include "xe_gt_debugfs.h"
+ #include "xe_gt_printk.h"
+ #include "xe_guc_ads.h"
++#include "xe_hw_engine.h"
+ #include "xe_mmio.h"
+ #include "xe_pm.h"
+ #include "xe_psmi.h"
+@@ -61,6 +63,34 @@ static struct xe_device *node_to_xe(struct drm_info_node *node)
+ 	return to_xe_device(node->minor->dev);
+ }
+ 
++static void print_engine_class_mask(struct drm_printer *p, u8 mask)
++{
++	if (mask) {
++		for (enum xe_engine_class ec = 0; ec < XE_ENGINE_CLASS_MAX; ec++) {
++			if (mask & BIT(ec))
++				drm_printf(p, " %s", xe_hw_engine_class_to_str(ec));
++		}
++	} else {
++		drm_printf(p, " none");
++	}
++	drm_printf(p, "\n");
++}
++
++static void print_engine_mask(struct drm_printer *p, struct xe_gt *gt, u64 mask)
++{
++	struct xe_hw_engine *hwe;
++	enum xe_hw_engine_id id;
++
++	if (mask) {
++		for_each_hw_engine(hwe, gt, id)
++			if (mask & BIT_ULL(id))
++				drm_printf(p, " %s", hwe->name);
++	} else {
++		drm_printf(p, " none");
++	}
++	drm_printf(p, "\n");
++}
++
+ static int info(struct seq_file *m, void *data)
+ {
+ 	struct xe_device *xe = node_to_xe(m->private);
+@@ -91,10 +121,10 @@ static int info(struct seq_file *m, void *data)
+ 	for_each_gt(gt, xe, id) {
+ 		drm_printf(&p, "gt%d force wake %d\n", id,
+ 			   xe_force_wake_ref(gt_to_fw(gt), XE_FW_GT));
+-		drm_printf(&p, "gt%d engine_mask 0x%llx\n", id,
+-			   gt->info.engine_mask);
+-		drm_printf(&p, "gt%d multi_queue_engine_class_mask 0x%x\n", id,
+-			   gt->info.multi_queue_engine_class_mask);
++		drm_printf(&p, "gt%d engines", id);
++		print_engine_mask(&p, gt, gt->info.engine_mask);
++		drm_printf(&p, "gt%d multi_queue_engine_classes", id);
++		print_engine_class_mask(&p, gt->info.multi_queue_engine_class_mask);
+ 	}
+ 
+ 	return 0;
+-- 
+2.43.0
 
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-163588v3_FULL absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-163588v3_FULL, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (2 -> 2)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-163588v3_FULL:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_sriov_vfio@region-info:
-    - shard-lnl:          NOTRUN -> [SKIP][1] +2 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163588v3/shard-lnl-1/igt@xe_sriov_vfio@region-info.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-163588v3_FULL that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@flip-vs-expired-vblank@a-edp1:
-    - shard-lnl:          [PASS][2] -> [FAIL][3] ([Intel XE#301]) +4 other tests fail
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4833-5d36e6d54e963f0c1137aaf2249d2baa781f08c2/shard-lnl-4/igt@kms_flip@flip-vs-expired-vblank@a-edp1.html
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163588v3/shard-lnl-2/igt@kms_flip@flip-vs-expired-vblank@a-edp1.html
-
-  * igt@kms_pm_dc@dc5-dpms:
-    - shard-lnl:          [PASS][4] -> [FAIL][5] ([Intel XE#7340] / [Intel XE#7504])
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4833-5d36e6d54e963f0c1137aaf2249d2baa781f08c2/shard-lnl-1/igt@kms_pm_dc@dc5-dpms.html
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163588v3/shard-lnl-6/igt@kms_pm_dc@dc5-dpms.html
-
-  * igt@kms_pm_dc@dc5-psr:
-    - shard-lnl:          [PASS][6] -> [FAIL][7] ([Intel XE#7340])
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4833-5d36e6d54e963f0c1137aaf2249d2baa781f08c2/shard-lnl-2/igt@kms_pm_dc@dc5-psr.html
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163588v3/shard-lnl-1/igt@kms_pm_dc@dc5-psr.html
-
-  * igt@kms_pm_dc@deep-pkgc:
-    - shard-lnl:          [PASS][8] -> [FAIL][9] ([Intel XE#2029] / [Intel XE#7395])
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4833-5d36e6d54e963f0c1137aaf2249d2baa781f08c2/shard-lnl-3/igt@kms_pm_dc@deep-pkgc.html
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163588v3/shard-lnl-5/igt@kms_pm_dc@deep-pkgc.html
-
-  * igt@kms_setmode@basic@pipe-a-edp-1:
-    - shard-lnl:          [PASS][10] -> [FAIL][11] ([Intel XE#6361]) +1 other test fail
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4833-5d36e6d54e963f0c1137aaf2249d2baa781f08c2/shard-lnl-1/igt@kms_setmode@basic@pipe-a-edp-1.html
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163588v3/shard-lnl-2/igt@kms_setmode@basic@pipe-a-edp-1.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_vrr@flipline:
-    - shard-lnl:          [FAIL][12] ([Intel XE#4227] / [Intel XE#7397]) -> [PASS][13] +1 other test pass
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4833-5d36e6d54e963f0c1137aaf2249d2baa781f08c2/shard-lnl-7/igt@kms_vrr@flipline.html
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163588v3/shard-lnl-1/igt@kms_vrr@flipline.html
-
-  
-  [Intel XE#2029]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2029
-  [Intel XE#301]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/301
-  [Intel XE#4227]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4227
-  [Intel XE#6361]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6361
-  [Intel XE#7340]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7340
-  [Intel XE#7395]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7395
-  [Intel XE#7397]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7397
-  [Intel XE#7504]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7504
-
-
-Build changes
--------------
-
-  * IGT: IGT_8839 -> IGT_8840
-  * Linux: xe-4833-5d36e6d54e963f0c1137aaf2249d2baa781f08c2 -> xe-pw-163588v3
-
-  IGT_8839: 8839
-  IGT_8840: 8840
-  xe-4833-5d36e6d54e963f0c1137aaf2249d2baa781f08c2: 5d36e6d54e963f0c1137aaf2249d2baa781f08c2
-  xe-pw-163588v3: 163588v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163588v3/index.html
-
---===============6557549955312757951==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>USE drm mm instead of drm SA for CCS read/write (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163588/">https://patchwork.freedesktop.org/series/163588/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163588v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163588v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4833-5d36e6d54e963f0c1137aaf2249d2baa781f08c2_FULL -&gt; xe-pw-163588v3_FULL</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-163588v3_FULL absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-163588v3_FULL, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (2 -&gt; 2)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-163588v3_FULL:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_sriov_vfio@region-info:<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163588v3/shard-lnl-1/igt@xe_sriov_vfio@region-info.html">SKIP</a> +2 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-163588v3_FULL that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_flip@flip-vs-expired-vblank@a-edp1:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4833-5d36e6d54e963f0c1137aaf2249d2baa781f08c2/shard-lnl-4/igt@kms_flip@flip-vs-expired-vblank@a-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163588v3/shard-lnl-2/igt@kms_flip@flip-vs-expired-vblank@a-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/301">Intel XE#301</a>) +4 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_dc@dc5-dpms:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4833-5d36e6d54e963f0c1137aaf2249d2baa781f08c2/shard-lnl-1/igt@kms_pm_dc@dc5-dpms.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163588v3/shard-lnl-6/igt@kms_pm_dc@dc5-dpms.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7340">Intel XE#7340</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7504">Intel XE#7504</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_dc@dc5-psr:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4833-5d36e6d54e963f0c1137aaf2249d2baa781f08c2/shard-lnl-2/igt@kms_pm_dc@dc5-psr.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163588v3/shard-lnl-1/igt@kms_pm_dc@dc5-psr.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7340">Intel XE#7340</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_dc@deep-pkgc:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4833-5d36e6d54e963f0c1137aaf2249d2baa781f08c2/shard-lnl-3/igt@kms_pm_dc@deep-pkgc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163588v3/shard-lnl-5/igt@kms_pm_dc@deep-pkgc.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2029">Intel XE#2029</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7395">Intel XE#7395</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic@pipe-a-edp-1:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4833-5d36e6d54e963f0c1137aaf2249d2baa781f08c2/shard-lnl-1/igt@kms_setmode@basic@pipe-a-edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163588v3/shard-lnl-2/igt@kms_setmode@basic@pipe-a-edp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6361">Intel XE#6361</a>) +1 other test fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_vrr@flipline:<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4833-5d36e6d54e963f0c1137aaf2249d2baa781f08c2/shard-lnl-7/igt@kms_vrr@flipline.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4227">Intel XE#4227</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7397">Intel XE#7397</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163588v3/shard-lnl-1/igt@kms_vrr@flipline.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8839 -&gt; IGT_8840</li>
-<li>Linux: xe-4833-5d36e6d54e963f0c1137aaf2249d2baa781f08c2 -&gt; xe-pw-163588v3</li>
-</ul>
-<p>IGT_8839: 8839<br />
-  IGT_8840: 8840<br />
-  xe-4833-5d36e6d54e963f0c1137aaf2249d2baa781f08c2: 5d36e6d54e963f0c1137aaf2249d2baa781f08c2<br />
-  xe-pw-163588v3: 163588v3</p>
-
-</body>
-</html>
-
---===============6557549955312757951==--
