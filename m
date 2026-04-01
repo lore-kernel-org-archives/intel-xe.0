@@ -4,72 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5291EE8536F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F0F0E85375
 	for <intel-xe@archiver.kernel.org>; Fri,  3 Apr 2026 15:11:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C87E010F2ED;
-	Fri,  3 Apr 2026 15:11:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D067710F3F7;
+	Fri,  3 Apr 2026 15:11:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="uYOthpD2";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="XXEixpdL";
+	dkim=pass (2048-bit key; secure) header.d=dancol.org header.i=@dancol.org header.b="Y7/BUZ6o";
 	dkim-atps=neutral
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1273C10F129;
- Thu,  2 Apr 2026 07:01:52 +0000 (UTC)
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4fmXpQ4PsGz9tyH;
- Thu,  2 Apr 2026 09:01:50 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1775113310; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=JD+qogYTEe5G3bMmgq5tsZPaYXL17CNBmjDXW042no0=;
- b=uYOthpD2xdg1352XJXlxgTgEykFloUJTdciEdzwGW8xF/FOk4mR6vVmkPSBO5b47OO6j6k
- MP183BOjq6gkz5XwwEFHL4DxpBabpAYrP8t+a3SREpu4XaFOZe3C6gNoGCcahCiDL0c+46
- gpWsb/n9mj3UFGUUrR68NBwTUc2EzmWDRcKj2uj9J7qnWmM9jCqaNCjSv58ob0vrA/8DvO
- +D4GPrJKCY90u3Q9bu8i1OVb0syQv+dyrhYUTge556WTyPo7ZQao+uzH12k85DocsFnXGv
- PkSetxz9wK5RuWWEmSE+EQZHtDE1BRHl4/9Z66x2nu/eKfLt+epod6HxYJZPqw==
-Message-ID: <aea84d2eee808ba4c3eb462f1371b478f8e58ae6.camel@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1775113308; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=JD+qogYTEe5G3bMmgq5tsZPaYXL17CNBmjDXW042no0=;
- b=XXEixpdL/mFjugr5cOH09AY7Z9dJXIpH2MEHeV2rUo9+nVBPxYeP0dJV6C4yWSQ8hsV46F
- nbLylsDLyBy5bFY/cawoppVWfiwoxqOI0p1xfPzXTlpqPeszcVLAgzYKTY6hrqM6D1Ybgl
- zlLA6mj7VeyPhZIX8QEPkkI3hWkU9UjYpClrrCFRXcfk4aLKaRUNa3rx6l0ytHfRMZccCU
- xOh8+tzdell3Wm3xRalHgL8hBJr7sd5IMa2toYcbHW++c5G7zmBzNudONQfVmhizwZMr0r
- j65adUaTVqWED+lHwVu/EBcDcNnWFUw1TSKDobF6+i74qtALWGDzsmOyKVmRZQ==
-Subject: Re: [PATCH v7 00/29] Fair(er) DRM scheduler
-From: Philipp Stanner <phasta@mailbox.org>
-To: vitaly prosyak <vprosyak@amd.com>, Tvrtko Ursulin
- <tvrtko.ursulin@igalia.com>, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, intel-xe@lists.freedesktop.org, Danilo Krummrich
- <dakr@kernel.org>, Philipp Stanner <phasta@kernel.org>, Christian
- =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Leo Liu
- <Leo.Liu@amd.com>, Lucas Stach <l.stach@pengutronix.de>, Matthew Brost
- <matthew.brost@intel.com>,  Pierre-Eric Pelloux-Prayer
- <pierre-eric.pelloux-prayer@amd.com>, Michel =?ISO-8859-1?Q?D=E4nzer?=
- <michel.daenzer@mailbox.org>
-Date: Thu, 02 Apr 2026 09:01:34 +0200
-In-Reply-To: <9ed0f453-23ad-49c0-9ad9-c14f1999dba2@amd.com>
-References: <20260306163445.97243-1-tvrtko.ursulin@igalia.com>
- <9ed0f453-23ad-49c0-9ad9-c14f1999dba2@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-Greylist: delayed 2149 seconds by postgrey-1.36 at gabe;
+ Wed, 01 Apr 2026 02:44:51 UTC
+Received: from dancol.org (dancol.org [96.126.100.184])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C7F010EB50;
+ Wed,  1 Apr 2026 02:44:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=dancol.org; 
+ s=x;
+ h=Content-Type:MIME-Version:Message-ID:Date:Subject:To:From; 
+ bh=9e7RQVAOjBjxxSPR5no5ag7Pa/vfgF7hX1+alac3HRQ=; b=Y7/BUZ6oXyUCgFlffwjsTLvwlO
+ PT2u6prSXUcZwEW3T+FyXiA8impPgouWhBx9nIRHyUAAmKjH5MWViqsQuxqFUVMDSEA9YypkdCorK
+ 4BEIhoLCWMaOiFh20h2LT+FY2IEI1JV2wZwQ3cbcC98K9l04mtF/KpBbQKrp0uC0AZleW0htDlFKe
+ qSjd5dZ/3zmJvCrbDR4AmqQ+g7UR9WiaWE0iUPascAlx0f2CuDlPlFgTUGCFxRz+i/jD8TGu/PmGW
+ T1dN28EU61m8a00QM1pr1OQ20toeeudePcWQwI4wGBKwjdllE/AQmNXVDG+GQIqUtsK6lik+KDJ+U
+ FlD8y7ag==;
+Received: from 2603-900b-c400-2854-4cc1-9500-c07a-5906.inf6.spectrum.com
+ ([2603:900b:c400:2854:4cc1:9500:c07a:5906]:58092 helo=localhost)
+ by dancol.org with utf8esmtpsa (TLS1.3) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.98.2)
+ (envelope-from <dancol@dancol.org>) id 1w7l0u-00000001Nk7-0VLT;
+ Tue, 31 Mar 2026 22:09:00 -0400
+From: Daniel Colascione <dancol@dancol.org>
+To: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Christian Koenig <christian.koenig@amd.com>,
+ Huang Rui <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, linux-kernel@vger.kernel.org
+Subject: [RFC PATCH] Limit reclaim to avoid TTM desktop stutter under mem
+ pressure
+User-Agent: mu4e 1.14.0-pre1; emacs 31.0.50
+Date: Tue, 31 Mar 2026 22:08:58 -0400
+Message-ID: <87341fsa85.fsf@dancol.org>
 MIME-Version: 1.0
-X-MBO-RS-META: ss85gsic9xj1yr1q6jt11wkgrsfsquc8
-X-MBO-RS-ID: cd8a32e3f41d1c714c1
+Content-Type: text/plain
 X-Mailman-Approved-At: Fri, 03 Apr 2026 15:11:32 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -82,20 +61,92 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 2026-04-01 at 16:01 -0400, vitaly prosyak wrote:
-> Tested-by: Vitaly Prosyak <vitaly.prosyak@amd.com>
->=20
-> Tested the 29-patch scheduler series on our CI; no issues were found.
->=20
-> Thanks,
-> Vitaly
+TTM seems to be too eager to kick off reclaim while kwin is drawing
 
+I've noticed that in 7.0-rc6, and since at least 6.17, kwin_wayland
+stalls in DRM ioctls to xe when the system is under memory pressure,
+causing missed frames, cursor-movement stutter, and general
+sluggishness. The root cause seems to be synchronous and asynchronous
+reclaim in ttm_pool_alloc_page as TTM tries, and fails, to allocate
+progressively lower-order pages in response to pool-cache misses when
+allocating graphics buffers.
 
-Thank you very much, Vitaly =E2=80=93 greatly appreciated!
+Memory is fragmented enough that the compaction fails (as I can see in
+compact_fail and compact_stall in /proc/vmstat; extfrag says the normal
+pool is unusable for large allocations too). Additionally, compaction
+seems to be emptying the ttm pool, since page_pool in TTM debugfs
+reports all the buckets are empty while I'm seeing the
+kwin_wayland sluggishness.
 
+In profiles, I see time dominated by copy_pages and clear_pages in the
+TTM paging code. kswapd runs constantly despite the system as a whole
+having plenty of free memory.
 
-Philipp
+I can reproduce the problem on my 32GB-RAM X1C Gen 13 by booting with
+kernelcore=8G (not needed, but makes the repro happen sooner), running a
+find / >/dev/null (to fragment memory), and doing general web
+browsing. The stalls seem self-perpetuating once it gets started; it
+persists even after killing the find. I've noticed this stall in
+ordinary use too, even without the kernelcore= zone tweak, but without
+kernelcore, it usually takes a while (hours?) after boot for memory to
+become fragmented enough that higher-order allocations fail.
+
+The patch below fixes the issue for me. TBC, I'm not sure it's the
+_right_ fix, but it works for me. I'm guessing that even if the approach
+is right, a new module parameter isn't warranted.
+
+With the patch below, when I set my new max_reclaim_order ttm module
+parameter to zero, the kwin_wayland stalls under memory pressure
+stop. (TBC, this setting inhibits sync or async reclaim except for
+order-zero pages.)  TTM allocation occurs in latency-critical paths
+(e.g. Wayland frame commit): do you think we _should_ reclaim here?
+
+BTW, I also tried having xe pass a beneficial order of 9, but it didn't
+help: we end up doing a lot of compaction work below this order anyway.
+
+Signed-off-by: Daniel Colascione <dancol@dancol.org>
+
+diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
+index c0d95559197c..fd255914c0d3 100644
+--- a/drivers/gpu/drm/ttm/ttm_pool.c
++++ b/drivers/gpu/drm/ttm/ttm_pool.c
+@@ -115,9 +115,13 @@ struct ttm_pool_tt_restore {
+ };
+ 
+ static unsigned long page_pool_size;
++static unsigned int max_reclaim_order;
+ 
+ MODULE_PARM_DESC(page_pool_size, "Number of pages in the WC/UC/DMA pool");
+ module_param(page_pool_size, ulong, 0644);
++MODULE_PARM_DESC(max_reclaim_order,
++                "Maximum order that keeps upstream reclaim behavior");
++module_param(max_reclaim_order, uint, 0644);
+ 
+ static atomic_long_t allocated_pages;
+ 
+@@ -146,16 +150,14 @@ static struct page *ttm_pool_alloc_page(struct ttm_pool *pool, gfp_t gfp_flags,
+         * Mapping pages directly into an userspace process and calling
+         * put_page() on a TTM allocated page is illegal.
+         */
+-       if (order)
++       if (order) {
+                gfp_flags |= __GFP_NOMEMALLOC | __GFP_NORETRY | __GFP_NOWARN |
+                        __GFP_THISNODE;
+-
+-       /*
+-        * Do not add latency to the allocation path for allocations orders
+-        * device tolds us do not bring them additional performance gains.
+-        */
+-       if (beneficial_order && order > beneficial_order)
+-               gfp_flags &= ~__GFP_DIRECT_RECLAIM;
++               if (beneficial_order && order > beneficial_order)
++                       gfp_flags &= ~__GFP_DIRECT_RECLAIM;
++               if (order > max_reclaim_order)
++                       gfp_flags &= ~__GFP_RECLAIM;
++       }
+ 
+        if (!ttm_pool_uses_dma_alloc(pool)) {
+                p = alloc_pages_node(pool->nid, gfp_flags, order);
