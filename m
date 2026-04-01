@@ -4,27 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 355CB1076361
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Apr 2026 04:36:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E8401076367
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Apr 2026 04:45:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE4C810EC14;
-	Wed,  1 Apr 2026 04:36:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3C3910EC1B;
+	Wed,  1 Apr 2026 04:45:50 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C9CB10E0A9;
- Wed,  1 Apr 2026 04:36:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B1D3610EC1A;
+ Wed,  1 Apr 2026 04:45:49 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============6055503953054781638=="
+ boundary="===============2265133601559201714=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/backlight=3A_Fix_V?=
- =?utf-8?q?ESA_backlight_possible_check_condition?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EFULL=3A_success_for_VS/PE_Override_support?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 01 Apr 2026 04:36:56 -0000
-Message-ID: <177501821628.421426.9617189611230719291@a3b018990fe9>
+Date: Wed, 01 Apr 2026 04:45:49 -0000
+Message-ID: <177501874969.421426.2080318613730354115@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260401034332.1321585-1-suraj.kandpal@intel.com>
-In-Reply-To: <20260401034332.1321585-1-suraj.kandpal@intel.com>
+References: <20260331183332.1773886-1-michal.grzelak@intel.com>
+In-Reply-To: <20260331183332.1773886-1-michal.grzelak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,20 +39,20 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6055503953054781638==
+--===============2265133601559201714==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: drm/i915/backlight: Fix VESA backlight possible check condition
-URL   : https://patchwork.freedesktop.org/series/164212/
+Series: VS/PE Override support
+URL   : https://patchwork.freedesktop.org/series/164195/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-4830-e024431a4dc3a2cc320e6093dd95d0c5d0e2935f_BAT -> xe-pw-164212v1_BAT
+CI Bug Log - changes from xe-4828-3ad1bb41eb2b0a6f40601c2b69ebf4b8a2f09e69_FULL -> xe-pw-164195v1_FULL
 ====================================================
 
 Summary
@@ -65,7 +64,7 @@ Summary
 
   
 
-Participating hosts (13 -> 13)
+Participating hosts (2 -> 2)
 ------------------------------
 
   No changes in participating hosts
@@ -73,60 +72,49 @@ Participating hosts (13 -> 13)
 Known issues
 ------------
 
-  Here are the changes found in xe-pw-164212v1_BAT that come from known issues:
+  Here are the changes found in xe-pw-164195v1_FULL that come from known issues:
 
 ### IGT changes ###
 
 #### Issues hit ####
 
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4830-e024431a4dc3a2cc320e6093dd95d0c5d0e2935f/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164212v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [PASS][3] -> [FAIL][4] ([Intel XE#6519])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4830-e024431a4dc3a2cc320e6093dd95d0c5d0e2935f/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164212v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
+  * igt@kms_flip@flip-vs-expired-vblank-interruptible@a-edp1:
+    - shard-lnl:          [PASS][1] -> [FAIL][2] ([Intel XE#301])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4828-3ad1bb41eb2b0a6f40601c2b69ebf4b8a2f09e69/shard-lnl-1/igt@kms_flip@flip-vs-expired-vblank-interruptible@a-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164195v1/shard-lnl-5/igt@kms_flip@flip-vs-expired-vblank-interruptible@a-edp1.html
 
   
 #### Possible fixes ####
 
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [DMESG-WARN][5] ([Intel XE#7483]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4830-e024431a4dc3a2cc320e6093dd95d0c5d0e2935f/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164212v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+  * igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1:
+    - shard-lnl:          [FAIL][3] ([Intel XE#301]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4828-3ad1bb41eb2b0a6f40601c2b69ebf4b8a2f09e69/shard-lnl-1/igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164195v1/shard-lnl-5/igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1.html
+
+  * igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma:
+    - shard-lnl:          [FAIL][5] ([Intel XE#5625]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4828-3ad1bb41eb2b0a6f40601c2b69ebf4b8a2f09e69/shard-lnl-1/igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164195v1/shard-lnl-5/igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma.html
 
   
-#### Warnings ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-2:          [DMESG-WARN][7] ([Intel XE#7433]) -> [ABORT][8] ([Intel XE#7249] / [Intel XE#7578])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4830-e024431a4dc3a2cc320e6093dd95d0c5d0e2935f/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164212v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-
-  
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-  [Intel XE#7249]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7249
-  [Intel XE#7433]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7433
-  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
-  [Intel XE#7578]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7578
+  [Intel XE#301]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/301
+  [Intel XE#5625]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5625
 
 
 Build changes
 -------------
 
-  * Linux: xe-4830-e024431a4dc3a2cc320e6093dd95d0c5d0e2935f -> xe-pw-164212v1
+  * Linux: xe-4828-3ad1bb41eb2b0a6f40601c2b69ebf4b8a2f09e69 -> xe-pw-164195v1
 
   IGT_8839: 8839
-  xe-4830-e024431a4dc3a2cc320e6093dd95d0c5d0e2935f: e024431a4dc3a2cc320e6093dd95d0c5d0e2935f
-  xe-pw-164212v1: 164212v1
+  xe-4828-3ad1bb41eb2b0a6f40601c2b69ebf4b8a2f09e69: 3ad1bb41eb2b0a6f40601c2b69ebf4b8a2f09e69
+  xe-pw-164195v1: 164195v1
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164212v1/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164195v1/index.html
 
---===============6055503953054781638==
+--===============2265133601559201714==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -146,62 +134,55 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>drm/i915/backlight: Fix VESA backlight possible check condition</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164212/">https://patchwork.freedesktop.org/series/164212/</a></td></tr>
+<tr><td><b>Series:</b></td><td>VS/PE Override support</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164195/">https://patchwork.freedesktop.org/series/164195/</a></td></tr>
 <tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164212v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164212v1/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164195v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164195v1/index.html</a></td></tr>
 
 </table>
 
 
-    <h1>CI Bug Log - changes from xe-4830-e024431a4dc3a2cc320e6093dd95d0c5d0e2935f_BAT -&gt; xe-pw-164212v1_BAT</h1>
+    <h1>CI Bug Log - changes from xe-4828-3ad1bb41eb2b0a6f40601c2b69ebf4b8a2f09e69_FULL -&gt; xe-pw-164195v1_FULL</h1>
 <h2>Summary</h2>
 <p><strong>SUCCESS</strong></p>
 <p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
+<h2>Participating hosts (2 -&gt; 2)</h2>
 <p>No changes in participating hosts</p>
 <h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-164212v1_BAT that come from known issues:</p>
+<p>Here are the changes found in xe-pw-164195v1_FULL that come from known issues:</p>
 <h3>IGT changes</h3>
 <h4>Issues hit</h4>
 <ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4830-e024431a4dc3a2cc320e6093dd95d0c5d0e2935f/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164212v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@engine:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4830-e024431a4dc3a2cc320e6093dd95d0c5d0e2935f/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164212v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
+<li>igt@kms_flip@flip-vs-expired-vblank-interruptible@a-edp1:<ul>
+<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4828-3ad1bb41eb2b0a6f40601c2b69ebf4b8a2f09e69/shard-lnl-1/igt@kms_flip@flip-vs-expired-vblank-interruptible@a-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164195v1/shard-lnl-5/igt@kms_flip@flip-vs-expired-vblank-interruptible@a-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/301">Intel XE#301</a>)</li>
 </ul>
 </li>
 </ul>
 <h4>Possible fixes</h4>
 <ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4830-e024431a4dc3a2cc320e6093dd95d0c5d0e2935f/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164212v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a></li>
+<li>
+<p>igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1:</p>
+<ul>
+<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4828-3ad1bb41eb2b0a6f40601c2b69ebf4b8a2f09e69/shard-lnl-1/igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/301">Intel XE#301</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164195v1/shard-lnl-5/igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1.html">PASS</a></li>
 </ul>
 </li>
-</ul>
-<h4>Warnings</h4>
+<li>
+<p>igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma:</p>
 <ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4830-e024431a4dc3a2cc320e6093dd95d0c5d0e2935f/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7433">Intel XE#7433</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164212v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7249">Intel XE#7249</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7578">Intel XE#7578</a>)</li>
+<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4828-3ad1bb41eb2b0a6f40601c2b69ebf4b8a2f09e69/shard-lnl-1/igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5625">Intel XE#5625</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164195v1/shard-lnl-5/igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma.html">PASS</a></li>
 </ul>
 </li>
 </ul>
 <h2>Build changes</h2>
 <ul>
-<li>Linux: xe-4830-e024431a4dc3a2cc320e6093dd95d0c5d0e2935f -&gt; xe-pw-164212v1</li>
+<li>Linux: xe-4828-3ad1bb41eb2b0a6f40601c2b69ebf4b8a2f09e69 -&gt; xe-pw-164195v1</li>
 </ul>
 <p>IGT_8839: 8839<br />
-  xe-4830-e024431a4dc3a2cc320e6093dd95d0c5d0e2935f: e024431a4dc3a2cc320e6093dd95d0c5d0e2935f<br />
-  xe-pw-164212v1: 164212v1</p>
+  xe-4828-3ad1bb41eb2b0a6f40601c2b69ebf4b8a2f09e69: 3ad1bb41eb2b0a6f40601c2b69ebf4b8a2f09e69<br />
+  xe-pw-164195v1: 164195v1</p>
 
 </body>
 </html>
 
---===============6055503953054781638==--
+--===============2265133601559201714==--
