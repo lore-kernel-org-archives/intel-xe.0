@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17980CC6B1E
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 07:55:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D418ACC6B1F
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 08:01:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA3A410F13E;
-	Thu,  2 Apr 2026 07:55:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9400110F112;
+	Thu,  2 Apr 2026 08:01:33 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CDF210F13E;
- Thu,  2 Apr 2026 07:55:46 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6854027304179847293=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4CBC10F112;
+ Thu,  2 Apr 2026 08:01:31 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915=3A_move_more_displ?=
- =?utf-8?q?ay_dependencies_from_i915_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Introduce_Xe_Uncorrectabl?=
+ =?utf-8?q?e_Error_Handling_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Luca Coelho" <luciano.coelho@intel.com>
+To: "Tauro, Riana" <riana.tauro@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 02 Apr 2026 07:55:46 -0000
-Message-ID: <177511654654.427200.555453692710593960@a3b018990fe9>
+Date: Thu, 02 Apr 2026 08:01:31 -0000
+Message-ID: <177511689190.427200.5872148439855842762@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260331121608.1016333-1-luciano.coelho@intel.com>
-In-Reply-To: <20260331121608.1016333-1-luciano.coelho@intel.com>
+References: <20260402070131.1603828-12-riana.tauro@intel.com>
+In-Reply-To: <20260402070131.1603828-12-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,121 +40,79 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6854027304179847293==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915: move more display dependencies from i915 (rev2)
-URL   : https://patchwork.freedesktop.org/series/163785/
-State : success
+Series: Introduce Xe Uncorrectable Error Handling (rev3)
+URL   : https://patchwork.freedesktop.org/series/160482/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4838-f1d4727d10d243dfe9253bc650258827a8a7dbb8_BAT -> xe-pw-163785v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 446ded128503bb77bbb56fa6439349c0a6d40484
+Author: Riana Tauro <riana.tauro@intel.com>
+Date:   Thu Apr 2 12:31:41 2026 +0530
 
-Summary
--------
+    drm/xe/xe_pci_error: Process errors in mmio_enabled
+    
+    Query system controller when any non fatal error occurs to check
+    the type of the error, contain and recover.
+    
+    The system controller is queried in the mmio_enabled callback.
+    
+    Signed-off-by: Riana Tauro <riana.tauro@intel.com>
++ /mt/dim checkpatch 5ab3838428d9d2baa881cb9b23a30cc77e5c893c drm-intel
+4e89a6a4f8f0 drm/xe/xe_survivability: Decouple survivability info from boot survivability
+81f644da87b3 drm/xe/xe_pci_error: Implement PCI error recovery callbacks
+-:101: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#101: 
+new file mode 100644
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 156 lines checked
+a568e82c5715 drm/xe/xe_pci_error: Group all devres to release them on PCIe slot reset
+cfcf31cdc00b drm/xe: Skip device access during PCI error recovery
+bd74ddad2b88 drm/xe/xe_ras: Initialize Uncorrectable AER Registers
+-:52: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#52: 
+new file mode 100644
 
-  No regressions found.
+total: 0 errors, 1 warnings, 0 checks, 113 lines checked
+22a9fbc7240a drm/xe/xe_ras: Add structures and commands for Uncorrectable Core Compute Errors
+-:51: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#51: FILE: drivers/gpu/drm/xe/xe_ras.c:37:
++};
++static_assert(ARRAY_SIZE(xe_ras_severities) == XE_RAS_SEVERITY_MAX);
 
-  
+-:62: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#62: FILE: drivers/gpu/drm/xe/xe_ras.c:48:
++};
++static_assert(ARRAY_SIZE(xe_ras_components) == XE_RAS_COMPONENT_MAX);
 
-Participating hosts (14 -> 14)
-------------------------------
+-:82: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#82: 
+new file mode 100644
 
-  No changes in participating hosts
+total: 0 errors, 1 warnings, 2 checks, 217 lines checked
+1884f85ee324 drm/xe/xe_ras: Add support for Uncorrectable Core-Compute errors
+bccea9aafb4d drm/xe/xe_ras: Add structures for SoC Internal errors
+728f676d0b06 drm/xe/xe_ras: Handle Uncorrectable SoC Internal errors
+-:46: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#46: FILE: drivers/gpu/drm/xe/xe_ras.c:105:
++		struct xe_ras_csc_error *csc_error = (struct xe_ras_csc_error *)error_info->additional_details;
 
-Known issues
-------------
+-:65: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#65: FILE: drivers/gpu/drm/xe/xe_ras.c:124:
++		struct xe_ras_ieh_error *ieh_error = (struct xe_ras_ieh_error *)error_info->additional_details;
 
-  Here are the changes found in xe-pw-163785v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [FAIL][1] ([Intel XE#6519]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4838-f1d4727d10d243dfe9253bc650258827a8a7dbb8/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163785v2/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-
-
-Build changes
--------------
-
-  * Linux: xe-4838-f1d4727d10d243dfe9253bc650258827a8a7dbb8 -> xe-pw-163785v2
-
-  IGT_8842: 8842
-  xe-4838-f1d4727d10d243dfe9253bc650258827a8a7dbb8: f1d4727d10d243dfe9253bc650258827a8a7dbb8
-  xe-pw-163785v2: 163785v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163785v2/index.html
-
---===============6854027304179847293==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: move more display dependencies from i915 (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163785/">https://patchwork.freedesktop.org/series/163785/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163785v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163785v2/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 2 warnings, 0 checks, 67 lines checked
+446ded128503 drm/xe/xe_pci_error: Process errors in mmio_enabled
 
 
-    <h1>CI Bug Log - changes from xe-4838-f1d4727d10d243dfe9253bc650258827a8a7dbb8_BAT -&gt; xe-pw-163785v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-163785v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_waitfence@engine:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4838-f1d4727d10d243dfe9253bc650258827a8a7dbb8/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163785v2/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4838-f1d4727d10d243dfe9253bc650258827a8a7dbb8 -&gt; xe-pw-163785v2</li>
-</ul>
-<p>IGT_8842: 8842<br />
-  xe-4838-f1d4727d10d243dfe9253bc650258827a8a7dbb8: f1d4727d10d243dfe9253bc650258827a8a7dbb8<br />
-  xe-pw-163785v2: 163785v2</p>
-
-</body>
-</html>
-
---===============6854027304179847293==--
