@@ -4,60 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADD79D39403
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 09:44:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 848FDD39406
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 10:08:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B21B10F112;
-	Thu,  2 Apr 2026 09:44:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4559D10F1BE;
+	Thu,  2 Apr 2026 10:08:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PNrpbuGT";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="jvEtzUfF";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DE3B10F10E;
- Thu,  2 Apr 2026 09:44:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775123042; x=1806659042;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=x7L4OC7DfS4VAVSHUg1UjuQFYNOjPu6RpUiqJc4z1+I=;
- b=PNrpbuGTr8eoT9HWbtvuf48w5IrPy+DNHUIHi/q1B+7JJXtgaqnPn1nv
- Xo10Q4s7cIs6f9irmFPwRKNOKx7Zsg6s/8nmG1y/Zzgj99X/m/xGz9s/Z
- 4Kvi7DOGIp9VBmqrJvtytsdr5aCugiz6KEo1Iz5HWAMN8ChKYpC7NDeq2
- fLMVvqCuDiULAfyGoEApfMqBDrgK28l6J6OV79GPY+Vxqw7fr7NMlV/XG
- Ocm9tyZdm5pobMFSuoakan4Zjp79aetWSdbGkN13LwcMLSF6mg+foVMAF
- 3cQ90ZfVubEjCJUPTkoHrY4OG2IVUeWT9GBEsyjP+o5mZGytS6XrL3I+V g==;
-X-CSE-ConnectionGUID: SLj/8L6iSBWIz+ZVbZZGKA==
-X-CSE-MsgGUID: G8gpHwZkTWGtBoeO1pft5w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11746"; a="76066066"
-X-IronPort-AV: E=Sophos;i="6.23,155,1770624000"; d="scan'208";a="76066066"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2026 02:44:02 -0700
-X-CSE-ConnectionGUID: wv+KBgejQKu8m8Jcysm6sQ==
-X-CSE-MsgGUID: kMcddwutR5arKg/bKi7vGQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,155,1770624000"; d="scan'208";a="231342212"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.183])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2026 02:44:01 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [CI] drm/i915/display: change pipe allocation order for
- discrete platforms
-In-Reply-To: <acqYWkrs5b3MOrnO@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260316121837.1264876-1-jani.nikula@intel.com>
- <2db8f3e8adde89b85da08477ed3f4bd6b7392b5c@intel.com>
- <acqYWkrs5b3MOrnO@intel.com>
-Date: Thu, 02 Apr 2026 12:43:57 +0300
-Message-ID: <c14a06980bbea7ab14b070b4840a92dc593a0fa7@intel.com>
+Received: from lankhorst.se (unknown [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 04ECE10F1BE
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 Apr 2026 10:08:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1775124517;
+ bh=34Xn0bATg5w2CfUbDn3UesKgthHcYmXXmI8L8e8de40=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=jvEtzUfFJUX7h+4UgxTAzKKFMfJL+bBi5AgN7wxtWt84KSDq7SE3wtaspjBVPVIxl
+ lfY3lS35F/RdhKCsCglUWScXfqTh/QYHS1PHlF8CaqxJRu7tUy9zYY7ryvQxp8EEw6
+ 1zmNGZiMaoNaE4Up8kdisOv1SU7QDxkhKeGHAZemESjzkeMdVMN0YHLnsudl2R3Mmg
+ 1/ksqMURsXllVaBpiklmnXG1ijBMunewVdhhKkEfWPVJHrXxQdr3UJogWtvxJ8wguZ
+ bd6TTebZn4QaqXVBSEjjPIntVMCjajm12wLWAY1nEVZg5ntCXxJx3J9vM1Wu2OOjlt
+ TxSqPj34YhHhA==
+Message-ID: <d89e72f2-f2b9-423d-a128-696b9ff76000@lankhorst.se>
+Date: Thu, 2 Apr 2026 12:08:36 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe: Drop redundant rtp entries for Wa_14019988906 &
+ Wa_14019877138
+To: "Lin, Shuicheng" <shuicheng.lin@intel.com>,
+ "Roper, Matthew D" <matthew.d.roper@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Cc: Dave Airlie <airlied@redhat.com>
+References: <20260401-wa_merge_conflict-v1-1-b477ab53fedc@intel.com>
+ <DM4PR11MB545600F30B6D92E5A04F8F1BEA50A@DM4PR11MB5456.namprd11.prod.outlook.com>
+Content-Language: en-US
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <DM4PR11MB545600F30B6D92E5A04F8F1BEA50A@DM4PR11MB5456.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,63 +56,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 30 Mar 2026, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Mon, Mar 30, 2026 at 02:37:47PM +0300, Jani Nikula wrote:
->> On Mon, 16 Mar 2026, Jani Nikula <jani.nikula@intel.com> wrote:
->> > When big joiner is enabled, it reserves the adjacent pipe as the
->> > secondary pipe. This happens without the user space knowing, and
->> > subsequent attempts at using the CRTC with that pipe will fail. If the
->> > user space does not have a coping mechanism, i.e. trying another CRTC,
->> > this leads to a black screen.
->> >
->> > Try to reduce the impact of the problem on discrete platforms by mappi=
-ng
->> > the CRTCs to pipes in order A, C, B, and D. If the user space reserves
->> > CRTCs in order, this should trick it to using pipes that are more like=
-ly
->> > to be available for and after joining.
->> >
->> > Limit this to discrete platforms, which have four pipes, and no eDP, a
->> > combination that should benefit the most with least drawbacks.
->>=20
->> Ville, I think it's time to review and, pretty soon, merge this.
->>=20
->> Our IGT changes to deconflate CRTCs and pipes have been merged, and
->> there's the removal of invalid igt_crtc_t at [1] left. The trybot CI
->> results on i915 for swapping pipes B and C on all platforms, not just
->> discrete like here, didn't break anything either anymore [2].
->>=20
->> I'm contemplating slapping Cc: stable on this too.
->>=20
->> There's the FIXME on the CRTC index warning.
->
-> IIRC we already concluded that the WARN is unnecessary. I'd have to
-> look through the previous mails to see what I actually said there.
->
->> With the A+C and B+D
->> pairing there's no issue, the CRTC indexes remain in that order. But can
->> we ever really end up with B+C pairing?
->
-> It might be rare if userspace picks crtcs in order. But IIRC we had
-> bugs where it was clear userspace was just picking random crtcs willy
-> nilly. IIRC it was sway doing it, and I think I even proposed a
-> uapi documentation update to suggest using crtcs in order. Can't=20
-> remember that happened to that one.
->
-> But I think we still want the "walk the crtcs in pipe order" change,
-> mainly to keep the more optimal commit sequence. Also I'm not quite
-> 100% convinced we don't have some subtle assumption somewhere about
-> the order.
+Hye,
 
-You mean convert all for_each_intel_crtc*() iterators to pipe order?
+Den 2026-04-02 kl. 00:39, skrev Lin, Shuicheng:
+> On Wed, Apr 1, 2026 1:13 PM Matt Roper wrote:
+>> There appears to have been a silent merge conflict between some commits
+>> updating the workaround tables on Xe's -fixes and -next branches:
+>>
+>>  - Commit bc6387a2e0c1 ("drm/xe/xe2_hpg: Fix handling of
+>> Wa_14019988906
+>>    & Wa_14019877138") from the fixes branch moved the Xe2_HPG instance
+>>    of two workarounds touching the PSS_CHICKEN register from the
+>>    engine_was[] table to the lrc_was[] table; the equivalent
+>>    implementation for all other platforms/IPs were already properly
+>>    located on lrc_was[].  This commit on the fixes branch is a
+>>    cherry-pick of commit e04c609eedf4 ("drm/xe/xe2_hpg: Fix handling of
+>>    Wa_14019988906 & Wa_14019877138") that already existed on the next
+>>    branch.
+>>
+>>  - Commit 55b19abb6c44 ("drm/xe: Consolidate workaround entries for
+>>    Wa_14019877138") and commit c2142a1a8415 ("drm/xe: Consolidate
+>>    workaround entries for Wa_14019988906") consolidated the individual
+>>    entries per IP generation for each workaround into single, larger
+>>    range-based entries.
+>>
+>> During merge conflict resolution the Xe2_HPG-specific entries (i.e., those with
+>> rule "GRAPHICS_VERSION_RANGE(2001, 2002)") were accidentally
+>> resurrected, even though the table already contains the consolidated entries
+>> that match a superset of thse ranges.  These redundant entries don't cause
+> 
+> s/thse/these
+> 
+>> any build failures but do trigger a dmesg error during probe on BMG-G21
+>> devices:
+>>
+>>   xe 0000:03:00.0: [drm] *ERROR* Tile0: GT0: discarding save-restore reg
+>> 7044 (clear: 00000400, set: 00000400, masked: yes, mcr: yes): ret=-22
+>>   xe 0000:03:00.0: [drm] *ERROR* Tile0: GT0: discarding save-restore reg
+>> 7044 (clear: 00000020, set: 00000020, masked: yes, mcr: yes): ret=-22
+>>
+>> Re-drop the Xe2_HPG-specific table entries to eliminate the error.
+>>
+>> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/7433
+>> Fixes: 17b95278ae6a ("Merge tag 'drm-xe-next-2026-03-02' of
+>> https://gitlab.freedesktop.org/drm/xe/kernel into drm-next")
+>> Cc: Dave Airlie <airlied@redhat.com>
+>> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> 
+> LGTM.
+> Reviewed-by: Shuicheng Lin <shuicheng.lin@intel.com>
 
-BR,
-Jani.
+Thanks,
 
->
-> BTW I just realized that DG2 may also get a slight extra benefit from
-> the reordering because A+C has twice the dbuf space compared to A+B.
+Pushed to drm-xe-next to unblock CI.
 
---=20
-Jani Nikula, Intel
+Kind rgards,
+~Maarten Lankhorst
