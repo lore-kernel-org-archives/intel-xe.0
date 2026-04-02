@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98D68D6AAFF
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 19:18:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF011D6AAF8
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 19:18:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 591D710F2FA;
-	Thu,  2 Apr 2026 19:18:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8DDF810F2FD;
+	Thu,  2 Apr 2026 19:18:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jNYb59M7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k2lvgfb6";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7AF0410F2FA
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Apr 2026 19:18:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 135E710F2EA
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 Apr 2026 19:18:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775157501; x=1806693501;
+ t=1775157503; x=1806693503;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=5cxuGCzodUxMUTitQ+zq/n8SjlLty6kEMQpBxkxqROA=;
- b=jNYb59M77jA0wWFItIvtptrl/c1qYB6qqAnE0npDTSSbS8oX+QP6x9YD
- hr04ml7sigfG2hWBmfi4K/jfoZi2y4Pw+BMBGIYXwWjttCxJozNm1Ksu9
- JOf7KGRkhL3Pyft+gPKs52AAPac+8PwopM8gs7rAmVt8Ekhzq0nF2rTQl
- A+Pme5jX9A6aZDQZ7oRS8zvVznIj9KwzOL4g4ISl2hJznrcxikiIf7QMk
- PzXA8XR7VTxjuJhvYAyNg+ArQxpetAfaZhG5oFrpjwWu05mekkWbhXUS4
- J3YzHTsg3x7NvJNiW/K+9pomflxCofPnL+XpbGuH9jw30tYPhexN1RwHF g==;
-X-CSE-ConnectionGUID: 7RcP4uj0TpOhGqKANEUeAA==
-X-CSE-MsgGUID: W78ONT6TRwGrkyeEwjC8oQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11747"; a="76241106"
-X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="76241106"
+ bh=2xy0ioAnCDVjh+V4UG7GTjXET6UeKndgWDQg3AtzgBc=;
+ b=k2lvgfb6hmari8nllZtKs40XIHe40JbgQcTjsY5vCzaQVs26SI/dYtb+
+ qZ2hZaI32pD14u6IflmdgKber+FN2tJ4eTHO5CSg7R+TWc2FCCQhOqK1c
+ mojT1o++BjUT5rSa/XLRiGxqaKRitHJON1C8e+aromUduy/5NDxf7roFh
+ JClKX8NJzIa2CpJQfftx9gT30MLGaHgTK++gpdngPjnYlEJBl5eAKl9/m
+ Z4313/df4gIC+NC0E9S0Hu2aI2CsFe3RhXORVOIKg6zqiCHc0slCfT5bE
+ Y06JWVu/13PIidzrZvq3QitiKF7mj+fhGUyeoiZOFO8+vX8LaY/aMyoTI A==;
+X-CSE-ConnectionGUID: /dArn7FeT2uHFeoBZQ+6wA==
+X-CSE-MsgGUID: kqBhPMWMSDCZvEpcBpziVg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11747"; a="76241109"
+X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="76241109"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2026 12:18:21 -0700
-X-CSE-ConnectionGUID: MX3GXJUxSqaY20jkArNyPA==
-X-CSE-MsgGUID: VCergZDFTIOfBQtwgxm+bQ==
+ 02 Apr 2026 12:18:22 -0700
+X-CSE-ConnectionGUID: L8g42Fb4RzWD1zYiXol78g==
+X-CSE-MsgGUID: aq99oWoIRxWzusLuy8SkJQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="222213062"
+X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="222213086"
 Received: from ngusev-mobl1.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.98.92])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2026 12:18:19 -0700
+ 02 Apr 2026 12:18:20 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-Subject: [PATCH v2 09/13] drm/xe/pf: Allow to change sched_if_idle policy
- under lock
-Date: Thu,  2 Apr 2026 21:17:22 +0200
-Message-ID: <20260402191726.4932-10-michal.wajdeczko@intel.com>
+Subject: [PATCH v2 10/13] drm/xe/pf: Reprovision scheduling to default when no
+ VFs
+Date: Thu,  2 Apr 2026 21:17:23 +0200
+Message-ID: <20260402191726.4932-11-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260402191726.4932-1-michal.wajdeczko@intel.com>
 References: <20260402191726.4932-1-michal.wajdeczko@intel.com>
@@ -70,81 +70,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In upcoming patch we will need to update sched_if_idle policy when
-we already hold the provisioning mutex. Split existing function
-into two variants to allow that.
+Once we have disabled VFs there is no point in keeping potentially
+limited PF scheduling provisioning as we want to complete a cleanup
+of the VFs resources and return to the pure native mode, the same
+as before VFs were enabled, as soon as possible.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c | 23 +++++++++++++++++++---
- drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h |  1 +
- 2 files changed, 21 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_pci_sriov.c          |  2 ++
+ drivers/gpu/drm/xe/xe_sriov_pf_provision.c | 39 ++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sriov_pf_provision.h |  1 +
+ 3 files changed, 42 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
-index 63e6326d45f8..e8458d63742d 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
-@@ -192,7 +192,7 @@ static void pf_sanitize_sched_if_idle(struct xe_gt *gt)
- }
+diff --git a/drivers/gpu/drm/xe/xe_pci_sriov.c b/drivers/gpu/drm/xe/xe_pci_sriov.c
+index 3fd22034f03e..35e6b53e18ce 100644
+--- a/drivers/gpu/drm/xe/xe_pci_sriov.c
++++ b/drivers/gpu/drm/xe/xe_pci_sriov.c
+@@ -191,6 +191,8 @@ static int pf_disable_vfs(struct xe_device *xe)
  
- /**
-- * xe_gt_sriov_pf_policy_set_sched_if_idle - Control the 'sched_if_idle' policy.
-+ * xe_gt_sriov_pf_policy_set_sched_if_idle_locked() - Control the 'sched_if_idle' policy.
-  * @gt: the &xe_gt where to apply the policy
-  * @enable: the value of the 'sched_if_idle' policy
-  *
-@@ -200,12 +200,12 @@ static void pf_sanitize_sched_if_idle(struct xe_gt *gt)
-  *
-  * Return: 0 on success or a negative error code on failure.
-  */
--int xe_gt_sriov_pf_policy_set_sched_if_idle(struct xe_gt *gt, bool enable)
-+int xe_gt_sriov_pf_policy_set_sched_if_idle_locked(struct xe_gt *gt, bool enable)
- {
- 	u32 priority;
- 	int err;
+ 	pci_disable_sriov(pdev);
  
--	guard(mutex)(xe_gt_sriov_pf_master_mutex(gt));
-+	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
++	xe_sriov_pf_reprovision_default(xe);
++
+ 	pf_reset_vfs(xe, num_vfs);
  
- 	err = pf_provision_sched_if_idle(gt, enable);
- 	if (err)
-@@ -223,6 +223,23 @@ int xe_gt_sriov_pf_policy_set_sched_if_idle(struct xe_gt *gt, bool enable)
+ 	xe_sriov_pf_unprovision_vfs(xe, num_vfs);
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_provision.c b/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
+index abe3677d33ed..e11874d689fa 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
++++ b/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
+@@ -103,6 +103,45 @@ int xe_sriov_pf_unprovision_vfs(struct xe_device *xe, unsigned int num_vfs)
  	return 0;
  }
  
++static int pf_reprovision_default(struct xe_device *xe)
++{
++	struct xe_gt *gt;
++	unsigned int id;
++	int result = 0;
++	int err;
++
++	guard(mutex)(xe_sriov_pf_master_mutex(xe));
++
++	for_each_gt(gt, xe, id) {
++		err = xe_gt_sriov_pf_policy_set_sched_if_idle_locked(gt, false);
++		result = result ?: err;
++		err = xe_gt_sriov_pf_config_set_exec_quantum_locked(gt, PFID, 0);
++		result = result ?: err;
++		err = xe_gt_sriov_pf_config_set_preempt_timeout_locked(gt, PFID, 0);
++		result = result ?: err;
++	}
++
++	return result;
++}
++
 +/**
-+ * xe_gt_sriov_pf_policy_set_sched_if_idle() - Control the 'sched_if_idle' policy.
-+ * @gt: the &xe_gt where to apply the policy
-+ * @enable: the value of the 'sched_if_idle' policy
++ * xe_sriov_pf_reprovision_default() - Reprovision default PF in auto-mode.
++ * @xe: the PF &xe_device
 + *
 + * This function can only be called on PF.
 + *
 + * Return: 0 on success or a negative error code on failure.
 + */
-+int xe_gt_sriov_pf_policy_set_sched_if_idle(struct xe_gt *gt, bool enable)
++int xe_sriov_pf_reprovision_default(struct xe_device *xe)
 +{
-+	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
-+	guard(mutex)(xe_gt_sriov_pf_master_mutex(gt));
++	xe_assert(xe, IS_SRIOV_PF(xe));
 +
-+	return xe_gt_sriov_pf_policy_set_sched_if_idle_locked(gt, enable);
++	if (!pf_auto_provisioning_mode(xe))
++		return 0;
++
++	return pf_reprovision_default(xe);
 +}
 +
  /**
-  * xe_gt_sriov_pf_policy_get_sched_if_idle_locked() - Retrieve value of 'sched_if_idle' policy.
-  * @gt: the &xe_gt where to read the policy from
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
-index f437dc1f5e90..d667d66897b1 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
-@@ -14,6 +14,7 @@ struct drm_printer;
- struct xe_gt;
+  * xe_sriov_pf_provision_set_mode() - Change VFs provision mode.
+  * @xe: the PF &xe_device
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_provision.h b/drivers/gpu/drm/xe/xe_sriov_pf_provision.h
+index f26f49539697..b15e4d7ad940 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf_provision.h
++++ b/drivers/gpu/drm/xe/xe_sriov_pf_provision.h
+@@ -30,6 +30,7 @@ int xe_sriov_pf_provision_query_vf_vram(struct xe_device *xe, unsigned int vfid,
  
- int xe_gt_sriov_pf_policy_set_sched_if_idle(struct xe_gt *gt, bool enable);
-+int xe_gt_sriov_pf_policy_set_sched_if_idle_locked(struct xe_gt *gt, bool enable);
- bool xe_gt_sriov_pf_policy_get_sched_if_idle(struct xe_gt *gt);
- bool xe_gt_sriov_pf_policy_get_sched_if_idle_locked(struct xe_gt *gt);
- int xe_gt_sriov_pf_policy_set_reset_engine(struct xe_gt *gt, bool enable);
+ int xe_sriov_pf_provision_vfs(struct xe_device *xe, unsigned int num_vfs);
+ int xe_sriov_pf_unprovision_vfs(struct xe_device *xe, unsigned int num_vfs);
++int xe_sriov_pf_reprovision_default(struct xe_device *xe);
+ 
+ int xe_sriov_pf_provision_set_mode(struct xe_device *xe, enum xe_sriov_provisioning_mode mode);
+ 
 -- 
 2.47.1
 
