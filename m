@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2F31D6AAF4
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 17:46:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1411D6AAF6
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 17:46:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80B1210EFC7;
-	Thu,  2 Apr 2026 17:46:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7644810EFD4;
+	Thu,  2 Apr 2026 17:46:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LycAGb+a";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FSv71dK5";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25F2B10EFC7
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Apr 2026 17:46:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 080EE10EFD4
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 Apr 2026 17:46:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775152003; x=1806688003;
+ t=1775152006; x=1806688006;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=22WM9SXfr67dZ1Q2w80OT+RV0uDchw2fYthXoMJnKdo=;
- b=LycAGb+aROp1rbp5ei6CH4Sk1VQQtBHG8Ymhq8Bt25PejCsP8ODIODy7
- pKcmSM67mWOFUfwCpSdkUlW3gh5cuv6kqZekndPHIfpi6LKmE/Lah6ap1
- 2vQxX5Md3WITY+AmGvGUR5kiZcSpxgO5wryiHpTzWaZftBzQOA+Zof9p4
- 0F67CEZkRrReD8kSm0GjZBYNi+sv6lNcpQ+KlO0szf93WIQzRJzM4dod6
- R03Sh95gbVRmzqsoc8e9kP17Pg1lhgX6jtVXGfLaRzIu3mKLVDpNuenRA
- UP7b28ud/hZpFvutfAp/8XnuT28eDj8T0thnEeO2Am6twv921ooDSukgZ Q==;
-X-CSE-ConnectionGUID: hjDn1AD5Q2eiLiWwsuvHdg==
-X-CSE-MsgGUID: 33MTLxyARGOwiy4wfHwAjg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11747"; a="93612081"
-X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="93612081"
+ bh=1q6KGWshgCUUQWwPUFbv4wj+ZoG8g7oXCjBrJiSrA3k=;
+ b=FSv71dK5wR7bZh5OrEStuMkUg8nxC/abQLgisVSdObzLxiZtSpfc5fVP
+ V3Z4pCFDeO3yej6/zZkShel1KqCg4ab6boUDyiVLg8PzhPL3q+kzbXK2J
+ gEVsMcKvfRk8r3XXl/ApKgx6o+dbH1FRzWdyHG1ECS6xfW6GbMY08UC77
+ K71EKjNTW2F2WKURC75JbKmSmtdPctngTIv33sWET8oMvKeUfw5f1T3bZ
+ wIJXL2zLlZC4cYd+ajQpGW/9OxerbJc8RZiHLmzjtirWbtLX/CK8xan1j
+ 68pqxsC9ftnHSeDmydu0zejAZ8rXOHdkEfjJ3pZWTO1SNVyeMmStEnwOV g==;
+X-CSE-ConnectionGUID: C/37vuxzS3eCWRf2ssYJQQ==
+X-CSE-MsgGUID: IJtol6l5S+Wn9msg7p1f/g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11747"; a="93612106"
+X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="93612106"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2026 10:46:30 -0700
-X-CSE-ConnectionGUID: FzwOlRoVTD+VsNUuiUArXw==
-X-CSE-MsgGUID: ww7zGLCVTKGJqNUGZfZhTg==
+ 02 Apr 2026 10:46:33 -0700
+X-CSE-ConnectionGUID: X5byq6GHTEmcHIpFj6oXXA==
+X-CSE-MsgGUID: +X/NcoldSti1ZEL2DEdSiA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="226209491"
+X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="226209496"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by orviesa010.jf.intel.com with ESMTP; 02 Apr 2026 10:46:28 -0700
+ by orviesa010.jf.intel.com with ESMTP; 02 Apr 2026 10:46:31 -0700
 From: Raag Jadav <raag.jadav@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com, riana.tauro@intel.com,
  michal.wajdeczko@intel.com, matthew.d.roper@intel.com,
  umesh.nerlige.ramappa@intel.com, mallesh.koujalagi@intel.com,
  Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v2 1/4] drm/xe/hw_error: Setup hardware error routing
-Date: Thu,  2 Apr 2026 23:12:26 +0530
-Message-ID: <20260402174229.1062874-2-raag.jadav@intel.com>
+Subject: [PATCH v2 2/4] drm/xe/hw_error: Reuse CSC worker for generic error
+ handling
+Date: Thu,  2 Apr 2026 23:12:27 +0530
+Message-ID: <20260402174229.1062874-3-raag.jadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260402174229.1062874-1-raag.jadav@intel.com>
 References: <20260402174229.1062874-1-raag.jadav@intel.com>
@@ -68,95 +69,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hardware errors are reported through System Controller on the platforms
-that support it. This requires that they are routed as PCIe errors
-instead of direct IRQ to SGUnit, but this routing prevents the user from
-investigating those errors in case it is needed for debug cases.
-
-Setup hardware error routing based on XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET
-which bypasses the System Controller and allows the user to investigate
-errors without System Controller involvement.
-
-                 default   with NO_RESET   w/o NO_RESET
-                 -------   -------------   ------------
-        fatal      PCIe         IRQ            PCIe
-    non-fatal      IRQ          IRQ            PCIe
-  correctable      IRQ          IRQ            PCIe
+We have upcoming usecases which require defering work during error
+handling. Since we already have CSC worker in place, prepare it to
+be reused generically.
 
 Signed-off-by: Raag Jadav <raag.jadav@intel.com>
 ---
-v2: Explain the usecase (Matt Roper)
----
- drivers/gpu/drm/xe/regs/xe_hw_error_regs.h |  5 +++++
- drivers/gpu/drm/xe/xe_hw_error.c           | 21 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_hw_error.h           |  1 +
- 3 files changed, 27 insertions(+)
+ drivers/gpu/drm/xe/xe_hw_error.c   | 10 +++++-----
+ drivers/gpu/drm/xe/xe_tile_types.h |  4 ++--
+ 2 files changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_hw_error_regs.h b/drivers/gpu/drm/xe/regs/xe_hw_error_regs.h
-index 046e1756c698..247906ae2227 100644
---- a/drivers/gpu/drm/xe/regs/xe_hw_error_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_hw_error_regs.h
-@@ -44,6 +44,11 @@
- #define   XE_SOC_ERROR					16
- #define   XE_GT_ERROR					0
- 
-+#define DEV_ERR_ROUTING_CTRL				XE_REG(0x100170)
-+#define   FATAL_ERR_ROUTING				BIT(2)
-+#define   NONFATAL_ERR_ROUTING				BIT(1)
-+#define   CORR_ERR_ROUTING				BIT(0)
-+
- #define ERR_STAT_GT_FATAL_VECTOR_0			0x100260
- #define ERR_STAT_GT_FATAL_VECTOR_1			0x100264
- 
 diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
-index 2a31b430570e..28ad5c15685e 100644
+index 28ad5c15685e..c7b720ba5a4f 100644
 --- a/drivers/gpu/drm/xe/xe_hw_error.c
 +++ b/drivers/gpu/drm/xe/xe_hw_error.c
-@@ -526,6 +526,26 @@ static int hw_error_info_init(struct xe_device *xe)
- 	return xe_drm_ras_init(xe);
+@@ -165,9 +165,9 @@ static bool fault_inject_csc_hw_error(void)
+ 	return IS_ENABLED(CONFIG_DEBUG_FS) && should_fail(&inject_csc_hw_error, 1);
  }
  
-+/**
-+ * xe_hw_error_irq_route - irq routing of hw errors
-+ * @xe: xe device instance
-+ *
-+ * Set irq routing of hw errors.
-+ */
-+void xe_hw_error_irq_route(struct xe_device *xe)
-+{
-+	u32 mask = CORR_ERR_ROUTING | NONFATAL_ERR_ROUTING | FATAL_ERR_ROUTING;
-+	bool irq = xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET;
-+	struct xe_tile *tile;
-+	u8 id;
-+
-+	if (!xe->info.has_sysctrl)
-+		return;
-+
-+	for_each_tile(tile, xe, id)
-+		xe_mmio_rmw32(&tile->mmio, DEV_ERR_ROUTING_CTRL, mask, irq ? mask : 0);
-+}
-+
- /*
-  * Process hardware errors during boot
-  */
-@@ -563,5 +583,6 @@ void xe_hw_error_init(struct xe_device *xe)
+-static void csc_hw_error_work(struct work_struct *work)
++static void hw_error_work(struct work_struct *work)
+ {
+-	struct xe_tile *tile = container_of(work, typeof(*tile), csc_hw_error_work);
++	struct xe_tile *tile = container_of(work, typeof(*tile), hw_error_work);
+ 	struct xe_device *xe = tile_to_xe(tile);
+ 	int ret;
+ 
+@@ -205,7 +205,7 @@ static void csc_hw_error_handler(struct xe_tile *tile, const enum hardware_error
+ 					     hec_uncorrected_fw_errors[err_bit], severity_str,
+ 					     err_bit);
+ 
+-			schedule_work(&tile->csc_hw_error_work);
++			schedule_work(&tile->hw_error_work);
+ 		}
+ 	}
+ 
+@@ -510,7 +510,7 @@ void xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl)
+ 	enum hardware_error hw_err;
+ 
+ 	if (fault_inject_csc_hw_error())
+-		schedule_work(&tile->csc_hw_error_work);
++		schedule_work(&tile->hw_error_work);
+ 
+ 	for (hw_err = 0; hw_err < HARDWARE_ERROR_MAX; hw_err++) {
+ 		if (master_ctl & ERROR_IRQ(hw_err))
+@@ -577,7 +577,7 @@ void xe_hw_error_init(struct xe_device *xe)
+ 	if (!IS_DGFX(xe) || IS_SRIOV_VF(xe))
+ 		return;
+ 
+-	INIT_WORK(&tile->csc_hw_error_work, csc_hw_error_work);
++	INIT_WORK(&tile->hw_error_work, hw_error_work);
+ 
+ 	ret = hw_error_info_init(xe);
  	if (ret)
- 		drm_err(&xe->drm, "Failed to initialize XE DRM RAS (%pe)\n", ERR_PTR(ret));
+diff --git a/drivers/gpu/drm/xe/xe_tile_types.h b/drivers/gpu/drm/xe/xe_tile_types.h
+index 33932fd547d7..f214e893f39e 100644
+--- a/drivers/gpu/drm/xe/xe_tile_types.h
++++ b/drivers/gpu/drm/xe/xe_tile_types.h
+@@ -116,8 +116,8 @@ struct xe_tile {
+ 	/** @memirq: Memory Based Interrupts. */
+ 	struct xe_memirq memirq;
  
-+	xe_hw_error_irq_route(xe);
- 	process_hw_errors(xe);
- }
-diff --git a/drivers/gpu/drm/xe/xe_hw_error.h b/drivers/gpu/drm/xe/xe_hw_error.h
-index d86e28c5180c..8f155b66b5f1 100644
---- a/drivers/gpu/drm/xe/xe_hw_error.h
-+++ b/drivers/gpu/drm/xe/xe_hw_error.h
-@@ -11,5 +11,6 @@ struct xe_tile;
- struct xe_device;
+-	/** @csc_hw_error_work: worker to report CSC HW errors */
+-	struct work_struct csc_hw_error_work;
++	/** @hw_error_work: worker to handle HW errors */
++	struct work_struct hw_error_work;
  
- void xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl);
-+void xe_hw_error_irq_route(struct xe_device *xe);
- void xe_hw_error_init(struct xe_device *xe);
- #endif
+ 	/** @pcode: tile's PCODE */
+ 	struct {
 -- 
 2.43.0
 
