@@ -4,61 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16037D39409
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 10:16:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95B0DD39406
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 10:18:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6FD110F1CD;
-	Thu,  2 Apr 2026 10:16:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BC5610F1C0;
+	Thu,  2 Apr 2026 10:18:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kXyWWwPC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b7/Y/wOt";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93D0710F1CD
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Apr 2026 10:16:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AE2A10F1AE;
+ Thu,  2 Apr 2026 10:18:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775124974; x=1806660974;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=98236xvDlkF1JGs0XHsDlfI16PmXHAB1f2k4VjQkT/M=;
- b=kXyWWwPCADUbla0GLIP5vzDnpVwf1xzqj9Mj16x2hpiL0IVl/4mzjpYc
- NOH75KvaA5vOLO2gQr2oP3IPdKFL2ZAB4onSq9v2XqYcxH1azZ6pVEWaT
- 4uFrLT0IaE/W0D1zo4AZjZ4RhMrcTrtPQAamsiJeOQYGW8UWUTBrM80ZZ
- Bw8noxpjJ+O2sy4bpfkcmJEv/U1SzsCk8MI5qU5YEKS+3/8/WbX3h1MTB
- DPZt9NBxbtyOv3Q0mwOtohwr7eRPAHQ8EHITfdzARWBCEw+ZNw6wBgEiI
- FSXC+hrvUWW0d/YwT0Fej8rpKuBcJ6DEg/IGAlHvk3SZ/6xlGrhcmjBTV g==;
-X-CSE-ConnectionGUID: Qord2T2cRRqPWKVSMo7IQQ==
-X-CSE-MsgGUID: GVisVFMMQQGsb6JA8Hg7Uw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11746"; a="76300373"
-X-IronPort-AV: E=Sophos;i="6.23,155,1770624000"; d="scan'208";a="76300373"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2026 03:16:14 -0700
-X-CSE-ConnectionGUID: cfEspfVMT/OzdiJOjY3JEg==
-X-CSE-MsgGUID: u+VCTwL/QzaQi2hJWLobMg==
+ t=1775125124; x=1806661124;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=QhOuBrbZCq0cbYkjDNg+VrxlasJtaZvT0w/hljFJp8Y=;
+ b=b7/Y/wOt0Gwj5soBOT9CIhU5BeGpOqKEtOeddZ+7eXkK4QnadrHeXN8x
+ ZW3TPkObU98kSaEZPnQN5sJhJZ4g+/s3fe+BOzUIS4wEXvrZEYXRYVADU
+ tC7ylNaudgrTLUIs7OHTvb/VQWeICyRQVgdJ1otGmiHBwVbyu6VsfgQhZ
+ IXVlmXvfB9KJFveP2wiOuSgeqQeoHZMSe0nyYlCkikyy7I43bbcXz22Hc
+ vRh7jRWbdrbMBtbCjckYyZfFOwONyeV5WSevS3n5X6HCOMNMTgnotlWh0
+ zr218ArljZqBxg58O7UgzPByhDoIMf2+u220WcxDazJnrhKnJ/EgnArrV g==;
+X-CSE-ConnectionGUID: N6+egWXtS26knDVpj+ocMQ==
+X-CSE-MsgGUID: xnwaPtnJQOuG1F5XnecQPg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11746"; a="76145618"
+X-IronPort-AV: E=Sophos;i="6.23,155,1770624000"; d="scan'208";a="76145618"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2026 03:18:43 -0700
+X-CSE-ConnectionGUID: x1T6ydfnR2S2yRXMzjYkLg==
+X-CSE-MsgGUID: MzMcpJqZTqKKsRS337DVXw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,155,1770624000"; d="scan'208";a="257420797"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO [10.245.245.52])
- ([10.245.245.52])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2026 03:16:13 -0700
-Message-ID: <3297278d-9f36-484c-b4de-8a22545f0b5f@intel.com>
-Date: Thu, 2 Apr 2026 11:16:10 +0100
+X-IronPort-AV: E=Sophos;i="6.23,155,1770624000"; d="scan'208";a="250154516"
+Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.61])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2026 03:18:41 -0700
+Date: Thu, 2 Apr 2026 13:18:38 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [CI] drm/i915/display: change pipe allocation order for discrete
+ platforms
+Message-ID: <ac5CfviBE46QGbVl@intel.com>
+References: <20260316121837.1264876-1-jani.nikula@intel.com>
+ <2db8f3e8adde89b85da08477ed3f4bd6b7392b5c@intel.com>
+ <acqYWkrs5b3MOrnO@intel.com>
+ <c14a06980bbea7ab14b070b4840a92dc593a0fa7@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH V6 2/7] drm/gpu: Add gpu_buddy_addr_to_block helper
-To: Matthew Brost <matthew.brost@intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>
-Cc: intel-xe@lists.freedesktop.org, thomas.hellstrom@linux.intel.com,
- himal.prasad.ghimiray@intel.com
-References: <20260327114829.2678240-9-tejas.upadhyay@intel.com>
- <20260327114829.2678240-11-tejas.upadhyay@intel.com>
- <ac2zqvxb0/hxGPgm@gsse-cloud1.jf.intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <ac2zqvxb0/hxGPgm@gsse-cloud1.jf.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <c14a06980bbea7ab14b070b4840a92dc593a0fa7@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,114 +75,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 02/04/2026 01:09, Matthew Brost wrote:
-> On Fri, Mar 27, 2026 at 05:18:15PM +0530, Tejas Upadhyay wrote:
->> Add helper with primary purpose is to efficiently trace a specific
->> physical memory address back to its corresponding TTM buffer object.
->>
->> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
->> ---
->>   drivers/gpu/buddy.c       | 56 +++++++++++++++++++++++++++++++++++++++
->>   include/linux/gpu_buddy.h |  2 ++
->>   2 files changed, 58 insertions(+)
->>
->> diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
->> index 52686672e99f..2d26c2a0f971 100644
->> --- a/drivers/gpu/buddy.c
->> +++ b/drivers/gpu/buddy.c
->> @@ -589,6 +589,62 @@ void gpu_buddy_free_block(struct gpu_buddy *mm,
->>   }
->>   EXPORT_SYMBOL(gpu_buddy_free_block);
->>   
->> +/**
->> + * gpu_buddy_addr_to_block - given physical address find a block
->> + *
->> + * @mm: GPU buddy manager
->> + * @addr: Physical address
->> + *
->> + * Returns:
->> + * gpu_buddy_block on success, NULL or error code on failure
->> + */
->> +struct gpu_buddy_block *gpu_buddy_addr_to_block(struct gpu_buddy *mm, u64 addr)
->> +{
->> +	struct gpu_buddy_block *block;
->> +	LIST_HEAD(dfs);
->> +	u64 end;
->> +	int i;
->> +
+On Thu, Apr 02, 2026 at 12:43:57PM +0300, Jani Nikula wrote:
+> On Mon, 30 Mar 2026, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
+> > On Mon, Mar 30, 2026 at 02:37:47PM +0300, Jani Nikula wrote:
+> >> On Mon, 16 Mar 2026, Jani Nikula <jani.nikula@intel.com> wrote:
+> >> > When big joiner is enabled, it reserves the adjacent pipe as the
+> >> > secondary pipe. This happens without the user space knowing, and
+> >> > subsequent attempts at using the CRTC with that pipe will fail. If the
+> >> > user space does not have a coping mechanism, i.e. trying another CRTC,
+> >> > this leads to a black screen.
+> >> >
+> >> > Try to reduce the impact of the problem on discrete platforms by mapping
+> >> > the CRTCs to pipes in order A, C, B, and D. If the user space reserves
+> >> > CRTCs in order, this should trick it to using pipes that are more likely
+> >> > to be available for and after joining.
+> >> >
+> >> > Limit this to discrete platforms, which have four pipes, and no eDP, a
+> >> > combination that should benefit the most with least drawbacks.
+> >> 
+> >> Ville, I think it's time to review and, pretty soon, merge this.
+> >> 
+> >> Our IGT changes to deconflate CRTCs and pipes have been merged, and
+> >> there's the removal of invalid igt_crtc_t at [1] left. The trybot CI
+> >> results on i915 for swapping pipes B and C on all platforms, not just
+> >> discrete like here, didn't break anything either anymore [2].
+> >> 
+> >> I'm contemplating slapping Cc: stable on this too.
+> >> 
+> >> There's the FIXME on the CRTC index warning.
+> >
+> > IIRC we already concluded that the WARN is unnecessary. I'd have to
+> > look through the previous mails to see what I actually said there.
+> >
+> >> With the A+C and B+D
+> >> pairing there's no issue, the CRTC indexes remain in that order. But can
+> >> we ever really end up with B+C pairing?
+> >
+> > It might be rare if userspace picks crtcs in order. But IIRC we had
+> > bugs where it was clear userspace was just picking random crtcs willy
+> > nilly. IIRC it was sway doing it, and I think I even proposed a
+> > uapi documentation update to suggest using crtcs in order. Can't 
+> > remember that happened to that one.
+> >
+> > But I think we still want the "walk the crtcs in pipe order" change,
+> > mainly to keep the more optimal commit sequence. Also I'm not quite
+> > 100% convinced we don't have some subtle assumption somewhere about
+> > the order.
 > 
-> This is somewhat of an orthogonal issue, but we really should update
-> gpu_buddy so drivers can register a lock that we can assert is held in
-> functions where gpu_buddy manipulates blocks.
-> 
-> Something like this [1].
+> You mean convert all for_each_intel_crtc*() iterators to pipe order?
 
-I think would be a good addition also.
+Yes.
 
-> 
-> Iâ€™ll defer to the gpu_buddy maintainers on whether this code is correct.
-> 
-> Matt
-> 
-> [1] https://elixir.bootlin.com/linux/v6.19.10/source/include/drm/drm_gpusvm.h#L341
-> 
->> +	end = addr + SZ_4K - 1;
->> +	for (i = 0; i < mm->n_roots; ++i)
->> +		list_add_tail(&mm->roots[i]->tmp_link, &dfs);
->> +
->> +	do {
->> +		u64 block_start;
->> +		u64 block_end;
->> +
->> +		block = list_first_entry_or_null(&dfs,
->> +						 struct gpu_buddy_block,
->> +						 tmp_link);
->> +		if (!block)
->> +			break;
->> +
->> +		list_del(&block->tmp_link);
->> +
->> +		block_start = gpu_buddy_block_offset(block);
->> +		block_end = block_start + gpu_buddy_block_size(mm, block) - 1;
->> +
->> +		if (!overlaps(addr, end, block_start, block_end))
->> +			continue;
->> +
->> +		if (contains(addr, end, block_start, block_end) &&
->> +		    !gpu_buddy_block_is_split(block)) {
->> +			if (gpu_buddy_block_is_free(block))
->> +				return NULL;
->> +			else if (gpu_buddy_block_is_allocated(block) && !mm->clear_avail)
->> +				return block;
->> +		}
->> +
->> +		if (gpu_buddy_block_is_split(block)) {
->> +			list_add(&block->right->tmp_link, &dfs);
->> +			list_add(&block->left->tmp_link, &dfs);
->> +		}
->> +	} while (1);
->> +
->> +	return ERR_PTR(-ENXIO);
->> +}
->> +EXPORT_SYMBOL(gpu_buddy_addr_to_block);
->> +
->>   static void __gpu_buddy_free_list(struct gpu_buddy *mm,
->>   				  struct list_head *objects,
->>   				  bool mark_clear,
->> diff --git a/include/linux/gpu_buddy.h b/include/linux/gpu_buddy.h
->> index 5fa917ba5450..957c69c560bc 100644
->> --- a/include/linux/gpu_buddy.h
->> +++ b/include/linux/gpu_buddy.h
->> @@ -231,6 +231,8 @@ void gpu_buddy_reset_clear(struct gpu_buddy *mm, bool is_clear);
->>   
->>   void gpu_buddy_free_block(struct gpu_buddy *mm, struct gpu_buddy_block *block);
->>   
->> +struct gpu_buddy_block *gpu_buddy_addr_to_block(struct gpu_buddy *mm, u64 addr);
->> +
->>   void gpu_buddy_free_list(struct gpu_buddy *mm,
->>   			 struct list_head *objects,
->>   			 unsigned int flags);
->> -- 
->> 2.52.0
->>
-
+-- 
+Ville Syrjälä
+Intel
