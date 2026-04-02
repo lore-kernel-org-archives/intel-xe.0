@@ -4,156 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B6B8CC6B25
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 08:11:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16F04CC6B2B
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 08:17:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F0BD410F0E0;
-	Thu,  2 Apr 2026 08:11:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBAD310F0DA;
+	Thu,  2 Apr 2026 08:17:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SQkNLeBt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aT6zBjWV";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0603010F072
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Apr 2026 08:11:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED1BA10F09C;
+ Thu,  2 Apr 2026 08:17:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775117503; x=1806653503;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=/1xk8Bzx6DZEJ1hcDCxjUTpmd01gUryhRaanWSm47mk=;
- b=SQkNLeBtA6MrxoOuXggaM4dkF8lzM2vbdBcYanhee3qHktA/Q9ZMwuil
- bBG+l2JbBH+Hgg/PPhFQgQ4lNAA7DEe7xJyhcGUX2MzX53F8S3lc8pIT4
- /bvG7+gE1fmYDgSRpU1LXE27EinVtMzT7wTeSGvIlspNVlyNBl+Ryekkx
- 9bP5J+tdBdIDGinXICDGyFlSwVxP9xZ8L1yrGj6SDiUXKJkf2pnnpY6jN
- WPl65eOWODC6P+784i3o263B8fpR7L/v0udW1xutwBJRSE4GiUwltJypO
- ytvc3EY59yqwg4clqDyW89nLNJVJDPyQk0eTXVn6tRykxRkrxBZ/ofkBH w==;
-X-CSE-ConnectionGUID: e06975UJQxanVCatFwghUg==
-X-CSE-MsgGUID: b/P7IJw7RVqjdqbDCM721w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11746"; a="75208993"
-X-IronPort-AV: E=Sophos;i="6.23,155,1770624000"; d="scan'208";a="75208993"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2026 01:11:42 -0700
-X-CSE-ConnectionGUID: wriaahQKTEu/0K64wz8hxQ==
-X-CSE-MsgGUID: K+xawrPKRhKJL4oDTl386w==
+ t=1775117821; x=1806653821;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=/K4KSBGJKLh1E6i7z3ecuB004elFmRgsg2MEWaWlZsg=;
+ b=aT6zBjWVK36kgBlBWlEBr2Jl31x24IwNB/xiHFkJVu0j7zE4HPF7urHq
+ yLgNlHRD5alT24ijcMt6Ie7NoNsGw1tUA/RQb7x0o3OCKuiAqNNMa3iFa
+ nptt6lKiDZP4+IMKSGs2pKNfPxF2mZuBFwLxIVP2Es38QSnfE9u9V5o23
+ J49zVZ+jhBmm9hONR0fb94DP91ZnRDmcByR79geAzBbel8T2ByBrgLOTW
+ x/+oDCXe3+qR7BR4pc7G7jOnogXNwOo7w53aBRLl0QerB2ePFj/lcaX+C
+ VStk0cYNQTjjbL6f/9X+WDBuXQXRZe+3kxFN30IvPM2F7pLNOvqhSMTAD g==;
+X-CSE-ConnectionGUID: oepKUOJ7QaqvoC3ftSl3eg==
+X-CSE-MsgGUID: 7+FZt3giS8mVLCAG83XZlQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11746"; a="78764145"
+X-IronPort-AV: E=Sophos;i="6.23,155,1770624000"; d="scan'208";a="78764145"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2026 01:17:00 -0700
+X-CSE-ConnectionGUID: rXz/U5RQSAOR6Y6PRiTznw==
+X-CSE-MsgGUID: sJcUnaEfTUmfM/oTPNhc1A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,155,1770624000"; d="scan'208";a="226078023"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2026 01:11:42 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 2 Apr 2026 01:11:41 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Thu, 2 Apr 2026 01:11:41 -0700
-Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.67) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 2 Apr 2026 01:11:39 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hVOlWgCreSGnEikvtpVJ51aI9TTT0jqeasFKUjsaH1XacjxBnkA58Wy4E/a30z4TYkFmI3t/KRgI9LrjRac4AB6wy3qak8UjF+W/4gCswS/+SOySOEw63dczK8i2gNsevFdrFHcCfNqTnlbJGTZzhHisjZZFE15OZcaQ+QDsp+hpg0GBPRAJslr5TMGu0CdNbBV4hBfLMM42L+To+6V/FLuQAkaSHnOPvK7GTp1NXdI3Mex8SL+rEQLkHUWpapHkOAST8dXbcJjdWEZdvef4JM5IHNC08kaa4fEbvG5uF6QMQ4/rBUjvXt4Lcsuqwq/3WN86vOFn2npCehfBVQvP3Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pQUV2w5mebcJ3PuqbO4K7oPuSSPfWzfSGD8n+4i+fx4=;
- b=byT1/r7IKKduQ7lhWj2Ld9ehSzPcTcdQwPkQjQVnkuJmdqsgOXDKcAQG4gMSZ1aSNYljn5eN08HncCgTmHEHXQKRVFJddCNaQCcmgOi43dHOG+E1lOK1eIXfVonZbMplwrzvvCvaYQLxTZs5n2GrF+8XW6EgfkST23Ju4GqcmxIuN7NmRynFp3IGJ/C2rSeBSfonYCqCWw71vUYxMUwxOj0mPvr5NBP8afGAuLhSbXCOqvM4R5iY+8GDP2vkCKHgiW/Jh71mjAR36vXGkE3Jg/JEhdtjAGJ4LGhjz5WUYfnboQDYuLQQcHNyBjJuXJzxJSh2YfdP0eD/9UT8pqfkbQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
- DM4PR11MB6240.namprd11.prod.outlook.com (2603:10b6:8:a6::6) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9769.7; Thu, 2 Apr 2026 08:11:37 +0000
-Received: from DS0PR11MB7958.namprd11.prod.outlook.com
- ([fe80::8cb2:cffc:b684:9a99]) by DS0PR11MB7958.namprd11.prod.outlook.com
- ([fe80::8cb2:cffc:b684:9a99%6]) with mapi id 15.20.9769.015; Thu, 2 Apr 2026
- 08:11:37 +0000
-Message-ID: <722220f6-519b-4cfa-a7c5-89698fb5802e@intel.com>
-Date: Thu, 2 Apr 2026 13:41:29 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] drm/xe/xe_sysctrl: Restore __le32 type for app message
- header
-To: "Anoop, Vijay" <anoop.c.vijay@intel.com>, <intel-xe@lists.freedesktop.org>
-CC: <umesh.nerlige.ramappa@intel.com>
-References: <20260402063357.1453605-2-anoop.c.vijay@intel.com>
-Content-Language: en-US
-From: "Tauro, Riana" <riana.tauro@intel.com>
-In-Reply-To: <20260402063357.1453605-2-anoop.c.vijay@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA0PR01CA0006.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:80::10) To DS0PR11MB7958.namprd11.prod.outlook.com
- (2603:10b6:8:f9::19)
+X-IronPort-AV: E=Sophos;i="6.23,155,1770624000"; d="scan'208";a="250122959"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2026 01:16:57 -0700
+Date: Thu, 2 Apr 2026 10:16:54 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ rodrigo.vivi@intel.com, andrealmeid@igalia.com,
+ christian.koenig@amd.com, airlied@gmail.com, simona.vetter@ffwll.ch,
+ mripard@kernel.org, anshuman.gupta@intel.com,
+ badal.nilawar@intel.com, riana.tauro@intel.com,
+ karthik.poosa@intel.com, sk.anirban@intel.com
+Subject: Re: [PATCH v2 3/5] drm/doc: Document DRM_WEDGE_RECOVERY_COLD_RESET
+ recovery method
+Message-ID: <ac4l9rpozGzrIrGP@black.igk.intel.com>
+References: <20260318064016.374656-7-mallesh.koujalagi@intel.com>
+ <20260318064016.374656-10-mallesh.koujalagi@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|DM4PR11MB6240:EE_
-X-MS-Office365-Filtering-Correlation-Id: f3479309-7091-49e0-7ed7-08de908f7641
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|1800799024|18002099003|22082099003|56012099003; 
-X-Microsoft-Antispam-Message-Info: iMJH78LcLud9NovkKqfClJfWVPW+89ehmdzowokx1882f+BjVDSwazsVLC3qRff9ojtoedS7ZJusYQWlwtBENf+YhejBQ/CpHGnQtIzSaqTsUhYActa1OaVTzaXCUWOyJ7AcwDmxG5u5dtrI5vSxpTH0LPA+GxgRfXbNLkYk5UaxwW0tcnVJg5aPCfeQ/rPVN+hoO5GDmB/ZqoM/P49qshRgIE07Q9xFbxiyDzMfhicWrad91Xr6q4H4Vw4s6h64SIIqtan9rYiYZg4YBleN2CzSxV00oCb12ttLTjgdTZ1IDdyEiPevVSeLcKAQIo0D+TzQRpTnbfmPiWKyZvcWJDg/uOtJwH1E98Ouke6TW8d3X1uiFGSywbjizXj46F035scQdCcbNQx741++1b8DTqea9KXQcKrcNOvncQNe5s/kaEpKMyS0Wevb7r7t4XP36QbD0XgTScz+3jopNtv6d78Hw+TU+FQ05H/rPTB8D0IUr9uEfZjnfL7cCeNvtpjzBrLVyFoNYVUxBmsxnc83c/ruB6e5AX2c9o6euGjDLEuGfA+RAYtYtScjXGiuYSO8xkzpyf8XfWICoc9b4mcw8loPEAnf8Bf4CBCUlsnPycTVYWzviHr54uv/BCvRNtQtjtTqe4DxK4hOEcy4DU4h3mC0UjfJtCe4pdpyM0W0cNHtWMn4OzWyn1bUuVCvReK91gCpomew0+IUtsgwv28mEaw8dsN8hsCwHwly9crxkER3D9SdXpfOR3Pbmq08CADz
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(18002099003)(22082099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UXh4U1F3dUtVWkdncUlPUUh4M2UxY0NjT2ljRUZSM1o3UTVhNC95eXBoWGsw?=
- =?utf-8?B?bllwUWdQVWhmMHBYazFLa3BZdm93emw4Q1NUQmZ4Y3prWkZPSFZpUmdBaGdn?=
- =?utf-8?B?NnFwaUtnakhVcWJVb3JPd1h2RlB6TmxXQVp1T2laQ2xPcjk5TjFocjVpQVpn?=
- =?utf-8?B?L3A1Y3Ura1Z4N29HR1hSRnFBNTdoOXZneEFLVE1IQmlvT01hbTBvZHA3K24x?=
- =?utf-8?B?cDFvVFdKaUFNSFdXUFVlRTUxdWZnTndHcFRiWDRPdjFtY2tFOTdIcXg0YjlX?=
- =?utf-8?B?NXhJY09DOFQ3Vk1PRlJlaldEeEMrVmRLT1lTd0kzdU1XWEd4R0MrbklhTG5u?=
- =?utf-8?B?MjFVcmRrMVlxbkM2dStWU0p6ZENrRUkvdktmN2NhVU1uV2FpNGVWV2liR3k4?=
- =?utf-8?B?TkREdGNNQk1GNW1NVG41ZzRYNElqbnhGVWFEbUc3OVJyOXYxZGNLSExQZ0Iy?=
- =?utf-8?B?dXZFY29OUk5JUTZEckJPVk1xNFE5QkkzZENmTGFDWFk3V1FkcnRTa1Q5K1Q3?=
- =?utf-8?B?SmdSYTBRUm03dXhqZTJpU1RSTTdhbGc4VFhiNHc3U2I2aEFQejJ6WXhPaHF1?=
- =?utf-8?B?a2RKOWhETWJuM1MrSk9hTzFMK25HTTdCMHJWQWU2SmtxcWdtbGN6SDR2Z00v?=
- =?utf-8?B?M0Vvb2M5R0YwRVdPMWhLMlJkYUVZNVFZcDNrTk1acThrcFpIZkR3K2UzdFZt?=
- =?utf-8?B?Nng2V3NCa042UlNseUQxTGtwUExDblFLZnloSFdDV2tGcG5mWXBYWUsyVTh5?=
- =?utf-8?B?VzdQWjBtWG1ka3pDRklGRkpsNGNiTWpOcStidWwyM0JkVVNMLzlka0xPYUR0?=
- =?utf-8?B?UHVweDB6d0lTc2IzOWVlTnBsZitkZitLUm9BSmhVbWVraTBVZjZMbFM0TzBn?=
- =?utf-8?B?ejdRcHVzelorcXFJZFY1RDExalZlY0V5anFvWEZRbGNGeWZoOUVpNG9jNnlw?=
- =?utf-8?B?Q1FlZmhuL09kZXZwdEd1ZHZVWmpDRlRqQ2dmUkRtOEIrSVVaM0hNQXBGR0Mx?=
- =?utf-8?B?QmlVbUoyYWRXMVBkZjk5MGVTSWhCUTF4UlhpemJkU01EdkdSbCtSV3VYUjZt?=
- =?utf-8?B?NExQS1c0MTU2WG1XaU5lWkd2UldvNGxNRno3SjZhMmJ5UWpqVHI3dlhCNGls?=
- =?utf-8?B?MWQ4elVGVHdWdEhZQUJkUlA5ZXl2b2pOVlBkWitMcWp2eGFPRFJteS9sWHAx?=
- =?utf-8?B?UVlXblpQN3ZzUkdWYzVweDhHRGpXV1pMVTU3b0tpZDNsRy90b3oyMENtSVhh?=
- =?utf-8?B?a2RvRCs1UUhPTnlwS2IxU3E4allqTzJxb2kvT3hKQ2JKY3ZGWnRkNFNhL3lR?=
- =?utf-8?B?SkF4TG9nWFUxM1dia1UzMlZIMzlEWDBZbHpvK05OSjNoTUNESHpaenJJL1pX?=
- =?utf-8?B?NEw2bEhTZjhJVS9udEI2ZmpXZTM1QllJemhFeFFGSTk4WCtqcW9QOEhTaERG?=
- =?utf-8?B?Zm1HSHZLVzBIQnpxVWtBaXZNMFMveGFvc0ZUY3pZNWJhUC9PeUJBaEZFQ25h?=
- =?utf-8?B?Q1ZBUHRSMzJvUUp4ZUhiNG9iMU1PZjFzN1hHR1ZlcFYrbVRNMkhGK2YwNGFP?=
- =?utf-8?B?VjdkOG1HWGVGL0ZQMCtzbjlXbzFVUFFNNnZUVVV3R2l2K0UwN0ZXVUozK3dj?=
- =?utf-8?B?M1NNdEFHVU9sOENiZytycnBWaTdIemExWXpEeUhQdnhXWXVnMGdBWVdLNFA3?=
- =?utf-8?B?SEVoNmNoWUdLU0Q5M1o3NXBIcnBLZ1hYdUdiN1dHM3BOMlVGblhsNkx1QThs?=
- =?utf-8?B?N09Ub2g1blVaQ3IvMkRjM1UwU2pwVk1hUGpIdjlKMGdidUhlSnBkWVA3dlFq?=
- =?utf-8?B?WnQ1SEFhMnBwSVM5amVkelVKQ0Ztc2FzVXk4bFBxNmhqL0tLZFhhbDBoNkRt?=
- =?utf-8?B?ZmQrV1oxY2NTZVNOVlZxWDQ1VWlEVXV1aU85OC9PNm9JR3k1dS9UNmZFbWIw?=
- =?utf-8?B?QlFnUWVlSnl6SUpxbitYN0xnSHNBdUxiRU1pUXlSek5jMkNVWlRaZ0w2WGp2?=
- =?utf-8?B?TG5tUlQ0cmYzQzNQTllsNXVFcWVldzBrV29JdUNnQ2RkM2tJWlJCd1JHc2c5?=
- =?utf-8?B?cXRLRmcxTXpPRmoyd1BJeG1RZEh4ckZNTUNyUnVPSWtjYXIxV3BmYWhUdVl0?=
- =?utf-8?B?dGVXM0txcXk0alVQOGFzeWpxTDJySm5JRnZHMnI0MW84dXRWTFNJcTYwOGxx?=
- =?utf-8?B?c2JPRHl6VlhXdjE0S093R3RMbmpTWmd0Z1VxTjdFNUZ4SjkybFFhbmlHR1Zp?=
- =?utf-8?B?ZVRzVFpRZXZQa3FwMDhtNFRoZ2tKNWdvV3JQM1RsbUhNdXFrWnkxQUxFQS9k?=
- =?utf-8?B?em11SHBMQUlaZVk1SGk0Q3c4VlM1UXM1RzNkWmJ0OWo4WG5PeHhXUT09?=
-X-Exchange-RoutingPolicyChecked: bsn4x9F04QMH36B0vkEHFM/LLKJmTlVOj5wv/rBm+GfYLHrKvh9xQ8J9tH6DSjMckOwW0gJKvLDlPwLrD2FoDTBHqdV1e6zTK+S7hFmHcIW+pKjnMvhpaeb1W0Ql9OcOLpYczki/QVa11vf+tr+/EwqG1w1ZYbCDjWvL1+TES8sHm21bjPIYKEjOW7mQcM26kSv8xRW7/jkbXCdkYMREgZ4Sf/emNfmwG/xuZtygDPIsm4LM2n5ZL9djRPvE6wUSwy7C5ORffcHu4soqFzpuaCYiUOMAbHYRdY2sZTvKXL5YaulxPd5hpUvM2ppnd4vU1o/Ofzh4SRNlxRjFBui2pA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: f3479309-7091-49e0-7ed7-08de908f7641
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7958.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Apr 2026 08:11:37.5209 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mBhOqS1/6KsAxXuKpqCs90ucDFWp3/VOT4rP3Pcy3pJeOUU0iaFR1OZH9aDSYtMYJUuyuYM04opL8J0MqCriCw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6240
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260318064016.374656-10-mallesh.koujalagi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -168,36 +73,146 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Wed, Mar 18, 2026 at 12:10:20PM +0530, Mallesh Koujalagi wrote:
+> Add documentation for the DRM_WEDGE_RECOVERY_COLD_RESET recovery
+> method introduced for handling power management unit errors. This method is
+> designated for severe errors that compromise core device functionality
+> and are unrecoverable via recovery mechanisms such as driver reload or PCIe
+> bus reset. The documentation clarifies when this recovery method should be
+> used and its implications for userspace applications.
 
-On 4/2/2026 12:03 PM, Anoop, Vijay wrote:
-> From: Anoop Vijay <anoop.c.vijay@intel.com>
->
-> Using a plain u32 for application message header data causes sparse
-> warnings on big-endian builds when converting with le32_to_cpu().
->
-> Restore __le32 type to correctly model ABI endianness.
->
-> Fixes: 37ace5254a2b ("drm/xe/xe_sysctrl: Add ABI and mailbox interface headers")
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes: https://lore.kernel.org/oe-kbuild-all/202604010228.Z20DhK4g-lkp@intel.com/
-> Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
+Aesthetic nit: We usually try to utilize the full 75 character space where
+possible (in all patches).
+
+> v2:
+> - Add several instead of number to avoid update. (Jani)
+> 
+> Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 > ---
->   drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h b/drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h
-> index 4cbde267ac44..ac48fa7e4818 100644
-> --- a/drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h
-> +++ b/drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h
-> @@ -47,7 +47,7 @@
->    * Header structure for application-level messages.
->    */
->   struct xe_sysctrl_app_msg_hdr {
-> -	u32 data;
-> +	__le32 data;
->   } __packed;
->   
-Shouldn't the macros be fixed instead?
+>  Documentation/gpu/drm-uapi.rst | 73 +++++++++++++++++++++++++++++++++-
+>  1 file changed, 72 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/gpu/drm-uapi.rst b/Documentation/gpu/drm-uapi.rst
+> index d98428a592f1..5b63f1c17b9b 100644
+> --- a/Documentation/gpu/drm-uapi.rst
+> +++ b/Documentation/gpu/drm-uapi.rst
+> @@ -418,7 +418,7 @@ needed.
+>  Recovery
+>  --------
+>  
+> -Current implementation defines four recovery methods, out of which, drivers
+> +Current implementation defines several recovery methods, out of which, drivers
+>  can use any one, multiple or none. Method(s) of choice will be sent in the
+>  uevent environment as ``WEDGED=<method1>[,..,<methodN>]`` in order of less to
+>  more side-effects. See the section `Vendor Specific Recovery`_
+> @@ -435,6 +435,7 @@ following expectations.
+>      rebind          unbind + bind driver
+>      bus-reset       unbind + bus reset/re-enumeration + bind
+>      vendor-specific vendor specific recovery method
+> +    cold-reset      full device cold reset required
 
-Riana
->   #define SYSCTRL_HDR_GROUP_ID_MASK	GENMASK(7, 0)
+Does this work without unbind + bind?
+
+>      unknown         consumer policy
+>      =============== ========================================
+>  
+> @@ -446,6 +447,27 @@ telemetry information (devcoredump, syslog). This is useful because the first
+>  hang is usually the most critical one which can result in consequential hangs or
+>  complete wedging.
+>  
+> +Cold Reset Recovery
+> +-------------------
+> +
+> +The ``WEDGED=cold-reset`` event indicates that the device has encountered
+> +power management unit errors that affect core functionality that cannot be
+> +resolved through recovery mechanisms.
+
+Here cold-reset itself is introduced as a recovery method, so this could
+use better phrasing. Also, we try to be consistent with terminologies
+already in place so that the document is easy to follow.
+
+> +This recovery method is reserved for power management unit error conditions where the
+> +device state cannot be restored via:
+> +
+> +- Driver unbind/rebind operations
+> +- PCIe bus reset and re-enumeration
+> +- Device Function Level Reset (FLR)
+> +- Warm device resets
+
+These are already documented so not sure if it's worth repeating them.
+
+> +Such power management unit error state typically persists across all software-based
+> +recovery attempts. Only a complete device power cycle can restore
+> +normal operation.
+> +
+> +Upon receiving a ``WEDGED=cold-reset`` event, userspace should initiate
+> +a full cold reset of the affected device to restore functionality.
+
+This is already covered in consumer expectations so can be dropped.
+
+AI assistance is useful at times but we'd want to make sure that things
+remain objective and translatable ;)
+
+Raag
+
+>  Vendor Specific Recovery
+>  ------------------------
+> @@ -524,6 +546,55 @@ Recovery script::
+>      echo -n $DEVICE > $DRIVER/unbind
+>      echo -n $DEVICE > $DRIVER/bind
+>  
+> +Example - cold-reset
+> +--------------------
+> +
+> +Udev rule::
+> +
+> +    SUBSYSTEM=="drm", ENV{WEDGED}=="cold-reset", DEVPATH=="*/drm/card[0-9]",
+> +    RUN+="/path/to/cold-reset.sh $env{DEVPATH}"
+> +
+> +Recovery script::
+> +
+> +    #!/bin/sh
+> +
+> +    [ -z "$1" ] && echo "Usage: $0 <device-path>" && exit 1
+> +
+> +    # Get device
+> +    DEVPATH=$(readlink -f /sys/$1/device 2>/dev/null || readlink -f /sys/$1)
+> +    DEVICE=$(basename $DEVPATH)
+> +
+> +    echo "Cold reset: $DEVICE"
+> +
+> +    # Try slot power reset first
+> +    SLOT=$(find /sys/bus/pci/slots/ -type l 2>/dev/null | while read slot; do
+> +	    ADDR=$(cat "$slot" 2>/dev/null)
+> +	    [ -n "$ADDR" ] && echo "$DEVICE" | grep -q "^$ADDR" && basename $(dirname "$slot") && break
+> +    done)
+> +
+> +    if [ -n "$SLOT" ]; then
+> +	echo "Using slot $SLOT"
+> +
+> +	# Unbind driver
+> +	[ -e "/sys/bus/pci/devices/$DEVICE/driver" ] && \
+> +	echo "$DEVICE" > /sys/bus/pci/devices/$DEVICE/driver/unbind 2>/dev/null
+> +
+> +	# Remove device
+> +	echo 1 > /sys/bus/pci/devices/$DEVICE/remove
+> +
+> +	# Power cycle slot
+> +	echo 0 > /sys/bus/pci/slots/$SLOT/power
+> +	sleep 2
+> +	echo 1 > /sys/bus/pci/slots/$SLOT/power
+> +	sleep 1
+> +
+> +	# Rescan
+> +	echo 1 > /sys/bus/pci/rescan
+> +	echo "Done!"
+> +    else
+> +	echo "No slot found"
+> +    fi
+> +
+>  Customization
+>  -------------
+>  
+> -- 
+> 2.34.1
+> 
