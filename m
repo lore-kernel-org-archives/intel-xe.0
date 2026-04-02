@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2058CC6B3A
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 09:16:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D754ED39404
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 09:26:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73E3B10F117;
-	Thu,  2 Apr 2026 09:16:31 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iotKKl/F";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B4B910F117
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Apr 2026 09:16:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775121390; x=1806657390;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=AztiPs5S9VA3snwSOj1X1fMakFzfMHl7HwuHgGJ/BCs=;
- b=iotKKl/FMY6BriQwarENAr/T1alORdL95VCDIaSaRjpfNYEIZWF4WKG8
- PxLOaY33Hc0LYhQObGj06p/ZcqUsfdqQD5unpwXZn9bJVo4zim+4r45B1
- CFy++4ji1p8wnoFzqWq57jPqS1rxax9unLhw79Or09CrugIJgxwdyMUBn
- nndkgPt5I7RXTzhsKgUDOg5zTNQe4VfyzFQ/Pp9zv7Mq69Hgn+cYAHVU1
- DcfuOnMV03z5oSTB6QMQWXdvJu82rw22QCKON7TKBJkRtVlz7aLmBQ0wG
- KJ8Dc+j1qnGvgzXyOhQsQSfjA3+Rr12u+2lzhmCgPgJUoGiXXdL6R2F2B A==;
-X-CSE-ConnectionGUID: dwj1bveAS/an4ATvhZ+WlA==
-X-CSE-MsgGUID: njFaOvM+Ra2KBA1nyeEPMg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11746"; a="76066651"
-X-IronPort-AV: E=Sophos;i="6.23,155,1770624000"; d="scan'208";a="76066651"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2026 02:16:30 -0700
-X-CSE-ConnectionGUID: gHLcrzBuRkGnlq4p7I8C0Q==
-X-CSE-MsgGUID: et2+fDOoQ2m8VfdJPQkB7g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,155,1770624000"; d="scan'208";a="264867194"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO fedora)
- ([10.245.245.32])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2026 02:16:28 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>, stable@vger.kernel.org
-Subject: [PATCH] drm/xe: Fix slab-out-of-bounds on PT update ops retry
-Date: Thu,  2 Apr 2026 11:15:39 +0200
-Message-ID: <20260402091539.4114-1-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.53.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9656C10F116;
+	Thu,  2 Apr 2026 09:26:33 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C51A10F116;
+ Thu,  2 Apr 2026 09:26:32 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6816871124332059392=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/xe=5Fsysctrl=3A_Rest?=
+ =?utf-8?q?ore_=5F=5Fle32_type_for_app_message_header?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Anoop, Vijay" <anoop.c.vijay@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 02 Apr 2026 09:26:32 -0000
+Message-ID: <177512199202.427876.83541298354562437@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260402063357.1453605-2-anoop.c.vijay@intel.com>
+In-Reply-To: <20260402063357.1453605-2-anoop.c.vijay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,56 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_pt_update_ops_prepare() calls xe_pt_update_ops_init() at the start of
-each invocation to reset per-attempt state, but current_op was not
-included in that reset. When vm_bind_ioctl_ops_execute() retries due to
-ww-mutex contention (drm_exec_retry_on_contention), ops_execute() calls
-xe_pt_update_ops_prepare() again. The second call walks the same op list
-and fills ops[] starting from current_op, which still holds the value
-from the first attempt. This indexes past the end of the ops array
-allocated by xe_vma_ops_alloc(), whose size was computed for a single
-pass.
+--===============6816871124332059392==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-KASAN reported:
-  BUG: KASAN: slab-out-of-bounds in bind_op_prepare+0x89c/0xae0 [xe]
-  Write of size 8 at addr ffff88812e72bae8 by task xe_evict/2848
-  [...]
-  bind_op_prepare+0x89c/0xae0 [xe]
-  xe_pt_update_ops_prepare+0xbd0/0x1570 [xe]
-  ops_execute+0x3ae/0x2030 [xe]
-  vm_bind_ioctl_ops_execute+0x4d5/0xed0 [xe]
+== Series Details ==
 
-The write lands at ops[1].vma (offset 360 into the second element of a
-one-element 384-byte allocation) because entries[] is exactly 360 bytes
-and current_op was 1 at the start of the retried prepare pass.
+Series: drm/xe/xe_sysctrl: Restore __le32 type for app message header
+URL   : https://patchwork.freedesktop.org/series/164275/
+State : success
 
-Fix by resetting current_op to 0 in xe_pt_update_ops_init().
+== Summary ==
 
-Fixes: e8babb280b5e ("drm/xe: Convert multiple bind ops into single job")
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: <stable@vger.kernel.org> # v6.12+
-Assisted-by: GitHub Copilot:claude-sonnet-4.6
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_pt.c | 1 +
- 1 file changed, 1 insertion(+)
+CI Bug Log - changes from xe-4839-2ca39f35278e7f6e1750c710e75c32172fb1aa11_BAT -> xe-pw-164275v1_BAT
+====================================================
 
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 8e5f4f0dea3f..3607cd57fc4c 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -2291,6 +2291,7 @@ xe_pt_update_ops_init(struct xe_vm_pgtable_update_ops *pt_update_ops)
- 	init_llist_head(&pt_update_ops->deferred);
- 	pt_update_ops->start = ~0x0ull;
- 	pt_update_ops->last = 0x0ull;
-+	pt_update_ops->current_op = 0;
- 	xe_page_reclaim_list_init(&pt_update_ops->prl);
- }
- 
--- 
-2.53.0
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (14 -> 14)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-164275v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_waitfence@engine:
+    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6519])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4839-2ca39f35278e7f6e1750c710e75c32172fb1aa11/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164275v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
+
+  
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
+
+
+Build changes
+-------------
+
+  * Linux: xe-4839-2ca39f35278e7f6e1750c710e75c32172fb1aa11 -> xe-pw-164275v1
+
+  IGT_8842: 8842
+  xe-4839-2ca39f35278e7f6e1750c710e75c32172fb1aa11: 2ca39f35278e7f6e1750c710e75c32172fb1aa11
+  xe-pw-164275v1: 164275v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164275v1/index.html
+
+--===============6816871124332059392==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/xe_sysctrl: Restore __le32 type for app message header</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164275/">https://patchwork.freedesktop.org/series/164275/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164275v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164275v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4839-2ca39f35278e7f6e1750c710e75c32172fb1aa11_BAT -&gt; xe-pw-164275v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-164275v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_waitfence@engine:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4839-2ca39f35278e7f6e1750c710e75c32172fb1aa11/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164275v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4839-2ca39f35278e7f6e1750c710e75c32172fb1aa11 -&gt; xe-pw-164275v1</li>
+</ul>
+<p>IGT_8842: 8842<br />
+  xe-4839-2ca39f35278e7f6e1750c710e75c32172fb1aa11: 2ca39f35278e7f6e1750c710e75c32172fb1aa11<br />
+  xe-pw-164275v1: 164275v1</p>
+
+</body>
+</html>
+
+--===============6816871124332059392==--
