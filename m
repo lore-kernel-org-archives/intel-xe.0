@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7C73D6AAF4
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 17:45:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52857D6AAF6
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 17:46:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9E8510E42A;
-	Thu,  2 Apr 2026 17:45:40 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F54510E423;
- Thu,  2 Apr 2026 17:45:39 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1281516955211861575=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FC8310EFAD;
+	Thu,  2 Apr 2026 17:46:42 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IIsxz2U9";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F09F710EFAD
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 Apr 2026 17:46:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1775152001; x=1806688001;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=JPZ5wHrdElLAm0tFkbT1FHDqcsKEtR/qEGA0WoFTFSU=;
+ b=IIsxz2U9FFKMfZFJfM5v1ZnxABmFqXju/xBZak/NxouLkm/y9HeRLCxr
+ XwAkSxV5x0hH2RZ2dYwOt+hzo8tfqQLvNqaioQSK9pZjiOpHONc9APUMM
+ WuMWT8YPrIGXgyML5xZouCU14t4Fa38Mw1AOsAvjpleTuOG1iYuvoYFpI
+ qLkeTVP1q+WhsCwPbvPg6kidGHiN6cNYWLbVbGUR/oyXG3746kfkiyeTU
+ luw428o6zEV+lNHrhTNcha5zXnD0FQqbVyYW0+ghNLrR+ufA2AjCIryIn
+ nJWzwE+klTMaVHTD0t52q5tZDhq6YyzsVAZWh16t9OMAMpuR6OkTmPAQt g==;
+X-CSE-ConnectionGUID: exioykGpTo2gXfoD1UZ2jQ==
+X-CSE-MsgGUID: 9iAl4KVyTtijX3mH2fBrwA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11747"; a="93612064"
+X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="93612064"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2026 10:46:27 -0700
+X-CSE-ConnectionGUID: PkXG8VONTLWkopmTv2kZQQ==
+X-CSE-MsgGUID: pixcywaCT0e01qUTe+ERCw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="226209487"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by orviesa010.jf.intel.com with ESMTP; 02 Apr 2026 10:46:25 -0700
+From: Raag Jadav <raag.jadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com, riana.tauro@intel.com,
+ michal.wajdeczko@intel.com, matthew.d.roper@intel.com,
+ umesh.nerlige.ramappa@intel.com, mallesh.koujalagi@intel.com,
+ Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v2 0/4] Hardware Error handling for Crescent Island
+Date: Thu,  2 Apr 2026 23:12:25 +0530
+Message-ID: <20260402174229.1062874-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_expose_multi=5Flr?=
- =?utf-8?q?c=5Fmask_in_debugfs_info_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Xin Wang" <x.wang@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 02 Apr 2026 17:45:39 -0000
-Message-ID: <177515193956.429210.16054442248343526906@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260324212348.4142888-1-x.wang@intel.com>
-In-Reply-To: <20260324212348.4142888-1-x.wang@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,145 +63,29 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1281516955211861575==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This series sets up hardware error routing for debug cases on Crescent
+Island and handles them by wedging the device so that they are available
+to the user for debugging.
 
-== Series Details ==
+v2: Explain the usecase (Matt Roper)
+    Allow hardware error routing through debugfs (Mallesh)
 
-Series: drm/xe: expose multi_lrc_mask in debugfs info (rev5)
-URL   : https://patchwork.freedesktop.org/series/163802/
-State : success
+Raag Jadav (4):
+  drm/xe/hw_error: Setup hardware error routing
+  drm/xe/hw_error: Reuse CSC worker for generic error handling
+  drm/xe/hw_error: Allow debugging hardware errors
+  drm/xe/debugfs: Update hardware error routing with wedged.mode
 
-== Summary ==
+ drivers/gpu/drm/xe/regs/xe_hw_error_regs.h |  5 ++
+ drivers/gpu/drm/xe/xe_debugfs.c            |  2 +
+ drivers/gpu/drm/xe/xe_hw_error.c           | 55 ++++++++++++++++++----
+ drivers/gpu/drm/xe/xe_hw_error.h           |  1 +
+ drivers/gpu/drm/xe/xe_tile_types.h         |  4 +-
+ 5 files changed, 56 insertions(+), 11 deletions(-)
 
-CI Bug Log - changes from xe-4843-dba2251b00d3faac3be7fc15431ffb9c4d60232b_BAT -> xe-pw-163802v5_BAT
-====================================================
+-- 
+2.43.0
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (14 -> 14)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-163802v5_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
-    - bat-bmg-2:          NOTRUN -> [SKIP][1] ([Intel XE#2229])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163802v5/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-2:          [ABORT][2] ([Intel XE#7249] / [Intel XE#7578]) -> [PASS][3]
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4843-dba2251b00d3faac3be7fc15431ffb9c4d60232b/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163802v5/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-
-  
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#7249]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7249
-  [Intel XE#7578]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7578
-
-
-Build changes
--------------
-
-  * IGT: IGT_8843 -> IGT_8845
-  * Linux: xe-4843-dba2251b00d3faac3be7fc15431ffb9c4d60232b -> xe-pw-163802v5
-
-  IGT_8843: 8843
-  IGT_8845: bdaaf0b253471f6018f93e5c63f5415aa0c96bcb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4843-dba2251b00d3faac3be7fc15431ffb9c4d60232b: dba2251b00d3faac3be7fc15431ffb9c4d60232b
-  xe-pw-163802v5: 163802v5
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163802v5/index.html
-
---===============1281516955211861575==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: expose multi_lrc_mask in debugfs info (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163802/">https://patchwork.freedesktop.org/series/163802/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163802v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163802v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4843-dba2251b00d3faac3be7fc15431ffb9c4d60232b_BAT -&gt; xe-pw-163802v5_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-163802v5_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163802v5/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4843-dba2251b00d3faac3be7fc15431ffb9c4d60232b/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7249">Intel XE#7249</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7578">Intel XE#7578</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163802v5/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8843 -&gt; IGT_8845</li>
-<li>Linux: xe-4843-dba2251b00d3faac3be7fc15431ffb9c4d60232b -&gt; xe-pw-163802v5</li>
-</ul>
-<p>IGT_8843: 8843<br />
-  IGT_8845: bdaaf0b253471f6018f93e5c63f5415aa0c96bcb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4843-dba2251b00d3faac3be7fc15431ffb9c4d60232b: dba2251b00d3faac3be7fc15431ffb9c4d60232b<br />
-  xe-pw-163802v5: 163802v5</p>
-
-</body>
-</html>
-
---===============1281516955211861575==--
