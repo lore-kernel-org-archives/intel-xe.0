@@ -4,156 +4,146 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2D42D6AB10
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 21:46:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3854D6AB16
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 21:50:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87ACE10F529;
-	Thu,  2 Apr 2026 21:46:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B01EE10F5A5;
+	Thu,  2 Apr 2026 21:50:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e4e5+FgT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KOIzfNxI";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA3B810F529
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Apr 2026 21:46:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7DBB10F490
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 Apr 2026 21:50:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775166375; x=1806702375;
+ t=1775166649; x=1806702649;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=Ut8+smWqKaqEDvijQtJIinqY6Q1k2EF1whdKC1AMlaI=;
- b=e4e5+FgTpI+lpnohHZAZiLjqd09+lE7XHLzkSCmGvbNN4DevQRmC+01G
- MT1ysVpOZsdLX6ma6+Fjzxj82eYVR52yadyDwjPFUbs0Aj8XZN/9BZO1K
- ti5czlk8g1L+Pq/F+i0c6rPmbkfV6PRqmLiBOiFtkFtWaglhqi/y9icpy
- vPrV+lnG8Zf6POjYkknJri24gC9r391tPQX1qBbNg7XvHpZfS/afSPpuQ
- JORiYmsr3EKRTB4nEALosU9SdDKYwo4DPTjCuqMvNIOQXX0w82yFdk4fb
- OrUzisXMOY7R0HQvIb6REVIb2Lv2ilriKSW6O94dNZTW2W5l768DyRqx4 A==;
-X-CSE-ConnectionGUID: 55P8dv5YRbuqxdf1O0fybA==
-X-CSE-MsgGUID: Qtfov0hCTjaOa9grnYhrXQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11747"; a="75275016"
-X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="75275016"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2026 14:46:14 -0700
-X-CSE-ConnectionGUID: Jjy1dt9iQUmStOAQwLj+HA==
-X-CSE-MsgGUID: AZxk/ABjT7CCyUS6O6vIjg==
+ in-reply-to:mime-version;
+ bh=XRu0887gGvracscShBD8HAw2dYj8E02/JkuR1Zb803A=;
+ b=KOIzfNxIDll4dJ0KDWMc+Mt5MW3O/JRf2uUCJ6Av+p9ZZObqDYgh4I5L
+ T6lugEcYeTjLLCin4y3Z7BA9rQcdKUYf5X3juzpd9QMahao7HQHpF/7Aw
+ ch4BnLELbvpT9O2bI3wkAfaxxYOztTKc7pGiwCQuKrCL19X1jVoNmdJLA
+ bFEQZr1M548yp3UhqwzV3F6RNbX6ipIj5NzwBN1NJRQR2iENi/H5jTR4h
+ W/PmUJbZQPp4AGc4uuUETMY/gFp8IV0qBGjMFUkpin5L6vAPH18Hpi7t4
+ qD+pSZxFrE5GqHmI5Su+G0g3+XDR72P9kavu0kp3P8wXB6d3gK8VgFBkR Q==;
+X-CSE-ConnectionGUID: LcwhDetjQbWBooawF9g8Ww==
+X-CSE-MsgGUID: 96WPvS6iROiCLRipx3B1mQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11747"; a="76127165"
+X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="76127165"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2026 14:50:48 -0700
+X-CSE-ConnectionGUID: EQ/LSnEETqeIqnrk97w8Bw==
+X-CSE-MsgGUID: JBwgEeSaSUCrzR12YIAP+Q==
 X-ExtLoop1: 1
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2026 14:46:14 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 2 Apr 2026 14:46:13 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="223815003"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2026 14:50:48 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
  ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Thu, 2 Apr 2026 14:46:13 -0700
-Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.2) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.37; Thu, 2 Apr 2026 14:50:47 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 2 Apr 2026 14:46:12 -0700
+ 15.2.2562.37 via Frontend Transport; Thu, 2 Apr 2026 14:50:47 -0700
+Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.11) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 2 Apr 2026 14:50:47 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bMQ4K3LDOnLXGY43QEi4t0dxzcyMHp2OxcEeEHObwuL6CuIoiP8IGnQoytAW35cTkpo5Hc/9c+5FJoUHtYaHmt62Lhhd95RT2Ng13HO8WEMEuxgHiK9LlTVPSzCVVzKInF0TPM0G87jyNSd2uDXuFFQeYBEaUmhzWUX8t1hqLorldRrsRD1yWfXnn/PCsZdQn93lvsgmj9ueWdyVM4YSt9+g3ksygzJEY2kMhYV03IRx/4GUKJIPaNe5+YlYMaaKjxxBhnxdJwNgUPVbWXlnkLWjYrGEgYaHTkc7VRwRtNwQ3bYVnHi150W76Phyxmj5T+64QrxrxYXav98nhMi+9A==
+ b=Kf+w40G86shu5uUh7BI5l0Aib542SVPiNQC9AMdXeuY6G10096xvBMVYAKhq77SqxktMj0pjOAvMwS2RCeA/EdQsGh171Z39cf3WF+Lclyyc5BHRVorJ4JYj3qOExTOl+TcPNn3Az7JSRc8+jHCdJmTo5n4jkEQ+D1bJ408Par/NcyM4dSXo9/6eqsht1UwN3Eomdl6YLBmh3LhLl8skpHnDHJogsvvjSbIYuOHy/6ote3cvKxfWkVYpfyAlkXpTZdFoKlKeJS3hwrxPXGapJgfvJIW7g14AEjxdC/PGbKi7o5MTSHrwAgMabkgyj2+FLlyiD8/KxLOMi1dPPSHToQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=F7gK38CceexGy0eLRhQVkhtpaS4HLMTcPO+dDx3fsr0=;
- b=dPzD5cKZgu1pBEIyqp9ZISkvRlDWLeht5FGa1/SXO03ZV2eTqsG+/15ICJwTQC2Z3sFJOYL0+dMLwTGxAAJP2fcAQHKIl1CflzyzL4CulYX33V01v1HoNnsjWdc/EbxC8Bh8Er8zWxFC2znxwV9dRBr3IOkljhQVoFirif04I1X1jXGbbKjGUmICfIH1/lwP/EtPcs6YO5ICN4k8Lgk+9xKogxRJb7PIvjhh2TZMvqVUhaRFGGtswIfFti0VxsNzvB7Fr8XgW2533pMEZ/kiREodBy6MeXKR4TvA1/MmOD8GXru7WNCF6x1L9DcHIaRtSkyNerLi72vsY05Bv15J9A==
+ bh=LrT10VdPuoUqetQyDWVMnNcA6C0FQY1Ch/ZuTQZg3Cc=;
+ b=hJOrCDv6ts+M55yXDbq6YbBBPd5k8JvX/4GEjASdRh7IWGCncVHHYWRAb6phe2tO0+V0C8GzK2/AmCAS5eHhJz0FDlh9qAnfUryT5wmvF48ZNPYgjzqxYYmrdugGnSa0lPtKVM3a4r9acM+uqA4mXMGvFLnzTtbYgjn/X31EBtCjyfPW9nK4oX6uO8dx9/SkoTRim2M5NmVfdNMH++cNSNNq1DH92UYeQmvz2TnGCp/mBEhKdrzDn3u4FCZNQJUydxr1cO6QBSAuJlnjCpyPd/O4W+Ob6goDU+CLsXd+6trRXNjKLwPjf7/5UiLJIVvxL0oYobM5eKOTaqxvf6oh5A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
- by DM3PPFCA4893B55.namprd11.prod.outlook.com (2603:10b6:f:fc00::f4d)
+ by DM3PPFBADCE1465.namprd11.prod.outlook.com (2603:10b6:f:fc00::f48)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.15; Thu, 2 Apr
- 2026 21:46:11 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.16; Thu, 2 Apr
+ 2026 21:50:44 +0000
 Received: from BL3PR11MB6508.namprd11.prod.outlook.com
  ([fe80::53c9:f6c2:ffa5:3cb5]) by BL3PR11MB6508.namprd11.prod.outlook.com
  ([fe80::53c9:f6c2:ffa5:3cb5%7]) with mapi id 15.20.9769.016; Thu, 2 Apr 2026
- 21:46:10 +0000
-Date: Thu, 2 Apr 2026 14:46:06 -0700
+ 21:50:44 +0000
+Date: Thu, 2 Apr 2026 14:50:41 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 CC: <intel-xe@lists.freedesktop.org>, <thomas.hellstrom@linux.intel.com>,
  <stuart.summers@intel.com>, <arvind.yadav@intel.com>,
  <tejas.upadhyay@intel.com>
-Subject: Re: [RFC 03/15] drm/xe: Stub out new access_counter layer
-Message-ID: <ac7jni3tTviagHP0@gsse-cloud1.jf.intel.com>
+Subject: Re: [RFC 07/15] drm/xe: Move ASID to FAULT VM lookup to xe_device
+Message-ID: <ac7ksb6r259ILaR/@gsse-cloud1.jf.intel.com>
 References: <20260318074456.2839499-1-himal.prasad.ghimiray@intel.com>
- <20260318074456.2839499-4-himal.prasad.ghimiray@intel.com>
-Content-Type: text/plain; charset="utf-8"
+ <20260318074456.2839499-8-himal.prasad.ghimiray@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260318074456.2839499-4-himal.prasad.ghimiray@intel.com>
-X-ClientProxiedBy: MW4PR03CA0307.namprd03.prod.outlook.com
- (2603:10b6:303:dd::12) To BL3PR11MB6508.namprd11.prod.outlook.com
+In-Reply-To: <20260318074456.2839499-8-himal.prasad.ghimiray@intel.com>
+X-ClientProxiedBy: MW4PR04CA0109.namprd04.prod.outlook.com
+ (2603:10b6:303:83::24) To BL3PR11MB6508.namprd11.prod.outlook.com
  (2603:10b6:208:38f::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|DM3PPFCA4893B55:EE_
-X-MS-Office365-Filtering-Correlation-Id: ad6955ef-119f-42b7-0627-08de910140ae
+X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|DM3PPFBADCE1465:EE_
+X-MS-Office365-Filtering-Correlation-Id: e9c479be-b0cc-4958-136e-08de9101e443
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|22082099003|56012099003|18002099003; 
-X-Microsoft-Antispam-Message-Info: 8zpffMaCdDzC/CfmHhany9y6ArJRL5JUAfQYM3JvmK7Zd62Jgz7h424EX0pgudT01wJqsgRrFMeM0RzlIZYOrm+fvMwTAqEPFgJOItDrcdkZ+mOtvfSMLymxubwskyhE/lg38zA+bT0Q2BQbX4emLLvRlmiw0qcjynXXqj+bK+kYQo/KRhTPVEG4Lw8aaAPAPRUSdjACZ+CAP9AHwK2C2uGVgA7KnezI6uL8j4KADlG2yYbbI6jrHDrWGjP1Wqe2q4A3c6YIMh5gpHZ3NcDqQTLJFNrCzweS6rqEymFx4quehQf8DnwZoj2w952vVTjuUXAX7AK16sXefEAnsDRe7kuwtnXoNpWD0hX6AkrPcKrW3quPpBhUj1hlFKXf4oGthP8lk+L268N7GSEswTZRLomWTyZ0ZimbI3m7/N++eAaSxMz2DtJMu/eY1SupQSNnDmGDWFrVxifrwYkwSODxoQpotzSzSOoFWn+Q6wRRcfPNP1u2rwpnM11d2OlIHcaeuYWO7peOJ0dt0arTOB1PkRw/am9gt8ZqKjA0pK+h8UGGV5nNDMIZaAK6DSLyXJ+Kfb3rWpd+/hKN9JSDsBf73sUVCdKInIeheGRHGPIGVILHBUMV/i5kv25eZwu6xDUiWnibq0kRoGtTTudmSzwCkRjklzQMH7bJ4DBXjGk4Nc1uulR0H0L0+LDt5gh8flg3
+ ARA:13230040|376014|366016|1800799024|18002099003|56012099003|22082099003; 
+X-Microsoft-Antispam-Message-Info: G9v9ReAcGZyr8rVAxDpNsqQljG56miWaSKPcV8zmKovwXXoQjhotEQ2tml57QYjk8Q8aVhSjdPI8haU3BSXBh1DcOnbqCm6+EbTZjLX8n8aEB1UFRyxdx+6eMhaaqFIYoUhgoTQZ1O2BClx0UDKH8OFUDb7xaSGEhSYf4yMrmF3tsOlKoWSxNCVRxqK+2dbLQ5xbxZowlR/obeVVw7iGUBNgtee2tz1fNRx2CZO+bGrg40gYLpYiaI9GOlUbAwKk7JeKzW2K+ERNYB5XLZ82Qo0clkTVlWmlZmImxenL2xSEJXoYChnGnzxSvahD6g4j5zoOfrgtL6nUe1b7C/+MpFPMsKO60ctC3ikefTT0FfFnbaaWdxV4VK+Cci3xSIzUeUZ7RiN8mbxCRt1GndW9b172UW0s/0CxdX85PoLJSiXFqVMcvtVe4ahHKyh9MFJYRDQ9bxtL0SR3ZjQ29FIFlVMEbVeb60Ph5v6EEr8eUvWS8NleeP2+gTw1n7CYYsJlk6OkWqshF4VJAOKwrHMSoJPsv8R9b7PZ77uxiJPMGXsmf3YtnvbCoeVsi9bgsU1FIIKnhEcrMV3/OWOr5obFs2ZPiIKOtpEQ5zR1TVgx++tKyDvqFK57i0Fg+p5LWXRHu5f8pBUvAVk4uCxL3Qn1+FlT59Yl6g08hgXKJnh3uzhckg3Nv7VIUms9bp+ksY+dnAvcMcV8JY8KlYA5IB0Uz0LIiZPMFse77ZtuGLUIBwg=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(22082099003)(56012099003)(18002099003);
+ SFS:(13230040)(376014)(366016)(1800799024)(18002099003)(56012099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OGRGb0JBZnQyQ0ZHMlJGTW9kK0wxVWZISU5sR1BGNVI1YkFnQjZVbkNteDU5?=
- =?utf-8?B?RGdoU29wcjFoZ3JiMmlvQkhRYTIyV2VGQkhOR3NUN1NpTWdkK01aNjVQaVZC?=
- =?utf-8?B?U3ZWVkFLYU1EanJtbWdJSGtHcmRSY0E0cXMvemptQnMyK0gwRjN6RHRoQjBJ?=
- =?utf-8?B?WWFoejl5SjNuM3F0L0NwSmZ2b1o4RzlXMHFxRnFhbFkxNjlTWkFmLytXRkor?=
- =?utf-8?B?N1lSSGp0cWxRWUlmalpydjR6R3RNUWpOREV6eC90d0h1aUpZOVdlWFlqZDBS?=
- =?utf-8?B?V0ZSV3hYMmNiUTNLcFpSQW92N05oVTBiNTFXWWZBYklCc0c2QXREU1oxT1Q2?=
- =?utf-8?B?MTByUytvblVKdVJxQnRPUXlZNkJSVFA4bzFhMm9oQU40bkxJSzFDMCt0TEJx?=
- =?utf-8?B?VFVMbzFOVzVqbnpyNDFNeklTQXlDQzBiN0NJZEpMc2JHU0N2WENSOStyRTFI?=
- =?utf-8?B?c3ppR0ZHR2M5WmN1cmE2dlZLVWNObDFxRWYxeWFuR2plQnRuclVZKy85U0pE?=
- =?utf-8?B?ODNxSjJIQzJOVG1qSk03bFNKays1T3ZoR1pGYjJ6cGZsbTE5TDVWWll4YTZV?=
- =?utf-8?B?THNQYjhwa1AzQnNpMTFUR25ObEx6TzNwRnZyVFhaNDExTVFDU0dJTGFoR0xs?=
- =?utf-8?B?N0k5cEx3d0pDTVhtTEpHcnQ0QmxBQUFmYlJOb0prVGFLZWU2Ky96OENkUVJF?=
- =?utf-8?B?VkhkYUdvclM1WC9jWVJqT1dxSzhPbm1ZbHZreFF1aC9BYWRnQi9mZzFhL1F1?=
- =?utf-8?B?VnNCYWRkbDZXaENua3NUb2RxMHF0ODJlTlNnamQ4VVBiNmVwdzhEZmNObkJm?=
- =?utf-8?B?TXFKbld2bEh0Ny9WZUVyNGJFc283NkJXdTNtKzY5eWV1QXFFM01mU2c5WVBp?=
- =?utf-8?B?VWl2L1hhVlVDdjFDUkFFOE5tWmxmdkNhRnlFNkRTcHhwd2lNdEZuWGg0NDBh?=
- =?utf-8?B?a24zTW13Nm5yZjA2dk1NcDJOVGxnazBPWmU0UUxYeW9Fa1phV3p1UjJ4Wkpp?=
- =?utf-8?B?a21lZTZ1MnRUbzFPNnEvMnltdXdzQitNaWdIay9IUmRrekZDck9hdnNTKzBY?=
- =?utf-8?B?bDVDeWJsVjQxVlB2dTZMTTVPbS9mbHMyelRlZ1gxY2hjQVBGam5HYUVEMGJ6?=
- =?utf-8?B?a2N0b1BwekpIdEs5T3VVWXlZSy94MDhhUGlDbGZTMnR3OWZWSStvc0Q0UzFu?=
- =?utf-8?B?OXh2VmNhVFMxQ2daN2hYaVU0dWUxcnlRVmNmb0ozRTl0eEJCY21xSWZwYi9C?=
- =?utf-8?B?WnhwVXljcVBaVnR5RmwrQ2NWTzFVaHhJRyt0SXplbmhLbVhRL08vWU9wV29J?=
- =?utf-8?B?VDNHRU5CNUhqOTFrSEovZnBGeUUxN3pabzRVMGJ0a2FJME1WMlIrT3JPOUVz?=
- =?utf-8?B?cmNGQitKZC9pb0p3WlZmdDhqbExvYzdmdzRqQkFaaGtKQ1UveEtNVkJNV052?=
- =?utf-8?B?eUR1akgydnFaY0FvT2dWc1NWTm1Fdy9pTlFIV0J6VTVzTUUyUHFsWS9obWU0?=
- =?utf-8?B?bGlUSHhPTHkzUnZyNGtZK0RMMFNnRm9UeXo0NldvWk1GN3IwVDI0ZG40cUpI?=
- =?utf-8?B?S1JkNFYrYytmR2dnQ2p5c2NicHJtTGhTYk00ZzA4eCtPd1JrR0FDQ1FpZHpr?=
- =?utf-8?B?anh6QzFIY2ZMSXZybUtsVSttUW45T2J3QlFrMlAzcGVHdTNBVDVpa0xkSVRp?=
- =?utf-8?B?NFBJd2tHY2NvaGhuQWNuSHF1YmxKV3ZqQTZocS9jVW9vSG5CVU50VjJmRXdr?=
- =?utf-8?B?TEluc2RzSXlvVm5taTRhTWJzWUQ0akFTYTdNRVgwajkwUWp0bG13NHoyUjZD?=
- =?utf-8?B?cHE0ZTlJMTRxUlVTem9ZT0wyTnB4OVFrWWQ1Q0RNNDl2cjV6YlNMN25HVGtY?=
- =?utf-8?B?RWdLVzl3TDhXdEx1bS84ZnNwbmFJOThJd0g5Smd4NkdtU293WTNEUFFGWjh1?=
- =?utf-8?B?N2huK0MrYkp3ME1WTWVuL0VhOTQzemZyendSSFFHeFZ3aDBPTHJLZWJ4d01k?=
- =?utf-8?B?SEw2YWd5MGRCdEtqc1VRWFR0Ui9BRERicTVreVRDU0xqeWpsM3NLOUcvYWpq?=
- =?utf-8?B?RHNCZEZNSHk0VGlJZGF6THRDVXVZRGcwSCt3QzBTQWZjbnREYTZtYllkcTNi?=
- =?utf-8?B?RFBwazZ2SnZmcmVLMmxQTUtnbnBqb09OWDU2MlRrWldUcy9vR09IbGRrVTI0?=
- =?utf-8?B?aEFzeTR5aDhablNmK1hwSzJRT21qUmRFR0hvK1BuRWxuMVNkNmZEdnRQQmM2?=
- =?utf-8?B?SEZVVS9nYjA4ZXhGdWVSNTNjN2RoeVZDUXJYc2Z5NTIybklVckpoUHd4TjdG?=
- =?utf-8?B?d0IxOEo3ZTJFMnVaRjdtYkhhVGIyS2pVZndFZGt5N0RIR2hyOExEQ256VFBa?=
- =?utf-8?Q?U4Ex24iquPx/Ivcw=3D?=
-X-Exchange-RoutingPolicyChecked: NwzhnnssGFC1KXtvZtbM7wdSe9sI95A13ZbJN3gJuggoPmHqoG32/2bzgwBxTzSFt8QCgONpe7hYFQkg7PPGTyMehqyklARTBVoMsqctwJ28uIQoAbbM8+FfwQmSiwCDKU+DgqBm1ly+sbl17oIMAoa4QQKa2qIISAk70d9JLW/y5HrmvfU0xTw758t1M+JaFrPS1/zVPHo7WF03p0bY0Y3CTH2KCT8TiXywUQ0/xcDIyd2P+IFBLb7vh5Hp2kazG9+DIXf7rbMbWZGrs4p9WEfvK7A2fS9hO+sSH5N0XSs+7Bi0TJzgFufxnJrqm5GWeRIfQLX93ymBUvEZ7tnvkA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: ad6955ef-119f-42b7-0627-08de910140ae
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?02R0VSo1oUF+/kxF2XBjKHZOTbLYktXiCpfZVSN+5GFwZJqW8/fp8dKpGQN4?=
+ =?us-ascii?Q?QFhTn/WhtntvExBvEYuo7AcZOGqcTDAZyepAVgYwz0MTVHV/htGqERhUN6MZ?=
+ =?us-ascii?Q?Sq7EeNqk42i+HXawPPYdvO6x5XMpIjQXuyZUIA9HDbAWdhPdTkAULMdpJaGw?=
+ =?us-ascii?Q?qsJuNpBLJf7HIqFwq0kcYMybTM6oU2qSlgISadHLDoy6LQCn+tZY3gDHYckk?=
+ =?us-ascii?Q?8zOCtP29HIO9XGB7KpRiE7wfxOsdjIaHqS3sxXUkboHs0rMc7B1SdVBRQoN+?=
+ =?us-ascii?Q?Cie7BJpk1F835ATVYZR4s4RhDBfTnBGgBsGavbJ/Kxd9mvdZbTfFrUVEiOSI?=
+ =?us-ascii?Q?b3jUuiSc0qlSHuObt3EUePSS2v8kyaw9nl5ftLAJZVQ0+29J6KV5rHCN+G9I?=
+ =?us-ascii?Q?yZaD/IJSNqEi6WOwqO1xIaOLiQ5OdgBjVBKigTbQ0kA88heT0jF9Y3v/Pdz8?=
+ =?us-ascii?Q?zeOaUZMrIl4qGVQCZSCWqRji20YCfWDXCddD0yUjPYCpD2suEccTucm15Vhb?=
+ =?us-ascii?Q?zmEg7y4tk9CuAHCYaA3auGn3Rgtu2VrKe76DGycB/khPYkuFt6iKKBsvrREF?=
+ =?us-ascii?Q?zlBIMgw8638EjcPKrDi/0guuutNwOA8eiomxHjASNK0IoNa9XHHZvcCQ1QBN?=
+ =?us-ascii?Q?jC+yyd9jyBF+ML+a+XRZQhqroakW72qQQobQ/pu2SpwGtvKkiQWvsJxjbZdA?=
+ =?us-ascii?Q?J51F6U7ragaw+T54jeYHVM8dUjwl5HgXVfUgpcmefOFmQGIV4XqF3q9gpXpm?=
+ =?us-ascii?Q?ZV1wMO+HpWea50uvpwmtiPuaPb+KZYbroYpUueLLXwzNfeiHt7rL/Hcf/fsn?=
+ =?us-ascii?Q?X+j6mfMQg7hzoqbdRygjMYkWXr8BBXLnveCa1dqvJVRhUuITPhO4ZPUDWLOx?=
+ =?us-ascii?Q?26u49wCP7O1ibugX/j+cpHXCAVmh50LeTfdVZZ7azPGNrWl0ur4Y0ka/WTRV?=
+ =?us-ascii?Q?7ColFy2J59az4X8yyO1sRnyfJT5DKl5wGXNArnzRS4epOEuyw+B8Kg5L28Rl?=
+ =?us-ascii?Q?e20Iu47be684Ph+DJwSh3lUGnSu3c9ttF7pH+4bqknocmdER7Wgz3BCbJ0Ub?=
+ =?us-ascii?Q?lEtRQ4LANGucgk64zN/ej7wQfRqpy77CYi+HkRkVYNEyz4iIi/YCUc+oi0Hl?=
+ =?us-ascii?Q?/7T+AcYmAX6rZ6HjD6NMfVTKxoto/6hRrZDl7ijK8etXgUKrzeBaXdf+Y/wj?=
+ =?us-ascii?Q?zJnKR2Br2iv10oO2z0j3mNUE1bsBnzz2Izqa3ryMCSSUbbHybifnflzSoQvx?=
+ =?us-ascii?Q?NtiYXEfxdCg8+MJjXB43mY2ewMOaAI7kJAMGEPvm2ct00mO0My2oSyL9J60/?=
+ =?us-ascii?Q?UUC+pmEAIF80Dh/j7nx2npjOM6Ez0dVS74/wFOH6bCLDvc+Xg20VXwlzFRZP?=
+ =?us-ascii?Q?+ca1yeli5g7Zu0t8r7Tz3+/2Zs4EFpGBgmhk+5P3BaciPMuVrKR7jLgMqHEL?=
+ =?us-ascii?Q?LizBM+brX2qa0kCFiz1zl8fCvMCSzN8nx8PdFf0dSbaKeTNGhRrQiYg+Naos?=
+ =?us-ascii?Q?fSl0tMaFFAoVX7yo9gfEASVHI4WC5wQj3lcurFZuqIncik5oHF/cd1qeKZHZ?=
+ =?us-ascii?Q?224BrbL0fz8gIabTnIGXi2SYMjz8iFOaSQgvrgtzHN1EM9T4lMVoigVp5r2g?=
+ =?us-ascii?Q?Q/QaRXBYYb5pBiPL2bHjkU0HM769h+1dgMzU+gWLnueDM3uft6XXodvW2FRh?=
+ =?us-ascii?Q?yeGMlzhZnrZAervJXx1CG+vtCg31fVWFwrmMqZN4AYe7jsFvNR84v2zw2zIu?=
+ =?us-ascii?Q?wh24VWotGQ5ToYWDCR0paIcdPDVqF1M=3D?=
+X-Exchange-RoutingPolicyChecked: kCIdL4hO4A6aWFwy7u1wy59cnten4rUwoUe/OD5zAl9AWhPMBig2AXSriDmFT19Y+Hi/tWl4MWpwjix+38C8VCa+B4KXQ004gEp2vUhQJSbUlF85YERF0LlI8lW/F/dCpvPts7aBYeRGxtIgCZAcuZBDGuE1go3OA8GmSRzrluP7c9VX86Ss5uDO5KI1xLZx2Uf/zk4bea/ap7AbjAIf/P921uCnaW54au6Gy5tl7R6XwJFLg4rc9iLbuEw66RDW+T1b0mO8Qdc/0+G32AM3+Ef3DSewT9kFykV8K7uSROEn+u782ngSqUsLr/8/bCPWUUIydVHdathhnWgkwwjM2w==
+X-MS-Exchange-CrossTenant-Network-Message-Id: e9c479be-b0cc-4958-136e-08de9101e443
 X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Apr 2026 21:46:10.0910 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Apr 2026 21:50:44.5461 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +2AecCXsKofFfprussj/Li/wlMRkSvw8itqrqifgQnZVpRHOWwwfwDR/S8w203qyLi1/W77KfWJe06eBt3G4wA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PPFCA4893B55
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9yhx28Rsw9kH3b92Rr4gi/LTgSag64L4N3rVb74JhlsHhR3HgEOEqV6qKVEASD77268Soa5JjflVdvncdR0ykQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PPFBADCE1465
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -169,275 +159,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Mar 18, 2026 at 01:14:44PM +0530, Himal Prasad Ghimiray wrote:
-> Add access counter infrastructure with type definitions, header files,
-> and stub implementation. This follows a two-layer producer-consumer
-> architecture similar to the pagefault layer.
+On Wed, Mar 18, 2026 at 01:14:48PM +0530, Himal Prasad Ghimiray wrote:
+> Move xe_pagefault_asid_to_vm() to xe_device.c as
+> xe_device_asid_to_fault_vm() for reuse in access counter handling.
 > 
 > Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 > ---
->  drivers/gpu/drm/xe/Makefile                  |   3 +-
->  drivers/gpu/drm/xe/xe_access_counter.c       |  55 +++++++++
->  drivers/gpu/drm/xe/xe_access_counter.h       |  17 +++
->  drivers/gpu/drm/xe/xe_access_counter_types.h | 123 +++++++++++++++++++
->  4 files changed, 197 insertions(+), 1 deletion(-)
->  create mode 100644 drivers/gpu/drm/xe/xe_access_counter.c
->  create mode 100644 drivers/gpu/drm/xe/xe_access_counter.h
->  create mode 100644 drivers/gpu/drm/xe/xe_access_counter_types.h
+>  drivers/gpu/drm/xe/xe_device.c    | 25 +++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_device.h    |  1 +
+>  drivers/gpu/drm/xe/xe_pagefault.c | 16 +---------------
+>  3 files changed, 27 insertions(+), 15 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> index 3a3f9f22d42a..92d8d6e4a447 100644
-> --- a/drivers/gpu/drm/xe/Makefile
-> +++ b/drivers/gpu/drm/xe/Makefile
-> @@ -32,7 +32,8 @@ $(obj)/generated/%_device_wa_oob.c $(obj)/generated/%_device_wa_oob.h: $(obj)/xe
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> index 8773c2d2f69a..ba2f0e345257 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -1399,3 +1399,28 @@ struct xe_vm *xe_device_asid_to_vm(struct xe_device *xe, u32 asid)
 >  
->  # core driver code
->  
-> -xe-y += xe_bb.o \
-> +xe-y += xe_access_counter.o \
-> +	xe_bb.o \
->  	xe_bo.o \
->  	xe_bo_evict.o \
->  	xe_dep_scheduler.o \
-> diff --git a/drivers/gpu/drm/xe/xe_access_counter.c b/drivers/gpu/drm/xe/xe_access_counter.c
-> new file mode 100644
-> index 000000000000..f3a8a93b5135
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_access_counter.c
-> @@ -0,0 +1,55 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright © 2026 Intel Corporation
-> + */
-> +
-> +#include <linux/circ_buf.h>
-> +
-> +#include <drm/drm_exec.h>
-> +#include <drm/drm_managed.h>
-> +
-> +#include "xe_access_counter.h"
-> +#include "xe_access_counter_types.h"
-> +#include "xe_device.h"
+>  	return vm;
+>  }
 > +
 > +/**
-> + * DOC: Xe access counters
+> + * xe_device_asid_to_fault_vm() - Find FAULT VM from ASID
+> + * @xe: the &xe_device
+> + * @asid: Address space ID
 > + *
-> + * Xe access counters are handled in two layers with one-way communication.
-> + * The producer layer interacts with hardware or firmware to receive and parse
-> + * access counter notifications into struct xe_access_counter, then forwards them
-> + * to the consumer. The consumer layer services the notifications (e.g., memory
-> + * migration hints, binding decisions). No acknowledgment is sent back to the
-> + * producer. The consumer uses an access counter queue sized to absorb all potential
-> + * notifications and a multi-threaded worker to process them. Multiple producers
-> + * are supported, with a single shared consumer.
+> + * Find a FAULTING VM from ASID and take a reference to VM which
+> + * caller must drop. Reclaim safe.
 > + *
-> + * xe_access_counter.c implements the consumer layer.
+> + * Return: VM on success, ERR_PTR on failure
 > + */
-> +
-> +/**
-> + * xe_access_counter_init - Initialize access counter consumer layer
-> + * @xe: xe device
-> + *
-> + * Return: 0 on success, negative error code on error
-> + */
-> +int xe_access_counter_init(struct xe_device *xe)
-> +{
-> +	/* Stub implementation - to be filled in */
-> +	return 0;
-> +}
-> +
-> +/**
-> + * xe_access_counter_handler - Handle an access counter notification
-> + * @xe: xe device
-> + * @ac: access counter notification
-> + *
-> + * Process an access counter notification from the producer layer.
-> + *
-> + * Return: 0 on success, negative error code on error
-> + */
-> +int xe_access_counter_handler(struct xe_device *xe, struct xe_access_counter *ac)
-> +{
-> +	/* Stub implementation - to be filled in */
-> +	return 0;
-> +}
-> diff --git a/drivers/gpu/drm/xe/xe_access_counter.h b/drivers/gpu/drm/xe/xe_access_counter.h
-> new file mode 100644
-> index 000000000000..b3a331687f13
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_access_counter.h
-> @@ -0,0 +1,17 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2026 Intel Corporation
-> + */
-> +
-> +#ifndef _XE_ACCESS_COUNTER_H_
-> +#define _XE_ACCESS_COUNTER_H_
-> +
-> +struct xe_device;
-> +struct xe_gt;
-> +struct xe_access_counter;
-> +
-> +int xe_access_counter_init(struct xe_device *xe);
-> +
-> +int xe_access_counter_handler(struct xe_device *xe, struct xe_access_counter *ac);
-> +
-> +#endif
-> diff --git a/drivers/gpu/drm/xe/xe_access_counter_types.h b/drivers/gpu/drm/xe/xe_access_counter_types.h
-> new file mode 100644
-> index 000000000000..74b903b9461b
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_access_counter_types.h
-> @@ -0,0 +1,123 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2026 Intel Corporation
-> + */
-> +
-> +#ifndef _XE_ACCESS_COUNTER_TYPES_H_
-> +#define _XE_ACCESS_COUNTER_TYPES_H_
-> +
-> +#include <linux/sizes.h>
-> +#include <linux/types.h>
-> +
-> +struct xe_gt;
-> +struct xe_access_counter;
-> +
-> +/** enum xe_access_counter_type - Xe access counter type */
-> +enum xe_access_counter_type {
-> +	/** @XE_ACCESS_COUNTER_TYPE_TRIGGER */
-> +	XE_ACCESS_COUNTER_TYPE_TRIGGER		= 0,
-> +	/** @XE_ACCESS_COUNTER_TYPE_NOTIFY*/
-> +	XE_ACCESS_COUNTER_TYPE_NOTIFY	= 1,
-> +};
+> +struct xe_vm *xe_device_asid_to_fault_vm(struct xe_device *xe, u32 asid)
 
-What’s the difference between the types? Patch 8 handles both of them in
-exactly the same way, which may be correct or fine, but without kernel
-documentation explaining the distinction between the types here, it’s
-hard to reason about it. 
+I think the recently merged xe_pagefault_save_to_vm() function can reuse
+this function now too.
 
-> +
-> +/** enum xe_access_counter_granularity - Xe access counter granularity */
-> +enum xe_access_counter_granularity {
-> +	/** @XE_ACCESS_COUNTER_GRANULARITY_128K: 128K granularity */
-> +	XE_ACCESS_COUNTER_GRANULARITY_128K	= 0,
-> +	/** @XE_ACCESS_COUNTER_GRANULARITY_2M: 2M granularity */
-> +	XE_ACCESS_COUNTER_GRANULARITY_2M	= 1,
-> +	/** @XE_ACCESS_COUNTER_GRANULARITY_16M: 16M granularity */
-> +	XE_ACCESS_COUNTER_GRANULARITY_16M	= 2,
-> +	/** @XE_ACCESS_COUNTER_GRANULARITY_64M: 64M granularity */
-> +	XE_ACCESS_COUNTER_GRANULARITY_64M	= 3,
-> +};
-> +
-> +static inline int xe_access_counter_granularity_in_byte(int val)
-> +{
-> +	switch (val) {
-> +	case XE_ACCESS_COUNTER_GRANULARITY_128K:
-> +		return SZ_128K;
-> +	case XE_ACCESS_COUNTER_GRANULARITY_2M:
-> +		return SZ_2M;
-> +	case XE_ACCESS_COUNTER_GRANULARITY_16M:
-> +		return SZ_16M;
-> +	case XE_ACCESS_COUNTER_GRANULARITY_64M:
-> +		return SZ_64M;
-> +	default:
-> +		return 0;
-> +	}
-> +}
-
-As discussed in [1], I think the granularity handling can be moved into
-the GuC layer, so there’s no need to include public definitions here.
-
-[1] https://patchwork.freedesktop.org/patch/712600/?series=163429&rev=1#comment_1318525
-
-> +
-> +/**
-> + * struct xe_access_counter - Xe access counter
-> + *
-> + * Generic access counter structure for communication between producer and consumer.
-> + * Carefully sized to be 64 bytes. Upon a device access counter notification, the
-> + * producer populates this structure, and the consumer copies it into the access
-> + * counter queue for deferred handling.
-> + */
-> +struct xe_access_counter {
-> +	/**
-> +	 * @gt: GT of access counter
-> +	 */
-> +	struct xe_gt *gt;
-> +	/**
-> +	 * @consumer: State for the software handling the access counter.
-> +	 * Populated by the producer and may be modified by the consumer to
-> +	 * communicate information back to the producer upon acknowledgment.
-> +	 */
-> +	struct {
-> +		/** @consumer.va_range_base: base virtual address of range */
-> +		u64 va_range_base;
-> +		/** @consumer.sub_granularity: sub-granularity */
-> +		u32 sub_granularity;
-> +		/**
-> +		 * @consumer.counter_type: counter type, u8 rather than enum to
-> +		 * keep size compact
-> +		 */
-> +		u8 counter_type;
-> +		/**
-> +		 * @consumer.granularity: access granularity, u8 rather than enum
-> +		 * to keep size compact
-> +		 */
-> +		u8 granularity;
-> +		/** @consumer.reserved: reserved bits for alignment */
-> +		u8 reserved[2];
-> +		/** @consumer: Platform-specific fields */
-> +		union {
-> +			/** @consumer.xe3: Xe3-specific fields */
-> +			struct {
-> +				/** @consumer.xe3.asid: address space ID */
-> +				u32 asid;
-> +				/** @consumer.xe3.engine_class: engine class */
-> +				u8 engine_class;
-> +				/** @consumer.xe3.engine_instance: engine instance */
-> +				u8 engine_instance;
-> +				/** @consumer.xe3.vfid: VFID */
-> +				u8 vfid;
-> +				/** @consumer.xe3.reserved: reserved bits */
-> +				u8 reserved;
-> +			} xe3;
-> +		};
-
-Can we drop the xe3 prefix here to keep this interface generic across
-platforms?
-
-Also, a question: xe3 implies these are only valid on xe3+, so do access
-counters not work on prior platforms? For example, without a valid ASID,
-the common layer can’t find a VMA.
-
-> +	} consumer;
-> +	/**
-> +	 * @producer: State for the producer (i.e., HW/FW interface). Populated
-> +	 * by the producer and should not be modified—or even inspected—by the
-> +	 * consumer, except for calling operations.
-> +	 */
-> +	struct {
-> +		/** @producer.private: private pointer */
-> +		void *private;
-> +#define XE_ACCESS_COUNTER_PRODUCER_MSG_LEN_DW	4
-> +		/**
-> +		 * @producer.msg: access counter message, used by producer in
-> +		 * acknowledgment to formulate response to HW/FW interface.
-> +		 * Included in the access counter message because the producer
-> +		 * typically receives the notification in a context where memory
-> +		 * cannot be allocated (e.g., atomic context or the reclaim path).
-> +		 */
-> +		u32 msg[XE_ACCESS_COUNTER_PRODUCER_MSG_LEN_DW];
-> +	} producer;
-
-As discussed in [1], unless we have plans to ACK access counters in the
-near future, I would just drop this.
+Patch LGTM to though.
 
 Matt
 
-> +};
+> +{
+> +	struct xe_vm *vm;
 > +
-> +#endif
+> +	down_read(&xe->usm.lock);
+> +	vm = xa_load(&xe->usm.asid_to_vm, asid);
+> +	if (vm && xe_vm_in_fault_mode(vm))
+> +		xe_vm_get(vm);
+> +	else
+> +		vm = ERR_PTR(-EINVAL);
+> +	up_read(&xe->usm.lock);
+> +
+> +	return vm;
+> +}
+> diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+> index c4d267002661..e746f5c7cce0 100644
+> --- a/drivers/gpu/drm/xe/xe_device.h
+> +++ b/drivers/gpu/drm/xe/xe_device.h
+> @@ -209,6 +209,7 @@ int xe_is_injection_active(void);
+>  bool xe_is_xe_file(const struct file *file);
+>  
+>  struct xe_vm *xe_device_asid_to_vm(struct xe_device *xe, u32 asid);
+> +struct xe_vm *xe_device_asid_to_fault_vm(struct xe_device *xe, u32 asid);
+>  
+>  /*
+>   * Occasionally it is seen that the G2H worker starts running after a delay of more than
+> diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
+> index 8c159e3512ee..a4ee9393e4af 100644
+> --- a/drivers/gpu/drm/xe/xe_pagefault.c
+> +++ b/drivers/gpu/drm/xe/xe_pagefault.c
+> @@ -121,20 +121,6 @@ xe_pagefault_access_is_atomic(enum xe_pagefault_access_type access_type)
+>  	return (access_type & XE_PAGEFAULT_ACCESS_TYPE_MASK) == XE_PAGEFAULT_ACCESS_TYPE_ATOMIC;
+>  }
+>  
+> -static struct xe_vm *xe_pagefault_asid_to_vm(struct xe_device *xe, u32 asid)
+> -{
+> -	struct xe_vm *vm;
+> -
+> -	down_read(&xe->usm.lock);
+> -	vm = xa_load(&xe->usm.asid_to_vm, asid);
+> -	if (vm && xe_vm_in_fault_mode(vm))
+> -		xe_vm_get(vm);
+> -	else
+> -		vm = ERR_PTR(-EINVAL);
+> -	up_read(&xe->usm.lock);
+> -
+> -	return vm;
+> -}
+>  
+>  static int xe_pagefault_service(struct xe_pagefault *pf)
+>  {
+> @@ -149,7 +135,7 @@ static int xe_pagefault_service(struct xe_pagefault *pf)
+>  	if (pf->consumer.fault_type_level == XE_PAGEFAULT_TYPE_LEVEL_NACK)
+>  		return -EFAULT;
+>  
+> -	vm = xe_pagefault_asid_to_vm(xe, pf->consumer.asid);
+> +	vm = xe_device_asid_to_fault_vm(xe, pf->consumer.asid);
+>  	if (IS_ERR(vm))
+>  		return PTR_ERR(vm);
+>  
 > -- 
 > 2.34.1
 > 
