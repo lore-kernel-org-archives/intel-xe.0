@@ -4,57 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A319DD6AAF8
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 19:18:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E2F7D6AAFD
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 19:19:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66E3E10F306;
-	Thu,  2 Apr 2026 19:18:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E78610F2FF;
+	Thu,  2 Apr 2026 19:19:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H19efe9j";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fed6s5Z3";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E1AA10F306
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Apr 2026 19:18:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2825310F2FF;
+ Thu,  2 Apr 2026 19:19:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775157507; x=1806693507;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=w7FGCOAFtpXPqCiMs5koMxtA9qn0DdiohFqXFHSUlMs=;
- b=H19efe9jDn3OW0ZTZJGwyrEGvM137nyBH2m+OdqlVVJFUnokKAmDuHDM
- n8dSZUUYcfQrRKpV/K6+vT6ZrYqhtHWQFt8/G+vrIEh6seFphMCmuZ4AG
- eJ8FL4ANwKid3CgvzDnz2y/lCdMkR15Dx7zKv8T13mDT8Jw62bkkP0coF
- 63bIlC0Hgo0XFFuPH5eL11Vy0Zr7XKGIhuWaZIg0d9a5x3Nv10rTdaVse
- R8BcvVSwqL1F13VHU8DZ0gPtvMCCx6aLV3CMYQxQWOZuASLYIN9DsooL/
- sBqEOO6/NphCCmw8dG4XNQ66iBiu6/N9vxyBkb0CzOziyhMCv00Fq3mZC A==;
-X-CSE-ConnectionGUID: K7Owft8zRAm8dCWnHgYhsA==
-X-CSE-MsgGUID: 3ZJqbRxaRzaTpnKLoGg+Sw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11747"; a="76241114"
-X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="76241114"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2026 12:18:27 -0700
-X-CSE-ConnectionGUID: LpAQwFElRoGmQ6I55TWbZQ==
-X-CSE-MsgGUID: j+DjhqATSHKOx8654Lb1fA==
+ t=1775157540; x=1806693540;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=K0EH3p790L4SS7UFbkgUOsoKCehhJ8lERCfHu7Yb9J4=;
+ b=fed6s5Z3Wdxzldy1MsvYIM6rVs0WEKf03GeDDzXGNz3FduNyods+6oXM
+ LaLJ0m5vh+DmxD9pEyToz03n9AW+dXCJjJ3txfh9shVLR7OuzTvpscdRP
+ hf/d8i5MuS034O6mrYVAN0bMV6Baslbwy8jvRMnKepG+2IwXLhfjGFK05
+ is0PYCZnbJG7icW3XiSrTFn7PnT2OaBYR9MeWlN40aXBGgbjaPWwLEofO
+ g6sAF+EUy+Oa+733J9TBKG+I7TfdznylJg1N1oEhnisT1BtmzX4GDT9QF
+ vCfk3QVeG/bzpEA9jpYKW4iKhglk8n9WqddrH0O2tu6egsU+7T3Xzs0QS Q==;
+X-CSE-ConnectionGUID: +MoorJliTQS3Y63FJTrDOQ==
+X-CSE-MsgGUID: UIVcOObkSqmPaJikCr0lRg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11747"; a="75396066"
+X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="75396066"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2026 12:19:00 -0700
+X-CSE-ConnectionGUID: cFtNdsusQgeuLUSzSwdDdQ==
+X-CSE-MsgGUID: RLs9mavNTviK/zGpXLAezQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="222213141"
-Received: from ngusev-mobl1.ger.corp.intel.com (HELO
- mwajdecz-hp.clients.intel.com) ([10.245.98.92])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2026 12:18:25 -0700
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-Subject: [PATCH v2 13/13] drm/xe/pf: Perform fair scheduling auto-provisioning
-Date: Thu,  2 Apr 2026 21:17:26 +0200
-Message-ID: <20260402191726.4932-14-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260402191726.4932-1-michal.wajdeczko@intel.com>
-References: <20260402191726.4932-1-michal.wajdeczko@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="231867574"
+Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.61])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2026 12:18:58 -0700
+Date: Thu, 2 Apr 2026 22:18:55 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ ankit.k.nautiyal@intel.com
+Subject: Re: [PATCH] drm/i915/backlight: Fix VESA backlight possible check
+ condition
+Message-ID: <ac7BHyT8VI1vEMQv@intel.com>
+References: <20260401034332.1321585-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260401034332.1321585-1-suraj.kandpal@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,155 +73,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Default VF scheduling configuration is the same as for the PF and
-includes unlimited execution quantum (EQ) and unlimited preemption
-timeout (PT). While this setup gives the most flexibility it does
-not protect the PF or VFs from other VF that could constantly submit
-workloads without any gaps that would let GuC do a VF-switch.
+On Wed, Apr 01, 2026 at 09:13:32AM +0530, Suraj Kandpal wrote:
+> VESA backlight is possible through AUX only when
+> BACKLIGHT_AUX_ENABLE_CAPABLE is true or when we use BL_ENABLE bit
+> to enable backlight. Since that is not implemented we need to make
+> sure we do not try to manipulate backlight when
+> BACKLIGHT_AUX_ENABLE_CAPABLE is not set.
+> Also fix return value when condition is not fulfilled.
+> 
+> Fixes: 40d2f5820951 ("drm/i915/backlight: Remove try_vesa_interface")
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
-To avoid that, do some trivial auto-provisioning and configure PF
-and all VFs with 16ms EQ and PT. This setup should allow GuC to
-perform a full round-robin with up to 63 VFs within 2s, which in
-turn should match expectations from most of the VMs using VFs.
+Appears to work.
+Tested-by: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Reviewed-by: Piotr Pi√≥rkowski <piotr.piorkowski@intel.com> #v1
----
-v2: don't miss to check last VF sched-provisioning (Michal)
-    and explicitly check sched_if_idle (Michal)
----
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 91 ++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h |  1 +
- drivers/gpu/drm/xe/xe_sriov_pf_provision.c |  2 +
- 3 files changed, 94 insertions(+)
+I filed a bug with a dump of all platform information, mainly for posterity:
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/15907
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index d02c96d3041a..e112aa148dab 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -2662,6 +2662,97 @@ static bool pf_non_default_sched(struct xe_gt *gt, unsigned int vfid)
- 	       custom_sched_priority(gt, pf_get_sched_priority(gt, vfid));
- }
- 
-+static void __pf_show_provisioned_sched(struct xe_gt *gt, unsigned int first_vf,
-+					unsigned int num_vfs, bool provisioned)
-+{
-+	__pf_show_provisioned(gt, first_vf, num_vfs, provisioned,
-+			      pf_get_exec_quantum, NULL, "EQ");
-+	__pf_show_provisioned(gt, first_vf, num_vfs, provisioned,
-+			      pf_get_preempt_timeout, NULL, "PT");
-+
-+	/* we only care about non-default priorities */
-+	if (provisioned)
-+		__pf_show_provisioned(gt, first_vf, num_vfs, true,
-+				      pf_get_sched_priority, NULL, "PRIORITY");
-+}
-+
-+static void pf_show_all_provisioned_sched(struct xe_gt *gt)
-+{
-+	__pf_show_provisioned_sched(gt, PFID, 1 + xe_gt_sriov_pf_get_totalvfs(gt), true);
-+}
-+
-+static void pf_show_unprovisioned_sched(struct xe_gt *gt, unsigned int num_vfs)
-+{
-+	__pf_show_provisioned_sched(gt, PFID, 1 + num_vfs, false);
-+}
-+
-+static bool pf_needs_provision_sched(struct xe_gt *gt, unsigned int num_vfs)
-+{
-+	unsigned int vfid;
-+
-+	for (vfid = PFID; vfid <= PFID + num_vfs; vfid++) {
-+		if (pf_non_default_sched(gt, vfid)) {
-+			pf_show_all_provisioned_sched(gt);
-+			pf_show_unprovisioned_sched(gt, num_vfs);
-+			return false;
-+		}
-+	}
-+
-+	if (xe_gt_sriov_pf_policy_get_sched_if_idle_locked(gt)) {
-+		pf_show_all_provisioned_sched(gt);
-+		pf_show_unprovisioned_sched(gt, num_vfs);
-+		return false;
-+	}
-+
-+	pf_show_all_provisioned_sched(gt);
-+	return true;
-+}
-+
-+/* With 16ms EQ/PT GuC should be able to handle up to 63 VFs within 2s */
-+#define XE_FAIR_EXEC_QUANTUM_MS		16
-+#define XE_FAIR_PREEMPT_TIMEOUT_US	16000
-+#define XE_FAIR_SCHED_PRIORITY		GUC_SCHED_PRIORITY_LOW
-+#define XE_ADMIN_PF_SCHED_PRIORITY	GUC_SCHED_PRIORITY_HIGH
-+
-+/**
-+ * xe_gt_sriov_pf_config_set_fair_sched() - Provision PF and VFs with fair scheduling.
-+ * @gt: the &xe_gt
-+ * @num_vfs: number of VFs to provision (can't be 0)
-+ *
-+ * This function can only be called on PF.
-+ *
-+ * Return: 0 on success or a negative error code on failure.
-+ */
-+int xe_gt_sriov_pf_config_set_fair_sched(struct xe_gt *gt, unsigned int num_vfs)
-+{
-+	int result = 0;
-+	int err;
-+
-+	xe_gt_assert(gt, num_vfs);
-+	xe_gt_assert(gt, XE_FAIR_EXEC_QUANTUM_MS);
-+	xe_gt_assert(gt, XE_FAIR_PREEMPT_TIMEOUT_US);
-+
-+	guard(mutex)(xe_gt_sriov_pf_master_mutex(gt));
-+
-+	if (!pf_needs_provision_sched(gt, num_vfs))
-+		return 0;
-+
-+	err = pf_bulk_set_exec_quantum(gt, XE_FAIR_EXEC_QUANTUM_MS, PFID, 1 + num_vfs);
-+	result = result ?: err;
-+	err = pf_bulk_set_preempt_timeout(gt, XE_FAIR_PREEMPT_TIMEOUT_US, PFID, 1 + num_vfs);
-+	result = result ?: err;
-+
-+	xe_gt_assert(gt, XE_FAIR_SCHED_PRIORITY == GUC_SCHED_PRIORITY_LOW);
-+	xe_gt_assert(gt, !xe_gt_sriov_pf_policy_get_sched_if_idle_locked(gt));
-+
-+	if (xe_sriov_pf_admin_only(gt_to_xe(gt))) {
-+		err = pf_provision_sched_priority(gt, PFID, XE_ADMIN_PF_SCHED_PRIORITY);
-+		result = result ?: err;
-+	}
-+
-+	return result;
-+}
-+
- static int pf_provision_threshold(struct xe_gt *gt, unsigned int vfid,
- 				  enum xe_guc_klv_threshold_index index, u32 value)
- {
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
-index e9314f0a9b4e..2ec62c12ad5c 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
-@@ -78,6 +78,7 @@ u32 xe_gt_sriov_pf_config_get_threshold(struct xe_gt *gt, unsigned int vfid,
- int xe_gt_sriov_pf_config_set_threshold(struct xe_gt *gt, unsigned int vfid,
- 					enum xe_guc_klv_threshold_index index, u32 value);
- 
-+int xe_gt_sriov_pf_config_set_fair_sched(struct xe_gt *gt, unsigned int num_vfs);
- int xe_gt_sriov_pf_config_set_fair(struct xe_gt *gt, unsigned int vfid, unsigned int num_vfs);
- int xe_gt_sriov_pf_config_sanitize(struct xe_gt *gt, unsigned int vfid, long timeout);
- int xe_gt_sriov_pf_config_release(struct xe_gt *gt, unsigned int vfid, bool force);
-diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_provision.c b/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
-index e11874d689fa..0ec7ea83f12a 100644
---- a/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
-@@ -41,6 +41,8 @@ static int pf_provision_vfs(struct xe_device *xe, unsigned int num_vfs)
- 	int err;
- 
- 	for_each_gt(gt, xe, id) {
-+		err = xe_gt_sriov_pf_config_set_fair_sched(gt, num_vfs);
-+		result = result ?: err;
- 		err = xe_gt_sriov_pf_config_set_fair(gt, VFID(1), num_vfs);
- 		result = result ?: err;
- 	}
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> index d0c76632a946..138d5b5e5482 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> @@ -615,8 +615,9 @@ check_if_vesa_backlight_possible(struct intel_dp *intel_dp)
+>  	int ret;
+>  	u8 bit_min, bit_max;
+>  
+> -	if (!(intel_dp->edp_dpcd[2] & DP_EDP_BACKLIGHT_BRIGHTNESS_AUX_SET_CAP))
+> -		return true;
+> +	if (!(intel_dp->edp_dpcd[2] & DP_EDP_BACKLIGHT_BRIGHTNESS_AUX_SET_CAP &&
+> +	      intel_dp->edp_dpcd[1] & DP_EDP_BACKLIGHT_AUX_ENABLE_CAP))
+> +		return false;
+>  
+>  	ret = drm_dp_dpcd_read_byte(&intel_dp->aux, DP_EDP_PWMGEN_BIT_COUNT_CAP_MIN, &bit_min);
+>  	if (ret < 0)
+> -- 
+> 2.34.1
+
 -- 
-2.47.1
-
+Ville Syrj‰l‰
+Intel
