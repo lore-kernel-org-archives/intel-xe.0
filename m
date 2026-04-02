@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41ECBCC6B00
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 06:58:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 077DBCC6B00
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 07:04:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01B7910F12D;
-	Thu,  2 Apr 2026 06:58:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 993E810E0A3;
+	Thu,  2 Apr 2026 07:04:39 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9041B10F12D;
- Thu,  2 Apr 2026 06:58:53 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6302729498210691412=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5338910E0A3;
+ Thu,  2 Apr 2026 07:04:38 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/pfit=3A_Prevent_ne?=
- =?utf-8?q?gative_coordinates_in_center_mode_=28rev3=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915=3A_move_more_dis?=
+ =?utf-8?q?play_dependencies_from_i915_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nemesa Garg" <nemesa.garg@intel.com>
+To: "Luca Coelho" <luciano.coelho@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 02 Apr 2026 06:58:53 -0000
-Message-ID: <177511313358.427101.1543914946676947320@a3b018990fe9>
+Date: Thu, 02 Apr 2026 07:04:38 -0000
+Message-ID: <177511347833.427101.4382116546479293537@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260402061310.111073-1-nemesa.garg@intel.com>
-In-Reply-To: <20260402061310.111073-1-nemesa.garg@intel.com>
+References: <20260331121608.1016333-1-luciano.coelho@intel.com>
+In-Reply-To: <20260331121608.1016333-1-luciano.coelho@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,136 +40,51 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6302729498210691412==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/pfit: Prevent negative coordinates in center mode (rev3)
-URL   : https://patchwork.freedesktop.org/series/164187/
-State : success
+Series: drm/i915: move more display dependencies from i915 (rev2)
+URL   : https://patchwork.freedesktop.org/series/163785/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4838-f1d4727d10d243dfe9253bc650258827a8a7dbb8_BAT -> xe-pw-164187v3_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit ed1e8287c9e24b5e963c4dd74bec7d017ad27f3b
+Author: Luca Coelho <luciano.coelho@intel.com>
+Date:   Tue Mar 31 15:07:19 2026 +0300
 
-Summary
--------
+    drm/i915: remove HAS_PCH_NOP() dependency from clock gating
+    
+    intel_pch_init_clock_gating() already handles unsupported PCH types,
+    including PCH_NOP, by doing nothing.
+    
+    Drop the explicit HAS_PCH_NOP() check from the IVB clock gating
+    path and always call the display helper directly. This removes one
+    more direct dependency on display-side PCH macros from
+    intel_clock_gating.c.
+    
+    Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
++ /mt/dim checkpatch 2ca39f35278e7f6e1750c710e75c32172fb1aa11 drm-intel
+eda8382377c5 drm/i915: move SKL clock gating init to display
+-:27: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#27: 
+new file mode 100644
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (14 -> 14)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-164187v3_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4838-f1d4727d10d243dfe9253bc650258827a8a7dbb8/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164187v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#7483]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4838-f1d4727d10d243dfe9253bc650258827a8a7dbb8/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164187v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  
-  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
+total: 0 errors, 1 warnings, 0 checks, 61 lines checked
+d109031a91cc drm/i915: move KBL clock gating init to display
+d52e5d266b92 drm/i915/display: move CFL clock gating init to display
+b1ec236f4b6f drm/i915/display: move BXT clock gating init to display
+b8cc33ab3806 drm/i915/display: move GLK clock gating init to display
+c6bc88d99314 drm/i915/display: move HSW and BDW clock gating init to display
+ec6056271acb drm/i915/display: move pre-HSW clock gating init to display
+ed1e8287c9e2 drm/i915: remove HAS_PCH_NOP() dependency from clock gating
 
 
-Build changes
--------------
-
-  * Linux: xe-4838-f1d4727d10d243dfe9253bc650258827a8a7dbb8 -> xe-pw-164187v3
-
-  IGT_8842: 8842
-  xe-4838-f1d4727d10d243dfe9253bc650258827a8a7dbb8: f1d4727d10d243dfe9253bc650258827a8a7dbb8
-  xe-pw-164187v3: 164187v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164187v3/index.html
-
---===============6302729498210691412==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/pfit: Prevent negative coordinates in center mode (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164187/">https://patchwork.freedesktop.org/series/164187/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164187v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164187v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4838-f1d4727d10d243dfe9253bc650258827a8a7dbb8_BAT -&gt; xe-pw-164187v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-164187v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4838-f1d4727d10d243dfe9253bc650258827a8a7dbb8/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164187v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4838-f1d4727d10d243dfe9253bc650258827a8a7dbb8/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164187v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4838-f1d4727d10d243dfe9253bc650258827a8a7dbb8 -&gt; xe-pw-164187v3</li>
-</ul>
-<p>IGT_8842: 8842<br />
-  xe-4838-f1d4727d10d243dfe9253bc650258827a8a7dbb8: f1d4727d10d243dfe9253bc650258827a8a7dbb8<br />
-  xe-pw-164187v3: 164187v3</p>
-
-</body>
-</html>
-
---===============6302729498210691412==--
