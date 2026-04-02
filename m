@@ -4,148 +4,155 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D51E4D6AAE5
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 15:59:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DAE8D6AAE5
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 16:06:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 967D210E3F0;
-	Thu,  2 Apr 2026 15:59:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E69F710F2B0;
+	Thu,  2 Apr 2026 16:06:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ER8dYMKU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cR40PWt1";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 514CA10E3F0;
- Thu,  2 Apr 2026 15:59:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 911CE10F2B0
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 Apr 2026 16:06:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775145570; x=1806681570;
+ t=1775145990; x=1806681990;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=nNb8Xmw06bgVfTNEgTX1bQTOFnUgcxk/ggVpu7jDPO4=;
- b=ER8dYMKUJ41QOD79rwgYB/T7x2bgfpeMKuJKzr7BEOS9Y3UJNb2cufc1
- P8VD9n6uiO7WY4EPWdrDOgvLBhWlEFhFZJ1kxrKvsVNGrTKIB90C1sDD/
- 0DpehuNKqnxxP3upWjmO9jdCc5MQbH+wEbAS/swVC3zlZKQTUzjBQDk0U
- gvXJGYHl7SEfhN04g3HoCuDkWyUR0xjzuLz30vVIC/WVn4ga79r5OUNlM
- KUmdi757maxDpJccGI58jw22R6ZzCgYS5VaUzYwVXeOOd/QlimOPtaEHP
- 0xe+0n2z0ffEy5/rZRAVxGCVgcUhEU6Odj2iHC1VK55V5CfYSSRVORovC A==;
-X-CSE-ConnectionGUID: muuN4bCvRSm0VEe1y24ZRg==
-X-CSE-MsgGUID: 0k3FFpDQQkqkagqUlk6NPA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11747"; a="86910156"
-X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="86910156"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2026 08:59:30 -0700
-X-CSE-ConnectionGUID: PgsWEhQ+QR+2tsA8zmKfvg==
-X-CSE-MsgGUID: ZrRLNcydR5WETo9+PkcGug==
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=1JnHoraP360cR3j9SiKTicITkFo+df9TOo6ziHlabUo=;
+ b=cR40PWt1ItiKJC1/NrDcODxJqqnIWK2waNSa/O5rS9hF4EbU1KCw+qgA
+ RNK1DTwysuLPMKS9GbWOSWy6zLjPZtKkGAqQSa0KgjhkgcTPP3ep75ogX
+ I8CMSuw7UYa1iOj3lNKoo7wD6sLar0GRfgS2MqC0YpjvLTgVZXSw9CMkp
+ WmnkyjmVt3ulOSa0GhVXYnV2oMbnPbc3CAJYBC1TvODUzLpZ033RjSbLX
+ bhZxiWvMtbtAcFQHvB+UGeRUo2xq/0Krm9wiUG6YdyNXcZfwsEy6LPxE4
+ xiY4wBOYZ2jiDUvFmQQcZ85BW/obEm+bBjq3S1OVldaWedxXAmHV9TymP g==;
+X-CSE-ConnectionGUID: NvkctV2oTIGRU82eowwyJw==
+X-CSE-MsgGUID: wkwSDiWXTIOPlffihcQGQg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11747"; a="86828122"
+X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="86828122"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2026 09:06:30 -0700
+X-CSE-ConnectionGUID: f5iKiqRkQCuNHrwvhKo8+g==
+X-CSE-MsgGUID: XDr2yfS1RMyUswosl5bktQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="222651727"
+X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="226016147"
 Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2026 08:59:29 -0700
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2026 09:06:29 -0700
 Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
  fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 2 Apr 2026 08:59:29 -0700
+ 15.2.2562.37; Thu, 2 Apr 2026 09:06:29 -0700
 Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
  FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Thu, 2 Apr 2026 08:59:29 -0700
-Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.58) by
+ 15.2.2562.37 via Frontend Transport; Thu, 2 Apr 2026 09:06:29 -0700
+Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.11) by
  edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 2 Apr 2026 08:59:28 -0700
+ 15.2.2562.37; Thu, 2 Apr 2026 09:06:28 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=drKzEm1b8XcUUfbYlAU3+kqXycottrrpaI9m/Xni/jvDtPsBelLOAxbVZELaTIeZ/8VFg/4YK4bX01SkPmvTjaG8y+eaHiYZDdxK6uz3GNL5h2sth6t6uhrU4GKa6Is3q1DyKQtw/U3ZiMU+daooRnuKw7S8nRn5oz4W/hEeWLByA7wUP6yMmdIV8OVDA4uMY4BSJaKD5if4JOEgilG8WIeGjX4xQugNfdM/RC6h3CC4EBtWLsW6NKpoxt/k7rOT1W1Uh4ySdvlSjH/keBYHq4gG6BKGiGrW0XjNu0elYIsj9jOfj8TsLMd4TTyDlDx6YXdp19EXcTiDNUPN7lTafQ==
+ b=ERCj0vyy8ozZzMsvnaSJW1F0/EnLxuBQC0IGbRt9XjUpTSKS8RQguSNZh+rDq0JlTh36yxub7kgOfocFC8hT9kx9GEz7phFrv2qbxJZ89aLfxCy+dx4FqeU3R0FXQI0gbGvpIYkC+plbYctHTnRLtdxjA0oHhBVRYyteCan6owIkbVGzq52CieDodNb/sE6uayUjkVbY9q65Gg+2EDbyp6/mKxsOrxJxj45ayW75sl5I0kR31Ywkx3F4Ro2kvrSE5FUfnCy+ZROhGaC40OHS8IxVh7eW0rPUncccEJm3MhJzTCXdSGtF9CYp5CbQYK/BWPHBTHTVJ2ozAJKfvaFcsA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lu1Oiva/CqRf0RjgTeKcCGdKaOOJIQ0j5fdtZCwARyI=;
- b=ETlSJJsKE2I107OPvpsHx+LYp/SM8IneJrPnPvzWdfLRywOvK2+NrdO+hETsqvGBPgOkxP4eYf8EO31QfzueGEGPFqfLfHbycltT319qFXcf/jI5yK75Iklje3DMXabAYOdoweWvjOAzk5xKqD1jzLKs64OjcId6nD9DgIsfR3MHlASTed7yER8BESMicmCO0A6fEUxyz9XJ2Et6pkA14eV5gDxNMMWjT6xrwXpG7VZhjB+5dfNFUqf3feBGPxLA/AIZLkbnQa8l4EeoJlIwIUIJYNW2/Yx+wVu1wwz246BbY2GoQyxA4Jvh/eXlJUi7YA8Ha4mGaVySth27Hjt8/Q==
+ bh=BBWx22jU+PhoH5L1VEHJD+75nOgdMr+nD0fgJeOUuP0=;
+ b=b92KG9PmFEftZ0HSBbYJrhNpXAKdCyQeslbzBBepCF6Ul3PEBH3aXxwnba0oUsnVemju3/kFE7owOIF/b3Ei4UKbDHuTNyDb//lzOLeda4Utl8P1fWtnZ/lJLKFIq7VofAAJ+oKRlLFpZEKVuWnGiw8UAW8Ktz+NoxbC60waq5IqPeVn/yW297LVj5luW04ShcPIXVRwpsBDFcTYMh1o5c6x7rBN0pBTb+CxCz4fBw7cKCv6WmB6d66vCz2qHkPIsPPAQ68PuUahufgIbOk1+zV7ihemL1udB47wzWcvZ3/F2bThxT+uRF9BNvG3CChTI5bvh7GIwTQYjL1+dyknOQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY8PR11MB7828.namprd11.prod.outlook.com (2603:10b6:930:78::8)
- by IA3PR11MB8917.namprd11.prod.outlook.com (2603:10b6:208:57d::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.17; Thu, 2 Apr
- 2026 15:59:27 +0000
-Received: from CY8PR11MB7828.namprd11.prod.outlook.com
- ([fe80::1171:db4d:d6ad:3277]) by CY8PR11MB7828.namprd11.prod.outlook.com
- ([fe80::1171:db4d:d6ad:3277%3]) with mapi id 15.20.9769.020; Thu, 2 Apr 2026
- 15:59:27 +0000
-Date: Thu, 2 Apr 2026 17:59:21 +0200
-From: Francois Dugast <francois.dugast@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <leonro@nvidia.com>, <jgg@ziepe.ca>, <thomas.hellstrom@linux.intel.com>,
- <himal.prasad.ghimiray@intel.com>
-Subject: Re: [PATCH v5 5/5] drm/pagemap: Use dma-map IOVA alloc, link, and
- sync API for DRM pagemap
-Message-ID: <ac6SWbCDbBvRPbUj@fdugast-desk>
-References: <20260219201057.1010391-1-matthew.brost@intel.com>
- <20260219201057.1010391-6-matthew.brost@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+Received: from PH8PR11MB8039.namprd11.prod.outlook.com (2603:10b6:510:25f::18)
+ by SN7PR11MB7539.namprd11.prod.outlook.com (2603:10b6:806:343::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.20; Thu, 2 Apr
+ 2026 16:06:26 +0000
+Received: from PH8PR11MB8039.namprd11.prod.outlook.com
+ ([fe80::42df:f465:90a8:df92]) by PH8PR11MB8039.namprd11.prod.outlook.com
+ ([fe80::42df:f465:90a8:df92%5]) with mapi id 15.20.9769.017; Thu, 2 Apr 2026
+ 16:06:26 +0000
+Date: Thu, 2 Apr 2026 18:06:22 +0200
+From: Piotr =?utf-8?Q?Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 13/13] drm/xe/pf: Perform fair scheduling auto-provisioning
+Message-ID: <20260402160622.vbxrgiavxzv3rzrj@intel.com>
+References: <20260330204046.567-1-michal.wajdeczko@intel.com>
+ <20260330204046.567-14-michal.wajdeczko@intel.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <20260219201057.1010391-6-matthew.brost@intel.com>
-Organization: Intel Corporation
-X-ClientProxiedBy: DUZPR01CA0266.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:4b9::29) To CY8PR11MB7828.namprd11.prod.outlook.com
- (2603:10b6:930:78::8)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260330204046.567-14-michal.wajdeczko@intel.com>
+X-ClientProxiedBy: VI1PR0102CA0092.eurprd01.prod.exchangelabs.com
+ (2603:10a6:803:15::33) To PH8PR11MB8039.namprd11.prod.outlook.com
+ (2603:10b6:510:25f::18)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY8PR11MB7828:EE_|IA3PR11MB8917:EE_
-X-MS-Office365-Filtering-Correlation-Id: c62dc539-ddb1-4f17-b899-08de90d0d114
+X-MS-TrafficTypeDiagnostic: PH8PR11MB8039:EE_|SN7PR11MB7539:EE_
+X-MS-Office365-Filtering-Correlation-Id: b57e1df8-b077-4ad3-421e-08de90d1cb2d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|18002099003|56012099003|22082099003; 
-X-Microsoft-Antispam-Message-Info: Lb2q9BfYeN/EambbAuWWq8snJ/5emctV5bWmt8+qOoG1m6gPb/6EFQSVnclSLQH2QChrC6SVNU9eJxn82+PWFL71pJZZ6kduh/Xxu3JK4bdrdJNy/idnOBWXtYue973pzoNOEUsSHCPsr6ykF4CywE6G9H6NO9SNifrMWjrvwVTyHlMa8LrwrF/MfXwj6r54X8nzuYEm7Lr28+ig04EIZSmSzYO6WPeMoEVhqZo8ckmIq5yTrmkCJp1+8xCVP//tc0dIilfPXyWVWxOxJ546dkiFtG2SJaOmWDTnASgPBJ1F/w86/L+/Kod+GQ/MhqRnOgKelC/PCEHqozrNe0PccVjncddexPYJPA8UIyLRu/O/ywAyyKXH/0FLdo/1LpYgg24CQro5QtXHbC/CpKxnSXagZtOIM731/fOs1bwDywTPtccVIKue0O/wkcEx2MYWBF/CCyldxjIUSYUo3bCJmwjr7FgFR5qVEV7Y/lokVgExFF19P759OF9Fa8JQWzIfqi44V0BOalTmxGAXaibPLTrOVWyxNzwwacvVQM81VQTn1yMmvB+LrZ5lHxYF3Wb3T/1pPTKdIZqp9dA5BDiBaqs1gw1LfAghS2KVAhskmXPmyeFygZWTYVG6Hd113lqQ7LdYM6lfIy+PpwBofYUlZGnhOV/XMLeQ+/W42V2V9jpwYfQ+72StlNlNws/Cxn2Oir+clI4HqGNPZ9tA8muuD6JoH81jW579oj/wfP77IJA=
+ ARA:13230040|366016|1800799024|376014|56012099003|22082099003|18002099003; 
+X-Microsoft-Antispam-Message-Info: aRXfoZSSc1dO2cHDOwVVAVr9NAIOLuFilroNgn23BnSelne4lOnXFbPLabmAFmt2KvNgLfgHPjrjEmG1fiP71fWiDvlpAYKWC3CQo4JtwEMmpp/lCOoIUKy+0vv0kIDs8IIzI/dJrSPs0wXiia87LFg9y7lGMt0otXvlojQgEhUiyxzWhYU7I29YkvuvSg22h0HWEcYYiRNwfzQHldxtTV8ZYlchp2tLKa4jzvB13FP9avHmiTwrfsDgzEnS+UADRCElfzXXuf1jrV9H42eH3214O8s/ocNCaen8YTyKVuc/BSLVPMUyD5K2yhrtuY9Yfu+Uc/WGwp8nHNsP75kbaokxQhElLr/NXsLwhbce5zwuGS+I9AT7yPwRQm9e2lLLNEEWXVOyaYf3ZAyvW8S6UwqfWDPN+lCC2+v93ofusDX3dSy7Fy+YTPSlXMAoQybAp/K+dShmnmfzrf0ynsEFFBLKydKX8f/DtczTDt2BvLiuNXO/ejpxyt3T6BJJoCzOTrgNZGlAkdkDuszBi0wJ7jV0Mw+0GrZl7clDtCMtdh02GLMeYBgRbV8uGFfY48zp6LJdPs04+PkM9BwGmhlP7ABdo4YoPJcMar1EKQSq83AJ3ClZS0cqu7NN9dvp56bwlEKuREb/AnB+iNIIdhZl1ZrJvPcJWuajCIQ5m1a9C6R/CcOl4U7pdFxGdbEzn3rRw5+lY/65nxwKVAYQ5HR60HeBBdg2FnNLT4EP1m651ZQ=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY8PR11MB7828.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(18002099003)(56012099003)(22082099003);
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB8039.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(56012099003)(22082099003)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?LhM8P3eYLNVAfagmN7jugv60gMaoBVQBBaZBK+ZEvyrcsYotKXyYdLYBOYPq?=
- =?us-ascii?Q?A9oD/8WZ15U54SjYhOjvTKwjrg50GRNl+enva3ypqFpbsEvLyT3VB/H8c4ne?=
- =?us-ascii?Q?1qCj7kr2tW5oA5sgTn/kZj45RJZdxKXCAWuRO2yyhdmkkydjMkXckTDBK4bm?=
- =?us-ascii?Q?XBFPMjbNenYZaKjtLay3K/UYTLFByv5WMkds6YKv2LiXVDcC6keIB3c1DbcN?=
- =?us-ascii?Q?FU0QtBv1qadjGHqUJSMgnytgX58ajlBXyWJq7Mo6xJ43OASKsA1+naBcVlCf?=
- =?us-ascii?Q?rVxSzN2LaAL6QlGNIbUkSLzXVJ73ysabZRKremxsS/cfX2t0+fZNXIAI7rt6?=
- =?us-ascii?Q?qylfMlclHzcMZNts+HVRcsF/UbJ2TffnglVglJLurY7yayNIfyNYF6NLrDxU?=
- =?us-ascii?Q?IDZ817+bMV8iYENzs9o2iK8G9wW29e+aFcsOXoq9NR0ar/R40O3K6cLGp2s6?=
- =?us-ascii?Q?/OSLC3G7zUCuceMVn2l8FOttO1MsGoXOlsXlJtwyOx/p06A5gg3IcoSWlew/?=
- =?us-ascii?Q?QLXNxJ/LnjEjyCD05t4TWGn0QUXu5koubOR0mRwhs1K81gFpNnv7HtBKBjCD?=
- =?us-ascii?Q?82NT9hldZA825RB0Hx93g0racTOkijH6U5mUP2g4oQjm/wIaGoc0Yd5dxvAu?=
- =?us-ascii?Q?BIog0S+GkFr91uGIevtKz7PvWF9i0j43VdkKunq2A6xgZWLokI37jTSSETcI?=
- =?us-ascii?Q?SaqG+yhzjYiKd6oNLSM24iJBz9IKVoIKKcYQvN2Y0fvBhD5wYiYyaRvmOf6S?=
- =?us-ascii?Q?zgGPODUX5HUiDyAbcS+HFWusxpeqejJMeHYrfgX7V/jfELoxNrjvSQ5Vi0DR?=
- =?us-ascii?Q?afO65jNCxOg+zHfeDxkf7n578DIGpL57bHMBJ/ZtNDJOD+l8RwmsMKTlWhRg?=
- =?us-ascii?Q?XWIdA/hscm+f/uj8P3hRvDNZsg3SwPWPDjD0x4LxNvUsDIRz0bGWqWYYP1My?=
- =?us-ascii?Q?xAV6udMMOGT8NZHD47lHLtt4yf0mX6+VuPs1+2JO1PYJA8ghHRflcJeLvntL?=
- =?us-ascii?Q?sK8h2H+UazBI9yAFrUbylJQb5cp1jmOiFnxD7R9BSM35uW+gf1m9fdSRiTEa?=
- =?us-ascii?Q?RUiHo3e2cZPIWeJg0PVWn4AlCWsSMHJC9v4XMUjtskUwLJBySrHYEgChKUTD?=
- =?us-ascii?Q?7SEJ4cH6AcFiFAq6h3Nn5mXP6lZZQxpzGhDU9Kb2lX6bUBas0Zgz8GG4ue5l?=
- =?us-ascii?Q?SRKUW/V5vz3+6ukbtGr+V15guPJ1/akHqLl6shuKeSLrdARic0NGTh2yqXY7?=
- =?us-ascii?Q?ZQpu2aEa3/F7QLZeA1JtrZ4SIHzW75u6Zg4OzlLCUAhilMnMxtwo3D3Uf7mz?=
- =?us-ascii?Q?LPaREulIZl31995Pnaa7vMzwnCsdRvW4XPy2O+pYhZ7h5M4DVq5h81WJVO8Q?=
- =?us-ascii?Q?2ribduVRI2GIehJwI13+KsDg1n2GbDQBfyFhA0v9aoEe5/8yZJruQ2zCkla/?=
- =?us-ascii?Q?5xyR0n0/Ps4ztERHP8fsStFOjZbkbjwd9ZZwJLcKuihuxGzHcze9o6eDPC/x?=
- =?us-ascii?Q?qktzFXImkZkRxmjxfRJkUqhtzh7sPRGs5Hp67KFKVpAVMTiNoUUg2DSihWoo?=
- =?us-ascii?Q?2h7WYrCMYKEWLCP3npOGQgkajvKWNNYlIMrfsCV9C/55DI3ZO3Z8v87yNMX3?=
- =?us-ascii?Q?ZteYf1DzelvYqfWoNkUjRTYYEpRF0nKzWnHy5x2DD1sAkuK0QvzyXg/NxSHg?=
- =?us-ascii?Q?flvmoS3uPcruDfnppR5HPZuU5FiRHJwPoA2N+BBngkfi4d43X9rITdux3ts2?=
- =?us-ascii?Q?AYweCQ52NBhBt5hOcKBqecL3FRoK+/g=3D?=
-X-Exchange-RoutingPolicyChecked: BfKNUJA9rXbOmPm0rGSfKUbC+ryMZFnper7RrMydrspRBdpScmOsjbMglV/bP14CppcpYPsBWhw+VekxRq4Hdj5CzZcgjqlxDCiBU/11sLkEUTBAr0nFoIaX4xHLObnHtXc8nRQ1eYZJW3Zg+tzedEwqXGYomcyI8dwCYCZ7+IK5AD7DaknE7K2xR5mwUrVhrQggbfMvNWt+AD+0O41aRwyoF+dvaYdISUFomXcXcg5BKAqxQjkVienzkxg0AhS2pvhD+MOqqCZ42klTUbYtRbfyTrTep7aynrhOZ25eO0vpLFfWx69WBoYUHGuvomrEMWD432nTojCMNssvY0LwnA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: c62dc539-ddb1-4f17-b899-08de90d0d114
-X-MS-Exchange-CrossTenant-AuthSource: CY8PR11MB7828.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZWF0aGNGTys0eWdtVDVZbnhQaEt2a2FtN1NxUDdCaWxsdzRyZms1WXd0Nldh?=
+ =?utf-8?B?QVdXRHhQZWFOWCtobTUzSWlKL0xuQVdMdHl1eGpHSTVBY0l1K1FaTzlCeVRz?=
+ =?utf-8?B?QzNzTW9Pdjk1eVRabEVEWjl3c1BrMGtjVnUyd0tKdFlaL0VpaXZ6RlpqbnZx?=
+ =?utf-8?B?dTZDVlZqMkdYYWw4TUZ5aVhTMSsvK0FjbkFLL0ZaUnFFaVNjWlNJY3JuREJH?=
+ =?utf-8?B?Z3pORWxpSU1VbjVlbi9YR1RWYjBCNlFtTENXbmVLTzZQSjdVa0pJMlNNZENx?=
+ =?utf-8?B?dDk1TCs1SE94L2hHdnhpOHZyL050SlUwT1kvbGxwM29IV1BRMm1pemdhSzJj?=
+ =?utf-8?B?T05JSFJaZlpPZ0dmVXZrcWdPbGUrVFNsQ2MyejhMa0FOZ25VejF1dkFCeGpz?=
+ =?utf-8?B?YVMrckZUcmJteVQ3OEtLSFNiVUlORFFkeFpqRXB6WnBBU3FzM1lGZ2hYanRN?=
+ =?utf-8?B?WWNjekhqbkw5OXVmdHdkZUI1QVZDcWliVmJOTTR3R0U4QWJuOU40Q1loUFVj?=
+ =?utf-8?B?TjZvMXFLd3BWSCtnejFTQnowdUVVMUhIdVhFS0JWTkdTSldRM2Z2eW9ETHA4?=
+ =?utf-8?B?ZGNXaW55QUNuMi9KZXdaVFNuMk0xUnZRSzhiNkJHd2RXbnVkamtMWEd2UDZH?=
+ =?utf-8?B?WEpFeTNZcGxWWHZ6NDAvbHZUaE9qN3B0NUdaNGUvRlRLcVZEMjRPNHZ2SjZk?=
+ =?utf-8?B?T1FEZTdjSlk2WnRzVnE1S0NkSUhqUjJucHkrZjlPYW9FRE1vUkZRRWZvTmpy?=
+ =?utf-8?B?MTFia0djZStRSDRXaHpiUG1mVmJmYytjYlA5YThTaXdPZjVrSmpLUFpsclR3?=
+ =?utf-8?B?ZHRkcGlCU3ZGYVkrMjdIOVkyTWI4OVhBQnhOODZyM0JHM3V4bmVodlVXVXZE?=
+ =?utf-8?B?aW9OanJSUGlnd2dyL2MwYUUxSWEraDdUYVhOQnVWdXdKbXVRbHBXdmI1LzJx?=
+ =?utf-8?B?aC9UNW5NMEhxQW1CSlA4Rmw0dmRESlZmS1Qvbnp6YnQ3WXZ0ZlloWEdiSXIr?=
+ =?utf-8?B?SUJSR2U3L0JxKzJHM0ZTS1RSRzhQK29sZmpNd1ZrTzcvQ0ppYzlOREs5TTJ0?=
+ =?utf-8?B?cGNtSDc1b3JDYkxLam4wK3RPWmNTaDlCdy9LSFNHUmNEdlgwS3RZUU12MHdq?=
+ =?utf-8?B?Snc1NHg0eWZTUi9YZEVBODhtV2d6MGpyRXpyRnkwZ3pKSXI3S0o0L1hySWM4?=
+ =?utf-8?B?clhoZkRyWCs1YWJ1NkJZcHFEdlQ3bHk4YTFMZ1B5UFdmV0xNL2VreitHREVo?=
+ =?utf-8?B?WkEyOGdIajJaQlNvRkpKVi81eG5CVjZHLzY0QTdKdkQ4Y2FzQ0pZbTE2bmVq?=
+ =?utf-8?B?N3JhSFZIUGVtSVJ3ZHZvZ2lyOThrcjJaK2cxVnlCZFEzYmM4WndML21KRzg1?=
+ =?utf-8?B?Zyt4ckM2dEtwTExpbnk0Mlc3ZUlQYVVWZ0xKMHpneUJIbU1JdHBUZHgxTEx6?=
+ =?utf-8?B?ZzlUZFl3dVhRMXQ3OGp5T0JjT2E0ZXcxUmozaXh0bUdnL1Jremg4T0UwOUxO?=
+ =?utf-8?B?UWdnVXgxQ1ExZ1JUdW1NaHlHL04zYXo4cUlsQ3haWFoycGtPYkNVMVp0ekJq?=
+ =?utf-8?B?SFhXL3B6Ui8yK2kzRTI2aGl3OFNOaWQwRGJ3TXRsYzMvM3Y2Q0dUajFidHlr?=
+ =?utf-8?B?cWViSS9hM3lHUEV5MWNCUVRYNEJEQnRvUFN0UUpZSmxMN2dLbU5tUFpPZlU3?=
+ =?utf-8?B?ZWVOdDg1Yi9YdS8veWVuajUya0dnV0xXa0V0TWJyRnd3RndBZ1QrOThRR1dD?=
+ =?utf-8?B?UkZHME9NaVVONEZIa04vL2w4QU9kT2lOOVlHYjZaOTNDblV5MDhMYUEzYnRo?=
+ =?utf-8?B?aC80OXBxSHN5TGp1Y01zR0I4Y2pZNFVqeHNRaTVUWjM0TVVkUktrY1NmSGht?=
+ =?utf-8?B?MDY4cUZBblltTFZFL0xjOEMvczdrd1VhSDdEWlgyYVVscTN5TUNTTXlWbjNv?=
+ =?utf-8?B?K0gzc213ZGRNNUR4NTJ6MFVERUwzdGlIRm5MVC9OUU9hTFFZanpMODB5Q0lO?=
+ =?utf-8?B?NVZMOEd6dG9yZTh3Q0NtZnNab0pZU3JtNHhDYjVkb0tONlFoRDFjRVlZS3FG?=
+ =?utf-8?B?a1JnbEx5TDdwL24vTDNCVHh0SlgrTm4wUUtJc1FKa1JyeW9aZ3BHRkhBMmMy?=
+ =?utf-8?B?UEJSai9wZFlTRGJrM1ZXNFg1Y1l0YjZsQXFxT2x6bWJzaXFJRkdzbUd3Z3FE?=
+ =?utf-8?B?NW9USThBajJLc2tjdm4wQ3QyMlNIeUxmSmxDUlJTVFR0YVFQNFVNUzVpaXZ4?=
+ =?utf-8?B?R08ybGt0R0tVQ250U1pFZG4vN0NOKzhZc3hsdG9iWm9jL0tLdXUxMFJIaWFn?=
+ =?utf-8?B?QnpWK0JFVEkwK256K1VDeG14elNtYmlSVWV5WFBYemxGZWU2TyszMXFHaWhY?=
+ =?utf-8?Q?yqn2C3cGLlxaOxxY=3D?=
+X-Exchange-RoutingPolicyChecked: WGg9atMctsk17MUsjlCWhHjOLJC21UhY6jyb/5bK3LVVbw0xNNoZGiTLRx3g1eUvP9fs9Z4t4Tw7HlHPKaDJEtN9Xl75ptLK1bewguBmejMCFE4f2Md/HjRkaJ4rO/t8d1JoDmtH14OlMJDvHqP0kN424reAgQvTqGHukVVgUZsI4UAPwJdwTqGbxPyOBHdoNlgHZ6OD1fqBHljEmDzuapLIKZ9k7jTSGTZrNi1UsP6OjUABl50oJzCEQDdB+ya168JoxD+IV2vHHT2qmgEqgm6Z+U/bqQa91WlfD6FjagXGh2VAwBPC5HN5T+cbeVG8Ko6CjnXjT+7P6ZVQW40t6Q==
+X-MS-Exchange-CrossTenant-Network-Message-Id: b57e1df8-b077-4ad3-421e-08de90d1cb2d
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8039.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Apr 2026 15:59:27.0236 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Apr 2026 16:06:26.5989 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pVwkTKcfGmDI29bAGd/dY98C3ZXQa1UPKgTI7orOhJioddGZwBnmjGyNS2UDUYHerawBYRbgd/ux5ruV6kjl1VivClahGt9BQYwgeoMd/aU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR11MB8917
+X-MS-Exchange-CrossTenant-UserPrincipalName: j1I/87+lWwyBzoG8F4WAHvm1/EtJH3BZKpPhEIqbuNpMJfPS7ivv8vhgI5jVwW4VNm3lBcFoc1VXSi+ekuzdLi5HAk7QT5TVczXKV0xIEw0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7539
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -161,259 +168,154 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Feb 19, 2026 at 12:10:57PM -0800, Matthew Brost wrote:
-> The dma-map IOVA alloc, link, and sync APIs perform significantly better
-> than dma-map / dma-unmap, as they avoid costly IOMMU synchronizations.
-> This difference is especially noticeable when mapping a 2MB region in
-> 4KB pages.
-
-Still a good improvement but with device THP now in drm-tip for GPU SVM,
-the speedup is less noticeable when looking at latency and throughput.
-
+Michal Wajdeczko <michal.wajdeczko@intel.com> wrote on pon [2026-mar-30 22:40:44 +0200]:
+> Default VF scheduling configuration is the same as for the PF and
+> includes unlimited execution quantum (EQ) and unlimited preemption
+> timeout (PT). While this setup gives the most flexibility it does
+> not protect the PF or VFs from other VF that could constantly submit
+> workloads without any gaps that would let GuC do a VF-switch.
 > 
-> Use the IOVA alloc, link, and sync APIs for DRM pagemap, which create DMA
-> mappings between the CPU and GPU for copying data.
+> To avoid that, do some trivial auto-provisioning and configure PF
+> and all VFs with 16ms EQ and PT. This setup should allow GuC to
+> perform a full round-robin with up to 63 VFs within 2s, which in
+> turn should match expectations from most of the VMs using VFs.
 > 
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> 
+> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 > ---
-> v5:
->  - Remove extra newline (Thomas)
->  - Adjust alignemnt calculation (Thomas)
-> ---
->  drivers/gpu/drm/drm_pagemap.c | 83 +++++++++++++++++++++++++++++------
->  1 file changed, 69 insertions(+), 14 deletions(-)
+>  drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 85 ++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h |  1 +
+>  drivers/gpu/drm/xe/xe_sriov_pf_provision.c |  2 +
+>  3 files changed, 88 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
-> index ef8b9c69d1d4..d9fceffce347 100644
-> --- a/drivers/gpu/drm/drm_pagemap.c
-> +++ b/drivers/gpu/drm/drm_pagemap.c
-> @@ -281,6 +281,19 @@ drm_pagemap_migrate_map_device_private_pages(struct device *dev,
->  	return 0;
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+> index 7f85d6629fec..a2babef5e5f0 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+> @@ -2661,6 +2661,91 @@ static bool pf_non_default_sched(struct xe_gt *gt, unsigned int vfid)
+>  	       custom_sched_priority(gt, pf_get_sched_priority(gt, vfid));
 >  }
 >  
-> +/**
-> + * struct drm_pagemap_iova_state - DRM pagemap IOVA state
-> + * @dma_state: DMA IOVA state.
-> + * @offset: Current offset in IOVA.
-> + *
-> + * This structure acts as an iterator for packing all IOVA addresses within a
-> + * contiguous range.
-> + */
-> +struct drm_pagemap_iova_state {
-> +	struct dma_iova_state dma_state;
-> +	unsigned long offset;
-> +};
+> +static void __pf_show_provisioned_sched(struct xe_gt *gt, unsigned int first_vf,
+> +					unsigned int num_vfs, bool provisioned)
+> +{
+> +	__pf_show_provisioned(gt, first_vf, num_vfs, provisioned,
+> +			      pf_get_exec_quantum, NULL, "EQ");
+> +	__pf_show_provisioned(gt, first_vf, num_vfs, provisioned,
+> +			      pf_get_preempt_timeout, NULL, "PT");
 > +
->  /**
->   * drm_pagemap_migrate_map_system_pages() - Map system or device coherent
->   * migration pages for GPU SVM migration
-> @@ -289,6 +302,7 @@ drm_pagemap_migrate_map_device_private_pages(struct device *dev,
->   * @migrate_pfn: Array of page frame numbers of system pages or peer pages to map.
->   * @npages: Number of system or device coherent pages to map.
->   * @dir: Direction of data transfer (e.g., DMA_BIDIRECTIONAL)
-> + * @state: DMA IOVA state for mapping.
->   *
->   * This function maps pages of memory for migration usage in GPU SVM. It
->   * iterates over each page frame number provided in @migrate_pfn, maps the
-
-Not visible in this diff but we should update the doc as the return value is
-not only 0 or -EFAULT, it can be any error code returned by dma_iova_link().
-
-> @@ -302,9 +316,11 @@ drm_pagemap_migrate_map_system_pages(struct device *dev,
->  				     struct drm_pagemap_addr *pagemap_addr,
->  				     unsigned long *migrate_pfn,
->  				     unsigned long npages,
-> -				     enum dma_data_direction dir)
-> +				     enum dma_data_direction dir,
-> +				     struct drm_pagemap_iova_state *state)
->  {
->  	unsigned long i;
-> +	bool try_alloc = false;
->  
->  	for (i = 0; i < npages;) {
->  		struct page *page = migrate_pfn_to_page(migrate_pfn[i]);
-> @@ -319,9 +335,31 @@ drm_pagemap_migrate_map_system_pages(struct device *dev,
->  		folio = page_folio(page);
->  		order = folio_order(folio);
->  
-> -		dma_addr = dma_map_page(dev, page, 0, page_size(page), dir);
-> -		if (dma_mapping_error(dev, dma_addr))
-> -			return -EFAULT;
-> +		if (!try_alloc) {
-> +			dma_iova_try_alloc(dev, &state->dma_state,
-> +					   (npages - i) * PAGE_SIZE >=
-> +					   HPAGE_PMD_SIZE ?
-> +					   HPAGE_PMD_SIZE : 0,
-> +					   npages * PAGE_SIZE);
-> +			try_alloc = true;
+> +	/* we only care about non-default priorities */
+> +	if (provisioned)
+> +		__pf_show_provisioned(gt, first_vf, num_vfs, true,
+> +				      pf_get_sched_priority, NULL, "PRIORITY");
+> +}
+> +
+> +static void pf_show_all_provisioned_sched(struct xe_gt *gt)
+> +{
+> +	__pf_show_provisioned_sched(gt, PFID, 1 + xe_gt_sriov_pf_get_totalvfs(gt), true);
+> +}
+> +
+> +static void pf_show_unprovisioned_sched(struct xe_gt *gt, unsigned int num_vfs)
+> +{
+> +	__pf_show_provisioned_sched(gt, PFID, 1 + num_vfs, false);
+> +}
+> +
+> +static bool pf_needs_provision_sched(struct xe_gt *gt, unsigned int num_vfs)
+> +{
+> +	unsigned int vfid;
+> +
+> +	for (vfid = PFID; vfid < PFID + num_vfs; vfid++) {
+> +		if (pf_non_default_sched(gt, vfid)) {
+> +			pf_show_all_provisioned_sched(gt);
+> +			pf_show_unprovisioned_sched(gt, num_vfs);
+> +			return false;
 > +		}
-> +
-> +		if (dma_use_iova(&state->dma_state)) {
-> +			int err = dma_iova_link(dev, &state->dma_state,
-> +						page_to_phys(page),
-> +						state->offset, page_size(page),
-> +						dir, 0);
-> +			if (err)
-> +				return err;
-> +
-> +			dma_addr = state->dma_state.addr + state->offset;
-> +			state->offset += page_size(page);
-> +		} else {
-> +			dma_addr = dma_map_page(dev, page, 0, page_size(page),
-> +						dir);
-> +			if (dma_mapping_error(dev, dma_addr))
-> +				return -EFAULT;
-> +		}
->  
->  		pagemap_addr[i] =
->  			drm_pagemap_addr_encode(dma_addr,
-> @@ -332,6 +370,9 @@ drm_pagemap_migrate_map_system_pages(struct device *dev,
->  		i += NR_PAGES(order);
->  	}
->  
-> +	if (dma_use_iova(&state->dma_state))
-> +		return dma_iova_sync(dev, &state->dma_state, 0, state->offset);
-> +
->  	return 0;
->  }
->  
-> @@ -343,6 +384,7 @@ drm_pagemap_migrate_map_system_pages(struct device *dev,
->   * @pagemap_addr: Array of DMA information corresponding to mapped pages
->   * @npages: Number of pages to unmap
->   * @dir: Direction of data transfer (e.g., DMA_BIDIRECTIONAL)
-> + * @state: DMA IOVA state for mapping.
->   *
->   * This function unmaps previously mapped pages of memory for GPU Shared Virtual
->   * Memory (SVM). It iterates over each DMA address provided in @dma_addr, checks
-
-While we are here: s/@dma_addr/@pagemap_addr/
-
-Francois
-
-> @@ -352,10 +394,17 @@ static void drm_pagemap_migrate_unmap_pages(struct device *dev,
->  					    struct drm_pagemap_addr *pagemap_addr,
->  					    unsigned long *migrate_pfn,
->  					    unsigned long npages,
-> -					    enum dma_data_direction dir)
-> +					    enum dma_data_direction dir,
-> +					    struct drm_pagemap_iova_state *state)
->  {
->  	unsigned long i;
->  
-> +	if (state && dma_use_iova(&state->dma_state)) {
-> +		dma_iova_unlink(dev, &state->dma_state, 0, state->offset, dir, 0);
-> +		dma_iova_free(dev, &state->dma_state);
-> +		return;
 > +	}
 > +
->  	for (i = 0; i < npages;) {
->  		struct page *page = migrate_pfn_to_page(migrate_pfn[i]);
->  
-> @@ -410,7 +459,7 @@ drm_pagemap_migrate_remote_to_local(struct drm_pagemap_devmem *devmem,
->  			       devmem->pre_migrate_fence);
->  out:
->  	drm_pagemap_migrate_unmap_pages(remote_device, pagemap_addr, local_pfns,
-> -					npages, DMA_FROM_DEVICE);
-> +					npages, DMA_FROM_DEVICE, NULL);
->  	return err;
->  }
->  
-> @@ -420,11 +469,13 @@ drm_pagemap_migrate_sys_to_dev(struct drm_pagemap_devmem *devmem,
->  			       struct page *local_pages[],
->  			       struct drm_pagemap_addr pagemap_addr[],
->  			       unsigned long npages,
-> -			       const struct drm_pagemap_devmem_ops *ops)
-> +			       const struct drm_pagemap_devmem_ops *ops,
-> +			       struct drm_pagemap_iova_state *state)
+> +	pf_show_all_provisioned_sched(gt);
+> +	return true;
+> +}
+> +
+> +/* With 16ms EQ/PT GuC should be able to handle up to 63 VFs within 2s */
+> +#define XE_FAIR_EXEC_QUANTUM_MS		16
+> +#define XE_FAIR_PREEMPT_TIMEOUT_US	16000
+> +#define XE_FAIR_SCHED_PRIORITY		GUC_SCHED_PRIORITY_LOW
+> +#define XE_ADMIN_PF_SCHED_PRIORITY	GUC_SCHED_PRIORITY_HIGH
+> +
+> +/**
+> + * xe_gt_sriov_pf_config_set_fair_sched() - Provision PF and VFs with fair scheduling.
+> + * @gt: the &xe_gt
+> + * @num_vfs: number of VFs to provision (can't be 0)
+> + *
+> + * This function can only be called on PF.
+> + *
+> + * Return: 0 on success or a negative error code on failure.
+> + */
+> +int xe_gt_sriov_pf_config_set_fair_sched(struct xe_gt *gt, unsigned int num_vfs)
+> +{
+> +	int result = 0;
+> +	int err;
+> +
+> +	xe_gt_assert(gt, num_vfs);
+> +	xe_gt_assert(gt, XE_FAIR_EXEC_QUANTUM_MS);
+> +	xe_gt_assert(gt, XE_FAIR_PREEMPT_TIMEOUT_US);
+> +
+> +	guard(mutex)(xe_gt_sriov_pf_master_mutex(gt));
+> +
+> +	if (!pf_needs_provision_sched(gt, num_vfs))
+> +		return 0;
+> +
+> +	err = pf_bulk_set_exec_quantum(gt, XE_FAIR_EXEC_QUANTUM_MS, PFID, 1 + num_vfs);
+> +	result = result ?: err;
+> +	err = pf_bulk_set_preempt_timeout(gt, XE_FAIR_PREEMPT_TIMEOUT_US, PFID, 1 + num_vfs);
+> +	result = result ?: err;
+> +
+> +	xe_gt_assert(gt, XE_FAIR_SCHED_PRIORITY == GUC_SCHED_PRIORITY_LOW);
+> +	xe_gt_assert(gt, !xe_gt_sriov_pf_policy_get_sched_if_idle_locked(gt));
+> +
+> +	if (xe_sriov_pf_admin_only(gt_to_xe(gt))) {
+> +		err = pf_provision_sched_priority(gt, PFID, XE_ADMIN_PF_SCHED_PRIORITY);
+> +		result = result ?: err;
+> +	}
+> +
+> +	return result;
+> +}
+> +
+>  static int pf_provision_threshold(struct xe_gt *gt, unsigned int vfid,
+>  				  enum xe_guc_klv_threshold_index index, u32 value)
 >  {
->  	int err = drm_pagemap_migrate_map_system_pages(devmem->dev,
->  						       pagemap_addr, sys_pfns,
-> -						       npages, DMA_TO_DEVICE);
-> +						       npages, DMA_TO_DEVICE,
-> +						       state);
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
+> index e9314f0a9b4e..2ec62c12ad5c 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
+> @@ -78,6 +78,7 @@ u32 xe_gt_sriov_pf_config_get_threshold(struct xe_gt *gt, unsigned int vfid,
+>  int xe_gt_sriov_pf_config_set_threshold(struct xe_gt *gt, unsigned int vfid,
+>  					enum xe_guc_klv_threshold_index index, u32 value);
 >  
->  	if (err)
->  		goto out;
-> @@ -433,7 +484,7 @@ drm_pagemap_migrate_sys_to_dev(struct drm_pagemap_devmem *devmem,
->  				  devmem->pre_migrate_fence);
->  out:
->  	drm_pagemap_migrate_unmap_pages(devmem->dev, pagemap_addr, sys_pfns, npages,
-> -					DMA_TO_DEVICE);
-> +					DMA_TO_DEVICE, state);
->  	return err;
->  }
+> +int xe_gt_sriov_pf_config_set_fair_sched(struct xe_gt *gt, unsigned int num_vfs);
+>  int xe_gt_sriov_pf_config_set_fair(struct xe_gt *gt, unsigned int vfid, unsigned int num_vfs);
+>  int xe_gt_sriov_pf_config_sanitize(struct xe_gt *gt, unsigned int vfid, long timeout);
+>  int xe_gt_sriov_pf_config_release(struct xe_gt *gt, unsigned int vfid, bool force);
+> diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_provision.c b/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
+> index e11874d689fa..0ec7ea83f12a 100644
+> --- a/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
+> +++ b/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
+> @@ -41,6 +41,8 @@ static int pf_provision_vfs(struct xe_device *xe, unsigned int num_vfs)
+>  	int err;
 >  
-> @@ -461,6 +512,7 @@ static int drm_pagemap_migrate_range(struct drm_pagemap_devmem *devmem,
->  				     const struct migrate_range_loc *cur,
->  				     const struct drm_pagemap_migrate_details *mdetails)
->  {
-> +	struct drm_pagemap_iova_state state = {};
->  	int ret = 0;
->  
->  	if (cur->start == 0)
-> @@ -488,7 +540,7 @@ static int drm_pagemap_migrate_range(struct drm_pagemap_devmem *devmem,
->  						     &pages[last->start],
->  						     &pagemap_addr[last->start],
->  						     cur->start - last->start,
-> -						     last->ops);
-> +						     last->ops, &state);
->  
->  out:
->  	*last = *cur;
-> @@ -993,6 +1045,7 @@ EXPORT_SYMBOL(drm_pagemap_put);
->  int drm_pagemap_evict_to_ram(struct drm_pagemap_devmem *devmem_allocation)
->  {
->  	const struct drm_pagemap_devmem_ops *ops = devmem_allocation->ops;
-> +	struct drm_pagemap_iova_state state = {};
->  	unsigned long npages, mpages = 0;
->  	struct page **pages;
->  	unsigned long *src, *dst;
-> @@ -1034,7 +1087,7 @@ int drm_pagemap_evict_to_ram(struct drm_pagemap_devmem *devmem_allocation)
->  	err = drm_pagemap_migrate_map_system_pages(devmem_allocation->dev,
->  						   pagemap_addr,
->  						   dst, npages,
-> -						   DMA_FROM_DEVICE);
-> +						   DMA_FROM_DEVICE, &state);
->  	if (err)
->  		goto err_finalize;
->  
-> @@ -1051,7 +1104,7 @@ int drm_pagemap_evict_to_ram(struct drm_pagemap_devmem *devmem_allocation)
->  	migrate_device_pages(src, dst, npages);
->  	migrate_device_finalize(src, dst, npages);
->  	drm_pagemap_migrate_unmap_pages(devmem_allocation->dev, pagemap_addr, dst, npages,
-> -					DMA_FROM_DEVICE);
-> +					DMA_FROM_DEVICE, &state);
->  
->  err_free:
->  	kvfree(buf);
-> @@ -1095,6 +1148,7 @@ static int __drm_pagemap_migrate_to_ram(struct vm_area_struct *vas,
->  		MIGRATE_VMA_SELECT_DEVICE_COHERENT,
->  		.fault_page	= page,
->  	};
-> +	struct drm_pagemap_iova_state state = {};
->  	struct drm_pagemap_zdd *zdd;
->  	const struct drm_pagemap_devmem_ops *ops;
->  	struct device *dev = NULL;
-> @@ -1154,7 +1208,7 @@ static int __drm_pagemap_migrate_to_ram(struct vm_area_struct *vas,
->  
->  	err = drm_pagemap_migrate_map_system_pages(dev, pagemap_addr,
->  						   migrate.dst, npages,
-> -						   DMA_FROM_DEVICE);
-> +						   DMA_FROM_DEVICE, &state);
->  	if (err)
->  		goto err_finalize;
->  
-> @@ -1172,7 +1226,8 @@ static int __drm_pagemap_migrate_to_ram(struct vm_area_struct *vas,
->  	migrate_vma_finalize(&migrate);
->  	if (dev)
->  		drm_pagemap_migrate_unmap_pages(dev, pagemap_addr, migrate.dst,
-> -						npages, DMA_FROM_DEVICE);
-> +						npages, DMA_FROM_DEVICE,
-> +						&state);
->  err_free:
->  	kvfree(buf);
->  err_out:
+>  	for_each_gt(gt, xe, id) {
+> +		err = xe_gt_sriov_pf_config_set_fair_sched(gt, num_vfs);
+> +		result = result ?: err;
+>  		err = xe_gt_sriov_pf_config_set_fair(gt, VFID(1), num_vfs);
+>  		result = result ?: err;
+>  	}
+
+
+
+LGTM:
+Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
+
 > -- 
-> 2.34.1
+> 2.47.1
 > 
+
+-- 
