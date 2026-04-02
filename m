@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A45ACC6B03
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 06:34:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41ECBCC6B00
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 06:58:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF27010EFA7;
-	Thu,  2 Apr 2026 06:34:21 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gzDONANn";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F90410F12D
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Apr 2026 06:34:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775111661; x=1806647661;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=iYda7pxLdGJ3PZb9IlDFb6xh2vlYAJIKek2Kd26AK7g=;
- b=gzDONANnjisIRwJJoPRuZF4/DXOIppzuzfCPABKKMoMxLtEy8IKE4NxJ
- l21ghpi0ohxI7HxXSIBCk+G08FFrW6Q2KacC2HvSlUOJ/URSEIqx7OljM
- 65gW6cKYjawOAIHLHHqKM0+IDc1HmGaiQ1xbkLoWKbjARxO5H+qfgMdG/
- 6ZAS4wApVLoyKYTPqh+CWuraN5MC5iT6ywLM5I6MIPsG+UbxTvmvWif2v
- XwZy663+OqFxXsmkuxkteTQdMt2YbLhgTEB3eH+M6vqBBS3gZUV2i2hU7
- Q+5DN3ArWMxiYrrLMsGsQN0XFDcnIVrzauzr4Otu1cj6PWXvmWrOxxGdL g==;
-X-CSE-ConnectionGUID: HXXtukRhSPOSajy/rsVZvQ==
-X-CSE-MsgGUID: pW4PW6xNTXqU5tCUphQwug==
-X-IronPort-AV: E=McAfee;i="6800,10657,11746"; a="76051756"
-X-IronPort-AV: E=Sophos;i="6.23,155,1770624000"; d="scan'208";a="76051756"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2026 23:34:21 -0700
-X-CSE-ConnectionGUID: THuEhBQKSfGHzPqNOLt8OQ==
-X-CSE-MsgGUID: P8RDrM5tQsekyqKwUt08vw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,155,1770624000"; d="scan'208";a="227153602"
-Received: from anoopcvi-vm.gar.corp.intel.com ([10.109.80.88])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2026 23:34:19 -0700
-From: "Anoop, Vijay" <anoop.c.vijay@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: umesh.nerlige.ramappa@intel.com
-Subject: [PATCH v1] drm/xe/xe_sysctrl: Restore __le32 type for app message
- header
-Date: Wed,  1 Apr 2026 23:33:58 -0700
-Message-ID: <20260402063357.1453605-2-anoop.c.vijay@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01B7910F12D;
+	Thu,  2 Apr 2026 06:58:55 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9041B10F12D;
+ Thu,  2 Apr 2026 06:58:53 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6302729498210691412=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/pfit=3A_Prevent_ne?=
+ =?utf-8?q?gative_coordinates_in_center_mode_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nemesa Garg" <nemesa.garg@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 02 Apr 2026 06:58:53 -0000
+Message-ID: <177511313358.427101.1543914946676947320@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260402061310.111073-1-nemesa.garg@intel.com>
+In-Reply-To: <20260402061310.111073-1-nemesa.garg@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,37 +36,140 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Anoop Vijay <anoop.c.vijay@intel.com>
+--===============6302729498210691412==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Using a plain u32 for application message header data causes sparse
-warnings on big-endian builds when converting with le32_to_cpu().
+== Series Details ==
 
-Restore __le32 type to correctly model ABI endianness.
+Series: drm/i915/pfit: Prevent negative coordinates in center mode (rev3)
+URL   : https://patchwork.freedesktop.org/series/164187/
+State : success
 
-Fixes: 37ace5254a2b ("drm/xe/xe_sysctrl: Add ABI and mailbox interface headers")
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202604010228.Z20DhK4g-lkp@intel.com/
-Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
----
- drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h b/drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h
-index 4cbde267ac44..ac48fa7e4818 100644
---- a/drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h
-+++ b/drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h
-@@ -47,7 +47,7 @@
-  * Header structure for application-level messages.
-  */
- struct xe_sysctrl_app_msg_hdr {
--	u32 data;
-+	__le32 data;
- } __packed;
- 
- #define SYSCTRL_HDR_GROUP_ID_MASK	GENMASK(7, 0)
--- 
-2.43.0
+CI Bug Log - changes from xe-4838-f1d4727d10d243dfe9253bc650258827a8a7dbb8_BAT -> xe-pw-164187v3_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (14 -> 14)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-164187v3_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4838-f1d4727d10d243dfe9253bc650258827a8a7dbb8/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164187v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#7483]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4838-f1d4727d10d243dfe9253bc650258827a8a7dbb8/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164187v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+
+  
+  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
+
+
+Build changes
+-------------
+
+  * Linux: xe-4838-f1d4727d10d243dfe9253bc650258827a8a7dbb8 -> xe-pw-164187v3
+
+  IGT_8842: 8842
+  xe-4838-f1d4727d10d243dfe9253bc650258827a8a7dbb8: f1d4727d10d243dfe9253bc650258827a8a7dbb8
+  xe-pw-164187v3: 164187v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164187v3/index.html
+
+--===============6302729498210691412==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/pfit: Prevent negative coordinates in center mode (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164187/">https://patchwork.freedesktop.org/series/164187/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164187v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164187v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4838-f1d4727d10d243dfe9253bc650258827a8a7dbb8_BAT -&gt; xe-pw-164187v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-164187v3_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4838-f1d4727d10d243dfe9253bc650258827a8a7dbb8/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164187v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4838-f1d4727d10d243dfe9253bc650258827a8a7dbb8/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164187v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4838-f1d4727d10d243dfe9253bc650258827a8a7dbb8 -&gt; xe-pw-164187v3</li>
+</ul>
+<p>IGT_8842: 8842<br />
+  xe-4838-f1d4727d10d243dfe9253bc650258827a8a7dbb8: f1d4727d10d243dfe9253bc650258827a8a7dbb8<br />
+  xe-pw-164187v3: 164187v3</p>
+
+</body>
+</html>
+
+--===============6302729498210691412==--
