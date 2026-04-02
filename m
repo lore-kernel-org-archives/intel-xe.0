@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1411D6AAF6
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 17:46:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4818D6AAF4
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 17:46:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7644810EFD4;
-	Thu,  2 Apr 2026 17:46:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6992510F071;
+	Thu,  2 Apr 2026 17:46:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FSv71dK5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bLCGVCsE";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 080EE10EFD4
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Apr 2026 17:46:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 932E510F071
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 Apr 2026 17:46:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775152006; x=1806688006;
+ t=1775152007; x=1806688007;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=1q6KGWshgCUUQWwPUFbv4wj+ZoG8g7oXCjBrJiSrA3k=;
- b=FSv71dK5wR7bZh5OrEStuMkUg8nxC/abQLgisVSdObzLxiZtSpfc5fVP
- V3Z4pCFDeO3yej6/zZkShel1KqCg4ab6boUDyiVLg8PzhPL3q+kzbXK2J
- gEVsMcKvfRk8r3XXl/ApKgx6o+dbH1FRzWdyHG1ECS6xfW6GbMY08UC77
- K71EKjNTW2F2WKURC75JbKmSmtdPctngTIv33sWET8oMvKeUfw5f1T3bZ
- wIJXL2zLlZC4cYd+ajQpGW/9OxerbJc8RZiHLmzjtirWbtLX/CK8xan1j
- 68pqxsC9ftnHSeDmydu0zejAZ8rXOHdkEfjJ3pZWTO1SNVyeMmStEnwOV g==;
-X-CSE-ConnectionGUID: C/37vuxzS3eCWRf2ssYJQQ==
-X-CSE-MsgGUID: IJtol6l5S+Wn9msg7p1f/g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11747"; a="93612106"
-X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="93612106"
+ bh=36PqOZQfN1DKwP5aLDSTAM8yIq8ucYZgkTiw5k2m9X4=;
+ b=bLCGVCsENRH7uNRsH5Z0ux4072Rh1gZ5z1vu0y0G/RNGqLwPbiNB2QdD
+ COdkLExZ144yWBEE54a5bCL2NNzM6m5VOtQKOKSv1Cbfiv0OSc+iTFqn8
+ ptlTwe+o7W4PGXBdUafKCDgyi6jdQzxZN65HM9Lp5OwXlJjA+9NNDqk7q
+ fVJhHTh1dC9LgJ5NhWkMAmE+Yn+tRusVA7pFAoDY3R3XNXAnGeqSrjBNG
+ GcebQXOH0gYvk4rOrjmmD7qIrPKzarZ/GJVF7Fclc4BNTZoS1tqrWGPIU
+ uQ4zUEXqt1I7OJKYBuPQdBOWHUbAmvSbbSjCLY42HJZGwE2NtzwE7KF/9 w==;
+X-CSE-ConnectionGUID: /s+d2X3KToa7xIdwTfSEmg==
+X-CSE-MsgGUID: gsnZ80IcRjyVo81KKXyZcg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11747"; a="93612127"
+X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="93612127"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2026 10:46:33 -0700
-X-CSE-ConnectionGUID: X5byq6GHTEmcHIpFj6oXXA==
-X-CSE-MsgGUID: +X/NcoldSti1ZEL2DEdSiA==
+ 02 Apr 2026 10:46:36 -0700
+X-CSE-ConnectionGUID: rNcmjd0ETPid/cFMEsOyUw==
+X-CSE-MsgGUID: 4a2uhdVPTjm5wt11871blQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="226209496"
+X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="226209503"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by orviesa010.jf.intel.com with ESMTP; 02 Apr 2026 10:46:31 -0700
+ by orviesa010.jf.intel.com with ESMTP; 02 Apr 2026 10:46:33 -0700
 From: Raag Jadav <raag.jadav@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com, riana.tauro@intel.com,
  michal.wajdeczko@intel.com, matthew.d.roper@intel.com,
  umesh.nerlige.ramappa@intel.com, mallesh.koujalagi@intel.com,
  Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v2 2/4] drm/xe/hw_error: Reuse CSC worker for generic error
- handling
-Date: Thu,  2 Apr 2026 23:12:27 +0530
-Message-ID: <20260402174229.1062874-3-raag.jadav@intel.com>
+Subject: [PATCH v2 3/4] drm/xe/hw_error: Allow debugging hardware errors
+Date: Thu,  2 Apr 2026 23:12:28 +0530
+Message-ID: <20260402174229.1062874-4-raag.jadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260402174229.1062874-1-raag.jadav@intel.com>
 References: <20260402174229.1062874-1-raag.jadav@intel.com>
@@ -69,74 +68,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We have upcoming usecases which require defering work during error
-handling. Since we already have CSC worker in place, prepare it to
-be reused generically.
+Hardware errors are reported through System Controller on the platforms
+that support it, and never routed as direct IRQ to SGUnit other than
+debug cases. Wedge the device on XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET
+so that the hardware errors are available to the user for debugging.
 
 Signed-off-by: Raag Jadav <raag.jadav@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_error.c   | 10 +++++-----
- drivers/gpu/drm/xe/xe_tile_types.h |  4 ++--
- 2 files changed, 7 insertions(+), 7 deletions(-)
+v2: Explain the usecase (Matt Roper)
+---
+ drivers/gpu/drm/xe/xe_hw_error.c | 24 ++++++++++++++++++++----
+ 1 file changed, 20 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
-index 28ad5c15685e..c7b720ba5a4f 100644
+index c7b720ba5a4f..79a85925a02f 100644
 --- a/drivers/gpu/drm/xe/xe_hw_error.c
 +++ b/drivers/gpu/drm/xe/xe_hw_error.c
-@@ -165,9 +165,9 @@ static bool fault_inject_csc_hw_error(void)
- 	return IS_ENABLED(CONFIG_DEBUG_FS) && should_fail(&inject_csc_hw_error, 1);
+@@ -169,11 +169,14 @@ static void hw_error_work(struct work_struct *work)
+ {
+ 	struct xe_tile *tile = container_of(work, typeof(*tile), hw_error_work);
+ 	struct xe_device *xe = tile_to_xe(tile);
+-	int ret;
++	bool wedge = xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET;
+ 
+-	ret = xe_survivability_mode_runtime_enable(xe);
+-	if (ret)
+-		drm_err(&xe->drm, "Failed to enable runtime survivability mode\n");
++	if (wedge) {
++		xe_device_declare_wedged(xe);
++		return;
++	}
++
++	xe_survivability_mode_runtime_enable(xe);
  }
  
--static void csc_hw_error_work(struct work_struct *work)
-+static void hw_error_work(struct work_struct *work)
- {
--	struct xe_tile *tile = container_of(work, typeof(*tile), csc_hw_error_work);
-+	struct xe_tile *tile = container_of(work, typeof(*tile), hw_error_work);
- 	struct xe_device *xe = tile_to_xe(tile);
- 	int ret;
- 
-@@ -205,7 +205,7 @@ static void csc_hw_error_handler(struct xe_tile *tile, const enum hardware_error
- 					     hec_uncorrected_fw_errors[err_bit], severity_str,
- 					     err_bit);
- 
--			schedule_work(&tile->csc_hw_error_work);
-+			schedule_work(&tile->hw_error_work);
- 		}
- 	}
- 
-@@ -510,7 +510,7 @@ void xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl)
- 	enum hardware_error hw_err;
- 
- 	if (fault_inject_csc_hw_error())
--		schedule_work(&tile->csc_hw_error_work);
-+		schedule_work(&tile->hw_error_work);
- 
- 	for (hw_err = 0; hw_err < HARDWARE_ERROR_MAX; hw_err++) {
- 		if (master_ctl & ERROR_IRQ(hw_err))
-@@ -577,7 +577,7 @@ void xe_hw_error_init(struct xe_device *xe)
- 	if (!IS_DGFX(xe) || IS_SRIOV_VF(xe))
+ static void csc_hw_error_handler(struct xe_tile *tile, const enum hardware_error hw_err)
+@@ -433,6 +436,19 @@ static void hw_error_source_handler(struct xe_tile *tile, const enum hardware_er
+ 	if (!IS_DGFX(xe))
  		return;
  
--	INIT_WORK(&tile->csc_hw_error_work, csc_hw_error_work);
-+	INIT_WORK(&tile->hw_error_work, hw_error_work);
- 
- 	ret = hw_error_info_init(xe);
- 	if (ret)
-diff --git a/drivers/gpu/drm/xe/xe_tile_types.h b/drivers/gpu/drm/xe/xe_tile_types.h
-index 33932fd547d7..f214e893f39e 100644
---- a/drivers/gpu/drm/xe/xe_tile_types.h
-+++ b/drivers/gpu/drm/xe/xe_tile_types.h
-@@ -116,8 +116,8 @@ struct xe_tile {
- 	/** @memirq: Memory Based Interrupts. */
- 	struct xe_memirq memirq;
- 
--	/** @csc_hw_error_work: worker to report CSC HW errors */
--	struct work_struct csc_hw_error_work;
-+	/** @hw_error_work: worker to handle HW errors */
-+	struct work_struct hw_error_work;
- 
- 	/** @pcode: tile's PCODE */
- 	struct {
++	if (xe->info.has_sysctrl) {
++		/*
++		 * Hardware errors are reported through System Controller on the platforms that
++		 * support it, so we should never be here other than debug cases. Retain the
++		 * hardware state and bail without clearing error registers, so that they are
++		 * available to the user for debugging.
++		 */
++		drm_err_ratelimited(&xe->drm, HW_ERR "Tile%d reported %s error\n",
++				    tile->id, severity_str);
++		schedule_work(&tile->hw_error_work);
++		return;
++	}
++
+ 	spin_lock_irqsave(&xe->irq.lock, flags);
+ 	err_src = xe_mmio_read32(&tile->mmio, DEV_ERR_STAT_REG(hw_err));
+ 	if (!err_src) {
 -- 
 2.43.0
 
