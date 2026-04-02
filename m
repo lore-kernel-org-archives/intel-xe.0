@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70401CC6B00
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 06:30:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CC6ECC6B00
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 06:30:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3105910F0E1;
-	Thu,  2 Apr 2026 06:30:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F88D10F0F5;
+	Thu,  2 Apr 2026 06:30:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SLz6z0dJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VV8vIn7z";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 849E510F0E1
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Apr 2026 06:30:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 04BDF10F0F5
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 Apr 2026 06:30:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775111409; x=1806647409;
+ t=1775111412; x=1806647412;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=JZIv7FiGNm0On8tiLitu0d3HWlxWqxeEapVkkMaHlj0=;
- b=SLz6z0dJVhxtM1ur4omfaCQmnJlgsSV1v7lFjX9W9Cg2Vg2hpODR/osU
- aSFrNbEw58FJ4DzXPgXqcSv5s/8ITn324kdvKAu0T2fYkLLVG/WfsjixY
- wwlwF/VRXLKVBOJR0xHZD3BNlAVRd/L/GoeFIkVmDnsh2mwtHrTz7Vg+b
- xiOB9CFASvjJP9/zomxH05ibaOnFyWRL1zKyTjxRuLm+4VGf75HfDK+qP
- pfn30067hawdl3AqB+tSQ6yO3VV1IGp6OnUx60ErTEAq1WTFbKhLiJUBT
- DppBcWTBN0hEhYs093b9Gnl+i4NK0RxLtGswIUMSmJ3u8oCSqLXROSMwi Q==;
-X-CSE-ConnectionGUID: cqurT75UQrKNTbRbrTqQSw==
-X-CSE-MsgGUID: 2WmQVOycSJimgGKHe0Ku/w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11746"; a="76051513"
-X-IronPort-AV: E=Sophos;i="6.23,155,1770624000"; d="scan'208";a="76051513"
+ bh=m91W58w1YnG4GykOWHAmOwEgdEu8S4kJvtE7ZCRPFHM=;
+ b=VV8vIn7z45Zvg53aIixeBvv3EQCehemjwjRVKz+TiovmOzRsNNtu6vq+
+ 0gsURNC/2W2CKjuJS8jqZUFAUu3XWXgEzJ0wqK75852HmvZuQg4cYDLyb
+ LNmMZu4pPtHqlNcGSwq6Vexa4Flg/WeEQbPrPYa8lAMnMun9U8k0weBo/
+ ZM8IpD74nlSdKECKGbnRMauKddEE/mjhNFYK/oI1OzJM3naDQOI1ERZJq
+ LkEvT3iEkI0nkY1/tHElxiZ2Z+JrUPRCKNNWrMWJnu6A6gzlkUSyFU5Ox
+ jv3WtNbvmlYbg3fIrZwLmDpciGrOJA6W6P8Xo+VN/XotsboABED5K8U7D g==;
+X-CSE-ConnectionGUID: G8EuNjt8Q4mM9kmWaUYsXA==
+X-CSE-MsgGUID: PaJbKrMZQKaMkRjg+B0QfA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11746"; a="76051517"
+X-IronPort-AV: E=Sophos;i="6.23,155,1770624000"; d="scan'208";a="76051517"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2026 23:30:09 -0700
-X-CSE-ConnectionGUID: VghRVctJRweCSL4IA0mQNg==
-X-CSE-MsgGUID: QWrX6qGTRCq3daRjAdymow==
+ 01 Apr 2026 23:30:12 -0700
+X-CSE-ConnectionGUID: iImCGwfqTiW+FrxzugY6pg==
+X-CSE-MsgGUID: QvT09yPQRjuuNisztoKNAw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,155,1770624000"; d="scan'208";a="222532353"
+X-IronPort-AV: E=Sophos;i="6.23,155,1770624000"; d="scan'208";a="222532367"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2026 23:30:05 -0700
+ 01 Apr 2026 23:30:09 -0700
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  aravind.iddamsetty@linux.intel.com, badal.nilawar@intel.com,
  raag.jadav@intel.com, ravi.kishore.koppuravuri@intel.com,
  mallesh.koujalagi@intel.com, soham.purkait@intel.com
-Subject: [PATCH v3 09/10] drm/xe/xe_ras: Handle Uncorrectable SoC Internal
- errors
-Date: Thu,  2 Apr 2026 12:31:40 +0530
-Message-ID: <20260402070131.1603828-21-riana.tauro@intel.com>
+Subject: [PATCH v3 10/10] drm/xe/xe_pci_error: Process errors in mmio_enabled
+Date: Thu,  2 Apr 2026 12:31:41 +0530
+Message-ID: <20260402070131.1603828-22-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20260402070131.1603828-12-riana.tauro@intel.com>
 References: <20260402070131.1603828-12-riana.tauro@intel.com>
@@ -70,98 +69,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Some critical errors such as CSC firmware and Punit are reported under
-SoC Internal Errors.
+Query system controller when any non fatal error occurs to check
+the type of the error, contain and recover.
 
-CSC errors are classified as hardware errors and firmware errors.
-Hardware errors can be recovered using a SBR whereas firmware errors
-are critical and require a firmware flash. On such errors, device will
-be wedged and runtime survivability mode will be enabed to notify
-userspace that a firmware flash is required.
-
-PUNIT uncorrectable errors can only be recovered through a cold reset.
+The system controller is queried in the mmio_enabled callback.
 
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 ---
-v2: return error code for each SoC error (Mallesh)
----
- drivers/gpu/drm/xe/xe_ras.c | 49 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 49 insertions(+)
+v2: use ras recovery enum (Raag)
 
-diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index 6542ed4a6a24..2762a0f0d621 100644
---- a/drivers/gpu/drm/xe/xe_ras.c
-+++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -8,6 +8,7 @@
- #include "xe_printk.h"
- #include "xe_ras.h"
- #include "xe_ras_types.h"
-+#include "xe_survivability_mode.h"
- #include "xe_sysctrl_mailbox.h"
- #include "xe_sysctrl_mailbox_types.h"
+v3: add comment for mapping
+    use const (Mallesh)
+---
+ drivers/gpu/drm/xe/xe_pci_error.c | 14 +++++++++++++-
+ 1 file changed, 13 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_pci_error.c b/drivers/gpu/drm/xe/xe_pci_error.c
+index 28b2f4f7c24b..71b6152c1593 100644
+--- a/drivers/gpu/drm/xe/xe_pci_error.c
++++ b/drivers/gpu/drm/xe/xe_pci_error.c
+@@ -9,6 +9,7 @@
+ #include "xe_device.h"
+ #include "xe_gt.h"
+ #include "xe_pci.h"
++#include "xe_ras.h"
+ #include "xe_survivability_mode.h"
+ #include "xe_uc.h"
  
-@@ -90,6 +91,51 @@ static enum xe_ras_recovery_action handle_compute_errors(struct xe_device *xe,
- 	return XE_RAS_RECOVERY_ACTION_RECOVERED;
+@@ -31,6 +32,13 @@ static void xe_pci_error_handling(struct pci_dev *pdev)
+ 	pci_disable_device(pdev);
  }
  
-+static enum xe_ras_recovery_action handle_soc_internal_errors(struct xe_device *xe,
-+							      struct xe_ras_error_array *arr)
-+{
-+	struct xe_ras_soc_error *error_info = (struct xe_ras_soc_error *)arr->error_details;
-+	struct xe_ras_soc_error_source source = error_info->error_source;
-+	struct xe_ras_error_common common = arr->error_class.common;
++/* Mapping of RAS recovery action to PCI error result */
++static const pci_ers_result_t ras_recovery_action_to_pci_result[] = {
++	[XE_RAS_RECOVERY_ACTION_RECOVERED] = PCI_ERS_RESULT_RECOVERED,
++	[XE_RAS_RECOVERY_ACTION_RESET] = PCI_ERS_RESULT_NEED_RESET,
++	[XE_RAS_RECOVERY_ACTION_DISCONNECT] = PCI_ERS_RESULT_DISCONNECT,
++};
 +
-+	xe_err(xe, "[RAS]: %s %s Error detected", severity_to_str(xe, common.severity),
-+	       comp_to_str(xe, common.component));
+ static pci_ers_result_t xe_pci_error_detected(struct pci_dev *pdev, pci_channel_state_t state)
+ {
+ 	struct xe_device *xe = pdev_to_xe_device(pdev);
+@@ -56,9 +64,13 @@ static pci_ers_result_t xe_pci_error_detected(struct pci_dev *pdev, pci_channel_
+ 
+ static pci_ers_result_t xe_pci_error_mmio_enabled(struct pci_dev *pdev)
+ {
++	struct xe_device *xe = pdev_to_xe_device(pdev);
++	enum xe_ras_recovery_action action;
 +
-+	if (source.csc) {
-+		struct xe_ras_csc_error *csc_error = (struct xe_ras_csc_error *)error_info->additional_details;
-+
-+		/*
-+		 * CSC uncorrectable errors are classified as hardware errors and firmware errors.
-+		 * CSC firmware errors are critical errors that can be recovered only by firmware
-+		 * update via SPI driver. PCODE enables FDO mode and sets the bit in the capability
-+		 * register. On receiving this error, the driver enables runtime survivability mode
-+		 * which notifies userspace that a firmware update is required.
-+		 */
-+		if (csc_error->hec_uncorr_fw_err_dw0) {
-+			xe_err(xe, "[RAS]: CSC %s error detected: 0x%x\n",
-+			       severity_to_str(xe, common.severity),
-+			       csc_error->hec_uncorr_fw_err_dw0);
-+			xe_survivability_mode_runtime_enable(xe);
-+			return XE_RAS_RECOVERY_ACTION_DISCONNECT;
-+		}
-+	}
-+
-+	if (source.soc) {
-+		struct xe_ras_ieh_error *ieh_error = (struct xe_ras_ieh_error *)error_info->additional_details;
-+
-+		if (ieh_error->global_error_status & XE_RAS_IEH_PUNIT_ERROR) {
-+			xe_err(xe, "[RAS]: PUNIT %s error detected: 0x%x\n",
-+			       severity_to_str(xe, common.severity),
-+			       ieh_error->global_error_status);
-+			/** TODO: Add PUNIT error handling */
-+			return XE_RAS_RECOVERY_ACTION_DISCONNECT;
-+		}
-+	}
-+
-+	/* For other SOC internal errors, request a reset as recovery mechanism */
-+	return XE_RAS_RECOVERY_ACTION_RESET;
-+}
-+
- static void prepare_sysctrl_command(struct xe_sysctrl_mailbox_command *command,
- 				    u32 cmd_mask, void *request, size_t request_len,
- 				    void *response, size_t response_len)
-@@ -164,6 +210,9 @@ enum xe_ras_recovery_action xe_ras_process_errors(struct xe_device *xe)
- 			case XE_RAS_COMPONENT_CORE_COMPUTE:
- 				action = handle_compute_errors(xe, &arr);
- 				break;
-+			case XE_RAS_COMPONENT_SOC_INTERNAL:
-+				action = handle_soc_internal_errors(xe, &arr);
-+				break;
- 			default:
- 				xe_err(xe, "[RAS]: Unknown error component %u\n", component);
- 				action = XE_RAS_RECOVERY_ACTION_RESET;
+ 	dev_err(&pdev->dev, "Xe Pci error recovery: MMIO enabled\n");
++	action = xe_ras_process_errors(xe);
+ 
+-	return PCI_ERS_RESULT_NEED_RESET;
++	return ras_recovery_action_to_pci_result[action];
+ }
+ 
+ static pci_ers_result_t xe_pci_error_slot_reset(struct pci_dev *pdev)
 -- 
 2.47.1
 
