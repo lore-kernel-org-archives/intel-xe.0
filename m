@@ -4,52 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD140D6AB16
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4FFFD6AB10
 	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 22:48:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B71110F3F1;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BCEE10F434;
 	Thu,  2 Apr 2026 22:48:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cvhjdAzF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="luKNwynp";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 722AF10F3F1
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Apr 2026 22:48:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E593710E083
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 Apr 2026 22:48:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1775170121; x=1806706121;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=6b/7MMT7E5BmqNMRn2ggxHpnpNTHdtCqIdzz1AzYvPw=;
- b=cvhjdAzF8a+XPQnWBySrZ1QAp0py6PXaSR+LKe8bZ6Wtq97Ikqr6dVKO
- FRxc/CU/9C00Uz/xfKa+3zGw64s7D98SLo9ecVSawgvkqREbpFpFmnmtC
- ZDnuRba3aHuGbhIavO6UqFAWg0+z2yu8MfjjI0+H+hsu9ywcdRsSlmxi0
- 3SYoxbVbrlB5ALAT3yhKy3rmI+u38WBHsAbI3U+3YXVZWBF+GFmVFcIDo
- a4swuoN2FRHvJwm8oYp6F6MRQIYNGvkrqs7tl6U7gVS71tVbBzxtPIOrl
- n2ugf3UZFXyTOjnSHRzqWa7LkekyWFwSdJ2zVqNJ9pmoQl66lwhcx4GZV g==;
-X-CSE-ConnectionGUID: mEa4/opzTkudJXvBmib8sQ==
-X-CSE-MsgGUID: +2I0lNLUSyyJ0X5CUyhPSQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11747"; a="93823871"
-X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="93823871"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=cSR5SiDDqsNnyEWYDphf08BL1kOjInt8hzIMM8MCE+U=;
+ b=luKNwynp3f83MlFRGCC/YU3b9iBzCTqTHZNiyvNX9Nsn0yiKMlQkAw6e
+ ZlGarz/99OQj8kOww3vzvK6dtFeNC9YZmWJUDxICiiRyS1i5dWWMzhMc2
+ TBPm+5bhIbhcySjtWMWUmUnVbDkBY+FC8ek3WkmMYYuWf5UpPTajvEL7/
+ UyhGZrzgWMQjKrMP1/iruln/NiwyerWCrTcU7clhtdyQPEE/n6sD2C5cp
+ fWbnd26o5SwBe6fBeD/8aGwmyefaB8yTUGktjn4HJpbdJaaSUy6D3+yng
+ Me/8iXucMcotOLCK53dYfFrKuCxaizv2pbwXX1GLb6/idBRlDLVFVWSUG Q==;
+X-CSE-ConnectionGUID: 41Gyd1EGTju1yUmvd7hphg==
+X-CSE-MsgGUID: CZMHVR/GR5OG+gEXhM5j1Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11747"; a="93823868"
+X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="93823868"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  02 Apr 2026 15:48:40 -0700
-X-CSE-ConnectionGUID: 1PPacp9sQvmgTgxBzen9UA==
-X-CSE-MsgGUID: eH4Hx17wR0G04Uzqp8Hlhw==
+X-CSE-ConnectionGUID: jRfhj4ohRwKcyPiHGjukzQ==
+X-CSE-MsgGUID: VT4dPvpeSiaE4Vff5ORmVw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="231137216"
+X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="231137206"
 Received: from bfilipch-desk.jf.intel.com ([10.88.27.152])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  02 Apr 2026 15:48:41 -0700
 From: Julia Filipchuk <julia.filipchuk@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Julia Filipchuk <julia.filipchuk@intel.com>
-Subject: [PATCH 3/7] Revert "drm/xe/nvls: Define GuC firmware for NVL-S"
-Date: Thu,  2 Apr 2026 15:47:47 -0700
-Message-ID: <20260402224819.405728-12-julia.filipchuk@intel.com>
+Subject: [PATCH 0/7] drm/xe/guc: Recommend GuC v70.60.0 for LNL, BMG, PTL
+Date: Thu,  2 Apr 2026 15:47:44 -0700
+Message-ID: <20260402224819.405728-9-julia.filipchuk@intel.com>
 X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260402224819.405728-9-julia.filipchuk@intel.com>
-References: <20260402224819.405728-9-julia.filipchuk@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,25 +64,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This reverts commit 4e88de313ff4d1c67b644b1f39f9fb4089711b71.
+Recommend newer GuC firmware for LNL, BMG, PTL. UAPI version: 1.31.0
 
-Signed-off-by: Julia Filipchuk <julia.filipchuk@intel.com>
----
- drivers/gpu/drm/xe/xe_uc_fw.c | 1 -
- 1 file changed, 1 deletion(-)
+Platforms NVL-S, CRI, NVL-P are not merged to upstream at present. The
+GuC definitions for those only exist in the for-ci topic branches
+drm-xe:topic/xe-for-ci and drm-intel:topic/core-for-ci. This patch set
+reverts those patches, updates the recommended GuC versions for fully
+upstream platforms, then re-adds the CI only platforms definitions.
 
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index 70bccbc1af82..498c89452779 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw.c
-+++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -115,7 +115,6 @@ struct fw_blobs_by_type {
- #define XE_GT_TYPE_ANY XE_GT_TYPE_UNINITIALIZED
- 
- #define XE_GUC_FIRMWARE_DEFS(fw_def, mmp_ver, major_ver)					\
--	fw_def(NOVALAKE_S,	GT_TYPE_ANY,	mmp_ver(xe,	guc,	nvl,	70, 55, 4))	\
- 	fw_def(PANTHERLAKE,	GT_TYPE_ANY,	major_ver(xe,	guc,	ptl,	70, 54, 0))	\
- 	fw_def(BATTLEMAGE,	GT_TYPE_ANY,	major_ver(xe,	guc,	bmg,	70, 54, 0))	\
- 	fw_def(LUNARLAKE,	GT_TYPE_ANY,	major_ver(xe,	guc,	lnl,	70, 53, 0))	\
+Julia INTEL (7):
+  Revert "drm/xe/nvlp: Define GuC firmware for NVL-P"
+  Revert "topic/for-xe-CI: drm/xe/cri: Define GuC firmware for CRI"
+  Revert "drm/xe/nvls: Define GuC firmware for NVL-S"
+  drm/xe/guc: Recommend GuC v70.60.0 for BMG, LNL, PTL
+  Reapply "drm/xe/nvls: Define GuC firmware for NVL-S"
+  Reapply "topic/for-xe-CI: drm/xe/cri: Define GuC firmware for CRI"
+  Reapply "drm/xe/nvlp: Define GuC firmware for NVL-P"
+
+ drivers/gpu/drm/xe/xe_uc_fw.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
 -- 
 2.51.0
 
