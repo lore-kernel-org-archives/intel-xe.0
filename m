@@ -4,60 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D085CD6AB16
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 22:31:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD140D6AB16
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 22:48:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8DE8110F442;
-	Thu,  2 Apr 2026 22:31:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B71110F3F1;
+	Thu,  2 Apr 2026 22:48:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WgW+gzzy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cvhjdAzF";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0C4010F442;
- Thu,  2 Apr 2026 22:31:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 722AF10F3F1
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 Apr 2026 22:48:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775169081; x=1806705081;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=cO64CKkACNbHlpt1hIl8CGNggDSyCJaq3hgxQTMrHqs=;
- b=WgW+gzzy3NALh+rMn6KoxPEu/XuF6Zws8H9dc7yb/ts6BQ0qdPj/C0R2
- YeSS4HOVyjuuE2gzq8XBoUPurojYsJmTvTsDRa/8B7uf+DaxUvvWWNcOa
- BSNnWPNa8pQJ5REV1uynN25BvxAHOibuJcwGqgcWg/yS0Q1N+M8elOzCZ
- L+MXnnp+Jy2oHXagMKIBUPYtjD4scTglZ1tMTpeBiFERHytFaroqvkTbF
- ShWN0X+NGXbH1NFbLBIGIcgSnWFNyLr9PtvgVp6huTLqhopNe+x2b6qfU
- WgPcFwrmL3YDWhCQqNEaA26AAd07+Vn4pjedwdzWk1ORsH17Qo3iwR/bp Q==;
-X-CSE-ConnectionGUID: NdXrxuMZTUmc/beI0NlIQQ==
-X-CSE-MsgGUID: 2cJWjvX+RdiUe1AgeMQ3UA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11747"; a="80126022"
-X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="80126022"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2026 15:31:20 -0700
-X-CSE-ConnectionGUID: SrylpgJCTWifatqvDdT+1Q==
-X-CSE-MsgGUID: Aek+H7K7SRqjQA12cBlI4w==
+ t=1775170121; x=1806706121;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=6b/7MMT7E5BmqNMRn2ggxHpnpNTHdtCqIdzz1AzYvPw=;
+ b=cvhjdAzF8a+XPQnWBySrZ1QAp0py6PXaSR+LKe8bZ6Wtq97Ikqr6dVKO
+ FRxc/CU/9C00Uz/xfKa+3zGw64s7D98SLo9ecVSawgvkqREbpFpFmnmtC
+ ZDnuRba3aHuGbhIavO6UqFAWg0+z2yu8MfjjI0+H+hsu9ywcdRsSlmxi0
+ 3SYoxbVbrlB5ALAT3yhKy3rmI+u38WBHsAbI3U+3YXVZWBF+GFmVFcIDo
+ a4swuoN2FRHvJwm8oYp6F6MRQIYNGvkrqs7tl6U7gVS71tVbBzxtPIOrl
+ n2ugf3UZFXyTOjnSHRzqWa7LkekyWFwSdJ2zVqNJ9pmoQl66lwhcx4GZV g==;
+X-CSE-ConnectionGUID: mEa4/opzTkudJXvBmib8sQ==
+X-CSE-MsgGUID: +2I0lNLUSyyJ0X5CUyhPSQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11747"; a="93823871"
+X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="93823871"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2026 15:48:40 -0700
+X-CSE-ConnectionGUID: 1PPacp9sQvmgTgxBzen9UA==
+X-CSE-MsgGUID: eH4Hx17wR0G04Uzqp8Hlhw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="223826662"
-Received: from administrator-system-product-name.igk.intel.com
- ([10.91.214.181])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2026 15:31:17 -0700
-Date: Fri, 3 Apr 2026 00:31:15 +0200 (CEST)
-From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
-cc: "Grzelak, Michal" <michal.grzelak@intel.com>, 
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
- =?ISO-8859-15?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Subject: RE: [PATCH v1] drm/i915/aux: use polling when irqs are unavailable
-In-Reply-To: <CH3PR11MB73006943DE437D325A3B4540BA55A@CH3PR11MB7300.namprd11.prod.outlook.com>
-Message-ID: <87c88e4d-f528-6503-44a6-0eaf94b689c3@intel.com>
-References: <20260210111952.4138954-1-michal.grzelak@intel.com>
- <IA0PR11MB73072FD0F4A1F94AA63B5A04BA48A@IA0PR11MB7307.namprd11.prod.outlook.com>
- <dbb4a305-612a-c01f-37e3-e7f86c72cc69@intel.com>
- <CH3PR11MB73006943DE437D325A3B4540BA55A@CH3PR11MB7300.namprd11.prod.outlook.com>
+X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="231137216"
+Received: from bfilipch-desk.jf.intel.com ([10.88.27.152])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2026 15:48:41 -0700
+From: Julia Filipchuk <julia.filipchuk@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Julia Filipchuk <julia.filipchuk@intel.com>
+Subject: [PATCH 3/7] Revert "drm/xe/nvls: Define GuC firmware for NVL-S"
+Date: Thu,  2 Apr 2026 15:47:47 -0700
+Message-ID: <20260402224819.405728-12-julia.filipchuk@intel.com>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20260402224819.405728-9-julia.filipchuk@intel.com>
+References: <20260402224819.405728-9-julia.filipchuk@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-920747834-1775169078=:1805036"
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,161 +66,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+This reverts commit 4e88de313ff4d1c67b644b1f39f9fb4089711b71.
 
---8323329-920747834-1775169078=:1805036
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8BIT
+Signed-off-by: Julia Filipchuk <julia.filipchuk@intel.com>
+---
+ drivers/gpu/drm/xe/xe_uc_fw.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-On Sun, 29 Mar 2026, Murthy, Arun R wrote:
->> -----Original Message-----
->> From: Grzelak, Michal <michal.grzelak@intel.com>
->> Sent: Saturday, March 28, 2026 9:22 PM
->> To: Murthy, Arun R <arun.r.murthy@intel.com>
->> Cc: Grzelak, Michal <michal.grzelak@intel.com>; intel-xe@lists.freedesktop.org;
->> intel-gfx@lists.freedesktop.org; Ville Syrjälä <ville.syrjala@linux.intel.com>
->> Subject: RE: [PATCH v1] drm/i915/aux: use polling when irqs are unavailable
->>
->> On Tue, 24 Mar 2026, Murthy, Arun R wrote:
->>>
->>>> -----Original Message-----
->>>> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf
->>>> Of Michał Grzelak
->>>> Sent: Tuesday, February 10, 2026 4:50 PM
->>>> To: intel-xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
->>>> Cc: Grzelak, Michal <michal.grzelak@intel.com>; Ville Syrjälä
->>>> <ville.syrjala@linux.intel.com>
->>>> Subject: [PATCH v1] drm/i915/aux: use polling when irqs are
->>>> unavailable
->>>>
->>>> PTL with physically disconnected display was observed to have 40s
->>>> longer execution time when testing
->> xe_fault_injection@xe_guc_mmio_send_recv.
->>>> The issue has not been seen when reverting commit 40a9f77a28fa
->>>> ("Revert
->>>> "drm/i915/dp: change aux_ctl reg read to polling read"").
->>>>
->>>> Apparently the configuration suffers from not having AUX enabled when
->>>> using interrupts. One probable cause can be xe enabling interrupts
->>>> too
->>>> late: interrupts need memory allocations which currently can't be
->>>> done before the display FB takeover is done.
->>>>
->>>> As for now, use polling for AUX in case interrupts are unavailable.
->>>>
->>>> Fixes: 40a9f77a28fa ("Revert "drm/i915/dp: change aux_ctl reg read to
->>>> polling
->>>> read"")
->>>> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
->>>> Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
->>>> ---
->>>>  drivers/gpu/drm/i915/display/intel_dp_aux.c | 20
->>>> ++++++++++++++++----
->>>>  1 file changed, 16 insertions(+), 4 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c
->>>> b/drivers/gpu/drm/i915/display/intel_dp_aux.c
->>>> index b20ec3e589fad..9c9b6410366d5 100644
->>>> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
->>>> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
->>>> @@ -12,6 +12,7 @@
->>>>  #include "intel_dp.h"
->>>>  #include "intel_dp_aux.h"
->>>>  #include "intel_dp_aux_regs.h"
->>>> +#include "intel_parent.h"
->>>>  #include "intel_pps.h"
->>>>  #include "intel_quirks.h"
->>>>  #include "intel_tc.h"
->>>> @@ -60,18 +61,29 @@ intel_dp_aux_wait_done(struct intel_dp *intel_dp)
->>>>  	struct intel_display *display = to_intel_display(intel_dp);
->>>>  	i915_reg_t ch_ctl = intel_dp->aux_ch_ctl_reg(intel_dp);
->>>>  	const unsigned int timeout_ms = 10;
->>>> +	bool done = true;
->>>>  	u32 status;
->>>> -	bool done;
->>>> +	int ret;
->>>>
->>>> +	if (intel_parent_irq_enabled(display)) {
->>>>  #define C (((status = intel_de_read_notrace(display, ch_ctl)) &
->>>> DP_AUX_CH_CTL_SEND_BUSY) == 0)
->>>> -	done = wait_event_timeout(display->gmbus.wait_queue, C,
->>>> -				  msecs_to_jiffies_timeout(timeout_ms));
->>>> +		done = wait_event_timeout(display->gmbus.wait_queue, C,
->>>> +
->>> Wonder if this is a corner/error case, as to how interrupts are disabled.
->>> Rather I feel should find out why interrupts are being disabled, if this would
->> be a valid scenario then in most of the places where wait_event_timeout() is
->> used in drm we should check if parent_irq is enabled! In that case, can this be a
->> workaround ?
->>
->> I'm not sure I get what you mean. Can you elaborate more on what you would
->> like to see?
->>
-> Having interrupts disabled for such a long time is an issue and will have to identify that.
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
+index 70bccbc1af82..498c89452779 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw.c
++++ b/drivers/gpu/drm/xe/xe_uc_fw.c
+@@ -115,7 +115,6 @@ struct fw_blobs_by_type {
+ #define XE_GT_TYPE_ANY XE_GT_TYPE_UNINITIALIZED
+ 
+ #define XE_GUC_FIRMWARE_DEFS(fw_def, mmp_ver, major_ver)					\
+-	fw_def(NOVALAKE_S,	GT_TYPE_ANY,	mmp_ver(xe,	guc,	nvl,	70, 55, 4))	\
+ 	fw_def(PANTHERLAKE,	GT_TYPE_ANY,	major_ver(xe,	guc,	ptl,	70, 54, 0))	\
+ 	fw_def(BATTLEMAGE,	GT_TYPE_ANY,	major_ver(xe,	guc,	bmg,	70, 54, 0))	\
+ 	fw_def(LUNARLAKE,	GT_TYPE_ANY,	major_ver(xe,	guc,	lnl,	70, 53, 0))	\
+-- 
+2.51.0
 
-I think I still need more clarification. Do you mean the root cause
-suggested by Ville seen in commit message isn't clear enough? If so,
-which part?
-
-> This work around would definitely help in those scenarios and a good to have in driver.
->
-
-My point is that it is the only scenario. And there is no need to patch
-driver with work arounds, until we see others.
-
->> My suspicion is that you are asking to
->> s/wait_event_timeout()/<this patch> in the whole drm directory. If that's the
->> case, I don't know if it is really neccessary since it is AUX-only related issue.
-> Why is it only AUX related. For AUX Tx we are relaying on interrupts and getting this interrupt is the issue over here due to parent interrupt being disabled.
-
-Reverting the AUX-only related commit makes the issue disappear. IMO
-this together with suggestion from Ville makes it AUX-only related.
-
-I can rephrase the commit message if it is unclear, but I'd
-retain the WA in it's current form.
-
-BR,
-Michał
-
-> Similarly in other places where waitqueues are used in i915, can have this WA to make the driver more robust.
->
-> Thanks and Regards,
-> Arun R Murthy
-> --------------------
->
->> Could you put some rationale behind it?
->>
->> BR,
->> Michał
->>
->>>
->>> Thanks and Regards,
->>> Arun R Murthy
->>> --------------------
->>>> msecs_to_jiffies_timeout(timeout_ms));
->>>> +
->>>> +#undef C
->>>> +	} else {
->>>> +		ret = intel_de_wait_ms(display, ch_ctl,
->>>> +				       DP_AUX_CH_CTL_SEND_BUSY, 0,
->>>> +				       timeout_ms, &status);
->>>> +
->>>> +		if (ret == -ETIMEDOUT)
->>>> +			done = false;
->>>> +	}
->>>>
->>>>  	if (!done)
->>>>  		drm_err(display->drm,
->>>>  			"%s: did not complete or timeout within %ums (status
->> 0x%08x)\n",
->>>>  			intel_dp->aux.name, timeout_ms, status); -#undef C
->>>>
->>>>  	return status;
->>>>  }
->>>> --
->>>> 2.45.2
->>>
->>>
->
---8323329-920747834-1775169078=:1805036--
