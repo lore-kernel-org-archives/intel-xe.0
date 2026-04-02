@@ -4,27 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AAC8DD39406
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 10:13:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16037D39409
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Apr 2026 10:16:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6211510F1F5;
-	Thu,  2 Apr 2026 10:13:58 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E1B510F1CD;
- Thu,  2 Apr 2026 10:13:57 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0974796705644848833=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6FD110F1CD;
+	Thu,  2 Apr 2026 10:16:15 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kXyWWwPC";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93D0710F1CD
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 Apr 2026 10:16:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1775124974; x=1806660974;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=98236xvDlkF1JGs0XHsDlfI16PmXHAB1f2k4VjQkT/M=;
+ b=kXyWWwPCADUbla0GLIP5vzDnpVwf1xzqj9Mj16x2hpiL0IVl/4mzjpYc
+ NOH75KvaA5vOLO2gQr2oP3IPdKFL2ZAB4onSq9v2XqYcxH1azZ6pVEWaT
+ 4uFrLT0IaE/W0D1zo4AZjZ4RhMrcTrtPQAamsiJeOQYGW8UWUTBrM80ZZ
+ Bw8noxpjJ+O2sy4bpfkcmJEv/U1SzsCk8MI5qU5YEKS+3/8/WbX3h1MTB
+ DPZt9NBxbtyOv3Q0mwOtohwr7eRPAHQ8EHITfdzARWBCEw+ZNw6wBgEiI
+ FSXC+hrvUWW0d/YwT0Fej8rpKuBcJ6DEg/IGAlHvk3SZ/6xlGrhcmjBTV g==;
+X-CSE-ConnectionGUID: Qord2T2cRRqPWKVSMo7IQQ==
+X-CSE-MsgGUID: GVisVFMMQQGsb6JA8Hg7Uw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11746"; a="76300373"
+X-IronPort-AV: E=Sophos;i="6.23,155,1770624000"; d="scan'208";a="76300373"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2026 03:16:14 -0700
+X-CSE-ConnectionGUID: cfEspfVMT/OzdiJOjY3JEg==
+X-CSE-MsgGUID: u+VCTwL/QzaQi2hJWLobMg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,155,1770624000"; d="scan'208";a="257420797"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO [10.245.245.52])
+ ([10.245.245.52])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2026 03:16:13 -0700
+Message-ID: <3297278d-9f36-484c-b4de-8a22545f0b5f@intel.com>
+Date: Thu, 2 Apr 2026 11:16:10 +0100
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Fix_slab-out-of-b?=
- =?utf-8?q?ounds_on_PT_update_ops_retry?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 02 Apr 2026 10:13:57 -0000
-Message-ID: <177512483755.427876.2502061663476614408@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260402091539.4114-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20260402091539.4114-1-thomas.hellstrom@linux.intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH V6 2/7] drm/gpu: Add gpu_buddy_addr_to_block helper
+To: Matthew Brost <matthew.brost@intel.com>,
+ Tejas Upadhyay <tejas.upadhyay@intel.com>
+Cc: intel-xe@lists.freedesktop.org, thomas.hellstrom@linux.intel.com,
+ himal.prasad.ghimiray@intel.com
+References: <20260327114829.2678240-9-tejas.upadhyay@intel.com>
+ <20260327114829.2678240-11-tejas.upadhyay@intel.com>
+ <ac2zqvxb0/hxGPgm@gsse-cloud1.jf.intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <ac2zqvxb0/hxGPgm@gsse-cloud1.jf.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,166 +70,117 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0974796705644848833==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 02/04/2026 01:09, Matthew Brost wrote:
+> On Fri, Mar 27, 2026 at 05:18:15PM +0530, Tejas Upadhyay wrote:
+>> Add helper with primary purpose is to efficiently trace a specific
+>> physical memory address back to its corresponding TTM buffer object.
+>>
+>> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+>> ---
+>>   drivers/gpu/buddy.c       | 56 +++++++++++++++++++++++++++++++++++++++
+>>   include/linux/gpu_buddy.h |  2 ++
+>>   2 files changed, 58 insertions(+)
+>>
+>> diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
+>> index 52686672e99f..2d26c2a0f971 100644
+>> --- a/drivers/gpu/buddy.c
+>> +++ b/drivers/gpu/buddy.c
+>> @@ -589,6 +589,62 @@ void gpu_buddy_free_block(struct gpu_buddy *mm,
+>>   }
+>>   EXPORT_SYMBOL(gpu_buddy_free_block);
+>>   
+>> +/**
+>> + * gpu_buddy_addr_to_block - given physical address find a block
+>> + *
+>> + * @mm: GPU buddy manager
+>> + * @addr: Physical address
+>> + *
+>> + * Returns:
+>> + * gpu_buddy_block on success, NULL or error code on failure
+>> + */
+>> +struct gpu_buddy_block *gpu_buddy_addr_to_block(struct gpu_buddy *mm, u64 addr)
+>> +{
+>> +	struct gpu_buddy_block *block;
+>> +	LIST_HEAD(dfs);
+>> +	u64 end;
+>> +	int i;
+>> +
+> 
+> This is somewhat of an orthogonal issue, but we really should update
+> gpu_buddy so drivers can register a lock that we can assert is held in
+> functions where gpu_buddy manipulates blocks.
+> 
+> Something like this [1].
 
-== Series Details ==
+I think would be a good addition also.
 
-Series: drm/xe: Fix slab-out-of-bounds on PT update ops retry
-URL   : https://patchwork.freedesktop.org/series/164284/
-State : success
+> 
+> I’ll defer to the gpu_buddy maintainers on whether this code is correct.
+> 
+> Matt
+> 
+> [1] https://elixir.bootlin.com/linux/v6.19.10/source/include/drm/drm_gpusvm.h#L341
+> 
+>> +	end = addr + SZ_4K - 1;
+>> +	for (i = 0; i < mm->n_roots; ++i)
+>> +		list_add_tail(&mm->roots[i]->tmp_link, &dfs);
+>> +
+>> +	do {
+>> +		u64 block_start;
+>> +		u64 block_end;
+>> +
+>> +		block = list_first_entry_or_null(&dfs,
+>> +						 struct gpu_buddy_block,
+>> +						 tmp_link);
+>> +		if (!block)
+>> +			break;
+>> +
+>> +		list_del(&block->tmp_link);
+>> +
+>> +		block_start = gpu_buddy_block_offset(block);
+>> +		block_end = block_start + gpu_buddy_block_size(mm, block) - 1;
+>> +
+>> +		if (!overlaps(addr, end, block_start, block_end))
+>> +			continue;
+>> +
+>> +		if (contains(addr, end, block_start, block_end) &&
+>> +		    !gpu_buddy_block_is_split(block)) {
+>> +			if (gpu_buddy_block_is_free(block))
+>> +				return NULL;
+>> +			else if (gpu_buddy_block_is_allocated(block) && !mm->clear_avail)
+>> +				return block;
+>> +		}
+>> +
+>> +		if (gpu_buddy_block_is_split(block)) {
+>> +			list_add(&block->right->tmp_link, &dfs);
+>> +			list_add(&block->left->tmp_link, &dfs);
+>> +		}
+>> +	} while (1);
+>> +
+>> +	return ERR_PTR(-ENXIO);
+>> +}
+>> +EXPORT_SYMBOL(gpu_buddy_addr_to_block);
+>> +
+>>   static void __gpu_buddy_free_list(struct gpu_buddy *mm,
+>>   				  struct list_head *objects,
+>>   				  bool mark_clear,
+>> diff --git a/include/linux/gpu_buddy.h b/include/linux/gpu_buddy.h
+>> index 5fa917ba5450..957c69c560bc 100644
+>> --- a/include/linux/gpu_buddy.h
+>> +++ b/include/linux/gpu_buddy.h
+>> @@ -231,6 +231,8 @@ void gpu_buddy_reset_clear(struct gpu_buddy *mm, bool is_clear);
+>>   
+>>   void gpu_buddy_free_block(struct gpu_buddy *mm, struct gpu_buddy_block *block);
+>>   
+>> +struct gpu_buddy_block *gpu_buddy_addr_to_block(struct gpu_buddy *mm, u64 addr);
+>> +
+>>   void gpu_buddy_free_list(struct gpu_buddy *mm,
+>>   			 struct list_head *objects,
+>>   			 unsigned int flags);
+>> -- 
+>> 2.52.0
+>>
 
-== Summary ==
-
-CI Bug Log - changes from xe-4840-5ab3838428d9d2baa881cb9b23a30cc77e5c893c_BAT -> xe-pw-164284v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (14 -> 14)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-164284v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4840-5ab3838428d9d2baa881cb9b23a30cc77e5c893c/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164284v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#7483]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4840-5ab3838428d9d2baa881cb9b23a30cc77e5c893c/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164284v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-
-  * igt@xe_waitfence@abstime:
-    - bat-dg2-oem2:       [TIMEOUT][5] ([Intel XE#6506]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4840-5ab3838428d9d2baa881cb9b23a30cc77e5c893c/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164284v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [FAIL][7] ([Intel XE#6519]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4840-5ab3838428d9d2baa881cb9b23a30cc77e5c893c/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164284v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
-
-
-Build changes
--------------
-
-  * Linux: xe-4840-5ab3838428d9d2baa881cb9b23a30cc77e5c893c -> xe-pw-164284v1
-
-  IGT_8842: 8842
-  xe-4840-5ab3838428d9d2baa881cb9b23a30cc77e5c893c: 5ab3838428d9d2baa881cb9b23a30cc77e5c893c
-  xe-pw-164284v1: 164284v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164284v1/index.html
-
---===============0974796705644848833==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Fix slab-out-of-bounds on PT update ops retry</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164284/">https://patchwork.freedesktop.org/series/164284/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164284v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164284v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4840-5ab3838428d9d2baa881cb9b23a30cc77e5c893c_BAT -&gt; xe-pw-164284v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-164284v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4840-5ab3838428d9d2baa881cb9b23a30cc77e5c893c/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164284v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4840-5ab3838428d9d2baa881cb9b23a30cc77e5c893c/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164284v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@abstime:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4840-5ab3838428d9d2baa881cb9b23a30cc77e5c893c/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164284v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@engine:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4840-5ab3838428d9d2baa881cb9b23a30cc77e5c893c/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164284v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4840-5ab3838428d9d2baa881cb9b23a30cc77e5c893c -&gt; xe-pw-164284v1</li>
-</ul>
-<p>IGT_8842: 8842<br />
-  xe-4840-5ab3838428d9d2baa881cb9b23a30cc77e5c893c: 5ab3838428d9d2baa881cb9b23a30cc77e5c893c<br />
-  xe-pw-164284v1: 164284v1</p>
-
-</body>
-</html>
-
---===============0974796705644848833==--
