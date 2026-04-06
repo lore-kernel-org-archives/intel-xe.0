@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F4B2EF4EC2
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Apr 2026 08:58:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B0CDEF4EC9
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Apr 2026 08:58:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FE1710E21B;
-	Mon,  6 Apr 2026 08:58:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53B3B10E22A;
+	Mon,  6 Apr 2026 08:58:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XGo4X0fb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N0kTQE9x";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DD6610E21B
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Apr 2026 08:58:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A8D710E22E
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Apr 2026 08:58:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775465932; x=1807001932;
+ t=1775465934; x=1807001934;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rlYGzuTOLVrWt5YPRapElzjaCV28ivlrc7UQRhuYdEo=;
- b=XGo4X0fbt/RKJPMiK6L7gQtfPPFrh+/IzRXb1s4rIwRPqC0HLT8+9w9+
- 0UWcdwRQlKcAZTSw94tW//iYIv6zQ8Uj53KwjBGjk4IPvmeGkh5qsZFZZ
- Xea7DV1V7APZbAGaiJY1miQNYy4Ref9Jgqxbt0bsLmiso3vT8fThAX6/4
- xVgHXxehysyrFU1TSTufyKaQc0osbm2ezSHeUg15R60K7a7aAEIiqyQ3n
- i3GqUdL/Mzmg3lYf5lQyEQ11F5oyBaYDcdgqohTG66uNBCz1pxYIwDK36
- SAWU0ROsCOYx4YWYMio/ri37Q2f+x5+MyVK5MDq6Wzlcj6R4Q2czlAgPB g==;
-X-CSE-ConnectionGUID: 9HwtQV+GQrSFBZcNIkBxbQ==
-X-CSE-MsgGUID: 2M9eUVO3R2OaJJUJupA1lg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11750"; a="80012893"
-X-IronPort-AV: E=Sophos;i="6.23,163,1770624000"; d="scan'208";a="80012893"
+ bh=obsSe2PYCv3f5H9dlLAUP46+kZ4JtQgcY12MQ1BdIoA=;
+ b=N0kTQE9xNuMLT9rNoj0c3FhT66MLWzkDzSYXGTJ+ZnD/GF+iomqH9SJN
+ Q5vfoGZ3G4Wrg2V/LmNvOS3EWs40iqsSHAdeY1Zs09JXEA4RGvbTf/2Jq
+ pC/4FuR4//WOT6OGU9cxkWm0aBXVU8gIDfyGUdlIFgi9Na4Jtqwh59rpd
+ Agt4Wt5tH5ShUt2JIM4Gaz/odloEFRcoK/wzO15VULn11OpUdAmO9pyYb
+ phZNm9Xq3yGNf2iwN7jgFgMpgBevUNRY3IMz3R7hB3EfzEDuWFiFg23yO
+ R6n3JkksNWS+qsN17TijcYK58oLKwY4xNUtE8OUfw/p3KW6lX6T/71Z15 Q==;
+X-CSE-ConnectionGUID: vtYp39fNStyPI49u1HXJSA==
+X-CSE-MsgGUID: DKZweIE+SUqtR1s3r313QA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11750"; a="80012895"
+X-IronPort-AV: E=Sophos;i="6.23,163,1770624000"; d="scan'208";a="80012895"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2026 01:58:51 -0700
-X-CSE-ConnectionGUID: M7PxECVvQaujnU6vKTvW5g==
-X-CSE-MsgGUID: vP0dMTuSSH+rQGuP4UwWzg==
+ 06 Apr 2026 01:58:53 -0700
+X-CSE-ConnectionGUID: kcHWFC8/Tf2PlYq4njv3bA==
+X-CSE-MsgGUID: uNZdwZE+RVGPT8aX97SpNw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,163,1770624000"; d="scan'208";a="227775203"
+X-IronPort-AV: E=Sophos;i="6.23,163,1770624000"; d="scan'208";a="227775213"
 Received: from varungup-desk.iind.intel.com ([10.190.238.71])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2026 01:58:50 -0700
+ 06 Apr 2026 01:58:51 -0700
 From: Arvind Yadav <arvind.yadav@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com,
  thomas.hellstrom@linux.intel.com
-Subject: [RFC v2 5/7] drm/xe/vm: Deactivate madvise notifier on GPU touch
-Date: Mon,  6 Apr 2026 14:28:28 +0530
-Message-ID: <20260406085830.1118431-6-arvind.yadav@intel.com>
+Subject: [RFC v2 6/7] drm/xe/vm: Wire MADVISE_AUTORESET notifiers into VM
+ lifecycle
+Date: Mon,  6 Apr 2026 14:28:29 +0530
+Message-ID: <20260406085830.1118431-7-arvind.yadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260406085830.1118431-1-arvind.yadav@intel.com>
 References: <20260406085830.1118431-1-arvind.yadav@intel.com>
@@ -68,157 +69,192 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-MADVISE_AUTORESET notifier is only needed while the VMA is CPU-only.
-After GPU touch, SVM notifiers handle munmap.
+Initialise MADVISE_AUTORESET notifier infrastructure for fault-mode VMs
+in xe_svm_init() and tear it down during VM close.
 
-Gate the callback on an active flag and clear it on first GPU touch in
-xe_vm_madvise_gpu_touch(), making the callback a no-op.
+Drop vm->lock around xe_vm_madvise_fini() since the madvise worker
+takes vm->lock, then retake it for xe_svm_fini().
+
+Register interval notifiers outside vm->lock; vm->lock is only taken for
+deduplication and maple tree insertion. The callback only queues work.
+
+Skip SVM PTE zapping for cpu_addr_mirror VMAs with
+cpu_autoreset_active set since no GPU mappings exist yet.
+
+If notifier registration fails, log and skip autoreset for that VMA.
 
 v2:
-  - Use plain bool active; callback reads it lockless. (Matt)
-  - Use wq check and mt_for_each in deactivate path. (Matt)
-  - Add lockdep_assert_held_write(&vm->lock) to xe_vm_madvise_gpu_touch().
+  - Register notifiers outside vm->lock; take vm->lock only for dedup and
+    mtree_store_range. (Matt)
+  - Collect VMA ranges under vm->lock and register notifiers after
+    unlock. (Matt)
 
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
 ---
- drivers/gpu/drm/xe/xe_svm.c        |  5 ++-
- drivers/gpu/drm/xe/xe_vm_madvise.c | 52 ++++++++++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_vm_madvise.h |  2 ++
- drivers/gpu/drm/xe/xe_vm_types.h   |  7 ++++
- 4 files changed, 63 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_svm.c        |  9 +++++
+ drivers/gpu/drm/xe/xe_vm.c         | 12 ++++++
+ drivers/gpu/drm/xe/xe_vm_madvise.c | 60 +++++++++++++++++++++++++++++-
+ 3 files changed, 79 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index fd57c9d41db8..b6544947d861 100644
+index b6544947d861..89668ada38ca 100644
 --- a/drivers/gpu/drm/xe/xe_svm.c
 +++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -22,6 +22,7 @@
- #include "xe_tlb_inval.h"
- #include "xe_ttm_vram_mgr.h"
- #include "xe_vm.h"
-+#include "xe_vm_madvise.h"
- #include "xe_vm_types.h"
- #include "xe_vram_types.h"
+@@ -914,6 +914,15 @@ int xe_svm_init(struct xe_vm *vm)
+ 			drm_pagemap_release_owner(&vm->svm.peer);
+ 			return err;
+ 		}
++
++		/* Initialize madvise notifier infrastructure after gpusvm */
++		err = xe_vm_madvise_init(vm);
++		if (err) {
++			drm_gpusvm_fini(&vm->svm.gpusvm);
++			xe_svm_put_pagemaps(vm);
++			drm_pagemap_release_owner(&vm->svm.peer);
++			return err;
++		}
+ 	} else {
+ 		err = drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM (simple)",
+ 				      &vm->xe->drm, NULL, 0, 0, 0, NULL,
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 65425f2f1bf1..a2a4ffdcf7bf 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1788,6 +1788,8 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags, struct xe_file *xef)
+ err_svm_fini:
+ 	if (flags & XE_VM_FLAG_FAULT_MODE) {
+ 		vm->size = 0; /* close the vm */
++		/* ok to call even if madvise_init() never ran, fini is a no-op then. */
++		xe_vm_madvise_fini(vm);
+ 		xe_svm_fini(vm);
+ 	}
+ err_no_resv:
+@@ -1932,6 +1934,16 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+ 		xe_vma_destroy_unlocked(vma);
+ 	}
  
-@@ -1414,8 +1415,10 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
- 	 * Mark the VMA as GPU-touched only after a successful fault-in.
- 	 * Prefetch faults that find no range must not transition this state.
- 	 */
--	if (!ret && xe_vma_has_cpu_autoreset_active(vma))
-+	if (!ret && xe_vma_has_cpu_autoreset_active(vma)) {
- 		xe_vma_gpu_touch(vma);
-+		xe_vm_madvise_gpu_touch(vm, vma);
-+	}
++	/* Drop vm->lock around madvise fini; workers take vm->lock. */
++	xe_assert(vm->xe, xe_vm_is_closed(vm));
++	up_write(&vm->lock);
++
++	if (vm->flags & XE_VM_FLAG_FAULT_MODE)
++		xe_vm_madvise_fini(vm);
++
++	/* Retake vm->lock for xe_svm_fini(); required by drm_gpusvm. */
++	down_write(&vm->lock);
++
+ 	xe_svm_fini(vm);
  
- 	return ret;
- }
+ 	up_write(&vm->lock);
 diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
-index bdeb2e8e0f2c..4c57cac63d13 100644
+index 4c57cac63d13..e526819d0a12 100644
 --- a/drivers/gpu/drm/xe/xe_vm_madvise.c
 +++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
-@@ -981,10 +981,10 @@ static bool xe_madvise_notifier_callback(struct mmu_interval_notifier *mni,
- 	struct xe_vm *vm = notifier->vm;
- 	u64 start, end;
+@@ -28,6 +28,7 @@ struct xe_vmas_in_madvise_range {
+ 	int num_vmas;
+ 	bool has_bo_vmas;
+ 	bool has_svm_userptr_vmas;
++	bool has_cpu_addr_mirror_vmas;
+ };
  
--	if (range->event != MMU_NOTIFY_UNMAP)
-+	if (range->event != MMU_NOTIFY_UNMAP || !notifier->active)
- 		return true;
+ /**
+@@ -70,7 +71,11 @@ static int get_vmas(struct xe_vm *vm, struct xe_vmas_in_madvise_range *madvise_r
  
--	/* Skip non-blockable contexts; correctness is ensured by cpu_autoreset_active. */
-+	/* Skip non-blockable contexts; cpu_autoreset_active handles fallback. */
- 	if (!mmu_notifier_range_blockable(range))
- 		return true;
+ 		if (xe_vma_bo(vma))
+ 			madvise_range->has_bo_vmas = true;
+-		else if (xe_vma_is_cpu_addr_mirror(vma) || xe_vma_is_userptr(vma))
++		else if (xe_vma_is_cpu_addr_mirror(vma)) {
++			/* CPU mirror VMAs also require SVM notifier locking. */
++			madvise_range->has_svm_userptr_vmas = true;
++			madvise_range->has_cpu_addr_mirror_vmas = true;
++		} else if (xe_vma_is_userptr(vma))
+ 			madvise_range->has_svm_userptr_vmas = true;
  
-@@ -1157,6 +1157,7 @@ int xe_vm_madvise_register_notifier_range(struct xe_vm *vm, u64 start, u64 end)
- 	notifier->vm = xe_vm_get(vm);
- 	notifier->vma_start = start;
- 	notifier->vma_end = end;
-+	notifier->active = true;
- 	INIT_LIST_HEAD(&notifier->list);
- 	spin_lock_init(&notifier->work_lock);
- 	INIT_WORK(&notifier->work, xe_madvise_work_func);
-@@ -1221,3 +1222,50 @@ int xe_vm_madvise_register_notifier_range(struct xe_vm *vm, u64 start, u64 end)
- 	return err;
- }
+ 		if (madvise_range->num_vmas == max_vmas) {
+@@ -439,7 +444,13 @@ static u8 xe_zap_ptes_in_madvise_range(struct xe_vm *vm, u64 start, u64 end)
+ 			continue;
  
-+/**
-+ * xe_vm_deactivate_madvise_notifier_for_range - Disable notifier callbacks
-+ * @vm: VM
-+ * @start: Start address (page-aligned)
-+ * @end: End address (page-aligned)
-+ *
-+ * Clear @active on notifiers in [start, end) so future callbacks no-op.
-+ * Removal is handled in xe_vm_madvise_fini().
-+ */
-+void xe_vm_deactivate_madvise_notifier_for_range(struct xe_vm *vm, u64 start, u64 end)
-+{
-+	struct xe_madvise_notifier *notifier;
-+	unsigned long index = start;
+ 		if (xe_vma_is_cpu_addr_mirror(vma)) {
+-			tile_mask |= xe_svm_ranges_zap_ptes_in_range(vm,
++			/*
++			 * cpu_autoreset_active == true means no GPU PTEs exist
++			 * yet; skip to avoid zapping non-existent mappings.
++			 * Once GPU-touched, the bit clears and SVM zap applies.
++			 */
++			if (!xe_vma_has_cpu_autoreset_active(vma))
++				tile_mask |= xe_svm_ranges_zap_ptes_in_range(vm,
+ 								      xe_vma_start(vma),
+ 								      xe_vma_end(vma));
+ 		} else {
+@@ -693,6 +704,11 @@ int xe_vm_madvise_ioctl(struct drm_device *dev, void *data, struct drm_file *fil
+ 	struct drm_exec exec;
+ 	int err, attr_type;
+ 	bool do_retained;
++	struct {
++		u64 start;
++		u64 end;
++	} *notifier_ranges = NULL;
++	int num_notifier_ranges = 0;
+ 
+ 	vm = xe_vm_lookup(xef, args->vm_id);
+ 	if (XE_IOCTL_DBG(xe, !vm))
+@@ -815,6 +831,31 @@ int xe_vm_madvise_ioctl(struct drm_device *dev, void *data, struct drm_file *fil
+ 	if (madvise_range.has_svm_userptr_vmas)
+ 		xe_svm_notifier_unlock(vm);
+ 
++	if (err)
++		goto err_fini;
 +
-+	lockdep_assert_held_write(&vm->lock);
++	if (madvise_range.has_cpu_addr_mirror_vmas) {
++		notifier_ranges = kmalloc_array(madvise_range.num_vmas,
++						sizeof(*notifier_ranges), GFP_KERNEL);
++		if (!notifier_ranges) {
++			err = -ENOMEM;
++			goto err_fini;
++		}
++		for (int i = 0; i < madvise_range.num_vmas; i++) {
++			struct xe_vma *vma = madvise_range.vmas[i];
 +
-+	/* No-op if madvise infrastructure is not available. */
-+	if (!vm->svm.madvise_work.wq)
-+		return;
++			if (!xe_vma_is_cpu_addr_mirror(vma))
++				continue;
++			if (!(vma->gpuva.flags & XE_VMA_MADV_AUTORESET))
++				continue;
++			if (!xe_vma_has_cpu_autoreset_active(vma))
++				continue;
++			notifier_ranges[num_notifier_ranges].start = xe_vma_start(vma);
++			notifier_ranges[num_notifier_ranges].end   = xe_vma_end(vma);
++			num_notifier_ranges++;
++		}
++	}
 +
-+	/* Plain walk to deactivate overlapping notifiers. */
-+	mt_for_each(&vm->svm.madvise_notifiers, notifier, index, end - 1)
-+		notifier->active = false;
-+}
+ err_fini:
+ 	if (madvise_range.has_bo_vmas)
+ 		drm_exec_fini(&exec);
+@@ -826,6 +867,21 @@ int xe_vm_madvise_ioctl(struct drm_device *dev, void *data, struct drm_file *fil
+ unlock_vm:
+ 	up_write(&vm->lock);
+ 
++	if (!err) {
++		/* notifier_ranges may be NULL here; loop and kfree are safe. */
++		for (int i = 0; i < num_notifier_ranges; i++) {
++			int ret = xe_vm_madvise_register_notifier_range(vm,
++							notifier_ranges[i].start,
++							notifier_ranges[i].end);
++			if (ret)
++				drm_warn(&vm->xe->drm,
++					 "Failed to register madvise notifier [%#llx-%#llx]: %d\n",
++					 notifier_ranges[i].start,
++					 notifier_ranges[i].end, ret);
++		}
++	}
++	kfree(notifier_ranges);
 +
-+/**
-+ * xe_vm_madvise_gpu_touch() - Suppress madvise callbacks after GPU touch
-+ * @vm: VM
-+ * @vma: VMA that was GPU-touched
-+ *
-+ * Clears @active on this VMA's notifiers so future callbacks no-op.
-+ * Already-queued work still runs but no-ops: the worker rechecks
-+ * cpu_autoreset_active under vm->lock and skips GPU-touched VMAs.
-+ */
-+void xe_vm_madvise_gpu_touch(struct xe_vm *vm, struct xe_vma *vma)
-+{
-+	lockdep_assert_held_write(&vm->lock);
-+
-+	/* Guard: only deactivate notifiers for AUTORESET-marked VMAs. */
-+	if (!(vma->gpuva.flags & XE_VMA_MADV_AUTORESET))
-+		return;
-+
-+	xe_vm_deactivate_madvise_notifier_for_range(vm,
-+						xe_vma_start(vma),
-+						xe_vma_end(vma));
-+}
-+
-diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.h b/drivers/gpu/drm/xe/xe_vm_madvise.h
-index 111953de4d2f..3c6f4d9e8343 100644
---- a/drivers/gpu/drm/xe/xe_vm_madvise.h
-+++ b/drivers/gpu/drm/xe/xe_vm_madvise.h
-@@ -22,4 +22,6 @@ void xe_bo_recompute_purgeable_state(struct xe_bo *bo);
- int xe_vm_madvise_init(struct xe_vm *vm);
- void xe_vm_madvise_fini(struct xe_vm *vm);
- int xe_vm_madvise_register_notifier_range(struct xe_vm *vm, u64 start, u64 end);
-+void xe_vm_deactivate_madvise_notifier_for_range(struct xe_vm *vm, u64 start, u64 end);
-+void xe_vm_madvise_gpu_touch(struct xe_vm *vm, struct xe_vma *vma);
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 93e777f010f9..850245042dd8 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -50,6 +50,13 @@ struct xe_madvise_notifier {
- 	u64 vma_start;
- 	/** @vma_end: End address of VMA being tracked */
- 	u64 vma_end;
-+	/**
-+	 * @active: Fast-path gate; cleared on GPU touch so callbacks bail
-+	 * early.  Not authoritative — worker rechecks cpu_autoreset_active
-+	 * under vm->lock, so a stale read only causes redundant work.
-+	 * Written under vm->lock; read lockless in the callback.
-+	 */
-+	bool active;
- 	/** @list: Used only in xe_vm_madvise_fini() to stage notifiers for removal. */
- 	struct list_head list;
- 	/** @work_lock: Serialises work_pending, work_start and work_end. */
+ 	/* Write retained value to user after releasing all locks */
+ 	if (!err && do_retained)
+ 		err = xe_madvise_purgeable_retained_to_user(&details);
 -- 
 2.43.0
 
