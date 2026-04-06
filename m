@@ -4,129 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE1D8F46C40
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Apr 2026 14:08:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7691CF46C40
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Apr 2026 14:11:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E45D10E1E3;
-	Mon,  6 Apr 2026 14:08:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E3A010E139;
+	Mon,  6 Apr 2026 14:11:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="InQPuYqZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UoVw29rc";
 	dkim-atps=neutral
-Received: from CH4PR04CU002.outbound.protection.outlook.com
- (mail-northcentralusazon11013051.outbound.protection.outlook.com
- [40.107.201.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE53610E168;
- Mon,  6 Apr 2026 14:08:34 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gYtkGQK1Gvvbjh88FWJqBRT8o1N9f+Ipz5nKzqZCmXw8cE/57RUpZEgsaNbPHlmU7HlM5WRgyMFCxXFLiZLc0vGr8DfiSHKN+9gINDe1WnHTqICUWdMugPEl0FSuwEpznaV7gxI30qUcQmyEQx/ZGGDQS6oojNkrrh9yz2tGI/Ig41To2pHD0rvC9zjc4iGv+SBMxxxC+bMJGa6OTeYTcYhj6lF8KxYzOmOvBaC1Nh99HP6xii65IyMqUo+32KkbrTp6KSRzuGlPbe/w2A2O9VWvSDUUaicQaB/rFf96GgzPNG78rJHunKKS1GaB4/hvcytm1frJwcy+ufZNZi9e6A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VOKeyxeKGgyLV4uLMeXwtycoYeItW3cGtivo//NHBPI=;
- b=TzMcgfnWchOEmoTW2xhCT4lhYShHSScjycgYFnWAGSldMzthld/OtgDurxF/EY8/rtLsNJYHHMCw2YAQQyQQ9+EUk38uujuIGaOo2lX62/IkrIOphkrGIa+wWWTOTN77KMgfmdNXh1wezT3UtTVaqYEwy0lAAjS48k1F/8C7ihDKMKfdkyK6HfnIfseSIeHt74QzEk9t1SPzpTw4tru3/6sfJSeJK4jQyEylstRHbl464+Rl0C/l10Zfi2R/gqjMSaAghp6WMmkpTLY70RZgvtX5u3zrJHnljoYxBSn289qH09xeRh6MaYsVMwhHGjHci+QUfzJdbFg01cC/leWB2A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VOKeyxeKGgyLV4uLMeXwtycoYeItW3cGtivo//NHBPI=;
- b=InQPuYqZT++jpnxRurPSvF3SBD9EtERD9QVdV5alhYSSCjGF7zMap+aUl8vRqgapqmn5uXYmRwVl77LDm/pX3nISou9XZUbRbc32j8Nm/LiRjoY/MGdoJS3VGOeFdWmW7od1KFhnVBfrR+tXY0Wt66zb+HGywKP11HkyJ59TmwwDjMLxY8JDWP9NqX3bPNnP0xWSaNlHNwfjSHFzy6J0WF8JnpI3EIkQmTX87o394rW/4tl07hhMTA+EmgxZ8RyZ5DwXmy6j4Gfsf2awJTgjwPnZJXiK8tBFH/viXMtAdVd5a57GxpmtN4tydQwO7LzjsDQS9GwlNqx/qvHbyXTPag==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from LV8PR12MB9620.namprd12.prod.outlook.com (2603:10b6:408:2a1::19)
- by PH7PR12MB6443.namprd12.prod.outlook.com (2603:10b6:510:1f9::5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.18; Mon, 6 Apr
- 2026 14:08:27 +0000
-Received: from LV8PR12MB9620.namprd12.prod.outlook.com
- ([fe80::299d:f5e0:3550:1528]) by LV8PR12MB9620.namprd12.prod.outlook.com
- ([fe80::299d:f5e0:3550:1528%5]) with mapi id 15.20.9769.017; Mon, 6 Apr 2026
- 14:08:27 +0000
-Date: Mon, 6 Apr 2026 11:08:25 -0300
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: "Lorenzo Stoakes (Oracle)" <ljs@kernel.org>
-Cc: Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org, Alistair Popple <apopple@nvidia.com>,
- Ralph Campbell <rcampbell@nvidia.com>,
- Christoph Hellwig <hch@lst.de>, Leon Romanovsky <leon@kernel.org>,
- Andrew Morton <akpm@linux-foundation.org>,
- Matthew Brost <matthew.brost@intel.com>,
- John Hubbard <jhubbard@nvidia.com>, linux-mm@kvack.org,
- dri-devel@lists.freedesktop.org, stable@vger.kernel.org,
- linux-fsdevel@vger.kernel.org, David Hildenbrand <david@kernel.org>,
- Zi Yan <ziy@nvidia.com>, Joshua Hahn <joshua.hahnjy@gmail.com>,
- Rakie Kim <rakie.kim@sk.com>, Byungchul Park <byungchul@sk.com>,
- Gregory Price <gourry@gourry.net>,
- Ying Huang <ying.huang@linux.alibaba.com>,
- "Matthew Wilcox (Oracle)" <willy@infradead.org>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>,
- Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>,
- Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>
-Subject: Re: [PATCH v5] mm: Fix a hmm_range_fault() livelock / starvation
- problem
-Message-ID: <20260406140825.GN310919@nvidia.com>
-References: <20260210115653.92413-1-thomas.hellstrom@linux.intel.com>
- <adOqU0UDzpxvQuwA@lucifer>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <adOqU0UDzpxvQuwA@lucifer>
-X-ClientProxiedBy: MN2PR03CA0005.namprd03.prod.outlook.com
- (2603:10b6:208:23a::10) To LV8PR12MB9620.namprd12.prod.outlook.com
- (2603:10b6:408:2a1::19)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9491410E139
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Apr 2026 14:11:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1775484700; x=1807020700;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=DNKn0NxgXREHFhU7fW6ZghYAbRt0fMUoE8wv7QtKsLk=;
+ b=UoVw29rcWYb3wqNu2MnG2O6kKHPc4ZcSm9K6UcrGq2k8spGJGlf/Nzrb
+ g/GHWtnOUU+cKXfKTAA5hfKTWA6Es+6WHPyNf7Ol8vYVBK5BS6awCyM7j
+ ZYXh5roTv02T1HLXIZdOYpWUb3nmEY7vom1AtrqygxjCxvn6mO/qtXK7B
+ yhLo6Hce9FMUYrzwNNOW4GCd2Kvki6jUv2IdhDQ5d/hF7FIdgxQ2r2WSd
+ W0zKqF77nFNekUwpVisM8YwhIxjWao5Y0op6mVACigoo5hIqyNgue3GlI
+ JCvDEENukSWD4vT7gcrOlCKZ53fHNvSdiy7K+zBdue4EnPngCS/f3xcN1 A==;
+X-CSE-ConnectionGUID: poKLh9JVQpe3FRs8Rtd/cA==
+X-CSE-MsgGUID: c+/goVxYTnaeA6BaKA7JMg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11750"; a="76443861"
+X-IronPort-AV: E=Sophos;i="6.23,163,1770624000"; d="scan'208";a="76443861"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2026 07:11:40 -0700
+X-CSE-ConnectionGUID: JeVOseMgSyGgjfUNUYBnow==
+X-CSE-MsgGUID: H1o8QD4xSe6U2D8/CAWFqg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,163,1770624000"; d="scan'208";a="227788208"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by orviesa009.jf.intel.com with ESMTP; 06 Apr 2026 07:11:35 -0700
+From: Raag Jadav <raag.jadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com,
+ thomas.hellstrom@linux.intel.com, riana.tauro@intel.com,
+ michal.wajdeczko@intel.com, matthew.d.roper@intel.com,
+ michal.winiarski@intel.com, matthew.auld@intel.com, maarten@lankhorst.se,
+ jani.nikula@intel.com, lukasz.laguna@intel.com, zhanjun.dong@intel.com,
+ lukas@wunner.de, Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v5 0/9] Introduce Xe PCIe FLR
+Date: Mon,  6 Apr 2026 19:37:13 +0530
+Message-ID: <20260406140722.154445-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV8PR12MB9620:EE_|PH7PR12MB6443:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1475342c-d895-48ad-07ea-08de93e5f917
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|7416014|1800799024|366016|56012099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: 8/GNt2JF1YuBL2Y1/psEBRVIEZUvmXMGOVg/VcO85CneVu0UODOHTgnL0G1i35NRMgqjAG4ZEnSVTYc6NgZRbRMFcfJ8SybwgjJesShnvFf661ZktmidILIQo6cEUasJSYoTrwUHbPIa6kDRE2MPvVIt1UBonJTaHpV0A5KJi9b+0uYeWi+cPpNJj7RbzG1pr2TylLKayiZFGt3ZwJtnZL2x1SWw2qKnIBXRmMP+UmUsPZYJRM7t/CUcpFyvXJUtNnCgfJg17OlPu1EK93EmKD7U/6JnvlGWQcSCRbSipPLfJITYZ6OXrTDgsv1KzLisPRIR2xcJxI8pybJcUpYwUdUUDTvQ5zdIrrh9EXSiKFhNoJ7cBv6sM/ggbdop8XOvW/FVZCtn5m2gT/LbUWNaCnjAH6rr7AwS790HRRRh3nsfTGzdX9GdOm6l1stDNTkjOpslbK2AsMFi1owcW+TcoPs1iBBqCToTA9mjVZ7q7lFLLJ2Spt8OqXerYQPjUvbJel6oT9ClGcAgoGtoKVSIfZe7lVXH0FkEYr2Ym4aDgrkIq7eh/RccfPBGkNxqVfPBCR99iDiwj5L3PVFNqxWbZh9EwLCWqFLIu3JHJXGYimLJn0KZfAQIx7l7d6iy+JNLH/SfSx0SJehxi9gMENtc6JOaVZZcye1d1rMWM3MLWxeNHdHL7Fds+mjr82P4EWvTORwEiVGoEyCM/WXlN+ow5g867T01coqjHbSUkzUolrk=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LV8PR12MB9620.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(7416014)(1800799024)(366016)(56012099003)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/pRu3OKEvHe8DNs1KGp1W/EwXwKYG24CIY0xy1gEsTbhdnp00B72ALVw04kw?=
- =?us-ascii?Q?bK46c3pmwbzPtRd5zHCYcpFBPxTVEolbnRJVViPe2udGKFE2/Gu+Gzi8Yq/m?=
- =?us-ascii?Q?Z0RkFBRYXS4DzSxjeYrqTzPUoviarTIxuzVP8cSkejT3t61Tt1/YZTk7o75K?=
- =?us-ascii?Q?agd762M9Zl+YHB8+N72LlBq4ch/kdbw1zi61Pd76zKKnunqQNtd7+wGpJTuD?=
- =?us-ascii?Q?MZoV/cllmv8aNPAE+opeaTFZA3Xu0nph/h1LrxMiRVo3YtSEOU3pqvGttywY?=
- =?us-ascii?Q?hd/c45X8ssmxm4NJWC7ebZQk0BQtbgrZfZW2I2Ft5OsPTRJn9HZPgDnBJmKs?=
- =?us-ascii?Q?iCxYZ22zUDn7ikaJUzlv7dJiLRxGnUjeLuohGHP9s6q0YLkMLYRvV/gkFxT7?=
- =?us-ascii?Q?bC/yGS3UTjL/qCz9p0EjEzxKVBkE6NmT5hYHTYUdZMYzptPRHKDq/lx+6TEh?=
- =?us-ascii?Q?w7NhE0e76HMZS4Y920ytbGPmtUw42Zcu3lNn7Jze1/gGjaK123RmjJO5jqcA?=
- =?us-ascii?Q?XMbSJ0p9piQlbcgJhFmSyfXDOhK9J8WCrjD01vHFYBC9y4EmG4pXMixYVSgg?=
- =?us-ascii?Q?POi1E2HUYo/ZHLq191tTK0eGjGS3HxQchNDaGSd9VypbIDOtrTJkgGhBVzSL?=
- =?us-ascii?Q?Zs8lgo47hU7PpLeIxF4wDIR3Qtxst7e33p7NwjXdBD7xnLjPhPRMZ7GanB5O?=
- =?us-ascii?Q?YxXvk/Z34LLS6cHVTh2wz1+uoyQcUoWV1Flf1Ngp2jXbor6BVvqlPRk/3hiS?=
- =?us-ascii?Q?Od3PyJIoWXX0R1J64TIyuMGhKKoUVdX0/7ODRHDBe+XV1XR3Cf1IANvshtTO?=
- =?us-ascii?Q?2cc6BCVZTCTI3KMnq3YIgZVbADhG0BjM9DlDTJT/Jxf4i3BEODPmzr7iUJpM?=
- =?us-ascii?Q?q4aHRZNe0oRozmREvcC/vCzFmk8zWzBMvpJz+W4446GpfENYpi6Wu3zUk4qT?=
- =?us-ascii?Q?R6oyg/x141+sdL0x6PVa4mq8tijOTY77aknNPb9PDoqed9fK0oNTEKF+D2Mv?=
- =?us-ascii?Q?69TVSclkF7nHKDxdeu6/N7GXhzOgtXU9lGLSHPpEq32Rxysfa/mNre58xQCO?=
- =?us-ascii?Q?ZQ1nEAgrUTWKDwhez8Mjnwn/Z1nkACOSQD6/uUnyYIju2dHCiTknIas5DAFm?=
- =?us-ascii?Q?QVgcTfliSNNBKWbhPu5U+4u+JslPRiYqc/fsSvdXotMwVEeRTysqxzs6TyzU?=
- =?us-ascii?Q?bvNJgPJYomXuz1/957S6ZmYDH2g62LXZfVfY12wDAGSnJg+fNLiXRvU2cmlu?=
- =?us-ascii?Q?XPzKKsZXZNKE/agECTp85HkODxsxqkP936cgFMf38Qsp/QTLLHms7yoxAf/Q?=
- =?us-ascii?Q?yFou9BS5dZMV3bYaLMBEz69wh0H0eqZMBG7FOo3UQUjAOvxBPKx9U0TbQyRW?=
- =?us-ascii?Q?KlA4xqKzOnQYjL5a08SNWPnT6OAEjlFvWmjG3mMJdDvIiJRKStjqZjeIAcIl?=
- =?us-ascii?Q?q/LmmL7dGZAhWibnWEXc8KgJ9RksgUe30kycwrv39GqfoT4xyLpLZR2BZn+k?=
- =?us-ascii?Q?rlnXLL+nsTYu80SEsBE7caGkNFE5rRTubLHm8GuTtC67doH4+IPT2dbqJhfH?=
- =?us-ascii?Q?QLKOrrx7CI0Sl8NmqHySy2/eJJkW2BWE3FnBXG+uHBOej0hoe2OjfqtPyjTX?=
- =?us-ascii?Q?3hd+ngVJ7nPMt92g3LsZk3r/akB9DQLpSp4s1tdHCK8BCUpVT2GWxTjdWixc?=
- =?us-ascii?Q?JLJ2mkYfadsqOviiICL09SyiubGUhpRjqod4Jr65tXRNWLDG?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1475342c-d895-48ad-07ea-08de93e5f917
-X-MS-Exchange-CrossTenant-AuthSource: LV8PR12MB9620.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Apr 2026 14:08:27.0926 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: c/K5klymPC8+pTNvxXyUhJHIWLN2eUXpElcEMRU70J6yDpArASyaBDLiYXqJDF+N
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6443
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -141,14 +68,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Apr 06, 2026 at 01:54:13PM +0100, Lorenzo Stoakes (Oracle) wrote:
-> Hi guys,
-> 
-> +cc missing M/R, fsdevel list
-> 
-> So this was merged upstream, and touches mm/, and even has a mm:
-> prefix... but was taken through a non-mm tree.
+Here's my humble attempt at introducing PCIe Function Level Reset (FLR)
+support in xe driver. This is ofcourse a half baked implementation and
+only limited to re-initializing GT. This needs to be extended for a lot
+of different components which I've skipped here for my lack of competence,
+so feel free to join in and support them.
 
-Also, how come there is no email on lore reporting someone accepted it?
+PS: All xe_exec_basic tests and clpeak run smoothly after FLR. Give it
+a spin and let me know if any regressions.
 
-Jason
+Trigger it with:
+
+$ echo 1 > /sys/bus/pci/devices/<BDF>/reset
+
+v2: Re-initialize migrate context (Matthew Brost)
+    Add kernel doc (Matthew Brost)
+    Spell out Function Level Reset (Jani)
+
+v3: Cancel in-flight jobs before FLR
+
+v4: Teardown exec queues instead of mangling scheduler pending list (Matthew Brost)
+
+v5: Re-initialize kernel queues through submission backend (Matthew Brost)
+    Prevent PM ref leak for wedged device (Matthew Brost)
+
+Raag Jadav (9):
+  drm/xe/uc_fw: Allow re-initializing firmware
+  drm/xe/guc_submit: Introduce guc_exec_queue_reinit()
+  drm/xe/gt: Introduce FLR helpers
+  drm/xe/irq: Introduce xe_irq_disable()
+  drm/xe: Introduce xe_device_assert_lmem_ready()
+  drm/xe/bo_evict: Introduce xe_bo_restore_map()
+  drm/xe/exec_queue: Introduce xe_exec_queue_reinit()
+  drm/xe/migrate: Introduce xe_migrate_reinit()
+  drm/xe/pci: Introduce PCIe FLR
+
+ drivers/gpu/drm/xe/Makefile              |   1 +
+ drivers/gpu/drm/xe/xe_bo_evict.c         |  51 ++++++--
+ drivers/gpu/drm/xe/xe_bo_evict.h         |   2 +
+ drivers/gpu/drm/xe/xe_device.c           |  10 +-
+ drivers/gpu/drm/xe/xe_device.h           |   1 +
+ drivers/gpu/drm/xe/xe_device_types.h     |   3 +
+ drivers/gpu/drm/xe/xe_exec_queue.c       |  37 +++++-
+ drivers/gpu/drm/xe/xe_exec_queue.h       |   1 +
+ drivers/gpu/drm/xe/xe_exec_queue_types.h |   2 +
+ drivers/gpu/drm/xe/xe_gpu_scheduler.h    |   5 +
+ drivers/gpu/drm/xe/xe_gsc.c              |  14 ++
+ drivers/gpu/drm/xe/xe_gsc.h              |   1 +
+ drivers/gpu/drm/xe/xe_gt.c               |  47 +++++++
+ drivers/gpu/drm/xe/xe_gt.h               |   2 +
+ drivers/gpu/drm/xe/xe_gt_types.h         |   9 ++
+ drivers/gpu/drm/xe/xe_guc.c              |  29 ++++
+ drivers/gpu/drm/xe/xe_guc.h              |   2 +
+ drivers/gpu/drm/xe/xe_guc_submit.c       |  11 ++
+ drivers/gpu/drm/xe/xe_huc.c              |  14 ++
+ drivers/gpu/drm/xe/xe_huc.h              |   1 +
+ drivers/gpu/drm/xe/xe_irq.c              |  13 +-
+ drivers/gpu/drm/xe/xe_irq.h              |   1 +
+ drivers/gpu/drm/xe/xe_lrc.c              |  17 +++
+ drivers/gpu/drm/xe/xe_lrc.h              |   2 +
+ drivers/gpu/drm/xe/xe_migrate.c          |  12 ++
+ drivers/gpu/drm/xe/xe_migrate.h          |   1 +
+ drivers/gpu/drm/xe/xe_pci.c              |   1 +
+ drivers/gpu/drm/xe/xe_pci.h              |   2 +
+ drivers/gpu/drm/xe/xe_pci_err.c          | 160 +++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_uc.c               |  37 ++++++
+ drivers/gpu/drm/xe/xe_uc.h               |   2 +
+ drivers/gpu/drm/xe/xe_uc_fw.c            |  39 +++++-
+ drivers/gpu/drm/xe/xe_uc_fw.h            |   1 +
+ 33 files changed, 510 insertions(+), 21 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_pci_err.c
+
+-- 
+2.43.0
+
