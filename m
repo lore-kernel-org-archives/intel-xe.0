@@ -4,27 +4,157 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDA4EFB5166
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Apr 2026 21:24:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FD6AFB516F
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Apr 2026 21:24:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A057E10E0D0;
-	Mon,  6 Apr 2026 21:24:10 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9673510E0D0;
- Mon,  6 Apr 2026 21:24:09 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 024D010E295;
+	Mon,  6 Apr 2026 21:24:55 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="ogDpDsLP";
+	dkim-atps=neutral
+Received: from BL0PR03CU003.outbound.protection.outlook.com
+ (mail-eastusazon11012037.outbound.protection.outlook.com [52.101.53.37])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3015610E0D0;
+ Mon,  6 Apr 2026 21:24:53 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=s5z7iiyHQxhayEjH12F/WiwwOpX6VfebdbCtg9kk9VazEyURYrDAnYJFXN66Smktywq199dxztF8p8chIGhspbKhh66oIdlLqmWes1FOoZ6alPcjPEmjtUfGltd9sOTfChjkQs2F014U689Noi+q2X+mhJ3T0rOME3yFXi1EfytFxRArc2ItgnyGImzBe5XQJkQejipYQTTa8z6RUneihpiQq95/r+ZQv3TuwfkUenmi2effRkisH6FZF0bgxnQ89kMCIDHPQ3bxR0T2OHhLkIxxtzLWa1ztd4+p2GiPH0wr5Pyj/8ubCmtq5uhUVU4tj5l2SDn2W9OL2xGGRChRzQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8RKdaN1OTKaadjanldjMUs4a0AeoXHERaQ0SRSR4hB4=;
+ b=L0RRWkeKS2FhgaRkfj186vyS2hN4oJ78ghp0l07wiIlxQZiK3rqVp9R4Pb6oFZ8aDHa/M+Bv8dGo27n+L61osIz18wgkTaCovvJI0tiuByuL/5CRdktrcOt0CJoXgeam5ORoonKgsC5FCeM6+/3E6yfAATcN4lVJSx4oaXCsdYsBu23egMBe6sXXqnkGRGf2IVK7yXqTMMXSvpgYtkiqH+kYoYY/52wE3NQZHV1ayknxc7s2mOiLbk0SopVdqr0/MsmDFhCC34dEfIOTIg4OmMKrp2S9yoMDDtVdxEXaxzfFitYg4+CFBhJVgTe+Ybyg0JCqZmedUvndtEW4xqCNJQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8RKdaN1OTKaadjanldjMUs4a0AeoXHERaQ0SRSR4hB4=;
+ b=ogDpDsLP4FDY+6lGdBz2Y8djJnDO98D+nDrECMXOs10hjkMyemHr04nCpJYl8NwQLLhU/MvK6TOZbPCSX3pEEuyxSHx0boos13rBbevW0JCul7foNPTo5rbV76lEknyNUyP5nehhd+moHn/aO08bZkcazq9J4Xtpx23y+8ff1bLVrP3ANTggA5mAhAjLybkwMm6IYIisWq5MStMxmXctD7evFD5mfLDDOzw7IAVM9nbfMYMJoq5EVAKw511DpDLsyiOT8TOlck1WwWRE930oMrm1kZDELobzzeVdIr3WGdLcg2gzsbgsJc3Vyxal9qhky1tn8WdTb908abAnVxP3dA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
+ SJ1PR12MB6242.namprd12.prod.outlook.com (2603:10b6:a03:457::6) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9769.20; Mon, 6 Apr 2026 21:24:45 +0000
+Received: from DS0PR12MB6486.namprd12.prod.outlook.com
+ ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
+ ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9769.014; Mon, 6 Apr 2026
+ 21:24:45 +0000
+Message-ID: <0f5605c1-32e8-4a62-b852-b1db01e42817@nvidia.com>
+Date: Mon, 6 Apr 2026 17:24:42 -0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 07/21] gpu: nova-core: mm: Add TLB flush support
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: linux-kernel@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>,
+ Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>,
+ Bjorn Roy Baron <bjorn3_gh@protonmail.com>, Benno Lossin
+ <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Koen Koning <koen.koning@linux.intel.com>, dri-devel@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org, Nikola Djukic <ndjukic@nvidia.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
+ Christian Koenig <christian.koenig@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
+ Helge Deller <deller@gmx.de>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, John Hubbard <jhubbard@nvidia.com>,
+ Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
+ Edwin Peer <epeer@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>,
+ Andrea Righi <arighi@nvidia.com>, Andy Ritger <aritger@nvidia.com>,
+ Zhi Wang <zhiw@nvidia.com>, Balbir Singh <balbirs@nvidia.com>,
+ Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa
+ <elle@weathered-steel.dev>, alexeyi@nvidia.com,
+ Eliot Courtney <ecourtney@nvidia.com>, joel@joelfernandes.org,
+ linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-fbdev@vger.kernel.org
+References: <20260311004008.2208806-1-joelagnelf@nvidia.com>
+ <20260331212048.2229260-1-joelagnelf@nvidia.com>
+ <20260331212048.2229260-8-joelagnelf@nvidia.com>
+ <ac4FpcD29XnbbsdD@gsse-cloud1.jf.intel.com>
+Content-Language: en-US
+From: Joel Fernandes <joelagnelf@nvidia.com>
+In-Reply-To: <ac4FpcD29XnbbsdD@gsse-cloud1.jf.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MN0PR04CA0027.namprd04.prod.outlook.com
+ (2603:10b6:208:52d::16) To DS0PR12MB6486.namprd12.prod.outlook.com
+ (2603:10b6:8:c5::21)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/guc=3A_Recommend_G?=
- =?utf-8?q?uC_v70=2E60=2E0_for_LNL=2C_BMG=2C_PTL_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Julia Filipchuk" <julia.filipchuk@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 06 Apr 2026 21:24:09 -0000
-Message-ID: <177551064960.435220.17490293956470093382@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260406211759.817577-9-julia.filipchuk@intel.com>
-In-Reply-To: <20260406211759.817577-9-julia.filipchuk@intel.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|SJ1PR12MB6242:EE_
+X-MS-Office365-Filtering-Correlation-Id: ae91472f-993d-40bb-712d-08de9422eca5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|7416014|376014|366016|18002099003|22082099003|56012099003;
+X-Microsoft-Antispam-Message-Info: S0EBmMA50OaC+PIxnOtDsXK4ANZONwyayP38F/HA0c3oKQ+saC+BZKGW5Pqh/2Hvjg1rYaP3OQaSFtdO20gUAPFU7GcVI9elW/Nj+fVkvU8YHErpQ18qaWN+l9bEJsC/hV9E3CxjrmG4XZLHK61VJCZaclWMn68U+y2Me8Iu5bVAdwVF9EgPvasUvLHSIWLf+svcOOBk2agWmcHQ4gM+3jpoJc+fDd4xDn0p5w+Ti/Tlo9BBgprllx3D+L/aaA8L/0eHIK3j4q9IZAAQdXQfZ6otcoa721vVzWH0OWFP2faDIQ60eZsDyK+lGfDveDa7QvyiyjsxxqaFg3b3ODJppcFhemDzs+AMMph82Lv1oTgnrcoznPXZojEeCHLfDxmwSGbaQmN1nI8mfOjouB+us5mF2aRNaTB4ShsiSsukatDKDtGwI6s0+n08LGPDBAQmUZbzIyzhqFyP6TkXNnraw4kCT3fdx0Z7UIa7Taz1SaNiWo5qq2RZ1ory1NnuZwKDch7GdBUXoqPVUG7M8tGzYhxCvS9T1QulhSMBUfym/T5baKy5o/5MvROhQV+3v1xWILsnK8noAKthSZ3ql5aqngiH/1AcCPHl7XomeL9pklC18gEEsQFLAkJMJoxVGOpAaI7pOnwwiAEWOawT5c7KCXkRrFM/93Z+xL5agNYgXFnDnJ31zbH/MyjzYw0Pc2p7YAgwbvqMw3X6VHW9uL6czDuGhhdFTOPdZ4OH9HhWtqU=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(7416014)(376014)(366016)(18002099003)(22082099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bU1iZEZxS2l5VzVabEVRcWZyZzJBUmNtcTUzMGVkYTdBVmczR0JSTGtVTnhB?=
+ =?utf-8?B?VnhYL0FKdWVENnFCT1hDV3QrYUdJY2pSOFd0OGlIRkQrU1ZkblJrZjNQd1gv?=
+ =?utf-8?B?bFZITEl0Y3B0elBWRjdNOTB3VUpWNjh3QlhHWHB4V3YzbnBMYUlOb1psS1VV?=
+ =?utf-8?B?a0tzSUN4cHR6SmpMaGszdW4zVmUrR01RQ0hrMzNjWEFFSHZxRVh5RFB2M0dO?=
+ =?utf-8?B?Sm5QUU9Va3Rjc1lxQUlObG8wQ3doV2NaTTF0bURUeElWWHNIb2ZIYnZmUjAy?=
+ =?utf-8?B?aDgyWkQrb3hKQ2l6T2RKZjZKNTh1MTRRYUE2cHIvMjhKWTN5V0p0WFFhRlV2?=
+ =?utf-8?B?UzRoeWQ4dU9pYUZFbUpIZlRodzZTb1F0Z0ljeWtEa3hiajNQNWN0RUhERXRZ?=
+ =?utf-8?B?a0hIdm1Mak9DS1g4c25ybzZHaUVnUVR3RERsaWpvY3czWTBMS0pKekp5aGEz?=
+ =?utf-8?B?dGM1T2pRa2dZSi9iOW1aVEl1dkxSYk54WWpPWWJ1dEU0aHgwRE85YldWQnM2?=
+ =?utf-8?B?bjR2SVFhbWZiQVpPbTBmejk4YXFBbU5QUGNBekI0NkY4dkZ3WFEwZDBLSkpn?=
+ =?utf-8?B?Rk5ObXBPREdEdW0yTlVGYzZFNkJYRWtXVXNBYnp5Q3NGQlM0YXp5M2xPQ2Zh?=
+ =?utf-8?B?cHA0YUJDL3l3bGNmR3dpTTNrSXJqdE9uWjdrNnV5SDNUb3l4K1JyMW1EbXJT?=
+ =?utf-8?B?ZXVBTnJJa3I2NGxaNnpBSnp1aE9WTzdBNnE5c2QybVdxTzNNcHFBMGhFZ3Rk?=
+ =?utf-8?B?TmZITnhCakozWnQ2djRoQjVza2wrYXlKSkVrelgzMi9JaGhFM2Evbndmb0xH?=
+ =?utf-8?B?T1JyQi9TWjZMd1c5ZlRIZUtyYU5qTUo4NUN0eEVZWmRnQUNyQWdFb0dMN2tD?=
+ =?utf-8?B?blR6a0llSTdnQmJhOFFkNmNqdGZSSEErV1BtMmlta0pUQ0NmZWY3N0pFZCtB?=
+ =?utf-8?B?aENQbzAyWFIxUmpuYzBFWVIxcW4yZW5XcUdwS0w2UWVZdDh0THJmcUZidUx3?=
+ =?utf-8?B?YzhpSFprUlpObzZCZGFBRlJjWUhiNi9wUHFDTGYzR3ZFMVd3YXhHRXRZaWhO?=
+ =?utf-8?B?Nnk2MlFFY21rRGRHUWxUL01vUE1rYkJkdUl3anN1TmFDVkZrRVVBSzdKTHJn?=
+ =?utf-8?B?c2RSREpLZGhoMG4xVUtyNWk5ekZtOFk0V29rb1phcXQ3WityeXA4RVp3MDN2?=
+ =?utf-8?B?VjRIU2RWUWRtVm8zdWRDSXJMSjFYZ0NzNDRtUis0THVjMUt3d0FPYkx1ems3?=
+ =?utf-8?B?d3B2OVJWb1lEVThOTDBBa0ErRWF4RWxTQVJrZENRODZlQ0ZRVk9leG96eEJa?=
+ =?utf-8?B?TDlNNFhPNWtMR1Z5SXVzVVJOSmVqTG40YnFTRGZ3aDNoNitUODE3V2hIZGg5?=
+ =?utf-8?B?alRGd3VmRHBRYzI3dy9pN2VNVklOcDhPTGZGVFdTNFRvU2dlWXA4YmVjUjdl?=
+ =?utf-8?B?K09vRUgxTDRtYzQyeGMzUXZHV2Uvc2lvNitHV3JaSUtidFU4L1pBWFdWclNY?=
+ =?utf-8?B?WklUS21jNm5LakpaVVRyTU5tWlVEcVFhcjgwek5UaVgvODBOOGtoYWcwOGxG?=
+ =?utf-8?B?WTB0L0YxMGlrais4M3NrUUxnQ3R1dTNHaCtpVHBNNDhyMmRJcVhmMVRYY2h4?=
+ =?utf-8?B?TDZYcnlrUGJMZHdwYitxMGdKZlZlc3A0Um5DWk5GZmIrUm53SUZ6TzRoL3Ix?=
+ =?utf-8?B?RlBURVVpamsrQlBDN1JEVjJxZ01wYVU3dkZGRnN0aUQycjUwYWVnL3FFYWJq?=
+ =?utf-8?B?cGxaY2pucjVyeWZ5ZXJoK1ZaUmVEQ0pnclhUM0haa0tsQkFKV2lOYU9VeUd4?=
+ =?utf-8?B?cHVGUFMzZVlWR3pQWlZqR0I4UE9SK3RCOSt0MCtaeVpqQm1BVGZybnJHOUFQ?=
+ =?utf-8?B?aG5QNThIYmQyQURWdlppMXVzNXZVRWQwR2JINSsyNXVkK0tRbEtVTTlRaXdF?=
+ =?utf-8?B?amtuNVl5enhSdzBpMm4zWWlXZXZVWW5nVTE4eG5oYTZSakp3WkhYTERMZEFh?=
+ =?utf-8?B?WXZCYkVPRGRmeEFURzZsMEtyOW0zOTRLVFlCeWdSaFNOdWJ4ZUJjUXZ2S2RN?=
+ =?utf-8?B?S0NOd09UOEs1azV4S2p6ckdNblV2Wk5CZTBCQTFqUFFicjBHQzlxSVp2SVpR?=
+ =?utf-8?B?UVVZTHlmUzZuSEdyZW1hL2FQdVRMdCtsMzN6cTArQXpuellCVjJwd25ldGcw?=
+ =?utf-8?B?VFpremF1S2FsOFcra1lTUHVBd01WalNBT01KOWNWVWlnRG02bzdJWm5obitJ?=
+ =?utf-8?B?b1A5ZllFTXArck1ZVzlxdVNTdTJBOVBmNGpsUkV3eW82dm9ZWW56TUh4OEpN?=
+ =?utf-8?B?b1dJZk9YR1N2MlhFS2lUM2VhUHZCK3dONVdVMVFhazR6OTZWV0Z4QT09?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ae91472f-993d-40bb-712d-08de9422eca5
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Apr 2026 21:24:45.4831 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: xIYEay9EQcQIL0OfKhsWq92f2cGLAtCQOJYSZs4FOs16NZGPLSjiqCWqjGPs2MZMnz8ngxu6G38HoEnB/qaibA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6242
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,58 +166,135 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm/xe/guc: Recommend GuC v70.60.0 for LNL, BMG, PTL (rev2)
-URL   : https://patchwork.freedesktop.org/series/164323/
-State : warning
 
-== Summary ==
+On 4/2/2026 1:59 AM, Matthew Brost wrote:
+> On Tue, Mar 31, 2026 at 05:20:34PM -0400, Joel Fernandes wrote:
+>> Add TLB (Translation Lookaside Buffer) flush support for GPU MMU.
+>>
+>> After modifying page table entries, the GPU's TLB must be invalidated
+>> to ensure the new mappings take effect. The Tlb struct provides flush
+>> functionality through BAR0 registers.
+>>
+>> The flush operation writes the page directory base address and triggers
+>> an invalidation, polling for completion with a 2 second timeout matching
+>> the Nouveau driver.
+>>
+>> Cc: Nikola Djukic <ndjukic@nvidia.com>
+>> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
+>> ---
+>>  drivers/gpu/nova-core/mm.rs     |  1 +
+>>  drivers/gpu/nova-core/mm/tlb.rs | 95 +++++++++++++++++++++++++++++++++
+>>  drivers/gpu/nova-core/regs.rs   | 42 +++++++++++++++
+>>  3 files changed, 138 insertions(+)
+>>  create mode 100644 drivers/gpu/nova-core/mm/tlb.rs
+>>
+>> diff --git a/drivers/gpu/nova-core/mm.rs b/drivers/gpu/nova-core/mm.rs
+>> index 8f3089a5fa88..cfe9cbe11d57 100644
+>> --- a/drivers/gpu/nova-core/mm.rs
+>> +++ b/drivers/gpu/nova-core/mm.rs
+>> @@ -5,6 +5,7 @@
+>>  #![expect(dead_code)]
+>>  
+>>  pub(crate) mod pramin;
+>> +pub(crate) mod tlb;
+>>  
+>>  use kernel::sizes::SZ_4K;
+>>  
+>> diff --git a/drivers/gpu/nova-core/mm/tlb.rs b/drivers/gpu/nova-core/mm/tlb.rs
+>> new file mode 100644
+>> index 000000000000..cd3cbcf4c739
+>> --- /dev/null
+>> +++ b/drivers/gpu/nova-core/mm/tlb.rs
+>> @@ -0,0 +1,95 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +
+>> +//! TLB (Translation Lookaside Buffer) flush support for GPU MMU.
+>> +//!
+>> +//! After modifying page table entries, the GPU's TLB must be flushed to
+>> +//! ensure the new mappings take effect. This module provides TLB flush
+>> +//! functionality for virtual memory managers.
+>> +//!
+>> +//! # Example
+>> +//!
+>> +//! ```ignore
+>> +//! use crate::mm::tlb::Tlb;
+>> +//!
+>> +//! fn page_table_update(tlb: &Tlb, pdb_addr: VramAddress) -> Result<()> {
+>> +//!     // ... modify page tables ...
+>> +//!
+>> +//!     // Flush TLB to make changes visible (polls for completion).
+>> +//!     tlb.flush(pdb_addr)?;
+>> +//!
+>> +//!     Ok(())
+>> +//! }
+>> +//! ```
+>> +
+>> +use kernel::{
+>> +    devres::Devres,
+>> +    io::poll::read_poll_timeout,
+>> +    io::Io,
+>> +    new_mutex,
+>> +    prelude::*,
+>> +    sync::{
+>> +        Arc,
+>> +        Mutex, //
+>> +    },
+>> +    time::Delta, //
+>> +};
+>> +
+>> +use crate::{
+>> +    driver::Bar0,
+>> +    mm::VramAddress,
+>> +    regs, //
+>> +};
+>> +
+>> +/// TLB manager for GPU translation buffer operations.
+>> +#[pin_data]
+>> +pub(crate) struct Tlb {
+>> +    bar: Arc<Devres<Bar0>>,
+>> +    /// TLB flush serialization lock: This lock is acquired during the
+>> +    /// DMA fence signalling critical path. It must NEVER be held across any
+>> +    /// reclaimable CPU memory allocations because the memory reclaim path can
+>> +    /// call `dma_fence_wait()`, which would deadlock with this lock held.
+>> +    #[pin]
+>> +    lock: Mutex<()>,
+>> +}
+>> +
+>> +impl Tlb {
+>> +    /// Create a new TLB manager.
+>> +    pub(super) fn new(bar: Arc<Devres<Bar0>>) -> impl PinInit<Self> {
+>> +        pin_init!(Self {
+>> +            bar,
+>> +            lock <- new_mutex!((), "tlb_flush"),
+>> +        })
+>> +    }
+>> +
+>> +    /// Flush the GPU TLB for a specific page directory base.
+>> +    ///
+>> +    /// This invalidates all TLB entries associated with the given PDB address.
+>> +    /// Must be called after modifying page table entries to ensure the GPU sees
+>> +    /// the updated mappings.
+>> +    pub(crate) fn flush(&self, pdb_addr: VramAddress) -> Result {
+> 
+> This landed on my list randomly, so I took a look.
+> 
+> Wouldn’t you want to virtualize the invalidation based on your device?
+> For example, what if you need to register interface changes on future hardware?
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-1f57ba1afceae32108bd24770069f764d940a0e4
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit f1807860e951831e20e50294c4cdecb62d7eb348
-Author: Julia Filipchuk <julia.filipchuk@intel.com>
-Date:   Mon Apr 6 14:17:31 2026 -0700
+Good point, for future hardware it indeed makes sense. I will do that.
+> Or, if you’re a VF, can you even do MMIO?
 
-    Reapply "drm/xe/nvlp: Define GuC firmware for NVL-P"
-    
-    This reverts commit ce673fc8386895a32d4f9584d1a38252ea7d1aef.
-    
-    Signed-off-by: Julia Filipchuk <julia.filipchuk@intel.com>
-+ /mt/dim checkpatch 7b7217a9e27a82ef10be22ab3a55ad5bbc849688 drm-intel
-285e5ad4d074 Revert "drm/xe/nvlp: Define GuC firmware for NVL-P"
-b7a112e5403f Revert "topic/for-xe-CI: drm/xe/cri: Define GuC firmware for CRI"
-a64f8fb0894a Revert "drm/xe/nvls: Define GuC firmware for NVL-S"
-47fbd9288ba9 drm/xe/guc: Recommend GuC v70.60.0 for BMG, LNL, PTL
-68c501e50769 Reapply "drm/xe/nvls: Define GuC firmware for NVL-S"
--:6: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id '24f261475da5fb747640e9cc801b336f5e623611', maybe rebased or not pulled?
-#6: 
-This reverts commit 24f261475da5fb747640e9cc801b336f5e623611.
+For VFs, TLB flush is typically done directly via VF's BAR0 MMIO. If there is
+VF-specific handling for any reason, that should probably be a different
+interface than a per-chip interface (more specifically, checking if Nova is
+booted on a VF).
 
-total: 0 errors, 1 warnings, 0 checks, 7 lines checked
-12306aa3f11e Reapply "topic/for-xe-CI: drm/xe/cri: Define GuC firmware for CRI"
--:7: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id '865c5dca8ec799e62aafeb3be27d87a37f8cf06e', maybe rebased or not pulled?
-#7: 
-This reverts commit 865c5dca8ec799e62aafeb3be27d87a37f8cf06e.
+thanks,
 
-total: 0 errors, 1 warnings, 0 checks, 7 lines checked
-f1807860e951 Reapply "drm/xe/nvlp: Define GuC firmware for NVL-P"
--:6: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id 'ce673fc8386895a32d4f9584d1a38252ea7d1aef', maybe rebased or not pulled?
-#6: 
-This reverts commit ce673fc8386895a32d4f9584d1a38252ea7d1aef.
-
-total: 0 errors, 1 warnings, 0 checks, 8 lines checked
-
+--
+Joel Fernandes
 
