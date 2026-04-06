@@ -4,157 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36E37FB516F
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Apr 2026 21:14:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2361BFB5166
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Apr 2026 21:18:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD5B210E2D3;
-	Mon,  6 Apr 2026 21:14:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC63510E2DA;
+	Mon,  6 Apr 2026 21:18:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="IVW0zj4J";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YZ3Uw5mo";
 	dkim-atps=neutral
-Received: from CH4PR04CU002.outbound.protection.outlook.com
- (mail-northcentralusazon11013069.outbound.protection.outlook.com
- [40.107.201.69])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C76F010E2C7;
- Mon,  6 Apr 2026 21:14:54 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kQA7GL1nylSqc+IgCdjQqWmJW++tEyH5P1JpsMsJzKm7wYAU7rM6KB7qkJ49/lakVUf+UYltnfnWUhippjjJDqXM5Z5NMTO1qxRoUEnHn5qn/uWJv+ovYj138x1TBkzONFh4y86MEitsoW3RqrBjYBvBKSyIVcrjcbOPjtHi4Awpl1SzCGIHN5I/NO2zHnUQuolqHczGlzDhDm3TXnE77S+2g/eACfmE7xQ+pl5fS/jPE1yur9ZpzTCi2qbz9RncGA9Wmznb3MfEXS189j511PrhIZ0J7YVZJkGGxL+CnIXuhjZyb7nXoQuP13ZDkFJWMJVopVLRIoWBWLymQnfEPg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rSwhykR12BFOsYFz1EKHYk5jgpSuh5qcnhmtOJkhKtY=;
- b=wvI2COR/ue/I+kepOYUp+4EmabTcYRLL1QprdWhoTOzN85Y7Agp5inCUDyKjpXk7jofuOwCp2tv+mXTBiit51btBtc+rir0M1snr/DMtwy+KjoLuNCcsSt7tVsa0zpZD1zsnnNWB9I1Tk+T42qsTrziRQTU4JMRiI8yJa6xKIQpQvkB3ooKBRAR7FcWtD9bDc3aulEMs1XEztI3Mybz8ruC988Bqbqaf3vhUyC0pqo1bmwVCn155qsr1ZzBSGQn1KpX5FeRAbvr1Ksv/gOb/xcwAkD/e+fBNxMXzCZq7cVQ/rrLvnLxN5ypKdTcB9hIJEs0eIbJJcEY41VTQ3BbpVw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rSwhykR12BFOsYFz1EKHYk5jgpSuh5qcnhmtOJkhKtY=;
- b=IVW0zj4JLWDcg5QE2otyQ+eVgIIVKvzsuxoD7aIDg1IEHyvv0dUkGkxA6gmk2ARuWsWpEeAeAiQXxWLFOyhXKuDi5HUi9fKpdlBgSkBQZ2b1SxOWivxpYgZBLMBq/EFBu/9Cqh0tmfCTBcY0k7+F83CE3NUb3nJ2zTioyPcYMIwqMnVgjn1yn9TyZVxbWFskSUol7UpKBEKUj48I5Xs7ZZj9D9aFapuFs/O4tAiz2DQyXvM3RHgJ21XT6V3lTCe/fB/vSpB+fOz0/tfl1XRiKtB3cUcLlcGRzAokuxBVTGp9POupmORoib2IczwLcY7FMUR4uc+YWOWzA8W/RKdV4Q==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
- SA1PR12MB7296.namprd12.prod.outlook.com (2603:10b6:806:2ba::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.20; Mon, 6 Apr
- 2026 21:14:50 +0000
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9769.014; Mon, 6 Apr 2026
- 21:14:50 +0000
-Message-ID: <7f1aa44b-0414-4bcb-a055-925613e73b5e@nvidia.com>
-Date: Mon, 6 Apr 2026 17:14:47 -0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 10/21] gpu: nova-core: mm: Add MMU v2 page table types
-To: Eliot Courtney <ecourtney@nvidia.com>, linux-kernel@vger.kernel.org
-Cc: Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
- Gary Guo <gary@garyguo.net>, Bjorn Roy Baron <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>, dri-devel@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, Nikola Djukic <ndjukic@nvidia.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
- Christian Koenig <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, John Hubbard <jhubbard@nvidia.com>,
- Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- Edwin Peer <epeer@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>,
- Andrea Righi <arighi@nvidia.com>, Andy Ritger <aritger@nvidia.com>,
- Zhi Wang <zhiw@nvidia.com>, Balbir Singh <balbirs@nvidia.com>,
- Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa
- <elle@weathered-steel.dev>, alexeyi@nvidia.com, joel@joelfernandes.org,
- linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-fbdev@vger.kernel.org
-References: <20260311004008.2208806-1-joelagnelf@nvidia.com>
- <20260331212048.2229260-1-joelagnelf@nvidia.com>
- <20260331212048.2229260-11-joelagnelf@nvidia.com>
- <DHIFGC4E879U.AXIIQKGRZQAF@nvidia.com>
-Content-Language: en-US
-From: Joel Fernandes <joelagnelf@nvidia.com>
-In-Reply-To: <DHIFGC4E879U.AXIIQKGRZQAF@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MN2PR06CA0017.namprd06.prod.outlook.com
- (2603:10b6:208:23d::22) To DS0PR12MB6486.namprd12.prod.outlook.com
- (2603:10b6:8:c5::21)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8388D10E2D8
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Apr 2026 21:18:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1775510308; x=1807046308;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=iAyh/aLC6HOIUrlVa3qWxAwZnd93xCnhMoJDKtem4Xc=;
+ b=YZ3Uw5mozdlbiqVT2gaqw7TAetqXG/q54rv3ikV0+wc0dVl9/ZdRWAYT
+ /7m0adTDDoMoGXo9yNMA1DQZU0hrDm2Y9IdSIPF2d7gA5eMI6MvOXsb0Z
+ Ll1m6TMLOpGp4lqqonRfzK768mxzos/nGImQ0VrA1rgrGPv3rS9cowqes
+ k7NgR4it/HCr+iQ0ho6oVB7oWTIYT9iYKAqov6B7yF0dFDX/Msboh6kFb
+ Xyfl7wJjwmaX4hMdY1EMGLuy8kSP4oFHxcVnvYNCLPTBuyi2Wg2o+zcLa
+ ByIlNt38QCXwDl9qWT86J4vzfHeHLA3kTHWjWUqP6bfNNDpLnInKp6AFq g==;
+X-CSE-ConnectionGUID: TWY34AZBQEGkrxAQgXV00A==
+X-CSE-MsgGUID: LcP9pw9mQZmve0QuAT36mg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11751"; a="76653340"
+X-IronPort-AV: E=Sophos;i="6.23,164,1770624000"; d="scan'208";a="76653340"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2026 14:18:28 -0700
+X-CSE-ConnectionGUID: dq7c+qwuRomcaSRiJ4+ZRA==
+X-CSE-MsgGUID: MPRMkEJWQLOHkzNxggeLiw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,164,1770624000"; d="scan'208";a="227888175"
+Received: from bfilipch-desk.jf.intel.com ([10.88.27.152])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2026 14:18:27 -0700
+From: Julia Filipchuk <julia.filipchuk@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Julia Filipchuk <julia.filipchuk@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH v2 0/7] drm/xe/guc: Recommend GuC v70.60.0 for LNL, BMG, PTL
+Date: Mon,  6 Apr 2026 14:17:24 -0700
+Message-ID: <20260406211759.817577-9-julia.filipchuk@intel.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|SA1PR12MB7296:EE_
-X-MS-Office365-Filtering-Correlation-Id: cd2d15aa-edf2-4d01-c35f-08de9421899c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|7416014|376014|366016|1800799024|18002099003|22082099003|56012099003;
-X-Microsoft-Antispam-Message-Info: xjb4HSnGkGOpena5+iZamnzzDRgRjh9/gv0PP/xU6fMBLJbatiSaLUnaKchqAKToycdBbFfL+ubWSq3LvNJGc75Gf4JKqjuRYHK0rBgEu85QUKREAOQj8c9ILCyXz/GI+OGdnhcgCXfCx/zHQirMCy5Yz7Q8+5Qplxlh+yocLRwwHnp2z4L3aFdRwNgsAjT7+Und3oLLbA8YUqCuNo1OTSs18QWRKET2ZPQ8+vePQ3jKzQVukRhRfYQGEpQf73UkLTy9nttlOG5lBUVzeGHqak68pm/JqZwhuidAvzGcoWOxO1Wz5Bs69RCO8/oUAEH1nd0mX4p+feHiKCtIuJGrcKpzVaxqqfcajhVsST0+owm7CgAfzb/sp0MaGJrzFz2y9BDFoyzs4OGH//J+3I5ONuHHWtROQ+Z+d9n347PSlSSB3x/m84R3mUlt5ILjhuOLgIoPEVFE8tVRZJcyf76IOQSEK8i0GT8XoRN7UXnt3LSOBA/HaEv3jyyK8G6h31eHLv5XgGFKc1Bt5NakY6JN57NpJqFhrlffk+igY+V95nenIFdA5QV+NMIFUMa682pMzmqUmWsYeA3GWGQHG8ZpKUo6psz3uhhTgW3gxYNnbeQralLaWKy32Anb+BEdwXKxec2g9Piw3nkm+q52YTRywSXCF3qUC2xKe2WX5HZ1esGscMobDHBMO6vxaEF55F4AGW0hf2Uv+tkO5s/J9oILlm+5E6hSUTUsATcBMqjKnbI=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(7416014)(376014)(366016)(1800799024)(18002099003)(22082099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WnRpcVVWNjN0NFRoOEtZU2VyN25KYTlvRHNXL24rc3pVMmRRc1p1dldYNzg0?=
- =?utf-8?B?SlQ0WGdZR2RLL3hFMmlPcWJQTnFpWkhqYTZKNGJxOThGUFJ0cTdzcUxVcEU5?=
- =?utf-8?B?bzlJRWxMbk0wdVNVMUtFM2dXUE1VZlZsNnIyT0g4VTArYkQvZDNYZ3NmRE83?=
- =?utf-8?B?T3J2UElWMFo4QzBobnJVVjdvbHJsazh4YjJzZ2hLRng2aFNQT1JXTWwrVGUy?=
- =?utf-8?B?OWhLWmFldEhkTEF1dWxNa2ZJRFdOY3gremx5S2l4Q2NHamMzN0hremc3T2lU?=
- =?utf-8?B?RzFheFpMQlczcjlXZlp0V2duQzc5SldTMGZtTUpiOEVqY21zYU5uV09sMEVo?=
- =?utf-8?B?N0twckpvZW1QR0FhRTAvTjg2cS9rVTMvaUJybHROTHFVYUJFUitmK1QxSm1p?=
- =?utf-8?B?ckcycVFRUGIweDB0bEh6OXNjZkJMMmxxWlF2c2RBbzBtR2l4UERORTlkSi96?=
- =?utf-8?B?N0J0eGlKRlI4MVZJVXJHVTdGa0ZVck5QeTJWUE4zdkcrWmVKcHpGODJVM1lT?=
- =?utf-8?B?OC9kdGpJTG51V0V4QisrdmZCV2JBSTM1SDNEbUdWbVBJYXpqNys1Y0xweFZW?=
- =?utf-8?B?b1Q2SDlZUzVKOGRCNXAwdFYzMkM3azlWcCtXa09hOWNaU1cydUp2Q3lZaWxI?=
- =?utf-8?B?ZFY1WVJoUXdNR2F4NEFmYmQrdFVTV1J1d3NLckRxVlc3YTlzbER2K201MWNQ?=
- =?utf-8?B?RnVoSVNIbHRlcHRaanJ1WHZld3VhKzN3N1VUckdPTldRYk9HREg3dFZRbUNT?=
- =?utf-8?B?bC9WZTQrNWhqUFhOaU9CU0ZTZ1IzeE1uWnNGWVIyUWt1N29nZ21HYnl3K0hh?=
- =?utf-8?B?UHI4OEFjZTU2RFF6NndCMDRRNlE0OUVUQlZrQmlZQUZ0NW85emdGeHp0UXJk?=
- =?utf-8?B?V201dUFXc1ArSUxRVytHdHNHOHlUNHgrMjAzczR2YUhkUDBUM2t0S0YvYmxP?=
- =?utf-8?B?RjlyZEhJd1dOUDVmMVFvR2h1M0lKL0hVUm5sWFJFL2ZMZVlxRnFPdHVVUEEw?=
- =?utf-8?B?V2FYQUl1dzYwNFQ2b3drRWtWRC9sakFKVVNPc1o1NGsyR0hFQnRDWW5XRFJD?=
- =?utf-8?B?T3lDaGlPZkJDRHpTQzFyK0FQWDQvZFUwdlJQQXBSSUlPWndTUXRSVkp3VVlM?=
- =?utf-8?B?VjduWGRUNUZTVjVWaWhheEV5M0FNWGZqdmo2a2tMRGFSZ0FwRHAvNW1JRXp5?=
- =?utf-8?B?WTBHMXFzU2ZjQytac2U1MVNjZXE1U1RhT2VUaFdDbjdsQXF5VDc5ZTFJcHlL?=
- =?utf-8?B?UE9RSEgzK1Jxc2ZlRk1oa3pMeHhqZUk2b0RTNWJyQjZueTNPdWVrR01HRGNx?=
- =?utf-8?B?MXFsMm9UQ2U5NjZ4cTJSdU4vM2tMUEEzdjE1amZvZExRYm5BZEdKeDBTdXZK?=
- =?utf-8?B?ZzFBUEJERjlUMmpMclBYTXJERXZkQWdobDh5MWxpc0FzM2JRSmZQZ29nYUZP?=
- =?utf-8?B?SEhpZ0VPbytpemZwN1FZTHZQTjl2SC9UVk5lWUp2c25ER0NOSTA2TE5MUDlE?=
- =?utf-8?B?bFFVUkRrcnk2MC82cnI5R0Fub1AzblZXVjY3UFZ1aXVQVklvWlRWKzJSOE1L?=
- =?utf-8?B?YU9CWkZkTTRDdGQ5UUdKNi9hT3hoNyt2ZVVPNko1WmttQkcrMzhKaTVhalNM?=
- =?utf-8?B?Ly9QL3UyWWRQbTRObEpVVGVDWVYwSjlXbEJEVno2Z1BkZUliTklFVTRGZmxp?=
- =?utf-8?B?RFVrVytJQWVLcUlTVm1KdWlESnFieWd0K0dKTit5QUhmaVlYck1JTHlzNFgr?=
- =?utf-8?B?ZU1mVEVBRkxaaGxhMTAxelFoWTQyaG1GM3QyNDdBUDNlUVJ2bVJJTWpxVXFN?=
- =?utf-8?B?OHNlYjA2SGluTDA5MElrdmpDRWtQejhqdWNtSElnZmNnRDhaM1hwTU00K1NR?=
- =?utf-8?B?YWJELzVxTGJZeVg5eXNSUndINFdxZGdMZ081OXN4MVNLbGkrdGZISTl1SEw4?=
- =?utf-8?B?M211czFtcittVkFkaTMzdmZKQnBtUVU3VkNTWnNvOWxnekpUOFNiYzNYdWpO?=
- =?utf-8?B?VVlkOEhMTjhjMTlWNnRuUDFGVnhWRnhSSXBrUFRRWmtyb2NXMWY5ejk1M3Zn?=
- =?utf-8?B?TDQzRGN1bXVQNDBwNXF2NGMxc1ZBSDF1L1BQVFViWVZONEswaklFUWZGdWNB?=
- =?utf-8?B?WXF4VWRoOGVyeFpuZCtoSFd2QjEwc1RYSjRtcjZhZGFHZTd5OSs0M1BESHFE?=
- =?utf-8?B?bU9JeFlCN0hkRks5Qzl1MG9PZnRiVTNkUFBUbm0rQm12U0ExV2oxdnlYbVFp?=
- =?utf-8?B?cGN2NFZMNEtYNUxYTXRFcEl4Tk5zNTlPamlpZDBIU0U0R0JWbEVNQnFJcUJl?=
- =?utf-8?B?ZFdaMnVtQWtFRCtiV2dmZUlBV0ZKZ2RnZUJZSWQwbzE1UGhhT0V0QT09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cd2d15aa-edf2-4d01-c35f-08de9421899c
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Apr 2026 21:14:49.8995 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: J+q+0hU5YWen+NXDw75NIRyAHojwFqxNo25QPNmEpc75ijPP2pUM1rhx6qAzLaI2D+MngPYaXH2MOApk0wz61Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7296
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -169,41 +66,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Recommend newer GuC firmware for LNL, BMG, PTL. UAPI version: 1.31.0
 
+Update NVL-S, CRI to used matching GuC version v70.60.0 (Only applies
+to xe-for-ci topic branch).
 
-On 4/2/2026 1:41 AM, Eliot Courtney wrote:
-> On Wed Apr 1, 2026 at 6:20 AM JST, Joel Fernandes wrote:
->> Add page table entry and directory structures for MMU version 2
->> used by Turing/Ampere/Ada GPUs.
->>
->> Cc: Nikola Djukic <ndjukic@nvidia.com>
->> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
->> ---
->>  drivers/gpu/nova-core/mm/pagetable.rs      |   2 +
->>  drivers/gpu/nova-core/mm/pagetable/ver2.rs | 232 +++++++++++++++++++++
->>  2 files changed, 234 insertions(+)
->>  create mode 100644 drivers/gpu/nova-core/mm/pagetable/ver2.rs
->>
->> diff --git a/drivers/gpu/nova-core/mm/pagetable.rs b/drivers/gpu/nova-core/mm/pagetable.rs
->> index 50b76d5e5aaf..38d88f8f09a9 100644
->> --- a/drivers/gpu/nova-core/mm/pagetable.rs
->> +++ b/drivers/gpu/nova-core/mm/pagetable.rs
->> @@ -8,6 +8,8 @@
->>  
->>  #![expect(dead_code)]
->>  
->> +pub(crate) mod ver2;
->> +
-> 
-> This looks like it has more visibility than necessary. And it seems
-> incorrect for anyone in the crate to care about MMU version details.
-> This can probably be just 'mod ver2'. There are a lot of other types /
-> functions in this series that could have tighter visibility. Could you
-> go through and see if you can reduce a bunch to private or pub(super)?
-> 
+Platforms NVL-S, CRI, NVL-P are not merged to upstream at present. The
+GuC definitions for those only exist in the for-ci topic branches
+drm-xe:topic/xe-for-ci and drm-intel:topic/core-for-ci. This patch set
+reverts those patches, updates the recommended GuC versions for fully
+upstream platforms, then re-adds the CI only platforms definitions.
 
-Yes, indeed. I am tightening it now, there are several. Thanks!
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
---
-Joel Fernandes
+v2: Added RB for main patch. (Daniele)
+    Update xe-for-ci platforms NVL-S, CRI to use v60 as well.
+
+Julia INTEL (7):
+  Revert "drm/xe/nvlp: Define GuC firmware for NVL-P"
+  Revert "topic/for-xe-CI: drm/xe/cri: Define GuC firmware for CRI"
+  Revert "drm/xe/nvls: Define GuC firmware for NVL-S"
+  drm/xe/guc: Recommend GuC v70.60.0 for BMG, LNL, PTL
+  Reapply "drm/xe/nvls: Define GuC firmware for NVL-S"
+  Reapply "topic/for-xe-CI: drm/xe/cri: Define GuC firmware for CRI"
+  Reapply "drm/xe/nvlp: Define GuC firmware for NVL-P"
+
+ drivers/gpu/drm/xe/xe_uc_fw.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+-- 
+2.51.0
 
