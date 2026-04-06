@@ -4,146 +4,161 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34040FB5168
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Apr 2026 21:02:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 377A4FB5168
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Apr 2026 21:02:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB09E10E2DC;
-	Mon,  6 Apr 2026 21:01:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DAB0010E2E0;
+	Mon,  6 Apr 2026 21:02:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TcORR8mK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B6Z5d64I";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 131F710E2DC
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Apr 2026 21:01:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45D5C10E2DC;
+ Mon,  6 Apr 2026 21:02:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775509318; x=1807045318;
+ t=1775509373; x=1807045373;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=WlFaotsKS8ASCnVx2Ysmc98WTfnNmFV501DbQEoNIno=;
- b=TcORR8mKVeub0jhacaH9YX7pW7ppl4I5TJBCFAyo4bk6Pgz4motz6x+F
- ek5cWLj0CS8PP6ZQYVLa9N2pHgzCs7BqG3PqgmvojhIg1Ifd79lr6gMal
- NGnYE/l9nWS0fzo3s2GlAth+jP1g6BoiJMIVJE/LUxnwuGhCT43LPE0Fq
- v7t68nLEXn6158ZW1z3L/2Igr/IRbGLbgrEZulVq6vCNVbpxhzheSvLjh
- 4EUSZeaE1bKZabILfLGHxTPJa6gHNAqrCAy7k8ineFmJ6pljALzzwd34F
- UGENopj3mQRoObHtHQyi9B4bWHR+OoyAxJinYAzQOX6ABDejehmrkQNtC A==;
-X-CSE-ConnectionGUID: uh8Y380hSbGc1Rb8PBtyjA==
-X-CSE-MsgGUID: p1h/ks5ASqSqG6+n8tNXMg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11751"; a="87088779"
-X-IronPort-AV: E=Sophos;i="6.23,164,1770624000"; d="scan'208";a="87088779"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2026 14:01:57 -0700
-X-CSE-ConnectionGUID: puOucNdcQ4mVgBg+9B8HMQ==
-X-CSE-MsgGUID: M7rXuO8yR2+Kg5svT7KpUw==
+ bh=6AyedZLyd3ORvxm65IQpl3WpLU9WUfQ4eeikPsDdZWA=;
+ b=B6Z5d64IdChoCVc+21JbCP7XPw/EMJfvImXKmzTRpF0nXgh+X6uo5pRb
+ 4yZb6bLe53fsOtW7cdIlOxDYk8jEhEdfT/3LVnJsYf1AlXUi8MB4TjvIf
+ F1yTXFJ/+wal2T0rBX1sWXkyK64whuijaDbLIQEdHj4lW+eHcDUeZHtf0
+ cc28LNU8fjSG+l+gWY0ImVsfUc/ZogNIm3zFPQ2iqLoy5wf+rFcvnFPXH
+ vTPNgu4XdaVVJdCgGUI8r2Zsfm+vZP9hyQ6W4HUK4XN4hkrvzpaUSN82n
+ T4gpM2Lm/WM7A6GHonYXe/2nNBQQj0h4J/s+dW4gEKjSiC0SrffbTblGr Q==;
+X-CSE-ConnectionGUID: 1039jg5wSziK0D+6GS4tBQ==
+X-CSE-MsgGUID: fM87r8feRpWzseVlu0A1xQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11751"; a="76360949"
+X-IronPort-AV: E=Sophos;i="6.23,164,1770624000"; d="scan'208";a="76360949"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2026 14:02:53 -0700
+X-CSE-ConnectionGUID: 9u1ildGTQXmsaXXdPeAZpw==
+X-CSE-MsgGUID: sR1LbX+ST7ivP5ve/vIRXg==
 X-ExtLoop1: 1
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2026 14:01:57 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.23,164,1770624000"; d="scan'208";a="227911462"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2026 14:02:52 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 6 Apr 2026 14:01:57 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.2.2562.37; Mon, 6 Apr 2026 14:02:51 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 6 Apr 2026 14:01:57 -0700
-Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.1) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Mon, 6 Apr 2026 14:02:51 -0700
+Received: from BN8PR05CU002.outbound.protection.outlook.com (52.101.57.7) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 6 Apr 2026 14:01:56 -0700
+ 15.2.2562.37; Mon, 6 Apr 2026 14:02:50 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mC2ZtRgR8oZ8AqpkbghIaTV6N0/H3iMEXfGQDgxHmO4lULiYkPVtWjqdE/KXzx1X41FQ1sNZ1QeSR0wpMjdED1gQ5uD3iDPV/F7OTcrvBSq0dE8sjJe7mRVoL171nrmetG8LYLFINvfpluHsg9SNFx+jQCcOOgDVhBc5ObwhH8TC6l6McDKkj0v8CM/D1kzdNz4p6Cw/mjNB1j6dxIJN+f1Iwu6JG/j9vVBLDI/0J6pT/S5j1Hu2UpqdGSM7XyT+Zh34WHy4C2WvDNyDKOFfJLGmDzOefx+Lv1hej26eHRqqM2CaECd+Ml/SrrZ1MEbyIhrxoDE2KhWZ3E2ACh2FQw==
+ b=BeaeiRI8XjGGMSyiE0cLZlfKz8f8tdnsNwoy6xqnCgCAHTBpvCH5gNBXdNcDIElCSU32VUWmxoNDAGqSw4Bn/lCdi3cRuIuRwin88sp1oyDUFnk/1lg23wgRIm6q321up8VG0Jr0QgYrMQ4F3JkzfNqZ5BM9QsN39wxHugl0uG9URmoQroFwGHrl3jh/el9vfzn73uurpKMuE0P2NpDYR1MHXC6jyFTGse5P4fpINyCjrgMSSf46JWwvdFeQc+GyuizuK38skyWYYc7h4mot0L16/sQH5x33Kuvz4QIlZjR7RgkcVeix0N9N6B9Avwli2BZiuw5o2c5Ec4o0dcZQRw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kXJjYEdaYutE5Wg8Djt4HxuNVtb6GxW5eMrGW/U1YPY=;
- b=iF/dJKQ6IxSleUJY+jYcbeiYCzWnNAUR6Nzw0GXoRrpqMqSbGlsEOatImL0a8ZkcTu1B6fatEEkW9t6IrmaConsUKvAu/B9QDK3iaFRYitm6Zol7e38fRmfd9bZyKVcEH6It1n7ACNtVVcdlqx/q0i55SDzUABZV72FN69zgUKtnI9E5rDHddC39u6GHWeU4aDI3NPngnfJOl414irdO7wFMOCIzx5S5rD4UTP1pyzlJFsjxvTMMEMIMhxrAM4NmMpUMtg/WdOyH3vW5vqUiecQcYBME+JFLdKfzOWYYteACx/QZKnmy6eJ3iwR4UwbYvXZvEkXKvZQiSvmD9Fywrw==
+ bh=mTlma43JEGRwfdjC9cKmQOCFaD4gwytN2cQuLbgPXAk=;
+ b=J9ZL/vNWQtz4iaL0cfc3mHRAikoDKnd4HFR143So7YbyLsVHJFIIbSWa+71qkDx8VYFOuIvup6niMzH8CkEWE78JK5VR7Vy4PfspWMn//x7VzhJ8X72H/4L0fYA/v5pN22Jq2T3F8nzie3dpmd3M/M/F5V3p5lJrMNA5qMeA9aHePbdsNWTU8xyVACc18zKmebCIia8fiieNqvqVn8WXbiKf/eAJanw8jgpI+cA6y77/gcaFQz5waJQYwJGZ2HsRY4/2jGm7+rgacKuEzfvFqf8gXA0YislUeGibzRYCpeN7MY0B+qMMW7UQmIdxHqLFoZJMibDbuXuKB+89a2iC8w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by SA1PR11MB8594.namprd11.prod.outlook.com (2603:10b6:806:3b1::21) with
- Microsoft SMTP Server (version=TLS1_2,
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
+ by PH0PR11MB5032.namprd11.prod.outlook.com (2603:10b6:510:3a::21)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.18; Mon, 6 Apr
- 2026 21:01:54 +0000
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e]) by DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e%7]) with mapi id 15.20.9769.018; Mon, 6 Apr 2026
- 21:01:54 +0000
-Date: Mon, 6 Apr 2026 14:01:51 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: <fei.yang@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Matthew Brost <matthew.brost@intel.com>, 
- Stuart Summers <stuart.summers@intel.com>
-Subject: Re: [PATCH] drm/xe: Wait for HW clearance before issuing the next
- TLB inval.
-Message-ID: <20260406210151.GR2729713@mdroper-desk1.amr.corp.intel.com>
-References: <20260404062250.3435419-1-fei.yang@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
+ 2026 21:02:48 +0000
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::53c9:f6c2:ffa5:3cb5]) by BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::53c9:f6c2:ffa5:3cb5%7]) with mapi id 15.20.9769.016; Mon, 6 Apr 2026
+ 21:02:48 +0000
+Date: Mon, 6 Apr 2026 14:02:44 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Daniel Colascione <dancol@dancol.org>
+CC: <dri-devel@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>, <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC PATCH] Limit reclaim to avoid TTM desktop stutter under mem
+ pressure
+Message-ID: <adQfdL0zV7SOo+al@gsse-cloud1.jf.intel.com>
+References: <87341fsa85.fsf@dancol.org>
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260404062250.3435419-1-fei.yang@intel.com>
-X-ClientProxiedBy: BYAPR02CA0041.namprd02.prod.outlook.com
- (2603:10b6:a03:54::18) To DS0PR11MB8182.namprd11.prod.outlook.com
- (2603:10b6:8:163::17)
+In-Reply-To: <87341fsa85.fsf@dancol.org>
+X-ClientProxiedBy: SJ0PR05CA0064.namprd05.prod.outlook.com
+ (2603:10b6:a03:332::9) To BL3PR11MB6508.namprd11.prod.outlook.com
+ (2603:10b6:208:38f::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|SA1PR11MB8594:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1b2f8591-30d9-4f63-3c0e-08de941fbb69
+X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|PH0PR11MB5032:EE_
+X-MS-Office365-Filtering-Correlation-Id: c95b91b2-711f-4c72-fb26-08de941fdb74
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|56012099003|22082099003|18002099003; 
-X-Microsoft-Antispam-Message-Info: FKkDAfoYdEuZU95/QLOecKWZjK1Fk8MaR3HyHDKegCLARzYP6Mc39OenWKoVcy5DGJJIosDZlMCGs2H3ywuz4vAYj0E+8Vp9VyoOP34ERd+tD20ZUVwdgMS4lkmvfXzFGNhn2vAia+7F2BUxVyIgBp2sPRnlx1f0g9UXAdOL7qjw27S4JVXRMgHu8TjErZowbCqsLvDIRQyKUBD+A1BetSw0Io2/LUHxEtEAyj7Z4YiSqP5I/xE7Ym/BaCMZI5/fqM2j3v3WfWoU3xRG0fGJfnxJVBxirT0PS3G0EGNPk+mXasaKUSINmDbGThuPWylSuBJDwd3D0cWlefwja+Ch66ThCvdDL4qStE3cFQ+nLjwTo2IxBi59zBPGWpSzkCC+cCjbiu5KnCYVjSwzxP3R3+HvqJjbP24oYzi0u8jvcosDO+Uj6lWY3XDZLfFpfUNLAd6nOsWwJWINUu5Hwo2IFusQICleSm+xUSxknKkrnzMMYJX7WpHuCsE0L03Ri/lFzJJtrWpB2XXEnv8sh00qe7iHT/NcPSmAk3RIdN8KtVZXLchi2xrh44bQt634URvZDnVmZYNpf09AIInIuewHBJVNK6/k9lGy6KZsqcZbzpqwBXnj5QPg2WQf7LkLwwnUhkXVNos7+Vmc/TVpuL+yJzk5svkGAe0+BLbsizQ2BHXz1jtf7LICcyJalmbHqZn5TjL1KeuTX/bMM5odSFF5SGzGoAPB+bPvQq+E+T/XSmk=
+ ARA:13230040|1800799024|376014|7416014|366016|56012099003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: pPe5oRSsY3vLEY8JRuSlO0ewRQSHnftMlf5bdKa+mzVDLr3iSUQkCuwHXJNFJ849JnBQsKS2Ud/j9vfBrkN9QZQ/pBrYdmZUJX0CAKYDlDMlBhbUjZV0T3jR86PJOC7xQchqYSPFE8h7jKcV4BEl6Ij/DYCXgJCpVIO0GFj876CtqnxFrReQyWglt45dsM+MlVbKkTViPn6wjf8X+DCIG4Vw3yshJA7VzMHj9h2DAzOmSkiAY/529gGk1C+svLL/nvYjh8flPWM4U8+lWuY4jQob5BaTmSc3Mk9MbQAAzJwJpbSCnx0bWSNhYcQMkApCJMi294cqdbNnsioFSIPU2AaCAS2TdHfGFaGVlopkQzJBgqm3I+1iDTzc4JAJrrylPyGEKJwplyhgoo8z62/oU8EucptXQvhisU+J3uWTAPd958LPdZ+QvATSis4+et0JMZog+tk32sPYhHGEN3h90GQI80W+C1UJgr+0t0aifiT/jfdIG7XG+f73uEWcjlxI3SW3R0kWTY8Oq2ax8vGJsLwz/Mw/U9psvIJ+dvcLPs7HL1Buav9QDBcLskIvjbwU5ZgNfLm0KJplFz4nJBOXLJqYDZhRH84wq3dMkpXbHGcJ4CB1egHCPi6yUIK9GzST/q/4EwZBYk+4diZI40vF7dLJQpwo1/rPBrXLvl17voG9oOw/ak5Ru+upyKHfAbZN
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(56012099003)(22082099003)(18002099003);
+ IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(7416014)(366016)(56012099003)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?WN2Qt08LlIeuwNOEKCG/Fe6tnV0bpelJO3OeTUVDWHOGKe6xv4+uk7W0xr?=
- =?iso-8859-1?Q?yxwK6rLb2fnygiIL0TvK5VjspyliEpK28AePghCrYuLHEGojp5UfNNFj4y?=
- =?iso-8859-1?Q?wCL/cwK9p8BlMHRjMCqW/msB8tAvlensLoNB11xbJh6VF8ZvasPM4hdazf?=
- =?iso-8859-1?Q?6/iGKc7iPvp1Mf45busOKOJssOoh9IqCusoqKb1VVlx1zvsFTxSt7jKkRU?=
- =?iso-8859-1?Q?jIY3PxwuIaxBIGdFSCayoDWesMbxQg0CMexqIPU1OQ/acyxwFwckav5ORe?=
- =?iso-8859-1?Q?VBjA8F5L+U38J72Sy481Pp1Rd3DsS8xOcX28aHNfog4mMM48CiQCvQWhiI?=
- =?iso-8859-1?Q?bxymzNPnjl5LmWPXYAVSnerwXOWVgrZsmz/r6XOYecAAo+OXwqO2iGj8MB?=
- =?iso-8859-1?Q?Gp/2NHQ4cRYJG/tdaV9aB6ACajFGwGoh4MlbXzQrkyhV2X/0WOufrTzx7n?=
- =?iso-8859-1?Q?5mMsxMMJDrf9w62kYVYqbulyRrONF1ZBpRR6lXkdE2ZHghXuMFb72LJcW8?=
- =?iso-8859-1?Q?7nmtZeT+xb8X7dkZlVK9vGgq8zRVdk8GrI/1LVNbvaB7lChvUw7mifYkeu?=
- =?iso-8859-1?Q?Bds6DWN4LWN4Wvbap/u0haYAjK/XPToAU1nrJfGjEJDg/hYdnHLtv+T4wa?=
- =?iso-8859-1?Q?RW8sK4anrjAJiSk+ASuPpD1ZA/q56aHQVRUibG/WzF1MpcM+TGkKNxn2JU?=
- =?iso-8859-1?Q?jFa447xxi1MhRFm0tBQDLs6JSkUxV05JV+gCcisECxTxlBRthYPAiUMwi+?=
- =?iso-8859-1?Q?FJj339gUbxAb8d09q4eiTTdKJlD/7FST3vyhv8yJh3rcwhaVxI7AD7mnJe?=
- =?iso-8859-1?Q?wAUlo0zFnn7FMYPFf+Kj35upmSM7VgdrIbfTxT3FdACDKu+yaGUsPKllFb?=
- =?iso-8859-1?Q?umlONz5krIKAKnJ9KQWfsUlOTPm7+XC5O0YcK+0XzN2q9qLY4mhtgHb18z?=
- =?iso-8859-1?Q?Xdx/i8t/yEt6qi1nyyt4fxsd3l4aghgcGZZ/CWC/AsLCxMSlzf4HjVXqGJ?=
- =?iso-8859-1?Q?z/H0kgDUN2MxY78FYmZxzNQnw3N2eMXF8MkyI8iy1k8hjQmSFDnUAzMnIi?=
- =?iso-8859-1?Q?ItUZp9szjS9L39pHnQKZDUmoTtba6WM8NjrN/YW7dBhuCiikFLq/lmypu6?=
- =?iso-8859-1?Q?NwGb0jAhkY1VzBreU6MGuegZ3x30GozmdPGeIq2ebvToBHFDkjoASgSqMU?=
- =?iso-8859-1?Q?VN4aUO1ZW4H0FlEXhAaZ1GoRGFHPvfOBKFggfftWwNCeggBfyd7nXdw2QT?=
- =?iso-8859-1?Q?CVWG5+YBirBdzwu5lhY3urc/NCOZioHwrkMsGGjte0D1537nalZ9heJHUK?=
- =?iso-8859-1?Q?5++WHXkoNWqx43lh4BPBqYCe9Dvxxv4DTGryeB65h8ZL+KVjIxPZSACkPp?=
- =?iso-8859-1?Q?HhKqq+xBI+NrKE9+l+rvto3zbXJQfW9k6sIVsfz6Xyl95gLoudSoA1YLoJ?=
- =?iso-8859-1?Q?5kSnYMq1Zyu9oFFdiZRrTLiW6mKA36lpuDm5zWtZHczy+nFI5X6ktsVnIC?=
- =?iso-8859-1?Q?o4x1WclEnHtHXNTgwQiilic/uwqQUAGSTcfTyRldojyFbuFuNuDKIuaRuZ?=
- =?iso-8859-1?Q?jkmhcNIm5KTd6lRkACQ+ku90/R5E3hrgad9DKrYyJrAqxiFhsm4ArkwzSR?=
- =?iso-8859-1?Q?fkRp5a7DafxsYzUwINBBN5t7h3e4QE+kvgQXLKd8Db1vkOxP1thuTBp49/?=
- =?iso-8859-1?Q?Yib0qBjHFItKtrpGR2Pvb/4oa2cR97LSPCEtxBE4uTHaEae+jY7JDXkgFK?=
- =?iso-8859-1?Q?HDQlIDQtRu+0tKArh8KeUrAKTGhvGtJWFl4C12v10zmJQ+2ATwsid/13jq?=
- =?iso-8859-1?Q?CfLcFKbIz87HDR41hHwwQP5716ZYxR8=3D?=
-X-Exchange-RoutingPolicyChecked: AsAMGu+vFk32B3zmtB2aNaSwiZ3hZLaZKYcx7L+8pakrE48pofBhwtQ9ppZC/wKvGJ81ww2rQV4aCN5epzQEaDWyDxNjwEIpHUAwPWy1x7Rp2JQKFO2MAI1Oj2yi8QtLkn4Daa+TXL1gCIimMs6LhAaTd2tD2D/DDxPRlP1Xtp2ZyZ97byJeHU+UJRdz2BDlWv4mwtFiKrA++X4IxROJeSBlDqY959zdwWyISzndhoxMeyar9JmwZUupHl/C/4adskTQQGYOdt6Jx0nTy3W7hoXYONB6G40iWkWPZIa2b91UR4h6k8fFyu68mScMkUUVJvpu7jToFZ36+1ax5mE1pw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1b2f8591-30d9-4f63-3c0e-08de941fbb69
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?d0hBOWdabGpVY0VoT0N1KzNpMmdWYm11T0VGYW9DWFl1UngweHBhaEZrVXRi?=
+ =?utf-8?B?Tm9tQ1FDNHRSaUZsMXYzNGZUYWZSMkI2dExuZ0p5c1BFRmgrdzVLNUw3cWZH?=
+ =?utf-8?B?U0pSM1dlMU1wUkVrZHVJU01MOFJXV1RObHMrWWR3Y3VHb0Y3N3FzVU41dnhQ?=
+ =?utf-8?B?Wm9oL0VSVVNVZFdoMU5kbHErTEhzK3V5RWxsV2NOWEJ6aXZ1RExKVExsQkxw?=
+ =?utf-8?B?bzJUS1lQMU8vZGp6VjRYZm01QzhvakJsMFdTN09XNkh0QkVpbHh0OVJ0a3FR?=
+ =?utf-8?B?VlZwdG5nVHJLU2VqWUt1bm50cHBKOUJ6N1lqMDVxSy8rUHhCYngwRlM0TFd5?=
+ =?utf-8?B?bXJNN25kQUIzSHZQTzV6YWRRUmlTcVNZZEhTdFZiOUMvbVZYemlZR09UaWw0?=
+ =?utf-8?B?WkN4eTZ6RWlQM3drOXlrS1o3YTM3RXU4N2FVUjd1ZE1jZlNpWFdKeXBjeXdo?=
+ =?utf-8?B?TGdzOFdqZDdyNXBUK0syRTBDa1lVSnZhdWpJeWNFN0t4N2pwVGpLM1R6RjFm?=
+ =?utf-8?B?bVdmNVkrU1dEN04yRWlmc2U5Rmt1QUJBRTBueHNqT3dISUs4UzBUZ2ROTFVS?=
+ =?utf-8?B?bTIvVmwrU0FMcW11MXNMb1hKOG4xWVdCcTA3RENNRkExNVIzb1duZ3JvRHFJ?=
+ =?utf-8?B?Rk00MkxrWEVWVmtVdm1JWGxLMGVCUHBERi80OE5TMUpMQW5qN3RiUHE4eUNJ?=
+ =?utf-8?B?ODJLRU01NkZ4aXZpV0xHT00rcnpqU3hlVTRLdnhDcU5JTEptUWhGMmQzY2Q1?=
+ =?utf-8?B?M0FiVUcyVnduOVpkeHhqZHJWb2JmVUdYU3ZEQzYxbFBTMjVOTVJDMU1QSVY4?=
+ =?utf-8?B?WUtFRFZBYkxFaVBkWHJzRlozOFg2T2I2azBFOThZd0pZVDJ1ZWdtZy9wcEhS?=
+ =?utf-8?B?WnRsMUNCMFgvdU5YSXcveGY2WVZrN1dTeGhSbVBEV2N1c05qbG5NUGJTZUtt?=
+ =?utf-8?B?NC9KMzdjQzdwbWZHTFFkN0NBRFMwcXhCcVYzY1FyL3NmRHBvS3Z4V0h6bkdy?=
+ =?utf-8?B?cEpPbWUyZVNWKzhjY3owVDRtQms5R1FEV0F4Qy95S2tBV3dDMVE3MVIvMmxJ?=
+ =?utf-8?B?MFFsU2x1TXFKaVRVV3dVMmYxYzlyNFdZeDRuWkJFL2hLQWE0ZGx1WWNhRm0z?=
+ =?utf-8?B?K2FmWkpnQ3N1WXkxczlmYjBxdDU0ekN2MmFDVVNKNFJKdlVmWlV1WWQyN3M0?=
+ =?utf-8?B?WDdRaVhiVjF6WS9jNE9BY3ByaTJaVmJvMUNmblljUVI5NzIxNzByNTNJQVQ3?=
+ =?utf-8?B?Sk5xMWlmcWl2eC85YW5GUk4yWVdQOW9KOE5zSnZDVmFnQVpXVlMxZnpHc3JU?=
+ =?utf-8?B?dWpnRlhnall3bmRoOFVsWGs1R0trdzVVWUNxOEIrbHhDL3drMk5UN3VMcGVE?=
+ =?utf-8?B?cGtUTmRPbFdNNGowZllub2RIK3hYbVZvR2UxSmRGZVZvNEwyQ2dNOW96S0Qy?=
+ =?utf-8?B?aVZBelhGK3hHVGVpWnFXN29EV05IR01GTFRNRUtXSG5OVjZyTFlnVmtrblpW?=
+ =?utf-8?B?RnVicGNuVUNHeUZUZXZBNU5OeHRNR2tqSHZkZkE1eVdZZ3l2dmhGeGVFTmZ6?=
+ =?utf-8?B?UTYyeWVRRGpmY0M4MEV1Y2dxaFJ0R2ZBZ2pOYU5rUTJhNzRrenNVU3Evaloz?=
+ =?utf-8?B?MzUrR080cURUK1JSakVJM29udTVlcCtMSUhpb2VNaVA1eHpnYlZwSnpEcGVN?=
+ =?utf-8?B?VlcvenduZTFWZ3RwL2JRTlY4SDZ4dEhKVERVWUtJU2UrNE5ybkxFTzVNN0R1?=
+ =?utf-8?B?U1MxTDhoKzJLY0pqRytEVnBPSlo4OHc5Z25Mc05rNk1veTBWNUVpMndERUZV?=
+ =?utf-8?B?QzRTdW5Bd3VpLzZ3eTB4Q0lmVWRpak90WjlqTVJxSnpCVjBjeWs5RWJtU0NY?=
+ =?utf-8?B?ZVJxYTJJS2g2T0ZaazJ4SHd5MnZsMXZIVSsrVzNoL3ZMeVdpeDVzb1RwVFdI?=
+ =?utf-8?B?eUZHMnRTU0NhY0RjV0xVQlpmR0diOXBvN0ZUYy9uSVBJdC9VWDg3UXZ6Z3JY?=
+ =?utf-8?B?bE9TMnZyVEZITTVJNGVzdG8veEdSM09oU1FnU1hkN1F0cWdaN2U3bTZpbXNW?=
+ =?utf-8?B?alVoamRGMFBnZ0Focml1eG9LZkRQRGNaNVhBeXRFMmdXd0YxNTYzNk5Way9K?=
+ =?utf-8?B?Q0twVHJDaEx6dXVtMkhNeUIyUDFUSFBlU002TkQ3bUxSbmxMQk5QT0dObWNv?=
+ =?utf-8?B?cXJ6MVRKN0ozS01uZDZ6SGpNWXF3Q01kRTd3OUtONjEvQUg5SW1mWE5yWDd6?=
+ =?utf-8?B?bENCc1dUanNmdjBlRFdWOGY1SlM2OGNzeGRvN0RVeWNYNTVHSW1WaWNwQ2F0?=
+ =?utf-8?B?V1A1aFNOZVdqdTBwNjlrWjBOZXhWZGhZTGlBY1d2c0pTcFF0dDdaSnFnbnRN?=
+ =?utf-8?Q?xzHsGhP3fhB643gI=3D?=
+X-Exchange-RoutingPolicyChecked: W9jH9cLRX5sU4KNTZ3BAIgq5Curj9q8PyEKuAItBFDN6UiJQ72ZKw8yLrkqCtkyI0GT3TGBgytqYG18wMQJ2E6Y33ViyRq6OZMUw31F6TAYuRwM7yMAxJeX9pYshDLgDEOupfQwN10n4oUivk+G1DbyeH6B5jhpGQpj8y3Qj4hGuL2hQoEuAPex5XOA14V5bm8YchvDQD4pmGEtgr39QJ/q3Vb1VIXdGdY5/pxxRNDlK6j/XRqu3rmj7eXlS7gEqToJFYwPXZHaQ5XDcGLBWd9e+o4bnRslrHoiWpj90/WepN7N7wxeQcX4emexcHG+az+XGXtQmr5YtuUuzj9TcNg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: c95b91b2-711f-4c72-fb26-08de941fdb74
+X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Apr 2026 21:01:54.4242 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Apr 2026 21:02:48.1947 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: X8Xk7nlj1/Q06/NbZi1JCJmTbnlIk47T2jddadugOOvmRKdB6Qm+fY0/jf/CUaVrtLF++d4BrjX6Z1dsrXC5cnNfanoICnrroWXo1zSkArs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB8594
+X-MS-Exchange-CrossTenant-UserPrincipalName: j9xPk39fkCtuddAxpSiknXlEPallMTUey3l2ofbLQx/dbQZWDdiXtyDvmvK+zdusg4gC72VyFnaq7VQ0obRDJQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5032
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -159,253 +174,135 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Apr 03, 2026 at 11:22:49PM -0700, fei.yang@intel.com wrote:
-> From: Fei Yang <fei.yang@intel.com>
+On Tue, Mar 31, 2026 at 10:08:58PM -0400, Daniel Colascione wrote:
+> TTM seems to be too eager to kick off reclaim while kwin is drawing
 > 
-> Hardware requires the software to poll the valid bit and make sure it's
-> cleared before issuing a new TLB invalidation request.
-> We also need to avoid racing against GuC on TLB invalidations by only
-> allowing KMD to issue TLB invalidation request during GuC reset.
+> I've noticed that in 7.0-rc6, and since at least 6.17, kwin_wayland
+> stalls in DRM ioctls to xe when the system is under memory pressure,
+> causing missed frames, cursor-movement stutter, and general
+> sluggishness. The root cause seems to be synchronous and asynchronous
+> reclaim in ttm_pool_alloc_page as TTM tries, and fails, to allocate
+> progressively lower-order pages in response to pool-cache misses when
+> allocating graphics buffers.
 > 
-> v2: separate ggtt inval to xe_gam_port and call in guc_reset only (Matt)
+> Memory is fragmented enough that the compaction fails (as I can see in
+> compact_fail and compact_stall in /proc/vmstat; extfrag says the normal
+> pool is unusable for large allocations too). Additionally, compaction
+> seems to be emptying the ttm pool, since page_pool in TTM debugfs
+> reports all the buckets are empty while I'm seeing the
+> kwin_wayland sluggishness.
 > 
-> Signed-off-by: Fei Yang <fei.yang@intel.com>
-> Suggested-by: Matthew Brost <matthew.brost@intel.com>
-> Cc: Stuart Summers <stuart.summers@intel.com>
-> ---
->  drivers/gpu/drm/xe/Makefile           |  1 +
->  drivers/gpu/drm/xe/xe_gam_port.c      | 72 +++++++++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_gam_port.h      | 15 ++++++
->  drivers/gpu/drm/xe/xe_gt.c            |  1 +
->  drivers/gpu/drm/xe/xe_gt_types.h      |  7 +++
->  drivers/gpu/drm/xe/xe_guc.c           |  4 ++
->  drivers/gpu/drm/xe/xe_guc_tlb_inval.c | 18 -------
->  7 files changed, 100 insertions(+), 18 deletions(-)
->  create mode 100644 drivers/gpu/drm/xe/xe_gam_port.c
->  create mode 100644 drivers/gpu/drm/xe/xe_gam_port.h
+> In profiles, I see time dominated by copy_pages and clear_pages in the
+> TTM paging code. kswapd runs constantly despite the system as a whole
+> having plenty of free memory.
 > 
-> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> index f9abaf687d46..96127ad60e9b 100644
-> --- a/drivers/gpu/drm/xe/Makefile
-> +++ b/drivers/gpu/drm/xe/Makefile
-> @@ -78,6 +78,7 @@ xe-y += xe_bb.o \
->  	xe_guc_rc.o \
->  	xe_guc_submit.o \
->  	xe_guc_tlb_inval.o \
-> +	xe_gam_port.o \
->  	xe_heci_gsc.o \
->  	xe_huc.o \
->  	xe_hw_engine.o \
-> diff --git a/drivers/gpu/drm/xe/xe_gam_port.c b/drivers/gpu/drm/xe/xe_gam_port.c
-> new file mode 100644
-> index 000000000000..137887cf93b8
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_gam_port.c
-> @@ -0,0 +1,72 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright � 2025 Intel Corporation
-> + */
-> +
-> +#include "xe_gt_stats.h"
-> +#include "xe_gt_types.h"
-> +#include "xe_gt_printk.h"
-> +#include "xe_mmio.h"
-> +#include "xe_gam_port.h"
-> +
-> +#include "regs/xe_guc_regs.h"
-> +
-> +/*
-> + * GGTT TLB invalidation as part of GuC reset flow while the communication
-> + * between host and GuC is disabled.
-> + */
-> +
-> +int xe_gam_port_tlb_inval_ggtt(struct xe_gt *gt)
-> +{
-> +	struct xe_device *xe = gt_to_xe(gt);
-> +	struct xe_mmio *mmio = &gt->mmio;
-> +	int ret = 0;
-> +
-> +	spin_lock(&gt->mmio_tlb_invl_lock);
-> +
-> +	if (xe->info.platform == XE_PVC || GRAPHICS_VER(xe) >= 20) {
-> +		/* Wait 1-second for the valid bit to be cleared */
-> +		ret = xe_mmio_wait32(mmio, PVC_GUC_TLB_INV_DESC0, PVC_GUC_TLB_INV_DESC0_VALID,
-> +				     0, 1000 * USEC_PER_MSEC, NULL, true);
-> +		if (ret) {
-> +			ret = -ECANCELED;
-> +			goto out;
-> +		}
-> +
-> +		xe_mmio_write32(mmio, PVC_GUC_TLB_INV_DESC1, PVC_GUC_TLB_INV_DESC1_INVALIDATE);
-> +		xe_mmio_write32(mmio, PVC_GUC_TLB_INV_DESC0, PVC_GUC_TLB_INV_DESC0_VALID);
-> +
-> +		/* Wait 1-second for the valid bit to be cleared */
-> +		ret = xe_mmio_wait32(mmio, PVC_GUC_TLB_INV_DESC0, PVC_GUC_TLB_INV_DESC0_VALID,
-> +				     0, 1000 * USEC_PER_MSEC, NULL, true);
-> +		if (ret) {
-> +			ret = -ECANCELED;
-> +			goto out;
-> +		}
-> +	} else {
-> +		/* Wait 1-second for the valid bit to be cleared */
-> +		ret = xe_mmio_wait32(mmio, GUC_TLB_INV_CR, GUC_TLB_INV_CR_INVALIDATE,
-> +				     0, 1000 * USEC_PER_MSEC, NULL, true);
-> +		if (ret) {
-> +			ret = -ECANCELED;
-> +			goto out;
-> +		}
-> +
-> +		xe_mmio_write32(mmio, GUC_TLB_INV_CR, GUC_TLB_INV_CR_INVALIDATE);
-> +
-> +		/* Wait 1-second for the valid bit to be cleared */
-> +		ret = xe_mmio_wait32(mmio, GUC_TLB_INV_CR, GUC_TLB_INV_CR_INVALIDATE,
-> +				     0, 1000 * USEC_PER_MSEC, NULL, true);
-> +		if (ret) {
-> +			ret = -ECANCELED;
-> +			goto out;
-> +		}
-> +	}
-> +
-> +out:
-> +	spin_unlock(&gt->mmio_tlb_invl_lock);
-> +
-> +	if (ret)
-> +		xe_gt_warn(gt, "TLB INVAL cancelled due to uncleared valid bit\n");
-> +	return ret;
-> +}
-> diff --git a/drivers/gpu/drm/xe/xe_gam_port.h b/drivers/gpu/drm/xe/xe_gam_port.h
-> new file mode 100644
-> index 000000000000..b5c383d635f1
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_gam_port.h
-> @@ -0,0 +1,15 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright � 2025 Intel Corporation
-> + */
-> +
-> +#ifndef _XE_GAM_PORT_H_
-> +#define _XE_GAM_PORT_H_
-> +
-> +#include <linux/types.h>
-> +
-> +struct xe_gt;
-> +
-> +int xe_gam_port_tlb_inval_ggtt(struct xe_gt *gt);
-> +
-> +#endif
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index 8a31c963c372..6bb990069eff 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -514,6 +514,7 @@ int xe_gt_init_early(struct xe_gt *gt)
+> I can reproduce the problem on my 32GB-RAM X1C Gen 13 by booting with
+> kernelcore=8G (not needed, but makes the repro happen sooner), running a
+> find / >/dev/null (to fragment memory), and doing general web
+> browsing. The stalls seem self-perpetuating once it gets started; it
+> persists even after killing the find. I've noticed this stall in
+> ordinary use too, even without the kernelcore= zone tweak, but without
+> kernelcore, it usually takes a while (hours?) after boot for memory to
+> become fragmented enough that higher-order allocations fail.
+> 
+> The patch below fixes the issue for me. TBC, I'm not sure it's the
+> _right_ fix, but it works for me. I'm guessing that even if the approach
+> is right, a new module parameter isn't warranted.
+> 
+> With the patch below, when I set my new max_reclaim_order ttm module
+> parameter to zero, the kwin_wayland stalls under memory pressure
+> stop. (TBC, this setting inhibits sync or async reclaim except for
+> order-zero pages.)  TTM allocation occurs in latency-critical paths
+> (e.g. Wayland frame commit): do you think we _should_ reclaim here?
+> 
+> BTW, I also tried having xe pass a beneficial order of 9, but it didn't
+> help: we end up doing a lot of compaction work below this order anyway.
+
+I was going to suggest changing Xe to align with what AMDGPU is doing [1].
+
+Unfortunate this didn’t help.
+
+[1] https://elixir.bootlin.com/linux/v6.19.11/source/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c#L1795
+
+> 
+> Signed-off-by: Daniel Colascione <dancol@dancol.org>
+> 
+> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
+> index c0d95559197c..fd255914c0d3 100644
+> --- a/drivers/gpu/drm/ttm/ttm_pool.c
+> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
+> @@ -115,9 +115,13 @@ struct ttm_pool_tt_restore {
+>  };
 >  
->  	xe_force_wake_init_gt(gt, gt_to_fw(gt));
->  	spin_lock_init(&gt->global_invl_lock);
-> +	spin_lock_init(&gt->mmio_tlb_invl_lock);
+>  static unsigned long page_pool_size;
+> +static unsigned int max_reclaim_order;
 >  
->  	err = xe_gt_tlb_inval_init_early(gt);
->  	if (err)
-> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-> index 8b55cf25a75f..2418a0b2f19c 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_types.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
-> @@ -324,6 +324,13 @@ struct xe_gt {
->  	 */
->  	spinlock_t global_invl_lock;
+>  MODULE_PARM_DESC(page_pool_size, "Number of pages in the WC/UC/DMA pool");
+>  module_param(page_pool_size, ulong, 0644);
+> +MODULE_PARM_DESC(max_reclaim_order,
+> +                "Maximum order that keeps upstream reclaim behavior");
+> +module_param(max_reclaim_order, uint, 0644);
 >  
-> +	/**
-> +	 * @mmio_tlb_invl_lock: prevents back to back TLB invalidation
-> +	 *    without polling for hardware clearance for the previous
-> +	 *    invalidation
-> +	 */
-> +	spinlock_t mmio_tlb_invl_lock;
-> +
->  	/** @wa_active: keep track of active workarounds */
->  	struct {
->  		/** @wa_active.gt: bitmap with active GT workarounds */
-> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-> index e762eada21db..70eff5b22fbb 100644
-> --- a/drivers/gpu/drm/xe/xe_guc.c
-> +++ b/drivers/gpu/drm/xe/xe_guc.c
-> @@ -48,6 +48,7 @@
->  #include "xe_uc_fw.h"
->  #include "xe_wa.h"
->  #include "xe_wopcm.h"
-> +#include "xe_gam_port.h"
+>  static atomic_long_t allocated_pages;
 >  
->  static u32 guc_bo_ggtt_addr(struct xe_guc *guc,
->  			    struct xe_bo *bo)
-> @@ -991,6 +992,9 @@ int xe_guc_reset(struct xe_guc *guc)
->  		goto err_out;
->  	}
->  
-> +	if (xe_gam_port_tlb_inval_ggtt(gt))
-> +		xe_gt_warn(gt, "GGTT TLB invalidation timed out\n");
-> +
->  	return 0;
->  
->  err_out:
-> diff --git a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-> index ced58f46f846..7c3e63e49760 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-> @@ -61,8 +61,6 @@ static int send_tlb_inval_all(struct xe_tlb_inval *tlb_inval, u32 seqno)
->  static int send_tlb_inval_ggtt(struct xe_tlb_inval *tlb_inval, u32 seqno)
->  {
->  	struct xe_guc *guc = tlb_inval->private;
-> -	struct xe_gt *gt = guc_to_gt(guc);
-> -	struct xe_device *xe = guc_to_xe(guc);
->  
->  	/*
->  	 * Returning -ECANCELED in this function is squashed at the caller and
-> @@ -77,22 +75,6 @@ static int send_tlb_inval_ggtt(struct xe_tlb_inval *tlb_inval, u32 seqno)
->  		};
->  
->  		return send_tlb_inval(guc, action, ARRAY_SIZE(action));
-> -	} else if (xe_device_uc_enabled(xe) && !xe_device_wedged(xe)) {
-> -		struct xe_mmio *mmio = &gt->mmio;
+> @@ -146,16 +150,14 @@ static struct page *ttm_pool_alloc_page(struct ttm_pool *pool, gfp_t gfp_flags,
+>          * Mapping pages directly into an userspace process and calling
+>          * put_page() on a TTM allocated page is illegal.
+>          */
+> -       if (order)
+> +       if (order) {
+>                 gfp_flags |= __GFP_NOMEMALLOC | __GFP_NORETRY | __GFP_NOWARN |
+>                         __GFP_THISNODE;
 > -
-> -		if (IS_SRIOV_VF(xe))
-> -			return -ECANCELED;
-> -
-> -		CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FW_GT);
-> -		if (xe->info.platform == XE_PVC || GRAPHICS_VER(xe) >= 20) {
-> -			xe_mmio_write32(mmio, PVC_GUC_TLB_INV_DESC1,
-> -					PVC_GUC_TLB_INV_DESC1_INVALIDATE);
-> -			xe_mmio_write32(mmio, PVC_GUC_TLB_INV_DESC0,
-> -					PVC_GUC_TLB_INV_DESC0_VALID);
-> -		} else {
-> -			xe_mmio_write32(mmio, GUC_TLB_INV_CR,
-> -					GUC_TLB_INV_CR_INVALIDATE);
-> -		}
+> -       /*
+> -        * Do not add latency to the allocation path for allocations orders
+> -        * device tolds us do not bring them additional performance gains.
+> -        */
+> -       if (beneficial_order && order > beneficial_order)
+> -               gfp_flags &= ~__GFP_DIRECT_RECLAIM;
+> +               if (beneficial_order && order > beneficial_order)
+> +                       gfp_flags &= ~__GFP_DIRECT_RECLAIM;
+> +               if (order > max_reclaim_order)
+> +                       gfp_flags &= ~__GFP_RECLAIM;
 
-It's not clear to me why it's safe to remove this.  Aren't we still
-required to do GGTT invalidations during initial device probe, before
-we're at the point where the CT is running and we can start asking the
-GuC to do it on our behalf?  We allocate and map various buffers into
-the GGTT in order to get the GuC firmware itself loaded and running, so
-if we're not doing invalidations on those, I'm not sure the GuC
-initialization itself will work?
+I’m not very familiar with this code, but at first glance it doesn’t
+seem quite right.
 
-Is there an assumption that something else like an FLR already did the
-invalidation for us and it's safe to update with GGTT without doing
-further invalidations?  If so, it would be good to explain those flows
-in more detail in the commit message.
+Would setting Xe’s beneficial to 9, similar to AMD’s, along with this
+diff, help?
 
+If I’m understanding this correctly, we would try a single allocation
+attempt with __GFP_DIRECT_RECLAIM cleared for the size we care about,
+still attempt allocations from the pools, and then finally fall back to
+allocating single pages one at a time.
 
 Matt
 
->  	}
->  
->  	return -ECANCELED;
-> -- 
-> 2.43.0
-> 
+diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
+index aa41099c5ecf..f1f430aba0c1 100644
+--- a/drivers/gpu/drm/ttm/ttm_pool.c
++++ b/drivers/gpu/drm/ttm/ttm_pool.c
+@@ -714,6 +714,7 @@ static int __ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
+                            struct ttm_pool_alloc_state *alloc,
+                            struct ttm_pool_tt_restore *restore)
+ {
++       const unsigned int beneficial_order = ttm_pool_beneficial_order(pool);
+        enum ttm_caching page_caching;
+        gfp_t gfp_flags = GFP_USER;
+        pgoff_t caching_divide;
+@@ -757,7 +758,8 @@ static int __ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
+                if (!p) {
+                        page_caching = ttm_cached;
+                        allow_pools = false;
+-                       p = ttm_pool_alloc_page(pool, gfp_flags, order);
++                       if (!order || order >= beneficial_order)
++                               p = ttm_pool_alloc_page(pool, gfp_flags, order);
+                }
+                /* If that fails, lower the order if possible and retry. */
+                if (!p) {
 
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+
+> +       }
+>  
+>         if (!ttm_pool_uses_dma_alloc(pool)) {
+>                 p = alloc_pages_node(pool->nid, gfp_flags, order);
