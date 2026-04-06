@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80C55F46C44
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Apr 2026 14:12:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9389F46C44
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Apr 2026 14:12:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 427FB10E24D;
-	Mon,  6 Apr 2026 14:12:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76C1F10E139;
+	Mon,  6 Apr 2026 14:12:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I9o8BpCi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f3XgH76M";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C170510E24D
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Apr 2026 14:12:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FDC910E1E3
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Apr 2026 14:12:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775484721; x=1807020721;
+ t=1775484725; x=1807020725;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=XpmPSLkoEllkqm+6wTSVu2sVPiLApV67vzNYfrsfRvQ=;
- b=I9o8BpCi6JLwLUHNOifmnZpzF8mepm9OkO8f0KB9e4vzWtW6s8T3SJYN
- r8NuCDMi4YZKgurnhjZk4EhRBvwVpbXV9iOX8KwKtgT9ukP/Lddcb+Bla
- 3SWOOco6qNH+Ignmh8+zc6wsjVcowVQK2UbI/12MKnLwCkqMIWeBPJAui
- fz+4+2TBe15NdJmSk9ZU3IG4lefmgSet8DZq19RlnBmdLgqW4Nhix9JCe
- lYV8E9P35yVOR4j+UGD5OHQLBUc9eLEDuqNfM5UZo9EwvqsC2kJPzFsGW
- 688MlVfTKsb08de5TYbRNfEoTQtTlzm1SyaA/KKDK+/8b8giSF3U/5oDs w==;
-X-CSE-ConnectionGUID: xfyV1v4VSomOsZgz2rHsxg==
-X-CSE-MsgGUID: tO50YKd9QPGnI/Z+J1i8uA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11750"; a="76443887"
-X-IronPort-AV: E=Sophos;i="6.23,163,1770624000"; d="scan'208";a="76443887"
+ bh=gGqNfgVDKkcTk0+613J49JOwgyT9UjlilabI3IejL2Q=;
+ b=f3XgH76MsQjxwuGTcezFpUeUAHJInZEtqDQuezsr4HR2SlWITt/U9xhB
+ DmgPmlWrFQ1tLq8PcHUc+o1ELKF/QYnwcegfk+jSlvP2i/o/Chustagmx
+ O8WAhGojz3O/qclcSNnNmHfNPnUKfyfT5t26enQaIi0KAKYYMwxQICMf6
+ p3Aw2EDM7uC+S55kOaYah26mojZOEtJ2mscm2vb1QEE7ZxZa2KW2E8qfV
+ EMtuIjueZUsy+Cqsxh1iYM00s4nlaqoHoSTTLMW3kTUjWq3mfS4t17AqH
+ YPSy32ydOK1NClk4iGC1IEYaSwcFCz79MU2xLi6QCZHOa73pKG/viyTeu g==;
+X-CSE-ConnectionGUID: VcrpZv/VQtGkMf7zR1SOQw==
+X-CSE-MsgGUID: yjXz7Bf5RjCpF+zVG/+K9A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11750"; a="76443894"
+X-IronPort-AV: E=Sophos;i="6.23,163,1770624000"; d="scan'208";a="76443894"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2026 07:12:01 -0700
-X-CSE-ConnectionGUID: eCYkhTLoQqC5S9UmtcSWzg==
-X-CSE-MsgGUID: oP/o/2/xS+iw4qhgt3Jm5w==
+ 06 Apr 2026 07:12:05 -0700
+X-CSE-ConnectionGUID: UzPG9Hy6QriKnRCZVjob8g==
+X-CSE-MsgGUID: oJkeIVVdSLavqgZSMINvmg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,163,1770624000"; d="scan'208";a="227788260"
+X-IronPort-AV: E=Sophos;i="6.23,163,1770624000"; d="scan'208";a="227788275"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by orviesa009.jf.intel.com with ESMTP; 06 Apr 2026 07:11:57 -0700
+ by orviesa009.jf.intel.com with ESMTP; 06 Apr 2026 07:12:01 -0700
 From: Raag Jadav <raag.jadav@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com,
@@ -48,9 +48,9 @@ Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com,
  michal.winiarski@intel.com, matthew.auld@intel.com, maarten@lankhorst.se,
  jani.nikula@intel.com, lukasz.laguna@intel.com, zhanjun.dong@intel.com,
  lukas@wunner.de, Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v5 5/9] drm/xe: Introduce xe_device_assert_lmem_ready()
-Date: Mon,  6 Apr 2026 19:37:18 +0530
-Message-ID: <20260406140722.154445-6-raag.jadav@intel.com>
+Subject: [PATCH v5 6/9] drm/xe/bo_evict: Introduce xe_bo_restore_map()
+Date: Mon,  6 Apr 2026 19:37:19 +0530
+Message-ID: <20260406140722.154445-7-raag.jadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260406140722.154445-1-raag.jadav@intel.com>
 References: <20260406140722.154445-1-raag.jadav@intel.com>
@@ -70,57 +70,110 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In preparation of usecases which require verifying LMEM readiness after
-PCIe FLR, introduce xe_device_assert_lmem_ready() helper.
+PCIe FLR clears all hardware state along with GGTT mappings of all
+existing bos. Iterate over early and late kernel bo list and restore
+their GGTT mappings in hardware, so that driver can make use of them
+during re-initialization after PCIe FLR.
 
 Signed-off-by: Raag Jadav <raag.jadav@intel.com>
 ---
 v2: Add kernel doc (Matthew Brost)
 ---
- drivers/gpu/drm/xe/xe_device.c | 10 ++++++++--
- drivers/gpu/drm/xe/xe_device.h |  1 +
- 2 files changed, 9 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_bo_evict.c | 51 +++++++++++++++++++++++++++-----
+ drivers/gpu/drm/xe/xe_bo_evict.h |  2 ++
+ 2 files changed, 45 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index cbce1d0ffe48..5efa10e67543 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -649,7 +649,13 @@ static int xe_set_dma_info(struct xe_device *xe)
- 	return err;
+diff --git a/drivers/gpu/drm/xe/xe_bo_evict.c b/drivers/gpu/drm/xe/xe_bo_evict.c
+index 7661fca7f278..6d7d6e67565e 100644
+--- a/drivers/gpu/drm/xe/xe_bo_evict.c
++++ b/drivers/gpu/drm/xe/xe_bo_evict.c
+@@ -189,14 +189,8 @@ int xe_bo_evict_all(struct xe_device *xe)
+ 				     xe_bo_evict_pinned);
  }
  
--static void assert_lmem_ready(struct xe_device *xe)
-+/**
-+ * xe_device_assert_lmem_ready() - Verify LMEM readiness
-+ * @xe: xe device instance
-+ *
-+ * Verify LMEM readiness and assert on failure.
-+ */
-+void xe_device_assert_lmem_ready(struct xe_device *xe)
+-static int xe_bo_restore_and_map_ggtt(struct xe_bo *bo)
++static int xe_bo_map_ggtt(struct xe_bo *bo)
  {
- 	if (!IS_DGFX(xe) || IS_SRIOV_VF(xe))
- 		return;
-@@ -737,7 +743,7 @@ int xe_device_probe_early(struct xe_device *xe)
- 	 * is flagged after full initialization is complete. Assert if lmem is
- 	 * not initialized.
- 	 */
--	assert_lmem_ready(xe);
-+	xe_device_assert_lmem_ready(xe);
- 
- 	xe->wedged.mode = xe_device_validate_wedged_mode(xe, xe_modparam.wedged_mode) ?
- 			  XE_DEFAULT_WEDGED_MODE : xe_modparam.wedged_mode;
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index e4b9de8d8e95..6e9a478c3b7a 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -144,6 +144,7 @@ static inline struct xe_force_wake *gt_to_fw(struct xe_gt *gt)
- 	return &gt->pm.fw;
+-	int ret;
+-
+-	ret = xe_bo_restore_pinned(bo);
+-	if (ret)
+-		return ret;
+-
+ 	if (bo->flags & XE_BO_FLAG_GGTT) {
+ 		struct xe_tile *tile;
+ 		u8 id;
+@@ -212,6 +206,41 @@ static int xe_bo_restore_and_map_ggtt(struct xe_bo *bo)
+ 	return 0;
  }
  
-+void xe_device_assert_lmem_ready(struct xe_device *xe);
- void xe_device_assert_mem_access(struct xe_device *xe);
++/**
++ * xe_bo_restore_map() - Restore GGTT mappings of kernel bos
++ * @xe: xe device
++ *
++ * PCIe FLR clears all hardware state along with GGTT mappings of all
++ * existing bos. Iterate over early and late kernel bo list and restore
++ * their GGTT mappings in hardware, so that kernel can make use of them
++ * during re-initialization after PCIe FLR.
++ *
++ * Returns: 0 on success, negative error code otherwise.
++ */
++int xe_bo_restore_map(struct xe_device *xe)
++{
++	int ret;
++
++	ret = xe_bo_apply_to_pinned(xe, &xe->pinned.early.kernel_bo_present,
++				    &xe->pinned.early.kernel_bo_present, xe_bo_map_ggtt);
++	if (!ret)
++		ret = xe_bo_apply_to_pinned(xe, &xe->pinned.late.kernel_bo_present,
++					    &xe->pinned.late.kernel_bo_present, xe_bo_map_ggtt);
++
++	return ret;
++}
++
++static int xe_bo_restore_and_map_ggtt(struct xe_bo *bo)
++{
++	int ret;
++
++	ret = xe_bo_restore_pinned(bo);
++	if (ret)
++		return ret;
++
++	return xe_bo_map_ggtt(bo);
++}
++
+ /**
+  * xe_bo_restore_early - restore early phase kernel BOs to VRAM
+  *
+@@ -270,7 +299,13 @@ int xe_bo_restore_late(struct xe_device *xe)
+ 	return ret;
+ }
  
- static inline bool xe_device_has_flat_ccs(struct xe_device *xe)
+-static void xe_bo_pci_dev_remove_pinned(struct xe_device *xe)
++/**
++ * xe_bo_pci_dev_remove_pinned() - Unmap external bos
++ * @xe: xe device
++ *
++ * Drop dma mappings of all external pinned bos.
++ */
++void xe_bo_pci_dev_remove_pinned(struct xe_device *xe)
+ {
+ 	struct xe_tile *tile;
+ 	unsigned int id;
+diff --git a/drivers/gpu/drm/xe/xe_bo_evict.h b/drivers/gpu/drm/xe/xe_bo_evict.h
+index e8385cb7f5e9..d4f5b87243e7 100644
+--- a/drivers/gpu/drm/xe/xe_bo_evict.h
++++ b/drivers/gpu/drm/xe/xe_bo_evict.h
+@@ -14,7 +14,9 @@ int xe_bo_notifier_prepare_all_pinned(struct xe_device *xe);
+ void xe_bo_notifier_unprepare_all_pinned(struct xe_device *xe);
+ int xe_bo_restore_early(struct xe_device *xe);
+ int xe_bo_restore_late(struct xe_device *xe);
++int xe_bo_restore_map(struct xe_device *xe);
+ 
++void xe_bo_pci_dev_remove_pinned(struct xe_device *xe);
+ void xe_bo_pci_dev_remove_all(struct xe_device *xe);
+ 
+ int xe_bo_pinned_init(struct xe_device *xe);
 -- 
 2.43.0
 
