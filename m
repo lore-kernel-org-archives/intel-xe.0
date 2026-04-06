@@ -4,159 +4,147 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34F35F46C66
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Apr 2026 18:56:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB489F46C69
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Apr 2026 18:59:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD77D10E221;
-	Mon,  6 Apr 2026 18:56:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C25010E2BD;
+	Mon,  6 Apr 2026 18:59:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="uYRjDov8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BE0ExTRI";
 	dkim-atps=neutral
-Received: from BYAPR05CU005.outbound.protection.outlook.com
- (mail-westusazon11010009.outbound.protection.outlook.com [52.101.85.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6837C10E221;
- Mon,  6 Apr 2026 18:56:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEF1F10E259
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Apr 2026 18:59:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1775501967; x=1807037967;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=eeZfEG2OMPc/bsjnzLsKDbM47OMcO8rJwofC5LhGZ7I=;
+ b=BE0ExTRIPdUsZxlCVeWPrC7zcLiNbQPtLPFlR8+5TrmAzzVQQAoWopDm
+ wwspxI2ctbafEXVwYJ0NYOQYj6A6/5A4i8SANNB5SjBXNS7xKxa+sue9y
+ A5DLcXndFF3dK8f3ogZIp8LjY7XIw3krpzAvIJTw7wyp5mjsz1zFAsTaP
+ 0o3idO8B/Om0jRexmQmDSr+RZMbyT/kpRVzRWd20rtgppURVAJJOqp5Wk
+ Zb+817fnl3iiqrpqRoziFazKAGOEyaj4O1z2q1oxq+YNfN79Bo2I8OjYC
+ qACotQUQ5ycBZE4TEO5jL+Ng+NQRuIdZl9S8jVmPCcOUApQhdeyGJUmkv A==;
+X-CSE-ConnectionGUID: krGOCsJ7TKu8aNQbOYl+KQ==
+X-CSE-MsgGUID: bjSWDptcQYmGwhN+ld55Kw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11751"; a="76351577"
+X-IronPort-AV: E=Sophos;i="6.23,164,1770624000"; d="scan'208";a="76351577"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2026 11:59:26 -0700
+X-CSE-ConnectionGUID: GKD8fO12RZGuraDSEGO9Sw==
+X-CSE-MsgGUID: W6UsIK//R1SYmatSneqCNg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,164,1770624000"; d="scan'208";a="251219255"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2026 11:59:26 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Mon, 6 Apr 2026 11:59:25 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Mon, 6 Apr 2026 11:59:25 -0700
+Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.16) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Mon, 6 Apr 2026 11:59:25 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lH/nJHQr0La/n96pdDpDKqbZrs3xPz93MJjjrEBUaUW/B7mO7AhP4WT4vOhAU0bORZny4Kpi+xEF/DH6Gc18JS8PWsBJlKij02akk9zohs2B1GfkgDvkXNw2mwLmhf9ITyiE6tbb2W+L5nA+3x0PxVqitvqj8WeuF9o5MBX6EdPO9GRSTkdhXamZUC9k6YqFqeq+HxEG6ngacAENQpOahPzRlxEbQ6SCVmktlEitRDiV+g/oVBsF8NzrjcYfv6iuq516Cs3FJfikKos7bvlBSaR9xRcHS4XnEUX4Ret1opa0S/SCg0vKUgOCHnd1DPEDje20+ZlqEtu8zrsmGVaGrg==
+ b=jaBxLKFbtJU2pXEVQwO6SMC/d7TpGmUdRw4t4BDWIYfBanFUGC4vALteR4TMfOJnwv2Yamy2Ft9PGJ5p++OMI/8lq3xqsGfu+CVDwYGia0cAWhU22XE1xtwvvLOo0w0rcHZEbOzQZmh6nj6LNCcRzBnXHGRS0pUY901PpLFUn+9TAUianlFwe9ko/BDkvn02raHgXnCJS4Gf7z4fOjJ0Zl+Ly5RQ0RhyVWhAC2HmuFAa8xQp5EKnnlp0e8fOOYgvX2DvqxDQdbu3CGr6MKbp1zW8vaLZFPjdnzkew2M7IxQUvSc4l2+G8g6uSuO2ApbZRUIXKgR4j4hzTpmKhdKWGQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hFWkhT6TlqKRq3FGL8m5k/6797p02XerARx+SwYeyeQ=;
- b=F+IkZsHQqpCy/2VImDgzBJZmlQ+0O0Zn1eqEZ+aff9ZcP/ztEoOP+P69QQBVf8J7ikKdvOLbSmQ02uChLvqKv0r7/zv9yxErnifBXyDw9jcMlVkMHj7Xhi655uidMW7ygtI29jPYyOSx34yQj/IALoxCi03nGzDG0HMa+JrguEc/5gUyqfj1el6jEJ8RC66xiw8I5SEuHoc4ZKYcPf/gkai6wDS3fulqryvmtZAAowbPL2ZPO4BnpkWU20B7yIeprXPW/xau0Kp0R1/ca3/NF1gSF7gHWfypgmUxWwE7Sw4jZjmmZCPxOYTx3VHWduvDc23uMCnt7AAaVHQ8gTt85Q==
+ bh=C87HD5vIGXW5hr98Vy5reUL1P83wYUlxXIwL9C2dC+E=;
+ b=Zj81UmCUrdb6ZjusgeJYaw6cOiOLWDwhtqqJWs0bJlvvFpw5Q8LESfn5u7g5d88CX+iNE4kfXQwlkyzlGwRf02/nrMiRiHSqLXouIBeC1CZ182oU5HfkZdkyHw9ytmh9y63gb1fT17WwthsSJnMv+V+nKHt2ZxfK9MBPpix66EejjfTD/JQq59CBhdOU80XF8RrKhHLrJz5A45Qwn5isrOLfrZu+JFUPN/71PNYBvTKyHirZNqkxRlM1dEFWu66lkp5fqJjMv9lU22cO8dhvz4YEEnns7VDfAtaZ20i90uHA0rGlFRIeAPDA3+RN4Ee57EfNRe9GODIN73D8m/POUQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hFWkhT6TlqKRq3FGL8m5k/6797p02XerARx+SwYeyeQ=;
- b=uYRjDov8oVuTcO2+c/J/a9dcwGpE35sZme92QStC/8pugQcZDU6cMSj3r3mzAYp/kqn1BMmU0ucGRrcP9PCXtweI4VtXqXUj5b3kZEPP8V96uagOY0lQbeovIwHKnXyZA+Hc5qPuqUPC5jxenZTUs1bcSAhpc4k2XdqfcBxbHXepJIhdNWb81LnbQZP2n/nsb1zt3wihoKb9IsEYzWOktY1T7N2/awp7Gy0XhR89mRAKRHx4MWjcEWTXiewgfH+obmQYmJFqdLBUP5kH/+Ar7Af6dXQmLgziTYLEESpo4A9Q5bIeZ2ZCQDe+bdfGHmJIqEEbNJgH/CdMu/8VGE+xtA==
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
- LV2PR12MB5989.namprd12.prod.outlook.com (2603:10b6:408:171::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.20; Mon, 6 Apr
- 2026 18:56:36 +0000
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9769.014; Mon, 6 Apr 2026
- 18:56:36 +0000
-Message-ID: <4bbba516-7e89-40a0-ad5f-c3c7c03a4b51@nvidia.com>
-Date: Mon, 6 Apr 2026 14:56:33 -0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 02/21] gpu: nova-core: gsp: Extract usable FB region
- from GSP
-To: Eliot Courtney <ecourtney@nvidia.com>, linux-kernel@vger.kernel.org
-Cc: Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
- Gary Guo <gary@garyguo.net>, Bjorn Roy Baron <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>, dri-devel@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, Nikola Djukic <ndjukic@nvidia.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
- Christian Koenig <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, John Hubbard <jhubbard@nvidia.com>,
- Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- Edwin Peer <epeer@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>,
- Andrea Righi <arighi@nvidia.com>, Andy Ritger <aritger@nvidia.com>,
- Zhi Wang <zhiw@nvidia.com>, Balbir Singh <balbirs@nvidia.com>,
- Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa
- <elle@weathered-steel.dev>, alexeyi@nvidia.com, joel@joelfernandes.org,
- linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-fbdev@vger.kernel.org
-References: <20260311004008.2208806-1-joelagnelf@nvidia.com>
- <20260331212048.2229260-1-joelagnelf@nvidia.com>
- <20260331212048.2229260-3-joelagnelf@nvidia.com>
- <DHHOCGNIYDW3.1P7YIMVLW93IY@nvidia.com>
- <d6fe3e40-0310-4b90-ac8c-8beeec886f90@nvidia.com>
- <DHIFMDLKTUSR.14QI5EHNMK18I@nvidia.com>
-Content-Language: en-US
-From: Joel Fernandes <joelagnelf@nvidia.com>
-In-Reply-To: <DHIFMDLKTUSR.14QI5EHNMK18I@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MN0PR04CA0018.namprd04.prod.outlook.com
- (2603:10b6:208:52d::11) To DS0PR12MB6486.namprd12.prod.outlook.com
- (2603:10b6:8:c5::21)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
+ by PH7PR11MB7608.namprd11.prod.outlook.com (2603:10b6:510:269::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.17; Mon, 6 Apr
+ 2026 18:59:22 +0000
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::53c9:f6c2:ffa5:3cb5]) by BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::53c9:f6c2:ffa5:3cb5%7]) with mapi id 15.20.9769.016; Mon, 6 Apr 2026
+ 18:59:22 +0000
+Date: Mon, 6 Apr 2026 11:59:18 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: <fei.yang@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Stuart Summers <stuart.summers@intel.com>
+Subject: Re: [PATCH] drm/xe: Wait for HW clearance before issuing the next
+ TLB inval.
+Message-ID: <adQChk1p9hRnvQxl@gsse-cloud1.jf.intel.com>
+References: <20260404062250.3435419-1-fei.yang@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260404062250.3435419-1-fei.yang@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0288.namprd03.prod.outlook.com
+ (2603:10b6:a03:39e::23) To BL3PR11MB6508.namprd11.prod.outlook.com
+ (2603:10b6:208:38f::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|LV2PR12MB5989:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8f3732bd-7282-425a-9aeb-08de940e3a4c
+X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|PH7PR11MB7608:EE_
+X-MS-Office365-Filtering-Correlation-Id: 683040b4-7688-48af-e518-08de940e9cee
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|7416014|376014|56012099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: 57eMG5KTWnE1KFbN/SGxyVajPGStJcWpqMmqzlrXWDIjUP5HswnRXZn0/16F9U6knDx/vlL6xnJxANLgiznWZGBk43GzoMW/I5zjxGeELbxb7O8cWHjNWthb1m3g/UGBb4XnQ6GyRphQxq/HMbVwVFDPBmPbQHAEHVwvyBmujB776A1UuO/amwZNuiHvdjeK4zw4bp/Ys8VWBuV3yMkMQN4f9uvx4ffKhmxrTJa+xCQGEOOcDDLKpdK/D8c4rbWouo4joXJzH9yazbgWWadQmQBZxtRGvT0oQEomBHiSDix5H115l7Xi91POiJOW+jTvHuA4PDAiRJAeX8ZbLsTBiXco5MiOP0LIqQhWdyGcn+u5sUZJQaKqzbcYT5ytNLk7NROtdbEBM47ggijXKscfWHqGq+qMHNdCrniCd+/+b5EQHB4wF0ejbIoRK1YQNnSrj8x1JUqhYAcJOUBsqgtjMY7U0UBSYPreoEVdgnAM9eDnNQdSYUsfbjEmZIN1GhPBc2ouJCqh0rPCoNQ5+Dr0vcaM5RdIt60aYwrWJSciUqm1E1gLo0dubELeZweXjucFZdPi7OX6XrTinM8xSE01/LVSVs1gge2OvlPTX8zyQZOWtTkX+UJa0Ks9jL0rM1gQF0oDe8WYstU3X1sac7xCGqIDq2crbGmTWG0uXrku+S6y1wxV/voBAzDAzPI0CsQVotBKwNQApZjWRmsgt4qSOld9aM+Az1OK9ozIkz/Zi64=
+ ARA:13230040|1800799024|376014|366016|18002099003|56012099003|22082099003; 
+X-Microsoft-Antispam-Message-Info: XW2+m4qrqzpYeZwMfBp1emZmIm3PYdsRaa98wqZOLUCOybhMYr3V2GwyEQQUaUyiG1eFZ7ZCWzkVxPDHu9d2hgB6YQ5A42pmws42n0TOUIh+H9OdT6uVAy9vbozYH7ydkX70+xXVrXWx/1iqnDTHOevUabRg+X3cPhUQcdL++7+kFjbrUOl4Fm38Tedz/iWfEQ+Uon0b82BzapAPy/ducAAPVeihnuJmXYlXOj7DFz+22MOXHtWMfjycOKzKtVQUYcIT40VibZPwEUFFBRwUrZsDXWGL/YzjxeUBN7nuwFF1MPb/XS4IO8ApOVwClPRb2Jo8gj1/EPJr8c3hcH7Micz7sLWvcXnlk6ocbX7yphTRZv1u+keNkqBfv4iXbXpHjRdG9vuLfcKO4+tdbC8Eav+iVfY9NU1ZjO/tuNvdwNJcuVAUz6/K1bG+Y6pDlONtY3djLHQcARWcPEm+5ciUVEgiOOqqlglQtidjOilf08NsG8Ho1VEC8Vzf6PFMLExXz5LmNjGB9bYw7paLkwT99ihn77u4GepSZZhfbYLtK4FSwvQi3+egGFInUhydnNvApakDguk1Kig9313at+CCBNymxpd3HSsJbxVQrVtjERZ8Vzhwe9KUhP4r4fo7BPVTYvFpRh9z/RxtpNbTceoiBaOrDe5yXe7vxka6ATkyGcGwhTLdWMB3h04E3IoGVZ2rDj2Jdook8LjvqdvygSbK3F6+YchmllZMalGcWfVSHbk=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(7416014)(376014)(56012099003)(22082099003)(18002099003);
+ IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(18002099003)(56012099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RTBFaHpOZHJoYmxyZEhYQUUxVVUydDlZT2JIZmM2cS8vK1hNeXk2dlFIZ3Zq?=
- =?utf-8?B?VjV4dXZhTVBZUWhUTlA2N1EwSmIvVHNjRXlQaUNIa2xmOU5pcjNWL0pXYWhh?=
- =?utf-8?B?U0lEaXd2WEUySStFYUJ0N0l5cTEySFBDQ0NqNVJoODZQRjR1aFN6MXJzTXlY?=
- =?utf-8?B?dGUzS2xmWGhZcWpnQXFKRmNyclBmUzU4dUg4TGFTaWcrYWxpbitEaWJjd2x2?=
- =?utf-8?B?NzNnVHA1b2xHcjRlNnM2ZVhqVzI0WG9lV1RCdFVpTDhsVG93UnJLT2VUK3gr?=
- =?utf-8?B?N05MN3VuQ25BOGJ2VzR3c1RLaXBzWFp1anQ1MUhwKzFwc2lYeEJxSENiSklu?=
- =?utf-8?B?eVlna2JYbHJGRS9aRFQ1M2hnWlRoWGxpWXY3UDcyYUtKYmh6RHhFbHEzYUQz?=
- =?utf-8?B?M0dXZ3lNUFdzcFM1TTd1VCsyZENGOU9YQ0IxbUpJN1JXNlNLek83ckVpRTdY?=
- =?utf-8?B?VXhWL2RoRjF2MWF2TTZ4ZEVzL2J4Z1M0cUNyYW9iOURWSUFxMk5xV1JtRXc3?=
- =?utf-8?B?dDZEb2lhM044WXk5MGhCL1RLZE5LVG9sYlFrcFlpZi9pUVpiMHlyRURQaXpW?=
- =?utf-8?B?Z2YrNEY5ZlptM2lJN0xibTF6aDZEaHY5RXlQaFNwUzNpZ0hqN3FRTy9nVmND?=
- =?utf-8?B?UWN4L3JaV2p0Ym9PSi9zOWY0aGc4YjhVNFU1MU15UkZmTHpVZUhBWDdBQmpM?=
- =?utf-8?B?d01vbEx5OERQN01SdWVCT1NSUmhtVWNoVHFoeVpWSVQ2RXVrSjJjUE5oSVhs?=
- =?utf-8?B?bVBJTzRibC95cEtaSi92TktVTXBnVERGZVBCdzBQd2t5bnhXbUNZYU9OM3pJ?=
- =?utf-8?B?QVdxUDk0UWRRVjFSN3hTdDR6aW9yRlpvNStZeWtvWGN1ZFA3V1dGRG5BNU1o?=
- =?utf-8?B?eFZMMXRmMGtBMEtJLzM3VnR0dCt3YUUvZ3dPc3ovQkpLT0Q2RlRXUzZ5V1A5?=
- =?utf-8?B?amIyU2owZFpaSXNvMjFSS2R1SlhpS3FrRXQ1amRZTVNBRmdjK1pHQXJDUXo2?=
- =?utf-8?B?VHZMVGZwL3J5ZDMrWmVSL2hhUDJvMEVIV0NjYUtQSW1BMzJkbktaMnU5RG9p?=
- =?utf-8?B?VFhYUTJJV2xPYXVkS3Y2aGVCcGt6V2JrUXhONzFvTGl0RkQ4R1NmRW1ZVmt4?=
- =?utf-8?B?TnoxMzliMWh5dnErdTJFdDdnMDRhcnJKQUVHTTVFM2ZVV29uWFpweGlpL0hh?=
- =?utf-8?B?WUFrZkpKWU1KeWNodWNrRHI5MFl5T0gwbStiN0Y3ZkNDUmN0dzZmV0RBVXJj?=
- =?utf-8?B?bTVJaW1PUjQ3UjZ6Zlc5UlBNN1BJVmN2SEh5aWVVbDFTMlNHeURWN1hidyt5?=
- =?utf-8?B?dEUyMFNtOFQ4ZjBScW13TTA2S0pab29MeDFDVmNjYWJGQ3dtTWFCZjBGVUJm?=
- =?utf-8?B?WmEwTUNFeG02ZHBTL3p5WWJFWVhmYXErTDlwdENBUkRHdjUrNHRQWVk4OWh0?=
- =?utf-8?B?R2lvVzNkc2g0ejVuUlhMWjIzVXVOZ1NlV2gyYTk2TVEycVZFUGh6Wlhad05u?=
- =?utf-8?B?b0xhd2diT2tGTjk2WEJxQ0Fxc2ZwWm1TWlYrS2JuY0FKbUMxZG10ZDJaSUQz?=
- =?utf-8?B?MnEvL0hVaXlLaXZiL3ZWZm05SUgraDhEeXp2K2lPQ0tsUkhYRlZWZE5pQTZW?=
- =?utf-8?B?MlBBYk9vMGVCdHpQY2F6ODNlK3N6TEk2L0QzaXljU00xU21Sa2IwbmlCUndw?=
- =?utf-8?B?YTdSa0o2a2xSQW8veERYVCs1d29mejdoNklTR0d6R0poQ1BuSXk4ZVVtcDdu?=
- =?utf-8?B?bWFqMWpOcG5FNWhFM21XeUhSbFFqQXdOemRTcmswWit1TVdKdmRna2lxSEpy?=
- =?utf-8?B?MnNCeENlNVppOEtjUWU0OW00N1RwUWZoNjVxcUNPZDdZYjdjUk52eXhMMGhZ?=
- =?utf-8?B?cVhMbHJBYXJUZHRYZjBkSnBPT1JDK1FWZWtIOTRRSHJOSko4ZmVpNG5HMmdv?=
- =?utf-8?B?TkU5U3FUL0gzbEptczRjd0RHOW9BS3hsNjlVcG1mcHpFd3Blcmd3UTc0Q09a?=
- =?utf-8?B?clljWUZlc1djWXdWcmFKMTBleERLbXlyOS9ldWY4MktvVkxwWW5NK1lob2g0?=
- =?utf-8?B?WnpqZjFBYlBVeGprd0NaZ3JQS2JESDhhaVFCV3AwK0tFclQ5NWZzMHhUZExK?=
- =?utf-8?B?TS8ycENORFRxY0pQSDUrZUtmbG82U3RtM25LKzk5ZEtiWjllbmlzalEzMlZW?=
- =?utf-8?B?Z3F1UHU2WmJHVWllcnMrTnd2Mk1rc2l2MiswQ0VYN1VnRDU0a284eWJzdmt4?=
- =?utf-8?B?ZmdBUTV5Zlp6UGUydmNJRlVnYlRmaElUcUcrZDBjSHNxZzE3aU1QMkttT2Vi?=
- =?utf-8?B?dU8zWWN3elFsR3lCc0lQUml0enZRRTJiZnErbGNNSno3cDI4ZjZSUT09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8f3732bd-7282-425a-9aeb-08de940e3a4c
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?9jNrPmp68R6JAmhfUZOjmuUPvhrvAnAPG326yHdFdJXMAOF1EeNjtAwOoh?=
+ =?iso-8859-1?Q?FsZArpfGc8f1qYscsGV66kHRJP44AZYBZBWQDvrV1qxqOqMe+eDqMXNnYs?=
+ =?iso-8859-1?Q?06JMJPV2m6cIOX8uaOdGCRqz8Nj/MVdyy2PGLtTWoDHpH9VdLSORJF6Kej?=
+ =?iso-8859-1?Q?SwV1qMV+SoRAFiPzDY2gojr9V7n7ZwWqORB3y70/eOIIt4pjJwIJMUw+EJ?=
+ =?iso-8859-1?Q?WCAJdvJ8KRZB2Pq1NjDJ0MWGCUF8gwxIZgJ6ofcS3dyNa3cnpF5FuLRwfr?=
+ =?iso-8859-1?Q?+1tehwutObFA7734XYSO9RyBhBSqNFhVZZMSZngwdzdgEupX4fVFPx2O4N?=
+ =?iso-8859-1?Q?E/nhgZo+l7GzEpaIe52qzNDoXfRtEWtgjuxWBfurD6OkyzdJhSvg+ReW8y?=
+ =?iso-8859-1?Q?it91Be0u1uHLZWCwPx07FxEAXuva1g2jx+H7NqSr9l4mOblMBQroY4PVp0?=
+ =?iso-8859-1?Q?gNv7MkINo8le7BGmm4XynHIiKQ4VbaKv9uyhXcs58T7uux4o3Sc3bNNKVh?=
+ =?iso-8859-1?Q?F7PUmd7aGvXUKcMRDnZPoMM0GsqCTnWfmOmr0fCh9ofx26e8DQzejzSZm4?=
+ =?iso-8859-1?Q?5bKi8XJOjKTe7aNgXJAeT/kbRYVwg6H35Pv3ghyMLGyJmPjOQMuvUEn08B?=
+ =?iso-8859-1?Q?rhWbodRmH01EgvGZis4wox+IfLSdug7MJWzh1RWOSCRgx97WIzc21gkb5C?=
+ =?iso-8859-1?Q?8yeacVHkd2oOJ3qkHGdNTebqzuDDVVfa+jFojOPrJXczHF0ZQgxMaxAtiz?=
+ =?iso-8859-1?Q?IqkS8NJsCMPHtnQjD35xkJHXkXC1e7XV1ija5t8YgiXorybc9MH14+F+TN?=
+ =?iso-8859-1?Q?ZI8NzdZLHGpVZLmDyUmx5iWkdOj0Y4O+7ko3e8F15QZuruEZ7dm8hGt22r?=
+ =?iso-8859-1?Q?3yoXpaiPrOoFkfOfNBEZpPPmmpV/QXJ4y6X48ggX0wzlqZvF2gYKGoOuDw?=
+ =?iso-8859-1?Q?KSbWdbEHbTib4EkJveg49dMBaFg8oIY/F96RFzlhvE4J9Eb/AsWLHaQIe2?=
+ =?iso-8859-1?Q?+VYEIx/h5zTQSCh7Kmz5Z3p8liSx0VCCbhvJXZUdK4S0idL7evjOOE52uh?=
+ =?iso-8859-1?Q?e2/Vc6fx+TTqLECs/AUuJfaR/zq7ipWbLq0QECUznvNKjpEI9t8u9iVdrg?=
+ =?iso-8859-1?Q?jn0fXDzWIEIFZbv6roaehnKE8SOxyi86P8Q4LbzjKZx9mi6RdPhlC/OEmP?=
+ =?iso-8859-1?Q?4/sDbM4q/ZqZ9oX++6nBxlqlbAlm/qDNwo1lSpGNDcZ+9ur0H7KNBxiVml?=
+ =?iso-8859-1?Q?Yg9nSM6IZKbiaDFXpcT0bjf3W+iw8UsTMbgBtfrjseEwscaZlCN07FLBMO?=
+ =?iso-8859-1?Q?ZbWdzvNJUZtc2Te4Zf/vUCOYvjoFQ0OrbYnOC618wznRX+yMIEVp9aG0VS?=
+ =?iso-8859-1?Q?ZNxl4XK4KtxlsSMOZQKYHu871AO90NC6dwPoz2O7dQuaR76ZI3MUOhIu36?=
+ =?iso-8859-1?Q?88sMsKRavLIgX00cp9L603/tuOhHq3VePsCWWGjcOqTSdiX+1fR8aBfHOc?=
+ =?iso-8859-1?Q?soNl92NbWgmB3DwzjCBNVko4p3O5PmNP5uHySexxQcruUtjfauut1Ihs61?=
+ =?iso-8859-1?Q?zVUFSBuzgUknG4PYvpU4CsJBbVh9almpJpk6A3khL4HKXBL8eIGrAKDAfM?=
+ =?iso-8859-1?Q?cZ7cop7uUQ1zAJN0vln7mhVTiXDLb2dDm9f/tutGGBQ9ZodZM2GBlFgnSw?=
+ =?iso-8859-1?Q?d8HPlp+QMUydKCpiVQqEK0ij/AMWObsVFId4hRja3on8pjavmo2Ojl/5v5?=
+ =?iso-8859-1?Q?EGh331GtgNt8j3CyJbXLULmBNoO9C03BSmxOaLj4+mKi5W9DQV8MJcJUET?=
+ =?iso-8859-1?Q?cMEscvVdZg=3D=3D?=
+X-Exchange-RoutingPolicyChecked: Mjm6JmDzMXRX4RVzyuQhC4xOXWnwoRxHZ/k20d/Y2U1QrR363b/bUtIrscSl5ocZ1QVVtw9xgSSvagivG/s2ks5WWqqacItuojvT+Oqbq6hwgJIHnnHbZqcCh9cwORAyHrM8HwJV+gNgFC5SOJ12ex22oq2OCEOFSKR1IN+M3ZW7NOf4FZPRYoTPAgJHdTubiWqwgePIKOHPHvyEIZ9zYUjw1dagQwcdZmmMHqDwmsfNp1nE2HvCkV9LPxvWMLLcVL4kw5aNJFi6Hqss+v7nVOqQ56OKoJhqBiwLJrDGCr/cwlSl8zBlpPDp/hIjho2mpiYjeLeS6F69LJSdmJ7Wdg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 683040b4-7688-48af-e518-08de940e9cee
+X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Apr 2026 18:56:36.3553 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Apr 2026 18:59:21.9002 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2sXsGsyaBJvhYMra8C/Jyh8ecZR9zG6lr3ClFnT1ynCzj8n/C9EUFZMsvBcJGGgGzWF3yfQtxCXazMAO/CWuPg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5989
+X-MS-Exchange-CrossTenant-UserPrincipalName: bEPMvS6JOWDy0N1fnvfWFhVcS96rJPSudoiB1gx6EoexvNSuuA57kAWyPIbnLcoPZtwpCf7z3UhbVfUE+hmoSw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7608
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -171,41 +159,239 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-
-On 4/2/2026 1:49 AM, Eliot Courtney wrote:
-> On Thu Apr 2, 2026 at 8:24 AM JST, Joel Fernandes wrote:
->>
->>
->> On 4/1/2026 4:27 AM, Eliot Courtney wrote:
->>> On Wed Apr 1, 2026 at 6:20 AM JST, Joel Fernandes wrote:
->>>> Add first_usable_fb_region() to GspStaticConfigInfo to extract the first
->>>> usable FB region from GSP's fbRegionInfoParams. Usable regions are those
->>>> that are not reserved or protected.
->>>>
->>>> The extracted region is stored in GetGspStaticInfoReply and exposed as
->>>> usable_fb_region field for use by the memory subsystem.
->>>>
->>>> Cc: Nikola Djukic <ndjukic@nvidia.com>
->>>> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
->>>> ---
->>>
->>> Please see my feedback from v9[1] which still applies.
->>>
->>> [1]: https://lore.kernel.org/all/DH1GK30TUB4V.2GR6ANXIZDFFQ@nvidia.com/
->>
->> Yeah, I am seeing it now. Amidst making the earlier 7.1 merge window for
->> the DRM buddy and earlier patches in the series, I missed this. They seem
->> to be simple nits and I will address them in the next revision. thanks,
->>
->> --
->> Joel Fernandes
+On Fri, Apr 03, 2026 at 11:22:49PM -0700, fei.yang@intel.com wrote:
+> From: Fei Yang <fei.yang@intel.com>
 > 
-> No worries. Sorry I have not gotten to more of the patches yet. Trying
-> to get through some more now. Thanks!
-So far all the comments have been good ones, so thanks. ;-)
+> Hardware requires the software to poll the valid bit and make sure it's
+> cleared before issuing a new TLB invalidation request.
+> We also need to avoid racing against GuC on TLB invalidations by only
+> allowing KMD to issue TLB invalidation request during GuC reset.
+> 
+> v2: separate ggtt inval to xe_gam_port and call in guc_reset only (Matt)
+> 
 
+I guess CI doesn't like this... Unsure why, clearly missed something in
+my suggestion.
 
---
-Joel Fernandes
+Maybe it is best move this new code into xe_guc_tlb_inval.c for TLB now
+unless someone really has time to dig in.
 
+Matt
+
+> Signed-off-by: Fei Yang <fei.yang@intel.com>
+> Suggested-by: Matthew Brost <matthew.brost@intel.com>
+> Cc: Stuart Summers <stuart.summers@intel.com>
+> ---
+>  drivers/gpu/drm/xe/Makefile           |  1 +
+>  drivers/gpu/drm/xe/xe_gam_port.c      | 72 +++++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_gam_port.h      | 15 ++++++
+>  drivers/gpu/drm/xe/xe_gt.c            |  1 +
+>  drivers/gpu/drm/xe/xe_gt_types.h      |  7 +++
+>  drivers/gpu/drm/xe/xe_guc.c           |  4 ++
+>  drivers/gpu/drm/xe/xe_guc_tlb_inval.c | 18 -------
+>  7 files changed, 100 insertions(+), 18 deletions(-)
+>  create mode 100644 drivers/gpu/drm/xe/xe_gam_port.c
+>  create mode 100644 drivers/gpu/drm/xe/xe_gam_port.h
+> 
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index f9abaf687d46..96127ad60e9b 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -78,6 +78,7 @@ xe-y += xe_bb.o \
+>  	xe_guc_rc.o \
+>  	xe_guc_submit.o \
+>  	xe_guc_tlb_inval.o \
+> +	xe_gam_port.o \
+>  	xe_heci_gsc.o \
+>  	xe_huc.o \
+>  	xe_hw_engine.o \
+> diff --git a/drivers/gpu/drm/xe/xe_gam_port.c b/drivers/gpu/drm/xe/xe_gam_port.c
+> new file mode 100644
+> index 000000000000..137887cf93b8
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_gam_port.c
+> @@ -0,0 +1,72 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright © 2025 Intel Corporation
+> + */
+> +
+> +#include "xe_gt_stats.h"
+> +#include "xe_gt_types.h"
+> +#include "xe_gt_printk.h"
+> +#include "xe_mmio.h"
+> +#include "xe_gam_port.h"
+> +
+> +#include "regs/xe_guc_regs.h"
+> +
+> +/*
+> + * GGTT TLB invalidation as part of GuC reset flow while the communication
+> + * between host and GuC is disabled.
+> + */
+> +
+> +int xe_gam_port_tlb_inval_ggtt(struct xe_gt *gt)
+> +{
+> +	struct xe_device *xe = gt_to_xe(gt);
+> +	struct xe_mmio *mmio = &gt->mmio;
+> +	int ret = 0;
+> +
+> +	spin_lock(&gt->mmio_tlb_invl_lock);
+> +
+> +	if (xe->info.platform == XE_PVC || GRAPHICS_VER(xe) >= 20) {
+> +		/* Wait 1-second for the valid bit to be cleared */
+> +		ret = xe_mmio_wait32(mmio, PVC_GUC_TLB_INV_DESC0, PVC_GUC_TLB_INV_DESC0_VALID,
+> +				     0, 1000 * USEC_PER_MSEC, NULL, true);
+> +		if (ret) {
+> +			ret = -ECANCELED;
+> +			goto out;
+> +		}
+> +
+> +		xe_mmio_write32(mmio, PVC_GUC_TLB_INV_DESC1, PVC_GUC_TLB_INV_DESC1_INVALIDATE);
+> +		xe_mmio_write32(mmio, PVC_GUC_TLB_INV_DESC0, PVC_GUC_TLB_INV_DESC0_VALID);
+> +
+> +		/* Wait 1-second for the valid bit to be cleared */
+> +		ret = xe_mmio_wait32(mmio, PVC_GUC_TLB_INV_DESC0, PVC_GUC_TLB_INV_DESC0_VALID,
+> +				     0, 1000 * USEC_PER_MSEC, NULL, true);
+> +		if (ret) {
+> +			ret = -ECANCELED;
+> +			goto out;
+> +		}
+> +	} else {
+> +		/* Wait 1-second for the valid bit to be cleared */
+> +		ret = xe_mmio_wait32(mmio, GUC_TLB_INV_CR, GUC_TLB_INV_CR_INVALIDATE,
+> +				     0, 1000 * USEC_PER_MSEC, NULL, true);
+> +		if (ret) {
+> +			ret = -ECANCELED;
+> +			goto out;
+> +		}
+> +
+> +		xe_mmio_write32(mmio, GUC_TLB_INV_CR, GUC_TLB_INV_CR_INVALIDATE);
+> +
+> +		/* Wait 1-second for the valid bit to be cleared */
+> +		ret = xe_mmio_wait32(mmio, GUC_TLB_INV_CR, GUC_TLB_INV_CR_INVALIDATE,
+> +				     0, 1000 * USEC_PER_MSEC, NULL, true);
+> +		if (ret) {
+> +			ret = -ECANCELED;
+> +			goto out;
+> +		}
+> +	}
+> +
+> +out:
+> +	spin_unlock(&gt->mmio_tlb_invl_lock);
+> +
+> +	if (ret)
+> +		xe_gt_warn(gt, "TLB INVAL cancelled due to uncleared valid bit\n");
+> +	return ret;
+> +}
+> diff --git a/drivers/gpu/drm/xe/xe_gam_port.h b/drivers/gpu/drm/xe/xe_gam_port.h
+> new file mode 100644
+> index 000000000000..b5c383d635f1
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_gam_port.h
+> @@ -0,0 +1,15 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2025 Intel Corporation
+> + */
+> +
+> +#ifndef _XE_GAM_PORT_H_
+> +#define _XE_GAM_PORT_H_
+> +
+> +#include <linux/types.h>
+> +
+> +struct xe_gt;
+> +
+> +int xe_gam_port_tlb_inval_ggtt(struct xe_gt *gt);
+> +
+> +#endif
+> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+> index 8a31c963c372..6bb990069eff 100644
+> --- a/drivers/gpu/drm/xe/xe_gt.c
+> +++ b/drivers/gpu/drm/xe/xe_gt.c
+> @@ -514,6 +514,7 @@ int xe_gt_init_early(struct xe_gt *gt)
+>  
+>  	xe_force_wake_init_gt(gt, gt_to_fw(gt));
+>  	spin_lock_init(&gt->global_invl_lock);
+> +	spin_lock_init(&gt->mmio_tlb_invl_lock);
+>  
+>  	err = xe_gt_tlb_inval_init_early(gt);
+>  	if (err)
+> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+> index 8b55cf25a75f..2418a0b2f19c 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_types.h
+> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
+> @@ -324,6 +324,13 @@ struct xe_gt {
+>  	 */
+>  	spinlock_t global_invl_lock;
+>  
+> +	/**
+> +	 * @mmio_tlb_invl_lock: prevents back to back TLB invalidation
+> +	 *    without polling for hardware clearance for the previous
+> +	 *    invalidation
+> +	 */
+> +	spinlock_t mmio_tlb_invl_lock;
+> +
+>  	/** @wa_active: keep track of active workarounds */
+>  	struct {
+>  		/** @wa_active.gt: bitmap with active GT workarounds */
+> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+> index e762eada21db..70eff5b22fbb 100644
+> --- a/drivers/gpu/drm/xe/xe_guc.c
+> +++ b/drivers/gpu/drm/xe/xe_guc.c
+> @@ -48,6 +48,7 @@
+>  #include "xe_uc_fw.h"
+>  #include "xe_wa.h"
+>  #include "xe_wopcm.h"
+> +#include "xe_gam_port.h"
+>  
+>  static u32 guc_bo_ggtt_addr(struct xe_guc *guc,
+>  			    struct xe_bo *bo)
+> @@ -991,6 +992,9 @@ int xe_guc_reset(struct xe_guc *guc)
+>  		goto err_out;
+>  	}
+>  
+> +	if (xe_gam_port_tlb_inval_ggtt(gt))
+> +		xe_gt_warn(gt, "GGTT TLB invalidation timed out\n");
+> +
+>  	return 0;
+>  
+>  err_out:
+> diff --git a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+> index ced58f46f846..7c3e63e49760 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+> @@ -61,8 +61,6 @@ static int send_tlb_inval_all(struct xe_tlb_inval *tlb_inval, u32 seqno)
+>  static int send_tlb_inval_ggtt(struct xe_tlb_inval *tlb_inval, u32 seqno)
+>  {
+>  	struct xe_guc *guc = tlb_inval->private;
+> -	struct xe_gt *gt = guc_to_gt(guc);
+> -	struct xe_device *xe = guc_to_xe(guc);
+>  
+>  	/*
+>  	 * Returning -ECANCELED in this function is squashed at the caller and
+> @@ -77,22 +75,6 @@ static int send_tlb_inval_ggtt(struct xe_tlb_inval *tlb_inval, u32 seqno)
+>  		};
+>  
+>  		return send_tlb_inval(guc, action, ARRAY_SIZE(action));
+> -	} else if (xe_device_uc_enabled(xe) && !xe_device_wedged(xe)) {
+> -		struct xe_mmio *mmio = &gt->mmio;
+> -
+> -		if (IS_SRIOV_VF(xe))
+> -			return -ECANCELED;
+> -
+> -		CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FW_GT);
+> -		if (xe->info.platform == XE_PVC || GRAPHICS_VER(xe) >= 20) {
+> -			xe_mmio_write32(mmio, PVC_GUC_TLB_INV_DESC1,
+> -					PVC_GUC_TLB_INV_DESC1_INVALIDATE);
+> -			xe_mmio_write32(mmio, PVC_GUC_TLB_INV_DESC0,
+> -					PVC_GUC_TLB_INV_DESC0_VALID);
+> -		} else {
+> -			xe_mmio_write32(mmio, GUC_TLB_INV_CR,
+> -					GUC_TLB_INV_CR_INVALIDATE);
+> -		}
+>  	}
+>  
+>  	return -ECANCELED;
+> -- 
+> 2.43.0
+> 
