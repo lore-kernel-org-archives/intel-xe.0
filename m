@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7254F46C47
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Apr 2026 14:22:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1A8CF46C46
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Apr 2026 14:22:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B55A10E24D;
-	Mon,  6 Apr 2026 14:22:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F22D10E263;
+	Mon,  6 Apr 2026 14:22:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WgD683BC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OalyrG19";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 664E810E24D
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Apr 2026 14:22:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67F4E10E139
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Apr 2026 14:22:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775485333; x=1807021333;
+ t=1775485337; x=1807021337;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=phFA8bNEVId4PPdg1gf3nBnf5MXfvaJk0T5cT+2kLUQ=;
- b=WgD683BCKz/HVf2VASOWc8YDH2ehg4AV96EDl0+0DhvI4CtQiI4lPEc9
- bwJiLqt+IenBhFjl5uEEdHt99s+s9aqjq07gvX4t8txoFKwaMBsE74uLD
- h3fLPajYeXdD2695/aBMp17z502iJe/r3jc+p2ni3nddBq2WtTVjukEfR
- 8AeeQTCYvyHUhINtRK+FD3+Iwl6vTWo1u7w+zZV34QLDxNQGwXUI1QGIM
- Uby2DWvpUq4IWXFbN175oxReCvLUV8Df49W1Dj2OfALzwWMLZ3Fr+glWL
- mnl4PcF4X7cFWNk7eDJMFPDdvKfErbudzfvHxqwoe+BFa1xXwPnBJyETL A==;
-X-CSE-ConnectionGUID: lcfH2kvXRlWuKux2iDtvZw==
-X-CSE-MsgGUID: VQvAiIFoQmyYmjqucQQCAg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11750"; a="75473054"
-X-IronPort-AV: E=Sophos;i="6.23,163,1770624000"; d="scan'208";a="75473054"
+ bh=OdzcWWcKebTSRUwidooRj8JYe2HD2AQmMC6GLioT5p8=;
+ b=OalyrG19bnT2RihOnp9L2HG5OQXG6O9fy8ntjPW3QoSaL3POdhu59SVU
+ LX2bieOoZkHk7lQnsYEOl65RVfcolfSWKPHowSQy++x6nEJd4QYASxrk/
+ ZmNwLhJpajUo7VfgmflD9kqLd9qSXkrFZA9Wqby7cC+mVtw3DYwwH8unx
+ g6E/6Xvy243C22oYrJY4Iz1Emq3uCVe6t/8Sq++BI35NebIyvjFH0CYex
+ r06W0vOh48QX4xN4LNmBIOpr3t7BClsuJD+JN0Ms+KPEN9hsXWv2pUZ00
+ F3RQn7JTuHup50w1Og3ztvYJ7qoH2lveCysfg28lWcZU8CwUBeuz4waek g==;
+X-CSE-ConnectionGUID: cFOMMxWZQgW+F9EQJAkYPg==
+X-CSE-MsgGUID: b4amhXP6Sj+htBzum0g13Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11750"; a="75473068"
+X-IronPort-AV: E=Sophos;i="6.23,163,1770624000"; d="scan'208";a="75473068"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2026 07:22:13 -0700
-X-CSE-ConnectionGUID: hnPMrPd3TVGF914L8V0qtA==
-X-CSE-MsgGUID: cr9y6NQgRHGFZtu13No9uA==
+ 06 Apr 2026 07:22:17 -0700
+X-CSE-ConnectionGUID: ZjcUZDaiSVGt2OTOz38Eyw==
+X-CSE-MsgGUID: +4QDZ/X1R72dU8YYjH4HJQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,163,1770624000"; d="scan'208";a="232746854"
+X-IronPort-AV: E=Sophos;i="6.23,163,1770624000"; d="scan'208";a="232746881"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2026 07:22:10 -0700
+ 06 Apr 2026 07:22:14 -0700
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  aravind.iddamsetty@linux.intel.com, badal.nilawar@intel.com,
  raag.jadav@intel.com, ravi.kishore.koppuravuri@intel.com,
  mallesh.koujalagi@intel.com, soham.purkait@intel.com
-Subject: [PATCH v2 2/5] drm/xe/xe_ras: Add structures and commands for get and
- clear counter
-Date: Mon,  6 Apr 2026 20:24:41 +0530
-Message-ID: <20260406145440.2016065-9-riana.tauro@intel.com>
+Subject: [PATCH v2 3/5] drm/xe/xe_ras: Add support to query error counter for
+ CRI
+Date: Mon,  6 Apr 2026 20:24:42 +0530
+Message-ID: <20260406145440.2016065-10-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20260406145440.2016065-7-riana.tauro@intel.com>
 References: <20260406145440.2016065-7-riana.tauro@intel.com>
@@ -71,227 +71,264 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add request and response structures for get and clear counter command.
+Add support to get error counter value for CRI.
+
+When userspace queries a drm_ras error counter, fetch the
+latest counter value from system controller.
+
+Integrate this with XE drm_ras.
+
+Usage :
+
+Query all error counter value using ynl
+
+$ sudo ynl --family drm_ras --dump get-error-counter --json \
+'{"node-id":0}'
+[{'error-id': 1, 'error-name': 'core-compute', 'error-value': 0},
+ {'error-id': 2, 'error-name': 'soc-internal', 'error-value': 0},
+ {'error-id': 3, 'error-name': 'device-memory', 'error-value': 0},
+ {'error-id': 4, 'error-name': 'pcie', 'error-value': 0},
+ {'error-id': 5, 'error-name': 'fabric', 'error-value': 0}]
+
+Query single error counter value using ynl
+
+$ sudo ynl --family drm_ras  --do get-error-counter --json \
+  '{"node-id":1, "error-id":1}'
+{'error-id': 1, 'error-name': 'core-compute', 'error-value': 2}
 
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 ---
-v2: add num_headers to queue header
-    add structures for clear counter
-    move commands to sysctrl file (Raag)
+v2: split functions
+    fix commit message (Raag)
 ---
- drivers/gpu/drm/xe/xe_ras_types.h             | 176 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |  15 ++
- 2 files changed, 191 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_ras_types.h
+ drivers/gpu/drm/xe/Makefile     |   1 +
+ drivers/gpu/drm/xe/xe_drm_ras.c |  22 +++---
+ drivers/gpu/drm/xe/xe_ras.c     | 123 ++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ras.h     |  16 +++++
+ 4 files changed, 154 insertions(+), 8 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_ras.c
+ create mode 100644 drivers/gpu/drm/xe/xe_ras.h
 
-diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 110fef511fe2..8fcd676ab41c 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -111,6 +111,7 @@ xe-y += xe_bb.o \
+ 	xe_pxp_debugfs.o \
+ 	xe_pxp_submit.o \
+ 	xe_query.o \
++	xe_ras.o \
+ 	xe_range_fence.o \
+ 	xe_reg_sr.o \
+ 	xe_reg_whitelist.o \
+diff --git a/drivers/gpu/drm/xe/xe_drm_ras.c b/drivers/gpu/drm/xe/xe_drm_ras.c
+index e07dc23a155e..b334881e034a 100644
+--- a/drivers/gpu/drm/xe/xe_drm_ras.c
++++ b/drivers/gpu/drm/xe/xe_drm_ras.c
+@@ -11,17 +11,27 @@
+ 
+ #include "xe_device_types.h"
+ #include "xe_drm_ras.h"
++#include "xe_ras.h"
+ 
+ static const char * const error_components[] = DRM_XE_RAS_ERROR_COMPONENT_NAMES;
+ static const char * const error_severity[] = DRM_XE_RAS_ERROR_SEVERITY_NAMES;
+ 
+-static int hw_query_error_counter(struct xe_drm_ras_counter *info,
+-				  u32 error_id, const char **name, u32 *val)
++static int hw_query_error_counter(struct xe_device *xe,
++				  const enum drm_xe_ras_error_severity severity, u32 error_id,
++				  const char **name, u32 *val)
+ {
++	struct xe_drm_ras *ras = &xe->ras;
++	struct xe_drm_ras_counter *info = ras->info[severity];
++
+ 	if (!info || !info[error_id].name)
+ 		return -ENOENT;
+ 
+ 	*name = info[error_id].name;
++
++	/* Fetch counter from system controller if supported */
++	if (xe->info.has_sysctrl)
++		return xe_ras_get_error_counter(xe, severity, error_id, val);
++
+ 	*val = atomic_read(&info[error_id].counter);
+ 
+ 	return 0;
+@@ -31,20 +41,16 @@ static int query_uncorrectable_error_counter(struct drm_ras_node *ep, u32 error_
+ 					     const char **name, u32 *val)
+ {
+ 	struct xe_device *xe = ep->priv;
+-	struct xe_drm_ras *ras = &xe->ras;
+-	struct xe_drm_ras_counter *info = ras->info[DRM_XE_RAS_ERR_SEV_UNCORRECTABLE];
+ 
+-	return hw_query_error_counter(info, error_id, name, val);
++	return hw_query_error_counter(xe, DRM_XE_RAS_ERR_SEV_UNCORRECTABLE, error_id, name, val);
+ }
+ 
+ static int query_correctable_error_counter(struct drm_ras_node *ep, u32 error_id,
+ 					   const char **name, u32 *val)
+ {
+ 	struct xe_device *xe = ep->priv;
+-	struct xe_drm_ras *ras = &xe->ras;
+-	struct xe_drm_ras_counter *info = ras->info[DRM_XE_RAS_ERR_SEV_CORRECTABLE];
+ 
+-	return hw_query_error_counter(info, error_id, name, val);
++	return hw_query_error_counter(xe, DRM_XE_RAS_ERR_SEV_CORRECTABLE,  error_id, name, val);
+ }
+ 
+ static struct xe_drm_ras_counter *allocate_and_copy_counters(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
 new file mode 100644
-index 000000000000..ac83a8b75c70
+index 000000000000..b5fdad2c801d
 --- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_ras_types.h
-@@ -0,0 +1,176 @@
++++ b/drivers/gpu/drm/xe/xe_ras.c
+@@ -0,0 +1,123 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2026 Intel Corporation
++ */
++
++#include "xe_device_types.h"
++#include "xe_pm.h"
++#include "xe_printk.h"
++#include "xe_ras.h"
++#include "xe_ras_types.h"
++#include "xe_sysctrl_mailbox.h"
++#include "xe_sysctrl_mailbox_types.h"
++
++/* Severity classification of detected errors */
++enum xe_ras_severity {
++	XE_RAS_SEVERITY_NOT_SUPPORTED = 0,
++	XE_RAS_SEVERITY_CORRECTABLE,
++	XE_RAS_SEVERITY_UNCORRECTABLE,
++	XE_RAS_SEVERITY_INFORMATIONAL,
++	XE_RAS_SEVERITY_MAX
++};
++
++/* major IP blocks where errors can originate */
++enum xe_ras_component {
++	XE_RAS_COMPONENT_NOT_SUPPORTED = 0,
++	XE_RAS_COMPONENT_DEVICE_MEMORY,
++	XE_RAS_COMPONENT_CORE_COMPUTE,
++	XE_RAS_COMPONENT_RESERVED,
++	XE_RAS_COMPONENT_PCIE,
++	XE_RAS_COMPONENT_FABRIC,
++	XE_RAS_COMPONENT_SOC_INTERNAL,
++	XE_RAS_COMPONENT_MAX
++};
++
++/* Mapping from drm_xe_ras_error_component to xe_ras_component */
++static const int drm_to_xe_ras_component[] = {
++	[DRM_XE_RAS_ERR_COMP_CORE_COMPUTE]	= XE_RAS_COMPONENT_CORE_COMPUTE,
++	[DRM_XE_RAS_ERR_COMP_SOC_INTERNAL]	= XE_RAS_COMPONENT_SOC_INTERNAL,
++	[DRM_XE_RAS_ERR_COMP_DEVICE_MEMORY]	= XE_RAS_COMPONENT_DEVICE_MEMORY,
++	[DRM_XE_RAS_ERR_COMP_PCIE]		= XE_RAS_COMPONENT_PCIE,
++	[DRM_XE_RAS_ERR_COMP_FABRIC]		= XE_RAS_COMPONENT_FABRIC
++};
++static_assert(ARRAY_SIZE(drm_to_xe_ras_component) == DRM_XE_RAS_ERR_COMP_MAX);
++
++/* Mapping from drm_xe_ras_error_severity to xe_ras_severity */
++static const int drm_to_xe_ras_severity[] = {
++	[DRM_XE_RAS_ERR_SEV_CORRECTABLE]	= XE_RAS_SEVERITY_CORRECTABLE,
++	[DRM_XE_RAS_ERR_SEV_UNCORRECTABLE]	= XE_RAS_SEVERITY_UNCORRECTABLE
++};
++static_assert(ARRAY_SIZE(drm_to_xe_ras_severity) == DRM_XE_RAS_ERR_SEV_MAX);
++
++static void prepare_sysctrl_command(struct xe_sysctrl_mailbox_command *command,
++				    u32 cmd_mask, void *request, size_t request_len,
++				    void *response, size_t response_len)
++{
++	struct xe_sysctrl_app_msg_hdr hdr = {0};
++	u32 req_hdr;
++
++	req_hdr = FIELD_PREP(APP_HDR_GROUP_ID_MASK, XE_SYSCTRL_GROUP_GFSP) |
++		  FIELD_PREP(APP_HDR_COMMAND_MASK, cmd_mask);
++
++	hdr.data = req_hdr;
++	command->header = hdr;
++	command->data_in = request;
++	command->data_in_len = request_len;
++	command->data_out = response;
++	command->data_out_len = response_len;
++}
++
++static int get_error_counter(struct xe_device *xe, struct xe_ras_error_class *error_class,
++			     u32 *value)
++{
++	struct xe_ras_get_counter_response response = {0};
++	struct xe_ras_get_counter_request request = {0};
++	struct xe_sysctrl_mailbox_command command = {0};
++	size_t rlen;
++	int ret;
++
++	request.error_class = *error_class;
++
++	prepare_sysctrl_command(&command, XE_SYSCTRL_CMD_GET_COUNTER, &request, sizeof(request),
++				&response, sizeof(response));
++
++	ret = xe_sysctrl_send_command(&xe->sc, &command, &rlen);
++	if (ret) {
++		xe_err(xe, "[RAS]: Sysctrl error ret %d\n", ret);
++		return ret;
++	}
++
++	if (rlen != sizeof(response)) {
++		xe_err(xe, "[RAS]: Sysctrl response size mismatch. Expected %zu, got %zu\n",
++		       sizeof(response), rlen);
++		return -EINVAL;
++	}
++
++	*value = response.counter_value;
++
++	return 0;
++}
++
++/**
++ * xe_ras_get_error_counter() - Get error counter value
++ * @xe: xe device instance
++ * @severity: Error severity level to be queried
++ * @error_id: Error component to be queried
++ * @value: Counter value
++ *
++ * This function retrieves the value of a specific RAS error counter based on
++ * the provided severity and component.
++ *
++ * Return: 0 on success, negative error code on failure.
++ */
++int xe_ras_get_error_counter(struct xe_device *xe, const enum drm_xe_ras_error_severity severity,
++			     u32 error_id, u32 *value)
++{
++	struct xe_ras_error_class error_class = {0};
++
++	error_class.common.severity = drm_to_xe_ras_severity[severity];
++	error_class.common.component = drm_to_xe_ras_component[error_id];
++
++	guard(xe_pm_runtime)(xe);
++	return get_error_counter(xe, &error_class, value);
++}
+diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
+new file mode 100644
+index 000000000000..e468c414148e
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_ras.h
+@@ -0,0 +1,16 @@
 +/* SPDX-License-Identifier: MIT */
 +/*
 + * Copyright © 2026 Intel Corporation
 + */
 +
-+#ifndef _XE_RAS_TYPES_H_
-+#define _XE_RAS_TYPES_H_
++#ifndef _XE_RAS_H_
++#define _XE_RAS_H_
 +
-+#include <linux/types.h>
++#include <uapi/drm/xe_drm.h>
 +
-+#define XE_RAS_INFO_QUEUE_MAX_CHUNK_SIZE	200
++struct xe_device;
 +
-+/**
-+ * struct xe_ras_error_common - Common RAS error class
-+ *
-+ * This structure contains error severity and component information
-+ * across all products
-+ */
-+struct xe_ras_error_common {
-+	/** @severity: Error Severity */
-+	u8 severity;
-+	/** @component: IP where the error originated */
-+	u8 component;
-+} __packed;
++int xe_ras_get_error_counter(struct xe_device *xe, const enum drm_xe_ras_error_severity severity,
++			     u32 error_id, u32 *value);
 +
-+/**
-+ * struct xe_ras_error_unit - Error unit information
-+ */
-+struct xe_ras_error_unit {
-+	/** @tile: Tile identifier */
-+	u8 tile;
-+	/** @instance: Instance identifier within a component */
-+	u32 instance;
-+} __packed;
-+
-+/**
-+ * struct xe_ras_error_cause - Error cause information
-+ */
-+struct xe_ras_error_cause {
-+	/** @cause: Cause */
-+	u32 cause;
-+	/** @reserved: For future use */
-+	u8 reserved;
-+} __packed;
-+
-+/**
-+ * struct xe_ras_error_product - Error fields that are specific to the product
-+ */
-+struct xe_ras_error_product {
-+	/** @unit: Unit within IP block */
-+	struct xe_ras_error_unit unit;
-+	/** @error_cause: Cause/checker */
-+	struct xe_ras_error_cause error_cause;
-+} __packed;
-+
-+/**
-+ * struct xe_ras_error_class - Complete RAS Error Class
-+ *
-+ * This structure provides the complete error classification by combining
-+ * the common error class with the product-specific error class.
-+ */
-+struct xe_ras_error_class {
-+	/** @common: Common error severity and component */
-+	struct xe_ras_error_common common;
-+	/** @product: Product-specific unit and cause */
-+	struct xe_ras_error_product product;
-+} __packed;
-+
-+/**
-+ * struct xe_ras_info_queue_header - Info queue header
-+ *
-+ * This structure provides metadata about large info queue data
-+ */
-+struct xe_ras_info_queue_header {
-+	/** @total_size: Total size of complete info queue data (bytes) */
-+	u32 total_size;
-+	/** @chunk_offset: Offset of this chunk within total data (bytes) */
-+	u32 chunk_offset;
-+	/** @chunk_size: Size of data in this chunk (bytes) */
-+	u32 chunk_size;
-+	/** @sequence_number: Sequence number of this chunk (starts at 0) */
-+	u32 sequence_number;
-+	/** @flags: Info queue control flags */
-+	u32 flags:8;
-+	/** @compression_type: Compression algorithm used (0 = none) */
-+	u32 compression_type:4;
-+	/** @num_headers: Number of detailed counter headers present at the beginning of queue data */
-+	u32 num_headers:5;
-+	/** @reserved: Reserved for future use */
-+	u32 reserved:15;
-+	/** @checksum: Checksum of the chunk data */
-+	u32 checksum;
-+} __packed;
-+
-+/**
-+ * struct xe_ras_info_queue_response - Info queue response
-+ *
-+ * This structure provides the response for commands with info queue
-+ */
-+struct xe_ras_info_queue_response {
-+	/** @queue_header: Info queue metadata */
-+	struct xe_ras_info_queue_header queue_header;
-+	/** @queue_data: Info queue data chunk */
-+	u8 queue_data[XE_RAS_INFO_QUEUE_MAX_CHUNK_SIZE];
-+} __packed;
-+
-+/**
-+ * struct xe_ras_get_counter_request - Request for XE_SYSCTRL_CMD_GET_COUNTER
-+ *
-+ * This structure defines the request format to get error counter value.
-+ */
-+struct xe_ras_get_counter_request {
-+	/** @error_class: RAS error class */
-+	struct xe_ras_error_class error_class;
-+	/** @reserved: Reserved for future use */
-+	u32 reserved;
-+} __packed;
-+
-+/**
-+ * struct xe_ras_get_counter_response - Response for XE_SYSCTRL_CMD_GET_COUNTER
-+ *
-+ * This structure defines the response format to get error counter value.
-+ */
-+struct xe_ras_get_counter_response {
-+	/** @error_class: RAS error class */
-+	struct xe_ras_error_class error_class;
-+	/** @counter_value: Current counter value */
-+	u32 counter_value;
-+	/** @timestamp: Timestamp of the counter value */
-+	u64 timestamp;
-+	/** @threshold_value: Threshold value for the counter */
-+	u32 threshold_value;
-+	/** @counter_status: Status of the counter */
-+	u32 counter_status:8;
-+	/** @reserved: Reserved for future use */
-+	u32 reserved:1;
-+	/** @has_info_queue: Indicates if info queue is present */
-+	u32 has_info_queue:1;
-+	/** @reserved1: Reserved for future use */
-+	u32 reserved1:22;
-+	/** @info_queue: Info queue data */
-+	struct xe_ras_info_queue_response info_queue;
-+} __packed;
-+
-+/**
-+ * struct xe_ras_clear_counter_request - Request for XE_SYSCTRL_CMD_CLEAR_COUNTER
-+ *
-+ * This structure defines the request format to clear an error counter.
-+ */
-+struct xe_ras_clear_counter_request {
-+	/** @error_class: RAS error class */
-+	struct xe_ras_error_class error_class;
-+	/** @specific_counter: (1 = Specific counter, 0 = Aggregate counter) */
-+	u32 specific_counter:1;
-+	/** @reserved: Reserved for future use */
-+	u32 reserved:31;
-+} __packed;
-+
-+/**
-+ * struct xe_ras_clear_counter_response - Response for XE_SYSCTRL_CMD_CLEAR_COUNTER
-+ *
-+ * This structure defines the response received on clearing an error counter.
-+ */
-+struct xe_ras_clear_counter_response {
-+	/** @error_class: RAS error class */
-+	struct xe_ras_error_class error_class;
-+	/** @previous_counter_value: Counter value before clearing */
-+	u32 previous_counter_value;
-+	/** @clear_timestamp: Timestamp when the counter was cleared */
-+	u64 clear_timestamp;
-+	/** @status: Status of the clear operation (Success/Failure) */
-+	u32 status;
-+	/** @reserved: Reserved for future use */
-+	u32 reserved[3];
-+} __packed;
 +#endif
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-index 89456aec6097..61ec8b18d430 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-+++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-@@ -10,6 +10,21 @@
- 
- #include "abi/xe_sysctrl_abi.h"
- 
-+/**
-+ * enum xe_sysctrl_mailbox_command_id - Sysctrl Command ID's for GFSP group
-+ *
-+ * @XE_SYSCTRL_CMD_GET_COUNTER: Get error counter value
-+ * @XE_SYSCTRL_CMD_CLEAR_COUNTER: Clear error counter value
-+ */
-+enum xe_sysctrl_mailbox_command_id {
-+	XE_SYSCTRL_CMD_GET_COUNTER = 0x03,
-+	XE_SYSCTRL_CMD_CLEAR_COUNTER = 0x04
-+};
-+
-+enum xe_sysctrl_group {
-+	XE_SYSCTRL_GROUP_GFSP = 1
-+};
-+
- /**
-  * struct xe_sysctrl_mailbox_command - System Controller mailbox command
-  */
 -- 
 2.47.1
 
