@@ -4,152 +4,145 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A807DF46C7C
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Apr 2026 20:13:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A212FB5165
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Apr 2026 20:23:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C6E010E02C;
-	Mon,  6 Apr 2026 20:13:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 485A510E290;
+	Mon,  6 Apr 2026 20:23:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jexlaRcm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hTEvAiCL";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B577310E02C;
- Mon,  6 Apr 2026 20:13:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A069F10E290
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Apr 2026 20:23:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775506415; x=1807042415;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=OLpWaPUqJTuoj0Cert9U50NX0yWjRUE5mPqANrV1NW8=;
- b=jexlaRcmWtettKbCwpEXo6rqc6PEYSkaYFjsG3jUJH4Aa63DvI8oiPOq
- 7w8+THzQfED9kP2A6jaIK0IvC/bERVaJzW96vXPKdN7n3YSuGMagW67r7
- zbvkObZV3CvqTyFmTOH3I4vgs6cooUUkGT/I2h+6kWVEN5DpL5H47ocHJ
- dzwJ7hPTg6Oc2TnkcrQNmRET2Q/kW57LSnTOadthkCg5snbbdGobIYnll
- gAtVhLwaqPfbvRjFPvaILGqQ5e2MPqdrCXLVc0V0iTx7qBmwLQk5SdrIR
- 2NDWXn5eO3kYajGH1yXR+/e9/xbYPj1zli1y06ApWas1OhNHT/DFbBu0h A==;
-X-CSE-ConnectionGUID: Lb3Ap186RIKXznqGQ49mNw==
-X-CSE-MsgGUID: BbyolcPdTMmOklL99Vb/WQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11751"; a="99086670"
-X-IronPort-AV: E=Sophos;i="6.23,164,1770624000"; d="scan'208";a="99086670"
+ t=1775507032; x=1807043032;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=CQaNcq0o9JDkqYaX1K2LAHViKEPk/YKJfrpdY0DkObs=;
+ b=hTEvAiCLwkU7qffW/Sh/gmO2CvH2c2/yqiDwkcJ2J/R/kfq828G/ap49
+ JLcE1qbWVsRvMCFuyj+40ruc+GE4+VwohQ8F2/khCgEmxaQ8RS4N7MElA
+ hRrf7XwMOtTc2dx2XMv5JbkxF6hl0uqOkCkihTP8nJNM7TiWJmn7FYZpU
+ nDn6PTqJEfmZxRi99qenWLhff6k7OGLuKXWMD1GkNv3fZkNd3/svjiW4o
+ 0iBgZMoRgepnZEAsbEnFfPJwQ1M8YyCBnOyU2Fpozt79V1f0ZStdObMXz
+ kBytieuyxwWAAvWeun21k9JyUL2juKehxH2iA2toKQ96Oh6MhMYxVAYrD A==;
+X-CSE-ConnectionGUID: Xi6vX05vQF6wZNOa8+OaGw==
+X-CSE-MsgGUID: FBJaTR/9Q+mgw6VHf0V9+w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11751"; a="80321357"
+X-IronPort-AV: E=Sophos;i="6.23,164,1770624000"; d="scan'208";a="80321357"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2026 13:13:34 -0700
-X-CSE-ConnectionGUID: fbsQ8PZ5Q4qISzW9bkP+vA==
-X-CSE-MsgGUID: 3r2qHhgpQ7W9YCIbqOVMVw==
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2026 13:23:52 -0700
+X-CSE-ConnectionGUID: D83yLRVITjmvTtKYtwuSAw==
+X-CSE-MsgGUID: FxE70FZ7T+2FBfqN0WsYjA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,164,1770624000"; d="scan'208";a="226960474"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+X-IronPort-AV: E=Sophos;i="6.23,164,1770624000"; d="scan'208";a="226962932"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
  by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2026 13:13:34 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 06 Apr 2026 13:23:52 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 6 Apr 2026 13:13:34 -0700
+ 15.2.2562.37; Mon, 6 Apr 2026 13:23:51 -0700
 Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 6 Apr 2026 13:13:34 -0700
-Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.68) by
+ 15.2.2562.37 via Frontend Transport; Mon, 6 Apr 2026 13:23:51 -0700
+Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.38) by
  edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 6 Apr 2026 13:13:32 -0700
+ 15.2.2562.37; Mon, 6 Apr 2026 13:23:50 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nmJMHkqqRAsdQ03221oSW0owyCVCtW2CXvlWO4HhflBTgknerPEWBFZyFXs/0hLJt9tpTI8QIndDpS68DXnVBWAI+PUwP2DjDDB9THgMMZhJnq2y97WeTv+02JldawsSATyF6Kvr8drZ8jvsjBl3kxfPJOgmmvAC6Nd690Lx0+Q6FG+MZGbMBj5P54qGwqFdAKMREcM9eA7K8F8DMgObREmNqAWSoE+EzQKhrHH+zQziit80VYiXSLka4LTLfpcUNj1gIHoEr6+A1+7vJ7fkbI2RqM7QWCV5G/DjHQITtlU4H6LmBRe08vhOIIk7J+zKzat4ccXdfchTVIFlaIZylA==
+ b=GzrP77paaR3qcoAilVnX1ITsY2Xv+lQ2HQfC8jKIMIjjtxqPU2UQnW2Tgn+MoUtFCNwjbdiTshZddtXQEoCZR6v4bwFJcl5vGa2tH91Yh/9xZGqUm8pURwx9joILIC+JU0FWk9I4r0R4mKLJEsyx4Sub+f7l4RzT/OkhUmA69iDnttn2kvQIdVqJWKpP6b2VElexPaCYkz+co4JeVhqm4pkuZue5PJII5ghZa0ugSvREQNGUCdxWvyAlYJT44xTIlEcTIXWNNF2K726swZkNyxf1hGMwWoQE5dGJhMFi4tfebJlADlqBbZgNJztxXEREO3kUpLVQtms+9hEzAdXmbw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=G8Xpx6A5oEd1ouEoAQCb9Nj3t8HBBxHde0UNsNHwAZU=;
- b=ETBxYlUyBl1tb5y87EheW1NoTbA3Qb62NyPrxtL9FSoOYK/M5B1hppibiAlfLgHEJGUkhhbSGSq04v9AgIQ3v963K/u7MhP6hgWyWU8OKhDMUBwBnAqrnzkYDdT+YZ4vNyhcvA1j0wPOsQrdHVn5uictyN1XKl/jEi+oIdI2lsVM5fHttLPbR5OkVcWRiwdJLWzxgDFyqMbRavhXs1CrJ/5v+NEKfv5BI2995Z5/aXLNj7JJg56bHIzYqsjnUEqxAqpTWogxv6iDyWaBEZlGYPDtA/oecJpKBBShVLTbHFwX3MEPbeCCcItl6ntbSxvHs/hrhFOmtRzbUu3HbJRZ5g==
+ bh=FM9j5/pM2HH31FFQWD5zw9Gw08wt1H/ExiNqbNmTPuA=;
+ b=U+j0VidLfKQ/YFKCeWKKWAuUyGHpXEfPyU+pjL96Ek+ZLPl2qz+Q6nVV9JTGAmB28UffV8Lgg59agmxaqaGUv1dPq17hyXCyDrdXbsjp8Ky3BXGm/iRJUUUBLj9Eo7ZSrfwA5dbJFSmjZ+8LV67b6uLHjZFaciNLff5X74vmZO6+DJmKp3rQTkf0JkhqktR2ctyKbh33xM4BnBTiu5+32Rc3pskj923HnG15kUuqs2AkismkamdPVxYLVdZLGuosijzW05b6KRO3p1isCWjHreDz81FKz+gkNVPm9Ja9OnW4wGj6eDPB75KLyCApdeD0Db0ZumIk/2N4jDo9ukWQyg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB6360.namprd11.prod.outlook.com (2603:10b6:8:bd::12) by
- IA4PR11MB9396.namprd11.prod.outlook.com (2603:10b6:208:56a::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.9; Mon, 6 Apr
- 2026 20:13:30 +0000
-Received: from DM4PR11MB6360.namprd11.prod.outlook.com
- ([fe80::22d9:ae03:5db1:680]) by DM4PR11MB6360.namprd11.prod.outlook.com
- ([fe80::22d9:ae03:5db1:680%5]) with mapi id 15.20.9769.016; Mon, 6 Apr 2026
- 20:13:30 +0000
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "Manna, Animesh" <animesh.manna@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "Nikula, Jani" <jani.nikula@intel.com>, Dibin Moolakadan Subrahmanian
- <dibin.moolakadan.subrahmanian@intel.com>
-Subject: RE: [PATCH v3 08/12] drm/i915/cmtg: modify existing hook to disable
- CMTG
-Thread-Topic: [PATCH v3 08/12] drm/i915/cmtg: modify existing hook to disable
- CMTG
-Thread-Index: AQHcswMUQk7sh32n4Eqd7ZG6EBWH87XSnIiw
-Date: Mon, 6 Apr 2026 20:13:30 +0000
-Message-ID: <DM4PR11MB63603BC96839DCAE106EB875F45DA@DM4PR11MB6360.namprd11.prod.outlook.com>
-References: <20260313153300.3530695-1-animesh.manna@intel.com>
- <20260313153300.3530695-9-animesh.manna@intel.com>
-In-Reply-To: <20260313153300.3530695-9-animesh.manna@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB6360:EE_|IA4PR11MB9396:EE_
-x-ms-office365-filtering-correlation-id: 76fef01b-6988-4405-a44a-08de9418f8b4
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|38070700021|18002099003|56012099003|22082099003;
-x-microsoft-antispam-message-info: 6pqs94MoOQo4XYPMuOnQtFK5cyov7CY8JTTtwMSimo/TIKSIDX7NfNaB2oqZ0k8TPf8JLjqtAkoLx83VC5cj+wh0PNVoeSZnpjQoPWoQa2dIJ3czeCXjg3KW7x8Rk/hBFdwEBTpM3yMuIAZz0O7G9KHTZERRNukUjsCHl9D7SIpvx7bxI0CpNinERKZkn4bhdAxCMBJ1L2B8BywOmNSOASpAqoFX3b4FwKgBmrY00ugGf1YpjmKaf1eutsRvLvEikov6VOQnZ2/f85teBU2xwH9xqwFiYKKhq68Xz5MOv1ilYJyUzI75Mu1Jy5NCkIxsCQQ7D7xDHkYu1Jw8G4DPFvGj/IHmn7l9ZYJGdYf5fwuzq6bjBT8RoD7EHDsmttNc6Cgx8Z5nYF1npqiudYphhPZ5c0LcL2kN5bZujmzZr61gJu5n0/KaYK4/OnTLAcRVJJye+XNLbq3GVHVjQxNEfuetz1iyfbUCfi67SVY03D/zR0Fu8/znsqtSXKDskuBggvldgTTGl6nACmRLqJ4OV4xyES9XBH4SSJQhinem6Mfmi5py7w39jgme22zDHkY9/2ggzHoWM8HgjJ7QWtoSIMk+qf8YwyVSy7v67/51DzWM5QpW27Stn+5Hrkx0TGZgCBW1vX4e6UGcZxkp0QEHykwFml3fKQFr4Ggb5/EGQ46ZGSP7zv2CySYFzPkOBlAhuFp+NmB/hbwHTpfgJ53SC5abFM5uXZTkIgRQKbYI4Ohsm9qPAfz4BSfLMLzAOkiRmb9d9zG9S33Mp3AiVlG2F/TngzP0W7KJkUAkiaddnxs=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB6360.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(38070700021)(18002099003)(56012099003)(22082099003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?x9If1hRhIGNosq3N0+LxNOucVPiPWqUmxNNN7hiKM9DVq+G/HSQi0mLwKlO/?=
- =?us-ascii?Q?So8x3vKH+c94yIKAnBWCvDeCIPPwHteQVJbJFzRfBrbzNcDCcURfJSfKG4y/?=
- =?us-ascii?Q?UXLdcywwpKgqJOIr2ZLydnjSBGFonwUhq954rbRQ07u0WDHPsLIxk3nSWJ1K?=
- =?us-ascii?Q?3XwDkBTiapV1xaAMH0uTGA5SUutNzE04W0cRSScJu5ljYzG7OdiJIboBrGjd?=
- =?us-ascii?Q?RUFL6lOP7JjsH4JNmMJKLQMDAnPLDakSaEn9A3QQeudJ4KF1KkyGmhuzPLu/?=
- =?us-ascii?Q?IdGQrZDNFNJefwstwnD7XcqhzpzIuUuu+klFEWRheEeyaIC6t1rpWypB7xKg?=
- =?us-ascii?Q?t5PjgwTMsi8UDyUmnlG9MF93m0dHB4AcGpaBwSLRz7cvVzCzWWzMLvDN3+aF?=
- =?us-ascii?Q?rHxIFsSoyDCT3umVzR5uT81NzZL2L7rXQRuFN+jKPyrEf4FtjGp19xfwR1NV?=
- =?us-ascii?Q?PWDRRx/WIU7mPrtl4xKAgt1U3Qmdcf4JoHRYVYW/SEqLEZ8qkIcZ3MeCGxCP?=
- =?us-ascii?Q?hhbIOxg1fleK9HcP2OFoCkAMe2diaaVFfuqBgNbQMTPbh+OFEavLVUoleRuC?=
- =?us-ascii?Q?GV4/DE8+/fh9muPVOSvHD1G28tXM5AVuDF7rbbyKPZGy2VBUj0nA93EhGL7B?=
- =?us-ascii?Q?lOm1MOAR6AkQ7EkEcCDwehZvTIRTToWRBLUeLDYaEkfWqymOsSmYyfjHXzBb?=
- =?us-ascii?Q?ecr2Dd5guDdg+yzsqdul1x3tP2L6/TIoo2dae/AG0J2+LDkCmqrEk0WxbwIx?=
- =?us-ascii?Q?pf2nLTpEkz0e8u0qFNEW/Rm9fPYL2Wy/aB0dWEXiGB4SJOt2EjIRE3gauVqM?=
- =?us-ascii?Q?VANroxTx+mF0FCVf0teXeZ5DbDJZmWDcrzqAPTgBTSBoHoThuqJcbEY/7GGs?=
- =?us-ascii?Q?6/uzZigNVZ3cEGVoNg52Rsehj0mizxsWANesHDGEwIPvwudwDVXdB5YVl2gC?=
- =?us-ascii?Q?Pm+PBn+VIZLo3P70unwleG9BHeirAXj5MHiqMgWLkeQQI1U0yn5uhZWb0Z79?=
- =?us-ascii?Q?AJ3Q1QJ88QT6uaR5p+a2wFfc5oFFGWvRfB/eeXUGH+xxfIIfzRYpi0r9+/jl?=
- =?us-ascii?Q?zSDQ0tysWy6rLX1675sGT53SSp69Y/6VtEL7gnzWlOLY29tyIsU7Wlh6jib4?=
- =?us-ascii?Q?irTeNR9KeSDclP5Npb9qQH+CM1q6pDi+bY+IurwAKng66cSEqhHHDj0VisPL?=
- =?us-ascii?Q?+d33Fy0nrq+p5n6COeoJ3zW0j+FQdJjOshzsTSdugdHBBN2oUpiXLZAPaPQt?=
- =?us-ascii?Q?uuForBkgcUoTVV+uuhC1K7FHIOSZSFxMvhh06zpSQls0tmylR2RILdK3cr05?=
- =?us-ascii?Q?G9tGM0HaBCLndLp0E93vRhXkdgdx+dJSzbJJJrju7HHiMrjURwavl+9Kb5Dk?=
- =?us-ascii?Q?9K0OLn5J+duMvHDdhz1PmeWYF/r/Mn1kB8LBSJDgm5kiI5vSORrvGXOr7mAV?=
- =?us-ascii?Q?iarRIpxsjJWOGjhQQsSmQqYK7A0EYMni5alIaqmf5Ivoy69O+CkxMolnor/d?=
- =?us-ascii?Q?fe2nU+n08H/F8XuFhW8ab1pHMiHDTtdkFjfFMvTmEgOlzNDAl5KvTJi1jdTS?=
- =?us-ascii?Q?SAxsYWOjuCbiuuv63mzIs7R6fpDlwm7U3/ai9Z1Q29Ce0+jlXbTK+IcAwtLb?=
- =?us-ascii?Q?BuNynAy0CA2kl4Kg+HV3uMquMe/8aLFN8JnpW8udQ06gLREmRm10JdB9Z4au?=
- =?us-ascii?Q?XdgpOx9jrPlQN6OTgjl1GvCeuuOxsLiUsb1GRyH7OnRtTTUwaMJoKIYujYLl?=
- =?us-ascii?Q?EcExEdrJAQ=3D=3D?=
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
+ by SJ2PR11MB8348.namprd11.prod.outlook.com (2603:10b6:a03:53a::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.17; Mon, 6 Apr
+ 2026 20:23:47 +0000
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::53c9:f6c2:ffa5:3cb5]) by BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::53c9:f6c2:ffa5:3cb5%7]) with mapi id 15.20.9769.016; Mon, 6 Apr 2026
+ 20:23:47 +0000
+Date: Mon, 6 Apr 2026 13:23:44 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Tejas Upadhyay <tejas.upadhyay@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <matthew.auld@intel.com>,
+ <thomas.hellstrom@linux.intel.com>, <himal.prasad.ghimiray@intel.com>
+Subject: Re: [PATCH] drm/xe/svm: Use xe_map_resource_to_region helper instead
+ of direct access
+Message-ID: <adQWUJSpnkGCfe+X@gsse-cloud1.jf.intel.com>
+References: <20260406054249.2769479-2-tejas.upadhyay@intel.com>
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+In-Reply-To: <20260406054249.2769479-2-tejas.upadhyay@intel.com>
+X-ClientProxiedBy: BYAPR08CA0036.namprd08.prod.outlook.com
+ (2603:10b6:a03:100::49) To BL3PR11MB6508.namprd11.prod.outlook.com
+ (2603:10b6:208:38f::5)
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: MLnOB7Dpoo6nQ0bnz/dOtkkcYzIlPylYjMh9EZWaqPPMbsKH6YCFtuIFdf06bYMiQhTWNvP6iD2D660NNartNXtpYrZKWxf4vH/MMSrCZRX+r8YNs9w51C0s0KQc70nypCaVGwhNUI0kDJxO0RL0XOvxVWnkQjmVdZZ+Kb0/K5citcjflXiXq5In0OcJmlIyW+/PcBRRu6JmcHXdZ4vIe5B8XuGbSCJ2orzQvsMTucXEZB/E202SVQe86Mo3eqgJw3Fk+3QgMY6lqMrz6My00C2Dn325DAAFVoO1dK9/R38oykIbMqDNnEVS8MW97HiVihU4CQ5PzTQ/1/iU91ejUQ==
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|SJ2PR11MB8348:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4f9cd2fb-b841-4b59-8a76-08de941a6868
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|376014|366016|56012099003|18002099003|22082099003; 
+X-Microsoft-Antispam-Message-Info: UOq0USEJfZb2Ot7Ed/NUjJLbP7bZnyY/Io+rnfB9JASZCtFHg03lWWAQS1kUVrsIF4j50WZfdWLYTxoZZndtQ355dZd7gU5igaU+bTx4oYdBEYjs4s4/THrQJLwrpyp6o+zNgYrGJQbUjL2a24wI/RHznwC5CJ6qymTAUeGBDSVsL8PBqdBt7uQyG+infY0fDRuzdJJbovvmztu4vB4YAsgUVp4wpOEVSrGkQlJinrzYJca95+M84NCZUm1+AtzGAv1oGNaSW0iCen+sKZmonCFQjAHKD0TXkyjZrFjdRmWq6sJryrDkTRNumjq0D3UQNoDm+hCrghIFq/V5pK8ZiXabtAch7J1qUbmhbvZou4CFuFr5C7yrPC8P6WSCtS0O7k5U3R4ClAzfQ5K3ZXwP/u5jlZNrXgZ9mRCtI27En24iiI57GWIFKNdm08axYQjM8jFx02lMT7+PBu9oNsN8sFwkCWDsnsZ6tp/I9ut3VQouMWamcL2phpap7nyTJzru6wKbFLqDe31OPtXOQPrw5P3nlYfLPWh96nHXLAy1mQ//wxrSv9NImz5jw4HDg8yb98/zZnkm/30lvmLV+46sdeEppVB6m8TlCAJU0c0IuJW+w2K/4RZPYDCRO7RdMBPeI6yPMaQNSKpqQj/3o1+qsvWhl20wFzAz2NZ6nWN3NclMgkP7rBDm0Sclk1SpQf9ZBHfA5fziCFzNhDMFvkPaGSYPsElupdbNJvnEhXUQufs=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(56012099003)(18002099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?l8E3TZn3gu6fxW4BW3YIFbqt/igBNyN42bbfj8Ng6nzKBdlBi9oPfNrOiXX8?=
+ =?us-ascii?Q?Rz4PbrNvvvqIyzTrvmpLo+xo7Q9V98qf6BPUJRJKjxPH3SYJ7xt77eNQQUxL?=
+ =?us-ascii?Q?lp/pfKQINYv071PNMLEHgazO9IwPngaEwT3LQ1nYy2aewns/3LvkLIxTm2hl?=
+ =?us-ascii?Q?ChuAEQNnmjwm6v0/+Kgy+MYUcscESX1nuV16ljjuz9oRJnqmvu84SpAyDEV0?=
+ =?us-ascii?Q?qxy3pgXI3+6brC0sSKCMQyaU9ox73dluuz6FNNZXRtzeUX9RXDGSVVh8Fg3O?=
+ =?us-ascii?Q?TUoOsOWcD/rP7bFwCRcsF0FbaQw10SyWq8F1wJkHMube0EqDWxcX5HeN4Lys?=
+ =?us-ascii?Q?w9qy90w1Fo43HVfoFcV7hkNMszjTWcwdL/gozllUOjnsxE9oWZBBA5BY5FPK?=
+ =?us-ascii?Q?OvRNSklGLdAjq8hPClZdgyrQoYx/Av9j4BI3zv72TshpO/DQg8W1j9NEMkbc?=
+ =?us-ascii?Q?ZLu/1RBU6N+axww/S5UV9l/H3xJqtdsG7HHNesEh/+NkMdna/VYuxbKQZs+p?=
+ =?us-ascii?Q?aygGC8xmO79Y6b2x2IpiibmHPI+nZ1bqUIf1WHoX0kbhF8ijPvOMfWAsD3B0?=
+ =?us-ascii?Q?IbxOH7Y1JaLu1X+wj8Onl6M28nKJCtMlelVxWA487UKLXalDFNxzY8V750AK?=
+ =?us-ascii?Q?QfKVw6Oad5Xj7gUrTyMoO0VgX1Fdc2YX98hAbYAJRAI5F8Bexvj0SDeK0bNi?=
+ =?us-ascii?Q?Hih6HKzZk05W0P6/RNpKO9FoaaV39bwTX8RtmGTpFGl3yRL7XAiWBfOlCIEg?=
+ =?us-ascii?Q?B/kXI1XjOiftMxVd3xf/c6CPwr1kfFP5fPWgX+1HVglHXGei+LuHLaXr5w3l?=
+ =?us-ascii?Q?CvPZjprswiaHK3By32+dDZVXVOhu484jTBip+LV2eFcqVtbJLnHNhGp+fwOH?=
+ =?us-ascii?Q?1WcOfpeGtFQRrZYRVn6tZA/zhTI/TwgnCW9WLsuimB1GaRF2XvRyCV5q38pm?=
+ =?us-ascii?Q?8foco+Xa4vbi9La08SxcBiRYvn6xyR0Q2wkJ6xP3wg7KxpOfkHGdFW8zHDpN?=
+ =?us-ascii?Q?IcBmTp+RxfFU+9sgcthxq5k3PSIAa0UQZM0srcr1w+faZxEEnxtoRCrFkTEv?=
+ =?us-ascii?Q?2h5jKy7qENtyQpAHG5NeN8EQ8wZRnGzsNlYLs3wARn7I8UA6IMU5gDPZ4BVY?=
+ =?us-ascii?Q?JaG/XPvPKSboEJWwmX75PReHSwOnHI7FQBE8UjKJWVSvAXami0d3xvRx29Av?=
+ =?us-ascii?Q?Sc6VkidHbrG9LDe1KORET0pZAu2Vj1ntsUPY7pEw3Oxk1hd3gXn+IS/8f+rv?=
+ =?us-ascii?Q?2RCs7M0Rl15TRu4c5T1VqSxIoA5YEt/HXWxX7EJPttg/lWQ7eA0yn2M7KnYq?=
+ =?us-ascii?Q?BKbG4vQ/yuGFuXNJaFcsAilSsQlPMAWb/7RhZ65XR+SK07JXRM7LqLiUoZD7?=
+ =?us-ascii?Q?KwXGg0JPbcGrBSABr2rE+jVa9/oScOHs0VvZ15UnADsR8jznYtjVORpYBihg?=
+ =?us-ascii?Q?jp+21J9eLrdLG9hODUkjP0eyS/yQoBFeTPYe22fipsZNG6kEf8fCeIdOS1w9?=
+ =?us-ascii?Q?0AyUG6JWq4q9RT6tbPR+nov2byUp9FriNArm+HX0lFfJI5U4q4SnblnkgInF?=
+ =?us-ascii?Q?+0U/QobZ17V8xvPfmVDFGrox7oCJXlItLsRote4LVvtEdwp1ZuPMmcS7ETh/?=
+ =?us-ascii?Q?WfGgOpn8SFUOFKH8r00RJTdsN5chfPp6BoMDx/UXWiWcextx5HSybhi1gF4C?=
+ =?us-ascii?Q?92qB1OGiZoazERb0H7F5x3+GxzSrkfqsdGJaLbcuDRq/2/Lt3vQhU4pjbF2B?=
+ =?us-ascii?Q?ja4mXun6AwjNT4kSNWA+OkCDjdqTgOQ=3D?=
+X-Exchange-RoutingPolicyChecked: ak+qPeFB/tDxvikSFo9FkC8bHxDs3sPTrH527e74/DLFu6rJgqZiz6jHrXTm+DyiEuKr3mDDecC3HUDhGpFRkTtqP74RVCLiSA2ZVO5ErVTidOP5ZFKTWE6sOb4HU9gLFqyv6TARKOzvtg0y7jA80LgsmzLkwlRK3qaHXTggSaOJ2qpqSRpKw3xyIfMsCxwfZrFrqMNxIzC1Tkus8lTZcA9hA6e8WuAnoPUPAtC3qRZIX6I7bOMjskMLK9K1bZPuJbPor2LfkAspgjEBJBYPzqzJJWPT1fmPjA3T+JgLJNtcfwy7fhtzCXtoSdLjLzGgQ91IwBBgeg6A0/C/LzQKbw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4f9cd2fb-b841-4b59-8a76-08de941a6868
+X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6360.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 76fef01b-6988-4405-a44a-08de9418f8b4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Apr 2026 20:13:30.5349 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: MkEi9jW3vUULmkjoD/r9cYHuMmu8lD1ukXzFMW12ZR2Kdl9l1Wsfitd95bJuaohXBsqgDeCmNHUrUAMVN5mWFg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA4PR11MB9396
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Apr 2026 20:23:47.7208 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: TxKRUdhtfXNBh+jSB+Sps6MUtXXN79GVdw91OL3daA5c3LCAG3RdwVk2Bvda1889RCGKwMl70Ik7MlfAEGFS2g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB8348
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -165,144 +158,184 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Mon, Apr 06, 2026 at 11:12:50AM +0530, Tejas Upadhyay wrote:
+> Renaming:
+> The helper function res_to_mem_region is now xe_map_resource_to_region.
+> 
+> Abstraction:
+> The patch removes instances where block->private was accessed directly
+> to obtain VRAM region data.
+> 
 
+I'd include the 'why'... e.g., 
 
-> -----Original Message-----
-> From: Manna, Animesh <animesh.manna@intel.com>
-> Sent: Friday, March 13, 2026 9:03 PM
-> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
-> Cc: Nikula, Jani <jani.nikula@intel.com>; Shankar, Uma
-> <uma.shankar@intel.com>; Dibin Moolakadan Subrahmanian
-> <dibin.moolakadan.subrahmanian@intel.com>; Manna, Animesh
-> <animesh.manna@intel.com>
-> Subject: [PATCH v3 08/12] drm/i915/cmtg: modify existing hook to disable =
-CMTG
->=20
-> From: Dibin Moolakadan Subrahmanian
-> <dibin.moolakadan.subrahmanian@intel.com>
->=20
-> Earlier cmtg_disable() used to disable all instances of CMTG which cannot=
- handle
-> individual request for specific CMTG instance.
-> Introduce cmtg_disable_all() which will disable all cmtg instances and
-> cmtg_disable() only disable specific instance.
->=20
-> Signed-off-by: Dibin Moolakadan Subrahmanian
-> <dibin.moolakadan.subrahmanian@intel.com>
-> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+The patch removes instances where block->private was accessed directly
+to obtain VRAM region data allowing VRAM manager to own block->private
+for future use cases. 
+
+> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_cmtg.c     | 36 +++++++++++++++++--
->  drivers/gpu/drm/i915/display/intel_cmtg.h     |  1 +
->  .../gpu/drm/i915/display/intel_cmtg_regs.h    |  1 +
->  3 files changed, 35 insertions(+), 3 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_cmtg.c
-> b/drivers/gpu/drm/i915/display/intel_cmtg.c
-> index 703828339d4d..a6ac87fd552e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cmtg.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cmtg.c
-> @@ -125,8 +125,8 @@ static bool intel_cmtg_disable_requires_modeset(struc=
-t
-> intel_display *display,
->  	return cmtg_config->trans_a_secondary || cmtg_config-
-> >trans_b_secondary;  }
->=20
-> -static void intel_cmtg_disable(struct intel_display *display,
-> -			       struct intel_cmtg_config *cmtg_config)
-> +static void intel_cmtg_disable_all(struct intel_display *display,
-> +				   struct intel_cmtg_config *cmtg_config)
->  {
->  	u32 clk_sel_clr =3D 0;
->  	u32 clk_sel_set =3D 0;
-> @@ -157,6 +157,36 @@ static void intel_cmtg_disable(struct intel_display
-> *display,
->  		intel_de_rmw(display, CMTG_CLK_SEL, clk_sel_clr, clk_sel_set);
-> }
->=20
-> +void intel_cmtg_disable(const struct intel_crtc_state *crtc_state) {
-> +	struct intel_display *display =3D to_intel_display(crtc_state);
-> +	enum transcoder cpu_transcoder =3D crtc_state->cpu_transcoder;
-> +	u32 val;
-> +
-> +	if (!HAS_DC3CO(display))
-> +		return;
-> +
-> +	if (cpu_transcoder !=3D TRANSCODER_A && cpu_transcoder !=3D
-> TRANSCODER_B)
-> +		return;
-
-Maybe just use intel_cmtg_is_allowed which is used throughout for CMTG.
-
-> +
-> +	val =3D intel_de_read(display, TRANS_VRR_CTL_CMTG(cpu_transcoder));
-> +	val &=3D ~VRR_CTL_VRR_ENABLE;
-> +	val &=3D ~VRR_CTL_FLIP_LINE_EN;
-> +	intel_de_write(display, TRANS_VRR_CTL_CMTG(cpu_transcoder), val);
-
-Use intel_de_rmw instead of manually doing it.
-
-> +
-> +	intel_de_rmw(display, TRANS_DDI_FUNC_CTL2(display,
-> cpu_transcoder),
-> +		     PORT_SYNC_MODE_ENABLE, 0);
-> +
-> +	intel_de_rmw(display, TRANS_CMTG_CTL(cpu_transcoder),
-> CMTG_ENABLE, 0);
-> +
-> +	if (intel_de_wait_for_clear_ms(display,
-> TRANS_CMTG_CTL(cpu_transcoder), CMTG_STATE, 50)) {
-> +		drm_WARN(display->drm, 1, "CMTG: %s disable timeout\n",
-> +			 transcoder_name(cpu_transcoder));
-> +		return;
-> +	}
-> +
-> +	drm_dbg_kms(display->drm, "CMTG: %s disabled\n",
-> +transcoder_name(cpu_transcoder)); }
->  /*
->   * Read out CMTG configuration and, on platforms that allow disabling it=
- without
->   * a modeset, do it.
-> @@ -184,7 +214,7 @@ void intel_cmtg_sanitize(struct intel_display *displa=
-y)
->  	if (intel_cmtg_disable_requires_modeset(display, &cmtg_config))
->  		return;
->=20
-> -	intel_cmtg_disable(display, &cmtg_config);
-> +	intel_cmtg_disable_all(display, &cmtg_config);
+>  drivers/gpu/drm/xe/xe_bo.c   | 21 ++++-----------------
+>  drivers/gpu/drm/xe/xe_svm.c  |  8 +-------
+>  drivers/gpu/drm/xe/xe_vram.c | 22 ++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_vram.h |  2 ++
+>  4 files changed, 29 insertions(+), 24 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index a7c2dc7f224c..daac53168dba 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -173,19 +173,6 @@ mem_type_to_migrate(struct xe_device *xe, u32 mem_type)
+>  	return tile->migrate;
 >  }
->=20
->  bool intel_cmtg_is_allowed(const struct intel_crtc_state *crtc_state) di=
-ff --git
-> a/drivers/gpu/drm/i915/display/intel_cmtg.h
-> b/drivers/gpu/drm/i915/display/intel_cmtg.h
-> index 12abbafa7d08..79785afccc51 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cmtg.h
-> +++ b/drivers/gpu/drm/i915/display/intel_cmtg.h
-> @@ -11,6 +11,7 @@
->  struct intel_display;
->  struct intel_crtc_state;
->=20
-> +void intel_cmtg_disable(const struct intel_crtc_state *crtc_state);
->  void intel_cmtg_enable_ddi(const struct intel_crtc_state *crtc_state);  =
-void
-> intel_cmtg_enable_sync(const struct intel_crtc_state *crtc_state);  void
-> intel_cmtg_set_m_n(const struct intel_crtc_state *crtc_state); diff --git
-> a/drivers/gpu/drm/i915/display/intel_cmtg_regs.h
-> b/drivers/gpu/drm/i915/display/intel_cmtg_regs.h
-> index 93bdf8e23546..d53891f3e3c3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cmtg_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_cmtg_regs.h
-> @@ -19,6 +19,7 @@
->  #define TRANS_CMTG_CTL(trans)		_MMIO(0x6fa88 + (trans) *
-> 0x100)
->  #define  CMTG_ENABLE			REG_BIT(31)
->  #define  CMTG_SYNC_TO_PORT		REG_BIT(29)
-> +#define  CMTG_STATE			REG_BIT(23)
->=20
->  #define TRANS_HTOTAL_CMTG(trans)	_MMIO(0x6F000 + (trans) *
-> 0x100)
->  #define TRANS_HBLANK_CMTG(trans)	_MMIO(0x6F004 + (trans) *
-> 0x100)
-> --
-> 2.29.0
+>  
+> -static struct xe_vram_region *res_to_mem_region(struct ttm_resource *res)
+> -{
+> -	struct xe_device *xe = ttm_to_xe_device(res->bo->bdev);
+> -	struct ttm_resource_manager *mgr;
+> -	struct xe_ttm_vram_mgr *vram_mgr;
+> -
+> -	xe_assert(xe, resource_is_vram(res));
+> -	mgr = ttm_manager_type(&xe->ttm, res->mem_type);
+> -	vram_mgr = to_xe_ttm_vram_mgr(mgr);
+> -
+> -	return container_of(vram_mgr, struct xe_vram_region, ttm);
+> -}
+> -
+>  static void try_add_system(struct xe_device *xe, struct xe_bo *bo,
+>  			   u32 bo_flags, u32 *c)
+>  {
+> @@ -635,7 +622,7 @@ static int xe_ttm_io_mem_reserve(struct ttm_device *bdev,
+>  		return 0;
+>  	case XE_PL_VRAM0:
+>  	case XE_PL_VRAM1: {
+> -		struct xe_vram_region *vram = res_to_mem_region(mem);
+> +		struct xe_vram_region *vram = xe_map_resource_to_region(mem);
+>  
+>  		if (!xe_ttm_resource_visible(mem))
+>  			return -EINVAL;
+> @@ -1642,7 +1629,7 @@ static unsigned long xe_ttm_io_mem_pfn(struct ttm_buffer_object *ttm_bo,
+>  	if (ttm_bo->resource->mem_type == XE_PL_STOLEN)
+>  		return xe_ttm_stolen_io_offset(bo, page_offset << PAGE_SHIFT) >> PAGE_SHIFT;
+>  
+> -	vram = res_to_mem_region(ttm_bo->resource);
+> +	vram = xe_map_resource_to_region(ttm_bo->resource);
+>  	xe_res_first(ttm_bo->resource, (u64)page_offset << PAGE_SHIFT, 0, &cursor);
+>  	return (vram->io_start + cursor.start) >> PAGE_SHIFT;
+>  }
+> @@ -1782,7 +1769,7 @@ static int xe_ttm_access_memory(struct ttm_buffer_object *ttm_bo,
+>  		goto out;
+>  	}
+>  
+> -	vram = res_to_mem_region(ttm_bo->resource);
+> +	vram = xe_map_resource_to_region(ttm_bo->resource);
+>  	xe_res_first(ttm_bo->resource, offset & PAGE_MASK,
+>  		     xe_bo_size(bo) - (offset & PAGE_MASK), &cursor);
+>  
+> @@ -2923,7 +2910,7 @@ uint64_t vram_region_gpu_offset(struct ttm_resource *res)
+>  	case XE_PL_SYSTEM:
+>  		return 0;
+>  	default:
+> -		return res_to_mem_region(res)->dpa_base;
+> +		return xe_map_resource_to_region(res)->dpa_base;
+>  	}
+>  	return 0;
+>  }
+> diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+> index 5933b2b6392b..71fbc75bd0da 100644
+> --- a/drivers/gpu/drm/xe/xe_svm.c
+> +++ b/drivers/gpu/drm/xe/xe_svm.c
+> @@ -790,7 +790,7 @@ static int xe_svm_populate_devmem_pfn(struct drm_pagemap_devmem *devmem_allocati
+>  	int j = 0;
+>  
+>  	list_for_each_entry(block, blocks, link) {
+> -		struct xe_vram_region *vr = block->private;
+> +		struct xe_vram_region *vr = xe_map_resource_to_region(res);
+>  		struct gpu_buddy *buddy = vram_to_buddy(vr);
 
+You can move 'vr' and 'buddy' to function level variables.
+
+With the nits fixed:
+
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+>  		u64 block_pfn = block_offset_to_pfn(devmem_allocation->dpagemap,
+>  						    gpu_buddy_block_offset(block));
+> @@ -1061,9 +1061,7 @@ static int xe_drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
+>  	struct dma_fence *pre_migrate_fence = NULL;
+>  	struct xe_device *xe = vr->xe;
+>  	struct device *dev = xe->drm.dev;
+> -	struct gpu_buddy_block *block;
+>  	struct xe_validation_ctx vctx;
+> -	struct list_head *blocks;
+>  	struct drm_exec exec;
+>  	struct xe_bo *bo;
+>  	int err = 0, idx;
+> @@ -1100,10 +1098,6 @@ static int xe_drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
+>  					&dpagemap_devmem_ops, dpagemap, end - start,
+>  					pre_migrate_fence);
+>  
+> -		blocks = &to_xe_ttm_vram_mgr_resource(bo->ttm.resource)->blocks;
+> -		list_for_each_entry(block, blocks, link)
+> -			block->private = vr;
+> -
+>  		xe_bo_get(bo);
+>  
+>  		/* Ensure the device has a pm ref while there are device pages active. */
+> diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
+> index 0538dcb8b18c..23eb7edbdd57 100644
+> --- a/drivers/gpu/drm/xe/xe_vram.c
+> +++ b/drivers/gpu/drm/xe/xe_vram.c
+> @@ -13,6 +13,7 @@
+>  #include "regs/xe_gt_regs.h"
+>  #include "regs/xe_regs.h"
+>  #include "xe_assert.h"
+> +#include "xe_bo.h"
+>  #include "xe_device.h"
+>  #include "xe_force_wake.h"
+>  #include "xe_gt_mcr.h"
+> @@ -249,6 +250,27 @@ static int vram_region_init(struct xe_device *xe, struct xe_vram_region *vram,
+>  	return 0;
+>  }
+>  
+> +/**
+> + * xe_map_resource_to_region - Map ttm resource to vram memory region
+> + * @res: The ttm resource
+> + *
+> + * Get vram memory region using vram memory manager managing this resource
+> + *
+> + * Returns: pointer to xe_vram_region
+> + */
+> +struct xe_vram_region *xe_map_resource_to_region(struct ttm_resource *res)
+> +{
+> +	struct xe_device *xe = ttm_to_xe_device(res->bo->bdev);
+> +	struct ttm_resource_manager *mgr;
+> +	struct xe_ttm_vram_mgr *vram_mgr;
+> +
+> +	xe_assert(xe, mem_type_is_vram(res->mem_type));
+> +	mgr = ttm_manager_type(&xe->ttm, res->mem_type);
+> +	vram_mgr = to_xe_ttm_vram_mgr(mgr);
+> +
+> +	return container_of(vram_mgr, struct xe_vram_region, ttm);
+> +}
+> +
+>  /**
+>   * xe_vram_probe() - Probe VRAM configuration
+>   * @xe: the &xe_device
+> diff --git a/drivers/gpu/drm/xe/xe_vram.h b/drivers/gpu/drm/xe/xe_vram.h
+> index 72860f714fc6..dd1c8bf17922 100644
+> --- a/drivers/gpu/drm/xe/xe_vram.h
+> +++ b/drivers/gpu/drm/xe/xe_vram.h
+> @@ -10,7 +10,9 @@
+>  
+>  struct xe_device;
+>  struct xe_vram_region;
+> +struct ttm_resource;
+>  
+> +struct xe_vram_region *xe_map_resource_to_region(struct ttm_resource *res);
+>  int xe_vram_probe(struct xe_device *xe);
+>  
+>  struct xe_vram_region *xe_vram_region_alloc(struct xe_device *xe, u8 id, u32 placement);
+> -- 
+> 2.52.0
+> 
