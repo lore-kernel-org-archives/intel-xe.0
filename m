@@ -4,53 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1697DFB5164
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Apr 2026 20:35:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21B4BFB5170
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Apr 2026 20:35:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C50EF10E2A1;
-	Mon,  6 Apr 2026 20:35:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D25C610E2D8;
+	Mon,  6 Apr 2026 20:35:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R/R/BsCE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fr/41wBV";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F158910E2A1
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Apr 2026 20:35:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECBD110E2C7
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Apr 2026 20:35:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775507713; x=1807043713;
+ t=1775507715; x=1807043715;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=R7vquLMzgCrzAD8x+k/1bC9nNXTFZU8bpGMUrEZ5N7w=;
- b=R/R/BsCE7twG+kR9FDO+/7ra6Kwjmcj/jxCT7Op22L5/5OpFfvlEgLvp
- bfZfRZ/QzscldTMlO4CjifxvOGY1spOZyPApXJti9Hl9XS3cHTJiDD1hF
- X7XMJnEXnWA4HSICBYpWaNoHIi8Q+pcIwMDlJ5xqUydAD5AK0C356hRo7
- zwgBaYxViDP2indJZfivlCTsfhTbKZitOfhkJrG7RhuzlEroysm6MwgJ3
- uYwTeUFJ40L37coLcR//+jMs5RiqGGO23zdzdrmwDIqqtnqavkCKS36hV
- ZnUttFs4/dSHV9XZvz1/tnnrMVSSlVQBuDdQi/Tgb59ckIiu7RNp0pbH7 g==;
-X-CSE-ConnectionGUID: 8gaYNthES9eGcKIYXdgK+Q==
-X-CSE-MsgGUID: zYw4X8tjQPWvlEluMwjQWw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11751"; a="75503334"
-X-IronPort-AV: E=Sophos;i="6.23,164,1770624000"; d="scan'208";a="75503334"
+ bh=dUaiCd1RiC8mGTf7+eMEfG/OR/x/uug1Xea0pjlVCK8=;
+ b=fr/41wBVrT79DLrEVxsa75FxIhYEU/xLF3ywI9+th2eMgcYXMpiouWnE
+ wAuASNhlfujWUOG5z38dCY94HJEak4C7cJ+juCdQxjV3niC2BQt4iyPMj
+ 1/VKSlDqk7C76L/VSbvBN8UKAEEZwugomjlqUrcUalE7eVXbleO3UN0Mt
+ GMblNjV+TyFIF3NJ1OM9YgGpzFTBKMStVt477Yk+57nKKI1qUwrnLLQcB
+ 1qtB8SoSbtniJnvQkeCXB78XK0by6+zuvGgfC4NwZyUFWrnz+MMwFy7UK
+ 8wMoKHgsBWG3Y7Axk7OC0nTfHfUwAjFon1zge3cKGdAQ+UIuwk8Zj9iMG g==;
+X-CSE-ConnectionGUID: JjOis6nkRTKzxnOcJYiW2w==
+X-CSE-MsgGUID: nLmqA5bjQ4SGFPRUJfJydg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11751"; a="75503342"
+X-IronPort-AV: E=Sophos;i="6.23,164,1770624000"; d="scan'208";a="75503342"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2026 13:35:12 -0700
-X-CSE-ConnectionGUID: CvycKj1TQwuF3T5ZK6P9ew==
-X-CSE-MsgGUID: Au4rnhVYRUacBMcFmobXsg==
+ 06 Apr 2026 13:35:14 -0700
+X-CSE-ConnectionGUID: 2UPowS2FT6Oq8YUiPhAGoA==
+X-CSE-MsgGUID: UN4dI6vfQBKatujeWH5z8g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,164,1770624000"; d="scan'208";a="227137301"
+X-IronPort-AV: E=Sophos;i="6.23,164,1770624000"; d="scan'208";a="227137309"
 Received: from shosgclin.sh.intel.com ([10.112.232.103])
- by orviesa010.jf.intel.com with ESMTP; 06 Apr 2026 13:35:11 -0700
+ by orviesa010.jf.intel.com with ESMTP; 06 Apr 2026 13:35:13 -0700
 From: Shuicheng Lin <shuicheng.lin@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Shuicheng Lin <shuicheng.lin@intel.com>
-Subject: [PATCH v2 2/4] drm/xe: Add missing '@' prefix to kernel-doc member
- tags
-Date: Mon,  6 Apr 2026 20:31:19 +0000
-Message-ID: <20260406203122.3392365-3-shuicheng.lin@intel.com>
+Subject: [PATCH v2 3/4] drm/xe: Fix kernel-doc comment syntax issues in header
+ files
+Date: Mon,  6 Apr 2026 20:31:20 +0000
+Message-ID: <20260406203122.3392365-4-shuicheng.lin@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260406203122.3392365-1-shuicheng.lin@intel.com>
 References: <20260406203122.3392365-1-shuicheng.lin@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,65 +67,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add the required '@' prefix to member documentation tags that were
-missing it. Without the prefix, kernel-doc does not associate the
-comment with the struct member.
+Fix doc comment formatting that does not conform to kernel-doc syntax
+rules:
 
-- xe_guc_ct_types.h: snapshot_ct -> @snapshot_ct,
-  snapshot_log -> @snapshot_log
-- xe_pagefault_types.h: consumer.reserved -> @consumer.reserved
-- xe_pt_types.h: addr -> @addr
+- xe_guc_relay_types.h: Add missing space after '/**' in member doc
+  comment (/**@lock -> /** @lock)
+- xe_oa_types.h: Fix struct documentation to use proper kernel-doc
+  format (/** @xe_oa_buffer: -> /** struct xe_oa_buffer -)
+- xe_pagefault_types.h: Use dash instead of colon as separator in
+  struct doc (struct xe_pagefault_queue: -> struct xe_pagefault_queue -)
+- xe_pt_walk.h: Use dash instead of colon as separator in function
+  docs (xe_pt_num_entries: -> xe_pt_num_entries -,
+  xe_pt_offset: -> xe_pt_offset -)
 
 Assisted-by: GitHub Copilot:claude-sonnet-4.6
 Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_ct_types.h    | 4 ++--
+ drivers/gpu/drm/xe/xe_guc_relay_types.h | 2 +-
+ drivers/gpu/drm/xe/xe_oa_types.h        | 4 +++-
  drivers/gpu/drm/xe/xe_pagefault_types.h | 2 +-
- drivers/gpu/drm/xe/xe_pt_types.h        | 2 +-
- 3 files changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_pt_walk.h         | 4 ++--
+ 4 files changed, 7 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct_types.h b/drivers/gpu/drm/xe/xe_guc_ct_types.h
-index c81996f8915a..f88e588af0d3 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_ct_types.h
-@@ -102,9 +102,9 @@ struct xe_dead_ct {
- 	bool reported;
- 	/** @worker: worker thread to get out of interrupt context before dumping */
- 	struct work_struct worker;
--	/** snapshot_ct: copy of CT state and CTB content at point of error */
-+	/** @snapshot_ct: copy of CT state and CTB content at point of error */
- 	struct xe_guc_ct_snapshot *snapshot_ct;
--	/** snapshot_log: copy of GuC log at point of error */
-+	/** @snapshot_log: copy of GuC log at point of error */
- 	struct xe_guc_log_snapshot *snapshot_log;
+diff --git a/drivers/gpu/drm/xe/xe_guc_relay_types.h b/drivers/gpu/drm/xe/xe_guc_relay_types.h
+index 20eee10856b2..b99a6686416b 100644
+--- a/drivers/gpu/drm/xe/xe_guc_relay_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_relay_types.h
+@@ -15,7 +15,7 @@
+  * struct xe_guc_relay - Data used by the VF-PF Relay Communication over GuC.
+  */
+ struct xe_guc_relay {
+-	/**@lock: protects all internal data. */
++	/** @lock: protects all internal data. */
+ 	spinlock_t lock;
+ 
+ 	/** @worker: dispatches incoming action messages. */
+diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe_oa_types.h
+index acd78bc14822..0c48c1e0c2c6 100644
+--- a/drivers/gpu/drm/xe/xe_oa_types.h
++++ b/drivers/gpu/drm/xe/xe_oa_types.h
+@@ -154,7 +154,9 @@ struct xe_oa {
+ 	u16 oa_unit_ids;
  };
  
+-/** @xe_oa_buffer: State of the stream OA buffer */
++/**
++ * struct xe_oa_buffer - State of the stream OA buffer
++ */
+ struct xe_oa_buffer {
+ 	/** @format: data format */
+ 	const struct xe_oa_format *format;
 diff --git a/drivers/gpu/drm/xe/xe_pagefault_types.h b/drivers/gpu/drm/xe/xe_pagefault_types.h
-index b3289219b1be..aa3cfae01b9c 100644
+index aa3cfae01b9c..c4ee625b93dd 100644
 --- a/drivers/gpu/drm/xe/xe_pagefault_types.h
 +++ b/drivers/gpu/drm/xe/xe_pagefault_types.h
-@@ -86,7 +86,7 @@ struct xe_pagefault {
- 		u8 engine_class;
- 		/** @consumer.engine_instance: engine instance */
- 		u8 engine_instance;
--		/** consumer.reserved: reserved bits for future expansion */
-+		/** @consumer.reserved: reserved bits for future expansion */
- 		u64 reserved;
- 	} consumer;
- 	/**
-diff --git a/drivers/gpu/drm/xe/xe_pt_types.h b/drivers/gpu/drm/xe/xe_pt_types.h
-index 84b51d3762a4..a7d1bb708b69 100644
---- a/drivers/gpu/drm/xe/xe_pt_types.h
-+++ b/drivers/gpu/drm/xe/xe_pt_types.h
-@@ -34,7 +34,7 @@ struct xe_pt {
- 	bool rebind;
- 	bool is_compact;
- #if IS_ENABLED(CONFIG_DRM_XE_DEBUG_VM)
--	/** addr: Virtual address start address of the PT. */
-+	/** @addr: Virtual address start address of the PT. */
- 	u64 addr;
- #endif
+@@ -112,7 +112,7 @@ struct xe_pagefault {
  };
+ 
+ /**
+- * struct xe_pagefault_queue: Xe pagefault queue (consumer)
++ * struct xe_pagefault_queue - Xe pagefault queue (consumer)
+  *
+  * Used to capture all device page faults for deferred processing. Size this
+  * queue to absorb the device’s worst-case number of outstanding faults.
+diff --git a/drivers/gpu/drm/xe/xe_pt_walk.h b/drivers/gpu/drm/xe/xe_pt_walk.h
+index 07c8f409f236..dcedfc9a28df 100644
+--- a/drivers/gpu/drm/xe/xe_pt_walk.h
++++ b/drivers/gpu/drm/xe/xe_pt_walk.h
+@@ -111,7 +111,7 @@ static inline bool xe_pt_covers(u64 addr, u64 end, unsigned int level,
+ }
+ 
+ /**
+- * xe_pt_num_entries: Number of page-table entries of a given range at this
++ * xe_pt_num_entries - Number of page-table entries of a given range at this
+  * level
+  * @addr: Start address.
+  * @end: End address.
+@@ -132,7 +132,7 @@ xe_pt_num_entries(u64 addr, u64 end, unsigned int level,
+ }
+ 
+ /**
+- * xe_pt_offset: Offset of the page-table entry for a given address.
++ * xe_pt_offset - Offset of the page-table entry for a given address.
+  * @addr: The address.
+  * @level: Page table level.
+  * @walk: Walk info.
 -- 
 2.43.0
 
