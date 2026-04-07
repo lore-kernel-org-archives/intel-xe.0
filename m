@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94205FB5175
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 00:07:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 752ECFB5173
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 00:12:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E35810E2F9;
-	Tue,  7 Apr 2026 00:07:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3505A10E2F9;
+	Tue,  7 Apr 2026 00:12:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WF4PxnGn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j+SQE+3P";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C485210E2F9
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Apr 2026 00:07:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A6B010E2F9
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 Apr 2026 00:12:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775520448; x=1807056448;
+ t=1775520725; x=1807056725;
  h=message-id:date:subject:to:references:from:in-reply-to:
  content-transfer-encoding:mime-version;
- bh=aoAH6JEx2lg836cxhVjMAz+8xZIcUqHqZD6ylMJLQfo=;
- b=WF4PxnGnT9+rcsIMkZkclppWwcOy2e9WaEckvKjkWbUb7rgIILwSx59D
- NErKtvIcwnOa20TfMxuSWXE90fmhu4gq7ewh+BuVbz++l46KMhjfisEA+
- 2Mh4g6XgbIHk6v+LWXJNlW5r9NPtFkVupB20N5HqgKR0yw3L7nK5tO39q
- NM3AsM+mr1BBlHrvyDyltHZnZokHq/Hxf261j9UFq2w7EsAYtky6uj2Av
- hMxh7kkqAeSGjDGSmq8f48Cotn6I3sFIQEVXUGopY4sO1JKQsgZygWtg5
- rcOQcNrD8HioGh3Vwhwp5wpGyUNIbrT2OuoMtcZRSU6WGpro+CTnChcVB Q==;
-X-CSE-ConnectionGUID: 1twayn/QR8Ovd3ZzMG1y2w==
-X-CSE-MsgGUID: arWrCj7rTnK3NhW2mbENaA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11751"; a="75517166"
-X-IronPort-AV: E=Sophos;i="6.23,164,1770624000"; d="scan'208";a="75517166"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2026 17:07:28 -0700
-X-CSE-ConnectionGUID: hHyx5PMoQi2Kf7tf8E29Fw==
-X-CSE-MsgGUID: 3FIJYONvTd+J7+Lw75nFrw==
+ bh=Nr3gXP/ePwXdcFJ3n9Gq0L0Y9wfdFS+kPuYF/8ZdYu4=;
+ b=j+SQE+3PudtLZ6MPSo6+gKK5aLiZZiRXEnTCVsJ41T2PpWurM/qkzHbO
+ QKb8l9fpACgjCH/cHOpWRhFPeYAIJ95TJp5z84J0sPkDr2VFOEDuShEol
+ 5dtg8m9gTHx3d40or6YBRTkaF6sWGoYgkOn1/sr1neaJPFyKi2fOloSI1
+ O6/k+tImLl5YRWVKr6dLkA7dZM9OISeMqxeeKy0qESnPOScKEN6b4w2AO
+ tHn+nGpt8exAXJ2gM+SKyisIOPRN359KRIj67yXodF7CUjZ5WmEq/PT2k
+ CIHUydv4unmqeVa3Lo6WAQQzlkGXMfhwW2RgmBmLF5sdNRYv3VyJfMyvs w==;
+X-CSE-ConnectionGUID: yEdvAR4zSsylD+zOA8QXPw==
+X-CSE-MsgGUID: OcFWKYhRRfuXtRntGVoiGw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11751"; a="87929980"
+X-IronPort-AV: E=Sophos;i="6.23,164,1770624000"; d="scan'208";a="87929980"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2026 17:12:04 -0700
+X-CSE-ConnectionGUID: LiDLhJHCQ5aze6yzH5YYoQ==
+X-CSE-MsgGUID: LtWnFh9FTxiPCgqL2c6kug==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,164,1770624000"; d="scan'208";a="232881099"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2026 17:07:27 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.23,164,1770624000"; d="scan'208";a="223212048"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2026 17:12:03 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 6 Apr 2026 17:07:26 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.2.2562.37; Mon, 6 Apr 2026 17:12:03 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 6 Apr 2026 17:07:26 -0700
-Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.52) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Mon, 6 Apr 2026 17:12:03 -0700
+Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.15) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 6 Apr 2026 17:07:26 -0700
+ 15.2.2562.37; Mon, 6 Apr 2026 17:12:01 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=iMb4ZoeQ0py8ujPmFc9ozH5Dh32xnZCEzyadtMbb8TF0c0LkG2WwtkTkXq7zsh2xuz+MgUGYypK6oGzDFtNcMOdz+VKoR/RON4URIEPWZq2NoG6dMyHoJzpolahDlcHIQBjmOXuWcu4N7dVMu7X0Ew6x7RE4ekbdiEidcaFfhSbvyfuYkN/iRed0zGUgnkVKvhJ6qJbHN2CqrCeiJpRs1sApCGd5GojMAroE9+vq6wiXEYNW+yL/xXclbM8xUiDjXhSBadV4lFKclw+IYrGDOLkZrafIMWiINcY3+u/F8jYthMujsRdfJgSG03MgeF35LmK8yzW6sGZHhXvyGiPs1w==
+ b=jh8DUFgeLuQWZI8Cli8hrdhRYSoMtz4ShJ5w61fV3axPl0Vfbpmie/M43uSTZXGrsEwdj7gjpVK2W3eAG4xHwvCRcFccEFMwOwOQqsLXoaabERyZENNdZ9Y1sDCOn0ONzoMvWoLeYoPlpLv+qhlmDah4b0UuWP/FRQfDMluvWAfcK1AlfvZrddEAZ2v1Lj4n3Yix/mC2vDb2e+2eBVPzsCxUwykL6Wz0hAonphfO/Fc9bgM1SQjOKGF6zR0XypNJzXHxlPGLVmvdC8B08NjaX1gAw7Ksj5VcYUo2inIM05RGP2UmpM4NLU75aZbML5ftjeH7isfUl0TLLig98810IQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=A8ywSZ1nsux7n3VOWULpcGeCuSw/XQFI2rPap3ecabg=;
- b=hseBhhfWhmaj68QjaG88c0vEvUqaHPx8FgNUVkyAVw3Wn/ykduZCA126pGaA0rQxk8SUuiVTYCNLgC04UhB/KmwO2WeAU4NZ3BuSNOEXM0fOmzL6/iiS+5Snxtz1wiJTQP3A3Hk42LWDxmraW6DbdKyCCxHfqj5uYgEym1r6gYEJGWjWppA3H2gDyM0eHcl2cn1F+E5/BJuYj9ITwJ0jZoTrsOv5p8/wM8TonLqWJ59MSYqujURQtk0hUqiKoxExD7vYNrJ5vqEvoXAWF0dppGoCatqZXoDfqgFmj5G8GjePNoMVboX/i6pgE5wfsBUMPEjenvVvefjtrdQyty2DZg==
+ bh=F2qtJlJB13u1wlVr/TG4ECvZ8pSEuKsZm8zwfdL+bvE=;
+ b=fCsOxNwzWK7bHSuJDPhQO8SyKAxwF49UZ1nWoSryefSpiZBd2AWBSFh7oKa6Sv76T3uKvzikHomP9OMrJnZt0sI2D0nJR1RET9B+pUkoNtLX5p5BSSCC8SEZ/ZMY1WDQhdcZayH6ONob4TluZ4nMESt3vCPjBgpZMW4A1Zh90UBYGlYK6MiPBEUu02x551nWmo9C3dXBd6xiGFa9UOa+gP37oRXM4Bwhf3grX0XRUgTT0I0RCnf/Ua2HM4tZzf+iA3cinU6RA3S7L4cSgzH+LXk9NeYuKvaIzNn+MUhL9uq8R+zSgdEk8ms84o8I/UrxEqFSU9gwko8pXYOMOvS17w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,89 +69,89 @@ Received: from SA3PR11MB8046.namprd11.prod.outlook.com (2603:10b6:806:2fb::22)
  by IA3PR11MB9351.namprd11.prod.outlook.com (2603:10b6:208:57c::15)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.14; Tue, 7 Apr
- 2026 00:07:24 +0000
+ 2026 00:11:55 +0000
 Received: from SA3PR11MB8046.namprd11.prod.outlook.com
  ([fe80::87cd:16d5:8dbe:2286]) by SA3PR11MB8046.namprd11.prod.outlook.com
  ([fe80::87cd:16d5:8dbe:2286%4]) with mapi id 15.20.9769.020; Tue, 7 Apr 2026
- 00:07:23 +0000
-Message-ID: <6ed69861-b31c-4dbc-82ef-6f0ebf68fd02@intel.com>
-Date: Mon, 6 Apr 2026 17:07:21 -0700
+ 00:11:55 +0000
+Message-ID: <7da0dd80-e18d-4aff-923c-416902b8f234@intel.com>
+Date: Mon, 6 Apr 2026 17:11:54 -0700
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/5] drm/xe/uapi: Fix wrong names and references in
- xe_drm.h
+Subject: Re: [PATCH 4/5] drm/xe/uapi: Fix code examples in xe_drm.h
+ documentation
 To: Shuicheng Lin <shuicheng.lin@intel.com>, <intel-xe@lists.freedesktop.org>
 References: <20260331172049.3053871-7-shuicheng.lin@intel.com>
- <20260331172049.3053871-10-shuicheng.lin@intel.com>
+ <20260331172049.3053871-11-shuicheng.lin@intel.com>
 Content-Language: en-US
 From: "Wang, X" <x.wang@intel.com>
-In-Reply-To: <20260331172049.3053871-10-shuicheng.lin@intel.com>
+In-Reply-To: <20260331172049.3053871-11-shuicheng.lin@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BY3PR04CA0003.namprd04.prod.outlook.com
- (2603:10b6:a03:217::8) To SA3PR11MB8046.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BY3PR04CA0004.namprd04.prod.outlook.com
+ (2603:10b6:a03:217::9) To SA3PR11MB8046.namprd11.prod.outlook.com
  (2603:10b6:806:2fb::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: SA3PR11MB8046:EE_|IA3PR11MB9351:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0ad7177d-b535-4260-987d-08de9439a4ce
+X-MS-Office365-Filtering-Correlation-Id: 3cf5d749-d0b2-4bda-6fa1-08de943a46ff
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
  ARA:13230040|366016|42112799006|376014|1800799024|22082099003|56012099003|18002099003;
-X-Microsoft-Antispam-Message-Info: EvDD8Ge7kk0tGfJ35+RbVyhjYbGhawhqolzchexAMt4pbHjhnXZ+Owep/dPLJrGMrembTcVomgFmrjxE7/R5m+iK1l+t+ubFP/sQOGAsecuXXjL8heWhVwkLyXjD8HLekzOm9el3Mu06IT6ywsKhWwo3MLljM8Me3dpSz4PSjkY83W9LBYfhhYvkwLyNVlmV4mZRfe6krmB4UxHjs6uX0SBVV+QCeqp0KmlP1iRlWBm1kCqK4mICZSpXBCre901OorrO1LSjqKrMBKsrup5ODpGG0mcl6p94WreTgNWCmjf+KUXjipSbWt6GixK8R7P3HR6+l85jR1qFYDvH/huOS2OU+tIZzjVUPxGl5DWXnffqausMbKsHnMLUbElMBlBrUNd0vvrecNnjafUWWhU+Snc2o6ok1NP4lO4aXBDtVby46aP4LxnslNrQGdLIqMNsA9kzaJOlBy1F2y7T+dFjR2O2XV374zbVnm8UAZ8wtm1gLXhhFDKbyfY2f+cYAOTrSQcKYUpJos04E+xh4P3XF5/lnsxBKvq8WUZFg3Op6EjmJndJvyeswAEHGjIXpwpw6cUWqjpnFvRHOkLKtA06G+VC7BOgo8sfodFhFLn8A9bBm9fdDW66UD/onLokU/h68W67wyBv4Ktvs09W/DhYiJncc2x+EqIVyJZazcaeZ4Zc4xPHMQNbvwiWIWtLJzAjpirh86C80T4Tv/QlVqWKVBkR59amUoSWbB1skp3qCys=
+X-Microsoft-Antispam-Message-Info: eFxXV37l1SMldZNXOdMyBSvk/Kk1vDZ1gwQZ8Lucr9mKRmCZcgmk9aPpz+4u0k4KpyTyYHN4nUIfJKfYOojW73A7IPduQTDqsWFjHOf25C6ezuO2MyqyftLX8lcQMMdF6c4Ivbh9ixtouSlNURLw3hFmyQqWQkKFziFVRe8WunNrQYTp3rAyyIxzFAS7vyVscmW7eruPmehMJjwDJUaazpHdeafFPkaJOpnLGt9cNcgWXFG6yvUJptLr/+rkJ/3J0rqLivthzGPCvrXouHovhCTyyT9DJqyBAHhSo3JwfTZzAd1Io9xEIAl9lkvlcAa404NHcaNNHxURLuKyQlWRwzXCs3n3S06LtJCxIZBcSYd53NrN6EmDuJrLT7EV76tTNeS0AgqGvE9VVK7B2XEfXDx1tixdD8FPHFsaZ5Z/h34FE24ZBAM2vq84e58AAKrMrdioVQOPmvbHezwI8jiz5f4r7yu9uzV847BCKN5dAo+09rPzNxmkj5+ELI+C1kmFSg/7hNSD4ZZ4lw4pJPLb9VTw6jkM4UiKbaJBWD7oV1FC+sVoEJFb/1ZYFWc9UImptY2f/LDnyzgCZHV7jWtZ9NzeQgiIReXi/cmWXesj2viUA8l7FcNNsIqGkzriRvkpC18mZbs0EXhPhVKpEel9EYPEhUMNR7V+mJyMqZZ08tn+AA47oE3vxPxKQMgJ31cG9K89O4RX/iVsmrsOpFNaa4UBu7boYGMMoOVJXd0Pp+Y=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SA3PR11MB8046.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(366016)(42112799006)(376014)(1800799024)(22082099003)(56012099003)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZlNRSERsbFZYNUIxbXRwUTN5T1dxOXljNHJEeVp0cVNHYTl5SmMxd3lOL3pw?=
- =?utf-8?B?UFlLb0wwV3lBRFAvNlBHUEUveEdMc0pDb2xSeFZCdFVDR1hISDgxSzVQQmxa?=
- =?utf-8?B?N3pIcTV4Rjdxc3VDVGdLanpmZ2JoUTh3QnJwUWtXQXlGVFdrOVJwRHo4b1hD?=
- =?utf-8?B?NjBzVXhXanlHL0NNMSszRDVTemt6TTE5ZFVaZGZ0UFF2bXplUmNwOG9IbGtZ?=
- =?utf-8?B?ZXpEWi9ob0c1TU8vTXRCZFA0c2VhLzh1cjRoNm1vQk1YTU5lT1lSN2Q5Kyta?=
- =?utf-8?B?VmQ1eElWR1JhQ2RtTlVqQXZwcGcyL1pqbm1sczloR1M5WU1BQ09KRVJ4TFhI?=
- =?utf-8?B?Zk44ZnRYblN5QUJ6ZjEwLzg0MEpkbm9EcTIzMEFQUXdwNW5xT1htQ01UR1Nu?=
- =?utf-8?B?R2VDTWVORHBKbUdncUlqZlZYd3RCYklGMWlDdnl1T3RJaG1LSFhuWDlSTE9F?=
- =?utf-8?B?aFF4NjVsVWd2TnNadmJLWTA3cDA3WVJ5RzFyK3U3WStjalVyRDVBb0krZHJi?=
- =?utf-8?B?eDVqRFpmOWRKTzZYa0NYTGk1azlzcVYzVTFOMG91VUxKcGlVend0UXRFbDV1?=
- =?utf-8?B?aHNjVDlIVGJydy9wOTFNMyt0djNNdzRhYlI2ZURTOHhFMHZTODQrdmMwWWxI?=
- =?utf-8?B?d0ttQlRsUDF2bS9MWURMWmdpNlhoTW1yLzVHbEFVUjhicUx6c0luWndHNkJj?=
- =?utf-8?B?SDhKQWkxdE1Wc084bVRDQmhtdzhyaWh0c3NLTEVBYlBTTXdDSEdISDBGaEND?=
- =?utf-8?B?YzhLcDhTMzB0K2I2S2EwTnJrU1BjYnY1VERvL3Z1Rjhrc3g3dkhEL3AzOUk4?=
- =?utf-8?B?NVlBVTV3VGxsT3dGeUEvRkJ3T05OSGtVME0wWGx4NmxYaGlDd3dZSWpUZzA5?=
- =?utf-8?B?cFE0aE1MWUZINmtJZlJBT3p6SEtZME1MUnc0YTg3WDQrN2RTdXpkeTJUaEUx?=
- =?utf-8?B?cU8wa3Y0QlQwa21uQy9NRndEQWRIM3FrcHZXSmQxU3EySnJOR3ZoNkx6dWl5?=
- =?utf-8?B?emNOS0U0NENqY2tCLzJhcDBKR1JESUdNVEFGT3lNUnhtOWNFNDI4YU5OSU1k?=
- =?utf-8?B?K0hrd281dEpoZnZyVjNFRHc1VE9mUS9GSVArNFVkTGZ2YVdtN2FkOTRoMm1j?=
- =?utf-8?B?c3QrakFSU1dUWjNWak0vZWI5RGN5cUdjd2h6REtSV25CcExIbnJnUTJCamtD?=
- =?utf-8?B?Um9yTGNEOXM2ZFJQZUx6M1p2Y1ZqRzJ3NGxmQWpSVEJiNDVTTXJnN0dTMm1U?=
- =?utf-8?B?RTFyY0lucVU2QnREU0hjVTFISVBtSVVVN0k2SUZjRklzODcyckEzOGE1bE5R?=
- =?utf-8?B?NDIvV0pmYkFRWHVEbGxtWGNKRngxSFVSNm5VcWZMZFY2dzJKdXFoY2xId1Uv?=
- =?utf-8?B?eUdMNjJFV0ZabW1odlFaQVIrRWdCSFRQZkNHT2pEbWV4QkRDL1d4WEFIUXA4?=
- =?utf-8?B?THVsbmN1Zld6ZzBKd3l3b3ZEQmNqZFF0YjAwcUFzU0V1aERVTWt6Nlpybk1o?=
- =?utf-8?B?Z0ZqOVE1d0hhTjVvSVh2dWpRNlBPdkpjOHh0dUd5R0tJajJJeW5GaUtMOUhT?=
- =?utf-8?B?aEx6ME5XUkxKamhManJqeDd4MW00bjRZbmg2WFAwNmJMdm95YmRVUkh3bW43?=
- =?utf-8?B?cXdUM09TMklQMFdxMkNXcWxXYXF4T0NveVRuSHpjSUg1TXJBcGtSTzJ4eStx?=
- =?utf-8?B?YjlMQ2xTR2dGSS9aUE9CanZFbHM3Z2pqWXlKQ2oxU0F2OEttcDRaL0RsVThM?=
- =?utf-8?B?Q1ZYSUVIZ1pRNlFGYWpjQUttWk9Cb3NiNVlRZmZZenJ2TlZTb0ZkQW9oSGdD?=
- =?utf-8?B?TWQwMlFrUkc5SHVhUWgyZTROMEVwM0dzQW9yR2Zub1JLK0NGNG5MbGp0enhI?=
- =?utf-8?B?N0NXU3RzTmJ4UitLWEpRMWczODA5b1BKZllqM3dNQ0R3bkRGcXJCVkc5a3RY?=
- =?utf-8?B?RStrd3E1bEFPTVU0QVk2RXlwaHJDd2hpS0U3aE41SkNvYk8zTlh4ZEtVQmhX?=
- =?utf-8?B?QnFYNVBSaHRKdHJMRUp5NWoxZFoxc0F5elhJNVZVdDBnYjJHYkQ2eEExcW5p?=
- =?utf-8?B?R2NqTEI2OFpzU1NuVXZjdTlhN0dQWDFFSlRBZTQ1dDRWNnZwTDZpeXZVV1dh?=
- =?utf-8?B?QjRWb0IxZlhLRWRJOWduWmNDRWo3SndxSlpUUS92a3VJcThuZENtNGFVbExt?=
- =?utf-8?B?a0xIN1BJWHh3Ny9sZTZCeFFIaEJrTVVodEwwWlZYdE95OFFUNTVKd3JyOXFo?=
- =?utf-8?B?SEErcVlVNFRoeXgwcVlKNTUwU2hiOUE5WkFHOVU1YldIclBSLzBpdEhkZFVG?=
- =?utf-8?B?WmhXUnFMcmhtMFM0RmIveDdUcy9uT0RCdm5xUmdJZmtmQm05aXE5UT09?=
-X-Exchange-RoutingPolicyChecked: BYycSM9hHC4aTzDcHX92G3KHEFSf8ifO+IwUVvlyqzpixPyBecgodzwhjC3jG0gDNcuFgs4E2jotzBKlvm082gfJmvnHQJpeVTBwbJSiivVgFZXoafGX0ZC/pYYnjFHsK23xqheWaTdxVg1j4U8YI/u/Z/7iuWA6U7qDVzBVoXjUVACyMJ/RPFdeYS0yLb2WWt0Qvyab59BbmqkAoz2f9iBGHOqaltP6Dss9bW1TcaJiCa0jAMQSqbT7KRiVhyvJ3c2vkt2wNq2/sIvy37v+eceFGLweNYYxLFger2Z4hw98gHZIyFuMfksOAfggq1YzfxSSLVr6il98AmHO4fVPhw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0ad7177d-b535-4260-987d-08de9439a4ce
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ejljckN6Z3lYZnNGVFc3YWtDclBCZVQ4RjNMZEUyak5rY25uSWFmTFUreHp2?=
+ =?utf-8?B?YmM0eWJaa3Y4WTBtRWpPMlBua1pCK2lQaUg1QTkwN0pmYzFHWTMxei9HNnpq?=
+ =?utf-8?B?OGtRTEFXTnBiaVFTU2xPNWZGVktzVnhPMVhxNGhFZ1NMaVQ3TmVqYlRTalRn?=
+ =?utf-8?B?U1htNlVNUmkwVzZtd3VkSTlZRzVldisyRlBQcFhLZFpHc3IwelhVV09IcWt1?=
+ =?utf-8?B?THhZZmdOR0lFSXE0Z1BhRUZacjBaV1dJY3k5a3B5VmxBdTN4SlVmQVRlbDN0?=
+ =?utf-8?B?UEpJVk9Mem9tazV0N1YwZFVNMHdzVERtbG80M3RFMFhWOW1JWVo4S1o0Ullx?=
+ =?utf-8?B?YXYxUXNiTDhBajRObHJNSXY4c3l1MFlVK3l2YTdLdXNsa2Z1ZFpSakZ4TERn?=
+ =?utf-8?B?RmJ1dFoyZU1QWnNacTE0d3J3ZTc1Q1F1VnliYUN2cTlHbHdpVjR5T2IyNFhK?=
+ =?utf-8?B?cWt6blJYM2YxVVUzTXo4dUNWcFh6Ly9haVBhcEdQZTRmd0t1dkJPOHVQT3Zy?=
+ =?utf-8?B?NWFJQ2tKOUVtLzVaQ3NRSE80TFV5T3A5cWJxZWNIaEVOZVgycXI1VHZVZGgy?=
+ =?utf-8?B?TS84aW9FenNIenFFeHRkZ0FBRUtPczhBaHp3MzJCM2FVODNkZWZ6bzRYM1U2?=
+ =?utf-8?B?OFdnWHh5a2NrWE5vbzhBQnAzK2JUODhURU9OTXptZlR3SmFaMWszSUpnRFEv?=
+ =?utf-8?B?SGlNWmt6eld1R2pwZVVRSnFCc2dlaHFKaHRsZ3RqQm9DbnlMV3dsMEFxdXpZ?=
+ =?utf-8?B?NUhtL3V3cGNYT1FKYU1sbkdHdnNRQVNUME05YnpQSE9RWFpDSjR5ZUo0enp2?=
+ =?utf-8?B?V0F4WnBhd2duc2p0Y2lPSXpxeVY3UmlYQ2JTV3d2NmhmeE1aUlJRb3FuUGRU?=
+ =?utf-8?B?RGdTRWUvK2g4d2Y4WE83Z1RNOEh0QzZvWTlFejc5VUMwY0tjWS92eDdLNmVm?=
+ =?utf-8?B?SmtwWjY4a3ltTy8yWjlkcEp1RGRBdklZdzNtTHc3ZkdBaUs3eHVZWVgrN0sx?=
+ =?utf-8?B?eFlpRHBCSm5uY0RER1JOc291WVNqVHpRNlBRb0x1alU0OTlBNVJCdmxEOWRw?=
+ =?utf-8?B?NEptMDZZUTBUMisvSVFmVVVGb2dVN2MxZC9ZRnNaT2MwSFpJWGZ0YnZOTUVu?=
+ =?utf-8?B?TWNsZUl0NE4yRnIrNzVULzV1Y2J2S3Z1WGJYQkhVdU1ZSU9FWXZCNkUreE1y?=
+ =?utf-8?B?eXlzUnJPenFHWFIybklqaXZUWnBRV2pNcklBelJuTUJSOFAwRmxwQnZLZVBB?=
+ =?utf-8?B?eXp4NWpCOCtUZGVwQmZnb3o4amY0TUpiNkRybE9oOTdUUXJtNzNKa0FXQXUv?=
+ =?utf-8?B?Z1NaaDFvNjFSVVdVTnNZSm5Dc29BTVVBNW9tWVJOdHNEM2ZkOG1odXhIa0Zz?=
+ =?utf-8?B?V1F3WXpCaG9nOHZ6RDJXNk1RZTZjalRXNDFpbHplZ0dPLzRYWC9vYnFRMTA2?=
+ =?utf-8?B?MDFROEYxRFZXOFEyOUtJUTBYZzIzZEJBODBlUUsrVDlDVFo5ZW5CQnJqMk1v?=
+ =?utf-8?B?QkZ1QzZKQWNvZFdUMXIwTDF0U3hEdEk2WlJjMmgrY0hUT0I2Tnp0NUdCZE93?=
+ =?utf-8?B?L0loYVhLNytQNzZDN012YlU1Mlk3K1hTT2xhTFNTdUo3UDhtR0JkSEVJR04y?=
+ =?utf-8?B?dDZXMjhxZ083SGhxTXNoTGtCN1R0WDU0N2dTZkVCb3o4UC9kU3BaaFdxMUxm?=
+ =?utf-8?B?c2FhejR5b09lRVhubE5mdkpKR1ZIQVVOOTBKMXhkVHdoUjl3UFdGUDFCcjdn?=
+ =?utf-8?B?YkJMQU5RTDFpSW1NVkRmSmZ3WjZDTjB5UU1RRHVmZHNzNzc2dmVOdnVGcUYz?=
+ =?utf-8?B?SzVqQ0tObzhKb2xqaFp0Wm5obFVrQlllK2ZWUUNDSktZQTFZZlhFQXRydzM1?=
+ =?utf-8?B?djllRDUzbEtMOUtTWkMrZ0dOQ2pRamcveEVHRHNXbFpxeXJMUlpSbTZlUTJs?=
+ =?utf-8?B?SHVKU3lhRTJuZ05XZHBtYW5lN1o0V1pqOTZWYVE5dytlTDRsYUJjK2J6bi9C?=
+ =?utf-8?B?ZTA4RU5iaXFFdUp3bVBRcmNvRFdWdXMrd0U4b1ZsS29IMEV5U25UbHRJQXMr?=
+ =?utf-8?B?Ym5SWWhOVHpvTzZTUUt4QTZoUGRLZ2pJa1FyR25wQVMrSmFJZ3hWUDNKRzZO?=
+ =?utf-8?B?VmE4SnF0TjU0TEFaekJVSHdRc25JamM1U2FFVndQc2xsc25FOWQ5YWhMcDY2?=
+ =?utf-8?B?cW5aaWgwcmw2aVQ1NVhJTVU4TUFsMElNSWtjWlhVaVhzL0JiQklFcld4THpT?=
+ =?utf-8?B?ZnZ2c0RhT3N6YTFQL3dFc2V2WkZkZFNKSFFXanQ0S0xaSHE0cGZOQ0FuK21F?=
+ =?utf-8?B?SUwyMEdYUFR4Q3F3OWJMQ1l6bkVNWkFMMFpSRVMwaDgvQ3RPUmJJdz09?=
+X-Exchange-RoutingPolicyChecked: AVlLmlDB/qCcV8mYE2z08zk3eXN9ZNlGZEnQoStpcGojTT6UOzNsP4LpvtbPSA6V2Bzwhsv0sPYy+OIdBxhtYYyR28t52BVq5oSpiWqpdNmQn32aK0bRGfgQguiD2uFAjToRTTN5gp0TTB6CwUXGwQMxC37XGlgc+b6eBc7qlV5C3nEPXmpd9Am6NSqEoB84vhzkMrBVMzDBHP5PEcjgXsU0M3ZKn9VOpXxADHzf1hDq+Zfsx2Q/lcMZyL8xgHEW9HLCENQT0xC90XH52CKSv4+eza/If+H2v+/zXtRED5NUJgGo0g6kIgqKqM3k6wKh00wl1kjT1DmKKoJ3ikBApg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3cf5d749-d0b2-4bda-6fa1-08de943a46ff
 X-MS-Exchange-CrossTenant-AuthSource: SA3PR11MB8046.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Apr 2026 00:07:23.4174 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Apr 2026 00:11:55.4887 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: TvSHOdeb4Eame7OqMdASyCRTrUkWgPpwqNJBYs0CgKVTy/2IhRmf23s4I0JWtRY15sCjYSkFxxUw3HZVX0rByw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2l2k11uPN9NJLBZWQeB8fPxoF6fAWWWtVnhqTWucR3VG8iS6GjnfGVWnq42Vk5vIom5JJ08go+HJze29wNA+YQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR11MB9351
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -170,155 +170,66 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 On 3/31/2026 10:20, Shuicheng Lin wrote:
-> Fix incorrect field names, struct names, ioctl names, and
-> kernel-doc references in doc comments:
-> - probed_size -> @cpu_visible_size (correct field name)
-> - @flags description was copy of @placement ->
->    fix to reference DRM_XE_GEM_CREATE_FLAG_*
-> - %XE_PXP_HWDRM_DEFAULT_SESSION ->
->    %DRM_XE_PXP_HWDRM_DEFAULT_SESSION (missing DRM_ prefix)
-> - Remove undefined %DRM_XE_UFENCE_WAIT_FLAG_SOFT_OP
-> - &DRM_XE_OBSERVATION -> &DRM_IOCTL_XE_OBSERVATION
-> - ids/structs: fix incorrect possessive forms
-> - drm_xe_query_oa_units -> drm_xe_oa_unit
-> - &DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE ->
->    %DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE (% for constants)
-> - DRM_IOCTL_XE_VM_QUERY_MEM_RANGES_ATTRS ->
->    DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS
-> - DRM_IOCTL_XE_VM_QUERY_MEM_ATTRIBUTES ->
->    DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS
-> - @sizeof_mem_ranges_attr -> @sizeof_mem_range_attr
-> - @vector_of_vma_mem_attr -> @vector_of_mem_attr
+> Fix incorrect field names and formatting in code examples:
+> - .num_bb_per_exec -> .width (renamed struct field
+>    in exec_queue_create examples)
+> - .num_eng_per_bb -> .num_placements (renamed struct
+>    field in exec_queue_create examples)
+> - .atomic_val -> .atomic.val (correct nested struct
+>    field access in madvise example)
+> - Remove unnecessary backslash escaping in UUID format
+>    string (%\08x -> %08x)
 >
 > Assisted-by: GitHub Copilot:claude-opus-4.6
 > Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
 > ---
->   include/uapi/drm/xe_drm.h | 28 +++++++++++++---------------
->   1 file changed, 13 insertions(+), 15 deletions(-)
+>   include/uapi/drm/xe_drm.h | 12 ++++++------
+>   1 file changed, 6 insertions(+), 6 deletions(-)
 >
 > diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> index 1d3406416d8c..36627322448c 100644
+> index 36627322448c..c2e8cf31a82a 100644
 > --- a/include/uapi/drm/xe_drm.h
 > +++ b/include/uapi/drm/xe_drm.h
-> @@ -349,7 +349,7 @@ struct drm_xe_mem_region {
->   	 * is smaller than @total_size then this is referred to as a
->   	 * small BAR system.
->   	 *
-> -	 * On systems without small BAR (full BAR), the probed_size will
-> +	 * On systems without small BAR (full BAR), the @cpu_visible_size will
->   	 * always equal the @total_size, since all of it will be CPU
->   	 * accessible.
->   	 *
-> @@ -862,8 +862,7 @@ struct drm_xe_gem_create {
->   #define DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM	(1 << 2)
->   #define DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION		(1 << 3)
->   	/**
-> -	 * @flags: Flags, currently a mask of memory instances of where BO can
-> -	 * be placed
-> +	 * @flags: Flags for the GEM object, see DRM_XE_GEM_CREATE_FLAG_*
->   	 */
->   	__u32 flags;
+> @@ -1401,8 +1401,8 @@ struct drm_xe_vm_get_property {
+>    *     struct drm_xe_exec_queue_create exec_queue_create = {
+>    *          .extensions = 0,
+>    *          .vm_id = vm,
+> - *          .num_bb_per_exec = 1,
+> - *          .num_eng_per_bb = 1,
+> + *          .width = 1,
+> + *          .num_placements = 1,
+>    *          .instances = to_user_pointer(&instance),
+>    *     };
+>    *     ioctl(fd, DRM_IOCTL_XE_EXEC_QUEUE_CREATE, &exec_queue_create);
+> @@ -1416,8 +1416,8 @@ struct drm_xe_vm_get_property {
+>    *          .flags = DRM_XE_EXEC_QUEUE_LOW_LATENCY_HINT,
+>    *          .extensions = 0,
+>    *          .vm_id = vm,
+> - *          .num_bb_per_exec = 1,
+> - *          .num_eng_per_bb = 1,
+> + *          .width = 1,
+> + *          .num_placements = 1,
+>    *          .instances = to_user_pointer(&instance),
+>    *     };
+>    *     ioctl(fd, DRM_IOCTL_XE_EXEC_QUEUE_CREATE, &exec_queue_create);
+> @@ -2019,7 +2019,7 @@ struct drm_xe_oa_config {
+>   	/** @extensions: Pointer to the first extension struct, if any */
+>   	__u64 extensions;
 >   
-> @@ -1366,7 +1365,7 @@ struct drm_xe_vm_get_property {
->    *    drm_xe_pxp_session_type. %DRM_XE_PXP_TYPE_NONE is the default behavior, so
->    *    there is no need to explicitly set that. When a queue of type
->    *    %DRM_XE_PXP_TYPE_HWDRM is created, the PXP default HWDRM session
-> - *    (%XE_PXP_HWDRM_DEFAULT_SESSION) will be started, if it isn't already running.
-> + *    (%DRM_XE_PXP_HWDRM_DEFAULT_SESSION) will be started, if it isn't already running.
->    *    The user is expected to query the PXP status via the query ioctl (see
->    *    %DRM_XE_DEVICE_QUERY_PXP_STATUS) and to wait for PXP to be ready before
->    *    attempting to create a queue with this property. When a queue is created
-> @@ -1651,7 +1650,6 @@ struct drm_xe_exec {
->    *
->    * and the @flags can be:
->    *  - %DRM_XE_UFENCE_WAIT_FLAG_ABSTIME
-> - *  - %DRM_XE_UFENCE_WAIT_FLAG_SOFT_OP
->    *
->    * The @mask values can be for example:
->    *  - 0xffu for u8
-> @@ -1741,7 +1739,7 @@ enum drm_xe_observation_op {
->   };
+> -	/** @uuid: String formatted like "%\08x-%\04x-%\04x-%\04x-%\012x" */
+> +	/** @uuid: String formatted like "%08x-%04x-%04x-%04x-%012x" */
+>   	char uuid[36];
 >   
->   /**
-> - * struct drm_xe_observation_param - Input of &DRM_XE_OBSERVATION
-> + * struct drm_xe_observation_param - Input of &DRM_IOCTL_XE_OBSERVATION
->    *
->    * The observation layer enables multiplexing observation streams of
->    * multiple types. The actual params for a particular stream operation are
-> @@ -1902,10 +1900,10 @@ enum drm_xe_oa_format_type {
->   };
->   
->   /**
-> - * enum drm_xe_oa_property_id - OA stream property id's
-> + * enum drm_xe_oa_property_id - OA stream property ids
+>   	/** @n_regs: Number of regs in @regs_ptr */
+> @@ -2181,7 +2181,7 @@ struct drm_xe_query_eu_stall {
+>    *         .start = 0x100000,
+>    *         .range = 0x2000,
+>    *         .type = DRM_XE_MEM_RANGE_ATTR_ATOMIC,
+> - *         .atomic_val = DRM_XE_ATOMIC_DEVICE,
+> + *         .atomic.val = DRM_XE_ATOMIC_DEVICE,
 
-maybe we should  change this to `OA stream property IDs`
+Reviewed-by: Xin Wang <x.wang@intel.com>
 
-Thanks
-
-Xin
-
+>    *    };
 >    *
->    * Stream params are specified as a chain of @drm_xe_ext_set_property
-> - * struct's, with @property values from enum @drm_xe_oa_property_id and
-> + * structs, with @property values from enum @drm_xe_oa_property_id and
->    * @drm_xe_user_extension base.name set to @DRM_XE_OA_EXTENSION_SET_PROPERTY.
->    * @param field in struct @drm_xe_observation_param points to the first
->    * @drm_xe_ext_set_property struct.
-> @@ -1919,7 +1917,7 @@ enum drm_xe_oa_property_id {
->   	/**
->   	 * @DRM_XE_OA_PROPERTY_OA_UNIT_ID: ID of the OA unit on which to open
->   	 * the OA stream, see @oa_unit_id in 'struct
-> -	 * drm_xe_query_oa_units'. Defaults to 0 if not provided.
-> +	 * drm_xe_oa_unit'. Defaults to 0 if not provided.
->   	 */
->   	DRM_XE_OA_PROPERTY_OA_UNIT_ID = 1,
->   
-> @@ -2242,7 +2240,7 @@ struct drm_xe_madvise {
->   
->   			/**
->   			 * @preferred_mem_loc.region_instance : Region instance.
-> -			 * MBZ if @devmem_fd <= &DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE.
-> +			 * MBZ if @devmem_fd <= %DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE.
->   			 * Otherwise should point to the desired device
->   			 * VRAM instance of the device indicated by
->   			 * @preferred_mem_loc.devmem_fd.
-> @@ -2369,10 +2367,10 @@ struct drm_xe_madvise {
->   };
->   
->   /**
-> - * struct drm_xe_mem_range_attr - Output of &DRM_IOCTL_XE_VM_QUERY_MEM_RANGES_ATTRS
-> + * struct drm_xe_mem_range_attr - Output of &DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS
->    *
->    * This structure is provided by userspace and filled by KMD in response to the
-> - * DRM_IOCTL_XE_VM_QUERY_MEM_RANGES_ATTRS ioctl. It describes memory attributes of
-> + * DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS ioctl. It describes memory attributes of
->    * memory ranges within a user specified address range in a VM.
->    *
->    * The structure includes information such as atomic access policy,
-> @@ -2427,7 +2425,7 @@ struct drm_xe_mem_range_attr {
->   };
->   
->   /**
-> - * struct drm_xe_vm_query_mem_range_attr - Input of &DRM_IOCTL_XE_VM_QUERY_MEM_ATTRIBUTES
-> + * struct drm_xe_vm_query_mem_range_attr - Input of &DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS
->    *
->    * This structure is used to query memory attributes of memory regions
->    * within a user specified address range in a VM. It provides detailed
-> @@ -2435,14 +2433,14 @@ struct drm_xe_mem_range_attr {
->    * page attribute table (PAT) index, and preferred memory location.
->    *
->    * Userspace first calls the ioctl with @num_mem_ranges = 0,
-> - * @sizeof_mem_ranges_attr = 0 and @vector_of_vma_mem_attr = NULL to retrieve
-> + * @sizeof_mem_range_attr = 0 and @vector_of_mem_attr = NULL to retrieve
->    * the number of memory regions and size of each memory range attribute.
->    * Then, it allocates a buffer of that size and calls the ioctl again to fill
->    * the buffer with memory range attributes.
->    *
->    * If second call fails with -ENOSPC, it means memory ranges changed between
->    * first call and now, retry IOCTL again with @num_mem_ranges = 0,
-> - * @sizeof_mem_ranges_attr = 0 and @vector_of_vma_mem_attr = NULL followed by
-> + * @sizeof_mem_range_attr = 0 and @vector_of_mem_attr = NULL followed by
->    * second ioctl call.
->    *
->    * Example:
+>    *    ioctl(fd, DRM_IOCTL_XE_MADVISE, &madvise);
