@@ -4,59 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 772CFEDB7E7
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 10:05:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A3FDEDB7E9
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 10:10:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DB9910E3B1;
-	Tue,  7 Apr 2026 10:05:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF84310E3BA;
+	Tue,  7 Apr 2026 10:10:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eI+w/omV";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="nkumau9Z";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55E3F10E3B1;
- Tue,  7 Apr 2026 10:05:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775556304; x=1807092304;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=z3rpLw1yl9m3GP0FR7/Ce+3tzi1f2zBywCWL+zWFzZs=;
- b=eI+w/omVxfUAvsdo2Iw/wFGE6lMcL5eSaatFPkBPujr/DTThyMvh6DSk
- 9/JUpTbsoONUmkF6pKhGOUDmgg5oEu31nKJsaViMkPrlSlR9CrSIDjPon
- MTlKzzWU0PJGJBYbPLbGf2Q9bJjwsGanfjNmf5UWuL+HrP8y8qiZqqRnF
- ZPM3a/SWpYl3r/5pPUA3pk/6t6gggm9/4xNz+DZRHlqsHSrpPZB0MUeLl
- 5h+m0susHCgO3DT6Rv/mpD3dk10vYRrFAky7GClGP6xfv7OO1Zwf1Iw/X
- SRC7IbAYaMT32Imj1KkE/OEMQUJnx0AsrqA/RXyVRitCYffTw3djPodcQ g==;
-X-CSE-ConnectionGUID: xX0UTsUuQOKRv371A0vDqQ==
-X-CSE-MsgGUID: qKUk7/UtSGe2mPDmb5exuw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11751"; a="76705454"
-X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="76705454"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 03:04:48 -0700
-X-CSE-ConnectionGUID: 7AAOc1/USHmXNAIxYbMoLQ==
-X-CSE-MsgGUID: CBhlOsXWRNagMSfdLSAm9g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="224936684"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.244])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 03:04:46 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	ville.syrjala@linux.intel.com
-Subject: [PATCH 1/3] drm/i915: move intel_fb_pin.c to i915_fb_pin.c
-Date: Tue,  7 Apr 2026 13:04:35 +0300
-Message-ID: <ab1ffc08bcd1364715396142f91780b6261bbe65.1775556190.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1775556190.git.jani.nikula@intel.com>
-References: <cover.1775556190.git.jani.nikula@intel.com>
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70F4610E3B7;
+ Tue,  7 Apr 2026 10:10:15 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id 991BF600AC;
+ Tue,  7 Apr 2026 10:10:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CF52C116C6;
+ Tue,  7 Apr 2026 10:10:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1775556614;
+ bh=uJwhrCZ5DVi1XGiVE85l7GZb0X3pCioNotmsUsRYefE=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=nkumau9ZkicHGxV91qxYWjPubXMFULLZk3pPmXQ7EZvc6i+zLYpzG1V+ahiER9OHH
+ BR5AHjlnw6nKN9it8TN9PvZR63KdbXLwqng9rQ+UGRcVw8LeYS/qsFHwfRFzJQ54w+
+ tYI+dvFq5PhS+fszRDxi4GsTLjolDl+T59NdJz/T7VqPArV9p/+waErCWpJZP8A1qc
+ RqecKtM08KUOQRJihnsNRHncdPa1Th4gfCJZl3zKWr1gq/ZWljZIh3ouGYcehbBbto
+ r2v6KzKZTzc5eTJTEOjYLm1TxZ6Wrbof2WBXKtY+FurfLniwKd/dPAW4Tpqi7LJXhV
+ vGupcfnvlxl+g==
+Date: Tue, 7 Apr 2026 11:10:05 +0100
+From: "Lorenzo Stoakes (Oracle)" <ljs@kernel.org>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ intel-xe@lists.freedesktop.org, Alistair Popple <apopple@nvidia.com>, 
+ Ralph Campbell <rcampbell@nvidia.com>, Christoph Hellwig <hch@lst.de>, 
+ Jason Gunthorpe <jgg@mellanox.com>, Jason Gunthorpe <jgg@ziepe.ca>, 
+ Leon Romanovsky <leon@kernel.org>, Andrew Morton <akpm@linux-foundation.org>, 
+ John Hubbard <jhubbard@nvidia.com>, linux-mm@kvack.org,
+ dri-devel@lists.freedesktop.org, 
+ stable@vger.kernel.org, linux-fsdevel@vger.kernel.org, 
+ David Hildenbrand <david@kernel.org>, Zi Yan <ziy@nvidia.com>,
+ Joshua Hahn <joshua.hahnjy@gmail.com>, 
+ Rakie Kim <rakie.kim@sk.com>, Byungchul Park <byungchul@sk.com>, 
+ Gregory Price <gourry@gourry.net>, Ying Huang <ying.huang@linux.alibaba.com>, 
+ "Matthew Wilcox (Oracle)" <willy@infradead.org>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
+ Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>, 
+ Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>
+Subject: Re: [PATCH v5] mm: Fix a hmm_range_fault() livelock / starvation
+ problem
+Message-ID: <adTXtnJs_Rnl_pTD@lucifer>
+References: <20260210115653.92413-1-thomas.hellstrom@linux.intel.com>
+ <adOqU0UDzpxvQuwA@lucifer> <adOtS_q1MuFOawGM@lucifer>
+ <adQFYAVGLqv6amZK@gsse-cloud1.jf.intel.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <adQFYAVGLqv6amZK@gsse-cloud1.jf.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,71 +74,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-intel_fb_pin.c is the final file in display/ that's specific to i915
-only. Move it to i915 core, renaming it to i915_fb_pin.c. It'll still
-depend on a lot of display stuff, unfortunately.
+On Mon, Apr 06, 2026 at 12:11:28PM -0700, Matthew Brost wrote:
+> On Mon, Apr 06, 2026 at 01:56:49PM +0100, Lorenzo Stoakes (Oracle) wrote:
+> > On Mon, Apr 06, 2026 at 01:54:13PM +0100, Lorenzo Stoakes (Oracle) wrote:
+> > > I see John gave a tag (and he's great so that gives me confidence here),
+> > > but we should really follow the procedure on this properly.
+> >
+> > Oh and just noticed Alastair also :) so that adds further confidence, so this is
+> > really a point about cc/M signoff requirement going forwards.
+>
+> +1.
+>
+> Andrew did ACK this via DRM here [1].
+>
+> When we take external subsystem patches through DRM, our merge script
+> requires ACKs from an external maintainer, as determined by
+> get_maintainers.pl.
+>
+> I’m not sure what happened here, but it looks like Andrew’s ACK was lost
+> on the patch, and somehow our merge tool allowed it to go in regardless.
+> We will be more diligent going forward.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/Makefile                     |  2 +-
- .../{display/intel_fb_pin.c => i915_fb_pin.c}     | 15 ++++++++-------
- 2 files changed, 9 insertions(+), 8 deletions(-)
- rename drivers/gpu/drm/i915/{display/intel_fb_pin.c => i915_fb_pin.c} (97%)
+ACK on that... ack :), but please make sure to cc- at least the relevant
+maintainers on these series going forwards also.
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index 272c292f06ed..fa632f4e505c 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -80,6 +80,7 @@ i915-y += \
- 	i915_display_pc8.o \
- 	i915_dpt.o \
- 	i915_dsb_buffer.o \
-+	i915_fb_pin.o \
- 	i915_hdcp_gsc.o \
- 	i915_initial_plane.o \
- 	i915_overlay.o \
-@@ -279,7 +280,6 @@ i915-y += \
- 	display/intel_drrs.o \
- 	display/intel_dsb.o \
- 	display/intel_fb.o \
--	display/intel_fb_pin.o \
- 	display/intel_fbc.o \
- 	display/intel_fdi.o \
- 	display/intel_fifo_underrun.o \
-diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/drm/i915/i915_fb_pin.c
-similarity index 97%
-rename from drivers/gpu/drm/i915/display/intel_fb_pin.c
-rename to drivers/gpu/drm/i915/i915_fb_pin.c
-index 738d77a1468a..580acbb14ada 100644
---- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
-+++ b/drivers/gpu/drm/i915/i915_fb_pin.c
-@@ -9,18 +9,19 @@
- 
- #include <drm/drm_print.h>
- 
-+#include "display/intel_display_core.h"
-+#include "display/intel_display_rpm.h"
-+#include "display/intel_display_types.h"
-+#include "display/intel_fb.h"
-+#include "display/intel_fb_pin.h"
-+#include "display/intel_plane.h"
-+
- #include "gem/i915_gem_domain.h"
- #include "gem/i915_gem_object.h"
- 
-+#include "i915_dpt.h"
- #include "i915_drv.h"
- #include "i915_vma.h"
--#include "intel_display_core.h"
--#include "intel_display_rpm.h"
--#include "intel_display_types.h"
--#include "i915_dpt.h"
--#include "intel_fb.h"
--#include "intel_fb_pin.h"
--#include "intel_plane.h"
- 
- static struct i915_vma *
- intel_fb_pin_to_dpt(const struct drm_framebuffer *fb,
--- 
-2.47.3
+I realise mm has changed somewhat in its approach with this so forgiveable you
+missed it :>) but - at least for me - reading mailing lists is just out due to
+bandwidth limitations.
 
+>
+> Matt
+>
+> [1] https://patchwork.freedesktop.org/patch/703183/?series=161082&rev=3#comment_1294670
+>
+> >
+
+Thanks, Lorenzo
