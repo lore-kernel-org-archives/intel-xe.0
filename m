@@ -4,159 +4,157 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9CB5FEEF49
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 13:59:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 634BDFEEF4E
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 14:13:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B9E310E097;
-	Tue,  7 Apr 2026 13:59:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FD7B10E423;
+	Tue,  7 Apr 2026 14:13:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="tZUwi2vy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="niyKle8Z";
 	dkim-atps=neutral
-Received: from PH8PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11012021.outbound.protection.outlook.com [40.107.209.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4188F10E097;
- Tue,  7 Apr 2026 13:59:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2414E10E423
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 Apr 2026 14:13:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1775571218; x=1807107218;
+ h=message-id:date:from:subject:to:references:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=tw0e4gstY0BirdFmtrQVY4+PJ3SB63D3B9jzAR7vaVA=;
+ b=niyKle8ZKmiw6bFlVyPO7l8kwMpbxSAWq0qDYJW2N3+/jD670iSrnn/X
+ zLvNFWVY2DzQplHgf77ClkZ+Ze/bCQ60CrC+6wDS4KoAsXFEfl6hzPCCy
+ cS6swFHn/qlnkzf1t/I0OQclBYSgurgNXsSlyfkvEe18savYoznNVz1uk
+ uWeKWbNnCN+Igg6Y97nMNck6AOocni9KhUS/ub3+pFdB4UQD4T0BjDTvl
+ sIXyH+GtIcPKmVkIC+DERZwbDK9tI7cNShoehUCSHXHbrMghX0FzV7gHh
+ Zn15jSHM32ILQQZoUYia33n+0byOwTqVbEgPSXNwdflzkAVHhQIsGLcaD A==;
+X-CSE-ConnectionGUID: 4qUWxlqaR9qMh+SJGUQ37Q==
+X-CSE-MsgGUID: aOp4gj71TDqFr40F/D+B/A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="76419655"
+X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="76419655"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2026 07:13:38 -0700
+X-CSE-ConnectionGUID: K5n9olDbRnelNYuf/FRxmg==
+X-CSE-MsgGUID: F4naUJLuT22tY8TSVus+0Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="223880909"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2026 07:13:37 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Tue, 7 Apr 2026 07:13:37 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Tue, 7 Apr 2026 07:13:37 -0700
+Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.24) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Tue, 7 Apr 2026 07:13:36 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wgcD8aC2FUS/FCfxZnhL8byBX19xyN6Ja9VwQE6uAhsO22n9GsDDEP0sLv4gGzZ3irwdx0KHLI1cBzQFjfXLKsKX//fmPk6k/uWkoWV1K8Wfn3AMv67NDXrGBZ/CVXE64jogZjA7IqhYl4XR/aeoLRGmG0kXHtN02bxb6/6hVcyKdeEY5Mnh/+Uy4ej+vI3eo5vf3vLONADhf6XjEhYXpuUdt45wcvleRzeyU/MfaVF4YDUoaaz3r1piUAb1ZTTJFGKM0CbtYFxu6QB8wIKPyhd26E7SYUAImyQ8n6Ph6wTYrIZmyqmXX9S7vcqOOV0ie62xycdBXXn5QsxTBGYJrQ==
+ b=MSsxJ3oJm0k9IdhixvmxoOisGbvJwTPq63xVpiHTWXlhBuBzV2WTro1BargKe9e9laXVL2LxzW085yT1JXKkG3YzZYMjif+/MMIfFT1Odh05pxhqhIhyeRq5G4Bm3dH4knYTwNF8lYnPJ5sprOb0+8qJqaD6F3yYzr83mGYMZPfv50lvIqjdMTHbpjguFIRAW+G+gOtC5UIlDH88J0lIi4+cw7bE8tVjIL+puvIiFvXaRDRXETcUKmCk40UJfLlIKQ3DzaMMUxpWgT163lXVfSvc1n3T0zldkIRe6Z4INzOmszaIY/e3aoZEB92ezUeAflYQ10GEQtsRoVs1phcq0A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3eH2JDB1JX6x28garGCS3KJ+I8MCzO4obhIxG9UYDm0=;
- b=mbmc84lRuyDs4Nsh2BYFS9pgD3HgAD7gKsgcvmxWJibWSCAN/2xGK7/MPXT+cOgPhz4z0BvLss9kUeiYTgKl+lJnEOUSWsur9rjbjEayg9Xz5BGj3NlKcVTrGFGLr6oW/V/GqX/JZqxGpQOVSYIx/FBQFhOrkB16jM/eK6HywMDUMF20qBD5Y0RnVb683LiM9djH7O1bIAjb+jxax8lQJlM+DOpxuKt/nonkB6v92nYUoZ4s7wHE/1p4JnOCAjNMIsH5mvsgeHebX2JGyqP1js7AQ5wcWuiThAbX2jOiOPakteoJDXT1a7VkqB3ORXZ8n+/LZtIKln6ibhoXyH0Cyg==
+ bh=p/MmE1uOw1Fw6hRNxyqM9WqEQWSF5T9zBn76Ci77cHw=;
+ b=jBRwho6Xu1MoTljfi9YYjb2y5dDki7/RhqchfZN6eZ7rV5hMrBGXcH3P4Re+Yy/2jmyIAGcOhRwEIoWAaShc1X+U6kQpR4+m/fZok0NdCQdFQpeFwr/wYQk4v8gOZ1u8zroIFM0VRGGaCx5vBenIphlA6o96hXf1rORnA6vTWhNif9Wq9qsd/nrH4Euedh6q+BpFb6KI5EXdiNcjpNf2c1fzLcjhzJyeF1zNER75iGQ7pPOSoh0VXTCcyKcIB5BQJhIutC7DcY32SqIlynJ+kD9yiuGUsX87ORErV3TBgW1EVvzD4M5zch2AfYxiiF+afIkbqRQFh5C8Joy+21Wutw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3eH2JDB1JX6x28garGCS3KJ+I8MCzO4obhIxG9UYDm0=;
- b=tZUwi2vyqDl24AqqCgOHKFryQs3tS38vyQSzeHquUvmZZTjpwL7r92pAXv/IjUF5MMQFmfpThZYRg6W9SsVSV4hevCSuMvC4Mk+VlTVD0spydYTTtzUyHvkbLl/siviZKf/hqO05dgZ3vpKARYtTixalxmk0WjeQwILtBWtzX94dd8dBP1+Uw7FPBjO4KaYxj/6SyTAK9VD+/JU6eAFCjCk02K4g9RSnvYwlNCG0GUVWMZk7ZMW6BqaygzfV+CNWB8HzLDpce82PihJKZITU4TFbvgKTTyiHv+PNgM2p9NoZKYjlqIKaJwHGvEWhtJTo+7yHNqro2qopxUWS4ivkYw==
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
- CH3PR12MB7524.namprd12.prod.outlook.com (2603:10b6:610:146::19) with
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from IA1PR11MB8200.namprd11.prod.outlook.com (2603:10b6:208:454::6)
+ by DM4PR11MB6093.namprd11.prod.outlook.com (2603:10b6:8:b0::22) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.20; Tue, 7 Apr
- 2026 13:59:22 +0000
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9769.014; Tue, 7 Apr 2026
- 13:59:22 +0000
-Message-ID: <537a8c5a-3885-4c47-99f6-963b48ddf87d@nvidia.com>
-Date: Tue, 7 Apr 2026 09:59:15 -0400
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.17; Tue, 7 Apr
+ 2026 14:13:33 +0000
+Received: from IA1PR11MB8200.namprd11.prod.outlook.com
+ ([fe80::e0e6:a2f:a53b:4414]) by IA1PR11MB8200.namprd11.prod.outlook.com
+ ([fe80::e0e6:a2f:a53b:4414%4]) with mapi id 15.20.9769.017; Tue, 7 Apr 2026
+ 14:13:33 +0000
+Message-ID: <4ec2ccde-730d-4579-adb8-01eabc9a31de@intel.com>
+Date: Tue, 7 Apr 2026 10:13:30 -0400
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 12/21] gpu: nova-core: mm: Add unified page table
- entry wrapper enums
-To: Eliot Courtney <ecourtney@nvidia.com>, linux-kernel@vger.kernel.org
-Cc: Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
- Gary Guo <gary@garyguo.net>, Bjorn Roy Baron <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>, dri-devel@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, Nikola Djukic <ndjukic@nvidia.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
- Christian Koenig <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, John Hubbard <jhubbard@nvidia.com>,
- Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- Edwin Peer <epeer@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>,
- Andrea Righi <arighi@nvidia.com>, Andy Ritger <aritger@nvidia.com>,
- Zhi Wang <zhiw@nvidia.com>, Balbir Singh <balbirs@nvidia.com>,
- Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa
- <elle@weathered-steel.dev>, alexeyi@nvidia.com, joel@joelfernandes.org,
- linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-fbdev@vger.kernel.org
-References: <20260311004008.2208806-1-joelagnelf@nvidia.com>
- <20260331212048.2229260-1-joelagnelf@nvidia.com>
- <20260331212048.2229260-13-joelagnelf@nvidia.com>
- <DHIFF98P1YQ3.1IXUT02E3TF20@nvidia.com>
- <5db2aab1-4b65-486e-ad9b-27a108bdb0d6@nvidia.com>
- <DHMYSTLVHIFJ.A2BDMPVNZNLS@nvidia.com>
+From: "Dong, Zhanjun" <zhanjun.dong@intel.com>
+Subject: Re: [PATCH v1 1/1] drm/xe: Fix null pointer dereference in
+ devcoredump cleanup
+To: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>,
+ <intel-xe@lists.freedesktop.org>
+References: <20260326181017.2060209-1-zhanjun.dong@intel.com>
+ <79b30bcc-b056-454b-a5ac-8035f7ce76c3@intel.com>
 Content-Language: en-US
-From: Joel Fernandes <joelagnelf@nvidia.com>
-In-Reply-To: <DHMYSTLVHIFJ.A2BDMPVNZNLS@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: CYZPR05CA0046.namprd05.prod.outlook.com
- (2603:10b6:930:a3::6) To DS0PR12MB6486.namprd12.prod.outlook.com
- (2603:10b6:8:c5::21)
+In-Reply-To: <79b30bcc-b056-454b-a5ac-8035f7ce76c3@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SJ0PR03CA0339.namprd03.prod.outlook.com
+ (2603:10b6:a03:39c::14) To IA1PR11MB8200.namprd11.prod.outlook.com
+ (2603:10b6:208:454::6)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|CH3PR12MB7524:EE_
-X-MS-Office365-Filtering-Correlation-Id: fc126b69-fb05-44dc-b8c7-08de94addec7
+X-MS-TrafficTypeDiagnostic: IA1PR11MB8200:EE_|DM4PR11MB6093:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6315729d-bddd-4618-c2a9-08de94afd9fd
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|7416014|366016|22082099003|56012099003|18002099003;
-X-Microsoft-Antispam-Message-Info: Ykyzn6StvSylvMFlzyvaccXJw1M0UZ6hwQO/kfMvIIOxrsv9Eyt2lSL464zIH2o39ajCnlqXOGx/57rGaX/xVAmTW8n2d1eVu5QGubTTZtGWGWITf9M6M/8uPHgLIuJpYQ01XqdDoi4I0DeUG4dIWk2FAfwQRGCR1fGB5C238Ul5aZwX3cam61AQ8XOkANYOt39O7JI2EquLJN/iTuG7vvNdJY1Gd2u5BhXwwHPEheIFJpkZcr4LDHyVN+ILez0JNc7+Gh4vvw8FuTIz5d19rO4067hcJWLBuSHufD+/nWxuXriIFp+2+wTJEc+fXEecrH9NOVash2rvzGn0+R7/S3cgcEwDXamm2Dg+m08FJhdYz0YRDNDEYW8nfo66jznuyJIsOVFjWwsoOgazqNf9z17I4+4mv25rIrLBxLIpcjO8ym+4GZUh5Ju/2BC+8sRAoTPl2m/ONYYSULXkhs0TSI6vFI3e3c8bHbaDcxVugVUI7tQg5SFaEyrIYWZxBjBm3AbBu8VDnPEgD4h9y0yJxiCrwe/ZvqHglWymL5C9gouxsk8piFrnyslmIbkm4bk11nzgnhnh9672EGeb6E/6AFcPa/JhNp2Et91e+jbbYmDJ2ZjgqF9J8Ke8txP0Fhh/hGmSSk7dPuWjetOwYhp0CJTCt3zgWgBDE5McaRVeJh3tXdMTVFW4dnQ8CKwVsIxp/xrTstyMBK/1Er/tqJRN0b+UaV48NmRvuPtr8y0+Q4Y=
+ ARA:13230040|1800799024|366016|376014|22082099003|56012099003|18002099003; 
+X-Microsoft-Antispam-Message-Info: CC3zJdDsYs093SXi10V7Bvu/tSxlji4mIIbG/qWO3aKact4dtaHFug36umHc5aU6OTGb94KoicDHD5jZZleAqs6fS2FTc+93cR5VBd9fJSvBG9c5XS9yKxAu2yd8HkULViIvS9qeVwqZKB7iwbP9TAek6ik7BTYRw4vOOq0EMIam1r9x821GBrlPUeP+JqLnGMANlZPKhExUwRXJUpRoNz7/flGx0totv83ry1nwnkDej3n8EY3LN+nNpXNyIsiT17F3PNh3SD6VFApVueTMOqO33kiUhtcCJMl+rFK8vTLEgCdZJlNACihTApc5bgfD/bnybBzeHRGRFBsNWJRLRXjhY7qOZoTzhWPk+0+3Ol4ATS4RaRD8tsXfmJqVJKA0Q6/kvh2F9CQnbB0qPMuDacuc2oVVsZsqLPzXo8FJQpHmNz7Ufn986s7/5j9kpk6U16hD53T8yw7onaGy5aphFPsdG/v7Aak/+iIOKUzV3nzvjI+KE/622UefrqC2maAmwyj7g7lZonED/aJvo5XsHKwwksQuOzYI4rQS4qD8CV7W2W0BPaICD1GHeD01GVfXONR9k2rEhnoI6n6vqZ0iYU89ZeCINLw2Gnqvh8jX0I9Ngr90rrxqrwHgUq/7vbSBOhDRiM05w2VATzkyf3kjuf/U0velQH3WWcM/XLsYoM0gNT3ymrCWvb/zyLx+HFlTwfmYhjepiPbdhVtYOSHrhXzDyh0ZxRmDiL9kfKPJKXc=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(7416014)(366016)(22082099003)(56012099003)(18002099003);
+ IPV:NLI; SFV:NSPM; H:IA1PR11MB8200.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(22082099003)(56012099003)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?a1hyV1NOMnpsSjh1YnFUMXJ0L3Q1ODB0S2pFQ0pxaUV0bzhvaUV6bHhiZld0?=
- =?utf-8?B?eWR4enBkNXZDMFArL1RlSHNiSUxPdHlJc3g3NEozOXlTUVVra3lGQ1JVNGFX?=
- =?utf-8?B?ZGxrRmtiQVV4aUhMclpjaHBlMWRXSjZGbUxYZTA5eStOcFJpK1JEdW1zZ0kx?=
- =?utf-8?B?WHQxVmtyQkpsa0xnSU1VTHdWMExrS3k3YmcvSTA1ZWd1Wm9IWnVpVTlWdThO?=
- =?utf-8?B?R0NzUWZ6ZXJCRDFlYnVjTTFta3BWb1hZMThZL2FFWHp6bVpOTm1udEVXZWxP?=
- =?utf-8?B?QmRwTllEdzdjbjNFSlVFOGg1WmxmbVlaS1RVQTI1dElqa2dUTmNZM0VseU9I?=
- =?utf-8?B?TDE1VEZEbWFmRW8rN3RxakhjYXg4K3kzUUlCNCtiOGpBK3NweDUwTm83ODdK?=
- =?utf-8?B?VDdraytyMzdNbDJ1NjJGWFFLL2VRbFdyczduTlEvQzJnOUVTZ3pXTUtITkdp?=
- =?utf-8?B?bmtrYlYrZHp2ZXNaVG53ZndPVldISjB2OHJLT0xVT3hIWHBwMlk4RlNQM3Uv?=
- =?utf-8?B?S1pTaE1GT04yYnJtbWFKK1Nra25PeXFUNkZheWNGYXZiVC96cUpTSEZjWDR0?=
- =?utf-8?B?UCtoWTBia0RPbTU4OHFsL3ZYelBWak9MUVdKK01OZjV3aStublhPdWRqOWhX?=
- =?utf-8?B?UjVuQkExNXowQVo0Q0ZkQTg4S28xbE9JcFIzb3QycWlnWW9sL1FlQ1ZUdjZB?=
- =?utf-8?B?Z2VmVG5nV3RoTTNsOUQvcXpWTHNLUXNYeVI4Mmp1N3Flclc0TGprZWRaMVRJ?=
- =?utf-8?B?eTRIbHdGeGFMWXNaNmlUVEdqVDZBejdTejRkbm9lckpJb3ZIa0RiTTZJK2Zv?=
- =?utf-8?B?Lzk2YnlQN1llU2h5NzYxYzdveHZxY2RuZkZOREF2aCtvZko3VnBZNzMyd1Vj?=
- =?utf-8?B?SmlWVUw2YlJ1V3VaZ3VVYWVWYzJZRldLMVBYYkMrNzFnRWpZVUFjWHRlTmJs?=
- =?utf-8?B?ZzBaSHBZcGJsNE9PamRwa0ZKVWlQak1CMzJoYVdNZnljMzhZa0ZFRlVyMkxZ?=
- =?utf-8?B?djhoSjhOeTJuaG9hOEZ6cUpCMmRwenhWR3J0QithVmJVRzRvVWp4VGQybXFL?=
- =?utf-8?B?ZHg2M1kzbkRmdTZydURkQ0VxNW92VzZyQlo1aE8vQkRDOGdvZzJJQ3FrMjAr?=
- =?utf-8?B?ZS9TTFJHUDF5dDVpOWdPcEozMTlvU3pIeklicVA4c091eVpFVi8xT0VoU0RL?=
- =?utf-8?B?U21ra3p0eE9kSE9FV1RuS2NEald1UHpKNG9RNXBjZHNOU3RWMTFaT3hBWk5X?=
- =?utf-8?B?ZG11VHlzMmNwN2htMjY0Ky9xRjFTZXhGMFAyVU1xTjJvRlRvL1l5Uyt1Mi9T?=
- =?utf-8?B?aE8yblYzTHJQdHBtYllkWHM3am5qY0N0aW9meituOUV6alpIWUJkaHRpekJU?=
- =?utf-8?B?NWxRWjBhd3B4cEJkMzlZVzdhRS94TjBHZnFlZXNyL0pCWFJDRGQvUEExbVZa?=
- =?utf-8?B?ckpoT1hOamw4cHk5VHptdWdyaUpUREtQU2plRm5XMng3VXlkMGJaV3ZwbGd2?=
- =?utf-8?B?ZGFrV1E3VllMMUJkcUZMZVRrVjlGRytxS3RHL0E2OW1UMHVzMnI0bFdmOERX?=
- =?utf-8?B?WHBIMWp3a1B5dlU2TlhaVE8wRTBLRDdtZ05kamRmZnYvRFdJQXFXc3FtaUgy?=
- =?utf-8?B?d3dMTzdkSkRNSEJQMWdwTEFRZXRGS2pMaE92RHlwcHBGVitXT3YrL2ErVmdu?=
- =?utf-8?B?WFlnQnJ4d2xZeEttOGZyZXFYS0xneGdKUlBlUm5BYTUrVFlwVEJ2ZmQ2aFBJ?=
- =?utf-8?B?YW1MMUZTY0F4SmZFb1JQcFFFbzZWam10QkJlUlZBRkQ2bm9SMUUvVFFEaVNR?=
- =?utf-8?B?MFJWZTFGK1hERm9EQlNyUmJmc29xRkhHWFRiMEs3cnlFN3lDTi92UkRqQ2VG?=
- =?utf-8?B?d3ZLajVHY3MwUVE5TVl0RkprRkVQczhsclZvZnJBV3NMZ3I1UkZsdnZsdFJq?=
- =?utf-8?B?MDV5UDBHdjhZQWRlbUppSEtlSzFOUmVpWk1TQ3YxcEI1eG1NN25jWVJ0V3Bl?=
- =?utf-8?B?U0ZrUXdUeFJiTDVNMmtwUEcvSWs2SHY0TS9lTWVkczlpUkVEVUR5VmtKalZ3?=
- =?utf-8?B?VStoMHFTRmxyeXAxMVRMYmpKMWxDbHVocEZkWFdvdzhlRnBQOFR5ZWRnTHR3?=
- =?utf-8?B?UTdoR0FpL3NNV2lwUnB3YVNSTUgybjJ2ZkFGOXlqM1R3cDZMTFlWbk8wbHl5?=
- =?utf-8?B?L1ZHYndXd1lOY0QrZjBqenIrNXNpc0E4a1FvMXd0NUI0VHMycStVSEVrK25S?=
- =?utf-8?B?V21yZzlqQ2RrdTRBMXMvVTd6R1MwclVxUjZtVWZUZVBLRkR0UXJ3dmdyN3ZY?=
- =?utf-8?B?cG51WTc3bSs0SzRPbjQrRVZuS1F3bUV4dzVFVGgvK2pwWEV0c0RXQT09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fc126b69-fb05-44dc-b8c7-08de94addec7
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eXg1ZUNnVHVXMFc3UTJzc04yVmRLdnZvV1FIeEw1QmlYTWlOWURKRlA0Tndv?=
+ =?utf-8?B?M0QvZ3pOLzllWGFISjNLeFVFMFZhNm5uZzM5S1VhU1BPTTkwU0ZNVU5Dcysv?=
+ =?utf-8?B?U25HUDVubDR5OHlDdWlYSDFxcDRBbWNQOVRaVmVIczJrZzRScTRtUnVwUVZI?=
+ =?utf-8?B?QlBTYVBKRHQ4MXNTSzJjZWtFVmV1OGVJK3JQcWhCeE5QdTFlQkNtbTBrcFBZ?=
+ =?utf-8?B?KzdqMjZXejIvM3EzdXB6M1J3TUxlRjJibldCQmZDQU5INDBmRGJSVFhsclBD?=
+ =?utf-8?B?NUZyUW1FL2EzY245ZXFleVluVnBMSU83RjdJZFVOK0Nuc2ljdGhjZUpDdmR0?=
+ =?utf-8?B?RnY3SFF2UXpqMDdOMElFQVA0dVJOM0xlOENiMTFid3lvbituQjYzT1U2ckFs?=
+ =?utf-8?B?dk4wbnB2RTIyaFdObjl1Q1RsZVdHRWVJdmZ0MHdtLzYzOEFoc1QySm1qbHNx?=
+ =?utf-8?B?N0hBdCszSGtrN3VlZXg3SHcyMnN1ZnF1dFN3NzVuMnJlVzA1TUVnUlNLcFlC?=
+ =?utf-8?B?Tmk1WmluVUZGemtXdGEvWlV3bjhPK2dQVUNRcnFqRnBUa2t1R0l2TWdDZFNE?=
+ =?utf-8?B?dzFNcTZGZmVFTHFYb3RRalFuQVBkczVVOWY0cm9PcjA0Z2d0ZkpEOGRIVVZG?=
+ =?utf-8?B?bzdBQ0cxcFo4MGdhVERITm5aZUlyS0N2WStpTmxubHRIb3pacFlPYS9DNXY5?=
+ =?utf-8?B?cGQwNkVhMjM2RVlETE5rdWtYT1owOHNiOEloaGxlN1Q5K29qaXFTWUVCWWJW?=
+ =?utf-8?B?RWxhUVNlUXR0S1QzUG5pMHNTZzlSb1pLbEVBUC93bnhnVTlhdjUwWmFsSzNL?=
+ =?utf-8?B?c2N3YlpFNHdsRlFocGx0WStFYmtwbnJud3Y5QTVRTDlpcjJiamZKazlKT1ly?=
+ =?utf-8?B?UVJMNE1uZmxwbXUxK2FSdzJJWGhmeWhtNWZJUmtycnRUMU1ocm1PL29zUGcr?=
+ =?utf-8?B?UVNRSXBQRnZXYVlnZWk4TmZFN2VBT24wV0dXTmc5NHd2RWhTdUg0Vko4VWZL?=
+ =?utf-8?B?MWdLTDB5MDVTaHIzS3NGN3pzYkxTeWR3bi85YlVsNkRZTlJQZlRKaVFXZ09D?=
+ =?utf-8?B?bnB1NDllMHBiVjl6dGFnelNhWFBlRVRVc01KR2VrdlorMW9LZHRud3hONHJk?=
+ =?utf-8?B?NTU0SDJhYktFaklIRVY5K0VFT1RxdnhPcnNwNlprVVRNSElvbUsyNTByclNq?=
+ =?utf-8?B?ZHc2SlJRbFI4OEltN1JwcVhaUFB4NU1Rc1VzVEhhWHFxM1IwWlRaL2lWMHEr?=
+ =?utf-8?B?alVBbmlTT0pqR0VraVZRMy9icUlsT1g0QWRaanlGcW56UVd2b0xhbFNZQ3Na?=
+ =?utf-8?B?WkZGTHRGNVdNZ29uMHd0WEZXLzV6aDVJYmcvMzZ1SDZqdmpLMTBQbXZNZTMw?=
+ =?utf-8?B?aVBzY0hOTnAzMVoxVExKS1pjenpwVkVORzhNT1F1MGhmY3VydXVnTU9TaGZ6?=
+ =?utf-8?B?VWVLdlQyeTNFcVdTR2x2QUY2VGl3UFZNempGQXJ4aWZVUnVEb1IxUGI4Tmxp?=
+ =?utf-8?B?M2ZXNjZGcFZZT2J4QVRreEVpR2c0UVhWaWFTK3FMSlEvempqNVZjSkRrT0tF?=
+ =?utf-8?B?dG1MSGF3Z3ZreWg4ZmlVc0xtOEJoWVdHN1hjL0t0UzNNcWZxYStHNUc5eWEz?=
+ =?utf-8?B?N2NsS1o2ckQzdXljV2FUOG9ML2JQOXVOYzczaFhDWm90WS9BR0ZzVVpaeng3?=
+ =?utf-8?B?bjZrMGxUb2N3NmpuVlUyNjV3YUlEeWhwUU1vRjR5bzN3eS8zQy9STUlUYjdX?=
+ =?utf-8?B?QzhCYzR3QU53SWZhSEc3TmpJbk5paXJ5OUFHby9sdDN1Zkw3R1dNTUpWdDVM?=
+ =?utf-8?B?bnlEeitGVDZHRjV3c3NKMGVTY1huMTkzWFdZZWtpVEl3SFpHRXgxOEk0OGxk?=
+ =?utf-8?B?ekRnbW1Lc2xEbFN2TWx5K2UySDduOVN2ZkJqMU9waSt2cDBQaC9KUGhiaXJU?=
+ =?utf-8?B?WTdzV3JMamZUSFo3aXFUbEVwNnVwRzVoc1JXeG0wSnBMYVcwNnB1S1hxQWJo?=
+ =?utf-8?B?T042aEd4ZnVTeEpneUtncTg1aFVuWnFSVm9uKzh2bXJ0cmM1WlFzU2ZxeS9B?=
+ =?utf-8?B?RzVFUWR4bk5scjhmdTg1VGNuWmU1QURuT1BHcG01aWJmMDVWenFpZ3NRNzQ0?=
+ =?utf-8?B?bjlTMmovbzVYWkpYalJOUUVla0FIZytrSnh2MTZTYTZKWGNibUQrTW5qZ1cv?=
+ =?utf-8?B?NDdXR0lxQml1MWJRL2ZLcHhNd29TVWRZaVViNU4rZ2Npc0gzUHZwbkcvNWM5?=
+ =?utf-8?B?N3RIQ3lzZHh6TzZnT3ZlbGN3MVhSZkFTVVdKOHhlZSs5cDY2ODZ6cm1ybHlu?=
+ =?utf-8?B?eWZaaXFXbnd4TmtVcEVkL0FXNVlSVGE5TWtaUC82dFl3cEVwSExVZz09?=
+X-Exchange-RoutingPolicyChecked: DCcwpB1EXDHj8hsizSuuejWpPJpaM1KxnZE+Ldk3LiPeLe3rMyKNHI3PgTOlCRHRMLF6y3C17ZBV4TzMOtHzg0dStWWBuMWyrhUxkaYGGLAo6nfxph7GlP0uJ9pyDTa75vkXFgk6kDOqLOVoTs6BJMaxPenxgS/wupkLkJ0N3EMmZlcpUAIrje2ISmBGWxFdG+K03/cBIFeHxRYsaulCWhbvZq3zbjYVqW+ffzEJ6NATvUDQKwFC/HVKiq7j3+LOZUxpEXmntZiSePIt6aDuTZ0YR7z1NbbPgiaNK4yaTyCQ40OlKW0wYEtR/QNPWy3BQBlPNdRYk1aPIcPd5EjGWg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6315729d-bddd-4618-c2a9-08de94afd9fd
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB8200.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Apr 2026 13:59:22.3879 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Apr 2026 14:13:33.2831 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: LBI7pWFN86Fx5T4xnmUmkB80PqqoQoEdl5iUorHFTvwVSOyClCVLO9ferefXqr586uYaIlpr1W3NMk94smplKg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB7524
+X-MS-Exchange-CrossTenant-UserPrincipalName: +g3+LDrF3R2vyYLKp85PSQWlUiFInVvn8BtXwfK5XKRSZ4ZRTjklrIfQ3/UuSNuE6SCDZUF54fbixUJos/lEhA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6093
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -171,96 +169,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Eliot,
 
-On 4/7/2026 9:42 AM, Eliot Courtney wrote:
-> On Tue Apr 7, 2026 at 6:55 AM JST, Joel Fernandes wrote:
->>>> +    /// Compute upper bound on page table pages needed for `num_virt_pages`.
->>>> +    ///
->>>> +    /// Walks from PTE level up through PDE levels, accumulating the tree.
->>>> +    pub(crate) fn pt_pages_upper_bound(&self, num_virt_pages: usize) -> usize {
->>>> +        let mut total = 0;
->>>> +
->>>> +        // PTE pages at the leaf level.
->>>> +        let pte_epp = self.entries_per_page(self.pte_level());
->>>> +        let mut pages_at_level = num_virt_pages.div_ceil(pte_epp);
->>>> +        total += pages_at_level;
->>>> +
->>>> +        // Walk PDE levels bottom-up (reverse of pde_levels()).
->>>> +        for &level in self.pde_levels().iter().rev() {
->>>> +            let epp = self.entries_per_page(level);
->>>> +
->>>> +            // How many pages at this level do we need to point to
->>>> +            // the previous pages_at_level?
->>>> +            pages_at_level = pages_at_level.div_ceil(epp);
->>>> +            total += pages_at_level;
->>>> +        }
->>>> +
->>>> +        total
->>>> +    }
->>>> +}
->>>> +
->>>
->>> We have a lot of matches on the MMU version here (and below in Pte, Pde,
->>> DualPde). What about making MmuVersion into a trait (e.g. Mmu) with
->>> associated types for Pte, Pde, DualPde which can implement traits
->>> defining their common operations too?
->>
->> I coded this up and it did not look pretty, there's not much LOC savings and the
->> code becomes harder to read because of parametrization of several functions. Also:
+
+On 2026-04-01 4:57 p.m., Belgaumkar, Vinay wrote:
 > 
-> Thanks for looking into it. Sorry to be a bother, but would you have a
-> branch around with the code? I'm curious what didn't look good about it.
-
-Sorry but I already mentioned that above, the parameterizing of dozens of
-function call sites, 3-4 new traits (because each struct like
-Pte/Pde/DualPde etc each need their own trait which different MMU versions
-implement) etc. The code because hard to read and readability is the top
-critical criteria for me - I am personally strictly against "Lets use shiny
-features in language at the cost of making code unreadable". Because that
-translates into bugs and nightmare for maintainability.
-
-I don't have the code at the moment, but if you still want to spend on time
-on this direction, feel free to share a tree. I am happy to take a look.
->>> Then you can parameterise Vmm/PtWalk on this type.
+> On 3/26/2026 11:10 AM, Zhanjun Dong wrote:
+>> In xe_devcoredump_snapshot_free(), ss->gt may be NULL when the snapshot
+>> was never fully populated (e.g., when cleanup is triggered without a
+>> prior capture). Guard the xe_guc_capture_put_matched_nodes() call with
+>> IS_ERR_OR_NULL() to prevent a null dereference.
 >>
->> The match still to be done somewhere, so you end up matching on chipset to call
->> the correct parametrized functions versus just passing in the parameter or
->> chipset down, in some cases.
+>> In xe_devcoredump_free(), the deferred work is only queued when a
+>> coredump is captured, so guard cancel_work_sync() with a check on
+>> coredump->captured.
 >>
->> For now I am inclined to leave it as is. Also there's a Rust pitfall we all
->> learnt during the turing and other patch reviews, sometimes doing a bunch of
->> matches is good especially if the number of variants are expected to be fixed
->> (in the mm case, version 2 and version 3). Traits have some disadvantages too,
->> example dyn traits have to heap-allocated, parametrizing can increase code size
->> (due to monomorphization) etc.
+>> Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_devcoredump.c | 6 ++++--
+>>   1 file changed, 4 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/ 
+>> xe_devcoredump.c
+>> index 558a1a9841a0..ec206f512795 100644
+>> --- a/drivers/gpu/drm/xe/xe_devcoredump.c
+>> +++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+>> @@ -149,7 +149,8 @@ static void xe_devcoredump_snapshot_free(struct 
+>> xe_devcoredump_snapshot *ss)
+>>       xe_guc_ct_snapshot_free(ss->guc.ct);
+>>       ss->guc.ct = NULL;
+>> -    xe_guc_capture_put_matched_nodes(&ss->gt->uc.guc);
+>> +    if (!IS_ERR_OR_NULL(ss->gt))
+>> +        xe_guc_capture_put_matched_nodes(&ss->gt->uc.guc);
 > 
-> Yeah, it's just this is a lot of matches in a lot of places. And we have
-> ver2 / ver3 specific code leaking into the general pagetable.rs file. So
+> How about the other pointers being used here? Like ss->guc and ss->ge?
+Thanks for take time to review.
 
-That's not a leak, that's by design. pagetable.rs is where the matches are
-centralized, most of the code changes here on out should happen outside of
-this file.
+For ss->guc, guc is embedded struct within xe_devcoredump_snapshot, so 
+no null pointer risk.
+For ss->ge, it can be null, the good part here is all functions (within 
+this function) take this parameter already check for null internally, so 
+no additional guard needed.
+ss->gt is the only case.
 
-31 out of 42 matches in the mm code are in pagetable.rs, so it is already
-centralized.
-
-> it would be really nice if we could find a way to improve this specific
-> aspect. We can reduce the match to happening in just one file. 
-
-Assuming we know what we're improving. ;-)
-
-> You can> avoid heap allocation if you would like by making Vmm an enum,
-> for example, and doing the match based dispatch there at the top of the
-> API tree, rather than at the bottom where it fans out into a lot more
-> locations.
-
-heap allocation is not always free, this code sensitive to dynamic
-allocations in the kernel, due to MM reclaim and locking. I would like to
-keep it simple.
-
-thanks,
-
---
-Joel Fernandes
+Regards,
+Zhanjun Dong
+> 
+> Thanks,
+> 
+> Vinay.
+> 
+>>       ss->matched_node = NULL;
+>>       xe_guc_exec_queue_snapshot_free(ss->ge);
+>> @@ -254,7 +255,8 @@ static void xe_devcoredump_free(void *data)
+>>       if (!data || !coredump_to_xe(coredump))
+>>           return;
+>> -    cancel_work_sync(&coredump->snapshot.work);
+>> +    if (coredump->captured)
+>> +        cancel_work_sync(&coredump->snapshot.work);
+>>       mutex_lock(&coredump->lock);
 
