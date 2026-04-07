@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E1F8105D98A
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 23:03:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62458105D98C
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 23:03:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F9CC10E4DF;
-	Tue,  7 Apr 2026 23:03:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BA7E10E4DC;
+	Tue,  7 Apr 2026 23:03:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LescSAKc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IbD+ZGnq";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A10810E4DF
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Apr 2026 23:03:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 968D510E4E0
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 Apr 2026 23:03:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775602986; x=1807138986;
+ t=1775602990; x=1807138990;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=PmirmKjIcpOMzjHuJgaI5d43bvSHS6KkACSFD5xzLNY=;
- b=LescSAKcWm6xv8FxT5rrRUmxhXHJj4l3V+x0IJGbQx4lDekM89p5XCnO
- +8ODaiomCUFjieyIwkmOODWszbDz+KB/cZxB63inL+h9i55kVqJOA7wcL
- hJfM+5/3A+bG9U/uSfGZRtxZdq02SH1JaCxTDeWF37NJH4Y5IKQorX+vm
- ZIrlei3BBvQMq7Pyu9/DGpIMHY6KDoc9wFw3Ap8u3G0WjJN28tQOMsdrz
- xxU2TJqyYfLp6rjSaeXk1xTiCnSGnnIPV4XY0NsX9cSKGlwJIXEeUGV5i
- kigGWDDfQsM+imDC/wZe5vLllJZCFEei864pQt5fSBXj6h6Op6QaAXuAP g==;
-X-CSE-ConnectionGUID: fWdhX0dpSKq2xwzUs8kEJA==
-X-CSE-MsgGUID: wkohxjkmS1q1uFLgPIMtew==
-X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="76542541"
-X-IronPort-AV: E=Sophos;i="6.23,166,1770624000"; d="scan'208";a="76542541"
+ bh=VvA2OFs26c4SFn8uiheuKIcvx5gJwfw/yxlVhJn07Kg=;
+ b=IbD+ZGnqzly13S8xl334GxD2zu1uyRlQ4ZPxEqJtuhwL+1V4Ng/CvqSx
+ lX8mkJZyP0KmlNS8DebXDc4ksyU5N3X6h9615z0mqwAatwPVSTMLZ9+yN
+ SPkl1yXr6D5supu0pwXHw3ZA1hclLzCAEiUu9jpqZcTmOCkckFUsIqT+u
+ /MJWfqzUnlbNGeeiN03Lgva8fHIJqLNPNlNUuO7j53ftJ7p5XGoeNL9aw
+ 3jFTVn2rE+2pRd9Rn7l2cE4MBmtwUCXBf+YmLT2HqrrHM84O6HXzMmuPj
+ MOHOnmNkx2JanQEs4zAzkImJK9R98qEhp1nAEJ+9sQ8x2FsdVmTfMAyXY A==;
+X-CSE-ConnectionGUID: rt9UWBynSTqoppYLKCnKpQ==
+X-CSE-MsgGUID: +rQzB9a8RA2Cw3RVf3SoUg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="76542544"
+X-IronPort-AV: E=Sophos;i="6.23,166,1770624000"; d="scan'208";a="76542544"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 16:03:05 -0700
-X-CSE-ConnectionGUID: h4oV0aKqROyoBCCEyl3tLA==
-X-CSE-MsgGUID: f68OlCj/TKCKEmPLRiJYpQ==
+ 07 Apr 2026 16:03:10 -0700
+X-CSE-ConnectionGUID: a9aPk7/2Tf2kgWzmONgB+Q==
+X-CSE-MsgGUID: 44D4M661S5qTsUj/LNA8vw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,166,1770624000"; d="scan'208";a="232342642"
+X-IronPort-AV: E=Sophos;i="6.23,166,1770624000"; d="scan'208";a="232342655"
 Received: from shosgclin.sh.intel.com ([10.112.232.103])
- by orviesa003.jf.intel.com with ESMTP; 07 Apr 2026 16:03:04 -0700
+ by orviesa003.jf.intel.com with ESMTP; 07 Apr 2026 16:03:08 -0700
 From: Shuicheng Lin <shuicheng.lin@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Shuicheng Lin <shuicheng.lin@intel.com>,
  Riana Tauro <riana.tauro@intel.com>
-Subject: [PATCH 1/2] drm/xe/ras: Fix error handling in register_nodes()
-Date: Tue,  7 Apr 2026 22:59:12 +0000
-Message-ID: <20260407225913.3397059-2-shuicheng.lin@intel.com>
+Subject: [PATCH 2/2] drm/xe/ras: Clean up coding style in xe_drm_ras
+Date: Tue,  7 Apr 2026 22:59:13 +0000
+Message-ID: <20260407225913.3397059-3-shuicheng.lin@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260407225913.3397059-1-shuicheng.lin@intel.com>
 References: <20260407225913.3397059-1-shuicheng.lin@intel.com>
@@ -66,103 +66,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Fix two issues in register_nodes():
+- Fix long line in cleanup_node_param() signature.
+- Drop unnecessary const on pass-by-value enum parameters.
+- Simplify xe_drm_ras_init() by removing redundant local variable
+  and redundant error path.
 
-1. When the loop fails mid-way, previously registered nodes are not
-   cleaned up. Add goto-based error unwinding that walks backwards
-   through completed iterations.
+No functional change.
 
-2. When allocate_and_copy_counters() fails, assign_node_params()
-   leaves ras->info[severity] as an ERR_PTR and returns. The caller
-   then passes that ERR_PTR to kfree() via cleanup_node_param(),
-   causing an invalid free. Fix by making assign_node_params()
-   self-contained on error: NULL out the stale ERR_PTR and free
-   device_name before returning.
-
-Fixes: b40db12b542f ("drm/xe/xe_drm_ras: Add support for XE DRM RAS")
 Cc: Riana Tauro <riana.tauro@intel.com>
 Assisted-by: Claude:claude-opus-4.6
 Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
 ---
- drivers/gpu/drm/xe/xe_drm_ras.c | 31 ++++++++++++++++++++++---------
- 1 file changed, 22 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/xe/xe_drm_ras.c | 19 ++++++++-----------
+ 1 file changed, 8 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_drm_ras.c b/drivers/gpu/drm/xe/xe_drm_ras.c
-index e07dc23a155e..802e4bcb731c 100644
+index 802e4bcb731c..9cddad2be549 100644
 --- a/drivers/gpu/drm/xe/xe_drm_ras.c
 +++ b/drivers/gpu/drm/xe/xe_drm_ras.c
-@@ -73,6 +73,7 @@ static int assign_node_params(struct xe_device *xe, struct drm_ras_node *node,
+@@ -68,7 +68,7 @@ static struct xe_drm_ras_counter *allocate_and_copy_counters(struct xe_device *x
+ }
+ 
+ static int assign_node_params(struct xe_device *xe, struct drm_ras_node *node,
+-			      const enum drm_xe_ras_error_severity severity)
++			      enum drm_xe_ras_error_severity severity)
+ {
  	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
  	struct xe_drm_ras *ras = &xe->ras;
- 	const char *device_name;
-+	int ret;
- 
- 	device_name = kasprintf(GFP_KERNEL, "%04x:%02x:%02x.%d",
- 				pci_domain_nr(pdev->bus), pdev->bus->number,
-@@ -89,8 +90,11 @@ static int assign_node_params(struct xe_device *xe, struct drm_ras_node *node,
- 	node->priv = xe;
- 
- 	ras->info[severity] = allocate_and_copy_counters(xe);
--	if (IS_ERR(ras->info[severity]))
--		return PTR_ERR(ras->info[severity]);
-+	if (IS_ERR(ras->info[severity])) {
-+		ret = PTR_ERR(ras->info[severity]);
-+		ras->info[severity] = NULL;
-+		goto err_free_name;
-+	}
- 
- 	if (severity == DRM_XE_RAS_ERR_SEV_CORRECTABLE)
- 		node->query_error_counter = query_correctable_error_counter;
-@@ -98,6 +102,11 @@ static int assign_node_params(struct xe_device *xe, struct drm_ras_node *node,
- 		node->query_error_counter = query_uncorrectable_error_counter;
- 
- 	return 0;
-+
-+err_free_name:
-+	kfree(device_name);
-+	node->device_name = NULL;
-+	return ret;
+@@ -109,7 +109,8 @@ static int assign_node_params(struct xe_device *xe, struct drm_ras_node *node,
+ 	return ret;
  }
  
- static void cleanup_node_param(struct xe_drm_ras *ras, const enum drm_xe_ras_error_severity severity)
-@@ -114,26 +123,30 @@ static void cleanup_node_param(struct xe_drm_ras *ras, const enum drm_xe_ras_err
- static int register_nodes(struct xe_device *xe)
+-static void cleanup_node_param(struct xe_drm_ras *ras, const enum drm_xe_ras_error_severity severity)
++static void cleanup_node_param(struct xe_drm_ras *ras,
++			       enum drm_xe_ras_error_severity severity)
+ {
+ 	struct drm_ras_node *node = &ras->node[severity];
+ 
+@@ -174,15 +175,13 @@ static void xe_drm_ras_unregister_nodes(struct drm_device *device, void *arg)
+ int xe_drm_ras_init(struct xe_device *xe)
  {
  	struct xe_drm_ras *ras = &xe->ras;
--	int i;
-+	int i, ret;
+-	struct drm_ras_node *node;
+ 	int err;
  
- 	for_each_error_severity(i) {
- 		struct drm_ras_node *node = &ras->node[i];
--		int ret;
+-	node = drmm_kcalloc(&xe->drm, DRM_XE_RAS_ERR_SEV_MAX, sizeof(*node), GFP_KERNEL);
+-	if (!node)
++	ras->node = drmm_kcalloc(&xe->drm, DRM_XE_RAS_ERR_SEV_MAX,
++				 sizeof(*ras->node), GFP_KERNEL);
++	if (!ras->node)
+ 		return -ENOMEM;
  
- 		ret = assign_node_params(xe, node, i);
--		if (ret) {
--			cleanup_node_param(ras, i);
--			return ret;
--		}
-+		if (ret)
-+			goto err_unwind;
- 
- 		ret = drm_ras_node_register(node);
- 		if (ret) {
- 			cleanup_node_param(ras, i);
--			return ret;
-+			goto err_unwind;
- 		}
+-	ras->node = node;
+-
+ 	err = register_nodes(xe);
+ 	if (err) {
+ 		drm_err(&xe->drm, "Failed to register DRM RAS nodes (%pe)\n", ERR_PTR(err));
+@@ -190,10 +189,8 @@ int xe_drm_ras_init(struct xe_device *xe)
  	}
  
- 	return 0;
-+
-+err_unwind:
-+	while (i--) {
-+		drm_ras_node_unregister(&ras->node[i]);
-+		cleanup_node_param(ras, i);
-+	}
-+	return ret;
- }
+ 	err = drmm_add_action_or_reset(&xe->drm, xe_drm_ras_unregister_nodes, xe);
+-	if (err) {
++	if (err)
+ 		drm_err(&xe->drm, "Failed to add action for Xe DRM RAS (%pe)\n", ERR_PTR(err));
+-		return err;
+-	}
  
- static void xe_drm_ras_unregister_nodes(struct drm_device *device, void *arg)
+-	return 0;
++	return err;
+ }
 -- 
 2.43.0
 
