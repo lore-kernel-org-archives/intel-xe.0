@@ -4,27 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22CA2FF5138
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 20:10:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95A98FF5139
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 20:20:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BEC8E10E4B6;
-	Tue,  7 Apr 2026 20:10:07 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 735BA10E4B6;
- Tue,  7 Apr 2026 20:10:06 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1034192956281555062=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 54A6810E4BA;
+	Tue,  7 Apr 2026 20:20:31 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZysLIO6N";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2355E10E4BA
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 Apr 2026 20:20:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1775593230; x=1807129230;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=RrEm6pDIbC7/tHQCR6PrxaL6F8ze/D+WTtZozlQXLhU=;
+ b=ZysLIO6N8KwqMvAhCKDB2wp9IPgHrsfTci6jVuQaI0c4KIg6yhz4Kn/o
+ 8qOfiBKfW5etdsA94aO1BFy6wYEQINgLfAyhAJ9EVYK/hvdwJx9/doqht
+ yNC1VSKnfGTv9w5QyOysdippROA8NZv4Ztxwv50H7kd+PqhLngpJKKhYQ
+ Jgob5juC0V2zfNZVZ5RI/5H/CaIxsGPSYYvxFy8bhPdFw2nJcUoHCTiFt
+ cnku2RhelifE4Gl1zN4mtkVntQv3BahPBVnaW4nlCZQ7b+fIV6fTU6Igz
+ SIPegX9Uu+JUu+bbzrgKCPdWhumFmBN97F1g8kWp6aW+vjFBg4JG7mHZo A==;
+X-CSE-ConnectionGUID: fT2UkigBSLeD37VCg6V7GA==
+X-CSE-MsgGUID: 2+DYuBEzR+2iN9q1/FtWtw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="87268144"
+X-IronPort-AV: E=Sophos;i="6.23,166,1770624000"; d="scan'208";a="87268144"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2026 13:20:29 -0700
+X-CSE-ConnectionGUID: uX84IdTqQtmnjD3NQZLprg==
+X-CSE-MsgGUID: Rr0Y7lUtROWtIRQpLP8E0Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,166,1770624000"; d="scan'208";a="233231566"
+Received: from shosgclin.sh.intel.com ([10.112.232.103])
+ by orviesa005.jf.intel.com with ESMTP; 07 Apr 2026 13:20:28 -0700
+From: Shuicheng Lin <shuicheng.lin@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+Subject: [PATCH 0/4] drm/xe: Fix resource leaks in bo init and dma-buf paths
+Date: Tue,  7 Apr 2026 20:15:38 +0000
+Message-ID: <20260407201542.3396317-1-shuicheng.lin@intel.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dp=3A_Don=27t_use_?=
- =?utf-8?q?DP_link_min_bpp_for_the_FRL_link_bandwidth_check?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 07 Apr 2026 20:10:06 -0000
-Message-ID: <177559260644.437137.12689688479671481639@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260407183015.16256-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20260407183015.16256-1-ville.syrjala@linux.intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,140 +60,33 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1034192956281555062==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Fix several resource leaks in the xe driver's buffer object
+initialization and dma-buf import paths:
 
-== Series Details ==
+Patches 1-2 fix xe_bo_init_locked() where two early validation error
+paths return without freeing a caller-provided bo, violating the
+documented contract that bo is freed on failure.
 
-Series: drm/i915/dp: Don't use DP link min bpp for the FRL link bandwidth check
-URL   : https://patchwork.freedesktop.org/series/164469/
-State : success
+Patch 3 fixes xe_dma_buf_init_obj() where the pre-allocated storage bo
+is leaked when drm_gpuvm_resv_object_alloc() fails.
 
-== Summary ==
+Patch 4 fixes xe_gem_prime_import() where the dma-buf attachment is
+leaked when xe_dma_buf_init_obj() fails.
 
-CI Bug Log - changes from xe-4858-9e217a8df7b2f298a2fd850e29f970b7360dc77b_BAT -> xe-pw-164469v1_BAT
-====================================================
+Shuicheng Lin (4):
+  drm/xe/bo: Fix bo leak on unaligned size validation in
+    xe_bo_init_locked()
+  drm/xe/bo: Fix bo leak on GGTT flag validation in xe_bo_init_locked()
+  drm/xe: Fix bo leak in xe_dma_buf_init_obj() on allocation failure
+  drm/xe: Fix dma-buf attachment leak in xe_gem_prime_import()
 
-Summary
--------
+ drivers/gpu/drm/xe/xe_bo.c      |  8 ++++++--
+ drivers/gpu/drm/xe/xe_dma_buf.c | 15 ++++++++++-----
+ 2 files changed, 16 insertions(+), 7 deletions(-)
 
-  **SUCCESS**
+-- 
+2.43.0
 
-  No regressions found.
-
-  
-
-Participating hosts (14 -> 14)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-164469v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4858-9e217a8df7b2f298a2fd850e29f970b7360dc77b/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164469v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#7483]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4858-9e217a8df7b2f298a2fd850e29f970b7360dc77b/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164469v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-
-  
-  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
-
-
-Build changes
--------------
-
-  * Linux: xe-4858-9e217a8df7b2f298a2fd850e29f970b7360dc77b -> xe-pw-164469v1
-
-  IGT_8850: 8850
-  xe-4858-9e217a8df7b2f298a2fd850e29f970b7360dc77b: 9e217a8df7b2f298a2fd850e29f970b7360dc77b
-  xe-pw-164469v1: 164469v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164469v1/index.html
-
---===============1034192956281555062==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dp: Don&#x27;t use DP link min bpp for the FRL link bandwidth check</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164469/">https://patchwork.freedesktop.org/series/164469/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164469v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164469v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4858-9e217a8df7b2f298a2fd850e29f970b7360dc77b_BAT -&gt; xe-pw-164469v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-164469v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4858-9e217a8df7b2f298a2fd850e29f970b7360dc77b/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164469v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4858-9e217a8df7b2f298a2fd850e29f970b7360dc77b/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164469v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4858-9e217a8df7b2f298a2fd850e29f970b7360dc77b -&gt; xe-pw-164469v1</li>
-</ul>
-<p>IGT_8850: 8850<br />
-  xe-4858-9e217a8df7b2f298a2fd850e29f970b7360dc77b: 9e217a8df7b2f298a2fd850e29f970b7360dc77b<br />
-  xe-pw-164469v1: 164469v1</p>
-
-</body>
-</html>
-
---===============1034192956281555062==--
