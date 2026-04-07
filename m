@@ -4,65 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61020EDB7DF
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 10:03:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03092EDB7E7
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 10:04:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E3AE10E3B1;
-	Tue,  7 Apr 2026 10:03:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B51E810E3A1;
+	Tue,  7 Apr 2026 10:04:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CqAG6si0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hTMIxI4q";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 425FD10E3B4;
- Tue,  7 Apr 2026 10:03:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BCFBA10E3A1;
+ Tue,  7 Apr 2026 10:04:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775556193; x=1807092193;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Kyl3kDC0EPr4MjVHvnZj5EQNN4SkexA7h3YQSh1c53o=;
- b=CqAG6si0cP8G/01PmF9A7cyNDBqWijBhHv+fsVblWvfFX/LipYZXp2Mw
- aQHP8CzzlgvqU3tqqN5ouT78E8WMRwh8JLAc/qtQ1Ww7rMT7STv41RQf4
- 6Bu9/e6mOGKsrIYY43AJsJGJJUCf8ToJmOMDWFP9T43JqWoe84F1LAXAm
- VTW7QC02pCeQr31BP2jaSROzZdvpwRK/BVT1SXHfslyJ++LiJOALiFi8A
- Tap6gZIeHLiUAoqm/t1xDwIYPdbIq+C5mag1MZHsrKxF6oXAsEucwVbWL
- kLWpBsU4K4VEyL7nIzlFjrj71EIKM1a65wId6AqVN3y42zw3GTayFK+gi Q==;
-X-CSE-ConnectionGUID: Il4HLD+HS/GzOcEx2RBGhw==
-X-CSE-MsgGUID: AbJtmdaERAColoD5lW7RWQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11751"; a="76587312"
-X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="76587312"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 03:03:13 -0700
-X-CSE-ConnectionGUID: ys/88ox/QIOWpMtmauEPyw==
-X-CSE-MsgGUID: shUkFYFIRa2MULu0CamkTw==
+ t=1775556284; x=1807092284;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=08LsQ0QB2YNVcMVETmHaDmF+sCQipjgLUuMdhPxKN10=;
+ b=hTMIxI4qNJZv8hK3Dsc49EluIFKHqiOWWQNr1gb3khsvLv3fTDS/2U0J
+ SZ9lkP3Jq5uBB/3JdGGWCsZWRk0RSyd+KwkBDK5jKxqmIHtG+yttXLx64
+ gf7S0pqkxz8zaWtbfXas80cnyVkv/ZkGhab8fxGUdXHfrc542ozh/MI7o
+ J3B9N9cxkVu/64TKYNQ95Cx51F/QsyDXp4yHT7Scow2vz4Tzm0fxn1NLc
+ eXxI5eKoc9TBZgbIb5nv95DVA9fD+CT2ixROWdZ0OnRp1SpWYkgCTwKoL
+ UMtObu/61n9f0B+SXSkvrvKRsO5/H0Rw1hsn9Pmb2uzsS+NgWVV6iehLu w==;
+X-CSE-ConnectionGUID: xpYJ8KAdQkSSvHy7Q9a1gA==
+X-CSE-MsgGUID: sWI42+KxRdWXB5rn/r6JIw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11751"; a="76705445"
+X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="76705445"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2026 03:04:43 -0700
+X-CSE-ConnectionGUID: rFvQ+OCHRQ+BcSX43/1blg==
+X-CSE-MsgGUID: kJHqoaiCReGKucWYb67sAg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="227292235"
-Received: from zzombora-mobl1 (HELO localhost) ([10.245.244.84])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 03:03:11 -0700
-Date: Tue, 7 Apr 2026 13:03:08 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
-Cc: "Manna, Animesh" <animesh.manna@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Nikula, Jani" <jani.nikula@intel.com>,
- "Shankar, Uma" <uma.shankar@intel.com>
-Subject: Re: [PATCH v3 01/12] drm/i915/cmtg: add is_enable_allowed() for cmtg
-Message-ID: <adTWXEKa_KOsxprS@intel.com>
-References: <20260313153300.3530695-1-animesh.manna@intel.com>
- <20260313153300.3530695-2-animesh.manna@intel.com>
- <DM4PR11MB636036CB7922982F875E3C91F45DA@DM4PR11MB6360.namprd11.prod.outlook.com>
- <41346fec-0935-4be3-8069-924aded3e650@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="224936657"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.244])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2026 03:04:41 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com,
+	ville.syrjala@linux.intel.com
+Subject: [PATCH 0/3] drm/i915/pin: refactor to i915 core
+Date: Tue,  7 Apr 2026 13:04:34 +0300
+Message-ID: <cover.1775556190.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <41346fec-0935-4be3-8069-924aded3e650@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,120 +69,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Apr 07, 2026 at 02:29:46PM +0530, Dibin Moolakadan Subrahmanian wrote:
-> On 07-04-2026 00:18, Shankar, Uma wrote:
-> >
-> >> -----Original Message-----
-> >> From: Manna, Animesh <animesh.manna@intel.com>
-> >> Sent: Friday, March 13, 2026 9:03 PM
-> >> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
-> >> Cc: Nikula, Jani <jani.nikula@intel.com>; Shankar, Uma
-> >> <uma.shankar@intel.com>; Dibin Moolakadan Subrahmanian
-> >> <dibin.moolakadan.subrahmanian@intel.com>; Manna, Animesh
-> >> <animesh.manna@intel.com>
-> >> Subject: [PATCH v3 01/12] drm/i915/cmtg: add is_enable_allowed() for cmtg
-> > Nit: Name here in subject doesn't match the actual function. Better to use exact same name.
-> >
-> >> Introduce a flag for DC3co. CMTG will be enabled only with DC3co so add a
-> >> separate function is_allowed() for cmtg. DC3co flag will be enabled in a separate
-> >> patch.
-> >>
-> >> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-> >> ---
-> >>   drivers/gpu/drm/i915/display/intel_cmtg.c          | 14 ++++++++++++++
-> >>   drivers/gpu/drm/i915/display/intel_cmtg.h          |  2 ++
-> >>   .../gpu/drm/i915/display/intel_display_device.h    |  1 +
-> >>   drivers/gpu/drm/i915/display/intel_display_types.h |  4 ++++
-> >>   4 files changed, 21 insertions(+)
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_cmtg.c
-> >> b/drivers/gpu/drm/i915/display/intel_cmtg.c
-> >> index e1fdc6fe9762..024d753eca55 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_cmtg.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_cmtg.c
-> >> @@ -16,6 +16,7 @@
-> >>   #include "intel_display_device.h"
-> >>   #include "intel_display_power.h"
-> >>   #include "intel_display_regs.h"
-> >> +#include "intel_display_types.h"
-> >>
-> >>   /**
-> >>    * DOC: Common Primary Timing Generator (CMTG) @@ -185,3 +186,16 @@
-> >> void intel_cmtg_sanitize(struct intel_display *display)
-> >>
-> >>   	intel_cmtg_disable(display, &cmtg_config);  }
-> >> +
-> >> +bool intel_cmtg_is_allowed(const struct intel_crtc_state *crtc_state) {
-> >> +	struct intel_display *display = to_intel_display(crtc_state);
-> >> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-> >> +
-> >> +	if ((cpu_transcoder == TRANSCODER_A || cpu_transcoder ==
-> >> TRANSCODER_B) &&
-> >> +	    HAS_DC3CO(display) && intel_crtc_has_type(crtc_state,
-> >> INTEL_OUTPUT_EDP) &&
-> >> +	    crtc_state->dc3co.enable)
-> > Don't think we need both HAS_DC3CO and dc3co.enable here. Later should never be set if HAS_DC3CO
-> > not true.
-> >
-> >> +		return true;
-> >> +
-> >> +	return false;
-> >> +}
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_cmtg.h
-> >> b/drivers/gpu/drm/i915/display/intel_cmtg.h
-> >> index ba62199adaa2..7692cc98cf87 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_cmtg.h
-> >> +++ b/drivers/gpu/drm/i915/display/intel_cmtg.h
-> >> @@ -7,7 +7,9 @@
-> >>   #define __INTEL_CMTG_H__
-> >>
-> >>   struct intel_display;
-> >> +struct intel_crtc_state;
-> >>
-> >>   void intel_cmtg_sanitize(struct intel_display *display);
-> >> +bool intel_cmtg_is_allowed(const struct intel_crtc_state *crtc_state);
-> >>
-> >>   #endif /* __INTEL_CMTG_H__ */
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h
-> >> b/drivers/gpu/drm/i915/display/intel_display_device.h
-> >> index e84c190dcc4f..35e06fcf794d 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
-> >> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-> >> @@ -189,6 +189,7 @@ struct intel_display_platforms {
-> >>   #define HAS_LRR(__display)		(DISPLAY_VER(__display) >= 12)
-> >>   #define HAS_LSPCON(__display)		(IS_DISPLAY_VER(__display, 9,
-> >> 10))
-> >>   #define HAS_LT_PHY(__display)		((__display)->platform.novalake)
-> >> +#define HAS_DC3CO(__display)		((__display)->platform.novalake)
-> >>   #define HAS_MBUS_JOINING(__display)	((__display)->platform.alderlake_p
-> >> || DISPLAY_VER(__display) >= 14)
-> >>   #define HAS_MSO(__display)		(DISPLAY_VER(__display) >= 12)
-> >>   #define HAS_OVERLAY(__display)		(DISPLAY_INFO(__display)-
-> >>> has_overlay)
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
-> >> b/drivers/gpu/drm/i915/display/intel_display_types.h
-> >> index e189f8c39ccb..8a92ea4f1438 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> >> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> >> @@ -1434,6 +1434,10 @@ struct intel_crtc_state {
-> >>
-> >>   	/* to track changes in plane color blocks */
-> >>   	bool plane_color_changed;
-> >> +
-> >> +	struct {
-> >> +		bool enable;
-> >> +	} dc3co;
-> >>   };
-> 
-> DC3CO shouldn’t be part of struct intel_crtc_state.
-> It’s a global display power feature, not per-CRTC state.
-> struct intel_atomic_state would be a more appropriate place to track this.
+Something I started last week before Ville said he'd look into the whole
+pin stuff. If this is helpful, let's merge, but if it's in the way, it
+was pretty quick and can be thrown away.
 
-intel_atomic_state isn't actually a state, and so should not be used
-to track anything. To better reflect its role drm_atomic_state will
-soon be renamed to drm_atomic_commit, and we need to follow up with
-the corresponding intel_atomic_* rename.
+BR,
+Jani.
+
+Jani Nikula (3):
+  drm/i915: move intel_fb_pin.c to i915_fb_pin.c
+  drm/i915/pin: s/dev_priv/i915/ and drop struct drm_device usage
+  drm/i915/pin: switch to i915 core runtime pm
+
+ drivers/gpu/drm/i915/Makefile                 |  2 +-
+ .../{display/intel_fb_pin.c => i915_fb_pin.c} | 44 +++++++++----------
+ 2 files changed, 22 insertions(+), 24 deletions(-)
+ rename drivers/gpu/drm/i915/{display/intel_fb_pin.c => i915_fb_pin.c} (90%)
 
 -- 
-Ville Syrjälä
-Intel
+2.47.3
+
