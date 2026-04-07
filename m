@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78CDEEDB7FD
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 11:09:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25255EDB7F3
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 11:09:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37F8E10E3ED;
-	Tue,  7 Apr 2026 11:09:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB15610E3EE;
+	Tue,  7 Apr 2026 11:09:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MHkSX6na";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VYV+rstC";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F81E10E3ED
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Apr 2026 11:09:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB5D210E3EE
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 Apr 2026 11:09:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775560149; x=1807096149;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=eXIdDAXH1aD709pIFuVZFUugeYceV5Pybl8u1T1v58U=;
- b=MHkSX6naL4yvz8AfLdHrCBsDCOOjOnQJAHVufk8ednVSKDJSM4m4w4PN
- bSy1kFbcrXbz6YyegdJXrk0+PN3mCBuKf1DAR+XHPDOZQZeaT+atVKVS7
- 7njn6MQwQz2Qi+LlR1OxwBZwdIZf+gs/uuPvApG9CkPl+ymGXQoai8FJT
- Xk4ndObHeClFxTW0E18+d/YP6OAPwFFA79/8YVyTi7Qy2DnFCQuD0LWNm
- UFzWAi1DkiBh67zUNoboKH7W13pQOkj51uqpTO2Bz8nVAjILCuZ+ItzL+
- oyAPIFfTOITEsMj6+aq97zYyZNX8bIeiXil+vbfeLUEfbLXTbt/8S9NJi g==;
-X-CSE-ConnectionGUID: wf83U3apQBeUq9ZL+x/DfQ==
-X-CSE-MsgGUID: bmg1IKMPRkSLvx/LMPCrVw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11751"; a="94100373"
-X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="94100373"
+ t=1775560153; x=1807096153;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=HPqUpma5hsWaBK6CKC2E4H4ZNjxKwbrQGK+hFD1Y/24=;
+ b=VYV+rstCKfy9rg1sMY2YC0UDQbXOCzlYRxAuQfYSGGUuXoSY/gCpktgh
+ tJ2E8Xvts8KjeeZWT1QT01BEYrdYhttrj9LO1uiGuBOGuWdz3SVBZptTE
+ aimJn/mNHtuNKQZCtOt0bzQbywKqC8aFmd9j6qazUMwKgJvc1UtPVzhst
+ RQMBG4EzlnavbjP9JRsFFUzlwBSDS+69GGSCZKpWun7aWtQ0+oHNTeVkr
+ c65pq+yuH5vvxT3hGSkUlv9+0clEw1tI9EjYvy+s77V+x+tSnDCiWJx1W
+ TP4NHnCJWSHETB9xBq9dsyq3vCtwzt8+DzP1eo6SAsJXoFm4Fkj2WzY5n Q==;
+X-CSE-ConnectionGUID: pqagRKycScixIfgK5BRXbg==
+X-CSE-MsgGUID: OWpYkcY0TdSq+db0NHe9ww==
+X-IronPort-AV: E=McAfee;i="6800,10657,11751"; a="94100381"
+X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="94100381"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 04:09:09 -0700
-X-CSE-ConnectionGUID: 2QVuIq7ETvy+z7YelubRrA==
-X-CSE-MsgGUID: l9ogyhqJTPGTBhSWTzXOPA==
+ 07 Apr 2026 04:09:12 -0700
+X-CSE-ConnectionGUID: ieO2mwRrQP6DP2JJ3tEpzg==
+X-CSE-MsgGUID: tywjqsHFQeW/gpu9xiT+FA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="228045841"
+X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="228045849"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by orviesa009.jf.intel.com with ESMTP; 07 Apr 2026 04:09:06 -0700
+ by orviesa009.jf.intel.com with ESMTP; 07 Apr 2026 04:09:09 -0700
 From: Raag Jadav <raag.jadav@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com, riana.tauro@intel.com,
@@ -47,10 +47,12 @@ Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com, riana.tauro@intel.com,
  umesh.nerlige.ramappa@intel.com, mallesh.koujalagi@intel.com,
  soham.purkait@intel.com, anoop.c.vijay@intel.com,
  aravind.iddamsetty@linux.intel.com, Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v5 0/3] Introduce Xe Correctable Error Handling
-Date: Tue,  7 Apr 2026 16:36:26 +0530
-Message-ID: <20260407110629.198158-1-raag.jadav@intel.com>
+Subject: [PATCH v5 1/3] drm/xe/sysctrl: Add system controller interrupt handler
+Date: Tue,  7 Apr 2026 16:36:27 +0530
+Message-ID: <20260407110629.198158-2-raag.jadav@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260407110629.198158-1-raag.jadav@intel.com>
+References: <20260407110629.198158-1-raag.jadav@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,50 +69,171 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This series builds on top of system controller series[1] and adds initial
-support for correctable error handling in xe. This serves as a foundation
-for RAS infrastructure and will be further extended to facilitate other
-RAS features.
+Add system controller interrupt handler which is denoted by 11th bit in
+GFX master interrupt register. While at it, add worker for scheduling
+system controller work.
 
-Detailed description in commit message.
-
-[1] https://patchwork.freedesktop.org/series/163196/
-
+Co-developed-by: Soham Purkait <soham.purkait@intel.com>
+Signed-off-by: Soham Purkait <soham.purkait@intel.com>
+Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+---
 v2: Use system_percpu_wq instead of dedicated (Matthew Brost)
-    Handle unexpected response length (Mallesh)
-
-v3: Handle event flood (Mallesh)
-
 v4: Handle IRQ before sysctrl initialization (Mallesh)
-    Fix Severity/Component logging (Mallesh)
-    s/xe_ras_error/xe_ras_error_class (Riana)
+---
+ drivers/gpu/drm/xe/regs/xe_irq_regs.h |  1 +
+ drivers/gpu/drm/xe/xe_irq.c           |  2 ++
+ drivers/gpu/drm/xe/xe_sysctrl.c       | 39 ++++++++++++++++++++++-----
+ drivers/gpu/drm/xe/xe_sysctrl.h       |  1 +
+ drivers/gpu/drm/xe/xe_sysctrl_types.h |  7 +++++
+ 5 files changed, 44 insertions(+), 6 deletions(-)
 
-v5: Handle unexpected counter threshold crossed (Mallesh)
-
-Raag Jadav (3):
-  drm/xe/sysctrl: Add system controller interrupt handler
-  drm/xe/sysctrl: Add system controller event support
-  drm/xe/ras: Introduce correctable error handling
-
- drivers/gpu/drm/xe/Makefile                 |  2 +
- drivers/gpu/drm/xe/regs/xe_irq_regs.h       |  1 +
- drivers/gpu/drm/xe/xe_irq.c                 |  2 +
- drivers/gpu/drm/xe/xe_ras.c                 | 96 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_ras.h                 | 14 +++
- drivers/gpu/drm/xe/xe_ras_types.h           | 73 ++++++++++++++++
- drivers/gpu/drm/xe/xe_sysctrl.c             | 46 ++++++++--
- drivers/gpu/drm/xe/xe_sysctrl.h             |  2 +
- drivers/gpu/drm/xe/xe_sysctrl_event.c       | 89 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_sysctrl_event_types.h | 52 +++++++++++
- drivers/gpu/drm/xe/xe_sysctrl_mailbox.h     | 10 +++
- drivers/gpu/drm/xe/xe_sysctrl_types.h       |  7 ++
- 12 files changed, 388 insertions(+), 6 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_ras.c
- create mode 100644 drivers/gpu/drm/xe/xe_ras.h
- create mode 100644 drivers/gpu/drm/xe/xe_ras_types.h
- create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_event.c
- create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_event_types.h
-
+diff --git a/drivers/gpu/drm/xe/regs/xe_irq_regs.h b/drivers/gpu/drm/xe/regs/xe_irq_regs.h
+index 9d74f454d3ff..1d6b976c4de0 100644
+--- a/drivers/gpu/drm/xe/regs/xe_irq_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_irq_regs.h
+@@ -22,6 +22,7 @@
+ #define   DISPLAY_IRQ				REG_BIT(16)
+ #define   SOC_H2DMEMINT_IRQ			REG_BIT(13)
+ #define   I2C_IRQ				REG_BIT(12)
++#define   SYSCTRL_IRQ				REG_BIT(11)
+ #define   GT_DW_IRQ(x)				REG_BIT(x)
+ 
+ /*
+diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+index 9a775c6588dc..e9f0b3cad06d 100644
+--- a/drivers/gpu/drm/xe/xe_irq.c
++++ b/drivers/gpu/drm/xe/xe_irq.c
+@@ -24,6 +24,7 @@
+ #include "xe_mmio.h"
+ #include "xe_pxp.h"
+ #include "xe_sriov.h"
++#include "xe_sysctrl.h"
+ #include "xe_tile.h"
+ 
+ /*
+@@ -525,6 +526,7 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
+ 				xe_heci_csc_irq_handler(xe, master_ctl);
+ 			xe_display_irq_handler(xe, master_ctl);
+ 			xe_i2c_irq_handler(xe, master_ctl);
++			xe_sysctrl_irq_handler(xe, master_ctl);
+ 			xe_mert_irq_handler(xe, master_ctl);
+ 			gu_misc_iir = gu_misc_irq_ack(xe, master_ctl);
+ 		}
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl.c b/drivers/gpu/drm/xe/xe_sysctrl.c
+index 2bcef304eb9a..afa9654668a2 100644
+--- a/drivers/gpu/drm/xe/xe_sysctrl.c
++++ b/drivers/gpu/drm/xe/xe_sysctrl.c
+@@ -8,6 +8,7 @@
+ 
+ #include <drm/drm_managed.h>
+ 
++#include "regs/xe_irq_regs.h"
+ #include "regs/xe_sysctrl_regs.h"
+ #include "xe_device.h"
+ #include "xe_mmio.h"
+@@ -30,10 +31,16 @@
+ static void sysctrl_fini(void *arg)
+ {
+ 	struct xe_device *xe = arg;
++	struct xe_sysctrl *sc = &xe->sc;
+ 
++	cancel_work_sync(&sc->work);
+ 	xe->soc_remapper.set_sysctrl_region(xe, 0);
+ }
+ 
++static void xe_sysctrl_work(struct work_struct *work)
++{
++}
++
+ /**
+  * xe_sysctrl_init() - Initialize System Controller subsystem
+  * @xe: xe device instance
+@@ -55,11 +62,7 @@ int xe_sysctrl_init(struct xe_device *xe)
+ 	if (!xe->info.has_sysctrl)
+ 		return 0;
+ 
+-	xe->soc_remapper.set_sysctrl_region(xe, SYSCTRL_MAILBOX_INDEX);
+-
+-	ret = devm_add_action_or_reset(xe->drm.dev, sysctrl_fini, xe);
+-	if (ret)
+-		return ret;
++	xe_assert(xe, xe->soc_remapper.set_sysctrl_region);
+ 
+ 	sc->mmio = devm_kzalloc(xe->drm.dev, sizeof(*sc->mmio), GFP_KERNEL);
+ 	if (!sc->mmio)
+@@ -73,9 +76,33 @@ int xe_sysctrl_init(struct xe_device *xe)
+ 	if (ret)
+ 		return ret;
+ 
++	ret = devm_mutex_init(xe->drm.dev, &sc->work_lock);
++	if (ret)
++		return ret;
++
++	xe->soc_remapper.set_sysctrl_region(xe, SYSCTRL_MAILBOX_INDEX);
+ 	xe_sysctrl_mailbox_init(sc);
++	INIT_WORK(&sc->work, xe_sysctrl_work);
+ 
+-	return 0;
++	return devm_add_action_or_reset(xe->drm.dev, sysctrl_fini, xe);
++}
++
++/**
++ * xe_sysctrl_irq_handler() - Handler for System Controller interrupts
++ * @xe: xe device instance
++ * @master_ctl: interrupt register
++ *
++ * Handle interrupts generated by System Controller.
++ */
++void xe_sysctrl_irq_handler(struct xe_device *xe, u32 master_ctl)
++{
++	struct xe_sysctrl *sc = &xe->sc;
++
++	if (!xe->info.has_sysctrl || !sc->work.func)
++		return;
++
++	if (master_ctl & SYSCTRL_IRQ)
++		schedule_work(&sc->work);
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl.h b/drivers/gpu/drm/xe/xe_sysctrl.h
+index f3b0f3716b2f..f7469bfc9324 100644
+--- a/drivers/gpu/drm/xe/xe_sysctrl.h
++++ b/drivers/gpu/drm/xe/xe_sysctrl.h
+@@ -17,6 +17,7 @@ static inline struct xe_device *sc_to_xe(struct xe_sysctrl *sc)
+ }
+ 
+ int xe_sysctrl_init(struct xe_device *xe);
++void xe_sysctrl_irq_handler(struct xe_device *xe, u32 master_ctl);
+ void xe_sysctrl_pm_resume(struct xe_device *xe);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl_types.h b/drivers/gpu/drm/xe/xe_sysctrl_types.h
+index 8217f6befe70..13fbf2990280 100644
+--- a/drivers/gpu/drm/xe/xe_sysctrl_types.h
++++ b/drivers/gpu/drm/xe/xe_sysctrl_types.h
+@@ -8,6 +8,7 @@
+ 
+ #include <linux/mutex.h>
+ #include <linux/types.h>
++#include <linux/workqueue_types.h>
+ 
+ struct xe_mmio;
+ 
+@@ -27,6 +28,12 @@ struct xe_sysctrl {
+ 
+ 	/** @phase_bit: Message boundary phase toggle bit (0 or 1) */
+ 	bool phase_bit;
++
++	/** @work: Pending events work */
++	struct work_struct work;
++
++	/** @work_lock: Mutex protecting pending events */
++	struct mutex work_lock;
+ };
+ 
+ #endif
 -- 
 2.43.0
 
