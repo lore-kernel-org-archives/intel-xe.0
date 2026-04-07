@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96DABFF513B
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 20:20:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FFE7FF513B
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 20:20:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DF8810E4BF;
-	Tue,  7 Apr 2026 20:20:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64BF910E4C1;
+	Tue,  7 Apr 2026 20:20:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jBZcwQmW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ag/BeRR9";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2561B10E4BF
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Apr 2026 20:20:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 902DD10E4C1
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 Apr 2026 20:20:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775593234; x=1807129234;
+ t=1775593237; x=1807129237;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=xVWpfY0ybCfivnB88p7FWK+T+pO4OJ4spNkild+3ifw=;
- b=jBZcwQmWbubxSlc7pYgWyzeIxCGk3x1gVi0fBKjHCLD32maSZvtrrQs9
- sx94zyAlboHiExSWUQDMXmiqgDSSKzxo5JKPca+PXqZMsMMMSQHowTa1t
- g28Kl4qOBza56C++uZqW+7SvnPFq3T/XUcGjeBv9cdoZuwNIXi/Bpte6V
- ind/BnLzKVFuoQW6ZfguSMKXs8QbKd8fUclUnnr1iXWGOX2H3G7349drK
- gOe6x3c62uddFPo4MuKV8SL07GaDZ+fkYZEaRgmWPsUmfJsWNZuZLVMbR
- ekYWWc1c1/0xSmS+jrYOe9BlqSa/H9328hq9VqB7G4fMmSMiKiJlrlA1E g==;
-X-CSE-ConnectionGUID: 3wpnZ0V6TnSujpYuVpSwzg==
-X-CSE-MsgGUID: 6IGsXIUuQlCq9YvgE9+xQA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="87268151"
-X-IronPort-AV: E=Sophos;i="6.23,166,1770624000"; d="scan'208";a="87268151"
+ bh=lOrt+2LaP42yZ3B1bpDURZfcXn0SuRnqjpSnPDCOwv8=;
+ b=ag/BeRR9XnbtgBvWZLboEnI/0lSBBDEzQTfErJS8wpUf9ps5uVawVZ9E
+ wTgkqBjtv9F2d6JG1PxNeSzvqKWs/i7vfYAQ8ic4dUvEIuV01zox56Jla
+ ADBm/l8wyUei5VEu9Uy5vgm+nXYM8JR8RDUIPgz6OkA08yaD1Rldup0oX
+ t/y9ADjgZvc/6132+Kric3PM9V1ON0brRrcgV2OQuv7jCyJWj/UZDtxsv
+ 6Lcj6AG1xniD2gd9bdV5hOcorSyv3qVdDCnJSaLYYW6GScVysqmnOvkHF
+ P0An29mHDC6tB1dZUOUFP8GjanySQSQDlBlhL/r6y/cJWqcxlGjSx/Aao w==;
+X-CSE-ConnectionGUID: 4H75NPdnSFC4hnzE1q5kig==
+X-CSE-MsgGUID: IcojS2vSTamkyMRbOal9ZA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="87268153"
+X-IronPort-AV: E=Sophos;i="6.23,166,1770624000"; d="scan'208";a="87268153"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 13:20:34 -0700
-X-CSE-ConnectionGUID: eCXutEecQWC8Il7jNN84TQ==
-X-CSE-MsgGUID: 7qncaPO5TQ65N153ZySU9g==
+ 07 Apr 2026 13:20:36 -0700
+X-CSE-ConnectionGUID: fUqYcaX+QPWtmjtDuvDbDw==
+X-CSE-MsgGUID: f3xPo4qITriWfXyJQ1iqbg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,166,1770624000"; d="scan'208";a="233231578"
+X-IronPort-AV: E=Sophos;i="6.23,166,1770624000"; d="scan'208";a="233231598"
 Received: from shosgclin.sh.intel.com ([10.112.232.103])
- by orviesa005.jf.intel.com with ESMTP; 07 Apr 2026 13:20:33 -0700
+ by orviesa005.jf.intel.com with ESMTP; 07 Apr 2026 13:20:35 -0700
 From: Shuicheng Lin <shuicheng.lin@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Shuicheng Lin <shuicheng.lin@intel.com>,
 	stable@vger.kernel.org
-Subject: [PATCH 2/4] drm/xe/bo: Fix bo leak on GGTT flag validation in
- xe_bo_init_locked()
-Date: Tue,  7 Apr 2026 20:15:40 +0000
-Message-ID: <20260407201542.3396317-3-shuicheng.lin@intel.com>
+Subject: [PATCH 3/4] drm/xe: Fix bo leak in xe_dma_buf_init_obj() on
+ allocation failure
+Date: Tue,  7 Apr 2026 20:15:41 +0000
+Message-ID: <20260407201542.3396317-4-shuicheng.lin@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260407201542.3396317-1-shuicheng.lin@intel.com>
 References: <20260407201542.3396317-1-shuicheng.lin@intel.com>
@@ -67,36 +67,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When XE_BO_FLAG_GGTT_ALL is set without XE_BO_FLAG_GGTT, the function
-returns an error without freeing a caller-provided bo, violating the
-documented contract that bo is freed on failure.
+When drm_gpuvm_resv_object_alloc() fails, the pre-allocated storage bo
+is not freed. Add xe_bo_free(storage) before returning the error.
 
-Add xe_bo_free(bo) before returning the error.
-
-Fixes: 5a3b0df25d6a ("drm/xe: Allow bo mapping on multiple ggtts")
+Fixes: eb289a5f6cc6 ("drm/xe: Convert xe_dma_buf.c for exhaustive eviction")
 Cc: stable@vger.kernel.org
 Assisted-by: Claude:claude-opus-4.6
 Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c | 4 +++-
+ drivers/gpu/drm/xe/xe_dma_buf.c | 4 +++-
  1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 6e4ebbe72952..d09e96b996b9 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -2322,8 +2322,10 @@ struct xe_bo *xe_bo_init_locked(struct xe_device *xe, struct xe_bo *bo,
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
+index 7f9602b3363d..24d9d82426b9 100644
+--- a/drivers/gpu/drm/xe/xe_dma_buf.c
++++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+@@ -271,8 +271,10 @@ xe_dma_buf_init_obj(struct drm_device *dev, struct xe_bo *storage,
+ 	int ret = 0;
  
- 	/* XE_BO_FLAG_GGTTx requires XE_BO_FLAG_GGTT also be set */
--	if ((flags & XE_BO_FLAG_GGTT_ALL) && !(flags & XE_BO_FLAG_GGTT))
-+	if ((flags & XE_BO_FLAG_GGTT_ALL) && !(flags & XE_BO_FLAG_GGTT)) {
-+		xe_bo_free(bo);
- 		return ERR_PTR(-EINVAL);
+ 	dummy_obj = drm_gpuvm_resv_object_alloc(&xe->drm);
+-	if (!dummy_obj)
++	if (!dummy_obj) {
++		xe_bo_free(storage);
+ 		return ERR_PTR(-ENOMEM);
 +	}
  
- 	if (flags & (XE_BO_FLAG_VRAM_MASK | XE_BO_FLAG_STOLEN) &&
- 	    !(flags & XE_BO_FLAG_IGNORE_MIN_PAGE_SIZE) &&
+ 	dummy_obj->resv = resv;
+ 	xe_validation_guard(&ctx, &xe->val, &exec, (struct xe_val_flags) {}, ret) {
 -- 
 2.43.0
 
