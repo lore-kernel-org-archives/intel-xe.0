@@ -4,59 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1862FB5197
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 05:50:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71FEAFB519A
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 05:51:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E5F610E32D;
-	Tue,  7 Apr 2026 05:50:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E52110E29B;
+	Tue,  7 Apr 2026 05:51:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fp5f1yB1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CTg4jyhN";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF97E10E32D
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Apr 2026 05:50:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9CC0110E29B
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 Apr 2026 05:51:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775541017; x=1807077017;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=6dRmoMTxLAd+zaqu2sDaZN9KebGZcCtLYP2uSRju72I=;
- b=fp5f1yB1gNoKS0umLTS+MOXaqhCVMemtZBldSHaGF9ZuVhdgIrc+7nfr
- dIeDBoZQuvvi3hWOfN47pdBTOIRIXsfnsuveWAdU2hKfcaDPONZOLz9mV
- JVuix081eY+1wKEO9Zkbf5TCVUtgRSjvi0J/zXNxCFpcKe10oyyYOWxpk
- 6k6aIB8ZaVjIh+6D7/I+8wA382k9nZfje42eJdcZfRINHsUNGNL1JIlQz
- jHrlD7Dn2aF8Hm0M/GkJJfHco+gmtWMactsTECV01kUciwlWtY97Kl+Il
- GoMaAziYtG8qObUptx/A969LX37xw8LXLleFYWPYexgxbSy/jWJGnIjtj A==;
-X-CSE-ConnectionGUID: DwoHm7HyQKG4vk91CRzQ0w==
-X-CSE-MsgGUID: XdLH7dfrRdOHSVJ2Ve14Ng==
-X-IronPort-AV: E=McAfee;i="6800,10657,11751"; a="76685407"
-X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="76685407"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2026 22:50:16 -0700
-X-CSE-ConnectionGUID: ++A/gjOPQlG5kazrobXfrQ==
-X-CSE-MsgGUID: tP6j0PbkSD+hp+ukhCRmtQ==
+ t=1775541086; x=1807077086;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=NmznsLZ4V3KiVam1VHMcxm93/Ua+Pdz9WfKRc0W8MMk=;
+ b=CTg4jyhN8fZckyyY9FzfzdRMUq2la8tfAT+t0wDygczClg8sWBrKGksy
+ UUnBMeOWI6m+M75eMgqdX2+o9AzHQBBn9yoU1YHT720iyaaV+DJD+MXbv
+ JB863gbmyrYfJXv4SneHrJhmkieSG8CGzd0SHLQS08GEbfT0OGy/+nI/E
+ 8Xuh8g/BDDu3CYB57+hmgS7NbBA6QJn5d3I2G5jE5DuOu9mBAaHN4EK0/
+ WA0fzb7vQZyldPAqa3Sml8yoJYuNA0jIdLNVzY/+xHdynl4t2aAM8NWai
+ MO9STAdelMlky3HWKM20Bh6Ab+wx5jM7v5UdGSOyv1GlV0d4jblNVi9Xw A==;
+X-CSE-ConnectionGUID: YWG5twd5Trmy7UV9UPwn/w==
+X-CSE-MsgGUID: G32u4toaR1mFbt/UIkVK6w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11751"; a="76211179"
+X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="76211179"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2026 22:51:26 -0700
+X-CSE-ConnectionGUID: n3wiVjcuSo6QTlQ7Zz5Dlg==
+X-CSE-MsgGUID: y9lTLqEHQD2IV6nOUhklXg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="223765735"
-Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2026 22:50:14 -0700
-Date: Tue, 7 Apr 2026 07:50:11 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Riana Tauro <riana.tauro@intel.com>
-Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
- rodrigo.vivi@intel.com, aravind.iddamsetty@linux.intel.com,
- badal.nilawar@intel.com, ravi.kishore.koppuravuri@intel.com,
- mallesh.koujalagi@intel.com, soham.purkait@intel.com
-Subject: Re: [PATCH v3 05/10] drm/xe/xe_ras: Initialize Uncorrectable AER
- Registers
-Message-ID: <adSbE-2u2fAdJj6q@black.igk.intel.com>
-References: <20260402070131.1603828-12-riana.tauro@intel.com>
- <20260402070131.1603828-17-riana.tauro@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="251357680"
+Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
+ ([10.190.239.37])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2026 22:51:24 -0700
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.auld@intel.com, matthew.brost@intel.com,
+ Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: [PATCH V2] Use xe_map_resource_to_region helper instead of direct
+ access
+Date: Tue,  7 Apr 2026 11:21:08 +0530
+Message-ID: <20260407055107.2782450-2-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260402070131.1603828-17-riana.tauro@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,66 +67,179 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Apr 02, 2026 at 12:31:36PM +0530, Riana Tauro wrote:
-> Uncorrectable errors from different endpoints in the device are steered to
-> the USP which is a PCI Advanced Error Reporting (AER) Compliant device.
+Renaming:
+The helper function res_to_mem_region is now xe_map_resource_to_region.
 
-See below.
+Abstraction:
+The patch removes instances where block->private was accessed directly
+to obtain VRAM region data allowing VRAM manager to own block->private
+for future use cases.
 
-> Downgrade all the errors to non-fatal to prevent PCIe bus driver
-> from triggering a Secondary Bus Reset (SBR). This allows error
-> detection, containment and recovery in the driver.
-> 
-> The Uncorrectable Error Severity Register has the 'Uncorrectable
-> Internal Error Severity' set to fatal by default. Set this to
-> non-fatal and unmask the error.
+V2(MattB): Add more detail about patch also adjust variable placement
 
-...
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+---
+ drivers/gpu/drm/xe/xe_bo.c   | 21 ++++-----------------
+ drivers/gpu/drm/xe/xe_svm.c  | 10 ++--------
+ drivers/gpu/drm/xe/xe_vram.c | 22 ++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_vram.h |  2 ++
+ 4 files changed, 30 insertions(+), 25 deletions(-)
 
-> +static void aer_unmask_and_downgrade_internal_error(struct xe_device *xe)
-> +{
-> +	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-> +	struct pci_dev *vsp, *usp;
-> +	u32 aer_uncorr_mask, aer_uncorr_sev, aer_uncorr_status;
-> +	u16 aer_cap;
-> +
-> +	 /* Gfx Device Hierarchy: USP-->VSP-->SGunit */
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index a7c2dc7f224c..daac53168dba 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -173,19 +173,6 @@ mem_type_to_migrate(struct xe_device *xe, u32 mem_type)
+ 	return tile->migrate;
+ }
+ 
+-static struct xe_vram_region *res_to_mem_region(struct ttm_resource *res)
+-{
+-	struct xe_device *xe = ttm_to_xe_device(res->bo->bdev);
+-	struct ttm_resource_manager *mgr;
+-	struct xe_ttm_vram_mgr *vram_mgr;
+-
+-	xe_assert(xe, resource_is_vram(res));
+-	mgr = ttm_manager_type(&xe->ttm, res->mem_type);
+-	vram_mgr = to_xe_ttm_vram_mgr(mgr);
+-
+-	return container_of(vram_mgr, struct xe_vram_region, ttm);
+-}
+-
+ static void try_add_system(struct xe_device *xe, struct xe_bo *bo,
+ 			   u32 bo_flags, u32 *c)
+ {
+@@ -635,7 +622,7 @@ static int xe_ttm_io_mem_reserve(struct ttm_device *bdev,
+ 		return 0;
+ 	case XE_PL_VRAM0:
+ 	case XE_PL_VRAM1: {
+-		struct xe_vram_region *vram = res_to_mem_region(mem);
++		struct xe_vram_region *vram = xe_map_resource_to_region(mem);
+ 
+ 		if (!xe_ttm_resource_visible(mem))
+ 			return -EINVAL;
+@@ -1642,7 +1629,7 @@ static unsigned long xe_ttm_io_mem_pfn(struct ttm_buffer_object *ttm_bo,
+ 	if (ttm_bo->resource->mem_type == XE_PL_STOLEN)
+ 		return xe_ttm_stolen_io_offset(bo, page_offset << PAGE_SHIFT) >> PAGE_SHIFT;
+ 
+-	vram = res_to_mem_region(ttm_bo->resource);
++	vram = xe_map_resource_to_region(ttm_bo->resource);
+ 	xe_res_first(ttm_bo->resource, (u64)page_offset << PAGE_SHIFT, 0, &cursor);
+ 	return (vram->io_start + cursor.start) >> PAGE_SHIFT;
+ }
+@@ -1782,7 +1769,7 @@ static int xe_ttm_access_memory(struct ttm_buffer_object *ttm_bo,
+ 		goto out;
+ 	}
+ 
+-	vram = res_to_mem_region(ttm_bo->resource);
++	vram = xe_map_resource_to_region(ttm_bo->resource);
+ 	xe_res_first(ttm_bo->resource, offset & PAGE_MASK,
+ 		     xe_bo_size(bo) - (offset & PAGE_MASK), &cursor);
+ 
+@@ -2923,7 +2910,7 @@ uint64_t vram_region_gpu_offset(struct ttm_resource *res)
+ 	case XE_PL_SYSTEM:
+ 		return 0;
+ 	default:
+-		return res_to_mem_region(res)->dpa_base;
++		return xe_map_resource_to_region(res)->dpa_base;
+ 	}
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 5933b2b6392b..ba67355f64cb 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -786,12 +786,12 @@ static int xe_svm_populate_devmem_pfn(struct drm_pagemap_devmem *devmem_allocati
+ 	struct xe_bo *bo = to_xe_bo(devmem_allocation);
+ 	struct ttm_resource *res = bo->ttm.resource;
+ 	struct list_head *blocks = &to_xe_ttm_vram_mgr_resource(res)->blocks;
++	struct xe_vram_region *vr = xe_map_resource_to_region(res);
++	struct gpu_buddy *buddy = vram_to_buddy(vr);
+ 	struct gpu_buddy_block *block;
+ 	int j = 0;
+ 
+ 	list_for_each_entry(block, blocks, link) {
+-		struct xe_vram_region *vr = block->private;
+-		struct gpu_buddy *buddy = vram_to_buddy(vr);
+ 		u64 block_pfn = block_offset_to_pfn(devmem_allocation->dpagemap,
+ 						    gpu_buddy_block_offset(block));
+ 		int i;
+@@ -1061,9 +1061,7 @@ static int xe_drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
+ 	struct dma_fence *pre_migrate_fence = NULL;
+ 	struct xe_device *xe = vr->xe;
+ 	struct device *dev = xe->drm.dev;
+-	struct gpu_buddy_block *block;
+ 	struct xe_validation_ctx vctx;
+-	struct list_head *blocks;
+ 	struct drm_exec exec;
+ 	struct xe_bo *bo;
+ 	int err = 0, idx;
+@@ -1100,10 +1098,6 @@ static int xe_drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
+ 					&dpagemap_devmem_ops, dpagemap, end - start,
+ 					pre_migrate_fence);
+ 
+-		blocks = &to_xe_ttm_vram_mgr_resource(bo->ttm.resource)->blocks;
+-		list_for_each_entry(block, blocks, link)
+-			block->private = vr;
+-
+ 		xe_bo_get(bo);
+ 
+ 		/* Ensure the device has a pm ref while there are device pages active. */
+diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
+index 0538dcb8b18c..23eb7edbdd57 100644
+--- a/drivers/gpu/drm/xe/xe_vram.c
++++ b/drivers/gpu/drm/xe/xe_vram.c
+@@ -13,6 +13,7 @@
+ #include "regs/xe_gt_regs.h"
+ #include "regs/xe_regs.h"
+ #include "xe_assert.h"
++#include "xe_bo.h"
+ #include "xe_device.h"
+ #include "xe_force_wake.h"
+ #include "xe_gt_mcr.h"
+@@ -249,6 +250,27 @@ static int vram_region_init(struct xe_device *xe, struct xe_vram_region *vram,
+ 	return 0;
+ }
+ 
++/**
++ * xe_map_resource_to_region - Map ttm resource to vram memory region
++ * @res: The ttm resource
++ *
++ * Get vram memory region using vram memory manager managing this resource
++ *
++ * Returns: pointer to xe_vram_region
++ */
++struct xe_vram_region *xe_map_resource_to_region(struct ttm_resource *res)
++{
++	struct xe_device *xe = ttm_to_xe_device(res->bo->bdev);
++	struct ttm_resource_manager *mgr;
++	struct xe_ttm_vram_mgr *vram_mgr;
++
++	xe_assert(xe, mem_type_is_vram(res->mem_type));
++	mgr = ttm_manager_type(&xe->ttm, res->mem_type);
++	vram_mgr = to_xe_ttm_vram_mgr(mgr);
++
++	return container_of(vram_mgr, struct xe_vram_region, ttm);
++}
++
+ /**
+  * xe_vram_probe() - Probe VRAM configuration
+  * @xe: the &xe_device
+diff --git a/drivers/gpu/drm/xe/xe_vram.h b/drivers/gpu/drm/xe/xe_vram.h
+index 72860f714fc6..dd1c8bf17922 100644
+--- a/drivers/gpu/drm/xe/xe_vram.h
++++ b/drivers/gpu/drm/xe/xe_vram.h
+@@ -10,7 +10,9 @@
+ 
+ struct xe_device;
+ struct xe_vram_region;
++struct ttm_resource;
+ 
++struct xe_vram_region *xe_map_resource_to_region(struct ttm_resource *res);
+ int xe_vram_probe(struct xe_device *xe);
+ 
+ struct xe_vram_region *xe_vram_region_alloc(struct xe_device *xe, u8 id, u32 placement);
+-- 
+2.52.0
 
-What are these TLAs and why is everyone expected to know them?
-
-> +	vsp = pci_upstream_bridge(pdev);
-> +	if (!vsp)
-> +		return;
-> +
-> +	usp = pci_upstream_bridge(vsp);
-> +	if (!usp)
-> +		return;
-> +
-> +	aer_cap = usp->aer_cap;
-> +
-> +	if (!aer_cap)
-> +		return;
-> +
-> +	/*
-> +	 * Clear any stale Uncorrectable Internal Error Status event in Uncorrectable Error
-> +	 * Status Register.
-> +	 */
-> +	pci_read_config_dword(usp, aer_cap + PCI_ERR_UNCOR_STATUS, &aer_uncorr_status);
-> +	if (aer_uncorr_status & PCI_ERR_UNC_INTN)
-> +		pci_write_config_dword(usp, aer_cap + PCI_ERR_UNCOR_STATUS, PCI_ERR_UNC_INTN);
-> +
-> +	/*
-> +	 * All errors are steered to USP which is a PCIe AER Compliant device.
-
-Ditto.
-
-Raag
-
-> +	 * Downgrade all the errors to non-fatal to prevent PCIe bus driver
-> +	 * from triggering a Secondary Bus Reset (SBR). This allows error
-> +	 * detection, containment and recovery in the driver.
-> +	 *
-> +	 * The Uncorrectable Error Severity Register has the 'Uncorrectable
-> +	 * Internal Error Severity' set to fatal by default. Set this to
-> +	 * non-fatal and unmask the error.
-> +	 */
