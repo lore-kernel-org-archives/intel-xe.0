@@ -4,55 +4,130 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ABCBAEDB7C4
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 07:14:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6198EDB7CC
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 07:43:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5614D10E33D;
-	Tue,  7 Apr 2026 07:14:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7040F10E34B;
+	Tue,  7 Apr 2026 07:43:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="jdgZBIAT";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Akx7mjZm";
 	dkim-atps=neutral
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 906E510E33B;
- Tue,  7 Apr 2026 07:14:26 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1775546063; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=isMW04Tx464LH3+9W3wlBFEL4bGEk/L1W9NdAsaeuBF7uo6lOax+h9+6JmeEqCr5Gl4vGUPjYo79STsXRhtppPhcKMiA+KuZAhcs13K0t+pqmYDpCl0jkFYv0dt9mXnuHyowDIfbLhx7brA5ZxCjPcxP+mk6LaIckJrbAogLwV0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1775546063;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=IiyN9b4mE5iZ2WpYFKzjCClpfGNBjTaWwGVJ6+517vk=; 
- b=VvkVgs2hfrS28N2OOSU36XkYHBCiOZP9/yIpCWUWz9m0z4QGlRUh8r2bBZUPTBWQaQ5fBBeEB08bRJEwxbzoBaDNc9a2SDhAh3UsRZCmeEYOpBNShGR+aoWxwSDagxTH0KNeHDVaw2sXDq61sZg14qWWslJxHnJCFZrdL+HEdnc=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1775546063; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
- bh=IiyN9b4mE5iZ2WpYFKzjCClpfGNBjTaWwGVJ6+517vk=;
- b=jdgZBIATLuAo9nlUteUXQ+vOq1wdTtKGfhSHna6hdXjFjfB5H7bYa4T6LiuIzoRe
- QO/0o+5UkI7ZChyssml4DFxLXqDQxbtfrUxsq7Ex5dTf21UBpi4/DTPlXjVxkKuxB0d
- Dbn9SlKJt1r/sArFY5Q1KkFQ7XCWilhRn+9oJ3Ko=
-Received: by mx.zohomail.com with SMTPS id 1775546062465680.1301018681039;
- Tue, 7 Apr 2026 00:14:22 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: intel-gfx@lists.freedesktop.org,
- Ville Syrjala <ville.syrjala@linux.intel.com>,
- "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 2/9] drm/i915/hdmi: Restructure the sink/output format
- selection
-Date: Tue, 07 Apr 2026 09:14:18 +0200
-Message-ID: <12869026.O9o76ZdvQC@workhorse>
-In-Reply-To: <61997692-afe2-4d6d-88f8-ce251e51beaf@intel.com>
-References: <20260330235339.29479-1-ville.syrjala@linux.intel.com>
- <2868694.iZASKD2KPV@workhorse>
- <61997692-afe2-4d6d-88f8-ce251e51beaf@intel.com>
+Received: from CO1PR03CU002.outbound.protection.outlook.com
+ (mail-westus2azon11010054.outbound.protection.outlook.com [52.101.46.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 292DB10E349;
+ Tue,  7 Apr 2026 07:43:39 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=AJgjoPoB1PxRIrrRMsKpxYcJ2+5Ufe2bxbgM4XNe3pi5o3fHRp0ijRM5MzaUz7UTogU5pmMaLMGUnUYG8EKkxaNYphUg+Sr1Aqr8Gik7RneOaCPe2afpLHxw3k9vrlCv2DTH1i03lgRjn5f9drW8W+Pcf9e/dpO9g/lmmWJhkbyZSAksQAO1gr8RNGxGfZz7olbLsW7or8FLILe8bBIdtAMLD/Ysqzs46lJxJOvCKCqq8afJhbRfYnwnO9Hui6lpjYHvptPm+imwTKvyf9xcDNP7hxKRt2PLduAoASfeKgWt85L6bKXe35U0iPBuj6/2t1nY/URGbmGsyMO1CDBm5Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=V2DHvb7duFW9tT5635dmSk5ZaZRfIOuKYvJSfdsrJEU=;
+ b=ypVydxG5MNS0N1P2fIGGZnjB9LFyHC/zjwd7NbtkAPvtCODNVQwPLmNRnWkQGhaDkzIW7ymXA+8cg1NJoM+uc+oV9ugA6jxWoegqmjGooLlY5rsB3TT80Z3X260XAjaVI8XZ+BYPDSZy36ErVh3sCpI+sQc1gdXr9v5s+nc/GR4FbCfCqQ6mW7k0dX4rPP1OTJoi0J/RR5+AYeLSOpUWQU2l3z02/J3MYEaF/UtnccOVgmprifXGnuR/0xPYjMqmeATZNHnPfWCCf0yimold/sbqouiMsYFxiFk3hkZgJdLGieLfOJSiK5uDNZTWHaO31wMO5Xs28epmshDuCOtAVA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=V2DHvb7duFW9tT5635dmSk5ZaZRfIOuKYvJSfdsrJEU=;
+ b=Akx7mjZmlRUWXAOHUHmpCRFMSLQABY+Cw63fdBpbSwTYdz20bWz3uCovGC7i6nVjnhKeJyBMaUdF2gFCD/OVZyGlRosKY6zkWWCbwQqQYoFUoZWWMCf5M101C1ob1zqxonM13/STFa9hHAF87MT1BN/B76jF0Jtmzb896SO0rtI=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by LV8PR12MB9617.namprd12.prod.outlook.com (2603:10b6:408:2a0::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.20; Tue, 7 Apr
+ 2026 07:43:35 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.20.9769.016; Tue, 7 Apr 2026
+ 07:43:35 +0000
+Message-ID: <d8e8f290-c2bd-483f-ba0f-735c503e269a@amd.com>
+Date: Tue, 7 Apr 2026 09:43:30 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH] Limit reclaim to avoid TTM desktop stutter under mem
+ pressure
+To: Matthew Brost <matthew.brost@intel.com>,
+ Daniel Colascione <dancol@dancol.org>
+Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Huang Rui <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ linux-kernel@vger.kernel.org
+References: <87341fsa85.fsf@dancol.org>
+ <adQfdL0zV7SOo+al@gsse-cloud1.jf.intel.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <adQfdL0zV7SOo+al@gsse-cloud1.jf.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR0P281CA0236.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:b2::8) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|LV8PR12MB9617:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4cea65ee-7062-4127-a76c-08de94795ff5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|1800799024|7416014|376014|18002099003|56012099003|22082099003;
+X-Microsoft-Antispam-Message-Info: GZzJJ331uJmBx5XCwoIv/cwHzv0v7LrgpjpnJyEf3c56ZAUB/w5fMkmMTbZ9qGG1PIdIwWumKgaBrn3q3ItQ+mW+CGprQswJ/dATVbhUtwIlKFCv6tIl5fAUMqq/3DUcvx0TZ/RrvBIODPZow4GM8REx12s2tK/PBQBIl3HqeuAHRZN5xnJsPu2lHzqmxzKH3f8ZJ+61ebdlnsMaqNX4dw5ngaUj5OW6zMR2tHutwGZWWTN/iMP+5Vh7OJ2zmz/FO71NBh+k1GbiETncQZ+MKQfrH1inxbAE6RLLzlgMO//L5eJUcizTGLp+mKmo6Cla7JfIpISXwJeZocDQHEKQ4wyF+i0w1rrtzHHssLrY3pT4zJhpEzHwpXs1+AsL5MuvqPgv4Q9emxL1isifbzlz/s6CDDTC/rxC4NgOeoqfnEbGyRO18dgmkZzMwEo9r32PIhQ9o8ewRIZTWafhCy1KktS7FZYyinPEZmC3yzobrnDNFuQvSndA76lcYpv2K72lz3Ss/tLOHpHO96sdr2KEMAJfirMlHBTUkp8EXSjqTZ9mrcga7I4osBTH1ghly+1vAGNheE2IsJPGkRScZ4HczTdqVM6Zf6QEIURunwZY6suqgDTsF+PqWrfBNhgZPIkAu3/w4Hv1JFawIJz3FTG6r7UzAcRHvtCSZpkTq9ByHrxhhMumIe09RDnveBqyAf0x1W+4zIyn1C7kxXr1S+jiGO2jAg3hDgYQCwKUtUO4hAg=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(7416014)(376014)(18002099003)(56012099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aUsxVXRUNmJTZlp2RHREckQ0UFAxaDNQUGZ6T2RBd3dQZDM3QTVDQ0hIMzJW?=
+ =?utf-8?B?SG1QSTQzeDhPT3ovUGlES1prWEcrNzNWSXF2Qms3LzM3OXlTdFA1Q2RDNUNj?=
+ =?utf-8?B?clVmM0NOMGJ1SU9saXUyNmozMGMvUWs5MVdIOHNOSklWYkFzY2JPNEhDNkZO?=
+ =?utf-8?B?RmVSYkhpdCsrR2RhMTN3NTN4OVI5Nm93UGRUajIyR1V1aEUxd0puMktZeVFS?=
+ =?utf-8?B?bVRRSzlLQ2wrc0UvR2JTK1V4RWUrNGY2M0tpb2NpVU9EaGVZeUZlUUQ1RDZq?=
+ =?utf-8?B?cWhZNW54TXhSWkJjR255N2ZFa0xNQVJXUjhGUzF4VTdDZzVQanZkUVhJWWVr?=
+ =?utf-8?B?SHVBSzlFY1hEczlqMkZHZnhuMGs3Vk4wbWU0ZWcxZFhzZDZ6NFRHOVJ0OGhv?=
+ =?utf-8?B?Ym56TzZ2Sm03dVRpc0FCUVpqWDJsOTRaR0dMYldEaUFqQm5EZjg1ZFZsbGZv?=
+ =?utf-8?B?MEsvcS96dXpHZGd0V0ZoZGlyeU92TkZKRWhKdk53akkvL0F1TTgvRW1oUTBC?=
+ =?utf-8?B?d05HNlg0R1piK3RMc0NjZFBVdXBTbXo2SUhjTHg1Mzl3V2MrSGJzemdwckky?=
+ =?utf-8?B?c2VTN1VWai9TWnhIUFovSEIveG9aVWR3M0RoVHZBRkt3Z21OcVdFU1krY1Zx?=
+ =?utf-8?B?d25JUm4wZlgyRFZhTTRUaVBrc2RoK0dza1dNZXBZMUoybWFWNEd5UFBPSENI?=
+ =?utf-8?B?UnBUaDZ3OWVIKzhSanZKUnZndXpnK3ZRdjNKUVF3Y2NlZUpGbjN5RTNPN1Vs?=
+ =?utf-8?B?NW9KLzJUN1UyUUo0NUZwak03MnJNdFpESWtwZ2lpdE1NZnNuUDY3U2s1R29k?=
+ =?utf-8?B?L0dhYXBUNTQwaTkzalk0WTAzS1d6eTBTL2dBbkcxRXF1SnBEY2pPVGxMYyts?=
+ =?utf-8?B?Q1ViMXRTODFQRVdNdEpGSGdrTXhNKzl4bEZ4V2dLbEsxVTVoVHV3Qm5lclpM?=
+ =?utf-8?B?ZHNoc0Rla3lRWEtyZ21ENks5THM1NHFsaUk2bm1OZ1drRW1UVUtUdnZBWUpS?=
+ =?utf-8?B?WHF5NjFiczJEWnVWQ0xxMWZTSSs3SWQ3RmZENDVSenBhcXh5bFkxMmMrZ1gw?=
+ =?utf-8?B?amNhYVBtVy9JMXhkZDlaK1JtdExYSFdKNTN4RzA1dkpNbnR4cWRua090UW9K?=
+ =?utf-8?B?T0NpV2wvQi9BM2tKR2I0Y3RIZ0JBMVFsTDZ1YmpSRVR5NCt2bFNYR3c0ZWxV?=
+ =?utf-8?B?Z3NMenIzTmtUTTRlUkNGdVN6emI3SFh5c2Q4Sis1MFJmeEtXZStFN3lHSktZ?=
+ =?utf-8?B?TC83Q1pKcVVMa2ExR2NoNG5HTGJQeDc4M1FMamJ3VFhocGxCZVByeDlpMjFX?=
+ =?utf-8?B?KzhvaEtVNkNtRmVQQXpCNU8zMDFYNVRxWGNJSzl1ZkFzUXZyOVRGSXVKSWVD?=
+ =?utf-8?B?azA5S1NoY2NTZTR0azNPTE5aZ0w1ckxDRTNmc09xZTBjdHR6b0NlMEhxNDFB?=
+ =?utf-8?B?YXNBVzM3UWM2QnBDSzJ6a3ZLek1FUWQ0LzRiejFUWWNrK3g5d0JaSWNicjFK?=
+ =?utf-8?B?TXlpajU4UGxERThTVnRaLytrbml0eE54N29LYzRZcTZmNDdDcXR0aEQyWStK?=
+ =?utf-8?B?aEcwTnFvZE8wcUFjZWlaZVkvM1JFdVhQRGROc0p2WVM2ekpjRU9lbUQ0YUlU?=
+ =?utf-8?B?NHpXN0NZbzUwNG82cFpob0FVeDlTb0FwczYySWFWVW9OS3d0d29aSU8wTTdF?=
+ =?utf-8?B?ekFab1F5Y1IrejZHS1Z0KzBkTXlJNERXNjdaVkVVeDdUTVc1T3RBR3daTTJE?=
+ =?utf-8?B?RGlnT2g3YnpzS2tKd1pqSDFRb095WGwrNWwxUjJUMnJ4N2loSjZ2bXdqZHIy?=
+ =?utf-8?B?bG5oNnkxTExNeGI0SncvWHRKVXFFNm52UlM4L0liYUV4ZzF1N3lrdlF0U0Ju?=
+ =?utf-8?B?bzhkSVRlY0toaTN5K2l3bVhhV3BjcEVzcmRXZGFVOHVGUUFFZWZLMGVCVWtH?=
+ =?utf-8?B?TlQ5ZXNxUkc1MDRRckVObjJuaDdzR1NQWGlERnNHdEZOQ213ZjRaMm9weVlI?=
+ =?utf-8?B?VDJNUzhVeXhnVTQxSVN2Vi9DQTJCSDhXVDF3U0ZkTmRpYmszTjFtenRpNFFE?=
+ =?utf-8?B?QU5pMytFekw1Y1BXOThnQ2JSZjR6dmhkeGV5K0t6YjNNTDY2bXZ2VEYxU0Nm?=
+ =?utf-8?B?Wnp3dDRCVTRRWlF3cml3cGJoRjJwTU85TGtVcHlEem1keHFDTngwVkRzNGRr?=
+ =?utf-8?B?Rm55c1F1clBXMmNxWVcwWmVwZGg2a2RPQW0wRVB4WUx5czJDOCtwczA1c3J5?=
+ =?utf-8?B?OHRrSE1pWmM4VHF1dXJXbFh0TWZFSVUrYWRJZitHVTRyUkc2V1pIZGl3Qm9Q?=
+ =?utf-8?Q?9MsiwUMa7DvHikyM+/?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4cea65ee-7062-4127-a76c-08de94795ff5
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Apr 2026 07:43:35.6278 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: gEMzK+ubL4uMhCym+X8occA3dglnjgMutdREhvLX0gc5zsZyIC2P/UeJcIn7sc92
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR12MB9617
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,103 +142,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Monday, 6 April 2026 07:26:04 Central European Summer Time Nautiyal, Ank=
-it K wrote:
-> On 3/31/2026 5:42 PM, Nicolas Frattaroli wrote:
-> > On Tuesday, 31 March 2026 01:53:32 Central European Summer Time Ville S=
-yrjala wrote:
-> >> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> >>
-> >> intel_hdmi_compute_output_format() is a bit of a mess. Try to
-> >> restructure it into a more readable form.
-> >>
-> >> Right now we basically have two main code paths:
-> >> - YCbCr 4:2:0 only modes
-> >> - everything else including YCbCr 4:2:0 also modes
-> >>
-> >> Those two basically do the same two steps (try 4:2:0 and try 4:4:4)
-> >> but in opposite orders. Let's write that out in a more explicit
-> >> if-else form. And since I'm running out of function names I'll
-> >> rename the function with that high level logic into
-> >> intel_hdmi_compute_formats() and it will call (the new) with
-> >> intel_hdmi_compute_output_format() with an explicit sink_format
-> >> as needed.
-> >>
-> >> Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> >> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> >> ---
-> >>   drivers/gpu/drm/i915/display/intel_hdmi.c | 112 ++++++++++++++------=
-=2D-
-> >>   1 file changed, 70 insertions(+), 42 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/d=
-rm/i915/display/intel_hdmi.c
-> >> index 072b0554cc24..16873fc7bcb9 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> >> @@ -2021,6 +2021,30 @@ intel_hdmi_mode_clock_valid(struct drm_connecto=
-r *_connector, int clock,
-> >>   	return status;
-> >>   }
-> >>  =20
-> >> +static enum drm_mode_status
-> >> +intel_hdmi_sink_format_valid(struct intel_connector *connector,
-> >> +			     const struct drm_display_mode *mode,
-> >> +			     bool has_hdmi_sink,
-> >> +			     enum intel_output_format sink_format)
-> >> +{
-> >> +	const struct drm_display_info *info =3D &connector->base.display_inf=
-o;
-> >> +
-> >> +	switch (sink_format) {
-> >> +	case INTEL_OUTPUT_FORMAT_YCBCR420:
-> >> +		if (!has_hdmi_sink ||
-> >> +		    !connector->base.ycbcr_420_allowed ||
-> >> +		    !drm_mode_is_420(info, mode))
-> >> +			return MODE_NO_420;
-> >> +
-> >> +		return MODE_OK;
-> >> +	case INTEL_OUTPUT_FORMAT_RGB:
-> >> +		return MODE_OK;
-> >> +	default:
-> >> +		MISSING_CASE(sink_format);
-> >> +		return MODE_BAD;
-> >> +	}
-> >> +}
-> > I think this here is missing INTEL_OUTPUT_FORMAT_YCBCR444 as a case.
-> > The following diff adding it for both intel_hdmi_sink_format_valid
-> > and intel_hdmi_sink_bpc_possible that I quickly whipped up may be the
-> > way to go, but I'm unsure about the interaction between the two:
->=20
-> Hmm.. Trying YCBCR444 format, is not yet implemented.
->=20
-> We need to have a well defined policy as to when to use YCBCR444, and=20
-> that should be in the newly created intel_hdmi_compute_formats(),=20
-> perhaps it should be after we have tried and failed with RGB444.
->=20
-> (Although I am not sure in what case compute for RGB 444 will fail and=20
-> pass for YCBCR444).
->=20
-> However,this should be a separate patch/series.
+On 4/6/26 23:02, Matthew Brost wrote:
+> On Tue, Mar 31, 2026 at 10:08:58PM -0400, Daniel Colascione wrote:
+...
+>> -
+>> -       /*
+>> -        * Do not add latency to the allocation path for allocations orders
+>> -        * device tolds us do not bring them additional performance gains.
+>> -        */
+>> -       if (beneficial_order && order > beneficial_order)
+>> -               gfp_flags &= ~__GFP_DIRECT_RECLAIM;
+>> +               if (beneficial_order && order > beneficial_order)
+>> +                       gfp_flags &= ~__GFP_DIRECT_RECLAIM;
+>> +               if (order > max_reclaim_order)
+>> +                       gfp_flags &= ~__GFP_RECLAIM;
+> 
+> I’m not very familiar with this code, but at first glance it doesn’t
+> seem quite right.
+> 
+> Would setting Xe’s beneficial to 9, similar to AMD’s, along with this
+> diff, help?
 
-Makes sense. Instead of defining this policy for automatic selection,
-I'll add the necessary code to handle it in my color format series,
-where such an output format can be explicitly requested through a DRM
-property. I don't think using it as a fallback in automatic selection
-makes any sense: it saves no bandwidth over RGB444 and I'm pretty sure
-HDMI mandates that anything supported in YCBCR444 is also supported in
-RGB444.
+No, not really. The problem is that giving 9 as beneficial order only saves us avoiding direct reclaim for 10 (>=11 is usually not used in a x86 linux kernel anyway).
 
-Kind regards,
-Nicolas Frattaroli
+> 
+> If I’m understanding this correctly, we would try a single allocation
+> attempt with __GFP_DIRECT_RECLAIM cleared for the size we care about,
+> still attempt allocations from the pools, and then finally fall back to
+> allocating single pages one at a time.
 
->=20
->=20
-> Regards,
->=20
-> Ankit
->=20
->=20
-> > [... snip ...]
+Well the code is a bit broken, but the general idea is not so bad.
 
+What we could do is to use beneficial_order as sweet spot and set __GFP_DIRECT_RECLAIM only for the allocations with that order.
+
+This would skip setting it for order 1..8, which are nice to have as well but not so necessary that we always need to trigger reclaim for them.
+
+Regards,
+Christian.
+
+> 
+> Matt
+> 
+> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
+> index aa41099c5ecf..f1f430aba0c1 100644
+> --- a/drivers/gpu/drm/ttm/ttm_pool.c
+> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
+> @@ -714,6 +714,7 @@ static int __ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
+>                             struct ttm_pool_alloc_state *alloc,
+>                             struct ttm_pool_tt_restore *restore)
+>  {
+> +       const unsigned int beneficial_order = ttm_pool_beneficial_order(pool);
+>         enum ttm_caching page_caching;
+>         gfp_t gfp_flags = GFP_USER;
+>         pgoff_t caching_divide;
+> @@ -757,7 +758,8 @@ static int __ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
+>                 if (!p) {
+>                         page_caching = ttm_cached;
+>                         allow_pools = false;
+> -                       p = ttm_pool_alloc_page(pool, gfp_flags, order);
+> +                       if (!order || order >= beneficial_order)
+> +                               p = ttm_pool_alloc_page(pool, gfp_flags, order);
+>                 }
+>                 /* If that fails, lower the order if possible and retry. */
+>                 if (!p) {
+> 
+> 
+>> +       }
+>>  
+>>         if (!ttm_pool_uses_dma_alloc(pool)) {
+>>                 p = alloc_pages_node(pool->nid, gfp_flags, order);
 
