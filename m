@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82271FF512E
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 18:03:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91934FF512C
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 18:03:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 478AD10E48E;
-	Tue,  7 Apr 2026 18:03:47 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B59810E48E;
- Tue,  7 Apr 2026 18:03:46 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6074478731983862680=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5360110E499;
+	Tue,  7 Apr 2026 18:03:57 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lnWTQ6wp";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3EC710E499
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 Apr 2026 18:03:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1775585037; x=1807121037;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=hlEkwTR4bkj0I2rWSSmejTwDzWlDylLW4tbLMyIzvxw=;
+ b=lnWTQ6wp71jRNPPAVrtN2LrNpIBf7Eb+hfcV4zWY7PV1jsapcdghWr+n
+ Fm5rxUn+iIjePtlataVEwltAuQNOQCTsesJjw8qWyxpMqeo0MFuU93m69
+ OXsbLcNIAQveh/oidrDYrFTDokWUdvMR+DprorIBCFlgLHFrv2YLB8E7v
+ RdGtGpbvFgApFkL5GocNRgVAOPqcXQ1RJyZ73JCWb74UpviEycsTkykrE
+ Ruwr0L/f+f/91rVCOEwMS9zZw6RrsQU+Wt+eNKtPwOpV4w9RKkCs0MHZj
+ eFgl+XbM+hN6nEf51PzUA/P6TbCiDZKeT5PbbD4Uki2cfZDaN7l0sjkTs w==;
+X-CSE-ConnectionGUID: VXe0SKGxS8ie7kHBKg66KA==
+X-CSE-MsgGUID: fHcvKOIxS36UA6a9xEP7MA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="76521112"
+X-IronPort-AV: E=Sophos;i="6.23,166,1770624000"; d="scan'208";a="76521112"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2026 11:03:56 -0700
+X-CSE-ConnectionGUID: iTJoqpj0SM21LIhrJydQPg==
+X-CSE-MsgGUID: f44c3hDsSWG+7XQv9wFsAA==
+X-ExtLoop1: 1
+Received: from anoopcvi-vm.gar.corp.intel.com ([10.109.80.88])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2026 11:03:54 -0700
+From: "Anoop, Vijay" <anoop.c.vijay@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: umesh.nerlige.ramappa@intel.com, riana.tauro@intel.com,
+ anoop.c.vijay@intel.com
+Subject: [PATCH v2] drm/xe/xe_sysctrl: Fix sparse endian warnings in mailbox
+ header macros
+Date: Tue,  7 Apr 2026 11:03:40 -0700
+Message-ID: <20260407180339.794310-2-anoop.c.vijay@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5Bv2?=
- =?utf-8?q?=2C1/2=5D_drm/i915=3A_Track_fence_region_ID_in_plane_state?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 07 Apr 2026 18:03:46 -0000
-Message-ID: <177558502661.438154.5848049560605696387@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260407170942.16515-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20260407170942.16515-1-ville.syrjala@linux.intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,126 +62,46 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6074478731983862680==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Anoop Vijay <anoop.c.vijay@intel.com>
 
-== Series Details ==
+Remove unnecessary le32_to_cpu() conversions from XE_SYSCTRL_APP_HDR_*
+macros.
 
-Series: series starting with [v2,1/2] drm/i915: Track fence region ID in plane state
-URL   : https://patchwork.freedesktop.org/series/164463/
-State : success
+Fixes: 37ace5254a2b ("drm/xe/xe_sysctrl: Add ABI and mailbox interface headers")
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202604010228.Z20DhK4g-lkp@intel.com/
+Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
+---
+v2: (Umesh, Riana)
+- Fix macros instead of changing struct field, per review
+---
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox.h | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
+index 91460be9e22c..f67e9234de48 100644
+--- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
++++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
+@@ -15,13 +15,13 @@ struct xe_sysctrl;
+ struct xe_sysctrl_mailbox_command;
+ 
+ #define XE_SYSCTRL_APP_HDR_GROUP_ID(hdr) \
+-	FIELD_GET(APP_HDR_GROUP_ID_MASK, le32_to_cpu((hdr)->data))
++	FIELD_GET(APP_HDR_GROUP_ID_MASK, (hdr)->data)
+ 
+ #define XE_SYSCTRL_APP_HDR_COMMAND(hdr) \
+-	FIELD_GET(APP_HDR_COMMAND_MASK, le32_to_cpu((hdr)->data))
++	FIELD_GET(APP_HDR_COMMAND_MASK, (hdr)->data)
+ 
+ #define XE_SYSCTRL_APP_HDR_VERSION(hdr) \
+-	FIELD_GET(APP_HDR_VERSION_MASK, le32_to_cpu((hdr)->data))
++	FIELD_GET(APP_HDR_VERSION_MASK, (hdr)->data)
+ 
+ void xe_sysctrl_mailbox_init(struct xe_sysctrl *sc);
+ int xe_sysctrl_send_command(struct xe_sysctrl *sc,
+-- 
+2.43.0
 
-CI Bug Log - changes from xe-4857-87b52c2ff4f00eff41866d728f82d2b109c397f7_BAT -> xe-pw-164463v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (14 -> 14)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-164463v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-2:          [PASS][1] -> [ABORT][2] ([Intel XE#7249] / [Intel XE#7578])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4857-87b52c2ff4f00eff41866d728f82d2b109c397f7/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164463v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-
-  
-  [Intel XE#7249]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7249
-  [Intel XE#7578]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7578
-
-
-Build changes
--------------
-
-  * Linux: xe-4857-87b52c2ff4f00eff41866d728f82d2b109c397f7 -> xe-pw-164463v1
-
-  IGT_8850: 8850
-  xe-4857-87b52c2ff4f00eff41866d728f82d2b109c397f7: 87b52c2ff4f00eff41866d728f82d2b109c397f7
-  xe-pw-164463v1: 164463v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164463v1/index.html
-
---===============6074478731983862680==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v2,1/2] drm/i915: Track fence region ID in plane state</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164463/">https://patchwork.freedesktop.org/series/164463/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164463v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164463v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4857-87b52c2ff4f00eff41866d728f82d2b109c397f7_BAT -&gt; xe-pw-164463v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-164463v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4857-87b52c2ff4f00eff41866d728f82d2b109c397f7/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164463v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7249">Intel XE#7249</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7578">Intel XE#7578</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4857-87b52c2ff4f00eff41866d728f82d2b109c397f7 -&gt; xe-pw-164463v1</li>
-</ul>
-<p>IGT_8850: 8850<br />
-  xe-4857-87b52c2ff4f00eff41866d728f82d2b109c397f7: 87b52c2ff4f00eff41866d728f82d2b109c397f7<br />
-  xe-pw-164463v1: 164463v1</p>
-
-</body>
-</html>
-
---===============6074478731983862680==--
