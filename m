@@ -4,158 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9E77FF512C
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 17:07:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98805FF512C
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 17:09:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3C1E10E3F6;
-	Tue,  7 Apr 2026 17:07:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51A0B10E123;
+	Tue,  7 Apr 2026 17:09:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XZgZ+6Uo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UB4JY4eo";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85C8510E3F6
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Apr 2026 17:07:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72F2089E69;
+ Tue,  7 Apr 2026 17:09:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775581622; x=1807117622;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=xJ5EHC+2TRIVicHVbsySCgGvl9OiIgno51fpilcdnW8=;
- b=XZgZ+6UosPG2krtTMrZOJ18v8go4UbRszemuwtf45c5//X+2flGgsLG6
- QYwcjcihGMIjvMbnD6gSVynUDEQ+07Lrzz5zi2uy15HmNV+1x79FZo+vb
- pb+bGf043J8bprMSNnIO6degBgs+GiODgkIPRH+306pNvLoHiyqN88dGD
- mLO8vXG+ljAI8ayZ8tDZCS5UePwoteYxGrCKcfb4FFsAerBo6J/kvRMsk
- Diot/KCurr7/wbkqLwhRKVreUEVB+qVMPqSaP2k0HhF/G0+pZ8hSteX94
- J/Wm8FTd3usQOPj/UK7SdDMc+NoOsi3rthTryXYUMtOzFzndf+/Uxa6SW w==;
-X-CSE-ConnectionGUID: D+H6gMCxRhKkSzEg7zG0bA==
-X-CSE-MsgGUID: oS5aDZmNQqimNuzd4WJSfA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="76516343"
-X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="76516343"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 10:07:01 -0700
-X-CSE-ConnectionGUID: AMzKGMMVTKSWr6ovYDUYgw==
-X-CSE-MsgGUID: cWoYkh5+SxCQKm6a/QsfZQ==
+ t=1775581787; x=1807117787;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=EErxurwBEcvmzyb7JQV70MKKtjxjh5ZwFK/Mh2ne7i8=;
+ b=UB4JY4eo+JZwT9EulGTr4fJf1zlXuowgbAbo6eqVSpEdT5EXkoEGMewh
+ xKgrScza+zSHalRPzVJtfUkGd0TR8sFs/w66NMTSci7nbUVMRbLEXH4kb
+ rkyHnRjcNIO+kTUY0Ztggc1Fcs5qO2cn4rMXnqNsoY16a04Q19CE9JL/Q
+ U18+5+2lvMfu0pZqxCRRAsSsc8ZfKiuazct7kI+/QLzwuLaykKSsmQUs/
+ jW+hyVVkOM/LCdSbouyqLQWT/A9p7vrNvmzwioiNYIPZK9tjuib07hjW3
+ I+pXzeNHjyFR4ARkeMpSPUMgMpwZiialexruly/KcIqdb5zeAIXVaYem6 A==;
+X-CSE-ConnectionGUID: FpPm3lU5QPW+b9HH3PMPtw==
+X-CSE-MsgGUID: VokU2bBQTpWwZPjqSxYsRw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="87178763"
+X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="87178763"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2026 10:09:47 -0700
+X-CSE-ConnectionGUID: Yvt6jER1QSulcy55YfjETw==
+X-CSE-MsgGUID: 0gYuLn0oR2e95teePjTe9g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="221665463"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 10:07:00 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 7 Apr 2026 10:06:59 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Tue, 7 Apr 2026 10:06:59 -0700
-Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.2) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 7 Apr 2026 10:06:59 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YHTIsuSuQGKaeZjnlk2NYdmNO+9GIq7bhfUO9QSCYoi54EUT9qeSSS2XbOOcdFEZ4lSzRm1RzOB06r9OhOzA3eBgYJzvqgmJwzlD9W3YbGOhlwceCM60q0ybwjseWBf4wUAFhkODdva50yIZn14n+KVit3/ZFuygD8CdK39np/HDt4kScs76BJcVu3KLFsq6Q+9ixEAhTp6RYbTwHaaXYwm7XKEW0K9QR45nkZnuHCK5tOOZj41nTDSmKeBBpGsCs3s3wWyeREVIpfn6RLZPxVfJ/qrYYJPW/8AjcRceSuIz4/hEQTbpaj5RqbAEVGSfErfRfDI0M+pVF7+QTQ9mLw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VThC6iy2C9T/2r6NNhvbTsrmssu/HzDHWLdgrWonJ4o=;
- b=NwPQe8lkleHRxbN+i/i/9UYPj3+iRxOYd0hYNlfIpuUezjrTlLbYuvhBQuMGGvaR8DecgUYQkw+Jcjy/20t5inJOptyFQnAmitojb4DAipSoEZf3eSj58SCgrY/t8sKy429fDTwC+zvqYlgXcA2hNzeQcHdMyZScOZc8gIUWceaCffRD8dT5Vm2YgyndyZ7n5F6a7aInp2q6BH2TsHJKJiV1VtsNKyYNzKbW9gCTGgPTlAZ6vuMUlYg8wa883hiUHz971EOIXoNyJP8P6Lsbbp7RsMnEsdIX85ZV+BS/q0fvHnmrYWtCdDh+g6BiiQFi8ODQoDZuvhoNkQIdY+1Zkg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SA3PR11MB8046.namprd11.prod.outlook.com (2603:10b6:806:2fb::22)
- by PH0PR11MB5831.namprd11.prod.outlook.com (2603:10b6:510:14b::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.15; Tue, 7 Apr
- 2026 17:06:52 +0000
-Received: from SA3PR11MB8046.namprd11.prod.outlook.com
- ([fe80::87cd:16d5:8dbe:2286]) by SA3PR11MB8046.namprd11.prod.outlook.com
- ([fe80::87cd:16d5:8dbe:2286%4]) with mapi id 15.20.9769.020; Tue, 7 Apr 2026
- 17:06:52 +0000
-Message-ID: <1fd7b979-975e-43cb-b408-c4cdb611ef31@intel.com>
-Date: Tue, 7 Apr 2026 10:06:50 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/xe/pat: Default XE_CACHE_NONE_COMPRESSION to
- invalid and assert on use
-To: Matthew Auld <matthew.auld@intel.com>, <intel-xe@lists.freedesktop.org>
-CC: Matt Roper <matthew.d.roper@intel.com>
-References: <20260406182546.569131-1-x.wang@intel.com>
- <20260406182546.569131-3-x.wang@intel.com>
- <d6c549b1-c20c-49ec-9629-11243b27966b@intel.com>
-Content-Language: en-US
-From: "Wang, X" <x.wang@intel.com>
-In-Reply-To: <d6c549b1-c20c-49ec-9629-11243b27966b@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BY5PR03CA0011.namprd03.prod.outlook.com
- (2603:10b6:a03:1e0::21) To SA3PR11MB8046.namprd11.prod.outlook.com
- (2603:10b6:806:2fb::22)
+X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="227389310"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.211])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2026 10:09:45 -0700
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org,
+	Jani Nikula <jani.nikula@intel.com>
+Subject: [PATCH v2 1/2] drm/i915: Track fence region ID in plane state
+Date: Tue,  7 Apr 2026 20:09:41 +0300
+Message-ID: <20260407170942.16515-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA3PR11MB8046:EE_|PH0PR11MB5831:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8532093a-846f-4776-ce21-08de94c81065
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|42112799006|1800799024|18002099003|22082099003|56012099003;
-X-Microsoft-Antispam-Message-Info: MsOUChWEpddTs3yOFtwKFmCtYDo4r+uIIaJ0I+yiCKnDmn+XF4wxjxcINZtTRgY0A99sh7wKPR9EEET3gqBk+eZ6z/LDXE5tO3HgMDXj+1NLykopNBqXDOjaYpsvTYiyo4P2M8NcHJ0/aXt1QRcEtpEyK3DWAlNB2aaNEseDs74SKJgJ+UBGYflTUAzP9ZpEo373+g7UWF95LbQolNaixCmslvCVeUqOVM3DeVZv09ty3pEF0SRCbfGoLxAdwa4r3U0C4WfFtZJIr+AZU8mDfEo+JwnQRoLlcFzAevsFP4u10TNAxPcRmW+ter0vwWxPG9ANSOw0NGwMRA45zqAw2pq8DNRaZDxvJpm7da1hdjFP775B1Bxg7kDt7Lv4WZHNfwZ5Pag24q5GznSO9PKKKbtA3/qYNNyT9DWydlLlPUhdgwE8+/yZewLlJp5GjSNvioeHmWx7xRTdOGL1Q1mfU/z16tBEuFzGklVsvuRFPhFAM9rzCyqUbGKh8cxsGGWl17eJzuS3dxp371iUqymDil14KhfIp+nxRzyKgDi1d79bnpzK2Emu9ErnkZ378fVOVdspW7rz6qjnK4y1gLvtANZTzGk2e+EkZbLHm7Gnat4MKlEj+Z85mlDufvMYsXZ1HeuXwZxnPIgRjU3Isvdn243WHighCmevSIcpMJKwj3CS8Rrx3Hz4bu55so/T8Ut6ESRkwsWf8tmMBVezU1y+9xvNv5QkDIdKXWfCrAIqh+M=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SA3PR11MB8046.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(42112799006)(1800799024)(18002099003)(22082099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NkZUNkl6YWtHdmJRbWs3djNpQnBHNnF5MWNBZjUxWGdUTGppMjEvcVJsMWNF?=
- =?utf-8?B?b1BvalByUTRqTmJPc2VHaHVnaHE3SjJHSE9WYXZuVVBObjlQRVpVM3FTRGs3?=
- =?utf-8?B?bjRCcFhxbWxBUlAvc3A1cGQ3RVhvaGxtWUVub0xSMG9vNzUxTnJaejBON25j?=
- =?utf-8?B?TjdEWGFCRE53ZkNtbVA0eGk1WWg4dkIva3hGZk1FOGt3S1hsN3AxZzZ6bFRE?=
- =?utf-8?B?ZGEzMTAxeFBtbVFnc2taczNhY0NFdVU3Q1FycitJZWJzM2cwVlJxWHlVUSsx?=
- =?utf-8?B?V0g2Y3dtS0FUa0x4UENrcnpEY01adTdNUzZFSUpWSkJHbzJ1UXlWWTVwYzFi?=
- =?utf-8?B?am1tUEx4L2ZZb0ozUHB2TDFYNW1oaVErS1BKM1U1UEtFOXpqQzdZUldTZ1hv?=
- =?utf-8?B?R1p3Q0R3SHR3cVFoWnVScmxRdkY4SXFleHFaeEY4WHVob2t5a1hMSVgvZFQw?=
- =?utf-8?B?TWxGN3FzbHphRmJZbTVIcXhmcDlzRmM5R1JIWlZNY3VCTTJnbEUxdjZ4aElw?=
- =?utf-8?B?c0taZHBwZXFlTjFQdGlzLzlxVVo4dk8zR3dxMmpSbjM1N1BTcm9NSExxdTc5?=
- =?utf-8?B?ZTc5UmkvL2dKaWtuNWh6NVEvc3J4cnZSUUtFQXRham1Ma3JPSHdyekJUUGZG?=
- =?utf-8?B?UXA2MHdyK2RraXExbXdLUGc0WGFTblM5WkNFUWRPUlRGeERUTkRJMy9SVXJh?=
- =?utf-8?B?bWFDVVUyd001dVc4aXZuZnJkd0tsMXg1YUFVRUJZN0lud3dWVFMyMEhXejdh?=
- =?utf-8?B?aUU1K2hMQ3ZISzJkNXEyYmFDb2lNWTdDZk1zWEFBS0RJdHdSUDYrZzFZUXVG?=
- =?utf-8?B?ZENqd1NHSy9qUU1DVmg2eDdkMFFFNVF5MnQrZXBZQXRadXpPU0xuenQvUlBO?=
- =?utf-8?B?MHlZTklkcUlzK2dudGFYaGhRMTYyZzJJWlh4T0tqbktPbE5RbTdwWVF2Z0hZ?=
- =?utf-8?B?cnlhQUs4Qnd6bUdtVEJNMlNyOEpzVXlKQXgwZnZzcFBRQS9vQUdHWDA0R094?=
- =?utf-8?B?SmR2VHdINjNPLzBVcFpFODcvU2F2SEZHamR4dHlzemhBSUt2dElhYVFscWJj?=
- =?utf-8?B?RjE4cmJESEZSL0ptTXBTV2NvTmdua2ViYXRweHRqUTE1NE9FQ2JKR0VKTlRp?=
- =?utf-8?B?Z24zVFllRlRtUUYyQnNsWDAvbklYYzV1NmtiZno0aDRLSnpuUy94SHpwTFRm?=
- =?utf-8?B?cmlFWnA1L2U3TkFmMzgxUThvK3A1SG5SSWZOWUs2S2NDSi9KOSt5QklESk9q?=
- =?utf-8?B?NUxaQVVab0VaNjRMWFdhSllaT25KekV5aFJFcU9zWE5TL0ZMd1lzQ2RCUUpp?=
- =?utf-8?B?YnFHYmVkYkwrSFp5SUMvbzdDYkMvT3crZElyMnhnbjluS2xJa2F3N0ltYTE3?=
- =?utf-8?B?bmU1NFMxc3BTbnNGRUNEUnlwZ1VVajh1ekliYTBCM2FFYXF0NU5zZ1R0bWpK?=
- =?utf-8?B?eENzQVJwY1lKcC9XY3p6MEx1YUM0UnhNcUpzSGdIMGdBeWxJc2x4ajlSRXBS?=
- =?utf-8?B?Kzh3MTliSjZEOGxqbEdzdFpGcjkwaGxkTU12eVFiZDdiaUJSK1RoZW1QcnNw?=
- =?utf-8?B?ZHNTSFZ2L3o1Q3p1TUpTbkVRS2NTWng2WHlmenFQZ0c4L0RDVmxudmY0OHVD?=
- =?utf-8?B?MEFidUdkNnJVL1NqSFNlR3dxK3NLb2xmOGxJSzNsM0hFN1ZyN3g4aUJ6a3lu?=
- =?utf-8?B?cXlCTnFjejk3Zm8xNmtnQzFaRFA3QndRN3haYllkZFcvSm9INVBiUVlPdWl6?=
- =?utf-8?B?S0MxZkl2OHNDdk82VGpDVFVlWmU3aXh3Nnl4T0x1RHhpWmt0U282YWZtQjNu?=
- =?utf-8?B?MEh6UFgwcUVlanpXYXNzbVpWd0kyUkMyazhrTmhWN3JuYzJwZkVjbEovaE1q?=
- =?utf-8?B?SkFlb0VEOVptWjc2cE5QbTBZcUZKNC9wT3dxWnZFMmNBeWNqa0RBT3I2ZzBa?=
- =?utf-8?B?NVdGMzZRbjdJS3pVcjNoYnlaTW5tb2x1MURuRWNXZWZxUkRCWlZoK2oxc1da?=
- =?utf-8?B?Y2FkM1FJSGc2Ymx4L1FYWlArdk5IVDJrU0lQdCtTcG1WWW4vWmdmc2FzR2s0?=
- =?utf-8?B?N3lhTVg2UW5XdmJ0d1gzOFQyOEFjWkk2ejRlU1N6QWF5dGJvVVlvZlRGQWRU?=
- =?utf-8?B?Q1E2L1o4OHlKSDV1NE94Rkl5b3IvWE9kRW54dGFwakowa2V2anJuNzZ6K2p3?=
- =?utf-8?B?N2RNNWw4NjdTMzZVQlJkSDQ1OUJSV09KSXNIbmtpS0dOUlh6L05vNDJPRXlv?=
- =?utf-8?B?eTRncFI3elNyR0txQk9ENW1YL1oreWlTSzluV2YrWVU4WkhTMlFKSXNLdXNM?=
- =?utf-8?B?cEE5UkVXK1VXdmdiZWFQa3h6V04zVEtSTFdZM1lqeG1Ndi9qSk5yZz09?=
-X-Exchange-RoutingPolicyChecked: EkbIrgTa70vIoKTRpdcTkRGtIF5e9gjL3Aalk/pmRRc1OHiSWQ+ibf7Q5utmpOhDuxmY3aOjKSP2IJTGgnpx9p6NPjo13CUw5qlQk9UexVXYFsRZTLZ6qsOC1eY1cAZ/YHSj3Gn46mZzG1qmIu8cVd+yxJkMEjTPrR4AlXSUHifHJ+eAMxlovpcBxGc/oyynfm0E89sVt4cFyXkYmrcMfByvO4wFIFPB9qUg/7gy5YAWnmLSpUUGftxB9UlRicK80cVSh+eiinjbYr+1IMJVyvZssgee5OLDnLCcaCfIGVQohAQCcOeqaPF/iTaoNkvKiznIzPzQFAgdhac9XHRG7A==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8532093a-846f-4776-ce21-08de94c81065
-X-MS-Exchange-CrossTenant-AuthSource: SA3PR11MB8046.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Apr 2026 17:06:52.4856 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: V5NjHMQ3gAJLre1z+/mei4CsmwwAUqUL+N4z/aRDD50MNAf4KOc9HzO1LWU9s3nux++wvOrMM3Jy7U5s68NI4Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5831
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -170,96 +69,329 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-On 4/7/2026 02:48, Matthew Auld wrote:
-> On 06/04/2026 19:25, Xin Wang wrote:
->> Initialize XE_CACHE_NONE_COMPRESSION PAT index to XE_PAT_INVALID_IDX by
->> default, and add xe_assert() checks at the sites that use it for PTE
->> encoding. This ensures platforms that don't support this cache mode fail
->> loudly rather than silently encoding an invalid index into PTEs.
->>
->> Suggested-by: Matthew Auld <matthew.auld@intel.com>
->> Cc: Matt Roper <matthew.d.roper@intel.com>
->> Signed-off-by: Xin Wang <x.wang@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_migrate.c | 9 +++++++--
->>   drivers/gpu/drm/xe/xe_pat.c     | 1 +
->>   2 files changed, 8 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_migrate.c 
->> b/drivers/gpu/drm/xe/xe_migrate.c
->> index fc918b4fba54..cad47866435d 100644
->> --- a/drivers/gpu/drm/xe/xe_migrate.c
->> +++ b/drivers/gpu/drm/xe/xe_migrate.c
->> @@ -30,6 +30,7 @@
->>   #include "xe_lrc.h"
->>   #include "xe_map.h"
->>   #include "xe_mocs.h"
->> +#include "xe_pat.h"
->>   #include "xe_printk.h"
->>   #include "xe_pt.h"
->>   #include "xe_res_cursor.h"
->> @@ -341,6 +342,7 @@ static void xe_migrate_prepare_vm(struct xe_tile 
->> *tile, struct xe_migrate *m,
->>                   DIV_ROUND_UP_ULL(actual_phy_size, SZ_1G);
->>               u64 pt31_ofs = xe_bo_size(bo) - XE_PAGE_SIZE;
->>   +            xe_assert(xe, comp_pat_index != XE_PAT_INVALID_IDX);
->>               xe_assert(xe, actual_phy_size <= (MAX_NUM_PTE - 
->> IDENTITY_OFFSET -
->>                                 IDENTITY_OFFSET / 2) * SZ_1G);
->>               xe_migrate_program_identity(xe, vm, bo, map_ofs, 
->> vram_offset,
->> @@ -635,11 +637,14 @@ static void emit_pte(struct xe_migrate *m,
->>       u64 cur_ofs;
->>         /* Indirect access needs compression enabled uncached PAT 
->> index */
->> -    if (GRAPHICS_VERx100(xe) >= 2000)
->> +    if (GRAPHICS_VERx100(xe) >= 2000) {
->>           pat_index = is_comp_pte ? 
->> xe->pat.idx[XE_CACHE_NONE_COMPRESSION] :
->>                         xe->pat.idx[XE_CACHE_WB];
->> -    else
->> +        if (is_comp_pte)
->> +            xe_assert(xe, pat_index != XE_PAT_INVALID_IDX);
->> +    } else {
->>           pat_index = xe->pat.idx[XE_CACHE_WB];
->> +    }
->
-> To simplify the flow, maybe we just unconditionally stick the assert 
-> here?
->
-Yeah, I can modify this to simplify the assert here.
-> But would it make sense to take this a step further and wrap all 
-> pat.idx[] accesses with a simple helper (like xe_cache_pat_idx()), and 
-> add the assert there? There are a fair few places directly accessing 
-> pat.idx, outside of xe_pat.
->
-Agree on wrapping pat.idx[] access with a helper for
-consistency.
-But I don't think an assert inside the helper is the
-right place. For UC/WT/WB, all platforms initialize
-them so the assert would never fire — it's dead code.
-For compression variants, xe_bo.c:3763 intentionally
-reads the INVALID value as a capability check, so an
-assert there would break that. Better to keep the
-assert at the callsite like we do here in xe_migrate.c,
-where we have the right context to know a valid index
-is required.
-What do you think?
+Get rid of the needlessly complicated PLANE_HAS_FENCE +
+intel_parent_vma_fence_id() dance by simply tracking the
+fence_id directly in the plane state.
 
-Thanks
-Xin
->>         ptes = DIV_ROUND_UP(size, XE_PAGE_SIZE);
->>   diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
->> index 75aaae7b003d..fad5b5a5ed4a 100644
->> --- a/drivers/gpu/drm/xe/xe_pat.c
->> +++ b/drivers/gpu/drm/xe/xe_pat.c
->> @@ -559,6 +559,7 @@ static const struct xe_pat_ops xe3p_xpc_pat_ops = {
->>   void xe_pat_init_early(struct xe_device *xe)
->>   {
->>       xe->pat.idx[XE_CACHE_WB_COMPRESSION] = XE_PAT_INVALID_IDX;
->> +    xe->pat.idx[XE_CACHE_NONE_COMPRESSION] = XE_PAT_INVALID_IDX;
->>       if (GRAPHICS_VERx100(xe) == 3511) {
->>           xe->pat.ops = &xe3p_xpc_pat_ops;
->>           xe->pat.table = xe3p_xpc_pat_table;
->
+v2: Don't request the redundant fence for fbdev (Jani)
+    Assign *out_fence_id with '=' instead of '|=' (Sashiko,Jani)
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ .../drm/i915/display/intel_display_types.h    |  5 +--
+ drivers/gpu/drm/i915/display/intel_fb_pin.c   | 33 ++++++++++---------
+ drivers/gpu/drm/i915/display/intel_fb_pin.h   |  5 ++-
+ drivers/gpu/drm/i915/display/intel_fbc.c      | 11 ++-----
+ drivers/gpu/drm/i915/display/intel_fbdev.c    |  9 ++---
+ drivers/gpu/drm/i915/display/intel_plane.c    |  3 +-
+ drivers/gpu/drm/i915/i915_initial_plane.c     |  2 +-
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        |  8 ++---
+ drivers/gpu/drm/xe/display/xe_initial_plane.c |  2 +-
+ 9 files changed, 37 insertions(+), 41 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index e2496db1642a..73eb4f38620c 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -683,14 +683,15 @@ struct intel_plane_state {
+ 
+ 	struct i915_vma *ggtt_vma;
+ 	struct i915_vma *dpt_vma;
+-	unsigned long flags;
+-#define PLANE_HAS_FENCE BIT(0)
+ 
+ 	struct intel_fb_view view;
+ 
+ 	/* for legacy cursor fb unpin */
+ 	struct drm_vblank_work unpin_work;
+ 
++	/* fenced region ID (-1 if none) */
++	s8 fence_id;
++
+ 	/* Plane pxp decryption state */
+ 	bool decrypt;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/drm/i915/display/intel_fb_pin.c
+index 738d77a1468a..016327f9bec9 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
++++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
+@@ -26,7 +26,6 @@ static struct i915_vma *
+ intel_fb_pin_to_dpt(const struct drm_framebuffer *fb,
+ 		    const struct i915_gtt_view *view,
+ 		    unsigned int alignment,
+-		    unsigned long *out_flags,
+ 		    struct intel_dpt *dpt)
+ {
+ 	struct drm_device *dev = fb->dev;
+@@ -115,8 +114,7 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
+ 		     unsigned int alignment,
+ 		     unsigned int phys_alignment,
+ 		     unsigned int vtd_guard,
+-		     bool uses_fence,
+-		     unsigned long *out_flags)
++		     int *out_fence_id)
+ {
+ 	struct drm_device *dev = fb->dev;
+ 	struct intel_display *display = to_intel_display(dev);
+@@ -177,7 +175,10 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
+ 		goto err_unpin;
+ 	}
+ 
+-	if (uses_fence && i915_vma_is_map_and_fenceable(vma)) {
++	if (out_fence_id)
++		*out_fence_id = -1;
++
++	if (out_fence_id && i915_vma_is_map_and_fenceable(vma)) {
+ 		/*
+ 		 * Install a fence for tiled scan-out. Pre-i965 always needs a
+ 		 * fence, whereas 965+ only requires a fence if using
+@@ -203,7 +204,7 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
+ 		ret = 0;
+ 
+ 		if (vma->fence)
+-			*out_flags |= PLANE_HAS_FENCE;
++			*out_fence_id = vma->fence->id;
+ 	}
+ 
+ 	i915_vma_get(vma);
+@@ -225,9 +226,9 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
+ 	return vma;
+ }
+ 
+-void intel_fb_unpin_vma(struct i915_vma *vma, unsigned long flags)
++void intel_fb_unpin_vma(struct i915_vma *vma, int fence_id)
+ {
+-	if (flags & PLANE_HAS_FENCE)
++	if (fence_id >= 0)
+ 		i915_vma_unpin_fence(vma);
+ 	i915_vma_unpin(vma);
+ 	i915_vma_put(vma);
+@@ -271,17 +272,18 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_state,
+ 	struct i915_vma *vma;
+ 
+ 	if (!intel_fb_uses_dpt(&fb->base)) {
++		int fence_id = -1;
++
+ 		vma = intel_fb_pin_to_ggtt(&fb->base, &plane_state->view.gtt,
+ 					   intel_plane_fb_min_alignment(plane_state),
+ 					   intel_plane_fb_min_phys_alignment(plane_state),
+ 					   intel_plane_fb_vtd_guard(plane_state),
+-					   intel_plane_uses_fence(plane_state),
+-					   &plane_state->flags);
++					   intel_plane_uses_fence(plane_state) ? &fence_id : NULL);
+ 		if (IS_ERR(vma))
+ 			return PTR_ERR(vma);
+ 
+ 		plane_state->ggtt_vma = vma;
+-
++		plane_state->fence_id = fence_id;
+ 	} else {
+ 		unsigned int alignment = intel_plane_fb_min_alignment(plane_state);
+ 
+@@ -292,8 +294,7 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_state,
+ 		plane_state->ggtt_vma = vma;
+ 
+ 		vma = intel_fb_pin_to_dpt(&fb->base, &plane_state->view.gtt,
+-					  alignment, &plane_state->flags,
+-					  fb->dpt);
++					  alignment, fb->dpt);
+ 		if (IS_ERR(vma)) {
+ 			i915_dpt_unpin_from_ggtt(fb->dpt);
+ 			plane_state->ggtt_vma = NULL;
+@@ -338,12 +339,14 @@ void intel_plane_unpin_fb(struct intel_plane_state *old_plane_state)
+ 
+ 	if (!intel_fb_uses_dpt(&fb->base)) {
+ 		vma = fetch_and_zero(&old_plane_state->ggtt_vma);
+-		if (vma)
+-			intel_fb_unpin_vma(vma, old_plane_state->flags);
++		if (vma) {
++			intel_fb_unpin_vma(vma, old_plane_state->fence_id);
++			old_plane_state->fence_id = -1;
++		}
+ 	} else {
+ 		vma = fetch_and_zero(&old_plane_state->dpt_vma);
+ 		if (vma)
+-			intel_fb_unpin_vma(vma, old_plane_state->flags);
++			intel_fb_unpin_vma(vma, -1);
+ 
+ 		vma = fetch_and_zero(&old_plane_state->ggtt_vma);
+ 		if (vma)
+diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.h b/drivers/gpu/drm/i915/display/intel_fb_pin.h
+index 81ab79da1af7..2eca42b74c4a 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb_pin.h
++++ b/drivers/gpu/drm/i915/display/intel_fb_pin.h
+@@ -20,10 +20,9 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
+ 		     unsigned int alignment,
+ 		     unsigned int phys_alignment,
+ 		     unsigned int vtd_guard,
+-		     bool uses_fence,
+-		     unsigned long *out_flags);
++		     int *out_fence_id);
+ 
+-void intel_fb_unpin_vma(struct i915_vma *vma, unsigned long flags);
++void intel_fb_unpin_vma(struct i915_vma *vma, int fence_id);
+ 
+ int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
+ 		       const struct intel_plane_state *old_plane_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index ea0ce00c8474..677ac5be749b 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -1458,13 +1458,10 @@ static void intel_fbc_update_state(struct intel_atomic_state *state,
+ 
+ 	fbc_state->fence_y_offset = intel_plane_fence_y_offset(plane_state);
+ 
+-	drm_WARN_ON(display->drm, plane_state->flags & PLANE_HAS_FENCE &&
++	drm_WARN_ON(display->drm, plane_state->fence_id >= 0 &&
+ 		    !intel_fbc_has_fences(display));
+ 
+-	if (plane_state->flags & PLANE_HAS_FENCE)
+-		fbc_state->fence_id = intel_parent_vma_fence_id(display, plane_state->ggtt_vma);
+-	else
+-		fbc_state->fence_id = -1;
++	fbc_state->fence_id = plane_state->fence_id;
+ 
+ 	fbc_state->cfb_stride = intel_fbc_cfb_stride(plane_state);
+ 	fbc_state->cfb_size = intel_fbc_cfb_size(plane_state);
+@@ -1487,9 +1484,7 @@ static bool intel_fbc_is_fence_ok(const struct intel_plane_state *plane_state)
+ 	 * so have no fence associated with it) due to aperture constraints
+ 	 * at the time of pinning.
+ 	 */
+-	return DISPLAY_VER(display) >= 9 ||
+-		(plane_state->flags & PLANE_HAS_FENCE &&
+-		 intel_parent_vma_fence_id(display, plane_state->ggtt_vma) != -1);
++	return DISPLAY_VER(display) >= 9 || plane_state->fence_id >= 0;
+ }
+ 
+ static bool intel_fbc_is_cfb_ok(const struct intel_plane_state *plane_state)
+diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+index 14ac01c1b3eb..1e22b3fd79ba 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbdev.c
++++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+@@ -59,7 +59,6 @@
+ struct intel_fbdev {
+ 	struct intel_framebuffer *fb;
+ 	struct i915_vma *vma;
+-	unsigned long vma_flags;
+ };
+ 
+ static struct intel_fbdev *to_intel_fbdev(struct drm_fb_helper *fb_helper)
+@@ -140,7 +139,7 @@ static void intel_fbdev_fb_destroy(struct fb_info *info)
+ 	 * the info->screen_base mmaping. Leaking the VMA is simpler than
+ 	 * trying to rectify all the possible error paths leading here.
+ 	 */
+-	intel_fb_unpin_vma(ifbdev->vma, ifbdev->vma_flags);
++	intel_fb_unpin_vma(ifbdev->vma, -1);
+ 	drm_framebuffer_remove(fb_helper->fb);
+ 
+ 	drm_client_release(&fb_helper->client);
+@@ -269,7 +268,6 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
+ 	struct fb_info *info = helper->info;
+ 	struct ref_tracker *wakeref;
+ 	struct i915_vma *vma;
+-	unsigned long flags = 0;
+ 	bool prealloc = false;
+ 	struct drm_gem_object *obj;
+ 	int ret;
+@@ -314,7 +312,7 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
+ 				   fb->min_alignment, 0,
+ 				   intel_fb_view_vtd_guard(&fb->base, &fb->normal_view,
+ 							   DRM_MODE_ROTATE_0),
+-				   false, &flags);
++				   NULL);
+ 	if (IS_ERR(vma)) {
+ 		ret = PTR_ERR(vma);
+ 		goto out_unlock;
+@@ -345,14 +343,13 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
+ 	drm_dbg_kms(display->drm, "allocated %dx%d fb\n", fb->base.width, fb->base.height);
+ 	ifbdev->fb = fb;
+ 	ifbdev->vma = vma;
+-	ifbdev->vma_flags = flags;
+ 
+ 	intel_display_rpm_put(display, wakeref);
+ 
+ 	return 0;
+ 
+ out_unpin:
+-	intel_fb_unpin_vma(vma, flags);
++	intel_fb_unpin_vma(vma, -1);
+ out_unlock:
+ 	intel_display_rpm_put(display, wakeref);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_plane.c b/drivers/gpu/drm/i915/display/intel_plane.c
+index 5390ceb21ca4..f15dd9e91243 100644
+--- a/drivers/gpu/drm/i915/display/intel_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_plane.c
+@@ -70,6 +70,7 @@ static void intel_plane_state_reset(struct intel_plane_state *plane_state,
+ 	__drm_atomic_helper_plane_state_reset(&plane_state->uapi, &plane->base);
+ 
+ 	plane_state->scaler_id = -1;
++	plane_state->fence_id = -1;
+ }
+ 
+ struct intel_plane *intel_plane_alloc(void)
+@@ -137,7 +138,7 @@ intel_plane_duplicate_state(struct drm_plane *plane)
+ 
+ 	intel_state->ggtt_vma = NULL;
+ 	intel_state->dpt_vma = NULL;
+-	intel_state->flags = 0;
++	intel_state->fence_id = -1;
+ 	intel_state->damage = DRM_RECT_INIT(0, 0, 0, 0);
+ 
+ 	/* add reference to fb */
+diff --git a/drivers/gpu/drm/i915/i915_initial_plane.c b/drivers/gpu/drm/i915/i915_initial_plane.c
+index c1a12bf6b66c..6e2d7b6e78f5 100644
+--- a/drivers/gpu/drm/i915/i915_initial_plane.c
++++ b/drivers/gpu/drm/i915/i915_initial_plane.c
+@@ -268,7 +268,7 @@ i915_initial_plane_setup(struct drm_plane_state *_plane_state,
+ 	plane_state->ggtt_vma = i915_vma_get(vma);
+ 	if (intel_plane_uses_fence(plane_state) &&
+ 	    i915_vma_pin_fence(vma) == 0 && vma->fence)
+-		plane_state->flags |= PLANE_HAS_FENCE;
++		plane_state->fence_id = vma->fence->id;
+ 
+ 	plane_state->surf = i915_ggtt_offset(plane_state->ggtt_vma);
+ 
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index e45a1e7a4670..739d9c019094 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -418,15 +418,15 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
+ 		     unsigned int alignment,
+ 		     unsigned int phys_alignment,
+ 		     unsigned int vtd_guard,
+-		     bool uses_fence,
+-		     unsigned long *out_flags)
++		     int *out_fence_id)
+ {
+-	*out_flags = 0;
++	if (out_fence_id)
++		*out_fence_id = -1;
+ 
+ 	return __xe_pin_fb_vma(to_intel_framebuffer(fb), view, alignment);
+ }
+ 
+-void intel_fb_unpin_vma(struct i915_vma *vma, unsigned long flags)
++void intel_fb_unpin_vma(struct i915_vma *vma, int fence_id)
+ {
+ 	__xe_unpin_fb_vma(vma);
+ }
+diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
+index 1c7a4e8c390c..0a98aaf7c7de 100644
+--- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
++++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
+@@ -154,7 +154,7 @@ xe_initial_plane_setup(struct drm_plane_state *_plane_state,
+ 	struct i915_vma *vma;
+ 
+ 	vma = intel_fb_pin_to_ggtt(fb, &plane_state->view.gtt,
+-				   0, 0, 0, false, &plane_state->flags);
++				   0, 0, 0, NULL);
+ 	if (IS_ERR(vma))
+ 		return PTR_ERR(vma);
+ 
+-- 
+2.52.0
+
