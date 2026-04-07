@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8D87FEEF25
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 11:33:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2C74FEEF24
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 11:34:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67B5210E360;
-	Tue,  7 Apr 2026 11:33:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 926B110E3F1;
+	Tue,  7 Apr 2026 11:34:04 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 836F610E360;
- Tue,  7 Apr 2026 11:33:43 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2962551384552717449=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B7DF10E360;
+ Tue,  7 Apr 2026 11:34:03 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dmc=3A_Reduce_wake?=
- =?utf-8?q?lock_hold_time_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915=3A_relocate_mchb?=
+ =?utf-8?q?ar_and_pci_regs_headers?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dibin Moolakadan Subrahmanian" <dibin.moolakadan.subrahmanian@intel.com>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 07 Apr 2026 11:33:43 -0000
-Message-ID: <177556162352.437137.7660597745915804772@a3b018990fe9>
+Date: Tue, 07 Apr 2026 11:34:03 -0000
+Message-ID: <177556164309.437137.17733954404838691656@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260407105102.3730973-1-dibin.moolakadan.subrahmanian@intel.com>
-In-Reply-To: <20260407105102.3730973-1-dibin.moolakadan.subrahmanian@intel.com>
+References: <cover.1775559414.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1775559414.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,106 +40,49 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2962551384552717449==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/dmc: Reduce wakelock hold time (rev2)
-URL   : https://patchwork.freedesktop.org/series/164218/
-State : success
+Series: drm/i915: relocate mchbar and pci regs headers
+URL   : https://patchwork.freedesktop.org/series/164442/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4855-5f8792621868737c8b62a87b66dbf7eca4d9f7e3_BAT -> xe-pw-164218v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f314ae59dfd94d974babfc6f26a1e8e2ebe15ecc
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Tue Apr 7 13:57:42 2026 +0300
 
-Summary
--------
+    drm/i915/pci: move intel_pci_config.h under include/drm/intel
+    
+    Since the PCI registers are used from both i915 display and core, move
+    intel_pci_config.h to include/drm/intel/pci_config.h. Drop the intel_
+    prefix from the name to reduce tautology.
+    
+    With this, we can drop the corresponding xe display compat header.
+    
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 87b52c2ff4f00eff41866d728f82d2b109c397f7 drm-intel
+a250e944336e drm/i915/mchbar: include intel_mchbar_regs.h from intel_mchbar.h
+eaa9728a456c drm/i915/mchbar: move intel_mchbar_regs.h under include/drm/intel
+-:293: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#293: 
+deleted file mode 100644
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 197 lines checked
+f314ae59dfd9 drm/i915/pci: move intel_pci_config.h under include/drm/intel
+-:300: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#300: 
+deleted file mode 100644
 
-  No regressions found.
-
-  
-
-Participating hosts (14 -> 14)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8849 -> IGT_8850
-  * Linux: xe-4855-5f8792621868737c8b62a87b66dbf7eca4d9f7e3 -> xe-pw-164218v2
-
-  IGT_8849: 8849
-  IGT_8850: 8850
-  xe-4855-5f8792621868737c8b62a87b66dbf7eca4d9f7e3: 5f8792621868737c8b62a87b66dbf7eca4d9f7e3
-  xe-pw-164218v2: 164218v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164218v2/index.html
-
---===============2962551384552717449==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 201 lines checked
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dmc: Reduce wakelock hold time (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164218/">https://patchwork.freedesktop.org/series/164218/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164218v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164218v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4855-5f8792621868737c8b62a87b66dbf7eca4d9f7e3_BAT -&gt; xe-pw-164218v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8849 -&gt; IGT_8850</li>
-<li>Linux: xe-4855-5f8792621868737c8b62a87b66dbf7eca4d9f7e3 -&gt; xe-pw-164218v2</li>
-</ul>
-<p>IGT_8849: 8849<br />
-  IGT_8850: 8850<br />
-  xe-4855-5f8792621868737c8b62a87b66dbf7eca4d9f7e3: 5f8792621868737c8b62a87b66dbf7eca4d9f7e3<br />
-  xe-pw-164218v2: 164218v2</p>
-
-</body>
-</html>
-
---===============2962551384552717449==--
