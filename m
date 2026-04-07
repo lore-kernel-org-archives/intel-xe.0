@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F8C5FEEF29
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 12:10:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88FD2FEEF2E
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 12:10:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 047B110E402;
-	Tue,  7 Apr 2026 12:10:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 440B510E405;
+	Tue,  7 Apr 2026 12:10:36 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63B7410E40A;
- Tue,  7 Apr 2026 12:10:17 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2509231325546900082=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FCC910E3FC;
+ Tue,  7 Apr 2026 12:10:35 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915=3A_relocate_mchbar?=
- =?utf-8?q?_and_pci_regs_headers?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Introduce_Xe_Correctable_?=
+ =?utf-8?q?Error_Handling_=28rev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
+To: "Raag Jadav" <raag.jadav@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 07 Apr 2026 12:10:17 -0000
-Message-ID: <177556381739.436629.9870389999277780988@a3b018990fe9>
+Date: Tue, 07 Apr 2026 12:10:35 -0000
+Message-ID: <177556383563.436629.13407879945097057518@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <cover.1775559414.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1775559414.git.jani.nikula@intel.com>
+References: <20260407110629.198158-1-raag.jadav@intel.com>
+In-Reply-To: <20260407110629.198158-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,106 +40,58 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2509231325546900082==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915: relocate mchbar and pci regs headers
-URL   : https://patchwork.freedesktop.org/series/164442/
-State : success
+Series: Introduce Xe Correctable Error Handling (rev5)
+URL   : https://patchwork.freedesktop.org/series/160184/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4855-5f8792621868737c8b62a87b66dbf7eca4d9f7e3_BAT -> xe-pw-164442v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 1c90ff8d3c90471d1fd9e5e4d1b306e1ca2c9ee6
+Author: Raag Jadav <raag.jadav@intel.com>
+Date:   Tue Apr 7 16:36:29 2026 +0530
 
-Summary
--------
+    drm/xe/ras: Introduce correctable error handling
+    
+    Add initial support for correctable error handling which is serviced
+    using system controller event. Currently we only log the errors in
+    dmesg but this serves as a foundation for RAS infrastructure and will
+    be further extended to facilitate other RAS features.
+    
+    Signed-off-by: Raag Jadav <raag.jadav@intel.com>
++ /mt/dim checkpatch 87b52c2ff4f00eff41866d728f82d2b109c397f7 drm-intel
+fe42aac0a529 drm/xe/sysctrl: Add system controller interrupt handler
+0763f39dae65 drm/xe/sysctrl: Add system controller event support
+-:63: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#63: 
+new file mode 100644
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 189 lines checked
+1c90ff8d3c90 drm/xe/ras: Introduce correctable error handling
+-:26: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#26: 
+new file mode 100644
 
-  No regressions found.
+-:69: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#69: FILE: drivers/gpu/drm/xe/xe_ras.c:39:
++};
++static_assert(ARRAY_SIZE(xe_ras_severities) == XE_RAS_SEV_MAX);
 
-  
+-:80: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#80: FILE: drivers/gpu/drm/xe/xe_ras.c:50:
++};
++static_assert(ARRAY_SIZE(xe_ras_components) == XE_RAS_COMP_MAX);
 
-Participating hosts (14 -> 14)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8849 -> IGT_8850
-  * Linux: xe-4855-5f8792621868737c8b62a87b66dbf7eca4d9f7e3 -> xe-pw-164442v1
-
-  IGT_8849: 8849
-  IGT_8850: 8850
-  xe-4855-5f8792621868737c8b62a87b66dbf7eca4d9f7e3: 5f8792621868737c8b62a87b66dbf7eca4d9f7e3
-  xe-pw-164442v1: 164442v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164442v1/index.html
-
---===============2509231325546900082==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 1 warnings, 2 checks, 205 lines checked
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: relocate mchbar and pci regs headers</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164442/">https://patchwork.freedesktop.org/series/164442/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164442v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164442v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4855-5f8792621868737c8b62a87b66dbf7eca4d9f7e3_BAT -&gt; xe-pw-164442v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8849 -&gt; IGT_8850</li>
-<li>Linux: xe-4855-5f8792621868737c8b62a87b66dbf7eca4d9f7e3 -&gt; xe-pw-164442v1</li>
-</ul>
-<p>IGT_8849: 8849<br />
-  IGT_8850: 8850<br />
-  xe-4855-5f8792621868737c8b62a87b66dbf7eca4d9f7e3: 5f8792621868737c8b62a87b66dbf7eca4d9f7e3<br />
-  xe-pw-164442v1: 164442v1</p>
-
-</body>
-</html>
-
---===============2509231325546900082==--
