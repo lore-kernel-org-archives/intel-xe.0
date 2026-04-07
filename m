@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B0B8EDB7EF
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 10:50:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5A92EDB7EF
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 10:50:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BFBB10E3BD;
-	Tue,  7 Apr 2026 10:50:09 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CY8UDsXL";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39A5910E3BD;
- Tue,  7 Apr 2026 10:50:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775559009; x=1807095009;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ZDeHdO9DuGjYtoaEefvd1zEz1BAvHPf5VqZY0OdzeyU=;
- b=CY8UDsXLoCfneHTJ39dx2pQiszl931Z0cJdoc7KZRP7JBxx43K9Fn0RY
- 750ZKTyoKdFDsjOYOCAsIAQcPb3kkd/4VwON6/gbGll+ON4l7gHwhpdcq
- x2Jufkvf2fbfNY2UA1I3sFC3mkorkTLK7spcYlEILbBxmzeUDIZB2yP/q
- r3viLVWsQZlNLaFdJxGfIgK5O2zFo46RGtZvfdOTewhL8PN1QeN0ww7fU
- sd++4RiVbH0Du20xsjgU67KkWb7Oo6Tmx0l60kCZKTPhQEis6q+4E9/l7
- famWHTk9Wbga3vXc3GyXE4l4DM59MBGhL3e27PrdR5xCaWsEsGOgArL/c Q==;
-X-CSE-ConnectionGUID: 810gq2+TTBOfmgP0U1KzRg==
-X-CSE-MsgGUID: ph7Gxrs4RvKCMIhlh3j47A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11751"; a="99145271"
-X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="99145271"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 03:50:08 -0700
-X-CSE-ConnectionGUID: q4MzTlohT5mjYH1JtwQn4g==
-X-CSE-MsgGUID: N3m8umZKRDiZ4KG0BtPrvQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="233107772"
-Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 03:50:06 -0700
-From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: suraj.kandpal@intel.com, uma.shankar@intel.com, luciano.coelho@intel.com,
- imre.deak@intel.com, ville.syrjala@linux.intel.com
-Subject: [PATCH v2] drm/i915/dmc: Reduce wakelock hold time
-Date: Tue,  7 Apr 2026 16:21:02 +0530
-Message-ID: <20260407105102.3730973-1-dibin.moolakadan.subrahmanian@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C45310E3D8;
+	Tue,  7 Apr 2026 10:50:16 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CDB6B10E3D8;
+ Tue,  7 Apr 2026 10:50:15 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1509158082318628936=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/pin=3A_refactor_to?=
+ =?utf-8?q?_i915_core?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 07 Apr 2026 10:50:15 -0000
+Message-ID: <177555901582.437137.6472377381214725104@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <cover.1775556190.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1775556190.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,44 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-__intel_dmc_wl_release() schedules delayed work which releases the DMC
-wakelock after a fixed timeout of 50 ms. Until the delayed work runs,
-the wakelock remains held and prevents entry into deeper DC states.
+--===============1509158082318628936==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reduce DMC_WAKELOCK_HOLD_TIME from 50 ms to 5 ms.
-This should allow the system to enter deeper DC states sooner once MMIO
-activity settles down.
+== Series Details ==
 
-Changes in v2:
-- Drop detailed explanation from commit message
-  and keep it concise (Suraj Kandpal, Luca Coelho)
+Series: drm/i915/pin: refactor to i915 core
+URL   : https://patchwork.freedesktop.org/series/164434/
+State : success
 
-Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
----
+== Summary ==
 
-Notes:
-    RFC: https://patchwork.freedesktop.org/patch/711634/
+CI Bug Log - changes from xe-4855-5f8792621868737c8b62a87b66dbf7eca4d9f7e3_BAT -> xe-pw-164434v1_BAT
+====================================================
 
- drivers/gpu/drm/i915/display/intel_dmc_wl.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Summary
+-------
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-index 73a3101514f3..ddf1a1f1ebc3 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-@@ -46,7 +46,7 @@
-  * atomic variant of waiting MMIO.
-  */
- #define DMC_WAKELOCK_CTL_TIMEOUT_US 5000
--#define DMC_WAKELOCK_HOLD_TIME 50
-+#define DMC_WAKELOCK_HOLD_TIME 5
- 
- /*
-  * Possible non-negative values for the enable_dmc_wl param.
--- 
-2.43.0
+  **SUCCESS**
 
+  No regressions found.
+
+  
+
+Participating hosts (14 -> 14)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8849 -> IGT_8850
+  * Linux: xe-4855-5f8792621868737c8b62a87b66dbf7eca4d9f7e3 -> xe-pw-164434v1
+
+  IGT_8849: 8849
+  IGT_8850: 8850
+  xe-4855-5f8792621868737c8b62a87b66dbf7eca4d9f7e3: 5f8792621868737c8b62a87b66dbf7eca4d9f7e3
+  xe-pw-164434v1: 164434v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164434v1/index.html
+
+--===============1509158082318628936==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/pin: refactor to i915 core</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164434/">https://patchwork.freedesktop.org/series/164434/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164434v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164434v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4855-5f8792621868737c8b62a87b66dbf7eca4d9f7e3_BAT -&gt; xe-pw-164434v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8849 -&gt; IGT_8850</li>
+<li>Linux: xe-4855-5f8792621868737c8b62a87b66dbf7eca4d9f7e3 -&gt; xe-pw-164434v1</li>
+</ul>
+<p>IGT_8849: 8849<br />
+  IGT_8850: 8850<br />
+  xe-4855-5f8792621868737c8b62a87b66dbf7eca4d9f7e3: 5f8792621868737c8b62a87b66dbf7eca4d9f7e3<br />
+  xe-pw-164434v1: 164434v1</p>
+
+</body>
+</html>
+
+--===============1509158082318628936==--
