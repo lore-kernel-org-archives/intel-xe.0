@@ -4,56 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD857FF510A
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 15:39:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07CDCFF5109
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 15:40:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55D0D10E45A;
-	Tue,  7 Apr 2026 15:39:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1E8010E45C;
+	Tue,  7 Apr 2026 15:40:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H7pcD8hk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IIAVt4q4";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5F8E10E0C7;
- Tue,  7 Apr 2026 15:39:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13D2A10E45A;
+ Tue,  7 Apr 2026 15:40:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775576365; x=1807112365;
+ t=1775576407; x=1807112407;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=moUd4iXb2iqikd0DQ17ZYD4h6ve91Db+tpoInYDuAYo=;
- b=H7pcD8hkYYEaugGDDbDGh4UbzPQXHvT9ggBrepK1y9x+W95TZ274xcLY
- r5h7nnUjqQfPmzgL7EY/HMtRlM7rUsa86L3a2EuJ3PYxHXp6gpYtG+eKp
- 6YqokqzWsynO6ADqZt57aO57T1GPpvzd/NltVwWf04fI+KuPkTpFul41m
- A2i8aZ1WygjHC7riNKy4z/S9DCm5R/b9dorGJ/B1Vi3JHmhLU1Jurgq9u
- SBMtiSp3Odn7Qxj+moeJzeWWStN6IYHQrSu4OFgHj3PODmgISgx8mooRy
- M3jD7xeNPsRl+LwO3CT99N6MUi+XeS981pRQ+lwA7evz+qki+rF22AXOc A==;
-X-CSE-ConnectionGUID: BjkOLaUCTqaGPUxNZSg/yQ==
-X-CSE-MsgGUID: NMQwgLm4T2Wi7UMWiKC16Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="79132000"
-X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="79132000"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 08:39:25 -0700
-X-CSE-ConnectionGUID: 75Mmt5w8Tp2xywNbW9xjzw==
-X-CSE-MsgGUID: n1YpNpFKQCC27KEcKSxR9Q==
+ bh=ZyztVrSZVIDuGM6tCeW4pBfkg7uW5I8y8Jr1Gir/StA=;
+ b=IIAVt4q4NSgc/fFNZSO/JorSnsK1iMBg8OkfQnCePmm7wS0bd4XMtFB8
+ e8Gtn3ECI8N9bW5GuLVlCIL1ozMI7aWhhOZqBmLtqPIhqEd+IBEkgOiXB
+ opamdxJTE1kVCnnWZWbn+mFbx6h3KGAobhb4L8nbYbGTVm+nQI2WYF45s
+ 78dCz1riZIssLR60JFYUth2OITHPgf9I5L2y8VyVFne0nijP5HxK0OQaM
+ 2LYKXylIHB1WVTZDxneKCrqMgllOoZUik2C5uFvRF/TSJ6+BAW+Kz3uwq
+ STzMoACtwehDwsc7l8FfoV4fKBD0H+0BXacika78LnLRIVRDL0mD134Ia A==;
+X-CSE-ConnectionGUID: b41hQIfiTASVjYae7/hI6g==
+X-CSE-MsgGUID: xp1pyR4ATneVQzX2H5OT3w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="94124528"
+X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="94124528"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2026 08:40:06 -0700
+X-CSE-ConnectionGUID: hup2esy0SwaZbsQo1KdO4Q==
+X-CSE-MsgGUID: LdWHBNcgTeia286xjSiOPw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="232236252"
+X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="228466823"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.211])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 08:39:23 -0700
-Date: Tue, 7 Apr 2026 18:39:20 +0300
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2026 08:40:03 -0700
+Date: Tue, 7 Apr 2026 18:40:00 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Nemesa Garg <nemesa.garg@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/pfit: Prevent negative coordinates in center mode
-Message-ID: <adUlKBUubNU6vZjl@intel.com>
-References: <20260402061310.111073-1-nemesa.garg@intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, jouni.hogander@intel.com,
+ animesh.manna@intel.com
+Subject: Re: [PATCH 22/23] drm/i915/dp: Compute and include coasting vtotal
+ for AS SDP
+Message-ID: <adUMg7YSRZLy9_SF@intel.com>
+References: <20260402080425.548702-1-ankit.k.nautiyal@intel.com>
+ <20260402080425.548702-23-ankit.k.nautiyal@intel.com>
+ <ac5Omw5rDxuGO-Bp@intel.com>
+ <2ae5996e-1eec-4b33-9d4e-6a07aa805698@intel.com>
+ <e08840f2-3fdd-45b7-b31b-0c95ff98ab29@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260402061310.111073-1-nemesa.garg@intel.com>
+In-Reply-To: <e08840f2-3fdd-45b7-b31b-0c95ff98ab29@intel.com>
 X-Patchwork-Hint: comment
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
@@ -71,60 +78,148 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Apr 02, 2026 at 11:43:10AM +0530, Nemesa Garg wrote:
-> When the pipe_src width or height are greater than adjusted_mode hdisplay
-> and vdisplay, computed x and y offsets for center mode can be negative.
-> Writing negative values into the pch_fit registers result in a state error.
-> Add a check to clamp these values so that they are never negative.
+On Tue, Apr 07, 2026 at 04:26:28PM +0530, Nautiyal, Ankit K wrote:
 > 
-> v2: Compare in terms of pipe_src width and height.[Ville]
-> v3: Change width/height to pipe_src_w/h in logging. [Ville]
+> On 4/7/2026 4:24 PM, Nautiyal, Ankit K wrote:
+> >
+> > On 4/2/2026 4:40 PM, Ville Syrjälä wrote:
+> >> On Thu, Apr 02, 2026 at 01:34:22PM +0530, Ankit Nautiyal wrote:
+> >>> DP v2.1 allows the source to temporarily suspend Adaptive-Sync SDP
+> >>> transmission while Panel Replay is active when the sink supports
+> >>> asynchronous video timing.
+> >>>
+> >>> In such cases, the sink relies on the last transmitted AS SDP timing
+> >>> information to maintain the refresh rate. To support this behavior,
+> >>> compute and populate the coasting vtotal field in the AS SDP payload.
+> >>>
+> >>> Include coasting vtotal in AS SDP packing, unpacking, and comparison,
+> >>> and set it during late AS SDP configuration for PR with Aux-less ALPM
+> >>> when asynchronous video timing is supported.
+> >>>
+> >>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> >>> ---
+> >>>   drivers/gpu/drm/i915/display/intel_display.c |  3 ++-
+> >>>   drivers/gpu/drm/i915/display/intel_dp.c      | 19 +++++++++++++++++++
+> >>>   2 files changed, 21 insertions(+), 1 deletion(-)
+> >>>
+> >>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c 
+> >>> b/drivers/gpu/drm/i915/display/intel_display.c
+> >>> index a0e7ef2574b2..747dd3112d66 100644
+> >>> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> >>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> >>> @@ -4914,7 +4914,8 @@ intel_compare_dp_as_sdp(const struct 
+> >>> drm_dp_as_sdp *a,
+> >>>           a->duration_incr_ms == b->duration_incr_ms &&
+> >>>           a->duration_decr_ms == b->duration_decr_ms &&
+> >>>           a->target_rr_divider == b->target_rr_divider &&
+> >>> -        a->mode == b->mode;
+> >>> +        a->mode == b->mode &&
+> >>> +        a->coasting_vtotal == b->coasting_vtotal;
+> >>>   }
+> >>>     static bool
+> >>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c 
+> >>> b/drivers/gpu/drm/i915/display/intel_dp.c
+> >>> index 902c09e0780f..de6f88a5400d 100644
+> >>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> >>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> >>> @@ -5123,6 +5123,9 @@ static ssize_t intel_dp_as_sdp_pack(const 
+> >>> struct drm_dp_as_sdp *as_sdp,
+> >>>       if (as_sdp->target_rr_divider)
+> >>>           sdp->db[4] |= 0x20;
+> >>>   +    sdp->db[7] = as_sdp->coasting_vtotal & 0xFF;
+> >>> +    sdp->db[8] = (as_sdp->coasting_vtotal >> 8) & 0xFF;
+> >>> +
+> >>>       return length;
+> >>>   }
+> >>>   @@ -5306,6 +5309,7 @@ int intel_dp_as_sdp_unpack(struct 
+> >>> drm_dp_as_sdp *as_sdp,
+> >>>       as_sdp->vtotal = (sdp->db[2] << 8) | sdp->db[1];
+> >>>       as_sdp->target_rr = ((sdp->db[4] & 0x3) << 8) | sdp->db[3];
+> >>>       as_sdp->target_rr_divider = sdp->db[4] & 0x20 ? true : false;
+> >>> +    as_sdp->coasting_vtotal = (sdp->db[8] << 8) | sdp->db[7];
+> >>>         return 0;
+> >>>   }
+> >>> @@ -7383,6 +7387,21 @@ void 
+> >>> intel_dp_as_sdp_compute_config_late(struct intel_dp *intel_dp,
+> >>>       } else {
+> >>>           as_sdp->mode = DP_AS_SDP_AVT_FIXED_VTOTAL;
+> >>>       }
+> >>> +
+> >>> +    /*
+> >>> +     * For Panel Replay with Async Video Timing support, the source 
+> >>> can
+> >>> +     * disable sending the AS SDP during PR Active state. In that 
+> >>> case,
+> >>> +     * the sink needs the coasting vtotal value to maintain the 
+> >>> refresh
+> >>> +     * rate.
+> >>> +     *
+> >>> +     * #TODO:
+> >>> +     * If we ever advertise support for coasting at other refresh 
+> >>> targets,
+> >>> +     * this logic could be revisited. For now, use the minimum 
+> >>> refresh rate
+> >>> +     * as the only safe coasting value.
+> >>> +     */
+> >>> +    if (intel_alpm_is_alpm_aux_less(intel_dp, crtc_state) &&
+> >>> +        intel_psr_pr_async_video_timing_supported(intel_dp))
+> >>> +        as_sdp->coasting_vtotal = crtc_state->vrr.vmax;
+> >> Seems reasonable.
+> >>
+> >> Is this always under our control or could the hardware overwrite
+> >> this with the current vtotal at the time of PR entry? Assuming
+> >> we can enter PR before the vtotal goes back to vmax on its own
+> >> anyway.
+> >
+> >
+> > What I understand from Bspec in this regard is:
+> >
+> > Do not write Adaptive Sync SDP Transmission Disable in PR Active State 
+> > i.e. DB[2], instead use PR_ALPM_CTL[ AS SDP Transmission in Active 
+> > Disable ] bit.
+> >
+> > HW will sample the PR_ALPM_CTL bit only when PR is active, and it will 
+> > get reflected in AS SDP payload in an 'appropriate' time.
+> >
+> > HW will ignore this bit when PR is Inactive and always send AS SDP.
+> >
+> > So I think HW will not touch the coasting vtotal DBs.
+> >
+> > Driver should set appropriate coasting Vtotal and set the 
+> > PR_ALPM_CTL[AS SDP Transmission in Active disable] bit.
+> >
+> > During PR active Driver will set the DB[2] bit in payload which will 
+> > trigger the sink to use Coasting Vtotal.
 > 
-> Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
-
-Thanks. Applied to drm-intel-next.
-
-In the future please look into using the git format-patch -v<n>
-and git send-email --in-reply-to knobs, especially for single
-patches. Makes it easier to find the new versions of the patch.
-When reposting a whole series one should not use --in-reply-to
-however.
-
-> ---
->  drivers/gpu/drm/i915/display/intel_pfit.c | 11 +++++++++++
->  1 file changed, 11 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_pfit.c b/drivers/gpu/drm/i915/display/intel_pfit.c
-> index 6dda496190e0..2dec4ccf74ce 100644
-> --- a/drivers/gpu/drm/i915/display/intel_pfit.c
-> +++ b/drivers/gpu/drm/i915/display/intel_pfit.c
-> @@ -186,6 +186,7 @@ static int pch_panel_fitting(struct intel_crtc_state *crtc_state,
->  			     const struct drm_connector_state *conn_state)
->  {
->  	struct intel_display *display = to_intel_display(crtc_state);
-> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
->  	const struct drm_display_mode *adjusted_mode =
->  		&crtc_state->hw.adjusted_mode;
->  	int pipe_src_w = drm_rect_width(&crtc_state->pipe_src);
-> @@ -200,6 +201,16 @@ static int pch_panel_fitting(struct intel_crtc_state *crtc_state,
->  
->  	switch (conn_state->scaling_mode) {
->  	case DRM_MODE_SCALE_CENTER:
-> +		if (adjusted_mode->crtc_hdisplay < pipe_src_w ||
-> +		    adjusted_mode->crtc_vdisplay < pipe_src_h) {
-> +			drm_dbg_kms(display->drm,
-> +				    "[CRTC:%d:%s] pfit center mode source (%dx%d) exceeds display (%dx%d)\n",
-> +				    crtc->base.base.id, crtc->base.name,
-> +				    pipe_src_w, pipe_src_h,
-> +				    adjusted_mode->crtc_hdisplay,
-> +				    adjusted_mode->crtc_vdisplay);
-> +			return -EINVAL;
-> +		}
->  		width = pipe_src_w;
->  		height = pipe_src_h;
->  		x = (adjusted_mode->crtc_hdisplay - width + 1)/2;
-> -- 
-> 2.25.1
+> ..HW will set the DB[2] bit ... (facepalm)
+
+OK. Might be good to note in the commit message that this fully
+under driver control. I suppose it would be good to make that
+statement (one way or the other) for any additions we do to the
+AS SDP payload...
+
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
+> 
+> 
+> >
+> > (Unless we start writing : DPCD 00B1[0] ie. 
+> > PANEL_REPLAY_CONFIG2[PANEL_REPLAY_SINK_REFRESH_RATE_UNLOCK_GRANTED], 
+> > in which sink starts using its own logic).
+> >
+> >
+> > Regards,
+> >
+> > Ankit
+> >
+> >
+> >
+> >>
+> >>>   }
+> >>>     static
+> >>> -- 
+> >>> 2.45.2
 
 -- 
 Ville Syrjälä
