@@ -4,187 +4,152 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2904BFB5192
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 05:14:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA62FFB5191
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 05:31:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD74C10E222;
-	Tue,  7 Apr 2026 05:14:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A2DE10E222;
+	Tue,  7 Apr 2026 05:31:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lI7cGzcL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L+EJFGYc";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2600210E222;
- Tue,  7 Apr 2026 05:14:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A50710E222
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 Apr 2026 05:31:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775538874; x=1807074874;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=BQYulf5GtIbuxct6lVW8qNPjTSDptcpDshOyEiEr1Lg=;
- b=lI7cGzcL8KTn3lko/SMvPeNpr68XiKQi3zlU+zZIathRleQ+9vmtnfSx
- EDubN8zoe2eIQAqVBeCgq3vJ/ALXdrxiyOs/wpgxXc/MEmQrcPwpb3MWn
- 0tExoyROimofv6M3M1sInLa8MmBKjjuTB3leZOnAJjc7ISCmqj5fckTOI
- ixzrrW9ZUsDUCyQADLVbdSBLDBxdkqlqLQDIjjoY1cpNVzvEDLxwR2uGl
- jkcU98XyJGkzFxY5pCNEdZoQ1xsFcZ7Hp9S34Ubrloa/DTEZJfrVJpzvt
- 0zzAbg2g1bvfofLd0oNo4Q4//DRHZWFPxcmFc5Wdn3b5HQWtkJYeZLEzG w==;
-X-CSE-ConnectionGUID: 30VgKWGhQOqxk28IUbDcyg==
-X-CSE-MsgGUID: j+etyaFwRoW3F+f1C6EYeg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11751"; a="93883719"
-X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="93883719"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2026 22:14:33 -0700
-X-CSE-ConnectionGUID: 1WT9Qqq0T7qeDD2vn34LVA==
-X-CSE-MsgGUID: 2Bg4IszlT+mLDKNI5D5+yA==
+ t=1775539910; x=1807075910;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=lLfYxxEhYhXeufB+n8cbzLkwrUTZWCu6C7V3CvnErmc=;
+ b=L+EJFGYcVX2WOsdwIh1sDa6ZZecbMWVbqDSAd+uz/NMF7BvepqUi8vmL
+ BnEwN8eDeykmwAUdSQUBRpKMmA5kN5oTGMWnafTqImE4ujJ/OUXYo0m6p
+ chod8dwK1c35d7xPQlBN2eXnEFOC0/ZKsOSTp1HnGxoIsuznLzEO9B3vL
+ RJLIqjhgoGL+bwxZfv8Z2cg1O6GNGpdGywYg9DSwaNlKxZh/F06EiEew7
+ GeIKjMch1PyO9N+jWF+eaqQU8Lj3mcVdVUdl2rQNe5BUqv4d52Tk3yKJp
+ ESQNFJLjcOxvD+koeOVm/wzwMuff2YEJY8efMqwCWDTJCUJMgkGAdmZnn g==;
+X-CSE-ConnectionGUID: LFqPxaoBTfSUKtapVsaj6A==
+X-CSE-MsgGUID: d8C7/ia0TY+bwZOBUCkGIQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11751"; a="80352373"
+X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="80352373"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2026 22:31:50 -0700
+X-CSE-ConnectionGUID: KQ8qCmL1RCK5H0hhH1GSVQ==
+X-CSE-MsgGUID: E2w4dfJKR9au1iUnW5tnvA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="227971087"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2026 22:14:33 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="225320034"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2026 22:31:50 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 6 Apr 2026 22:14:31 -0700
+ 15.2.2562.37; Mon, 6 Apr 2026 22:31:49 -0700
 Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 6 Apr 2026 22:14:31 -0700
-Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.59) by
+ 15.2.2562.37 via Frontend Transport; Mon, 6 Apr 2026 22:31:49 -0700
+Received: from BN8PR05CU002.outbound.protection.outlook.com (52.101.57.31) by
  edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 6 Apr 2026 22:14:31 -0700
+ 15.2.2562.37; Mon, 6 Apr 2026 22:31:48 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kDn921XdBwdRH1dseYW9vRrAk89yBiDTrIdo11oOnl8i/ozXqEFxWFxl7wB67KXLUYCywrKLws9t7bfWODTVkXQQnb9k4d39D1md7KMS936y6rtlrObCFUr3PzmdJFXfcjgcWFmdYohu9TZEtjqZX0NB4eE4nX5NlFU7NwpwwrBXmBwXux/tDSGel5pPluO4Wxxr1nlxIEuGTLBsH0dirPeTeatGjjRCntWi6Opnb8q7kq8MI+9ZU1FIE1LMiNypdr/JACHQ8HYqCT75s7YNb/YuopLmmPiaXcG3GOc1HNXCdabakLDxpf6Q1gKSEaWlZvUk/bTuE5Q8+y3V4uImsA==
+ b=jBqL9a6qgOfRcPvexWYGoa5y/itn9cpjuzC+Bf+yNOlr2+WaShOfKvSGyFeqMGeVH1+4WB20UyAoK3rHKV14FOR/qqc+0s1A5SLE8zhYgJMTApsn6Ls+UnRYLlaXwc/uQVs8ErMfjrRlGmY5UzzITJCPJpJl/eVHf+xSye9wi9qmMRXbyUFoWE9v59XZ8w6VO5S3qwME7RFAFP4wPCog0wBPkQPT+utGFQI4Wbe4ITrI8BgMxaG9Pdjf5Fjbuj6/cuuUD9kcSMJHG6E29oN/Ka6Dpc73BfEZzcXNlrrzgAtFtZaIkRXqMEhdfIgLTAMeMDma7K6lUx/ZwMrNXqxdrg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=r1RW+tWce/wOGZbNz6J0eGGNzIUBGcePzLpp3Pir9R0=;
- b=YPVTN5+hL9GR7jUb2kEwxJKlcTfe9cs7zULzLwHJvaWKCM6fCtjVLRV578Qi0ZDXOHlN9rDJmnUtSOCP9IDDVMBaieXpbWUJKd3nsEY1T27O3+aqazy8pAZlYP9C2J5G1CU0HAgdFLn+icCJIKsDj27k/QHke+TdHl3BxxqAF7Xxgv2ZtP9YNbORG7jyWCEwsLCGMIZox+O5EeKynuv6YD5id5AZHlcD0e/PALYbFJT4bnof8sfWRWSZ0VdlxG3PgrvNJjvL1Xhx7I3p8plQ2sOMbYIqLCQhBRZkLlja37tzlQElW9cenpNccamV2znMMOXDo+3HFKIVtF40/BruiA==
+ bh=VNPG5X62YpH5IHuWRKYQCfMlOPoxZ4alTI6MZNV49cY=;
+ b=lKzv7ymgZ8KrS/o3Wv7gDKWToZrKBH3TC8wLBWouR81otnLceOMVipn5E03LXQNa5EubqDDnn1Va0in7F161e8mrnJUMh2jzMO6+fvD0Y/ipnNLd2yKutbucHtiB5qrXTluaqxJvlOyY3ES6V8fFDLjIiy1SlnCrXgWsWPbVoJHXCFx7/GDxcm4jAlCjZY0mUzih+8AIDZvA4/snmDHzKEVCvQ8jCI39MFM+EObOOawIbdvEuRAEZsOpMCrcH3YEY0u8/+6Ent/qAl4hvhkq8wKb0yI35U8Tz4pX6AFqVb86EIf/PUklA8/HhgM5wZiRBw05ZxWCHP0rwyg8ZOXl6w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
+Received: from SJ1PR11MB6204.namprd11.prod.outlook.com (2603:10b6:a03:459::19)
+ by DM4PR11MB6214.namprd11.prod.outlook.com (2603:10b6:8:ac::7) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9769.17; Tue, 7 Apr 2026 05:31:45 +0000
+Received: from SJ1PR11MB6204.namprd11.prod.outlook.com
+ ([fe80::7c84:683c:21bf:e437]) by SJ1PR11MB6204.namprd11.prod.outlook.com
+ ([fe80::7c84:683c:21bf:e437%6]) with mapi id 15.20.9769.016; Tue, 7 Apr 2026
+ 05:31:45 +0000
+From: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
+To: "Brost, Matthew" <matthew.brost@intel.com>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Auld, 
+ Matthew" <matthew.auld@intel.com>, "thomas.hellstrom@linux.intel.com"
+ <thomas.hellstrom@linux.intel.com>, "Ghimiray, Himal Prasad"
+ <himal.prasad.ghimiray@intel.com>
+Subject: RE: [PATCH] drm/xe/svm: Use xe_map_resource_to_region helper instead
+ of direct access
+Thread-Topic: [PATCH] drm/xe/svm: Use xe_map_resource_to_region helper instead
+ of direct access
+Thread-Index: AQHcxYhH/zxaYfVCukC1d4b7SziCb7XSe3cAgACYC/A=
+Date: Tue, 7 Apr 2026 05:31:45 +0000
+Message-ID: <SJ1PR11MB6204B93BC343B905C0AC29F3815AA@SJ1PR11MB6204.namprd11.prod.outlook.com>
+References: <20260406054249.2769479-2-tejas.upadhyay@intel.com>
+ <adQWUJSpnkGCfe+X@gsse-cloud1.jf.intel.com>
+In-Reply-To: <adQWUJSpnkGCfe+X@gsse-cloud1.jf.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
- by MW4PR11MB6911.namprd11.prod.outlook.com (2603:10b6:303:22d::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.17; Tue, 7 Apr
- 2026 05:14:28 +0000
-Received: from BL3PR11MB6508.namprd11.prod.outlook.com
- ([fe80::53c9:f6c2:ffa5:3cb5]) by BL3PR11MB6508.namprd11.prod.outlook.com
- ([fe80::53c9:f6c2:ffa5:3cb5%7]) with mapi id 15.20.9769.016; Tue, 7 Apr 2026
- 05:14:28 +0000
-Date: Mon, 6 Apr 2026 22:14:21 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Joel Fernandes <joelagnelf@nvidia.com>
-CC: <linux-kernel@vger.kernel.org>, Miguel Ojeda <ojeda@kernel.org>, "Boqun
- Feng" <boqun@kernel.org>, Gary Guo <gary@garyguo.net>, Bjorn Roy Baron
- <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>, "Andreas
- Hindborg" <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, "Trevor
- Gross" <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Dave Airlie
- <airlied@redhat.com>, Daniel Almeida <daniel.almeida@collabora.com>, "Koen
- Koning" <koen.koning@linux.intel.com>, <dri-devel@lists.freedesktop.org>,
- <rust-for-linux@vger.kernel.org>, Nikola Djukic <ndjukic@nvidia.com>,
- "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Jonathan Corbet
- <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>, Christian Koenig
- <christian.koenig@amd.com>, Jani Nikula <jani.nikula@linux.intel.com>,
- "Joonas Lahtinen" <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui
- <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>, Thomas Hellstrom
- <thomas.hellstrom@linux.intel.com>, Helge Deller <deller@gmx.de>, Alex Gaynor
- <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, John Hubbard
- <jhubbard@nvidia.com>, Alistair Popple <apopple@nvidia.com>, Timur Tabi
- <ttabi@nvidia.com>, Edwin Peer <epeer@nvidia.com>, Alexandre Courbot
- <acourbot@nvidia.com>, Andrea Righi <arighi@nvidia.com>, Andy Ritger
- <aritger@nvidia.com>, Zhi Wang <zhiw@nvidia.com>, Balbir Singh
- <balbirs@nvidia.com>, Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa
- <elle@weathered-steel.dev>, <alexeyi@nvidia.com>, Eliot Courtney
- <ecourtney@nvidia.com>, <joel@joelfernandes.org>,
- <linux-doc@vger.kernel.org>, <amd-gfx@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <linux-fbdev@vger.kernel.org>
-Subject: Re: [PATCH v10 07/21] gpu: nova-core: mm: Add TLB flush support
-Message-ID: <adSSrZp6a551xNTu@gsse-cloud1.jf.intel.com>
-References: <20260311004008.2208806-1-joelagnelf@nvidia.com>
- <20260331212048.2229260-1-joelagnelf@nvidia.com>
- <20260331212048.2229260-8-joelagnelf@nvidia.com>
- <ac4FpcD29XnbbsdD@gsse-cloud1.jf.intel.com>
- <0f5605c1-32e8-4a62-b852-b1db01e42817@nvidia.com>
- <39a476f4-ecac-4313-a59f-e00e72d2b426@nvidia.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <39a476f4-ecac-4313-a59f-e00e72d2b426@nvidia.com>
-X-ClientProxiedBy: BYAPR02CA0002.namprd02.prod.outlook.com
- (2603:10b6:a02:ee::15) To BL3PR11MB6508.namprd11.prod.outlook.com
- (2603:10b6:208:38f::5)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|MW4PR11MB6911:EE_
-X-MS-Office365-Filtering-Correlation-Id: 71b2228d-12b6-405e-5d70-08de94648ade
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|7416014|366016|1800799024|18002099003|22082099003|56012099003;
-X-Microsoft-Antispam-Message-Info: DvMUvnt6BSMB7qFeEXMicandRBF/yy/TcS6Qftrs5SVyvcsrv8CwFJeLnea9/hy4TyLpmr1FJ0UC4xMJddlLxoGpaGMIbts0W5BQ54EKZKcbivsXEle49Rf/KAqDwtW/8vAkm+F448ZMvDv0bwKOFN712osPLnG0GGTVrOA3q6HDbbqRjwCIAaQJcTTf5bsdJzilDa4+S08kFE1hZgfex2Jm6XLu4WHayUwWUwMhZ/CdCQ/ymAXP7CkSq3e3NACITHhbaxTx67mZ0NvmKAixCzc/6OtwpqF2jAWBlcdn4on6/mHpBk9nWXmm6aH05fyvwm+6MO1Vh7N14t8+tCZveQwdPaQClMz1xFuvIidUvAzvVOivl7uwzhY4gXlSmoZtW63LTUcEnBWqcsFjczTVojrUSpiEuQ5KTD2OpxClRESqSCwQr5FEjTPY5jv7hfShduzrHLqKFfeR2QDIcTgjGQraQkHqC4n+CaO6n6zS+Kc2NRetclNnmKaEfV1t58oeFIBOTd5eRpkMxGeAk6ru8YLfmJrNteTRqELeHm6w9Zb/8YLoPfmI8TD53d7KxdJPCh6UUDXMhHvT5vvSSBndUO0zMYsktNr7x5FDUoGAydFB9ZMYwmVMwEGN2NLYs/CgCBeYw7oq62qJ2MUbqtvStpRzuQ1FTAgHTvDJhd34xnKr3dXdRL5M64/qsgejFM6dn3gSy9wWvLe11ZZNlKTRDk0xxwPe9wmu4Bj5ICW+j50=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(7416014)(366016)(1800799024)(18002099003)(22082099003)(56012099003);
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SJ1PR11MB6204:EE_|DM4PR11MB6214:EE_
+x-ms-office365-filtering-correlation-id: 5fefde6f-3854-4628-f522-08de9466f547
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|376014|366016|1800799024|22082099003|18002099003|56012099003|38070700021;
+x-microsoft-antispam-message-info: QwbyWhVkVcJ+dPDhDsNffGwHwzkXD5kvE2h/rph+a5mwYfBrlPWYpDUAM0pHcIdJ5/GTIi7xHAmo7MAfRHe/n5HSootG0tg9c+wcs0goeDHmEHa+SaQ4tfsjt78ZmU0XmJgTpDsMfwlNzvGM0E4HQpYYm0tS5dUKZfZlB4NixWRwHKWXa+aAXvAOfCOgFpFVcoMzO6PH9RJZdjmimZHgfK4LtgEgJiyV/Z4S4of6rw020GjMWGntDv0W86nf7WY2gEsm912bp5Z7nOKdH1nnylIgM/SQ053tL7TLCEHL9VGjVhDSO5GxKFZjeUNoMelm3y+1rZbT45aRYQKPsVaoPN1ySYMRdzCaDck6bnI5WcK0CtbcoXmXGjrd7L8lr+JTzv1hYtyXVGtOLBpT+LL409MAhyzXJoa34kuuKDwlg0x/d3uA4RrP3yPR0n0Pczkot6T86/ZwtjXqS18GIc24VJdqsr+vwUQbQl/IhnU7+osntmk/PAQmOOeVjFG3Fcnj4iZFLzkfwNGfNd4wWBdan8Ux0s9h1tiT6vreFMK49eh0hKCfPQu43kRN/ZKQfI3HONtbvvRdwFavTwaWd86YMd6V909Wdh95vI+GYbbM++h2jPJIcTmNMJ5ORMZzvXQCx+4deDu/azawmu+6L0InIA6PQibJdQkpWu6nQsP/+eFKEKg/OoWYsJdMPu233s+QGJhYXtCpPQael2nkpEsIdc0YnuQdkHC2hoqkuGCVqMuhbEfgmHfPHG5YytTRpPrZgXYjAHDXx6RHPhLLdcNBr0clXcpqo9yum3AUusCznfE=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ1PR11MB6204.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(22082099003)(18002099003)(56012099003)(38070700021);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cjQzb0RRcG5zdFZhdkJ1R3RUTkxrV0JiK2Nqa1UraEtFQ2JLK1l4MTM3OXhT?=
- =?utf-8?B?WUhRM21SbzJ2QzNjSmo2SmlQakdmSEFBbW13Mm10akRtYnFqa1FVVHBNdUYz?=
- =?utf-8?B?Wlk5dElPemFOWXdhckxMUW1JNGkvRytFRGxnQXJmNGRVMnBJTlJnaVJ1dEMx?=
- =?utf-8?B?TDYzTFRqVU5IOXROSjBGcHZPQ1hKU3ZCdlBKLzB4TzJremY5UlF2NDFjK1Y2?=
- =?utf-8?B?akNRRFNiYngvQUVnVTF3VXlQZ2VHNEQ2WlJkcDFPbjVXclZEZk5FMlhyRWRU?=
- =?utf-8?B?ejVvNHpaNlM0YjJVdDJTaHNLWmxvdXRXTEFXb1lmcGRqRHVwV2VuYklJU0pu?=
- =?utf-8?B?blNPUytZRTE1T0xkdGhqOW5FMjVJdHhXeW5MR1RCRytYTFEwcTg3UjBVMzhv?=
- =?utf-8?B?WWZMb3Zldi80TEIvSVFvaVpkSURzOEdmVDMvUUJkVnM1Mmlzemw3SDlYYk8r?=
- =?utf-8?B?ZDY5Z2xYZ3NjNnJpcVJBOWg0bEliU0JiOWsySGVCdndKZWFISnUzTGQ5SVVj?=
- =?utf-8?B?VmVSc0d1RWtDcndQTWdnZEdqUUZQT2RPc2dEc0VwNDZ4ZUxvVmxWeXowaWRL?=
- =?utf-8?B?Z0t0bm1pOWVwcEdQK2U1d2dFdjJLMmIwMDdQU1BKVTAzS21Mdk4zdVFZUzFL?=
- =?utf-8?B?bVpHTXR0ekQ2eUpDZWk0WUFrRC9IbnpXUDVNOS91UVFUeVZFQ1RFUXVpeDkr?=
- =?utf-8?B?cmUxYkwzbEExM0N1V2cxRkVBMzBoOWh5QWtZZ01aczJNMUNnMGZRbUZydnB2?=
- =?utf-8?B?ckpid29uMGpPUzRVckVRY0Y1dEJkdzFqVnhxMWhmUW9sMUZnVklHTXloM1Yy?=
- =?utf-8?B?aWYwSEZLN0NJeXZ0L3JYVmJIc0JZTEQvOC9rUHNPaTYya2l4anl5UWkvcis1?=
- =?utf-8?B?d21mK2IwK244VmxCTXhKbUFGSDlqVWMzdEpOQWlhMW1vNDlsdis3cTRUSE5C?=
- =?utf-8?B?ejQwaDgzN2I4MUFSVlVMZXc0Q3NRc21kTkdLS2pPY2FWQkthWHRjMDlTdUpR?=
- =?utf-8?B?d3duNEZqNHZKTXNsU2tjU1ZkYm5zOUM4b3dydEVGRkNXcFdpQndvN0FtZFpN?=
- =?utf-8?B?RE5mb2RHNUVxU0hlY212L05RbzNEY2lSU3czbGVxZGdZdHRLY2pST3ovSDcy?=
- =?utf-8?B?cDVvQUkrZVQ2aFZmMURTNjMwckIrMUxIR0hyaVZIcmxCS21sOWlscVVjSm84?=
- =?utf-8?B?REhDZng5SUFYWXl6cEQyWmFYSVI1L0k3NnRFblRkcXZFK1p0UGc1UkhuWUJz?=
- =?utf-8?B?YUQ1SzNHWnkxR2hSUGgweXV6TVhNTi9DNGtsYU4ybUx0QlF1ZHo3VStUUnE2?=
- =?utf-8?B?cERJZGFFQ29UVTF4NjZEZ3NxcThKUlNSS3lpZVJ1ZUZRNkNxZlJoUCtHQ0hn?=
- =?utf-8?B?NUExdDJkSDJvNjNUb0VPTEtLWWVNbUhuZHdZU2JaeFRURGZOeWxYQTVVdUth?=
- =?utf-8?B?MmxSeFJMcnhaYmFlamtPUWViRG55OHlYeFRvR0FDY0dYTHJuSkhnU1k0U2Mx?=
- =?utf-8?B?cXV4alNHa2hjYm5ZOW5ITndOSW5jM0IraUc1dmhrRWhOWnBselFISjNJZlQx?=
- =?utf-8?B?d1llZm9IRXBYNDZEd0NKd1BUdFFyMG5mWmNDSkQ3eld6dm8wQzRLNWJ3TzYy?=
- =?utf-8?B?U0JQa2JXY25oZWxOeFpodURKODN0ZklvNTFGa1c1U0N4NjluZU5URVZhY2dE?=
- =?utf-8?B?eTlPVWNoSks1QU4vMGZnRG1EUUx3Qi9PeEVxU3lsdXAyNndvRXdZTGhzRHFV?=
- =?utf-8?B?eExFZFRwdlNXbitFd0dJbWdPeFdjM2wrRXR2NGpiTk0xYnIyd2FyZXNhWmlq?=
- =?utf-8?B?V3VUZU9LOHVRekZtSmZQVCtZMzh3TXV3NUJwd0VxN3U5b3VJUVFTdW1LYXpx?=
- =?utf-8?B?dnQxQlZPMEpleHFLUzJXZUdCWEw4d3NUK3ZUUEk3Mi9XVVk2eG1GOG5USnQ4?=
- =?utf-8?B?Z0pyY3A2QnM1YVZ3UWJjeEIwOW8yTUp0c2M3ODhvM3gvZlQ4WHJSZ29jUnUv?=
- =?utf-8?B?aXJGbGt0UWdvVE8xSTI3OFdFTUtxZXQ3MUdKZEVNWHBUaVhEZWwzSEc0Z2pI?=
- =?utf-8?B?TmVpV0paSmU2ZWdabVJzRUtjWk5BeEJUT01NTjByeVlwZGVMaXBkWkdvZWhG?=
- =?utf-8?B?Q2FoYnlwMHd2QzlRR2hhcEtIWW9CQktGbk1Jc3FwTEF4Q0ppVDdpdVNpZnBM?=
- =?utf-8?B?MXltRFJxejlKWFhleDQwVGtCZkNWcVJZN0VybHBsQnNBNWtVaWU1cndBYXdR?=
- =?utf-8?B?Q0ExTmhNWHJPeGFKN3BJR1NBTzkyMmxOSDI2V3lGQzY4ZWVqWFNIMUx3OFRH?=
- =?utf-8?B?UGlYZE85cEZ6S3ltOE1jMDF2dGlzTmcwM2FVMFp2Unpad0w4Mml0NG54Z25z?=
- =?utf-8?Q?i9/fWs2cB2Y+5RuU=3D?=
-X-Exchange-RoutingPolicyChecked: FByy2fYMlHjg0GUULLaRqklBy4Aqcbg3mJZpTQ8UAgc1Xev9ZnbJBpFjWZ0cMbvN0VD30OF/MSMyeeV9fla9iXN/0sqK4gBN3tpQ7MRixRnpvyBLA9UUCqLNePd2BWq+b15hgJExR1umd5Qa7wrpRhPob2g+L7Z1nT76kxoTs0KayqyuWtLXBSpP3lzr24Z/e3OmMVlLDep83uIdQR4XQ+LUrjU25oli7Z0G55sATovz4MuFi1jeoImh1ehBI3f1/3kIIq+t47/zxPa3s3sQy1f1a+B1L3foUj4wTRcYOxGMUGrfrCyNVpFY0RSkx0JQ+HInVLL91FwpVmoaOVx44Q==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 71b2228d-12b6-405e-5d70-08de94648ade
-X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?6SuZQR2tIjFgrsVFULveMaOlx3cgtzsNPXbc/tH6lJ4zcbp/3KWFEglxGwhV?=
+ =?us-ascii?Q?vbDA0V5ZCgisl4gojyRzCLXu0gN4+EaWPErrPx5YkBAgjVzFRlR7iLXMo/xC?=
+ =?us-ascii?Q?ah1SM+w6H9bmram1SW6K89/bNOGWp+FpC2v/O4fNZIz7A8F8MpSNsfNv3Tmr?=
+ =?us-ascii?Q?cHFkqzHIvvnzOWelLty0GwxFoMDwJv0hTTNfylGHaAZDEo/DJBliue5B9ugi?=
+ =?us-ascii?Q?WUmtRI+rOW0rSLB9tpwY8gTvrBl03O9HoI7lYMOAM1O04Zj8miQnawoAKiBF?=
+ =?us-ascii?Q?SH6z5iosLOJml/IobjyXC9Rzzaq/1ICCBNYIrGVWgV7xveDHqum79KZN4dze?=
+ =?us-ascii?Q?8igtbh+NFLZFZWYC61+Nrb+zmDEp5HpKKC24EE3A/rUZxLpIklOWEnlUDooq?=
+ =?us-ascii?Q?cvZpsrPjxyoLjuxOIkO1GisJXe91OZxTfMDisXPxj7VXUltFoLeka61Q1KSO?=
+ =?us-ascii?Q?dMttulbyCtnM9Gl1toV+Q7Os8yUBWhZ5WNycKW0nUMMXGeJrOmdn/H1+c8V9?=
+ =?us-ascii?Q?ueJEY7jHeJyIQutPMfGqEVjd/QQ8S4pNoZk+kWtQ0nFEKpzVj1V50iM/YcHf?=
+ =?us-ascii?Q?DqJHGomTG/n9cAIkwykLfmsM07FHJWrTG8MNChOOLqZw0y8hTfPQpvEeau/V?=
+ =?us-ascii?Q?yxgFuszctItiJMhdcxnsufC+UD0VlP4cfR4w9lIeNde4ga3IBOGXggvdcOC0?=
+ =?us-ascii?Q?T1JgEi9+5pZ0uQl7EFcPbD5QIDVG5Vwgjgb78FnP0XM496w+HfI/4stQYytG?=
+ =?us-ascii?Q?oOTd2MzffjCEMiSRoD3vpGVrbtGvOAzMGYw98+W/Z+zXU7qHFaHQ38/TRHlJ?=
+ =?us-ascii?Q?RGt40UgqjBXodrxf52YFgOZeBoowXcQz5H9qfgGZG8GAl7mtY7djVDIXf5ug?=
+ =?us-ascii?Q?u7CQuzCoa4cRBF/2ScH1TvL6hf7nOpg5MUX9/WGZzjDKXSIQcE6nlqcqjFxE?=
+ =?us-ascii?Q?Hw4k8HktruGm2UXQjUINk8zm9Ks3FmSPiigIwqDkHECnrIUu4eb9B5hThoC4?=
+ =?us-ascii?Q?tV2BhKRmbyS7dnDyB+AecJ5fLYlSUwPkUpvyTJFDTrtq9rtoIKNvAJ1hxxyK?=
+ =?us-ascii?Q?c4t2S8VN/z5ItebYk4AFmrQ/y7ow/lN8FoxfmnMdJw2qUYUN1xDquNGR47s4?=
+ =?us-ascii?Q?Kae2sdeVbwdyOYZo3pWf+T4IL2TjvMRfWM5sk8hsi3h6YRlOISYYHZ/YxkSZ?=
+ =?us-ascii?Q?rLqzg/gota+zS+pv1b72ViCYblsgJYWOWwl3jEycHj2TEk7+yVnuFWoqhlvR?=
+ =?us-ascii?Q?B+eLsMQK5pxVyQT0qIXmjb9+lrkD6yDZDKMUnNb/e1zDh2mwhGJHj9SJ2WNU?=
+ =?us-ascii?Q?Ah9/LPkPKPFYBVVyo05aX3wdaHdqQcgtPcFak9S3rA6QTWXxaC93hM8YPETL?=
+ =?us-ascii?Q?zqTMkreP7F6Qi/WRvrQ5dfUNpyhmerHPUq9zJk+CqaJFQTlEjWsL/KRm5aH1?=
+ =?us-ascii?Q?a3vGggQBMKlO8Wv62npC/Krg+NET65xodp1aTv0/19mRL0Oy0n+h0WvBqejW?=
+ =?us-ascii?Q?4CBDi/na6B589qEC2/3p9mu8hTnrQ4yIXa9bm0sUFxK7XEYWmMDrtXEC4rMZ?=
+ =?us-ascii?Q?nGGT/8SYPRH1oi3TgHu9W0QQp6CUspBQa4IfWTv6aUN3h3R+IbO+7+vnS3vt?=
+ =?us-ascii?Q?azJOXVQHDZpKEqA9XvLGBSNyFJ+JQQrRWNSe4oHGheygOJ6+zr8DQYicEBO1?=
+ =?us-ascii?Q?bbv0AJews/DLCNHyGTtLlUeFXfNe9a1PGQINTFT58LU5R8ulQQVc5A5JIsNS?=
+ =?us-ascii?Q?3b7yAmZwpQ=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-Exchange-RoutingPolicyChecked: EbSpN5vO78iNdsubAlKhJE1LsqpyF/kjyy+/m8kc7O0Gv+YTdBf4r8N5Stlh3IjFcolUsYJbjHQtG6hC3U7X0E95868ovGsuz7ylZMhv8JVyZbq8U5Q4K0MZxBsmhkJMrb0z2G/I11myfFMYkshrnp4ZlvzV+GKCfeaf2FZFYMWEnBlemU74m9TmxhS34i0Nue4QFWPnNR6yIWzdC66/hlk+Z+PE6UYYgAJsyIXoo9UG48LCfoSwjWgIZwmccr+JVWC5Z5RncQNWbFWgbvJmggIuOd2jlKaT0pkWg2neZ7gBYIyLqIpqw6O7hLLJQZ//wF5g5w4/5a4sQpOPLoOSDg==
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Apr 2026 05:14:28.2608 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: LVCGib3JF2YeW9B9kaCnETJEFWKdN2GkiRUKEusIUgtl9wK81LNjJ6LLYbwGExDbSmbg4NdPdg2KWmmtFFz1nA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6911
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6204.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5fefde6f-3854-4628-f522-08de9466f547
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Apr 2026 05:31:45.5291 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: TmmnwLQn9ea/r0aG35RyddeAb4tXfTA/T+jZ54hJ3ILgh177U577tfHUmiU+XKuQX2ch5laJ3yHMIGFkCQ0SUaJWZeo/2nGLlNYEPff430k=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6214
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -200,143 +165,225 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Apr 06, 2026 at 06:10:07PM -0400, Joel Fernandes wrote:
-> 
-> 
-> On 4/6/2026 5:24 PM, Joel Fernandes wrote:
-> > 
-> > 
-> > On 4/2/2026 1:59 AM, Matthew Brost wrote:
-> >> On Tue, Mar 31, 2026 at 05:20:34PM -0400, Joel Fernandes wrote:
-> >>> Add TLB (Translation Lookaside Buffer) flush support for GPU MMU.
-> >>>
-> >>> After modifying page table entries, the GPU's TLB must be invalidated
-> >>> to ensure the new mappings take effect. The Tlb struct provides flush
-> >>> functionality through BAR0 registers.
-> >>>
-> >>> The flush operation writes the page directory base address and triggers
-> >>> an invalidation, polling for completion with a 2 second timeout matching
-> >>> the Nouveau driver.
-> >>>
-> >>> Cc: Nikola Djukic <ndjukic@nvidia.com>
-> >>> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
-> >>> ---
-> >>>  drivers/gpu/nova-core/mm.rs     |  1 +
-> >>>  drivers/gpu/nova-core/mm/tlb.rs | 95 +++++++++++++++++++++++++++++++++
-> >>>  drivers/gpu/nova-core/regs.rs   | 42 +++++++++++++++
-> >>>  3 files changed, 138 insertions(+)
-> >>>  create mode 100644 drivers/gpu/nova-core/mm/tlb.rs
-> >>>
-> >>> diff --git a/drivers/gpu/nova-core/mm.rs b/drivers/gpu/nova-core/mm.rs
-> >>> index 8f3089a5fa88..cfe9cbe11d57 100644
-> >>> --- a/drivers/gpu/nova-core/mm.rs
-> >>> +++ b/drivers/gpu/nova-core/mm.rs
-> >>> @@ -5,6 +5,7 @@
-> >>>  #![expect(dead_code)]
-> >>>  
-> >>>  pub(crate) mod pramin;
-> >>> +pub(crate) mod tlb;
-> >>>  
-> >>>  use kernel::sizes::SZ_4K;
-> >>>  
-> >>> diff --git a/drivers/gpu/nova-core/mm/tlb.rs b/drivers/gpu/nova-core/mm/tlb.rs
-> >>> new file mode 100644
-> >>> index 000000000000..cd3cbcf4c739
-> >>> --- /dev/null
-> >>> +++ b/drivers/gpu/nova-core/mm/tlb.rs
-> >>> @@ -0,0 +1,95 @@
-> >>> +// SPDX-License-Identifier: GPL-2.0
-> >>> +
-> >>> +//! TLB (Translation Lookaside Buffer) flush support for GPU MMU.
-> >>> +//!
-> >>> +//! After modifying page table entries, the GPU's TLB must be flushed to
-> >>> +//! ensure the new mappings take effect. This module provides TLB flush
-> >>> +//! functionality for virtual memory managers.
-> >>> +//!
-> >>> +//! # Example
-> >>> +//!
-> >>> +//! ```ignore
-> >>> +//! use crate::mm::tlb::Tlb;
-> >>> +//!
-> >>> +//! fn page_table_update(tlb: &Tlb, pdb_addr: VramAddress) -> Result<()> {
-> >>> +//!     // ... modify page tables ...
-> >>> +//!
-> >>> +//!     // Flush TLB to make changes visible (polls for completion).
-> >>> +//!     tlb.flush(pdb_addr)?;
-> >>> +//!
-> >>> +//!     Ok(())
-> >>> +//! }
-> >>> +//! ```
-> >>> +
-> >>> +use kernel::{
-> >>> +    devres::Devres,
-> >>> +    io::poll::read_poll_timeout,
-> >>> +    io::Io,
-> >>> +    new_mutex,
-> >>> +    prelude::*,
-> >>> +    sync::{
-> >>> +        Arc,
-> >>> +        Mutex, //
-> >>> +    },
-> >>> +    time::Delta, //
-> >>> +};
-> >>> +
-> >>> +use crate::{
-> >>> +    driver::Bar0,
-> >>> +    mm::VramAddress,
-> >>> +    regs, //
-> >>> +};
-> >>> +
-> >>> +/// TLB manager for GPU translation buffer operations.
-> >>> +#[pin_data]
-> >>> +pub(crate) struct Tlb {
-> >>> +    bar: Arc<Devres<Bar0>>,
-> >>> +    /// TLB flush serialization lock: This lock is acquired during the
-> >>> +    /// DMA fence signalling critical path. It must NEVER be held across any
-> >>> +    /// reclaimable CPU memory allocations because the memory reclaim path can
-> >>> +    /// call `dma_fence_wait()`, which would deadlock with this lock held.
-> >>> +    #[pin]
-> >>> +    lock: Mutex<()>,
-> >>> +}
-> >>> +
-> >>> +impl Tlb {
-> >>> +    /// Create a new TLB manager.
-> >>> +    pub(super) fn new(bar: Arc<Devres<Bar0>>) -> impl PinInit<Self> {
-> >>> +        pin_init!(Self {
-> >>> +            bar,
-> >>> +            lock <- new_mutex!((), "tlb_flush"),
-> >>> +        })
-> >>> +    }
-> >>> +
-> >>> +    /// Flush the GPU TLB for a specific page directory base.
-> >>> +    ///
-> >>> +    /// This invalidates all TLB entries associated with the given PDB address.
-> >>> +    /// Must be called after modifying page table entries to ensure the GPU sees
-> >>> +    /// the updated mappings.
-> >>> +    pub(crate) fn flush(&self, pdb_addr: VramAddress) -> Result {
-> >>
-> >> This landed on my list randomly, so I took a look.
-> >>
-> >> Wouldn’t you want to virtualize the invalidation based on your device?
-> >> For example, what if you need to register interface changes on future hardware?
-> > 
-> > Good point, for future hardware it indeed makes sense. I will do that.
-> Actually, at least in the future as far as I can see, the register definitions
-> are the same for TLB invalidation are the same, so we are good and I will not be
-> making any change in this regard.
-> 
-> But, thanks for raising the point and forcing me to double check!
-> 
 
-Not my driver, but this looks like a classic “works now” change that may
-not hold up later, which is why I replied to something that isn’t really
-my business.
 
-Again, not my area, but I’ve been through this before. Generally,
-getting the abstractions right up front pays off.
+> -----Original Message-----
+> From: Brost, Matthew <matthew.brost@intel.com>
+> Sent: 07 April 2026 01:54
+> To: Upadhyay, Tejas <tejas.upadhyay@intel.com>
+> Cc: intel-xe@lists.freedesktop.org; Auld, Matthew
+> <matthew.auld@intel.com>; thomas.hellstrom@linux.intel.com; Ghimiray,
+> Himal Prasad <himal.prasad.ghimiray@intel.com>
+> Subject: Re: [PATCH] drm/xe/svm: Use xe_map_resource_to_region helper
+> instead of direct access
+>=20
+> On Mon, Apr 06, 2026 at 11:12:50AM +0530, Tejas Upadhyay wrote:
+> > Renaming:
+> > The helper function res_to_mem_region is now
+> xe_map_resource_to_region.
+> >
+> > Abstraction:
+> > The patch removes instances where block->private was accessed directly
+> > to obtain VRAM region data.
+> >
+>=20
+> I'd include the 'why'... e.g.,
+>=20
+> The patch removes instances where block->private was accessed directly to
+> obtain VRAM region data allowing VRAM manager to own block->private for
+> future use cases.
 
-Matt
+Yes looks good, will add.
 
-> --
-> Joel Fernandes
-> 
+>=20
+> > Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/xe_bo.c   | 21 ++++-----------------
+> >  drivers/gpu/drm/xe/xe_svm.c  |  8 +-------
+> > drivers/gpu/drm/xe/xe_vram.c | 22 ++++++++++++++++++++++
+> > drivers/gpu/drm/xe/xe_vram.h |  2 ++
+> >  4 files changed, 29 insertions(+), 24 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> > index a7c2dc7f224c..daac53168dba 100644
+> > --- a/drivers/gpu/drm/xe/xe_bo.c
+> > +++ b/drivers/gpu/drm/xe/xe_bo.c
+> > @@ -173,19 +173,6 @@ mem_type_to_migrate(struct xe_device *xe, u32
+> mem_type)
+> >  	return tile->migrate;
+> >  }
+> >
+> > -static struct xe_vram_region *res_to_mem_region(struct ttm_resource
+> > *res) -{
+> > -	struct xe_device *xe =3D ttm_to_xe_device(res->bo->bdev);
+> > -	struct ttm_resource_manager *mgr;
+> > -	struct xe_ttm_vram_mgr *vram_mgr;
+> > -
+> > -	xe_assert(xe, resource_is_vram(res));
+> > -	mgr =3D ttm_manager_type(&xe->ttm, res->mem_type);
+> > -	vram_mgr =3D to_xe_ttm_vram_mgr(mgr);
+> > -
+> > -	return container_of(vram_mgr, struct xe_vram_region, ttm);
+> > -}
+> > -
+> >  static void try_add_system(struct xe_device *xe, struct xe_bo *bo,
+> >  			   u32 bo_flags, u32 *c)
+> >  {
+> > @@ -635,7 +622,7 @@ static int xe_ttm_io_mem_reserve(struct
+> ttm_device *bdev,
+> >  		return 0;
+> >  	case XE_PL_VRAM0:
+> >  	case XE_PL_VRAM1: {
+> > -		struct xe_vram_region *vram =3D res_to_mem_region(mem);
+> > +		struct xe_vram_region *vram =3D
+> xe_map_resource_to_region(mem);
+> >
+> >  		if (!xe_ttm_resource_visible(mem))
+> >  			return -EINVAL;
+> > @@ -1642,7 +1629,7 @@ static unsigned long xe_ttm_io_mem_pfn(struct
+> ttm_buffer_object *ttm_bo,
+> >  	if (ttm_bo->resource->mem_type =3D=3D XE_PL_STOLEN)
+> >  		return xe_ttm_stolen_io_offset(bo, page_offset <<
+> PAGE_SHIFT) >>
+> > PAGE_SHIFT;
+> >
+> > -	vram =3D res_to_mem_region(ttm_bo->resource);
+> > +	vram =3D xe_map_resource_to_region(ttm_bo->resource);
+> >  	xe_res_first(ttm_bo->resource, (u64)page_offset << PAGE_SHIFT, 0,
+> &cursor);
+> >  	return (vram->io_start + cursor.start) >> PAGE_SHIFT;  } @@ -1782,7
+> > +1769,7 @@ static int xe_ttm_access_memory(struct ttm_buffer_object
+> *ttm_bo,
+> >  		goto out;
+> >  	}
+> >
+> > -	vram =3D res_to_mem_region(ttm_bo->resource);
+> > +	vram =3D xe_map_resource_to_region(ttm_bo->resource);
+> >  	xe_res_first(ttm_bo->resource, offset & PAGE_MASK,
+> >  		     xe_bo_size(bo) - (offset & PAGE_MASK), &cursor);
+> >
+> > @@ -2923,7 +2910,7 @@ uint64_t vram_region_gpu_offset(struct
+> ttm_resource *res)
+> >  	case XE_PL_SYSTEM:
+> >  		return 0;
+> >  	default:
+> > -		return res_to_mem_region(res)->dpa_base;
+> > +		return xe_map_resource_to_region(res)->dpa_base;
+> >  	}
+> >  	return 0;
+> >  }
+> > diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+> > index 5933b2b6392b..71fbc75bd0da 100644
+> > --- a/drivers/gpu/drm/xe/xe_svm.c
+> > +++ b/drivers/gpu/drm/xe/xe_svm.c
+> > @@ -790,7 +790,7 @@ static int xe_svm_populate_devmem_pfn(struct
+> drm_pagemap_devmem *devmem_allocati
+> >  	int j =3D 0;
+> >
+> >  	list_for_each_entry(block, blocks, link) {
+> > -		struct xe_vram_region *vr =3D block->private;
+> > +		struct xe_vram_region *vr =3D xe_map_resource_to_region(res);
+> >  		struct gpu_buddy *buddy =3D vram_to_buddy(vr);
+>=20
+> You can move 'vr' and 'buddy' to function level variables.
+
+Yes, I will fix this.
+
+>=20
+> With the nits fixed:
+>=20
+> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+Thanks.
+Tejas
+
+>=20
+> >  		u64 block_pfn =3D block_offset_to_pfn(devmem_allocation-
+> >dpagemap,
+> >
+> gpu_buddy_block_offset(block)); @@ -1061,9 +1061,7 @@
+> > static int xe_drm_pagemap_populate_mm(struct drm_pagemap
+> *dpagemap,
+> >  	struct dma_fence *pre_migrate_fence =3D NULL;
+> >  	struct xe_device *xe =3D vr->xe;
+> >  	struct device *dev =3D xe->drm.dev;
+> > -	struct gpu_buddy_block *block;
+> >  	struct xe_validation_ctx vctx;
+> > -	struct list_head *blocks;
+> >  	struct drm_exec exec;
+> >  	struct xe_bo *bo;
+> >  	int err =3D 0, idx;
+> > @@ -1100,10 +1098,6 @@ static int
+> xe_drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
+> >  					&dpagemap_devmem_ops,
+> dpagemap, end - start,
+> >  					pre_migrate_fence);
+> >
+> > -		blocks =3D &to_xe_ttm_vram_mgr_resource(bo->ttm.resource)-
+> >blocks;
+> > -		list_for_each_entry(block, blocks, link)
+> > -			block->private =3D vr;
+> > -
+> >  		xe_bo_get(bo);
+> >
+> >  		/* Ensure the device has a pm ref while there are device pages
+> > active. */ diff --git a/drivers/gpu/drm/xe/xe_vram.c
+> > b/drivers/gpu/drm/xe/xe_vram.c index 0538dcb8b18c..23eb7edbdd57
+> 100644
+> > --- a/drivers/gpu/drm/xe/xe_vram.c
+> > +++ b/drivers/gpu/drm/xe/xe_vram.c
+> > @@ -13,6 +13,7 @@
+> >  #include "regs/xe_gt_regs.h"
+> >  #include "regs/xe_regs.h"
+> >  #include "xe_assert.h"
+> > +#include "xe_bo.h"
+> >  #include "xe_device.h"
+> >  #include "xe_force_wake.h"
+> >  #include "xe_gt_mcr.h"
+> > @@ -249,6 +250,27 @@ static int vram_region_init(struct xe_device *xe,
+> struct xe_vram_region *vram,
+> >  	return 0;
+> >  }
+> >
+> > +/**
+> > + * xe_map_resource_to_region - Map ttm resource to vram memory region
+> > + * @res: The ttm resource
+> > + *
+> > + * Get vram memory region using vram memory manager managing this
+> > +resource
+> > + *
+> > + * Returns: pointer to xe_vram_region  */ struct xe_vram_region
+> > +*xe_map_resource_to_region(struct ttm_resource *res) {
+> > +	struct xe_device *xe =3D ttm_to_xe_device(res->bo->bdev);
+> > +	struct ttm_resource_manager *mgr;
+> > +	struct xe_ttm_vram_mgr *vram_mgr;
+> > +
+> > +	xe_assert(xe, mem_type_is_vram(res->mem_type));
+> > +	mgr =3D ttm_manager_type(&xe->ttm, res->mem_type);
+> > +	vram_mgr =3D to_xe_ttm_vram_mgr(mgr);
+> > +
+> > +	return container_of(vram_mgr, struct xe_vram_region, ttm); }
+> > +
+> >  /**
+> >   * xe_vram_probe() - Probe VRAM configuration
+> >   * @xe: the &xe_device
+> > diff --git a/drivers/gpu/drm/xe/xe_vram.h
+> > b/drivers/gpu/drm/xe/xe_vram.h index 72860f714fc6..dd1c8bf17922
+> 100644
+> > --- a/drivers/gpu/drm/xe/xe_vram.h
+> > +++ b/drivers/gpu/drm/xe/xe_vram.h
+> > @@ -10,7 +10,9 @@
+> >
+> >  struct xe_device;
+> >  struct xe_vram_region;
+> > +struct ttm_resource;
+> >
+> > +struct xe_vram_region *xe_map_resource_to_region(struct ttm_resource
+> > +*res);
+> >  int xe_vram_probe(struct xe_device *xe);
+> >
+> >  struct xe_vram_region *xe_vram_region_alloc(struct xe_device *xe, u8
+> > id, u32 placement);
+> > --
+> > 2.52.0
+> >
