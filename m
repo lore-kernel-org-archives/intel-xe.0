@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6192DFF5134
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 19:39:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 876CAFF5134
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 19:41:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 246C110E4A7;
-	Tue,  7 Apr 2026 19:39:12 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dDyGwU8j";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E818D10E4A7;
- Tue,  7 Apr 2026 19:39:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775590752; x=1807126752;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=z7A/ySROSkX4aW0Ri/vEVccpgrLOwsini0+mAhUayZo=;
- b=dDyGwU8jDwTeqcc7iaoHpCcenct1P+OAnzV+aNRn4CFyAhDoUFxMoeBh
- GV58OsRTkizlgCuyOkGam2HAft7IYi9QCjPTLUXVuvvJFnhCadUOAmk1z
- wXJHPB1mZgofXM9o0EX0xe/NrVyzjGH+FTTmbCuYGDsozwQt2JwMQi1oV
- X08FXrm3SgzGJHIvrYY59yrJyVeD+MTeWYLV3XYrUV8w9zEBRJu6xSEuh
- cHrHoFE1kmGNioN/25wYBezI38mxOP/vb+MZOdQDeIzKzJgMJPuknSBBW
- UIQ6YjTxtKzB0322QBRl0KIzw3jQqac+IQzrEmqx0RpvZD/vt7o3kNYHD w==;
-X-CSE-ConnectionGUID: 7oIDHbh5QAiHfVuyVZr5Kg==
-X-CSE-MsgGUID: MUeB7cFLRuGCboIDsMZmxQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="88016643"
-X-IronPort-AV: E=Sophos;i="6.23,166,1770624000"; d="scan'208";a="88016643"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 12:39:11 -0700
-X-CSE-ConnectionGUID: CdTaaMFgTuyMuLZccF29IA==
-X-CSE-MsgGUID: GYjOHmxtSpOw8BApQmRjrg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,166,1770624000"; d="scan'208";a="225502220"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.244])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 12:39:08 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 2/3] drm/i915/mchbar: move intel_mchbar_regs.h under
- include/drm/intel
-In-Reply-To: <adUsb9ODzDKO6jBA@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <cover.1775559414.git.jani.nikula@intel.com>
- <581eef80fb77b4ab78ca040e60b2a29c844a5232.1775559414.git.jani.nikula@intel.com>
- <adUsb9ODzDKO6jBA@intel.com>
-Date: Tue, 07 Apr 2026 22:39:05 +0300
-Message-ID: <62ecb5604db457e1023ec58c5656239c46816417@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 445F510E4C1;
+	Tue,  7 Apr 2026 19:41:20 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41F1C10E4BF;
+ Tue,  7 Apr 2026 19:41:19 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4478225518138568332=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/xe=5Fsysctrl=3A_Fix_?=
+ =?utf-8?q?sparse_endian_warnings_in_mailbox_header_macros?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Anoop, Vijay" <anoop.c.vijay@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 07 Apr 2026 19:41:19 -0000
+Message-ID: <177559087925.438154.29467910403880432@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260407180339.794310-2-anoop.c.vijay@intel.com>
+In-Reply-To: <20260407180339.794310-2-anoop.c.vijay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,25 +36,140 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 07 Apr 2026, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Tue, Apr 07, 2026 at 01:57:41PM +0300, Jani Nikula wrote:
->>  drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c               | 2 +-
->>  drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c                 | 2 +-
->>  drivers/gpu/drm/i915/gvt/handlers.c                         | 4 ++--
->>  drivers/gpu/drm/i915/intel_gvt_mmio_table.c                 | 2 +-
->
-> Those four don't seem to need the header anymore.
+--===============4478225518138568332==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-The last one does need it after all. Sent v2 with the cleanup patches.
+== Series Details ==
 
-BR,
-Jani.
+Series: drm/xe/xe_sysctrl: Fix sparse endian warnings in mailbox header macros
+URL   : https://patchwork.freedesktop.org/series/164466/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-4858-9e217a8df7b2f298a2fd850e29f970b7360dc77b_BAT -> xe-pw-164466v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (14 -> 14)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-164466v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4858-9e217a8df7b2f298a2fd850e29f970b7360dc77b/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164466v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
+    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#7483]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4858-9e217a8df7b2f298a2fd850e29f970b7360dc77b/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164466v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+
+  
+  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
 
 
+Build changes
+-------------
 
---=20
-Jani Nikula, Intel
+  * Linux: xe-4858-9e217a8df7b2f298a2fd850e29f970b7360dc77b -> xe-pw-164466v1
+
+  IGT_8850: 8850
+  xe-4858-9e217a8df7b2f298a2fd850e29f970b7360dc77b: 9e217a8df7b2f298a2fd850e29f970b7360dc77b
+  xe-pw-164466v1: 164466v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164466v1/index.html
+
+--===============4478225518138568332==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/xe_sysctrl: Fix sparse endian warnings in mailbox header macros</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164466/">https://patchwork.freedesktop.org/series/164466/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164466v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164466v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4858-9e217a8df7b2f298a2fd850e29f970b7360dc77b_BAT -&gt; xe-pw-164466v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-164466v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4858-9e217a8df7b2f298a2fd850e29f970b7360dc77b/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164466v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4858-9e217a8df7b2f298a2fd850e29f970b7360dc77b/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164466v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4858-9e217a8df7b2f298a2fd850e29f970b7360dc77b -&gt; xe-pw-164466v1</li>
+</ul>
+<p>IGT_8850: 8850<br />
+  xe-4858-9e217a8df7b2f298a2fd850e29f970b7360dc77b: 9e217a8df7b2f298a2fd850e29f970b7360dc77b<br />
+  xe-pw-164466v1: 164466v1</p>
+
+</body>
+</html>
+
+--===============4478225518138568332==--
