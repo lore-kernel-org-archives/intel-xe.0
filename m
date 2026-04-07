@@ -4,64 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83A35FF512C
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 18:00:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82271FF512E
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 18:03:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4301E10E3CF;
-	Tue,  7 Apr 2026 18:00:36 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U+mgMCA6";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBD3D10E153;
- Tue,  7 Apr 2026 18:00:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775584835; x=1807120835;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=p3ZRePxEYtNXly9yzT+GpmVUOehkBwAhfWjj+TvjLg0=;
- b=U+mgMCA6T/YeKND3m14gQSjOkQL5k1Pk3JIcbIFw0HPV6erUusbSAcRi
- vAQaZdD3HLqbb9PhzFtISXv3SDxShnjG1V+0D6EBs4aNDm1CftWb/zupN
- kyp45CPEe0wy7aZu68hDk4xzHbPaAPRgNFmIWphY53tf4Ej5qtUgo/c6V
- bB6erzjA2R16J8FxOwrDaMRUl7Ql8gAhiUQWXKCe73WaVGRKMvOmWIxsd
- PZtaqArK8ropH4eOHgTDMIQBuCwqLmcOcLA7O441FB3cFP/H4WhthdPqE
- kRFY6YGhw1bxwzyATuo6qES/FJJtr15UFNT5pM8wsLh1IDVq285cf9m1a g==;
-X-CSE-ConnectionGUID: iOZNYDNDSmOaffeQYXjTTQ==
-X-CSE-MsgGUID: 7+Pd5qGTSX2mOkf504fMNQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="80415374"
-X-IronPort-AV: E=Sophos;i="6.23,166,1770624000"; d="scan'208";a="80415374"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 11:00:35 -0700
-X-CSE-ConnectionGUID: G0QfyugHTtq5J6tRo4H1Xw==
-X-CSE-MsgGUID: iOO1EIZZT+CAdndBT0XRSA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,166,1770624000"; d="scan'208";a="225482451"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.211])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 11:00:32 -0700
-Date: Tue, 7 Apr 2026 21:00:30 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 4/9] drm/i915/dp: Restructure the sink/output format
- selection
-Message-ID: <adVGPoZ0yAA0fGLx@intel.com>
-References: <20260330235339.29479-1-ville.syrjala@linux.intel.com>
- <20260330235339.29479-5-ville.syrjala@linux.intel.com>
- <2479715.CQOukoFCf9@workhorse>
- <8c705395-6400-44b6-b4f4-818a9a4056ea@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 478AD10E48E;
+	Tue,  7 Apr 2026 18:03:47 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B59810E48E;
+ Tue,  7 Apr 2026 18:03:46 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6074478731983862680=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <8c705395-6400-44b6-b4f4-818a9a4056ea@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5Bv2?=
+ =?utf-8?q?=2C1/2=5D_drm/i915=3A_Track_fence_region_ID_in_plane_state?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 07 Apr 2026 18:03:46 -0000
+Message-ID: <177558502661.438154.5848049560605696387@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260407170942.16515-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20260407170942.16515-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,161 +36,126 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Apr 06, 2026 at 11:02:03AM +0530, Nautiyal, Ankit K wrote:
-> 
-> On 3/31/2026 7:05 PM, Nicolas Frattaroli wrote:
-> > On Tuesday, 31 March 2026 01:53:34 Central European Summer Time Ville Syrjala wrote:
-> >> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >>
-> >> Restructure intel_dp_compute_output_format() to resemble the new
-> >> intel_hdmi_compute_output_formats().
-> >>
-> >> Again, we basically have two main code paths:
-> >> - YCbCr 4:2:0 only modes
-> >> - everything else including YCbCr 4:2:0 also modes
-> >>
-> >> Take the exact same approach with the DP code, making the
-> >> format selection much less convoluted.
-> >>
-> >> Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> >> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >> ---
-> >>   drivers/gpu/drm/i915/display/intel_dp.c | 98 +++++++++++++++++--------
-> >>   1 file changed, 69 insertions(+), 29 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> >> index 4955bd8b11d7..230b45acde29 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> >> @@ -1371,6 +1371,28 @@ intel_dp_mode_valid_downstream(struct intel_connector *connector,
-> >>   	return MODE_OK;
-> >>   }
-> >>   
-> >> +static enum drm_mode_status
-> >> +intel_dp_sink_format_valid(struct intel_connector *connector,
-> >> +			   const struct drm_display_mode *mode,
-> >> +			   enum intel_output_format sink_format)
-> >> +{
-> >> +	const struct drm_display_info *info = &connector->base.display_info;
-> >> +
-> >> +	switch (sink_format) {
-> >> +	case INTEL_OUTPUT_FORMAT_YCBCR420:
-> >> +		if (!connector->base.ycbcr_420_allowed ||
-> >> +		    !drm_mode_is_420(info, mode))
-> >> +			return MODE_NO_420;
-> >> +
-> >> +		return MODE_OK;
-> >> +	case INTEL_OUTPUT_FORMAT_RGB:
-> >> +		return MODE_OK;
-> >> +	default:
-> >> +		MISSING_CASE(sink_format);
-> >> +		return MODE_BAD;
-> >> +	}
-> >> +}
-> >> +
-> > I think here we'll want another
-> > ---
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> > index e23162fc3f8b..a1dc089c54f5 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -1373,6 +1373,11 @@ intel_dp_sink_format_valid(struct intel_connector *connector,
-> >   
-> >                  return MODE_OK;
-> >          case INTEL_OUTPUT_FORMAT_RGB:
-> > +               return MODE_OK;
-> > +       case INTEL_OUTPUT_FORMAT_YCBCR444:
-> > +               if (!(info->color_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR444)))
-> > +                       return MODE_BAD;
-> > +
-> >                  return MODE_OK;
-> >          default:
-> >                  MISSING_CASE(sink_format);
-> > ---
-> >
-> > though this time, no bpc related changes. With that fixed, I get
-> > YCbCr444 at 10bpc as well as 8bpc. Can't test 4:2:0 for what appears
-> > to be unrelated userspace reasons, though the KMS property's enum
-> > value is exposed properly.
-> 
-> 
-> Hmm... this alone should not be sufficient till we actually have code to 
-> try with YCBCR444 in intel_dp_compute_formats().
-> 
-> 
-> >
-> >>   int intel_dp_max_hdisplay_per_pipe(struct intel_display *display)
-> >>   {
-> >>   	return DISPLAY_VER(display) >= 30 ? 6144 : 5120;
-> >> @@ -3330,41 +3352,59 @@ static int
-> >>   intel_dp_compute_output_format(struct intel_encoder *encoder,
-> >>   			       struct intel_crtc_state *crtc_state,
-> >>   			       struct drm_connector_state *conn_state,
-> >> -			       bool respect_downstream_limits)
-> >> +			       bool respect_downstream_limits,
-> >> +			       enum intel_output_format sink_format)
-> >>   {
-> >> -	struct intel_display *display = to_intel_display(encoder);
-> >>   	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> >>   	struct intel_connector *connector = intel_dp->attached_connector;
-> >> -	const struct drm_display_info *info = &connector->base.display_info;
-> >>   	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
-> >> -	bool ycbcr_420_only;
-> >> -	int ret;
-> >>   
-> >> -	ycbcr_420_only = drm_mode_is_420_only(info, adjusted_mode);
-> >> -
-> >> -	if (ycbcr_420_only && !connector->base.ycbcr_420_allowed) {
-> >> -		drm_dbg_kms(display->drm,
-> >> -			    "YCbCr 4:2:0 mode but YCbCr 4:2:0 output not possible. Falling back to RGB.\n");
-> >> -		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_RGB;
-> >> -	} else {
-> >> -		crtc_state->sink_format = intel_dp_sink_format(connector, adjusted_mode);
-> >> -	}
-> >> +	if (intel_dp_sink_format_valid(connector, adjusted_mode,
-> >> +				       sink_format) != MODE_OK)
-> >> +		return -EINVAL;
-> >>   
-> >> +	crtc_state->sink_format = sink_format;
-> >>   	crtc_state->output_format = intel_dp_output_format(connector, crtc_state->sink_format);
-> >>   
-> >> -	ret = intel_dp_compute_link_config(encoder, crtc_state, conn_state,
-> >> -					   respect_downstream_limits);
-> >> -	if (ret) {
-> >> -		if (crtc_state->sink_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
-> >> -		    !connector->base.ycbcr_420_allowed ||
-> >> -		    !drm_mode_is_420_also(info, adjusted_mode))
-> >> -			return ret;
-> >> -
-> >> -		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
-> >> -		crtc_state->output_format = intel_dp_output_format(connector,
-> >> -								   crtc_state->sink_format);
-> >> -		ret = intel_dp_compute_link_config(encoder, crtc_state, conn_state,
-> >> -						   respect_downstream_limits);
-> >> +	return intel_dp_compute_link_config(encoder, crtc_state, conn_state,
-> >> +					    respect_downstream_limits);
-> > With the removal of intel_dp_sink_format in this function, I wonder
-> > if we can get rid of it entirely now. It's only called in
-> > intel_dp_mode_min_link_bpp_x16, which seems to be used for bandwidth
-> > limitation calculations (where YCbCr444 vs RGB444 doesn't matter, so
-> > we're fine in that regard).
-> 
-> I agree we can remove intel_dp_sink_format() but IMO it should be after 
-> patch#7 where we are validating sink format for mode valid.
-> 
-> I guess, with that change, intel_dp_mode_min_link_bpp_x16() can be 
-> passed the sink_format directly since we have already validated that.
+--===============6074478731983862680==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Aye. I think that really should have been part of patch 5
-https://lore.kernel.org/intel-gfx/20260330235339.29479-6-ville.syrjala@linux.intel.com/
-where I explicitly pass in the desired sink format.
+== Series Details ==
 
-I'll fix that up.
+Series: series starting with [v2,1/2] drm/i915: Track fence region ID in plane state
+URL   : https://patchwork.freedesktop.org/series/164463/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-4857-87b52c2ff4f00eff41866d728f82d2b109c397f7_BAT -> xe-pw-164463v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (14 -> 14)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-164463v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-bmg-2:          [PASS][1] -> [ABORT][2] ([Intel XE#7249] / [Intel XE#7578])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4857-87b52c2ff4f00eff41866d728f82d2b109c397f7/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164463v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+
+  
+  [Intel XE#7249]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7249
+  [Intel XE#7578]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7578
 
 
--- 
-Ville Syrjälä
-Intel
+Build changes
+-------------
+
+  * Linux: xe-4857-87b52c2ff4f00eff41866d728f82d2b109c397f7 -> xe-pw-164463v1
+
+  IGT_8850: 8850
+  xe-4857-87b52c2ff4f00eff41866d728f82d2b109c397f7: 87b52c2ff4f00eff41866d728f82d2b109c397f7
+  xe-pw-164463v1: 164463v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164463v1/index.html
+
+--===============6074478731983862680==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v2,1/2] drm/i915: Track fence region ID in plane state</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164463/">https://patchwork.freedesktop.org/series/164463/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164463v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164463v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4857-87b52c2ff4f00eff41866d728f82d2b109c397f7_BAT -&gt; xe-pw-164463v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-164463v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4857-87b52c2ff4f00eff41866d728f82d2b109c397f7/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164463v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7249">Intel XE#7249</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7578">Intel XE#7578</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4857-87b52c2ff4f00eff41866d728f82d2b109c397f7 -&gt; xe-pw-164463v1</li>
+</ul>
+<p>IGT_8850: 8850<br />
+  xe-4857-87b52c2ff4f00eff41866d728f82d2b109c397f7: 87b52c2ff4f00eff41866d728f82d2b109c397f7<br />
+  xe-pw-164463v1: 164463v1</p>
+
+</body>
+</html>
+
+--===============6074478731983862680==--
