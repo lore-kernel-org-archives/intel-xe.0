@@ -4,59 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDAD5EDB7E0
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 09:48:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D92C4EDB7E1
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 09:52:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD1E110E3A4;
-	Tue,  7 Apr 2026 09:48:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D9F610E3A8;
+	Tue,  7 Apr 2026 09:52:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YwzUDr7K";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lyamP5NL";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C26710E3A8
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Apr 2026 09:48:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6333410E0B5;
+ Tue,  7 Apr 2026 09:51:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775555314; x=1807091314;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=2xkhBI2sq+hLWXSICTh9LZKToxTNxDiWSRDWfL6SrBg=;
- b=YwzUDr7KC7UqCnkvAs2BC42nS9ieyM8KLWc31DylG8r5NDIlgb14dytU
- fdFIaP0rxNjU7Gs+lAVZfF1N90gHcKmlHcwaM4YdbZg6nW1YxfNpyDg6g
- re+CWINhyUe7U3krOxc+BsqlJRL8LEYglZYyi/UdVgPepCjBAo5aNC8ut
- +499kZ9/vjmkAkvEnNqCgLre+urvB6KB7/DlMpceoBQJS2ekTzLo88Ltj
- /rOJo7DQGvFgfJ/sFKH5wTB7fUMq6NzSi7XR5kWMT2LKpYRzo+dHmJwbX
- bReKkXN220m3/CIitfDcnhi8B93Ka+Mz8HXcF8IGlWFCNjAh9/4hPKhvD A==;
-X-CSE-ConnectionGUID: P1TFANNhSkWMjeygWiLSHA==
-X-CSE-MsgGUID: eL/MqGG2QYa6FO5fvwDxMQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11751"; a="87901032"
-X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="87901032"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 02:48:34 -0700
-X-CSE-ConnectionGUID: EbdxAsM7RwmTxnTp/SJoaA==
-X-CSE-MsgGUID: NdjJYq0TRBiSGWAcrYj4hg==
+ t=1775555519; x=1807091519;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=lOG7BPuQjzvEpVicTfUFClsioCY6tBwoZOWiP8wfb6Q=;
+ b=lyamP5NLUiTuyVqY5KYeHsHhHXmyJY9Usb+fHP76x/Bf755iV/ujir0P
+ pI+Qcr6YGCN+o2o82VMlBG7JXEU4y/FClulaPh7z0JfF/ceJDROXNhdlO
+ P/5SI0MpG0RLxoP/n1aJ8vWv4EgrlmR1uK5qmgbKm9v9rWg3Ye07eMd5z
+ 4VT/ACoxqJjqy3x9BtYgF8x7lFo4N81ifujdb6J+Vh2/WxzKvSFz4Q/Kv
+ dFn2Rd/PXVCwBu4yR/w04KEADDu9Y+xt9GGJia+Cx2k0MVXlpFTn/Z2JZ
+ NqIrJcuKtLadLT0MohD27WozBrSdzRkJjKVPvMGIYPEvr1PfD3GgVMeNH Q==;
+X-CSE-ConnectionGUID: SmNc0CD6TZeW5+duoZBBoA==
+X-CSE-MsgGUID: +95fEOBkSIe1Sw6Cf/tcWA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11751"; a="76411106"
+X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="76411106"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2026 02:51:59 -0700
+X-CSE-ConnectionGUID: Mup3Spx0SteIDlHQ0hTOXQ==
+X-CSE-MsgGUID: DZLl3KHhSa2OPM4OnRqbhw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="233095672"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO [10.245.244.172])
- ([10.245.244.172])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 02:48:33 -0700
-Message-ID: <d6c549b1-c20c-49ec-9629-11243b27966b@intel.com>
-Date: Tue, 7 Apr 2026 10:48:30 +0100
+X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="232528217"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.244])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2026 02:51:56 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: "Kandpal, Suraj" <suraj.kandpal@intel.com>, "Coelho, Luciano"
+ <luciano.coelho@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v2 1/8] drm/i915: move SKL clock gating init to display
+In-Reply-To: <adTSrRSRQvJqOvmR@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260331121608.1016333-1-luciano.coelho@intel.com>
+ <20260331121608.1016333-2-luciano.coelho@intel.com>
+ <DM3PPF208195D8D6D18797DF43D23B2AB3DE35AA@DM3PPF208195D8D.namprd11.prod.outlook.com>
+ <4c2ab7b05e665b3cca5a809917faf3b64d1ce7f5@intel.com>
+ <adTSrRSRQvJqOvmR@intel.com>
+Date: Tue, 07 Apr 2026 12:51:53 +0300
+Message-ID: <8c13a079a352f7b7ef789e53825f88c2a6b379fc@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/xe/pat: Default XE_CACHE_NONE_COMPRESSION to
- invalid and assert on use
-To: Xin Wang <x.wang@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Matt Roper <matthew.d.roper@intel.com>
-References: <20260406182546.569131-1-x.wang@intel.com>
- <20260406182546.569131-3-x.wang@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20260406182546.569131-3-x.wang@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,75 +76,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 06/04/2026 19:25, Xin Wang wrote:
-> Initialize XE_CACHE_NONE_COMPRESSION PAT index to XE_PAT_INVALID_IDX by
-> default, and add xe_assert() checks at the sites that use it for PTE
-> encoding. This ensures platforms that don't support this cache mode fail
-> loudly rather than silently encoding an invalid index into PTEs.
-> 
-> Suggested-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Xin Wang <x.wang@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_migrate.c | 9 +++++++--
->   drivers/gpu/drm/xe/xe_pat.c     | 1 +
->   2 files changed, 8 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-> index fc918b4fba54..cad47866435d 100644
-> --- a/drivers/gpu/drm/xe/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/xe_migrate.c
-> @@ -30,6 +30,7 @@
->   #include "xe_lrc.h"
->   #include "xe_map.h"
->   #include "xe_mocs.h"
-> +#include "xe_pat.h"
->   #include "xe_printk.h"
->   #include "xe_pt.h"
->   #include "xe_res_cursor.h"
-> @@ -341,6 +342,7 @@ static void xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
->   				DIV_ROUND_UP_ULL(actual_phy_size, SZ_1G);
->   			u64 pt31_ofs = xe_bo_size(bo) - XE_PAGE_SIZE;
->   
-> +			xe_assert(xe, comp_pat_index != XE_PAT_INVALID_IDX);
->   			xe_assert(xe, actual_phy_size <= (MAX_NUM_PTE - IDENTITY_OFFSET -
->   							  IDENTITY_OFFSET / 2) * SZ_1G);
->   			xe_migrate_program_identity(xe, vm, bo, map_ofs, vram_offset,
-> @@ -635,11 +637,14 @@ static void emit_pte(struct xe_migrate *m,
->   	u64 cur_ofs;
->   
->   	/* Indirect access needs compression enabled uncached PAT index */
-> -	if (GRAPHICS_VERx100(xe) >= 2000)
-> +	if (GRAPHICS_VERx100(xe) >= 2000) {
->   		pat_index = is_comp_pte ? xe->pat.idx[XE_CACHE_NONE_COMPRESSION] :
->   					  xe->pat.idx[XE_CACHE_WB];
-> -	else
-> +		if (is_comp_pte)
-> +			xe_assert(xe, pat_index != XE_PAT_INVALID_IDX);
-> +	} else {
->   		pat_index = xe->pat.idx[XE_CACHE_WB];
-> +	}
+On Tue, 07 Apr 2026, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Tue, Apr 07, 2026 at 10:58:13AM +0300, Jani Nikula wrote:
+>> On Tue, 07 Apr 2026, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
+>> >> +void intel_display_skl_init_clock_gating(struct intel_display *displ=
+ay)
+>> >> +{
+>> >> +	/*
+>> >> +	 * WaFbcTurnOffFbcWatermark:skl
+>> >> +	 * Display WA #0562: skl
+>> >> +	 */
+>> >> +	intel_de_rmw(display, DISP_ARB_CTL, 0, DISP_FBC_WM_DIS); }
+>> >
+>> > Not sure about this being moved here but I feel like this belong in
+>> > intel_display_wa.c see that it is a WA
+>>=20
+>> A lot of intel_clock_gating.c is about workarounds, and I don't really
+>> care a whole lot about moving these to intel_display_wa.c at this
+>> point. It's much more important to move the display related things from
+>> i915 core to display.
+>
+> I still think it would have been much easier to move the gt stuff out
+> from init_clock_gating to the proper place in the gt code. And then we
+> could have just moved the remaining things into the display code as is.
+> But people seem to prefer the hard way for some reason :)
 
-To simplify the flow, maybe we just unconditionally stick the assert here?
+Whatever gets us there. I'm just saying nitpicking between different
+places within display/ isn't helping us.
 
-But would it make sense to take this a step further and wrap all 
-pat.idx[] accesses with a simple helper (like xe_cache_pat_idx()), and 
-add the assert there? There are a fair few places directly accessing 
-pat.idx, outside of xe_pat.
+BR,
+Jani.
 
->   
->   	ptes = DIV_ROUND_UP(size, XE_PAGE_SIZE);
->   
-> diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
-> index 75aaae7b003d..fad5b5a5ed4a 100644
-> --- a/drivers/gpu/drm/xe/xe_pat.c
-> +++ b/drivers/gpu/drm/xe/xe_pat.c
-> @@ -559,6 +559,7 @@ static const struct xe_pat_ops xe3p_xpc_pat_ops = {
->   void xe_pat_init_early(struct xe_device *xe)
->   {
->   	xe->pat.idx[XE_CACHE_WB_COMPRESSION] = XE_PAT_INVALID_IDX;
-> +	xe->pat.idx[XE_CACHE_NONE_COMPRESSION] = XE_PAT_INVALID_IDX;
->   	if (GRAPHICS_VERx100(xe) == 3511) {
->   		xe->pat.ops = &xe3p_xpc_pat_ops;
->   		xe->pat.table = xe3p_xpc_pat_table;
 
+--=20
+Jani Nikula, Intel
