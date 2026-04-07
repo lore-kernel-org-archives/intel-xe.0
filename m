@@ -4,58 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C4B2FF5134
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 18:58:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F867FF5135
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 19:16:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2AB9310E49E;
-	Tue,  7 Apr 2026 18:58:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF34C10E040;
+	Tue,  7 Apr 2026 19:16:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NAyrEU0F";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UR1lyJqv";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ABE2810E499;
- Tue,  7 Apr 2026 18:58:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 163C110E040
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 Apr 2026 19:16:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775588331; x=1807124331;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=8/Y5ZxWoxYtQbSMHzSw37iQSX2HmqRYhk5P634e5nT0=;
- b=NAyrEU0FZsp0QEYO+ozKg9Hhl1s6AQsqedMnoPGbkO/1kH9XTmOAcbcl
- MDlopXfpP8hMTTIjMdNWRxaoQCKt2b2i2st5q2r+MKcLp4MZExgv0sblL
- r1hV6oRVGumR2z+OAdosj/Smo72FKgvryc6VmsDi/5kAKSETVhRBwZzzt
- zViE6xuyAZLrjDSxhyTusSNDP7U+oIPgdwkJ9sSOTLcAdxR8Wz4PgwXKM
- duXf6XuT0CMGfLiv+thAmdjQs8PAVLcquN54jCfbq0VjwvYHD68klSPYo
- zTeK/+R3y1DTCs/35uTRz7GzKgJ9/AeOSEXAu3wqPw6CTwsSSCx5L6wx7 w==;
-X-CSE-ConnectionGUID: gaHP15vlT2mrm4zAcO1GHg==
-X-CSE-MsgGUID: NSZxdvP6TDaqutB1kTml5w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="79151424"
-X-IronPort-AV: E=Sophos;i="6.23,166,1770624000"; d="scan'208";a="79151424"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 11:58:51 -0700
-X-CSE-ConnectionGUID: LHDpz7ykRlWphy20c+2wxA==
-X-CSE-MsgGUID: zAfUVQQSQj6gnTViHGWRiQ==
+ t=1775589381; x=1807125381;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=9lk7bzyLDPFy7eAY8gunR2MaDaStat8ZMbUjn4s+tvo=;
+ b=UR1lyJqvBj/7bwKlCd/pplz1gS8E6DmErNg2JJhefxSrkOzZYwhKUlFU
+ OqfWmmdYGMITcdJE04s+VAAxy1HXnc5hmQWQx2hLapKWWV28p4veGi6zG
+ r9zlDzEvpWW4h146OjFC8fmPy3pfIUZm+bIul+lyTWeg+KQayaQSdvdW5
+ 7dF5dexHOhhAACAPe7CEO/eKPzpD23CQNcPL7KflXRhwOJIM29UyjsXUz
+ asb2h7+5YjZALLMvv5C5YYpHG6j6BEY9rF1qLe9m7NkUHTou3rzuLSAtK
+ qr+7INt8ep01mckm+HrMvKQYl/NJJnopATt8l3ddf86eHbawemfk8qkvo w==;
+X-CSE-ConnectionGUID: uSvpSfJyQqSbr9sbqtC5jA==
+X-CSE-MsgGUID: MPUvRiw6Rbqp2J6TAx8UKg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="75600652"
+X-IronPort-AV: E=Sophos;i="6.23,166,1770624000"; d="scan'208";a="75600652"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2026 12:16:21 -0700
+X-CSE-ConnectionGUID: G2J5lqjLQOiD/l6EIxi0yg==
+X-CSE-MsgGUID: +SwmbQK5RU2spK5Wz//aMA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,166,1770624000"; d="scan'208";a="232639072"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.244])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 11:58:49 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 0/3] drm/i915/pin: refactor to i915 core
-In-Reply-To: <adTcMdEqCRyjTPzK@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <cover.1775556190.git.jani.nikula@intel.com>
- <adTcMdEqCRyjTPzK@intel.com>
-Date: Tue, 07 Apr 2026 21:58:46 +0300
-Message-ID: <c6374e5cd248c0ebf1f020a374ec32580880f8c7@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,166,1770624000"; d="scan'208";a="223484207"
+Received: from anoopcvi-vm.gar.corp.intel.com ([10.109.80.88])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2026 12:16:18 -0700
+From: "Anoop, Vijay" <anoop.c.vijay@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
+ riana.tauro@intel.com, michael.j.ruhl@intel.com,
+ mohamed.mansoor.v@intel.com, anoop.c.vijay@intel.com
+Subject: [PATCH v1] drm/xe/sysctrl: Add helper to query application status
+Date: Tue,  7 Apr 2026 12:16:11 -0700
+Message-ID: <20260407191610.841935-2-anoop.c.vijay@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,52 +66,166 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 07 Apr 2026, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Tue, Apr 07, 2026 at 01:04:34PM +0300, Jani Nikula wrote:
->> Something I started last week before Ville said he'd look into the whole
->> pin stuff. If this is helpful, let's merge, but if it's in the way, it
->> was pretty quick and can be thrown away.
->
-> Looks all right to me. I have the same file rename somewhere in my
-> current branch, and I think eg. the runtime pm thing I still have
-> mixed in with some other changes. So I can rebase easily on top of
-> these and shrink my branch a little bit.
->
-> Series is
-> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+From: Anoop Vijay <anoop.c.vijay@intel.com>
 
-Thanks, pushed to din.
+Introduce xe_sysctrl_check_app_status() to query whether a sysctrl
+application is loaded and booted, returning standard error codes for
+not loaded (-ENOENT) or not booted (-EAGAIN) states.
 
-> And speaking of my branch, I think it should be fairly close to
-> being done. I still need to think what to do about
-> restore.pending_fb_pin, and some commits may still need further
-> splitting. And proper commit messages need to be written of
-> course.
+Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
+---
+ drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h | 49 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sysctrl.c         | 63 +++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sysctrl.h         |  1 +
+ 3 files changed, 113 insertions(+)
 
-\o/
+diff --git a/drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h b/drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h
+index 4cbde267ac44..7e1d88dd1c94 100644
+--- a/drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h
++++ b/drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h
+@@ -62,4 +62,53 @@ struct xe_sysctrl_app_msg_hdr {
+ #define APP_HDR_VERSION_MASK		GENMASK(23, 16)
+ #define APP_HDR_RESERVED_MASK		GENMASK(31, 24)
+ 
++/** System Controller Core command group */
++#define XE_SYSCTRL_GROUP_CORE		0xFF
++
++/*
++ * XE_SYSCTRL_CMD_GET_APP_STATUS - Query application status
++ *
++ * Check if a System Controller application is loaded and its status.
++ *
++ * Group: XE_SYSCTRL_GROUP_CORE (0xFF)
++ * Command: 0x04
++ */
++#define XE_SYSCTRL_CMD_GET_APP_STATUS	0x04
++
++/**
++ * struct xe_sysctrl_get_app_status_req - Get application status request
++ * @app_name: Application name (16 bytes, null-terminated)
++ */
++struct xe_sysctrl_get_app_status_req {
++	char app_name[16];
++} __packed;
++
++/**
++ * struct xe_sysctrl_get_app_status_resp - Get application status response
++ * @handle: Identifier used to control the app
++ * @flags: Application status flags (see XE_SYSCTRL_APP_* definitions)
++ */
++struct xe_sysctrl_get_app_status_resp {
++	u16 handle;
++	u16 flags;
++} __packed;
++
++/**
++ * DOC: System Controller Application Status Flags
++ *
++ * Flags returned in xe_sysctrl_get_app_status_resp indicating the
++ * current state of a System Controller application.
++ */
++
++/** Application is loaded in System Controller */
++#define XE_SYSCTRL_APP_LOADED		BIT(0)
++/** Application binary is valid */
++#define XE_SYSCTRL_APP_VALID		BIT(1)
++/** Application has completed boot sequence */
++#define XE_SYSCTRL_APP_BOOTED		BIT(2)
++/** Application loaded as late binding */
++#define XE_SYSCTRL_APP_LATE_BINDING	BIT(3)
++/** Application contains data only (no executable code) */
++#define XE_SYSCTRL_APP_DATA_ONLY	BIT(4)
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl.c b/drivers/gpu/drm/xe/xe_sysctrl.c
+index 2bcef304eb9a..6073c80ee79c 100644
+--- a/drivers/gpu/drm/xe/xe_sysctrl.c
++++ b/drivers/gpu/drm/xe/xe_sysctrl.c
+@@ -14,6 +14,7 @@
+ #include "xe_soc_remapper.h"
+ #include "xe_sysctrl.h"
+ #include "xe_sysctrl_mailbox.h"
++#include "xe_sysctrl_mailbox_types.h"
+ #include "xe_sysctrl_types.h"
+ 
+ /**
+@@ -99,3 +100,65 @@ void xe_sysctrl_pm_resume(struct xe_device *xe)
+ 
+ 	xe_sysctrl_mailbox_init(sc);
+ }
++
++/**
++ * xe_sysctrl_check_app_status - Check if System Controller app is loaded
++ * @xe: xe device instance
++ * @app_name: Name of the application to check (max 15 chars + null terminator)
++ *
++ * Query System Controller firmware to verify if the specified application
++ * is loaded and booted. This is typically required before sending commands
++ * to application-specific command groups.
++ *
++ * Common application names:
++ * - "ocode"- oCode
++ * - "diag" - Dianostics
++ *
++ * Return: 0 if app is loaded and booted, negative error code otherwise:
++ *		-ENODEV if System Controller is not available
++ *		-EINVAL if app_name is invalid
++ *		-EIO if communication with firmware failed
++ *		-ENOENT if application is not loaded
++ *		-EAGAIN if application is loaded but not booted yet
++ */
++int xe_sysctrl_check_app_status(struct xe_device *xe, const char *app_name)
++{
++	struct xe_sysctrl_get_app_status_req req = {};
++	struct xe_sysctrl_get_app_status_resp resp = {};
++	struct xe_sysctrl_mailbox_command cmd = {};
++	size_t out_len = 0;
++	u16 flags;
++	int ret;
++
++	if (!xe->info.has_sysctrl)
++		return -ENODEV;
++
++	if (!app_name || strlen(app_name) == 0 || strlen(app_name) >= sizeof(req.app_name))
++		return -EINVAL;
++
++	strscpy(req.app_name, app_name, sizeof(req.app_name));
++
++	cmd.header.data =
++		cpu_to_le32(FIELD_PREP(APP_HDR_GROUP_ID_MASK, XE_SYSCTRL_GROUP_CORE) |
++			    FIELD_PREP(APP_HDR_COMMAND_MASK, XE_SYSCTRL_CMD_GET_APP_STATUS) |
++			    FIELD_PREP(APP_HDR_VERSION_MASK, 0));
++
++	cmd.data_in = &req;
++	cmd.data_in_len = sizeof(req);
++	cmd.data_out = &resp;
++	cmd.data_out_len = sizeof(resp);
++
++	ret = xe_sysctrl_send_command(&xe->sc, &cmd, &out_len);
++	if (ret)
++		return -ENOENT;
++
++	if (out_len != sizeof(resp))
++		return -EIO;
++
++	flags = le16_to_cpu(resp.flags);
++
++	if (!(flags & XE_SYSCTRL_APP_BOOTED))
++		return -EAGAIN;
++
++	return 0;
++}
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl.h b/drivers/gpu/drm/xe/xe_sysctrl.h
+index f3b0f3716b2f..db2743d54cea 100644
+--- a/drivers/gpu/drm/xe/xe_sysctrl.h
++++ b/drivers/gpu/drm/xe/xe_sysctrl.h
+@@ -18,5 +18,6 @@ static inline struct xe_device *sc_to_xe(struct xe_sysctrl *sc)
+ 
+ int xe_sysctrl_init(struct xe_device *xe);
+ void xe_sysctrl_pm_resume(struct xe_device *xe);
++int xe_sysctrl_check_app_status(struct xe_device *xe, const char *app_name);
+ 
+ #endif
+-- 
+2.43.0
 
->
-> That said, the whole thing is rather big and I've not smoke tested
-> it even once, so I might still need to fix a boatload of bugs...
->
->>=20
->> BR,
->> Jani.
->>=20
->> Jani Nikula (3):
->>   drm/i915: move intel_fb_pin.c to i915_fb_pin.c
->>   drm/i915/pin: s/dev_priv/i915/ and drop struct drm_device usage
->>   drm/i915/pin: switch to i915 core runtime pm
->>=20
->>  drivers/gpu/drm/i915/Makefile                 |  2 +-
->>  .../{display/intel_fb_pin.c =3D> i915_fb_pin.c} | 44 +++++++++----------
->>  2 files changed, 22 insertions(+), 24 deletions(-)
->>  rename drivers/gpu/drm/i915/{display/intel_fb_pin.c =3D> i915_fb_pin.c}=
- (90%)
->>=20
->> --=20
->> 2.47.3
-
---=20
-Jani Nikula, Intel
