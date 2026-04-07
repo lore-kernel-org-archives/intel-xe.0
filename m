@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB7D5FB5189
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 03:04:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4CFCFB5188
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 03:04:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 83CBD10E33D;
-	Tue,  7 Apr 2026 03:04:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 643EC10E342;
+	Tue,  7 Apr 2026 03:04:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bnzgGG1f";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Pmu/w4VU";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3BDD010E33D
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Apr 2026 03:04:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EC4510E342
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 Apr 2026 03:04:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775531080; x=1807067080;
+ t=1775531082; x=1807067082;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=MzpOSv3JsE4T2nrY9oJSdoA8WMiPedAo8CcpHE3Po30=;
- b=bnzgGG1f7sEfyvnWKN0Eo2RYkxdFmxg+zu/ChR29ladp0yxaspYS8tdJ
- 1ipNAA4D6jc3x08hBtYJFfFLnk1iiYVmmSvvXVeo2rBHPi4oYK/D0p4Mw
- v6NnjfJ49PgVL+6ytyEtlxgP5a1eQ8Kcc90IdFwh5GXG/6iCN6aLKpbrP
- GeSF587LlF1IICa7I1HKhPfPkNP7oTtHfFivxzT6iIw59n70hXpoG+Khu
- VNoNLeTG6vh5gxSsYaRkK0KUvnSAKCPUoDu5pCk2yZNWBnWJV0MNSAApu
- nZz0+haubeHVX8wC+yyeVU3IIjhYUOKKBnrx1y+gVQGT+CS0DB4HTy9ff A==;
-X-CSE-ConnectionGUID: uyGSLIscQI6JOUjzayx1vA==
-X-CSE-MsgGUID: N7Goa2NBRxSjL9Xz1lkx0Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11751"; a="76201135"
-X-IronPort-AV: E=Sophos;i="6.23,164,1770624000"; d="scan'208";a="76201135"
+ bh=uLt1ncurUxV0O22fT7fAHYHS+0jAsJ+ZAT5JoOXWEI4=;
+ b=Pmu/w4VUeN9qIdwhE20aSdO5Q7KET9l3vfGl1Vz/9Hztk6drasgiPnBn
+ ISEDJ7p0PdnYzKQslprL5gWraIXJnHyMf4V+I84Qw97hVj47S0YiDypvq
+ b1+kLwp1BZvsj64grZ1siBy51i95sPlq6Ud/eArqGOl20CTnp/K64je+c
+ +phRV/Y/PC2y03LHyptseyz4xodJLvtmeEM2WuE81vBMwosAhSvbRT6H8
+ IwC+CrFSVsSkysX0e9YoPZ+PE1WnwJUBKBNXsirU2Ic1psVS6hbsBeNHz
+ sjolx5d9ktvNSH/zoFMBKamxfbcUGIe8XDz4GtKTSdTXzZkaEZh1+CrZN Q==;
+X-CSE-ConnectionGUID: Z6f2ji5JT6WvjqaHykmlTQ==
+X-CSE-MsgGUID: Q0sH+o9sRKaHAtWg/N73Bg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11751"; a="76201137"
+X-IronPort-AV: E=Sophos;i="6.23,164,1770624000"; d="scan'208";a="76201137"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2026 20:04:40 -0700
-X-CSE-ConnectionGUID: Qs/44pMeTOKpa3vDcwKMhA==
-X-CSE-MsgGUID: 6K28WhrCTcujapVfa2aLYg==
+ 06 Apr 2026 20:04:42 -0700
+X-CSE-ConnectionGUID: g+9S0vl8TsipqoytkTOMrw==
+X-CSE-MsgGUID: wOhngBxcQFOtT2uW1j8GtQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,164,1770624000"; d="scan'208";a="225295078"
+X-IronPort-AV: E=Sophos;i="6.23,164,1770624000"; d="scan'208";a="225295086"
 Received: from shosgclin.sh.intel.com ([10.112.232.103])
- by fmviesa008.fm.intel.com with ESMTP; 06 Apr 2026 20:04:39 -0700
+ by fmviesa008.fm.intel.com with ESMTP; 06 Apr 2026 20:04:41 -0700
 From: Shuicheng Lin <shuicheng.lin@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Shuicheng Lin <shuicheng.lin@intel.com>,
 	Xin Wang <x.wang@intel.com>
-Subject: [PATCH v3 2/6] drm/xe/uapi: Fix grammar errors in xe_drm.h
- documentation
-Date: Tue,  7 Apr 2026 03:00:42 +0000
-Message-ID: <20260407030046.3394004-3-shuicheng.lin@intel.com>
+Subject: [PATCH v3 3/6] drm/xe/uapi: Fix wrong names and references in xe_drm.h
+Date: Tue,  7 Apr 2026 03:00:43 +0000
+Message-ID: <20260407030046.3394004-4-shuicheng.lin@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260407030046.3394004-1-shuicheng.lin@intel.com>
 References: <20260407030046.3394004-1-shuicheng.lin@intel.com>
@@ -67,120 +66,144 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Fix various grammar issues in doc comments:
-- flag are only valid -> flag is only valid
-- should only ever used -> should only ever be used
-- if isn't already -> if it isn't already
-- Type of the this -> Type of this
-- When sync passed in -> When sync is passed in
-- the users responsibility -> the user's responsibility
-- must qword aligned -> must be qword aligned
-- for a observation -> for an observation
-- a memory ranges -> memory ranges
-- for each memory ranges -> for each memory range.
-- Second ioctl call -> second ioctl call
+Fix incorrect field names, struct names, ioctl names, and
+descriptions in doc comments:
+- probed_size -> @cpu_visible_size (correct field name)
+- @flags description was copy of @placement ->
+  fix to reference DRM_XE_GEM_CREATE_FLAG_*
+- %XE_PXP_HWDRM_DEFAULT_SESSION ->
+  %DRM_XE_PXP_HWDRM_DEFAULT_SESSION (missing DRM_ prefix)
+- Remove undefined %DRM_XE_UFENCE_WAIT_FLAG_SOFT_OP
+- &DRM_XE_OBSERVATION -> &DRM_IOCTL_XE_OBSERVATION
+- id's/struct's -> IDs/structs (fix incorrect possessive forms)
+- drm_xe_query_oa_units -> drm_xe_oa_unit
+- DRM_IOCTL_XE_VM_QUERY_MEM_RANGES_ATTRS ->
+  DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS
+- DRM_IOCTL_XE_VM_QUERY_MEM_ATTRIBUTES ->
+  DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS
+- @sizeof_mem_ranges_attr -> @sizeof_mem_range_attr
+- @vector_of_vma_mem_attr -> @vector_of_mem_attr
+
+v3: id -> ID. (Xin)
+    split cross-reference fix to seperate patch.
 
 Assisted-by: GitHub Copilot:claude-opus-4.6
+Cc: Xin Wang <x.wang@intel.com>
 Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
-Reviewed-by: Xin Wang <x.wang@intel.com>
 ---
- include/uapi/drm/xe_drm.h | 22 +++++++++++-----------
- 1 file changed, 11 insertions(+), 11 deletions(-)
+ include/uapi/drm/xe_drm.h | 26 ++++++++++++--------------
+ 1 file changed, 12 insertions(+), 14 deletions(-)
 
 diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index f17355684083..1d3406416d8c 100644
+index 1d3406416d8c..ad8e3b69a3d7 100644
 --- a/include/uapi/drm/xe_drm.h
 +++ b/include/uapi/drm/xe_drm.h
-@@ -1045,7 +1045,7 @@ struct drm_xe_vm_destroy {
-  *    set, no mappings are created rather the range is reserved for CPU address
-  *    mirroring which will be populated on GPU page faults or prefetches. Only
-  *    valid on VMs with DRM_XE_VM_CREATE_FLAG_FAULT_MODE set. The CPU address
-- *    mirror flag are only valid for DRM_XE_VM_BIND_OP_MAP operations, the BO
-+ *    mirror flag is only valid for DRM_XE_VM_BIND_OP_MAP operations, the BO
-  *    handle MBZ, and the BO offset MBZ.
-  *  - %DRM_XE_VM_BIND_FLAG_MADVISE_AUTORESET - Can be used in combination with
-  *    %DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR to reset madvises when the underlying
-@@ -1109,7 +1109,7 @@ struct drm_xe_vm_bind_op {
- 	 *	ppGTT WT -> COH_NONE
- 	 *	ppGTT WB -> COH_AT_LEAST_1WAY
+@@ -349,7 +349,7 @@ struct drm_xe_mem_region {
+ 	 * is smaller than @total_size then this is referred to as a
+ 	 * small BAR system.
  	 *
--	 * In practice UC/WC/WT should only ever used for scanout surfaces on
-+	 * In practice UC/WC/WT should only ever be used for scanout surfaces on
- 	 * such platforms (or perhaps in general for dma-buf if shared with
- 	 * another device) since it is only the display engine that is actually
- 	 * incoherent.  Everything else should typically use WB given that we
-@@ -1366,7 +1366,7 @@ struct drm_xe_vm_get_property {
+-	 * On systems without small BAR (full BAR), the probed_size will
++	 * On systems without small BAR (full BAR), the @cpu_visible_size will
+ 	 * always equal the @total_size, since all of it will be CPU
+ 	 * accessible.
+ 	 *
+@@ -862,8 +862,7 @@ struct drm_xe_gem_create {
+ #define DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM	(1 << 2)
+ #define DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION		(1 << 3)
+ 	/**
+-	 * @flags: Flags, currently a mask of memory instances of where BO can
+-	 * be placed
++	 * @flags: Flags for the GEM object, see DRM_XE_GEM_CREATE_FLAG_*
+ 	 */
+ 	__u32 flags;
+ 
+@@ -1366,7 +1365,7 @@ struct drm_xe_vm_get_property {
   *    drm_xe_pxp_session_type. %DRM_XE_PXP_TYPE_NONE is the default behavior, so
   *    there is no need to explicitly set that. When a queue of type
   *    %DRM_XE_PXP_TYPE_HWDRM is created, the PXP default HWDRM session
-- *    (%XE_PXP_HWDRM_DEFAULT_SESSION) will be started, if isn't already running.
-+ *    (%XE_PXP_HWDRM_DEFAULT_SESSION) will be started, if it isn't already running.
+- *    (%XE_PXP_HWDRM_DEFAULT_SESSION) will be started, if it isn't already running.
++ *    (%DRM_XE_PXP_HWDRM_DEFAULT_SESSION) will be started, if it isn't already running.
   *    The user is expected to query the PXP status via the query ioctl (see
   *    %DRM_XE_DEVICE_QUERY_PXP_STATUS) and to wait for PXP to be ready before
   *    attempting to create a queue with this property. When a queue is created
-@@ -1546,7 +1546,7 @@ struct drm_xe_sync {
- #define DRM_XE_SYNC_TYPE_SYNCOBJ		0x0
- #define DRM_XE_SYNC_TYPE_TIMELINE_SYNCOBJ	0x1
- #define DRM_XE_SYNC_TYPE_USER_FENCE		0x2
--	/** @type: Type of the this sync object */
-+	/** @type: Type of this sync object */
- 	__u32 type;
+@@ -1651,7 +1650,6 @@ struct drm_xe_exec {
+  *
+  * and the @flags can be:
+  *  - %DRM_XE_UFENCE_WAIT_FLAG_ABSTIME
+- *  - %DRM_XE_UFENCE_WAIT_FLAG_SOFT_OP
+  *
+  * The @mask values can be for example:
+  *  - 0xffu for u8
+@@ -1741,7 +1739,7 @@ enum drm_xe_observation_op {
+ };
  
- #define DRM_XE_SYNC_FLAG_SIGNAL	(1 << 0)
-@@ -1559,9 +1559,9 @@ struct drm_xe_sync {
+ /**
+- * struct drm_xe_observation_param - Input of &DRM_XE_OBSERVATION
++ * struct drm_xe_observation_param - Input of &DRM_IOCTL_XE_OBSERVATION
+  *
+  * The observation layer enables multiplexing observation streams of
+  * multiple types. The actual params for a particular stream operation are
+@@ -1902,10 +1900,10 @@ enum drm_xe_oa_format_type {
+ };
  
- 		/**
- 		 * @addr: Address of user fence. When sync is passed in via exec
--		 * IOCTL this is a GPU address in the VM. When sync passed in via
-+		 * IOCTL this is a GPU address in the VM. When sync is passed in via
- 		 * VM bind IOCTL this is a user pointer. In either case, it is
--		 * the users responsibility that this address is present and
-+		 * the user's responsibility that this address is present and
- 		 * mapped when the user fence is signalled. Must be qword
- 		 * aligned.
- 		 */
-@@ -1664,7 +1664,7 @@ struct drm_xe_wait_user_fence {
- 	__u64 extensions;
- 
+ /**
+- * enum drm_xe_oa_property_id - OA stream property id's
++ * enum drm_xe_oa_property_id - OA stream property IDs
+  *
+  * Stream params are specified as a chain of @drm_xe_ext_set_property
+- * struct's, with @property values from enum @drm_xe_oa_property_id and
++ * structs, with @property values from enum @drm_xe_oa_property_id and
+  * @drm_xe_user_extension base.name set to @DRM_XE_OA_EXTENSION_SET_PROPERTY.
+  * @param field in struct @drm_xe_observation_param points to the first
+  * @drm_xe_ext_set_property struct.
+@@ -1919,7 +1917,7 @@ enum drm_xe_oa_property_id {
  	/**
--	 * @addr: user pointer address to wait on, must qword aligned
-+	 * @addr: user pointer address to wait on, must be qword aligned
+ 	 * @DRM_XE_OA_PROPERTY_OA_UNIT_ID: ID of the OA unit on which to open
+ 	 * the OA stream, see @oa_unit_id in 'struct
+-	 * drm_xe_query_oa_units'. Defaults to 0 if not provided.
++	 * drm_xe_oa_unit'. Defaults to 0 if not provided.
  	 */
- 	__u64 addr;
+ 	DRM_XE_OA_PROPERTY_OA_UNIT_ID = 1,
  
-@@ -1769,7 +1769,7 @@ enum drm_xe_observation_ioctls {
- 	/** @DRM_XE_OBSERVATION_IOCTL_ENABLE: Enable data capture for an observation stream */
- 	DRM_XE_OBSERVATION_IOCTL_ENABLE = _IO('i', 0x0),
+@@ -2369,10 +2367,10 @@ struct drm_xe_madvise {
+ };
  
--	/** @DRM_XE_OBSERVATION_IOCTL_DISABLE: Disable data capture for a observation stream */
-+	/** @DRM_XE_OBSERVATION_IOCTL_DISABLE: Disable data capture for an observation stream */
- 	DRM_XE_OBSERVATION_IOCTL_DISABLE = _IO('i', 0x1),
- 
- 	/** @DRM_XE_OBSERVATION_IOCTL_CONFIG: Change observation stream configuration */
-@@ -2373,12 +2373,12 @@ struct drm_xe_madvise {
+ /**
+- * struct drm_xe_mem_range_attr - Output of &DRM_IOCTL_XE_VM_QUERY_MEM_RANGES_ATTRS
++ * struct drm_xe_mem_range_attr - Output of &DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS
   *
   * This structure is provided by userspace and filled by KMD in response to the
-  * DRM_IOCTL_XE_VM_QUERY_MEM_RANGES_ATTRS ioctl. It describes memory attributes of
-- * a memory ranges within a user specified address range in a VM.
-+ * memory ranges within a user specified address range in a VM.
+- * DRM_IOCTL_XE_VM_QUERY_MEM_RANGES_ATTRS ioctl. It describes memory attributes of
++ * DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS ioctl. It describes memory attributes of
+  * memory ranges within a user specified address range in a VM.
   *
   * The structure includes information such as atomic access policy,
-  * page attribute table (PAT) index, and preferred memory location.
-  * Userspace allocates an array of these structures and passes a pointer to the
-- * ioctl to retrieve attributes for each memory ranges
-+ * ioctl to retrieve attributes for each memory range.
+@@ -2427,7 +2425,7 @@ struct drm_xe_mem_range_attr {
+ };
+ 
+ /**
+- * struct drm_xe_vm_query_mem_range_attr - Input of &DRM_IOCTL_XE_VM_QUERY_MEM_ATTRIBUTES
++ * struct drm_xe_vm_query_mem_range_attr - Input of &DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS
   *
-  * @extensions: Pointer to the first extension struct, if any
-  * @start: Start address of the memory range
-@@ -2443,7 +2443,7 @@ struct drm_xe_mem_range_attr {
+  * This structure is used to query memory attributes of memory regions
+  * within a user specified address range in a VM. It provides detailed
+@@ -2435,14 +2433,14 @@ struct drm_xe_mem_range_attr {
+  * page attribute table (PAT) index, and preferred memory location.
+  *
+  * Userspace first calls the ioctl with @num_mem_ranges = 0,
+- * @sizeof_mem_ranges_attr = 0 and @vector_of_vma_mem_attr = NULL to retrieve
++ * @sizeof_mem_range_attr = 0 and @vector_of_mem_attr = NULL to retrieve
+  * the number of memory regions and size of each memory range attribute.
+  * Then, it allocates a buffer of that size and calls the ioctl again to fill
+  * the buffer with memory range attributes.
+  *
   * If second call fails with -ENOSPC, it means memory ranges changed between
   * first call and now, retry IOCTL again with @num_mem_ranges = 0,
-  * @sizeof_mem_ranges_attr = 0 and @vector_of_vma_mem_attr = NULL followed by
-- * Second ioctl call.
-+ * second ioctl call.
+- * @sizeof_mem_ranges_attr = 0 and @vector_of_vma_mem_attr = NULL followed by
++ * @sizeof_mem_range_attr = 0 and @vector_of_mem_attr = NULL followed by
+  * second ioctl call.
   *
   * Example:
-  *
 -- 
 2.43.0
 
