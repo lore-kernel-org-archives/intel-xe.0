@@ -4,155 +4,155 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ABD4DFEEF55
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 22:18:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E800105D989
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Apr 2026 22:49:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4864610E4D9;
-	Tue,  7 Apr 2026 22:18:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E03E10E4DC;
+	Tue,  7 Apr 2026 22:49:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N0qrqGNH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mJMbkmN9";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA38910E4D9
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Apr 2026 22:18:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1960C10E4DC
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 Apr 2026 22:49:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775600291; x=1807136291;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=KAE69dTFwIxEUGt83ei/OHZRm+KiMWyn8E2ulM9zZK4=;
- b=N0qrqGNHJlOqnlsVxYQiexdOSAJJTgA0SMRLDpc6OfjYlSIHTw5xXP9T
- avuEbEpxYpZUpIE3F6eZmc7+/WLJzF+F/nAEkPWJyFGhMu4nmmoDcpPxl
- qH7FDEptmnEhlEOEO3zKuD0nlHBhCv7iBl6kFncxbzVgRHo8bsE/EqWzs
- BMpVzE2RpnCTQ82BeS+bHMJgGgUG0zPMq4v3/lkdXajQEMrgifV8gyk5N
- rvMBo6ae+XIse0y2mdVSOiWTBEsBXZeLK5CGuX5Tun55uKYscY6ID6+p/
- k6I2gjLTZzf9w35C7XSZqwbpg79WmWwIviwlhn9HQ0GiB7a1zphmJC7hx A==;
-X-CSE-ConnectionGUID: h4C80HXRSbqj5cVEXASC6A==
-X-CSE-MsgGUID: H6G+hnpvQqq1bdUdTCmJJQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="76295152"
-X-IronPort-AV: E=Sophos;i="6.23,166,1770624000"; d="scan'208";a="76295152"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 15:18:10 -0700
-X-CSE-ConnectionGUID: u3HsFryEQU2mt9GK7qF9FQ==
-X-CSE-MsgGUID: 0AIKpggsT6uqLT3EH1Q6uQ==
+ t=1775602181; x=1807138181;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=shIqlHpCUbkwJYmIgJPOtRktwez9DBv2RwH9xQq3A3Y=;
+ b=mJMbkmN9KLB/Rqbe/3VMI7uT+SIwSJ5xMRoEx3HFR3kXXj2kqk0BIsHr
+ AtCyl7AT6aw/O3dJ2xHrwloT9+4OcjBqp7lCfI1eKKbxKd6ZhFdFGQZR6
+ hK0ri20JohDEoBSsOGfBmC3KJkUm9bnzJj9+gfJGIh1GtKJmoJhABf5W9
+ p8DWqwYO1c3Bs+qTQjwPtTlx0hOYRRLiHbsL4wJVRlF/qkjtaadLdeXbA
+ 2gGaZR0RI89vLHj/xR/2Rk7hsdAPiqMvhrS3Sxk4XSiVHYcnIbPhXg2Ct
+ /uNJG+zkzlXfVUTcYiZhxcH14l9Hwsx32Rsqh26D4YbGwsRhrYSoUsZYc g==;
+X-CSE-ConnectionGUID: h9EQOBQWRYyA4ErVqfvmTg==
+X-CSE-MsgGUID: fKG5r53/SFCMFkfKQ0EaIA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="87206371"
+X-IronPort-AV: E=Sophos;i="6.23,166,1770624000"; d="scan'208";a="87206371"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2026 15:49:40 -0700
+X-CSE-ConnectionGUID: 9VZtOk9zSZWFJ59jM7ytKw==
+X-CSE-MsgGUID: uWvfsww6TNe55zbpKFcKgg==
 X-ExtLoop1: 1
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 15:18:10 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.23,166,1770624000"; d="scan'208";a="233175989"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2026 15:49:40 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 7 Apr 2026 15:18:10 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.2.2562.37; Tue, 7 Apr 2026 15:49:39 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Tue, 7 Apr 2026 15:18:10 -0700
-Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.9) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Tue, 7 Apr 2026 15:49:39 -0700
+Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.45) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 7 Apr 2026 15:18:09 -0700
+ 15.2.2562.37; Tue, 7 Apr 2026 15:49:39 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=W9M6bBQRrsb77cpFd7/N1IOMJq12sF59slNc8t9O//4Jl7fGkcQo0pIPRSp6LZ+mCIAbH758wFhFGa4/t1q3NpLgTCiau52iZfZIvja+lkHZl/L+PpCooH/IhLO2o0ptd6rn9MsxjgRm6w4VL2PMCHJGskk0d1aL7aIIdV5LXmdGcyg4XkteecwbSjLydbws34CLy/ubovX3uib3dLPjGyuMO1bBGUK8a0vWLY7wMRsAdiTps+BiPKPOKIpX4+1h52OGFYp7NSdNcXyRypPiq93s2ok4MVuqixsYvcqyhxGMeH1g3XOcj71aD6IfsfosXFBc6+EMfqBR74xQjULemA==
+ b=E+JeV78Ud5ZLCGg/xkkWPerbul528uIODPfHT2J+S1GKVlcYnaNbQoUW60cJVt7a7x/OOysrsl/pusFEP40yDGZVVChxOhpUWLv7xotPudS7Fz1+aBpesqR2Oaw4yD2Lahq2JIpdm9QOlp1Z8KILgqfMxx+1J4VTPSct1qppi2x/2hRuJ2I7zC66j4YWjP8VdOzKSfc0LIkhijXxhRvj4Ypa+WT5So4Ndf/hfxEeWEsAqGfYyYPwdOwqG1TiJh6Eqn3fsTbDWCY05nf2Ku9wFrP7UcBjUPlcEmlUKcYg3fyt4zDUjZTy2pP/44Fx2Gh+/9HgyJ3cN8XBpNSj6dOpZQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jJA2ulnvsaC+SCgQ6WBAqHFnvk3Xi3ueZrTrNwLeshQ=;
- b=eH1IVZM84mIDlZVetHOrDwCb7sy4l9jw4Xj1BcI+Nl2yH51B2NMR57wNMwQ/JFoYRRdLY6gqq8FVhuMyueZga48EOs4W7q71BG1I9KLFoiHHK+Lf7BhoMw44v2Q1iYc8h7ebeX1QwOpTdeXuglnzcQCtIZSmJd4bNJ5JMRHTdhwnDM0iiZ5X+0GYdvFPfaWmBRY4SJUa+U55D8R8f83z4uhbrf1YmpmwmoFYPfqDTHSinUbRppqhU9vey8K6pPmfxDfmiLWi1KyeHMBQBthVBl+zxjwFbLcCn6w2YaKZrN8UBLwV3OcVyZ8mTLnVXOdtV0fo6Hy6iq/3BeOlOyf3og==
+ bh=m8L7dKYzrMw5xNQPZIhvGNuHVA2GVHObF7vXhe2PSsM=;
+ b=dahPV8EWKClkjW6OkkXJIYELHPeAKXkumPcBc+2fJlP2UhdafKlePhSf58jMRF226tpe43ZLcUqDiKEIhIkvKBroxX8SL1DUsCMiCDFU079+UfEE5VgtdU7bGY+mrn1i1KAe6YISkKfOHr5DTD7V6w4JMsNZ9HFyumrarcsJ8BlUo0jZCmelgUlzK40ssp+3KicbH4rOxPyaB7P1VG0eMiUHUpF1lelfy43SjvUpHUF3SVV6yv1G1jftPq1C7pSAi33mIT/wAIZtnwZc2fyKwz5IZLTN9Ges2c5nUuZQ1mUv0e93wbvgX20LouYMA9AojrWvnfoT5GKkBOqH3D5kYQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB7605.namprd11.prod.outlook.com (2603:10b6:510:277::5)
- by LV3PR11MB8459.namprd11.prod.outlook.com (2603:10b6:408:1b0::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.17; Tue, 7 Apr
- 2026 22:18:07 +0000
-Received: from PH7PR11MB7605.namprd11.prod.outlook.com
- ([fe80::48d7:f2a6:b18:1b87]) by PH7PR11MB7605.namprd11.prod.outlook.com
- ([fe80::48d7:f2a6:b18:1b87%5]) with mapi id 15.20.9769.016; Tue, 7 Apr 2026
- 22:18:07 +0000
-Message-ID: <6b5850d5-879f-4ea0-ad29-63ef0d8474d1@intel.com>
-Date: Tue, 7 Apr 2026 15:18:05 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/guc: Add support for NO_RESPONSE_BUSY in CTB
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- <intel-xe@lists.freedesktop.org>
-CC: Matthew Brost <matthew.brost@intel.com>
-References: <20260403204433.5765-1-michal.wajdeczko@intel.com>
-Content-Language: en-US
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-In-Reply-To: <20260403204433.5765-1-michal.wajdeczko@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BY3PR10CA0022.namprd10.prod.outlook.com
- (2603:10b6:a03:255::27) To PH7PR11MB7605.namprd11.prod.outlook.com
- (2603:10b6:510:277::5)
+Received: from DS0PR11MB7408.namprd11.prod.outlook.com (2603:10b6:8:136::15)
+ by IA4PR11MB9204.namprd11.prod.outlook.com (2603:10b6:208:56d::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.21; Tue, 7 Apr
+ 2026 22:49:36 +0000
+Received: from DS0PR11MB7408.namprd11.prod.outlook.com
+ ([fe80::53aa:3f7a:59cd:e057]) by DS0PR11MB7408.namprd11.prod.outlook.com
+ ([fe80::53aa:3f7a:59cd:e057%3]) with mapi id 15.20.9769.016; Tue, 7 Apr 2026
+ 22:49:36 +0000
+Date: Tue, 7 Apr 2026 15:49:27 -0700
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: Ashutosh Dixit <ashutosh.dixit@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 1/3] drm/xe/oa: Use xe_map layer
+Message-ID: <adWJ94RCOcgtFpTk@soc-5CG1426VCC.clients.intel.com>
+References: <20260407030219.444060-1-ashutosh.dixit@intel.com>
+ <20260407030219.444060-2-ashutosh.dixit@intel.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260407030219.444060-2-ashutosh.dixit@intel.com>
+X-ClientProxiedBy: MW4PR04CA0064.namprd04.prod.outlook.com
+ (2603:10b6:303:6b::9) To DS0PR11MB7408.namprd11.prod.outlook.com
+ (2603:10b6:8:136::15)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|LV3PR11MB8459:EE_
-X-MS-Office365-Filtering-Correlation-Id: b7d80dda-edfc-4e94-b394-08de94f38b56
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7408:EE_|IA4PR11MB9204:EE_
+X-MS-Office365-Filtering-Correlation-Id: ed9a2ec3-05e3-4069-2bd1-08de94f7f0ea
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|22082099003|56012099003|18002099003; 
-X-Microsoft-Antispam-Message-Info: 6Jz8QWZSLlk0v6TRZOrsKyQJi2PN1PAXLRn+yls8lvW+fJOxBwcHpuLNG3rsGMDD9q2cjpLkHIe/y+p3nMPhdnZXQoSg8K+zSSD4C9/26r+n5r8Ce1lJ+HwzLaycnCU99dVEWcC0sBIdzmel/brQXdVjd73PaSGrI97c7DHTfHR658LgYH9fd4ljcNRxmHMkk4cnlD05kgLanJdZzyImjNaeWpg/LPanB2XmaG6QCwMTpTnRW8Z6cdEsJYbaivydf7IBL+rC7r74mptjIrF+iTwnJqwlARjvbiIsvKG17WLb3YvOMTgUl9djYat7ax0BgJtxcQUR43IUM2aBpMZswjlAjmBS2Wanl/Zt9B3XOyameq6VAogl7H3Wwzr20Gyjwhvl6ed9cYdR9W9+mGdY0AUGcmr2CTE70ys9NwMXJ0K1viI1XNWSiEWhAzCmDZtNuZbEcxB21fQF6YR7GHPNO/ok3y5sq3d4v4osXffFA33BX1hBenj/CBmB6cslkGIJlgpJzhp7g+RXzwhjNJA9Mnj8qvXBzcNzMydu63mDWqzf+F6j6RfLWasgyfpHRz796TBvTcIFd3lgl4yadNSGcDbjKqHH+hYf3TLdfQqET9K4sShnEB4NM1dNl6Bvh7uhKo9ETq2GBCy4iBTWfUCLqESj+iuAZCqYbkcuoK6yIajvUbN9WHEFwazSpQbyaXoI
+ ARA:13230040|1800799024|376014|366016|18002099003|56012099003|22082099003; 
+X-Microsoft-Antispam-Message-Info: GeDx+cgb6yPp/K1sasw3VkvbgNVlnnbIEmBUKrTc0cp7vcA7LQT4sOP7MmKkz5pSK/h75wY9RTUsPTCsdMHwhUDGCZU4OzAvRn8utNboDQ7DNMSiGThRUSF2Xx+7IqPwXKRCMwE58Bri8bgpNbJeX1/v5qgGD4LkgikRVm9HdgBfCDhv8dNrZwLuy5cHF3TgwZ81OUxGPAYqWOogNRXUYuEltPaYZZ91dRalkCq1/0LXpX2r5wtxDQLGxtTEz7CxVoCl/e1XROPI7XxxktpFzuzquZfMybY2iujmAAbhqlM9YPGERM2uDj+T2MFxs+twGTjrfXR286KkDvkkj1BAmB0H/lIXcpvm05pEJJKG/C3qdlTIPexMtHf09g/I/jrRSZ3S8zlTO41ENCpnS2GisF3100KkNnrwqzfDR6xVzwq/gNRP2gDty7IfnG0PCnOAJA9E0cUUJaan/JPxLi2v3WpeM0sHNGAACjMJCk+cfYVzY2TJ0J6QLH+p+YrcSixmte+7TYwp2k6SROwJJjMWb/caY+q8qUMQkzJAwUobwa27T7qSbXe4RPJIiq66LHUfmvUlu/jYdL+DLfK/LaW5hk/Yqv2pabyfo1aRXfUHnwHqcmitMnvY3o+b0bmuFAxbfpVHbl4l0GyOXsPmrAYSic8/ot17DlZ7heDJ9LT2Bz2/eSJXfvfr1TKZ2Gvxd4Eb+ONGclSQkfiTAIpUWQR5SW5K1Ij+IvmH+rstqTVfQOk=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB7605.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(22082099003)(56012099003)(18002099003);
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7408.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(18002099003)(56012099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MldsbXNZOUd4Wk5FVkpxNER5eW5aaFl5dEVtNGVQMzl0WGRsb2tkRDVlSUU4?=
- =?utf-8?B?QUNHTjJITE12RTc5UG1lQzZMYlc2WWM0aThYdXgxT01ZN0NJL0wzZ1FQTE14?=
- =?utf-8?B?elN0RHN0a3kzUkh6SlN4eXh0dnBuLy9DTWpKOWxQYlRuSUpidkVldjNEZXlM?=
- =?utf-8?B?WUM1NEo1R2NQNWZEWEJqWngvTEdNQWEzV3ZZQlliUFBXWHFZejlnalJIYnBQ?=
- =?utf-8?B?WEhmUVErRUdqVlFpMlpTa1F5K3MvSXJaL1FkTnJsWkc1WmRyMFVRYVZDU2VY?=
- =?utf-8?B?cE1WanA4QlV0U1VaeUR2d2wzZmNaODBVYnZIZ3d5YWEzbTY2TmdNL1h2TlVZ?=
- =?utf-8?B?ZjNiZzF4M2xUaGZtQkpkZG04bDFTZlhQQlBnL3gyVzBMOGx1cXprdnVMNTMw?=
- =?utf-8?B?YWxOc3Bsb1lrTk1GUS9xN1JOT2VIZ0Yya0ZubnFIWmZ6R2JtQUd4S21aN1o2?=
- =?utf-8?B?SExKekk5VVhtemdWN21GaU1HbFRka3dRY0FBcXRxY1FZZm1uUWpHRUVZYWNH?=
- =?utf-8?B?bVQrTXdyc21HaVV0K0hhMTAxNXM5c0FqYUNJUldBbjVDN1hYME5QaEtjRURm?=
- =?utf-8?B?cXhBQVI4NUR6akx0SG90YlRURjFsZ2JldHYzZHovdTV1bTAwQTZuUExQUjZx?=
- =?utf-8?B?eUhPRUErbWZyVkgwZWlqNGtGYWU3Z2lWaFRYUFRJQndQRkRpOVJ6MG5KV3JP?=
- =?utf-8?B?eGtqaGhPQVZYL2tzS1BsUC9rVmxOOXlwNUZkME1LOGYweVJwdXZoTktXVFp3?=
- =?utf-8?B?K0VkZDY0eXNUVDJkaE1hT3hFeEtaTTA2c1dnM0RUYUYyTktHSmFFQ2ZxZ2Jq?=
- =?utf-8?B?NnlEWjNMSkw3QU4zN3RHZ2JtV25UT015WUJ1dUhsMjUyeW8zR3B5amRBc20r?=
- =?utf-8?B?bkNnN3NnaFNOT24xbEQxODBIZ01Qc0VyRmdSMmdOaFdSd2JQMGZCeFhrNVVl?=
- =?utf-8?B?TVdJWE5HSUt4ejVmYkVHNlRmTXdWZDFLY3F1VnpLZm5YNWJFNVpxVGFqWDdM?=
- =?utf-8?B?UHZGdFdFcDBVdzNyYS9iTnE1M0hXMFF6RXlvMEo0d1JCakV2T21ueFAramNB?=
- =?utf-8?B?WG1FNmo1c1JCM3BGcGYzTm1iS3VNWDZ5V2p6MEltWXVNcWRQbEtiR0V5UXhB?=
- =?utf-8?B?akxuZmI5b29TbXp5bHU1MlJpQ1NERXpaVjJpVjBpY3R1V2ZYVkNucEdyd2J4?=
- =?utf-8?B?aG9BY1ZBUUNaZzBwcDlreXIvank4QkJMc2dERE01Wk1KZDA4V0QxZnF0clVr?=
- =?utf-8?B?STNJdTV0SEh1Q3doSSsyd1ZKTmx5QmlzRWxEWDlFOGhKS3YwUG9YNTg4b09H?=
- =?utf-8?B?c2xRTDNaaUh0a2pWWW0zRDVFbjc3L3hpZzNNMVA3ZDZTNVdNaU0xZ3QyWGdr?=
- =?utf-8?B?QWI3VGthUXpDelVGbGpva0NSekRxc0ozR096aDc0a3djZm5renRweGZQeTRk?=
- =?utf-8?B?QmJ6bHJVZDFBbW9MbWl6OW96RlVCNS9KTHRhV3Z1NjRNVTE4czBqUlM4QVFX?=
- =?utf-8?B?S3REY0dxVEZiZmkvYW5zbEFnRGczTDI2OVRkT1ZScXc1YXRHcmZ2K2lPZGJM?=
- =?utf-8?B?MnNnNmJzVkx1NlVPNUVOWmd5TzVoYWdaQTdvdVc4NzFCN0lGcFhzMmVxSkxr?=
- =?utf-8?B?NlVnNU5abzJlVXB4b1dTVVFoNXBERFhJV1lVdjhJVWpBTHRWTDJLYXMvUmZr?=
- =?utf-8?B?RUpUaFV4NWlMcGs5ZUg2NnZFU3pHTFJpODQ2NTZ1SWMxQUJ3WDRrS2QzTFNz?=
- =?utf-8?B?SWtMVW11ME1HRXVmVjh2N2M2ZEQzVzhKNm9kUnFlSWQ2TjZzaFFHNnNtZnp1?=
- =?utf-8?B?VFZlZzV5MUZWRWVoenYyMm1nV0NubGFQYTlLTk9mQmtJTGEyYVFEWjgwdWxJ?=
- =?utf-8?B?UU0zZEJKY0s0OUE2R1JkSmxWSlh0Zjg0aEo2UUlWN1oxTnh0b3JDU1VPcFFy?=
- =?utf-8?B?b2NDOFFDVzI2QTBJS2tocFA1MDZZMTJoN1FUa1kzdmJ5SDdSeW1hV01EVUdB?=
- =?utf-8?B?VUhNb0tzcWF0cVdXZGtOOEFOQkJwS2NuSVdPNno1TERqYSs3OTZuM1gwWVRi?=
- =?utf-8?B?M1dCdGlDeXF0bTkwekFXd1ppcU9nSEhkN1MwQzhaRzZuWVRjQXREOGFtUEcr?=
- =?utf-8?B?d1Z1dVMwRjFCRGs5OUNXbVh2VTh5WTF6TWc3clZhNHVLTkdTMWZ3ckkxNmtz?=
- =?utf-8?B?WFFVemRMckxvQWkrOUJuT28wcWJmc3FDSUVsTlZFcmVMbGxNZ1J2Y3ZsNHh4?=
- =?utf-8?B?RVc3WHV3Y29WNU5aSkw1bTF1M1c2Wi9YSDBHeFo1U2krZU43WG1Qc0dCMENR?=
- =?utf-8?B?ZUd1VjlBTUZPMHpiQndjcVJxUDdtYkZPajBvQlpnQzdYR1A5a2tJenRWdExv?=
- =?utf-8?Q?isxu6EEktcIy+p5g=3D?=
-X-Exchange-RoutingPolicyChecked: r8pUtDPcOMi32RMRjbl9jI/c8cSBWKA8xvcwW3w4SFKr8xvV3BBr10KIXZMGt0eOM+OdEPHrZGBdLLtGwCKvHWf+kMqt5blkhogbrSeBSGfy283LLphus4/DvF+1IP0oAWsOdIwsDzRN3k54cEEaXxepu8gbCedPqFn8nyzwesblcJREOOZNznorM8WnliSMylbXsmnt8kKvrKHmZ8XxJEJsZrVAjEgc0XEkTuzQbL3ulb+SOzDJoH5we8XbJu9OkV/sQjXcnnJv5x0JgdkcHyHVos6sORKCZwkDz2NV+rBjsFr2876jYalpEa5yxqfUtkxs4OrlDo/cZvRD+ekRrw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: b7d80dda-edfc-4e94-b394-08de94f38b56
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7605.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OHJYblVicVk2aHQ3MFczZ2N3UUlxQm9PdURtM0p5MDBWaVZDc1JLQ0NKNE1h?=
+ =?utf-8?B?ay8relVYTXd5a2JjOHR0NFR0NnNuRko0Z0NqMU01Z1ZDOFpRZ2RJZ01nTUhi?=
+ =?utf-8?B?bnVYRXlVWXVmNFR0eUZZdURVS0d6MG1Wb2cvek40eDNQY3N3Tm5sbkVjYnlI?=
+ =?utf-8?B?Q3ZkZGlvR3RQUDNkSVBkREZucnh4Y1VxeHlWNjQ2MGdKeEJmQjBPWGxWL2Ju?=
+ =?utf-8?B?ZUJRNUpUOVVFRHRia0VNNTAwYzJYV0JMYmsweFZTSmJ1dm4zRUR5QllrMmhw?=
+ =?utf-8?B?MElqNGJjdjV5VHA1UUttS295ZkNzM2daWUZXelpHRll1eWwyN2V0Y243T2ov?=
+ =?utf-8?B?NmdHZHkreHY2NjFtNlpjVzU1U0gyaWwvYUwvclFsUkVLOEFMQzBGS1VTOXEr?=
+ =?utf-8?B?aTN3WUdyMzVSVTNjNXk0SGFlMkdtL3JtcU1hYTBjUE5oU1FJT2VTemFXMGpU?=
+ =?utf-8?B?RXVsWmRiWmFKVktOaW1nNmtuZEkzWHkyQUtmcWhSRHVQTjZhbDBteFJ5RGQx?=
+ =?utf-8?B?eCt4QUVXSmVCWVVmNU54VUdyZDUyVVZNOXltT0cxN3IvbWxFTlVpN0lIcmRK?=
+ =?utf-8?B?S0YvMCt1YzBWLzJ2ck5sZkxYd3NlMElUT2Q1cHFjdmNmeWN5S1hqZzAyczM0?=
+ =?utf-8?B?N251S1hPaEpTbnZscjE5bEp0U0RtN2htMFVrVmllNFRYMDFiK1N3Mm1EYVMv?=
+ =?utf-8?B?bjUwTjNPRFhDSC9nNjdnY29wSnNlN3czbDNTWXQyZDhGVkZFTERoYUI4NEpz?=
+ =?utf-8?B?UFBVUGtLdWUyaVZiV29sK1R2TjhaRDd5VXRIc0hKbi9MVzhTdVNrU2d2dEVJ?=
+ =?utf-8?B?YmkwdWV3cUl1NXNaZE9melhNTzFpaVAyYk01UDQ0cWZVTG8rU1ZVTGRUTWxU?=
+ =?utf-8?B?SGtEVGZJdVk2T2lVS0ZJRWw4RnJJRWhGWDdYTkpSbFJaSEhJbVJzSTF6MkM0?=
+ =?utf-8?B?T1lYRjhVRDd2V2Z4eEtiRjBHeWowWVB0MGRrMEx6eTNPcDV5TXRYSDNMV1VP?=
+ =?utf-8?B?aHM5SEpNMTBJVWxqdUFvWHZLU1YrTjlSZ29jYng1c3drTmkwZ00zM2loODFY?=
+ =?utf-8?B?OExKR0R2MWhGWGNQM2FVVmdxYmlOMExSd2ZNb1k5U0NXTDRud3FrS0NFZjh1?=
+ =?utf-8?B?V05lNXlESlVhVmxuWnkxRXVvYlJ5akZpbUdsWmExWTRYVEdyRW5RK1U5Z2NF?=
+ =?utf-8?B?MnNxblNrNm56d252bkVlbXFaYVlFKzhDM0NvU0VlcEdKd0dsNy9pU0hTdkht?=
+ =?utf-8?B?ZDNZRUJmUllJSW5XL1FyTlNTeHpYVVIzVFB0bjZROVpraWJBbUE3dVUrRWZT?=
+ =?utf-8?B?U0lLZW1SRVUvcDZaSmY1ZmNvZ1I2UlpUdjV4UjIwaFNES2dvRW11dmtCdlVV?=
+ =?utf-8?B?dS9LZDE2SERnLzhER2Fmb05qbHBsR0ZFNmRRU1lsYUJMWjNUTEE5cTZ3OWZ3?=
+ =?utf-8?B?TnBlYk1lNW8xYktDZ2RPS0dDbjVaZ3F0NkVJVWFUUm9Yc0RDSEY5YU9palU4?=
+ =?utf-8?B?WCt6VjFZUzNpZmhSUU01Q2Exd1BtV1ZwY01ZODZPUVl6dXpzYWQydTV6SElB?=
+ =?utf-8?B?SkxBZmtiZ1JlU003cndNOUhHWExSTHpPcGZNb3FaVGdNZWF2bC9WWlhQbGY4?=
+ =?utf-8?B?MVBoUEdhSUtScGgxc1BMK29vdEFzVFBvOGUzTlRlYU0zaGJWdzNmT05zL05L?=
+ =?utf-8?B?V05TZlJUUmozeHZ1WGJNSlM1eDhTVUFVV29Zd3ArRmJtRXQxNXB5SkJsVUIw?=
+ =?utf-8?B?Tmo2Y1I2WFVGaGIrc2JRMVRZRzhpR0JqRlNFTnFZTUtkZDhrb2NSUDlKM0VN?=
+ =?utf-8?B?NSthVkN0RHNxanhFRFhnb0ZqMzh6dUNQQmMraC9zUk1iRkFab1V4c1BsWXMw?=
+ =?utf-8?B?dHduNWJVQlR5eUtkWFdBbldpdXZPNGhJTW5Qanc2bzFNWWd5SUFLZUUvWGg5?=
+ =?utf-8?B?NXBDWTVTOU5HTmZLZ2lQNDI2UUkzTUJlN05LbXpTcXZxampVT0tUbzZpV3Bm?=
+ =?utf-8?B?TS8ycStCMDF6K2k1Vnp3TW9CYXVHc0FtdTY3YVorK0lzRk1jR3c1MWs3aUFW?=
+ =?utf-8?B?YzFuNW5JSml5dDRxNHltaGFZZUJWeHhyYjV1Umo2SHlMbjZ6NmIyVGxzbFF3?=
+ =?utf-8?B?RWhsOTAxTTVTRHEydGZpZnBiNE0ycnZVMUxjVDc5TUoxZUk4RHQ2N3orUzNW?=
+ =?utf-8?B?RnN3ZCs3ZTV5cFhnRW1Zb3Nyek83R0RwdWxBTVJvSFgwSnFGWDJwSmJFUHdE?=
+ =?utf-8?B?L3l6Vko2YXUraFhSazQvQjh1b1JUUVhxelNCVkQ4SStLWlNXV2NucnN5WW9L?=
+ =?utf-8?B?bk82a1lNdkVtZEFhM1NKdHdZei90VXprZ1dzcElpSjdrTzdzVlB6UWloVXps?=
+ =?utf-8?Q?UdbRDojiM96Cg/p4ZsyYS6R+I9RNjIhVlLRly?=
+X-Exchange-RoutingPolicyChecked: nKnRvN3WLbZBkSKMs7+WGvmqDT/l7l7FMlLlwX4A4EdiU9IjVeZVh1RvTjHwnoYKO1bbzKub6MJgw7HP1KJbMjS1p9G9iceNr7piaDM/lQZB9O5fmPVq/17p2ja+hnYn5LdwaEipwC/2oaEmJwPZgVEACoEZh6rgW4npA+uaD6pesmW2Jdh97PJ/HYGRwh7zB2lPxJ8Vf7b/lGVnO9IoYLy6ssZB8FRwgaI+KXnaPCZH0eCUSNKCMW7Iwl871WLebHbmuo8w8BbGFMFxIxxTOnzkaqpZ7u9kCDTSxQrNtXtx2ptuSynZa2E2Ccw1kyT8q4p/bGxFlLDQtHOtjMAR1Q==
+X-MS-Exchange-CrossTenant-Network-Message-Id: ed9a2ec3-05e3-4069-2bd1-08de94f7f0ea
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7408.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Apr 2026 22:18:06.9800 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Apr 2026 22:49:35.8961 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: VpKVFOfdAmWhQzL2Idn/6tin9BFcXxW3EDMJQVJbvfUsVoxRya4EozpKuMuXjln6hmNlD4KW2KMpGwp4fSzgDfdtQURxYtUiI3CQPEPnBtA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR11MB8459
+X-MS-Exchange-CrossTenant-UserPrincipalName: J6c0e7AJmv5WEuAIAyt2NmznneaSSFxc3vM8CETyAg/5bZNQaYJbyYxSiXqCbzQjMGt6K1+odJW26en2wSx7aYRSgXMbNLNF5gLCBM9urVE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA4PR11MB9204
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -168,153 +168,215 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-
-On 4/3/2026 1:44 PM, Michal Wajdeczko wrote:
-> We only have support for G2H NO_RESPONSE_BUSY messages over MMIO,
-> but it turned out that GuC also uses that type of messages in CTB.
+On Mon, Apr 06, 2026 at 08:02:17PM -0700, Ashutosh Dixit wrote:
+>OA code should have used xe_map layer to begin with. In CRI, the OA buffer
+>can be located both in system and device memory. For these reasons, move OA
+>code to use the xe_map layer when accessing the OA buffer.
 >
-> The following error was recently observed on BMG after adding VGT
-> policy updates to the GT restart sequence:
+>Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+>---
+> drivers/gpu/drm/xe/xe_oa.c       | 88 ++++++++++++++++++--------------
+> drivers/gpu/drm/xe/xe_oa_types.h |  3 --
+> 2 files changed, 49 insertions(+), 42 deletions(-)
 >
->   [] xe 0000:03:00.0: [drm] *ERROR* Tile0: GT1: G2H channel broken on read, type=3, reset required
->   [] xe 0000:03:00.0: [drm] *ERROR* Tile0: GT1: CT dequeue failed: -95
->   ...
->   [] xe 0000:03:00.0: [drm] *ERROR* Tile0: GT1: Timed out wait for G2H, fence 21965, action 5502, done no
->   [] xe 0000:03:00.0: [drm] PF: Tile0: GT1: Failed to push 1 policy KLV (-ETIME)
->   [] xe 0000:03:00.0: [drm] Tile0: GT1: { key 0x8004 : no value } # engine_group_config
+>diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+>index 6337e671c97ae..dfd3b6a789cc3 100644
+>--- a/drivers/gpu/drm/xe/xe_oa.c
+>+++ b/drivers/gpu/drm/xe/xe_oa.c
+>@@ -213,32 +213,40 @@ static u32 xe_oa_hw_tail_read(struct xe_oa_stream *stream)
+> #define oa_report_header_64bit(__s) \
+> 	((__s)->oa_buffer.format->header == HDR_64_BIT)
 >
-> where type=3 was this unrecognized NO_RESPONSE_BUSY message.
+>-static u64 oa_report_id(struct xe_oa_stream *stream, void *report)
+>+static u64 oa_report_id(struct xe_oa_stream *stream, u32 tail)
+> {
+>-	return oa_report_header_64bit(stream) ? *(u64 *)report : *(u32 *)report;
+>+	struct iosys_map *map = &stream->oa_buffer.bo->vmap;
+>+
+>+	return oa_report_header_64bit(stream) ?
+>+		xe_map_rd(stream->oa->xe, map, tail, u64) :
+>+		xe_map_rd(stream->oa->xe, map, tail, u32);
+> }
 >
-> Note that GuC might send the real RESPONSE message right after
-> the BUSY message, so we must be prepared to update our g2h_fence
-> data twice before sender actually wakes up and clears the flags.
+>-static void oa_report_id_clear(struct xe_oa_stream *stream, u32 *report)
+>+static void oa_report_id_clear(struct xe_oa_stream *stream, u32 head)
+> {
+>-	if (oa_report_header_64bit(stream))
+>-		*(u64 *)report = 0;
+>-	else
+>-		*report = 0;
+>+	struct iosys_map *map = &stream->oa_buffer.bo->vmap;
+>+
+>+	oa_report_header_64bit(stream) ?
+>+		xe_map_wr(stream->oa->xe, map, head, u64, 0) :
+>+		xe_map_wr(stream->oa->xe, map, head, u32, 0);
+> }
 >
-> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> ---
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Link: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164119v2/shard-bmg-9/igt@xe_exec_reset@gt-reset.html
-> ---
->   drivers/gpu/drm/xe/xe_guc_ct.c | 29 +++++++++++++++++++++++++++--
->   1 file changed, 27 insertions(+), 2 deletions(-)
+>-static u64 oa_timestamp(struct xe_oa_stream *stream, void *report)
+>+static u64 oa_timestamp(struct xe_oa_stream *stream, u32 tail)
+> {
+>+	struct iosys_map *map = &stream->oa_buffer.bo->vmap;
+>+
+> 	return oa_report_header_64bit(stream) ?
+>-		*((u64 *)report + 1) :
+>-		*((u32 *)report + 1);
+>+		xe_map_rd(stream->oa->xe, map, tail + 2, u64) :
+>+		xe_map_rd(stream->oa->xe, map, tail + 1, u32);
+> }
 >
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-> index a11cff7a20be..19305acb98e4 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-> @@ -186,6 +186,7 @@ static void fast_req_track(struct xe_guc_ct *ct, u16 fence, u16 action) { }
->   struct g2h_fence {
->   	u32 *response_buffer;
->   	u32 seqno;
-> +	/* fields below this point are setup based on the response */
->   	u32 response_data;
->   	u16 response_len;
->   	u16 error;
-> @@ -193,6 +194,7 @@ struct g2h_fence {
->   	u16 reason;
->   	bool cancel;
->   	bool retry;
-> +	bool wait;
->   	bool fail;
->   	bool done;
->   };
-> @@ -204,6 +206,11 @@ static void g2h_fence_init(struct g2h_fence *g2h_fence, u32 *response_buffer)
->   	g2h_fence->seqno = ~0x0;
->   }
->   
-> +static void g2h_fence_void(struct g2h_fence *g2h_fence)
+>-static void oa_timestamp_clear(struct xe_oa_stream *stream, u32 *report)
+>+static void oa_timestamp_clear(struct xe_oa_stream *stream, u32 head)
+> {
+>-	if (oa_report_header_64bit(stream))
+>-		*(u64 *)&report[2] = 0;
+>-	else
+>-		report[1] = 0;
+>+	struct iosys_map *map = &stream->oa_buffer.bo->vmap;
+>+
+>+	oa_report_header_64bit(stream) ?
+>+		xe_map_wr(stream->oa->xe, map, head + 2, u64, 0) :
+>+		xe_map_wr(stream->oa->xe, map, head + 1, u32, 0);
+> }
+>
+> static bool xe_oa_buffer_check_unlocked(struct xe_oa_stream *stream)
+>@@ -275,9 +283,7 @@ static bool xe_oa_buffer_check_unlocked(struct xe_oa_stream *stream)
+> 	 * they were written.  If not : (╯°□°）╯︵ ┻━┻
+> 	 */
+> 	while (xe_oa_circ_diff(stream, tail, stream->oa_buffer.tail) >= report_size) {
+>-		void *report = stream->oa_buffer.vaddr + tail;
+>-
+>-		if (oa_report_id(stream, report) || oa_timestamp(stream, report))
+>+		if (oa_report_id(stream, tail) || oa_timestamp(stream, tail))
+> 			break;
+>
+> 		tail = xe_oa_circ_diff(stream, tail, report_size);
+>@@ -311,30 +317,37 @@ static enum hrtimer_restart xe_oa_poll_check_timer_cb(struct hrtimer *hrtimer)
+> 	return HRTIMER_RESTART;
+> }
+>
+>+static inline unsigned long
+>+xe_oa_copy_to_user(void __user *dst, const struct iosys_map *src, size_t src_offset, size_t len)
+>+{
+>+	if (src->is_iomem)
+>+		return copy_to_user(dst, src->vaddr_iomem + src_offset, len);
 
-I'm not convinced that g2h_fence_void is the correct function name here. 
-Maybe g2h_fence_clear_response or something like that?
+I think this requires xe_map_memcpy_from for the iomem case.
 
-> +{
-> +	memset_after(g2h_fence, 0, seqno);
-> +}
-> +
->   static void g2h_fence_cancel(struct g2h_fence *g2h_fence)
->   {
->   	g2h_fence->cancel = true;
-> @@ -1331,6 +1338,7 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
->   	/* READ_ONCEs pairs with WRITE_ONCEs in parse_g2h_response
->   	 * and g2h_fence_cancel.
->   	 */
-> +wait_again:
->   	ret = wait_event_timeout(ct->g2h_fence_wq, READ_ONCE(g2h_fence.done), HZ);
->   	if (!ret) {
->   		LNL_FLUSH_WORK(&ct->g2h_worker);
-> @@ -1356,6 +1364,12 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
->   		return -ETIME;
->   	}
->   
-> +	if (g2h_fence.wait) {
-> +		xe_gt_dbg(gt, "H2G action %#x busy...\n", action[0]);
-> +		g2h_fence_void(&g2h_fence);
-> +		mutex_unlock(&ct->lock);
-> +		goto wait_again;
-> +	}
->   	if (g2h_fence.retry) {
->   		xe_gt_dbg(gt, "H2G action %#x retrying: reason %#x\n",
->   			  action[0], g2h_fence.reason);
-> @@ -1508,7 +1522,12 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
->   		return -EPROTO;
->   	}
->   
-> -	g2h_fence = xa_erase(&ct->fence_lookup, fence);
-> +	/* don't erase as we still expect a final response with the same fence */
-> +	if (type == GUC_HXG_TYPE_NO_RESPONSE_BUSY)
-> +		g2h_fence = xa_load(&ct->fence_lookup, fence);
-> +	else
-> +		g2h_fence = xa_erase(&ct->fence_lookup, fence);
-> +
->   	if (unlikely(!g2h_fence)) {
+Thanks,
+Umesh
 
-if we hit this error with a NO_RESPONSE_BUSY we'll release the memory 
-with the fence still in the xa, which seems wrong.
-
->   		/* Don't tear down channel, as send could've timed out */
->   		/* CT_DEAD(ct, NULL, PARSE_G2H_UNKNOWN); */
-> @@ -1518,6 +1537,7 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
->   	}
->   
->   	xe_gt_assert(gt, fence == g2h_fence->seqno);
-> +	g2h_fence_void(g2h_fence);
-
-Is this here because we might be parsing the G2H with the actual 
-response before the waiter has had time to process the initial BUSY 
-response? It might be worth adding a comment to explain that.
-
-Daniele
-
->   
->   	if (type == GUC_HXG_TYPE_RESPONSE_FAILURE) {
->   		g2h_fence->fail = true;
-> @@ -1526,6 +1546,9 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
->   	} else if (type == GUC_HXG_TYPE_NO_RESPONSE_RETRY) {
->   		g2h_fence->retry = true;
->   		g2h_fence->reason = FIELD_GET(GUC_HXG_RETRY_MSG_0_REASON, hxg[0]);
-> +	} else if (type == GUC_HXG_TYPE_NO_RESPONSE_BUSY) {
-> +		g2h_fence->wait = true;
-> +		g2h_fence->reason = FIELD_GET(GUC_HXG_BUSY_MSG_0_COUNTER, hxg[0]);
->   	} else if (g2h_fence->response_buffer) {
->   		g2h_fence->response_len = hxg_len;
->   		memcpy(g2h_fence->response_buffer, hxg, hxg_len * sizeof(u32));
-> @@ -1533,7 +1556,8 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
->   		g2h_fence->response_data = FIELD_GET(GUC_HXG_RESPONSE_MSG_0_DATA0, hxg[0]);
->   	}
->   
-> -	g2h_release_space(ct, GUC_CTB_HXG_MSG_MAX_LEN);
-> +	if (!g2h_fence->wait)
-> +		g2h_release_space(ct, GUC_CTB_HXG_MSG_MAX_LEN);
->   
->   	/* WRITE_ONCE pairs with READ_ONCEs in guc_ct_send_recv. */
->   	WRITE_ONCE(g2h_fence->done, true);
-> @@ -1570,6 +1594,7 @@ static int parse_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
->   	case GUC_HXG_TYPE_RESPONSE_SUCCESS:
->   	case GUC_HXG_TYPE_RESPONSE_FAILURE:
->   	case GUC_HXG_TYPE_NO_RESPONSE_RETRY:
-> +	case GUC_HXG_TYPE_NO_RESPONSE_BUSY:
->   		ret = parse_g2h_response(ct, msg, len);
->   		break;
->   	default:
-
+>+	else
+>+		return copy_to_user(dst, src->vaddr + src_offset, len);
+>+}
+>+
+> static int xe_oa_append_report(struct xe_oa_stream *stream, char __user *buf,
+>-			       size_t count, size_t *offset, const u8 *report)
+>+			       size_t count, size_t *offset, u32 head)
+> {
+>+	struct iosys_map *map = &stream->oa_buffer.bo->vmap;
+> 	int report_size = stream->oa_buffer.format->size;
+> 	int report_size_partial;
+>-	u8 *oa_buf_end;
+>
+> 	if ((count - *offset) < report_size)
+> 		return -ENOSPC;
+>
+> 	buf += *offset;
+>
+>-	oa_buf_end = stream->oa_buffer.vaddr + stream->oa_buffer.circ_size;
+>-	report_size_partial = oa_buf_end - report;
+>+	report_size_partial = stream->oa_buffer.circ_size - head;
+>
+> 	if (report_size_partial < report_size) {
+>-		if (copy_to_user(buf, report, report_size_partial))
+>+		if (xe_oa_copy_to_user(buf, map, head, report_size_partial))
+> 			return -EFAULT;
+> 		buf += report_size_partial;
+>
+>-		if (copy_to_user(buf, stream->oa_buffer.vaddr,
+>-				 report_size - report_size_partial))
+>+		if (xe_oa_copy_to_user(buf, map, 0, report_size - report_size_partial))
+> 			return -EFAULT;
+>-	} else if (copy_to_user(buf, report, report_size)) {
+>+	} else if (xe_oa_copy_to_user(buf, map, head, report_size)) {
+> 		return -EFAULT;
+> 	}
+>
+>@@ -347,7 +360,6 @@ static int xe_oa_append_reports(struct xe_oa_stream *stream, char __user *buf,
+> 				size_t count, size_t *offset)
+> {
+> 	int report_size = stream->oa_buffer.format->size;
+>-	u8 *oa_buf_base = stream->oa_buffer.vaddr;
+> 	u32 gtt_offset = xe_bo_ggtt_addr(stream->oa_buffer.bo);
+> 	size_t start_offset = *offset;
+> 	unsigned long flags;
+>@@ -364,26 +376,24 @@ static int xe_oa_append_reports(struct xe_oa_stream *stream, char __user *buf,
+>
+> 	for (; xe_oa_circ_diff(stream, tail, head);
+> 	     head = xe_oa_circ_incr(stream, head, report_size)) {
+>-		u8 *report = oa_buf_base + head;
+>-
+>-		ret = xe_oa_append_report(stream, buf, count, offset, report);
+>+		ret = xe_oa_append_report(stream, buf, count, offset, head);
+> 		if (ret)
+> 			break;
+>
+> 		if (!(stream->oa_buffer.circ_size % report_size)) {
+> 			/* Clear out report id and timestamp to detect unlanded reports */
+>-			oa_report_id_clear(stream, (void *)report);
+>-			oa_timestamp_clear(stream, (void *)report);
+>+			oa_report_id_clear(stream, head);
+>+			oa_timestamp_clear(stream, head);
+> 		} else {
+>-			u8 *oa_buf_end = stream->oa_buffer.vaddr + stream->oa_buffer.circ_size;
+>-			u32 part = oa_buf_end - report;
+>+			struct iosys_map *map = &stream->oa_buffer.bo->vmap;
+>+			u32 part = stream->oa_buffer.circ_size - head;
+>
+> 			/* Zero out the entire report */
+> 			if (report_size <= part) {
+>-				memset(report, 0, report_size);
+>+				xe_map_memset(stream->oa->xe, map, head, 0, report_size);
+> 			} else {
+>-				memset(report, 0, part);
+>-				memset(oa_buf_base, 0, report_size - part);
+>+				xe_map_memset(stream->oa->xe, map, head, 0, part);
+>+				xe_map_memset(stream->oa->xe, map, 0, 0, report_size - part);
+> 			}
+> 		}
+> 	}
+>@@ -436,7 +446,8 @@ static void xe_oa_init_oa_buffer(struct xe_oa_stream *stream)
+> 	spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
+>
+> 	/* Zero out the OA buffer since we rely on zero report id and timestamp fields */
+>-	memset(stream->oa_buffer.vaddr, 0, xe_bo_size(stream->oa_buffer.bo));
+>+	xe_map_memset(stream->oa->xe, &stream->oa_buffer.bo->vmap, 0, 0,
+>+		      xe_bo_size(stream->oa_buffer.bo));
+> }
+>
+> static u32 __format_to_oactrl(const struct xe_oa_format *format, int counter_sel_mask)
+>@@ -891,7 +902,6 @@ static int xe_oa_alloc_oa_buffer(struct xe_oa_stream *stream, size_t size)
+> 	stream->oa_buffer.bo = bo;
+> 	/* mmap implementation requires OA buffer to be in system memory */
+> 	xe_assert(stream->oa->xe, bo->vmap.is_iomem == 0);
+>-	stream->oa_buffer.vaddr = bo->vmap.vaddr;
+> 	return 0;
+> }
+>
+>diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe_oa_types.h
+>index b03ffd5134834..2dd550c93b8ac 100644
+>--- a/drivers/gpu/drm/xe/xe_oa_types.h
+>+++ b/drivers/gpu/drm/xe/xe_oa_types.h
+>@@ -162,9 +162,6 @@ struct xe_oa_buffer {
+> 	/** @format: xe_bo backing the OA buffer */
+> 	struct xe_bo *bo;
+>
+>-	/** @vaddr: mapped vaddr of the OA buffer */
+>-	u8 *vaddr;
+>-
+> 	/** @ptr_lock: Lock protecting reads/writes to head/tail pointers */
+> 	spinlock_t ptr_lock;
+>
+>-- 
+>2.48.1
+>
