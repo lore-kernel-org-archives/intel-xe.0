@@ -4,37 +4,164 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9272C1073CA1
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 11:48:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63D7A1073CA0
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 11:49:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C08C10E61D;
-	Wed,  8 Apr 2026 11:48:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20FCD10E341;
+	Wed,  8 Apr 2026 11:49:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="eXc0F1f8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d0nqhXK1";
 	dkim-atps=neutral
-Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9908110E618;
- Wed,  8 Apr 2026 11:48:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1775648900;
- bh=VT4rQAvZhUd4ESzvOGg5Gn64iXl1pqLrN+x6Ne3p7z8=;
- h=From:To:Cc:Subject:Date:From;
- b=eXc0F1f8lRN3uY454EsjTSXddG4dK0AYqADtEy3AiwTAwVh+WIW9bDY3Kv9YVAxWZ
- rIONsdyBe7ax4BPKHzs6ZgCfZVZne5Xv7jOddw8P44Du1YsBUcmuEoABadYQee3j8j
- 2uJ8fuhHRtUbftGNNzQ+Ue/TsmWqvdksHzdUfxqH7xCX7H94d4d7MHXc1YunDIXJzq
- mUH+eQPwSsvsTqIlSYkBDBN+yj5OsYW0tXbO1+ec4LlpXSlKZa24i2lAyxk/QEBB1f
- 5iX5uEsvPDlPE/QxyyAjSip6RIN0Ym+aMFhYoL2LT36Ue9fgQ51qTklUCWCmIDKCda
- GNw5afIRsZZyA==
-From: Maarten Lankhorst <dev@lankhorst.se>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH] drm/intel/display: Use drmm for intel_mode_config_cleanup
-Date: Wed,  8 Apr 2026 13:47:56 +0200
-Message-ID: <20260408114755.1051393-2-dev@lankhorst.se>
-X-Mailer: git-send-email 2.53.0
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78A7E10E341;
+ Wed,  8 Apr 2026 11:49:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1775648986; x=1807184986;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=aSwPbRmRTQIWJ76EEw3AydUfszAovgvJMuqgRM1VBvw=;
+ b=d0nqhXK1oJmXszrEWhSMC4oXvGV4TLsFdD6K1x7QnR77lZmZ31zLVfDl
+ 6EL4j/q/m8lGjQmGF2K0NK0n0AweSo/O5zW2LXKs+7SfHFC0UTwlYe4wt
+ vbzwEdL2UzZYz0keQE7+Iuw+dngdLWmxjET31WljhQN6zsJUikFdGxXwY
+ PLc8v6y1Oe3YOqtIrIojsNJEARNmPNVxVPZDI4Z8MQ+i+3uMMs54nHnbF
+ DtHtS7jJMbYkqehkzaHKjIEuGoBPkrDIA6hejv2OK0FzBrP9Zs6kZ/eop
+ 6Y7W1cWJ4dgyJ2Bf/dSieFqMsXMDhXzSmS9mCBQg1HBp7KewDrEfDaYku A==;
+X-CSE-ConnectionGUID: T7lnsGRXTt6OkkovowQV3w==
+X-CSE-MsgGUID: i2RJBFNkRvuZMXwNGwUnZQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="75799646"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="75799646"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 04:49:46 -0700
+X-CSE-ConnectionGUID: s6gN10NSTDqXr/pLdGmbKA==
+X-CSE-MsgGUID: baRfpEEMS9+qEzFAbcNW4g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="228701684"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 04:49:46 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Wed, 8 Apr 2026 04:49:45 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Wed, 8 Apr 2026 04:49:45 -0700
+Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.37) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Wed, 8 Apr 2026 04:49:44 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=aCyXERk2C3CJvZf8lfs7XQDpNteUeWIMmGbDEYTfpxNRIVur3+AByws8O35Psr7pUXdsAtw438C/5j0qAVS6WkomAnkefweS/4EagHbHTchfe+QZlaM5FiFeY5BEnbTwkX5lbVnXxWft4ynb8AsXDFSR7GN3eWRQCGWnoNN7xt1j4LtotDnmAN7BNPDcOCQOOhICMA4tO5d5hlMjRSoqZFR0c3hh/l2a4BB8N9DmnnMvfQFIgctLsalQm+Nk0NvANHhApx4ANzjdI/O4I4UsBFLuq3xSiIKn3eWSIdVp+SOnaIWOZWXFHDVksSpS/tOpZuUHAgKMCeo2n956/CrRDg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=aSwPbRmRTQIWJ76EEw3AydUfszAovgvJMuqgRM1VBvw=;
+ b=S5phaPziGCfWsPVIP74s0W/j/eRjBqPR84Ik0DzL/BqAAjnv/8mhQjffnxRzZutBwl3o/nxETzLj0K8qQXmSD5VJo1gkDI3PzvGsWq7OVOP6oVS9JnBtyAdOMhK3ipwtVPM0XeltIheKg51D1x9OsXhgJjjHZyX85Tt6Ax2YJ34st/+L1FhAf5DzgD+hIXa683E+YowSM8mIE19HkLwNr9u7Z0qfB50uY7mYfEsSBO3O2vOm0pt1ZDYvs3+tqAVVFpIU5IRg0c2LUT6EKr38qAm57DAJcpBVazzORwL9vJBiBSpep/yXSGxtFrLm/Z5emuevP0M/VKHwd5TBoX+3Bw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from CY8PR11MB7777.namprd11.prod.outlook.com (2603:10b6:930:71::14)
+ by BL4PR11MB8847.namprd11.prod.outlook.com (2603:10b6:208:5a7::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.18; Wed, 8 Apr
+ 2026 11:49:36 +0000
+Received: from CY8PR11MB7777.namprd11.prod.outlook.com
+ ([fe80::5a6:cd7:969c:fa41]) by CY8PR11MB7777.namprd11.prod.outlook.com
+ ([fe80::5a6:cd7:969c:fa41%5]) with mapi id 15.20.9769.018; Wed, 8 Apr 2026
+ 11:49:36 +0000
+From: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
+To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 3/9] drm/i915/wm: Consolidate SAGV pipe active/interlace
+ checks to common code
+Thread-Topic: [PATCH 3/9] drm/i915/wm: Consolidate SAGV pipe active/interlace
+ checks to common code
+Thread-Index: AQHcu5UEuUnbgZZVI0uPAwYJqX9O+LXVJF8A
+Date: Wed, 8 Apr 2026 11:49:36 +0000
+Message-ID: <b595997399ed3f33fe394deeb0b4ec6c94deba91.camel@intel.com>
+References: <20260324134843.2364-1-ville.syrjala@linux.intel.com>
+ <20260324134843.2364-4-ville.syrjala@linux.intel.com>
+In-Reply-To: <20260324134843.2364-4-ville.syrjala@linux.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.52.3-0ubuntu1.1 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CY8PR11MB7777:EE_|BL4PR11MB8847:EE_
+x-ms-office365-filtering-correlation-id: 57950d6f-b09e-45c7-7dd0-08de9564e8aa
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|10070799003|376014|1800799024|366016|38070700021|22082099003|56012099003|18002099003;
+x-microsoft-antispam-message-info: qp56kZs1fMg3E7ohFcQ9yqGKRo4JDuwqCGickUmgCvush14J71zUWl+9Ks8ViLP4ZhY0oFQ6VnHXm9ZVSMBlinQyr8TdT4tmx0dzgfLhyJ2uZgND8HSaFO/PyoaRT2+kUWknc/VAM6jbK7XDYCQdQg0hqg2Ut0ZVKT1hQWEz/eDUtAJ8m5BzWjx6zbuimTaNsbBUi9VKO48IVSp7iU/dARayLvwRPDMRO4sX5J/lC0OdEgMPmgPHppyF0CqTeFiTKKPJoHRGOn+asCNOOllRBf9+7UMFK38KQQNn+V5LwcXFOGBxCOWHYgr4d4TbaApGXdayPL7dTGKNnJptPqQ5HvRxRIV36nLagx/LQlnz6Go2hlAum9mqF94tokiJFdVLdowbsKF3a0tHczQx2BcNmybyjPVoInlXMbl2ewDmPLNo0oGlBsWA5AcHoXoInf2TS2zHJrnp1P+jziXKFBiTro8A/JJNvcKKd0Oq690FFm425RGn1aLf4ZICVYpduVjMWlzpK34fVyBf/jSNOzL2SVVLobNKZGE6iFE9z8Iy+2fQuqWsRavOp8a+zHJSABYITix4CgTFiHQrF4w5ZIje2732nRitBjcArx5HEvbfowoDI3mKU5TxQHyRLPV0yTRZLTH7C5fuXmkkEK/uHW1yap6hcy3Pd3YXGoIDj53dmTKn1/9Yl7735U0LEhZIYdzeAPN/8Uxf0OleKXvnX9ESGSQ/0PwscZ2oDGBAQX9TA2TgjfosX7makXtTJ9QBiP+uNYw4p7wX5VDRc8y5e8+8l0+TvmZSv3Q1LH6gT9dBJ+Q=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY8PR11MB7777.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(10070799003)(376014)(1800799024)(366016)(38070700021)(22082099003)(56012099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 2
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?M0xVYTZ3RkhYOFFFZ3J3V2hLRExIZ29uVGVMdEFOZEhBWEpaMzUxNWNlRDVj?=
+ =?utf-8?B?VVpocDRpaUhHb3c1SEQzVVZlbDFwZytxWVpOQWh0QU0rQmFIWHZLU1Nwc0NZ?=
+ =?utf-8?B?d0lFZ0R2UDVVWXhBOStXWFZaLzFjME9xMDNteWhlakFlVUlVTjR0UHgzY1Bu?=
+ =?utf-8?B?U2NlMktaT2ZROFBKS3hBTzhlL0ZXSTY5RFhsa2dtNktqMXFoamZ4NjU5S3RG?=
+ =?utf-8?B?VDNPVzBqUFkzNWhsYmhqaUVnOHB6Z25XZDVGRGhoQlhDWlJDbmwwUXN0b1Ez?=
+ =?utf-8?B?K254K2ZvYXdNZFdENzZaK3IrMFYzVXJTQWl5K2loQjlYVlp1MFZoaGNYWUli?=
+ =?utf-8?B?Rk5TRDdpZHQvUVRveVY1cjBpbENXTmdQeERRZXNVSUFEVmpuR3BsUW8wdjlC?=
+ =?utf-8?B?YStVU1M4MGtxS0RuMkpWd1M0VXBhdnR4SUFhcW15N2dia2tDeTIzdCtvR3Zn?=
+ =?utf-8?B?b21IKzVvSDVXVTMyQWIxUmlvTndBbkFkN2s5eStuc3hWVnFsN1d1UDlWV3BG?=
+ =?utf-8?B?NG5tVGo0K211K0RrSjlCTERzcllYai9YS01uelBrWDU4Qkd1bUZnc1ZYTHR2?=
+ =?utf-8?B?QS9xVDdOdk4zN2pyMzR1a2ZKclBqbCtQckloaS9XVmNuK3liVmhWZFl6TElp?=
+ =?utf-8?B?TFVkTUd4anlhYUxlaWNLeUxPd2h6Q2M3YyszanVIVHI2TmZPM1B5ZjRST2Vi?=
+ =?utf-8?B?VDJtTXp1Q0l3RisvTTdjajdCTDBpaUpLb3RMM2xVMVRLWHcwK1lka1RyYmgw?=
+ =?utf-8?B?SThncWJWNGU0a3lXcldGWldraTFjMDlxLzRrV0k2bXJweDhGd0RnazIvVWxk?=
+ =?utf-8?B?bmNCUGJTa2QyN2xHS0pJd1U1QTNBajRaSC93SzBiakprVDVlTUxOMEtsM0NP?=
+ =?utf-8?B?UHJMQnRVTnpFQlF5VWhwVitoK0JPaUdLTlVZdTlUWE4zV0JvTTFnK3Y4SytO?=
+ =?utf-8?B?dEpRRXdyRFhRK2N4TFRKbHpPNXZLYklQcldlSFlFSnd4NExSY2hHSnFaTnhy?=
+ =?utf-8?B?aGUzd2pheUlMd1hwem1jdXpFNENrNU5oZ3hlRXdjVFluakpTcm9HUWpEU25M?=
+ =?utf-8?B?L1VMR2dnUDFJYkw4c0tJQ2I0eEk5dUtvdGIvTWF4Y0tDV3llMEgrcGhpZHdo?=
+ =?utf-8?B?SGhMOTVBckJHcEN1SDNKN3RRdmRJa1QveUJaMDIzL2g3NGFYc05sQTJObFZy?=
+ =?utf-8?B?RHFlbVlaSTVueXZSanNyVCtXWEFUalBtNlh2bGpGRGpUMHQvZHN4bkdwSEhB?=
+ =?utf-8?B?L09mS1BWTkZqV01RUFhpVVQ0N3J5K2x2TVpidzlRUnlGK0N6a3NCdGJCVXBm?=
+ =?utf-8?B?ZHJoczhJaDA2WThFL2lVczhhSXVTT0JBZlVTWUZua0hpN0wyaVlxYXlNbjB4?=
+ =?utf-8?B?cWZadHdZSWcvM1B2aGtrSEwzZk1Qak9GVng1bG9qeXQrK0NHNjY1aDVVcklw?=
+ =?utf-8?B?ZE5zVFZuSzdGTzhiZ1l2eGswUytEUWpHaVQvb2ZqMDNVV0RXOHBieWZTQ0FL?=
+ =?utf-8?B?QWFBV0t0OE5DOW1Fa3E3UXVHR3Mxc3dsRHZ1bXo0QzU2SHQ3VzhBMTdUMi9E?=
+ =?utf-8?B?Q2h0TnBBUVhYaGVtVk02Z1BrUlY0cmVYN29kVFNjUnJ4S0RidnI5ZndsS2dX?=
+ =?utf-8?B?ODgveVZlc0FDWjFQSThMc1lJcGR5WHNQT3cyRXNXVkI1OUZtb0FUVmp6Wkgw?=
+ =?utf-8?B?WFNjTFVDMjVlS1JnL2lVVVBkTWJERjh0RlN3NGRvZzRwMk9hbGY3THA4SHpO?=
+ =?utf-8?B?dGhRN2lGTjV6SVIvbGJ3WEswK0praWZKRWdXSmpEMXpHRFJydUJPZ1k4S2NX?=
+ =?utf-8?B?TEpnN2VNajk0VFg4akdRQzV4Q0doZEg0VDUycnpJK3dqUk0xazU5MnIvVG1r?=
+ =?utf-8?B?QTJyMmF2RG9ScWJuNTBkYUNPOGhuV1diS20rNEdFZGllTXd0djlTYWg3TTI1?=
+ =?utf-8?B?Y01GRXRvcXFGRi8rczk0NThBdlhqd3RxVE9MR1ZMQkRJeWJrQ21HUDJpN1By?=
+ =?utf-8?B?WTFUNENtOEp5VmNEbnZyVnJldmNHNTRHdWI1VUhrRk92QVprQ3NYYjJJaGtT?=
+ =?utf-8?B?ekp0czlUcDFaSFBHcWd0QlArWC9RMlFTaUN1aFdmbnBtd0s0Zno0UG9uUXoz?=
+ =?utf-8?B?bEIwVXM5S1h5K1FVRlEyK0xFd2d1MVZDMzIrZko5ZDg3dm5GbVViYTNiR3Yy?=
+ =?utf-8?B?MEl3NGo4UzU5cHdudzEzUEtld1FURk5aNFoyNVVNTUNjTjdidWk2YXU2YWoz?=
+ =?utf-8?B?aVE4dlZMeVhFSnpRM3VaTlhLTDNMWDV4QnZyUG1xUWZtYzNEcHpGcnlXcGVu?=
+ =?utf-8?B?dmlUR2x2WXp4SW4yellrWW1XNndGM0Jmc3NnZDIzZU9pUVR4MGlubklYYVF4?=
+ =?utf-8?Q?1I6z8pCvtMmDNabPLCrykdd7DQ+Nn3kx3j72YoQwr7xYB?=
+x-ms-exchange-antispam-messagedata-1: 4Vy87nvvidtFY+W5lasWgzqFDhSiEzgMjE8=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <21BD49208CA8FA4ABE52F22C50833B56@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+X-Exchange-RoutingPolicyChecked: Vms/zwZGXB8I2eytBAkIJZYHjo8hBJukmCJzd8gesbJgmckdS9wW9oZyjBJRUkQ4ive6IMPA9TYIxSl1KQ/J+rEIqWAB8l4ZrKu5/ZCgUE3WAxO1ZOu2RLkRgB/ms6CcU+7g1hSC6lWLe80zDkWn5Z/VShnUSxqD5jQ2MQCvrzk8s2/hYgeIecarsEth7TP97toN/x7BHSuEWo60l9ATPq4TeTffikkXDtJrn+yEzg3uWcbl6NI0mdpptbLAqgkFdM0qTB5ur/CgzHlBtDicTdPA5TlQhT69WL++IiXSrdh0fUDwMT+kCVxC9JPmZhoY15UvC4ZmNnatuQ0L05J8Aw==
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CY8PR11MB7777.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 57950d6f-b09e-45c7-7dd0-08de9564e8aa
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Apr 2026 11:49:36.5336 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: gBisBVHjeyswYJiHGpkTNrCpQRNlB1oerk/aFBi5iGgH+XugpJDLWxShMWq4KYyJgmp8VLBSg6BUn1FaigI994tRB5xBV7vf02j8NQzd1Pg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL4PR11MB8847
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,323 +176,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When force unbinding the driver on xe, xe unloads cleanly except for
-framebuffers and user blobs.
-
-This happens because intel_mode_config_cleanup is called during driver
-unbind, but it should be called only after all drm files are closed,
-during drmm cleanup.
-
-Related warnings for framebuffers on the subtest:
-[  739.713076] ------------[ cut here ]------------
-               WARN_ON(!list_empty(&dev->mode_config.fb_list))
-[  739.713079] WARNING: drivers/gpu/drm/drm_mode_config.c:584 at drm_mode_c=
-onfig_cleanup+0x30b/0x320 [drm], CPU#12: xe_module_load/13145
-....
-[  739.713328] Call Trace:
-[  739.713330]  <TASK>
-[  739.713335]  ? intel_pmdemand_destroy_state+0x11/0x20 [xe]
-[  739.713574]  ? intel_atomic_global_obj_cleanup+0xe4/0x1a0 [xe]
-[  739.713794]  intel_display_driver_remove_noirq+0x51/0xb0 [xe]
-[  739.714041]  xe_display_fini_early+0x33/0x50 [xe]
-[  739.714284]  devm_action_release+0xf/0x20
-[  739.714294]  devres_release_all+0xad/0xf0
-[  739.714301]  device_unbind_cleanup+0x12/0xa0
-[  739.714305]  device_release_driver_internal+0x1b7/0x210
-[  739.714311]  device_driver_detach+0x14/0x20
-[  739.714315]  unbind_store+0xa6/0xb0
-[  739.714319]  drv_attr_store+0x21/0x30
-[  739.714322]  sysfs_kf_write+0x48/0x60
-[  739.714328]  kernfs_fop_write_iter+0x16b/0x240
-[  739.714333]  vfs_write+0x266/0x520
-[  739.714341]  ksys_write+0x72/0xe0
-[  739.714345]  __x64_sys_write+0x19/0x20
-[  739.714347]  x64_sys_call+0xa15/0xa30
-[  739.714355]  do_syscall_64+0xd8/0xab0
-[  739.714361]  entry_SYSCALL_64_after_hwframe+0x4b/0x53
-
-and
-
-[  739.714459] ------------[ cut here ]------------
-[  739.714461] xe 0000:67:00.0: [drm] drm_WARN_ON(!list_empty(&fb->filp_hea=
-d))
-[  739.714464] WARNING: drivers/gpu/drm/drm_framebuffer.c:833 at drm_frameb=
-uffer_free+0x6c/0x90 [drm], CPU#12: xe_module_load/13145
-[  739.714715] RIP: 0010:drm_framebuffer_free+0x7a/0x90 [drm]
-...
-[  739.714869] Call Trace:
-[  739.714871]  <TASK>
-[  739.714876]  drm_mode_config_cleanup+0x26a/0x320 [drm]
-[  739.714998]  ? __drm_printfn_seq_file+0x20/0x20 [drm]
-[  739.715115]  ? drm_mode_config_cleanup+0x207/0x320 [drm]
-[  739.715235]  intel_display_driver_remove_noirq+0x51/0xb0 [xe]
-[  739.715576]  xe_display_fini_early+0x33/0x50 [xe]
-[  739.715821]  devm_action_release+0xf/0x20
-[  739.715828]  devres_release_all+0xad/0xf0
-[  739.715843]  device_unbind_cleanup+0x12/0xa0
-[  739.715850]  device_release_driver_internal+0x1b7/0x210
-[  739.715856]  device_driver_detach+0x14/0x20
-[  739.715860]  unbind_store+0xa6/0xb0
-[  739.715865]  drv_attr_store+0x21/0x30
-[  739.715868]  sysfs_kf_write+0x48/0x60
-[  739.715873]  kernfs_fop_write_iter+0x16b/0x240
-[  739.715878]  vfs_write+0x266/0x520
-[  739.715886]  ksys_write+0x72/0xe0
-[  739.715890]  __x64_sys_write+0x19/0x20
-[  739.715893]  x64_sys_call+0xa15/0xa30
-[  739.715900]  do_syscall_64+0xd8/0xab0
-[  739.715905]  entry_SYSCALL_64_after_hwframe+0x4b/0x53
-
-and then finally file close blows up:
-
-[  743.186530] Oops: general protection fault, probably for non-canonical a=
-ddress 0xdead000000000122: 0000 [#1] SMP
-[  743.186535] CPU: 3 UID: 1000 PID: 3453 Comm: kwin_wayland Tainted: G    =
-    W           7.0.0-rc1-valkyria+ #110 PREEMPT_{RT,(lazy)}
-[  743.186537] Tainted: [W]=3DWARN
-[  743.186538] Hardware name: Gigabyte Technology Co., Ltd. X299 AORUS Gami=
-ng 3/X299 AORUS Gaming 3-CF, BIOS F8n 12/06/2021
-[  743.186539] RIP: 0010:drm_framebuffer_cleanup+0x55/0xc0 [drm]
-[  743.186588] Code: d8 72 73 0f b6 42 05 ff c3 39 c3 72 e8 49 8d bd 50 07 =
-00 00 31 f6 e8 3a 80 d3 e1 49 8b 44 24 10 49 8d 7c 24 08 49 8b 54 24 08 <48=
-> 3b 38 0f 85 95 7f 02 00 48 3b 7a 08 0f 85 8b 7f 02 00 48 89 42
-[  743.186589] RSP: 0018:ffffc900085e3cf8 EFLAGS: 00010202
-[  743.186591] RAX: dead000000000122 RBX: 0000000000000001 RCX: ffffffff821=
-7ed03
-[  743.186592] RDX: dead000000000100 RSI: 0000000000000000 RDI: ffff8881467=
-5ba08
-[  743.186593] RBP: ffffc900085e3d10 R08: 0000000000000000 R09: 00000000000=
-00000
-[  743.186593] R10: 0000000000000000 R11: 0000000000000000 R12: ffff8881467=
-5ba00
-[  743.186594] R13: ffff88810d778000 R14: ffff888119f6dca0 R15: ffff88810c6=
-60bb0
-[  743.186595] FS:  00007ff377d21280(0000) GS:ffff888cec3f8000(0000) knlGS:=
-0000000000000000
-[  743.186596] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[  743.186596] CR2: 000055690b55e000 CR3: 0000000113586003 CR4: 00000000003=
-706f0
-[  743.186597] Call Trace:
-[  743.186598]  <TASK>
-[  743.186603]  intel_user_framebuffer_destroy+0x12/0x90 [xe]
-[  743.186722]  drm_framebuffer_free+0x3a/0x90 [drm]
-[  743.186750]  ? trace_hardirqs_on+0x5f/0x120
-[  743.186754]  drm_mode_object_put+0x51/0x70 [drm]
-[  743.186786]  drm_fb_release+0x105/0x190 [drm]
-[  743.186812]  ? rt_mutex_slowunlock+0x3aa/0x410
-[  743.186817]  ? rt_spin_lock+0xea/0x1b0
-[  743.186819]  drm_file_free+0x1e0/0x2c0 [drm]
-[  743.186843]  drm_release_noglobal+0x91/0xf0 [drm]
-[  743.186865]  __fput+0x100/0x2e0
-[  743.186869]  fput_close_sync+0x40/0xa0
-[  743.186870]  __x64_sys_close+0x3e/0x80
-[  743.186873]  x64_sys_call+0xa07/0xa30
-[  743.186879]  do_syscall_64+0xd8/0xab0
-[  743.186881]  entry_SYSCALL_64_after_hwframe+0x4b/0x53
-[  743.186882] RIP: 0033:0x7ff37e567732
-[  743.186884] Code: 08 0f 85 a1 38 ff ff 49 89 fb 48 89 f0 48 89 d7 48 89 =
-ce 4c 89 c2 4d 89 ca 4c 8b 44 24 08 4c 8b 4c 24 10 4c 89 5c 24 08 0f 05 <c3=
-> 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 00 f3 0f 1e fa 55 bf 01 00
-[  743.186885] RSP: 002b:00007ffc818169a8 EFLAGS: 00000246 ORIG_RAX: 000000=
-0000000003
-[  743.186886] RAX: ffffffffffffffda RBX: 00007ffc81816a30 RCX: 00007ff37e5=
-67732
-[  743.186887] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 00000000000=
-00012
-[  743.186888] RBP: 00007ffc818169d0 R08: 0000000000000000 R09: 00000000000=
-00000
-[  743.186889] R10: 0000000000000000 R11: 0000000000000246 R12: 000055d60a7=
-996e0
-[  743.186889] R13: 00007ffc81816a90 R14: 00007ffc81816a90 R15: 000055d60a7=
-82a30
-[  743.186892]  </TASK>
-[  743.186893] Modules linked in: rfcomm snd_hrtimer xt_CHECKSUM xt_MASQUER=
-ADE xt_conntrack ipt_REJECT nf_reject_ipv4 xt_tcpudp xt_addrtype nft_compat=
- x_tables nft_chain_nat nf_nat nf_conntrack nf_defrag_ipv6 nf_defrag_ipv4 n=
-f_tables overlay cfg80211 bnep mtd_intel_dg snd_hda_codec_intelhdmi mtd snd=
-_hda_codec_hdmi nls_utf8 mxm_wmi intel_wmi_thunderbolt gigabyte_wmi wmi_bmo=
-f xe drm_gpuvm drm_gpusvm_helper i2c_algo_bit drm_buddy drm_ttm_helper ttm =
-video drm_suballoc_helper gpu_sched drm_client_lib drm_exec drm_display_hel=
-per cec drm_kunit_helpers drm_kms_helper kunit x86_pkg_temp_thermal intel_p=
-owerclamp coretemp snd_hda_codec_alc882 snd_hda_codec_realtek_lib snd_hda_c=
-odec_generic snd_hda_intel snd_soc_avs snd_soc_hda_codec snd_hda_ext_core s=
-nd_hda_codec snd_hwdep snd_hda_core snd_intel_dspcfg snd_soc_core snd_compr=
-ess ac97_bus snd_pcm snd_seq snd_seq_device snd_timer i2c_i801 i2c_mux snd =
-i2c_smbus btusb btrtl btbcm btmtk btintel bluetooth ecdh_generic rfkill ecc=
- mei_me mei ioatdma dca wmi nfsd drm i2c_dev fuse nfnetlink
-[  743.186938] ---[ end trace 0000000000000000 ]---
-
-And for property blobs:
-
-[  371.072940] BUG: unable to handle page fault for address: 000001ffffffff=
-ff
-[  371.072944] #PF: supervisor read access in kernel mode
-[  371.072945] #PF: error_code(0x0000) - not-present page
-[  371.072947] PGD 0 P4D 0
-[  371.072950] Oops: Oops: 0000 [#1] SMP
-[  371.072953] CPU: 0 UID: 1000 PID: 3693 Comm: kwin_wayland Not tainted 7.=
-0.0-rc1-valkyria+ #111 PREEMPT_{RT,(lazy)}
-[  371.072956] Hardware name: Gigabyte Technology Co., Ltd. X299 AORUS Gami=
-ng 3/X299 AORUS Gaming 3-CF, BIOS F8n 12/06/2021
-[  371.072957] RIP: 0010:drm_property_destroy_user_blobs+0x3b/0x90 [drm]
-[  371.073019] Code: 00 00 48 83 ec 10 48 8b 86 30 01 00 00 48 39 c3 74 59 =
-48 89 c2 48 8d 48 c8 48 8b 00 4c 8d 60 c8 eb 04 4c 8d 60 c8 48 8b 71 40 <48=
-> 39 16 0f 85 39 32 01 00 48 3b 50 08 0f 85 2f 32 01 00 48 89 70
-[  371.073021] RSP: 0018:ffffc90006a73de8 EFLAGS: 00010293
-[  371.073022] RAX: 000001ffffffffff RBX: ffff888118a1a930 RCX: ffff8881b92=
-355c0
-[  371.073024] RDX: ffff8881b92355f8 RSI: 000001ffffffffff RDI: ffff888118b=
-e4000
-[  371.073025] RBP: ffffc90006a73e08 R08: ffff8881009b7300 R09: ffff888cecc=
-5b000
-[  371.073026] R10: ffffc90006a73e90 R11: 0000000000000002 R12: 000001fffff=
-fffc7
-[  371.073027] R13: ffff888118a1a980 R14: ffff88810b366d20 R15: ffff888118a=
-1a970
-[  371.073028] FS:  00007f1faccbb280(0000) GS:ffff888cec2db000(0000) knlGS:=
-0000000000000000
-[  371.073029] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[  371.073030] CR2: 000001ffffffffff CR3: 000000010655c001 CR4: 00000000003=
-706f0
-[  371.073031] Call Trace:
-[  371.073033]  <TASK>
-[  371.073036]  drm_file_free+0x1df/0x2a0 [drm]
-[  371.073077]  drm_release_noglobal+0x7a/0xe0 [drm]
-[  371.073113]  __fput+0xe2/0x2b0
-[  371.073118]  fput_close_sync+0x40/0xa0
-[  371.073119]  __x64_sys_close+0x3e/0x80
-[  371.073122]  x64_sys_call+0xa07/0xa30
-[  371.073126]  do_syscall_64+0xc0/0x840
-[  371.073130]  entry_SYSCALL_64_after_hwframe+0x4b/0x53
-[  371.073132] RIP: 0033:0x7f1fb3501732
-[  371.073133] Code: 08 0f 85 a1 38 ff ff 49 89 fb 48 89 f0 48 89 d7 48 89 =
-ce 4c 89 c2 4d 89 ca 4c 8b 44 24 08 4c 8b 4c 24 10 4c 89 5c 24 08 0f 05 <c3=
-> 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 00 f3 0f 1e fa 55 bf 01 00
-[  371.073135] RSP: 002b:00007ffe8e6f0278 EFLAGS: 00000246 ORIG_RAX: 000000=
-0000000003
-[  371.073136] RAX: ffffffffffffffda RBX: 00007ffe8e6f0300 RCX: 00007f1fb35=
-01732
-[  371.073137] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 00000000000=
-00012
-[  371.073138] RBP: 00007ffe8e6f02a0 R08: 0000000000000000 R09: 00000000000=
-00000
-[  371.073139] R10: 0000000000000000 R11: 0000000000000246 R12: 00005585ba4=
-6eea0
-[  371.073140] R13: 00007ffe8e6f0360 R14: 00007ffe8e6f0360 R15: 00005585ba4=
-58a30
-[  371.073143]  </TASK>
-[  371.073144] Modules linked in: rfcomm snd_hrtimer xt_addrtype xt_CHECKSU=
-M xt_MASQUERADE xt_conntrack ipt_REJECT nf_reject_ipv4 xt_tcpudp nft_compat=
- x_tables nft_chain_nat nf_nat nf_conntrack nf_defrag_ipv6 nf_defrag_ipv4 n=
-f_tables overlay cfg80211 bnep snd_hda_codec_intelhdmi snd_hda_codec_hdmi m=
-td_intel_dg mtd nls_utf8 wmi_bmof mxm_wmi gigabyte_wmi intel_wmi_thunderbol=
-t xe drm_gpuvm drm_gpusvm_helper i2c_algo_bit drm_buddy drm_ttm_helper ttm =
-video drm_suballoc_helper gpu_sched drm_client_lib drm_exec drm_display_hel=
-per cec drm_kunit_helpers drm_kms_helper kunit x86_pkg_temp_thermal intel_p=
-owerclamp coretemp snd_hda_codec_alc882 snd_hda_codec_realtek_lib snd_hda_c=
-odec_generic snd_hda_intel snd_soc_avs snd_soc_hda_codec snd_hda_ext_core s=
-nd_hda_codec snd_hwdep snd_hda_core snd_intel_dspcfg snd_soc_core snd_compr=
-ess ac97_bus snd_pcm snd_seq snd_seq_device snd_timer i2c_i801 btusb i2c_mu=
-x i2c_smbus btrtl snd btbcm btmtk btintel bluetooth ecdh_generic rfkill ecc=
- mei_me mei ioatdma dca wmi nfsd drm i2c_dev fuse nfnetlink
-[  371.073198] CR2: 000001ffffffffff
-[  371.073199] ---[ end trace 0000000000000000 ]---
-
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
----
- .../drm/i915/display/intel_display_driver.c   | 28 ++++++++++---------
- 1 file changed, 15 insertions(+), 13 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/=
-gpu/drm/i915/display/intel_display_driver.c
-index 23bfecc983e8d..c073f7c1c0805 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -12,6 +12,7 @@
- #include <drm/display/drm_dp_mst_helper.h>
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_client_event.h>
-+#include <drm/drm_managed.h>
- #include <drm/drm_mode_config.h>
- #include <drm/drm_privacy_screen_consumer.h>
- #include <drm/drm_print.h>
-@@ -111,7 +112,15 @@ static const struct drm_mode_config_helper_funcs intel=
-_mode_config_funcs =3D {
- 	.atomic_commit_setup =3D drm_dp_mst_atomic_setup_commit,
- };
-=20
--static void intel_mode_config_init(struct intel_display *display)
-+static void intel_mode_config_cleanup(struct drm_device *dev, void *arg)
-+{
-+	struct intel_display *display =3D arg;
-+
-+	intel_atomic_global_obj_cleanup(display);
-+	drm_mode_config_cleanup(display->drm);
-+}
-+
-+static int intel_mode_config_init(struct intel_display *display)
- {
- 	struct drm_mode_config *mode_config =3D &display->drm->mode_config;
-=20
-@@ -148,12 +157,8 @@ static void intel_mode_config_init(struct intel_displa=
-y *display)
- 	}
-=20
- 	intel_cursor_mode_config_init(display);
--}
-=20
--static void intel_mode_config_cleanup(struct intel_display *display)
--{
--	intel_atomic_global_obj_cleanup(display);
--	drm_mode_config_cleanup(display->drm);
-+	return drmm_add_action_or_reset(display->drm, intel_mode_config_cleanup, =
-display);
- }
-=20
- static void intel_plane_possible_crtcs_init(struct intel_display *display)
-@@ -255,7 +260,9 @@ int intel_display_driver_probe_noirq(struct intel_displ=
-ay *display)
-=20
- 	intel_dmc_init(display);
-=20
--	intel_mode_config_init(display);
-+	ret =3D intel_mode_config_init(display);
-+	if (ret)
-+		goto cleanup_wq_unordered;
-=20
- 	ret =3D intel_cdclk_init(display);
- 	if (ret)
-@@ -456,7 +463,7 @@ int intel_display_driver_probe_nogem(struct intel_displ=
-ay *display)
-=20
- 	ret =3D intel_crtc_init(display);
- 	if (ret)
--		goto err_mode_config;
-+		return ret;
-=20
- 	intel_plane_possible_crtcs_init(display);
- 	intel_dpll_init(display);
-@@ -497,9 +504,6 @@ int intel_display_driver_probe_nogem(struct intel_displ=
-ay *display)
-=20
- err_hdcp:
- 	intel_hdcp_component_fini(display);
--err_mode_config:
--	intel_mode_config_cleanup(display);
--
- 	return ret;
- }
-=20
-@@ -618,8 +622,6 @@ void intel_display_driver_remove_noirq(struct intel_dis=
-play *display)
-=20
- 	intel_hdcp_component_fini(display);
-=20
--	intel_mode_config_cleanup(display);
--
- 	intel_dp_tunnel_mgr_cleanup(display);
-=20
- 	intel_overlay_cleanup(display);
---=20
-2.53.0
-
+T24gVHVlLCAyMDI2LTAzLTI0IGF0IDE1OjQ4ICswMjAwLCBWaWxsZSBTeXJqYWxhIHdyb3RlOg0K
+PiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0K
+PiANCj4gVGhlcmUgYXJlIG5vIGRpZmZlcmVuY2VzIGJldHdlZW4gdGhlIHBsYXRmb3JtcyB3aGVu
+DQo+IGNvbnNpZGVyaW5nIHdoZXRoZXIgU0FHViBjYW4gYmUgdXNlZCB3aGVuIHRoZSBwaXBlIGlz
+DQo+IGluYWN0aXZlIG9yIHVzaW5nIGFuIGludGVybGFjZWQgbW9kZS4gQ29uc29saWRhdGUgdGhl
+DQo+IGNoZWNrcyB0byBjb21tb24gY29kZS4NCj4gDQo+IE5vdGUgdGhhdCB3ZSB3ZXJlbid0IGV2
+ZW4gY2hlY2tpbmcgZm9yIGludGVybGFjZWQgbW9kZXMNCj4gb24gVEdMKywgYnV0IHNpbmNlIHdl
+J3ZlIHByZXZpb3VzbHkgc29mdCBkZWZlYXR1cmVkDQo+IGludGVybGFjZWQgbW9kZXMgb24gVEdM
+KyB0aGF0IHdhcyBtb3JlIG9yIGxlc3MgZmluZS4NCj4gVGhlIGhhcmR3YXJlIGRvZXMgc3RpbGwg
+aGF2ZSB0aGUgY2FwYWJpbGl0eSB0aG91Z2gsDQo+IGFuZCBpbiBjYXNlIHdlIGV2ZXIgZGVjaWRl
+IHRvIHJlc3VycmVjdCBpdCBoYXZpbmcgdGhlDQo+IGNoZWNrIHNlZW1zIGxpa2UgYSBnb29kIGlk
+ZWEuDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFA
+bGludXguaW50ZWwuY29tPg0KPiAtLS0NCj4gwqBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L3NrbF93YXRlcm1hcmsuYyB8IDE1ICsrKysrKy0tLS0tLS0tLQ0KPiDCoDEgZmlsZSBjaGFuZ2Vk
+LCA2IGluc2VydGlvbnMoKyksIDkgZGVsZXRpb25zKC0pDQo+IA0KDQpSZXZpZXdlZC1ieTogVmlu
+b2QgR292aW5kYXBpbGxhaSA8dmlub2QuZ292aW5kYXBpbGxhaUBpbnRlbC5jb20+DQoNCj4gZGlm
+ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvc2tsX3dhdGVybWFyay5jDQo+
+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9za2xfd2F0ZXJtYXJrLmMNCj4gaW5kZXgg
+YmNkY2ExYjk5ZmU0Li5lMzdmZGU5Zjc2NWQgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvc2tsX3dhdGVybWFyay5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvc2tsX3dhdGVybWFyay5jDQo+IEBAIC0zMDgsMTIgKzMwOCw2IEBAIHN0YXRp
+YyBib29sIHNrbF9jcnRjX2Nhbl9lbmFibGVfc2Fndihjb25zdA0KPiBzdHJ1Y3QgaW50ZWxfY3J0
+Y19zdGF0ZSAqY3J0Y19zdGF0ZSkNCj4gwqAJZW51bSBwbGFuZV9pZCBwbGFuZV9pZDsNCj4gwqAJ
+aW50IG1heF9sZXZlbCA9IElOVF9NQVg7DQo+IMKgDQo+IC0JaWYgKCFjcnRjX3N0YXRlLT5ody5h
+Y3RpdmUpDQo+IC0JCXJldHVybiB0cnVlOw0KPiAtDQo+IC0JaWYgKGNydGNfc3RhdGUtPmh3LnBp
+cGVfbW9kZS5mbGFncyAmDQo+IERSTV9NT0RFX0ZMQUdfSU5URVJMQUNFKQ0KPiAtCQlyZXR1cm4g
+ZmFsc2U7DQo+IC0NCj4gwqAJZm9yX2VhY2hfcGxhbmVfaWRfb25fY3J0YyhjcnRjLCBwbGFuZV9p
+ZCkgew0KPiDCoAkJY29uc3Qgc3RydWN0IHNrbF9wbGFuZV93bSAqd20gPQ0KPiDCoAkJCSZjcnRj
+X3N0YXRlLQ0KPiA+d20uc2tsLm9wdGltYWwucGxhbmVzW3BsYW5lX2lkXTsNCj4gQEAgLTM1Niw5
+ICszNTAsNiBAQCBzdGF0aWMgYm9vbCB0Z2xfY3J0Y19jYW5fZW5hYmxlX3NhZ3YoY29uc3Qgc3Ry
+dWN0DQo+IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpDQo+IMKgCXN0cnVjdCBpbnRlbF9j
+cnRjICpjcnRjID0gdG9faW50ZWxfY3J0YyhjcnRjX3N0YXRlLQ0KPiA+dWFwaS5jcnRjKTsNCj4g
+wqAJZW51bSBwbGFuZV9pZCBwbGFuZV9pZDsNCj4gwqANCj4gLQlpZiAoIWNydGNfc3RhdGUtPmh3
+LmFjdGl2ZSkNCj4gLQkJcmV0dXJuIHRydWU7DQo+IC0NCj4gwqAJZm9yX2VhY2hfcGxhbmVfaWRf
+b25fY3J0YyhjcnRjLCBwbGFuZV9pZCkgew0KPiDCoAkJY29uc3Qgc3RydWN0IHNrbF9wbGFuZV93
+bSAqd20gPQ0KPiDCoAkJCSZjcnRjX3N0YXRlLQ0KPiA+d20uc2tsLm9wdGltYWwucGxhbmVzW3Bs
+YW5lX2lkXTsNCj4gQEAgLTM4OCw2ICszNzksMTIgQEAgYm9vbCBpbnRlbF9jcnRjX2Nhbl9lbmFi
+bGVfc2Fndihjb25zdCBzdHJ1Y3QNCj4gaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSkNCj4g
+wqAJaWYgKGNydGNfc3RhdGUtPmluaGVyaXRlZCkNCj4gwqAJCXJldHVybiBmYWxzZTsNCj4gwqAN
+Cj4gKwlpZiAoIWNydGNfc3RhdGUtPmh3LmFjdGl2ZSkNCj4gKwkJcmV0dXJuIHRydWU7DQo+ICsN
+Cj4gKwlpZiAoY3J0Y19zdGF0ZS0+aHcucGlwZV9tb2RlLmZsYWdzICYNCj4gRFJNX01PREVfRkxB
+R19JTlRFUkxBQ0UpDQo+ICsJCXJldHVybiBmYWxzZTsNCj4gKw0KPiDCoAlpZiAoSEFTX1NBR1Zf
+V00oZGlzcGxheSkpDQo+IMKgCQlyZXR1cm4gdGdsX2NydGNfY2FuX2VuYWJsZV9zYWd2KGNydGNf
+c3RhdGUpOw0KPiDCoAllbHNlDQoNCg==
