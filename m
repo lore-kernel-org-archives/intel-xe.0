@@ -4,61 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C741DFD5F95
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 08:09:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 473B8FD5F8E
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 08:43:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8279210E55C;
-	Wed,  8 Apr 2026 08:09:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0228910E58D;
+	Wed,  8 Apr 2026 08:43:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k4201uWi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nQ16pfKL";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A40E910E55C;
- Wed,  8 Apr 2026 08:09:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14D5D10E58D;
+ Wed,  8 Apr 2026 08:43:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775635746; x=1807171746;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=cgyemZY3nbklaPybVcRRoE2Zq/hRSJWWiT9ovNFF/YI=;
- b=k4201uWiobDe640hBSTgB4Thf8vUkLJ310fQQAn06Ii5yIGbOqV7Gbr7
- Vk5JZAfJAGKTqoDvkzFc2vUoY6uSDjEJ0zjQwQZ75O78F5YBR/LLq9su2
- pOiclJa28q8HyPJ+jcobNKlcrUCZOkCWjXhJJUSM8JC0b5sr6dxrqnbuW
- EMmuP+V1i20zZXpAU5aLfMsA6M2l1AoLpHDyvGGDKJOKyG8LGuo0qlbxH
- kttBEbc/9uqxbuBA/Bys2tHA3uRKqGYLDE3QKnot6zYy6UGvA6WUu5aBe
- 7WBWmom60Y4ilr45JrPktufOiY2YZSIAdMakkAYvHSX6WLLb+pboJRrC5 A==;
-X-CSE-ConnectionGUID: VwPHB/aCTpWoEXWvn+fVYw==
-X-CSE-MsgGUID: PFNXJtTzRBihiMaEPn3ayQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="80498922"
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="80498922"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 01:09:06 -0700
-X-CSE-ConnectionGUID: 7f8QUFRCQvSbp1Wvf1OczQ==
-X-CSE-MsgGUID: wnY0wOc3SJWHkAKrzcyKGg==
+ t=1775637780; x=1807173780;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=+/B8V6+qumrlqiIXs/DgToQnYXp4NgtEFZMWyPCWCwE=;
+ b=nQ16pfKLpwP2726ttjXqon5GuRwfLjWF7xJMaj1WoTM9Mw3G0qwTGk++
+ dIqI6bDzmj75GuOtevbWjfbp3US71np8SbXGnQB0RsK+3Vl39zDg73bA/
+ 2wKGUVStn58MBjwgVd3S383ZC17xnpztUbm400xpY+uF8XK7y3VaNcpjE
+ sYWiq9Aro76riE/ukBPjC9WiGiMaXZX1j9DMUMBiQEH84OZQunh72TJfV
+ LbtueoLXa5LVQef2VjNC1UzRtWRW5OdWqZnXyeXJqGTWvD7UKMo4JCbS2
+ Ma/fEKGc42PlG14ku/POMWsR0P6tz23E76N+8+isZZ9Ua6wAjGEA1rozR Q==;
+X-CSE-ConnectionGUID: 2L1otuL2RFGXE2x4U2iQVg==
+X-CSE-MsgGUID: mv3hQR1EQY6v9u+KEyPcvg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="80208993"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="80208993"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 01:43:00 -0700
+X-CSE-ConnectionGUID: BZqJ634TSWSVDarlRERhxw==
+X-CSE-MsgGUID: KDP/HlrFSpubpOrCsxDOHw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="221855834"
-Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 01:09:03 -0700
-Date: Wed, 8 Apr 2026 10:09:00 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- rodrigo.vivi@intel.com, andrealmeid@igalia.com,
- christian.koenig@amd.com, airlied@gmail.com, simona.vetter@ffwll.ch,
- mripard@kernel.org, anshuman.gupta@intel.com,
- badal.nilawar@intel.com, riana.tauro@intel.com,
- karthik.poosa@intel.com, sk.anirban@intel.com
-Subject: Re: [PATCH v3 4/4] drm/xe: Handle PUNIT errors by requesting
- cold-reset recovery
-Message-ID: <adYNHIbb2Aoe_xZI@black.igk.intel.com>
-References: <20260406142325.157035-6-mallesh.koujalagi@intel.com>
- <20260406142325.157035-10-mallesh.koujalagi@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="228310284"
+Received: from krybak-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.32])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 01:42:57 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 01/12] drm/i915/fb: Nuke intel_tile_row_size()
+In-Reply-To: <20260407155053.32156-2-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260407155053.32156-1-ville.syrjala@linux.intel.com>
+ <20260407155053.32156-2-ville.syrjala@linux.intel.com>
+Date: Wed, 08 Apr 2026 11:42:54 +0300
+Message-ID: <3ee6c763bb12c2df96ef6af6756be6bca4c9dea8@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260406142325.157035-10-mallesh.koujalagi@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,89 +71,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Apr 06, 2026 at 07:53:30PM +0530, Mallesh Koujalagi wrote:
-> When PUNIT (power management unit) errors are detected that persist across
-> warm resets, mark the device as wedged with DRM_WEDGE_RECOVERY_COLD_RESET
-> and notify userspace that a complete device cold reset is required to
-> restore normal operation.
-> 
-> v3:
-> - Use PUNIT instead of PMU. (Riana)
-> - Use consistent wordingi.
-> - Remove log. (Raag)
-> 
-> Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+On Tue, 07 Apr 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> intel_tile_row_size() is unused. Nuke it.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
 > ---
->  drivers/gpu/drm/xe/xe_ras.c | 21 ++++++++++++++++++++-
->  drivers/gpu/drm/xe/xe_ras.h |  1 +
->  2 files changed, 21 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-> index 437811845c01..e2e1ab3fb4ce 100644
-> --- a/drivers/gpu/drm/xe/xe_ras.c
-> +++ b/drivers/gpu/drm/xe/xe_ras.c
-> @@ -5,6 +5,7 @@
->  
->  #include "xe_assert.h"
->  #include "xe_device_types.h"
-> +#include "xe_device.h"
->  #include "xe_printk.h"
->  #include "xe_ras.h"
->  #include "xe_ras_types.h"
-> @@ -93,6 +94,24 @@ static enum xe_ras_recovery_action handle_compute_errors(struct xe_device *xe,
->  	return XE_RAS_RECOVERY_ACTION_RECOVERED;
+>  drivers/gpu/drm/i915/display/intel_fb.c | 9 ---------
+>  drivers/gpu/drm/i915/display/intel_fb.h | 1 -
+>  2 files changed, 10 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i9=
+15/display/intel_fb.c
+> index 5768619f840f..83392c1a1ebe 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> @@ -876,15 +876,6 @@ static void intel_tile_block_dims(const struct drm_f=
+ramebuffer *fb, int color_pl
+>  		*tile_height =3D 1;
 >  }
->  
-> +/**
-> + * xe_punit_error_handler - Handler for Punit errors requiring cold reset
-> + * @xe: device instance
-> + *
-> + * Handles Punit errors that affect the device and cannot be recovered
-> + * through driver reload, PCIe reset, etc.
-> + *
-> + * Marks the device as wedged with DRM_WEDGE_RECOVERY_COLD_RESET method
-> + * and notifies userspace that a device cold reset is required.
-> + */
-> +void xe_punit_error_handler(struct xe_device *xe)
+>=20=20
+> -unsigned int intel_tile_row_size(const struct drm_framebuffer *fb, int c=
+olor_plane)
+> -{
+> -	unsigned int tile_width, tile_height;
+> -
+> -	intel_tile_dims(fb, color_plane, &tile_width, &tile_height);
+> -
+> -	return fb->pitches[color_plane] * tile_height;
+> -}
+> -
+>  unsigned int
+>  intel_fb_align_height(const struct drm_framebuffer *fb,
+>  		      int color_plane, unsigned int height)
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb.h b/drivers/gpu/drm/i9=
+15/display/intel_fb.h
+> index 22514d5f2bb6..fb1ec2a1e905 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb.h
+> +++ b/drivers/gpu/drm/i915/display/intel_fb.h
+> @@ -62,7 +62,6 @@ int skl_main_to_aux_plane(const struct drm_framebuffer =
+*fb, int main_plane);
+>  unsigned int intel_tile_size(struct intel_display *display);
+>  unsigned int intel_tile_width_bytes(const struct drm_framebuffer *fb, in=
+t color_plane);
+>  unsigned int intel_tile_height(const struct drm_framebuffer *fb, int col=
+or_plane);
+> -unsigned int intel_tile_row_size(const struct drm_framebuffer *fb, int c=
+olor_plane);
+>  unsigned int intel_fb_align_height(const struct drm_framebuffer *fb,
+>  				   int color_plane, unsigned int height);
 
-Should this be static?
-
-> +{
-> +	xe_err(xe, "Recovery: Device cold reset required\n");
-
-Rather print it inside the event helper so we don't have to go around
-logging each case. Let me see what can be done here.
-
-Raag
-
-> +	xe_device_set_wedged_method(xe, DRM_WEDGE_RECOVERY_COLD_RESET);
-> +	xe_device_declare_wedged(xe);
-> +}
-> +
->  static enum xe_ras_recovery_action handle_soc_internal_errors(struct xe_device *xe,
->  							      struct xe_ras_error_array *arr)
->  {
-> @@ -132,7 +151,7 @@ static enum xe_ras_recovery_action handle_soc_internal_errors(struct xe_device *
->  			xe_err(xe, "[RAS]: PUNIT %s error detected: 0x%x\n",
->  			       severity_to_str(xe, common.severity),
->  			       ieh_error->global_error_status);
-> -			/** TODO: Add PUNIT error handling */
-> +			xe_punit_error_handler(xe);
->  			return XE_RAS_RECOVERY_ACTION_DISCONNECT;
->  		}
->  	}
-> diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
-> index e191ab80080c..ab1fde200625 100644
-> --- a/drivers/gpu/drm/xe/xe_ras.h
-> +++ b/drivers/gpu/drm/xe/xe_ras.h
-> @@ -11,6 +11,7 @@
->  struct xe_device;
->  
->  void xe_ras_init(struct xe_device *xe);
-> +void xe_punit_error_handler(struct xe_device *xe);
->  enum xe_ras_recovery_action  xe_ras_process_errors(struct xe_device *xe);
->  
->  #endif
-> -- 
-> 2.34.1
-> 
+--=20
+Jani Nikula, Intel
