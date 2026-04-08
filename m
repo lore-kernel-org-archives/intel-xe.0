@@ -4,83 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F9C910F9969
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 18:01:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6134F10F995C
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 18:03:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDB6B10E6B9;
-	Wed,  8 Apr 2026 18:01:16 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Cz55or9/";
-	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE67410E6B3;
- Wed,  8 Apr 2026 18:01:14 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 8596C60121;
- Wed,  8 Apr 2026 18:01:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46CE3C19421;
- Wed,  8 Apr 2026 18:01:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1775671273;
- bh=vMeMK+n87aZGl3H05qmgvP4N4G/hHJPPTA9+9weNZ94=;
- h=Date:Cc:To:From:Subject:References:In-Reply-To:From;
- b=Cz55or9/FmdbXo2d5UahkCjF5PYt1L4nL7LkO8dKTXHIp13pUXjVQ996CuZ2YmJBh
- 2POkTq2nv0uCHmNMsFvZWFtoH4OyfaCVu3+BHjaViU9ip9OEFMztcHaRF08gcHH/SW
- P0ZozX65OAjZTAAXPsuavCA3DK0GW4zw895UdyqCDkiAPxhNOkJ07D1VlNlZ1Kw5zu
- Gq5uP4CsUQ4RgjkKuRkTETtSZAY5RQ/JTIIeg1O/mSsz/rFHRWcgR41YYkOldcLshk
- TtW1/VI6qDJhAEqjfBuBzYVnk4+5uXpl6Dg4Sk6Skz7shIetnoI/ANCtbLWAaivlkU
- 33HfPiJK+044Q==
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 08 Apr 2026 20:01:01 +0200
-Message-Id: <DHNYXGAVLNVM.3TV1VDZ9YXA9U@kernel.org>
-Cc: <linux-kernel@vger.kernel.org>, "Miguel Ojeda" <ojeda@kernel.org>,
- "Boqun Feng" <boqun@kernel.org>, "Gary Guo" <gary@garyguo.net>, "Bjorn Roy
- Baron" <bjorn3_gh@protonmail.com>, "Benno Lossin" <lossin@kernel.org>,
- "Andreas Hindborg" <a.hindborg@kernel.org>, "Alice Ryhl"
- <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>, "Dave Airlie"
- <airlied@redhat.com>, "Daniel Almeida" <daniel.almeida@collabora.com>,
- "Koen Koning" <koen.koning@linux.intel.com>,
- <dri-devel@lists.freedesktop.org>, <rust-for-linux@vger.kernel.org>,
- "Nikola Djukic" <ndjukic@nvidia.com>, "Maarten Lankhorst"
- <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
- <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Jonathan Corbet"
- <corbet@lwn.net>, "Alex Deucher" <alexander.deucher@amd.com>, "Christian
- Koenig" <christian.koenig@amd.com>, "Jani Nikula"
- <jani.nikula@linux.intel.com>, "Joonas Lahtinen"
- <joonas.lahtinen@linux.intel.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
- "Tvrtko Ursulin" <tursulin@ursulin.net>, "Huang Rui" <ray.huang@amd.com>,
- "Matthew Auld" <matthew.auld@intel.com>, "Matthew Brost"
- <matthew.brost@intel.com>, "Lucas De Marchi" <lucas.demarchi@intel.com>,
- "Thomas Hellstrom" <thomas.hellstrom@linux.intel.com>, "Helge Deller"
- <deller@gmx.de>, "Alex Gaynor" <alex.gaynor@gmail.com>, "Boqun Feng"
- <boqun.feng@gmail.com>, "John Hubbard" <jhubbard@nvidia.com>, "Alistair
- Popple" <apopple@nvidia.com>, "Timur Tabi" <ttabi@nvidia.com>, "Edwin Peer"
- <epeer@nvidia.com>, "Alexandre Courbot" <acourbot@nvidia.com>, "Andrea
- Righi" <arighi@nvidia.com>, "Andy Ritger" <aritger@nvidia.com>, "Zhi Wang"
- <zhiw@nvidia.com>, "Balbir Singh" <balbirs@nvidia.com>, "Philipp Stanner"
- <phasta@kernel.org>, "Elle Rhumsaa" <elle@weathered-steel.dev>,
- <alexeyi@nvidia.com>, <joel@joelfernandes.org>,
- <linux-doc@vger.kernel.org>, <amd-gfx@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <linux-fbdev@vger.kernel.org>
-To: "Joel Fernandes" <joelagnelf@nvidia.com>, "Eliot Courtney"
- <ecourtney@nvidia.com>
-From: "Danilo Krummrich" <dakr@kernel.org>
-Subject: Re: [PATCH v10 12/21] gpu: nova-core: mm: Add unified page table
- entry wrapper enums
-References: <20260311004008.2208806-1-joelagnelf@nvidia.com>
- <20260331212048.2229260-1-joelagnelf@nvidia.com>
- <20260331212048.2229260-13-joelagnelf@nvidia.com>
- <DHIFF98P1YQ3.1IXUT02E3TF20@nvidia.com>
- <5db2aab1-4b65-486e-ad9b-27a108bdb0d6@nvidia.com>
- <DHMYSTLVHIFJ.A2BDMPVNZNLS@nvidia.com>
- <537a8c5a-3885-4c47-99f6-963b48ddf87d@nvidia.com>
- <DHNT32C2Q5HN.LLME0RV17Z8V@nvidia.com>
- <da8d03f8-0294-417b-b684-2c20d577f94a@nvidia.com>
-In-Reply-To: <da8d03f8-0294-417b-b684-2c20d577f94a@nvidia.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23FDD10E6B9;
+	Wed,  8 Apr 2026 18:03:07 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F85210E6B9;
+ Wed,  8 Apr 2026 18:03:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Fix_resource_le?=
+ =?utf-8?q?aks_in_bo_init_and_dma-buf_paths_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Shuicheng Lin" <shuicheng.lin@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 08 Apr 2026 18:03:06 -0000
+Message-ID: <177567138656.443324.5851937851034160252@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260408175255.3402838-1-shuicheng.lin@intel.com>
+In-Reply-To: <20260408175255.3402838-1-shuicheng.lin@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,30 +36,84 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed Apr 8, 2026 at 6:58 PM CEST, Joel Fernandes wrote:
-> So you're making the code much much worse than before actually. We don't
-> new traits and types pointlessly.
+== Series Details ==
 
-I had a look at both approaches and yes, the traits can be considered
-boilerplate. But, they are not complex and they just list method signatures=
- that
-each version's types already implement functionality wise and they get us r=
-id of
-a lot of dispatch sites. The implementation turns out cleaner as there is l=
-ess
-parameter threading throughout call chains, etc. Overall, it seems more
-scalable.
+Series: drm/xe: Fix resource leaks in bo init and dma-buf paths (rev2)
+URL   : https://patchwork.freedesktop.org/series/164476/
+State : warning
 
-On the other hand, there are indeed more abstractions and type indirections=
- to
-understand in Eliot's code. I.e. there are advantages and disadvantages to =
-both
-approaches.
+== Summary ==
 
-That said, please engage with Eliot's proposal, it is not as off as your re=
-ply
-implies and dismissing it right away is not what I'd like to see in this
-situation.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b775475762527b28e22f605a46a100ef699ed9eb
+Author: Shuicheng Lin <shuicheng.lin@intel.com>
+Date:   Wed Apr 8 17:52:55 2026 +0000
+
+    drm/xe: Fix dma-buf attachment leak in xe_gem_prime_import()
+    
+    When xe_dma_buf_init_obj() fails, the attachment from
+    dma_buf_dynamic_attach() is not detached. Add dma_buf_detach() before
+    returning the error. Note: we cannot use goto out_err here because
+    xe_dma_buf_init_obj() already frees bo on failure, and out_err would
+    double-free it.
+    
+    Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+    Cc: stable@vger.kernel.org
+    Assisted-by: Claude:claude-opus-4.6
+    Reviewed-by: Mattheq Brost <matthew.brost@intel.com>
+    Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
++ /mt/dim checkpatch f074368a55893ee121ba2920497b6c25e265d190 drm-intel
+2be998ef405a drm/xe/bo: Fix bo leak on unaligned size validation in xe_bo_init_locked()
+-:15: WARNING:BAD_SIGN_OFF: Non-standard signature: Assisted-by:
+#15: 
+Assisted-by: Claude:claude-opus-4.6
+
+-:15: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Claude:claude-opus-4.6'
+#15: 
+Assisted-by: Claude:claude-opus-4.6
+
+total: 1 errors, 1 warnings, 0 checks, 11 lines checked
+b6e715e755b2 drm/xe/bo: Fix bo leak on GGTT flag validation in xe_bo_init_locked()
+-:15: WARNING:BAD_SIGN_OFF: Non-standard signature: Assisted-by:
+#15: 
+Assisted-by: Claude:claude-opus-4.6
+
+-:15: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Claude:claude-opus-4.6'
+#15: 
+Assisted-by: Claude:claude-opus-4.6
+
+total: 1 errors, 1 warnings, 0 checks, 11 lines checked
+58455342774c drm/xe: Fix bo leak in xe_dma_buf_init_obj() on allocation failure
+-:25: WARNING:BAD_SIGN_OFF: Non-standard signature: Assisted-by:
+#25: 
+Assisted-by: Claude:claude-opus-4.6
+
+-:25: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Claude:claude-opus-4.6'
+#25: 
+Assisted-by: Claude:claude-opus-4.6
+
+total: 1 errors, 1 warnings, 0 checks, 31 lines checked
+b77547576252 drm/xe: Fix dma-buf attachment leak in xe_gem_prime_import()
+-:14: WARNING:BAD_SIGN_OFF: Non-standard signature: Assisted-by:
+#14: 
+Assisted-by: Claude:claude-opus-4.6
+
+-:14: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Claude:claude-opus-4.6'
+#14: 
+Assisted-by: Claude:claude-opus-4.6
+
+total: 1 errors, 1 warnings, 0 checks, 19 lines checked
+
+
