@@ -4,149 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17E6C10F995F
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 16:41:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99EEA10F995F
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 16:46:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5EB710E6AD;
-	Wed,  8 Apr 2026 16:41:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D7DD10E6BE;
+	Wed,  8 Apr 2026 16:46:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P9O91mC/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B8yvxo3I";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 001A410E6AD
- for <intel-xe@lists.freedesktop.org>; Wed,  8 Apr 2026 16:41:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4328810E6BD;
+ Wed,  8 Apr 2026 16:46:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775666480; x=1807202480;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=8gVSdjndUUtQORPPyXSdOIZZHPkq2+DHMOnMCl6CnG4=;
- b=P9O91mC/Da4o9Qq2GEgPy99tfq17UjopNSkP+zv/hVNQJmfxBaOcQ/2R
- 25JKaKKjRC3UFOkWpGI5fxmUhkgL50RSMKsSiJO2ympWSQYf7KpAN4VzY
- wsOvdyq9Sh4RrFXUilUBjnRKeKsCE9SI4yN9mjHNSIPkALiUA8X6+rIIi
- mboAsGpCLvQdFzyts4ZzKWBoPf/Y5a501JSU2DoW+qMZFS686iHXcb931
- AavNPBoElzU+LdoNb75U77gyYCHrTlTphwJNyC/QeB8SSc0kyCLOOllWB
- uM80F1alia8mGXn+IQCTz6w/hyTPdXWNrrrHPOTzB4lPNaxst2vVNRzAt g==;
-X-CSE-ConnectionGUID: T5LS9hBVT3eXsB1SZnplug==
-X-CSE-MsgGUID: eb/Eamt6Rlqfdd4W00UVNA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="76547184"
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="76547184"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 09:41:19 -0700
-X-CSE-ConnectionGUID: O4uB3sXHQMuFlxuoCd4SCw==
-X-CSE-MsgGUID: jA7rJkwuSiuYTg021IAvtg==
+ t=1775666792; x=1807202792;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=F10jfkfEfC/EX7kLXc5hCIWQ2jP5fNv/beu/qh+qfFg=;
+ b=B8yvxo3IK9zcJi5sFHIhek80O+RYGFOlu5nHMntK81rzVVzLtvsMiff9
+ dsXouG6TmpVd89cZiYahgfvtgAojEqHkVH/M6SnSWTwX9y9PoVkN1rvFw
+ QI2NPVraz568HBYHWwl6aBQj/KKazTlD68vzKblJfE3yx3evh83HAENY5
+ tUY9fw44tikpW/uZvJKofu/sRxSMb9BTUOyOEW/WAYP8ketW9eHMDfJ6Y
+ DQsgw/bIaHd7yVTDJaPnvF9dXIzDZC99WLwoNrh6UYuATKkr2dqOqDYIE
+ Vvgnj/iR5Ia1nKP7zdE5TQa3WL+IrRFoyqmk0HuqS/2xtS0eb1xFYd3HK A==;
+X-CSE-ConnectionGUID: t149wCzaRcOmgwKECpVA4g==
+X-CSE-MsgGUID: rA4J+JZ3Sxq7z5z46EoQwQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="94239831"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="94239831"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 09:46:31 -0700
+X-CSE-ConnectionGUID: 7GOyNpxXSpeWC7eQfRfS9w==
+X-CSE-MsgGUID: jrddapkFSMeOPcPdJyP0tg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="223757535"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 09:41:19 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 8 Apr 2026 09:41:19 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 8 Apr 2026 09:41:19 -0700
-Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.54) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 8 Apr 2026 09:41:19 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=XNN/WBylbTfPpqV5E+HtJdbQtlk/r2Q73OijukoAxu2oKTSCj0uuZGT1lWBcInBhcKTBeHxixR6zWhUNwJ4tYx9Euysm6mSZnwp6qWO1heYl9CfPIOw1yU0hnak/Hk8b1RnGd1U9gWoNhmDvh1mviqEg7Uu/M1FhNDsIydVXLZmydL4kqbMe7YjE5BnNVrQ9oXP5+l9qU3G1uz6xgeKySskrKQsGhmDEQWJD66okMaYpHZQzJyC+ZgUETr1jDGJwPnoIF0c2N0Yrh+u5QmFZmfnKkGFBPh3CoCtRrt5p2ZAc5bDaTFYA2XaRprkLOysEp2tquowdF5Iy+KI0DqwWLQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iaW73NM2d9yYd5J9Qi9TW+kxNViQIB3KHcOwMBSrjsM=;
- b=QLlQ2ZmzND8HlN/zciuAx3uo9Srm3MEh4TYIqv+r78BjRmGaqZFwYLfioNReT/SR8D68sOcGgHT0pR45DN6iwGxJDaU7TEmgDDPlIsibUwRsf8+9CFQ8DuDN6+vaZOF8lJqpq+r5HBoBay0GD9898Z44CFt1/xD3+k6A++CVqjG64QmDv4EqokhZDGf4rQfOmiL/xWOnBWGXwJsWqAhf4s5UnU3kUbqgSRsHr7S8pLrjdb4GBPL6e2qBfSGFUENrcUt8wsRA5WhQnnS4/XyT0r/4wd+HBb32BYGZzRjsneADdjzOdcc05vOBtdRZYX2/b+KqmYhyOpyPCo6AgJ5x4w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
- by MW4PR11MB6739.namprd11.prod.outlook.com (2603:10b6:303:20b::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.20; Wed, 8 Apr
- 2026 16:41:16 +0000
-Received: from BL3PR11MB6508.namprd11.prod.outlook.com
- ([fe80::53c9:f6c2:ffa5:3cb5]) by BL3PR11MB6508.namprd11.prod.outlook.com
- ([fe80::53c9:f6c2:ffa5:3cb5%7]) with mapi id 15.20.9769.016; Wed, 8 Apr 2026
- 16:41:16 +0000
-Date: Wed, 8 Apr 2026 09:41:13 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: "Lin, Shuicheng" <shuicheng.lin@intel.com>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "stable@vger.kernel.org" <stable@vger.kernel.org>
-Subject: Re: [PATCH 3/4] drm/xe: Fix bo leak in xe_dma_buf_init_obj() on
- allocation failure
-Message-ID: <adaFKRnqeKcLqYmw@gsse-cloud1.jf.intel.com>
-References: <20260407201542.3396317-1-shuicheng.lin@intel.com>
- <20260407201542.3396317-4-shuicheng.lin@intel.com>
- <adXhDcGmLytjuTUB@gsse-cloud1.jf.intel.com>
- <DM4PR11MB545631685E1E7994F737E904EA5B2@DM4PR11MB5456.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <DM4PR11MB545631685E1E7994F737E904EA5B2@DM4PR11MB5456.namprd11.prod.outlook.com>
-X-ClientProxiedBy: BY3PR05CA0055.namprd05.prod.outlook.com
- (2603:10b6:a03:39b::30) To BL3PR11MB6508.namprd11.prod.outlook.com
- (2603:10b6:208:38f::5)
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="228455533"
+Received: from krybak-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.32])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 09:46:30 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 1/2] drm/i915/joiner: Make joiner "nomodeset" state copy
+ independent of pipe order
+In-Reply-To: <20260408155744.13326-2-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260408155744.13326-1-ville.syrjala@linux.intel.com>
+ <20260408155744.13326-2-ville.syrjala@linux.intel.com>
+Date: Wed, 08 Apr 2026 19:46:27 +0300
+Message-ID: <64fcf34f83f7d3011ec204d7e260de399b265c6a@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|MW4PR11MB6739:EE_
-X-MS-Office365-Filtering-Correlation-Id: 853b660b-c780-44af-0609-08de958da748
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|56012099003|22082099003|18002099003; 
-X-Microsoft-Antispam-Message-Info: Gu0x4w6dhuKi44yOwsmldKR7Z441zVRdJmjnlJhus+6krWG6+FdUgRgjipg4Pp7jMxEuLQJa7PNJoLH9GU0N/hxRY4Kfy7FUZw6/9bIc93xhXcb8rElkOfSBpyWzGORDEIsVwzAw+SDJrjb/68g9j4wRVGq5LaG+45lODkZamy4mcn9yrGGeNb7L4bnmHxRdr0s4/cC9xIdOJK/5+pSBpWXY+PUZ+8f7yzbsTPIZNzfsexwP/BfcZr/KYkXTtL2Dda/p7OuYl+j8o4XKvjNr83jAFTainA1OMyEBVs+uTJ3e2usHchYP6xuceLQqTVmCIKiNGSpN06TbvTRr0KiJnUktVEYFsREdHY1KFBJcFJXR6unlcaiswxSNBOXN3FcA1Fj0KLURanYPhWPOsP7HVWwgxLPplrJvvHyYu+bvRUWjvCac5iuWjo5JIjG1vosXa6oDc87yNCl5cK3pxRvM8LXmS2MJwZqighreMIKEGvi6/be1XGuQ96LMD/BsDGm8ZGMnGINfaMsyWkgRqOy2PC+Ku2XNs0FnBAG+smJ6fgNXFuf33aXLieBnb3gnCOhk5nS3YQTnWD1r6BBq2UdPIHpmb0Ifm8ghCeKL0Y89edfnCbWTXD2ncMnSqXE2eSngEFVIXW2BJBCl87HpPOesjtgRVhFVEVlxWn24JRLTu8H1DnSAVvx+dLzKT1IZcXsn69WSxqJeApOdQaVvwlrYwazPDkhGmK1H1y/V1fPUU2I=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(56012099003)(22082099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?EQOb5r6+l8irwwYAiLxuMZOMeU3KzMhIJ5s71k5tpm0trSq4tMOdXNxPK7ZD?=
- =?us-ascii?Q?V8alvtq+OJV/c3w6f1Q86720sfBgmOvJNwjm60CVOa0f/McNzdD8fMQu8dps?=
- =?us-ascii?Q?njfNlgg2Iuvv8Ll8fDHAksyDKlnUKquXP/Jh/yBNTKz9/ejw1AOAzt3wTDzb?=
- =?us-ascii?Q?FWq2Gnku3Ki1Kcnt8H4oSq5Zu9PhV1wRndL9coIv6PP874nBsREnHBecZK5e?=
- =?us-ascii?Q?8Vco7LoagAaDUAW/8tBk3K7AGiP/G/bi+MGkUZaNv0AC0KUtFyGr2rzg0DV2?=
- =?us-ascii?Q?XF3KEyxc9BgK0UtMMICxOgZTdsh4RSLawpEwOrvgHa74IPaTWwnwq2nwvCY5?=
- =?us-ascii?Q?BpY7z3UDsH9JH3qVlVkiJew4cbPLmnZ6uOoYhalLZBct8GFdK0EOODj8zvaK?=
- =?us-ascii?Q?5XQNO9+5TiR/2QjYNUXIhKz6mN/jA6dydNhaAVckBUor2gLBa/67LOGwj5B5?=
- =?us-ascii?Q?BIO1hGKGWsiyrZlp+N4xacQ6jOwMjcl395zSNNwiSVo8jwre2Eht0o67/Aif?=
- =?us-ascii?Q?V5Vu4pOToPAeIdZ1kt78JYafV38GXSkj3meFpmN8C1YoiSgXaVcARXjpndai?=
- =?us-ascii?Q?Jhg/zqCLRcErfE7tooIQPOqRFFo6SR5yvKJNYmLidcZr9HozlXgDJFX/pJ1W?=
- =?us-ascii?Q?539DHOyAq5XZH93DvoNYSvYrfyFEha2sFw1CzrcawItZsvif3FQECQRlS50v?=
- =?us-ascii?Q?O3yEqMqVtl1AUksU+njh0gY7MKhxqQtOOfMsx0/uDA+6fubfpGrhVG8dAoCH?=
- =?us-ascii?Q?N3E5EDI7IjfTthEX9QyXl0UVjYLj09isAyIxv89h9Yva0+7y0mVUmdXPzol4?=
- =?us-ascii?Q?3U60TC18aFxCb1E0kPW5GdLDgraiQFAvyj+13mIAj/TbXu6IGM/h+TBxHrP1?=
- =?us-ascii?Q?eQ5DvJgGXdHY0g5uirlxYRgU/r13n7tyEPBh0mfI68Z0KxRLC+fIjf2FN+GT?=
- =?us-ascii?Q?rPQky5krXBEjZhh5oFTSiCEocrLMNXmrnOO+iaeKsCELofkFRiSYwq7YKO9h?=
- =?us-ascii?Q?6UYoADFUezMQyokG23lz0ZhrYluvHqIhsLrYNxwVDgIhHzvZR3RRcpAsbDuO?=
- =?us-ascii?Q?eno4PdZNivHePyjoSO/BjgEiuFaZP/nDMpCFZuySduezk5cc39wLnfMYe1Sn?=
- =?us-ascii?Q?k0cgVKrPydd23SSKV7YMcFgaw1QFQI5DyW8EmH74ynRuLgzPw4OevqLkyqJk?=
- =?us-ascii?Q?06I4AdWwCgwqREgsnJ+l3iPRbc9cLWTEVOLcWBco7W3hc8GGxBsAkjVafL0e?=
- =?us-ascii?Q?HQTsWuvVWTPXybOBwtSIzMRln+szv2IbKZhlUkjrbLIXK4ELEEdLzBqyX36Y?=
- =?us-ascii?Q?Ic+AoB79n/FK7EmLi1nJeA0ZRaPIMfL04aDs7eGahdSBHBYDBWAbL8THZ5oH?=
- =?us-ascii?Q?0Ey/2dJbpdDi+z9EAghVc74W62gVNSw6cQom4UshRaWFxHkTM8FzPwLkXa+E?=
- =?us-ascii?Q?/lkfvmU6IfQUa2XDBLsbnUJXa0AfVcA8WQcJRWQLwHginGCGsrCsHBihpFWd?=
- =?us-ascii?Q?37lncZkSXwQT18iyqoHKAiC/+oRidX9tWqoWciLt8ETVOgDk8VPjcoazi9+X?=
- =?us-ascii?Q?LKVY7ZsZUWW/1blNIONOlYoVsaofcNmCp0mDjiPojFwzOYlkIMU7hOfcFQvm?=
- =?us-ascii?Q?31XIRY3iUnFjsLimJklEy9+4/41T5oXoelpSGo9lBazs+V4MLmUyxITrv/8h?=
- =?us-ascii?Q?MDf5kiJ1c86yA76VtxkZOcpPMz/qSjCMuXFjq6O6Np1L43Ym8lqinwelgvO0?=
- =?us-ascii?Q?MVHarXov1A=3D=3D?=
-X-Exchange-RoutingPolicyChecked: uYLBmVdTuw+lQ3NLklLhYx/kyhCSF8RYf6v3VqOxNbXmuPkdbalRtMnX0QJALBtSg4CrrZwBb2ZjG3Rwb/3Wn/pHiwkPEjwiIgWFe9nPuq1gSQ4SZhz4kHC4yQv94vUPTOR0QijI70ftNJHV8aFIUmqrWJOK9h/WJqGzsudFOSs9OrggqGOawQ8RTTS8K3WmGkhRFQfCSzltOBxnek0DdympZa14eOIu+SbtJOxNjg7c4P4ToUj04u40w5XipqCxi5eZvbt8MKNKq3+5ZrLbj3n8yHWsyDyY0TYwvbWvei6HIj3wb7OacAyg8oFS3Z+AHkYeBdpm+B/PRPy9Za+32A==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 853b660b-c780-44af-0609-08de958da748
-X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2026 16:41:16.4271 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XUOWGjGubgBRO5kikNCoDY0pw5x5z3zKBnj/b8ZDQ5iZxYACmKfq1De77P4XnfJImqCbe0mytEuxUCds1j4Tyw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6739
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,84 +72,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Apr 08, 2026 at 09:58:06AM -0600, Lin, Shuicheng wrote:
-> On Tue, Apr 7, 2026 10:01 PM Matthew Brost wrote:
-> > On Tue, Apr 07, 2026 at 08:15:41PM +0000, Shuicheng Lin wrote:
-> > > When drm_gpuvm_resv_object_alloc() fails, the pre-allocated storage bo
-> > > is not freed. Add xe_bo_free(storage) before returning the error.
-> > >
-> > > Fixes: eb289a5f6cc6 ("drm/xe: Convert xe_dma_buf.c for exhaustive
-> > > eviction")
-> > > Cc: stable@vger.kernel.org
-> > > Assisted-by: Claude:claude-opus-4.6
-> > > Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/xe/xe_dma_buf.c | 4 +++-
-> > >  1 file changed, 3 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c
-> > > b/drivers/gpu/drm/xe/xe_dma_buf.c index 7f9602b3363d..24d9d82426b9
-> > > 100644
-> > > --- a/drivers/gpu/drm/xe/xe_dma_buf.c
-> > > +++ b/drivers/gpu/drm/xe/xe_dma_buf.c
-> > > @@ -271,8 +271,10 @@ xe_dma_buf_init_obj(struct drm_device *dev, struct
-> > xe_bo *storage,
-> > >  	int ret = 0;
-> > >
-> > >  	dummy_obj = drm_gpuvm_resv_object_alloc(&xe->drm);
-> > > -	if (!dummy_obj)
-> > > +	if (!dummy_obj) {
-> > 
-> > I know the comment at caller says 'Errors here will take care of freeing the bo.'
-> > 
-> > But I'm not sure that is right sematic as this patch alone won't free the BO give
-> > this line not seen in this diff:
-> > 
-> > 296         return ret ? ERR_PTR(ret) : &bo->ttm.base;
-> > 
-> > So IMO we make the caller own the freeing of the BO here.
-> 
-> xe_dma_buf_init_obj() calls xe_bo_init_locked(), which frees the BO on error.
-> Therefore, xe_dma_buf_init_obj() must also free the BO on its error paths.
+On Wed, 08 Apr 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Currently the joiner primary->secondary hw state copy still happens from
+> the main compute_config loop alongside the primary uapi->hw state copy.
+> The primary uapi->hw state copy must therefore happen first, or else
+> we'll end up copying stale junk into the secondary.
+>
+> We have a WARN in intel_atomic_check_joiner() to make sure the CRTCs
+> will be walked in the correct order. The plan is to reoder the CRTCs,
+> which would mess up the order, unless we also adjust the iterators
+> to keep the pipe order. The actual plan is to do both, so technically
+> we should be able to just remove the WARN and call it a day.
+>
+> But relying on the iteration order like this is fragile and confusing,
+> so let's move the "nomodeset" joiner state copy into the later loop
+> where the "modeset" state copy is also done. The first loop having
+> completely finished, we are guaranteed to have up to date hw state
+> on the primary when we do the copy to the secondary.
 
-Yes, right. It is easy to forget these consuming interfaces on error.
+I find the number of loops in the forest of intel_atomic_check*
+functions confusing too. But this looks like progress.
 
-> Otherwise, since xe_gem_prime_import() cannot distinguish whether the failure originated from xe_dma_buf_init_obj() or from xe_bo_init_locked(), it cannot safely decide whether the BO should be freed.
-> 
-> On success, ownership of the BO is transferred to the drm_gem_object.
-> 
-> How about add some comments in this function like below?
-> 
-> +/*
-> + * Takes ownership of @storage: on success it is transferred to the returned
-> + * drm_gem_object; on failure it is freed before returning the error.
-> + * This matches the contract of xe_bo_init_locked() which frees @storage on
-> + * its error paths, so callers need not (and must not) free @storage after
-> + * this call.
-> + */
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-Yes, that's good to avoid forgetting.
+I'm wondering about merging this, along with the pipe reordering, to a
+topic branch that could be merged to drm-next at Dave's discretion,
+instead of cherry-picks which might be a bit cumbersome for patches this
+size. So please hold off on merging while I figure this out.
 
-So this patch looks correct:
 
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 20 +++++---------------
+>  1 file changed, 5 insertions(+), 15 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index 58a654ca0d20..674a4ece6d0f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -5914,17 +5914,6 @@ static int intel_atomic_check_joiner(struct intel_=
+atomic_state *state,
+>  			return -EINVAL;
+>  		}
+>=20=20
+> -		/*
+> -		 * The state copy logic assumes the primary crtc gets processed
+> -		 * before the secondary crtc during the main compute_config loop.
+> -		 * This works because the crtcs are created in pipe order,
+> -		 * and the hardware requires primary pipe < secondary pipe as well.
+> -		 * Should that change we need to rethink the logic.
+> -		 */
+> -		if (WARN_ON(drm_crtc_index(&primary_crtc->base) >
+> -			    drm_crtc_index(&secondary_crtc->base)))
+> -			return -EINVAL;
+> -
+>  		drm_dbg_kms(display->drm,
+>  			    "[CRTC:%d:%s] Used as secondary for joiner primary [CRTC:%d:%s]\n=
+",
+>  			    secondary_crtc->base.base.id, secondary_crtc->base.name,
+> @@ -6302,9 +6291,7 @@ static int intel_atomic_check_config(struct intel_a=
+tomic_state *state,
+>=20=20
+>  	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+>  		if (!intel_crtc_needs_modeset(new_crtc_state)) {
+> -			if (intel_crtc_is_joiner_secondary(new_crtc_state))
+> -				copy_joiner_crtc_state_nomodeset(state, crtc);
+> -			else
+> +			if (!intel_crtc_is_joiner_secondary(new_crtc_state))
+>  				intel_crtc_copy_uapi_to_hw_state_nomodeset(state, crtc);
+>  			continue;
+>  		}
+> @@ -6439,8 +6426,11 @@ int intel_atomic_check(struct drm_device *dev,
+>  		goto fail;
+>=20=20
+>  	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+> -		if (!intel_crtc_needs_modeset(new_crtc_state))
+> +		if (!intel_crtc_needs_modeset(new_crtc_state)) {
+> +			if (intel_crtc_is_joiner_secondary(new_crtc_state))
+> +				copy_joiner_crtc_state_nomodeset(state, crtc);
+>  			continue;
+> +		}
+>=20=20
+>  		if (intel_crtc_is_joiner_secondary(new_crtc_state)) {
+>  			drm_WARN_ON(display->drm, new_crtc_state->uapi.enable);
 
->  static struct drm_gem_object *
->  xe_dma_buf_init_obj(struct drm_device *dev, struct xe_bo *storage,
->                     struct dma_buf *dma_buf)
-> 
-> Shuicheng
-> 
-> > 
-> > Matt
-> > 
-> > > +		xe_bo_free(storage);
-> > >  		return ERR_PTR(-ENOMEM);
-> > > +	}
-> > >
-> > >  	dummy_obj->resv = resv;
-> > >  	xe_validation_guard(&ctx, &xe->val, &exec, (struct xe_val_flags) {},
-> > > ret) {
-> > > --
-> > > 2.43.0
-> > >
+--=20
+Jani Nikula, Intel
