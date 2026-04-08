@@ -4,59 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C97CFD5F79
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 11:18:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B60FB1073C9C
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 11:28:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FF4D10E611;
-	Wed,  8 Apr 2026 11:18:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49FAC10E615;
+	Wed,  8 Apr 2026 11:28:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GJRQijfJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ABnCUwJ8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C154C10E611
- for <intel-xe@lists.freedesktop.org>; Wed,  8 Apr 2026 11:18:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 82A8510E614;
+ Wed,  8 Apr 2026 11:28:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775647114; x=1807183114;
+ t=1775647705; x=1807183705;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=S9OIB8f4T91+e/l6su3O4lZNgjv48PP9HEC4y/ereiY=;
- b=GJRQijfJDt/XiIm9DXHpWr6n30X2vs0WgHUKJSHwzoMYPRKDo1zVFRZH
- DbJDX6Ksjqm4xahkPGx2540PW2Udey8bHUlukb0rOVD/gMjJ2UlCnp6HW
- VcbALElbY+XoMz7ktoQoGt67sdfGSGYVFsOLUuxV8co+vRpjQwvvII74F
- dNE5LBXBVrFJJ54oqd7y9N8n6hqOjkoBoZL5t+ckRcYLSBzoGE5xVGbsZ
- /y3t8Nx1CENDYWJ2uq67NLhuQr+6Q2ZrhYodaOZXvzaxlrO25IzmdfKpL
- 4rS1oRnskqmw8IO9Ajjt7U4jgBtzXboGFgsZkDJSleVk16EDDkRyLRPIP Q==;
-X-CSE-ConnectionGUID: sAjN6S3yQOu1diG8+2BOuw==
-X-CSE-MsgGUID: wRRnd4tlSzGdWIUjf12x7A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="76504258"
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="76504258"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 04:18:34 -0700
-X-CSE-ConnectionGUID: +5yt+11RQQyI9QethN745A==
-X-CSE-MsgGUID: 0dbS8KZZTqq34KdpqRH8hA==
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=09aZq9rZpn5zKsyP6jgVgJ3v1e+A0RU9Kq2l/jezRX4=;
+ b=ABnCUwJ8wEDgki2ZpP6cFO9aD6b08vavTrvcx0mRKT8a7hrBnnv0eE+e
+ YQSnDGnVaYjhWtRtqSsKyWL9sFwntiKxV2SPzIAoZAGJWuodDMB3XaxU6
+ i5kbBBcUGE46QLW5eoAhIEv7Tn/O8tqMe1eq5R74pVCPoWlFMckgKQBe8
+ hZdYK3i2kj96dJmwNZ9lAoBOtsdvVIpSQDuqwA4GIfpsd3PdVUzR7qdZk
+ eCzwDjeR2DkHArS8CRo6wEGXRoy4VGTvtU64687IU0IBPBYy9o7rJ3bvc
+ JeeROf5HwfYJoo+fSGlKcsEh3pjJjbnYZxlptpCtz5+OpLfyubFOqmx9q g==;
+X-CSE-ConnectionGUID: OIVONSzVSe+0c11EfoZ3zg==
+X-CSE-MsgGUID: b2zKSklxS1aDzu7afNOBsQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="76518963"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="76518963"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 04:28:25 -0700
+X-CSE-ConnectionGUID: xmx/mPIQRPO1UdOv+pHi+g==
+X-CSE-MsgGUID: bxmqejaPQCG3iat3WwVg0Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="251769774"
-Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 04:18:31 -0700
-Date: Wed, 8 Apr 2026 13:18:28 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Riana Tauro <riana.tauro@intel.com>
-Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
- rodrigo.vivi@intel.com, aravind.iddamsetty@linux.intel.com,
- badal.nilawar@intel.com, ravi.kishore.koppuravuri@intel.com,
- mallesh.koujalagi@intel.com, soham.purkait@intel.com
-Subject: Re: [PATCH v3 08/10] drm/xe/xe_ras: Add structures for SoC Internal
- errors
-Message-ID: <adY5hH7l-HiXt-Fu@black.igk.intel.com>
-References: <20260402070131.1603828-12-riana.tauro@intel.com>
- <20260402070131.1603828-20-riana.tauro@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="258873466"
+Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.245.73])
+ by orviesa002-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2026 04:28:23 -0700
+Date: Wed, 8 Apr 2026 14:28:19 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 10/12] drm/i915/selftests: Eliminate duplicate vma size
+ check
+Message-ID: <adY700Bp2S4UMi-9@intel.com>
+References: <20260407155053.32156-1-ville.syrjala@linux.intel.com>
+ <20260407155053.32156-11-ville.syrjala@linux.intel.com>
+ <818d1ebdafb20f3b5ed25e1349f2965948ab819b@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20260402070131.1603828-20-riana.tauro@intel.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <818d1ebdafb20f3b5ed25e1349f2965948ab819b@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,87 +73,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Apr 02, 2026 at 12:31:39PM +0530, Riana Tauro wrote:
-> Add response structures for SoC Internal errors.
-
-This looks like should be squashed with next patch, or did I miss something?
-
-Raag
-
-> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-> ---
-> v2: simplify soc structures
-> ---
->  drivers/gpu/drm/xe/xe_ras_types.h | 51 +++++++++++++++++++++++++++++++
->  1 file changed, 51 insertions(+)
+On Wed, Apr 08, 2026 at 12:01:26PM +0300, Jani Nikula wrote:
+> On Tue, 07 Apr 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > Both remapped and rotated views need the exact same size check.
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
-> index e37dd12bffa3..65158bf716a7 100644
-> --- a/drivers/gpu/drm/xe/xe_ras_types.h
-> +++ b/drivers/gpu/drm/xe/xe_ras_types.h
-> @@ -10,6 +10,7 @@
->  
->  #define XE_RAS_NUM_ERROR_ARR		3
->  #define XE_RAS_MAX_ERROR_DETAILS	16
-> +#define XE_RAS_IEH_PUNIT_ERROR		BIT(1)
->  
->  /**
->   * enum xe_ras_recovery_action - RAS recovery actions
-> @@ -149,4 +150,54 @@ struct xe_ras_compute_error {
->  	u32 spare_log3;
->  } __packed;
->  
-> +/**
-> + * struct xe_ras_soc_error_source - Source of SOC error
-> + */
-> +struct xe_ras_soc_error_source {
-> +	/** @csc: CSC error */
-> +	u32 csc:1;
-> +	/** @soc: SOC error */
-> +	u32 soc:1;
-> +	/** @reserved: Reserved for future use */
-> +	u32 reserved:30;
-> +} __packed;
-> +
-> +/**
-> + * struct xe_ras_soc_error - SOC error details
-> + */
-> +struct xe_ras_soc_error {
-> +	/** @error_source: Error Source */
-> +	struct xe_ras_soc_error_source error_source;
-> +	/** @additional_details: Additional details */
-> +	u32 additional_details[15];
-> +} __packed;
-> +
-> +/**
-> + * struct xe_ras_csc_error - CSC error details
-> + */
-> +struct xe_ras_csc_error {
-> +	/** @hec_uncorr_err_status: CSC error */
-> +	u32 hec_uncorr_err_status;
-> +	/** @hec_uncorr_fw_err_dw0: CSC f/w error */
-> +	u32 hec_uncorr_fw_err_dw0;
-> +} __packed;
-> +
-> +/**
-> + * struct xe_ras_ieh_error - SoC IEH (Integrated Error Handler) details
-> + */
-> +struct xe_ras_ieh_error {
-> +	/** @ieh_instance: IEH instance */
-> +	u32 ieh_instance:2;
-> +	/** @reserved: Reserved for future use */
-> +	u32 reserved:30;
-> +	/** @global_error_status: Global error status */
-> +	u32 global_error_status;
-> +	/** @local_error_status: Local error status */
-> +	u32 local_error_status;
-> +	/** @gerr_mask: Global error mask */
-> +	u32 gerr_mask;
-> +	/** @additional_info: Additional information */
-> +	u32 additional_info[10];
-> +} __packed;
-> +
->  #endif
+> This is misleading, see below. At the very least the commit message
+> needs amending.
+> 
+> > Currently that is being done separately for each type. Share
+> > the code by just checking for !NORMAL view. This test doesn't
+> > use I915_GTT_VIEW_PARTIAL so the inverse check is fine here.
+> >
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/selftests/i915_vma.c | 10 +---------
+> >  1 file changed, 1 insertion(+), 9 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/selftests/i915_vma.c b/drivers/gpu/drm/i915/selftests/i915_vma.c
+> > index 7c4111e60f2e..258557388a2d 100644
+> > --- a/drivers/gpu/drm/i915/selftests/i915_vma.c
+> > +++ b/drivers/gpu/drm/i915/selftests/i915_vma.c
+> > @@ -634,7 +634,7 @@ static int igt_vma_rotate_remap(void *arg)
+> >  
+> >  					expected_pages = remapped_size(view.type, &plane_info[0], &plane_info[1]);
+> >  
+> > -					if (view.type == I915_GTT_VIEW_ROTATED &&
+> > +					if (view.type != I915_GTT_VIEW_NORMAL &&
+> >  					    vma->size != expected_pages * PAGE_SIZE) {
+> >  						pr_err("VMA is wrong size, expected %lu, found %llu\n",
+> >  						       PAGE_SIZE * expected_pages, vma->size);
+> > @@ -642,14 +642,6 @@ static int igt_vma_rotate_remap(void *arg)
+> >  						goto out_object;
+> >  					}
+> >  
+> > -					if (view.type == I915_GTT_VIEW_REMAPPED &&
+> > -					    vma->size > expected_pages * PAGE_SIZE) {
+> 
+> This check becomes stricter now, expecting exact match. Does it matter?
+
+I didn't even notice tbh.
+
+> 
+> History points at you! ;)
+> 
+> e2e394bffa19 ("drm/i915/selftests: Add mock selftest for remapped vmas")
+> 
+> If you think the change in the check is okay, and with the commit
+> message amended,
+
+Hmm. I don't actually know why I did the more relaxed check originally.
+Can't think right now why the exact check wouldn't be correct for both.
+I suppose actually running the test should tell us...
+
+And now that I think about this, the strict check would be incorrect if
+we were testing the plane_alignment stuff. But we seem to lack selftests
+for that stuff for some reason. I should really add that, and switch
+the size calculations to use the real intel_remapped_info_size()...
+
+> 
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> 
+> 
+> > -						pr_err("VMA is wrong size, expected %lu, found %llu\n",
+> > -						       PAGE_SIZE * expected_pages, vma->size);
+> > -						err = -EINVAL;
+> > -						goto out_object;
+> > -					}
+> > -
+> >  					if (vma->pages->nents > expected_pages) {
+> >  						pr_err("sg table is wrong sizeo, expected %u, found %u nents\n",
+> >  						       expected_pages, vma->pages->nents);
+> 
 > -- 
-> 2.47.1
-> 
+> Jani Nikula, Intel
+
+-- 
+Ville Syrjälä
+Intel
