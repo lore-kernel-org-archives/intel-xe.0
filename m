@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01E45105D9BB
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 14:01:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 917E01073CBC
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 14:01:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5275E10E677;
-	Wed,  8 Apr 2026 14:01:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D45210E679;
+	Wed,  8 Apr 2026 14:01:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iWXXlvoi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LaRbhP9P";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 215E910E670;
- Wed,  8 Apr 2026 14:01:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C693E10E678;
+ Wed,  8 Apr 2026 14:01:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775656903; x=1807192903;
+ t=1775656908; x=1807192908;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Y/1pXPf8t1JdzIlxcAKOQUzTAk8VXY4AhDf/SrPfUbc=;
- b=iWXXlvoi8XDyEjZI8upSPCxKBjVXgaSD8L7y8KR7yFvz30ynM/R8Yle0
- Rb1fAcXf1wjLhSukmbAN3fSaDhMXbDVwUDj+QLtEKnkPCAF2JNpeqt6rW
- 5L61PWzpYASJ8Cu/Nd4c1ThNkzQG/oArbWlUbNOUs3ImM3wvquHsjvVX3
- IJVstCV1Jd+kJVuVm+mccrJu5ODP7e1nX2jKxkNSLwt3A1lCjQL0wtvgj
- yijhlCbhQU+KRfpyVDbdo+ZVBwERTM7OULMISPlMw6ybBLJIZCelnvIAY
- fwPS3+3Cl1K10ATGNuqrpSZ9MQghWbn8ExjvhO4y1CcgHdS3Dq/WUVIyK A==;
-X-CSE-ConnectionGUID: nh9lKHtRSHao4cg2M+iimA==
-X-CSE-MsgGUID: AAL9NfvxQvSJR7xGQdzfgA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="75811496"
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="75811496"
+ bh=Sj0bJFhLUKd5S3V9MnFKRV5ekCEI4Kjbr33EGYWA0HA=;
+ b=LaRbhP9Pt/AYxQdCIxP6KPIm0b9vRXXhnkUqj8AEOGL0RTaTJISblFkN
+ CxalTyV9ZpYKUS5jKOU0o3hXditO5vuhjNy4ZmbOdzPcs7qKbhUTC59xq
+ MD3VYV1QNCTfXYhFpbpNo1VSew0a0oRbflfxShDR5Eoel82SqlHPDwLZ8
+ nOvb9JkrlCTMR+sujkv++HSsONcu5BncR2x+kzsY4fA1qex+RO98pqMde
+ 9bTN+Vz0Bf88my/1gaV/5bnoZm4/cdYu+QK71JmN0G5Lwz53BpPc/GG8Y
+ 1fY9EePYR3O56smgIS51nAVw6F12uIDYpGWj7fys5qpmhDxl8k4vTJC5Q g==;
+X-CSE-ConnectionGUID: yHmg3xFpTqWxA+OsW3Aj2g==
+X-CSE-MsgGUID: drHbHcVxQWuYb+8CQ0woDQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="75811529"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="75811529"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 07:01:21 -0700
-X-CSE-ConnectionGUID: +TXkyHJvTuC7OcSO4OE89g==
-X-CSE-MsgGUID: pCF1PdluQai6DSUc/XVIZQ==
+ 08 Apr 2026 07:01:24 -0700
+X-CSE-ConnectionGUID: Alic1PWlRku5Io90y4350A==
+X-CSE-MsgGUID: mQANnXLbSPyxyL30DYQ8ag==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="228726655"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="228726676"
 Received: from smoticic-mobl1.ger.corp.intel.com (HELO
  jhogande-mobl3.intel.com) ([10.245.244.251])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 07:01:19 -0700
+ 08 Apr 2026 07:01:23 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH 1/7] drm/i915/psr: Improve PSR state information in crtc state
- dump
-Date: Wed,  8 Apr 2026 17:00:53 +0300
-Message-ID: <20260408140059.252067-2-jouni.hogander@intel.com>
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH 3/7] drm/dp: Include PSR2 granularity registers into PSR
+ capability size define
+Date: Wed,  8 Apr 2026 17:00:55 +0300
+Message-ID: <20260408140059.252067-4-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260408140059.252067-1-jouni.hogander@intel.com>
 References: <20260408140059.252067-1-jouni.hogander@intel.com>
@@ -71,37 +72,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We are currenty missing some information in crtc state dump about computed
-PSR state. Add this missing information.
+Currently EDP_PSR_RECEIVER_CAP_SIZE contains only DP_PSR_SUPPORT and
+DP_PSR_CAPS register. Include also granularity registers into this size to
+avoid need to read them separately.
 
+Cc: dri-devel@lists.freedesktop.org
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crtc_state_dump.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+ include/drm/display/drm_dp.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-index c85ba9a95322..41aa28f1c72c 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-@@ -244,12 +244,16 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
- 		drm_printf(&p, "sdp split: %s\n",
- 			   str_enabled_disabled(pipe_config->sdp_split_enable));
- 
--		drm_printf(&p, "psr: %s, selective update: %s, panel replay: %s, selective fetch: %s\n",
-+		drm_printf(&p, "psr: %s, selective update: %s, panel replay: %s, selective fetch: %s (y granularity = %d), early transport: %s, sdp prior scanline = %s, entry setup frames = %d\n",
- 			   str_enabled_disabled(pipe_config->has_psr &&
- 						!pipe_config->has_panel_replay),
- 			   str_enabled_disabled(pipe_config->has_sel_update),
- 			   str_enabled_disabled(pipe_config->has_panel_replay),
--			   str_enabled_disabled(pipe_config->enable_psr2_sel_fetch));
-+			   str_enabled_disabled(pipe_config->enable_psr2_sel_fetch),
-+			   pipe_config->su_y_granularity,
-+			   str_enabled_disabled(pipe_config->enable_psr2_su_region_et),
-+			   str_enabled_disabled(pipe_config->req_psr2_sdp_prior_scanline),
-+			   pipe_config->entry_setup_frames);
- 		drm_printf(&p, "minimum hblank: %d\n", pipe_config->min_hblank);
- 	}
- 
+diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
+index 8b15d3eeb716..9af87c88b9c4 100644
+--- a/include/drm/display/drm_dp.h
++++ b/include/drm/display/drm_dp.h
+@@ -1691,7 +1691,7 @@ enum drm_dp_phy {
+ #define DP_RECEIVER_CAP_SIZE		0xf
+ #define DP_DSC_RECEIVER_CAP_SIZE        0x10 /* DSC Capabilities 0x60 through 0x6F */
+ #define DP_DSC_BRANCH_CAP_SIZE		3
+-#define EDP_PSR_RECEIVER_CAP_SIZE	2
++#define EDP_PSR_RECEIVER_CAP_SIZE	5
+ #define EDP_DISPLAY_CTL_CAP_SIZE	5
+ #define DP_LTTPR_COMMON_CAP_SIZE	8
+ #define DP_LTTPR_PHY_CAP_SIZE		3
 -- 
 2.43.0
 
