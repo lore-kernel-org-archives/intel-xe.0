@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9957110F9955
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 15:22:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B331810F9951
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 15:28:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57E5E10E692;
-	Wed,  8 Apr 2026 15:22:07 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jNaP6PFJ";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 542EA10E68B;
- Wed,  8 Apr 2026 15:22:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775661725; x=1807197725;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=I8w4QXjoIu8I/CgeujIFqWt+BwH04qwOsww8ewrO9Ds=;
- b=jNaP6PFJ2Q5ur32Pe0944l3cHipmVGeFHdty0aY3BSL2wzfSIVedYMVo
- DIvqsloAJJh2cyrSJisqAeiZUAM9HlBF2Mpj7QvzFW2+nEVCcPDVZXv7g
- ttpF7LK0tT9CNUIsbx07VP6cUjkbZdRvzx1TPlJb7mSHMHHvZ7SlxEBFl
- PyP3UoqA3wioOsty5seSQPeId1gF8t/SmqpzsGSWjv14kviYdDhZ+CDNL
- rlQLK5XyXIY+OzEqCLfYFXNBDWvCqjxADke7FGB/KovO5dxnOwopwpFrN
- 9X+3wSM1BvUZ1cebARJtYhs2M83J9ZaI0wnNx6fHhjkaEj8SwSw+FoAGE w==;
-X-CSE-ConnectionGUID: RM7I9HeEToyYgvVnDPBRRQ==
-X-CSE-MsgGUID: Ecrxohl7QsShuBkh+nORaw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="64193886"
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="64193886"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 08:22:05 -0700
-X-CSE-ConnectionGUID: iS1xnDmWSNGbOP/B1pxy5g==
-X-CSE-MsgGUID: M/iFWoZdR5ukEpjEWoQ0WQ==
-X-ExtLoop1: 1
-Received: from krybak-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.32])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 08:22:03 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com,
- maarten.lankhorst@linux.intel.com,
- Maarten Lankhorst <maarten.lankhorst@intel.com>
-Subject: [PATCH 2/2] drm/i915: move fence timeout to display parent interface
-Date: Wed,  8 Apr 2026 18:21:49 +0300
-Message-ID: <8cde57236982fc3ca1a5608332943d3b9274a45a.1775661609.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1775661609.git.jani.nikula@intel.com>
-References: <cover.1775661609.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7594A10E51A;
+	Wed,  8 Apr 2026 15:28:11 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99E8A10E51A;
+ Wed,  8 Apr 2026 15:28:09 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915=3A_move_fence_ti?=
+ =?utf-8?q?meout_to_parent_interface?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 08 Apr 2026 15:28:09 -0000
+Message-ID: <177566208961.443324.11915762631112818112@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <cover.1775661609.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1775661609.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,167 +36,58 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-i915 has the Kconfig option DRM_I915_FENCE_TIMEOUT, defaulting to 10
-seconds. xe doesn't use it, instead defaulting to MAX_SCHEDULE_TIMEOUT.
+== Series Details ==
 
-There was an attempt to unify the behaviour by switching to
-dma_fence_wait() which defaults to MAX_SCHEDULE_TIMEOUT, but that
-resulted in CI failures. See the link below.
+Series: drm/i915: move fence timeout to parent interface
+URL   : https://patchwork.freedesktop.org/series/164553/
+State : warning
 
-Move the fence timeout to the optional parent interface, retaining
-existing behaviour for each driver. With this, we can drop the xe compat
-i915_config.h header.
+== Summary ==
 
-While at it, order the declarations in intel_parent.h the same way as in
-the struct.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit c2f3c2d10ec9dca7344f3f711ed24f4c93f8506f
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Wed Apr 8 18:21:49 2026 +0300
 
-Link: https://lore.kernel.org/r/20251113155332.789554-1-jani.nikula@intel.com
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c     |  8 ++++++--
- drivers/gpu/drm/i915/display/intel_parent.c      |  6 ++++++
- drivers/gpu/drm/i915/display/intel_parent.h      |  3 ++-
- drivers/gpu/drm/i915/i915_driver.c               |  2 ++
- .../gpu/drm/xe/compat-i915-headers/i915_config.h | 16 ----------------
- include/drm/intel/display_parent_interface.h     |  3 +++
- 6 files changed, 19 insertions(+), 19 deletions(-)
- delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_config.h
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 58a654ca0d20..765cc09b70da 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -49,7 +49,6 @@
- #include "g4x_dp.h"
- #include "g4x_hdmi.h"
- #include "hsw_ips.h"
--#include "i915_config.h"
- #include "i9xx_plane.h"
- #include "i9xx_plane_regs.h"
- #include "i9xx_wm.h"
-@@ -105,6 +104,7 @@
- #include "intel_modeset_verify.h"
- #include "intel_overlay.h"
- #include "intel_panel.h"
-+#include "intel_parent.h"
- #include "intel_pch_display.h"
- #include "intel_pch_refclk.h"
- #include "intel_pfit.h"
-@@ -7149,15 +7149,19 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
- 
- static void intel_atomic_commit_fence_wait(struct intel_atomic_state *intel_state)
- {
-+	struct intel_display *display = to_intel_display(intel_state);
- 	struct drm_plane *plane;
- 	struct drm_plane_state *new_plane_state;
-+	unsigned long fence_timeout;
- 	long ret;
- 	int i;
- 
-+	fence_timeout = intel_parent_fence_timeout(display);
-+
- 	for_each_new_plane_in_state(&intel_state->base, plane, new_plane_state, i) {
- 		if (new_plane_state->fence) {
- 			ret = dma_fence_wait_timeout(new_plane_state->fence, false,
--						     i915_fence_timeout());
-+						     fence_timeout);
- 			if (ret <= 0)
- 				break;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_parent.c b/drivers/gpu/drm/i915/display/intel_parent.c
-index 47ce3b6fdd5b..f22dd16ddb40 100644
---- a/drivers/gpu/drm/i915/display/intel_parent.c
-+++ b/drivers/gpu/drm/i915/display/intel_parent.c
-@@ -388,6 +388,12 @@ void intel_parent_fence_priority_display(struct intel_display *display, struct d
- 		display->parent->fence_priority_display(fence);
- }
- 
-+unsigned long intel_parent_fence_timeout(struct intel_display *display)
-+{
-+	return display->parent->fence_timeout ? display->parent->fence_timeout() :
-+		MAX_SCHEDULE_TIMEOUT;
-+}
-+
- bool intel_parent_has_auxccs(struct intel_display *display)
- {
- 	return display->parent->has_auxccs && display->parent->has_auxccs(display->drm);
-diff --git a/drivers/gpu/drm/i915/display/intel_parent.h b/drivers/gpu/drm/i915/display/intel_parent.h
-index 1e89d24163cc..f06e0f9f2e41 100644
---- a/drivers/gpu/drm/i915/display/intel_parent.h
-+++ b/drivers/gpu/drm/i915/display/intel_parent.h
-@@ -120,9 +120,10 @@ int intel_parent_vlv_iosf_write(struct intel_display *display, enum vlv_iosf_sb_
- int intel_parent_vma_fence_id(struct intel_display *display, const struct i915_vma *vma);
- 
- /* generic */
-+void intel_parent_fence_priority_display(struct intel_display *display, struct dma_fence *fence);
-+unsigned long intel_parent_fence_timeout(struct intel_display *display);
- bool intel_parent_has_auxccs(struct intel_display *display);
- bool intel_parent_has_fenced_regions(struct intel_display *display);
- bool intel_parent_vgpu_active(struct intel_display *display);
--void intel_parent_fence_priority_display(struct intel_display *display, struct dma_fence *fence);
- 
- #endif /* __INTEL_PARENT_H__ */
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 129013c5fb42..b7098d80b92d 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -91,6 +91,7 @@
- #include "pxp/intel_pxp_pm.h"
- 
- #include "i915_bo.h"
-+#include "i915_config.h"
- #include "i915_debugfs.h"
- #include "i915_display_pc8.h"
- #include "i915_dpt.h"
-@@ -783,6 +784,7 @@ static const struct intel_display_parent_interface parent = {
- 	.vma = &i915_display_vma_interface,
- 
- 	.fence_priority_display = fence_priority_display,
-+	.fence_timeout = i915_fence_timeout,
- 	.has_auxccs = has_auxccs,
- 	.has_fenced_regions = has_fenced_regions,
- 	.vgpu_active = vgpu_active,
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_config.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_config.h
+    drm/i915: move fence timeout to display parent interface
+    
+    i915 has the Kconfig option DRM_I915_FENCE_TIMEOUT, defaulting to 10
+    seconds. xe doesn't use it, instead defaulting to MAX_SCHEDULE_TIMEOUT.
+    
+    There was an attempt to unify the behaviour by switching to
+    dma_fence_wait() which defaults to MAX_SCHEDULE_TIMEOUT, but that
+    resulted in CI failures. See the link below.
+    
+    Move the fence timeout to the optional parent interface, retaining
+    existing behaviour for each driver. With this, we can drop the xe compat
+    i915_config.h header.
+    
+    While at it, order the declarations in intel_parent.h the same way as in
+    the struct.
+    
+    Link: https://lore.kernel.org/r/20251113155332.789554-1-jani.nikula@intel.com
+    Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+    Cc: Maarten Lankhorst <maarten.lankhorst@intel.com>
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch f074368a55893ee121ba2920497b6c25e265d190 drm-intel
+e02ab7457e5f drm/i915: convert i915_fence_timeout() into a proper function
+c2f3c2d10ec9 drm/i915: move fence timeout to display parent interface
+-:123: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#123: 
 deleted file mode 100644
-index d4522203e2dd..000000000000
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_config.h
-+++ /dev/null
-@@ -1,16 +0,0 @@
--/* SPDX-License-Identifier: MIT */
--/*
-- * Copyright © 2023 Intel Corporation
-- */
--
--#ifndef __I915_CONFIG_H__
--#define __I915_CONFIG_H__
--
--#include <linux/sched.h>
--
--static inline unsigned long i915_fence_timeout(void)
--{
--	return MAX_SCHEDULE_TIMEOUT;
--}
--
--#endif /* __I915_CONFIG_H__ */
-diff --git a/include/drm/intel/display_parent_interface.h b/include/drm/intel/display_parent_interface.h
-index 258e6388ef77..e0293e6cfdab 100644
---- a/include/drm/intel/display_parent_interface.h
-+++ b/include/drm/intel/display_parent_interface.h
-@@ -261,6 +261,9 @@ struct intel_display_parent_interface {
- 		/** @fence_priority_display: Set display priority. Optional. */
- 		void (*fence_priority_display)(struct dma_fence *fence);
- 
-+		/** @fence_timeout: Fence timeout. Optional. */
-+		unsigned long (*fence_timeout)(void);
-+
- 		/** @has_auxccs: Are AuxCCS formats supported by the parent. Optional. */
- 		bool (*has_auxccs)(struct drm_device *drm);
- 
--- 
-2.47.3
+
+total: 0 errors, 1 warnings, 0 checks, 80 lines checked
+
 
