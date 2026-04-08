@@ -4,77 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC7B9FD5F6B
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 08:45:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D129CFD5F87
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 08:47:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67B5C10E599;
-	Wed,  8 Apr 2026 08:45:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9472110E4A6;
+	Wed,  8 Apr 2026 08:47:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Ch1ehORK";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="G/+kj7mT";
 	dkim-atps=neutral
-Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com
- [209.85.219.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E828E10E598
- for <intel-xe@lists.freedesktop.org>; Wed,  8 Apr 2026 08:45:17 +0000 (UTC)
-Received: by mail-qv1-f42.google.com with SMTP id
- 6a1803df08f44-89fc4147f2eso74895176d6.3
- for <intel-xe@lists.freedesktop.org>; Wed, 08 Apr 2026 01:45:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1775637917; x=1776242717; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:sender:from:to:cc:subject:date:message-id:reply-to;
- bh=3lr+SQhutbSWGABS7oQ2OjJMnCc+Y1xCXHP8EbLYn64=;
- b=Ch1ehORKhIcyC14cSR/WO7bL4FBH6PadmhAIO3BLfGMf8X8r58JJY8F6idH4paX2VU
- lpESWUfZBDdWjNmD9segymcehWLh6CexXRAkTxSIlKPINC0xtJYaQBvKb02GqJwZHGUB
- jdhMD2b/jmx5fp0ycdB2CrWUnKWtuwo2Ds2+pkjSMvQ9h8Fam3NlnzcNciSCibRT/HU8
- dv3CHp3sfsBx0LOtpep0vvqP3eyRqAkjgjohbytfZUYfTHM6ATetiYTa/Cz7ZX4Cvtbt
- H79aWDJK8qim53pmZDYDSdPQbkka9Mv735tdKddA8ELMq/vIGe89INytrV2asmcANH/2
- km8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1775637917; x=1776242717;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:sender:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=3lr+SQhutbSWGABS7oQ2OjJMnCc+Y1xCXHP8EbLYn64=;
- b=Hn6fLF0IaFQx2bNRfyGe9XKgChO9lD7R8em/eUeTla4rVn03+bhEaAt7HfF58Ot1Tf
- 52p/FL92pMEY+2aXBVfFKVUn/23kWj0MPLkSRmAe63Yf3dPKCFS31q9YKlazPQ90s/RI
- rxgKmxoIc8xfergJzYf1C4iOt4s6clAQ12lE4s6csm2OXMjO9uarG3lceItRzGW8IyoJ
- K30v5tdDTBSkqwVajDpiVOR1jxnMQO53a6a6srAEUMYO5MbDy1nXz69v2nv6zqsw0CDt
- iadBapkrYqIyEowCV7Qok1yg8W95OWwD76Y3yTyYu1sfMQyJiSKWDo4EMtJO0cx0RZNx
- Bqqg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVFP9bPFmGe1SvMHj34KAC05RZbTVSD/Aefp8ec9MZRgcuedt4Awwn6kaJVeb8+xFaN2SPwj5dRaw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyT6eNPDJ8Ltk4NiR5bwMe7B5iteVjv+qsDOjrQ7I7YI49Av6Zu
- +9382MEhK2LBOvGGi3noAibvNTFvcWuXAyeYWpJU0jyNffDBluyKZjAB
-X-Gm-Gg: AeBDies8CY2pRTN5P1O9/jVuw0J/AitbBbUSsR/Nn7sA/5Yk8jXRtAQ6bjC8ncYdySt
- gH6ONfjm6SoO0KvYYfqrlJ8EBJIoVOGNrIS/kKpmXwzEqaGtNI5F6bKvhJqo1BSajdgddqk4r6x
- ESZltfM1bmrcTqqNWENwPiReh6cuF1P8VvRTUAIvGDvZWGTiOr7nWA1jhR4fzEd8x8ECcwHKaOQ
- uOuWEFKxat3lcyLwKtYPhpZ6vx8/EViLnFIVZrLDFIUdwGLaBGjBGJdBhimq/dxTI25x1VoKI+d
- ISdC8VEkZcgXUGkW/xXA+NaJ9tHrBWgDTM5P0jsav4/CKLHJZH4/CQPmG6WwWtTWZb0oLHHIDHZ
- RDtJXcX9bEes12tV25OfL1U1mo/ZQuyRRbfusTgH7ryKSi/c30UTaUaOKSvieiiBjYN4vg85MhA
- jIuzjXKnQ0szTK5EGR
-X-Received: by 2002:a05:6214:468c:b0:89c:e4c3:dc2d with SMTP id
- 6a1803df08f44-8a7022bbe6amr337024886d6.2.1775637916961; 
- Wed, 08 Apr 2026 01:45:16 -0700 (PDT)
-Received: from localhost ([2001:67c:1562:8007::aac:4468])
- by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-8ac56e3a898sm39028506d6.38.2026.04.08.01.45.14
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 08 Apr 2026 01:45:16 -0700 (PDT)
-From: "Chia-Lin Kao (AceLan)" <acelan.kao@canonical.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/i915/dp: Clear accumulated HPD events after link training
-Date: Wed,  8 Apr 2026 16:45:09 +0800
-Message-ID: <20260408084509.555045-1-acelan.kao@canonical.com>
-X-Mailer: git-send-email 2.53.0
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CF8C10E4A6;
+ Wed,  8 Apr 2026 08:47:16 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1775638033; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=IH5ImjUBZ/W+d482NCi8wus4ECVlXW8/YjqxIRft86+/NdCMxPdytrAD5nzcVLyPMeoiD+M+CdyUkXCONtLiKSlkqwSl7iO6liyjfUASpqHNIRM9Qd5ZHsbheLBrBJpFa/z6J+kDCX9kYwed2LJnZ0oMDWQlfa7Q3g7WvyYAU0Y=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1775638033;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=6+n5MQ/KFQxYt6sVxxnlGjfQ2OKFG8y00oDJJAKLlZY=; 
+ b=daACXmGzqcUNMhbWhZqIHjBk56KsJcerfOr6P4zME5IIRj/9zlLrke1fuTk11lW9uVEVx4GHWLhkHEon2q6WYBCre1hv9TApkB2XAlcSl/i7Jnlk08tOE6LIyRJAHuJmg6u0DRH+1DFEqfVVhX2Tfng2ZQvhjEXCQLVVUxyDGS8=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+ dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1775638033; 
+ s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+ h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+ bh=6+n5MQ/KFQxYt6sVxxnlGjfQ2OKFG8y00oDJJAKLlZY=;
+ b=G/+kj7mTNrqbV3XebLUiTQHQyBQdm0ihGfV8CUmlERbLHSei0A4ZyzZUWHcl3mal
+ RA2ATvDjIuo2sofnjic32wgBqqchWz90eDmr6AVBPlH0JzpTyCuPtl22gi6tncdoq+/
+ 1lcoFm9nU+5O77uTaISss1Esftk1m6SjvAEJgSSg=
+Received: by mx.zohomail.com with SMTPS id 1775638030680963.1479540774822;
+ Wed, 8 Apr 2026 01:47:10 -0700 (PDT)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: intel-gfx@lists.freedesktop.org,
+ Ville Syrjala <ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: Re: [PATCH] drm/i915/dp: Don't use DP link min bpp for the FRL link
+ bandwidth check
+Date: Wed, 08 Apr 2026 10:47:06 +0200
+Message-ID: <14398087.O9o76ZdvQC@workhorse>
+In-Reply-To: <20260407183015.16256-1-ville.syrjala@linux.intel.com>
+References: <20260407183015.16256-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,39 +64,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-After link training completes, intel_dp_stop_link_train() calls
-intel_hpd_unblock() which fires all HPD events that accumulated
-during training via queue_work_for_missed_irqs(). On MST hubs that
-generate rapid short HPD pulses (observed at 5-55ms intervals on
-Dell U2721DE with Realtek MST hub), this creates a burst of stale
-ESI processing that races with the ongoing modeset pipeline enabling
-the 2nd MST stream, resulting in a GPU hard lockup.
+On Tuesday, 7 April 2026 20:30:15 Central European Summer Time Ville Syrjal=
+a wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>=20
+> intel_dp_mode_min_link_bpp_x16() gives us the min bpp for the
+> DP link before the PCON, however intel_dp_mode_valid_downstream()
+> is trying to check for sufficient bandwidth on the HDMI FRL link
+> after the PCON. So the use of intel_dp_mode_min_link_bpp_x16() here
+> is incorrect.
+>=20
+> Presumably even with FRL HDMI still can't go below 8bpc, so we should
+> just use that to give us the minimum required FRL bandwidth. And this
+> needs to account for the sink format (for 4:2:0 sub-sampling) since
+> that is what will be flowing over the HDMI link.
+>=20
+> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 20 ++++++++++++++------
+>  1 file changed, 14 insertions(+), 6 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index 4955bd8b11d7..31e9b2758499 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -1317,6 +1317,15 @@ intel_dp_tmds_clock_valid(struct intel_dp *intel_d=
+p,
+>  	return MODE_OK;
+>  }
+> =20
+> +static int frl_required_bw(int clock, int bpc,
+> +			   enum intel_output_format sink_format)
+> +{
+> +	if (sink_format =3D=3D INTEL_OUTPUT_FORMAT_YCBCR420)
+> +		clock /=3D 2;
+> +
+> +	return clock * bpc * 3;
+> +}
+> +
+>  static enum drm_mode_status
+>  intel_dp_mode_valid_downstream(struct intel_connector *connector,
+>  			       const struct drm_display_mode *mode,
+> @@ -1327,13 +1336,14 @@ intel_dp_mode_valid_downstream(struct intel_conne=
+ctor *connector,
+>  	enum drm_mode_status status;
+>  	enum intel_output_format sink_format;
+> =20
+> +	sink_format =3D intel_dp_sink_format(connector, mode);
+> +
+>  	/* If PCON supports FRL MODE, check FRL bandwidth constraints */
+>  	if (intel_dp->dfp.pcon_max_frl_bw) {
+> -		int link_bpp_x16 =3D intel_dp_mode_min_link_bpp_x16(connector, mode);
+> -		int target_bw;
+> -		int max_frl_bw;
+> +		int target_bw, max_frl_bw;
+> =20
+> -		target_bw =3D fxp_q4_to_int_roundup(link_bpp_x16) * target_clock;
+> +		/* Assume 8bpc for the FRL bandwidth check */
+> +		target_bw =3D frl_required_bw(target_clock, 8, sink_format);
+> =20
+>  		max_frl_bw =3D intel_dp->dfp.pcon_max_frl_bw;
+> =20
+> @@ -1350,8 +1360,6 @@ intel_dp_mode_valid_downstream(struct intel_connect=
+or *connector,
+>  	    target_clock > intel_dp->dfp.max_dotclock)
+>  		return MODE_CLOCK_HIGH;
+> =20
+> -	sink_format =3D intel_dp_sink_format(connector, mode);
+> -
+>  	/* Assume 8bpc for the DP++/HDMI/DVI TMDS clock check */
+>  	status =3D intel_dp_tmds_clock_valid(intel_dp, target_clock,
+>  					   8, sink_format, true);
+>=20
 
-Use intel_hpd_clear_and_unblock() instead, which clears the
-accumulated HPD events before unblocking. These events are stale
-since they reflect link status before the successful retrain. Any
-new HPD events arriving after the unblock will be processed normally,
-and the scheduled link check (intel_encoder_link_check_queue_work)
-provides a safety net for detecting legitimate link issues.
+Reviewed-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 
-Signed-off-by: Chia-Lin Kao (AceLan) <acelan.kao@canonical.com>
----
- drivers/gpu/drm/i915/display/intel_dp_link_training.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+At first I was worried we'd run into integer size issues, but as it
+turns out the clock here is in kHz, so there's no physical way to
+produce an overflow.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index a26094223f780..4de2b3d3ea21c 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -1267,7 +1267,7 @@ void intel_dp_stop_link_train(struct intel_dp *intel_dp,
- 			lt_dbg(intel_dp, DP_PHY_DPRX, "128b/132b intra-hop not clearing\n");
- 	}
- 
--	intel_hpd_unblock(encoder);
-+	intel_hpd_clear_and_unblock(encoder);
- 
- 	if (!display->hotplug.ignore_long_hpd &&
- 	    intel_dp->link.seq_train_failures < MAX_SEQ_TRAIN_FAILURES) {
--- 
-2.53.0
+Thanks for the quick turnaround on the patch!
+
+Kind regards,
+Nicolas Frattaroli
+
 
