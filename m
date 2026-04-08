@@ -4,49 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CD771073C98
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 11:01:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65D3E1073C8D
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 11:02:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12FAA10E60F;
-	Wed,  8 Apr 2026 11:01:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 258EF10E610;
+	Wed,  8 Apr 2026 11:02:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GFssbXX1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PaO7Q6+W";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A539B10E60F
- for <intel-xe@lists.freedesktop.org>; Wed,  8 Apr 2026 11:01:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CAD410E60F
+ for <intel-xe@lists.freedesktop.org>; Wed,  8 Apr 2026 11:01:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775646117; x=1807182117;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=fDlDdpuh6P5ZAyIgH4eeVB4tl2WNrNJf9m2+CqvCYVY=;
- b=GFssbXX1ZiMr2KlrZypUwu61yUNRpRUUXQgF6NWoveCG9k47q7iL9geK
- sZkX+k5oAhWMUgSsLTs8wj1fL9QHHEnqk6LoEBMdDUPobhHlGn6POd3mL
- 4DsvBCIIzJ82FAe+k4j2RxRryf3R8tAWF5Tl9522YyoAbduRIa/QWf1nU
- /O2QhMMCKP3u4mQgAnRAFJj066Lx+JUg/nW7atvlHoGKSA1/tr/l26LpN
- Ey7fU64p9u04PZheTpaaFuXvAoVgcb3fao+aYPQ0sym+u7tI32hrz9pF2
- DvLBsYi7VHi/VJJbJbtGVzhWXHsiRIvP0ZSaCm/JsdTp7cqxU2QMTDRgD Q==;
-X-CSE-ConnectionGUID: CT/KbXKZSfml82mRIt3eiQ==
-X-CSE-MsgGUID: cPYyVBMXRnGeUKs7Df+9zw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="87252019"
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="87252019"
+ t=1775646118; x=1807182118;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=NsM/HGrc+rHaAY6EjO51jUp42UeiCPNeayHguBAMCW0=;
+ b=PaO7Q6+WjDyJBarHt0zDNk2RMxK2PwMzYnL6D2N16woHraVC505qTeLc
+ NlW1nc/TB1enC2ZpqRe/y24TSQiN45vhrJbs7cpJAD3p3C7TuB3MSUt27
+ YUEUAYCFssevA+2+S6pHB7uqMp90XZtk1RoEg16TZlbXWHc/48dvNRpWz
+ +iCW0M5aHNcB+zE2zaIS/a7oFIUQyOyeemIZQo0xsF40xsNeHOFEJa7Aj
+ lANVY7yxtBmUevkF6brCBYS9W8PO1REm4sEXIqQ0irovnNziaduHitG/L
+ cFvAzNBRJBJvBXOO1pxzGvLwACSCs2fdHLo7ARgLQngziraHBKuwveuZO w==;
+X-CSE-ConnectionGUID: cI+EsfxGT7arQHFOwQsYAw==
+X-CSE-MsgGUID: QPanNudPSjayoC4KR8nEdw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="87252022"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="87252022"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 04:01:55 -0700
-X-CSE-ConnectionGUID: jAc5U1wmT1e2xKzymNrDmw==
-X-CSE-MsgGUID: RvC060fYRVKJM/2cJ0URpg==
+ 08 Apr 2026 04:01:58 -0700
+X-CSE-ConnectionGUID: UL/qmjGCRQmVIZ1x1/PDOg==
+X-CSE-MsgGUID: 5a1ERCanTni0ibvYSA+oSw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="232806051"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="232806056"
 Received: from gsd-build.iind.intel.com ([10.190.229.141])
- by orviesa004.jf.intel.com with ESMTP; 08 Apr 2026 04:01:55 -0700
+ by orviesa004.jf.intel.com with ESMTP; 08 Apr 2026 04:01:56 -0700
 From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Subject: [PATCH v4 0/2] USE drm mm instead of drm SA for CCS read/write
-Date: Wed,  8 Apr 2026 11:01:46 +0000
-Message-ID: <20260408110145.1639937-4-satyanarayana.k.v.p@intel.com>
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Maarten Lankhorst <dev@lankhorst.se>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH v4 1/2] drm/xe: Add memory pool with shadow support
+Date: Wed,  8 Apr 2026 11:01:47 +0000
+Message-ID: <20260408110145.1639937-5-satyanarayana.k.v.p@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260408110145.1639937-4-satyanarayana.k.v.p@intel.com>
+References: <20260408110145.1639937-4-satyanarayana.k.v.p@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -64,20 +70,14 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The suballocator algorithm tracks a hole cursor at the last allocation
-and tries to allocate after it. This is optimized for fence-ordered
-progress, where older allocations are expected to become reusable first.
+Add a memory pool to allocate sub-ranges from a BO-backed pool
+using drm_mm.
 
-In fence-enabled mode, that ordering assumption holds. In fence-disabled
-mode, allocations may be freed in arbitrary order, so limiting allocation
-to the current hole window can miss valid free space and fail allocations
-despite sufficient total space.
-
-Use DRM memory manager instead of sub-allocator to get rid of this issue
-as CCS read/write operations do not use fences.
-
-Used drm mm instead of drm sa based on comments from
-https://lore.kernel.org/all/bbf0d48d-a95a-46e1-ac8f-e8a0daa81365@amd.com/
+Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Maarten Lankhorst <dev@lankhorst.se>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 
 ---
 V3 -> V4:
@@ -91,9 +91,7 @@ in xe_mem_pool_fini() which is part of drm cleanup, but the BO is part of
 devm cleanup.
 
 V2 -> V3:
-- Used xe_mem_pool_init() and xe_mem_pool_shadow_init() to allocate BB
-pools.
-- Renamed xe_mm_suballoc to xe_mem_pool_manager
+- Renamed xe_mm_suballoc to xe_mem_pool_manager.
 - Splitted xe_mm_suballoc_manager_init() into xe_mem_pool_init() and
 xe_mem_pool_shadow_init() (Michal)
 - Made xe_mm_sa_manager structure private. (Matt)
@@ -101,26 +99,506 @@ xe_mem_pool_shadow_init() (Michal)
 
 V1 -> V2:
 - Renamed xe_drm_mm to xe_mm_suballoc (Thomas)
-- Removed memset from xe_drm_mm_bb_insert() (Matt).
 - Removed memset during manager init and insert (Matt)
-
-Satyanarayana K V P (2):
-  drm/xe: Add memory pool with shadow support
-  drm/xe/vf: Use drm mm instead of drm sa for CCS read/write
-
- drivers/gpu/drm/xe/Makefile                |   1 +
- drivers/gpu/drm/xe/xe_bo_types.h           |   3 +-
- drivers/gpu/drm/xe/xe_mem_pool.c           | 403 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_mem_pool.h           |  35 ++
- drivers/gpu/drm/xe/xe_mem_pool_types.h     |  21 ++
- drivers/gpu/drm/xe/xe_migrate.c            |  56 +--
- drivers/gpu/drm/xe/xe_sriov_vf_ccs.c       |  54 +--
- drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h |   5 +-
- 8 files changed, 523 insertions(+), 55 deletions(-)
+---
+ drivers/gpu/drm/xe/Makefile            |   1 +
+ drivers/gpu/drm/xe/xe_mem_pool.c       | 403 +++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_mem_pool.h       |  35 +++
+ drivers/gpu/drm/xe/xe_mem_pool_types.h |  21 ++
+ 4 files changed, 460 insertions(+)
  create mode 100644 drivers/gpu/drm/xe/xe_mem_pool.c
  create mode 100644 drivers/gpu/drm/xe/xe_mem_pool.h
  create mode 100644 drivers/gpu/drm/xe/xe_mem_pool_types.h
 
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 110fef511fe2..e42e582aca5c 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -88,6 +88,7 @@ xe-y += xe_bb.o \
+ 	xe_irq.o \
+ 	xe_late_bind_fw.o \
+ 	xe_lrc.o \
++	xe_mem_pool.o \
+ 	xe_migrate.o \
+ 	xe_mmio.o \
+ 	xe_mmio_gem.o \
+diff --git a/drivers/gpu/drm/xe/xe_mem_pool.c b/drivers/gpu/drm/xe/xe_mem_pool.c
+new file mode 100644
+index 000000000000..d5e24d6aa88d
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_mem_pool.c
+@@ -0,0 +1,403 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2026 Intel Corporation
++ */
++
++#include <linux/kernel.h>
++
++#include <drm/drm_managed.h>
++
++#include "instructions/xe_mi_commands.h"
++#include "xe_bo.h"
++#include "xe_device_types.h"
++#include "xe_map.h"
++#include "xe_mem_pool.h"
++#include "xe_mem_pool_types.h"
++#include "xe_tile_printk.h"
++
++/**
++ * struct xe_mem_pool - DRM MM pool for sub-allocating memory from a BO on an
++ * XE tile.
++ *
++ * The XE memory pool is a DRM MM manager that provides sub-allocation of memory
++ * from a backing buffer object (BO) on a specific XE tile. It is designed to
++ * manage memory for GPU workloads, allowing for efficient allocation and
++ * deallocation of memory regions within the BO.
++ *
++ * The memory pool maintains a primary BO that is pinned in the GGTT and mapped
++ * into the CPU address space for direct access. Optionally, it can also maintain
++ * a shadow BO that can be used for atomic updates to the primary BO's contents.
++ *
++ * The API provided by the memory pool allows clients to allocate and free memory
++ * regions, retrieve GPU and CPU addresses, and synchronize data between the
++ * primary and shadow BOs as needed.
++ */
++struct xe_mem_pool {
++	/** @base: Range allocator over [0, @size) in bytes */
++	struct drm_mm base;
++	/** @bo: Active pool BO (GGTT-pinned, CPU-mapped). */
++	struct xe_bo *bo;
++	/** @shadow: Shadow BO for atomic command updates. */
++	struct xe_bo *shadow;
++	/** @swap_guard: Timeline guard updating @bo and @shadow */
++	struct mutex swap_guard;
++	/** @cpu_addr: CPU virtual address of the active BO. */
++	void *cpu_addr;
++	/** @is_iomem: Indicates if the BO mapping is I/O memory. */
++	bool is_iomem;
++};
++
++static struct xe_mem_pool *node_to_pool(struct xe_mem_pool_node *node)
++{
++	return container_of(node->sa_node.mm, struct xe_mem_pool, base);
++}
++
++static struct xe_tile *pool_to_tile(struct xe_mem_pool *pool)
++{
++	return pool->bo->tile;
++}
++
++static void fini_pool_action(struct drm_device *drm, void *arg)
++{
++	struct xe_mem_pool *pool = arg;
++
++	if (pool->is_iomem)
++		kvfree(pool->cpu_addr);
++
++	drm_mm_takedown(&pool->base);
++}
++
++static int pool_shadow_init(struct xe_mem_pool *pool)
++{
++	struct xe_tile *tile = pool->bo->tile;
++	struct xe_device *xe = tile_to_xe(tile);
++	struct xe_bo *shadow;
++	int ret;
++
++	xe_assert(xe, !pool->shadow);
++
++	ret = drmm_mutex_init(&xe->drm, &pool->swap_guard);
++	if (ret)
++		return ret;
++
++	if (IS_ENABLED(CONFIG_PROVE_LOCKING)) {
++		fs_reclaim_acquire(GFP_KERNEL);
++		might_lock(&pool->swap_guard);
++		fs_reclaim_release(GFP_KERNEL);
++	}
++	shadow = xe_managed_bo_create_pin_map(xe, tile,
++					      xe_bo_size(pool->bo),
++					      XE_BO_FLAG_VRAM_IF_DGFX(tile) |
++					      XE_BO_FLAG_GGTT |
++					      XE_BO_FLAG_GGTT_INVALIDATE |
++					      XE_BO_FLAG_PINNED_NORESTORE);
++	if (IS_ERR(shadow))
++		return PTR_ERR(shadow);
++
++	pool->shadow = shadow;
++
++	return 0;
++}
++
++/**
++ * xe_mem_pool_init() - Initialize memory pool.
++ * @tile: the &xe_tile where allocate.
++ * @size: number of bytes to allocate.
++ * @guard: the size of the guard region at the end of the BO that is not
++ * sub-allocated, in bytes.
++ * @flags: flags to use to create shadow pool.
++ *
++ * Initializes a memory pool for sub-allocating memory from a backing BO on the
++ * specified XE tile. The backing BO is pinned in the GGTT and mapped into
++ * the CPU address space for direct access. Optionally, a shadow BO can also be
++ * initialized for atomic updates to the primary BO's contents.
++ *
++ * Returns: a pointer to the &xe_mem_pool, or an error pointer on failure.
++ */
++struct xe_mem_pool *xe_mem_pool_init(struct xe_tile *tile, u32 size,
++				     u32 guard, int flags)
++{
++	struct xe_device *xe = tile_to_xe(tile);
++	struct xe_mem_pool *pool;
++	struct xe_bo *bo;
++	u32 managed_size;
++	int ret;
++
++	xe_tile_assert(tile, size > guard);
++	managed_size = size - guard;
++
++	pool = drmm_kzalloc(&xe->drm, sizeof(*pool), GFP_KERNEL);
++	if (!pool)
++		return ERR_PTR(-ENOMEM);
++
++	bo = xe_managed_bo_create_pin_map(xe, tile, size,
++					  XE_BO_FLAG_VRAM_IF_DGFX(tile) |
++					  XE_BO_FLAG_GGTT |
++					  XE_BO_FLAG_GGTT_INVALIDATE |
++					  XE_BO_FLAG_PINNED_NORESTORE);
++	if (IS_ERR(bo)) {
++		xe_tile_err(tile, "Failed to prepare %uKiB BO for mem pool (%pe)\n",
++			    size / SZ_1K, bo);
++		return ERR_CAST(bo);
++	}
++	pool->bo = bo;
++	pool->is_iomem = bo->vmap.is_iomem;
++
++	if (pool->is_iomem) {
++		pool->cpu_addr = kvzalloc(size, GFP_KERNEL);
++		if (!pool->cpu_addr)
++			return ERR_PTR(-ENOMEM);
++	} else {
++		pool->cpu_addr = bo->vmap.vaddr;
++	}
++
++	if (flags & XE_MEM_POOL_BO_FLAG_INIT_SHADOW_COPY) {
++		ret = pool_shadow_init(pool);
++
++		if (ret)
++			goto out_err;
++	}
++
++	drm_mm_init(&pool->base, 0, managed_size);
++	ret = drmm_add_action_or_reset(&xe->drm, fini_pool_action, pool);
++	if (ret)
++		return ERR_PTR(ret);
++
++	return pool;
++
++out_err:
++	if (flags & XE_MEM_POOL_BO_FLAG_INIT_SHADOW_COPY)
++		xe_tile_err(tile,
++			    "Failed to initialize shadow BO for mem pool (%d)\n", ret);
++	if (bo->vmap.is_iomem)
++		kvfree(pool->cpu_addr);
++	return ERR_PTR(ret);
++}
++
++/**
++ * xe_mem_pool_sync() - Copy the entire contents of the main pool to shadow pool.
++ * @pool: the memory pool containing the primary and shadow BOs.
++ *
++ * Copies the entire contents of the primary pool to the shadow pool. This must
++ * be done after xe_mem_pool_init() with the XE_MEM_POOL_BO_FLAG_INIT_SHADOW_COPY
++ * flag to ensure that the shadow pool has the same initial contents as the primary
++ * pool. After this initial synchronization, clients can choose to synchronize the
++ * shadow pool with the primary pool on a node  basis using
++ * xe_mem_pool_sync_shadow_locked() as needed.
++ *
++ * Return: None.
++ */
++void xe_mem_pool_sync(struct xe_mem_pool *pool)
++{
++	struct xe_tile *tile = pool_to_tile(pool);
++	struct xe_device *xe = tile_to_xe(tile);
++
++	xe_tile_assert(tile, pool->shadow);
++
++	xe_map_memcpy_to(xe, &pool->shadow->vmap, 0,
++			 pool->cpu_addr, xe_bo_size(pool->bo));
++}
++
++/**
++ * xe_mem_pool_swap_shadow_locked() - Swap the primary BO with the shadow BO.
++ * @pool: the memory pool containing the primary and shadow BOs.
++ *
++ * Swaps the primary buffer object with the shadow buffer object in the mem
++ * pool. This allows for atomic updates to the contents of the primary BO
++ * by first writing to the shadow BO and then swapping it with the primary BO.
++ * Swap_guard must be held to ensure synchronization with any concurrent swap
++ * operations.
++ *
++ * Return: None.
++ */
++void xe_mem_pool_swap_shadow_locked(struct xe_mem_pool *pool)
++{
++	struct xe_tile *tile = pool_to_tile(pool);
++
++	xe_tile_assert(tile, pool->shadow);
++	lockdep_assert_held(&pool->swap_guard);
++
++	swap(pool->bo, pool->shadow);
++	if (!pool->bo->vmap.is_iomem)
++		pool->cpu_addr = pool->bo->vmap.vaddr;
++}
++
++/**
++ * xe_mem_pool_sync_shadow_locked() - Copy node from primary pool to shadow pool.
++ * @node: the node allocated in the memory pool.
++ *
++ * Copies the specified batch buffer from the primary pool to the shadow pool.
++ * Swap_guard must be held to ensure synchronization with any concurrent swap
++ * operations.
++ *
++ * Return: None.
++ */
++void xe_mem_pool_sync_shadow_locked(struct xe_mem_pool_node *node)
++{
++	struct xe_mem_pool *pool = node_to_pool(node);
++	struct xe_tile *tile = pool_to_tile(pool);
++	struct xe_device *xe = tile_to_xe(tile);
++	struct drm_mm_node *sa_node = &node->sa_node;
++
++	xe_tile_assert(tile, pool->shadow);
++	lockdep_assert_held(&pool->swap_guard);
++
++	xe_map_memcpy_to(xe, &pool->shadow->vmap,
++			 sa_node->start,
++			 pool->cpu_addr + sa_node->start,
++			 sa_node->size);
++}
++
++/**
++ * xe_mem_pool_gpu_addr() - Retrieve GPU address of memory pool.
++ * @pool: the memory pool
++ *
++ * Returns: GGTT address of the memory pool.
++ */
++u64 xe_mem_pool_gpu_addr(struct xe_mem_pool *pool)
++{
++	return xe_bo_ggtt_addr(pool->bo);
++}
++
++/**
++ * xe_mem_pool_cpu_addr() - Retrieve CPU address of manager pool.
++ * @pool: the memory pool
++ *
++ * Returns: CPU virtual address of memory pool.
++ */
++void *xe_mem_pool_cpu_addr(struct xe_mem_pool *pool)
++{
++	return pool->cpu_addr;
++}
++
++/**
++ * xe_mem_pool_bo_swap_guard() - Retrieve the mutex used to guard swap
++ * operations on a memory pool.
++ * @pool: the memory pool
++ *
++ * Returns: Swap guard mutex or NULL if shadow pool is not created.
++ */
++struct mutex *xe_mem_pool_bo_swap_guard(struct xe_mem_pool *pool)
++{
++	if (!pool->shadow)
++		return NULL;
++
++	return &pool->swap_guard;
++}
++
++/**
++ * xe_mem_pool_bo_flush_write() - Copy the data from the sub-allocation
++ * to the GPU memory.
++ * @node: the node allocated in the memory pool to flush.
++ */
++void xe_mem_pool_bo_flush_write(struct xe_mem_pool_node *node)
++{
++	struct xe_mem_pool *pool = node_to_pool(node);
++	struct xe_tile *tile = pool_to_tile(pool);
++	struct xe_device *xe = tile_to_xe(tile);
++	struct drm_mm_node *sa_node = &node->sa_node;
++
++	if (!pool->bo->vmap.is_iomem)
++		return;
++
++	xe_map_memcpy_to(xe, &pool->bo->vmap, sa_node->start,
++			 pool->cpu_addr + sa_node->start,
++			 sa_node->size);
++}
++
++/**
++ * xe_mem_pool_bo_sync_read() - Copy the data from GPU memory to the
++ * sub-allocation.
++ * @node: the node allocated in the memory pool to read back.
++ */
++void xe_mem_pool_bo_sync_read(struct xe_mem_pool_node *node)
++{
++	struct xe_mem_pool *pool = node_to_pool(node);
++	struct xe_tile *tile = pool_to_tile(pool);
++	struct xe_device *xe = tile_to_xe(tile);
++	struct drm_mm_node *sa_node = &node->sa_node;
++
++	if (!pool->bo->vmap.is_iomem)
++		return;
++
++	xe_map_memcpy_from(xe, pool->cpu_addr + sa_node->start,
++			   &pool->bo->vmap, sa_node->start, sa_node->size);
++}
++
++/**
++ * xe_mem_pool_alloc_node() - Allocate a new node for use with xe_mem_pool.
++ *
++ * Returns: node structure or an ERR_PTR(-ENOMEM).
++ */
++struct xe_mem_pool_node *xe_mem_pool_alloc_node(void)
++{
++	struct xe_mem_pool_node *node = kzalloc_obj(*node);
++
++	if (!node)
++		return ERR_PTR(-ENOMEM);
++
++	return node;
++}
++
++/**
++ * xe_mem_pool_insert_node() - Insert a node into the memory pool.
++ * @pool: the memory pool to insert into
++ * @node: the node to insert
++ * @size: the size of the node to be allocated in bytes.
++ *
++ * Inserts a node into the specified memory pool using drm_mm for
++ * allocation.
++ *
++ * Returns: 0 on success or a negative error code on failure.
++ */
++int xe_mem_pool_insert_node(struct xe_mem_pool *pool,
++			    struct xe_mem_pool_node *node, u32 size)
++{
++	if (!pool)
++		return -EINVAL;
++
++	return drm_mm_insert_node(&pool->base, &node->sa_node, size);
++}
++
++/**
++ * xe_mem_pool_free_node() - Free a node allocated from the memory pool.
++ * @node: the node to free
++ *
++ * Returns: None.
++ */
++void xe_mem_pool_free_node(struct xe_mem_pool_node *node)
++{
++	if (!node)
++		return;
++
++	drm_mm_remove_node(&node->sa_node);
++	kfree(node);
++}
++
++/**
++ * xe_mem_pool_node_cpu_addr() - Retrieve CPU address of the node.
++ * @node: the node allocated in the memory pool
++ *
++ * Returns: CPU virtual address of the node.
++ */
++void *xe_mem_pool_node_cpu_addr(struct xe_mem_pool_node *node)
++{
++	struct xe_mem_pool *pool = node_to_pool(node);
++
++	return xe_mem_pool_cpu_addr(pool) + node->sa_node.start;
++}
++
++/**
++ * xe_mem_pool_dump() - Dump the state of the DRM MM manager for debugging.
++ * @pool: the memory pool info be dumped.
++ * @p: The DRM printer to use for output.
++ *
++ * Only the drm managed region is dumped, not the state of the BOs or any other
++ * pool information.
++ *
++ * Returns: None.
++ */
++void xe_mem_pool_dump(struct xe_mem_pool *pool, struct drm_printer *p)
++{
++	drm_mm_print(&pool->base, p);
++}
+diff --git a/drivers/gpu/drm/xe/xe_mem_pool.h b/drivers/gpu/drm/xe/xe_mem_pool.h
+new file mode 100644
+index 000000000000..89cd2555fe91
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_mem_pool.h
+@@ -0,0 +1,35 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2026 Intel Corporation
++ */
++#ifndef _XE_MEM_POOL_H_
++#define _XE_MEM_POOL_H_
++
++#include <linux/sizes.h>
++#include <linux/types.h>
++
++#include <drm/drm_mm.h>
++#include "xe_mem_pool_types.h"
++
++struct drm_printer;
++struct xe_mem_pool;
++struct xe_tile;
++
++struct xe_mem_pool *xe_mem_pool_init(struct xe_tile *tile, u32 size,
++				     u32 guard, int flags);
++void xe_mem_pool_sync(struct xe_mem_pool *pool);
++void xe_mem_pool_swap_shadow_locked(struct xe_mem_pool *pool);
++void xe_mem_pool_sync_shadow_locked(struct xe_mem_pool_node *node);
++u64 xe_mem_pool_gpu_addr(struct xe_mem_pool *pool);
++void *xe_mem_pool_cpu_addr(struct xe_mem_pool *pool);
++struct mutex *xe_mem_pool_bo_swap_guard(struct xe_mem_pool *pool);
++void xe_mem_pool_bo_flush_write(struct xe_mem_pool_node *node);
++void xe_mem_pool_bo_sync_read(struct xe_mem_pool_node *node);
++struct xe_mem_pool_node *xe_mem_pool_alloc_node(void);
++int xe_mem_pool_insert_node(struct xe_mem_pool *pool,
++			    struct xe_mem_pool_node *node, u32 size);
++void xe_mem_pool_free_node(struct xe_mem_pool_node *node);
++void *xe_mem_pool_node_cpu_addr(struct xe_mem_pool_node *node);
++void xe_mem_pool_dump(struct xe_mem_pool *pool, struct drm_printer *p);
++
++#endif
+diff --git a/drivers/gpu/drm/xe/xe_mem_pool_types.h b/drivers/gpu/drm/xe/xe_mem_pool_types.h
+new file mode 100644
+index 000000000000..d5e926c93351
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_mem_pool_types.h
+@@ -0,0 +1,21 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2026 Intel Corporation
++ */
++
++#ifndef _XE_MEM_POOL_TYPES_H_
++#define _XE_MEM_POOL_TYPES_H_
++
++#include <drm/drm_mm.h>
++
++#define XE_MEM_POOL_BO_FLAG_INIT_SHADOW_COPY			BIT(0)
++
++/**
++ * struct xe_mem_pool_node - Sub-range allocations from mem pool.
++ */
++struct xe_mem_pool_node {
++	/** @sa_node: drm_mm_node for this allocation. */
++	struct drm_mm_node sa_node;
++};
++
++#endif
 -- 
 2.43.0
 
