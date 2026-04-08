@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC34CFD5F87
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 08:01:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C741DFD5F95
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 08:09:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8179410E553;
-	Wed,  8 Apr 2026 08:01:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8279210E55C;
+	Wed,  8 Apr 2026 08:09:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LFZ9YJa2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k4201uWi";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C9BA610E553;
- Wed,  8 Apr 2026 08:01:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A40E910E55C;
+ Wed,  8 Apr 2026 08:09:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775635311; x=1807171311;
+ t=1775635746; x=1807171746;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=i2yfIxOGb6lqkzYbh3ZOAuNkbIH5wzEswH0/dZvpHzE=;
- b=LFZ9YJa2R2paSZ77vladpRBfJhqczTNlmtB8+4So1Me3RrLFT3N054W0
- RaZ8bLIls2mJwbNdvgdcL6Gp3despBup+OYc6knSpuyHfebq7ncJ46aF6
- ZKMuIWEJ6YUXjUdgFs+1g6hYpli374h0+VEgHJcjrI7EZJN7dNio4RXPq
- 1PGG95mTbv6DfBocBfS3JhxRKppf/S85FupxUXm1CBKLPrUvIIkYCMFcW
- jvrdBw/dKzP1FDjhZn+e5i+21JWsm26PM+eJvM9sDtj6v+LaJ+xTOmzEG
- YLTtTR7J8j3VRKDtK8/g1aycr0/CzSoN4nMRjP3eys3BO7DPRn7Ay5C30 Q==;
-X-CSE-ConnectionGUID: dTbUwAnIRGy4bqANSXEgig==
-X-CSE-MsgGUID: cgw4kEeBTEG1K8kvUEt3Ow==
-X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="87996677"
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="87996677"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 01:01:50 -0700
-X-CSE-ConnectionGUID: EpmoplCXRTyuK8fwpnnr4g==
-X-CSE-MsgGUID: jWoxzPnvQ2+bossyntWlIg==
+ bh=cgyemZY3nbklaPybVcRRoE2Zq/hRSJWWiT9ovNFF/YI=;
+ b=k4201uWiobDe640hBSTgB4Thf8vUkLJ310fQQAn06Ii5yIGbOqV7Gbr7
+ Vk5JZAfJAGKTqoDvkzFc2vUoY6uSDjEJ0zjQwQZ75O78F5YBR/LLq9su2
+ pOiclJa28q8HyPJ+jcobNKlcrUCZOkCWjXhJJUSM8JC0b5sr6dxrqnbuW
+ EMmuP+V1i20zZXpAU5aLfMsA6M2l1AoLpHDyvGGDKJOKyG8LGuo0qlbxH
+ kttBEbc/9uqxbuBA/Bys2tHA3uRKqGYLDE3QKnot6zYy6UGvA6WUu5aBe
+ 7WBWmom60Y4ilr45JrPktufOiY2YZSIAdMakkAYvHSX6WLLb+pboJRrC5 A==;
+X-CSE-ConnectionGUID: VwPHB/aCTpWoEXWvn+fVYw==
+X-CSE-MsgGUID: PFNXJtTzRBihiMaEPn3ayQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="80498922"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="80498922"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 01:09:06 -0700
+X-CSE-ConnectionGUID: 7f8QUFRCQvSbp1Wvf1OczQ==
+X-CSE-MsgGUID: wnY0wOc3SJWHkAKrzcyKGg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="225224380"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="221855834"
 Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 01:01:48 -0700
-Date: Wed, 8 Apr 2026 10:01:45 +0200
+ by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 01:09:03 -0700
+Date: Wed, 8 Apr 2026 10:09:00 +0200
 From: Raag Jadav <raag.jadav@intel.com>
 To: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
@@ -50,15 +50,15 @@ Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  mripard@kernel.org, anshuman.gupta@intel.com,
  badal.nilawar@intel.com, riana.tauro@intel.com,
  karthik.poosa@intel.com, sk.anirban@intel.com
-Subject: Re: [PATCH v3 3/4] drm/doc: Document DRM_WEDGE_RECOVERY_COLD_RESET
- recovery method
-Message-ID: <adYLaSCnulLnXvOA@black.igk.intel.com>
+Subject: Re: [PATCH v3 4/4] drm/xe: Handle PUNIT errors by requesting
+ cold-reset recovery
+Message-ID: <adYNHIbb2Aoe_xZI@black.igk.intel.com>
 References: <20260406142325.157035-6-mallesh.koujalagi@intel.com>
- <20260406142325.157035-9-mallesh.koujalagi@intel.com>
+ <20260406142325.157035-10-mallesh.koujalagi@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260406142325.157035-9-mallesh.koujalagi@intel.com>
+In-Reply-To: <20260406142325.157035-10-mallesh.koujalagi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,131 +73,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Apr 06, 2026 at 07:53:29PM +0530, Mallesh Koujalagi wrote:
-> Add documentation for the DRM_WEDGE_RECOVERY_COLD_RESET recovery method.
-> This method is designated for severe error conditions that compromise core
-> device functionality and are unrecoverable via other recovery methods such
-> as driver rebind or bus reset. The documentation clarifies when this
-> recovery method should be used and its implications for userspace.
-> 
-> v2:
-> - Add several instead of number to avoid update. (Jani)
+On Mon, Apr 06, 2026 at 07:53:30PM +0530, Mallesh Koujalagi wrote:
+> When PUNIT (power management unit) errors are detected that persist across
+> warm resets, mark the device as wedged with DRM_WEDGE_RECOVERY_COLD_RESET
+> and notify userspace that a complete device cold reset is required to
+> restore normal operation.
 > 
 > v3:
-> - Update document with generic scenario. (Riana)
-> - Consistent with terminology. (Raag)
-> - Remove already covered information.
+> - Use PUNIT instead of PMU. (Riana)
+> - Use consistent wordingi.
+> - Remove log. (Raag)
 > 
 > Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 > ---
->  Documentation/gpu/drm-uapi.rst | 60 +++++++++++++++++++++++++++++++++-
->  1 file changed, 59 insertions(+), 1 deletion(-)
+>  drivers/gpu/drm/xe/xe_ras.c | 21 ++++++++++++++++++++-
+>  drivers/gpu/drm/xe/xe_ras.h |  1 +
+>  2 files changed, 21 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/gpu/drm-uapi.rst b/Documentation/gpu/drm-uapi.rst
-> index 579e87cb9ff7..d8b3608c5cbb 100644
-> --- a/Documentation/gpu/drm-uapi.rst
-> +++ b/Documentation/gpu/drm-uapi.rst
-> @@ -418,7 +418,7 @@ needed.
->  Recovery
->  --------
+> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+> index 437811845c01..e2e1ab3fb4ce 100644
+> --- a/drivers/gpu/drm/xe/xe_ras.c
+> +++ b/drivers/gpu/drm/xe/xe_ras.c
+> @@ -5,6 +5,7 @@
 >  
-> -Current implementation defines four recovery methods, out of which, drivers
-> +Current implementation defines several recovery methods, out of which, drivers
->  can use any one, multiple or none. Method(s) of choice will be sent in the
->  uevent environment as ``WEDGED=<method1>[,..,<methodN>]`` in order of less to
->  more side-effects. See the section `Vendor Specific Recovery`_
-> @@ -435,6 +435,7 @@ following expectations.
->      rebind          unbind + bind driver
->      bus-reset       unbind + bus reset/re-enumeration + bind
->      vendor-specific vendor specific recovery method
-> +    cold-reset      full device cold reset required
-
-Does this work without unbind + bind?
-
->      unknown         consumer policy
->      =============== ========================================
+>  #include "xe_assert.h"
+>  #include "xe_device_types.h"
+> +#include "xe_device.h"
+>  #include "xe_printk.h"
+>  #include "xe_ras.h"
+>  #include "xe_ras_types.h"
+> @@ -93,6 +94,24 @@ static enum xe_ras_recovery_action handle_compute_errors(struct xe_device *xe,
+>  	return XE_RAS_RECOVERY_ACTION_RECOVERED;
+>  }
 >  
-> @@ -447,6 +448,14 @@ debug purpose in order to root cause the hang. This is useful because the first
->  hang is usually the most critical one which can result in consequential hangs
->  or complete wedging.
->  
-> +Cold Reset Recovery
-> +-------------------
-> +
-> +When ``WEDGED=cold-reset`` is sent, it indicates that the device has encountered
-> +an error condition that cannot be resolved through other recovery methods such as
-> +driver rebind or bus reset, and requires a complete device cold reset to restore
+> +/**
+> + * xe_punit_error_handler - Handler for Punit errors requiring cold reset
+> + * @xe: device instance
+> + *
+> + * Handles Punit errors that affect the device and cannot be recovered
+> + * through driver reload, PCIe reset, etc.
+> + *
+> + * Marks the device as wedged with DRM_WEDGE_RECOVERY_COLD_RESET method
+> + * and notifies userspace that a device cold reset is required.
+> + */
+> +void xe_punit_error_handler(struct xe_device *xe)
 
-s/complete cold reset/device power cycle
+Should this be static?
 
-> +functionality.
+> +{
+> +	xe_err(xe, "Recovery: Device cold reset required\n");
 
-This section is much easier to follow and can be reused in commit message.
-
-We may also want to add limitation of this method (if any). IIUC this
-requires that the slot actually allows removing power.
+Rather print it inside the event helper so we don't have to go around
+logging each case. Let me see what can be done here.
 
 Raag
 
->  Vendor Specific Recovery
->  ------------------------
+> +	xe_device_set_wedged_method(xe, DRM_WEDGE_RECOVERY_COLD_RESET);
+> +	xe_device_declare_wedged(xe);
+> +}
+> +
+>  static enum xe_ras_recovery_action handle_soc_internal_errors(struct xe_device *xe,
+>  							      struct xe_ras_error_array *arr)
+>  {
+> @@ -132,7 +151,7 @@ static enum xe_ras_recovery_action handle_soc_internal_errors(struct xe_device *
+>  			xe_err(xe, "[RAS]: PUNIT %s error detected: 0x%x\n",
+>  			       severity_to_str(xe, common.severity),
+>  			       ieh_error->global_error_status);
+> -			/** TODO: Add PUNIT error handling */
+> +			xe_punit_error_handler(xe);
+>  			return XE_RAS_RECOVERY_ACTION_DISCONNECT;
+>  		}
+>  	}
+> diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
+> index e191ab80080c..ab1fde200625 100644
+> --- a/drivers/gpu/drm/xe/xe_ras.h
+> +++ b/drivers/gpu/drm/xe/xe_ras.h
+> @@ -11,6 +11,7 @@
+>  struct xe_device;
 >  
-> @@ -524,6 +533,55 @@ Recovery script::
->      echo -n $DEVICE > $DRIVER/unbind
->      echo -n $DEVICE > $DRIVER/bind
+>  void xe_ras_init(struct xe_device *xe);
+> +void xe_punit_error_handler(struct xe_device *xe);
+>  enum xe_ras_recovery_action  xe_ras_process_errors(struct xe_device *xe);
 >  
-> +Example - cold-reset
-> +--------------------
-> +
-> +Udev rule::
-> +
-> +    SUBSYSTEM=="drm", ENV{WEDGED}=="cold-reset", DEVPATH=="*/drm/card[0-9]",
-> +    RUN+="/path/to/cold-reset.sh $env{DEVPATH}"
-> +
-> +Recovery script::
-> +
-> +    #!/bin/sh
-> +
-> +    [ -z "$1" ] && echo "Usage: $0 <device-path>" && exit 1
-> +
-> +    # Get device
-> +    DEVPATH=$(readlink -f /sys/$1/device 2>/dev/null || readlink -f /sys/$1)
-> +    DEVICE=$(basename $DEVPATH)
-> +
-> +    echo "Cold reset: $DEVICE"
-> +
-> +    # Try slot power reset first
-> +    SLOT=$(find /sys/bus/pci/slots/ -type l 2>/dev/null | while read slot; do
-> +	    ADDR=$(cat "$slot" 2>/dev/null)
-> +	    [ -n "$ADDR" ] && echo "$DEVICE" | grep -q "^$ADDR" && basename $(dirname "$slot") && break
-> +    done)
-> +
-> +    if [ -n "$SLOT" ]; then
-> +	echo "Using slot $SLOT"
-> +
-> +	# Unbind driver
-> +	[ -e "/sys/bus/pci/devices/$DEVICE/driver" ] && \
-> +	echo "$DEVICE" > /sys/bus/pci/devices/$DEVICE/driver/unbind 2>/dev/null
-> +
-> +	# Remove device
-> +	echo 1 > /sys/bus/pci/devices/$DEVICE/remove
-> +
-> +	# Power cycle slot
-> +	echo 0 > /sys/bus/pci/slots/$SLOT/power
-> +	sleep 2
-> +	echo 1 > /sys/bus/pci/slots/$SLOT/power
-> +	sleep 1
-> +
-> +	# Rescan
-> +	echo 1 > /sys/bus/pci/rescan
-> +	echo "Done!"
-> +    else
-> +	echo "No slot found"
-> +    fi
-> +
->  Customization
->  -------------
->  
+>  #endif
 > -- 
 > 2.34.1
 > 
