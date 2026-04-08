@@ -4,162 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B61401073CA0
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 11:53:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 124CE1073CA1
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 11:54:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 646D310E341;
-	Wed,  8 Apr 2026 11:53:24 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DkH5/IE7";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C32F10E341;
- Wed,  8 Apr 2026 11:53:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775649203; x=1807185203;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=8EjMcx1yRGSyG2IGwiPXHzRIkCwPTN5ILsH9uwIvOjs=;
- b=DkH5/IE7LHocPlHfRbk6/B9uc8PZhrekNkbYSM2+yK5LOZhcfh4BtdYr
- SdvEbXxWs2MQS5QVTcmNhptXRo4Xb/nA2vFw2TueRLJn0PCwXmHYXVBiw
- eLtL8BEpyp8GyyALQEA6WyM0HOnauc3xuUDhqPRPl1SfFBzqN+Qxf8x+e
- G0faPQnW3DJtxdgtjxtoRglasCbVhhC6ADN5iccj0p0BNs3Myk4td5AM8
- 6l2ReU+b31FUm+82AmrtfaqInF2DiMjIAkjwXy8nEgyQzbVZauCn7jK1b
- 3659F1o5pnhyajABvbFzXiXrCI/ZGBiV4OcNHealBDkUII/kx1bD9IZBI A==;
-X-CSE-ConnectionGUID: E9SuECItSQmtbhePa+6TbQ==
-X-CSE-MsgGUID: pAaBlFrLQL++N5n4f8u/MA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="75799889"
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="75799889"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 04:53:23 -0700
-X-CSE-ConnectionGUID: TJsQ+ezPR/eqxH2e8mOFBQ==
-X-CSE-MsgGUID: RC+A0MayQQasoljw6wcbDA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="228702199"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 04:53:23 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 8 Apr 2026 04:53:22 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 8 Apr 2026 04:53:22 -0700
-Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.35) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 8 Apr 2026 04:53:21 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ABKqIzu3P7DfTxHOztINF39Xj1oekqxKjoj0TrI2sdvQACXAIGzNrt8Z/P4W5nVI7leeDLpG/Jh4XDVwHqwqiHfh6ufC69MOuI1Bkl8Ym1vLwdi0hKymoY4khQFxcYWjQ/3LkOb2aMO4HGDAYleU03stTweRUcNJjQB7PRVXVX8weQV5MOfygeHR727H9I27oliW/L1H0tpV9bJBOP8r7g5iZDf1wrgtMbt1bqfYW+48rdwKQ/rk6w9HDSnykNgH0hWacHnwYPLu3/rlaR9bZz9KZ/q785tNbyKzEow2v+J0yLUUeuLTEE0Z+/oSTbSa1r0H6u68j9lFUyVRIEg64A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8EjMcx1yRGSyG2IGwiPXHzRIkCwPTN5ILsH9uwIvOjs=;
- b=cODV4Q46utoDv1GMCitkFC2JZ/zPtsu7JpnWBpFtBJMPQw4qdC681adaXu3lw3z7uXXyVju4JAjs/SOugXOH1Ia5mBm1vQYW6GdTuKYYdVhMs4cjVdIZku84g1hlp0rLQzipOrBsjuukjmy2ztJAYPUH7cJftPj5mynM7NsqWOpZ6kk1OTNO3qlVD0WBTn1zJaYU/EGZ4QePWm9UamquvV+PdAmUVBvKJDLN7JLdr3uOZjhKK/V0iZDR2BmcQtOSl5TlnqF+MC8CujzpZdABCD0bcu1/vEokh6So9RFDACtEoLB4Mlk1sL1Yn6ICkQWAVeDPMRVmlI69mtjE+ISlSg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from CY8PR11MB7777.namprd11.prod.outlook.com (2603:10b6:930:71::14)
- by BL4PR11MB8847.namprd11.prod.outlook.com (2603:10b6:208:5a7::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.18; Wed, 8 Apr
- 2026 11:53:19 +0000
-Received: from CY8PR11MB7777.namprd11.prod.outlook.com
- ([fe80::5a6:cd7:969c:fa41]) by CY8PR11MB7777.namprd11.prod.outlook.com
- ([fe80::5a6:cd7:969c:fa41%5]) with mapi id 15.20.9769.018; Wed, 8 Apr 2026
- 11:53:19 +0000
-From: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
-To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 4/9] drm/i915/wm: Verify the correct plane DDB entry
-Thread-Topic: [PATCH 4/9] drm/i915/wm: Verify the correct plane DDB entry
-Thread-Index: AQHcu5ULYWlQKjpowUedmgGAOYPQuLXVJWmA
-Date: Wed, 8 Apr 2026 11:53:19 +0000
-Message-ID: <9e928fe9bb654df09949862fe3f725a125952589.camel@intel.com>
-References: <20260324134843.2364-1-ville.syrjala@linux.intel.com>
- <20260324134843.2364-5-ville.syrjala@linux.intel.com>
-In-Reply-To: <20260324134843.2364-5-ville.syrjala@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.52.3-0ubuntu1.1 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CY8PR11MB7777:EE_|BL4PR11MB8847:EE_
-x-ms-office365-filtering-correlation-id: ec51af4e-6414-4276-eafd-08de95656d85
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|10070799003|376014|1800799024|366016|38070700021|22082099003|56012099003|18002099003;
-x-microsoft-antispam-message-info: 6A517ddk5eYTjm7A2pwMJqHv7fp3J+3botXVm6VNu/4gELcMmYt7cFeucOIf0BIys8NKh8BcLhdruvyymfCBxAnbCkswLXzvm8xsois+SQbHAwIG0nH5lntvE9gw6/9bGbcnDHJ3Cl/ek21gootJFlzBq6MY2zZlmAPHoSIZiJYSQaUpIZ6QYjndPsSxTJ6T7Q7KolDmUwax10DpKsEtN1Vvle5k60KA6mjMNZ2Rxbe0kXBXAzjpeptD2hqkT45mTt8nJiRNOX554njEnlyoQmP4nQG2prLFQ1f3KqmhsWtdS58qUdXxJmMqGlRcKhGzQ4o1La1AeNAMzInEOiSDZPznD/6mDGmnzYFv9BCvJb68MG/yGoN7kkq6ndKP1ifgEHxwqr7UEG7l8f+1L/Aqgv3jydmf0Y1WLZN7nSHL5qbLYzWn01SLbfTwbE8MgjDrLvyOQkgzx3bN9cec72fX9/nbvPbO6ZPjtjB++UFSVSFD1w3G1AWhBVnWwp+PhLoB3SuBEj7OWZ2Q0Po5so+18AljIJeJfPn2yiHbUZeHeyMSTjssHiFGcGLj8QXqwDbNfx7RmnJbEAub/vydwJLHozLyInu43EE0rYTyJPmP9b6zaA66rSVZUb7ANSu3CeZUNR/RLc3ZFR2VTSSuH8xIu9h9MnCUoLfFZL6Nv/02CxnsSu/GiUtrra9kVQzEemS6eGWLOuv4WhTdicRjsDP1YpAK0kww3rF7LYlRwOMDiBKfyjdTZiU57VbesUyF3qPFiPc1n3egSsvdW11/KCCEFsinLxFuyBamY/O2quxf1vk=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY8PR11MB7777.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(10070799003)(376014)(1800799024)(366016)(38070700021)(22082099003)(56012099003)(18002099003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 2
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?TlJqMkFCYXpqcEF5R2VrVTRHcVpCSVVYdU9mVG5YblRscTA1RUJsS1RoclVz?=
- =?utf-8?B?V0JiZGxGR1J4RlRTTmtiOGJDWHBtQUFwWEVHbG83Q1QzU0tLT01FOUROcjJG?=
- =?utf-8?B?NUN3c3EvQitwbnR4aFhrUjFiQVc4RXZ3WmhZeVNqQnJiWGpGdTdNc2dqbHdG?=
- =?utf-8?B?T1JpdGhPWWNvdTI1emxhWVljQmRlWDNqaW9STGhEUHovMjZkUFZ0ZzQwUFcx?=
- =?utf-8?B?L3F0ejJUQXNpYjFnZ0QwR3c1ZjlzQjBaTzhiVnJVUzlRYytJNENGMWk4K3Zx?=
- =?utf-8?B?cTNlOG1pdkRCaFk5RXVDYStQeTgwU3h6ejRva2I4bkNOdld3eFFVSk1YemNZ?=
- =?utf-8?B?VkpZZkhBUm0rcWI1T2VPeFdBVDRPeGZmMXY0M0JSMHJDN0pxRGhPeFFuRDNq?=
- =?utf-8?B?QWNzT3ZYSTJrenFXM1FJOUQ4UzJuN2NOZjhoWkVVYmc0bDJ5QXY3VHZlNjVm?=
- =?utf-8?B?aHJ4U3VoeHBob0VEcmlwSjB6Si83T285bUxYcUs3REZzTlB5dVkrcjQvVExw?=
- =?utf-8?B?K0NGUlRrelljZHI3NnptSDh5L2lqYTF2NHpXcVVhL2pSdlhDUllFOWVoMFJk?=
- =?utf-8?B?SzRmTFIvVE9CbHEyOXVPQWNUZ3NWMUN6cUJDQ1dIOWdFa2drNGlLQXlyUEZO?=
- =?utf-8?B?UlUyTndwRVpMMWZJbTMwelNaKy93ZCtOYnNlRlFId3JUV3hvemZZb1J5NG9N?=
- =?utf-8?B?cTB6d0dPRWtkQmJVTWh0TGVDcU9ZNWFHaXdReGQ5ckRHRCtVUEZtTEtiWTV0?=
- =?utf-8?B?L3E1SW1ZQkdNSExzUnhMZlRsT0xFbFh5cUlIVlBhTHdhRElKczBBVHNoVWU5?=
- =?utf-8?B?ZUJNc1RHaVk5S3FDRDlLUVAwdldGbzNyalM3WmhNUXhERmlTT0tsblhyNjRH?=
- =?utf-8?B?Si9SUWNkVlBOTU9MWmd2b0U1TEMyTTRVeU1jZHREZnJMWURsRXE3SklCT2t0?=
- =?utf-8?B?VDl1aG9teG4yaGlOckdndzhqamhJUnY2Q1JsZlhkREVLMVdUTS8zVld5UDdy?=
- =?utf-8?B?N25WOGR6OEZtem8rUG5sRUJGZzYwRHBBWVlqa1VraXFyc0c5YnJtb0hlYWZD?=
- =?utf-8?B?dE1aTVFrblNWektsTHY1UHFScFYwWEt0N0NWZVhVeVVPcm9ISDE0akJPWjlU?=
- =?utf-8?B?QXFvc0drMnFoZHJjRVRSL3I2TGRERWFyMnNVNGtFdytCVlhkNTIvUGR5YUwz?=
- =?utf-8?B?R1AyVmczNEdmODBodDd4M2kxZjg4RVIzd2FQZXdNdU5ZUzEyVUhucFNVRVFL?=
- =?utf-8?B?L1E2VEdDcHU1c1ZIVFlJKzJIVGNVeWJwNEo5bUZYNEJmWSs1UFhkQm8vNWJS?=
- =?utf-8?B?S0tFemZyVzFXRy9wdVl1UTZJcFg3a0NBbmVUSlpQZ2htTDRHL2xmby9hcXM1?=
- =?utf-8?B?TXl5MS9aMk82aEpaR1ZmL3k4dktUVnFIc3pReFhqQ3BXNHdtbGI1MVJhd2x4?=
- =?utf-8?B?dVlsNm1MMU8ySG14ZVduU0JYeDNXdEFLT0JIYUdsaDlKdXY4U2wyRmJzeDNZ?=
- =?utf-8?B?V1RiS2h3bzNZZmdPQTJMZzFoUFV2dWdDcU9JVzJzL1NSTjJwaW14b2d5cXZs?=
- =?utf-8?B?eGN5NmFIRUhxWHcwWGhYdmNlMTVrQjNOc05paHBBcjhUNHZMRkxDREQyemVX?=
- =?utf-8?B?REtqV0FVQ0Mxc09iRWlqVkZzajZsUndFdXFHYkJoVjhFYko2a0c2NXByS0cr?=
- =?utf-8?B?R00wa0R0eFA4T3lzVTZpNjc1ZHpybG5mMGx2aXlZVEtNMXZycksxb2dkbWRx?=
- =?utf-8?B?azhzZWpBYnpRcEZJc2x6aXpYaUg4TVlJa3VlbmorekZLYlRGU3d1Qlhrb3pk?=
- =?utf-8?B?VFNrSDlVQ2JJZVc4TWgvczNwQk1XS0VaYmNRL09CQUZ0Mi91N2tvMDhxbkFN?=
- =?utf-8?B?LzczaTlmWFRMNHNPRGszZDVlQ3Z0WTZDbWNQVjRHV1RQbUVMTzVzOEJYUEs2?=
- =?utf-8?B?SkI1YzJKTXkwUTNiWGVsT2dBQ2VyVGJmMFh1RGdLeStaVGpUQ1d6bkNtMW91?=
- =?utf-8?B?b0V6WThNZXRXLzlCdmkyYUFtNGNtbWo0YTExR1hTVzVtb1p0SzJSQUlqSnBz?=
- =?utf-8?B?TjFROGtkTllySE1PY0pSRGxla25ySFB3aHFDNU03WWt3UWFpMUNuYzJCYWp6?=
- =?utf-8?B?N1hUU0F1OVJiZTVGRjY3cDVPMGgzT052dGVRMFIxdGhVeFlaaytIWUR0TkVX?=
- =?utf-8?B?VkhRaHFKWkN2UG1HS09xSFFvdlI3WjZLODR1ZWs2ejN3K2V3cVBkd0NuOFB2?=
- =?utf-8?B?MGNKWFpFVXZiWHREdjFDZmVpMTNTZ3F4a2Zwc2VzR1BXU2FSOExzbEczTTRn?=
- =?utf-8?B?MzR5Yk9SUkpkVnFHbmxvc1ZLNERSVXpqbk9EU0JKTnVYOFZrS0QydGR0TjFV?=
- =?utf-8?Q?NFSttt4bZz66kkWTO/VIrAeVL6+Almc13Odgby/Upb3yv?=
-x-ms-exchange-antispam-messagedata-1: JIr7FT6flemXo+yBefJoYILix1qBOWZO6KA=
+	by gabe.freedesktop.org (Postfix) with ESMTP id B24E410E61E;
+	Wed,  8 Apr 2026 11:54:02 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F09110E61D;
+ Wed,  8 Apr 2026 11:54:01 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
-Content-ID: <4E2866E5980EA046BD55CB61AF361226@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: kILXoyJPeCGz4HeuBEYp+hoolYL5INxCiPY09Y1s9O24YBde/m04814FLMxGcJLceaiQEb6HFU7jhjzbASxPpJqXfTMgxj0GikJFBsyDKOOdj1zIoJSVylBFWX03LljTorh9Wxt5MxwABp0bWXnTRpXMdpuOcJn2dZjqpZlAzKTH9oZ/ETR048SQg4D9Qh2MsdR9cNLgSlgJMc2ii2uYfM8vKR4chDeICebTZcu/FXanP/wQ9ECULv6PueTsMUY3IXgHUv58uwboO+HxNe/x7+vDNWCNWWygG7J4IIOfukQZFhsh4ptC00TdGVCoBr9IgCn7DJZOnuFlUCoJyd3NqQ==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CY8PR11MB7777.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ec51af4e-6414-4276-eafd-08de95656d85
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Apr 2026 11:53:19.4440 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: G1rLH7fkGk0OTehH+342kq+n/i3B2PBsS6Hv8vqJjL52b/fCfmMYRJs1rCh16VmBopGSi+T1Qqm6BdbtK0pSCXDLg/0GseC5LvWWMBSkNlE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL4PR11MB8847
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/intel/display=3A_Use_?=
+ =?utf-8?q?drmm_for_intel=5Fmode=5Fconfig=5Fcleanup?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 08 Apr 2026 11:54:01 -0000
+Message-ID: <177564924149.441898.10495956679168837035@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260408114755.1051393-2-dev@lankhorst.se>
+In-Reply-To: <20260408114755.1051393-2-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -171,29 +36,262 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDI2LTAzLTI0IGF0IDE1OjQ4ICswMjAwLCBWaWxsZSBTeXJqYWxhIHdyb3RlOg0K
-PiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0K
-PiANCj4gQWN0dWFsbHkgdmVyaWZ5IHRoZSBEREIgZW50cnkgZm9yIHRoZSBwbGFuZSB3ZSdyZSBs
-b29raW5nDQo+IGF0IGluc3RlYWQgb2YgYWx3YXlzIHZlcmlmeWluZyB0aGUgY3Vyc29yIEREQi4N
-Cj4gDQo+IEZpeGVzOiA3ZDQ1NjE3MjJjM2IgKCJkcm0vaTkxNTogVHdlYWsgcGxhbmUgZGRiIGFs
-bG9jYXRpb24gdHJhY2tpbmciKQ0KPiBTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZp
-bGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0KPiAtLS0NCj4gwqBkcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L3NrbF93YXRlcm1hcmsuYyB8IDQgKystLQ0KPiDCoDEgZmlsZSBjaGFuZ2Vk
-LCAyIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pDQo+IA0KDQpSZXZpZXdlZC1ieTogVmlu
-b2QgR292aW5kYXBpbGxhaSA8dmlub2QuZ292aW5kYXBpbGxhaUBpbnRlbC5jb20+DQoNCj4gZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvc2tsX3dhdGVybWFyay5jDQo+
-IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9za2xfd2F0ZXJtYXJrLmMNCj4gaW5kZXgg
-ZTM3ZmRlOWY3NjVkLi5jYmMwMzkzODQ0MmQgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvc2tsX3dhdGVybWFyay5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvc2tsX3dhdGVybWFyay5jDQo+IEBAIC00MDI2LDggKzQwMjYsOCBAQCB2b2lk
-IGludGVsX3dtX3N0YXRlX3ZlcmlmeShzdHJ1Y3QNCj4gaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0
-ZSwNCj4gwqAJCX0NCj4gwqANCj4gwqAJCS8qIEREQiAqLw0KPiAtCQlod19kZGJfZW50cnkgPSAm
-aHctPmRkYltQTEFORV9DVVJTT1JdOw0KPiAtCQlzd19kZGJfZW50cnkgPSAmbmV3X2NydGNfc3Rh
-dGUtDQo+ID53bS5za2wucGxhbmVfZGRiW1BMQU5FX0NVUlNPUl07DQo+ICsJCWh3X2RkYl9lbnRy
-eSA9ICZody0+ZGRiW3BsYW5lLT5pZF07DQo+ICsJCXN3X2RkYl9lbnRyeSA9ICZuZXdfY3J0Y19z
-dGF0ZS0NCj4gPndtLnNrbC5wbGFuZV9kZGJbcGxhbmUtPmlkXTsNCj4gwqANCj4gwqAJCWlmICgh
-c2tsX2RkYl9lbnRyeV9lcXVhbChod19kZGJfZW50cnksDQo+IHN3X2RkYl9lbnRyeSkpIHsNCj4g
-wqAJCQlkcm1fZXJyKGRpc3BsYXktPmRybSwNCg0K
+=3D=3D Series Details =3D=3D
+
+Series: drm/intel/display: Use drmm for intel_mode_config_cleanup
+URL   : https://patchwork.freedesktop.org/series/164527/
+State : warning
+
+=3D=3D Summary =3D=3D
+
++ KERNEL=3D/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools=
+.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 9db602dbf01cfa6907d5e988b12d70a66c35246a
+Author: Maarten Lankhorst <dev@lankhorst.se>
+Date:   Wed Apr 8 13:47:56 2026 +0200
+
+    drm/intel/display: Use drmm for intel_mode_config_cleanup
+   =20
+    When force unbinding the driver on xe, xe unloads cleanly except for
+    framebuffers and user blobs.
+   =20
+    This happens because intel_mode_config_cleanup is called during driver
+    unbind, but it should be called only after all drm files are closed,
+    during drmm cleanup.
+   =20
+    Related warnings for framebuffers on the subtest:
+    [  739.713076] ------------[ cut here ]------------
+                   WARN_ON(!list_empty(&dev->mode_config.fb_list))
+    [  739.713079] WARNING: drivers/gpu/drm/drm_mode_config.c:584 at drm_mo=
+de_config_cleanup+0x30b/0x320 [drm], CPU#12: xe_module_load/13145
+    ....
+    [  739.713328] Call Trace:
+    [  739.713330]  <TASK>
+    [  739.713335]  ? intel_pmdemand_destroy_state+0x11/0x20 [xe]
+    [  739.713574]  ? intel_atomic_global_obj_cleanup+0xe4/0x1a0 [xe]
+    [  739.713794]  intel_display_driver_remove_noirq+0x51/0xb0 [xe]
+    [  739.714041]  xe_display_fini_early+0x33/0x50 [xe]
+    [  739.714284]  devm_action_release+0xf/0x20
+    [  739.714294]  devres_release_all+0xad/0xf0
+    [  739.714301]  device_unbind_cleanup+0x12/0xa0
+    [  739.714305]  device_release_driver_internal+0x1b7/0x210
+    [  739.714311]  device_driver_detach+0x14/0x20
+    [  739.714315]  unbind_store+0xa6/0xb0
+    [  739.714319]  drv_attr_store+0x21/0x30
+    [  739.714322]  sysfs_kf_write+0x48/0x60
+    [  739.714328]  kernfs_fop_write_iter+0x16b/0x240
+    [  739.714333]  vfs_write+0x266/0x520
+    [  739.714341]  ksys_write+0x72/0xe0
+    [  739.714345]  __x64_sys_write+0x19/0x20
+    [  739.714347]  x64_sys_call+0xa15/0xa30
+    [  739.714355]  do_syscall_64+0xd8/0xab0
+    [  739.714361]  entry_SYSCALL_64_after_hwframe+0x4b/0x53
+   =20
+    and
+   =20
+    [  739.714459] ------------[ cut here ]------------
+    [  739.714461] xe 0000:67:00.0: [drm] drm_WARN_ON(!list_empty(&fb->filp=
+_head))
+    [  739.714464] WARNING: drivers/gpu/drm/drm_framebuffer.c:833 at drm_fr=
+amebuffer_free+0x6c/0x90 [drm], CPU#12: xe_module_load/13145
+    [  739.714715] RIP: 0010:drm_framebuffer_free+0x7a/0x90 [drm]
+    ...
+    [  739.714869] Call Trace:
+    [  739.714871]  <TASK>
+    [  739.714876]  drm_mode_config_cleanup+0x26a/0x320 [drm]
+    [  739.714998]  ? __drm_printfn_seq_file+0x20/0x20 [drm]
+    [  739.715115]  ? drm_mode_config_cleanup+0x207/0x320 [drm]
+    [  739.715235]  intel_display_driver_remove_noirq+0x51/0xb0 [xe]
+    [  739.715576]  xe_display_fini_early+0x33/0x50 [xe]
+    [  739.715821]  devm_action_release+0xf/0x20
+    [  739.715828]  devres_release_all+0xad/0xf0
+    [  739.715843]  device_unbind_cleanup+0x12/0xa0
+    [  739.715850]  device_release_driver_internal+0x1b7/0x210
+    [  739.715856]  device_driver_detach+0x14/0x20
+    [  739.715860]  unbind_store+0xa6/0xb0
+    [  739.715865]  drv_attr_store+0x21/0x30
+    [  739.715868]  sysfs_kf_write+0x48/0x60
+    [  739.715873]  kernfs_fop_write_iter+0x16b/0x240
+    [  739.715878]  vfs_write+0x266/0x520
+    [  739.715886]  ksys_write+0x72/0xe0
+    [  739.715890]  __x64_sys_write+0x19/0x20
+    [  739.715893]  x64_sys_call+0xa15/0xa30
+    [  739.715900]  do_syscall_64+0xd8/0xab0
+    [  739.715905]  entry_SYSCALL_64_after_hwframe+0x4b/0x53
+   =20
+    and then finally file close blows up:
+   =20
+    [  743.186530] Oops: general protection fault, probably for non-canonic=
+al address 0xdead000000000122: 0000 [#1] SMP
+    [  743.186535] CPU: 3 UID: 1000 PID: 3453 Comm: kwin_wayland Tainted: G=
+        W           7.0.0-rc1-valkyria+ #110 PREEMPT_{RT,(lazy)}
+    [  743.186537] Tainted: [W]=3DWARN
+    [  743.186538] Hardware name: Gigabyte Technology Co., Ltd. X299 AORUS =
+Gaming 3/X299 AORUS Gaming 3-CF, BIOS F8n 12/06/2021
+    [  743.186539] RIP: 0010:drm_framebuffer_cleanup+0x55/0xc0 [drm]
+    [  743.186588] Code: d8 72 73 0f b6 42 05 ff c3 39 c3 72 e8 49 8d bd 50=
+ 07 00 00 31 f6 e8 3a 80 d3 e1 49 8b 44 24 10 49 8d 7c 24 08 49 8b 54 24 08=
+ <48> 3b 38 0f 85 95 7f 02 00 48 3b 7a 08 0f 85 8b 7f 02 00 48 89 42
+    [  743.186589] RSP: 0018:ffffc900085e3cf8 EFLAGS: 00010202
+    [  743.186591] RAX: dead000000000122 RBX: 0000000000000001 RCX: fffffff=
+f8217ed03
+    [  743.186592] RDX: dead000000000100 RSI: 0000000000000000 RDI: ffff888=
+14675ba08
+    [  743.186593] RBP: ffffc900085e3d10 R08: 0000000000000000 R09: 0000000=
+000000000
+    [  743.186593] R10: 0000000000000000 R11: 0000000000000000 R12: ffff888=
+14675ba00
+    [  743.186594] R13: ffff88810d778000 R14: ffff888119f6dca0 R15: ffff888=
+10c660bb0
+    [  743.186595] FS:  00007ff377d21280(0000) GS:ffff888cec3f8000(0000) kn=
+lGS:0000000000000000
+    [  743.186596] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+    [  743.186596] CR2: 000055690b55e000 CR3: 0000000113586003 CR4: 0000000=
+0003706f0
+    [  743.186597] Call Trace:
+    [  743.186598]  <TASK>
+    [  743.186603]  intel_user_framebuffer_destroy+0x12/0x90 [xe]
+    [  743.186722]  drm_framebuffer_free+0x3a/0x90 [drm]
+    [  743.186750]  ? trace_hardirqs_on+0x5f/0x120
+    [  743.186754]  drm_mode_object_put+0x51/0x70 [drm]
+    [  743.186786]  drm_fb_release+0x105/0x190 [drm]
+    [  743.186812]  ? rt_mutex_slowunlock+0x3aa/0x410
+    [  743.186817]  ? rt_spin_lock+0xea/0x1b0
+    [  743.186819]  drm_file_free+0x1e0/0x2c0 [drm]
+    [  743.186843]  drm_release_noglobal+0x91/0xf0 [drm]
+    [  743.186865]  __fput+0x100/0x2e0
+    [  743.186869]  fput_close_sync+0x40/0xa0
+    [  743.186870]  __x64_sys_close+0x3e/0x80
+    [  743.186873]  x64_sys_call+0xa07/0xa30
+    [  743.186879]  do_syscall_64+0xd8/0xab0
+    [  743.186881]  entry_SYSCALL_64_after_hwframe+0x4b/0x53
+    [  743.186882] RIP: 0033:0x7ff37e567732
+    [  743.186884] Code: 08 0f 85 a1 38 ff ff 49 89 fb 48 89 f0 48 89 d7 48=
+ 89 ce 4c 89 c2 4d 89 ca 4c 8b 44 24 08 4c 8b 4c 24 10 4c 89 5c 24 08 0f 05=
+ <c3> 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 00 f3 0f 1e fa 55 bf 01 00
+    [  743.186885] RSP: 002b:00007ffc818169a8 EFLAGS: 00000246 ORIG_RAX: 00=
+00000000000003
+    [  743.186886] RAX: ffffffffffffffda RBX: 00007ffc81816a30 RCX: 00007ff=
+37e567732
+    [  743.186887] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000=
+000000012
+    [  743.186888] RBP: 00007ffc818169d0 R08: 0000000000000000 R09: 0000000=
+000000000
+    [  743.186889] R10: 0000000000000000 R11: 0000000000000246 R12: 000055d=
+60a7996e0
+    [  743.186889] R13: 00007ffc81816a90 R14: 00007ffc81816a90 R15: 000055d=
+60a782a30
+    [  743.186892]  </TASK>
+    [  743.186893] Modules linked in: rfcomm snd_hrtimer xt_CHECKSUM xt_MAS=
+QUERADE xt_conntrack ipt_REJECT nf_reject_ipv4 xt_tcpudp xt_addrtype nft_co=
+mpat x_tables nft_chain_nat nf_nat nf_conntrack nf_defrag_ipv6 nf_defrag_ip=
+v4 nf_tables overlay cfg80211 bnep mtd_intel_dg snd_hda_codec_intelhdmi mtd=
+ snd_hda_codec_hdmi nls_utf8 mxm_wmi intel_wmi_thunderbolt gigabyte_wmi wmi=
+_bmof xe drm_gpuvm drm_gpusvm_helper i2c_algo_bit drm_buddy drm_ttm_helper =
+ttm video drm_suballoc_helper gpu_sched drm_client_lib drm_exec drm_display=
+_helper cec drm_kunit_helpers drm_kms_helper kunit x86_pkg_temp_thermal int=
+el_powerclamp coretemp snd_hda_codec_alc882 snd_hda_codec_realtek_lib snd_h=
+da_codec_generic snd_hda_intel snd_soc_avs snd_soc_hda_codec snd_hda_ext_co=
+re snd_hda_codec snd_hwdep snd_hda_core snd_intel_dspcfg snd_soc_core snd_c=
+ompress ac97_bus snd_pcm snd_seq snd_seq_device snd_timer i2c_i801 i2c_mux =
+snd i2c_smbus btusb btrtl btbcm btmtk btintel bluetooth ecdh_generic rfkill=
+ ecc mei_me mei ioatdma dca wmi nfsd drm i2c_dev fuse nfnetlink
+    [  743.186938] ---[ end trace 0000000000000000 ]---
+   =20
+    And for property blobs:
+   =20
+    [  371.072940] BUG: unable to handle page fault for address: 000001ffff=
+ffffff
+    [  371.072944] #PF: supervisor read access in kernel mode
+    [  371.072945] #PF: error_code(0x0000) - not-present page
+    [  371.072947] PGD 0 P4D 0
+    [  371.072950] Oops: Oops: 0000 [#1] SMP
+    [  371.072953] CPU: 0 UID: 1000 PID: 3693 Comm: kwin_wayland Not tainte=
+d 7.0.0-rc1-valkyria+ #111 PREEMPT_{RT,(lazy)}
+    [  371.072956] Hardware name: Gigabyte Technology Co., Ltd. X299 AORUS =
+Gaming 3/X299 AORUS Gaming 3-CF, BIOS F8n 12/06/2021
+    [  371.072957] RIP: 0010:drm_property_destroy_user_blobs+0x3b/0x90 [drm]
+    [  371.073019] Code: 00 00 48 83 ec 10 48 8b 86 30 01 00 00 48 39 c3 74=
+ 59 48 89 c2 48 8d 48 c8 48 8b 00 4c 8d 60 c8 eb 04 4c 8d 60 c8 48 8b 71 40=
+ <48> 39 16 0f 85 39 32 01 00 48 3b 50 08 0f 85 2f 32 01 00 48 89 70
+    [  371.073021] RSP: 0018:ffffc90006a73de8 EFLAGS: 00010293
+    [  371.073022] RAX: 000001ffffffffff RBX: ffff888118a1a930 RCX: ffff888=
+1b92355c0
+    [  371.073024] RDX: ffff8881b92355f8 RSI: 000001ffffffffff RDI: ffff888=
+118be4000
+    [  371.073025] RBP: ffffc90006a73e08 R08: ffff8881009b7300 R09: ffff888=
+cecc5b000
+    [  371.073026] R10: ffffc90006a73e90 R11: 0000000000000002 R12: 000001f=
+fffffffc7
+    [  371.073027] R13: ffff888118a1a980 R14: ffff88810b366d20 R15: ffff888=
+118a1a970
+    [  371.073028] FS:  00007f1faccbb280(0000) GS:ffff888cec2db000(0000) kn=
+lGS:0000000000000000
+    [  371.073029] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+    [  371.073030] CR2: 000001ffffffffff CR3: 000000010655c001 CR4: 0000000=
+0003706f0
+    [  371.073031] Call Trace:
+    [  371.073033]  <TASK>
+    [  371.073036]  drm_file_free+0x1df/0x2a0 [drm]
+    [  371.073077]  drm_release_noglobal+0x7a/0xe0 [drm]
+    [  371.073113]  __fput+0xe2/0x2b0
+    [  371.073118]  fput_close_sync+0x40/0xa0
+    [  371.073119]  __x64_sys_close+0x3e/0x80
+    [  371.073122]  x64_sys_call+0xa07/0xa30
+    [  371.073126]  do_syscall_64+0xc0/0x840
+    [  371.073130]  entry_SYSCALL_64_after_hwframe+0x4b/0x53
+    [  371.073132] RIP: 0033:0x7f1fb3501732
+    [  371.073133] Code: 08 0f 85 a1 38 ff ff 49 89 fb 48 89 f0 48 89 d7 48=
+ 89 ce 4c 89 c2 4d 89 ca 4c 8b 44 24 08 4c 8b 4c 24 10 4c 89 5c 24 08 0f 05=
+ <c3> 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 00 f3 0f 1e fa 55 bf 01 00
+    [  371.073135] RSP: 002b:00007ffe8e6f0278 EFLAGS: 00000246 ORIG_RAX: 00=
+00000000000003
+    [  371.073136] RAX: ffffffffffffffda RBX: 00007ffe8e6f0300 RCX: 00007f1=
+fb3501732
+    [  371.073137] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000=
+000000012
+    [  371.073138] RBP: 00007ffe8e6f02a0 R08: 0000000000000000 R09: 0000000=
+000000000
+    [  371.073139] R10: 0000000000000000 R11: 0000000000000246 R12: 0000558=
+5ba46eea0
+    [  371.073140] R13: 00007ffe8e6f0360 R14: 00007ffe8e6f0360 R15: 0000558=
+5ba458a30
+    [  371.073143]  </TASK>
+    [  371.073144] Modules linked in: rfcomm snd_hrtimer xt_addrtype xt_CHE=
+CKSUM xt_MASQUERADE xt_conntrack ipt_REJECT nf_reject_ipv4 xt_tcpudp nft_co=
+mpat x_tables nft_chain_nat nf_nat nf_conntrack nf_defrag_ipv6 nf_defrag_ip=
+v4 nf_tables overlay cfg80211 bnep snd_hda_codec_intelhdmi snd_hda_codec_hd=
+mi mtd_intel_dg mtd nls_utf8 wmi_bmof mxm_wmi gigabyte_wmi intel_wmi_thunde=
+rbolt xe drm_gpuvm drm_gpusvm_helper i2c_algo_bit drm_buddy drm_ttm_helper =
+ttm video drm_suballoc_helper gpu_sched drm_client_lib drm_exec drm_display=
+_helper cec drm_kunit_helpers drm_kms_helper kunit x86_pkg_temp_thermal int=
+el_powerclamp coretemp snd_hda_codec_alc882 snd_hda_codec_realtek_lib snd_h=
+da_codec_generic snd_hda_intel snd_soc_avs snd_soc_hda_codec snd_hda_ext_co=
+re snd_hda_codec snd_hwdep snd_hda_core snd_intel_dspcfg snd_soc_core snd_c=
+ompress ac97_bus snd_pcm snd_seq snd_seq_device snd_timer i2c_i801 btusb i2=
+c_mux i2c_smbus btrtl snd btbcm btmtk btintel bluetooth ecdh_generic rfkill=
+ ecc mei_me mei ioatdma dca wmi nfsd drm i2c_dev fuse nfnetlink
+    [  371.073198] CR2: 000001ffffffffff
+    [  371.073199] ---[ end trace 0000000000000000 ]---
+   =20
+    Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
++ /mt/dim checkpatch 7d7e9076131a6b5cf7ec7f17ab2f8c0c338a25dd drm-intel
+9db602dbf01c drm/intel/display: Use drmm for intel_mode_config_cleanup
+-:242: WARNING:MISSING_FIXES_TAG: The commit message has 'Call Trace:', per=
+haps it also needs a 'Fixes:' tag?
+
+total: 0 errors, 1 warnings, 0 checks, 71 lines checked
+
+
