@@ -4,55 +4,162 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DCBA10F9976
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 20:15:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E67A510F9972
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 20:19:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE69410E2AE;
-	Wed,  8 Apr 2026 20:15:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 807B610E260;
+	Wed,  8 Apr 2026 20:19:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M9QFJB84";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="Km7BD1tQ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C211D10E092;
- Wed,  8 Apr 2026 20:15:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775679345; x=1807215345;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=nF2aoq4zVnsNhOEzbxzczuJ9B3XgZvJw8YsN+tjBDHE=;
- b=M9QFJB84WRArCAaf5d12DSTmTF160VJYFP7QuJtlt0AlSUWd0hNkTExS
- tj60K9rw4dRzJhLscn0DF2s2FxW8azH1Joiw+AYyjmH2fLUMtuOM8eRU2
- NUOTA6JZr8DSGkIrFP3krgY4Dqc0kpKCMrXJcUQ3rtjKcCRM0MOARQkH/
- Mj9sCIrybLvqs39D7GamSdd/TJhYzJIS6Wa4mKr87vg3qPQE7r0nK4FZu
- UlUgs2gkLCQcIKfr0s3jhsOwIIBJwNOZ4kRV5MjAuIHVDUzVSyJYYGDMl
- gfth5eH+3tjurHc9QRmxF7oDzLBPnP/GiM2kKsgW76TAuSARU4Dwd4VnU g==;
-X-CSE-ConnectionGUID: ZCWtAzrTTDKFR3OMnkphKg==
-X-CSE-MsgGUID: fGNUTcn6RruvbZG6Mhh7Rg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="94063725"
-X-IronPort-AV: E=Sophos;i="6.23,168,1770624000"; d="scan'208";a="94063725"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 13:15:44 -0700
-X-CSE-ConnectionGUID: V94/8A3yQgalHGJPNPr/pQ==
-X-CSE-MsgGUID: j5UILza+TDCN38156TD/Xw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,168,1770624000"; d="scan'208";a="228451016"
-Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 13:15:44 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- francois.dugast@intel.com
-Subject: [PATCH v6 2/5] drm/pagemap: Drop source_peer_migrates flag and assume
- true
-Date: Wed,  8 Apr 2026 13:15:34 -0700
-Message-Id: <20260408201537.3580549-3-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260408201537.3580549-1-matthew.brost@intel.com>
-References: <20260408201537.3580549-1-matthew.brost@intel.com>
+Received: from BN8PR05CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11011069.outbound.protection.outlook.com [52.101.57.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A401010E092;
+ Wed,  8 Apr 2026 20:19:52 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=AKyu4YTuNfA6X14JYgDH4QZbhieXEtDiQu7YWMCi59iOpa0x1UwMEoJNJLB5UAhoAMSretwzlE+amYQxxe1h75iehCazWnfUggXhOSMgrMrViAW+5UiEd82BXHxqtHsxUuymmYrMk3cVhNQTNUeoPYyvk/FwNwbvfYdYHoTLwIrST5WNcGuciibcoUerF5N2zQbqRD45O7En8ScAsp9+SzpnaUkXvxBF5/jLv75GNjSFjOtJz92wrzHngKZSramhp/6YiVucN+ewJgId1rLX7IwgHMQiZeqLa698MVf0NftGJwv0e4miCQxRh064Unu7tLibqTi1Z0Nh5v3fFD67Vw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=2efbJ2KJAYhvZX4rWrR+CqaD4WLC7lk1DnyZIwyvCO8=;
+ b=c8JPNQVnFD4HBCfgGIsAgFcwuGT+b2Hw3mtG+RE6gDl/AhcE8oTgtMRZQ5GAtwqIhmes0txN9WwyBIrGJ4CV0DsAEP43XH8sPcPQvqn3VzQld8okPpOIT4iuPSfSBbKqTmNJj/M6LDAvc2XrdRhPNCm4AmEuGQZSLYlebMWiPVvVorVkffI1T8ZzlP0nLftqXDq4wy0ZV2JmNxu3JD3V6b6ZtKgD/YdTGq4m60IO1cx+vYqij6KBDzJZQvmiO4D7zf9CHoHcbFI6ZfSoF+x5IAk8ZWfpwXUQX0B3cIwsaae0LXltGOw3EAGGv/JoiYABj3vt3iybXTJLECfXUAKaAw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2efbJ2KJAYhvZX4rWrR+CqaD4WLC7lk1DnyZIwyvCO8=;
+ b=Km7BD1tQDEJeOs3neGuXzdXrnDVgLasqGI1Tq2RhdJOrNseJxwv8tV4961IA3btB7TxIIG1DU2Qw4xx0xvzefH8ayO8VdtJPuTZQrNzjbSpIEiI+vmz98LmS1/aQ006g6s5ZWw1zofIw+Uf8A8I5tP+WIxKud680eSIJsNQGAUf6JpImgCG4Yqm0VvbR4uqR3iHGIXRldKSCOSNqz9JiwXTG/UyWZhkiawQ+4wzjyYbCK862twNbQVei7E1QYbSapxNyITtg6A8Xqu4hIlQrIyoN5viRbk9sWTacE3Zkmj+Abo5ynghZ+/KwhsZxxuV25RmwrT/DMm71IRJmwNCZGQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
+ CHXPR12MB999221.namprd12.prod.outlook.com (2603:10b6:610:2fa::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.16; Wed, 8 Apr
+ 2026 20:19:44 +0000
+Received: from DS0PR12MB6486.namprd12.prod.outlook.com
+ ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
+ ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9769.014; Wed, 8 Apr 2026
+ 20:19:44 +0000
+Message-ID: <2f004511-61d1-4197-84b6-cddcdd275e55@nvidia.com>
+Date: Wed, 8 Apr 2026 16:19:40 -0400
+User-Agent: Mozilla Thunderbird
+From: Joel Fernandes <joelagnelf@nvidia.com>
+Subject: Re: [PATCH v10 12/21] gpu: nova-core: mm: Add unified page table
+ entry wrapper enums
+To: Alexandre Courbot <acourbot@nvidia.com>,
+ Eliot Courtney <ecourtney@nvidia.com>, Danilo Krummrich <dakr@kernel.org>
+Cc: linux-kernel@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>,
+ Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>,
+ Bjorn Roy Baron <bjorn3_gh@protonmail.com>, Benno Lossin
+ <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ Dave Airlie <airlied@redhat.com>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Koen Koning <koen.koning@linux.intel.com>, dri-devel@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org, Nikola Djukic <ndjukic@nvidia.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
+ Christian Koenig <christian.koenig@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
+ Helge Deller <deller@gmx.de>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, John Hubbard <jhubbard@nvidia.com>,
+ Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
+ Edwin Peer <epeer@nvidia.com>, Andrea Righi <arighi@nvidia.com>,
+ Andy Ritger <aritger@nvidia.com>, Zhi Wang <zhiw@nvidia.com>,
+ Balbir Singh <balbirs@nvidia.com>, Philipp Stanner <phasta@kernel.org>,
+ Elle Rhumsaa <elle@weathered-steel.dev>, alexeyi@nvidia.com,
+ joel@joelfernandes.org, linux-doc@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-fbdev@vger.kernel.org
+References: <20260311004008.2208806-1-joelagnelf@nvidia.com>
+ <20260331212048.2229260-1-joelagnelf@nvidia.com>
+ <20260331212048.2229260-13-joelagnelf@nvidia.com>
+ <DHIFF98P1YQ3.1IXUT02E3TF20@nvidia.com>
+ <5db2aab1-4b65-486e-ad9b-27a108bdb0d6@nvidia.com>
+ <DHMYSTLVHIFJ.A2BDMPVNZNLS@nvidia.com>
+ <537a8c5a-3885-4c47-99f6-963b48ddf87d@nvidia.com>
+ <DHNKYBM159T9.2UUQ7CU0RN0BU@nvidia.com>
+Content-Language: en-US
+In-Reply-To: <DHNKYBM159T9.2UUQ7CU0RN0BU@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BL1PR13CA0116.namprd13.prod.outlook.com
+ (2603:10b6:208:2b9::31) To DS0PR12MB6486.namprd12.prod.outlook.com
+ (2603:10b6:8:c5::21)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|CHXPR12MB999221:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7ca0982a-89c3-431e-3c89-08de95ac2c4d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|7416014|376014|366016|1800799024|18002099003|56012099003|22082099003;
+X-Microsoft-Antispam-Message-Info: QCS3u0Bq+ix9zqdgXqkPHsvzqDDFahSoj89lzWz4Iq4zKR8Jcrr4rQ+PvsaHvvxREhEpdVn0eBUwjLCJLyAhcoFEPcx4S+TroyJFLzcPX6K/wpPswGmRNxlu4ZgSGUZDuk5iiu+xl9+5Q0CggRFPHpgk5q8OhDE1iHDy43FmESnDIK+v9G2YPurB5Ao390V1SQ1w27sUe2ECzlea4e+S1+H0vrymIViub2xVh9fxsGRFhyUGa2KzhWwH30s3b3+yquLwaDqEm0fhGLeFkc17FRMB4dakNSA858NSu8rk1QF7s0V4jM25Ybxz3Rp9Ij71kU4XyD1ObAF6PDEyJhP8miDC1W/H6/tutkeXF1wjf6jgU0h81A3wPS45+VbB4dB6vBZFHl/tGUDKVMuv/CubYKJutX8yGgc0CcqvYut/4S9kMrdi0cORtvK//Oo2tItmEqUKsSkiqmwASE08Ngu7TePthk/lJ3lsoDD++uHjHWGLl2owd9k6UCJgPT5WHWk9s/QljqAfKdeECq+WURFAh28RaHnCP0ijgRBb6beteIMAzmcXVmje4h0uFSwcMWDyVUc5nNxiGhsDRVkLxVLPYl0/mUQjRtFOKPzcB2NM65j6mY9D/cJQmLnxnh817UmfTLmFFeK8aUq0uam4eIKI7oVreb/vRfQ+gQyIhbn8znSUJR9z/9O0W5NuIzzqGeHVWrO44lsrdgLhlQnJ9p70fukY1DmqWYqgeUyf7blY3Zk=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(7416014)(376014)(366016)(1800799024)(18002099003)(56012099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?L3oydXF0cFhkTWVzMUxBVUtXLzcyUVExY2gveGc2OVUrSm5FOVV3dzJSUVVr?=
+ =?utf-8?B?SUlITjhpV2VJZlJCTnRqZzBmekFUUitDVVBMNUs1N0tETVVsSUFkV2JvN2FL?=
+ =?utf-8?B?OG82VEc3K2xnTkFUd1czL0pKZ1piT25jZlhYTXhQRWtXLzhwSTA4c3BoRUt2?=
+ =?utf-8?B?YVNDRzEwOURId0JsYzEyQ3RwbWFqcVk0UVpBVkx1MDNaTFE3dnEyWDZ5Y2Yv?=
+ =?utf-8?B?d01ldTQ3VGpZVUtYTFNUVW84TkFaM0NrRUlLeXorSGFqY01JZEx2Q1ZRQnEw?=
+ =?utf-8?B?cVhPY25YRjV0ZnNCOHlHTzZvdjNWUlVzVnc5RGhRcmpZTHRRYmpsa1RFL2pN?=
+ =?utf-8?B?enpyTVVWVW1XSWdPZFMrTnl0U0NqNGdMWGdseWZ1K0pwUWovUGxiNjlZb0lm?=
+ =?utf-8?B?REsvYllMK0xodm1pSFR2Y215dXNQZEFmTDRUTWJnYlNaTlhSTzJjSTVtRTFY?=
+ =?utf-8?B?OFJnd051dEF2RFdNbjF2d1VnSEpCcWNpZU1xVWsvR2U2cHYvZlpUeXZDNEFw?=
+ =?utf-8?B?dWczaU1ScGx0ekZibmZMUmc3WkozU0FicVY0Myt6UlZhWEFNakpOT0FCbXd5?=
+ =?utf-8?B?ZFVEOGFwUmltYnhSNVQvdGFXNE1lT2dGU1FTbE9RaithY1lUdnNHeC9oN1Ri?=
+ =?utf-8?B?bzNHa21FanV4bHdPVDdiSGlXMUgwOXppQ1NtVjVhNm1SVE16dG53eE1VT001?=
+ =?utf-8?B?Z01CdFc3ZXpGYlJrcDRHQk5YNGZGU0xDaWpMazk4V3VQTFJITEFJYzhlUStW?=
+ =?utf-8?B?TkJraUFpR1ROUEpqb0dmMFd3Mm1iLzB0WUVBVTJ6QW1FVUNUMzN6WlFjNzg3?=
+ =?utf-8?B?U0pKc0tkTkNVWHBqNHp1Q0tCbWtBQkRQdWlRL0pXZkdDRTllYVhUL0JMclYw?=
+ =?utf-8?B?M3RkcFFSci9teENWRUZkeC9JeWxBNGtWS1ExZW9ZNXZlcnoramZWSE5KZmtF?=
+ =?utf-8?B?ckdXOUR4SVVldjNRWTBpQUUvUzNteUVqWmlhQ3BqVXVoRjhvMVBLbFVndG9y?=
+ =?utf-8?B?alhXOXFXMnBMaHRQTUw1TnVWUjZ2bDJleFMwVGJZK0JRZC91cTA1Q2h4SE5t?=
+ =?utf-8?B?eHdxdXFqTHNGVXk0THUwMy82OFFBNjA1TllXSHViUHhmcXFzWlRGMnVSM1Mw?=
+ =?utf-8?B?SFFLMXY1OUIrbWtVQW9Kb2pWckhGRnorRmtqaUhodTJCckFHcGd5cXovYnIv?=
+ =?utf-8?B?RlZTRS9CS01RbDVhMjQxNEZiVEZDazVlbk1SSTdwVDNvZ05iOHBIWDRBVzg2?=
+ =?utf-8?B?bGpOdzF4YkJIRXdscmpxbkFkVWdQZ2FVQWZCNzkwYTZVL2J0cnNoYy9rY2ox?=
+ =?utf-8?B?dzAxczlwODdVRmljS0llQ29MOEpqYlVmaDBwcVc3RU0zbEZQbFFudE84aTRn?=
+ =?utf-8?B?Z2IvV3RYZHBZcTZKWktEempVNGVBSlo1UmF6R1dqOUQ0WnlYaE9mWUZBTnFr?=
+ =?utf-8?B?OVFmdXBhYlJ2blBHcVYwRnZvaTdwUFJrOUVaUGJtM0hkWG9sY2VXRC9taUpn?=
+ =?utf-8?B?R1A3SXNPTXNZaFZBRkMwWWpNYTdvNDR4SzEzNDdlSDBxM1ltYUhOYldBTFV6?=
+ =?utf-8?B?VXpVZEZzS05VWXdIK2x2RGhqQU9oeUE1Q05aNzRhNjJiaDdwekJPRnhMRDNK?=
+ =?utf-8?B?VkZuWlF1a2hudTF0ajl6L0lNRUpZNDVnZHYrR0pvRGJzUEswdXMveWFZdzNQ?=
+ =?utf-8?B?TVgrZG00eGJXb08vczY1aWpqWXZkcnN1b0YyTzA0cUNNSjhsUGI4eThvV1J5?=
+ =?utf-8?B?QmZYTVNZQ0hNOUF6elFudXZoQko0M1gveENIWDd4UjkvMXljZWxvdXlqUmgw?=
+ =?utf-8?B?UTNzVnFXNVdIcW81ek9yWVJiMTNzQzhVSnJnK3FzRE14VVovbFYxaUFkVEta?=
+ =?utf-8?B?dHVaUVRreU9id1FsYlNlTUxVYlE5ZHJaOUk4MmZ6TjFaWTdVcWxOYzhXU2l3?=
+ =?utf-8?B?V2Jqa3Q0dDZSV2xaUVNxWDJMM3dIaWpYbjZ3RURXazNYekdaU2lJZzFyMkZM?=
+ =?utf-8?B?UDVLaDg0WjRzenlsdFo0dnVDei94U1llRmR0U09aTEYrREtWV0lZRmg0TEhJ?=
+ =?utf-8?B?dFYxeEcvYmE0SFhRbEt3WXNOTDZ0MmtOZzA4SURyUThmY0locjNSMUtZLy9u?=
+ =?utf-8?B?UnRJekNmNURXaVlmUno3RE9mWCsvL3BxQUtTY3JTMU91a2JIWGVsb1JJcktu?=
+ =?utf-8?B?Q2V1dy9CLzdVSUU4SHJWU3AvTU5zaWpnMVF2cUpBUG03UnpvdXhGZmYzY0dC?=
+ =?utf-8?B?ZUM5dVBkd0loMkFhS3VGbE1DQUxYZDFlVlhNWnNzWjl6aVc1Wm0rbVZoeVhU?=
+ =?utf-8?B?Y3E4Q3ZZbUpUeVlVdUNQbEtSTzZYRXNQOXQya0lYZStzZlZiZi9rZz09?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7ca0982a-89c3-431e-3c89-08de95ac2c4d
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2026 20:19:44.5944 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: CQ58XxuvyR++IUnmDaFEMtnPrcJYrvSralMg/cil1XpSFiMO+9oy5YhqDWupykcOak/KCqpyOMb5QuR4z7nHwQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CHXPR12MB999221
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,80 +174,160 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-All current users of DRM pagemap set source_peer_migrates to true during
-migration, and it is unclear whether any user would ever want to disable
-this for performance reasons or for features such as compression. It is
-also questionable whether this flag could be made to work with
-high-speed fabric mapping APIs.
+Hi Alex, Eliot, Danilo,
 
-Drop the flag and make DRM pagemap unconditionally assume that
-source_peer_migrates is true.
+Thanks for taking a look. Let me respond to the specific points below.
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Francois Dugast <francois.dugast@intel.com>
----
- drivers/gpu/drm/drm_pagemap.c | 10 ++++------
- drivers/gpu/drm/xe/xe_svm.c   |  1 -
- include/drm/drm_pagemap.h     |  9 ++-------
- 3 files changed, 6 insertions(+), 14 deletions(-)
+On Wed, 08 Apr 2026, Alexandre Courbot wrote:
+> After a quick look I'd say that having a trait here would actually be
+> *good* for correctness and maintainability.
+>
+> The current design implies that every operation on a page table (most
+> likely using the walker) goes through a branching point. Just looking at
+> `PtWalk::read_pte_at_level`, there are already at least 6
+> `if version == 2 { } else { }` branches that all resolve to the same
+> result. Include walking down the PDEs and you have at least a dozen of
+> these just to resolve a virtual address. I know CPUs are fast, but this
+> is still wasted cycles for no good reason.
 
-diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
-index 5002049e0198..63f32cf6e1a7 100644
---- a/drivers/gpu/drm/drm_pagemap.c
-+++ b/drivers/gpu/drm/drm_pagemap.c
-@@ -651,12 +651,10 @@ int drm_pagemap_migrate_to_devmem(struct drm_pagemap_devmem *devmem_allocation,
- 				own_pages++;
- 				goto next;
- 			}
--			if (mdetails->source_peer_migrates) {
--				cur.dpagemap = src_zdd->dpagemap;
--				cur.ops = src_zdd->devmem_allocation->ops;
--				cur.device = cur.dpagemap->drm->dev;
--				pages[i] = src_page;
--			}
-+			cur.dpagemap = src_zdd->dpagemap;
-+			cur.ops = src_zdd->devmem_allocation->ops;
-+			cur.device = cur.dpagemap->drm->dev;
-+			pages[i] = src_page;
- 		}
- 		if (!pages[i]) {
- 			cur.dpagemap = NULL;
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index 5933b2b6392b..b54587b77b2f 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -1055,7 +1055,6 @@ static int xe_drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
- 	struct xe_pagemap *xpagemap = container_of(dpagemap, typeof(*xpagemap), dpagemap);
- 	struct drm_pagemap_migrate_details mdetails = {
- 		.timeslice_ms = timeslice_ms,
--		.source_peer_migrates = 1,
- 	};
- 	struct xe_vram_region *vr = xe_pagemap_to_vr(xpagemap);
- 	struct dma_fence *pre_migrate_fence = NULL;
-diff --git a/include/drm/drm_pagemap.h b/include/drm/drm_pagemap.h
-index 75e6ca58922d..95eb4b66b057 100644
---- a/include/drm/drm_pagemap.h
-+++ b/include/drm/drm_pagemap.h
-@@ -329,17 +329,12 @@ struct drm_pagemap_devmem {
-  * struct drm_pagemap_migrate_details - Details to govern migration.
-  * @timeslice_ms: The time requested for the migrated pagemap pages to
-  * be present in @mm before being allowed to be migrated back.
-- * @can_migrate_same_pagemap: Whether the copy function as indicated by
-- * the @source_peer_migrates flag, can migrate device pages within a
-- * single drm_pagemap.
-- * @source_peer_migrates: Whether on p2p migration, The source drm_pagemap
-- * should use the copy_to_ram() callback rather than the destination
-- * drm_pagemap should use the copy_to_devmem() callback.
-+ * @can_migrate_same_pagemap: Whether the copy function can migrate
-+ * device pages within a single drm_pagemap.
-  */
- struct drm_pagemap_migrate_details {
- 	unsigned long timeslice_ms;
- 	u32 can_migrate_same_pagemap : 1;
--	u32 source_peer_migrates : 1;
- };
- 
- #if IS_ENABLED(CONFIG_ZONE_DEVICE)
--- 
-2.34.1
+I did some measurements and there is no notieceable difference in both
+approaches. I ran perf and loaded nova with self-tests running. The extra
+potential branching is lost in the noise. In both cases, loading nova and
+running the self-tests has ~119.7M branch instructions on my Ampere. The total
+instruction count is also identical (~615M).
+
+I measured like this:
+perf stat -e
+branches,branch-misses,cache-references,cache-misses,instructions,cycles --
+modprobe nova_core
+
+So I think the branching argument is not a strong one. I also did more
+measurements and the dominant time taken is MMIO. During the map prep and
+execute, page table walks are done. A TLB flush alone costs ~1.4 microseconds.
+And PRAMIN BAR0 writes to write the PTE is also about 1 microsecond. Considering
+this, I don't think the extra branching argument holds (even without branch
+prediction and speculation).
+
+Also some branches cannot be eliminated even with parameterization:
+
+    if level == self.mmu_version.dual_pde_level() {
+        // 128-bit dual PDE read
+    } else {
+        // Regular 64-bit PDE read
+    }
+
+This isn't really a version branch -- it's a structural branch that
+distinguishes between 64-bit PDE and 128-bit dual PDE entries. Any MMU
+version with a dual PDE level would need this same distinction.
+
+I also did code-generation size analysis (see diff of code used below):
+
+Code generation analysis:
+
+  Module .ko size:   Before: 511,792 bytes   After: 524,464 bytes  (+2.5%)
+  .text section:     Before: 112,620 bytes   After: 116,628 bytes  (+4,008 bytes)
+
+  The +4K .text growth is the monomorphization cost: every generic function
+  is compiled twice (once for MmuV2, once for MmuV3).
+
+> If you use a trait here, and make `PtWalk` generic against it, you can
+> optimize this away. We had a similar situation when we introduced Turing
+> support and the v2 ucode header, and tried both approaches: the
+> trait-based one was slightly shorter, and arguably more readable.
+
+Actually I was the one who suggested traits for Falcon ucode descriptor if you
+see this thread [1]. So basically you and Eliot are telling me to do what I
+suggested in [1]. :-) However, I disagree that it is the right choice for this code.
+
+[1] https://lore.kernel.org/all/20251117231028.GA1095236@joelbox2/
+
+I think the two cases are quite different in complexity:
+
+The falcon ucode descriptor is essentially a set of flat field accessors
+and a few params (imem_sec_load_params, dmem_load_params).
+The trait has ~10 simple getter methods. There's no multi-level hierarchy,
+no walker, and no generic propagation.
+
+The MMU page table case is structurally different. Making PtWalk generic
+over an Mmu trait would require:
+
+  - PtWalk<M: Mmu> (the walker)
+  - Plus all the associated types: M::Pte, M::Pde, M::DualPde each
+    needing their own trait bounds
+
+And we would also need:
+  - Vmm<M: Mmu> (which creates PtWalk)
+  - BarUser<M: Mmu> (which creates Vmm)
+
+I am also against making Vmm an enum as Eliot suggested:
+       enum Vmm {
+           V2(VmmInner<MmuV2>),
+           V3(VmmInner<MmuV3>),
+       }
+
+That moves the version complexity up to the reader. Code complexity IMO should
+decrease as we go up abstractions, making it easier for users (Vmm/Bar).
+
+If you look at the the changes in vmm.rs to handle version dispatch there [2]:
+Added: +109
+Removed: -28
+
+[2]
+https://github.com/Edgeworth/linux/commit/3627af550b61256184d589e7ec666c1108971f0e
+
+The main benefit of my approach is version-specific dispatch complexity is
+completely isolated inside MmuVersion thus making the code outside of
+pagetable.rs much more readable, without having to parametrize anything, and
+without code size increase. I think that is worth considering.
+
+> But the main argument to use a trait here IMO is that it enables
+> associated types and constants. That's particularly critical since some
+> equivalent fields have different lengths between v2 and v3. An
+> associated `Bounded` type for these would force the caller to validate
+> the length of these fields before calling a non-fallible operation,
+> which is exactly the level of caution that we want when dealing with
+> page tables.
+
+I think Bounded validation is orthogonal to the dispatch model.
+We can add Bounded to the current design without restructuring
+into traits. For example:
+
+    // In ver2::Pte
+    pub fn new_vram(pfn: Bounded<Pfn, 25>, writable: bool) -> Self { ... }
+
+    // In ver3::Pte
+    pub fn new_vram(pfn: Bounded<Pfn, 40>, writable: bool) -> Self { ... }
+
+The unified Pte enum wrapper already dispatches to the correct
+version-specific constructor, which would enforce the correct Bounded
+constraint for that version.
+
+> In order to fully benefit from it, we will need the bitfield macro from
+> the `kernel` crate so the PDE/PTE fields can be `Bounded`, I will try to
+> make it available quickly in a patch that you can depend on.
+
+That would be great, and I'd be happy to integrate Bounded validation once
+the macro is available. I just don't think we need to restructure the
+dispatch model in order to benefit from it.
+
+> But long story short, and although I need to dive deeper into the code,
+> this looks like a good candidate for using a trait and associated types.
+
+The walker code (walk.rs) is already version-agnostic and reads cleanly.
+The version dispatch is encapsulated behind method calls, not exposed as
+inline if/else blocks.
+
+Generic propagation (or version-specific dispatch at higher levels) adds more
+complexity at higher layers.
+
+Enclosed below [3] is the diff I used for my testing with the data, I don't
+really see a net readability win there (IMO, it is a net-loss in readability).
+
+[3]
+https://git.kernel.org/pub/scm/linux/kernel/git/jfern/linux.git/commit/?h=trait-pt-dispatch&id=5eb0e98af11ba608ff4d0f7a06065ee863f5066a
+
+thanks,
+
+--
+Joel Fernandes
 
