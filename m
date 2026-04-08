@@ -4,74 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C586F10FC462
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 23:44:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74A5C10FC460
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 23:50:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84A6910E70B;
-	Wed,  8 Apr 2026 23:44:39 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fHQK9oIL";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1695110E6FD
- for <intel-xe@lists.freedesktop.org>; Wed,  8 Apr 2026 23:44:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775691869; x=1807227869;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=J9SGbtYTBtYhwqtU2UK+IKWL1tGgnbPy4e4O8sgefxg=;
- b=fHQK9oIL7JKoQwIH/eBIgVgVWHP2X/+gr2VLL0k6wbIFYLa8tNF/Q98g
- +WqSzQuMIsc34S5Qr+SnmAXFK13tIH3eep6C+p8lsDZ6+Q1Rl7SpNMe+r
- +xqu/WomqsMbAgbjrCX90fCeUQsGjSuKhy4vcV4IDSuvzTsRUoyLw4QMH
- 3AW3mW/AGJ1iFiDYf5HNgm/wlBeCXi0UhTb8BbK+gHKeWz9cUp962lYv3
- sNOyjxZ5/wxBM8tioedLThAtJgk21m/Pn8BL1G13yd8ohnGBRqHwA2I5y
- MEaYckMqJYoiveKOIg9wy9VHz2u4VHP8de63Q2jFTKxuYBYqQVFxjIS8Z Q==;
-X-CSE-ConnectionGUID: yzvIfZVhQf6GC34MIt9Qnw==
-X-CSE-MsgGUID: mTMTn0IKShe+jx7lqpk0Ag==
-X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="94272799"
-X-IronPort-AV: E=Sophos;i="6.23,168,1770624000"; d="scan'208";a="94272799"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 16:44:28 -0700
-X-CSE-ConnectionGUID: esNeBVLoRiGp96cue1t8Eg==
-X-CSE-MsgGUID: sNHsdo67S8iIsgj5X9AahQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,168,1770624000"; d="scan'208";a="227616916"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.39.133])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 16:44:29 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-Date: Wed, 08 Apr 2026 16:43:04 -0700
-Subject: [PATCH v2 05/10] drm/xe: Add WHITELIST_RO macro
-MIME-Version: 1.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FD5410E6F7;
+	Wed,  8 Apr 2026 23:50:13 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE33110E6F7;
+ Wed,  8 Apr 2026 23:50:11 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260408-oa-whitelist-cleanup-v2-5-db4a06aae8b0@intel.com>
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Start_fixing_OA_whitelist?=
+ =?utf-8?q?_mistakes_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 08 Apr 2026 23:50:11 -0000
+Message-ID: <177569221170.444590.9850228556066245877@a3b018990fe9>
+X-Patchwork-Hint: ignore
 References: <20260408-oa-whitelist-cleanup-v2-0-db4a06aae8b0@intel.com>
 In-Reply-To: <20260408-oa-whitelist-cleanup-v2-0-db4a06aae8b0@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>, 
- Matt Roper <matthew.d.roper@intel.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1160;
- i=matthew.d.roper@intel.com; h=from:subject:message-id;
- bh=J9SGbtYTBtYhwqtU2UK+IKWL1tGgnbPy4e4O8sgefxg=;
- b=owEBbQKS/ZANAwAKAU15JAXIcpAEAcsmYgBp1uhamKZlO5NIoaeBuvg91ozsd06nn6gIdTVT2
- DuPk6wLHMOJAjMEAAEKAB0WIQTCZ8MJRH/rTz8hbaxNeSQFyHKQBAUCadboWgAKCRBNeSQFyHKQ
- BBrFEAC6o3oufaaBWCo9ZRSno05ucMdUSmRgJy5NxsB7j37wwUE4n2UZPSek9XbkKw3vob+CtHh
- zFsq+CmW8mQLp7psjMEW7OUboxT0lZEmcmjVmRXShYQzjncXCTYcoAAIN4r9KmQk1+b3JGetvx+
- 293VwlovKrPo3JomuXht4iTA2SZFnOuNH0Ktizt6kjKr92kNUG0fSwcmNoiGzp3wbxL1eR7EP1K
- x3U27mNoCJDYsOGGopHT048yu1cOOHwLHDKG7dpi0G+hzWAx8mjBkSSM4qu1W0BL4AjxxuR+Tt7
- H3vNc8cI6FKGr2FB0dasGdU5vK2S4JBmtZb8GVERfu0d7kk50owu+jMiHiXCJiw5ap0Wr/qkIjs
- 87PGa+pWHuTU3Ub8g9Af9oIlfiqcDXRjRf3qEF40dhxERZyA5B51jirmf/QNW47nBTt2FmiEt0o
- L8D5qoCbmEFRYP/wqNrJskdHLCBu+/yl81PK6rye+VZIrMSHpdExu3uiNMSCJfYvig3mlI5wD8F
- 8bRFqQsEnBdmBq6Z9gN30eXv9AyK6P1SEShzx6rmQdzdB6Bbj0gwOgJIow+8xbnvDubXFaGS86b
- 7kvou9Upo2uk2d+JHAtgk3vVT18CfC0tzBdQRbAdJjyEPIMlJQxv/cuon5sJryUjIgl8SXPh5ug
- m1zgl3VNB0k3fKA==
-X-Developer-Key: i=matthew.d.roper@intel.com; a=openpgp;
- fpr=C267C309447FEB4F3F216DAC4D792405C8729004
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,37 +36,84 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Passing the full RING_FORCE_TO_NONPRIV_ACCESS_RD flag name to every item
-in a long list of whitelist entries can make the lines very long and
-hard to read.  Create a shorter WHITELIST_RO helper macro that can be
-used in cases where we want a read-only entry with no additional flags.
+== Series Details ==
 
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/xe/xe_reg_whitelist.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+Series: Start fixing OA whitelist mistakes (rev3)
+URL   : https://patchwork.freedesktop.org/series/159772/
+State : warning
 
-diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-index 423370afab73..d6f8f907ddaa 100644
---- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
-+++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-@@ -98,8 +98,11 @@ static const struct xe_rtp_entry_sr register_whitelist[] = {
- 				   RING_FORCE_TO_NONPRIV_ACCESS_RW))
- 	},
- 
-+#define WHITELIST_RO(reg) \
-+	WHITELIST(reg, RING_FORCE_TO_NONPRIV_ACCESS_RD)
-+
- #define WHITELIST_OA_MMIO_TRG(status, head) \
--	WHITELIST(status, RING_FORCE_TO_NONPRIV_ACCESS_RD), \
-+	WHITELIST_RO(status), \
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 49928fceaa28116594cc19ae74da3014b5722d30
+Author: Matt Roper <matthew.d.roper@intel.com>
+Date:   Wed Apr 8 16:43:09 2026 -0700
+
+    drm/xe/oa: Stop whitelisting OASTARTTRIG_COUNTER
+    
+    Whitelisting OAHEADPTR with flag RING_FORCE_TO_NONPRIV_RANGE_4
+    whitelists not just the intended OAHEADPTR, OATAILPTR, and OABUFFER
+    registers, but also OASTARTTRIG_COUNTER which is not necessary or
+    desirable.  Stop using the RANGE_4 flag in cases where we don't truly
+    want to whitelist four registers.
+    
+    While at it, eliminate some of the layers of C macros; these are making
+    it harder to see what registers are truly being whitelisted which isn't
+    really worth the lines of code being saved.  We can however reduce some
+    of the duplication of code by consolidating oam_mmio_trg_vcs and
+    oam_mmio_trg_vecs into a single entry with a custom match function; this
+    will also make things simpler in the future if we determine that we can
+    tighten up the specific engines that some of these registers are
+    whitelisted on.
+    
+    Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
++ /mt/dim checkpatch 08037efa91c349ee17b62ddd1908a846d7abd917 drm-intel
+a8b8abc44976 drm/xe/oa: Stop whitelisting non-SAG MMIO_TRG registers on non-DG2
+-:52: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#52: FILE: drivers/gpu/drm/xe/xe_reg_whitelist.c:101:
++#define WHITELIST_OA_MMIO_TRG(status, head) \
+ 	WHITELIST(status, RING_FORCE_TO_NONPRIV_ACCESS_RD), \
  	WHITELIST(head, RING_FORCE_TO_NONPRIV_ACCESS_RD | RING_FORCE_TO_NONPRIV_RANGE_4)
- 
- #define WHITELIST_OAM_MMIO_TRG \
 
--- 
-2.53.0
+BUT SEE:
+
+   do {} while (0) advice is over-stated in a few situations:
+
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
+
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
+
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
+
+   Enjoy this qualification while we work to improve our heuristics.
+
+total: 1 errors, 0 warnings, 0 checks, 65 lines checked
+e89a6ec78b06 drm/xe/oa: Stop whitelisting OAG_OASTATUS
+a263534ec814 drm/xe/oa: Stop whitelisting OAM registers on non Xe2/Xe3
+2025babf3be8 drm/xe/oa: Stop whitelisting OAG registers after Xe3
+a75261f8f7af drm/xe: Add WHITELIST_RO macro
+891349d4ce3e drm/xe/oa: Consolidate RTP entries for OAM whitelist
+7ba284f4bbf6 drm/xe/oa: Consolidate RTP entries for OAG whitelist
+209adb75f472 drm/xe/oa: Consolidate RTP entries for OA MERT
+174f05761bec drm/xe: Enable all FORCE_TO_NONPRIV registers
+49928fceaa28 drm/xe/oa: Stop whitelisting OASTARTTRIG_COUNTER
+
 
