@@ -4,52 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7BDB71073CBF
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 14:01:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B61A1073CBF
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 14:01:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B45B10E671;
-	Wed,  8 Apr 2026 14:01:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4909610E673;
+	Wed,  8 Apr 2026 14:01:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a5lFjncz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eyWnLb16";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3264E10E670;
- Wed,  8 Apr 2026 14:01:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D4BCE10E670;
+ Wed,  8 Apr 2026 14:01:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775656902; x=1807192902;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=LN0ROSp3F49mpSiguoHJzn0qboFLlrBBgtz8bxY/D60=;
- b=a5lFjncz2poFaXp/d58haRhH6NjDMCIetcz6M/1eLRFrjhfxJYlD92YT
- ztsfguOhxg5FFmTIJQyJiep4tR8eRQJfo470lNBVB0JxlmazH99CdS7WC
- jlTE0cabxhUsINP5e+7xZOqMMTlD/dSv2pwx99fTRx7iDmDDv5ObJVrDr
- cbKcOvnN9ErRuAVJZh/rRSxBcD7y2xANv6o6dhtSFOLbBEZ7twuC+uU8u
- mIp5qE7kt2L1zBbUr3gVsmop9hSp6DenfpyQyvS5jfIIHpbBIRy6epgr3
- gFYf35lmLmBkRm4MK+WNmGrT123h/IK9t6QkKsFPo8mnQML2Qo4uywYRE g==;
-X-CSE-ConnectionGUID: JnuIudUURXWOsdka8FeRUw==
-X-CSE-MsgGUID: GT6/OYAFSQ2v2ts51faudA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="75811478"
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="75811478"
+ t=1775656904; x=1807192904;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=V+dyHm1efiMz1CBklW5LyIqisW0MaENS9Q9iSlONn+w=;
+ b=eyWnLb16oGfKEqqYxhkDY3IlnBNPw5Aulq1v1ApZn3dlN3aJocl+8VC+
+ DgvVhw4qYWvhfOKsb8fxZWKSL1WioLWvq6+8FQq5dM1wN9Sg0u//XmW+3
+ FP4vHBkOu67MJ8JJj8R0xX+WrJiPSKHnrgqSoM7oIU/cUZXeJlI0XS3vt
+ 6luGkqUp5TvYizmEg+02q3zi9yKDgyq+gDZJIjA+efKULPGPMeIPgD26h
+ 8SBVEWXiaOvbHWPWa3o0A9P0Tep1xjecBUBAX01ZnyupEbDMr/fVS/uZU
+ /nM2NPtl2GoMPO7GKCosD0V8w4OJ27QETAxvcVWUUwd9UP5Vn8RXRQoFF A==;
+X-CSE-ConnectionGUID: qLb68KXaSliPHwq8HWubNw==
+X-CSE-MsgGUID: BtpNvRCJTXG7CIEvLtcXiw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="75811513"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="75811513"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 07:01:19 -0700
-X-CSE-ConnectionGUID: mHcFky6gREO2we+HoG7ayg==
-X-CSE-MsgGUID: jCdn5CmIR0a/I+ErzB3DYg==
+ 08 Apr 2026 07:01:22 -0700
+X-CSE-ConnectionGUID: Zbze29bxSXqUfMZ4OInDoQ==
+X-CSE-MsgGUID: RNFVwDDETDWdM71ECEmDpA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="228726648"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="228726662"
 Received: from smoticic-mobl1.ger.corp.intel.com (HELO
  jhogande-mobl3.intel.com) ([10.245.244.251])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 07:01:18 -0700
+ 08 Apr 2026 07:01:21 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH 0/6] PSR/Panel Replay/ALPM logging improvements
-Date: Wed,  8 Apr 2026 17:00:52 +0300
-Message-ID: <20260408140059.252067-1-jouni.hogander@intel.com>
+Subject: [PATCH 2/7] drm/i915/alpm: Dump out computed ALPM parameters in crtc
+ state dump
+Date: Wed,  8 Apr 2026 17:00:54 +0300
+Message-ID: <20260408140059.252067-3-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260408140059.252067-1-jouni.hogander@intel.com>
+References: <20260408140059.252067-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
@@ -68,27 +71,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-These patches are adding traces to ease parsing PSR, Panel Replay and
-ALPM CRTC state using dmesg. Also printing out DPCD capability/support
-registers for these features are dumped out.
+We are currently not dumping out any information about computed ALPM
+parameters. Add this missing information.
 
-Jouni Högander (7):
-  drm/i915/psr: Improve PSR state information in crtc state dump
-  drm/i915/alpm: Dump out computed ALPM parameters in crtc state dump
-  drm/dp: Include PSR2 granularity registers into PSR capability size
-    define
-  drm/i915/psr: Add new macro for accessing cached PSR DPCD registers
-  drm/i915/psr: Read all PSR capability registers at once
-  drm/i915/psr: Dump out PSR and Panel Replay DPCD registers
-  drm/i915/alpm: Dump out ALPM capability DPCD register
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_crtc_state_dump.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
- .../drm/i915/display/intel_crtc_state_dump.c  | 16 +++++-
- .../drm/i915/display/intel_display_types.h    |  1 +
- drivers/gpu/drm/i915/display/intel_dp.c       |  2 +
- drivers/gpu/drm/i915/display/intel_psr.c      | 55 ++++++++-----------
- include/drm/display/drm_dp.h                  |  2 +-
- 5 files changed, 41 insertions(+), 35 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+index 41aa28f1c72c..e610527bb5f6 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+@@ -254,6 +254,14 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
+ 			   str_enabled_disabled(pipe_config->enable_psr2_su_region_et),
+ 			   str_enabled_disabled(pipe_config->req_psr2_sdp_prior_scanline),
+ 			   pipe_config->entry_setup_frames);
++		drm_printf(&p, "alpm: lobf = %s, io wake lines = %d, fast wake lines = %d, check entry lines = %d, aux less wake lines = %d, silence period symbol clocks = %d, lfps half cycle number of symbols = %d\n",
++			   str_enabled_disabled(pipe_config->has_lobf),
++			   pipe_config->alpm_state.io_wake_lines,
++			   pipe_config->alpm_state.fast_wake_lines,
++			   pipe_config->alpm_state.check_entry_lines,
++			   pipe_config->alpm_state.aux_less_wake_lines,
++			   pipe_config->alpm_state.silence_period_sym_clocks,
++			   pipe_config->alpm_state.lfps_half_cycle_num_of_syms);
+ 		drm_printf(&p, "minimum hblank: %d\n", pipe_config->min_hblank);
+ 	}
+ 
 -- 
 2.43.0
 
