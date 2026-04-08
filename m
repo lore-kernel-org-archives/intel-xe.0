@@ -4,58 +4,153 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 982F110F9956
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 15:58:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D825410F995A
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 15:58:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54A0F10E6AD;
-	Wed,  8 Apr 2026 15:58:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 991B510E68D;
+	Wed,  8 Apr 2026 15:58:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kveYrpOz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nvw7966Z";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E254F10E68D;
- Wed,  8 Apr 2026 15:58:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8930510E68D
+ for <intel-xe@lists.freedesktop.org>; Wed,  8 Apr 2026 15:58:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775663884; x=1807199884;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=jfP79QxpHT3XEiljNlcn9AH83eE/Ml5mwrQJd7wFBMI=;
- b=kveYrpOz4vN+sKzPcYYkoAVOB78IeogCxoTbL7aJEK8doLG61zSs75w2
- A5+AksjXpwnCvBDpE6RZm9CUXid+XiDRgbhFJosqSL8ag7wdTwwL2NUu+
- pCgBMCJB6ngkpOAKiC4EQG3mNOtLLrC0qpzfp7ZTjU9YfTnPqD2enBh4y
- PyMrfZMq8rJF7AbftmfFo3ZZN/SEzYlBqKA087lxbbpJiiVja1RpnCkJ0
- EIWoRD5imLWRN0SBeQindVzl2jM8uxMnNZpNtWyiFQ+/rXkM5Ig0SX1Og
- 45rjslIWJfsEUX2uEUlZ4Y2FJSKk1iC0t92/sge9pdfysmz7TTKxcR9Dz A==;
-X-CSE-ConnectionGUID: 9ltOxFqQRVCKaXlbRyoN9Q==
-X-CSE-MsgGUID: F0i/fGt2Rba2tvf+F5KDMg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="76542088"
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="76542088"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 08:58:02 -0700
-X-CSE-ConnectionGUID: 7tcSnkUpQtaHA+MFomUn9A==
-X-CSE-MsgGUID: 8jBTLxwDQRus0QW8Chwibg==
+ t=1775663914; x=1807199914;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=QGa6kYfio+rW602Cjja9lVuBfCSdFBtwikyNHDUxSrY=;
+ b=nvw7966ZEhtpgpD9qOa5gr/04pVz4cSehMUTCPtC+vXUHBlBFpjVmD1+
+ bYHsCfb7CSIE3rVG0mSX2Jv4GLdfL1qN5Nm7uhm6H9tt3zmLIrsPbYqIq
+ iIbyvZoGxjGOoymnpXebn147UEjjfTjbi9lmOkQPgsz2GcgTeZ87ytMOF
+ n5FP6q+x8XiOC8HqBeUlW5t/yZ0M0ZzmqMSXxOVMpV2VWUs+L9h/RYvvn
+ Pqf8ckZorGSSgBd4vPSzeSxVx2s5Vskg1603vhAbsragpNKPtwtTd3S11
+ c8El187rV8kHIZAfWr/XS3SEq+ICDY+dAuJMz7D2cHuu8fJfya7M3OAOj g==;
+X-CSE-ConnectionGUID: ExMZOf2+S1aR03Rb1WsrpQ==
+X-CSE-MsgGUID: se7j5rrSQae5C2/vWHB06A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="88035986"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="88035986"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 08:58:11 -0700
+X-CSE-ConnectionGUID: btx/152iQqS1Wx1SymuqMg==
+X-CSE-MsgGUID: LTj7MvDtSv26w4Th3ev0MA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="228400702"
-Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.245.73])
- by orviesa009-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2026 08:57:59 -0700
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
-	Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH 2/2] drm/i915: Walk crtcs in pipe order
-Date: Wed,  8 Apr 2026 18:57:44 +0300
-Message-ID: <20260408155744.13326-3-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260408155744.13326-1-ville.syrjala@linux.intel.com>
-References: <20260408155744.13326-1-ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="225332857"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 08:58:12 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Wed, 8 Apr 2026 08:58:11 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Wed, 8 Apr 2026 08:58:11 -0700
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.70)
+ by edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Wed, 8 Apr 2026 08:58:08 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=jBERf4SmZBWbHCaxty1AVGLimszynaXAAYPA5+Y6nc9B3S3slmOBMxWTCwAx2tgQUXRQbIYPRU0nxvThd9QWx4WXYNiwyC8F9BuYkcSAE/SYim6kRBoxlo6ZVt1HWunMY3PZI/gCDLMTtAUg+xnpLR6r2Nq/1LJwxgLydV96y6HYtkWFjUzoUTwlu573A6/O2NNX+1f2zBWCaLT6F5oaWh4DXiKa1cQBPqCdOweMFmz0S7pl8uNlFTPbC51ci8Eq0hdcFES6iZmDmElx4D7vVJu8xN2TzFZuO/K1sMsDT4vBQGrWkKhygz6Z7aaoFWSoFwfxBtmhOUpBmMUXZ6fW5A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ICXjaYM6vRD/lS7gVzWYc8dNKSYeRCM0De/xvJpvdSY=;
+ b=XH9WDl7ArG/HeSuWVnFwl39iQSlxIAWCA1J3Gpm+NyEeiLZziA+c5XEkVnGPNlXKehw+cWq5V0qaYXZFcRkVGzm9fxftXydNIVH62SNWh9GGcu+kQIyw/+RDqLI35KlHOuiaZvqGdfqvrIFusnj1q5V5QY9vWPmAXim8tvW+qHQ9AOzNEuIqZ1UxumuagQOTOGykQOL4pT60YFORZGmqEjj8KQSx504+qm08y0up6tyt/roQ36P3SvLRLSBgAT9reIYqsbzugjsCQsP3ompyXUJfvvu7SMDMTntJDuH46PDPypxk64lPdKOMdImLkIrE0xyCJquiSUJKq6LYXgFD4w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM4PR11MB5456.namprd11.prod.outlook.com (2603:10b6:5:39c::14)
+ by CH3PR11MB8657.namprd11.prod.outlook.com (2603:10b6:610:1ca::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.18; Wed, 8 Apr
+ 2026 15:58:06 +0000
+Received: from DM4PR11MB5456.namprd11.prod.outlook.com
+ ([fe80::62e5:4a7c:f965:9082]) by DM4PR11MB5456.namprd11.prod.outlook.com
+ ([fe80::62e5:4a7c:f965:9082%6]) with mapi id 15.20.9769.018; Wed, 8 Apr 2026
+ 15:58:06 +0000
+From: "Lin, Shuicheng" <shuicheng.lin@intel.com>
+To: "Brost, Matthew" <matthew.brost@intel.com>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "stable@vger.kernel.org" <stable@vger.kernel.org>
+Subject: RE: [PATCH 3/4] drm/xe: Fix bo leak in xe_dma_buf_init_obj() on
+ allocation failure
+Thread-Topic: [PATCH 3/4] drm/xe: Fix bo leak in xe_dma_buf_init_obj() on
+ allocation failure
+Thread-Index: AQHcxswLGfbTuFGPsUyn0eME3HUjurXUm8uAgACqzwA=
+Date: Wed, 8 Apr 2026 15:58:06 +0000
+Message-ID: <DM4PR11MB545631685E1E7994F737E904EA5B2@DM4PR11MB5456.namprd11.prod.outlook.com>
+References: <20260407201542.3396317-1-shuicheng.lin@intel.com>
+ <20260407201542.3396317-4-shuicheng.lin@intel.com>
+ <adXhDcGmLytjuTUB@gsse-cloud1.jf.intel.com>
+In-Reply-To: <adXhDcGmLytjuTUB@gsse-cloud1.jf.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB5456:EE_|CH3PR11MB8657:EE_
+x-ms-office365-filtering-correlation-id: 53272dfd-0b63-4e16-4eb2-08de95879fa8
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|376014|366016|10070799003|38070700021|18002099003|22082099003|56012099003;
+x-microsoft-antispam-message-info: k+XY8i0HAjpDXyo0CiKtTjXUjHf4BKtYhue6OoMgmbLhoapS2seCsYNyEmBWVPF0lvD1C8l5iRAw+v8/C2gwbrVwKKU6f0ALmroFOKBR9wIs9IDIriYAi91gCmCxP/bDGnjmWsV17PPownf/NvTvn4iY+ym2te5E7QY7Pyqh2/96olxTu0d+l5YbdgXUi0qPDM6baWNJ8JluP6Ez3P5h1GeZOBLUly2WhGlXKCZIjlyEFUfUB+eDohluscePMnEOqIojKcNUZT5A13NLaRg3P+1w2LqBnVfF2bvQBocIwUantnFfreJtNXeWZHen3mzS46Bv6pojHwUTOcB0Ymafmq9Fnm5Sz3o5GlUkPYp+6xmwLGv0S3/oO5QfiJH7/uJO0iSlLpVgG7B3gKhr13Hozdq5CmSLC6B7A+5tRTDVRzMrisp1/7JFy0HK85WOwEdDtlnhqu6Cfh3e6O50rIGJV3uvBfqwASpMZ6EXtK+qnbPJvwYZYzBY3mhDGET9OVOU7SHJy6MvcosfmOxuXPRgGU4ixEKvHdvD/+d3WobxSUajb37UkYg/7YbaUBkbehE/oTKVNMcG7VIovIhIVmWEweGCgNm9/MXuX61xNO26B75J9fTT5ovveEjwB7T520eDe63Qjc6bTyyHKghPVXGi7hWoEAAz3bej+euhV/aWm4i3+1x5eeF2hdMt8J4ydvSHEpgTc8n+7buUef9zW85Wgem++s8YhFJg+VyWMVjyjZ0ttI0LjmqGB6YNNwEKYyJ3BoupeXAq2CLLIA17J3feXaKRv3ALe4QWFwGqMpnahZM=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5456.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(10070799003)(38070700021)(18002099003)(22082099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 2
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?x/sVilTyG/vhjb80fbra41uoFFFj0IUlfqAIWSSj0juaoldB+m6V5ArxB53I?=
+ =?us-ascii?Q?3Gk7OFb/iZWu9oKub+USMzVZoWMOpXKQFR6iPmxHUfLkzGoQRxsj/4z9uSJ3?=
+ =?us-ascii?Q?ssLtsSS7MrHIEIr8gqQNMaP/lHKK2C7VAt57hUDmmndwOMVST6svJtVNDqCP?=
+ =?us-ascii?Q?QcHObP4gtGiABK35+wEZVr0Ci2/8V66WbuLThcTnBcSsjCeqrRzdlQLZ2/2V?=
+ =?us-ascii?Q?BjnJ+qggDQpfgNdRz67SnCYh3/46vN2cgEGwHjiPeOVb+Fglm8w/UxAlBG5a?=
+ =?us-ascii?Q?PF5HNHe5rgj63yWu0u4A7Cs423KjEIQgevuQzqRd5ThyWsbvqQ1/5KxWC6zF?=
+ =?us-ascii?Q?G95Lp5z+p/R1kNrdaG77JXcleNZOX4V+qghQFD4r8dCcAWQ241OF3sAM2Zqu?=
+ =?us-ascii?Q?qXJOqj/8MdUcMC/FQAfAOa4cTldk7oKs6Fbgebq5krI/E0QIkzTNwTicVJ+0?=
+ =?us-ascii?Q?cJ/mqf7OdeDr935DN4zaDtmIVG+nYhaUlKWSp6qddrNHSnPa+5dZNst1lEMp?=
+ =?us-ascii?Q?VyVnNWLs5wUeMItwVrpuPjeV2hPVgHAFMx9W4qZypg6ezt6IePLZsjaPH9g2?=
+ =?us-ascii?Q?bT6BUrTzvW8WKZKZxCzmQ3RyyD2jCyN6XsMoTUpDi3AIw+4fEiJxnjC56KcB?=
+ =?us-ascii?Q?KzcYMg+3FSQiB+C9YS3h4beqUTGhmqhMsIT+kQ6Ij1QISeLkxJQxZfPVlDoJ?=
+ =?us-ascii?Q?eIf5/Ttnh/gpCGfakLo67aiZFjX90+BNlzMbNhDZzBnuB4KkLXxNBeut3A/3?=
+ =?us-ascii?Q?P/0IdPKvXbLmiZF0nuI+7l3fWOHM3jfxuE7SFXcPD/ORz0VTZ/P0FjOZObDN?=
+ =?us-ascii?Q?/roX5CruoxYkLv1oPycdPGXRB1YGZ4WnUPg0QKvlRWj3J8SA1zbqNqjh47FB?=
+ =?us-ascii?Q?92X3lCgX2C5DWzHHX06M1HAZIr42CX040ld7G+gPr1dr9hXi4dOhQ3g1F31L?=
+ =?us-ascii?Q?4jcePNuoUz6eDpWApCiiJCip7JfvpgANa+Ye4pGRJrwd29LDwNyA74QFwka+?=
+ =?us-ascii?Q?xMjPjMCxOSHPt53lU7mX3Xqh7OPpNuP+SvD7ySIxDtZgGacwJ35v1FDHPwVW?=
+ =?us-ascii?Q?32F5OJUvkvoO/tj6kBKD6jjirydlejzlv/Nr4w6PdkPRWQ43neKVbBQax+Q0?=
+ =?us-ascii?Q?Mv/JdMXA5JuknYgLzIUe0SnYszlfSxg1fyfjnTXVt+wcCKkAPYmeEw4fAADg?=
+ =?us-ascii?Q?sIthcauNLquogxBhOIAsXRWec4wv8GqvLdk4h9iRMk29ySx+g6vYmJT1RzO9?=
+ =?us-ascii?Q?lD2JEuy64rGhaKFm+Uky4hzVFI75JfCdzeWjK6pLboSivGJSAlJi8TbrGWto?=
+ =?us-ascii?Q?n+Cz3elAJSv0WxNvq7i1Gt9fqVRCcwa3prYIhYET4YVBOtNeN4DQxatJomFg?=
+ =?us-ascii?Q?ol7/fvV6dN+J21is0iNI0se6OluOKrVYLLiD5txWBBCKfrtQ6Wuoo74LshCa?=
+ =?us-ascii?Q?0FZeSTKrH++tT7G30MhgUG9sVVQR6bZuGwTI6P9FN0r1hoXASca+S3fpY9Os?=
+ =?us-ascii?Q?643aEmfTWy6IaDExdbZwFBKP1wrcEIW5z3U8QIswvmhfejSExjOs0ygcpdJd?=
+ =?us-ascii?Q?ni22OJ7AgEX8lxopLk2aegf0oNFp9uA7pUMNoOyzS+tD6J3/rjm1iq5zaTUL?=
+ =?us-ascii?Q?qSf0dspBwmhznfljrpVpiFxKzAx4Buop1lc+KQ+GNxk1SAGlKu89m1y8P8v9?=
+ =?us-ascii?Q?/+ZqOVtGCAz4I7YHzr0iyPUkdMswGj/nPUHR+xDHlZbRA9O0CrBzBnq8EThG?=
+ =?us-ascii?Q?w2PzPHsa/Wwq+sPfsEIuE/e+c0oBF6RH8/rycZndxmIl3nGazEzBwguUEMZx?=
+x-ms-exchange-antispam-messagedata-1: zhRYM4rmpIo6XA==
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
+X-Exchange-RoutingPolicyChecked: qPNt3TcZBD0IUs15OswEs0HDExm5CYtgq1qCZal3HefadcIwLq7XdoGj7+v0ifxqRqCuupfzeviq4g/+5Jj+eEYKevAkSW2QDut43Zh0yPhbSbK7BgvKOcnLfHOz7VPulQOrbwbb5thYCj+3oa8bcgWxlbnLKhCpQ4HX12jA3KESz28lUs5hxpNduXy3Jf7/j+AV3hp+iFk0rFABNfdf/siZTqp4JvvxsiUl859412HCPaS6dwGRm9OOJd+RjWm1OZOt7wnb7/1vr69qN5xfnHs5xI9i3w51ma2/Mtm43Zc3aI/ptu2sgmGvtvP4NRXtuLVhtLahd69Vo1pQSyoPPQ==
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5456.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 53272dfd-0b63-4e16-4eb2-08de95879fa8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Apr 2026 15:58:06.4623 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 3MT5qrrXReH7peiL1sYCBB6OW5XMhyhBtuY5YzeAeu6NrV3vDZGi0RnD3VaAOdIro3MY+TL3Ksz3RIpXsnMHvA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8657
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,275 +165,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Tue, Apr 7, 2026 10:01 PM Matthew Brost wrote:
+> On Tue, Apr 07, 2026 at 08:15:41PM +0000, Shuicheng Lin wrote:
+> > When drm_gpuvm_resv_object_alloc() fails, the pre-allocated storage bo
+> > is not freed. Add xe_bo_free(storage) before returning the error.
+> >
+> > Fixes: eb289a5f6cc6 ("drm/xe: Convert xe_dma_buf.c for exhaustive
+> > eviction")
+> > Cc: stable@vger.kernel.org
+> > Assisted-by: Claude:claude-opus-4.6
+> > Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/xe_dma_buf.c | 4 +++-
+> >  1 file changed, 3 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c
+> > b/drivers/gpu/drm/xe/xe_dma_buf.c index 7f9602b3363d..24d9d82426b9
+> > 100644
+> > --- a/drivers/gpu/drm/xe/xe_dma_buf.c
+> > +++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+> > @@ -271,8 +271,10 @@ xe_dma_buf_init_obj(struct drm_device *dev, struct
+> xe_bo *storage,
+> >  	int ret =3D 0;
+> >
+> >  	dummy_obj =3D drm_gpuvm_resv_object_alloc(&xe->drm);
+> > -	if (!dummy_obj)
+> > +	if (!dummy_obj) {
+>=20
+> I know the comment at caller says 'Errors here will take care of freeing =
+the bo.'
+>=20
+> But I'm not sure that is right sematic as this patch alone won't free the=
+ BO give
+> this line not seen in this diff:
+>=20
+> 296         return ret ? ERR_PTR(ret) : &bo->ttm.base;
+>=20
+> So IMO we make the caller own the freeing of the BO here.
 
-Currently our crtcs are registered in pipe order, and thus
-all the for_intel_crtc*() iterators walk the crtcs in pipe
-order. There are a bunch of places that more or less depend
-on that. Eg. during plane updates and such we want joined
-pipes to be processed back-to-back to give a better chance
-of an atomic update across the whole set.
+xe_dma_buf_init_obj() calls xe_bo_init_locked(), which frees the BO on erro=
+r.
+Therefore, xe_dma_buf_init_obj() must also free the BO on its error paths.
+Otherwise, since xe_gem_prime_import() cannot distinguish whether the failu=
+re originated from xe_dma_buf_init_obj() or from xe_bo_init_locked(), it ca=
+nnot safely decide whether the BO should be freed.
 
-When we start to register crtcs in a different order we don't
-want to change the order in which the pipes get handled.
-Decouple the for_each_intel_crtc*() iterators from the crtc
-registration order by using a separate list which will be
-sorted by the pipe rather than the crtc index.
+On success, ownership of the BO is transferred to the drm_gem_object.
 
-We could probably use a simple array or something, but that
-would require some kind of extra iterator variable for the
-macros, and thus would require a lot more changes. Using
-a linked list keeps the fallout minimal. We can look at
-using a more optimal data structure later.
+How about add some comments in this function like below?
 
-I also added this extra junk to the atomic state iterators:
-"(__i) = drm_crtc_index(&(crtc)->base), (void)(__i)"
-even though the macro itself no longer needs the "__i" iterator.
-This in case the "__i" is used by the caller, and to
-avoid compiler warnings if it's completely unused now.
++/*
++ * Takes ownership of @storage: on success it is transferred to the return=
+ed
++ * drm_gem_object; on failure it is freed before returning the error.
++ * This matches the contract of xe_bo_init_locked() which frees @storage o=
+n
++ * its error paths, so callers need not (and must not) free @storage after
++ * this call.
++ */
+ static struct drm_gem_object *
+ xe_dma_buf_init_obj(struct drm_device *dev, struct xe_bo *storage,
+                    struct dma_buf *dma_buf)
 
-v2: Flip the pipe comparison (Jani)
+Shuicheng
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_crtc.c     | 20 +++++
- drivers/gpu/drm/i915/display/intel_display.h  | 90 ++++++++-----------
- .../gpu/drm/i915/display/intel_display_core.h |  3 +
- .../drm/i915/display/intel_display_driver.c   |  1 +
- .../drm/i915/display/intel_display_types.h    |  1 +
- drivers/gpu/drm/xe/display/xe_display.c       |  1 +
- 6 files changed, 64 insertions(+), 52 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index b8189cd5d864..c88a6810c49f 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -209,6 +209,8 @@ static struct intel_crtc *intel_crtc_alloc(void)
- 	crtc->base.state = &crtc_state->uapi;
- 	crtc->config = crtc_state;
- 
-+	INIT_LIST_HEAD(&crtc->pipe_head);
-+
- 	return crtc;
- }
- 
-@@ -222,6 +224,8 @@ static void intel_crtc_destroy(struct drm_crtc *_crtc)
- {
- 	struct intel_crtc *crtc = to_intel_crtc(_crtc);
- 
-+	list_del(&crtc->pipe_head);
-+
- 	cpu_latency_qos_remove_request(&crtc->vblank_pm_qos);
- 
- 	drm_crtc_cleanup(&crtc->base);
-@@ -308,6 +312,20 @@ static const struct drm_crtc_funcs i8xx_crtc_funcs = {
- 	.get_vblank_timestamp = intel_crtc_get_vblank_timestamp,
- };
- 
-+static void add_crtc_to_pipe_list(struct intel_display *display, struct intel_crtc *crtc)
-+{
-+	struct intel_crtc *iter;
-+
-+	list_for_each_entry(iter, &display->pipe_list, pipe_head) {
-+		if (crtc->pipe < iter->pipe) {
-+			list_add_tail(&crtc->pipe_head, &iter->pipe_head);
-+			return;
-+		}
-+	}
-+
-+	list_add_tail(&crtc->pipe_head, &display->pipe_list);
-+}
-+
- static int __intel_crtc_init(struct intel_display *display, enum pipe pipe)
- {
- 	struct intel_plane *primary, *cursor;
-@@ -398,6 +416,8 @@ static int __intel_crtc_init(struct intel_display *display, enum pipe pipe)
- 	if (HAS_CASF(display) && crtc->num_scalers >= 2)
- 		drm_crtc_create_sharpness_strength_property(&crtc->base);
- 
-+	add_crtc_to_pipe_list(display, crtc);
-+
- 	return 0;
- 
- fail:
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index 552a59d19e0f..1e76a455d7c4 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -212,22 +212,23 @@ enum phy_fia {
- 			    base.head)					\
- 		for_each_if((intel_plane)->pipe == (intel_crtc)->pipe)
- 
--#define for_each_intel_crtc(dev, intel_crtc)				\
--	list_for_each_entry(intel_crtc,					\
--			    &(dev)->mode_config.crtc_list,		\
--			    base.head)
-+#define for_each_intel_crtc(dev, crtc) \
-+	list_for_each_entry((crtc), \
-+			    &to_intel_display(dev)->pipe_list, \
-+			    pipe_head)
- 
--#define for_each_intel_crtc_in_pipe_mask(dev, intel_crtc, pipe_mask)	\
--	list_for_each_entry(intel_crtc,					\
--			    &(dev)->mode_config.crtc_list,		\
--			    base.head)					\
--		for_each_if((pipe_mask) & BIT(intel_crtc->pipe))
-+#define for_each_intel_crtc_reverse(dev, crtc) \
-+	list_for_each_entry_reverse((crtc), \
-+				    &to_intel_display(dev)->pipe_list, \
-+				    pipe_head)
- 
--#define for_each_intel_crtc_in_pipe_mask_reverse(dev, intel_crtc, pipe_mask)	\
--	list_for_each_entry_reverse((intel_crtc),				\
--				    &(dev)->mode_config.crtc_list,		\
--				    base.head)					\
--		for_each_if((pipe_mask) & BIT((intel_crtc)->pipe))
-+#define for_each_intel_crtc_in_pipe_mask(dev, crtc, pipe_mask) \
-+	for_each_intel_crtc((dev), (crtc)) \
-+		for_each_if((pipe_mask) & BIT((crtc)->pipe))
-+
-+#define for_each_intel_crtc_in_pipe_mask_reverse(dev, crtc, pipe_mask) \
-+	for_each_intel_crtc_reverse((dev), (crtc)) \
-+		for_each_if((pipe_mask) & BIT((crtc)->pipe))
- 
- #define for_each_intel_encoder(dev, intel_encoder)		\
- 	list_for_each_entry(intel_encoder,			\
-@@ -269,14 +270,6 @@ enum phy_fia {
- 	     (__i)++) \
- 		for_each_if(plane)
- 
--#define for_each_old_intel_crtc_in_state(__state, crtc, old_crtc_state, __i) \
--	for ((__i) = 0; \
--	     (__i) < (__state)->base.dev->mode_config.num_crtc && \
--		     ((crtc) = to_intel_crtc((__state)->base.crtcs[__i].ptr), \
--		      (old_crtc_state) = to_intel_crtc_state((__state)->base.crtcs[__i].old_state), 1); \
--	     (__i)++) \
--		for_each_if(crtc)
--
- #define for_each_new_intel_plane_in_state(__state, plane, new_plane_state, __i) \
- 	for ((__i) = 0; \
- 	     (__i) < (__state)->base.dev->mode_config.num_total_plane && \
-@@ -285,22 +278,6 @@ enum phy_fia {
- 	     (__i)++) \
- 		for_each_if(plane)
- 
--#define for_each_new_intel_crtc_in_state(__state, crtc, new_crtc_state, __i) \
--	for ((__i) = 0; \
--	     (__i) < (__state)->base.dev->mode_config.num_crtc && \
--		     ((crtc) = to_intel_crtc((__state)->base.crtcs[__i].ptr), \
--		      (new_crtc_state) = to_intel_crtc_state((__state)->base.crtcs[__i].new_state), 1); \
--	     (__i)++) \
--		for_each_if(crtc)
--
--#define for_each_new_intel_crtc_in_state_reverse(__state, crtc, new_crtc_state, __i) \
--	for ((__i) = (__state)->base.dev->mode_config.num_crtc - 1; \
--	     (__i) >= 0  && \
--	     ((crtc) = to_intel_crtc((__state)->base.crtcs[__i].ptr), \
--	      (new_crtc_state) = to_intel_crtc_state((__state)->base.crtcs[__i].new_state), 1); \
--	     (__i)--) \
--		for_each_if(crtc)
--
- #define for_each_oldnew_intel_plane_in_state(__state, plane, old_plane_state, new_plane_state, __i) \
- 	for ((__i) = 0; \
- 	     (__i) < (__state)->base.dev->mode_config.num_total_plane && \
-@@ -310,23 +287,32 @@ enum phy_fia {
- 	     (__i)++) \
- 		for_each_if(plane)
- 
-+#define for_each_old_intel_crtc_in_state(__state, crtc, old_crtc_state, __i) \
-+	for_each_intel_crtc((__state)->base.dev, (crtc)) \
-+		for_each_if(((__i) = drm_crtc_index(&(crtc)->base), (void)(__i), \
-+			     (old_crtc_state) = intel_atomic_get_old_crtc_state((__state), (crtc))))
-+
-+#define for_each_new_intel_crtc_in_state(__state, crtc, new_crtc_state, __i) \
-+	for_each_intel_crtc((__state)->base.dev, (crtc)) \
-+		for_each_if(((__i) = drm_crtc_index(&(crtc)->base), (void)(__i), \
-+			     (new_crtc_state) = intel_atomic_get_new_crtc_state((__state), (crtc))))
-+
-+#define for_each_new_intel_crtc_in_state_reverse(__state, crtc, new_crtc_state, __i) \
-+	for_each_intel_crtc_reverse((__state)->base.dev, (crtc)) \
-+		for_each_if(((__i) = drm_crtc_index(&(crtc)->base), (void)(__i), \
-+			     (new_crtc_state) = intel_atomic_get_new_crtc_state((__state), (crtc))))
-+
- #define for_each_oldnew_intel_crtc_in_state(__state, crtc, old_crtc_state, new_crtc_state, __i) \
--	for ((__i) = 0; \
--	     (__i) < (__state)->base.dev->mode_config.num_crtc && \
--		     ((crtc) = to_intel_crtc((__state)->base.crtcs[__i].ptr), \
--		      (old_crtc_state) = to_intel_crtc_state((__state)->base.crtcs[__i].old_state), \
--		      (new_crtc_state) = to_intel_crtc_state((__state)->base.crtcs[__i].new_state), 1); \
--	     (__i)++) \
--		for_each_if(crtc)
-+	for_each_intel_crtc((__state)->base.dev, (crtc)) \
-+		for_each_if(((__i) = drm_crtc_index(&(crtc)->base), (void)(__i), \
-+			     (old_crtc_state) = intel_atomic_get_old_crtc_state((__state), (crtc)), \
-+			     (new_crtc_state) = intel_atomic_get_new_crtc_state((__state), (crtc))))
- 
- #define for_each_oldnew_intel_crtc_in_state_reverse(__state, crtc, old_crtc_state, new_crtc_state, __i) \
--	for ((__i) = (__state)->base.dev->mode_config.num_crtc - 1; \
--	     (__i) >= 0  && \
--	     ((crtc) = to_intel_crtc((__state)->base.crtcs[__i].ptr), \
--	      (old_crtc_state) = to_intel_crtc_state((__state)->base.crtcs[__i].old_state), \
--	      (new_crtc_state) = to_intel_crtc_state((__state)->base.crtcs[__i].new_state), 1); \
--	     (__i)--) \
--		for_each_if(crtc)
-+	for_each_intel_crtc_reverse((__state)->base.dev, (crtc)) \
-+		for_each_if(((__i) = drm_crtc_index(&(crtc)->base), (void)(__i), \
-+			     (old_crtc_state) = intel_atomic_get_old_crtc_state((__state), (crtc)), \
-+			     (new_crtc_state) = intel_atomic_get_new_crtc_state((__state), (crtc))))
- 
- #define intel_atomic_crtc_state_for_each_plane_state( \
- 		  plane, plane_state, \
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index d708d322aa85..d9baca2d5aaf 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -294,6 +294,9 @@ struct intel_display {
- 	/* Parent, or core, driver functions exposed to display */
- 	const struct intel_display_parent_interface *parent;
- 
-+	/* list of all intel_crtcs sorted by pipe */
-+	struct list_head pipe_list;
-+
- 	/* Display functions */
- 	struct {
- 		/* Top level crtc-ish functions */
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index 23bfecc983e8..9c2f7ad6c7b7 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -117,6 +117,7 @@ static void intel_mode_config_init(struct intel_display *display)
- 
- 	drm_mode_config_init(display->drm);
- 	INIT_LIST_HEAD(&display->global.obj_list);
-+	INIT_LIST_HEAD(&display->pipe_list);
- 
- 	mode_config->min_width = 0;
- 	mode_config->min_height = 0;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index ca2581fb7bbd..ee076106be85 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1485,6 +1485,7 @@ struct intel_flipq {
- 
- struct intel_crtc {
- 	struct drm_crtc base;
-+	struct list_head pipe_head;
- 	enum pipe pipe;
- 	/*
- 	 * Whether the crtc and the connected output pipeline is active. Implies
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index a0a4ddf3bb46..00dfa68af29a 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -21,6 +21,7 @@
- #include "intel_audio.h"
- #include "intel_bw.h"
- #include "intel_display.h"
-+#include "intel_display_core.h"
- #include "intel_display_device.h"
- #include "intel_display_driver.h"
- #include "intel_display_irq.h"
--- 
-2.52.0
-
+>=20
+> Matt
+>=20
+> > +		xe_bo_free(storage);
+> >  		return ERR_PTR(-ENOMEM);
+> > +	}
+> >
+> >  	dummy_obj->resv =3D resv;
+> >  	xe_validation_guard(&ctx, &xe->val, &exec, (struct xe_val_flags) {},
+> > ret) {
+> > --
+> > 2.43.0
+> >
