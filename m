@@ -4,59 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D381FD5F98
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 08:53:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07976FD5F9A
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 08:57:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13CEB10E59B;
-	Wed,  8 Apr 2026 08:53:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E6D910E5A0;
+	Wed,  8 Apr 2026 08:57:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZGl5nf04";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DAR8RUjz";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2BA8410E59A;
- Wed,  8 Apr 2026 08:53:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D2B1C10E5A4;
+ Wed,  8 Apr 2026 08:57:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775638399; x=1807174399;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=YKhr2LCUHKT9FQ7KsqiOWah+B6ZgGypRdsSX5Jh4UBg=;
- b=ZGl5nf04hdHOQC8baFVjlLDsJF/urVdIq38B7kxIqM3+7nmLfoAMuEPM
- HjFCdhLE9ROJBleiF5NTUIHPlMNAo2GA4Du2xAuiBd/KDq6/Kj5uV7TpV
- D8VQObwMLzuDOwbZHWl3Q9pVTcYemY+t1MOY2stukwE+y74yXvFLfmDrX
- UMuIWg+ElRzGgEy3hv4lFXROhS9hIchlgvsICa27H4cZ3Q7QaZ8pjh/T8
- zjmNAsbLhlzGAZIVyFKkPqNwvSH7AgXdByF6UA5O8UyK1oYY3Jh7QyKhm
- TN2SX//z1qRhmBmd3HQZzqR/SIAH8fQUkjC++ZQAkDf0biY6F6nUo61B3 A==;
-X-CSE-ConnectionGUID: mNi5X7YMTtCiHI5UVVEW6w==
-X-CSE-MsgGUID: 6FbBhWDHSJW4PJYbFn3iMg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="76803235"
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="76803235"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 01:53:19 -0700
-X-CSE-ConnectionGUID: DKp1O163Q0SwlyqPV/1Vsg==
-X-CSE-MsgGUID: dT48V5YYSj+DloLiJtMFoQ==
+ t=1775638658; x=1807174658;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=KM3H4mvGgcmcwYaJ0vMxVqfVQlSvjcWp62H1r2n8rIA=;
+ b=DAR8RUjzvZ41WZLyLesqwCfhy47lEgvDFH99Jw2SuQPHFmPuVQludVNR
+ yRp8GwB19dEJVuCYLNEC+g+LqWTwCjCf6k2n799/Tge6sK9BUuT5x4cu8
+ xbIfPo39MtLIFdKz5yTFeW1o36880onQU3AkExD9YdQeOI8J7vjmcsdHw
+ Bhk20hFIdb28Un1I5E/eNh0oJJqYaiMoSV5uXNIiDC95zMHJIlWy6Npmv
+ 4lLqc08TzCpnnkpAxM1ACMfwc+yY2tVOtTWCYsSzqKblMvUJ5oT0n/iFp
+ KyxEuE2yWiaHsE81e8Ly/a/9FHGLMJOqOhAElWQHmibJ0Vep9p2dnD1e7 A==;
+X-CSE-ConnectionGUID: iEazX66XRUuXLucfvoJsZg==
+X-CSE-MsgGUID: 6FABCHCxSVmkHO0kpqNnXQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="76516582"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="76516582"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 01:57:37 -0700
+X-CSE-ConnectionGUID: 8C51P7KeTryQBomQm0cFtA==
+X-CSE-MsgGUID: Jro53ta6R2OgQYfWiWsCtA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="233289948"
-Received: from krybak-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.32])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 01:53:16 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 09/12] drm/i915/fb: Use i915_gtt_view_is_*()
-In-Reply-To: <20260407155053.32156-10-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260407155053.32156-1-ville.syrjala@linux.intel.com>
- <20260407155053.32156-10-ville.syrjala@linux.intel.com>
-Date: Wed, 08 Apr 2026 11:53:14 +0300
-Message-ID: <cad8b7bf7594dad1f16a8bd0afd69e8e97efc0a1@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="227572422"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 01:57:35 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, jouni.hogander@intel.com,
+ animesh.manna@intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 00/26] Fix Adaptive-Sync SDP for PR with Link ON + Auxless-ALPM
+Date: Wed,  8 Apr 2026 14:12:12 +0530
+Message-ID: <20260408084239.1295325-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,67 +67,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 07 Apr 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Replace the naked GTT view type checks with the new
-> i915_gtt_view_is_*() helpers. This isolates some of
-> the code from GTT view implementation details.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+Enable Adaptive Sync SDP for Panel replay + auxless ALPM.
+First few patches are fixes in existing AS SDP enablement and drm core
+changes for Panel replay with SDP.
+Later patches add the support to send AS SDP for Panel replay with Link
+ON and with auxless ALPM (Link-Off). 
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+This series is in continuation from discussions in [1] [2] [3]
+and is actually revision 5 of the series [4].
 
-> ---
->  drivers/gpu/drm/i915/display/intel_fb.c | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i9=
-15/display/intel_fb.c
-> index 52a619088e8e..ceed695d3ad4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> @@ -1284,7 +1284,7 @@ bool intel_plane_uses_fence(const struct intel_plan=
-e_state *plane_state)
->=20=20
->  	return DISPLAY_VER(display) < 4 ||
->  		(plane->fbc && !plane_state->no_fbc_reason &&
-> -		 plane_state->view.gtt.type =3D=3D I915_GTT_VIEW_NORMAL);
-> +		 i915_gtt_view_is_normal(&plane_state->view.gtt));
->  }
->=20=20
->  static int intel_fb_pitch(const struct intel_framebuffer *fb, int color_=
-plane, unsigned int rotation)
-> @@ -1506,7 +1506,7 @@ static u32 calc_plane_remap_info(const struct intel=
-_framebuffer *fb, int color_p
->  			       plane_view_height_tiles(fb, color_plane, dims, y));
->  	}
->=20=20
-> -	if (view->gtt.type =3D=3D I915_GTT_VIEW_ROTATED) {
-> +	if (i915_gtt_view_is_rotated(&view->gtt)) {
->  		drm_WARN_ON(display->drm, remap_info->linear);
->  		check_array_bounds(display, view->gtt.rotated.plane, color_plane);
->=20=20
-> @@ -1531,7 +1531,7 @@ static u32 calc_plane_remap_info(const struct intel=
-_framebuffer *fb, int color_p
->  		/* rotate the tile dimensions to match the GTT view */
->  		swap(tile_width, tile_height);
->  	} else {
-> -		drm_WARN_ON(display->drm, view->gtt.type !=3D I915_GTT_VIEW_REMAPPED);
-> +		drm_WARN_ON(display->drm, !i915_gtt_view_is_remapped(&view->gtt));
->=20=20
->  		check_array_bounds(display, view->gtt.remapped.plane, color_plane);
->=20=20
-> @@ -1632,7 +1632,7 @@ static void intel_fb_view_init(struct intel_display=
- *display,
->  	memset(view, 0, sizeof(*view));
->  	view->gtt.type =3D view_type;
->=20=20
-> -	if (view_type =3D=3D I915_GTT_VIEW_REMAPPED &&
-> +	if (i915_gtt_view_is_remapped(&view->gtt) &&
->  	    (display->platform.alderlake_p || DISPLAY_VER(display) >=3D 14))
->  		view->gtt.remapped.plane_alignment =3D SZ_2M / PAGE_SIZE;
->  }
+While sending patches Rev 3 of [4], patchwork encountered an issue and
+somehow dropped few patches from the series, and created new patchwork
+links with incomplete list of patches for rev 3 and 4. With this CI couldnt
+pick up the series for testing.
 
---=20
-Jani Nikula, Intel
+To avoid further confusion and more patchwork links with missing patches,
+I am modifying the subject of the series to create new 'final' patchwork
+link (with a hope that patchwork doesn't miss anymore patches) for which
+we can get the CI results.
+
+As the first few drm core changes get reviews, I intend to send those
+separately and get them merge next.
+
+[1] https://lore.kernel.org/all/1b8c6c6de1e5fe0db83e6ae942dfee7e6f950767.camel@intel.com/
+[2] https://lore.kernel.org/all/aPtqdAxDwiuQZbrn@intel.com/
+[3] https://lore.kernel.org/intel-gfx/7c2d6f4e-69e6-452a-89cc-5fd4254430bd@intel.com/T/#m6e8beab2cc3b6ff9d61f740f107d83a2f4e08114
+[4] https://patchwork.freedesktop.org/series/161977/#rev2
+
+Changes from last revision of Series [4]
+ - Add helper to print SDP version in the logs and use it.
+ - Fill missing sdp_type field in AS SDP unpack.
+ - Check PR support also in helper
+   intel_psr_pr_async_video_timing_supported()
+ - Add #TODO to check Display ID 2.0 blocks for AS SDP for determining
+   AS SDP v2 support.
+ - Check if PR is enabled along with AS SDP enable before setting
+   relevant Downspread CTRL DPCD bits.
+
+Ankit Nautiyal (26):
+  drm/dp: Rename and relocate AS SDP payload field masks
+  drm/dp: Clean up DPRX feature enumeration macros
+  drm/dp: Add bits for AS SDP FAVT Payload Fields Parsing support
+  drm/dp: Add DPCD for configuring AS SDP for PR + VRR
+  drm/dp: Store coasting vtotal in struct drm_dp_as_sdp
+  drm/dp: Add a helper to get the SDP type as a string
+  drm/dp: Add target_rr_divider field in AS SDP logging
+  drm/i915/dp: Fix readback for target_rr in Adaptive Sync SDP
+  drm/i915/vrr: Avoid vrr for PCON with HDMI2.1 sink
+  drm/i915/dp: Account for AS_SDP guardband only when enabled
+  drm/i915/dp: Add a helper to decide if AS SDP can be used
+  drm/i915/dp: Skip AS SDP for DP branch devices
+  drm/i915/dp: Use revision field of AS SDP data structure
+  drm/i915/dp: Set sdp_type in AS SDP unpack
+  drm/i915/dp: Include all relevant AS SDP fields in comparison
+  drm/i915/psr: Add helper to get Async Video timing support in PR
+    active
+  drm/i915/dp: Add member to intel_dp to store AS SDP v2 support
+  drm/i915/dp: Allow AS SDP only if v2 is supported
+  drm/i915/psr: Write the PR config DPCDs in burst mode
+  drm/i915/display: Add helper for AS SDP transmission time selection
+  drm/i915/psr: Program Panel Replay CONFIG3 using AS SDP transmission
+    time
+  drm/i915/dp: Set relevant Downspread Ctrl DPCD bits for PR + Auxless
+    ALPM
+  drm/i915/dp: Program AS SDP DB[1:0] for PR with Link off
+  drm/i915/dp: Split AS SDP computation between compute_config and
+    compute_config_late
+  drm/i915/dp: Compute and include coasting vtotal for AS SDP
+  drm/i915/dp: Always enable AS SDP if supported by source + sink
+
+ drivers/gpu/drm/display/drm_dp_helper.c       |  39 +++-
+ drivers/gpu/drm/i915/display/intel_alpm.c     |  20 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |   9 +-
+ .../drm/i915/display/intel_display_types.h    |   1 +
+ drivers/gpu/drm/i915/display/intel_dp.c       | 187 +++++++++++++++---
+ drivers/gpu/drm/i915/display/intel_dp.h       |   2 +
+ .../drm/i915/display/intel_dp_link_training.c |  15 +-
+ .../drm/i915/display/intel_dp_link_training.h |   3 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |   2 +-
+ drivers/gpu/drm/i915/display/intel_psr.c      |  40 ++--
+ drivers/gpu/drm/i915/display/intel_psr.h      |   1 +
+ drivers/gpu/drm/i915/display/intel_vrr.c      |  10 +
+ include/drm/display/drm_dp.h                  |  20 +-
+ include/drm/display/drm_dp_helper.h           |   1 +
+ 14 files changed, 288 insertions(+), 62 deletions(-)
+
+-- 
+2.45.2
+
