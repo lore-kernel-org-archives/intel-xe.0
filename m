@@ -4,60 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71E7AFD5F87
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 08:45:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC7B9FD5F6B
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 08:45:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C75410E593;
-	Wed,  8 Apr 2026 08:45:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67B5C10E599;
+	Wed,  8 Apr 2026 08:45:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IVFy429T";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Ch1ehORK";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F44E10E593;
- Wed,  8 Apr 2026 08:45:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775637914; x=1807173914;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=4N0cIiV5dBiY33G9IrD4V06nYiW1FKYnGXY16WECwc8=;
- b=IVFy429TTrfNAU5xjYt0vD5o4qQJhdIGn6c2CvRxhfmyKZW2RblslZsZ
- CBLF3gCyYRyBizZ/zRFToo2ES+nQHhQ4d2R1euT3xV8yxlX2xm0rRcwKc
- /opxdPArkwTc8F+6CwunDivHHr/cGlJUfnfPuFk6xCJOVCUzLPC1Kc97Z
- 1YFhMhbc3LK3R7lYvOkaLVYOtF/OHCBNwsE3xzS78MJFqGUhRdAi85mgu
- ybATH49Rjien8BSnN3J43tLtKjeKjqTwqOeJYZRPEfoIqx7X9Ykkjp+7i
- QeeC3tr0ruYIgCwd7m9aUgOk7WBC2/yS2BIDLnmLnkTRj2B4zpON9loQy Q==;
-X-CSE-ConnectionGUID: GhnHzMiaTDebVQSQZjiR4A==
-X-CSE-MsgGUID: BVfMlaSPRaSP8vslFzrT9g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="94003700"
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="94003700"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 01:45:13 -0700
-X-CSE-ConnectionGUID: 32Y1b13mR0uzFmwHx4onYA==
-X-CSE-MsgGUID: z0qxalAgSp+du/L7wnk7eQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="251742095"
-Received: from krybak-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.32])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 01:45:12 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 05/12] drm/xe/fb: Remove weird VMA end alignemnt
-In-Reply-To: <20260407155053.32156-6-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260407155053.32156-1-ville.syrjala@linux.intel.com>
- <20260407155053.32156-6-ville.syrjala@linux.intel.com>
-Date: Wed, 08 Apr 2026 11:45:09 +0300
-Message-ID: <20c7f2ca2733c75065296c7e797d5d9124d39ea4@intel.com>
+Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com
+ [209.85.219.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E828E10E598
+ for <intel-xe@lists.freedesktop.org>; Wed,  8 Apr 2026 08:45:17 +0000 (UTC)
+Received: by mail-qv1-f42.google.com with SMTP id
+ 6a1803df08f44-89fc4147f2eso74895176d6.3
+ for <intel-xe@lists.freedesktop.org>; Wed, 08 Apr 2026 01:45:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1775637917; x=1776242717; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:sender:from:to:cc:subject:date:message-id:reply-to;
+ bh=3lr+SQhutbSWGABS7oQ2OjJMnCc+Y1xCXHP8EbLYn64=;
+ b=Ch1ehORKhIcyC14cSR/WO7bL4FBH6PadmhAIO3BLfGMf8X8r58JJY8F6idH4paX2VU
+ lpESWUfZBDdWjNmD9segymcehWLh6CexXRAkTxSIlKPINC0xtJYaQBvKb02GqJwZHGUB
+ jdhMD2b/jmx5fp0ycdB2CrWUnKWtuwo2Ds2+pkjSMvQ9h8Fam3NlnzcNciSCibRT/HU8
+ dv3CHp3sfsBx0LOtpep0vvqP3eyRqAkjgjohbytfZUYfTHM6ATetiYTa/Cz7ZX4Cvtbt
+ H79aWDJK8qim53pmZDYDSdPQbkka9Mv735tdKddA8ELMq/vIGe89INytrV2asmcANH/2
+ km8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1775637917; x=1776242717;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:sender:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=3lr+SQhutbSWGABS7oQ2OjJMnCc+Y1xCXHP8EbLYn64=;
+ b=Hn6fLF0IaFQx2bNRfyGe9XKgChO9lD7R8em/eUeTla4rVn03+bhEaAt7HfF58Ot1Tf
+ 52p/FL92pMEY+2aXBVfFKVUn/23kWj0MPLkSRmAe63Yf3dPKCFS31q9YKlazPQ90s/RI
+ rxgKmxoIc8xfergJzYf1C4iOt4s6clAQ12lE4s6csm2OXMjO9uarG3lceItRzGW8IyoJ
+ K30v5tdDTBSkqwVajDpiVOR1jxnMQO53a6a6srAEUMYO5MbDy1nXz69v2nv6zqsw0CDt
+ iadBapkrYqIyEowCV7Qok1yg8W95OWwD76Y3yTyYu1sfMQyJiSKWDo4EMtJO0cx0RZNx
+ Bqqg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVFP9bPFmGe1SvMHj34KAC05RZbTVSD/Aefp8ec9MZRgcuedt4Awwn6kaJVeb8+xFaN2SPwj5dRaw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyT6eNPDJ8Ltk4NiR5bwMe7B5iteVjv+qsDOjrQ7I7YI49Av6Zu
+ +9382MEhK2LBOvGGi3noAibvNTFvcWuXAyeYWpJU0jyNffDBluyKZjAB
+X-Gm-Gg: AeBDies8CY2pRTN5P1O9/jVuw0J/AitbBbUSsR/Nn7sA/5Yk8jXRtAQ6bjC8ncYdySt
+ gH6ONfjm6SoO0KvYYfqrlJ8EBJIoVOGNrIS/kKpmXwzEqaGtNI5F6bKvhJqo1BSajdgddqk4r6x
+ ESZltfM1bmrcTqqNWENwPiReh6cuF1P8VvRTUAIvGDvZWGTiOr7nWA1jhR4fzEd8x8ECcwHKaOQ
+ uOuWEFKxat3lcyLwKtYPhpZ6vx8/EViLnFIVZrLDFIUdwGLaBGjBGJdBhimq/dxTI25x1VoKI+d
+ ISdC8VEkZcgXUGkW/xXA+NaJ9tHrBWgDTM5P0jsav4/CKLHJZH4/CQPmG6WwWtTWZb0oLHHIDHZ
+ RDtJXcX9bEes12tV25OfL1U1mo/ZQuyRRbfusTgH7ryKSi/c30UTaUaOKSvieiiBjYN4vg85MhA
+ jIuzjXKnQ0szTK5EGR
+X-Received: by 2002:a05:6214:468c:b0:89c:e4c3:dc2d with SMTP id
+ 6a1803df08f44-8a7022bbe6amr337024886d6.2.1775637916961; 
+ Wed, 08 Apr 2026 01:45:16 -0700 (PDT)
+Received: from localhost ([2001:67c:1562:8007::aac:4468])
+ by smtp.gmail.com with ESMTPSA id
+ 6a1803df08f44-8ac56e3a898sm39028506d6.38.2026.04.08.01.45.14
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 08 Apr 2026 01:45:16 -0700 (PDT)
+From: "Chia-Lin Kao (AceLan)" <acelan.kao@canonical.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/i915/dp: Clear accumulated HPD events after link training
+Date: Wed,  8 Apr 2026 16:45:09 +0800
+Message-ID: <20260408084509.555045-1-acelan.kao@canonical.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,38 +89,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 07 Apr 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> For some reason xe is also alining the end of the vma. That
-> should not be necessary, so don't.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+After link training completes, intel_dp_stop_link_train() calls
+intel_hpd_unblock() which fires all HPD events that accumulated
+during training via queue_work_for_missed_irqs(). On MST hubs that
+generate rapid short HPD pulses (observed at 5-55ms intervals on
+Dell U2721DE with Realtek MST hub), this creates a burst of stale
+ESI processing that races with the ongoing modeset pipeline enabling
+the 2nd MST stream, resulting in a GPU hard lockup.
 
-Cc: Maarten, does it look sane to you too?
+Use intel_hpd_clear_and_unblock() instead, which clears the
+accumulated HPD events before unblocking. These events are stale
+since they reflect link status before the successful retrain. Any
+new HPD events arriving after the unblock will be processed normally,
+and the scheduled link check (intel_encoder_link_check_queue_work)
+provides a safety net for detecting legitimate link issues.
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Chia-Lin Kao (AceLan) <acelan.kao@canonical.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp_link_training.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> ---
->  drivers/gpu/drm/xe/display/xe_fb_pin.c | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/=
-display/xe_fb_pin.c
-> index 35e5c322f8b0..72efafb189f7 100644
-> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> @@ -307,8 +307,7 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_fr=
-amebuffer *fb,
->  		size =3D intel_rotation_info_size(&view->rotated) * XE_PAGE_SIZE;
->=20=20
->  	pte =3D xe_ggtt_encode_pte_flags(ggtt, bo, xe->pat.idx[XE_CACHE_NONE]);
-> -	vma->node =3D xe_ggtt_insert_node_transform(ggtt, bo, pte,
-> -						  ALIGN(size, align), align,
-> +	vma->node =3D xe_ggtt_insert_node_transform(ggtt, bo, pte, size, align,
->  						  view->type =3D=3D I915_GTT_VIEW_NORMAL ?
->  						  NULL : write_ggtt_rotated_node,
->  						  &(struct fb_rotate_args){view, bo});
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+index a26094223f780..4de2b3d3ea21c 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+@@ -1267,7 +1267,7 @@ void intel_dp_stop_link_train(struct intel_dp *intel_dp,
+ 			lt_dbg(intel_dp, DP_PHY_DPRX, "128b/132b intra-hop not clearing\n");
+ 	}
+ 
+-	intel_hpd_unblock(encoder);
++	intel_hpd_clear_and_unblock(encoder);
+ 
+ 	if (!display->hotplug.ignore_long_hpd &&
+ 	    intel_dp->link.seq_train_failures < MAX_SEQ_TRAIN_FAILURES) {
+-- 
+2.53.0
 
---=20
-Jani Nikula, Intel
