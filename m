@@ -4,159 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B790FD5F92
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 07:44:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5591FFD5F8F
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 07:46:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3603810E513;
-	Wed,  8 Apr 2026 07:44:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19F9810E0B9;
+	Wed,  8 Apr 2026 07:46:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fGyscKnF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ptei7VjT";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 284FD10E0CD;
- Wed,  8 Apr 2026 07:44:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18B8E10E0B9;
+ Wed,  8 Apr 2026 07:46:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775634269; x=1807170269;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=GE9cLdtgjTcm3zCsHllUCBN0COEYoeVbY1wZmAY2OD0=;
- b=fGyscKnFTpC6WUlUHvPZoMjRzH4tmZGuz+vFnvCXg8Xhcp2YB6S9k/Lk
- 5xa+66bFqElBWk9RmG4iV7QIi+Jn7zTCzBs1teLuQbmt19Vl+k/+vNs8s
- e3IMsfNtE2ZMmF4v5MvlFYnGMyn23Z3n03prfCqn6fPkUtvnpj4V2p0MY
- /QYStG/UCtchJFEBQjCIvP8ed17/imDEdnOZAa6SLvdUZqR/EakaqFb3s
- NSzr2cXw/rUcTIqPJIdvS/OT8O0oU6QvkkvQpYSHcA3CunMLDnHnkZbui
- 2nI52Gn0FA4Zdd670B/HOxJlG5BsnY5aoieZmvCR/yYHTGQkNUIa+AHjH A==;
-X-CSE-ConnectionGUID: oJlXQ7DeTKq9a4ej3KZZ9A==
-X-CSE-MsgGUID: sBL3yRCfRLyGdZNjSDv4xg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="87237382"
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="87237382"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 00:44:29 -0700
-X-CSE-ConnectionGUID: s5Xzh1K+QNmxEZNnq9rBxw==
-X-CSE-MsgGUID: 0Qfc0NCUQS6NE5bVMcKIsQ==
+ t=1775634389; x=1807170389;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=HOeinGHosQvwWxDQCIs7G2hT79WlRxD2duGbULb62Og=;
+ b=Ptei7VjTKYClzj3S5f5GkhbxJNuh8clDwWcXgXWezh2ZUU28GL0aVj0Y
+ Kofq1Duesyrpw5KWEkYW6YC4T8kHpryDnJXjQX//R3oWnZjfFqqfBECFC
+ zvKmZuVNsQEGDr7D/HKaEd91G4CHrAhqIZspqszYb4O4XMGhhVeeSvdwV
+ juLKVtfakkbdJBBvPlPhtUDscrDsqpu1FGx7DyKx/K/sLEA1YWPcuSPum
+ e5KO5f17JDeMv3tfvdm0FKsT1XeqeYH/+6R5YT9qrsuu1PAJPDa+MNGpb
+ tq+bD0/M2ttENfRpF0hal9iU+UB/aa/VB9n8B7s/I2SnaEffwTpYKCiB0 w==;
+X-CSE-ConnectionGUID: nhqPdJvgSbGlEDrddaHzrA==
+X-CSE-MsgGUID: CFbYPidbScKrYUJP1/L5pQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="102064444"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="102064444"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 00:46:28 -0700
+X-CSE-ConnectionGUID: 1fifSydpTwaioDY3vViO+Q==
+X-CSE-MsgGUID: HxfpuXoUTfGsd5SJyuNUUA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="266387507"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 00:44:28 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 8 Apr 2026 00:44:28 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 8 Apr 2026 00:44:28 -0700
-Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.68)
- by edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 8 Apr 2026 00:44:27 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=U8e6MjUoOGNVGKmI8NvhgEdgZ1Bmp8lZC7m+sQgLv63nlOdvYVmVgllOmXVCg+HPGYk8XzZJ6cbPU1l9xyXhyAKAXRdIo4kjnwy3mKhI292CAiJRTNY3gFSEakKprfMclQa10mURKvy+HGWCI7tXDtdsZ3pzLR5eGxNRkMCxDLuV7xKR6r+jFUzVCkDauerCXS3+6my6WFy4NZho8MusgjSjFGuZ89fN2hRokkK+R/6TLuRbEnRYuT9LzB4f7I1T4of3A3IJuF19vwQ3JFmNSeO8TCVkn+EtqXayiq4d5yhMVzATK84aNqFdjC+vXNCDfSkGE4015Nc7D7kdE22Y7A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+7m/RCjhSxPZZTagQFwPT/WS/+wR0yMbNvU1nsZrUbo=;
- b=MCsI5meOM7VnJdFGAMRZRhW6B95I+hGitoWI3AYL+vlXxQ62jrLoaqLS5L1qUn9ot2y3HAO1dxljT93A77UXG1hSV5FMPGSfEBCgC3PxfjR+dD2mWLg7tE7micKLvy7F2A+xdT0g08iloBDCXVrOsebAGtfTi4BrhLCjbOJu5130NJgADRhDTa97P+RNXfT3HrHJExw9oF69fEUInO0uR35nxXO4E6k+IcmhC0RQCx7QncZhGzY3yaWoinB2o4jaOk5awXx6NdjUVWEeBwBQ7ANujyvR8PIWdAhyKzJt2AG5aZt21JkFHfUWUAFdtpbYC/uNFSVMGKXQlOPBTZ75kg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by MW4PR11MB6740.namprd11.prod.outlook.com (2603:10b6:303:209::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.21; Wed, 8 Apr
- 2026 07:44:24 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::68b9:ea3c:8166:3cc4]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::68b9:ea3c:8166:3cc4%4]) with mapi id 15.20.9769.016; Wed, 8 Apr 2026
- 07:44:24 +0000
-Message-ID: <731ac201-34a4-45fe-aac2-82b6d2bcc33a@intel.com>
-Date: Wed, 8 Apr 2026 13:14:17 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915/dp: Don't use DP link min bpp for the FRL link
- bandwidth check
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- <intel-gfx@lists.freedesktop.org>
-CC: <intel-xe@lists.freedesktop.org>, Nicolas Frattaroli
- <nicolas.frattaroli@collabora.com>
-References: <20260407183015.16256-1-ville.syrjala@linux.intel.com>
-Content-Language: en-US
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <20260407183015.16256-1-ville.syrjala@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5PR01CA0156.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1ac::6) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="228334091"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 00:46:25 -0700
+Date: Wed, 8 Apr 2026 09:46:22 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ rodrigo.vivi@intel.com, andrealmeid@igalia.com,
+ christian.koenig@amd.com, airlied@gmail.com, simona.vetter@ffwll.ch,
+ mripard@kernel.org, anshuman.gupta@intel.com,
+ badal.nilawar@intel.com, riana.tauro@intel.com,
+ karthik.poosa@intel.com, sk.anirban@intel.com
+Subject: Re: [PATCH v3 2/4] drm: Add DRM_WEDGE_RECOVERY_COLD_RESET recovery
+ method
+Message-ID: <adYHzt76lEXSyRkg@black.igk.intel.com>
+References: <20260406142325.157035-6-mallesh.koujalagi@intel.com>
+ <20260406142325.157035-8-mallesh.koujalagi@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|MW4PR11MB6740:EE_
-X-MS-Office365-Filtering-Correlation-Id: e73583a3-fff4-4acb-6a49-08de9542a758
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|1800799024|56012099003|22082099003|18002099003; 
-X-Microsoft-Antispam-Message-Info: TlMRSC9x5bcGkDPaqiQne0vRiq7jk97JVH8RBjTgN1Za/xZzXo1CjefFmIBfZCSSTT6lB62UqyOJYvwwEVKDQMuZ2hNVmpS5S/oqSZaZd3zDVWZsfcYN5LmnhkVbmgmVuffFxWWlyA6bPu4mC1i6RlWMhKXOG1TEj6AsMt4G1qHermajyob2DxltAMIuPpIQBwl12NkNhs6RZ4pkuS/OpxcjbAuBJE3jnJxcsAZLCw8vhhUdDCXMeb6ygFmqeU/fzDIPPuEL0tB2+Oh4JgiJ2+UKj/KJDtzEEtRs9FRenmn5ce3MXbNhasW6I/Q0YEDeiAhJUtVs7NHafcRqw14ZEc7isAtyok3TlbHEJzUcc5/5/YoVWRiwbYRzDwczm/jC+EgecnmzwEd1rkfaGy3b0zxIkmz2L8iFLtnIAhFodyLK1UfKKvCv8uyMsFpc2qj6dKLl+vbd7gr9QKHFQPb4UzE0L9bYbMPYRCkEyKp9VLMooIZdJyQ+JijTr8rHmmKkfGnxIuTnp+rHt4MM2GFRgDJSuVfxD29/R6CWHTZAaePtz66nfONWSBNHgox2PUw2Gez6hiVZktdFi1qx3bAatHHGHrvNFrAP3KCj9DZFZJK1lpR7CdAm5TjA7OrhwFFdyxZWAMMvFSEfdhiQy7oS9ZbD2P0q118vGJHn8X2ZcVbbphsqg2FPz/Oai8brKJ/Y5c/SyWnrWfwzcga3gT5EbvCVc1vhxEK3jkdw7UNv0yo=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(56012099003)(22082099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MGFEa0FCbzM1a25JaGpYL0pic2J0VGNCQzV5M1pXdEY5MysyaTlCdGhlQWs1?=
- =?utf-8?B?eDdhV1RhbXU4bHB0bmJpRkR4VVBDOER1U0FsNkYrWkhBZU1qRjJmbnR0aHdq?=
- =?utf-8?B?emxvQndTOWxEUC92VDhUOThPUlhWNW5VMTVaNzRDb24yemRvdi82QkliYjVK?=
- =?utf-8?B?cVozVks2RW51UC9ETGo3TWlTQ0FtNy9tMUdrSjJTeEhsNWxYSjd0anpMMUtR?=
- =?utf-8?B?N1AxekxacFJXd3pvM05iS2szd2lEYXlOd1c1M3RydVZNU0JYNWQ3VTduSG1W?=
- =?utf-8?B?Y1F3S0JSaEFvUWhKSm9xTTRaTktpY1hGWEcrNER3V3Q2b291elB2KzdkUWZQ?=
- =?utf-8?B?RWpNdDMxZWx5YzJOcElmWTFmWjBCb0p5Q09RVm8wYVhuYVNxT0VnTjBFbURy?=
- =?utf-8?B?Uk1CYXAxbkp6d2N4Q2lvQVk0ekJucGovb3VXbHVSMllrcHpuV0tCZjlGUjgy?=
- =?utf-8?B?ZUU2aEtIWjBWYnFySkwvcFZqRy9PVytyRG9DRkYrZkNnWGZ3Qno1NE9GeVk3?=
- =?utf-8?B?blNlUmtUWmRTOGtwNmVoYndPVlNlMnpBY212bldhYUhSVDNvMURydFV0d09y?=
- =?utf-8?B?Vlk3bFZDS09tbjl0YXhhcnFjK2hhY1FkdzJnckVBMXpPTEpKKzJaSlFBRUJm?=
- =?utf-8?B?S0dqd2NBQ0ZkUTlMRnlSeDRTVmtuN0IwU1lwTzJOMERKSnkwWHNETUhLSUdE?=
- =?utf-8?B?VkQyV1JOUFNSemxJaU8zcURUa2ZnNGtKdllFamVCNjVtR2R1NGdqMXM4cGJM?=
- =?utf-8?B?dFRpLzhXU2RDVUtCbGJ2dEgzeGs0cHdETVA1b21wNWtUNWlLK0ROV05Mcjds?=
- =?utf-8?B?YTc0cmN2Ylh3aDZlZUgwOXozeitoZGw0bkdRZzNSS1MyazkzZDBvYWJzbitD?=
- =?utf-8?B?MnMwNVJpNnA2Zm5UVjRxWGF1TStjVEpPSUdRNFVCVlNyN0dpM3JmTjhoMUlR?=
- =?utf-8?B?VU5CcEdtL2piU0pEUnJRYk1UdWZkbWJSc1dXaDJoc1FPTUVlcGVuOUs5bEVn?=
- =?utf-8?B?Q1RoOXNPaWVUTmNRb2JkeHBNekxsdS83dkhtNUhRRDhFOGY1TGgwak9YNVph?=
- =?utf-8?B?Q1FVZ3hlUmE2TE04VnN6NURFUUVHd1JHQXhlTWdsTXczSlV4VlBEUm04d25P?=
- =?utf-8?B?QThleTNDZFhKMDQyeWJ2UURDTjBsWW0wTzl2TW9iSzlWcDF3VHQxT1hBMHIx?=
- =?utf-8?B?ZnI3RHhMKzV1N3U2bmt2OGNtek5ncGErbEs0Z28rbGUzZDUySVo0MWRZRTh1?=
- =?utf-8?B?YUxIRXlOdTlrVW12ODdvcFhVb3FLUEVDUkhyNnZCeDlDb0w0OUQ0amVXRWln?=
- =?utf-8?B?QUdMbHk4cXA5SzRqNmtObHlRK3AzcjM1NmtsTkRVYUtxaDhDc0UycHUrWGNk?=
- =?utf-8?B?MkRHSVhDU09QT1Q2b1RFMnNzcEx2K3JuK2NpaDZVek9IUSttMHZPaDRLdjJN?=
- =?utf-8?B?cHVUZExEZTdUWHI4UVhuVDhLY2xMbkRTV3BkazNJdFVQY1k0QVQyc04zcXNo?=
- =?utf-8?B?MU9OajFvL0VZNjdOaWdvREg1ek51QytMc1p4RFhzaXFGTnFZM28xYmQ1OEk5?=
- =?utf-8?B?cDdiam1ITWpNeFRFOHVkK3J6WVIxRlpSSHdoVEU2bkgwKzk4QjB0dWxzZkh1?=
- =?utf-8?B?WUJ4anRGZmVueVFTSG5yaklzbUVIWFAyVCtvVW5leUJXTnBYYi9ZemdtbThI?=
- =?utf-8?B?M21OZzNTajFNWHBWWWZpZGNMMFBwajZiV1ZLamhCRFBuYWFvYnlraTRqeWUy?=
- =?utf-8?B?L2lNYjh5c2JTTkQrSnVBRWpOaTBPV25Xdi90aGliMkM4MW1idEF6ejVtdzFx?=
- =?utf-8?B?QktOQk4ydFhOZFkvNEJXd0RjNkZEVDBqV2crRnZaWHRreE5mMkorY1ptRk9j?=
- =?utf-8?B?RjZTYnRvL0pqdE05VDVlQ1NtMEorekY4d1ptMkhodlNjNUlxRTM1NndTa1Jn?=
- =?utf-8?B?SmJLMmZGNTlxWXVFZFpuWlRqSXBiak1OaXhhUG9VOGdraUFFU2NqY3Z0cU82?=
- =?utf-8?B?UGxLMUdTcGVYNGVZMHdkRXZuSjZZM0hISjMreEpvRytpMkU2eUo3WlJkallp?=
- =?utf-8?B?S09xcjR3STJ5UFJKQXBGdWRBVlU0cFVCM1BtdU1paVZ3bmtZWGVMQzNZb1Iw?=
- =?utf-8?B?UzV2OUUwZkllMDdoSHd2V29JQXpPNWY2TTExWHllRjJ3MDJrZU9MS05XcHJz?=
- =?utf-8?B?dzllUnRoRlBaWUlLT0FqU05ibXBpRnlobWNKcjlxaDF5cDBJblpvNW9HK3N3?=
- =?utf-8?B?TVRxM0xWNEViYnd2Zkh4Y25sdFFmWjRWWGJKY2FBeTJrLzJ4S2hsZFVUMEhy?=
- =?utf-8?B?dDhObnVjQTY2ZVNubkhXWUM0K0FYL1lTUExFQlpTZWVKak5kYnZ3SUZiR01L?=
- =?utf-8?Q?teU12ZrewxBaYW2g=3D?=
-X-Exchange-RoutingPolicyChecked: iXyM6ZtELQYLUnI3nkZQTmF8jqNBPqQPpHNPEmbHJUgNYP91HafHkRy8QdFttg13b9Kz4uxzZvEV1qOLHYjWmsFeoPwbafYKQRgXcbVkfLyGVGCD886jenGgw+ww8GKsf9UJ+f9DKEL+1ciYAa42yfZkpSaVDkCnFvMGsiITx2OdlRoCWRvXVn1DgRJEiFOfqpifdZKXTBZeb3IJLbw8tve7q0vp1DExlh6grGqPjY1y8ju8/ZwuYOP5K9T9vGEFHDIcLxoNS7QCXhREGzoYg1qBHKXj2MrkogTxh7Gz9h3hVdrbj+gUa3QJ0tTgMvO5+mLVUw/dlZDTGpyCDN7eZg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: e73583a3-fff4-4acb-6a49-08de9542a758
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2026 07:44:24.6251 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: vK0y8nYV+vB0E7UwnoWN1tk1ZfBG5pKVirnA3JfsOB5WENwo2Rt/tKgj0Is8sI83q2VwInE05+YcyOmPU6xzmQJ3hArqItI37dDP+T376uY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6740
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260406142325.157035-8-mallesh.koujalagi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -171,84 +73,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Mon, Apr 06, 2026 at 07:53:28PM +0530, Mallesh Koujalagi wrote:
+> Introduce DRM_WEDGE_RECOVERY_COLD_RESET (BIT(4)) recovery
+> method to handle scenarios requiring complete cold reset.
 
-On 4/8/2026 12:00 AM, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
->
-> intel_dp_mode_min_link_bpp_x16() gives us the min bpp for the
-> DP link before the PCON, however intel_dp_mode_valid_downstream()
-> is trying to check for sufficient bandwidth on the HDMI FRL link
-> after the PCON. So the use of intel_dp_mode_min_link_bpp_x16() here
-> is incorrect.
->
-> Presumably even with FRL HDMI still can't go below 8bpc, so we should
+s/complete cold reset/device power cycle
 
-Thats right, even with HDMI2.1 FRL the minimum uncompressed bpc is 8.
+> This method addresses cases where other recovery mechanisms
+> (driver reload, PCIe reset, etc.) are insufficient to restore
+> device functionality. When set, it indicates to userspace that
+> only a full cold reset can recover the device from its current
 
-Thanks for catching this issue.
+Ditto.
 
-Patch LGTM.
+> error state. The cold reset method serves as a last resort
+> when all other recovery options have been exhausted.
 
-Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+We usually try to utilize the full 75 character space where possible but
+ofcourse it's a personal preference.
 
+Raag
 
-
-> just use that to give us the minimum required FRL bandwidth. And this
-> needs to account for the sink format (for 4:2:0 sub-sampling) since
-> that is what will be flowing over the HDMI link.
->
-> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> v3:
+> - Update any scenario that requires cold-reset. (Riana)
+> 
+> Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 > ---
->   drivers/gpu/drm/i915/display/intel_dp.c | 20 ++++++++++++++------
->   1 file changed, 14 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 4955bd8b11d7..31e9b2758499 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -1317,6 +1317,15 @@ intel_dp_tmds_clock_valid(struct intel_dp *intel_dp,
->   	return MODE_OK;
->   }
->   
-> +static int frl_required_bw(int clock, int bpc,
-> +			   enum intel_output_format sink_format)
-> +{
-> +	if (sink_format == INTEL_OUTPUT_FORMAT_YCBCR420)
-> +		clock /= 2;
-> +
-> +	return clock * bpc * 3;
-> +}
-> +
->   static enum drm_mode_status
->   intel_dp_mode_valid_downstream(struct intel_connector *connector,
->   			       const struct drm_display_mode *mode,
-> @@ -1327,13 +1336,14 @@ intel_dp_mode_valid_downstream(struct intel_connector *connector,
->   	enum drm_mode_status status;
->   	enum intel_output_format sink_format;
->   
-> +	sink_format = intel_dp_sink_format(connector, mode);
-> +
->   	/* If PCON supports FRL MODE, check FRL bandwidth constraints */
->   	if (intel_dp->dfp.pcon_max_frl_bw) {
-> -		int link_bpp_x16 = intel_dp_mode_min_link_bpp_x16(connector, mode);
-> -		int target_bw;
-> -		int max_frl_bw;
-> +		int target_bw, max_frl_bw;
->   
-> -		target_bw = fxp_q4_to_int_roundup(link_bpp_x16) * target_clock;
-> +		/* Assume 8bpc for the FRL bandwidth check */
-> +		target_bw = frl_required_bw(target_clock, 8, sink_format);
->   
->   		max_frl_bw = intel_dp->dfp.pcon_max_frl_bw;
->   
-> @@ -1350,8 +1360,6 @@ intel_dp_mode_valid_downstream(struct intel_connector *connector,
->   	    target_clock > intel_dp->dfp.max_dotclock)
->   		return MODE_CLOCK_HIGH;
->   
-> -	sink_format = intel_dp_sink_format(connector, mode);
-> -
->   	/* Assume 8bpc for the DP++/HDMI/DVI TMDS clock check */
->   	status = intel_dp_tmds_clock_valid(intel_dp, target_clock,
->   					   8, sink_format, true);
+>  drivers/gpu/drm/drm_drv.c | 2 ++
+>  include/drm/drm_device.h  | 1 +
+>  2 files changed, 3 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+> index 985c283cf59f..8c0236e2e6a6 100644
+> --- a/drivers/gpu/drm/drm_drv.c
+> +++ b/drivers/gpu/drm/drm_drv.c
+> @@ -535,6 +535,8 @@ static const char *drm_get_wedge_recovery(unsigned int opt)
+>  		return "bus-reset";
+>  	case DRM_WEDGE_RECOVERY_VENDOR:
+>  		return "vendor-specific";
+> +	case DRM_WEDGE_RECOVERY_COLD_RESET:
+> +		return "cold-reset";
+>  	default:
+>  		return NULL;
+>  	}
+> diff --git a/include/drm/drm_device.h b/include/drm/drm_device.h
+> index bc78fb77cc27..3e386eb42023 100644
+> --- a/include/drm/drm_device.h
+> +++ b/include/drm/drm_device.h
+> @@ -37,6 +37,7 @@ struct pci_controller;
+>  #define DRM_WEDGE_RECOVERY_REBIND	BIT(1)	/* unbind + bind driver */
+>  #define DRM_WEDGE_RECOVERY_BUS_RESET	BIT(2)	/* unbind + reset bus device + bind */
+>  #define DRM_WEDGE_RECOVERY_VENDOR	BIT(3)	/* vendor specific recovery method */
+> +#define DRM_WEDGE_RECOVERY_COLD_RESET	BIT(4)	/* full device cold reset */
+>  
+>  /**
+>   * struct drm_wedge_task_info - information about the guilty task of a wedge dev
+> -- 
+> 2.34.1
+> 
