@@ -4,158 +4,163 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EFEF10F995A
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 17:02:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4AE0910F995A
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 17:13:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1F1610E6AD;
-	Wed,  8 Apr 2026 17:02:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4AE010E6AD;
+	Wed,  8 Apr 2026 17:13:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WwdQd0no";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D3Wrp2On";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4112810E6AD
- for <intel-xe@lists.freedesktop.org>; Wed,  8 Apr 2026 17:02:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6E1C10E6AD;
+ Wed,  8 Apr 2026 17:13:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775667733; x=1807203733;
+ t=1775668397; x=1807204397;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=DmB58U82Z4QyUJnoRG5Y8V2PRyOPSGEtQ4LWygjRKSU=;
- b=WwdQd0nohY80nlJCWUXuyBk7P8nDfv+5W34FgItLnMXVpCuBDsOMpcGj
- Ye252j9hSuneg/bn3wgvLIpxQPRi2PLAd6H9bkTgJW1YlYfIpK+42uH50
- HwZUs0mhYs3waZDfoICj0GQrxk+6tWbuzI5Hw9GtfmG4CsFSbHKPPIhOB
- R5ZPv6HPc/UVfCjczVkEKdfTTQz+tXI5i+914PeeNBChhVfO+vAbAdjmf
- WaVQaGyIeSkv0Pp8nrFKFR7jwBVNAN45gvJJzW44ZVQz5FM1CXyfumfyX
- pi7SBFe0wPNkDCzt9rdYKJXqJtzq87tv7kPDECwDEu8nQGUGOw/eoT2Vq A==;
-X-CSE-ConnectionGUID: WJtnLF7UQkepdFdnIjWhGA==
-X-CSE-MsgGUID: hjctKqoHS0arxwGQyI7d+Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="80254225"
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="80254225"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 10:02:12 -0700
-X-CSE-ConnectionGUID: mxJFEFIdQc6lM57kEBKzeQ==
-X-CSE-MsgGUID: AYnpmnV1TwWOclOkvorFXw==
+ bh=nr9W/6/P6u6iWoc+sx8UxAoM/mRX6k696SF66pJSm1E=;
+ b=D3Wrp2OnLufsQDumGz3wAw66FAuqYnYmep+wOl98f1S7H5/b9QTaLhrq
+ oZlIxIDQ+JVkCxBvw4uK43u8edIoi7DHcESPeNivEoZc3k4HLE+B/iHFC
+ Y1dPKjqmyA2KHhwyM29JCs/3rL0dNf+T9pr92upY5OARro/wu20aMNN2T
+ M3vjqtepXNSx1mXNFhVvrMVS1OnKrLwY+fgvZksk2Y/l4Kat/KDt7mCLj
+ zyCxX/mi1ZSwoEXS69I3djeOJXvKDqITFor3WeoZg64P4et19dAvi1BYl
+ kG332vLwBg0R1YEAFL1H7QjaKRHs1xTFw4cNZUIbQrpGgeQTgBxcyRqH3 w==;
+X-CSE-ConnectionGUID: h3ym1Ap0SZqj9VanIn58Hg==
+X-CSE-MsgGUID: zAvuKVgbTR6dSZs1AsfJ9g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="80520408"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="80520408"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 10:13:17 -0700
+X-CSE-ConnectionGUID: cykYkH9qTdCbfk3L/a02Ig==
+X-CSE-MsgGUID: yBIOy8NjR4KZlwuPyKPzPw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="223761907"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="258963806"
 Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 10:02:11 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 10:13:17 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 8 Apr 2026 10:02:10 -0700
+ 15.2.2562.37; Wed, 8 Apr 2026 10:13:16 -0700
 Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 8 Apr 2026 10:02:10 -0700
-Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.21) by
+ 15.2.2562.37 via Frontend Transport; Wed, 8 Apr 2026 10:13:16 -0700
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.24) by
  edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 8 Apr 2026 10:02:09 -0700
+ 15.2.2562.37; Wed, 8 Apr 2026 10:13:16 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BjItKI1VyYtUZIqblOZQvqGz4nePXRkhg0gc1GdfLKsClJr7S6q9vQGqUtSdAtaQFCvfcAdYv8lGB+F0yPTGQ4zYg6R9JL7wxw2TV24vfbbyH9uVe5TM5QqjE+5GWWsy9Y+oi6FfPNuG6mqjaIdTwPbehEqnELf/HcjsGtZHSBXZnSBZbMVRf68e/HfYlQsnHgKhiwA1VRYsPr/DwL2G0iRsMGgIMpmMoTGrHVvI2kHXdJpujcTpS3N42/UixNoVGfGBc9Gzt/ySsfMfE03LDZzfl8cJKkGjG8d38250XKQOTvlrq6fPeEYA8gm3SZrMvH7kDfCLALdTv1INc9TFVw==
+ b=A0vR997rVWm1O3lw1Nh0UfT+XcGfo/wB/h6Gww7G9el0n97drry+8nkR2jLknFClXfhCbshnvtRqxNayAvjt4vymML9+9Gdj6vBTWc96b7NfgMWBHqUm3qVa12S9KdLIMkXoXzpzw31BXabjHxspkmAO2xtlcM5m8a2JrBESY0fg62renN/er+p9mSQhHUqCBRDZPvev1K7ULiKLKYHbEN3t4IDkjTeYYYrjVCBnWYgGB/8hkUvcj3EksRHNINPruzYsUGuBWh/juovqbjXJfKuNbIVfLv4iSpqcnabxf2dF99Kdqc+sCDdxQVQm8aNWwYbSQ2CFWQ5S1DzN1W0CuA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EAzJMLgPNPMhf4qCSVo7tamy0sTyVd9LSJhG34rN4So=;
- b=looC4FxfZgfZd/eyeDr0kfSx3+kPtWO9cFZDsCbQi8C999tW5yjg7i9EadEhFYyOKHTIWA69wgSGV9C4j0jbRmgzHhXykTvAHR/P7pGrATMv7AaY8ODOJtoOEJrea11J6sE2ylMa5hBSgg6YIRo+4AT7TO1v+ZkWpxsYLzwMKvRakBaW0h6K7eTZS6EUJrkxDz6Xl5NBeCmmDyRTQvfTq0kyYiKMb63NHk6XKM75A50cB2iWl1hvmVTFoMmoW/pcMYiIG21+rdRZYn0R9uf7OhbGKkDLTfPEi2IRbqO9pnh3O4k6T75YqPOfaqS92PCcLqbq16nMd1bLYePxa5wpIA==
+ bh=pBpJ4+6vtacUBqC/wN/cEGVqQUA9Bm0emQXJ3RCIwZ0=;
+ b=WHdlNnEz6S1BCxFCGHkyV2dqg0zo5Ul60Azpuwef1oPJHj6RwOaxuXtg4uFlozPbUcvYl3ySjQERXw5/rMtMshtfj2yGySLGhbH+9O6XZqVO1hOUbjCsIC578aF8ZonO9APNbUresD0nY4izUo7NLoV7skgpQ/8rD0MPtRdeJjyT3T5Jv1IFZJLU8x2CCf00DhB0yA+i4nwTZk1YD+003s7NzeY7GZNL4LcVdbzXI7LMOLhJ3ksSTdv0t5DjKH4HGcX+rjDhaOpAQmv7Myz46sJgsRKKtmpIoKl9sCTVZ/2KQzXPlI+pE7f7ylnOfJdLcmKsz6pV3DNYJAyIQPGbGg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB7605.namprd11.prod.outlook.com (2603:10b6:510:277::5)
- by DS4PPF69154114F.namprd11.prod.outlook.com (2603:10b6:f:fc02::28)
+Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
+ by CO1PR11MB5188.namprd11.prod.outlook.com (2603:10b6:303:95::16)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.16; Wed, 8 Apr
- 2026 17:02:07 +0000
-Received: from PH7PR11MB7605.namprd11.prod.outlook.com
- ([fe80::48d7:f2a6:b18:1b87]) by PH7PR11MB7605.namprd11.prod.outlook.com
- ([fe80::48d7:f2a6:b18:1b87%5]) with mapi id 15.20.9769.016; Wed, 8 Apr 2026
- 17:02:07 +0000
-Message-ID: <7248b00f-35f3-4753-976d-952f1c4873a6@intel.com>
-Date: Wed, 8 Apr 2026 10:01:59 -0700
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.19; Wed, 8 Apr
+ 2026 17:13:07 +0000
+Received: from MN0PR11MB6011.namprd11.prod.outlook.com
+ ([fe80::3a69:3aa4:9748:6811]) by MN0PR11MB6011.namprd11.prod.outlook.com
+ ([fe80::3a69:3aa4:9748:6811%3]) with mapi id 15.20.9769.018; Wed, 8 Apr 2026
+ 17:13:06 +0000
+Message-ID: <bc61447f-9b95-46b7-8a92-3ee3fa887711@intel.com>
+Date: Wed, 8 Apr 2026 19:13:00 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/guc: Add support for NO_RESPONSE_BUSY in CTB
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+Subject: Re: [PATCH v10 1/3] drm/xe/pf: Restrict device query responses in
+ admin-only PF mode
+To: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
  <intel-xe@lists.freedesktop.org>
-CC: Matthew Brost <matthew.brost@intel.com>
-References: <20260403204433.5765-1-michal.wajdeczko@intel.com>
- <6b5850d5-879f-4ea0-ad29-63ef0d8474d1@intel.com>
- <4d27ebeb-c27e-4253-8799-f939754d047b@intel.com>
+CC: Rodrigo Vivi <rodrigo.vivi@intel.com>, =?UTF-8?Q?Piotr_Pi=C3=B3rkowski?=
+ <piotr.piorkowski@intel.com>, Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>, "Dunajski
+ Bartosz" <bartosz.dunajski@intel.com>, Ashutosh Dixit
+ <ashutosh.dixit@intel.com>, <dri-devel@lists.freedesktop.org>
+References: <20260408160514.2388689-5-satyanarayana.k.v.p@intel.com>
+ <20260408160514.2388689-6-satyanarayana.k.v.p@intel.com>
 Content-Language: en-US
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-In-Reply-To: <4d27ebeb-c27e-4253-8799-f939754d047b@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20260408160514.2388689-6-satyanarayana.k.v.p@intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: VI1PR0102CA0063.eurprd01.prod.exchangelabs.com
- (2603:10a6:803::40) To PH7PR11MB7605.namprd11.prod.outlook.com
- (2603:10b6:510:277::5)
+X-ClientProxiedBy: VIZP296CA0021.AUTP296.PROD.OUTLOOK.COM
+ (2603:10a6:800:2a8::7) To MN0PR11MB6011.namprd11.prod.outlook.com
+ (2603:10b6:208:372::6)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|DS4PPF69154114F:EE_
-X-MS-Office365-Filtering-Correlation-Id: f8adfa49-f298-4070-d7ad-08de959090d2
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|CO1PR11MB5188:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6ec251f7-2282-46f2-4373-08de959219dd
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|18002099003|22082099003|56012099003; 
-X-Microsoft-Antispam-Message-Info: 12YLXgE4HEIagByjvw+PPL9WrsDN59dAWyoErqW5UXzk3ceBvz/5tHOeuJkVqasstXAJPM4Em+RhLs/ne0X+Qnrco2/aaNXSqMB+at9PG5pYssOGiRJxpJcapiXdSFBSpxlcm93Or6ZkIU0y5HeFjrlYttTJPtQKu9/svIma+HHbwuftcgB9seXwCt8JCJh4CgGm5R9vzzzOKBe9g256bE6zzN31GWhG5jztblnKuVOJ7NcPleyW3jOfEmv+M/Tnv7spTcVEa0ZjY+HC/QHi17XYFtJ4eJ4eRMznlykeMS4qVyHroor0X1nWkuW5+Ttm+lEvc/UaZFQQoyWd98okud39kAiM+ZOXon7aMXIJ/D1HUi7YAZQhwHfMctvkVPfq/+kI1W668QcACxX0nD/Ey86Mv0EFYs7rtt7WQeuj6viJX9lm8yweBzZ2QleuJx8OGth46C/m2lGCVqSzEa6lGFxBM2wDZPaLFPcc7E3ZM7BB1KsThv9cnoSNjlP3hjS17vPU4O4uS5jFfDfmgm0Fc/6o8ah4fNfH1BGVa8ryXkA1P9NV8sGtRcMlgmKC7J1akjRgb/p42p+F5jojZzy+5RBWZZoZvl6JX1ZGgI9xEkeGbbaz/jK3olGKrXFyedPOdxlhBhyh+wZ6dNPqxaTcEQBEWkN31vxH3Gno5KzRjGcoZJ8If1XGn+le7Mzty538
+ ARA:13230040|366016|1800799024|376014|18002099003|56012099003|22082099003; 
+X-Microsoft-Antispam-Message-Info: DFFOki1cawXL1PTSHRNGRAT3WoCPG6iLJ0gDRdYkxUhJ3XU8n0hfTpjRcYwyRa7UkypASbKa7EuKwFvO1N/dr4Ffq4KLNzOFPrFS0HqUbIlAR2BpmBlwB1ZesShouaV2L7LZxjcrGaevLMol2sINi2tPwCRAiLxZ7yE8DCbNAvw9kO0zKjWOGl5v9yWalwq4aR88Jlm7/MycHrXDjZJfSDN5qUTcsUVb/xMBRytS74vJcKoxXAWkOjD/gXerVw0beqibGThZnNNoGRSSw5Bf7aQmHFBxW7x3ffl+YUkClNFoIY1hr840rBUGML4TMAwdGsNn4grBl542LRBUpolZMQhKiTNxvSEN+Dy1SHchaL1nz0YLU6r6CavjULMLh0kYRtwNv0MfteckpzlAvhxzxArbNVqDicUOPUyN5agjGcCYAcOoIZo6gbt3KSXGCN6f7BvqP6WAKVdkZM1fvvVpQiv9J8MYBaSda0RNYVoyQ3fpzR5Hi2UP16PjDZPRgiH9De6siUvI5oekwDIg0xjvjGn/zAYhBxOSF3IBFNzj+IYG2BsilIf8sH8MlPVly9hPyWVp6fYXCqBg6VdeNhe8N7SpnmXenx/OIBPXK7O18AzmRrbdoXp3tlTbV4hJYPviPQc2gLqMP2rVQXF5WGwujFnrcBnfXSz+to+UB2LX58CyuTG7m3D1fu2mVap4QIuk
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB7605.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(18002099003)(22082099003)(56012099003);
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(18002099003)(56012099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MnJUQndJVWd4UitTK1dPOFc3aTloQkV5TW55elVhQVZxcTNnZDVQQldzTkdq?=
- =?utf-8?B?YzVXV1QySVIxd0pvREFBQ2J6UTRlUU92NDByUE9lOGYyOXNHOUorRlRxbnV0?=
- =?utf-8?B?SzNCYnBMQXh5U0YwdExlMjJKSXRMMW5OUXJkZHVEdCs1dTZuVmNmaUQ5N2pi?=
- =?utf-8?B?QjFQd05ocEx2S2NEejc2cDVpWHQyVEtxN0RZZkhZenVkNkpsS25NN2dPbkVx?=
- =?utf-8?B?M3ZRanlEZHMrTVFOaDBwZVFCUHgrNUdrbmJKSE1pUklFTkxITWp1M3UzYUdr?=
- =?utf-8?B?MFR0a1lLSGdTQS9vTisrMWsyK1JGRHYxWWZVbTRKUjZSOE03S041dWZxQXZP?=
- =?utf-8?B?alM4SVpJTlByMlFqOTdRWkVGMWUwYm1JcjBraWFnSTduVXZGbVIyczlLanMy?=
- =?utf-8?B?N1UxMWFzbFZRbjYzY2hRS05OUHRzc0F3dktEQ2hkMnBoOU4wbVUxOGNkSGhZ?=
- =?utf-8?B?dmZ2NDZyMVh2RjdxdFliY2dicDFsaDZseU5vZzhENHB0SzdKbkhTMHNtOXFI?=
- =?utf-8?B?SFZhKy95T29HcUdqSFE2QmNKd0JvRzhMdmNhWHloNHJUMG9aZlpwV2doVS9E?=
- =?utf-8?B?SE9iakVCMTY0bWtoM3VwUmZQaGNrY1VCMDhTd2t2UWpEbUpRWHFwMUZ1TVJC?=
- =?utf-8?B?ZzU4U3BxNmxWbFQ4dWR5N1l5TC94SUFmdyszY2lqMzl2RHFURkZKN1lSZ25H?=
- =?utf-8?B?Rm45N01hVUFhVkVoMkIzVk9ic1k5UndCVUcvK1NNU0Z3cDRyaFoyaExJNXBH?=
- =?utf-8?B?ays1WkhXYlZnOVBLRHNHb1JESnVkTUNaVDdobVFPRm90b1IyK3YwVGk5N0tx?=
- =?utf-8?B?ekJLc2xzZlJ2SktML0c0YytZWkx1cWRSdWZ4cEtiSkpuaEd6c3cxMXdRWU5F?=
- =?utf-8?B?bDdhM0Mrc1JwT3k2Qmd1ZExKc3BCbkpySkk1ZTJxQlhweDJvQWtPc3oxMElR?=
- =?utf-8?B?eHRJY0RHenp3N0FZQitKSTIyakpSU1pjQUo1ZWZtWm1EWXRVb3BMaUplNXRo?=
- =?utf-8?B?Y0sxY1dxY0thRy9SUG9xeDRqYVlrSk9qWHVxNjNtWWFMbDRNWlZOZGthNVpT?=
- =?utf-8?B?aDZhYmN0ejJhWlhVMmZhemdvT1U4dmFqRTVKRzIzM2FzRzFZME9WeXJEeDdC?=
- =?utf-8?B?UFhsd0FQWG5JUkxkcVZ4Ni9odEZMalFxdjh3d1BHVWU5aHBxM0RtTUNuU1RZ?=
- =?utf-8?B?ZTVRVU1BYjVUUHZyY3ZVc1FONS9EZmtRM0hwbDlpQVcwMklpVTQ0VDBWcStS?=
- =?utf-8?B?dUMvRTRodmpqQ1dvUUR4aStweTFRT1lRS1JsTkVQM0R1aXIyNHpNS1pBTHNZ?=
- =?utf-8?B?WkUxMUdlbzZqU1VOT3NIL3hoZWJieThOYUJoY3lHVEtzZ1dUMHJhazU2Ny8x?=
- =?utf-8?B?Skh5eVhINUFwT1Jvc050bWV6SnNOb0VHN09Kek9GR2RlZlZhdjE1Y0lzdHlj?=
- =?utf-8?B?UG1UNHVDYmxsSkQ2NXNON0VQU25OSTBybGhvemtBNkV3SExtU0dIaHZUYjlt?=
- =?utf-8?B?ZVZUcWErbGpGa0JFYTRxYlgwNG5oejk1amw2NVIxSHQ4VzdsSDZ1R3pPSE9w?=
- =?utf-8?B?bjE0YTFZTjk0cmRQUGZ3eVRPbkNYQWRmWHlzWnNmdjVvQ0pxSWh3eXFpNjZo?=
- =?utf-8?B?UzYrV2ZlSU5TcVoyNTNHdUFIeDBzN1NURFd3QmdKRnhHbHdhRC9hYXRmeVN2?=
- =?utf-8?B?QVFMb0NvMVJvZkFHREtXNWE2UkxyUHJHVFVZWEg1dVhjRVVxN05IZHUyMTdv?=
- =?utf-8?B?dHhyNTA2MTlBOW85L00xV0FyOElSMXNmMks3UGVhRHZrUkZIMGdMeFJFb1Qv?=
- =?utf-8?B?SWh1bGZ1SDBTcTVlVEkyMWxEVVQ2NHhRQnJWNDIzRUlGdVJJL3c1MGN0RTJm?=
- =?utf-8?B?WFo5OG5HOWE1d1ZPQ01SaUptdzJ5UW1RZmhYclhZMFd1c0dEc2x1RXRJRGxR?=
- =?utf-8?B?c3o3MjZET1h5eHV3dUdFUnBwYjRaV3NIeUFUVktZQlZvYTJ2S0xSZjhQMldo?=
- =?utf-8?B?cFZGTEliRncrUGtLQUtyS3V1NUVKVUZrTVZSdnBzVEUwS29ETGsvQytRL1M3?=
- =?utf-8?B?bW41YUFlSG4yNmtmMzJ4SkVPeVRNRURwWVoxUWxNY3lkZEovZnlmRVN6bEhi?=
- =?utf-8?B?aTFsMVI2YTFNbWhFZjk1VDFWeWtGdWJQYW5EMDg0M0pHVTlmby9ycXkxeWNa?=
- =?utf-8?B?bEF0cGk1Zjc1cCtPMzZCK2t6M1FXU2JlcFMraHdySWNVMllHaEFRMEdoc1hV?=
- =?utf-8?B?WDZaWU52U0J5M1k0UDdXZXRQS2dvS0xZemFoa3Era2tyVlZEcmxaTWRiOTZP?=
- =?utf-8?B?Mnd0NlBKSG9PaUQ4NGthdEJpWGdWNERORHZXSEw2WjV2YXlBcVh5N0tHajB6?=
- =?utf-8?Q?XJ68AWk0rLcJK43M=3D?=
-X-Exchange-RoutingPolicyChecked: Nd7uj54hGcimyCKdZ7co7H6ez3oZ8NJK5X3CiW8/9H5Zcg/DvXAUGYaYJS44hh+KkpK0RuixC4G/+0N4akg0zYMUUXbHRFKLncKU/C0tzrscVMsp7IHFtZsarKHPbalbXSc0TPngvRYODynG1JmAFx2PWN9hGU1BEB+drjgKAqP4sjPZKZDYwhaxuqfmlA+Z+vL4NydjrHDN8MHpC/2hxPY+4G3ft5lYdgzR97ApfdgXVs1JVWasS1gg36p7MJxFer+WByhsxdEfETP02XyiYFrSNQGeu8wsAY4xGuVHwYVKXdZDkP/hNEGR4yhvLX9gl28LwrgabJ1JOfEG9T8H0g==
-X-MS-Exchange-CrossTenant-Network-Message-Id: f8adfa49-f298-4070-d7ad-08de959090d2
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7605.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VDh5ZHBiKzdTR21YK1Q1Vnd6Q0VvMGtPVGlkRXQ1Y1pVeElLVVkva1ZSZ0wr?=
+ =?utf-8?B?MFI2aWFJMnNlVjlCUXd4RWg0UXlMb08ySTVmc241Z3lOOWJPRGIyOGN2MVZ4?=
+ =?utf-8?B?d2pWaExxUy9XVjlQL0FObTRKTXZIZDZaWFBvd3R3MmVNT3E1OE5Ob2p5TXdL?=
+ =?utf-8?B?eEhINytnZXpxT0RReG55KzZvdExLV3ZPRkVPRTZzdllvT0tIVTNLZlp6emVl?=
+ =?utf-8?B?WGs1Q0c1UnpSRnFER0FDYzZEYkFLNkNORlRxTlhGeDBVT0sxZ0tHcXVpVndp?=
+ =?utf-8?B?K1dsN0NlVEF3YzFRTVRVdUlIT2cyTjdETHd4ZVQzbGtjbWpsMXdvZmMzb2Z1?=
+ =?utf-8?B?ck9RS0s3RWF5MElQMzg2WjY4VkRGTTFjMXRpT0VFMEd0TERicHhtWHYyaGVv?=
+ =?utf-8?B?Nk91SzRqc01IOUtLcFh0T245ZmE5Y3J5ajF5UnhjMHB6TVdEdzFmVEUyRzdo?=
+ =?utf-8?B?c3pmLzlWR1BRSngwVmpHUHhzZ0E4cTgveXJGMm92cndUNFZBU1NYSWpKVGpS?=
+ =?utf-8?B?alpLZkFFQ3EzUWtUQnZVY1d0RXREVHh5SUpoTTZvR21mSmM0dHgyNTI0S3RI?=
+ =?utf-8?B?cTlOa0o1NHpuWmRpYXNIMWRUTTl6cVZlcVlscmNOQUVzZ2dMZGU3cCtiSUtO?=
+ =?utf-8?B?ZDdQTVhvaWZzSjF4VHVTRUQ5aDl4b09GUzJQZ3BoY2FhM3I0cm9qNFZxUDBJ?=
+ =?utf-8?B?eDRiSklaWm5ySEsyZFBnYjNKM1pVbUl1eXY3b1Y4MHd3NmUreHorNjhvTkNC?=
+ =?utf-8?B?MW5sOVZxZExFVW1QTUZJREFmcnRhdVNwUUhNMVpIcVlVZ0kra2o4eU15OW53?=
+ =?utf-8?B?Wkx4eDRyem5pTi9reWVEbU1aeFI2UmdSam1sY0x5ZnJWa3FvYy9pRTRMVmlC?=
+ =?utf-8?B?VlR5bGp0c0FFeGFQbitFS1REM3preGxSM3pCVzVGN3AzZXdET0dOUS82eGVW?=
+ =?utf-8?B?QjY0eGZnMGlYN0pxb29CTUFJTXNQTjFOaTMxVDhlUlh4RTRoKzFIZ2JGNEdM?=
+ =?utf-8?B?RWVyYjNVT2FwM1dyb1dZTUZSYk16eGVyWkEzUDFBNDE4Z0dUenFuWFdKRnNY?=
+ =?utf-8?B?K09hc2JRWjRxOGFEUnVkOGJiWnVJTi8xN0FqNVdQanJXd1ludU5YTk1PeFhZ?=
+ =?utf-8?B?WFJXOVl0UVlmQzBLUnFtcUhiRDhkYzB6LytrVFQwZmZSaWl1Y3VyU2JtVEFS?=
+ =?utf-8?B?S1EvcC93VGVyUXFEZ2FuRGtLbmdtYzFuS3Bjay80RHdJSDdacnJaUVhtNzFm?=
+ =?utf-8?B?NmEzZFVQNWgwK255K0xNRDA1WFZxOXdrbVV6QmsvYjhCVlJuUnFvOEs3SE9j?=
+ =?utf-8?B?VVFiYlZCQk13aXNHR08rSzJtWXJnaWpaRm9pT21QSDdWeUxtUnFSSFV5NVpi?=
+ =?utf-8?B?OVpSWTdqU0ZyalBPVWZJWU13K1VQRVpKbi9kemdyOEdNUEp0NzBUZW9vL1dN?=
+ =?utf-8?B?elhyK25MZktWSHRVNGNNd3ZENE1MRkpOK1czVG1mSXB2bmMxWnRsWHJPZFhl?=
+ =?utf-8?B?U3dhVEorVFQzYTZnRWdiZ3NLZnBDd0xnMXpZQkhONnlwOEJNVGIzby9sd2Jk?=
+ =?utf-8?B?ZStPTVJhaDNMeUlOK0dZT3A5OGpaRTZrZThsSmhhTFIwQm02am5MQnpRb2pU?=
+ =?utf-8?B?ZVBrVTBjYWM3eXlqSEM1MVF0NlFMUDZJNGFob3QydnJIN1A4YjZ5NUhJeDBN?=
+ =?utf-8?B?S3E4YmpmRHJ5UERRVlI5WER4UDBsVlNrRDJMUUQ2dW5YTjdDK2VvclV2TVpp?=
+ =?utf-8?B?b05DSWIrMlovVHZPVlhmcEJWVG9NdnNDOUhYLzVFQWsyWTRZR0RhaGJQK0NH?=
+ =?utf-8?B?c2FJRmpHV0xYYWQzeVp6dFdYaGgvdnNhRU9rR3JGSVo5TDdSWGt3akhQVTFJ?=
+ =?utf-8?B?Z1NkUHZPbnFFR3FSNUlsRkkvSnI4STk3N2NkVjBCUTF4MC9ncUI4Z2ZnYTVu?=
+ =?utf-8?B?ZDUyUjRoMVhjZVBoSGp0SktnVGhUMU9Zb3JNSy9HSDNlTjNiaVlHRWd2ZkNC?=
+ =?utf-8?B?NU45Zitqd3h4QWd3VUFYUlRxVTRCL2FIbWlENmVFa3FwRXVkTkczYjFRMWJE?=
+ =?utf-8?B?bDZkSTBhenRlM0lDNzJZZ2ZFbG5Tcy9mSmFuaFhIUWs4Q3pRTkkyOXNaNjF2?=
+ =?utf-8?B?ckowcW1nL3pKZnhyQUNGY2NhV2M2WWdyeFdaZjdFUXM2WHdXTUR4OGZLMHBW?=
+ =?utf-8?B?eXh2QlVWU0YvMmlkL240VzZSSDJiUU85RnFsTzgwY3J4c3d6c21jUHUxZGNP?=
+ =?utf-8?B?K0U1RDhKSXN6RHNwbmMveWhJMVBQZnVHVnVnUDZmTDEzdnpvenZoa3pCUHE1?=
+ =?utf-8?B?MDk1Z3ZkQkZwMjdzSnRDSzBJenVXYkxYMzF4STdCN0psSW8zL3hkaHJEL3VE?=
+ =?utf-8?Q?am+LDqcDEQLA/fi8=3D?=
+X-Exchange-RoutingPolicyChecked: LdZ/S7/xxKrJm/riXHFchRD6vxY3x52wFiY4Pcp9/WPh/T9s7KJNcsB7A2Li64w1fwVRaoth58VCMzaKy7A7Ji6enKf0WZwJfIKeqZ6HFyqL7Y9TTDsP2sTIJavWFSQR23ECaVTIfNWINPpxf3esdZg250uDMkm7IPsILPyh7RK0+HQtqjO3Qamh4WYFgQ5nPautyynVX2UgfjXjtnrYnMw3mp0d0lTrCBYLY6nQOTL5OFYdVNcEn3BSDnvX5PQu0IvXtJ78OMpiRJbbqQE4RIRTIRtpo9lafJOrSfMZuj5l7EZknDqio769LC1Nke7FwSomiz+34ZTQGu0SsdvQSg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6ec251f7-2282-46f2-4373-08de959219dd
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2026 17:02:07.2364 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2026 17:13:06.7094 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2kMnwV1XWGZmDSkVY6pdQnes6cmNZ4wNDlbN5dK++P9/w42KKDc5WR9SHc12OK04ahnJrmbX0YmXpGpMKzuGBsbKNdNfRets+9XvLVrW4Vo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PPF69154114F
+X-MS-Exchange-CrossTenant-UserPrincipalName: xFYB3Lk7CnbpAHQfblLglVCmSAwORTcnmexYQGlBWaC+sMC7Rkravq7SCA1Wye6A7J/8+w996tL0eo4FyrTKuZZHHJVSlmOKGEBWLq6wvx8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5188
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -173,192 +178,281 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 
-On 4/8/2026 6:54 AM, Michal Wajdeczko wrote:
->
-> On 4/8/2026 12:18 AM, Daniele Ceraolo Spurio wrote:
->>
->> On 4/3/2026 1:44 PM, Michal Wajdeczko wrote:
->>> We only have support for G2H NO_RESPONSE_BUSY messages over MMIO,
->>> but it turned out that GuC also uses that type of messages in CTB.
->>>
->>> The following error was recently observed on BMG after adding VGT
->>> policy updates to the GT restart sequence:
->>>
->>>    [] xe 0000:03:00.0: [drm] *ERROR* Tile0: GT1: G2H channel broken on read, type=3, reset required
->>>    [] xe 0000:03:00.0: [drm] *ERROR* Tile0: GT1: CT dequeue failed: -95
->>>    ...
->>>    [] xe 0000:03:00.0: [drm] *ERROR* Tile0: GT1: Timed out wait for G2H, fence 21965, action 5502, done no
->>>    [] xe 0000:03:00.0: [drm] PF: Tile0: GT1: Failed to push 1 policy KLV (-ETIME)
->>>    [] xe 0000:03:00.0: [drm] Tile0: GT1: { key 0x8004 : no value } # engine_group_config
->>>
->>> where type=3 was this unrecognized NO_RESPONSE_BUSY message.
->>>
->>> Note that GuC might send the real RESPONSE message right after
->>> the BUSY message, so we must be prepared to update our g2h_fence
->>> data twice before sender actually wakes up and clears the flags.
->>>
->>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->>> ---
->>> Cc: Matthew Brost <matthew.brost@intel.com>
->>> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
->>> Link: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164119v2/shard-bmg-9/igt@xe_exec_reset@gt-reset.html
->>> ---
->>>    drivers/gpu/drm/xe/xe_guc_ct.c | 29 +++++++++++++++++++++++++++--
->>>    1 file changed, 27 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
->>> index a11cff7a20be..19305acb98e4 100644
->>> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
->>> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
->>> @@ -186,6 +186,7 @@ static void fast_req_track(struct xe_guc_ct *ct, u16 fence, u16 action) { }
->>>    struct g2h_fence {
->>>        u32 *response_buffer;
->>>        u32 seqno;
->>> +    /* fields below this point are setup based on the response */
->>>        u32 response_data;
->>>        u16 response_len;
->>>        u16 error;
->>> @@ -193,6 +194,7 @@ struct g2h_fence {
->>>        u16 reason;
->>>        bool cancel;
->>>        bool retry;
->>> +    bool wait;
->>>        bool fail;
->>>        bool done;
->>>    };
->>> @@ -204,6 +206,11 @@ static void g2h_fence_init(struct g2h_fence *g2h_fence, u32 *response_buffer)
->>>        g2h_fence->seqno = ~0x0;
->>>    }
->>>    +static void g2h_fence_void(struct g2h_fence *g2h_fence)
->> I'm not convinced that g2h_fence_void is the correct function name here. Maybe g2h_fence_clear_response or something like that?
-> hmm, the 'g2h_fence' name itself is IMO also little questionable ;)
->
-> note that everything in this struct is 'response' related, so that
-> 'response' in clear_response() may also sound redundant or at least
-> mislead about impact of the clear
->
-> being non-native, below 'void' meanings were working for me:
->
-> 	"(verb) to remove the legal force from an agreement or contract
-> 	"(verb) discharge or drain away (water, gases, etc.)
->
-> but if clear_response() is more welcomed, I can respin the patch
+On 4/8/2026 6:05 PM, Satyanarayana K V P wrote:
+> When a PF is configured in admin-only mode, it is intended for management
+> only and must not expose workload-facing capabilities to userspace.
+> 
+> Limit the exposed ioctl set in admin-only PF mode to XE_DEVICE_QUERY and
+> XE_OBSERVATION, and suppress capability-bearing query payloads so that
+> the userspace cannot discover execution-related device details in this
+> mode.
+> 
+> Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Cc: Michał Winiarski <michal.winiarski@intel.com>
+> Cc: Dunajski Bartosz <bartosz.dunajski@intel.com>
+> Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Acked-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> 
+> ---
+> V9 -> V10:
+> - Moved some parts of admin_only_pf mode under CONFIG_PCI_IOV config
+> option (Michal).
+> - Updated commit message.
+> 
+> V8 -> V9:
+> - Memory regions are skipped in case of admin_only_pf mode (Michal)
+> - removed .dumb_create, .dumb_map_offset and .show_fdinfo device specific
+> operations in admin-only mode (Michal).
+> 
+> V7 -> V8:
+> - Fixed issues reported by CI.Hooks
+> - Updated commit message (Ashutosh)
+> - Removed gem_prime_import from admin_only_driver structure (Michal)
+> 
+> V6 -> V7:
+> - Allowed xe_observation_ioctl as well with admin-only PF (Ashutosh,
+> Michal).
+> - Updated commit message with steps to enable admin-only mode (Rodrigo).
+> 
+> V5 -> V6:
+> - Updated commit message.
+> - Return number of engines and memory regions as zero instead of
+> returning query size as zero (Michal Wajdeczko).
+> - Allow all other query IOCTLs excepts query_engines and
+> query_mem_regions (Michal Wajdeczko).
+> 
+> V4 -> V5:
+> - Updated commit message (Matt B).
+> - Introduced new driver_admin_only_pf structure (Michal Wajdeczko).
+> - Updated all query configs (Michal Wajdeczko).
+> - Renamed xe_device_is_admin_only() to xe_device_is_admin_only_pf()
+> - Fixed other review comments (Michal Wajdeczko).
+> 
+> V3 -> V4:
+> - Suppressed device capabilities in admin-only PF mode. (Wajdeczko)
+> 
+> V2 -> V3:
+> - Introduced new helper function xe_debugfs_create_files() to create
+> debugfs entries based on admin_only_pf mode or normal mode.
+> 
+> V1 -> V2:
+> - Rebased to latest drm-tip.
+> - Update update_minor_dev() to debugfs_minor_dev().
+> ---
+>  drivers/gpu/drm/xe/xe_device.c    | 62 +++++++++++++++++++++++++++++--
+>  drivers/gpu/drm/xe/xe_device.h    |  1 +
+>  drivers/gpu/drm/xe/xe_hw_engine.c |  3 ++
+>  drivers/gpu/drm/xe/xe_query.c     |  8 +++-
+>  4 files changed, 69 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> index cbce1d0ffe48..b0bbb079ca8e 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -25,6 +25,7 @@
+>  #include "regs/xe_regs.h"
+>  #include "xe_bo.h"
+>  #include "xe_bo_evict.h"
+> +#include "xe_configfs.h"
+>  #include "xe_debugfs.h"
+>  #include "xe_defaults.h"
+>  #include "xe_devcoredump.h"
+> @@ -390,7 +391,7 @@ bool xe_is_xe_file(const struct file *file)
+>  	return file->f_op == &xe_driver_fops;
+>  }
+>  
+> -static struct drm_driver driver = {
+> +static struct drm_driver regular_driver = {
+>  	.driver_features =
+>  	    DRIVER_GEM |
+>  	    DRIVER_RENDER | DRIVER_SYNCOBJ |
+> @@ -415,6 +416,42 @@ static struct drm_driver driver = {
+>  	.patchlevel = DRIVER_PATCHLEVEL,
+>  };
+>  
+> +#ifdef CONFIG_PCI_IOV
+> +static const struct drm_ioctl_desc xe_ioctls_admin_only[] = {
+> +	DRM_IOCTL_DEF_DRV(XE_DEVICE_QUERY, xe_query_ioctl, DRM_RENDER_ALLOW),
+> +	DRM_IOCTL_DEF_DRV(XE_OBSERVATION, xe_observation_ioctl, DRM_RENDER_ALLOW),
+> +};
+> +
+> +static struct drm_driver admin_only_driver = {
+> +	.driver_features =
+> +	    DRIVER_GEM | DRIVER_RENDER | DRIVER_GEM_GPUVA,
+> +	.open = xe_file_open,
+> +	.postclose = xe_file_close,
+> +	.ioctls = xe_ioctls_admin_only,
+> +	.num_ioctls = ARRAY_SIZE(xe_ioctls_admin_only),
+> +	.fops = &xe_driver_fops,
+> +	.name = DRIVER_NAME,
+> +	.desc = DRIVER_DESC,
+> +	.major = DRIVER_MAJOR,
+> +	.minor = DRIVER_MINOR,
+> +	.patchlevel = DRIVER_PATCHLEVEL,
+> +};
+> +#endif
+> +
+> +/**
+> + * xe_device_is_admin_only() - Check whether device is admin only or not.
+> + * @xe: the &xe_device to check
+> + *
+> + * Return: true if the device is admin only, false otherwise.
+> + */
+> +bool xe_device_is_admin_only(const struct xe_device *xe)
+> +{
+> +#ifdef CONFIG_PCI_IOV
+> +	return xe->drm.driver == &admin_only_driver;
+> +#endif
+> +	return false;
 
-My confusion with the wording was around the fact that normally once you 
-void a contract you can't re-use it, it's done.
+nit: maybe put this under #else ?
 
->
-> other candidates to consider:
->
-> 	g2h_fence_reinit()
-> 	g2h_fence_reset()
-> 	g2h_fence_prepare()
-> 	g2h_fence_empty()
+or better, provide an inline with false in .h 
 
-I considered suggensting reinit, but we keep the seqno and the buffer so 
-it isn't a full reinit. g2h_fence_reset might be ok.
+#ifdef CONFIG_PCI_IOV
+bool xe_device_is_admin_only(const struct xe_device *xe);
+#else
+static inline bool xe_device_is_admin_only(const struct xe_device *xe)
+{
+	return false;
+}
+#endif
 
->
->>> +{
->>> +    memset_after(g2h_fence, 0, seqno);
->>> +}
->>> +
->>>    static void g2h_fence_cancel(struct g2h_fence *g2h_fence)
->>>    {
->>>        g2h_fence->cancel = true;
->>> @@ -1331,6 +1338,7 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
->>>        /* READ_ONCEs pairs with WRITE_ONCEs in parse_g2h_response
->>>         * and g2h_fence_cancel.
->>>         */
->>> +wait_again:
->>>        ret = wait_event_timeout(ct->g2h_fence_wq, READ_ONCE(g2h_fence.done), HZ);
->>>        if (!ret) {
->>>            LNL_FLUSH_WORK(&ct->g2h_worker);
->>> @@ -1356,6 +1364,12 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
->>>            return -ETIME;
->>>        }
->>>    +    if (g2h_fence.wait) {
->>> +        xe_gt_dbg(gt, "H2G action %#x busy...\n", action[0]);
->>> +        g2h_fence_void(&g2h_fence);
->>> +        mutex_unlock(&ct->lock);
->>> +        goto wait_again;
->>> +    }
->>>        if (g2h_fence.retry) {
->>>            xe_gt_dbg(gt, "H2G action %#x retrying: reason %#x\n",
->>>                  action[0], g2h_fence.reason);
->>> @@ -1508,7 +1522,12 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
->>>            return -EPROTO;
->>>        }
->>>    -    g2h_fence = xa_erase(&ct->fence_lookup, fence);
->>> +    /* don't erase as we still expect a final response with the same fence */
->>> +    if (type == GUC_HXG_TYPE_NO_RESPONSE_BUSY)
->>> +        g2h_fence = xa_load(&ct->fence_lookup, fence);
->>> +    else
->>> +        g2h_fence = xa_erase(&ct->fence_lookup, fence);
->>> +
->>>        if (unlikely(!g2h_fence)) {
->> if we hit this error with a NO_RESPONSE_BUSY we'll release the memory with the fence still in the xa, which seems wrong.
-> but NULL here would mean that the fence wasn't in the xa already
+> +}
+> +
+>  static void xe_device_destroy(struct drm_device *dev, void *dummy)
+>  {
+>  	struct xe_device *xe = to_xe_device(dev);
+> @@ -439,16 +476,26 @@ static void xe_device_destroy(struct drm_device *dev, void *dummy)
+>  struct xe_device *xe_device_create(struct pci_dev *pdev,
+>  				   const struct pci_device_id *ent)
+>  {
+> +	struct drm_driver *driver = &regular_driver;
+>  	struct xe_device *xe;
+>  	int err;
+>  
+> -	xe_display_driver_set_hooks(&driver);
+> +#ifdef CONFIG_PCI_IOV
+> +	/*
+> +	 * Since XE device is not initialized yet, read from configfs
+> +	 * directly to decide whether we are in admin-only PF mode or not.
+> +	 */
+> +	if (xe_configfs_admin_only_pf(pdev))
+> +		driver = &admin_only_driver;
+> +#endif
+> +
+> +	xe_display_driver_set_hooks(driver);
+>  
+> -	err = aperture_remove_conflicting_pci_devices(pdev, driver.name);
+> +	err = aperture_remove_conflicting_pci_devices(pdev, driver->name);
+>  	if (err)
+>  		return ERR_PTR(err);
+>  
+> -	xe = devm_drm_dev_alloc(&pdev->dev, &driver, struct xe_device, drm);
+> +	xe = devm_drm_dev_alloc(&pdev->dev, driver, struct xe_device, drm);
+>  	if (IS_ERR(xe))
+>  		return xe;
+>  
+> @@ -708,6 +755,13 @@ int xe_device_probe_early(struct xe_device *xe)
+>  
+>  	xe_sriov_probe_early(xe);
+>  
+> +#ifdef CONFIG_PCI_IOV
 
-D'oh, that's true. My bad.
+nit: not sure if we need this #ifdef here as for !PCI_IOV below code should be
+optimized-out by the compiler anyway, since is_admin_only will be always false
 
->
-> it had to be either removed during earlier processing of some other
-> non-BUSY G2H message with the same fence or it was removed by the
-> caller due to a timeout or ... the incoming fence is completely unexpected
->
-> and IMO we are not quite good in handling this last case and after
-> xe_gt_warn() we might release space that was never reserved by us
->
-> but that's not related to this patch
->
->>>            /* Don't tear down channel, as send could've timed out */
->>>            /* CT_DEAD(ct, NULL, PARSE_G2H_UNKNOWN); */
->>> @@ -1518,6 +1537,7 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
->>>        }
->>>          xe_gt_assert(gt, fence == g2h_fence->seqno);
->>> +    g2h_fence_void(g2h_fence);
->> Is this here because we might be parsing the G2H with the actual response before the waiter has had time to process the initial BUSY response? It might be worth adding a comment to explain that.
-> yes, and it's already mentioned in the commit message:
->
-> " Note that GuC might send the real RESPONSE message right after
-> " the BUSY message, so we must be prepared to update our g2h_fence
-> " data twice before sender actually wakes up and clears the flags.
+> +	if (xe_device_is_admin_only(xe) && !IS_SRIOV_PF(xe)) {
+> +		xe_err(xe, "Can't run Admin-only mode without SR-IOV PF mode!\n");
+> +		return -ENODEV;
+> +	}
+> +#endif
+> +
+>  	if (IS_SRIOV_VF(xe))
+>  		vf_update_device_info(xe);
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+> index e4b9de8d8e95..c220f2f1352f 100644
+> --- a/drivers/gpu/drm/xe/xe_device.h
+> +++ b/drivers/gpu/drm/xe/xe_device.h
+> @@ -43,6 +43,7 @@ static inline struct xe_device *ttm_to_xe_device(struct ttm_device *ttm)
+>  	return container_of(ttm, struct xe_device, ttm);
+>  }
+>  
+> +bool xe_device_is_admin_only(const struct xe_device *xe);
 
-sure, but in-code it isn't immediately clear that this is there to cover 
-for that case, hence why IMO a comment would help.
+nit: can we move it little down, maybe at closer to xe_device_wmb?
 
-Daniele
+this is not the most important xe_device function, and prototypes here
+are just for high-level create/probe/remove/shutdown functions
 
->
->> Daniele
->>
->>>          if (type == GUC_HXG_TYPE_RESPONSE_FAILURE) {
->>>            g2h_fence->fail = true;
->>> @@ -1526,6 +1546,9 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
->>>        } else if (type == GUC_HXG_TYPE_NO_RESPONSE_RETRY) {
->>>            g2h_fence->retry = true;
->>>            g2h_fence->reason = FIELD_GET(GUC_HXG_RETRY_MSG_0_REASON, hxg[0]);
->>> +    } else if (type == GUC_HXG_TYPE_NO_RESPONSE_BUSY) {
->>> +        g2h_fence->wait = true;
->>> +        g2h_fence->reason = FIELD_GET(GUC_HXG_BUSY_MSG_0_COUNTER, hxg[0]);
->>>        } else if (g2h_fence->response_buffer) {
->>>            g2h_fence->response_len = hxg_len;
->>>            memcpy(g2h_fence->response_buffer, hxg, hxg_len * sizeof(u32));
->>> @@ -1533,7 +1556,8 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
->>>            g2h_fence->response_data = FIELD_GET(GUC_HXG_RESPONSE_MSG_0_DATA0, hxg[0]);
->>>        }
->>>    -    g2h_release_space(ct, GUC_CTB_HXG_MSG_MAX_LEN);
->>> +    if (!g2h_fence->wait)
->>> +        g2h_release_space(ct, GUC_CTB_HXG_MSG_MAX_LEN);
->>>          /* WRITE_ONCE pairs with READ_ONCEs in guc_ct_send_recv. */
->>>        WRITE_ONCE(g2h_fence->done, true);
->>> @@ -1570,6 +1594,7 @@ static int parse_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
->>>        case GUC_HXG_TYPE_RESPONSE_SUCCESS:
->>>        case GUC_HXG_TYPE_RESPONSE_FAILURE:
->>>        case GUC_HXG_TYPE_NO_RESPONSE_RETRY:
->>> +    case GUC_HXG_TYPE_NO_RESPONSE_BUSY:
->>>            ret = parse_g2h_response(ct, msg, len);
->>>            break;
->>>        default:
+and if we go with the inline in .h then it could be placed near the eof
+
+>  struct xe_device *xe_device_create(struct pci_dev *pdev,
+>  				   const struct pci_device_id *ent);
+>  int xe_device_probe_early(struct xe_device *xe);
+> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+> index 6dd05fac6595..2f9c1c063f16 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_engine.c
+> +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+> @@ -1026,6 +1026,9 @@ bool xe_hw_engine_is_reserved(struct xe_hw_engine *hwe)
+>  	struct xe_gt *gt = hwe->gt;
+>  	struct xe_device *xe = gt_to_xe(gt);
+>  
+> +	if (xe_device_is_admin_only(xe))
+> +		return true;
+> +
+>  	if (hwe->class == XE_ENGINE_CLASS_OTHER)
+>  		return true;
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+> index d84d6a422c45..0dc5a9bb481a 100644
+> --- a/drivers/gpu/drm/xe/xe_query.c
+> +++ b/drivers/gpu/drm/xe/xe_query.c
+> @@ -231,6 +231,9 @@ static size_t calc_mem_regions_size(struct xe_device *xe)
+>  	u32 num_managers = 1;
+>  	int i;
+>  
+> +	if (xe_device_is_admin_only(xe))
+> +		return sizeof(struct drm_xe_query_mem_regions);
+> +
+>  	for (i = XE_PL_VRAM0; i <= XE_PL_VRAM1; ++i)
+>  		if (ttm_manager_type(&xe->ttm, i))
+>  			num_managers++;
+> @@ -259,6 +262,9 @@ static int query_mem_regions(struct xe_device *xe,
+>  	if (XE_IOCTL_DBG(xe, !mem_regions))
+>  		return -ENOMEM;
+>  
+> +	if (xe_device_is_admin_only(xe))
+> +		goto out;
+> +
+>  	man = ttm_manager_type(&xe->ttm, XE_PL_TT);
+>  	mem_regions->mem_regions[0].mem_class = DRM_XE_MEM_REGION_CLASS_SYSMEM;
+>  	/*
+> @@ -296,7 +302,7 @@ static int query_mem_regions(struct xe_device *xe,
+>  			mem_regions->num_mem_regions++;
+>  		}
+>  	}
+> -
+> +out:
+
+nit: "Choose label names which say what the goto does" - see [1]
+so maybe as this is not pure 'out' but we're also doing copying:
+
+		goto user_copy;
+	...
+	user_copy:
+
+[1] https://docs.kernel.org/process/coding-style.html#centralized-exiting-of-functions
+
+>  	if (!copy_to_user(query_ptr, mem_regions, size))
+>  		ret = 0;
+>  	else
 
