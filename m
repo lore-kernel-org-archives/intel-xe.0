@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0C9CFD5F99
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 09:08:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8182FD5F99
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 09:09:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8055610E5C7;
-	Wed,  8 Apr 2026 09:08:23 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5AA4610E5CB;
- Wed,  8 Apr 2026 09:08:22 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Fix_Adaptive-Sync_SDP_for?=
- =?utf-8?q?_PR_with_Link_ON_+_Auxless-ALPM?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9680810E5C7;
+	Wed,  8 Apr 2026 09:09:28 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b0t2zN8H";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC1E510E5C3;
+ Wed,  8 Apr 2026 09:09:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1775639367; x=1807175367;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=h5N3llxzif1LrIKAZsRK1Mn4fNTe4FDiP8ndj3BUjVw=;
+ b=b0t2zN8HvZAuYL/497euBJAuev1ATxsXa9nuYu+M+igoZPwv7ZK661LE
+ Mig7l87sybHmThJKIdrjfH4Tx1jRml+qcZNiOV+jzOSEslgOulbrV3n3y
+ B/dHYh1YYX2TgvK86RsjR3q1A1gOIf/H36y2YxJF9oxaTmduvvHUHE/YR
+ t4W3sb9Dy1GxLY+GvoAGXI1omBdyAdoX/PDp5uckPYryWe9hHzHmHQ0Ah
+ ud9UxLyoQoZpGOMEpJHbcyU3FUQFZL64PEUnXO7P4PeBs4FJVoahZKlN3
+ nJf5NvVWfD8+bE8xFiLs8bSzGxOWdMgfPpWJwP2Q0LFxSXn5N/IlkMpfW w==;
+X-CSE-ConnectionGUID: P54jC5m2Tk62xJyMz2OJFA==
+X-CSE-MsgGUID: VoQuw2JXS9yl+6TWhiC6sg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="88001355"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="88001355"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 02:09:26 -0700
+X-CSE-ConnectionGUID: Epv0wivNQo6QKBD0Uhy7GA==
+X-CSE-MsgGUID: JclxXdwcQD+1vA9xBowzlA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="233293341"
+Received: from krybak-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.32])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 02:09:24 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 08 Apr 2026 09:08:22 -0000
-Message-ID: <177563930234.441679.8878133106176529721@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260408084239.1295325-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20260408084239.1295325-1-ankit.k.nautiyal@intel.com>
+Subject: Re: [PATCH 12/12] drm/i915/fb: Use
+ intel_fb_needs_pot_stride_remap() in intel_fb_view_init()
+In-Reply-To: <20260407155053.32156-13-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260407155053.32156-1-ville.syrjala@linux.intel.com>
+ <20260407155053.32156-13-ville.syrjala@linux.intel.com>
+Date: Wed, 08 Apr 2026 12:09:22 +0300
+Message-ID: <535ff3f898555517d3ea6f8b47422a07290cf91f@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,82 +69,88 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, 07 Apr 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Replace the open coded intel_fb_needs_pot_stride_remap() check
+> inside intel_fb_view_init() with the real thing.
+>
+> The current check doesn't have the intel_fb_uses_dpt() in there, but
+> that is the only situation when we use the remapped view, and thus
+> was always implied.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-Series: Fix Adaptive-Sync SDP for PR with Link ON + Auxless-ALPM
-URL   : https://patchwork.freedesktop.org/series/164513/
-State : warning
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-== Summary ==
+> ---
+>  drivers/gpu/drm/i915/display/intel_fb.c | 19 ++++++++++++-------
+>  1 file changed, 12 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i9=
+15/display/intel_fb.c
+> index ceed695d3ad4..c4af368deffd 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> @@ -1627,13 +1627,14 @@ calc_plane_normal_size(const struct intel_framebu=
+ffer *fb, int color_plane,
+>=20=20
+>  static void intel_fb_view_init(struct intel_display *display,
+>  			       struct intel_fb_view *view,
+> -			       enum i915_gtt_view_type view_type)
+> +			       enum i915_gtt_view_type view_type,
+> +			       const struct intel_framebuffer *fb)
+>  {
+>  	memset(view, 0, sizeof(*view));
+>  	view->gtt.type =3D view_type;
+>=20=20
+>  	if (i915_gtt_view_is_remapped(&view->gtt) &&
+> -	    (display->platform.alderlake_p || DISPLAY_VER(display) >=3D 14))
+> +	    intel_fb_needs_pot_stride_remap(fb))
+>  		view->gtt.remapped.plane_alignment =3D SZ_2M / PAGE_SIZE;
+>  }
+>=20=20
+> @@ -1699,16 +1700,19 @@ int intel_fill_fb_info(struct intel_display *disp=
+lay, struct intel_framebuffer *
+>  	int i, num_planes =3D fb->base.format->num_planes;
+>  	unsigned int tile_size =3D intel_tile_size(display);
+>=20=20
+> -	intel_fb_view_init(display, &fb->normal_view, I915_GTT_VIEW_NORMAL);
+> +	intel_fb_view_init(display, &fb->normal_view,
+> +			   I915_GTT_VIEW_NORMAL, fb);
+>=20=20
+>  	drm_WARN_ON(display->drm,
+>  		    intel_fb_supports_90_270_rotation(fb) &&
+>  		    intel_fb_needs_pot_stride_remap(fb));
+>=20=20
+>  	if (intel_fb_supports_90_270_rotation(fb))
+> -		intel_fb_view_init(display, &fb->rotated_view, I915_GTT_VIEW_ROTATED);
+> +		intel_fb_view_init(display, &fb->rotated_view,
+> +				   I915_GTT_VIEW_ROTATED, fb);
+>  	if (intel_fb_needs_pot_stride_remap(fb))
+> -		intel_fb_view_init(display, &fb->remapped_view, I915_GTT_VIEW_REMAPPED=
+);
+> +		intel_fb_view_init(display, &fb->remapped_view,
+> +				   I915_GTT_VIEW_REMAPPED, fb);
+>=20=20
+>  	for (i =3D 0; i < num_planes; i++) {
+>  		struct fb_plane_view_dims view_dims;
+> @@ -1835,8 +1839,9 @@ static void intel_plane_remap_gtt(struct intel_plan=
+e_state *plane_state)
+>  	u32 gtt_offset =3D 0;
+>=20=20
+>  	intel_fb_view_init(display, &plane_state->view,
+> -			   drm_rotation_90_or_270(rotation) ? I915_GTT_VIEW_ROTATED :
+> -							      I915_GTT_VIEW_REMAPPED);
+> +			   drm_rotation_90_or_270(rotation) ?
+> +			   I915_GTT_VIEW_ROTATED : I915_GTT_VIEW_REMAPPED,
+> +			   intel_fb);
+>=20=20
+>  	src_x =3D plane_state->uapi.src.x1 >> 16;
+>  	src_y =3D plane_state->uapi.src.y1 >> 16;
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-1f57ba1afceae32108bd24770069f764d940a0e4
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 75171eeeeeabc611b68b40a0d7ee5f173aa8abca
-Author: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Date:   Wed Apr 8 14:12:38 2026 +0530
-
-    drm/i915/dp: Always enable AS SDP if supported by source + sink
-    
-    Currently AS SDP is only configured when VRR is enabled. However, other
-    use cases like CMRR, Panel Replay, etc. also send information to the sink
-    via AS SDPs.
-    
-    With optimized guardband, we also need to account for wakeup time and other
-    relevant details that depend on the AS SDP position whenever AS SDP is
-    enabled. If a feature enabling AS SDP gets turned on later (after modeset),
-    the guardband might not be sufficient and may need to increase, triggering
-    a full modeset.
-    
-    To avoid this, always send AS SDP whenever:
-     - the source and sink both support it, AND,
-     - there is a possibility to use it for VRR and Panel Replay for
-       synchronization.
-    
-    v2: Check if AS SDP can be used for synchronization for VRR or PR. (Ville)
-    
-    Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-+ /mt/dim checkpatch 460b46774c045acd4c2e99e53f251e2a08ef373b drm-intel
-08d536496bca drm/dp: Rename and relocate AS SDP payload field masks
-7c226488686c drm/dp: Clean up DPRX feature enumeration macros
-6c211b567203 drm/dp: Add bits for AS SDP FAVT Payload Fields Parsing support
-d1c3fc41f90f drm/dp: Add DPCD for configuring AS SDP for PR + VRR
--:23: WARNING:BAD_SIGN_OFF: Duplicate signature
-#23: 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-
-total: 0 errors, 1 warnings, 0 checks, 12 lines checked
-eb8fa17fe958 drm/dp: Store coasting vtotal in struct drm_dp_as_sdp
-682282dcabdc drm/dp: Add a helper to get the SDP type as a string
-d21242c99d01 drm/dp: Add target_rr_divider field in AS SDP logging
-9c6013b6b69a drm/i915/dp: Fix readback for target_rr in Adaptive Sync SDP
-99f489bceb28 drm/i915/vrr: Avoid vrr for PCON with HDMI2.1 sink
-9fe5cf538e36 drm/i915/dp: Account for AS_SDP guardband only when enabled
-07fea9d691ca drm/i915/dp: Add a helper to decide if AS SDP can be used
-72f4dc7d4d89 drm/i915/dp: Skip AS SDP for DP branch devices
-8cb1c766bb1d drm/i915/dp: Use revision field of AS SDP data structure
-61ea8a177c9c drm/i915/dp: Set sdp_type in AS SDP unpack
-cfe965373774 drm/i915/dp: Include all relevant AS SDP fields in comparison
-c936bf7f6a02 drm/i915/psr: Add helper to get Async Video timing support in PR active
-f0c23441526c drm/i915/dp: Add member to intel_dp to store AS SDP v2 support
-eb4fd8ab5973 drm/i915/dp: Allow AS SDP only if v2 is supported
-ccc809083a1e drm/i915/psr: Write the PR config DPCDs in burst mode
-e16e950ab778 drm/i915/display: Add helper for AS SDP transmission time selection
-f106604aca47 drm/i915/psr: Program Panel Replay CONFIG3 using AS SDP transmission time
-866733c616b4 drm/i915/dp: Set relevant Downspread Ctrl DPCD bits for PR + Auxless ALPM
-874098f6a2f9 drm/i915/dp: Program AS SDP DB[1:0] for PR with Link off
-85542890c4f3 drm/i915/dp: Split AS SDP computation between compute_config and compute_config_late
-e3b01414f6fc drm/i915/dp: Compute and include coasting vtotal for AS SDP
-75171eeeeeab drm/i915/dp: Always enable AS SDP if supported by source + sink
-
-
+--=20
+Jani Nikula, Intel
