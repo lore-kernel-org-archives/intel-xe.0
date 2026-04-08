@@ -4,157 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1AC3D10F995C
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 18:21:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4324810F996A
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Apr 2026 18:21:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABD2910E6BF;
-	Wed,  8 Apr 2026 18:21:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 059F510E6BF;
+	Wed,  8 Apr 2026 18:21:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UFJ556ja";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GcZHnXJd";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4510D10E6BF
- for <intel-xe@lists.freedesktop.org>; Wed,  8 Apr 2026 18:21:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 453CE10E6BF
+ for <intel-xe@lists.freedesktop.org>; Wed,  8 Apr 2026 18:21:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775672483; x=1807208483;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=0K7Osu0e6cvw24pyMtjdE4MlNnvLssbZ/a5O1luOSj0=;
- b=UFJ556jarHB/mi7eLfS+EL8m4YzknbDNokWkwVLkkxGxyqb+8jjq1eCy
- 7Hcxg28UNCYysAyt1pAMGMSpnS8JXaKPhowpKBOUjeehV5J7LSeGbxUiz
- V15OHhyflYCKc90pJvWEVjob2BSVT4I8ccESuXCjPQ/QW6RufFsTRWysy
- Tu36LiKgGMTc/b4DLCt4XwdLZJiAXb0+eMDCCCdlZwYotGi6WaPqi60Gb
- ZzWL1H1zP75fN6e+A+PL4/8GNUl1g7mpIWTdSJjcTH2JTu+zYPyVf1+jE
- 60GdAaJHASmBzcAwGZlYhmvNHmotvuGfEemdtjovKAYY+LVKe62t5Rd5B Q==;
-X-CSE-ConnectionGUID: Phv/5+jQRCGVaMXstFnn3Q==
-X-CSE-MsgGUID: rZSWMcaIQ6C1Bc15YqS38g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="76547260"
-X-IronPort-AV: E=Sophos;i="6.23,168,1770624000"; d="scan'208";a="76547260"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ t=1775672507; x=1807208507;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Z7//5ynE+BXX6mWHguUlYwC36YHZDOMF/6bS+Nya/nY=;
+ b=GcZHnXJd+/0KVJthlu9K0a641/u4qkfI71qNqC+N124w2fejU0LqFBHz
+ bCLYiP2Hjn9WPdvzabyZjnBhwE5nlmNh145GsI7x6R5nF5tJ51jbAqf3W
+ Ah4v21DSOi3yLuKi3kkYmfdE/5AX7W3hmXztXsQEldUFyb3IiX9UuNoXj
+ XwStY0nddwb3apxpgnma/sp5BwDjLYW/B+llXNPPd4uJ46rUPdCV7zRcO
+ PBfDM61kzIfoclgQ2AP2tOKQteYHg1Zs+GMO7HSm8FmZCCLVyHDf4VtXR
+ jrgN95SYMZYAnYw4LcKAeNOxh3XxrfkNBjegRKW9UVCeZnDGzaZ2dSyMn w==;
+X-CSE-ConnectionGUID: FmW/80dLTb2SQ6+fO33IHA==
+X-CSE-MsgGUID: hYCiiNCmQJ2OeEbtKbjzIQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="76547342"
+X-IronPort-AV: E=Sophos;i="6.23,168,1770624000"; d="scan'208";a="76547342"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 11:21:22 -0700
-X-CSE-ConnectionGUID: NRV50S5tQAa+0fOBrpX0BQ==
-X-CSE-MsgGUID: OwMQNHQ7S+inBpupqtIMsA==
+ 08 Apr 2026 11:21:46 -0700
+X-CSE-ConnectionGUID: +MBXsZOxR/OuFlnkbUsVKg==
+X-CSE-MsgGUID: 1aGXTi0iSU2X9LN5jMe0Ww==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,168,1770624000"; d="scan'208";a="266520467"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 11:21:22 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 8 Apr 2026 11:21:21 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 8 Apr 2026 11:21:21 -0700
-Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.47) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 8 Apr 2026 11:21:20 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GHy6TY5X/n6Lu6dwqKnqiaGivhh3b/wrUGCtp25LlN9bl4nMcskVa/0uGpe3SVKp/AicBTmJDCrSMsNTkMnBffV1jH3btuo7HLFCUJwoi8bnYZs18jZzCAwjqKKI7X+O0DA8Yy0vQFT4mDSS4e7tWO1vRaaOsJNx+89MGLYAYfnviWbgmCKsBuxWfHaPxMOHYxPPlqCMVPcc4OsyNPSdjS9XPUcuIqynk968086FqKOn95mUX829kc4RcIZM8AfQltOA0V4HpgEUZJXU710vs97apym07kV7ZjAQE4M+PWDd9VYZIBvqMmizfV8PfUKUMi8YTnrIZLNjTwnsCWUUgQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5uSDm8bRJLFu4JJuhDmLBNbXgZFq6jGMprRbCTkjT8g=;
- b=CJuT2cvNuszF0qOmMqOhqZgA3sLAD41KYTSUCgHjm+l9Ax07dEQcvusmoC3F7Wl4GAkpQLXzBTxxyqBvU3SCHqzZxNmSw/PViOiNk/WXwHckXzj2U1nLZG3Lojaxf3kbg+x9h+rb/wBYmoVZHosSHolF4BvSnvHLTQZLjKOSE9DpecrdBunseBRhXU+K31kd7vKLLR+MVD5jmG8fWM2JBi2Di3Jh7UU9f1iMcOAs0B2Rrab/ywB4UGMbmBI/RHrvw4J1oXjdlhTtFHTg+qNatx30AL6uYPXmi32G+YcFl5+HEUo3D2IEi5KTLMP/qlBS+TKghEmSkC+pNWeMix7rng==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB7408.namprd11.prod.outlook.com (2603:10b6:8:136::15)
- by SJ5PPF0D019E8BF.namprd11.prod.outlook.com (2603:10b6:a0f:fc02::809) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.15; Wed, 8 Apr
- 2026 18:21:18 +0000
-Received: from DS0PR11MB7408.namprd11.prod.outlook.com
- ([fe80::53aa:3f7a:59cd:e057]) by DS0PR11MB7408.namprd11.prod.outlook.com
- ([fe80::53aa:3f7a:59cd:e057%3]) with mapi id 15.20.9769.016; Wed, 8 Apr 2026
- 18:21:17 +0000
-Date: Wed, 8 Apr 2026 11:21:09 -0700
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 1/3] drm/xe/oa: Use xe_map layer
-Message-ID: <adaclWS7g9Ek5qZ3@soc-5CG1426VCC.clients.intel.com>
-References: <20260407030219.444060-1-ashutosh.dixit@intel.com>
- <20260407030219.444060-2-ashutosh.dixit@intel.com>
- <adWJ94RCOcgtFpTk@soc-5CG1426VCC.clients.intel.com>
- <87o6jtzcv1.wl-ashutosh.dixit@intel.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <87o6jtzcv1.wl-ashutosh.dixit@intel.com>
-X-ClientProxiedBy: MW4PR04CA0167.namprd04.prod.outlook.com
- (2603:10b6:303:85::22) To DS0PR11MB7408.namprd11.prod.outlook.com
- (2603:10b6:8:136::15)
+X-IronPort-AV: E=Sophos;i="6.23,168,1770624000"; d="scan'208";a="228429139"
+Received: from engyeong-mobl1.gar.corp.intel.com (HELO
+ mwajdecz-hp.clients.intel.com) ([10.246.17.6])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 11:21:43 -0700
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH v2] drm/xe/guc: Add support for NO_RESPONSE_BUSY in CTB
+Date: Wed,  8 Apr 2026 20:21:30 +0200
+Message-ID: <20260408182130.9305-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7408:EE_|SJ5PPF0D019E8BF:EE_
-X-MS-Office365-Filtering-Correlation-Id: 025d4880-6e37-4c29-03bd-08de959ba011
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|18002099003|22082099003|56012099003; 
-X-Microsoft-Antispam-Message-Info: GFgjYT07RQ0j12vWuwsuRH24CS9cipheBMHnF94LqXkxKpKnE6o9eZZZmuPAimKefa/p5hjsBnAfbuERnDQoU4Z8Hldwhl4CFh4KgVV7vjY72JA9AUtuOq33seSEYxkTGuIsnH6nRTPWUdsbu+bteZeNuuIN2L18x8D9uTdtiix62ijQ/vRgfoIsmyaI681aUKfOM4ZpPglysl5FeagjSThb/YEbrrmcyw5Kq8ts/M3GjLV03O4SmauX637XWzZYg0M+jljrYGfkxENw0MEv9/99eU5fxEVJl3iXRjmDjSlbB4nLGv5E7xdu3tbynpA9dVCOUkPktkazUrwTMx7b0LPZkPtxJ7AP+BxU6fWgcvN0wN4WY0338itNmZ6MQCxU2ewQprKwVqe3RC2p+b0K8qNg3UXIn7Ixwatn2KIbHi1uf8XLCDAwuHhJdH0ptJ0UjmbGzFvfSRnBiEOvrm5/cZIHaCRCpcik7TAjeL01BNupTPfKL4nICGkm0hSCW2gC1oFG8Oto3Yy1Wk6bXGtMweIU7U/6qL5xA2EPLIDiqnIvCUOa6Qy7j2fqIOz83XXJdbm1nSV324S+5mQixaFWjpePtHY7kJ71dT9AiEsER9lxyy1/5htl0eiGCVZcPImYZEjoDhMfNX0lU1wbllHmNzv61ppR6xBL49MfE35SaLo8dxHKYOletdZ8qIXBYNxNRw2tQKx97gHnDkIRRNXPq13uk2L6ce1gC2/+15ldkcA=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7408.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(18002099003)(22082099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZngyU2ZOKzZhbm1qUTRzejNHekd2aG5GbmV0UlBQOVFOamV5dnh3ODBGb1FL?=
- =?utf-8?B?dGpMdHFDWXY3Y2plT2pYQjI0Mm5jcmhUMTgxY3FTVmF6SGx3azYwbkIxVVd3?=
- =?utf-8?B?ZjQwa1E3OCtESi96WHJrYWFDZU95WnRGS3pDS09Kdi9FYlRROFBnaHk1TGdC?=
- =?utf-8?B?ZTBzL0o3d1JxTm1pbGFVWmh1SDhvNTAzRWZjUVlrcjIzSU1QUm9VSy9RV2FH?=
- =?utf-8?B?UDRtb24xdDZpZ1BMUGh0R3FTT3hQWm5GUDl4K3NZWmJRek5Ya2x5RTNjTzds?=
- =?utf-8?B?MUxPYUp6RWoxNEdtTS9ZSThJYVZrenJqbzVwUk5NTGJuNENOTkFnYmhZMUdT?=
- =?utf-8?B?c3V4QW40aFZ2bnFRdnRVYmo3V2lFd1BFOFdpUnZqSitFdjhBd3BGeVVabENX?=
- =?utf-8?B?VVlVNWhOY1NEaXpTdUk0eGpzdGZ3VEw4ZWxBR21yRTNKaWhvUi8vTW5aZ3ow?=
- =?utf-8?B?SXpBcXZiZkREbFA0KzFTN3NCV0I0dUNPV1p3OXhXSUhnVm0raysrM2YyMGsy?=
- =?utf-8?B?VVBtSGtUemZQZElVK0N5UFFhb0ZPWDM4ZU1OU2kzai9DK2h4Vy8zOEVFYkx4?=
- =?utf-8?B?SU92TC9XTEFUaXQrWG0zTWFHUzhQcnA5T2taaGJrdzlNRFpJY2N2YTJ4VTNC?=
- =?utf-8?B?OWNNSGExTTE2bHUraGh1WDNXV2Q2dWhaRkxkbmhiSWZEdFYyMkxzM3RSQ213?=
- =?utf-8?B?dkRRNFFzVVFabmRuRWFRd2RaQjhDVUNNeG11bDh1TTZnV1pkU3QvZmxPbFJw?=
- =?utf-8?B?dE5CcDhxUXdOVjc3UExJcjQwMy9PMXFhZnVoNWV2RXJqN2U1VXBvY29YM1Fs?=
- =?utf-8?B?Uk9ZMU44NGRsVlNmWXZ3dGNCMDIvSlBacUFMT2VYMkI1cUFzS2hZM0JuS3Rx?=
- =?utf-8?B?MlFWT3VBQjg1SjV0bEtaMWtTQk1DZ05sZHVrTmd0Ty9wMkluUlJSK0FnNXFY?=
- =?utf-8?B?cEN3VzhLWjJOaWExT3pDS1k4amJsOFRjM2k2YS9KSXd6SVdvaTBmY2VOQk9q?=
- =?utf-8?B?RXhmaVRUZlR5UE93U2dCcUcyR0RpUlEwQXRDdnZuMU94bTVXWTNsclNVeEJX?=
- =?utf-8?B?aHVFcUVnQmpsRkw5aFlVZE5XbWtCT1BkdEtRL1FXMHk4ZUVLdUJFZExsa3hG?=
- =?utf-8?B?cHhkTmdPSTVZMXIwTGtnTG9jV0FtWkg3RUQ4T1VRSWJGVHVxamF5WE96REho?=
- =?utf-8?B?NjlzUEdRUFNrVnJBVjMyc0J4ZnY0ZzVvZ1NVT3o5bkFUblhWQTF3SkpwNThp?=
- =?utf-8?B?UEEycm1iRUhUSTVXbVhUUUN0bHdvbSsxSWtULzlaVzEwMG0yb21xWVYraUF4?=
- =?utf-8?B?dDJFRzM3eUlXN0VtUHFENkNEa09Ic0Q4WWtSanZiQmhVYThsR1dxMHAwanBF?=
- =?utf-8?B?NFFhMzBwL2hCVTJCcjEyVkFiaUVreHhsYWFwUVAvTW1tR3NLbm13eWdoS1ow?=
- =?utf-8?B?NGJwY3BnbU1ZOWtheWJFNFMwMzlvUmhJRWtBMkRtQlRQWkhpMmFlUnV4WkNT?=
- =?utf-8?B?RmQ3NHBiSFdUTTh2cjRUS3A1NnlIMDZPeHA1V0xKRjRHUlJ4cW9ZcEhXbXQz?=
- =?utf-8?B?U1VWS2k5alQrNW4wZ2toc2F4Zkh2SUpUK3YrK2xTSjlJRHY4d2VtYjNzUngy?=
- =?utf-8?B?Qk41RDhhTzZZWTVEbmR1Q0lwUWdnVjQyVFZJZks0NXhhTFovUzMybVZMNjVh?=
- =?utf-8?B?MWZIckMwQXdvdS93MDVFdXp0SHZ0dTBqWFQzOGgwQldUak41R01qb3A0VVJh?=
- =?utf-8?B?Y3FyZWdRWitwQkxOZDhWUVhYcjNSZGdIblpvd1N2UXdMTE4xLzY4YlpxcFdu?=
- =?utf-8?B?Yjd2bmhLamw4NnlGbHArS3d5amRyQ3YwR2xTNjZncW9USFdqQ24zSHN0TGVw?=
- =?utf-8?B?VWUydGJwLy9oSlg1NU1NTkZ4RS9KRGJEYldSOHZiOFZlNnNWUUo4QVBXNFRI?=
- =?utf-8?B?VTIwNTRmaU8zdmJSaHR4aU5EQWMzZ1BncTluVDhsV0lVUzVHc3JOWFR5YVlZ?=
- =?utf-8?B?aks2MjE4aFpHU3JFRVFtY2tiajB3THhFQ0lDeE1ZZHNFeUhtS0cxdktIRzNh?=
- =?utf-8?B?TitUN1daM1hYbnppQUlJazNJQzQ5dHh0aGdBSDhBdUNEZ2lwMTBVcVJwdnhT?=
- =?utf-8?B?TDMxS3dGMVdLTk9FSThHU2RLSTROYW1ydDZtZWN1ZnEyaXFrUjZNZjMrN1hB?=
- =?utf-8?B?b3BWZjdtS3VIOEdxQ3BickNwZmRZNjVRSm14ekNqbWw3YlIzQUJ4N1BWL1JE?=
- =?utf-8?B?TjkvWnB4b21UWjljdVI3QzV6UFVCYzNGNFhXT1dQT05kejkvN3p3R1Z5aUJv?=
- =?utf-8?B?cUNPekhlelF4QjdSUVVLdHVVNFZsWUY1NEw3Sm9wV1l0dVVhNXZhRFJ5ZUp3?=
- =?utf-8?Q?5o01+dv89HxcFVnfoD78q1DM1fdefArtUwUfq?=
-X-Exchange-RoutingPolicyChecked: fEMYOhTpgPdZsNsQnbcsbBa+KexpM8LoHzGYOXfgEVUqnDv5tFZaZZlPUdvjgvD4KIuV/FzjTDfzVxwUPAfCUYH4mEtnoDYPXNJupUzxF604Bv5Z/qKla0H2RHj56O9Axw6wCF8rA5albqY3uuxZ3QSrjXlikeOiB+YMMlKVqhXgnF/YAZG0iKUVxNaEDb/G/HMDbczb9Skqjg4cEd5CcasBlegFcJCEjjb2ap3s3OtJTB1qa1M3A5BA7DllT8/peLY34c5qLCSK1RbV0vryrbR0CkSSJwKUHwm64yuKXDH/QAEMgqCQlYYCyaXdOr+Un2T4a/ZuoV+iSf95IE66LQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 025d4880-6e37-4c29-03bd-08de959ba011
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7408.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2026 18:21:17.3491 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3Fw/9PqpsEiA940Cjm2XS4OVmELt0twmeq6QDeMzO46RvLT9IQqRFX2Xbr74B1CyI58mKY5Ql8rXub8y5NO/B6t55dG5EueGAJ+uLC/IuCM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPF0D019E8BF
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -169,93 +67,146 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Apr 08, 2026 at 08:32:50AM -0700, Dixit, Ashutosh wrote:
->On Tue, 07 Apr 2026 15:49:27 -0700, Umesh Nerlige Ramappa wrote:
->>
->
->Hi Umesh,
->
->> On Mon, Apr 06, 2026 at 08:02:17PM -0700, Ashutosh Dixit wrote:
->> > @@ -311,30 +317,37 @@ static enum hrtimer_restart xe_oa_poll_check_timer_cb(struct hrtimer *hrtimer)
->> >	return HRTIMER_RESTART;
->> > }
->> >
->> > +static inline unsigned long
->> > +xe_oa_copy_to_user(void __user *dst, const struct iosys_map *src, size_t src_offset, size_t len)
->> > +{
->> > +	if (src->is_iomem)
->> > +		return copy_to_user(dst, src->vaddr_iomem + src_offset, len);
->>
->> I think this requires xe_map_memcpy_from for the iomem case.
->>
->> > +	else
->> > +		return copy_to_user(dst, src->vaddr + src_offset, len);
->> > +}
->> > +
->
->Yes, you have certainly spotted the iffy part of this patch. However, this
->situation is not that simple:
->
->* xe_map_memcpy_from or iosys_map_memcpy_from copies from iomem to kernel
->  memory (potentially using special accessors for iomem), not to user
->  memory
->
->* copy_to_user copies from kernel memory to user memory (using special
->  checks), not from iomem
->
->So in the kernel we don't have functions which copy directly from iomem to
->user memory. That is, functions like iosys_map_copy_to_user() or
->copy_to_user_from_iomem() do not exist, because they would need to combine
->iomem access and copy_to_user (likely copy_to_user will need to be
->rewritten with iomem accessors, if such a function were to be
->implemented). There may be a reason why such functions don't exist in the
->kernel.
->
->Another way might be to copy from iomem to kernel memory and from kernel to
->user memory (that is have both iosys_map_memcpy_from and copy_to_user
->calls), but this would entail an extra copy into a bounce buffer in kernel
->memory. Something like this:
->
->static inline unsigned long
->xe_oa_copy_to_user(void __user *dst, const struct iosys_map *src, size_t src_offset, size_t len)
->{
->	void *tmp = kmalloc(len, GFP_KERNEL); // kmalloc or statically allocated tmp buffer
->
->	xe_map_memcpy_from(xe, tmp, src, src_offset, len); // extra copy
->
->	return copy_to_user(dst, tmp, len);
->}
+We only have support for G2H NO_RESPONSE_BUSY messages over MMIO,
+but it turned out that GuC also uses that type of messages in CTB.
 
-I did notice that there wasn't anything like copy_from_iomem_to_user. I 
-was imagining you could copy over 32-bit iomem words into the user 
-buffer using the iosys_map accessors. That should be possible and would 
-avoid an intermediate buffer.
+The following error was recently observed on BMG after adding VGT
+policy updates to the GT restart sequence:
 
->
->In our case, xe_map_memcpy_from or iosys_map_memcpy_from are basically a
->memcpy (because vram bar is ioremapped, special accessors for iomem are not
->needed).
+ [] xe 0000:03:00.0: [drm] *ERROR* Tile0: GT1: G2H channel broken on read, type=3, reset required
+ [] xe 0000:03:00.0: [drm] *ERROR* Tile0: GT1: CT dequeue failed: -95
+ ...
+ [] xe 0000:03:00.0: [drm] *ERROR* Tile0: GT1: Timed out wait for G2H, fence 21965, action 5502, done no
+ [] xe 0000:03:00.0: [drm] PF: Tile0: GT1: Failed to push 1 policy KLV (-ETIME)
+ [] xe 0000:03:00.0: [drm] Tile0: GT1: { key 0x8004 : no value } # engine_group_config
 
-Hmm, then why even have this patch :). fwiu, you are accessing the OA 
-buffer using iosys_map accessors in this patch. It should work without 
-it because of the above statement.
+where type=3 was this unrecognized NO_RESPONSE_BUSY message.
 
-If we go the iosys_map route, then let's do it consistently. If not, we 
-should just drop this patch. I would lean into reading 32bit words into 
-the user buffer.
+Note that GuC might send the real RESPONSE message right after
+the BUSY message, so we must be prepared to update our g2h_fence
+data twice before sender actually wakes up and clears the flags.
 
-Regards,
-Umesh
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+---
+Cc: Matthew Brost <matthew.brost@intel.com>
+Link: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164119v2/shard-bmg-9/igt@xe_exec_reset@gt-reset.html
+---
+v2: rename helper, add more in-code comments (Daniele)
+    add and use g2h_fence.counter field (Michal)
+---
+ drivers/gpu/drm/xe/xe_guc_ct.c | 35 ++++++++++++++++++++++++++++++++--
+ 1 file changed, 33 insertions(+), 2 deletions(-)
 
->Therefore, to avoid the extra copy, I decided to drop the iomem
->access part (since the copy_to_user part cannot be dropped). Hence I end up
->with the xe_oa_copy_to_user() above. The function was tested on BMG with OA
->buffer in vram and works as expected.
->
->I did think about renaming the above function xe_map_copy_to_user() and
->moving it to xe_map.h, so that is possible. But since there are no other
->users (and none are expected) at this point of xe_map_copy_to_user() apart
->from OA because of this workaround (other observation stream buffers are in
->system memory, not vram), I left the function as specific to OA.
->
->Let me know what you think. Thanks.
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index a11cff7a20be..ad8f28d255a7 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -186,13 +186,16 @@ static void fast_req_track(struct xe_guc_ct *ct, u16 fence, u16 action) { }
+ struct g2h_fence {
+ 	u32 *response_buffer;
+ 	u32 seqno;
++	/* fields below this point are setup based on the response */
+ 	u32 response_data;
+ 	u16 response_len;
+ 	u16 error;
+ 	u16 hint;
+ 	u16 reason;
++	u32 counter;
+ 	bool cancel;
+ 	bool retry;
++	bool wait;
+ 	bool fail;
+ 	bool done;
+ };
+@@ -204,6 +207,11 @@ static void g2h_fence_init(struct g2h_fence *g2h_fence, u32 *response_buffer)
+ 	g2h_fence->seqno = ~0x0;
+ }
+ 
++static void g2h_fence_reinit(struct g2h_fence *g2h_fence)
++{
++	memset_after(g2h_fence, 0, seqno);
++}
++
+ static void g2h_fence_cancel(struct g2h_fence *g2h_fence)
+ {
+ 	g2h_fence->cancel = true;
+@@ -1331,6 +1339,7 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
+ 	/* READ_ONCEs pairs with WRITE_ONCEs in parse_g2h_response
+ 	 * and g2h_fence_cancel.
+ 	 */
++wait_again:
+ 	ret = wait_event_timeout(ct->g2h_fence_wq, READ_ONCE(g2h_fence.done), HZ);
+ 	if (!ret) {
+ 		LNL_FLUSH_WORK(&ct->g2h_worker);
+@@ -1356,6 +1365,14 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
+ 		return -ETIME;
+ 	}
+ 
++	if (g2h_fence.wait) {
++		xe_gt_dbg(gt, "H2G action %#x busy: counter %u\n",
++			  action[0], g2h_fence.counter);
++		/* we can't leave any response data if we want to wait again */
++		g2h_fence_reinit(&g2h_fence);
++		mutex_unlock(&ct->lock);
++		goto wait_again;
++	}
+ 	if (g2h_fence.retry) {
+ 		xe_gt_dbg(gt, "H2G action %#x retrying: reason %#x\n",
+ 			  action[0], g2h_fence.reason);
+@@ -1508,7 +1525,12 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 		return -EPROTO;
+ 	}
+ 
+-	g2h_fence = xa_erase(&ct->fence_lookup, fence);
++	/* don't erase as we still expect a final response with the same fence */
++	if (type == GUC_HXG_TYPE_NO_RESPONSE_BUSY)
++		g2h_fence = xa_load(&ct->fence_lookup, fence);
++	else
++		g2h_fence = xa_erase(&ct->fence_lookup, fence);
++
+ 	if (unlikely(!g2h_fence)) {
+ 		/* Don't tear down channel, as send could've timed out */
+ 		/* CT_DEAD(ct, NULL, PARSE_G2H_UNKNOWN); */
+@@ -1519,6 +1541,9 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 
+ 	xe_gt_assert(gt, fence == g2h_fence->seqno);
+ 
++	/* reinit as we might have already process this g2h_fence before */
++	g2h_fence_reinit(g2h_fence);
++
+ 	if (type == GUC_HXG_TYPE_RESPONSE_FAILURE) {
+ 		g2h_fence->fail = true;
+ 		g2h_fence->error = FIELD_GET(GUC_HXG_FAILURE_MSG_0_ERROR, hxg[0]);
+@@ -1526,6 +1551,9 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 	} else if (type == GUC_HXG_TYPE_NO_RESPONSE_RETRY) {
+ 		g2h_fence->retry = true;
+ 		g2h_fence->reason = FIELD_GET(GUC_HXG_RETRY_MSG_0_REASON, hxg[0]);
++	} else if (type == GUC_HXG_TYPE_NO_RESPONSE_BUSY) {
++		g2h_fence->wait = true;
++		g2h_fence->counter = FIELD_GET(GUC_HXG_BUSY_MSG_0_COUNTER, hxg[0]);
+ 	} else if (g2h_fence->response_buffer) {
+ 		g2h_fence->response_len = hxg_len;
+ 		memcpy(g2h_fence->response_buffer, hxg, hxg_len * sizeof(u32));
+@@ -1533,7 +1561,9 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 		g2h_fence->response_data = FIELD_GET(GUC_HXG_RESPONSE_MSG_0_DATA0, hxg[0]);
+ 	}
+ 
+-	g2h_release_space(ct, GUC_CTB_HXG_MSG_MAX_LEN);
++	/* don't release any space if it was an intermediate message */
++	if (!g2h_fence->wait)
++		g2h_release_space(ct, GUC_CTB_HXG_MSG_MAX_LEN);
+ 
+ 	/* WRITE_ONCE pairs with READ_ONCEs in guc_ct_send_recv. */
+ 	WRITE_ONCE(g2h_fence->done, true);
+@@ -1570,6 +1600,7 @@ static int parse_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 	case GUC_HXG_TYPE_RESPONSE_SUCCESS:
+ 	case GUC_HXG_TYPE_RESPONSE_FAILURE:
+ 	case GUC_HXG_TYPE_NO_RESPONSE_RETRY:
++	case GUC_HXG_TYPE_NO_RESPONSE_BUSY:
+ 		ret = parse_g2h_response(ct, msg, len);
+ 		break;
+ 	default:
+-- 
+2.47.1
+
