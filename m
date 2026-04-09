@@ -4,43 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1479DF34C5A
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 12:26:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01FB2F34C57
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 12:26:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4623210E445;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B56710E441;
 	Mon, 13 Apr 2026 12:26:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="MIZWIZeI";
+	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="NsNneuci";
 	dkim-atps=neutral
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16C7610E063
- for <intel-xe@lists.freedesktop.org>; Thu,  9 Apr 2026 17:08:57 +0000 (UTC)
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A615810E063;
+ Thu,  9 Apr 2026 17:09:12 +0000 (UTC)
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
- by smtpout-02.galae.net (Postfix) with ESMTPS id 096201A324F;
- Thu,  9 Apr 2026 17:08:56 +0000 (UTC)
+ by smtpout-03.galae.net (Postfix) with ESMTPS id 8E4634E429AD;
+ Thu,  9 Apr 2026 17:09:11 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
- by smtpout-01.galae.net (Postfix) with ESMTPS id C09BA603E4;
- Thu,  9 Apr 2026 17:08:55 +0000 (UTC)
+ by smtpout-01.galae.net (Postfix) with ESMTPS id 5B165603E4;
+ Thu,  9 Apr 2026 17:09:11 +0000 (UTC)
 Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 9BAF410450194; 
- Thu,  9 Apr 2026 19:08:50 +0200 (CEST)
+ with ESMTPSA id 4B362104501CC; 
+ Thu,  9 Apr 2026 19:09:06 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1775754534; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+ t=1775754549; h=from:subject:date:message-id:to:cc:mime-version:content-type:
  content-transfer-encoding:in-reply-to:references;
- bh=wQHs+xJKsUMQO+6CCh7X3NX/2yXBo/WKUOrvcvLPWfg=;
- b=MIZWIZeI6SDzL7xElyXrZcp1xP5FU/iv6TVLEMIzJzuy69V14+eWik9kRKFGixgQaD6ciS
- Ddf0uG5jq9ljh6Qn4Bfo3Lo4wh3XkM6VJnIAAGk9dBUjHNGHVUxP2CdnVN7cr8dJaD0IMj
- J0Syiixw7j9TNbIZj6PVG1Ugn2d1/iCHei/yCZMmd68Rx+dsZQxLDuWDrcTWQIm7QeB+QA
- 164m9FfPe/Owoxjn26H4BCuDi+FulELgNLV8kTRt7/wicDSenIEtyWuk+lzDtW7/7QYFln
- hwwOk/KBfs0c9gD6gPRrMcw5DivnFR3liiquTWK6mqxqzChKFRM/bHEfHbbn+Q==
+ bh=gLCKdJRpfKPoB5WWQAXBdqHs5x4sKwWXgZVhJIjP7RQ=;
+ b=NsNneuciB3J5k/khO3wOG9JznpaYRpPkooz/Oq4DtiNephghulGNOFQz596h3I9V2Humf1
+ e6PbTovsstxzMUZIwx+NkLGQBcfANB9dSd16qfZ0pM1kqH9xjb8ErmbqkiD3PJOn9+jRjm
+ +8qFFiXIzE8c1NbwFZUpEHa81fGdRnZQgVRCcaYss/e71EcOB1xfBnDKqJT7dzystwCwPw
+ ZuIPCtsJI0GQNPzsuj5VGyZxC8v/wbVsUlTSqVaZTcUDzi/pdUWvs+VpkiW1tvdQgb1RxZ
+ lwZGrYfjNxpwEv3MLe3fmyFwboJORD5neDvsKug/g6GDuYMg4c9IJ15OpG7plQ==
 From: Kory Maincent <kory.maincent@bootlin.com>
-Date: Thu, 09 Apr 2026 19:08:17 +0200
-Subject: [PATCH RFC 01/12] drm/i915/display/intel_sdvo: Fix double
- connector destroy in error paths
+Date: Thu, 09 Apr 2026 19:08:21 +0200
+Subject: [PATCH RFC 05/12] drm/i915/display: Switch to managed for crtc
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260409-feat_link_cap-v1-1-7069e8199ce2@bootlin.com>
+Message-Id: <20260409-feat_link_cap-v1-5-7069e8199ce2@bootlin.com>
 References: <20260409-feat_link_cap-v1-0-7069e8199ce2@bootlin.com>
 In-Reply-To: <20260409-feat_link_cap-v1-0-7069e8199ce2@bootlin.com>
 To: Jani Nikula <jani.nikula@linux.intel.com>, 
@@ -85,75 +84,191 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-intel_sdvo_connector_funcs registers intel_connector_destroy() as the
-.destroy callback. Once drm_connector_init_with_ddc() succeeds inside
-intel_sdvo_connector_init(), the DRM core takes ownership of the
-connector object and will call .destroy on teardown.
+The current i915 driver uses non-managed function to create crtc. It
+is not an issue yet, but in order to comply with the latest DRM
+requirement, convert this code to use drm and device managed helpers.
 
-The error labels in intel_sdvo_tv_init() and intel_sdvo_lvds_init()
-call intel_connector_destroy() explicitly before returning false,
-causing it to be invoked twice: once in the error path and again by
-the DRM core through the registered .destroy callback.
-
-Remove the manual intel_connector_destroy() calls from the error labels
-and return false directly instead.
-
-Fixes: 32aad86fe88e7 ("drm/i915/sdvo: Propagate errors from reading/writing control bus.")
+Assisted-by: Claude Code:2.1.90
 Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
 ---
+ drivers/gpu/drm/i915/display/intel_crtc.c | 102 ++++++++++--------------------
+ 1 file changed, 35 insertions(+), 67 deletions(-)
 
-Not tested as I don't have such hardware.
----
- drivers/gpu/drm/i915/display/intel_sdvo.c | 16 ++++------------
- 1 file changed, 4 insertions(+), 12 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
-index 2e1af9e869ded..6eb2b4b45a9b4 100644
---- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-+++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-@@ -2873,16 +2873,12 @@ intel_sdvo_tv_init(struct intel_sdvo *intel_sdvo, u16 type)
- 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+index b8189cd5d864a..e2f995313acf2 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+@@ -8,6 +8,7 @@
  
- 	if (!intel_sdvo_tv_create_property(intel_sdvo, intel_sdvo_connector, type))
--		goto err;
-+		return false;
- 
- 	if (!intel_sdvo_create_enhance_property(intel_sdvo, intel_sdvo_connector))
--		goto err;
-+		return false;
- 
- 	return true;
--
--err:
--	intel_connector_destroy(connector);
--	return false;
+ #include <drm/drm_atomic_helper.h>
+ #include <drm/drm_fourcc.h>
++#include <drm/drm_managed.h>
+ #include <drm/drm_plane.h>
+ #include <drm/drm_print.h>
+ #include <drm/drm_vblank.h>
+@@ -191,41 +192,11 @@ void intel_crtc_state_reset(struct intel_crtc_state *crtc_state,
+ 	crtc_state->max_link_bpp_x16 = INT_MAX;
  }
  
- static bool
-@@ -2945,7 +2941,7 @@ intel_sdvo_lvds_init(struct intel_sdvo *intel_sdvo, u16 type)
- 	}
- 
- 	if (!intel_sdvo_create_enhance_property(intel_sdvo, intel_sdvo_connector))
--		goto err;
-+		return false;
- 
- 	intel_bios_init_panel_late(display, &intel_connector->panel, NULL, NULL);
- 
-@@ -2967,13 +2963,9 @@ intel_sdvo_lvds_init(struct intel_sdvo *intel_sdvo, u16 type)
- 	intel_panel_init(intel_connector, NULL);
- 
- 	if (!intel_panel_preferred_fixed_mode(intel_connector))
--		goto err;
-+		return false;
- 
- 	return true;
+-static struct intel_crtc *intel_crtc_alloc(void)
++static void intel_crtc_vblank_pm_qos_cleanup(struct drm_device *drm, void *data)
+ {
+-	struct intel_crtc_state *crtc_state;
+-	struct intel_crtc *crtc;
 -
--err:
--	intel_connector_destroy(connector);
--	return false;
+-	crtc = kzalloc_obj(*crtc);
+-	if (!crtc)
+-		return ERR_PTR(-ENOMEM);
+-
+-	crtc_state = intel_crtc_state_alloc(crtc);
+-	if (!crtc_state) {
+-		kfree(crtc);
+-		return ERR_PTR(-ENOMEM);
+-	}
+-
+-	crtc->base.state = &crtc_state->uapi;
+-	crtc->config = crtc_state;
+-
+-	return crtc;
+-}
+-
+-static void intel_crtc_free(struct intel_crtc *crtc)
+-{
+-	intel_crtc_destroy_state(&crtc->base, crtc->base.state);
+-	kfree(crtc);
+-}
+-
+-static void intel_crtc_destroy(struct drm_crtc *_crtc)
+-{
+-	struct intel_crtc *crtc = to_intel_crtc(_crtc);
++	struct intel_crtc *crtc = data;
+ 
+ 	cpu_latency_qos_remove_request(&crtc->vblank_pm_qos);
+-
+-	drm_crtc_cleanup(&crtc->base);
+-	kfree(crtc);
  }
  
- static u16 intel_sdvo_filter_output_flags(u16 flags)
+ static int intel_crtc_late_register(struct drm_crtc *crtc)
+@@ -236,7 +207,6 @@ static int intel_crtc_late_register(struct drm_crtc *crtc)
+ 
+ #define INTEL_CRTC_FUNCS \
+ 	.set_config = drm_atomic_helper_set_config, \
+-	.destroy = intel_crtc_destroy, \
+ 	.page_flip = drm_atomic_helper_page_flip, \
+ 	.atomic_duplicate_state = intel_crtc_duplicate_state, \
+ 	.atomic_destroy_state = intel_crtc_destroy_state, \
+@@ -311,28 +281,19 @@ static const struct drm_crtc_funcs i8xx_crtc_funcs = {
+ static int __intel_crtc_init(struct intel_display *display, enum pipe pipe)
+ {
+ 	struct intel_plane *primary, *cursor;
++	struct intel_crtc_state *crtc_state;
+ 	const struct drm_crtc_funcs *funcs;
+ 	struct intel_crtc *crtc;
++	u32 plane_ids_mask = 0;
+ 	int sprite, ret;
+ 
+-	crtc = intel_crtc_alloc();
+-	if (IS_ERR(crtc))
+-		return PTR_ERR(crtc);
+-
+-	crtc->pipe = pipe;
+-	crtc->num_scalers = DISPLAY_RUNTIME_INFO(display)->num_scalers[pipe];
+-
+ 	if (DISPLAY_VER(display) >= 9)
+ 		primary = skl_universal_plane_create(display, pipe, PLANE_1);
+ 	else
+ 		primary = intel_primary_plane_create(display, pipe);
+-	if (IS_ERR(primary)) {
+-		ret = PTR_ERR(primary);
+-		goto fail;
+-	}
+-	crtc->plane_ids_mask |= BIT(primary->id);
+-
+-	intel_init_fifo_underrun_reporting(display, crtc, false);
++	if (IS_ERR(primary))
++		return PTR_ERR(primary);
++	plane_ids_mask |= BIT(primary->id);
+ 
+ 	for_each_sprite(display, pipe, sprite) {
+ 		struct intel_plane *plane;
+@@ -341,19 +302,15 @@ static int __intel_crtc_init(struct intel_display *display, enum pipe pipe)
+ 			plane = skl_universal_plane_create(display, pipe, PLANE_2 + sprite);
+ 		else
+ 			plane = intel_sprite_plane_create(display, pipe, sprite);
+-		if (IS_ERR(plane)) {
+-			ret = PTR_ERR(plane);
+-			goto fail;
+-		}
+-		crtc->plane_ids_mask |= BIT(plane->id);
++		if (IS_ERR(plane))
++			return PTR_ERR(plane);
++		plane_ids_mask |= BIT(plane->id);
+ 	}
+ 
+ 	cursor = intel_cursor_plane_create(display, pipe);
+-	if (IS_ERR(cursor)) {
+-		ret = PTR_ERR(cursor);
+-		goto fail;
+-	}
+-	crtc->plane_ids_mask |= BIT(cursor->id);
++	if (IS_ERR(cursor))
++		return PTR_ERR(cursor);
++	plane_ids_mask |= BIT(cursor->id);
+ 
+ 	if (HAS_GMCH(display)) {
+ 		if (display->platform.cherryview ||
+@@ -376,11 +333,23 @@ static int __intel_crtc_init(struct intel_display *display, enum pipe pipe)
+ 			funcs = &ilk_crtc_funcs;
+ 	}
+ 
+-	ret = drm_crtc_init_with_planes(display->drm, &crtc->base,
+-					&primary->base, &cursor->base,
+-					funcs, "pipe %c", pipe_name(pipe));
+-	if (ret)
+-		goto fail;
++	crtc = drmm_crtc_alloc_with_planes(display->drm, struct intel_crtc, base,
++					   &primary->base, &cursor->base,
++					   funcs, "pipe %c", pipe_name(pipe));
++	if (IS_ERR(crtc))
++		return PTR_ERR(crtc);
++
++	crtc->pipe = pipe;
++	crtc->num_scalers = DISPLAY_RUNTIME_INFO(display)->num_scalers[pipe];
++	crtc->plane_ids_mask = plane_ids_mask;
++
++	crtc_state = intel_crtc_state_alloc(crtc);
++	if (!crtc_state)
++		return -ENOMEM;
++	crtc->base.state = &crtc_state->uapi;
++	crtc->config = crtc_state;
++
++	intel_init_fifo_underrun_reporting(display, crtc, false);
+ 
+ 	if (DISPLAY_VER(display) >= 11)
+ 		drm_crtc_create_scaling_filter_property(&crtc->base,
+@@ -393,17 +362,16 @@ static int __intel_crtc_init(struct intel_display *display, enum pipe pipe)
+ 
+ 	cpu_latency_qos_add_request(&crtc->vblank_pm_qos, PM_QOS_DEFAULT_VALUE);
+ 
++	ret = drmm_add_action_or_reset(display->drm, intel_crtc_vblank_pm_qos_cleanup, crtc);
++	if (ret)
++		return ret;
++
+ 	drm_WARN_ON(display->drm, drm_crtc_index(&crtc->base) != crtc->pipe);
+ 
+ 	if (HAS_CASF(display) && crtc->num_scalers >= 2)
+ 		drm_crtc_create_sharpness_strength_property(&crtc->base);
+ 
+ 	return 0;
+-
+-fail:
+-	intel_crtc_free(crtc);
+-
+-	return ret;
+ }
+ 
+ int intel_crtc_init(struct intel_display *display)
 
 -- 
 2.43.0
