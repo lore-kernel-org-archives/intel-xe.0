@@ -4,90 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A704F364CB
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Apr 2026 22:09:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3954F364C8
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Apr 2026 22:09:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD10910E0A0;
-	Thu,  9 Apr 2026 22:09:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EC9910E877;
+	Thu,  9 Apr 2026 22:09:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="kNv/mPHE";
-	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="gCs2zZQ/";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="PuUUUvjC";
+	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="TyI5F/9l";
 	dkim-atps=neutral
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
  [205.220.168.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38D1C10E08B
- for <intel-xe@lists.freedesktop.org>; Thu,  9 Apr 2026 22:09:06 +0000 (UTC)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 548CC10E874
+ for <intel-xe@lists.freedesktop.org>; Thu,  9 Apr 2026 22:09:49 +0000 (UTC)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
  by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 639DdO4m2812135
- for <intel-xe@lists.freedesktop.org>; Thu, 9 Apr 2026 22:09:05 GMT
+ 639LMdeG1972607
+ for <intel-xe@lists.freedesktop.org>; Thu, 9 Apr 2026 22:09:49 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
  cc:content-type:date:from:in-reply-to:message-id:mime-version
- :references:subject:to; s=qcppdkim1; bh=0HMFaKZjpgyXaau/0X9Mxm/w
- GN/42VWp/aAAASGyGoc=; b=kNv/mPHEw/tFjVBnkayEOYmjoDA8xsri9s1Fx5AI
- j1rghVQSftnAm0tVvn+YyX5kR6NxS6O3dSqWEcQ/9lSZ+hrdwdG1+gilPhovXIoD
- gNr0mctsDpiBtOOepvYk2JQV1iPFChb/nlhXUGmm85iCETuMErjbBM/gwSw4nRtJ
- TuhcWuPxw7Wm3KU5go4mRE9Jh4bmK3YUSGd4dmcq9UXo52BVx7jxPFeFAqhdLoqA
- hqNgGZhxbOWpGXFD2ueRY9MHdyKwFe7ReAxa1BSeJFtvdMjnD+rEtIyQTkwTnTcs
- gX/v09P9lvNyi4ZmJgZQgtoEGgqdjnNr002UF6Z1Acb45A==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
- [209.85.160.197])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ded6h9nje-1
+ :references:subject:to; s=qcppdkim1; bh=YfJuQz9x8+CxrVM73ltVMfSV
+ gvGLqNbpnCkk5PUIX9Y=; b=PuUUUvjCOM0tKgt7LJ1qBH0p9464Id/g2CTihUW6
+ mnvl4XVrXpir4kmhZe6PEPhrY2LifZYgKW5Vs6EsQpcBSOYHXg1Qj1pNpTXcde6f
+ kqC/0hxc1bmbaxZJk12lYAGyEepI0VUL17eWKI2HMN1YEO69Rxk/+NhpmD2mbKdC
+ RAn+udXOl93lD6VCGjwj5gToRo3qW4hyn8RAS5ABwmpJZRNcsk+6BcKVIIqneCNv
+ Fds3WuLPfhtdaaE+dZgGvxowXegESy2mTHichE0SN4+JbaDt2MaedRKV6E7N1F95
+ e6bJUc+D8gDeAN0BRI9zadJ/LlMYm84sRag3GrQIXXQIcw==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
+ [209.85.160.199])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4decms1uaw-1
  (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
- for <intel-xe@lists.freedesktop.org>; Thu, 09 Apr 2026 22:09:05 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id
- d75a77b69052e-50b4031b86dso41880741cf.0
- for <intel-xe@lists.freedesktop.org>; Thu, 09 Apr 2026 15:09:05 -0700 (PDT)
+ for <intel-xe@lists.freedesktop.org>; Thu, 09 Apr 2026 22:09:48 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id
+ d75a77b69052e-50d826ed6f9so32616961cf.1
+ for <intel-xe@lists.freedesktop.org>; Thu, 09 Apr 2026 15:09:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oss.qualcomm.com; s=google; t=1775772544; x=1776377344;
+ d=oss.qualcomm.com; s=google; t=1775772588; x=1776377388;
  darn=lists.freedesktop.org; 
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=0HMFaKZjpgyXaau/0X9Mxm/wGN/42VWp/aAAASGyGoc=;
- b=gCs2zZQ/dKXGFc8GVlCZey88L827VSL0Bc9wr7Il6LJjhJ59Byvh6Vl6b4ChrkKsMa
- pVi0Djql+zbMt42DROSI1EED01QdJh0C9oABbTCpLkdmQkpwN2a/+bb40+O9QVKGux4W
- u47nexpPnZspdocH1hzJ6KRv13y43KA2tH2FdFssLtyvWdyzovuHS58zwLx8KYPYTrIk
- zMG4DcH/ZChGn8UvukEgUiyamsqVoGA9rH/0ZuaY/2r6rxArxWKIf0Vcvx8gtiQv3kY2
- WJ7/I2woIEdq2HBijh80VBmokcVYflARBmrcglLp/KlBA8Cg+sUNiSv1mmMwEQqmZ3/5
- Q63g==
+ bh=YfJuQz9x8+CxrVM73ltVMfSVgvGLqNbpnCkk5PUIX9Y=;
+ b=TyI5F/9lRhG7EaSk/AlXbb06b4QB+nr+4gpUeIG7hFR/cENz+qPP7M2qLMSsgBwtor
+ CtaBjalB5U2IcnqTR8eI9CdcoMxrQN3rZ4MB0gUec+s8Bf0QnDhudrw8/jVcFp8uv2r5
+ FAF7L92w4vaX3t8wETmcDxMmlaZP5N7Ffe1FjVqA7BmgHvHfCbPEG+af5MfW+YtPjKTw
+ Lo9w5OLQKjOYfwMf9e1KC4V07lb9+E/lqSLD4jOzNO9HpviVIYwmiL68ylPFeBJMns4E
+ +3R+bWbwl4suwbXbsxEQXmnd72v0CUjCM+3eAWogochqn1L4lPCIUJujV0rU18Pn4FZr
+ wVWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1775772544; x=1776377344;
+ d=1e100.net; s=20251104; t=1775772588; x=1776377388;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=0HMFaKZjpgyXaau/0X9Mxm/wGN/42VWp/aAAASGyGoc=;
- b=ZxBatcGQjyogFcL4mEej3QiXDOzxHdbPVbN3L4e9tdZSHuBR/aC4fChXVGZ+nLd2AI
- yRSt2VYMS91G54eiGlvOr/NozjB7rQnbbRtSxLE/J3Vg1ypvSTxTBqTKAid1sZMKtK2E
- lLhwRxyWPV8okXCBVjE1YWPz4WDJDX4jidpLK7lUP5b+VwUszvT1j9mhe4pRcXQU4NN0
- iJ3tBGRPVKM6A03szOmwifwURVN5NEW2Uoqr9vTRMuPYTXqWI2oMWIgcYq49WuhfjtUK
- 2XOfvzfOYMEJD9JHY2bBL7q6w4km825EjqBvN3NNa3O0ELwoF146+fAeYgzP3Oh5gtmv
- FN7A==
+ bh=YfJuQz9x8+CxrVM73ltVMfSVgvGLqNbpnCkk5PUIX9Y=;
+ b=XfamI9rmY2a1jzyFM3TBvPJDBlMNDWjkqkAKDV0X4d94cH1pieBi/CLjTQe+YGRDDA
+ Jip0OZ3HYszz46YJ5XuYPmztULg8t+YM50NRYEDbUCGQlqdIghLSat0dh9oOB2T/GT2u
+ Jx/6BywzB0XYfipUFzRA43heVmMpZZi8blTDC9jsPcgAZ5p4vuSbM2vjayFATLc6qzHx
+ WDANXdpBBe4bri3tZzuypzml8MKM/f4ksqJuOkzfrotvM6GN0NanaEK6RG6TdxRf5pNV
+ j6sm36oZqF8Uj4OnqpjRhH5ZLMtLjysJdUBQgyt6MuoAkBGtl2kfQ/UbGJ7ke1h4Ani7
+ kU9w==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXEWoKypSMldx+rQih94lZHhse9wJYpz37VS1LSZP4GFzXP7ULhmIYAUqwc95k6ROIQr8NrCwMq/g==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw6xq3K7NzJgzsdDo8N1g2ezv2FKlg1yoltj9ToijMCIIP58W5D
- SP70OOzbBzm5QXb9dpIe/LTROEtK6Qfm3e/pGMKujTt8O2qN7Op0KaVrnZkOOHBWiBW+XKAfMT4
- lG+Wyf5tIoonLGPsACZwXaArYBx24kYwRBlI9SRfPa2GqLWCAA4jFqwkE/W5KSSxJ9d74ag==
-X-Gm-Gg: AeBDieurkpAnOZuculzIqqfo9g50Wupcvuh9wUuZ7M2v/ncubUNqpsXX6it7fyC9bYz
- q9VAX88VrT6a5be6Em5NNXxwCfSVhvEK7nsyfKrVabLluWMje8f6Q34AHYRUTIarXgIENMbytm1
- GumX+2MhuyK0eWN0Hhvj/cY+5w4TphIVRrc4B5A5/QlON4GqIQ3SP5sm5EUqjDJ3d/k7ZxkoW50
- 4ET56iK/wCU1rem6W+bXOZk4zxSRen4gtcYGFAr6YROY101fbzm6xIkthsAxabqFzqbYuCpSsxq
- im1FMJLBGosHESJInSAeQNNKIpRzVXYcqZYLxK+bXH6j81cmmXdwJgW/+9f/V4CECGToKSAo2Pn
- 2E0YAMm6lgUDOJRmjyJV/QqevhgKD3o2KIeFvkVOkUnlzv/qcIMLG2K/VIOZ1QQbW+t+aQbD+vK
- dq6RwWp5OUsL+zptqentOOzA8IT34g2Z3Te3g=
-X-Received: by 2002:a05:622a:2485:b0:50b:50bf:5bbe with SMTP id
- d75a77b69052e-50dd5adbf6fmr15604041cf.22.1775772544427; 
- Thu, 09 Apr 2026 15:09:04 -0700 (PDT)
-X-Received: by 2002:a05:622a:2485:b0:50b:50bf:5bbe with SMTP id
- d75a77b69052e-50dd5adbf6fmr15603721cf.22.1775772543912; 
- Thu, 09 Apr 2026 15:09:03 -0700 (PDT)
+ AJvYcCVdFDAFNZx3+pZcTdoGC2obPyVvEzqFltH3s9zz5r4XNzrBvnFF5/Y/cDem370lPKZfxzITtl8oRA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxYRmIQFq+JnmQOiCyiGGIXWb/WwS/ouij1d5a7SHjXyFb/+F43
+ nG/W+TzEl2obdiNRAFBl6V0WgcTFX29p1j2zZfwhFps/T6Y81Kj5/ZCkS9beXeabkilwL1sBM5X
+ W6gOMmAv7F458Tg19EL4Ho7T9a9FL5nBYppfvJAlUAwM2pASqIUn1tMiqcVgwpm0DsVU2zw==
+X-Gm-Gg: AeBDiesNrCUoC+Hr/8QGbGqNaFtawwdK/vDwPKMMI2AdrdPKQSdT8bXTPhYA06WiQOM
+ F5xwf0X/kR0uraOcOdWqROMiBGz6EcCRRJhler649kHw+daC9+6bl95uHuGNqqe0dy0N9SY4h64
+ pp4OYIL1EzBTSKEBo6rTTVuaLq86ZcuBcZ9B9plzvq05zeeffjCW+cAdvX3q3CeQhwR9IhxwBbA
+ hz3vrLT+D35lM+st7mrZwDYDRqJMLI0aw13JiY0VW+RUqID0/AtjcGCuTa6YBU3wrYJBFhI/vpN
+ ldg0T2ALYinVJnW39WaDW7PzFMi+8JI0bHJvSHFah/ifGw4Swd1MrQWFLMbMPogccd4m33wDX2L
+ roe0iE1cH+KpbzIBtXr2nMjNCz9WAYSqHQCeLZuZ1X6l5i38Z73zNMA5D+DNdhGzfXkPEadITzE
+ MwsxZRfDSWiHAjnj7vl+XPtEFmNgg7IlInnoE=
+X-Received: by 2002:a05:622a:1181:b0:509:1657:a19d with SMTP id
+ d75a77b69052e-50dc1a1ae94mr71687271cf.15.1775772587619; 
+ Thu, 09 Apr 2026 15:09:47 -0700 (PDT)
+X-Received: by 2002:a05:622a:1181:b0:509:1657:a19d with SMTP id
+ d75a77b69052e-50dc1a1ae94mr71686661cf.15.1775772587156; 
+ Thu, 09 Apr 2026 15:09:47 -0700 (PDT)
 Received: from umbar.lan
  (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
  [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
  by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-5a3eee864a2sm196421e87.2.2026.04.09.15.09.02
+ 2adb3069b0e04-5a3eeefbb10sm195693e87.67.2026.04.09.15.09.43
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 09 Apr 2026 15:09:02 -0700 (PDT)
-Date: Fri, 10 Apr 2026 01:09:00 +0300
+ Thu, 09 Apr 2026 15:09:44 -0700 (PDT)
+Date: Fri, 10 Apr 2026 01:09:41 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -116,39 +116,40 @@ Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-rockchip@lists.infradead.org, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH v12 05/25] drm/atomic-helper: Add HDMI bridge output bus
- formats helper
-Message-ID: <47l6v3hxfnl75heek4o7fmhybafk44ewsrr66sdw55ahjv5oof@sku3nqbhg2tx>
+Subject: Re: [PATCH v12 19/25] drm/connector: Register color format property
+ on HDMI connectors
+Message-ID: <kbbkbobybjismej7wiogvmpjdju5zyfkbbwyuafxeajmasuzzv@3ksrtmmvsa4d>
 References: <20260409-color-format-v12-0-ce84e1817a27@collabora.com>
- <20260409-color-format-v12-5-ce84e1817a27@collabora.com>
+ <20260409-color-format-v12-19-ce84e1817a27@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260409-color-format-v12-5-ce84e1817a27@collabora.com>
-X-Authority-Analysis: v=2.4 cv=RfCgzVtv c=1 sm=1 tr=0 ts=69d82381 cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+In-Reply-To: <20260409-color-format-v12-19-ce84e1817a27@collabora.com>
+X-Proofpoint-ORIG-GUID: O9dUU8SihDKWLXxQBUXd6hJMEgobbJvC
+X-Proofpoint-GUID: O9dUU8SihDKWLXxQBUXd6hJMEgobbJvC
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDA5MDIwNCBTYWx0ZWRfXwUeygkX/hlkV
+ AHpKk9SLpbLSnrbIbsl/Vf0zXpdO3rIz4Pf+pV0PKoTlEVYw4j96fw3X/9+EfJS9bKfDyJh2Zm2
+ nZLD3PkrZGZQS5NWy/AecndOzsljmOezcrZU4WWBUtppAB1ouoiWP8PlnnUH9gISQzX9GtjdFnF
+ K+JkerH3/t2TB5WEdd8TONmr5qz6EgEg7QG19I9fgtj5pZadBGnqePJDHlDG/4nI+JS1J/vnD9C
+ t8rHCaXgXxTDl4GKBxI+LhNkBpLgxijwQDGNMyGsX8TtdjRn9X5cfNt+zTnT+Y3NEGD3FEpJ1Fa
+ I76Dcw0wQOB+kouzQiLORRiX+auB5Xv6fCj1978lyVoB0k3a4ZctIssge9Ho1dc1VLVB3PNKGSi
+ A3u0pP4walAFJsYRyvJXPMc2EkZYwQ93allD9Ud4AZojDQaX+VYpt5KkPSg6endoywBQ8SmHEla
+ Utz+DypRSQZJc9FRuBA==
+X-Authority-Analysis: v=2.4 cv=N/sZ0W9B c=1 sm=1 tr=0 ts=69d823ac cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
  a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22 a=QX4gbG5DAAAA:8
- a=EUspDBNiAAAA:8 a=FnALt_FR2tA_ePdYDbsA:9 a=CjuIK1q_8ugA:10
- a=a_PwQJl-kcHnX1M80qC6:22 a=AbAUZ8qAyYyZVLSsDulk:22
-X-Proofpoint-GUID: QF4mhxvd10_tmzAccvaHGTbVvmBhdzQ2
-X-Proofpoint-ORIG-GUID: QF4mhxvd10_tmzAccvaHGTbVvmBhdzQ2
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDA5MDIwNCBTYWx0ZWRfX/SIlvk5mFGoS
- kg2EQip+QtIBu87AgfLNgzDXa/GZU/hqhuuWouMTdBAjtrhLUKKzQjFqwNw+MP79SCta8W5FbKC
- DFWmfH1R1p3zYX3DTRZcS/RoiVrT1TmJnic82OVSd5aU6NaYqeQqeXDEK4Ot7zI1oECcpGbLgl8
- p920pLP2JITiY7eds2S1Yb8z98rg86WQaiSZefJAbEGFEU1qs+K+wB2TUZ4Yhbt8pWWrU9NcKIS
- Z7Szn06I8SvbjbRzbBJze1mIXHZotVkr+QdvcmMQp2rUfnPhvY84zZrOPA62csIsMZ+C3I7b2XC
- 5CljprzZjZq1M4LNFCL8iQLAGAlZgG7IPdV0z6PEWGsb7oDHOYhtUsz2anw5pd8bg2HD0EnWgtY
- OhiPnXJLhLa4hgdGdfmtlhbbQ/YRzEnjahSW2yYZpacuTHpV8L0Evyx18l0afL6qkynNGnj0OpQ
- EWQYCvS0afPg2yBPZ9A==
+ a=u7WPNUs3qKkmUXheDGA7:22 a=yOCtJkima9RkubShWh1s:22 a=VwQbUJbxAAAA:8
+ a=QX4gbG5DAAAA:8 a=EUspDBNiAAAA:8 a=ZrIce4Gfb_NoB2EXF1MA:9 a=CjuIK1q_8ugA:10
+ a=kacYvNCVWA4VmyqE58fU:22 a=AbAUZ8qAyYyZVLSsDulk:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-04-09_04,2026-04-09_02,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 clxscore=1015 impostorscore=0 adultscore=0 priorityscore=1501
- lowpriorityscore=0 spamscore=0 suspectscore=0 malwarescore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2604010000 definitions=main-2604090204
+ clxscore=1015 phishscore=0 malwarescore=0 bulkscore=0 adultscore=0
+ lowpriorityscore=0 priorityscore=1501 impostorscore=0 spamscore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2604010000
+ definitions=main-2604090204
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -163,36 +164,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Apr 09, 2026 at 05:44:55PM +0200, Nicolas Frattaroli wrote:
-> The drm_bridge_funcs atomic_get_output_bus_fmts operation should be the
-> same for likely every HDMI connector bridge, unless such an HDMI
-> connector bridge has some special hardware restrictions that I cannot
-> envision yet.
+On Thu, Apr 09, 2026 at 05:45:09PM +0200, Nicolas Frattaroli wrote:
+> The drmm_connector_hdmi_init function can figure out what DRM color
+> formats are supported by a particular connector based on the supported
+> HDMI format bitmask that's passed in.
 > 
-> To avoid code duplication and standardize on a set of media bus formats
-> that the HDMI output color formats translate to, add a common helper
-> function that implements this operation to the drm bridge helpers.
+> Use it to register the drm color format property.
 > 
-> The function returns a list of output bus formats based on the HDMI
-> bridge's current output bits-per-component, and its bitmask of supported
-> color formats.
-> 
-> To guard against future expansion of DRM_OUTPUT_COLOR_FORMAT outgrowing
-> the hweight8 call, add a BUILD_BUG_ON statement where it's used that
-> checks for DRM_OUTPUT_COLOR_FORMAT_COUNT. The justification for not
-> using hweight32 in all cases is that not all ISAs have a popcount
-> instruction, and will benefit from a smaller/faster software
-> implementation that doesn't have to operate across all bits.
-> 
-> The justification for not defining an hweight_color depending on the
-> value of DRM_OUTPUT_COLOR_FORMAT_COUNT is that this count enum value is
-> only known at compile time, not at preprocessor time.
-> 
+> Reviewed-by: Maxime Ripard <mripard@kernel.org>
 > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 > ---
->  drivers/gpu/drm/drm_atomic_helper.c | 81 +++++++++++++++++++++++++++++++++++++
->  include/drm/drm_atomic_helper.h     |  7 ++++
->  2 files changed, 88 insertions(+)
+>  drivers/gpu/drm/drm_connector.c | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
 
 Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
