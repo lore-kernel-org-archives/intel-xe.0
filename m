@@ -4,42 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01FB2F34C57
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 12:26:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14616F34C58
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 12:26:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B56710E441;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5019610E43C;
 	Mon, 13 Apr 2026 12:26:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="NsNneuci";
+	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="h9xR02kI";
 	dkim-atps=neutral
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A615810E063;
- Thu,  9 Apr 2026 17:09:12 +0000 (UTC)
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C16310E843
+ for <intel-xe@lists.freedesktop.org>; Thu,  9 Apr 2026 17:09:32 +0000 (UTC)
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
- by smtpout-03.galae.net (Postfix) with ESMTPS id 8E4634E429AD;
- Thu,  9 Apr 2026 17:09:11 +0000 (UTC)
+ by smtpout-02.galae.net (Postfix) with ESMTPS id 6C66D1A3259;
+ Thu,  9 Apr 2026 17:09:31 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
- by smtpout-01.galae.net (Postfix) with ESMTPS id 5B165603E4;
- Thu,  9 Apr 2026 17:09:11 +0000 (UTC)
+ by smtpout-01.galae.net (Postfix) with ESMTPS id 4094D603E4;
+ Thu,  9 Apr 2026 17:09:31 +0000 (UTC)
 Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 4B362104501CC; 
- Thu,  9 Apr 2026 19:09:06 +0200 (CEST)
+ with ESMTPSA id D624B104500F2; 
+ Thu,  9 Apr 2026 19:09:25 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1775754549; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+ t=1775754569; h=from:subject:date:message-id:to:cc:mime-version:content-type:
  content-transfer-encoding:in-reply-to:references;
- bh=gLCKdJRpfKPoB5WWQAXBdqHs5x4sKwWXgZVhJIjP7RQ=;
- b=NsNneuciB3J5k/khO3wOG9JznpaYRpPkooz/Oq4DtiNephghulGNOFQz596h3I9V2Humf1
- e6PbTovsstxzMUZIwx+NkLGQBcfANB9dSd16qfZ0pM1kqH9xjb8ErmbqkiD3PJOn9+jRjm
- +8qFFiXIzE8c1NbwFZUpEHa81fGdRnZQgVRCcaYss/e71EcOB1xfBnDKqJT7dzystwCwPw
- ZuIPCtsJI0GQNPzsuj5VGyZxC8v/wbVsUlTSqVaZTcUDzi/pdUWvs+VpkiW1tvdQgb1RxZ
- lwZGrYfjNxpwEv3MLe3fmyFwboJORD5neDvsKug/g6GDuYMg4c9IJ15OpG7plQ==
+ bh=HqD0mr7sf75LjT0yNP7LvO47dnEsZGkmyqhNV5eLXkg=;
+ b=h9xR02kI1jjYrNVTXgx/FD2R2tfo46THPCu9f5RgxizVaElcH1nVrVJgn9XpW++icA9cMD
+ L6S0aZ7ez4L3CLg+I8sm1VUojyEkqoID3PPOS43uaDB1FF65SFPwqUATKJFyU0t7vdQwD6
+ eulVpzdY8P1DuKHwIy4wsoQp99WkcUQI1B/QrBRFc3kH18/WjmOzAUTQU9BztWNvn3E3et
+ hz0cJzJ7aa3wtQmaBtpF2CBTN4u41rNwmDq9B530eeAy5Is3pvdhs6XD+6glpyitFhdYJu
+ 6+CzEOl1ypzGo0xkDgmMno01+uxHAGlysBB9+twiEWhERUswxbd5CwYjGK9law==
 From: Kory Maincent <kory.maincent@bootlin.com>
-Date: Thu, 09 Apr 2026 19:08:21 +0200
-Subject: [PATCH RFC 05/12] drm/i915/display: Switch to managed for crtc
+Date: Thu, 09 Apr 2026 19:08:26 +0200
+Subject: [PATCH RFC 10/12] drm/i915/display/dp: Adopt dp_connector helpers
+ to expose link training state
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260409-feat_link_cap-v1-5-7069e8199ce2@bootlin.com>
+Message-Id: <20260409-feat_link_cap-v1-10-7069e8199ce2@bootlin.com>
 References: <20260409-feat_link_cap-v1-0-7069e8199ce2@bootlin.com>
 In-Reply-To: <20260409-feat_link_cap-v1-0-7069e8199ce2@bootlin.com>
 To: Jani Nikula <jani.nikula@linux.intel.com>, 
@@ -84,191 +85,159 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The current i915 driver uses non-managed function to create crtc. It
-is not an issue yet, but in order to comply with the latest DRM
-requirement, convert this code to use drm and device managed helpers.
+Switch the i915 DP connector initialization from drmm_connector_init()
+to drmm_connector_dp_init(), providing the source link capabilities
+(supported lane counts, link rates, DSC support, voltage swing and
+pre-emphasis levels).
 
-Assisted-by: Claude Code:2.1.90
+Add intel_dp_report_link_train() to collect the negotiated link
+parameters (rate, lane count, DSC enable, per-lane voltage swing and
+pre-emphasis) and report them via drm_connector_dp_set_link_train_properties()
+once link training completes successfully.
+
+Reset the link training properties via
+drm_connector_dp_reset_link_train_properties() when the connector is
+reported as disconnected or when the display device is disabled, so
+the exposed state always reflects the current link status.
+
 Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
 ---
- drivers/gpu/drm/i915/display/intel_crtc.c | 102 ++++++++++--------------------
- 1 file changed, 35 insertions(+), 67 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c            | 31 +++++++++++++++++++---
+ .../gpu/drm/i915/display/intel_dp_link_training.c  | 25 +++++++++++++++++
+ 2 files changed, 52 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index b8189cd5d864a..e2f995313acf2 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -8,6 +8,7 @@
- 
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 2af64de9c81de..641406bdc0cc9 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -45,6 +45,7 @@
+ #include <drm/display/drm_hdmi_helper.h>
  #include <drm/drm_atomic_helper.h>
- #include <drm/drm_fourcc.h>
-+#include <drm/drm_managed.h>
- #include <drm/drm_plane.h>
+ #include <drm/drm_crtc.h>
++#include <drm/drm_dp_connector.h>
+ #include <drm/drm_edid.h>
+ #include <drm/drm_fixed.h>
+ #include <drm/drm_managed.h>
+@@ -6337,8 +6338,10 @@ intel_dp_detect(struct drm_connector *_connector,
+ 	drm_WARN_ON(display->drm,
+ 		    !drm_modeset_is_locked(&display->drm->mode_config.connection_mutex));
+ 
+-	if (!intel_display_device_enabled(display))
++	if (!intel_display_device_enabled(display)) {
++		drm_connector_dp_reset_link_train_properties(_connector);
+ 		return connector_status_disconnected;
++	}
+ 
+ 	if (!intel_display_driver_check_access(display))
+ 		return connector->base.status;
+@@ -6388,6 +6391,8 @@ intel_dp_detect(struct drm_connector *_connector,
+ 
+ 		intel_dp_tunnel_disconnect(intel_dp);
+ 
++		drm_connector_dp_reset_link_train_properties(_connector);
++
+ 		goto out_unset_edid;
+ 	}
+ 
+@@ -7162,10 +7167,12 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
+ 			struct intel_connector *connector)
+ {
+ 	struct intel_display *display = to_intel_display(dig_port);
++	struct drm_connector_dp_link_train_caps link_caps;
+ 	struct intel_dp *intel_dp = &dig_port->dp;
+ 	struct intel_encoder *encoder = &dig_port->base;
+ 	struct drm_device *dev = encoder->base.dev;
+ 	enum port port = encoder->port;
++	u32 *rates;
+ 	int type;
+ 
+ 	if (drm_WARN(dev, dig_port->max_lanes < 1,
+@@ -7213,8 +7220,25 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
+ 		    type == DRM_MODE_CONNECTOR_eDP ? "eDP" : "DP",
+ 		    encoder->base.base.id, encoder->base.name);
+ 
+-	drmm_connector_init(dev, &connector->base, &intel_dp_connector_funcs,
+-			    type, &intel_dp->aux.ddc);
++	intel_dp_set_source_rates(intel_dp);
++	link_caps.nlanes = DRM_DP_1LANE | DRM_DP_2LANE | DRM_DP_4LANE;
++	link_caps.nrates = intel_dp->num_source_rates;
++	rates = kzalloc_objs(*rates, intel_dp->num_source_rates);
++	if (!rates)
++		goto fail;
++
++	for (int i = 0; i < intel_dp->num_source_rates; i++)
++		rates[i] = intel_dp->source_rates[i];
++
++	link_caps.rates = rates;
++	link_caps.dsc = true;
++	link_caps.v_swings = DRM_DP_VOLTAGE_SWING_LEVEL_MASK;
++	link_caps.pre_emphs = DRM_DP_PRE_EMPH_LEVEL_MASK;
++
++	drmm_connector_dp_init(dev, &connector->base, &intel_dp_connector_funcs,
++			       &link_caps, type, &intel_dp->aux.ddc);
++	kfree(rates);
++
+ 	drm_connector_helper_add(&connector->base, &intel_dp_connector_helper_funcs);
+ 
+ 	if (drmm_add_action_or_reset(dev, intel_connector_destroy, connector)) {
+@@ -7240,7 +7264,6 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
+ 	if (!intel_edp_init_connector(intel_dp, connector))
+ 		goto fail;
+ 
+-	intel_dp_set_source_rates(intel_dp);
+ 	intel_dp_set_common_rates(intel_dp);
+ 	intel_dp_reset_link_params(intel_dp);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+index 54c585c59b900..c2fd46a323650 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+@@ -25,6 +25,7 @@
+ #include <linux/iopoll.h>
+ 
+ #include <drm/display/drm_dp_helper.h>
++#include <drm/drm_dp_connector.h>
  #include <drm/drm_print.h>
- #include <drm/drm_vblank.h>
-@@ -191,41 +192,11 @@ void intel_crtc_state_reset(struct intel_crtc_state *crtc_state,
- 	crtc_state->max_link_bpp_x16 = INT_MAX;
+ 
+ #include "intel_display_core.h"
+@@ -1116,6 +1117,27 @@ intel_dp_128b132b_intra_hop(struct intel_dp *intel_dp,
+ 	return sink_status & DP_INTRA_HOP_AUX_REPLY_INDICATION ? 1 : 0;
  }
  
--static struct intel_crtc *intel_crtc_alloc(void)
-+static void intel_crtc_vblank_pm_qos_cleanup(struct drm_device *drm, void *data)
- {
--	struct intel_crtc_state *crtc_state;
--	struct intel_crtc *crtc;
--
--	crtc = kzalloc_obj(*crtc);
--	if (!crtc)
--		return ERR_PTR(-ENOMEM);
--
--	crtc_state = intel_crtc_state_alloc(crtc);
--	if (!crtc_state) {
--		kfree(crtc);
--		return ERR_PTR(-ENOMEM);
--	}
--
--	crtc->base.state = &crtc_state->uapi;
--	crtc->config = crtc_state;
--
--	return crtc;
--}
--
--static void intel_crtc_free(struct intel_crtc *crtc)
--{
--	intel_crtc_destroy_state(&crtc->base, crtc->base.state);
--	kfree(crtc);
--}
--
--static void intel_crtc_destroy(struct drm_crtc *_crtc)
--{
--	struct intel_crtc *crtc = to_intel_crtc(_crtc);
-+	struct intel_crtc *crtc = data;
- 
- 	cpu_latency_qos_remove_request(&crtc->vblank_pm_qos);
--
--	drm_crtc_cleanup(&crtc->base);
--	kfree(crtc);
- }
- 
- static int intel_crtc_late_register(struct drm_crtc *crtc)
-@@ -236,7 +207,6 @@ static int intel_crtc_late_register(struct drm_crtc *crtc)
- 
- #define INTEL_CRTC_FUNCS \
- 	.set_config = drm_atomic_helper_set_config, \
--	.destroy = intel_crtc_destroy, \
- 	.page_flip = drm_atomic_helper_page_flip, \
- 	.atomic_duplicate_state = intel_crtc_duplicate_state, \
- 	.atomic_destroy_state = intel_crtc_destroy_state, \
-@@ -311,28 +281,19 @@ static const struct drm_crtc_funcs i8xx_crtc_funcs = {
- static int __intel_crtc_init(struct intel_display *display, enum pipe pipe)
- {
- 	struct intel_plane *primary, *cursor;
-+	struct intel_crtc_state *crtc_state;
- 	const struct drm_crtc_funcs *funcs;
- 	struct intel_crtc *crtc;
-+	u32 plane_ids_mask = 0;
- 	int sprite, ret;
- 
--	crtc = intel_crtc_alloc();
--	if (IS_ERR(crtc))
--		return PTR_ERR(crtc);
--
--	crtc->pipe = pipe;
--	crtc->num_scalers = DISPLAY_RUNTIME_INFO(display)->num_scalers[pipe];
--
- 	if (DISPLAY_VER(display) >= 9)
- 		primary = skl_universal_plane_create(display, pipe, PLANE_1);
- 	else
- 		primary = intel_primary_plane_create(display, pipe);
--	if (IS_ERR(primary)) {
--		ret = PTR_ERR(primary);
--		goto fail;
--	}
--	crtc->plane_ids_mask |= BIT(primary->id);
--
--	intel_init_fifo_underrun_reporting(display, crtc, false);
-+	if (IS_ERR(primary))
-+		return PTR_ERR(primary);
-+	plane_ids_mask |= BIT(primary->id);
- 
- 	for_each_sprite(display, pipe, sprite) {
- 		struct intel_plane *plane;
-@@ -341,19 +302,15 @@ static int __intel_crtc_init(struct intel_display *display, enum pipe pipe)
- 			plane = skl_universal_plane_create(display, pipe, PLANE_2 + sprite);
- 		else
- 			plane = intel_sprite_plane_create(display, pipe, sprite);
--		if (IS_ERR(plane)) {
--			ret = PTR_ERR(plane);
--			goto fail;
--		}
--		crtc->plane_ids_mask |= BIT(plane->id);
-+		if (IS_ERR(plane))
-+			return PTR_ERR(plane);
-+		plane_ids_mask |= BIT(plane->id);
- 	}
- 
- 	cursor = intel_cursor_plane_create(display, pipe);
--	if (IS_ERR(cursor)) {
--		ret = PTR_ERR(cursor);
--		goto fail;
--	}
--	crtc->plane_ids_mask |= BIT(cursor->id);
-+	if (IS_ERR(cursor))
-+		return PTR_ERR(cursor);
-+	plane_ids_mask |= BIT(cursor->id);
- 
- 	if (HAS_GMCH(display)) {
- 		if (display->platform.cherryview ||
-@@ -376,11 +333,23 @@ static int __intel_crtc_init(struct intel_display *display, enum pipe pipe)
- 			funcs = &ilk_crtc_funcs;
- 	}
- 
--	ret = drm_crtc_init_with_planes(display->drm, &crtc->base,
--					&primary->base, &cursor->base,
--					funcs, "pipe %c", pipe_name(pipe));
--	if (ret)
--		goto fail;
-+	crtc = drmm_crtc_alloc_with_planes(display->drm, struct intel_crtc, base,
-+					   &primary->base, &cursor->base,
-+					   funcs, "pipe %c", pipe_name(pipe));
-+	if (IS_ERR(crtc))
-+		return PTR_ERR(crtc);
++static void intel_dp_report_link_train(struct intel_dp *intel_dp)
++{
++	struct intel_connector *connector = intel_dp->attached_connector;
++	struct drm_connector_dp_link_train dp_link_train;
 +
-+	crtc->pipe = pipe;
-+	crtc->num_scalers = DISPLAY_RUNTIME_INFO(display)->num_scalers[pipe];
-+	crtc->plane_ids_mask = plane_ids_mask;
++	dp_link_train.rate = intel_dp->link_rate;
++	dp_link_train.nlanes = intel_dp->lane_count;
++	dp_link_train.dsc_en = connector->dp.dsc_decompression_enabled;
 +
-+	crtc_state = intel_crtc_state_alloc(crtc);
-+	if (!crtc_state)
-+		return -ENOMEM;
-+	crtc->base.state = &crtc_state->uapi;
-+	crtc->config = crtc_state;
++	for (int i = 0; i < intel_dp->lane_count; i++) {
++		int v_swing_level = (intel_dp->train_set[i] &
++				     DP_TRAIN_VOLTAGE_SWING_MASK) >> DP_TRAIN_VOLTAGE_SWING_SHIFT;
++		int pre_emph_level = (intel_dp->train_set[i] &
++				      DP_TRAIN_PRE_EMPHASIS_MASK) >> DP_TRAIN_PRE_EMPHASIS_SHIFT;
++		dp_link_train.v_swing[i] = 1 << v_swing_level;
++		dp_link_train.pre_emph[i] = 1 << pre_emph_level;
++	}
 +
-+	intel_init_fifo_underrun_reporting(display, crtc, false);
- 
- 	if (DISPLAY_VER(display) >= 11)
- 		drm_crtc_create_scaling_filter_property(&crtc->base,
-@@ -393,17 +362,16 @@ static int __intel_crtc_init(struct intel_display *display, enum pipe pipe)
- 
- 	cpu_latency_qos_add_request(&crtc->vblank_pm_qos, PM_QOS_DEFAULT_VALUE);
- 
-+	ret = drmm_add_action_or_reset(display->drm, intel_crtc_vblank_pm_qos_cleanup, crtc);
-+	if (ret)
-+		return ret;
++	drm_connector_dp_set_link_train_properties(&connector->base, &dp_link_train);
++}
 +
- 	drm_WARN_ON(display->drm, drm_crtc_index(&crtc->base) != crtc->pipe);
+ /**
+  * intel_dp_stop_link_train - stop link training
+  * @intel_dp: DP struct
+@@ -1144,6 +1166,9 @@ void intel_dp_stop_link_train(struct intel_dp *intel_dp,
+ 	intel_dp_program_link_training_pattern(intel_dp, crtc_state, DP_PHY_DPRX,
+ 					       DP_TRAINING_PATTERN_DISABLE);
  
- 	if (HAS_CASF(display) && crtc->num_scalers >= 2)
- 		drm_crtc_create_sharpness_strength_property(&crtc->base);
- 
- 	return 0;
--
--fail:
--	intel_crtc_free(crtc);
--
--	return ret;
- }
- 
- int intel_crtc_init(struct intel_display *display)
++	if (!intel_dp->is_mst)
++		intel_dp_report_link_train(intel_dp);
++
+ 	if (intel_dp_is_uhbr(crtc_state)) {
+ 		ret = poll_timeout_us(ret = intel_dp_128b132b_intra_hop(intel_dp, crtc_state),
+ 				      ret == 0,
 
 -- 
 2.43.0
