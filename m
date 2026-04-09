@@ -4,155 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9481F364AD
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Apr 2026 18:03:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19225F364BC
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Apr 2026 20:36:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AAAD010E860;
-	Thu,  9 Apr 2026 18:02:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A292010E052;
+	Thu,  9 Apr 2026 20:36:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="oTKIrmY4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f4nI5HbV";
 	dkim-atps=neutral
-Received: from BN1PR04CU002.outbound.protection.outlook.com
- (mail-eastus2azon11010046.outbound.protection.outlook.com [52.101.56.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 071BD10E859;
- Thu,  9 Apr 2026 18:02:57 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=f+VVhBnh/gSE5orknkPhF/gb+BoeACmuWboCKyJ/RLSzy+eMRg2I0AO51jZICdzAeYcgYVTl+RAGrCjCVtrCFsVgSpy7vwNFbX+jPDF7f4bKsjbOsQ/uuPAW3BgTqgWUh/2pOJ8JwmtkNjVMBOAfbRlavA5ZR2S77xYx+dt3dzIq+gukdvOuiPVtyoo70j29UXtS9Tq0U2AUZFExB8K6/pzCBoi/4L1PaI0/irX9+MySGyBGy/xmncmSiIJAf2b8yNc/ldi9kbAWasTMaRpRTjXcNlmIVNL/boZhbybdmOesYVYy/H4M4c4AJWn0OcQGZkufVTpgF9+g9TInZLI9mw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=oq/4YySi3atnMQACYwqM5uyElZTSA6yoG4z9G9fCl7k=;
- b=Hr/bTmN2m12w8ZMcLpfIBjl3TdNn+a193XUYjx//l/5X90OukcNqrwX494RS4//tANReTr5EtRpYbs0/Q2xFpvkWQxvML8ClylBxkLQdlNnZ2OuazPCErilwfaTGcs23CxC37RnwMDDSEOI8f+Ux2cqT8q0WwVoMdrbMsi6i7/LWgOL6o+fRpxT/Q2GDdUooCuh0cyZLfzGcp2WcxjImt/Pj0qcUtmMIX5SPQR8ZG1ng/1l4qsujVaokFJBR9k0fIvaxrhmSEs1YYTrwpLdWItMJY6XR9vDoZJqqOhNQppOJ7aS4NJsU1AmaFX+jjIvj/FRxM/sHBKl3j8flj9tWag==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oq/4YySi3atnMQACYwqM5uyElZTSA6yoG4z9G9fCl7k=;
- b=oTKIrmY492juoLUiXjmRsjQlcxrA564r5kE9BhwCdQygQtRVxI3AyqGls7HTQWc9pN9vYhq9mKMkzvZL3zrzjmVDBDU95eHQwsqzOB0buWDNTUDB2pWuR3Jgk8H3j8lXLb1VgpXE3+qAWxk+6ebtJcesOQ25knlajniQJrRhaML8xqdouChcaLkF9DTsvMy23Hx9DCx8SOPpenpv/S/1MgBlZ1W+7dwlr/J2gPK+/UWiRu//vYaIf7kPwNdXlQ22Rfc1T0eak1abmJyEiXh3i5KQbGVgGheWRu+eVIDbJ+p3uh/1U5vEJAjojPC82Mlk1Y5tFBTDDHmMx0IoZq3+8g==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DM3PR12MB9416.namprd12.prod.outlook.com (2603:10b6:0:4b::8) by
- SJ0PR12MB5674.namprd12.prod.outlook.com (2603:10b6:a03:42c::7) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9791.33; Thu, 9 Apr 2026 18:02:51 +0000
-Received: from DM3PR12MB9416.namprd12.prod.outlook.com
- ([fe80::8cdd:504c:7d2a:59c8]) by DM3PR12MB9416.namprd12.prod.outlook.com
- ([fe80::8cdd:504c:7d2a:59c8%5]) with mapi id 15.20.9769.020; Thu, 9 Apr 2026
- 18:02:50 +0000
-Message-ID: <387064d2-8c6b-4b26-93e3-cab88d41dca3@nvidia.com>
-Date: Thu, 9 Apr 2026 11:02:47 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 12/21] gpu: nova-core: mm: Add unified page table
- entry wrapper enums
-To: Joel Fernandes <joelagnelf@nvidia.com>
-Cc: Eliot Courtney <ecourtney@nvidia.com>, linux-kernel@vger.kernel.org,
- Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
- Gary Guo <gary@garyguo.net>, Bjorn Roy Baron <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>, dri-devel@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, Nikola Djukic <ndjukic@nvidia.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
- Christian Koenig <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6250710E052;
+ Thu,  9 Apr 2026 20:36:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1775766993; x=1807302993;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=7gfLzB8DThL8+awFaM0AEeeHbksinJ+rqvsNTvEFvlE=;
+ b=f4nI5HbVylfXJ0oT1l33+DPyPSEzfNM0gdBSsJQNaaFmQbGjjrZVOXvu
+ donEKaTZl9KVQdqOy6/4SxihM8oV3FGkDs6afE1SKt+TcKjljw80sKXTC
+ UGs+u6iIjFAWc4oWMf4uT6NLgQcpSr4+VF1dGIaPNiYoYAUiCMqNVwcx9
+ EH1PdAxQgNf9br9/bGpYVxxj99KVGi8RKq5Psmf1Dza39thsVGVXhnEu5
+ crxnqKGIDOa7NQIn5/GekiD63IVowjIGSNC6j2g/d+c+dJwAVrvibxdGl
+ wt9oBfrqaK5sd6Yn82BHv6c4OiTA/D40q2qOVSHSB/+z1N06IvsDEw+L+ Q==;
+X-CSE-ConnectionGUID: E1Sej0GGRTmkiN7S4peqXg==
+X-CSE-MsgGUID: sAVJgakGTtqqRNXKB7QABw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11754"; a="87410721"
+X-IronPort-AV: E=Sophos;i="6.23,170,1770624000"; d="scan'208";a="87410721"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2026 13:36:32 -0700
+X-CSE-ConnectionGUID: c13WNi39SJCjK+TGxfSMKA==
+X-CSE-MsgGUID: S/n0EwMKQ0S41l0IShj9Zw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,170,1770624000"; d="scan'208";a="229161704"
+Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.216])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2026 13:36:24 -0700
+Date: Thu, 9 Apr 2026 23:36:21 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Kory Maincent <kory.maincent@bootlin.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Vivi Rodrigo <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Rui Huang <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, Alistair Popple <apopple@nvidia.com>,
- Timur Tabi <ttabi@nvidia.com>, Edwin Peer <epeer@nvidia.com>,
- Alexandre Courbot <acourbot@nvidia.com>, Andrea Righi <arighi@nvidia.com>,
- Andy Ritger <aritger@nvidia.com>, Zhi Wang <zhiw@nvidia.com>,
- Balbir Singh <balbirs@nvidia.com>, Philipp Stanner <phasta@kernel.org>,
- Elle Rhumsaa <elle@weathered-steel.dev>, Alexey Ivanov <alexeyi@nvidia.com>,
- linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Dave Airlie <airlied@redhat.com>, Jesse Barnes <jbarnes@virtuousgeek.org>,
+ Eric Anholt <eric@anholt.net>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Mark Yacoub <markyacoub@google.com>, Sean Paul <seanpaul@google.com>,
+ Louis Chauvet <louis.chauvet@bootlin.com>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-fbdev@vger.kernel.org
-References: <42dd707f-e23a-4725-8b6f-08ca346b0143@nvidia.com>
- <1775730646.3752.4760@nvidia.com>
-Content-Language: en-US
-From: John Hubbard <jhubbard@nvidia.com>
-In-Reply-To: <1775730646.3752.4760@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BY3PR05CA0018.namprd05.prod.outlook.com
- (2603:10b6:a03:254::23) To DM3PR12MB9416.namprd12.prod.outlook.com
- (2603:10b6:0:4b::8)
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Simona Vetter <simona.vetter@ffwll.ch>
+Subject: Re: [PATCH RFC 00/12] Add support for DisplayPort link training
+ information report
+Message-ID: <adgNxaFhbQaxC5E_@intel.com>
+References: <20260409-feat_link_cap-v1-0-7069e8199ce2@bootlin.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM3PR12MB9416:EE_|SJ0PR12MB5674:EE_
-X-MS-Office365-Filtering-Correlation-Id: 400d31ce-b3f4-47ae-93a6-08de966236e7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|7416014|1800799024|56012099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: kj9SYVST2FGXw3/Gx4LVjn5NoTo3Fgnw0cjHOABTkR3mDBWReAlej3zSrfmbXw0ATfAO46j3uo5Fpyqn1JPwKW7LEqqVGXEthPPb03g8fHxWf8FUTgevOIgYOxwg1KkDxwyetPGbfpMnjjfOT0xWKsoHkkzcrpFMrKH6sYjtbcqLQRbzs9d0/Kc/FJ7gX7297bbsJaOF3MZb3USiuOGGu+VwtssObaYrLx856j2fwhsbnDCoay5M5fyNxpCiQBTGiPw/ahLnp4ifDdZ1W4yV6+ScNQGvDMhKmY82uEkpn6tdhvpSegDz0AeqkwoctyW8NSKGj3GubaR89MC9vu6TMvN7q5whjh3143B18fLNYVKhbm8BEaxffpIc9Y7Mn1TER5NyZYrY1ovhcjh/TlmAI5r2O1981uTDO97Cv569++h5XyaAclj4Q9IWlmqkkmQfR7TnqMye9jjQdoyWm6llaz9mTf102oLj3nPUERFWC2JrEcZq2EIQ2irRvKwaarUJquAh9eFgVEH8mk93mj3/NlEHl38lsbBZJmQQQhB1+IwuMXaSIRi0m3HsxrdSqSrxV1mOrWQ5m+EfO1IgePkUUzKxWYP61xY490EcKoFobexUaL8parlk67iwzlb+fK8cKmgd1RmhH8bEaiAORwjgS7HFUxxW1gO5QVLzDuaCRC7B8c1sQpWPUZlGd/WWcFUvrIqwC3Y+23cX2kaEm+ta31eksZ0toi4N2U/zEiJYd4M=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM3PR12MB9416.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(7416014)(1800799024)(56012099003)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?T1lGSFFZTFdrUVZEeVBLSlFyTkZVNmxaYTBUOUZ1UGpucjBBR05rTFJVVDZp?=
- =?utf-8?B?bitsMjlBeXpodmZpQXRmR0JkVUFRck9MYkJsdEp4ZnFwbjZqSnpWbTJBeGlO?=
- =?utf-8?B?dmR2UEVteFpBMHNnM0pjRklXWmJmeDRRZVprbmRsaWRoS1JBbWNRcHdMc0dw?=
- =?utf-8?B?MTNiZ1ZxakkwT2pXTEEwbXRudm45cCtiN2FnNnlBNElVTEFIYTZjY2F0dDlK?=
- =?utf-8?B?dzM5d2xJbE9BdldCaGQ2bENaOVhuaG5CTzAzRU0xRUlJeHE0U3VMem5WLzU4?=
- =?utf-8?B?Z2VVMk1lUFFHUHNSK2kwY1VsMDcrZU5CNmF4bWFtWGtTU1U5eGlyRXc2SEZ5?=
- =?utf-8?B?TU81ZTJIdmtUL21EL1N0NmhOVmVjU3lHNC9taDVsNG5RYXVVMGU0S0dGMjda?=
- =?utf-8?B?U2lJblhLSnptM0ExbFZSOUQxL1dEcERsbjlwWDl6Vmt4VmkrWFVTMkl1SE1K?=
- =?utf-8?B?aExKdGhvK3kxNDlsaGJrNjBZUVJEaU5BM0M1MmlYa0xNUmJGNDgxOVRpUkFF?=
- =?utf-8?B?Nk14NmFSQU1jOXhNV1E1ZVMvTWhIYkpYNEYwakJmenYzU0loUHRQOVNjZkN5?=
- =?utf-8?B?Sm9IaUxzcEI2ZW5IT0tkdGtIYjBqWExHbkFYR0oyaGVYdHROMlF3aGRnT0JK?=
- =?utf-8?B?dXhWRk12ck9FVHYwalFlTG9PQ0tyZ1ZqS0F0SHlNaXJPRjlGckd4SFpFbHhr?=
- =?utf-8?B?RmI5cHdodDl1U3QyYlF3WGdmTUxYLzgzZlFsSHY1U1U4NEJ1eWNXcWQ1Slp3?=
- =?utf-8?B?STIyQWFvT0pCUms4NWxaTlZtZU80MC9qQVhrbEwzVXcyb2hWT2E4cnVLemY1?=
- =?utf-8?B?VzBkUWI2TUF5aGJwRDExbXdMMk9WWVNPUmJoUjdOcHVjbDlkaUhQc3dNQ0xU?=
- =?utf-8?B?UHFLcDdFbXZvbiszMTRiOVUzOFpqU3MzWHBVNiszZ0t4MXVVVXE2VFJMUXdH?=
- =?utf-8?B?TEZEWCtZVGI5bUpSSDhBblpFQTdpVGtkV2F3YVRQSjNicXB0d2NoN1ZZZ1p4?=
- =?utf-8?B?TnM3dUQzZmxpTU9DdklwRTNrYkRIUDRzdG11bVNVVEhFUVg1QnptcDB2UXZE?=
- =?utf-8?B?TmpBNjdOQVNxRzZWbVpvRmg1NENVa1VZemZHUVVvcHowK0ZRWkk4clc0YUd6?=
- =?utf-8?B?K2ZVeERCdFI4RVhkY2JiMm9BYUxIeWc4S1Nrc2xuMlZTRVcxNVkzbzdHQlVy?=
- =?utf-8?B?NW5sVmVFdmR6Yyt0VldWczRYc3BoVkVqZlQzR050WlQyR1BTeXE3djk1d0M0?=
- =?utf-8?B?b0tiV2NEa1Y5ek1VcUJnS1J2ZlR2RmEvaHg5RUx2NFhhaUllQ2tCbm1zUFc4?=
- =?utf-8?B?RjJ4eTBpamJGd2dxR0I2eGhuWk5pd3Z3SGczWk5KaEM3dFZibGsxMzhEdWpv?=
- =?utf-8?B?TkZCYVVkSFVpZ2Nlb0ROQmc5SVNTU2NEbm9oN0l6cGpEaUp5dERXRUhYcmla?=
- =?utf-8?B?VGV2dlh0VVZXUms4bDNqaDNsL09PeFU3aE5XNloraW4xVmQ3NVIxTVdFeE16?=
- =?utf-8?B?OE5iZFA4cVNVYXVrV3IweTF4QVE4NWJTdkloelhHT3I5WHZ2UlZPR2VITThG?=
- =?utf-8?B?eDdBRC9SamR3b3Y0bklGL0t4MGNGTW9hRWJuTDhVMVRucjlmckZaQjJnNGpu?=
- =?utf-8?B?R2ZCMUZTKytsYkZxTldpMS85NFk1VlNFa05JbEtVTUNuWm44bWpwd3k2TkQ0?=
- =?utf-8?B?Zmp2TTYrZ1ZMY2JUMmJMMW1QbmdiaFdKUEVuNGZDZExKcnUzMzVmK1FQOHI5?=
- =?utf-8?B?cFBHU3M4TzZrWTUzV0FzZUYwdUtkOGd5a2V1T3JJcC9KK3I0cDdWN1NCTzE3?=
- =?utf-8?B?MUExc1c5WmhoS1ZRS3owc2htbXh0a3hhUTd3TWRncHBKZkFlcnJhcm82Rjlq?=
- =?utf-8?B?UVJFQ280Vnd0c3l5UHM5cUV3U1FETlJNK0RGZTdxUWVFeVozdEdJL2wwUUZ4?=
- =?utf-8?B?dGFiQzBlK1FlR1NxV1lDdVJCOGpXRDA1RHNIaWs3SUVFeUZTSENoQWg0clpQ?=
- =?utf-8?B?b1JUQ2F4WFhnYTlNTkFNMm01TmpMVTl2aklxTzNmaSttRWZ2UzVjVHppcm5x?=
- =?utf-8?B?ZTlIYUF6RlQ5WURTcVlzZ2orSXBzTHE3YTI3VTRPcysrbGdmZ2lOZjVsSjBn?=
- =?utf-8?B?b3V3eHdHaFowSUJFUEVuc1lZN1lXZ0RzalRXVzFBa1I0ZFpQYmJqSHZHWTFx?=
- =?utf-8?B?cmlmTFFZUVFTV1p1TmJWQUFxYTdPakFrOW9PeXJjSmRHbU1yaHQwOGlhOVh0?=
- =?utf-8?B?QW1KTnlOd3ptU2k3aitTUjhEVk52TTlUVnZLNy8rVm40SVJud3M5QTNyNGtS?=
- =?utf-8?B?UHZqTGxPN0UxOFZPdjVZZmtzZjZtTEI1QThOdWNwY25PSVBWVnRsQT09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 400d31ce-b3f4-47ae-93a6-08de966236e7
-X-MS-Exchange-CrossTenant-AuthSource: DM3PR12MB9416.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2026 18:02:50.7930 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: C5sFpG9fRg+sZOCpn2TH1B9iNmeetx5Uqc6pFozRK1XNmvjQndL65KUutjHs+GL4ohBZfQ+585Jg1SZwi7AD5w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB5674
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260409-feat_link_cap-v1-0-7069e8199ce2@bootlin.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -167,34 +97,116 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 4/9/26 3:33 AM, Joel Fernandes wrote:
-...
-> Since it is 3 against 1 here, I rest my case :-). I am still in
+On Thu, Apr 09, 2026 at 07:08:16PM +0200, Kory Maincent wrote:
+> DisplayPort link training negotiates the physical-layer parameters needed
+> for a reliable connection: lane count, link rate, voltage swing,
+> pre-emphasis, and optionally Display Stream Compression (DSC). Currently,
+> each driver exposes this state in its own way, often through
+> driver-specific debugfs entries, with no standard interface for userspace
+> diagnostic and monitoring tools.
+> 
+> This series introduces a generic, DRM-managed framework for exposing DP
+> link training state as standard connector properties, modeled after the
+> existing HDMI helper drmm_connector_hdmi_init().
+> 
+> The new drmm_connector_dp_init() helper initializes a DP connector and
+> registers the following connector properties to expose the negotiated link
+> state to userspace:
+> 
+> - num_lanes:      negotiated lane count (1, 2 or 4)
+> - link_rate:      negotiated link rate
+> - dsc_en:         whether Display Stream Compression is active
+> - voltage_swingN: per-lane voltage swing level (lanes 0-3)
+> - pre_emphasisN:  per-lane pre-emphasis level (lanes 0-3)
 
-As Danilo points out, we want to foster healthy debate and land
-on whatever comes out of that. Not just by counting noses. :)
+I don't see why any real userspace would be interested in those (apart
+from maybe DSC). If this is just for diagnostics and whatnot then I
+think sysfs/debugfs could be a better fit.
 
-> disagreement since I do not see much benefit (that is why I said
-> pointless above). Actually it is not even about readability, that is
-> subjective (and I havenâ€™t heard most people say parametrizing code for
-> the sake of it makes it more readable anyway). It is that the code gen
-> is worse, and the complexity is just moved to a higher level in the
-> code, not removed. So what are we getting out of this really, other than
-> more boiler plate in higher layers of the code that did not exist
-> before? Not performance, not better generated code. Really nothing. See
-> all the data points in my previous reply.
+> 
+> Two runtime helpers update and clear these properties when link training
+> completes or the link goes down:
+> - drm_connector_dp_set_link_train_properties()
+> - drm_connector_dp_reset_link_train_properties()
+> 
+> Two drivers are updated as reference implementations: i915 (direct
+> connector path) and MediaTek (via the bridge connector framework using a
+> new DRM_BRIDGE_OP_DP flag). The i915 patches are preceded by a series of
+> conversions to DRM managed resources, which are required before adopting
+> drmm_connector_dp_init().
+> 
+> The MST case in i915 driver is not supported yet.
+> 
+> Patches 1-3:  Fix two error-path cleanup bugs in i915 sdvo and lvds
+> [Will probably be sent standalone]
+> Patches 4-8: Convert i915 display resources to DRM managed lifetime
+> Patch 9: Introduce the core drmm_connector_dp_init() framework
+> Patch 10: Wire the i915 DP connector to use the new helpers
+> Patch 11: Introduce DRM_BRIDGE_OP_DP and wire bridge connectors
+> Patch 12: Wire the MediaTek DP bridge to the new helpers [untested]
+> 
+> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+> ---
+> Kory Maincent (12):
+>       drm/i915/display/intel_sdvo: Fix double connector destroy in error paths
+>       drm/i915/display/intel_lvds: Drop redundant manual cleanup on init failure
+>       drm/i915/display/intel_dp: Drop redundant intel_dp_aux_fini() on init failure
+>       drm/i915/display: Switch to drmm_mode_config_init() and drop manual cleanup
+>       drm/i915/display: Switch to managed for crtc
+>       drm/i915/display: Switch to managed for plane
+>       drm/i915/display: Switch to managed for encoder
+>       drm/i915/display: Switch to managed for connector
+>       drm: Introduce drmm_connector_dp_init() with link training state properties
+>       drm/i915/display/dp: Adopt dp_connector helpers to expose link training state
+>       drm/bridge: Wire drmm_connector_dp_init() via new DRM_BRIDGE_OP_DP flag
+>       drm/mediatek: Use dp_connector helpers to report link training state
+> 
+>  drivers/gpu/drm/Makefile                           |   1 +
+>  drivers/gpu/drm/display/drm_bridge_connector.c     |  26 +-
+>  drivers/gpu/drm/drm_dp_connector.c                 | 344 +++++++++++++++++++++
+>  drivers/gpu/drm/i915/display/g4x_dp.c              |  39 +--
+>  drivers/gpu/drm/i915/display/g4x_hdmi.c            |  27 +-
+>  drivers/gpu/drm/i915/display/i9xx_plane.c          |  97 +++---
+>  drivers/gpu/drm/i915/display/icl_dsi.c             |  50 ++-
+>  drivers/gpu/drm/i915/display/intel_connector.c     |  26 +-
+>  drivers/gpu/drm/i915/display/intel_connector.h     |   5 +-
+>  drivers/gpu/drm/i915/display/intel_crt.c           |  28 +-
+>  drivers/gpu/drm/i915/display/intel_crtc.c          | 102 +++---
+>  drivers/gpu/drm/i915/display/intel_cursor.c        |  41 ++-
+>  drivers/gpu/drm/i915/display/intel_ddi.c           |  64 ++--
+>  drivers/gpu/drm/i915/display/intel_display.c       |   8 -
+>  drivers/gpu/drm/i915/display/intel_display.h       |   1 -
+>  .../gpu/drm/i915/display/intel_display_driver.c    |  37 ++-
+>  drivers/gpu/drm/i915/display/intel_dp.c            |  43 ++-
+>  .../gpu/drm/i915/display/intel_dp_link_training.c  |  25 ++
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c        |  33 +-
+>  drivers/gpu/drm/i915/display/intel_dvo.c           |  43 +--
+>  drivers/gpu/drm/i915/display/intel_encoder.c       |   6 +-
+>  drivers/gpu/drm/i915/display/intel_encoder.h       |   3 +-
+>  drivers/gpu/drm/i915/display/intel_hdmi.c          |  15 +-
+>  drivers/gpu/drm/i915/display/intel_lvds.c          |  45 ++-
+>  drivers/gpu/drm/i915/display/intel_plane.c         |  45 +--
+>  drivers/gpu/drm/i915/display/intel_plane.h         |   5 +-
+>  drivers/gpu/drm/i915/display/intel_sdvo.c          | 134 +++-----
+>  drivers/gpu/drm/i915/display/intel_sprite.c        | 119 ++++---
+>  drivers/gpu/drm/i915/display/intel_tv.c            |  26 +-
+>  drivers/gpu/drm/i915/display/skl_universal_plane.c | 102 +++---
+>  drivers/gpu/drm/i915/display/vlv_dsi.c             |  42 +--
+>  drivers/gpu/drm/mediatek/mtk_dp.c                  |  34 +-
+>  include/drm/drm_bridge.h                           |  13 +
+>  include/drm/drm_connector.h                        |  38 +++
+>  include/drm/drm_dp_connector.h                     | 109 +++++++
+>  35 files changed, 1125 insertions(+), 651 deletions(-)
+> ---
+> base-commit: db5a75cfd29766536be62aece9f19c6e7a858fa6
+> change-id: 20260226-feat_link_cap-20cbb6f31d40
+> 
+> Best regards,
+> -- 
+> Köry Maincent, Bootlin
+> Embedded Linux and kernel engineering
+> https://bootlin.com
 
-Alex's latest response[1] does a *much* better job than mine, in
-explicitly highlighting what we get out of this. (It arrived a bit after
-your response here.) Please take a very close look at that response and
-see what you think.
-
-The patterns in these page tables are not a new thing, and Rust has
-language features to help express them. 
-
-[1] https://lore.kernel.org/DHOKJ3MJNO5P.SXKOAYKX13JL@nvidia.com
-
-thanks,
 -- 
-John Hubbard
-
+Ville Syrjälä
+Intel
