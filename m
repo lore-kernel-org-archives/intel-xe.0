@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93952F364BF
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C759F364BD
 	for <intel-xe@archiver.kernel.org>; Thu,  9 Apr 2026 20:37:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20B4110E834;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24E7B10E83A;
 	Thu,  9 Apr 2026 20:37:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JyV3+btz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YLcrwTzG";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8595310E052
- for <intel-xe@lists.freedesktop.org>; Thu,  9 Apr 2026 20:37:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16C9D10E052
+ for <intel-xe@lists.freedesktop.org>; Thu,  9 Apr 2026 20:37:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775767041; x=1807303041;
+ t=1775767042; x=1807303042;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=M+jv38BVhbfJtMgZ1BvlEFk0McBorUMjm/u9cF9QxDI=;
- b=JyV3+btzIcjXla4f1MjC7NAEYl1Yn06FOMTA2Svk8slFcVFlTdiJ2vjy
- JMyDmZ9E/CS3UNBozmOdCEQmRSrgt+rJUYzfRtat/7mLOg+HCtOunoqMj
- U+02ngujEitHxESjkmA7W9VxWoBmNeH+rnwkLGmZtUgNQv2fnlcu2DIyb
- e0kbVYUIiHeqeJ1X2KnLxgtRbaPq5RR0/dU5sUMp+FPQ9CNCLUNe+3GHM
- /HuEZpl4jaTMDhXyVhlAS15ePa6AU8ohkOFPbW29I76tQnuZPnAkLJdVD
- J2tNXYnD11afkUdqjVDm62U67fGwhB6cR6hH+TtwNeUylRqVEnr2Jruo1 A==;
-X-CSE-ConnectionGUID: h1uGXSbmQJi5hGRTU3XtpA==
-X-CSE-MsgGUID: 45Y3PwYfRsuDIiuWYM73fA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11754"; a="76692621"
-X-IronPort-AV: E=Sophos;i="6.23,170,1770624000"; d="scan'208";a="76692621"
+ bh=cUA1/demErm0qskbVRI7wivB43vADfxwuZsXovC+aoI=;
+ b=YLcrwTzGPHT149hify+jSwplHNastM3KQDHXlIWx2Kj4m43NPpVKw+KP
+ YUPo3kfFu4QndLjifS/UEDDrq5RrcCuvmxqFutl7MbBZTx++nAdQHMZyV
+ ml8s2OBO5+kSDfa54Ss7bUryyIibAxE/48yjdg8v8lbfg5JX61murcb69
+ Zy/mq/tM/Sd7/v/8IBDCynYTzKwKHxelCWpQHHs8hbiJDtEQpYg6u3ShF
+ GkqcE5OhL8du/c8UbshEW/0FxjqpTqwbZz9Nh12MzWdtnOKtWSAE028OH
+ ltdDNRUZGNb4TduZoMKmWfl046QKJOvjl0QZKzaEpE22EJzbdFfJSfsH/ Q==;
+X-CSE-ConnectionGUID: jyXMmqUgQVaaf1eILv7DIQ==
+X-CSE-MsgGUID: 0YmP1MqNTo6vRoP3c6qb/A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11754"; a="76692624"
+X-IronPort-AV: E=Sophos;i="6.23,170,1770624000"; d="scan'208";a="76692624"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  09 Apr 2026 13:37:21 -0700
-X-CSE-ConnectionGUID: XAPjJs7lTAW2QdsN9w8i2Q==
-X-CSE-MsgGUID: Qkwq1vkoS/CHuykd4iEIww==
+X-CSE-ConnectionGUID: cPIN5VoXSe2HtMweaCC/HQ==
+X-CSE-MsgGUID: l9U2JqhVRMGpgjGm5x59uw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,170,1770624000"; d="scan'208";a="227881116"
+X-IronPort-AV: E=Sophos;i="6.23,170,1770624000"; d="scan'208";a="227881125"
 Received: from unerlige-desk1.jf.intel.com ([10.88.27.165])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  09 Apr 2026 13:37:20 -0700
@@ -45,10 +45,10 @@ From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	niranjana.vishwanathapura@intel.com
 Cc: matthew.brost@intel.com
-Subject: [PATCH 1/5] drm/xe/multi_queue: Store primary queue and position info
- in LRC
-Date: Thu,  9 Apr 2026 13:37:16 -0700
-Message-ID: <20260409203714.1887402-8-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH 4/5] drm/xe/multi_queue: Use QUEUE_TIMESTAMP as job timestamp
+ for multi-queue
+Date: Thu,  9 Apr 2026 13:37:19 -0700
+Message-ID: <20260409203714.1887402-11-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260409203714.1887402-7-umesh.nerlige.ramappa@intel.com>
 References: <20260409203714.1887402-7-umesh.nerlige.ramappa@intel.com>
@@ -68,77 +68,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Given an LRC belonging to the secondary queue, in order to check if its
-context group is active, we need to check the LRC of the primary queue.
-In addition to that we want to compare the secondary queue position to
-CSMQDEBUG register to check if the queue itself is active.
-
-To do so, store primary queue and position information int the LRC.
+Each queue in a multi queue group has a dedicated timestamp counter. Use
+this QUEUE TIMESTAMP register to capture the start timestamp for the
+job.
 
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec_queue.c |  8 +++++++-
- drivers/gpu/drm/xe/xe_lrc.h        |  5 +++++
- drivers/gpu/drm/xe/xe_lrc_types.h  | 10 ++++++++++
- 3 files changed, 22 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_ring_ops.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index b287d0e0e60a..4fb02eda77b4 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -275,8 +275,14 @@ static void xe_exec_queue_set_lrc(struct xe_exec_queue *q, struct xe_lrc *lrc, u
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index cfeb4fc7d217..0eea37c0b4b2 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -269,8 +269,12 @@ static u32 get_ppgtt_flag(struct xe_sched_job *job)
+ static int emit_copy_timestamp(struct xe_device *xe, struct xe_lrc *lrc,
+ 			       u32 *dw, int i)
  {
- 	xe_assert(gt_to_xe(q->gt), idx < q->width);
- 
--	scoped_guard(spinlock, &q->lrc_lookup_lock)
-+	scoped_guard(spinlock, &q->lrc_lookup_lock) {
- 		q->lrc[idx] = lrc;
-+		if (xe_exec_queue_is_multi_queue(q)) {
-+			lrc->multi_queue.primary = q->multi_queue.group->primary;
-+			lrc->multi_queue.pos = q->multi_queue.pos;
-+			lrc->multi_queue.valid = 1;
-+		}
-+	}
- }
- 
- /**
-diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-index e7c975f9e2d9..b544c8169967 100644
---- a/drivers/gpu/drm/xe/xe_lrc.h
-+++ b/drivers/gpu/drm/xe/xe_lrc.h
-@@ -90,6 +90,11 @@ static inline size_t xe_lrc_ring_size(void)
- 	return SZ_16K;
- }
- 
-+static inline bool xe_lrc_is_multi_queue(struct xe_lrc *lrc)
-+{
-+	return lrc->multi_queue.valid;
-+}
++	const struct xe_reg reg = lrc->multi_queue.valid ?
++				   RING_QUEUE_TIMESTAMP(0) :
++				   RING_CTX_TIMESTAMP(0);
 +
- size_t xe_gt_lrc_hang_replay_size(struct xe_gt *gt, enum xe_engine_class class);
- size_t xe_gt_lrc_size(struct xe_gt *gt, enum xe_engine_class class);
- u32 xe_lrc_pphwsp_offset(struct xe_lrc *lrc);
-diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h b/drivers/gpu/drm/xe/xe_lrc_types.h
-index 5a718f759ed6..93972536214a 100644
---- a/drivers/gpu/drm/xe/xe_lrc_types.h
-+++ b/drivers/gpu/drm/xe/xe_lrc_types.h
-@@ -63,6 +63,16 @@ struct xe_lrc {
+ 	dw[i++] = MI_STORE_REGISTER_MEM | MI_SRM_USE_GGTT | MI_SRM_ADD_CS_OFFSET;
+-	dw[i++] = RING_CTX_TIMESTAMP(0).addr;
++	dw[i++] = reg.addr;
+ 	dw[i++] = xe_lrc_ctx_job_timestamp_ggtt_addr(lrc);
+ 	dw[i++] = 0;
  
- 	/** @ctx_timestamp: readout value of CTX_TIMESTAMP on last update */
- 	u64 ctx_timestamp;
-+
-+	/** @multi_queue: Multi queue LRC related information */
-+	struct {
-+		/** @multi_queue.primary: Primary queue corresponding to this LRC */
-+		struct xe_exec_queue *primary;
-+		/** @multi_queue.valid: LRC belongs to a multi queue group */
-+		u8 valid;
-+		/** @multi_queue.pos: Position of LRC within the multi-queue group */
-+		u8 pos;
-+	} multi_queue;
- };
- 
- struct xe_lrc_snapshot;
+@@ -281,7 +285,7 @@ static int emit_copy_timestamp(struct xe_device *xe, struct xe_lrc *lrc,
+ 	if (IS_SRIOV_VF(xe)) {
+ 		dw[i++] = MI_STORE_REGISTER_MEM | MI_SRM_USE_GGTT |
+ 			MI_SRM_ADD_CS_OFFSET;
+-		dw[i++] = RING_CTX_TIMESTAMP(0).addr;
++		dw[i++] = reg.addr;
+ 		dw[i++] = xe_lrc_ctx_timestamp_ggtt_addr(lrc);
+ 		dw[i++] = 0;
+ 	}
 -- 
 2.43.0
 
