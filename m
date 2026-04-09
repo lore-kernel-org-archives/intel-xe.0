@@ -4,167 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5101AE9DE42
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Apr 2026 07:22:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0796AE9DE60
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Apr 2026 07:59:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06AE010E74A;
-	Thu,  9 Apr 2026 07:22:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B436F10E75B;
+	Thu,  9 Apr 2026 07:59:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gBa23t4c";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G/ch2Y7F";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AAB5510E2D1;
- Thu,  9 Apr 2026 07:22:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC9BE10E75B
+ for <intel-xe@lists.freedesktop.org>; Thu,  9 Apr 2026 07:59:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775719328; x=1807255328;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=Qy6VuxFcBPEif/4/Ul2PZTxUwRKW2gq+dKKM1xcM8QE=;
- b=gBa23t4cGXkTCaa7Nv5uKw81wB1tS6hNVoJgkkCXfoJbq3g6fRr+r58b
- NYvv6bTARFAX3Fvu4t90rMu3+A3mj6mCUWGGAZkDdyWl3xRc+qVAExR6M
- ETSyACmfJkB1UAazUPlTj2yNGnkYtB2jZmUrg/A4XlJsUu4Lk0/jLDcvH
- cWqejcGDkPvfP2Ed+Xnh7RXsKMek7mrwStGbwYX0F2/kdWfJlfQ+sQzcU
- 6tBVrIpApvqtxgRxduLD0D2A7qwyh5W9Rb0aNr1VaSNIv4UUUcmxqi7hD
- TS1QZqSsnNwmXIeU9kD1nUYv3UBRayppjCQ8Dif7Qc2SaIrMq2bC+OZtn w==;
-X-CSE-ConnectionGUID: Xh2l1PcGRx+C/BFpBR3VbA==
-X-CSE-MsgGUID: nxpNL0j0R6uzJgsHlUKDjg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="76595190"
-X-IronPort-AV: E=Sophos;i="6.23,169,1770624000"; d="scan'208";a="76595190"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ t=1775721563; x=1807257563;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=c3f3GQlpfYlaxwk6wxwLIxoZW5JrZN+1KMWthyNLOvg=;
+ b=G/ch2Y7FfRYOEuhKH8BpbetNpOypHEQXeKSWuObIpQUaYtU5ZS4yqFUP
+ Z362wwQvPWsG2NwzVltpdRkTHkqA+eLhdKZmPcOOvBvLWp9KaYch752xg
+ 42WKFUUmpsuhF9JUqg3ckbb6y7HUZxpecZiLTIwXXPco1argIF7D/67LO
+ wRQcuSU9B0/KJa3W1HhvkqksWd3VSrunBqf/bdmgLsGFLCMoTAZQ5+Fai
+ c+grw9jbeUxH1GU+y4+nOESRfZhoKZvjQuer59wFNyOodghIHN6c0kRCP
+ CEKgpz1gxZ4Rz8ZfDxB57c38ZWVWQnMVnXhz4LOa7DHbqHl2FNapL/NgX A==;
+X-CSE-ConnectionGUID: RUFj/Q3xSuCnwfGLSYT0ZA==
+X-CSE-MsgGUID: 0qbWYI/XReqjbv6LVOb4Rw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="76598809"
+X-IronPort-AV: E=Sophos;i="6.23,169,1770624000"; d="scan'208";a="76598809"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2026 00:22:01 -0700
-X-CSE-ConnectionGUID: HUOsnDSxT++cVbFSaV8Psw==
-X-CSE-MsgGUID: kojdOo37Slar13p+9CE1BA==
+ 09 Apr 2026 00:59:22 -0700
+X-CSE-ConnectionGUID: mc3btS1xRdCMoEZ4A3JawA==
+X-CSE-MsgGUID: Jo3lvXjgRxC0RFsYaGoi+Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,169,1770624000"; d="scan'208";a="227835791"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2026 00:22:01 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 9 Apr 2026 00:22:00 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Thu, 9 Apr 2026 00:22:00 -0700
-Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.3) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 9 Apr 2026 00:22:00 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nZNoSOpxvjUk+Ui/llb7GmdFQir8yvRQgLymFZVIbU0gRed0qpGNQRzLCIfhIgs9LJu/RM+IaKfcHXQYbv/QCni6Mfhf0kYc2/Z9jZwJZmEmT3VcogB5AtQIThkojkvQdFBc/Zyx0bUISKbvXebJpGe16fIxaEn7lXwVjMYKa2a6jCqXNJFwHZHZyP7lJxp2tsziO4g4IZ15gLaAx0DgSu5jr7AiqxWI7iOjhrwlD8sSYYxT7V8nhnEx+WAsPXyqXMAiqCOlaLtFlOpQ18W/j0L74ubfccVOBi91lv+MKKc7zkitn+1c4JVxAktrL0LkFOaT72MNKIXZ8aqZ0VwT3w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/NhBSfOizJ5J4syltauzmAdHYrapJrlHsdAO3kU9EBI=;
- b=aFRKYbMbqe3/9b2isX58Zb32RKvRthbxLpyK1yn1sJh3bblyDWWV/worxYZ88T923qSJACbkDEA8Y1qB6lbVXk5WUv/4L/hVu4yCWb+wl6Wu+GtDARNv3dK/jo2WVJbk4ada/dwVzjPmFJCl3+O0vNgdHgUzFb6NI9uyC117CRB/cMsG9xy3aJ/p2O/tKMp7EMWsWkEpavpxQJoJcGNKODrm9u4scDiZpHbt9Y1jHo2v4pU57PHzPyPw0441x5boYpuatRcrEvPr0/BdN2SXQQtwjkHO/N/GDeoSET5V0yyxefwWNO6mDslqHRfLWdEhyjP2BHzyRqTU74WAvpJXoA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
- MN0PR11MB6035.namprd11.prod.outlook.com (2603:10b6:208:376::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.42; Thu, 9 Apr
- 2026 07:21:56 +0000
-Received: from DS0PR11MB7958.namprd11.prod.outlook.com
- ([fe80::8cb2:cffc:b684:9a99]) by DS0PR11MB7958.namprd11.prod.outlook.com
- ([fe80::8cb2:cffc:b684:9a99%6]) with mapi id 15.20.9769.016; Thu, 9 Apr 2026
- 07:21:56 +0000
-Message-ID: <e7978696-eff6-4c1f-ab0f-047dccb18b59@intel.com>
-Date: Thu, 9 Apr 2026 12:51:44 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] drm/drm_ras: Add clear-error-counter netlink
- command to drm_ras
-To: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <netdev@vger.kernel.org>, <rodrigo.vivi@intel.com>, Zack McKevitt
- <zachary.mckevitt@oss.qualcomm.com>, <joonas.lahtinen@linux.intel.com>,
- <aravind.iddamsetty@linux.intel.com>
-CC: <anshuman.gupta@intel.com>, <simona.vetter@ffwll.ch>, <airlied@gmail.com>, 
- <pratik.bari@intel.com>, <joshua.santosh.ranjan@intel.com>,
- <ashwin.kumar.kulkarni@intel.com>, <shubham.kumar@intel.com>,
- <ravi.kishore.koppuravuri@intel.com>, <raag.jadav@intel.com>,
- <anvesh.bakwad@intel.com>, <maarten.lankhorst@linux.intel.com>, "Jakub
- Kicinski" <kuba@kernel.org>, Lijo Lazar <lijo.lazar@amd.com>, Hawking Zhang
- <Hawking.Zhang@amd.com>, "David S. Miller" <davem@davemloft.net>, Paolo Abeni
- <pabeni@redhat.com>, Eric Dumazet <edumazet@google.com>
-References: <20260409073318.2909379-4-riana.tauro@intel.com>
- <20260409073318.2909379-5-riana.tauro@intel.com>
-Content-Language: en-US
-From: "Tauro, Riana" <riana.tauro@intel.com>
-In-Reply-To: <20260409073318.2909379-5-riana.tauro@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5P287CA0095.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1d4::16) To DS0PR11MB7958.namprd11.prod.outlook.com
- (2603:10b6:8:f9::19)
+X-IronPort-AV: E=Sophos;i="6.23,169,1770624000"; d="scan'208";a="259143866"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2026 00:59:19 -0700
+Date: Thu, 9 Apr 2026 09:59:15 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>
+Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com, riana.tauro@intel.com,
+ michal.wajdeczko@intel.com, matthew.d.roper@intel.com,
+ umesh.nerlige.ramappa@intel.com, soham.purkait@intel.com,
+ anoop.c.vijay@intel.com, aravind.iddamsetty@linux.intel.com,
+ intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v5 3/3] drm/xe/ras: Introduce correctable error handling
+Message-ID: <addcU5zQdatlPM4S@black.igk.intel.com>
+References: <20260407110629.198158-1-raag.jadav@intel.com>
+ <20260407110629.198158-4-raag.jadav@intel.com>
+ <9f054c64-07a1-4f29-b4e8-dfacd52a619f@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|MN0PR11MB6035:EE_
-X-MS-Office365-Filtering-Correlation-Id: e8f4f5a6-3db1-4995-2752-08de9608ae5a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|7416014|56012099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: fbIDZIYy1vbZIi/nErQmi1xCh2cRCYYWiNjngdYIyRGIPme3kiZ89wPDObysl4s49LbREfUTiSpO7fQAzgBXSA2LqaTQf6CFQdD2YAKbO5z9EytmH3EKZEIMByqqYFtPdlwEif9RMFiq1CCaJJcSc8Pm4tbzUZk1JoHJpHYQ35Obe84B2D5Gc0zILR9uh8xfHIc0c65R6uuXYtBWihBUht9IcaJ2mHjlVgp7g7AAxGa4GFJFRJfCO2cDSQN5DWe0NfwIv1vUlMsluvVoYpZFMf8Affo/S/lYfXxI0CYqHkb+YLub6hdl7GJkZ0VUy3x/Yqzk4GuYOGvVhvWt2hxSiqO6nrrtMol7Gb1EFitj1FL2+1ZuNALgTaSz7Rfu5BxyolgrPQblUUh1uycFtiwnu7Z3dUczWMEytJpa3cMsowccSh8WQ2WDamyY1D8NEvBkfjU0yrKwHHqavNTg9QWYLuhdRMm84qZvU/EMgAvGLO5zysuoJfAaYI9jfnfj6qU/jaS03EseuLSSV/043uqdzz2hMnercuRr9xy1rP2uvN2QAZ1ySa0WMiV1I01CanzzW9lWdNiRhS8xwT8cq3F9KHFo/Sn3qg6DDAKvZT/VbN+gthSAU+EA27SZeJLRzTOd5fH9JmuoVKtEpqpMPKApKHHhTXoSCsJ+5hONe5YAqKCts55wFKT5awUJ9Gktn7Ixa6mRAqqsT5OzDQPARC2kt78jg7VT0xz8MUuj72qOxyw=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(7416014)(56012099003)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RlA4THhqeXMrbnN4ZHJwbFJBL2lNaUNlVkNNaEhHbkxtUklPU0RKSmZVL056?=
- =?utf-8?B?RzJEaUdYcjlHM3RjRkRST3NXMkk4dmk2TjE5NnpYaXlzUmZsdGdKRFZCMm51?=
- =?utf-8?B?NVc3Zm94Z25XcXNJaXRIQ0dGbXYrN0lmRW1MdWFnVWZjREdWNjRYUFhPUm5r?=
- =?utf-8?B?SERuTG5zQjhaRWtBSWh5R1V4Z3dIdXNsOWhuSXFQNFJkallJbHB4L1VoTjVn?=
- =?utf-8?B?bHY0eGF0THM3T0dBcFBxSXlDU2pDUlBpYVpTS1A2YzBxcXF2a25lM1R0YXVC?=
- =?utf-8?B?NlVRVml3bFRGQUdEck5pdEs0bll6b2dZTHBSWkFieHVxZnFoQ0ZDcUMycjBz?=
- =?utf-8?B?cDduR3NHdE51SVlBcDZvR0UxUXIyUXBYVkdXemNNb3lrWHdPZ29CdWxKRkNo?=
- =?utf-8?B?WkplbjlKdHI1Tk94dkVtMWxiVnhkN1UybGpQY09PcTJuRlRySElka1dmYjdL?=
- =?utf-8?B?SEJFNStrVVRZZmFVTVFoYUp6ZzB6c3RhbGovZHV3ZWoyMjZjQnU1VGk2TnBk?=
- =?utf-8?B?N1dVM25jZ2xjNHM1dVFyd0hseC9lWFlySlVRTzhoMURVekY0S3VoZ24xbnM4?=
- =?utf-8?B?MTFLb1l2ZzFWK29Wd0t6bnNHL242S1lodU9ieEhaSXdmelhqSUFaQWVGUGJn?=
- =?utf-8?B?c29LMEpBZ05CR0tBY1VjTURuOVR4TWNiNlhpei83YmdHRVlWblBwWlBOT3Ey?=
- =?utf-8?B?UnRKR2EwYSttcktiVEZVcWpJUHdMV2JYdlJzMFp1MDJ4emxlYTVwUWhzRitp?=
- =?utf-8?B?Z21zQVFpNTBaa2ZEa3pNOEgwblpUL0FjeGxqZ3B0S0lTeXBnN2NKa2Nyc3Fy?=
- =?utf-8?B?b0dtWm1iNVpBY2hqTWJNSmNWRXNQYm51YUJBVFpScTZMMkxyb1NONkhMbjV4?=
- =?utf-8?B?N29BQSs1UTg4WjQ2SVNaL0tvKzVtNlllOGU4bm1sWXFFTytYLzFCYzZoODAz?=
- =?utf-8?B?RzhCNldSZ2F2WmU0czlxK3VINTB4UEhoNi9LWjZ4ZEE4dEpJbTJlb2lBeDUw?=
- =?utf-8?B?a1dMbEpXK2oxMUlxVXFKWXNUYkJObTRPMWl1dm1xRGJRWWRpakZyTUdUUk9C?=
- =?utf-8?B?Zy9Ic2d6RmdISkZ2QTVHRDJjUVFYZzZiaXA5NXZDenQxUDZ2YVhnbCswT3lK?=
- =?utf-8?B?NzhmcGdVSmlqV1JMUFFTbFJjeGY5QWx3cURicGxzZlBTbmxWdWJld09aQ2lP?=
- =?utf-8?B?ZDBDS2ZhaE11blVxalM4VzFpd20yb3RQelI4WGRNVi9aUVNFWTlidjFaTXdC?=
- =?utf-8?B?K0lrN05BV2RCMHRYVk52d25ncUcwYTVOL09VU0d1QVptYm44a0Y3RUE2QTdM?=
- =?utf-8?B?dksvOW01Q2VEMkVmZHRCa29EbWdnaWdlM3FZWHhKWEoxUFM0djJFWW9EMEJ4?=
- =?utf-8?B?VkI3ZnFFMXQrUEtOd2R3bHZSZmZqYVBkcUVGWHJMSGs3SjNSUHdDdE5OcUdr?=
- =?utf-8?B?REY5TmI5YVZjNXhWd2JnSUJRSlpYbWRvK25pZUFsQjlUa216QUxTNUs4NVBa?=
- =?utf-8?B?bFVTL2lvejFJWVlOSWZlVzlkY01halltQVNsRHgvdGYvTkFHWXJhbDdtckgv?=
- =?utf-8?B?QjdVL1NBYWt6QUtmcEhoeUdsWEVzMG1YS1oyeU1UNXYrbFMyTVJpSHNnMXZo?=
- =?utf-8?B?MFlCakF5RnNIanNTS0lLbVNwKytJMEEwRkNDM3c3SjJMMjdMSkFtMGprLzJv?=
- =?utf-8?B?VDJxWVFFaExqM0xhQUh0dGZpekM3QWZ6VHB3Ulh0WUUrTE1Gc1NpRVJKaDdX?=
- =?utf-8?B?L05uRVlwOGxZa0c0UVNaa1FLRmc3cWJnZGtyQmErbEdNTU1tUVk5UzR0T0VK?=
- =?utf-8?B?dzBFUkExOFh4UW5YS3l3T00vTmRHbCtwWWt2elVvQWlIU3RjZjY5VFF5WkhX?=
- =?utf-8?B?RFBmbmhtV0thZGNFY2p4eUdIVEgycmFlUUJtVkhQN3FIMUZERzkvV214Tmxr?=
- =?utf-8?B?cXU0S2hBanpwbFZnbzl5MTIreDljOVlzVERQZy9WdnZTWm5wVWZ5TVdIKzB2?=
- =?utf-8?B?REIzWW0xWGwwQ3VRaFpVbEx3UFh5d1pJa3lBWXErV0hGd1p4cUh3QndwYTdX?=
- =?utf-8?B?aDdqM1NMRW9zNE1Td2NCYkh2NUpSQWM5b282YmkvYVpkUnZFcWpIRUFkVzlq?=
- =?utf-8?B?akhUaHlMUjNVWGVXL0dpSjNXcnY5YXFEWVdFOGhXVnVHM0JQc1YxZUtOZUlP?=
- =?utf-8?B?RUlJL1hSbFV5RTlqOU80aCtid05xd1VLQWtKNkNUMTlLWUJNRGg3a1FKN3k2?=
- =?utf-8?B?OHJ5Z0c0Y0t5UWN3Rkg5cldSalJ6UzVaYkU1ZzZNaHMyTUlMeDlid0lBMHlF?=
- =?utf-8?B?TFZmVzc5cDcwNUo4S0dsc2djejc4K0IzcjJUUkI1bTY1S1FrS2xTdz09?=
-X-Exchange-RoutingPolicyChecked: Rut2CfhyffSzUIHB5+E2s1a7TPajv/LnHgUqgOpRl+JsXcBdRwLzAM1kx6NCBjTLJURw3j8jMc6V32p/rXnPt89kaT+TyBno5WZMXiLdBFUAsD4KWrUBdLE8G8ABmZ0IepCPautiSbDJcP9uveYrFnMCR17ehEtcskv8ebq7fvPIrGwpmuQxM6Sehp22xfLRyMFnUkS+VbZreM68Iwv5yl3u/Rh/Gik8zN21c/qP/oG2kkU6gmpGpS1EPfBPoAYV+3pcGntzhaUpz+ILg83XYuUEgcxcowCN/3RRpBfc5U7Mfh2vp0xng5hWbBUdo3tHXlv7tku+d8n/YT/lEt4e+Q==
-X-MS-Exchange-CrossTenant-Network-Message-Id: e8f4f5a6-3db1-4995-2752-08de9608ae5a
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7958.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2026 07:21:56.3276 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1syx5HkAOwfJGBoSplHqvv4f0XZFqinbx6eiM6Ee+auW9U2mlWWcHAtAqF3FCjYedI5ft9sO/2zivppwSQz4aQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6035
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <9f054c64-07a1-4f29-b4e8-dfacd52a619f@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -179,252 +73,281 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Zack
+On Wed, Apr 08, 2026 at 05:55:17PM +0530, Mallesh, Koujalagi wrote:
+> On 07-04-2026 04:36 pm, Raag Jadav wrote:
+> > Add initial support for correctable error handling which is serviced
+> > using system controller event. Currently we only log the errors in
+> > dmesg but this serves as a foundation for RAS infrastructure and will
+> > be further extended to facilitate other RAS features.
+> > 
+> > Signed-off-by: Raag Jadav<raag.jadav@intel.com>
+> > ---
+> > v4: Fix Severity/Component logging (Mallesh)
+> >      s/xe_ras_error/xe_ras_error_class (Riana)
+> > v5: Handle unexpected counter threshold crossed (Mallesh)
+> > ---
+> >   drivers/gpu/drm/xe/Makefile           |  1 +
+> >   drivers/gpu/drm/xe/xe_ras.c           | 96 +++++++++++++++++++++++++++
+> >   drivers/gpu/drm/xe/xe_ras.h           | 14 ++++
+> >   drivers/gpu/drm/xe/xe_ras_types.h     | 73 ++++++++++++++++++++
+> >   drivers/gpu/drm/xe/xe_sysctrl_event.c |  3 +-
+> >   5 files changed, 186 insertions(+), 1 deletion(-)
+> >   create mode 100644 drivers/gpu/drm/xe/xe_ras.c
+> >   create mode 100644 drivers/gpu/drm/xe/xe_ras.h
+> >   create mode 100644 drivers/gpu/drm/xe/xe_ras_types.h
+> > 
+> > diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> > index c0e820eeea30..f66561977a45 100644
+> > --- a/drivers/gpu/drm/xe/Makefile
+> > +++ b/drivers/gpu/drm/xe/Makefile
+> > @@ -113,6 +113,7 @@ xe-y += xe_bb.o \
+> >   	xe_pxp_submit.o \
+> >   	xe_query.o \
+> >   	xe_range_fence.o \
+> > +	xe_ras.o \
+> >   	xe_reg_sr.o \
+> >   	xe_reg_whitelist.o \
+> >   	xe_ring_ops.o \
+> > diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+> > new file mode 100644
+> > index 000000000000..6f84ade02057
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/xe/xe_ras.c
+> > @@ -0,0 +1,96 @@
+> > +// SPDX-License-Identifier: MIT
+> > +/*
+> > + * Copyright © 2026 Intel Corporation
+> > + */
+> > +
+> > +#include "xe_printk.h"
+> > +#include "xe_ras.h"
+> > +#include "xe_ras_types.h"
+> > +#include "xe_sysctrl.h"
+> > +#include "xe_sysctrl_event_types.h"
+> > +
+> > +/* Severity of detected errors  */
+> > +enum xe_ras_severity {
+> > +	XE_RAS_SEV_NOT_SUPPORTED = 0,
+> > +	XE_RAS_SEV_CORRECTABLE,
+> > +	XE_RAS_SEV_UNCORRECTABLE,
+> > +	XE_RAS_SEV_INFORMATIONAL,
+> > +	XE_RAS_SEV_MAX
+> > +};
+> > +
+> > +/* Major IP blocks/components where errors can originate */
+> > +enum xe_ras_component {
+> > +	XE_RAS_COMP_NOT_SUPPORTED = 0,
+> > +	XE_RAS_COMP_DEVICE_MEMORY,
+> > +	XE_RAS_COMP_CORE_COMPUTE,
+> > +	XE_RAS_COMP_RESERVED,
+> > +	XE_RAS_COMP_PCIE,
+> > +	XE_RAS_COMP_FABRIC,
+> > +	XE_RAS_COMP_SOC_INTERNAL,
+> > +	XE_RAS_COMP_MAX
+> > +};
+> > +
+> > +static const char *const xe_ras_severities[] = {
+> > +	[XE_RAS_SEV_NOT_SUPPORTED]		= "Not Supported",
+> > +	[XE_RAS_SEV_CORRECTABLE]		= "Correctable",
+> > +	[XE_RAS_SEV_UNCORRECTABLE]		= "Uncorrectable",
+> > +	[XE_RAS_SEV_INFORMATIONAL]		= "Informational",
+> > +};
+> > +static_assert(ARRAY_SIZE(xe_ras_severities) == XE_RAS_SEV_MAX);
+> > +
+> > +static const char *const xe_ras_components[] = {
+> > +	[XE_RAS_COMP_NOT_SUPPORTED]		= "Not Supported",
+> > +	[XE_RAS_COMP_DEVICE_MEMORY]		= "Device Memory",
+> > +	[XE_RAS_COMP_CORE_COMPUTE]		= "Core Compute",
+> > +	[XE_RAS_COMP_RESERVED]			= "Reserved",
+> > +	[XE_RAS_COMP_PCIE]			= "PCIe",
+> > +	[XE_RAS_COMP_FABRIC]			= "Fabric",
+> > +	[XE_RAS_COMP_SOC_INTERNAL]		= "SoC Internal",
+> > +};
+> > +static_assert(ARRAY_SIZE(xe_ras_components) == XE_RAS_COMP_MAX);
+> > +
+> > +static inline const char *sev_to_str(struct xe_device *xe, u32 sev)
+> > +{
+> Unused xe parameter, remove it
 
-Could you please take a look at this patch if applicable to your 
-usecase. Please let me know if any
-changes are required
+Sure.
 
-@Rodrigo This is already reviewed by Jakub and Raag.
-If there are no opens, can this be merged via drm_misc
+> > +	if (sev >= XE_RAS_SEV_MAX)
+> > +		sev = XE_RAS_SEV_NOT_SUPPORTED;
+> > +
+> > +	return xe_ras_severities[sev];
+> > +}
+> > +
+> > +static inline const char *comp_to_str(struct xe_device *xe, u32 comp)
+> > +{
+> ditto
+> > +	if (comp >= XE_RAS_COMP_MAX)
+> > +		comp = XE_RAS_COMP_NOT_SUPPORTED;
+> > +
+> > +	return xe_ras_components[comp];
+> > +}
+> > +
+> > +void xe_ras_threshold_crossed(struct xe_sysctrl *sc, struct xe_sysctrl_event_response *response)
+> > +{
+> > +	struct xe_ras_threshold_crossed_data *pending = (void *)&response->data;
+> > +	struct xe_ras_error_class *errors = pending->counters;
+> > +	struct xe_device *xe = sc_to_xe(sc);
+> > +	u32 ncounters = pending->ncounters;
+> > +	u32 cid, sev, comp, inst, cause;
+> > +	u8 tile;
+> > +
+> > +	if (!ncounters || ncounters >= XE_RAS_NUM_COUNTERS) {
+> 
+> if ncounters are 16, then it's logged in error, however for (cid = 0; cid <
+> ncounters; cid++)
+> 
+> safely accesses up to ncounters - 1. So check should be
+> 
+> if (!ncounters || ncounters > XE_RAS_NUM_COUNTERS) right?
 
-Thanks
-Riana
+Good catch.
 
-On 4/9/2026 1:03 PM, Riana Tauro wrote:
-> Introduce a new 'clear-error-counter' drm_ras command to reset the counter
-> value for a specific error counter of a given node.
->
-> The command is a 'do' netlink request with 'node-id' and 'error-id'
-> as parameters with no response payload.
->
-> Usage:
->
-> $ sudo ynl --family drm_ras  --do clear-error-counter --json \
-> '{"node-id":1, "error-id":1}'
-> None
->
-> Cc: Jakub Kicinski <kuba@kernel.org>
-> Cc: Zack McKevitt <zachary.mckevitt@oss.qualcomm.com>
-> Cc: Lijo Lazar <lijo.lazar@amd.com>
-> Cc: Hawking Zhang <Hawking.Zhang@amd.com>
-> Cc: David S. Miller <davem@davemloft.net>
-> Cc: Paolo Abeni <pabeni@redhat.com>
-> Cc: Eric Dumazet <edumazet@google.com>
-> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-> Reviewed-by: Jakub Kicinski <kuba@kernel.org>
-> Reviewed-by: Raag Jadav <raag.jadav@intel.com>
-> ---
->   Documentation/gpu/drm-ras.rst            |  8 +++++
->   Documentation/netlink/specs/drm_ras.yaml | 13 ++++++-
->   drivers/gpu/drm/drm_ras.c                | 43 +++++++++++++++++++++++-
->   drivers/gpu/drm/drm_ras_nl.c             | 13 +++++++
->   drivers/gpu/drm/drm_ras_nl.h             |  2 ++
->   include/drm/drm_ras.h                    | 11 ++++++
->   include/uapi/drm/drm_ras.h               |  1 +
->   7 files changed, 89 insertions(+), 2 deletions(-)
->
-> diff --git a/Documentation/gpu/drm-ras.rst b/Documentation/gpu/drm-ras.rst
-> index 70b246a78fc8..4636e68f5678 100644
-> --- a/Documentation/gpu/drm-ras.rst
-> +++ b/Documentation/gpu/drm-ras.rst
-> @@ -52,6 +52,8 @@ User space tools can:
->     as a parameter.
->   * Query specific error counter values with the ``get-error-counter`` command, using both
->     ``node-id`` and ``error-id`` as parameters.
-> +* Clear specific error counters with the ``clear-error-counter`` command, using both
-> +  ``node-id`` and ``error-id`` as parameters.
->   
->   YAML-based Interface
->   --------------------
-> @@ -101,3 +103,9 @@ Example: Query an error counter for a given node
->       sudo ynl --family drm_ras --do get-error-counter --json '{"node-id":0, "error-id":1}'
->       {'error-id': 1, 'error-name': 'error_name1', 'error-value': 0}
->   
-> +Example: Clear an error counter for a given node
-> +
-> +.. code-block:: bash
-> +
-> +    sudo ynl --family drm_ras --do clear-error-counter --json '{"node-id":0, "error-id":1}'
-> +    None
-> diff --git a/Documentation/netlink/specs/drm_ras.yaml b/Documentation/netlink/specs/drm_ras.yaml
-> index 79af25dac3c5..e113056f8c01 100644
-> --- a/Documentation/netlink/specs/drm_ras.yaml
-> +++ b/Documentation/netlink/specs/drm_ras.yaml
-> @@ -99,7 +99,7 @@ operations:
->         flags: [admin-perm]
->         do:
->           request:
-> -          attributes:
-> +          attributes: &id-attrs
->               - node-id
->               - error-id
->           reply:
-> @@ -113,3 +113,14 @@ operations:
->               - node-id
->           reply:
->             attributes: *errorinfo
-> +    -
-> +      name: clear-error-counter
-> +      doc: >-
-> +           Clear error counter for a given node.
-> +           The request includes the error-id and node-id of the
-> +           counter to be cleared.
-> +      attribute-set: error-counter-attrs
-> +      flags: [admin-perm]
-> +      do:
-> +        request:
-> +          attributes: *id-attrs
-> diff --git a/drivers/gpu/drm/drm_ras.c b/drivers/gpu/drm/drm_ras.c
-> index b2fa5ab86d87..d6eab29a1394 100644
-> --- a/drivers/gpu/drm/drm_ras.c
-> +++ b/drivers/gpu/drm/drm_ras.c
-> @@ -26,7 +26,7 @@
->    * efficient lookup by ID. Nodes can be registered or unregistered
->    * dynamically at runtime.
->    *
-> - * A Generic Netlink family `drm_ras` exposes two main operations to
-> + * A Generic Netlink family `drm_ras` exposes the below operations to
->    * userspace:
->    *
->    * 1. LIST_NODES: Dump all currently registered RAS nodes.
-> @@ -37,6 +37,10 @@
->    *    Returns all counters of a node if only Node ID is provided or specific
->    *    error counters.
->    *
-> + * 3. CLEAR_ERROR_COUNTER: Clear error counter of a given node.
-> + *    Userspace must provide Node ID, Error ID.
-> + *    Clears specific error counter of a node if supported.
-> + *
->    * Node registration:
->    *
->    * - drm_ras_node_register(): Registers a new node and assigns
-> @@ -66,6 +70,8 @@
->    *   operation, fetching all counters from a specific node.
->    * - drm_ras_nl_get_error_counter_doit(): Implements the GET_ERROR_COUNTER doit
->    *   operation, fetching a counter value from a specific node.
-> + * - drm_ras_nl_clear_error_counter_doit(): Implements the CLEAR_ERROR_COUNTER doit
-> + *   operation, clearing a counter value from a specific node.
->    */
->   
->   static DEFINE_XARRAY_ALLOC(drm_ras_xa);
-> @@ -314,6 +320,41 @@ int drm_ras_nl_get_error_counter_doit(struct sk_buff *skb,
->   	return doit_reply_value(info, node_id, error_id);
->   }
->   
-> +/**
-> + * drm_ras_nl_clear_error_counter_doit() - Clear an error counter of a node
-> + * @skb: Netlink message buffer
-> + * @info: Generic Netlink info containing attributes of the request
-> + *
-> + * Extracts the node ID and error ID from the netlink attributes and
-> + * clears the current value.
-> + *
-> + * Return: 0 on success, or negative errno on failure.
-> + */
-> +int drm_ras_nl_clear_error_counter_doit(struct sk_buff *skb,
-> +					struct genl_info *info)
-> +{
-> +	struct drm_ras_node *node;
-> +	u32 node_id, error_id;
-> +
-> +	if (!info->attrs ||
-> +	    GENL_REQ_ATTR_CHECK(info, DRM_RAS_A_ERROR_COUNTER_ATTRS_NODE_ID) ||
-> +	    GENL_REQ_ATTR_CHECK(info, DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_ID))
-> +		return -EINVAL;
-> +
-> +	node_id = nla_get_u32(info->attrs[DRM_RAS_A_ERROR_COUNTER_ATTRS_NODE_ID]);
-> +	error_id = nla_get_u32(info->attrs[DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_ID]);
-> +
-> +	node = xa_load(&drm_ras_xa, node_id);
-> +	if (!node || !node->clear_error_counter)
-> +		return -ENOENT;
-> +
-> +	if (error_id < node->error_counter_range.first ||
-> +	    error_id > node->error_counter_range.last)
-> +		return -EINVAL;
-> +
-> +	return node->clear_error_counter(node, error_id);
-> +}
-> +
->   /**
->    * drm_ras_node_register() - Register a new RAS node
->    * @node: Node structure to register
-> diff --git a/drivers/gpu/drm/drm_ras_nl.c b/drivers/gpu/drm/drm_ras_nl.c
-> index 16803d0c4a44..dea1c1b2494e 100644
-> --- a/drivers/gpu/drm/drm_ras_nl.c
-> +++ b/drivers/gpu/drm/drm_ras_nl.c
-> @@ -22,6 +22,12 @@ static const struct nla_policy drm_ras_get_error_counter_dump_nl_policy[DRM_RAS_
->   	[DRM_RAS_A_ERROR_COUNTER_ATTRS_NODE_ID] = { .type = NLA_U32, },
->   };
->   
-> +/* DRM_RAS_CMD_CLEAR_ERROR_COUNTER - do */
-> +static const struct nla_policy drm_ras_clear_error_counter_nl_policy[DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_ID + 1] = {
-> +	[DRM_RAS_A_ERROR_COUNTER_ATTRS_NODE_ID] = { .type = NLA_U32, },
-> +	[DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_ID] = { .type = NLA_U32, },
-> +};
-> +
->   /* Ops table for drm_ras */
->   static const struct genl_split_ops drm_ras_nl_ops[] = {
->   	{
-> @@ -43,6 +49,13 @@ static const struct genl_split_ops drm_ras_nl_ops[] = {
->   		.maxattr	= DRM_RAS_A_ERROR_COUNTER_ATTRS_NODE_ID,
->   		.flags		= GENL_ADMIN_PERM | GENL_CMD_CAP_DUMP,
->   	},
-> +	{
-> +		.cmd		= DRM_RAS_CMD_CLEAR_ERROR_COUNTER,
-> +		.doit		= drm_ras_nl_clear_error_counter_doit,
-> +		.policy		= drm_ras_clear_error_counter_nl_policy,
-> +		.maxattr	= DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_ID,
-> +		.flags		= GENL_ADMIN_PERM | GENL_CMD_CAP_DO,
-> +	},
->   };
->   
->   struct genl_family drm_ras_nl_family __ro_after_init = {
-> diff --git a/drivers/gpu/drm/drm_ras_nl.h b/drivers/gpu/drm/drm_ras_nl.h
-> index 06ccd9342773..a398643572a5 100644
-> --- a/drivers/gpu/drm/drm_ras_nl.h
-> +++ b/drivers/gpu/drm/drm_ras_nl.h
-> @@ -18,6 +18,8 @@ int drm_ras_nl_get_error_counter_doit(struct sk_buff *skb,
->   				      struct genl_info *info);
->   int drm_ras_nl_get_error_counter_dumpit(struct sk_buff *skb,
->   					struct netlink_callback *cb);
-> +int drm_ras_nl_clear_error_counter_doit(struct sk_buff *skb,
-> +					struct genl_info *info);
->   
->   extern struct genl_family drm_ras_nl_family;
->   
-> diff --git a/include/drm/drm_ras.h b/include/drm/drm_ras.h
-> index 5d50209e51db..f2a787bc4f64 100644
-> --- a/include/drm/drm_ras.h
-> +++ b/include/drm/drm_ras.h
-> @@ -58,6 +58,17 @@ struct drm_ras_node {
->   	int (*query_error_counter)(struct drm_ras_node *node, u32 error_id,
->   				   const char **name, u32 *val);
->   
-> +	/**
-> +	 * @clear_error_counter:
-> +	 *
-> +	 * This callback is used by drm_ras to clear a specific error counter.
-> +	 * Driver should implement this callback to support clearing error counters
-> +	 * of a node.
-> +	 *
-> +	 * Returns: 0 on success, negative error code on failure.
-> +	 */
-> +	int (*clear_error_counter)(struct drm_ras_node *node, u32 error_id);
-> +
->   	/** @priv: Driver private data */
->   	void *priv;
->   };
-> diff --git a/include/uapi/drm/drm_ras.h b/include/uapi/drm/drm_ras.h
-> index 5f40fa5b869d..218a3ee86805 100644
-> --- a/include/uapi/drm/drm_ras.h
-> +++ b/include/uapi/drm/drm_ras.h
-> @@ -41,6 +41,7 @@ enum {
->   enum {
->   	DRM_RAS_CMD_LIST_NODES = 1,
->   	DRM_RAS_CMD_GET_ERROR_COUNTER,
-> +	DRM_RAS_CMD_CLEAR_ERROR_COUNTER,
->   
->   	__DRM_RAS_CMD_MAX,
->   	DRM_RAS_CMD_MAX = (__DRM_RAS_CMD_MAX - 1)
+> > +		xe_err(xe, "sysctrl: unexpected counter threshold crossed %u\n", ncounters);
+> 
+> Use "[RAS]: ", since code is RAS owned.
+
+Agree, but this'll be misleading because it gives the impression of RAS
+error, which it is not.
+
+Raag
+
+> > +		return;
+> > +	}
+> > +
+> > +	BUILD_BUG_ON(sizeof(response->data) < sizeof(*pending));
+> > +	xe_warn(xe, "[RAS]: counter threshold crossed, %u new errors\n", ncounters);
+> > +
+> > +	for (cid = 0; cid < ncounters; cid++) {
+> > +		sev = errors[cid].common.severity;
+> > +		comp = errors[cid].common.component;
+> > +
+> > +		tile = errors[cid].product.unit.tile;
+> > +		inst = errors[cid].product.unit.instance;
+> > +		cause = errors[cid].product.cause.cause;
+> > +
+> > +		xe_warn(xe, "[RAS]: Tile:%u Instance:%u Component:%s Error:%s Cause:%#x\n",
+> > +			tile, inst, comp_to_str(xe, comp), sev_to_str(xe, sev), cause);
+> > +	}
+> > +}
+> > diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
+> > new file mode 100644
+> > index 000000000000..92ee93d4e877
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/xe/xe_ras.h
+> > @@ -0,0 +1,14 @@
+> > +/* SPDX-License-Identifier: MIT */
+> > +/*
+> > + * Copyright © 2026 Intel Corporation
+> > + */
+> > +
+> > +#ifndef _XE_RAS_H_
+> > +#define _XE_RAS_H_
+> > +
+> > +struct xe_sysctrl;
+> > +struct xe_sysctrl_event_response;
+> > +
+> > +void xe_ras_threshold_crossed(struct xe_sysctrl *sc, struct xe_sysctrl_event_response *response);
+> > +
+> > +#endif
+> > diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
+> > new file mode 100644
+> > index 000000000000..0e3ba9e81538
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/xe/xe_ras_types.h
+> > @@ -0,0 +1,73 @@
+> > +/* SPDX-License-Identifier: MIT */
+> > +/*
+> > + * Copyright © 2026 Intel Corporation
+> > + */
+> > +
+> > +#ifndef _XE_RAS_TYPES_H_
+> > +#define _XE_RAS_TYPES_H_
+> > +
+> > +#include <linux/types.h>
+> > +
+> > +#define XE_RAS_NUM_COUNTERS			16
+> > +
+> > +/**
+> > + * struct xe_ras_error_common - Error fields that are common across all products
+> > + */
+> > +struct xe_ras_error_common {
+> > +	/** @severity: Error severity */
+> > +	u8 severity;
+> > +	/** @component: IP block where error originated */
+> > +	u8 component;
+> > +} __packed;
+> > +
+> > +/**
+> > + * struct xe_ras_error_unit - Error unit information
+> > + */
+> > +struct xe_ras_error_unit {
+> > +	/** @tile: Tile identifier */
+> > +	u8 tile;
+> > +	/** @instance: Instance identifier specific to IP */
+> > +	u32 instance;
+> > +} __packed;
+> > +
+> > +/**
+> > + * struct xe_ras_error_cause - Error cause information
+> > + */
+> > +struct xe_ras_error_cause {
+> > +	/** @cause: Cause/checker */
+> > +	u32 cause;
+> > +	/** @reserved: For future use */
+> > +	u8 reserved;
+> > +} __packed;
+> > +
+> > +/**
+> > + * struct xe_ras_error_product - Error fields that are specific to the product
+> > + */
+> > +struct xe_ras_error_product {
+> > +	/** @unit: Unit within IP block */
+> > +	struct xe_ras_error_unit unit;
+> > +	/** @cause: Cause/checker */
+> > +	struct xe_ras_error_cause cause;
+> > +} __packed;
+> > +
+> > +/**
+> > + * struct xe_ras_error_class - Combines common and product-specific parts
+> > + */
+> > +struct xe_ras_error_class {
+> > +	/** @common: Common error type and component */
+> > +	struct xe_ras_error_common common;
+> > +	/** @product: Product-specific unit and cause */
+> > +	struct xe_ras_error_product product;
+> > +} __packed;
+> > +
+> > +/**
+> > + * struct xe_ras_threshold_crossed_data - Data for threshold crossed event
+> > + */
+> > +struct xe_ras_threshold_crossed_data {
+> > +	/** @ncounters: Number of error counters that crossed thresholds */
+> > +	u32 ncounters;
+> > +	/** @counters: Array of error counters that crossed threshold */
+> > +	struct xe_ras_error_class counters[XE_RAS_NUM_COUNTERS];
+> > +} __packed;
+> > +
+> > +#endif
+> > diff --git a/drivers/gpu/drm/xe/xe_sysctrl_event.c b/drivers/gpu/drm/xe/xe_sysctrl_event.c
+> > index 8a2e44f4f5e0..139ecd4aafcd 100644
+> > --- a/drivers/gpu/drm/xe/xe_sysctrl_event.c
+> > +++ b/drivers/gpu/drm/xe/xe_sysctrl_event.c
+> > @@ -6,6 +6,7 @@
+> >   #include "xe_device.h"
+> >   #include "xe_irq.h"
+> >   #include "xe_printk.h"
+> > +#include "xe_ras.h"
+> >   #include "xe_sysctrl.h"
+> >   #include "xe_sysctrl_event_types.h"
+> >   #include "xe_sysctrl_mailbox.h" @@ -38,7 +39,7 @@ static void
+> > xe_sysctrl_get_pending_event(struct xe_sysctrl *sc, } if (response.event
+> > == XE_SYSCTRL_EVENT_THRESHOLD_CROSSED) { - xe_warn(xe, "[RAS]: counter
+> > threshold crossed\n");
+> > +			xe_ras_threshold_crossed(sc, &response);
+> >   		} else {
+> >   			xe_err(xe, "sysctrl: unexpected event %#x\n", response.event);
+> >   			return;
