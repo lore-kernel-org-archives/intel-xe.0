@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9F68F31E41
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Apr 2026 15:41:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBBC1F31E43
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Apr 2026 15:44:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7710910E826;
-	Thu,  9 Apr 2026 15:41:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B258510E826;
+	Thu,  9 Apr 2026 15:44:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="aSfB7Bdp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gn+ErlSl";
 	dkim-atps=neutral
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B567310E822;
- Thu,  9 Apr 2026 15:40:58 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1775749256; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=iXzyQk271OBRc37waQlN606GYufyvqYDPuQJEerSn58O6DiYV29UP+JtWrOFqV1c8u6wer2K80EUftvrYKFAgUq8PY7r1YezjszQlFcw0v2qNNq09/KGonUCNPt/elA9zLEOM1kCZrw6Ubn4j58y/wT9rgDnLEEntCMIKQb4jos=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1775749256;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=SOzQ0gkJi54dETLF5hhaaWDELmyy/cBorqrzK8wYClA=; 
- b=guG2niL84lbBA6ZI/t9ONtgAzQ83YS97jFEuTDkpjRbaknmUbdq537OwXOIZKY/n12EOq/OpJqI8JilC19SpGftJynZ/pzYKqMWX7BjLC2/vxHc4LpqSjhdpKaaXZQ61AvEb8s6koN4XobughEvsf76HoS4m/rYukCWTT3a7FDU=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1775749256; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
- bh=SOzQ0gkJi54dETLF5hhaaWDELmyy/cBorqrzK8wYClA=;
- b=aSfB7BdpsvMSEXjf3+kR9mxFHra4iDSILkBJ6gJuX1KaTAmw/m4lMLr7SBRm+0Ur
- /pBPZ8cBSsj4+83LjgpFHWX0ArpixXxKLLttU2qCgDT+FcNwVihEMH8+ORi1ncoZYEM
- xbbHcsqU9QzO83BcTEAUYkeOd10L5J8cc+Ks4BOs=
-Received: by mx.zohomail.com with SMTPS id 1775749254310412.16547037409043;
- Thu, 9 Apr 2026 08:40:54 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: intel-gfx@lists.freedesktop.org,
- Ville Syrjala <ville.syrjala@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: Re: [PATCH v2 0/9] drm/i915/{dp,
- hdmi}: Restructure DP/HDMI sink format handling
-Date: Thu, 09 Apr 2026 17:40:50 +0200
-Message-ID: <8031984.DvuYhMxLoT@workhorse>
-In-Reply-To: <20260409101539.22032-1-ville.syrjala@linux.intel.com>
-References: <20260409101539.22032-1-ville.syrjala@linux.intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E421910E826
+ for <intel-xe@lists.freedesktop.org>; Thu,  9 Apr 2026 15:44:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1775749474; x=1807285474;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Pyjrvg/Rk+noHuzBudOJxm2xem/KZO4g3WyJGsvZXok=;
+ b=gn+ErlSlNI8jX9OuAOAoHKkEQxYyFi9IM5vn24pYuyyUAPNOXvI8KQfM
+ a0Ztt3Hyb6R70nSWDHeA2tSDjryrq/i9MeqhTzAxHc92qiJgFL2/OwFZm
+ yob5zywlKB9ndazQ8a4BK0NhGW9jIAgSGACbFpYk6uRRd+Xjyor3fqGKA
+ ZCdYvLKcm8kthwwB16b6qJFFU0sAX9oZhxkMrXt9FjRAIT+RdpE8m4zlm
+ RC6a44dQBsKnoe15ppmRgICYAuL6xZSiMIdwaNUo+GLDgOW/lqe28mBWy
+ x86hn8z0KKIzjvS+WcwaXuVr/GjkZ4eVhNyPiTBdrmvAe2eg6ZehPad3H A==;
+X-CSE-ConnectionGUID: 7efNStGtS0WAho0QssMO7g==
+X-CSE-MsgGUID: VWXgn2CbTZ2X2xKg/nno+g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11754"; a="99385964"
+X-IronPort-AV: E=Sophos;i="6.23,169,1770624000"; d="scan'208";a="99385964"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2026 08:44:33 -0700
+X-CSE-ConnectionGUID: P6VCtABKSeKjAeCY4byVmQ==
+X-CSE-MsgGUID: 4Ybu0+NfS8iwl+WNkUc6+w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,169,1770624000"; d="scan'208";a="224048821"
+Received: from gsd-build.iind.intel.com ([10.190.229.141])
+ by fmviesa006.fm.intel.com with ESMTP; 09 Apr 2026 08:44:32 -0700
+From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Subject: [PATCH v11 0/2] Do not create drm device for PF only admin mode
+Date: Thu,  9 Apr 2026 15:44:24 +0000
+Message-ID: <20260409154423.2499340-4-satyanarayana.k.v.p@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,62 +64,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thursday, 9 April 2026 12:15:30 Central European Summer Time Ville Syrja=
-la wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->=20
-> Restructure the DP/HDMI sink format handling. I got inspired to do this
-> by https://lore.kernel.org/dri-devel/20260324-color-format-v11-8-605559af=
-4fb4@collabora.com/
->=20
-> I envision that after this the aforementioned patch could just
-> become something like this:
->=20
-> 1. s/intel_foo_compute_formats/intel_foo_compute_formats_auto/
-> 2. Add a new intel_foo_compute_formats()
->=20
->    intel_foo_compute_formats()
->    {
->         switch (color_format) {
->         case YCBCR420:
->                 return intel_foo_compute_output_format(YCBCR420);
->         case RGB:
->                 return intel_foo_compute_output_format(RGB);
->         case AUTO:
->                 return intel_foo_compute_formats_auto();
->         }
->    }
->=20
-> v2: A few more updates to the DP mode validation
->=20
-> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
->=20
-> Ville Syrj=C3=A4l=C3=A4 (9):
->   drm/i915/hdmi: Add missing intel_pfit_mode_valid() for 4:2:0 also
->     modes
->   drm/i915/hdmi: Restructure the sink/output format selection
->   drm/i915/hdmi: Restructure 4:2:0 vs. 4:4:4 mode validation
->   drm/i915/dp: Restructure the sink/output format selection
->   drm/i915/dp: Validate "4:2:0 also" modes twice
->   drm/i915/dp: Require a HDMI sink for YCbCr output via PCON
->   drm/i915/dp: Validate sink format in .mode_valid()
->   drm/i915/hdmi: Make the RGB fallback for "4:2:0 only" modes the last
->     resort
->   drm/i915/dp: Make the RGB fallback for "4:2:0 only" modes the last
->     resort
->=20
->  drivers/gpu/drm/i915/display/intel_dp.c   | 250 +++++++++++++---------
->  drivers/gpu/drm/i915/display/intel_hdmi.c | 167 +++++++++------
->  2 files changed, 254 insertions(+), 163 deletions(-)
->=20
->=20
+When the PF is configured for admin‑only mode, it is restricted to
+management functions and should not allow users to run workloads.
+Suppress device capabilities to userspace in admin-only PF mode.
 
-=46or the whole series:
+---
+V10 -> V11:
+- Moved xe_device_is_admin_only() definition for !CONFIG_PCI_IOV option
+as per review comments (Michal).
+- Fixed some more generic review comments (Michal).
+- Cleandup pf_set_admin_mode() as per review comments (Michal).
 
-Tested-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+V9 -> V10:
+- Moved some parts of admin_only_pf mode under CONFIG_PCI_IOV config
+option (Michal).
 
-Tested both DisplayPort and HDMI on an N97 board, exercising various
-output formats.
+V8 -> V9:
+- Memory regions are skipped in case of admin_only_pf mode (Michal)
+- Removed .dumb_create, .dumb_map_offset and .show_fdinfo device specific
+operations in admin-only mode (Michal).
+- Added new commits to derive admin-only PF mode from xe_device state and
+corresponding changes in test cases.
 
+V7 -> V8:
+- Fixed issues reported by CI.Hooks
+- Updated commit message (Ashutosh)
+- Removed gem_prime_import from admin_only_driver structure (Michal)
+
+V6 -> V7:
+- Allowed xe_observation_ioctl as well with admin-only PF (Ashutosh,
+Michal Wajdeczko).
+- Updated commit message with steps to enable admin-only mode (Rodrigo).
+
+V5 -> V6:
+- Updated commit message.
+- Make content of query_engines and query_mem_regions as empty in
+admin-only PF mode instead of query size as zero.
+- Allow all other query IOCTLs excepts query_engines and query_mem_regions
+(Michal Wajdeczko).
+
+V4 -> V5:
+- Updated commit message (Matt B).
+- Introduced new driver_admin_only_pf structure (Michal Wajdeczko).
+- Updated all query configs (Michal Wajdeczko).
+- Renamed xe_device_is_admin_only() to xe_device_is_admin_only_pf()
+- Fixed other review comments (Michal Wajdeczko).
+
+V3 -> V4:
+- Suppressed device capabilities in admin-only PF mode. (Wajdeczko)
+
+V2 -> V3:
+- Introduced new helper function xe_debugfs_create_files() to create
+debugfs entries based on admin_only_pf mode or normal mode.
+
+V1 -> V2:
+- Rebased to latest drm-tip.
+- Update update_minor_dev() to debugfs_minor_dev().
+
+Satyanarayana K V P (2):
+  drm/xe/pf: Restrict device query responses in admin-only PF mode
+  drm/xe/pf: Derive admin-only PF mode from xe_device state
+
+ .../xe/tests/xe_gt_sriov_pf_config_kunit.c    | 21 ++++++-
+ drivers/gpu/drm/xe/xe_device.c                | 59 +++++++++++++++++--
+ drivers/gpu/drm/xe/xe_device.h                |  9 +++
+ drivers/gpu/drm/xe/xe_hw_engine.c             |  3 +
+ drivers/gpu/drm/xe/xe_query.c                 |  7 +++
+ drivers/gpu/drm/xe/xe_sriov_pf.c              |  6 --
+ drivers/gpu/drm/xe/xe_sriov_pf_helpers.h      |  3 +-
+ drivers/gpu/drm/xe/xe_sriov_pf_types.h        |  3 -
+ 8 files changed, 95 insertions(+), 16 deletions(-)
+
+-- 
+2.43.0
 
