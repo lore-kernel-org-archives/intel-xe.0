@@ -4,75 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5482CEA3C4C
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Apr 2026 11:00:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D77F4EA3C4C
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Apr 2026 11:11:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18BDD10E7BC;
-	Thu,  9 Apr 2026 11:00:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94FCF10E7BD;
+	Thu,  9 Apr 2026 11:11:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="I1dt1w0Y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ww1YcAmP";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B70A910E7BA;
- Thu,  9 Apr 2026 11:00:27 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id BF953600CB;
- Thu,  9 Apr 2026 11:00:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 903F0C4CEF7;
- Thu,  9 Apr 2026 11:00:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1775732426;
- bh=S27S6h9mUKM1s14YWbjTJbACYA6Nxxtr5I5xly+lAhg=;
- h=Date:Cc:To:From:Subject:References:In-Reply-To:From;
- b=I1dt1w0YhmrPkInFOfuRXDoZ9ixaATj78Qv5fyzm6FWc51SnZJDMLAdBKgV5uso4/
- Yz3nJ1ynniMI5ZvWkunExqSqHeFZlXlp1GXUjF7oi08MvBAOAb40jXPKM6qW5pEKSs
- 34Hq5mibMCHghbGtVgWbNnqtLRnrgpkY7mW9KXnH4UBNO96MA04DY4apOlPhmLeADP
- RvlredU/NIokGAPx2+Xe1KEzNrrBBgXRNJLqCPy4P39owcZlh4AD/fpyKI0Gz2N/6B
- VrF9WPfO+F3qlGoAkBycROiIuyiS4jO0SIAvHnQPBtAjwaiBvUz+evx1UmOO58//tD
- UR7or4b82RKOg==
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 09 Apr 2026 13:00:15 +0200
-Message-Id: <DHOKLTRRIX2Z.1YA9X0D0X21K@kernel.org>
-Cc: "John Hubbard" <jhubbard@nvidia.com>, "Eliot Courtney"
- <ecourtney@nvidia.com>, <linux-kernel@vger.kernel.org>, "Miguel Ojeda"
- <ojeda@kernel.org>, "Boqun Feng" <boqun@kernel.org>, "Gary Guo"
- <gary@garyguo.net>, "Bjorn Roy Baron" <bjorn3_gh@protonmail.com>, "Benno
- Lossin" <lossin@kernel.org>, "Andreas Hindborg" <a.hindborg@kernel.org>,
- "Alice Ryhl" <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>,
- "Dave Airlie" <airlied@redhat.com>, "Daniel Almeida"
- <daniel.almeida@collabora.com>, "Koen Koning"
- <koen.koning@linux.intel.com>, <dri-devel@lists.freedesktop.org>,
- <rust-for-linux@vger.kernel.org>, "Nikola Djukic" <ndjukic@nvidia.com>,
- "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, "Maxime Ripard"
- <mripard@kernel.org>, "Thomas Zimmermann" <tzimmermann@suse.de>, "David
- Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Jonathan
- Corbet" <corbet@lwn.net>, "Alex Deucher" <alexander.deucher@amd.com>,
- "Christian Koenig" <christian.koenig@amd.com>, "Jani Nikula"
- <jani.nikula@linux.intel.com>, "Joonas Lahtinen"
- <joonas.lahtinen@linux.intel.com>, "Vivi Rodrigo" <rodrigo.vivi@intel.com>,
- "Tvrtko Ursulin" <tursulin@ursulin.net>, "Rui Huang" <ray.huang@amd.com>,
- "Matthew Auld" <matthew.auld@intel.com>, "Matthew Brost"
- <matthew.brost@intel.com>, "Lucas De Marchi" <lucas.demarchi@intel.com>,
- "Thomas Hellstrom" <thomas.hellstrom@linux.intel.com>, "Helge Deller"
- <deller@gmx.de>, "Alex Gaynor" <alex.gaynor@gmail.com>, "Boqun Feng"
- <boqun.feng@gmail.com>, "Alistair Popple" <apopple@nvidia.com>, "Timur
- Tabi" <ttabi@nvidia.com>, "Edwin Peer" <epeer@nvidia.com>, "Alexandre
- Courbot" <acourbot@nvidia.com>, "Andrea Righi" <arighi@nvidia.com>, "Andy
- Ritger" <aritger@nvidia.com>, "Zhi Wang" <zhiw@nvidia.com>, "Balbir Singh"
- <balbirs@nvidia.com>, "Philipp Stanner" <phasta@kernel.org>, "Elle Rhumsaa"
- <elle@weathered-steel.dev>, "Alexey Ivanov" <alexeyi@nvidia.com>,
- <linux-doc@vger.kernel.org>, <amd-gfx@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <linux-fbdev@vger.kernel.org>
-To: "Joel Fernandes" <joelagnelf@nvidia.com>
-From: "Danilo Krummrich" <dakr@kernel.org>
-Subject: Re: [PATCH v10 12/21] gpu: nova-core: mm: Add unified page table
- entry wrapper enums
-References: <42dd707f-e23a-4725-8b6f-08ca346b0143@nvidia.com>
- <1775730646.3752.4760@nvidia.com>
-In-Reply-To: <1775730646.3752.4760@nvidia.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CFCB10E7BC;
+ Thu,  9 Apr 2026 11:10:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1775733059; x=1807269059;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=LQZgc40djv49y3lHPMHabcAyVaeGswnqlflmqb4JCnA=;
+ b=Ww1YcAmPaKUFOeasOy85eh94RkyjvFhlQ/Ll5z1nXJAUDda0/KL4IfHR
+ TKe1BXSOOlqydaVSeH7Of/UGMKbXYzG9KH8+vmTY8/yXZfifWT3WAf2zZ
+ nZnaDs6gJLHmU+6GM24aEj7/8ae/EixZfkSOGbaau4rWZ3AhIQ9NX49F+
+ OAENmjz+snfFFZ0vOIUO4T4hcuKoeWrKU+jw3guJRhP5FNEgZTOiBeNzf
+ 6kfkVvZzUcLx4rHS6PiHdVmfVi29PjTbvSY7wFAM4ax3+LGJyJYSPpMHP
+ eGawDNP4Up6bu6zQkpPMlMs6szoMdoCPoRzgwVBrbEjHbF7cA1mlbExFX A==;
+X-CSE-ConnectionGUID: xBBvmfbbRLuFZM4Q6m0NxQ==
+X-CSE-MsgGUID: 2R+Q48q/T3a+xBIAzBskUg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="99362336"
+X-IronPort-AV: E=Sophos;i="6.23,169,1770624000"; d="scan'208";a="99362336"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2026 04:10:59 -0700
+X-CSE-ConnectionGUID: 14XOEJhgQkik2TYYFaQNOw==
+X-CSE-MsgGUID: uw4VfQ7+QQmSJ6WcNLRCbg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,169,1770624000"; d="scan'208";a="266716340"
+Received: from abityuts-desk.ger.corp.intel.com (HELO mwauld-desk.intel.com)
+ ([10.245.245.222])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2026 04:10:58 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, Matthew Brost <matthew.brost@intel.com>,
+ Christian Koenig <christian.koenig@amd.com>,
+ Dave Airlie <airlied@redhat.com>
+Subject: [PATCH] drm/ttm/tests: fix lru_count ASSERT
+Date: Thu,  9 Apr 2026 12:10:33 +0100
+Message-ID: <20260409111032.72141-2-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.53.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,29 +67,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu Apr 9, 2026 at 12:33 PM CEST, Joel Fernandes wrote:
-> Since it is 3 against 1 here, I rest my case :-).
+On pool init we should expect the lru_count for each node to be zeroed
+as per __list_lru_init -> init_one_lru, but here we are asserting the
+opposite.
 
-That's not how I'd view it. :)
+Currently our CI is blowing up with:
 
-Anyways, in case I'm included in "3", that's not my position. My point was =
-to
-ensure we keep discussing advantages and disadvantages on their merits, as =
-I
-think you both have good points.
+10:23:33] # ttm_device_init_pools: ASSERTION FAILED at drivers/gpu/drm/ttm/tests/ttm_device_test.c:178
+[10:23:33] Expected !list_lru_count(&pt.pages) to be false, but is true
+[10:23:33] [FAILED] DMA allocations, DMA32 required
+[10:23:33] [PASSED] No DMA allocations, DMA32 required
+[10:23:33]     # ttm_device_init_pools: ASSERTION FAILED at drivers/gpu/drm/ttm/tests/ttm_device_test.c:178
+[10:23:33]     Expected !list_lru_count(&pt.pages) to be false, but is true
 
-> I am still in disagreement since I do not see much benefit (that is why I=
- said
-> pointless above).
+Fixes: 444e2a19d7fd ("ttm/pool: port to list_lru. (v2)")
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Christian Koenig <christian.koenig@amd.com>
+Cc: Dave Airlie <airlied@redhat.com>
+---
+ drivers/gpu/drm/ttm/tests/ttm_device_test.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-That is fair -- in this case please explain why the advantages pointed out =
-by
-others are not worth it, propose something that picks up the best of both
-worlds, etc.
+diff --git a/drivers/gpu/drm/ttm/tests/ttm_device_test.c b/drivers/gpu/drm/ttm/tests/ttm_device_test.c
+index db4b4a09a73f..8bcac84e9846 100644
+--- a/drivers/gpu/drm/ttm/tests/ttm_device_test.c
++++ b/drivers/gpu/drm/ttm/tests/ttm_device_test.c
+@@ -176,7 +176,7 @@ static void ttm_device_init_pools(struct kunit *test)
+ 
+ 				if (ttm_pool_uses_dma_alloc(pool))
+ 					KUNIT_ASSERT_FALSE(test,
+-							   !list_lru_count(&pt.pages));
++							   list_lru_count(&pt.pages));
+ 			}
+ 		}
+ 	}
+-- 
+2.53.0
 
-You can also turn it around and ask people whether they can tweak their cou=
-nter
-proposal to get rid of specific parts you dislike for a reason.
-
-IOW, keep the ball rolling, so we can come up with the best possible soluti=
-on.
