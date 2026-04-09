@@ -4,61 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0796AE9DE60
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Apr 2026 07:59:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39229E9DE64
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Apr 2026 08:02:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B436F10E75B;
-	Thu,  9 Apr 2026 07:59:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E756D10E769;
+	Thu,  9 Apr 2026 08:02:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G/ch2Y7F";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FUsCaw3o";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC9BE10E75B
- for <intel-xe@lists.freedesktop.org>; Thu,  9 Apr 2026 07:59:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCF1610E75D;
+ Thu,  9 Apr 2026 08:02:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775721563; x=1807257563;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=c3f3GQlpfYlaxwk6wxwLIxoZW5JrZN+1KMWthyNLOvg=;
- b=G/ch2Y7FfRYOEuhKH8BpbetNpOypHEQXeKSWuObIpQUaYtU5ZS4yqFUP
- Z362wwQvPWsG2NwzVltpdRkTHkqA+eLhdKZmPcOOvBvLWp9KaYch752xg
- 42WKFUUmpsuhF9JUqg3ckbb6y7HUZxpecZiLTIwXXPco1argIF7D/67LO
- wRQcuSU9B0/KJa3W1HhvkqksWd3VSrunBqf/bdmgLsGFLCMoTAZQ5+Fai
- c+grw9jbeUxH1GU+y4+nOESRfZhoKZvjQuer59wFNyOodghIHN6c0kRCP
- CEKgpz1gxZ4Rz8ZfDxB57c38ZWVWQnMVnXhz4LOa7DHbqHl2FNapL/NgX A==;
-X-CSE-ConnectionGUID: RUFj/Q3xSuCnwfGLSYT0ZA==
-X-CSE-MsgGUID: 0qbWYI/XReqjbv6LVOb4Rw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="76598809"
-X-IronPort-AV: E=Sophos;i="6.23,169,1770624000"; d="scan'208";a="76598809"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2026 00:59:22 -0700
-X-CSE-ConnectionGUID: mc3btS1xRdCMoEZ4A3JawA==
-X-CSE-MsgGUID: Jo3lvXjgRxC0RFsYaGoi+Q==
+ t=1775721749; x=1807257749;
+ h=from:to:cc:subject:date:message-id:mime-version;
+ bh=TMCOMtxEzd9UPzJgn0a6zly/55WwgU0xxGAU68Fm6aY=;
+ b=FUsCaw3oNFIstb3lqC89odNq7VF02CNMsrfAN7KRuOsEfInP+EFFOHvv
+ 8F2n7isy1nn7HQh7q4L/XoHit/co7OE5PLti7uZY+gVWBcMjfLb4ZxQHu
+ 5LsBI/tzJBUqp8bvpccvISlQWEl2JDGCi1fAL19pNgfy4bgtfNc+yDyns
+ F27BZ8dpvG0NcZLbpIWYBRPTmT3iP7kqqvSSox8IsM5GSY98doD+jkyXR
+ Q3A+Nj4TBdjJk/wN3PPRgKkiwfCSJvv/7GNX/x6OGYE31fkJQgzsF8/sN
+ BoI2xvLEquRhN+1ix8etCQ3+MHRQyqLvw+s2cipOKhRkm2cXQijEKLrzd Q==;
+X-CSE-ConnectionGUID: l0cPBBraSJ6BP+IKqVlGwQ==
+X-CSE-MsgGUID: KAvyFB57T36B+ZTgvdU0HQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="75757404"
+X-IronPort-AV: E=Sophos;i="6.23,169,1770624000"; d="scan'208";a="75757404"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2026 01:02:28 -0700
+X-CSE-ConnectionGUID: k0N2IA5jTdCfuzsEvHykZA==
+X-CSE-MsgGUID: TC/fmssAT3OcqqIFL/N2Rg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,169,1770624000"; d="scan'208";a="259143866"
-Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2026 00:59:19 -0700
-Date: Thu, 9 Apr 2026 09:59:15 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>
-Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com, riana.tauro@intel.com,
- michal.wajdeczko@intel.com, matthew.d.roper@intel.com,
- umesh.nerlige.ramappa@intel.com, soham.purkait@intel.com,
- anoop.c.vijay@intel.com, aravind.iddamsetty@linux.intel.com,
- intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v5 3/3] drm/xe/ras: Introduce correctable error handling
-Message-ID: <addcU5zQdatlPM4S@black.igk.intel.com>
-References: <20260407110629.198158-1-raag.jadav@intel.com>
- <20260407110629.198158-4-raag.jadav@intel.com>
- <9f054c64-07a1-4f29-b4e8-dfacd52a619f@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,169,1770624000"; d="scan'208";a="228582888"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.62])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2026 01:02:23 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, Matthew Brost <matthew.brost@intel.com>
+Cc: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>, Oded Gabbay
+ <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dim-tools@lists.freedesktop.org
+Subject: [PULL] topic/step for i915 and xe
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Date: Thu, 09 Apr 2026 11:02:20 +0300
+Message-ID: <cc1ff0a476ff457e88251e22b83c1a45ada11ecc@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <9f054c64-07a1-4f29-b4e8-dfacd52a619f@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,281 +73,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Apr 08, 2026 at 05:55:17PM +0530, Mallesh, Koujalagi wrote:
-> On 07-04-2026 04:36 pm, Raag Jadav wrote:
-> > Add initial support for correctable error handling which is serviced
-> > using system controller event. Currently we only log the errors in
-> > dmesg but this serves as a foundation for RAS infrastructure and will
-> > be further extended to facilitate other RAS features.
-> > 
-> > Signed-off-by: Raag Jadav<raag.jadav@intel.com>
-> > ---
-> > v4: Fix Severity/Component logging (Mallesh)
-> >      s/xe_ras_error/xe_ras_error_class (Riana)
-> > v5: Handle unexpected counter threshold crossed (Mallesh)
-> > ---
-> >   drivers/gpu/drm/xe/Makefile           |  1 +
-> >   drivers/gpu/drm/xe/xe_ras.c           | 96 +++++++++++++++++++++++++++
-> >   drivers/gpu/drm/xe/xe_ras.h           | 14 ++++
-> >   drivers/gpu/drm/xe/xe_ras_types.h     | 73 ++++++++++++++++++++
-> >   drivers/gpu/drm/xe/xe_sysctrl_event.c |  3 +-
-> >   5 files changed, 186 insertions(+), 1 deletion(-)
-> >   create mode 100644 drivers/gpu/drm/xe/xe_ras.c
-> >   create mode 100644 drivers/gpu/drm/xe/xe_ras.h
-> >   create mode 100644 drivers/gpu/drm/xe/xe_ras_types.h
-> > 
-> > diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> > index c0e820eeea30..f66561977a45 100644
-> > --- a/drivers/gpu/drm/xe/Makefile
-> > +++ b/drivers/gpu/drm/xe/Makefile
-> > @@ -113,6 +113,7 @@ xe-y += xe_bb.o \
-> >   	xe_pxp_submit.o \
-> >   	xe_query.o \
-> >   	xe_range_fence.o \
-> > +	xe_ras.o \
-> >   	xe_reg_sr.o \
-> >   	xe_reg_whitelist.o \
-> >   	xe_ring_ops.o \
-> > diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-> > new file mode 100644
-> > index 000000000000..6f84ade02057
-> > --- /dev/null
-> > +++ b/drivers/gpu/drm/xe/xe_ras.c
-> > @@ -0,0 +1,96 @@
-> > +// SPDX-License-Identifier: MIT
-> > +/*
-> > + * Copyright © 2026 Intel Corporation
-> > + */
-> > +
-> > +#include "xe_printk.h"
-> > +#include "xe_ras.h"
-> > +#include "xe_ras_types.h"
-> > +#include "xe_sysctrl.h"
-> > +#include "xe_sysctrl_event_types.h"
-> > +
-> > +/* Severity of detected errors  */
-> > +enum xe_ras_severity {
-> > +	XE_RAS_SEV_NOT_SUPPORTED = 0,
-> > +	XE_RAS_SEV_CORRECTABLE,
-> > +	XE_RAS_SEV_UNCORRECTABLE,
-> > +	XE_RAS_SEV_INFORMATIONAL,
-> > +	XE_RAS_SEV_MAX
-> > +};
-> > +
-> > +/* Major IP blocks/components where errors can originate */
-> > +enum xe_ras_component {
-> > +	XE_RAS_COMP_NOT_SUPPORTED = 0,
-> > +	XE_RAS_COMP_DEVICE_MEMORY,
-> > +	XE_RAS_COMP_CORE_COMPUTE,
-> > +	XE_RAS_COMP_RESERVED,
-> > +	XE_RAS_COMP_PCIE,
-> > +	XE_RAS_COMP_FABRIC,
-> > +	XE_RAS_COMP_SOC_INTERNAL,
-> > +	XE_RAS_COMP_MAX
-> > +};
-> > +
-> > +static const char *const xe_ras_severities[] = {
-> > +	[XE_RAS_SEV_NOT_SUPPORTED]		= "Not Supported",
-> > +	[XE_RAS_SEV_CORRECTABLE]		= "Correctable",
-> > +	[XE_RAS_SEV_UNCORRECTABLE]		= "Uncorrectable",
-> > +	[XE_RAS_SEV_INFORMATIONAL]		= "Informational",
-> > +};
-> > +static_assert(ARRAY_SIZE(xe_ras_severities) == XE_RAS_SEV_MAX);
-> > +
-> > +static const char *const xe_ras_components[] = {
-> > +	[XE_RAS_COMP_NOT_SUPPORTED]		= "Not Supported",
-> > +	[XE_RAS_COMP_DEVICE_MEMORY]		= "Device Memory",
-> > +	[XE_RAS_COMP_CORE_COMPUTE]		= "Core Compute",
-> > +	[XE_RAS_COMP_RESERVED]			= "Reserved",
-> > +	[XE_RAS_COMP_PCIE]			= "PCIe",
-> > +	[XE_RAS_COMP_FABRIC]			= "Fabric",
-> > +	[XE_RAS_COMP_SOC_INTERNAL]		= "SoC Internal",
-> > +};
-> > +static_assert(ARRAY_SIZE(xe_ras_components) == XE_RAS_COMP_MAX);
-> > +
-> > +static inline const char *sev_to_str(struct xe_device *xe, u32 sev)
-> > +{
-> Unused xe parameter, remove it
 
-Sure.
+Hi Thomas, Matthew and Rodrigo -
 
-> > +	if (sev >= XE_RAS_SEV_MAX)
-> > +		sev = XE_RAS_SEV_NOT_SUPPORTED;
-> > +
-> > +	return xe_ras_severities[sev];
-> > +}
-> > +
-> > +static inline const char *comp_to_str(struct xe_device *xe, u32 comp)
-> > +{
-> ditto
-> > +	if (comp >= XE_RAS_COMP_MAX)
-> > +		comp = XE_RAS_COMP_NOT_SUPPORTED;
-> > +
-> > +	return xe_ras_components[comp];
-> > +}
-> > +
-> > +void xe_ras_threshold_crossed(struct xe_sysctrl *sc, struct xe_sysctrl_event_response *response)
-> > +{
-> > +	struct xe_ras_threshold_crossed_data *pending = (void *)&response->data;
-> > +	struct xe_ras_error_class *errors = pending->counters;
-> > +	struct xe_device *xe = sc_to_xe(sc);
-> > +	u32 ncounters = pending->ncounters;
-> > +	u32 cid, sev, comp, inst, cause;
-> > +	u8 tile;
-> > +
-> > +	if (!ncounters || ncounters >= XE_RAS_NUM_COUNTERS) {
-> 
-> if ncounters are 16, then it's logged in error, however for (cid = 0; cid <
-> ncounters; cid++)
-> 
-> safely accesses up to ncounters - 1. So check should be
-> 
-> if (!ncounters || ncounters > XE_RAS_NUM_COUNTERS) right?
+Here's a topic pull intended for both drm-xe-next and drm-intel-next to
+unify the steppings header and enum between the i915 and xe drivers. I'm
+opting for a topic branch because merging this through either driver's
+-next branch would likely be painful conflicts wise.
 
-Good catch.
+Please pull this to drm-xe-next (*), and once you're done, I'll follow
+suit in drm-intel-next.
 
-> > +		xe_err(xe, "sysctrl: unexpected counter threshold crossed %u\n", ncounters);
-> 
-> Use "[RAS]: ", since code is RAS owned.
+Thanks,
+Jani.
 
-Agree, but this'll be misleading because it gives the impression of RAS
-error, which it is not.
 
-Raag
+(*) Hint, 'dim apply-pull drm-xe-next' on this message will do the
+    trick.
 
-> > +		return;
-> > +	}
-> > +
-> > +	BUILD_BUG_ON(sizeof(response->data) < sizeof(*pending));
-> > +	xe_warn(xe, "[RAS]: counter threshold crossed, %u new errors\n", ncounters);
-> > +
-> > +	for (cid = 0; cid < ncounters; cid++) {
-> > +		sev = errors[cid].common.severity;
-> > +		comp = errors[cid].common.component;
-> > +
-> > +		tile = errors[cid].product.unit.tile;
-> > +		inst = errors[cid].product.unit.instance;
-> > +		cause = errors[cid].product.cause.cause;
-> > +
-> > +		xe_warn(xe, "[RAS]: Tile:%u Instance:%u Component:%s Error:%s Cause:%#x\n",
-> > +			tile, inst, comp_to_str(xe, comp), sev_to_str(xe, sev), cause);
-> > +	}
-> > +}
-> > diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
-> > new file mode 100644
-> > index 000000000000..92ee93d4e877
-> > --- /dev/null
-> > +++ b/drivers/gpu/drm/xe/xe_ras.h
-> > @@ -0,0 +1,14 @@
-> > +/* SPDX-License-Identifier: MIT */
-> > +/*
-> > + * Copyright © 2026 Intel Corporation
-> > + */
-> > +
-> > +#ifndef _XE_RAS_H_
-> > +#define _XE_RAS_H_
-> > +
-> > +struct xe_sysctrl;
-> > +struct xe_sysctrl_event_response;
-> > +
-> > +void xe_ras_threshold_crossed(struct xe_sysctrl *sc, struct xe_sysctrl_event_response *response);
-> > +
-> > +#endif
-> > diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
-> > new file mode 100644
-> > index 000000000000..0e3ba9e81538
-> > --- /dev/null
-> > +++ b/drivers/gpu/drm/xe/xe_ras_types.h
-> > @@ -0,0 +1,73 @@
-> > +/* SPDX-License-Identifier: MIT */
-> > +/*
-> > + * Copyright © 2026 Intel Corporation
-> > + */
-> > +
-> > +#ifndef _XE_RAS_TYPES_H_
-> > +#define _XE_RAS_TYPES_H_
-> > +
-> > +#include <linux/types.h>
-> > +
-> > +#define XE_RAS_NUM_COUNTERS			16
-> > +
-> > +/**
-> > + * struct xe_ras_error_common - Error fields that are common across all products
-> > + */
-> > +struct xe_ras_error_common {
-> > +	/** @severity: Error severity */
-> > +	u8 severity;
-> > +	/** @component: IP block where error originated */
-> > +	u8 component;
-> > +} __packed;
-> > +
-> > +/**
-> > + * struct xe_ras_error_unit - Error unit information
-> > + */
-> > +struct xe_ras_error_unit {
-> > +	/** @tile: Tile identifier */
-> > +	u8 tile;
-> > +	/** @instance: Instance identifier specific to IP */
-> > +	u32 instance;
-> > +} __packed;
-> > +
-> > +/**
-> > + * struct xe_ras_error_cause - Error cause information
-> > + */
-> > +struct xe_ras_error_cause {
-> > +	/** @cause: Cause/checker */
-> > +	u32 cause;
-> > +	/** @reserved: For future use */
-> > +	u8 reserved;
-> > +} __packed;
-> > +
-> > +/**
-> > + * struct xe_ras_error_product - Error fields that are specific to the product
-> > + */
-> > +struct xe_ras_error_product {
-> > +	/** @unit: Unit within IP block */
-> > +	struct xe_ras_error_unit unit;
-> > +	/** @cause: Cause/checker */
-> > +	struct xe_ras_error_cause cause;
-> > +} __packed;
-> > +
-> > +/**
-> > + * struct xe_ras_error_class - Combines common and product-specific parts
-> > + */
-> > +struct xe_ras_error_class {
-> > +	/** @common: Common error type and component */
-> > +	struct xe_ras_error_common common;
-> > +	/** @product: Product-specific unit and cause */
-> > +	struct xe_ras_error_product product;
-> > +} __packed;
-> > +
-> > +/**
-> > + * struct xe_ras_threshold_crossed_data - Data for threshold crossed event
-> > + */
-> > +struct xe_ras_threshold_crossed_data {
-> > +	/** @ncounters: Number of error counters that crossed thresholds */
-> > +	u32 ncounters;
-> > +	/** @counters: Array of error counters that crossed threshold */
-> > +	struct xe_ras_error_class counters[XE_RAS_NUM_COUNTERS];
-> > +} __packed;
-> > +
-> > +#endif
-> > diff --git a/drivers/gpu/drm/xe/xe_sysctrl_event.c b/drivers/gpu/drm/xe/xe_sysctrl_event.c
-> > index 8a2e44f4f5e0..139ecd4aafcd 100644
-> > --- a/drivers/gpu/drm/xe/xe_sysctrl_event.c
-> > +++ b/drivers/gpu/drm/xe/xe_sysctrl_event.c
-> > @@ -6,6 +6,7 @@
-> >   #include "xe_device.h"
-> >   #include "xe_irq.h"
-> >   #include "xe_printk.h"
-> > +#include "xe_ras.h"
-> >   #include "xe_sysctrl.h"
-> >   #include "xe_sysctrl_event_types.h"
-> >   #include "xe_sysctrl_mailbox.h" @@ -38,7 +39,7 @@ static void
-> > xe_sysctrl_get_pending_event(struct xe_sysctrl *sc, } if (response.event
-> > == XE_SYSCTRL_EVENT_THRESHOLD_CROSSED) { - xe_warn(xe, "[RAS]: counter
-> > threshold crossed\n");
-> > +			xe_ras_threshold_crossed(sc, &response);
-> >   		} else {
-> >   			xe_err(xe, "sysctrl: unexpected event %#x\n", response.event);
-> >   			return;
+
+The following changes since commit 4516432284e1b2ad9e70de8067f779c9c1072189:
+
+  ttm/pool: track allocated_pages per numa node. (2026-04-08 06:52:48 +1000)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/topic/step-2026-04-09
+
+for you to fetch changes up to baf310b9836445ca9056f04ec347293963a1cc6e:
+
+  drm/i915/display: switch to including common step file directly (2026-04-09 10:10:03 +0300)
+
+----------------------------------------------------------------
+topic/step to unify xe and i915 on common steppings header and enum
+
+----------------------------------------------------------------
+Jani Nikula (3):
+      drm/xe/step: switch to the shared step definitions with i915
+      drm/xe/step: switch from enum xe_step to intel_step naming
+      drm/i915/display: switch to including common step file directly
+
+ drivers/gpu/drm/i915/display/intel_cdclk.c         |  2 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c           |  2 +-
+ .../gpu/drm/i915/display/intel_display_device.c    |  2 +-
+ drivers/gpu/drm/i915/display/intel_display_power.c |  2 +-
+ drivers/gpu/drm/i915/display/intel_display_wa.c    |  2 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c        |  2 +-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c      |  2 +-
+ drivers/gpu/drm/i915/display/intel_fbc.c           |  2 +-
+ drivers/gpu/drm/i915/display/intel_flipq.c         |  2 +-
+ drivers/gpu/drm/i915/display/intel_hdcp.c          |  2 +-
+ drivers/gpu/drm/i915/display/intel_pmdemand.c      |  2 +-
+ drivers/gpu/drm/i915/display/intel_psr.c           |  2 +-
+ drivers/gpu/drm/i915/display/skl_universal_plane.c |  2 +-
+ .../gpu/drm/xe/compat-i915-headers/intel_step.h    | 13 -----
+ drivers/gpu/drm/xe/tests/xe_pci.c                  |  4 +-
+ drivers/gpu/drm/xe/xe_step.c                       |  2 +-
+ drivers/gpu/drm/xe/xe_step.h                       |  4 +-
+ drivers/gpu/drm/xe/xe_step_types.h                 | 61 +---------------------
+ 18 files changed, 20 insertions(+), 90 deletions(-)
+ delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/intel_step.h
+
+-- 
+Jani Nikula, Intel
