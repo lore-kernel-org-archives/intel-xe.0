@@ -4,145 +4,145 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98245F364BA
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Apr 2026 21:16:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76453F364BA
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Apr 2026 21:20:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 593DD10E05C;
-	Thu,  9 Apr 2026 21:16:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 353AF10E05C;
+	Thu,  9 Apr 2026 21:20:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XHizmjmH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WXUx+mBK";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E965710E05C
- for <intel-xe@lists.freedesktop.org>; Thu,  9 Apr 2026 21:16:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07A3610E05C
+ for <intel-xe@lists.freedesktop.org>; Thu,  9 Apr 2026 21:20:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775769391; x=1807305391;
+ t=1775769653; x=1807305653;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=vV9vYDYnMvinXcV/fqJ6v5VfCxSeaiIa37jA7Syeak8=;
- b=XHizmjmH1bWoEpRgaRxp9ILZlhIAbZqN84Ub/JTp7grQ+u3bdI3bgAYe
- CjUCEWirX9qM+ew+llao5kv3ddu98MLlMJw5AbJL+6VphQLjwqawLjd5I
- ogJIlUQID7kOu2zxgWGb6M0oX1dsLvfyXRZnlY6Qo2P6TQ36M6Ixcb7Q1
- XFjQSEHujpPdeIxxZ1QWi5E+Ff4f+kga582cjr3F4V/aEACRkw2PRDp8O
- 91bvfRKENiXMTrz36Tb65btHZzYHaFPZiFChqidhyddQyY7nUx3yMqJUi
- nKbCvRcxugejTblX7DX3nMj63dtkrlczth0mco5z40PBUXPYrJOp3ErD2 w==;
-X-CSE-ConnectionGUID: aUrlS8oMQROQFqsq8UVCXw==
-X-CSE-MsgGUID: gEALJ3d+SC6WCG9ObBQdJg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11754"; a="76504014"
-X-IronPort-AV: E=Sophos;i="6.23,170,1770624000"; d="scan'208";a="76504014"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2026 14:16:30 -0700
-X-CSE-ConnectionGUID: t2oBd8aRQnORyEkR0fGowA==
-X-CSE-MsgGUID: BxitGD7DTVmBo91DjA6Jqw==
+ bh=HSXqALKj2F+sTFRmBqk59yQ/h8uOJI7Ycgd/TiMFXw8=;
+ b=WXUx+mBKm7laHp02g57fI+Qo1k3Qy6oTk3mZBDskV5mr9UbkyMUDnF9v
+ oe4wdPNe57eIws1X1vN4L7Y36NAdU3RY68JEHszt2qF0ANiO+0TWZnNIo
+ BauNlQkMgWLH4s7lRLJoHuWH+8D+Dk/wtubO48rgeu1ifKvGn4CkwjBPL
+ iLOVqLWrGt7/lI4C1Axg2C5Oc1aOZwPtPCzqJfWuLni/A+R4kLl3jJ7M3
+ l3p4nQUTmQLR4OTS9NAoThSc52+vGiEGu57Fw6MX6fh143QXz+g6YQ6xx
+ CEXlgLoWwPEkBK1ySEB8YkMhg/Pekine0qD7n/gKzHscWY8wYgI3OBPmp Q==;
+X-CSE-ConnectionGUID: H3mkWJsRTPOQleD1Y5IRSA==
+X-CSE-MsgGUID: stFPoW3lQ4W18MGJ0m77Ew==
+X-IronPort-AV: E=McAfee;i="6800,10657,11754"; a="79374066"
+X-IronPort-AV: E=Sophos;i="6.23,170,1770624000"; d="scan'208";a="79374066"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2026 14:20:52 -0700
+X-CSE-ConnectionGUID: hfABPzFhSIKvK8dift0BIQ==
+X-CSE-MsgGUID: L6mA4Nv0ReaBjmaNDqbQgQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,170,1770624000"; d="scan'208";a="228782497"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2026 14:16:31 -0700
+X-IronPort-AV: E=Sophos;i="6.23,170,1770624000"; d="scan'208";a="227900907"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2026 14:20:52 -0700
 Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 9 Apr 2026 14:20:52 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
  ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 9 Apr 2026 14:16:30 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Thu, 9 Apr 2026 14:20:52 -0700
+Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.30) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Thu, 9 Apr 2026 14:16:30 -0700
-Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.67) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 9 Apr 2026 14:16:30 -0700
+ 15.2.2562.37; Thu, 9 Apr 2026 14:20:51 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=dAoYPhTGbm5//gaYgRsfcigmDESL39Jr2UjiYYl9HUOrfVTzyBevXDiPq+Tw0AEz4f/Ki2VZ0bubUUvAJNgxPg2MiFU2ARCHNVX0zhUGeAkTqlFrDB9/zkh+yGeW93woTxbVBy/ke/n8gIye5FbPnHC74YvFOOBuPWqiUPk6ymceroF1Y8T/fnKWtLFJLQ+MjEkd9fpBPWDgctNj5ULo3W7CkVVgevVK10KjdAl8RPCahPc02ogL5ojZvqLWm5Fe3bN+iLe4rnGQx2pVc/992pdZzjUAu169O7t0PSBkBv/nBHMauUz7pRGgB8AFJg+8RJhQGaSH43/ZctO4ZsTMLA==
+ b=HOqyF5D1Oakao8VSfw04FtHlkUJZGMNs9bbcjKB0Gc0y9e9dRg03xxSh3reJJhmyLWT2wIL8C4sOemTyFvSCAPyZNHeJEpaR+jyht1mBnK+tKq05FzJvWzzOMlWaTWnDq+H/C+sBOB/Ggdce1GilWcRnH2EPn+M36Vo85BS1TUK0vnJJZ5yyl9cgiVTcdxpohJBQ50slbZxFS3G8iNQ22W2s3yw9vgOrs9MFHi4UVcXEAy2W3zfT3Zs+K0XRfExVKuBO/U417afKN+OoUk8Nx5IdK0HCEJ++gc/Nwi5MuNQ0u4hAQFZncdajz9+lQNVE0+hB0rTDRtG+M/ks6TnlHA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XPKva0rSEkR67t3I3z47OlxEXQCM9EXlA8B6L+akAK4=;
- b=JqbWDk61LLOoyOudM+bGCRgOo38DiKVDeIaWFT29neKVy0InJ/8fAa3Fn8p5InQFrykHjvj00sw9dBHBgZWusCCNRabDaa29KqVy/pqrJ2GY3+DouDKshAPyRg47a2KNHKQWe9T5/qWXAksX3eTUJiKwduQqVGtTFNT9Jfdy6xw/qSAKW6evKyWAYKxfeGbffgyviezTbS5MsQnmo4Ig1zoQdVi27VloMhsIjXEO3bTnuuizb+ZzeFafd8yFdyuUGOVfppqyU8JRj3wx7/a6jJuhW31HT4ln1Z7FhtpadYqLEgKD4qYGyEWN9yvxGY8SME33SUvZTKCfO07e2e6Vvg==
+ bh=mBcyUxb6nfoOoQLk61LHytNzx3IKmlsiCRMwLMq9Z90=;
+ b=d7tCkXB+XrkKkPZtkf/s8sGEmn0jIc4Cxqcej4M9Tn/STnLch3Mf+EVVeNvWKfkgxAsknkNeuVd/5aPFm/wnQmbEqBeAOgwvOgsQNgtqwVDx3cC/DvvrKe14G38FMJOiq1CXONHLtiUaTQVMOty9JokF1fVtQTTOhv6CVl5zAeNjJEQPj1Hex35IJVJcHdy+gzwvsZNr8lsLLU6SbIHStfVd6E4El9biKdY4MHR6x1JpKO2MKySFqrHSza89k/Cj3jr1MsuWlztS5WN/OyRHag4pua7PGy91EmmEm0TC4CMoOMKZ7/QnHpgwo5ESigFg5LBQ5TBAUxQ9yvnXzJyLJQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
- by IA3PR11MB9226.namprd11.prod.outlook.com (2603:10b6:208:574::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.17; Thu, 9 Apr
- 2026 21:16:27 +0000
+ by SA0PR11MB4767.namprd11.prod.outlook.com (2603:10b6:806:97::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.42; Thu, 9 Apr
+ 2026 21:20:49 +0000
 Received: from BL3PR11MB6508.namprd11.prod.outlook.com
  ([fe80::53c9:f6c2:ffa5:3cb5]) by BL3PR11MB6508.namprd11.prod.outlook.com
  ([fe80::53c9:f6c2:ffa5:3cb5%7]) with mapi id 15.20.9769.016; Thu, 9 Apr 2026
- 21:16:26 +0000
-Date: Thu, 9 Apr 2026 14:16:23 -0700
+ 21:20:49 +0000
+Date: Thu, 9 Apr 2026 14:20:46 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 CC: <intel-xe@lists.freedesktop.org>, <niranjana.vishwanathapura@intel.com>
-Subject: Re: [PATCH 2/5] drm/xe/multi_queue: Add helpers to access CS QUEUE
- TIMESTAMP from lrc
-Message-ID: <adgXJ4jkaVK/d69x@gsse-cloud1.jf.intel.com>
+Subject: Re: [PATCH 4/5] drm/xe/multi_queue: Use QUEUE_TIMESTAMP as job
+ timestamp for multi-queue
+Message-ID: <adgYLnHbYkLa52Gw@gsse-cloud1.jf.intel.com>
 References: <20260409203714.1887402-7-umesh.nerlige.ramappa@intel.com>
- <20260409203714.1887402-9-umesh.nerlige.ramappa@intel.com>
+ <20260409203714.1887402-11-umesh.nerlige.ramappa@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20260409203714.1887402-9-umesh.nerlige.ramappa@intel.com>
-X-ClientProxiedBy: SJ0PR13CA0122.namprd13.prod.outlook.com
- (2603:10b6:a03:2c6::7) To BL3PR11MB6508.namprd11.prod.outlook.com
+In-Reply-To: <20260409203714.1887402-11-umesh.nerlige.ramappa@intel.com>
+X-ClientProxiedBy: BYAPR07CA0073.namprd07.prod.outlook.com
+ (2603:10b6:a03:12b::14) To BL3PR11MB6508.namprd11.prod.outlook.com
  (2603:10b6:208:38f::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|IA3PR11MB9226:EE_
-X-MS-Office365-Filtering-Correlation-Id: 91fbf61b-e3a4-473b-c973-08de967d42a7
+X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|SA0PR11MB4767:EE_
+X-MS-Office365-Filtering-Correlation-Id: 585a35c8-3a93-421d-0ebb-08de967ddf1d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|56012099003|18002099003|22082099003; 
-X-Microsoft-Antispam-Message-Info: 9AD+PEeccFOIX1VHS70gnmIiJuzTfu3jHwyQLSfdUk1oz3ZtSHBk/us5xuIDXWKcjoRwigs5vAoIUg3m8zybEEG2imAlXkFz90nODquRUFODRk7xvG1wLdokhHWxE82v2zUbmfvkSMaFne+zL+JgcBdjrMFLyNazSfr8kfT7+zGhEvA+f4BkLqDatc9JgwL318SuhkYY/4F0cmk9mQsiXveCrBtAKURlN0U1LRbi3kUxzaqnVbjjOyBy3tSohVP8eQdtzerhKvci2I2bRcsSsVUiNE/IkYzxp9W/y0K3WzHtLdeGlya2icPVeZwcQ8RgsCQmzUC5sAZHxEEa93ZvKKE+zKX1RpFyXm2rwXUo5wp5kLL7BBZg5YT3HfMmTGNip8u6Kzptfa9tIsRFFCqQ90MuuNyJJtj2jS9c5CknAHzJKje3t8bh7yDVR+0V5GyF49Qm0QTYrNsoa/aaY6eQExmdoJ5lCcl2yaUP1cMEDjzBVlveQK2cTByrLRZF8funU7QZZQtkHO0HyJiLGFT67XmOQvZmlwrLuJVMdDueo+lwFxtm66SDmOfVCeFSdWM9nN/yGidE0l5nzB1VApu6sk7prNjUhVxdvm6HdXNolgTE4Xp3hzvLXHMHq8BcV2/AHg1xnj8We4oNi71i8gwz/OO+OdXsZVJ17H563+9ObbrioXzEKoTfloOYE0L9WgqJmGuJkiJ6vzCweVOGumT5g86Fl4tEyuZLZrah8H6z4IM=
+ ARA:13230040|366016|1800799024|376014|56012099003|18002099003|22082099003; 
+X-Microsoft-Antispam-Message-Info: dYEIHei7fNsdyP3QeNqRKbNufqmhQCSrxLxaE/IUKJyq34h83yQmd6l2jA71Nr2xQ1IP4VAkv23exhS3n1noO/MrmZmAy+aPo+TzxNm0kDDnRzQIBwXZ5ZmZg3hVDTnjwIHMWAZ4cKzfNbRBfrXupGC7Tq+SPWmBoZH8yoePJFA5rl4Nb8Z2BHHcFMKdL1xo+iNRyJZLyel6QQoWc10CZhISlM8eu9o8xWpPrNMrMEX3zB5DKYrpBuvIpPfjeQI8vuwusQB26tqBP+t6vm2nu6GXS6sdnK2B6Edh7vwZacv+MPcRRQQ7CC22HCmaDUe3dLLBy1+gHXmcj5t3KcW8V65tTmqTH8FAs3iXdKooOeMlLbP/b753zt6cjM9zAzzlTNx9c0VOeHd/+nV1jieT9F27uv8LaY7WFiEpXSAwoW2uy6p1HCEsuV1QtCYrEMoMcaulvh9WtTOpU7RlqB1j3ba6dnL1uFgk64ep7vf8PqR9gqotSG0I3QyQsmk2E1tPFChXXf/oWo8ZfQQOW21mKbu1Zg0yvwUeHKTXd8hHv8lS580AGw7udnh9SWY1sJvI8bOZZHlHyw+eBruNhZGLjP9r8YBbRXyxHi+E43oTa7/2gH2YlP5JOpVaGq1ie66KX6KvmR038UHPSyql1gNN7oXRxJurxlLiche+N7PZXkCPeQRvD7BCzFxBoag3HoweGwchJaZeHEwPW0KCdmcOl3VgTo3ZDNiXxC/ZouCqJyk=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(56012099003)(18002099003)(22082099003);
+ SFS:(13230040)(366016)(1800799024)(376014)(56012099003)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?enkQVlHR0mG8ZK9MKCrNDepb4sQTq85Mp9PCWB7BXYiADnq+l52ZkzJ1PXqo?=
- =?us-ascii?Q?Ndmb7sL/FsVl1+knAJZkuG/V0FkVh0I+oGTcTNIxDbaHR46mXBNtoluUt8aT?=
- =?us-ascii?Q?MZSfQw1A4GCu75M95HLY0tkkrKpwdvzxe75t6rLHV/uKwZiPPIcOMxhlZJcD?=
- =?us-ascii?Q?B8MaNZdN/3G+Y/pXMrM3sY9OhKSGfl4gi9/qBlupGNwO9DAFcRdgLtGRBBVA?=
- =?us-ascii?Q?0R6cw69UN33RTVGoc/loYwqKoEJbgQ6SeHS29mVZ27oSgHYIw1lQfDZ56J+D?=
- =?us-ascii?Q?FrHQgfclpxx2zeHRlhVVI72sNkZqN7jbsb22j/IDx1AdCBIX5SI+SgTOQbp0?=
- =?us-ascii?Q?ai9bz769H0U4lapzinNtcoC/tplarZUn24BDcfYRnBS1PayC9c/0p4TL6aci?=
- =?us-ascii?Q?KN5yl9ZfYcadJQ9qScX79/K1AJO20RLWZl2Te/awcMndGcJpx516zg6vCpba?=
- =?us-ascii?Q?v9mCGHq+Gjg1SFunAKHywyL7zK4ihwxowx2Mp467mrvy4lnZR0vxbISgiIGN?=
- =?us-ascii?Q?/qnYvBSMUe7TP9uqimXw7wZ5gkuXVvK/ABh0nOMSsBdl4v1BrQM7EJNtcBrI?=
- =?us-ascii?Q?XZJTLVlitNaTWrQYomfsTxQ9VrZJL2Z6P2wZnJGkaaYCwhaala/KZ646+U9N?=
- =?us-ascii?Q?yCv919B4UNUh3cbljFxvX9JWaulrVYqmXV0MZEjbzjxb9IIbgKDp4/H6HoZ+?=
- =?us-ascii?Q?VqTUbtCwtL/aT8eFlMAALcdVdGI8LQ36flEFpPDfeG18ur406XFgf+fkhyAl?=
- =?us-ascii?Q?nk6zIsjDJ4PIrGM41zEvy6jl68oaOJfEboPe6YxxzfkW4TKdBZnyMedmTtZb?=
- =?us-ascii?Q?Pjf6XynKB0AhrhcdYhuBJXgxGVVF6bVl2UMrgtM/94UnxOKCJoqYd618p391?=
- =?us-ascii?Q?anhDmqNLIFoXJWE6KqzGB11b6h8yqgb7BkBGo2EiD/i7MUQETJP9ifuDm2/e?=
- =?us-ascii?Q?gNw/v0DDVbHwaubc6XmIn0KeYe944YhYPCL08zEnqNx6DuT2D+dcvKYHEg+9?=
- =?us-ascii?Q?z2iRFGEEq6sm6FTTY0ijYnyQkKa5+QobAHVgnMjqdg8dmzxA0jg+y5yR3NOb?=
- =?us-ascii?Q?t0Oqd6mYnQDMClO8THUOpCLMXq4AWfDT69jwbZeVuMg45hGk65qXeQQLMe9z?=
- =?us-ascii?Q?VzCk0A6ErM9af+EcecVDtOKQPqGTdUMvBooztHS7ku6DrUSE1/LzKxr6DCff?=
- =?us-ascii?Q?BhohYC0FxsLLzUH2QJXga+UhxszdrJc6p4+y9faiyROm+b7gBXXco1ADHFAh?=
- =?us-ascii?Q?HlPNgFe8D+URJfhyw8Gx3DM6aMyKNHiZwhlqHNGY+9ZNmSZtaE0NS9eBGSFf?=
- =?us-ascii?Q?0Pk2bsB2nPhf/e7p2OiQADxgt80khsAGpYjAYAvYe7UTx5jvbJRn0t7GWwe2?=
- =?us-ascii?Q?iVY/jcvEgVfVsZtFxRUP60V2rr0nqUjIA5cFdAJitQ9HpulKAf4p6f0gSI8V?=
- =?us-ascii?Q?nTLWXpmrLJmv++Emwjyk9TBuPV72S6HdOnnoSVPHft58dCgoPql8E5raOu8n?=
- =?us-ascii?Q?3YXfEB0qfUHy+ZUE3KWSz+QGANPpx1Fi/cYBVg+LL7GgE5F/w7Wls/llxdaM?=
- =?us-ascii?Q?LViOndnkgVSh1jrb76eBdKN5zCQruiruuH0JsLH61DRCXhB7jLouFf4nlago?=
- =?us-ascii?Q?h/hDLtuM6JGBHUl3igUiN3eYP6ur/CEZ76wNX4zZpFMZ+lzs/I1qxBa23ch8?=
- =?us-ascii?Q?wec4dhUfxd0nOJXKObL6HVH6wvfy69LlAEynTULx9fvdO3uaKTCGpUTUegmD?=
- =?us-ascii?Q?OZ92xYgNufY6S9mm0le980dSpAwMVUs=3D?=
-X-Exchange-RoutingPolicyChecked: vJBbG/xBx2fWJZe1lqIupKBzeECA3kylAUUweEAN59a5w1p42yuBRGvI3CkgDYPDIUKosyOBaeDWpz1QEKNqQ8/4VUPapB2w0Z1y8BA5ICbQYc+zVcCdJjMkfPYPMihZA9QGSSOnYLWI+x9aPywhHax+kCQurx+GxK6B2d7gFOc+tOLAg4MOZPMeqgbGs+ZIxBstZXLM8lJ7ciX4wcsUarY4/Z8WN2eeNanHlBxGgZdSDEZT/q3TKfiBG7tEn1x5rPoY3h6iGvHLbK3c3z7j0rJj8s6VaHyKbN0GeNc7TRJFnfVZJ1N7IIWUVO/+rC9zvWnCR93aCk+KMrrYd1s2KQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 91fbf61b-e3a4-473b-c973-08de967d42a7
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?46PoubPswPQt4EUuiVmZdnSw+6ZOWusyLIknm6W2AKeANNlGaSRLTNhdTXvY?=
+ =?us-ascii?Q?IXWrJSnC91w6xs8XFYOZurv6ck3Yu5jhRQbhZGkZDiN6LeQFis+jaAwWSwli?=
+ =?us-ascii?Q?NgpdIQ3ybHbOF8RkyB2eGr3TgUs9DNEC3CDsihbC9rcteISBrqG91c0se8fW?=
+ =?us-ascii?Q?TMIgu+psi9lHxf4ImqCRMmYG7HUCOMYopMDfk2H1MWo4at5T7Vp3d3MvtKd5?=
+ =?us-ascii?Q?Fm7QQKyQpLt3qHIjRvSf4U5f81iKfA40JrOG5FxwJmThqu+kIRTenKR4MDf9?=
+ =?us-ascii?Q?piAxktYYSL1gOtDROK//Gw6OZJa+i/P8GpZR9SNZKOwO5RmEL0JJOP12wg82?=
+ =?us-ascii?Q?gmsw3PNC6AlnzQcY+Evz5bu8bk0BaZK0ZMG5GMWQD7T+dDFr7s89jKRxLk2r?=
+ =?us-ascii?Q?DCIiXI0iC06NUoaDfFhNzOJr07+1Bmf7sTirYGB1Kzyy8bqcwyjAndmoCCka?=
+ =?us-ascii?Q?I1VnCAMQ+DoxXXWZPEE4sZ8b4XyN0i6uGEWkM5OJetxwVwkUlKAMdPmyIrty?=
+ =?us-ascii?Q?Lijx9Hp0m51r5stuohirzo67PjB1ntiAEc6Xo0hEU8wLILa5sywF9cKTzww0?=
+ =?us-ascii?Q?idiHYmoGGL6/zK8ZVIpAvhWoGFW5osGm2ZHI0xLOnlTJSwDudin6BK7/uqZv?=
+ =?us-ascii?Q?dkHcqoDe0206hJsZb+zm7mUiL3ubmkftrOJzGt9xugy9WeCk57aIOzdJhhb/?=
+ =?us-ascii?Q?X2xS4Ruk7m4/1CZIvcWAG2a8cblck55CKX+G7hDbUeer9lE+e5E7hywjor74?=
+ =?us-ascii?Q?5xA2WE0/yDmm2Dj72EZxV3ZX3go4O8FDoB7Fomxx225FZA2owI4xz0w9c8W9?=
+ =?us-ascii?Q?OG9MS1HODs6QZIXfbQqgfbV6QTpa3Vy7OCgrf88RJFMNyfaqr5FIBzKP0CYa?=
+ =?us-ascii?Q?Ru2qBvbUDxZWc6tykoBSYMFTyCIUt6NKliBUrqMVn/7hJeD7I13To1/xCRIM?=
+ =?us-ascii?Q?Bf/lU8CPN4fSKfgy9s9joT1l2cr+6qreNScEsS8acAcXpiUkZIIY1VAgR2lb?=
+ =?us-ascii?Q?0vRQvfNncaHUkAILOYFTp7ivjilAJsWg7rkytr21rIw7MjArMyFl/aEjUNO9?=
+ =?us-ascii?Q?l+lbOJ3vQYV2x0QK09/ZC3NO5DgcmhvRI6nw6eQh4+vQhDPFiiyTvxdhJ9vC?=
+ =?us-ascii?Q?3BV5Mx3nDnQfKTrqE3rryjOH13BHW2pT35JBMSLrP+rt6+Wz2tKC1Pf/CQPg?=
+ =?us-ascii?Q?Ql+fN0s4zyi1hMdgYI9TvLAZfY1mfzzdC/WVWB2+VKMUuuf7PpJqB92wodUu?=
+ =?us-ascii?Q?nDQ9JNCtpmPuIyCfTlbRj3tJAJJFfyKLv5BhAak/yUmjIQLsxEHb5awv1qC7?=
+ =?us-ascii?Q?xX5TIBZOxLhvExIWNsc9kaWX/9aACJu2Mq42a0s75s3YFcf5WjCCJ3RWfe8z?=
+ =?us-ascii?Q?krEt1lqm8cKCdcfAXprRwIX7kSQ1iRsiJ2bGOsYwGl/m3t6AhCVr/CtDdMH3?=
+ =?us-ascii?Q?iHMkhnnmNO0Ke6vd0azQfrMiBO1UiX1oh3HJbUEYjHqFVj0OkpQiDrFqYOoP?=
+ =?us-ascii?Q?dkFzb6J7Y9I3t14cVPX7pohrlZRggraM0ZKVsptStisB6qRpMcWOHRgK2pqm?=
+ =?us-ascii?Q?IhpYgmcGDXULAiztpn9XnaxLak/MwqDrUhlFOas3lDE+dmUC3vaMDTIGoEeV?=
+ =?us-ascii?Q?I5K7Tpqr0LF7AGhV3kp5YmeSbokXxsij9wIDvHJ5gwNr7x3CgqyLOarPMa7m?=
+ =?us-ascii?Q?+IL4tgEmF1BtUfEX8Ra/7IhzpCMc/tZ+sn0SZwOmv7GuKndBagcFjCa0k6up?=
+ =?us-ascii?Q?fOzQhHTBg/6WsVgG7e+9HbhZ6JT1VUs=3D?=
+X-Exchange-RoutingPolicyChecked: qbgVZZ6OODlWf+GEgUfp5U2zPqUiTFCIH++L3L+VYufwrdHdwaoGKxk6CzHcxxtHN9fgvC5lycBmXnUDZL1ygw3c7+poPLVDfFh1I82fM47B45ielftjmJC3R/qBPLpGSrwvwHZsWgWWEU+/VKfye3nYuoWQSVlbzIRHa4nh9VbWufwvIbrhKJLP3WcnRjbbYQ8gN/VYj2hgLkf/83qv1yFMiqqMBNt/BPRgaX8MFfwE5bNVhSDOEhxb1jCJf1jHlKCW/WLqFAUFPmGTyGU8gbscriiUla4Ne72dqjQpqpq7WZe2H5bAyabc/ySxN22e9gPZs7Qcq7wW0/bMBc/9NQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 585a35c8-3a93-421d-0ebb-08de967ddf1d
 X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2026 21:16:26.8312 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2026 21:20:49.3112 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0qemtKW2P1LHmcux5YuG1pmaMRMZIMM5ePUIl49peUMof4ZTq7gXWyra8+A/6gcqG/VmHUKMwkbo8MKk0ArDBA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR11MB9226
+X-MS-Exchange-CrossTenant-UserPrincipalName: igcpDSzU9BQH8QVngsTc5XhvIXf5bvVj4k1ewvT22PnagOa/aJaEAs7cSdX+a+oxkKds+KcWrCDWzBzCZd31Jw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4767
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -158,154 +158,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Apr 09, 2026 at 01:37:17PM -0700, Umesh Nerlige Ramappa wrote:
-> In secondary queue LRCs, the QUEUE TIMESTAMP register is saved and
-> restored allowing us to view the individual queue run times. Add helpers
-> to read this value from the LRC.
+On Thu, Apr 09, 2026 at 01:37:19PM -0700, Umesh Nerlige Ramappa wrote:
+> Each queue in a multi queue group has a dedicated timestamp counter. Use
+> this QUEUE TIMESTAMP register to capture the start timestamp for the
+> job.
 > 
 > Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
 > ---
->  drivers/gpu/drm/xe/regs/xe_lrc_layout.h |  3 ++
->  drivers/gpu/drm/xe/xe_lrc.c             | 44 +++++++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_lrc.h             |  1 +
->  drivers/gpu/drm/xe/xe_lrc_types.h       |  3 ++
->  4 files changed, 51 insertions(+)
+>  drivers/gpu/drm/xe/xe_ring_ops.c | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-> index b5eff383902c..4ab86fc369fd 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-> @@ -34,6 +34,9 @@
->  #define CTX_CS_INT_VEC_REG		0x5a
->  #define CTX_CS_INT_VEC_DATA		(CTX_CS_INT_VEC_REG + 1)
->  
-> +#define CTX_QUEUE_TIMESTAMP		(0xd0 + 1)
-> +#define CTX_QUEUE_TIMESTAMP_UDW		(0xd2 + 1)
-
-Missed this - can we stick a Bspec reference(s) in the commit message?
-
-Matt
-
-> +
->  #define INDIRECT_CTX_RING_HEAD		(0x02 + 1)
->  #define INDIRECT_CTX_RING_TAIL		(0x04 + 1)
->  #define INDIRECT_CTX_RING_START		(0x06 + 1)
-> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-> index 9d12a0d2f0b5..be1030c74e21 100644
-> --- a/drivers/gpu/drm/xe/xe_lrc.c
-> +++ b/drivers/gpu/drm/xe/xe_lrc.c
-> @@ -788,6 +788,16 @@ static u32 __xe_lrc_ctx_timestamp_udw_offset(struct xe_lrc *lrc)
->  	return __xe_lrc_regs_offset(lrc) + CTX_TIMESTAMP_UDW * sizeof(u32);
->  }
->  
-> +static u32 __xe_lrc_queue_timestamp_offset(struct xe_lrc *lrc)
-> +{
-> +	return __xe_lrc_regs_offset(lrc) + CTX_QUEUE_TIMESTAMP * sizeof(u32);
-> +}
-> +
-> +static u32 __xe_lrc_queue_timestamp_udw_offset(struct xe_lrc *lrc)
-> +{
-> +	return __xe_lrc_regs_offset(lrc) + CTX_QUEUE_TIMESTAMP_UDW * sizeof(u32);
-> +}
-> +
->  static inline u32 __xe_lrc_indirect_ring_offset(struct xe_lrc *lrc)
+> diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+> index cfeb4fc7d217..0eea37c0b4b2 100644
+> --- a/drivers/gpu/drm/xe/xe_ring_ops.c
+> +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+> @@ -269,8 +269,12 @@ static u32 get_ppgtt_flag(struct xe_sched_job *job)
+>  static int emit_copy_timestamp(struct xe_device *xe, struct xe_lrc *lrc,
+>  			       u32 *dw, int i)
 >  {
->  	u32 offset = xe_bo_size(lrc->bo) - LRC_WA_BB_SIZE -
-> @@ -837,6 +847,8 @@ DECL_MAP_ADDR_HELPERS(ctx_timestamp_udw, lrc->bo)
->  DECL_MAP_ADDR_HELPERS(parallel, lrc->bo)
->  DECL_MAP_ADDR_HELPERS(indirect_ring, lrc->bo)
->  DECL_MAP_ADDR_HELPERS(engine_id, lrc->bo)
-> +DECL_MAP_ADDR_HELPERS(queue_timestamp, lrc->bo)
-> +DECL_MAP_ADDR_HELPERS(queue_timestamp_udw, lrc->bo)
->  
->  #undef DECL_MAP_ADDR_HELPERS
->  
-> @@ -885,6 +897,30 @@ static u64 xe_lrc_ctx_timestamp(struct xe_lrc *lrc)
->  	return (u64)udw << 32 | ldw;
->  }
->  
-> +/**
-> + * xe_lrc_queue_timestamp() - Read queue timestamp value
-> + * @lrc: Pointer to the lrc.
-> + *
-> + * Returns: queue timestamp value
-> + */
-> +static u64 xe_lrc_queue_timestamp(struct xe_lrc *lrc)
-> +{
-> +	struct xe_device *xe = lrc_to_xe(lrc);
-> +	struct iosys_map map;
-> +	u32 ldw, udw = 0;
+> +	const struct xe_reg reg = lrc->multi_queue.valid ?
+> +				   RING_QUEUE_TIMESTAMP(0) :
+> +				   RING_CTX_TIMESTAMP(0);
 > +
-> +	if (!xe_lrc_is_multi_queue(lrc))
-> +		return 0;
-> +
-> +	map = __xe_lrc_queue_timestamp_map(lrc);
-> +	ldw = xe_map_read32(xe, &map);
-> +
-> +	map = __xe_lrc_queue_timestamp_udw_map(lrc);
-> +	udw = xe_map_read32(xe, &map);
-> +
-> +	return (u64)udw << 32 | ldw;
-> +}
-> +
->  /**
->   * xe_lrc_ctx_job_timestamp_ggtt_addr() - Get ctx job timestamp GGTT address
->   * @lrc: Pointer to the lrc.
-> @@ -1550,6 +1586,12 @@ static int xe_lrc_ctx_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct
->  	if (lrc_to_xe(lrc)->info.has_64bit_timestamp)
->  		xe_lrc_write_ctx_reg(lrc, CTX_TIMESTAMP_UDW, 0);
+>  	dw[i++] = MI_STORE_REGISTER_MEM | MI_SRM_USE_GGTT | MI_SRM_ADD_CS_OFFSET;
+> -	dw[i++] = RING_CTX_TIMESTAMP(0).addr;
+> +	dw[i++] = reg.addr;
+>  	dw[i++] = xe_lrc_ctx_job_timestamp_ggtt_addr(lrc);
+>  	dw[i++] = 0;
 >  
-> +	if (xe_lrc_is_multi_queue(lrc)) {
-> +		lrc->queue_timestamp = 0;
-> +		xe_lrc_write_ctx_reg(lrc, CTX_QUEUE_TIMESTAMP, 0);
-> +		xe_lrc_write_ctx_reg(lrc, CTX_QUEUE_TIMESTAMP_UDW, 0);
-> +	}
-> +
->  	if (xe->info.has_asid && vm)
->  		xe_lrc_write_ctx_reg(lrc, CTX_ASID, vm->usm.asid);
->  
-> @@ -2476,6 +2518,7 @@ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
->  	snapshot->replay_size = lrc->replay_size;
->  	snapshot->lrc_snapshot = NULL;
->  	snapshot->ctx_timestamp = lower_32_bits(xe_lrc_ctx_timestamp(lrc));
-> +	snapshot->queue_timestamp = lower_32_bits(xe_lrc_queue_timestamp(lrc));
->  	snapshot->ctx_job_timestamp = xe_lrc_ctx_job_timestamp(lrc);
->  	return snapshot;
->  }
-> @@ -2529,6 +2572,7 @@ void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer
->  	drm_printf(p, "\tStart seqno: (memory) %d\n", snapshot->start_seqno);
->  	drm_printf(p, "\tSeqno: (memory) %d\n", snapshot->seqno);
->  	drm_printf(p, "\tTimestamp: 0x%08x\n", snapshot->ctx_timestamp);
-> +	drm_printf(p, "\tQueue Timestamp: 0x%08x\n", snapshot->queue_timestamp);
->  	drm_printf(p, "\tJob Timestamp: 0x%08x\n", snapshot->ctx_job_timestamp);
->  
->  	if (!snapshot->lrc_snapshot)
-> diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-> index b544c8169967..178d9519b196 100644
-> --- a/drivers/gpu/drm/xe/xe_lrc.h
-> +++ b/drivers/gpu/drm/xe/xe_lrc.h
-> @@ -38,6 +38,7 @@ struct xe_lrc_snapshot {
->  	u32 start_seqno;
->  	u32 seqno;
->  	u32 ctx_timestamp;
-> +	u32 queue_timestamp;
->  	u32 ctx_job_timestamp;
->  };
->  
-> diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h b/drivers/gpu/drm/xe/xe_lrc_types.h
-> index 93972536214a..4bca394ff024 100644
-> --- a/drivers/gpu/drm/xe/xe_lrc_types.h
-> +++ b/drivers/gpu/drm/xe/xe_lrc_types.h
-> @@ -64,6 +64,9 @@ struct xe_lrc {
->  	/** @ctx_timestamp: readout value of CTX_TIMESTAMP on last update */
->  	u64 ctx_timestamp;
->  
-> +	/** @queue_timestamp: value of QUEUE_TIMESTAMP on last update */
-> +	u64 queue_timestamp;
-> +
->  	/** @multi_queue: Multi queue LRC related information */
->  	struct {
->  		/** @multi_queue.primary: Primary queue corresponding to this LRC */
+> @@ -281,7 +285,7 @@ static int emit_copy_timestamp(struct xe_device *xe, struct xe_lrc *lrc,
+>  	if (IS_SRIOV_VF(xe)) {
+>  		dw[i++] = MI_STORE_REGISTER_MEM | MI_SRM_USE_GGTT |
+>  			MI_SRM_ADD_CS_OFFSET;
+> -		dw[i++] = RING_CTX_TIMESTAMP(0).addr;
+> +		dw[i++] = reg.addr;
+>  		dw[i++] = xe_lrc_ctx_timestamp_ggtt_addr(lrc);
+>  		dw[i++] = 0;
+>  	}
 > -- 
 > 2.43.0
 > 
