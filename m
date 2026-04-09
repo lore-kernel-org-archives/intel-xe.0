@@ -4,50 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADB90F36B96
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Apr 2026 23:18:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AB0AF36B95
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Apr 2026 23:18:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CBF510E87D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D19610E882;
 	Thu,  9 Apr 2026 23:18:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gJ8XyRKJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MB3oDWke";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BCB310E873
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E554A10E87D
  for <intel-xe@lists.freedesktop.org>; Thu,  9 Apr 2026 23:17:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775776679; x=1807312679;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=wSjiLTBWoM7KCDEG4fDeuo2irTECsDbuiaiGKLI5uoc=;
- b=gJ8XyRKJS5eyE53cXE8fiwN0IxFx79H7UVvTz4hVt1R83QKnCeXXQnRu
- 6I+YdGvNcrxe6rOPzY1aEGwxH5D3tea+ce+PtwrEIhf5IChbyxBQfbOV2
- +A0BAl4tvzqMbZkj6HOlfb9pil4OLswDKFixRFGClqfFVbrDpnhDzO5IG
- ElD3+ovEzgT2glnMOjQ2Fgln5aisx1r/mXU0CvYKGv/n1Wmkce0PMh1jN
- wmrrnArhZ+yITNDIQ+WAqeSPe1cobe1j6ipqHxwPqhQBFnhkkCYIIsi9k
- wx2wukU4UKl1D11Oh0hgpOTSV0tJc0EFLijB/VhkSbBs2moRalRRVcWFH g==;
-X-CSE-ConnectionGUID: 6zVKPQmjRtyMCo0wbiswCw==
-X-CSE-MsgGUID: +r/1TsNpQXOZ1wympNz8zw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11754"; a="80654738"
-X-IronPort-AV: E=Sophos;i="6.23,170,1770624000"; d="scan'208";a="80654738"
+ t=1775776680; x=1807312680;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=TqAdg4IXP6FDOhKk98pTtPR+tgnfG8o9vAgLsMwvhY4=;
+ b=MB3oDWkeGTZ4L7G7NYB9jHg6nAJ1/lulD/GINWWpdpg1CANSOZ9w8TaK
+ mQ98YlByNFj7bJfk9onzJ9KPxmJb4em3Ld0JhuLs499gQFB46C0XxhSDl
+ s/5MGGK5T+Zd9AyMgzQfW9MgkLKfRDtcrgz/U4DIZY+ux03DYgy3ckSiw
+ ChnHIRKEoV8iQtdhzdMNQa5waTfruTXDXrWlC0T9bX3jxMVY38gdab7a3
+ zD7k6a0xULqQdwGX+yItyCY7vNMjMEzh6gUAQlZ8xNEBEb1K3nfLTyoxX
+ IDCe0EjDCh+bckxUwi3q4g7V89bj75N7aizmxJaEK5wBEADf4khYr6HYD g==;
+X-CSE-ConnectionGUID: JssAjDi0ScOStZdfa0Z2HQ==
+X-CSE-MsgGUID: iPAq5M1+SOSAnTNKADxhYQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11754"; a="80654741"
+X-IronPort-AV: E=Sophos;i="6.23,170,1770624000"; d="scan'208";a="80654741"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  09 Apr 2026 16:17:59 -0700
-X-CSE-ConnectionGUID: /rHulvhjSlCzND0T67zh3Q==
-X-CSE-MsgGUID: CLHucD4mSwCiD7/EadwY4w==
+X-CSE-ConnectionGUID: /iw493j+TMa0yZ0mlPkIgQ==
+X-CSE-MsgGUID: Im76vrREQXulU6v2TZO80g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,170,1770624000"; d="scan'208";a="252268981"
+X-IronPort-AV: E=Sophos;i="6.23,170,1770624000"; d="scan'208";a="252268990"
 Received: from orsosgc001.jf.intel.com ([10.88.27.185])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  09 Apr 2026 16:17:59 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: [PATCH v2 0/3] drm/xe/oa: Wa_14026633728
-Date: Thu,  9 Apr 2026 16:17:51 -0700
-Message-ID: <20260409231754.528518-1-ashutosh.dixit@intel.com>
+Subject: [PATCH 3/3] drm/xe/oa: Implement Wa_14026633728
+Date: Thu,  9 Apr 2026 16:17:54 -0700
+Message-ID: <20260409231754.528518-4-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20260409231754.528518-1-ashutosh.dixit@intel.com>
+References: <20260409231754.528518-1-ashutosh.dixit@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,18 +66,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-v2: Change to Patch 1
+CRI Wa_14026633728 requires MERTOA buffer to be allocated in device memory,
+not system memory (which is the default for OA buffers).
 
-Ashutosh Dixit (3):
-  drm/xe/oa: Use xe_map layer
-  drm/xe/oa: Use drm_gem_mmap_obj for OA buffer mmap
-  drm/xe/oa: Implement Wa_14026633728
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+---
+ drivers/gpu/drm/xe/xe_oa.c         | 10 +++++++++-
+ drivers/gpu/drm/xe/xe_wa_oob.rules |  1 +
+ 2 files changed, 10 insertions(+), 1 deletion(-)
 
- drivers/gpu/drm/xe/xe_oa.c         | 127 ++++++++++++++++-------------
- drivers/gpu/drm/xe/xe_oa_types.h   |   3 -
- drivers/gpu/drm/xe/xe_wa_oob.rules |   1 +
- 3 files changed, 72 insertions(+), 59 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+index b24aae055c7df..7b31cf0a29ce1 100644
+--- a/drivers/gpu/drm/xe/xe_oa.c
++++ b/drivers/gpu/drm/xe/xe_oa.c
+@@ -250,6 +250,11 @@ static void oa_timestamp_clear(struct xe_oa_stream *stream, u32 head)
+ 		xe_map_wr(stream->oa->xe, map, head + 1, u32, 0);
+ }
+ 
++static bool mert_wa_14026633728(struct xe_oa_stream *s)
++{
++	return s->oa_unit->type == DRM_XE_OA_UNIT_TYPE_MERT && XE_GT_WA(s->gt, 14026633728);
++}
++
+ static bool xe_oa_buffer_check_unlocked(struct xe_oa_stream *stream)
+ {
+ 	u32 gtt_offset = xe_bo_ggtt_addr(stream->oa_buffer.bo);
+@@ -902,11 +907,14 @@ static void xe_oa_stream_destroy(struct xe_oa_stream *stream)
+ 
+ static int xe_oa_alloc_oa_buffer(struct xe_oa_stream *stream, size_t size)
+ {
++	u32 vram = mert_wa_14026633728(stream) ?
++		XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(stream->oa->xe)) :
++		XE_BO_FLAG_SYSTEM;
+ 	struct xe_bo *bo;
+ 
+ 	bo = xe_bo_create_pin_map_novm(stream->oa->xe, stream->gt->tile,
+ 				       size, ttm_bo_type_kernel,
+-				       XE_BO_FLAG_SYSTEM | XE_BO_FLAG_GGTT, false);
++				       vram | XE_BO_FLAG_GGTT, false);
+ 	if (IS_ERR(bo))
+ 		return PTR_ERR(bo);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index f8a185103b805..a7c1bd9bcb943 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -65,3 +65,4 @@
+ 
+ 14025883347	MEDIA_VERSION_RANGE(1301, 3503)
+ 		GRAPHICS_VERSION_RANGE(2004, 3005)
++14026633728	PLATFORM(CRESCENTISLAND)
 -- 
 2.48.1
 
