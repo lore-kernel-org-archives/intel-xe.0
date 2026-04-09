@@ -4,160 +4,164 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A851E98FAC
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Apr 2026 05:04:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4431CE98FA8
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Apr 2026 05:12:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AA8110E0B0;
-	Thu,  9 Apr 2026 05:04:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5C2F10E065;
+	Thu,  9 Apr 2026 05:12:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AXN+phHw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lUSN8sNx";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C6DBD10E0B0
- for <intel-xe@lists.freedesktop.org>; Thu,  9 Apr 2026 05:04:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB56C10E065;
+ Thu,  9 Apr 2026 05:12:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775711068; x=1807247068;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=P6rZOszs7OdDBz1tByYiddIxEAeVhUyo7FOIE9xDXXo=;
- b=AXN+phHw8RjIC314tlLwrq9O3lFcocdPuOIhlb5aAMB2LlAy6AP2i7Nf
- MNHe0hkPVr0M+qbSFwa3+xGF0dz4+LAAeBJry6cjV4oCaF+NvDUkFXKw/
- UvwevX1y3H4LHZulaFuOpFRK/ti2koik7r81gPEoaRs2eSNoQ0FHNlDDv
- 5V2fLALLBu6clMmxvguQHFXH0C5uGqlaRt9Oi02OBoFAoxubPKyRnXx8G
- GGLkOwQzpxuCY4HWS9mfnFjPL+oeHiNC50MplvNcUFSa0Ymrn9+buGKiE
- rmIZOZzV0KVRTUn1YaaQNLuS/6SAlyS3nR4FlWwrnNiH53a1xyMtqGuHu g==;
-X-CSE-ConnectionGUID: wQrAiJugS/eWQMwvCknh4Q==
-X-CSE-MsgGUID: Ecd2Eq1SRnCK5NNvF9iPOA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="76828870"
-X-IronPort-AV: E=Sophos;i="6.23,169,1770624000"; d="scan'208";a="76828870"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 22:04:27 -0700
-X-CSE-ConnectionGUID: kbCGNJ2FRJ2Tc07rbiLLDA==
-X-CSE-MsgGUID: +EvQ4TWLQY+7UEs00DrkNw==
+ t=1775711539; x=1807247539;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=vLZjMDJQ/OXK7xeKWWCKSRTw6a6kdlok3A7EV0gjwSc=;
+ b=lUSN8sNxj1CeI4xkx+rADHD2zaD8uL7cKrqwluQrL+aihMusXIgQ3cWg
+ +Gi/jn+rhbU+9mxxEjE4k6RsJpSEjMV5WQ3v+tLdM8vEJxrN+rtTDBvZq
+ W4j6Nws0PIHg53/uILcKJP/6S9Z8gLtbqalwF2o/KKGsNDHbhEmhkhyxi
+ bpBO7QCu8VI1IF3RzLIAByBh3Hi8hJRgJJBF0a7rp3CLttJsCw87bzrJu
+ 7ollcaJMIuZYvlrC3/QdSr/knxnQZXQKQN4d0V9E/rNNRauVgVrQeJe3y
+ jVOi3OXRqyIdj81mhtRQZD51tTXkMiyOzrDt+dfxQW4h72xuMLVV1t5rr w==;
+X-CSE-ConnectionGUID: HW/y7yTCTVS1pR1bj9xkDQ==
+X-CSE-MsgGUID: oUtetawlSMi2NouKn6il0A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="76725263"
+X-IronPort-AV: E=Sophos;i="6.23,169,1770624000"; d="scan'208";a="76725263"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 22:12:19 -0700
+X-CSE-ConnectionGUID: hZnTt7d7SU64RVotfgYv0g==
+X-CSE-MsgGUID: SKNvvq4xQmyq78KevEfasw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,169,1770624000"; d="scan'208";a="266643799"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 22:04:26 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.23,169,1770624000"; d="scan'208";a="223917375"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 22:12:18 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 8 Apr 2026 22:04:26 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.2.2562.37; Wed, 8 Apr 2026 22:12:17 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 8 Apr 2026 22:04:26 -0700
-Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.69) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Wed, 8 Apr 2026 22:12:17 -0700
+Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.50) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 8 Apr 2026 22:04:25 -0700
+ 15.2.2562.37; Wed, 8 Apr 2026 22:12:17 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kgEi1eg7vveDbm6jrLjgoY5cwG/5h66pIJkgM0AlbWVUBv43KoweK3IQD8ruj1YOlnD3O68ntVES5XJEAFcMN8Fsxy2XsCbHcc6alSYOZb8aclDLzsZoGT7VrBdM2r6PFewCh5ce65gO9wAyqta83o1cMQnYAj5jTe49RwYFnMD4t2r6EUEV72hPYxFMqJ0nT32sTCTuObX8X2nh/uShiFI3H6fxEil0wuewHwjfELGyWsHBJKjXRZUBiXRmtkju/Z2IdwDjRRE/4JJZZIbxFRPkFSMaeeehoGVpx+mymOnxYuqm+Ob+LQGTskZc0NIz+Lq1bDkRTt+DN2fU7Djr0Q==
+ b=V0UZbWEaSVY7u9cLZBSsB0iIkuS9SGxKrFHLuBKWQx0lq8WCGQQlezG/56gBgsA481PearVivOLoqEEDfjj6ysfnzAmn0hFffyK0Bg5MDzehoox4Erlmg8E+cPRvsnZvrJ/D6RgmnOoOxC2oPRso58oc6cmIAChrark3VMO/NRmgkTvcaHyTLM/kAQFo1eetKzTt+19cHVIsZ2czemS8eGBtSnw9bQEvvuPScZ4wUUX/5wW1FJz4xq0CYHAKfxXCZAZ3UzVcBMbeHtjTk9kChTirtnAs7D37hitLLMDJZ6ftyTORlre8e2zX5u/WnpKqrZgjgGJdJLnjOqtMbXSSsg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3wiV3jj63ZPgrsSXKf3tikMZLGoA54HJdwZOQV1yf7I=;
- b=TXCc/ngKyDQduUhwJ260Cl9HlFU4FdeSocyKZ4uog49Kv64gAaSYXLs/t4AU2vIr9vs6MsJpQ/KUWXRp5ud5yJrJXaVVkGpjTkQhmEuknZjAb5Sl57ojvYlgTIBj7TgvafYJ+dIengeTKWQapnRm2/UCgQ253MNDUjBXJYMo1uhJI9PWsKYIntwCdznxxZdNdnulQIV75FtzZVfins/h/ntAceIe9hfXS+5Hpomtd4eNppIRy+OQbgw4RN3QXGHaPZyzdtZ1OHc0ZEQqN/NJuKZ2XgR3SnZGol8Vd/HcqkHvPr7I6sPrDgBVy5BBGQMXTUOi+htuvL9s7DaREtqSYA==
+ bh=ZuPULpWv/YqquIN655qzhNq05VrvBG0bjzunQ90jr6s=;
+ b=V845MK4jpp215Ou9t/yBAaq/QdIs6Njau9larVzqvzAun1K2LxyiOJWP7dWM+zA/mo4bxcAmqMM5DKXflCd2bEyo82D8DW5uwfzVQW4RVWo5QkTmoKEMebygyLRkWuhRq1epJZynpTMhAE8ksZ8CjYbKcSW9g9ecIqRNqqtpmd0WYa0WeFguOwLxxv4UpkMFRXMCvBve1FIhqKzu9YGxV+GQFNC3UKpwqrso/MN71aN2kjan8QO6Kt61Ox1VjrOCDDfk/ovqxBSL+BXvuxlVGdbEKxKhuSLgiOcdgowsQUTsiGVSVmwpca0uk6I/ftK5TfFIMuOWTqCKrP7OMsTtDQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
- DS0PR11MB6327.namprd11.prod.outlook.com (2603:10b6:8:d1::21) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9769.17; Thu, 9 Apr 2026 05:04:19 +0000
-Received: from DS0PR11MB7958.namprd11.prod.outlook.com
- ([fe80::8cb2:cffc:b684:9a99]) by DS0PR11MB7958.namprd11.prod.outlook.com
- ([fe80::8cb2:cffc:b684:9a99%6]) with mapi id 15.20.9769.016; Thu, 9 Apr 2026
- 05:04:18 +0000
-Message-ID: <3a24fb95-59a3-4030-9baf-87f1b0be15e4@intel.com>
-Date: Thu, 9 Apr 2026 10:34:09 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/3] drm/xe/sysctrl: Add system controller interrupt
- handler
-To: Raag Jadav <raag.jadav@intel.com>, <intel-xe@lists.freedesktop.org>
-CC: <matthew.brost@intel.com>, <rodrigo.vivi@intel.com>,
- <michal.wajdeczko@intel.com>, <matthew.d.roper@intel.com>,
- <umesh.nerlige.ramappa@intel.com>, <mallesh.koujalagi@intel.com>,
- <soham.purkait@intel.com>, <anoop.c.vijay@intel.com>,
- <aravind.iddamsetty@linux.intel.com>
-References: <20260407110629.198158-1-raag.jadav@intel.com>
- <20260407110629.198158-2-raag.jadav@intel.com>
-Content-Language: en-US
-From: "Tauro, Riana" <riana.tauro@intel.com>
-In-Reply-To: <20260407110629.198158-2-raag.jadav@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5P287CA0117.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1d0::9) To DS0PR11MB7958.namprd11.prod.outlook.com
- (2603:10b6:8:f9::19)
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
+ by SA2PR11MB4796.namprd11.prod.outlook.com (2603:10b6:806:117::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.17; Thu, 9 Apr
+ 2026 05:12:15 +0000
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::53c9:f6c2:ffa5:3cb5]) by BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::53c9:f6c2:ffa5:3cb5%7]) with mapi id 15.20.9769.016; Thu, 9 Apr 2026
+ 05:12:15 +0000
+Date: Wed, 8 Apr 2026 22:12:10 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+CC: Daniel Colascione <dancol@dancol.org>, <dri-devel@lists.freedesktop.org>, 
+ <intel-xe@lists.freedesktop.org>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>, <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC PATCH] Limit reclaim to avoid TTM desktop stutter under mem
+ pressure
+Message-ID: <adc1KlAcPgUeyhU5@gsse-cloud1.jf.intel.com>
+References: <87341fsa85.fsf@dancol.org>
+ <adQfdL0zV7SOo+al@gsse-cloud1.jf.intel.com>
+ <d8e8f290-c2bd-483f-ba0f-735c503e269a@amd.com>
+ <adVAHkA4gERWOszt@gsse-cloud1.jf.intel.com>
+ <6ffebd9a-d873-461b-a407-a84707a45229@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <6ffebd9a-d873-461b-a407-a84707a45229@amd.com>
+X-ClientProxiedBy: SJ0P220CA0016.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:a03:41b::23) To BL3PR11MB6508.namprd11.prod.outlook.com
+ (2603:10b6:208:38f::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|DS0PR11MB6327:EE_
-X-MS-Office365-Filtering-Correlation-Id: c2dacab7-cefe-4a78-b80d-08de95f5745c
+X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|SA2PR11MB4796:EE_
+X-MS-Office365-Filtering-Correlation-Id: 44b39d4b-1f2c-4ebc-dd9d-08de95f68fed
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|18002099003|22082099003|56012099003; 
-X-Microsoft-Antispam-Message-Info: jREaRKmx5Jn0wbnpiYcb6U9xl128X72539WI5tHlZbaACdVyTG6ifUnNU5m/k3qwFqQ/3HiHK2n91ewUU6ninmhmPLVAyRH2rLViOB2d2SkviDXy4xZNcpFoGD2pv+EqibLmab7nUksD1kSsVhFhORTzAcOHSQW0YOjdDXbyZyMbcPwkp1n8ugvXt0v8o1kfpJH36/Zz9CODZDFJdg5xpS/2wh2cy2k/YMvYy6rsttFX20A20Q8vqz5x7EighwJEqS4/HrDvMH9oRtk/HM4idoRWY3818jWz8fvjewmxtO1/xE9Vl5rsrW5rTingWPdQ+2i+KWsHGkuAh7glTRST4ORyvGHwxaWphr56+S3S74yxkAgxFUAsj4IJOaB/FKrfS/wyrZBpH1mY3vjvs7bIXN65jOGr5UMUTSRdZ7jYQ0aCbfAD9hMSI2iGTGiTl1F/gGLFFJsOD0OqcWEwQu4a5bl5m9vCzsU0DpQh7JxQweSj8zYeHYUWaQG2fpUVwOxk9heXmm6BbHIceNx0BeYilphu9Is0Ei+arY53dzlkOuSD+jl/feEbFb/AnfXWxgbdJNo5zSDMTaXyvYukwo4Mq+JapRUjIjhkQZSDJpfJ5ae/KOZMdjnjGRukQn9HwsFwUuTLJDMd/ekXhFHgQsAvcpdcNiaXLonZsqTflNmYqW/1O4o8NDVBYkpDHwmY15PpTDrk25QySzvuiRdyUXMekgfZvy6fnW/2SrpKdCyhWds=
+ ARA:13230040|366016|7416014|1800799024|376014|18002099003|56012099003|22082099003;
+X-Microsoft-Antispam-Message-Info: xFsO8nAnl5Empyjafurwv/cEYluz2Uh8s7weemYHaxJhxbIX3nZspx+RLwReEHwvIbD3mdsMT7Hmg71I8AdJBswo4Mhfv7oV1kWhTrNoKoWNEkszYO8v8yYDXD5WkRFgDLrjvb0fv2MYeVBqZaGhRt7pwAFgSWfzswQhleA5uAJnBkKom7MrZaj0ZYIaAw6OIwe4JOjz3UPmbX+3asrNaW0Og8bV22gdC+eeQHAMq3Ld0BiDAOCH/3c4c1HxOYiQsSP3Xp6k3/WXpymTJQaq+FQVLBXNSNxPSf2TAYvnn6l1fy9YFqWZyPi3UzvMPnaW/ZuBC5yDmbbb413cEWv010z37zCmIYCZBt77an2uYM3y799NP1V1b2/R+g58c0DrLSxI7tLISxLy7JUvudiorfDhoFAJT3BI8M35olbYSW+Pz0+lApH//p+zMqFzLvpkU5lhbE/MSff4BWMhH4DzNOiyXEBrLS1Tnin0VXfwFfh9OMh2nHdVNkT5lwV3lkqyGaSKG8fcUMSJ0JKsU5UsMhQlTmoniY6eBE/GYYLouZKVKGF51BVIYp2eu3wsbAUZK34/o59sZoBObicexOWEjjoFyitObL1OMLgpYlwXqrW99XFCk3YVDPFt29Lq3WS+zC+r+TCVENP5cdvSHUi3CiEL54eyySVhxWzaLkUajpcLb8bPyTfK/Llp05wuJVusKa7gUH6kuADrAeWB+IfxjOJLzoYJW9XfyUfARGycFg0=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(18002099003)(22082099003)(56012099003);
+ IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(7416014)(1800799024)(376014)(18002099003)(56012099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YVlZMXVhb3A0Y0FENGhUUXZsd1pFT2xrZFAzR0N3TXltcHFvclE0U3VaVkw3?=
- =?utf-8?B?N3BDRHhUUHlsS25oQkhmaXh5M3AxbW81L0VmY0pzbWx2Lzg1Vkp4SmxrWVRp?=
- =?utf-8?B?WWV5RUxaeWNFK3VtSmJZRlZoanZoZ0NNRStOR2xSMHFXdlJLN3V6TW1jaW1S?=
- =?utf-8?B?bVNKUXg3ZHRuRTZ5cTRjcSt4OW4vTklTanVFNVBFVXJjUitiTTc3Ums5VXJE?=
- =?utf-8?B?Tm83Wm8zbGIxNU9iQURtNGJOUzFhZTNpWHpUQUhYR2tkZWdNQzdHbXdxVDZN?=
- =?utf-8?B?UXpXRE0xdGptNFRxQTNYS0RWcjB0MGREbVRBeVR0WVdETXdCNEtFUDFwYUNN?=
- =?utf-8?B?VXc4cFM5Wm5XWjEwNGMyckcweWprTUQ1MHFpV1Bwd21TTmZGdnIyMVpFWmNU?=
- =?utf-8?B?c0lGUDlVZDMzcGp6Rmw2YnVBOVphbTNzSzdNOEZBMCtHNTk4UUdyaWRPemhH?=
- =?utf-8?B?RkJxYkdMVWt4UUZUMW41Tm5WS1VhQWZQZ0VRSjRJejBHZXdPUXRWZ2d2MUZl?=
- =?utf-8?B?NXZrclJ4Q2lRbmlSczExWW9JZzlLZ09tQm1UWHhmY05JRWpsQitBRTJmNXRK?=
- =?utf-8?B?MzZyM2IxcmVvMkFhN2ZyY0c2eDByZ0VTZzdJeEhJN0N6TS9scVZpZEhUQ3Jh?=
- =?utf-8?B?WlpES0tvenViODZGKytLU0VUYWUzTTNlU2l3T3VweThvZ2FaQm9mNHNwRGM3?=
- =?utf-8?B?ZGxRbDRHclF0WFNCTnpKc25uM3hVaGlaYmpzdi8xMmorYmJUY3RXc083Ymxk?=
- =?utf-8?B?NTdEOVliRTlSYWRzU1hpYWk0Y01qa3pycnA3R0hoTVNuUGxHSGQ5N1FrUDNZ?=
- =?utf-8?B?d0VaQXVlRFQ5RGp0cWJBVzNCMng0N3RHbXB2a29tUnRkamovZ08zbmk2M1dz?=
- =?utf-8?B?QlBFNUpOMkFvSDUydElXb2RXcUZvZEwxRVdPTFI4U2FxTHg2OUx6UEYyU1A4?=
- =?utf-8?B?Z0o4RnVOdHVMWE0xcERHTk83Qk1UcXo4dGF4Szl1ekJhMUsvai9NVXlrK0hH?=
- =?utf-8?B?NmorMk1JZDAvaFhUYnBFN2M1VS84dzMrdHNuS3VZcWFaZzZCSUljWnFiZzFV?=
- =?utf-8?B?VHp5dDZpMkxnb3FsME13TmFMclBnbUsvaUdRbnlTY0tRQmhTVmUrR3U2ZE9W?=
- =?utf-8?B?bG5QRC9uNFd4b3JuUE81amFScThHeE1ockRORGtYR2lyQ25WNEdiNjk3S3Vk?=
- =?utf-8?B?Q2EwSzMreHdTS2FCdlFHWGJCYUJPNFVkK1lMVTRPMDhrMWMyL1V2RlQrdHc5?=
- =?utf-8?B?VW5UOHZpNnVqYXZvMlllMUg4SWhvNHBYM1I3ZFV5VnBNWWdaeWlETlRTblgr?=
- =?utf-8?B?TmplbGxTTE5JUmN1TXVIWGZYVUY4emNUZ0hvNk5lcE5KL2VLU1liL3JwRFBD?=
- =?utf-8?B?czlGK3lPREFuWUhEZUVCUndkdkxNamJNZkZIR3gweFE2SG5FOGpjbFBvMkMy?=
- =?utf-8?B?UTY3Sy9STnVBR3FoVzA0MktLem1iU3EzM2tCQjVNeHpUbjFjbTl6cmduaHZv?=
- =?utf-8?B?ZEp5aDFBK29Pcjd5aDBTNkhETlFxamVPYml1WU1QeHF2VVJrSEJnalpLNzIr?=
- =?utf-8?B?aE05MHJEK0FWRXlZcnV0bnR6eFdLYUUrSkpYbDkrYlNiUGRBZzdnQzRwNG1s?=
- =?utf-8?B?eUZTMHRiMTFKbFdKT3ZOa0wrQXd0Mk16N0F4ZDE5bCs2WUVxYS9GaEhqNlJ2?=
- =?utf-8?B?akNqNDl5eTZ1aUdTc1JOMzgvU2xGUElmVjNvTkZCZi9tUVErdTdOcGNHKzdu?=
- =?utf-8?B?dm8ybGwzMG9TUGhBSlpRNXpXS3drK2YzejYzY0Jqa1YxSnYrVUxudmhocllM?=
- =?utf-8?B?c0pOVFphb2dPV1ArQzRodk13QUE1aCtQa29udG9xTXR6a0xHTUcvSSttdUdO?=
- =?utf-8?B?NmRqd2NySHREbzhlMC83WHVJY2RuOEdmejc3R0x6MGZETTl6ZzY0N3RCUmR4?=
- =?utf-8?B?dE9RR0NFcEtNYXBaVU1KMUVNK1pHM2kzYmNZd1o1MHU3TkcwODdUSWRyNXgr?=
- =?utf-8?B?RFY4NkFnZVdoVXNpMWVFVkp4eDZmemRpVFJKdEw4c0lGT3ZwMkZQNEU4cGE2?=
- =?utf-8?B?VHhscjlYWDNZZHpzSmNHK296MlJVeWVGSElDZDJiWFhuREZGdzZGV1BKU0Rr?=
- =?utf-8?B?eDF6ZENwTWRFT0cralVvaHNDY0NSRENlcDlNNnZDbUhjVzZLVEpEN214aWlV?=
- =?utf-8?B?MmtMVG5YS0lkY21qekwwNzdERE5kOVgzVUpEcnlEWncrNTROaDhHQXNtV3Nn?=
- =?utf-8?B?MGtEMnliRjBDNGthVXdMdDJBRHNIUjlPdEUxRGRJQmpTbjNITkVScUg4OGI2?=
- =?utf-8?B?S3h6OU1yR2tiMGlWVU81Yzd0UXZBR3hUTFVHUjljMFJEM2NYaExsdz09?=
-X-Exchange-RoutingPolicyChecked: L97Jkc87qUkWXk5cSpTE2fkSfQuoH1HuAD7dQoIn2msUWyOWj2BT0l9O6S9iSNsfz/bPUVyZc28BG1K4jnWIp8++VYt2DEluLBkpUPZkkVyXDRkEYxmmw/roMPlBu+6+vDxFLpoqy0vVV5sFsx3DUv7GoKRQSskbkgmFtes0SIHWGeozyRsqQ0XnI94atgQMl75pTQJe7iZon9+aQzMC65LHPv0KcXhfSShg3lYKZw6xM6HPWHwGRFMvcc3enbavB2zJ2DIzFvfgI6Tj1uBpsfQjuN1ydNEvYeo9LNC19bph9yLUUJsZnq9kl3ZJEWNS4kP2U/M0dWVU+JFeRgEDIA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: c2dacab7-cefe-4a78-b80d-08de95f5745c
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7958.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?V1FDSmxwUmhpVlZ2cDBmVlR2VUw3cGlJS3YwU1RYOWlDaXZpWERvY2FGS1NO?=
+ =?utf-8?B?elNmcUhXenFtR2NXcG0rM3gzeE9XSG1hY29jYkxFUFlVNnplL0VmNnAybzht?=
+ =?utf-8?B?RlZ2MHlKSjdKN0k4a0dwdFJIdHdYT0VoN3NmV0JZMzlVL29vVktZSEt2OTQ2?=
+ =?utf-8?B?cWVGYTZpZEVwYlpOSG8rUXlEcEpJZnFKeUpXZUFiRE9ISC9lcjhtd3FwNmFh?=
+ =?utf-8?B?MDZ0dENhd1FhcVpLSHZuTzVTM0M3L09seEt1bzNsZ0hDdTF5cHlKT3FpRnVa?=
+ =?utf-8?B?RlpNbDI4ekpsUC9sOS9ZeTZWOWRCNjV0YzkzcnhiTndXZGRuM3JnVG55NXFi?=
+ =?utf-8?B?Z1lHcFNrbmhyZmx4U0dCQXF2TXpBajl2QkNQTXRhVzFTTElzYkRoeGJwT0dV?=
+ =?utf-8?B?SEw0L2VrWVhNOHdnTHVlRnRFdHI4bXVha1E0TVllNituVEEzbE1qQXF1WFZK?=
+ =?utf-8?B?NUI2dllmWnhlNzQrSW13Umd0bDc1RFdHczFZNzBPNitZSmlvRVFKZ1l2TElj?=
+ =?utf-8?B?M2hITDgrQUt6V1M1RVRkUmhQV1Badm91K0J5R3Fkd0ozRGJqeVJRdXltUEJl?=
+ =?utf-8?B?ZURGTnZOeEJiQjFwaThMKzNPUjc4aDdnTGYwbExtRVArbVJ5MVBobnF5OFVi?=
+ =?utf-8?B?VkdkQ2NoVEFFcnp6NkNRK0IvVVgvSUs1Q0tFeEZrVkp2QkEyK2l1NlNDT250?=
+ =?utf-8?B?LzU5ODd3OG1Sd0ZUWDU3VGdYbkpmYlNHYzRkSkkrTkhEakhwcjB0allGZWNI?=
+ =?utf-8?B?dlMxNUZwRmlETEV5ckpiWVRRRGlLbXhtNWozS2g4NVp1blVFNTluODRtZi9V?=
+ =?utf-8?B?YytJc1B3bXdrMzUrb3NXNi85OUQzRVZXc09lQ0M0aVREVW9QSDJMYWJmaHM0?=
+ =?utf-8?B?emZ4N0hBbC9aT1JBMCtnbDBEQThKeEU1UWNnci9rUVhkTVF4SHM5ZnBxR1Fw?=
+ =?utf-8?B?YldVTHlTUFBjVzV0UWRSWmphbDI5ZVptVmdwQU1YaUt0ek9mZmFRQWVIV1d4?=
+ =?utf-8?B?ZUVWc0lEVjJPY0FWS2tNcjBweHNWTUh0MUt1SXlsYkh2ZkVHWDk4eDEvWDN6?=
+ =?utf-8?B?WHlUK09xZlNoeWF4aEtGWXdiRmFPcDRXc0d0aDJUSVdoa0ovRGNXQnV6RDJW?=
+ =?utf-8?B?ZU42K2UyOFNiUDA1M2hNTlhtZ2FaU2dQc0NxUm9uclZBdHBtVDN4dGtiKzZQ?=
+ =?utf-8?B?ZFM0cVBFK3AvR2NxUjBCWjNvVHBSbU5MTHZqU2dIdG8wYlMrWnJNSUx3RENM?=
+ =?utf-8?B?UEtiN1dDWG9RMWQyWDR4TnNIRDZWdGhzREd3Yms3TjVvQXc4MW1OTFYvUDNu?=
+ =?utf-8?B?VUFCV3hycmZSR3hPaWZJNzlTZk44VXplSzMrL01qMDZBRGF3R1BGTldsTlJN?=
+ =?utf-8?B?R2dBMmRpcEM1N1NxKzNOWGx4eXB5L28zaGEvVE1JTmZaYXo2V2xJT2doWDgr?=
+ =?utf-8?B?WkR1WldwRFQzeEt3aUdpcW1NM0ZzOFQwSXFINU9tdUl0Q0ZpTVQ3S3pQRHZL?=
+ =?utf-8?B?cEJWZUxWaHhObjJHem1pNzRUVTcvWmhGbGRXT1l6RW5hdDhoYXczN0dsUThq?=
+ =?utf-8?B?Zkg4MzY4ZXhwTkF5dWcvUUhvNEs5Y2R4VDJTRC9GaUxVV2tGdWNHLzBmNDV2?=
+ =?utf-8?B?YmdyQlAvRUN3YmRFajBrSm9oUmtCUHI0NWVhc0R3NDNmRndMT211dmtLWDcv?=
+ =?utf-8?B?N3JTNXZseTMxSWo1N0NFaHdhWHJLVU1qelZsQmVQcjgrWGVMWTNOT3BTVlQv?=
+ =?utf-8?B?b2tmYXNOYUxYVE8xWkU5azZBL0hjRVdRVFlmRnN5Q0pHanlDZ3lPNWwxSTd4?=
+ =?utf-8?B?OVA3WEJDSmxIL3JuaVJyRlJRaXcyeXpGSlFCeGtXNW5BRk9Kd2dCNGtRaXFn?=
+ =?utf-8?B?N2JFN0xaRHN5SUVWMjNXOW1qVFNUbERKcXJQN1NESmEwQWNZZ0JjVWw0M1hY?=
+ =?utf-8?B?UEZVSkF4clM1SE1GeWZTMnJsMGhoM3RsNmNXZ3Z5dFNKTTVHZFByU2M4QzAr?=
+ =?utf-8?B?ZG9hL09OQityOHdHbTIvTS9LNWJBNEFaZnFBb2xFeHhmYmRYOWRLb3FyQTVk?=
+ =?utf-8?B?WWNNK3dZREh6SG9Cc3hSZXFDbDRZWjVLWkpVQ2hYbENCRFJSS05aS1NCWWJr?=
+ =?utf-8?B?cmVqeGE0eDBGN3FWQkx4VmcwUm1PcGprUXBYVlE4eHltRk8vUmU4Z0dzRi9y?=
+ =?utf-8?B?L3FRTVN4TU13dlhZU2tVLzFoa3pSOWVUNHY1TVNRWGtMWmFOcUlpbExtRmdS?=
+ =?utf-8?B?ajdabjlOVlhLOUVLdUd1SlNXYnRsVFFkSk1xSTVvMVg5RUlTOUU5aThKeEIr?=
+ =?utf-8?B?WVF1TjJocnREZFJ2TUg5U2hEZzl2bWJmRFhrN3VRdVoyMEZaSlBrdz09?=
+X-Exchange-RoutingPolicyChecked: tqk3P6vXoVHs1MND+iZnsgrYQrYTLcfslMB+M8B/VxX8hdoKx5wZH+A4a3wO+bvZvEb0LcbYXbQ2AEqfz8AOWi+iXNIXm94W8P6TOW5nBYwlZjN+LEb/yV3JFO7J3acPfxdbXYaxHo3aIzbHHq6YdvR8hYkpU6ev5sr/I7+qlJ4QdPRWOn/cwysx7wfm8jJOrmGU3VOuoQJCUyhueEtNTOhkRCQTHYzgGjrV+GrTdjtyKyJaLGxB9i7c2cs9SOsHAttoIbhCd1sPhgOqcBZLhmAg3rnle7aovdlSamC+nk+hu60fEBrjQtQS2uUBn8oXr0Z866TXojG08PK6kUvn/g==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 44b39d4b-1f2c-4ebc-dd9d-08de95f68fed
+X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2026 05:04:18.8604 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2026 05:12:14.5354 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gSQJ98ygT996Es94FPXaNbSSiHwGkwyR3jzm++xRXGXkn86XSjSLSMSgy9Z/Vpo1cfrQbkMprqHxXyPgww++rA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB6327
+X-MS-Exchange-CrossTenant-UserPrincipalName: h8qNJj7c4rbgw8/giSDB7JFSSXWX1pGXiXAP2JZL8xoxaOe+N3Foj7msVIhUFty2GqqZ3sqc+xThIx48HTU0zw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4796
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -173,174 +177,140 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Wed, Apr 08, 2026 at 10:00:26AM +0200, Christian König wrote:
+> On 4/7/26 19:34, Matthew Brost wrote:
+> > On Tue, Apr 07, 2026 at 09:43:30AM +0200, Christian König wrote:
+> >> On 4/6/26 23:02, Matthew Brost wrote:
+> >>> On Tue, Mar 31, 2026 at 10:08:58PM -0400, Daniel Colascione wrote:
+> >> ...
+> >>>> -
+> >>>> -       /*
+> >>>> -        * Do not add latency to the allocation path for allocations orders
+> >>>> -        * device tolds us do not bring them additional performance gains.
+> >>>> -        */
+> >>>> -       if (beneficial_order && order > beneficial_order)
+> >>>> -               gfp_flags &= ~__GFP_DIRECT_RECLAIM;
+> >>>> +               if (beneficial_order && order > beneficial_order)
+> >>>> +                       gfp_flags &= ~__GFP_DIRECT_RECLAIM;
+> >>>> +               if (order > max_reclaim_order)
+> >>>> +                       gfp_flags &= ~__GFP_RECLAIM;
+> >>>
+> >>> I’m not very familiar with this code, but at first glance it doesn’t
+> >>> seem quite right.
+> >>>
+> >>> Would setting Xe’s beneficial to 9, similar to AMD’s, along with this
+> >>> diff, help?
+> >>
+> >> No, not really. The problem is that giving 9 as beneficial order only saves us avoiding direct reclaim for 10 (>=11 is usually not used in a x86 linux kernel anyway).
+> >>
+> > 
+> > Yes, the first snippet was a bit incomplete. I adjusted it in a
+> > self-reply, but that likely still isn’t exactly right either. I’ll also
+> > take a look at how reclaim works at higher orders and how kswapd behaves
+> > there—I’m shooting from the hip a bit at the moment.
+> > 
+> >>>
+> >>> If I’m understanding this correctly, we would try a single allocation
+> >>> attempt with __GFP_DIRECT_RECLAIM cleared for the size we care about,
+> >>> still attempt allocations from the pools, and then finally fall back to
+> >>> allocating single pages one at a time.
+> >>
+> >> Well the code is a bit broken, but the general idea is not so bad.
+> >>
+> >> What we could do is to use beneficial_order as sweet spot and set __GFP_DIRECT_RECLAIM only for the allocations with that order.
+> >>
+> > 
+> > That’s roughly what my follow-up snippet did, but with
+> > __GFP_DIRECT_RECLAIM replaced by __GFP_KSWAPD_RECLAIM. I’m really not
+> > sure what the correct policy should be here. But in general I agree
+> > beneficial_order should be the sweet spot where we trigger some sort of
+> > reclaim.
+> > 
+> >> This would skip setting it for order 1..8, which are nice to have as well but not so necessary that we always need to trigger reclaim for them.
+> >>
+> > 
+> > This has made me think a bit further. I’m not really sure the current
+> > approach of TTM setting policy is actually the right choice—it might be
+> > better to give drivers more control so they can tune this themselves.
+> > 
+> > Rough idea...
+> > 
+> > struct ttm_pool_order_policy {
+> > 	bool enable;		/* Should I call ttm_pool_alloc_page for an order */
+> > 	gfp_t reclaim_mask;	/* Used in ttm_pool_alloc_page &= ~reclaim_mask; */
+> > };
+> > 
+> > Then, in ttm_pool_init, we could optionally pass in a table (0 →
+> > MAX_PAGE_ORDER) that controls the allocation pipeline in
+> > __ttm_pool_alloc.
+> > 
+> > This may be overkill, and it still wouldn’t provide per-BO control,
+> > which might be desirable for cases like compositors versus compute
+> > workloads, etc.
+> > 
+> > What do you think?
+> 
+> That you need to completely disable allocation of a specific order is rather unlikely from my experience.
+> 
 
-On 4/7/2026 4:36 PM, Raag Jadav wrote:
-> Add system controller interrupt handler which is denoted by 11th bit in
-> GFX master interrupt register. While at it, add worker for scheduling
-> system controller work.
->
-> Co-developed-by: Soham Purkait <soham.purkait@intel.com>
-> Signed-off-by: Soham Purkait <soham.purkait@intel.com>
-> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-> ---
-> v2: Use system_percpu_wq instead of dedicated (Matthew Brost)
-> v4: Handle IRQ before sysctrl initialization (Mallesh)
-> ---
->   drivers/gpu/drm/xe/regs/xe_irq_regs.h |  1 +
->   drivers/gpu/drm/xe/xe_irq.c           |  2 ++
->   drivers/gpu/drm/xe/xe_sysctrl.c       | 39 ++++++++++++++++++++++-----
->   drivers/gpu/drm/xe/xe_sysctrl.h       |  1 +
->   drivers/gpu/drm/xe/xe_sysctrl_types.h |  7 +++++
->   5 files changed, 44 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/regs/xe_irq_regs.h b/drivers/gpu/drm/xe/regs/xe_irq_regs.h
-> index 9d74f454d3ff..1d6b976c4de0 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_irq_regs.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_irq_regs.h
-> @@ -22,6 +22,7 @@
->   #define   DISPLAY_IRQ				REG_BIT(16)
->   #define   SOC_H2DMEMINT_IRQ			REG_BIT(13)
->   #define   I2C_IRQ				REG_BIT(12)
-> +#define   SYSCTRL_IRQ				REG_BIT(11)
->   #define   GT_DW_IRQ(x)				REG_BIT(x)
->   
->   /*
-> diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-> index 9a775c6588dc..e9f0b3cad06d 100644
-> --- a/drivers/gpu/drm/xe/xe_irq.c
-> +++ b/drivers/gpu/drm/xe/xe_irq.c
-> @@ -24,6 +24,7 @@
->   #include "xe_mmio.h"
->   #include "xe_pxp.h"
->   #include "xe_sriov.h"
-> +#include "xe_sysctrl.h"
->   #include "xe_tile.h"
->   
->   /*
-> @@ -525,6 +526,7 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
->   				xe_heci_csc_irq_handler(xe, master_ctl);
->   			xe_display_irq_handler(xe, master_ctl);
->   			xe_i2c_irq_handler(xe, master_ctl);
-> +			xe_sysctrl_irq_handler(xe, master_ctl);
->   			xe_mert_irq_handler(xe, master_ctl);
->   			gu_misc_iir = gu_misc_irq_ack(xe, master_ctl);
->   		}
-> diff --git a/drivers/gpu/drm/xe/xe_sysctrl.c b/drivers/gpu/drm/xe/xe_sysctrl.c
-> index 2bcef304eb9a..afa9654668a2 100644
-> --- a/drivers/gpu/drm/xe/xe_sysctrl.c
-> +++ b/drivers/gpu/drm/xe/xe_sysctrl.c
-> @@ -8,6 +8,7 @@
->   
->   #include <drm/drm_managed.h>
->   
-> +#include "regs/xe_irq_regs.h"
->   #include "regs/xe_sysctrl_regs.h"
->   #include "xe_device.h"
->   #include "xe_mmio.h"
-> @@ -30,10 +31,16 @@
->   static void sysctrl_fini(void *arg)
->   {
->   	struct xe_device *xe = arg;
-> +	struct xe_sysctrl *sc = &xe->sc;
->   
-> +	cancel_work_sync(&sc->work);
->   	xe->soc_remapper.set_sysctrl_region(xe, 0);
->   }
->   
-> +static void xe_sysctrl_work(struct work_struct *work)
-> +{
-> +}
-> +
->   /**
->    * xe_sysctrl_init() - Initialize System Controller subsystem
->    * @xe: xe device instance
-> @@ -55,11 +62,7 @@ int xe_sysctrl_init(struct xe_device *xe)
->   	if (!xe->info.has_sysctrl)
->   		return 0;
->   
-> -	xe->soc_remapper.set_sysctrl_region(xe, SYSCTRL_MAILBOX_INDEX);
-> -
-> -	ret = devm_add_action_or_reset(xe->drm.dev, sysctrl_fini, xe);
-> -	if (ret)
-> -		return ret;
-> +	xe_assert(xe, xe->soc_remapper.set_sysctrl_region);
->   
->   	sc->mmio = devm_kzalloc(xe->drm.dev, sizeof(*sc->mmio), GFP_KERNEL);
->   	if (!sc->mmio)
-> @@ -73,9 +76,33 @@ int xe_sysctrl_init(struct xe_device *xe)
->   	if (ret)
->   		return ret;
->   
-> +	ret = devm_mutex_init(xe->drm.dev, &sc->work_lock);
-Nit: Mutex can be added in the same patch where it is used.
+That might be true as I haven't really dug in here.
 
-Reviewed-by: Riana Tauro <riana.tauro@intel.com>
+> Different HW has different sweat spots they want for allocation, e.g. 64k, 256k, 2M etc... but in general it has proven to be always beneficial to try to allocate large pages first just to speed up allocation (calling GFP once for a 2M page compared to 512 times for 4k pages makes a huge difference).
 
-> +	if (ret)
-> +		return ret;
-> +
-> +	xe->soc_remapper.set_sysctrl_region(xe, SYSCTRL_MAILBOX_INDEX);
->   	xe_sysctrl_mailbox_init(sc);
-> +	INIT_WORK(&sc->work, xe_sysctrl_work);
->   
-> -	return 0;
-> +	return devm_add_action_or_reset(xe->drm.dev, sysctrl_fini, xe);
-> +}
-> +
-> +/**
-> + * xe_sysctrl_irq_handler() - Handler for System Controller interrupts
-> + * @xe: xe device instance
-> + * @master_ctl: interrupt register
-> + *
-> + * Handle interrupts generated by System Controller.
-> + */
-> +void xe_sysctrl_irq_handler(struct xe_device *xe, u32 master_ctl)
-> +{
-> +	struct xe_sysctrl *sc = &xe->sc;
-> +
-> +	if (!xe->info.has_sysctrl || !sc->work.func)
-> +		return;
-> +
-> +	if (master_ctl & SYSCTRL_IRQ)
-> +		schedule_work(&sc->work);
->   }
->   
->   /**
-> diff --git a/drivers/gpu/drm/xe/xe_sysctrl.h b/drivers/gpu/drm/xe/xe_sysctrl.h
-> index f3b0f3716b2f..f7469bfc9324 100644
-> --- a/drivers/gpu/drm/xe/xe_sysctrl.h
-> +++ b/drivers/gpu/drm/xe/xe_sysctrl.h
-> @@ -17,6 +17,7 @@ static inline struct xe_device *sc_to_xe(struct xe_sysctrl *sc)
->   }
->   
->   int xe_sysctrl_init(struct xe_device *xe);
-> +void xe_sysctrl_irq_handler(struct xe_device *xe, u32 master_ctl);
->   void xe_sysctrl_pm_resume(struct xe_device *xe);
->   
->   #endif
-> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_types.h b/drivers/gpu/drm/xe/xe_sysctrl_types.h
-> index 8217f6befe70..13fbf2990280 100644
-> --- a/drivers/gpu/drm/xe/xe_sysctrl_types.h
-> +++ b/drivers/gpu/drm/xe/xe_sysctrl_types.h
-> @@ -8,6 +8,7 @@
->   
->   #include <linux/mutex.h>
->   #include <linux/types.h>
-> +#include <linux/workqueue_types.h>
->   
->   struct xe_mmio;
->   
-> @@ -27,6 +28,12 @@ struct xe_sysctrl {
->   
->   	/** @phase_bit: Message boundary phase toggle bit (0 or 1) */
->   	bool phase_bit;
-> +
-> +	/** @work: Pending events work */
-> +	struct work_struct work;
-> +
-> +	/** @work_lock: Mutex protecting pending events */
-> +	struct mutex work_lock;
->   };
->   
->   #endif
+Yes, I agree '2M page compared to 512 times for 4k pages makes a huge
+difference', likewise dma-mapping pages 2M pages helps a ton vs 4k.
+
+> 
+> I also don't want to overload the driver->TTM interface with to much information, so just giving the sweat spot or maybe a mask for the most desired orders should potentially do it.
+> 
+
+I think this is a good place to start, I suspect direct reclaim on
+beneficial order plus direct reclaim order 0 is enough. 
+
+The description of this issue is a bit confusing look as really point to
+many smaller pages being held onto somewhere, which completely throws
+kswap into a loop.
+
+Matt
+
+> Christian.
+> 
+> > 
+> > Matt
+> > 
+> >> Regards,
+> >> Christian.
+> >>
+> >>>
+> >>> Matt
+> >>>
+> >>> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
+> >>> index aa41099c5ecf..f1f430aba0c1 100644
+> >>> --- a/drivers/gpu/drm/ttm/ttm_pool.c
+> >>> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
+> >>> @@ -714,6 +714,7 @@ static int __ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
+> >>>                             struct ttm_pool_alloc_state *alloc,
+> >>>                             struct ttm_pool_tt_restore *restore)
+> >>>  {
+> >>> +       const unsigned int beneficial_order = ttm_pool_beneficial_order(pool);
+> >>>         enum ttm_caching page_caching;
+> >>>         gfp_t gfp_flags = GFP_USER;
+> >>>         pgoff_t caching_divide;
+> >>> @@ -757,7 +758,8 @@ static int __ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
+> >>>                 if (!p) {
+> >>>                         page_caching = ttm_cached;
+> >>>                         allow_pools = false;
+> >>> -                       p = ttm_pool_alloc_page(pool, gfp_flags, order);
+> >>> +                       if (!order || order >= beneficial_order)
+> >>> +                               p = ttm_pool_alloc_page(pool, gfp_flags, order);
+> >>>                 }
+> >>>                 /* If that fails, lower the order if possible and retry. */
+> >>>                 if (!p) {
+> >>>
+> >>>
+> >>>> +       }
+> >>>>  
+> >>>>         if (!ttm_pool_uses_dma_alloc(pool)) {
+> >>>>                 p = alloc_pages_node(pool->nid, gfp_flags, order);
+> >>
+> 
