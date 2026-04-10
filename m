@@ -4,66 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74F14E99052
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Apr 2026 08:06:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9824BE9904A
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Apr 2026 08:20:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FCCA10E8E6;
-	Fri, 10 Apr 2026 08:06:22 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ksZFRD6q";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D7E989DFC;
- Fri, 10 Apr 2026 08:06:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775808381; x=1807344381;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=wA94zRZq84xYFpwzGzcwqHyL6HNUQgoHAbgajBVa5nQ=;
- b=ksZFRD6q9+zyrTdC8Fp4zt+A9rYb/bU7EyU10pvOiaxPYZWPMaqvJfCd
- uad28oSKRXHJymZ+QnBjlwJlfQpcmSU6Rf2DqvJAn+gFCVMPXMd9cRilz
- sJyHOhBA5zr8Xvk42CHM3oJJgA7e5bYQNfZlwxhFOBc37+M1oS7BOnbTl
- Ac1M08jrq6jjZZDO5sV4Sjo6eugPiFosbDcCYfeW6/WC96Dt0TkXhd9If
- NNdo7r68RHFLd0M9Qt1RS6PXo9tjSwanqKj18LEaMxIPzSa8z1FMIjNFu
- +XvK1IPgeYrW6cAaZtfZ1+TcC0HCrd/NnTWBLdE5piUFcFKXRWfpFYqaN A==;
-X-CSE-ConnectionGUID: JCuhq9t0T0CA7Awh2OZUSw==
-X-CSE-MsgGUID: 7zAnbFAFT0SZ8KrpaDgEBg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11754"; a="87112328"
-X-IronPort-AV: E=Sophos;i="6.23,171,1770624000"; d="scan'208";a="87112328"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2026 01:06:21 -0700
-X-CSE-ConnectionGUID: A16Ofq1/TFSodDN05Hf6DQ==
-X-CSE-MsgGUID: wVFhdyfKQjeqY6hoY6Pjnw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,171,1770624000"; d="scan'208";a="233416426"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.110])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2026 01:06:15 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost
- <matthew.brost@intel.com>, Dave Airlie <airlied@gmail.com>, Simona Vetter
- <simona.vetter@ffwll.ch>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>, Oded Gabbay
- <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dim-tools@lists.freedesktop.org
-Subject: Re: [PULL] topic/step for i915 and xe
-In-Reply-To: <ade396UuRQoPLGdS@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <cc1ff0a476ff457e88251e22b83c1a45ada11ecc@intel.com>
- <ade396UuRQoPLGdS@intel.com>
-Date: Fri, 10 Apr 2026 11:06:12 +0300
-Message-ID: <404ea596f4aacf999d403182d31843a5d2c47bb2@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CEFC10E1A3;
+	Fri, 10 Apr 2026 08:20:07 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0777210E1A3;
+ Fri, 10 Apr 2026 08:20:05 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2004139183708241967=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/reset=3A_Expose_?=
+ =?utf-8?q?=22display=5Freset=5Fcount=22_in_debugfs?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 10 Apr 2026 08:20:05 -0000
+Message-ID: <177580920500.449994.14003905563949499991@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260410073500.32308-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20260410073500.32308-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,83 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 09 Apr 2026, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Thu, Apr 09, 2026 at 11:02:20AM +0300, Jani Nikula wrote:
->> 
->> Hi Thomas, Matthew and Rodrigo -
->> 
->> Here's a topic pull intended for both drm-xe-next and drm-intel-next to
->> unify the steppings header and enum between the i915 and xe drivers. I'm
->> opting for a topic branch because merging this through either driver's
->> -next branch would likely be painful conflicts wise.
->> 
->> Please pull this to drm-xe-next (*), and once you're done, I'll follow
->> suit in drm-intel-next.
->
-> Pulled to drm-xe-next while I'm covering for Thomas.
+--===============2004139183708241967==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-And pulled to drm-intel-next as well. Thanks a lot.
+== Series Details ==
 
-BR,
-Jani.
+Series: drm/i915/reset: Expose "display_reset_count" in debugfs
+URL   : https://patchwork.freedesktop.org/series/164676/
+State : success
 
->
->> 
->> Thanks,
->> Jani.
->> 
->> 
->> (*) Hint, 'dim apply-pull drm-xe-next' on this message will do the
->>     trick.
->> 
->> 
->> The following changes since commit 4516432284e1b2ad9e70de8067f779c9c1072189:
->> 
->>   ttm/pool: track allocated_pages per numa node. (2026-04-08 06:52:48 +1000)
->> 
->> are available in the Git repository at:
->> 
->>   https://gitlab.freedesktop.org/drm/i915/kernel.git tags/topic/step-2026-04-09
->> 
->> for you to fetch changes up to baf310b9836445ca9056f04ec347293963a1cc6e:
->> 
->>   drm/i915/display: switch to including common step file directly (2026-04-09 10:10:03 +0300)
->> 
->> ----------------------------------------------------------------
->> topic/step to unify xe and i915 on common steppings header and enum
->> 
->> ----------------------------------------------------------------
->> Jani Nikula (3):
->>       drm/xe/step: switch to the shared step definitions with i915
->>       drm/xe/step: switch from enum xe_step to intel_step naming
->>       drm/i915/display: switch to including common step file directly
->> 
->>  drivers/gpu/drm/i915/display/intel_cdclk.c         |  2 +-
->>  drivers/gpu/drm/i915/display/intel_ddi.c           |  2 +-
->>  .../gpu/drm/i915/display/intel_display_device.c    |  2 +-
->>  drivers/gpu/drm/i915/display/intel_display_power.c |  2 +-
->>  drivers/gpu/drm/i915/display/intel_display_wa.c    |  2 +-
->>  drivers/gpu/drm/i915/display/intel_dp_mst.c        |  2 +-
->>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c      |  2 +-
->>  drivers/gpu/drm/i915/display/intel_fbc.c           |  2 +-
->>  drivers/gpu/drm/i915/display/intel_flipq.c         |  2 +-
->>  drivers/gpu/drm/i915/display/intel_hdcp.c          |  2 +-
->>  drivers/gpu/drm/i915/display/intel_pmdemand.c      |  2 +-
->>  drivers/gpu/drm/i915/display/intel_psr.c           |  2 +-
->>  drivers/gpu/drm/i915/display/skl_universal_plane.c |  2 +-
->>  .../gpu/drm/xe/compat-i915-headers/intel_step.h    | 13 -----
->>  drivers/gpu/drm/xe/tests/xe_pci.c                  |  4 +-
->>  drivers/gpu/drm/xe/xe_step.c                       |  2 +-
->>  drivers/gpu/drm/xe/xe_step.h                       |  4 +-
->>  drivers/gpu/drm/xe/xe_step_types.h                 | 61 +---------------------
->>  18 files changed, 20 insertions(+), 90 deletions(-)
->>  delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/intel_step.h
->> 
->> -- 
->> Jani Nikula, Intel
+== Summary ==
 
--- 
-Jani Nikula, Intel
+CI Bug Log - changes from xe-4879-3a8d015ab84eae3d9247736f48648f870ae2a6c5_BAT -> xe-pw-164676v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (14 -> 14)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-164676v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_waitfence@abstime:
+    - bat-dg2-oem2:       [PASS][1] -> [TIMEOUT][2] ([Intel XE#6506])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4879-3a8d015ab84eae3d9247736f48648f870ae2a6c5/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164676v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+
+  
+  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
+
+
+Build changes
+-------------
+
+  * Linux: xe-4879-3a8d015ab84eae3d9247736f48648f870ae2a6c5 -> xe-pw-164676v1
+
+  IGT_8852: 8852
+  xe-4879-3a8d015ab84eae3d9247736f48648f870ae2a6c5: 3a8d015ab84eae3d9247736f48648f870ae2a6c5
+  xe-pw-164676v1: 164676v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164676v1/index.html
+
+--===============2004139183708241967==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/reset: Expose &quot;display_reset_count&quot; in debugfs</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164676/">https://patchwork.freedesktop.org/series/164676/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164676v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164676v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4879-3a8d015ab84eae3d9247736f48648f870ae2a6c5_BAT -&gt; xe-pw-164676v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-164676v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_waitfence@abstime:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4879-3a8d015ab84eae3d9247736f48648f870ae2a6c5/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164676v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4879-3a8d015ab84eae3d9247736f48648f870ae2a6c5 -&gt; xe-pw-164676v1</li>
+</ul>
+<p>IGT_8852: 8852<br />
+  xe-4879-3a8d015ab84eae3d9247736f48648f870ae2a6c5: 3a8d015ab84eae3d9247736f48648f870ae2a6c5<br />
+  xe-pw-164676v1: 164676v1</p>
+
+</body>
+</html>
+
+--===============2004139183708241967==--
