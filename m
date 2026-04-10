@@ -4,76 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04BD4F44868
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Apr 2026 14:21:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A0ACF44873
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Apr 2026 14:22:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADC5510E969;
-	Fri, 10 Apr 2026 14:21:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F62910E96C;
+	Fri, 10 Apr 2026 14:22:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="CVwPR2Jj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SU65Dk50";
 	dkim-atps=neutral
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A17EC10E969;
- Fri, 10 Apr 2026 14:21:27 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1775830871; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=Jn/Tmj19i3gOK6f9TWANjUnYtLOPBQJNqcx0tOvjD6UpoX8CURmIgJHUNdecp8Pw0CljdDunOXYctaIxdBHusanURm0wQacxVoaGiqrv4X1c2DA8c8Y0+8I4KFWu1BkOG6EKYiSMzeB/aMXduHDEnhJaZkibDPCNqKz5tzzC2w0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1775830871;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=9zLHnTtMqw0wWzWI7j+3+Qz08IlRB+2G4Qkl+hxqDWo=; 
- b=YYqZ7rPD2KtIX1IkeI5KwpQUzCS1ufbR7X+rw1FRYUs1PdogLTcepHPQHDUFTuX4/XqMYUliTgNli96hFqCPikJoz7GZp8BfKi27RdJ/soknA9PpgKQ9gi/D846d2zCYSaUSm/Cc3/QnFgD5R/p82+/jayc8xDqUoa0hzflpqSg=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1775830871; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
- bh=9zLHnTtMqw0wWzWI7j+3+Qz08IlRB+2G4Qkl+hxqDWo=;
- b=CVwPR2JjdsnnJHG3iLLKNbX4wAsiZCkL3NtXjldGLNGHKv8/5VoQA1Jn4biRiq67
- //9zWXRFyP5j6alWl4gj1F2804zm/gplOKweJwC3iihVZHcLBnJ1hRq5pRUvZc8NkjE
- dyhmroMYyfJueA+zxqQg6lsQ7hpMUqCrpzHbjqJ0=
-Received: by mx.zohomail.com with SMTPS id 1775830869992203.62896287388855;
- Fri, 10 Apr 2026 07:21:09 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Sandy Huang <hjc@rock-chips.com>,
- Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
- kernel@collabora.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-doc@vger.kernel.org
-Subject: Re: [PATCH v12 04/25] drm/bridge: Act on the DRM color format property
-Date: Fri, 10 Apr 2026 16:21:00 +0200
-Message-ID: <4810558.ElGaqSPkdT@workhorse>
-In-Reply-To: <edeq6wxmwzvovfoo6pvih6dybwszf3tahg7nvqkjrw3qxllbfd@jwejh2sgb5eh>
-References: <20260409-color-format-v12-0-ce84e1817a27@collabora.com>
- <20260409-color-format-v12-4-ce84e1817a27@collabora.com>
- <edeq6wxmwzvovfoo6pvih6dybwszf3tahg7nvqkjrw3qxllbfd@jwejh2sgb5eh>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD24410E96C
+ for <intel-xe@lists.freedesktop.org>; Fri, 10 Apr 2026 14:22:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1775830955; x=1807366955;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=8tF01j6X6hPPyq8LzuctZtMI7WnWgUFoVDgkQtZKv1c=;
+ b=SU65Dk504NPF6QULSFSXE2oqxOSSGOukY6QU01bYg5BLpWm+4TywoFUc
+ oNymrgt8NW2b+dfk6JM737gMm0adEaoheRkXyFyWxNSja5c1vOV3wX6on
+ Tu+89nF1zsrv3KHhxjK2vhpaG9KbCX29pl4AsndOvMs1uVTGz+vDB7hkm
+ dDe6UDevzCxdD9SkG48dw8tdop2w85lTAK1IVDtfElvqjJHZw/EXzHvz6
+ tImYsy8GINnO8P3w2+9tX684ha4w472UInL9icIGSEWEBUmTWe2qYNXu4
+ zViTfg0ZjNos+0cqVN4KHf9fNyBKKg59xPrCw4eQLlBttettZGbtvTN6F g==;
+X-CSE-ConnectionGUID: jlempHZMTmKPtaRBdUikFA==
+X-CSE-MsgGUID: RzlCyueMR7uKd4kgPfMbsg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11755"; a="99488074"
+X-IronPort-AV: E=Sophos;i="6.23,171,1770624000"; d="scan'208";a="99488074"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2026 07:22:35 -0700
+X-CSE-ConnectionGUID: aod1at1YQmKgQYvVksMC1g==
+X-CSE-MsgGUID: yU9Elon+Q+KOH3W9CJYFmw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,171,1770624000"; d="scan'208";a="267069745"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2026 07:22:32 -0700
+Date: Fri, 10 Apr 2026 16:22:28 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com,
+ thomas.hellstrom@linux.intel.com, riana.tauro@intel.com,
+ michal.wajdeczko@intel.com, matthew.d.roper@intel.com,
+ michal.winiarski@intel.com, matthew.auld@intel.com,
+ maarten@lankhorst.se, jani.nikula@intel.com,
+ lukasz.laguna@intel.com, zhanjun.dong@intel.com, lukas@wunner.de
+Subject: Re: [PATCH v5 0/9] Introduce Xe PCIe FLR
+Message-ID: <adkHpG9RWUGfu60X@black.igk.intel.com>
+References: <20260406140722.154445-1-raag.jadav@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260406140722.154445-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,186 +71,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Friday, 10 April 2026 00:08:24 Central European Summer Time Dmitry Baryshkov wrote:
-> On Thu, Apr 09, 2026 at 05:44:54PM +0200, Nicolas Frattaroli wrote:
-> > The new DRM color format property allows userspace to request a specific
-> > color format on a connector. In turn, this fills the connector state's
-> > color_format member to switch color formats.
-> > 
-> > Make drm_bridges consider the color_format set in the connector state
-> > during the atomic bridge check. For bridges that represent HDMI bridges,
-> > rely on whatever format the HDMI logic set. Reject any output bus
-> > formats that do not correspond to the requested color format.
-> > 
-> > Non-HDMI last bridges with DRM_CONNECTOR_COLOR_FORMAT_AUTO set will end
-> > up choosing the first output format that functions to make a whole
-> > recursive bridge chain format selection succeed.
-> > 
-> > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> > ---
-> >  drivers/gpu/drm/drm_bridge.c | 89 +++++++++++++++++++++++++++++++++++++++++++-
-> >  1 file changed, 88 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
-> > index ba80bebb5685..7c1516864d96 100644
-> > --- a/drivers/gpu/drm/drm_bridge.c
-> > +++ b/drivers/gpu/drm/drm_bridge.c
-> > @@ -1150,6 +1150,47 @@ static int select_bus_fmt_recursive(struct drm_bridge *first_bridge,
-> >  	return ret;
-> >  }
-> >  
-> > +static bool __pure bus_format_is_color_fmt(u32 bus_fmt, enum drm_connector_color_format fmt)
-> > +{
-> > +	if (fmt == DRM_CONNECTOR_COLOR_FORMAT_AUTO)
-> > +		return true;
-> > +
-> > +	switch (bus_fmt) {
-> > +	case MEDIA_BUS_FMT_FIXED:
-> > +		return true;
-> > +	case MEDIA_BUS_FMT_RGB888_1X24:
-> > +	case MEDIA_BUS_FMT_RGB101010_1X30:
-> > +	case MEDIA_BUS_FMT_RGB121212_1X36:
-> > +	case MEDIA_BUS_FMT_RGB161616_1X48:
-> > +		return fmt == DRM_CONNECTOR_COLOR_FORMAT_RGB444;
-> > +	case MEDIA_BUS_FMT_YUV8_1X24:
-> > +	case MEDIA_BUS_FMT_YUV10_1X30:
-> > +	case MEDIA_BUS_FMT_YUV12_1X36:
-> > +	case MEDIA_BUS_FMT_YUV16_1X48:
-> > +		return fmt == DRM_CONNECTOR_COLOR_FORMAT_YCBCR444;
-> > +	case MEDIA_BUS_FMT_UYVY8_1X16:
-> > +	case MEDIA_BUS_FMT_VYUY8_1X16:
-> > +	case MEDIA_BUS_FMT_YUYV8_1X16:
-> > +	case MEDIA_BUS_FMT_YVYU8_1X16:
-> > +	case MEDIA_BUS_FMT_UYVY10_1X20:
-> > +	case MEDIA_BUS_FMT_YUYV10_1X20:
-> > +	case MEDIA_BUS_FMT_VYUY10_1X20:
-> > +	case MEDIA_BUS_FMT_YVYU10_1X20:
-> > +	case MEDIA_BUS_FMT_UYVY12_1X24:
-> > +	case MEDIA_BUS_FMT_VYUY12_1X24:
-> > +	case MEDIA_BUS_FMT_YUYV12_1X24:
-> > +	case MEDIA_BUS_FMT_YVYU12_1X24:
-> > +		return fmt == DRM_CONNECTOR_COLOR_FORMAT_YCBCR422;
-> > +	case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
-> > +	case MEDIA_BUS_FMT_UYYVYY10_0_5X30:
-> > +	case MEDIA_BUS_FMT_UYYVYY12_0_5X36:
-> > +	case MEDIA_BUS_FMT_UYYVYY16_0_5X48:
-> > +		return fmt == DRM_CONNECTOR_COLOR_FORMAT_YCBCR420;
-> > +	default:
-> > +		return false;
-> > +	}
-> > +}
-> > +
-> >  /*
-> >   * This function is called by &drm_atomic_bridge_chain_check() just before
-> >   * calling &drm_bridge_funcs.atomic_check() on all elements of the chain.
-> > @@ -1193,6 +1234,7 @@ drm_atomic_bridge_chain_select_bus_fmts(struct drm_bridge *bridge,
-> >  	struct drm_encoder *encoder = bridge->encoder;
-> >  	struct drm_bridge_state *last_bridge_state;
-> >  	unsigned int i, num_out_bus_fmts = 0;
-> > +	enum drm_connector_color_format fmt;
-> >  	u32 *out_bus_fmts;
-> >  	int ret = 0;
-> >  
-> > @@ -1234,13 +1276,58 @@ drm_atomic_bridge_chain_select_bus_fmts(struct drm_bridge *bridge,
-> >  			out_bus_fmts[0] = MEDIA_BUS_FMT_FIXED;
-> >  	}
-> >  
-> > +	/*
-> > +	 * On HDMI connectors, use the output format chosen by whatever does the
-> > +	 * HDMI logic. For everyone else, just trust that the bridge out_bus_fmts
-> > +	 * are sorted by preference for %DRM_CONNECTOR_COLOR_FORMAT_AUTO, as
-> > +	 * bus_format_is_color_fmt() always returns true for AUTO.
-> > +	 */
-> > +	if (last_bridge->type == DRM_MODE_CONNECTOR_HDMIA) {
+On Mon, Apr 06, 2026 at 07:37:13PM +0530, Raag Jadav wrote:
+> Here's my humble attempt at introducing PCIe Function Level Reset (FLR)
+> support in xe driver. This is ofcourse a half baked implementation and
+> only limited to re-initializing GT. This needs to be extended for a lot
+> of different components which I've skipped here for my lack of competence,
+> so feel free to join in and support them.
 > 
-> I still think this is misplaced (and misidentified). Consider HDMI
-> bridge being routed to the DVI-D connector. The last bridge would have
-> different type, but the HDMI-specific logic must still be applied. The
-> bridge must use RGB444, but it must be handled in a generic way.
-
-Thanks for the review. I was hoping that an HDMI bridge chain going to
-a DVI connector would be a DRM_MODE_CONNECTOR_HDMIB thing, but apparently
-not. I also don't know however how doing this in the drm bridge connector
-helps us here. I guess we'd call into a drm_bridge_connector specific
-function with the connector format and connector, and get an output
-format in return, and said function checks that if any bridge in the
-bridge connector is HDMI it uses the HDMI logic? That would conflict
-with the following case from what I understand:
-
-> Or other way around, a DVI bridge being routed through the HDMI
-> connector (thinking about PandaBoard here). The combo should not go
-> through the HDMI-specific color format selection although the last
-> bridge in the chanin is the HDMI-A bridge.
-
-In that case, wouldn't the recursive bridge bus format selection
-take care of this? I assume the DVI bridge will only allow RGB444,
-and one of the bridges that follow it is an HDMI bridge for the
-HDMI connector that's physically on the board.
-
-In such a case, if the HDMI state helpers came up with something
-other than RGB444, the select_bus_fmt_recursive below would fail
-as expected, since it won't be able to find an output that
-satisfies the constraints given by the DVI bridge.
-
-> I think all these cases should be handled by the connector, which knows
-> if there is an OP_HDMI bridge in the chain or not.
-
-Kind regards,
-Nicolas Frattaroli
-
-> > +		drm_dbg_kms(last_bridge->dev,
-> > +			    "HDMI bridge requests format %s\n",
-> > +			    drm_hdmi_connector_get_output_format_name(
-> > +				    conn_state->hdmi.output_format));
-> > +		switch (conn_state->hdmi.output_format) {
-> > +		case DRM_OUTPUT_COLOR_FORMAT_RGB444:
-> > +			fmt = DRM_CONNECTOR_COLOR_FORMAT_RGB444;
-> > +			break;
-> > +		case DRM_OUTPUT_COLOR_FORMAT_YCBCR444:
-> > +			fmt = DRM_CONNECTOR_COLOR_FORMAT_YCBCR444;
-> > +			break;
-> > +		case DRM_OUTPUT_COLOR_FORMAT_YCBCR422:
-> > +			fmt = DRM_CONNECTOR_COLOR_FORMAT_YCBCR422;
-> > +			break;
-> > +		case DRM_OUTPUT_COLOR_FORMAT_YCBCR420:
-> > +			fmt = DRM_CONNECTOR_COLOR_FORMAT_YCBCR420;
-> > +			break;
-> > +		default:
-> > +			ret = -EINVAL;
-> > +			goto out_free_bus_fmts;
-> > +		}
-> > +	} else {
-> > +		fmt = conn_state->color_format;
-> > +		drm_dbg_kms(last_bridge->dev, "Non-HDMI bridge requests format %d\n", fmt);
-> > +	}
-> > +
-> >  	for (i = 0; i < num_out_bus_fmts; i++) {
-> > +		if (!bus_format_is_color_fmt(out_bus_fmts[i], fmt)) {
-> > +			drm_dbg_kms(last_bridge->dev,
-> > +				    "Skipping bus format 0x%04x as it doesn't match format %d\n",
-> > +				    out_bus_fmts[i], fmt);
-> > +			ret = -ENOTSUPP;
-> > +			continue;
-> > +		}
-> >  		ret = select_bus_fmt_recursive(bridge, last_bridge, crtc_state,
-> >  					       conn_state, out_bus_fmts[i]);
-> > -		if (ret != -ENOTSUPP)
-> > +		if (ret != -ENOTSUPP) {
-> > +			drm_dbg_kms(last_bridge->dev,
-> > +				    "Found bridge chain ending with bus format 0x%04x\n",
-> > +				    out_bus_fmts[i]);
-> >  			break;
-> > +		}
-> >  	}
-> >  
-> > +out_free_bus_fmts:
-> >  	kfree(out_bus_fmts);
-> >  
-> >  	return ret;
-> > 
+> PS: All xe_exec_basic tests and clpeak run smoothly after FLR. Give it
+> a spin and let me know if any regressions.
 > 
+> Trigger it with:
 > 
+> $ echo 1 > /sys/bus/pci/devices/<BDF>/reset
 
+Anything I can do to move this forward?
 
+Raag
 
-
+> v2: Re-initialize migrate context (Matthew Brost)
+>     Add kernel doc (Matthew Brost)
+>     Spell out Function Level Reset (Jani)
+> 
+> v3: Cancel in-flight jobs before FLR
+> 
+> v4: Teardown exec queues instead of mangling scheduler pending list (Matthew Brost)
+> 
+> v5: Re-initialize kernel queues through submission backend (Matthew Brost)
+>     Prevent PM ref leak for wedged device (Matthew Brost)
+> 
+> Raag Jadav (9):
+>   drm/xe/uc_fw: Allow re-initializing firmware
+>   drm/xe/guc_submit: Introduce guc_exec_queue_reinit()
+>   drm/xe/gt: Introduce FLR helpers
+>   drm/xe/irq: Introduce xe_irq_disable()
+>   drm/xe: Introduce xe_device_assert_lmem_ready()
+>   drm/xe/bo_evict: Introduce xe_bo_restore_map()
+>   drm/xe/exec_queue: Introduce xe_exec_queue_reinit()
+>   drm/xe/migrate: Introduce xe_migrate_reinit()
+>   drm/xe/pci: Introduce PCIe FLR
+> 
+>  drivers/gpu/drm/xe/Makefile              |   1 +
+>  drivers/gpu/drm/xe/xe_bo_evict.c         |  51 ++++++--
+>  drivers/gpu/drm/xe/xe_bo_evict.h         |   2 +
+>  drivers/gpu/drm/xe/xe_device.c           |  10 +-
+>  drivers/gpu/drm/xe/xe_device.h           |   1 +
+>  drivers/gpu/drm/xe/xe_device_types.h     |   3 +
+>  drivers/gpu/drm/xe/xe_exec_queue.c       |  37 +++++-
+>  drivers/gpu/drm/xe/xe_exec_queue.h       |   1 +
+>  drivers/gpu/drm/xe/xe_exec_queue_types.h |   2 +
+>  drivers/gpu/drm/xe/xe_gpu_scheduler.h    |   5 +
+>  drivers/gpu/drm/xe/xe_gsc.c              |  14 ++
+>  drivers/gpu/drm/xe/xe_gsc.h              |   1 +
+>  drivers/gpu/drm/xe/xe_gt.c               |  47 +++++++
+>  drivers/gpu/drm/xe/xe_gt.h               |   2 +
+>  drivers/gpu/drm/xe/xe_gt_types.h         |   9 ++
+>  drivers/gpu/drm/xe/xe_guc.c              |  29 ++++
+>  drivers/gpu/drm/xe/xe_guc.h              |   2 +
+>  drivers/gpu/drm/xe/xe_guc_submit.c       |  11 ++
+>  drivers/gpu/drm/xe/xe_huc.c              |  14 ++
+>  drivers/gpu/drm/xe/xe_huc.h              |   1 +
+>  drivers/gpu/drm/xe/xe_irq.c              |  13 +-
+>  drivers/gpu/drm/xe/xe_irq.h              |   1 +
+>  drivers/gpu/drm/xe/xe_lrc.c              |  17 +++
+>  drivers/gpu/drm/xe/xe_lrc.h              |   2 +
+>  drivers/gpu/drm/xe/xe_migrate.c          |  12 ++
+>  drivers/gpu/drm/xe/xe_migrate.h          |   1 +
+>  drivers/gpu/drm/xe/xe_pci.c              |   1 +
+>  drivers/gpu/drm/xe/xe_pci.h              |   2 +
+>  drivers/gpu/drm/xe/xe_pci_err.c          | 160 +++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_uc.c               |  37 ++++++
+>  drivers/gpu/drm/xe/xe_uc.h               |   2 +
+>  drivers/gpu/drm/xe/xe_uc_fw.c            |  39 +++++-
+>  drivers/gpu/drm/xe/xe_uc_fw.h            |   1 +
+>  33 files changed, 510 insertions(+), 21 deletions(-)
+>  create mode 100644 drivers/gpu/drm/xe/xe_pci_err.c
+> 
+> -- 
+> 2.43.0
+> 
