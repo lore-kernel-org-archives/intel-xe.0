@@ -4,55 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 247E2F45A0D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 416CBF45A11
 	for <intel-xe@archiver.kernel.org>; Fri, 10 Apr 2026 20:59:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 989E810E1EB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 87F0510E1C3;
 	Fri, 10 Apr 2026 20:59:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MXpFys8B";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TZCJ3+zH";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E0B810E1C3;
- Fri, 10 Apr 2026 20:59:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60B4410E1C3;
+ Fri, 10 Apr 2026 20:59:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775854776; x=1807390776;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=m4AR4senMkak4li70yfaEiEU2i/bLgS4vrfaDg8+/2Y=;
- b=MXpFys8Bnn1zXSr2azhiC1JIy1U5iv66CbbQLBUH0okUDdNSB/yfOVmQ
- 0x1HIFKOvFyIR0aJxODq1+Q3myqTXJB9YkTjDftRKNY1N8VUpsEbHOCgz
- ppIloYwlefic6ALu2e7LHOQp4Caj/5gC1HVr/czYtcgBNvkWnx0QZKKtW
- lolNmOWsEi0ZqBBnP/geJhy7kO0ZSidaycftxJJKrI+vPTwSFU5jTXT9M
- VPfcSXgdZfbugMP38l9I9bOOJXp5bbZ6UaaEi/S4UkxotXPVMHksmq8/M
- I6QBMOvjStRlIwKsNL8IqKRJGW44MeDPfwUkwqhrGxbh53Ewf53msD57b g==;
-X-CSE-ConnectionGUID: jGXgZS9ASnKETiSfWjVncg==
-X-CSE-MsgGUID: 9lBrrW4/SQOv9SdQJTYKNg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11755"; a="76842852"
-X-IronPort-AV: E=Sophos;i="6.23,172,1770624000"; d="scan'208";a="76842852"
+ t=1775854775; x=1807390775;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=BJx2ww/Aj4GuZdPK7Ki8QnRoqXUF/NdOaSwp1EYdGrE=;
+ b=TZCJ3+zHMyDcIBnMIB1Xz3RQ8b8Fi4QIfVfHvTDrrhmUs7NWiLw5omqI
+ LuzP8ejTrr+mCuVsk5X+QrXov9Ilw8+3I22A7bBZrJ5yxD6Nhzl5IXJ5h
+ OZJs6Lc9qL6/aeqHiAJfB3KHq76REE3nqH/4tB45in9ZWpXFScZbpuHtq
+ CFkVCmMmfo02BlR5CZXf54mMpwzPGQlxF/gqKZwy5J0Aqj2XXMy7sSx0Q
+ qCTzC/5ivMaalZTWZaWiQHYRR/1/Td9F8fzuZWwSsvT56PIHxUhF64b3h
+ w+4Sco1sdBiS7Q0vi2qEIquKZWogvpGVZTLFYbdyYKbDD2nDGGjRrAox3 A==;
+X-CSE-ConnectionGUID: ZPuBTDuJSgKcDfdqHhunag==
+X-CSE-MsgGUID: ICZlfD7dT1OPlFPhDKc9Mw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11755"; a="76842850"
+X-IronPort-AV: E=Sophos;i="6.23,172,1770624000"; d="scan'208";a="76842850"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Apr 2026 13:59:35 -0700
-X-CSE-ConnectionGUID: xFhNUUelTSyJfka0YOotBg==
-X-CSE-MsgGUID: oG+fWenbST2w2+Ssl3XS6w==
+X-CSE-ConnectionGUID: 3Hg9bKFjQn+XCmnfVESkhw==
+X-CSE-MsgGUID: AE9ZQLxpRkiUjB2ILQyG2A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,172,1770624000"; d="scan'208";a="228343051"
+X-IronPort-AV: E=Sophos;i="6.23,172,1770624000"; d="scan'208";a="228343047"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Apr 2026 13:59:35 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
-Cc: Francois Dugast <francois.dugast@intel.com>
-Subject: [PATCH v7 2/5] drm/pagemap: Drop source_peer_migrates flag and assume
- true
-Date: Fri, 10 Apr 2026 13:59:26 -0700
-Message-Id: <20260410205929.3914474-3-matthew.brost@intel.com>
+Subject: [PATCH v7 0/5] Use new dma-map IOVA alloc, link,
+ and sync API in GPU SVM and DRM pagemap
+Date: Fri, 10 Apr 2026 13:59:24 -0700
+Message-Id: <20260410205929.3914474-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260410205929.3914474-1-matthew.brost@intel.com>
-References: <20260410205929.3914474-1-matthew.brost@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,80 +66,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-All current users of DRM pagemap set source_peer_migrates to true during
-migration, and it is unclear whether any user would ever want to disable
-this for performance reasons or for features such as compression. It is
-also questionable whether this flag could be made to work with
-high-speed fabric mapping APIs.
+The dma-map IOVA alloc, link, and sync APIs perform significantly better
+than dma-map / dma-unmap, as they avoid costly IOMMU synchronizations.
+This difference is especially noticeable when mapping a 2MB region in
+4KB pages.
 
-Drop the flag and make DRM pagemap unconditionally assume that
-source_peer_migrates is true.
+Use dma-map IOVA alloc, link, and sync APIs for GPU SVM and DRM page,
+which mappings between the CPU and GPU.
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Francois Dugast <francois.dugast@intel.com>
----
- drivers/gpu/drm/drm_pagemap.c | 10 ++++------
- drivers/gpu/drm/xe/xe_svm.c   |  1 -
- include/drm/drm_pagemap.h     |  9 ++-------
- 3 files changed, 6 insertions(+), 14 deletions(-)
+Initial results are promising.
 
-diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
-index 5002049e0198..63f32cf6e1a7 100644
---- a/drivers/gpu/drm/drm_pagemap.c
-+++ b/drivers/gpu/drm/drm_pagemap.c
-@@ -651,12 +651,10 @@ int drm_pagemap_migrate_to_devmem(struct drm_pagemap_devmem *devmem_allocation,
- 				own_pages++;
- 				goto next;
- 			}
--			if (mdetails->source_peer_migrates) {
--				cur.dpagemap = src_zdd->dpagemap;
--				cur.ops = src_zdd->devmem_allocation->ops;
--				cur.device = cur.dpagemap->drm->dev;
--				pages[i] = src_page;
--			}
-+			cur.dpagemap = src_zdd->dpagemap;
-+			cur.ops = src_zdd->devmem_allocation->ops;
-+			cur.device = cur.dpagemap->drm->dev;
-+			pages[i] = src_page;
- 		}
- 		if (!pages[i]) {
- 			cur.dpagemap = NULL;
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index ba67355f64cb..e1651e70c8f0 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -1055,7 +1055,6 @@ static int xe_drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
- 	struct xe_pagemap *xpagemap = container_of(dpagemap, typeof(*xpagemap), dpagemap);
- 	struct drm_pagemap_migrate_details mdetails = {
- 		.timeslice_ms = timeslice_ms,
--		.source_peer_migrates = 1,
- 	};
- 	struct xe_vram_region *vr = xe_pagemap_to_vr(xpagemap);
- 	struct dma_fence *pre_migrate_fence = NULL;
-diff --git a/include/drm/drm_pagemap.h b/include/drm/drm_pagemap.h
-index 75e6ca58922d..95eb4b66b057 100644
---- a/include/drm/drm_pagemap.h
-+++ b/include/drm/drm_pagemap.h
-@@ -329,17 +329,12 @@ struct drm_pagemap_devmem {
-  * struct drm_pagemap_migrate_details - Details to govern migration.
-  * @timeslice_ms: The time requested for the migrated pagemap pages to
-  * be present in @mm before being allowed to be migrated back.
-- * @can_migrate_same_pagemap: Whether the copy function as indicated by
-- * the @source_peer_migrates flag, can migrate device pages within a
-- * single drm_pagemap.
-- * @source_peer_migrates: Whether on p2p migration, The source drm_pagemap
-- * should use the copy_to_ram() callback rather than the destination
-- * drm_pagemap should use the copy_to_devmem() callback.
-+ * @can_migrate_same_pagemap: Whether the copy function can migrate
-+ * device pages within a single drm_pagemap.
-  */
- struct drm_pagemap_migrate_details {
- 	unsigned long timeslice_ms;
- 	u32 can_migrate_same_pagemap : 1;
--	u32 source_peer_migrates : 1;
- };
- 
- #if IS_ENABLED(CONFIG_ZONE_DEVICE)
+Baseline CPU time during 2M / 64K fault with a migration (device THP disabled):
+Average migrate 2M cpu time (us, percentage): 333.99665178571428571429, .61102853199282922865
+Average migrate 64K cpu time (us, percentage): 18.62723214285714285714, .30127985269960467173
+
+After this series CPU time during 2M / 64K fault with a migration (device THP disabled):
+Average migrate 2M cpu time (us, percentage): 224.81808035714285714286, .51412827364772602557
+Average migrate 64K cpu time (us, percentage): 14.65625000000000000000, .25659463050529524405
+
+Matt
+
+v2:
+ - Include missing basline patch for CI
+v3:
+ - Fix memory corruption
+ - PoC IOVA alloc for multi-GPU
+v4:
+ - Pack IOVA / drop dummy pages
+ - Drop multi-GPU IOVA alloc
+v5:
+ - Address Thomas's comments
+v6:
+ - Address Francois's comments
+v7:
+ - Address sashiko's comments
+
+Matthew Brost (5):
+  drm/gpusvm: Use dma-map IOVA alloc, link, and sync API in GPU SVM
+  drm/pagemap: Drop source_peer_migrates flag and assume true
+  drm/pagemap: Split drm_pagemap_migrate_map_pages into device / system
+  drm/pagemap: Use dma-map IOVA alloc, link, and sync API for DRM
+    pagemap
+  drm/pagemap: Fix drm_pagemap_migrate_unmap_pages kerneldoc
+
+ drivers/gpu/drm/drm_gpusvm.c  |  53 ++++++--
+ drivers/gpu/drm/drm_pagemap.c | 229 ++++++++++++++++++++++++----------
+ drivers/gpu/drm/xe/xe_svm.c   |   1 -
+ include/drm/drm_gpusvm.h      |   5 +
+ include/drm/drm_pagemap.h     |   9 +-
+ 5 files changed, 218 insertions(+), 79 deletions(-)
+
 -- 
 2.34.1
 
