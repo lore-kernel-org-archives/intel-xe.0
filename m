@@ -4,28 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F193F36BA9
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Apr 2026 04:10:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41B3EF36BAA
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Apr 2026 04:32:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4372310E05A;
-	Fri, 10 Apr 2026 04:10:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E6A8B10E117;
+	Fri, 10 Apr 2026 04:32:48 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0386810E05A;
- Fri, 10 Apr 2026 04:10:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDC3410E05A;
+ Fri, 10 Apr 2026 04:32:46 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============7266563935463303971=="
+ boundary="===============3575596902899533517=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1/1?=
- =?utf-8?q?=5D_drm/xe=3A_Fix_error_cleanup_in_xe=5Fexec=5Fqueue=5Fcreate=5Fi?=
- =?utf-8?q?octl=28=29_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/ras=3A_Fix_and_clean?=
+ =?utf-8?q?_up_xe=5Fdrm=5Fras_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Shuicheng Lin" <shuicheng.lin@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 10 Apr 2026 04:10:46 -0000
-Message-ID: <177579424697.449057.9162996940729176622@a3b018990fe9>
+Date: Fri, 10 Apr 2026 04:32:46 -0000
+Message-ID: <177579556695.449057.1052327755903196996@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260408020647.3397933-1-shuicheng.lin@intel.com>
-In-Reply-To: <20260408020647.3397933-1-shuicheng.lin@intel.com>
+References: <20260407225913.3397059-1-shuicheng.lin@intel.com>
+In-Reply-To: <20260407225913.3397059-1-shuicheng.lin@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,20 +40,20 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7266563935463303971==
+--===============3575596902899533517==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: series starting with [1/1] drm/xe: Fix error cleanup in xe_exec_queue_create_ioctl() (rev2)
-URL   : https://patchwork.freedesktop.org/series/164483/
+Series: drm/xe/ras: Fix and clean up xe_drm_ras (rev2)
+URL   : https://patchwork.freedesktop.org/series/164479/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-4877-97d8833ffba6bd3d6aaa51169069620ac17a2e37_BAT -> xe-pw-164483v2_BAT
+CI Bug Log - changes from xe-4877-97d8833ffba6bd3d6aaa51169069620ac17a2e37_BAT -> xe-pw-164479v2_BAT
 ====================================================
 
 Summary
@@ -71,27 +70,52 @@ Participating hosts (14 -> 14)
 
   No changes in participating hosts
 
+Known issues
+------------
 
-Changes
--------
+  Here are the changes found in xe-pw-164479v2_BAT that come from known issues:
 
-  No changes found
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4877-97d8833ffba6bd3d6aaa51169069620ac17a2e37/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164479v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+
+  * igt@xe_waitfence@engine:
+    - bat-dg2-oem2:       [PASS][3] -> [FAIL][4] ([Intel XE#6519])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4877-97d8833ffba6bd3d6aaa51169069620ac17a2e37/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164479v2/bat-dg2-oem2/igt@xe_waitfence@engine.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - bat-adlp-7:         [DMESG-WARN][5] ([Intel XE#7483]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4877-97d8833ffba6bd3d6aaa51169069620ac17a2e37/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164479v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+
+  
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
+  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
 
 
 Build changes
 -------------
 
-  * Linux: xe-4877-97d8833ffba6bd3d6aaa51169069620ac17a2e37 -> xe-pw-164483v2
+  * Linux: xe-4877-97d8833ffba6bd3d6aaa51169069620ac17a2e37 -> xe-pw-164479v2
 
   IGT_8852: 8852
   xe-4877-97d8833ffba6bd3d6aaa51169069620ac17a2e37: 97d8833ffba6bd3d6aaa51169069620ac17a2e37
-  xe-pw-164483v2: 164483v2
+  xe-pw-164479v2: 164479v2
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164483v2/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164479v2/index.html
 
---===============7266563935463303971==
+--===============3575596902899533517==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -111,32 +135,55 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>series starting with [1/1] drm/xe: Fix error cleanup in xe_exec_queue_create_ioctl() (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164483/">https://patchwork.freedesktop.org/series/164483/</a></td></tr>
+<tr><td><b>Series:</b></td><td>drm/xe/ras: Fix and clean up xe_drm_ras (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164479/">https://patchwork.freedesktop.org/series/164479/</a></td></tr>
 <tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164483v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164483v2/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164479v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164479v2/index.html</a></td></tr>
 
 </table>
 
 
-    <h1>CI Bug Log - changes from xe-4877-97d8833ffba6bd3d6aaa51169069620ac17a2e37_BAT -&gt; xe-pw-164483v2_BAT</h1>
+    <h1>CI Bug Log - changes from xe-4877-97d8833ffba6bd3d6aaa51169069620ac17a2e37_BAT -&gt; xe-pw-164479v2_BAT</h1>
 <h2>Summary</h2>
 <p><strong>SUCCESS</strong></p>
 <p>No regressions found.</p>
 <h2>Participating hosts (14 -&gt; 14)</h2>
 <p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-164479v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4877-97d8833ffba6bd3d6aaa51169069620ac17a2e37/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164479v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@engine:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4877-97d8833ffba6bd3d6aaa51169069620ac17a2e37/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164479v2/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4877-97d8833ffba6bd3d6aaa51169069620ac17a2e37/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164479v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a></li>
+</ul>
+</li>
+</ul>
 <h2>Build changes</h2>
 <ul>
-<li>Linux: xe-4877-97d8833ffba6bd3d6aaa51169069620ac17a2e37 -&gt; xe-pw-164483v2</li>
+<li>Linux: xe-4877-97d8833ffba6bd3d6aaa51169069620ac17a2e37 -&gt; xe-pw-164479v2</li>
 </ul>
 <p>IGT_8852: 8852<br />
   xe-4877-97d8833ffba6bd3d6aaa51169069620ac17a2e37: 97d8833ffba6bd3d6aaa51169069620ac17a2e37<br />
-  xe-pw-164483v2: 164483v2</p>
+  xe-pw-164479v2: 164479v2</p>
 
 </body>
 </html>
 
---===============7266563935463303971==--
+--===============3575596902899533517==--
