@@ -4,72 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A48CCF45A11
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A69C5F45A12
 	for <intel-xe@archiver.kernel.org>; Fri, 10 Apr 2026 22:51:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 603BB10E9E0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5ADE810E9DF;
 	Fri, 10 Apr 2026 22:51:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GBS6WS21";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fSDDyyJQ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9AB510E9DD
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F08CA10E9DD
  for <intel-xe@lists.freedesktop.org>; Fri, 10 Apr 2026 22:51:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1775861467; x=1807397467;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=86T2A2wOabqQOz+4LJZ7Dmzf++CaJdj9mFVxxPGm2ng=;
- b=GBS6WS21GUXVJXF+XJmHchLM82D2ow5L1tLYzVF9qZSwlp26od6uZH09
- w1KnR/f14KKtQZb6tFKQUmu3qJisQp7qfFVW+VhTI3cqcdqsX8ynY+/y7
- cdJxstJYq46xN6CSoAQn0mwmY4peaydYsmh1BTWPdGNZwhpP1CTbjdsXN
- 5hs23LkTXKJu4xYm5Jxtoim8gSQTEgOMmMG6EPC/0+xpqEloygtwqWJdF
- qjTiPlAgd2SteIq5s46hge0hXyrMyd4Ar/4eVGTY8OZ3TPgDkxBE6HpKi
- /5gN34WV1x83nOxSVISq5WDORMB5ZZqEbWxCPYGCzrIcQLzf0UKl5lLuK g==;
-X-CSE-ConnectionGUID: 8WbuaXXgRtumiFZnXHv/Rw==
-X-CSE-MsgGUID: FbDThsfaRB+OtKMf4Zw0lw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11755"; a="76849548"
-X-IronPort-AV: E=Sophos;i="6.23,172,1770624000"; d="scan'208";a="76849548"
+ bh=v47fbyqz6VvGB7gE8Gekc0zoDBhF2hrvU9xiTXeYzOc=;
+ b=fSDDyyJQbWOdI1kdUT3lQN/ssjQyrY2xCW5Lf7ls8dAPoTMn2amgny+1
+ jSMEISB24av4nukjFG+jM9MjdmDbbcHrKdxdvRq2v1KPKTM47QAzNKWu+
+ /UNmjs1rjAHAK6BOVfGjTlWCcAW9P4i4XtNo/HV7QMv7kCaz6UcgTlOMB
+ 5ZjYb30Elo1m5suvqdDZFGhvMmQDNC9UICIq027VTZeMjkKEx5MJH2jpu
+ sqMsC7oicJPFNcnLUb4LeVAuayTzxuoa37Obuwjxn+xVRlQi2m+LEePOP
+ j9H0EBT6x/sEIH8mr3BQ/q7Eyx5z6J/mAcKUrtwdimZucctHHifKBOv6H w==;
+X-CSE-ConnectionGUID: z+HWFveuSYKwnvo5/1PAag==
+X-CSE-MsgGUID: eug6bJ7ATUqUuOu6K5EdcQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11755"; a="76849550"
+X-IronPort-AV: E=Sophos;i="6.23,172,1770624000"; d="scan'208";a="76849550"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Apr 2026 15:51:07 -0700
-X-CSE-ConnectionGUID: p2frJotXRKC4f+FF3c4w2A==
-X-CSE-MsgGUID: hgpcqLp6TmKq8AwN9CHdhA==
+X-CSE-ConnectionGUID: DoIf3ABKQV6oZWxOZcp4Wg==
+X-CSE-MsgGUID: 47+rBAGoQJuX4+yr0TR+ZQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,172,1770624000"; d="scan'208";a="222728516"
+X-IronPort-AV: E=Sophos;i="6.23,172,1770624000"; d="scan'208";a="222728521"
 Received: from mdroper-desk1.fm.intel.com (HELO
  mdroper-desk1.amr.corp.intel.com) ([10.1.39.133])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Apr 2026 15:51:07 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
-Date: Fri, 10 Apr 2026 15:50:28 -0700
-Subject: [PATCH 1/3] drm/xe/tuning: Stop applying CCCHKNREG1 tuning from
- Xe3p onward
+Date: Fri, 10 Apr 2026 15:50:30 -0700
+Subject: [PATCH 3/3] drm/xe: Mark ROW_CHICKEN5 as a masked register
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260410-xe3p_tuning-v1-1-e206a62ee38f@intel.com>
+Message-Id: <20260410-xe3p_tuning-v1-3-e206a62ee38f@intel.com>
 References: <20260410-xe3p_tuning-v1-0-e206a62ee38f@intel.com>
 In-Reply-To: <20260410-xe3p_tuning-v1-0-e206a62ee38f@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matt Roper <matthew.d.roper@intel.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1152;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1154;
  i=matthew.d.roper@intel.com; h=from:subject:message-id;
- bh=86T2A2wOabqQOz+4LJZ7Dmzf++CaJdj9mFVxxPGm2ng=;
- b=owEBbQKS/ZANAwAKAU15JAXIcpAEAcsmYgBp2X7aOORqOqYIBTqu6lx2w7U73Z+SgZdaqafZw
- 27kichE0XiJAjMEAAEKAB0WIQTCZ8MJRH/rTz8hbaxNeSQFyHKQBAUCadl+2gAKCRBNeSQFyHKQ
- BNPCD/sES2YPWyWH5ZVPxbIyp0A9eZi+wR59YcSEluy2JCXjXPpMKyiAtFlmrCBEXbFT2tjY/VI
- O73tMSex+6b49Ht72eI/TjsI8WtbMhOsKXRqceDhhYRF5oDOfvukrUhao0dtq2F8uZLoI+xe5cW
- awmVQFgBOE6ysdcX/4nu018NJmvdT3fKZJ6htWL+o8Cec97RA1dVlMZMmu+dWCdt0skMahBrKyw
- fEgtIcX0mW3MnxJewf17ncv5piKH8OEzUILv0gRDOjaqJjdArfRR5Q6pYIPGxVBmsvge4Qmc9hq
- RXIQpzAMdwfw+eyjJurH9VyVqoG+xmvFVJzV2VfqoJml6RtNiEP1VIJxDPt9LV9nxEcnvp3QeTf
- NiZSYmljWaF9WI7DF5ocVn0IOMILJ4Pw/pVtItkaazZWveAj/7R56ZWg4uOyHq6Kvplp7hn0uJe
- 4DPkYQZTNRtHCnTdNiDIHPa2ymaxoibSJz3kDtjrQRL/mQXEpkPqkUDY2HvYmM9+j0AnAxmTHJu
- zGvY57IhIv+kDTZZUP2T6D53s2KaLhzV5nywoGfCQy0KOzaayuooolbhV0E2DZob/NEWjO5WkXa
- jwe9IENrMYjrRyHXCyRUOM1t1+cgN6smafBL2tEz/CSnKkf5gBGI/8jDmsD0pFIQd/RrmQ+IVyc
- HE+2xOWSMniCdoQ==
+ bh=v47fbyqz6VvGB7gE8Gekc0zoDBhF2hrvU9xiTXeYzOc=;
+ b=kA0DAAoBTXkkBchykAQByyZiAGnZftqg1pIJh96ikKUGQkgifZTmG0ILxVYIhCwNczqU7uazw
+ IkCMwQAAQoAHRYhBMJnwwlEf+tPPyFtrE15JAXIcpAEBQJp2X7aAAoJEE15JAXIcpAEvV8QALPu
+ A/33fRAuB/J13PRfnPW194lvTGv3b7iIOgabd7EvnqP/m3j9WZyxVqcXdurkdZaKVfHqZDjWYF4
+ 56Var9905m4XJfBCnKToJk9qr9dXu5mN3fKdcmZJguOy+TUSaNEYmTbjKq4NtHrNTsLNVXQaPwI
+ 0+F7hd0LISVShatcwWSjJOhjcXhIB+r1p02EtzxyvTt/OWUYDgc775YN8QD30Cd8STh44C9vV3E
+ vLiAH6DNuniu57+F2Q3SfOdPwbzeL8h7ROCKGCC5+YAZS0fuwMbNHTzwJtITG1PpfDo86di+F0o
+ OJ57sNnmvy4QgdCMugYIY7PRJXwCQ8kAnn++t4GtgqIWKOWVFZ4UhhZnYu5ke8cASo2yhCldooD
+ 6aneKyeJKIkrlwtLg/pm8gQJcKhP8kdlAg7wvC7LTaTWHJ5WAls075trKTkgkVSCu08JCLY0Bpg
+ P51QgZA2sEu9Axb0vixeU7Mj5Me3aOBIe2duLXlpmw+qSXTigkGxh5Nox5ZMOiB67hIrlBY+/5K
+ jcvMn1RO22Up+Whfb2kkImN0mBUvt/425Bcd9rpklVR8/lfeAuDH3/F+1Wudzlo2S5NM1+pTJP0
+ VsdlEqbL/LpFQ8vmtY5RZ3HZlvdvF/F5HtTDjXAOd5ns1tyFVk5WpluU+Ev1scZ3/HT9KnNYLUC
+ J5d4C
 X-Developer-Key: i=matthew.d.roper@intel.com; a=openpgp;
  fpr=C267C309447FEB4F3F216DAC4D792405C8729004
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -86,31 +85,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Whereas the tuning guide gave guidance on adjusting various CCCHKNREG1
-on past platforms, starting from Xe3p the guidance is "Leave register at
-HW default settings."  Set a version range upper bound of "34.99" so
-that the current programming will stop being applied on any Xe3p
-platforms that have graphics version 35.
+ROW_CHICKEN5 is a masked register (i.e., to adjust the value of any of
+the lower 16 bits, the corresponding bit in the upper 16 bits must also
+be set).  Add the XE_REG_OPTION_MASKED to its definition; failure to do
+so will cause workaround updates of this register to not apply properly.
 
-Bspec: 72161
+Bspec: 56853
+Fixes: 835cd6cbb0d0 ("drm/xe/xe3p_lpg: Add initial workarounds for graphics version 35.10")
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_tuning.c | 2 +-
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
-index f8de6a4bf189..ea48e2a60fcd 100644
---- a/drivers/gpu/drm/xe/xe_tuning.c
-+++ b/drivers/gpu/drm/xe/xe_tuning.c
-@@ -43,7 +43,7 @@ static const struct xe_rtp_entry_sr gt_tunings[] = {
- 				   REG_FIELD_PREP(L3_PWM_TIMER_INIT_VAL_MASK, 0x7f)))
- 	},
- 	{ XE_RTP_NAME("Tuning: Compression Overfetch"),
--	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, XE_RTP_END_VERSION_UNDEFINED),
-+	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, 3499),
- 		       FUNC(xe_rtp_match_has_flat_ccs)),
- 	  XE_RTP_ACTIONS(CLR(CCCHKNREG1, ENCOMPPERFFIX),
- 			 SET(CCCHKNREG1, L3CMPCTRL))
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index aa267c2f6162..a4472b7acb18 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -584,7 +584,7 @@
+ #define   DISABLE_128B_EVICTION_COMMAND_UDW	REG_BIT(36 - 32)
+ #define   LSCFE_SAME_ADDRESS_ATOMICS_COALESCING_DISABLE	REG_BIT(35 - 32)
+ 
+-#define ROW_CHICKEN5				XE_REG_MCR(0xe7f0)
++#define ROW_CHICKEN5				XE_REG_MCR(0xe7f0, XE_REG_OPTION_MASKED)
+ #define   CPSS_AWARE_DIS			REG_BIT(3)
+ 
+ #define SARB_CHICKEN1				XE_REG_MCR(0xe90c)
 
 -- 
 2.53.0
