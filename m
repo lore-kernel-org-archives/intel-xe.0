@@ -4,59 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A046F44840
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Apr 2026 11:25:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48BC9F44843
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Apr 2026 11:41:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EB8F10E937;
-	Fri, 10 Apr 2026 11:25:07 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EV7JQott";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EFC910E937;
- Fri, 10 Apr 2026 11:25:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775820305; x=1807356305;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=SXpQtKRDCvI6RQ8XlfZOVdH6LkIxYbb0WqenhPheF3Q=;
- b=EV7JQottUe2toTXtLDSwJwATObDzKZ8RjsVMWCS5+AOuWQKaPb9pNarM
- O5/DkoeA601u/IJQshr2b4r0XDgNNsGiseVbJ/aUx5fVD4jgIpyhRY3Fe
- ppsbnzoNDXWTS6SXJDH8YXBt90oUhi/davhy2TDpumNMEKHTTRl2IoKU/
- SoeQFBwtrXNi7oLMZ5sAhYED8UDfuY3Xrp1oItMA01641SqgZ9JHYX2m0
- 4SY0IGdBVuwkHRPpRvrcu4drrSypaMmJ2lZ0sGzouQzlwjBTXi6J/uGgq
- 9KnJGEog0q6sZa78vnpJa5Lg7i2YhJM+a8paRU0dWBwUdoGkIiQXMVMtS g==;
-X-CSE-ConnectionGUID: KoZrhxHbT7++riPkDGQCkQ==
-X-CSE-MsgGUID: /of4LMm6Q+CtQ7aQvHrZpA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11754"; a="87466186"
-X-IronPort-AV: E=Sophos;i="6.23,171,1770624000"; d="scan'208";a="87466186"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2026 04:25:04 -0700
-X-CSE-ConnectionGUID: vV7BW0tRTKyUYDNoWCkWdg==
-X-CSE-MsgGUID: SrrEHC/HR7+2bKAn8HVcgA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,171,1770624000"; d="scan'208";a="259528317"
-Received: from zzombora-mobl1 (HELO localhost) ([10.245.244.89])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2026 04:25:03 -0700
-Date: Fri, 10 Apr 2026 14:25:00 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 00/12] drm/i915/fb: Prep work for more generic remapping
- support
-Message-ID: <adjeDC2pOqVB4J6j@intel.com>
-References: <20260407155053.32156-1-ville.syrjala@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE41D10E94A;
+	Fri, 10 Apr 2026 11:41:03 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8AD0610E947;
+ Fri, 10 Apr 2026 11:41:03 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7018593612610965282=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260407155053.32156-1-ville.syrjala@linux.intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1/2?=
+ =?utf-8?q?=5D_drm/i915/mst=3A_Call_intel=5Fpfit=5Fcompute=5Fconfig=28=29_fo?=
+ =?utf-8?q?r_sharpness_filter_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 10 Apr 2026 11:41:03 -0000
+Message-ID: <177582126354.451162.12284553372587323456@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260409100841.1907-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20260409100841.1907-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,58 +37,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Apr 07, 2026 at 06:50:41PM +0300, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> I had a quick look at implementing tile64/Ys support.
-> https://github.com/vsyrjala/linux.git remap_tile_ys_64
-> is the result.
-> 
-> I think I want the whole generic remap thing from there
-> even if we don't end up adding the actual tile64/Ys support.
-> So here is an extract of some prep work from that branch,
-> though I didn't include the generic remap thing itself yet.
-> 
-> Ville Syrjälä (12):
->   drm/i915/fb: Nuke intel_tile_row_size()
->   drm/i915/fb: Make intel_fb_needs_pot_stride_remap() static
->   drm/i915/fb: Reject per-plane remapping with DPT
->   drm/i915/vma: Add helpers to check GTT view type
->   drm/i915/fb: Use i915_gtt_view_is_*()
->   drm/i915/fb: Use intel_fb_needs_pot_stride_remap() in
->     intel_fb_view_init()
+--===============7018593612610965282==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I merged all those to get intel_fb.c into shape. 
+== Series Details ==
 
->   drm/xe/fb: Use the correct gtt view for remapped FBs
->   drm/xe/fb: Remove weird VMA end alignemnt
->   drm/xe/fb: Extract xe_dpt_size()
->   drm/xe/fb: Use i915_gtt_view_is_*()
+Series: series starting with [1/2] drm/i915/mst: Call intel_pfit_compute_config() for sharpness filter (rev2)
+URL   : https://patchwork.freedesktop.org/series/164614/
+State : success
 
-Left out the xe specific stuff for now to see if Maarten/others
-have any comments.
+== Summary ==
 
->   drm/i915/selftests: Eliminate duplicate vma size check
->   drm/i915/selftests:  Use i915_gtt_view_is_*()
+CI Bug Log - changes from xe-4882-645a9910880f44919269478accf620dd33cb2656_BAT -> xe-pw-164614v2_BAT
+====================================================
 
-And I need to take another look at the selftests.
+Summary
+-------
 
-Thanks for the reviews.
+  **SUCCESS**
 
-> 
->  drivers/gpu/drm/i915/display/intel_fb.c    | 42 ++++++++++-----------
->  drivers/gpu/drm/i915/display/intel_fb.h    |  2 -
->  drivers/gpu/drm/i915/i915_gtt_view_types.h | 15 ++++++++
->  drivers/gpu/drm/i915/selftests/i915_vma.c  | 33 ++++++-----------
->  drivers/gpu/drm/xe/display/xe_fb_pin.c     | 43 ++++++++++++----------
->  5 files changed, 72 insertions(+), 63 deletions(-)
-> 
-> -- 
-> 2.52.0
+  No regressions found.
 
--- 
-Ville Syrjälä
-Intel
+  
+
+Participating hosts (14 -> 14)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-4882-645a9910880f44919269478accf620dd33cb2656 -> xe-pw-164614v2
+
+  IGT_8852: 8852
+  xe-4882-645a9910880f44919269478accf620dd33cb2656: 645a9910880f44919269478accf620dd33cb2656
+  xe-pw-164614v2: 164614v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164614v2/index.html
+
+--===============7018593612610965282==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915/mst: Call intel_pfit_compute_config() for sharpness filter (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164614/">https://patchwork.freedesktop.org/series/164614/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164614v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164614v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4882-645a9910880f44919269478accf620dd33cb2656_BAT -&gt; xe-pw-164614v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4882-645a9910880f44919269478accf620dd33cb2656 -&gt; xe-pw-164614v2</li>
+</ul>
+<p>IGT_8852: 8852<br />
+  xe-4882-645a9910880f44919269478accf620dd33cb2656: 645a9910880f44919269478accf620dd33cb2656<br />
+  xe-pw-164614v2: 164614v2</p>
+
+</body>
+</html>
+
+--===============7018593612610965282==--
