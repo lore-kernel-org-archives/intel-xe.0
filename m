@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6DAAF44872
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Apr 2026 14:07:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF468F44873
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Apr 2026 14:07:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82D8110E961;
-	Fri, 10 Apr 2026 14:07:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9406610E962;
+	Fri, 10 Apr 2026 14:07:47 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF7EA10E961;
- Fri, 10 Apr 2026 14:07:39 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8579530652192684439=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4008D10E962;
+ Fri, 10 Apr 2026 14:07:46 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Add_support_f?=
- =?utf-8?q?or_NO=5FRESPONSE=5FBUSY_in_CTB_=28rev3=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Convert_stolen_?=
+ =?utf-8?q?memory_over_to_ttm=5Frange=5Fmanager?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+To: "Sanjay Yadav" <sanjay.kumar.yadav@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 10 Apr 2026 14:07:39 -0000
-Message-ID: <177583005996.451491.884353888351648115@a3b018990fe9>
+Date: Fri, 10 Apr 2026 14:07:46 -0000
+Message-ID: <177583006624.451491.1490657416122538402@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260410110457.573-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20260410110457.573-1-michal.wajdeczko@intel.com>
+References: <20260410120601.3234709-2-sanjay.kumar.yadav@intel.com>
+In-Reply-To: <20260410120601.3234709-2-sanjay.kumar.yadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,136 +40,73 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8579530652192684439==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/guc: Add support for NO_RESPONSE_BUSY in CTB (rev3)
-URL   : https://patchwork.freedesktop.org/series/164357/
-State : success
+Series: drm/xe: Convert stolen memory over to ttm_range_manager
+URL   : https://patchwork.freedesktop.org/series/164694/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4883-56a9321dbb8dd1a1d5e85fc86bd30c4a0d5147db_BAT -> xe-pw-164357v3_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit d32a45df9a779e467a6842b77e0db2cf3df5b948
+Author: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+Date:   Fri Apr 10 17:36:02 2026 +0530
 
-Summary
--------
+    drm/xe: Convert stolen memory over to ttm_range_manager
+    
+    The stolen memory manager was sharing the gpu_buddy allocator backend
+    with the VRAM manager. However, stolen memory has fundamentally
+    different allocation patterns that make the buddy allocator a poor fit.
+    
+    - Allocation sizes are not power-of-two. Since buddy rounds up to the
+      next power-of-two block size, a ~17MB request can fail even with
+      ~22MB free, because the free space is fragmented across non-fitting
+      power-of-two blocks.
+    - Hardware restrictions prevent using the first 4K page of stolen for
+      certain allocations (e.g., FBC). The display code sets fpfn=1 to
+      enforce this, but when fpfn != 0, gpu_buddy enables
+      GPU_BUDDY_RANGE_ALLOCATION mode which disables the try_harder
+      coalescing path, further reducing allocation success.
+    
+    This combination caused FBC compressed framebuffer (CFB) allocation
+    failures on platforms like NVL/PTL. In case of NVL where stolen memory
+    is ~56MB and the initial plane framebuffer consumes ~34MB at probe time,
+    leaving ~22MB for subsequent allocations.
+    
+    Use ttm_range_man_init_nocheck() to set up a drm_mm-backed TTM resource
+    manager for stolen memory. This reuses the TTM core's ttm_range_manager
+    callbacks, avoiding duplicate implementations.
+    
+    Tested on NVL with a 4K DP display: stolen_mm shows a single ~22MB
+    contiguous free hole after initial plane framebuffer allocation, and
+    FBC successfully allocates its CFB from that region. The corresponding
+    IGT was previously skipped and now passes.
+    
+    Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/7631
+    Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Suggested-by: Matthew Auld <matthew.auld@intel.com>
+    Assisted-by: GitHub Copilot:claude-sonnet-4.6
+    Signed-off-by: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
++ /mt/dim checkpatch 00494f7cc0daee7d5119d6e86682ab6fa3fdfcb8 drm-intel
+d32a45df9a77 drm/xe: Convert stolen memory over to ttm_range_manager
+-:38: WARNING:BAD_SIGN_OFF: Non-standard signature: Assisted-by:
+#38: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
 
-  **SUCCESS**
+-:38: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'GitHub Copilot:claude-sonnet-4.6'
+#38: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
 
-  No regressions found.
-
-  
-
-Participating hosts (14 -> 14)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-164357v3_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4883-56a9321dbb8dd1a1d5e85fc86bd30c4a0d5147db/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164357v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#7483]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4883-56a9321dbb8dd1a1d5e85fc86bd30c4a0d5147db/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164357v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  
-  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
-
-
-Build changes
--------------
-
-  * Linux: xe-4883-56a9321dbb8dd1a1d5e85fc86bd30c4a0d5147db -> xe-pw-164357v3
-
-  IGT_8853: b52b42b0c987404a8cbf80c77a41e37705e32779 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4883-56a9321dbb8dd1a1d5e85fc86bd30c4a0d5147db: 56a9321dbb8dd1a1d5e85fc86bd30c4a0d5147db
-  xe-pw-164357v3: 164357v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164357v3/index.html
-
---===============8579530652192684439==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 1 errors, 1 warnings, 0 checks, 205 lines checked
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: Add support for NO_RESPONSE_BUSY in CTB (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164357/">https://patchwork.freedesktop.org/series/164357/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164357v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164357v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4883-56a9321dbb8dd1a1d5e85fc86bd30c4a0d5147db_BAT -&gt; xe-pw-164357v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-164357v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4883-56a9321dbb8dd1a1d5e85fc86bd30c4a0d5147db/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164357v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4883-56a9321dbb8dd1a1d5e85fc86bd30c4a0d5147db/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164357v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4883-56a9321dbb8dd1a1d5e85fc86bd30c4a0d5147db -&gt; xe-pw-164357v3</li>
-</ul>
-<p>IGT_8853: b52b42b0c987404a8cbf80c77a41e37705e32779 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4883-56a9321dbb8dd1a1d5e85fc86bd30c4a0d5147db: 56a9321dbb8dd1a1d5e85fc86bd30c4a0d5147db<br />
-  xe-pw-164357v3: 164357v3</p>
-
-</body>
-</html>
-
---===============8579530652192684439==--
