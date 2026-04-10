@@ -4,79 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83B28F459F5
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Apr 2026 16:27:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4667F459F5
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Apr 2026 16:35:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40C6010E98B;
-	Fri, 10 Apr 2026 16:27:33 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eWuybfay";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C89410E98B;
- Fri, 10 Apr 2026 16:27:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775838451; x=1807374451;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=IHrh+GDST0ffvb9fJgkO4xud4pnrUR86nT8oGDk1Bxw=;
- b=eWuybfayaGn1wwAe23CjAyg12nnc0bjJUCOo2SS6hg1Q6RE1h42/HHfz
- U3YTNCUj4qi/ec5j4w7RPdCmb/QkmIXIR14xSHPRQI0aODbpbZ/UdyNZV
- bhUA6EgwCcz0EIRmPlaNgBshPQCoISH3Yl8bfBNwKk5MFNGG5uoHTzVyH
- t3vgzK3p7t4gGh9xkg54V3/aEBClZDa6YgEIJjOrOTgWnfqq9y6Zt615L
- weBA+jZtmXyMO00pEFXYzCHHJP4i6Jm4MEDHiNX3OjUp3CmkUFe6xaZhw
- avMqIY/df7wiJ7Li3srOQKdJCe1Es1SRCgju4OMoo+ZFHmBF+tqLWkFLk Q==;
-X-CSE-ConnectionGUID: 1bIOXreQR+WoQkbgsMs9Sw==
-X-CSE-MsgGUID: zyHOWOKESEql72EGWZ58fQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11755"; a="76933467"
-X-IronPort-AV: E=Sophos;i="6.23,171,1770624000"; d="scan'208";a="76933467"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2026 09:27:07 -0700
-X-CSE-ConnectionGUID: 4/fIzqdnQ+CpUdSv9Sm0GA==
-X-CSE-MsgGUID: eGq97sFQSFWZyxYa7Ez6/w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,171,1770624000"; d="scan'208";a="225962466"
-Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.149])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2026 09:26:57 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Kory Maincent <kory.maincent@bootlin.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Dave
- Airlie <airlied@redhat.com>, Jesse Barnes <jbarnes@virtuousgeek.org>, Eric
- Anholt <eric@anholt.net>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Andrzej Hajda
- <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- Robert Foss <rfoss@kernel.org>, Laurent Pinchart
- <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Chun-Kuang Hu
- <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, Chris Wilson
- <chris@chris-wilson.co.uk>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Mark Yacoub
- <markyacoub@google.com>, Sean Paul <seanpaul@google.com>, Louis Chauvet
- <louis.chauvet@bootlin.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Simona Vetter
- <simona.vetter@ffwll.ch>, Kory Maincent <kory.maincent@bootlin.com>
-Subject: Re: [PATCH RFC 10/12] drm/i915/display/dp: Adopt dp_connector
- helpers to expose link training state
-In-Reply-To: <20260409-feat_link_cap-v1-10-7069e8199ce2@bootlin.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260409-feat_link_cap-v1-0-7069e8199ce2@bootlin.com>
- <20260409-feat_link_cap-v1-10-7069e8199ce2@bootlin.com>
-Date: Fri, 10 Apr 2026 19:26:53 +0300
-Message-ID: <e253ca4fa0b493032a7b35a0a20689b9d9e0c4e7@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6694310E98B;
+	Fri, 10 Apr 2026 16:35:43 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E7B910E98B;
+ Fri, 10 Apr 2026 16:35:42 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Start_fixing_OA_whitelist?=
+ =?utf-8?q?_mistakes_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 10 Apr 2026 16:35:42 -0000
+Message-ID: <177583894204.451491.2238536951915685404@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260408-oa-whitelist-cleanup-v2-0-db4a06aae8b0@intel.com>
+In-Reply-To: <20260408-oa-whitelist-cleanup-v2-0-db4a06aae8b0@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,175 +36,84 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 09 Apr 2026, Kory Maincent <kory.maincent@bootlin.com> wrote:
-> Switch the i915 DP connector initialization from drmm_connector_init()
-> to drmm_connector_dp_init(), providing the source link capabilities
-> (supported lane counts, link rates, DSC support, voltage swing and
-> pre-emphasis levels).
->
-> Add intel_dp_report_link_train() to collect the negotiated link
-> parameters (rate, lane count, DSC enable, per-lane voltage swing and
-> pre-emphasis) and report them via drm_connector_dp_set_link_train_properties()
-> once link training completes successfully.
->
-> Reset the link training properties via
-> drm_connector_dp_reset_link_train_properties() when the connector is
-> reported as disconnected or when the display device is disabled, so
-> the exposed state always reflects the current link status.
->
-> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c            | 31 +++++++++++++++++++---
->  .../gpu/drm/i915/display/intel_dp_link_training.c  | 25 +++++++++++++++++
->  2 files changed, 52 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 2af64de9c81de..641406bdc0cc9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -45,6 +45,7 @@
->  #include <drm/display/drm_hdmi_helper.h>
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_crtc.h>
-> +#include <drm/drm_dp_connector.h>
->  #include <drm/drm_edid.h>
->  #include <drm/drm_fixed.h>
->  #include <drm/drm_managed.h>
-> @@ -6337,8 +6338,10 @@ intel_dp_detect(struct drm_connector *_connector,
->  	drm_WARN_ON(display->drm,
->  		    !drm_modeset_is_locked(&display->drm->mode_config.connection_mutex));
->  
-> -	if (!intel_display_device_enabled(display))
-> +	if (!intel_display_device_enabled(display)) {
-> +		drm_connector_dp_reset_link_train_properties(_connector);
->  		return connector_status_disconnected;
-> +	}
->  
->  	if (!intel_display_driver_check_access(display))
->  		return connector->base.status;
-> @@ -6388,6 +6391,8 @@ intel_dp_detect(struct drm_connector *_connector,
->  
->  		intel_dp_tunnel_disconnect(intel_dp);
->  
-> +		drm_connector_dp_reset_link_train_properties(_connector);
-> +
->  		goto out_unset_edid;
->  	}
->  
-> @@ -7162,10 +7167,12 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
->  			struct intel_connector *connector)
->  {
->  	struct intel_display *display = to_intel_display(dig_port);
-> +	struct drm_connector_dp_link_train_caps link_caps;
->  	struct intel_dp *intel_dp = &dig_port->dp;
->  	struct intel_encoder *encoder = &dig_port->base;
->  	struct drm_device *dev = encoder->base.dev;
->  	enum port port = encoder->port;
-> +	u32 *rates;
->  	int type;
->  
->  	if (drm_WARN(dev, dig_port->max_lanes < 1,
-> @@ -7213,8 +7220,25 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
->  		    type == DRM_MODE_CONNECTOR_eDP ? "eDP" : "DP",
->  		    encoder->base.base.id, encoder->base.name);
->  
-> -	drmm_connector_init(dev, &connector->base, &intel_dp_connector_funcs,
-> -			    type, &intel_dp->aux.ddc);
-> +	intel_dp_set_source_rates(intel_dp);
-> +	link_caps.nlanes = DRM_DP_1LANE | DRM_DP_2LANE | DRM_DP_4LANE;
-> +	link_caps.nrates = intel_dp->num_source_rates;
-> +	rates = kzalloc_objs(*rates, intel_dp->num_source_rates);
-> +	if (!rates)
-> +		goto fail;
-> +
-> +	for (int i = 0; i < intel_dp->num_source_rates; i++)
-> +		rates[i] = intel_dp->source_rates[i];
-> +
-> +	link_caps.rates = rates;
-> +	link_caps.dsc = true;
+== Series Details ==
 
-You have a source, you have a sink, and you have a link between the two.
+Series: Start fixing OA whitelist mistakes (rev5)
+URL   : https://patchwork.freedesktop.org/series/159772/
+State : warning
 
-Source rates do not reflect the link rates common between source and
-sink.
+== Summary ==
 
-DSC depends on source and sink, and it's not statically "true" for
-either, and depends on a bunch of things.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 952b29e0ff2e98f38946cf86e4c69e3287dfa596
+Author: Matt Roper <matthew.d.roper@intel.com>
+Date:   Wed Apr 8 16:43:09 2026 -0700
 
-BR,
-Jani.
+    drm/xe/oa: Stop whitelisting OASTARTTRIG_COUNTER
+    
+    Whitelisting OAHEADPTR with flag RING_FORCE_TO_NONPRIV_RANGE_4
+    whitelists not just the intended OAHEADPTR, OATAILPTR, and OABUFFER
+    registers, but also OASTARTTRIG_COUNTER which is not necessary or
+    desirable.  Stop using the RANGE_4 flag in cases where we don't truly
+    want to whitelist four registers.
+    
+    While at it, eliminate some of the layers of C macros; these are making
+    it harder to see what registers are truly being whitelisted which isn't
+    really worth the lines of code being saved.  We can however reduce some
+    of the duplication of code by consolidating oam_mmio_trg_vcs and
+    oam_mmio_trg_vecs into a single entry with a custom match function; this
+    will also make things simpler in the future if we determine that we can
+    tighten up the specific engines that some of these registers are
+    whitelisted on.
+    
+    Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
++ /mt/dim checkpatch 3751e2e5a19aba3949a3f12aa5b917eb8bbb1eb5 drm-intel
+4388884b87d3 drm/xe/oa: Stop whitelisting non-SAG MMIO_TRG registers on non-DG2
+-:52: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#52: FILE: drivers/gpu/drm/xe/xe_reg_whitelist.c:101:
++#define WHITELIST_OA_MMIO_TRG(status, head) \
+ 	WHITELIST(status, RING_FORCE_TO_NONPRIV_ACCESS_RD), \
+ 	WHITELIST(head, RING_FORCE_TO_NONPRIV_ACCESS_RD | RING_FORCE_TO_NONPRIV_RANGE_4)
 
-> +	link_caps.v_swings = DRM_DP_VOLTAGE_SWING_LEVEL_MASK;
-> +	link_caps.pre_emphs = DRM_DP_PRE_EMPH_LEVEL_MASK;
-> +
-> +	drmm_connector_dp_init(dev, &connector->base, &intel_dp_connector_funcs,
-> +			       &link_caps, type, &intel_dp->aux.ddc);
-> +	kfree(rates);
-> +
->  	drm_connector_helper_add(&connector->base, &intel_dp_connector_helper_funcs);
->  
->  	if (drmm_add_action_or_reset(dev, intel_connector_destroy, connector)) {
-> @@ -7240,7 +7264,6 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
->  	if (!intel_edp_init_connector(intel_dp, connector))
->  		goto fail;
->  
-> -	intel_dp_set_source_rates(intel_dp);
->  	intel_dp_set_common_rates(intel_dp);
->  	intel_dp_reset_link_params(intel_dp);
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> index 54c585c59b900..c2fd46a323650 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> @@ -25,6 +25,7 @@
->  #include <linux/iopoll.h>
->  
->  #include <drm/display/drm_dp_helper.h>
-> +#include <drm/drm_dp_connector.h>
->  #include <drm/drm_print.h>
->  
->  #include "intel_display_core.h"
-> @@ -1116,6 +1117,27 @@ intel_dp_128b132b_intra_hop(struct intel_dp *intel_dp,
->  	return sink_status & DP_INTRA_HOP_AUX_REPLY_INDICATION ? 1 : 0;
->  }
->  
-> +static void intel_dp_report_link_train(struct intel_dp *intel_dp)
-> +{
-> +	struct intel_connector *connector = intel_dp->attached_connector;
-> +	struct drm_connector_dp_link_train dp_link_train;
-> +
-> +	dp_link_train.rate = intel_dp->link_rate;
-> +	dp_link_train.nlanes = intel_dp->lane_count;
-> +	dp_link_train.dsc_en = connector->dp.dsc_decompression_enabled;
-> +
-> +	for (int i = 0; i < intel_dp->lane_count; i++) {
-> +		int v_swing_level = (intel_dp->train_set[i] &
-> +				     DP_TRAIN_VOLTAGE_SWING_MASK) >> DP_TRAIN_VOLTAGE_SWING_SHIFT;
-> +		int pre_emph_level = (intel_dp->train_set[i] &
-> +				      DP_TRAIN_PRE_EMPHASIS_MASK) >> DP_TRAIN_PRE_EMPHASIS_SHIFT;
-> +		dp_link_train.v_swing[i] = 1 << v_swing_level;
-> +		dp_link_train.pre_emph[i] = 1 << pre_emph_level;
-> +	}
-> +
-> +	drm_connector_dp_set_link_train_properties(&connector->base, &dp_link_train);
-> +}
-> +
->  /**
->   * intel_dp_stop_link_train - stop link training
->   * @intel_dp: DP struct
-> @@ -1144,6 +1166,9 @@ void intel_dp_stop_link_train(struct intel_dp *intel_dp,
->  	intel_dp_program_link_training_pattern(intel_dp, crtc_state, DP_PHY_DPRX,
->  					       DP_TRAINING_PATTERN_DISABLE);
->  
-> +	if (!intel_dp->is_mst)
-> +		intel_dp_report_link_train(intel_dp);
-> +
->  	if (intel_dp_is_uhbr(crtc_state)) {
->  		ret = poll_timeout_us(ret = intel_dp_128b132b_intra_hop(intel_dp, crtc_state),
->  				      ret == 0,
+BUT SEE:
 
--- 
-Jani Nikula, Intel
+   do {} while (0) advice is over-stated in a few situations:
+
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
+
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
+
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
+
+   Enjoy this qualification while we work to improve our heuristics.
+
+total: 1 errors, 0 warnings, 0 checks, 65 lines checked
+81b32a4c7a9d drm/xe/oa: Stop whitelisting OAG_OASTATUS
+52de4a687e49 drm/xe/oa: Stop whitelisting OAM registers on non Xe2/Xe3
+d0b214465c62 drm/xe/oa: Stop whitelisting OAG registers after Xe3
+33c7e65acd6e drm/xe: Add WHITELIST_RO macro
+dfb44ff2c1e7 drm/xe/oa: Consolidate RTP entries for OAM whitelist
+13224f0645aa drm/xe/oa: Consolidate RTP entries for OAG whitelist
+4f26884442b3 drm/xe/oa: Consolidate RTP entries for OA MERT
+8d07e022c3d4 drm/xe: Enable all FORCE_TO_NONPRIV registers
+952b29e0ff2e drm/xe/oa: Stop whitelisting OASTARTTRIG_COUNTER
+
+
