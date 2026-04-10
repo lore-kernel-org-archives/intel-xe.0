@@ -4,52 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA082F364DB
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Apr 2026 11:05:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A046F44840
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Apr 2026 11:25:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B073A10E934;
-	Fri, 10 Apr 2026 11:05:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2EB8F10E937;
+	Fri, 10 Apr 2026 11:25:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k0b0H63t";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EV7JQott";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0491410E934
- for <intel-xe@lists.freedesktop.org>; Fri, 10 Apr 2026 11:05:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EFC910E937;
+ Fri, 10 Apr 2026 11:25:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775819110; x=1807355110;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=L9gTmEzNuzA+atX0eDZX8ohaCTyAiW1AwUs3g7EIATY=;
- b=k0b0H63t9DdRDVV7YjmJHsF8gU7CPiQTnhSNxVJMK+/xpL0FUs+uLclI
- FCLsh8+LYXRLhcYMki8xZMq2/L8vM9c3AJxvy9Hr5GVwvG2eB5cUDLgOk
- bSWnJiK1ifX2QWU0fSsmiQReqAjie8Jz8xCecnXWzQAf+XXBSPQIHrRiE
- dfg8JFMkTc8pJciAcoAF/L73ZvB+2S885LslUYTRL66Qg16b5qg2Qbgwu
- 92JVF6MuRNbJPkWhebEJhEfSkf3Dj6gs60U9h/yXhml14yfWzNsad9l0H
- EO2aM1UGesFG5GK8CgHkQUECwjuTH4f1LuHzcV4Aop7xMtBN15SIvxXK0 g==;
-X-CSE-ConnectionGUID: dcHq4WzpQp6dg0FBvHrYsA==
-X-CSE-MsgGUID: cxDQY6nNSxO0cZSHihhEBA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11754"; a="76553589"
-X-IronPort-AV: E=Sophos;i="6.23,171,1770624000"; d="scan'208";a="76553589"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2026 04:05:09 -0700
-X-CSE-ConnectionGUID: GjgGdTvvT2+8V+rlSxj/Cw==
-X-CSE-MsgGUID: Pdwvb7ZtQAa8L47zUlCCXA==
+ t=1775820305; x=1807356305;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=SXpQtKRDCvI6RQ8XlfZOVdH6LkIxYbb0WqenhPheF3Q=;
+ b=EV7JQottUe2toTXtLDSwJwATObDzKZ8RjsVMWCS5+AOuWQKaPb9pNarM
+ O5/DkoeA601u/IJQshr2b4r0XDgNNsGiseVbJ/aUx5fVD4jgIpyhRY3Fe
+ ppsbnzoNDXWTS6SXJDH8YXBt90oUhi/davhy2TDpumNMEKHTTRl2IoKU/
+ SoeQFBwtrXNi7oLMZ5sAhYED8UDfuY3Xrp1oItMA01641SqgZ9JHYX2m0
+ 4SY0IGdBVuwkHRPpRvrcu4drrSypaMmJ2lZ0sGzouQzlwjBTXi6J/uGgq
+ 9KnJGEog0q6sZa78vnpJa5Lg7i2YhJM+a8paRU0dWBwUdoGkIiQXMVMtS g==;
+X-CSE-ConnectionGUID: KoZrhxHbT7++riPkDGQCkQ==
+X-CSE-MsgGUID: /of4LMm6Q+CtQ7aQvHrZpA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11754"; a="87466186"
+X-IronPort-AV: E=Sophos;i="6.23,171,1770624000"; d="scan'208";a="87466186"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2026 04:25:04 -0700
+X-CSE-ConnectionGUID: vV7BW0tRTKyUYDNoWCkWdg==
+X-CSE-MsgGUID: SrrEHC/HR7+2bKAn8HVcgA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,171,1770624000"; d="scan'208";a="228938929"
-Received: from pwlodar-mobl.ger.corp.intel.com (HELO
- mwajdecz-hp.clients.intel.com) ([10.246.17.89])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2026 04:05:09 -0700
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v3] drm/xe/guc: Add support for NO_RESPONSE_BUSY in CTB
-Date: Fri, 10 Apr 2026 13:04:57 +0200
-Message-ID: <20260410110457.573-1-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.43.0
+X-IronPort-AV: E=Sophos;i="6.23,171,1770624000"; d="scan'208";a="259528317"
+Received: from zzombora-mobl1 (HELO localhost) ([10.245.244.89])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2026 04:25:03 -0700
+Date: Fri, 10 Apr 2026 14:25:00 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 00/12] drm/i915/fb: Prep work for more generic remapping
+ support
+Message-ID: <adjeDC2pOqVB4J6j@intel.com>
+References: <20260407155053.32156-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260407155053.32156-1-ville.syrjala@linux.intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,151 +71,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We only have support for G2H NO_RESPONSE_BUSY messages over MMIO,
-but it turned out that GuC also uses that type of messages in CTB.
+On Tue, Apr 07, 2026 at 06:50:41PM +0300, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> I had a quick look at implementing tile64/Ys support.
+> https://github.com/vsyrjala/linux.git remap_tile_ys_64
+> is the result.
+> 
+> I think I want the whole generic remap thing from there
+> even if we don't end up adding the actual tile64/Ys support.
+> So here is an extract of some prep work from that branch,
+> though I didn't include the generic remap thing itself yet.
+> 
+> Ville Syrjälä (12):
+>   drm/i915/fb: Nuke intel_tile_row_size()
+>   drm/i915/fb: Make intel_fb_needs_pot_stride_remap() static
+>   drm/i915/fb: Reject per-plane remapping with DPT
+>   drm/i915/vma: Add helpers to check GTT view type
+>   drm/i915/fb: Use i915_gtt_view_is_*()
+>   drm/i915/fb: Use intel_fb_needs_pot_stride_remap() in
+>     intel_fb_view_init()
 
-The following error was recently observed on BMG after adding VGT
-policy updates to the GT restart sequence:
+I merged all those to get intel_fb.c into shape. 
 
- [] xe 0000:03:00.0: [drm] *ERROR* Tile0: GT1: G2H channel broken on read, type=3, reset required
- [] xe 0000:03:00.0: [drm] *ERROR* Tile0: GT1: CT dequeue failed: -95
- ...
- [] xe 0000:03:00.0: [drm] *ERROR* Tile0: GT1: Timed out wait for G2H, fence 21965, action 5502, done no
- [] xe 0000:03:00.0: [drm] PF: Tile0: GT1: Failed to push 1 policy KLV (-ETIME)
- [] xe 0000:03:00.0: [drm] Tile0: GT1: { key 0x8004 : no value } # engine_group_config
+>   drm/xe/fb: Use the correct gtt view for remapped FBs
+>   drm/xe/fb: Remove weird VMA end alignemnt
+>   drm/xe/fb: Extract xe_dpt_size()
+>   drm/xe/fb: Use i915_gtt_view_is_*()
 
-where type=3 was this unrecognized NO_RESPONSE_BUSY message.
+Left out the xe specific stuff for now to see if Maarten/others
+have any comments.
 
-Note that GuC might send the real RESPONSE message right after
-the BUSY message, so we must be prepared to update our g2h_fence
-data twice before sender actually wakes up and clears the flags.
+>   drm/i915/selftests: Eliminate duplicate vma size check
+>   drm/i915/selftests:  Use i915_gtt_view_is_*()
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
----
-Cc: Matthew Brost <matthew.brost@intel.com>
-Link: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164119v2/shard-bmg-9/igt@xe_exec_reset@gt-reset.html
----
-v2: rename helper, add more in-code comments (Daniele)
-    add and use g2h_fence.counter field (Michal)
-v3: clearly mention BUSY message in comment (Daniele)
----
- drivers/gpu/drm/xe/xe_guc_ct.c | 38 ++++++++++++++++++++++++++++++++--
- 1 file changed, 36 insertions(+), 2 deletions(-)
+And I need to take another look at the selftests.
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index a11cff7a20be..21e0dad9a481 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -186,13 +186,16 @@ static void fast_req_track(struct xe_guc_ct *ct, u16 fence, u16 action) { }
- struct g2h_fence {
- 	u32 *response_buffer;
- 	u32 seqno;
-+	/* fields below this point are setup based on the response */
- 	u32 response_data;
- 	u16 response_len;
- 	u16 error;
- 	u16 hint;
- 	u16 reason;
-+	u32 counter;
- 	bool cancel;
- 	bool retry;
-+	bool wait;
- 	bool fail;
- 	bool done;
- };
-@@ -204,6 +207,11 @@ static void g2h_fence_init(struct g2h_fence *g2h_fence, u32 *response_buffer)
- 	g2h_fence->seqno = ~0x0;
- }
- 
-+static void g2h_fence_reinit(struct g2h_fence *g2h_fence)
-+{
-+	memset_after(g2h_fence, 0, seqno);
-+}
-+
- static void g2h_fence_cancel(struct g2h_fence *g2h_fence)
- {
- 	g2h_fence->cancel = true;
-@@ -1331,6 +1339,7 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 	/* READ_ONCEs pairs with WRITE_ONCEs in parse_g2h_response
- 	 * and g2h_fence_cancel.
- 	 */
-+wait_again:
- 	ret = wait_event_timeout(ct->g2h_fence_wq, READ_ONCE(g2h_fence.done), HZ);
- 	if (!ret) {
- 		LNL_FLUSH_WORK(&ct->g2h_worker);
-@@ -1356,6 +1365,14 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 		return -ETIME;
- 	}
- 
-+	if (g2h_fence.wait) {
-+		xe_gt_dbg(gt, "H2G action %#x busy: counter %u\n",
-+			  action[0], g2h_fence.counter);
-+		/* we can't leave any response data if we want to wait again */
-+		g2h_fence_reinit(&g2h_fence);
-+		mutex_unlock(&ct->lock);
-+		goto wait_again;
-+	}
- 	if (g2h_fence.retry) {
- 		xe_gt_dbg(gt, "H2G action %#x retrying: reason %#x\n",
- 			  action[0], g2h_fence.reason);
-@@ -1508,7 +1525,12 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
- 		return -EPROTO;
- 	}
- 
--	g2h_fence = xa_erase(&ct->fence_lookup, fence);
-+	/* don't erase as we still expect a final response with the same fence */
-+	if (type == GUC_HXG_TYPE_NO_RESPONSE_BUSY)
-+		g2h_fence = xa_load(&ct->fence_lookup, fence);
-+	else
-+		g2h_fence = xa_erase(&ct->fence_lookup, fence);
-+
- 	if (unlikely(!g2h_fence)) {
- 		/* Don't tear down channel, as send could've timed out */
- 		/* CT_DEAD(ct, NULL, PARSE_G2H_UNKNOWN); */
-@@ -1519,6 +1541,12 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
- 
- 	xe_gt_assert(gt, fence == g2h_fence->seqno);
- 
-+	/*
-+	 * reinit as we might have already process this g2h_fence before
-+	 * if we received a NO_RESPONSE_BUSY reply
-+	 */
-+	g2h_fence_reinit(g2h_fence);
-+
- 	if (type == GUC_HXG_TYPE_RESPONSE_FAILURE) {
- 		g2h_fence->fail = true;
- 		g2h_fence->error = FIELD_GET(GUC_HXG_FAILURE_MSG_0_ERROR, hxg[0]);
-@@ -1526,6 +1554,9 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
- 	} else if (type == GUC_HXG_TYPE_NO_RESPONSE_RETRY) {
- 		g2h_fence->retry = true;
- 		g2h_fence->reason = FIELD_GET(GUC_HXG_RETRY_MSG_0_REASON, hxg[0]);
-+	} else if (type == GUC_HXG_TYPE_NO_RESPONSE_BUSY) {
-+		g2h_fence->wait = true;
-+		g2h_fence->counter = FIELD_GET(GUC_HXG_BUSY_MSG_0_COUNTER, hxg[0]);
- 	} else if (g2h_fence->response_buffer) {
- 		g2h_fence->response_len = hxg_len;
- 		memcpy(g2h_fence->response_buffer, hxg, hxg_len * sizeof(u32));
-@@ -1533,7 +1564,9 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
- 		g2h_fence->response_data = FIELD_GET(GUC_HXG_RESPONSE_MSG_0_DATA0, hxg[0]);
- 	}
- 
--	g2h_release_space(ct, GUC_CTB_HXG_MSG_MAX_LEN);
-+	/* don't release any space if it was an intermediate message */
-+	if (!g2h_fence->wait)
-+		g2h_release_space(ct, GUC_CTB_HXG_MSG_MAX_LEN);
- 
- 	/* WRITE_ONCE pairs with READ_ONCEs in guc_ct_send_recv. */
- 	WRITE_ONCE(g2h_fence->done, true);
-@@ -1570,6 +1603,7 @@ static int parse_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
- 	case GUC_HXG_TYPE_RESPONSE_SUCCESS:
- 	case GUC_HXG_TYPE_RESPONSE_FAILURE:
- 	case GUC_HXG_TYPE_NO_RESPONSE_RETRY:
-+	case GUC_HXG_TYPE_NO_RESPONSE_BUSY:
- 		ret = parse_g2h_response(ct, msg, len);
- 		break;
- 	default:
+Thanks for the reviews.
+
+> 
+>  drivers/gpu/drm/i915/display/intel_fb.c    | 42 ++++++++++-----------
+>  drivers/gpu/drm/i915/display/intel_fb.h    |  2 -
+>  drivers/gpu/drm/i915/i915_gtt_view_types.h | 15 ++++++++
+>  drivers/gpu/drm/i915/selftests/i915_vma.c  | 33 ++++++-----------
+>  drivers/gpu/drm/xe/display/xe_fb_pin.c     | 43 ++++++++++++----------
+>  5 files changed, 72 insertions(+), 63 deletions(-)
+> 
+> -- 
+> 2.52.0
+
 -- 
-2.47.1
-
+Ville Syrjälä
+Intel
