@@ -4,160 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67FF9F45A11
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Apr 2026 22:51:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D316F45A0D
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Apr 2026 22:51:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25D4010E9DC;
-	Fri, 10 Apr 2026 22:51:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 587AE10E05E;
+	Fri, 10 Apr 2026 22:51:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kmyKEIso";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dSR55Gjy";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51DA110E9DC
- for <intel-xe@lists.freedesktop.org>; Fri, 10 Apr 2026 22:51:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E96010E05E
+ for <intel-xe@lists.freedesktop.org>; Fri, 10 Apr 2026 22:51:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775861460; x=1807397460;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=/sq7p1G+HFGllN2NlZsGLcKzI9Tb4hHJBcANk4+1mQU=;
- b=kmyKEIso6YA8C7akPiO8fxFLywscS3tKbgOyzKf8COYicH+Sywa5gBdS
- FHzcm7yLkiSQD/onCfE9IFdeq1H3NkOcJm67/8W2oSzWS8NIdtBxf2zMW
- fGQBGfCuRz9+f0iNgocmsx87+MOkDxhL/l8HEJAfR1FMhN/oQW8+ZwUvf
- yuO3ltiYZHXgrAeR+OJXC+CHnTQGn2YpWxU613wYa/21sL+NCvXVp13IY
- GFkJtGwK8aWE0qnqg02r/oP3L0JoY09htdeSDvHCXStJDufiLbDvGzX+u
- SC/IFWjCzIFxbEl+ovWRas5VNWgE6yyv1ML3BklGHnjdHh1R7EHw6HeEu Q==;
-X-CSE-ConnectionGUID: 8iLmGHO3RmO5KuJmrQF5Sg==
-X-CSE-MsgGUID: AndB+j6kTQilyF/dMybD0A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11755"; a="75929354"
-X-IronPort-AV: E=Sophos;i="6.23,172,1770624000"; d="scan'208";a="75929354"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2026 15:51:00 -0700
-X-CSE-ConnectionGUID: KYuLSKeRSFm5TCuTb5gzFQ==
-X-CSE-MsgGUID: 5jP6zc86QPiKsY/RH3/Ztg==
+ t=1775861467; x=1807397467;
+ h=from:subject:date:message-id:mime-version:
+ content-transfer-encoding:to:cc;
+ bh=5eZdo6qeNKGckZIPAJN2JqJjWMbmmYb6x2BXd8eY52g=;
+ b=dSR55GjyJ3QGF+DrFo7yg7gzUo/gsqmcHJ6kiaCes5/zHTSYhfa5pKZN
+ lQpBVeD5HtQcRkX5GX2iTddLiQG0jmOuZfLgkM6HNmjqtrTtyIYLwGhhp
+ grt56M8ZLIkt9Wt1mVHW5sIvS00nNk9tIpfpJETdWWYdNOeiVjejcytXp
+ POU15Dm4yJJuunVvpyCzeMO2SscuwYbtZp8i88aknT6+U9BHHnRHKFQou
+ IPtCE1aTunuosgwoVBCKBNv15kEh/C5k9mz11QbIiHsuUogXvpZpMOagv
+ abl3QwI6xGXhEl1ZMEIX0bg7ASOaIzM8rKEjIVQ4hSJnUsGZAoRrSuCTO w==;
+X-CSE-ConnectionGUID: Sr7vBNQ1Tneqr2SXx62zGQ==
+X-CSE-MsgGUID: xwtkRMLQSba9LJwqcKszBA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11755"; a="76849547"
+X-IronPort-AV: E=Sophos;i="6.23,172,1770624000"; d="scan'208";a="76849547"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2026 15:51:06 -0700
+X-CSE-ConnectionGUID: c1XXdKkfTgqw3goxmnC13A==
+X-CSE-MsgGUID: J/cEOZGxSW2y868+UnnztQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,172,1770624000"; d="scan'208";a="233615781"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2026 15:50:59 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 10 Apr 2026 15:50:58 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Fri, 10 Apr 2026 15:50:58 -0700
-Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.35) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 10 Apr 2026 15:50:56 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=aCGGsDmivUcHqpac0+lwcZu1CO5w4PBAU3GMdSbutN+TEUmrz0csEIzPzc0cqq3X3OaVLYDeuEU5MnFBhlFYgV9OaYhL0UvqckV2VQt3JHEXb6cXuk6a92RVkNOdIbeMHS+zpFLSaqazt0U6j7pVNs+tr2le636zoiTsRg4810o1QLBetZwfG/5KaoaOcvASS3fFQlhw795e7uCg96viL0G5wqpU2CiOXgOEWAW9zj9I3df82K/8o8OaYsWZxZD2f6Rt1dgZunasQp42jvDkQCxVolig/cTbKbv8C0sK12iqe3M5nmbsMYAQe8GWHtlE9+S8ryvmULOcoZadEEiLow==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PoLHXog4zBjbS2hBGrBDJVrLWY48Wo4J4PRxwBt5w28=;
- b=Z9GdQsg/+/VqJfupC+iL4NN0l48Vt9g7mUR/swEmfVkQId7OnM0WIx+yFY3113i88pJjUVtkyyWCkTI27zTg63wq+v5SzahV61ZnxDYlqRMkKKKDLvaG2/j32ouyJDnNrQseyyg+UtHWbepYwxnSsdco4sDjT23oFBLIJtXOWIiFXzTuD745qEaB3x64r14FOH6e+bf3McCOeVO7YFn5ru0YWWmJnl59k5FuxZCzB+3aBtciiObkX+b21J69bldbcsWqEssgjTNKtEPcq4qZdN9V1shHrjYyfp3N5LGcUV9XA4fq64EtohPCu8e/Fnalk/sTDwddZt8X5Ud6v8IYaQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB8132.namprd11.prod.outlook.com (2603:10b6:8:17e::13)
- by PH0PR11MB4952.namprd11.prod.outlook.com (2603:10b6:510:40::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9818.15; Fri, 10 Apr
- 2026 22:50:54 +0000
-Received: from DM4PR11MB8132.namprd11.prod.outlook.com
- ([fe80::22f3:a01e:fb45:57ac]) by DM4PR11MB8132.namprd11.prod.outlook.com
- ([fe80::22f3:a01e:fb45:57ac%3]) with mapi id 15.20.9769.020; Fri, 10 Apr 2026
- 22:50:54 +0000
-From: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>
-To: Alex Williamson <alex@shazbot.org>, <intel-xe@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>, <kvm@vger.kernel.org>
-CC: Jason Gunthorpe <jgg@ziepe.ca>, Yishai Hadas <yishaih@nvidia.com>,
- "Shameer Kolothum" <skolothumtho@nvidia.com>, Kevin Tian
- <kevin.tian@intel.com>, =?UTF-8?q?Micha=C5=82=20Winiarski?=
- <michal.winiarski@intel.com>, "Niklas Schnelle" <schnelle@linux.ibm.com>,
- <stable@vger.kernel.org>
-Subject: [PATCH v2 2/2] vfio/xe: Add a missing vfio_pci_core_release_dev()
-Date: Sat, 11 Apr 2026 00:49:48 +0200
-Message-ID: <20260410224948.900550-2-michal.winiarski@intel.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260410224948.900550-1-michal.winiarski@intel.com>
-References: <20260410224948.900550-1-michal.winiarski@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: VI6PEPF00000215.AUTP296.PROD.OUTLOOK.COM
- (2603:10a6:808:1::8cd) To DM4PR11MB8132.namprd11.prod.outlook.com
- (2603:10b6:8:17e::13)
+X-IronPort-AV: E=Sophos;i="6.23,172,1770624000"; d="scan'208";a="222728513"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.39.133])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2026 15:51:07 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+Subject: [PATCH 0/3] Xe3p tuning and workaround fixes
+Date: Fri, 10 Apr 2026 15:50:27 -0700
+Message-Id: <20260410-xe3p_tuning-v1-0-e206a62ee38f@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB8132:EE_|PH0PR11MB4952:EE_
-X-MS-Office365-Filtering-Correlation-Id: 07646e3e-5a74-44be-6849-08de97539f47
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|18002099003|56012099003|22082099003; 
-X-Microsoft-Antispam-Message-Info: z14iUsFzK2UttLPYVsgf90AK8vccUalCGHabqYdBDjn7gmLusTS51FuU/J44JzoQXfzRr0ryU7nuZbef8U8VYi1Lq1Yk/xs+691JzxvFNtbvNHyixB3uALssc0fptg6dBHOJFZBM6EN73msNNiZM67l8kxr4IHOwaFZlIyS9Vxe6CH/f2oP0JRKF4EvBdZNjmLAXsZaRlTQ7kT91tZtZACqPuOlUBsOUa7hDB/8OHWyLallOOtb2mzpCJFfcv6fiyAZrBOAD4fa8zx/c36Av2c2J8Y/C9r/OKt0nEbk4r9zC3SlCOmNUAsTtRickD6AEofPRlZP6DIoF5cGmxYGVQpIKTVX0VHMvHqXBKostsvAipAIltGyEpdWJKVNh1NCYfkc40u+lQbCOnEJjHR4FZnbx0NEraes+H76qJ2QpgPpDRparWyDHbKqi1yK8obYzm7V0OiHhY9htGZmpgprG1cypMh+lz8ytX8hbgOmQgY2ne83L1HutZsrWyGWdWm2zZ8S/iGxYy1NNp17Wklg8j5GCSLkkGs6/fPhoJsudhlPfUUf49za4AuyklgA8g6W9ijP4Ia6E0DJomCVuGw3VMC+6R7xgs6ltPPMxPWnLlJrlMDl7qXCVd0lpx8xs0qVtME0kUnxSBrEw2lvuca13z0TGlRqah7aNdjGsnr0KFSF6JX/v6MltgrB6R1oPsIX6IG4vWsy78V4+pGtHqoD2UGiim/nL60REkKKq1ObyVW1c3PfIqcrJ+1nDILY9cF4s
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB8132.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(18002099003)(56012099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q3krTjNTZEFtVVhhWS9jaTRucHhyVm5SUU9XTVU1Y2JENGt3S2RTUENmS05Q?=
- =?utf-8?B?QWtxNHNsczBFdHhwZzU3T0lQSmlCTE1TZm9ZVlMraUdJKys0bHkyYUNFcVBP?=
- =?utf-8?B?OXNhYTVTdGk3WnhjenBVRnFoUXBGazVITFVycDZJWXY0VlRVRDN1dTg1Unlh?=
- =?utf-8?B?YnM2Y3p4Y2tRWFZNZEhueWF0YnVINnZrMHBBRTRkdFc2MTB0Y01LSUJDcE5a?=
- =?utf-8?B?bVlPZThjbFNib0hUSmxCNUxrcDl4TEJocGF6ZzZHVUk4eW1reVVYTjZ0UnM2?=
- =?utf-8?B?cXRrL2xua3IvVFBiczI2cU11aHBKNEx6eEFCZTQ0dGVBTjlOeGpOUE1WMWhz?=
- =?utf-8?B?NXFMcE9sM0IyMnJCVzdNNER3S1dHaVpQUTRycWowU0d2aUFRbjJhaTcwN242?=
- =?utf-8?B?b3ZSTGQ3VHpRWkhuaEIyMytHdDV3eFk2K3hZamVicUJCQTU1cXhYZUtqMDF2?=
- =?utf-8?B?Nld1TXRsdGxmRkVDN3E2UFlOSWgrU2RZN0FqSkFSTUhzdFpvaFNUR2tOOCtJ?=
- =?utf-8?B?enBBVmYrNFBFNVB4cnRTL0JXOVNUTG12S3hkVTBWMldnb2pLTVRWbXk3SllX?=
- =?utf-8?B?WEQxdkJPTmtFcFNDM2QzK2RFcmk2K2NWdzNxYWcrclpodkZxWHdKQVAwMnZQ?=
- =?utf-8?B?ZjBZNGZYMDFXMldMVDVOQms4d2lRZE12WnBUYUJrdTFkSEp3R0JiekUzaGJo?=
- =?utf-8?B?QWFQMnlCNm5UQ1MzVlRTN0xHSUx3R21FY1dLb3RYOGpJUzVhZGo1SUJBRHlH?=
- =?utf-8?B?eEhndkpMVmhQS2EzVmZBSW1VTXlZbENWUVJBQjAyYnQrdDBuS2hlMHBnVFJN?=
- =?utf-8?B?TkVqQ25qdFVtTGhRWElGOUN2dzV0akFUUEFNYlRMZ3VGcEV6VHJPRFp5WGwx?=
- =?utf-8?B?WnJEUkZwbFJGVXp5MEtNVWhwT3RaKzlXRGQyM1FMa0dnWmQzd1M0NGJ3d2tO?=
- =?utf-8?B?dGdKMWxtQXhDSXZ6Rnh0cUVVWHJTcSs0ZHVqSzAwYmZ5aEYwVU9tTks3SHZp?=
- =?utf-8?B?bWJoYkdvNjVtMjJMY1d3SUdpU2RIamZpWkFjaFRZWVJpNnVVeW9MRGhwK2VT?=
- =?utf-8?B?K0QzYWJDOG5rSndhNGhONWRBRllNK04xUFo3Ukc4N3N3SnQ4WGVLZEtaTnp0?=
- =?utf-8?B?Tzk5KzYwcXc3ZUZ1bTJiSFkrdUZraXlRQTBpVXdJWjNSS3k3aVRZTDhlcFN0?=
- =?utf-8?B?bUxWQmpQZUl1d2ZpNitNN2NLOVA3eUdSSmdGSEJSWmREMXJxaG1xSVhmbVA5?=
- =?utf-8?B?cTJoV01pWlI5bWxXR0JPdEhuRHVabklMWU9YNCtVUkorMmljNTJ3ZUMzdUlB?=
- =?utf-8?B?aHF6N01VMmg1V2dTYTBKTmhwQ0NqUi93c0JuTzRDZlNxWVhlM3lRKzRjRnRD?=
- =?utf-8?B?Q1RFUFBwTVJKM09WRGVNT01GcTdVT1A1aXp1UW9nSUJadmc0dXI4U3p4eFd6?=
- =?utf-8?B?aGp2aDhvVng0UDV4S3JCTCtwS3FQRHZWN1p5d1YvQk1EdFh0a21hWE02MUo5?=
- =?utf-8?B?dEp1bXcxZnY2amxwZDF5bWt1T0xCb2RPWWFTMjd0ZVJlZC95eWt4WkhWZFJo?=
- =?utf-8?B?N29nN01PMDllTWovSUVrZGwzY0pTZllwRURseHFCRzFNeUtITjdNL1g0cWZv?=
- =?utf-8?B?eVdLMXk2UklJa1ZCUFRSNk1lbEpmT1VyVlZGbkEyZ3JuRnZhRUdEa0tER01E?=
- =?utf-8?B?SDZuTW9tcjFsVW4rQVpKVjZOSFNRdm1UTEZQVk10K2xiVUdGaVJtY0NrNDZE?=
- =?utf-8?B?Qmw5MER5QmZ5ZVVZTjBqVUNITzVMQ09ZVDN1WElNek82ay9KUVc1dzZPL3lI?=
- =?utf-8?B?S1ZCeVdNY0dRNlpqNyt3VndKNFU5ZWE3d2JjTTR3WWVoNCtON0pXc0s0OUpL?=
- =?utf-8?B?bFFNbDhOMUF4RWdSMXZqOEg5Z1gxM0Q3T09LbTdrZ25uWWttY3FsTHRzWEFF?=
- =?utf-8?B?b3lFZ3FEdkRwRFNyVU9RanNreEdZazczRElyZDk2R1ZPOFJjdERaNFo4RCs5?=
- =?utf-8?B?NjdnWXNKRC8zVjltaHJzWk9JMTJLalVtdzFMTDZpejBuV0ZtY1FmQW9RU2V0?=
- =?utf-8?B?S3JtR2M5RXlOaWZIWW1qZ0xzMkMvK2E3REZHWVpyZ1VBeFVtdUtzTytKRExL?=
- =?utf-8?B?amJjektqVklUYW9QUWMvbDRzWHVPb0RvSm5FT0wrZjRPMHpTTzBON3lVTlR3?=
- =?utf-8?B?MDZiQTFLYmNiNW02UC9IclNFb1JHeUJZWVpUSVl1Ykg0MEhoUWVjUjZRZXZ5?=
- =?utf-8?B?QXJZTy9sbmE0bU1HSUI0QlJRVC92S2J0SFhrMFREQzFyS0wxKzRyQXhFdnps?=
- =?utf-8?B?aEoxUG5BNTR0MHV6VmVkeC9ZOE9lVW9PQVFtTHlmMXBZMHFvWXRIb3VUelVo?=
- =?utf-8?Q?6Y1sBp+GI8Ps9muQ=3D?=
-X-Exchange-RoutingPolicyChecked: jqoZ/81ckbMibRhBpDT9LSRxESp7ktHHsIT1dhDxEQcxLvY44CBaWDBF9//ixpTxIasZJSyFd4gAAKSthTGmvB0RXMVcn7uF6b+mLMWiwWYdFVLEzGUpOqsGQ6cRUtNfV+wBRlL6Fae/0A+MzGXvi5kQrVKJYFPQ3jLKAl2eVzFkNsV15B8kv2SWoHbK1+wjAIYmzSMy2fyRH66kZC4IhvsnEUJ5tlBPJeMbtvBk6HlTTCYUcKNurNhcPH/qpEeM8MAeltdDgBt3Jp7kasPkGBArGcieH++/hMLmp39wAjJEOt9uT8u6+zuukaS5uqmBco3q2LwHq55UP4UDw6DBFw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 07646e3e-5a74-44be-6849-08de97539f47
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB8132.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Apr 2026 22:50:54.5019 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: G2EafgtuJLZ7blOHxCvOrlHHzFQvZGo5S/mvWRJX5MHl7sHsAhvXCsbOdxJAaDZYNmZwCtKnGbtzLPVykIPGpuSOILzsScLo3UATQk2R6fY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4952
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDE0MD3YpU44L4ktK8zLx0XeMU00TT1DQTg5QUAyWgjoKi1LTMCrBp0bG
+ 1tQAToTI3XQAAAA==
+X-Change-ID: 20260410-xe3p_tuning-3d5a5ef40dd0
+To: intel-xe@lists.freedesktop.org
+Cc: Matt Roper <matthew.d.roper@intel.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=904;
+ i=matthew.d.roper@intel.com; h=from:subject:message-id;
+ bh=5eZdo6qeNKGckZIPAJN2JqJjWMbmmYb6x2BXd8eY52g=;
+ b=owEBbQKS/ZANAwAKAU15JAXIcpAEAcsmYgBp2X7aCjVcvX8OV/UlUhuEy03DTIT7npBaZo3Ad
+ 9S18J0KOV2JAjMEAAEKAB0WIQTCZ8MJRH/rTz8hbaxNeSQFyHKQBAUCadl+2gAKCRBNeSQFyHKQ
+ BNB7EAClP+8fIYCsTXHc4jDpCbJEthYf+WcjXvnL/d6WO0UBmV+pd1S2O3AGBpnNM44E7fmMW/I
+ VxC4XooBv/hgalu7SVT16LAMh6nGnocJxbDiy0XFS/QE5vEldlfjFZSKk+8BBAU10N/m2oYEq/6
+ czr4ChOKtRXGqSe+m2+SZb8z9lJ/e9oFMOUWaEthv61a4qf95eJoVKj5PulPRfnC1JBiSRL7SnI
+ eMxnwGmnmyupayDpvdF3eo8cN9H2Ini4fdSeIAuQHjnSLqfRlcNv6OA4Vj0J+6VX6lO/GgrEgOo
+ jYWiy/pV94ETQQ6XitTwCnix72uqEArAt2stPp1eHU7+tarEqnyNohttBcIbckbjwj/P2+xl5xI
+ BYQbTwYIn1hdD+V533IH30hqYCOta3iMuR0EQBcLwgXE+oJny/XaRuJYCmMV5hTgJ5OMT8YPl/U
+ shuzgDkKcsM+yc/8cM9wpaUM6UAwGWxascKPNFq9V7S1Xn0wh7MOtM5Qv3urk2YcwcFFlRaNhof
+ pmdge9Vi7jW+iyKprWoGYs6X0mId/oKPc1usoU58+GFdh24gkQwuKoj4mdFv1bTSRuVVIyCgOuy
+ 3lLOCesNLqS0gLpUmyFr5GqoMPUTgWuFLPkEI8U/vJxcbZNrRVkmF7AN9LOAdVeQHw2bgIR4RcU
+ tYUGHv5PpBB+xIg==
+X-Developer-Key: i=matthew.d.roper@intel.com; a=openpgp;
+ fpr=C267C309447FEB4F3F216DAC4D792405C8729004
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -172,33 +87,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The driver is implementing its own .release(), which means that it needs
-to call vfio_pci_core_release_dev().
-Add the missing call.
+The igt@xe_debugfs@check-gt-reg-sr IGT test (which wraps the new
+register-save-restore-check debugfs interface) reports that a handful of
+reg_sr items are not behaving properly.  In all three cases the report
+was correct and highlights some necessary driver fixes.
 
-Fixes: 1f5556ec8b9ef ("vfio/xe: Add device specific vfio_pci driver variant for Intel graphics")
-Reported-by: Niklas Schnelle <schnelle@linux.ibm.com>
-Closes: https://lore.kernel.org/kvm/408e262c507e8fd628a71e39904fedd99fa0ee8e.camel@linux.ibm.com/
-Cc: stable@vger.kernel.org
-Signed-off-by: Michał Winiarski <michal.winiarski@intel.com>
-Reviewed-by: Niklas Schnelle <schnelle@linux.ibm.com>
-Reviewed-by: Kevin Tian <kevin.tian@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/vfio/pci/xe/main.c | 1 +
- 1 file changed, 1 insertion(+)
+Matt Roper (3):
+      drm/xe/tuning: Stop applying CCCHKNREG1 tuning from Xe3p onward
+      drm/xe/tuning: Use proper register offset for GAMSTLB_CTRL
+      drm/xe: Mark ROW_CHICKEN5 as a masked register
 
-diff --git a/drivers/vfio/pci/xe/main.c b/drivers/vfio/pci/xe/main.c
-index c20011eb4af3d..4ecadbbfd86ec 100644
---- a/drivers/vfio/pci/xe/main.c
-+++ b/drivers/vfio/pci/xe/main.c
-@@ -518,6 +518,7 @@ static void xe_vfio_pci_release_dev(struct vfio_device *core_vdev)
- 		container_of(core_vdev, struct xe_vfio_pci_core_device, core_device.vdev);
- 
- 	mutex_destroy(&xe_vdev->state_mutex);
-+	vfio_pci_core_release_dev(core_vdev);
- }
- 
- static const struct vfio_device_ops xe_vfio_pci_ops = {
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h | 2 +-
+ drivers/gpu/drm/xe/xe_tuning.c       | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+---
+base-commit: 8abbd7e03e9925203b7e9cda9b4ea3e3800b74d2
+change-id: 20260410-xe3p_tuning-3d5a5ef40dd0
+
+Best regards,
 -- 
-2.53.0
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
 
