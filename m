@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34381F36BB6
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Apr 2026 06:32:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4173E99049
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Apr 2026 07:35:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D703410E89A;
-	Fri, 10 Apr 2026 06:32:15 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E232210E899;
- Fri, 10 Apr 2026 06:32:14 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8146707378802435577=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id A83BB10E8C0;
+	Fri, 10 Apr 2026 07:35:08 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ndQD6hFc";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17FEB10E8BE;
+ Fri, 10 Apr 2026 07:35:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1775806507; x=1807342507;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=8N/zGG+0r01hEb+bnG1B9EJ5iSucl/YYvsa5cQvl9/c=;
+ b=ndQD6hFc2UFownofx/xyqVbAxYM9ZSRn8WTQu/5rOpmafXf7o9yLH8QH
+ Crcd59sDkeDrSsI/GSUDMUf7P4Aeeh7RNrnp2mYR9A9sg3bs1VbZYwDap
+ NISaB8LYoBtPz/bztc9PcF5W18wSQbZNN+6nnJPdrL4mfYXmvEPMkkmn1
+ /EwctRBzBsIR8LXj7HchAiP0IrhiNK83iIBCEnYTxqKHz1ufTOPvWxD1c
+ fRGO6Mv3TnNOZpwdiio7PgGXStnJLo2f4B5gC08Jm0U9o0C/eibpld9Dq
+ I+jk1ZtrHznxGcNMcQVoosXw3nTY0TeteXpMvVNgo/L5tkCMqzZBS/KH9 A==;
+X-CSE-ConnectionGUID: d/Ylu8jTRAGbg40u/abgeg==
+X-CSE-MsgGUID: F6V15gBRS02C2hSIYSk8iQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11754"; a="80709872"
+X-IronPort-AV: E=Sophos;i="6.23,171,1770624000"; d="scan'208";a="80709872"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2026 00:35:07 -0700
+X-CSE-ConnectionGUID: Y8V2HCo7QImGkNXXlPgGKA==
+X-CSE-MsgGUID: Mh2GpLToSam5pbD64gGkjQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,171,1770624000"; d="scan'208";a="225854202"
+Received: from zzombora-mobl1 (HELO localhost) ([10.245.244.89])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2026 00:35:04 -0700
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@intel.com>,
+ =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: [PATCH 0/4] drm/i915/reset: Expose "display_reset_count" in debugfs
+Date: Fri, 10 Apr 2026 10:34:56 +0300
+Message-ID: <20260410073500.32308-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_USE_drm_mm_instead_of_drm_S?=
- =?utf-8?q?A_for_CCS_read/write_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 10 Apr 2026 06:32:14 -0000
-Message-ID: <177580273489.449443.6110802510966416133@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260408110145.1639937-4-satyanarayana.k.v.p@intel.com>
-In-Reply-To: <20260408110145.1639937-4-satyanarayana.k.v.p@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +66,45 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8146707378802435577==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-== Series Details ==
+Expose a display reset count in debugfs. It will be used
+by kms_busy/*-with-reset tests to confirm they are actually
+testing the thing they are meant to test.
 
-Series: USE drm mm instead of drm SA for CCS read/write (rev5)
-URL   : https://patchwork.freedesktop.org/series/163588/
-State : success
+I expect this to fail on all platforms using execlist 
+submission. I'll send a second version of the series 
+with a fix after confirming that.
 
-== Summary ==
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Jouni Högander <jouni.hogander@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Test-with: 20260409200924.5409-1-ville.syrjala@linux.intel.com
 
-CI Bug Log - changes from xe-4878-b6a5ad2db4f7519d2c4f4c872cf5d664e6a7fff1_BAT -> xe-pw-163588v5_BAT
-====================================================
+Ville Syrjälä (4):
+  drm/i915/reset: Reorganize display reset code
+  drm/i915/reset: Move pending_fb_pin handling to i915
+  drm/xe/display: Add init_clock_gating.h stubs
+  drm/i915/reset: Add "display_reset_count" debugfs file
 
-Summary
--------
+ .../gpu/drm/i915/display/intel_display_core.h |  5 ++-
+ .../drm/i915/display/intel_display_debugfs.c  |  2 +
+ .../drm/i915/display/intel_display_power.c    |  2 -
+ .../drm/i915/display/intel_display_reset.c    | 40 +++++++++----------
+ .../drm/i915/display/intel_display_reset.h    |  8 ++--
+ drivers/gpu/drm/i915/display/intel_overlay.c  | 10 +----
+ drivers/gpu/drm/i915/gt/intel_reset.c         | 26 +++++++-----
+ drivers/gpu/drm/i915/i915_dpt.c               |  5 +--
+ drivers/gpu/drm/i915/i915_drv.h               |  2 +
+ drivers/gpu/drm/i915/i915_fb_pin.c            |  9 ++---
+ drivers/gpu/drm/i915/i915_overlay.c           |  6 +++
+ drivers/gpu/drm/xe/Makefile                   |  1 +
+ .../compat-i915-headers/intel_clock_gating.h  | 10 ++++-
+ 13 files changed, 71 insertions(+), 55 deletions(-)
 
-  **SUCCESS**
+-- 
+2.52.0
 
-  No regressions found.
-
-  
-
-Participating hosts (14 -> 14)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-163588v5_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@reltime:
-    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6520])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4878-b6a5ad2db4f7519d2c4f4c872cf5d664e6a7fff1/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163588v5/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-
-  
-  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
-
-
-Build changes
--------------
-
-  * Linux: xe-4878-b6a5ad2db4f7519d2c4f4c872cf5d664e6a7fff1 -> xe-pw-163588v5
-
-  IGT_8852: 8852
-  xe-4878-b6a5ad2db4f7519d2c4f4c872cf5d664e6a7fff1: b6a5ad2db4f7519d2c4f4c872cf5d664e6a7fff1
-  xe-pw-163588v5: 163588v5
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163588v5/index.html
-
---===============8146707378802435577==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>USE drm mm instead of drm SA for CCS read/write (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163588/">https://patchwork.freedesktop.org/series/163588/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163588v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163588v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4878-b6a5ad2db4f7519d2c4f4c872cf5d664e6a7fff1_BAT -&gt; xe-pw-163588v5_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-163588v5_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_waitfence@reltime:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4878-b6a5ad2db4f7519d2c4f4c872cf5d664e6a7fff1/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163588v5/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4878-b6a5ad2db4f7519d2c4f4c872cf5d664e6a7fff1 -&gt; xe-pw-163588v5</li>
-</ul>
-<p>IGT_8852: 8852<br />
-  xe-4878-b6a5ad2db4f7519d2c4f4c872cf5d664e6a7fff1: b6a5ad2db4f7519d2c4f4c872cf5d664e6a7fff1<br />
-  xe-pw-163588v5: 163588v5</p>
-
-</body>
-</html>
-
---===============8146707378802435577==--
