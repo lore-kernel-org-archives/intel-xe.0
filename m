@@ -4,54 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D95A2F45A15
-	for <intel-xe@archiver.kernel.org>; Sat, 11 Apr 2026 00:48:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B44DF45A15
+	for <intel-xe@archiver.kernel.org>; Sat, 11 Apr 2026 00:49:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B98110E176;
-	Sat, 11 Apr 2026 00:48:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 354F710E0F0;
+	Sat, 11 Apr 2026 00:49:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rxg5wx6l";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kgEC7jL2";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C784210E173
- for <intel-xe@lists.freedesktop.org>; Sat, 11 Apr 2026 00:48:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72C4910E0F0
+ for <intel-xe@lists.freedesktop.org>; Sat, 11 Apr 2026 00:49:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775868498; x=1807404498;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=tdts2hY0bxhLa54FVwHLGaYBPOcP8ZWe3/AUWKAh93A=;
- b=Rxg5wx6lNX9arRRjcgaDcJh5wwfNeRgh9d+9+0MYc3U+gSJpsRcXTUXg
- VIFFBhFzt7Xn6tTl0r6NVAma2cEDFMQiPcdN4z0ma0Razv4RNob/yoREg
- QsaUlL4/6h4cv7LP01/qXxIMtRsbSI9WBwNU1hAnUpUK1BqBCTqsosGwe
- xrXYTK4vbh+TDDJ2QAFW3FL6TBdaP+SU831kdCzvVwXlkDZzLBDqeoXdJ
- lYlYyZ0eknFVLj1IeqxBo2Gehtqx68KwE13CqlJ6IWVL6XmquvVndoDoN
- XVo9SG0vYPhfezgXP3n/RwggRSz2b9QiivIG0V8qhS6LMDkT784z0bPBL g==;
-X-CSE-ConnectionGUID: gL8SQBlNQGy28LfS0IspQQ==
-X-CSE-MsgGUID: n6I6mxw5S92Zn4MJQ9leuA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11755"; a="87522103"
-X-IronPort-AV: E=Sophos;i="6.23,172,1770624000"; d="scan'208";a="87522103"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2026 17:48:18 -0700
-X-CSE-ConnectionGUID: D0CYoV0yRwuwU1TSDhXHog==
-X-CSE-MsgGUID: 1gWVNDqlStueMdXCoJMYeg==
+ t=1775868544; x=1807404544;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=WwWulZxh33gqmxSTDuBdxiM4aR81l8MrmHcpeUW1CMA=;
+ b=kgEC7jL2rVA/qE1FFeRvp+fszDovqSPWMye0gC/khElZJ7d50q4qRgfj
+ jRfGw+piCH8d3PQQ3bRr3REB8sUXGukGPgGSWkLOkGFD6lGrf7JhiR8ln
+ 187ZGNIiCAVwlY06GqNQKmTpg/hh7+fVUNDHWb3DhFHjorWIoIEH3LrCU
+ agod6mbyZcRhBgZtHwaOA3SQHPBSL5STRveNc56hGOh/kXh1chL1Nyt4i
+ L8FFPv5MCCd00tc4tn/9ciRHvZ/qfiTrVcYUs5J9pyM5bdBCfXMgd7M/2
+ 7PKk0ooEOUATBAnh9lhUp8WhBirQb7ZyruR5Du4/9qKk75fjryuTKRuhM A==;
+X-CSE-ConnectionGUID: /sAR8IAES8yPK+eSi2pMqA==
+X-CSE-MsgGUID: u4B7R4uqRG6WMh8qQ430ag==
+X-IronPort-AV: E=McAfee;i="6800,10657,11755"; a="75934562"
+X-IronPort-AV: E=Sophos;i="6.23,172,1770624000"; d="scan'208";a="75934562"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2026 17:49:04 -0700
+X-CSE-ConnectionGUID: 4Rq0e4jtSCqaUbdXXKsj1g==
+X-CSE-MsgGUID: fmpWahObTzmYkeh84iFZZg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,172,1770624000"; d="scan'208";a="226079400"
-Received: from orsosgc001.jf.intel.com ([10.88.27.185])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2026 17:48:17 -0700
-From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,172,1770624000"; d="scan'208";a="229129037"
+Received: from zhenj1-mobl4.amr.corp.intel.com (HELO adixit-MOBL3.intel.com)
+ ([10.125.67.177])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2026 17:49:04 -0700
+Date: Fri, 10 Apr 2026 17:49:03 -0700
+Message-ID: <877bqe8gow.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: [PATCH 3/3] drm/xe/oa: Implement Wa_14026633728
-Date: Fri, 10 Apr 2026 17:48:09 -0700
-Message-ID: <20260411004809.570098-4-ashutosh.dixit@intel.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20260411004809.570098-1-ashutosh.dixit@intel.com>
-References: <20260411004809.570098-1-ashutosh.dixit@intel.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH 1/3] drm/xe/oa: Use xe_map layer
+In-Reply-To: <20260409231754.528518-2-ashutosh.dixit@intel.com>
+References: <20260409231754.528518-1-ashutosh.dixit@intel.com>	<20260409231754.528518-2-ashutosh.dixit@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/30.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,57 +69,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-CRI Wa_14026633728 requires MERTOA buffer to be allocated in device memory,
-not system memory (which is the default for OA buffers).
+On Thu, 09 Apr 2026 16:17:52 -0700, Ashutosh Dixit wrote:
+>
 
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
----
- drivers/gpu/drm/xe/xe_oa.c         | 10 +++++++++-
- drivers/gpu/drm/xe/xe_wa_oob.rules |  1 +
- 2 files changed, 10 insertions(+), 1 deletion(-)
+Hi Umesh,
 
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 7ada6e2a0d955..7610b2d744066 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -250,6 +250,11 @@ static void oa_timestamp_clear(struct xe_oa_stream *stream, u32 head)
- 		xe_map_wr(stream->oa->xe, map, head + 1, u32, 0);
- }
- 
-+static bool mert_wa_14026633728(struct xe_oa_stream *s)
-+{
-+	return s->oa_unit->type == DRM_XE_OA_UNIT_TYPE_MERT && XE_GT_WA(s->gt, 14026633728);
-+}
-+
- static bool xe_oa_buffer_check_unlocked(struct xe_oa_stream *stream)
- {
- 	u32 gtt_offset = xe_bo_ggtt_addr(stream->oa_buffer.bo);
-@@ -884,11 +889,14 @@ static void xe_oa_stream_destroy(struct xe_oa_stream *stream)
- 
- static int xe_oa_alloc_oa_buffer(struct xe_oa_stream *stream, size_t size)
- {
-+	u32 vram = mert_wa_14026633728(stream) ?
-+		XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(stream->oa->xe)) :
-+		XE_BO_FLAG_SYSTEM;
- 	struct xe_bo *bo;
- 
- 	bo = xe_bo_create_pin_map_novm(stream->oa->xe, stream->gt->tile,
- 				       size, ttm_bo_type_kernel,
--				       XE_BO_FLAG_SYSTEM | XE_BO_FLAG_GGTT, false);
-+				       vram | XE_BO_FLAG_GGTT, false);
- 	if (IS_ERR(bo))
- 		return PTR_ERR(bo);
- 
-diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index f8a185103b805..a7c1bd9bcb943 100644
---- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-@@ -65,3 +65,4 @@
- 
- 14025883347	MEDIA_VERSION_RANGE(1301, 3503)
- 		GRAPHICS_VERSION_RANGE(2004, 3005)
-+14026633728	PLATFORM(CRESCENTISLAND)
--- 
-2.48.1
+> +/* Because there is no iosys_map_copy_to_user() or copy_to_user_from_iomem() */
+> +static int xe_oa_copy_to_user(struct xe_oa_stream *stream, void __user *dst, u32 head, u32 len)
+> +{
+> +	u32 __user *dptr = dst;
+> +
+> +	xe_gt_assert(stream->gt, len % 4 == 0);
+> +
+> +	for (int i = 0; i < len / 4; i++) {
+> +		struct iosys_map *map = &stream->oa_buffer.bo->vmap;
+> +		u32 val = xe_map_rd(stream->oa->xe, map, head, u32);
+> +		int ret = put_user(val, dptr++);
+> +
+> +		if (ret)
+> +			return ret;
+> +		head += 4;
+> +	}
+> +
+> +	return 0;
+> +}
 
+Unfortunately, with this copy_to_user() implementation we are seeing buffer
+overflow, implying there is significant performance impact, even when OA
+buffer is in system memory:
+
+  Starting subtest: non-zero-reason
+  Starting dynamic subtest: oag-0
+  (xe_oa:6798) CRITICAL: Test assertion failure function test_non_zero_reason, file ../tests/intel/xe_oa.c:2693:
+  (xe_oa:6798) CRITICAL: Failed assertion: !(oa_status & DRM_XE_OASTATUS_BUFFER_OVERFLOW)
+
+That is, we are unable to read data at the rate at which HW is writing
+data, causing buffer overrun.
+
+Therefore in v3 I have basically reverted to the copy_to_user()
+implementation of v1, except that I have taken the copy_to_user() out of
+xe_oa.c and moved it to xe_map.h, to make that implementation "official"
+(and OA code to strictly use the xe_map layer). This seems to be the best
+approach to me, it avoids unnecessary copies and works correctly on all of
+our systems of interest.
+
+Also, the previous code, without this patch, is of course doing this exact
+same thing, except that the use of the xe_map layer make these assumptions
+explicit.
+
+If you still don't think we should be doing this, I can try to get a second
+opinion about this patch. Thanks.
