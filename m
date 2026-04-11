@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DEBCF3ED40
-	for <intel-xe@archiver.kernel.org>; Sat, 11 Apr 2026 16:38:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84422F3ED59
+	for <intel-xe@archiver.kernel.org>; Sat, 11 Apr 2026 17:20:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC15B10EA41;
-	Sat, 11 Apr 2026 16:38:54 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E668B10EA41;
- Sat, 11 Apr 2026 16:38:52 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0114485615555389218=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26F7810E281;
+	Sat, 11 Apr 2026 17:20:34 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eAWziPN1";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1BF610E281;
+ Sat, 11 Apr 2026 17:20:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1775928032; x=1807464032;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=rEzyQ3SBHfkr9/9vcPqzlNDIqZJQSbzwEkCVG/NGbVI=;
+ b=eAWziPN1HsRCAJn9IyfmCD2vRjBsTXqjRtLIfDLLT7seNn+8XuNI8O9G
+ Xg3+n0OsU5Y7qbUYmnJ+Fh8lh/LLkrclnxIcdB+wc/aRgkGCxfy2Xjmy3
+ UnX7lVGSoMG86JktZ8oM6C78o9MFRrrlof2ZtS1jry3sLOJitzY6lA1OB
+ hkCiWL+Ubm3zmhZ2cF+WJwE7JvtkfKRiV/yPL7uQOkZGaI6HOag4tODhG
+ LKSm3mM3KZoWFwXmoJhWQMs6aQHj6SHLvDYvFURpYQFMa8bABc7xzyNZ8
+ OXVCP1R90lZcRK8X5pHscUNMcflccwaKYTgpgYvCk3RPo7YwkdpRGPx7G Q==;
+X-CSE-ConnectionGUID: 1wuxApQJRVCGkeLcp0nAjA==
+X-CSE-MsgGUID: aqfIiF/3R8iM7/Wbli0SKQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11755"; a="77101191"
+X-IronPort-AV: E=Sophos;i="6.23,173,1770624000"; d="scan'208";a="77101191"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Apr 2026 10:20:32 -0700
+X-CSE-ConnectionGUID: iwLEYhZVQBCD5i0U6B3SEg==
+X-CSE-MsgGUID: 85dO89UvRKGMlozzbPHLsQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,173,1770624000"; d="scan'208";a="233779791"
+Received: from vsrini4-xps-8920.iind.intel.com ([10.223.167.75])
+ by orviesa004.jf.intel.com with ESMTP; 11 Apr 2026 10:20:30 -0700
+From: Vidya Srinivas <vidya.srinivas@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, Vidya Srinivas <vidya.srinivas@intel.com>
+Subject: [PATCH] [RFC]: drm/i915/display: Use ceiling division for NV12 UV
+ surface offset calculation
+Date: Sat, 11 Apr 2026 22:45:21 +0530
+Message-ID: <20260411171521.162189-1-vidya.srinivas@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pf=3A_Improve_EQ/PT_?=
- =?utf-8?q?provisioning_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 11 Apr 2026 16:38:52 -0000
-Message-ID: <177592553292.453019.16521648245716425117@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260402191726.4932-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20260402191726.4932-1-michal.wajdeczko@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +61,62 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0114485615555389218==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+For LNL+, odd source size and panning for YUV 422/420 surfaces is
+supported. However, it requires the UV (chroma) surface Start X/Y and
+width/height to be calculated as ceiling(half of Y plane value) rather
+than floor. The current code uses (>> 17) which is floor division. For
+odd Y plane values this produces an off-by-one error in the UV plane
+offset.
 
-== Series Details ==
+On Android systems we see PLANE ATS fault when NV12 overlays are
+used with odd source dimensions:
 
-Series: drm/xe/pf: Improve EQ/PT provisioning (rev3)
-URL   : https://patchwork.freedesktop.org/series/164119/
-State : success
+[  126.854200] xe 0000:00:02.0: [drm:intel_atomic_setup_scaler [xe]] [CRTC:148:pipe A] attached scaler id 0.0 to PLANE:33
+[  126.854617] xe 0000:00:02.0: [drm:skl_update_scaler [xe]] [CRTC:148:pipe A] scaler_user index 0.0: staged scaling request for 1279x719->1340x753
+[  126.854837] xe 0000:00:02.0: [drm:intel_plane_atomic_check [xe]] UV plane [PLANE:33:plane 1A] using Y plane [PLANE:123:plane 4A]
+[  126.854926] xe 0000:00:02.0: [drm] *ERROR* [CRTC:148:pipe A] PLANE ATS fault
 
-== Summary ==
+With Y plane width 1279:
+  floor(1279/2) = 639 (current)
+  ceil(1279/2)  = 640 (required)
 
-CI Bug Log - changes from xe-4885-f52d25edfb0ca9916a6c4da50fe0b0363cd5193f_BAT -> xe-pw-164119v3_BAT
-====================================================
+Change the UV offset/size calculation to use ceiling division by adding
+(1 << 17) - 1 before shifting. This is a no-op for even values since
+ceiling and floor are equal when the dividend is even.
 
-Summary
--------
+Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
+---
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 14 ++++++++++----
+ 1 file changed, 10 insertions(+), 4 deletions(-)
 
-  **SUCCESS**
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index 7a9d494334b5..c455bf92ae99 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -2139,10 +2139,16 @@ static int skl_check_nv12_aux_surface(struct intel_plane_state *plane_state)
+ 	int min_height = intel_plane_min_height(plane, fb, uv_plane, rotation);
+ 	int max_width = intel_plane_max_width(plane, fb, uv_plane, rotation);
+ 	int max_height = intel_plane_max_height(plane, fb, uv_plane, rotation);
+-	int x = plane_state->uapi.src.x1 >> 17;
+-	int y = plane_state->uapi.src.y1 >> 17;
+-	int w = drm_rect_width(&plane_state->uapi.src) >> 17;
+-	int h = drm_rect_height(&plane_state->uapi.src) >> 17;
++
++	/*
++	 * LNL+ UV surface start/size =
++	 * ceiling(half of Y plane start/size). Use ceiling division
++	 * unconditionally; it is a no-op for even values.
++	 */
++	int x = (plane_state->uapi.src.x1 + (1 << 17) - 1) >> 17;
++	int y = (plane_state->uapi.src.y1 + (1 << 17) - 1) >> 17;
++	int w = (drm_rect_width(&plane_state->uapi.src) + (1 << 17) - 1) >> 17;
++	int h = (drm_rect_height(&plane_state->uapi.src) + (1 << 17) - 1) >> 17;
+ 	u32 offset;
+ 
+ 	/* FIXME not quite sure how/if these apply to the chroma plane */
+-- 
+2.45.2
 
-  No regressions found.
-
-  
-
-Participating hosts (14 -> 14)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-164119v3_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_waitfence@reltime:
-    - bat-dg2-oem2:       [FAIL][1] ([Intel XE#6520]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4885-f52d25edfb0ca9916a6c4da50fe0b0363cd5193f/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164119v3/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-
-  
-  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
-
-
-Build changes
--------------
-
-  * Linux: xe-4885-f52d25edfb0ca9916a6c4da50fe0b0363cd5193f -> xe-pw-164119v3
-
-  IGT_8854: 93abaf0170728f69bc27577e5b405f7a2a01b6fd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4885-f52d25edfb0ca9916a6c4da50fe0b0363cd5193f: f52d25edfb0ca9916a6c4da50fe0b0363cd5193f
-  xe-pw-164119v3: 164119v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164119v3/index.html
-
---===============0114485615555389218==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/pf: Improve EQ/PT provisioning (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164119/">https://patchwork.freedesktop.org/series/164119/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164119v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164119v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4885-f52d25edfb0ca9916a6c4da50fe0b0363cd5193f_BAT -&gt; xe-pw-164119v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-164119v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_waitfence@reltime:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4885-f52d25edfb0ca9916a6c4da50fe0b0363cd5193f/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164119v3/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4885-f52d25edfb0ca9916a6c4da50fe0b0363cd5193f -&gt; xe-pw-164119v3</li>
-</ul>
-<p>IGT_8854: 93abaf0170728f69bc27577e5b405f7a2a01b6fd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4885-f52d25edfb0ca9916a6c4da50fe0b0363cd5193f: f52d25edfb0ca9916a6c4da50fe0b0363cd5193f<br />
-  xe-pw-164119v3: 164119v3</p>
-
-</body>
-</html>
-
---===============0114485615555389218==--
