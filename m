@@ -4,72 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88329F34C52
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC607F34C4B
 	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 12:26:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0801710E439;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32EE010E440;
 	Mon, 13 Apr 2026 12:26:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="TdHFtusw";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="SB+LKMgH";
 	dkim-atps=neutral
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F086610E849
- for <intel-xe@lists.freedesktop.org>; Thu,  9 Apr 2026 17:09:39 +0000 (UTC)
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
- by smtpout-03.galae.net (Postfix) with ESMTPS id D521B4E429AF;
- Thu,  9 Apr 2026 17:09:38 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
- by smtpout-01.galae.net (Postfix) with ESMTPS id AA0F8603E4;
- Thu,  9 Apr 2026 17:09:38 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id A4965104501B9; 
- Thu,  9 Apr 2026 19:09:33 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1775754577; h=from:subject:date:message-id:to:cc:mime-version:content-type:
- content-transfer-encoding:in-reply-to:references;
- bh=80i2+SV+RLyeafvPAz3gjWWOqBFxeYH5P0a7No+38o8=;
- b=TdHFtuswVi6gUMeZnFkAQ1h9pYxWbUEmNzplgQT7MQIoLxVUeKQh9ZW6VmZx0JcElV0nTT
- ndiz9X1DMeZeUk8msd8gSMDWTxx2+1v+CUTZ2scRfTPMvu2Bf2YU9h2Xe2RIj4vns7A716
- z5h9gRlT4iPBE+tVe1Yp3+1eSh1qr2E6PmB2LNubQzYatkW9NOJ6mwUB2QsEtWFhOjQ3Dm
- D3KuHtVoL2McBeRsbNBCDGt/hapKZI1sw3s2gEOsQOX2gPJkgiOZUHjeQ0aFejaI+t0+7g
- optEMjLs5g2b4/YnM4lbdoqcSSe9QIytTPOi6B16/duv4oJJLdD/30s7jfvwqw==
-From: Kory Maincent <kory.maincent@bootlin.com>
-Date: Thu, 09 Apr 2026 19:08:28 +0200
-Subject: [PATCH RFC 12/12] drm/mediatek: Use dp_connector helpers to report
- link training state
+Received: from mail-dl1-f44.google.com (mail-dl1-f44.google.com [74.125.82.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4C8F10E11B
+ for <intel-xe@lists.freedesktop.org>; Sun, 12 Apr 2026 04:39:49 +0000 (UTC)
+Received: by mail-dl1-f44.google.com with SMTP id
+ a92af1059eb24-12c1a170a50so2998691c88.0
+ for <intel-xe@lists.freedesktop.org>; Sat, 11 Apr 2026 21:39:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1775968789; x=1776573589; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=kRdR1dc5/UfNuJsTk7iiKeGwmqYxW3GpWumyMvQ9lak=;
+ b=SB+LKMgHXGkveG5Q1oEfx5JIj5q6ru45/+0WlJ66mtPjwbR7kUDyZ7R/+nnRnqVV1d
+ ZhYtTjz4I3QjX4WCUE59KfcLKh+NRiH1oRw8QK1gONmsT4G8w4VIvIEzQDC4+kByLQkX
+ YlX6zioCFWxifvuh9clQGNswBfnhTvFlY6SDMpKhUKvh4ifyYGGhTKWoQgI6W6VI77qY
+ bnlOuFEq5SC2ACtmr6qCb3oFgdW2e6L7F37nUQhamZ34F7BHLCPu2WaNVQlV0kfPwG1F
+ FmbRhHeQ8pOOXsBsnXTufjslh04mq+52USYkSGvsvJjyNY1+qaIbYHWoCo03hEGGmIt6
+ hTfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1775968789; x=1776573589;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=kRdR1dc5/UfNuJsTk7iiKeGwmqYxW3GpWumyMvQ9lak=;
+ b=F+EABr9wbW5RzsbZZQsAYmGsYsHROoYIw9JyALFFmI1hyj8m4Afdfcfja9V686hhD+
+ fMunAWlYOzQU0NHqwTQGzmcUMwDgGZkdBKgVA7budrH3OTCJn0GkEzo+MHCZuvhCQ/WG
+ pW1anWLUrEvgUK4+SGN5vOeYfsobP7zJm6PNofP7ejA8jpm5gE3mGTtUlYXI7aExhIpB
+ S7Icq1qRgGPPs/KnHOpYT8cVBZAxHO9p01Ka4zY7FPe6AjgvOrO+r2LwArToMfBpDJor
+ kIp8yAvYiAsrh7Zz5KREDNSmH99LHoOo1KauNq0IW0SDmZTGCDbFLVeGAGsE0LwIm61B
+ 5U/Q==
+X-Gm-Message-State: AOJu0YzWB97TdpxtVWMskEfqlGDmAVOkFVF/axD65+spoRWWAVqtvkHd
+ fHt/3euQs5xpbBYubSt3COnOmbSVMDMdnD91VtJHutaIhKaL90ICJimu
+X-Gm-Gg: AeBDies5VclXt7FrJMoPj9UEUyYDPwiU/qZz1VnMOXns8M8mp0+gt+QmPbEZt+oqj1x
+ unz0xaECVaizw0jkBML5BdC9DD7BEX5FiVeGpHF1T0NWtXcDOhP25c8MJmNE73JM2xd1M3h5geo
+ csY8LKzILZxWh26BFCCFzeEEBFgrph1g6nNCvh9UCKpKy8NCbIgAYLMLjuEl8jdp1IK/et6t4Pi
+ pL7osz+z6IYkYLgmhHH1VeC2GvDJzQD3+Qp6H4msz30ym7rNfQnRUovmPnwoeQIVPM1y/Cp+H2l
+ RDtLgwhVZjN4KOq3IOFJnwaJrscmJSw9InbN0MpdFq1E2JU5/oG2N8NBA0Bi+lXdVjeV6UV9Tg8
+ jlTziz5tyLD9WEb8mu9gOh4CySGUXxr9ES+TyGa0jbGZCtjb0qiGy1uCAfS/R0e7hK9izi28UcG
+ pKjcsPFWCjLtTHMSohW1ORiNB0+hIHy8jOv3cN
+X-Received: by 2002:a05:7022:517:b0:128:dab3:f528 with SMTP id
+ a92af1059eb24-12c34e892c2mr5118834c88.8.1775968788704; 
+ Sat, 11 Apr 2026 21:39:48 -0700 (PDT)
+Received: from fedora ([2601:644:937c:6c90::f8b0])
+ by smtp.gmail.com with ESMTPSA id
+ 5a478bee46e88-2d561bde70csm13449412eec.15.2026.04.11.21.39.47
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 11 Apr 2026 21:39:48 -0700 (PDT)
+Date: Sat, 11 Apr 2026 21:39:45 -0700
+From: Vishal Moola <vishal.moola@gmail.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ David Hildenbrand <david@kernel.org>, Oscar Salvador <osalvador@suse.de>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Balbir Singh <balbirs@nvidia.com>, linux-mm@kvack.org,
+ linux-cxl@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] mm/zone_device: Do not touch device folio after calling
+ ->folio_free()
+Message-ID: <adsiEY671D8mFZao@fedora>
+References: <20260410230346.4009855-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260409-feat_link_cap-v1-12-7069e8199ce2@bootlin.com>
-References: <20260409-feat_link_cap-v1-0-7069e8199ce2@bootlin.com>
-In-Reply-To: <20260409-feat_link_cap-v1-0-7069e8199ce2@bootlin.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Dave Airlie <airlied@redhat.com>, 
- Jesse Barnes <jbarnes@virtuousgeek.org>, Eric Anholt <eric@anholt.net>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Mark Yacoub <markyacoub@google.com>, Sean Paul <seanpaul@google.com>, 
- Louis Chauvet <louis.chauvet@bootlin.com>, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, 
- Simona Vetter <simona.vetter@ffwll.ch>, 
- Kory Maincent <kory.maincent@bootlin.com>
-X-Mailer: b4 0.14-dev-d4707
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260410230346.4009855-1-matthew.brost@intel.com>
 X-Mailman-Approved-At: Mon, 13 Apr 2026 12:26:28 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -85,121 +89,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Set DRM_BRIDGE_OP_DP and populate dp_link_train_caps with the supported
-link rates, lane counts, voltage swing and pre-emphasis levels so the
-bridge connector uses drmm_connector_dp_init() and exposes the link
-training state properties to userspace.
+On Fri, Apr 10, 2026 at 04:03:46PM -0700, Matthew Brost wrote:
+> The contents of a device folio can immediately change after calling
+> ->folio_free(), as the folio may be reallocated by a driver with a
+> different order. Instead of touching the folio again to extract the
+> pgmap, use the local stack variable when calling percpu_ref_put_many().
+> 
+> Cc: David Hildenbrand <david@kernel.org>
+> Cc: Oscar Salvador <osalvador@suse.de>
+> Cc: Andrew Morton <akpm@linux-foundation.org>
+> Cc: Balbir Singh <balbirs@nvidia.com>
+> Cc: linux-mm@kvack.org
+> Cc: linux-cxl@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> Fixes: d245f9b4ab80 ("mm/zone_device: support large zone device private folios")
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-Store per-lane voltage swing and pre-emphasis values in
-mtk_dp_train_info and report the negotiated link parameters via
-drm_connector_dp_set_link_train_properties() on training completion.
-Clear them via drm_connector_dp_reset_link_train_properties() when a
-disconnect is detected in the HPD event thread.
+With the cc-stable:
 
-Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
----
+Reviewed-by: Vishal Moola <vishal.moola@gmail.com>
 
-This patch has still not been tested. I am in the process of finding the
-hardware for that.
----
- drivers/gpu/drm/mediatek/mtk_dp.c | 34 +++++++++++++++++++++++++++++++++-
- 1 file changed, 33 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/mediatek/mtk_dp.c b/drivers/gpu/drm/mediatek/mtk_dp.c
-index c52cc7c2e2006..119718c1374c5 100644
---- a/drivers/gpu/drm/mediatek/mtk_dp.c
-+++ b/drivers/gpu/drm/mediatek/mtk_dp.c
-@@ -10,6 +10,7 @@
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_bridge.h>
- #include <drm/drm_crtc.h>
-+#include <drm/drm_dp_connector.h>
- #include <drm/drm_edid.h>
- #include <drm/drm_of.h>
- #include <drm/drm_panel.h>
-@@ -72,6 +73,8 @@ struct mtk_dp_train_info {
- 	/* link_rate is in multiple of 0.27Gbps */
- 	int link_rate;
- 	int lane_count;
-+	u8 vswing[4];
-+	u8 preemphasis[4];
- 	unsigned int channel_eq_pattern;
- };
- 
-@@ -1561,6 +1564,9 @@ static void mtk_dp_train_update_swing_pre(struct mtk_dp *mtk_dp, int lanes,
- 		mtk_dp_set_swing_pre_emphasis(mtk_dp, lane, swing, preemphasis);
- 		drm_dp_dpcd_writeb(&mtk_dp->aux, DP_TRAINING_LANE0_SET + lane,
- 				   val);
-+
-+		mtk_dp->train_info.vswing[lane] = swing;
-+		mtk_dp->train_info.preemphasis[lane] = preemphasis;
- 	}
- }
- 
-@@ -1812,6 +1818,21 @@ static void mtk_dp_train_change_mode(struct mtk_dp *mtk_dp)
- 	mtk_dp_reset_swing_pre_emphasis(mtk_dp);
- }
- 
-+static int mtk_dp_report_link_train(struct mtk_dp *mtk_dp)
-+{
-+	struct drm_connector_dp_link_train dp_link_train;
-+
-+	dp_link_train.rate = drm_dp_bw_code_to_link_rate(mtk_dp->train_info.link_rate);
-+	dp_link_train.nlanes = mtk_dp->train_info.lane_count;
-+
-+	for (int i = 0; i < mtk_dp->train_info.lane_count; i++) {
-+		dp_link_train.v_swing[i] = 1 << mtk_dp->train_info.vswing[i];
-+		dp_link_train.pre_emph[i] = 1 << mtk_dp->train_info.preemphasis[i];
-+	}
-+
-+	return drm_connector_dp_set_link_train_properties(mtk_dp->conn, &dp_link_train);
-+}
-+
- static int mtk_dp_training(struct mtk_dp *mtk_dp)
- {
- 	int ret;
-@@ -1892,7 +1913,7 @@ static int mtk_dp_training(struct mtk_dp *mtk_dp)
- 	mtk_dp_training_set_scramble(mtk_dp, true);
- 	mtk_dp_set_enhanced_frame_mode(mtk_dp);
- 
--	return 0;
-+	return mtk_dp_report_link_train(mtk_dp);
- }
- 
- static void mtk_dp_video_enable(struct mtk_dp *mtk_dp, bool enable)
-@@ -2004,6 +2025,7 @@ static irqreturn_t mtk_dp_hpd_event_thread(int hpd, void *dev)
- 			mtk_dp->need_debounce = false;
- 			mod_timer(&mtk_dp->debounce_timer,
- 				  jiffies + msecs_to_jiffies(100) - 1);
-+			drm_connector_dp_reset_link_train_properties(mtk_dp->conn);
- 		} else {
- 			mtk_dp_aux_panel_poweron(mtk_dp, true);
- 
-@@ -2742,6 +2764,14 @@ static int mtk_dp_edp_link_panel(struct drm_dp_aux *mtk_aux)
- 
- static int mtk_dp_probe(struct platform_device *pdev)
- {
-+	static const u32 dp_rates[] = {162000, 270000, 540000, 810000};
-+	static const struct drm_connector_dp_link_train_caps dp_link_train_caps = {
-+		.nlanes = DRM_DP_1LANE | DRM_DP_2LANE | DRM_DP_4LANE,
-+		.nrates = ARRAY_SIZE(dp_rates),
-+		.rates = dp_rates,
-+		.v_swings = DRM_DP_VOLTAGE_SWING_LEVEL_MASK,
-+		.pre_emphs = DRM_DP_PRE_EMPH_LEVEL_MASK,
-+	};
- 	struct mtk_dp *mtk_dp;
- 	struct device *dev = &pdev->dev;
- 	int ret;
-@@ -2809,6 +2839,8 @@ static int mtk_dp_probe(struct platform_device *pdev)
- 
- 	mtk_dp->bridge.of_node = dev->of_node;
- 	mtk_dp->bridge.type = mtk_dp->data->bridge_type;
-+	mtk_dp->bridge.dp_link_train_caps = &dp_link_train_caps;
-+	mtk_dp->bridge.ops = DRM_BRIDGE_OP_DP;
- 
- 	if (mtk_dp->bridge.type == DRM_MODE_CONNECTOR_eDP) {
- 		/*
-
--- 
-2.43.0
-
+> ---
+> Stack trace:
+> 
+> [  631.875165] [IGT] xe_exec_system_allocator: starting subtest threads-many-new-prefetch
+> [  632.282992] Oops: general protection fault, probably for non-canonical address 0x900000000000000: 0000 [#1] SMP NOPTI
+> [  632.293469] CPU: 8 UID: 0 PID: 59267 Comm: xe_exec_system_ Not tainted 7.0.0-rc7-xe+ #281 PREEMPT(full)
+> [  632.316023] RIP: 0010:free_zone_device_folio+0x149/0x240
+> [  632.339782] RSP: 0000:ffffc90023d1fd00 EFLAGS: 00010206
+> [  632.344947] RAX: 0900000000000000 RBX: 0000000000000001 RCX: 0000000094472d4d
+> [  632.351991] RDX: ffffffff8155c76f RSI: 000000006f2213bf RDI: 000000008e84943a
+> [  632.359042] RBP: ffffea0ff4030001 R08: 0000000000000000 R09: 0000000000000001
+> [  632.366094] R10: 0000000000000028 R11: 0000000000000000 R12: ffff88811828e400
+> [  632.373145] R13: 0000000000000000 R14: 000fffffc0000000 R15: 0000000000100073
+> [  632.380194] FS:  00007f2f0fdfe6c0(0000) GS:ffff88890a7e7000(0000) knlGS:0000000000000000
+> [  632.388186] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> [  632.393870] CR2: 00007f2f002e90f8 CR3: 0000000106708002 CR4: 0000000000f70ef0
+> [  632.400919] PKRU: 55555554
+> [  632.403605] Call Trace:
+> [  632.406039]  <TASK>
+> [  632.408131]  do_swap_page+0x146d/0x18c0
+> [  632.411938]  ? __pte_offset_map+0x3e/0x190
+> [  632.415994]  __handle_mm_fault+0x6e8/0x8d0
+> [  632.420053]  handle_mm_fault+0xbf/0x250
+> [  632.423855]  ? lock_mm_and_find_vma+0x41/0x6f0
+> [  632.428256]  do_user_addr_fault+0x168/0x690
+> [  632.432399]  exc_page_fault+0x74/0x200
+> [  632.436117]  asm_exc_page_fault+0x26/0x30
+> [  632.440092] RIP: 0033:0x5587554ff70d
+> [  632.462142] RSP: 002b:00007f2f0fdfc970 EFLAGS: 00010246
+> [  632.467308] RAX: 0000000000003fc0 RBX: 00007f2f082e1fc0 RCX: 00007f2f12b3287d
+> [  632.474355] RDX: 0000000000000000 RSI: 00000000c048644a RDI: 0000000000000003
+> [  632.481404] RBP: 00007f2f082e1fc0 R08: 00007f2f0fdfc958 R09: 0000000000000066
+> [  632.488450] R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000001
+> [  632.495495] R13: 00007f2f082de000 R14: 0000000000c00002 R15: 00007f2f1319e000
+> [  632.502547]  </TASK>
+> ---
+>  mm/memremap.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/mm/memremap.c b/mm/memremap.c
+> index ac7be07e3361..053842d45cb1 100644
+> --- a/mm/memremap.c
+> +++ b/mm/memremap.c
+> @@ -454,7 +454,7 @@ void free_zone_device_folio(struct folio *folio)
+>  		if (WARN_ON_ONCE(!pgmap->ops || !pgmap->ops->folio_free))
+>  			break;
+>  		pgmap->ops->folio_free(folio);
+> -		percpu_ref_put_many(&folio->pgmap->ref, nr);
+> +		percpu_ref_put_many(&pgmap->ref, nr);
+>  		break;
+>  
+>  	case MEMORY_DEVICE_GENERIC:
+> -- 
+> 2.34.1
+> 
