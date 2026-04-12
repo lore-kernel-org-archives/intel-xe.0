@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE529E937E4
-	for <intel-xe@archiver.kernel.org>; Sun, 12 Apr 2026 11:08:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81216E937E0
+	for <intel-xe@archiver.kernel.org>; Sun, 12 Apr 2026 11:08:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B005510E2B4;
-	Sun, 12 Apr 2026 11:08:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B98610E2B8;
+	Sun, 12 Apr 2026 11:08:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jv1g1Nrc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kRxeIwU4";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E23B110E2B3;
- Sun, 12 Apr 2026 11:08:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C416210E2B7;
+ Sun, 12 Apr 2026 11:08:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775992095; x=1807528095;
+ t=1775992099; x=1807528099;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Iq2A8HTXdlZoHhXR2IhAltfnGX3h+yENMdY9/rFRVvw=;
- b=jv1g1NrcW4S7KxPtcO6f5pD5PAQvX6Sk93RhNwybiVSji2m5z7xOSprl
- WW7Humrw3IXzX9Aqn3qEi025xFeNWRQYZ66JyQ/AaCHjzGPaMJX2PVYc1
- uTNUBdKIWMYnKNielpC8Po9usKImKzACDD6EJ95mopUfL5BMDZxUN84c0
- nMOor5dvbIAFRdcjUSwc7cn4JDdNJo7Pm5qDBcf5pxUsXXE5KMtDcywkZ
- refoyM0sVlPZN3OGUVvv8umn0GhZKJVMIsjp3F7piQSKm1Uqpk8bqDH0S
- BhhoTf1JjBSYD3orX3bJk78bBgh6PEhJ1tMmMs7XSCCR7Fs3ZMW4zWJw3 w==;
-X-CSE-ConnectionGUID: 8VmZ63OtRdG0g51CcyIWew==
-X-CSE-MsgGUID: L03jRTTiTAaAQMnlWJEBgw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11755"; a="76115128"
-X-IronPort-AV: E=Sophos;i="6.23,175,1770624000"; d="scan'208";a="76115128"
+ bh=kEIau+R6G0jGe8LpKwThuXzCvZkG9r6W5TqjTHM4yrI=;
+ b=kRxeIwU4ZDhVqS1KmtVzduZfm5BznaOxZQy3sNB8512+/JUssS6fDCS4
+ Hf+ChVtCVGJBBMK/0QlYuU2HXemfZwAQ23Sdy+j0mQ8bZLpV0QD9O7I1F
+ CBmDxwpA0iW6PyboQ4b39C4enXKD0sDU2SzBWOgHXhdmeeE4dYsjAQ9O4
+ 9roCeQDoUJs+KZa3Ft+XMwy/iFNIQZVuBWtlurVyEUvyFGe0EW+3An84E
+ lYJLc1NC7TeenzOYwvSo6BoEe3MkQcOHCMjLaLzURo+oM06pbr35hbnA6
+ f38iAxPsoG4xGO8YaZJy7EkbgPGXgh28EIkS+XiBXtUm3wzm7r5xChZXi A==;
+X-CSE-ConnectionGUID: LM58igl+R3S16EjcpVudaA==
+X-CSE-MsgGUID: OGiYhQNtR4qI3J0IIXYDtQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11755"; a="76115140"
+X-IronPort-AV: E=Sophos;i="6.23,175,1770624000"; d="scan'208";a="76115140"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2026 04:08:12 -0700
-X-CSE-ConnectionGUID: 7l1L9mHFQRGl6fU4f6G5Gg==
-X-CSE-MsgGUID: uS6QkOf8QQCo+AEZeNk9vA==
+ 12 Apr 2026 04:08:19 -0700
+X-CSE-ConnectionGUID: AYdLbG+IRLysZIMKGjoq7w==
+X-CSE-MsgGUID: eAPe7jIaT4yTExqRGwqhIg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,175,1770624000"; d="scan'208";a="267507745"
+X-IronPort-AV: E=Sophos;i="6.23,175,1770624000"; d="scan'208";a="267507753"
 Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by orviesa001.jf.intel.com with ESMTP; 12 Apr 2026 04:08:10 -0700
+ by orviesa001.jf.intel.com with ESMTP; 12 Apr 2026 04:08:17 -0700
 From: Animesh Manna <animesh.manna@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: uma.shankar@intel.com, dibin.moolakadan.subrahmanian@intel.com,
  jani.nikula@intel.com, Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH v4 10/13] drm/i915/cmtg: Add trigger to enable/disable cmtg
-Date: Sun, 12 Apr 2026 16:07:09 +0530
-Message-Id: <20260412103712.4021213-11-animesh.manna@intel.com>
+Subject: [PATCH v4 12/13] drm/i915/cmtg: Disable CMTG if dc3co is not allowed
+Date: Sun, 12 Apr 2026 16:07:11 +0530
+Message-Id: <20260412103712.4021213-13-animesh.manna@intel.com>
 X-Mailer: git-send-email 2.29.0
 In-Reply-To: <20260412103712.4021213-1-animesh.manna@intel.com>
 References: <20260412103712.4021213-1-animesh.manna@intel.com>
@@ -67,107 +67,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Enable CMTG with fixed refresh rate mode and with dynamic
-dc state enabled.
-
-Disable CMTG with transcoder disable or if there is a transition
-to vrr mode from fixed refresh rate mode.
-
-v2:
-- Move the enabled flag update to avoid issue in the disable timeout
-path. [Uma]
+DC3co entry condition can change dymamically and disable
+CMTG if entry condition is not met for DC3co.
 
 Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cmtg.c          |  5 +++++
- drivers/gpu/drm/i915/display/intel_display.c       | 10 ++++++++++
- drivers/gpu/drm/i915/display/intel_display_types.h |  4 ++++
- 3 files changed, 19 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cmtg.c b/drivers/gpu/drm/i915/display/intel_cmtg.c
-index 00e5bdd1b063..fc4595efec2d 100644
---- a/drivers/gpu/drm/i915/display/intel_cmtg.c
-+++ b/drivers/gpu/drm/i915/display/intel_cmtg.c
-@@ -172,11 +172,14 @@ static void intel_cmtg_disable_all(struct intel_display *display,
- void intel_cmtg_disable(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
- 
- 	if (!intel_cmtg_is_supported(crtc_state))
- 		return;
- 
-+	crtc->cmtg.enabled = false;
-+
- 	intel_de_rmw(display, TRANS_VRR_CTL_CMTG(cpu_transcoder),
- 		     VRR_CTL_VRR_ENABLE | VRR_CTL_FLIP_LINE_EN, 0);
- 
-@@ -384,6 +387,7 @@ void intel_cmtg_enable_sync(const struct intel_crtc_state *crtc_state)
- void intel_cmtg_enable_ddi(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
- 
- 	if (!intel_cmtg_is_allowed(crtc_state))
-@@ -391,5 +395,6 @@ void intel_cmtg_enable_ddi(const struct intel_crtc_state *crtc_state)
- 
- 	intel_de_rmw(display, TRANS_DDI_FUNC_CTL2(display, cpu_transcoder), 0, CMTG_SECONDARY_MODE);
- 
-+	crtc->cmtg.enabled = true;
- 	drm_dbg_kms(display->drm, "CMTG: %s enabled\n", transcoder_name(cpu_transcoder));
- }
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index e8470b7ce13f..30bc209d8fb6 100644
+index 3d683d290fa6..9c5985ae89e0 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1061,6 +1061,11 @@ static void intel_post_plane_update(struct intel_atomic_state *state,
- 		intel_alpm_lobf_enable(new_crtc_state);
- 
- 	intel_psr_post_plane_update(state, crtc);
-+
-+	if (!crtc->cmtg.enabled && intel_vrr_is_fixed_rr(new_crtc_state)) {
-+		intel_cmtg_enable_sync(new_crtc_state);
-+		intel_cmtg_enable_ddi(new_crtc_state);
-+	}
- }
- 
- static void intel_post_plane_update_after_readout(struct intel_atomic_state *state,
-@@ -1771,6 +1776,8 @@ static void hsw_crtc_disable(struct intel_atomic_state *state,
- 	struct intel_crtc *pipe_crtc;
- 	int i;
- 
-+	if (crtc->cmtg.enabled)
-+		intel_cmtg_disable(old_crtc_state);
- 	/*
- 	 * FIXME collapse everything to one hook.
- 	 * Need care with mst->ddi interactions.
-@@ -6865,6 +6872,9 @@ static void intel_update_crtc(struct intel_atomic_state *state,
- 	if (intel_crtc_needs_fastset(new_crtc_state) &&
+@@ -6874,7 +6874,8 @@ static void intel_update_crtc(struct intel_atomic_state *state,
  	    old_crtc_state->inherited)
  		intel_crtc_arm_fifo_underrun(crtc, new_crtc_state);
-+
-+	if (crtc->cmtg.enabled && intel_crtc_vrr_enabling(state, crtc))
-+		intel_cmtg_disable(new_crtc_state);
- }
  
- static void intel_old_crtc_state_disables(struct intel_atomic_state *state,
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index ca2581fb7bbd..f5c9ceb87e58 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1571,6 +1571,10 @@ struct intel_crtc {
- #endif
- 
- 	bool vblank_psr_notify;
-+
-+	struct {
-+		bool enabled;
-+	} cmtg;
- };
- 
- struct intel_plane_error {
+-	if (crtc->cmtg.enabled && intel_crtc_vrr_enabling(state, crtc)) {
++	if (crtc->cmtg.enabled && (intel_crtc_vrr_enabling(state, crtc) ||
++				   !intel_cmtg_is_allowed(new_crtc_state))) {
+ 		intel_cmtg_disable(new_crtc_state);
+ 		intel_cmtg_disable_interrupt(new_crtc_state);
+ 	}
 -- 
 2.29.0
 
