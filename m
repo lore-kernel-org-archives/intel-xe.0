@@ -4,54 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4166EBFD2D
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 09:56:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FA88EBFD30
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 09:58:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8098A8922E;
-	Mon, 13 Apr 2026 09:56:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB3C789209;
+	Mon, 13 Apr 2026 09:58:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J7xqTTaz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iX9mg+y5";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF3BA10E3BD
- for <intel-xe@lists.freedesktop.org>; Mon, 13 Apr 2026 09:56:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5769E89209;
+ Mon, 13 Apr 2026 09:58:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776074209; x=1807610209;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=1j3oZDcrUeHaDPnAhUzqpjXHwHDBEwqvcqatmnIbsRg=;
- b=J7xqTTazpUax6GAClYL2KXSVuSX/G36K+d8myk9rdpMX5aljM5Q2oAcW
- wY4izvwmPYvcjTVcvZUE7nhWCfgjln08FPM3ZmtstCR9c+ZxX/7P3rwhd
- 1ncwk/F12LcxjoIHPUaBbbYha5yJPYGfTOD3Mmvs53MdCtww2MZliXhJv
- IEiWwH81k5gPk1U3ygoi0H+qxFI4ITFO2eq4x54ARJTKfmSUhUgsaplan
- R4xOioLL3Z9JeJwdWx6TGllQ5Xs+gnUWq+v+0/O2XjFz7Rot8cwEzRmjD
- 7ooG64w0z2zs1REVYpgM/tkwXAIE8eESa0KQrgVtxdsHVsJugMrEu/Dg/ g==;
-X-CSE-ConnectionGUID: TUmyD375T3GurvkAw8Q5Pw==
-X-CSE-MsgGUID: rAp6YnwhT1CcxgtFO9UH6Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11757"; a="80866284"
-X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="80866284"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2026 02:56:49 -0700
-X-CSE-ConnectionGUID: yPacxPHKSWuhnG+7eriRug==
-X-CSE-MsgGUID: nQak2YfPSq6BcyHs1+QI3Q==
+ t=1776074326; x=1807610326;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=qNKMjFoe61j8fuIzfSWj5JZC0y281bsF7isDaWbB+bI=;
+ b=iX9mg+y5YCO9FHE/KWS6MRiSPGoJ1j8BOqXN2O0RGdrjL3nGzX6yiyQ+
+ t8VRX4MjYfH/vgchN/FH/vOtZVvQr4G6HV9JwG5x0i+ArHPKwZOKTJ43I
+ eWor2AUaVrd3bqSwENErvNAPyLZECsDCgDT6zmkqDcksYg74ofWsdxyy4
+ e9JJDSOL0TaHCbIjcAgpSr37BFuq8wnCt+LgURdhnjq9yOTkCxyMWhnml
+ tcb8YrqhG8kNkhmYBR63B75y8Y3oM3zGSQe1sTscRHxdz1b8xsEA42DcR
+ b++cNyhkYve5lfZb+9gUzHFBD1JvM+CU7tl7kRE5OMhoXpMlO2xa67YkY w==;
+X-CSE-ConnectionGUID: aSKzLAuETiuEL7a9IgfXrA==
+X-CSE-MsgGUID: sSeVfMYrSle+IfMDUnDZcQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11757"; a="87705883"
+X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="87705883"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2026 02:58:46 -0700
+X-CSE-ConnectionGUID: +O4F51yhRdS6pTZQyUgF/g==
+X-CSE-MsgGUID: ayS63NDDRjuGf3RCujOzqw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="234726560"
-Received: from gsd-build.iind.intel.com ([10.190.229.141])
- by orviesa005.jf.intel.com with ESMTP; 13 Apr 2026 02:56:48 -0700
-From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v12] drm/xe/pf: Derive admin-only PF mode from xe_device state
-Date: Mon, 13 Apr 2026 09:56:38 +0000
-Message-ID: <20260413095637.2871287-2-satyanarayana.k.v.p@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260409154423.2499340-6-satyanarayana.k.v.p@intel.com>
-References: <20260409154423.2499340-6-satyanarayana.k.v.p@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="227060762"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.64])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2026 02:58:43 -0700
+Date: Mon, 13 Apr 2026 12:58:40 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Simona Vetter <simona.vetter@ffwll.ch>,
+ Jani Nikula <jani.nikula@intel.com>,
+ Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Michel =?iso-8859-1?Q?D=E4nzer?= <michel.daenzer@mailbox.org>
+Subject: Re: [PATCH 5/6] drm/i915/reset: Handle the display vs. GPU reset
+ deadlock using a custom dma-fence
+Message-ID: <ady-UMqIQUqmKsLv@intel.com>
+References: <20260408233458.22666-1-ville.syrjala@linux.intel.com>
+ <20260408233458.22666-6-ville.syrjala@linux.intel.com>
+ <44fa373c-6216-4cc4-a605-94776b3873ad@amd.com>
+ <adeLRHQ2omAv93yM@intel.com>
+ <cc51ea63-19b0-4352-9299-e5ab63f57ce4@amd.com>
+ <adyzR6ISo_idi38p@intel.com>
+ <b93c6c33-2d94-4da8-8e97-04c3bade2575@amd.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <b93c6c33-2d94-4da8-8e97-04c3bade2575@amd.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,149 +83,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Stop tracking admin-only PF mode in a separate `xe->sriov.pf.admin_only`
-field and use `xe_device_is_admin_only(xe)` as the single source of
-admin mode.
+On Mon, Apr 13, 2026 at 11:35:23AM +0200, Christian König wrote:
+> On 4/13/26 11:11, Ville Syrjälä wrote:
+> >>>> I think something is missing in my picture how that is supposed to work.
+> >>>
+> >>> The problem stems from the fact that on old platforms a GPU reset
+> >>> also resets the display hardware,
+> >>
+> >> Which is true for at least AMD GPUs and I think pretty much everybody else as well, but that wasn't so much of a problem so far.
+> >>
+> >>> and to do that safely we need:
+> >>> 1. shut down display
+> >>> 2. perform the GPU reset
+> >>> 3. restore the display hardware to its orignal state
+> >>
+> >> Mhm, I've recently talked with Michel about it and we confirmed that this is perfectly possible without issues. Adding Michel as well.
+> >>
+> >>> We just do that with essentially with a normal atomic commit.
+> >>
+> >> I think that is the source of the problem.
+> >>
+> >> I'm not an expert on that topic but amdgpu and tons of other drivers seem to just use drm_atomic_helper_shutdown() for that.
+> > 
+> > drm_atomic_helper_shutdown() is definitely not the thing to use
+> > for this as it would clobber the stored kms state, leaving everything
+> > permanently disabled. The drm_atomic_helper_commit_duplicated_state()
+> > stuff i915 uses is the correct thing here.
+> > 
+> > But for this problem it doesn't even matter which gets used. Either
+> > would get equally stuck behind a previous atomic commit waiting for
+> > its fences.
+> > 
+> >>
+> >> What is i915 doing differently?
+> > 
+> > I see zero code for any display reset stuff in any other driver. If
+> > amdgpu does anything it must be something completely custom, hidden
+> > somewhere deep.
+> 
+> The display is just fully reset by any MODE1 reset, you don't need to do anything special for that.
 
-Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+You can't just ignore the fact that there may be a display hardware
+reprogramming already happening in parallel. Failing to follow the
+correct programming sequence is a recipe for even hard system hangs.
 
----
-V11 -> V12:
-- Fixed nits.
+> 
+> Restoring the display after the reset is either not an atomic commit at all or done by an async worker after the reset completed.
 
-V10 -> V11:
-- Squashed kunit commit into the current one.
-- Cleandup pf_set_admin_mode() as per review comments (Michal).
+Everything is an atomic commit. No one is going to implement a
+complete second modeset codepath just for resets.
 
-V9 -> V10:
-- None.
+> 
+> >>> But a 
+> >>> previous atomic commit may already be waiting for a fence, which
+> >>> won't signal until the GPU reset happens, and the GPU reset is now
+> >>> waiting for that previous atomic commit to finish so that it can do
+> >>> its own atomic commit. In order to break the deadlock we need to
+> >>> abort the fence waits in the atomic commit, and that's what this
+> >>> "reset fence" achieves.
+> >>
+> >> As far as I can see that approach looks strongly like a no-go.
+> >>
+> >> You essentially have a lock inversion here and it is documented that it should *never* be resolved by a timeout, the approach you take now is not much better.
+> > 
+> > Unless someone wants to add some kind of extra abort mechanism to
+> > dma_fence_wait*() then I think this is probably the best solution.
+> > And given this is only a thing for one driver on old hardware,
+> > adding extra stuff to dma_fence_wait*() doesn't really seem worth
+> > the hassle.
+> 
+> Well adding something to dma_fence_wait() would be a no-go as well.
+> 
+> The point is you should *NOT* wait for an atomic commit to finish from your GPU reset at all. Any GPU reset which waits on a DMA-fence in one way or another is a really big bug.
+> 
+> That is documented and Simona even came up with tons of lockdep annotation to make sure that drivers comply to that.
+> 
+> I'm deeply surprised that a driver like i915 actually tries something like that. And as DMA-buf maintainer I must bluntly NAK that since it goes against documented rules for implementing drivers.
+> 
+> I mean what can be is that this isn't really solved with the atomic mode setting helpers, but since multiple drivers use it it shouldn't be anything special at all.
 
-V8 -> V9:
-- New commit.
----
- .../xe/tests/xe_gt_sriov_pf_config_kunit.c    | 21 +++++++++++++++++--
- drivers/gpu/drm/xe/xe_device.c                |  2 ++
- drivers/gpu/drm/xe/xe_sriov_pf.c              |  6 ------
- drivers/gpu/drm/xe/xe_sriov_pf_helpers.h      |  3 ++-
- drivers/gpu/drm/xe/xe_sriov_pf_types.h        |  3 ---
- 5 files changed, 23 insertions(+), 12 deletions(-)
+There is zero support in the atomic design for reordering commits,
+which is pretty much what would be needed. A generic solution would
+more or less involve a full redesign/rewrite of atomic.
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c b/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c
-index efa8963ec248..e6eaa94d4d30 100644
---- a/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c
-+++ b/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c
-@@ -13,11 +13,28 @@
- #define TEST_MAX_VFS	63
- #define TEST_VRAM	0x7a800000ull	/* random size that works on 32-bit */
- 
-+static bool xe_device_is_admin_only_stub_enable(const struct xe_device *xe)
-+{
-+	return true;
-+}
-+
-+static bool xe_device_is_admin_only_stub_disable(const struct xe_device *xe)
-+{
-+	return false;
-+}
-+
- static void pf_set_admin_mode(struct xe_device *xe, bool enable)
- {
--	/* should match logic of xe_sriov_pf_admin_only() */
--	xe->sriov.pf.admin_only = enable;
-+	typeof(xe_device_is_admin_only) *stub = enable ?
-+		xe_device_is_admin_only_stub_enable :
-+		xe_device_is_admin_only_stub_disable;
-+
-+	kunit_activate_static_stub(kunit_get_current_test(),
-+				   xe_device_is_admin_only,
-+				   *stub);
-+
- 	KUNIT_EXPECT_EQ(kunit_get_current_test(), enable, xe_sriov_pf_admin_only(xe));
-+	KUNIT_EXPECT_EQ(kunit_get_current_test(), enable, xe_device_is_admin_only(xe));
- }
- 
- static void pf_set_usable_vram(struct xe_device *xe, u64 usable)
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index ceddda10f78f..4b45b617a039 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -17,6 +17,7 @@
- #include <drm/drm_managed.h>
- #include <drm/drm_pagemap_util.h>
- #include <drm/drm_print.h>
-+#include <kunit/static_stub.h>
- #include <uapi/drm/xe_drm.h>
- 
- #include "display/xe_display.h"
-@@ -445,6 +446,7 @@ static struct drm_driver admin_only_driver = {
-  */
- bool xe_device_is_admin_only(const struct xe_device *xe)
- {
-+	KUNIT_STATIC_STUB_REDIRECT(xe_device_is_admin_only, xe);
- 	return xe->drm.driver == &admin_only_driver;
- }
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_sriov_pf.c b/drivers/gpu/drm/xe/xe_sriov_pf.c
-index 47a6e0fd66e0..33bd754d138f 100644
---- a/drivers/gpu/drm/xe/xe_sriov_pf.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_pf.c
-@@ -20,11 +20,6 @@
- #include "xe_sriov_pf_sysfs.h"
- #include "xe_sriov_printk.h"
- 
--static bool wanted_admin_only(struct xe_device *xe)
--{
--	return xe_configfs_admin_only_pf(to_pci_dev(xe->drm.dev));
--}
--
- static unsigned int wanted_max_vfs(struct xe_device *xe)
- {
- 	return xe_configfs_get_max_vfs(to_pci_dev(xe->drm.dev));
-@@ -79,7 +74,6 @@ bool xe_sriov_pf_readiness(struct xe_device *xe)
- 
- 	pf_reduce_totalvfs(xe, newlimit);
- 
--	xe->sriov.pf.admin_only = wanted_admin_only(xe);
- 	xe->sriov.pf.device_total_vfs = totalvfs;
- 	xe->sriov.pf.driver_max_vfs = newlimit;
- 
-diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h b/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
-index 0fcc6cec4afc..19f6f8331c8d 100644
---- a/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
-+++ b/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
-@@ -7,6 +7,7 @@
- #define _XE_SRIOV_PF_HELPERS_H_
- 
- #include "xe_assert.h"
-+#include "xe_device.h"
- #include "xe_device_types.h"
- #include "xe_sriov.h"
- #include "xe_sriov_types.h"
-@@ -57,7 +58,7 @@ static inline unsigned int xe_sriov_pf_num_vfs(const struct xe_device *xe)
- static inline bool xe_sriov_pf_admin_only(const struct xe_device *xe)
- {
- 	xe_assert(xe, IS_SRIOV_PF(xe));
--	return xe->sriov.pf.admin_only;
-+	return xe_device_is_admin_only(xe);
- }
- 
- static inline struct mutex *xe_sriov_pf_master_mutex(struct xe_device *xe)
-diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_types.h b/drivers/gpu/drm/xe/xe_sriov_pf_types.h
-index 080cf10512f4..b0253e1ae5da 100644
---- a/drivers/gpu/drm/xe/xe_sriov_pf_types.h
-+++ b/drivers/gpu/drm/xe/xe_sriov_pf_types.h
-@@ -36,9 +36,6 @@ struct xe_sriov_metadata {
-  * @XE_SRIOV_MODE_PF mode.
-  */
- struct xe_device_pf {
--	/** @admin_only: PF functionality focused on VFs management only. */
--	bool admin_only;
--
- 	/** @device_total_vfs: Maximum number of VFs supported by the device. */
- 	u16 device_total_vfs;
- 
 -- 
-2.43.0
-
+Ville Syrjälä
+Intel
