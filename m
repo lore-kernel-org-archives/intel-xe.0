@@ -4,73 +4,161 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 196B1F34C55
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 12:26:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3128AF34C4E
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 12:38:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A544810E43E;
-	Mon, 13 Apr 2026 12:26:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B40A510E453;
+	Mon, 13 Apr 2026 12:38:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="aw1P8DfC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m05AJKsz";
 	dkim-atps=neutral
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA3C510E842
- for <intel-xe@lists.freedesktop.org>; Thu,  9 Apr 2026 17:09:24 +0000 (UTC)
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
- by smtpout-03.galae.net (Postfix) with ESMTPS id A0FDB4E429AB;
- Thu,  9 Apr 2026 17:09:23 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
- by smtpout-01.galae.net (Postfix) with ESMTPS id 738B4603E4;
- Thu,  9 Apr 2026 17:09:23 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 0ADDA1045019C; 
- Thu,  9 Apr 2026 19:09:17 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1775754561; h=from:subject:date:message-id:to:cc:mime-version:content-type:
- content-transfer-encoding:in-reply-to:references;
- bh=nAa49l6nByOD1QkrhvY6Ps2x0QzEkFpU0dCbNZY9aF8=;
- b=aw1P8DfCqZJvx+99QBmguuJ7MVbCrmNpryXOEuwm5gYIpjNqGh9vF9Q6NhunCZPeTggqw6
- BhFSb4P5aJnTwyK92yjrixqXHaYm5Q8whGLaFWWr4/3sJfoFIHqEl1xW4gOv4jgWeftwd5
- V7oOMIp+qYzGlJ2R1d9dOqyc2rKmTIhoFDPIjSrV4WE1pNlyNdW85IANCtFDQF2rzOf7Bv
- H2JTCW7MHmr0QHaelVVM6yz3g0TDjdrtLMZh5OubPZMbEyiRul6TOgkaktRHc5ahGtdFVS
- xh2adRdbwcL7yHtNmYK03B0r+m31UTOwNHcKH+nwpSTfhRBcEMn5TH7d93Iuvw==
-From: Kory Maincent <kory.maincent@bootlin.com>
-Date: Thu, 09 Apr 2026 19:08:24 +0200
-Subject: [PATCH RFC 08/12] drm/i915/display: Switch to managed for
- connector
-MIME-Version: 1.0
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 096F810E451;
+ Mon, 13 Apr 2026 12:38:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1776083937; x=1807619937;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=hX6VOeZhMt+AExI6yr6skZoewzjqFOcy2Bk44DpuOYc=;
+ b=m05AJKsz2dM2D94V4SxJeUV32fapjE6RE3EI7Me85V7meumHnoaBXl8Y
+ WKvSgADjFoS+UuCQ753v8rpK13SfR6e18Ykb9/8GNJWFjsxWMUH2bYyqs
+ QTUmSw6SpMy5ks/3V0b5W+/si2nvp4rPmlOxjbhl8Yu3wK7N+i2URWvtp
+ bdPK0AGGJSl4IX0ZmI3Bep9YHVKcvy5ucEyZcyCGx5Si2GnHPBSuz1CPm
+ UKZrVQVD6ClGKvQtqxdjg/OkJAbI/DtJwFhPg0sOi/ZL0BSS6hWBvL2G9
+ MFOw2cOhLxm6UJR8uHNmIJZz2QRB1l6wLe8TMMfn28ld/0K5dCJ2s0M4c g==;
+X-CSE-ConnectionGUID: UGN3PGXwSxW8h7hacL51cA==
+X-CSE-MsgGUID: avDr9buETUSOHNJVHK0vDQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11757"; a="94408353"
+X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="94408353"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2026 05:38:56 -0700
+X-CSE-ConnectionGUID: LsYhXZVIRHef/GD3YVq/CQ==
+X-CSE-MsgGUID: v+02Vv8WQJ+/l0vWeW+Mgg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="223289227"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2026 05:38:55 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Mon, 13 Apr 2026 05:38:54 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Mon, 13 Apr 2026 05:38:54 -0700
+Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.49) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Mon, 13 Apr 2026 05:38:54 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Q0/vf7Iik6Iw0NyVQHiT/sdFm2Eb3quuwyzqxzxN1GClRqxbM9BiYYBvXN68/YKEP8ydw+kW4OmXJxBXQ6kfExsd7+ENOKId1rL3NX2kQatRAlZfR45sDEpYuIF3444H3vQElNld4w1VQAYh8sCiSubGWgSx75zvHmh71tBCY5KFiK/qWdASPg4PxVfyOajM3XpKS3JKUS6oJa9rhRnF6M6Gbo45VgIz4viRJAdC9i420YlsoeIVxcd3xG13DlRvwZhiihkmbu6Pb2dTxr7ALwqpvQ9F2Bf10EumtIi7SOZxMB3o3ZXFavS+w2MHebn7QUMeWSQGYGQ5LskrgthvKw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hX6VOeZhMt+AExI6yr6skZoewzjqFOcy2Bk44DpuOYc=;
+ b=RJZ/OJa0ro/qUl1SViBKFtjHbPwMiHOotRZExqpYPEelMw4cX+ZE8nqcQpazkctuw/YilI9q90GINsuIn9KSHnO5BZooWLfSp+Of+WeUZT0PUsBwrpFqKShIWO4DgNiszhV9zqXfBplvO3q/T7/Xp6LYLY5wzuGVXqbcRNFFUcccXfaYpptgDnt8fCDmsxErrwkCfuA68IHIM88PXxWvAimSS0fTae/UVmAYLDC6OFGp1R5vuwb2YdQ/cN9X/YtPdt6qwduHMIrEt1avG2Wt7CRwzPaiQ+ckM6W8+rwbxDFHo6RmgMP/2bZ6Sj6k48LPkSJGfNeYLZNF2SmTurt5hQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from IA1PR11MB6467.namprd11.prod.outlook.com (2603:10b6:208:3a5::18)
+ by LV4PR11MB9465.namprd11.prod.outlook.com (2603:10b6:408:2da::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9818.20; Mon, 13 Apr
+ 2026 12:38:47 +0000
+Received: from IA1PR11MB6467.namprd11.prod.outlook.com
+ ([fe80::7aa6:c6db:3d15:8973]) by IA1PR11MB6467.namprd11.prod.outlook.com
+ ([fe80::7aa6:c6db:3d15:8973%4]) with mapi id 15.20.9791.032; Mon, 13 Apr 2026
+ 12:38:47 +0000
+From: "Garg, Nemesa" <nemesa.garg@intel.com>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+CC: "Hogander, Jouni" <jouni.hogander@intel.com>, "stable@vger.kernel.org"
+ <stable@vger.kernel.org>
+Subject: RE: [PATCH] drm/i915/psr: Init variable to avoid early exit from et
+ alignment loop
+Thread-Topic: [PATCH] drm/i915/psr: Init variable to avoid early exit from et
+ alignment loop
+Thread-Index: AQHcyzgT+XTCjneXvkukCtRiwjAOT7Xc7l9w
+Date: Mon, 13 Apr 2026 12:38:47 +0000
+Message-ID: <IA1PR11MB64678230ADC9AB122529B5B0E3242@IA1PR11MB6467.namprd11.prod.outlook.com>
+References: <20260413112345.88853-1-jouni.hogander@intel.com>
+In-Reply-To: <20260413112345.88853-1-jouni.hogander@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: IA1PR11MB6467:EE_|LV4PR11MB9465:EE_
+x-ms-office365-filtering-correlation-id: 7f802d8e-b1ee-4a58-4714-08de99599b91
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|376014|366016|38070700021|22082099003|56012099003|18002099003;
+x-microsoft-antispam-message-info: 3LKP8hw8YIONbJAtfMLNSB+VG7ysafPWpfrv0qfkQvRiIRfAxyKZB3Y0QMyBZcrTfZTsw8j4XcodfkPtKuOZkNujnsjqAMYYtMiaz+QVvJaszj7puhZQNAbqaRV5N1ZklduZbJVzlPiry08JUQ1giGinQdWcIjmUhJ1jC/AgIirhsmQ3fhTMKJCNdZlP03YI3Ew//gLKpFz1tKGWJYohqHi2Mi+zlUCzyzDoiHYPbMx85+ScQhXcZ6GCvlFdfcx9HBasbJ6Kf8Clg9TTvNPiISmK2952XQLnDs9/Q6CYKnLL/GcYlg1mgER0/X//husXFDOAwqq0PXau6/EVgUW7/zDq6BvTLenu0qF9wgdVeR3a32U5b507Z/wlMm5Pw6gJvGo7BXPyRv0qt5UgcG7OV+yge8AnkLjG3oQVqQsU6ZKzgQflbCDAUnTORcWmnFq4v29wJKWvPNKss4eRcvCIHs1q4xoo5l56g1UNpzH3JQRo8NpOx8uNhvwD6Q5PdOgZIlUPliUpjnwLb7eYa/s3rZ8Ziyj8mTHGNnhJv7j4Gr6OBznh2PLyxY+2uf26kIKH0noH2Cp8U0o0+r9vSdXkc9RmcuEJPD6nEln8LJn4eqBuDYs9yEQWVl201Jm8adFuXDKCmAIhb/k1fUSHvWLxyvtNy2oBAN2ik5RMhxBVkYln6z3dQpdJJd3C9lQK89KCFfE0wTBGWMijXhACyyI+JGNmThUypTGwUFojLSJvHvlJBpm0nAKGp1ACYmzgW2oT69pzWr80FvsywvfNiFHqVR9RfJI2Z8JzSF4sIZtn9BI=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA1PR11MB6467.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(38070700021)(22082099003)(56012099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?M1NXOHZWRHdSNHE0YngxNnBETW1ZTk1idjVVc29pcDRqK2YvNmYrSkw5YWVS?=
+ =?utf-8?B?VnNlYVBERVoxUjJodGhZaWpQdUxDY0xlcUdTOUJSME8vMG5QeDMwR0x4bmx2?=
+ =?utf-8?B?RE8xeXJMV2ozWHJSczlZaVhBTTlQNzhnbkxZeWR0aFRnc1l0aTdxd0RZWWNS?=
+ =?utf-8?B?YTZSbjY0ZngzZnllaTN1UG9lVUNwS0ZSNkdVWmxpbUsrN0RQNFZYT3NHblRE?=
+ =?utf-8?B?RXY5S2VmU29wNm1UUE4rNzJXUE1KOUNtbXRkaHN6b0VCUEozbXlsY3QxdHpC?=
+ =?utf-8?B?N3Mrc2N5ejB0WkQ0dkJ0bUVCOG5zalNqOGtTTWczM1dYMmJDL3YzN24rQUJI?=
+ =?utf-8?B?MFlmUDdJVnhsMzk1b3V4eFRYVksweG5jVWpwdTJHTGVPSUtJa0o2a3k5ODQv?=
+ =?utf-8?B?MVhxZFdjQWNxWitoa002bERJVGVWRlU4cDB4RDdnWUtpQ1lKODIvWGdjWXpW?=
+ =?utf-8?B?KzF5ckNmUUVNWFVuanorWlNwQ0ZXUnY3ckpxOVgvOXh6RWtCN2R1dlpxWUpt?=
+ =?utf-8?B?alZFeGJrUTJBa0hMQlR5T0kyRjk5S1VUeXBrVjNlalA1YzVFellWUGJxbFdL?=
+ =?utf-8?B?RGtRVVRZazdiUnliK3VXWUdoNjFvVTY2MWlXaHZFby9oS3ZvanNjQnlMN0J6?=
+ =?utf-8?B?MWF1WVBhbzcrZ3lLNitQZzBsa3RPaDZyanlKYWQxb0wwelJkYzE5cytGZ1Jz?=
+ =?utf-8?B?S2tISnVaaDhzdVFNQkRUbXhMWGFmRDdhQjJSdENFLzZ5ajRJcG4xdEsxRnlC?=
+ =?utf-8?B?d21OWSttRTl1MDkzWFdJcVJZd0pYRnR4c2lZMEluanl3SHkvZWxSQ3d4K296?=
+ =?utf-8?B?NENhV1pzTERzUjJ6aGNSQjFYQUNKMWd3cXNJTUZONUlzb3NWYTA2U0p6YVFm?=
+ =?utf-8?B?M2NNdHNOWS9SU1U1eEdKK282VjBYSExkTml5Ukp3NldWSU04L2M2OGNXelZi?=
+ =?utf-8?B?ZFdDUGU5cTd2cjRtUEYxdjduVmkxNHA2cFEyWUFtWTNYWUhpQ0dmV1k3SWxS?=
+ =?utf-8?B?bTFjeDNvdUNRQ1dqZlZPNnM5YU5TYUhKRFRqWnZXMlEydFUwc0VRSzZwOE5P?=
+ =?utf-8?B?Y2RncGw5eTNjUUF5QnJvQW9PekxVeFZWbzhDMkhMdmZvV3E0N0lSRnRtR0hE?=
+ =?utf-8?B?UkpnQmpRNVlkaitHY1JRR3pkMG5TZXhJelhUdkkyMnF3ZU5nMDZIb01oOVV5?=
+ =?utf-8?B?NHJUbWkwbUkybkwwSU9IdWVpM3c2WUxDaUo2SzJtd1laT2tmbzY5RHpvVEVP?=
+ =?utf-8?B?alcya3lCQ0hlYlVQb09kSWNCT1hhK3ArSlc1Z3BJTnN1NTkyOStaYUFXQkxw?=
+ =?utf-8?B?MEl5U2t3bDRwZFV0bDJMbFBvdmZJb2pES1lQZmUrVG1vSC9XQXRiV0RMRFFl?=
+ =?utf-8?B?ZkRGcnJxaFRWcTRDVnMrZjZzSlFhVnJiVWNTQm1oc3BBSlZyUEtqOFh2Smp6?=
+ =?utf-8?B?UXRJM1VhTHZoQXYvUERjd1Z1Mjg1QmEvS1lrN25pZURHUUVvNnJEQmtwRUpL?=
+ =?utf-8?B?SGMydjdXOWRnSUdXRjhIdHoyMkF0bCtDYkZCWk82ZTBZemt0QkluemlNSTlD?=
+ =?utf-8?B?SDhxb0E5Z3VLT01hTTlwQzdRVGhTanJLOVJJYjdhaFpTRmhuYVRSeStkUzVa?=
+ =?utf-8?B?K2c5SXQrZlhiSFp1S2s5RTZ3WlhDNUZEMTRGQXlxRUlKRUVUMEpHZENXRzA4?=
+ =?utf-8?B?TUZzZzhWOUZEOHlud0oydUpBaHM0cm95SGNtMzQ2WEM3N0pzc0NoSjMrVXVh?=
+ =?utf-8?B?TDhLVE1CS1Z6ejNRKzY0NEg0dkVFVS8xTmNuZXdpN1FXTStSbjRSc0QrcEha?=
+ =?utf-8?B?Smhqc04zRi9GU0dBK0ZrSXhKK040UGx2VW9FdjE0Z08yNnJTNkNXWWxGSURx?=
+ =?utf-8?B?QVdlaHRNTGZhRWhtU2ExV1hpTkxsaEZldDFSK2NONlQvcy9tNytjdWVyL1N4?=
+ =?utf-8?B?aGVJb05ybUkrWTg4UkVuQURtcG92RFFuRUx4cVlZOE5KR1JOVFdUc1JsM2hu?=
+ =?utf-8?B?ZFVVYWJVVTJuRDhFc3FWcVFDQmllOFF4RU1uZmNkVThDeUkrdnF0STVkNmRM?=
+ =?utf-8?B?czhjRHV2a0NYV0c1Z2F2QllOeUphWDIza1JtSGZVRlc2WDk2TllmNXVEWW15?=
+ =?utf-8?B?MkZxTC9jbDZtcXd2dE9ZOStHcjI0SDJxMEZKeHNlazNOUWJYc3ZsRGVUbjJ4?=
+ =?utf-8?B?cW1CSExidnNVMEcrY3E0UmVyRSs0aEw0V1JPSFRCTXdTY1lDT3VIMDJ1c3Nt?=
+ =?utf-8?B?Z2N2Njd2MkZxTEo0dFhGSTdlMEVQVFVjV0xxOEJwWXcwM2dCRHRKTWlPWTdk?=
+ =?utf-8?B?dUZSaE15MEROMmZsS0lYdGlkSk43eHhHR1NQYmtwcG90Y21ialJUdz09?=
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260409-feat_link_cap-v1-8-7069e8199ce2@bootlin.com>
-References: <20260409-feat_link_cap-v1-0-7069e8199ce2@bootlin.com>
-In-Reply-To: <20260409-feat_link_cap-v1-0-7069e8199ce2@bootlin.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Dave Airlie <airlied@redhat.com>, 
- Jesse Barnes <jbarnes@virtuousgeek.org>, Eric Anholt <eric@anholt.net>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Mark Yacoub <markyacoub@google.com>, Sean Paul <seanpaul@google.com>, 
- Louis Chauvet <louis.chauvet@bootlin.com>, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, 
- Simona Vetter <simona.vetter@ffwll.ch>, 
- Kory Maincent <kory.maincent@bootlin.com>
-X-Mailer: b4 0.14-dev-d4707
-X-Last-TLS-Session-Version: TLSv1.3
-X-Mailman-Approved-At: Mon, 13 Apr 2026 12:26:28 +0000
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-Exchange-RoutingPolicyChecked: sCG4+3KIdltcrvqlqoXtuCTJJU1nIDp2vKrRrTzOjs5daIWeBS7y8weaLWzkBdwCetpPNS1i3aDXaB6WTF01XxczSEfK8ooSqhlyZ2PTxlG76Krj5rDKvxJL3uLPHV2XLh0JGZyqa/4yfdMQ1TrsXoSWnANZI0xj15QkExV3znBGun5xRMY9yNj0qXOOr3jnRnNqDHgO6gZOY+SvnM8969wNm3flUPoD0++NVMJOsjLfR34pe3VluPSY1AEQWdG96oRgJKCd48JWyjK+WVj6nvlqOOcM4QOx32/P9PTZRf4LXMVttYPdtTjiM7wSgoS0kqZ6az2hzcIoPmYTT0QgnA==
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB6467.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7f802d8e-b1ee-4a58-4714-08de99599b91
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Apr 2026 12:38:47.4292 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: GLy+QUEJYqSkXT9OQwllb5ISTJqIBMutBxLS0HN745wellWiPCSM+HVIqrof9dXpNKQ+KxNAhXXRjvU4mb+Ogw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV4PR11MB9465
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,896 +173,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The current i915 driver uses non-managed function to create connector. It
-is not an issue yet, but in order to comply with the latest DRM
-requirement, convert this code to use drm and device managed helpers.
-
-Assisted-by: Claude Code:2.1.90
-Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
----
- drivers/gpu/drm/i915/display/g4x_dp.c          | 14 ++---
- drivers/gpu/drm/i915/display/g4x_hdmi.c        | 10 ++--
- drivers/gpu/drm/i915/display/icl_dsi.c         | 30 +++++------
- drivers/gpu/drm/i915/display/intel_connector.c | 26 ++++++---
- drivers/gpu/drm/i915/display/intel_connector.h |  5 +-
- drivers/gpu/drm/i915/display/intel_crt.c       | 19 +++----
- drivers/gpu/drm/i915/display/intel_ddi.c       | 14 +++--
- drivers/gpu/drm/i915/display/intel_dp.c        | 12 +++--
- drivers/gpu/drm/i915/display/intel_dp_mst.c    | 13 ++++-
- drivers/gpu/drm/i915/display/intel_dvo.c       | 21 ++++----
- drivers/gpu/drm/i915/display/intel_hdmi.c      | 15 ++++--
- drivers/gpu/drm/i915/display/intel_lvds.c      | 18 ++++---
- drivers/gpu/drm/i915/display/intel_sdvo.c      | 73 +++++++++-----------------
- drivers/gpu/drm/i915/display/intel_tv.c        | 15 +++---
- drivers/gpu/drm/i915/display/vlv_dsi.c         | 20 ++++---
- 15 files changed, 153 insertions(+), 152 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
-index 99b6c5ce39b2a..e7c3d72d223ee 100644
---- a/drivers/gpu/drm/i915/display/g4x_dp.c
-+++ b/drivers/gpu/drm/i915/display/g4x_dp.c
-@@ -1299,7 +1299,7 @@ bool g4x_dp_init(struct intel_display *display,
- 	if (!dig_port)
- 		return false;
- 
--	intel_connector = intel_connector_alloc();
-+	intel_connector = intel_connector_alloc(display->drm);
- 	if (!intel_connector)
- 		return false;
- 
-@@ -1311,11 +1311,11 @@ bool g4x_dp_init(struct intel_display *display,
- 	if (drmm_encoder_init(display->drm, &intel_encoder->base,
- 			      &intel_dp_enc_funcs, DRM_MODE_ENCODER_TMDS,
- 			      "DP %c", port_name(port)))
--		goto err_encoder_init;
-+		return false;
- 
- 	if (drmm_add_action_or_reset(display->drm,
- 				     intel_dp_encoder_flush_work_cleanup, encoder))
--		goto err_encoder_init;
-+		return false;
- 
- 	intel_encoder_link_check_init(intel_encoder, intel_dp_link_check);
- 
-@@ -1412,14 +1412,10 @@ bool g4x_dp_init(struct intel_display *display,
- 
- 	dig_port->aux_ch = intel_dp_aux_ch(intel_encoder);
- 	if (dig_port->aux_ch == AUX_CH_NONE)
--		goto err_encoder_init;
-+		return false;
- 
- 	if (!intel_dp_init_connector(dig_port, intel_connector))
--		goto err_encoder_init;
-+		return false;
- 
- 	return true;
--
--err_encoder_init:
--	kfree(intel_connector);
--	return false;
- }
-diff --git a/drivers/gpu/drm/i915/display/g4x_hdmi.c b/drivers/gpu/drm/i915/display/g4x_hdmi.c
-index 45ee1ad504bc1..ab964194e63d0 100644
---- a/drivers/gpu/drm/i915/display/g4x_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/g4x_hdmi.c
-@@ -690,7 +690,7 @@ bool g4x_hdmi_init(struct intel_display *display,
- 	if (!dig_port)
- 		return false;
- 
--	intel_connector = intel_connector_alloc();
-+	intel_connector = intel_connector_alloc(display->drm);
- 	if (!intel_connector)
- 		return false;
- 
-@@ -701,7 +701,7 @@ bool g4x_hdmi_init(struct intel_display *display,
- 	if (drmm_encoder_init(display->drm, &intel_encoder->base,
- 			      &intel_hdmi_enc_funcs, DRM_MODE_ENCODER_TMDS,
- 			      "HDMI %c", port_name(port)))
--		goto err_encoder_init;
-+		return false;
- 
- 	intel_encoder->hotplug = intel_hdmi_hotplug;
- 	intel_encoder->compute_config = g4x_hdmi_compute_config;
-@@ -763,11 +763,7 @@ bool g4x_hdmi_init(struct intel_display *display,
- 	intel_infoframe_init(dig_port);
- 
- 	if (!intel_hdmi_init_connector(dig_port, intel_connector))
--		goto err_encoder_init;
-+		return false;
- 
- 	return true;
--err_encoder_init:
--	kfree(intel_connector);
--
--	return false;
- }
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index cfee173a2367a..3d7372f473d95 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -1783,7 +1783,6 @@ static const struct drm_connector_funcs gen11_dsi_connector_funcs = {
- 	.detect = intel_panel_detect,
- 	.late_register = intel_connector_register,
- 	.early_unregister = intel_connector_unregister,
--	.destroy = intel_connector_destroy,
- 	.fill_modes = drm_helper_probe_single_connector_modes,
- 	.atomic_get_property = intel_digital_connector_atomic_get_property,
- 	.atomic_set_property = intel_digital_connector_atomic_set_property,
-@@ -1935,11 +1934,9 @@ void icl_dsi_init(struct intel_display *display,
- 	if (IS_ERR(intel_dsi))
- 		return;
- 
--	intel_connector = intel_connector_alloc();
--	if (!intel_connector) {
--		kfree(intel_dsi);
-+	intel_connector = intel_connector_alloc(display->drm);
-+	if (!intel_connector)
- 		return;
--	}
- 
- 	encoder = &intel_dsi->base;
- 	intel_dsi->attached_connector = intel_connector;
-@@ -1969,10 +1966,16 @@ void icl_dsi_init(struct intel_display *display,
- 	encoder->shutdown = intel_dsi_shutdown;
- 
- 	/* register DSI connector with DRM subsystem */
--	drm_connector_init(display->drm, connector,
--			   &gen11_dsi_connector_funcs,
--			   DRM_MODE_CONNECTOR_DSI);
-+	drmm_connector_init(display->drm, connector,
-+			    &gen11_dsi_connector_funcs,
-+			    DRM_MODE_CONNECTOR_DSI, NULL);
- 	drm_connector_helper_add(connector, &gen11_dsi_connector_helper_funcs);
-+
-+	if (drmm_add_action_or_reset(display->drm, intel_connector_destroy, intel_connector)) {
-+		drm_err(display->drm, "Failed to register intel_connector_destroy clean-up.\n");
-+		return;
-+	}
-+
- 	connector->display_info.subpixel_order = SubPixelHorizontalRGB;
- 	intel_connector->get_hw_state = intel_connector_get_hw_state;
- 
-@@ -1989,7 +1992,7 @@ void icl_dsi_init(struct intel_display *display,
- 
- 	if (!intel_panel_preferred_fixed_mode(intel_connector)) {
- 		drm_err(display->drm, "DSI fixed mode info missing\n");
--		goto err;
-+		return;
- 	}
- 
- 	intel_panel_init(intel_connector, NULL);
-@@ -2012,22 +2015,17 @@ void icl_dsi_init(struct intel_display *display,
- 
- 		host = intel_dsi_host_init(intel_dsi, &gen11_dsi_host_ops, port);
- 		if (!host)
--			goto err;
-+			return;
- 
- 		intel_dsi->dsi_hosts[port] = host;
- 	}
- 
- 	if (!intel_dsi_vbt_init(intel_dsi, MIPI_DSI_GENERIC_PANEL_ID)) {
- 		drm_dbg_kms(display->drm, "no device found\n");
--		goto err;
-+		return;
- 	}
- 
- 	icl_dphy_param_init(intel_dsi);
- 
- 	icl_dsi_add_properties(intel_connector);
--	return;
--
--err:
--	drm_connector_cleanup(connector);
--	kfree(intel_connector);
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_connector.c b/drivers/gpu/drm/i915/display/intel_connector.c
-index 7ef9338d67abf..6fb64c6f4c9e4 100644
---- a/drivers/gpu/drm/i915/display/intel_connector.c
-+++ b/drivers/gpu/drm/i915/display/intel_connector.c
-@@ -28,6 +28,7 @@
- 
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_edid.h>
-+#include <drm/drm_managed.h>
- #include <drm/drm_print.h>
- #include <drm/drm_probe_helper.h>
- 
-@@ -101,7 +102,21 @@ static int intel_connector_init(struct intel_connector *connector)
- 	return 0;
- }
- 
--struct intel_connector *intel_connector_alloc(void)
-+struct intel_connector *intel_connector_alloc(struct drm_device *dev)
-+{
-+	struct intel_connector *connector;
-+
-+	connector = drmm_kzalloc(dev, sizeof(*connector), GFP_KERNEL);
-+	if (!connector)
-+		return NULL;
-+
-+	if (intel_connector_init(connector) < 0)
-+		return NULL;
-+
-+	return connector;
-+}
-+
-+struct intel_connector *intel_subconnector_alloc(void)
- {
- 	struct intel_connector *connector;
- 
-@@ -127,15 +142,14 @@ struct intel_connector *intel_connector_alloc(void)
- void intel_connector_free(struct intel_connector *connector)
- {
- 	kfree(to_intel_digital_connector_state(connector->base.state));
--	kfree(connector);
- }
- 
- /*
-  * Connector type independent destroy hook for drm_connector_funcs.
-  */
--void intel_connector_destroy(struct drm_connector *connector)
-+void intel_connector_destroy(struct drm_device *dev, void *data)
- {
--	struct intel_connector *intel_connector = to_intel_connector(connector);
-+	struct intel_connector *intel_connector = (struct intel_connector *)data;
- 
- 	drm_edid_free(intel_connector->detect_edid);
- 
-@@ -143,12 +157,8 @@ void intel_connector_destroy(struct drm_connector *connector)
- 
- 	intel_panel_fini(intel_connector);
- 
--	drm_connector_cleanup(connector);
--
- 	if (intel_connector->mst.port)
- 		drm_dp_mst_put_port_malloc(intel_connector->mst.port);
--
--	kfree(connector);
- }
- 
- int intel_connector_register(struct drm_connector *_connector)
-diff --git a/drivers/gpu/drm/i915/display/intel_connector.h b/drivers/gpu/drm/i915/display/intel_connector.h
-index 0aa86626e6463..6c47ca46c1d18 100644
---- a/drivers/gpu/drm/i915/display/intel_connector.h
-+++ b/drivers/gpu/drm/i915/display/intel_connector.h
-@@ -14,9 +14,10 @@ struct i2c_adapter;
- struct intel_connector;
- struct intel_encoder;
- 
--struct intel_connector *intel_connector_alloc(void);
-+struct intel_connector *intel_connector_alloc(struct drm_device *dev);
-+struct intel_connector *intel_subconnector_alloc(void);
- void intel_connector_free(struct intel_connector *connector);
--void intel_connector_destroy(struct drm_connector *connector);
-+void intel_connector_destroy(struct drm_device *dev, void *data);
- int intel_connector_register(struct drm_connector *connector);
- void intel_connector_unregister(struct drm_connector *connector);
- void intel_connector_attach_encoder(struct intel_connector *connector,
-diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
-index 39bb115955f5a..8af76d141888b 100644
---- a/drivers/gpu/drm/i915/display/intel_crt.c
-+++ b/drivers/gpu/drm/i915/display/intel_crt.c
-@@ -992,7 +992,6 @@ static const struct drm_connector_funcs intel_crt_connector_funcs = {
- 	.fill_modes = drm_helper_probe_single_connector_modes,
- 	.late_register = intel_connector_register,
- 	.early_unregister = intel_connector_unregister,
--	.destroy = intel_connector_destroy,
- 	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
- 	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
- };
-@@ -1046,19 +1045,21 @@ void intel_crt_init(struct intel_display *display)
- 	if (IS_ERR(crt))
- 		return;
- 
--	connector = intel_connector_alloc();
--	if (!connector) {
--		kfree(crt);
-+	connector = intel_connector_alloc(display->drm);
-+	if (!connector)
- 		return;
--	}
- 
- 	ddc_pin = display->vbt.crt_ddc_pin;
- 
--	drm_connector_init_with_ddc(display->drm, &connector->base,
--				    &intel_crt_connector_funcs,
--				    DRM_MODE_CONNECTOR_VGA,
--				    intel_gmbus_get_adapter(display, ddc_pin));
-+	drmm_connector_init(display->drm, &connector->base,
-+			    &intel_crt_connector_funcs,
-+			    DRM_MODE_CONNECTOR_VGA,
-+			    intel_gmbus_get_adapter(display, ddc_pin));
- 
-+	if (drmm_add_action_or_reset(display->drm, intel_connector_destroy, connector)) {
-+		drm_err(display->drm, "Failed to register intel_connector_destroy clean-up.\n");
-+		return;
-+	}
- 
- 	intel_connector_attach_encoder(connector, &crt->base);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 003287ad5bc59..bb87a7361aa92 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -4694,7 +4694,7 @@ static int intel_ddi_init_dp_connector(struct intel_digital_port *dig_port)
- 	struct intel_connector *connector;
- 	enum port port = dig_port->base.port;
- 
--	connector = intel_connector_alloc();
-+	connector = intel_connector_alloc(display->drm);
- 	if (!connector)
- 		return -ENOMEM;
- 
-@@ -4709,10 +4709,8 @@ static int intel_ddi_init_dp_connector(struct intel_digital_port *dig_port)
- 	dig_port->dp.voltage_max = intel_ddi_dp_voltage_max;
- 	dig_port->dp.preemph_max = intel_ddi_dp_preemph_max;
- 
--	if (!intel_dp_init_connector(dig_port, connector)) {
--		kfree(connector);
-+	if (!intel_dp_init_connector(dig_port, connector))
- 		return -EINVAL;
--	}
- 
- 	if (dig_port->base.type == INTEL_OUTPUT_EDP) {
- 		struct drm_privacy_screen *privacy_screen;
-@@ -4892,12 +4890,13 @@ static bool bdw_digital_port_connected(struct intel_encoder *encoder)
- 	return intel_de_read(display, GEN8_DE_PORT_ISR) & bit;
- }
- 
--static int intel_ddi_init_hdmi_connector(struct intel_digital_port *dig_port)
-+static int intel_ddi_init_hdmi_connector(struct drm_device *dev,
-+					 struct intel_digital_port *dig_port)
- {
- 	struct intel_connector *connector;
- 	enum port port = dig_port->base.port;
- 
--	connector = intel_connector_alloc();
-+	connector = intel_connector_alloc(dev);
- 	if (!connector)
- 		return -ENOMEM;
- 
-@@ -4910,7 +4909,6 @@ static int intel_ddi_init_hdmi_connector(struct intel_digital_port *dig_port)
- 		 * don't fail the entire DDI init.
- 		 */
- 		dig_port->hdmi.hdmi_reg = INVALID_MMIO_REG;
--		kfree(connector);
- 	}
- 
- 	return 0;
-@@ -5499,7 +5497,7 @@ void intel_ddi_init(struct intel_display *display,
- 	 * but leave it just in case we have some really bad VBTs...
- 	 */
- 	if (encoder->type != INTEL_OUTPUT_EDP && init_hdmi) {
--		if (intel_ddi_init_hdmi_connector(dig_port))
-+		if (intel_ddi_init_hdmi_connector(display->drm, dig_port))
- 			return;
- 	}
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 71f206adbebd3..2af64de9c81de 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -47,6 +47,7 @@
- #include <drm/drm_crtc.h>
- #include <drm/drm_edid.h>
- #include <drm/drm_fixed.h>
-+#include <drm/drm_managed.h>
- #include <drm/drm_print.h>
- #include <drm/drm_probe_helper.h>
- 
-@@ -6810,7 +6811,6 @@ static const struct drm_connector_funcs intel_dp_connector_funcs = {
- 	.atomic_set_property = intel_digital_connector_atomic_set_property,
- 	.late_register = intel_dp_connector_register,
- 	.early_unregister = intel_dp_connector_unregister,
--	.destroy = intel_connector_destroy,
- 	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
- 	.atomic_duplicate_state = intel_digital_connector_duplicate_state,
- 	.oob_hotplug_event = intel_dp_oob_hotplug_event,
-@@ -7213,10 +7213,15 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
- 		    type == DRM_MODE_CONNECTOR_eDP ? "eDP" : "DP",
- 		    encoder->base.base.id, encoder->base.name);
- 
--	drm_connector_init_with_ddc(dev, &connector->base, &intel_dp_connector_funcs,
--				    type, &intel_dp->aux.ddc);
-+	drmm_connector_init(dev, &connector->base, &intel_dp_connector_funcs,
-+			    type, &intel_dp->aux.ddc);
- 	drm_connector_helper_add(&connector->base, &intel_dp_connector_helper_funcs);
- 
-+	if (drmm_add_action_or_reset(dev, intel_connector_destroy, connector)) {
-+		drm_err(dev, "Failed to register intel_connector_destroy clean-up.\n");
-+		goto fail;
-+	}
-+
- 	if (!HAS_GMCH(display) && DISPLAY_VER(display) < 12)
- 		connector->base.interlace_allowed = true;
- 
-@@ -7260,7 +7265,6 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
- 
- fail:
- 	intel_display_power_flush_work(display);
--	drm_connector_cleanup(&connector->base);
- 
- 	return false;
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 5fe6fbcaf9371..4b0cdb61c33d6 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -1438,13 +1438,22 @@ mst_connector_early_unregister(struct drm_connector *_connector)
- 	drm_dp_mst_connector_early_unregister(&connector->base, connector->mst.port);
- }
- 
-+static void mst_connector_destroy(struct drm_connector *connector)
-+{
-+	struct intel_connector *intel_connector = to_intel_connector(connector);
-+
-+	intel_connector_destroy(connector->dev, intel_connector);
-+	drm_connector_cleanup(connector);
-+	kfree(connector);
-+}
-+
- static const struct drm_connector_funcs mst_connector_funcs = {
- 	.fill_modes = drm_helper_probe_single_connector_modes,
- 	.atomic_get_property = intel_digital_connector_atomic_get_property,
- 	.atomic_set_property = intel_digital_connector_atomic_set_property,
- 	.late_register = mst_connector_late_register,
- 	.early_unregister = mst_connector_early_unregister,
--	.destroy = intel_connector_destroy,
-+	.destroy = mst_connector_destroy,
- 	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
- 	.atomic_duplicate_state = intel_digital_connector_duplicate_state,
- };
-@@ -1769,7 +1778,7 @@ mst_topology_add_connector(struct drm_dp_mst_topology_mgr *mgr,
- 	enum pipe pipe;
- 	int ret;
- 
--	connector = intel_connector_alloc();
-+	connector = intel_subconnector_alloc();
- 	if (!connector)
- 		return NULL;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dvo.c b/drivers/gpu/drm/i915/display/intel_dvo.c
-index ea2f6426fd77d..1f84cc44598bf 100644
---- a/drivers/gpu/drm/i915/display/intel_dvo.c
-+++ b/drivers/gpu/drm/i915/display/intel_dvo.c
-@@ -362,7 +362,6 @@ static const struct drm_connector_funcs intel_dvo_connector_funcs = {
- 	.detect = intel_dvo_detect,
- 	.late_register = intel_connector_register,
- 	.early_unregister = intel_connector_unregister,
--	.destroy = intel_connector_destroy,
- 	.fill_modes = drm_helper_probe_single_connector_modes,
- 	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
- 	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
-@@ -496,11 +495,9 @@ void intel_dvo_init(struct intel_display *display)
- 	if (!intel_dvo)
- 		return;
- 
--	connector = intel_connector_alloc();
--	if (!connector) {
--		kfree(intel_dvo);
-+	connector = intel_connector_alloc(display->drm);
-+	if (!connector)
- 		return;
--	}
- 
- 	intel_dvo->attached_connector = connector;
- 
-@@ -547,13 +544,19 @@ void intel_dvo_init(struct intel_display *display)
- 			DRM_CONNECTOR_POLL_DISCONNECT;
- 	connector->base.polled = connector->polled;
- 
--	drm_connector_init_with_ddc(display->drm, &connector->base,
--				    &intel_dvo_connector_funcs,
--				    intel_dvo_connector_type(&intel_dvo->dev),
--				    intel_gmbus_get_adapter(display, GMBUS_PIN_DPC));
-+	drmm_connector_init(display->drm, &connector->base,
-+			    &intel_dvo_connector_funcs,
-+			    intel_dvo_connector_type(&intel_dvo->dev),
-+			    intel_gmbus_get_adapter(display, GMBUS_PIN_DPC));
- 
- 	drm_connector_helper_add(&connector->base,
- 				 &intel_dvo_connector_helper_funcs);
-+
-+	if (drmm_add_action_or_reset(display->drm, intel_connector_destroy, connector)) {
-+		drm_err(display->drm, "Failed to register intel_connector_destroy clean-up.\n");
-+		return;
-+	}
-+
- 	connector->base.display_info.subpixel_order = SubPixelHorizontalRGB;
- 
- 	intel_connector_attach_encoder(connector, encoder);
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 05e898d10a2be..f744bae14eaf2 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -39,6 +39,7 @@
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_crtc.h>
- #include <drm/drm_edid.h>
-+#include <drm/drm_managed.h>
- #include <drm/drm_print.h>
- #include <drm/drm_probe_helper.h>
- #include <drm/intel/intel_lpe_audio.h>
-@@ -2650,7 +2651,6 @@ static const struct drm_connector_funcs intel_hdmi_connector_funcs = {
- 	.atomic_set_property = intel_digital_connector_atomic_set_property,
- 	.late_register = intel_hdmi_connector_register,
- 	.early_unregister = intel_hdmi_connector_unregister,
--	.destroy = intel_connector_destroy,
- 	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
- 	.atomic_duplicate_state = intel_digital_connector_duplicate_state,
- };
-@@ -3083,13 +3083,18 @@ bool intel_hdmi_init_connector(struct intel_digital_port *dig_port,
- 	if (!ddc_pin)
- 		return false;
- 
--	drm_connector_init_with_ddc(dev, connector,
--				    &intel_hdmi_connector_funcs,
--				    DRM_MODE_CONNECTOR_HDMIA,
--				    intel_gmbus_get_adapter(display, ddc_pin));
-+	drmm_connector_init(dev, connector,
-+			    &intel_hdmi_connector_funcs,
-+			    DRM_MODE_CONNECTOR_HDMIA,
-+			    intel_gmbus_get_adapter(display, ddc_pin));
- 
- 	drm_connector_helper_add(connector, &intel_hdmi_connector_helper_funcs);
- 
-+	if (drmm_add_action_or_reset(display->drm, intel_connector_destroy, intel_connector)) {
-+		drm_err(dev, "Failed to register intel_connector_destroy clean-up.\n");
-+		return false;
-+	}
-+
- 	if (DISPLAY_VER(display) < 12)
- 		connector->interlace_allowed = true;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
-index 7bb99eb44a5a4..567eda1720261 100644
---- a/drivers/gpu/drm/i915/display/intel_lvds.c
-+++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-@@ -512,7 +512,6 @@ static const struct drm_connector_funcs intel_lvds_connector_funcs = {
- 	.atomic_set_property = intel_digital_connector_atomic_set_property,
- 	.late_register = intel_connector_register,
- 	.early_unregister = intel_connector_unregister,
--	.destroy = intel_connector_destroy,
- 	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
- 	.atomic_duplicate_state = intel_digital_connector_duplicate_state,
- };
-@@ -891,18 +890,23 @@ void intel_lvds_init(struct intel_display *display)
- 	if (IS_ERR(lvds_encoder))
- 		return;
- 
--	connector = intel_connector_alloc();
-+	encoder = &lvds_encoder->base;
-+
-+	connector = intel_connector_alloc(display->drm);
- 	if (!connector)
- 		return;
- 
- 	lvds_encoder->attached_connector = connector;
--	encoder = &lvds_encoder->base;
- 
--	drm_connector_init_with_ddc(display->drm, &connector->base,
--				    &intel_lvds_connector_funcs,
--				    DRM_MODE_CONNECTOR_LVDS,
--				    intel_gmbus_get_adapter(display, ddc_pin));
-+	drmm_connector_init(display->drm, &connector->base,
-+			    &intel_lvds_connector_funcs,
-+			    DRM_MODE_CONNECTOR_LVDS,
-+			    intel_gmbus_get_adapter(display, ddc_pin));
- 
-+	if (drmm_add_action_or_reset(display->drm, intel_connector_destroy, connector)) {
-+		drm_err(display->drm, "Failed to register intel_connector_destroy clean-up.\n");
-+		return;
-+	}
- 
- 	encoder->enable = intel_enable_lvds;
- 	encoder->pre_enable = intel_pre_enable_lvds;
-diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
-index f5aaa38002674..af3a250f637e1 100644
---- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-+++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-@@ -2507,7 +2507,6 @@ static const struct drm_connector_funcs intel_sdvo_connector_funcs = {
- 	.atomic_set_property = intel_sdvo_connector_atomic_set_property,
- 	.late_register = intel_connector_register,
- 	.early_unregister = intel_connector_unregister,
--	.destroy = intel_connector_destroy,
- 	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
- 	.atomic_duplicate_state = intel_sdvo_connector_duplicate_state,
- };
-@@ -2730,17 +2729,23 @@ intel_sdvo_connector_init(struct intel_sdvo_connector *connector,
- 	if (HAS_DDC(connector))
- 		ddc = intel_sdvo_select_ddc_bus(encoder, connector);
- 
--	ret = drm_connector_init_with_ddc(encoder->base.base.dev,
--					  &connector->base.base,
--					  &intel_sdvo_connector_funcs,
--					  connector->base.base.connector_type,
--					  ddc ? &ddc->ddc : NULL);
-+	ret = drmm_connector_init(encoder->base.base.dev,
-+				  &connector->base.base,
-+				  &intel_sdvo_connector_funcs,
-+				  connector->base.base.connector_type,
-+				  ddc ? &ddc->ddc : NULL);
- 	if (ret < 0)
- 		return ret;
- 
- 	drm_connector_helper_add(&connector->base.base,
- 				 &intel_sdvo_connector_helper_funcs);
- 
-+	ret = drmm_add_action_or_reset(display->drm, intel_connector_destroy, &connector->base);
-+	if (ret) {
-+		drm_err(display->drm, "Failed to register intel_connector_destroy clean-up.\n");
-+		return ret;
-+	}
-+
- 	connector->base.base.display_info.subpixel_order = SubPixelHorizontalRGB;
- 	connector->base.base.interlace_allowed = true;
- 	connector->base.get_hw_state = intel_sdvo_connector_get_hw_state;
-@@ -2765,20 +2770,18 @@ intel_sdvo_add_hdmi_properties(struct intel_sdvo *intel_sdvo,
- 	intel_attach_aspect_ratio_property(&connector->base.base);
- }
- 
--static struct intel_sdvo_connector *intel_sdvo_connector_alloc(void)
-+static struct intel_sdvo_connector *intel_sdvo_connector_alloc(struct drm_device *dev)
- {
- 	struct intel_sdvo_connector *sdvo_connector;
- 	struct intel_sdvo_connector_state *conn_state;
- 
--	sdvo_connector = kzalloc_obj(*sdvo_connector);
-+	sdvo_connector = drmm_kzalloc(dev, sizeof(*sdvo_connector), GFP_KERNEL);
- 	if (!sdvo_connector)
- 		return NULL;
- 
- 	conn_state = kzalloc_obj(*conn_state);
--	if (!conn_state) {
--		kfree(sdvo_connector);
-+	if (!conn_state)
- 		return NULL;
--	}
- 
- 	__drm_atomic_helper_connector_reset(&sdvo_connector->base.base,
- 					    &conn_state->base.base);
-@@ -2800,7 +2803,7 @@ intel_sdvo_dvi_init(struct intel_sdvo *intel_sdvo, u16 type)
- 
- 	drm_dbg_kms(display->drm, "initialising DVI type 0x%x\n", type);
- 
--	intel_sdvo_connector = intel_sdvo_connector_alloc();
-+	intel_sdvo_connector = intel_sdvo_connector_alloc(display->drm);
- 	if (!intel_sdvo_connector)
- 		return false;
- 
-@@ -2830,10 +2833,8 @@ intel_sdvo_dvi_init(struct intel_sdvo *intel_sdvo, u16 type)
- 		intel_sdvo_connector->is_hdmi = true;
- 	}
- 
--	if (intel_sdvo_connector_init(intel_sdvo_connector, intel_sdvo) < 0) {
--		kfree(intel_sdvo_connector);
-+	if (intel_sdvo_connector_init(intel_sdvo_connector, intel_sdvo) < 0)
- 		return false;
--	}
- 
- 	if (intel_sdvo_connector->is_hdmi)
- 		intel_sdvo_add_hdmi_properties(intel_sdvo, intel_sdvo_connector);
-@@ -2852,7 +2853,7 @@ intel_sdvo_tv_init(struct intel_sdvo *intel_sdvo, u16 type)
- 
- 	drm_dbg_kms(display->drm, "initialising TV type 0x%x\n", type);
- 
--	intel_sdvo_connector = intel_sdvo_connector_alloc();
-+	intel_sdvo_connector = intel_sdvo_connector_alloc(display->drm);
- 	if (!intel_sdvo_connector)
- 		return false;
- 
-@@ -2863,10 +2864,8 @@ intel_sdvo_tv_init(struct intel_sdvo *intel_sdvo, u16 type)
- 
- 	intel_sdvo_connector->output_flag = type;
- 
--	if (intel_sdvo_connector_init(intel_sdvo_connector, intel_sdvo) < 0) {
--		kfree(intel_sdvo_connector);
-+	if (intel_sdvo_connector_init(intel_sdvo_connector, intel_sdvo) < 0)
- 		return false;
--	}
- 
- 	if (!intel_sdvo_tv_create_property(intel_sdvo, intel_sdvo_connector, type))
- 		return false;
-@@ -2888,7 +2887,7 @@ intel_sdvo_analog_init(struct intel_sdvo *intel_sdvo, u16 type)
- 
- 	drm_dbg_kms(display->drm, "initialising analog type 0x%x\n", type);
- 
--	intel_sdvo_connector = intel_sdvo_connector_alloc();
-+	intel_sdvo_connector = intel_sdvo_connector_alloc(display->drm);
- 	if (!intel_sdvo_connector)
- 		return false;
- 
-@@ -2901,10 +2900,8 @@ intel_sdvo_analog_init(struct intel_sdvo *intel_sdvo, u16 type)
- 
- 	intel_sdvo_connector->output_flag = type;
- 
--	if (intel_sdvo_connector_init(intel_sdvo_connector, intel_sdvo) < 0) {
--		kfree(intel_sdvo_connector);
-+	if (intel_sdvo_connector_init(intel_sdvo_connector, intel_sdvo) < 0)
- 		return false;
--	}
- 
- 	return true;
- }
-@@ -2920,7 +2917,7 @@ intel_sdvo_lvds_init(struct intel_sdvo *intel_sdvo, u16 type)
- 
- 	drm_dbg_kms(display->drm, "initialising LVDS type 0x%x\n", type);
- 
--	intel_sdvo_connector = intel_sdvo_connector_alloc();
-+	intel_sdvo_connector = intel_sdvo_connector_alloc(display->drm);
- 	if (!intel_sdvo_connector)
- 		return false;
- 
-@@ -2931,10 +2928,8 @@ intel_sdvo_lvds_init(struct intel_sdvo *intel_sdvo, u16 type)
- 
- 	intel_sdvo_connector->output_flag = type;
- 
--	if (intel_sdvo_connector_init(intel_sdvo_connector, intel_sdvo) < 0) {
--		kfree(intel_sdvo_connector);
-+	if (intel_sdvo_connector_init(intel_sdvo_connector, intel_sdvo) < 0)
- 		return false;
--	}
- 
- 	if (!intel_sdvo_create_enhance_property(intel_sdvo, intel_sdvo_connector))
- 		return false;
-@@ -3038,19 +3033,6 @@ intel_sdvo_output_setup(struct intel_sdvo *intel_sdvo)
- 	return true;
- }
- 
--static void intel_sdvo_output_cleanup(struct intel_sdvo *intel_sdvo)
--{
--	struct intel_display *display = to_intel_display(&intel_sdvo->base);
--	struct drm_connector *connector, *tmp;
--
--	list_for_each_entry_safe(connector, tmp,
--				 &display->drm->mode_config.connector_list, head) {
--		if (intel_attached_encoder(to_intel_connector(connector)) == &intel_sdvo->base) {
--			drm_connector_unregister(connector);
--			intel_connector_destroy(connector);
--		}
--	}
--}
- 
- static bool intel_sdvo_tv_create_property(struct intel_sdvo *intel_sdvo,
- 					  struct intel_sdvo_connector *intel_sdvo_connector,
-@@ -3443,7 +3425,7 @@ bool intel_sdvo_init(struct intel_display *display,
- 			    "SDVO output failed to setup on %s\n",
- 			    SDVO_NAME(intel_sdvo));
- 		/* Output_setup can leave behind connectors! */
--		goto err_output;
-+		return false;
- 	}
- 
- 	/*
-@@ -3469,12 +3451,12 @@ bool intel_sdvo_init(struct intel_display *display,
- 
- 	/* Set the input timing to the screen. Assume always input 0. */
- 	if (!intel_sdvo_set_target_input(intel_sdvo))
--		goto err_output;
-+		return false;
- 
- 	if (!intel_sdvo_get_input_pixel_clock_range(intel_sdvo,
- 						    &intel_sdvo->pixel_clock_min,
- 						    &intel_sdvo->pixel_clock_max))
--		goto err_output;
-+		return false;
- 
- 	drm_dbg_kms(display->drm, "%s device VID/DID: %02X:%02X.%02X, "
- 		    "clock range %dMHz - %dMHz, "
-@@ -3495,9 +3477,4 @@ bool intel_sdvo_init(struct intel_display *display,
- 		    (SDVO_OUTPUT_TMDS1 | SDVO_OUTPUT_RGB1 |
- 		     SDVO_OUTPUT_LVDS1) ? 'Y' : 'N');
- 	return true;
--
--err_output:
--	intel_sdvo_output_cleanup(intel_sdvo);
--
--	return false;
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_tv.c b/drivers/gpu/drm/i915/display/intel_tv.c
-index 05df0acc6dc3e..d473d915909e0 100644
---- a/drivers/gpu/drm/i915/display/intel_tv.c
-+++ b/drivers/gpu/drm/i915/display/intel_tv.c
-@@ -1841,7 +1841,6 @@ intel_tv_get_modes(struct drm_connector *connector)
- static const struct drm_connector_funcs intel_tv_connector_funcs = {
- 	.late_register = intel_connector_register,
- 	.early_unregister = intel_connector_unregister,
--	.destroy = intel_connector_destroy,
- 	.fill_modes = drm_helper_probe_single_connector_modes,
- 	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
- 	.atomic_duplicate_state = intel_tv_connector_duplicate_state,
-@@ -1971,11 +1970,9 @@ intel_tv_init(struct intel_display *display)
- 	if (IS_ERR(intel_tv))
- 		return;
- 
--	intel_connector = intel_connector_alloc();
--	if (!intel_connector) {
--		kfree(intel_tv);
-+	intel_connector = intel_connector_alloc(display->drm);
-+	if (!intel_connector)
- 		return;
--	}
- 
- 	intel_encoder = &intel_tv->base;
- 	connector = &intel_connector->base;
-@@ -1993,9 +1990,13 @@ intel_tv_init(struct intel_display *display)
- 	intel_connector->polled = DRM_CONNECTOR_POLL_CONNECT;
- 	intel_connector->base.polled = intel_connector->polled;
- 
--	drm_connector_init(display->drm, connector, &intel_tv_connector_funcs,
--			   DRM_MODE_CONNECTOR_SVIDEO);
-+	drmm_connector_init(display->drm, connector, &intel_tv_connector_funcs,
-+			    DRM_MODE_CONNECTOR_SVIDEO, NULL);
- 
-+	if (drmm_add_action_or_reset(display->drm, intel_connector_destroy, intel_connector)) {
-+		drm_err(display->drm, "Failed to register intel_connector_destroy clean-up.\n");
-+		return;
-+	}
- 
- 	intel_encoder->compute_config = intel_tv_compute_config;
- 	intel_encoder->get_config = intel_tv_get_config;
-diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
-index e84edb6242716..726f4190a8398 100644
---- a/drivers/gpu/drm/i915/display/vlv_dsi.c
-+++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
-@@ -1560,7 +1560,6 @@ static const struct drm_connector_funcs intel_dsi_connector_funcs = {
- 	.detect = intel_panel_detect,
- 	.late_register = intel_connector_register,
- 	.early_unregister = intel_connector_unregister,
--	.destroy = intel_connector_destroy,
- 	.fill_modes = drm_helper_probe_single_connector_modes,
- 	.atomic_get_property = intel_digital_connector_atomic_get_property,
- 	.atomic_set_property = intel_digital_connector_atomic_set_property,
-@@ -1924,7 +1923,7 @@ void vlv_dsi_init(struct intel_display *display)
- 	if (IS_ERR(intel_dsi))
- 		return;
- 
--	connector = intel_connector_alloc();
-+	connector = intel_connector_alloc(display->drm);
- 	if (!connector)
- 		return;
- 
-@@ -2011,11 +2010,16 @@ void vlv_dsi_init(struct intel_display *display)
- 	intel_dsi_vbt_gpio_init(intel_dsi,
- 				intel_dsi_get_hw_state(encoder, &pipe));
- 
--	drm_connector_init(display->drm, &connector->base, &intel_dsi_connector_funcs,
--			   DRM_MODE_CONNECTOR_DSI);
-+	drmm_connector_init(display->drm, &connector->base, &intel_dsi_connector_funcs,
-+			    DRM_MODE_CONNECTOR_DSI, NULL);
- 
- 	drm_connector_helper_add(&connector->base, &intel_dsi_connector_helper_funcs);
- 
-+	if (drmm_add_action_or_reset(display->drm, intel_connector_destroy, connector)) {
-+		drm_err(display->drm, "Failed to register intel_connector_destroy clean-up.\n");
-+		return;
-+	}
-+
- 	connector->base.display_info.subpixel_order = SubPixelHorizontalRGB; /*XXX*/
- 
- 	intel_connector_attach_encoder(connector, encoder);
-@@ -2026,7 +2030,7 @@ void vlv_dsi_init(struct intel_display *display)
- 
- 	if (!intel_panel_preferred_fixed_mode(connector)) {
- 		drm_dbg_kms(display->drm, "no fixed mode\n");
--		goto err_cleanup_connector;
-+		return;
- 	}
- 
- 	dmi_id = dmi_first_match(vlv_dsi_dmi_quirk_table);
-@@ -2042,10 +2046,4 @@ void vlv_dsi_init(struct intel_display *display)
- 	intel_backlight_setup(connector, INVALID_PIPE);
- 
- 	vlv_dsi_add_properties(connector);
--
--	return;
--
--err_cleanup_connector:
--	drm_connector_cleanup(&connector->base);
--	kfree(connector);
- }
-
--- 
-2.43.0
-
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSW50ZWwtZ2Z4IDxpbnRl
+bC1nZngtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZiBKb3VuaQ0K
+PiBIw7ZnYW5kZXINCj4gU2VudDogTW9uZGF5LCBBcHJpbCAxMywgMjAyNiA0OjU0IFBNDQo+IFRv
+OiBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOyBpbnRlbC14ZUBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcNCj4gQ2M6IEhvZ2FuZGVyLCBKb3VuaSA8am91bmkuaG9nYW5kZXJAaW50ZWwuY29t
+Pjsgc3RhYmxlQHZnZXIua2VybmVsLm9yZw0KPiBTdWJqZWN0OiBbUEFUQ0hdIGRybS9pOTE1L3Bz
+cjogSW5pdCB2YXJpYWJsZSB0byBhdm9pZCBlYXJseSBleGl0IGZyb20gZXQNCj4gYWxpZ25tZW50
+IGxvb3ANCj4gDQo+IFVuaW5pdGlhbGl6ZWQgYm9vbGVhbiB2YXJpYWJsZSBtYXkgY2F1c2UgdW53
+YW50ZWQgZXhpdCBmcm9tIGV0IGFsaWdubWVudA0KPiBsb29wLiBGaXggdGhpcyBieSBpbml0aWFs
+aXppbmcgaXQgYXMgZmFsc2UuDQo+IA0KPiBGaXhlczogNjgxZTEyNDQwZDhiICgiZHJtL2k5MTUv
+cHNyOiBSZXBlYXQgU2VsZWN0aXZlIFVwZGF0ZSBhcmVhDQo+IGFsaWdubWVudCIpDQo+IENjOiA8
+c3RhYmxlQHZnZXIua2VybmVsLm9yZz4gIyB2Ni45Kw0KPiBTaWduZWQtb2ZmLWJ5OiBKb3VuaSBI
+w7ZnYW5kZXIgPGpvdW5pLmhvZ2FuZGVyQGludGVsLmNvbT4NCj4gLS0tDQo+ICBkcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jIHwgMiArLQ0KPiAgMSBmaWxlIGNoYW5nZWQs
+IDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0KPiBiL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMNCj4gaW5kZXggYjRjYTU4NDNkMDk4Li42M2MxOTk1OGE5
+ZTMgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNy
+LmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0KPiBA
+QCAtMzAwMiw3ICszMDAyLDcgQEAgaW50IGludGVsX3BzcjJfc2VsX2ZldGNoX3VwZGF0ZShzdHJ1
+Y3QNCj4gaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwNCj4gIAkJcmV0dXJuIHJldDsNCj4gDQo+
+ICAJZG8gew0KPiAtCQlib29sIGN1cnNvcl9pbl9zdV9hcmVhOw0KPiArCQlib29sIGN1cnNvcl9p
+bl9zdV9hcmVhID0gZmFsc2U7DQo+IA0KTEdUTSwNClJldmlld2VkLWJ5OiBOZW1lc2EgR2FyZyA8
+bmVtZXNhLmdhcmdAaW50ZWwuY29tPg0KPiAgCQkvKg0KPiAgCQkgKiBBZGp1c3Qgc3UgYXJlYSB0
+byBjb3ZlciBjdXJzb3IgZnVsbHkgYXMgbmVjZXNzYXJ5DQo+IC0tDQo+IDIuNDMuMA0KDQo=
