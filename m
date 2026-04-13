@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12E6EF34C4E
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 13:17:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FE0FF34C49
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 13:17:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C064610E43E;
-	Mon, 13 Apr 2026 13:16:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26FF710E43F;
+	Mon, 13 Apr 2026 13:17:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RFtmtY67";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GMMgKQ0Q";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6EBD10E43E
- for <intel-xe@lists.freedesktop.org>; Mon, 13 Apr 2026 13:16:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD89310E43F
+ for <intel-xe@lists.freedesktop.org>; Mon, 13 Apr 2026 13:17:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776086218; x=1807622218;
+ t=1776086221; x=1807622221;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=P7R7dMTMbHQ/0ssGwwJBJwmRTgcaiJ76r02j1JuD9SA=;
- b=RFtmtY67x9YTbejW9nhb84rmKPpQ6SXovctHZv+ry7UTjbVyoAXroM36
- irFbp5VdUbB812RUr1/AV4Nm+O5pF2Stc+VOB7+I196zfEqHbREifHDxW
- VOlbBYV1cJVD/D6Z3kEltO/0O2Vhkw47xnplLs+1Nbz+2Tq8mEoyyqqcG
- +wtnfBtJKKIaQ/Q1gQlwGuL19lK1Q8hM+XX8Jk1SEyFhXT+wLZ0nHG4OO
- crWIjqkdXT1wEDBZpzb996rsRucpt84szAPapNElKiEYO4763kDWRCKJM
- G/Vc9iWA3cNpRuP3MMhItWz3wGC2rjK52PqyOUJqVjZbXHkhnGy/2sdxT w==;
-X-CSE-ConnectionGUID: tJ3GAhQfTe6nA65eKlhViA==
-X-CSE-MsgGUID: lmFY6DyyS9G/QiV3RppymQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11758"; a="77037296"
-X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="77037296"
+ bh=DKiSvDRiMycsF+VxCgySqc+pw7M/pikflVy/G2IQRrY=;
+ b=GMMgKQ0QFJnow7kWoxdFAg9pimeg0j4dB/dB8k+jTAR06gWsLd7/uQJq
+ zhYvCLaFjlc/ZnEDEw+xcqC/qE6CpFrSIVKsvjAr6YRdR58KWJ5EhdqPl
+ F35KaQZ7ZDZMToDXo8jk9F5bBxnTKw9GQbYIvAxWHheZVaNlO05rq37rq
+ ZxIONsv+5Q4JHPtxRM/yx3C7oLm9+l/y2G1tP5K3ZZ07HELhAdFSpzrZ2
+ q37Vkpt6GYzitu3VQMUnot47V8drf69s+rc2TRcKJjVDy7IIEoBH2dy2a
+ ufRSfovcqIRolooT2STD53AXcXFlpqyLyf2yx3Ps+gqM90FWmosjgBT3v w==;
+X-CSE-ConnectionGUID: Ok8naPj0S/m64Zmo8SKhow==
+X-CSE-MsgGUID: omdzHYf2T4ScLWgWyfbyEA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11758"; a="77037298"
+X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="77037298"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2026 06:16:58 -0700
-X-CSE-ConnectionGUID: 0rZGOXbqTySzxNpEY/YmTw==
-X-CSE-MsgGUID: n5mJFFBaRdqYpZDJZhm+/g==
+ 13 Apr 2026 06:17:01 -0700
+X-CSE-ConnectionGUID: jvpkonllQ+umR/p1uojAZA==
+X-CSE-MsgGUID: 5fYiV26uQ0eQpgGdGjPmIw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="260224315"
+X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="260224330"
 Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
  ([10.190.239.37])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2026 06:16:56 -0700
+ 13 Apr 2026 06:16:58 -0700
 From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.auld@intel.com, matthew.brost@intel.com,
  thomas.hellstrom@linux.intel.com, himal.prasad.ghimiray@intel.com,
  Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [RFC PATCH V7 2/9] drm/gpu: Add gpu_buddy_addr_to_block helper
-Date: Mon, 13 Apr 2026 18:46:23 +0530
-Message-ID: <20260413131623.2891528-13-tejas.upadhyay@intel.com>
+Subject: [RFC PATCH V7 3/9] drm/xe: Link LRC BO and its execution Queue
+Date: Mon, 13 Apr 2026 18:46:24 +0530
+Message-ID: <20260413131623.2891528-14-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260413131623.2891528-11-tejas.upadhyay@intel.com>
 References: <20260413131623.2891528-11-tejas.upadhyay@intel.com>
@@ -69,95 +69,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add helper with primary purpose is to efficiently trace a specific
-physical memory address back to its corresponding TTM buffer object.
+To establish a link between an LRC BO (Logical Ring Context
+Buffer Object) and its corresponding execution Queue in the
+drm/xe driver, you need to store a back-pointer to the queue
+within the BO's private data structure. This allows the
+driver to identify and take corrective action on the specific
+queue if the LRC BO encounters an error (e.g., memory
+corruption or eviction issues).
 
 Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/buddy.c       | 56 +++++++++++++++++++++++++++++++++++++++
- include/linux/gpu_buddy.h |  2 ++
- 2 files changed, 58 insertions(+)
+ drivers/gpu/drm/xe/xe_bo_types.h   | 3 +++
+ drivers/gpu/drm/xe/xe_exec_queue.c | 1 +
+ 2 files changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
-index 52686672e99f..2d26c2a0f971 100644
---- a/drivers/gpu/buddy.c
-+++ b/drivers/gpu/buddy.c
-@@ -589,6 +589,62 @@ void gpu_buddy_free_block(struct gpu_buddy *mm,
- }
- EXPORT_SYMBOL(gpu_buddy_free_block);
+diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
+index ff8317bfc1ae..24f5da89dbde 100644
+--- a/drivers/gpu/drm/xe/xe_bo_types.h
++++ b/drivers/gpu/drm/xe/xe_bo_types.h
+@@ -19,6 +19,7 @@
  
-+/**
-+ * gpu_buddy_addr_to_block - given physical address find a block
-+ *
-+ * @mm: GPU buddy manager
-+ * @addr: Physical address
-+ *
-+ * Returns:
-+ * gpu_buddy_block on success, NULL or error code on failure
-+ */
-+struct gpu_buddy_block *gpu_buddy_addr_to_block(struct gpu_buddy *mm, u64 addr)
-+{
-+	struct gpu_buddy_block *block;
-+	LIST_HEAD(dfs);
-+	u64 end;
-+	int i;
-+
-+	end = addr + SZ_4K - 1;
-+	for (i = 0; i < mm->n_roots; ++i)
-+		list_add_tail(&mm->roots[i]->tmp_link, &dfs);
-+
-+	do {
-+		u64 block_start;
-+		u64 block_end;
-+
-+		block = list_first_entry_or_null(&dfs,
-+						 struct gpu_buddy_block,
-+						 tmp_link);
-+		if (!block)
-+			break;
-+
-+		list_del(&block->tmp_link);
-+
-+		block_start = gpu_buddy_block_offset(block);
-+		block_end = block_start + gpu_buddy_block_size(mm, block) - 1;
-+
-+		if (!overlaps(addr, end, block_start, block_end))
-+			continue;
-+
-+		if (contains(addr, end, block_start, block_end) &&
-+		    !gpu_buddy_block_is_split(block)) {
-+			if (gpu_buddy_block_is_free(block))
-+				return NULL;
-+			else if (gpu_buddy_block_is_allocated(block) && !mm->clear_avail)
-+				return block;
-+		}
-+
-+		if (gpu_buddy_block_is_split(block)) {
-+			list_add(&block->right->tmp_link, &dfs);
-+			list_add(&block->left->tmp_link, &dfs);
-+		}
-+	} while (1);
-+
-+	return ERR_PTR(-ENXIO);
-+}
-+EXPORT_SYMBOL(gpu_buddy_addr_to_block);
-+
- static void __gpu_buddy_free_list(struct gpu_buddy *mm,
- 				  struct list_head *objects,
- 				  bool mark_clear,
-diff --git a/include/linux/gpu_buddy.h b/include/linux/gpu_buddy.h
-index 5fa917ba5450..957c69c560bc 100644
---- a/include/linux/gpu_buddy.h
-+++ b/include/linux/gpu_buddy.h
-@@ -231,6 +231,8 @@ void gpu_buddy_reset_clear(struct gpu_buddy *mm, bool is_clear);
+ struct xe_device;
+ struct xe_vm;
++struct xe_exec_queue;
  
- void gpu_buddy_free_block(struct gpu_buddy *mm, struct gpu_buddy_block *block);
+ #define XE_BO_MAX_PLACEMENTS	3
  
-+struct gpu_buddy_block *gpu_buddy_addr_to_block(struct gpu_buddy *mm, u64 addr);
-+
- void gpu_buddy_free_list(struct gpu_buddy *mm,
- 			 struct list_head *objects,
- 			 unsigned int flags);
+@@ -39,6 +40,8 @@ struct xe_bo {
+ 	u32 flags;
+ 	/** @vm: VM this BO is attached to, for extobj this will be NULL */
+ 	struct xe_vm *vm;
++	/** @q: Queue this BO is attached to, mostly for LRC BO, NULL otherwise */
++	struct xe_exec_queue *q;
+ 	/** @tile: Tile this BO is attached to (kernel BO only) */
+ 	struct xe_tile *tile;
+ 	/** @placements: valid placements for this BO */
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index b287d0e0e60a..b3b80893c387 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -386,6 +386,7 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
+ 				goto err_lrc;
+ 			}
+ 
++			lrc->bo->q = q;
+ 			xe_exec_queue_set_lrc(q, lrc, i);
+ 
+ 			if (__lrc)
 -- 
 2.52.0
 
