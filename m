@@ -4,152 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 526E8F531CE
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 21:58:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD3A6F531DB
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 22:06:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14F9310E15E;
-	Mon, 13 Apr 2026 21:58:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 840F510E109;
+	Mon, 13 Apr 2026 22:06:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kQjvUmSp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q/gNjJVP";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9B2F10E15E;
- Mon, 13 Apr 2026 21:58:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 433EB10E109
+ for <intel-xe@lists.freedesktop.org>; Mon, 13 Apr 2026 22:06:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776117530; x=1807653530;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=iG0b6f2loaUNx+dJuegJADBsbXyRqHzVZBxxAfFgngs=;
- b=kQjvUmSpOQ6ZHsdGUymYNYlzS1SqVm1otZn55UbkJ5sBBRXUjF4SSNlN
- O6bNK2HximouHRfGRLRBtEyf0d540kixPgSgrPk/iJQQKkgDnW8thgv/y
- Oxy3o4U13FMrpsLiWbTA7PmZje3ikVh0PLS8cuu1HfhebCgqByWWStmsd
- UUoxDs+fUpCKCnsI4TofiU6pCBeXIxz0qoIFpNy0z79IhITEA2k555Hmv
- C0BAMoVqMC1dglx46Xm3LXGMciCfVH46Dy8AVEodYPVXK1XJ+KcanvKji
- rNwb50PkfCYgf3ZUM+3WcWakPxjHpapzt1928I6E/NAD22CiMRbcjIlPB A==;
-X-CSE-ConnectionGUID: b1NeXbkERa6KLMAY25NEHg==
-X-CSE-MsgGUID: YVe6LoCgSDKbBIS/o3N8tQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11758"; a="64597182"
-X-IronPort-AV: E=Sophos;i="6.23,178,1770624000"; d="scan'208";a="64597182"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2026 14:58:50 -0700
-X-CSE-ConnectionGUID: dHb35XJUQeiu9j6ZP6Qs5Q==
-X-CSE-MsgGUID: i6HPh/8RQNyr82kHaG9QFg==
+ t=1776117966; x=1807653966;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=sQ+Aawpr+w4sbuSwP2m0BN7lWMhzTK+sSZZKNYcnDRk=;
+ b=Q/gNjJVPpl1DHv8mvBBGnAbtRe94q2kZI2XZPUSeWs3AiSMJT7ZUTOJy
+ NGr1v0Pt4cLsdXmjwLPBBR5uWYfAWZRNigOej5AJWx0d+rxtRAUb3DJiH
+ XTzIShrQgYsXp683dJgGHa3uk5u/gAlrQPPiuOMBFRwK9AEruQmLk8H10
+ jBRB1gB9h2AsO+gzNnMtDSLvHi0V1b1ykV+ralX+Fq+tVX8MLbG4yoMHr
+ CLqGKLAbQxQnMXnDGejzDLkVCnBOEvap277txaUFTx+77Y+3D6QRtHML/
+ VvZ/otUxCqFrXyBlGylEnvPeZ5CxjPTWVI8KHousWUUBtjfmIh4Grz58e A==;
+X-CSE-ConnectionGUID: MIDWbVFEQquCLWlyUzI8rA==
+X-CSE-MsgGUID: PudaAhuiRqiQ03Yd6rdDeQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11758"; a="76095770"
+X-IronPort-AV: E=Sophos;i="6.23,178,1770624000"; d="scan'208";a="76095770"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2026 15:06:06 -0700
+X-CSE-ConnectionGUID: EmsaFWvjScSDlex69tk/Jg==
+X-CSE-MsgGUID: bHB8tfTMTnqbzRuUL0NmJA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,178,1770624000"; d="scan'208";a="229777655"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2026 14:58:49 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 13 Apr 2026 14:58:49 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 13 Apr 2026 14:58:49 -0700
-Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.9) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 13 Apr 2026 14:58:48 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=AERhXHz9VWN4H0ZbrtBELEF4jp8q24OUUyOqdBWVpwGCRYcT/O49m1TSmkDXLNS0GZrerIrQxImnrlVriHxFtfeEwTZgoWAzpDABSexmcpqlQmCU++F8DkZcjOlN98wht+ZFAR0cIwj6PER2vno+ZiFFFJ5aeYJ5N+8XiPwgI/CKFZQKKYX/lPAtU5DR3awDqi+8viaOLY4K1cVaM2OJf3fktBI9iB+Y5Eqa4wW9/K8/vhDCkjpVVobJr2YVy3Ks8VrEer7VQw3kAIFq6OM51ObE+JZt6z7Hawa9mnnjGqb2AuTB8ZchVcGV1/uhrlMm1eVjPyRZRHZosM9JSLijnA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+FBsBxr3Fu4xiONHPbEnR6ZGSAQAVFFINbxBkgqfaSk=;
- b=KuAHb+bBS/nk3EJZ763HT4XB3lpFuqIR4waSdcNWhve1I0bcA2FCuSJHJCQBqMAHEQVmr1NGwWx5IKo4928QtVKVL6ISnvUBr0qXDRw7Zs3BPpnnZIWmZZ/N8R1kQYarVsbkTYGOwTJA7ZpyqRTMGJDm+ZFoz+PpC4Y04++XEH4rBPoJ+1sU4lBATcDKf/y+Kowdo2Gq2x97Jhaz3fvMeZAgrV1GJWsXkJRN7uv108WZr3xk1hDRkLs3PjQjoTzwzBJLigP4bZcff5Zwt60aLXhKJtlnd/3cAVf37S8aDOSxPPXwK8GYMVdaAUwPDGG3k3bvS8OU7C7g/VjBDXMfWw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB6360.namprd11.prod.outlook.com (2603:10b6:8:bd::12) by
- SA1PR11MB8524.namprd11.prod.outlook.com (2603:10b6:806:3a9::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9818.20; Mon, 13 Apr
- 2026 21:58:44 +0000
-Received: from DM4PR11MB6360.namprd11.prod.outlook.com
- ([fe80::22d9:ae03:5db1:680]) by DM4PR11MB6360.namprd11.prod.outlook.com
- ([fe80::22d9:ae03:5db1:680%5]) with mapi id 15.20.9818.017; Mon, 13 Apr 2026
- 21:58:44 +0000
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "Manna, Animesh" <animesh.manna@intel.com>, "Kurmi, Suresh Kumar"
- <suresh.kumar.kurmi@intel.com>
-Subject: RE: [PATCH 14/19] drm/i915/display: Enable DC3CO idle protocol in ALPM
-Thread-Topic: [PATCH 14/19] drm/i915/display: Enable DC3CO idle protocol in
- ALPM
-Thread-Index: AQHcvUQ4Wb+UPmbAx0m1EaI7nu4J87XdpqgA
-Date: Mon, 13 Apr 2026 21:58:44 +0000
-Message-ID: <DM4PR11MB63609A907097B5F1B54130CFF4242@DM4PR11MB6360.namprd11.prod.outlook.com>
-References: <20260326171557.2065632-1-dibin.moolakadan.subrahmanian@intel.com>
- <20260326171557.2065632-15-dibin.moolakadan.subrahmanian@intel.com>
-In-Reply-To: <20260326171557.2065632-15-dibin.moolakadan.subrahmanian@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB6360:EE_|SA1PR11MB8524:EE_
-x-ms-office365-filtering-correlation-id: 1e2dda74-456b-4cf1-025f-08de99a7d4d3
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|38070700021|18002099003|56012099003|22082099003;
-x-microsoft-antispam-message-info: 8JVRVJO4EybogeSi8txhpaxppX/nwrPZSNHFrnfcV5mINKEDA49CHo8z3ysU6qUGWamlNAI7sE0ABo84hkP+0F4tIesVdrudxwuPEDKyq1957hIhT89nc989AfpSEJVuu/Eq6VRpil0S8uTOhJjmY0cSRKxNmXC9GpcQ1BamC0GZYflsLIKFQgWcnwoK2uOYPK1KRdHpdcpxQTrBcehcVYfW68iE+HL0ShJCByPgWdjfUZWV8iDFenx5f+oh72Cc4K3yAvnxfW4LDMFMdjJj+ZsfjnxKk6xkzTNH2yyusmfFV4CW4lMLjhqP/7+XpctcBY6Q/qrMg3JRUKLXK3rBiCBAVSaaeMN43dvplnOHRS9zucO0g/CEl/NxjPMvY7QlXP5wL9SeQDxBM8zfZklbjp886nt4oLoicJfb7SMg+Viv4erYv1ywlCmZ8LjwdWvzokmnwMv29yOjll4r3VyZuy5OHq/Wbi/tG/m9PFzACnW8eOG4Hnr8aOHLN0CsphmwIdeC+kH+hiEV64gWRHaP3KDCX9EYfZLDmmHYf3JpFaWBKuMqXbytOjOOs8zUUNuPLXsKB6sO68QP1jHH98kfjIDlvFD4+7TXsyMdkTHoGThe2eVFEriJYpxE+rhEhm+ku2BBebo1LjRFtE3PQRlHmNHAEzLhfNv5pNNz0rc/ajMr7YWsoFgQTIyR5q8MYitUsD5nwJ8w58Cx7cRTHlj52Zz7WTvCkNfPbAAZkrJx7josjerjOpLHVx2Z9fD3CmuDkjLGtX0cfRrP6K3Zi2PotbYd+UUIROk3M6oWU9WQBeo=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB6360.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(38070700021)(18002099003)(56012099003)(22082099003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?AQZh9cKwjNCu+1lINmvSlkmFqthd9j8EmBAVz9WThZdeGfS4cYvTMZf1iDRA?=
- =?us-ascii?Q?th+AhThWW7vmv2mKCjCHpw5AfkMDqa+vGspJJZJJEn9kVOgPjWkbETgHlH5z?=
- =?us-ascii?Q?40drPajgD0Jx7SEqESrqM3I6+s3b0UoXHpQIyBOA4BVAAlwE2QzCNPs6MsDo?=
- =?us-ascii?Q?yhg1+gnyt02RV7v5aVQRAKzN1Bywxuap7H7W2u8mY0tsGp2zHrmwMK8qE6PN?=
- =?us-ascii?Q?ujCIWrz8JVyJcC2RCBF+SfjK9TMwyoZVu8/WLoFX29LXRkZd8Yr4K2GvZnoF?=
- =?us-ascii?Q?qVeY5NF0ztwEWXfGlwohSgxGmzACMzbVd0FTqbWteGcQwRXtS3opp073gudY?=
- =?us-ascii?Q?3w1dF2VIKc5vxTNHpVHolgkLrYSYHb6q9jnvDW1ab2AvMr42DIR8KkI6fMtI?=
- =?us-ascii?Q?k/Lv647ltBM4swBRqG7EfYfe8HaGwbqoYGl7+/cDd1Lg+w6xbL0iY1H6xAyP?=
- =?us-ascii?Q?OcymqCcZvjdiusTLYzhXpbIGuxwbPmZL8yunT7Axbe7UETG/UXLG4rSG/Mx4?=
- =?us-ascii?Q?TGftp/uyQEjLvKZyN14l3i2ZEpAYPr6T/goiypzfVpT1CkNM8YF+fOxmpXkr?=
- =?us-ascii?Q?AFxDmmFnggnp+kH7pEkqj5lJKUItmzWLFAr9pQy/bUOI/Lftqw3EEJR3VTSV?=
- =?us-ascii?Q?P5nMLzd8ybrrxprjrZ4BhVhsSy7X0V/DT+n7ycw+JT4Zxs4WWmdjDhFf8Hmh?=
- =?us-ascii?Q?nLdsMU4oMByR/SFXKoMS49MCAgqgD71g5d5ZOxpoTnhTCpTiorXSi59RjNyC?=
- =?us-ascii?Q?KC3LhgkRal8f4I/2dIMxpVUlEl9PPJiakNT8Rw4JKKrHCufbJg/9TcQnWZGc?=
- =?us-ascii?Q?KIIDAL4zNw5e4v3OyerzsF9+MR3PS35n3ofaQgzU8uWeMrDac5jHLE+VHiQy?=
- =?us-ascii?Q?uq4g6GiQ9sk+GHmA2Zm1l5zuW22lOzcZ0E6quvgGOrMhHDb3djK4+cxC5d9x?=
- =?us-ascii?Q?cQ70pjjXlVHMLLAhn45n4TxD//OZBBEeUTeTxMDJLOete5Zx/TmcmHfDLXg+?=
- =?us-ascii?Q?FKFc9R7RcpIggvZQ/qi1AOa7ydjAWnh8zUzy8SNP+D5xcA0PpYTtb28XRhAc?=
- =?us-ascii?Q?89ezrgy9lLcAXW4NzIhMQbjsOXaScFVL5k/h2EqDi4lnk5EzNVyat7CvUZ5G?=
- =?us-ascii?Q?oStxSdSzOWuXHPIRwZ5igiPmZjx+oubE0EGDr1lrtVrDXON8MrGJBuEv78gB?=
- =?us-ascii?Q?2Mun6s6y5axZWgpHyPgqVRfaY5GEJkT407Jv18vGrS0rH7Nsqo6KXRHP4wU4?=
- =?us-ascii?Q?DXe8PriaqvXJNrrweMOo/2W2LHfXNvVmeC191udtiyq2voL8wrx5xIrazRtO?=
- =?us-ascii?Q?nhUFi2m8NSjQgDV4iX2cyu7wBjSK0jr8DfLHfWl4/GUO+DfMtmhKd6q+vWfd?=
- =?us-ascii?Q?7Ps9XbtfRxsR357uW97eT4yqHBGJ0mWsalwQyX7eR/KrEHqu6HTuUE0sGVJY?=
- =?us-ascii?Q?gNHSM6d9tEZPBeNA3xkjOmLKkqrcDvSEV29k6BbiuW0iHPZChQr16AH1ak9S?=
- =?us-ascii?Q?BqSx1eFxuMCaBnQesOfotr7fRE3SPBZja0PBrmf6yQQDwd0JPOphqkvsk2Q6?=
- =?us-ascii?Q?6hDKjxwzbOKyCG2utxMWB9FdcPr6zDGTqwOy6fhELU5zOO+yKZxRtfypsOel?=
- =?us-ascii?Q?04ahvuPRPPxLX0A7YaYqaDdXNQmE4CFhyepHCZf9j5QY1V7FqOtAoTbvbt7a?=
- =?us-ascii?Q?CXHR8d/4lrMKStMcfcn0YWSefvxA1Go+9i/4zvmipB/QZ49NVU5pm71VQJDr?=
- =?us-ascii?Q?kGUBci8MxA=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: undz1c67Kn/cMHaTz2bzgCLxY1XUkUCtVkfWExTeiNrQhtFW/U2n7DhKTyxKBs+hrEiuIP0ab7t5Wo7djYHYLx01whnyuXyZ/PL7j9HDNyQhC2pY2Clq93BLBnni5kDWurQRulVslOG8opQMOTkutfhaTy5w16ntMsZLjQv9mvPNxCG6dP/JoOr/1U1gB/Jzy4iwIksaIbwpboHm7ZtyTtang9hhWS7Hv3o9jTgi5IG2rg7p1+49B/lDZStqOQnWmeq+k34CBP+S/u5BVJEk4IYcAjJMbjxBW5TWMhM49i+53SG9T+XjpzOsCLRkqyaXgVmSBthEtKZmK3AsIID31g==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6360.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1e2dda74-456b-4cf1-025f-08de99a7d4d3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Apr 2026 21:58:44.2339 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: oRMJ6T6fhA+FNtXnu9Hms84wSovPfB2HLRhbCQ9xnZUxbYG5E5smQk05Y/b7N1g+g5R8j3S48X6MkKMayyV09w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB8524
-X-OriginatorOrg: intel.com
+X-IronPort-AV: E=Sophos;i="6.23,178,1770624000"; d="scan'208";a="227231876"
+Received: from unknown (HELO adixit-MOBL3.intel.com) ([10.241.243.133])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2026 15:06:06 -0700
+Date: Mon, 13 Apr 2026 15:06:05 -0700
+Message-ID: <875x5u8qia.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 1/3] drm/xe/oa: Use xe_map layer
+In-Reply-To: <ad0wVf8UhVfhTKPk@soc-5CG1426VCC.clients.intel.com>
+References: <20260409231754.528518-1-ashutosh.dixit@intel.com>	<20260409231754.528518-2-ashutosh.dixit@intel.com>	<877bqe8gow.wl-ashutosh.dixit@intel.com>	<ad0wVf8UhVfhTKPk@soc-5CG1426VCC.clients.intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/30.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,65 +68,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Mon, 13 Apr 2026 11:05:09 -0700, Umesh Nerlige Ramappa wrote:
+>
+> On Fri, Apr 10, 2026 at 05:49:03PM -0700, Dixit, Ashutosh wrote:
+> > On Thu, 09 Apr 2026 16:17:52 -0700, Ashutosh Dixit wrote:
+> >>
+> >
+> > Hi Umesh,
+> >
+> >> +/* Because there is no iosys_map_copy_to_user() or copy_to_user_from_iomem() */
+> >> +static int xe_oa_copy_to_user(struct xe_oa_stream *stream, void __user *dst, u32 head, u32 len)
+> >> +{
+> >> +	u32 __user *dptr = dst;
+> >> +
+> >> +	xe_gt_assert(stream->gt, len % 4 == 0);
+> >> +
+> >> +	for (int i = 0; i < len / 4; i++) {
+> >> +		struct iosys_map *map = &stream->oa_buffer.bo->vmap;
+> >> +		u32 val = xe_map_rd(stream->oa->xe, map, head, u32);
+> >> +		int ret = put_user(val, dptr++);
+> >> +
+> >> +		if (ret)
+> >> +			return ret;
+> >> +		head += 4;
+> >> +	}
+> >> +
+> >> +	return 0;
+> >> +}
+> >
+> > Unfortunately, with this copy_to_user() implementation we are seeing buffer
+> > overflow, implying there is significant performance impact, even when OA
+> > buffer is in system memory:
+> >
+> >  Starting subtest: non-zero-reason
+> >  Starting dynamic subtest: oag-0
+> >  (xe_oa:6798) CRITICAL: Test assertion failure function test_non_zero_reason, file ../tests/intel/xe_oa.c:2693:
+> >  (xe_oa:6798) CRITICAL: Failed assertion: !(oa_status & DRM_XE_OASTATUS_BUFFER_OVERFLOW)
+> >
+> > That is, we are unable to read data at the rate at which HW is writing
+> > data, causing buffer overrun.
+> >
+> > Therefore in v3 I have basically reverted to the copy_to_user()
+> > implementation of v1, except that I have taken the copy_to_user() out of
+> > xe_oa.c and moved it to xe_map.h, to make that implementation "official"
+> > (and OA code to strictly use the xe_map layer). This seems to be the best
+> > approach to me, it avoids unnecessary copies and works correctly on all of
+> > our systems of interest.
+> >
+> > Also, the previous code, without this patch, is of course doing this exact
+> > same thing, except that the use of the xe_map layer make these assumptions
+> > explicit.
+> >
+> > If you still don't think we should be doing this, I can try to get a second
+> > opinion about this patch. Thanks.
+>
+> Yes, please include someone who can give us an Ack or some inputs on this
+> approach because we are hitting some issues.
 
+I have asked. What I posted in v3 is my preferred option since it avoids the
+extra copy. But if that doesn't go through, the function below has the extra
+copy, but seems to have the same performace as v3, so that is also an option:
 
-> -----Original Message-----
-> From: Dibin Moolakadan Subrahmanian
-> <dibin.moolakadan.subrahmanian@intel.com>
-> Sent: Thursday, March 26, 2026 10:46 PM
-> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
-> Cc: Manna, Animesh <animesh.manna@intel.com>; Shankar, Uma
-> <uma.shankar@intel.com>; Kurmi, Suresh Kumar
-> <suresh.kumar.kurmi@intel.com>
-> Subject: [PATCH 14/19] drm/i915/display: Enable DC3CO idle protocol in AL=
-PM
->=20
-> Set PR_ALPM_CTL_USE_DC3CO_IDLE_PROTOCOL when DC3CO is allowed.
+static int xe_oa_copy_to_user(struct xe_oa_stream *stream, void __user *dst, u32 head, u32 len)
+{
+       struct iosys_map *map = &stream->oa_buffer.bo->vmap;
+       u8 buf[1024]; // Allocate as part of stream
 
-Change Looks Good, but squash this with patch 13.
+       xe_map_memcpy_from(xe, buf, map, head, len);
+       return copy_to_user(dst, buf, len);
+}
 
-> BSpec: 75253
-> Signed-off-by: Dibin Moolakadan Subrahmanian
-> <dibin.moolakadan.subrahmanian@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_alpm.c | 9 +++++++++
->  1 file changed, 9 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c
-> b/drivers/gpu/drm/i915/display/intel_alpm.c
-> index a7350ce8e716..9f92513a23c0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_alpm.c
-> +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-> @@ -365,6 +365,9 @@ static void lnl_alpm_configure(struct intel_dp *intel=
-_dp,
->  	struct intel_display *display =3D to_intel_display(intel_dp);
->  	enum transcoder cpu_transcoder =3D crtc_state->cpu_transcoder;
->  	u32 alpm_ctl;
-> +	struct intel_atomic_state *state =3D
-> +		to_intel_atomic_state(crtc_state->uapi.state);
-> +
->=20
->  	if (DISPLAY_VER(display) < 20 || (!intel_psr_needs_alpm(intel_dp,
-> crtc_state) &&
->  					  !crtc_state->has_lobf))
-> @@ -389,6 +392,12 @@ static void lnl_alpm_configure(struct intel_dp *inte=
-l_dp,
->  			if (crtc_state->disable_as_sdp_when_pr_active)
->  				pr_alpm_ctl |=3D
-> PR_ALPM_CTL_AS_SDP_TRANSMISSION_IN_ACTIVE_DISABLE;
->=20
-> +			if (intel_dc3co_allowed(state) &&
-> +			    intel_display_power_dc3co_supported(display))
-> +				pr_alpm_ctl |=3D
-> PR_ALPM_CTL_USE_DC3CO_IDLE_PROTOCOL;
-> +			else
-> +				pr_alpm_ctl &=3D
-> ~PR_ALPM_CTL_USE_DC3CO_IDLE_PROTOCOL;
-> +
->  			intel_de_write(display, PR_ALPM_CTL(display,
-> cpu_transcoder),
->  				       pr_alpm_ctl);
->  		}
-> --
-> 2.43.0
-
+So I am planning to try this next, if v3 doesn't go through. Thanks.
