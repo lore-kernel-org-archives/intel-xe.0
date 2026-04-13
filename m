@@ -4,66 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EEB0CEBFD17
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 08:31:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF524EBFD16
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 08:32:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A215F10E376;
-	Mon, 13 Apr 2026 08:31:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF3E010E376;
+	Mon, 13 Apr 2026 08:32:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eZAyKEiL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SzwdkJNO";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1E1410E376;
- Mon, 13 Apr 2026 08:31:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE99710E376;
+ Mon, 13 Apr 2026 08:32:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776069111; x=1807605111;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=ygX3QGpmpzQ4vDb35DrfpC80ywfwMhPNQFU2B1S833A=;
- b=eZAyKEiLNDAcCguLfo7h0TEfW001AB6mONoY+EKiN8Qu2mA9/GRvdJDc
- XOHmCyQwWNLpnjFgmT/s/JJdckUuQatpd0iX21BOR86bO5Zc603+PfIZz
- SUilkH9itz1tPCXEO6FDiDpzbpDL5orVT2K6sHXNC1lKt8stJpPr9/rL8
- dWF2BtlOvzYEbJJ3/Soj9+YW7fdWJdSt7uJVZabNitHYA5ZVkdEKJ24lp
- ZWaVdAkh3Di4NWr8VbJFTKIdcBiyuK7GMf+/5i8YufXNpLPgghwQ5zxuq
- N2XI2A/qRlaLciBhJ2BJyZ80NpvrCkiOB/L7xxjbiSOcou5lthtcsJnmc Q==;
-X-CSE-ConnectionGUID: CaSBIIZrSPeqgdp25K6bOw==
-X-CSE-MsgGUID: 9MSjyXp4S8eexQ51ovl6qQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11757"; a="76907460"
-X-IronPort-AV: E=Sophos;i="6.23,176,1770624000"; d="scan'208";a="76907460"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2026 01:31:51 -0700
-X-CSE-ConnectionGUID: kRnB8EohQb611Ginyevg6g==
-X-CSE-MsgGUID: AiU4VxdXSISX/Yzv4b1gFg==
+ t=1776069148; x=1807605148;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=2NyYDKTl8rgMPQJA1ydwD6V1OQHloyI7+62Faq6RV+0=;
+ b=SzwdkJNO3QgWlW9+5u3+p7VsXjw5OiLWu+dWlk4sVFSd6e/09NXI/CXM
+ REAeAs5X4SH/lkyq25yR63MKKtyFbTrP+RVyiHjjjYE5TS84FceBEhkYz
+ zgjNajG1l2HzUO3IF1kgg7sHH9AMlObMq7LRB5EsJHIkBGe55iIxqFOTa
+ 3zzDIZdLmw+epWoWAgzkh9VO5QP9QYYkiItGoiRaMwlzBaYMlEnCqSl2m
+ eqrB5wOM5KWnczIug+bRhEMK5lZrCjScJz5a0yv05wDPaYtLoI2zN//Gd
+ 0o217XGrA5DRnAHupreqkdCmCpGTAV3h+LyNlkMifosHah7wBmrTqZkid Q==;
+X-CSE-ConnectionGUID: l9yOHkfwTJKj/AmdNZ4A6A==
+X-CSE-MsgGUID: Bx9aiuOGRoCV6Q5lQTvLUw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11757"; a="77016630"
+X-IronPort-AV: E=Sophos;i="6.23,176,1770624000"; d="scan'208";a="77016630"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2026 01:32:27 -0700
+X-CSE-ConnectionGUID: NdDLdxUPQrm2byENR0QQsA==
+X-CSE-MsgGUID: UlUzN+sLS0WoRclBXFWyMQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,176,1770624000"; d="scan'208";a="233756454"
-Received: from allen-sbox.sh.intel.com (HELO [10.239.159.30]) ([10.239.159.30])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2026 01:31:47 -0700
-Message-ID: <f4e2171a-da58-488f-be02-26a39b5afbe3@linux.intel.com>
-Date: Mon, 13 Apr 2026 16:29:59 +0800
+X-IronPort-AV: E=Sophos;i="6.23,176,1770624000"; d="scan'208";a="229642921"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.182])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2026 01:32:26 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, arun.r.murthy@intel.com, Ankit Nautiyal
+ <ankit.k.nautiyal@intel.com>
+Subject: Re: [PATCH 02/12] drm/i915/vrr: Add helper to readback EMP_AS_SDP_TL
+In-Reply-To: <20260413035349.1730312-3-ankit.k.nautiyal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260413035349.1730312-1-ankit.k.nautiyal@intel.com>
+ <20260413035349.1730312-3-ankit.k.nautiyal@intel.com>
+Date: Mon, 13 Apr 2026 11:32:22 +0300
+Message-ID: <4daee56a2d6dd3a5797e13b19232d1b3b5fd1c2e@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 12/26] vfio/pci: Change the DMA-buf exporter to use
- mapping_type
-To: Jason Gunthorpe <jgg@nvidia.com>
-Cc: Christian Koenig <christian.koenig@amd.com>,
- Dongwon Kim <dongwon.kim@intel.com>, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, iommu@lists.linux.dev,
- Kevin Tian <kevin.tian@intel.com>, Leon Romanovsky <leonro@nvidia.com>,
- linaro-mm-sig@lists.linaro.org, linux-media@vger.kernel.org,
- Matthew Brost <matthew.brost@intel.com>,
- Simona Vetter <simona.vetter@ffwll.ch>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
- Vivek Kasireddy <vivek.kasireddy@intel.com>
-References: <12-v1-b5cab63049c0+191af-dmabuf_map_type_jgg@nvidia.com>
-Content-Language: en-US
-From: Baolu Lu <baolu.lu@linux.intel.com>
-In-Reply-To: <12-v1-b5cab63049c0+191af-dmabuf_map_type_jgg@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,80 +71,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 2/18/26 08:11, Jason Gunthorpe wrote:
-> Simple conversion to add a match_mapping() callback that offers an
-> exporter SGT mapping type. Later patches will add a physical address
-> exporter so go straight to adding the match_mapping() function.
-> 
-> The check for attachment->peer2peer is replaced with setting
-> exporter_requires_p2p=true. VFIO always uses MMIO memory.
-> 
-> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
+On Mon, 13 Apr 2026, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
+> EMP_AS_SDP_TL is used to program both DP Adaptive Sync SDP and HDMI
+> Video Timing EMP for VRR operation. Add a helper to read back the
+> programmed transmission line from hardware so VRR code can populate
+> the corresponding CRTC state fields during get_config.
+>
+> This provides a common read-back path for VRR packet transmission
+> line state.
+
+Still no idea what "emp" means.
+
+>
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 > ---
->   drivers/vfio/pci/vfio_pci_dmabuf.c | 31 +++++++++++++++++++++++++-----
->   1 file changed, 26 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/vfio/pci/vfio_pci_dmabuf.c b/drivers/vfio/pci/vfio_pci_dmabuf.c
-> index d4d0f7d08c53e2..c7addef5794abf 100644
-> --- a/drivers/vfio/pci/vfio_pci_dmabuf.c
-> +++ b/drivers/vfio/pci/vfio_pci_dmabuf.c
-> @@ -25,9 +25,6 @@ static int vfio_pci_dma_buf_attach(struct dma_buf *dmabuf,
->   {
->   	struct vfio_pci_dma_buf *priv = dmabuf->priv;
->   
-> -	if (!attachment->peer2peer)
-> -		return -EOPNOTSUPP;
-> -
->   	if (priv->revoked)
->   		return -ENODEV;
->   
-> @@ -75,11 +72,35 @@ static void vfio_pci_dma_buf_release(struct dma_buf *dmabuf)
->   	kfree(priv);
->   }
->   
-> -static const struct dma_buf_ops vfio_pci_dmabuf_ops = {
-> -	.attach = vfio_pci_dma_buf_attach,
-> +static const struct dma_buf_mapping_sgt_exp_ops vfio_pci_dma_buf_sgt_ops = {
->   	.map_dma_buf = vfio_pci_dma_buf_map,
->   	.unmap_dma_buf = vfio_pci_dma_buf_unmap,
-> +};
+>  drivers/gpu/drm/i915/display/intel_vrr.c | 13 +++++++++++++
+>  drivers/gpu/drm/i915/display/intel_vrr.h |  1 +
+>  2 files changed, 14 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+> index 1fed597439b0..abdae7f1f8a8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> @@ -1218,3 +1218,16 @@ int intel_vrr_dcb_vmax_vblank_start_final(const struct intel_crtc_state *crtc_st
+>  
+>  	return intel_vrr_vblank_start(crtc_state, VRR_DCB_VMAX(tmp) + 1);
+>  }
 > +
-> +static int vfio_pci_dma_buf_match_mapping(struct dma_buf_match_args *args)
+> +u16 intel_vrr_read_emp_as_sdp_tl(const struct intel_crtc_state *crtc_state)
 > +{
-> +	struct vfio_pci_dma_buf *priv = args->dmabuf->priv;
-> +	struct dma_buf_mapping_match sgt_match[1];
+> +	struct intel_display *display = to_intel_display(crtc_state);
+> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+> +	u32 val;
 > +
-> +	dma_resv_assert_held(priv->dmabuf->resv);
-
-My understanding of this lock assertion is that priv and the underlying
-priv->vdev are accessed within this function. Therefore, the lock is
-necessary to protect them. Do I understand it right?
-
-However, callers - for example, dma_buf_mapping_attach() - do not
-acquire dma_resv_lock() before calling this function. So kernel traces
-will always be triggered.
-
+> +	if (!HAS_EMP_AS_SDP_TL(display))
+> +		return 0;
 > +
-> +	/*
-> +	 * Once we pass vfio_pci_dma_buf_cleanup() the dmabuf will never be
-> +	 * usable again.
-> +	 */
-> +	if (!priv->vdev)
-> +		return -ENODEV;
-> +
-> +	sgt_match[0] = DMA_BUF_EMAPPING_SGT_P2P(&vfio_pci_dma_buf_sgt_ops,
-> +						priv->vdev->pdev);
-> +
-> +	return dma_buf_match_mapping(args, sgt_match, ARRAY_SIZE(sgt_match));
+> +	val = intel_de_read(display, EMP_AS_SDP_TL(display, cpu_transcoder));
+> +	return REG_FIELD_GET(EMP_AS_SDP_DB_TL_MASK, val);
 > +}
-> +
-> +static const struct dma_buf_ops vfio_pci_dmabuf_ops = {
-> +	.attach = vfio_pci_dma_buf_attach,
->   	.release = vfio_pci_dma_buf_release,
-> +	.match_mapping = vfio_pci_dma_buf_match_mapping,
->   };
->   
->   /*
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
+> index 4f16ca4af91f..6659a8a53432 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.h
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.h
+> @@ -53,5 +53,6 @@ int intel_vrr_dcb_vmin_vblank_start_next(const struct intel_crtc_state *crtc_sta
+>  int intel_vrr_dcb_vmax_vblank_start_next(const struct intel_crtc_state *crtc_state);
+>  int intel_vrr_dcb_vmin_vblank_start_final(const struct intel_crtc_state *crtc_state);
+>  int intel_vrr_dcb_vmax_vblank_start_final(const struct intel_crtc_state *crtc_state);
+> +u16 intel_vrr_read_emp_as_sdp_tl(const struct intel_crtc_state *crtc_state);
+>  
+>  #endif /* __INTEL_VRR_H__ */
 
-Thanks,
-baolu
+-- 
+Jani Nikula, Intel
