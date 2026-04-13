@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1178AF531C1
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 18:38:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E826F531C0
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 18:45:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4A6310E506;
-	Mon, 13 Apr 2026 18:38:09 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nm5XZcu2";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 65DCC10E506;
- Mon, 13 Apr 2026 18:38:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776105490; x=1807641490;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=uT/o82FacL8DdO+kdx48Xrar/5NMJIrTKmKjUpVtBIw=;
- b=nm5XZcu2t1IApAX9oZlzv0IKpV1aASLo+K3CKbQ+6tML2/J3zLkspfGj
- JLuHTugmNLUpkpPTk6Oa6ZSov2CpBV/7jKvnwpgZCwd5oyBsc41wbLe6n
- uu6LhU1WFWw9+wql681iqDsXru0OuLqurHwA3bYW0B2MdQyiQyC57aO7x
- 6cQuzZZ8YbLNIs8ADzpXr34F6zOqq28xJaUcfpZIEYuecA1uw44+GH7VJ
- o0MhSsjmIL0wKlMA7rQ6vzFD8iGFzZzwB3CsdPIFik6pV+jH5F9dbCg+m
- Q7V6yHcGtmagpLyufCq6HMSmR2BgvPvK7LwrlCV5OpjXwxORzXifDoGa0 w==;
-X-CSE-ConnectionGUID: SWMAMyewRuyoAaEWDsVyCA==
-X-CSE-MsgGUID: UUrkEqsdQTuXY6SZmistRg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11758"; a="99694805"
-X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="99694805"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2026 11:38:09 -0700
-X-CSE-ConnectionGUID: O8WUmnUTTAKgW58ipDXiGA==
-X-CSE-MsgGUID: fKmtr0MpRkSurbbJ+X/j5w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="234267500"
-Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.245.97])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2026 11:38:07 -0700
-Date: Mon, 13 Apr 2026 21:38:03 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: Re: [PATCH v2 0/9] drm/i915/{dp,hdmi}: Restructure DP/HDMI sink
- format handling
-Message-ID: <ad04C281j3Cwyb5y@intel.com>
-References: <20260409101539.22032-1-ville.syrjala@linux.intel.com>
- <8031984.DvuYhMxLoT@workhorse>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D400510E50B;
+	Mon, 13 Apr 2026 18:45:08 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0665610E509;
+ Mon, 13 Apr 2026 18:45:08 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7987850520648926343=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <8031984.DvuYhMxLoT@workhorse>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Introduce_cold_reset_recove?=
+ =?utf-8?q?ry_method_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mallesh Koujalagi" <mallesh.koujalagi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 13 Apr 2026 18:45:07 -0000
+Message-ID: <177610590799.458495.15922294929743929184@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260413133013.560239-6-mallesh.koujalagi@intel.com>
+In-Reply-To: <20260413133013.560239-6-mallesh.koujalagi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,68 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Apr 09, 2026 at 05:40:50PM +0200, Nicolas Frattaroli wrote:
-> On Thursday, 9 April 2026 12:15:30 Central European Summer Time Ville Syrjala wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > 
-> > Restructure the DP/HDMI sink format handling. I got inspired to do this
-> > by https://lore.kernel.org/dri-devel/20260324-color-format-v11-8-605559af4fb4@collabora.com/
-> > 
-> > I envision that after this the aforementioned patch could just
-> > become something like this:
-> > 
-> > 1. s/intel_foo_compute_formats/intel_foo_compute_formats_auto/
-> > 2. Add a new intel_foo_compute_formats()
-> > 
-> >    intel_foo_compute_formats()
-> >    {
-> >         switch (color_format) {
-> >         case YCBCR420:
-> >                 return intel_foo_compute_output_format(YCBCR420);
-> >         case RGB:
-> >                 return intel_foo_compute_output_format(RGB);
-> >         case AUTO:
-> >                 return intel_foo_compute_formats_auto();
-> >         }
-> >    }
-> > 
-> > v2: A few more updates to the DP mode validation
-> > 
-> > Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> > Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> > 
-> > Ville Syrjälä (9):
-> >   drm/i915/hdmi: Add missing intel_pfit_mode_valid() for 4:2:0 also
-> >     modes
-> >   drm/i915/hdmi: Restructure the sink/output format selection
-> >   drm/i915/hdmi: Restructure 4:2:0 vs. 4:4:4 mode validation
-> >   drm/i915/dp: Restructure the sink/output format selection
-> >   drm/i915/dp: Validate "4:2:0 also" modes twice
-> >   drm/i915/dp: Require a HDMI sink for YCbCr output via PCON
-> >   drm/i915/dp: Validate sink format in .mode_valid()
-> >   drm/i915/hdmi: Make the RGB fallback for "4:2:0 only" modes the last
-> >     resort
-> >   drm/i915/dp: Make the RGB fallback for "4:2:0 only" modes the last
-> >     resort
-> > 
-> >  drivers/gpu/drm/i915/display/intel_dp.c   | 250 +++++++++++++---------
-> >  drivers/gpu/drm/i915/display/intel_hdmi.c | 167 +++++++++------
-> >  2 files changed, 254 insertions(+), 163 deletions(-)
-> > 
-> > 
-> 
-> For the whole series:
-> 
-> Tested-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> 
-> Tested both DisplayPort and HDMI on an N97 board, exercising various
-> output formats.
+--===============7987850520648926343==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thanks for testing and reviews. Pushed to drm-intel-next.
+== Series Details ==
 
--- 
-Ville Syrjälä
-Intel
+Series: Introduce cold reset recovery method (rev3)
+URL   : https://patchwork.freedesktop.org/series/163428/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-4894-3112208d6d7f657d0866921cceb5b3afe1688fb2_BAT -> xe-pw-163428v3_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-4894-3112208d6d7f657d0866921cceb5b3afe1688fb2 -> xe-pw-163428v3
+
+  IGT_8854: 93abaf0170728f69bc27577e5b405f7a2a01b6fd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4894-3112208d6d7f657d0866921cceb5b3afe1688fb2: 3112208d6d7f657d0866921cceb5b3afe1688fb2
+  xe-pw-163428v3: 163428v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163428v3/index.html
+
+--===============7987850520648926343==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Introduce cold reset recovery method (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163428/">https://patchwork.freedesktop.org/series/163428/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163428v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163428v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4894-3112208d6d7f657d0866921cceb5b3afe1688fb2_BAT -&gt; xe-pw-163428v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4894-3112208d6d7f657d0866921cceb5b3afe1688fb2 -&gt; xe-pw-163428v3</li>
+</ul>
+<p>IGT_8854: 93abaf0170728f69bc27577e5b405f7a2a01b6fd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4894-3112208d6d7f657d0866921cceb5b3afe1688fb2: 3112208d6d7f657d0866921cceb5b3afe1688fb2<br />
+  xe-pw-163428v3: 163428v3</p>
+
+</body>
+</html>
+
+--===============7987850520648926343==--
