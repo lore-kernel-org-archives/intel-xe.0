@@ -4,117 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B674FE93812
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 04:06:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5599E93812
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 04:08:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B0F710E2FD;
-	Mon, 13 Apr 2026 04:06:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73FF910E2FD;
+	Mon, 13 Apr 2026 04:08:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="puRghlxr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hYPZNwOT";
 	dkim-atps=neutral
-Received: from CH1PR05CU001.outbound.protection.outlook.com
- (mail-northcentralusazon11010067.outbound.protection.outlook.com
- [52.101.193.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38F9C10E06A;
- Mon, 13 Apr 2026 04:06:41 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ek4QhPADZlHrvF1evmLxg891DmWEoF1yBK6WTV7iHyo7RArG28emDVSz1v/7lrq/RtoqG1FJjnTuP0eexydqIFExQ7AHCuWKo6VjyVGW4sMqKte1tYLUiwPu27LonK5nEAku9ClusWVMS8cC/fW9/m4WMQh/UwKpevnlZMi5SVQuVqjaf2zXxGB/IGe66lravR9EPsp/fVek0b0Ws9SkMVT6Sd7/ILXr4bsz88G099RtMDzopjfp1VjJ2xwJRYl9m1vR2NsDW99rLDVwCcnn82TW7gBzWwegplP/akBd6NurgxGPREo9pVoeJJzRl+FCWjA8Qndylc8ixUHW3NCkBg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IJIDPtvfNal+zRkdTb/po8DsleFJ0qvyBuO3zwp5r30=;
- b=PvZaJMFBvc0KM8QfhUGcv8bgoipV37LUvW9dRZyD18Z5h3BO3fSho7etb6D35TktrbpaOAVwqU09ijX3+FYYqtDa0OpEx6B5AUtTfaPYH2SSm9QLrdM++t9nTuPPLcAKnwELTlI6NTSIXDpjmLO9c9Sf7Tn8mxhZO4AOwnIwxHsYvH12O5DCrQpgVkrM5Pz7i+fCf8QA37heI/KSTfalHJFxFtjCNPrclrkfvqco/dzzuSLXPNDNFfdtGw2Bt5rhFRZrDXo4C63EPBSx2W47Zy92ne+YtfX95WePMD0saYJVNhEaTwFyE2c0F2QQYID6AQCr4o63B98/K94zyCq7ng==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IJIDPtvfNal+zRkdTb/po8DsleFJ0qvyBuO3zwp5r30=;
- b=puRghlxr/9tnp6NLrWzrcrzj447yO2CtE9x1TmAF1k9xPElNb5Oth7xqjGu8WPV5qqjvFBMuGotbBixusTMUxe4FxNwsoi6c+6qplrsoIr3lt0F8245scTcJgY8Miteh5JxnySLQQAPU0mEO6W5ebZjDzJVR62Lpn0QizUgjof3RoEN9qmUIPnUe9luTrz8KpjejaLf16HEufUREGdeeoGwdEiDGOOsuwy0+ckCNPlHrN2/mAJmSuK6YTjS67jJpX5tBItQ3Mh2JssAf2+aXNCArf/6vo7hmwuyDpnY8nigkwSexvGetG8s6WcwvOiwUrMdlDiLqn7upHVRFDTECNw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS0PR12MB7726.namprd12.prod.outlook.com (2603:10b6:8:130::6) by
- PH7PR12MB5620.namprd12.prod.outlook.com (2603:10b6:510:137::5) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9818.20; Mon, 13 Apr 2026 04:06:36 +0000
-Received: from DS0PR12MB7726.namprd12.prod.outlook.com
- ([fe80::5807:8e24:69b0:f6c0]) by DS0PR12MB7726.namprd12.prod.outlook.com
- ([fe80::5807:8e24:69b0:f6c0%4]) with mapi id 15.20.9818.017; Mon, 13 Apr 2026
- 04:06:35 +0000
-Date: Mon, 13 Apr 2026 14:06:29 +1000
-From: Alistair Popple <apopple@nvidia.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- David Hildenbrand <david@kernel.org>, Oscar Salvador <osalvador@suse.de>, 
- Andrew Morton <akpm@linux-foundation.org>, Balbir Singh <balbirs@nvidia.com>,
- linux-mm@kvack.org, 
- linux-cxl@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] mm/zone_device: Do not touch device folio after calling
- ->folio_free()
-Message-ID: <adxnwZMn-BHD5bAA@nvdebian.thelocal>
-References: <20260410230346.4009855-1-matthew.brost@intel.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260410230346.4009855-1-matthew.brost@intel.com>
-X-ClientProxiedBy: SY6PR01CA0030.ausprd01.prod.outlook.com
- (2603:10c6:10:eb::17) To DS0PR12MB7726.namprd12.prod.outlook.com
- (2603:10b6:8:130::6)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7661610E2FD;
+ Mon, 13 Apr 2026 04:08:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1776053324; x=1807589324;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=A8Y2Unw556thwbV2anK2SIWZ/13o/RG5/yzuyWS4KZk=;
+ b=hYPZNwOTJ2H7amyf9RXBfQ3S9l5riDuMuoWrvfesUIcIot2CP47Q00dL
+ RzlaEhX5+4UN5tQW249L6QIZxxN6qQDJY2hoYtD4wrAi4WEqVAFoIvXhZ
+ 7QRPcopivI00Audg1xanSr+KiW3pyd3x+Kc/TQ6ftkFv/ohpuTaoa8Zws
+ urrFAELnDHUXGr8T71PCGzStWbk81e8Iwg3iA9Z9b6wju0knk1uG7wVam
+ eT5oowQSOZcricdtrrjfIwSfDltHh/y82dUIMv+cTYZRBocprMjBk2J/L
+ 6fRXc7B7Su6hgcaGfEiMfV069qy8Q/1nN4x2qCH/XElYd6UjKUL9R6vtt A==;
+X-CSE-ConnectionGUID: 4+UVnj2BSI+/Zl0A3frkBw==
+X-CSE-MsgGUID: oZovnUtgSkCxLZ2RsQkxDA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11757"; a="80568732"
+X-IronPort-AV: E=Sophos;i="6.23,176,1770624000"; d="scan'208";a="80568732"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2026 21:08:44 -0700
+X-CSE-ConnectionGUID: 7Pu5ZEU6SZaUAMW67r056g==
+X-CSE-MsgGUID: B6qjkf7jSra/PFwEX6SfXQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,176,1770624000"; d="scan'208";a="229546590"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2026 21:08:41 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, arun.r.murthy@intel.com,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 00/12] Add support for Common SDP Transmission Line
+Date: Mon, 13 Apr 2026 09:23:37 +0530
+Message-ID: <20260413035349.1730312-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB7726:EE_|PH7PR12MB5620:EE_
-X-MS-Office365-Filtering-Correlation-Id: a7dd28a6-1939-4ec0-dd1e-08de99120dc4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|56012099003|22082099003|18002099003; 
-X-Microsoft-Antispam-Message-Info: cFgSRt9d+Q5asGXoBZI/yweHOzf+lRTJdiSTVjYx1LJpmjcMOpnEL6LkjB3iLafzdxL6UMqLr3XUObQwlAZ5EwSgNGo191kEr6+f6hdRYcTPJ3iTOFNubFmYLZYhlLUpykbCVbDm3U8Y38CJfnz3nVvhcashcQ9dAJkYXtBm2x8ucRu3HXh5lmB9h1U8eY7mi0eN8vtpqivsBDeE8gcQVFWLJHGBUcKb3t7XU20i1VS4ZjUwDNPsNf48YcwwGmC7L3MHqBvbiYlSujTxny80qHc03LYpXXqx3D2dqFaSKAsqKZFBjLmlAs4gpvS3e1lCNWWgZSuBi7gmc9jdFuu7OBxDKho2FJfekC9QwG129uArXvBwEpQsTNxC4d62cV5/73lj42pT3AVikexvNyVcQUy4guEgSw4c2EMd3IJwoXlGE7JwEfRenKM2Tp4daDEJs6+GjBbDM88L9TqH5NG5nak2+CvFR/2/Pm0FMSumK95rX7AQj6a04hi7HPBIhz7QQ1I0uKjbSs2oz+KtlUHg/llnHNPw1PnB1br1p5xVMGH6GOg6uxfmCGAx/eKkK8kAoVBroPUxyWBxa/ElZjaXjvp6oWSBZNmgfyZ52krtQbTI1tkYxEvEt84a7NjWELyFZRcX8uhhQousFwBORY/XgtO/HuR4QtXG7LqSEAGVYST9AW86PZ2+ql/cYiyMENXTmOGz76NVH9O7eCn2DU/xnede3xpOsBaAjGLbeKAtBzo=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB7726.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(56012099003)(22082099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?+Aa5dTfGkwJoGzwjPY1cxkh14HEOlZl7/XliOgxKsqSfUxXbuSSXJdRp4MO0?=
- =?us-ascii?Q?KJG/TmuvoGBnt+285GYsLzX0cNt7zqnfpb5/8shnHEM6X2rzDd4NYu/ANOHq?=
- =?us-ascii?Q?D2F+cfjwiYz0ORS9KU3Je2osuAhZtXrDLr2rWYwYomV9d8/hSmogWWjJzUDV?=
- =?us-ascii?Q?IXsOLvQnvugQz3Z8MfXrq1tsX00Zog+iOjtWFK5qYcgDjqAzkGMztZDiw74z?=
- =?us-ascii?Q?FTFiOSahUxFhJaQOeaS2vY5xwyoUMX0GLohltsuYXofXrjYGx+ZzBPzYQvpx?=
- =?us-ascii?Q?1OEXgsY9FydiFsDRZ7I7OhMC1zIrdBr5Q7FUB7vAHC8zk+14KZZXPy+uZMHu?=
- =?us-ascii?Q?saRQFUoPybh5MVzS7ANGCpGlHWANHLtq9kOQPY+l2psDfchjo1DhWaSAsjCM?=
- =?us-ascii?Q?Ygh3qWZvg6bjAibh+eG4SdzapuffPOR38salbI98W3eAefz5qe9cV9YIBvWA?=
- =?us-ascii?Q?w0/MgJTuG8DqtzPYUKKdxBzCMzVbF8t/sIbBb3/p0vbUjbplWb+IjaKvmZdH?=
- =?us-ascii?Q?Bcefsrth++XCdh2/UuoezXj+2GCt8W9eUS6UG3MFrSa6hz/eGiS6cGEnvQfv?=
- =?us-ascii?Q?gFFkAwrRm2syovgVf9uzQNGzDDL6mVaLpgSAVK+49gkYHr8LIl/HgwpO8uVg?=
- =?us-ascii?Q?NSUvHC50FrnQpGKmGEUq+/kR2Rm+4xWI6sazUAniHoqG7n0zkAopVj99QcbG?=
- =?us-ascii?Q?ND/LfWavQc7kc/Uh7xLRDKEhHhCsGSL26R9OhEhnRnNeyyLuGjDzVtEY6fFc?=
- =?us-ascii?Q?Th4lpt98JPf4LE8YBUCDbY4lN+evL5kOBBIrX8vme6kRLBF1CGX26fEcn7gT?=
- =?us-ascii?Q?B4ETBed1p1BK71mdJ2LrazfIofuStXtMf7hRkOA4HSMnZh1tcXjHD1++D/cF?=
- =?us-ascii?Q?vNAcGqh/ADwaQjoMrsoQR40j7wgVCDUdBigZQEe3vo0QCVnbCXrULm3Wumr9?=
- =?us-ascii?Q?vtMfXx6TdwLOLJpGeQEWJMwPmNSHCmjnsTVg9W+CH9b5pWfhXPUGlgEw4dSJ?=
- =?us-ascii?Q?mt6FXRsDxOJY9/TN13pyytAVha4eXki1qUvsYmnjUdnnKt0QANtX08ogfvaw?=
- =?us-ascii?Q?+1hf/63g8YQTEVbVI8CMpOPZEnVbl9APdA6tOWSzd9QCmIsrBdt8RwE7X8X0?=
- =?us-ascii?Q?uizUmrmUnrNIRs8Tj/lOCihcwzGzdPB9CK5VcV13bU9uzdtrFfkC/GAOqESK?=
- =?us-ascii?Q?iswBTuWxDX7EhRPum918WcIngsykLi3MaSNQ4PNs2Ivcjvd1oALzT/0O5WlM?=
- =?us-ascii?Q?3R4IEJEsj9UfqTmzU/Ldsm5hLBGfVTOosxhWP2428Mrv4rA0Ag2uOWCZIjs9?=
- =?us-ascii?Q?BWXlxULmmLyd2l50K8nlS5lvt+822dhOo+xKH1rgmPztRa29r9Zt3Ado5Gz3?=
- =?us-ascii?Q?b6z7gwpWeqHTIrNpn6HmeBUjZsgcF8bru2oQiIaBTa7OuSPAaic/17AIs/rz?=
- =?us-ascii?Q?yvWP+g4nOwkLWJbTalHvay03SCoDWPAXbaldASZXJYnuRmYZg/elHEGnLRrg?=
- =?us-ascii?Q?Mmb19T0nLuVaZ0+J3cNXeOC10kFLfCXzLQGBkfyPJhxUJsKrjBnEQEo6Nwyf?=
- =?us-ascii?Q?hBr7TzoK4W9wqAsCgJIU/7SM0zNnbxKqCAHDZBsdp3lazIGjNP833zkizHcD?=
- =?us-ascii?Q?MBgCQFEmjzUVrKZArAZt2B1YoDfK3URj3eNL5c5h1f8A4atO2CvDSgFfe7hj?=
- =?us-ascii?Q?DMcB76YxBbMJVwdTVkQpU/aNPLYqRtih2sgcgWIQuv2pHjIjSqHF/5fQlj54?=
- =?us-ascii?Q?h/JkXa18KA=3D=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a7dd28a6-1939-4ec0-dd1e-08de99120dc4
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB7726.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Apr 2026 04:06:35.7522 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fuuNS+stkb9e8jh/S8zW8t5x7MScyc7Zdnd6nOgjCSJU0xtbbgsi28TZoVE7lfrwpH6/Pma0N/uNRbb1bUIxfA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5620
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -129,87 +66,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 2026-04-11 at 09:03 +1000, Matthew Brost <matthew.brost@intel.com> wrote...
-> The contents of a device folio can immediately change after calling
-> ->folio_free(), as the folio may be reallocated by a driver with a
-> different order. Instead of touching the folio again to extract the
-> pgmap, use the local stack variable when calling percpu_ref_put_many().
-> 
-> Cc: David Hildenbrand <david@kernel.org>
-> Cc: Oscar Salvador <osalvador@suse.de>
-> Cc: Andrew Morton <akpm@linux-foundation.org>
-> Cc: Balbir Singh <balbirs@nvidia.com>
-> Cc: linux-mm@kvack.org
-> Cc: linux-cxl@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Fixes: d245f9b4ab80 ("mm/zone_device: support large zone device private folios")
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> 
-> ---
-> Stack trace:
-> 
-> [  631.875165] [IGT] xe_exec_system_allocator: starting subtest threads-many-new-prefetch
-> [  632.282992] Oops: general protection fault, probably for non-canonical address 0x900000000000000: 0000 [#1] SMP NOPTI
-> [  632.293469] CPU: 8 UID: 0 PID: 59267 Comm: xe_exec_system_ Not tainted 7.0.0-rc7-xe+ #281 PREEMPT(full)
-> [  632.316023] RIP: 0010:free_zone_device_folio+0x149/0x240
-> [  632.339782] RSP: 0000:ffffc90023d1fd00 EFLAGS: 00010206
-> [  632.344947] RAX: 0900000000000000 RBX: 0000000000000001 RCX: 0000000094472d4d
-> [  632.351991] RDX: ffffffff8155c76f RSI: 000000006f2213bf RDI: 000000008e84943a
-> [  632.359042] RBP: ffffea0ff4030001 R08: 0000000000000000 R09: 0000000000000001
-> [  632.366094] R10: 0000000000000028 R11: 0000000000000000 R12: ffff88811828e400
-> [  632.373145] R13: 0000000000000000 R14: 000fffffc0000000 R15: 0000000000100073
-> [  632.380194] FS:  00007f2f0fdfe6c0(0000) GS:ffff88890a7e7000(0000) knlGS:0000000000000000
-> [  632.388186] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> [  632.393870] CR2: 00007f2f002e90f8 CR3: 0000000106708002 CR4: 0000000000f70ef0
-> [  632.400919] PKRU: 55555554
-> [  632.403605] Call Trace:
-> [  632.406039]  <TASK>
-> [  632.408131]  do_swap_page+0x146d/0x18c0
-> [  632.411938]  ? __pte_offset_map+0x3e/0x190
-> [  632.415994]  __handle_mm_fault+0x6e8/0x8d0
-> [  632.420053]  handle_mm_fault+0xbf/0x250
-> [  632.423855]  ? lock_mm_and_find_vma+0x41/0x6f0
-> [  632.428256]  do_user_addr_fault+0x168/0x690
-> [  632.432399]  exc_page_fault+0x74/0x200
-> [  632.436117]  asm_exc_page_fault+0x26/0x30
-> [  632.440092] RIP: 0033:0x5587554ff70d
-> [  632.462142] RSP: 002b:00007f2f0fdfc970 EFLAGS: 00010246
-> [  632.467308] RAX: 0000000000003fc0 RBX: 00007f2f082e1fc0 RCX: 00007f2f12b3287d
-> [  632.474355] RDX: 0000000000000000 RSI: 00000000c048644a RDI: 0000000000000003
-> [  632.481404] RBP: 00007f2f082e1fc0 R08: 00007f2f0fdfc958 R09: 0000000000000066
-> [  632.488450] R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000001
-> [  632.495495] R13: 00007f2f082de000 R14: 0000000000c00002 R15: 00007f2f1319e000
-> [  632.502547]  </TASK>
+Xe3p_lpd introduces new register bits to program a common SDP
+Transmission line that will be used by the Hardware to position the
+SDPs. Along with this, another new register is also added to stagger
+the different SDPs.
 
-I'm not sure, but I think Andrew likes the stack traces included in the actual
-commit messages. I've certainly found it helpful when debugging traces reported
-from the field so would prefer it there.
+This series adds support for programming the Common SDP Transmission Line
+(CMN_SDP_TL) and its stagger control registers.
 
-> ---
->  mm/memremap.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/mm/memremap.c b/mm/memremap.c
-> index ac7be07e3361..053842d45cb1 100644
-> --- a/mm/memremap.c
-> +++ b/mm/memremap.c
-> @@ -454,7 +454,7 @@ void free_zone_device_folio(struct folio *folio)
->  		if (WARN_ON_ONCE(!pgmap->ops || !pgmap->ops->folio_free))
->  			break;
->  		pgmap->ops->folio_free(folio);
-> -		percpu_ref_put_many(&folio->pgmap->ref, nr);
-> +		percpu_ref_put_many(&pgmap->ref, nr);
+Rev2:
+ - Add tracking for AS SDP Transmission line first. Instead of directly
+   programming it in the register, compute the state during
+   compute_config_late() and write the value from crtc_state.
+   Readout from the register through a vrr helper, since the register is
+   defined in context of VRR and will be used for both DP and HDMI VRR
+   packets.
+ - Add support to track other SDP transmission lines, instead of stagger
+   values.
+ - Compute the transmission lines in compute_config_late path and add
+   readout.
+ - Always write the Common SDP Transmission line and other stagger
+   values, whether the packets are sent or not.
+ - Dump SDP transmission lines in crtc_state.
 
-It's a pity this was open-coded rather than implementing put_dev_pagemap_many()
-which makes it clearer what this is doing, but that's unrelated to this issue
-and on me for not catching it when reviewing. So for this fix:
+Ankit Nautiyal (11):
+  drm/i915/vrr: Add HAS_EMP_AS_SDP_TL macro
+  drm/i915/vrr: Add helper to readback EMP_AS_SDP_TL
+  drm/i915/vrr: Separate out helper to write EMP_AS_SDP_TL
+  drm/i915/dp: Add helper to get AS SDP Transmission Line
+  drm/i915/dp: Add crtc state for AS SDP transmission line
+  drm/i915/dp: Store and use AS SDP transmission line from crtc state
+  drm/i915/display: Add HAS_CMN_SDP_TL macro
+  drm/i915/dp: Store SDP transmission lines in crtc_state
+  drm/i915/dp: Introduce helpers to enable/disable CMN SDP Transmission
+    line
+  drm/i915/dp: Enable Common SDP Transmission line
+  drm/i915/display: Dump SDP Transmission lines
 
-Reviewed-by: Alistair Popple <apopple@nvidia.com>
+Arun R Murthy (1):
+  drm/i915/nvl: Add register definitions for common SDP Transmission
+    Line
 
->  		break;
->  
->  	case MEMORY_DEVICE_GENERIC:
-> -- 
-> 2.34.1
-> 
-> 
+ .../drm/i915/display/intel_crtc_state_dump.c  |   8 +
+ drivers/gpu/drm/i915/display/intel_ddi.c      |   4 +
+ drivers/gpu/drm/i915/display/intel_display.c  |   7 +
+ .../drm/i915/display/intel_display_device.h   |   2 +
+ .../gpu/drm/i915/display/intel_display_regs.h |  19 ++
+ .../drm/i915/display/intel_display_types.h    |  14 ++
+ drivers/gpu/drm/i915/display/intel_dp.c       | 177 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dp.h       |   5 +
+ drivers/gpu/drm/i915/display/intel_vrr.c      |  48 +++--
+ drivers/gpu/drm/i915/display/intel_vrr.h      |   1 +
+ 10 files changed, 274 insertions(+), 11 deletions(-)
+
+-- 
+2.45.2
+
