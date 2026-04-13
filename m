@@ -4,61 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E0AAEBFD21
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 09:25:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BE77EBFD21
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 09:25:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 031B310E39E;
-	Mon, 13 Apr 2026 09:25:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F1A8310E3A0;
+	Mon, 13 Apr 2026 09:25:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XvPcFiJS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cyhtDGXI";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11B3E10E39C;
- Mon, 13 Apr 2026 09:25:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 056A310E3A0
+ for <intel-xe@lists.freedesktop.org>; Mon, 13 Apr 2026 09:25:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776072319; x=1807608319;
+ t=1776072325; x=1807608325;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=NqA8WPVExYQ0KA6EKvmorE+t6bSk4QIvK4H8U54mxSA=;
- b=XvPcFiJSv1k8gBYiL8EyscodJLF/ywsOOvzIkWIqQVGakSdDUWuKY2vj
- /IxYzWvryDRQBtuMCJnfxXYkC4u6YZTyfmwnQSNcvPMS75Y14IBEqZgBI
- Mm1Y9DbeVB50cv+bmtnaChRpSzDfU3a2ZuuFNw70UzJhvcdDvEpy6bnNa
- laGkmO1T94cSpwM2fFgDUq/zzfc/cxWMrSB5QKG6QvUf5bvWuyZomT/Ty
- ycuO4iP+4vLQwbpwI0teBdSsGwhmMyOUIAzOr42Y2UkR+zmSkAq/8HecS
- lhufRymT4tnMQICx+H77JUVwE1IH/LB+l5DoVq8BFzv3S0eepTqjPMiO9 Q==;
-X-CSE-ConnectionGUID: nUINjcCdTvm7v9QvbFt1Sw==
-X-CSE-MsgGUID: spjqjCq6TumJfFyMpa4FYg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11757"; a="80884697"
-X-IronPort-AV: E=Sophos;i="6.23,176,1770624000"; d="scan'208";a="80884697"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2026 02:25:19 -0700
-X-CSE-ConnectionGUID: iBHKwYmwS8yi5aYFS0eEIQ==
-X-CSE-MsgGUID: FgwZAYhmR/WicbycexuHKQ==
+ mime-version:in-reply-to;
+ bh=2XAkuHNhUHx19rNh26rX5Z9RNkr6uuJ86lq2sNo+uK0=;
+ b=cyhtDGXIk+2wwE8VR/BWkdrEP/AVuoN306Ds1idjOsKi+upq/74Y3wEQ
+ tfEMG3QDx10CKYSWwJRHJOoI3JI1xFL3ASFDAUYdX0vagaiOcPSgdt1DY
+ UL5YYZ6DOFoZZU/cR5JuyGzqIrex7/OrvJoJZQbSa6Ddj6iByukrxdlxd
+ eTub7ySWuQ0VF3DUPiTihrsRSb8n+wxJXowAY65eUbr2eoB5e4adxzBb+
+ 1UmLF0KLno/RZjVuzThg6QPJ05nPbstXx5WRAUvcTmoAEt+0G9qyuqSQ2
+ YyI16RVdBRd6cEYjg1u/7qEf6snT4Enzdm295M1KBBaQROgqi8saLQwTJ Q==;
+X-CSE-ConnectionGUID: 3r/8dBmmQH6HkEikiRiFug==
+X-CSE-MsgGUID: j2YBz3gjRpy12QYhk6ZRDQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11757"; a="77072233"
+X-IronPort-AV: E=Sophos;i="6.23,176,1770624000"; d="scan'208";a="77072233"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2026 02:25:24 -0700
+X-CSE-ConnectionGUID: UR6X3pklT0yEcNk0M4zPqQ==
+X-CSE-MsgGUID: bvxK9jGgSbyWu05YDyb8yQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,176,1770624000"; d="scan'208";a="231461418"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
- ([10.245.244.235])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2026 02:25:17 -0700
-Date: Mon, 13 Apr 2026 12:25:14 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- arun.r.murthy@intel.com
-Subject: Re: [PATCH 02/12] drm/i915/vrr: Add helper to readback EMP_AS_SDP_TL
-Message-ID: <ady2etQgkOzYOOA5@intel.com>
-References: <20260413035349.1730312-1-ankit.k.nautiyal@intel.com>
- <20260413035349.1730312-3-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,176,1770624000"; d="scan'208";a="233772038"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2026 02:25:22 -0700
+Date: Mon, 13 Apr 2026 11:25:19 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Riana Tauro <riana.tauro@intel.com>
+Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
+ rodrigo.vivi@intel.com, aravind.iddamsetty@linux.intel.com,
+ badal.nilawar@intel.com, ravi.kishore.koppuravuri@intel.com,
+ mallesh.koujalagi@intel.com, soham.purkait@intel.com
+Subject: Re: [PATCH v2 4/5] drm/xe/xe_ras: Add helper to clear error counter
+Message-ID: <ady2f_SEVmooxt7u@black.igk.intel.com>
+References: <20260406145440.2016065-7-riana.tauro@intel.com>
+ <20260406145440.2016065-11-riana.tauro@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260413035349.1730312-3-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+In-Reply-To: <20260406145440.2016065-11-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,69 +70,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Apr 13, 2026 at 09:23:39AM +0530, Ankit Nautiyal wrote:
-> EMP_AS_SDP_TL is used to program both DP Adaptive Sync SDP and HDMI
-> Video Timing EMP for VRR operation. Add a helper to read back the
-> programmed transmission line from hardware so VRR code can populate
-> the corresponding CRTC state fields during get_config.
+On Mon, Apr 06, 2026 at 08:24:43PM +0530, Riana Tauro wrote:
+> Add helper function to clear error counter value.
 > 
-> This provides a common read-back path for VRR packet transmission
-> line state.
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_vrr.c | 13 +++++++++++++
->  drivers/gpu/drm/i915/display/intel_vrr.h |  1 +
->  2 files changed, 14 insertions(+)
+> Note: This will be integrated with drm_ras implementation
+> once clear-error-counter patch is merged.
+> https://patchwork.freedesktop.org/series/163019/
+> ---
+>  drivers/gpu/drm/xe/xe_ras.c | 48 +++++++++++++++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_ras.h |  2 ++
+>  2 files changed, 50 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-> index 1fed597439b0..abdae7f1f8a8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> @@ -1218,3 +1218,16 @@ int intel_vrr_dcb_vmax_vblank_start_final(const struct intel_crtc_state *crtc_st
->  
->  	return intel_vrr_vblank_start(crtc_state, VRR_DCB_VMAX(tmp) + 1);
+> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+> index b5fdad2c801d..56abcb9783a4 100644
+> --- a/drivers/gpu/drm/xe/xe_ras.c
+> +++ b/drivers/gpu/drm/xe/xe_ras.c
+> @@ -121,3 +121,51 @@ int xe_ras_get_error_counter(struct xe_device *xe, const enum drm_xe_ras_error_s
+>  	guard(xe_pm_runtime)(xe);
+>  	return get_error_counter(xe, &error_class, value);
 >  }
 > +
-> +u16 intel_vrr_read_emp_as_sdp_tl(const struct intel_crtc_state *crtc_state)
+> +/**
+> + * xe_ras_clear_error_counter() - Clear error counter value
+> + * @xe: xe device instance
+> + * @severity: Error severity level to be cleared
+> + * @error_id: Error component to be cleared
+> + *
+> + * This function clears the value of a specific RAS error counter based on
+> + * the provided severity and component.
+> + *
+> + * Return: 0 on success, negative error code on failure.
+> + */
+> +int xe_ras_clear_error_counter(struct xe_device *xe, const enum drm_xe_ras_error_severity severity,
+> +			       u32 error_id)
 > +{
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-> +	u32 val;
+> +	struct xe_ras_clear_counter_response response = {0};
+> +	struct xe_ras_clear_counter_request request = {0};
+> +	struct xe_sysctrl_mailbox_command command = {0};
+> +	struct xe_ras_error_class *error_class = &request.error_class;
+> +	size_t rlen;
+> +	int ret;
 > +
-> +	if (!HAS_EMP_AS_SDP_TL(display))
-> +		return 0;
+> +	error_class->common.severity = drm_to_xe_ras_severity[severity];
+> +	error_class->common.component = drm_to_xe_ras_component[error_id];
 > +
-> +	val = intel_de_read(display, EMP_AS_SDP_TL(display, cpu_transcoder));
-> +	return REG_FIELD_GET(EMP_AS_SDP_DB_TL_MASK, val);
+> +	prepare_sysctrl_command(&command, XE_SYSCTRL_CMD_CLEAR_COUNTER, &request, sizeof(request),
+> +				&response, sizeof(response));
 
-This stuff really doesn't seem to belong in intel_vrr.c. We probably need
-some kind of infoframe/SDP file where all the relevant stuff lives. Long
-ago I did attempt to extract all the infoframe stuff from intel_hdmi.c
-into intel_dip.c (or something like that), but there were still far too
-many HDMI specifics in the result for my liking.
+Nit: Probably worth having a set_error_counter(), we never know when might
+need it :D
 
-So I think what's really needed is an effort to distill the core of the
-video DIP implementation (really just the low level buffer read/write
-stuff, and I suspect now also this transmission line stuff) into a new
-file. You could perhaps introduce that new file here, and then we'll
-try to get to extracting the DIP buffer stuff later.
+Raag
 
+> +
+> +	guard(xe_pm_runtime)(xe);
+> +	ret = xe_sysctrl_send_command(&xe->sc, &command, &rlen);
+> +	if (ret) {
+> +		xe_err(xe, "[RAS]: Sysctrl error ret %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	if (rlen != sizeof(response)) {
+> +		xe_err(xe, "[RAS]: Sysctrl response size mismatch. Expected %zu, got %zu\n",
+> +		       sizeof(response), rlen);
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (response.status) {
+> +		xe_err(xe, "[RAS]: Sysctrl Failed to clear counter %u\n", response.status);
+> +		return -EIO;
+> +	}
+> +
+> +	return 0;
 > +}
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
-> index 4f16ca4af91f..6659a8a53432 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.h
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.h
-> @@ -53,5 +53,6 @@ int intel_vrr_dcb_vmin_vblank_start_next(const struct intel_crtc_state *crtc_sta
->  int intel_vrr_dcb_vmax_vblank_start_next(const struct intel_crtc_state *crtc_state);
->  int intel_vrr_dcb_vmin_vblank_start_final(const struct intel_crtc_state *crtc_state);
->  int intel_vrr_dcb_vmax_vblank_start_final(const struct intel_crtc_state *crtc_state);
-> +u16 intel_vrr_read_emp_as_sdp_tl(const struct intel_crtc_state *crtc_state);
+> diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
+> index e468c414148e..19e0e649d55f 100644
+> --- a/drivers/gpu/drm/xe/xe_ras.h
+> +++ b/drivers/gpu/drm/xe/xe_ras.h
+> @@ -12,5 +12,7 @@ struct xe_device;
 >  
->  #endif /* __INTEL_VRR_H__ */
+>  int xe_ras_get_error_counter(struct xe_device *xe, const enum drm_xe_ras_error_severity severity,
+>  			     u32 error_id, u32 *value);
+> +int xe_ras_clear_error_counter(struct xe_device *xe, const enum drm_xe_ras_error_severity severity,
+> +			       u32 error_id);
+>  
+>  #endif
 > -- 
-> 2.45.2
-
--- 
-Ville Syrjälä
-Intel
+> 2.47.1
+> 
