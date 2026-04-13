@@ -4,75 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69BB6F9D0C8
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Apr 2026 12:10:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22C77F9D0CB
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Apr 2026 12:10:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 182D310E5E2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 657A910E5E3;
 	Tue, 14 Apr 2026 12:10:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="Bd+Mxj8L";
+	dkim=pass (2048-bit key; unprotected) header.d=shazbot.org header.i=@shazbot.org header.b="kJgdggOk";
+	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="MA2mEvcW";
 	dkim-atps=neutral
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E3A010E4C5
- for <intel-xe@lists.freedesktop.org>; Mon, 13 Apr 2026 15:30:48 +0000 (UTC)
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
- by smtpout-04.galae.net (Postfix) with ESMTPS id 9C1DDC5B19E;
- Mon, 13 Apr 2026 15:31:22 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
- by smtpout-01.galae.net (Postfix) with ESMTPS id ED2C35FFBB;
- Mon, 13 Apr 2026 15:30:45 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id D8842104513C6; 
- Mon, 13 Apr 2026 17:30:33 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1776094244; h=from:subject:date:message-id:to:cc:mime-version:content-type:
- content-transfer-encoding:in-reply-to:references;
- bh=xg8mzFbPBXrLw9j1EK50l3GIhD/98doCuEPkQsBTXYk=;
- b=Bd+Mxj8LwX8bmTnYNL7sIGdg6fifgVRg5gBnAlj9DJfaOxX3ZMmFgplXr3RpU0G6J0nZsm
- GsPmX0Cd70dbZe9H37Sg/fs6lNEDwb2HFql8aKBOyyVHYkhs+kOEsc4183IEhRtE/+Y+bn
- B7Quo8kONLit4TeT3qRtlgQ8aIpLCBKwRueL734GVpuAoGRTWcIVQd8HZh+lml6CSdv5qB
- 1DIjkVOi1e1GN698Ge5QhGyetJvHFhguVpCbSawA8cwwM0U4oRZqE04EEmUDBhaj9QQqzN
- 5xK+Sw/bTXn8nBDLQHq455wUR0enHUfQ4/ku2qUCLZV+HGW8lgvFBy129MgmxA==
-Date: Mon, 13 Apr 2026 17:30:32 +0200
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Dave
- Airlie <airlied@redhat.com>, Jesse Barnes <jbarnes@virtuousgeek.org>, Eric
- Anholt <eric@anholt.net>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Andrzej Hajda
- <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- Robert Foss <rfoss@kernel.org>, Laurent Pinchart
- <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Chun-Kuang Hu
- <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, Matthias
- Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, Chris Wilson
- <chris@chris-wilson.co.uk>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, Mark Yacoub <markyacoub@google.com>, Sean
- Paul <seanpaul@google.com>, Louis Chauvet <louis.chauvet@bootlin.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Simona Vetter <simona.vetter@ffwll.ch>
-Subject: Re: [PATCH RFC 09/12] drm: Introduce drmm_connector_dp_init() with
- link training state properties
-Message-ID: <20260413173032.75ee842a@kmaincent-XPS-13-7390>
-In-Reply-To: <bwgzwwlmvlbtnl7qnmnjrkzjaifeyrhllnbjxh7txrd2o24aqi@2ykn2gwyatcx>
-References: <20260409-feat_link_cap-v1-0-7069e8199ce2@bootlin.com>
- <20260409-feat_link_cap-v1-9-7069e8199ce2@bootlin.com>
- <gmaxonri7y3k43pxsnxfnd23mydgrwsw2322v6m4yjoksqm7aj@4ehgvhzg2ubb>
- <20260413145930.140ba461@kmaincent-XPS-13-7390>
- <bwgzwwlmvlbtnl7qnmnjrkzjaifeyrhllnbjxh7txrd2o24aqi@2ykn2gwyatcx>
-Organization: bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+Received: from fout-a6-smtp.messagingengine.com
+ (fout-a6-smtp.messagingengine.com [103.168.172.149])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D15C310E15E
+ for <intel-xe@lists.freedesktop.org>; Mon, 13 Apr 2026 21:58:30 +0000 (UTC)
+Received: from phl-compute-05.internal (phl-compute-05.internal [10.202.2.45])
+ by mailfout.phl.internal (Postfix) with ESMTP id F0C4BEC0515;
+ Mon, 13 Apr 2026 17:58:29 -0400 (EDT)
+Received: from phl-frontend-04 ([10.202.2.163])
+ by phl-compute-05.internal (MEProxy); Mon, 13 Apr 2026 17:58:29 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=shazbot.org; h=
+ cc:cc:content-transfer-encoding:content-type:content-type:date
+ :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to; s=fm1; t=1776117509;
+ x=1776203909; bh=4GkHMXB+cNXlgnY7q7iUg5quFdQWL06EszHzzvx6iBA=; b=
+ kJgdggOk3KxmLPv2DnGRPayw0Dz05sdKkyxHoGRx8a7qFo+Z+CCx8mGKACQeAjrO
+ 9SVG5XuPKfCMk6wX8t9GWWvMmyPGLmfTw8F6SI4v4RojFlmNvlRv3GYUVmijWWzq
+ CBJYDSMNuwz/DuR5ds/27LC5lwg32Z64OnJVvwkzraljLATVOES6OS+Z/EVx+4BX
+ 0Uhrg0bvmeD1LI0jFIlB30rfFtP/vStl9u97iNAyAaK3XzaN/ePEtoVQsKRRvXbl
+ m1HoTUgGmpAEWSASnYc2cM56J+FQUDEFLLOykSM6Hh3/L5upTharLjJ22G+ApPEt
+ O+BDTvGJGtFPQue5ihNWvg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:content-type:date:date:feedback-id:feedback-id
+ :from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1776117509; x=
+ 1776203909; bh=4GkHMXB+cNXlgnY7q7iUg5quFdQWL06EszHzzvx6iBA=; b=M
+ A2mEvcWk9qLJp66rAs9lOcGa8v9aurMVhEHIL91x+aIQzMHqVEyXryfXJEraKVQZ
+ EmBpVo9qWwZiWJQZ50/AXEdUttOrADZbEbi5FVcCRhW2bIn5ZFaT1c0sS3EbA8HX
+ IAaeO9N9+9LgtFYg1LMwwfEwKf5o7mFxSv5FbgKEgJP2V6Vuw/GydnYEPXIoI66/
+ xXS2jtrNe8QxD4arD9zK58a2+PXnxhZAjDJEjxhV50+mfhWAY6tomsJnmTBXmQfG
+ LxQ3zIuJ+CPX9d7GxRtDCiNO+Ikxf4BC4ApvNF0xRFM+cLlnvzjbNONbQszQbHAw
+ LKlVVnX14smPPDitt7V5w==
+X-ME-Sender: <xms:BWfdaZ901DJKzXnqaAHGiCCMEoP7Z6hj_1CucJ36HEI5XbNAK-Eo8w>
+ <xme:BWfdaV6SQqzYSec0wNwbyFw3zrszTmEcqY-1dXlPmymofyPaSQeS6ULOokTI94mT9
+ 7nRUURM59zEGvaLOwIMuCzrEY3cOybbwZpyV8-NpoOHlxh6sqiBeQ>
+X-ME-Received: <xmr:BWfdaSmI-yPHwpJT0vgRwButVsEWIHiVrzaZCB5M7ZS-eq9fX5HgTsq9Q_Y>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefhedrtddtgdefleefkecutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+ ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+ hrpeffhffvvefukfgjfhfogggtgfesthhqredtredtjeenucfhrhhomheptehlvgigucgh
+ ihhllhhirghmshhonhcuoegrlhgvgiesshhhrgiisghothdrohhrgheqnecuggftrfgrth
+ htvghrnhepieeuheevjeefgffffffhffegjeejgeevveelhfegleffgfeugfehkeehgfev
+ ffdunecuffhomhgrihhnpehfrhgvvgguvghskhhtohhprdhorhhgnecuvehluhhsthgvrh
+ fuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghlvgigsehshhgriigsohht
+ rdhorhhgpdhnsggprhgtphhtthhopedutddpmhhouggvpehsmhhtphhouhhtpdhrtghpth
+ htohepmhhitghhrghlrdifihhnihgrrhhskhhisehinhhtvghlrdgtohhmpdhrtghpthht
+ ohepihhnthgvlhdqgigvsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhgpdhrtg
+ hpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhr
+ tghpthhtohepkhhvmhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehjgh
+ hgseiiihgvphgvrdgtrgdprhgtphhtthhopeihihhshhgrihhhsehnvhhiughirgdrtgho
+ mhdprhgtphhtthhopehskhholhhothhhuhhmthhhohesnhhvihguihgrrdgtohhmpdhrtg
+ hpthhtohepkhgvvhhinhdrthhirghnsehinhhtvghlrdgtohhmpdhrtghpthhtohepshht
+ rggslhgvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
+X-ME-Proxy: <xmx:BWfdaYFVssTc4zb585ugrDSNd5eHdxPaezmHLl1N4ztQnX7sM9mV6w>
+ <xmx:BWfdaZ-R-qCe7bZcErer2WouarYQopMpbKb_Ue1vBvYR3wX_kfZNGw>
+ <xmx:BWfdaZmt_cDEpi79btJhR5moy0NDI16kL1K6h7U_MlnRFrn2jP6U9w>
+ <xmx:BWfdaUB70ZxyXLOgk3qTxRSfPe7MnIEqB-LZjaV2WpS7rgZP3KUlKw>
+ <xmx:BWfdabtxJwg9nqd38KJJDw5izNd4GoKks_DHNLRNG4RqvfIxH91JaTQM>
+Feedback-ID: i03f14258:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 13 Apr 2026 17:58:28 -0400 (EDT)
+Date: Mon, 13 Apr 2026 15:58:27 -0600
+From: Alex Williamson <alex@shazbot.org>
+To: =?UTF-8?B?TWljaGHFgg==?= Winiarski <michal.winiarski@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+ <kvm@vger.kernel.org>, Jason Gunthorpe <jgg@ziepe.ca>, Yishai Hadas
+ <yishaih@nvidia.com>, "Shameer Kolothum" <skolothumtho@nvidia.com>, Kevin
+ Tian <kevin.tian@intel.com>, <stable@vger.kernel.org>, alex@shazbot.org
+Subject: Re: [PATCH v2 1/2] vfio/xe: Reorganize the init to decouple
+ migration from reset
+Message-ID: <20260413155827.494b7f0e@shazbot.org>
+In-Reply-To: <20260410224948.900550-1-michal.winiarski@intel.com>
+References: <20260410224948.900550-1-michal.winiarski@intel.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
 X-Mailman-Approved-At: Tue, 14 Apr 2026 12:09:52 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -88,104 +106,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 13 Apr 2026 16:59:43 +0300
-Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> wrote:
+On Sat, 11 Apr 2026 00:49:47 +0200
+Micha=C5=82 Winiarski <michal.winiarski@intel.com> wrote:
 
-> On Mon, Apr 13, 2026 at 02:59:30PM +0200, Kory Maincent wrote:
-> > On Fri, 10 Apr 2026 00:53:08 +0300
-> > Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> wrote:
-> >  =20
-> > > On Thu, Apr 09, 2026 at 07:08:25PM +0200, Kory Maincent wrote: =20
-> > > > Add a managed DisplayPort connector initialization helper,
-> > > > drmm_connector_dp_init(), modeled after the existing HDMI counterpa=
-rt
-> > > > drmm_connector_hdmi_init(). Cleanup is handled automatically via a
-> > > > DRM-managed action.
-> > > >=20
-> > > > The helper creates the following immutable connector properties to
-> > > > expose DP link training capabilities and state to userspace:
-> > > >=20
-> > > >   - num_lanes: bitmask of supported lane counts (1, 2, 4)
-> > > >   - link_rate: Array of supported link rates.
-> > > >   - dsc_en: Display Stream Compression supported
-> > > >   - voltage_swingN: per-lane voltage swing level bitmask
-> > > >   - pre-emphasisN: per-lane pre-emphasis level bitmask
-> > > >=20
-> > > > Link rates are passed by the driver in deca-kbps, following the DRM
-> > > > convention, but exposed to userspace in kbps for clarity.
-> > > >=20
-> > > > Two additional helpers are provided to update and reset those prope=
-rties
-> > > > at runtime:
-> > > >   - drm_connector_dp_set_link_train_properties()
-> > > >   - drm_connector_dp_reset_link_train_properties()
-> > > >  =20
-> >=20
-> > ...
-> >  =20
-> > > > +/**
-> > > > + * struct drm_connector_dp_link_train - DRM DisplayPort link train=
-ing
-> > > > + * information report
-> > > > + */
-> > > > +struct drm_connector_dp_link_train {   =20
-> > >=20
-> > > THese define the current DP state. As such, they definitely make sense
-> > > to be a part of the drm_connector. =20
-> > > > +	/**
-> > > > +	 * @nlanes: The number of lanes used
-> > > > +	 */
-> > > > +	u8 nlanes;
-> > > > +
-> > > > +	/**
-> > > > +	 * @rates: Link rate value selected in deca-kbps
-> > > > +	 */
-> > > > +	u32 rate;
-> > > > +
-> > > > +	/**
-> > > > +	 * @dsc: Display Stream Compression enabled
-> > > > +	 */
-> > > > +	bool dsc_en;
-> > > > +
-> > > > +	/**
-> > > > +	 * @v_swings: Array listing the bitmask voltage swing level per
-> > > > lanes
-> > > > +	 */
-> > > > +	u8 v_swing[4];
-> > > > +
-> > > > +	/**
-> > > > +	 * @pre_emph: Array listing the bitmask pre-emphasis level per
-> > > > lanes
-> > > > +	 */
-> > > > +	u8 pre_emph[4];   =20
-> > >=20
-> > > Please consider following struct phy_configure_opts_dp (or using it as
-> > > is). Overall, please refer the talk and (more important) the lightning
-> > > resumee at this XDC. I have some bits and pieces ready in spite of th=
-at
-> > > proposal, but I didn't have time to finish it. =20
-> >=20
-> > I didn't know this phy_configure_opts_dp struct. This indeed could make
-> > sense to reuse and modify that structure for our needs. =20
+> Attempting to issue reset on VF devices that don't support migration
+> leads to the following:
+[...]
+> This is caused by the fact that some of the xe_vfio_pci_core_device
+> members needed for handling reset are only initialized as part of
+> migration init.
 >=20
-> Why would you want to modify it? It is an interface for the PHY drivers.
-> Is there anything that you miss there?
-
-I was thinking of the DSC, but after a quick look it is not done at the PHY
-level therefore it won't land here.
-=20
-> > About your XDC talk. What were the developments you were talking about?
-> > Could I have a look at them? =20
+> Fix the problem by reorganizing the code to decouple VF init from
+> migration init.
 >=20
-> I've posted an RFC just before the XDC. Currently I'm looking at the
-> link training generification. Overall, you don't have to wait for that
-> job to be completed, just take some of the notes in account (like reuse
-> of the PHY config structures).
+> Fixes: 1f5556ec8b9ef ("vfio/xe: Add device specific vfio_pci driver varia=
+nt for Intel graphics")
+> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/7352
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Micha=C5=82 Winiarski <michal.winiarski@intel.com>
+> ---
+>  drivers/vfio/pci/xe/main.c | 43 ++++++++++++++++++++++----------------
+>  1 file changed, 25 insertions(+), 18 deletions(-)
 
-Ok, have you a link? I can't find the related series.
+Applied to vfio next branch for v7.1.  Thanks,
 
-Regards,
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+Alex
