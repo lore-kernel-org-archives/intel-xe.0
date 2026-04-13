@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CCEBE93813
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 05:00:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91D14E93813
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 05:01:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B76A310E30B;
-	Mon, 13 Apr 2026 05:00:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C66A10E30D;
+	Mon, 13 Apr 2026 05:01:23 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FDC110E307;
- Mon, 13 Apr 2026 05:00:43 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5495608612643867277=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5FAB10E30C;
+ Mon, 13 Apr 2026 05:01:21 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_support_for_Common_SDP_?=
- =?utf-8?q?Transmission_Line_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Unify_fault_inj?=
+ =?utf-8?q?ection_hooks_for_CSC=2C_GT_reset?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+To: "Mallesh Koujalagi" <mallesh.koujalagi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 13 Apr 2026 05:00:43 -0000
-Message-ID: <177605644350.455047.3477240420729495740@a3b018990fe9>
+Date: Mon, 13 Apr 2026 05:01:21 -0000
+Message-ID: <177605648173.455047.11684409241264045227@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260413035349.1730312-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20260413035349.1730312-1-ankit.k.nautiyal@intel.com>
+References: <20260413045118.548328-2-mallesh.koujalagi@intel.com>
+In-Reply-To: <20260413045118.548328-2-mallesh.koujalagi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,121 +40,53 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5495608612643867277==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Add support for Common SDP Transmission Line (rev2)
-URL   : https://patchwork.freedesktop.org/series/162623/
-State : success
+Series: drm/xe: Unify fault injection hooks for CSC, GT reset
+URL   : https://patchwork.freedesktop.org/series/164761/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4887-afe01cbdd453cb1b141b29ea6153f64ef0f151fb_BAT -> xe-pw-162623v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit e1992ca4e2f69eeaf82cc1ae04b9f6d7edb7a015
+Author: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Date:   Mon Apr 13 10:21:19 2026 +0530
 
-Summary
--------
+    drm/xe: Unify fault injection hooks for CSC, GT reset
+    
+    The fault injection code was scattered: the GT reset
+    hook lived in xe_gt.h as an inline function with its own global
+    variable, the CSC hook had a separate global in xe_hw_error.c with
+    an extern declaration, and each was individually registered in
+    xe_debugfs.c. Adding a new error type meant editing many files and
+    copy-pasting the same boilerplate.
+    
+    Create a single, centralized fault injection module
+    (xe_fault_inject.c/h) that manages all fault types through one
+    table. Each type is just an entry in an enum and a one-line row in
+    a descriptor array -- no more scattered globals, externs, or
+    per-type inline helpers.
+    
+    Debugfs interface (under /sys/kernel/debug/dri/0/):
+     - fail_gt_reset         - GT reset failure
+     - inject_csc_hw_error   - CSC firmware error
+    
+    Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
++ /mt/dim checkpatch 4b8581ffe9ad36c0fb9704411a2a6e066c65c97a drm-intel
+e1992ca4e2f6 drm/xe: Unify fault injection hooks for CSC, GT reset
+-:86: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#86: 
+new file mode 100644
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (14 -> 14)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-162623v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@abstime:
-    - bat-dg2-oem2:       [PASS][1] -> [TIMEOUT][2] ([Intel XE#6506])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4887-afe01cbdd453cb1b141b29ea6153f64ef0f151fb/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162623v2/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-
-  
-  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
-
-
-Build changes
--------------
-
-  * Linux: xe-4887-afe01cbdd453cb1b141b29ea6153f64ef0f151fb -> xe-pw-162623v2
-
-  IGT_8854: 93abaf0170728f69bc27577e5b405f7a2a01b6fd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4887-afe01cbdd453cb1b141b29ea6153f64ef0f151fb: afe01cbdd453cb1b141b29ea6153f64ef0f151fb
-  xe-pw-162623v2: 162623v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162623v2/index.html
-
---===============5495608612643867277==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 234 lines checked
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add support for Common SDP Transmission Line (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/162623/">https://patchwork.freedesktop.org/series/162623/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162623v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162623v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4887-afe01cbdd453cb1b141b29ea6153f64ef0f151fb_BAT -&gt; xe-pw-162623v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-162623v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_waitfence@abstime:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4887-afe01cbdd453cb1b141b29ea6153f64ef0f151fb/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162623v2/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4887-afe01cbdd453cb1b141b29ea6153f64ef0f151fb -&gt; xe-pw-162623v2</li>
-</ul>
-<p>IGT_8854: 93abaf0170728f69bc27577e5b405f7a2a01b6fd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4887-afe01cbdd453cb1b141b29ea6153f64ef0f151fb: afe01cbdd453cb1b141b29ea6153f64ef0f151fb<br />
-  xe-pw-162623v2: 162623v2</p>
-
-</body>
-</html>
-
---===============5495608612643867277==--
