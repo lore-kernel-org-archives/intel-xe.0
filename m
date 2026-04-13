@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B1F7F34C63
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 16:23:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99C02F34C63
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 16:36:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC18110E4D0;
-	Mon, 13 Apr 2026 16:23:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E8EA10E4D0;
+	Mon, 13 Apr 2026 16:36:30 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CFDC10E4D0;
- Mon, 13 Apr 2026 16:23:04 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1984625034275035743=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 301E810E4D0;
+ Mon, 13 Apr 2026 16:36:29 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/psr=3A_Init_variab?=
- =?utf-8?q?le_to_avoid_early_exit_from_et_alignment_loop?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Add_memory_page_offlining?=
+ =?utf-8?q?_support_=28rev7=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 13 Apr 2026 16:23:04 -0000
-Message-ID: <177609738442.458469.677209240584745991@a3b018990fe9>
+Date: Mon, 13 Apr 2026 16:36:29 -0000
+Message-ID: <177609818918.458469.2390455302535491198@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260413112345.88853-1-jouni.hogander@intel.com>
-In-Reply-To: <20260413112345.88853-1-jouni.hogander@intel.com>
+References: <20260413131623.2891528-11-tejas.upadhyay@intel.com>
+In-Reply-To: <20260413131623.2891528-11-tejas.upadhyay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,85 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1984625034275035743==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/psr: Init variable to avoid early exit from et alignment loop
-URL   : https://patchwork.freedesktop.org/series/164791/
-State : success
+Series: Add memory page offlining support (rev7)
+URL   : https://patchwork.freedesktop.org/series/161473/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4892-f13bc38e6a8fb9280ef350aace1764dda7dce025_BAT -> xe-pw-164791v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit ed54940d366e5169807d6c963280c7b17dced8bd
+Author: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Date:   Mon Apr 13 18:46:30 2026 +0530
 
-Summary
--------
+    drm/xe/cri: Add sysfs interface for bad gpu vram pages
+    
+    Starting CRI, Include a sysfs interface designed to expose information
+    about bad VRAM pages—those identified as having hardware faults
+    (e.g., ECC errors). This interface allows userspace tools and
+    administrators to monitor the health of the GPU's local memory and
+    track the status of page retirement.To get details on bad gpu vram
+    pages can be found under /sys/bus/pci/devices/bdf/vram_bad_pages.
+    
+    Where The format is, pfn : gpu page size : flags
+    
+    flags:
+    R: reserved, this gpu page is reserved.
+    P: pending for reserve, this gpu page is marked as bad, will be reserved in next window of page_reserve.
+    F: unable to reserve. this gpu page can’t be reserved due to some reasons.
+    
+    For example if you read using cat /sys/bus/pci/devices/bdf/vram_bad_pages,
+    max_pages : 10000
+    0x00000000 : 0x00001000 : R
+    0x00001234 : 0x00001000 : P
+    
+    v2:
+    - Add max_pages info as per updated design doc
+    - Rebase
+    
+    Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
++ /mt/dim checkpatch 3112208d6d7f657d0866921cceb5b3afe1688fb2 drm-intel
+867fc1040060 drm/xe: Link VRAM object with gpu buddy
+21c395b8f655 drm/gpu: Add gpu_buddy_addr_to_block helper
+022cc6fdb455 drm/xe: Link LRC BO and its execution Queue
+446c4c2bfe62 drm/xe: Extend BO purge to handle vram pages as well
+e61b911ab398 drm/xe: Handle physical memory address error
+-:13: ERROR:BAD_COMMIT_SEPARATOR: Invalid commit separator - some tools may have problems applying this
+#13: 
+----------------------
 
-  **SUCCESS**
+-:20: ERROR:BAD_COMMIT_SEPARATOR: Invalid commit separator - some tools may have problems applying this
+#20: 
+-----------------
 
-  No regressions found.
+-:32: ERROR:BAD_COMMIT_SEPARATOR: Invalid commit separator - some tools may have problems applying this
+#32: 
+--------------
 
-  
+total: 3 errors, 0 warnings, 0 checks, 412 lines checked
+ae99092ef17c drm/xe/cri: Add debugfs to inject faulty vram address
+13bb94ad7bc0 gpu/buddy: Add routine to dump allocated buddy blocks
+-:13: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#13: 
+[  +0.000003] xe 0000:03:00.0: [drm] 0x00000002f8000000-0x00000002f8800000: 8388608
 
-Participating hosts (11 -> 11)
-------------------------------
+total: 0 errors, 1 warnings, 0 checks, 62 lines checked
+5ca5a4c98f8b drm/xe/configfs: Add vram bad page reservation policy
+ed54940d366e drm/xe/cri: Add sysfs interface for bad gpu vram pages
+-:20: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#20: 
+P: pending for reserve, this gpu page is marked as bad, will be reserved in next window of page_reserve.
 
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-4892-f13bc38e6a8fb9280ef350aace1764dda7dce025 -> xe-pw-164791v1
-
-  IGT_8854: 93abaf0170728f69bc27577e5b405f7a2a01b6fd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4892-f13bc38e6a8fb9280ef350aace1764dda7dce025: f13bc38e6a8fb9280ef350aace1764dda7dce025
-  xe-pw-164791v1: 164791v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164791v1/index.html
-
---===============1984625034275035743==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/psr: Init variable to avoid early exit from et alignment loop</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164791/">https://patchwork.freedesktop.org/series/164791/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164791v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164791v1/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 1 warnings, 0 checks, 144 lines checked
 
 
-    <h1>CI Bug Log - changes from xe-4892-f13bc38e6a8fb9280ef350aace1764dda7dce025_BAT -&gt; xe-pw-164791v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4892-f13bc38e6a8fb9280ef350aace1764dda7dce025 -&gt; xe-pw-164791v1</li>
-</ul>
-<p>IGT_8854: 93abaf0170728f69bc27577e5b405f7a2a01b6fd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4892-f13bc38e6a8fb9280ef350aace1764dda7dce025: f13bc38e6a8fb9280ef350aace1764dda7dce025<br />
-  xe-pw-164791v1: 164791v1</p>
-
-</body>
-</html>
-
---===============1984625034275035743==--
