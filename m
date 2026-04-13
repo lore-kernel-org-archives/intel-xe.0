@@ -4,58 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BE77EBFD21
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 09:25:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9EF62EBFD25
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 09:34:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1A8310E3A0;
-	Mon, 13 Apr 2026 09:25:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B2F210E3A1;
+	Mon, 13 Apr 2026 09:34:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cyhtDGXI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U1nABkfO";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 056A310E3A0
- for <intel-xe@lists.freedesktop.org>; Mon, 13 Apr 2026 09:25:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 77B1010E3A1;
+ Mon, 13 Apr 2026 09:34:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776072325; x=1807608325;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=2XAkuHNhUHx19rNh26rX5Z9RNkr6uuJ86lq2sNo+uK0=;
- b=cyhtDGXIk+2wwE8VR/BWkdrEP/AVuoN306Ds1idjOsKi+upq/74Y3wEQ
- tfEMG3QDx10CKYSWwJRHJOoI3JI1xFL3ASFDAUYdX0vagaiOcPSgdt1DY
- UL5YYZ6DOFoZZU/cR5JuyGzqIrex7/OrvJoJZQbSa6Ddj6iByukrxdlxd
- eTub7ySWuQ0VF3DUPiTihrsRSb8n+wxJXowAY65eUbr2eoB5e4adxzBb+
- 1UmLF0KLno/RZjVuzThg6QPJ05nPbstXx5WRAUvcTmoAEt+0G9qyuqSQ2
- YyI16RVdBRd6cEYjg1u/7qEf6snT4Enzdm295M1KBBaQROgqi8saLQwTJ Q==;
-X-CSE-ConnectionGUID: 3r/8dBmmQH6HkEikiRiFug==
-X-CSE-MsgGUID: j2YBz3gjRpy12QYhk6ZRDQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11757"; a="77072233"
-X-IronPort-AV: E=Sophos;i="6.23,176,1770624000"; d="scan'208";a="77072233"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ t=1776072870; x=1807608870;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=DrLU6n0IIxKYVn+LVEpiG+PQs6YhuFefs3gRmJtMdx8=;
+ b=U1nABkfO+oSxlmqose4KyKe4Csn7c1CY+F9mUYEabXLKMwpWF0ZtheQy
+ 9rnuYOlXgrW2MhWRHiTkyJ3DBnEY18wu8zpiKXEFa0BF9czvn4vukVGMD
+ 5uWkOD/ip3ue+0wFEwkk+KYGL/DRHriELBbpLsQIMHNAs4ywuWLpkJFQR
+ YD9weEP0g9IVoMZpH7Or9iJZozea3PwETXZJZ1CL85pC5uQ403siL6/VV
+ TWIClOIeynnF7QJ33cNXrUwmk8LN77UFzCI9s+npNH4HJqkvOSLFw1HEc
+ k/sUNK0KH0LeZS6Lx3RfVqi35kagvy0ibnAZIkWQU4JWXOZIm0bLn82vp A==;
+X-CSE-ConnectionGUID: NSe3GoZDRtao/RbPAqweFg==
+X-CSE-MsgGUID: PUZFmoSKTHunmLvBSufmZA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11757"; a="77073235"
+X-IronPort-AV: E=Sophos;i="6.23,176,1770624000"; d="scan'208";a="77073235"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2026 02:25:24 -0700
-X-CSE-ConnectionGUID: UR6X3pklT0yEcNk0M4zPqQ==
-X-CSE-MsgGUID: bvxK9jGgSbyWu05YDyb8yQ==
+ 13 Apr 2026 02:34:30 -0700
+X-CSE-ConnectionGUID: AfM763l+Twuc72LMHc9Y1g==
+X-CSE-MsgGUID: ihvbETkDTmilk3dWR+D/8g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,176,1770624000"; d="scan'208";a="233772038"
-Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2026 02:25:22 -0700
-Date: Mon, 13 Apr 2026 11:25:19 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Riana Tauro <riana.tauro@intel.com>
-Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
- rodrigo.vivi@intel.com, aravind.iddamsetty@linux.intel.com,
- badal.nilawar@intel.com, ravi.kishore.koppuravuri@intel.com,
- mallesh.koujalagi@intel.com, soham.purkait@intel.com
-Subject: Re: [PATCH v2 4/5] drm/xe/xe_ras: Add helper to clear error counter
-Message-ID: <ady2f_SEVmooxt7u@black.igk.intel.com>
-References: <20260406145440.2016065-7-riana.tauro@intel.com>
- <20260406145440.2016065-11-riana.tauro@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,176,1770624000"; d="scan'208";a="234147666"
+Received: from dut-2a59.iind.intel.com ([10.190.239.113])
+ by orviesa004.jf.intel.com with ESMTP; 13 Apr 2026 02:34:29 -0700
+From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: gwan-gyeong.mun@intel.com, uma.shankar@intel.com, imre.deak@intel.com,
+ chaitanya.kumar.borah@gmail.com
+Subject: [PATCH] drm/i915/dp: Fix VSC dynamic range signaling for RGB formats
+Date: Mon, 13 Apr 2026 14:39:49 +0530
+Message-Id: <20260413090949.1425953-1-chaitanya.kumar.borah@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260406145440.2016065-11-riana.tauro@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,93 +65,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Apr 06, 2026 at 08:24:43PM +0530, Riana Tauro wrote:
-> Add helper function to clear error counter value.
-> 
-> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-> ---
-> Note: This will be integrated with drm_ras implementation
-> once clear-error-counter patch is merged.
-> https://patchwork.freedesktop.org/series/163019/
-> ---
->  drivers/gpu/drm/xe/xe_ras.c | 48 +++++++++++++++++++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_ras.h |  2 ++
->  2 files changed, 50 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-> index b5fdad2c801d..56abcb9783a4 100644
-> --- a/drivers/gpu/drm/xe/xe_ras.c
-> +++ b/drivers/gpu/drm/xe/xe_ras.c
-> @@ -121,3 +121,51 @@ int xe_ras_get_error_counter(struct xe_device *xe, const enum drm_xe_ras_error_s
->  	guard(xe_pm_runtime)(xe);
->  	return get_error_counter(xe, &error_class, value);
->  }
-> +
-> +/**
-> + * xe_ras_clear_error_counter() - Clear error counter value
-> + * @xe: xe device instance
-> + * @severity: Error severity level to be cleared
-> + * @error_id: Error component to be cleared
-> + *
-> + * This function clears the value of a specific RAS error counter based on
-> + * the provided severity and component.
-> + *
-> + * Return: 0 on success, negative error code on failure.
-> + */
-> +int xe_ras_clear_error_counter(struct xe_device *xe, const enum drm_xe_ras_error_severity severity,
-> +			       u32 error_id)
-> +{
-> +	struct xe_ras_clear_counter_response response = {0};
-> +	struct xe_ras_clear_counter_request request = {0};
-> +	struct xe_sysctrl_mailbox_command command = {0};
-> +	struct xe_ras_error_class *error_class = &request.error_class;
-> +	size_t rlen;
-> +	int ret;
-> +
-> +	error_class->common.severity = drm_to_xe_ras_severity[severity];
-> +	error_class->common.component = drm_to_xe_ras_component[error_id];
-> +
-> +	prepare_sysctrl_command(&command, XE_SYSCTRL_CMD_CLEAR_COUNTER, &request, sizeof(request),
-> +				&response, sizeof(response));
+For RGB, set dynamic_range to CTA or VESA based on
+crtc_state->limited_color_range so sinks apply correct
+quantization. YCbCr remains limited (CTA) range.
+(DP v1.4, Table 5-1)
 
-Nit: Probably worth having a set_error_counter(), we never know when might
-need it :D
+Cc: stable@vger.kernel.org #v5.8+
+Fixes: 9799c4c3b76e ("drm/i915/dp: Add compute routine for DP VSC SDP")
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/15874
+Assisted-by: GitHub Copilot (GPT-5.4)
+Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-Raag
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index b8b6d62fb275..2b6283b4dec6 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -3127,8 +3127,12 @@ static void intel_dp_compute_vsc_colorimetry(const struct intel_crtc_state *crtc
+ 	drm_WARN_ON(display->drm,
+ 		    vsc->bpc == 6 && vsc->pixelformat != DP_PIXELFORMAT_RGB);
+ 
+-	/* all YCbCr are always limited range */
+-	vsc->dynamic_range = DP_DYNAMIC_RANGE_CTA;
++	if (vsc->pixelformat == DP_PIXELFORMAT_RGB)
++		vsc->dynamic_range = crtc_state->limited_color_range ?
++			DP_DYNAMIC_RANGE_CTA : DP_DYNAMIC_RANGE_VESA;
++	else
++		vsc->dynamic_range = DP_DYNAMIC_RANGE_CTA;
++
+ 	vsc->content_type = DP_CONTENT_TYPE_NOT_DEFINED;
+ }
+ 
+-- 
+2.25.1
 
-> +
-> +	guard(xe_pm_runtime)(xe);
-> +	ret = xe_sysctrl_send_command(&xe->sc, &command, &rlen);
-> +	if (ret) {
-> +		xe_err(xe, "[RAS]: Sysctrl error ret %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	if (rlen != sizeof(response)) {
-> +		xe_err(xe, "[RAS]: Sysctrl response size mismatch. Expected %zu, got %zu\n",
-> +		       sizeof(response), rlen);
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (response.status) {
-> +		xe_err(xe, "[RAS]: Sysctrl Failed to clear counter %u\n", response.status);
-> +		return -EIO;
-> +	}
-> +
-> +	return 0;
-> +}
-> diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
-> index e468c414148e..19e0e649d55f 100644
-> --- a/drivers/gpu/drm/xe/xe_ras.h
-> +++ b/drivers/gpu/drm/xe/xe_ras.h
-> @@ -12,5 +12,7 @@ struct xe_device;
->  
->  int xe_ras_get_error_counter(struct xe_device *xe, const enum drm_xe_ras_error_severity severity,
->  			     u32 error_id, u32 *value);
-> +int xe_ras_clear_error_counter(struct xe_device *xe, const enum drm_xe_ras_error_severity severity,
-> +			       u32 error_id);
->  
->  #endif
-> -- 
-> 2.47.1
-> 
