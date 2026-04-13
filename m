@@ -4,159 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7107EEBFD2D
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 09:54:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4166EBFD2D
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 09:56:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 267C68922E;
-	Mon, 13 Apr 2026 09:54:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8098A8922E;
+	Mon, 13 Apr 2026 09:56:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bBHy57p9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J7xqTTaz";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F39A088DE5;
- Mon, 13 Apr 2026 09:54:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF3BA10E3BD
+ for <intel-xe@lists.freedesktop.org>; Mon, 13 Apr 2026 09:56:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776074083; x=1807610083;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=1MHjMkf00AoX5XsYk5QNBHCNrIEIG+8f/eLFN4H0fQ8=;
- b=bBHy57p9Nxl4VPIMchgFgpo8uVDDdrJGKJoVn1ErF3BpwQqqc84MTRGr
- OALpZW8+bRDm7cCHZCQ4pymayN2poUB3jPPYERSD7fHPn9zncJQJ7kVjv
- Wv4YbzFGiWrXJhreK3Pd7KqvPKxoApOVYxDUMFmW/Hpb6EiBSTAlOjAoW
- mnFPTq9BSjnTkJFzp/K3YKCjFRdrvefQq1KZcJdlLDWCAg+30dme6QRGg
- n6yvjnmL0bxCUhXM6Zl6g6ZKCSEjSptS/wUgchkK3brBCw/pWUjnlgSCP
- YCphX6Y80ZYHloMAZAPOhvBBbDOgc1h7zj5N/yblRnhORgiQTtqVonN7M Q==;
-X-CSE-ConnectionGUID: /+S9a7k3RY+b9QWvQbtCcw==
-X-CSE-MsgGUID: XR40nAc1Qre0IocUVU+ULg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11757"; a="76967635"
-X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="76967635"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2026 02:54:42 -0700
-X-CSE-ConnectionGUID: pRkcL6g6TbKVZcheJYV3pg==
-X-CSE-MsgGUID: +8u2ze8PSYKMWCIAfJ34MQ==
+ t=1776074209; x=1807610209;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=1j3oZDcrUeHaDPnAhUzqpjXHwHDBEwqvcqatmnIbsRg=;
+ b=J7xqTTazpUax6GAClYL2KXSVuSX/G36K+d8myk9rdpMX5aljM5Q2oAcW
+ wY4izvwmPYvcjTVcvZUE7nhWCfgjln08FPM3ZmtstCR9c+ZxX/7P3rwhd
+ 1ncwk/F12LcxjoIHPUaBbbYha5yJPYGfTOD3Mmvs53MdCtww2MZliXhJv
+ IEiWwH81k5gPk1U3ygoi0H+qxFI4ITFO2eq4x54ARJTKfmSUhUgsaplan
+ R4xOioLL3Z9JeJwdWx6TGllQ5Xs+gnUWq+v+0/O2XjFz7Rot8cwEzRmjD
+ 7ooG64w0z2zs1REVYpgM/tkwXAIE8eESa0KQrgVtxdsHVsJugMrEu/Dg/ g==;
+X-CSE-ConnectionGUID: TUmyD375T3GurvkAw8Q5Pw==
+X-CSE-MsgGUID: rAp6YnwhT1CcxgtFO9UH6Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11757"; a="80866284"
+X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="80866284"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2026 02:56:49 -0700
+X-CSE-ConnectionGUID: yPacxPHKSWuhnG+7eriRug==
+X-CSE-MsgGUID: nQak2YfPSq6BcyHs1+QI3Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="223255485"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2026 02:54:42 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 13 Apr 2026 02:54:41 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 13 Apr 2026 02:54:41 -0700
-Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.6) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 13 Apr 2026 02:54:41 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=MzMUza46ahMhkrxogCWg2gOQ4k81HSpZQbm2MulwUl5fFnOzo5XaEaY7gXJFDoDXK2T50kLMBhmVwxCenX3dYA6v3O0HGKjsJwi3kuV0Ik/cuubSyoaL8E5BWq1POcRz+jVBjd3KHKA9CK9D7vbh5R/hFL1pFjJhrrk7yYglHePwhwy6XgguYYR2GhbWCaFjou4jkHmQlTaDJS6si+Tpu0thxgtTmgQrfzhcs1fPG0YyWI0ENvLYIg5JJDwQndCNklFJjn3kmZPjctESlOjmElmUJbwE1BatHjfu97qp/9Z959UgKQK+IeuoAKTxT3jIBW9Dio4phdwuEK0HPKPZ9g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zuMSEvctLVAFTLYjQKG+ETe+e9CedK7nAfZGlY0xADo=;
- b=W4HnfaWdAr6+kxOwAgdRUIjVfwRFevbeczCcvR/nm9axrMObsrJrsKEDAtxGzvva8+vGtf0A+YV/efUrfz1Yf817VIatMDsThNJcKhsjO9/TAD5XKY2CeQM68qjgEBVBhxEcmeU9UET6ZEZn+FrTuF/crD4hDm1SEJRPqrbulWxyEXX0/zAscVq996rHZmXF93NSc37rFg8gE9NHOh+h0BOJYdhosML9gkMZPX7yRxmtJD32XHY6BRbPzN2fBmeAub+uGSrNcMJFLYhA0+1F57cGkFZldSit9v/PSH72eUSCjCgBBKJRbGhHhMbU3/11sWrOhFsZTMq33gw2PYrMcw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by SA2PR11MB5082.namprd11.prod.outlook.com (2603:10b6:806:115::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9818.18; Mon, 13 Apr
- 2026 09:54:38 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::68b9:ea3c:8166:3cc4]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::68b9:ea3c:8166:3cc4%4]) with mapi id 15.20.9818.014; Mon, 13 Apr 2026
- 09:54:38 +0000
-Message-ID: <00a50371-ab7b-44a2-9261-fc3f8308eb4a@intel.com>
-Date: Mon, 13 Apr 2026 15:24:30 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/12] drm/i915/vrr: Add helper to readback EMP_AS_SDP_TL
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <arun.r.murthy@intel.com>
-References: <20260413035349.1730312-1-ankit.k.nautiyal@intel.com>
- <20260413035349.1730312-3-ankit.k.nautiyal@intel.com>
- <ady2etQgkOzYOOA5@intel.com>
-Content-Language: en-US
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <ady2etQgkOzYOOA5@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA1P287CA0012.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a00:35::13) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
+X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="234726560"
+Received: from gsd-build.iind.intel.com ([10.190.229.141])
+ by orviesa005.jf.intel.com with ESMTP; 13 Apr 2026 02:56:48 -0700
+From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH v12] drm/xe/pf: Derive admin-only PF mode from xe_device state
+Date: Mon, 13 Apr 2026 09:56:38 +0000
+Message-ID: <20260413095637.2871287-2-satyanarayana.k.v.p@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260409154423.2499340-6-satyanarayana.k.v.p@intel.com>
+References: <20260409154423.2499340-6-satyanarayana.k.v.p@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|SA2PR11MB5082:EE_
-X-MS-Office365-Filtering-Correlation-Id: 32deb13e-f041-4a22-3a23-08de9942acd1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|11006099003|22082099003|56012099003|18002099003;
-X-Microsoft-Antispam-Message-Info: /O4wOWog8K2NNImoet3LhTzhzwJDufgrcinw5g0l7ltHhDu/u+NN75+fHZ/A8+0DZGT7aRGqC6kVIbrUf6r/kYB0rE/G+cBcLi92A/LA8ci67pZFsTlNiZ6IzgSp7dHM4QSSLB0uHt/fucCczhixNTeTOByJN/nRXnev2x654VplBD9G6y/LbLnVYc4S187YuHVqkXAo1zy5NLDe5Ebc/kOLYWUHFbHwhQ3tLFkRhPT3KDaN9Qpc+WywF1t1p1ceCHSZN3mBprpaw6o2SfBd1NelPV3eM3T+HVh2fBgmTBVb/AyJ7MSdPcIBfn/FPtLI6g1wG9RyiH+mnRbDSXJ8Lg+G/unRi5J6T8I8aZeSTOaKK4SmyxkAqGlPRuheVt88eP/+xBpX2aUFbB8IjmiHF6lt+h+jmQ7rhPe6iKBeESwmkh9LUJM2rrKzMYaQeDjdIdG340VxzlL/KQzFmCPrMQx2uwO6anL1CGzw0VBjsHSUFzcWKuGYlCAH2P/zRCeQmo02RsUmfrNrvojOZgFYuA/WYhP53KhIMariSm08tf+W9+nziX+VVsJi31q+IhkNV46Eu7IrvK6xS1jWjnVG9mH9cjcyhfWAWP0KhEPho9KGnV/aKYOOFtFw9S2wtt0YwMyT5m86Ul80PshHrKzcoI0TceXn6qFQcUFIF8ZmoGOgXWvvexlCk7qPu7jJnfeq3BcWwZ5/INKloayRF3ULOZjwBNbphqA5Z3xAkvkeBfE=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(11006099003)(22082099003)(56012099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SkRoV0U5QjJYUHZuMGtMdEpBakFqVjlMOXIrcVFsREkyb3NwTkdOY2VVZ1Za?=
- =?utf-8?B?Q2JzQ1NIOVdKK1hSbjlQRk5xZkpTUzhDMDdqNlh4SzJFMDNhZnRtTTk0MWpR?=
- =?utf-8?B?NWZkdktGTkEwQkU0WTZ6M3A5bHZ1cFRNWFB0ekUveGZXMU9kL3BlQmxJU1Ur?=
- =?utf-8?B?VVRGVjBvSWl1TXM2N3EvcDVzL1pKMjVUcEJNN3p0U0Z1Ty9UQkpTQ0NOSkkw?=
- =?utf-8?B?UGRBYVVMaGhCRUx6akkvK2lSekRDNk83MC9ML3l2a2JkVmFPbUcxcUxyN2hZ?=
- =?utf-8?B?VHNBd2U1VGw3QTFpWFkzWDRnM0FwbzN6Y2xQMU91VlJKTG9YQ1EyY29OcHd6?=
- =?utf-8?B?RVNHZHp5T0Y1b2k2NXJXWmdXYkRnRmd5M2twT2cwYjhtNmVqaitBYVprYlg5?=
- =?utf-8?B?NkJDeVhNanNDMVJuU0d4M01sWndNalhlbkk1OHBkbm5BSVhZUlZWcUlKcDFo?=
- =?utf-8?B?STZCSU9ZeTFtVnMxakQ2TExIQ2llUEFGNFlwS2FGTUpMU1IyNkdKZ0FSZVJ2?=
- =?utf-8?B?QktjUWMvSlZ4VkQveDRhUVQ5TFNOTzV2Y2JoUmxjWWs4THdpdVh2K2RsekhQ?=
- =?utf-8?B?VWdiTUU0bmFPZlM1b01pUjdOVGxrRXFmVFAxY25Ra0JyVGNLLzJpMFd5SU1n?=
- =?utf-8?B?TTZvN3lLL1pNcU84M05Sbk1IS2ZJUk82QTZiZ2RSMG9meVRicnV2WXhPc1Zm?=
- =?utf-8?B?WFNlTFhtNGZZaElIS3RVY2pBTHNCMytNaVdVYTZxOEZ6VHJrNnN6NUhmOHA1?=
- =?utf-8?B?REVVaTRPdVRtaUJvK2FZUjJCVUU0blMvYXFpOFl0LzVFMjVnT3dPRWFGT2xy?=
- =?utf-8?B?R1RuanJqNVUyNHlnV2JkRHlmS241bjZjL2xmR2JFTWE0cUhYTDB3M1JTejhG?=
- =?utf-8?B?djFGNFBjcnVEWHlvZ2d4Ry9uMXdia1gyOW0wcTNTUjdnemJwZkhBdFdYTTJr?=
- =?utf-8?B?RWdrbTRPMnNJUE5aZ3JqSDBEVEQ5VVRzcXQwQ0F1K2R3ZWdIYldFell5UWk4?=
- =?utf-8?B?eGJJdm82YU00bG8rWEFTWGtCTDU3Zzk0THpJb21uN05MbnhFTHJtS1NjcTNy?=
- =?utf-8?B?MGRTajhrVDRwVmlndDZSMnArV1FZaUx3NWpaaFIxRVg3VXQ3bU5tZWRDZWNL?=
- =?utf-8?B?MktBMmFSMk95bFRsM3hIZ1lpTUJxOWZubVllcjFTT3pDbVRIZXpSYmlESnIx?=
- =?utf-8?B?WUZlZGpHeXRNc0VmSWxZN054MXhENUJMOXgzcmRxNVF5NWdOUkFKVERGaWsz?=
- =?utf-8?B?Zk9LU0hYVXZQVTNSU3NqY1g1RmJNSVMrQkxJRHF0TWZZY3UveTVnZGVrdUNv?=
- =?utf-8?B?ZnhacldRV2JZckxuSUt3U1BDR2h0em5ncWthNEpiV1o2RjRIaDJ3WjlMenoz?=
- =?utf-8?B?R09OcXBicEI1NWh4aTc3VzBWcmhGV2ZqTTZ2aUhXZkVxcUdYUmhsOEVOT1kr?=
- =?utf-8?B?dkFmRzV6bEpINmxhaElWWHZaTE15TmQ2aTN0NGFXSjVCUURrQ3hRY3dKN01r?=
- =?utf-8?B?WnEwcHQwUkhKeDhYZG1iYzhBcDFpR0ZKOGR1YWxHckk0TXluR0owSEVqNFFC?=
- =?utf-8?B?cnkyZGFtcW5GTUdIZVpVR0JRaVVpVldldXQvekViMTBRN2JZUk5JRGM2c0ZQ?=
- =?utf-8?B?cGRSN1YzUWhEdXpFQ3loblVteFRpZDcyUUd6Unkyd1Z4ZU9LSncwUVlZNzFK?=
- =?utf-8?B?SlQ4dFh0Wmx0YUtMdHJWc05iTUZoSHNZYXVjeTNmUE5HcGk0WkRBVFFBMnpa?=
- =?utf-8?B?YTVZblI3MFdlZ3grVUhKVUlrd1dNbkRsYWp6eERQczVMMmY0azZhMjdFRkYx?=
- =?utf-8?B?UnpDTmVyLzBONlptOEtPRzhvUVRyQTVCVnR2Q3BQdzduVjE3TFR0VFBaSGUy?=
- =?utf-8?B?UUl5VURBOERxRENHdDBQODBkeHpMS25FbGM1STA4QzdPZmoxVTVDRHFBTS9l?=
- =?utf-8?B?aWFyTHFlU2xRVXVhVFE2SnNUZmtuQzNHc01FYTJrdHlDMVVyT1k4SnI2YWdM?=
- =?utf-8?B?cysrQUJzSmFNTE80dVFldzhPVVJ4REVveTRTc1dqbG5YeVRlbmt2c1M4V1FY?=
- =?utf-8?B?dS90QVBiNUF2L1JIbndnclc0MzZTTzRDRWN6R3BRZEhueGhDSGtqZUVoL0pF?=
- =?utf-8?B?U3dmaW1FMEN5WlBESnFZZGNFVjhpbHU3Z0EwanowNTByUkovVzl2NFNBTGo4?=
- =?utf-8?B?RU1Dc2NVY0ZuSXoxSEczY3R5OFo3UmQrVjcxL1ZIa2U3ang5aGVmTStBQWNs?=
- =?utf-8?B?c0h6VjNpK2V6UUI4bmJDSzkvbSsyQ05IMnoyUFZuM3FiTURaaDg2bmYya3pt?=
- =?utf-8?B?eDRZS0tmc0VKZ2ZKb2x4WUo3djV1NkhLcktsRGVhWkoxWFVmNzBJbW1KUlBF?=
- =?utf-8?Q?Z0cUBTskcIs4oFeY=3D?=
-X-Exchange-RoutingPolicyChecked: Hk34ceG5M4SGbyYTTf9B8NqFesgE17/71yY7gMpKRcs9h6vIEtLkO6h3Y5WOFzimfrIG9ib3IXc3J1U2SIrpDPUB4pCQHtm0yyp6SjgGZqR6SFxJvxHxoSbNq4TJeTg1zfotZUY0CRGxhXGhZyvmg6bidyROZ4UTN3QoY3+zwWBBQJyz+Stl3xUZuq14+Jeh+YRQMmLTf7IbwBKtSoPT3jGNx/KaIq/rCiyYgAFxBQ/IGxKtNYbQ0/UAU5S93QOKPufKW2Ag8tjDwacMFua420IoaplfuE/glVAxphes6PhNRXa5FFqDbcB5oCSWB3GUHdDHlIrY9LNOdUAlIFvRwg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 32deb13e-f041-4a22-3a23-08de9942acd1
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Apr 2026 09:54:38.3718 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2lBJVpxWosZqTBN9H+GrQWv2EAX0S5twkOUmWQSqI3dWfgOeCCvRcY1ROYv+qoCZ65OlNoStocDBHZS6XuMjKjU4WoZ3DjCywuY6YqHb+ac=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5082
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -171,80 +66,149 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Stop tracking admin-only PF mode in a separate `xe->sriov.pf.admin_only`
+field and use `xe_device_is_admin_only(xe)` as the single source of
+admin mode.
 
-On 4/13/2026 2:55 PM, Ville Syrjälä wrote:
-> On Mon, Apr 13, 2026 at 09:23:39AM +0530, Ankit Nautiyal wrote:
->> EMP_AS_SDP_TL is used to program both DP Adaptive Sync SDP and HDMI
->> Video Timing EMP for VRR operation. Add a helper to read back the
->> programmed transmission line from hardware so VRR code can populate
->> the corresponding CRTC state fields during get_config.
->>
->> This provides a common read-back path for VRR packet transmission
->> line state.
->>
->> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->> ---
->>   drivers/gpu/drm/i915/display/intel_vrr.c | 13 +++++++++++++
->>   drivers/gpu/drm/i915/display/intel_vrr.h |  1 +
->>   2 files changed, 14 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
->> index 1fed597439b0..abdae7f1f8a8 100644
->> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
->> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
->> @@ -1218,3 +1218,16 @@ int intel_vrr_dcb_vmax_vblank_start_final(const struct intel_crtc_state *crtc_st
->>   
->>   	return intel_vrr_vblank_start(crtc_state, VRR_DCB_VMAX(tmp) + 1);
->>   }
->> +
->> +u16 intel_vrr_read_emp_as_sdp_tl(const struct intel_crtc_state *crtc_state)
->> +{
->> +	struct intel_display *display = to_intel_display(crtc_state);
->> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
->> +	u32 val;
->> +
->> +	if (!HAS_EMP_AS_SDP_TL(display))
->> +		return 0;
->> +
->> +	val = intel_de_read(display, EMP_AS_SDP_TL(display, cpu_transcoder));
->> +	return REG_FIELD_GET(EMP_AS_SDP_DB_TL_MASK, val);
-> This stuff really doesn't seem to belong in intel_vrr.c. We probably need
-> some kind of infoframe/SDP file where all the relevant stuff lives. Long
-> ago I did attempt to extract all the infoframe stuff from intel_hdmi.c
-> into intel_dip.c (or something like that), but there were still far too
-> many HDMI specifics in the result for my liking.
->
-> So I think what's really needed is an effort to distill the core of the
-> video DIP implementation (really just the low level buffer read/write
-> stuff, and I suspect now also this transmission line stuff) into a new
-> file. You could perhaps introduce that new file here, and then we'll
-> try to get to extracting the DIP buffer stuff later.
-Alright. I can start with a new file for SDP transmission line stuff.
+Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 
-Since we are on the topic, I had a query:
-The hsw_infoframe_enable() switch mixes HDMI packet types and DP SDP 
-types in a single namespace.
-The types currently used don't collide, but I think these might collide 
-at some point, (if not already).
-Do we need to change this? OR these are guaranteed to be non-overlapping?
+---
+V11 -> V12:
+- Fixed nits.
 
-Regards,
+V10 -> V11:
+- Squashed kunit commit into the current one.
+- Cleandup pf_set_admin_mode() as per review comments (Michal).
 
-Ankit
+V9 -> V10:
+- None.
 
+V8 -> V9:
+- New commit.
+---
+ .../xe/tests/xe_gt_sriov_pf_config_kunit.c    | 21 +++++++++++++++++--
+ drivers/gpu/drm/xe/xe_device.c                |  2 ++
+ drivers/gpu/drm/xe/xe_sriov_pf.c              |  6 ------
+ drivers/gpu/drm/xe/xe_sriov_pf_helpers.h      |  3 ++-
+ drivers/gpu/drm/xe/xe_sriov_pf_types.h        |  3 ---
+ 5 files changed, 23 insertions(+), 12 deletions(-)
 
->
->> +}
->> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
->> index 4f16ca4af91f..6659a8a53432 100644
->> --- a/drivers/gpu/drm/i915/display/intel_vrr.h
->> +++ b/drivers/gpu/drm/i915/display/intel_vrr.h
->> @@ -53,5 +53,6 @@ int intel_vrr_dcb_vmin_vblank_start_next(const struct intel_crtc_state *crtc_sta
->>   int intel_vrr_dcb_vmax_vblank_start_next(const struct intel_crtc_state *crtc_state);
->>   int intel_vrr_dcb_vmin_vblank_start_final(const struct intel_crtc_state *crtc_state);
->>   int intel_vrr_dcb_vmax_vblank_start_final(const struct intel_crtc_state *crtc_state);
->> +u16 intel_vrr_read_emp_as_sdp_tl(const struct intel_crtc_state *crtc_state);
->>   
->>   #endif /* __INTEL_VRR_H__ */
->> -- 
->> 2.45.2
+diff --git a/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c b/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c
+index efa8963ec248..e6eaa94d4d30 100644
+--- a/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c
++++ b/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c
+@@ -13,11 +13,28 @@
+ #define TEST_MAX_VFS	63
+ #define TEST_VRAM	0x7a800000ull	/* random size that works on 32-bit */
+ 
++static bool xe_device_is_admin_only_stub_enable(const struct xe_device *xe)
++{
++	return true;
++}
++
++static bool xe_device_is_admin_only_stub_disable(const struct xe_device *xe)
++{
++	return false;
++}
++
+ static void pf_set_admin_mode(struct xe_device *xe, bool enable)
+ {
+-	/* should match logic of xe_sriov_pf_admin_only() */
+-	xe->sriov.pf.admin_only = enable;
++	typeof(xe_device_is_admin_only) *stub = enable ?
++		xe_device_is_admin_only_stub_enable :
++		xe_device_is_admin_only_stub_disable;
++
++	kunit_activate_static_stub(kunit_get_current_test(),
++				   xe_device_is_admin_only,
++				   *stub);
++
+ 	KUNIT_EXPECT_EQ(kunit_get_current_test(), enable, xe_sriov_pf_admin_only(xe));
++	KUNIT_EXPECT_EQ(kunit_get_current_test(), enable, xe_device_is_admin_only(xe));
+ }
+ 
+ static void pf_set_usable_vram(struct xe_device *xe, u64 usable)
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index ceddda10f78f..4b45b617a039 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -17,6 +17,7 @@
+ #include <drm/drm_managed.h>
+ #include <drm/drm_pagemap_util.h>
+ #include <drm/drm_print.h>
++#include <kunit/static_stub.h>
+ #include <uapi/drm/xe_drm.h>
+ 
+ #include "display/xe_display.h"
+@@ -445,6 +446,7 @@ static struct drm_driver admin_only_driver = {
+  */
+ bool xe_device_is_admin_only(const struct xe_device *xe)
+ {
++	KUNIT_STATIC_STUB_REDIRECT(xe_device_is_admin_only, xe);
+ 	return xe->drm.driver == &admin_only_driver;
+ }
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf.c b/drivers/gpu/drm/xe/xe_sriov_pf.c
+index 47a6e0fd66e0..33bd754d138f 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf.c
++++ b/drivers/gpu/drm/xe/xe_sriov_pf.c
+@@ -20,11 +20,6 @@
+ #include "xe_sriov_pf_sysfs.h"
+ #include "xe_sriov_printk.h"
+ 
+-static bool wanted_admin_only(struct xe_device *xe)
+-{
+-	return xe_configfs_admin_only_pf(to_pci_dev(xe->drm.dev));
+-}
+-
+ static unsigned int wanted_max_vfs(struct xe_device *xe)
+ {
+ 	return xe_configfs_get_max_vfs(to_pci_dev(xe->drm.dev));
+@@ -79,7 +74,6 @@ bool xe_sriov_pf_readiness(struct xe_device *xe)
+ 
+ 	pf_reduce_totalvfs(xe, newlimit);
+ 
+-	xe->sriov.pf.admin_only = wanted_admin_only(xe);
+ 	xe->sriov.pf.device_total_vfs = totalvfs;
+ 	xe->sriov.pf.driver_max_vfs = newlimit;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h b/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
+index 0fcc6cec4afc..19f6f8331c8d 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
++++ b/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
+@@ -7,6 +7,7 @@
+ #define _XE_SRIOV_PF_HELPERS_H_
+ 
+ #include "xe_assert.h"
++#include "xe_device.h"
+ #include "xe_device_types.h"
+ #include "xe_sriov.h"
+ #include "xe_sriov_types.h"
+@@ -57,7 +58,7 @@ static inline unsigned int xe_sriov_pf_num_vfs(const struct xe_device *xe)
+ static inline bool xe_sriov_pf_admin_only(const struct xe_device *xe)
+ {
+ 	xe_assert(xe, IS_SRIOV_PF(xe));
+-	return xe->sriov.pf.admin_only;
++	return xe_device_is_admin_only(xe);
+ }
+ 
+ static inline struct mutex *xe_sriov_pf_master_mutex(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_types.h b/drivers/gpu/drm/xe/xe_sriov_pf_types.h
+index 080cf10512f4..b0253e1ae5da 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf_types.h
++++ b/drivers/gpu/drm/xe/xe_sriov_pf_types.h
+@@ -36,9 +36,6 @@ struct xe_sriov_metadata {
+  * @XE_SRIOV_MODE_PF mode.
+  */
+ struct xe_device_pf {
+-	/** @admin_only: PF functionality focused on VFs management only. */
+-	bool admin_only;
+-
+ 	/** @device_total_vfs: Maximum number of VFs supported by the device. */
+ 	u16 device_total_vfs;
+ 
+-- 
+2.43.0
+
