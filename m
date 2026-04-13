@@ -4,54 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BD7FEBFD34
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 10:18:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0F7FEBFD2F
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 10:21:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E21F10E3F2;
-	Mon, 13 Apr 2026 10:18:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B285210E3D8;
+	Mon, 13 Apr 2026 10:21:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WS75l9Ql";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a8mma3HL";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A306A10E3ED;
- Mon, 13 Apr 2026 10:18:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C49F10E326;
+ Mon, 13 Apr 2026 10:21:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776075529; x=1807611529;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=YDieG8RjkYBVhp6JbEI8+ybA/FiOjs4Rjmz71oOFhSw=;
- b=WS75l9QlYTtvoYA4OZ1jQCndSTZcQ7PslegNIuFypS6o5u0f6twCn76Q
- B+2UEefz3Ui4TdvnL8DFpu/9fnXJFWrm43XrVdkd1a67BT02lk82BaT/Y
- ZwbkgxmV7vLF7FRESU5WOCFoTo3PnjZYPJnk6L6ElpxpBg6jBdIWCQR/f
- GydmjBz29DEw1bN4oPUsc07R+MaEdXs2unHqhrNfnW8xmGSMPZq420KEp
- 3XPaTOjel4x8yWsxfpQNJWdwS5ZwfA9hJC+r7t009XtrB1tWFue6CRNPf
- yuRSZG1KHnWD8GP+tz3evpepIAj/0TRofsvKvEsmoWmRcsAXUPfD4A3vy w==;
-X-CSE-ConnectionGUID: ePNdLYM/RROY7RIKvAB2JA==
-X-CSE-MsgGUID: IHIrrKJgQUqfnQUGOyWG5A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11757"; a="94396368"
-X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="94396368"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2026 03:18:49 -0700
-X-CSE-ConnectionGUID: qjnm1IBsScOGIg+aD56hgA==
-X-CSE-MsgGUID: 992i0vnxTi+bmre6/brz6Q==
+ t=1776075672; x=1807611672;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=iDkGFxoOM02JEzUdapQCxrNJeehhLYMiLtsnTQfk+Ys=;
+ b=a8mma3HLzJhGHUQ72P2T5iSA+Qy8elkgPnZb/lvBDQWlTPNHWcWOQjUb
+ BjP2DY0T2qvyP4591vw9DO+/g2Z1YbWYCwys7athDZERxz8fNzPUTeH6N
+ iOYFIKX7Lacu9K02shdtadIxJLogVTIfXtfF8oqwot6FYOY7zXzl/tklo
+ Kjomwij4aA97YbPw4NmMsAtgmsU+JSslKAk5KV/MBozM2pEPwhLRd1Bsd
+ LAX6NaBD/f1xDxnUuZxSbh44F0xKMt/AKIn55ZQilj2HopoeC9YEw+XEM
+ XX/mP8OU/v1tA3OgLRgTvenYaW0fabXZFN0ARavg4iN7rjKjS/nlVjcOz A==;
+X-CSE-ConnectionGUID: nZXCgyMwSFeff1YtyXgXig==
+X-CSE-MsgGUID: E09wIn/8TgW4UKOj7ky11w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11757"; a="102466086"
+X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="102466086"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2026 03:21:12 -0700
+X-CSE-ConnectionGUID: xsGNjyElRT6bVwfR6oDcGQ==
+X-CSE-MsgGUID: 6KFC+UjFTy+odcOB73RMhA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="229620208"
-Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by orviesa009.jf.intel.com with ESMTP; 13 Apr 2026 03:18:47 -0700
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: gwan-gyeong.mun@intel.com, uma.shankar@intel.com, imre.deak@intel.com,
- chaitanya.kumar.borah@intel.com
-Subject: [PATCH v2] drm/i915/dp: Fix VSC dynamic range signaling for RGB
- formats
-Date: Mon, 13 Apr 2026 15:24:07 +0530
-Message-Id: <20260413095407.1426322-1-chaitanya.kumar.borah@intel.com>
-X-Mailer: git-send-email 2.25.1
+X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="253142725"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.64])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2026 03:21:11 -0700
+Date: Mon, 13 Apr 2026 13:21:08 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ arun.r.murthy@intel.com
+Subject: Re: [PATCH 02/12] drm/i915/vrr: Add helper to readback EMP_AS_SDP_TL
+Message-ID: <adzDlJ9Pr5SdzTre@intel.com>
+References: <20260413035349.1730312-1-ankit.k.nautiyal@intel.com>
+ <20260413035349.1730312-3-ankit.k.nautiyal@intel.com>
+ <ady2etQgkOzYOOA5@intel.com>
+ <00a50371-ab7b-44a2-9261-fc3f8308eb4a@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <00a50371-ab7b-44a2-9261-fc3f8308eb4a@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,44 +75,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For RGB, set dynamic_range to CTA or VESA based on
-crtc_state->limited_color_range so sinks apply correct
-quantization. YCbCr remains limited (CTA) range.
-(DP v1.4, Table 5-1)
+On Mon, Apr 13, 2026 at 03:24:30PM +0530, Nautiyal, Ankit K wrote:
+> 
+> On 4/13/2026 2:55 PM, Ville Syrjälä wrote:
+> > On Mon, Apr 13, 2026 at 09:23:39AM +0530, Ankit Nautiyal wrote:
+> >> EMP_AS_SDP_TL is used to program both DP Adaptive Sync SDP and HDMI
+> >> Video Timing EMP for VRR operation. Add a helper to read back the
+> >> programmed transmission line from hardware so VRR code can populate
+> >> the corresponding CRTC state fields during get_config.
+> >>
+> >> This provides a common read-back path for VRR packet transmission
+> >> line state.
+> >>
+> >> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> >> ---
+> >>   drivers/gpu/drm/i915/display/intel_vrr.c | 13 +++++++++++++
+> >>   drivers/gpu/drm/i915/display/intel_vrr.h |  1 +
+> >>   2 files changed, 14 insertions(+)
+> >>
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+> >> index 1fed597439b0..abdae7f1f8a8 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> >> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> >> @@ -1218,3 +1218,16 @@ int intel_vrr_dcb_vmax_vblank_start_final(const struct intel_crtc_state *crtc_st
+> >>   
+> >>   	return intel_vrr_vblank_start(crtc_state, VRR_DCB_VMAX(tmp) + 1);
+> >>   }
+> >> +
+> >> +u16 intel_vrr_read_emp_as_sdp_tl(const struct intel_crtc_state *crtc_state)
+> >> +{
+> >> +	struct intel_display *display = to_intel_display(crtc_state);
+> >> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+> >> +	u32 val;
+> >> +
+> >> +	if (!HAS_EMP_AS_SDP_TL(display))
+> >> +		return 0;
+> >> +
+> >> +	val = intel_de_read(display, EMP_AS_SDP_TL(display, cpu_transcoder));
+> >> +	return REG_FIELD_GET(EMP_AS_SDP_DB_TL_MASK, val);
+> > This stuff really doesn't seem to belong in intel_vrr.c. We probably need
+> > some kind of infoframe/SDP file where all the relevant stuff lives. Long
+> > ago I did attempt to extract all the infoframe stuff from intel_hdmi.c
+> > into intel_dip.c (or something like that), but there were still far too
+> > many HDMI specifics in the result for my liking.
+> >
+> > So I think what's really needed is an effort to distill the core of the
+> > video DIP implementation (really just the low level buffer read/write
+> > stuff, and I suspect now also this transmission line stuff) into a new
+> > file. You could perhaps introduce that new file here, and then we'll
+> > try to get to extracting the DIP buffer stuff later.
+> Alright. I can start with a new file for SDP transmission line stuff.
+> 
+> Since we are on the topic, I had a query:
+> The hsw_infoframe_enable() switch mixes HDMI packet types and DP SDP 
+> types in a single namespace.
+> The types currently used don't collide, but I think these might collide 
+> at some point, (if not already).
+> Do we need to change this? OR these are guaranteed to be non-overlapping?
 
-v2:
-- Added Reported-by and Tested-by tags
+We should perhaps introduce a DIP type enum and have the higher level
+code convert the HDMI/DP specific types into that.
 
-Cc: stable@vger.kernel.org #v5.8+
-Reported-by: DeepChirp <DeepChirp@outlook.com>
-Tested-by: DeepChirp <DeepChirp@outlook.com>
-Fixes: 9799c4c3b76e ("drm/i915/dp: Add compute routine for DP VSC SDP")
-Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/15874
-Assisted-by: GitHub Copilot (GPT-5.4)
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index b8b6d62fb275..2b6283b4dec6 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -3127,8 +3127,12 @@ static void intel_dp_compute_vsc_colorimetry(const struct intel_crtc_state *crtc
- 	drm_WARN_ON(display->drm,
- 		    vsc->bpc == 6 && vsc->pixelformat != DP_PIXELFORMAT_RGB);
- 
--	/* all YCbCr are always limited range */
--	vsc->dynamic_range = DP_DYNAMIC_RANGE_CTA;
-+	if (vsc->pixelformat == DP_PIXELFORMAT_RGB)
-+		vsc->dynamic_range = crtc_state->limited_color_range ?
-+			DP_DYNAMIC_RANGE_CTA : DP_DYNAMIC_RANGE_VESA;
-+	else
-+		vsc->dynamic_range = DP_DYNAMIC_RANGE_CTA;
-+
- 	vsc->content_type = DP_CONTENT_TYPE_NOT_DEFINED;
- }
- 
 -- 
-2.25.1
-
+Ville Syrjälä
+Intel
