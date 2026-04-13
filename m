@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FE0FF34C49
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 13:17:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C989F34C49
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 13:17:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26FF710E43F;
-	Mon, 13 Apr 2026 13:17:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51D6C10E442;
+	Mon, 13 Apr 2026 13:17:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GMMgKQ0Q";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jkgYQ7jJ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD89310E43F
- for <intel-xe@lists.freedesktop.org>; Mon, 13 Apr 2026 13:17:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85B6E10E442
+ for <intel-xe@lists.freedesktop.org>; Mon, 13 Apr 2026 13:17:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776086221; x=1807622221;
+ t=1776086223; x=1807622223;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=DKiSvDRiMycsF+VxCgySqc+pw7M/pikflVy/G2IQRrY=;
- b=GMMgKQ0QFJnow7kWoxdFAg9pimeg0j4dB/dB8k+jTAR06gWsLd7/uQJq
- zhYvCLaFjlc/ZnEDEw+xcqC/qE6CpFrSIVKsvjAr6YRdR58KWJ5EhdqPl
- F35KaQZ7ZDZMToDXo8jk9F5bBxnTKw9GQbYIvAxWHheZVaNlO05rq37rq
- ZxIONsv+5Q4JHPtxRM/yx3C7oLm9+l/y2G1tP5K3ZZ07HELhAdFSpzrZ2
- q37Vkpt6GYzitu3VQMUnot47V8drf69s+rc2TRcKJjVDy7IIEoBH2dy2a
- ufRSfovcqIRolooT2STD53AXcXFlpqyLyf2yx3Ps+gqM90FWmosjgBT3v w==;
-X-CSE-ConnectionGUID: Ok8naPj0S/m64Zmo8SKhow==
-X-CSE-MsgGUID: omdzHYf2T4ScLWgWyfbyEA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11758"; a="77037298"
-X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="77037298"
+ bh=xAJeOB34GhKiK1qoEYm17j8UnzrPYP/lZkjLHw6OfMo=;
+ b=jkgYQ7jJFgwFXXKg/HtdDrPxBmJ6lewKveh0a5myxhqHL1W4py5ksshl
+ jHSWc76Vy15DNSvYgb3+IwQZPEMp8GcU0rmmYw5WSDZhiBUuM3ONL9UQG
+ nAdfIbrEJVA89Bke2a2sxQ2i+0VHsFseebjhPF7ugriBq9qpIr/+8Y0It
+ rgla6BEsD3z962CQJmrz4HHm8L7SIlUhG00SaG3qj0+5t1yjf68Wj+s+1
+ F8aJAKTIsLDX3YzRM00IoMKOqOUrei6pqNcBn75HXzbFYqZZ4aZGB8Z5R
+ iEyXeMGOYs4cE52a/BzWGVuBRb6N83FEkNKxsKV1aAD1cEFvRvroE6blr Q==;
+X-CSE-ConnectionGUID: eTGDTyT1Tc+CYwwuv5ahlw==
+X-CSE-MsgGUID: DKglbJgKT8KpntexWbJFlQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11758"; a="77037301"
+X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="77037301"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2026 06:17:01 -0700
-X-CSE-ConnectionGUID: jvpkonllQ+umR/p1uojAZA==
-X-CSE-MsgGUID: 5fYiV26uQ0eQpgGdGjPmIw==
+ 13 Apr 2026 06:17:03 -0700
+X-CSE-ConnectionGUID: q8IA6QM+SgyycyFBNG5t8w==
+X-CSE-MsgGUID: /hexvwGCRwqpb37qr8tYcQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="260224330"
+X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="260224349"
 Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
  ([10.190.239.37])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2026 06:16:58 -0700
+ 13 Apr 2026 06:17:01 -0700
 From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.auld@intel.com, matthew.brost@intel.com,
  thomas.hellstrom@linux.intel.com, himal.prasad.ghimiray@intel.com,
  Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [RFC PATCH V7 3/9] drm/xe: Link LRC BO and its execution Queue
-Date: Mon, 13 Apr 2026 18:46:24 +0530
-Message-ID: <20260413131623.2891528-14-tejas.upadhyay@intel.com>
+Subject: [RFC PATCH V7 4/9] drm/xe: Extend BO purge to handle vram pages as
+ well
+Date: Mon, 13 Apr 2026 18:46:25 +0530
+Message-ID: <20260413131623.2891528-15-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260413131623.2891528-11-tejas.upadhyay@intel.com>
 References: <20260413131623.2891528-11-tejas.upadhyay@intel.com>
@@ -69,53 +70,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-To establish a link between an LRC BO (Logical Ring Context
-Buffer Object) and its corresponding execution Queue in the
-drm/xe driver, you need to store a back-pointer to the queue
-within the BO's private data structure. This allows the
-driver to identify and take corrective action on the specific
-queue if the LRC BO encounters an error (e.g., memory
-corruption or eviction issues).
+Recent driver update introduce support for purgeable buffer
+objects (BOs), extending the API to include VRAM pages to
+better manage memory pressure and enable memory offlining.
 
 Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo_types.h   | 3 +++
- drivers/gpu/drm/xe/xe_exec_queue.c | 1 +
- 2 files changed, 4 insertions(+)
+ drivers/gpu/drm/xe/xe_bo.c | 5 +----
+ drivers/gpu/drm/xe/xe_bo.h | 1 +
+ 2 files changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-index ff8317bfc1ae..24f5da89dbde 100644
---- a/drivers/gpu/drm/xe/xe_bo_types.h
-+++ b/drivers/gpu/drm/xe/xe_bo_types.h
-@@ -19,6 +19,7 @@
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index a7c2dc7f224c..7baa326c9421 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -916,7 +916,7 @@ void xe_bo_set_purgeable_state(struct xe_bo *bo,
+  *
+  * Return: 0 on success, negative error code on failure
+  */
+-static int xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operation_ctx *ctx)
++int xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operation_ctx *ctx)
+ {
+ 	struct xe_bo *bo = ttm_to_xe_bo(ttm_bo);
+ 	struct ttm_placement place = {};
+@@ -924,9 +924,6 @@ static int xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operatio
  
- struct xe_device;
- struct xe_vm;
-+struct xe_exec_queue;
+ 	xe_bo_assert_held(bo);
  
- #define XE_BO_MAX_PLACEMENTS	3
+-	if (!ttm_bo->ttm)
+-		return 0;
+-
+ 	if (!xe_bo_madv_is_dontneed(bo))
+ 		return 0;
  
-@@ -39,6 +40,8 @@ struct xe_bo {
- 	u32 flags;
- 	/** @vm: VM this BO is attached to, for extobj this will be NULL */
- 	struct xe_vm *vm;
-+	/** @q: Queue this BO is attached to, mostly for LRC BO, NULL otherwise */
-+	struct xe_exec_queue *q;
- 	/** @tile: Tile this BO is attached to (kernel BO only) */
- 	struct xe_tile *tile;
- 	/** @placements: valid placements for this BO */
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index b287d0e0e60a..b3b80893c387 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -386,6 +386,7 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
- 				goto err_lrc;
- 			}
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 68dea7d25a6b..9f55b3589caf 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -500,6 +500,7 @@ struct xe_bo_shrink_flags {
+ long xe_bo_shrink(struct ttm_operation_ctx *ctx, struct ttm_buffer_object *bo,
+ 		  const struct xe_bo_shrink_flags flags,
+ 		  unsigned long *scanned);
++int xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operation_ctx *ctx);
  
-+			lrc->bo->q = q;
- 			xe_exec_queue_set_lrc(q, lrc, i);
- 
- 			if (__lrc)
+ /**
+  * xe_bo_is_mem_type - Whether the bo currently resides in the given
 -- 
 2.52.0
 
