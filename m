@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C2F1F34C53
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 13:16:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12E6EF34C4E
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 13:17:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1397210E43C;
-	Mon, 13 Apr 2026 13:16:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C064610E43E;
+	Mon, 13 Apr 2026 13:16:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lcU36Wi7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RFtmtY67";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A00910E43C
- for <intel-xe@lists.freedesktop.org>; Mon, 13 Apr 2026 13:16:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6EBD10E43E
+ for <intel-xe@lists.freedesktop.org>; Mon, 13 Apr 2026 13:16:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776086216; x=1807622216;
+ t=1776086218; x=1807622218;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=cwUUQPbf05UeKhWlbQ0dDvQIwfoildGyd6SmYyyFpy8=;
- b=lcU36Wi7QY0iArb2vSDEpnG0x7zwnmg0aK0UWdrxNjhNkbiXbUSw7snR
- 2rhayP6SfxzFPugk58W5MKtCcVYwHR4hMcgprFduVwAoBNbl8hxvjVPzc
- 5HHo7GUoJhC+e9I2WEuDaEavp5sHVV+2E8SWzK6LwJZ8Wkh0g8KoR7OUV
- 4oPXawfnyd/fs8pQhKbXf+OUh+sfX5xr21XYLh0SQH1FvBpExJMI3sdbe
- cM0nWZgoIMvYLnZ6tHzugJkydrGU+PHygo4ZOgMuRq9cuUKNPQvD6N1Ih
- w+sDUvKsVVlJ9melhZ6oCUaDrklGFY+D2qST/elgcvOAIEUJtJTZQpvJX w==;
-X-CSE-ConnectionGUID: XTmJgEmzTUGbwoXsziqSmg==
-X-CSE-MsgGUID: MKbEg+EcRPKiiSLcWHcOZA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11758"; a="77037295"
-X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="77037295"
+ bh=P7R7dMTMbHQ/0ssGwwJBJwmRTgcaiJ76r02j1JuD9SA=;
+ b=RFtmtY67x9YTbejW9nhb84rmKPpQ6SXovctHZv+ry7UTjbVyoAXroM36
+ irFbp5VdUbB812RUr1/AV4Nm+O5pF2Stc+VOB7+I196zfEqHbREifHDxW
+ VOlbBYV1cJVD/D6Z3kEltO/0O2Vhkw47xnplLs+1Nbz+2Tq8mEoyyqqcG
+ +wtnfBtJKKIaQ/Q1gQlwGuL19lK1Q8hM+XX8Jk1SEyFhXT+wLZ0nHG4OO
+ crWIjqkdXT1wEDBZpzb996rsRucpt84szAPapNElKiEYO4763kDWRCKJM
+ G/Vc9iWA3cNpRuP3MMhItWz3wGC2rjK52PqyOUJqVjZbXHkhnGy/2sdxT w==;
+X-CSE-ConnectionGUID: tJ3GAhQfTe6nA65eKlhViA==
+X-CSE-MsgGUID: lmFY6DyyS9G/QiV3RppymQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11758"; a="77037296"
+X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="77037296"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2026 06:16:56 -0700
-X-CSE-ConnectionGUID: n+RDe7CfR9CsdQYFNWcIsw==
-X-CSE-MsgGUID: HkHEZb81S0y+0wfLlB7iUQ==
+ 13 Apr 2026 06:16:58 -0700
+X-CSE-ConnectionGUID: 0rZGOXbqTySzxNpEY/YmTw==
+X-CSE-MsgGUID: n5mJFFBaRdqYpZDJZhm+/g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="260224303"
+X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="260224315"
 Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
  ([10.190.239.37])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2026 06:16:54 -0700
+ 13 Apr 2026 06:16:56 -0700
 From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.auld@intel.com, matthew.brost@intel.com,
  thomas.hellstrom@linux.intel.com, himal.prasad.ghimiray@intel.com,
  Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [RFC PATCH V7 1/9] drm/xe: Link VRAM object with gpu buddy
-Date: Mon, 13 Apr 2026 18:46:22 +0530
-Message-ID: <20260413131623.2891528-12-tejas.upadhyay@intel.com>
+Subject: [RFC PATCH V7 2/9] drm/gpu: Add gpu_buddy_addr_to_block helper
+Date: Mon, 13 Apr 2026 18:46:23 +0530
+Message-ID: <20260413131623.2891528-13-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260413131623.2891528-11-tejas.upadhyay@intel.com>
 References: <20260413131623.2891528-11-tejas.upadhyay@intel.com>
@@ -69,51 +69,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Setup to link TTM buffer object inside gpu buddy. This functionality
-is critical for supporting the memory page offline feature on CRI,
-where identified faulty pages must be traced back to their
-originating buffer for safe removal.
-
-V2(MattB): Clear block->private in xe_ttm_vram_mgr_del as well
+Add helper with primary purpose is to efficiently trace a specific
+physical memory address back to its corresponding TTM buffer object.
 
 Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/buddy.c       | 56 +++++++++++++++++++++++++++++++++++++++
+ include/linux/gpu_buddy.h |  2 ++
+ 2 files changed, 58 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-index 5fd0d5506a7e..01a9b92772f8 100644
---- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-@@ -54,6 +54,7 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
- 	struct xe_ttm_vram_mgr *mgr = to_xe_ttm_vram_mgr(man);
- 	struct xe_ttm_vram_mgr_resource *vres;
- 	struct gpu_buddy *mm = &mgr->mm;
+diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
+index 52686672e99f..2d26c2a0f971 100644
+--- a/drivers/gpu/buddy.c
++++ b/drivers/gpu/buddy.c
+@@ -589,6 +589,62 @@ void gpu_buddy_free_block(struct gpu_buddy *mm,
+ }
+ EXPORT_SYMBOL(gpu_buddy_free_block);
+ 
++/**
++ * gpu_buddy_addr_to_block - given physical address find a block
++ *
++ * @mm: GPU buddy manager
++ * @addr: Physical address
++ *
++ * Returns:
++ * gpu_buddy_block on success, NULL or error code on failure
++ */
++struct gpu_buddy_block *gpu_buddy_addr_to_block(struct gpu_buddy *mm, u64 addr)
++{
 +	struct gpu_buddy_block *block;
- 	u64 size, min_page_size;
- 	unsigned long lpfn;
- 	int err;
-@@ -138,6 +139,8 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
- 	}
++	LIST_HEAD(dfs);
++	u64 end;
++	int i;
++
++	end = addr + SZ_4K - 1;
++	for (i = 0; i < mm->n_roots; ++i)
++		list_add_tail(&mm->roots[i]->tmp_link, &dfs);
++
++	do {
++		u64 block_start;
++		u64 block_end;
++
++		block = list_first_entry_or_null(&dfs,
++						 struct gpu_buddy_block,
++						 tmp_link);
++		if (!block)
++			break;
++
++		list_del(&block->tmp_link);
++
++		block_start = gpu_buddy_block_offset(block);
++		block_end = block_start + gpu_buddy_block_size(mm, block) - 1;
++
++		if (!overlaps(addr, end, block_start, block_end))
++			continue;
++
++		if (contains(addr, end, block_start, block_end) &&
++		    !gpu_buddy_block_is_split(block)) {
++			if (gpu_buddy_block_is_free(block))
++				return NULL;
++			else if (gpu_buddy_block_is_allocated(block) && !mm->clear_avail)
++				return block;
++		}
++
++		if (gpu_buddy_block_is_split(block)) {
++			list_add(&block->right->tmp_link, &dfs);
++			list_add(&block->left->tmp_link, &dfs);
++		}
++	} while (1);
++
++	return ERR_PTR(-ENXIO);
++}
++EXPORT_SYMBOL(gpu_buddy_addr_to_block);
++
+ static void __gpu_buddy_free_list(struct gpu_buddy *mm,
+ 				  struct list_head *objects,
+ 				  bool mark_clear,
+diff --git a/include/linux/gpu_buddy.h b/include/linux/gpu_buddy.h
+index 5fa917ba5450..957c69c560bc 100644
+--- a/include/linux/gpu_buddy.h
++++ b/include/linux/gpu_buddy.h
+@@ -231,6 +231,8 @@ void gpu_buddy_reset_clear(struct gpu_buddy *mm, bool is_clear);
  
- 	mgr->visible_avail -= vres->used_visible_size;
-+	list_for_each_entry(block, &vres->blocks, link)
-+		block->private = tbo;
- 	mutex_unlock(&mgr->lock);
+ void gpu_buddy_free_block(struct gpu_buddy *mm, struct gpu_buddy_block *block);
  
- 	if (!(vres->base.placement & TTM_PL_FLAG_CONTIGUOUS) &&
-@@ -176,8 +179,11 @@ static void xe_ttm_vram_mgr_del(struct ttm_resource_manager *man,
- 		to_xe_ttm_vram_mgr_resource(res);
- 	struct xe_ttm_vram_mgr *mgr = to_xe_ttm_vram_mgr(man);
- 	struct gpu_buddy *mm = &mgr->mm;
-+	struct gpu_buddy_block *block;
- 
- 	mutex_lock(&mgr->lock);
-+	list_for_each_entry(block, &vres->blocks, link)
-+		block->private = NULL;
- 	gpu_buddy_free_list(mm, &vres->blocks, 0);
- 	mgr->visible_avail += vres->used_visible_size;
- 	mutex_unlock(&mgr->lock);
++struct gpu_buddy_block *gpu_buddy_addr_to_block(struct gpu_buddy *mm, u64 addr);
++
+ void gpu_buddy_free_list(struct gpu_buddy *mm,
+ 			 struct list_head *objects,
+ 			 unsigned int flags);
 -- 
 2.52.0
 
