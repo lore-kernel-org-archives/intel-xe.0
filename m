@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E755F34C78
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 17:43:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EEB5F34C78
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 17:43:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEAD410E4E5;
-	Mon, 13 Apr 2026 17:43:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED9A410E4E9;
+	Mon, 13 Apr 2026 17:43:05 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 262E410E4E9;
- Mon, 13 Apr 2026 17:43:01 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC5DE10E4E9;
+ Mon, 13 Apr 2026 17:43:04 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8799440602479516534=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Introduce_cold_reset_reco?=
- =?utf-8?q?very_method_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_memory_page_offlining_s?=
+ =?utf-8?q?upport_=28rev7=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mallesh Koujalagi" <mallesh.koujalagi@intel.com>
+To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 13 Apr 2026 17:43:01 -0000
-Message-ID: <177610218113.458495.13714062589542333806@a3b018990fe9>
+Date: Mon, 13 Apr 2026 17:43:04 -0000
+Message-ID: <177610218481.458495.18294613525390887660@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260413133013.560239-6-mallesh.koujalagi@intel.com>
-In-Reply-To: <20260413133013.560239-6-mallesh.koujalagi@intel.com>
+References: <20260413131623.2891528-11-tejas.upadhyay@intel.com>
+In-Reply-To: <20260413131623.2891528-11-tejas.upadhyay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,52 +40,102 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============8799440602479516534==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: Introduce cold reset recovery method (rev3)
-URL   : https://patchwork.freedesktop.org/series/163428/
-State : warning
+Series: Add memory page offlining support (rev7)
+URL   : https://patchwork.freedesktop.org/series/161473/
+State : success
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-1f57ba1afceae32108bd24770069f764d940a0e4
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit ed829386708a77573b6d72b333eccafe17f869bc
-Author: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Date:   Mon Apr 13 19:00:18 2026 +0530
+CI Bug Log - changes from xe-4893-380e49c900a45f7c7c206b48862f946bcbda4c54_BAT -> xe-pw-161473v7_BAT
+====================================================
 
-    drm/xe: Handle PUNIT errors by requesting cold-reset recovery
-    
-    When PUNIT (power management unit) errors are detected that persist across
-    warm resets, mark the device as wedged with DRM_WEDGE_RECOVERY_COLD_RESET
-    and notify userspace that a complete device power cycle is required to
-    restore normal operation.
-    
-    v3:
-    - Use PUNIT instead of PMU. (Riana)
-    - Use consistent wordingi.
-    - Remove log. (Raag)
-    
-    v4:
-    - Make function static. (Raag)
-    
-    Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-+ /mt/dim checkpatch 488f8a27b77d45c77f2e1fb3801a06876a4db737 drm-intel
-47256c632fdf Introduce Xe Uncorrectable Error Handling
--:219: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#219: 
-new file mode 100644
+Summary
+-------
 
-total: 0 errors, 1 warnings, 0 checks, 860 lines checked
-35e95ce6a0f4 drm: Add DRM_WEDGE_RECOVERY_COLD_RESET recovery method
-b53c0d1147b4 drm/doc: Document DRM_WEDGE_RECOVERY_COLD_RESET recovery method
-ed829386708a drm/xe: Handle PUNIT errors by requesting cold-reset recovery
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-4893-380e49c900a45f7c7c206b48862f946bcbda4c54 -> xe-pw-161473v7
+
+  IGT_8854: 93abaf0170728f69bc27577e5b405f7a2a01b6fd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4893-380e49c900a45f7c7c206b48862f946bcbda4c54: 380e49c900a45f7c7c206b48862f946bcbda4c54
+  xe-pw-161473v7: 161473v7
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v7/index.html
+
+--===============8799440602479516534==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add memory page offlining support (rev7)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161473/">https://patchwork.freedesktop.org/series/161473/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v7/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v7/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4893-380e49c900a45f7c7c206b48862f946bcbda4c54_BAT -&gt; xe-pw-161473v7_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4893-380e49c900a45f7c7c206b48862f946bcbda4c54 -&gt; xe-pw-161473v7</li>
+</ul>
+<p>IGT_8854: 93abaf0170728f69bc27577e5b405f7a2a01b6fd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4893-380e49c900a45f7c7c206b48862f946bcbda4c54: 380e49c900a45f7c7c206b48862f946bcbda4c54<br />
+  xe-pw-161473v7: 161473v7</p>
+
+</body>
+</html>
+
+--===============8799440602479516534==--
