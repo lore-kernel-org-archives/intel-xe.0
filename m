@@ -4,51 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0DDBF9D0CC
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Apr 2026 12:09:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5032FF9D0C9
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Apr 2026 12:10:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0504910E5DE;
-	Tue, 14 Apr 2026 12:09:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1452C10E5DF;
+	Tue, 14 Apr 2026 12:10:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b="lnzUFzMc";
+	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="wDi4rylp";
 	dkim-atps=neutral
-X-Greylist: delayed 586 seconds by postgrey-1.36 at gabe;
- Mon, 13 Apr 2026 23:19:37 UTC
-Received: from mail.tuxedocomputers.com (mail.tuxedocomputers.com
- [157.90.84.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F75D10E3E9;
- Mon, 13 Apr 2026 23:19:37 +0000 (UTC)
-Received: from [192.168.178.25] (i5C75F434.versanet.de [92.117.244.52])
- (Authenticated sender: wse@tuxedocomputers.com)
- by mail.tuxedocomputers.com (Postfix) with ESMTPSA id 844A22FC0050;
- Tue, 14 Apr 2026 01:09:49 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxedocomputers.com;
- s=default; t=1776121789;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=hQrMwPP7AHLmS/HZHFmEI9yHSkcu3d1286G7GgdZmck=;
- b=lnzUFzMc8tS/LQJUk3N++EhewZ4Xl0jhWsrh36ybYuup546Mqtl6HeGQwLpGY3QkwtdXcL
- fRu+cVGa7t9cHYTzJfDhHkm4VlgSKIZbZ5YN6/mWC0Wh+vdFBOILh8259gmlipKz4tuTgp
- oNCsCvq51JbX3DoXfasx9OLb2I/MlcY=
-Authentication-Results: mail.tuxedocomputers.com;
- auth=pass smtp.auth=wse@tuxedocomputers.com
- smtp.mailfrom=wse@tuxedocomputers.com
-Message-ID: <38ba8502-4a9b-4881-9bac-7833ef755d77@tuxedocomputers.com>
-Date: Tue, 14 Apr 2026 01:09:47 +0200
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4832C10E356;
+ Mon, 13 Apr 2026 12:59:45 +0000 (UTC)
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+ by smtpout-03.galae.net (Postfix) with ESMTPS id E7E274E42982;
+ Mon, 13 Apr 2026 12:59:43 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+ by smtpout-01.galae.net (Postfix) with ESMTPS id B42DE5FFB9;
+ Mon, 13 Apr 2026 12:59:43 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
+ with ESMTPSA id 05B5810450229; 
+ Mon, 13 Apr 2026 14:59:32 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+ t=1776085182; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+ content-transfer-encoding:in-reply-to:references;
+ bh=h3FUUOILacuSgM+ABHMGfQupbtWpVZVev0K7QR0S3PA=;
+ b=wDi4rylprXYa5KvrF5XClhZwCqdBhIRvrj68umpv0rOZCRw+SHIMqqb9J6A5OlpXFegLXb
+ 1v1yWAis2ur92VlhEUydt8lyKrp3p55Mm8z+cYDV+L0hnrTR+erxW8efuL3L8dxN5VzCkr
+ zU/YVxQzBaq+vUFYst8ScqPRT6rtP+1OJUU/axL3iUbwIQxAhQxyAuWdIIfxwRFUKKgp/6
+ th235XxhexkP7slAiEV8kDSum6Qom6jTajuknHPdnSpgRF4Y9gRdntzSjMMsboitxLJD2v
+ 2oOiT4IQHWd8cguLrclzB4T7Rk0CCw8IEvepPTsgnrO/+IRlae+TSlDZSMjNuQ==
+Date: Mon, 13 Apr 2026 14:59:30 +0200
+From: Kory Maincent <kory.maincent@bootlin.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Dave
+ Airlie <airlied@redhat.com>, Jesse Barnes <jbarnes@virtuousgeek.org>, Eric
+ Anholt <eric@anholt.net>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Andrzej Hajda
+ <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Robert Foss <rfoss@kernel.org>, Laurent Pinchart
+ <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chun-Kuang Hu
+ <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, Matthias
+ Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, Chris Wilson
+ <chris@chris-wilson.co.uk>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, Mark Yacoub <markyacoub@google.com>, Sean
+ Paul <seanpaul@google.com>, Louis Chauvet <louis.chauvet@bootlin.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Simona Vetter <simona.vetter@ffwll.ch>
+Subject: Re: [PATCH RFC 09/12] drm: Introduce drmm_connector_dp_init() with
+ link training state properties
+Message-ID: <20260413145930.140ba461@kmaincent-XPS-13-7390>
+In-Reply-To: <gmaxonri7y3k43pxsnxfnd23mydgrwsw2322v6m4yjoksqm7aj@4ehgvhzg2ubb>
+References: <20260409-feat_link_cap-v1-0-7069e8199ce2@bootlin.com>
+ <20260409-feat_link_cap-v1-9-7069e8199ce2@bootlin.com>
+ <gmaxonri7y3k43pxsnxfnd23mydgrwsw2322v6m4yjoksqm7aj@4ehgvhzg2ubb>
+Organization: bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915/backlight: Remove try_vesa_interface
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com
-References: <20260224031322.2568874-1-suraj.kandpal@intel.com>
-Content-Language: en-US
-From: Werner Sembach <wse@tuxedocomputers.com>
-In-Reply-To: <20260224031322.2568874-1-suraj.kandpal@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 X-Mailman-Approved-At: Tue, 14 Apr 2026 12:09:52 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,99 +86,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+On Fri, 10 Apr 2026 00:53:08 +0300
+Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> wrote:
 
-Am 24.02.26 um 04:13 schrieb Suraj Kandpal:
-> Remove try_vesa_interface. This is because we now make VESA Interface
-> as a fallback mechanism for Panels which needs VESA DPCD AUX backlight
-> mechanism to work but have a broken VBT indicating otherwise.
-> While at in sneak in a small comment cleanup too.
+> On Thu, Apr 09, 2026 at 07:08:25PM +0200, Kory Maincent wrote:
+> > Add a managed DisplayPort connector initialization helper,
+> > drmm_connector_dp_init(), modeled after the existing HDMI counterpart
+> > drmm_connector_hdmi_init(). Cleanup is handled automatically via a
+> > DRM-managed action.
+> >=20
+> > The helper creates the following immutable connector properties to expo=
+se
+> > DP link training capabilities and state to userspace:
+> >=20
+> >   - num_lanes: bitmask of supported lane counts (1, 2, 4)
+> >   - link_rate: Array of supported link rates.
+> >   - dsc_en: Display Stream Compression supported
+> >   - voltage_swingN: per-lane voltage swing level bitmask
+> >   - pre-emphasisN: per-lane pre-emphasis level bitmask
+> >=20
+> > Link rates are passed by the driver in deca-kbps, following the DRM
+> > convention, but exposed to userspace in kbps for clarity.
+> >=20
+> > Two additional helpers are provided to update and reset those properties
+> > at runtime:
+> >   - drm_connector_dp_set_link_train_properties()
+> >   - drm_connector_dp_reset_link_train_properties()
+> >=20
 
-Just a heads up: I ran into some devices that don't auto select the intel 
-interface and don't work with the vesa interface, but ran in the return -ENODEV 
-case before and then still had a working backlight. This patch stops backlight 
-control working on these devices. So there seems to be another fallback that 
-this patch overwrites?
+...
 
-Explicitly forcing the intel interface via module property makes the backlight 
-control work again.
+> > +/**
+> > + * struct drm_connector_dp_link_train - DRM DisplayPort link training
+> > + * information report
+> > + */
+> > +struct drm_connector_dp_link_train { =20
+>=20
+> THese define the current DP state. As such, they definitely make sense
+> to be a part of the drm_connector.
+> > +	/**
+> > +	 * @nlanes: The number of lanes used
+> > +	 */
+> > +	u8 nlanes;
+> > +
+> > +	/**
+> > +	 * @rates: Link rate value selected in deca-kbps
+> > +	 */
+> > +	u32 rate;
+> > +
+> > +	/**
+> > +	 * @dsc: Display Stream Compression enabled
+> > +	 */
+> > +	bool dsc_en;
+> > +
+> > +	/**
+> > +	 * @v_swings: Array listing the bitmask voltage swing level per
+> > lanes
+> > +	 */
+> > +	u8 v_swing[4];
+> > +
+> > +	/**
+> > +	 * @pre_emph: Array listing the bitmask pre-emphasis level per
+> > lanes
+> > +	 */
+> > +	u8 pre_emph[4]; =20
+>=20
+> Please consider following struct phy_configure_opts_dp (or using it as
+> is). Overall, please refer the talk and (more important) the lightning
+> resumee at this XDC. I have some bits and pieces ready in spite of that
+> proposal, but I didn't have time to finish it.
 
-I will do some more research and then write a proper bug report, but just to let 
-you know that this patch will cause a regression bug in its current form.
+I didn't know this phy_configure_opts_dp struct. This indeed could make sen=
+se
+to reuse and modify that structure for our needs.
 
-Best regards,
+About your XDC talk. What were the developments you were talking about? Cou=
+ld I
+have a look at them?
 
-Werner
-
->
-> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15679
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->   .../drm/i915/display/intel_dp_aux_backlight.c | 19 +++++++------------
->   1 file changed, 7 insertions(+), 12 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> index eb05ef4bd9f6..a8e9872566cd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> @@ -644,9 +644,10 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
->   	struct intel_dp *intel_dp = intel_attached_dp(connector);
->   	struct drm_device *dev = connector->base.dev;
->   	struct intel_panel *panel = &connector->panel;
-> -	bool try_intel_interface = false, try_vesa_interface = false;
-> +	bool try_intel_interface = false;
->   
-> -	/* Check the VBT and user's module parameters to figure out which
-> +	/*
-> +	 * Check the VBT and user's module parameters to figure out which
->   	 * interfaces to probe
->   	 */
->   	switch (display->params.enable_dpcd_backlight) {
-> @@ -655,7 +656,6 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
->   	case INTEL_DP_AUX_BACKLIGHT_AUTO:
->   		switch (panel->vbt.backlight.type) {
->   		case INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE:
-> -			try_vesa_interface = true;
->   			break;
->   		case INTEL_BACKLIGHT_DISPLAY_DDI:
->   			try_intel_interface = true;
-> @@ -668,20 +668,12 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
->   		if (panel->vbt.backlight.type != INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE)
->   			try_intel_interface = true;
->   
-> -		try_vesa_interface = true;
-> -		break;
-> -	case INTEL_DP_AUX_BACKLIGHT_FORCE_VESA:
-> -		try_vesa_interface = true;
->   		break;
->   	case INTEL_DP_AUX_BACKLIGHT_FORCE_INTEL:
->   		try_intel_interface = true;
->   		break;
->   	}
->   
-> -	/* For eDP 1.5 and above we are supposed to use VESA interface for brightness control */
-> -	if (intel_dp->edp_dpcd[0] >= DP_EDP_15)
-> -		try_vesa_interface = true;
-> -
->   	/*
->   	 * Since Intel has their own backlight control interface, the majority of machines out there
->   	 * using DPCD backlight controls with Intel GPUs will be using this interface as opposed to
-> @@ -694,6 +686,9 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
->   	 * panel with Intel's OUI - which is also required for us to be able to detect Intel's
->   	 * backlight interface at all. This means that the only sensible way for us to detect both
->   	 * interfaces is to probe for Intel's first, and VESA's second.
-> +	 *
-> +	 * Also there is a chance some VBT's may advertise false Intel backlight support even if the
-> +	 * tcon's DPCD says otherwise. This mean we keep VESA interface as fallback in that case.
->   	 */
->   	if (try_intel_interface && intel_dp_aux_supports_hdr_backlight(connector) &&
->   	    intel_dp->edp_dpcd[0] <= DP_EDP_14b) {
-> @@ -703,7 +698,7 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
->   		return 0;
->   	}
->   
-> -	if (try_vesa_interface && intel_dp_aux_supports_vesa_backlight(connector)) {
-> +	if (intel_dp_aux_supports_vesa_backlight(connector)) {
->   		drm_dbg_kms(dev, "[CONNECTOR:%d:%s] Using VESA eDP backlight controls\n",
->   			    connector->base.base.id, connector->base.name);
->   		panel->backlight.funcs = &intel_dp_vesa_bl_funcs;
+Regards,
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
