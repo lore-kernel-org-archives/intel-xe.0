@@ -4,72 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92A06F9D0C8
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Apr 2026 12:09:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0DDBF9D0CC
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Apr 2026 12:09:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5404C10E5DC;
-	Tue, 14 Apr 2026 12:09:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0504910E5DE;
+	Tue, 14 Apr 2026 12:09:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="syyNFaz4";
+	dkim=pass (1024-bit key; unprotected) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b="lnzUFzMc";
 	dkim-atps=neutral
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76E9B10E450;
- Mon, 13 Apr 2026 12:34:17 +0000 (UTC)
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
- by smtpout-02.galae.net (Postfix) with ESMTPS id A959C1A31E4;
- Mon, 13 Apr 2026 12:34:15 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
- by smtpout-01.galae.net (Postfix) with ESMTPS id 6D14A5FFB9;
- Mon, 13 Apr 2026 12:34:15 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 10AAC10450229; 
- Mon, 13 Apr 2026 14:34:04 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1776083654; h=from:subject:date:message-id:to:cc:mime-version:content-type:
- content-transfer-encoding:in-reply-to:references;
- bh=W8Wq0XFDTnCET+9d1u1+KkWzNdxSiwKVtLFGfiPbxXY=;
- b=syyNFaz4M5CS3w/qw5wtQg2RUzkQnw7q8wpoWJoj2F/6PjYErOhqgA15EFQePTJFBA4UUF
- LSoYPrX+6nQZSqeG+B4U4C4xWZ1ulEKEh0Ey4sQyQWMzsQ6tAryHHJei5nGcYHXOoxDecC
- MEHdbtnzQcIZmpBy0guw4bo6EI9a3soHuL6Iia5wgs5TjoAu7fZyVJG+ga+5ODGi/+U2VG
- 5Hif4ZnGHGfMoRaK7RFojvStP0nVD+NWuhg11+AM9pkSYzPTLZPJvgxhSIVupZBkt6H3R8
- zRfNZdNIdvMsN5cINpliwzzvjzglbX6zYtJZaEhq4n3qR6E/vUiX3TK/CIPkKw==
-Date: Mon, 13 Apr 2026 14:34:02 +0200
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Dave
- Airlie <airlied@redhat.com>, Jesse Barnes <jbarnes@virtuousgeek.org>, Eric
- Anholt <eric@anholt.net>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Andrzej Hajda
- <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- Robert Foss <rfoss@kernel.org>, Laurent Pinchart
- <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Chun-Kuang Hu
- <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, Matthias
- Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, Chris Wilson
- <chris@chris-wilson.co.uk>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, Mark Yacoub <markyacoub@google.com>, Sean
- Paul <seanpaul@google.com>, Louis Chauvet <louis.chauvet@bootlin.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Simona Vetter <simona.vetter@ffwll.ch>
-Subject: Re: [PATCH RFC 10/12] drm/i915/display/dp: Adopt dp_connector
- helpers to expose link training state
-Message-ID: <20260413143402.76f5c3c9@kmaincent-XPS-13-7390>
-In-Reply-To: <e253ca4fa0b493032a7b35a0a20689b9d9e0c4e7@intel.com>
-References: <20260409-feat_link_cap-v1-0-7069e8199ce2@bootlin.com>
- <20260409-feat_link_cap-v1-10-7069e8199ce2@bootlin.com>
- <e253ca4fa0b493032a7b35a0a20689b9d9e0c4e7@intel.com>
-Organization: bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+X-Greylist: delayed 586 seconds by postgrey-1.36 at gabe;
+ Mon, 13 Apr 2026 23:19:37 UTC
+Received: from mail.tuxedocomputers.com (mail.tuxedocomputers.com
+ [157.90.84.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F75D10E3E9;
+ Mon, 13 Apr 2026 23:19:37 +0000 (UTC)
+Received: from [192.168.178.25] (i5C75F434.versanet.de [92.117.244.52])
+ (Authenticated sender: wse@tuxedocomputers.com)
+ by mail.tuxedocomputers.com (Postfix) with ESMTPSA id 844A22FC0050;
+ Tue, 14 Apr 2026 01:09:49 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxedocomputers.com;
+ s=default; t=1776121789;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=hQrMwPP7AHLmS/HZHFmEI9yHSkcu3d1286G7GgdZmck=;
+ b=lnzUFzMc8tS/LQJUk3N++EhewZ4Xl0jhWsrh36ybYuup546Mqtl6HeGQwLpGY3QkwtdXcL
+ fRu+cVGa7t9cHYTzJfDhHkm4VlgSKIZbZ5YN6/mWC0Wh+vdFBOILh8259gmlipKz4tuTgp
+ oNCsCvq51JbX3DoXfasx9OLb2I/MlcY=
+Authentication-Results: mail.tuxedocomputers.com;
+ auth=pass smtp.auth=wse@tuxedocomputers.com
+ smtp.mailfrom=wse@tuxedocomputers.com
+Message-ID: <38ba8502-4a9b-4881-9bac-7833ef755d77@tuxedocomputers.com>
+Date: Tue, 14 Apr 2026 01:09:47 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915/backlight: Remove try_vesa_interface
+To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com
+References: <20260224031322.2568874-1-suraj.kandpal@intel.com>
+Content-Language: en-US
+From: Werner Sembach <wse@tuxedocomputers.com>
+In-Reply-To: <20260224031322.2568874-1-suraj.kandpal@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Tue, 14 Apr 2026 12:09:52 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -85,116 +64,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 10 Apr 2026 19:26:53 +0300
-Jani Nikula <jani.nikula@linux.intel.com> wrote:
+Hi,
 
-> On Thu, 09 Apr 2026, Kory Maincent <kory.maincent@bootlin.com> wrote:
-> > Switch the i915 DP connector initialization from drmm_connector_init()
-> > to drmm_connector_dp_init(), providing the source link capabilities
-> > (supported lane counts, link rates, DSC support, voltage swing and
-> > pre-emphasis levels).
-> >
-> > Add intel_dp_report_link_train() to collect the negotiated link
-> > parameters (rate, lane count, DSC enable, per-lane voltage swing and
-> > pre-emphasis) and report them via
-> > drm_connector_dp_set_link_train_properties() once link training complet=
-es
-> > successfully.
-> >
-> > Reset the link training properties via
-> > drm_connector_dp_reset_link_train_properties() when the connector is
-> > reported as disconnected or when the display device is disabled, so
-> > the exposed state always reflects the current link status.
-> >
-> > Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dp.c            | 31
-> > +++++++++++++++++++--- .../gpu/drm/i915/display/intel_dp_link_training.=
-c  |
-> > 25 +++++++++++++++++ 2 files changed, 52 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
-> > b/drivers/gpu/drm/i915/display/intel_dp.c index
-> > 2af64de9c81de..641406bdc0cc9 100644 ---
-> > a/drivers/gpu/drm/i915/display/intel_dp.c +++
-> > b/drivers/gpu/drm/i915/display/intel_dp.c @@ -45,6 +45,7 @@
-> >  #include <drm/display/drm_hdmi_helper.h>
-> >  #include <drm/drm_atomic_helper.h>
-> >  #include <drm/drm_crtc.h>
-> > +#include <drm/drm_dp_connector.h>
-> >  #include <drm/drm_edid.h>
-> >  #include <drm/drm_fixed.h>
-> >  #include <drm/drm_managed.h>
-> > @@ -6337,8 +6338,10 @@ intel_dp_detect(struct drm_connector *_connector,
-> >  	drm_WARN_ON(display->drm,
-> >  		    !drm_modeset_is_locked(&display->drm->mode_config.connection_mut=
-ex));
-> > =20
-> > -	if (!intel_display_device_enabled(display))
-> > +	if (!intel_display_device_enabled(display)) {
-> > +		drm_connector_dp_reset_link_train_properties(_connector);
-> >  		return connector_status_disconnected;
-> > +	}
-> > =20
-> >  	if (!intel_display_driver_check_access(display))
-> >  		return connector->base.status;
-> > @@ -6388,6 +6391,8 @@ intel_dp_detect(struct drm_connector *_connector,
-> > =20
-> >  		intel_dp_tunnel_disconnect(intel_dp);
-> > =20
-> > +		drm_connector_dp_reset_link_train_properties(_connector);
-> > +
-> >  		goto out_unset_edid;
-> >  	}
-> > =20
-> > @@ -7162,10 +7167,12 @@ intel_dp_init_connector(struct intel_digital_po=
-rt
-> > *dig_port, struct intel_connector *connector)
-> >  {
-> >  	struct intel_display *display =3D to_intel_display(dig_port);
-> > +	struct drm_connector_dp_link_train_caps link_caps;
-> >  	struct intel_dp *intel_dp =3D &dig_port->dp;
-> >  	struct intel_encoder *encoder =3D &dig_port->base;
-> >  	struct drm_device *dev =3D encoder->base.dev;
-> >  	enum port port =3D encoder->port;
-> > +	u32 *rates;
-> >  	int type;
-> > =20
-> >  	if (drm_WARN(dev, dig_port->max_lanes < 1,
-> > @@ -7213,8 +7220,25 @@ intel_dp_init_connector(struct intel_digital_port
-> > *dig_port, type =3D=3D DRM_MODE_CONNECTOR_eDP ? "eDP" : "DP",
-> >  		    encoder->base.base.id, encoder->base.name);
-> > =20
-> > -	drmm_connector_init(dev, &connector->base,
-> > &intel_dp_connector_funcs,
-> > -			    type, &intel_dp->aux.ddc);
-> > +	intel_dp_set_source_rates(intel_dp);
-> > +	link_caps.nlanes =3D DRM_DP_1LANE | DRM_DP_2LANE | DRM_DP_4LANE;
-> > +	link_caps.nrates =3D intel_dp->num_source_rates;
-> > +	rates =3D kzalloc_objs(*rates, intel_dp->num_source_rates);
-> > +	if (!rates)
-> > +		goto fail;
-> > +
-> > +	for (int i =3D 0; i < intel_dp->num_source_rates; i++)
-> > +		rates[i] =3D intel_dp->source_rates[i];
-> > +
-> > +	link_caps.rates =3D rates;
-> > +	link_caps.dsc =3D true; =20
->=20
-> You have a source, you have a sink, and you have a link between the two.
->=20
-> Source rates do not reflect the link rates common between source and
-> sink.
->=20
-> DSC depends on source and sink, and it's not statically "true" for
-> either, and depends on a bunch of things.
+Am 24.02.26 um 04:13 schrieb Suraj Kandpal:
+> Remove try_vesa_interface. This is because we now make VESA Interface
+> as a fallback mechanism for Panels which needs VESA DPCD AUX backlight
+> mechanism to work but have a broken VBT indicating otherwise.
+> While at in sneak in a small comment cleanup too.
 
-At init, we are reporting the capabilities of the source. So we list every
-link rates that the source can achieve and we report that the source is DSC
-capable which it is IIUC the code. Or maybe I am missing something?
+Just a heads up: I ran into some devices that don't auto select the intel 
+interface and don't work with the vesa interface, but ran in the return -ENODEV 
+case before and then still had a working backlight. This patch stops backlight 
+control working on these devices. So there seems to be another fallback that 
+this patch overwrites?
 
-Regards,
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+Explicitly forcing the intel interface via module property makes the backlight 
+control work again.
+
+I will do some more research and then write a proper bug report, but just to let 
+you know that this patch will cause a regression bug in its current form.
+
+Best regards,
+
+Werner
+
+>
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15679
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
+>   .../drm/i915/display/intel_dp_aux_backlight.c | 19 +++++++------------
+>   1 file changed, 7 insertions(+), 12 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> index eb05ef4bd9f6..a8e9872566cd 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> @@ -644,9 +644,10 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
+>   	struct intel_dp *intel_dp = intel_attached_dp(connector);
+>   	struct drm_device *dev = connector->base.dev;
+>   	struct intel_panel *panel = &connector->panel;
+> -	bool try_intel_interface = false, try_vesa_interface = false;
+> +	bool try_intel_interface = false;
+>   
+> -	/* Check the VBT and user's module parameters to figure out which
+> +	/*
+> +	 * Check the VBT and user's module parameters to figure out which
+>   	 * interfaces to probe
+>   	 */
+>   	switch (display->params.enable_dpcd_backlight) {
+> @@ -655,7 +656,6 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
+>   	case INTEL_DP_AUX_BACKLIGHT_AUTO:
+>   		switch (panel->vbt.backlight.type) {
+>   		case INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE:
+> -			try_vesa_interface = true;
+>   			break;
+>   		case INTEL_BACKLIGHT_DISPLAY_DDI:
+>   			try_intel_interface = true;
+> @@ -668,20 +668,12 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
+>   		if (panel->vbt.backlight.type != INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE)
+>   			try_intel_interface = true;
+>   
+> -		try_vesa_interface = true;
+> -		break;
+> -	case INTEL_DP_AUX_BACKLIGHT_FORCE_VESA:
+> -		try_vesa_interface = true;
+>   		break;
+>   	case INTEL_DP_AUX_BACKLIGHT_FORCE_INTEL:
+>   		try_intel_interface = true;
+>   		break;
+>   	}
+>   
+> -	/* For eDP 1.5 and above we are supposed to use VESA interface for brightness control */
+> -	if (intel_dp->edp_dpcd[0] >= DP_EDP_15)
+> -		try_vesa_interface = true;
+> -
+>   	/*
+>   	 * Since Intel has their own backlight control interface, the majority of machines out there
+>   	 * using DPCD backlight controls with Intel GPUs will be using this interface as opposed to
+> @@ -694,6 +686,9 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
+>   	 * panel with Intel's OUI - which is also required for us to be able to detect Intel's
+>   	 * backlight interface at all. This means that the only sensible way for us to detect both
+>   	 * interfaces is to probe for Intel's first, and VESA's second.
+> +	 *
+> +	 * Also there is a chance some VBT's may advertise false Intel backlight support even if the
+> +	 * tcon's DPCD says otherwise. This mean we keep VESA interface as fallback in that case.
+>   	 */
+>   	if (try_intel_interface && intel_dp_aux_supports_hdr_backlight(connector) &&
+>   	    intel_dp->edp_dpcd[0] <= DP_EDP_14b) {
+> @@ -703,7 +698,7 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
+>   		return 0;
+>   	}
+>   
+> -	if (try_vesa_interface && intel_dp_aux_supports_vesa_backlight(connector)) {
+> +	if (intel_dp_aux_supports_vesa_backlight(connector)) {
+>   		drm_dbg_kms(dev, "[CONNECTOR:%d:%s] Using VESA eDP backlight controls\n",
+>   			    connector->base.base.id, connector->base.name);
+>   		panel->backlight.funcs = &intel_dp_vesa_bl_funcs;
