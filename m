@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79DBBE93812
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 04:09:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE5D5E93816
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Apr 2026 04:18:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38FDD10E313;
-	Mon, 13 Apr 2026 04:09:10 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NbsVhaOs";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 041A310E319;
- Mon, 13 Apr 2026 04:09:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776053349; x=1807589349;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=PWJR0MC8RPndFVjczGfllR/Dl9/fbRjLxTHPJJvqkEI=;
- b=NbsVhaOsBfCeRnIiUAS5ke9BVo+3eo/hCCP5UVRqKGmDHxucmaqlsuv7
- XeRxDSSA3ij80I+cMXKvV0R7QvMDJ+Ax4GaRVXfkuh9h5C3Z+rUjeX4uE
- nVyusW7MyA6y7k2j258VtQxIVmjIRtN1MtgjoRhiF0Gqql9ArvwlfEnXF
- v636JF5f786bk4YtYe97GGO1r9JhuNWpOGGYfLE2vD5zm4bEHa+ewfDHk
- HDfkX/JTniuDuyhKAGEad/aWCSSNKvw6maNdBfSZSS9k5nBh10YvYlFry
- 6pDl4Uicpmgwny5/11zEhgLNJlqnH4Rm7PaEGG9mXHLxLwEBx7sXjGbBb w==;
-X-CSE-ConnectionGUID: LmFQ0gotSsqtfsoFbmENBA==
-X-CSE-MsgGUID: aFsoITYDTRmhE9fw/JF47w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11757"; a="80568794"
-X-IronPort-AV: E=Sophos;i="6.23,176,1770624000"; d="scan'208";a="80568794"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2026 21:09:08 -0700
-X-CSE-ConnectionGUID: SgnkrIv3StmeajpEFvxbzQ==
-X-CSE-MsgGUID: kpCUht8dSU2WqWFUJmaTMg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,176,1770624000"; d="scan'208";a="229546656"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2026 21:09:06 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com, arun.r.murthy@intel.com,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 12/12] drm/i915/display: Dump SDP Transmission lines
-Date: Mon, 13 Apr 2026 09:23:49 +0530
-Message-ID: <20260413035349.1730312-13-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20260413035349.1730312-1-ankit.k.nautiyal@intel.com>
-References: <20260413035349.1730312-1-ankit.k.nautiyal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EA1910E300;
+	Mon, 13 Apr 2026 04:18:25 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B31B810E300;
+ Mon, 13 Apr 2026 04:18:23 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Add_support_for_Common_SD?=
+ =?utf-8?q?P_Transmission_Line_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 13 Apr 2026 04:18:23 -0000
+Message-ID: <177605390371.455032.6865875827006770652@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260413035349.1730312-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20260413035349.1730312-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,35 +36,62 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add SDP transmission lines to the CRTC state dump.
+== Series Details ==
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_crtc_state_dump.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Series: Add support for Common SDP Transmission Line (rev2)
+URL   : https://patchwork.freedesktop.org/series/162623/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-index c85ba9a95322..def696967706 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-@@ -251,6 +251,14 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
- 			   str_enabled_disabled(pipe_config->has_panel_replay),
- 			   str_enabled_disabled(pipe_config->enable_psr2_sel_fetch));
- 		drm_printf(&p, "minimum hblank: %d\n", pipe_config->min_hblank);
-+
-+		drm_printf(&p, "DP SDP TL: AS: %u, CMN: %u, GMP: %u, PPS: %u, VSC: %u, VSC_EXT: %u\n",
-+			   pipe_config->dp_sdp_tl.as,
-+			   pipe_config->dp_sdp_tl.cmn,
-+			   pipe_config->dp_sdp_tl.gmp,
-+			   pipe_config->dp_sdp_tl.pps,
-+			   pipe_config->dp_sdp_tl.vsc,
-+			   pipe_config->dp_sdp_tl.vsc_ext);
- 	}
- 
- 	drm_printf(&p, "audio: %i, infoframes: %i, infoframes enabled: 0x%x\n",
--- 
-2.45.2
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit c38a955388dcc23ade695af7cea3c0ca8e2fd9a3
+Author: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Date:   Mon Apr 13 09:23:49 2026 +0530
+
+    drm/i915/display: Dump SDP Transmission lines
+    
+    Add SDP transmission lines to the CRTC state dump.
+    
+    Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
++ /mt/dim checkpatch b6fce504bb100219c9b8bb7f719d67c660382f51 drm-intel
+e1f37cf3952e drm/i915/vrr: Add HAS_EMP_AS_SDP_TL macro
+-:22: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#22: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:176:
++#define HAS_EMP_AS_SDP_TL(__display)	(DISPLAY_VERx100(__display) == 1401 || DISPLAY_VER(__display) >= 20)
+
+-:22: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#22: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:176:
++#define HAS_EMP_AS_SDP_TL(__display)	(DISPLAY_VERx100(__display) == 1401 || DISPLAY_VER(__display) >= 20)
+
+total: 0 errors, 1 warnings, 1 checks, 15 lines checked
+c10fbe38850a drm/i915/vrr: Add helper to readback EMP_AS_SDP_TL
+c7811bff82dc drm/i915/vrr: Separate out helper to write EMP_AS_SDP_TL
+03da546b2eac drm/i915/dp: Add helper to get AS SDP Transmission Line
+6a6d1a58521b drm/i915/dp: Add crtc state for AS SDP transmission line
+f01e204e50b5 drm/i915/dp: Store and use AS SDP transmission line from crtc state
+f7ca8bc5ceef drm/i915/nvl: Add register definitions for common SDP Transmission Line
+-:30: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#30: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2133:
++#define CMN_SDP_TL_STGR_CTL(display, trans)	_MMIO_TRANS2(display, (trans), _CMN_SDP_TL_STGR_CTL_A)
+
+total: 0 errors, 1 warnings, 0 checks, 25 lines checked
+4373a1ef907f drm/i915/display: Add HAS_CMN_SDP_TL macro
+dfbc826bdffb drm/i915/dp: Store SDP transmission lines in crtc_state
+e445e67c8996 drm/i915/dp: Introduce helpers to enable/disable CMN SDP Transmission line
+37f3d8e1ba38 drm/i915/dp: Enable Common SDP Transmission line
+c38a955388dc drm/i915/display: Dump SDP Transmission lines
+
 
