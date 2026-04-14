@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 969D7F9D0EC
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Apr 2026 18:15:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4AC4F9D0EC
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Apr 2026 18:15:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5AD0110E089;
-	Tue, 14 Apr 2026 18:15:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 675A310E14C;
+	Tue, 14 Apr 2026 18:15:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YEJfZ5dc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gftD8NTL";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17F9C10E063
- for <intel-xe@lists.freedesktop.org>; Tue, 14 Apr 2026 18:15:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB70910E089
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 Apr 2026 18:15:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1776190532; x=1807726532;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=yES1X9/LGqsDKhtNoDGP3Ch2U48exhmH2x/MJCEkgGs=;
- b=YEJfZ5dcUi66p6o9PeSdaxMcf8FRh/dnxK/FNTrQXHkygJ/SXwG+oycl
- wrQCl8IEfp10d/+p+XN0bqeO1IwGlcNdzbv56owvhr+d6g8yJC10O2KPS
- +XnJ0RUH7P/spJVYVLlk4Nz7PYKFfGVvqw76fjOHl+uTPtu+Gv1b9+q/B
- nze8cJMwCYfB5whkzmvBBoRRlfyZ2/kqaqgDXubRM26PKHrv3LnSAjA/G
- Vxft8r1W6ZwgdLQORTKoQ2hetBxXAzFjiSFucAXbVLWKFo1BlN4fx/PrS
- Mt4eI2ihPFxPVWGV+kNC39bXJMGkgxHLcPd/wz6B7GeTIUJilwrwF7Ghm g==;
-X-CSE-ConnectionGUID: zhWgTUyjQS2vXaoOcWjT7g==
-X-CSE-MsgGUID: DoFPuaViS6SLbqYmxBeTCA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11759"; a="87464708"
-X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="87464708"
+ bh=MDnT9jmxN/GpkreITs3Nrd5Kzr636FW6+es6xKS5tEw=;
+ b=gftD8NTLoW+2MKZTg6+sL1gYm/KLlD3uWPTszj/0tzkZHG7YtFGSy+A3
+ XveGtlEcOApZ18DPm8XIAWgTH7pxO7uFbACHjPFWrSD4TRGMkmBt6CwNv
+ sjQD223aAjNRq9KohtpKnmGtfYcW9uAVnD9QKFTzAsamGZly9J/PC+YRD
+ BNuh1X63K9xXCEHYqDkEPIWFvKF0QUI7fMVOPxLL6C7Q/wnn8A5Kh3zkZ
+ E3IKLJ85sBsvquHZRsgTpZA1SZ3R6KTjHLLpQ7Tp5NGKDIJzACXauUuUW
+ CdZceNyYNzghU5mEbJYazLPIsdw7P8Aehm8+h+ED1/mA32uwvcmfKQa87 g==;
+X-CSE-ConnectionGUID: 91fqSEALSOG15o7pc6S+3Q==
+X-CSE-MsgGUID: pTovKJHvSbeOSFz2duUQ8A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11759"; a="87464706"
+X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="87464706"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Apr 2026 11:15:31 -0700
-X-CSE-ConnectionGUID: 9IMsH8oDROKRjKpjJZ8PXw==
-X-CSE-MsgGUID: D3echMH5QTiBvncTvO4Jfg==
+X-CSE-ConnectionGUID: F2ikJustSXaHVVUdPMEeYg==
+X-CSE-MsgGUID: Cu2xAesbSVejiKLjpjUpmA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="253387937"
+X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="253387934"
 Received: from xwang-desk.fm.intel.com ([10.121.64.134])
  by fmviesa002.fm.intel.com with ESMTP; 14 Apr 2026 11:15:31 -0700
 From: Xin Wang <x.wang@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Xin Wang <x.wang@intel.com>, Matthew Auld <matthew.auld@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH v2 2/3] drm/xe/pat: Default XE_CACHE_NONE_COMPRESSION to
- invalid
-Date: Tue, 14 Apr 2026 11:15:27 -0700
-Message-ID: <20260414181528.282398-3-x.wang@intel.com>
+Cc: Xin Wang <x.wang@intel.com>,
+	Matthew Auld <matthew.auld@intel.com>
+Subject: [PATCH v2 1/3] drm/xe: Standardize pat_index to u16 type
+Date: Tue, 14 Apr 2026 11:15:26 -0700
+Message-ID: <20260414181528.282398-2-x.wang@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260414181528.282398-1-x.wang@intel.com>
 References: <20260414181528.282398-1-x.wang@intel.com>
@@ -67,34 +66,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Initialize XE_CACHE_NONE_COMPRESSION PAT index to XE_PAT_INVALID_IDX by
-default, same as XE_CACHE_WB_COMPRESSION. Platforms that support this
-cache mode will override it in xe_pat_init_early(). This ensures that
-accidental use on unsupported platforms can be detected.
+Ensure all pat_index definitions consistently use u16 type across
+the XE driver. This addresses two remaining instances where pat_index
+was incorrectly typed:
 
-A subsequent patch introduces a helper to assert on invalid PAT index
-access at all call sites.
+- xe_vm_snapshot structure used int for pat_index field
+- xe_device pat.idx array used u32 instead of u16
 
-Suggested-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+This cleanup improves type consistency and ensures proper alignment
+with the PAT subsystem design.
+
 Signed-off-by: Xin Wang <x.wang@intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pat.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/xe/xe_device_types.h | 2 +-
+ drivers/gpu/drm/xe/xe_vm.c           | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
-index 75aaae7b003d..fad5b5a5ed4a 100644
---- a/drivers/gpu/drm/xe/xe_pat.c
-+++ b/drivers/gpu/drm/xe/xe_pat.c
-@@ -559,6 +559,7 @@ static const struct xe_pat_ops xe3p_xpc_pat_ops = {
- void xe_pat_init_early(struct xe_device *xe)
- {
- 	xe->pat.idx[XE_CACHE_WB_COMPRESSION] = XE_PAT_INVALID_IDX;
-+	xe->pat.idx[XE_CACHE_NONE_COMPRESSION] = XE_PAT_INVALID_IDX;
- 	if (GRAPHICS_VERx100(xe) == 3511) {
- 		xe->pat.ops = &xe3p_xpc_pat_ops;
- 		xe->pat.table = xe3p_xpc_pat_table;
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 150c76b2acaf..51af55020ae0 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -403,7 +403,7 @@ struct xe_device {
+ 		const struct xe_pat_table_entry *pat_primary_pta;
+ 		/** @pat.pat_media_pta: media GT PAT entry for page table accesses */
+ 		const struct xe_pat_table_entry *pat_media_pta;
+-		u32 idx[__XE_CACHE_LEVEL_COUNT];
++		u16 idx[__XE_CACHE_LEVEL_COUNT];
+ 	} pat;
+ 
+ 	/** @d3cold: Encapsulate d3cold related stuff */
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 2408b547ca3d..f97c7af2f17c 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -4407,7 +4407,7 @@ struct xe_vm_snapshot {
+ #define XE_VM_SNAP_FLAG_IS_NULL		BIT(2)
+ 		unsigned long flags;
+ 		int uapi_mem_region;
+-		int pat_index;
++		u16 pat_index;
+ 		int cpu_caching;
+ 		struct xe_bo *bo;
+ 		void *data;
 -- 
 2.43.0
 
