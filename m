@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE6F2F9D0D2
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Apr 2026 14:00:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 531F6F9D0CD
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Apr 2026 14:11:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5E1F10E239;
-	Tue, 14 Apr 2026 14:00:36 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85FEC10E239;
- Tue, 14 Apr 2026 14:00:35 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1271947107384056575=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/xe=5Fsurvivability?=
- =?utf-8?q?=3A_Fix_runtime_survivability_error_handling?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 14 Apr 2026 14:00:35 -0000
-Message-ID: <177617523551.461014.6542759650063750855@a3b018990fe9>
-X-Patchwork-Hint: ignore
+	by gabe.freedesktop.org (Postfix) with ESMTP id 130F389654;
+	Tue, 14 Apr 2026 14:11:09 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O9QKGd53";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17D7889654
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 Apr 2026 14:11:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1776175868; x=1807711868;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=7KqMldEvS0qanUhr9VGoEG9TI6wsbYzO8x/fhN3ATzo=;
+ b=O9QKGd53ycgyH69uvslK6e5gh/EjiGe/1xuV9ZThNa71DVevjO9vbls4
+ ChtqYrJcBi1cXL7AeVYlQL+Un8nLumWcHljJRbIzFAJbiLWWalk82aAX8
+ mqpyRMsFjtBvjRTY2g6kXpX95A9bobV+xmAHrM9tfOsFnlg9XdupPRUI4
+ nHOPaEPZOeDgHvuc0vEq/XqkhPWiglHHVjcdsppfhOwJJfvYDPGIWmgjt
+ bJpBafS14JxyYvxttHEjtcWFf0sqErRTFlV4/RLv5f9tMPW488WR6qHpA
+ uZuV2gMR3KJ7Kdjm8OH4bVt1eUiKtDHF2o3wFIndVAaWwqkpnCMApq+Pf w==;
+X-CSE-ConnectionGUID: zjva5hetTDWLA1R2rg+BeQ==
+X-CSE-MsgGUID: GNzq9EAvRDCmwfeMl+ZaVA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11759"; a="76165368"
+X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="76165368"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2026 07:11:08 -0700
+X-CSE-ConnectionGUID: 9h2IYehERvSogxiLd4ftQw==
+X-CSE-MsgGUID: KpRq42I5RtCcKsbEoHe7Aw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="225388113"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2026 07:11:07 -0700
+Date: Tue, 14 Apr 2026 16:11:03 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>,
+ intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
+ anshuman.gupta@intel.com, badal.nilawar@intel.com,
+ riana.tauro@intel.com, karthik.poosa@intel.com, sk.anirban@intel.com
+Subject: Re: [PATCH] drm/xe/xe_survivability: Fix runtime survivability error
+ handling
+Message-ID: <ad5K96woeG-_19SY@black.igk.intel.com>
 References: <20260414124426.566929-2-mallesh.koujalagi@intel.com>
-In-Reply-To: <20260414124426.566929-2-mallesh.koujalagi@intel.com>
+ <ad5H-nLmkCbze65f@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ad5H-nLmkCbze65f@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,133 +68,49 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1271947107384056575==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, Apr 14, 2026 at 09:58:18AM -0400, Rodrigo Vivi wrote:
+> On Tue, Apr 14, 2026 at 06:14:27PM +0530, Mallesh Koujalagi wrote:
+> > When enabling survivability mode at runtime, the code tries to create
+> > a sysfs entry. If that step fails, the error is only logged, but the
+> > function still reports success. This makes it look like survivability
+> > mode was enabled even though part of it failed.
+> > 
+> > Fixes: a2ca0633a0fe ("drm/xe/xe_survivability: Add support for Runtime survivability mode")
+> > Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/xe_survivability_mode.c | 4 +++-
+> >  1 file changed, 3 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
+> > index db64cac39c94..c2dfc7ea7b83 100644
+> > --- a/drivers/gpu/drm/xe/xe_survivability_mode.c
+> > +++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
+> > @@ -413,8 +413,10 @@ int xe_survivability_mode_runtime_enable(struct xe_device *xe)
+> >  	populate_survivability_info(xe);
+> >  
+> >  	ret = create_survivability_sysfs(pdev);
+> > -	if (ret)
+> > +	if (ret) {
+> >  		dev_err(&pdev->dev, "Failed to create survivability mode sysfs\n");
+> > +		return ret;
+> 
+> Perhaps this is intentional?
+> But if so, this function needs to be changed to void and
+> the extra msg removed from csc_hw_error_work()
+> 
+> Riana, Raag?
 
-== Series Details ==
+I've done[1] it already, but perhaps a separate fix is also harmless.
 
-Series: drm/xe/xe_survivability: Fix runtime survivability error handling
-URL   : https://patchwork.freedesktop.org/series/164855/
-State : failure
+[1] https://lore.kernel.org/intel-xe/20260402174229.1062874-4-raag.jadav@intel.com/
 
-== Summary ==
+Raag
 
-CI Bug Log - changes from xe-4900-4e3f5ea9aacc227f8dc56389af013d1a15ccb323_BAT -> xe-pw-164855v1_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-164855v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-164855v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-164855v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_pat@pat-index-xe2:
-    - bat-bmg-1:          [PASS][1] -> [ABORT][2] +1 other test abort
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4900-4e3f5ea9aacc227f8dc56389af013d1a15ccb323/bat-bmg-1/igt@xe_pat@pat-index-xe2.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164855v1/bat-bmg-1/igt@xe_pat@pat-index-xe2.html
-
-  
-
-
-Build changes
--------------
-
-  * Linux: xe-4900-4e3f5ea9aacc227f8dc56389af013d1a15ccb323 -> xe-pw-164855v1
-
-  IGT_8855: 3c05ee1076cee44a2bc3c176ec21e651f6eca600 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4900-4e3f5ea9aacc227f8dc56389af013d1a15ccb323: 4e3f5ea9aacc227f8dc56389af013d1a15ccb323
-  xe-pw-164855v1: 164855v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164855v1/index.html
-
---===============1271947107384056575==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/xe_survivability: Fix runtime survivability error handling</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164855/">https://patchwork.freedesktop.org/series/164855/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164855v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164855v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4900-4e3f5ea9aacc227f8dc56389af013d1a15ccb323_BAT -&gt; xe-pw-164855v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-164855v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-164855v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-164855v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_pat@pat-index-xe2:<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4900-4e3f5ea9aacc227f8dc56389af013d1a15ccb323/bat-bmg-1/igt@xe_pat@pat-index-xe2.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164855v1/bat-bmg-1/igt@xe_pat@pat-index-xe2.html">ABORT</a> +1 other test abort</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4900-4e3f5ea9aacc227f8dc56389af013d1a15ccb323 -&gt; xe-pw-164855v1</li>
-</ul>
-<p>IGT_8855: 3c05ee1076cee44a2bc3c176ec21e651f6eca600 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4900-4e3f5ea9aacc227f8dc56389af013d1a15ccb323: 4e3f5ea9aacc227f8dc56389af013d1a15ccb323<br />
-  xe-pw-164855v1: 164855v1</p>
-
-</body>
-</html>
-
---===============1271947107384056575==--
+> >  	survivability->type = XE_SURVIVABILITY_TYPE_RUNTIME;
+> >  	dev_err(&pdev->dev, "Runtime Survivability mode enabled\n");
+> > -- 
+> > 2.34.1
+> > 
