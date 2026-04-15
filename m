@@ -4,28 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F750F4210B
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Apr 2026 18:08:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18AD3F42131
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Apr 2026 18:27:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 279EF10E729;
-	Wed, 15 Apr 2026 18:08:31 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48F7110E729;
- Wed, 15 Apr 2026 18:08:30 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2825115888689889233=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACF7110E729;
+	Wed, 15 Apr 2026 18:27:24 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hddyRI6t";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 689EE10E729
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Apr 2026 18:27:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1776277643; x=1807813643;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ijcHoZE1wgkRFlCR3UnPt2DVJGW1nmnL/+/d4585q04=;
+ b=hddyRI6tVhTEqvggaiSHcIxqc1xsVWFVCiq5DaxBp7S7v2uWRn0br2V3
+ HvwzMpQq6edimuR5aEhK4EtUSKqJqEaAZ6VPFa9PAMr+a9quQQRQqRVdb
+ /n3WlTUg96UkKW6QvKq3bqA3NJ/eNQrvQtQq8jTQOiCicD5bjZOcvluJO
+ JJyN2PVafT7Gjf+yA1oQb9EFrpSZf8pa2E7NCbqRH8FWfPV7Gt8KzmZrP
+ 5FwVdo4e48SzY5N9fEYdwDn7hmK5wRYukYySfhMvByeoiPoz/vV396kVR
+ 7dHTskSYGc4zcOMEnnMYZKt9bbsNK2Wv67HBPd3IJZKG9Te5Ty5Bcazhw Q==;
+X-CSE-ConnectionGUID: 5KvJ0RRsRIK13uas9378WA==
+X-CSE-MsgGUID: hd/TkF0lQ8yzBTWPKDU48A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="99912505"
+X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="99912505"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2026 11:27:23 -0700
+X-CSE-ConnectionGUID: OX2zNlFSRyaz6qqS7jJjEg==
+X-CSE-MsgGUID: BuUPxfUkTHqV82tkpDnACA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="234881997"
+Received: from hchegond-desk.jf.intel.com ([10.88.27.198])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2026 11:27:23 -0700
+From: Harish Chegondi <harish.chegondi@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: felix.j.degrood@intel.com, matias.a.cabral@intel.com,
+ joshua.santosh.ranjan@intel.com, ashutosh.dixit@intel.com,
+ Harish Chegondi <harish.chegondi@intel.com>
+Subject: [PATCH v5 1/1] drm/xe/eustall: Return ENODEV from read if EU stall
+ registers get reset
+Date: Wed, 15 Apr 2026 11:27:17 -0700
+Message-ID: <6935698d70b6c7c347ff8b138209d601030c2c9f.1776200094.git.harish.chegondi@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_=3A_drm/i915/display=3A_Use?=
- =?utf-8?q?_ceiling_division_for_NV12_UV_surface_offset_calculation_=28rev3?=
- =?utf-8?q?=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Srinivas, Vidya" <vidya.srinivas@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 15 Apr 2026 18:08:30 -0000
-Message-ID: <177627651028.464821.10694894740647824425@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260411171521.162189-1-vidya.srinivas@intel.com>
-In-Reply-To: <20260411171521.162189-1-vidya.srinivas@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,110 +64,131 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2825115888689889233==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+If a reset (GT or engine) happens during EU stall data sampling, all the
+EU stall registers can get reset to 0. This will result in EU stall data
+buffers' read and write pointer register values to be out of sync with
+the cached values. This will result in read() returning invalid data. To
+prevent this, check the value of a EU stall base register. If it is zero,
+it indicates a reset may have happened that wiped the register to zero.
+If this happens, return ENODEV from read() upon which the user space
+should disable and enable EU stall data sampling or close the fd and
+open a new fd for a new EU stall data collection session.
 
-== Series Details ==
+This patch has been tested by running two IGT tests simultaneously
+xe_eu_stall and xe_exec_reset.
 
-Series: : drm/i915/display: Use ceiling division for NV12 UV surface offset calculation (rev3)
-URL   : https://patchwork.freedesktop.org/series/164739/
-State : success
+Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
+---
+v2: Move base register check from read to the poll function
+v3: Don't reschedule work item after reset detected (Ashutosh)
+v4: Return ENODEV as errno instead of EBADFD
+    Reset reset_detected in enable()
+v5: Move reset_detected check above data drop check (Ashutosh)
+    Rebase
 
-== Summary ==
+ drivers/gpu/drm/xe/xe_eu_stall.c | 40 +++++++++++++++++++++++++-------
+ 1 file changed, 31 insertions(+), 9 deletions(-)
 
-CI Bug Log - changes from xe-4905-4c59525db84aca677fd9f052e662912ad9d88448_BAT -> xe-pw-164739v3_BAT
-====================================================
+diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
+index c34408cfd292..d7982d893c49 100644
+--- a/drivers/gpu/drm/xe/xe_eu_stall.c
++++ b/drivers/gpu/drm/xe/xe_eu_stall.c
+@@ -44,6 +44,7 @@ struct per_xecore_buf {
+ struct xe_eu_stall_data_stream {
+ 	bool pollin;
+ 	bool enabled;
++	bool reset_detected;
+ 	int wait_num_reports;
+ 	int sampling_rate_mult;
+ 	wait_queue_head_t poll_wq;
+@@ -428,9 +429,20 @@ static bool eu_stall_data_buf_poll(struct xe_eu_stall_data_stream *stream)
+ 			set_bit(xecore, stream->data_drop.mask);
+ 		xecore_buf->write = write_ptr;
+ 	}
++	/* If a GT or engine reset happens during EU stall sampling,
++	 * all EU stall registers get reset to 0 and the cached values of
++	 * the EU stall data buffers' read pointers are out of sync with
++	 * the register values. This causes invalid data to be returned
++	 * from read(). To prevent this, check the value of a EU stall base
++	 * register. If it is zero, there has been a reset.
++	 */
++	if (unlikely(!xe_gt_mcr_unicast_read_any(gt, XEHPC_EUSTALL_BASE)))
++		stream->reset_detected = true;
++
++	stream->pollin = min_data_present || stream->reset_detected;
+ 	mutex_unlock(&stream->xecore_buf_lock);
+ 
+-	return min_data_present;
++	return stream->pollin;
+ }
+ 
+ static void clear_dropped_eviction_line_bit(struct xe_gt *gt, u16 group, u16 instance)
+@@ -544,6 +556,15 @@ static ssize_t xe_eu_stall_stream_read_locked(struct xe_eu_stall_data_stream *st
+ 	int ret = 0;
+ 
+ 	mutex_lock(&stream->xecore_buf_lock);
++	/* If EU stall registers got reset due to a GT/engine reset,
++	 * continuing with the read() will return invalid data to
++	 * the user space. Just return -ENODEV instead.
++	 */
++	if (unlikely(stream->reset_detected)) {
++		xe_gt_dbg(gt, "EU stall base register has been reset\n");
++		mutex_unlock(&stream->xecore_buf_lock);
++		return -ENODEV;
++	}
+ 	if (bitmap_weight(stream->data_drop.mask, XE_MAX_DSS_FUSE_BITS)) {
+ 		if (!stream->data_drop.reported_to_user) {
+ 			stream->data_drop.reported_to_user = true;
+@@ -554,7 +575,6 @@ static ssize_t xe_eu_stall_stream_read_locked(struct xe_eu_stall_data_stream *st
+ 		}
+ 		stream->data_drop.reported_to_user = false;
+ 	}
+-
+ 	for_each_dss_steering(xecore, gt, group, instance) {
+ 		ret = xe_eu_stall_data_buf_read(stream, buf, count, &total_size,
+ 						gt, group, instance, xecore);
+@@ -609,7 +629,8 @@ static ssize_t xe_eu_stall_stream_read(struct file *file, char __user *buf,
+ 	 * We don't want to block the next read() when there is data in the buffer
+ 	 * now, but couldn't be accommodated in the small user buffer.
+ 	 */
+-	stream->pollin = false;
++	if (!stream->reset_detected)
++		stream->pollin = false;
+ 
+ 	return ret;
+ }
+@@ -692,6 +713,7 @@ static int xe_eu_stall_stream_enable(struct xe_eu_stall_data_stream *stream)
+ 		xecore_buf->write = write_ptr;
+ 		xecore_buf->read = write_ptr;
+ 	}
++	stream->reset_detected = false;
+ 	stream->data_drop.reported_to_user = false;
+ 	bitmap_zero(stream->data_drop.mask, XE_MAX_DSS_FUSE_BITS);
+ 
+@@ -717,13 +739,13 @@ static void eu_stall_data_buf_poll_work_fn(struct work_struct *work)
+ 		container_of(work, typeof(*stream), buf_poll_work.work);
+ 	struct xe_gt *gt = stream->gt;
+ 
+-	if (eu_stall_data_buf_poll(stream)) {
+-		stream->pollin = true;
++	if (eu_stall_data_buf_poll(stream))
+ 		wake_up(&stream->poll_wq);
+-	}
+-	queue_delayed_work(gt->eu_stall->buf_ptr_poll_wq,
+-			   &stream->buf_poll_work,
+-			   msecs_to_jiffies(POLL_PERIOD_MS));
++
++	if (!stream->reset_detected)
++		queue_delayed_work(gt->eu_stall->buf_ptr_poll_wq,
++				   &stream->buf_poll_work,
++				   msecs_to_jiffies(POLL_PERIOD_MS));
+ }
+ 
+ static int xe_eu_stall_stream_init(struct xe_eu_stall_data_stream *stream,
+-- 
+2.43.0
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8859 -> IGT_8860
-  * Linux: xe-4905-4c59525db84aca677fd9f052e662912ad9d88448 -> xe-pw-164739v3
-
-  IGT_8859: 8d537f073bd4d30da991ab868bee2310ca664401 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8860: db5eb72e9ca0c8f7e39b9bfd88da1b28a85c9f8f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4905-4c59525db84aca677fd9f052e662912ad9d88448: 4c59525db84aca677fd9f052e662912ad9d88448
-  xe-pw-164739v3: 164739v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164739v3/index.html
-
---===============2825115888689889233==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>: drm/i915/display: Use ceiling division for NV12 UV surface offset calculation (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164739/">https://patchwork.freedesktop.org/series/164739/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164739v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164739v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4905-4c59525db84aca677fd9f052e662912ad9d88448_BAT -&gt; xe-pw-164739v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8859 -&gt; IGT_8860</li>
-<li>Linux: xe-4905-4c59525db84aca677fd9f052e662912ad9d88448 -&gt; xe-pw-164739v3</li>
-</ul>
-<p>IGT_8859: 8d537f073bd4d30da991ab868bee2310ca664401 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8860: db5eb72e9ca0c8f7e39b9bfd88da1b28a85c9f8f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4905-4c59525db84aca677fd9f052e662912ad9d88448: 4c59525db84aca677fd9f052e662912ad9d88448<br />
-  xe-pw-164739v3: 164739v3</p>
-
-</body>
-</html>
-
---===============2825115888689889233==--
