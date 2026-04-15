@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E15CAF9D0DE
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Apr 2026 23:33:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E11C3F9D0F6
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Apr 2026 00:06:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79D9510E084;
-	Tue, 14 Apr 2026 23:33:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CBDC10E091;
+	Wed, 15 Apr 2026 00:06:50 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB2BD10E04E;
- Tue, 14 Apr 2026 23:33:08 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5567569178421100716=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB89D10E091;
+ Wed, 15 Apr 2026 00:06:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_change_?=
- =?utf-8?q?pipe_allocation_order_for_discrete_platforms_=28rev6=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_kernel-doc_fix_for_header?=
+ =?utf-8?q?s_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
+To: "Shuicheng Lin" <shuicheng.lin@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 14 Apr 2026 23:33:08 -0000
-Message-ID: <177620958868.462768.8090121031986911697@a3b018990fe9>
+Date: Wed, 15 Apr 2026 00:06:49 -0000
+Message-ID: <177621160987.462768.4123894600825802539@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260413081609.969342-1-jani.nikula@intel.com>
-In-Reply-To: <20260413081609.969342-1-jani.nikula@intel.com>
+References: <20260414225457.3687449-1-shuicheng.lin@intel.com>
+In-Reply-To: <20260414225457.3687449-1-shuicheng.lin@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,124 +40,82 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5567569178421100716==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/display: change pipe allocation order for discrete platforms (rev6)
-URL   : https://patchwork.freedesktop.org/series/157782/
-State : success
+Series: kernel-doc fix for headers (rev3)
+URL   : https://patchwork.freedesktop.org/series/163307/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a_BAT -> xe-pw-157782v6_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 2e9067b85afeb35a72cec212a7399962f8fc47a9
+Author: Shuicheng Lin <shuicheng.lin@intel.com>
+Date:   Tue Apr 14 22:54:33 2026 +0000
 
-Summary
--------
+    drm/xe: Fix type and parameter name mismatches in kernel-doc references
+    
+    Fix kernel-doc references that point to wrong type or parameter names:
+    
+    - xe_guc_capture_types.h: register_data_type ->
+      capture_register_data_type to match actual enum name
+    - xe_oa_types.h: enum @drm_xe_oa_format_type ->
+      enum drm_xe_oa_format_type (spurious '@' before type name)
+    - xe_pt_walk.h: @sizes -> @shifts to match actual struct member,
+      @start -> @addr to match actual parameter name,
+      page.table. -> page table. (typo)
+    
+    Assisted-by: GitHub Copilot:claude-sonnet-4.6
+    Reviewed-by: Brian Nguyen <brian3.nguyen@intel.com>
+    Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
++ /mt/dim checkpatch 19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a drm-intel
+403253736723 drm/xe: Fix stale and mismatched kernel-doc member tags in header files
+-:32: WARNING:BAD_SIGN_OFF: Non-standard signature: Assisted-by:
+#32: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
 
-  **SUCCESS**
+-:32: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'GitHub Copilot:claude-sonnet-4.6'
+#32: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
 
-  No regressions found.
+total: 1 errors, 1 warnings, 0 checks, 134 lines checked
+9a58a3ca1d9a drm/xe: Add missing '@' prefix to kernel-doc member tags
+-:15: WARNING:BAD_SIGN_OFF: Non-standard signature: Assisted-by:
+#15: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
 
-  
+-:15: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'GitHub Copilot:claude-sonnet-4.6'
+#15: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
 
-Participating hosts (13 -> 13)
-------------------------------
+total: 1 errors, 1 warnings, 0 checks, 27 lines checked
+a2bf062fae1a drm/xe: Fix kernel-doc comment syntax issues in header files
+-:19: WARNING:BAD_SIGN_OFF: Non-standard signature: Assisted-by:
+#19: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
 
-  No changes in participating hosts
+-:19: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'GitHub Copilot:claude-sonnet-4.6'
+#19: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
 
-Known issues
-------------
+total: 1 errors, 1 warnings, 0 checks, 42 lines checked
+2e9067b85afe drm/xe: Fix type and parameter name mismatches in kernel-doc references
+-:17: WARNING:BAD_SIGN_OFF: Non-standard signature: Assisted-by:
+#17: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
 
-  Here are the changes found in xe-pw-157782v6_BAT that come from known issues:
+-:17: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'GitHub Copilot:claude-sonnet-4.6'
+#17: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
 
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_force_connector_basic@prune-stale-modes:
-    - bat-ptl-2:          [SKIP][1] -> [PASS][2] +3 other tests pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a/bat-ptl-2/igt@kms_force_connector_basic@prune-stale-modes.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157782v6/bat-ptl-2/igt@kms_force_connector_basic@prune-stale-modes.html
-
-  
-
-
-Build changes
--------------
-
-  * IGT: IGT_8857 -> IGT_8858
-  * Linux: xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a -> xe-pw-157782v6
-
-  IGT_8857: 7ed262f8dd72a12c8fbbb3d6a18c0753a2a2d57a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8858: f2486f2ab02d1163d864529f54a92066a3b9fe4b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a: 19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a
-  xe-pw-157782v6: 157782v6
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157782v6/index.html
-
---===============5567569178421100716==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: change pipe allocation order for discrete platforms (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157782/">https://patchwork.freedesktop.org/series/157782/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157782v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157782v6/index.html</a></td></tr>
-
-</table>
+total: 1 errors, 1 warnings, 0 checks, 40 lines checked
 
 
-    <h1>CI Bug Log - changes from xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a_BAT -&gt; xe-pw-157782v6_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-157782v6_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_force_connector_basic@prune-stale-modes:<ul>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a/bat-ptl-2/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157782v6/bat-ptl-2/igt@kms_force_connector_basic@prune-stale-modes.html">PASS</a> +3 other tests pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8857 -&gt; IGT_8858</li>
-<li>Linux: xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a -&gt; xe-pw-157782v6</li>
-</ul>
-<p>IGT_8857: 7ed262f8dd72a12c8fbbb3d6a18c0753a2a2d57a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8858: f2486f2ab02d1163d864529f54a92066a3b9fe4b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a: 19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a<br />
-  xe-pw-157782v6: 157782v6</p>
-
-</body>
-</html>
-
---===============5567569178421100716==--
