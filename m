@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A025AF433D0
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Apr 2026 23:47:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E683F433D2
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Apr 2026 23:47:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 613B210E7CD;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E27A410E7BE;
 	Wed, 15 Apr 2026 23:47:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hau4rMk1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="krwLAdA9";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5973F10E7B9;
- Wed, 15 Apr 2026 23:47:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3DC810E7BE;
+ Wed, 15 Apr 2026 23:47:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776296824; x=1807832824;
+ t=1776296828; x=1807832828;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=cjR7kVsZq03LcaIxJb44jZNaM49ZjvnQc61QE+TfxhU=;
- b=hau4rMk1gJ4I1Xr4hp8rOwpaeVwoUzryFUNDp5YlxH0oxo10GBzrwCUT
- LoHL88z4ZwPWOZy9l60ialMifwXjNy1OgjwmN9qnP5VADcqZzOvdWlkGQ
- 1sB6Zl7vjaXApcH0gIqH6FYYFBQKLKTTXXgF3wbQqu0zuOeSBq8QPQ6lx
- cHd8IuTw7CuFqxkq1We8OiQjFQUDjsmBVIG/z42qR1SLSswV1TsiC0zV5
- xAnvVEA5ldIV/utj0PoBsGkyUmg8KG3SyPLetZysU0dxzHRiWo8xfZyLg
- +FPb7VrX/z6+t3SFCqWHfHJwvwNJ4BhQcHIDJRHanPOvGRVPB0wOJIAsN g==;
-X-CSE-ConnectionGUID: DS8CMQ40QkSFXoKPvXKkpw==
-X-CSE-MsgGUID: Os5yA9/qR/Kc14Xu4JgkoQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="77403493"
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="77403493"
+ bh=2Rt/oa7GqkJxu7zK1HUfdZc2FY/J4aWp1X8e8WiMI84=;
+ b=krwLAdA99YpRbjh32fkqXwKuAhrBDJqHGV4fkrJWT/tRe+xMMPdBpSc4
+ LrEwG6zo8HHe602iYK4jOqgELtMvJX368G4Lu9WZTamU1ddPkNFyClQIK
+ HIBQy/3wUo9k2SIr7CSy5yhSrfnyPQAfY3OQxd9Wj6+pIJWQfHx8KxhuV
+ 3rQB66f0oPvIgR5AH8MS7ZuoTQo/ilK1Xy6IwDSa7Upf2xzhqtEEyUSBr
+ DDwZUuLGNzu4o5sLiJd6mN9JkmNe50Qr4pRkzyp7bNOFQZ/PWD/WviZyN
+ 8MN/mWji+KzYAoUOZyzL/dPiGBLd+y+S3UAvjp1O9UWughDfAwjH4v9QS Q==;
+X-CSE-ConnectionGUID: 5KYy2yEIQtuBWT4obDH0iQ==
+X-CSE-MsgGUID: 4tDDszb8T+OdmM0PfWERyg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="77403497"
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="77403497"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2026 16:47:04 -0700
-X-CSE-ConnectionGUID: AN51VWoBRt66ZNo8vPnZFA==
-X-CSE-MsgGUID: h32ou4pTQKC9Y8DM7VR91A==
+ 15 Apr 2026 16:47:08 -0700
+X-CSE-ConnectionGUID: 95jBcqgmSEqiiR7zncarAA==
+X-CSE-MsgGUID: 5BHqF7xBRFKrPF3Fctbbxw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="235511154"
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="235511173"
 Received: from administrator-system-product-name.igk.intel.com (HELO
  dev-417.igk.intel.com) ([10.91.214.181])
- by fmviesa005.fm.intel.com with ESMTP; 15 Apr 2026 16:47:03 -0700
+ by fmviesa005.fm.intel.com with ESMTP; 15 Apr 2026 16:47:07 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@intel.com>,
  =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v2 08/32] drm/i915/bios: de/allocate buf_trans for each port
-Date: Thu, 16 Apr 2026 01:46:15 +0200
-Message-ID: <20260415234639.3577774-9-michal.grzelak@intel.com>
+Subject: [PATCH v2 11/32] drm/i915/bios: remove VS/PE-O warning
+Date: Thu, 16 Apr 2026 01:46:18 +0200
+Message-ID: <20260415234639.3577774-12-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260415234639.3577774-1-michal.grzelak@intel.com>
 References: <20260415234639.3577774-1-michal.grzelak@intel.com>
@@ -71,49 +71,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Allocate intel_ddi_buf_trans buffer per port if requested. Request is
-considered invalid if .use_vbt_vswing field is unset and VBT version is
-less than 218. Do not allocate buffer if not requested or request is
-invalid.
-
-Deallocate buffer for each requesting port on driver removal.
+There is not much use of warning when port asks to override default
+VS/PE since it is already logged. Remove drm_WARN() and child_device
+from print_ddi_port() since drm_WARN() was the only user of it.
 
 Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ drivers/gpu/drm/i915/display/intel_bios.c | 9 ---------
+ 1 file changed, 9 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index e0e6a8dfe2953..345bfdf33a8e9 100644
+index 266993db66c5c..4f70b7bfdf033 100644
 --- a/drivers/gpu/drm/i915/display/intel_bios.c
 +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -2659,7 +2659,15 @@ static void sanitize_hdmi_level_shift(struct intel_bios_encoder_data *devdata,
- 
- static void override_vswing_preemph(struct intel_bios_encoder_data *devdata)
+@@ -2764,7 +2764,6 @@ static bool is_port_valid(struct intel_display *display, enum port port)
+ static void print_ddi_port(const struct intel_bios_encoder_data *devdata)
  {
-+	struct intel_ddi_buf_trans *buf_trans;
-+
- 	devdata->buf_trans = NULL;
-+
-+	if (devdata->display->vbt.version < 218 || !devdata->child.use_vbt_vswing)
-+		return;
-+
-+	buf_trans = kzalloc(sizeof(*buf_trans), GFP_KERNEL);
-+	devdata->buf_trans = buf_trans;
+ 	struct intel_display *display = devdata->display;
+-	const struct child_device_config *child = &devdata->child;
+ 	bool is_dvi, is_hdmi, is_dp, is_edp, is_dsi, is_crt, supports_typec_usb, supports_tbt;
+ 	int dp_boost_level, dp_max_link_rate, hdmi_boost_level, hdmi_level_shift, max_tmds_clock;
+ 	enum port port;
+@@ -2837,14 +2836,6 @@ static void print_ddi_port(const struct intel_bios_encoder_data *devdata)
+ 		drm_dbg_kms(display->drm,
+ 			    "Port %c VBT DP max link rate: %d\n",
+ 			    port_name(port), dp_max_link_rate);
+-
+-	/*
+-	 * FIXME need to implement support for VBT
+-	 * vswing/preemph tables should this ever trigger.
+-	 */
+-	drm_WARN(display->drm, child->use_vbt_vswing,
+-		 "Port %c asks to use VBT vswing/preemph tables\n",
+-		 port_name(port));
  }
  
- static bool
-@@ -3398,6 +3406,10 @@ void intel_bios_driver_remove(struct intel_display *display)
- 				 node) {
- 		list_del(&devdata->node);
- 		kfree(devdata->dsc);
-+
-+		if (devdata->buf_trans)
-+			kfree(devdata->buf_trans);
-+
- 		kfree(devdata);
- 	}
- 
+ static void parse_ddi_port(struct intel_bios_encoder_data *devdata)
 -- 
 2.45.2
 
