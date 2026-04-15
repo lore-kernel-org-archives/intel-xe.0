@@ -4,28 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB132F9D0CE
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Apr 2026 02:10:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5313F9D0FE
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Apr 2026 02:50:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A901710E158;
-	Wed, 15 Apr 2026 02:10:25 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ABAAA10E158;
- Wed, 15 Apr 2026 02:10:24 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1198739021003788599=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C37810E158;
+	Wed, 15 Apr 2026 02:50:18 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XmOxyeHA";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D0B910E158;
+ Wed, 15 Apr 2026 02:50:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1776221418; x=1807757418;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=bFRXXVSoEzIyaWlst7nQdkzE9ezjLKU34mZ/wD8/qQw=;
+ b=XmOxyeHA45Uxme6KcjHuxkK3IHhu14N0xVPWLRJqIWhf8RiF/ttmUWTc
+ ROaaCw2YDXqUPH07i8gVXq8pD4zM64r+DahpItcWSzU5nUIx8E58moapW
+ J54wt2r973ALP3k3JP9Xz63XzBtpiauyxj+dKuUzVVEpkaS3YZO1HNKRT
+ G/PKl+vyQusdfQNEurPK9WKqAxAs8+BuxiPA1vpHPeWWJ2A1dIs2LHTRZ
+ dIasQhzTT8bMJE8QZcfx/FLv20GinoheYXk0T4MatEjnFyREpCXShOe4p
+ PVBJ9VX15qX6mMWNHwl2sLB5pbnN6VrYqNX52jC/LjtMJYsrssiolDMne A==;
+X-CSE-ConnectionGUID: 9xE68jlwSp6SDU3+qcsQeQ==
+X-CSE-MsgGUID: RxmXKTQdRcSHWiw537stZQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11759"; a="88269903"
+X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="88269903"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2026 19:50:17 -0700
+X-CSE-ConnectionGUID: KV2XhdFHRyGRUz9dI+DNYA==
+X-CSE-MsgGUID: slJ9aliVQEyHe3IOWeSDyg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="235228210"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by orviesa005.jf.intel.com with ESMTP; 14 Apr 2026 19:50:16 -0700
+From: Arun R Murthy <arun.r.murthy@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: suraj.kandpal@intel.com,
+	Arun R Murthy <arun.r.murthy@intel.com>
+Subject: [PATCH] drm/i915/lt_phy: Update the Tx Swing for DP 1.4
+Date: Wed, 15 Apr 2026 08:19:02 +0530
+Message-Id: <20260415024902.3188784-1-arun.r.murthy@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_=3A_drm/i915/display=3A_Use?=
- =?utf-8?q?_ceiling_division_for_NV12_UV_surface_offset_calculation_=28rev2?=
- =?utf-8?q?=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Srinivas, Vidya" <vidya.srinivas@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 15 Apr 2026 02:10:24 -0000
-Message-ID: <177621902468.462761.5336390505479853246@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260411171521.162189-1-vidya.srinivas@intel.com>
-In-Reply-To: <20260411171521.162189-1-vidya.srinivas@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,128 +62,33 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1198739021003788599==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Update the Tx Swing Level and the Tx pre/post-cursor co-effecients.
 
-== Series Details ==
+BSpec: 74493
+HSD: 14019673751
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Series: : drm/i915/display: Use ceiling division for NV12 UV surface offset calculation (rev2)
-URL   : https://patchwork.freedesktop.org/series/164739/
-State : success
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+index 395dba8c9e4d..980ab19868b3 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+@@ -1123,8 +1123,8 @@ static const union intel_ddi_buf_trans_entry _xe3plpd_lt_trans_dp14[] = {
+ 	{ .lt = { 1, 2, 0, 28, 7  } },
+ 	{ .lt = { 0, 3, 0, 35, 13 } },
+ 	{ .lt = { 1, 1, 0, 27, 0  } },
+-	{ .lt = { 1, 2, 0, 31, 4  } },
+-	{ .lt = { 0, 3, 0, 39, 9  } },
++	{ .lt = { 1, 2, 0, 31, 5  } },
++	{ .lt = { 0, 3, 0, 37, 11 } },
+ 	{ .lt = { 1, 2, 0, 35, 0  } },
+ 	{ .lt = { 0, 3, 0, 41, 7  } },
+ 	{ .lt = { 0, 3, 0, 48, 0  } },
+-- 
+2.25.1
 
-== Summary ==
-
-CI Bug Log - changes from xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a_BAT -> xe-pw-164739v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-164739v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_force_connector_basic@prune-stale-modes:
-    - bat-ptl-2:          [SKIP][1] -> [PASS][2] +3 other tests pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a/bat-ptl-2/igt@kms_force_connector_basic@prune-stale-modes.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164739v2/bat-ptl-2/igt@kms_force_connector_basic@prune-stale-modes.html
-
-  
-
-
-Build changes
--------------
-
-  * IGT: IGT_8857 -> IGT_8858
-  * Linux: xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a -> xe-pw-164739v2
-
-  IGT_8857: 7ed262f8dd72a12c8fbbb3d6a18c0753a2a2d57a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8858: f2486f2ab02d1163d864529f54a92066a3b9fe4b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a: 19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a
-  xe-pw-164739v2: 164739v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164739v2/index.html
-
---===============1198739021003788599==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>: drm/i915/display: Use ceiling division for NV12 UV surface offset calculation (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164739/">https://patchwork.freedesktop.org/series/164739/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164739v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164739v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a_BAT -&gt; xe-pw-164739v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-164739v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_force_connector_basic@prune-stale-modes:<ul>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a/bat-ptl-2/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164739v2/bat-ptl-2/igt@kms_force_connector_basic@prune-stale-modes.html">PASS</a> +3 other tests pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8857 -&gt; IGT_8858</li>
-<li>Linux: xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a -&gt; xe-pw-164739v2</li>
-</ul>
-<p>IGT_8857: 7ed262f8dd72a12c8fbbb3d6a18c0753a2a2d57a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8858: f2486f2ab02d1163d864529f54a92066a3b9fe4b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a: 19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a<br />
-  xe-pw-164739v2: 164739v2</p>
-
-</body>
-</html>
-
---===============1198739021003788599==--
