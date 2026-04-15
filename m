@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F11FCFA0C32
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Apr 2026 06:05:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30B7FFA0C30
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Apr 2026 06:19:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1C2510E67F;
-	Wed, 15 Apr 2026 06:05:32 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D10410E67F;
- Wed, 15 Apr 2026 06:05:31 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0561155537504654421=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF8E110E0F1;
+	Wed, 15 Apr 2026 06:19:55 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ah2vJXCB";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94FC810E0F1
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Apr 2026 06:19:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1776233995; x=1807769995;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=nRRDuhp9fGhe3KxDvIqOlbDeRxBcIwcFCSM/Fnul3MU=;
+ b=ah2vJXCBg0GPzCCL+O3j8vEtpPayFGog3N9slOmLMUFepclnxQJENVDA
+ JNR5Z5jhJAokMdJvBa9SxVsrbBi3g8l1PFK6Is61Y63SNa8GVozOkmmZi
+ XKEhkEJ2zTFyLRXKThSQimvRzcdRcIiu90gbxse6EKOoNk+4tZX2hz/YT
+ lTfLI6VMpM6y7GPG+S7O4b0/r/Rfbd5WmoAEy4kBuCifpl3tgKNyADfkM
+ aY4Z2FzRJIK/LjZM5R0g3x7praIF/3ymsRgbDH9Tcxd/rl0OEfWhtm8+9
+ nF2rS36znMUTTd40o52JVS3nc37F5ZiCuPU7HEfGAm5Rexj9UeqXVA548 A==;
+X-CSE-ConnectionGUID: lY06dbcGRkuuo3Ez6cRKRg==
+X-CSE-MsgGUID: urP6t/F/TMSCuqTKc+9T1w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11759"; a="77080164"
+X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="77080164"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2026 23:19:54 -0700
+X-CSE-ConnectionGUID: 2gTqIwOaQIicDzVgvdLAZg==
+X-CSE-MsgGUID: Iw19URghS3OTpvPdY4k45w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="227675214"
+Received: from dut6094bmgfrd.fm.intel.com ([10.80.55.31])
+ by fmviesa008.fm.intel.com with ESMTP; 14 Apr 2026 23:19:54 -0700
+From: Jia Yao <jia.yao@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Jia Yao <jia.yao@intel.com>, stable@vger.kernel.org,
+ Shuicheng Lin <shuicheng.lin@intel.com>,
+ Mathew Alwin <alwin.mathew@intel.com>,
+ Michal Mrozek <michal.mrozek@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>
+Subject: [PATCH v8 0/2] drm/xe: Reject unsafe PAT indices for CPU cached memory
+Date: Wed, 15 Apr 2026 06:19:49 +0000
+Message-ID: <20260415061951.427699-1-jia.yao@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260129000147.339361-1-jia.yao@intel.com>
+References: <20260129000147.339361-1-jia.yao@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/lt=5Fphy=3A_Update?=
- =?utf-8?q?_the_Tx_Swing_for_DP_1=2E4_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arun R Murthy" <arun.r.murthy@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 15 Apr 2026 06:05:31 -0000
-Message-ID: <177623313117.463369.633397722588463903@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260415043952.3189598-1-arun.r.murthy@intel.com>
-In-Reply-To: <20260415043952.3189598-1-arun.r.murthy@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,143 +68,48 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0561155537504654421==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This series strengthens PAT index validation to reject unsafe
+configurations for CPU cached memory, preventing cases where the GPU
+may bypass CPU caches and observe stale or sensitive data.
 
-== Series Details ==
+Patch 1 enforces PAT validation for the madvise ioctl path, ensuring
+XE_COH_NONE cannot be used on CPU cached buffers, including CPU address
+mirror and userptr-backed memory.
 
-Series: drm/i915/lt_phy: Update the Tx Swing for DP 1.4 (rev2)
-URL   : https://patchwork.freedesktop.org/series/164893/
-State : success
+Patch 2 applies the same validation to vm_bind, treating
+DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR the same as MAP_USERPTR with respect
+to permissible PAT indices.
 
-== Summary ==
+Together, these patches close a security gap affecting CPU cached
+memory access when incoherent PAT values are used.
 
-CI Bug Log - changes from xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a_BAT -> xe-pw-164893v2_BAT
-====================================================
+Changes since v7:
+- Rebased onto latest drm/xe tree, no functional changes.
 
-Summary
--------
+Changes since v6:
+- Corrected Fixes tags.
 
-  **SUCCESS**
+Fixes: ada7486c5668 ("drm/xe: Implement madvise ioctl for xe")
+Fixes: b43e864af0d4 ("drm/xe/uapi: Add DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR")
+Cc: stable@vger.kernel.org # v6.18
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+Cc: Mathew Alwin <alwin.mathew@intel.com>
+Cc: Michal Mrozek <michal.mrozek@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
 
-  No regressions found.
+Jia Yao (2):
+  drm/xe/uapi: Reject coh_none PAT index for CPU cached memory in
+    madvise
+  drm/xe: Reject coh_none PAT index for CPU_ADDR_MIRROR
 
-  
+ drivers/gpu/drm/xe/xe_vm.c         |  2 +-
+ drivers/gpu/drm/xe/xe_vm_madvise.c | 45 ++++++++++++++++++++++++++++++
+ 2 files changed, 46 insertions(+), 1 deletion(-)
 
-Participating hosts (13 -> 13)
-------------------------------
+-- 
+2.43.0
 
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-164893v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_force_connector_basic@prune-stale-modes:
-    - bat-ptl-2:          [SKIP][1] ([Intel XE#7742]) -> [PASS][2] +2 other tests pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a/bat-ptl-2/igt@kms_force_connector_basic@prune-stale-modes.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164893v2/bat-ptl-2/igt@kms_force_connector_basic@prune-stale-modes.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - bat-ptl-2:          [SKIP][3] ([Intel XE#7743]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a/bat-ptl-2/igt@kms_hdmi_inject@inject-audio.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164893v2/bat-ptl-2/igt@kms_hdmi_inject@inject-audio.html
-
-  
-  [Intel XE#7742]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7742
-  [Intel XE#7743]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7743
-
-
-Build changes
--------------
-
-  * IGT: IGT_8857 -> IGT_8858
-  * Linux: xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a -> xe-pw-164893v2
-
-  IGT_8857: 7ed262f8dd72a12c8fbbb3d6a18c0753a2a2d57a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8858: f2486f2ab02d1163d864529f54a92066a3b9fe4b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a: 19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a
-  xe-pw-164893v2: 164893v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164893v2/index.html
-
---===============0561155537504654421==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/lt_phy: Update the Tx Swing for DP 1.4 (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164893/">https://patchwork.freedesktop.org/series/164893/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164893v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164893v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a_BAT -&gt; xe-pw-164893v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-164893v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
-<ul>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a/bat-ptl-2/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7742">Intel XE#7742</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164893v2/bat-ptl-2/igt@kms_force_connector_basic@prune-stale-modes.html">PASS</a> +2 other tests pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a/bat-ptl-2/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7743">Intel XE#7743</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164893v2/bat-ptl-2/igt@kms_hdmi_inject@inject-audio.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8857 -&gt; IGT_8858</li>
-<li>Linux: xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a -&gt; xe-pw-164893v2</li>
-</ul>
-<p>IGT_8857: 7ed262f8dd72a12c8fbbb3d6a18c0753a2a2d57a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8858: f2486f2ab02d1163d864529f54a92066a3b9fe4b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a: 19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a<br />
-  xe-pw-164893v2: 164893v2</p>
-
-</body>
-</html>
-
---===============0561155537504654421==--
