@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6893F433CC
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Apr 2026 23:47:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FF72F433D0
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Apr 2026 23:47:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 994F610E7F4;
-	Wed, 15 Apr 2026 23:47:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7E1310E7FD;
+	Wed, 15 Apr 2026 23:47:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="baOHcBDA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Eyv72/w8";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 663F010E7F1;
- Wed, 15 Apr 2026 23:47:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A3FE710E7E9;
+ Wed, 15 Apr 2026 23:47:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776296855; x=1807832855;
+ t=1776296848; x=1807832848;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=vLDgb2E7ikPYt5infxgj8kqhpxMTEoZxI8rhLHS5+VU=;
- b=baOHcBDAmTrRj5xZCtRmMXasRkR+dslYUAxyeEdH1DlB9345aJCl+EfK
- EjtGt0lrL9mhz/Hg/aim7OmxUUmt+emuK4Od9j6GE9c7mG4MEo+U2W47B
- wJpybI+k++DTyqnNVPx0LGwIzdruCJXh8P+V9pSPbsXvbBwpTOxzx6z5g
- XJ5OsdUPVpN86DpICbzClkq0clrP3oQ2q+DnxApDINFiGAUE53eTWqymQ
- Qn3Rl90gJ7FJlQzY9M/BZDj3neejAS04LjW3A2c2k3Q8cMkUU1mtS7mC2
- D9x7bchAmIQidYA195eckNlB7OPgqFa4XrYgNYVU0pnEK2+GYWScPe8ez A==;
-X-CSE-ConnectionGUID: E8SZxP56ReK/fQb6My/Fqg==
-X-CSE-MsgGUID: SkZE8ArNRD+jT3hjSBjYnw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="77403535"
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="77403535"
+ bh=tncsnlebxFYUno5ETv+yMb/a4F9nU0RxUhzUqv/cMho=;
+ b=Eyv72/w8EcoL9Ar9f75j7FfwQZVO5WWftpTeVEsOHP3g3EquHR+J7pCV
+ jAjEoqKYvL0NrdsZHTMpLm0WkpKtn0Qfxz5uCZrDkW8c8drqmOhgtJKLe
+ DE1HjDUs0QuNHlLx4/C3H6qYIjXDQiVu7XqUp79nyfwqZq22+MF68O2Wo
+ IvUNlwxj00w7X0sx5O09qCck7Pg1vkvN/GCVr4IflfxAX6gL4HDJ0LMVg
+ 0iHKfv50vwdbil/E+21i/2jNjKtU05oiakgyRpjvztoMfFqRL03xtd4PS
+ o6HrNGLr1GSWoi7SYZC1B4CFze6rpy8JT9Y4bwd59HGqACctJ+JZ5/46h g==;
+X-CSE-ConnectionGUID: e56qynm1TdSDSQuINrwnmA==
+X-CSE-MsgGUID: ptYbK9t/QRm6vTO5FEeH3A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="77403523"
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="77403523"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2026 16:47:35 -0700
-X-CSE-ConnectionGUID: VGUnrsM9RGaHsfznMr52SQ==
-X-CSE-MsgGUID: 5cuFrgC+QbW+YS6wxHCYsQ==
+ 15 Apr 2026 16:47:27 -0700
+X-CSE-ConnectionGUID: O6qAotcyRzSrOOVLzpa+SQ==
+X-CSE-MsgGUID: OX5P41GTRp2R0zXi3JagvQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="235511264"
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="235511241"
 Received: from administrator-system-product-name.igk.intel.com (HELO
  dev-417.igk.intel.com) ([10.91.214.181])
- by fmviesa005.fm.intel.com with ESMTP; 15 Apr 2026 16:47:34 -0700
+ by fmviesa005.fm.intel.com with ESMTP; 15 Apr 2026 16:47:26 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@intel.com>,
  =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v2 32/32] drm/i915/buf_trans: enumerate JSL's VS/PE-O indices
-Date: Thu, 16 Apr 2026 01:46:39 +0200
-Message-ID: <20260415234639.3577774-33-michal.grzelak@intel.com>
+Subject: [PATCH v2 26/32] drm/i915/bios: parse EHL's VS/PE-O tables
+Date: Thu, 16 Apr 2026 01:46:33 +0200
+Message-ID: <20260415234639.3577774-27-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260415234639.3577774-1-michal.grzelak@intel.com>
 References: <20260415234639.3577774-1-michal.grzelak@intel.com>
@@ -71,88 +71,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Encapsulate JSL's VS/PE-O's indices in enum jsl_vspeo_index.
+EHL's VS/PE-O tables have more columns than icl_ddi_buf_trans contains
+fields. This prevents casting block->tables to point at
+icl_ddi_buf_trans and parsing it trivially.
 
-Use index of -1 as an indication of error case. Refer to it as JSL_ERR.
+Parse each entry from every table into kzalloc'd buffers' matrix. Read
+number of tables and number of columns from the block. Assume that each
+table contains 10 rows.
 
-1st VS/PE-O's table is used for external DP. Use it also if eDP does not
-use low vswing. Use it as well when eDP uses low vswing but supports
-HBR3. Refer to it as JSL_COMBO_DP_DEF.
+Inflate icl_ddi_buf_trans since each VBT-based value is stored on u32.
+Reducing the size will be done in separate commit.
 
-2nd table is used for eDP using low vswing and supporting HBR2. Refer to
-it as JSL_COMBO_EDP_HBR2.
-
-3rd table is used for eDP using low vswing and supporting modes lower
-than HBR2. Refer to it as JSL_COMBO_EDP_HBR.
-
-Indices for other tables have not yet been observed to be used as of
-now.
+Add EHL to workaround for availability of VS/PE-O parsing.
 
 Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c | 12 ++++++------
- drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h |  8 ++++++++
- 2 files changed, 14 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bios.c     | 36 +++++++++++++++++++
+ .../drm/i915/display/intel_ddi_buf_trans.h    | 10 +++---
+ 2 files changed, 41 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-index 7d3a8d38f86b0..171ee96b80282 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-@@ -1786,29 +1786,29 @@ xe3plpd_get_lt_buf_trans(struct intel_encoder *encoder,
- 		return intel_get_buf_trans(&xe3plpd_lt_trans_dp14, n_entries);
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index f9cf21833b167..e3ff273f4e944 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -2187,6 +2187,32 @@ parse_compression_parameters(struct intel_display *display)
+ 	}
  }
  
--static int
-+static enum jsl_vspeo_index
- jsl_compute_index(struct intel_encoder *encoder,
- 		  const struct intel_crtc_state *crtc_state)
- {
- 	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP)) {
- 		if (use_edp_low_vswing(encoder)) {
- 			if (crtc_state->port_clock > 540000)
--				return 0;
-+				return JSL_COMBO_DP_DEF;
- 			else if (crtc_state->port_clock > 270000)
--				return 2;
-+				return JSL_COMBO_EDP_HBR2;
- 			else
--				return 1;
-+				return JSL_COMBO_EDP_HBR;
- 		}
++static void
++parse_vswing_preemph_icl(union intel_ddi_buf_trans_entry **bufs_mtrx,
++			 const struct bdb_vswing_preemph *block)
++{
++	union intel_ddi_buf_trans_entry *entry;
++	const u32 *tables = block->tables;
++	u8 num_rows = 10;
++	size_t offset = 0;
++	const u32 *vals;
++
++	for (int idx = 0; idx < block->num_tables; idx++) {
++		for (int row = 0; row < num_rows; row++) {
++			vals = &tables[offset];
++
++			entry = &bufs_mtrx[idx][row];
++			entry->icl.dw2_swing_sel = vals[0];
++			entry->icl.dw7_n_scalar = vals[1];
++			entry->icl.dw4_cursor_coeff = vals[2];
++			entry->icl.dw4_post_cursor_2 = vals[3];
++			entry->icl.dw4_post_cursor_1 = vals[4];
++
++			offset += block->num_columns;
++		}
++	}
++}
++
+ static void
+ parse_vswing_preemph_snps(union intel_ddi_buf_trans_entry **bufs_mtrx,
+ 			  const struct bdb_vswing_preemph *block)
+@@ -2262,6 +2288,12 @@ parse_vswing_preemph_override(struct intel_display *display)
+ 		parse_vswing_preemph_lt(bufs_mtrx, block);
+ 	} else if (DISPLAY_VER(display) >= 14) {
+ 		parse_vswing_preemph_snps(bufs_mtrx, block);
++	} else if (DISPLAY_VER(display) == 11) {
++		if (display->platform.elkhartlake) {
++			parse_vswing_preemph_icl(bufs_mtrx, block);
++		} else {
++			drm_dbg_kms(display->drm, "VS/PE-O parsing not yet supported\n");
++		}
+ 	} else {
+ 		drm_dbg_kms(display->drm, "VS/PE-O parsing not yet supported\n");
+ 	}
+@@ -2726,6 +2758,10 @@ static void override_vswing_preemph(struct intel_bios_encoder_data *devdata)
+ 		parseable = true;
+ 	} else if (DISPLAY_VER(display) >= 14) {
+ 		parseable = true;
++	} else if (DISPLAY_VER(display) == 11) {
++		if (display->platform.elkhartlake) {
++			parseable = true;
++		}
  	}
  
- 	if (intel_crtc_has_dp_encoder(crtc_state))
--		return 0;
-+		return JSL_COMBO_DP_DEF;
- 
- 	drm_WARN(to_intel_display(crtc_state)->drm, 1,
- 		 "non-DP (%d) encoder asks to compute VS/PE-O index\n",
- 		 crtc_state->output_types);
- 
--	return -1;
-+	return JSL_ERR;
- }
- 
- static enum ehl_vspeo_index
+ 	if (!parseable)
 diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
-index aa2a47445af76..f2706ab53f6de 100644
+index a8c998fa339e6..bfb6de45a94e2 100644
 --- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
 +++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
-@@ -115,6 +115,14 @@ enum ehl_vspeo_index {
- 	EHL_COMBO_EDP_HBR3
+@@ -25,11 +25,11 @@ struct bxt_ddi_buf_trans {
  };
  
-+enum jsl_vspeo_index {
-+	JSL_ERR = -1,
-+
-+	JSL_COMBO_DP_DEF = 0,
-+	JSL_COMBO_EDP_HBR,
-+	JSL_COMBO_EDP_HBR2
-+};
-+
- bool is_hobl_buf_trans(const struct intel_ddi_buf_trans *table);
+ struct icl_ddi_buf_trans {
+-	u8 dw2_swing_sel;
+-	u8 dw7_n_scalar;
+-	u8 dw4_cursor_coeff;
+-	u8 dw4_post_cursor_2;
+-	u8 dw4_post_cursor_1;
++	u32 dw2_swing_sel;
++	u32 dw7_n_scalar;
++	u32 dw4_cursor_coeff;
++	u32 dw4_post_cursor_2;
++	u32 dw4_post_cursor_1;
+ };
  
- void intel_ddi_buf_trans_init(struct intel_encoder *encoder);
+ struct icl_mg_phy_ddi_buf_trans {
 -- 
 2.45.2
 
