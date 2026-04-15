@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6AB05FA0C2B
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Apr 2026 05:20:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A20BCFA0C2C
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Apr 2026 05:40:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C19B10E05A;
-	Wed, 15 Apr 2026 05:20:42 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0728310E05A;
- Wed, 15 Apr 2026 05:20:41 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0224957921763204376=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B77E10E0DA;
+	Wed, 15 Apr 2026 05:40:26 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k/Ihi+OP";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9370210E05A;
+ Wed, 15 Apr 2026 05:40:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1776231624; x=1807767624;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=+2W6lPWhHIYu48Bo+L4CqsG6/1wXuPKqFNaXw3LviqM=;
+ b=k/Ihi+OP4/kDbtNXs188hpVnZJxR8bhzHs0fl5p38x++HYJWmQMyafIv
+ ioPRNKLUMVSbWI4wnVZHpqZCIrCBB11qYzWZoZO3OR/h5roiqobFOo+bZ
+ vbn/jJz64VPr3g55FsIYPOb+y/bSP0/nBvby16wN26F70lNmtMLZYC1da
+ HluHBbL21JXClSsHD5/cVN7yk3DWhxIS0UCYh6jdhCDw3gn3S4OSacpZD
+ 2OQH7VtBCSGdcl5lVrbX0PeTJYBLdDbSoR78QcjzJmZw27/7OastqF19R
+ n/SwdlA4vSQE9HEiX+5ZOHrQmk+CcGqdX0Cd/ETc5I5czr9gHEdOq5aq1 Q==;
+X-CSE-ConnectionGUID: 75xJf8sOTp+NccGOxTaABg==
+X-CSE-MsgGUID: /1WX3rYlQ4WuHdbf0FUeLg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11759"; a="102657057"
+X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="102657057"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2026 22:40:24 -0700
+X-CSE-ConnectionGUID: AgFH5CGTRIWBpj6cnAFzYA==
+X-CSE-MsgGUID: zIE4Lw7JT/+BbFiMP7qRpw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="227129766"
+Received: from abityuts-desk.ger.corp.intel.com (HELO
+ jhogande-mobl3.intel.com) ([10.245.244.37])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2026 22:40:23 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH 0/4] PSR2 SDP on Prior Scanline workarounds
+Date: Wed, 15 Apr 2026 08:39:56 +0300
+Message-ID: <20260415054000.400070-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/oa=3A_OA_register_wh?=
- =?utf-8?q?itelist_fixes?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ashutosh Dixit" <ashutosh.dixit@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 15 Apr 2026 05:20:41 -0000
-Message-ID: <177623044101.463169.9277801840480734951@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260415033532.789954-1-ashutosh.dixit@intel.com>
-In-Reply-To: <20260415033532.789954-1-ashutosh.dixit@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,142 +65,39 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0224957921763204376==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This patch set implements two workarounds:
 
-== Series Details ==
+1. There are problem in PSR2 SDP on Prior Scanline implementation in
+   several panels due to eDP1.4b spec ambiguity. Two tackle this there is
+   Intel specific DPCD register for panel to indicate implementation
+   compatibility with Intel source implementation. eDP1.5 doesn't have
+   this problem.
 
-Series: drm/xe/oa: OA register whitelist fixes
-URL   : https://patchwork.freedesktop.org/series/164897/
-State : success
+2. In NVL there is an HW optimization done. When there is an SU triggered in
+   Capture state, Link will be kept ON post Capture CRC SDP. Before valid SU
+   pixels Intel source will transmit dummy pixels. Some TCONS are improperly
+   considering these dummy pixels as a valid pixel data. Prior NVL link was
+   was turned of even if there was SU triggered in Capture state and no dummy
+   pixels were transmitted. These dummy pixels are problem only if SDP on
+   prior scanline is used and Early Transport is not in use. The workaround is
+   to start SU area always at scanline 0.
 
-== Summary ==
+Jouni Högander (4):
+  drm/i915/psr: Add defininitions for INTEL_WA_REGISTER_CAPS DPCD
+    register
+  drm/i915/psr: Read Intel DPCD workaround register
+  drm/i915/psr: Apply Intel DPCD workaround when SDP on prior line used
+  drm/i915/psr: Apply SDP on prior scanline workaround for NVL
 
-CI Bug Log - changes from xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a_BAT -> xe-pw-164897v1_BAT
-====================================================
+ .../drm/i915/display/intel_display_types.h    |  1 +
+ drivers/gpu/drm/i915/display/intel_dpcd.h     | 15 ++++++
+ drivers/gpu/drm/i915/display/intel_psr.c      | 49 +++++++++++++++++--
+ 3 files changed, 60 insertions(+), 5 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_dpcd.h
 
-Summary
--------
+-- 
+2.43.0
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-164897v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_force_connector_basic@prune-stale-modes:
-    - bat-ptl-2:          [SKIP][1] ([Intel XE#7742]) -> [PASS][2] +2 other tests pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a/bat-ptl-2/igt@kms_force_connector_basic@prune-stale-modes.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164897v1/bat-ptl-2/igt@kms_force_connector_basic@prune-stale-modes.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - bat-ptl-2:          [SKIP][3] -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a/bat-ptl-2/igt@kms_hdmi_inject@inject-audio.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164897v1/bat-ptl-2/igt@kms_hdmi_inject@inject-audio.html
-
-  
-  [Intel XE#7742]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7742
-
-
-Build changes
--------------
-
-  * IGT: IGT_8857 -> IGT_8858
-  * Linux: xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a -> xe-pw-164897v1
-
-  IGT_8857: 7ed262f8dd72a12c8fbbb3d6a18c0753a2a2d57a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8858: f2486f2ab02d1163d864529f54a92066a3b9fe4b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a: 19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a
-  xe-pw-164897v1: 164897v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164897v1/index.html
-
---===============0224957921763204376==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/oa: OA register whitelist fixes</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164897/">https://patchwork.freedesktop.org/series/164897/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164897v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164897v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a_BAT -&gt; xe-pw-164897v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-164897v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
-<ul>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a/bat-ptl-2/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7742">Intel XE#7742</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164897v1/bat-ptl-2/igt@kms_force_connector_basic@prune-stale-modes.html">PASS</a> +2 other tests pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a/bat-ptl-2/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164897v1/bat-ptl-2/igt@kms_hdmi_inject@inject-audio.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8857 -&gt; IGT_8858</li>
-<li>Linux: xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a -&gt; xe-pw-164897v1</li>
-</ul>
-<p>IGT_8857: 7ed262f8dd72a12c8fbbb3d6a18c0753a2a2d57a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8858: f2486f2ab02d1163d864529f54a92066a3b9fe4b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4902-19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a: 19fc8405447f8b93c3fb0a341c00c2ffc6b05c4a<br />
-  xe-pw-164897v1: 164897v1</p>
-
-</body>
-</html>
-
---===============0224957921763204376==--
