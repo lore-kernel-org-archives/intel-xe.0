@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A20BCFA0C2C
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Apr 2026 05:40:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9C02FA0C2C
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Apr 2026 05:40:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B77E10E0DA;
-	Wed, 15 Apr 2026 05:40:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49A9310E677;
+	Wed, 15 Apr 2026 05:40:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k/Ihi+OP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZUWpYR/y";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9370210E05A;
- Wed, 15 Apr 2026 05:40:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 23F5C10E0F4;
+ Wed, 15 Apr 2026 05:40:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776231624; x=1807767624;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=+2W6lPWhHIYu48Bo+L4CqsG6/1wXuPKqFNaXw3LviqM=;
- b=k/Ihi+OP4/kDbtNXs188hpVnZJxR8bhzHs0fl5p38x++HYJWmQMyafIv
- ioPRNKLUMVSbWI4wnVZHpqZCIrCBB11qYzWZoZO3OR/h5roiqobFOo+bZ
- vbn/jJz64VPr3g55FsIYPOb+y/bSP0/nBvby16wN26F70lNmtMLZYC1da
- HluHBbL21JXClSsHD5/cVN7yk3DWhxIS0UCYh6jdhCDw3gn3S4OSacpZD
- 2OQH7VtBCSGdcl5lVrbX0PeTJYBLdDbSoR78QcjzJmZw27/7OastqF19R
- n/SwdlA4vSQE9HEiX+5ZOHrQmk+CcGqdX0Cd/ETc5I5czr9gHEdOq5aq1 Q==;
-X-CSE-ConnectionGUID: 75xJf8sOTp+NccGOxTaABg==
-X-CSE-MsgGUID: /1WX3rYlQ4WuHdbf0FUeLg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11759"; a="102657057"
-X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="102657057"
+ t=1776231627; x=1807767627;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=43KMjESg0d74sefkdcVmioWf5Mn5GOQhPGwcki2/BEE=;
+ b=ZUWpYR/yEIS1qtbMNIgObpcfb5g8q6W14cAwmVFjGqBmMt81RDkSMoEC
+ ZyRlD2w8LZZ3n+dPXu2YsluuoD1rGtJrHiAD+wCVyT1DwgYAoRN7u9GPj
+ 3rGAztEkYhtp2CvOn5ZfId6ysA9rwpxSBz6pL7XPcKZQFsNVnTgU74zBh
+ fUqkMnRE3ba716vkf+2COrRoOpHOBVkC3sl89sUw/itEWTnGtYLCrXYV5
+ /Jyf8/fyM9f/KCAepxfacvOfUOZjj0vKpbLR0U38lCJAJmLXeRMOyNZyF
+ bH0gZ5A2wBZ1Fcl/Tz5uBvXaHvJJPozgUoPSv6UobWSLraGkMfSXxVZxg g==;
+X-CSE-ConnectionGUID: NATYTUkaSf600CMr3r5XOQ==
+X-CSE-MsgGUID: fFYOd7nOTACL++oWMgW7UA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11759"; a="102657061"
+X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="102657061"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2026 22:40:24 -0700
-X-CSE-ConnectionGUID: AgFH5CGTRIWBpj6cnAFzYA==
-X-CSE-MsgGUID: zIE4Lw7JT/+BbFiMP7qRpw==
+ 14 Apr 2026 22:40:27 -0700
+X-CSE-ConnectionGUID: sL405VGcQAqqjVaIkbxciA==
+X-CSE-MsgGUID: M+UajU3SQJ6ZZRPgHNvIRw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="227129766"
+X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="227129780"
 Received: from abityuts-desk.ger.corp.intel.com (HELO
  jhogande-mobl3.intel.com) ([10.245.244.37])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2026 22:40:23 -0700
+ 14 Apr 2026 22:40:26 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH 0/4] PSR2 SDP on Prior Scanline workarounds
-Date: Wed, 15 Apr 2026 08:39:56 +0300
-Message-ID: <20260415054000.400070-1-jouni.hogander@intel.com>
+Subject: [PATCH 2/4] drm/i915/psr: Read Intel DPCD workaround register
+Date: Wed, 15 Apr 2026 08:39:58 +0300
+Message-ID: <20260415054000.400070-3-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260415054000.400070-1-jouni.hogander@intel.com>
+References: <20260415054000.400070-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
@@ -68,36 +70,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This patch set implements two workarounds:
+Read Intel DPCD workaround register and store it into
+intel_connector->dp.psr_caps. Psr_caps was chosen as currently it contains
+only PSR workaround for PSR2 SDP on prior scanline implementation.
 
-1. There are problem in PSR2 SDP on Prior Scanline implementation in
-   several panels due to eDP1.4b spec ambiguity. Two tackle this there is
-   Intel specific DPCD register for panel to indicate implementation
-   compatibility with Intel source implementation. eDP1.5 doesn't have
-   this problem.
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_types.h | 1 +
+ drivers/gpu/drm/i915/display/intel_psr.c           | 8 +++++++-
+ 2 files changed, 8 insertions(+), 1 deletion(-)
 
-2. In NVL there is an HW optimization done. When there is an SU triggered in
-   Capture state, Link will be kept ON post Capture CRC SDP. Before valid SU
-   pixels Intel source will transmit dummy pixels. Some TCONS are improperly
-   considering these dummy pixels as a valid pixel data. Prior NVL link was
-   was turned of even if there was SU triggered in Capture state and no dummy
-   pixels were transmitted. These dummy pixels are problem only if SDP on
-   prior scanline is used and Early Transport is not in use. The workaround is
-   to start SU area always at scanline 0.
-
-Jouni Högander (4):
-  drm/i915/psr: Add defininitions for INTEL_WA_REGISTER_CAPS DPCD
-    register
-  drm/i915/psr: Read Intel DPCD workaround register
-  drm/i915/psr: Apply Intel DPCD workaround when SDP on prior line used
-  drm/i915/psr: Apply SDP on prior scanline workaround for NVL
-
- .../drm/i915/display/intel_display_types.h    |  1 +
- drivers/gpu/drm/i915/display/intel_dpcd.h     | 15 ++++++
- drivers/gpu/drm/i915/display/intel_psr.c      | 49 +++++++++++++++++--
- 3 files changed, 60 insertions(+), 5 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_dpcd.h
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index ee076106be85..ec00fcb46734 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -584,6 +584,7 @@ struct intel_connector {
+ 
+ 		struct {
+ 			u8 dpcd[EDP_PSR_RECEIVER_CAP_SIZE];
++			u8 intel_wa_dpcd;
+ 
+ 			bool support;
+ 			bool su_support;
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index b4ca5843d098..1f3f0d35d52a 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -44,6 +44,7 @@
+ #include "intel_display_wa.h"
+ #include "intel_dmc.h"
+ #include "intel_dp.h"
++#include "intel_dpcd.h"
+ #include "intel_dp_aux.h"
+ #include "intel_dp_tunnel.h"
+ #include "intel_dsb.h"
+@@ -717,8 +718,13 @@ static void _psr_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *co
+ 			    connector->dp.psr_caps.su_support ? "" : "not ");
+ 	}
+ 
+-	if (connector->dp.psr_caps.su_support)
++	if (connector->dp.psr_caps.su_support) {
++		ret = drm_dp_dpcd_read_byte(&intel_dp->aux, INTEL_WA_REGISTER_CAPS,
++					    &connector->dp.psr_caps.intel_wa_dpcd);
++		if (ret < 0)
++			return;
+ 		_psr_compute_su_granularity(intel_dp, connector);
++	}
+ }
+ 
+ void intel_psr_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *connector)
 -- 
 2.43.0
 
