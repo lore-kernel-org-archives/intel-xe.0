@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86B1EF433D6
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Apr 2026 23:47:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DF33F433D2
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Apr 2026 23:47:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 321F910E7C3;
-	Wed, 15 Apr 2026 23:47:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E595D10E7CA;
+	Wed, 15 Apr 2026 23:47:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eygzMVOm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="khoqJhRR";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8136B10E7A4;
- Wed, 15 Apr 2026 23:47:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2635310E7B9;
+ Wed, 15 Apr 2026 23:47:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776296821; x=1807832821;
+ t=1776296823; x=1807832823;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=0Oi2aAXyPsR8PbFP2PfQjW5PzteYPZfbnRZkjoPwXQg=;
- b=eygzMVOmgPTrtEnbmqfAOgYVkaDgWTH6xS61kssedIDref4TZ4NnKsf+
- HUCYP6NwRn3wOVoV/bKJTMYArgFeuyNjJb8LjQ0gmDGAHgEG4AhZjGa6J
- ef2vWlc+8OrBh9GPKfuINS7n2p8eT4Q8AOH454xK2JGVpADwdJ82TfbnN
- gD/3cI5Eax27EgdAGnxCZDMQjYGnl+EZrLFoJ0epDmDzQhUGdeW5o5nm6
- X9sosDCU9IahKVZ/xDo2WsucUKSQWrsAcWMN0t2En/sky8pzJftWW3xSZ
- hqIjLMl3SZLWzixOttu7/RxUcFRcM8v5JJEqEoSMzsEGpe5pN03Is51Cr w==;
-X-CSE-ConnectionGUID: GF+ZAFG+SJq22SPWayhyKg==
-X-CSE-MsgGUID: 512DMGHzQDq+0UC0Qim/QQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="77403487"
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="77403487"
+ bh=MF4WaqUkghChU8LQOZfsNvnFdTR5sxHLIOxGgv6wl08=;
+ b=khoqJhRRTTdoFVr+/vMseBlZMy5kSzHTr6w2IUcb1vcRjI+aHx6NXNem
+ KEUtH8+BE1mxc6RJLAl6QtoSfUWd6h77SK9l+fuusjz1L+u8oal4BwL9u
+ 4U/gFteYWKfHFtJkCtc68hBZmwJEf9TsewkXKSlOGZRXmCPcv9hWpSEDS
+ f1/py8w2ILHU1vqcGaLu/EcWIfZHAQbucLbsxvMW2SqxY1sG7YcIK+Bae
+ VOP2P++XwgNJGZ6Mh/yNsjY3ZIZvrROylAgv/uLPa39lOREGlKEDYvA8/
+ IhQcEdKMOP2WpYPRNu+AuVDydqG5cm+xxYlosUOcbyMpPSEw8O9RWsop1 Q==;
+X-CSE-ConnectionGUID: PhgIfq+vTa6aW0QLL5CDxQ==
+X-CSE-MsgGUID: bGVgyGpsR+6Pm2HSO9H3Vw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="77403491"
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="77403491"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2026 16:47:00 -0700
-X-CSE-ConnectionGUID: 1ee4Cv1uTf+NEFi3ICaRqQ==
-X-CSE-MsgGUID: z92JrP61SLK0NXBdBu8OiA==
+ 15 Apr 2026 16:47:03 -0700
+X-CSE-ConnectionGUID: gfUVwUK8RWmYwafSwLgsYA==
+X-CSE-MsgGUID: YjtJN+smQmadrKvrEvjkFQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="235511135"
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="235511148"
 Received: from administrator-system-product-name.igk.intel.com (HELO
  dev-417.igk.intel.com) ([10.91.214.181])
- by fmviesa005.fm.intel.com with ESMTP; 15 Apr 2026 16:46:59 -0700
+ by fmviesa005.fm.intel.com with ESMTP; 15 Apr 2026 16:47:02 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@intel.com>,
  =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v2 05/32] drm/i915/bios: de/allocate VS/PE-O buffers' matrix
-Date: Thu, 16 Apr 2026 01:46:12 +0200
-Message-ID: <20260415234639.3577774-6-michal.grzelak@intel.com>
+Subject: [PATCH v2 07/32] drm/i915/bios: add buf_trans for each bios_encoder
+Date: Thu, 16 Apr 2026 01:46:14 +0200
+Message-ID: <20260415234639.3577774-8-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260415234639.3577774-1-michal.grzelak@intel.com>
 References: <20260415234639.3577774-1-michal.grzelak@intel.com>
@@ -71,120 +71,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Since all of the tables' rows are sticked together and hence form a
-giant table, we could call it "buffers' table". This is not especially
-great lingo though because there is a naming clash between superior
-"buffers' table" and tables that form it.
+Every devdata needs a separate intel_ddi_buf_trans since each port can
+request an override. Add buffer's pointer into intel_bios_encoder_data.
 
-Alternatively we can treat each interior table as a column of couple
-struct intel_ddi_buf_trans_entry's. Then after sticking all tables
-together column-by-column we obtain a matrix of struct
-intel_ddi_buf_trans_entry. We are allowed to do that since every table
-has the same number of rows.
-
-This data structure's representation has the advantage that it resolves
-aforementioned lingo clash while still being equivalent to "buffers'
-table", simply reshaped. Thus it will be mentioned as "buffers' matrix".
-
-For the convenience of use, implementation assume transposition of the
-matrix described above: each table from VBT #57 forms one matrix's row
-and each matrix's column represents one row of the table from VBT #57.
-It allows us to use specific table without specifying table's row.
-
-Add pointer for matrix of intel_ddi_buf_trans_entry into intel_vbt_data.
-Include intel_ddi_buf_trans.h in intel_bios.c to enable adding it.
-
-Name the pointer as bufs_mtrx. bufs_mtx would be a better fit, but it
-could misleadingly indicate that it represents mutex.
-
-Allocate (num_tables x num_rows) matrix of intel_ddi_buf_trans_entry.
-This "buffers' table" will be used to store all deparsed VS/PE-O tables
-from VBT #57. Store matrix's pointer in intel_vbt_data.
-
-Deallocate whole matrix on driver removal.
+Initialize the pointer to NULL when no VBT was provided.
 
 Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c     | 21 ++++++++++++++++++-
- .../gpu/drm/i915/display/intel_display_core.h |  1 +
- 2 files changed, 21 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_bios.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index d64668c1022a7..ce360e2c823a9 100644
+index 51d034d2ff77f..e0e6a8dfe2953 100644
 --- a/drivers/gpu/drm/i915/display/intel_bios.c
 +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -34,6 +34,7 @@
- #include <drm/drm_fixed.h>
- #include <drm/drm_print.h>
+@@ -73,6 +73,7 @@
+ struct intel_bios_encoder_data {
+ 	struct intel_display *display;
  
-+#include "intel_ddi_buf_trans.h"
- #include "intel_display.h"
- #include "intel_display_core.h"
- #include "intel_display_rpm.h"
-@@ -2188,7 +2189,9 @@ parse_compression_parameters(struct intel_display *display)
- static void
- parse_vswing_preemph_override(struct intel_display *display)
- {
-+	union intel_ddi_buf_trans_entry **bufs_mtrx;
- 	const struct bdb_vswing_preemph *block;
-+	u8 num_rows;
- 
- 	if (display->vbt.version < 218)
- 		return;
-@@ -2199,10 +2202,18 @@ parse_vswing_preemph_override(struct intel_display *display)
- 	if (!block)
- 		return;
- 
-+	num_rows = DISPLAY_VER(display) >= 14 ? 16 : 10;
-+
-+	bufs_mtrx = kzalloc(block->num_tables * sizeof(*bufs_mtrx), GFP_KERNEL);
-+
-+	for (int idx = 0; idx < block->num_tables; idx++)
-+		bufs_mtrx[idx] = kzalloc(num_rows * sizeof(**bufs_mtrx), GFP_KERNEL);
-+
- 	drm_dbg_kms(display->drm, "VS/PE-O parsing not yet supported\n");
- 
-+	display->vbt.bufs_mtrx = bufs_mtrx;
- 	display->vbt.num_tables = block->num_tables;
--	display->vbt.num_rows = DISPLAY_VER(display) >= 14 ? 16 : 10;
-+	display->vbt.num_rows = num_rows;
- }
- 
- static u8 translate_iboost(struct intel_display *display, u8 val)
-@@ -3002,6 +3013,7 @@ init_vbt_defaults(struct intel_display *display)
- 		    display->vbt.lvds_ssc_freq);
- 
- 	/* Vswing / Preemphasis Override */
-+	display->vbt.bufs_mtrx = NULL;
- 	display->vbt.num_tables = 0;
- 	display->vbt.num_rows = 0;
- }
-@@ -3385,6 +3397,13 @@ void intel_bios_driver_remove(struct intel_display *display)
- 		list_del(&entry->node);
- 		kfree(entry);
++	struct intel_ddi_buf_trans *buf_trans;
+ 	struct child_device_config child;
+ 	struct dsc_compression_parameters_entry *dsc;
+ 	struct list_head node;
+@@ -2656,6 +2657,11 @@ static void sanitize_hdmi_level_shift(struct intel_bios_encoder_data *devdata,
  	}
-+
-+	if (display->vbt.bufs_mtrx) {
-+		for (int idx = 0; idx < display->vbt.num_tables; idx++)
-+			kfree(display->vbt.bufs_mtrx[idx]);
-+
-+		kfree(display->vbt.bufs_mtrx);
-+	}
  }
  
- void intel_bios_fini_panel(struct intel_panel *panel)
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index 2ffdb71c4a726..43b968f3e8b8c 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -233,6 +233,7 @@ struct intel_vbt_data {
- 	struct list_head display_devices;
- 	struct list_head bdb_blocks;
++static void override_vswing_preemph(struct intel_bios_encoder_data *devdata)
++{
++	devdata->buf_trans = NULL;
++}
++
+ static bool
+ intel_bios_encoder_supports_crt(const struct intel_bios_encoder_data *devdata)
+ {
+@@ -2847,6 +2853,7 @@ static void parse_ddi_port(struct intel_bios_encoder_data *devdata)
+ 	sanitize_dedicated_external(devdata, port);
+ 	sanitize_device_type(devdata, port);
+ 	sanitize_hdmi_level_shift(devdata, port);
++	override_vswing_preemph(devdata);
+ }
  
-+	union intel_ddi_buf_trans_entry **bufs_mtrx;
- 	int num_tables;
- 	int num_rows;
+ static bool has_ddi_port_info(struct intel_display *display)
+@@ -3057,6 +3064,7 @@ init_vbt_missing_defaults(struct intel_display *display)
+ 			break;
  
+ 		devdata->display = display;
++		devdata->buf_trans = NULL;
+ 		child = &devdata->child;
+ 
+ 		if (port == PORT_F)
 -- 
 2.45.2
 
