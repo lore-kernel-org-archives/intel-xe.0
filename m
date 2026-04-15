@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D86F5F9D0FD
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Apr 2026 02:03:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7462F9D0CE
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Apr 2026 02:03:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 910AA10E154;
-	Wed, 15 Apr 2026 02:03:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94B7B10E158;
+	Wed, 15 Apr 2026 02:03:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AG1qeJHO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XwYadlFm";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFD6610E141
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Apr 2026 02:03:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0551410E150
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Apr 2026 02:03:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1776218631; x=1807754631;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=DVSsUIWz8sM32MuUV+4fSPLBQwp7i6Va9vFQtftTi08=;
- b=AG1qeJHOJFIZC12BuUZrYg2NpC38RAm/SxI3nr6fUlJnuHOGC8Xp3BtQ
- rZoKHOaddETZBoxKFrSUx13Bolnv1xu9XXeY2ULy1J4/48yxAbgQ9P9DV
- 10ZJ4pigCNsIMiT3zKlzvxABAUyAweNvmdsvqg6K7rT3l6hAMNpHBOh9H
- Y5uLWNmdz8JdprhuuHDoe/3Y+pkxRFj/GfAyKMbp7Vqhegjmop9u9tFI9
- MmiPO22Fi/gq4a29VyYQlgglI2SE75pM+EiStpGvzRSqq0lhJLuRge1JF
- ScVPc4NDRJH6XpdJVtMv3ke0uiDQ3A6r1WxQyVoUjLKHm/8or7Tw0oGf4 A==;
-X-CSE-ConnectionGUID: c2hTBj78TM++1dc2agauaw==
-X-CSE-MsgGUID: ffBlpfinTxmA1XX53paPOQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11759"; a="79773444"
-X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="79773444"
+ bh=9UC/RQTwJa1fF4FezaK9qJ+XlizLjET0Eyy9oDGEYfM=;
+ b=XwYadlFmV3R0dq/1EOrxNx5uMZ6PDrpHxwfNjzgFlJmkW354gYYMVR9y
+ 9SVheHZYfmKTeRuM12gk/6SaBBkAGG83jf6Zp3GgJ7LL3XoULz6erbrHQ
+ DVG8FrQexgOiVCPFxiXElNEeR8rRWU3jEX++5PNvugprZtb0YgGnxPdTQ
+ C4Qetk4Ra6K/8M1xh64B2X/LOfr7DckJgcAj57IqQ6fs+5RWg1a4Z6zpZ
+ oe0z2G5SEckq/MezVWr+EtblS903nXlsgYUJ8Q1uiSnXph5ECpZxo88wP
+ uSexgeJCOXgNqxr80k4I3KVbu9nH2GDVykh03o5dGJT+7mdrfGQhe2VaG w==;
+X-CSE-ConnectionGUID: YO+GhrsjRA2oZ8t5sr6ozg==
+X-CSE-MsgGUID: lzhYTfrVTXeEIsJyWt/EEw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11759"; a="79773445"
+X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="79773445"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Apr 2026 19:03:50 -0700
-X-CSE-ConnectionGUID: LaX5EvYlTje/HIpxmwkwSg==
-X-CSE-MsgGUID: RIe8+wGaTS6SGWTXnNYVOQ==
+X-CSE-ConnectionGUID: Q3d54ROrRzuJ4NE7QTEF/w==
+X-CSE-MsgGUID: 9pZe4uKHTBCM7jTSYCXpNw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="235200879"
+X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="235200883"
 Received: from orsosgc001.jf.intel.com ([10.88.27.185])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Apr 2026 19:03:50 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: [PATCH 2/3] drm/xe/oa: Use drm_gem_mmap_obj for OA buffer mmap
-Date: Tue, 14 Apr 2026 19:03:41 -0700
-Message-ID: <20260415020342.782987-3-ashutosh.dixit@intel.com>
+Subject: [PATCH 3/3] drm/xe/oa: Implement Wa_14026633728
+Date: Tue, 14 Apr 2026 19:03:42 -0700
+Message-ID: <20260415020342.782987-4-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20260415020342.782987-1-ashutosh.dixit@intel.com>
 References: <20260415020342.782987-1-ashutosh.dixit@intel.com>
@@ -66,76 +66,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-OA buffer mmap can currently only mmap OA buffer in system memory. CRI
-MERTOA buffer can be located in device memory. Switch OA buffer mmap to
-using drm_gem_mmap_obj, which can handle mmap's of both system and device
-memory buffers.
+CRI Wa_14026633728 requires MERTOA buffer to be allocated in device memory,
+not system memory (which is the default for OA buffers).
 
 Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_oa.c | 20 +++-----------------
- 1 file changed, 3 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/xe/xe_oa.c         | 10 +++++++++-
+ drivers/gpu/drm/xe/xe_wa_oob.rules |  1 +
+ 2 files changed, 10 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 4d13d8ef8103f..5b8a9bd26770c 100644
+index 5b8a9bd26770c..6516e933b865c 100644
 --- a/drivers/gpu/drm/xe/xe_oa.c
 +++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -9,6 +9,7 @@
- #include <linux/poll.h>
- 
- #include <drm/drm_drv.h>
-+#include <drm/drm_gem.h>
- #include <drm/drm_managed.h>
- #include <drm/drm_syncobj.h>
- #include <uapi/drm/xe_drm.h>
-@@ -900,9 +901,6 @@ static int xe_oa_alloc_oa_buffer(struct xe_oa_stream *stream, size_t size)
- 
- 	stream->oa_buffer.bo = bo;
- 
--	/* mmap implementation requires OA buffer to be in system memory */
--	xe_assert(stream->oa->xe, bo->vmap.is_iomem == 0);
--
- 	stream->oa_buffer.bounce = kmalloc(stream->oa_buffer.format->size, GFP_KERNEL);
- 	if (!stream->oa_buffer.bounce) {
- 		xe_bo_unpin_map_no_vm(stream->oa_buffer.bo);
-@@ -1690,8 +1688,6 @@ static int xe_oa_mmap(struct file *file, struct vm_area_struct *vma)
- {
- 	struct xe_oa_stream *stream = file->private_data;
- 	struct xe_bo *bo = stream->oa_buffer.bo;
--	unsigned long start = vma->vm_start;
--	int i, ret;
- 
- 	if (xe_observation_paranoid && !perfmon_capable()) {
- 		drm_dbg(&stream->oa->xe->drm, "Insufficient privilege to map OA buffer\n");
-@@ -1699,7 +1695,7 @@ static int xe_oa_mmap(struct file *file, struct vm_area_struct *vma)
- 	}
- 
- 	/* Can mmap the entire OA buffer or nothing (no partial OA buffer mmaps) */
--	if (vma->vm_end - vma->vm_start != xe_bo_size(stream->oa_buffer.bo)) {
-+	if (vma->vm_end - vma->vm_start != xe_bo_size(bo)) {
- 		drm_dbg(&stream->oa->xe->drm, "Wrong mmap size, must be OA buffer size\n");
- 		return -EINVAL;
- 	}
-@@ -1715,17 +1711,7 @@ static int xe_oa_mmap(struct file *file, struct vm_area_struct *vma)
- 	vm_flags_mod(vma, VM_PFNMAP | VM_DONTEXPAND | VM_DONTDUMP | VM_DONTCOPY,
- 		     VM_MAYWRITE | VM_MAYEXEC);
- 
--	xe_assert(stream->oa->xe, bo->ttm.ttm->num_pages == vma_pages(vma));
--	for (i = 0; i < bo->ttm.ttm->num_pages; i++) {
--		ret = remap_pfn_range(vma, start, page_to_pfn(bo->ttm.ttm->pages[i]),
--				      PAGE_SIZE, vma->vm_page_prot);
--		if (ret)
--			break;
--
--		start += PAGE_SIZE;
--	}
--
--	return ret;
-+	return drm_gem_mmap_obj(&bo->ttm.base, xe_bo_size(bo), vma);
+@@ -250,6 +250,11 @@ static void oa_timestamp_clear(struct xe_oa_stream *stream, u32 head)
+ 		xe_map_wr(stream->oa->xe, map, head + 1, u32, 0);
  }
  
- static const struct file_operations xe_oa_fops = {
++static bool mert_wa_14026633728(struct xe_oa_stream *s)
++{
++	return s->oa_unit->type == DRM_XE_OA_UNIT_TYPE_MERT && XE_GT_WA(s->gt, 14026633728);
++}
++
+ static bool xe_oa_buffer_check_unlocked(struct xe_oa_stream *stream)
+ {
+ 	u32 gtt_offset = xe_bo_ggtt_addr(stream->oa_buffer.bo);
+@@ -891,11 +896,14 @@ static void xe_oa_stream_destroy(struct xe_oa_stream *stream)
+ 
+ static int xe_oa_alloc_oa_buffer(struct xe_oa_stream *stream, size_t size)
+ {
++	u32 vram = mert_wa_14026633728(stream) ?
++		XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(stream->oa->xe)) :
++		XE_BO_FLAG_SYSTEM;
+ 	struct xe_bo *bo;
+ 
+ 	bo = xe_bo_create_pin_map_novm(stream->oa->xe, stream->gt->tile,
+ 				       size, ttm_bo_type_kernel,
+-				       XE_BO_FLAG_SYSTEM | XE_BO_FLAG_GGTT, false);
++				       vram | XE_BO_FLAG_GGTT, false);
+ 	if (IS_ERR(bo))
+ 		return PTR_ERR(bo);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index f8a185103b805..a7c1bd9bcb943 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -65,3 +65,4 @@
+ 
+ 14025883347	MEDIA_VERSION_RANGE(1301, 3503)
+ 		GRAPHICS_VERSION_RANGE(2004, 3005)
++14026633728	PLATFORM(CRESCENTISLAND)
 -- 
 2.48.1
 
