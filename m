@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87C4EF433CD
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Apr 2026 22:54:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5BFD4F433CC
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Apr 2026 23:02:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D62C10E0BA;
-	Wed, 15 Apr 2026 22:54:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EE4610E0BA;
+	Wed, 15 Apr 2026 23:02:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lbIudFdI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jZFf5rz6";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1EA6810E0BA
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Apr 2026 22:54:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 107B610E0BA
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Apr 2026 23:02:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776293692; x=1807829692;
+ t=1776294162; x=1807830162;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=4R4CV94EevrhaFM/CiFPAfbqXSVKnJDZGme6kQ8e6u8=;
- b=lbIudFdIRO/ErMj//qVa+xxgi4+RW9kzznDh+WLRkZ10o6QjiG5bgleq
- 1Wj046z3H9uAMe95d4dq4f+HTpUnYmS9TYzwM7M81mv7W4d0R4SWRsKJc
- AZNbtGaQ9vA2Y/ZhXweR5s52XHOw8F24cjBp3Qz5EUNRN8cMeCPNmsNZ6
- sjHla9/QvdXdqutX/0eLsHPMP4WMXtriEDkUwJTUKdynUD5ofLM/m82Oi
- CcPsv+C4JAr7HJy3w/SBVG9y6bVqynQFYuF+74CSaNvcbMlQ8g9ZwC9qj
- Mv7Avd53KFgj3BV93OSzm5RrSOLvIEwmpGKPp0nwscDNDVvn/uLbiGXmZ Q==;
-X-CSE-ConnectionGUID: hGrJ/qSgQa6Ovl3JyGXyRg==
-X-CSE-MsgGUID: RxdbrCIhTUmJJl+04PFfpA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="87984100"
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="87984100"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2026 15:54:51 -0700
-X-CSE-ConnectionGUID: kNUjOSzESZSQLb53TtD0+g==
-X-CSE-MsgGUID: QmaEZWTqRKG2KoqacioLTQ==
+ bh=9rVexy3fePeVdFolfiWLEct/5GD8lUIa2zUcWpqzJuE=;
+ b=jZFf5rz6tv/sApZmD/HdQlVrSTf+j8aPbQLwMCUoVXWy6GCzfikcl1ed
+ T+42pdSGMQka2vpnwvjyPhaxTGKZxK1sa5SgFyye4m2gTd8OPQbXPi57E
+ JA8sBZ+YXSCyh7ImKs5yn1gulwECx/1ExPGiUS0Fj82mryEdBHpiZWmT4
+ I8fodbhauzMNDE+SK3G/cWoknrwmg17CEFLzqmIPdnR+PocQBPKZfUAoH
+ yufo15DA8tjclx9mOZ5o4gRSXOjlxYNQsKQzBiIlIDaxreI04lCCyAxRE
+ 0wCt3VAdTNeat/YU/VqoKwcKD1x9Ek7TRAtIUaOXNCU1nEMiFps/XsZD8 w==;
+X-CSE-ConnectionGUID: KSzjGiwbS9WLkS02hlDKPQ==
+X-CSE-MsgGUID: g93iyQxLR/WyyolezgAdOQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="81165863"
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="81165863"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2026 16:02:41 -0700
+X-CSE-ConnectionGUID: JScAdZOPTkmyXjavEHTb8A==
+X-CSE-MsgGUID: KfdjnPEFSsi93Z5CYWiXQA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="253992030"
-Received: from osgcshtiger.sh.intel.com ([10.239.81.49])
- by fmviesa001.fm.intel.com with ESMTP; 15 Apr 2026 15:54:51 -0700
-From: Shuicheng Lin <shuicheng.lin@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="232287513"
+Received: from xwang-desk.fm.intel.com ([10.121.64.134])
+ by fmviesa004.fm.intel.com with ESMTP; 15 Apr 2026 16:02:41 -0700
+From: Xin Wang <x.wang@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Shuicheng Lin <shuicheng.lin@intel.com>,
- Harish Chegondi <harish.chegondi@intel.com>
-Subject: [PATCH] drm/xe/eustall: Fix drm_dev_put called before stream disable
- in close
-Date: Wed, 15 Apr 2026 22:54:28 +0000
-Message-Id: <20260415225428.3399934-1-shuicheng.lin@intel.com>
-X-Mailer: git-send-email 2.34.1
+Cc: Xin Wang <x.wang@intel.com>,
+	Matthew Auld <matthew.auld@intel.com>
+Subject: [PATCH v4 0/3] drm/xe/pat: Type cleanup and invalid index hardening
+Date: Wed, 15 Apr 2026 16:02:37 -0700
+Message-ID: <20260415230240.411826-1-x.wang@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,44 +64,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In xe_eu_stall_stream_close(), drm_dev_put() is called before the
-stream is disabled and its resources are freed. If this drops the
-last reference, the device structures could be freed while the
-subsequent cleanup code still accesses them, leading to a
-use-after-free.
+Small follow-up series to harden the PAT subsystem:
 
-Fix this by moving drm_dev_put() after all device accesses are
-complete. This matches the ordering in xe_oa_release().
+Patch 1 fixes two remaining spots where pat_index was typed as u32/int
+instead of u16, aligning with the rest of the driver.
 
-Fixes: 9a0b11d4cf3b ("drm/xe/eustall: Add support to init, enable and disable EU stall sampling")
-Cc: Harish Chegondi <harish.chegondi@intel.com>
-Assisted-by: Claude:claude-opus-4.6
-Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
----
- drivers/gpu/drm/xe/xe_eu_stall.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Patch 2 defaults XE_CACHE_NONE_COMPRESSION to XE_PAT_INVALID_IDX (like
+WB_COMPRESSION already does).
 
-diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
-index aaf3fcc12363..b88b6c49c54a 100644
---- a/drivers/gpu/drm/xe/xe_eu_stall.c
-+++ b/drivers/gpu/drm/xe/xe_eu_stall.c
-@@ -871,14 +871,14 @@ static int xe_eu_stall_stream_close(struct inode *inode, struct file *file)
- 	struct xe_eu_stall_data_stream *stream = file->private_data;
- 	struct xe_gt *gt = stream->gt;
- 
--	drm_dev_put(&gt->tile->xe->drm);
--
- 	mutex_lock(&gt->eu_stall->stream_lock);
- 	xe_eu_stall_disable_locked(stream);
- 	xe_eu_stall_data_buf_destroy(stream);
- 	xe_eu_stall_stream_free(stream);
- 	mutex_unlock(&gt->eu_stall->stream_lock);
- 
-+	drm_dev_put(&gt->tile->xe->drm);
-+
- 	return 0;
- }
- 
+Patch 3 introduces xe_cache_pat_idx(), a macro helper that validates
+cache_mode bounds and checks for XE_PAT_INVALID_IDX before returning the
+PAT index. All 20 pat.idx[] read sites across the driver are converted.
+
+Suggested-by: Matthew Auld <matthew.auld@intel.com>
+
+v4:
+- Adopted a strictly decoupled approach for the `xe_cache_pat_idx()` macro
+  helper. Dropped any new header dependencies (e.g. `xe_device_types.h`
+  or `xe_pt_types.h`) from `xe_pat.h`, relying cleanly on the compilation
+  contexts where the macro is expanded. Forward declarations are kept
+  untouched.
+
+v3:
+- Rebased on latest drm-tip
+
+v2:
+- Dropped xe_assert() guards from xe_migrate that were added in v1 patch 2;
+  the new helper in patch 3 now provides the same coverage uniformly across
+  all call sites (Matthew Auld)
+- New patch 3: xe_cache_pat_idx() helper with xe_assert() for every
+  pat.idx[] read access, including bounds check on cache_mode
+
+Xin Wang (3):
+  drm/xe: Standardize pat_index to u16 type
+  drm/xe/pat: Default XE_CACHE_NONE_COMPRESSION to invalid
+  drm/xe/pat: Introduce xe_cache_pat_idx() macro helper
+
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 11 ++++++-----
+ drivers/gpu/drm/xe/tests/xe_migrate.c  |  3 ++-
+ drivers/gpu/drm/xe/xe_device_types.h   |  2 +-
+ drivers/gpu/drm/xe/xe_ggtt.c           |  7 ++++---
+ drivers/gpu/drm/xe/xe_migrate.c        | 15 ++++++++-------
+ drivers/gpu/drm/xe/xe_pat.c            |  1 +
+ drivers/gpu/drm/xe/xe_pat.h            |  8 ++++++++
+ drivers/gpu/drm/xe/xe_pt.c             |  3 ++-
+ drivers/gpu/drm/xe/xe_vm.c             |  8 ++++----
+ 9 files changed, 36 insertions(+), 22 deletions(-)
+
 -- 
 2.43.0
 
