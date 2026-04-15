@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78830F433CC
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Apr 2026 23:47:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9129AF433D5
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Apr 2026 23:47:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42F7810E7DD;
-	Wed, 15 Apr 2026 23:47:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3146610E7E3;
+	Wed, 15 Apr 2026 23:47:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fLtj5duM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eJ77wl+K";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA30A10E7D2;
- Wed, 15 Apr 2026 23:47:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDDD210E7DD;
+ Wed, 15 Apr 2026 23:47:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776296835; x=1807832835;
+ t=1776296845; x=1807832845;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2PdbJZz1l0kdf/wKO1c2tto6uBMmqR01KRDa8M5FsHw=;
- b=fLtj5duMyO0BmjGY17fexxyDNwWxYMcEGVK9WjDNmzmBM9mCfGPERNsd
- 9SB0vo9BU+zgxxjiRP8XxW4K/dUm2GRgCA5nrvvQB/VSkzc+T+NAnsxii
- e8wq9hDBsx/+LsSf5Wh8/qsKbtQE7BodqEwZ6RncgO43NU6/jzeJN2rlW
- sBHQj2FcP1+hzbaIf/N4/Lc9VjJI0qPlgvhxW8te9EcsZ+Wk87lCTLWRo
- C8MHb/42MUv0d3yx0itzWmzVv21ZxxDvFND/mJNstjC/PGfYiuABvPsjb
- uGQ7VYwhgIqCYHDsvG3Do0MNS+MYnj0i1NqJkD6fx9AAe+2GtXXHVVgRl w==;
-X-CSE-ConnectionGUID: HBOHZwzhRuyiisMq8dn+fg==
-X-CSE-MsgGUID: UKHP84HyQRae3oph8Dr4TQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="77403504"
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="77403504"
+ bh=PgJJSHzx3KFpbJMz3ttKt6OpWBc2lART3Stb49JZFb4=;
+ b=eJ77wl+KMN5vin3iEGrrMEhSMhkzxe3zUy/QM5z+6LoZ80mjI9uTCaTJ
+ OugDprT4tbrC6D7mVgpFP4826tWAxUK5obD327zP/nAb4sZmOOp0fzPhu
+ bwOuJmIJbXqGOgTUVRU+1KyeW0okj0c17xNJsYsuOixcBqw7on6WOn3Es
+ gEJCWPdIv9dMG4OadBjrWUtDtiiaaSUC/na2cyLdmPTedt7XFfufJ0X4G
+ uURoxC0n6bQ5J7bUmIBG+HzfHYYfJk9mLGu3DqF2yLor0Zu1j7oNdJU3N
+ HMfgGtoMkFvsEYL2hjGFu977DOO2rNrtBV82V6QtPN0URd1OI5Yfb1aok w==;
+X-CSE-ConnectionGUID: EEu7OyvzTEytAnhexVAe3Q==
+X-CSE-MsgGUID: /5t6NnxzROy8PwvaDKhbNw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="77403518"
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="77403518"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2026 16:47:15 -0700
-X-CSE-ConnectionGUID: TfGyQ5xoSdCN8YfadlQDPg==
-X-CSE-MsgGUID: MxKQCgHsTGagVykRVhjOjQ==
+ 15 Apr 2026 16:47:25 -0700
+X-CSE-ConnectionGUID: zz3hqttTToGIURFNDL4wHQ==
+X-CSE-MsgGUID: /1RKE1GvQvioFEmaKj27sg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="235511194"
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="235511232"
 Received: from administrator-system-product-name.igk.intel.com (HELO
  dev-417.igk.intel.com) ([10.91.214.181])
- by fmviesa005.fm.intel.com with ESMTP; 15 Apr 2026 16:47:13 -0700
+ by fmviesa005.fm.intel.com with ESMTP; 15 Apr 2026 16:47:24 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@intel.com>,
  =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v2 16/32] drm/i915/bios: parse LT's VS/PE-O tables
-Date: Thu, 16 Apr 2026 01:46:23 +0200
-Message-ID: <20260415234639.3577774-17-michal.grzelak@intel.com>
+Subject: [PATCH v2 24/32] drm/i915/buf_trans: compute C10's VS/PE-O index
+Date: Thu, 16 Apr 2026 01:46:31 +0200
+Message-ID: <20260415234639.3577774-25-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260415234639.3577774-1-michal.grzelak@intel.com>
 References: <20260415234639.3577774-1-michal.grzelak@intel.com>
@@ -71,113 +71,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-LT's VS/PE-O tables have less columns than xe3plpd_lt_phy_buf_trans
-contains fields. This prevents casting block->tables to point at
-xe3plpd_lt_phy_buf_trans and parsing it trivially.
+Compute the most appropriate VS/PE-O index for C10.
 
-Parse each entry from every table into kzalloc'd buffers' matrix. Read
-number of tables and number of columns from the block. Assume that each
-table contains 16 rows.
+For external DP use 2nd table if encoder supports any mode beyond or
+including HBR2. Use 1st table if external DP encoder supports anything
+lower than HBR2.
 
-Inflate xe3plpd_lt_phy_buf_trans since each VBT-based value is
-stored on u32. Reducing the size will be done in separate commit.
+For eDP use 4th table if encoder supports HBR3. Otherwise use 3rd table
+for eDP.
 
-Add LT to workaround for availability of VS/PE-O parsing.
+Warn if encoder does not support DP. In that case fallback to using
+default VS/PE tables.
 
 Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c     | 35 ++++++++++++++++++-
- .../drm/i915/display/intel_ddi_buf_trans.h    | 10 +++---
- 2 files changed, 39 insertions(+), 6 deletions(-)
+ .../drm/i915/display/intel_ddi_buf_trans.c    | 28 ++++++++++++++++++-
+ 1 file changed, 27 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 7d70e42188aa5..f7cfdfa76db59 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -2187,6 +2187,30 @@ parse_compression_parameters(struct intel_display *display)
- 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+index 5d1d258f6b6a6..d163a021569bc 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+@@ -1786,6 +1786,30 @@ xe3plpd_get_lt_buf_trans(struct intel_encoder *encoder,
+ 		return intel_get_buf_trans(&xe3plpd_lt_trans_dp14, n_entries);
  }
  
-+static void
-+parse_vswing_preemph_lt(union intel_ddi_buf_trans_entry **bufs_mtrx,
-+			const struct bdb_vswing_preemph *block)
++static int
++snps_c10_compute_index(const struct intel_crtc_state *crtc_state)
 +{
-+	union intel_ddi_buf_trans_entry *entry;
-+	const u32 *tables = block->tables;
-+	u8 num_rows = 16;
-+	size_t offset = 0;
-+	const u32 *vals;
-+
-+	for (int idx = 0; idx < block->num_tables; idx++) {
-+		for (int row = 0; row < num_rows; row++) {
-+			vals = &tables[offset];
-+
-+			entry = &bufs_mtrx[idx][row];
-+			entry->lt.main_cursor = vals[0];
-+			entry->lt.pre_cursor = vals[1];
-+			entry->lt.post_cursor = vals[2];
-+
-+			offset += block->num_columns;
-+		}
++	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP)) {
++		if (crtc_state->port_clock > 540000)
++			return 3;
++		else
++			return 2;
 +	}
++
++	if (intel_crtc_has_dp_encoder(crtc_state)) {
++		if (crtc_state->port_clock > 270000)
++			return 1;
++		else
++			return 0;
++	}
++
++	drm_WARN(to_intel_display(crtc_state)->drm, 1,
++		 "non-DP (%d) encoder asks to compute VS/PE-O index\n",
++		 crtc_state->output_types);
++
++	return -1;
 +}
 +
- static void
- parse_vswing_preemph_override(struct intel_display *display)
+ static enum snps_c20_vspeo_index
+ snps_c20_compute_index(const struct intel_crtc_state *crtc_state)
  {
-@@ -2210,7 +2234,11 @@ parse_vswing_preemph_override(struct intel_display *display)
- 	for (int idx = 0; idx < block->num_tables; idx++)
- 		bufs_mtrx[idx] = kzalloc(num_rows * sizeof(**bufs_mtrx), GFP_KERNEL);
+@@ -1829,7 +1853,9 @@ vspeo_compute_index(struct intel_encoder *encoder,
+ 	if (HAS_LT_PHY(display)) {
+ 		return lt_compute_index(crtc_state);
+ 	} else if (DISPLAY_VER(display) >= 14) {
+-		if (!intel_encoder_is_c10phy(encoder))
++		if (intel_encoder_is_c10phy(encoder))
++			return snps_c10_compute_index(crtc_state);
++		else
+ 			return snps_c20_compute_index(crtc_state);
+ 	}
  
--	drm_dbg_kms(display->drm, "VS/PE-O parsing not yet supported\n");
-+	if (HAS_LT_PHY(display)) {
-+		parse_vswing_preemph_lt(bufs_mtrx, block);
-+	} else {
-+		drm_dbg_kms(display->drm, "VS/PE-O parsing not yet supported\n");
-+	}
- 
- 	display->vbt.vspeo.bufs_mtrx = bufs_mtrx;
- 	display->vbt.vspeo.num_tables = block->num_tables;
-@@ -2659,6 +2687,7 @@ static void sanitize_hdmi_level_shift(struct intel_bios_encoder_data *devdata,
- 
- static void override_vswing_preemph(struct intel_bios_encoder_data *devdata)
- {
-+	struct intel_display *display = devdata->display;
- 	struct intel_ddi_buf_trans *buf_trans;
- 	bool parseable = false;
- 
-@@ -2667,6 +2696,10 @@ static void override_vswing_preemph(struct intel_bios_encoder_data *devdata)
- 	if (!intel_bios_encoder_overrides_vswing(devdata))
- 		return;
- 
-+	if (HAS_LT_PHY(display)) {
-+		parseable = true;
-+	}
-+
- 	if (!parseable)
- 		return;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
-index ac9acdec6d298..bc4bc80ba6588 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
-+++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
-@@ -51,11 +51,11 @@ struct dg2_snps_phy_buf_trans {
- };
- 
- struct xe3plpd_lt_phy_buf_trans {
--	u8 main_cursor;
--	u8 pre_cursor;
--	u8 post_cursor;
--	u8 txswing;
--	u8 txswing_level;
-+	u32 main_cursor;
-+	u32 pre_cursor;
-+	u32 post_cursor;
-+	u32 txswing;
-+	u32 txswing_level;
- };
- 
- union intel_ddi_buf_trans_entry {
 -- 
 2.45.2
 
