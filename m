@@ -4,144 +4,161 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6577BF428CB
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Apr 2026 19:47:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5AA3EF428CE
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Apr 2026 19:50:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDDB510E18F;
-	Wed, 15 Apr 2026 19:47:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14E3D10E18F;
+	Wed, 15 Apr 2026 19:50:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hDu/dExb";
+	dkim=pass (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="qa3PUdj1";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B85610E18F
- for <Intel-xe@lists.freedesktop.org>; Wed, 15 Apr 2026 19:47:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776282452; x=1807818452;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=/GHWyQ9SnLwii5I7veo8kBFu7rsfL/caTvEXHnDyd2g=;
- b=hDu/dExbi1Og4eMqlarAxhHZoehnz2FDaFzhKOfot3UkpF2u3vJJzWlX
- 91RNJ4C9tVJT1fGkhF9ya3OYj+vyoxnmpjdHEiL1AACEdsy5ixCNjjU5j
- mP3Hms1ykogjBifIwylgWWPrPAbVeQz8L2m6yoTuchtnNWe5BZWIeyVEo
- 4XPekDubmtaU7DB7zRElf55syeXD085nh543hej7TJ83AZBPEQcszx6Br
- cNBuq2ZdO0yvmJ+AMXQZui8T0AFK6L4g8oWZa0RhLhxEG0Uj6gXNjJumw
- wWkKBvMY8YhYJu1fUmHGhEpjvkp/eeNDmgswmWORE7IAHFL9aApuICQn4 g==;
-X-CSE-ConnectionGUID: bc5XGJ+aTN62tzpeRi//7g==
-X-CSE-MsgGUID: kMmrx4tpReSN3u9C4T6NuQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="94842001"
-X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="94842001"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2026 12:47:31 -0700
-X-CSE-ConnectionGUID: ortvMKbjRt6g1l7EyrPhWw==
-X-CSE-MsgGUID: CM09W3LyTc61+X5YkWqeaw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="230366114"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2026 12:47:31 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 15 Apr 2026 12:47:31 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 15 Apr 2026 12:47:31 -0700
-Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.23)
- by edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 15 Apr 2026 12:47:30 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PF7nO3bjStR9twOXRClb4dnFLytrj96m7lXcgF+cWkndE9dkTtZrsEqGE6ZIDkbeoqfv35iAcdE/1Afh3P7N77DyCUpp86n0LVM9QeUddOy8l4KWinKYxYn8Nv3Td4CCk8lcRgHi6D4iBF6U2ShJdrTwQSP8NEZoDKLD0LVc9GOcUno5UmZClimngVbfaEwx7qp+cKkMaE0ZLE4mpe9a7+J5WHKzRbM7LFdn8A/HLx7ug5MaC4G1NYFSUVrzOSLusTmvRW/wNYDnu09Z5LY99xXKttlDL0Xt1bqocIWQ+Z4kuiIiyiLEl3+TnwAeWuck0mJ+nLzAW+7VElb+Sxn2Ow==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pbFT/bgBwpsSz8JP1braQjzNr3uIhvJ8uAbveWalYzM=;
- b=hAKSNYoEGaEQ6f5e3yAen5ftQVwqlzpZ4xtSpGNedxkRV/hxoxe1eWG7wQQe7YEcwIEB9KZG91n8L6UYjwzgP3fXueLYj/mH74ZQJaqiHNYSxGqvcHhoXmh7ipSeBUBtJTUx/X7B8nsUla5ZdekL4t5isRDKgF5St61/qP94ODPrtHZKPxUSjceeJJ2GXMMBaX1ofFVmeUNgIU8BLnL0Pg7+qrHyV7U717qz0lRGGVyk7CdnqjnZAjm4GYs3Sm7k+OrUkkKwOC/+PN1hwLxtJm63J5R4aSYtx2H1BV0ELXeo1sasOD7lPgIJPFwnGEl+aSg7HShYHrZXeTTmsAP7sA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by DSSPR11MB9644.namprd11.prod.outlook.com (2603:10b6:8:374::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9818.20; Wed, 15 Apr
- 2026 19:47:28 +0000
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e]) by DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e%7]) with mapi id 15.20.9818.017; Wed, 15 Apr 2026
- 19:47:28 +0000
-Date: Wed, 15 Apr 2026 12:47:26 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Clint Taylor <clinton.a.taylor@intel.com>
-CC: <Intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/xe: Apply WA_14026810691 to engine
-Message-ID: <20260415194726.GD755471@mdroper-desk1.amr.corp.intel.com>
-References: <20260413200825.4054940-1-clinton.a.taylor@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20260413200825.4054940-1-clinton.a.taylor@intel.com>
-X-ClientProxiedBy: BYAPR06CA0056.namprd06.prod.outlook.com
- (2603:10b6:a03:14b::33) To DS0PR11MB8182.namprd11.prod.outlook.com
- (2603:10b6:8:163::17)
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
+ [148.163.156.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E2B510E18F
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Apr 2026 19:50:05 +0000 (UTC)
+Received: from pps.filterd (m0360083.ppops.net [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
+ 63FEtFVr1605298; Wed, 15 Apr 2026 19:50:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+ :content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to; s=pp1; bh=DZNVyZ
+ 6ysBuYj8YiFGxPq92RAqtqeptyZUH90mqXodA=; b=qa3PUdj1AQK9gen7EvFJIW
+ mzHlJQCBOalvdYabpK0wbS8j8zSQK3okmk8zcmbQoDi4J3Y5t77PPhvBZU+YWoeH
+ t/Yy9eWWYHJwkOobYwv3fPwA9+BXokryqJmmn5jmHd2WadBvavmQMo6Jpx6GSMbs
+ sGARwAFg1f2E1DvKBNswnMWcoBjZve6kJyD+MXNHf3ujUtBv6WvxuzZrqpxM7zh+
+ fyUP7XCM3GVFstOIx4lxnvQqU3KUNitl9vWr+jQyu4r1+8cBoGQW0uxpifVKjPhf
+ mjXSfARAUzyPfAPXyrIz1PP/4wsQhtxHHdILVkSzd4QS4brH3fclvN2ZcE8ASiaA
+ ==
+Received: from ppma12.dal12v.mail.ibm.com
+ (dc.9e.1632.ip4.static.sl-reverse.com [50.22.158.220])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4dh89nj2br-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Wed, 15 Apr 2026 19:49:59 +0000 (GMT)
+Received: from pps.filterd (ppma12.dal12v.mail.ibm.com [127.0.0.1])
+ by ppma12.dal12v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 63FGKmOY015149;
+ Wed, 15 Apr 2026 19:49:58 GMT
+Received: from smtprelay05.wdc07v.mail.ibm.com ([172.16.1.72])
+ by ppma12.dal12v.mail.ibm.com (PPS) with ESMTPS id 4dg0msr04m-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Wed, 15 Apr 2026 19:49:58 +0000
+Received: from smtpav05.wdc07v.mail.ibm.com (smtpav05.wdc07v.mail.ibm.com
+ [10.39.53.232])
+ by smtprelay05.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 63FJnuTn32899644
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Wed, 15 Apr 2026 19:49:56 GMT
+Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 1386658053;
+ Wed, 15 Apr 2026 19:49:56 +0000 (GMT)
+Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 319B958061;
+ Wed, 15 Apr 2026 19:49:52 +0000 (GMT)
+Received: from [9.111.81.211] (unknown [9.111.81.211])
+ by smtpav05.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+ Wed, 15 Apr 2026 19:49:52 +0000 (GMT)
+Message-ID: <9a9a257de499ae3e1cfd170c1ce1d05428186167.camel@linux.ibm.com>
+Subject: Re: [PATCH v11 2/2] PCI: Fix AB-BA deadlock between device_lock
+ and pci_rescan_remove_lock in remove_store
+From: Niklas Schnelle <schnelle@linux.ibm.com>
+To: "Ionut Nechita (Wind River)" <ionut.nechita@windriver.com>,
+ linux-pci@vger.kernel.org, bhelgaas@google.com
+Cc: helgaas@kernel.org, sebott@linux.ibm.com, bblock@linux.ibm.com,
+ linux@roeck-us.net, lukas@wunner.de, stable@vger.kernel.org,
+ linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org,
+ matthew.brost@intel.com, michal.wajdeczko@intel.com,
+ piotr.piorkowski@intel.com, dtatulea@nvidia.com, mani@kernel.org,
+ kbusch@kernel.org, lkml@mageta.org, alifm@linux.ibm.com,
+ julianr@linux.ibm.com, ionut_n2001@yahoo.com, sunlightlinux@gmail.com
+In-Reply-To: <20260326083534.23602-3-ionut.nechita@windriver.com>
+References: <20260326083534.23602-1-ionut.nechita@windriver.com>
+ <20260326083534.23602-3-ionut.nechita@windriver.com>
+Autocrypt: addr=schnelle@linux.ibm.com; prefer-encrypt=mutual;
+ keydata=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
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 15 Apr 2026 21:48:51 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|DSSPR11MB9644:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0be42f60-f49a-469c-20b9-08de9b27d329
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|56012099003|18002099003|22082099003; 
-X-Microsoft-Antispam-Message-Info: On+KKJzolS0r9XV4U5XlSnNnZypYn63bMLKhmVT0ks3t7De8V+pgOXIADP69KuqXvaI1JWgRSkRz9V/R3XxsVsdKW8KG5nvC6Itq+OknumY9PP9VudNZFKbu/hRHBZdpwZKYDOmK2MB2Retk0aynnCZB0F/CNCh8xcbQQm53mT4ha99NcCTgJUsnjzNvwONrEaL87orGa+7dNXtvlIsHUODFkMUQVbCr98D17LtjfngBpLIJmVMnwh53HGxCw98YU5xIbDbkvNPNhLXlG9kAzPKw9nqPqCgcIWikTvxGeLcA8Sm2L1BIcJ80sFQLg25nHPoIdAVn3AGtOiyK8IZMPO7AJXGQMNFcuPE6eXLKDvoShXC5FQXwOgrXTWJjvX8iF/G1mjbMlRyP/auz/6f1/xmfgDhEct5WJUY1CsbCUml/Xtr1tfki181/AknwrzcPvh4nEN2KprjstpcmUz3KmyuR6TbrvTIg4jI+0cr2O6UDm3ofFot0Uc7P7jqi71P8hE3Y+lowwGInIuxfzOBz7EMVY/dz83Q7d0EvAOnMcXY8NZXfBmTR/9Aq3ZJbtogw9oaUwPfpKWywosz/m0HE7grTs+fVVZLRbIkpXDWKHtVujeea63G2h2TyXatKnbfZUTxoLu4CoIa38sG3aVPLayx7EqaZB8eTVY9TL9Ol/F7CgWZ6qwq7Ymml2nBfzK3XmhuGGDeIjp59BUd0BExEaesYYi8pMap5zmm/iaCXSh0=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(56012099003)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Xmd/6Yoa4LnQL1UVdbi8/gnDkedznJbDagZzVVdf3rIM0pJGBFCf9J6tIEii?=
- =?us-ascii?Q?kWKwUzjuwQOLhHY9J3wng0jbpbXKye/APHJY9QL4qR2ZYE+Od81c9tLGPH9t?=
- =?us-ascii?Q?xijimZ4iY3PuS8+Ce4CGFcw+3nT94BC17Zh5o6ApMxHswJ64rPMWHEGlgFh+?=
- =?us-ascii?Q?u3jKjVMuO65mDru8YHv0K7V/753PnvBotMk/aYIPynfiadNaGj6E3VHsquVw?=
- =?us-ascii?Q?j3dRWv+So3irzOFg8937ci01nKLPi4iL2rPknTh+1fimtEdnwjyWQsPmL6vt?=
- =?us-ascii?Q?pfI7OGLCcFLmYv7evMOW/gQ+XWy0EpGsCOTmIM97Xg3EpGa9mVlxun3rviWh?=
- =?us-ascii?Q?ByJRxhn5h5rda9XBuTXvfPQYrBrrKY52cByMH67Wz3cF4Hub0X5EBtcDlu0k?=
- =?us-ascii?Q?XEyAEpwCKdiKQ4r+2laLTUSbPS+HuvPCqZXsHnRALmRhqoo1PlwGaNjdaL9b?=
- =?us-ascii?Q?aaGMGtduj3xGXdJa7jRC8Jx1ixZxQtzIdnB/Jn09t3imfT9LN5+zo132RMpM?=
- =?us-ascii?Q?Y5bMwxr2esmu1vPkKN0Egsfp3eFzEJ9FQOZWolG6ETSMHGrR7lZlmOIXfW2j?=
- =?us-ascii?Q?EpF+mCo1iZCDuW9qgC+E180pDMWr9q0XP0l2Li4krdx2V0eay37cMNudvdQ7?=
- =?us-ascii?Q?IPDfVMIyoLTpwD9ZgKu1HNGWklzxsfeT5Ubcso9oIb5GK0jYbKKCRYJy1FUo?=
- =?us-ascii?Q?8JdAlXyAongcOBWOXzp44z4dMrGo5wFL2RHUsHyXpXYM/i4TBcITmFUCmVcq?=
- =?us-ascii?Q?vFMPCWuVC6Gz4PBG8/hHej+ytAQ9wnpE3W5DaHAYFykdcof7Ew/SRTYuSUqZ?=
- =?us-ascii?Q?XpoQDvld5LsGsWNp6A4YaxMKj465wE++08smxNbxvhiSOgWyYvh28fwXKXa+?=
- =?us-ascii?Q?NGiGZP+VxQDVY2KS5WuSv8ftWceGPv+WBHqdh82P9cwuurt1SsOO/iwW40q1?=
- =?us-ascii?Q?M5mdZDCUh6brBq6ILtxj0aT99B8ZXiKi2Kypqr6ZNaCInHzJoEiQggPrp+xC?=
- =?us-ascii?Q?jAkeCcXE7jDVWjHyvt6ZO9fLOGqmbonSfUEn/FaeJTvikOcMPBj9jC342Pqb?=
- =?us-ascii?Q?HQgqoZ5Xc/tQSM2/9J4H/2G5wMCFaJiCU8gH54SN4daffONnBdepRoj8NGlS?=
- =?us-ascii?Q?vvEA5rp8YWhqRAh02UxgfeDymx0bE6v+DfHHjIBsYVHsskw4sBKov0cObEvI?=
- =?us-ascii?Q?2ZmZChDUjtMt6JJwIsE9YsTKY1j2St6R4QKqt4NWecHxby25aoFQq+z1clQ9?=
- =?us-ascii?Q?Jdbrr0MpqD0INHdf4ddwQGatkU/s2kjqMywxRvKJwypOj+FEQUMpDDf6qLJr?=
- =?us-ascii?Q?B/6YupgwUnmlci6zkAFqqNeyJcgOC5enIkEq2rjJL3q7VsMN1ZOMJbv3XyYL?=
- =?us-ascii?Q?q91zCa/edhUA91RPJWEwlKeOpCm7xPr8YEkz4350PbEQJQUxOpFmyd8lfF2D?=
- =?us-ascii?Q?Kc2xuZK2YxXkhaGkDaIRK4BFda8cTAdkvPmiTZ3qBNLsfNGTUUOjevSNIsNU?=
- =?us-ascii?Q?qEWdvED7hsStWKFCvuLivx0iKxpxrF9f6rKIN3qH5sBvknNUmO/mXEfoX1U5?=
- =?us-ascii?Q?wrh/gn9gDpPBp2Ph/xLdeu8iA1nZ1BMx5mNUYC7ZiYcCr5tUATEXvUlyA/9R?=
- =?us-ascii?Q?U2rwbBgHPwlNzeNQO0bb9LoqRR798dNTEBsSz6Cks025oJOvuJW3WrvCxTg4?=
- =?us-ascii?Q?xqkjPaPKHyDUZKAhLFNy/zje/+V4+w9Gro0cG58aigIWiSereFLUJ61SQQbk?=
- =?us-ascii?Q?x63qaI7zxZjJT629WuRjSr13294VGUk=3D?=
-X-Exchange-RoutingPolicyChecked: W85CreKZ2ulsvKeodD/G+FHKcLZ627qZNFm6k4gKJzhHL3FRzgkpUGgIiDH6NYomqmeWgffp8wUZrhcRB2gNGWXXdm3FDPWBX5HSeMSXRFOaYsoy1Ws5wzrlms+ZGlWM0CdCzpFA5DYrrLyGzKVvm7VgTgSl7TYJiwxzXS7QSO3r8Vw+PRvWNqpS/FFSVqs2iXMBRT+gPIGbCy4TT4FuT0/MQsDcnrlV7S7sQ2qzHI5rf49m4OKs860t+6OuF7IBZvYRaauMEYax1IShTqQRuc8YyuBHNfWRxJPh9yvD1a10bQLA1fzt+7U1yd8xGo92LmNyCpJgYLr6wZmShlSgsw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0be42f60-f49a-469c-20b9-08de9b27d329
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Apr 2026 19:47:28.3557 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1lEzp/vxmBvDQdk+cw2AKhnzDp0CFMHzTzFtw2Jc3vcHGBYKxFLUZJ3pMRKq6IbKolGeXmSmvjstnGXV4E5OIxPHySVAx14Ad65Y0OzUosE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DSSPR11MB9644
-X-OriginatorOrg: intel.com
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+X-TM-AS-GCONF: 00
+X-Proofpoint-Reinject: loops=2 maxloops=12
+X-Proofpoint-GUID: LvVqhxcBpZe1_m0VUeEFYuZOoDGohB15
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDE1MDE4NSBTYWx0ZWRfX/JJtUUHVep2I
+ mh9HmxoEI/EQkMrIWaXygJHglrLO0POi8KhA8DZTlg1xNwVC+jYqe6pMpV85yOWaLWri6b8s7qr
+ lDai7vgew58Jl0Add9TeMELdVMQm4TmHKlVXpjSqkuDYfDU+uljZrDGTtVw6ZO276egGnjljDKz
+ LYET3OOOTSsgLDsVTm8O/rqGmXjaE86LrQbxU0jdyg0iCGfoWYVGan3lbEPR13sTzth84sL8NP/
+ 6iS/0gqxcEr+ntzUo2zy8vzhMYHVtT3siRQrRwrKLjrVoew+JgTuGd3dS4xjGT8sABRXlyrAXzI
+ o2XAVS6jrN90eUcSCbCk2ZPNkZd2/4RcQPoe9EnxQoNvBNtd8UPakQ43PVPBVHaINh/Vd5YvkmY
+ vXI1QiUzPM6zY20m+m/NWTVHE1h/jZldTVGx8VzKifbQ4OGF4rxSMvYs3kl8UZnuOwwFlMv4VwW
+ dWd7/OrFPveBq17UQXg==
+X-Proofpoint-ORIG-GUID: Lx6ROSBznCrtU7ji-kv_q2BEzQgFil6q
+X-Authority-Analysis: v=2.4 cv=FY4HAp+6 c=1 sm=1 tr=0 ts=69dfebe8 cx=c_pps
+ a=bLidbwmWQ0KltjZqbj+ezA==:117 a=bLidbwmWQ0KltjZqbj+ezA==:17
+ a=IkcTkHD0fZMA:10 a=A5OVakUREuEA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=RnoormkPH1_aCDwRdu11:22 a=iQ6ETzBq9ecOQQE5vZCe:22 a=VwQbUJbxAAAA:8
+ a=_jlGtV7tAAAA:8 a=p2eoyRXnAAAA:8 a=VnNF1IyMAAAA:8 a=t7CeM3EgAAAA:8
+ a=wQknxR_JBLlKyCFetn8A:9 a=QEXdDO2ut3YA:10 a=nlm17XC03S6CtCLSeiRr:22
+ a=KSHYvF9M28j0gckGFaEs:22 a=FdTzh2GWekK77mhwV6Dw:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-04-15_01,2026-04-13_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 priorityscore=1501 bulkscore=0 impostorscore=0 spamscore=0
+ lowpriorityscore=0 suspectscore=0 clxscore=1015 malwarescore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2604070000 definitions=main-2604150185
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,63 +173,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Apr 13, 2026 at 01:08:25PM -0700, Clint Taylor wrote:
-> Apply engine tuning WA_14026810691 starting with IP: Xe3p_LPG
-
-The code changes look good, but I don't think we should refer to
-"WA_14026810691" in the subject and commit message for something that
-isn't actually a workaround and doesn't have an entry in the workaround
-database by that name.  If you suggest an alternate wording, I can just
-make the changes while applying the patch; no need to re-submit and
-trigger another CI cycle.
-
-
-Matt
-
-> 
-> v2: move to xe tunings (MattR)
-> Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
+On Thu, 2026-03-26 at 10:35 +0200, Ionut Nechita (Wind River) wrote:
+> remove_store() calls pci_stop_and_remove_bus_device_locked() which
+> takes pci_rescan_remove_lock first, then device_lock during driver
+> release.  Meanwhile, unbind_store() takes device_lock first (via
+> device_driver_detach), and the driver's .remove() callback may call
+> pci_disable_sriov() -> sriov_del_vfs() -> pci_lock_rescan_remove().
+>=20
+> This creates an AB-BA deadlock:
+>=20
+>   CPU0 (remove_store)               CPU1 (unbind_store)
+>   --------------------              --------------------
+>   pci_lock_rescan_remove()
+>                                     device_lock()
+>                                     driver .remove()
+>                                       sriov_del_vfs()
+>                                         pci_lock_rescan_remove()  <-- WAI=
+TS
+>   pci_stop_bus_device()
+>     device_release_driver()
+>       device_lock()                                               <-- WAI=
+TS
+>=20
+> Fix this by first marking the device as dead using kill_device() to
+> prevent any new driver from binding, then calling device_release_driver()
+> before pci_stop_and_remove_bus_device_locked().
+>=20
+> Marking the device dead closes the race window between unbinding and
+> removal where a new driver could theoretically bind: once the dead flag
+> is set, the device core will refuse any new driver probe.
+>=20
+> After device_release_driver() returns, the driver is already unbound,
+> so the subsequent device_release_driver() call inside
+> pci_stop_and_remove_bus_device_locked() becomes a no-op.
+>=20
+> Fixes: a5338e365c45 ("PCI/IOV: Fix race between SR-IOV enable/disable and=
+ hotplug")
+> Reported-by: Guenter Roeck <linux@roeck-us.net>
+> Closes: https://lore.kernel.org/linux-pci/0ca9e675-478c-411d-be32-e2d8143=
+9288f@roeck-us.net/
+> Reported-by: Benjamin Block <bblock@linux.ibm.com>
+> Closes: https://lore.kernel.org/linux-pci/20260317090149.GA3835708@chloru=
+m.ategam.org/
+> Suggested-by: Benjamin Block <bblock@linux.ibm.com>
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Ionut Nechita <ionut.nechita@windriver.com>
 > ---
->  drivers/gpu/drm/xe/regs/xe_gt_regs.h | 3 +++
->  drivers/gpu/drm/xe/xe_tuning.c       | 5 +++++
->  2 files changed, 8 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> index aa267c2f6162..6a16ac1aca96 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> @@ -536,6 +536,9 @@
->  #define   SLM_WMTP_RESTORE			REG_BIT(11)
->  #define   RES_CHK_SPR_DIS			REG_BIT(6)
->  
-> +#define TDL_TSL_CHICKEN2			XE_REG_MCR(0xe4cc, XE_REG_OPTION_MASKED)
-> +#define   TILEY_LOCALID				REG_BIT(2)
+>  drivers/pci/pci-sysfs.c | 30 +++++++++++++++++++++++++++++-
+>  1 file changed, 29 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/pci/pci-sysfs.c b/drivers/pci/pci-sysfs.c
+> index a2f8a5d6190fd..e87aa96c02bde 100644
+> --- a/drivers/pci/pci-sysfs.c
+> +++ b/drivers/pci/pci-sysfs.c
+> @@ -518,8 +518,36 @@ static ssize_t remove_store(struct device *dev, stru=
+ct device_attribute *attr,
+>  	if (kstrtoul(buf, 0, &val) < 0)
+>  		return -EINVAL;
+> =20
+> -	if (val && device_remove_file_self(dev, attr))
+> +	if (val && device_remove_file_self(dev, attr)) {
+> +		/*
+> +		 * Mark the device as dead so that no new driver can bind
+> +		 * between the unbind and the removal below.  Once the
+> +		 * dead flag is set, the device core will refuse any new
+> +		 * driver probe.
+> +		 */
+> +		device_lock(dev);
+> +		kill_device(dev);
+> +		device_unlock(dev);
 > +
->  #define ROW_CHICKEN				XE_REG_MCR(0xe4f0, XE_REG_OPTION_MASKED)
->  #define   UGM_BACKUP_MODE			REG_BIT(13)
->  #define   MDQ_ARBITRATION_MODE			REG_BIT(12)
-> diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
-> index f8de6a4bf189..39423d5fabcc 100644
-> --- a/drivers/gpu/drm/xe/xe_tuning.c
-> +++ b/drivers/gpu/drm/xe/xe_tuning.c
-> @@ -124,6 +124,11 @@ static const struct xe_rtp_entry_sr engine_tunings[] = {
->  			     GHWSP_CSB_REPORT_DIS,
->  			     XE_RTP_ACTION_FLAG(ENGINE_BASE)))
->  	},
-> +	{ XE_RTP_NAME("Tuning: TileY 2x2 Walk"),
-> +	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3510, XE_RTP_END_VERSION_UNDEFINED),
-> +		       FUNC(xe_rtp_match_first_render_or_compute)),
-> +	  XE_RTP_ACTIONS(SET(TDL_TSL_CHICKEN2, TILEY_LOCALID))
-> +	},
->  };
->  
->  static const struct xe_rtp_entry_sr lrc_tunings[] = {
-> -- 
-> 2.25.1
-> 
+> +		/*
+> +		 * Unbind the driver before removing the device to avoid
+> +		 * an AB-BA deadlock between device_lock and
+> +		 * pci_rescan_remove_lock.  Without this, remove_store
+> +		 * takes pci_rescan_remove_lock first (via
+> +		 * pci_stop_and_remove_bus_device_locked) and then
+> +		 * device_lock during driver release, while a concurrent
+> +		 * unbind_store (or sriov_numvfs_store) takes device_lock
+> +		 * first and then pci_rescan_remove_lock (via
+> +		 * sriov_del_vfs), creating a circular dependency.
+> +		 *
+> +		 * By unbinding first, the driver's .remove() callback
+> +		 * (including any SR-IOV VF cleanup) completes before
+> +		 * pci_rescan_remove_lock is acquired, ensuring both
+> +		 * paths take locks in the same order.
+> +		 */
+> +		device_release_driver(dev);
+>  		pci_stop_and_remove_bus_device_locked(to_pci_dev(dev));
+> +	}
+>  	return count;
+>  }
+>  static DEVICE_ATTR_IGNORE_LOCKDEP(remove, 0220, NULL,
 
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+This looks good to me and this use of kill_device() seems to match
+pretty well with the comment in kill_device() as setting it on tearing
+things down. Thank you for working on this rats nest of PCI
+rescan/remove lock issues!
+
+Feel free to add my
+
+Reviewed-by: Niklas Schnelle <schnelle@linux.ibm.com>
