@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9229CF41980
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Apr 2026 09:46:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C08E7F41987
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Apr 2026 10:15:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43C7C10E6B1;
-	Wed, 15 Apr 2026 09:46:11 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eyduNzzq";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADD3210E19A
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Apr 2026 09:46:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776246370; x=1807782370;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=bVX3ePynkTVof5gRWwljtDyTJmvEGkiNWd5dsZ0dwZk=;
- b=eyduNzzq0DByX44e7iWZ2PjVIB6cd3KHkx/tnGvGpHcxwnfTAn+SExBh
- rYzeQ+qO8T4OdTW6VHZrC0PlvrjMIoxVjA0JWYrN6QV3wUZtuNESyod7O
- Awkbf0DCyQOC24yPrzqpI16VEzaKABWpLEKL/4Jx7qQsXBsBMD5O9/YkS
- eGZiqCBPTV/ELm4paMPbpOltf2UPDwjnSBy+Imo7qWUzotq/zMpFDOjJ4
- bNMYMXd+pV/7gtbUaeaBXYzHbdBnZid+OJFd5liy/pGrwtwsJv94di7Uq
- fLEdGhcpKoblslOWncru33/mKBpCMLw4aLEAxZJ7bUdEdz+feyw9Lva9U Q==;
-X-CSE-ConnectionGUID: WK+UjGfdRg+L15vTY40hCw==
-X-CSE-MsgGUID: 6/hRmkkLTWOEGpFbzbk1Og==
-X-IronPort-AV: E=McAfee;i="6800,10657,11759"; a="81087015"
-X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="81087015"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2026 02:46:10 -0700
-X-CSE-ConnectionGUID: gb2uDApnQFetyDRCsFOPOA==
-X-CSE-MsgGUID: 52JXuAqxSpSSCQdtNQvH1w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="230229289"
-Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2026 02:46:06 -0700
-Date: Wed, 15 Apr 2026 11:46:03 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: "Laguna, Lukasz" <lukasz.laguna@intel.com>
-Cc: intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
- rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com,
- riana.tauro@intel.com, michal.wajdeczko@intel.com,
- matthew.d.roper@intel.com, michal.winiarski@intel.com,
- matthew.auld@intel.com, maarten@lankhorst.se, jani.nikula@intel.com,
- zhanjun.dong@intel.com, lukas@wunner.de
-Subject: Re: [PATCH v5 9/9] drm/xe/pci: Introduce PCIe FLR
-Message-ID: <ad9eW3OlG6vCxOMs@black.igk.intel.com>
-References: <20260406140722.154445-1-raag.jadav@intel.com>
- <20260406140722.154445-10-raag.jadav@intel.com>
- <3b6e0cd3-9d8c-42cd-8ca8-f67bb59110d4@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5557110E19A;
+	Wed, 15 Apr 2026 10:15:34 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68F0410E19A;
+ Wed, 15 Apr 2026 10:15:33 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1564073635231304476=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <3b6e0cd3-9d8c-42cd-8ca8-f67bb59110d4@intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/reset=3A_Expose_?=
+ =?utf-8?q?=22display=5Freset=5Fcount=22_in_debugfs_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 15 Apr 2026 10:15:33 -0000
+Message-ID: <177624813341.463169.3007759725346373469@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260414142247.651-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20260414142247.651-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,250 +36,141 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Apr 15, 2026 at 10:43:53AM +0200, Laguna, Lukasz wrote:
-> On 4/6/2026 16:07, Raag Jadav wrote:
-> > With bare minimum pieces in place, we can finally introduce PCIe Function
-> > Level Reset (FLR) handling which re-initializes hardware state without the
-> > need for reloading the driver from userspace. All VRAM contents are lost
-> > along with hardware state and driver takes care of recreating the required
-> > kernel bos as part of re-initialization, but user still needs to recreate
-> > user bos and reload context after PCIe FLR.
-> > 
-> > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> > ---
-> > v2: Spell out Function Level Reset (Jani)
-> > v5: Prevent PM ref leak for wedged device (Matthew Brost)
-> > ---
-> >   drivers/gpu/drm/xe/Makefile          |   1 +
-> >   drivers/gpu/drm/xe/xe_device_types.h |   3 +
-> >   drivers/gpu/drm/xe/xe_pci.c          |   1 +
-> >   drivers/gpu/drm/xe/xe_pci.h          |   2 +
-> >   drivers/gpu/drm/xe/xe_pci_err.c      | 160 +++++++++++++++++++++++++++
-> >   5 files changed, 167 insertions(+)
-> >   create mode 100644 drivers/gpu/drm/xe/xe_pci_err.c
-> > 
-> > diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> > index f9abaf687d46..06b5d53e1629 100644
-> > --- a/drivers/gpu/drm/xe/Makefile
-> > +++ b/drivers/gpu/drm/xe/Makefile
-> > @@ -100,6 +100,7 @@ xe-y += xe_bb.o \
-> >   	xe_page_reclaim.o \
-> >   	xe_pat.o \
-> >   	xe_pci.o \
-> > +	xe_pci_err.o \
-> >   	xe_pci_rebar.o \
-> >   	xe_pcode.o \
-> >   	xe_pm.o \
-> > diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> > index 150c76b2acaf..b743b3986205 100644
-> > --- a/drivers/gpu/drm/xe/xe_device_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> > @@ -482,6 +482,9 @@ struct xe_device {
-> >   	/** @needs_flr_on_fini: requests function-reset on fini */
-> >   	bool needs_flr_on_fini;
-> > +	/** @flr_prepared: Prepared for function-reset */
-> > +	bool flr_prepared;
-> > +
-> >   	/** @wedged: Struct to control Wedged States and mode */
-> >   	struct {
-> >   		/** @wedged.flag: Xe device faced a critical error and is now blocked. */
-> > diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> > index 26eb58e11056..f3515c91e534 100644
-> > --- a/drivers/gpu/drm/xe/xe_pci.c
-> > +++ b/drivers/gpu/drm/xe/xe_pci.c
-> > @@ -1332,6 +1332,7 @@ static struct pci_driver xe_pci_driver = {
-> >   #ifdef CONFIG_PM_SLEEP
-> >   	.driver.pm = &xe_pm_ops,
-> >   #endif
-> > +	.err_handler = &xe_pci_err_handlers,
-> >   };
-> >   /**
-> > diff --git a/drivers/gpu/drm/xe/xe_pci.h b/drivers/gpu/drm/xe/xe_pci.h
-> > index 11bcc5fe2c5b..85e85e8508c3 100644
-> > --- a/drivers/gpu/drm/xe/xe_pci.h
-> > +++ b/drivers/gpu/drm/xe/xe_pci.h
-> > @@ -8,6 +8,8 @@
-> >   struct pci_dev;
-> > +extern const struct pci_error_handlers xe_pci_err_handlers;
-> > +
-> >   int xe_register_pci_driver(void);
-> >   void xe_unregister_pci_driver(void);
-> >   struct xe_device *xe_pci_to_pf_device(struct pci_dev *pdev);
-> > diff --git a/drivers/gpu/drm/xe/xe_pci_err.c b/drivers/gpu/drm/xe/xe_pci_err.c
-> > new file mode 100644
-> > index 000000000000..339e8688d37f
-> > --- /dev/null
-> > +++ b/drivers/gpu/drm/xe/xe_pci_err.c
-> > @@ -0,0 +1,160 @@
-> > +// SPDX-License-Identifier: MIT
-> > +/*
-> > + * Copyright © 2026 Intel Corporation
-> > + */
-> > +
-> > +#include "xe_bo_evict.h"
-> > +#include "xe_device.h"
-> > +#include "xe_gt.h"
-> > +#include "xe_gt_idle.h"
-> > +#include "xe_i2c.h"
-> > +#include "xe_irq.h"
-> > +#include "xe_late_bind_fw.h"
-> > +#include "xe_pci.h"
-> > +#include "xe_pcode.h"
-> > +#include "xe_printk.h"
-> > +#include "xe_pxp.h"
-> > +#include "xe_wa.h"
-> > +
-> > +/* TODO: Extend support as a follow-up */
-> > +#define XE_FLR_SKIP		(!IS_DGFX(xe) || IS_SRIOV_VF(xe) || pci_num_vf(pdev) || \
-> 
-> Any known issues on integrated platforms? I checked it on PTL and didn't
-> notice any problems. Everything seems to work fine with display disabled.
+--===============1564073635231304476==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thank you. Can I add your Tested-by on this? I can include integrated
-in next rev with it.
+== Series Details ==
 
-Raag
+Series: drm/i915/reset: Expose "display_reset_count" in debugfs (rev3)
+URL   : https://patchwork.freedesktop.org/series/164676/
+State : success
 
-> > +				 xe->info.probe_display)
-> > +
-> > +static int xe_flr_prepare(struct xe_device *xe)
-> > +{
-> > +	struct xe_gt *gt;
-> > +	int err;
-> > +	u8 id;
-> > +
-> > +	err = xe_pxp_pm_suspend(xe->pxp);
-> > +	if (err)
-> > +		return err;
-> > +
-> > +	xe_late_bind_wait_for_worker_completion(&xe->late_bind);
-> > +
-> > +	xe_irq_disable(xe);
-> > +
-> > +	for_each_gt(gt, xe, id)
-> > +		xe_gt_flr_prepare(gt);
-> > +
-> > +	// TODO: Drop all user bos
-> > +	xe_bo_pci_dev_remove_pinned(xe);
-> > +	unmap_mapping_range(xe->drm.anon_inode->i_mapping, 0, 0, 1);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int xe_flr_done(struct xe_device *xe)
-> > +{
-> > +	struct xe_tile *tile;
-> > +	struct xe_gt *gt;
-> > +	int err;
-> > +	u8 id;
-> > +
-> > +	for_each_gt(gt, xe, id)
-> > +		xe_gt_idle_disable_c6(gt);
-> > +
-> > +	for_each_tile(tile, xe, id)
-> > +		xe_wa_apply_tile_workarounds(tile);
-> > +
-> > +	err = xe_pcode_ready(xe, true);
-> > +	if (err)
-> > +		return err;
-> > +
-> > +	xe_device_assert_lmem_ready(xe);
-> > +
-> > +	err = xe_bo_restore_map(xe);
-> > +	if (err)
-> > +		return err;
-> > +
-> > +	for_each_gt(gt, xe, id) {
-> > +		err = xe_gt_flr_done(gt);
-> > +		if (err)
-> > +			return err;
-> > +	}
-> > +
-> > +	xe_i2c_pm_resume(xe, true);
-> > +
-> > +	xe_irq_resume(xe);
-> > +
-> > +	for_each_gt(gt, xe, id) {
-> > +		err = xe_gt_resume(gt);
-> > +		if (err)
-> > +			return err;
-> > +	}
-> > +
-> > +	xe_pxp_pm_resume(xe->pxp);
-> > +
-> > +	xe_late_bind_fw_load(&xe->late_bind);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static void xe_pci_reset_prepare(struct pci_dev *pdev)
-> > +{
-> > +	struct xe_device *xe = pdev_to_xe_device(pdev);
-> > +
-> > +	if (XE_FLR_SKIP) {
-> > +		xe_err(xe, "PCIe FLR not supported\n");
-> > +		return;
-> > +	}
-> > +
-> > +	if (xe_device_wedged(xe)) {
-> > +		xe_err(xe, "PCIe FLR aborted, device in unexpected state\n");
-> > +		return;
-> > +	}
-> > +
-> > +	/* Wedge the device to prevent userspace access but don't send the event yet */
-> > +	atomic_set(&xe->wedged.flag, 1);
-> > +
-> > +	/*
-> > +	 * The hardware could be in corrupted state and access unreliable, but we try to
-> > +	 * update data structures and cleanup any pending work to avoid side effects during
-> > +	 * PCIe FLR. This will be similar to xe_pm_suspend() flow but without migration.
-> > +	 */
-> > +	if (xe_flr_prepare(xe)) {
-> > +		xe_err(xe, "Failed to prepare for PCIe FLR\n");
-> > +		return;
-> > +	}
-> > +
-> > +	xe->flr_prepared = true;
-> > +	xe_info(xe, "Prepared for PCIe FLR\n");
-> > +}
-> > +
-> > +static void xe_pci_reset_done(struct pci_dev *pdev)
-> > +{
-> > +	struct xe_device *xe = pdev_to_xe_device(pdev);
-> > +
-> > +	if (XE_FLR_SKIP)
-> > +		return;
-> > +
-> > +	if (!xe_device_wedged(xe) || !xe->flr_prepared)
-> > +		return;
-> > +
-> > +	/* Unprepare early in case we fail */
-> > +	xe->flr_prepared = false;
-> > +
-> > +	/*
-> > +	 * We already have the data structures intact, so try to re-initialize the device.
-> > +	 * This will be similar to xe_pm_resume() flow, except we'll also need to recreate
-> > +	 * all VRAM contents.
-> > +	 */
-> > +	if (xe_flr_done(xe)) {
-> > +		xe_err(xe, "Re-initialization failed\n");
-> > +		return;
-> > +	}
-> > +
-> > +	/* Unwedge to allow userspace access */
-> > +	atomic_set(&xe->wedged.flag, 0);
-> > +
-> > +	xe_info(xe, "Re-initialization success\n");
-> > +}
-> > +
-> > +/*
-> > + * PCIe Function Level Reset (FLR) support only.
-> > + * TODO: Add PCIe error handlers using similar flow.
-> > + */
-> > +const struct pci_error_handlers xe_pci_err_handlers = {
-> > +	.reset_prepare = xe_pci_reset_prepare,
-> > +	.reset_done = xe_pci_reset_done,
-> > +};
+== Summary ==
+
+CI Bug Log - changes from xe-4903-921a34f07808e9a5468b56a2dba7ef281ff10ba4_BAT -> xe-pw-164676v3_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-164676v3_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
+    - bat-bmg-2:          NOTRUN -> [SKIP][1] ([Intel XE#2229])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164676v3/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
+
+  
+#### Possible fixes ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-bmg-2:          [ABORT][2] ([Intel XE#7249] / [Intel XE#7578]) -> [PASS][3]
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4903-921a34f07808e9a5468b56a2dba7ef281ff10ba4/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164676v3/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+
+  
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#7249]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7249
+  [Intel XE#7578]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7578
+
+
+Build changes
+-------------
+
+  * Linux: xe-4903-921a34f07808e9a5468b56a2dba7ef281ff10ba4 -> xe-pw-164676v3
+
+  IGT_8859: 8d537f073bd4d30da991ab868bee2310ca664401 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4903-921a34f07808e9a5468b56a2dba7ef281ff10ba4: 921a34f07808e9a5468b56a2dba7ef281ff10ba4
+  xe-pw-164676v3: 164676v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164676v3/index.html
+
+--===============1564073635231304476==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/reset: Expose &quot;display_reset_count&quot; in debugfs (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164676/">https://patchwork.freedesktop.org/series/164676/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164676v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164676v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4903-921a34f07808e9a5468b56a2dba7ef281ff10ba4_BAT -&gt; xe-pw-164676v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-164676v3_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164676v3/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4903-921a34f07808e9a5468b56a2dba7ef281ff10ba4/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7249">Intel XE#7249</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7578">Intel XE#7578</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164676v3/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4903-921a34f07808e9a5468b56a2dba7ef281ff10ba4 -&gt; xe-pw-164676v3</li>
+</ul>
+<p>IGT_8859: 8d537f073bd4d30da991ab868bee2310ca664401 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4903-921a34f07808e9a5468b56a2dba7ef281ff10ba4: 921a34f07808e9a5468b56a2dba7ef281ff10ba4<br />
+  xe-pw-164676v3: 164676v3</p>
+
+</body>
+</html>
+
+--===============1564073635231304476==--
