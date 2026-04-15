@@ -4,55 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B0DFFA0C23
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Apr 2026 03:35:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FBCFFA0C22
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Apr 2026 03:39:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1ED7810E672;
-	Wed, 15 Apr 2026 03:35:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F28810E66F;
+	Wed, 15 Apr 2026 03:39:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d5CrAyvO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h66LDMGs";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2184010E66F
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Apr 2026 03:35:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39AD810E66F
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Apr 2026 03:38:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776224137; x=1807760137;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=UiyL5jj0TXBQfj3MlZaPazA3dcXBWt5yG0+CXuSw0jk=;
- b=d5CrAyvOjhilKo+gf3hhOynPSp9UsmdCciMGeNZX1TPvsmyKadIrH4m4
- 5SGdF32Ljb1DDCJwGMFFe4S5pqBLk44DMLv6IhF8IXiUQ8J9K3/SQrGh5
- JvWdsSWsKa5bF1ccEeSnTjT77Eha8KctOhRnSUQL7zEQVYXO1ESKD8QF9
- 9fIhj4hHqhh1HdSvCY23uZJO1GiS7B5I4pTQNbmbWnXnT/ZAsEacea7kU
- GK6lMoSA+ekSO+v/cIGmP9Ar4holjbwQ1/zhyAmx5xzTJykPOfh8UbJhT
- S+8sm091yPtolUFMlJSQYhJDPcMsyj4LiaPi2q1HkPkXuAMWqbIs3Kd9j A==;
-X-CSE-ConnectionGUID: BXx8AjbxR+y+AYfONtO9vQ==
-X-CSE-MsgGUID: mkJa/0E8Swey8uEcknn1Ww==
-X-IronPort-AV: E=McAfee;i="6800,10657,11759"; a="76225345"
-X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="76225345"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2026 20:35:36 -0700
-X-CSE-ConnectionGUID: rN3ED3T4QqGEXjB85m7XGQ==
-X-CSE-MsgGUID: Jgq0Gs7OQAy9nAEcqmHodQ==
+ t=1776224339; x=1807760339;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=T1YlXvjeZb9vyMioc+B+TM3RGyWiHAbt7jvCpCB/jgc=;
+ b=h66LDMGszJA+ZumBSPNUribUWCGxE9uwai6iaHYmZelPDKf2JOdOeCaT
+ DU5zL5O+WffryzLKNegSgDzlWOrzRXCWMxSl39fxa1JYNSlAjxzknEsn5
+ EMj9qIGtYPezoyqBn9D+UBCT3/5jc5jsYZD0rpZZHNyQtO+3AN2PKHzaI
+ g/hwt5ihCQBJvdvYIdRcWzjcfHhH6A0rK2H+kS/UQdCgQQb8vu+n7K8wk
+ cZc4pSTd6FtKrYGgJvkTe6ACzgP60w7sb5yRQGYEWd8AZfvUqSRvarukv
+ ozfm47/XghBk+Pab7be1vFnfnK3RYa2L6lK4q3r5/OLYzOVP16xt5FM3w w==;
+X-CSE-ConnectionGUID: U6J0/c0LSme2j/xioYaZuw==
+X-CSE-MsgGUID: XvgXJ+IoRgSjFFc71w+bmQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11759"; a="77164620"
+X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="77164620"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2026 20:38:59 -0700
+X-CSE-ConnectionGUID: jUpQnetKT/2TKceTjjCbbA==
+X-CSE-MsgGUID: 1i+NU3IVQvSeLUdh+EZ7pw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="232033293"
-Received: from orsosgc001.jf.intel.com ([10.88.27.185])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2026 20:35:36 -0700
-From: Ashutosh Dixit <ashutosh.dixit@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: [PATCH 3/3] drm/xe/oa: Fix offset alignment for MERT
- WHITELIST_OA_MERT_MMIO_TRG
-Date: Tue, 14 Apr 2026 20:35:32 -0700
-Message-ID: <20260415033532.789954-4-ashutosh.dixit@intel.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20260415033532.789954-1-ashutosh.dixit@intel.com>
-References: <20260415033532.789954-1-ashutosh.dixit@intel.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="235238467"
+Received: from agustinl-mobl1.amr.corp.intel.com (HELO adixit-MOBL3.intel.com)
+ ([10.125.161.162])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2026 20:38:59 -0700
+Date: Tue, 14 Apr 2026 20:38:57 -0700
+Message-ID: <871pgg99ke.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>,
+ Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Subject: Re: [PATCH 0/3] drm/xe/rtp: OA register whitelist fixes
+In-Reply-To: <87se8xwoho.fsf@intel.com>
+References: <20260414035244.741342-1-ashutosh.dixit@intel.com>
+ <87se8xwoho.fsf@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/30.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,28 +71,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-'tail_buf' argument for WHITELIST_OA_MERT_MMIO_TRG was previously
-wrong (not multiple of 16). Fix this.
+On Tue, 14 Apr 2026 08:28:03 -0700, Gustavo Sousa wrote:
+>
+> Ashutosh Dixit <ashutosh.dixit@intel.com> writes:
+>
+> > Ashutosh Dixit (3):
+> >   drm/xe/rtp: Don't whitelist OA status registers
+> >   drm/xe/rtp: Don't whitelist OA head pointer registers
+> >   drm/xe/rtp: Fix offset alignment for MERT WHITELIST_OA_MERT_MMIO_TRG
+>
+> Drive-by comment: These patches aren't really changing RTP processing or
+> infrastructure.  Maybe using "drm/xe/oa" as subject prefix would be more
+> appropriate?
 
-Fixes: ec02e49f21bc ("drm/xe/rtp: Whitelist OAMERT MMIO trigger registers")
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
----
- drivers/gpu/drm/xe/xe_reg_whitelist.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+OK, I posted a new series with "drm/xe/oa" here:
 
-diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-index 09dcb6a422797..796b3a2b717c0 100644
---- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
-+++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-@@ -106,7 +106,7 @@ static const struct xe_rtp_entry_sr register_whitelist[] = {
- 			      OAM_HEAD_POINTER(XE_OAM_SCMI_1_BASE_ADJ))
- 
- #define WHITELIST_OA_MERT_MMIO_TRG \
--	WHITELIST_OA_MMIO_TRG(OAMERT_MMIO_TRG, OAMERT_HEAD_POINTER)
-+	WHITELIST_OA_MMIO_TRG(OAMERT_MMIO_TRG, OAMERT_TAIL_POINTER)
- 
- 	{ XE_RTP_NAME("oag_mmio_trg_rcs"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, XE_RTP_END_VERSION_UNDEFINED),
--- 
-2.48.1
+https://patchwork.freedesktop.org/series/164897/
 
+Thanks.
+--
+Ashutosh
