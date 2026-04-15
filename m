@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 683A7F433CC
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Apr 2026 23:47:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 249C2F433D4
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Apr 2026 23:47:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30F2110E7D2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C87E010E7D4;
 	Wed, 15 Apr 2026 23:47:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RVGEfrRN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HzvjfsQQ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C84DC10E7D1;
- Wed, 15 Apr 2026 23:47:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A90F10E7D2;
+ Wed, 15 Apr 2026 23:47:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776296831; x=1807832831;
+ t=1776296833; x=1807832833;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=pQd5BjoomDM5hBDCT6MfGmpKNtEaet00t76VpnHOsow=;
- b=RVGEfrRNwTurmzQjruf2qcPCkIsFQpRHza6xzXDGSj7p5SFfiZJufR4c
- LwCoqd6pSSZgvHXbB521ALTwRHd5WRRoUuntFNPDUq44CfS9XSMNO8g6D
- oXvttLl33yBYwy5x7TY2vMnHlxqcUI6a95E5hFnHDIAEQaXVg0219eHl4
- iBLtIj86JUcLaUftlyfPJv1Iy75r4ki4Kc2XgWM/561RVxovu41sA/BPz
- ord3fSNv2oIpuFlFyQWgn405Y8OBSUCv4ilv3sKF8Rch/k238zOWa7USf
- HIzTJavdfq1F31xu0x3pq2uE9az7DqNAEEPdVun9PgbRPwclKKAeH/SiF w==;
-X-CSE-ConnectionGUID: aS6hQTXjTHODid2DpuTpZA==
-X-CSE-MsgGUID: amuUhsddSby/PAlyG3aE7g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="77403499"
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="77403499"
+ bh=e1OxcaYwAfhH7WcBjBShe8LsGMMgvBvsijpWLzBQj1E=;
+ b=HzvjfsQQIwqbtQFbKnGKhUDDmHypDkDF3BQ1VW1kJS7SZEd1y1d20k9D
+ JvuU9kNhBuOyX5Fi4IlHNQdyx6X9pHCQh7uggsWzGGkBakCYmQ7etui5y
+ 49MRLOwNjCnzBe7/GPV8Yosd4qWXUwTvxgvSuH3c/o+XVr32dxpb1z+K3
+ 7ftAkA3EtYepz9frXW1w/JzRBq4Nrv0S9dPlRphZ6wq6YWZJ3E1r3Jm5p
+ ZWVmr2DRB3NqzPfGyYIs9iP/9dKFe2abeNCJ4z1FxqKoaSfMiDF2Ds+SF
+ 5O9hOXW06HNKsWmTxx4GDn3hmQIwnC2YUgzr6pYL8BmMQ0bO9Id2kv+dB Q==;
+X-CSE-ConnectionGUID: xTGr8p5LR0qHPdeNY1wtDg==
+X-CSE-MsgGUID: aVfSMJR2RfukSlW54Vfp5A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="77403502"
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="77403502"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2026 16:47:11 -0700
-X-CSE-ConnectionGUID: p6SnR2XCRG6hOZEIovvp4g==
-X-CSE-MsgGUID: yYj5DUzpQFWeuQbi25rQgg==
+ 15 Apr 2026 16:47:13 -0700
+X-CSE-ConnectionGUID: 5jnDAbNzTNOVB7M5RjW2Uw==
+X-CSE-MsgGUID: 0P9nYxbNSaCR0ZyTI1gOpg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="235511180"
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="235511191"
 Received: from administrator-system-product-name.igk.intel.com (HELO
  dev-417.igk.intel.com) ([10.91.214.181])
- by fmviesa005.fm.intel.com with ESMTP; 15 Apr 2026 16:47:09 -0700
+ by fmviesa005.fm.intel.com with ESMTP; 15 Apr 2026 16:47:12 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@intel.com>,
  =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v2 13/32] drm/i915/ddi: add wrapper for calling
- ->get_buf_trans() hook
-Date: Thu, 16 Apr 2026 01:46:20 +0200
-Message-ID: <20260415234639.3577774-14-michal.grzelak@intel.com>
+Subject: [PATCH v2 15/32] drm/i915/buf_trans: abstract VS/PE-O index
+ computation
+Date: Thu, 16 Apr 2026 01:46:22 +0200
+Message-ID: <20260415234639.3577774-16-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260415234639.3577774-1-michal.grzelak@intel.com>
 References: <20260415234639.3577774-1-michal.grzelak@intel.com>
@@ -72,203 +72,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Jani Nikula <jani.nikula@intel.com>
+Move index computation for most appropriate VS/PE-O table into separate
+function.
 
-Add intel_ddi_buf_trans_get() wrapper for calling the
-encoder->get_buf_trans() hooks, allowing for a centralized place to e.g.
-check for VBT overrides for the buf translations.
+Unlike VS/PE-O tables' parsing, index computation cannot happen during
+DDI ports parsing. It is because computation depends on link's port
+clock, which can change with every modeset. Thus index computation must
+be deferred to occur during override_buf_trans(), after tables' parsing
+has completed.
 
-Cc: Michał Grzelak <michal.grzelak@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c     |  2 +-
- drivers/gpu/drm/i915/display/intel_ddi.c         | 16 ++++++++--------
- .../gpu/drm/i915/display/intel_ddi_buf_trans.c   |  7 +++++++
- .../gpu/drm/i915/display/intel_ddi_buf_trans.h   |  3 +++
- drivers/gpu/drm/i915/display/intel_dpio_phy.c    |  2 +-
- drivers/gpu/drm/i915/display/intel_fdi.c         |  3 ++-
- drivers/gpu/drm/i915/display/intel_lt_phy.c      |  2 +-
- drivers/gpu/drm/i915/display/intel_snps_phy.c    |  2 +-
- 8 files changed, 24 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 7e59409bbf013..d832e44ef62a2 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -492,7 +492,7 @@ void intel_cx0_phy_set_signal_levels(struct intel_encoder *encoder,
- 
- 	wakeref = intel_cx0_phy_transaction_begin(encoder);
- 
--	trans = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
-+	trans = intel_ddi_buf_trans_get(encoder, crtc_state, &n_entries);
- 	if (drm_WARN_ON_ONCE(display->drm, !trans)) {
- 		intel_cx0_phy_transaction_end(encoder, wakeref);
- 		return;
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 54727b8593cfd..eb188b27ec96b 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -140,7 +140,7 @@ void hsw_prepare_dp_ddi_buffers(struct intel_encoder *encoder,
- 	enum port port = encoder->port;
- 	const struct intel_ddi_buf_trans *trans;
- 
--	trans = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
-+	trans = intel_ddi_buf_trans_get(encoder, crtc_state, &n_entries);
- 	if (drm_WARN_ON_ONCE(display->drm, !trans))
- 		return;
- 
-@@ -172,7 +172,7 @@ static void hsw_prepare_hdmi_ddi_buffers(struct intel_encoder *encoder,
- 	enum port port = encoder->port;
- 	const struct intel_ddi_buf_trans *trans;
- 
--	trans = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
-+	trans = intel_ddi_buf_trans_get(encoder, crtc_state, &n_entries);
- 	if (drm_WARN_ON_ONCE(display->drm, !trans))
- 		return;
- 
-@@ -1106,7 +1106,7 @@ static void skl_ddi_set_iboost(struct intel_encoder *encoder,
- 		const struct intel_ddi_buf_trans *trans;
- 		int n_entries;
- 
--		trans = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
-+		trans = intel_ddi_buf_trans_get(encoder, crtc_state, &n_entries);
- 		if (drm_WARN_ON_ONCE(display->drm, !trans))
- 			return;
- 
-@@ -1132,7 +1132,7 @@ static u8 intel_ddi_dp_voltage_max(struct intel_dp *intel_dp,
- 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
- 	int n_entries;
- 
--	encoder->get_buf_trans(encoder, crtc_state, &n_entries);
-+	intel_ddi_buf_trans_get(encoder, crtc_state, &n_entries);
- 
- 	if (drm_WARN_ON(display->drm, n_entries < 1))
- 		n_entries = 1;
-@@ -1175,7 +1175,7 @@ static void icl_ddi_combo_vswing_program(struct intel_encoder *encoder,
- 	int n_entries, ln;
- 	u32 val;
- 
--	trans = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
-+	trans = intel_ddi_buf_trans_get(encoder, crtc_state, &n_entries);
- 	if (drm_WARN_ON_ONCE(display->drm, !trans))
- 		return;
- 
-@@ -1293,7 +1293,7 @@ static void icl_mg_phy_set_signal_levels(struct intel_encoder *encoder,
- 	if (intel_tc_port_in_tbt_alt_mode(enc_to_dig_port(encoder)))
- 		return;
- 
--	trans = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
-+	trans = intel_ddi_buf_trans_get(encoder, crtc_state, &n_entries);
- 	if (drm_WARN_ON_ONCE(display->drm, !trans))
- 		return;
- 
-@@ -1394,7 +1394,7 @@ static void tgl_dkl_phy_set_signal_levels(struct intel_encoder *encoder,
- 	if (intel_tc_port_in_tbt_alt_mode(enc_to_dig_port(encoder)))
- 		return;
- 
--	trans = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
-+	trans = intel_ddi_buf_trans_get(encoder, crtc_state, &n_entries);
- 	if (drm_WARN_ON_ONCE(display->drm, !trans))
- 		return;
- 
-@@ -1511,7 +1511,7 @@ int intel_ddi_level(struct intel_encoder *encoder,
- 	const struct intel_ddi_buf_trans *trans;
- 	int level, n_entries;
- 
--	trans = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
-+	trans = intel_ddi_buf_trans_get(encoder, crtc_state, &n_entries);
- 	if (drm_WARN_ON_ONCE(display->drm, !trans))
- 		return 0;
- 
 diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-index de5f6f89374e0..eefac4bc4eb7c 100644
+index e83093b683ddc..955d64b2e9b67 100644
 --- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
 +++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-@@ -1852,3 +1852,10 @@ void intel_ddi_buf_trans_init(struct intel_encoder *encoder)
- 		MISSING_CASE(pdev->device);
- 	}
+@@ -1786,6 +1786,14 @@ xe3plpd_get_lt_buf_trans(struct intel_encoder *encoder,
+ 		return intel_get_buf_trans(&xe3plpd_lt_trans_dp14, n_entries);
  }
-+
-+const struct intel_ddi_buf_trans *intel_ddi_buf_trans_get(struct intel_encoder *encoder,
-+							  const struct intel_crtc_state *crtc_state,
-+							  int *n_entries)
+ 
++static int
++vspeo_compute_index(struct intel_encoder *encoder)
 +{
-+	return encoder->get_buf_trans(encoder, crtc_state, n_entries);
++	drm_dbg_kms(to_intel_display(encoder)->drm, "VS/PE-O unsupported, using default VS/PE tables");
++
++	return -1;
 +}
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
-index 7703c6c0a0cbf..ac9acdec6d298 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
-+++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
-@@ -77,5 +77,8 @@ struct intel_ddi_buf_trans {
- bool is_hobl_buf_trans(const struct intel_ddi_buf_trans *table);
++
+ void intel_ddi_buf_trans_init(struct intel_encoder *encoder)
+ {
+ 	struct intel_display *display = to_intel_display(encoder);
+@@ -1859,8 +1867,10 @@ const struct intel_ddi_buf_trans *intel_ddi_buf_trans_get(struct intel_encoder *
+ 							  const struct intel_crtc_state *crtc_state,
+ 							  int *n_entries)
+ {
+-	if (encoder->vspeo)
+-		drm_dbg_kms(to_intel_display(encoder)->drm, "VS/PE-O unsupported, using default VS/PE tables");
++	if (!encoder->vspeo)
++		return encoder->get_buf_trans(encoder, crtc_state, n_entries);
++
++	vspeo_compute_index(encoder);
  
- void intel_ddi_buf_trans_init(struct intel_encoder *encoder);
-+const struct intel_ddi_buf_trans *
-+intel_ddi_buf_trans_get(struct intel_encoder *encoder,
-+			const struct intel_crtc_state *crtc_state, int *n_entries);
- 
- #endif
-diff --git a/drivers/gpu/drm/i915/display/intel_dpio_phy.c b/drivers/gpu/drm/i915/display/intel_dpio_phy.c
-index 0e16132d09238..68802b652316a 100644
---- a/drivers/gpu/drm/i915/display/intel_dpio_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpio_phy.c
-@@ -301,7 +301,7 @@ void bxt_dpio_phy_set_signal_levels(struct intel_encoder *encoder,
- 	enum dpio_phy phy;
- 	int lane, n_entries;
- 
--	trans = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
-+	trans = intel_ddi_buf_trans_get(encoder, crtc_state, &n_entries);
- 	if (drm_WARN_ON_ONCE(display->drm, !trans))
- 		return;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/i915/display/intel_fdi.c
-index 24ce8a7842c7d..917f020650af2 100644
---- a/drivers/gpu/drm/i915/display/intel_fdi.c
-+++ b/drivers/gpu/drm/i915/display/intel_fdi.c
-@@ -11,6 +11,7 @@
- #include "intel_atomic.h"
- #include "intel_crtc.h"
- #include "intel_ddi.h"
-+#include "intel_ddi_buf_trans.h"
- #include "intel_de.h"
- #include "intel_display_regs.h"
- #include "intel_display_types.h"
-@@ -852,7 +853,7 @@ void hsw_fdi_link_train(struct intel_encoder *encoder,
- 	u32 temp, i, rx_ctl_val;
- 	int n_entries;
- 
--	encoder->get_buf_trans(encoder, crtc_state, &n_entries);
-+	intel_ddi_buf_trans_get(encoder, crtc_state, &n_entries);
- 
- 	hsw_prepare_dp_ddi_buffers(encoder, crtc_state);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index 657ad5cb0eff9..e2f9e1a2745f8 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -2135,7 +2135,7 @@ void intel_lt_phy_set_signal_levels(struct intel_encoder *encoder,
- 
- 	wakeref = intel_lt_phy_transaction_begin(encoder);
- 
--	trans = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
-+	trans = intel_ddi_buf_trans_get(encoder, crtc_state, &n_entries);
- 	if (drm_WARN_ON_ONCE(display->drm, !trans)) {
- 		intel_lt_phy_transaction_end(encoder, wakeref);
- 		return;
-diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.c b/drivers/gpu/drm/i915/display/intel_snps_phy.c
-index 295030742294b..5e5dde8f3e3a2 100644
---- a/drivers/gpu/drm/i915/display/intel_snps_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_snps_phy.c
-@@ -72,7 +72,7 @@ void intel_snps_phy_set_signal_levels(struct intel_encoder *encoder,
- 	enum phy phy = intel_encoder_to_phy(encoder);
- 	int n_entries, ln;
- 
--	trans = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
-+	trans = intel_ddi_buf_trans_get(encoder, crtc_state, &n_entries);
- 	if (drm_WARN_ON_ONCE(display->drm, !trans))
- 		return;
- 
+ 	return encoder->get_buf_trans(encoder, crtc_state, n_entries);
+ }
 -- 
 2.45.2
 
