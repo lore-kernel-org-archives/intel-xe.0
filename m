@@ -4,152 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E20AF43859
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Apr 2026 06:36:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA374F43841
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Apr 2026 06:40:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FE5F10E18C;
-	Thu, 16 Apr 2026 06:36:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5F1D10E7D4;
+	Thu, 16 Apr 2026 06:40:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AOzFt4bj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Aj4xdn55";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4FD710E18C
- for <intel-xe@lists.freedesktop.org>; Thu, 16 Apr 2026 06:35:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED7AF10E7D4
+ for <intel-xe@lists.freedesktop.org>; Thu, 16 Apr 2026 06:40:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776321359; x=1807857359;
+ t=1776321617; x=1807857617;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=pikMeBZM5mGSa/eIhQ0reW+WWdsUIz3+SXFir49kUZ0=;
- b=AOzFt4bjSTmVfO9xNXhdP0z5K9pQO1iv/9IPuZ7BT0Up8a0xFY4ebFcF
- 75BizR+x/laRkW5zCcO1MhbSDCpnyuR/Hk4Wp8LWs9XvPpmYxZBmaIBRe
- NNGAgsHvAhSHfqpdul3u13O1u4+e3j7imlunr+jJg2ry/z+buGFDxKeHf
- lhZKj84W5sUqfT0+MyLdwvR81sg65PPEBz6gGWFu3d+KaDd3rVYMPhBsg
- Zj/GVLqhf2b8UfLJKQ7k7hlfSSyDoADm9iEEk+BEx03g9azyAojeemwYp
- 4+/Tj+cOZxm1C1fkbGcp4eSuSjmQcWW4E3zpV04bOgIkSrDSMRKxfPUcW w==;
-X-CSE-ConnectionGUID: Lkp1ssZsQSKV2Uy95T1dwQ==
-X-CSE-MsgGUID: p6uC6s8VRSelSGTT/DtYJQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="77010971"
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="77010971"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2026 23:35:58 -0700
-X-CSE-ConnectionGUID: pRQFnpFHQeuBx6Si0BaA3g==
-X-CSE-MsgGUID: m8I9CmBNQmKZGHbQc3OvIg==
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=savRQvXZlGDKo40aameS47+IDC9BwYkAQqlt/F++cCQ=;
+ b=Aj4xdn55XyVakYteWs8ROvp4sNbHjuCkYwfyInz5KV/xWGWUtwZknbIu
+ uVAoUpqHjkWrtOxJXusNXkHPhD/b6M5GyO2Whx9ZaP9VCyxIWHfirZ9O9
+ tAKi6byAytiWh+pwzhQ53CYX2oftXgiqorz/UIbKyK1xu6vQLtouzrWFM
+ J1ik06IQC14uMh4ONLCxHjQDMjoVjJJDgry1+UA9zTGiT8WfbAdO0GE1K
+ tJKibs9QbJHA1NaiCEwiiaaAjEhIO5/UpPvtlbcg9mwsokUrje8hldrKr
+ VwwEYectLYXjccbJvojnT8H4IvDGxQtCX6E9c7qAFNy0SuvX2EEL4J5cr w==;
+X-CSE-ConnectionGUID: q0n+OgPFSlylHtPxYWQIRQ==
+X-CSE-MsgGUID: memm48W6RRyMM7NaNy3ZNw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="87933066"
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="87933066"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2026 23:40:17 -0700
+X-CSE-ConnectionGUID: XAoY5zCcQQ2ltJyPQ6eI5A==
+X-CSE-MsgGUID: 1fG/Yz6dTZqVaW0pvbcJdg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="268627520"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2026 23:35:59 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 15 Apr 2026 23:35:57 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 15 Apr 2026 23:35:57 -0700
-Received: from PH7PR06CU001.outbound.protection.outlook.com (52.101.201.18) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 15 Apr 2026 23:35:57 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GYmtlxzUaVTsmqHmqUaqfWSsbzhO6iG4tzMug9sSoiYgAVouvcGmg5+oVVLmlMJXynZydUCH1wALgMooxUuUzk9vRIgDJPKP1Zw3clM0BvUzif4zO29nKD4qFHtp/PuCo+TaDa20aSO8AXKsgp8iCPClRi5iNZ9s5b1SdulkWv0QtdkBU5BJ5hHWKJ33i59ZTNE+D3SmbkIX0+rZRtog6MFajA1zbcMf963SgDGehTt2dGStKmCQPjpe+LN0xJ/4dJYG2FyGsXMUJ+bZcDIOX+48uJgiJ9CKEWhNEQosXSEYfF58Kqzb7czNFB+NQ/yGWKExUEJK9d9qd0otNbJ2nA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sUJQ0qzrgdi3yKSRLnh4izfURj6Iwiiiutn0bxvPo6o=;
- b=mdFv4p+pcMqzrASwnycPjy7cQfLJ98EtAobyZPPuBc5Ib6b1/Rv5OX1UO3Z1yMet9+E+o4e/hCoF7MYC/Re79YkHcopPyaH56vkOjraNvU7Na51MT3qpRHXUvyqUFxs03jWAFqZ2Fr2RDVICZ29zJbTeXepyQi3dfVpv8ROOs7KXkQhuU4jSVbXjfpLP+73gKX8TFBdjgd7oAo6Uc4jgYpde+jtpNNwaLlqGOVSwGlVJyCGzQJFkkW75MBiT/YzbblFdT5MWFfrKSdPPUKcAuvn2ppNw4kC/qBv1zuxg09VGKOIMYsbV+u07zfJPhtjCJ4AefBvo+/zD258WxWPKMQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by SJ5PPF7DCFBC32A.namprd11.prod.outlook.com
- (2603:10b6:a0f:fc02::839) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9818.20; Thu, 16 Apr
- 2026 06:35:55 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c%7]) with mapi id 15.20.9818.017; Thu, 16 Apr 2026
- 06:35:55 +0000
-Date: Wed, 15 Apr 2026 23:35:51 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Raag Jadav <raag.jadav@intel.com>
-CC: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- <intel-xe@lists.freedesktop.org>, <rodrigo.vivi@intel.com>,
- <thomas.hellstrom@linux.intel.com>, <riana.tauro@intel.com>,
- <michal.wajdeczko@intel.com>, <matthew.d.roper@intel.com>,
- <michal.winiarski@intel.com>, <matthew.auld@intel.com>,
- <maarten@lankhorst.se>, <jani.nikula@intel.com>, <lukasz.laguna@intel.com>,
- <zhanjun.dong@intel.com>, <lukas@wunner.de>
-Subject: Re: [PATCH v5 0/9] Introduce Xe PCIe FLR
-Message-ID: <aeCDR/MjNyNV0Y3C@gsse-cloud1.jf.intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="230577353"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2026 23:40:13 -0700
+Date: Thu, 16 Apr 2026 08:40:10 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: "Laguna, Lukasz" <lukasz.laguna@intel.com>
+Cc: intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
+ rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com,
+ riana.tauro@intel.com, michal.wajdeczko@intel.com,
+ matthew.d.roper@intel.com, michal.winiarski@intel.com,
+ matthew.auld@intel.com, maarten@lankhorst.se, jani.nikula@intel.com,
+ zhanjun.dong@intel.com, lukas@wunner.de
+Subject: Re: [PATCH v5 9/9] drm/xe/pci: Introduce PCIe FLR
+Message-ID: <aeCEShCxfx9hJIYm@black.igk.intel.com>
 References: <20260406140722.154445-1-raag.jadav@intel.com>
- <adcfe2bd-56af-4368-96ce-32fb9a5c6642@intel.com>
- <aeB_g9mtwo6Y9sR5@black.igk.intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <aeB_g9mtwo6Y9sR5@black.igk.intel.com>
-X-ClientProxiedBy: MW4P222CA0019.NAMP222.PROD.OUTLOOK.COM
- (2603:10b6:303:114::24) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+ <20260406140722.154445-10-raag.jadav@intel.com>
+ <3b6e0cd3-9d8c-42cd-8ca8-f67bb59110d4@intel.com>
+ <ad9eW3OlG6vCxOMs@black.igk.intel.com>
+ <d0fc86ed-2788-4dd8-8741-88370965b034@intel.com>
+ <ad9uZwHL9KFneLWq@black.igk.intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SJ5PPF7DCFBC32A:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7d477c16-ba02-45bb-c6b6-08de9b82695e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|18002099003|11006099003|22082099003|56012099003;
-X-Microsoft-Antispam-Message-Info: QSuE40s9v33bYlbq3kkJ04Gy/DPTuCqYaizLoyRGau0Clgd9nDtmKp9X8TkmzQSkGLP5eJOu5MvAbWRh7agybiSm4F35jg5HQE62ASik/5Om2lUkCH7hUaEyUE166qok5yTgPzyVP2LxpZqTVOMCfNj/iJl3hMLVDyPgaOowsHEsAHjKgnDRD+cTX090WDMPjuwxWRScGTMSUmLc+J/yra4YcOh+/W/ymVKbhQY1dqBQ1jtox7OQ755/l4UY+RJsHKmjOjRBaQoxjFghzczw4dh5gAX2BiXXgOu+F+doZO4s/5xb1c7VMJtsehlnoIrfSremwvNF3csnE//JMP86Bmf+TBrOYxRznB0SfX0FLkPzoyVpfieho95Gk/07Jd6VndIo7Vm2fvNY1pWF9hQefaR4byqshahKgcq1dMG+zVPFDX/PZWetfxJQdsfUJ2l19mWGOdtdNAXCrTjOb3xOk08YEZy5RhcAM4dGbl/2A9KhYTKOu5PhGX99eLYUoKJbenMStvCYGlIlCwO8j+PMsksnwKGJTJLLGR0OGwNoFBZVgy6rfxHNxQ7RI5RZq3rYQarlA+jfDlzK0BxgaURXPsS8+7nFIM31+zsU0GRhjz4KSRboZyN/Eq3p369drUEIh3G0OjrG+8prEKQZ0nH/5TJoRPYkzfQg+JEv9O0f3CuI/Ud02HUK/mS1eTu/KRkjEbs6gQSlUEPMHhwy4KLX+PI5Vbbf5uZfmvR6SALTOq0=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(18002099003)(11006099003)(22082099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?QUmbUsIYPHu+tZKpaLuz5usOjMAbyB/KrBHbrdeEUG2/aNZv/NaKp8LXVHOw?=
- =?us-ascii?Q?ukD8XcrZTFZtFhpxtgC65fpaeap7+3XN1899tpzF+YL37yaVnY1cjJffJzXN?=
- =?us-ascii?Q?K0vpTxD4qi5vKn/Q0j3iwXEaFHqNnD1XfpxNa61p9uhhD+i+76jQhIVp3WBf?=
- =?us-ascii?Q?cFdJCckIDoKDmQyCgUK719qsClbvb3aL9CH2iQ44b7gN6S9U3/YK9OWAaoSt?=
- =?us-ascii?Q?pORz2qOFrXf+uIydu6xlmVwDHuOvjHBRwjfDos/2YBdb2rvmprNJ+BWHHFNB?=
- =?us-ascii?Q?iezfwx9QgJpmHj5Q0oo+UIRS1xcDoIUcNtznvctJpe/pOUT1YeZcoASlpCQg?=
- =?us-ascii?Q?6ElJS8cp/ZZKThFSA7JT5XNvd00R+m0Jb+nWN04PdcPMvW2+198Z4G/Pg7K+?=
- =?us-ascii?Q?oE0/5YdlUBeY00VtTbPL39d+bp4L1R5E9B9jMI9kim5BDBuqEZhRQBfMrWLv?=
- =?us-ascii?Q?5/Y5+YISMvcU/Sr18JSauDm+NjExy0whN55V3NpSe29MlxrR9D/PMZtfAblr?=
- =?us-ascii?Q?UqharlG3MYfYFvTsHVWfy8ToRjZxvNO4LdAJV4dJG1S/Wf0p4TssWC5NMF4Q?=
- =?us-ascii?Q?hBw6o1Wbi4yo6SyTyUKVXkZl9D7Q9JSxKLcKx6aZC7cvh5Rm5f1/cxg6YLcO?=
- =?us-ascii?Q?gPDTkN8MfnrrVom8un5X7CVTZpokUzipG607LIrKYwzZNT6s96VUFxKplNHG?=
- =?us-ascii?Q?s3cc9w+XNzhz9uIAzGFgsPxI2rGd+t4r0mdlfOoTeLc9eEyLqb/AYn3zQDxP?=
- =?us-ascii?Q?w2cpohJTpahBgFccHUMYldEH1upZYj0hkMjfCORAeqcG8P1YT5Gg44/fNCtO?=
- =?us-ascii?Q?CF7gSqJv0VOXxokoXmdHCp661O8PQIqRj9optYYWh724UuKn+aHjdFNFYhau?=
- =?us-ascii?Q?Wk09RUaHZLiNfGEtaS2bdk+gyMjAWajY0V9Ca7YTbMPcd0foUb0JKpCUXSJU?=
- =?us-ascii?Q?OSRh+D4BlRu2Plqn0bP+FEYOycYAHwp40HNYfStadV0V91b/tGrQNTj7iHKu?=
- =?us-ascii?Q?mAuLvGNd5DAmsUDjHNx7ILhPaZI4DUtCDRVGelFQKphc29f3IYNv3ptKA7GN?=
- =?us-ascii?Q?s4ULrdbDrL33mFCh6qCZuxj3KE1Em+2QmS5NnhtO4uGKr3kYc4s9v225l472?=
- =?us-ascii?Q?OYHURGXSQD4PXY2uOeC+nSJ8lBvGz58k9FZtOGib0/tRcen1KAxgYkW/mOYo?=
- =?us-ascii?Q?3/0tjUZkuUC8l/ffOrElAxSjAyO4pgps8KNEc3VdOWSed5+MjjB7z9+VkNHr?=
- =?us-ascii?Q?/zSC/y52EbxWemsN8KlNR85S7Qx6o+1CPQUdJlqs10c+s8107YcpSTsK3E1o?=
- =?us-ascii?Q?V7aZt/NTlhM/UTxuJTIfaIZqqn5O3hLoNTsYR5bNWkll5saxJal6zlSZ9cHN?=
- =?us-ascii?Q?gixmBV9iZANU2i26xYmlslykgdgsZ/dmF/MiuntmfKGSzwtC3AXk5XhxVGn/?=
- =?us-ascii?Q?IQ0BOI/78YiMU4d5Tg8pT72rPTXY7ykp8bVYb2yO+Krju1u9wlCN/SS5Gdb6?=
- =?us-ascii?Q?xHwiq95wOnxpzZqANMstmDnO3bjG2tFlGwtNKAyMkXZmCkhvh6hNXQqRTyF7?=
- =?us-ascii?Q?RXmquWQmkaNhYH16amN3NixU/Y7NUSzd8CFL1BbAg/YlADxeCwTNDfYl1dJM?=
- =?us-ascii?Q?Ub35gdC6jmB9n8SOILX2TmOFVbq58DTqkHoyEZQ2LuvWypNh3VbSTqO8HAAQ?=
- =?us-ascii?Q?SkRVu1Z1lltrJYt/ErfAgtjBk4IzHgxstrgDiMrzhVWhWzzC/2/lMQiLaKKt?=
- =?us-ascii?Q?0bv+TtmTIA=3D=3D?=
-X-Exchange-RoutingPolicyChecked: RWWCnyrgEqsJUK61xmgleaTgIag9PVkptdX8B3axJm5QIJTHXHn7tLn7dyf77fXFy/GlHnUQE0GDVVZCKoBgXVnoqUdElekKkAkBqSdOwvxiFTl5wuWZ5AIX4i29bWCtKwIICPtaWh7Mop4jit3ntaZD9wi9OlHh25PYW1mNknNAl2hZjhOOQ5Cc/O9S1I6V894ocXdC2/Pt/Ga2n7Aw1+07dGyHNJk7g9eZ+tMLY0AdHEcHlOFFeW36H5vhhUvqlfP4HmIEqP2Gqq+x596yCZnUwh7S+tuWAEgspzprc2GtifqzH9O9j6Qrqj2C0D3dC+DuUWGoeIjZ+AKM+PrM8A==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7d477c16-ba02-45bb-c6b6-08de9b82695e
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2026 06:35:55.0725 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Tty1yple4oOie+56iA+BgZsfRSP0vOWpzoGzgt6DAAIMWqMgGcYzuqg2mddToSxXGufMX+DFHRGoXzbf3ZzWdw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPF7DCFBC32A
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ad9uZwHL9KFneLWq@black.igk.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,101 +77,262 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Apr 16, 2026 at 08:19:47AM +0200, Raag Jadav wrote:
-> On Wed, Apr 15, 2026 at 08:47:50AM -0700, Daniele Ceraolo Spurio wrote:
-> > On 4/6/2026 7:07 AM, Raag Jadav wrote:
-> > > Here's my humble attempt at introducing PCIe Function Level Reset (FLR)
-> > > support in xe driver. This is ofcourse a half baked implementation and
-> > > only limited to re-initializing GT. This needs to be extended for a lot
-> > > of different components which I've skipped here for my lack of competence,
-> > > so feel free to join in and support them.
+On Wed, Apr 15, 2026 at 12:54:37PM +0200, Raag Jadav wrote:
+> On Wed, Apr 15, 2026 at 12:33:41PM +0200, Laguna, Lukasz wrote:
+> > On 4/15/2026 11:46, Raag Jadav wrote:
+> > > On Wed, Apr 15, 2026 at 10:43:53AM +0200, Laguna, Lukasz wrote:
+> > > > On 4/6/2026 16:07, Raag Jadav wrote:
+> > > > > With bare minimum pieces in place, we can finally introduce PCIe Function
+> > > > > Level Reset (FLR) handling which re-initializes hardware state without the
+> > > > > need for reloading the driver from userspace. All VRAM contents are lost
+> > > > > along with hardware state and driver takes care of recreating the required
+> > > > > kernel bos as part of re-initialization, but user still needs to recreate
+> > > > > user bos and reload context after PCIe FLR.
+> > > > > 
+> > > > > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> > > > > ---
+> > > > > v2: Spell out Function Level Reset (Jani)
+> > > > > v5: Prevent PM ref leak for wedged device (Matthew Brost)
+> > > > > ---
+> > > > >    drivers/gpu/drm/xe/Makefile          |   1 +
+> > > > >    drivers/gpu/drm/xe/xe_device_types.h |   3 +
+> > > > >    drivers/gpu/drm/xe/xe_pci.c          |   1 +
+> > > > >    drivers/gpu/drm/xe/xe_pci.h          |   2 +
+> > > > >    drivers/gpu/drm/xe/xe_pci_err.c      | 160 +++++++++++++++++++++++++++
+> > > > >    5 files changed, 167 insertions(+)
+> > > > >    create mode 100644 drivers/gpu/drm/xe/xe_pci_err.c
+> > > > > 
+> > > > > diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> > > > > index f9abaf687d46..06b5d53e1629 100644
+> > > > > --- a/drivers/gpu/drm/xe/Makefile
+> > > > > +++ b/drivers/gpu/drm/xe/Makefile
+> > > > > @@ -100,6 +100,7 @@ xe-y += xe_bb.o \
+> > > > >    	xe_page_reclaim.o \
+> > > > >    	xe_pat.o \
+> > > > >    	xe_pci.o \
+> > > > > +	xe_pci_err.o \
+> > > > >    	xe_pci_rebar.o \
+> > > > >    	xe_pcode.o \
+> > > > >    	xe_pm.o \
+> > > > > diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> > > > > index 150c76b2acaf..b743b3986205 100644
+> > > > > --- a/drivers/gpu/drm/xe/xe_device_types.h
+> > > > > +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> > > > > @@ -482,6 +482,9 @@ struct xe_device {
+> > > > >    	/** @needs_flr_on_fini: requests function-reset on fini */
+> > > > >    	bool needs_flr_on_fini;
+> > > > > +	/** @flr_prepared: Prepared for function-reset */
+> > > > > +	bool flr_prepared;
+> > > > > +
+> > > > >    	/** @wedged: Struct to control Wedged States and mode */
+> > > > >    	struct {
+> > > > >    		/** @wedged.flag: Xe device faced a critical error and is now blocked. */
+> > > > > diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+> > > > > index 26eb58e11056..f3515c91e534 100644
+> > > > > --- a/drivers/gpu/drm/xe/xe_pci.c
+> > > > > +++ b/drivers/gpu/drm/xe/xe_pci.c
+> > > > > @@ -1332,6 +1332,7 @@ static struct pci_driver xe_pci_driver = {
+> > > > >    #ifdef CONFIG_PM_SLEEP
+> > > > >    	.driver.pm = &xe_pm_ops,
+> > > > >    #endif
+> > > > > +	.err_handler = &xe_pci_err_handlers,
+> > > > >    };
+> > > > >    /**
+> > > > > diff --git a/drivers/gpu/drm/xe/xe_pci.h b/drivers/gpu/drm/xe/xe_pci.h
+> > > > > index 11bcc5fe2c5b..85e85e8508c3 100644
+> > > > > --- a/drivers/gpu/drm/xe/xe_pci.h
+> > > > > +++ b/drivers/gpu/drm/xe/xe_pci.h
+> > > > > @@ -8,6 +8,8 @@
+> > > > >    struct pci_dev;
+> > > > > +extern const struct pci_error_handlers xe_pci_err_handlers;
+> > > > > +
+> > > > >    int xe_register_pci_driver(void);
+> > > > >    void xe_unregister_pci_driver(void);
+> > > > >    struct xe_device *xe_pci_to_pf_device(struct pci_dev *pdev);
+> > > > > diff --git a/drivers/gpu/drm/xe/xe_pci_err.c b/drivers/gpu/drm/xe/xe_pci_err.c
+> > > > > new file mode 100644
+> > > > > index 000000000000..339e8688d37f
+> > > > > --- /dev/null
+> > > > > +++ b/drivers/gpu/drm/xe/xe_pci_err.c
+> > > > > @@ -0,0 +1,160 @@
+> > > > > +// SPDX-License-Identifier: MIT
+> > > > > +/*
+> > > > > + * Copyright © 2026 Intel Corporation
+> > > > > + */
+> > > > > +
+> > > > > +#include "xe_bo_evict.h"
+> > > > > +#include "xe_device.h"
+> > > > > +#include "xe_gt.h"
+> > > > > +#include "xe_gt_idle.h"
+> > > > > +#include "xe_i2c.h"
+> > > > > +#include "xe_irq.h"
+> > > > > +#include "xe_late_bind_fw.h"
+> > > > > +#include "xe_pci.h"
+> > > > > +#include "xe_pcode.h"
+> > > > > +#include "xe_printk.h"
+> > > > > +#include "xe_pxp.h"
+> > > > > +#include "xe_wa.h"
+> > > > > +
+> > > > > +/* TODO: Extend support as a follow-up */
+> > > > > +#define XE_FLR_SKIP		(!IS_DGFX(xe) || IS_SRIOV_VF(xe) || pci_num_vf(pdev) || \
+> > > > Any known issues on integrated platforms? I checked it on PTL and didn't
+> > > > notice any problems. Everything seems to work fine with display disabled.
+> > > Thank you. Can I add your Tested-by on this? I can include integrated
+> > > in next rev with it.
 > > 
-> > I'm jumping in to review a bit late, sorry for that.
+> > I triggered an FLR, which completed successfully, then executed
+> > xe_exec_basic and xe_exec_store and both passed. If that level of validation
+> > is sufficient, then feel free to add my Tested-by.
 > 
-> Thank you.
+> I think it should be sufficient for what we hope to achieve in this
+> series, which is re-initialize GT enough to run new workload.
 > 
-> > I think we need a comment (both here and in code) to detail exactly what we
-> > expect to happen around the FLR (or let me know if it's already somewhere
-> > because I couldn't spot it). Which objects are expected to survive, which
-> > ones do we need to recover or discard (and why)?
-> > I'll sprinkle a few question in the relevant patches.
-> 
-> Yeah, there's not much of internal documentation from software POV either.
-> I'm just making this up as I go along.
-> 
+> We definitely need wider coverage, but let's take it piece by piece.
 
-Completely valid design flow...
+Daniele confirmed that there's still some work to be done on GSC and PXP
+pieces before we can allow this on integrated platforms, so this is likely
+off the table for now. I can still add your tag for discrete if you're
+okay with it.
 
-But +1 to Daniele's suggestion - once we land on a design, let's write it
-down somewhere in comments / kernel doc.
+Raag
 
-Matt 
-
-> Raag
-> 
-> > > PS: All xe_exec_basic tests and clpeak run smoothly after FLR. Give it
-> > > a spin and let me know if any regressions.
-> > > 
-> > > Trigger it with:
-> > > 
-> > > $ echo 1 > /sys/bus/pci/devices/<BDF>/reset
-> > > 
-> > > v2: Re-initialize migrate context (Matthew Brost)
-> > >      Add kernel doc (Matthew Brost)
-> > >      Spell out Function Level Reset (Jani)
-> > > 
-> > > v3: Cancel in-flight jobs before FLR
-> > > 
-> > > v4: Teardown exec queues instead of mangling scheduler pending list (Matthew Brost)
-> > > 
-> > > v5: Re-initialize kernel queues through submission backend (Matthew Brost)
-> > >      Prevent PM ref leak for wedged device (Matthew Brost)
-> > > 
-> > > Raag Jadav (9):
-> > >    drm/xe/uc_fw: Allow re-initializing firmware
-> > >    drm/xe/guc_submit: Introduce guc_exec_queue_reinit()
-> > >    drm/xe/gt: Introduce FLR helpers
-> > >    drm/xe/irq: Introduce xe_irq_disable()
-> > >    drm/xe: Introduce xe_device_assert_lmem_ready()
-> > >    drm/xe/bo_evict: Introduce xe_bo_restore_map()
-> > >    drm/xe/exec_queue: Introduce xe_exec_queue_reinit()
-> > >    drm/xe/migrate: Introduce xe_migrate_reinit()
-> > >    drm/xe/pci: Introduce PCIe FLR
-> > > 
-> > >   drivers/gpu/drm/xe/Makefile              |   1 +
-> > >   drivers/gpu/drm/xe/xe_bo_evict.c         |  51 ++++++--
-> > >   drivers/gpu/drm/xe/xe_bo_evict.h         |   2 +
-> > >   drivers/gpu/drm/xe/xe_device.c           |  10 +-
-> > >   drivers/gpu/drm/xe/xe_device.h           |   1 +
-> > >   drivers/gpu/drm/xe/xe_device_types.h     |   3 +
-> > >   drivers/gpu/drm/xe/xe_exec_queue.c       |  37 +++++-
-> > >   drivers/gpu/drm/xe/xe_exec_queue.h       |   1 +
-> > >   drivers/gpu/drm/xe/xe_exec_queue_types.h |   2 +
-> > >   drivers/gpu/drm/xe/xe_gpu_scheduler.h    |   5 +
-> > >   drivers/gpu/drm/xe/xe_gsc.c              |  14 ++
-> > >   drivers/gpu/drm/xe/xe_gsc.h              |   1 +
-> > >   drivers/gpu/drm/xe/xe_gt.c               |  47 +++++++
-> > >   drivers/gpu/drm/xe/xe_gt.h               |   2 +
-> > >   drivers/gpu/drm/xe/xe_gt_types.h         |   9 ++
-> > >   drivers/gpu/drm/xe/xe_guc.c              |  29 ++++
-> > >   drivers/gpu/drm/xe/xe_guc.h              |   2 +
-> > >   drivers/gpu/drm/xe/xe_guc_submit.c       |  11 ++
-> > >   drivers/gpu/drm/xe/xe_huc.c              |  14 ++
-> > >   drivers/gpu/drm/xe/xe_huc.h              |   1 +
-> > >   drivers/gpu/drm/xe/xe_irq.c              |  13 +-
-> > >   drivers/gpu/drm/xe/xe_irq.h              |   1 +
-> > >   drivers/gpu/drm/xe/xe_lrc.c              |  17 +++
-> > >   drivers/gpu/drm/xe/xe_lrc.h              |   2 +
-> > >   drivers/gpu/drm/xe/xe_migrate.c          |  12 ++
-> > >   drivers/gpu/drm/xe/xe_migrate.h          |   1 +
-> > >   drivers/gpu/drm/xe/xe_pci.c              |   1 +
-> > >   drivers/gpu/drm/xe/xe_pci.h              |   2 +
-> > >   drivers/gpu/drm/xe/xe_pci_err.c          | 160 +++++++++++++++++++++++
-> > >   drivers/gpu/drm/xe/xe_uc.c               |  37 ++++++
-> > >   drivers/gpu/drm/xe/xe_uc.h               |   2 +
-> > >   drivers/gpu/drm/xe/xe_uc_fw.c            |  39 +++++-
-> > >   drivers/gpu/drm/xe/xe_uc_fw.h            |   1 +
-> > >   33 files changed, 510 insertions(+), 21 deletions(-)
-> > >   create mode 100644 drivers/gpu/drm/xe/xe_pci_err.c
-> > > 
-> > 
+> > > > > +				 xe->info.probe_display)
+> > > > > +
+> > > > > +static int xe_flr_prepare(struct xe_device *xe)
+> > > > > +{
+> > > > > +	struct xe_gt *gt;
+> > > > > +	int err;
+> > > > > +	u8 id;
+> > > > > +
+> > > > > +	err = xe_pxp_pm_suspend(xe->pxp);
+> > > > > +	if (err)
+> > > > > +		return err;
+> > > > > +
+> > > > > +	xe_late_bind_wait_for_worker_completion(&xe->late_bind);
+> > > > > +
+> > > > > +	xe_irq_disable(xe);
+> > > > > +
+> > > > > +	for_each_gt(gt, xe, id)
+> > > > > +		xe_gt_flr_prepare(gt);
+> > > > > +
+> > > > > +	// TODO: Drop all user bos
+> > > > > +	xe_bo_pci_dev_remove_pinned(xe);
+> > > > > +	unmap_mapping_range(xe->drm.anon_inode->i_mapping, 0, 0, 1);
+> > > > > +
+> > > > > +	return 0;
+> > > > > +}
+> > > > > +
+> > > > > +static int xe_flr_done(struct xe_device *xe)
+> > > > > +{
+> > > > > +	struct xe_tile *tile;
+> > > > > +	struct xe_gt *gt;
+> > > > > +	int err;
+> > > > > +	u8 id;
+> > > > > +
+> > > > > +	for_each_gt(gt, xe, id)
+> > > > > +		xe_gt_idle_disable_c6(gt);
+> > > > > +
+> > > > > +	for_each_tile(tile, xe, id)
+> > > > > +		xe_wa_apply_tile_workarounds(tile);
+> > > > > +
+> > > > > +	err = xe_pcode_ready(xe, true);
+> > > > > +	if (err)
+> > > > > +		return err;
+> > > > > +
+> > > > > +	xe_device_assert_lmem_ready(xe);
+> > > > > +
+> > > > > +	err = xe_bo_restore_map(xe);
+> > > > > +	if (err)
+> > > > > +		return err;
+> > > > > +
+> > > > > +	for_each_gt(gt, xe, id) {
+> > > > > +		err = xe_gt_flr_done(gt);
+> > > > > +		if (err)
+> > > > > +			return err;
+> > > > > +	}
+> > > > > +
+> > > > > +	xe_i2c_pm_resume(xe, true);
+> > > > > +
+> > > > > +	xe_irq_resume(xe);
+> > > > > +
+> > > > > +	for_each_gt(gt, xe, id) {
+> > > > > +		err = xe_gt_resume(gt);
+> > > > > +		if (err)
+> > > > > +			return err;
+> > > > > +	}
+> > > > > +
+> > > > > +	xe_pxp_pm_resume(xe->pxp);
+> > > > > +
+> > > > > +	xe_late_bind_fw_load(&xe->late_bind);
+> > > > > +
+> > > > > +	return 0;
+> > > > > +}
+> > > > > +
+> > > > > +static void xe_pci_reset_prepare(struct pci_dev *pdev)
+> > > > > +{
+> > > > > +	struct xe_device *xe = pdev_to_xe_device(pdev);
+> > > > > +
+> > > > > +	if (XE_FLR_SKIP) {
+> > > > > +		xe_err(xe, "PCIe FLR not supported\n");
+> > > > > +		return;
+> > > > > +	}
+> > > > > +
+> > > > > +	if (xe_device_wedged(xe)) {
+> > > > > +		xe_err(xe, "PCIe FLR aborted, device in unexpected state\n");
+> > > > > +		return;
+> > > > > +	}
+> > > > > +
+> > > > > +	/* Wedge the device to prevent userspace access but don't send the event yet */
+> > > > > +	atomic_set(&xe->wedged.flag, 1);
+> > > > > +
+> > > > > +	/*
+> > > > > +	 * The hardware could be in corrupted state and access unreliable, but we try to
+> > > > > +	 * update data structures and cleanup any pending work to avoid side effects during
+> > > > > +	 * PCIe FLR. This will be similar to xe_pm_suspend() flow but without migration.
+> > > > > +	 */
+> > > > > +	if (xe_flr_prepare(xe)) {
+> > > > > +		xe_err(xe, "Failed to prepare for PCIe FLR\n");
+> > > > > +		return;
+> > > > > +	}
+> > > > > +
+> > > > > +	xe->flr_prepared = true;
+> > > > > +	xe_info(xe, "Prepared for PCIe FLR\n");
+> > > > > +}
+> > > > > +
+> > > > > +static void xe_pci_reset_done(struct pci_dev *pdev)
+> > > > > +{
+> > > > > +	struct xe_device *xe = pdev_to_xe_device(pdev);
+> > > > > +
+> > > > > +	if (XE_FLR_SKIP)
+> > > > > +		return;
+> > > > > +
+> > > > > +	if (!xe_device_wedged(xe) || !xe->flr_prepared)
+> > > > > +		return;
+> > > > > +
+> > > > > +	/* Unprepare early in case we fail */
+> > > > > +	xe->flr_prepared = false;
+> > > > > +
+> > > > > +	/*
+> > > > > +	 * We already have the data structures intact, so try to re-initialize the device.
+> > > > > +	 * This will be similar to xe_pm_resume() flow, except we'll also need to recreate
+> > > > > +	 * all VRAM contents.
+> > > > > +	 */
+> > > > > +	if (xe_flr_done(xe)) {
+> > > > > +		xe_err(xe, "Re-initialization failed\n");
+> > > > > +		return;
+> > > > > +	}
+> > > > > +
+> > > > > +	/* Unwedge to allow userspace access */
+> > > > > +	atomic_set(&xe->wedged.flag, 0);
+> > > > > +
+> > > > > +	xe_info(xe, "Re-initialization success\n");
+> > > > > +}
+> > > > > +
+> > > > > +/*
+> > > > > + * PCIe Function Level Reset (FLR) support only.
+> > > > > + * TODO: Add PCIe error handlers using similar flow.
+> > > > > + */
+> > > > > +const struct pci_error_handlers xe_pci_err_handlers = {
+> > > > > +	.reset_prepare = xe_pci_reset_prepare,
+> > > > > +	.reset_done = xe_pci_reset_done,
+> > > > > +};
