@@ -4,53 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B26A6F8A173
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Apr 2026 13:19:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3C28F8A16F
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Apr 2026 13:19:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64DD310E1D7;
-	Thu, 16 Apr 2026 13:19:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 65F8110E1E7;
+	Thu, 16 Apr 2026 13:19:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Tz7Rh9f+";
+	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="pWjsSEEG";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45D6410E1D7
- for <intel-xe@lists.freedesktop.org>; Thu, 16 Apr 2026 13:19:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776345543; x=1807881543;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=yjaBnJdA1pI66hLdZD6E+Q1+RnvrexXh7MRGhrCZ3PY=;
- b=Tz7Rh9f+m2jK7Gr2AOrzjWy3hzYAYH4Bhj4WlV8oAkjRe2uRx3yqoitd
- Vp+p/D7WBVyv/skiboRCh4/+A+JXvyHlgyFKXWaQe81MyHZPTVl2dDvUp
- 2+HiHJpx7maN1vQHXzFiWUXdI+eW21bqHrCqi9Y/o+LeEY8Y5lAkwkTBD
- qjLCCyPancu5StpIYaXr3rBSliFizcTP+cvanno8KZJYIK7QEqwrrBFsy
- ZbkTTuWZFCYVDb1mHoyajh5luE2SdL/sGVF3vmlrme7N22X/gMS6JiBWJ
- Y6T2ISiSOjtlSjXt3Qah5WOM2dHOLPiPszZUMn2t4/IGGlvKuXhnBnN4p w==;
-X-CSE-ConnectionGUID: 41h37RfOQlGCY6pLIiAMSA==
-X-CSE-MsgGUID: Ta4RKVGMQNy9bPE1ierZyA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="94749590"
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="94749590"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2026 06:19:03 -0700
-X-CSE-ConnectionGUID: PE7R74QqTzOi1Vs8stF7yQ==
-X-CSE-MsgGUID: czsDY+QeTwmRz33IIZDrvQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="253976306"
-Received: from lslusarc-mobl.ger.corp.intel.com (HELO
- mwajdecz-hp.clients.intel.com) ([10.246.16.202])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2026 06:19:01 -0700
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH] drm/xe/pf: Fix VF's scheduling priority reporting
-Date: Thu, 16 Apr 2026 15:18:31 +0200
-Message-ID: <20260416131831.7302-1-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.43.0
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
+ [213.167.242.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E464910E834;
+ Thu, 16 Apr 2026 08:10:10 +0000 (UTC)
+Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi
+ [91.158.153.178])
+ by perceval.ideasonboard.com (Postfix) with ESMTPSA id 14C9DC6C;
+ Thu, 16 Apr 2026 10:08:33 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+ s=mail; t=1776326915;
+ bh=g7f/Flf2ul/YLdxmLv00ymzR+4jdIi46fIJJ0uhUQ7Y=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=pWjsSEEGtmYTjmh1L3vxjLjJOdT9c2tbeZUNXWjczBqPbKqdjpZMp4rqczxJP58Jf
+ zLFaAukADLLma/Vw4PR1ekKd/GJOEikDsklce9HMwHIqA6dJSLu3TaWUZStlGcDAtB
+ up2qmcbfrGPR9jIeuRwjWAgLZdc7PMji46McCOyU=
+Message-ID: <51b7c44e-36c9-461f-983a-eaa86eeb8cfd@ideasonboard.com>
+Date: Thu, 16 Apr 2026 11:10:03 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] drm/connector: report IRQ_HPD events to
+ drm_connector_oob_hotplug_event()
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-usb@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Adrien Grassein <adrien.grassein@gmail.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov
+ <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Pengyu Luo <mitltlatltl@gmail.com>,
+ Nikita Travkin <nikita@trvn.ru>, Yongxing Mou <yongxing.mou@oss.qualcomm.com>
+References: <20260416-hpd-irq-events-v1-0-1ab1f1cfb2b2@oss.qualcomm.com>
+ <20260416-hpd-irq-events-v1-1-1ab1f1cfb2b2@oss.qualcomm.com>
+Content-Language: en-US
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <20260416-hpd-irq-events-v1-1-1ab1f1cfb2b2@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Thu, 16 Apr 2026 13:19:05 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,43 +84,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When preparing number of impacted VFs parameter for the reporting
-helper function, we wrongly ended with adding +1 (representing PF)
-twice, since local variable total_vfs was already adjusted. This
-resulted in printing a message that was referring to an invalid VF:
+Hi,
 
- [] xe ... [drm] PF: Enabled 2 of 24 VFs
- [] xe ... [drm] PF: Tile0: GT0: PF..VF25 provisioned with 0(low) scheduling priority
+On 16/04/2026 02:22, Dmitry Baryshkov wrote:
+> The DisplayPort standard defines a special kind of events called IRQ.
+> These events are used to notify DP Source about the events on the Sink
+> side. It is extremely important for DP MST handling, where the MST
+> events are reported through this IRQ.
+> 
+> In case of the USB-C DP AltMode there is no actual HPD pulse, but the
+> events are ported through the bits in the AltMode VDOs.
+> 
+> Extend the drm_connector_oob_hotplug_event() interface and report IRQ
+> events to the DisplayPort Sink drivers.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> ---
+>   drivers/gpu/drm/drm_connector.c          |  4 +++-
+>   drivers/usb/typec/altmodes/displayport.c | 12 ++++++++----
+>   include/drm/drm_connector.h              |  3 ++-
+>   3 files changed, 13 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+> index 47dc53c4a738..5fdacbd84bd7 100644
+> --- a/drivers/gpu/drm/drm_connector.c
+> +++ b/drivers/gpu/drm/drm_connector.c
+> @@ -3510,6 +3510,7 @@ struct drm_connector *drm_connector_find_by_fwnode(struct fwnode_handle *fwnode)
+>    * drm_connector_oob_hotplug_event - Report out-of-band hotplug event to connector
+>    * @connector_fwnode: fwnode_handle to report the event on
+>    * @status: hot plug detect logical state
+> + * @irq_hpd: HPD pulse detected
+>    *
+>    * On some hardware a hotplug event notification may come from outside the display
+>    * driver / device. An example of this is some USB Type-C setups where the hardware
+> @@ -3520,7 +3521,8 @@ struct drm_connector *drm_connector_find_by_fwnode(struct fwnode_handle *fwnode)
+>    * a drm_connector reference through calling drm_connector_find_by_fwnode().
+>    */
+>   void drm_connector_oob_hotplug_event(struct fwnode_handle *connector_fwnode,
+> -				     enum drm_connector_status status)
+> +				     enum drm_connector_status status,
+> +				     bool irq_hpd)
+I find the "IRQ HPD" naming always confusing, even if I'm somewhat 
+familiar with DP, but if someone has mainly worked on HDMI, I'm sure 
+it's even worse.
 
-Fix variable initialization and adjust the loop accordingly.
+Can we define this a bit more precisely? Is 'irq_hpd' only for 
+displayport?  If so, perhaps 'dp_irq_hpd' or 'displayport_irq_hpd'. I 
+might even call it 'dp_hpd_pulse', but maybe that's not good as the spec 
+talks about HPD pulse for both short and long ones (although in the 
+kernel doc you just write "HPD pulse")... The kernel doc could be 
+expanded a bit to make it clear what this flag indicates.
 
-Fixes: fbbf73a81b84 ("drm/xe/pf: Force new VFs prorities only once")
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index e112aa148dab..2c9b85b84b1b 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -2626,14 +2626,14 @@ u32 xe_gt_sriov_pf_config_get_sched_priority(struct xe_gt *gt, unsigned int vfid
-  */
- void xe_gt_sriov_pf_config_force_sched_priority_locked(struct xe_gt *gt, u32 priority)
- {
--	unsigned int total_vfs = 1 + xe_gt_sriov_pf_get_totalvfs(gt);
-+	unsigned int total_vfs = xe_gt_sriov_pf_get_totalvfs(gt);
- 	struct xe_gt_sriov_config *config;
- 	unsigned int n;
- 
- 	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
- 	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
- 
--	for (n = 0; n < total_vfs; n++) {
-+	for (n = 0; n <= total_vfs; n++) {
- 		config = pf_pick_vf_config(gt, VFID(n));
- 		config->sched_priority = priority;
- 	}
--- 
-2.47.1
+  Tomi
 
