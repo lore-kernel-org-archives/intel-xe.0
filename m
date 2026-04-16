@@ -4,56 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4A82F433D9
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Apr 2026 03:00:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB9F5F433D9
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Apr 2026 03:02:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97F6E10E7EF;
-	Thu, 16 Apr 2026 03:00:28 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F9iwKLZV";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1798910E7E9;
- Thu, 16 Apr 2026 03:00:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776308422; x=1807844422;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=3y8C9rn3ZpqqZl2zus9JbTdmo80u0YA+aPZJ+2A4W/4=;
- b=F9iwKLZVxm9fahbrq3JLT5FWd4QVybGwEAzTSRcMsttyFtLvuaPIaYsk
- G4MewLK/L/+LcNr0gdrpBoAkerfNASvPTX02qEsX4AUx0km6h3FMeYTvB
- drVLVj0nlcOM9tqfvrPE3pHG8G84+z8ulSMH6m6PiuMq3ryQ/tmf6Qxq5
- wyJK0BxW6xp6Vb+CiP9HOXglDhPIM29GfZVD7f6WKCn0Hm4i/CivldAbK
- IvemMyuT2BwuM+Beh2J//lRyoP30lcZBjFgMqA3y1eLwbX1x36PfvAOVL
- AoS77OuyTAzTJfZ8Zc9IoxLwEBtao55Td4u37j+Yz8zPSAPO/Q4GlSLfI g==;
-X-CSE-ConnectionGUID: aHREW8I2TY+5Q02ejl+h6w==
-X-CSE-MsgGUID: +bDMYu4wTKKKTZQftA6vYw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="76997585"
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="76997585"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2026 20:00:22 -0700
-X-CSE-ConnectionGUID: eVgZHl8URzW5d0i9TfZ0fw==
-X-CSE-MsgGUID: BWLjLMVPQnineHJBYru0ww==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="229755295"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2026 20:00:20 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com, arun.r.murthy@intel.com,
- jani.nikula@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 12/12] drm/i915/display: Dump DIP Transmission lines
-Date: Thu, 16 Apr 2026 08:15:02 +0530
-Message-ID: <20260416024504.1925195-13-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20260416024504.1925195-1-ankit.k.nautiyal@intel.com>
-References: <20260416024504.1925195-1-ankit.k.nautiyal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A229410E7F4;
+	Thu, 16 Apr 2026 03:02:03 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 473AC10E7FC;
+ Thu, 16 Apr 2026 03:02:02 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6987027745526523671=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Vswing/Preemphasis_Override?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 16 Apr 2026 03:02:02 -0000
+Message-ID: <177630852227.466823.8911058797384167750@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260415234639.3577774-1-michal.grzelak@intel.com>
+In-Reply-To: <20260415234639.3577774-1-michal.grzelak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,36 +35,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add DIP transmission lines to the CRTC state dump.
+--===============6987027745526523671==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_crtc_state_dump.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-index c85ba9a95322..d625f46ccb99 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-@@ -251,6 +251,15 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
- 			   str_enabled_disabled(pipe_config->has_panel_replay),
- 			   str_enabled_disabled(pipe_config->enable_psr2_sel_fetch));
- 		drm_printf(&p, "minimum hblank: %d\n", pipe_config->min_hblank);
-+
-+		drm_printf(&p, "DIP Transmission Lines: EMP/AS SDP: %u\n",
-+			   pipe_config->dip.emp_as_sdp_tl);
-+		drm_printf(&p, "DIP Transmission Lines: Common Base SDP: %u, GMP SDP: %u, PPS SDP: %u, VSC SDP: %u, VSC_EXT SDP: %u\n",
-+			   pipe_config->dip.cmn_sdp_tl,
-+			   pipe_config->dip.gmp_sdp_tl,
-+			   pipe_config->dip.pps_sdp_tl,
-+			   pipe_config->dip.vsc_sdp_tl,
-+			   pipe_config->dip.vsc_ext_sdp_tl);
- 	}
- 
- 	drm_printf(&p, "audio: %i, infoframes: %i, infoframes enabled: 0x%x\n",
--- 
-2.45.2
+Series: Vswing/Preemphasis Override
+URL   : https://patchwork.freedesktop.org/series/164959/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-4909-137513b61b4f187957d0c0f44c63c8549893f970_BAT -> xe-pw-164959v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-4909-137513b61b4f187957d0c0f44c63c8549893f970 -> xe-pw-164959v1
+
+  IGT_8861: 63a08403d58b652dcab80da02d6078386da78c17 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4909-137513b61b4f187957d0c0f44c63c8549893f970: 137513b61b4f187957d0c0f44c63c8549893f970
+  xe-pw-164959v1: 164959v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164959v1/index.html
+
+--===============6987027745526523671==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Vswing/Preemphasis Override</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164959/">https://patchwork.freedesktop.org/series/164959/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164959v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164959v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4909-137513b61b4f187957d0c0f44c63c8549893f970_BAT -&gt; xe-pw-164959v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4909-137513b61b4f187957d0c0f44c63c8549893f970 -&gt; xe-pw-164959v1</li>
+</ul>
+<p>IGT_8861: 63a08403d58b652dcab80da02d6078386da78c17 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4909-137513b61b4f187957d0c0f44c63c8549893f970: 137513b61b4f187957d0c0f44c63c8549893f970<br />
+  xe-pw-164959v1: 164959v1</p>
+
+</body>
+</html>
+
+--===============6987027745526523671==--
