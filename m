@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB0E1F8806B
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Apr 2026 06:50:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48A0FF88089
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Apr 2026 07:16:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45C9A10E816;
-	Thu, 16 Apr 2026 06:50:28 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="WGz72Q9B";
-	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F81D10E7D4;
- Thu, 16 Apr 2026 06:50:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
- Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=tmZTUrHDRo5mVF0PV1foMoEtKPOBO22Kz07r1jnfnlY=; b=WGz72Q9BE8xJ0+t0LMGBtsfMtp
- A3vDTbPA8DvEzBfJApX+zGPzVlsUdJbQ4st+IJCv1FAOZqTy+MW/JUmWBQyUDdn0plB5Ck0MMwJ0T
- CsOHBkw6awha7FzSXuNB1YJzTw6/p+tkjVOJxgvEIBHjqgg58JXh/jvqvdwNCHkeeXoz/rGzKNjew
- nMh8Cq6XfqlhrmgwxAjXQMXfvqa1fJWcza2ilsgGq4txBediCVLXTbSeLp5ATOE5pcqLcczEYHAMz
- fy1nmeqFHpVhEIA1d2m7qFTw4n8q5qoB4iyRV2+0I+3Ig+14x4Wi25W98aiMSNnYqU53I+UNVRrlE
- qOerw4Kg==;
-Received: from [90.240.106.137] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wDGYD-00Grci-N2; Thu, 16 Apr 2026 08:50:09 +0200
-Date: Thu, 16 Apr 2026 07:50:08 +0100
-From: Tvrtko Ursulin <tursulin@igalia.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-intel-next-fixes
-Message-ID: <aeCGoL4FFwT66bF4@linux>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01BF910E81D;
+	Thu, 16 Apr 2026 07:16:20 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB79910E81D;
+ Thu, 16 Apr 2026 07:16:18 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4104628203383561068=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe=3A_Reject_unsafe_PAT?=
+ =?utf-8?q?_indices_for_CPU_cached_memory?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jia Yao" <jia.yao@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 16 Apr 2026 07:16:18 -0000
+Message-ID: <177632377888.467464.14344829257794672462@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260416051957.651337-1-jia.yao@intel.com>
+In-Reply-To: <20260416051957.651337-1-jia.yao@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,45 +36,141 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============4104628203383561068==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Hi Dave, Sima,
+== Series Details ==
 
-Two fixes for the merge window - one to correct the backlight available
-feature check and second to check correct plane DDB programming.
+Series: drm/xe: Reject unsafe PAT indices for CPU cached memory
+URL   : https://patchwork.freedesktop.org/series/164972/
+State : failure
 
-Thanks,
+== Summary ==
 
-Tvrtko
+CI Bug Log - changes from xe-4909-137513b61b4f187957d0c0f44c63c8549893f970_BAT -> xe-pw-164972v1_BAT
+====================================================
 
-drm-intel-next-fixes-2026-04-16:
-- Fix VESA backlight possible check condition [backlight] (Suraj Kandpal)
-- Verify the correct plane DDB entry [wm] (Ville Syrjälä)
-The following changes since commit 83e8d8bbffa8161e94f3aeee4dd09a35062a78c8:
+Summary
+-------
 
-  Merge tag 'drm-misc-next-fixes-2026-04-09' of https://gitlab.freedesktop.org/drm/misc/kernel into drm-next (2026-04-10 11:15:22 +1000)
+  **FAILURE**
 
-are available in the Git repository at:
+  Serious unknown changes coming with xe-pw-164972v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-164972v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-next-fixes-2026-04-16
+  
 
-for you to fetch changes up to a97c88a176b6b8d116f4d3f508f3bd02bc77b462:
+Participating hosts (13 -> 13)
+------------------------------
 
-  drm/i915/wm: Verify the correct plane DDB entry (2026-04-14 08:04:47 +0100)
+  No changes in participating hosts
 
-----------------------------------------------------------------
-- Fix VESA backlight possible check condition [backlight] (Suraj Kandpal)
-- Verify the correct plane DDB entry [wm] (Ville Syrjälä)
+Possible new issues
+-------------------
 
-----------------------------------------------------------------
-Suraj Kandpal (1):
-      drm/i915/backlight: Fix VESA backlight possible check condition
+  Here are the unknown changes that may have been introduced in xe-pw-164972v1_BAT:
 
-Ville Syrjälä (1):
-      drm/i915/wm: Verify the correct plane DDB entry
+### IGT changes ###
 
- drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 9 +++++++--
- drivers/gpu/drm/i915/display/skl_watermark.c          | 4 ++--
- 2 files changed, 9 insertions(+), 4 deletions(-)
+#### Possible regressions ####
+
+  * igt@xe_pat@userptr-coh-none:
+    - bat-bmg-1:          [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4909-137513b61b4f187957d0c0f44c63c8549893f970/bat-bmg-1/igt@xe_pat@userptr-coh-none.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164972v1/bat-bmg-1/igt@xe_pat@userptr-coh-none.html
+    - bat-bmg-2:          [PASS][3] -> [FAIL][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4909-137513b61b4f187957d0c0f44c63c8549893f970/bat-bmg-2/igt@xe_pat@userptr-coh-none.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164972v1/bat-bmg-2/igt@xe_pat@userptr-coh-none.html
+    - bat-atsm-2:         [PASS][5] -> [FAIL][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4909-137513b61b4f187957d0c0f44c63c8549893f970/bat-atsm-2/igt@xe_pat@userptr-coh-none.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164972v1/bat-atsm-2/igt@xe_pat@userptr-coh-none.html
+
+  
+
+
+Build changes
+-------------
+
+  * Linux: xe-4909-137513b61b4f187957d0c0f44c63c8549893f970 -> xe-pw-164972v1
+
+  IGT_8861: 63a08403d58b652dcab80da02d6078386da78c17 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4909-137513b61b4f187957d0c0f44c63c8549893f970: 137513b61b4f187957d0c0f44c63c8549893f970
+  xe-pw-164972v1: 164972v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164972v1/index.html
+
+--===============4104628203383561068==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Reject unsafe PAT indices for CPU cached memory</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164972/">https://patchwork.freedesktop.org/series/164972/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164972v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164972v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4909-137513b61b4f187957d0c0f44c63c8549893f970_BAT -&gt; xe-pw-164972v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-164972v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-164972v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-164972v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_pat@userptr-coh-none:<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4909-137513b61b4f187957d0c0f44c63c8549893f970/bat-bmg-1/igt@xe_pat@userptr-coh-none.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164972v1/bat-bmg-1/igt@xe_pat@userptr-coh-none.html">FAIL</a></li>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4909-137513b61b4f187957d0c0f44c63c8549893f970/bat-bmg-2/igt@xe_pat@userptr-coh-none.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164972v1/bat-bmg-2/igt@xe_pat@userptr-coh-none.html">FAIL</a></li>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4909-137513b61b4f187957d0c0f44c63c8549893f970/bat-atsm-2/igt@xe_pat@userptr-coh-none.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164972v1/bat-atsm-2/igt@xe_pat@userptr-coh-none.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4909-137513b61b4f187957d0c0f44c63c8549893f970 -&gt; xe-pw-164972v1</li>
+</ul>
+<p>IGT_8861: 63a08403d58b652dcab80da02d6078386da78c17 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4909-137513b61b4f187957d0c0f44c63c8549893f970: 137513b61b4f187957d0c0f44c63c8549893f970<br />
+  xe-pw-164972v1: 164972v1</p>
+
+</body>
+</html>
+
+--===============4104628203383561068==--
