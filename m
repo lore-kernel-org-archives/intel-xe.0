@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F389F8A140
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Apr 2026 08:17:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4511EF8A141
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Apr 2026 08:20:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19DBF10E840;
-	Thu, 16 Apr 2026 08:17:26 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QOhCgo1s";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8931610E1A8;
- Thu, 16 Apr 2026 08:17:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776327444; x=1807863444;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=zzxyS/86yO+QwFq7EG77Q9q1k9Dsv35OEyw8JoSHAkg=;
- b=QOhCgo1sAbCfHF7uehHdMj5nld8BCHVLwp9fwymlpEjTyc4xq1Y8xLGR
- PiONc4jAL+DwKGHWhxV7C99kxvsiV3PymJHYLvwrPIYjLJS6wOs7wEyRT
- NVdCQmLMjQZCLOjo/V30w2YAZ3RnPGl+uQaMvqd8gd0DHW0U/ZgXZSyGW
- 3NMNqV2POrMkefX/TT+DO6qII5IiuUbFTHUjOwetlm0segWMb/cjRQo49
- 0W3cZNoCi6n2tdSjQE6loNiiz4DBhr07VsmlKcdHtr9BqkkwN9y5Supws
- 3tiFkWaHXonr+lHO/xw/UBQkyHz4WRUbSWe8ZvrwgoCfL89V54PCeaycp A==;
-X-CSE-ConnectionGUID: gDVbdPv+TkqNjNUVR0LExA==
-X-CSE-MsgGUID: UIHxHRGmShicv9U8cI1qkQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="77195147"
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="77195147"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2026 01:17:23 -0700
-X-CSE-ConnectionGUID: s/car1LEQ/u8yaZAVlVnBQ==
-X-CSE-MsgGUID: nWgtQzsdSUq5MIYXzOlbVw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="229834869"
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.78])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2026 01:17:21 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, Jouni =?utf-8?Q?H=C3=B6gander?=
- <jouni.hogander@intel.com>, Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: Re: [PATCH v3 1/7] drm/i915: Clear i915->display when no longer valid
-In-Reply-To: <20260415210411.24750-2-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260415210411.24750-1-ville.syrjala@linux.intel.com>
- <20260415210411.24750-2-ville.syrjala@linux.intel.com>
-Date: Thu, 16 Apr 2026 11:17:18 +0300
-Message-ID: <a2bed6245981f401c49ac46118e9f7ed7b46b29b@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0463510E1A9;
+	Thu, 16 Apr 2026 08:20:38 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A69DE10E1A9;
+ Thu, 16 Apr 2026 08:20:36 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2730150219383766449=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EFULL=3A_success_for_Add_support_for_Common_SDP?=
+ =?utf-8?q?_Transmission_Line_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 16 Apr 2026 08:20:36 -0000
+Message-ID: <177632763667.467676.18003573351541270166@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260416024504.1925195-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20260416024504.1925195-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,66 +36,172 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 16 Apr 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Don't leave a stale i915->display pointer hanging around after
-> the display driver has been torn down. Apparently the gt code
-> calls into the reset codepaths after this, and if the display
-> pointer is still around we may try to access freed memory.
->
-> The whole teardown sequence here seems rather suspect. Why is
-> display done first and then everything else via the managed
-> release? Who the heck knows. Someone really needs to dig into
-> this stuff and figure out the proper init/cleanup sequence for
-> both i915 (real and mock) and xe...
+--===============2730150219383766449==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Yeah. And i915 and xe need to be unified, and changed to call higher
-level interfaces instead of deep into display.
+== Series Details ==
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Series: Add support for Common SDP Transmission Line (rev3)
+URL   : https://patchwork.freedesktop.org/series/162623/
+State : success
 
->
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Jouni H=C3=B6gander <jouni.hogander@intel.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_driver.c               | 1 +
->  drivers/gpu/drm/i915/selftests/mock_gem_device.c | 1 +
->  2 files changed, 2 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i9=
-15_driver.c
-> index 195e34acef30..d31819758f3d 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.c
-> +++ b/drivers/gpu/drm/i915/i915_driver.c
-> @@ -310,6 +310,7 @@ static void i915_driver_late_release(struct drm_i915_=
-private *dev_priv)
->  	i915_params_free(&dev_priv->params);
->=20=20
->  	intel_display_device_remove(display);
-> +	dev_priv->display =3D NULL;
->  }
->=20=20
->  /**
-> diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/g=
-pu/drm/i915/selftests/mock_gem_device.c
-> index 27dc0e40a8d7..796c9b070e41 100644
-> --- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-> +++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-> @@ -277,6 +277,7 @@ void mock_destroy_device(struct drm_i915_private *i91=
-5)
->  	struct device *dev =3D i915->drm.dev;
->=20=20
->  	intel_display_device_remove(i915->display);
-> +	i915->display =3D NULL;
->=20=20
->  	devres_release_group(dev, NULL);
->  	put_device(dev);
+== Summary ==
 
---=20
-Jani Nikula, Intel
+CI Bug Log - changes from xe-4909-137513b61b4f187957d0c0f44c63c8549893f970_FULL -> xe-pw-162623v3_FULL
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (2 -> 2)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-162623v3_FULL that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_ccs@crc-primary-suspend-4-tiled-bmg-ccs@pipe-c-dp-2:
+    - shard-bmg:          [PASS][1] -> [INCOMPLETE][2] ([Intel XE#7084]) +1 other test incomplete
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4909-137513b61b4f187957d0c0f44c63c8549893f970/shard-bmg-2/igt@kms_ccs@crc-primary-suspend-4-tiled-bmg-ccs@pipe-c-dp-2.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162623v3/shard-bmg-7/igt@kms_ccs@crc-primary-suspend-4-tiled-bmg-ccs@pipe-c-dp-2.html
+
+  * igt@kms_cursor_legacy@flip-vs-cursor-atomic:
+    - shard-bmg:          [PASS][3] -> [FAIL][4] ([Intel XE#7571])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4909-137513b61b4f187957d0c0f44c63c8549893f970/shard-bmg-3/igt@kms_cursor_legacy@flip-vs-cursor-atomic.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162623v3/shard-bmg-1/igt@kms_cursor_legacy@flip-vs-cursor-atomic.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma:
+    - shard-lnl:          [FAIL][5] ([Intel XE#5625]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4909-137513b61b4f187957d0c0f44c63c8549893f970/shard-lnl-4/igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162623v3/shard-lnl-8/igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma.html
+
+  
+#### Warnings ####
+
+  * igt@kms_hdr@brightness-with-hdr:
+    - shard-bmg:          [SKIP][7] ([Intel XE#3374] / [Intel XE#3544]) -> [SKIP][8] ([Intel XE#3544])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4909-137513b61b4f187957d0c0f44c63c8549893f970/shard-bmg-3/igt@kms_hdr@brightness-with-hdr.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162623v3/shard-bmg-9/igt@kms_hdr@brightness-with-hdr.html
+
+  
+  [Intel XE#3374]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3374
+  [Intel XE#3544]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3544
+  [Intel XE#5625]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5625
+  [Intel XE#7084]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7084
+  [Intel XE#7571]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7571
+
+
+Build changes
+-------------
+
+  * Linux: xe-4909-137513b61b4f187957d0c0f44c63c8549893f970 -> xe-pw-162623v3
+
+  IGT_8861: 63a08403d58b652dcab80da02d6078386da78c17 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4909-137513b61b4f187957d0c0f44c63c8549893f970: 137513b61b4f187957d0c0f44c63c8549893f970
+  xe-pw-162623v3: 162623v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162623v3/index.html
+
+--===============2730150219383766449==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add support for Common SDP Transmission Line (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/162623/">https://patchwork.freedesktop.org/series/162623/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162623v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162623v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4909-137513b61b4f187957d0c0f44c63c8549893f970_FULL -&gt; xe-pw-162623v3_FULL</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (2 -&gt; 2)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-162623v3_FULL that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_ccs@crc-primary-suspend-4-tiled-bmg-ccs@pipe-c-dp-2:</p>
+<ul>
+<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4909-137513b61b4f187957d0c0f44c63c8549893f970/shard-bmg-2/igt@kms_ccs@crc-primary-suspend-4-tiled-bmg-ccs@pipe-c-dp-2.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162623v3/shard-bmg-7/igt@kms_ccs@crc-primary-suspend-4-tiled-bmg-ccs@pipe-c-dp-2.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7084">Intel XE#7084</a>) +1 other test incomplete</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@flip-vs-cursor-atomic:</p>
+<ul>
+<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4909-137513b61b4f187957d0c0f44c63c8549893f970/shard-bmg-3/igt@kms_cursor_legacy@flip-vs-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162623v3/shard-bmg-1/igt@kms_cursor_legacy@flip-vs-cursor-atomic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7571">Intel XE#7571</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma:<ul>
+<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4909-137513b61b4f187957d0c0f44c63c8549893f970/shard-lnl-4/igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5625">Intel XE#5625</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162623v3/shard-lnl-8/igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@kms_hdr@brightness-with-hdr:<ul>
+<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4909-137513b61b4f187957d0c0f44c63c8549893f970/shard-bmg-3/igt@kms_hdr@brightness-with-hdr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3374">Intel XE#3374</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3544">Intel XE#3544</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162623v3/shard-bmg-9/igt@kms_hdr@brightness-with-hdr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3544">Intel XE#3544</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4909-137513b61b4f187957d0c0f44c63c8549893f970 -&gt; xe-pw-162623v3</li>
+</ul>
+<p>IGT_8861: 63a08403d58b652dcab80da02d6078386da78c17 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4909-137513b61b4f187957d0c0f44c63c8549893f970: 137513b61b4f187957d0c0f44c63c8549893f970<br />
+  xe-pw-162623v3: 162623v3</p>
+
+</body>
+</html>
+
+--===============2730150219383766449==--
