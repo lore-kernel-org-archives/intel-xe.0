@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7033F43841
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Apr 2026 07:50:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 014B0F8A141
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Apr 2026 07:56:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BB8A10E849;
-	Thu, 16 Apr 2026 07:50:57 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cOBdC0UV";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3547310E847
- for <intel-xe@lists.freedesktop.org>; Thu, 16 Apr 2026 07:50:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776325856; x=1807861856;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=YivdnX70TSYJMOKRueDRhthQta/u6hN+l4ZGbX+Xz8g=;
- b=cOBdC0UVXfwfH/X/1YSmluiqBGiWvz6fDqonPKFKNXNPWmiQsp5vmXYT
- OV8e4Jl7a9k/RMBeZuyJSC9dVNyd545gMMmg3MF/DsllbuTlUsMbzwdwt
- 1YLsR0lPi9lRsSQ/PECNyqr7zO9/vYFMCILv5dL0KifyyX43z4C0/4MyX
- WwLiPAaeiXqD4XLVcWLet2IAun/Mnc9xDlN+r/Yv+gDdeAQXAt83NK3yi
- rxkTBLt+vF2bis6f7ofqWO6K/DqC8a8NZKM95Bn5a05+pD6o6cszELELi
- sUiBFzzDjvQez3O6Q0GeVaqtY2q3clfr+Z+7YS7HDzpXWXhg40KBXO/ea g==;
-X-CSE-ConnectionGUID: n0BJm1IlQzu19D3EJEXkRA==
-X-CSE-MsgGUID: bX7Qkx1xSvuVYl5YVp+SWw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="81188815"
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="81188815"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2026 00:50:56 -0700
-X-CSE-ConnectionGUID: hJpXj9aJRoKgfnXs56Y0nQ==
-X-CSE-MsgGUID: dei7kUvdTea1qh00X8pEbA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="235036626"
-Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
- ([10.190.239.37])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2026 00:50:54 -0700
-From: Tejas Upadhyay <tejas.upadhyay@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.auld@intel.com, matthew.brost@intel.com,
- thomas.hellstrom@linux.intel.com, himal.prasad.ghimiray@intel.com,
- Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [RFC PATCH V7 10/10] drm/xe/cri: Add sysfs interface for bad gpu vram
- pages
-Date: Thu, 16 Apr 2026 13:19:59 +0530
-Message-ID: <20260416074958.3722666-22-tejas.upadhyay@intel.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260416074958.3722666-12-tejas.upadhyay@intel.com>
-References: <20260416074958.3722666-12-tejas.upadhyay@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A585B10E842;
+	Thu, 16 Apr 2026 07:56:08 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF16710E834;
+ Thu, 16 Apr 2026 07:56:05 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Add_memory_page_offlining?=
+ =?utf-8?q?_support_=28rev8=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 16 Apr 2026 07:56:05 -0000
+Message-ID: <177632616577.467519.7224790897102331175@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260416074958.3722666-12-tejas.upadhyay@intel.com>
+In-Reply-To: <20260416074958.3722666-12-tejas.upadhyay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,192 +36,89 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Starting CRI, Include a sysfs interface designed to expose information
-about bad VRAM pages—those identified as having hardware faults
-(e.g., ECC errors). This interface allows userspace tools and
-administrators to monitor the health of the GPU's local memory and
-track the status of page retirement.To get details on bad gpu vram
-pages can be found under /sys/bus/pci/devices/bdf/vram_bad_pages.
+== Series Details ==
 
-Where The format is, pfn : gpu page size : flags
+Series: Add memory page offlining support (rev8)
+URL   : https://patchwork.freedesktop.org/series/161473/
+State : warning
 
-flags:
-R: reserved, this gpu page is reserved.
-P: pending for reserve, this gpu page is marked as bad, will be reserved
-   in next window of page_reserve.
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit cddb2434942e3dc976b828dca2b17d73fb7d6b68
+Author: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Date:   Thu Apr 16 13:19:59 2026 +0530
+
+    drm/xe/cri: Add sysfs interface for bad gpu vram pages
+    
+    Starting CRI, Include a sysfs interface designed to expose information
+    about bad VRAM pages—those identified as having hardware faults
+    (e.g., ECC errors). This interface allows userspace tools and
+    administrators to monitor the health of the GPU's local memory and
+    track the status of page retirement.To get details on bad gpu vram
+    pages can be found under /sys/bus/pci/devices/bdf/vram_bad_pages.
+    
+    Where The format is, pfn : gpu page size : flags
+    
+    flags:
+    R: reserved, this gpu page is reserved.
+    P: pending for reserve, this gpu page is marked as bad, will be reserved
+       in next window of page_reserve.
+    F: unable to reserve. this gpu page can’t be reserved due to some reasons.
+    
+    For example if you read using cat /sys/bus/pci/devices/bdf/vram_bad_pages,
+    max_pages : 10000
+    0x00000000 : 0x00001000 : R
+    0x00001234 : 0x00001000 : P
+    
+    v3:
+    - Move FW communication in RAS code
+    v2:
+    - Add max_pages info as per updated design doc
+    - Rebase
+    
+    Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
++ /mt/dim checkpatch 7e772296e93b337ca5e12fced2ac12716a159d28 drm-intel
+7ad853ed2074 drm/xe: Link VRAM object with gpu buddy
+9be10af07d2b gpu/buddy: Integrate lockdep for gpu buddy manager
+cfbf17fee984 drm/gpu: Add gpu_buddy_allocated_addr_to_block helper
+8e7bb33194ec drm/xe: Link LRC BO and its execution Queue
+86665af845df drm/xe: Extend BO purge to handle vram pages as well
+c6ca0861ed2a drm/xe: Handle physical memory address error
+-:13: ERROR:BAD_COMMIT_SEPARATOR: Invalid commit separator - some tools may have problems applying this
+#13: 
+----------------------
+
+-:20: ERROR:BAD_COMMIT_SEPARATOR: Invalid commit separator - some tools may have problems applying this
+#20: 
+-----------------
+
+total: 2 errors, 0 warnings, 0 checks, 418 lines checked
+0aa34b8cb1c5 drm/xe/cri: Add debugfs to inject faulty vram address
+b73669f195ce gpu/buddy: Add routine to dump allocated buddy blocks
+-:13: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#13: 
+[  +0.000003] xe 0000:03:00.0: [drm] 0x00000002f8000000-0x00000002f8800000: 8388608
+
+total: 0 errors, 1 warnings, 0 checks, 62 lines checked
+a50fc40a0ce1 drm/xe/configfs: Add vram bad page reservation policy
+cddb2434942e drm/xe/cri: Add sysfs interface for bad gpu vram pages
+-:22: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#22: 
 F: unable to reserve. this gpu page can’t be reserved due to some reasons.
 
-For example if you read using cat /sys/bus/pci/devices/bdf/vram_bad_pages,
-max_pages : 10000
-0x00000000 : 0x00001000 : R
-0x00001234 : 0x00001000 : P
+total: 0 errors, 1 warnings, 0 checks, 127 lines checked
 
-v3:
-- Move FW communication in RAS code
-v2:
-- Add max_pages info as per updated design doc
-- Rebase
-
-Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
----
- drivers/gpu/drm/xe/xe_device_sysfs.c       |  7 ++
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c       | 79 ++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.h       |  1 +
- drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h |  2 +
- 4 files changed, 89 insertions(+)
-
-diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
-index a73e0e957cb0..47c5be4180fe 100644
---- a/drivers/gpu/drm/xe/xe_device_sysfs.c
-+++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
-@@ -8,12 +8,14 @@
- #include <linux/pci.h>
- #include <linux/sysfs.h>
- 
-+#include "xe_configfs.h"
- #include "xe_device.h"
- #include "xe_device_sysfs.h"
- #include "xe_mmio.h"
- #include "xe_pcode_api.h"
- #include "xe_pcode.h"
- #include "xe_pm.h"
-+#include "xe_ttm_vram_mgr.h"
- 
- /**
-  * DOC: Xe device sysfs
-@@ -267,6 +269,7 @@ static const struct attribute_group auto_link_downgrade_attr_group = {
- int xe_device_sysfs_init(struct xe_device *xe)
- {
- 	struct device *dev = xe->drm.dev;
-+	bool policy;
- 	int ret;
- 
- 	if (xe->d3cold.capable) {
-@@ -285,5 +288,9 @@ int xe_device_sysfs_init(struct xe_device *xe)
- 			return ret;
- 	}
- 
-+	policy = xe_configfs_get_bad_page_reservation(to_pci_dev(dev));
-+	if (xe->info.platform == XE_CRESCENTISLAND && policy)
-+		xe_ttm_vram_sysfs_init(xe);
-+
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-index 7f58e7e8c3e1..611d945c9eb4 100644
---- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-@@ -760,3 +760,82 @@ int xe_ttm_vram_handle_addr_fault(struct xe_device *xe, unsigned long addr)
- 	return ret;
- }
- EXPORT_SYMBOL(xe_ttm_vram_handle_addr_fault);
-+
-+static void xe_ttm_vram_dump_bad_pages_info(char *buf, struct xe_ttm_vram_mgr *mgr)
-+{
-+	const unsigned int element_size = sizeof("0xabcdabcd : 0x12345678 : R\n") - 1;
-+	const unsigned int maxpage_size = sizeof("max_pages: 10000\n") - 1;
-+	struct xe_ttm_vram_offline_resource *pos, *n;
-+	struct gpu_buddy_block *block;
-+	ssize_t s = 0;
-+
-+	mutex_lock(&mgr->lock);
-+	s += scnprintf(&buf[s], maxpage_size + 1, "max_pages: %d\n", mgr->max_pages);
-+	list_for_each_entry_safe(pos, n, &mgr->offlined_pages, offlined_link) {
-+		block = list_first_entry(&pos->blocks,
-+					 struct gpu_buddy_block,
-+					 link);
-+		s += scnprintf(&buf[s], element_size + 1,
-+			       "0x%08llx : 0x%08llx : %1s\n",
-+			       gpu_buddy_block_offset(block) >> PAGE_SHIFT,
-+			       gpu_buddy_block_size(&mgr->mm, block),
-+			       "R");
-+	}
-+	list_for_each_entry_safe(pos, n, &mgr->queued_pages, queued_link) {
-+		block = list_first_entry(&pos->blocks,
-+					 struct gpu_buddy_block,
-+					 link);
-+		s += scnprintf(&buf[s], element_size + 1,
-+			       "0x%08llx : 0x%08llx : %1s\n",
-+			       gpu_buddy_block_offset(block) >> PAGE_SHIFT,
-+			       gpu_buddy_block_size(&mgr->mm, block),
-+			       pos->status ? "P" : "F");
-+	}
-+	mutex_unlock(&mgr->lock);
-+}
-+
-+static ssize_t vram_bad_pages_show(struct device *dev, struct device_attribute *attr, char *buf)
-+{
-+	struct pci_dev *pdev = to_pci_dev(dev);
-+	struct xe_device *xe = pdev_to_xe_device(pdev);
-+	struct ttm_resource_manager *man;
-+	struct xe_ttm_vram_mgr *mgr;
-+
-+	man = ttm_manager_type(&xe->ttm, XE_PL_VRAM0);
-+	if (man) {
-+		mgr = to_xe_ttm_vram_mgr(man);
-+		xe_ttm_vram_dump_bad_pages_info(buf, mgr);
-+	}
-+
-+	return sysfs_emit(buf, "%s\n", buf);
-+}
-+static DEVICE_ATTR_RO(vram_bad_pages);
-+
-+static void xe_ttm_vram_sysfs_fini(void *arg)
-+{
-+	struct xe_device *xe = arg;
-+
-+	device_remove_file(xe->drm.dev, &dev_attr_vram_bad_pages);
-+}
-+
-+/**
-+ * xe_ttm_vram_sysfs_init - Initialize vram sysfs component
-+ * @tile: Xe Tile object
-+ *
-+ * It needs to be initialized after the main tile component is ready
-+ *
-+ * Returns: 0 on success, negative error code on error.
-+ */
-+int xe_ttm_vram_sysfs_init(struct xe_device *xe)
-+{
-+	int err;
-+
-+	err = device_create_file(xe->drm.dev, &dev_attr_vram_bad_pages);
-+	if (err) {
-+		dev_err(xe->drm.dev, "Failed to create vram_bad_pages sysfs file: %d\n", err);
-+		return 0;
-+	}
-+
-+	return devm_add_action_or_reset(xe->drm.dev, xe_ttm_vram_sysfs_fini, xe);
-+}
-+EXPORT_SYMBOL(xe_ttm_vram_sysfs_init);
-diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-index 8ef06d9d44f7..c33e1a8d9217 100644
---- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-+++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-@@ -32,6 +32,7 @@ void xe_ttm_vram_get_used(struct ttm_resource_manager *man,
- 			  u64 *used, u64 *used_visible);
- 
- int xe_ttm_vram_handle_addr_fault(struct xe_device *xe, unsigned long addr);
-+int xe_ttm_vram_sysfs_init(struct xe_device *xe);
- static inline struct xe_ttm_vram_mgr_resource *
- to_xe_ttm_vram_mgr_resource(struct ttm_resource *res)
- {
-diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-index 07ed88b47e04..b23796066a1a 100644
---- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-+++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-@@ -39,6 +39,8 @@ struct xe_ttm_vram_mgr {
- 	u32 mem_type;
- 	/** @offline_mode: debugfs hook for setting page offline mode */
- 	u64 offline_mode;
-+	/** @max_pages: max pages that can be in offline queue retrieved from FW */
-+	u16 max_pages;
- };
- 
- /**
--- 
-2.52.0
 
