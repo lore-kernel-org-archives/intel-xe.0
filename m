@@ -4,67 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7AAA7F8A145
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Apr 2026 09:03:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 770AAF8A14A
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Apr 2026 09:11:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14CD510E870;
-	Thu, 16 Apr 2026 09:03:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F68010E84B;
+	Thu, 16 Apr 2026 09:11:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iaQ6oM0A";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fX/fSD8n";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CDB1B10E86B;
- Thu, 16 Apr 2026 09:03:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7DDAA10E84B
+ for <intel-xe@lists.freedesktop.org>; Thu, 16 Apr 2026 09:11:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776330213; x=1807866213;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=tKR79W2coauzINztppMgXVidiXr4hWU40kBg3n8zqYk=;
- b=iaQ6oM0A4VgGa2BJtuVXCOjoqO0c1X397JzzgfD31sSRLm78VWEP3APp
- FPJmabvFMylwSLAcq+R/d6XUJmBY/vfRszb93vOGVnFSe/pioFjuEZqs5
- 4MBr7fz6VkJToAjV6hJT9aTCBJBdaUCuZzRyhxlBQVx76e3nVbm4yUDiG
- s6dOTaG3rC6j/9hq0BGP3+2mTzyzFMXKQJYWbELhvdc5mbbKddgiL5i5Q
- Ha16H/jqZ29rQh/WoO1d7DDS5uRb2buJ+GJvU0aHi2DpsZ2q3AnRIQWK9
- 3T2SljLGJMEutrPeMHs4J4esRUbK3yfUgUjVorQSXfxt+UIUO+kTsUZRI Q==;
-X-CSE-ConnectionGUID: QE8N9ZkxQ2O+a8BJuBqKhA==
-X-CSE-MsgGUID: G+8BjliFS06ZDbYNW6bLdg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="99971658"
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="99971658"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2026 02:03:31 -0700
-X-CSE-ConnectionGUID: wp9/kQC2Qra/6BBcA+xEVA==
-X-CSE-MsgGUID: vuHN9M0iR7O1VChxvBGklA==
+ t=1776330676; x=1807866676;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=RtibpALEXn08ivA4S1NSxloelocNX2yk0NnMCkkgPPQ=;
+ b=fX/fSD8nCEagGV/rCrc2XwOniR4dwwwX/3NOn55Sg58KMj6H9Bp6HbzJ
+ 3KYBtj/KpR8U4ZM9JKgxtm5vcupSBZMH3aZ4WSEbQ6VtoGqgSEerZ9rr3
+ WcZPbSQLAAWee643zB1IYQx8dGoBt8qvAMe63dj/XNusRvLbOMe/aIDnk
+ gDkgNPM8yOWYbaNdGWSU6HwLyVv/16RG6h7PmgVGIhp7IQy8bPTndAf82
+ 0gWZQ+y1cdaHb1r2oi+JJGmFGtLPOPIYSgg0ly3BOhmjJFJhzq+dWUJvu
+ pa0nKpiV8gYRg3IXlZRAyeFd+uSOwuWxhW+qToAe2mbuNJ6eh9RNiAyF0 g==;
+X-CSE-ConnectionGUID: fbC/gdCGTuCNHBRu04rIbg==
+X-CSE-MsgGUID: muOe5a8cTpiEboY3ssb8nw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="77506679"
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="77506679"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2026 02:11:15 -0700
+X-CSE-ConnectionGUID: aHTwOwBuSfeTE2pCFfuS8g==
+X-CSE-MsgGUID: svS2aVecQVe1sQ8B22gkjg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="228016603"
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.78])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2026 02:03:27 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Cc: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas
- Zimmermann <tzimmermann@suse.de>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, Oded Gabbay <ogabbay@kernel.org>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org, Ville
- Syrjala <ville.syrjala@linux.intel.com>
-Subject: Re: [PULL] topic/pipe-reorder for drm-intel-next and possibly v7.1-rc1
-In-Reply-To: <CAHk-=wjmTh4ESQE7ntR=ddF5JBToNerf4Dzt2zQQ2-Y3OEre-A@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <d69501d53c233386d70ed10290af24aafebf434f@intel.com>
- <CAHk-=wiAGevirr3=xC=u5_kN+m63JtjqA0C9NJLrd5PGrM0suw@mail.gmail.com>
- <CAHk-=wjmTh4ESQE7ntR=ddF5JBToNerf4Dzt2zQQ2-Y3OEre-A@mail.gmail.com>
-Date: Thu, 16 Apr 2026 12:03:24 +0300
-Message-ID: <12226307473a261449a177f4757633da946d3e3a@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="253923678"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO [10.245.244.235])
+ ([10.245.244.235])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2026 02:11:12 -0700
+Message-ID: <221abf47-70dd-4c47-b48f-09697d3db172@intel.com>
+Date: Thu, 16 Apr 2026 10:11:10 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 2/2] drm/xe: Reject coh_none PAT index for
+ CPU_ADDR_MIRROR
+To: Jia Yao <jia.yao@intel.com>, intel-xe@lists.freedesktop.org
+Cc: stable@vger.kernel.org, Shuicheng Lin <shuicheng.lin@intel.com>,
+ Mathew Alwin <alwin.mathew@intel.com>,
+ Michal Mrozek <michal.mrozek@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+References: <20260416051957.651337-1-jia.yao@intel.com>
+ <20260416051957.651337-3-jia.yao@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20260416051957.651337-3-jia.yao@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,37 +74,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 15 Apr 2026, Linus Torvalds <torvalds@linux-foundation.org> wrote:
-> On Wed, 15 Apr 2026 at 09:28, Linus Torvalds
-> <torvalds@linux-foundation.org> wrote:
->>
->> I guess I'll test it just to verify, but if this fixes that known
->> issue I'm all for getting this fixed sooner rather than later.
->
-> Well, that was easy enough. I assume this was expected, but I can
-> indeed verify that that branch works for me as a replacement for (two
-> versions) of the local patch I have been running for the last six
-> months or so.
+On 16/04/2026 06:19, Jia Yao wrote:
+> Add validation in xe_vm_bind_ioctl() to reject PAT indices
+> with XE_COH_NONE coherency mode when used with
+> DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR.
+> 
+> CPU address mirror mappings use system memory that is CPU
+> cached, which makes them incompatible with COH_NONE PAT
+> indices. Allowing COH_NONE with CPU cached buffers is a
+> security risk, as the GPU may bypass CPU caches and read
+> stale sensitive data from DRAM.
+> 
+> Although CPU_ADDR_MIRROR does not create an immediate
+> mapping, the backing system memory is still CPU cached.
+> Apply the same PAT coherency restrictions as
+> DRM_XE_VM_BIND_OP_MAP_USERPTR.
+> 
+> v2:
+> - Correct fix tag
+> 
+> v6:
+> - No change
+> 
+> v7:
+> - Correct fix tag
+> 
+> v8:
+> - Rebase
+> 
+> v9:
+> - Limit the restrictions to iGPU
+> 
+> Fixes: b43e864af0d4 ("drm/xe/uapi: Add DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR")
+> Cc: stable@vger.kernel.org # v6.18
+> Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+> Cc: Mathew Alwin <alwin.mathew@intel.com>
+> Cc: Michal Mrozek <michal.mrozek@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Signed-off-by: Jia Yao <jia.yao@intel.com>
+> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_vm.c | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index 2408b547ca3d..f2e733c7ddab 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -3656,8 +3656,8 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
+>   				 op == DRM_XE_VM_BIND_OP_UNMAP_ALL) ||
+>   		    XE_IOCTL_DBG(xe, obj &&
+>   				 op == DRM_XE_VM_BIND_OP_MAP_USERPTR) ||
+> -		    XE_IOCTL_DBG(xe, coh_mode == XE_COH_NONE &&
+> -				 op == DRM_XE_VM_BIND_OP_MAP_USERPTR) ||
+> +		    XE_IOCTL_DBG(xe, !IS_DGFX(xe) && coh_mode == XE_COH_NONE &&
+> +				 (op == DRM_XE_VM_BIND_OP_MAP_USERPTR || is_cpu_addr_mirror)) ||
 
-Yay, thanks for confirming it still works for you!
+Not sure if we want to change the existing behaviour for userptr. At the 
+very least would need some IGT updates. I think maybe just limit to 
+cpu_addr?
 
-> And maybe I'm the only person on the planet that runs this setup, but
-> it gets an ack from me. So I'm ok with a late pull as a fix, but
-> somebody who can better judge the risks for other setups should
-> eventually make the judgement call.
+>   		    XE_IOCTL_DBG(xe, xe_device_is_l2_flush_optimized(xe) &&
+>   				 (op == DRM_XE_VM_BIND_OP_MAP_USERPTR ||
+>   				  is_cpu_addr_mirror) &&
 
-We've tested a similar setup locally, and a bunch of other setups in CI,
-and haven't seen any issues. As far as real world scenarios go, I think
-yours is as real as it gets. That said, we'll only really know once this
-hits more end users... but I'm not sure if there's any benefit in
-dragging this across another development cycle.
-
-Dave, up to you then, will you take this through drm-next?
-
-
-BR,
-Jani.
-
-
--- 
-Jani Nikula, Intel
