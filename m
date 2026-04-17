@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB585F43697
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Apr 2026 10:38:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEBAAF43696
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Apr 2026 10:38:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32BE510EA3A;
-	Fri, 17 Apr 2026 10:38:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74EFE10EA3F;
+	Fri, 17 Apr 2026 10:38:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="rWrYPonS";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="T/YkNMVP";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C053C10EA32;
- Fri, 17 Apr 2026 10:38:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BCF910EA17;
+ Fri, 17 Apr 2026 10:38:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+ Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=W7WSIj6MsZLtgBue7vFPu+7p6EUr7qdwXHICKiakJAI=; b=rWrYPonSreWuOcjD3WgMUCPUIQ
- voESsLE0+OK5F1uZ8VOuKGwyfM+pxZJbdJufdII6d/O/SBY4MGFx63OR29Zjo/wge6JTw8IKtgDxM
- y9gXXrWvJajqc09X1gTgk8FOApN8MO0rPk3lJ42yIYOb4o3xgYtpspKo/BLVWSdAUPY96HwK3RFxi
- e6Z1AiB1YQbBUc95h2wwSZ7KcTisGfX5JrJ9ZX1BF61iz96yeusLCPv3pVBSaEc62/BpoQYQ68QB4
- 5wWPYSLxvpwBlVrgcD9CczQQptdf3AplJ6L82E4nXMu560OLzB9JiH/0PCiuFAVDxTrg0PV3Z/6y9
- fdg9bvFQ==;
+ bh=RQTUcL1I/8jadncAL2XKGoKxgkmVYQD7qHlBDYb7ynk=; b=T/YkNMVP8AGMm1QSBA0TClh+lz
+ WgqqaVyeNIkjF8lJowNfRc+5xpXfsFWOR2Adp6IgD8f1dOr4mKVD28CubLl0/dbNcp1RAI87Sb7ql
+ KVuHqCNJeDC37fR1azUFu97/0aEma9kI0bsGhP2BebY8ll5GJnIj1XUFdYJ0DT+9xIT0pVrfUTYxb
+ KeqhYmADzD1HjxN5Yct/nHH3EDloscZLC/wCIhXXKwaODW+x6Pky+n0UiPRYvTMunbc37VmvmyYNw
+ jT8lPb5Z5iPp+Mx5aG9S2dmVS2NH9vjobYg4jahKZHTQiG88j6jAS5MDDYbl7h/SRyxLf14Cy3EyI
+ Py2eZ+eQ==;
 Received: from [90.240.106.137] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wDgaQ-00HPVg-V3; Fri, 17 Apr 2026 12:38:11 +0200
+ id 1wDgaM-00HPU1-8b; Fri, 17 Apr 2026 12:38:06 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: amd-gfx@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com,
  Danilo Krummrich <dakr@kernel.org>, Philipp Stanner <phasta@kernel.org>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v8 29/29] drm/sched: Remove drm_sched_init_args->num_rqs
-Date: Fri, 17 Apr 2026 11:37:44 +0100
-Message-ID: <20260417103744.76020-30-tvrtko.ursulin@igalia.com>
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, Lyude Paul <lyude@redhat.com>,
+ nouveau@lists.freedesktop.org
+Subject: [PATCH v8 23/29] drm/nouveau: Remove drm_sched_init_args->num_rqs
+ usage
+Date: Fri, 17 Apr 2026 11:37:38 +0100
+Message-ID: <20260417103744.76020-24-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260417103744.76020-1-tvrtko.ursulin@igalia.com>
 References: <20260417103744.76020-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,39 +62,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Remove member no longer used by the scheduler core and the drivers.
+Remove member no longer used by the scheduler core.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Christian König <christian.koenig@amd.com>
+Cc: Lyude Paul <lyude@redhat.com>
 Cc: Danilo Krummrich <dakr@kernel.org>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Philipp Stanner <phasta@kernel.org>
+Cc: nouveau@lists.freedesktop.org
+Reviewed-by: Lyude Paul <lyude@redhat.com>
 Acked-by: Danilo Krummrich <dakr@kernel.org>
 ---
- include/drm/gpu_scheduler.h | 3 ---
- 1 file changed, 3 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_sched.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
-index f1e15a80c844..d61c19e78182 100644
---- a/include/drm/gpu_scheduler.h
-+++ b/include/drm/gpu_scheduler.h
-@@ -608,8 +608,6 @@ struct drm_gpu_scheduler {
-  * @ops: backend operations provided by the driver
-  * @submit_wq: workqueue to use for submission. If NULL, an ordered wq is
-  *	       allocated and used.
-- * @num_rqs: Number of run-queues. This may be at most DRM_SCHED_PRIORITY_COUNT,
-- *	     as there's usually one run-queue per priority, but may be less.
-  * @credit_limit: the number of credits this scheduler can hold from all jobs
-  * @hang_limit: number of times to allow a job to hang before dropping it.
-  *		This mechanism is DEPRECATED. Set it to 0.
-@@ -623,7 +621,6 @@ struct drm_sched_init_args {
- 	const struct drm_sched_backend_ops *ops;
- 	struct workqueue_struct *submit_wq;
- 	struct workqueue_struct *timeout_wq;
--	u32 num_rqs;
- 	u32 credit_limit;
- 	unsigned int hang_limit;
- 	long timeout;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_sched.c b/drivers/gpu/drm/nouveau/nouveau_sched.c
+index 5546be488795..179edf90a531 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_sched.c
++++ b/drivers/gpu/drm/nouveau/nouveau_sched.c
+@@ -405,7 +405,6 @@ nouveau_sched_init(struct nouveau_sched *sched, struct nouveau_drm *drm,
+ 	struct drm_sched_entity *entity = &sched->entity;
+ 	struct drm_sched_init_args args = {
+ 		.ops = &nouveau_sched_ops,
+-		.num_rqs = DRM_SCHED_PRIORITY_COUNT,
+ 		.credit_limit = credit_limit,
+ 		.timeout = msecs_to_jiffies(NOUVEAU_SCHED_JOB_TIMEOUT_MS),
+ 		.name = "nouveau_sched",
 -- 
 2.52.0
 
