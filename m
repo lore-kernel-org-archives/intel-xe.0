@@ -4,57 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AA4EF436B4
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Apr 2026 15:35:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F4EAF436B8
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Apr 2026 15:42:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE95810EA50;
-	Fri, 17 Apr 2026 15:35:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5F1F10EA4A;
+	Fri, 17 Apr 2026 15:42:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hpg3WgcB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wmt1tiy6";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5AA7F10EA4A;
- Fri, 17 Apr 2026 15:35:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8AC1B10EA4A;
+ Fri, 17 Apr 2026 15:42:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776440146; x=1807976146;
+ t=1776440572; x=1807976572;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=VSaXQoiojY12yb90IHyvfyEN0giZHo5eSA2uaSQO/pM=;
- b=hpg3WgcBHVzBvPLhQ+lG1ECZeIKvMuK1Z2KyYkhWeUL6MLdCDoMLPS5d
- sSAupbzTF2fTB9tkneGd0owf8porZuhrbO3jR5XEVPrKbLCqWks0jtSI/
- lpW8cS0QNUY/96VELnLasZyYhPiyiiKVCNrztgqCKe2Ex45wEvTzEgFAk
- PbgdSgbuQH6lzA4VDU86RM6mfp9154XnGkRy28xEpq5mJLzfF2ca7Z7VO
- cz8Rw16tzqU6kyrr4ba3IEf6Zndg4gI4ye7yQPagjPQCbtAYYjzMcsHw9
- 8NnUzvf7Y/XzJsKhst6ygi8tQxaXuapN/gWarlLLi3HgHHKR88r9cDGUu g==;
-X-CSE-ConnectionGUID: KSb1Asu1SAu7SaBXk1493g==
-X-CSE-MsgGUID: HFc/F/ZcSd2c+nuNAVQlHg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11762"; a="76620152"
-X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; d="scan'208";a="76620152"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2026 08:35:46 -0700
-X-CSE-ConnectionGUID: J2HZmsfnTOu1ZAsTWhcBUg==
-X-CSE-MsgGUID: 5rn+4ZJcSryE0w/MWI7xhA==
+ bh=wauPbR+pPgvUL9gvV2glMNoRKAMBi2UGesqFO/Djyu8=;
+ b=Wmt1tiy6krKEqh++qXxOUAPnmkUPMdsgeZSjTYwz7K3Z9UJ61H1731h2
+ Ie43g8/RepiZm84SpcH49Ix9kwYLei0R5jeE+SEkjStuNGSwsFtBWFxKL
+ pANq9y+NR615DYL9+D5lN1l6HLtpSr9rjE7nBp55b4VJzUB8sL9D1veSA
+ 1TecNyxTWQO2gTvXNn0B8Zb8q6ligY78ij6C/2xLGgo372g21ZGGDM07Y
+ bRGqBwmjV57kCsWzcsWyIXPoYvFV/S+VkZ5il5tHbRUCm89a6B9AqtPgj
+ Ws07eWE70j9m2h1vlUJN2lHAA36OmyjWhEP9pAeG9T7r+2gzrGzcF37tW g==;
+X-CSE-ConnectionGUID: DOpC34FlQVWHzDtXTqS75w==
+X-CSE-MsgGUID: XdXsI1C6TkSU8rNicVHnRg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11762"; a="81336674"
+X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; d="scan'208";a="81336674"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2026 08:42:51 -0700
+X-CSE-ConnectionGUID: 3lMM3nQETAqeLEqTTKfxWA==
+X-CSE-MsgGUID: ONlPDrOPSoWKMik/yX3Few==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; d="scan'208";a="231337475"
+X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; d="scan'208";a="224561692"
 Received: from zzombora-mobl1 (HELO localhost) ([10.245.245.176])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2026 08:35:43 -0700
-Date: Fri, 17 Apr 2026 18:35:40 +0300
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2026 08:42:49 -0700
+Date: Fri, 17 Apr 2026 18:42:46 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-gfx-trybot@lists.freedesktop.org, ankit.k.nautiyal@intel.com,
- swati2.sharma@intel.com
-Subject: Re: [PATCH] drm/i915/dp: Ignore HPD when in DPLL enable/disable cycle
-Message-ID: <aeJTTI6kkfMaTk9w@intel.com>
-References: <20260417080118.2352283-1-suraj.kandpal@intel.com>
+To: Vidya Srinivas <vidya.srinivas@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ uma.shankar@intel.com, ankit.k.nautiyal@intel.com,
+ seanpaul@google.com, navaremanasi@google.com, shawn.c.lee@intel.com
+Subject: Re: [PATCH] [RFC]: drm/i915/display: Fix vblank timestamps for fixed
+ RR on VRR-TG-always platforms
+Message-ID: <aeJU9ubmOwiukGuG@intel.com>
+References: <20260417124439.206962-1-vidya.srinivas@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260417080118.2352283-1-suraj.kandpal@intel.com>
+In-Reply-To: <20260417124439.206962-1-vidya.srinivas@intel.com>
 X-Patchwork-Hint: comment
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
@@ -72,81 +73,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Apr 17, 2026 at 01:31:18PM +0530, Suraj Kandpal wrote:
-> When we are enable/disable DPLL cycle there are chances the connected
-> monitors is still sending us HPD signals. This causes us to handle them
-> which require DPCD read. These sometimes race with the DPLL getting
-> disabled in between causing AUX failures via Timeout.
-
-What does the DPLL have to do with AUX?
-
-> Introduce atomic variable link_teardown which is used to track if
-> we are in DPLL enable/disable cycle. We ignore HPDs during this time.
-> Re-enable after DPLL is up so that we can avoid populating logs
-> with expected logs AUX timeout failures.
+On Fri, Apr 17, 2026 at 06:14:39PM +0530, Vidya Srinivas wrote:
+> On LNL+ VRR timing generator is always active.
+> For panels like this
 > 
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> "2880x1800": 120 709633 2880 2888 2920 3080 1800 1880 1896 1920 0x48 0xa
+> "2880x1800":  60 709633 2880 2888 2920 3080 1800 3800 3816 3840 0x40 0xa
+> 
+> that use the same pixel clock with a stretched vtotal have a large front
+> porch. For this case 2880x1800 panel:
+> 120Hz: vtotal=1920 (120 lines of front porch)
+> 60Hz: vtotal=3840 (2000 lines of front porch)
+> 
+> When at lower RR (60Hz) and "vrr_enable = false" this issue was seen
+> The intel_crtc_active_timings() function is not adjusting
+> crtc_vblank_start for the VRR TG when vrr_enable=false, leaving it at
+> the raw mode value of 1800 (vactive end). Since the VRR TG counts all
+> the way to vtotal=3840, the actual frame latch happens at line 3840
+> (16.67ms), but the vblank timestamp was reported at line 1800 (7.8ms).
+> 
+> This caused Android SurfaceFlinger to miscalculate frame deadlines --
+> it received fence signals ~8ms into the 16.67ms frame and concluded
+> frames were being presented late, leading to dropped frames during
+> heavy workloads like video playback at 60Hz.
+> 
+> Fix by adjusting crtc_vblank_start, crtc_vblank_end, and crtc_vtotal
+> to match the VRR timing generator values when
+> intel_vrr_always_use_vrr_tg() is true, even when vrr_enable is false.a
+
+intel_vrr_compute_guardband() is supposed to tweak the
+adjusted_mode timings appropriately.
+
+> 
+> Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_ddi.c           | 5 +++++
->  drivers/gpu/drm/i915/display/intel_display_types.h | 1 +
->  drivers/gpu/drm/i915/display/intel_dp.c            | 5 +++++
->  3 files changed, 11 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_vblank.c | 20 +++++++++++++++++++-
+>  1 file changed, 19 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 178074316a2c..4a523eb56bc4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -2086,8 +2086,12 @@ static struct intel_dpll *hsw_ddi_get_pll(struct intel_encoder *encoder)
->  void intel_ddi_enable_clock(struct intel_encoder *encoder,
->  			    const struct intel_crtc_state *crtc_state)
->  {
-> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-> +
->  	if (encoder->enable_clock)
->  		encoder->enable_clock(encoder, crtc_state);
-> +
-> +	atomic_set(&dig_port->link_teardown, 0);
->  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
+> index 0726a2abed38..8e0798277d5e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vblank.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+> @@ -527,8 +527,26 @@ static void intel_crtc_active_timings(struct drm_display_mode *mode,
+>  	drm_mode_init(mode, &crtc_state->hw.adjusted_mode);
+>  	*vmax_vblank_start = 0;
 >  
->  void intel_ddi_disable_clock(struct intel_encoder *encoder)
-> @@ -3181,6 +3185,7 @@ static void intel_ddi_post_disable_dp(struct intel_atomic_state *state,
->  					dig_port->ddi_io_power_domain,
->  					wakeref);
->  
-> +	atomic_set(&dig_port->link_teardown, 1);
->  	intel_ddi_disable_clock(encoder);
->  
->  	/* De-select Thunderbolt */
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index c81916761850..f59bbb2fb260 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1985,6 +1985,7 @@ struct intel_digital_port {
->  	enum intel_display_power_domain ddi_io_power_domain;
->  	struct ref_tracker *ddi_io_wakeref;
->  	struct ref_tracker *aux_wakeref;
-> +	atomic_t link_teardown;
->  
->  	struct intel_tc_port *tc;
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 35b8fb5740aa..9177fe9b3e84 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -6889,6 +6889,11 @@ intel_dp_hpd_pulse(struct intel_digital_port *dig_port, bool long_hpd)
->  	struct intel_dp *intel_dp = &dig_port->dp;
->  	u8 dpcd[DP_RECEIVER_CAP_SIZE];
->  
-> +	if (atomic_read(&dig_port->link_teardown)) {
-> +		drm_dbg_kms("Ignoring HPD since DPLL is getting disabled\n");
-> +		return IRQ_NONE;
+> -	if (!vrr_enable)
+> +	if (!vrr_enable) {
+> +		/*
+> +		 * On platforms that always use the VRR timing generator
+> +		 * LNL+, even fixed refresh rate modes run
+> +		 * through the VRR TG. The actual frame boundary is at
+> +		 * flipline (= vtotal), not at vactive end. Without this
+> +		 * adjustment, vblank timestamps and flip-done fences are
+> +		 * signaled at vactive end (line 1800 for 60Hz) instead of
+> +		 * near the real frame boundary, causing
+> +		 * compositors like SurfaceFlinger to see ~8ms late fences
+> +		 * and drop frames during GPU-heavy workloads.
+> +		 */
+> +		if (intel_vrr_always_use_vrr_tg(to_intel_display(crtc_state))) {
+> +			mode->crtc_vtotal = intel_vrr_vmin_vtotal(crtc_state);
+> +			mode->crtc_vblank_end = intel_vrr_vmin_vtotal(crtc_state);
+> +			mode->crtc_vblank_start =
+> +				intel_vrr_vmin_vblank_start(crtc_state);
+> +		}
+>  		return;
 > +	}
-> +
->  	if (dig_port->base.type == INTEL_OUTPUT_EDP &&
->  	    (long_hpd ||
->  	     intel_display_rpm_suspended(display) ||
+>  
+>  	mode->crtc_vtotal = intel_vrr_vmax_vtotal(crtc_state);
+>  	mode->crtc_vblank_end = intel_vrr_vmax_vtotal(crtc_state);
 > -- 
-> 2.34.1
+> 2.45.2
 
 -- 
 Ville Syrjälä
