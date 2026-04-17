@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 477EAF8E4A1
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Apr 2026 03:55:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C888F8E4A5
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Apr 2026 04:08:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E671910E283;
-	Fri, 17 Apr 2026 03:55:26 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFAA610E283;
- Fri, 17 Apr 2026 03:55:25 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2444489886891383805=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F22510E288;
+	Fri, 17 Apr 2026 04:08:47 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NBfz2NVd";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC47A10E288
+ for <intel-xe@lists.freedesktop.org>; Fri, 17 Apr 2026 04:08:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1776398926; x=1807934926;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=FKqM8jakGvJT3MAiP+GIog7TkHcax3B/Zw0h0o9jllY=;
+ b=NBfz2NVdjYZ1JmE8DGjiT79lMe3RarznhLdl3MJOZ1M7cTqj6Hof6Y16
+ QoGTctlRqoPhHd0enWBEMIhO/M8Icp8MbfH9udBpJ9PEK4rTGsKHAD3eH
+ 4t+cAX0ZdRH2WkbmAXVD+7uPI3IrP6H8+iESe/1mr4IzGWfJkbg8xdV4x
+ UUXwVWL8CI89DxKjlNhx/PFMAJCOESPQJwkxUMQAwRgg3ZCBQDKG2Cw0V
+ OYg3J+joQtkXj7vy6PY0Fn8q/ecSSjpeBQjvbh1Zk+r2DvetMkPJ6+HOc
+ b/A0i/rfty2wZ+C+QBf9UD+kEMM8PYVTHm6K9YKMnAwHDqZJYYlvZ1JCp g==;
+X-CSE-ConnectionGUID: PGF0B9kDQsCY75nZpY9BxQ==
+X-CSE-MsgGUID: vAJrh0uNRAmHhVNMCCnR+w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11761"; a="77484937"
+X-IronPort-AV: E=Sophos;i="6.23,183,1770624000"; d="scan'208";a="77484937"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2026 21:08:45 -0700
+X-CSE-ConnectionGUID: VfiuaM0qS3SZi5g6BZfQ3w==
+X-CSE-MsgGUID: ZbvBfSZ1RumJaC7IfO3nZA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,183,1770624000"; d="scan'208";a="230847908"
+Received: from sinjan-super-server.iind.intel.com ([10.190.239.39])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2026 21:08:43 -0700
+From: Karthik Poosa <karthik.poosa@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com, rodrigo.vivi@intel.com,
+ raag.jadav@intel.com, riana.tauro@intel.com, soham.purkait@intel.com,
+ Karthik Poosa <karthik.poosa@intel.com>
+Subject: [PATCH v2] drm/xe/hwmon: Enable energy attributes for CRI
+Date: Fri, 17 Apr 2026 09:44:56 +0530
+Message-Id: <20260417041456.818668-1-karthik.poosa@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_scripts/kernel-doc=3A_Detec?=
- =?utf-8?q?t_mismatched_inline_member_documentation_tags_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lin, Shuicheng" <shuicheng.lin@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 17 Apr 2026 03:55:25 -0000
-Message-ID: <177639812570.470892.6223220189895113118@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260415215032.3398330-1-shuicheng.lin@intel.com>
-In-Reply-To: <20260415215032.3398330-1-shuicheng.lin@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +63,52 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2444489886891383805==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Enable HWMON energy attributes for CRI, which are available through MMIO
+registers.
+Although these attributes can also be accessed via PMT, MMIO is preferred
+as it avoids dependency on ocode firmware load in late binding scenario.
 
-== Series Details ==
+v2: Rephrase commit message. (Anshuman)
 
-Series: scripts/kernel-doc: Detect mismatched inline member documentation tags (rev3)
-URL   : https://patchwork.freedesktop.org/series/164948/
-State : success
+Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
+---
+ drivers/gpu/drm/xe/regs/xe_pcode_regs.h | 3 +++
+ drivers/gpu/drm/xe/xe_hwmon.c           | 7 ++++++-
+ 2 files changed, 9 insertions(+), 1 deletion(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
+index 4b3c46eb858f..c63b409d7a82 100644
+--- a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
+@@ -27,4 +27,7 @@
+ #define   TEMP_SIGN_MASK			REG_BIT(31)
+ #define BMG_PACKAGE_TEMPERATURE			XE_REG(0x138434)
+ 
++#define CRI_PACKAGE_ENERGY_STATUS		XE_REG(0x138120)
++#define CRI_PLATFORM_ENERGY_STATUS		XE_REG(0x138458)
++
+ #endif /* _XE_PCODE_REGS_H_ */
+diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+index 0fd4d4f1014a..852681bdb84c 100644
+--- a/drivers/gpu/drm/xe/xe_hwmon.c
++++ b/drivers/gpu/drm/xe/xe_hwmon.c
+@@ -296,7 +296,12 @@ static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg
+ 			return GT_PERF_STATUS;
+ 		break;
+ 	case REG_PKG_ENERGY_STATUS:
+-		if (xe->info.platform == XE_PVC && channel == CHANNEL_PKG) {
++		if (xe->info.platform == XE_CRESCENTISLAND) {
++			if (channel == CHANNEL_CARD)
++				return CRI_PLATFORM_ENERGY_STATUS;
++			else if (channel == CHANNEL_PKG)
++				return CRI_PACKAGE_ENERGY_STATUS;
++		} else if (xe->info.platform == XE_PVC && channel == CHANNEL_PKG) {
+ 			return PVC_GT0_PLATFORM_ENERGY_STATUS;
+ 		} else if ((xe->info.platform == XE_DG2) && (channel == CHANNEL_PKG)) {
+ 			return PCU_CR_PACKAGE_ENERGY_STATUS;
+-- 
+2.25.1
 
-CI Bug Log - changes from xe-4919-3b9ca4c40814c96c38986ae2ba6651e43757ca5f_BAT -> xe-pw-164948v3_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-4919-3b9ca4c40814c96c38986ae2ba6651e43757ca5f -> xe-pw-164948v3
-
-  IGT_8863: 5b279a8b71dc1672099205a1a9e8135c7c7fadb5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4919-3b9ca4c40814c96c38986ae2ba6651e43757ca5f: 3b9ca4c40814c96c38986ae2ba6651e43757ca5f
-  xe-pw-164948v3: 164948v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164948v3/index.html
-
---===============2444489886891383805==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>scripts/kernel-doc: Detect mismatched inline member documentation tags (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164948/">https://patchwork.freedesktop.org/series/164948/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164948v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164948v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4919-3b9ca4c40814c96c38986ae2ba6651e43757ca5f_BAT -&gt; xe-pw-164948v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4919-3b9ca4c40814c96c38986ae2ba6651e43757ca5f -&gt; xe-pw-164948v3</li>
-</ul>
-<p>IGT_8863: 5b279a8b71dc1672099205a1a9e8135c7c7fadb5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4919-3b9ca4c40814c96c38986ae2ba6651e43757ca5f: 3b9ca4c40814c96c38986ae2ba6651e43757ca5f<br />
-  xe-pw-164948v3: 164948v3</p>
-
-</body>
-</html>
-
---===============2444489886891383805==--
