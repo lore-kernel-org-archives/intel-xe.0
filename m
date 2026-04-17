@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE142F8DFD0
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Apr 2026 08:26:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B970F8DFD0
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Apr 2026 08:26:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6D2110E99A;
-	Fri, 17 Apr 2026 08:26:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C465410E991;
+	Fri, 17 Apr 2026 08:26:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eXW9eB+m";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cW8wGzuv";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D18A810E997
- for <intel-xe@lists.freedesktop.org>; Fri, 17 Apr 2026 08:26:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A3A6010E997
+ for <intel-xe@lists.freedesktop.org>; Fri, 17 Apr 2026 08:26:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776414367; x=1807950367;
+ t=1776414372; x=1807950372;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=zRyun+0m3AWV8Kt4iwo6WF2e1tHxI8z44emZN+tYpAA=;
- b=eXW9eB+mqUNHUTeyYwRhx2tg8P/jnbMK8baxKruy6ljdxOVYp14/8Gmo
- Rd3l6O2aatW4XdoIBj/+im5r9JT2Or6J+ngXakOGZ+1zY1yl9zPIWfxBM
- de05nTzDxFO23EeN6bCPcvYic3HIvppcIZwBbT265trqcpbBYADS1TefP
- A1P5MT3UaBhnzJCuuySq2+R8y/jctYQdDNx9vXZY8khxzqKwdDNlvinHo
- Q4tC2KgEAM6LmYMXwlsosTw0ApFGQraRhtgU5v3kH3ubCc/gV9IAkbiMr
- 9994QcWeLVaeKqNiRUqBZfuE6cx7+Bo41DxZ84+M7h19K+h0djCWDleAM w==;
-X-CSE-ConnectionGUID: 6uWjNaOCSrOEbbF2LcdhMQ==
-X-CSE-MsgGUID: QnsN+rpySlCAd8sj1gPMpA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11761"; a="88045893"
-X-IronPort-AV: E=Sophos;i="6.23,183,1770624000"; d="scan'208";a="88045893"
+ bh=FN/GffF0/Jw9cZ3xZ+tHrvpCYR8fnJkNrqlxjIiyoO0=;
+ b=cW8wGzuvEOgRP9G1LdQRcq81sFaDW+5Ztx2zszloRkeZi8VpP91I4pNZ
+ 5llvS8UysPo2bDB4KHDz3xsPKi+p8TxNylemU3SrhaqRE0ruVfrN9M/pj
+ BGi1aRcIZ6lSRrGXmsh0qhahZuOxVnQVkSsnXAvNluYjAn8F7Biv8dkUe
+ fGTqhz6S/CFVWjTKu7Q44p2T3w+RooqhPzWjNIrtnuCogXlo/HkaK4LIZ
+ BTa0gQLpKzJV4zDQKog7RRHg/kncnxzUFj28dYCj4qg9hPxTPT5MqgFE0
+ 7BBWzshBs7J9lr6h4EfPv0Ngxj3J6BorUNhjFHe/IOrFAMJPGXZBUR6AT A==;
+X-CSE-ConnectionGUID: W0bQ+aTOQqOzJm+PPGCE2Q==
+X-CSE-MsgGUID: yfqhWZ3HRACRaksA+Kg4dQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11761"; a="88045908"
+X-IronPort-AV: E=Sophos;i="6.23,183,1770624000"; d="scan'208";a="88045908"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2026 01:26:06 -0700
-X-CSE-ConnectionGUID: KK3hz4/fQZSM8wg0HVVubw==
-X-CSE-MsgGUID: 4bozqnTrTTaS9LcW5UXWfg==
+ 17 Apr 2026 01:26:11 -0700
+X-CSE-ConnectionGUID: +HGoTgUyT4CYMTdN78sCPQ==
+X-CSE-MsgGUID: cD61MzNnT0G4ppMyGovDaQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,183,1770624000"; d="scan'208";a="235962288"
+X-IronPort-AV: E=Sophos;i="6.23,183,1770624000"; d="scan'208";a="235962296"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2026 01:26:03 -0700
+ 17 Apr 2026 01:26:07 -0700
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
@@ -49,10 +49,9 @@ Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  mallesh.koujalagi@intel.com, soham.purkait@intel.com,
  Tejas Upadhyay <tejas.upadhyay@intel.com>,
  Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v4 09/13] drm/xe/xe_ras: Handle uncorrectable device memory
- errors
-Date: Fri, 17 Apr 2026 14:28:21 +0530
-Message-ID: <20260417085812.4013309-24-riana.tauro@intel.com>
+Subject: [PATCH v4 10/13] drm/xe/xe_ras: Add support to offline/decline a page
+Date: Fri, 17 Apr 2026 14:28:22 +0530
+Message-ID: <20260417085812.4013309-25-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20260417085812.4013309-15-riana.tauro@intel.com>
 References: <20260417085812.4013309-15-riana.tauro@intel.com>
@@ -72,133 +71,163 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add support to handle uncorrectable device memory errors. Double bit ECC
-(Error Correcting Code) errors are logged. These will be handled using
-Page offlining in a later patch. The other memory error categories require
-a Secondary bus reset (SBR) to recover.
+Add a helper function that sends commands to system controller
+to offline/decline a page based on user policy.
 
 Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 ---
-Memory offlining patch will be integrated once 
-https://patchwork.freedesktop.org/series/161473/ is merged.
----
- drivers/gpu/drm/xe/xe_ras.c       | 23 ++++++++++++
- drivers/gpu/drm/xe/xe_ras_types.h | 61 +++++++++++++++++++++++++++++++
- 2 files changed, 84 insertions(+)
+ drivers/gpu/drm/xe/xe_ras.c                   | 51 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ras.h                   |  2 +
+ drivers/gpu/drm/xe/xe_ras_types.h             | 37 ++++++++++++++
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |  4 +-
+ 4 files changed, 93 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index 5010cf6211ea..347844b3d2bf 100644
+index 347844b3d2bf..cd1ac6441b92 100644
 --- a/drivers/gpu/drm/xe/xe_ras.c
 +++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -138,6 +138,26 @@ static enum xe_ras_recovery_action handle_soc_internal_errors(struct xe_device *
+@@ -268,6 +268,57 @@ enum xe_ras_recovery_action xe_ras_process_errors(struct xe_device *xe)
  	return XE_RAS_RECOVERY_ACTION_RESET;
  }
  
-+static enum xe_ras_recovery_action handle_memory_errors(struct xe_device *xe,
-+							struct xe_ras_error_array *arr)
++/**
++ * xe_ras_page_offline() - Send page offline/decline request to system controller
++ * @xe: xe device instance
++ * @action: Action to be performed (offline/decline)
++ * @page_address: address of the page
++ *
++ * Returns: 0 on success, negative error code on failure
++ */
++int xe_ras_page_offline(struct xe_device *xe, enum xe_ras_page_action action, u64 page_address)
 +{
-+	struct xe_ras_memory_error *error_info = (struct xe_ras_memory_error *)arr->error_details;
-+	struct xe_ras_error_category category = error_info->category;
-+	struct xe_ras_error_common common = arr->error_class.common;
++	struct xe_sysctrl_mailbox_command command = {0};
++	struct xe_ras_page_offline_request request = {0};
++	struct xe_ras_page_offline_response response = {0};
++	size_t rlen;
++	int ret;
 +
-+	xe_err(xe, "[RAS]: %s %s Error detected", severity_to_str(xe, common.severity),
-+	       comp_to_str(xe, common.component));
++	if (!xe->info.has_sysctrl)
++		return 0;
 +
-+	if (category.ecc_error) {
-+		xe_err(xe, "[RAS]: Double bit ECC error detected at sw address 0x%llx\n",
-+		       (unsigned long long)error_info->sw_address);
-+		/* TODO: page offline handling for 2-bit ECC errors and return accordingly */
++	if (action >= XE_RAS_PAGE_ACTION_MAX) {
++		xe_err(xe, "[RAS]: Invalid page offline action %d\n", action);
++		return -EINVAL;
 +	}
 +
-+	/* Request a RESET for other device memory error categories */
-+	return XE_RAS_RECOVERY_ACTION_RESET;
++	request.page_address = page_address;
++	request.action = action;
++
++	prepare_sysctrl_command(&command, XE_SYSCTRL_CMD_PAGE_OFFLINE, &request,
++				sizeof(request), &response, sizeof(response));
++
++	ret = xe_sysctrl_send_command(&xe->sc, &command, &rlen);
++	if (ret) {
++		xe_err(xe, "[RAS]: sysctrl: error ret %d\n", ret);
++		return ret;
++	}
++
++	if (rlen != sizeof(response)) {
++		xe_err(xe, "[RAS]: sysctrl: response size mismatch. Expected %zu, got %zu\n",
++		       sizeof(response), rlen);
++		return -EINVAL;
++	}
++
++	if (response.status) {
++		xe_err(xe, "[RAS]: sysctrl: Page offline command failed with status %u\n",
++		       response.status);
++		return -EIO;
++	}
++
++	return 0;
 +}
 +
- static void prepare_sysctrl_command(struct xe_sysctrl_mailbox_command *command,
- 				    u32 cmd_mask, void *request, size_t request_len,
- 				    void *response, size_t response_len)
-@@ -217,6 +237,9 @@ enum xe_ras_recovery_action xe_ras_process_errors(struct xe_device *xe)
- 			case XE_RAS_COMPONENT_SOC_INTERNAL:
- 				action = handle_soc_internal_errors(xe, &arr);
- 				break;
-+			case XE_RAS_COMPONENT_DEVICE_MEMORY:
-+				action = handle_memory_errors(xe, &arr);
-+				break;
- 			default:
- 				xe_err(xe, "[RAS]: Unknown error component %u\n", component);
- 				action = XE_RAS_RECOVERY_ACTION_RESET;
+ #ifdef CONFIG_PCIEAER
+ static void aer_unmask_and_downgrade_internal_error(struct xe_device *xe)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
+index e191ab80080c..ec59258eb3df 100644
+--- a/drivers/gpu/drm/xe/xe_ras.h
++++ b/drivers/gpu/drm/xe/xe_ras.h
+@@ -12,5 +12,7 @@ struct xe_device;
+ 
+ void xe_ras_init(struct xe_device *xe);
+ enum xe_ras_recovery_action  xe_ras_process_errors(struct xe_device *xe);
++int xe_ras_page_offline(struct xe_device *xe, enum xe_ras_page_action action,
++			u64 page_address);
+ 
+ #endif
 diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
-index 4f640124f38f..020e3f92a057 100644
+index 020e3f92a057..d76310866da5 100644
 --- a/drivers/gpu/drm/xe/xe_ras_types.h
 +++ b/drivers/gpu/drm/xe/xe_ras_types.h
-@@ -199,4 +199,65 @@ struct xe_ras_ieh_error {
- 	/** @additional_info: Additional information */
- 	u32 additional_info[10];
+@@ -30,6 +30,19 @@ enum xe_ras_recovery_action {
+ 	XE_RAS_RECOVERY_ACTION_MAX
+ };
+ 
++/**
++ * enum xe_ras_page_action - Page offline actions for page offline request
++ *
++ * @XE_RAS_PAGE_ACTION_OFFLINE: Instruct firmware to remove page from queue
++ * @XE_RAS_PAGE_ACTION_DECLINE: Instruct firmware to mark page as not offline
++ * @XE_RAS_PAGE_ACTION_MAX: Max value for validation
++ */
++enum xe_ras_page_action {
++	XE_RAS_PAGE_ACTION_OFFLINE,
++	XE_RAS_PAGE_ACTION_DECLINE,
++	XE_RAS_PAGE_ACTION_MAX
++};
++
+ /**
+  * struct xe_ras_error_common - Common RAS error class
+  *
+@@ -260,4 +273,28 @@ struct xe_ras_memory_error {
+ 	/** @reserved2: Reserved for future use */
+ 	u32 reserved2[2];
  } __packed;
 +
 +/**
-+ * struct xe_ras_hardware_address - Device memory hardware address details
++ * struct xe_ras_page_offline_request - Request for page offline command
 + *
-+ * Hardware physical address structure for device memory error reporting.
++ * This structure provides the request format to offline/decline a page
 + */
-+struct xe_ras_hardware_address {
-+	/** @column: Column address */
-+	u64 column:6;
-+	/** @bank: Bank */
-+	u64 bank:2;
-+	/** @bank_group: Bank group */
-+	u64 bank_group:2;
-+	/** @row: Row address */
-+	u64 row:16;
-+	/** @channel: Memory Channel */
-+	u64 channel:8;
-+	/** @msu: MSU index */
-+	u64 msu:8;
++struct xe_ras_page_offline_request {
++	/** @page_address: Page address (4KB aligned) */
++	u64 page_address;
++	/** @action: Action to be performed (enum xe_ras_page_action) */
++	u32 action;
 +	/** @reserved: Reserved for future use */
-+	u64 reserved:22;
++	u32 reserved;
 +} __packed;
 +
 +/**
-+ * struct xe_ras_error_category - Device memory error category details
++ * struct xe_ras_page_offline_response - Response from page offline command
 + */
-+struct xe_ras_error_category {
-+	/** @pma_error: PMA (Power Management Agent) error */
-+	u8 pma_error:1;
-+	/** @ecc_error: Double bit ECC error */
-+	u8 ecc_error:1;
-+	/** @poison_detected: Write poison detected */
-+	u8 poison_detected:1;
-+	/** @parity_error: Parity error */
-+	u8 parity_error:1;
-+	/** @phy_error: PHY error */
-+	u8 phy_error:1;
++struct xe_ras_page_offline_response {
++	/** @status: Status of the page offline request */
++	u32 status;
 +	/** @reserved: Reserved for future use */
-+	u8 reserved:3;
-+} __packed;
-+
-+/**
-+ * struct xe_ras_memory_error - Device memory error details
-+ *
-+ * This structure provides detailed information about a device memory error.
-+ * Cast from error_details array for device memory errors.
-+ */
-+struct xe_ras_memory_error {
-+	/** @category: Device memory error category */
-+	struct xe_ras_error_category category;
-+	/** @reserved: Reserved for future use */
-+	u8 reserved[7];
-+	/** @hw_address: Memory hardware physical address */
-+	struct xe_ras_hardware_address hw_address;
-+	/** @sw_address: Software address where error occurred */
-+	u64 sw_address;
-+	/** @log_array: Error syndromes associated with the error */
-+	u32 log_array[8];
-+	/** @reserved2: Reserved for future use */
-+	u32 reserved2[2];
++	u32 reserved;
 +} __packed;
  #endif
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+index 00a0f05aab32..2cafa8a14cc3 100644
+--- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
++++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+@@ -14,9 +14,11 @@
+  * enum xe_sysctrl_mailbox_command_id - Command ID's for GFSP group
+  *
+  * @XE_SYSCTRL_CMD_GET_SOC_ERROR: Get basic error information
++ * @XE_SYSCTRL_CMD_PAGE_OFFLINE: Instruct firmware to offline/decline a page
+  */
+ enum xe_sysctrl_mailbox_command_id {
+-	XE_SYSCTRL_CMD_GET_SOC_ERROR		= 0x01
++	XE_SYSCTRL_CMD_GET_SOC_ERROR		= 0x01,
++	XE_SYSCTRL_CMD_PAGE_OFFLINE		= 0x08
+ };
+ 
+ enum xe_sysctrl_group {
 -- 
 2.47.1
 
