@@ -4,58 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DBBEF4368B
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Apr 2026 10:32:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 176ECF4368B
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Apr 2026 10:37:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CAA110E9DE;
-	Fri, 17 Apr 2026 10:32:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B35810E9DF;
+	Fri, 17 Apr 2026 10:37:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NsrOKXVF";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="B9AySjIY";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B530D10E9DD;
- Fri, 17 Apr 2026 10:32:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776421965; x=1807957965;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=9tUBpxW3zXnVnqtwz8hha2eXNek4agO6tpcY+zMM5Zc=;
- b=NsrOKXVFOxFRE0FXUgTeFFaGOvA/y81nbI732A9RzCuhPQJm7CcFDu9c
- g8U+7Wv5JPOq3TdSMK4H/94b0R7yMH9tKzyUlQx/oE9lnqUj+RWQK+8S8
- trPrX7l/Hv38i8jgLLZKCq2cvm50cdj0JBPiUGHGJibj0YFGs40fIj0e3
- c+/+Bd+vL3HZJ2Mvgi0fW8JQ+3pfmvf9ikajQWoBsuz2z7MvF/Rdk/b8u
- f+vQObS1qP6tb5W+7+lUnJV5HYDOE8wTK63eRfg1AZLD50oxi4Ov4R470
- mYClDZ92kEePuuudTZ7vv4Q8LLHA1fiCxQAMX2eAsx4obCqQZhtj4xpaR g==;
-X-CSE-ConnectionGUID: eI2nnSiBT5mjMq1ZF9U22Q==
-X-CSE-MsgGUID: hyfcLpwmQJKiL6zHWAfU3A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11761"; a="77445721"
-X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; d="scan'208";a="77445721"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2026 03:32:44 -0700
-X-CSE-ConnectionGUID: LDztDE/vS3607JdrBuLWiQ==
-X-CSE-MsgGUID: q+JvfRIQRSKucyNIYCGTwA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; d="scan'208";a="235960927"
-Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.245.127])
- by fmviesa005-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Apr 2026 03:32:42 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: Re: [PATCH v2] drm/i915/psr: Disable PSR2 on Xiaomi Book Pro 14
- 2026 as a quirk
-In-Reply-To: <20260417102350.28328-1-jouni.hogander@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260417102350.28328-1-jouni.hogander@intel.com>
-Date: Fri, 17 Apr 2026 13:32:40 +0300
-Message-ID: <1cd1f26d7a74c778f2cbc1ddc3dd5e5fd0f3a80e@intel.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3CED610E9DE;
+ Fri, 17 Apr 2026 10:37:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=rPVfiBXPYXzafVBDvj3IjB6RXrnKhPpezKsTbZWoPE0=; b=B9AySjIYOixfN/h63umbpvMAxW
+ nAc4Q6J1Z+9Q1jUPmqYGLW4EdxBB5a7huGtYu0h4WPGda2KCTE40qp0m0ANxzbhiue4DsirB8KX36
+ vz7tDMVLfMYBeYqcRTNfgY6wTfYPIphDzgak7jrAF3A6ZLboYa8NCKFYq80EUkgEOa5mOyrNu5ME2
+ vHEqE1ygabL/Jzw/mRCSKEjZCNB4FO4tsLebSny4fkTj8ZFT0iEUhAEX//URHdID1XYfGhTFk9yN5
+ aTpeLEWtJIJckAeZQbfLQ/UiqLxpZ/9UYNyTuVaZiF0E82uktz62vb6UpnPZjCvmRFKbXBpmcH7rx
+ toNj+qxQ==;
+Received: from [90.240.106.137] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1wDga7-00HPPs-EF; Fri, 17 Apr 2026 12:37:51 +0200
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+To: amd-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com,
+ Danilo Krummrich <dakr@kernel.org>, Philipp Stanner <phasta@kernel.org>,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH v8 03/29] drm/sched: Move run queue related code into a
+ separate file
+Date: Fri, 17 Apr 2026 11:37:18 +0100
+Message-ID: <20260417103744.76020-4-tvrtko.ursulin@igalia.com>
+X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20260417103744.76020-1-tvrtko.ursulin@igalia.com>
+References: <20260417103744.76020-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,85 +64,622 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 17 Apr 2026, Jouni H=C3=B6gander <jouni.hogander@intel.com> wrote:
-> Add new quirk (QUIRK_DISABLE_PSR2) for disabling PSR2 as a quirk for
-> problematic setups. Apply this newly added quirk on Xiaomi Book Pro 14
-> 2026.
->
-> v2: logging adjusted
->
-> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/7677
-> Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
+Lets move all the code dealing with struct drm_sched_rq into a separate
+compilation unit. Advantage being sched_main.c is left with a clearer set
+of responsibilities.
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Danilo Krummrich <dakr@kernel.org>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Philipp Stanner <phasta@kernel.org>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com> # v1
+Acked-by: Danilo Krummrich <dakr@kernel.org>
+---
+v2:
+ * Re-based for moving earlier in the series.
+---
+ drivers/gpu/drm/scheduler/Makefile         |   2 +-
+ drivers/gpu/drm/scheduler/sched_internal.h |  12 +
+ drivers/gpu/drm/scheduler/sched_main.c     | 261 +-------------------
+ drivers/gpu/drm/scheduler/sched_rq.c       | 265 +++++++++++++++++++++
+ 4 files changed, 280 insertions(+), 260 deletions(-)
+ create mode 100644 drivers/gpu/drm/scheduler/sched_rq.c
 
-> ---
->  drivers/gpu/drm/i915/display/intel_psr.c    | 3 +++
->  drivers/gpu/drm/i915/display/intel_quirks.c | 9 +++++++++
->  drivers/gpu/drm/i915/display/intel_quirks.h | 1 +
->  3 files changed, 13 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i=
-915/display/intel_psr.c
-> index 63c19958a9e3..d1bae7d32617 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -695,6 +695,9 @@ static void _psr_init_dpcd(struct intel_dp *intel_dp,=
- struct intel_connector *co
->=20=20
->  	connector->dp.psr_caps.sync_latency =3D intel_dp_get_sink_sync_latency(=
-intel_dp);
->=20=20
-> +	if (intel_has_quirk(display, QUIRK_DISABLE_PSR2))
-> +		return;
-> +
->  	if (DISPLAY_VER(display) >=3D 9 &&
->  	    connector->dp.psr_caps.dpcd[0] >=3D DP_PSR2_WITH_Y_COORD_IS_SUPPORT=
-ED) {
->  		bool y_req =3D connector->dp.psr_caps.dpcd[1] &
-> diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/dr=
-m/i915/display/intel_quirks.c
-> index 883f297d4b83..d1c428eeb608 100644
-> --- a/drivers/gpu/drm/i915/display/intel_quirks.c
-> +++ b/drivers/gpu/drm/i915/display/intel_quirks.c
-> @@ -94,6 +94,12 @@ static void quirk_disable_edp_panel_replay(struct inte=
-l_dp *intel_dp)
->  	drm_info(display->drm, "Applying disable Panel Replay quirk\n");
->  }
->=20=20
-> +static void quirk_disable_psr2(struct intel_display *display)
-> +{
-> +	intel_set_quirk(display, QUIRK_DISABLE_PSR2);
-> +	drm_info(display->drm, "PSR2 support not currently available for this s=
-etup, applying disable PSR2 quirk\n");
-> +}
-> +
->  struct intel_quirk {
->  	int device;
->  	int subsystem_vendor;
-> @@ -250,6 +256,9 @@ static struct intel_quirk intel_quirks[] =3D {
->=20=20
->  	/* Dell XPS 13 7390 2-in-1 */
->  	{ 0x8a52, 0x1028, 0x08b0, quirk_edp_limit_rate_hbr2 },
-> +
-> +	/* Xiaomi Book Pro 14 2026 */
-> +	{ 0xb081, 0x1d72, 0x2424, quirk_disable_psr2 },
->  };
->=20=20
->  static const struct intel_dpcd_quirk intel_dpcd_quirks[] =3D {
-> diff --git a/drivers/gpu/drm/i915/display/intel_quirks.h b/drivers/gpu/dr=
-m/i915/display/intel_quirks.h
-> index 83214eb94b0c..970a4fe52faf 100644
-> --- a/drivers/gpu/drm/i915/display/intel_quirks.h
-> +++ b/drivers/gpu/drm/i915/display/intel_quirks.h
-> @@ -22,6 +22,7 @@ enum intel_quirk_id {
->  	QUIRK_FW_SYNC_LEN,
->  	QUIRK_EDP_LIMIT_RATE_HBR2,
->  	QUIRK_DISABLE_EDP_PANEL_REPLAY,
-> +	QUIRK_DISABLE_PSR2,
->  };
->=20=20
->  void intel_init_quirks(struct intel_display *display);
+diff --git a/drivers/gpu/drm/scheduler/Makefile b/drivers/gpu/drm/scheduler/Makefile
+index 6e13e4c63e9d..74e75eff6df5 100644
+--- a/drivers/gpu/drm/scheduler/Makefile
++++ b/drivers/gpu/drm/scheduler/Makefile
+@@ -20,7 +20,7 @@
+ # OTHER DEALINGS IN THE SOFTWARE.
+ #
+ #
+-gpu-sched-y := sched_main.o sched_fence.o sched_entity.o
++gpu-sched-y := sched_main.o sched_fence.o sched_entity.o sched_rq.o
+ 
+ obj-$(CONFIG_DRM_SCHED) += gpu-sched.o
+ 
+diff --git a/drivers/gpu/drm/scheduler/sched_internal.h b/drivers/gpu/drm/scheduler/sched_internal.h
+index 8269c5392a82..aab63a8721d9 100644
+--- a/drivers/gpu/drm/scheduler/sched_internal.h
++++ b/drivers/gpu/drm/scheduler/sched_internal.h
+@@ -10,14 +10,26 @@ extern int drm_sched_policy;
+ #define DRM_SCHED_POLICY_RR    0
+ #define DRM_SCHED_POLICY_FIFO  1
+ 
++bool drm_sched_can_queue(struct drm_gpu_scheduler *sched,
++			 struct drm_sched_entity *entity);
+ void drm_sched_wakeup(struct drm_gpu_scheduler *sched);
+ 
++void drm_sched_rq_init(struct drm_gpu_scheduler *sched,
++		       struct drm_sched_rq *rq);
++
+ struct drm_gpu_scheduler *
+ drm_sched_rq_add_entity(struct drm_sched_entity *entity, ktime_t ts);
+ void drm_sched_rq_remove_entity(struct drm_sched_rq *rq,
+ 				struct drm_sched_entity *entity);
+ void drm_sched_rq_pop_entity(struct drm_sched_entity *entity);
+ 
++struct drm_sched_entity *
++drm_sched_rq_select_entity_rr(struct drm_gpu_scheduler *sched,
++			      struct drm_sched_rq *rq);
++struct drm_sched_entity *
++drm_sched_rq_select_entity_fifo(struct drm_gpu_scheduler *sched,
++				struct drm_sched_rq *rq);
++
+ void drm_sched_entity_select_rq(struct drm_sched_entity *entity);
+ struct drm_sched_job *drm_sched_entity_pop_job(struct drm_sched_entity *entity);
+ 
+diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
+index f4aab2915df8..298509e40d69 100644
+--- a/drivers/gpu/drm/scheduler/sched_main.c
++++ b/drivers/gpu/drm/scheduler/sched_main.c
+@@ -112,8 +112,8 @@ static u32 drm_sched_available_credits(struct drm_gpu_scheduler *sched)
+  * Return true if we can push at least one more job from @entity, false
+  * otherwise.
+  */
+-static bool drm_sched_can_queue(struct drm_gpu_scheduler *sched,
+-				struct drm_sched_entity *entity)
++bool drm_sched_can_queue(struct drm_gpu_scheduler *sched,
++			 struct drm_sched_entity *entity)
+ {
+ 	struct drm_sched_job *s_job;
+ 
+@@ -133,263 +133,6 @@ static bool drm_sched_can_queue(struct drm_gpu_scheduler *sched,
+ 	return drm_sched_available_credits(sched) >= s_job->credits;
+ }
+ 
+-static __always_inline bool drm_sched_entity_compare_before(struct rb_node *a,
+-							    const struct rb_node *b)
+-{
+-	struct drm_sched_entity *ent_a =  rb_entry((a), struct drm_sched_entity, rb_tree_node);
+-	struct drm_sched_entity *ent_b =  rb_entry((b), struct drm_sched_entity, rb_tree_node);
+-
+-	return ktime_before(ent_a->oldest_job_waiting, ent_b->oldest_job_waiting);
+-}
+-
+-static void drm_sched_rq_remove_fifo_locked(struct drm_sched_entity *entity,
+-					    struct drm_sched_rq *rq)
+-{
+-	if (!RB_EMPTY_NODE(&entity->rb_tree_node)) {
+-		rb_erase_cached(&entity->rb_tree_node, &rq->rb_tree_root);
+-		RB_CLEAR_NODE(&entity->rb_tree_node);
+-	}
+-}
+-
+-static void drm_sched_rq_update_fifo_locked(struct drm_sched_entity *entity,
+-					    struct drm_sched_rq *rq,
+-					    ktime_t ts)
+-{
+-	/*
+-	 * Both locks need to be grabbed, one to protect from entity->rq change
+-	 * for entity from within concurrent drm_sched_entity_select_rq and the
+-	 * other to update the rb tree structure.
+-	 */
+-	lockdep_assert_held(&entity->lock);
+-	lockdep_assert_held(&rq->lock);
+-
+-	drm_sched_rq_remove_fifo_locked(entity, rq);
+-
+-	entity->oldest_job_waiting = ts;
+-
+-	rb_add_cached(&entity->rb_tree_node, &rq->rb_tree_root,
+-		      drm_sched_entity_compare_before);
+-}
+-
+-/**
+- * drm_sched_rq_init - initialize a given run queue struct
+- *
+- * @sched: scheduler instance to associate with this run queue
+- * @rq: scheduler run queue
+- *
+- * Initializes a scheduler runqueue.
+- */
+-static void drm_sched_rq_init(struct drm_gpu_scheduler *sched,
+-			      struct drm_sched_rq *rq)
+-{
+-	spin_lock_init(&rq->lock);
+-	INIT_LIST_HEAD(&rq->entities);
+-	rq->rb_tree_root = RB_ROOT_CACHED;
+-	rq->current_entity = NULL;
+-	rq->sched = sched;
+-}
+-
+-/**
+- * drm_sched_rq_add_entity - add an entity
+- * @entity: scheduler entity
+- * @ts: submission timestamp
+- *
+- * Adds a scheduler entity to the run queue.
+- *
+- * Return: DRM scheduler selected to handle this entity or NULL if entity has
+- * been stopped and cannot be submitted to.
+- */
+-struct drm_gpu_scheduler *
+-drm_sched_rq_add_entity(struct drm_sched_entity *entity, ktime_t ts)
+-{
+-	struct drm_gpu_scheduler *sched;
+-	struct drm_sched_rq *rq;
+-
+-	/* Add the entity to the run queue */
+-	spin_lock(&entity->lock);
+-	if (entity->stopped) {
+-		spin_unlock(&entity->lock);
+-
+-		DRM_ERROR("Trying to push to a killed entity\n");
+-		return NULL;
+-	}
+-
+-	rq = entity->rq;
+-	spin_lock(&rq->lock);
+-	sched = rq->sched;
+-
+-	if (list_empty(&entity->list)) {
+-		atomic_inc(sched->score);
+-		list_add_tail(&entity->list, &rq->entities);
+-	}
+-
+-	if (drm_sched_policy == DRM_SCHED_POLICY_FIFO)
+-		drm_sched_rq_update_fifo_locked(entity, rq, ts);
+-
+-	spin_unlock(&rq->lock);
+-	spin_unlock(&entity->lock);
+-
+-	return sched;
+-}
+-
+-/**
+- * drm_sched_rq_remove_entity - remove an entity
+- *
+- * @rq: scheduler run queue
+- * @entity: scheduler entity
+- *
+- * Removes a scheduler entity from the run queue.
+- */
+-void drm_sched_rq_remove_entity(struct drm_sched_rq *rq,
+-				struct drm_sched_entity *entity)
+-{
+-	lockdep_assert_held(&entity->lock);
+-
+-	if (list_empty(&entity->list))
+-		return;
+-
+-	spin_lock(&rq->lock);
+-
+-	atomic_dec(rq->sched->score);
+-	list_del_init(&entity->list);
+-
+-	if (rq->current_entity == entity)
+-		rq->current_entity = NULL;
+-
+-	if (drm_sched_policy == DRM_SCHED_POLICY_FIFO)
+-		drm_sched_rq_remove_fifo_locked(entity, rq);
+-
+-	spin_unlock(&rq->lock);
+-}
+-
+-/**
+- * drm_sched_rq_pop_entity - pops an entity
+- * @entity: scheduler entity
+- *
+- * To be called every time after a job is popped from the entity.
+- */
+-void drm_sched_rq_pop_entity(struct drm_sched_entity *entity)
+-{
+-	/*
+-	 * Update the entity's location in the min heap according to
+-	 * the timestamp of the next job, if any.
+-	 */
+-	if (drm_sched_policy == DRM_SCHED_POLICY_FIFO) {
+-		struct drm_sched_job *next;
+-
+-		next = drm_sched_entity_queue_peek(entity);
+-		if (next) {
+-			struct drm_sched_rq *rq;
+-
+-			spin_lock(&entity->lock);
+-			rq = entity->rq;
+-			spin_lock(&rq->lock);
+-			drm_sched_rq_update_fifo_locked(entity, rq,
+-							next->submit_ts);
+-			spin_unlock(&rq->lock);
+-			spin_unlock(&entity->lock);
+-		}
+-	}
+-}
+-
+-/**
+- * drm_sched_rq_select_entity_rr - Select an entity which could provide a job to run
+- *
+- * @sched: the gpu scheduler
+- * @rq: scheduler run queue to check.
+- *
+- * Try to find the next ready entity.
+- *
+- * Return an entity if one is found; return an error-pointer (!NULL) if an
+- * entity was ready, but the scheduler had insufficient credits to accommodate
+- * its job; return NULL, if no ready entity was found.
+- */
+-static struct drm_sched_entity *
+-drm_sched_rq_select_entity_rr(struct drm_gpu_scheduler *sched,
+-			      struct drm_sched_rq *rq)
+-{
+-	struct drm_sched_entity *entity;
+-
+-	spin_lock(&rq->lock);
+-
+-	entity = rq->current_entity;
+-	if (entity) {
+-		list_for_each_entry_continue(entity, &rq->entities, list) {
+-			if (drm_sched_entity_is_ready(entity))
+-				goto found;
+-		}
+-	}
+-
+-	list_for_each_entry(entity, &rq->entities, list) {
+-		if (drm_sched_entity_is_ready(entity))
+-			goto found;
+-
+-		if (entity == rq->current_entity)
+-			break;
+-	}
+-
+-	spin_unlock(&rq->lock);
+-
+-	return NULL;
+-
+-found:
+-	if (!drm_sched_can_queue(sched, entity)) {
+-		/*
+-		 * If scheduler cannot take more jobs signal the caller to not
+-		 * consider lower priority queues.
+-		 */
+-		entity = ERR_PTR(-ENOSPC);
+-	} else {
+-		rq->current_entity = entity;
+-		reinit_completion(&entity->entity_idle);
+-	}
+-
+-	spin_unlock(&rq->lock);
+-
+-	return entity;
+-}
+-
+-/**
+- * drm_sched_rq_select_entity_fifo - Select an entity which provides a job to run
+- *
+- * @sched: the gpu scheduler
+- * @rq: scheduler run queue to check.
+- *
+- * Find oldest waiting ready entity.
+- *
+- * Return an entity if one is found; return an error-pointer (!NULL) if an
+- * entity was ready, but the scheduler had insufficient credits to accommodate
+- * its job; return NULL, if no ready entity was found.
+- */
+-static struct drm_sched_entity *
+-drm_sched_rq_select_entity_fifo(struct drm_gpu_scheduler *sched,
+-				struct drm_sched_rq *rq)
+-{
+-	struct rb_node *rb;
+-
+-	spin_lock(&rq->lock);
+-	for (rb = rb_first_cached(&rq->rb_tree_root); rb; rb = rb_next(rb)) {
+-		struct drm_sched_entity *entity;
+-
+-		entity = rb_entry(rb, struct drm_sched_entity, rb_tree_node);
+-		if (drm_sched_entity_is_ready(entity)) {
+-			/* If we can't queue yet, preserve the current entity in
+-			 * terms of fairness.
+-			 */
+-			if (!drm_sched_can_queue(sched, entity)) {
+-				spin_unlock(&rq->lock);
+-				return ERR_PTR(-ENOSPC);
+-			}
+-
+-			reinit_completion(&entity->entity_idle);
+-			break;
+-		}
+-	}
+-	spin_unlock(&rq->lock);
+-
+-	return rb ? rb_entry(rb, struct drm_sched_entity, rb_tree_node) : NULL;
+-}
+-
+ /**
+  * drm_sched_run_job_queue - enqueue run-job work
+  * @sched: scheduler instance
+diff --git a/drivers/gpu/drm/scheduler/sched_rq.c b/drivers/gpu/drm/scheduler/sched_rq.c
+new file mode 100644
+index 000000000000..a525bb579c4d
+--- /dev/null
++++ b/drivers/gpu/drm/scheduler/sched_rq.c
+@@ -0,0 +1,265 @@
++// SPDX-License-Identifier: MIT
++/* Copyright 2015 Advanced Micro Devices, Inc. */
++
++#include <linux/rbtree.h>
++
++#include <drm/drm_print.h>
++#include <drm/gpu_scheduler.h>
++
++#include "sched_internal.h"
++
++static __always_inline bool
++drm_sched_entity_compare_before(struct rb_node *a, const struct rb_node *b)
++{
++	struct drm_sched_entity *ea =
++		rb_entry((a), struct drm_sched_entity, rb_tree_node);
++	struct drm_sched_entity *eb =
++		rb_entry((b), struct drm_sched_entity, rb_tree_node);
++
++	return ktime_before(ea->oldest_job_waiting, eb->oldest_job_waiting);
++}
++
++static void drm_sched_rq_remove_fifo_locked(struct drm_sched_entity *entity,
++					    struct drm_sched_rq *rq)
++{
++	if (!RB_EMPTY_NODE(&entity->rb_tree_node)) {
++		rb_erase_cached(&entity->rb_tree_node, &rq->rb_tree_root);
++		RB_CLEAR_NODE(&entity->rb_tree_node);
++	}
++}
++
++static void drm_sched_rq_update_fifo_locked(struct drm_sched_entity *entity,
++					    struct drm_sched_rq *rq,
++					    ktime_t ts)
++{
++	/*
++	 * Both locks need to be grabbed, one to protect from entity->rq change
++	 * for entity from within concurrent drm_sched_entity_select_rq and the
++	 * other to update the rb tree structure.
++	 */
++	lockdep_assert_held(&entity->lock);
++	lockdep_assert_held(&rq->lock);
++
++	drm_sched_rq_remove_fifo_locked(entity, rq);
++
++	entity->oldest_job_waiting = ts;
++
++	rb_add_cached(&entity->rb_tree_node, &rq->rb_tree_root,
++		      drm_sched_entity_compare_before);
++}
++
++/**
++ * drm_sched_rq_init - initialize a given run queue struct
++ * @sched: scheduler instance to associate with this run queue
++ * @rq: scheduler run queue
++ *
++ * Initializes a scheduler runqueue.
++ */
++void drm_sched_rq_init(struct drm_gpu_scheduler *sched,
++		       struct drm_sched_rq *rq)
++{
++	spin_lock_init(&rq->lock);
++	INIT_LIST_HEAD(&rq->entities);
++	rq->rb_tree_root = RB_ROOT_CACHED;
++	rq->sched = sched;
++}
++
++/**
++ * drm_sched_rq_add_entity - add an entity
++ * @entity: scheduler entity
++ * @ts: submission timestamp
++ *
++ * Adds a scheduler entity to the run queue.
++ *
++ * Return: DRM scheduler selected to handle this entity or NULL if entity has
++ * been stopped and cannot be submitted to.
++ */
++struct drm_gpu_scheduler *
++drm_sched_rq_add_entity(struct drm_sched_entity *entity, ktime_t ts)
++{
++	struct drm_gpu_scheduler *sched;
++	struct drm_sched_rq *rq;
++
++	/* Add the entity to the run queue */
++	spin_lock(&entity->lock);
++	if (entity->stopped) {
++		spin_unlock(&entity->lock);
++
++		DRM_ERROR("Trying to push to a killed entity\n");
++		return NULL;
++	}
++
++	rq = entity->rq;
++	spin_lock(&rq->lock);
++	sched = rq->sched;
++
++	if (list_empty(&entity->list)) {
++		atomic_inc(sched->score);
++		list_add_tail(&entity->list, &rq->entities);
++	}
++
++	if (drm_sched_policy == DRM_SCHED_POLICY_FIFO)
++		drm_sched_rq_update_fifo_locked(entity, rq, ts);
++
++	spin_unlock(&rq->lock);
++	spin_unlock(&entity->lock);
++
++	return sched;
++}
++
++/**
++ * drm_sched_rq_remove_entity - remove an entity
++ * @rq: scheduler run queue
++ * @entity: scheduler entity
++ *
++ * Removes a scheduler entity from the run queue.
++ */
++void drm_sched_rq_remove_entity(struct drm_sched_rq *rq,
++				struct drm_sched_entity *entity)
++{
++	lockdep_assert_held(&entity->lock);
++
++	if (list_empty(&entity->list))
++		return;
++
++	spin_lock(&rq->lock);
++
++	atomic_dec(rq->sched->score);
++	list_del_init(&entity->list);
++
++	if (rq->current_entity == entity)
++		rq->current_entity = NULL;
++
++	if (drm_sched_policy == DRM_SCHED_POLICY_FIFO)
++		drm_sched_rq_remove_fifo_locked(entity, rq);
++
++	spin_unlock(&rq->lock);
++}
++
++/**
++ * drm_sched_rq_pop_entity - pops an entity
++ * @entity: scheduler entity
++ *
++ * To be called every time after a job is popped from the entity.
++ */
++void drm_sched_rq_pop_entity(struct drm_sched_entity *entity)
++{
++	/*
++	 * Update the entity's location in the min heap according to
++	 * the timestamp of the next job, if any.
++	 */
++	if (drm_sched_policy == DRM_SCHED_POLICY_FIFO) {
++		struct drm_sched_job *next;
++
++		next = drm_sched_entity_queue_peek(entity);
++		if (next) {
++			struct drm_sched_rq *rq;
++
++			spin_lock(&entity->lock);
++			rq = entity->rq;
++			spin_lock(&rq->lock);
++			drm_sched_rq_update_fifo_locked(entity, rq,
++							next->submit_ts);
++			spin_unlock(&rq->lock);
++			spin_unlock(&entity->lock);
++		}
++	}
++}
++
++/**
++ * drm_sched_rq_select_entity_rr - Select an entity which could provide a job to run
++ *
++ * @sched: the gpu scheduler
++ * @rq: scheduler run queue to check.
++ *
++ * Try to find the next ready entity.
++ *
++ * Return an entity if one is found; return an error-pointer (!NULL) if an
++ * entity was ready, but the scheduler had insufficient credits to accommodate
++ * its job; return NULL, if no ready entity was found.
++ */
++struct drm_sched_entity *
++drm_sched_rq_select_entity_rr(struct drm_gpu_scheduler *sched,
++			      struct drm_sched_rq *rq)
++{
++	struct drm_sched_entity *entity;
++
++	spin_lock(&rq->lock);
++
++	entity = rq->current_entity;
++	if (entity) {
++		list_for_each_entry_continue(entity, &rq->entities, list) {
++			if (drm_sched_entity_is_ready(entity))
++				goto found;
++		}
++	}
++
++	list_for_each_entry(entity, &rq->entities, list) {
++		if (drm_sched_entity_is_ready(entity))
++			goto found;
++
++		if (entity == rq->current_entity)
++			break;
++	}
++
++	spin_unlock(&rq->lock);
++
++	return NULL;
++
++found:
++	if (!drm_sched_can_queue(sched, entity)) {
++		/*
++		 * If scheduler cannot take more jobs signal the caller to not
++		 * consider lower priority queues.
++		 */
++		entity = ERR_PTR(-ENOSPC);
++	} else {
++		rq->current_entity = entity;
++		reinit_completion(&entity->entity_idle);
++	}
++
++	spin_unlock(&rq->lock);
++
++	return entity;
++}
++
++/**
++ * drm_sched_rq_select_entity_fifo - Select an entity which provides a job to run
++ *
++ * @sched: the gpu scheduler
++ * @rq: scheduler run queue to check.
++ *
++ * Find oldest waiting ready entity.
++ *
++ * Return an entity if one is found; return an error-pointer (!NULL) if an
++ * entity was ready, but the scheduler had insufficient credits to accommodate
++ * its job; return NULL, if no ready entity was found.
++ */
++struct drm_sched_entity *
++drm_sched_rq_select_entity_fifo(struct drm_gpu_scheduler *sched,
++				struct drm_sched_rq *rq)
++{
++	struct rb_node *rb;
++
++	spin_lock(&rq->lock);
++	for (rb = rb_first_cached(&rq->rb_tree_root); rb; rb = rb_next(rb)) {
++		struct drm_sched_entity *entity;
++
++		entity = rb_entry(rb, struct drm_sched_entity, rb_tree_node);
++		if (drm_sched_entity_is_ready(entity)) {
++			/* If we can't queue yet, preserve the current entity in
++			 * terms of fairness.
++			 */
++			if (!drm_sched_can_queue(sched, entity)) {
++				spin_unlock(&rq->lock);
++				return ERR_PTR(-ENOSPC);
++			}
++
++			reinit_completion(&entity->entity_idle);
++			break;
++		}
++	}
++	spin_unlock(&rq->lock);
++
++	return rb ? rb_entry(rb, struct drm_sched_entity, rb_tree_node) : NULL;
++}
+-- 
+2.52.0
 
---=20
-Jani Nikula, Intel
