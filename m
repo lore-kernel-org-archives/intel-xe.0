@@ -4,60 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3F36F4368D
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Apr 2026 11:11:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E77B4F4368D
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Apr 2026 11:33:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A712910EA18;
-	Fri, 17 Apr 2026 11:11:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6886710E0B5;
+	Fri, 17 Apr 2026 11:33:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nwg7X+ms";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NfdUgFmp";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 649DE10EA18;
- Fri, 17 Apr 2026 11:11:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E13F610E0B5;
+ Fri, 17 Apr 2026 11:33:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776424293; x=1807960293;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=GJJ1eykbixJ4GcCvu3xsSBaHvL4LT+XEk9C0TMgv5+w=;
- b=Nwg7X+mseht8tru324Ct9HfoOwgZwXhPn/qYwmzXbVdbuuIexMp0WwN0
- 5RbgF0Mq37lnmCPW8xNRvW3tDcIZ85ddD3B3N4FF836OKAgB9//XexJsw
- Cwk5u0TxT06R6W8F2tjLYepGk1CymSNHAaDyXuRr2Qb16nnxx9FvJj+qe
- UEkX6LUZ4qINrtvb8DgfI4jzlFSEgpDQzn5zNSr6kYoZow95YA2Eo/4lF
- nHQku7VJEVwyB7S8Bb0MZfRwzWRljW2JkGIQ2k8tREillC7v2Wkk9qx0p
- IJM5MaIjKPKhX8KuRiB1uUoNyOZbk5z7rhWYkE9QMBVhuMvTwH9JRAXqy w==;
-X-CSE-ConnectionGUID: ZRedqMQQQeOycSQm/NIfyw==
-X-CSE-MsgGUID: flW1eNN4Sv+8nPZ9yXRliQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11761"; a="77347477"
-X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; d="scan'208";a="77347477"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2026 04:11:32 -0700
-X-CSE-ConnectionGUID: E7rPphpjSmSHBrnsgmxj7g==
-X-CSE-MsgGUID: rPUw0PmCTjuQy0dKjZ1hWw==
+ t=1776425593; x=1807961593;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=TOKEbUDpTPdcsn8AYMV4qkUfNaCns+yT1nYz9dRg7oM=;
+ b=NfdUgFmpqNBRRVikJky2XFLLfhCMHEnw4/ckPAsgR3YzRKttHSwYgZVG
+ Ff0cWpclLu+kXBeXSt1F6Lr6lbtgwFML69knsCPe5uR3toN+XRfDNUqE9
+ R6mJXEoG5jTdKl8BSaReaYsXlfEOI2MfWrthpW2atzPAyEaczWXxggmo0
+ 4+1wGcGNHya4MvcLLn/30QpmaAEy03t2ePyDmBzc7R2PZzVSR6LbbP0w5
+ RvjZO1gPby27zB+a0dQVeQbtjkYVRgb/otWY7zsu0xojVshchikcZNK5C
+ Omvn0aePp/nuGn7UhFAmOblH6MRCeUoec1vVvYWKpPGPi2LRw+wZ+0iCn g==;
+X-CSE-ConnectionGUID: CH0J0H+dRYOZ6EyhLRMrzQ==
+X-CSE-MsgGUID: hJpEHIpuR06XTuqTccBMsw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11761"; a="81310711"
+X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; d="scan'208";a="81310711"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2026 04:33:12 -0700
+X-CSE-ConnectionGUID: rxWK7+q3RSCVRSEfHiV3XQ==
+X-CSE-MsgGUID: Vb5Ktbq7SoqKt4jUqeX9eg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; d="scan'208";a="235997273"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO [10.245.245.184])
- ([10.245.245.184])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2026 04:11:30 -0700
-Message-ID: <a2bb9c822ac3f635006ef6906f938a2626a628cc.camel@linux.intel.com>
-Subject: Re: [PATCH v7 4/5] drm/pagemap: Use dma-map IOVA alloc, link, and
- sync API for DRM pagemap
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: Francois Dugast <francois.dugast@intel.com>
-Date: Fri, 17 Apr 2026 13:11:28 +0200
-In-Reply-To: <20260410205929.3914474-5-matthew.brost@intel.com>
-References: <20260410205929.3914474-1-matthew.brost@intel.com>
- <20260410205929.3914474-5-matthew.brost@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; d="scan'208";a="235005041"
+Received: from zzombora-mobl1 (HELO localhost) ([10.245.245.176])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2026 04:33:11 -0700
+Date: Fri, 17 Apr 2026 14:33:07 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 04/11] drm/i915: Introduce pin_params.needs_cpu_lmem_access
+Message-ID: <aeIac-2O3xy6uso6@intel.com>
+References: <20260416174448.28264-1-ville.syrjala@linux.intel.com>
+ <20260416174448.28264-5-ville.syrjala@linux.intel.com>
+ <8e03ca87134e5bebee44aabeccd5fb86a096d4fa@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <8e03ca87134e5bebee44aabeccd5fb86a096d4fa@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,336 +72,116 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 2026-04-10 at 13:59 -0700, Matthew Brost wrote:
-> The dma-map IOVA alloc, link, and sync APIs perform significantly
-> better
-> than dma-map / dma-unmap, as they avoid costly IOMMU
-> synchronizations.
-> This difference is especially noticeable when mapping a 2MB region in
-> 4KB pages.
->=20
-> Use the IOVA alloc, link, and sync APIs for DRM pagemap, which create
-> DMA
-> mappings between the CPU and GPU for copying data.
->=20
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> Reviewed-by: Francois Dugast <francois.dugast@intel.com>
-Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+On Fri, Apr 17, 2026 at 12:39:54PM +0300, Jani Nikula wrote:
+> On Thu, 16 Apr 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > Add a new flag pin_params.neeeds_cpu_lmem_access so that the
+> > low level pinning code doesn't need to peek into the display
+> > driver's framebuffer structure.
+> >
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_fb_pin.h | 1 +
+> >  drivers/gpu/drm/i915/i915_fb_pin.c          | 4 +++-
+> >  drivers/gpu/drm/xe/display/xe_fb_pin.c      | 3 ++-
+> >  3 files changed, 6 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.h b/drivers/gpu/drm/i915/display/intel_fb_pin.h
+> > index e6271437459d..bcf5a1f46092 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_fb_pin.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_fb_pin.h
+> > @@ -19,6 +19,7 @@ struct intel_fb_pin_params {
+> >  	unsigned int alignment;
+> >  	unsigned int phys_alignment;
+> >  	unsigned int vtd_guard;
+> > +	bool needs_cpu_lmem_access;
+> >  };
+> >  
+> >  struct i915_vma *
+> > diff --git a/drivers/gpu/drm/i915/i915_fb_pin.c b/drivers/gpu/drm/i915/i915_fb_pin.c
+> > index 780be25ad43b..96ffc4b0d809 100644
+> > --- a/drivers/gpu/drm/i915/i915_fb_pin.c
+> > +++ b/drivers/gpu/drm/i915/i915_fb_pin.c
+> > @@ -61,7 +61,7 @@ intel_fb_pin_to_dpt(const struct drm_framebuffer *fb,
+> >  			 * ensure it is always in the mappable part of lmem, if this is
+> >  			 * a small-bar device.
+> >  			 */
+> > -			if (intel_fb_needs_cpu_access(fb))
+> > +			if (pin_params->needs_cpu_lmem_access)
+> >  				flags &= ~I915_BO_ALLOC_GPU_ONLY;
+> >  			ret = __i915_gem_object_migrate(obj, &ww, INTEL_REGION_LMEM_0,
+> >  							flags);
+> > @@ -275,6 +275,7 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_state,
+> >  			.alignment = intel_plane_fb_min_alignment(plane_state),
+> >  			.phys_alignment = intel_plane_fb_min_phys_alignment(plane_state),
+> >  			.vtd_guard = intel_plane_fb_vtd_guard(plane_state),
+> > +			.needs_cpu_lmem_access = intel_fb_needs_cpu_access(&fb->base),
+> 
+> IIUC this path never uses .needs_cpu_lmem_access, but you initialize it
+> anyway. What I find confusing is initializing it here apparently
+> unnecessarily, but then leaving it out on a number of other paths that
+> don't need it.
 
+Hmm, yeah looks like we don't have the explicit migrate stuff
+in the DPT path for some reason.
 
+I'm sure the migration is happening though because I've used
+DG2 on a small BAR system quite a bit, and page flips with clear
+color work fine on i915 (unlike on xe+small BAR where it just
+fails). And I remember even seeing the migration popping up in
+the profiles. Now I'm wondering what might be triggering it
+before the vma has been pinned...
 
-> ---
-> =C2=A0drivers/gpu/drm/drm_pagemap.c | 85 ++++++++++++++++++++++++++++----=
--
-> --
-> =C2=A01 file changed, 70 insertions(+), 15 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/drm_pagemap.c
-> b/drivers/gpu/drm/drm_pagemap.c
-> index ee4d9f90bf67..bd2037c77c92 100644
-> --- a/drivers/gpu/drm/drm_pagemap.c
-> +++ b/drivers/gpu/drm/drm_pagemap.c
-> @@ -291,6 +291,19 @@
-> drm_pagemap_migrate_map_device_private_pages(struct device *dev,
-> =C2=A0	return 0;
-> =C2=A0}
-> =C2=A0
-> +/**
-> + * struct drm_pagemap_iova_state - DRM pagemap IOVA state
-> + * @dma_state: DMA IOVA state.
-> + * @offset: Current offset in IOVA.
-> + *
-> + * This structure acts as an iterator for packing all IOVA addresses
-> within a
-> + * contiguous range.
-> + */
-> +struct drm_pagemap_iova_state {
-> +	struct dma_iova_state dma_state;
-> +	unsigned long offset;
-> +};
-> +
-> =C2=A0/**
-> =C2=A0 * drm_pagemap_migrate_map_system_pages() - Map system or device
-> coherent
-> =C2=A0 * migration pages for GPU SVM migration
-> @@ -299,22 +312,25 @@
-> drm_pagemap_migrate_map_device_private_pages(struct device *dev,
-> =C2=A0 * @migrate_pfn: Array of page frame numbers of system pages or pee=
-r
-> pages to map.
-> =C2=A0 * @npages: Number of system or device coherent pages to map.
-> =C2=A0 * @dir: Direction of data transfer (e.g., DMA_BIDIRECTIONAL)
-> + * @state: DMA IOVA state for mapping.
-> =C2=A0 *
-> =C2=A0 * This function maps pages of memory for migration usage in GPU
-> SVM. It
-> =C2=A0 * iterates over each page frame number provided in @migrate_pfn,
-> maps the
-> =C2=A0 * corresponding page, and stores the DMA address in the provided
-> @dma_addr
-> =C2=A0 * array.
-> =C2=A0 *
-> - * Returns: 0 on success, -EFAULT if an error occurs during mapping.
-> + * Returns: 0 on success, negative error code on failure.
-> =C2=A0 */
-> =C2=A0static int
-> =C2=A0drm_pagemap_migrate_map_system_pages(struct device *dev,
-> =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_pagemap_addr
-> *pagemap_addr,
-> =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0 unsigned long *migrate_pfn,
-> =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0 unsigned long npages,
-> -				=C2=A0=C2=A0=C2=A0=C2=A0 enum dma_data_direction dir)
-> +				=C2=A0=C2=A0=C2=A0=C2=A0 enum dma_data_direction dir,
-> +				=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_pagemap_iova_state
-> *state)
-> =C2=A0{
-> =C2=A0	unsigned long i;
-> +	bool try_alloc =3D false;
-> =C2=A0
-> =C2=A0	for (i =3D 0; i < npages;) {
-> =C2=A0		struct page *page =3D
-> migrate_pfn_to_page(migrate_pfn[i]);
-> @@ -329,9 +345,31 @@ drm_pagemap_migrate_map_system_pages(struct
-> device *dev,
-> =C2=A0		folio =3D page_folio(page);
-> =C2=A0		order =3D folio_order(folio);
-> =C2=A0
-> -		dma_addr =3D dma_map_page(dev, page, 0,
-> page_size(page), dir);
-> -		if (dma_mapping_error(dev, dma_addr))
-> -			return -EFAULT;
-> +		if (!try_alloc) {
-> +			dma_iova_try_alloc(dev, &state->dma_state,
-> +					=C2=A0=C2=A0 (npages - i) * PAGE_SIZE
-> >=3D
-> +					=C2=A0=C2=A0 HPAGE_PMD_SIZE ?
-> +					=C2=A0=C2=A0 HPAGE_PMD_SIZE : 0,
-> +					=C2=A0=C2=A0 npages * PAGE_SIZE);
-> +			try_alloc =3D true;
-> +		}
-> +
-> +		if (dma_use_iova(&state->dma_state)) {
-> +			int err =3D dma_iova_link(dev, &state-
-> >dma_state,
-> +						page_to_phys(page),
-> +						state->offset,
-> page_size(page),
-> +						dir, 0);
-> +			if (err)
-> +				return err;
-> +
-> +			dma_addr =3D state->dma_state.addr + state-
-> >offset;
-> +			state->offset +=3D page_size(page);
-> +		} else {
-> +			dma_addr =3D dma_map_page(dev, page, 0,
-> page_size(page),
-> +						dir);
-> +			if (dma_mapping_error(dev, dma_addr))
-> +				return -EFAULT;
-> +		}
-> =C2=A0
-> =C2=A0		pagemap_addr[i] =3D
-> =C2=A0			drm_pagemap_addr_encode(dma_addr,
-> @@ -342,6 +380,9 @@ drm_pagemap_migrate_map_system_pages(struct
-> device *dev,
-> =C2=A0		i +=3D NR_PAGES(order);
-> =C2=A0	}
-> =C2=A0
-> +	if (dma_use_iova(&state->dma_state))
-> +		return dma_iova_sync(dev, &state->dma_state, 0,
-> state->offset);
-> +
-> =C2=A0	return 0;
-> =C2=A0}
-> =C2=A0
-> @@ -353,6 +394,7 @@ drm_pagemap_migrate_map_system_pages(struct
-> device *dev,
-> =C2=A0 * @pagemap_addr: Array of DMA information corresponding to mapped
-> pages
-> =C2=A0 * @npages: Number of pages to unmap
-> =C2=A0 * @dir: Direction of data transfer (e.g., DMA_BIDIRECTIONAL)
-> + * @state: DMA IOVA state for mapping.
-> =C2=A0 *
-> =C2=A0 * This function unmaps previously mapped pages of memory for GPU
-> Shared Virtual
-> =C2=A0 * Memory (SVM). It iterates over each DMA address provided in
-> @dma_addr, checks
-> @@ -362,10 +404,16 @@ static void
-> drm_pagemap_migrate_unmap_pages(struct device *dev,
-> =C2=A0					=C2=A0=C2=A0=C2=A0 struct drm_pagemap_addr
-> *pagemap_addr,
-> =C2=A0					=C2=A0=C2=A0=C2=A0 unsigned long
-> *migrate_pfn,
-> =C2=A0					=C2=A0=C2=A0=C2=A0 unsigned long npages,
-> -					=C2=A0=C2=A0=C2=A0 enum dma_data_direction
-> dir)
-> +					=C2=A0=C2=A0=C2=A0 enum dma_data_direction
-> dir,
-> +					=C2=A0=C2=A0=C2=A0 struct
-> drm_pagemap_iova_state *state)
-> =C2=A0{
-> =C2=A0	unsigned long i;
-> =C2=A0
-> +	if (state && dma_use_iova(&state->dma_state)) {
-> +		dma_iova_destroy(dev, &state->dma_state, state-
-> >offset, dir, 0);
-> +		return;
-> +	}
-> +
-> =C2=A0	for (i =3D 0; i < npages;) {
-> =C2=A0		struct page *page =3D
-> migrate_pfn_to_page(migrate_pfn[i]);
-> =C2=A0
-> @@ -420,7 +468,7 @@ drm_pagemap_migrate_remote_to_local(struct
-> drm_pagemap_devmem *devmem,
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 devmem->pre_migrate_fence);
-> =C2=A0out:
-> =C2=A0	drm_pagemap_migrate_unmap_pages(remote_device, pagemap_addr,
-> local_pfns,
-> -					npages, DMA_FROM_DEVICE);
-> +					npages, DMA_FROM_DEVICE,
-> NULL);
-> =C2=A0	return err;
-> =C2=A0}
-> =C2=A0
-> @@ -430,11 +478,13 @@ drm_pagemap_migrate_sys_to_dev(struct
-> drm_pagemap_devmem *devmem,
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct page *local_pages[],
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_pagemap_addr
-> pagemap_addr[],
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned long npages,
-> -			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct drm_pagemap_devmem_=
-ops
-> *ops)
-> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct drm_pagemap_devmem_=
-ops
-> *ops,
-> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_pagemap_iova_state *s=
-tate)
-> =C2=A0{
-> =C2=A0	int err =3D drm_pagemap_migrate_map_system_pages(devmem->dev,
-> =C2=A0						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pagemap_addr,
-> sys_pfns,
-> -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 npages,
-> DMA_TO_DEVICE);
-> +						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 npages,
-> DMA_TO_DEVICE,
-> +						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 state);
-> =C2=A0
-> =C2=A0	if (err)
-> =C2=A0		goto out;
-> @@ -443,7 +493,7 @@ drm_pagemap_migrate_sys_to_dev(struct
-> drm_pagemap_devmem *devmem,
-> =C2=A0				=C2=A0 devmem->pre_migrate_fence);
-> =C2=A0out:
-> =C2=A0	drm_pagemap_migrate_unmap_pages(devmem->dev, pagemap_addr,
-> sys_pfns, npages,
-> -					DMA_TO_DEVICE);
-> +					DMA_TO_DEVICE, state);
-> =C2=A0	return err;
-> =C2=A0}
-> =C2=A0
-> @@ -471,6 +521,7 @@ static int drm_pagemap_migrate_range(struct
-> drm_pagemap_devmem *devmem,
-> =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0 const struct migrate_range_loc
-> *cur,
-> =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0 const struct
-> drm_pagemap_migrate_details *mdetails)
-> =C2=A0{
-> +	struct drm_pagemap_iova_state state =3D {};
-> =C2=A0	int ret =3D 0;
-> =C2=A0
-> =C2=A0	if (cur->start =3D=3D 0)
-> @@ -498,7 +549,7 @@ static int drm_pagemap_migrate_range(struct
-> drm_pagemap_devmem *devmem,
-> =C2=A0						=C2=A0=C2=A0=C2=A0=C2=A0 &pages[last-
-> >start],
-> =C2=A0						=C2=A0=C2=A0=C2=A0=C2=A0
-> &pagemap_addr[last->start],
-> =C2=A0						=C2=A0=C2=A0=C2=A0=C2=A0 cur->start -
-> last->start,
-> -						=C2=A0=C2=A0=C2=A0=C2=A0 last->ops);
-> +						=C2=A0=C2=A0=C2=A0=C2=A0 last->ops,
-> &state);
-> =C2=A0
-> =C2=A0out:
-> =C2=A0	*last =3D *cur;
-> @@ -1060,6 +1111,7 @@ EXPORT_SYMBOL(drm_pagemap_put);
-> =C2=A0int drm_pagemap_evict_to_ram(struct drm_pagemap_devmem
-> *devmem_allocation)
-> =C2=A0{
-> =C2=A0	const struct drm_pagemap_devmem_ops *ops =3D
-> devmem_allocation->ops;
-> +	struct drm_pagemap_iova_state state =3D {};
-> =C2=A0	unsigned long npages, mpages =3D 0;
-> =C2=A0	struct page **pages;
-> =C2=A0	unsigned long *src, *dst;
-> @@ -1101,7 +1153,7 @@ int drm_pagemap_evict_to_ram(struct
-> drm_pagemap_devmem *devmem_allocation)
-> =C2=A0	err =3D
-> drm_pagemap_migrate_map_system_pages(devmem_allocation->dev,
-> =C2=A0						=C2=A0=C2=A0 pagemap_addr,
-> =C2=A0						=C2=A0=C2=A0 dst, npages,
-> -						=C2=A0=C2=A0 DMA_FROM_DEVICE);
-> +						=C2=A0=C2=A0 DMA_FROM_DEVICE,
-> &state);
-> =C2=A0	if (err)
-> =C2=A0		goto err_finalize;
-> =C2=A0
-> @@ -1125,7 +1177,7 @@ int drm_pagemap_evict_to_ram(struct
-> drm_pagemap_devmem *devmem_allocation)
-> =C2=A0	migrate_device_pages(src, dst, npages);
-> =C2=A0	migrate_device_finalize(src, dst, npages);
-> =C2=A0	drm_pagemap_migrate_unmap_pages(devmem_allocation->dev,
-> pagemap_addr, dst, npages,
-> -					DMA_FROM_DEVICE);
-> +					DMA_FROM_DEVICE, &state);
-> =C2=A0
-> =C2=A0err_free:
-> =C2=A0	kvfree(buf);
-> @@ -1137,6 +1189,7 @@ int drm_pagemap_evict_to_ram(struct
-> drm_pagemap_devmem *devmem_allocation)
-> =C2=A0
-> =C2=A0	if (retry_count--) {
-> =C2=A0		cond_resched();
-> +		state =3D (struct drm_pagemap_iova_state){};
-> =C2=A0		goto retry;
-> =C2=A0	}
-> =C2=A0
-> @@ -1170,6 +1223,7 @@ static int __drm_pagemap_migrate_to_ram(struct
-> vm_area_struct *vas,
-> =C2=A0				=C2=A0 MIGRATE_VMA_SELECT_COMPOUND,
-> =C2=A0		.fault_page	=3D page,
-> =C2=A0	};
-> +	struct drm_pagemap_iova_state state =3D {};
-> =C2=A0	struct drm_pagemap_zdd *zdd;
-> =C2=A0	const struct drm_pagemap_devmem_ops *ops;
-> =C2=A0	struct device *dev =3D NULL;
-> @@ -1229,7 +1283,7 @@ static int __drm_pagemap_migrate_to_ram(struct
-> vm_area_struct *vas,
-> =C2=A0
-> =C2=A0	err =3D drm_pagemap_migrate_map_system_pages(dev,
-> pagemap_addr,
-> =C2=A0						=C2=A0=C2=A0 migrate.dst,
-> npages,
-> -						=C2=A0=C2=A0 DMA_FROM_DEVICE);
-> +						=C2=A0=C2=A0 DMA_FROM_DEVICE,
-> &state);
-> =C2=A0	if (err)
-> =C2=A0		goto err_finalize;
-> =C2=A0
-> @@ -1254,7 +1308,8 @@ static int __drm_pagemap_migrate_to_ram(struct
-> vm_area_struct *vas,
-> =C2=A0	migrate_vma_finalize(&migrate);
-> =C2=A0	if (dev)
-> =C2=A0		drm_pagemap_migrate_unmap_pages(dev, pagemap_addr,
-> migrate.dst,
-> -						npages,
-> DMA_FROM_DEVICE);
-> +						npages,
-> DMA_FROM_DEVICE,
-> +						&state);
-> =C2=A0err_free:
-> =C2=A0	kvfree(buf);
-> =C2=A0err_out:
+Ideally I'd like to get rid of this whole thing and instead have
+userspace put the clear color into its own separate little BO.
+That way we wouldn't have to waste the precious CPU visible LMEM
+on the full framebuffers. The kernel part of that is pretty trivial
+and I have the patches in some branch, but sadly the Mesa side
+is much more complicated. That particular onion has at least four
+layers through which the extra dmabuf would need to get plumbed :(
+
+> 
+> Other than that,
+> 
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> 
+> >  		};
+> >  		int fence_id = -1;
+> >  
+> > @@ -289,6 +290,7 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_state,
+> >  		struct intel_fb_pin_params pin_params = {
+> >  			.view = &plane_state->view.gtt,
+> >  			.alignment = intel_plane_fb_min_alignment(plane_state),
+> > +			.needs_cpu_lmem_access = intel_fb_needs_cpu_access(&fb->base),
+> >  		};
+> >  
+> >  		vma = i915_dpt_pin_to_ggtt(fb->dpt, pin_params.alignment / 512);
+> > diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> > index 205492639dba..a4eb06cfa769 100644
+> > --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> > +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> > @@ -335,7 +335,7 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+> >  
+> >  	refcount_set(&vma->ref, 1);
+> >  	if (IS_DGFX(to_xe_device(bo->ttm.base.dev)) &&
+> > -	    intel_fb_needs_cpu_access(&fb->base) &&
+> > +	    pin_params->needs_cpu_lmem_access &&
+> >  	    !(bo->flags & XE_BO_FLAG_NEEDS_CPU_ACCESS)) {
+> >  		struct xe_vram_region *vram = xe_device_get_root_tile(xe)->mem.vram;
+> >  
+> > @@ -474,6 +474,7 @@ int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
+> >  	struct intel_fb_pin_params pin_params = {
+> >  		.view = &new_plane_state->view.gtt,
+> >  		.alignment = plane->min_alignment(plane, fb, 0),
+> > +		.needs_cpu_lmem_access = intel_fb_needs_cpu_access(fb),
+> >  	};
+> >  
+> >  	if (reuse_vma(new_plane_state, old_plane_state))
+> 
+> -- 
+> Jani Nikula, Intel
+
+-- 
+Ville Syrjälä
+Intel
