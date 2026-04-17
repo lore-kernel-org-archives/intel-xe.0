@@ -4,58 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 276B3F4368A
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Apr 2026 12:00:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F6CEF43699
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Apr 2026 12:25:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC4A710E2B2;
-	Fri, 17 Apr 2026 12:00:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0100510E2AC;
+	Fri, 17 Apr 2026 12:25:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BHSIPAlM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fmiKcbUN";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8D4310E2AF;
- Fri, 17 Apr 2026 12:00:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EEAE10E2A9;
+ Fri, 17 Apr 2026 12:25:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776427246; x=1807963246;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=WdpwZlEs+cp1NHGCP0R/CBzoLFx+AfPelYvEKVDVow8=;
- b=BHSIPAlMVyqrq8LP6d7CC1kuuEFX4cjqwB509nnh3doNPLknH0JtuYyS
- /gcdLRT7HJboHcjYDJg5fxP4Ea/RYAkr+YTNgE+vjy4WffqW+WmS/+Vz9
- GpdowJbi1cLAzFwLLlvLuADVdLghwgYpCzYulRLqCNo34LqjnkeEjmmFL
- y6l7dkiNychImIytXBF/B+i8pbvWYiz2ZAgiefpSfqzmziOGOsn5Paqih
- HUntsalHRPUtoDS28h0nXZBI52zqX/np1KvaLRMdwQIDf5LqXBmucnRLw
- TBBA1Yh4tqslC5lL592fUtvIvty4ZdpJmRlu/659DsyWIgrdbJOc3W/Hl w==;
-X-CSE-ConnectionGUID: 0rMvmdorQhaewBDCoki4qg==
-X-CSE-MsgGUID: t7YoaO78ROG0HG4+DHgPgw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11761"; a="64978178"
-X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; d="scan'208";a="64978178"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2026 05:00:46 -0700
-X-CSE-ConnectionGUID: n/LhiTdEQvqlBnDFiHsaPQ==
-X-CSE-MsgGUID: xovW0LgQTL+L5rXa2ARKKg==
+ t=1776428740; x=1807964740;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=kbHTkYoKArlqE/2u5Is0Nfk2zK9OxgIiUR57aTdl6YQ=;
+ b=fmiKcbUNd/giWqPnUJRL1NyjLe7GgAlw0UPViBlNtmzOcGn7o2EZ4NPH
+ pqb1XDj2urcTzoF5sgHmvgOehDZz4dBMoIPzMlINl2AaCw3Lp1hWHrbkk
+ RocHxP7W3g1/9JEcvBG9Dqz/mA1MWmP1xU1IqCjfDVn6DgKIEsUtxhGsf
+ xyf1DWBOg4gX/5zVBqv8uZHXji241SmG7MRciiCujqKI6t3bIysBMIR1U
+ hsv9HBk5XHB3PWJeQ40DtTnyKYQVdjXkZUTwGJplBhm3QnKRg7R9iIAAg
+ 8Ab/Xd1GRix0LMvdW81/7PaoXTI49KAxciTbypmvuYfwloKOXS439aBi3 Q==;
+X-CSE-ConnectionGUID: lt9dShSIQzyM8ZoqUlW+tw==
+X-CSE-MsgGUID: HMFh0Mg2SZiunU6RWAiWug==
+X-IronPort-AV: E=McAfee;i="6800,10657,11761"; a="81321614"
+X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; d="scan'208";a="81321614"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2026 05:25:40 -0700
+X-CSE-ConnectionGUID: 61QJsspeTp6bONMEOBcGPg==
+X-CSE-MsgGUID: fXu2mbaKTcObII0aWUtubQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; d="scan'208";a="235008610"
-Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.245.127])
- by ORVIESA003-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Apr 2026 05:00:43 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, swati2.sharma@intel.com, Suraj Kandpal
- <suraj.kandpal@intel.com>
-Subject: Re: [PATCH] drm/i915/dp: Ignore HPD when in DPLL enable/disable cycle
-In-Reply-To: <a99f71916d52b29e300ecac2207e0fb501d6a4a5@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260417080118.2352283-1-suraj.kandpal@intel.com>
- <a99f71916d52b29e300ecac2207e0fb501d6a4a5@intel.com>
-Date: Fri, 17 Apr 2026 15:00:40 +0300
-Message-ID: <c3b5e61c68aae8242da2bd170736485ced2f9db2@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; d="scan'208";a="227892689"
+Received: from zzombora-mobl1 (HELO localhost) ([10.245.245.176])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2026 05:25:38 -0700
+Date: Fri, 17 Apr 2026 15:25:35 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 09/11] drm/i915: Introduce pin_params.needs_fence
+Message-ID: <aeImv3P19vdMrqZm@intel.com>
+References: <20260416174448.28264-1-ville.syrjala@linux.intel.com>
+ <20260416174448.28264-10-ville.syrjala@linux.intel.com>
+ <47a9626a4dcf354d2c30b1236b19b03126d57ec2@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <47a9626a4dcf354d2c30b1236b19b03126d57ec2@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,83 +72,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 17 Apr 2026, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> On Fri, 17 Apr 2026, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
->> When we are enable/disable DPLL cycle there are chances the connected
->> monitors is still sending us HPD signals. This causes us to handle them
->> which require DPCD read. These sometimes race with the DPLL getting
->> disabled in between causing AUX failures via Timeout.
->> Introduce atomic variable link_teardown which is used to track if
->> we are in DPLL enable/disable cycle. We ignore HPDs during this time.
->> Re-enable after DPLL is up so that we can avoid populating logs
->> with expected logs AUX timeout failures.
->
-> How is this not racy?
+On Fri, Apr 17, 2026 at 12:58:26PM +0300, Jani Nikula wrote:
+> On Thu, 16 Apr 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > Add a new flag pin_params.needs_fencel to inform the pinning
+> 
+> *needs_fence
+> 
+> > code that the display needs a fence for tiled scanout.
+> >
+> > The goal is to eliminate all display specific stuff from
+> > the low level pinning code.
+> 
+> Again, I find it just a little magical that .needs_fence is only
+> initialized in certain code paths, with the implementation detail
+> knowledge where the member is used.
 
-Oh, please don't cross-post trybot list with other lists.
+I think in the end we could more or less set all the pin_params
+members identically in all the codepaths. Though in the end we
+should only have three codepaths (plane ggtt pin, plane dpt pin,
+fbdev ggtt pin), so the xe vs. i915 differences here will just
+go away with that.
 
->
->>
->> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_ddi.c           | 5 +++++
->>  drivers/gpu/drm/i915/display/intel_display_types.h | 1 +
->>  drivers/gpu/drm/i915/display/intel_dp.c            | 5 +++++
->>  3 files changed, 11 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
->> index 178074316a2c..4a523eb56bc4 100644
->> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
->> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
->> @@ -2086,8 +2086,12 @@ static struct intel_dpll *hsw_ddi_get_pll(struct intel_encoder *encoder)
->>  void intel_ddi_enable_clock(struct intel_encoder *encoder,
->>  			    const struct intel_crtc_state *crtc_state)
->>  {
->> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
->> +
->>  	if (encoder->enable_clock)
->>  		encoder->enable_clock(encoder, crtc_state);
->> +
->> +	atomic_set(&dig_port->link_teardown, 0);
->>  }
->>  
->>  void intel_ddi_disable_clock(struct intel_encoder *encoder)
->> @@ -3181,6 +3185,7 @@ static void intel_ddi_post_disable_dp(struct intel_atomic_state *state,
->>  					dig_port->ddi_io_power_domain,
->>  					wakeref);
->>  
->> +	atomic_set(&dig_port->link_teardown, 1);
->>  	intel_ddi_disable_clock(encoder);
->>  
->>  	/* De-select Thunderbolt */
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
->> index c81916761850..f59bbb2fb260 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
->> @@ -1985,6 +1985,7 @@ struct intel_digital_port {
->>  	enum intel_display_power_domain ddi_io_power_domain;
->>  	struct ref_tracker *ddi_io_wakeref;
->>  	struct ref_tracker *aux_wakeref;
->> +	atomic_t link_teardown;
->>  
->>  	struct intel_tc_port *tc;
->>  
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
->> index 35b8fb5740aa..9177fe9b3e84 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> @@ -6889,6 +6889,11 @@ intel_dp_hpd_pulse(struct intel_digital_port *dig_port, bool long_hpd)
->>  	struct intel_dp *intel_dp = &dig_port->dp;
->>  	u8 dpcd[DP_RECEIVER_CAP_SIZE];
->>  
->> +	if (atomic_read(&dig_port->link_teardown)) {
->> +		drm_dbg_kms("Ignoring HPD since DPLL is getting disabled\n");
->> +		return IRQ_NONE;
->> +	}
->> +
->>  	if (dig_port->base.type == INTEL_OUTPUT_EDP &&
->>  	    (long_hpd ||
->>  	     intel_display_rpm_suspended(display) ||
+> E.g. in this case out_fence_id !=
+> NULL.
+
+I suppose for that particular thing I could also add a
+.uses_fence and just always require the &fence_id to be
+passed in. Although I guess then I'd need to add the
+fence_id tracking to to the fbdev path as well.
+
+Hmm, I think fences might disappear on runtime suspend
+so it might not really work to have a fence being tracked
+for the fbdev perma-pin and expect it to survive runtime
+suspend. So it may be that we never want to request a fence
+in the fbdev codepath. But if the fence disappears then how
+would a tiled fbdev framebuffer even work? I need to check
+this...
+
+And for the DPT path we probably shouldn't set any fence flags
+(nor even have the *out_fence_id) since fence+DPT is just
+nonsense.
+
+> 
+> Regardless,
+> 
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> 
+> 
+> >
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_fb_pin.h | 1 +
+> >  drivers/gpu/drm/i915/i915_fb_pin.c          | 4 ++--
+> >  2 files changed, 3 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.h b/drivers/gpu/drm/i915/display/intel_fb_pin.h
+> > index 3e37e9874f50..95f83bf7411f 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_fb_pin.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_fb_pin.h
+> > @@ -22,6 +22,7 @@ struct intel_fb_pin_params {
+> >  	bool needs_cpu_lmem_access;
+> >  	bool needs_low_address;
+> >  	bool needs_physical;
+> > +	bool needs_fence;
+> >  };
+> >  
+> >  struct i915_vma *
+> > diff --git a/drivers/gpu/drm/i915/i915_fb_pin.c b/drivers/gpu/drm/i915/i915_fb_pin.c
+> > index a8ed888183cb..5060ec8c76ca 100644
+> > --- a/drivers/gpu/drm/i915/i915_fb_pin.c
+> > +++ b/drivers/gpu/drm/i915/i915_fb_pin.c
+> > @@ -112,7 +112,6 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
+> >  		     const struct intel_fb_pin_params *pin_params,
+> >  		     int *out_fence_id)
+> >  {
+> > -	struct intel_display *display = to_intel_display(fb->dev);
+> >  	struct drm_i915_private *i915 = to_i915(fb->dev);
+> >  	struct drm_gem_object *_obj = intel_fb_bo(fb);
+> >  	struct drm_i915_gem_object *obj = to_intel_bo(_obj);
+> > @@ -188,7 +187,7 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
+> >  		 * mode that matches the user configuration.
+> >  		 */
+> >  		ret = i915_vma_pin_fence(vma);
+> > -		if (ret != 0 && intel_plane_needs_fence(display)) {
+> > +		if (ret != 0 && pin_params->needs_fence) {
+> >  			i915_vma_unpin(vma);
+> >  			goto err_unpin;
+> >  		}
+> > @@ -272,6 +271,7 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_state,
+> >  			.needs_cpu_lmem_access = intel_fb_needs_cpu_access(&fb->base),
+> >  			.needs_low_address = intel_plane_needs_low_address(display),
+> >  			.needs_physical = intel_plane_needs_physical(plane),
+> > +			.needs_fence = intel_plane_needs_fence(display),
+> >  		};
+> >  		int fence_id = -1;
+> 
+> -- 
+> Jani Nikula, Intel
 
 -- 
-Jani Nikula, Intel
+Ville Syrjälä
+Intel
