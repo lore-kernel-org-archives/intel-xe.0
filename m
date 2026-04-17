@@ -4,91 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDE85F8E499
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Apr 2026 02:03:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73DB4F8E497
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Apr 2026 02:21:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E43B10E1D3;
-	Fri, 17 Apr 2026 02:03:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B51310E1D3;
+	Fri, 17 Apr 2026 02:21:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HVLcU7Jm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h6Mdkxj5";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F18C10E1D3;
- Fri, 17 Apr 2026 02:03:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A73410E1D3
+ for <intel-xe@lists.freedesktop.org>; Fri, 17 Apr 2026 02:20:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776391416; x=1807927416;
+ t=1776392459; x=1807928459;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=/wk5yt4qiYK/U8G+4Q3fLA8ywZV1jBxGNKd+wSjHlTQ=;
- b=HVLcU7JmliyWEphUWVoOWQlvXnW8xZGnXmO4AsLwaGFlJ74yHGxKkL1T
- qwRR357yJmsxXduGsciyVdDzQElBDi+nb5kuL2I2OL+UzpbZPngjE7Kma
- higswg9Ps1yAAAK0Lsc1XZl+ETzkEu05Do6XgVrU0A1iKmCNDlZfTFfAX
- E7URl2Ro7WxQbERqmPgos2jfKj+nRK3+snFz0aY9SBbx/aJNIbTDpRAd/
- 4mWohRcCIQIkRep1QBKsQutYMtF0FdgCW4BSt+xe1Izi2amHK8nRQpt57
- ITFaDoO8518wTtyPy46WIVKBdxloNgsyhoqsTp/42PBcJu+QpItQJg7hv Q==;
-X-CSE-ConnectionGUID: K3dqpqqaRWCN8VnOl4i5jw==
-X-CSE-MsgGUID: oRa56lcmROalfcOg4ZrQLA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11761"; a="100051730"
-X-IronPort-AV: E=Sophos;i="6.23,183,1770624000"; d="scan'208";a="100051730"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2026 19:03:35 -0700
-X-CSE-ConnectionGUID: 17e1/wbvTT+JHr25b5ZtSw==
-X-CSE-MsgGUID: RTm1rB15RFadp5xkeo08Bg==
+ bh=2HbZaCOCynGJu6GqhMuGUTc5S69tUu+fkVmBQldSNX4=;
+ b=h6Mdkxj5QVrwQxN0j58knPZrDrGG82dExuvRTjvXc860pphAjURN7sQe
+ S1mGFgP7j7fNcB+v8lfGE5Fs4cq63TMECtckdQEP0oNzNCciT23Be4GSS
+ dVkzKtszMsxiDbX7odWmMV7+A4xVexGuNrW4qP9LRqtRXPptAskl/DP3v
+ PoMow6RHMezPOM3vIezlQEX0PF3PLFGJIM8gBqYIFYR4v27TR/L0hv3pH
+ 2BjtuHSqjyWUcoHvQcKrMSKrBbREjvdOP2EEe276N1eXyCdu7uSqgbqAY
+ KMPU1K1jzj+KeesBMf/jhFKZ5PP5SGQg2ctHfzYq/HH003S3nTcbGR0pn g==;
+X-CSE-ConnectionGUID: 0imjCjo3RWWxd52cycBxFQ==
+X-CSE-MsgGUID: 7zNPWi8JQ+m3BsmBigRkBg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11761"; a="77105500"
+X-IronPort-AV: E=Sophos;i="6.23,183,1770624000"; d="scan'208";a="77105500"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2026 19:20:58 -0700
+X-CSE-ConnectionGUID: KNW6lUNySX+nZ/qC7TSDGg==
+X-CSE-MsgGUID: YwfYQ8vASHOIKgcs6++IrQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,183,1770624000"; d="scan'208";a="254375767"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2026 19:03:35 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2026 19:20:57 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 16 Apr 2026 19:03:34 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.2.2562.37; Thu, 16 Apr 2026 19:20:46 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Thu, 16 Apr 2026 19:03:34 -0700
-Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.65) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Thu, 16 Apr 2026 19:20:46 -0700
+Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.47) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 16 Apr 2026 19:03:32 -0700
+ 15.2.2562.37; Thu, 16 Apr 2026 19:20:46 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nTU1IObRS9S8DA2FDiOPC2Kg3BQTB9pmbbSh4WoIDA2ZOrEKBh+xp1ftZsXTgCL5ycde888zWypxgJOXKVdhuF98j8ODnLxpU8896J3Lzb8IyATG93j9Nhra/ylwoEe2DuqhJHOHazPdbsfLmTMzNHeRsC0r65J7XWK80wDFt341WFdSreCzNZNUdLIIWOLRK+8UMbgOvoXBkQhaefsjzSJZdEMV2lJPBzvCjZ3A6Sp+JyA8UqU0OhPJw7cRJrb6DipQ3JlDDn5aqIbq94v5L5b/FOU9M/pLyA1/CIl42MpTyjoGFt3ESTEPKrCXgCsWOEPp9GKFPz5a4t7Qg9Izvg==
+ b=BwTDMtsDnFCsxPkCcqYGSIiQ5nTx5ZOBkVAAR77SBuU3jHrgy/Qo2NgR6cNOHUiI2dOOBUgO9IZGLoHLe14bA/itb4X75nOZY/35S0uvDefTOMKR6U/2p6CFfPkvKxUVR57jquZ7jf7ujNcJkA2/AYwEHlqaO+1zf8wkez6o5Q5Uim+6t4USwbG8BRraClbXpwIU+znZEHa88HySpmcXEcGLXz3Wl6UvPlZZj2DmsSWVXuy6Me6X4Q8f4CZcSIZcTQ/Wp1lc8keqzMSsTgkMYstBRkZbx1Sr/XrR5vvM4FRnofOwXyb2SH0eFEnbDqLLH5oWwkaP0Xfx6T965yCAtA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=f3pjYGO4CgPnqonXBWddeUVCE1GrntqrNxg3vFF0NSk=;
- b=albimNCQfx5kU0S8eRKNE5f3EXs+taYOAeZ+VQOaz/SqKQkFNKieRcD9fhuURkysBk4EqzMWyx30nFmbIW9FpdKvNslBxlMOUGGVfwEMhJi6QBe6e4xuglDLY4UQpqyzYjDilJTqEvSRaXk5rxphzSs5esdTnB1chKTm75Kg9xY3X/BmxzimRLB7gR2bH4dwH9KUq0wNJDaTd7bm9kFIKElKDChQZ3cgJQK0klVgyEbCIvHJR7mX3mr2+AhwAhqKoOp7F536q1ZLb3nk6V2TEyXVjzgF9LlEVTkogiiKe0PaMpKt+SxEETUhKFZhlRgOvxtMtHliBGZCUoGIn8ilJw==
+ bh=lvnn8h08b8tusKC4ECIt6bGbqhgPHfgvA7wYH1PQ5BQ=;
+ b=MdSxoiGxk06vugumYcMXYA2F9kxGTIuHw7ST6frHm2KLagGGFnVZWEJH7JdajZVPY2WQuNmPTahZqjTJCEF9qQvXSSv52/4Dwc6Lz672E5sQC/Q6qxD9mD2u9UUse2AhqWetKkxYj6SB6QQyKkuZiBIyQtKXSK4YvJQjv13HjsGIvx7DXZp9EJpdz3D9gJrbV25l72Y/xL58bcvvKHA+Vm0zyd3M3r9uWBoPd9g2mrOcVmgc1uV6WNsGBVqD9f/emqi3Y1GgaSDopvyces/HNydgvt5c6ygBeMmjWuSnXY60RJODUkH8WqcJttlTTRsOm1ELOG47YHuwQq47994s7w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from PH7PR11MB8252.namprd11.prod.outlook.com (2603:10b6:510:1aa::14)
- by SJ5PPFC35D45AFD.namprd11.prod.outlook.com
- (2603:10b6:a0f:fc02::853) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.49; Fri, 17 Apr
- 2026 02:03:24 +0000
-Received: from PH7PR11MB8252.namprd11.prod.outlook.com
- ([fe80::9f66:9d6f:3199:78b2]) by PH7PR11MB8252.namprd11.prod.outlook.com
- ([fe80::9f66:9d6f:3199:78b2%4]) with mapi id 15.20.9818.017; Fri, 17 Apr 2026
- 02:03:24 +0000
-From: "Srinivas, Vidya" <vidya.srinivas@intel.com>
-To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Shankar, Uma" <uma.shankar@intel.com>
-Subject: RE: [PATCH] [RFC]: drm/i915/display: Use ceiling division for NV12 UV
- surface offset calculation
-Thread-Topic: [PATCH] [RFC]: drm/i915/display: Use ceiling division for NV12
- UV surface offset calculation
-Thread-Index: AQHcydeH95mm/srKq0CqfRo0nHMO8LXfRluAgADEpQCAAFUn0IACKDRg
-Date: Fri, 17 Apr 2026 02:03:24 +0000
-Message-ID: <PH7PR11MB8252A2A70FD4185D02EC47E289202@PH7PR11MB8252.namprd11.prod.outlook.com>
-References: <20260411171521.162189-1-vidya.srinivas@intel.com>
- <20260415001553.181329-1-vidya.srinivas@intel.com>
- <7dceaf9f794e3e2bb9c2b12f435f4cad4bb16deb@intel.com>
- <PH7PR11MB8252546F4101CB34DB7368FE89222@PH7PR11MB8252.namprd11.prod.outlook.com>
-In-Reply-To: <PH7PR11MB8252546F4101CB34DB7368FE89222@PH7PR11MB8252.namprd11.prod.outlook.com>
+Received: from DM4PR11MB5456.namprd11.prod.outlook.com (2603:10b6:5:39c::14)
+ by BL1PR11MB5288.namprd11.prod.outlook.com (2603:10b6:208:316::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9818.21; Fri, 17 Apr
+ 2026 02:20:44 +0000
+Received: from DM4PR11MB5456.namprd11.prod.outlook.com
+ ([fe80::62e5:4a7c:f965:9082]) by DM4PR11MB5456.namprd11.prod.outlook.com
+ ([fe80::62e5:4a7c:f965:9082%6]) with mapi id 15.20.9818.017; Fri, 17 Apr 2026
+ 02:20:44 +0000
+From: "Lin, Shuicheng" <shuicheng.lin@intel.com>
+To: "Roper, Matthew D" <matthew.d.roper@intel.com>, "Sousa, Gustavo"
+ <gustavo.sousa@intel.com>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: RE: [PATCH v2] drm/xe/hdcp: Add NULL check for media_gt in
+ intel_hdcp_gsc_check_status()
+Thread-Topic: [PATCH v2] drm/xe/hdcp: Add NULL check for media_gt in
+ intel_hdcp_gsc_check_status()
+Thread-Index: AQHczc1j1uVAU1DO+EWGE3POKJ/atbXiFVWAgABsQuA=
+Date: Fri, 17 Apr 2026 02:20:44 +0000
+Message-ID: <DM4PR11MB54568743003BC9EF6F00FBF6EA202@DM4PR11MB5456.namprd11.prod.outlook.com>
+References: <20260416-check-for-null-media_gt-in-intel_hdcp_gsc_check_status-v2-1-9adb9fd3b621@intel.com>
+ <20260416193733.GG755471@mdroper-desk1.amr.corp.intel.com>
+In-Reply-To: <20260416193733.GG755471@mdroper-desk1.amr.corp.intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -96,61 +92,61 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH7PR11MB8252:EE_|SJ5PPFC35D45AFD:EE_
-x-ms-office365-filtering-correlation-id: 8bc44e7f-3a48-420b-13f5-08de9c25821a
+x-ms-traffictypediagnostic: DM4PR11MB5456:EE_|BL1PR11MB5288:EE_
+x-ms-office365-filtering-correlation-id: dee07f16-e061-4856-21d9-08de9c27edf5
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|38070700021|22082099003|18002099003|56012099003;
-x-microsoft-antispam-message-info: NnSBckc9VuFGEqOyuht8XC5yvDmLopmKjmqig/YZuuGlsts7TrIMhGgUuKzsyxZVAs7f5AY3uOKJMTo+kd9rvm7HkJFAm8UPr6frc8pHnKlT9JZuowlk2YNCx++t/B+WvPFlRH82pfhecUMCEC5E3EuxJ5Maf+5qmOMDtNymofqO8HvifmciY1kU8PasQ7MahC/8SoObUAOX6UrGJ/PvlKRflkGHJnQx4imXKaZLSO4w7KqLNgiz0w8Lp8xDnQrGkljXOFTocQwiWV0PnpwAdtNZ2ZYVAlLbr97lYVbGuUrJeauv2KhCx2c11g+IRoEsTZrf2uraoSkXylVHVxYJ+x3nK5D4W/bzMGSC6iZfFUYLY6JLvP40WQo0u7yEKAzTPgykHNkqHOCIQZGFWDhps0QJe3I3yigPU2XBKWQizroLHKIUGzYwbIePJObvfW9qjxJxhHoUVJ4Q7NhpLMyD8YKzw89kzXh81VltJfiThksl9mKGfDH1jKGyWy12jNFeNPKJaQZYmHuB60hrwAVhnosoCNXgLrheRuBR1GSVmM201gtAY2vyVCvQepU4xf1elYSoTtA5W+P+6LwxbANtDNUzt8PFxZqo4teYCi4GCkRXi1lCbXzn3ZM2y/mcFFQKOrRmPpgLEzzvb3Gyoroh4ypmDuBeKZQNrr1tZ1yNHy52t7dCEZXXQZwOHKrtCBGzPrCyQtvOvmYISJP67n4VZbfTwLMgNr4VHcUSsvb2y+tkg2BWL0R8uGLlgSd4/6Th
+ ARA:13230040|1800799024|366016|376014|38070700021|56012099003|18002099003|22082099003;
+x-microsoft-antispam-message-info: B3Smkl5GhAclSEauQy4L3dOzwFPIoyyt1GS+UagzxKtxwbg4tXKtQMcHZ3qqbGUQOwy/8ma28uDPMPr3CgSyIODSsXLh/Rvcbpd0iO4C8AG7LpqSmI/48R3DVfnCobwsl8aVqVITpoxqhjyLKegikcKqdeENwa4G9oa+qe4LBnKv802dR5SW1IEW3WkN1Hj+Xiqx9huLMTqjm9srZF4EVuCXwbjk28D6rijaCA0n4kNKYwkrC50ADoZDdJPFwb0B4RNa8UcAZTTOx5XttYsxe2issr8zF+9meR+43KxuehsAPq6VSFl4O6RdBv3e2nxRv769XLpWV9CHdWckdQQR7naTh+vVlaj39vACnSXFXpsjRs1BReEOBDSRk/f2jswNi+O7mA6nbic7nBQDqphAKilpwxHcHUK3JpxusY2eUbmQkLOxnCOgNl2d8mKuM6FDu7cgJLwIkiNpsddNqMDWlErzdAH1vabb4UKXqNKZlrD0mXQUwYQk49IlUcDw+SpnhzKTkGP8RmxzCki+iEx/HgTeg+s6r24ao62U4QPJlsomQgssgNY08gKlXr0CNQJUjUPZgDh9UAlY4HZcpwnW2KR2SnSaQHd7Sezgl84mWzL+ui/zezoQeEV6dki9c6yFDyaKfYPOM6Lwa+oy4OolP9llFmxn+Z3eIIYAX8Emk0GYAdZCwyJbeTEy76MVSGojg1QJrave66KT9wEhbVCkgGSonnVXk6jU+WcQ/GOJ4I+dqpLrhhjxcSGIF2+LKCDh
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB8252.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(38070700021)(22082099003)(18002099003)(56012099003);
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5456.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(38070700021)(56012099003)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?bEa/60Q/PM6+M+HJuH49gqT0WwH97cJAbTdiKuPGLLijpZGWMi/0II4VJ2+X?=
- =?us-ascii?Q?UlGQGIfJNHFHHkpxlRMRdhDYxNHweOy5sPkep1ukXrgg4neNsV0CKf+2qqUF?=
- =?us-ascii?Q?cUex96b4qH86yj5yQGeghKI3ngp4uxdTARAQjzeq+upBklwqpSO1m/hpiB/y?=
- =?us-ascii?Q?orUqeI6Y7ozdk90sB5rNxztIRaQGcaVEVVtjkvNFKudpgiQ/e0OY9YEy+nsJ?=
- =?us-ascii?Q?lPnGUjKnmBIm4SgWYn0WW7ydKfrvgdtnMt6lE6Bxg3fGMbDTOTmgzDFDD6Qe?=
- =?us-ascii?Q?didNGamdJ5F/UbeCI4+oefvmE4xa6Qik1iYEBraGW25icx/M+NWJRIvBhsBg?=
- =?us-ascii?Q?OV71dMd4xqoAU4k8vZdOLQjBXOhBS/0EHlfAd7F30XK2T9ZSDXL5RQQ7uVu5?=
- =?us-ascii?Q?Q0IZf3/r0YMyMqz6cjvw0B6tSTfPyNQAix5UxLMWL1iUEhcVARl39UURDZxr?=
- =?us-ascii?Q?NXIPFe6MlXt0YE80LqnhrDwze8RwqyupG1yw1SxLdAlHzIFKt872toTRlGLs?=
- =?us-ascii?Q?L4XKKfCynSv2XJJvWB5yacdzKSCfjpX65lwvHiFP80Pstk1GIWmH3wTvVppW?=
- =?us-ascii?Q?YyFmnv/Gra+7Xg2Y3UyXWRbLbZezJzzlUcCJQBvr7F74Ut5jwWteIYNOnjdT?=
- =?us-ascii?Q?vu2VqL8eX6p8jjTtIX5nxXjyux0uofEZPSaWiDyQCewgBg5oGnw4PO/FTUwT?=
- =?us-ascii?Q?C1zsijZDkaRiGX1rsoqjtr4gxYqSaRokesdbpvCbD3ZQ1sF2pulTN8eaIiHZ?=
- =?us-ascii?Q?MsyITKYoweQS+WYjMb6ARX5x7Uf4d5Gs3vRZQO77vpxZtDhYiLz1nukYZzXD?=
- =?us-ascii?Q?ZGUk+BroJnCF3lMtme7eNHGP16a8q11P0ZEpP+pusDhRwEv1S0vooRbKAPiZ?=
- =?us-ascii?Q?wdoDTo9ZJZcT6P/NwOF5xn3qpYFtvTJ5oJxeXzisGUiVQf6qdTKULGq/JwSQ?=
- =?us-ascii?Q?/3TcTR1rREy7b+/5No45VdeKrrOebTRja/t4tS4dx3tvrzlqVChMnVYN4u4A?=
- =?us-ascii?Q?+gcszhnV2im2gWCD1ssSpEX2OP3mBs68/VQQy/50+DZE1bD6bd3fA17NywCd?=
- =?us-ascii?Q?LyD8h7qFckOw0oUkp9Yy/y3c+J+VpF+IHQDf25OoFGOW2Rzhh5i5p9yBWeNR?=
- =?us-ascii?Q?ZJ6zQLbVMf/5apHRIVXFRAiU2E/s6MyjpFeDzfr8+dU4PyfHg2cJu1M+wrwx?=
- =?us-ascii?Q?bZo3KDrzA06wQwTagLUolHmtxHjexWY2vfsSkiVwX+tuFqJ4MvpjmJF7L3Dw?=
- =?us-ascii?Q?tITEBkE4p/d/yzHwtxrCh3q8iMzB2/+Z894viBM4s5FCwxVdnrBYZlnbqKfJ?=
- =?us-ascii?Q?a62RPujjG0yhxPAOzSSzkqZv2XHAhEHeIXzJWUw2ojRlJMDMB6jc0mZarrJu?=
- =?us-ascii?Q?PnT4jJVZPuY/mM/U+fFAJkYBhGsrgxZYDFl279AaTIgPDiPAXJCLPLkImv7Q?=
- =?us-ascii?Q?wz7jnNvql/bhU/wJOiJQkFXXN7J3mrgLbrH6S1pHJY0v1xqFcxMjAbKzE9Ry?=
- =?us-ascii?Q?A6c8yIJkqJ0ssmDVpEm45VzlsiyL/8PZ4pY2LFEf714t3RHyaXFOI0d1dLEX?=
- =?us-ascii?Q?E9Y7PQlwDdSmHM2YiHEWS9Fs1QPRY41J+dGT18iUXe9YU1EG/XcY8GzMoQdC?=
- =?us-ascii?Q?jP2wifhBzo+ihBtE6TqcsNLzVZLXqdyqsujSSv5v617d4YoA8e7qNBmH93Jm?=
- =?us-ascii?Q?2RALiV4kD3/RpObSbv0P1zcm+PWdrZzeK8e+pOiCQwbElkwbMOBmrJ2pKBN7?=
- =?us-ascii?Q?C7jB06rPPw=3D=3D?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?PjKDfLagQRkGGq9HpzqqPwYXxGOhi3qmqWVJ1T64owy3aWxzI6F0u+eibfUP?=
+ =?us-ascii?Q?qaXc6csETcLumOg36j/K1P6F+je6tibDI9MBEN64sagofcOVmdKX6l1ndwT/?=
+ =?us-ascii?Q?7p3YtRzxjq7E6XVLANbnn6lCmXf2afmFsewOU6XgJMMxGzT2QN+TUU380g31?=
+ =?us-ascii?Q?S+vdRJ1JYKVOT82MVR/D7EPo28u2Qx+j4l/3MwfLT2d9AzlpefrCGYA9gJcz?=
+ =?us-ascii?Q?CN4qBDGww/6+izZelEdki8ymi1LNfXvJngxlLPQiO431H4CVKSVJD68qEYOI?=
+ =?us-ascii?Q?i/+8kewCnzNYo8mQSBxUt5fHVGl9pgUPOCUt9BD/ljzc+xDejOPU6plBhmOY?=
+ =?us-ascii?Q?JV93UJNZTKPFRCj0RgjUKWHqqY12hgDU8kIrTEHgQn1FdeRTL8Y+sbABVCEe?=
+ =?us-ascii?Q?7e0S/6as33QX5y6zrfmJthnveyAhlC9gnjV9E5fNEemxyPs91ti8Tdqo3hTM?=
+ =?us-ascii?Q?RTW0dJipuJhN59W9uIYPG6eCINgBTlXDNjb9LXYPxoyddzrbXqboVibgRrXu?=
+ =?us-ascii?Q?TSv03UNCUE0RY+yWBWX302WcNJVw6govyeRYjJYAsu2uAiyLlBDQ51qAF6ax?=
+ =?us-ascii?Q?+n3PMIx6gkq68lnQ7yD8qhOXHMQr3ogrryaczXbWE7JJFqlzGyDAJv4m4VY7?=
+ =?us-ascii?Q?3odKKZrC80dJPgkgHLTDtTEIqC2Jng0AwGBrzaYRDnWDynfxFwH4qleE7SvB?=
+ =?us-ascii?Q?c1OBtFwwVUJlnSJ3VFLvrYYMZy5Lke1kK0zp54y/kdyc6adSCogxM2Mehyvy?=
+ =?us-ascii?Q?uJm8ZGvVfpI/DiUN3z2I0NhQN+2IdxZOS3HkahmO7wuhgPewD/5apVkSYzWs?=
+ =?us-ascii?Q?aEzsJO2WgLKRsIWeM/0rSe6eYVux5gvp2phzbAdIoGTCtnmPrg+kqc7Jw+VF?=
+ =?us-ascii?Q?3dSZYMax1ueiyy+sFxGcPCkfmS7/YuRcvaWWraVP3HK2C5r+crTbs8L2Sglj?=
+ =?us-ascii?Q?XSJyjCyFQM1ydhcfoa62yf9GFzOjRpn3adpF2mSRKnLGImZl1B7ntNYEOwvu?=
+ =?us-ascii?Q?HXYo21VllRpoF9CYKbQlmcWVRWIyObFf54nTjjQnPaEUTLruCMyG8hHjeDW+?=
+ =?us-ascii?Q?PNte9lyMhDYQMbrIE5uIBx9lQrsaO1sGJAj+CVJv+0AwPAKFi2Rt7+HzBCiP?=
+ =?us-ascii?Q?pYLs3fEei/rGn+QuxYTBJYp5VZBwCfXL8iCANvVwC541f1UX6JQstUptcGzV?=
+ =?us-ascii?Q?W8JM+G+xMKuM/wg26oQ19Ln/vn4YEcsaudPaM68vvEfc+vMIpA8gVc8cVCYC?=
+ =?us-ascii?Q?CZEq2k6csSuEavfg4b2V5FlCdancu6yCjDyjgZ7yBtVEZmNrWi/ny3O6xZPf?=
+ =?us-ascii?Q?hVWkPERuJr5w1ekdXgZmK6ryIce/vVdozUqC+QuNmmGJ4MmeNW5vW11hEfNq?=
+ =?us-ascii?Q?RlKh199jZwAnHcmLFjhJ/0Ict+MDh/dllPwPNtLlL5vBWuFpLeLVZeiyoP5W?=
+ =?us-ascii?Q?nA9oGhyKlMzZDBjgkMeaanjQH7733PFprdnKRnKrbIgVbJ/dWfVsRBrFkI1c?=
+ =?us-ascii?Q?6u9sQQITopXTTuZIOPyngidNy2/18C3uXAd8albm/7Qowo6clreENszzfcDm?=
+ =?us-ascii?Q?BkL/KekVbIVVeJYATUd9DBiavTpLJHTb0tdrLCeStjv7axQeagB6upq3qB8Y?=
+ =?us-ascii?Q?Vs5K1g9LnoM33Mio0KpYhWHKlhs6OhMcfwAKT8qeviD/QqM8JcRrnEmbrIzF?=
+ =?us-ascii?Q?LT4lEqygzNIHG1ZbTayFUhaKzgrMwqkpR5rn6v7vp4ZLNAbUk7xnHP8OQHHX?=
+ =?us-ascii?Q?dr4JQwws/Q=3D=3D?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: v+Erx/NinkI0ndqL9Zanbp3iHV7qyX56cSpPY9gt/z6rln3K2hfmDRqMuwUQg45vX0xZWsTwugoHrAmuvyXagukHVvbHQU3P3+LHW3HlNUrueK2KjLr2ShIt20QkszhpzU0IYRzq3RYHCNyKzYInB2f/unXv23G3mcbGER4MO1ORrNOwy1gh6Ga9BN77neMMfvZpPCFiPwYI39+LItFJgLDMIu2HVnXIAVdN19Be6U7rgyJJFp4WvN/xHLIK4XnuWMbrE8yousfWKzgoo5C78TZDdEYcftClq50YSLlyqTMmmYgV7rpDfFebtDICpBsi41+cbPbcK0kEKT+GbwkSUQ==
+X-Exchange-RoutingPolicyChecked: rjlxNOenRZZCJc6urbAQ+BsIj9N4M4R8sr9fmeOQ0QcGmyRR6/GPimiJuvg8KADC5uM4KeD1uFKt4/HQLgLKjymeYDbHxqWpcaNPcbtRk0O0lH54xZlyvUfIIpHQKpTiZspmPDBNZKWz+fltNsgT27Y6pFALdt0cTSDf82Z/sDRNm63rTpU+fkQPqnT2+o99OLzbVtsKDeJ7qYYyJdiW+g6liZ4rGw2eJIL1vnaUjTzgUn5MYG/q4Z8kxlIm6ReHqSwubY99SoEgsvwhb7TQNw6g5RmEN/hW5oGh4Ln99OcZUaKxzzt694A0ytOh9NSnoTPX7dUgZvynVH50jOb/KA==
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB8252.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8bc44e7f-3a48-420b-13f5-08de9c25821a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Apr 2026 02:03:24.3241 (UTC)
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5456.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: dee07f16-e061-4856-21d9-08de9c27edf5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Apr 2026 02:20:44.2593 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: FXtLKUJ5KfzbWtMdoXUNa0yokHGH2q4HhAw8llyjbTH8v3nlWlhCM2m2wfqfxHIFs9+aUyzOtaMWnkWa9NH0LEsStkZvEboGVq1qT0DR05U=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPFC35D45AFD
+X-MS-Exchange-CrossTenant-userprincipalname: dJMRQ2RWP8Iw4tg7oqH0Xnekps//5DN++AZK4nV/CGB6eoF+24DDtG14ZJvOoRv7eGLvrpf5etF8hkXCcKhGmA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5288
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -166,140 +162,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-
-> -----Original Message-----
-> From: Srinivas, Vidya
-> Sent: 15 April 2026 22:36
-> To: Nikula, Jani <jani.nikula@intel.com>; intel-gfx@lists.freedesktop.org
-> Cc: intel-xe@lists.freedesktop.org; Shankar, Uma <uma.shankar@intel.com>
-> Subject: RE: [PATCH] [RFC]: drm/i915/display: Use ceiling division for NV=
-12 UV
-> surface offset calculation
->=20
->=20
->=20
-> > -----Original Message-----
-> > From: Nikula, Jani <jani.nikula@intel.com>
-> > Sent: 15 April 2026 17:30
-> > To: Srinivas, Vidya <vidya.srinivas@intel.com>;
-> > intel-gfx@lists.freedesktop.org
-> > Cc: intel-xe@lists.freedesktop.org; Shankar, Uma
-> > <uma.shankar@intel.com>; Srinivas, Vidya <vidya.srinivas@intel.com>
-> > Subject: Re: [PATCH] [RFC]: drm/i915/display: Use ceiling division for
-> > NV12 UV surface offset calculation
+On Thu, Apr 16, 2026 12:38 PM Matthew Roper wrote:
+> On Thu, Apr 16, 2026 at 03:17:19PM -0300, Gustavo Sousa wrote:
+> > When media GT is disabled via configfs, there is no allocation for
+> > media_gt, which is kept as NULL.  In such scenario,
+> > intel_hdcp_gsc_check_status() results in a kernel pagefault error due
+> > to &gt->uc.gsc being evaluated as an invalid memory address.
 > >
-> > On Wed, 15 Apr 2026, Vidya Srinivas <vidya.srinivas@intel.com> wrote:
-> > > For LNL+, odd source size and panning for YUV 422/420 surfaces is
-> > > supported. However, it requires the UV (chroma) surface Start X/Y
-> > > and width/height to be calculated as ceiling(half of Y plane value)
-> > > rather than floor.
-> > >
-> > > The current code uses (>> 17) which combines the U16.16 fixed-point
-> > > to integer conversion (>> 16) with a divide-by-2 for chroma
-> > > subsampling (>> 1) into a single floor division. For odd Y plane
-> > > values this produces an off-by-one error in the UV plane offset.
-> > >
-> > > On Android systems we see PLANE ATS fault when NV12 overlays are
-> > > used with odd source dimensions:
-> > >
-> > > [  126.854200] xe 0000:00:02.0: [drm:intel_atomic_setup_scaler [xe]]
-> > > [CRTC:148:pipe A] attached scaler id 0.0 to PLANE:33 [  126.854617]
-> > > xe
-> > > 0000:00:02.0: [drm:skl_update_scaler [xe]] [CRTC:148:pipe A]
-> > > scaler_user index 0.0: staged scaling request for 1279x719->1340x753
-> > > [ 126.854837] xe 0000:00:02.0: [drm:intel_plane_atomic_check [xe]]
-> > > UV plane [PLANE:33:plane 1A] using Y plane [PLANE:123:plane 4A] [
-> > > 126.854926] xe 0000:00:02.0: [drm] *ERROR* [CRTC:148:pipe A] PLANE
-> > > ATS fault
-> > >
-> > > With Y plane width 1279:
-> > >   floor(1279/2) =3D 639 (current)
-> > >   ceil(1279/2)  =3D 640 (required)
-> > >
-> > > Use DIV_ROUND_UP(value, 1 << 17) for the ceiling division of the
-> > > U16.16 fixed-point source coordinates, preserving sub-pixel precision=
-.
-> > > This is a no-op for even values since ceiling and floor are equal
-> > > when the dividend is even.
-> > >
-> > > v2: Use DIV_ROUND_UP(value, 1 << 17) to preserve sub-pixel precision
-> > >     while making the ceiling division readable (Jani, Uma)
-> > >
-> > > Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/skl_universal_plane.c | 14
-> > > ++++++++++----
-> > >  1 file changed, 10 insertions(+), 4 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > > b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > > index 7a9d494334b5..1de79ff65253 100644
-> > > --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > > +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > > @@ -2139,10 +2139,16 @@ static int skl_check_nv12_aux_surface(struct
-> > intel_plane_state *plane_state)
-> > >  	int min_height =3D intel_plane_min_height(plane, fb, uv_plane,
-> > rotation);
-> > >  	int max_width =3D intel_plane_max_width(plane, fb, uv_plane,
-> > rotation);
-> > >  	int max_height =3D intel_plane_max_height(plane, fb, uv_plane,
-> > rotation);
-> > > -	int x =3D plane_state->uapi.src.x1 >> 17;
-> > > -	int y =3D plane_state->uapi.src.y1 >> 17;
-> > > -	int w =3D drm_rect_width(&plane_state->uapi.src) >> 17;
-> > > -	int h =3D drm_rect_height(&plane_state->uapi.src) >> 17;
-> > > +
-> > > +	/*
-> > > +	 * LNL+ UV surface start/size =3D
-> > > +	 * ceiling(half of Y plane start/size). Use ceiling division
-> > > +	 * unconditionally; it is a no-op for even values.
-> > > +	 */
-> > > +	int x =3D DIV_ROUND_UP(plane_state->uapi.src.x1, 1 << 17);
-> > > +	int y =3D DIV_ROUND_UP(plane_state->uapi.src.y1, 1 << 17);
-> > > +	int w =3D DIV_ROUND_UP(drm_rect_width(&plane_state->uapi.src), 1
-> > << 17);
-> > > +	int h =3D DIV_ROUND_UP(drm_rect_height(&plane_state->uapi.src), 1
-> > <<
-> > > +17);
+> > Fix that by introducing a NULL check on media_gt and bailing out early
+> > if so.
 > >
-> > Like I said, my main problem with the original >> 17 is that it
-> > combines two completely separate things in one: division by two, and
-> > getting the integer part of a fixed-point number.
+> > While at it, also drop the NULL check for gsc, since it can't be NULL
+> > if media_gt is not NULL.
 > >
-> > Ideally you'd have helpers for first doing U16.16 division by 2, in
-> > fixed-point domain, and then getting the ceiling conversion to int.
+> > v2:
+> >   - Get address for gsc only after checking that gt is not NULL.
+> >     (Shuicheng)
+> >   - Drop the NULL check for gsc. (Shuicheng)
 > >
+> > Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+> > Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 >=20
-> Hello Jani
-> Thank you very much.
-> Tried adding helpers in v3
-> https://patchwork.freedesktop.org/patch/718493/?series=3D164739&rev=3D3
-> Kindly have a check and suggest.
+> We should probably also have
+>=20
+> Fixes: 4af50beb4e0f ("drm/xe: Use gsc_proxy_init_done to check proxy
+> status")
+> Cc: <stable@vger.kernel.org> # v6.10+
+>=20
+> too?  Or I guess we could make the argument that there don't seem to be a=
+ny
+> real devices without the media GT, so it only became possible to trigger =
+this
+> once we added configfs support for manually disabling GTs?
+> In that case,
+>=20
+> Fixes: 7abd69278bb5 ("drm/xe/configfs: Add attribute to disable GT types"=
+)
+> Cc: <stable@vger.kernel.org> # v6.19+
+>=20
+> minimizes the number of kernel versions this would be backported to.
 
-Hello Jani,
-Sorry to bother you. I added the helpers you suggested.
-But I understand it might not be something like what you had expected.
-If this still isn't the right approach, could you kindly help land a fix in=
- whatever form you see fit?
-This is a blocker for Google Android, so really appreciate getting it unblo=
-cked.
-Thank you so much.
+Is it possible that we have future platform that does not have media gt, an=
+d be supported with old kernel?
+For that case, it should be supported with dkms, so this Fixes tag should n=
+ot affect. Is it right?
+So, I prefer this Fixes tag.
 
-Regards
-Vidya
+LGTM.
+Reviewed-by: Shuicheng Lin <shuicheng.lin@intel.com>
 
 >=20
-> Regards
-> Vidya
 >=20
-> > BR,
-> > Jani.
+> Anyway, the change itself is
+>=20
+> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+>=20
+> > ---
+> > Changes in v2:
+> > - EDITME: describe what is new in this series revision.
+> > - EDITME: use bulletpoints and terse descriptions.
+> > - Link to v1:
+> > https://patch.msgid.link/20260302-check-for-null-media_gt-in-intel_hdc
+> > p_gsc_check_status-v1-1-163d5f826b30@intel.com
+> > ---
+> >  drivers/gpu/drm/xe/display/xe_hdcp_gsc.c | 12 ++++++++++--
+> >  1 file changed, 10 insertions(+), 2 deletions(-)
 > >
+> > diff --git a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
+> > b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
+> > index 29c72aa4b0d2..33494b86205d 100644
+> > --- a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
+> > +++ b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
+> > @@ -37,9 +37,17 @@ static bool intel_hdcp_gsc_check_status(struct
+> drm_device *drm)
+> >  	struct xe_device *xe =3D to_xe_device(drm);
+> >  	struct xe_tile *tile =3D xe_device_get_root_tile(xe);
+> >  	struct xe_gt *gt =3D tile->media_gt;
+> > -	struct xe_gsc *gsc =3D &gt->uc.gsc;
+> > +	struct xe_gsc *gsc;
+> > +
+> > +	if (!gt) {
+> > +		drm_dbg_kms(&xe->drm,
+> > +			    "not checking GSC status for HDCP2.x: media GT not
+> present or disabled\n");
+> > +		return false;
+> > +	}
+> > +
+> > +	gsc =3D &gt->uc.gsc;
 > >
-> > >  	u32 offset;
-> > >
-> > >  	/* FIXME not quite sure how/if these apply to the chroma plane */
+> > -	if (!gsc || !xe_uc_fw_is_available(&gsc->fw)) {
+> > +	if (!xe_uc_fw_is_available(&gsc->fw)) {
+> >  		drm_dbg_kms(&xe->drm,
+> >  			    "GSC Components not ready for HDCP2.x\n");
+> >  		return false;
 > >
+> > ---
+> > base-commit: 9ac7dca8d82a4e6d9806ac6c991f0777338833bb
+> > change-id:
+> > 20260302-check-for-null-media_gt-in-intel_hdcp_gsc_check_status-
+> 071898
+> > b8a402
+> >
+> > Best regards,
 > > --
-> > Jani Nikula, Intel
+> > Gustavo Sousa <gustavo.sousa@intel.com>
+> >
+>=20
+> --
+> Matt Roper
+> Graphics Software Engineer
+> Linux GPU Platform Enablement
+> Intel Corporation
