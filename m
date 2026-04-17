@@ -4,60 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E77B4F4368D
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Apr 2026 11:33:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66D53F4368D
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Apr 2026 11:42:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6886710E0B5;
-	Fri, 17 Apr 2026 11:33:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21D6810E2A4;
+	Fri, 17 Apr 2026 11:42:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NfdUgFmp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mka+WAN8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E13F610E0B5;
- Fri, 17 Apr 2026 11:33:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C98D10E2A4;
+ Fri, 17 Apr 2026 11:42:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776425593; x=1807961593;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=TOKEbUDpTPdcsn8AYMV4qkUfNaCns+yT1nYz9dRg7oM=;
- b=NfdUgFmpqNBRRVikJky2XFLLfhCMHEnw4/ckPAsgR3YzRKttHSwYgZVG
- Ff0cWpclLu+kXBeXSt1F6Lr6lbtgwFML69knsCPe5uR3toN+XRfDNUqE9
- R6mJXEoG5jTdKl8BSaReaYsXlfEOI2MfWrthpW2atzPAyEaczWXxggmo0
- 4+1wGcGNHya4MvcLLn/30QpmaAEy03t2ePyDmBzc7R2PZzVSR6LbbP0w5
- RvjZO1gPby27zB+a0dQVeQbtjkYVRgb/otWY7zsu0xojVshchikcZNK5C
- Omvn0aePp/nuGn7UhFAmOblH6MRCeUoec1vVvYWKpPGPi2LRw+wZ+0iCn g==;
-X-CSE-ConnectionGUID: CH0J0H+dRYOZ6EyhLRMrzQ==
-X-CSE-MsgGUID: hJpEHIpuR06XTuqTccBMsw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11761"; a="81310711"
-X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; d="scan'208";a="81310711"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2026 04:33:12 -0700
-X-CSE-ConnectionGUID: rxWK7+q3RSCVRSEfHiV3XQ==
-X-CSE-MsgGUID: Vb5Ktbq7SoqKt4jUqeX9eg==
+ t=1776426133; x=1807962133;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=+yMaBGkT5GLi27mf+7rNlL0AO1QJDf3A+Ucoz5SkT7Q=;
+ b=mka+WAN8n/TYyZBJ5DcU5X4CSKGD1DJHxC2JW+pD5HKCLj9DCB4IuKx5
+ WJCIpY8n/lltPAWFTU6xwMrb/44y4Xd43+1cYdrPcXFG0yv4q/31gvzE4
+ WjLOSZ9zLA3dX42TtGZfpb8EETsEfVtJLtZ/tLYj8zJzfp9cGT3+lLtdx
+ nj5QdZUkjfKhNOeg5coWT0cKg3jtMwAYQChicpQJ1QGe+NKU4MsKIzKRc
+ ZRhVApcKPc2WzD+vsR/OS8aSJG7jxxJIugVIPxgEWd+5H4x6oChx7SQsX
+ W2Kvwa98YlvVeHh30TbSnT7nJSxqx54ECZSlmIk5iPB4m5lyi9azS3Ytw g==;
+X-CSE-ConnectionGUID: OMgohNZHQQ6CQ7asagJDUA==
+X-CSE-MsgGUID: VcniIuzMRh6/kfBc0ep2IQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11761"; a="77315713"
+X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; d="scan'208";a="77315713"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2026 04:42:13 -0700
+X-CSE-ConnectionGUID: STjVfVrtT6mdLkG7BgdJkw==
+X-CSE-MsgGUID: zcAzm+/6RHSlYlBhRrg1Ug==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; d="scan'208";a="235005041"
-Received: from zzombora-mobl1 (HELO localhost) ([10.245.245.176])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2026 04:33:11 -0700
-Date: Fri, 17 Apr 2026 14:33:07 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 04/11] drm/i915: Introduce pin_params.needs_cpu_lmem_access
-Message-ID: <aeIac-2O3xy6uso6@intel.com>
-References: <20260416174448.28264-1-ville.syrjala@linux.intel.com>
- <20260416174448.28264-5-ville.syrjala@linux.intel.com>
- <8e03ca87134e5bebee44aabeccd5fb86a096d4fa@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; d="scan'208";a="227886606"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO [10.245.245.184])
+ ([10.245.245.184])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2026 04:42:11 -0700
+Message-ID: <aff8ca0727ba41ca69f3e8c8255a33219727b4be.camel@linux.intel.com>
+Subject: Re: [PATCH] drm/gpusvm, pagemap: Do not assume DRM pagemap owns
+ device pages
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: francois.dugast@intel.com, himal.prasad.ghimiray@intel.com
+Date: Fri, 17 Apr 2026 13:42:09 +0200
+In-Reply-To: <20260409015512.3670302-1-matthew.brost@intel.com>
+References: <20260409015512.3670302-1-matthew.brost@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <8e03ca87134e5bebee44aabeccd5fb86a096d4fa@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,116 +71,125 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Apr 17, 2026 at 12:39:54PM +0300, Jani Nikula wrote:
-> On Thu, 16 Apr 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >
-> > Add a new flag pin_params.neeeds_cpu_lmem_access so that the
-> > low level pinning code doesn't need to peek into the display
-> > driver's framebuffer structure.
-> >
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_fb_pin.h | 1 +
-> >  drivers/gpu/drm/i915/i915_fb_pin.c          | 4 +++-
-> >  drivers/gpu/drm/xe/display/xe_fb_pin.c      | 3 ++-
-> >  3 files changed, 6 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.h b/drivers/gpu/drm/i915/display/intel_fb_pin.h
-> > index e6271437459d..bcf5a1f46092 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_fb_pin.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_fb_pin.h
-> > @@ -19,6 +19,7 @@ struct intel_fb_pin_params {
-> >  	unsigned int alignment;
-> >  	unsigned int phys_alignment;
-> >  	unsigned int vtd_guard;
-> > +	bool needs_cpu_lmem_access;
-> >  };
-> >  
-> >  struct i915_vma *
-> > diff --git a/drivers/gpu/drm/i915/i915_fb_pin.c b/drivers/gpu/drm/i915/i915_fb_pin.c
-> > index 780be25ad43b..96ffc4b0d809 100644
-> > --- a/drivers/gpu/drm/i915/i915_fb_pin.c
-> > +++ b/drivers/gpu/drm/i915/i915_fb_pin.c
-> > @@ -61,7 +61,7 @@ intel_fb_pin_to_dpt(const struct drm_framebuffer *fb,
-> >  			 * ensure it is always in the mappable part of lmem, if this is
-> >  			 * a small-bar device.
-> >  			 */
-> > -			if (intel_fb_needs_cpu_access(fb))
-> > +			if (pin_params->needs_cpu_lmem_access)
-> >  				flags &= ~I915_BO_ALLOC_GPU_ONLY;
-> >  			ret = __i915_gem_object_migrate(obj, &ww, INTEL_REGION_LMEM_0,
-> >  							flags);
-> > @@ -275,6 +275,7 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_state,
-> >  			.alignment = intel_plane_fb_min_alignment(plane_state),
-> >  			.phys_alignment = intel_plane_fb_min_phys_alignment(plane_state),
-> >  			.vtd_guard = intel_plane_fb_vtd_guard(plane_state),
-> > +			.needs_cpu_lmem_access = intel_fb_needs_cpu_access(&fb->base),
-> 
-> IIUC this path never uses .needs_cpu_lmem_access, but you initialize it
-> anyway. What I find confusing is initializing it here apparently
-> unnecessarily, but then leaving it out on a number of other paths that
-> don't need it.
+On Wed, 2026-04-08 at 18:55 -0700, Matthew Brost wrote:
+> Update drm_pagemap_page_zone_device_data() to derive the pgmap ops
+> from
+> the page and compare them against the DRM pagemap ops. If the ops do
+> not
+> match, return NULL.
+>=20
+> Also harden two risky call sites by checking for NULL after
+> hmm_range_fault() or migrate_vma_setup() when migrating to device
+> memory, as it is possible to encounter device pages that are not
+> owned
+> by DRM pagemap.
+>=20
+> Suggested-by: sashiko.dev
 
-Hmm, yeah looks like we don't have the explicit migrate stuff
-in the DPT path for some reason.
+Is there a proper (fake) email we can use?
 
-I'm sure the migration is happening though because I've used
-DG2 on a small BAR system quite a bit, and page flips with clear
-color work fine on i915 (unlike on xe+small BAR where it just
-fails). And I remember even seeing the migration popping up in
-the profiles. Now I'm wondering what might be triggering it
-before the vma has been pinned...
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+> =C2=A0drivers/gpu/drm/drm_gpusvm.c=C2=A0 |=C2=A0 5 +++++
+> =C2=A0drivers/gpu/drm/drm_pagemap.c | 14 ++++++++++----
+> =C2=A0include/drm/drm_pagemap.h=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 5 ++++-
+> =C2=A03 files changed, 19 insertions(+), 5 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/drm_gpusvm.c
+> b/drivers/gpu/drm/drm_gpusvm.c
+> index 365a9c0b522a..b3cccd047a21 100644
+> --- a/drivers/gpu/drm/drm_gpusvm.c
+> +++ b/drivers/gpu/drm/drm_gpusvm.c
+> @@ -1506,6 +1506,11 @@ int drm_gpusvm_get_pages(struct drm_gpusvm
+> *gpusvm,
+> =C2=A0			struct drm_pagemap_zdd *__zdd =3D
+> =C2=A0				drm_pagemap_page_zone_device_data(pa
+> ge);
+> =C2=A0
+> +			if (!__zdd) {
+> +				err =3D -EINVAL;
+> +				goto err_unmap;
+> +			}
+> +
 
-Ideally I'd like to get rid of this whole thing and instead have
-userspace put the clear color into its own separate little BO.
-That way we wouldn't have to waste the precious CPU visible LMEM
-on the full framebuffers. The kernel part of that is pretty trivial
-and I have the patches in some branch, but sadly the Mesa side
-is much more complicated. That particular onion has at least four
-layers through which the extra dmabuf would need to get plumbed :(
+Here, __zdd is never dereferenced. As I understand it, the current
+behaviour (before this patch) is that pages from mixed pagemaps are
+generating an -EOPNOTSUPP, re-trying migration, which I think is the
+correct behaviour, save possibly for foreign device-coherent pages.
 
-> 
-> Other than that,
-> 
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-> 
-> >  		};
-> >  		int fence_id = -1;
-> >  
-> > @@ -289,6 +290,7 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_state,
-> >  		struct intel_fb_pin_params pin_params = {
-> >  			.view = &plane_state->view.gtt,
-> >  			.alignment = intel_plane_fb_min_alignment(plane_state),
-> > +			.needs_cpu_lmem_access = intel_fb_needs_cpu_access(&fb->base),
-> >  		};
-> >  
-> >  		vma = i915_dpt_pin_to_ggtt(fb->dpt, pin_params.alignment / 512);
-> > diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> > index 205492639dba..a4eb06cfa769 100644
-> > --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> > +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> > @@ -335,7 +335,7 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
-> >  
-> >  	refcount_set(&vma->ref, 1);
-> >  	if (IS_DGFX(to_xe_device(bo->ttm.base.dev)) &&
-> > -	    intel_fb_needs_cpu_access(&fb->base) &&
-> > +	    pin_params->needs_cpu_lmem_access &&
-> >  	    !(bo->flags & XE_BO_FLAG_NEEDS_CPU_ACCESS)) {
-> >  		struct xe_vram_region *vram = xe_device_get_root_tile(xe)->mem.vram;
-> >  
-> > @@ -474,6 +474,7 @@ int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
-> >  	struct intel_fb_pin_params pin_params = {
-> >  		.view = &new_plane_state->view.gtt,
-> >  		.alignment = plane->min_alignment(plane, fb, 0),
-> > +		.needs_cpu_lmem_access = intel_fb_needs_cpu_access(fb),
-> >  	};
-> >  
-> >  	if (reuse_vma(new_plane_state, old_plane_state))
-> 
-> -- 
-> Jani Nikula, Intel
+Also see below reasoning WRT "owner".
 
--- 
-Ville Syrjälä
-Intel
+> =C2=A0			if (!ctx->allow_mixed &&
+> =C2=A0			=C2=A0=C2=A0=C2=A0 zdd !=3D __zdd && i > 0) {
+> =C2=A0				err =3D -EOPNOTSUPP;
+> diff --git a/drivers/gpu/drm/drm_pagemap.c
+> b/drivers/gpu/drm/drm_pagemap.c
+> index d82ea7ccb8da..95c951c5b569 100644
+> --- a/drivers/gpu/drm/drm_pagemap.c
+> +++ b/drivers/gpu/drm/drm_pagemap.c
+> @@ -753,10 +753,16 @@ int drm_pagemap_migrate_to_devmem(struct
+> drm_pagemap_devmem *devmem_allocation,
+> =C2=A0				own_pages++;
+> =C2=A0				goto next;
+> =C2=A0			}
+> -			cur.dpagemap =3D src_zdd->dpagemap;
+> -			cur.ops =3D src_zdd->devmem_allocation->ops;
+> -			cur.device =3D cur.dpagemap->drm->dev;
+> -			pages[i] =3D src_page;
+> +			if (src_zdd) {
+> +				cur.dpagemap =3D src_zdd->dpagemap;
+> +				cur.ops =3D src_zdd-
+> >devmem_allocation->ops;
+> +				cur.device =3D cur.dpagemap->drm->dev;
+> +				pages[i] =3D src_page;
+> +			} else {
+
+This shouldn't happen, because we select device_private pages based on
+dev_private owner. IMO we shouldn't allow non drm_pagemap
+device_private pages sharing owner because we wouldn't now how to
+migrate them.
+
+> +				npages =3D i;
+> +				err =3D -EINVAL;
+> +				goto err_finalize;
+> +			}
+> =C2=A0		}
+> =C2=A0		if (!pages[i]) {
+> =C2=A0			cur.dpagemap =3D NULL;
+> diff --git a/include/drm/drm_pagemap.h b/include/drm/drm_pagemap.h
+> index 95eb4b66b057..9b7c50932db5 100644
+> --- a/include/drm/drm_pagemap.h
+> +++ b/include/drm/drm_pagemap.h
+> @@ -367,12 +367,15 @@ int drm_pagemap_reinit(struct drm_pagemap
+> *dpagemap);
+> =C2=A0 * drm_pagemap_page_zone_device_data() - Page to zone_device_data
+> =C2=A0 * @page: Pointer to the page
+> =C2=A0 *
+> - * Return: Page's zone_device_data
+> + * Return: Page's zone_device_data if owned by DRM pagemap, NULL
+> otherwise
+> =C2=A0 */
+> =C2=A0static inline struct drm_pagemap_zdd
+> *drm_pagemap_page_zone_device_data(struct page *page)
+> =C2=A0{
+> =C2=A0	struct folio *folio =3D page_folio(page);
+> =C2=A0
+> +	if (WARN_ON_ONCE(page_pgmap(page)->ops !=3D
+> drm_pagemap_pagemap_ops_get()))
+
+Driver could be handing a separate ops. Like if we wanted to check for
+wedging / unplug before trying to migrate back to system, so this
+wouldn't work.
+
+So in general I don't think this patch is correct. Perhaps we should
+look at updating the docs around owner assignment, though and also
+perhaps make drm_gpusvm_get_pages() a bit more permissive?
+
+/Thomas
+
+
+> +		return NULL;
+> +
+> =C2=A0	return folio_zone_device_data(folio);
+> =C2=A0}
+> =C2=A0
