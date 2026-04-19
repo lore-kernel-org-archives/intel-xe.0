@@ -4,73 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B87FAF5A8AA
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Apr 2026 18:05:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C7E1F5A8AC
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Apr 2026 18:05:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78F1910EAFC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C005710EB04;
 	Mon, 20 Apr 2026 18:05:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="CmYidhQJ";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="qiTsWdZw";
 	dkim-atps=neutral
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
- [213.167.242.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17B5A10E407;
- Mon, 20 Apr 2026 04:50:53 +0000 (UTC)
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi
- [91.158.153.178])
- by perceval.ideasonboard.com (Postfix) with ESMTPSA id AF9D778C;
- Mon, 20 Apr 2026 06:49:12 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
- s=mail; t=1776660554;
- bh=iwh3N+VethXilsaJ64nNuyiBXMJyYXgfop2Jfia4Qv8=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=CmYidhQJFff1Jy2JNWzkMs/4kz+pEMeZH1/ioKbzV/uchyIkn9+05FEWUXLnWC8Vs
- QcM0jmCS1SJ7AfsP6G+9nT1W0hvFAwPxDaaDadIXwF1BdzgdVgUA2jyoHdbwIOK8ma
- xdDODxQATbV0t+7b6dsvrTR3c1l8ydq0EsPQejfk=
-Message-ID: <a2e60e74-a1be-469d-8f4d-ecce1f30b517@ideasonboard.com>
-Date: Mon, 20 Apr 2026 07:50:46 +0300
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com
+ [209.85.167.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E626710EB1D
+ for <intel-xe@lists.freedesktop.org>; Sun, 19 Apr 2026 00:57:16 +0000 (UTC)
+Received: by mail-lf1-f48.google.com with SMTP id
+ 2adb3069b0e04-5a413f83226so2501142e87.1
+ for <intel-xe@lists.freedesktop.org>; Sat, 18 Apr 2026 17:57:16 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1776560235; cv=none;
+ d=google.com; s=arc-20240605;
+ b=PyjItCgzy0fJSz4gyjm+jQGaEmNsufhie5uILVDD5YXUMQlx0t1Rac7KPlCrAhadAi
+ qxZIKQIeBF/7glrzuhDhIr6QyST0oWS/XvTre5PkWBz3BpDeSAj/4EL+VEDEXLQ3PQAh
+ VHHB8wuuqBpPD19ndSlUuAmo5TJKjwuPsj3NZKS28aoMpdvcIy2+Bl13ZEsbIYiOhrjn
+ hrlCZqipHihNFc6R9za94CbjF4MWZ7CABDTpNBEq40Q8SxfAj09eRrIubvbH+o/FMcLB
+ oR8qooF/0cwIXkRHmW6skP9drSBOrYwqH8nlng8E0nOUAOwKbBDoKMGIWBDogSxI4sll
+ cKaA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=cc:to:subject:message-id:date:from:mime-version:dkim-signature;
+ bh=8BlyLxZ5CZVaCOKdemW7VZexRc0HCwL/kqHxCDyF8DA=;
+ fh=MSJSZyDekvFYSQg+Vook5LKASgnE8PxwX80rQDRx0MA=;
+ b=Q3CLpfbbBvmNQLGJiHNSmDIyxvUij4Imq98NKg2vb83dtFD8LwhjYp3GffRNQaby/S
+ 7v7JY24noWi87q3/uDL2fkD0LU9zI49LzO+HD2NE40/CzyvwKCfP6EDY2+WUdwMkH6mZ
+ ZCQC1puZHbJzHUs09m/UGxulpy3wTFtVOtrN9LLu/pooJyMtHneWsbMLI6nbjg8cCbOv
+ fPZpYQnO4nOwLSJqylUlT1hYsLn+tkMgtjh3igVXDKu4B5W/6kr0Zj9OfnBSdWAD7Wpd
+ pMxQxgkC4VlcoMEBeaSLmOXGAVE3OFKv0b1A9kZkkI+1WAO6MoCXo0RnwfnP4CcqQunJ
+ k7cw==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1776560235; x=1777165035; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=8BlyLxZ5CZVaCOKdemW7VZexRc0HCwL/kqHxCDyF8DA=;
+ b=qiTsWdZw+tZdGA428A2UM3pMsfIAY0aNPb6+um52QrD/o9PdxhwAjo8/ResJRs4Fj3
+ 1KoRZsshIJXKGEaZA08yC1sdY+Y6OPkpVAlmDcygDv8+2KMuF9WbkbdxNG8YjzyqvuYP
+ nijyhTH61WWyU3ppH11itcwFVgJ7hjt9G8eoKLsEzHAggOmZJ+2s85E1MquQPdQESsak
+ OEf4Rn50reLUwp7CoG02aNPv12K7/7Hu0JjFBhoizRAT9W4cHRCQSmMzerVgSs/NxjXL
+ UcIbOSgWiak4sabs7KV1Tu4OM5U1ayAuSuaxKby3sR8S1mAqZXMmGNhp2gzCZHxT5BDg
+ cNBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1776560235; x=1777165035;
+ h=cc:to:subject:message-id:date:from:mime-version:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=8BlyLxZ5CZVaCOKdemW7VZexRc0HCwL/kqHxCDyF8DA=;
+ b=MG5rW9hhPK+tQ1KeYnSOy0fMR6V1AL3g3Z0PV45MamsDmwtpxgQLgMVpLO8DoqdZjM
+ /BnMPjpFq/ICHml3aRxJ9rLK2P1TFkLQbbMl9QLrmxolEVMOGnUnajpzwkC6h90C62+Q
+ oaBF64idaDuD5lBYER3UvtNR8VlEdYFsf8LYAapgPq4M6y8o5uiMUiM8d2qBXw0xivwu
+ x2wiOAFMHrlT952CIapc8Msu0Ev10RdR5AtNhhDfJmxDy5KBo3J/bgsH70Mx7YgYAMtx
+ EuppX5AbYJWKIwNd5neEo2oheM4k0BkWdevKy+AxvRQEUgNn4PirT+6VhGiLM4kr3OJg
+ cAjw==
+X-Gm-Message-State: AOJu0Yz2hpwXhLbP8OX+3sGhZvUItWmCqrjGXLJSs7kZd4wUedl+l//f
+ exAwUdyI1MPAI5KSBK8rCxCKdD4BXqRIxj2j7VGyqUNtduV9y/HOyXkt1xG+f4swUx29aT9s5OJ
+ jixedImAmgATGaOVun2/1ylL/5p3vdvo3pY5SKsI0cg==
+X-Gm-Gg: AeBDieuqXqAmtu5V0Z588uD7y99xIF9FReqJ8pE1J9HtGquzf2rOOEXvbO2h2oeVkLR
+ JrxX1j5ywE0ippywDw27+TOlAEERYSfhVcFvRwAs8h1ipzFy/o5xmBDG2EIgXCAGTZTBvM416K6
+ mfOb0mXwWGKz9NXfh4Go95mnmdovOdY49lwNhR8Vg221gExz2O28RwrM43q+7eLcQMdkHss9Wd9
+ b+NaoIFsZ7AMdHK3+N8dW75Pzn8lfnpWIFEgDzaRroy+s8OHGECPFurl/5numJh180LZxrX+sZd
+ hk4MJQHyyMWFVRxL2LKRkx4nQ3EEucCPvjp3cjskOEYisn0OKpWZUwiT2dVO8THAugOIE68s6gj
+ uMsEGpA9IxpnE9FoHFjbENa/47hr1vM2tog==
+X-Received: by 2002:a05:6512:3b8a:b0:5a2:c66a:d6d1 with SMTP id
+ 2adb3069b0e04-5a4171749fbmr2168270e87.6.1776560234532; Sat, 18 Apr 2026
+ 17:57:14 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] drm/connector: report IRQ_HPD events to
- drm_connector_oob_hotplug_event()
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-usb@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Adrien Grassein <adrien.grassein@gmail.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov
- <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Pengyu Luo <mitltlatltl@gmail.com>,
- Nikita Travkin <nikita@trvn.ru>, Yongxing Mou <yongxing.mou@oss.qualcomm.com>
-References: <20260416-hpd-irq-events-v1-0-1ab1f1cfb2b2@oss.qualcomm.com>
- <20260416-hpd-irq-events-v1-1-1ab1f1cfb2b2@oss.qualcomm.com>
- <51b7c44e-36c9-461f-983a-eaa86eeb8cfd@ideasonboard.com>
- <6z572fdjkvjqvedifwvotgdy4lcrifiqvkjpnutousjqc6764r@zepfzkqy2kbu>
-Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <6z572fdjkvjqvedifwvotgdy4lcrifiqvkjpnutousjqc6764r@zepfzkqy2kbu>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: Marc <marclecussano@gmail.com>
+Date: Sun, 19 Apr 2026 10:57:03 +1000
+X-Gm-Features: AQROBzBzxdyZjUH2O58H9asnceBzqmGR02_Y-djIZKF45SbgOnnxBROju3s8pi8
+Message-ID: <CAF3NygikxYLtJzcjajSV4o68bjJ-9aPczPqzaHo_=r1OPoeaew@mail.gmail.com>
+Subject: [BUG] xe: Lunar Lake hard freeze on USB-C DP-altmode (MSI MPG
+ 272URX), TC1 PHY pageflip deadlock, no kernel error before lockup
+To: intel-xe@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
+Content-Type: multipart/alternative; boundary="000000000000b393b9064fc5a962"
 X-Mailman-Approved-At: Mon, 20 Apr 2026 18:05:33 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -86,78 +98,481 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+--000000000000b393b9064fc5a962
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 18/04/2026 01:32, Dmitry Baryshkov wrote:
-> On Thu, Apr 16, 2026 at 11:10:03AM +0300, Tomi Valkeinen wrote:
->> Hi,
->>
->> On 16/04/2026 02:22, Dmitry Baryshkov wrote:
->>> The DisplayPort standard defines a special kind of events called IRQ.
->>> These events are used to notify DP Source about the events on the Sink
->>> side. It is extremely important for DP MST handling, where the MST
->>> events are reported through this IRQ.
->>>
->>> In case of the USB-C DP AltMode there is no actual HPD pulse, but the
->>> events are ported through the bits in the AltMode VDOs.
->>>
->>> Extend the drm_connector_oob_hotplug_event() interface and report IRQ
->>> events to the DisplayPort Sink drivers.
->>>
->>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
->>> ---
->>>    drivers/gpu/drm/drm_connector.c          |  4 +++-
->>>    drivers/usb/typec/altmodes/displayport.c | 12 ++++++++----
->>>    include/drm/drm_connector.h              |  3 ++-
->>>    3 files changed, 13 insertions(+), 6 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
->>> index 47dc53c4a738..5fdacbd84bd7 100644
->>> --- a/drivers/gpu/drm/drm_connector.c
->>> +++ b/drivers/gpu/drm/drm_connector.c
->>> @@ -3510,6 +3510,7 @@ struct drm_connector *drm_connector_find_by_fwnode(struct fwnode_handle *fwnode)
->>>     * drm_connector_oob_hotplug_event - Report out-of-band hotplug event to connector
->>>     * @connector_fwnode: fwnode_handle to report the event on
->>>     * @status: hot plug detect logical state
->>> + * @irq_hpd: HPD pulse detected
->>>     *
->>>     * On some hardware a hotplug event notification may come from outside the display
->>>     * driver / device. An example of this is some USB Type-C setups where the hardware
->>> @@ -3520,7 +3521,8 @@ struct drm_connector *drm_connector_find_by_fwnode(struct fwnode_handle *fwnode)
->>>     * a drm_connector reference through calling drm_connector_find_by_fwnode().
->>>     */
->>>    void drm_connector_oob_hotplug_event(struct fwnode_handle *connector_fwnode,
->>> -				     enum drm_connector_status status)
->>> +				     enum drm_connector_status status,
->>> +				     bool irq_hpd)
->> I find the "IRQ HPD" naming always confusing, even if I'm somewhat familiar
->> with DP, but if someone has mainly worked on HDMI, I'm sure it's even worse.
->>
->> Can we define this a bit more precisely? Is 'irq_hpd' only for displayport?
->> If so, perhaps 'dp_irq_hpd' or 'displayport_irq_hpd'. I might even call it
->> 'dp_hpd_pulse', but maybe that's not good as the spec talks about HPD pulse
->> for both short and long ones (although in the kernel doc you just write "HPD
->> pulse")... The kernel doc could be expanded a bit to make it clear what this
->> flag indicates.
-> 
-> I attempted to stay away from defining a DP-specific flag, keeping it
-> generic enough. HDMI is pretty close (IMO) to requiring separate flag in
+  Hi,
 
-If it's not specifically the DP IRQ HPD, then we need to define what it 
-means. I tried to think what it would mean with HDMI, but I didn't come 
-up with anything.
 
-> Linux. Likewise I'd rather not use "pulse". The DP AltMode defines a bit
-> in the VDO rather than a pulse.
-> 
-> Anyway, if irq_hpd doesn't sound precise enough, what about "bool
-> extra_irq"? This would convey that this is the extra hpd-related IRQ,
-> but it would also be obvious that it's not related to the HPD pin
-> itself.
-We'd still need to define what exactly it means. I think it might be 
-better to just define it as the DP IRQ HPD, as then the meaning is clear.
+  Reporting a reproducible hard freeze on Lunar Lake when driving an
+external
+  DP 2.1 UHBR20 monitor (MSI MPG 272URX QD-OLED, 4K@240Hz) over USB-C DP
+  alternate mode. Happy to run debug kernels, collect traces, or bisect.
 
-Also, would an enum flags parameter be better than a bool parameter?
 
-  Tomi
 
+  =3D=3D=3D Hardware =3D=3D=3D
+
+  - Lenovo Yoga Slim 7 14ILL10 (83JX), Intel Core Ultra / Lunar Lake
+
+  - GPU: 0000:00:02.0, device ID 8086:64a0, display version 20.00 B0
+
+  - Monitor: MSI MPG 272URX QD-OLED, 3840x2160@240Hz, DP 2.1 UHBR20 + DSC
+
+  - Connection: native DP-altmode via USB-C (no dock, no hub); laptop has
+
+    no native DP connector. All historic errors land on CONNECTOR DP-1 /
+
+    ENCODER DDI TC1 / PHY TC1.
+
+  - Laptop also has native HDMI-A-1 (TMDS, capped 4K60), unaffected.
+
+
+
+  =3D=3D=3D Software =3D=3D=3D
+
+  - Bazzite (Fedora 43 rpm-ostree), kernel 6.17.7-ba29.fc43.x86_64
+
+  - xe 1.1.0, DMC xe2lpd_dmc.bin v2.29, GuC lnl_guc_70.bin 70.58.0,
+
+    HuC lnl_huc.bin 9.4.13, GSC lnl_gsc_1.bin 104.0.5.1429
+
+  - Compositor: KDE Plasma / kwin_wayland
+
+  - Current kernel cmdline mitigations (see below):
+
+      xe.psr_safest_params=3DY xe.enable_psr2_sel_fetch=3DN xe.enable_sagv=
+=3D0
+
+
+
+  =3D=3D=3D Two distinct failure signatures observed =3D=3D=3D
+
+
+
+  Bug A =E2=80=94 UHBR20 link training (no mitigation applied):
+
+    xe 0000:00:02.0: [drm] drm_WARN_ON("UHBR20 not supported for the
+platform")
+    intel_dp_retrain_link / intel_dp_link_check
+
+    pipe state doesn't match: port_clock expected 2000000 found 162000
+    GT0/GT1: TLB invalidation fence timeout
+
+    i2c_designware + Bluetooth hci0 tx timeout cascade
+
+    =E2=86=92 whole-platform stall within seconds of connect.
+
+
+
+  Variants seen across boots:
+
+    - "Interlane align timeout"
+
+    - "Can't reduce link training parameters after failure"
+
+    - "Failed to start 128b/132b TPS2 CDS"
+
+    - "Timeout waiting for DDI BUF A to get active"
+
+    - "CPU pipe B FIFO underrun"
+
+
+
+  Workaround (avoids Bug A at runtime): per-connected-DP writes
+
+    /sys/kernel/debug/dri/.../DP-1/i915_dp_force_link_rate =3D 810000  (HBR=
+3)
+
+    /sys/kernel/debug/dri/.../DP-1/i915_dp_force_link_retrain =3D 1
+
+  applied via udev on hot-plug + systemd unit at boot. HBR3 cap eliminates
+
+  the UHBR20 warning and the link-training cascade.
+
+
+
+  Bug B =E2=80=94 silent pageflip deadlock at HBR3 (after Bug A mitigated):
+
+    After 10 minutes to 6 hours of use, the monitor freezes mid-frame with
+    image intact (scanout still running, flip queue wedged). Only kernel-
+
+    adjacent signal recovered from the journal:
+
+      kwin_wayland: Pageflip timed out! This is a bug in the xe kernel
+driver
+    Sometimes followed by:
+
+      GT0/GT1: TLB invalidation fence timeout
+
+    Then the platform is completely locked: no SysRq, no SSH, no journal
+
+    flush. Kernel dies before anything useful is written.
+
+
+
+  Multiple reboots (~20 captured) show a single consistent root-cause
+
+  class: all errors on CONNECTOR DP-1 / ENCODER DDI TC1 / PHY TC1.
+
+
+
+  =3D=3D=3D Hypothesis =3D=3D=3D
+  USB-C DP-altmode TC1 PHY power-state transition deadlock during
+
+  link maintenance (recalibration / SSC / power-state change mid-stream).
+
+  The pageflip-stuck-with-image-intact symptom argues against DSC or
+
+  link-bandwidth failure (which would blank or corrupt). Consistent with
+
+  PHY-level deadlock while the scanout engine is still running.
+
+
+
+  =3D=3D=3D What we ruled out =3D=3D=3D
+
+  - DMC: xe2lpd_dmc.bin v2.29 loads clean every boot.
+  - GuC: lnl_guc_70.bin 70.58.0 clean, no CT-dead, no GPU reset, no GuC
+
+    hang in any boot log.
+
+  - PSR: external monitor reports "Sink support: PSR =3D no, Panel Replay
+
+    =3D no" at /sys/kernel/debug/dri/.../DP-1/i915_psr_status. No PSR
+
+    running on this link. xe.psr_safest_params=3DY and
+    xe.enable_psr2_sel_fetch=3DN are no-ops here. Kept only because they're
+
+    harmless on eDP.
+
+  - DSC: tried forcing DSC on, worsened stability. Removed. Symptom
+
+    (frozen image intact) is inconsistent with DSC failure.
+
+  - MCE / OOM / thermal / NMI / RCU stall / NVMe / PCIe AER: all clean.
+
+  - Windows on same hardware + same monitor + same USB-C cable: no
+
+    freezes, full 4K@240 UHBR20 works indefinitely. Hardware and cable
+
+    are not at fault.
+
+  - AnyDesk / userspace daemons: installed after most freezes; not causal.
+
+
+
+  =3D=3D=3D Monitor OSD =3D=3D=3D
+
+  MSI MPG 272URX does not expose a "DP 1.4 / 2.1" toggle in OSD
+
+  (confirmed on firmware shipping to end users), so host-side fallback
+
+  to DP 1.4 is the only available workaround. HBR3 cap via debugfs
+
+  works at runtime; module-param equivalent (xe.* params) is 0444 and
+
+  only settable at boot.
+
+
+
+  =3D=3D=3D What I can provide =3D=3D=3D
+
+  - Full dmesg from a boot with reproduction.
+
+  - Boots with drm.debug=3D0x1e if useful.
+
+  - Willing to bisect between 6.16/6.17/6.18 on the TC PHY / xe display
+
+    paths.
+
+  - Willing to test patches against 6.17 or mainline.
+
+
+
+  Thanks for any pointers =E2=80=94 happy to file at
+
+  https://gitlab.freedesktop.org/drm/xe/kernel/-/issues if preferred.
+
+
+
+  -- Marc
+
+--000000000000b393b9064fc5a962
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: base64
+
+PGRpdiBkaXI9Imx0ciI+wqAgSGksIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIDxicj7CoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCA8YnI+wqAgUmVwb3J0aW5nIGEgcmVwcm9kdWNpYmxlIGhhcmQgZnJlZXplIG9uIEx1
+bmFyIExha2Ugd2hlbiBkcml2aW5nIGFuIGV4dGVybmFsIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxicj7CoCBEUCAyLjEgVUhCUjIw
+IG1vbml0b3IgKE1TSSBNUEcgMjcyVVJYIFFELU9MRUQsIDRLQDI0MEh6KSBvdmVyIFVTQi1DIERQ
+PGJyPsKgIGFsdGVybmF0ZSBtb2RlLiBIYXBweSB0byBydW4gZGVidWcga2VybmVscywgY29sbGVj
+dCB0cmFjZXMsIG9yIGJpc2VjdC4gwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqA8YnI+wqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgPGJyPsKgID09PSBIYXJk
+d2FyZSA9PT0gwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqA8YnI+wqAgLSBMZW5v
+dm8gWW9nYSBTbGltIDcgMTRJTEwxMCAoODNKWCksIEludGVsIENvcmUgVWx0cmEgLyBMdW5hciBM
+YWtlIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgPGJyPsKgIC0gR1BVOiAwMDAwOjAwOjAyLjAsIGRldmljZSBJ
+RCA4MDg2OjY0YTAsIGRpc3BsYXkgdmVyc2lvbiAyMC4wMCBCMCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoDxi
+cj7CoCAtIE1vbml0b3I6IE1TSSBNUEcgMjcyVVJYIFFELU9MRUQsIDM4NDB4MjE2MEAyNDBIeiwg
+RFAgMi4xIFVIQlIyMCArIERTQyDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+wqAgLSBDb25uZWN0aW9uOiBuYXRpdmUg
+RFAtYWx0bW9kZSB2aWEgVVNCLUMgKG5vIGRvY2ssIG5vIGh1Yik7IGxhcHRvcCBoYXMgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgPGJyPsKgIMKgIG5vIG5hdGl2ZSBEUCBjb25uZWN0b3IuIEFsbCBoaXN0b3JpYyBlcnJvcnMg
+bGFuZCBvbiBDT05ORUNUT1IgRFAtMSAvIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgPGJyPsKgIMKgIEVOQ09ERVIgRERJ
+IFRDMSAvIFBIWSBUQzEuIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgPGJyPsKgIC0gTGFwdG9wIGFsc28gaGFz
+IG5hdGl2ZSBIRE1JLUEtMSAoVE1EUywgY2FwcGVkIDRLNjApLCB1bmFmZmVjdGVkLiDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoDxicj7CoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+wqAgPT09IFNvZnR3YXJlID09PSDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoDxicj7CoCAtIEJhenppdGUgKEZlZG9yYSA0MyBycG0tb3N0
+cmVlKSwga2VybmVsIDYuMTcuNy1iYTI5LmZjNDMueDg2XzY0IMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+PGJyPsKgIC0geGUgMS4xLjAsIERNQyB4ZTJscGRfZG1jLmJpbiB2Mi4yOSwgR3VDIGxubF9ndWNf
+NzAuYmluIDcwLjU4LjAsIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxicj7CoCDCoCBIdUMgbG5sX2h1Yy5i
+aW4gOS40LjEzLCBHU0MgbG5sX2dzY18xLmJpbiAxMDQuMC41LjE0MjkgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqA8YnI+wqAgLSBDb21wb3NpdG9yOiBLREUgUGxhc21hIC8ga3dpbl93
+YXlsYW5kIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIDxicj7CoCAtIEN1cnJlbnQga2VybmVsIGNtZGxpbmUgbWl0aWdhdGlvbnMgKHNlZSBi
+ZWxvdyk6IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxicj7CoCDC
+oCDCoCB4ZS5wc3Jfc2FmZXN0X3BhcmFtcz1ZIHhlLmVuYWJsZV9wc3IyX3NlbF9mZXRjaD1OIHhl
+LmVuYWJsZV9zYWd2PTAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqA8YnI+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgPGJyPsKgID09PSBUd28gZGlzdGlu
+Y3QgZmFpbHVyZSBzaWduYXR1cmVzIG9ic2VydmVkID09PSDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoDxicj7CoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+wqAgQnVnIEEg4oCUIFVIQlIyMCBs
+aW5rIHRyYWluaW5nIChubyBtaXRpZ2F0aW9uIGFwcGxpZWQpOiDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCA8YnI+wqAgwqAgeGUgMDAwMDowMDowMi4wOiBbZHJtXSBkcm1fV0FS
+Tl9PTigmcXVvdDtVSEJSMjAgbm90IHN1cHBvcnRlZCBmb3IgdGhlIHBsYXRmb3JtJnF1b3Q7KTxi
+cj7CoCDCoCBpbnRlbF9kcF9yZXRyYWluX2xpbmsgLyBpbnRlbF9kcF9saW5rX2NoZWNrIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxicj7CoCDCoCBwaXBl
+IHN0YXRlIGRvZXNuJiMzOTt0IG1hdGNoOiBwb3J0X2Nsb2NrIGV4cGVjdGVkIDIwMDAwMDAgZm91
+bmQgMTYyMDAwPGJyPsKgIMKgIEdUMC9HVDE6IFRMQiBpbnZhbGlkYXRpb24gZmVuY2UgdGltZW91
+dCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8
+YnI+wqAgwqAgaTJjX2Rlc2lnbndhcmUgKyBCbHVldG9vdGggaGNpMCB0eCB0aW1lb3V0IGNhc2Nh
+ZGUgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqA8YnI+wqAgwqAg4oaSIHdo
+b2xlLXBsYXRmb3JtIHN0YWxsIHdpdGhpbiBzZWNvbmRzIG9mIGNvbm5lY3QuIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxicj7CoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+wqAgVmFyaWFudHMgc2Vl
+biBhY3Jvc3MgYm9vdHM6IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxicj7CoCDCoCAtICZxdW90O0ludGVy
+bGFuZSBhbGlnbiB0aW1lb3V0JnF1b3Q7IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxicj7CoCDCoCAtICZxdW90
+O0NhbiYjMzk7dCByZWR1Y2UgbGluayB0cmFpbmluZyBwYXJhbWV0ZXJzIGFmdGVyIGZhaWx1cmUm
+cXVvdDsgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgPGJyPsKgIMKgIC0gJnF1b3Q7RmFp
+bGVkIHRvIHN0YXJ0IDEyOGIvMTMyYiBUUFMyIENEUyZxdW90OyDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoDxicj7CoCDCoCAtICZxdW90O1Rp
+bWVvdXQgd2FpdGluZyBmb3IgRERJIEJVRiBBIHRvIGdldCBhY3RpdmUmcXVvdDsgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgPGJyPsKgIMKgIC0gJnF1b3Q7Q1BVIHBp
+cGUgQiBGSUZPIHVuZGVycnVuJnF1b3Q7IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgPGJyPsKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxicj7CoCBX
+b3JrYXJvdW5kIChhdm9pZHMgQnVnIEEgYXQgcnVudGltZSk6IHBlci1jb25uZWN0ZWQtRFAgd3Jp
+dGVzIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxicj7CoCDCoCAvc3lzL2tlcm5lbC9kZWJ1Zy9k
+cmkvLi4uL0RQLTEvaTkxNV9kcF9mb3JjZV9saW5rX3JhdGUgPSA4MTAwMDAgwqAoSEJSMykgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgPGJyPsKgIMKgIC9zeXMva2VybmVsL2RlYnVnL2RyaS8uLi4vRFAtMS9pOTE1X2RwX2ZvcmNl
+X2xpbmtfcmV0cmFpbiA9IDEgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgPGJyPsKgIGFwcGxpZWQgdmlh
+IHVkZXYgb24gaG90LXBsdWcgKyBzeXN0ZW1kIHVuaXQgYXQgYm9vdC4gSEJSMyBjYXAgZWxpbWlu
+YXRlcyDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoDxicj7CoCB0aGUgVUhCUjIwIHdhcm5pbmcgYW5kIHRoZSBsaW5rLXRyYWlu
+aW5nIGNhc2NhZGUuIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxi
+cj7CoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCA8YnI+wqAgQnVnIEIg4oCUIHNpbGVudCBwYWdlZmxpcCBkZWFkbG9jayBhdCBIQlIz
+IChhZnRlciBCdWcgQSBtaXRpZ2F0ZWQpOiDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+wqAgwqAgQWZ0
+ZXIgMTAgbWludXRlcyB0byA2IGhvdXJzIG9mIHVzZSwgdGhlIG1vbml0b3IgZnJlZXplcyBtaWQt
+ZnJhbWUgd2l0aDxicj7CoCDCoCBpbWFnZSBpbnRhY3QgKHNjYW5vdXQgc3RpbGwgcnVubmluZywg
+ZmxpcCBxdWV1ZSB3ZWRnZWQpLiBPbmx5IGtlcm5lbC0gwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgPGJyPsKgIMKgIGFkamFj
+ZW50IHNpZ25hbCByZWNvdmVyZWQgZnJvbSB0aGUgam91cm5hbDogwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgPGJyPsKgIMKgIMKgIGt3aW5fd2F5bGFuZDog
+UGFnZWZsaXAgdGltZWQgb3V0ISBUaGlzIGlzIGEgYnVnIGluIHRoZSB4ZSBrZXJuZWwgZHJpdmVy
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIDxicj7CoCDCoCBTb21ldGltZXMgZm9sbG93ZWQgYnk6IMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgPGJyPsKgIMKgIMKgIEdUMC9HVDE6IFRMQiBpbnZhbGlkYXRpb24gZmVuY2UgdGltZW91dCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+wqAg
+wqAgVGhlbiB0aGUgcGxhdGZvcm0gaXMgY29tcGxldGVseSBsb2NrZWQ6IG5vIFN5c1JxLCBubyBT
+U0gsIG5vIGpvdXJuYWwgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqA8YnI+wqAgwqAgZmx1c2guIEtlcm5lbCBkaWVzIGJl
+Zm9yZSBhbnl0aGluZyB1c2VmdWwgaXMgd3JpdHRlbi4gwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgPGJyPsKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIDxicj7CoCBNdWx0aXBsZSByZWJvb3RzICh+MjAgY2FwdHVyZWQp
+IHNob3cgYSBzaW5nbGUgY29uc2lzdGVudCByb290LWNhdXNlIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxicj7C
+oCBjbGFzczogYWxsIGVycm9ycyBvbiBDT05ORUNUT1IgRFAtMSAvIEVOQ09ERVIgRERJIFRDMSAv
+IFBIWSBUQzEuIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgPGJyPsKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxicj7CoCA9PT0gSHlwb3Ro
+ZXNpcyA9PT0gwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqA8YnI+wqAgVVNCLUMgRFAtYWx0bW9kZSBUQzEgUEhZIHBvd2Vy
+LXN0YXRlIHRyYW5zaXRpb24gZGVhZGxvY2sgZHVyaW5nIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxi
+cj7CoCBsaW5rIG1haW50ZW5hbmNlIChyZWNhbGlicmF0aW9uIC8gU1NDIC8gcG93ZXItc3RhdGUg
+Y2hhbmdlIG1pZC1zdHJlYW0pLiDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+wqAgVGhlIHBhZ2VmbGlwLXN0dWNrLXdp
+dGgtaW1hZ2UtaW50YWN0IHN5bXB0b20gYXJndWVzIGFnYWluc3QgRFNDIG9yIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgPGJyPsKgIGxpbmstYmFuZHdpZHRoIGZhaWx1cmUgKHdoaWNoIHdvdWxkIGJsYW5rIG9y
+IGNvcnJ1cHQpLiBDb25zaXN0ZW50IHdpdGggwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqA8YnI+wqAgUEhZLWxldmVsIGRl
+YWRsb2NrIHdoaWxlIHRoZSBzY2Fub3V0IGVuZ2luZSBpcyBzdGlsbCBydW5uaW5nLiDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCA8YnI+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgPGJyPsKgID09PSBXaGF0IHdlIHJ1bGVkIG91dCA9
+PT0gwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgPGJyPsKgIC0gRE1DOiB4ZTJscGRfZG1jLmJpbiB2Mi4y
+OSBsb2FkcyBjbGVhbiBldmVyeSBib290LiDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+wqAgLSBHdUM6
+IGxubF9ndWNfNzAuYmluIDcwLjU4LjAgY2xlYW4sIG5vIENULWRlYWQsIG5vIEdQVSByZXNldCwg
+bm8gR3VDIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIDxicj7CoCDCoCBoYW5nIGluIGFueSBib290IGxvZy4gwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgPGJyPsKgIC0gUFNSOiBleHRlcm5hbCBtb25pdG9yIHJlcG9ydHMg
+JnF1b3Q7U2luayBzdXBwb3J0OiBQU1IgPSBubywgUGFuZWwgUmVwbGF5IMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxi
+cj7CoCDCoCA9IG5vJnF1b3Q7IGF0IC9zeXMva2VybmVsL2RlYnVnL2RyaS8uLi4vRFAtMS9pOTE1
+X3Bzcl9zdGF0dXMuIE5vIFBTUiDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+wqAgwqAgcnVubmluZyBv
+biB0aGlzIGxpbmsuIHhlLnBzcl9zYWZlc3RfcGFyYW1zPVkgYW5kIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgPGJyPsKgIMKgIHhlLmVuYWJsZV9wc3IyX3NlbF9mZXRjaD1OIGFyZSBuby1vcHMgaGVyZS4g
+S2VwdCBvbmx5IGJlY2F1c2UgdGhleSYjMzk7cmUgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgPGJyPsKgIMKgIGhhcm1sZXNz
+IG9uIGVEUC4gwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqA8YnI+wqAgLSBEU0M6IHRy
+aWVkIGZvcmNpbmcgRFNDIG9uLCB3b3JzZW5lZCBzdGFiaWxpdHkuIFJlbW92ZWQuIFN5bXB0b20g
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgPGJyPsKgIMKgIChmcm96ZW4gaW1hZ2UgaW50YWN0KSBpcyBpbmNv
+bnNpc3RlbnQgd2l0aCBEU0MgZmFpbHVyZS4gwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+PGJyPsKgIC0gTUNFIC8gT09NIC8gdGhlcm1hbCAvIE5NSSAvIFJDVSBzdGFsbCAvIE5WTWUgLyBQ
+Q0llIEFFUjogYWxsIGNsZWFuLiDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+wqAgLSBXaW5kb3dzIG9uIHNhbWUg
+aGFyZHdhcmUgKyBzYW1lIG1vbml0b3IgKyBzYW1lIFVTQi1DIGNhYmxlOiBubyDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoDxicj7CoCDCoCBmcmVlemVzLCBmdWxsIDRLQDI0MCBVSEJSMjAgd29ya3MgaW5k
+ZWZpbml0ZWx5LiBIYXJkd2FyZSBhbmQgY2FibGUgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqA8YnI+wqAgwqAgYXJl
+IG5vdCBhdCBmYXVsdC4gwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgPGJyPsKgIC0gQW55
+RGVzayAvIHVzZXJzcGFjZSBkYWVtb25zOiBpbnN0YWxsZWQgYWZ0ZXIgbW9zdCBmcmVlemVzOyBu
+b3QgY2F1c2FsLiDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoDxicj7CoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+wqAgPT09IE1vbml0b3IgT1NEID09PSDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+wqAgTVNJIE1QRyAyNzJVUlggZG9lcyBu
+b3QgZXhwb3NlIGEgJnF1b3Q7RFAgMS40IC8gMi4xJnF1b3Q7IHRvZ2dsZSBpbiBPU0QgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgPGJyPsKgIChjb25maXJtZWQgb24gZmlybXdhcmUgc2hpcHBpbmcg
+dG8gZW5kIHVzZXJzKSwgc28gaG9zdC1zaWRlIGZhbGxiYWNrIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgPGJyPsKg
+IHRvIERQIDEuNCBpcyB0aGUgb25seSBhdmFpbGFibGUgd29ya2Fyb3VuZC4gSEJSMyBjYXAgdmlh
+IGRlYnVnZnMgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqA8YnI+wqAgd29ya3MgYXQgcnVudGltZTsgbW9k
+dWxlLXBhcmFtIGVxdWl2YWxlbnQgKHhlLiogcGFyYW1zKSBpcyAwNDQ0IGFuZCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCA8YnI+wqAgb25seSBzZXR0YWJsZSBhdCBib290LiDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoDxicj7CoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCA8YnI+wqAgPT09IFdoYXQgSSBjYW4gcHJvdmlkZSA9PT0gwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqA8YnI+wqAgLSBGdWxsIGRtZXNnIGZyb20gYSBib290IHdpdGggcmVwcm9kdWN0
+aW9uLiDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8
+YnI+wqAgLSBCb290cyB3aXRoIGRybS5kZWJ1Zz0weDFlIGlmIHVzZWZ1bC4gwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqA8YnI+wqAgLSBX
+aWxsaW5nIHRvIGJpc2VjdCBiZXR3ZWVuIDYuMTYvNi4xNy82LjE4IG9uIHRoZSBUQyBQSFkgLyB4
+ZSBkaXNwbGF5IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxicj7CoCDCoCBwYXRocy4gwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqA8YnI+wqAgLSBXaWxsaW5nIHRvIHRlc3QgcGF0
+Y2hlcyBhZ2FpbnN0IDYuMTcgb3IgbWFpbmxpbmUuIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIDxicj7CoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+wqAgVGhhbmtzIGZvciBhbnkgcG9pbnRlcnMg4oCU
+IGhhcHB5IHRvIGZpbGUgYXQgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqA8YnI+wqAgPGEgaHJlZj0iaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Au
+b3JnL2RybS94ZS9rZXJuZWwvLS9pc3N1ZXMiPmh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9y
+Zy9kcm0veGUva2VybmVsLy0vaXNzdWVzPC9hPiBpZiBwcmVmZXJyZWQuIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IDxicj7CoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCA8YnI+wqAgLS0gTWFyY8KgIMKgPC9kaXY+DQo=
+--000000000000b393b9064fc5a962--
