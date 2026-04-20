@@ -4,44 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E47F3F588C2
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Apr 2026 13:24:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA09FF588C5
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Apr 2026 13:27:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BE1B10E60E;
-	Mon, 20 Apr 2026 13:24:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E69010E627;
+	Mon, 20 Apr 2026 13:27:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="vGynKn33";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="IdSp0oCd";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14F1810E604;
- Mon, 20 Apr 2026 13:24:49 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3033310E627;
+ Mon, 20 Apr 2026 13:27:12 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id EECB243897;
- Mon, 20 Apr 2026 13:24:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 729B6C2BCB6;
- Mon, 20 Apr 2026 13:24:47 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 9B67561141;
+ Mon, 20 Apr 2026 13:27:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88FAFC2BCB7;
+ Mon, 20 Apr 2026 13:27:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1776691488;
- bh=K+abhW/puOvk0GiLGkZxTD+eABJaQ50Ve9fCR3OGFe8=;
+ s=k20201202; t=1776691631;
+ bh=7ahyefgd9bplGIDi8XHBmZf3DUzsAV6KcxK3YyD1c+k=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=vGynKn337kPdSCNCMySywj+EX3uGFeppBH7nUjEGXJ2OAGP58RLV5PTHJM+0iRYU8
- qiKCZGgaXWIx60zYuzEHvqkAu/NzpcaUYev2X8/PkDB9GcEWuo1plck/oVp4rBtgP4
- nB4PrkIrws94+yCPqtxzwM+zPxMRcs3chVyNNnCUIqMuCEkvT9FVIY0NMozlEb4K8V
- bTfrgJdw6KiWLDqBoQ8UFT98kmfNq/pEaZX6OzJFzmmlG6X8KkHFunxynqrxSJjDQf
- 3EymuTVS42rWyCzKutsdx8jHbVgKal5bdU7BMrwcdQhMJaPJO23vgTvg/saEo+Jls9
- wlFQtSQEabgfA==
+ b=IdSp0oCd7US9ak1iLdh7PrptSttEC/IH9X4D68HZsCZWJ0f6puA/bmLIE7SrU4iiT
+ UHa86JY+KRfcZ1JF+huG2j+lABuNxt7yQCiUVTgNLgUdwfI/hxDBtDakxfTd5im85a
+ 8rZYSN0hj3ejps8BMDTGNNCreBXmScgjEled+aYL60wuvACWy5BBegd9AnDB2GvC6F
+ zfp4r6EV27fmOhCiVmhzK5MfUscYhGCHqSZGKByMtH9DOaUbV9EUUbFS7BuW539vIL
+ 2euN18dAjMtAOsmVWHCwhXrFbc4Esa/FsWsaDhqzKcFeblKuXW5OfNT7TItQ1raDIm
+ j6qsX4G89bRHg==
 From: Sasha Levin <sashal@kernel.org>
 To: patches@lists.linux.dev,
 	stable@vger.kernel.org
-Cc: Brian Nguyen <brian3.nguyen@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>, Sasha Levin <sashal@kernel.org>,
+Cc: Sk Anirban <sk.anirban@intel.com>, Badal Nilawar <badal.nilawar@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Sasha Levin <sashal@kernel.org>, matthew.brost@intel.com,
  thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
  airlied@gmail.com, simona@ffwll.ch, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH AUTOSEL 7.0] drm/xe: Skip adding PRL entry to NULL VMA
-Date: Mon, 20 Apr 2026 09:17:33 -0400
-Message-ID: <20260420132314.1023554-59-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 7.0-6.18] drm/xe/guc: Add Wa_14025883347 for GuC DMA
+ failure on reset
+Date: Mon, 20 Apr 2026 09:18:56 -0400
+Message-ID: <20260420132314.1023554-142-sashal@kernel.org>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260420132314.1023554-1-sashal@kernel.org>
 References: <20260420132314.1023554-1-sashal@kernel.org>
@@ -49,7 +51,6 @@ MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-stable-base: Linux 7.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,330 +66,412 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Brian Nguyen <brian3.nguyen@intel.com>
+From: Sk Anirban <sk.anirban@intel.com>
 
-[ Upstream commit 1b12096b4bc5177d685ae098fdb90260ffd5db6b ]
+[ Upstream commit c57db41b8d2cd410e7219729f446aa17965485ad ]
 
-NULL VMAs have no corresponding PTE, so skip adding a PRL entry to avoid
-an unnecessary PRL abort during unbind.
+Prevent GuC firmware DMA failures during GuC-only reset by disabling
+idle flow and verifying SRAM handling completion. Without this, reset
+can be issued while SRAM handler is copying WOPCM to SRAM,
+causing GuC HW to get stuck.
 
-Signed-off-by: Brian Nguyen <brian3.nguyen@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-Link: https://patch.msgid.link/20260305171546.67691-8-brian3.nguyen@intel.com
+v2: Modify error message (Badal)
+    Rename reg bit name (Daniele)
+    Update WA skip condition (Daniele)
+    Update SRAM handling logic (Daniele)
+v3: Reorder WA call (Badal)
+    Wait for GuC ready status (Daniele)
+v4: Update reg name (Badal)
+    Add comment (Daniele)
+    Add extended graphics version (Daniele)
+    Modify rules
+
+Signed-off-by: Sk Anirban <sk.anirban@intel.com>
+Reviewed-by: Badal Nilawar <badal.nilawar@intel.com>
+Acked-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Link: https://patch.msgid.link/20260202105313.3338094-4-sk.anirban@intel.com
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
 
 LLM Generated explanations, may be completely bogus:
 
-Now I have all the information needed for a complete analysis. Let me
-compile the findings.
+Now I have a comprehensive picture. Let me compile my full analysis.
 
 ---
 
 ## PHASE 1: COMMIT MESSAGE FORENSICS
 
-### Step 1.1: Subject Line
-- **Subsystem**: drm/xe (Intel Xe GPU driver)
-- **Action verb**: "Skip" - implies avoiding an incorrect/unnecessary
-  operation
-- **Summary**: Skip adding Page Reclaim List (PRL) entry for NULL VMAs
+**Step 1.1: Subject Line**
+Record: [drm/xe/guc] [Add] Hardware workaround Wa_14025883347 for GuC
+DMA failure during GuC-only reset
 
-### Step 1.2: Tags
-- **Signed-off-by**: Brian Nguyen (author), Matt Roper (xe maintainer
-  applied it)
-- **Reviewed-by**: Matthew Brost (xe subsystem maintainer) - strong
-  quality signal
-- **Link**: `https://patch.msgid.link/20260305171546.67691-8-
-  brian3.nguyen@intel.com` - patch 8 of a series
-- No Fixes: tag (expected for manual review candidates)
-- No Reported-by: (indicates developer-found issue during
-  development/testing)
-- No Cc: stable (expected)
+**Step 1.2: Tags**
+- Signed-off-by: Sk Anirban <sk.anirban@intel.com> (author)
+- Reviewed-by: Badal Nilawar <badal.nilawar@intel.com>
+- Acked-by: Matt Roper <matthew.d.roper@intel.com> (subsystem
+  maintainer)
+- Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+- Link:
+  https://patch.msgid.link/20260202105313.3338094-4-sk.anirban@intel.com
+- Signed-off-by: Matt Roper <matthew.d.roper@intel.com> (applied by
+  maintainer)
+- No Fixes: tag (expected), no Reported-by, no Cc: stable
 
-### Step 1.3: Commit Body
-- Bug: NULL VMAs have no corresponding PTE, so they shouldn't have PRL
-  entries
-- Consequence: "an unnecessary PRL abort during unbind"
-- When PRL aborts, it invalidates the entire PRL batch and falls back to
-  full PPC (Page-Private Cache) invalidation
+**Step 1.3: Commit Body**
+The bug: During GuC-only reset, if the SRAM handler is actively copying
+WOPCM to SRAM, issuing the reset causes GuC HW to get stuck. The
+workaround disables idle flow and waits for SRAM handling completion
+before proceeding with reset.
 
-### Step 1.4: Hidden Bug Fix Detection
-This is a correctness fix disguised as optimization. The word "skip" and
-"unnecessary" might sound like optimization, but the actual issue is:
-NULL VMAs being processed through page reclaim creates incorrect PRL
-entries with bogus physical addresses (address 0), which triggers PRL
-abort for the entire unbind batch.
+**Step 1.4: Hidden Bug Fix Detection**
+This is explicitly a hardware workaround for a known Intel hardware
+errata (Wa_14025883347). It prevents the GuC from getting stuck during
+reset - this is a real bug fix for a hardware deficiency.
 
 ## PHASE 2: DIFF ANALYSIS
 
-### Step 2.1: Inventory
-- **Single file**: `drivers/gpu/drm/xe/xe_page_reclaim.c`
-- **+8 lines / -0 lines** (3 doc comment lines, 3 code lines including
-  blank, 2 context lines)
-- **Function modified**: `xe_page_reclaim_skip()`
-- **Scope**: Single-file surgical fix
+**Step 2.1: Inventory**
+- `drivers/gpu/drm/xe/regs/xe_guc_regs.h`: +8 lines (new register
+  definitions)
+- `drivers/gpu/drm/xe/xe_guc.c`: +38 lines (new function + call site)
+- `drivers/gpu/drm/xe/xe_wa_oob.rules`: +3 lines (WA matching rules)
+- Total: +49 lines, 0 removed. 3 files changed.
+- Scope: Single-subsystem, well-contained
 
-### Step 2.2: Code Flow Change
-**Before**: `xe_page_reclaim_skip()` directly accesses
-`vma->attr.pat_index` and checks L3 policy. For NULL VMAs, this produces
-a potentially meaningless L3 policy result, and the function returns
-false (don't skip), leading to PRL entry generation.
+**Step 2.2: Code Flow Changes**
+- New register definitions: BOOT_HASH_CHK, GUC_BOOT_UKERNEL_VALID,
+  GUC_SRAM_STATUS, GUC_SRAM_HANDLING_MASK, GUC_IDLE_FLOW_DISABLE
+- New function `guc_prevent_fw_dma_failure_on_reset()`: reads GUC_STATUS
+  (skips if already in reset), reads BOOT_HASH_CHK (skips if ukernel not
+  valid), disables idle flow, waits for GuC ready status, waits for SRAM
+  handling completion
+- Call site: injected in `xe_guc_reset()` between SRIOV VF check and the
+  actual reset write, gated by `XE_GT_WA(gt, 14025883347)`
 
-**After**: An `xe_vma_is_null(vma)` check at the top returns true (skip)
-immediately for NULL VMAs, preventing any page reclaim processing.
+**Step 2.3: Bug Mechanism**
+This is a hardware workaround (category h). Race condition between SRAM
+save/restore and reset issuance. Without the WA, reset can arrive while
+DMA is in progress, causing hardware hang.
 
-### Step 2.3: Bug Mechanism
-**Category**: Logic/correctness fix. NULL VMAs (`DRM_GPUVA_SPARSE`) have
-PTEs with `XE_PTE_NULL` bit set (bit 9) but no real physical backing.
-When processed through the PRL generation during unbind:
-1. The PTE is non-zero (has `XE_PTE_NULL` set), so it passes the `if
-   (!pte)` check
-2. `generate_reclaim_entry()` extracts `phys_addr = pte &
-   XE_PTE_ADDR_MASK` which gives address 0
-3. This creates bogus PRL entries or triggers PRL abort, invalidating
-   the ENTIRE PRL for the batch
-
-### Step 2.4: Fix Quality
-- **Obviously correct**: NULL VMAs have no physical backing, so page
-  reclaim is meaningless for them
-- **Minimal/surgical**: 2 lines of actual code
-- **Regression risk**: Near zero - `xe_vma_is_null()` is used throughout
-  the codebase for exactly this purpose
-- **No red flags**: Uses existing well-tested inline function
+**Step 2.4: Fix Quality**
+- Gated behind hardware version checks (only runs on affected hardware)
+- Has early-return safety checks (already in reset, ukernel not valid)
+- Uses existing MMIO wait infrastructure with timeouts
+- Only emits warnings on timeout, doesn't abort the reset
+- Very low regression risk for unaffected hardware (gated by XE_GT_WA)
+- For affected hardware, the risk is also low: it adds delays before
+  reset which is inherently safe
 
 ## PHASE 3: GIT HISTORY INVESTIGATION
 
-### Step 3.1: Blame
-The buggy code (`xe_page_reclaim_skip` without NULL VMA check) was
-introduced by commit `7c52f13b76c531` (2025-12-13) "drm/xe: Optimize
-flushing of L2$ by skipping unnecessary page reclaim". This was part of
-the initial page reclaim feature series.
+**Step 3.1: Blame**
+The `xe_guc_reset()` function was introduced with the xe driver in
+commit dd08ebf6c3525a (Matthew Brost, 2023-03-30, "Introduce a new DRM
+driver for Intel GPUs"). The function has been stable since, with minor
+API changes (MMIO parameter refactoring by Matt Roper in
+c18d4193b53be7).
 
-### Step 3.2: Fixes Tag
-No Fixes: tag present. The root cause is `7c52f13b76c53` which didn't
-account for NULL VMAs when implementing the skip logic.
+**Step 3.2: Fixes tag**
+No Fixes: tag present. The bug is inherent in the hardware itself, not
+introduced by any specific software commit.
 
-### Step 3.3: File History
-The entire `xe_page_reclaim.c` was introduced in v7.0-rc1 (commit
-`b912138df2993`, 2025-12-13). 6 commits have touched this file. The
-sibling patch from the same series (`38b8dcde23164` "Skip over non leaf
-pte for PRL generation") was already cherry-picked to
-`stable/linux-7.0.y`.
+**Step 3.3: File History**
+`xe_guc.c` has had 20 recent commits mostly around GuC
+load/submit/communication. `xe_wa_oob.rules` has had 35 changes since
+v6.12.
 
-### Step 3.4: Author
-Brian Nguyen is the primary developer of the page reclaim feature
-(authored all ~15 page reclaim commits). He is the domain expert for
-this code.
+**Step 3.4: Author**
+Sk Anirban has 4 xe-related commits including this one, with
+d72779c29d82c ("drm/xe/ptl: Apply Wa_16026007364") also being a WA
+patch. A regular Intel contributor focused on WA/frequency work.
 
-### Step 3.5: Dependencies
-This fix is standalone - it only adds a guard check to an existing
-function. No prerequisite patches needed. The function
-`xe_vma_is_null()` exists in all v7.0 trees.
+**Step 3.5: Dependencies**
+This is "PATCH v4 1/1" - a standalone single patch. No dependencies on
+other patches. It uses existing infrastructure: XE_GT_WA macro,
+xe_mmio_* functions, existing register headers.
 
 ## PHASE 4: MAILING LIST RESEARCH
 
-### Step 4.1: Patch Discussion
-b4 dig found the series as "Page Reclamation Fixes" (v3/v4 series, 3
-patches). The series went through at least 3 revisions (v2, v3, v4)
-before being accepted, indicating thorough review.
+**Step 4.1: Original Discussion**
+Found on freedesktop.org/archives/intel-xe/2026-February/. The patch
+went through 4 revisions (v1-v4) with extensive review from Daniele
+Ceraolo Spurio and Badal Nilawar. Each version addressed reviewer
+feedback.
 
-### Step 4.2: Reviewers
-- Matthew Brost (xe maintainer) reviewed the patch
-- Stuart Summers was CC'd
-- Applied by Matt Roper (Intel xe maintainer)
+**Step 4.2: Reviewers**
+- Daniele Ceraolo Spurio: Intel GuC expert, provided detailed review
+  across all 4 versions, gave final Reviewed-by
+- Matt Roper: Subsystem maintainer, discussed the WA range policy, gave
+  Acked-by and applied the patch
+- Badal Nilawar: Intel engineer, reviewed and gave Reviewed-by
 
-### Steps 4.3-4.5:
-Lore.kernel.org was inaccessible due to anti-bot protection. Could not
-verify mailing list discussion details.
+Daniele's only concern was about using large version ranges in the WA
+table; Matt Roper acked this explicitly. No technical concerns about the
+fix itself.
+
+**Step 4.3: No external bug report found** - this is an internal Intel
+hardware errata workaround.
+
+**Step 4.4: Series Context**
+Standalone patch (1/1). No dependencies.
+
+**Step 4.5: No stable-specific discussion found.**
 
 ## PHASE 5: CODE SEMANTIC ANALYSIS
 
-### Step 5.1-5.2: Callers
-`xe_page_reclaim_skip()` is called from a single location in `xe_pt.c`
-line 2084:
+**Step 5.1: Functions Modified**
+- New: `guc_prevent_fw_dma_failure_on_reset()` (static, only called from
+  xe_guc_reset)
+- Modified: `xe_guc_reset()` (3-line addition)
 
-```2083:2084:drivers/gpu/drm/xe/xe_pt.c
-pt_op->prl = (xe_page_reclaim_list_valid(&pt_update_ops->prl) &&
-             !xe_page_reclaim_skip(tile, vma)) ? &pt_update_ops->prl :
-NULL;
-```
+**Step 5.2: Callers of xe_guc_reset**
+- `uc_reset()` in xe_uc.c -> called from `xe_uc_sanitize_reset()`
+- Called during GT reset paths and UC initialization
 
-This is in the unbind preparation path, called whenever a VMA is being
-unbound from a tile.
+**Step 5.3-5.4: Call Chain**
+xe_gt reset path -> xe_uc_sanitize_reset -> uc_reset -> xe_guc_reset.
+This is the standard GPU reset path, triggered when the GPU needs reset
+(hang recovery, device suspend/resume, driver load).
 
-### Step 5.3-5.4: Call Chain
-The unbind path is reachable from userspace via
-`ioctl(DRM_IOCTL_XE_VM_BIND)` with `DRM_XE_VM_BIND_OP_UNMAP`. NULL VMAs
-are created via sparse binding operations, which are a normal GPU usage
-pattern.
-
-### Step 5.5: Similar Patterns
-`xe_vma_is_null()` is already checked at multiple points in the Xe
-driver:
-- `xe_pt.c` line 449/479 (page table walk: "null VMA's do not have dma
-  addresses")
-- `xe_vm.c` line 4033 (invalidation: `xe_assert(!xe_vma_is_null(vma))`)
-- `xe_vm_madvise.c` line 209 (madvise: skip null VMAs)
-
-This confirms the established pattern: NULL VMAs need special handling
-throughout the driver.
+**Step 5.5: Similar Patterns**
+The xe driver has many similar XE_GT_WA patterns throughout the codebase
+(8 existing uses in xe_guc.c alone).
 
 ## PHASE 6: STABLE TREE ANALYSIS
 
-### Step 6.1: Code Existence in Stable
-- **v7.0.y**: YES - file exists, code is present, fix is needed
-- **v6.13.y and older**: NO - `xe_page_reclaim.c` does not exist
-  (`fatal: path exists on disk, but not in 'v6.13'`)
+**Step 6.1: Buggy Code Existence**
+The xe driver was introduced in v6.8. `xe_guc_reset()` exists in v6.8+.
+The hardware affected (MEDIA_VERSION_RANGE 1301-3503,
+GRAPHICS_VERSION_RANGE 2004-3005) includes Panther Lake and newer
+platforms. Some of these platforms were only added in recent kernel
+versions.
 
-### Step 6.2: Backport Complications
-The fix would apply cleanly to 7.0.y - the file in `stable/linux-7.0.y`
-is identical to the file on the main branch at v7.0.
+**Step 6.2: Backport Complications**
+- For 7.0.y: Should apply cleanly. The tree is at v7.0, and the MMIO API
+  and wa_oob.rules match.
+- For 6.12.y: The MMIO API changed (`xe_mmio_write32(gt, ...)` vs
+  `xe_mmio_write32(&gt->mmio, ...)`). Also, `xe_guc.c` has `struct
+  xe_mmio *mmio` variable in v7.0 but not in v6.12. Significant rework
+  needed.
+- For 6.6.y and earlier: xe driver doesn't exist.
 
-### Step 6.3: Related Fixes in Stable
-The sibling patch `38b8dcde23164` ("Skip over non leaf pte for PRL
-generation") from the same "Page Reclamation Fixes" series was already
-cherry-picked to 7.0.y stable (has explicit `Fixes:` tag).
+**Step 6.3: No related fixes already in stable.**
 
-## PHASE 7: SUBSYSTEM CONTEXT
+## PHASE 7: SUBSYSTEM AND MAINTAINER CONTEXT
 
-### Step 7.1: Subsystem
-- **Subsystem**: GPU driver (drivers/gpu/drm/xe) - Intel Xe
-  discrete/integrated GPU
-- **Criticality**: IMPORTANT - Intel Xe GPU users on newer hardware
-  (Lunar Lake, Arrow Lake, etc.)
+**Step 7.1: Subsystem Criticality**
+drm/xe is the Intel GPU driver. It's IMPORTANT - affects all users with
+Intel discrete and integrated GPUs running the xe driver.
 
-### Step 7.2: Activity
-Very active subsystem with many fixes flowing to 7.0.y stable (20+ xe
-patches already cherry-picked).
+**Step 7.2: Subsystem Activity**
+Very active (20+ commits recently). The xe driver is under rapid
+development.
 
 ## PHASE 8: IMPACT AND RISK ASSESSMENT
 
-### Step 8.1: Affected Users
-Intel Xe GPU users with hardware that supports page reclaim (specific
-newer GPUs with `has_page_reclaim_hw_assist`).
+**Step 8.1: Affected Users**
+Users with Intel GPUs matching MEDIA_VERSION_RANGE(1301, 3503) or
+GRAPHICS_VERSION_RANGE(2004, 3005). This includes Panther Lake and some
+newer Intel GPU generations.
 
-### Step 8.2: Trigger Conditions
-Triggered when unbinding sparse/NULL VMAs, which happens during normal
-GPU memory management operations. Common in graphics workloads using
-sparse resources.
+**Step 8.2: Trigger Conditions**
+The bug triggers during GuC-only reset when SRAM handler is actively
+copying WOPCM to SRAM. This is a timing-dependent race that can occur
+during any GPU reset operation (hang recovery, suspend/resume, etc.).
 
-### Step 8.3: Failure Mode
-- PRL abort -> fallback to full PPC (Page-Private Cache) invalidation
-- Severity: MEDIUM - performance degradation (full cache flush instead
-  of targeted reclaim), not crash/corruption
-- The abort invalidates the ENTIRE PRL batch, affecting all VMAs in the
-  unbind operation, not just the NULL one
+**Step 8.3: Failure Mode**
+GuC HW gets stuck - this is effectively a GPU hang. Severity: HIGH.
+Without recovery, the GPU becomes unusable requiring a reboot.
 
-### Step 8.4: Risk-Benefit
-- **Benefit**: MEDIUM - prevents incorrect PRL processing and
-  unnecessary PRL aborts for all unbind batches containing NULL VMAs
-- **Risk**: VERY LOW - 2-line guard check using existing well-tested
-  function
-- **Ratio**: Favorable
+**Step 8.4: Risk-Benefit**
+- BENEFIT: Prevents GPU hangs on affected Intel hardware during reset.
+  HIGH benefit for affected hardware users.
+- RISK: Very low. The fix is gated behind XE_GT_WA (only active on
+  affected hardware), adds only MMIO reads and waits before existing
+  reset sequence, and emits warnings rather than aborting on timeout.
+  Risk: very low.
+- Ratio: HIGH benefit / very low risk = favorable
 
-## PHASE 9: SYNTHESIS
+## PHASE 9: FINAL SYNTHESIS
 
-### Step 9.1: Evidence Compilation
+**Evidence FOR backporting:**
+- Hardware workaround (WA) - a standard exception category for stable
+- Prevents GPU hangs (GuC stuck) during reset operations
+- Well-reviewed: 3 Intel engineers (including subsystem maintainer)
+  reviewed/acked
+- Went through 4 revision cycles addressing reviewer feedback
+- CI passed (Xe.CI.BAT: success)
+- Standalone patch (1/1), no dependencies
+- Well-contained: 49 lines across 3 files
+- Gated behind hardware version check (no impact on unaffected hardware)
+- Uses existing infrastructure (XE_GT_WA, xe_mmio_wait32)
+- Should apply cleanly to v7.0.y
 
-**FOR backporting:**
-- Small, surgical fix (2 lines of code)
-- Obviously correct (NULL VMAs have no physical backing, well-
-  established pattern)
-- Reviewed by subsystem maintainer (Matthew Brost)
-- Same series as another commit already cherry-picked to 7.0.y
-- Prevents incorrect behavior in page reclaim path
-- Near-zero regression risk
-- Author is the page reclaim feature developer
+**Evidence AGAINST backporting:**
+- Adds new register definitions and a new function (albeit small and
+  contained)
+- The WA uses version ranges that span many hardware generations
+  (discussion concern from Daniele)
+- For stable trees older than 7.0.y (e.g., 6.12.y), the MMIO API changed
+  and significant rework would be needed
+- Affects only specific newer Intel GPU hardware (Panther Lake and
+  beyond)
+- No user bug reports - this is a proactive hardware errata fix
+- The xe driver is evolving rapidly, making older stable tree backports
+  risky
 
-**AGAINST backporting:**
-- No explicit Fixes: tag
-- Not a crash/corruption/security fix - primarily
-  performance/correctness
-- Only applicable to 7.0.y (code doesn't exist in older stable trees)
-- PRL abort is handled gracefully (fallback mechanism exists)
+**Stable Rules Checklist:**
+1. Obviously correct and tested? YES - extensive review, CI tested,
+   straightforward register reads/waits
+2. Fixes a real bug? YES - GPU hang during reset
+3. Important issue? YES - hardware hang requiring reboot
+4. Small and contained? YES - 49 lines, 3 files, single subsystem
+5. No new features or APIs? CORRECT - hardware workaround only
+6. Can apply to stable? For 7.0.y: YES (clean). For 6.12.y: needs
+   rework.
 
-### Step 9.2: Stable Rules Checklist
-1. Obviously correct and tested? **YES** - trivial guard check, reviewed
-   by maintainer
-2. Fixes a real bug? **YES** - NULL VMAs incorrectly processed through
-   page reclaim
-3. Important issue? **MEDIUM** - causes PRL abort and full cache flush
-   fallback for all VMAs in batch
-4. Small and contained? **YES** - 2 lines in one file
-5. No new features? **YES** - just a guard check
-6. Applies to stable? **YES** for 7.0.y only
-
-### Step 9.3: Exception Categories
-Not applicable.
-
-### Step 9.4: Decision
-This is a small, correct, well-reviewed fix for a real logic bug in the
-Xe page reclaim path. While the consequence is primarily performance
-(PRL abort causing full cache flush fallback) rather than crash, the fix
-is extremely low-risk and the sibling patch from the same series was
-already selected for 7.0.y stable. The fix prevents incorrect behavior
-for a common GPU operation (unbinding sparse VMAs).
+**Exception Category:** This is a hardware quirk/workaround - these are
+explicitly allowed in stable.
 
 ## Verification
 
-- [Phase 1] Parsed tags: Reviewed-by Matthew Brost (xe maintainer),
-  applied by Matt Roper
-- [Phase 2] Diff analysis: 2 functional lines added to
-  `xe_page_reclaim_skip()`, adding NULL VMA guard check
-- [Phase 3] git blame: buggy code introduced in `7c52f13b76c531`
-  (v7.0-rc1, 2025-12-13)
-- [Phase 3] git log: entire `xe_page_reclaim.c` file created in v7.0-rc1
-- [Phase 3] git show: author Brian Nguyen wrote all page reclaim commits
-  (domain expert)
-- [Phase 4] b4 dig -a: series "Page Reclamation Fixes" went through
-  v2→v3→v4, indicating thorough review
-- [Phase 4] b4 dig -w: Matthew Brost, Stuart Summers, intel-xe@ involved
-  in review
-- [Phase 4] UNVERIFIED: Could not access lore.kernel.org discussion due
-  to anti-bot protection
-- [Phase 5] Grep for callers: `xe_page_reclaim_skip()` called only from
-  `xe_pt.c:2084` (unbind path)
-- [Phase 5] Grep for `xe_vma_is_null`: used at 10+ locations in xe
-  driver, well-established pattern
-- [Phase 6] `git show v6.13:drivers/gpu/drm/xe/xe_page_reclaim.c`
-  confirmed file does NOT exist in v6.13 or v6.12
-- [Phase 6] `git show
-  stable/linux-7.0.y:drivers/gpu/drm/xe/xe_page_reclaim.c` confirmed
-  code exists in 7.0.y without fix
-- [Phase 6] Sibling patch `38b8dcde23164` already in stable/linux-7.0.y
-  (confirmed via `git log stable/linux-7.0.y`)
-- [Phase 8] PRL abort path verified: invalidates PRL, increments
-  counter, logs debug message - graceful fallback
+- [Phase 1] Parsed all tags: Reviewed-by (2), Acked-by (1), Link
+  present, no Fixes, no Reported-by
+- [Phase 2] Diff analysis: +49 lines across 3 files - new register defs,
+  new WA function, WA rules entry
+- [Phase 3] git blame: xe_guc_reset() introduced in dd08ebf6c3525a
+  (March 2023, initial xe driver)
+- [Phase 3] git log: no prerequisite commits needed, standalone patch
+- [Phase 4] Freedesktop archive: Found [PATCH v4 0/1] and [PATCH v4 1/1]
+  confirming single standalone patch
+- [Phase 4] Freedesktop archive: Daniele's review comment on version
+  ranges, Matt Roper's ack and policy discussion
+- [Phase 4] Daniele gave final Reviewed-by after Matt acked the ranges
+  approach
+- [Phase 5] xe_guc_reset() called from uc_reset() in xe_uc.c, part of
+  standard GT reset path
+- [Phase 5] XE_GT_WA macro used 8 times in xe_guc.c already -
+  established pattern
+- [Phase 6] xe driver exists in v6.8+, not in v6.6. MMIO API changed
+  between v6.12 and v7.0
+- [Phase 6] For v7.0.y: patch should apply cleanly (tree matches patch
+  base)
+- [Phase 6] For v6.12.y: MMIO API mismatch would require rework
+- [Phase 8] Failure mode: GuC stuck = GPU hang = severity HIGH
+- UNVERIFIED: Cannot confirm which exact kernel versions first support
+  the specific GPU generations targeted by MEDIA_VERSION_RANGE(1301,
+  3503) and GRAPHICS_VERSION_RANGE(2004, 3005)
+
+This is a well-reviewed, well-contained hardware workaround that
+prevents GPU hangs during reset on affected Intel hardware. It falls
+squarely into the "hardware quirk/workaround" exception category for
+stable kernels. The fix is gated behind hardware detection, uses
+existing infrastructure, and was authored as a standalone patch with no
+dependencies. It should apply cleanly to the 7.0 stable tree.
 
 **YES**
 
- drivers/gpu/drm/xe/xe_page_reclaim.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/xe/regs/xe_guc_regs.h |  8 ++++++
+ drivers/gpu/drm/xe/xe_guc.c           | 38 +++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_wa_oob.rules    |  3 +++
+ 3 files changed, 49 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_page_reclaim.c b/drivers/gpu/drm/xe/xe_page_reclaim.c
-index e13c71a89da2c..390bcb82e4c5c 100644
---- a/drivers/gpu/drm/xe/xe_page_reclaim.c
-+++ b/drivers/gpu/drm/xe/xe_page_reclaim.c
-@@ -26,12 +26,18 @@
-  * flushes.
-  * - pat_index is transient display (1)
-  *
-+ * For cases of NULL VMA, there should be no corresponding PRL entry
-+ * so skip over.
-+ *
-  * Return: true when page reclamation is unnecessary, false otherwise.
-  */
- bool xe_page_reclaim_skip(struct xe_tile *tile, struct xe_vma *vma)
- {
- 	u8 l3_policy;
+diff --git a/drivers/gpu/drm/xe/regs/xe_guc_regs.h b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
+index 87984713dd126..5faac8316b66c 100644
+--- a/drivers/gpu/drm/xe/regs/xe_guc_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
+@@ -40,6 +40,9 @@
+ #define   GS_BOOTROM_JUMP_PASSED		REG_FIELD_PREP(GS_BOOTROM_MASK, 0x76)
+ #define   GS_MIA_IN_RESET			REG_BIT(0)
  
-+	if (xe_vma_is_null(vma))
-+		return true;
++#define BOOT_HASH_CHK				XE_REG(0xc010)
++#define   GUC_BOOT_UKERNEL_VALID		REG_BIT(31)
 +
- 	l3_policy = xe_pat_index_get_l3_policy(tile->xe, vma->attr.pat_index);
+ #define GUC_HEADER_INFO				XE_REG(0xc014)
  
- 	/*
+ #define GUC_WOPCM_SIZE				XE_REG(0xc050)
+@@ -83,7 +86,12 @@
+ #define   GUC_WOPCM_OFFSET_MASK			REG_GENMASK(31, GUC_WOPCM_OFFSET_SHIFT)
+ #define   HUC_LOADING_AGENT_GUC			REG_BIT(1)
+ #define   GUC_WOPCM_OFFSET_VALID		REG_BIT(0)
++
++#define GUC_SRAM_STATUS				XE_REG(0xc398)
++#define   GUC_SRAM_HANDLING_MASK		REG_GENMASK(8, 7)
++
+ #define GUC_MAX_IDLE_COUNT			XE_REG(0xc3e4)
++#define   GUC_IDLE_FLOW_DISABLE			REG_BIT(31)
+ #define GUC_PMTIMESTAMP_LO			XE_REG(0xc3e8)
+ #define GUC_PMTIMESTAMP_HI			XE_REG(0xc3ec)
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 4ab65cae87433..96c28014f3887 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -900,6 +900,41 @@ int xe_guc_post_load_init(struct xe_guc *guc)
+ 	return xe_guc_submit_enable(guc);
+ }
+ 
++/*
++ * Wa_14025883347: Prevent GuC firmware DMA failures during GuC-only reset by ensuring
++ * SRAM save/restore operations are complete before reset.
++ */
++static void guc_prevent_fw_dma_failure_on_reset(struct xe_guc *guc)
++{
++	struct xe_gt *gt = guc_to_gt(guc);
++	u32 boot_hash_chk, guc_status, sram_status;
++	int ret;
++
++	guc_status = xe_mmio_read32(&gt->mmio, GUC_STATUS);
++	if (guc_status & GS_MIA_IN_RESET)
++		return;
++
++	boot_hash_chk = xe_mmio_read32(&gt->mmio, BOOT_HASH_CHK);
++	if (!(boot_hash_chk & GUC_BOOT_UKERNEL_VALID))
++		return;
++
++	/* Disable idle flow during reset (GuC reset re-enables it automatically) */
++	xe_mmio_rmw32(&gt->mmio, GUC_MAX_IDLE_COUNT, 0, GUC_IDLE_FLOW_DISABLE);
++
++	ret = xe_mmio_wait32(&gt->mmio, GUC_STATUS, GS_UKERNEL_MASK,
++			     FIELD_PREP(GS_UKERNEL_MASK, XE_GUC_LOAD_STATUS_READY),
++			     100000, &guc_status, false);
++	if (ret)
++		xe_gt_warn(gt, "GuC not ready after disabling idle flow (GUC_STATUS: 0x%x)\n",
++			   guc_status);
++
++	ret = xe_mmio_wait32(&gt->mmio, GUC_SRAM_STATUS, GUC_SRAM_HANDLING_MASK,
++			     0, 5000, &sram_status, false);
++	if (ret)
++		xe_gt_warn(gt, "SRAM handling not complete (GUC_SRAM_STATUS: 0x%x)\n",
++			   sram_status);
++}
++
+ int xe_guc_reset(struct xe_guc *guc)
+ {
+ 	struct xe_gt *gt = guc_to_gt(guc);
+@@ -912,6 +947,9 @@ int xe_guc_reset(struct xe_guc *guc)
+ 	if (IS_SRIOV_VF(gt_to_xe(gt)))
+ 		return xe_gt_sriov_vf_bootstrap(gt);
+ 
++	if (XE_GT_WA(gt, 14025883347))
++		guc_prevent_fw_dma_failure_on_reset(guc);
++
+ 	xe_mmio_write32(mmio, GDRST, GRDOM_GUC);
+ 
+ 	ret = xe_mmio_wait32(mmio, GDRST, GRDOM_GUC, 0, 5000, &gdrst, false);
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index 5cd7fa6d2a5c0..ac08f94f90a14 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -73,3 +73,6 @@
+ 15015404425_disable	PLATFORM(PANTHERLAKE), MEDIA_STEP(B0, FOREVER)
+ 16026007364    MEDIA_VERSION(3000)
+ 14020316580    MEDIA_VERSION(1301)
++
++14025883347	MEDIA_VERSION_RANGE(1301, 3503)
++		GRAPHICS_VERSION_RANGE(2004, 3005)
 -- 
 2.53.0
 
