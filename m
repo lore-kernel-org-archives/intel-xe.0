@@ -4,158 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46FECF557FB
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Apr 2026 09:50:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 629ECF55809
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Apr 2026 10:37:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3647E10E488;
-	Mon, 20 Apr 2026 09:50:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11C2010E18E;
+	Mon, 20 Apr 2026 10:37:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="W57WOtCe";
-	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="HKe+jwXq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HtSrq+vo";
 	dkim-atps=neutral
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99DFE10E48E
- for <intel-xe@lists.freedesktop.org>; Mon, 20 Apr 2026 09:50:10 +0000 (UTC)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 63K91RAP2281691
- for <intel-xe@lists.freedesktop.org>; Mon, 20 Apr 2026 09:50:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-type:date:from:in-reply-to:message-id:mime-version
- :references:subject:to; s=qcppdkim1; bh=kWuPigQBRvg2mmG1YEkZ2x38
- 8ocHV9caZV1E1+5l688=; b=W57WOtCeOcicX3eqOdiyb3EDavkLG5irwHoXW55M
- wmRlpJepFltE0GBwDB/eEZBvMRLgtu+23T/xt1DZn4WHzXcrKRfoVPgQut1CClJX
- VOYHOXibM3WI5SZiwdhnS4DizoNnKO4tGaZ4JSDZcp8Th2Dask97hw6Z7ZhAr1cP
- aMwPD+EXq8OVfnwV4UiLLWKNWccIeCI0Dub5H2t9t3AcazG6saJukNtykdqRYJkj
- D4s0lFeY98n8l5NcyXmUp7ALuyhcmg4wVEJt2Z//32LLZZj1qsrLH43JCZX/QjPe
- A2yRQiUlXqP2y/JQ0XNndxovMBtB55L3BZJYG3/1Jqd95A==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
- [209.85.160.199])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dnh59864p-1
- (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
- for <intel-xe@lists.freedesktop.org>; Mon, 20 Apr 2026 09:50:09 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id
- d75a77b69052e-50d58bed44aso30877881cf.3
- for <intel-xe@lists.freedesktop.org>; Mon, 20 Apr 2026 02:50:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oss.qualcomm.com; s=google; t=1776678609; x=1777283409;
- darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=kWuPigQBRvg2mmG1YEkZ2x388ocHV9caZV1E1+5l688=;
- b=HKe+jwXqAMTzTly5iC3qHJ7xfAzBlEF3qX5DLEKmIoOHyeOaiKdKWEWC8scqAc/27O
- n9cewflgYxHPBZKjQVcUzSekNPSK/3UpUul+HkVu8pdw3c7W+OMG+FdLnHdiWazgZOVQ
- RsBNFOXWuz1fgnKQwDUh9haKdfYvYuEjNkaUZxF+/OYEQDWV36k6r5HB4Vnv4MORIPdg
- yJk7F2S9qY/8weiY4pXEiUuhXh+u7M3NvaQk3Aft0mkRjlWYFPaWTlXyIjc3U9LeDBga
- 4Lfc0X1mD5iSfiokhdaa0IwMFZhcOEx3LoLL+MZH0iq1RbBlKVn2dKcHYTRHuOgl0996
- lvAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1776678609; x=1777283409;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=kWuPigQBRvg2mmG1YEkZ2x388ocHV9caZV1E1+5l688=;
- b=H/vduoZLkY9Nvv7FvKXAvm0LmpGIrOVxz7mg/VORCCIaCXdow/iRuIUUvr3Df7Lu76
- iGvdOGLtrloILoQjFvPi0O4S3w4NY0KCNqVFuPvhv+vOKR2g1+IMhEo0hUQmdeA/pcrz
- DBZoCDduSCBBHmfmtvTgUN9w0QeOjcVBD6FCJB0Mdqus+JiCWOJFwqFWvfWtcrtFXiPI
- 9qvNMXjXDd6Ypthqtz5xmNNdF5pyBRkDbi9Ktjo676rzDPszqaxleJstysb3DgZsriAi
- BQ5rNnxi8NCfOnOV+RikZhP1HIGpRXmee38qdssiXfOwXXmcPgobxmezEtu9mzI4DqKJ
- xvDw==
-X-Forwarded-Encrypted: i=1;
- AFNElJ+S2716LURUIqirUCJmSkDJ3olKi6a56pX+LQ6gGY/HsQAgGV0xI21nPmSnSc4GJYki7zHMQ88XcA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzORV5VMUIoRX5C15J5iCxQpUgS1hyUp2Eh+A60riuKMrIkJhIx
- 70JgvTP7cwRjVFtK9m0E8EHTLyNFNlcev6Ta/BrSbcF622yKo1InACNeOL+ZCNstDq3lFvMPeLb
- f5gSocRLWkUwtd/kGzxer26I3xlrdxa9XH8TMwYkLITQf1C+hXV8yLRvJGrCAzCbtgtonNQ==
-X-Gm-Gg: AeBDiesPll8JbwM7e3x/pUXkBUvYjvDyDwP8ptA0g9fJ8eY2/MopzYNsdIXNhFKaLQ3
- wJhz6E0lP174+Jv5B6kL9cPM7FdkTnv42FN8SfQaQa+wyqcO+lZdFC4LVGmdJU667YdIR7fFbG5
- PwNAVUbruuC+qmoS16lg5TtTGLAI/8jdF9xrcMZEzehrIwZJ9nqIjj06MGNf1b5L7ln6BzlcR3K
- xozDQqBsvoNiiWJ4smcNR742OQbtmnsE8QhDWQChmpPsORLtk04mPQfnQ0L7cXIXBDKNFuimHva
- NoO+G+d/FdFKeiNRebj5Rf2VPt0OTjq2ihsncX4rhoDG/vOFCeFGwM4IX0MoAnb7GcYl6noEadf
- 7F6tKstAtZ17y6JupBaXpOPsyv1TScrLM+WEgueolHF4tUxCeQBqB70+dlGbfAchHGlPe4ZIhZ0
- Y18C2ya9IlEk0X1YI9bO+uXV74foSeG7HUBXPgBwZyF0FkNg==
-X-Received: by 2002:ac8:7f15:0:b0:50e:5f37:a821 with SMTP id
- d75a77b69052e-50e5f37af22mr37013241cf.36.1776678608873; 
- Mon, 20 Apr 2026 02:50:08 -0700 (PDT)
-X-Received: by 2002:ac8:7f15:0:b0:50e:5f37:a821 with SMTP id
- d75a77b69052e-50e5f37af22mr37012641cf.36.1776678608356; 
- Mon, 20 Apr 2026 02:50:08 -0700 (PDT)
-Received: from umbar.lan
- (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
- [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
- by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-5a4185ad138sm2859553e87.9.2026.04.20.02.50.06
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 20 Apr 2026 02:50:07 -0700 (PDT)
-Date: Mon, 20 Apr 2026 12:50:05 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-usb@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Adrien Grassein <adrien.grassein@gmail.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Clark <robin.clark@oss.qualcomm.com>,
- Dmitry Baryshkov <lumag@kernel.org>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Pengyu Luo <mitltlatltl@gmail.com>, Nikita Travkin <nikita@trvn.ru>,
- Yongxing Mou <yongxing.mou@oss.qualcomm.com>
-Subject: Re: [PATCH 1/6] drm/connector: report IRQ_HPD events to
- drm_connector_oob_hotplug_event()
-Message-ID: <3vrqk67oivkgo26xdc3r774rvj3jn3t6sfydhlytyrfiftubhg@cipain7xxcjz>
-References: <20260416-hpd-irq-events-v1-0-1ab1f1cfb2b2@oss.qualcomm.com>
- <20260416-hpd-irq-events-v1-1-1ab1f1cfb2b2@oss.qualcomm.com>
- <51b7c44e-36c9-461f-983a-eaa86eeb8cfd@ideasonboard.com>
- <6z572fdjkvjqvedifwvotgdy4lcrifiqvkjpnutousjqc6764r@zepfzkqy2kbu>
- <a2e60e74-a1be-469d-8f4d-ecce1f30b517@ideasonboard.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26BAE10E4D8;
+ Mon, 20 Apr 2026 10:37:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1776681443; x=1808217443;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=/wJwPyff9tbc2/ZFYEIXSwRumi7Y931UbJviRE8cGHI=;
+ b=HtSrq+voALkhZ7Q98unENjHu2zQGKzfSIwmyP5gKnIRSd6AYE+mCHVNI
+ u4QFLr1bR3Q5Us+iYyjRW69Atvul8SCr2bEeZsvuRdevhKtiyK+TRHlbl
+ zdxH8x3sGjkVDm67YZeGDxjENmyxWrPhzjRQd2qUWd+2dE0e3jClw3eId
+ h/f/eYIoYpYidx4I5U33ShNPZd2fqyUKO+ZMYW+5+RpZ33S3R9sVEpKiy
+ +ifAmh2tN0mQT5wHKTN3CvPyvg1awjjUohcqBmgleUTKWXJe0eQgrY90J
+ 1G8wJlnObYONxfjJr0DHxgvhavzpS4+1QFsxmwxp5ptWTvR44DHesw3tf g==;
+X-CSE-ConnectionGUID: zE2OmpGUR8ebgTOO6WDvBg==
+X-CSE-MsgGUID: l9DbcCAKTGq2Dk6iz7D56g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11762"; a="81464749"
+X-IronPort-AV: E=Sophos;i="6.23,189,1770624000"; d="scan'208";a="81464749"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2026 03:37:23 -0700
+X-CSE-ConnectionGUID: XWH/iejgQ3+UoEWMXwUG8A==
+X-CSE-MsgGUID: 4+R99/pDRcmdN96UDJ2Alw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,189,1770624000"; d="scan'208";a="231554559"
+Received: from vpanait-mobl.ger.corp.intel.com (HELO hazy.intel.com)
+ ([10.245.244.99])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2026 03:37:20 -0700
+From: Luca Coelho <luciano.coelho@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
+ ville.syrjala@linux.intel.com
+Subject: [PATCH v3 0/8] drm/i915: move more display dependencies from i915
+Date: Mon, 20 Apr 2026 13:30:42 +0300
+Message-ID: <20260420103705.3453499-1-luciano.coelho@intel.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a2e60e74-a1be-469d-8f4d-ecce1f30b517@ideasonboard.com>
-X-Proofpoint-ORIG-GUID: YiJdpxA2TEHaJCfFJ7S9O1g0ebFAa0un
-X-Proofpoint-GUID: YiJdpxA2TEHaJCfFJ7S9O1g0ebFAa0un
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDIwMDA5NCBTYWx0ZWRfX5vFcM3eYUpGs
- OC8Fjopqx7pMaG0NbMw6pVlZJ0vwbdF0bG4M3Yo9Hg/WWDBE4zHyngPa3jUeFtIhNFKFkgv6cSm
- L2zgjSNPShUNv3u5z0d622c8WRAvcU/0PjvbOd2GsWAXEcKZOOYACC2Lpa1CbrBsH0Gh7OOlv4R
- XjWAjZvFiT7t6dqF7mjNaNP9T1qrcYqYQenWeXTTj30aUqU01X2y/gLRj1X8KUGxdcTMJVp6hhW
- SggBNyk89EAgo13f3aThlho1yBVKCvHfCuh1qT1Sv+Z/VcVmNmpX8XbwViZi1AeXYjKIFa54qv/
- 6CGOzr6YKeXwHUNGt7GHRPKqpjeJeIl8POyGtjZkt+aMwgHvlhJEFELQ/7yJarDVXLjsHa9D9gA
- VM9L6/vRPEQHvmqMmxgSYari+IOIFACdwcvEybWEP2kEOX/UeSJE+wJS98KqUjwH+gESh+SWp0u
- YIo2GRdD7zBc0T0hmCA==
-X-Authority-Analysis: v=2.4 cv=HNrz0Itv c=1 sm=1 tr=0 ts=69e5f6d1 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22 a=EUspDBNiAAAA:8
- a=VVbN_I7Xu8gywQYyaxkA:9 a=CjuIK1q_8ugA:10 a=kacYvNCVWA4VmyqE58fU:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-04-20_02,2026-04-17_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 suspectscore=0 adultscore=0 spamscore=0 phishscore=0
- impostorscore=0 malwarescore=0 bulkscore=0 lowpriorityscore=0 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2604070000 definitions=main-2604200094
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -170,110 +66,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Apr 20, 2026 at 07:50:46AM +0300, Tomi Valkeinen wrote:
-> Hi,
-> 
-> On 18/04/2026 01:32, Dmitry Baryshkov wrote:
-> > On Thu, Apr 16, 2026 at 11:10:03AM +0300, Tomi Valkeinen wrote:
-> > > Hi,
-> > > 
-> > > On 16/04/2026 02:22, Dmitry Baryshkov wrote:
-> > > > The DisplayPort standard defines a special kind of events called IRQ.
-> > > > These events are used to notify DP Source about the events on the Sink
-> > > > side. It is extremely important for DP MST handling, where the MST
-> > > > events are reported through this IRQ.
-> > > > 
-> > > > In case of the USB-C DP AltMode there is no actual HPD pulse, but the
-> > > > events are ported through the bits in the AltMode VDOs.
-> > > > 
-> > > > Extend the drm_connector_oob_hotplug_event() interface and report IRQ
-> > > > events to the DisplayPort Sink drivers.
-> > > > 
-> > > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> > > > ---
-> > > >    drivers/gpu/drm/drm_connector.c          |  4 +++-
-> > > >    drivers/usb/typec/altmodes/displayport.c | 12 ++++++++----
-> > > >    include/drm/drm_connector.h              |  3 ++-
-> > > >    3 files changed, 13 insertions(+), 6 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
-> > > > index 47dc53c4a738..5fdacbd84bd7 100644
-> > > > --- a/drivers/gpu/drm/drm_connector.c
-> > > > +++ b/drivers/gpu/drm/drm_connector.c
-> > > > @@ -3510,6 +3510,7 @@ struct drm_connector *drm_connector_find_by_fwnode(struct fwnode_handle *fwnode)
-> > > >     * drm_connector_oob_hotplug_event - Report out-of-band hotplug event to connector
-> > > >     * @connector_fwnode: fwnode_handle to report the event on
-> > > >     * @status: hot plug detect logical state
-> > > > + * @irq_hpd: HPD pulse detected
-> > > >     *
-> > > >     * On some hardware a hotplug event notification may come from outside the display
-> > > >     * driver / device. An example of this is some USB Type-C setups where the hardware
-> > > > @@ -3520,7 +3521,8 @@ struct drm_connector *drm_connector_find_by_fwnode(struct fwnode_handle *fwnode)
-> > > >     * a drm_connector reference through calling drm_connector_find_by_fwnode().
-> > > >     */
-> > > >    void drm_connector_oob_hotplug_event(struct fwnode_handle *connector_fwnode,
-> > > > -				     enum drm_connector_status status)
-> > > > +				     enum drm_connector_status status,
-> > > > +				     bool irq_hpd)
-> > > I find the "IRQ HPD" naming always confusing, even if I'm somewhat familiar
-> > > with DP, but if someone has mainly worked on HDMI, I'm sure it's even worse.
-> > > 
-> > > Can we define this a bit more precisely? Is 'irq_hpd' only for displayport?
-> > > If so, perhaps 'dp_irq_hpd' or 'displayport_irq_hpd'. I might even call it
-> > > 'dp_hpd_pulse', but maybe that's not good as the spec talks about HPD pulse
-> > > for both short and long ones (although in the kernel doc you just write "HPD
-> > > pulse")... The kernel doc could be expanded a bit to make it clear what this
-> > > flag indicates.
-> > 
-> > I attempted to stay away from defining a DP-specific flag, keeping it
-> > generic enough. HDMI is pretty close (IMO) to requiring separate flag in
-> 
-> If it's not specifically the DP IRQ HPD, then we need to define what it
-> means. I tried to think what it would mean with HDMI, but I didn't come up
-> with anything.
+This series continues my work of refactoring the clock gating
+initialization, so that i915 doesn't do display-specific stuff.
 
-I might be mistaken, but I had someting like HEAC HPD / EDID status
-changes in mind (or HDCP-triggered HPD status changes). But here I
-admit, I hadn't checked if it is actually applicable or not.
+With this, all register dependencies should be gone.
 
-Anyway, for e.g. DVI or VGA that means nothing. But, my point really is
-to abstain from defining someting as DP-only in the top-level API.
+Changes in v3, mostly addressing Jani's comments:
 
-> 
-> > Linux. Likewise I'd rather not use "pulse". The DP AltMode defines a bit
-> > in the VDO rather than a pulse.
-> > 
-> > Anyway, if irq_hpd doesn't sound precise enough, what about "bool
-> > extra_irq"? This would convey that this is the extra hpd-related IRQ,
-> > but it would also be obvious that it's not related to the HPD pin
-> > itself.
-> We'd still need to define what exactly it means. I think it might be better
-> to just define it as the DP IRQ HPD, as then the meaning is clear.
-> 
-> Also, would an enum flags parameter be better than a bool parameter?
+	* Changed the shared Gen9 display clock gating helper not to
+          include i915_drv.h, to_i915() and HAS_LLC();
+	* Kept SKL_DE_COMPRESSED_HASH_MODE out of the shared Gen9
+          helper and programmed it only from the SKL/KBL wrappers;
+	* Moved the remaining ILK display register definitions from
+          i915_reg.h to intel_display_regs.h;
+	* Removed i915_reg.h from intel_display_clock_gating.c;
+	* Replaced i915-only platform checks in display code with
+          display->platform.* checks;
 
-Maybe not enum, but u32 param. Then it can become:
+Please review.
 
-@extra_status: additional type-specific information provided by the sink
-without changing the HPD state
+Cheers,
+Luca.
 
-void drm_connector_oob_hotplug_event(..., u32 extra_status);
 
-/* DP short HPD pulse or corresponding AltMode flag */
-#define DRM_CONNECTOR_OOB_DP_IRQ_HPD BIT(0)
-/* DP long HPD pulse, debounced XXX: do we need this? */
-#define DRM_CONNECTOR_OOB_DP_REPLUG BIT(1)
+Luca Coelho (8):
+  drm/i915: move SKL clock gating init to display
+  drm/i915: move KBL clock gating init to display
+  drm/i915/display: move CFL clock gating init to display
+  drm/i915/display: move BXT clock gating init to display
+  drm/i915/display: move GLK clock gating init to display
+  drm/i915/display: move HSW and BDW clock gating init to display
+  drm/i915/display: move pre-HSW clock gating init to display
+  drm/i915: remove HAS_PCH_NOP() dependency from clock gating
 
-For HDMI we might want to define:
-
-/* HDMI 1.4b 8.5, HPD pulse */
-#define DRM_CONNECTOR_OOB_HDMI_REPLUG BIT(0)
-
-Or might not, 100ms is long enough for all debouncers.
-
-For HDMI we potentially have another source of OOB events, CDC-messages
-from CEC controller. I have not looked in the details of the HEAC 3.
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ .../i915/display/intel_display_clock_gating.c | 255 ++++++++++++++++++
+ .../i915/display/intel_display_clock_gating.h |  27 ++
+ .../gpu/drm/i915/display/intel_display_regs.h |  31 +++
+ drivers/gpu/drm/i915/i915_reg.h               |  31 ---
+ drivers/gpu/drm/i915/intel_clock_gating.c     | 226 ++--------------
+ 6 files changed, 331 insertions(+), 240 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_display_clock_gating.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_display_clock_gating.h
 
 -- 
-With best wishes
-Dmitry
+2.53.0
+
