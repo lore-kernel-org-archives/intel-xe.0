@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65E13F5580A
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Apr 2026 10:37:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E40D6F55809
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Apr 2026 10:37:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B08D10E4E2;
-	Mon, 20 Apr 2026 10:37:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9AE510E4CD;
+	Mon, 20 Apr 2026 10:37:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TpdGDcFo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e9RoUoH1";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B966210E4DF;
- Mon, 20 Apr 2026 10:37:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C92C10E4E4;
+ Mon, 20 Apr 2026 10:37:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776681454; x=1808217454;
+ t=1776681459; x=1808217459;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=KtDIjpGIXNXtPQ7mXPCiYoKoQWHNXVJdagH8HJPefzQ=;
- b=TpdGDcFovuv6XRrqVjB/2vw404IuT72FMiaQ5JALUDn50p6lJQs9J0O7
- M2aznFWP9eJ9Mm9iWlnohC6WLPl2ZKuuD3RR3z+ofWbheXcDvSiYg49Yl
- 3QuKEcbHbnvmdfc67cD94Tdnl5ZWhJaatdl52PGbiCG5N1DYAHLDXpG1V
- 10vyiVlhtBEHkFCrD8O7wGMAHXol0EpTCwtrnEA1s2kIVnT7vydoYn00B
- 8MIVepSKEMGb9n8vMEy0rERMOFZXs4MnP+50pbC1Ppkc9kULphZ2zlm64
- yhD8UfHSu3bAmXx8jDets6R/eBvGtPwc5jHHuvtt4A5IK5GvHBVIkOmIQ Q==;
-X-CSE-ConnectionGUID: CVhjTgVjRpqMpUNxs/PbJw==
-X-CSE-MsgGUID: L41A00omRfuBzVnhZJnOxQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11762"; a="81464756"
-X-IronPort-AV: E=Sophos;i="6.23,189,1770624000"; d="scan'208";a="81464756"
+ bh=WpOHe4gqQyg0PeGVtkOdlg2QasofU1uFhUqvu7fU2dM=;
+ b=e9RoUoH1MbNcm+wwyaaXuCpHNO6hEphPx8920EbWOpQC8wRbIx8oh2Lv
+ AYczk3MGYQDeDnNFdlf2yYMBukCiLyU6sfWahBbSwdbhcIhCZucpgB1Zv
+ A2l9216nOBLvZgzzv7Bh4wuMsVpLBarK0Ve/piMyJy0qhYYFz4ym3NfmK
+ eF+hrqWWJYfHxl1r1nkPSf1bXsmi4KiDQJx0wEI/FihhOpyIIe8n3gtGI
+ AZVmXJuYHwcPwjvC9Jy3+nUFmEWJAqcwK8XniLCa7wjb9qd55XlugDZz1
+ N3CqAFlRvRf3Egqx8QpyzvKrunHP0udC/9NjvLeZ3D9TA+FJ0D9bl9T2D w==;
+X-CSE-ConnectionGUID: Q3L4hsCYSxGXnb662qbOpg==
+X-CSE-MsgGUID: D7kgAGDKS/utABVja3qfrA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11762"; a="81464760"
+X-IronPort-AV: E=Sophos;i="6.23,189,1770624000"; d="scan'208";a="81464760"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2026 03:37:34 -0700
-X-CSE-ConnectionGUID: Ca29XhwASIatBr/dHdn49w==
-X-CSE-MsgGUID: tAYsLc/rS0y/085xY8sPYg==
+ 20 Apr 2026 03:37:38 -0700
+X-CSE-ConnectionGUID: J3wa5BweTxy4OWDZ9h15hQ==
+X-CSE-MsgGUID: T3CQV/FvTsSlxqfn4B9cPQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,189,1770624000"; d="scan'208";a="231554583"
+X-IronPort-AV: E=Sophos;i="6.23,189,1770624000"; d="scan'208";a="231554586"
 Received: from vpanait-mobl.ger.corp.intel.com (HELO hazy.intel.com)
  ([10.245.244.99])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2026 03:37:31 -0700
+ 20 Apr 2026 03:37:36 -0700
 From: Luca Coelho <luciano.coelho@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
  ville.syrjala@linux.intel.com
-Subject: [PATCH v3 5/8] drm/i915/display: move GLK clock gating init to display
-Date: Mon, 20 Apr 2026 13:30:47 +0300
-Message-ID: <20260420103705.3453499-6-luciano.coelho@intel.com>
+Subject: [PATCH v3 7/8] drm/i915/display: move pre-HSW clock gating init to
+ display
+Date: Mon, 20 Apr 2026 13:30:49 +0300
+Message-ID: <20260420103705.3453499-8-luciano.coelho@intel.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260420103705.3453499-1-luciano.coelho@intel.com>
 References: <20260420103705.3453499-1-luciano.coelho@intel.com>
@@ -68,215 +69,406 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move the GLK-specific display clock gating programming into display
-intel_display_clock_gating.c, to remove more dependencies from i915 to
-display registers.
+Move the remaining pre-HSW display clock gating programming into
+display.
 
-Now that all remaining Gen9-family callers moved into display, we can
-move the shared Gen9 display clock gating helper into display and
-remove the old local helper from intel_clock_gating.c.
+This also drops display register includes from intel_clock_gating.c.
 
 Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
 ---
- .../i915/display/intel_display_clock_gating.c | 57 +++++++++++++++++++
- .../i915/display/intel_display_clock_gating.h |  1 +
- drivers/gpu/drm/i915/intel_clock_gating.c     | 44 +-------------
- 3 files changed, 59 insertions(+), 43 deletions(-)
+ .../i915/display/intel_display_clock_gating.c |  92 ++++++++++++++++
+ .../i915/display/intel_display_clock_gating.h |   6 +
+ .../gpu/drm/i915/display/intel_display_regs.h |  28 +++++
+ drivers/gpu/drm/i915/i915_reg.h               |  28 -----
+ drivers/gpu/drm/i915/intel_clock_gating.c     | 103 +-----------------
+ 5 files changed, 132 insertions(+), 125 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
-index 59041c807d6d..b2cb18478577 100644
+index 6ba65f6cbeae..585b208fc6c9 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
-@@ -6,11 +6,39 @@
+@@ -6,6 +6,7 @@
  #include <drm/intel/intel_gmd_misc_regs.h>
  
  #include "intel_de.h"
-+#include "intel_display.h"
++#include "i9xx_plane_regs.h"
+ #include "intel_display.h"
  #include "intel_display_clock_gating.h"
-+#include "intel_display_core.h"
- #include "intel_display_regs.h"
- 
-+static void intel_display_gen9_init_clock_gating(struct intel_display *display)
-+{
-+	/* See Bspec note for PSR2_CTL bit 31, Wa#828:skl,bxt,kbl,cfl */
-+	intel_de_rmw(display, CHICKEN_PAR1_1, 0, SKL_EDP_PSR_FIX_RDWRAP);
-+
-+	/* WaEnableChickenDCPR:skl,bxt,kbl,glk,cfl */
-+	intel_de_rmw(display, GEN8_CHICKEN_DCPR_1, 0, MASK_WAKEMEM);
-+
-+	/*
-+	 * WaFbcWakeMemOn:skl,bxt,kbl,glk,cfl
-+	 * Display WA #0859: skl,bxt,kbl,glk,cfl
-+	 */
-+	intel_de_rmw(display, DISP_ARB_CTL, 0, DISP_FBC_MEMORY_WAKE);
-+}
-+
- void intel_display_skl_init_clock_gating(struct intel_display *display)
- {
-+	/*
-+	 * WaCompressedResourceDisplayNewHashMode:skl,kbl
-+	 * Display WA #0390: skl,kbl
-+	 *
-+	 * Must match Sampler, Pixel Back End, and Media. See
-+	 * WaCompressedResourceSamplerPbeMediaNewHashMode.
-+	 */
-+	intel_de_rmw(display, CHICKEN_PAR1_1, 0, SKL_DE_COMPRESSED_HASH_MODE);
-+
-+	intel_display_gen9_init_clock_gating(display);
-+
- 	/*
- 	 * WaFbcTurnOffFbcWatermark:skl
- 	 * Display WA #0562: skl
-@@ -20,6 +48,17 @@ void intel_display_skl_init_clock_gating(struct intel_display *display)
- 
- void intel_display_kbl_init_clock_gating(struct intel_display *display)
- {
-+	/*
-+	 * WaCompressedResourceDisplayNewHashMode:skl,kbl
-+	 * Display WA #0390: skl,kbl
-+	 *
-+	 * Must match Sampler, Pixel Back End, and Media. See
-+	 * WaCompressedResourceSamplerPbeMediaNewHashMode.
-+	 */
-+	intel_de_rmw(display, CHICKEN_PAR1_1, 0, SKL_DE_COMPRESSED_HASH_MODE);
-+
-+	intel_display_gen9_init_clock_gating(display);
-+
- 	/*
- 	 * WaFbcTurnOffFbcWatermark:kbl
- 	 * Display WA #0562: kbl
-@@ -29,6 +68,8 @@ void intel_display_kbl_init_clock_gating(struct intel_display *display)
- 
- void intel_display_cfl_init_clock_gating(struct intel_display *display)
- {
-+	intel_display_gen9_init_clock_gating(display);
-+
- 	/*
- 	 * WaFbcTurnOffFbcWatermark:cfl
- 	 * Display WA #0562: cfl
-@@ -38,6 +79,8 @@ void intel_display_cfl_init_clock_gating(struct intel_display *display)
- 
- void intel_display_bxt_init_clock_gating(struct intel_display *display)
- {
-+	intel_display_gen9_init_clock_gating(display);
-+
- 	/*
- 	 * Wa: Backlight PWM may stop in the asserted state, causing backlight
- 	 * to stay fully on.
-@@ -60,3 +103,17 @@ void intel_display_bxt_init_clock_gating(struct intel_display *display)
- 	 */
- 	intel_de_rmw(display, DISP_ARB_CTL, 0, DISP_FBC_WM_DIS);
+ #include "intel_display_core.h"
+@@ -161,3 +162,94 @@ void intel_display_hsw_init_clock_gating(struct intel_display *display)
+ 			     HSW_UNMASK_VBL_TO_REGS_IN_SRD);
+ 	}
  }
 +
-+void intel_display_glk_init_clock_gating(struct intel_display *display)
++void intel_display_disable_trickle_feed(struct intel_display *display)
 +{
-+	intel_display_gen9_init_clock_gating(display);
++	enum pipe pipe;
++
++	for_each_pipe(display, pipe) {
++		intel_de_rmw(display, DSPCNTR(display, pipe), 0,
++			     DISP_TRICKLE_FEED_DISABLE);
++
++		intel_de_rmw(display, DSPSURF(display, pipe), 0, 0);
++		intel_de_posting_read(display, DSPSURF(display, pipe));
++	}
++}
++
++void intel_display_ilk_init_clock_gating(struct intel_display *display)
++{
++	u32 dspclk_gate = ILK_VRHUNIT_CLOCK_GATE_DISABLE;
 +
 +	/*
-+	 * WaDisablePWMClockGating:glk
-+	 * Backlight PWM may stop in the asserted state, causing backlight
-+	 * to stay fully on.
++	 * Required for FBC
++	 * WaFbcDisableDpfcClockGating:ilk
 +	 */
-+	intel_de_write(display, GEN9_CLKGATE_DIS_0,
-+		       intel_de_read(display, GEN9_CLKGATE_DIS_0) |
-+		       PWM1_GATING_DIS | PWM2_GATING_DIS);
++	dspclk_gate |= ILK_DPFCRUNIT_CLOCK_GATE_DISABLE |
++		       ILK_DPFCUNIT_CLOCK_GATE_DISABLE |
++		       ILK_DPFDUNIT_CLOCK_GATE_ENABLE;
++
++	intel_de_write(display, ILK_DISPLAY_CHICKEN2,
++		       intel_de_read(display, ILK_DISPLAY_CHICKEN2) |
++		       ILK_DPARB_GATE | ILK_VSDPFD_FULL);
++	dspclk_gate |= ILK_DPARBUNIT_CLOCK_GATE_ENABLE;
++	intel_de_write(display, DISP_ARB_CTL,
++		       intel_de_read(display, DISP_ARB_CTL) |
++		       DISP_FBC_WM_DIS);
++
++	if (display->platform.ironlake && display->platform.mobile) {
++		/* WaFbcAsynchFlipDisableFbcQueue:ilk */
++		intel_de_rmw(display, ILK_DISPLAY_CHICKEN1, 0, ILK_FBCQ_DIS);
++		intel_de_rmw(display, ILK_DISPLAY_CHICKEN2, 0, ILK_DPARB_GATE);
++	}
++
++	intel_de_write(display, ILK_DSPCLK_GATE_D, dspclk_gate);
++	intel_de_rmw(display, ILK_DISPLAY_CHICKEN2, 0, ILK_ELPIN_409_SELECT);
++
++	intel_display_disable_trickle_feed(display);
++}
++
++void intel_display_gen6_init_clock_gating(struct intel_display *display)
++{
++	u32 dspclk_gate = ILK_VRHUNIT_CLOCK_GATE_DISABLE;
++
++	intel_de_write(display, ILK_DSPCLK_GATE_D, dspclk_gate);
++	intel_de_rmw(display, ILK_DISPLAY_CHICKEN2, 0, ILK_ELPIN_409_SELECT);
++
++	intel_de_write(display, ILK_DISPLAY_CHICKEN1,
++		       intel_de_read(display, ILK_DISPLAY_CHICKEN1) |
++		       ILK_FBCQ_DIS | ILK_PABSTRETCH_DIS);
++	intel_de_write(display, ILK_DISPLAY_CHICKEN2,
++		       intel_de_read(display, ILK_DISPLAY_CHICKEN2) |
++		       ILK_DPARB_GATE | ILK_VSDPFD_FULL);
++	intel_de_write(display, ILK_DSPCLK_GATE_D,
++		       intel_de_read(display, ILK_DSPCLK_GATE_D) |
++		       ILK_DPARBUNIT_CLOCK_GATE_ENABLE |
++		       ILK_DPFDUNIT_CLOCK_GATE_ENABLE);
++
++	intel_display_disable_trickle_feed(display);
++}
++
++void intel_display_ivb_init_clock_gating(struct intel_display *display)
++{
++	intel_de_write(display, ILK_DSPCLK_GATE_D, ILK_VRHUNIT_CLOCK_GATE_DISABLE);
++	intel_de_rmw(display, ILK_DISPLAY_CHICKEN1, 0, ILK_FBCQ_DIS);
++}
++
++void intel_display_g4x_init_clock_gating(struct intel_display *display)
++{
++	u32 dspclk_gate = VRHUNIT_CLOCK_GATE_DISABLE |
++			  OVRUNIT_CLOCK_GATE_DISABLE |
++			  OVCUNIT_CLOCK_GATE_DISABLE;
++
++	if (display->platform.gm45)
++		dspclk_gate |= DSSUNIT_CLOCK_GATE_DISABLE;
++
++	intel_de_write(display, DSPCLK_GATE_D, dspclk_gate);
++
++	intel_display_disable_trickle_feed(display);
++}
++
++void intel_display_i965gm_init_clock_gating(struct intel_display *display)
++{
++	intel_de_write(display, DSPCLK_GATE_D, 0);
 +}
 diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gating.h b/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
-index 6bc84a9a4342..a7784db9d97a 100644
+index e0300dc8b041..b6dd34ca92dd 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
-@@ -12,5 +12,6 @@ void intel_display_skl_init_clock_gating(struct intel_display *display);
- void intel_display_kbl_init_clock_gating(struct intel_display *display);
- void intel_display_cfl_init_clock_gating(struct intel_display *display);
- void intel_display_bxt_init_clock_gating(struct intel_display *display);
-+void intel_display_glk_init_clock_gating(struct intel_display *display);
+@@ -17,5 +17,11 @@ void intel_display_bdw_clock_gating_disable_fbcq(struct intel_display *display);
+ void intel_display_bdw_clock_gating_vblank_in_srd(struct intel_display *display);
+ void intel_display_bdw_clock_gating_kvm_notif(struct intel_display *display);
+ void intel_display_hsw_init_clock_gating(struct intel_display *display);
++void intel_display_disable_trickle_feed(struct intel_display *display);
++void intel_display_ilk_init_clock_gating(struct intel_display *display);
++void intel_display_gen6_init_clock_gating(struct intel_display *display);
++void intel_display_ivb_init_clock_gating(struct intel_display *display);
++void intel_display_g4x_init_clock_gating(struct intel_display *display);
++void intel_display_i965gm_init_clock_gating(struct intel_display *display);
  
  #endif /* __INTEL_DISPLAY_CLOCK_GATING_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
+index fc9d3bbb921c..1ef4a78aaa3d 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+@@ -217,6 +217,34 @@
+ # define DPIOUNIT_CLOCK_GATE_DISABLE		(1 << 6) /* 915-945 */
+ # define OVFUNIT_CLOCK_GATE_DISABLE		(1 << 5)
+ # define OVBUNIT_CLOCK_GATE_DISABLE		(1 << 4)
++
++#define ILK_DISPLAY_CHICKEN1		_MMIO(0x42000)
++#define   ILK_FBCQ_DIS			REG_BIT(22)
++#define   ILK_PABSTRETCH_DIS		REG_BIT(21)
++#define   ILK_SABSTRETCH_DIS		REG_BIT(20)
++#define   IVB_PRI_STRETCH_MAX_MASK	REG_GENMASK(21, 20)
++#define   IVB_PRI_STRETCH_MAX_X8	REG_FIELD_PREP(IVB_PRI_STRETCH_MAX_MASK, 0)
++#define   IVB_PRI_STRETCH_MAX_X4	REG_FIELD_PREP(IVB_PRI_STRETCH_MAX_MASK, 1)
++#define   IVB_PRI_STRETCH_MAX_X2	REG_FIELD_PREP(IVB_PRI_STRETCH_MAX_MASK, 2)
++#define   IVB_PRI_STRETCH_MAX_X1	REG_FIELD_PREP(IVB_PRI_STRETCH_MAX_MASK, 3)
++#define   IVB_SPR_STRETCH_MAX_MASK	REG_GENMASK(19, 18)
++#define   IVB_SPR_STRETCH_MAX_X8	REG_FIELD_PREP(IVB_SPR_STRETCH_MAX_MASK, 0)
++#define   IVB_SPR_STRETCH_MAX_X4	REG_FIELD_PREP(IVB_SPR_STRETCH_MAX_MASK, 1)
++#define   IVB_SPR_STRETCH_MAX_X2	REG_FIELD_PREP(IVB_SPR_STRETCH_MAX_MASK, 2)
++#define   IVB_SPR_STRETCH_MAX_X1	REG_FIELD_PREP(IVB_SPR_STRETCH_MAX_MASK, 3)
++
++#define ILK_DISPLAY_CHICKEN2		_MMIO(0x42004)
++/* Required on all Ironlake and Sandybridge according to the B-Spec. */
++#define   ILK_ELPIN_409_SELECT		REG_BIT(25)
++#define   ILK_DPARB_GATE		REG_BIT(22)
++#define   ILK_VSDPFD_FULL		REG_BIT(21)
++
++#define ILK_DSPCLK_GATE_D		_MMIO(0x42020)
++#define   ILK_VRHUNIT_CLOCK_GATE_DISABLE	REG_BIT(28)
++#define   ILK_DPFCUNIT_CLOCK_GATE_DISABLE	REG_BIT(9)
++#define   ILK_DPFCRUNIT_CLOCK_GATE_DISABLE	REG_BIT(8)
++#define   ILK_DPFDUNIT_CLOCK_GATE_ENABLE	REG_BIT(7)
++#define   ILK_DPARBUNIT_CLOCK_GATE_ENABLE	REG_BIT(5)
+ /*
+  * This bit must be set on the 830 to prevent hangs when turning off the
+  * overlay scaler.
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index e9d7f1c3a288..64e906380131 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -494,21 +494,6 @@
+ #define   GEN7_FF_DS_SCHED_LOAD_BALANCE	(0x1 << 4)  /* Default */
+ #define   GEN7_FF_DS_SCHED_HW		(0x0 << 4)
+ 
+-#define ILK_DISPLAY_CHICKEN1	_MMIO(0x42000)
+-#define   ILK_FBCQ_DIS			REG_BIT(22)
+-#define   ILK_PABSTRETCH_DIS		REG_BIT(21)
+-#define   ILK_SABSTRETCH_DIS		REG_BIT(20)
+-#define   IVB_PRI_STRETCH_MAX_MASK	REG_GENMASK(21, 20)
+-#define   IVB_PRI_STRETCH_MAX_X8	REG_FIELD_PREP(IVB_PRI_STRETCH_MAX_MASK, 0)
+-#define   IVB_PRI_STRETCH_MAX_X4	REG_FIELD_PREP(IVB_PRI_STRETCH_MAX_MASK, 1)
+-#define   IVB_PRI_STRETCH_MAX_X2	REG_FIELD_PREP(IVB_PRI_STRETCH_MAX_MASK, 2)
+-#define   IVB_PRI_STRETCH_MAX_X1	REG_FIELD_PREP(IVB_PRI_STRETCH_MAX_MASK, 3)
+-#define   IVB_SPR_STRETCH_MAX_MASK	REG_GENMASK(19, 18)
+-#define   IVB_SPR_STRETCH_MAX_X8	REG_FIELD_PREP(IVB_SPR_STRETCH_MAX_MASK, 0)
+-#define   IVB_SPR_STRETCH_MAX_X4	REG_FIELD_PREP(IVB_SPR_STRETCH_MAX_MASK, 1)
+-#define   IVB_SPR_STRETCH_MAX_X2	REG_FIELD_PREP(IVB_SPR_STRETCH_MAX_MASK, 2)
+-#define   IVB_SPR_STRETCH_MAX_X1	REG_FIELD_PREP(IVB_SPR_STRETCH_MAX_MASK, 3)
+-
+ #define DPLL_TEST	_MMIO(0x606c)
+ #define   DPLLB_TEST_SDVO_DIV_1		(0 << 22)
+ #define   DPLLB_TEST_SDVO_DIV_2		(1 << 22)
+@@ -700,19 +685,6 @@
+ #define   DG1_MSTR_IRQ			REG_BIT(31)
+ #define   DG1_MSTR_TILE(t)		REG_BIT(t)
+ 
+-#define ILK_DISPLAY_CHICKEN2	_MMIO(0x42004)
+-/* Required on all Ironlake and Sandybridge according to the B-Spec. */
+-#define   ILK_ELPIN_409_SELECT	REG_BIT(25)
+-#define   ILK_DPARB_GATE	REG_BIT(22)
+-#define   ILK_VSDPFD_FULL	REG_BIT(21)
+-
+-#define ILK_DSPCLK_GATE_D	_MMIO(0x42020)
+-#define   ILK_VRHUNIT_CLOCK_GATE_DISABLE	REG_BIT(28)
+-#define   ILK_DPFCUNIT_CLOCK_GATE_DISABLE	REG_BIT(9)
+-#define   ILK_DPFCRUNIT_CLOCK_GATE_DISABLE	REG_BIT(8)
+-#define   ILK_DPFDUNIT_CLOCK_GATE_ENABLE	REG_BIT(7)
+-#define   ILK_DPARBUNIT_CLOCK_GATE_ENABLE	REG_BIT(5)
+-
+ #define IVB_CHICKEN3		_MMIO(0x4200c)
+ #define   CHICKEN3_DGMG_REQ_OUT_FIX_DISABLE	REG_BIT(5)
+ #define   CHICKEN3_DGMG_DONE_FIX_DISABLE	REG_BIT(2)
 diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c b/drivers/gpu/drm/i915/intel_clock_gating.c
-index 4c1937d922b2..777314e0c75d 100644
+index 47b437a82f4e..12559db84cf4 100644
 --- a/drivers/gpu/drm/i915/intel_clock_gating.c
 +++ b/drivers/gpu/drm/i915/intel_clock_gating.c
-@@ -49,36 +49,8 @@ struct drm_i915_clock_gating_funcs {
- 	void (*init_clock_gating)(struct drm_i915_private *i915);
- };
+@@ -29,11 +29,8 @@
+ #include <drm/intel/intel_gmd_misc_regs.h>
+ #include <drm/intel/intel_gmd_interrupt_regs.h>
  
--static void gen9_init_clock_gating(struct drm_i915_private *i915)
--{
--	if (HAS_LLC(i915)) {
--		/*
--		 * WaCompressedResourceDisplayNewHashMode:skl,kbl
--		 * Display WA #0390: skl,kbl
--		 *
--		 * Must match Sampler, Pixel Back End, and Media. See
--		 * WaCompressedResourceSamplerPbeMediaNewHashMode.
--		 */
--		intel_uncore_rmw(&i915->uncore, CHICKEN_PAR1_1, 0, SKL_DE_COMPRESSED_HASH_MODE);
--	}
--
--	/* See Bspec note for PSR2_CTL bit 31, Wa#828:skl,bxt,kbl,cfl */
--	intel_uncore_rmw(&i915->uncore, CHICKEN_PAR1_1, 0, SKL_EDP_PSR_FIX_RDWRAP);
--
--	/* WaEnableChickenDCPR:skl,bxt,kbl,glk,cfl */
--	intel_uncore_rmw(&i915->uncore, GEN8_CHICKEN_DCPR_1, 0, MASK_WAKEMEM);
--
--	/*
--	 * WaFbcWakeMemOn:skl,bxt,kbl,glk,cfl
--	 * Display WA #0859: skl,bxt,kbl,glk,cfl
--	 */
--	intel_uncore_rmw(&i915->uncore, DISP_ARB_CTL, 0, DISP_FBC_MEMORY_WAKE);
--}
--
- static void bxt_init_clock_gating(struct drm_i915_private *i915)
- {
--	gen9_init_clock_gating(i915);
--
- 	/* WaDisableSDEUnitClockGating:bxt */
- 	intel_uncore_rmw(&i915->uncore, GEN8_UCGCTL6, 0, GEN8_SDEUNIT_CLOCK_GATE_DISABLE);
- 
-@@ -93,16 +65,7 @@ static void bxt_init_clock_gating(struct drm_i915_private *i915)
- 
- static void glk_init_clock_gating(struct drm_i915_private *i915)
- {
--	gen9_init_clock_gating(i915);
--
--	/*
--	 * WaDisablePWMClockGating:glk
--	 * Backlight PWM may stop in the asserted state, causing backlight
--	 * to stay fully on.
--	 */
--	intel_uncore_write(&i915->uncore, GEN9_CLKGATE_DIS_0,
--			   intel_uncore_read(&i915->uncore, GEN9_CLKGATE_DIS_0) |
--			   PWM1_GATING_DIS | PWM2_GATING_DIS);
-+	intel_display_glk_init_clock_gating(i915->display);
+-#include "display/i9xx_plane_regs.h"
+-#include "display/intel_display.h"
+ #include "display/intel_display_clock_gating.h"
+ #include "display/intel_display_core.h"
+-#include "display/intel_display_regs.h"
+ #include "gt/intel_engine_regs.h"
+ #include "gt/intel_gt.h"
+ #include "gt/intel_gt_mcr.h"
+@@ -68,74 +65,15 @@ static void glk_init_clock_gating(struct drm_i915_private *i915)
+ 	intel_display_glk_init_clock_gating(i915->display);
  }
  
- static void g4x_disable_trickle_feed(struct drm_i915_private *dev_priv)
-@@ -282,7 +245,6 @@ static void dg2_init_clock_gating(struct drm_i915_private *i915)
- static void cfl_init_clock_gating(struct drm_i915_private *i915)
+-static void g4x_disable_trickle_feed(struct drm_i915_private *dev_priv)
+-{
+-	struct intel_display *display = dev_priv->display;
+-	enum pipe pipe;
+-
+-	for_each_pipe(display, pipe) {
+-		intel_uncore_rmw(&dev_priv->uncore, DSPCNTR(display, pipe),
+-				 0, DISP_TRICKLE_FEED_DISABLE);
+-
+-		intel_uncore_rmw(&dev_priv->uncore, DSPSURF(display, pipe),
+-				 0, 0);
+-		intel_uncore_posting_read(&dev_priv->uncore,
+-					  DSPSURF(display, pipe));
+-	}
+-}
+-
+ static void ilk_init_clock_gating(struct drm_i915_private *i915)
  {
+-	u32 dspclk_gate = ILK_VRHUNIT_CLOCK_GATE_DISABLE;
+-
+-	/*
+-	 * Required for FBC
+-	 * WaFbcDisableDpfcClockGating:ilk
+-	 */
+-	dspclk_gate |= ILK_DPFCRUNIT_CLOCK_GATE_DISABLE |
+-		   ILK_DPFCUNIT_CLOCK_GATE_DISABLE |
+-		   ILK_DPFDUNIT_CLOCK_GATE_ENABLE;
+-
+ 	intel_uncore_write(&i915->uncore, PCH_3DCGDIS0,
+ 			   MARIUNIT_CLOCK_GATE_DISABLE |
+ 			   SVSMUNIT_CLOCK_GATE_DISABLE);
+ 	intel_uncore_write(&i915->uncore, PCH_3DCGDIS1,
+ 			   VFMUNIT_CLOCK_GATE_DISABLE);
+ 
+-	/*
+-	 * According to the spec the following bits should be set in
+-	 * order to enable memory self-refresh
+-	 * The bit 22/21 of 0x42004
+-	 * The bit 5 of 0x42020
+-	 * The bit 15 of 0x45000
+-	 */
+-	intel_uncore_write(&i915->uncore, ILK_DISPLAY_CHICKEN2,
+-			   (intel_uncore_read(&i915->uncore, ILK_DISPLAY_CHICKEN2) |
+-			    ILK_DPARB_GATE | ILK_VSDPFD_FULL));
+-	dspclk_gate |= ILK_DPARBUNIT_CLOCK_GATE_ENABLE;
+-	intel_uncore_write(&i915->uncore, DISP_ARB_CTL,
+-			   (intel_uncore_read(&i915->uncore, DISP_ARB_CTL) |
+-			    DISP_FBC_WM_DIS));
+-
+-	/*
+-	 * Based on the document from hardware guys the following bits
+-	 * should be set unconditionally in order to enable FBC.
+-	 * The bit 22 of 0x42000
+-	 * The bit 22 of 0x42004
+-	 * The bit 7,8,9 of 0x42020.
+-	 */
+-	if (IS_IRONLAKE_M(i915)) {
+-		/* WaFbcAsynchFlipDisableFbcQueue:ilk */
+-		intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN1, 0, ILK_FBCQ_DIS);
+-		intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN2, 0, ILK_DPARB_GATE);
+-	}
+-
+-	intel_uncore_write(&i915->uncore, ILK_DSPCLK_GATE_D, dspclk_gate);
+-
+-	intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN2, 0, ILK_ELPIN_409_SELECT);
+-
+-	g4x_disable_trickle_feed(i915);
+-
++	intel_display_ilk_init_clock_gating(i915->display);
  	intel_pch_init_clock_gating(i915->display);
--	gen9_init_clock_gating(i915);
+ }
  
- 	/* WAC6entrylatency:cfl */
- 	intel_uncore_rmw(&i915->uncore, FBC_LLC_READ_CTRL, 0, FBC_LLC_FULLY_OPEN);
-@@ -292,8 +254,6 @@ static void cfl_init_clock_gating(struct drm_i915_private *i915)
+@@ -152,11 +90,7 @@ static void gen6_check_mch_setup(struct drm_i915_private *i915)
  
- static void kbl_init_clock_gating(struct drm_i915_private *i915)
+ static void gen6_init_clock_gating(struct drm_i915_private *i915)
  {
--	gen9_init_clock_gating(i915);
+-	u32 dspclk_gate = ILK_VRHUNIT_CLOCK_GATE_DISABLE;
 -
- 	/* WAC6entrylatency:kbl */
- 	intel_uncore_rmw(&i915->uncore, FBC_LLC_READ_CTRL, 0, FBC_LLC_FULLY_OPEN);
+-	intel_uncore_write(&i915->uncore, ILK_DSPCLK_GATE_D, dspclk_gate);
+-
+-	intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN2, 0, ILK_ELPIN_409_SELECT);
++	intel_display_gen6_init_clock_gating(i915->display);
  
-@@ -312,8 +272,6 @@ static void kbl_init_clock_gating(struct drm_i915_private *i915)
+ 	intel_uncore_write(&i915->uncore, GEN6_UCGCTL1,
+ 			   intel_uncore_read(&i915->uncore, GEN6_UCGCTL1) |
+@@ -191,19 +125,6 @@ static void gen6_init_clock_gating(struct drm_i915_private *i915)
+ 	 *
+ 	 * WaFbcAsynchFlipDisableFbcQueue:snb
+ 	 */
+-	intel_uncore_write(&i915->uncore, ILK_DISPLAY_CHICKEN1,
+-			   intel_uncore_read(&i915->uncore, ILK_DISPLAY_CHICKEN1) |
+-			   ILK_FBCQ_DIS | ILK_PABSTRETCH_DIS);
+-	intel_uncore_write(&i915->uncore, ILK_DISPLAY_CHICKEN2,
+-			   intel_uncore_read(&i915->uncore, ILK_DISPLAY_CHICKEN2) |
+-			   ILK_DPARB_GATE | ILK_VSDPFD_FULL);
+-	intel_uncore_write(&i915->uncore, ILK_DSPCLK_GATE_D,
+-			   intel_uncore_read(&i915->uncore, ILK_DSPCLK_GATE_D) |
+-			   ILK_DPARBUNIT_CLOCK_GATE_ENABLE  |
+-			   ILK_DPFDUNIT_CLOCK_GATE_ENABLE);
+-
+-	g4x_disable_trickle_feed(i915);
+-
+ 	intel_pch_init_clock_gating(i915->display);
  
- static void skl_init_clock_gating(struct drm_i915_private *i915)
+ 	gen6_check_mch_setup(i915);
+@@ -335,10 +256,7 @@ static void ivb_init_clock_gating(struct drm_i915_private *i915)
  {
--	gen9_init_clock_gating(i915);
+ 	struct intel_display *display = i915->display;
+ 
+-	intel_uncore_write(&i915->uncore, ILK_DSPCLK_GATE_D, ILK_VRHUNIT_CLOCK_GATE_DISABLE);
 -
- 	/* WaDisableDopClockGating:skl */
- 	intel_uncore_rmw(&i915->uncore, GEN7_MISCCPCTL,
- 			 GEN7_DOP_CLOCK_GATE_ENABLE, 0);
+-	/* WaFbcAsynchFlipDisableFbcQueue:ivb */
+-	intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN1, 0, ILK_FBCQ_DIS);
++	intel_display_ivb_init_clock_gating(display);
+ 
+ 	/* WaDisableBackToBackFlipFix:ivb */
+ 	intel_uncore_write(&i915->uncore, IVB_CHICKEN3,
+@@ -367,7 +285,7 @@ static void ivb_init_clock_gating(struct drm_i915_private *i915)
+ 	intel_uncore_rmw(&i915->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
+ 			 0, GEN7_SQ_CHICKEN_MBCUNIT_SQINTMOB);
+ 
+-	g4x_disable_trickle_feed(i915);
++	intel_display_disable_trickle_feed(display);
+ 
+ 	intel_uncore_rmw(&i915->uncore, GEN6_MBCUNIT_SNPCR, GEN6_MBC_SNPCR_MASK,
+ 			 GEN6_MBC_SNPCR_MED);
+@@ -440,21 +358,12 @@ static void chv_init_clock_gating(struct drm_i915_private *i915)
+ 
+ static void g4x_init_clock_gating(struct drm_i915_private *i915)
+ {
+-	u32 dspclk_gate;
+-
+ 	intel_uncore_write(&i915->uncore, RENCLK_GATE_D1, 0);
+ 	intel_uncore_write(&i915->uncore, RENCLK_GATE_D2, VF_UNIT_CLOCK_GATE_DISABLE |
+ 			   GS_UNIT_CLOCK_GATE_DISABLE |
+ 			   CL_UNIT_CLOCK_GATE_DISABLE);
+ 	intel_uncore_write(&i915->uncore, RAMCLK_GATE_D, 0);
+-	dspclk_gate = VRHUNIT_CLOCK_GATE_DISABLE |
+-		OVRUNIT_CLOCK_GATE_DISABLE |
+-		OVCUNIT_CLOCK_GATE_DISABLE;
+-	if (IS_GM45(i915))
+-		dspclk_gate |= DSSUNIT_CLOCK_GATE_DISABLE;
+-	intel_uncore_write(&i915->uncore, DSPCLK_GATE_D, dspclk_gate);
+-
+-	g4x_disable_trickle_feed(i915);
++	intel_display_g4x_init_clock_gating(i915->display);
+ }
+ 
+ static void i965gm_init_clock_gating(struct drm_i915_private *i915)
+@@ -463,7 +372,7 @@ static void i965gm_init_clock_gating(struct drm_i915_private *i915)
+ 
+ 	intel_uncore_write(uncore, RENCLK_GATE_D1, I965_RCC_CLOCK_GATE_DISABLE);
+ 	intel_uncore_write(uncore, RENCLK_GATE_D2, 0);
+-	intel_uncore_write(uncore, DSPCLK_GATE_D, 0);
++	intel_display_i965gm_init_clock_gating(i915->display);
+ 	intel_uncore_write(uncore, RAMCLK_GATE_D, 0);
+ 	intel_uncore_write16(uncore, DEUC, 0);
+ 	intel_uncore_write(uncore,
 -- 
 2.53.0
 
