@@ -4,81 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FA2FF5A8AE
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Apr 2026 18:05:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B87FAF5A8AA
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Apr 2026 18:05:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE82B10EB02;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78F1910EAFC;
 	Mon, 20 Apr 2026 18:05:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="nyDTjNdv";
+	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="CmYidhQJ";
 	dkim-atps=neutral
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com
- [209.85.208.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0941410E2BE
- for <intel-xe@lists.freedesktop.org>; Fri, 17 Apr 2026 14:14:51 +0000 (UTC)
-Received: by mail-ed1-f44.google.com with SMTP id
- 4fb4d7f45d1cf-671a827adccso1239123a12.2
- for <intel-xe@lists.freedesktop.org>; Fri, 17 Apr 2026 07:14:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1776435289; x=1777040089; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=9bE/23HHr5NxJFT3TiQRbeJBBfxsF0ZdYwl1CCK2/W0=;
- b=nyDTjNdvY9DPQhvvhbHh0ISYdpyWveO40DnoCDPn2llV7ItcRE4fifg4RmBVtB4Yq7
- 8qsF2WoU9BjAWYxIPJDgce2H8KtxL79KpAViz67oZV+vAkAkN0jmY29oU5SVmK9mnMpR
- cl55bVb+By1+joCrCD6lBX9q6QuyFRo10JsAVNaMG/FhX6zLam4J9s9GXLJz2LPvOOB6
- aZgBtMZ6gwl14a0HAHBJ8O0eWfFb51GzIrAb8FSc/h3eWF76BdLjcByoR/9OqKbP6tyb
- YItEsjQOqA3j4teQsvUzSiGTlAETd0o3HfSM2/nvJac0cCmSfpJacKBDvklJ0PK7TgAk
- bCJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1776435289; x=1777040089;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=9bE/23HHr5NxJFT3TiQRbeJBBfxsF0ZdYwl1CCK2/W0=;
- b=h0ctvmpnYbtgsVJBh1A6SMt5YGBtukcwFfUL5HzYIYz/JpCuooE+DHYhZm9tAXD5+q
- En6cpm5ICt3eJONCZhnNIphx2LdLFBlrQ4u9l06MmYatRRaDb9IpFmc4034nf+Lhbuq0
- QtaOh+n6EGjhiwWUQl7ixyAYmiMdTcx0PKfho/mBF32zRIDI9S+Je/EO37Ita8ZI1x7X
- QqtCQNMQWO8MFDMSktm7xeKPLWI0mkUpU+fGsm2tDEiXgOaGe6Q9ueY8Hjdf7QcIko8n
- wKWYg9t2bbvOIU6bkVn3rZw0GXpdQ+szmrs2EGKck+2tcX4Y8eRi1Wg/fhhopUPdWf00
- AFRg==
-X-Forwarded-Encrypted: i=1;
- AFNElJ/2t08VokPwSq67frcdzPDrcVaA6HjkA0Ovd/67xL+Zcj2kYJQSoz3aDwYgBG/NlOdNJCcms+7JFA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxVM+H9q8DJT4t6gcFBk2aDC5FJv7uzOHkV2d63933Rtkwvc2E+
- PwMMZvCbfNsdu6wONDRupmTK87sdCysdzFEXTdiFH3dV9ugalb7ZO9u+
-X-Gm-Gg: AeBDietbFztfsSr3CJbEI3KAKoJE3141YOiiRlt9M8uJTx8etGjxoJc0iwhLOvgxttP
- JDypEPH0qUbyFnCSq4Pg+DgOPMYkZhxWQstFPP6slZqBjLupo/5ObIxQNQZKqmFrq8FAsIOzfRU
- MkVKRwf/BNuNG/06+L4Qj813prEo99tdh9i/AI/T+/6haZUnWJUheX/Lg764BlhJc4ymcTKRaGp
- yQAE7TCxDZlsFQikEJVRl+3JHRt8FirDwWJCjMF/VGSg1984dmfvHogDJ+Hf0PT1iVREnL3QBzR
- WRFS37H+ZXyKqhRU47vg7uJq54Hno2EUz4Qyib+gbrxNN4GMqGaTYXKBAWEUT2/WLqZS07syaGv
- qwBbd3vUBCXrgO+SuRNZw6xKbJXKA3AiaoHsIHawgrGQYQLiiN+mNBbqS3UpgckxpntHtuuJEhP
- YxM0QtnmFCI9XIBFQsWz2DiW3+ActEu4cXgtK/9YD7r7i6njOg+YWnybQHg7xC8LLStdi616irA
- qsyHSDvGyjI
-X-Received: by 2002:a05:6402:34cd:b0:672:c1b0:1f3d with SMTP id
- 4fb4d7f45d1cf-672c1b020bcmr1345145a12.8.1776435289044; 
- Fri, 17 Apr 2026 07:14:49 -0700 (PDT)
-Received: from JTOLLET-M-FKW7.cisco.com
- ([2603:5004:20a0:100c:b964:8d24:d15b:f122])
- by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-672c4d455e9sm458744a12.14.2026.04.17.07.14.47
- (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
- Fri, 17 Apr 2026 07:14:48 -0700 (PDT)
-From: Jerome Tollet <jerome.tollet@gmail.com>
-X-Google-Original-From: Jerome Tollet <jtollet@cisco.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- ville.syrjala@linux.intel.com, ankit.k.nautiyal@intel.com,
- arun.r.murthy@intel.com, jani.nikula@linux.intel.com,
- Jerome Tollet <jtollet@cisco.com>
-Subject: [PATCH v3] drm/i915/hdmi: Poll for 200 msec for TMDS_Scrambler_Status
-Date: Fri, 17 Apr 2026 16:14:32 +0200
-Message-ID: <20260417141432.7556-1-jtollet@cisco.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260113143107.1446909-1-ankit.k.nautiyal@intel.com>
-References: <20260113143107.1446909-1-ankit.k.nautiyal@intel.com>
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
+ [213.167.242.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17B5A10E407;
+ Mon, 20 Apr 2026 04:50:53 +0000 (UTC)
+Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi
+ [91.158.153.178])
+ by perceval.ideasonboard.com (Postfix) with ESMTPSA id AF9D778C;
+ Mon, 20 Apr 2026 06:49:12 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+ s=mail; t=1776660554;
+ bh=iwh3N+VethXilsaJ64nNuyiBXMJyYXgfop2Jfia4Qv8=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=CmYidhQJFff1Jy2JNWzkMs/4kz+pEMeZH1/ioKbzV/uchyIkn9+05FEWUXLnWC8Vs
+ QcM0jmCS1SJ7AfsP6G+9nT1W0hvFAwPxDaaDadIXwF1BdzgdVgUA2jyoHdbwIOK8ma
+ xdDODxQATbV0t+7b6dsvrTR3c1l8ydq0EsPQejfk=
+Message-ID: <a2e60e74-a1be-469d-8f4d-ecce1f30b517@ideasonboard.com>
+Date: Mon, 20 Apr 2026 07:50:46 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] drm/connector: report IRQ_HPD events to
+ drm_connector_oob_hotplug_event()
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-usb@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Adrien Grassein <adrien.grassein@gmail.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov
+ <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Pengyu Luo <mitltlatltl@gmail.com>,
+ Nikita Travkin <nikita@trvn.ru>, Yongxing Mou <yongxing.mou@oss.qualcomm.com>
+References: <20260416-hpd-irq-events-v1-0-1ab1f1cfb2b2@oss.qualcomm.com>
+ <20260416-hpd-irq-events-v1-1-1ab1f1cfb2b2@oss.qualcomm.com>
+ <51b7c44e-36c9-461f-983a-eaa86eeb8cfd@ideasonboard.com>
+ <6z572fdjkvjqvedifwvotgdy4lcrifiqvkjpnutousjqc6764r@zepfzkqy2kbu>
+Content-Language: en-US
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <6z572fdjkvjqvedifwvotgdy4lcrifiqvkjpnutousjqc6764r@zepfzkqy2kbu>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Mon, 20 Apr 2026 18:05:33 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -94,105 +86,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-HDMI 2.0 section 6.1.3.1 specifies that after enabling
-Scrambling_Enable and starting scrambled video transmission, the source
-should poll Scrambling_Status until it reads 1 or until a timeout of
-200 ms expires.
+Hi,
 
-Add a polling step after enabling the HDMI port to check the scrambling
-status when HDMI scrambling is enabled.
+On 18/04/2026 01:32, Dmitry Baryshkov wrote:
+> On Thu, Apr 16, 2026 at 11:10:03AM +0300, Tomi Valkeinen wrote:
+>> Hi,
+>>
+>> On 16/04/2026 02:22, Dmitry Baryshkov wrote:
+>>> The DisplayPort standard defines a special kind of events called IRQ.
+>>> These events are used to notify DP Source about the events on the Sink
+>>> side. It is extremely important for DP MST handling, where the MST
+>>> events are reported through this IRQ.
+>>>
+>>> In case of the USB-C DP AltMode there is no actual HPD pulse, but the
+>>> events are ported through the bits in the AltMode VDOs.
+>>>
+>>> Extend the drm_connector_oob_hotplug_event() interface and report IRQ
+>>> events to the DisplayPort Sink drivers.
+>>>
+>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+>>> ---
+>>>    drivers/gpu/drm/drm_connector.c          |  4 +++-
+>>>    drivers/usb/typec/altmodes/displayport.c | 12 ++++++++----
+>>>    include/drm/drm_connector.h              |  3 ++-
+>>>    3 files changed, 13 insertions(+), 6 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+>>> index 47dc53c4a738..5fdacbd84bd7 100644
+>>> --- a/drivers/gpu/drm/drm_connector.c
+>>> +++ b/drivers/gpu/drm/drm_connector.c
+>>> @@ -3510,6 +3510,7 @@ struct drm_connector *drm_connector_find_by_fwnode(struct fwnode_handle *fwnode)
+>>>     * drm_connector_oob_hotplug_event - Report out-of-band hotplug event to connector
+>>>     * @connector_fwnode: fwnode_handle to report the event on
+>>>     * @status: hot plug detect logical state
+>>> + * @irq_hpd: HPD pulse detected
+>>>     *
+>>>     * On some hardware a hotplug event notification may come from outside the display
+>>>     * driver / device. An example of this is some USB Type-C setups where the hardware
+>>> @@ -3520,7 +3521,8 @@ struct drm_connector *drm_connector_find_by_fwnode(struct fwnode_handle *fwnode)
+>>>     * a drm_connector reference through calling drm_connector_find_by_fwnode().
+>>>     */
+>>>    void drm_connector_oob_hotplug_event(struct fwnode_handle *connector_fwnode,
+>>> -				     enum drm_connector_status status)
+>>> +				     enum drm_connector_status status,
+>>> +				     bool irq_hpd)
+>> I find the "IRQ HPD" naming always confusing, even if I'm somewhat familiar
+>> with DP, but if someone has mainly worked on HDMI, I'm sure it's even worse.
+>>
+>> Can we define this a bit more precisely? Is 'irq_hpd' only for displayport?
+>> If so, perhaps 'dp_irq_hpd' or 'displayport_irq_hpd'. I might even call it
+>> 'dp_hpd_pulse', but maybe that's not good as the spec talks about HPD pulse
+>> for both short and long ones (although in the kernel doc you just write "HPD
+>> pulse")... The kernel doc could be expanded a bit to make it clear what this
+>> flag indicates.
+> 
+> I attempted to stay away from defining a DP-specific flag, keeping it
+> generic enough. HDMI is pretty close (IMO) to requiring separate flag in
 
-On some HDMI 2.0 sinks, omitting this check can result in 4K@60Hz
-(594 MHz) failing to come up correctly because the sink has not yet
-finished its scrambling setup. In practice, waiting for the scrambling
-status here fixes such sinks.
+If it's not specifically the DP IRQ HPD, then we need to define what it 
+means. I tried to think what it would mean with HDMI, but I didn't come 
+up with anything.
 
-While this synchronous polling is not itself explicitly required for
-correct modeset sequencing, HDMI 2.0 section 6.1.3.1 does recommend it
-as the way for the source to verify that the TMDS link is functioning
-correctly with scrambling enabled.
+> Linux. Likewise I'd rather not use "pulse". The DP AltMode defines a bit
+> in the VDO rather than a pulse.
+> 
+> Anyway, if irq_hpd doesn't sound precise enough, what about "bool
+> extra_irq"? This would convey that this is the extra hpd-related IRQ,
+> but it would also be obvious that it's not related to the HPD pin
+> itself.
+We'd still need to define what exactly it means. I think it might be 
+better to just define it as the DP IRQ HPD, as then the meaning is clear.
 
-v3:
- - Add explicit HDMI 2.0 section reference in code comment
- - Clarify commit message around the observed sink fix
+Also, would an enum flags parameter be better than a bool parameter?
 
-v2:
- - Poll TMDS_Scrambler_Status for up to 200 ms instead of using a fixed
-   delay
+  Tomi
 
-Reported-by: Jerome Tollet <jtollet@cisco.com>
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6868
-Link: https://lore.kernel.org/dri-devel/20251230091037.5603-1-jerome.tollet@gmail.com/
-Signed-off-by: Jerome Tollet <jtollet@cisco.com>
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c  |  2 ++
- drivers/gpu/drm/i915/display/intel_hdmi.c | 25 +++++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_hdmi.h |  2 ++
- 3 files changed, 29 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index cb91d07cdaa6..c708b713f0e8 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3506,6 +3506,8 @@ static void intel_ddi_enable_hdmi(struct intel_atomic_state *state,
- 	}
-
- 	intel_ddi_buf_enable(encoder, buf_ctl);
-+
-+	intel_hdmi_poll_for_scrambling_enable(crtc_state, connector);
- }
-
- static void intel_ddi_enable(struct intel_atomic_state *state,
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 055e68810d0d..958d939ae6ee 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -2694,6 +2694,31 @@ intel_hdmi_add_properties(struct intel_hdmi *intel_hdmi, struct drm_connector *_
- 	drm_connector_attach_max_bpc_property(&connector->base, 8, 12);
- }
-
-+/*
-+ * HDMI 2.0 spec, section 6.1.3.1 (Scrambling Control): after
-+ * enabling Scrambling_Enable and starting scrambled video
-+ * transmission, poll Scrambling_Status for up to 200 ms.
-+ */
-+void
-+intel_hdmi_poll_for_scrambling_enable(const struct intel_crtc_state *crtc_state,
-+				      struct drm_connector *_connector)
-+{
-+	struct intel_connector *connector = to_intel_connector(_connector);
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	bool scrambling_enabled = false;
-+	int ret;
-+
-+	if (!crtc_state->hdmi_scrambling)
-+		return;
-+
-+	/* Poll for a max of 200 msec as per HDMI spec */
-+	ret = poll_timeout_us(scrambling_enabled = drm_scdc_get_scrambling_status(&connector->base),
-+			      scrambling_enabled, 1000, 200 * 1000, false);
-+	if (ret)
-+		drm_dbg_kms(display->drm,
-+			    "[CONNECTOR:%d:%s] Timed out waiting for scrambling enable\n",
-+			    connector->base.base.id, connector->base.name);
-+}
-+
- /*
-  * intel_hdmi_handle_sink_scrambling: handle sink scrambling/clock ratio setup
-  * @encoder: intel_encoder
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.h b/drivers/gpu/drm/i915/display/intel_hdmi.h
-index be2fad57e4ad..0fa3661568e8 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.h
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.h
-@@ -70,5 +70,7 @@ void hsw_read_infoframe(struct intel_encoder *encoder,
- 			const struct intel_crtc_state *crtc_state,
- 			unsigned int type,
- 			void *frame, ssize_t len);
-+void intel_hdmi_poll_for_scrambling_enable(const struct intel_crtc_state *crtc_state,
-+					   struct drm_connector *_connector);
-
- #endif /* __INTEL_HDMI_H__ */
---
-2.45.2
