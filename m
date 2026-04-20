@@ -4,86 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C7E1F5A8AC
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Apr 2026 18:05:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09D3FF5A8A5
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Apr 2026 18:11:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C005710EB04;
-	Mon, 20 Apr 2026 18:05:41 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="qiTsWdZw";
-	dkim-atps=neutral
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com
- [209.85.167.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E626710EB1D
- for <intel-xe@lists.freedesktop.org>; Sun, 19 Apr 2026 00:57:16 +0000 (UTC)
-Received: by mail-lf1-f48.google.com with SMTP id
- 2adb3069b0e04-5a413f83226so2501142e87.1
- for <intel-xe@lists.freedesktop.org>; Sat, 18 Apr 2026 17:57:16 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1776560235; cv=none;
- d=google.com; s=arc-20240605;
- b=PyjItCgzy0fJSz4gyjm+jQGaEmNsufhie5uILVDD5YXUMQlx0t1Rac7KPlCrAhadAi
- qxZIKQIeBF/7glrzuhDhIr6QyST0oWS/XvTre5PkWBz3BpDeSAj/4EL+VEDEXLQ3PQAh
- VHHB8wuuqBpPD19ndSlUuAmo5TJKjwuPsj3NZKS28aoMpdvcIy2+Bl13ZEsbIYiOhrjn
- hrlCZqipHihNFc6R9za94CbjF4MWZ7CABDTpNBEq40Q8SxfAj09eRrIubvbH+o/FMcLB
- oR8qooF/0cwIXkRHmW6skP9drSBOrYwqH8nlng8E0nOUAOwKbBDoKMGIWBDogSxI4sll
- cKaA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=cc:to:subject:message-id:date:from:mime-version:dkim-signature;
- bh=8BlyLxZ5CZVaCOKdemW7VZexRc0HCwL/kqHxCDyF8DA=;
- fh=MSJSZyDekvFYSQg+Vook5LKASgnE8PxwX80rQDRx0MA=;
- b=Q3CLpfbbBvmNQLGJiHNSmDIyxvUij4Imq98NKg2vb83dtFD8LwhjYp3GffRNQaby/S
- 7v7JY24noWi87q3/uDL2fkD0LU9zI49LzO+HD2NE40/CzyvwKCfP6EDY2+WUdwMkH6mZ
- ZCQC1puZHbJzHUs09m/UGxulpy3wTFtVOtrN9LLu/pooJyMtHneWsbMLI6nbjg8cCbOv
- fPZpYQnO4nOwLSJqylUlT1hYsLn+tkMgtjh3igVXDKu4B5W/6kr0Zj9OfnBSdWAD7Wpd
- pMxQxgkC4VlcoMEBeaSLmOXGAVE3OFKv0b1A9kZkkI+1WAO6MoCXo0RnwfnP4CcqQunJ
- k7cw==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1776560235; x=1777165035; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
- :date:message-id:reply-to;
- bh=8BlyLxZ5CZVaCOKdemW7VZexRc0HCwL/kqHxCDyF8DA=;
- b=qiTsWdZw+tZdGA428A2UM3pMsfIAY0aNPb6+um52QrD/o9PdxhwAjo8/ResJRs4Fj3
- 1KoRZsshIJXKGEaZA08yC1sdY+Y6OPkpVAlmDcygDv8+2KMuF9WbkbdxNG8YjzyqvuYP
- nijyhTH61WWyU3ppH11itcwFVgJ7hjt9G8eoKLsEzHAggOmZJ+2s85E1MquQPdQESsak
- OEf4Rn50reLUwp7CoG02aNPv12K7/7Hu0JjFBhoizRAT9W4cHRCQSmMzerVgSs/NxjXL
- UcIbOSgWiak4sabs7KV1Tu4OM5U1ayAuSuaxKby3sR8S1mAqZXMmGNhp2gzCZHxT5BDg
- cNBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1776560235; x=1777165035;
- h=cc:to:subject:message-id:date:from:mime-version:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=8BlyLxZ5CZVaCOKdemW7VZexRc0HCwL/kqHxCDyF8DA=;
- b=MG5rW9hhPK+tQ1KeYnSOy0fMR6V1AL3g3Z0PV45MamsDmwtpxgQLgMVpLO8DoqdZjM
- /BnMPjpFq/ICHml3aRxJ9rLK2P1TFkLQbbMl9QLrmxolEVMOGnUnajpzwkC6h90C62+Q
- oaBF64idaDuD5lBYER3UvtNR8VlEdYFsf8LYAapgPq4M6y8o5uiMUiM8d2qBXw0xivwu
- x2wiOAFMHrlT952CIapc8Msu0Ev10RdR5AtNhhDfJmxDy5KBo3J/bgsH70Mx7YgYAMtx
- EuppX5AbYJWKIwNd5neEo2oheM4k0BkWdevKy+AxvRQEUgNn4PirT+6VhGiLM4kr3OJg
- cAjw==
-X-Gm-Message-State: AOJu0Yz2hpwXhLbP8OX+3sGhZvUItWmCqrjGXLJSs7kZd4wUedl+l//f
- exAwUdyI1MPAI5KSBK8rCxCKdD4BXqRIxj2j7VGyqUNtduV9y/HOyXkt1xG+f4swUx29aT9s5OJ
- jixedImAmgATGaOVun2/1ylL/5p3vdvo3pY5SKsI0cg==
-X-Gm-Gg: AeBDieuqXqAmtu5V0Z588uD7y99xIF9FReqJ8pE1J9HtGquzf2rOOEXvbO2h2oeVkLR
- JrxX1j5ywE0ippywDw27+TOlAEERYSfhVcFvRwAs8h1ipzFy/o5xmBDG2EIgXCAGTZTBvM416K6
- mfOb0mXwWGKz9NXfh4Go95mnmdovOdY49lwNhR8Vg221gExz2O28RwrM43q+7eLcQMdkHss9Wd9
- b+NaoIFsZ7AMdHK3+N8dW75Pzn8lfnpWIFEgDzaRroy+s8OHGECPFurl/5numJh180LZxrX+sZd
- hk4MJQHyyMWFVRxL2LKRkx4nQ3EEucCPvjp3cjskOEYisn0OKpWZUwiT2dVO8THAugOIE68s6gj
- uMsEGpA9IxpnE9FoHFjbENa/47hr1vM2tog==
-X-Received: by 2002:a05:6512:3b8a:b0:5a2:c66a:d6d1 with SMTP id
- 2adb3069b0e04-5a4171749fbmr2168270e87.6.1776560234532; Sat, 18 Apr 2026
- 17:57:14 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA85A10EB07;
+	Mon, 20 Apr 2026 18:11:34 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 775D110EB07;
+ Mon, 20 Apr 2026 18:11:33 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5971345349907929904=="
 MIME-Version: 1.0
-From: Marc <marclecussano@gmail.com>
-Date: Sun, 19 Apr 2026 10:57:03 +1000
-X-Gm-Features: AQROBzBzxdyZjUH2O58H9asnceBzqmGR02_Y-djIZKF45SbgOnnxBROju3s8pi8
-Message-ID: <CAF3NygikxYLtJzcjajSV4o68bjJ-9aPczPqzaHo_=r1OPoeaew@mail.gmail.com>
-Subject: [BUG] xe: Lunar Lake hard freeze on USB-C DP-altmode (MSI MPG
- 272URX), TC1 PHY pageflip deadlock, no kernel error before lockup
-To: intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org
-Content-Type: multipart/alternative; boundary="000000000000b393b9064fc5a962"
-X-Mailman-Approved-At: Mon, 20 Apr 2026 18:05:33 +0000
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_=3A_drm/i915/display=3A_Fix?=
+ =?utf-8?q?_vblank_timestamps_for_fixed_RR_on_VRR-TG-always_platforms_when_u?=
+ =?utf-8?q?serspace_set_vrr=5Fenable=3DFALSE?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vidya Srinivas" <vidya.srinivas@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 20 Apr 2026 18:11:33 -0000
+Message-ID: <177670869347.478721.4137665352228718110@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260417130627.207267-1-vidya.srinivas@intel.com>
+In-Reply-To: <20260417130627.207267-1-vidya.srinivas@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,484 +37,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---000000000000b393b9064fc5a962
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--===============5971345349907929904==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-  Hi,
+== Series Details ==
 
+Series: : drm/i915/display: Fix vblank timestamps for fixed RR on VRR-TG-always platforms when userspace set vrr_enable=FALSE
+URL   : https://patchwork.freedesktop.org/series/165074/
+State : success
 
-  Reporting a reproducible hard freeze on Lunar Lake when driving an
-external
-  DP 2.1 UHBR20 monitor (MSI MPG 272URX QD-OLED, 4K@240Hz) over USB-C DP
-  alternate mode. Happy to run debug kernels, collect traces, or bisect.
+== Summary ==
 
+CI Bug Log - changes from xe-4920-da91cb4e6137507f74e4da41c39d0260b4cd1201_BAT -> xe-pw-165074v1_BAT
+====================================================
 
+Summary
+-------
 
-  =3D=3D=3D Hardware =3D=3D=3D
+  **SUCCESS**
 
-  - Lenovo Yoga Slim 7 14ILL10 (83JX), Intel Core Ultra / Lunar Lake
+  No regressions found.
 
-  - GPU: 0000:00:02.0, device ID 8086:64a0, display version 20.00 B0
+  
 
-  - Monitor: MSI MPG 272URX QD-OLED, 3840x2160@240Hz, DP 2.1 UHBR20 + DSC
+Participating hosts (12 -> 12)
+------------------------------
 
-  - Connection: native DP-altmode via USB-C (no dock, no hub); laptop has
+  No changes in participating hosts
 
-    no native DP connector. All historic errors land on CONNECTOR DP-1 /
 
-    ENCODER DDI TC1 / PHY TC1.
+Changes
+-------
 
-  - Laptop also has native HDMI-A-1 (TMDS, capped 4K60), unaffected.
+  No changes found
 
 
+Build changes
+-------------
 
-  =3D=3D=3D Software =3D=3D=3D
+  * Linux: xe-4920-da91cb4e6137507f74e4da41c39d0260b4cd1201 -> xe-pw-165074v1
 
-  - Bazzite (Fedora 43 rpm-ostree), kernel 6.17.7-ba29.fc43.x86_64
+  IGT_8863: 5b279a8b71dc1672099205a1a9e8135c7c7fadb5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4920-da91cb4e6137507f74e4da41c39d0260b4cd1201: da91cb4e6137507f74e4da41c39d0260b4cd1201
+  xe-pw-165074v1: 165074v1
 
-  - xe 1.1.0, DMC xe2lpd_dmc.bin v2.29, GuC lnl_guc_70.bin 70.58.0,
+== Logs ==
 
-    HuC lnl_huc.bin 9.4.13, GSC lnl_gsc_1.bin 104.0.5.1429
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165074v1/index.html
 
-  - Compositor: KDE Plasma / kwin_wayland
+--===============5971345349907929904==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-  - Current kernel cmdline mitigations (see below):
 
-      xe.psr_safest_params=3DY xe.enable_psr2_sel_fetch=3DN xe.enable_sagv=
-=3D0
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
 
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>: drm/i915/display: Fix vblank timestamps for fixed RR on VRR-TG-always platforms when userspace set vrr_enable=FALSE</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165074/">https://patchwork.freedesktop.org/series/165074/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
 
-  =3D=3D=3D Two distinct failure signatures observed =3D=3D=3D
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165074v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165074v1/index.html</a></td></tr>
 
+</table>
 
 
-  Bug A =E2=80=94 UHBR20 link training (no mitigation applied):
+    <h1>CI Bug Log - changes from xe-4920-da91cb4e6137507f74e4da41c39d0260b4cd1201_BAT -&gt; xe-pw-165074v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4920-da91cb4e6137507f74e4da41c39d0260b4cd1201 -&gt; xe-pw-165074v1</li>
+</ul>
+<p>IGT_8863: 5b279a8b71dc1672099205a1a9e8135c7c7fadb5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4920-da91cb4e6137507f74e4da41c39d0260b4cd1201: da91cb4e6137507f74e4da41c39d0260b4cd1201<br />
+  xe-pw-165074v1: 165074v1</p>
 
-    xe 0000:00:02.0: [drm] drm_WARN_ON("UHBR20 not supported for the
-platform")
-    intel_dp_retrain_link / intel_dp_link_check
+</body>
+</html>
 
-    pipe state doesn't match: port_clock expected 2000000 found 162000
-    GT0/GT1: TLB invalidation fence timeout
-
-    i2c_designware + Bluetooth hci0 tx timeout cascade
-
-    =E2=86=92 whole-platform stall within seconds of connect.
-
-
-
-  Variants seen across boots:
-
-    - "Interlane align timeout"
-
-    - "Can't reduce link training parameters after failure"
-
-    - "Failed to start 128b/132b TPS2 CDS"
-
-    - "Timeout waiting for DDI BUF A to get active"
-
-    - "CPU pipe B FIFO underrun"
-
-
-
-  Workaround (avoids Bug A at runtime): per-connected-DP writes
-
-    /sys/kernel/debug/dri/.../DP-1/i915_dp_force_link_rate =3D 810000  (HBR=
-3)
-
-    /sys/kernel/debug/dri/.../DP-1/i915_dp_force_link_retrain =3D 1
-
-  applied via udev on hot-plug + systemd unit at boot. HBR3 cap eliminates
-
-  the UHBR20 warning and the link-training cascade.
-
-
-
-  Bug B =E2=80=94 silent pageflip deadlock at HBR3 (after Bug A mitigated):
-
-    After 10 minutes to 6 hours of use, the monitor freezes mid-frame with
-    image intact (scanout still running, flip queue wedged). Only kernel-
-
-    adjacent signal recovered from the journal:
-
-      kwin_wayland: Pageflip timed out! This is a bug in the xe kernel
-driver
-    Sometimes followed by:
-
-      GT0/GT1: TLB invalidation fence timeout
-
-    Then the platform is completely locked: no SysRq, no SSH, no journal
-
-    flush. Kernel dies before anything useful is written.
-
-
-
-  Multiple reboots (~20 captured) show a single consistent root-cause
-
-  class: all errors on CONNECTOR DP-1 / ENCODER DDI TC1 / PHY TC1.
-
-
-
-  =3D=3D=3D Hypothesis =3D=3D=3D
-  USB-C DP-altmode TC1 PHY power-state transition deadlock during
-
-  link maintenance (recalibration / SSC / power-state change mid-stream).
-
-  The pageflip-stuck-with-image-intact symptom argues against DSC or
-
-  link-bandwidth failure (which would blank or corrupt). Consistent with
-
-  PHY-level deadlock while the scanout engine is still running.
-
-
-
-  =3D=3D=3D What we ruled out =3D=3D=3D
-
-  - DMC: xe2lpd_dmc.bin v2.29 loads clean every boot.
-  - GuC: lnl_guc_70.bin 70.58.0 clean, no CT-dead, no GPU reset, no GuC
-
-    hang in any boot log.
-
-  - PSR: external monitor reports "Sink support: PSR =3D no, Panel Replay
-
-    =3D no" at /sys/kernel/debug/dri/.../DP-1/i915_psr_status. No PSR
-
-    running on this link. xe.psr_safest_params=3DY and
-    xe.enable_psr2_sel_fetch=3DN are no-ops here. Kept only because they're
-
-    harmless on eDP.
-
-  - DSC: tried forcing DSC on, worsened stability. Removed. Symptom
-
-    (frozen image intact) is inconsistent with DSC failure.
-
-  - MCE / OOM / thermal / NMI / RCU stall / NVMe / PCIe AER: all clean.
-
-  - Windows on same hardware + same monitor + same USB-C cable: no
-
-    freezes, full 4K@240 UHBR20 works indefinitely. Hardware and cable
-
-    are not at fault.
-
-  - AnyDesk / userspace daemons: installed after most freezes; not causal.
-
-
-
-  =3D=3D=3D Monitor OSD =3D=3D=3D
-
-  MSI MPG 272URX does not expose a "DP 1.4 / 2.1" toggle in OSD
-
-  (confirmed on firmware shipping to end users), so host-side fallback
-
-  to DP 1.4 is the only available workaround. HBR3 cap via debugfs
-
-  works at runtime; module-param equivalent (xe.* params) is 0444 and
-
-  only settable at boot.
-
-
-
-  =3D=3D=3D What I can provide =3D=3D=3D
-
-  - Full dmesg from a boot with reproduction.
-
-  - Boots with drm.debug=3D0x1e if useful.
-
-  - Willing to bisect between 6.16/6.17/6.18 on the TC PHY / xe display
-
-    paths.
-
-  - Willing to test patches against 6.17 or mainline.
-
-
-
-  Thanks for any pointers =E2=80=94 happy to file at
-
-  https://gitlab.freedesktop.org/drm/xe/kernel/-/issues if preferred.
-
-
-
-  -- Marc
-
---000000000000b393b9064fc5a962
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: base64
-
-PGRpdiBkaXI9Imx0ciI+wqAgSGksIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIDxicj7CoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCA8YnI+wqAgUmVwb3J0aW5nIGEgcmVwcm9kdWNpYmxlIGhhcmQgZnJlZXplIG9uIEx1
-bmFyIExha2Ugd2hlbiBkcml2aW5nIGFuIGV4dGVybmFsIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxicj7CoCBEUCAyLjEgVUhCUjIw
-IG1vbml0b3IgKE1TSSBNUEcgMjcyVVJYIFFELU9MRUQsIDRLQDI0MEh6KSBvdmVyIFVTQi1DIERQ
-PGJyPsKgIGFsdGVybmF0ZSBtb2RlLiBIYXBweSB0byBydW4gZGVidWcga2VybmVscywgY29sbGVj
-dCB0cmFjZXMsIG9yIGJpc2VjdC4gwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqA8YnI+wqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgPGJyPsKgID09PSBIYXJk
-d2FyZSA9PT0gwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqA8YnI+wqAgLSBMZW5v
-dm8gWW9nYSBTbGltIDcgMTRJTEwxMCAoODNKWCksIEludGVsIENvcmUgVWx0cmEgLyBMdW5hciBM
-YWtlIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgPGJyPsKgIC0gR1BVOiAwMDAwOjAwOjAyLjAsIGRldmljZSBJ
-RCA4MDg2OjY0YTAsIGRpc3BsYXkgdmVyc2lvbiAyMC4wMCBCMCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoDxi
-cj7CoCAtIE1vbml0b3I6IE1TSSBNUEcgMjcyVVJYIFFELU9MRUQsIDM4NDB4MjE2MEAyNDBIeiwg
-RFAgMi4xIFVIQlIyMCArIERTQyDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+wqAgLSBDb25uZWN0aW9uOiBuYXRpdmUg
-RFAtYWx0bW9kZSB2aWEgVVNCLUMgKG5vIGRvY2ssIG5vIGh1Yik7IGxhcHRvcCBoYXMgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgPGJyPsKgIMKgIG5vIG5hdGl2ZSBEUCBjb25uZWN0b3IuIEFsbCBoaXN0b3JpYyBlcnJvcnMg
-bGFuZCBvbiBDT05ORUNUT1IgRFAtMSAvIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgPGJyPsKgIMKgIEVOQ09ERVIgRERJ
-IFRDMSAvIFBIWSBUQzEuIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgPGJyPsKgIC0gTGFwdG9wIGFsc28gaGFz
-IG5hdGl2ZSBIRE1JLUEtMSAoVE1EUywgY2FwcGVkIDRLNjApLCB1bmFmZmVjdGVkLiDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoDxicj7CoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+wqAgPT09IFNvZnR3YXJlID09PSDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoDxicj7CoCAtIEJhenppdGUgKEZlZG9yYSA0MyBycG0tb3N0
-cmVlKSwga2VybmVsIDYuMTcuNy1iYTI5LmZjNDMueDg2XzY0IMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-PGJyPsKgIC0geGUgMS4xLjAsIERNQyB4ZTJscGRfZG1jLmJpbiB2Mi4yOSwgR3VDIGxubF9ndWNf
-NzAuYmluIDcwLjU4LjAsIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxicj7CoCDCoCBIdUMgbG5sX2h1Yy5i
-aW4gOS40LjEzLCBHU0MgbG5sX2dzY18xLmJpbiAxMDQuMC41LjE0MjkgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqA8YnI+wqAgLSBDb21wb3NpdG9yOiBLREUgUGxhc21hIC8ga3dpbl93
-YXlsYW5kIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIDxicj7CoCAtIEN1cnJlbnQga2VybmVsIGNtZGxpbmUgbWl0aWdhdGlvbnMgKHNlZSBi
-ZWxvdyk6IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxicj7CoCDC
-oCDCoCB4ZS5wc3Jfc2FmZXN0X3BhcmFtcz1ZIHhlLmVuYWJsZV9wc3IyX3NlbF9mZXRjaD1OIHhl
-LmVuYWJsZV9zYWd2PTAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqA8YnI+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgPGJyPsKgID09PSBUd28gZGlzdGlu
-Y3QgZmFpbHVyZSBzaWduYXR1cmVzIG9ic2VydmVkID09PSDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoDxicj7CoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+wqAgQnVnIEEg4oCUIFVIQlIyMCBs
-aW5rIHRyYWluaW5nIChubyBtaXRpZ2F0aW9uIGFwcGxpZWQpOiDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCA8YnI+wqAgwqAgeGUgMDAwMDowMDowMi4wOiBbZHJtXSBkcm1fV0FS
-Tl9PTigmcXVvdDtVSEJSMjAgbm90IHN1cHBvcnRlZCBmb3IgdGhlIHBsYXRmb3JtJnF1b3Q7KTxi
-cj7CoCDCoCBpbnRlbF9kcF9yZXRyYWluX2xpbmsgLyBpbnRlbF9kcF9saW5rX2NoZWNrIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxicj7CoCDCoCBwaXBl
-IHN0YXRlIGRvZXNuJiMzOTt0IG1hdGNoOiBwb3J0X2Nsb2NrIGV4cGVjdGVkIDIwMDAwMDAgZm91
-bmQgMTYyMDAwPGJyPsKgIMKgIEdUMC9HVDE6IFRMQiBpbnZhbGlkYXRpb24gZmVuY2UgdGltZW91
-dCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8
-YnI+wqAgwqAgaTJjX2Rlc2lnbndhcmUgKyBCbHVldG9vdGggaGNpMCB0eCB0aW1lb3V0IGNhc2Nh
-ZGUgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqA8YnI+wqAgwqAg4oaSIHdo
-b2xlLXBsYXRmb3JtIHN0YWxsIHdpdGhpbiBzZWNvbmRzIG9mIGNvbm5lY3QuIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxicj7CoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+wqAgVmFyaWFudHMgc2Vl
-biBhY3Jvc3MgYm9vdHM6IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxicj7CoCDCoCAtICZxdW90O0ludGVy
-bGFuZSBhbGlnbiB0aW1lb3V0JnF1b3Q7IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxicj7CoCDCoCAtICZxdW90
-O0NhbiYjMzk7dCByZWR1Y2UgbGluayB0cmFpbmluZyBwYXJhbWV0ZXJzIGFmdGVyIGZhaWx1cmUm
-cXVvdDsgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgPGJyPsKgIMKgIC0gJnF1b3Q7RmFp
-bGVkIHRvIHN0YXJ0IDEyOGIvMTMyYiBUUFMyIENEUyZxdW90OyDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoDxicj7CoCDCoCAtICZxdW90O1Rp
-bWVvdXQgd2FpdGluZyBmb3IgRERJIEJVRiBBIHRvIGdldCBhY3RpdmUmcXVvdDsgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgPGJyPsKgIMKgIC0gJnF1b3Q7Q1BVIHBp
-cGUgQiBGSUZPIHVuZGVycnVuJnF1b3Q7IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgPGJyPsKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxicj7CoCBX
-b3JrYXJvdW5kIChhdm9pZHMgQnVnIEEgYXQgcnVudGltZSk6IHBlci1jb25uZWN0ZWQtRFAgd3Jp
-dGVzIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxicj7CoCDCoCAvc3lzL2tlcm5lbC9kZWJ1Zy9k
-cmkvLi4uL0RQLTEvaTkxNV9kcF9mb3JjZV9saW5rX3JhdGUgPSA4MTAwMDAgwqAoSEJSMykgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgPGJyPsKgIMKgIC9zeXMva2VybmVsL2RlYnVnL2RyaS8uLi4vRFAtMS9pOTE1X2RwX2ZvcmNl
-X2xpbmtfcmV0cmFpbiA9IDEgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgPGJyPsKgIGFwcGxpZWQgdmlh
-IHVkZXYgb24gaG90LXBsdWcgKyBzeXN0ZW1kIHVuaXQgYXQgYm9vdC4gSEJSMyBjYXAgZWxpbWlu
-YXRlcyDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoDxicj7CoCB0aGUgVUhCUjIwIHdhcm5pbmcgYW5kIHRoZSBsaW5rLXRyYWlu
-aW5nIGNhc2NhZGUuIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxi
-cj7CoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCA8YnI+wqAgQnVnIEIg4oCUIHNpbGVudCBwYWdlZmxpcCBkZWFkbG9jayBhdCBIQlIz
-IChhZnRlciBCdWcgQSBtaXRpZ2F0ZWQpOiDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+wqAgwqAgQWZ0
-ZXIgMTAgbWludXRlcyB0byA2IGhvdXJzIG9mIHVzZSwgdGhlIG1vbml0b3IgZnJlZXplcyBtaWQt
-ZnJhbWUgd2l0aDxicj7CoCDCoCBpbWFnZSBpbnRhY3QgKHNjYW5vdXQgc3RpbGwgcnVubmluZywg
-ZmxpcCBxdWV1ZSB3ZWRnZWQpLiBPbmx5IGtlcm5lbC0gwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgPGJyPsKgIMKgIGFkamFj
-ZW50IHNpZ25hbCByZWNvdmVyZWQgZnJvbSB0aGUgam91cm5hbDogwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgPGJyPsKgIMKgIMKgIGt3aW5fd2F5bGFuZDog
-UGFnZWZsaXAgdGltZWQgb3V0ISBUaGlzIGlzIGEgYnVnIGluIHRoZSB4ZSBrZXJuZWwgZHJpdmVy
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIDxicj7CoCDCoCBTb21ldGltZXMgZm9sbG93ZWQgYnk6IMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgPGJyPsKgIMKgIMKgIEdUMC9HVDE6IFRMQiBpbnZhbGlkYXRpb24gZmVuY2UgdGltZW91dCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+wqAg
-wqAgVGhlbiB0aGUgcGxhdGZvcm0gaXMgY29tcGxldGVseSBsb2NrZWQ6IG5vIFN5c1JxLCBubyBT
-U0gsIG5vIGpvdXJuYWwgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqA8YnI+wqAgwqAgZmx1c2guIEtlcm5lbCBkaWVzIGJl
-Zm9yZSBhbnl0aGluZyB1c2VmdWwgaXMgd3JpdHRlbi4gwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgPGJyPsKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIDxicj7CoCBNdWx0aXBsZSByZWJvb3RzICh+MjAgY2FwdHVyZWQp
-IHNob3cgYSBzaW5nbGUgY29uc2lzdGVudCByb290LWNhdXNlIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxicj7C
-oCBjbGFzczogYWxsIGVycm9ycyBvbiBDT05ORUNUT1IgRFAtMSAvIEVOQ09ERVIgRERJIFRDMSAv
-IFBIWSBUQzEuIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgPGJyPsKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxicj7CoCA9PT0gSHlwb3Ro
-ZXNpcyA9PT0gwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqA8YnI+wqAgVVNCLUMgRFAtYWx0bW9kZSBUQzEgUEhZIHBvd2Vy
-LXN0YXRlIHRyYW5zaXRpb24gZGVhZGxvY2sgZHVyaW5nIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxi
-cj7CoCBsaW5rIG1haW50ZW5hbmNlIChyZWNhbGlicmF0aW9uIC8gU1NDIC8gcG93ZXItc3RhdGUg
-Y2hhbmdlIG1pZC1zdHJlYW0pLiDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+wqAgVGhlIHBhZ2VmbGlwLXN0dWNrLXdp
-dGgtaW1hZ2UtaW50YWN0IHN5bXB0b20gYXJndWVzIGFnYWluc3QgRFNDIG9yIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgPGJyPsKgIGxpbmstYmFuZHdpZHRoIGZhaWx1cmUgKHdoaWNoIHdvdWxkIGJsYW5rIG9y
-IGNvcnJ1cHQpLiBDb25zaXN0ZW50IHdpdGggwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqA8YnI+wqAgUEhZLWxldmVsIGRl
-YWRsb2NrIHdoaWxlIHRoZSBzY2Fub3V0IGVuZ2luZSBpcyBzdGlsbCBydW5uaW5nLiDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCA8YnI+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgPGJyPsKgID09PSBXaGF0IHdlIHJ1bGVkIG91dCA9
-PT0gwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgPGJyPsKgIC0gRE1DOiB4ZTJscGRfZG1jLmJpbiB2Mi4y
-OSBsb2FkcyBjbGVhbiBldmVyeSBib290LiDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+wqAgLSBHdUM6
-IGxubF9ndWNfNzAuYmluIDcwLjU4LjAgY2xlYW4sIG5vIENULWRlYWQsIG5vIEdQVSByZXNldCwg
-bm8gR3VDIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIDxicj7CoCDCoCBoYW5nIGluIGFueSBib290IGxvZy4gwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgPGJyPsKgIC0gUFNSOiBleHRlcm5hbCBtb25pdG9yIHJlcG9ydHMg
-JnF1b3Q7U2luayBzdXBwb3J0OiBQU1IgPSBubywgUGFuZWwgUmVwbGF5IMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxi
-cj7CoCDCoCA9IG5vJnF1b3Q7IGF0IC9zeXMva2VybmVsL2RlYnVnL2RyaS8uLi4vRFAtMS9pOTE1
-X3Bzcl9zdGF0dXMuIE5vIFBTUiDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+wqAgwqAgcnVubmluZyBv
-biB0aGlzIGxpbmsuIHhlLnBzcl9zYWZlc3RfcGFyYW1zPVkgYW5kIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgPGJyPsKgIMKgIHhlLmVuYWJsZV9wc3IyX3NlbF9mZXRjaD1OIGFyZSBuby1vcHMgaGVyZS4g
-S2VwdCBvbmx5IGJlY2F1c2UgdGhleSYjMzk7cmUgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgPGJyPsKgIMKgIGhhcm1sZXNz
-IG9uIGVEUC4gwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqA8YnI+wqAgLSBEU0M6IHRy
-aWVkIGZvcmNpbmcgRFNDIG9uLCB3b3JzZW5lZCBzdGFiaWxpdHkuIFJlbW92ZWQuIFN5bXB0b20g
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgPGJyPsKgIMKgIChmcm96ZW4gaW1hZ2UgaW50YWN0KSBpcyBpbmNv
-bnNpc3RlbnQgd2l0aCBEU0MgZmFpbHVyZS4gwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-PGJyPsKgIC0gTUNFIC8gT09NIC8gdGhlcm1hbCAvIE5NSSAvIFJDVSBzdGFsbCAvIE5WTWUgLyBQ
-Q0llIEFFUjogYWxsIGNsZWFuLiDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+wqAgLSBXaW5kb3dzIG9uIHNhbWUg
-aGFyZHdhcmUgKyBzYW1lIG1vbml0b3IgKyBzYW1lIFVTQi1DIGNhYmxlOiBubyDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoDxicj7CoCDCoCBmcmVlemVzLCBmdWxsIDRLQDI0MCBVSEJSMjAgd29ya3MgaW5k
-ZWZpbml0ZWx5LiBIYXJkd2FyZSBhbmQgY2FibGUgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqA8YnI+wqAgwqAgYXJl
-IG5vdCBhdCBmYXVsdC4gwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgPGJyPsKgIC0gQW55
-RGVzayAvIHVzZXJzcGFjZSBkYWVtb25zOiBpbnN0YWxsZWQgYWZ0ZXIgbW9zdCBmcmVlemVzOyBu
-b3QgY2F1c2FsLiDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoDxicj7CoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+wqAgPT09IE1vbml0b3IgT1NEID09PSDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+wqAgTVNJIE1QRyAyNzJVUlggZG9lcyBu
-b3QgZXhwb3NlIGEgJnF1b3Q7RFAgMS40IC8gMi4xJnF1b3Q7IHRvZ2dsZSBpbiBPU0QgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgPGJyPsKgIChjb25maXJtZWQgb24gZmlybXdhcmUgc2hpcHBpbmcg
-dG8gZW5kIHVzZXJzKSwgc28gaG9zdC1zaWRlIGZhbGxiYWNrIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgPGJyPsKg
-IHRvIERQIDEuNCBpcyB0aGUgb25seSBhdmFpbGFibGUgd29ya2Fyb3VuZC4gSEJSMyBjYXAgdmlh
-IGRlYnVnZnMgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqA8YnI+wqAgd29ya3MgYXQgcnVudGltZTsgbW9k
-dWxlLXBhcmFtIGVxdWl2YWxlbnQgKHhlLiogcGFyYW1zKSBpcyAwNDQ0IGFuZCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCA8YnI+wqAgb25seSBzZXR0YWJsZSBhdCBib290LiDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoDxicj7CoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCA8YnI+wqAgPT09IFdoYXQgSSBjYW4gcHJvdmlkZSA9PT0gwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqA8YnI+wqAgLSBGdWxsIGRtZXNnIGZyb20gYSBib290IHdpdGggcmVwcm9kdWN0
-aW9uLiDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8
-YnI+wqAgLSBCb290cyB3aXRoIGRybS5kZWJ1Zz0weDFlIGlmIHVzZWZ1bC4gwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqA8YnI+wqAgLSBX
-aWxsaW5nIHRvIGJpc2VjdCBiZXR3ZWVuIDYuMTYvNi4xNy82LjE4IG9uIHRoZSBUQyBQSFkgLyB4
-ZSBkaXNwbGF5IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxicj7CoCDCoCBwYXRocy4gwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqA8YnI+wqAgLSBXaWxsaW5nIHRvIHRlc3QgcGF0
-Y2hlcyBhZ2FpbnN0IDYuMTcgb3IgbWFpbmxpbmUuIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIDxicj7CoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+wqAgVGhhbmtzIGZvciBhbnkgcG9pbnRlcnMg4oCU
-IGhhcHB5IHRvIGZpbGUgYXQgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqA8YnI+wqAgPGEgaHJlZj0iaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Au
-b3JnL2RybS94ZS9rZXJuZWwvLS9pc3N1ZXMiPmh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9y
-Zy9kcm0veGUva2VybmVsLy0vaXNzdWVzPC9hPiBpZiBwcmVmZXJyZWQuIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IDxicj7CoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCA8YnI+wqAgLS0gTWFyY8KgIMKgPC9kaXY+DQo=
---000000000000b393b9064fc5a962--
+--===============5971345349907929904==--
