@@ -4,63 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66DA8F5A8A5
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Apr 2026 17:35:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E45FF5A8AA
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Apr 2026 18:05:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04D2310E180;
-	Mon, 20 Apr 2026 17:35:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFDAB10E726;
+	Mon, 20 Apr 2026 18:05:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NUqyngew";
+	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="wZRLo91Y";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1339410E180
- for <intel-xe@lists.freedesktop.org>; Mon, 20 Apr 2026 17:35:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776706517; x=1808242517;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=SG01c9U5d8fFYSpisi0jsbXFNvS/Dc/QMpE0skyMp3c=;
- b=NUqyngewKIAx5rjmNpqCpl3JYb/pGQncfoMI0WymbUZeCsM/YU66EbYB
- jlg36mFrFj1tVpYYffYlRk0mg0zxp/SI76cnW4lhQ656ZxaJPELHZudDo
- T0KjQH2Ad9jUcsI0LY8GI+6/2MWXLOmWis33buM1uDd/+Yyuhkqtz/LPH
- 18HSqqRnQcv6VV/ucvA2IQmrACBgbMMoeBOu2hDBeVssntxd+emZd8DDg
- KMTRzOEseFy7F52SckAJ327V8i4Uny9R7Dykvd2IDzGVwwjpx582dhzx6
- P7dUGLHXh7cfz9c5/WFXEdZiozS9hzV6/lDfskcU5YYxbvRXss8cvheTn g==;
-X-CSE-ConnectionGUID: UO2pjQqgSbOzjCw1yb6wvw==
-X-CSE-MsgGUID: kQEeSDgWQSSKMLD0g7S2Dg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11762"; a="80220402"
-X-IronPort-AV: E=Sophos;i="6.23,190,1770624000"; d="scan'208";a="80220402"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2026 10:35:16 -0700
-X-CSE-ConnectionGUID: uHVGcwbfQJKEk/r0KcAaYA==
-X-CSE-MsgGUID: y/hnfwV5QBKJdd7pkPh76Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,190,1770624000"; d="scan'208";a="269837501"
-Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.244.102])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2026 10:35:14 -0700
-Date: Mon, 20 Apr 2026 19:35:10 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: "Purkait, Soham" <soham.purkait@intel.com>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>, intel-xe@lists.freedesktop.org,
- riana.tauro@intel.com, anshuman.gupta@intel.com,
- aravind.iddamsetty@linux.intel.com, badal.nilawar@intel.com,
- raag.jadav@intel.com, ravi.kishore.koppuravuri@intel.com,
- mallesh.koujalagi@intel.com, anoop.c.vijay@intel.com
-Subject: Re: [PATCH v1 2/2] drm/xe/xe_ras: Add RAS support for GPU health
- indicator
-Message-ID: <aeZjzhyKjdh27lSP@ashyti-mobl2.lan>
-References: <20260416093610.4085667-1-soham.purkait@intel.com>
- <20260416093610.4085667-3-soham.purkait@intel.com>
- <aeDN6g6HWd3v-V72@ashyti-mobl2.lan>
- <bd5d4112-36c1-4e9f-b06e-08213922c157@intel.com>
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
+ [213.167.242.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49D1610E4C1;
+ Mon, 20 Apr 2026 11:02:04 +0000 (UTC)
+Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi
+ [91.158.153.178])
+ by perceval.ideasonboard.com (Postfix) with ESMTPSA id 61711E45;
+ Mon, 20 Apr 2026 13:00:23 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+ s=mail; t=1776682826;
+ bh=3GoDVjcVfcMdyNd/4s5GQU45wo7ysjQ0yDXPdAnGTVg=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=wZRLo91Yw4q2iLo7Jpebvtoz34atXay7MgSGlDzNv5NZVZHMvk/k71YVcMfV3/ohH
+ 2QZCeKuMvVhNlNgoEBaLNUG1SEYNKvpF9tLlomfvYAxYy2+RkkHymazLhbC6O8mkYf
+ SSaJvybVWgwoS54+ar342tLiLzBET4kE7euo+MqA=
+Message-ID: <f74ecd0a-3ff3-45b4-935e-44b89cd0c92d@ideasonboard.com>
+Date: Mon, 20 Apr 2026 14:01:57 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-15
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <bd5d4112-36c1-4e9f-b06e-08213922c157@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] drm/connector: report IRQ_HPD events to
+ drm_connector_oob_hotplug_event()
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-usb@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Adrien Grassein <adrien.grassein@gmail.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov
+ <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Pengyu Luo <mitltlatltl@gmail.com>,
+ Nikita Travkin <nikita@trvn.ru>, Yongxing Mou <yongxing.mou@oss.qualcomm.com>
+References: <20260416-hpd-irq-events-v1-0-1ab1f1cfb2b2@oss.qualcomm.com>
+ <20260416-hpd-irq-events-v1-1-1ab1f1cfb2b2@oss.qualcomm.com>
+ <51b7c44e-36c9-461f-983a-eaa86eeb8cfd@ideasonboard.com>
+ <6z572fdjkvjqvedifwvotgdy4lcrifiqvkjpnutousjqc6764r@zepfzkqy2kbu>
+ <a2e60e74-a1be-469d-8f4d-ecce1f30b517@ideasonboard.com>
+ <3vrqk67oivkgo26xdc3r774rvj3jn3t6sfydhlytyrfiftubhg@cipain7xxcjz>
+Content-Language: en-US
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <3vrqk67oivkgo26xdc3r774rvj3jn3t6sfydhlytyrfiftubhg@cipain7xxcjz>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Mon, 20 Apr 2026 18:05:33 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,24 +88,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Soham,
+Hi,
 
-On Mon, Apr 20, 2026 at 09:49:32PM +0530, Purkait, Soham wrote:
-> On 16-04-2026 17:24, Andi Shyti wrote:
-> > On Thu, Apr 16, 2026 at 03:06:10PM +0530, Soham Purkait wrote:
-> > > GPU health indicator exposes a single sysfs interface, gpu_health,
-> > > at the device level, allowing administrators and management tools to
-> > > query the GPU health status. The interface permits both read and write
-> > > operations on PF and native functions, while on VFs it is exposed as
-> > > read-only.
-> > Can you describe better the interfaces? The input and output
-> > values?
+On 20/04/2026 12:50, Dmitry Baryshkov wrote:
+> On Mon, Apr 20, 2026 at 07:50:46AM +0300, Tomi Valkeinen wrote:
+>> Hi,
+>>
+>> On 18/04/2026 01:32, Dmitry Baryshkov wrote:
+>>> On Thu, Apr 16, 2026 at 11:10:03AM +0300, Tomi Valkeinen wrote:
+>>>> Hi,
+>>>>
+>>>> On 16/04/2026 02:22, Dmitry Baryshkov wrote:
+>>>>> The DisplayPort standard defines a special kind of events called IRQ.
+>>>>> These events are used to notify DP Source about the events on the Sink
+>>>>> side. It is extremely important for DP MST handling, where the MST
+>>>>> events are reported through this IRQ.
+>>>>>
+>>>>> In case of the USB-C DP AltMode there is no actual HPD pulse, but the
+>>>>> events are ported through the bits in the AltMode VDOs.
+>>>>>
+>>>>> Extend the drm_connector_oob_hotplug_event() interface and report IRQ
+>>>>> events to the DisplayPort Sink drivers.
+>>>>>
+>>>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+>>>>> ---
+>>>>>     drivers/gpu/drm/drm_connector.c          |  4 +++-
+>>>>>     drivers/usb/typec/altmodes/displayport.c | 12 ++++++++----
+>>>>>     include/drm/drm_connector.h              |  3 ++-
+>>>>>     3 files changed, 13 insertions(+), 6 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+>>>>> index 47dc53c4a738..5fdacbd84bd7 100644
+>>>>> --- a/drivers/gpu/drm/drm_connector.c
+>>>>> +++ b/drivers/gpu/drm/drm_connector.c
+>>>>> @@ -3510,6 +3510,7 @@ struct drm_connector *drm_connector_find_by_fwnode(struct fwnode_handle *fwnode)
+>>>>>      * drm_connector_oob_hotplug_event - Report out-of-band hotplug event to connector
+>>>>>      * @connector_fwnode: fwnode_handle to report the event on
+>>>>>      * @status: hot plug detect logical state
+>>>>> + * @irq_hpd: HPD pulse detected
+>>>>>      *
+>>>>>      * On some hardware a hotplug event notification may come from outside the display
+>>>>>      * driver / device. An example of this is some USB Type-C setups where the hardware
+>>>>> @@ -3520,7 +3521,8 @@ struct drm_connector *drm_connector_find_by_fwnode(struct fwnode_handle *fwnode)
+>>>>>      * a drm_connector reference through calling drm_connector_find_by_fwnode().
+>>>>>      */
+>>>>>     void drm_connector_oob_hotplug_event(struct fwnode_handle *connector_fwnode,
+>>>>> -				     enum drm_connector_status status)
+>>>>> +				     enum drm_connector_status status,
+>>>>> +				     bool irq_hpd)
+>>>> I find the "IRQ HPD" naming always confusing, even if I'm somewhat familiar
+>>>> with DP, but if someone has mainly worked on HDMI, I'm sure it's even worse.
+>>>>
+>>>> Can we define this a bit more precisely? Is 'irq_hpd' only for displayport?
+>>>> If so, perhaps 'dp_irq_hpd' or 'displayport_irq_hpd'. I might even call it
+>>>> 'dp_hpd_pulse', but maybe that's not good as the spec talks about HPD pulse
+>>>> for both short and long ones (although in the kernel doc you just write "HPD
+>>>> pulse")... The kernel doc could be expanded a bit to make it clear what this
+>>>> flag indicates.
+>>>
+>>> I attempted to stay away from defining a DP-specific flag, keeping it
+>>> generic enough. HDMI is pretty close (IMO) to requiring separate flag in
+>>
+>> If it's not specifically the DP IRQ HPD, then we need to define what it
+>> means. I tried to think what it would mean with HDMI, but I didn't come up
+>> with anything.
 > 
-> Sure. I missed it in this series. I think it is better to be in cover-letter
-> isn't it  ?
+> I might be mistaken, but I had someting like HEAC HPD / EDID status
+> changes in mind (or HDCP-triggered HPD status changes). But here I
+> admit, I hadn't checked if it is actually applicable or not.
 
-I was referring to the commit log. Of course, you can also add
-them in the cover letter, but that's up to you if you see it
-necessary.
+Possibly, I'm not familiar with those.
 
-Andi
+> Anyway, for e.g. DVI or VGA that means nothing. But, my point really is
+> to abstain from defining someting as DP-only in the top-level API.
+
+I'm fine with that, but then it really has to be defined =).
+
+>>> Linux. Likewise I'd rather not use "pulse". The DP AltMode defines a bit
+>>> in the VDO rather than a pulse.
+>>>
+>>> Anyway, if irq_hpd doesn't sound precise enough, what about "bool
+>>> extra_irq"? This would convey that this is the extra hpd-related IRQ,
+>>> but it would also be obvious that it's not related to the HPD pin
+>>> itself.
+>> We'd still need to define what exactly it means. I think it might be better
+>> to just define it as the DP IRQ HPD, as then the meaning is clear.
+>>
+>> Also, would an enum flags parameter be better than a bool parameter?
+> 
+> Maybe not enum, but u32 param. Then it can become:
+> 
+> @extra_status: additional type-specific information provided by the sink
+> without changing the HPD state
+> 
+> void drm_connector_oob_hotplug_event(..., u32 extra_status);
+> 
+> /* DP short HPD pulse or corresponding AltMode flag */
+> #define DRM_CONNECTOR_OOB_DP_IRQ_HPD BIT(0)
+> /* DP long HPD pulse, debounced XXX: do we need this? */
+> #define DRM_CONNECTOR_OOB_DP_REPLUG BIT(1)
+
+Why is u32 better than enum? So that we could e.g. pass short values 
+inside the extra_status?
+
+> For HDMI we might want to define:
+> 
+> /* HDMI 1.4b 8.5, HPD pulse */
+> #define DRM_CONNECTOR_OOB_HDMI_REPLUG BIT(0)
+> 
+> Or might not, 100ms is long enough for all debouncers.
+
+As I read the spec, there's no usable HPD pulse in HDMI as such. It just 
+means that if HPD is low less than 100ms, it should be ignored, and if 
+it's low more than 100ms, it should be handled. In other words, from 
+spec perspective there's no difference between HPD being low 105ms or 
+five days, there's no upper limit for the "pulse".
+
+Still, we probably want to handle the case where the HPD is low only for 
+a short period, so that we don't do a full disable/enable-cycle. We can 
+interpret it as the same monitor still being connected, we just need to 
+check the EDID again.
+
+But isn't that just a drm_connector_hotplug_event with 
+drm_connector_status staying connected? The callee can see that the 
+connector was connected before, it's connected now, but we got an event, 
+so let's read the EDID again.
+
+  Tomi
+
