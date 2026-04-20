@@ -4,80 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C498CF588C3
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Apr 2026 13:24:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D8ECF588C2
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Apr 2026 13:24:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85EBB10E604;
-	Mon, 20 Apr 2026 13:24:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E200F10E60D;
+	Mon, 20 Apr 2026 13:24:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin.net header.i=@ursulin.net header.b="lsGEbO+r";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="sD0qdCOv";
 	dkim-atps=neutral
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
- [209.85.128.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FA3D10E604
- for <intel-xe@lists.freedesktop.org>; Mon, 20 Apr 2026 13:24:08 +0000 (UTC)
-Received: by mail-wm1-f43.google.com with SMTP id
- 5b1f17b1804b1-488af96f6b2so39528885e9.0
- for <intel-xe@lists.freedesktop.org>; Mon, 20 Apr 2026 06:24:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin.net; s=google; t=1776691446; x=1777296246; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=tWgOpHK1V0mcahhXRBLeTBDr92JJ8SRycnjCV/1/+JU=;
- b=lsGEbO+r8d0nljtGh75VUNcrhUFrhJvdyjv8KYa6KqZWqHPatxKveV8kmqDUioHDV3
- qfcHw88sbQa8/4LNSpvMbu2uhNFxzP7XabMLXUJ+la5f3FoWjywK+cYVixaGK9UFXfTg
- EEWrPB/FpVQwVtQty+8AdrYyEgB4/cC6B5vlukF8lef/x3C+ulL695iyi3vatEXb/RW5
- Jh/nmOHOIr2KS/GLi0lT4NpO2XRgQcQT5JkE22ac9qS25hoD9sR+01DIhdGdbVcmEdSV
- sxoSJeXG/VdaS6scBgJJ7zHGRrWpuY+aMNy3E3OV0AkvQyJa8E6Zoh2T+Bzi4j0Qv2A8
- YDvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1776691446; x=1777296246;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=tWgOpHK1V0mcahhXRBLeTBDr92JJ8SRycnjCV/1/+JU=;
- b=Gs4e1VwM1GH9QZDVsXMg3CHKTR5Hl/GHZ2NtDLfnuINIXY8RFsEJ8XJbuteHKUZ7JD
- 6mQuRocPeJV5vwEXVhmFhoCH40XNPOOvBb0pWZ0vDhE2A43Up48yDZPbcL8sRFdZjRvx
- jvJ9sP3qGPEd8y76cMBH3ZR85Wtc8uVIyQQncaKgAN4wjasdVM92+iZguXmD2nuoTyg9
- FlaiW5oeepftg3T/sYVSkvrRyIMcWqMgoxWq3UY6QKmB5PnXgfi5bGnF1sVCZxh6B+6+
- y2SbTDdFc6NRlNOWqw7BRSzq6rKM3h7kHO0FzVxd2JUl4Hpo9yW7sjnm40Mi6TOjaiFq
- tmpA==
-X-Forwarded-Encrypted: i=1;
- AFNElJ9RXOVjfx1lXMcOqQPl7NUfPPJNpaPkLPkh4RTR/zZ9lI7IZ7iP/cpjgQGTdf+L/1R5pfq6jmz4KA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxHOnynfzlkkLBe8YYej1Psl1hiA6xY0+ZwpkadMFUBR8NCZW1n
- wGZOjFcAso+LDNL8iLKYKseCBFUZfYDBVjLmtVWUeuAaCgthwf+9hDzQEsYIHLfetCI=
-X-Gm-Gg: AeBDiev0rHMzF/uRVbEwoXdyA9/GnKYwncHsgG7YI6bNigKe5HGXqVsyDDwoj+yfROe
- SqwW1+SX6rrs8rsLh4wrjQ3eWFzCTp2xvr2VRxKUGuT+qkXMoqtyJDOpoPtebzcTzSWNPsL85mF
- VL4uuuZyi3H1hJ9fZ2NCA1b3h4rmH/LyD84XyTtNywEnoFVN36cB+k0YJ8bRzlSt7L4QATnjVVx
- fir/qeGYD4XltvUo6xJnkwsfPGbu4/S4ET02yhSJxA/PSYZbpktM7W9QKGv/85tTto//GSwiBZX
- +NYEAphWkUVD8L0WJal/Lo2QADdheHnizytbAkz5qVbuIKYjIsTelsiPDs43sjvlyUTz2vfwE5b
- mMx00Dy6Ousz3QX+1pulg3JhrDvXR48HK6B4Z4GxlODk1/9cJbFdOJoomNdijhGpBeJLWIUPRXw
- jJcRomvqqk+mEjOiW0GN/v5g+4LlzuyLs4VJqTZLFhkA2cX4AlBRiqbBs=
-X-Received: by 2002:a05:600c:1549:b0:48a:761:5808 with SMTP id
- 5b1f17b1804b1-48a07615c09mr25066825e9.0.1776691446240; 
- Mon, 20 Apr 2026 06:24:06 -0700 (PDT)
-Received: from [192.168.0.101] ([90.240.106.137])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-488fc0f8188sm305785195e9.2.2026.04.20.06.24.05
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 20 Apr 2026 06:24:05 -0700 (PDT)
-Message-ID: <384adac7-2aa4-4568-b7a5-987e914fbaf2@ursulin.net>
-Date: Mon, 20 Apr 2026 14:24:05 +0100
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F40610E60C;
+ Mon, 20 Apr 2026 13:24:38 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 7558C41A93;
+ Mon, 20 Apr 2026 13:24:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C65F8C2BCB6;
+ Mon, 20 Apr 2026 13:24:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1776691478;
+ bh=z5zY5vSxlxaAK3rev+R5sLYjXq65u0sb9k9Dj+AXCtU=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=sD0qdCOvo+8kKd0Ae8VMNBvhQwStMz9zmzrm9E3j50jSGw/+ZLfaqJgq5nG/ibTlA
+ gUauDvlZxh+oiqz7kYCqW+S9GaE9fJyY0a5ywa4739No2soestBWxbw6Yh6+fARNEa
+ VQwONO9TMRvm9uMW7gzaClWnGSu6H2Sa4/gZfoIZy/QDYeI+/mqHUh6TQl0DR9O4xZ
+ PADn3EPrBvtZfYzUPPQTPjZnrZd5qmBl9aZ1jEpOiDagWdoWQGkafqkcvvD0ccp8sQ
+ C9SNvm/3iQWHPK0IYyWcPnNKS8noxeC1KHgIpUWFOnW29eSgkGcoDVtpOlCXVX7uTi
+ eggL29f9yYQhw==
+From: Sasha Levin <sashal@kernel.org>
+To: patches@lists.linux.dev,
+	stable@vger.kernel.org
+Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Sasha Levin <sashal@kernel.org>,
+ matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
+ airlied@gmail.com, simona@ffwll.ch, John.C.Harrison@Intel.com,
+ daniele.ceraolospurio@intel.com, matthew.d.roper@intel.com,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH AUTOSEL 6.18] drm/xe: Fix bug in idledly unit conversion
+Date: Mon, 20 Apr 2026 09:17:27 -0400
+Message-ID: <20260420132314.1023554-53-sashal@kernel.org>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260420132314.1023554-1-sashal@kernel.org>
+References: <20260420132314.1023554-1-sashal@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/xelp: Fix Wa_18022495364
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, intel-xe@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Matt Roper <matthew.d.roper@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, stable@vger.kernel.org
-References: <20260420131603.70357-1-tvrtko.ursulin@igalia.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <20260420131603.70357-1-tvrtko.ursulin@igalia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-stable-base: Linux 6.18.23
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -93,43 +66,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 
-On 20/04/2026 14:16, Tvrtko Ursulin wrote:
-> Command parser relative MMIO addressing needs to be enabled when writing
-> to the register.
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> Fixes: ca33cd271ef9 ("drm/xe/xelp: Add Wa_18022495364")
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: <stable@vger.kernel.org> # v6.18+
-> ---
->   drivers/gpu/drm/xe/xe_lrc.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-> index 9d12a0d2f0b5..c725cde4508d 100644
-> --- a/drivers/gpu/drm/xe/xe_lrc.c
-> +++ b/drivers/gpu/drm/xe/xe_lrc.c
-> @@ -1214,7 +1214,7 @@ static ssize_t setup_invalidate_state_cache_wa(struct xe_lrc *lrc,
->   	if (xe_gt_WARN_ON(lrc->gt, max_len < 3))
->   		return -ENOSPC;
->   
-> -	*cmd++ = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(1);
-> +	*cmd++ = MI_LOAD_REGISTER_IMM | MI_LRI_LRM_CS_MMIO | MI_LRI_NUM_REGS(1);
+[ Upstream commit 7596459f3c93d8d45a1bf12d4d7526b50c15baa2 ]
 
-Or if this register exists only for RCS would it be better to define 
-CS_DEBUG_MODE2 as the absolute 0x20d8 (as in i915)? Unfortunately the 
-public TGL PRM does not list neither the register or the workaround so I 
-am not sure.
+We only need to convert to picosecond units before writing to RING_IDLEDLY.
 
-Regards,
+Fixes: 7c53ff050ba8 ("drm/xe: Apply Wa_16023105232")
+Cc: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
+Acked-by: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Link: https://patch.msgid.link/20260401012710.4165547-1-vinay.belgaumkar@intel.com
+(cherry picked from commit 13743bd628bc9d9a0e2fe53488b2891aedf7cc74)
+Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
 
-Tvrtko
+LLM Generated explanations, may be completely bogus:
 
->   	*cmd++ = CS_DEBUG_MODE2(0).addr;
->   	*cmd++ = REG_MASKED_FIELD_ENABLE(INSTRUCTION_STATE_CACHE_INVALIDATE);
->   
+Error: Failed to generate final synthesis
+
+ drivers/gpu/drm/xe/xe_hw_engine.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 1cf623b4a5bcc..d8f16e25b817d 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -587,9 +587,8 @@ static void adjust_idledly(struct xe_hw_engine *hwe)
+ 		maxcnt *= maxcnt_units_ns;
+ 
+ 		if (xe_gt_WARN_ON(gt, idledly >= maxcnt || inhibit_switch)) {
+-			idledly = DIV_ROUND_CLOSEST(((maxcnt - 1) * maxcnt_units_ns),
++			idledly = DIV_ROUND_CLOSEST(((maxcnt - 1) * 1000),
+ 						    idledly_units_ps);
+-			idledly = DIV_ROUND_CLOSEST(idledly, 1000);
+ 			xe_mmio_write32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base), idledly);
+ 		}
+ 	}
+-- 
+2.53.0
 
