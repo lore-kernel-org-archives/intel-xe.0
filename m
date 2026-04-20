@@ -4,160 +4,162 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 459BFF5581E
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Apr 2026 11:45:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D174FF36C5C
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Apr 2026 12:02:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3E2210E162;
-	Mon, 20 Apr 2026 11:45:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D02610E1F6;
+	Mon, 20 Apr 2026 12:02:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="f+Ng/SPg";
-	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="UX9LQQuA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MwCB8Z5T";
 	dkim-atps=neutral
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3575D10E161
- for <intel-xe@lists.freedesktop.org>; Mon, 20 Apr 2026 11:45:54 +0000 (UTC)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 63K7Z1Wn3455883
- for <intel-xe@lists.freedesktop.org>; Mon, 20 Apr 2026 11:45:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-type:date:from:in-reply-to:message-id:mime-version
- :references:subject:to; s=qcppdkim1; bh=OSEOlty1w4G0PIvTT1dv0PCa
- ahtC4/jkfebraYruQdc=; b=f+Ng/SPgYV0/VApKl6YYyO9YGSHsU3z0Q2RBtC+P
- UiZtdEPyRFWDNAsoNaf2b8tsnDdpDuSWf3WCsSVIn+MgaHepaX4JPbXmDJXw1XSz
- XS3us1ReB/tHS0hAgv4Dffl3nCK954nXS81UtTBk+UpJ0TZq3OI/49HhGKfXUd2x
- f6t3ON+5D3vaxgEbTe1TpLcelu442HeuCsaiiBQsK0Nrz77SMXUzP4Lo5ptaIXhM
- ODldoxylvSvlTVmas16TrTI/rmmaR6nHaUXWDznUbPhs3W3vjWXl18Tm2YBALshy
- VumfoIKgMCrWt14FCsvZ0pHI0Zzf2Jgwbm4mCsVZCaPXSQ==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
- [209.85.160.198])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dnfvjs38s-1
- (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
- for <intel-xe@lists.freedesktop.org>; Mon, 20 Apr 2026 11:45:52 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id
- d75a77b69052e-50b4b81c632so65166911cf.1
- for <intel-xe@lists.freedesktop.org>; Mon, 20 Apr 2026 04:45:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oss.qualcomm.com; s=google; t=1776685552; x=1777290352;
- darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=OSEOlty1w4G0PIvTT1dv0PCaahtC4/jkfebraYruQdc=;
- b=UX9LQQuAM46Juzd+lyEBjJ3HhF7Tyks0NIxcpmsDjJwfgZrQy59nnHNXJUp6asy2r7
- h70hPwawvj2cojAiLR5frUui9BHD9kGEoX2DfsXIxybbRwL5FwV4TVE8R7fCYlAo0nfJ
- bE+aip9Cve2Ivza/Yq5X9UnuwjSrRUX/Ar27pPz4zMMG+Lw+vlFv1gl5lk6y8v8gM6tF
- MurOofLXGYQErlsRUGSNAjjJbt2+LDQSgKjiU0LZsxHsqSQ+lCKlEK6qtCUTn1kPoxNr
- WBcsKf4rck2HXrUGOvmhHHI1+V1GAksWYu6y4XhiM5Y8lnzhMb8mal4axZcgZxzxdEih
- xtmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1776685552; x=1777290352;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=OSEOlty1w4G0PIvTT1dv0PCaahtC4/jkfebraYruQdc=;
- b=LtGdcqWG2POEH1Y+5nI010GYVbWe87pB2wQWckeINwlRHwVe3Tws90SMQ43L3C0xQ0
- +9u0v3g6VQR8FVzj3NUWWAAl18gyETsKt0VjGvJuRggRUkveKUSLHeu8f3ppzgEb9nwT
- htFubV2gvRo8y4vvkzktzF/8YGP6Mi2Pmb/zLKxTdQpBE7izbZd90wZnHMwWLh1yysbG
- 3naBgDV7g26rLSpADHjwkWqrQhzqXWYF/yoP1Y4a4/B0D8lKRO0OvDs07a9Ks9tDwmfU
- 2BqTMST7cFpZzwiDgM7hzOdjhk4EPGzVOeu7eaxGVjNKNdNkmTlHSmkpEl4dybDeXU72
- 9RDA==
-X-Forwarded-Encrypted: i=1;
- AFNElJ8PkB/wxQWwFbfd+/zx4MN9u4l0NV/Yyu/e14z5qIH130a48AEdTHALPkQHCpoRScuOeLGYBe1jyg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yypr2NXhmiLHo5+4co7a1IrgWdm+tUpX8+RxLdD0iaqPhpJfMMy
- 40nkuxaBy09zfsxwM1CS8JdXvJ5TURKaeO8Osx/OsPWX8ODjmqm5MAdMQl2JqIhEaqWSdnwAYvv
- 3EVlu6R6CuWhMx7Q7jqk3ptbKrxGUTtLzObpRZZyC9IYarGqb9Q6GiBOPQtsutm5tRaOaoA==
-X-Gm-Gg: AeBDievpyFNtAu74DfQJf6MVWaJyTXhQpgHy4JU6vPWwgyqthhbUajzUPzHOofVbCjf
- mssiwKsxQDbICdph3ZH1hcS2hGoFaZEQgWPatu1eeGKTo+TFGItiBUM72xptgOhJZaIYsWtrsON
- CnIm7QPCJCHoUWNCNMa7wXfsqrfTJcGcE9O2eDlNFxYHrpSnN+6NTpk6CySMvkgm6uiZ7o5ZMD5
- oc5/CA49amdKzTs++UHStcv4JJXSPnwzMyZhR62ctNlG8SWnnQJ8NXgaoT6rJRgDH4N3H9RcZEJ
- MIbNrhK6juYjlBrFOiNcmReCFBvhoAEWIPVJZP092hYK6dkk8XWI7HBAxm8sBkdO8aFpVX7pube
- sZFs+k9nxd6mNtAQLwOB+PIZlkVk8TtR1SOsSV6pkSJEOnAglM3LXItH5d6YrsDVeBEl34MskoS
- C8l6rmvzA6dIi0Tab4zF/4OHxci5QpYGmVwWYkPhnh9uywDA==
-X-Received: by 2002:a05:622a:ce:b0:50b:3895:c22f with SMTP id
- d75a77b69052e-50e36b4ec02mr195510971cf.26.1776685551912; 
- Mon, 20 Apr 2026 04:45:51 -0700 (PDT)
-X-Received: by 2002:a05:622a:ce:b0:50b:3895:c22f with SMTP id
- d75a77b69052e-50e36b4ec02mr195510191cf.26.1776685551248; 
- Mon, 20 Apr 2026 04:45:51 -0700 (PDT)
-Received: from umbar.lan
- (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
- [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
- by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-5a4187e7b22sm2874049e87.62.2026.04.20.04.45.49
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 20 Apr 2026 04:45:50 -0700 (PDT)
-Date: Mon, 20 Apr 2026 14:45:48 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-usb@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Adrien Grassein <adrien.grassein@gmail.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Clark <robin.clark@oss.qualcomm.com>,
- Dmitry Baryshkov <lumag@kernel.org>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Pengyu Luo <mitltlatltl@gmail.com>, Nikita Travkin <nikita@trvn.ru>,
- Yongxing Mou <yongxing.mou@oss.qualcomm.com>
-Subject: Re: [PATCH 1/6] drm/connector: report IRQ_HPD events to
- drm_connector_oob_hotplug_event()
-Message-ID: <v7h3a5pwx32dfcumc3diysylja6lhkhobyzemfthb6dsadcxnp@2kkidnsgov4e>
-References: <20260416-hpd-irq-events-v1-0-1ab1f1cfb2b2@oss.qualcomm.com>
- <20260416-hpd-irq-events-v1-1-1ab1f1cfb2b2@oss.qualcomm.com>
- <51b7c44e-36c9-461f-983a-eaa86eeb8cfd@ideasonboard.com>
- <6z572fdjkvjqvedifwvotgdy4lcrifiqvkjpnutousjqc6764r@zepfzkqy2kbu>
- <a2e60e74-a1be-469d-8f4d-ecce1f30b517@ideasonboard.com>
- <3vrqk67oivkgo26xdc3r774rvj3jn3t6sfydhlytyrfiftubhg@cipain7xxcjz>
- <f74ecd0a-3ff3-45b4-935e-44b89cd0c92d@ideasonboard.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBCFD10E1F6;
+ Mon, 20 Apr 2026 12:02:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1776686523; x=1808222523;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=EtinAYX6k0O9fzNpwysEg6p/+kcvlpkeQU+nnAOXmCs=;
+ b=MwCB8Z5T90U51Wm2chBaEJC/rAIdY/DAbIlUC49dAyYo14XB9BJVOYn5
+ 2qUKHljN79tfMA0p3ktUomNjNEXV6+C6/Sbf9XcA10NUnG68upO5z6uY+
+ Y/EnjfPzkPI7/EUc9zwGgULICjR7jcLNxrvQAwme7QmdFKGUusm9hH4Qb
+ HmJkRltg68NwFDBGaI1xQJk6m8oWc5SFqUeq5rsCikLNHTPm3oww3r/xd
+ a+BgwalIu5hn3ZWruD/3dkrGPat+3y4hQlyJ9mK7OUJcP2gyMqcQ/r4Xq
+ nCYv548Aeftt8PGiQeZFGTWCVvH9kFNroKJ0loXEjfzJxmEkN6/y5G/Kt w==;
+X-CSE-ConnectionGUID: dPqUFwMHQBW27hBuFO/duA==
+X-CSE-MsgGUID: EEL8QaRbR3ai+jrfSvOQjg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11762"; a="77304993"
+X-IronPort-AV: E=Sophos;i="6.23,189,1770624000"; d="scan'208";a="77304993"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2026 05:02:02 -0700
+X-CSE-ConnectionGUID: fAm/9s+OQ1O1z5XdJfhw7Q==
+X-CSE-MsgGUID: 6WYVyFVVSG6erTIQYo3ehg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,189,1770624000"; d="scan'208";a="225210606"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2026 05:02:02 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Mon, 20 Apr 2026 05:02:01 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Mon, 20 Apr 2026 05:02:01 -0700
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.60) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Mon, 20 Apr 2026 05:02:01 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=BT9pYhILUtCXLVb9i4CqEl6JOFyvAWr8y8/eQi+X5oNwSvk/WkpnN45BUEoIw9P6j3b3igEFDHgudZEnEkztGKbHBSxqiLFJgmyVLm7z+gJDX07a2lxVNHEtE/0DfydvdUFLs1PjEQiE6GMVs6EMrueqYvXb8Utj0b0LkfxT5JwZON18F3uO7uvkPWczcK1Eygdv4PsY0x8f41ATibP9P9wn09vxZgKea9yullIjyGQmk5CTG0Qfqnd/fkjEqtRg2qjBSaiXwK84A6RbyUZoBSbuKj0OUhQcS34Gpj7nku6UN1PjLwXeO0D0NT24QbclfZCi+QNSuvfNG+DYcD6ehg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QOG/NUup41nniR7szWe5u0AXZztCvhwRnUUkFqr+OQI=;
+ b=J3hWr0VcCzYAADpM7TbfX5DmAJ8xuP2sQqiTw9ULXcbEAitlI3E75FrcscrMmkNfTJFyc2llwvTt7jDJFO1eC3DgmN9y0QaP9ddArS8/jI4brz8fuJw/t5QUYZzotUMGJlXPHcE/h2wgpIl48bySSaYsrB2XXADaOhuffB1LcmOkcYp6rCChdmkd3EKWV0mUZmyBwCCDEppBFelrOQHv0dyQaFeygZ7UbOCG5YtHZPI1EgWgIEgh4t03gm7SUeshk1jM0FdEquueCbm3eaVwrU+H9rVSgwwVK425/cO4t8V8iZuiJ5vQSEhAsWfJb1nZlqf6RP/K9Ie5o1pJyo5epw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB7183.namprd11.prod.outlook.com (2603:10b6:8:111::10)
+ by CY5PR11MB6391.namprd11.prod.outlook.com (2603:10b6:930:38::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.15; Mon, 20 Apr
+ 2026 12:01:59 +0000
+Received: from DM4PR11MB7183.namprd11.prod.outlook.com
+ ([fe80::d9c7:d2fb:680d:1ee1]) by DM4PR11MB7183.namprd11.prod.outlook.com
+ ([fe80::d9c7:d2fb:680d:1ee1%6]) with mapi id 15.20.9846.007; Mon, 20 Apr 2026
+ 12:01:59 +0000
+Message-ID: <acdc932b-db27-410b-8e80-4dd090f35270@intel.com>
+Date: Mon, 20 Apr 2026 17:31:51 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 01/19] drm/i915/display: Remove TGL DC3CO support
+To: "Shankar, Uma" <uma.shankar@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>
+CC: "Manna, Animesh" <animesh.manna@intel.com>, "Kurmi, Suresh Kumar"
+ <suresh.kumar.kurmi@intel.com>
+References: <20260326171557.2065632-1-dibin.moolakadan.subrahmanian@intel.com>
+ <20260326171557.2065632-2-dibin.moolakadan.subrahmanian@intel.com>
+ <DM4PR11MB63605DB556EE3AD45279CE7DF4242@DM4PR11MB6360.namprd11.prod.outlook.com>
+Content-Language: en-US
+From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+In-Reply-To: <DM4PR11MB63605DB556EE3AD45279CE7DF4242@DM4PR11MB6360.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA5PR01CA0123.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1a7::13) To DM4PR11MB7183.namprd11.prod.outlook.com
+ (2603:10b6:8:111::10)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f74ecd0a-3ff3-45b4-935e-44b89cd0c92d@ideasonboard.com>
-X-Proofpoint-ORIG-GUID: B408ryAhiG43V5ITdDE2MsIYAI7WXNVc
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDIwMDExNSBTYWx0ZWRfXxyISl6zWhMzw
- Kf810sQ/95YQflpVBB5rii/u10vwbuACTcY9F+jO+Bt/YHUCavjZ8ZgSGv6rP4JzpDMVaBq1ODY
- J4PX3w+Q5gNBkxnmzhB8k53PlHHEX6frraCmRqbhxSnCxv4J6ZTyFNhU4KRS33OH51mkSUfxnlT
- Spii3X0W/vKYqRD2sosv3QzsdVG9j2ZeMlXvwUpyQHkxolVPyIyjqdQGwftHOh3d+2YYDGC7Bvc
- hHNkNBdyyaYqjBE99Isyl/0gTBlnxwoy9zjmaGxdav2zabVmbyTy4oKL6TiQhZQ7GpS42Btc3Mm
- 8UtSUWS9JUiLETLKwoVdT9fHl1Zz1McjqHAd76SS8m4Abv8EBjaGuuSxogrZ8UnPytuMb1kmWWM
- QlzvP0Kz2asaFpsx1KK2gMoIxvypg4ayd5qDkgl5SHsOMOfQzVKlcHTfR5hG/717Jl5b5OMZ9pL
- dqI6fuE6eFIGIZzmsLw==
-X-Authority-Analysis: v=2.4 cv=XNMAjwhE c=1 sm=1 tr=0 ts=69e611f0 cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22 a=EUspDBNiAAAA:8
- a=hvn8mZBs_W1j6JFEFtEA:9 a=CjuIK1q_8ugA:10 a=dawVfQjAaf238kedN5IG:22
-X-Proofpoint-GUID: B408ryAhiG43V5ITdDE2MsIYAI7WXNVc
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-04-20_02,2026-04-17_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 adultscore=0 impostorscore=0 suspectscore=0 clxscore=1015
- phishscore=0 malwarescore=0 lowpriorityscore=0 priorityscore=1501 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2604070000 definitions=main-2604200115
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB7183:EE_|CY5PR11MB6391:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2a190d4a-0441-4a61-bb72-08de9ed4a00d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|1800799024|376014|56012099003|22082099003|18002099003; 
+X-Microsoft-Antispam-Message-Info: SeYu0gSMm6GVRMaHFZCrCcG34BZXAOXiAqLmxUHS+vt/XUKnUhn/OGOcH3llDjVjqJWq9mO8ez6KtPPjAobTyqkF6Rt/Hbg5Qvbh8PLlDSkZMkJ8vVf+DT3xVNu51X51Way1vqC+a04ssaIBpIjJuaUbdoANJv82izxdRlv1Xc+zfEhAw4Jf6jH6AdllXzr3ympqfaXfHnkLhXxVPF5kVR3+SFx7AanGvaWzlhWn3Z5VL8miy6E7+jTUw274MyF5qJShuORIJhsEAMhShiGeZnYQvG55n5ANGC91ulQX27MRkZm2XZLm+NG0Fkt9UgLZCQhj3PsT08Z9zbjSmDtqz4JWbelxYabKCCEeV1k5Ji4NH2tBkMVPH3zXHFi7OQNJKXxRxi2z8EqbO2kxO2/zpsEsiE87BUMLAIjG0XVPm8oDMki+1BGd0KXY+Qx6CW1kiNIHlg/G/nVVIqkmLS8GbxfVTK7Dja9K+RJP25f3swSYdzxf5BK4vCHJoZk/rBi9cQqpUDTkVAb9JeEAwblBpJZVmIKPejH2o8UYMSscciV5+/uouU7AsrJmYcUW40JO8ZORgm3qweWuWCyH7u9wOBeW+VCCgvsVV5RGdnNNhLisLYenNjmm9MMyDy5bBWhE5KTltlWnlRxFQgRlvfSF4KM1n1WbkjJUZ15KfU/aoqQpkCdNsrrHjRbP3ewjsdJRm0FwHJmwDZ+JdSYL6Ab9qRTBPHgPnvFtS/TJHbN7GuA=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB7183.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(56012099003)(22082099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TW4vRGNWaGxsV1gzU0g3elJ6R0lmMmo0Q3hMQW5rNmZjVVI0SHFUeVZNNzhq?=
+ =?utf-8?B?SzFTVkQ2ekZMVXpiRy9jdXZyd2tYVGtuQ0VQek5LMGJFL1pyVnpWQXRQMG5Y?=
+ =?utf-8?B?NHZhQWxNT0w3c0dlU1RVaWdWdlFPWVdmVDc4ME5YMlNVQVNWOVo0Ry96MWtq?=
+ =?utf-8?B?SDY3bXRrSnFBQ2ZOdmZNRWJ3SVFlcnZFbWxVcDFaOEwybGpwU3BKSHRWUFdW?=
+ =?utf-8?B?TS93VUJ0Ui9lQ25aZit4TW5CUERabHo2cVJUQUl1YWdDR2YxSVlwNVBqTjM5?=
+ =?utf-8?B?Z3hJZW1YOE05M0svazZ4RFdWOVhNZncxN3ZjWVVPNzgzL2xKbk54bG9pYXBh?=
+ =?utf-8?B?UG9rT1ZBVytIV1pmc1VHUFM3Smpxem0wSHFYVDFLSlJybjhycXRzQzFFdFc0?=
+ =?utf-8?B?TTN6azRUQUR6RnFkbmQ3dVpiY1REdVpscHZ3dEdGL0l0SERuT0hUOU1oRVM5?=
+ =?utf-8?B?QkRKaW1tVWo0V3VqWEtIQzFFZUJnbDd6OFJKSkNPODllVy95RXpySjZ1dm53?=
+ =?utf-8?B?NTlaVXFkdEx2bFF0eDF3RFJNRk1pbG5SZE5sbFRrQjN4WXRpQzBvL0FuRGRV?=
+ =?utf-8?B?QzdRR2V4cmRBcU04bU1UZ3VKMW44UHR5UFh5eWszbFJGOGJxOEhoL0phenp6?=
+ =?utf-8?B?THhvZ0N5ZksrZ3BrTEdsTnRtVDNtSmlsSUgxNldKZ1ZuOHZJdDUyRGZ1OHdP?=
+ =?utf-8?B?QjlXd1owTFRqd2JpTVlPUnhLMmNGaGtpV0ZmNXhrMzRhdThDcVdiZVJPamlR?=
+ =?utf-8?B?MEl3M2lmK3hoWURDOUpOcjdKQ0pZcENoMDRLZC9oYWwxTUdFNVM1MEt1WnIy?=
+ =?utf-8?B?NmlMeW9wd1NLZG45dGFpbytpQ1R1dUF0ZElWdWc3QklFQWN1UjR0SVNOOUpZ?=
+ =?utf-8?B?MkZPSVgvaTZaQUVyVWgwUEdreVRWYUhXMFR6WTRzTm9ray8xWlpudFZtZDlx?=
+ =?utf-8?B?MDhwQ2dLQTVNNTY0d1ZqRzNkYi9CYWhzenNRdFN2WXZycXJrVUJXRmVVTXB3?=
+ =?utf-8?B?aVg1OHBKeVhiWkYva3hYRDVzRUQ3MUJnWWZLQjgvUDBuS29GTkViaUswNzRK?=
+ =?utf-8?B?TXFINWtkMEgwK1Z2VldwZDJqdkU5dHBQbEdaZ3NNWTlZcEYwNVJiQk5NOFVK?=
+ =?utf-8?B?NEx3Qnplcm1vWFRYSzhybTcyazFIQ0ZHcWxLY2xrTE1sbXZRdmdNZk1USkFZ?=
+ =?utf-8?B?SzVyVVRiKzQrWkdsblpWZ1BDSWM2VWFaeENuNzRHL05jQ05xb1VlTGN1bVh4?=
+ =?utf-8?B?OEova3JHbmlBQk8vVmpSR3VZcVVycnRoN0hTRGp2aUZPOGh5QmViam4yRUZW?=
+ =?utf-8?B?UkhEbmlRMHIwRWk2dHl4emF5c1IrMzIxaGowd1FSUWxqMHBYaXJsODk0dHFV?=
+ =?utf-8?B?dTR2TW5MdWpKR1cyWTB1TkdGc0FGNXp5ZVlXK1VDeGdMcjlpWE9ZdVM5KzlM?=
+ =?utf-8?B?YXJGQUJ4K1dRTUFna20xelVuMm1tUFkySDBCM01lUHVOYUswS3dnV0xSeVlv?=
+ =?utf-8?B?UEdIcXp1WVUrNnd0TDhDTXAyUmk3TUtzSG5HQUlSODV2aFFLTWs2MTArRnc2?=
+ =?utf-8?B?WGdmd2VMb0VLb0dBbkFxcVlUaUVaVGU0NGROcGhjRjMveXgrZlRRWU43YnhN?=
+ =?utf-8?B?d3N5WWFMdjZ0QWxyUXMwZ1l3TXJLQ2ZLUFpweWRvdGtkUnl1Rjd4VjZSUHh6?=
+ =?utf-8?B?aUNHaHJmWkFmeUI3MXhEa3MrODhvTlA4U2tMQmZWaVBZZ3BxSkpZUVVTc0k5?=
+ =?utf-8?B?b0JjNUVOeUJhWG05RnlIY0RScllxLzJBNHJJQXpuQjR2cFM5bmF6MUo0cURh?=
+ =?utf-8?B?MDFKRXNHYm9FWFl5TkcxNy9BenV1dTlYWlpwcTJ0RGxFVXluZkZIRWRjMW1h?=
+ =?utf-8?B?Q2pxbTVRbUJlZklRVEVTS0t3K21COWQvOWpaNVMyUjFVT0JjcEFLV1NGWkUv?=
+ =?utf-8?B?TGs5NXo2MEVhL0RBQTNEUzNQWGFHU1RSUUt2UTY4U0hrSDh2REpJb1VHenhx?=
+ =?utf-8?B?YWZuREdCbnpoaHBrN1l5K2JjQnI1blVKeCt0QnRCSHVXUldaNkVEWFp0a01p?=
+ =?utf-8?B?MTZqS3RJS1NLdzRLb2pOS2NwcEkyMmliemE0WFQzNUgwRUpaZ2RhZHFvMXUw?=
+ =?utf-8?B?aGpDSjJTODN4WStFbm52TDJiemZIQmxOeVVoZDBPYmlYaE5uZXdCZGVNc1Jl?=
+ =?utf-8?B?VEEydUFmUmFDU0tJdCt6eXRmOTV4V3pKYURWMVJMamsyeUZZVEF0aXZjT3FV?=
+ =?utf-8?B?MU1ZU2U5azIwK1Y1R2MrVTlpTm5mdjFtbkd4M0FMNGxIUUJPcHBYQmZVTXpm?=
+ =?utf-8?B?aStYRDc0NlBqSlV3MXVuaVljZVVZQVFyRjkzV0Q2LzNuK2E4MytPZjVYUkJy?=
+ =?utf-8?Q?xsIwJ+QV9FH7eUXNKa9IuMNveq/TxNGJhthrpfrZbXUl+?=
+X-MS-Exchange-AntiSpam-MessageData-1: X7yCTYLWxpRCZw==
+X-Exchange-RoutingPolicyChecked: A90G51SyWvy8Qh1acsRD3cKXNcuCp65HzffHXMnW/fLZeqWZPC2abK1tXuGqrznx3/q/mNs+dZwU5JrhV3Q2xwEWzM8aEFaSLiUwUNRutzZ0aADGfVq4NQjCIDJL+YnyGGsQbPYE+i2g1GR75Us9UUBYuY7VQDw3GauiVXdOq6Imi+8mgOMq4lPqr6yaWBleiHXmFQEfKfKJkn/W911GuSZavqUoQd74uCCSax7SgcQXtnkoVtYfmIog2GK5lvDrAJ/GG6BP6SvLUIsVw30uBcMF2I8h6uZfc+AQSH80I/sqLXvRCRWhvZtswyrCrhn4WofJTgnTPSlVmuNx/L49Cw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2a190d4a-0441-4a61-bb72-08de9ed4a00d
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7183.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Apr 2026 12:01:59.3505 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: SniaJYAXflNz0wYK1Kca3irFYBGZWOCabLx8WFibJVPAsUmd3tJCkYWgH4nnSOwMkRzgBljZ3WPKateDciwWlN2sHdEhxU8pB/E1tPjUjafAFJXvxpoO0GWovKvb6mlX
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6391
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -172,171 +174,348 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Apr 20, 2026 at 02:01:57PM +0300, Tomi Valkeinen wrote:
-> Hi,
-> 
-> On 20/04/2026 12:50, Dmitry Baryshkov wrote:
-> > On Mon, Apr 20, 2026 at 07:50:46AM +0300, Tomi Valkeinen wrote:
-> > > Hi,
-> > > 
-> > > On 18/04/2026 01:32, Dmitry Baryshkov wrote:
-> > > > On Thu, Apr 16, 2026 at 11:10:03AM +0300, Tomi Valkeinen wrote:
-> > > > > Hi,
-> > > > > 
-> > > > > On 16/04/2026 02:22, Dmitry Baryshkov wrote:
-> > > > > > The DisplayPort standard defines a special kind of events called IRQ.
-> > > > > > These events are used to notify DP Source about the events on the Sink
-> > > > > > side. It is extremely important for DP MST handling, where the MST
-> > > > > > events are reported through this IRQ.
-> > > > > > 
-> > > > > > In case of the USB-C DP AltMode there is no actual HPD pulse, but the
-> > > > > > events are ported through the bits in the AltMode VDOs.
-> > > > > > 
-> > > > > > Extend the drm_connector_oob_hotplug_event() interface and report IRQ
-> > > > > > events to the DisplayPort Sink drivers.
-> > > > > > 
-> > > > > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> > > > > > ---
-> > > > > >     drivers/gpu/drm/drm_connector.c          |  4 +++-
-> > > > > >     drivers/usb/typec/altmodes/displayport.c | 12 ++++++++----
-> > > > > >     include/drm/drm_connector.h              |  3 ++-
-> > > > > >     3 files changed, 13 insertions(+), 6 deletions(-)
-> > > > > > 
-> > > > > > diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
-> > > > > > index 47dc53c4a738..5fdacbd84bd7 100644
-> > > > > > --- a/drivers/gpu/drm/drm_connector.c
-> > > > > > +++ b/drivers/gpu/drm/drm_connector.c
-> > > > > > @@ -3510,6 +3510,7 @@ struct drm_connector *drm_connector_find_by_fwnode(struct fwnode_handle *fwnode)
-> > > > > >      * drm_connector_oob_hotplug_event - Report out-of-band hotplug event to connector
-> > > > > >      * @connector_fwnode: fwnode_handle to report the event on
-> > > > > >      * @status: hot plug detect logical state
-> > > > > > + * @irq_hpd: HPD pulse detected
-> > > > > >      *
-> > > > > >      * On some hardware a hotplug event notification may come from outside the display
-> > > > > >      * driver / device. An example of this is some USB Type-C setups where the hardware
-> > > > > > @@ -3520,7 +3521,8 @@ struct drm_connector *drm_connector_find_by_fwnode(struct fwnode_handle *fwnode)
-> > > > > >      * a drm_connector reference through calling drm_connector_find_by_fwnode().
-> > > > > >      */
-> > > > > >     void drm_connector_oob_hotplug_event(struct fwnode_handle *connector_fwnode,
-> > > > > > -				     enum drm_connector_status status)
-> > > > > > +				     enum drm_connector_status status,
-> > > > > > +				     bool irq_hpd)
-> > > > > I find the "IRQ HPD" naming always confusing, even if I'm somewhat familiar
-> > > > > with DP, but if someone has mainly worked on HDMI, I'm sure it's even worse.
-> > > > > 
-> > > > > Can we define this a bit more precisely? Is 'irq_hpd' only for displayport?
-> > > > > If so, perhaps 'dp_irq_hpd' or 'displayport_irq_hpd'. I might even call it
-> > > > > 'dp_hpd_pulse', but maybe that's not good as the spec talks about HPD pulse
-> > > > > for both short and long ones (although in the kernel doc you just write "HPD
-> > > > > pulse")... The kernel doc could be expanded a bit to make it clear what this
-> > > > > flag indicates.
-> > > > 
-> > > > I attempted to stay away from defining a DP-specific flag, keeping it
-> > > > generic enough. HDMI is pretty close (IMO) to requiring separate flag in
-> > > 
-> > > If it's not specifically the DP IRQ HPD, then we need to define what it
-> > > means. I tried to think what it would mean with HDMI, but I didn't come up
-> > > with anything.
-> > 
-> > I might be mistaken, but I had someting like HEAC HPD / EDID status
-> > changes in mind (or HDCP-triggered HPD status changes). But here I
-> > admit, I hadn't checked if it is actually applicable or not.
-> 
-> Possibly, I'm not familiar with those.
-> 
-> > Anyway, for e.g. DVI or VGA that means nothing. But, my point really is
-> > to abstain from defining someting as DP-only in the top-level API.
-> 
-> I'm fine with that, but then it really has to be defined =).
-> 
-> > > > Linux. Likewise I'd rather not use "pulse". The DP AltMode defines a bit
-> > > > in the VDO rather than a pulse.
-> > > > 
-> > > > Anyway, if irq_hpd doesn't sound precise enough, what about "bool
-> > > > extra_irq"? This would convey that this is the extra hpd-related IRQ,
-> > > > but it would also be obvious that it's not related to the HPD pin
-> > > > itself.
-> > > We'd still need to define what exactly it means. I think it might be better
-> > > to just define it as the DP IRQ HPD, as then the meaning is clear.
-> > > 
-> > > Also, would an enum flags parameter be better than a bool parameter?
-> > 
-> > Maybe not enum, but u32 param. Then it can become:
-> > 
-> > @extra_status: additional type-specific information provided by the sink
-> > without changing the HPD state
-> > 
-> > void drm_connector_oob_hotplug_event(..., u32 extra_status);
-> > 
-> > /* DP short HPD pulse or corresponding AltMode flag */
-> > #define DRM_CONNECTOR_OOB_DP_IRQ_HPD BIT(0)
-> > /* DP long HPD pulse, debounced XXX: do we need this? */
-> > #define DRM_CONNECTOR_OOB_DP_REPLUG BIT(1)
-> 
-> Why is u32 better than enum? So that we could e.g. pass short values inside
-> the extra_status?
 
-No, my thought was to be able to define values specific to the
-particular connector types and to be able to combine those values.
+On 14-04-2026 02:10, Shankar, Uma wrote:
+>
+>> -----Original Message-----
+>> From: Dibin Moolakadan Subrahmanian
+>> <dibin.moolakadan.subrahmanian@intel.com>
+>> Sent: Thursday, March 26, 2026 10:46 PM
+>> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+>> Cc: Manna, Animesh <animesh.manna@intel.com>; Shankar, Uma
+>> <uma.shankar@intel.com>; Kurmi, Suresh Kumar
+>> <suresh.kumar.kurmi@intel.com>
+>> Subject: [PATCH 01/19] drm/i915/display: Remove TGL DC3CO support
+>>
+>> Remove all Tiger Lake DC3CO-related functions, as the feature is not enabled and
+>> not used. The existing structure members are intentionally left in place and will be
+>> cleaned up in subsequent patches.
+>>
+>> Signed-off-by: Dibin Moolakadan Subrahmanian
+>> <dibin.moolakadan.subrahmanian@intel.com>
+>> ---
+>>   .../i915/display/intel_display_power_well.c   |  25 ---
+>>   .../drm/i915/display/intel_display_types.h    |   1 -
+>>   drivers/gpu/drm/i915/display/intel_psr.c      | 163 ------------------
+>>   3 files changed, 189 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c
+>> b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+>> index f855f0f88694..6d5f07f7f590 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+>> @@ -867,23 +867,6 @@ void gen9_set_dc_state(struct intel_display *display,
+>> u32 state)
+>>   	power_domains->dc_state = val & mask;
+>>   }
+>>
+>> -static void tgl_enable_dc3co(struct intel_display *display) -{
+>> -	drm_dbg_kms(display->drm, "Enabling DC3CO\n");
+>> -	gen9_set_dc_state(display, DC_STATE_EN_DC3CO);
+>> -}
+>> -
+>> -static void tgl_disable_dc3co(struct intel_display *display) -{
+>> -	drm_dbg_kms(display->drm, "Disabling DC3CO\n");
+>> -	intel_de_rmw(display, DC_STATE_EN, DC_STATE_DC3CO_STATUS, 0);
+>> -	gen9_set_dc_state(display, DC_STATE_DISABLE);
+>> -	/*
+>> -	 * Delay of 200us DC3CO Exit time B.Spec 49196
+>> -	 */
+>> -	usleep_range(200, 210);
+>> -}
+>> -
+>>   static void assert_can_enable_dc5(struct intel_display *display)  {
+>>   	enum i915_power_well_id high_pg;
+>> @@ -1062,11 +1045,6 @@ void gen9_disable_dc_states(struct intel_display
+>> *display)
+>>   	struct intel_cdclk_config cdclk_config = {};
+>>   	u32 old_state = power_domains->dc_state;
+>>
+>> -	if (power_domains->target_dc_state == DC_STATE_EN_DC3CO) {
+>> -		tgl_disable_dc3co(display);
+>> -		return;
+>> -	}
+>> -
+>>   	if (HAS_DISPLAY(display)) {
+>>   		intel_dmc_wl_get_noreg(display);
+>>   		gen9_set_dc_state(display, DC_STATE_DISABLE); @@ -1115,9
+>> +1093,6 @@ static void gen9_dc_off_power_well_disable(struct intel_display
+>> *display,
+>>   		return;
+>>
+>>   	switch (power_domains->target_dc_state) {
+>> -	case DC_STATE_EN_DC3CO:
+>> -		tgl_enable_dc3co(display);
+>> -		break;
+>>   	case DC_STATE_EN_UPTO_DC6:
+>>   		skl_enable_dc6(display);
+>>   		break;
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
+>> b/drivers/gpu/drm/i915/display/intel_display_types.h
+>> index b4c3d8537a99..6830f911d94d 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+>> @@ -1784,7 +1784,6 @@ struct intel_psr {
+>>   	bool panel_replay_enabled;
+>>   	u32 dc3co_exitline;
+>>   	u32 dc3co_exit_delay;
+>> -	struct delayed_work dc3co_work;
+>>   	u8 entry_setup_frames;
+>>
+>>   	u8 io_wake_lines;
+>> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c
+>> b/drivers/gpu/drm/i915/display/intel_psr.c
+>> index 5041a5a138d1..29900576e117 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+>> @@ -85,22 +85,6 @@
+>>    * issues the self-refresh re-enable code is done from a work queue, which
+>>    * must be correctly synchronized/cancelled when shutting down the pipe."
+>>    *
+>> - * DC3CO (DC3 clock off)
+>> - *
+>> - * On top of PSR2, GEN12 adds a intermediate power savings state that turns
+>> - * clock off automatically during PSR2 idle state.
+>> - * The smaller overhead of DC3co entry/exit vs. the overhead of PSR2 deep
+>> sleep
+>> - * entry/exit allows the HW to enter a low-power state even when page flipping
+>> - * periodically (for instance a 30fps video playback scenario).
+>> - *
+>> - * Every time a flips occurs PSR2 will get out of deep sleep state(if it was),
+>> - * so DC3CO is enabled and tgl_dc3co_disable_work is schedule to run after 6
+>> - * frames, if no other flip occurs and the function above is executed, DC3CO is
+>> - * disabled and PSR2 is configured to enter deep sleep, resetting again in case
+>> - * of another flip.
+>> - * Front buffer modifications do not trigger DC3CO activation on purpose as it
+>> - * would bring a lot of complexity and most of the moderns systems will only
+>> - * use page flips.
+>>    */
+>>
+>>   /*
+>> @@ -1178,108 +1162,6 @@ static void psr2_program_idle_frames(struct intel_dp
+>> *intel_dp,
+>>   		     EDP_PSR2_IDLE_FRAMES(idle_frames));
+>>   }
+>>
+>> -static void tgl_psr2_enable_dc3co(struct intel_dp *intel_dp) -{
+>> -	struct intel_display *display = to_intel_display(intel_dp);
+>> -
+>> -	psr2_program_idle_frames(intel_dp, 0);
+>> -	intel_display_power_set_target_dc_state(display,
+>> DC_STATE_EN_DC3CO);
+>> -}
+>> -
+>> -static void tgl_psr2_disable_dc3co(struct intel_dp *intel_dp) -{
+>> -	struct intel_display *display = to_intel_display(intel_dp);
+>> -
+>> -	intel_display_power_set_target_dc_state(display,
+>> DC_STATE_EN_UPTO_DC6);
+>> -	psr2_program_idle_frames(intel_dp, psr_compute_idle_frames(intel_dp));
+>> -}
+>> -
+>> -static void tgl_dc3co_disable_work(struct work_struct *work) -{
+>> -	struct intel_dp *intel_dp =
+>> -		container_of(work, typeof(*intel_dp), psr.dc3co_work.work);
+>> -
+>> -	mutex_lock(&intel_dp->psr.lock);
+>> -	/* If delayed work is pending, it is not idle */
+>> -	if (delayed_work_pending(&intel_dp->psr.dc3co_work))
+>> -		goto unlock;
+>> -
+>> -	tgl_psr2_disable_dc3co(intel_dp);
+>> -unlock:
+>> -	mutex_unlock(&intel_dp->psr.lock);
+>> -}
+>> -
+>> -static void tgl_disallow_dc3co_on_psr2_exit(struct intel_dp *intel_dp) -{
+>> -	if (!intel_dp->psr.dc3co_exitline)
+>> -		return;
+>> -
+>> -	cancel_delayed_work(&intel_dp->psr.dc3co_work);
+>> -	/* Before PSR2 exit disallow dc3co*/
+>> -	tgl_psr2_disable_dc3co(intel_dp);
+>> -}
+>> -
+>> -static bool
+>> -dc3co_is_pipe_port_compatible(struct intel_dp *intel_dp,
+>> -			      struct intel_crtc_state *crtc_state)
+>> -{
+>> -	struct intel_display *display = to_intel_display(intel_dp);
+>> -	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+>> -	enum pipe pipe = to_intel_crtc(crtc_state->uapi.crtc)->pipe;
+>> -	enum port port = dig_port->base.port;
+>> -
+>> -	if (display->platform.alderlake_p || DISPLAY_VER(display) >= 14)
+>> -		return pipe <= PIPE_B && port <= PORT_B;
+>> -	else
+>> -		return pipe == PIPE_A && port == PORT_A;
+>> -}
+>> -
+>> -static void
+>> -tgl_dc3co_exitline_compute_config(struct intel_dp *intel_dp,
+>> -				  struct intel_crtc_state *crtc_state)
+>> -{
+>> -	struct intel_display *display = to_intel_display(intel_dp);
+>> -	const u32 crtc_vdisplay = crtc_state->uapi.adjusted_mode.crtc_vdisplay;
+>> -	struct i915_power_domains *power_domains = &display->power.domains;
+>> -	u32 exit_scanlines;
+>> -
+>> -	/*
+>> -	 * FIXME: Due to the changed sequence of activating/deactivating
+>> DC3CO,
+>> -	 * disable DC3CO until the changed dc3co activating/deactivating
+>> sequence
+>> -	 * is applied. B.Specs:49196
+>> -	 */
+>> -	return;
+>> -
+>> -	/*
+>> -	 * DMC's DC3CO exit mechanism has an issue with Selective Fecth
+>> -	 * TODO: when the issue is addressed, this restriction should be removed.
+>> -	 */
+>> -	if (crtc_state->enable_psr2_sel_fetch)
+>> -		return;
+>> -
+>> -	if (!(power_domains->allowed_dc_mask & DC_STATE_EN_DC3CO))
+>> -		return;
+>> -
+>> -	if (!dc3co_is_pipe_port_compatible(intel_dp, crtc_state))
+>> -		return;
+>> -
+>> -	/* Wa_16011303918:adl-p */
+>> -	if (intel_display_wa(display, INTEL_DISPLAY_WA_16011303918))
+>> -		return;
+>> -
+>> -	/*
+>> -	 * DC3CO Exit time 200us B.Spec 49196
+>> -	 * PSR2 transcoder Early Exit scanlines = ROUNDUP(200 / line time) + 1
+>> -	 */
+>> -	exit_scanlines =
+>> -		intel_usecs_to_scanlines(&crtc_state->uapi.adjusted_mode, 200)
+>> + 1;
+>> -
+>> -	if (drm_WARN_ON(display->drm, exit_scanlines > crtc_vdisplay))
+>> -		return;
+>> -
+>> -	crtc_state->dc3co_exitline = crtc_vdisplay - exit_scanlines;
+>> -}
+>> -
+>>   static bool intel_psr2_sel_fetch_config_valid(struct intel_dp *intel_dp,
+>>   					      struct intel_crtc_state *crtc_state)  {
+>> @@ -1622,8 +1504,6 @@ static bool intel_psr2_config_valid(struct intel_dp
+>> *intel_dp,
+>>   		return false;
+>>   	}
+>>
+>> -	tgl_dc3co_exitline_compute_config(intel_dp, crtc_state);
+>> -
+>>   	return true;
+>>   }
+>>
+>> @@ -2071,16 +1951,6 @@ static void intel_psr_enable_source(struct intel_dp
+>> *intel_dp,
+>>
+>>   	psr_irq_control(intel_dp);
+>>
+>> -	/*
+>> -	 * TODO: if future platforms supports DC3CO in more than one
+>> -	 * transcoder, EXITLINE will need to be unset when disabling PSR
+>> -	 */
+>> -	if (intel_dp->psr.dc3co_exitline)
+>> -		intel_de_rmw(display,
+>> -			     TRANS_EXITLINE(display, cpu_transcoder),
+>> -			     EXITLINE_MASK,
+>> -			     intel_dp->psr.dc3co_exitline << EXITLINE_SHIFT |
+>> EXITLINE_ENABLE);
+>> -
+>>   	if (HAS_PSR_HW_TRACKING(display) &&
+>> HAS_PSR2_SEL_FETCH(display))
+>>   		intel_de_rmw(display, CHICKEN_PAR1_1,
+>> IGNORE_PSR2_HW_TRACKING,
+>>   			     intel_dp->psr.psr2_sel_fetch_enabled ?
+>> @@ -2258,7 +2128,6 @@ static void intel_psr_exit(struct intel_dp *intel_dp)
+>>   		intel_de_rmw(display, TRANS_DP2_CTL(intel_dp-
+>>> psr.transcoder),
+>>   			     TRANS_DP2_PANEL_REPLAY_ENABLE, 0);
+>>   	} else if (intel_dp->psr.sel_update_enabled) {
+>> -		tgl_disallow_dc3co_on_psr2_exit(intel_dp);
+>>
+> Nit: This leaves a blank line
+>
+> With above fixed, this is
+> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 
-After sending the email I started thinking about the bridged and
-corresponding notifications. There having overlapping values will not
-work becasue bridges in the chanin don't easily know the final connector
-type.
+I will remove the blank line.
 
-I think you are correct here, it should be the enum. With the first
-iteration defined as:
-
-/**
- * enum drm_connector_status_extra - additional events sent by the sink
- * together or in replacement of the HPD status changes
- /
-enum drm_connector_status_extra {
-  /**
-   * @DRM_CONNECTOR_DP_IRQ_HPD: DisplayPort Sink has sent the
-   * IRQ_HPD (either by the HPD short pulse or via the AltMode event).
-   */
-  DRM_CONNECTOR_DP_IRQ_HPD = BIT(0),
-};
-
-/**
-  * @extra_status: additional information provided by the sink without
-  * changing the HPD state (or in addition to such a change). It is an
-  * OR of the values defined in the drm_connector_status_extra enum.
-  */
-void drm_connector_oob_hotplug_event(..., u32 extra_status);
-
-> 
-> > For HDMI we might want to define:
-> > 
-> > /* HDMI 1.4b 8.5, HPD pulse */
-> > #define DRM_CONNECTOR_OOB_HDMI_REPLUG BIT(0)
-> > 
-> > Or might not, 100ms is long enough for all debouncers.
-> 
-> As I read the spec, there's no usable HPD pulse in HDMI as such. It just
-> means that if HPD is low less than 100ms, it should be ignored, and if it's
-> low more than 100ms, it should be handled. In other words, from spec
-> perspective there's no difference between HPD being low 105ms or five days,
-> there's no upper limit for the "pulse".
-
-Yes... Let's see. I don't think we should define any extra API or values
-for HDMI until the need arises.
-
-> 
-> Still, we probably want to handle the case where the HPD is low only for a
-> short period, so that we don't do a full disable/enable-cycle. We can
-> interpret it as the same monitor still being connected, we just need to
-> check the EDID again.
-> 
-> But isn't that just a drm_connector_hotplug_event with drm_connector_status
-> staying connected? The callee can see that the connector was connected
-> before, it's connected now, but we got an event, so let's read the EDID
-> again.
-
-As I wrote, I'd be more concerned with the CDC / HEAC / eARC. For the
-normal EDID changes I think we are doing a good enough job.
-
--- 
-With best wishes
-Dmitry
+>
+>>   		val = intel_de_rmw(display,
+>>   				   EDP_PSR2_CTL(display, cpu_transcoder), @@
+>> -2401,7 +2270,6 @@ void intel_psr_disable(struct intel_dp *intel_dp,
+>>
+>>   	mutex_unlock(&intel_dp->psr.lock);
+>>   	cancel_work_sync(&intel_dp->psr.work);
+>> -	cancel_delayed_work_sync(&intel_dp->psr.dc3co_work);
+>>   }
+>>
+>>   /**
+>> @@ -2432,7 +2300,6 @@ void intel_psr_pause(struct intel_dp *intel_dp)
+>>   	mutex_unlock(&psr->lock);
+>>
+>>   	cancel_work_sync(&psr->work);
+>> -	cancel_delayed_work_sync(&psr->dc3co_work);
+>>   }
+>>
+>>   /**
+>> @@ -3568,34 +3435,6 @@ void intel_psr_invalidate(struct intel_display *display,
+>>   		mutex_unlock(&intel_dp->psr.lock);
+>>   	}
+>>   }
+>> -/*
+>> - * When we will be completely rely on PSR2 S/W tracking in future,
+>> - * intel_psr_flush() will invalidate and flush the PSR for ORIGIN_FLIP
+>> - * event also therefore tgl_dc3co_flush_locked() require to be changed
+>> - * accordingly in future.
+>> - */
+>> -static void
+>> -tgl_dc3co_flush_locked(struct intel_dp *intel_dp, unsigned int frontbuffer_bits,
+>> -		       enum fb_op_origin origin)
+>> -{
+>> -	struct intel_display *display = to_intel_display(intel_dp);
+>> -
+>> -	if (!intel_dp->psr.dc3co_exitline || !intel_dp->psr.sel_update_enabled ||
+>> -	    !intel_dp->psr.active)
+>> -		return;
+>> -
+>> -	/*
+>> -	 * At every frontbuffer flush flip event modified delay of delayed work,
+>> -	 * when delayed work schedules that means display has been idle.
+>> -	 */
+>> -	if (!(frontbuffer_bits &
+>> -	    INTEL_FRONTBUFFER_ALL_MASK(intel_dp->psr.pipe)))
+>> -		return;
+>> -
+>> -	tgl_psr2_enable_dc3co(intel_dp);
+>> -	mod_delayed_work(display->wq.unordered, &intel_dp->psr.dc3co_work,
+>> -			 intel_dp->psr.dc3co_exit_delay);
+>> -}
+>>
+>>   static void _psr_flush_handle(struct intel_dp *intel_dp)  { @@ -3682,7 +3521,6
+>> @@ void intel_psr_flush(struct intel_display *display,
+>>   		if (origin == ORIGIN_FLIP ||
+>>   		    (origin == ORIGIN_CURSOR_UPDATE &&
+>>   		     !intel_dp->psr.psr2_sel_fetch_enabled)) {
+>> -			tgl_dc3co_flush_locked(intel_dp, frontbuffer_bits, origin);
+>>   			goto unlock;
+>>   		}
+>>
+>> @@ -3741,7 +3579,6 @@ void intel_psr_init(struct intel_dp *intel_dp)
+>>   		intel_dp->psr.link_standby = connector->panel.vbt.psr.full_link;
+>>
+>>   	INIT_WORK(&intel_dp->psr.work, intel_psr_work);
+>> -	INIT_DELAYED_WORK(&intel_dp->psr.dc3co_work,
+>> tgl_dc3co_disable_work);
+>>   	mutex_init(&intel_dp->psr.lock);
+>>   }
+>>
+>> --
+>> 2.43.0
