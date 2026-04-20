@@ -4,109 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15125F588E7
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Apr 2026 15:45:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74767F588EC
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Apr 2026 15:52:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A672210E264;
-	Mon, 20 Apr 2026 15:45:12 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="BnjKsRD/";
-	dkim-atps=neutral
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com
- [148.163.158.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DCF510E264
- for <intel-xe@lists.freedesktop.org>; Mon, 20 Apr 2026 15:45:11 +0000 (UTC)
-Received: from pps.filterd (m0360072.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 63K84NOK1315637; Mon, 20 Apr 2026 15:45:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
- :content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:sender:subject:to; s=pp1;
- bh=j/Yy/BcjOlWutxPpKZ3uZ3CWZ/zwdwMrV75ynpcqHwY=; b=BnjKsRD/HhHT
- 4wrOKZa9QknWLLBvQZzoMCccxon4vohS3SJyIpAuZ3SIH1yje/ze0Mg8/qaAnRu/
- ypX6b0XrsY6fizAmfxg2jrJBpydDDHvyeKanCahvky1BidVdwohcgRI7OcNyF7V4
- aDSDNS9b63vB4lfz4TQ9OC0lGYFlPbNqMarBhGKtNwYxbk9F7qgFBH81rdzdqhnc
- lxuoG3g1ZeO8JCVnyQJle+oFrxquHZ4YlYt66TpRhgOJ87NP3enKWd14dMSwzUBg
- 4O0pbufx4HUjqW9UWgJXrBV62aA2iUEktlOQ26sIIY/EjN4ew0+7Zv7dPj+m4EZj
- lF2uZcLy8A==
-Received: from ppma23.wdc07v.mail.ibm.com
- (5d.69.3da9.ip4.static.sl-reverse.com [169.61.105.93])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4dm2k6fupd-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Mon, 20 Apr 2026 15:45:06 +0000 (GMT)
-Received: from pps.filterd (ppma23.wdc07v.mail.ibm.com [127.0.0.1])
- by ppma23.wdc07v.mail.ibm.com (8.18.1.7/8.18.1.7) with ESMTP id 63KFZRNo002996;
- Mon, 20 Apr 2026 15:45:05 GMT
-Received: from smtprelay07.fra02v.mail.ibm.com ([9.218.2.229])
- by ppma23.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4dmnsgw8xe-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Mon, 20 Apr 2026 15:45:05 +0000 (GMT)
-Received: from smtpav06.fra02v.mail.ibm.com (smtpav06.fra02v.mail.ibm.com
- [10.20.54.105])
- by smtprelay07.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 63KFj0Z151511778
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Mon, 20 Apr 2026 15:45:00 GMT
-Received: from smtpav06.fra02v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 425052004B;
- Mon, 20 Apr 2026 15:45:00 +0000 (GMT)
-Received: from smtpav06.fra02v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 2E1F920049;
- Mon, 20 Apr 2026 15:45:00 +0000 (GMT)
-Received: from p1gen4-pw042f0m (unknown [9.52.223.163])
- by smtpav06.fra02v.mail.ibm.com (Postfix) with ESMTPS;
- Mon, 20 Apr 2026 15:45:00 +0000 (GMT)
-Received: from bblock by p1gen4-pw042f0m with local (Exim 4.99.1)
- (envelope-from <bblock@linux.ibm.com>) id 1wEqnz-00000002hi8-3kSI;
- Mon, 20 Apr 2026 17:44:59 +0200
-Date: Mon, 20 Apr 2026 17:44:59 +0200
-From: Benjamin Block <bblock@linux.ibm.com>
-To: "Ionut Nechita (Wind River)" <ionut.nechita@windriver.com>
-Cc: linux-pci@vger.kernel.org, bhelgaas@google.com, helgaas@kernel.org,
- sebott@linux.ibm.com, schnelle@linux.ibm.com, linux@roeck-us.net,
- lukas@wunner.de, stable@vger.kernel.org, linux-kernel@vger.kernel.org,
- intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
- michal.wajdeczko@intel.com, piotr.piorkowski@intel.com,
- dtatulea@nvidia.com, mani@kernel.org, kbusch@kernel.org,
- lkml@mageta.org, alifm@linux.ibm.com, julianr@linux.ibm.com,
- ionut_n2001@yahoo.com, sunlightlinux@gmail.com
-Subject: Re: [PATCH v11 2/2] PCI: Fix AB-BA deadlock between device_lock and
- pci_rescan_remove_lock in remove_store
-Message-ID: <20260420154459.GA2707369@p1gen4-pw042f0m>
-References: <20260326083534.23602-1-ionut.nechita@windriver.com>
- <20260326083534.23602-3-ionut.nechita@windriver.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3533710E6CE;
+	Mon, 20 Apr 2026 15:52:01 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63C6B10E6CE;
+ Mon, 20 Apr 2026 15:52:00 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2117954764534981093=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260326083534.23602-3-ionut.nechita@windriver.com>
-X-TM-AS-GCONF: 00
-X-Proofpoint-Reinject: loops=2 maxloops=12
-X-Authority-Analysis: v=2.4 cv=L78theT8 c=1 sm=1 tr=0 ts=69e64a02 cx=c_pps
- a=3Bg1Hr4SwmMryq2xdFQyZA==:117 a=3Bg1Hr4SwmMryq2xdFQyZA==:17
- a=8nJEP1OIZ-IA:10 a=A5OVakUREuEA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=RnoormkPH1_aCDwRdu11:22 a=RzCfie-kr_QcCd8fBx8p:22 a=VwQbUJbxAAAA:8
- a=_jlGtV7tAAAA:8 a=p2eoyRXnAAAA:8 a=VnNF1IyMAAAA:8 a=t7CeM3EgAAAA:8
- a=38I2V2JNsOjyXGpjdSMA:9 a=3ZKOabzyN94A:10 a=wPNLvfGTeEIA:10
- a=nlm17XC03S6CtCLSeiRr:22 a=KSHYvF9M28j0gckGFaEs:22 a=FdTzh2GWekK77mhwV6Dw:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDIwMDE1MCBTYWx0ZWRfX9+HYG0zg13HD
- X8IaCoDz5SaK7kzmmd+5ikBq0D0pYM+LSYieRugIpTLumhJ0pyId6YwTpFp304BqzlCq0gVbwwt
- E/sUkUVa+jZv30/gmBW7FaWeirvVJlV9G9AY7UrB6Z4tvc1zD9tsDI6ToY8znrCJMDofdTjcgLL
- vWeRdQ5xhJh1hoknt4DpJUk2X0I6c7kz2SBwZRUZ69RIQA79oAKgpRrUVpRojHfLfQxXJlVxFal
- Io7tjFMEHlnUz9lpoM/D10GwBek07/dZjGjbKyvMiZ2nCihdKObkxDsX4ttKOUFn1zrE1vLUEfC
- JRZ4bZh7M/n/or7fFzhjtJbiV4GagKR8X4o7cUU8np7UDulSeDTIdAEq/clBME0ahOYkB+Usi+p
- EH71j0jm/sbHYA18vSDmwv+HgsuFiXEjXGdiGXIUvbyjXVrzRbCIXoPbzSGMQ8EbvpxJ9EtFIGa
- E5C5Db7zrbm0TITiHCw==
-X-Proofpoint-GUID: 2aQkmJIgEF6oHEufyLTzgYL4HSGwrj6v
-X-Proofpoint-ORIG-GUID: mdSpiUkZJHREJzle4vcqThZCVQUI064d
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-04-20_03,2026-04-20_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 impostorscore=0 spamscore=0 bulkscore=0 suspectscore=0
- lowpriorityscore=0 adultscore=0 clxscore=1015 malwarescore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2604070000 definitions=main-2604200150
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/psr=3A_Disable_PSR?=
+ =?utf-8?q?2_on_Xiaomi_Book_Pro_14_2026_as_a_quirk_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 20 Apr 2026 15:52:00 -0000
+Message-ID: <177670032039.475664.11396802621782277931@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260417102350.28328-1-jouni.hogander@intel.com>
+In-Reply-To: <20260417102350.28328-1-jouni.hogander@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -118,67 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey Ionut,
+--===============2117954764534981093==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On Thu, Mar 26, 2026 at 10:35:34AM +0200, Ionut Nechita (Wind River) wrote:
-> remove_store() calls pci_stop_and_remove_bus_device_locked() which
-> takes pci_rescan_remove_lock first, then device_lock during driver
-> release.  Meanwhile, unbind_store() takes device_lock first (via
-> device_driver_detach), and the driver's .remove() callback may call
-> pci_disable_sriov() -> sriov_del_vfs() -> pci_lock_rescan_remove().
-> 
-> This creates an AB-BA deadlock:
-> 
->   CPU0 (remove_store)               CPU1 (unbind_store)
->   --------------------              --------------------
->   pci_lock_rescan_remove()
->                                     device_lock()
->                                     driver .remove()
->                                       sriov_del_vfs()
->                                         pci_lock_rescan_remove()  <-- WAITS
->   pci_stop_bus_device()
->     device_release_driver()
->       device_lock()                                               <-- WAITS
-> 
-> Fix this by first marking the device as dead using kill_device() to
-> prevent any new driver from binding, then calling device_release_driver()
-> before pci_stop_and_remove_bus_device_locked().
-> 
-> Marking the device dead closes the race window between unbinding and
-> removal where a new driver could theoretically bind: once the dead flag
-> is set, the device core will refuse any new driver probe.
-> 
-> After device_release_driver() returns, the driver is already unbound,
-> so the subsequent device_release_driver() call inside
-> pci_stop_and_remove_bus_device_locked() becomes a no-op.
-> 
-> Fixes: a5338e365c45 ("PCI/IOV: Fix race between SR-IOV enable/disable and hotplug")
-> Reported-by: Guenter Roeck <linux@roeck-us.net>
-> Closes: https://lore.kernel.org/linux-pci/0ca9e675-478c-411d-be32-e2d81439288f@roeck-us.net/
-> Reported-by: Benjamin Block <bblock@linux.ibm.com>
-> Closes: https://lore.kernel.org/linux-pci/20260317090149.GA3835708@chlorum.ategam.org/
-> Suggested-by: Benjamin Block <bblock@linux.ibm.com>
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Ionut Nechita <ionut.nechita@windriver.com>
-> ---
->  drivers/pci/pci-sysfs.c | 30 +++++++++++++++++++++++++++++-
->  1 file changed, 29 insertions(+), 1 deletion(-)
+== Series Details ==
 
-sorry for the late response, it slipped past me that I haven't given this a
-review yet.
+Series: drm/i915/psr: Disable PSR2 on Xiaomi Book Pro 14 2026 as a quirk (rev2)
+URL   : https://patchwork.freedesktop.org/series/165034/
+State : success
 
-It looks fine to me. It solves the report we had with the previous patch. I
-also tested this, and so far it looks good in my (s390) setup.
+== Summary ==
+
+CI Bug Log - changes from xe-4919-3b9ca4c40814c96c38986ae2ba6651e43757ca5f_BAT -> xe-pw-165034v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 12)
+------------------------------
+
+  Missing    (1): bat-ptl-vm 
 
 
-Reviewed-by: Benjamin Block <bblock@linux.ibm.com>
-Tested-by: Benjamin Block <bblock@linux.ibm.com>
+Changes
+-------
 
--- 
-Best Regards, Benjamin Block        /        Linux on IBM Z Kernel Development
-IBM Deutschland Research & Development GmbH    /   https://www.ibm.com/privacy
-Vors. Aufs.-R.: Wolfgang Wendt         /        Geschäftsführung: David Faller
-Sitz der Ges.: Ehningen     /     Registergericht: AmtsG Stuttgart, HRB 243294
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-4919-3b9ca4c40814c96c38986ae2ba6651e43757ca5f -> xe-pw-165034v2
+
+  IGT_8863: 5b279a8b71dc1672099205a1a9e8135c7c7fadb5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4919-3b9ca4c40814c96c38986ae2ba6651e43757ca5f: 3b9ca4c40814c96c38986ae2ba6651e43757ca5f
+  xe-pw-165034v2: 165034v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165034v2/index.html
+
+--===============2117954764534981093==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/psr: Disable PSR2 on Xiaomi Book Pro 14 2026 as a quirk (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165034/">https://patchwork.freedesktop.org/series/165034/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165034v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165034v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4919-3b9ca4c40814c96c38986ae2ba6651e43757ca5f_BAT -&gt; xe-pw-165034v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 12)</h2>
+<p>Missing    (1): bat-ptl-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4919-3b9ca4c40814c96c38986ae2ba6651e43757ca5f -&gt; xe-pw-165034v2</li>
+</ul>
+<p>IGT_8863: 5b279a8b71dc1672099205a1a9e8135c7c7fadb5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4919-3b9ca4c40814c96c38986ae2ba6651e43757ca5f: 3b9ca4c40814c96c38986ae2ba6651e43757ca5f<br />
+  xe-pw-165034v2: 165034v2</p>
+
+</body>
+</html>
+
+--===============2117954764534981093==--
