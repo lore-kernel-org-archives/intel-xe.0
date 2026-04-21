@@ -4,153 +4,158 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28BDCF8FA75
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Apr 2026 13:21:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BBC4F8FA79
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Apr 2026 13:22:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBFD010ECAD;
-	Tue, 21 Apr 2026 13:21:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3672B10ECB6;
+	Tue, 21 Apr 2026 13:22:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OwnBGEH9";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="aNPLg3C1";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="0u9P95TA";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="aNPLg3C1";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="0u9P95TA";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16C9D10ECAD
- for <intel-xe@lists.freedesktop.org>; Tue, 21 Apr 2026 13:21:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776777672; x=1808313672;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=zbB8CqgsHxR6NyY1Fa6X09fFYaWWh5UuTll3MmCDsuI=;
- b=OwnBGEH9qSlY1CYqHzlTMUe26d/10wFU21Y34bVWDZToYdVpWuVeZxD7
- SMAxp+XLQnZGFZDDyVPXCob5+IDYC0kNjOiugGSHoyXsU8uE94YUr2+v+
- wBD1u7EDnNxpZwBwbitni1GZVHvMZX+o+J946zA+G7eTn1iZp29qkoi4Z
- IYGLqA0/qdjLrYPNa4tDroX/v9VkGn+yKOtUQZ+dfj9C6ZIukSb79QaB9
- Eo9zi/nc6lygpubmw2BgF0OSs89Jna3nkL4O5PtrtnaOo29HNLIl0dWVF
- Gdjtt6O+dM8VnIljuKDHhubbfi0kauglfN3CaGo1JIaFgXOdDpWAYe0JP g==;
-X-CSE-ConnectionGUID: rama2TEMSh+ZFCQ+/q2nuw==
-X-CSE-MsgGUID: Ij47zk2xTl62ZzU6Idf3DA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11762"; a="88785098"
-X-IronPort-AV: E=Sophos;i="6.23,191,1770624000"; d="scan'208";a="88785098"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2026 06:21:12 -0700
-X-CSE-ConnectionGUID: aEpd3neyQ42oPdh8Pu1nCA==
-X-CSE-MsgGUID: ifIFs74IRo+CQpCq2t6DWw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,191,1770624000"; d="scan'208";a="255296316"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2026 06:21:11 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 21 Apr 2026 06:21:10 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Tue, 21 Apr 2026 06:21:10 -0700
-Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.10) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 21 Apr 2026 06:21:10 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nRwsQ18bM+HLdiToTKM1wgSW+80LIgIFpxbBgVysCrsk6S8NMTqtQ4ieojQGRXIvPFmMHUhrWnBOSfr2sSu1L2Joqc61Rh+SXuFyctACPwfDWkLLzr2dFO645XOSJDXvu9EMDvHGHTJj6QdsL5gs38M1P7jqKJwnrtaAV2zRP4I5IJo8uuk/WyeUC0gbOrgtSockJa03tkn02+gmdkUqvUH5l2jFOoiylikWftcTytLctmCuZ1f6Y1eFC+rdyqoAlVYw8XtYpduzOINV3pw2VJkJlJqjY5rWoXhvKD9tM039rpteiZ9E7gNk8p1gTJ7eqJ3apaA0T+O/pjQQTIURug==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EABmHLTJjE1incA+x+Wv18uAr9mc+yWkcr/MEbxlqzA=;
- b=Z8lYJdBg8lX9jCFuWTCMBVjg7a6NALo9ksOw2+aMzkNVQKdYsSTeOCpnnq9monOi0pdDiHpzGZZv08eKtsFR88kc/OK93SELkMN5NuzXFaxyunfb32M+YOxST9pw0GBgSLRFRHxtH92OCbRBczC7yumVmeuhko41ZSNXbOjyAoxAuBQ2iLZWsV5fZVP3YLAChm5t1aaeA+DpnsI7djxwfY93o5ls6YWbeBLyv5tEKQnGf31v3daICf0XmTSKmTFmqMF8tI0xR8n34W0wcHW7IgnAs7z9ZK4HzBIIvegBxsxsowpEVY9/XIpOPrTj6zjX5eJTgOWvcASx8kjW4PTKOg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
- by IA1PR11MB6346.namprd11.prod.outlook.com (2603:10b6:208:38a::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.16; Tue, 21 Apr
- 2026 13:21:08 +0000
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::1d86:a34:519a:3b0d]) by CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::1d86:a34:519a:3b0d%5]) with mapi id 15.20.9846.016; Tue, 21 Apr 2026
- 13:21:08 +0000
-Date: Tue, 21 Apr 2026 09:21:03 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-CC: Soham Purkait <soham.purkait@intel.com>, <intel-xe@lists.freedesktop.org>, 
- <riana.tauro@intel.com>, <anshuman.gupta@intel.com>,
- <aravind.iddamsetty@linux.intel.com>, <badal.nilawar@intel.com>,
- <raag.jadav@intel.com>, <ravi.kishore.koppuravuri@intel.com>,
- <mallesh.koujalagi@intel.com>, <anoop.c.vijay@intel.com>
-Subject: Re: [PATCH v1 2/2] drm/xe/xe_ras: Add RAS support for GPU health
- indicator
-Message-ID: <aed5vwPcAdxS45aU@intel.com>
-References: <20260416093610.4085667-1-soham.purkait@intel.com>
- <20260416093610.4085667-3-soham.purkait@intel.com>
- <aeDN6g6HWd3v-V72@ashyti-mobl2.lan> <aeJI1WrAr33degB-@intel.com>
- <aeZFqaIlrddHmlCn@ashyti-mobl2.lan> <aeaD3n25U8LqGTM8@intel.com>
- <aed0EPEZ8oQLzPNc@ashyti-mobl2.lan>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <aed0EPEZ8oQLzPNc@ashyti-mobl2.lan>
-X-ClientProxiedBy: BY3PR03CA0002.namprd03.prod.outlook.com
- (2603:10b6:a03:39a::7) To CYYPR11MB8430.namprd11.prod.outlook.com
- (2603:10b6:930:c6::19)
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FB9D10ECAD
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 Apr 2026 13:22:25 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 242EC5BD95;
+ Tue, 21 Apr 2026 13:22:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1776777744; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=8DTLMwbZ6lCi2aPk6+17F5C66weTvpYQYP7/TuAbjS8=;
+ b=aNPLg3C15oFl1glZDtEhGoRSytCqB+TFfYNEqZb/F7HGkdMUz5xyqf9TKNCSb6m2BphMRw
+ AAtPMRNqW1ax6NjUenekSU6wf12qIbiQGDgq2hVUsKELafYwnpzcoLZqOCbo+V/pz9dteD
+ WNM32+lQUOiQaglHHpNARhjfxTRokW4=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1776777744;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=8DTLMwbZ6lCi2aPk6+17F5C66weTvpYQYP7/TuAbjS8=;
+ b=0u9P95TAz4V2IoI3a4I/lWklFgWBs2u6jf9ozLHCTzvz6erd0CrN18yo4/571ZZl+8BJuc
+ WUlWKGuqjj/xh4DA==
+Authentication-Results: smtp-out2.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=aNPLg3C1;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=0u9P95TA
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1776777744; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=8DTLMwbZ6lCi2aPk6+17F5C66weTvpYQYP7/TuAbjS8=;
+ b=aNPLg3C15oFl1glZDtEhGoRSytCqB+TFfYNEqZb/F7HGkdMUz5xyqf9TKNCSb6m2BphMRw
+ AAtPMRNqW1ax6NjUenekSU6wf12qIbiQGDgq2hVUsKELafYwnpzcoLZqOCbo+V/pz9dteD
+ WNM32+lQUOiQaglHHpNARhjfxTRokW4=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1776777744;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=8DTLMwbZ6lCi2aPk6+17F5C66weTvpYQYP7/TuAbjS8=;
+ b=0u9P95TAz4V2IoI3a4I/lWklFgWBs2u6jf9ozLHCTzvz6erd0CrN18yo4/571ZZl+8BJuc
+ WUlWKGuqjj/xh4DA==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 3B5E9593AF;
+ Tue, 21 Apr 2026 13:22:23 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id b94NDQ9652lWCQAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Tue, 21 Apr 2026 13:22:23 +0000
+Message-ID: <55c24dca-e354-49d1-8eaa-edf66f679428@suse.de>
+Date: Tue, 21 Apr 2026 15:22:22 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|IA1PR11MB6346:EE_
-X-MS-Office365-Filtering-Correlation-Id: f5c4309f-0db1-464a-eef1-08de9fa8d964
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|1800799024|22082099003|56012099003|18002099003; 
-X-Microsoft-Antispam-Message-Info: sb/d8VzWQlH9a7zJInovQTGAqcdeKZuhLKJ+iMIVJSO6G5JTGeVqoaGWGuRjOAIQExOdJuFis2zSwvKgcmvEwtzeRQPWbIc7hjrbXhdd7ln4YucdI0cDhdirsFWRMeGaidqKGBcOlekqTgcTJWa74lh56ddhrHTr76w5Gx74wSiHFp/0KdR/lTWAXlMxHn8Ucbn7gE8mm05WVfRhOAwepZrnoDFYPE8F1Vik12hi9KohiE5OU9ieB3wKlPghPgDXqMxltjOyxejUqiXO1tLlWbjIcz7h3khvKlnXluZNZ+gVAn+IXlZEBX9krAJQpQgYe4XfUTvlruHshtDKLNeJb8++Usu2pMVpvyJe93k5KTlGwGcOej2CK/6sHXLJpOF43InP/q0o/zIB4TNeMntFwAjVxmVDnSaZgod75F1lMsCEQNgAU8qnwI/hywFwKwRdnN4m+t2DyGh1kPvLqmEW+Sp5pxWRM5DWrPawVSNW2K70gXZw+E2whzRX9YLHZoy9xdJEeFGG4s1S/Un4kiRpp8ygsEIVsfXswhJ0Tps7TIoMGufuqC67j8MYsstG1BMTm9TRxg4BTLdOjo6LyMYRvIZh0Eww5Za3PJ4OeDyukf2MoJIjUDktBCyKgFsKsKvz/DlFeqra/6tc1zzbO3Cu710IlyFt3qcaIsRLARvFecxJxZ7eF3I59KQ3bi8+ocvnikxo4PsRDodFg/6wrtsx3rSTPLwR+Pkr1R5o+T9PcsE=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(22082099003)(56012099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Vkh9JxvSSLXZyCrg0A9+UsAdVWWXgS31QCF7AiSuA2PIGon1UcqwwFUH/iRQ?=
- =?us-ascii?Q?uy1RSRXGn/W1g+MDBm15siaViUg5IVTC87lz4HCtC+DFWHwKdrC5yAQFzvE6?=
- =?us-ascii?Q?Yhg9ydUvRAnMVq/FpggtHJJIDT43+Qc3p4SrxsJeCt85BSp9r2vxH5KpRT4Z?=
- =?us-ascii?Q?iIfkjmRs29/GsXlNa4/AGWqmaHjHgTLcdDE3ShHKuQqIFl67f51ocCwJWFXe?=
- =?us-ascii?Q?tFyFTFGuYK4jte6W+6zm2Me8TQfHPDoFE+S3WjtBoZXl6OoNhInH8XlLl++s?=
- =?us-ascii?Q?gW1mW7Yh5+oH42PKu75tmO34/cziIUtPjcjJQSMR65DRKsg2eQ6U/MWbyrku?=
- =?us-ascii?Q?KLVqMrW27bpdSk3b1E20emt9mYb7zgpQaX1f+5qHqBaIVCJJiYeK4Gz9hecK?=
- =?us-ascii?Q?9VQr76oY2mObS3rDIxVyYTwbraDlviIqPTPul9nuZGeQ6PMrgL6J2FZRUp3T?=
- =?us-ascii?Q?q3ttTS+uFtcFx0G9GzmSYk8Qf1bgeLERqc9i78w0NCZiPC+ekPEMaPSCDPYk?=
- =?us-ascii?Q?fMH2gysx0dWSMIaxGm+iM2T/XbCgzCLImkTZuwRyei/zZvbeqAN8CyYr8Edh?=
- =?us-ascii?Q?BlezhLLqj1Roh5NqgP0ffAYx1+RYzEXX9anpNZDdNxbtYy3zCMktEWKDOaz1?=
- =?us-ascii?Q?cdtYZsNRZc5YpMngktKJjKygUiWUQ5kv/hQVaUFzwqzly+1hhBeqY31n18or?=
- =?us-ascii?Q?Nj8cS0cg5jxAVSTZTgxbYw2iox2ZdEKM6A3e8sO+bPqZao9C9YOUyHyECu+X?=
- =?us-ascii?Q?rII9N23iHrnbaLeNYXpdut7HdjkRVvTldt7DGsAtYzN5jhoQOy1SD964rJh9?=
- =?us-ascii?Q?TAtPKE8Z3WaRuSfeQYmu3p/IY+rCP70YY+ZWihg0kXlaOTYzSc5ycy85ttLa?=
- =?us-ascii?Q?ythm0ps6ZxXLgZCCW6NnQiud4rZgLRKiVk6xfXTtXVjBJnEriGAeO0LliVn1?=
- =?us-ascii?Q?gOkCAe72rBn0ZuoB2vd0De3MLmP45JM949Kd9RAyEjOUYplXYiWI8ZtYOQGG?=
- =?us-ascii?Q?KSuEW8lSmho8w5OxJP4TopIxrI7yAtNL6tWM4yS6OK6KqGWcLOAlYe5ZLrYD?=
- =?us-ascii?Q?OgfISKOnNDLKIFPHaw7C0c8RVT81svirL7N7+3alHFjOYGh3ziE25OZtRk1Y?=
- =?us-ascii?Q?tmzXKah960TKGCT3NA7R2xOTP+3MM2+6/1CDY7+L8VwPFSVjBIPrZxd+GcR9?=
- =?us-ascii?Q?9HfkyFiR8pg/k0b9PK+nhJA9n4rdgMeuk8cd3808/eokYFhVnJNzocELqlEu?=
- =?us-ascii?Q?GFfPe5gEzulS3O4oAAtU0o/6CBzSEOqfArxchRvGcqEEtReLTjIBnqhOYaS+?=
- =?us-ascii?Q?0T4kJuKR6J3hLfWB75sHB09XFnI8Vlq9zFGIoPyljh9QvXFJKMyeB84C3xU+?=
- =?us-ascii?Q?9Xk0mZ946aGR+savB3pnA6zgCf9l58mOKblQWpTm5GtMPfxgZI3sAHfqYtJC?=
- =?us-ascii?Q?seG+Alq2Lrc1wLheIja1CibB3yh4V/dLIuiL9UDz5Px2HJqXKY4fdSlEyouH?=
- =?us-ascii?Q?7oFAWG5IYygPxXoQIllXZYOFeP0wxC1r3vSy5otKXQ5XGZOQORZ7X47AosvX?=
- =?us-ascii?Q?sMQwMXVDCfYHJhLeT0kEhf40mxVoXmLiTgUKVIR04UyKzKSYrsJcnJBSqwhI?=
- =?us-ascii?Q?CBXbDZd28IHQJ5wvQDp/GZ7sX9AH4gDnr5nSVM6ueUwkbp8CzuNBpITe5J0s?=
- =?us-ascii?Q?NaRKQn/UOLQROsGROUXyUY0u2Wh2txIh9OnZIJRO+UmTrw28/YsunQOG3wwa?=
- =?us-ascii?Q?K3NfPIp1SA=3D=3D?=
-X-Exchange-RoutingPolicyChecked: wGe2TS8jxPdBuxo7c4UL+Ag9qq4lrQlsRKeylpKTfSIonuFAUJVNBZke20kBluCP9nTpL9zBZNbrDoHcmfGNULz7sT6pI557+F3+pxU4i71QKEoJmTdLkvMrnXWxZzhJeo/23/UlKpw56TIujT9ZAj7MbpD/bztNomY+LDrIAOBkddEXJStFaG/V66QOEq3q6TC8oi7MJx6aDFjSLMhgD/rRryt5XSkySLunlkERS2CQnSc6ntQ5ofArGgc+DVY/2XAgwTLoTIC1+W66JRU3lE+oE8NONmgUDsn4HyKA2eBykYJXoWWbgrcy+1l/2bjKDNFd2/GK4dYwqG867KFncw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: f5c4309f-0db1-464a-eef1-08de9fa8d964
-X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Apr 2026 13:21:08.6933 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: er/dIb32JapMNFirKqDmiYJZ5Ld7U9jNUuz5IbknG+QDIkeTFGTjit2FFoP3CF+cebyuXWHkCh04XlPWWIIKsA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6346
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 08/20] drm/plane: Add new atomic_create_state callback
+To: Maxime Ripard <mripard@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Jyri Sarha <jyri.sarha@iki.fi>,
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Simon Ser <contact@emersion.fr>, Harry Wentland <harry.wentland@amd.com>,
+ Melissa Wen <mwen@igalia.com>, Sebastian Wick <sebastian.wick@redhat.com>,
+ Alex Hung <alex.hung@amd.com>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Chen-Yu Tsai <wens@kernel.org>,
+ Samuel Holland <samuel@sholland.org>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
+Cc: dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Daniel Stone <daniels@collabora.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+References: <20260320-drm-mode-config-init-v2-0-c63f1134e76c@kernel.org>
+ <20260320-drm-mode-config-init-v2-8-c63f1134e76c@kernel.org>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <20260320-drm-mode-config-init-v2-8-c63f1134e76c@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Action: no action
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Spamd-Result: default: False [-3.01 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ SUSPICIOUS_RECIPS(1.50)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MX_GOOD(-0.01)[];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ MIME_TRACE(0.00)[0:+];
+ FREEMAIL_TO(0.00)[kernel.org,linux.intel.com,gmail.com,ffwll.ch,lwn.net,linuxfoundation.org,oss.qualcomm.com,iki.fi,ideasonboard.com,intel.com,linaro.org,kwiboo.se,emersion.fr,amd.com,igalia.com,redhat.com,ursulin.net,sholland.org,raspberrypi.com];
+ TO_MATCH_ENVRCPT_ALL(0.00)[]; RCPT_COUNT_TWELVE(0.00)[37];
+ SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+ ARC_NA(0.00)[]; FUZZY_RATELIMITED(0.00)[rspamd.com];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com]; RCVD_TLS_ALL(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2]; FROM_EQ_ENVFROM(0.00)[];
+ FROM_HAS_DN(0.00)[]; TO_DN_SOME(0.00)[];
+ MID_RHS_MATCH_FROM(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ TAGGED_RCPT(0.00)[]; DKIM_TRACE(0.00)[suse.de:+];
+ R_RATELIMIT(0.00)[to_ip_from(RL7gneoo7ydcsn9o76mxr5d8pb)];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim, suse.de:mid, suse.com:url,
+ imap1.dmz-prg2.suse.org:helo, imap1.dmz-prg2.suse.org:rdns]
+X-Rspamd-Queue-Id: 242EC5BD95
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -165,77 +170,230 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Apr 21, 2026 at 02:56:48PM +0200, Andi Shyti wrote:
-> Hi Rodrigo,
-> 
-> > > 
-> > > If we need two strings, then we create two files.
-> > 
-> > This part I don't agree. This is just the same as the power cases
-> > which I already had pointed out.
-> > 
-> > But right, you do have a point here. Different from power, we don't
-> > necessarily need to expose all the supported modes + the current one.
-> > After all, these states won't be that different from state to state.
-> > 
-> > We just need to document it properly and then just print:
-> > either
-> > 
-> > ok
-> > instead of
-> > [ok] warning critical
-> > 
-> > or
-> > warning
-> > instead of
-> > ok [warning] critical
-> > 
-> > or critical
-> > instead of
-> > ok warning [critical]
-> > 
-> > The full string with all the supported modes do sound bloated for
-> > this case. Considering that the supported cases themselves shouldn't
-> > change much and that we keep that documented. My bad, I'm sorry for
-> > the confusion here.
-> 
-> Think of what a miserable life have userspace developers when
-> parsing power files. They need to parse for the '[', for the ']'
-> the number of words, etc. We have here an excellent example of
-> how *not* to do things. :-)
+Hi
 
-not that miserable nowadays, just one AI prompt away ;)
+Am 20.03.26 um 17:27 schrieb Maxime Ripard:
+> Commit 47b5ac7daa46 ("drm/atomic: Add new atomic_create_state callback
+> to drm_private_obj") introduced a new pattern for allocating drm object
+> states.
+>
+> Instead of relying on the reset() callback, it created a new
+> atomic_create_state hook. This is helpful because reset is a bit
+> overloaded: it's used to create the initial software state, reset it,
+> but also reset the hardware.
+>
+> It can also be used either at probe time, to create the initial state
+> and possibly reset the hardware to an expected default, but also during
+> suspend/resume.
+>
+> Both these cases come with different expectations too: during the
+> initialization, we want to initialize all states, but during
+> suspend/resume, drm_private_states for example are expected to be kept
+> around.
+>
+> And reset() isn't fallible, which makes it harder to handle
+> initialization errors properly.
+>
+> And this is only really relevant for some drivers, since all the helpers
+> for reset only create a new state, and don't touch the hardware at all.
+>
+> It was thus decided to create a new hook that would allocate and
+> initialize a pristine state without any side effect:
+> atomic_create_state to untangle a bit some of it, and to separate the
+> initialization with the actual reset one might need during a
+> suspend/resume.
+>
+> Let's continue the transition to the new pattern with planes.
+>
+> Signed-off-by: Maxime Ripard <mripard@kernel.org>
+> ---
+>   drivers/gpu/drm/drm_atomic_state_helper.c | 44 +++++++++++++++++++++++++++++++
+>   drivers/gpu/drm/drm_mode_config.c         | 21 ++++++++++++++-
+>   include/drm/drm_atomic_state_helper.h     |  4 +++
+>   include/drm/drm_plane.h                   | 13 +++++++++
+>   4 files changed, 81 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/drm_atomic_state_helper.c b/drivers/gpu/drm/drm_atomic_state_helper.c
+> index 2548d6da13675f63304dc92423c5d225de0447a8..f4ce9d3573cbecf216904db54335e0cf84a01c39 100644
+> --- a/drivers/gpu/drm/drm_atomic_state_helper.c
+> +++ b/drivers/gpu/drm/drm_atomic_state_helper.c
+> @@ -319,10 +319,29 @@ void __drm_atomic_helper_plane_reset(struct drm_plane *plane,
+>   
+>   	plane->state = plane_state;
+>   }
+>   EXPORT_SYMBOL(__drm_atomic_helper_plane_reset);
+>   
+> +/**
+> + * __drm_atomic_helper_plane_create_state - initializes plane state
+> + * @plane: plane object
+> + * @state: new state to initialize
+> + *
+> + * Initializes the newly allocated @state, usually required when
+> + * initializing the drivers.
+> + *
+> + * @state is assumed to be zeroed.
+> + *
+> + * This is useful for drivers that subclass @drm_plane_state.
+> + */
+> +void __drm_atomic_helper_plane_create_state(struct drm_plane *plane,
+> +					    struct drm_plane_state *state)
+> +{
+> +	__drm_atomic_helper_plane_state_init(state, plane);
+> +}
+> +EXPORT_SYMBOL(__drm_atomic_helper_plane_create_state);
 
-> 
-> > > If we just need to provide information to system administrators,
-> > > then we can either use the debugfs or procfs that don't need to
-> > > be considered as uAPI.
-> > 
-> > That is not true. In many data center deployments the 'debugfs'
-> > is not available and the admin and cluster tools still need this
-> > information. It needs to be stable API.
-> 
-> Bingo! :-)
-> 
-> Then you need to define an easily parsable, well documented api,
-> so that it's accessable to everyone, applications and sysadmins.
-> 
-> Overall, I don't think this is a matter of taste, but, anyway,
-> you are the maintainer and yours is the last word. To me, this
-> looks incorrect.
+Will this function have another purpuse?  Could we just call 
+_plane_state_init() directly from anywhere?
 
-I agree with most of your statements above, except that to me
-this is easily parsable. But at the same time I also agree that
-the simple state string is even easier and we should take that
-path for this specific case.
+Best regards
+Thomas
 
-But because (**and only because**) we don't expect changes in the
-'available' modes in the HW/FW.
+> +
+>   /**
+>    * drm_atomic_helper_plane_reset - default &drm_plane_funcs.reset hook for planes
+>    * @plane: drm plane
+>    *
+>    * Resets the atomic state for @plane by freeing the state pointer (which might
+> @@ -338,10 +357,35 @@ void drm_atomic_helper_plane_reset(struct drm_plane *plane)
+>   	if (plane->state)
+>   		__drm_atomic_helper_plane_reset(plane, plane->state);
+>   }
+>   EXPORT_SYMBOL(drm_atomic_helper_plane_reset);
+>   
+> +/**
+> + * drm_atomic_helper_plane_create_state - default &drm_plane_funcs.atomic_create_state hook for planes
+> + * @plane: plane object
+> + *
+> + * Initializes a pristine @drm_plane_state.
+> + *
+> + * This is useful for drivers that don't subclass @drm_plane_state.
+> + *
+> + * RETURNS:
+> + * Pointer to new plane state, or ERR_PTR on failure.
+> + */
+> +struct drm_plane_state *drm_atomic_helper_plane_create_state(struct drm_plane *plane)
+> +{
+> +	struct drm_plane_state *state;
+> +
+> +	state = kzalloc_obj(*state);
+> +	if (!state)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	__drm_atomic_helper_plane_create_state(plane, state);
+> +
+> +	return state;
+> +}
+> +EXPORT_SYMBOL(drm_atomic_helper_plane_create_state);
+> +
+>   /**
+>    * __drm_atomic_helper_plane_duplicate_state - copy atomic plane state
+>    * @plane: plane object
+>    * @state: atomic plane state
+>    *
+> diff --git a/drivers/gpu/drm/drm_mode_config.c b/drivers/gpu/drm/drm_mode_config.c
+> index cba527571ca66d3aa6dc652c87e03a19815d1d41..09b8292195ba5eb5d96735aee5506407bd32ade3 100644
+> --- a/drivers/gpu/drm/drm_mode_config.c
+> +++ b/drivers/gpu/drm/drm_mode_config.c
+> @@ -180,10 +180,26 @@ int drm_mode_getresources(struct drm_device *dev, void *data,
+>   	drm_connector_list_iter_end(&conn_iter);
+>   
+>   	return ret;
+>   }
+>   
+> +static int drm_mode_config_plane_create_state(struct drm_plane *plane)
+> +{
+> +	struct drm_plane_state *plane_state;
+> +
+> +	if (!plane->funcs->atomic_create_state)
+> +		return 0;
+> +
+> +	plane_state = plane->funcs->atomic_create_state(plane);
+> +	if (IS_ERR(plane_state))
+> +		return PTR_ERR(plane_state);
+> +
+> +	plane->state = plane_state;
+> +
+> +	return 0;
+> +}
+> +
+>   /**
+>    * drm_mode_config_reset - call ->reset callbacks
+>    * @dev: drm device
+>    *
+>    * This functions calls all the crtc's, encoder's and connector's ->reset
+> @@ -204,13 +220,16 @@ void drm_mode_config_reset(struct drm_device *dev)
+>   	struct drm_connector_list_iter conn_iter;
+>   
+>   	drm_for_each_colorop(colorop, dev)
+>   		drm_colorop_reset(colorop);
+>   
+> -	drm_for_each_plane(plane, dev)
+> +	drm_for_each_plane(plane, dev) {
+>   		if (plane->funcs->reset)
+>   			plane->funcs->reset(plane);
+> +		else if (plane->funcs->atomic_create_state)
+> +			drm_mode_config_plane_create_state(plane);
+> +	}
+>   
+>   	drm_for_each_crtc(crtc, dev)
+>   		if (crtc->funcs->reset)
+>   			crtc->funcs->reset(crtc);
+>   
+> diff --git a/include/drm/drm_atomic_state_helper.h b/include/drm/drm_atomic_state_helper.h
+> index 44e8850aae7fd6390f4b58188a9c677b8389702f..6a3a2feb3dff1f2fbdf2a6e63d8d7317c7d6ead6 100644
+> --- a/include/drm/drm_atomic_state_helper.h
+> +++ b/include/drm/drm_atomic_state_helper.h
+> @@ -53,10 +53,14 @@ void __drm_atomic_helper_crtc_destroy_state(struct drm_crtc_state *state);
+>   void drm_atomic_helper_crtc_destroy_state(struct drm_crtc *crtc,
+>   					  struct drm_crtc_state *state);
+>   
+>   void __drm_atomic_helper_plane_state_init(struct drm_plane_state *state,
+>   					   struct drm_plane *plane);
+> +void __drm_atomic_helper_plane_create_state(struct drm_plane *plane,
+> +					    struct drm_plane_state *state);
+> +struct drm_plane_state *
+> +drm_atomic_helper_plane_create_state(struct drm_plane *plane);
+>   void __drm_atomic_helper_plane_reset(struct drm_plane *plane,
+>   				     struct drm_plane_state *state);
+>   void drm_atomic_helper_plane_reset(struct drm_plane *plane);
+>   void __drm_atomic_helper_plane_duplicate_state(struct drm_plane *plane,
+>   					       struct drm_plane_state *state);
+> diff --git a/include/drm/drm_plane.h b/include/drm/drm_plane.h
+> index 703ef4d1bbbcf084c43aa5e127d28691878061c4..4d4d511b681d50c17fbc593cce9f706d63e04a52 100644
+> --- a/include/drm/drm_plane.h
+> +++ b/include/drm/drm_plane.h
+> @@ -386,10 +386,23 @@ struct drm_plane_funcs {
+>   	 * 0 on success or a negative error code on failure.
+>   	 */
+>   	int (*set_property)(struct drm_plane *plane,
+>   			    struct drm_property *property, uint64_t val);
+>   
+> +	/**
+> +	 * @atomic_create_state:
+> +	 *
+> +	 * Allocates a pristine, initialized, state for the plane object
+> +	 * and returns it.
+> +	 *
+> +	 * RETURNS:
+> +	 *
+> +	 * A new, pristine, plane state instance or an error pointer
+> +	 * on failure.
+> +	 */
+> +	struct drm_plane_state *(*atomic_create_state)(struct drm_plane *plane);
+> +
+>   	/**
+>   	 * @atomic_duplicate_state:
+>   	 *
+>   	 * Duplicate the current atomic state for this plane and return it.
+>   	 * The core and helpers guarantee that any atomic state duplicated with
+>
 
-But the /sys/power style should be the way to go if we needed to
-be prepared to have a flexible SW API that depends on different
-HW and FW underneath.
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
+GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
 
-> 
-> Thanks,
-> Andi
+
