@@ -4,53 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27A40F8FA90
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Apr 2026 15:09:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D39C3F8FA90
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Apr 2026 15:32:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D529210EB50;
-	Tue, 21 Apr 2026 15:09:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F71010ED09;
+	Tue, 21 Apr 2026 15:32:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="lLCeCYep";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=arm.com header.i=@arm.com header.b="IlasacV+";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2922110EB50
- for <intel-xe@lists.freedesktop.org>; Tue, 21 Apr 2026 15:09:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=p9B8Qt2oRG8/qwzcjUyXCkccz6Xb3kE22c28rGUWAX0=; b=lLCeCYepiC9Efkman12VwmXSW0
- x3P3YGXdlD/rujFEULwvfJT87unW5GAwPDGZRxpMlT52lrSsyi6caIyTkBY3S6xYi+vMK2oZ8y9Yy
- j2Qzbf+eunMzMIkFXjo2KGrTLxy0/yxAXdwcDqdIVARhZ7pijX7fwovmUXrCglXkbJJrU8qwVclvH
- SozRnnB+FIitDJUbbZeA73II6eanbJSqmLwS0rWBsfMy7wczNGv4ZxS6/miczGwROxbjwjWjW9PCe
- 7f2AP1JDu830JZL4Uycmt3hjT0trN4R2C+T6AbI1TzBBzF64J5BwG9e3JufURVJs2kXnJ1M5cMyHK
- HgJkAznQ==;
-Received: from [90.240.106.137] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1wFCj8-001yGK-JM; Tue, 21 Apr 2026 17:09:26 +0200
-Message-ID: <866fe0f9-73a6-47b3-ac37-41bb26c0c6a6@igalia.com>
-Date: Tue, 21 Apr 2026 16:09:25 +0100
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EEA9C10ED03
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 Apr 2026 15:32:35 +0000 (UTC)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E4DE8263D
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 Apr 2026 08:32:29 -0700 (PDT)
+Received: from [10.2.11.34] (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id
+ 4D5193FAF5
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 Apr 2026 08:32:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+ t=1776785555; bh=fhBy7ZTDUwKSbf3HhFiViEZekUwSlWT1MQ0rYA5c8Qg=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=IlasacV+KTfmm7bEoBQzcl8KoADYxAj5cN+7j4pt72uli10TuaG4JuSYDbYAMNVsD
+ o5d+fdKYE8HSP99JW6aATMXx2j+3hCAWnyjNQkJEz05mppVAwxdyXE31pPn6p55S2q
+ K4AbmLfm8Vm2j6v3JOuzyXg8ypcjfiKjXFcO8524=
+Date: Tue, 21 Apr 2026 16:32:21 +0100
+From: Liviu Dudau <liviu.dudau@arm.com>
+To: Laura Nao <laura.nao@collabora.com>
+Cc: dakr@kernel.org, boris.brezillon@collabora.com, steven.price@arm.com,
+ matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
+ rodrigo.vivi@intel.com, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, kernel@collabora.com
+Subject: Re: [PATCH] drm: Remove DRIVER_GEM_GPUVA feature flag
+Message-ID: <aeeYhWsRqXqfnzge@e142607>
+References: <20260421084701.24227-1-laura.nao@collabora.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/xelp: Fix Wa_18022495364
-To: Matt Roper <matthew.d.roper@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>
-Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com,
- Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, stable@vger.kernel.org
-References: <20260420131603.70357-1-tvrtko.ursulin@igalia.com>
- <384adac7-2aa4-4568-b7a5-987e914fbaf2@ursulin.net>
- <20260420202932.GH7476@mdroper-desk1.amr.corp.intel.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <20260420202932.GH7476@mdroper-desk1.amr.corp.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260421084701.24227-1-laura.nao@collabora.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,70 +59,184 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-On 20/04/2026 21:29, Matt Roper wrote:
-> On Mon, Apr 20, 2026 at 02:24:05PM +0100, Tvrtko Ursulin wrote:
->>
->> On 20/04/2026 14:16, Tvrtko Ursulin wrote:
->>> Command parser relative MMIO addressing needs to be enabled when writing
->>> to the register.
->>>
->>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>> Fixes: ca33cd271ef9 ("drm/xe/xelp: Add Wa_18022495364")
->>> Cc: Matt Roper <matthew.d.roper@intel.com>
->>> Cc: Matthew Brost <matthew.brost@intel.com>
->>> Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
->>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>> Cc: <stable@vger.kernel.org> # v6.18+
+On Tue, Apr 21, 2026 at 10:47:01AM +0200, Laura Nao wrote:
+> The DRIVER_GEM_GPUVA feature flag is currently only used to control two
+> behaviors within the DRM core:
+> - calling  drm_gem_gpuva_init() during
+>   GEM object initialization
+> - creating the "gpuvas" debugfs entry
 > 
-> I don't think we want/need the stable Cc here; this workaround doesn't
-> apply to any of the Xe2 and later platforms that the Xe driver supports
-> for users.  While it's possible for developers to manually override the
-> driver's detection flags and force it to load on Xe1-era platforms that
-> this workaround does apply to, doing so will taint the kernel and we
-> already know that a lot of Xe1 era workarounds aren't implemented.
-
-You are right, I just blindly copied the output of dim fixes. But it 
-doesn't matter hugely either way since as long as there is Fixes: it 
-would get picked up for -stable anyway.
-
+> drm_gem_gpuva_init() is a plain INIT_LIST_HEAD() and therefore is cheap
+> to run for every GEM object. The DRM_DEBUGFS_GPUVA_INFO macro is only
+> referenced by GPU-VA capable drivers, so clearing the feature bit does
+> not cause any unrelated drivers to get the "gpuvas" debugfs node. The
+> flag doesn't have any relevant purpose (e.g. gating ioctl handlers or MM
+> logic) and doesn't provide any practical benefit.
 > 
->>> ---
->>>    drivers/gpu/drm/xe/xe_lrc.c | 2 +-
->>>    1 file changed, 1 insertion(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
->>> index 9d12a0d2f0b5..c725cde4508d 100644
->>> --- a/drivers/gpu/drm/xe/xe_lrc.c
->>> +++ b/drivers/gpu/drm/xe/xe_lrc.c
->>> @@ -1214,7 +1214,7 @@ static ssize_t setup_invalidate_state_cache_wa(struct xe_lrc *lrc,
->>>    	if (xe_gt_WARN_ON(lrc->gt, max_len < 3))
->>>    		return -ENOSPC;
->>> -	*cmd++ = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(1);
->>> +	*cmd++ = MI_LOAD_REGISTER_IMM | MI_LRI_LRM_CS_MMIO | MI_LRI_NUM_REGS(1);
->>
->> Or if this register exists only for RCS would it be better to define
->> CS_DEBUG_MODE2 as the absolute 0x20d8 (as in i915)? Unfortunately the public
->> TGL PRM does not list neither the register or the workaround so I am not
->> sure.
+> Remove the flag definition and drop it from all drivers that use it,
+> call drm_gem_gpuva_init() unconditionally and clear the driver features
+> bit in DRM_DEBUGFS_GPUVA_INFO.
 > 
-> CS_DEBUG_MODE2 exists on both the RCS and CCS engines, so I think the
-> current register definition is fine.
+> Signed-off-by: Laura Nao <laura.nao@collabora.com>
+> ---
+>  drivers/gpu/drm/drm_gem.c             | 3 +--
+>  drivers/gpu/drm/imagination/pvr_drv.c | 2 +-
+>  drivers/gpu/drm/msm/msm_drv.c         | 2 --
+>  drivers/gpu/drm/nouveau/nouveau_drm.c | 1 -
+>  drivers/gpu/drm/panthor/panthor_drv.c | 2 +-
+
+For panthor changes:
+
+Acked-by: Liviu Dudau <liviu.dudau@arm.com>
+
+Best regards,
+Liviu
+
+>  drivers/gpu/drm/xe/xe_device.c        | 2 +-
+>  include/drm/drm_debugfs.h             | 2 +-
+>  include/drm/drm_drv.h                 | 6 ------
+>  include/drm/drm_gem.h                 | 3 ---
+>  9 files changed, 5 insertions(+), 18 deletions(-)
 > 
-> Personally I might have changed the line farther down to
-> CS_DEBUG_MODE2(hwe->mmio_base) so that we're using an absolute offset
-> instead of relative, but adding the MI_LRI_LRM_CS_MMIO flag and passing
-> the relative offset should work fine too.
+> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
+> index 0377a5fd402d..cb703d0072aa 100644
+> --- a/drivers/gpu/drm/drm_gem.c
+> +++ b/drivers/gpu/drm/drm_gem.c
+> @@ -232,8 +232,7 @@ void drm_gem_private_object_init(struct drm_device *dev,
+>  	if (!obj->resv)
+>  		obj->resv = &obj->_resv;
+>  
+> -	if (drm_core_check_feature(dev, DRIVER_GEM_GPUVA))
+> -		drm_gem_gpuva_init(obj);
+> +	drm_gem_gpuva_init(obj);
+>  
+>  	drm_vma_node_reset(&obj->vma_node);
+>  	INIT_LIST_HEAD(&obj->lru_node);
+> diff --git a/drivers/gpu/drm/imagination/pvr_drv.c b/drivers/gpu/drm/imagination/pvr_drv.c
+> index 268900464ab6..80033d4cb66a 100644
+> --- a/drivers/gpu/drm/imagination/pvr_drv.c
+> +++ b/drivers/gpu/drm/imagination/pvr_drv.c
+> @@ -1375,7 +1375,7 @@ pvr_drm_driver_postclose(__always_unused struct drm_device *drm_dev,
+>  DEFINE_DRM_GEM_FOPS(pvr_drm_driver_fops);
+>  
+>  static struct drm_driver pvr_drm_driver = {
+> -	.driver_features = DRIVER_GEM | DRIVER_GEM_GPUVA | DRIVER_RENDER |
+> +	.driver_features = DRIVER_GEM | DRIVER_RENDER |
+>  			   DRIVER_SYNCOBJ | DRIVER_SYNCOBJ_TIMELINE,
+>  	.open = pvr_drm_driver_open,
+>  	.postclose = pvr_drm_driver_postclose,
+> diff --git a/drivers/gpu/drm/msm/msm_drv.c b/drivers/gpu/drm/msm/msm_drv.c
+> index 195f40e331e5..ee38c18715f0 100644
+> --- a/drivers/gpu/drm/msm/msm_drv.c
+> +++ b/drivers/gpu/drm/msm/msm_drv.c
+> @@ -825,7 +825,6 @@ static const struct file_operations fops = {
+>  
+>  #define DRIVER_FEATURES_GPU ( \
+>  		DRIVER_GEM | \
+> -		DRIVER_GEM_GPUVA | \
+>  		DRIVER_RENDER | \
+>  		DRIVER_SYNCOBJ | \
+>  		DRIVER_SYNCOBJ_TIMELINE | \
+> @@ -833,7 +832,6 @@ static const struct file_operations fops = {
+>  
+>  #define DRIVER_FEATURES_KMS ( \
+>  		DRIVER_GEM | \
+> -		DRIVER_GEM_GPUVA | \
+>  		DRIVER_ATOMIC | \
+>  		DRIVER_MODESET | \
+>  		0 )
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+> index 5d8475e4895e..0f5f662e5429 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+> @@ -1364,7 +1364,6 @@ static struct drm_driver
+>  driver_stub = {
+>  	.driver_features = DRIVER_GEM |
+>  			   DRIVER_SYNCOBJ | DRIVER_SYNCOBJ_TIMELINE |
+> -			   DRIVER_GEM_GPUVA |
+>  			   DRIVER_MODESET |
+>  			   DRIVER_RENDER,
+>  	.open = nouveau_drm_open,
+> diff --git a/drivers/gpu/drm/panthor/panthor_drv.c b/drivers/gpu/drm/panthor/panthor_drv.c
+> index 87d27c3c1456..1a1d40a744db 100644
+> --- a/drivers/gpu/drm/panthor/panthor_drv.c
+> +++ b/drivers/gpu/drm/panthor/panthor_drv.c
+> @@ -1805,7 +1805,7 @@ static void panthor_debugfs_init(struct drm_minor *minor)
+>   */
+>  static const struct drm_driver panthor_drm_driver = {
+>  	.driver_features = DRIVER_RENDER | DRIVER_GEM | DRIVER_SYNCOBJ |
+> -			   DRIVER_SYNCOBJ_TIMELINE | DRIVER_GEM_GPUVA,
+> +			   DRIVER_SYNCOBJ_TIMELINE,
+>  	.open = panthor_open,
+>  	.postclose = panthor_postclose,
+>  	.show_fdinfo = panthor_show_fdinfo,
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> index ffea4a453c01..b3acc202df76 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -393,7 +393,7 @@ static struct drm_driver driver = {
+>  	.driver_features =
+>  	    DRIVER_GEM |
+>  	    DRIVER_RENDER | DRIVER_SYNCOBJ |
+> -	    DRIVER_SYNCOBJ_TIMELINE | DRIVER_GEM_GPUVA,
+> +	    DRIVER_SYNCOBJ_TIMELINE,
+>  	.open = xe_file_open,
+>  	.postclose = xe_file_close,
+>  
+> diff --git a/include/drm/drm_debugfs.h b/include/drm/drm_debugfs.h
+> index ea8cba94208a..eb93512b0f23 100644
+> --- a/include/drm/drm_debugfs.h
+> +++ b/include/drm/drm_debugfs.h
+> @@ -48,7 +48,7 @@
+>   * For each DRM GPU VA space drivers should call drm_debugfs_gpuva_info() from
+>   * their @show callback.
+>   */
+> -#define DRM_DEBUGFS_GPUVA_INFO(show, data) {"gpuvas", show, DRIVER_GEM_GPUVA, data}
+> +#define DRM_DEBUGFS_GPUVA_INFO(show, data) {"gpuvas", show, 0, data}
+>  
+>  /**
+>   * struct drm_info_list - debugfs info list entry
+> diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
+> index 42fc085f986d..e09559495c5b 100644
+> --- a/include/drm/drm_drv.h
+> +++ b/include/drm/drm_drv.h
+> @@ -107,12 +107,6 @@ enum drm_driver_feature {
+>  	 * acceleration should be handled by two drivers that are connected using auxiliary bus.
+>  	 */
+>  	DRIVER_COMPUTE_ACCEL            = BIT(7),
+> -	/**
+> -	 * @DRIVER_GEM_GPUVA:
+> -	 *
+> -	 * Driver supports user defined GPU VA bindings for GEM objects.
+> -	 */
+> -	DRIVER_GEM_GPUVA		= BIT(8),
+>  	/**
+>  	 * @DRIVER_CURSOR_HOTSPOT:
+>  	 *
+> diff --git a/include/drm/drm_gem.h b/include/drm/drm_gem.h
+> index 86f5846154f7..996aa418dce9 100644
+> --- a/include/drm/drm_gem.h
+> +++ b/include/drm/drm_gem.h
+> @@ -663,9 +663,6 @@ static inline bool drm_gem_is_imported(const struct drm_gem_object *obj)
+>   *
+>   * This initializes the &drm_gem_object's &drm_gpuvm_bo list.
+>   *
+> - * Calling this function is only necessary for drivers intending to support the
+> - * &drm_driver_feature DRIVER_GEM_GPUVA.
+> - *
+>   * See also drm_gem_gpuva_set_lock().
+>   */
+>  static inline void drm_gem_gpuva_init(struct drm_gem_object *obj)
+> -- 
+> 2.39.5
+> 
 
-Good to know, thanks! I am happy to change to absolute if you prefer.
-  > Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-
-Thank you!
-
-I assume someone will pull the patch in?
-
-Regards,
-
-Tvrtko
-
-
+-- 
+====================
+| I would like to |
+| fix the world,  |
+| but they're not |
+| giving me the   |
+ \ source code!  /
+  ---------------
+    ¯\_(ツ)_/¯
