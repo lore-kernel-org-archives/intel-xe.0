@@ -4,43 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CC6CF9EDC5
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C28CF9EDC0
 	for <intel-xe@archiver.kernel.org>; Wed, 22 Apr 2026 12:38:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E26D010E9EC;
-	Wed, 22 Apr 2026 12:38:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B07910E9ED;
+	Wed, 22 Apr 2026 12:38:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Y6PrLxOm";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="TTmS9/t8";
 	dkim-atps=neutral
-Received: from PH7PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11010012.outbound.protection.outlook.com [52.101.201.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 301D210E29C;
- Wed, 22 Apr 2026 12:07:27 +0000 (UTC)
+Received: from CH4PR04CU002.outbound.protection.outlook.com
+ (mail-northcentralusazon11013038.outbound.protection.outlook.com
+ [40.107.201.38])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27F3B10E250;
+ Tue, 21 Apr 2026 15:48:50 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BlSz9/zZcqKiKQo/gMIC9l8x7ufFXpo/xtDVoxOd5ef/KnZ1sqTjyagoim7VX7WmAy7m3pz4147Twb4mKVDVfvjYpLwXwKDYsNLBHhYaRadWJ15Ne81LPFTYapXSNV0ecgQlMD8IVJp6wX3Mzcfp5l/pxBht8tS4iHoJGwp7hrvopOsbI1Jf6TSLM15QKizNj+LH87aueO/5vfmZZDAjtZw4CFTV6nGUUsVSsHAHjbfoQtV/mO+fFR9EA7TI826vNFDmTa+e+JS+wwJ8HS+mvuLqDliHLZ+qU8Z5SupivYiT+a9vO5jC/ujWR28/FX6VEyTzNNZp2iov1KTVP+8EqQ==
+ b=bIKk2KyeLZEyTgjihCeepa+tY23UwL2zu0DvK8SUFflx+fpn2MfcgzN8IXomWZkWl/KNllAq1tRGcB8ZhVNXhs2wnS6Wa0WmqG8J4KQhutpEhO8I2imTDpGij39ti2akbclabWaS/kNbdx1PxeEzmVrvvQTUAd5oGWhd3rMz25RdWbcl0unDA4Rvy6wowVpS5Exm7IbpNYEE/G7b6xu4E4T+JHP0g9y8BRsjZ+QwPJ37M5a+Uf7liAJzL/mMZ091eSca6N83zUboKyggbqjkiDVdspa4rIeh3y6QleEzO6Hy02juv/D862XKLV+0LQ1onHc9zqrtF3sqVXMg0y5FKA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+zwUj+MxAPzbcrZMPgEwWVb1SqvQByWtgAqItxjXHWQ=;
- b=vlk49/MkYEegXGaKd/IijkmxzNpeuMiwuM/4IoSeEOVmo6LPl4FCJ45RKjWdxoe0RvsulEzDQ43ewjCMah2UbSmR+4LcWXNCjmjpOTxlZkT981yXalLUgZ/QSs/kN2pRkF9iPO7rsAvcfs82uid0sijWVJq7I2EteOVOogTFaOGVSbnV/zf2m3UoPUjqdWfnPvO7eeLGqnPwIpJN559jkj/zE0IpvHRWFB4PsgdfP+YimyewSuW9rceKGRwPQe0w7JVec/94tG0ts67Bfq3BH7qqnbEISZc/+5MvMfC57E3kxGOktuH2WoMcsH/U0hRXnbiWDSxzarD6+XNWP0/d9Q==
+ bh=oOsIPZib/PUVqiWuLFcyRSJWo5cM+HcPs0eKOCOWqcA=;
+ b=IYaTiEn0P4lcJyk6JAOzuKPvXKtEQE9JyqkDCo9xdvyQke/uC8Phyof+a4pnPY0YzXb0te89Ne54aYjdyt3OgpNuqQAXWBcjYByVJ6aurLCEvGIgRjhiY+8xZb0+ROXJ2FDkAP9xL+hvQlCb6uxzici3I3ira8DCsTda73Fpl8Gqb+oBkf4DIamOUOgdWe+C1PPr/VXPssjwj+n4iWDsaEv/ZeRZsnnNNR0QN4lF4hosVIAGNbHqwQcPjUVaw/caqZ9BbX4K6wIsrCe4cqiPiufGYyjoUbJbPBgo50v9rf18l+8VbdGK5geswBa6xQRrLlaE8RKomTrTrt4oeiw6zA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=infradead.org smtp.mailfrom=amd.com;
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+zwUj+MxAPzbcrZMPgEwWVb1SqvQByWtgAqItxjXHWQ=;
- b=Y6PrLxOmMWBLLZzYwZkO1KUPGLlEQrN9xmUkhVgzLoSNFhZX4q8HEHA8xVehrqT3S5QtiNlMjHPN6r/8FvfWBWel6CGfSb7TUZuyGsdie6hsjsbgE+3gRcbVhYr5XrNsIDWn1iOlm5AX4+wMVebRx97oOaixRD4+rHxFjwIpu0Q=
-Received: from PH8PR02CA0002.namprd02.prod.outlook.com (2603:10b6:510:2d0::11)
- by SA3PR12MB8762.namprd12.prod.outlook.com (2603:10b6:806:31f::9)
+ bh=oOsIPZib/PUVqiWuLFcyRSJWo5cM+HcPs0eKOCOWqcA=;
+ b=TTmS9/t8lE/QVxmWHGsMbWDVK0kqiQZ8MhgxIxcSdH46YZx9r2zLGzpqICHSwx6tRsbZlUZNvN8XAyHyRoHCgolbWsvqlYDReQ6pxcgPn4UkddcG7V1ZAIuWayRHRrtfSpI37KHX7TqZzCSEcU2EId8eLyOPm73arlzNWPpx3N0=
+Received: from BL1PR13CA0293.namprd13.prod.outlook.com (2603:10b6:208:2bc::28)
+ by CY8PR12MB7539.namprd12.prod.outlook.com (2603:10b6:930:96::12)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.8; Wed, 22 Apr
- 2026 12:07:23 +0000
-Received: from CY4PEPF0000E9DB.namprd05.prod.outlook.com
- (2603:10b6:510:2d0:cafe::1) by PH8PR02CA0002.outlook.office365.com
- (2603:10b6:510:2d0::11) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9791.48 via Frontend Transport; Wed,
- 22 Apr 2026 12:07:23 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.16; Tue, 21 Apr
+ 2026 15:48:44 +0000
+Received: from BL6PEPF0002256F.namprd02.prod.outlook.com
+ (2603:10b6:208:2bc:cafe::6c) by BL1PR13CA0293.outlook.office365.com
+ (2603:10b6:208:2bc::28) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9791.48 via Frontend Transport; Tue,
+ 21 Apr 2026 15:48:42 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,75 +49,73 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- CY4PEPF0000E9DB.mail.protection.outlook.com (10.167.241.74) with Microsoft
+ BL6PEPF0002256F.mail.protection.outlook.com (10.167.249.37) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9846.18 via Frontend Transport; Wed, 22 Apr 2026 12:07:23 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by satlexmb07.amd.com
+ 15.20.9846.18 via Frontend Transport; Tue, 21 Apr 2026 15:48:42 +0000
+Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.17; Wed, 22 Apr
- 2026 07:07:22 -0500
-Received: from satlexmb08.amd.com (10.181.42.217) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 22 Apr
- 2026 07:07:22 -0500
-Received: from [10.136.34.119] (10.180.168.240) by satlexmb08.amd.com
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 21 Apr
+ 2026 10:48:40 -0500
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb10.amd.com
+ (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 21 Apr
+ 2026 10:48:40 -0500
+Received: from [172.31.184.125] (10.180.168.240) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
- Transport; Wed, 22 Apr 2026 07:07:19 -0500
-Message-ID: <a4715a46-1580-45fe-b374-1b433a3494e9@amd.com>
-Date: Wed, 22 Apr 2026 17:37:18 +0530
+ Transport; Tue, 21 Apr 2026 10:48:38 -0500
+Message-ID: <bc5e8c5c-fc9c-4efc-b1a9-98c43c6a8762@amd.com>
+Date: Tue, 21 Apr 2026 21:18:37 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: Regression on linux-next (next-20260324 )
-To: Peter Zijlstra <peterz@infradead.org>, John Stultz <jstultz@google.com>
-CC: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
- <willy@infradead.org>, <linux-kernel@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Kurmi,
- Suresh Kumar" <suresh.kumar.kurmi@intel.com>, "Saarinen, Jani"
- <jani.saarinen@intel.com>, <ravitejax.veesam@intel.com>
-References: <df391df3-3a3b-4a65-b3c7-ffe3ab50ee83@intel.com>
+To: Peter Zijlstra <peterz@infradead.org>
+CC: John Stultz <jstultz@google.com>, "Borah, Chaitanya Kumar"
+ <chaitanya.kumar.borah@intel.com>, <willy@infradead.org>,
+ <linux-kernel@vger.kernel.org>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>, "Kurmi, Suresh Kumar"
+ <suresh.kumar.kurmi@intel.com>, "Saarinen, Jani" <jani.saarinen@intel.com>,
+ <ravitejax.veesam@intel.com>
+References: <af005996-05e9-4336-8450-d14ca652ba5d@intel.com>
+ <20260327163100.GL3738010@noisy.programming.kicks-ass.net>
+ <20260327164353.GM3739106@noisy.programming.kicks-ass.net>
+ <df391df3-3a3b-4a65-b3c7-ffe3ab50ee83@intel.com>
  <20260330195037.GW2872@noisy.programming.kicks-ass.net>
  <20260420130318.GD3102924@noisy.programming.kicks-ass.net>
  <CANDhNCq=oizzud3hH3oqGzTrcjB8OwGeineJ3mwZuGdDWG8fRQ@mail.gmail.com>
  <20260421101521.GO3102624@noisy.programming.kicks-ass.net>
  <95651a71-1adf-45ba-83eb-5744bc6d4a52@amd.com>
  <20260421143752.GD1064669@noisy.programming.kicks-ass.net>
- <bc5e8c5c-fc9c-4efc-b1a9-98c43c6a8762@amd.com>
- <CANDhNCr-+x8pTLhXZW=ATHaKTYEmXMPukz4+t8P-FeJ11Jrz9Q@mail.gmail.com>
- <20260421205647.GL3126523@noisy.programming.kicks-ass.net>
- <20260422092335.GH3102924@noisy.programming.kicks-ass.net>
 Content-Language: en-US
 From: K Prateek Nayak <kprateek.nayak@amd.com>
-In-Reply-To: <20260422092335.GH3102924@noisy.programming.kicks-ass.net>
+In-Reply-To: <20260421143752.GD1064669@noisy.programming.kicks-ass.net>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-Received-SPF: None (SATLEXMB04.amd.com: kprateek.nayak@amd.com does not
- designate permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9DB:EE_|SA3PR12MB8762:EE_
-X-MS-Office365-Filtering-Correlation-Id: 47ed942a-554e-4e02-b7e7-08dea067b625
+X-MS-TrafficTypeDiagnostic: BL6PEPF0002256F:EE_|CY8PR12MB7539:EE_
+X-MS-Office365-Filtering-Correlation-Id: f88a5f68-2b84-42c7-2bd8-08de9fbd76dc
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|7416014|36860700016|82310400026|1800799024|56012099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: 3MeYO9uaaqPdBN90p6uAQ1JWyF/ChcmQg+rzl+ycWUtnKQ7M/SAjMTlrgfj826SRm2Cw8XYpjY364QG3Gb2Wjkj8R4WQRHtFHVgQQfwUC2wRGQqDkDGThjf6fJMdKNsEpK3z6+AdzUxP/XUSAs2TC9D7BRH2PA2cBE01rKTxLsZ3nIXNZliyGnXaf2+uagkAQ9i9uddtDqRSBg60kWgJiUsEZy1G4GYq+9CzMTwVD74NRnSdneGr7IXWPvMuvXq4O4u8+ARgDa4dRjceSmcZjrLkug20aQh92yqxXZfaFEOcplIOJDa9QpcLEigV0y0/BKVwUslH9G/2rqjUKivVGzX5dCwjzt+o9mPIR0L8mfJ5txSiAleSnKkIsBM0g2cuI8hCUqomaGfpv8+A9GtFP4/pls4r80yUpfhDbRfPPgfhg9WRzWoAS5ryTJWxv6hZiihk5d2B1HSC0i/tsbfT8q1662bNqtcYdg9JlrWLi5b3sm039FFiltCSY/pMxfEv5+WHRich1dX9UEYvv/Y6Xc+FkQDPTW/47sMIDeHILN8m4RHlTbBwLN2f2ggZ9pOiaplchKfmG3S+45lzxnpS5G+5dRr/iyHPgnF4kWhGttZzPXklMxx4NjmieM6EvSrQrA9ivsCz0ZVHgTVoBjZCA920sKXSxIkAgULkWmqmI7ddA/lbdy0OrZtdvH1aIhPa1VJp8lYi7SJPuqxnzS+wlZPQ8maaVaDOIxKosjmsj5s=
+ ARA:13230040|376014|7416014|1800799024|36860700016|82310400026|22082099003|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info: TI9kleDHsXE1Of2TXGadql/l5NcLxpx5psfri719PrnWMiRttS+kBdelPZx5/t7oaY+V5HEAmpbZjEobPMQHAU4zljQoCw+kuzrluuzLhD5VDX7aHun8D64/jrkeCqg45HUQmx9uKFUxCyo5iM0HwgbN28Wofri6QsGUKMrmszy6RqEFUlxgytAEAWE1Bf/JJjhMhj2dfx9OvRQjTCNrs7sZlbUtw5xYjREVm8ipz/tN4cRMmeB17q/rJiYJhovNNNNJrVpaqE+7sOAllgJDrX7pmovWijyeilvpV69yWAiYDv00HXEhBEIIfZQG28gtU/Gg7tnvAxm8eqqnGB83ggeFw2aPWqdsXXuHKKIytPtYCCQKfk6qlTemNzviE36OWserycQ6K77vkphT3MgMhrr2ZVmYFze7iTavxwZSbZ+eKH+qVjkbboIJvKcRCPuZn7IvGqe2R9Qe3s5dIyYoGp6tddu4jPtTWUYnK5iN+gggJhH6GPoSa2Z+jeO1pxG8K49o/hpq/MvHbIP4AlD+1b6zeikllocN3s0zsfhI0G09I8TrfYxjz5BIcVkKiOxzt6uD+mOsSm75+QK/J7Ya0Wmbj5BKv7BUjBP2EFrAFzgl46sVK4Y8toejnka5QJVpIPATINfHHr3+9UU+zDnf+dmhPDwKkn/7beCpNQwZaZ8cAAZJ0uviUeE2e8GBQsRW2TgcS52x8TYOnrGkm4pCPX9Y5BX3IV/nwrWXJC//+D0hxye18ZDEdB1O2yk9reihOAg0NgXPItDHfp9DbC1lnA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(7416014)(36860700016)(82310400026)(1800799024)(56012099003)(22082099003)(18002099003);
+ SFS:(13230040)(376014)(7416014)(1800799024)(36860700016)(82310400026)(22082099003)(18002099003)(56012099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 4TrhnnT/jU2F9olBKcE9HXvCEyhHZ87UBi5sgMNWhZ7IDRO702K/37uOPKcPGPW2BR/GVtb+u61VwfhfDMNdp4tFUh3hSES2fpi1IdTg1CAsk7ogB+xJFtkQC1PYxBHosUx3K61obtRumiQ4cBUxNDJrfr5NJVnGA5p5fvw6Bd/ZuaWbIwVoNIwYnUXA+o89anNoD+4uCnY4bfeWDMekPL510AO/2DzIqXif48zUm13CIlZ/+TQw5AhMuHtzUGNuH5/ssqyWetay09ODOl7S+G1+9JLK1ynNff9PFXj/G1Z10llZwVt5gmLaH61hu+kPrH92xuO9SUlTk+s3PUGJNkLeLDW8FIGATUIiKxIM5OtoVFXpLAUGSoAvKz9rYtNJBfzL26BkTai6GcCdSA/EIoXD/1VGCV5NRgmdW5gmQIl28vgC+tasIxeKYKZ+KQMf
+X-MS-Exchange-AntiSpam-MessageData-0: 48dboG7pcoxN5xGMzrWbBZqTP7CLXEPezX/W0TGt54+jpzZpmu0J73ggXcVzbVWheeJV6aV9QUE0rnPwYO05uNFSH3IrPDnlAImxHwyrqO5xO7DlQqK+KJYeLzo4GHCFrHRZQgKWjgxB5aUYNBzxqHe538yxuIYaOO33nQZxqcGyr+YQdoM3siPEETi7xBm2vpea3B+Kkva3rcFwuLpvhRuo/xnNzeVBHEeU15iyfEPneazRBOCTKpI+UGh6n5zESoNxN4nPwwj3s7OEb0NKeoMds3IfQ6rigUFOM/IripLp++vy6nrY9GqVol2TwFkDV6bWD3i6bfrXqwQzf6IynODjcW2mTQtst45Jbm5dr4iErXvhreAPWhzc5MGcDcb4t5IkIbIGFFpdpCsQ/rvFDugJ7R/Za8JRu5hFmRqYGXS17S17by810IzD1GbHWt34
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Apr 2026 12:07:23.0344 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 47ed942a-554e-4e02-b7e7-08dea067b625
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Apr 2026 15:48:42.4519 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f88a5f68-2b84-42c7-2bd8-08de9fbd76dc
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000E9DB.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0002256F.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB8762
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7539
 X-Mailman-Approved-At: Wed, 22 Apr 2026 12:38:23 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -134,55 +133,18 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Hello Peter,
 
-On 4/22/2026 2:53 PM, Peter Zijlstra wrote:
-> On Tue, Apr 21, 2026 at 10:56:48PM +0200, Peter Zijlstra wrote:
->> Excellent, I'll write it up tomorrow.
+On 4/21/2026 8:07 PM, Peter Zijlstra wrote:
+>> First hunk orders the first_waiter if we are attaching to the
+>> tail of current first_waiter which would have previously ended
+>> up next to list_head.
 > 
-> How's this? It 'passes' the ww_mutex selftest thing in so far as that I
-> get the same:
+> This is the case in __ww_mutex_add_waiter() where pos == first, right?
 > 
-> [    2.312369] Beginning ww (wound) mutex selftests
-> [    4.853240] stress (stress_inorder_work) failed with -35
-> [    9.379572] Beginning ww (die) mutex selftests
-> [   16.435831] All ww mutex selftests passed
-> 
-> before the offending commit and after this patch.
+> Argh, I see... yes. Perhaps something like the below though?
 
-Yup I see pretty much the same. I think 4k ww-mutexes being fought
-for by #CPUs threads with a short timeout doesn't sit too well with
-stress_inorder_work but it does make some forward progress until
-that timeout hits like before ;-)
-
-> 
-> ---
-> Subject: Subject: locking/mutex: Fix ww_mutex wait_list operations
-> From: Peter Zijlstra <peterz@infradead.org>
-> Date: Wed Apr 22 10:38:41 CEST 2026
-> 
-> Chaitanya and John reported commit 25500ba7e77c ("locking/mutex: Remove the
-> list_head from struct mutex") wrecked ww_mutex.
-> 
-> Specifically there were 2 issues:
-> 
->  - __ww_waiter_prev() had the termination condition wrong; it would terminate
->    when the previous entry was the first, which results in a truncated
->    iteration: W3, W2, (no W1).
-> 
->  - __mutex_add_waiter(@pos != NULL), as used by __ww_waiter_add() /
->    __ww_mutex_add_waiter(); this inserts @waiter before @pos (which is what
->    list_add_tail() does). But this should then also update lock->first_waiter.
-> 
-> Much thanks to Prateek for spotting the __mutex_add_waiter() issue!
-> 
-> Fixes: 25500ba7e77c ("locking/mutex: Remove the list_head from struct mutex")
-> Reported-by: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-> Closes: https://lore.kernel.org/r/af005996-05e9-4336-8450-d14ca652ba5d%40intel.com
-> Reported-by: John Stultz <jstultz@google.com>
-> Closes: https://lore.kernel.org/r/CANDhNCq%3Doizzud3hH3oqGzTrcjB8OwGeineJ3mwZuGdDWG8fRQ%40mail.gmail.com
-> Debugged-by: K Prateek Nayak <kprateek.nayak@amd.com>
-> Signed-off-by: Peter Zijlstra (Intel) <peterz@infradead.org>
-
-Still runs as expected! Feel free to include:
+Neat! Thank you for cleaning it up. Those, along with the changes in
+ww_mutex.h fix the issue of ww-mutex_test hanging in my case. Feel free
+to include:
 
 Tested-by: K Prateek Nayak <kprateek.nayak@amd.com>
 
