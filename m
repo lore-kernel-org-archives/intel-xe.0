@@ -4,156 +4,157 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 331A5F327C8
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Apr 2026 09:01:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F0D5F327CA
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Apr 2026 09:10:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B121D10E843;
-	Tue, 21 Apr 2026 09:01:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D27DC10E84A;
+	Tue, 21 Apr 2026 09:10:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PMAfxLZd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cD07jqSY";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 194AD10E842
- for <intel-xe@lists.freedesktop.org>; Tue, 21 Apr 2026 09:01:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1BB310E84A
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 Apr 2026 09:10:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776762067; x=1808298067;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:mime-version;
- bh=TlZ5rUMqxblARNMDdU/kMdvMCU4luqa7djtNLjzEsTY=;
- b=PMAfxLZdo+n57YjGM9lHRhd4ygFrA/66a2yfZkUnJfQ2CPnAJZONZHtg
- t7Vf8TbQ7HOv14bQnGST3rumPFJxxjMQSs8fq6Z+oMt8uQ7t0zeP1rHOe
- +mqZzeL0o8eUQNonQEPH7HOOl9IzoIvw9M6W0hzM+TdzCcJpJUeU/oB7T
- jw1ZgKDql/ll+h4E8lfC+Eqt1QA5j6O9v105do9lOCt2zKbiMrq7r3r4K
- b4nOfn06sU18iLvThZylDmOnakI3jCGi++cqrvxo+uydC+1c+hTzxNnh7
- sQbewyF+r5Yk2DEDMim155eIyEfWQm6jXbF0oeGDh82fkIWjS75Nt7YT4 A==;
-X-CSE-ConnectionGUID: hxawBZ3oRvmsyPdsD9BWoA==
-X-CSE-MsgGUID: wEY9HHrKSgKz70hfK+TnwA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11762"; a="88767701"
-X-IronPort-AV: E=Sophos;i="6.23,191,1770624000"; d="scan'208,217";a="88767701"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2026 02:01:06 -0700
-X-CSE-ConnectionGUID: nfXU/dgPSW+eBu6ZdT35/A==
-X-CSE-MsgGUID: qK4EBAhRQWuhTSoTz3Asog==
+ t=1776762657; x=1808298657;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=B/S5jMZ+SEOb+lY+ecNXqOWUYAVPnxXawiXq21aC3qw=;
+ b=cD07jqSYAEtwGWfFb1v+GQFrNkIf9BBidwYoNcXnSZeftRCGtZztsM7m
+ ETfGbZKzWfaIX2b8txF3PCCwK0j+Ph8j8XL/jjNzigfN84mjLhDsdxA+0
+ /vAhBGQqTy+nj53ysBpRFYh9uMPyaANiEJmSdss6pyZjxjc271bdRO95/
+ 3S9JK5tDRiGEEGvu/a71n9fG6+qPJD4Fng4be86xRapiXP+JWZyiHeMHv
+ vGIcem/F9xWeqYAyznjuM0q+fTyz9L6fWNC/nmQmdKfQzrmAoAqkur3SU
+ SsPxIwAwEpzkwAeXkhpN7Iij9FR+S1rnSFwBEYLX2YAgldBmvCsYIcWuY A==;
+X-CSE-ConnectionGUID: 2rAN26HGS+WhoqXB2BXkyw==
+X-CSE-MsgGUID: 0kTGhI5vTKWMc5e2wVdZ/Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11762"; a="77705478"
+X-IronPort-AV: E=Sophos;i="6.23,191,1770624000"; d="scan'208";a="77705478"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2026 02:10:56 -0700
+X-CSE-ConnectionGUID: DNgCczMWSbeiDWdYqnBS1A==
+X-CSE-MsgGUID: 7FuwSiv9QPK5bpwFyVyd/w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,191,1770624000"; 
- d="scan'208,217";a="227344570"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2026 02:01:05 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.23,191,1770624000"; d="scan'208";a="255446371"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2026 02:10:55 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 21 Apr 2026 02:01:05 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.2.2562.37; Tue, 21 Apr 2026 02:10:54 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Tue, 21 Apr 2026 02:01:05 -0700
-Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.29) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Tue, 21 Apr 2026 02:10:54 -0700
+Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.47) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 21 Apr 2026 02:01:04 -0700
+ 15.2.2562.37; Tue, 21 Apr 2026 02:10:53 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NgCGvJp5V6I0zOtZl3nciWyc+7fVXSHhDe44fwCiL0wUH//3FtTu5ynGcURu36YemCTVkGIfjed/D29VDqlLtlJjQM7pBGy6x87OgdQzQRabmdVU0c8s0aSeiXdgSusqegJHB9haleFh31UMOp2/fLd3re5v8rEcAWiqAsN3+HIlWErivJNIw83AJLGB2evzHFUICv3LeyRHBdFeNZSJkMdqPLsfbKjruFibbinn9DZQKnvppb66nw1b6oMnqcXGKsVsxKEZJz/rkq8jwM0pf8uzwLkS9KLNq39/Sl2+AkEgQqnN6Sn28VeNKP34HXz5Yo//jga3anYxP4ACGMW3nQ==
+ b=I8Rir7srqc3Q1ZGFdspFEf8yainy8O2e2LRFsuEODfizWy1ztklvrYekN+/ralfm4dAEGOZFUOsrdlInYeZb/VOseswvmryH2lCz9+R4E3demDt4/19fxnzJAj3hCrZNfDOPdvxXoAqqOFCFM1NcOVqst97Y5EiQa0X4dgKGxBXjnAdwrxVjDn7ALt6RkZGb1fgldasSJlpFcPibUvy46Pm3TTiwHn4rHltSh2uhzid9vwuzUvevuf9LMtG6wVAelYO5+kUazkImn1KFHATnkYN+BjXkBCdSqx2X6QnrvzfrxEyDJB28Fne5oi7Ik1A1PWqqKMaVop6cEn/x8ZfwQQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=q0u050Lt6LXe5MzCkLvbPGgIJqYF8CHU4VxZ2EkWJFM=;
- b=OocZWoPhj4DdIX/y24o8d+9YAfbbvDQfQt0Rp4nMEcL4Ji37ihGwQhbzkLNlQStLgot++OLtK+FQibYt7K8Y8bXANGd6V/wvx8AlfEgq0frZKrniIKZgWg6JmUxprSoU7DMsx6pzCwb/EI46oOGfUKN6JXx12HBVhNoSWttEzI/kW+PnHjrxbVREgOOMnrCWLHKR6MnsoOjjBc6DHTtDJnjWg4vWB1tdPvZ75Jr2nG9AMjC/EB79Deu/UwAMgoP0SaddQ0puq1BGHNJIQMofoKrCDkTyLKxkigilb7n8G/MFqZKTBq8fjo0gnMalKeDP4WcN2qGdynok2NXszjRlYQ==
+ bh=Zc0hYZWy6UnHH4ddpt3WPW4pOwFbLMMucYwu3u6dcM8=;
+ b=A9u8NWGrkl6Dit8AgBaakZGL6VtiFMcEhlXV4ap1eKTz2x3vLrnsj3+MZ9mr/g+/i/rRtnwoXoqQtevW6y83s40AkAd6FpFBhmxwVchEzyyGLAbXJiXdJCn53uwBSltVMA2xDPJEDesLmqXB5NQ+oM7j6plo8N9ID0v7+uWPB8k6d0sDrMSeSuQXkTW9d4JUBUxeeY7WyWg1hc0cp7hrLMJD4lNGyVUwB0Yh9unO9nYnarrccFrbow65ipjodY6Beop+Wasxlhda65niViQdxGVq+SrYxFxxkVvtBEgZpvf1TrA0m3j0Pu/1VKW7+x8y+8MY6Nf+UPlj+4MlLmetxA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from LV0PR11MB9792.namprd11.prod.outlook.com (2603:10b6:408:385::5)
- by IA1PR11MB7368.namprd11.prod.outlook.com (2603:10b6:208:420::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.16; Tue, 21 Apr
- 2026 09:01:01 +0000
-Received: from LV0PR11MB9792.namprd11.prod.outlook.com
- ([fe80::1b1f:d9a8:ce76:e9d8]) by LV0PR11MB9792.namprd11.prod.outlook.com
- ([fe80::1b1f:d9a8:ce76:e9d8%3]) with mapi id 15.20.9846.016; Tue, 21 Apr 2026
- 09:01:01 +0000
-Content-Type: multipart/alternative;
- boundary="------------rtVBNEd0f0ZJBOu0iEb2lsJK"
-Message-ID: <13c7ca4c-a093-433a-bab6-78c96e0d4f7f@intel.com>
-Date: Tue, 21 Apr 2026 14:30:31 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] drm/xe/sysctrl: Add helper to query application status
-To: "Anoop, Vijay" <anoop.c.vijay@intel.com>, <intel-xe@lists.freedesktop.org>
-CC: <umesh.nerlige.ramappa@intel.com>, <riana.tauro@intel.com>,
- <michael.j.ruhl@intel.com>, <mohamed.mansoor.v@intel.com>
-References: <20260407191610.841935-2-anoop.c.vijay@intel.com>
+Received: from DM6PR11MB3227.namprd11.prod.outlook.com (2603:10b6:5:5d::16) by
+ IA3PR11MB9110.namprd11.prod.outlook.com (2603:10b6:208:576::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.15; Tue, 21 Apr
+ 2026 09:10:50 +0000
+Received: from DM6PR11MB3227.namprd11.prod.outlook.com
+ ([fe80::2666:d656:48ff:cc9a]) by DM6PR11MB3227.namprd11.prod.outlook.com
+ ([fe80::2666:d656:48ff:cc9a%4]) with mapi id 15.20.9846.016; Tue, 21 Apr 2026
+ 09:10:50 +0000
+From: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
+To: "Tauro, Riana" <riana.tauro@intel.com>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>
+CC: "Gupta, Anshuman" <anshuman.gupta@intel.com>, "Vivi, Rodrigo"
+ <rodrigo.vivi@intel.com>, "aravind.iddamsetty@linux.intel.com"
+ <aravind.iddamsetty@linux.intel.com>, "Nilawar, Badal"
+ <badal.nilawar@intel.com>, "Jadav, Raag" <raag.jadav@intel.com>,
+ "Koppuravuri, Ravi Kishore" <ravi.kishore.koppuravuri@intel.com>, "Koujalagi, 
+ Mallesh" <mallesh.koujalagi@intel.com>, "Purkait, Soham"
+ <soham.purkait@intel.com>, "Ghimiray, Himal Prasad"
+ <himal.prasad.ghimiray@intel.com>
+Subject: RE: [PATCH v4 11/13] drm/xe/xe_ras: Add support for page offline list
+ and queue commands
+Thread-Topic: [PATCH v4 11/13] drm/xe/xe_ras: Add support for page offline
+ list and queue commands
+Thread-Index: AQHczkPh79YWnBeS4EGOEQsY9ar4iLXpQF7A
+Date: Tue, 21 Apr 2026 09:10:49 +0000
+Message-ID: <DM6PR11MB32277AE94FAD89591953174B812C2@DM6PR11MB3227.namprd11.prod.outlook.com>
+References: <20260417085812.4013309-15-riana.tauro@intel.com>
+ <20260417085812.4013309-26-riana.tauro@intel.com>
+In-Reply-To: <20260417085812.4013309-26-riana.tauro@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-From: "Nilawar, Badal" <badal.nilawar@intel.com>
-In-Reply-To: <20260407191610.841935-2-anoop.c.vijay@intel.com>
-X-ClientProxiedBy: MA5P287CA0250.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1ae::9) To LV0PR11MB9792.namprd11.prod.outlook.com
- (2603:10b6:408:385::5)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV0PR11MB9792:EE_|IA1PR11MB7368:EE_
-X-MS-Office365-Filtering-Correlation-Id: ed344dd7-e21e-4baa-3034-08de9f8482c8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|8096899003|22082099003|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info: z7oDg9TIwZQCaJMDS1H+EOfvZlkJ19PmCDZhLhoZJnbSRlWZr/ZokZwWNNY2INhAXCm4WoiQNJMW2+A2HCh5zBdmHnK1+PbSyuNKH9C4OtjeOePY9BMUSTXI2gz69gkXyTJjob7kK0K0w/elfCEE2xzeItPD+iBiWkGj4hC/bauJ5U11RN5nz7TtueIlhXBu2CGeWwr7bg7S59UpN5VX1HpCrNMm0UL1Tril8nS+7OBdMmlpn8jj0CAAM2AqX/I0snQBdn9p9zdZlIrHAHJQFjy/YzpZEt2Ew4BqVcdU/K1N6zuCy/54jmNsrrUnCMrqBQyP0o1GSrIS9r8G8ZdxEZbG6166iN/glIfJYrPWPoHnpRrgJ96CFl4GpgWNPux5ptqnb4IjHFPIj2foUgCLV1U0N2Jd6xEBJ75HtGhYqG5qinVzfDgMgRvpqhx+IIqhWbeVCtkYiPgo0nDpuPwwgWcumTn/U5Cn57OUEBSg8L0St4t2AQBIUlxfdA+nm59FiEiv/V7Z0HjeQ4WZaU6bHuDSEiNdOdR6soGODPkL9gwnGf4/VNiXATmSUZsjwFZMyA8bZHP85Afg6wa4gO4ZY5kcbA4ib/9c9VsUrjYEPmd6lN63dQCbVfr9bUYHCjH9Ro0XWdWZ3O6qYJ36cVAm04af5d4WHFKA8mD3RFs5MF3tcTapMNY48t0CEIEohmciBab3cyz8emrNLRy0LWaGe9TLwgeNp86zuGsCAt6RMos=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LV0PR11MB9792.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(8096899003)(22082099003)(18002099003)(56012099003);
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM6PR11MB3227:EE_|IA3PR11MB9110:EE_
+x-ms-office365-filtering-correlation-id: ec71fc4c-7a95-4d1d-696f-08de9f85e1d2
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|366016|1800799024|376014|38070700021|56012099003|22082099003|18002099003;
+x-microsoft-antispam-message-info: FCQ5Ccd2hqmjFZ07Z+DDQs+SfF7Fe2iH5HOI6xlAltlVqYhM6jenVGDL3iZs+1vYRUUnVsoPb2S0dp1tjvOSPcet7lFiTiy1V2AaBC+g02c5PwHGuPB86whcnjSOTwUSB2oex8hXpTdXLvDFnDUyqeurPUuAq1le5sLT5S+Gxfv+fZCf9qNPT15CSH8rg7hwzE+bndhYxHNmkv88YgtKg0uhlu2Foi8/PCpKsHVGLIXIKm3fALSb7hHVDsvpexU+PhjswdgojEOqzmP2nJOQRe+gGJxxqeFjQE8I1NEAzDPbj4zNyPDzZIBT8iPhmqOE06pGCOTctBqpbSyVoL/8mySuBi19pGR2jI4fwlH8lerUYas1w/PFUb9ShFoaHvy93YpONx1gxNPsxfPKtQZxuMxir2onmdzSY4P6nYaK5tbvSoBtZZbRW7UFFJcB7DUbzpv1YH0XPAYhdDQl7ZZWvXejQL3tLYyKv0QHx5cpQoB2Bj44XbnGZ0gbHYPNuMOs1SVliqcLsH1Ngirx+/aaOJenGZN9kyV010IjlQgRYxTt2Z4WTkEMvgeBB706PEFVv3vlxXvsA0EAqDqfBom7TBXIuySUofDZstBIWbOlYAgrBL4ka70N1niXsk2fdx3QFpAdZ8o3fRzTRolImzVjXj24L6q2aVeyYx1eQvW9VDfLP4xFsIHT/uVZlAz1ayOfb4C9xKnJWveke9o93TN0VhGrTS6O6FTXA09DMKn8uQxqUHZoXUbsw44Tq2LKIQUPIa/DBlVTTlig7hVIM62D6BCi7EjImjYjZ5oIY64nUz8=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR11MB3227.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(38070700021)(56012099003)(22082099003)(18002099003);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WnhtNDBaVERyMmluSTFwdncwTTNnMlREVy96TFhwblRlOTRRNkZ4WEhydDd4?=
- =?utf-8?B?RG56SmwxZzQwU1RIdVJyUk13NXNER2VoY2hjc3dYdzA4SFUzNWVBUG1IZlVx?=
- =?utf-8?B?ZlZNWlFnVlFvWGNiWmdwTUJTS3ZJbFJPU1FjdW5sWFhhRW8yTWlCOVRUT1cz?=
- =?utf-8?B?OFpMNHlCOG9pa1ZvQXEyZHFxdEcxc0YvVG9JVm9uaHpwSjJ6SzFRR3dNT0ZT?=
- =?utf-8?B?eWhGaDFualhSRC9ESmszTG92YkhiZW56cmdhU1ViaFJrUG1sT1dLaVVKYms5?=
- =?utf-8?B?OVlJekUyV2d6MlFZU21LNUtXYjk2NzBKZkhHMWNNalMwL3hvV01sM25kK2N3?=
- =?utf-8?B?VkRqbjlhK2EwSEZWNUdXbG1kR0VZeDRPeVVyWGpnaTJGWW1RVGpsNlZvOCtM?=
- =?utf-8?B?T3NVdFdZL3ZZUytYL3o1dlVzcGZXV2Flb1dxeUxLMnlKSVFLVk00aEhmZUc1?=
- =?utf-8?B?cmFSWXhBRm5naGRDVGFNYXF5N0UzUitKVHlCUFNOYmVWc2k3MTU3SUpFNGZs?=
- =?utf-8?B?Smw4amhjeUNUVTVuN05uRHpjbHIzM09GdUE0QW5kL1Ewc2FTODF1TjZmeFFl?=
- =?utf-8?B?S3IxTmppanhkNmpRWkpiZklHYk5WL2dKTVRuV2g3VnBWWUxJMms4YkpGdTY3?=
- =?utf-8?B?RitMem96TC9EeDg0andQeHJQL2ZQMVVEYjE4ZEE0MnBjemN6aXI1L3VKM1Rm?=
- =?utf-8?B?a2p2b1dUb2k4MlhtZFVyb3A5U2lGaXZyQnNhTmYvR2tvVUVsU2JKSVZXWldJ?=
- =?utf-8?B?N05aU3M2bXhoMWZXaXdmMitnTitUb21TQ2ppZEU2TXpUT21ndXVZNEYvR3Mw?=
- =?utf-8?B?SjVtQjZCTTU4K285REJuM3lsYkJYRjVMcUhicU9kRDJlVzVMZkZIdDJLS21G?=
- =?utf-8?B?T0c5aFc2SGFJaXl4RjFQazRPMjU5bUVOMFFram1IeUlOd004Z1JJTXZDM21Y?=
- =?utf-8?B?NjlXWElsdllDcnp6MjZBTi85QlpCbE9CVjZBWUF6K1JKbHZnVENDd1I3QWNO?=
- =?utf-8?B?WE1GQ25NWjNsdUFiTTJZNEJzRHJhYW13a2lkOUFzNHUzZkpDVkk5Y0QyZjVm?=
- =?utf-8?B?U01neWFqVWJ2b0FuUy9XU0oyV2VxK041N3ZsL2RobCt4TnpzQVZZMUJRVzdE?=
- =?utf-8?B?UXJodHZVSUU4cXpYOGF4MUJxRk1WS1kyOTF5RWVCbUFHVVRnb0RLeFFXcERz?=
- =?utf-8?B?b1RNcUc1NFU2Q0thVEd2aXU4RTMyZXZCbi9yL3VoanNoWllOSzFteDdPbkQr?=
- =?utf-8?B?REdHa2R2dzJtdHB1MGlIa3BtMGdrQk1aZzRER09rWGQ1c21sU0ovWWExbjFz?=
- =?utf-8?B?QnIrTm96akRsRFNSL0RyVldWb05TMG5qWm5vczFJUWp5eFRQb2dhR1FPdndJ?=
- =?utf-8?B?bHpvZXBOQ1UwZ3k4M0xWemZKV09mam5idUk2VTVPOS9CT0FuckJqRDljQi96?=
- =?utf-8?B?cmZ4YlVnTmlPcGtwZndwL1hnSDF6OGtrN3BjaHFZcGVqbFpMYUViT0w5U0dN?=
- =?utf-8?B?d25rTjhqR1JPejNxdGhsMlhGL3BreWk0bXFhQ2pFZGFVMEVidmRBS3RNekNF?=
- =?utf-8?B?dGw2djN6cVRQS0p6OGpWUVVLZ3BvSFFhNVREekZ2eXFvNk1zcEpqc211RlhR?=
- =?utf-8?B?amJVZ2FlczRTc2MyOW1SalVqaFZFeFRSa3lHTlllNmh5cUpLSzk0VGtjeHZk?=
- =?utf-8?B?aGNibnpOWjZNU2hhZmFxOW1SSWxWNDBxai91VHNNVjREQTl5U3NKL0VXTFBa?=
- =?utf-8?B?ejVheTI1cmE5U0dib1FlVG1YOU1UNDZWOFg4N1hkRW5iMGZpclo0WjdWOWdK?=
- =?utf-8?B?bm5rT3doK3pUaWc0YUJmbXA2eEJsR1lXS1owZVhPQkJ5cTd4NVRiV2lMcWln?=
- =?utf-8?B?WkUrSGZvcEI5d29aSUYrRUFOcW4yTEoxT0lLVjNSMkhZaWNHQ29iVkxlUllp?=
- =?utf-8?B?YmRJak9nNHlnSEhmQUpzNlczL09zaUE3aFdzeVNnR0FRWjFqRG5QYkI3UkR1?=
- =?utf-8?B?Nm00Slo0aDFldWc5QmZoNkZES3FYa01xZ3RTUUc3ekJ1KytJS0JYemFrK0p5?=
- =?utf-8?B?aG1xQzY1Y2FXKzkvS2ZBMENRS25ETjlKOG8xbXNtVkltdHdlNi8rbFgrM2F5?=
- =?utf-8?B?MFB4UG9sMFh3ZkxFYzJlM25RRm9YOVIzTjBzbHpDbDV6b3RNalg0d25YUlA0?=
- =?utf-8?B?cUNZZUUvRnlERm41aEthRVJyNWtRL3J6S1BSRmplWU9ocTc5TGdKaW9peTNi?=
- =?utf-8?B?Qm4ycW80ZlE0M1I4ZzVDZFIxM1BwK0lNWXd1NVR5RlhmUmQ4aEZ5YTYzVTdq?=
- =?utf-8?B?TmEvTlM5ZDVZUUNnQngwU0FSUEQwTnF6SzRQQVpZMXN0UVlwc3NJZz09?=
-X-Exchange-RoutingPolicyChecked: MgY0qZGDwoabTNKlwFBFB31KxA6k5EAxpEoPxCZY5gsvz9WmPm9VLNefS5PvVHZa96bUsM+WimFh01sEA7ZhCSbEwTuwVDkRezPceZh5X1bez3dunDgy5dmw/zgzQ/mfAKrQ9kbAEtEUyPJ0SCUOLzL3Reao3GBS29j4upUO+4KFEFXZZ8aY2cnndPuYLdi3xEDx4ISx5RUUTRfeht/VRMTsJSCeqhiv7NdJ7eCmsiE2aZQCduj+5h/yYNBe8sImWHH2owK6W3q9No4ADaedANwst70Lu9qvwH8a9rLpbyUwLH/tYhYrbuHPWVwl5XVwSBFmAkmSx5TTV97Hvqolzg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: ed344dd7-e21e-4baa-3034-08de9f8482c8
-X-MS-Exchange-CrossTenant-AuthSource: LV0PR11MB9792.namprd11.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?muUnj1vK+WNgcjS+ltmLSaTJfTLyf8kkgJmwl4rulLGyjKtQgkCWPfMA9m3w?=
+ =?us-ascii?Q?XQoh0EhPcemFB6eCqIc7mhdieD5OLub7KCbxJx/N0opwF3ohnk5Rmj1F1W3P?=
+ =?us-ascii?Q?kTWJahT0ywE3xNAP2QrCiePGa+XAdqufO3SHToHBxtZhFwLRgJkJRZaYHOZh?=
+ =?us-ascii?Q?uZw6K9ywLaiIGn4zvBKpL8CqdQ/7fzmEv2JDBCow3v2hROYf83MZZ5R/riHj?=
+ =?us-ascii?Q?bqdWpT2dlz9HXIL+Kgm7L6BhFxBBFbS/HtfD15ouyuKpcPEsE+KI7UQJOJev?=
+ =?us-ascii?Q?2ugnU5AzRLHpcAi3lkTuqHKGSeZKp4L1MIiYgtbobBKN89Ih9n7ZKSKGx04X?=
+ =?us-ascii?Q?66mb0p+p5pYEiFSr6jQiRY9WTOPZSbof4jir2OZf8sRJS3s/xtV9BvPo9gBn?=
+ =?us-ascii?Q?2FqtN1VSa9bbwP+PSR6L2S8/yrTKpB9HqJkLIQjq5GEwv07DKJ6Q+9D4ESFN?=
+ =?us-ascii?Q?cpbSgeR8Y+fPz6n5X35RVxTWi4OuT36gF5u5P+VlPARa+jGomJ1FwjVnVE75?=
+ =?us-ascii?Q?OAJM6quyaKK7d+u/AwHRXJcwYeJ/LNDD0bqTt7KiHtQfTVroD8If387LSenP?=
+ =?us-ascii?Q?M3ZPyn0Z7gIp49rPe+M7+zSioxBGrNE+o2XK2/+L0pY2CJvVl7sodPWt6pMA?=
+ =?us-ascii?Q?KiN19gMVJYDC8QQydfBd5k0cJEUladgYdUlReoTUg7akR+6vXT6dfBRuahxh?=
+ =?us-ascii?Q?RDZIt89JErn+xy649F+OJCacoTUOyn/0vAafCXuiV46GhpR5CmF6YeN5/nJ0?=
+ =?us-ascii?Q?kbdI6pPiE4F7yn216EC41XXbjY/eElmmhOcPXqheD2wCf2sGidGC5qn4dVHN?=
+ =?us-ascii?Q?ltIfCZLodeBLVWniw7GQR4bJo3Jr01zn4jvBEaKI7xeyT1C0bDad6VldFTMG?=
+ =?us-ascii?Q?oTSW4OAq5yQ7XaJTUTmziFOYzx+VWLua6D2QOBI2TTpCRAMfD7mxufX/yq5T?=
+ =?us-ascii?Q?3I1H2IP3N7iIZsyH/BNsqv+J+H3zorluUCuz55E3mY/mvvOMoE4xmkVQ7SB2?=
+ =?us-ascii?Q?o+FWlrGxtqj6MPXb2s9VLcjrrFPJIMr6U3CQ8ZPmZ71Uo5RxF52hVZdafpnk?=
+ =?us-ascii?Q?Q8wTItnnQjq4y8D+KGSOPq/Vkz6Heof+BUjinLNJV12EaD4gu9Qeyd3u5ttE?=
+ =?us-ascii?Q?NS51558UCblK/usvb1y3DgYdZvvqWpvCRn+Dl+qvh2n8LOgjgiHQLhT4xuJo?=
+ =?us-ascii?Q?mNfx89B6b+sTHbjDe6lWR4P/d1qH74VCBHhn5EsYiRE3WSAoCukOVnf9+0M1?=
+ =?us-ascii?Q?RwTUTsu+FEzpDZAfjCZ9lwMiupJMJygXY5gGYtQRP2vC4A2o9TZlEnOPhzlh?=
+ =?us-ascii?Q?wgxmGfgPOaRA2yUutzcupt8bSZnAYJX1QiQjrfRhwEx9Q85NvADqqqz845+H?=
+ =?us-ascii?Q?S00j9BIw8LDZAiNOBlxQ6wvWHZykjRnAE4JpsfDwyt7xYBTA4mfhRbf+OZho?=
+ =?us-ascii?Q?ANCzN2AzlTg3oRzwtqG5l/plCxbl8Y9Koi0ENBt1Z1SNEKaDsMVUW6VSlJcR?=
+ =?us-ascii?Q?Pv/XsDKTQfCNPvomZL3e2HHCB6zCDr9ACgIz3m0MjNo757PchvgqLaDIM9ll?=
+ =?us-ascii?Q?0NyMpv+vHv6sfNuMb0cUgCJT8r2dH/3JiAIZcVVbfVatcbXznkZuUt760Vbi?=
+ =?us-ascii?Q?q1UsOVIG45IT0l6iulb3NcOUrrW+2ss/F2CmsuT2BJPghUSBQjzjeW/AJoEf?=
+ =?us-ascii?Q?CJjtQKDUlraHnN3nCc0ECxU4oxjohVlfZAgb9CUj/jHvmKzHYcfaz8D41D39?=
+ =?us-ascii?Q?G1lHY6rihw=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-Exchange-RoutingPolicyChecked: ZF0kpIRL8HJz9UV5Pjb7DQzYg/chJAvYovTXunlmQOiD7h1PDiEeVinWna6Of6Pg+md/ylkXFgU4+IUHcK3BNVPNtUbr28QHulC/tH2yf1harl/YM7aMtdWrygLcsjOPRG/JR4/113xuJ8Aea8L3QRutxYKFlqnhf00H/nbwZP7PBDSWA+MZm17SgbRC0RAtxu3fwqsRot5ivO/PfJxiEDCFYP0QzadjxxQf6xvr0Uo05QAlbwA22QUZDseu8AnzgWnotq2u8sr1JvQ3vycg86ChrPFkx9DJehYghCVe4Xx9Ryzb30kJtE7mKXdi+PmjAQp/2pIuBWFjW00feN0IqA==
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Apr 2026 09:01:01.2675 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: U5yYsTcTKzA63J7i1XPrz7C16hXPMc+X2zdk+fN03/BnlEWYtTbGwo/utKPvlnHdPRkeryFLxt+8KhkbccRPoA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7368
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3227.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ec71fc4c-7a95-4d1d-696f-08de9f85e1d2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Apr 2026 09:10:50.0949 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: W3WMU5CD91XAquZYnhdKKmtoFpgdZ1EQFKHcR6gFbvd+pWd7Cw0jRYnQq03mRlndaDkzHNUJtmv6Y9XdH/qlElq4srLIoBMUgrNwaxNu/0Q=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR11MB9110
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -169,382 +170,241 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---------------rtVBNEd0f0ZJBOu0iEb2lsJK
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
 
 
-On 08-04-2026 00:46, Anoop, Vijay wrote:
-> From: Anoop Vijay<anoop.c.vijay@intel.com>
->
-> Introduce xe_sysctrl_check_app_status() to query whether a sysctrl
-> application is loaded and booted, returning standard error codes for
-> not loaded (-ENOENT) or not booted (-EAGAIN) states.
->
-> Signed-off-by: Anoop Vijay<anoop.c.vijay@intel.com>
+> -----Original Message-----
+> From: Tauro, Riana <riana.tauro@intel.com>
+> Sent: 17 April 2026 14:28
+> To: intel-xe@lists.freedesktop.org
+> Cc: Tauro, Riana <riana.tauro@intel.com>; Gupta, Anshuman
+> <anshuman.gupta@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>;
+> aravind.iddamsetty@linux.intel.com; Nilawar, Badal
+> <badal.nilawar@intel.com>; Jadav, Raag <raag.jadav@intel.com>;
+> Koppuravuri, Ravi Kishore <ravi.kishore.koppuravuri@intel.com>; Koujalagi=
+,
+> Mallesh <mallesh.koujalagi@intel.com>; Purkait, Soham
+> <soham.purkait@intel.com>; Upadhyay, Tejas <tejas.upadhyay@intel.com>;
+> Ghimiray, Himal Prasad <himal.prasad.ghimiray@intel.com>
+> Subject: [PATCH v4 11/13] drm/xe/xe_ras: Add support for page offline lis=
+t
+> and queue commands
+>=20
+> Add handling for page offline list and queue sysctrl commands. The page
+> offline list command retrieves pages that are already offlined by the fir=
+mware.
+> The page offline queue command retrieves the pages pending to be offlined=
+ by
+> the firmware.
+>=20
+> Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 > ---
->   drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h | 49 +++++++++++++++++++
->   drivers/gpu/drm/xe/xe_sysctrl.c         | 63 +++++++++++++++++++++++++
->   drivers/gpu/drm/xe/xe_sysctrl.h         |  1 +
->   3 files changed, 113 insertions(+)
->
-> diff --git a/drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h b/drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h
-> index 4cbde267ac44..7e1d88dd1c94 100644
-> --- a/drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h
-> +++ b/drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h
-> @@ -62,4 +62,53 @@ struct xe_sysctrl_app_msg_hdr {
->   #define APP_HDR_VERSION_MASK		GENMASK(23, 16)
->   #define APP_HDR_RESERVED_MASK		GENMASK(31, 24)
->   
-> +/** System Controller Core command group */
-> +#define XE_SYSCTRL_GROUP_CORE		0xFF
-> +
-> +/*
-> + * XE_SYSCTRL_CMD_GET_APP_STATUS - Query application status
-> + *
-> + * Check if a System Controller application is loaded and its status.
-> + *
-> + * Group: XE_SYSCTRL_GROUP_CORE (0xFF)
-> + * Command: 0x04
-> + */
-> +#define XE_SYSCTRL_CMD_GET_APP_STATUS	0x04
-> +
-> +/**
-> + * struct xe_sysctrl_get_app_status_req - Get application status request
-> + * @app_name: Application name (16 bytes, null-terminated)
-> + */
-> +struct xe_sysctrl_get_app_status_req {
-> +	char app_name[16];
-> +} __packed;
-> +
-> +/**
-> + * struct xe_sysctrl_get_app_status_resp - Get application status response
-> + * @handle: Identifier used to control the app
-> + * @flags: Application status flags (see XE_SYSCTRL_APP_* definitions)
-> + */
-> +struct xe_sysctrl_get_app_status_resp {
-> +	u16 handle;
-> +	u16 flags;
-> +} __packed;
-> +
-> +/**
-> + * DOC: System Controller Application Status Flags
-> + *
-> + * Flags returned in xe_sysctrl_get_app_status_resp indicating the
-> + * current state of a System Controller application.
-> + */
-> +
-> +/** Application is loaded in System Controller */
-> +#define XE_SYSCTRL_APP_LOADED		BIT(0)
-> +/** Application binary is valid */
-> +#define XE_SYSCTRL_APP_VALID		BIT(1)
-> +/** Application has completed boot sequence */
-> +#define XE_SYSCTRL_APP_BOOTED		BIT(2)
-> +/** Application loaded as late binding */
-> +#define XE_SYSCTRL_APP_LATE_BINDING	BIT(3)
-> +/** Application contains data only (no executable code) */
-> +#define XE_SYSCTRL_APP_DATA_ONLY	BIT(4)
-> +
->   #endif
-> diff --git a/drivers/gpu/drm/xe/xe_sysctrl.c b/drivers/gpu/drm/xe/xe_sysctrl.c
-> index 2bcef304eb9a..6073c80ee79c 100644
-> --- a/drivers/gpu/drm/xe/xe_sysctrl.c
-> +++ b/drivers/gpu/drm/xe/xe_sysctrl.c
-> @@ -14,6 +14,7 @@
->   #include "xe_soc_remapper.h"
->   #include "xe_sysctrl.h"
->   #include "xe_sysctrl_mailbox.h"
-> +#include "xe_sysctrl_mailbox_types.h"
->   #include "xe_sysctrl_types.h" /** @@ -99,3 +100,65 @@ void xe_sysctrl_pm_resume(struct xe_device 
-> *xe) xe_sysctrl_mailbox_init(sc); } + +/** + * 
-> xe_sysctrl_check_app_status - Check if System Controller app is loaded 
-> + * @xe: xe device instance + * @app_name: Name of the application to 
-> check (max 15 chars + null terminator) + * + * Query System Controller 
-> firmware to verify if the specified application + * is loaded and 
-> booted. This is typically required before sending commands + * to 
-> application-specific command groups. + * + * Common application names: 
-> + * - "ocode"- oCode
-> + * - "diag" - Dianostics
-> + *
-> + * Return: 0 if app is loaded and booted, negative error code otherwise:
-> + *		-ENODEV if System Controller is not available
--EOPNOTSUPP
-> + *		-EINVAL if app_name is invalid
-> + *		-EIO if communication with firmware failed
-> + *		-ENOENT if application is not loaded
-Is app not loaded error?
-> + *		-EAGAIN if application is loaded but not booted yet
-
-How about returning positive status and caller can decide whether to 
-retry and not.
-
-APP_INVALID, APP_NOT_LOADED, APP_LOADED, APP_RUNNING. In case of 
-APP_NOT_LOADED/APP_LOADED caller can retry after some interval for 
-APP_RUNNING
-
-> + */
-> +int xe_sysctrl_check_app_status(struct xe_device *xe, const char *app_name)
-> +{
-> +	struct xe_sysctrl_get_app_status_req req = {};
-> +	struct xe_sysctrl_get_app_status_resp resp = {};
-> +	struct xe_sysctrl_mailbox_command cmd = {};
-> +	size_t out_len = 0;
-> +	u16 flags;
+>  drivers/gpu/drm/xe/xe_ras.c                   | 85 +++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_ras_types.h             | 39 +++++++++
+>  drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |  6 +-
+>  3 files changed, 129 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c in=
+dex
+> cd1ac6441b92..42ec27c05e9a 100644
+> --- a/drivers/gpu/drm/xe/xe_ras.c
+> +++ b/drivers/gpu/drm/xe/xe_ras.c
+> @@ -319,6 +319,87 @@ int xe_ras_page_offline(struct xe_device *xe, enum
+> xe_ras_page_action action, u6
+>  	return 0;
+>  }
+>=20
+> +static void get_queued_pages(struct xe_device *xe) {
+> +	struct xe_sysctrl_mailbox_command command =3D {0};
+> +	struct xe_ras_page_offline_queue response =3D {0};
+> +	u32 count =3D 0;
+> +	size_t rlen;
 > +	int ret;
 > +
+> +	/* Supported only on platforms with system controller */
 > +	if (!xe->info.has_sysctrl)
-> +		return -ENODEV;
-return -EOPNOTSUPP;
+> +		return;
 > +
-> +	if (!app_name || strlen(app_name) == 0 || strlen(app_name) >= sizeof(req.app_name))
-> +		return -EINVAL;
+> +	prepare_sysctrl_command(&command,
+> XE_SYSCTRL_CMD_GET_OFFLINE_QUEUE, NULL, 0,
+> +				&response, sizeof(response));
 > +
-> +	strscpy(req.app_name, app_name, sizeof(req.app_name));
+> +	do {
+> +		memset(&response, 0, sizeof(response));
 > +
-> +	cmd.header.data =
-> +		cpu_to_le32(FIELD_PREP(APP_HDR_GROUP_ID_MASK, XE_SYSCTRL_GROUP_CORE) |
-> +			    FIELD_PREP(APP_HDR_COMMAND_MASK, XE_SYSCTRL_CMD_GET_APP_STATUS) |
-> +			    FIELD_PREP(APP_HDR_VERSION_MASK, 0));
+> +		ret =3D xe_sysctrl_send_command(&xe->sc, &command, &rlen);
+> +		if (ret) {
+> +			xe_err(xe, "[RAS]: sysctrl: error ret %d\n", ret);
+> +			return;
+> +		}
 > +
-> +	cmd.data_in = &req;
-> +	cmd.data_in_len = sizeof(req);
-> +	cmd.data_out = &resp;
-> +	cmd.data_out_len = sizeof(resp);
+> +		if (rlen !=3D sizeof(response)) {
+> +			xe_err(xe, "[RAS]: sysctrl: response size mismatch.
+> Expected %zu, got %zu\n",
+> +			       sizeof(response), rlen);
+> +			return;
+> +		}
 > +
-> +	ret = xe_sysctrl_send_command(&xe->sc, &cmd, &out_len);
-> +	if (ret)
-> +		return -ENOENT;
+> +		/* TODO: Process pages and offline them */
 > +
-> +	if (out_len != sizeof(resp))
-> +		return -EIO;
-> +
-> +	flags = le16_to_cpu(resp.flags);
-> +
-> +	if (!(flags & XE_SYSCTRL_APP_BOOTED))
-> +		return -EAGAIN;
-
-return positive status as commented above.
-
-Thanks,
-Badal
-
-> +
-> +	return 0;
+> +		count +=3D response.pages_returned;
+> +		if (count > response.total_pages) {
+> +			xe_err(xe, "[RAS]: sysctrl: Pages returned exceed total
+> pages %u, returned %u\n",
+> +			       response.total_pages, count);
+> +			return;
+> +		}
+> +	} while (response.additional_data);
 > +}
-> diff --git a/drivers/gpu/drm/xe/xe_sysctrl.h b/drivers/gpu/drm/xe/xe_sysctrl.h
-> index f3b0f3716b2f..db2743d54cea 100644
-> --- a/drivers/gpu/drm/xe/xe_sysctrl.h
-> +++ b/drivers/gpu/drm/xe/xe_sysctrl.h
-> @@ -18,5 +18,6 @@ static inline struct xe_device *sc_to_xe(struct xe_sysctrl *sc)
->   
->   int xe_sysctrl_init(struct xe_device *xe);
->   void xe_sysctrl_pm_resume(struct xe_device *xe);
-> +int xe_sysctrl_check_app_status(struct xe_device *xe, const char *app_name);
->   
->   #endif
---------------rtVBNEd0f0ZJBOu0iEb2lsJK
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+> +
+> +static void get_offlined_list(struct xe_device *xe) {
+> +	struct xe_sysctrl_mailbox_command command =3D {0};
+> +	struct xe_ras_page_offline_list response =3D {0};
+> +	int ret, count =3D 0;
+> +	size_t rlen;
+> +
+> +	/* Supported only on platforms with system controller */
+> +	if (!xe->info.has_sysctrl)
+> +		return;
+> +
+> +	prepare_sysctrl_command(&command,
+> XE_SYSCTRL_CMD_GET_OFFLINE_LIST, NULL, 0,
+> +				&response, sizeof(response));
+> +
+> +	do {
+> +		memset(&response, 0, sizeof(response));
+> +
+> +		ret =3D xe_sysctrl_send_command(&xe->sc, &command, &rlen);
+> +		if (ret) {
+> +			xe_err(xe, "[RAS]: sysctrl: error ret %d\n", ret);
+> +			return;
+> +		}
+> +
+> +		if (rlen !=3D sizeof(response)) {
+> +			xe_err(xe, "[RAS]: sysctrl: response size mismatch.
+> Expected %zu, got %zu\n",
+> +			       sizeof(response), rlen);
+> +			return;
+> +		}
+> +
+> +		/* TODO: Process pages and offline them */
+> +
+> +		count +=3D response.pages_returned;
+> +		if (count > response.total_pages) {
+> +			xe_err(xe, "[RAS]: sysctrl: Pages returned exceed total
+> pages %u, returned %u\n",
+> +			       response.total_pages, count);
+> +			return;
+> +		}
+> +	} while (response.additional_data);
+> +}
+> +
+>  #ifdef CONFIG_PCIEAER
+>  static void aer_unmask_and_downgrade_internal_error(struct xe_device *xe=
+)
+> { @@ -394,4 +475,8 @@ void xe_ras_init(struct xe_device *xe)  #ifdef
+> CONFIG_PCIEAER
+>  	aer_unmask_and_downgrade_internal_error(xe);
+>  #endif
+> +
+> +	/* Get any pages that need to be offlined from firmware and reserve
+> them */
+> +	get_offlined_list(xe);
+> +	get_queued_pages(xe);
+>  }
+> diff --git a/drivers/gpu/drm/xe/xe_ras_types.h
+> b/drivers/gpu/drm/xe/xe_ras_types.h
+> index d76310866da5..1a5de6cd16a1 100644
+> --- a/drivers/gpu/drm/xe/xe_ras_types.h
+> +++ b/drivers/gpu/drm/xe/xe_ras_types.h
+> @@ -10,6 +10,7 @@
+>=20
+>  #define XE_RAS_NUM_ERROR_ARR		3
+>  #define XE_RAS_MAX_ERROR_DETAILS	16
+> +#define XE_RAS_NUM_PAGES		25
+>  #define XE_RAS_IEH_PUNIT_ERROR		BIT(1)
+>=20
+>  /**
+> @@ -297,4 +298,42 @@ struct xe_ras_page_offline_response {
+>  	/** @reserved: Reserved for future use */
+>  	u32 reserved;
+>  } __packed;
+> +
+> +/**
+> + * struct xe_ras_page_offline_list - Response from get offline list
+> +command
+> + *
+> + * This structure provides the details of offlined pages from flash.
+> + */
+> +struct xe_ras_page_offline_list {
+> +	/** @max_entries: Total no of pages that can be stored in flash */
+> +	u32 max_entries;
+> +	/** @total_pages: Total number of permanently offlined pages */
+> +	u32 total_pages;
+> +	/** @pages_returned: Number of pages returned in this response */
+> +	u32 pages_returned;
+> +	/** @page_addresses: Array of permanently offlined page addresses
+> (4KB aligned) */
+> +	u64 page_addresses[XE_RAS_NUM_PAGES];
+> +	/** @additional_data: Indicates if more data is available */
+> +	u8 additional_data;
+> +	/** @reserved: Reserved for future use */
+> +	u8 reserved[3];
+> +} __packed;
+> +
+> +/**
+> + * struct xe_ras_page_offline_queue - Response from get offline queue
+> +command
+> + *
+> + * This structure provides the details of queued offlined pages from fir=
+mware.
+> + */
+> +struct xe_ras_page_offline_queue {
+> +	/** @total_pages: Total number of queued pages */
+> +	u32 total_pages;
+> +	/** @pages_returned: Number of pages returned in this response */
+> +	u32 pages_returned;
+> +	/** @page_addresses: Array of offlined page addresses (4KB aligned)
 
-<!DOCTYPE html><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 08-04-2026 00:46, Anoop, Vijay
-      wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:20260407191610.841935-2-anoop.c.vijay@intel.com">
-      <pre wrap="" class="moz-quote-pre">From: Anoop Vijay <a class="moz-txt-link-rfc2396E" href="mailto:anoop.c.vijay@intel.com">&lt;anoop.c.vijay@intel.com&gt;</a>
+I understand that we will have 4K aligned addresses reported to core offlin=
+e API right? If yes can you also add double check before passing if its rea=
+lly 4K aligned?
 
-Introduce xe_sysctrl_check_app_status() to query whether a sysctrl
-application is loaded and booted, returning standard error codes for
-not loaded (-ENOENT) or not booted (-EAGAIN) states.
+Tejas
+> */
+> +	u64 page_addresses[XE_RAS_NUM_PAGES];
+> +	/** @additional_data: Indicates if more data is available */
+> +	u8 additional_data;
+> +	/** @reserved: Reserved for future use */
+> +	u8 reserved[3];
+> +} __packed;
+>  #endif
+> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+> b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+> index 2cafa8a14cc3..b6139ac0eaca 100644
+> --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+> +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+> @@ -15,10 +15,14 @@
+>   *
+>   * @XE_SYSCTRL_CMD_GET_SOC_ERROR: Get basic error information
+>   * @XE_SYSCTRL_CMD_PAGE_OFFLINE: Instruct firmware to offline/decline a
+> page
+> + * @XE_SYSCTRL_CMD_GET_OFFLINE_LIST: Get list of all offlined pages
+> + from flash
+> + * @XE_SYSCTRL_CMD_GET_OFFLINE_QUEUE: Get list of offlined queued
+> pages
+> + from firmware
+>   */
+>  enum xe_sysctrl_mailbox_command_id {
+>  	XE_SYSCTRL_CMD_GET_SOC_ERROR		=3D 0x01,
+> -	XE_SYSCTRL_CMD_PAGE_OFFLINE		=3D 0x08
+> +	XE_SYSCTRL_CMD_PAGE_OFFLINE		=3D 0x08,
+> +	XE_SYSCTRL_CMD_GET_OFFLINE_LIST		=3D 0x09,
+> +	XE_SYSCTRL_CMD_GET_OFFLINE_QUEUE	=3D 0x0A
+>  };
+>=20
+>  enum xe_sysctrl_group {
+> --
+> 2.47.1
 
-Signed-off-by: Anoop Vijay <a class="moz-txt-link-rfc2396E" href="mailto:anoop.c.vijay@intel.com">&lt;anoop.c.vijay@intel.com&gt;</a>
----
- drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h | 49 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_sysctrl.c         | 63 +++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_sysctrl.h         |  1 +
- 3 files changed, 113 insertions(+)
-
-diff --git a/drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h b/drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h
-index 4cbde267ac44..7e1d88dd1c94 100644
---- a/drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h
-+++ b/drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h
-@@ -62,4 +62,53 @@ struct xe_sysctrl_app_msg_hdr {
- #define APP_HDR_VERSION_MASK		GENMASK(23, 16)
- #define APP_HDR_RESERVED_MASK		GENMASK(31, 24)
- 
-+/** System Controller Core command group */
-+#define XE_SYSCTRL_GROUP_CORE		0xFF
-+
-+/*
-+ * XE_SYSCTRL_CMD_GET_APP_STATUS - Query application status
-+ *
-+ * Check if a System Controller application is loaded and its status.
-+ *
-+ * Group: XE_SYSCTRL_GROUP_CORE (0xFF)
-+ * Command: 0x04
-+ */
-+#define XE_SYSCTRL_CMD_GET_APP_STATUS	0x04
-+
-+/**
-+ * struct xe_sysctrl_get_app_status_req - Get application status request
-+ * @app_name: Application name (16 bytes, null-terminated)
-+ */
-+struct xe_sysctrl_get_app_status_req {
-+	char app_name[16];
-+} __packed;
-+
-+/**
-+ * struct xe_sysctrl_get_app_status_resp - Get application status response
-+ * @handle: Identifier used to control the app
-+ * @flags: Application status flags (see XE_SYSCTRL_APP_* definitions)
-+ */
-+struct xe_sysctrl_get_app_status_resp {
-+	u16 handle;
-+	u16 flags;
-+} __packed;
-+
-+/**
-+ * DOC: System Controller Application Status Flags
-+ *
-+ * Flags returned in xe_sysctrl_get_app_status_resp indicating the
-+ * current state of a System Controller application.
-+ */
-+
-+/** Application is loaded in System Controller */
-+#define XE_SYSCTRL_APP_LOADED		BIT(0)
-+/** Application binary is valid */
-+#define XE_SYSCTRL_APP_VALID		BIT(1)
-+/** Application has completed boot sequence */
-+#define XE_SYSCTRL_APP_BOOTED		BIT(2)
-+/** Application loaded as late binding */
-+#define XE_SYSCTRL_APP_LATE_BINDING	BIT(3)
-+/** Application contains data only (no executable code) */
-+#define XE_SYSCTRL_APP_DATA_ONLY	BIT(4)
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl.c b/drivers/gpu/drm/xe/xe_sysctrl.c
-index 2bcef304eb9a..6073c80ee79c 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl.c
-+++ b/drivers/gpu/drm/xe/xe_sysctrl.c
-@@ -14,6 +14,7 @@
- #include &quot;xe_soc_remapper.h&quot;
- #include &quot;xe_sysctrl.h&quot;
- #include &quot;xe_sysctrl_mailbox.h&quot;
-+#include &quot;xe_sysctrl_mailbox_types.h&quot;
- #include &quot;xe_sysctrl_types.h<a class="moz-txt-link-rfc2396E" href="mailto:/**@@-99,3+100,65@@voidxe_sysctrl_pm_resume(structxe_device*xe)xe_sysctrl_mailbox_init(sc);}++/**+*xe_sysctrl_check_app_status-CheckifSystemControllerappisloaded+*@xe:xedeviceinstance+*@app_name:Nameoftheapplicationtocheck(max15chars+nullterminator)+*+*QuerySystemControllerfirmwaretoverifyifthespecifiedapplication+*isloadedandbooted.Thisistypicallyrequiredbeforesendingcommands+*toapplication-specificcommandgroups.+*+*Commonapplicationnames:+*-">&quot;
- 
- /**
-@@ -99,3 +100,65 @@ void xe_sysctrl_pm_resume(struct xe_device *xe)
- 
- 	xe_sysctrl_mailbox_init(sc);
- }
-+
-+/**
-+ * xe_sysctrl_check_app_status - Check if System Controller app is loaded
-+ * @xe: xe device instance
-+ * @app_name: Name of the application to check (max 15 chars + null terminator)
-+ *
-+ * Query System Controller firmware to verify if the specified application
-+ * is loaded and booted. This is typically required before sending commands
-+ * to application-specific command groups.
-+ *
-+ * Common application names:
-+ * - &quot;</a>ocode&quot;- oCode
-+ * - &quot;diag&quot; - Dianostics
-+ *
-+ * Return: 0 if app is loaded and booted, negative error code otherwise:
-+ *		-ENODEV if System Controller is not available</pre>
-    </blockquote>
-    -<font face="monospace">EOPNOTSUPP</font>
-    <blockquote type="cite" cite="mid:20260407191610.841935-2-anoop.c.vijay@intel.com">
-      <pre wrap="" class="moz-quote-pre">
-+ *		-EINVAL if app_name is invalid
-+ *		-EIO if communication with firmware failed
-+ *		-ENOENT if application is not loaded</pre>
-    </blockquote>
-    <font face="monospace">Is app not loaded error?&nbsp;</font>
-    <blockquote type="cite" cite="mid:20260407191610.841935-2-anoop.c.vijay@intel.com">
-      <pre wrap="" class="moz-quote-pre">
-+ *		-EAGAIN if application is loaded but not booted yet</pre>
-    </blockquote>
-    <p><font face="monospace">How about returning positive status and
-        caller can decide whether to retry and not.&nbsp;</font></p>
-    <p><font face="monospace">APP_INVALID, APP_NOT_LOADED, APP_LOADED,
-        APP_RUNNING. In case of&nbsp;</font><font face="monospace">APP_NOT_LOADED/</font><font face="monospace">APP_LOADED caller can retry after some interval
-        for&nbsp;</font><font face="monospace">APP_RUNNING</font><span style="white-space: pre-wrap"></span></p>
-    <blockquote type="cite" cite="mid:20260407191610.841935-2-anoop.c.vijay@intel.com">
-      <pre wrap="" class="moz-quote-pre">+ */
-+int xe_sysctrl_check_app_status(struct xe_device *xe, const char *app_name)
-+{
-+	struct xe_sysctrl_get_app_status_req req = {};
-+	struct xe_sysctrl_get_app_status_resp resp = {};
-+	struct xe_sysctrl_mailbox_command cmd = {};
-+	size_t out_len = 0;
-+	u16 flags;
-+	int ret;
-+
-+	if (!xe-&gt;info.has_sysctrl)
-+		return -ENODEV;</pre>
-    </blockquote>
-    <font face="monospace">return -EOPNOTSUPP;</font><br>
-    <blockquote type="cite" cite="mid:20260407191610.841935-2-anoop.c.vijay@intel.com">
-      <pre wrap="" class="moz-quote-pre">
-+
-+	if (!app_name || strlen(app_name) == 0 || strlen(app_name) &gt;= sizeof(req.app_name))
-+		return -EINVAL;
-+
-+	strscpy(req.app_name, app_name, sizeof(req.app_name));
-+
-+	cmd.header.data =
-+		cpu_to_le32(FIELD_PREP(APP_HDR_GROUP_ID_MASK, XE_SYSCTRL_GROUP_CORE) |
-+			    FIELD_PREP(APP_HDR_COMMAND_MASK, XE_SYSCTRL_CMD_GET_APP_STATUS) |
-+			    FIELD_PREP(APP_HDR_VERSION_MASK, 0));
-+
-+	cmd.data_in = &amp;req;
-+	cmd.data_in_len = sizeof(req);
-+	cmd.data_out = &amp;resp;
-+	cmd.data_out_len = sizeof(resp);
-+
-+	ret = xe_sysctrl_send_command(&amp;xe-&gt;sc, &amp;cmd, &amp;out_len);
-+	if (ret)
-+		return -ENOENT;
-+
-+	if (out_len != sizeof(resp))
-+		return -EIO;
-+
-+	flags = le16_to_cpu(resp.flags);
-+
-+	if (!(flags &amp; XE_SYSCTRL_APP_BOOTED))
-+		return -EAGAIN;</pre>
-    </blockquote>
-    <p><font face="monospace">return positive status as commented
-        above.&nbsp;</font></p>
-    <p><font face="monospace">Thanks,<br>
-        Badal</font></p>
-    <blockquote type="cite" cite="mid:20260407191610.841935-2-anoop.c.vijay@intel.com">
-      <pre wrap="" class="moz-quote-pre">
-+
-+	return 0;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl.h b/drivers/gpu/drm/xe/xe_sysctrl.h
-index f3b0f3716b2f..db2743d54cea 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl.h
-+++ b/drivers/gpu/drm/xe/xe_sysctrl.h
-@@ -18,5 +18,6 @@ static inline struct xe_device *sc_to_xe(struct xe_sysctrl *sc)
- 
- int xe_sysctrl_init(struct xe_device *xe);
- void xe_sysctrl_pm_resume(struct xe_device *xe);
-+int xe_sysctrl_check_app_status(struct xe_device *xe, const char *app_name);
- 
- #endif
-</pre>
-    </blockquote>
-  </body>
-</html>
-
---------------rtVBNEd0f0ZJBOu0iEb2lsJK--
