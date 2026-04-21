@@ -4,146 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29415F8FA90
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Apr 2026 16:34:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E9ADF8FA9C
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Apr 2026 16:55:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE65F10ED3F;
-	Tue, 21 Apr 2026 16:34:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B527789496;
+	Tue, 21 Apr 2026 16:55:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="pEJvqlW7";
-	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="c0xZuM53";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZwoZQsxQ";
 	dkim-atps=neutral
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6737C10ED33
- for <intel-xe@lists.freedesktop.org>; Tue, 21 Apr 2026 16:34:21 +0000 (UTC)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 63LA2kF01809748
- for <intel-xe@lists.freedesktop.org>; Tue, 21 Apr 2026 16:34:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:reply-to:subject:to; s=
- qcppdkim1; bh=OG03RLbkVQGi1m7r2kUY2OMQR5crtiM3OubK9GwayjU=; b=pE
- JvqlW7R7Tmh6LF7j7YPy7aZuZtlgPRLI8/PUXp1dsthLWQt3shP3g2zxSSjmdBhW
- 9q4knPSH4yjHuNI8AYqC/PAUexjXKhy9P5EfguG3yf1edcc1m1nUF+Vf85RhTuUK
- E6InWvod0PUyDNpXWdkPVWqbKdLUoXOPvxKmK4ZmbUxwFmAvBSqxXPzt7wrrqb4K
- H0FHFNhOEpret6YZ75DuhPJuEqa1WqfTbYeD/rN0pf/9P+ZlwVBeCS2nBlIQu7zW
- EZEaRxeJiFWvSKFRJxmrFO7xi2PgDC1xuMF2oviFcS/7gHCMufT3b+X0KP1A9r8Y
- ZJtGj8o543CnaGH7rpZw==
-Received: from mail-oa1-f72.google.com (mail-oa1-f72.google.com
- [209.85.160.72])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dp74xsaet-1
- (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
- for <intel-xe@lists.freedesktop.org>; Tue, 21 Apr 2026 16:34:20 +0000 (GMT)
-Received: by mail-oa1-f72.google.com with SMTP id
- 586e51a60fabf-423145d81c7so8032991fac.2
- for <intel-xe@lists.freedesktop.org>; Tue, 21 Apr 2026 09:34:20 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1776789260; cv=none;
- d=google.com; s=arc-20240605;
- b=gubI0e6RlmESClbRyf8hYq4mOup+Sd/XqVvJNpI61k1uG9fSN4839F9KmqjFE7Vrrn
- dMY1o+2Bio21JiKI9Yi841e+14r1z7oRVtN2lk4fjhSJ2Er1kwybpEVSXOM50wu40D2O
- HchLn+9bwRykDJbR09a35SkrTZYtZvur5i+U+n0Yobx0tvfSmxt4zEUl8vEyYi2h+l1P
- fqnfQUEPKsIWTwuLJsQMGSMpXr2zt8ICbCEZPlqiNVfJp5DMZmtytxQUmxbzykGJuyPT
- tPDoZDlTjzu+8Ldw0jeIMPXDE6EAOSNSgXCiq6snsszstrgQGZNUIrllFItGa4mlTCqF
- gQWg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :reply-to:in-reply-to:references:mime-version:dkim-signature;
- bh=OG03RLbkVQGi1m7r2kUY2OMQR5crtiM3OubK9GwayjU=;
- fh=rRahbWDLpeePkygCVAnklOLdJD/apTInhamp0XWQy7Q=;
- b=EsYbT3fkIhzSSdS4vNx9rm5IlMB8ICRIlGU4ec5/nl1w0gayyppTFyZ4LaNivy4ob3
- p+nFukaKyxI5F3LMDmONzzE6KdENML11Ufw37YY8cEzGaEx8IKR3fUkHLWfpuVT5o1Vn
- PaNmnkZXvI8Qd4khlgFM9rUhRXvZ3fwejbwwQ6iWbEgr+OQ5Ds1MOpu+B6Nc5Gk3agkb
- 3W30UpmuG5nwEKqgqd4yg6IS3KSv+gx/xZ/WNdE2AMm8V5FW+aF5d/SVC3/WB4FqBzMO
- pIplCXkS7tCo6r597n9N7CrXOhUB8NtgzdU724AlTsqltWCP8nUb09m2ig5x23JJD8QD
- GdMw==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oss.qualcomm.com; s=google; t=1776789260; x=1777394060;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :reply-to:in-reply-to:references:mime-version:from:to:cc:subject
- :date:message-id:reply-to;
- bh=OG03RLbkVQGi1m7r2kUY2OMQR5crtiM3OubK9GwayjU=;
- b=c0xZuM53edV6bkDrAKXHQrZv1DVqFEFodcY2kzojY0sM9nHwcclo37qqBqUdEzRkae
- krmddGlTOugjKGvE6SsrMi7ELeKbRrfefMsG9ogDV35HdA8yroL7MrizII8aTUgTeQ+X
- XQJXZadW+GgjtfPoUuta2bJV5Q+QneMoYY+rwIuqh+UVZ8vc/wAbA5Tb/YhnAg0P60l8
- /0YOLhwNgzCdcejkifvqqvBMBb5uW0s3C4BPEAmX+uqKMAoIR0Lz7tN0ZGcdd6EIcn3v
- QjVCtiTNANyyBXBZW6fsux5jfbJvU2go9fdBJo8u42Wrs/WTG+XSXep0yEsrcBlz65OZ
- jzag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1776789260; x=1777394060;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :reply-to:in-reply-to:references:mime-version:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=OG03RLbkVQGi1m7r2kUY2OMQR5crtiM3OubK9GwayjU=;
- b=aH74UV8xB275x1d6kBpGUzFtLa1oVBsFxlWaLSbWuwHb3bybjP6Kk/1bYovEuTZ58W
- 1HqvhJhvQheDk3fBupcfNkT6ruaNEHMrjwU3THKdyALZ3aFZCTsaAhVuv01q97AYWrS1
- 0a2Odv76rTYvs/tFLBtEufL/i2eehPHttGFIRFpr6Q7WKpUzE7+HkBqYjH/WQjqZfb4a
- sZMsXjf1nG+76tta+wfRpiztmksONpLa5GAC4bcniMZNR+jvX0bLnRzMparmHwGTS/QN
- pDHu+VGvHeM2OmzAPu9MqzOpwkxn5oedIcswyGLm1b4snFfGcN40IDf4YO3oARML5l8q
- lnoQ==
-X-Forwarded-Encrypted: i=1;
- AFNElJ8qyr5XD6s2XALQBKK/BOH+JWh8ksS/3FgrGZdTXrAQPFSyM6WvPa05Ge6Fwb50rnHQUw4XRseOAg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxlGsLWOytCX4yCS1zJ7fuVVojM9Yg6ujiLCHQDZEOgyL7k6VFS
- V4dsRnpsRfZUIsCKW3NJZOE3U84Lec2R5bKd9g7cjUbS69ib1Swx2ZbDx2hiFjK6OxKtyB9gEtU
- h7j/2SpgS+8ifPU6fjA5TXcgbAd7VQihFtrC3rmo6i70oIsb9qg1TdDTnaDfWIwtUN0DiaI1utv
- gT1DDULKFg1TKEsqqXyvkjJRtF6OIFnVuYaXlhqKY0chO3
-X-Gm-Gg: AeBDieuVnNCXLjEJjdtxYQZgkeaMQSFEpDw/uLjVgptAf0iHDoZMDr5ulBvBUU3bAN7
- gUtXqby2UL18uCi7txz+jWqT7a0fmjIhkollj73sduiUf3B0vgnyfUWeiAlkO68oleSaCGjrogf
- SrUFhGRTcaB/tTG2EphDNMmJ1e9eWcTa4CQW9ZnTaVjBrlWC6WGxibOqOpjRvTATGL5gSMLL7wO
- v7Q4Fgx7ZI9GESt8bc7bGPFpdfYF1+LTcf/PAhEBRJO930i
-X-Received: by 2002:a05:6870:6390:b0:417:23f2:6d77 with SMTP id
- 586e51a60fabf-42abf2ecb41mr10830940fac.16.1776789259807; 
- Tue, 21 Apr 2026 09:34:19 -0700 (PDT)
-X-Received: by 2002:a05:6870:6390:b0:417:23f2:6d77 with SMTP id
- 586e51a60fabf-42abf2ecb41mr10830914fac.16.1776789259378; Tue, 21 Apr 2026
- 09:34:19 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DA0A89496
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 Apr 2026 16:55:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1776790525; x=1808326525;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=JZ6o8qdTkYrzrN6TwxWCQfKxrf/MJTkbqR0L0YWUoac=;
+ b=ZwoZQsxQo9/Ttzm0Ek588hTUmV+OXCB5fuXSrFz0JBMN9Tp1gzzxXTrT
+ zrXFiEp1lB4E11LrSil17PfWExsbgmZ96Lovmqrol5HKWmwMgCBpnapQr
+ Ho+DbCqclR0uTkTtlQM+ukB5J6Ggqvmu0WYfCMLeXlCc63GrAcjUyzQDD
+ 6ECefZ2yH2JXIo6TlxZELhmPnJHRaPu3yGTtpNL9My8pmLsDw9EBJ/wcd
+ COrPMECuRWk2gLm4yId47cGdkapJVJllHTFgd5kYNP6DqeJ0E/hjl1L/6
+ OsGv7SUWNg50jLMUuCYUH3tNsRhadETZERNZDFGkrbmBc019KvhpTviKD w==;
+X-CSE-ConnectionGUID: wi+KIi0WTJSstkm25jdrpQ==
+X-CSE-MsgGUID: RKz5MNRvTLeHAPPsMLXLqQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11763"; a="65267263"
+X-IronPort-AV: E=Sophos;i="6.23,192,1770624000"; d="scan'208";a="65267263"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2026 09:55:25 -0700
+X-CSE-ConnectionGUID: UQ+dZ5uQThq+nv8JQzCr+Q==
+X-CSE-MsgGUID: oF3nP4PkStaYnEgB2nyspA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,192,1770624000"; d="scan'208";a="231947960"
+Received: from yadavs-z690i-a-ultra-plus.iind.intel.com ([10.190.216.90])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2026 09:55:23 -0700
+From: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Vinod Govindapillai <vinod.govindapillai@intel.com>
+Subject: [PATCH v3] drm/xe: Convert stolen memory over to ttm_range_manager
+Date: Tue, 21 Apr 2026 22:20:48 +0530
+Message-ID: <20260421165047.2421231-2-sanjay.kumar.yadav@intel.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-References: <20260421084701.24227-1-laura.nao@collabora.com>
-In-Reply-To: <20260421084701.24227-1-laura.nao@collabora.com>
-From: Rob Clark <rob.clark@oss.qualcomm.com>
-Date: Tue, 21 Apr 2026 09:34:08 -0700
-X-Gm-Features: AQROBzArUGDXn57yy7hiM7ct4lrQxadoBQMLBR3Cb8jVRGpfyvO4Z6UZBx6yzNM
-Message-ID: <CACSVV01Kh5w1t26FEzKAVRxnKz=GCKjRvXe4KOKSLs-FkwkuBg@mail.gmail.com>
-Subject: Re: [PATCH] drm: Remove DRIVER_GEM_GPUVA feature flag
-To: Laura Nao <laura.nao@collabora.com>
-Cc: dakr@kernel.org, boris.brezillon@collabora.com, steven.price@arm.com,
- liviu.dudau@arm.com, matthew.brost@intel.com,
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- kernel@collabora.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Authority-Analysis: v=2.4 cv=Vq8Txe2n c=1 sm=1 tr=0 ts=69e7a70c cx=c_pps
- a=Z3eh007fzM5o9awBa1HkYQ==:117 a=IkcTkHD0fZMA:10 a=A5OVakUREuEA:10
- a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
- a=3WHJM1ZQz_JShphwDgj5:22 a=QX4gbG5DAAAA:8 a=EUspDBNiAAAA:8
- a=3M9eerblpL4TRhbo7qwA:9 a=QEXdDO2ut3YA:10 a=eBU8X_Hb5SQ8N-bgNfv4:22
- a=AbAUZ8qAyYyZVLSsDulk:22
-X-Proofpoint-GUID: EQV8jRClKFi42WWYj56ClhNAx0hIZvz2
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDIxMDE2NCBTYWx0ZWRfX0BQt7MzOVxxV
- W+tcVVmY0lZPT4Ov0K6fJmQ0WVhWsLNZOSOBCngzTxJU11WLhpYB0BnzxpDAcXByD6pa8+iCGy+
- CeKp3n5roIFoXx4xA5igkjrdccZkMYjNc7r8VoIsoTees2L2/7h/pQU7X/KJ1tlrpl5RBWbcSc7
- +iSJowwfX2KIvDgJDweT8yaZS+Fn8hx1iRTvVfm3td4z0Xoh0OkgosB1ibFx+d1/B9HHW2msBAk
- BGWAdLhA2iq3QxtKpbBrbNXq5aF97t+ektF2xZT5WCQnz9a2nAQWczh2Ymc+rfTGUxq6bBTkJ6Z
- 85PQAH8Uf1MD5iCsc9zPptPmFm4f+0OLuchMTKl5PqpFWIiWvcjvAlV6hmLPYTQKCnLOUjXM9S7
- zQMUdEp4ecNCqiVk7HVUrsRZ/4XvhaUVB49T4Qy6lLevz3Qj0KDbr9JExZJY2aPu/KtB1/8xMfS
- 3sIKwjrytMm+WLEwnhw==
-X-Proofpoint-ORIG-GUID: EQV8jRClKFi42WWYj56ClhNAx0hIZvz2
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-04-21_03,2026-04-21_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 phishscore=0 bulkscore=0 spamscore=0 impostorscore=0
- clxscore=1015 priorityscore=1501 adultscore=0 lowpriorityscore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2604070000
- definitions=main-2604210164
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -155,190 +64,358 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: rob.clark@oss.qualcomm.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Apr 21, 2026 at 1:47=E2=80=AFAM Laura Nao <laura.nao@collabora.com>=
- wrote:
->
-> The DRIVER_GEM_GPUVA feature flag is currently only used to control two
-> behaviors within the DRM core:
-> - calling  drm_gem_gpuva_init() during
->   GEM object initialization
-> - creating the "gpuvas" debugfs entry
->
-> drm_gem_gpuva_init() is a plain INIT_LIST_HEAD() and therefore is cheap
-> to run for every GEM object. The DRM_DEBUGFS_GPUVA_INFO macro is only
-> referenced by GPU-VA capable drivers, so clearing the feature bit does
-> not cause any unrelated drivers to get the "gpuvas" debugfs node. The
-> flag doesn't have any relevant purpose (e.g. gating ioctl handlers or MM
-> logic) and doesn't provide any practical benefit.
->
-> Remove the flag definition and drop it from all drivers that use it,
-> call drm_gem_gpuva_init() unconditionally and clear the driver features
-> bit in DRM_DEBUGFS_GPUVA_INFO.
->
-> Signed-off-by: Laura Nao <laura.nao@collabora.com>
+Stolen memory requires physically contiguous allocations for display
+scanout and compressed framebuffers. The stolen memory manager was
+sharing the gpu_buddy allocator backend with the VRAM manager, but
+buddy manages non-contiguous power-of-two blocks making it a poor fit.
+Stolen memory also has fundamentally different allocation patterns:
 
-Acked-by: Rob Clark <rob.clark@oss.qualcomm.com>
+- Allocation sizes are not power-of-two. Since buddy rounds up to the
+  next power-of-two block size, a ~17MB request can fail even with
+  ~22MB free, because the free space is fragmented across non-fitting
+  power-of-two blocks.
+- Hardware restrictions prevent using the first 4K page of stolen for
+  certain allocations (e.g., FBC). The display code sets fpfn=1 to
+  enforce this, but when fpfn != 0, gpu_buddy enables
+  GPU_BUDDY_RANGE_ALLOCATION mode which disables the try_harder
+  coalescing path, further reducing allocation success.
 
-> ---
->  drivers/gpu/drm/drm_gem.c             | 3 +--
->  drivers/gpu/drm/imagination/pvr_drv.c | 2 +-
->  drivers/gpu/drm/msm/msm_drv.c         | 2 --
->  drivers/gpu/drm/nouveau/nouveau_drm.c | 1 -
->  drivers/gpu/drm/panthor/panthor_drv.c | 2 +-
->  drivers/gpu/drm/xe/xe_device.c        | 2 +-
->  include/drm/drm_debugfs.h             | 2 +-
->  include/drm/drm_drv.h                 | 6 ------
->  include/drm/drm_gem.h                 | 3 ---
->  9 files changed, 5 insertions(+), 18 deletions(-)
->
-> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
-> index 0377a5fd402d..cb703d0072aa 100644
-> --- a/drivers/gpu/drm/drm_gem.c
-> +++ b/drivers/gpu/drm/drm_gem.c
-> @@ -232,8 +232,7 @@ void drm_gem_private_object_init(struct drm_device *d=
-ev,
->         if (!obj->resv)
->                 obj->resv =3D &obj->_resv;
->
-> -       if (drm_core_check_feature(dev, DRIVER_GEM_GPUVA))
-> -               drm_gem_gpuva_init(obj);
-> +       drm_gem_gpuva_init(obj);
->
->         drm_vma_node_reset(&obj->vma_node);
->         INIT_LIST_HEAD(&obj->lru_node);
-> diff --git a/drivers/gpu/drm/imagination/pvr_drv.c b/drivers/gpu/drm/imag=
-ination/pvr_drv.c
-> index 268900464ab6..80033d4cb66a 100644
-> --- a/drivers/gpu/drm/imagination/pvr_drv.c
-> +++ b/drivers/gpu/drm/imagination/pvr_drv.c
-> @@ -1375,7 +1375,7 @@ pvr_drm_driver_postclose(__always_unused struct drm=
-_device *drm_dev,
->  DEFINE_DRM_GEM_FOPS(pvr_drm_driver_fops);
->
->  static struct drm_driver pvr_drm_driver =3D {
-> -       .driver_features =3D DRIVER_GEM | DRIVER_GEM_GPUVA | DRIVER_RENDE=
-R |
-> +       .driver_features =3D DRIVER_GEM | DRIVER_RENDER |
->                            DRIVER_SYNCOBJ | DRIVER_SYNCOBJ_TIMELINE,
->         .open =3D pvr_drm_driver_open,
->         .postclose =3D pvr_drm_driver_postclose,
-> diff --git a/drivers/gpu/drm/msm/msm_drv.c b/drivers/gpu/drm/msm/msm_drv.=
-c
-> index 195f40e331e5..ee38c18715f0 100644
-> --- a/drivers/gpu/drm/msm/msm_drv.c
-> +++ b/drivers/gpu/drm/msm/msm_drv.c
-> @@ -825,7 +825,6 @@ static const struct file_operations fops =3D {
->
->  #define DRIVER_FEATURES_GPU ( \
->                 DRIVER_GEM | \
-> -               DRIVER_GEM_GPUVA | \
->                 DRIVER_RENDER | \
->                 DRIVER_SYNCOBJ | \
->                 DRIVER_SYNCOBJ_TIMELINE | \
-> @@ -833,7 +832,6 @@ static const struct file_operations fops =3D {
->
->  #define DRIVER_FEATURES_KMS ( \
->                 DRIVER_GEM | \
-> -               DRIVER_GEM_GPUVA | \
->                 DRIVER_ATOMIC | \
->                 DRIVER_MODESET | \
->                 0 )
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouv=
-eau/nouveau_drm.c
-> index 5d8475e4895e..0f5f662e5429 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-> @@ -1364,7 +1364,6 @@ static struct drm_driver
->  driver_stub =3D {
->         .driver_features =3D DRIVER_GEM |
->                            DRIVER_SYNCOBJ | DRIVER_SYNCOBJ_TIMELINE |
-> -                          DRIVER_GEM_GPUVA |
->                            DRIVER_MODESET |
->                            DRIVER_RENDER,
->         .open =3D nouveau_drm_open,
-> diff --git a/drivers/gpu/drm/panthor/panthor_drv.c b/drivers/gpu/drm/pant=
-hor/panthor_drv.c
-> index 87d27c3c1456..1a1d40a744db 100644
-> --- a/drivers/gpu/drm/panthor/panthor_drv.c
-> +++ b/drivers/gpu/drm/panthor/panthor_drv.c
-> @@ -1805,7 +1805,7 @@ static void panthor_debugfs_init(struct drm_minor *=
-minor)
->   */
->  static const struct drm_driver panthor_drm_driver =3D {
->         .driver_features =3D DRIVER_RENDER | DRIVER_GEM | DRIVER_SYNCOBJ =
-|
-> -                          DRIVER_SYNCOBJ_TIMELINE | DRIVER_GEM_GPUVA,
-> +                          DRIVER_SYNCOBJ_TIMELINE,
->         .open =3D panthor_open,
->         .postclose =3D panthor_postclose,
->         .show_fdinfo =3D panthor_show_fdinfo,
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_devic=
-e.c
-> index ffea4a453c01..b3acc202df76 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -393,7 +393,7 @@ static struct drm_driver driver =3D {
->         .driver_features =3D
->             DRIVER_GEM |
->             DRIVER_RENDER | DRIVER_SYNCOBJ |
-> -           DRIVER_SYNCOBJ_TIMELINE | DRIVER_GEM_GPUVA,
-> +           DRIVER_SYNCOBJ_TIMELINE,
->         .open =3D xe_file_open,
->         .postclose =3D xe_file_close,
->
-> diff --git a/include/drm/drm_debugfs.h b/include/drm/drm_debugfs.h
-> index ea8cba94208a..eb93512b0f23 100644
-> --- a/include/drm/drm_debugfs.h
-> +++ b/include/drm/drm_debugfs.h
-> @@ -48,7 +48,7 @@
->   * For each DRM GPU VA space drivers should call drm_debugfs_gpuva_info(=
-) from
->   * their @show callback.
->   */
-> -#define DRM_DEBUGFS_GPUVA_INFO(show, data) {"gpuvas", show, DRIVER_GEM_G=
-PUVA, data}
-> +#define DRM_DEBUGFS_GPUVA_INFO(show, data) {"gpuvas", show, 0, data}
->
->  /**
->   * struct drm_info_list - debugfs info list entry
-> diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
-> index 42fc085f986d..e09559495c5b 100644
-> --- a/include/drm/drm_drv.h
-> +++ b/include/drm/drm_drv.h
-> @@ -107,12 +107,6 @@ enum drm_driver_feature {
->          * acceleration should be handled by two drivers that are connect=
-ed using auxiliary bus.
->          */
->         DRIVER_COMPUTE_ACCEL            =3D BIT(7),
-> -       /**
-> -        * @DRIVER_GEM_GPUVA:
-> -        *
-> -        * Driver supports user defined GPU VA bindings for GEM objects.
-> -        */
-> -       DRIVER_GEM_GPUVA                =3D BIT(8),
->         /**
->          * @DRIVER_CURSOR_HOTSPOT:
->          *
-> diff --git a/include/drm/drm_gem.h b/include/drm/drm_gem.h
-> index 86f5846154f7..996aa418dce9 100644
-> --- a/include/drm/drm_gem.h
-> +++ b/include/drm/drm_gem.h
-> @@ -663,9 +663,6 @@ static inline bool drm_gem_is_imported(const struct d=
-rm_gem_object *obj)
->   *
->   * This initializes the &drm_gem_object's &drm_gpuvm_bo list.
->   *
-> - * Calling this function is only necessary for drivers intending to supp=
-ort the
-> - * &drm_driver_feature DRIVER_GEM_GPUVA.
-> - *
->   * See also drm_gem_gpuva_set_lock().
->   */
->  static inline void drm_gem_gpuva_init(struct drm_gem_object *obj)
-> --
-> 2.39.5
->
+This combination caused FBC compressed framebuffer (CFB) allocation
+failures on platforms like NVL/PTL. In case of NVL where stolen memory
+is ~56MB and the initial plane framebuffer consumes ~34MB at probe time,
+leaving ~22MB for subsequent allocations.
+
+Use ttm_range_man_init_nocheck() to set up a drm_mm-backed TTM resource
+manager for stolen memory. This reuses the TTM core's ttm_range_manager
+callbacks, avoiding duplicate implementations.
+
+Tested on NVL with a 4K DP display: stolen_mm shows a single ~22MB
+contiguous free hole after initial plane framebuffer allocation, and
+FBC successfully allocates its CFB from that region. The corresponding
+IGT was previously skipped and now passes.
+
+v2:
+- Clarify that stolen memory requires contiguous allocations (Matt B)
+- Properly handle xe_ttm_resource_visible() for stolen instead of
+  unconditionally returning true (Matt A)
+
+v3:
+- Rebase
+- Fix xe_display_bo_fbdev_prefer_stolen() to compare in pages, since
+  ttm_range_manager stores stolen->size in pages not bytes (Matt A)
+
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/7631
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Suggested-by: Matthew Auld <matthew.auld@intel.com>
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
+Signed-off-by: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+Acked-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Acked-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+---
+ drivers/gpu/drm/xe/display/xe_display_bo.c |  2 +-
+ drivers/gpu/drm/xe/xe_bo.c                 | 16 ++++--
+ drivers/gpu/drm/xe/xe_device_types.h       |  3 +
+ drivers/gpu/drm/xe/xe_res_cursor.h         | 14 ++++-
+ drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c     | 64 ++++++++--------------
+ drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h     |  9 +++
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c       | 11 ++--
+ 7 files changed, 64 insertions(+), 55 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/display/xe_display_bo.c b/drivers/gpu/drm/xe/display/xe_display_bo.c
+index dc0d78ff2d79..7fbac223b097 100644
+--- a/drivers/gpu/drm/xe/display/xe_display_bo.c
++++ b/drivers/gpu/drm/xe/display/xe_display_bo.c
+@@ -138,7 +138,7 @@ bool xe_display_bo_fbdev_prefer_stolen(struct xe_device *xe, unsigned int size)
+ 	 * important and we should probably use that space with FBC or other
+ 	 * features.
+ 	 */
+-	return stolen->size >= size * 2;
++	return stolen->size >= (size * 2) >> PAGE_SHIFT;
+ }
+ 
+ static struct drm_gem_object *xe_display_bo_fbdev_create(struct drm_device *drm, int size)
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index f685c3c2fbb3..295857cdeb4e 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -611,11 +611,17 @@ static void xe_ttm_tt_destroy(struct ttm_device *ttm_dev, struct ttm_tt *tt)
+ 	kfree(tt);
+ }
+ 
+-static bool xe_ttm_resource_visible(struct ttm_resource *mem)
++static bool xe_ttm_resource_visible(struct xe_device *xe, struct ttm_resource *mem)
+ {
+-	struct xe_ttm_vram_mgr_resource *vres =
+-		to_xe_ttm_vram_mgr_resource(mem);
++	struct xe_ttm_vram_mgr_resource *vres;
+ 
++	if (mem->mem_type == XE_PL_STOLEN) {
++		struct xe_ttm_stolen_mgr *mgr = xe->mem.stolen_mgr;
++
++		return mgr->io_base && !xe_ttm_stolen_cpu_access_needs_ggtt(xe);
++	}
++
++	vres = to_xe_ttm_vram_mgr_resource(mem);
+ 	return vres->used_visible_size == mem->size;
+ }
+ 
+@@ -633,7 +639,7 @@ bool xe_bo_is_visible_vram(struct xe_bo *bo)
+ 	if (drm_WARN_ON(bo->ttm.base.dev, !xe_bo_is_vram(bo)))
+ 		return false;
+ 
+-	return xe_ttm_resource_visible(bo->ttm.resource);
++	return xe_ttm_resource_visible(xe_bo_device(bo), bo->ttm.resource);
+ }
+ 
+ static int xe_ttm_io_mem_reserve(struct ttm_device *bdev,
+@@ -649,7 +655,7 @@ static int xe_ttm_io_mem_reserve(struct ttm_device *bdev,
+ 	case XE_PL_VRAM1: {
+ 		struct xe_vram_region *vram = xe_map_resource_to_region(mem);
+ 
+-		if (!xe_ttm_resource_visible(mem))
++		if (!xe_ttm_resource_visible(xe, mem))
+ 			return -EINVAL;
+ 
+ 		mem->bus.offset = mem->start << PAGE_SHIFT;
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index e9e11bb1c65f..315d2ed4d3e6 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -42,6 +42,7 @@ struct xe_ggtt;
+ struct xe_i2c;
+ struct xe_pat_ops;
+ struct xe_pxp;
++struct xe_ttm_stolen_mgr;
+ struct xe_vram_region;
+ 
+ /**
+@@ -276,6 +277,8 @@ struct xe_device {
+ 		struct ttm_resource_manager sys_mgr;
+ 		/** @mem.shrinker: system memory shrinker. */
+ 		struct xe_shrinker *shrinker;
++		/** @mem.stolen_mgr: stolen memory manager. */
++		struct xe_ttm_stolen_mgr *stolen_mgr;
+ 	} mem;
+ 
+ 	/** @sriov: device level virtualization data */
+diff --git a/drivers/gpu/drm/xe/xe_res_cursor.h b/drivers/gpu/drm/xe/xe_res_cursor.h
+index 5f4ab08c0686..0522caafd89d 100644
+--- a/drivers/gpu/drm/xe/xe_res_cursor.h
++++ b/drivers/gpu/drm/xe/xe_res_cursor.h
+@@ -101,7 +101,15 @@ static inline void xe_res_first(struct ttm_resource *res,
+ 	cur->mem_type = res->mem_type;
+ 
+ 	switch (cur->mem_type) {
+-	case XE_PL_STOLEN:
++	case XE_PL_STOLEN: {
++		/* res->start is in pages (ttm_range_manager). */
++		cur->start = (res->start << PAGE_SHIFT) + start;
++		cur->size = size;
++		cur->remaining = size;
++		cur->node = NULL;
++		cur->mm = NULL;
++		break;
++	}
+ 	case XE_PL_VRAM0:
+ 	case XE_PL_VRAM1: {
+ 		struct gpu_buddy_block *block;
+@@ -289,6 +297,10 @@ static inline void xe_res_next(struct xe_res_cursor *cur, u64 size)
+ 
+ 	switch (cur->mem_type) {
+ 	case XE_PL_STOLEN:
++		/* Just advance within the contiguous region. */
++		cur->start += size;
++		cur->size = cur->remaining;
++		break;
+ 	case XE_PL_VRAM0:
+ 	case XE_PL_VRAM1:
+ 		start = size - cur->size;
+diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+index 27c9d72222cf..5e9070739e65 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+@@ -19,30 +19,11 @@
+ #include "xe_device.h"
+ #include "xe_gt_printk.h"
+ #include "xe_mmio.h"
+-#include "xe_res_cursor.h"
+ #include "xe_sriov.h"
+ #include "xe_ttm_stolen_mgr.h"
+-#include "xe_ttm_vram_mgr.h"
+ #include "xe_vram.h"
+ #include "xe_wa.h"
+ 
+-struct xe_ttm_stolen_mgr {
+-	struct xe_ttm_vram_mgr base;
+-
+-	/* PCI base offset */
+-	resource_size_t io_base;
+-	/* GPU base offset */
+-	resource_size_t stolen_base;
+-
+-	void __iomem *mapping;
+-};
+-
+-static inline struct xe_ttm_stolen_mgr *
+-to_stolen_mgr(struct ttm_resource_manager *man)
+-{
+-	return container_of(man, struct xe_ttm_stolen_mgr, base.manager);
+-}
+-
+ /**
+  * xe_ttm_stolen_cpu_access_needs_ggtt() - If we can't directly CPU access
+  * stolen, can we then fallback to mapping through the GGTT.
+@@ -210,12 +191,19 @@ static u64 detect_stolen(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
+ #endif
+ }
+ 
++static void xe_ttm_stolen_mgr_fini(struct drm_device *dev, void *arg)
++{
++	struct xe_device *xe = to_xe_device(dev);
++
++	ttm_range_man_fini_nocheck(&xe->ttm, XE_PL_STOLEN);
++}
++
+ int xe_ttm_stolen_mgr_init(struct xe_device *xe)
+ {
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+ 	struct xe_ttm_stolen_mgr *mgr;
+ 	u64 stolen_size, io_size;
+-	int err;
++	int ret;
+ 
+ 	mgr = drmm_kzalloc(&xe->drm, sizeof(*mgr), GFP_KERNEL);
+ 	if (!mgr)
+@@ -244,12 +232,12 @@ int xe_ttm_stolen_mgr_init(struct xe_device *xe)
+ 	if (mgr->io_base && !xe_ttm_stolen_cpu_access_needs_ggtt(xe))
+ 		io_size = stolen_size;
+ 
+-	err = __xe_ttm_vram_mgr_init(xe, &mgr->base, XE_PL_STOLEN, stolen_size,
+-				     io_size, PAGE_SIZE);
+-	if (err) {
+-		drm_dbg_kms(&xe->drm, "Stolen mgr init failed: %i\n", err);
+-		return err;
+-	}
++	ret = ttm_range_man_init_nocheck(&xe->ttm, XE_PL_STOLEN, false,
++					 stolen_size >> PAGE_SHIFT);
++	if (ret)
++		return ret;
++
++	xe->mem.stolen_mgr = mgr;
+ 
+ 	drm_dbg_kms(&xe->drm, "Initialized stolen memory support with %llu bytes\n",
+ 		    stolen_size);
+@@ -257,36 +245,32 @@ int xe_ttm_stolen_mgr_init(struct xe_device *xe)
+ 	if (io_size)
+ 		mgr->mapping = devm_ioremap_wc(&pdev->dev, mgr->io_base, io_size);
+ 
+-	return 0;
++	return drmm_add_action_or_reset(&xe->drm, xe_ttm_stolen_mgr_fini, mgr);
+ }
+ 
+ u64 xe_ttm_stolen_io_offset(struct xe_bo *bo, u32 offset)
+ {
+ 	struct xe_device *xe = xe_bo_device(bo);
+-	struct ttm_resource_manager *ttm_mgr = ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
+-	struct xe_ttm_stolen_mgr *mgr = to_stolen_mgr(ttm_mgr);
+-	struct xe_res_cursor cur;
++	struct xe_ttm_stolen_mgr *mgr = xe->mem.stolen_mgr;
+ 
+ 	XE_WARN_ON(!mgr->io_base);
+ 
+ 	if (xe_ttm_stolen_cpu_access_needs_ggtt(xe))
+ 		return mgr->io_base + xe_bo_ggtt_addr(bo) + offset;
+ 
+-	xe_res_first(bo->ttm.resource, offset, 4096, &cur);
+-	return mgr->io_base + cur.start;
++	/* Range allocator: res->start is in pages. */
++	return mgr->io_base + (bo->ttm.resource->start << PAGE_SHIFT) + offset;
+ }
+ 
+ static int __xe_ttm_stolen_io_mem_reserve_bar2(struct xe_device *xe,
+ 					       struct xe_ttm_stolen_mgr *mgr,
+ 					       struct ttm_resource *mem)
+ {
+-	struct xe_res_cursor cur;
+-
+ 	if (!mgr->io_base)
+ 		return -EIO;
+ 
+-	xe_res_first(mem, 0, 4096, &cur);
+-	mem->bus.offset = cur.start;
++	/* Range allocator always produces contiguous allocations. */
++	mem->bus.offset = mem->start << PAGE_SHIFT;
+ 
+ 	drm_WARN_ON(&xe->drm, !(mem->placement & TTM_PL_FLAG_CONTIGUOUS));
+ 
+@@ -329,8 +313,7 @@ static int __xe_ttm_stolen_io_mem_reserve_stolen(struct xe_device *xe,
+ 
+ int xe_ttm_stolen_io_mem_reserve(struct xe_device *xe, struct ttm_resource *mem)
+ {
+-	struct ttm_resource_manager *ttm_mgr = ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
+-	struct xe_ttm_stolen_mgr *mgr = ttm_mgr ? to_stolen_mgr(ttm_mgr) : NULL;
++	struct xe_ttm_stolen_mgr *mgr = xe->mem.stolen_mgr;
+ 
+ 	if (!mgr || !mgr->io_base)
+ 		return -EIO;
+@@ -343,8 +326,5 @@ int xe_ttm_stolen_io_mem_reserve(struct xe_device *xe, struct ttm_resource *mem)
+ 
+ u64 xe_ttm_stolen_gpu_offset(struct xe_device *xe)
+ {
+-	struct xe_ttm_stolen_mgr *mgr =
+-		to_stolen_mgr(ttm_manager_type(&xe->ttm, XE_PL_STOLEN));
+-
+-	return mgr->stolen_base;
++	return xe->mem.stolen_mgr->stolen_base;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h
+index 8e877d1e839b..049e91e77326 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h
++++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h
+@@ -12,6 +12,15 @@ struct ttm_resource;
+ struct xe_bo;
+ struct xe_device;
+ 
++struct xe_ttm_stolen_mgr {
++	/* PCI base offset */
++	resource_size_t io_base;
++	/* GPU base offset */
++	resource_size_t stolen_base;
++
++	void __iomem *mapping;
++};
++
+ int xe_ttm_stolen_mgr_init(struct xe_device *xe);
+ int xe_ttm_stolen_io_mem_reserve(struct xe_device *xe, struct ttm_resource *mem);
+ bool xe_ttm_stolen_cpu_access_needs_ggtt(struct xe_device *xe);
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index 5fd0d5506a7e..79ef8e1b5e5c 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -301,14 +301,13 @@ int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
+ 			   u64 default_page_size)
+ {
+ 	struct ttm_resource_manager *man = &mgr->manager;
++	const char *name;
+ 	int err;
+ 
+-	if (mem_type != XE_PL_STOLEN) {
+-		const char *name = mem_type == XE_PL_VRAM0 ? "vram0" : "vram1";
+-		man->cg = drmm_cgroup_register_region(&xe->drm, name, size);
+-		if (IS_ERR(man->cg))
+-			return PTR_ERR(man->cg);
+-	}
++	name = mem_type == XE_PL_VRAM0 ? "vram0" : "vram1";
++	man->cg = drmm_cgroup_register_region(&xe->drm, name, size);
++	if (IS_ERR(man->cg))
++		return PTR_ERR(man->cg);
+ 
+ 	man->func = &xe_ttm_vram_mgr_func;
+ 	mgr->mem_type = mem_type;
+-- 
+2.52.0
+
