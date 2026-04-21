@@ -4,60 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 571AEF327B9
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Apr 2026 08:31:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FA7EF327C8
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Apr 2026 08:54:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A5BF10E831;
-	Tue, 21 Apr 2026 08:31:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C838B10EBE7;
+	Tue, 21 Apr 2026 08:54:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UBpm2f32";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="DzeeyDsu";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFECE10E831;
- Tue, 21 Apr 2026 08:31:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776760264; x=1808296264;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=OEr8gEOjl48zeUjxd/sTOHsa316dgDwWJRI62ZmoQTw=;
- b=UBpm2f32mPyzzrk9Vor75c+UOsOQ4f7Nss8851ki5CD9zXFYxByDNznl
- lLQW6/HejeoJID2rLmAp4dbXZZpQxSPp23NXdi66cC7lD9TjpmsikMYkh
- vQL7s2xQeXNTq0X7lditt07T4NA/MhvKEosW1hykKrw9vsmkjOeArSJkE
- 2k/xiVcq0HBcwuxDSEDWS9O0kYRSBZHC67o6gFGFdtRjjUkfFrlqN+p2f
- Wtp7arXCYTCoLeq3EQ50VTKhNyiMnF3WaFShzDXc/5vLuYpi5HuTSGKgp
- sOY6wTyRVTa7QKFt6AWc0HdJZFDRWTs8wbc62vTeG53fTzsD3q79SO9n9 g==;
-X-CSE-ConnectionGUID: bYG/mx6zSkugAqNYQI3bOA==
-X-CSE-MsgGUID: C+NPUNnPRC+1XKdMKmrI9g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11762"; a="87990258"
-X-IronPort-AV: E=Sophos;i="6.23,191,1770624000"; d="scan'208";a="87990258"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2026 01:31:03 -0700
-X-CSE-ConnectionGUID: mjzoRJV3Te2J0Uk0q/uVPQ==
-X-CSE-MsgGUID: sT5Pq+gMRn+JHz1Wegvk6w==
-X-ExtLoop1: 1
-Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2026 01:30:59 -0700
-Date: Tue, 21 Apr 2026 10:30:56 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- rodrigo.vivi@intel.com, andrealmeid@igalia.com,
- christian.koenig@amd.com, airlied@gmail.com, simona.vetter@ffwll.ch,
- mripard@kernel.org, anshuman.gupta@intel.com,
- badal.nilawar@intel.com, riana.tauro@intel.com,
- karthik.poosa@intel.com, sk.anirban@intel.com
-Subject: Re: [PATCH v4 3/4] drm/doc: Document DRM_WEDGE_RECOVERY_COLD_RESET
- recovery method
-Message-ID: <aec1wAFHMZyb9sFW@black.igk.intel.com>
-References: <20260413133013.560239-6-mallesh.koujalagi@intel.com>
- <20260413133013.560239-9-mallesh.koujalagi@intel.com>
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C27FB10EBDA;
+ Tue, 21 Apr 2026 08:54:11 +0000 (UTC)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4g0GPD27D5z9vSV;
+ Tue, 21 Apr 2026 10:54:08 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; t=1776761648;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=729bf2NE3fMhOUH9wKl65pubnQvcJ0IX6gyysLkVvCo=;
+ b=DzeeyDsuQOwfppA4jLI0hObTuAY/C3IholM3OpsCSv3KA8BT3tU2xHF6uZBtS/PN6cIg6Q
+ dnQT26A81/w2tmDSugdJ2OWXDVWKrDZaeNMyXVXZ0RDBjsBHkTQn+A8U0EjkAvllHmhTxD
+ m5grpAQ6Ze3o+s7PudgUHvqGSEVbJbz9DlNGs5gxKpI7MxfShaP6loR6gFRB2wJ64q0/wK
+ EDpwNruXF4lPjXAvHkH3681jFx808p8zQvT9Oyts+VhmETvqnhCcQ0QPoKeqFHztzMFaws
+ Vy/H8dtmsN4oCSha573Gjkj1IMMiI3Axt2WPpMiR/nYTrgo+DFyoKxpmZLksbA==
+Message-ID: <6f5f44d3-2490-4d19-b6aa-31056410c22a@mailbox.org>
+Date: Tue, 21 Apr 2026 10:53:59 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260413133013.560239-9-mallesh.koujalagi@intel.com>
+Subject: Re: [PATCH v11 0/7] User readable error codes on atomic_ioctl failure
+To: "Kumar, Naveen1" <naveen1.kumar@intel.com>,
+ "Murthy, Arun R" <arun.r.murthy@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ "xaver.hugl@kde.org" <xaver.hugl@kde.org>,
+ "harry.wentland@amd.com" <harry.wentland@amd.com>,
+ "Shankar, Uma" <uma.shankar@intel.com>,
+ "louis.chauvet@bootlin.com" <louis.chauvet@bootlin.com>,
+ "Yella, Ramya Krishna" <ramya.krishna.yella@intel.com>
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Kandpal, Suraj" <suraj.kandpal@intel.com>
+References: <20260331-atomic-v11-0-6a1df7ec5af8@intel.com>
+ <BN9PR11MB529039EC705FBA4E5E65C64FA72F2@BN9PR11MB5290.namprd11.prod.outlook.com>
+From: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
+Content-Language: en-CA
+In-Reply-To: <BN9PR11MB529039EC705FBA4E5E65C64FA72F2@BN9PR11MB5290.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-META: 3ek8b5b389kqkyi4cc4jjy5czsuqgf39
+X-MBO-RS-ID: 2fe1feb1a8aa5bcc8ee
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,136 +78,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Apr 13, 2026 at 07:00:17PM +0530, Mallesh Koujalagi wrote:
-> When ``WEDGED=cold-reset`` is sent, it indicates a non-recoverable
-
-This looks like "cold-reset" should be able to recover it, so is it
-really non-recoverable? ;)
-
-> device error, only a full power cycle can restore the device.
+On 4/20/26 10:32, Kumar, Naveen1 wrote:
+> HI Arun,
 > 
-> v2:
-> - Add several instead of number to avoid update. (Jani)
-> 
-> v3:
-> - Update document with generic scenario. (Riana)
-> - Consistent with terminology. (Raag)
-> - Remove already covered information.
-> 
-> v4:
-> - Update doc. (Raag/Riana)
-> - Change commit message. (Raag)
-> 
-> Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-> ---
->  Documentation/gpu/drm-uapi.rst | 60 +++++++++++++++++++++++++++++++++-
->  1 file changed, 59 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/gpu/drm-uapi.rst b/Documentation/gpu/drm-uapi.rst
-> index 579e87cb9ff7..0b87c8ed760d 100644
-> --- a/Documentation/gpu/drm-uapi.rst
-> +++ b/Documentation/gpu/drm-uapi.rst
-> @@ -418,7 +418,7 @@ needed.
->  Recovery
->  --------
->  
-> -Current implementation defines four recovery methods, out of which, drivers
-> +Current implementation defines several recovery methods, out of which, drivers
->  can use any one, multiple or none. Method(s) of choice will be sent in the
->  uevent environment as ``WEDGED=<method1>[,..,<methodN>]`` in order of less to
->  more side-effects. See the section `Vendor Specific Recovery`_
-> @@ -435,6 +435,7 @@ following expectations.
->      rebind          unbind + bind driver
->      bus-reset       unbind + bus reset/re-enumeration + bind
->      vendor-specific vendor specific recovery method
-> +    cold-reset      unbind + remove device + slot power cycle + rescan
+> We verified atomic commit failure detection via capability flag, error code/string retrieval, and fallback path execution in Mutter via MR https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/5022.
 
-Do you need to unbind if you're already removing the device?
+I don't see any fallback handling in the mutter MR — process_atomic_commit_error has only TODO comments for all failure codes.
 
->      unknown         consumer policy
->      =============== ========================================
->  
-> @@ -447,6 +448,14 @@ debug purpose in order to root cause the hang. This is useful because the first
->  hang is usually the most critical one which can result in consequential hangs
->  or complete wedging.
->  
-> +Cold Reset Recovery
-> +-------------------
-> +
-> +When ``WEDGED=cold-reset`` is sent, it indicates a non-recoverable device error,
-> +only a full power cycle can restore the device.
+As such, in the current state I wouldn't consider it satisfying the user-space implementation requirements for new UAPI.
 
-This was phrased much better in last rev, not sure why changed?
 
-> +This method is used by devices that are plugged directly into the PCIe slot.
-
-... which supports removing the power.
-
->  Vendor Specific Recovery
->  ------------------------
->  
-> @@ -524,6 +533,55 @@ Recovery script::
->      echo -n $DEVICE > $DRIVER/unbind
->      echo -n $DEVICE > $DRIVER/bind
->  
-> +Example - cold-reset
-> +--------------------
-> +
-> +Udev rule::
-> +
-> +    SUBSYSTEM=="drm", ENV{WEDGED}=="cold-reset", DEVPATH=="*/drm/card[0-9]",
-> +    RUN+="/path/to/cold-reset.sh $env{DEVPATH}"
-> +
-> +Recovery script::
-> +
-> +    #!/bin/sh
-> +
-> +    [ -z "$1" ] && echo "Usage: $0 <device-path>" && exit 1
-> +
-> +    # Get device
-> +    DEVPATH=$(readlink -f /sys/$1/device 2>/dev/null || readlink -f /sys/$1)
-> +    DEVICE=$(basename $DEVPATH)
-> +
-> +    echo "Cold reset: $DEVICE"
-> +
-> +    # Try slot power reset first
-> +    SLOT=$(find /sys/bus/pci/slots/ -type l 2>/dev/null | while read slot; do
-> +	    ADDR=$(cat "$slot" 2>/dev/null)
-> +	    [ -n "$ADDR" ] && echo "$DEVICE" | grep -q "^$ADDR" && basename $(dirname "$slot") && break
-> +    done)
-
-This looks like too much is happening here, can we try to simplify a bit?
-
-> +    if [ -n "$SLOT" ]; then
-> +	echo "Using slot $SLOT"
-> +
-> +	# Unbind driver
-> +	[ -e "/sys/bus/pci/devices/$DEVICE/driver" ] && \
-> +	echo "$DEVICE" > /sys/bus/pci/devices/$DEVICE/driver/unbind 2>/dev/null
-
-Is this really needed?
-
-Raag
-
-> +	# Remove device
-> +	echo 1 > /sys/bus/pci/devices/$DEVICE/remove
-> +
-> +	# Power cycle slot
-> +	echo 0 > /sys/bus/pci/slots/$SLOT/power
-> +	sleep 2
-> +	echo 1 > /sys/bus/pci/slots/$SLOT/power
-> +	sleep 1
-> +
-> +	# Rescan
-> +	echo 1 > /sys/bus/pci/rescan
-> +	echo "Done!"
-> +    else
-> +	echo "No slot found"
-> +    fi
-> +
->  Customization
->  -------------
->  
-> -- 
-> 2.34.1
-> 
+-- 
+Earthling Michel Dänzer       \        GNOME / Xwayland / Mesa developer
+https://redhat.com             \               Libre software enthusiast
