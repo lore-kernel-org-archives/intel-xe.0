@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06E2AF8FA80
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Apr 2026 14:18:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35F56F8FA78
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Apr 2026 14:18:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C03FB10ECC2;
-	Tue, 21 Apr 2026 14:18:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB63110E89B;
+	Tue, 21 Apr 2026 14:18:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iKdYDJI7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QeEXPa1z";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D49A10EB39
- for <intel-xe@lists.freedesktop.org>; Tue, 21 Apr 2026 14:18:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD1EC10E8C3
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 Apr 2026 14:18:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776781098; x=1808317098;
+ t=1776781116; x=1808317116;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=tXcCcrFuGBBnnavBcbInA8xUrEsD8S45XIXOqFE+csU=;
- b=iKdYDJI7XttOKEPmAZ49vFjO7XTClSR2e1Jf8DCN1E9K3BT8Dw+rMimg
- bYjVfTdFiwyvpUxgrpy9p0BcsAKxg9dZ+co59QsN0d+exLtL0nc9FOA+l
- NRXDb6KnwzfOmfBDwHbmlxMNGtAMwk7mArMa2Q9lYiHNOBW/vecwJxWPb
- ki0wcKWuHnCEyoxf1vC5Ad8OOd08RiiX8pGUpPW8dL5dQZ4EOvIg/4HZp
- BW+Bq3mFLjZdUBQlcVc4JrQfUi5iiWzKrmd3L8lp0QmBE8fjxBYkcN/Hq
- 0Du3D36jTqmzYE0Iy95VNwaHTPjFPBbPaveJuBKqwOqCltsGZA7hF4Sdt A==;
-X-CSE-ConnectionGUID: P04RKmDFT/O+QNO6qu9Ksg==
-X-CSE-MsgGUID: 8DoggQl7QuqnsuJKByNbmw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11762"; a="95272273"
-X-IronPort-AV: E=Sophos;i="6.23,191,1770624000"; d="scan'208";a="95272273"
+ bh=yUM4Os3jSBJADd9CIxlrBr2pw4jJv+tJgcR87pcf1cg=;
+ b=QeEXPa1zNZFKtmWDU2M/CnCH9qbXuxJQ7JKkaaKwOGUkBw5+ZX0ISikI
+ 1y6Z6mMcWixSv4huUVimAoLJcr/7iciebUR9nyzzYSnFfqE393lSghf8s
+ i2bJWE3cq0qzA/2B3eUErcC23RJ07tDohZa3NMaIdTIROrp8QZk2fvnwH
+ PI70Fgfzd7T9gyLYxLYvkcOpqjd6PCb9RPOU2EkM07RV3jp5ludVgibjE
+ URViLO6p6WEKZQH5F2QjPZ7wLDePq0fKDIWH1w/BUgMKNCOgDFGBDp1S+
+ kb1obFQvstZcCMc7OBpxk0UdWhjKICoVuVCVR35a96ZEqclBacbWCtV/W g==;
+X-CSE-ConnectionGUID: MUtAvm0+T4GuzRwEI48Rmg==
+X-CSE-MsgGUID: f7y3ofxWR1mHITfDSCGKmA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11763"; a="95272278"
+X-IronPort-AV: E=Sophos;i="6.23,191,1770624000"; d="scan'208";a="95272278"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2026 07:18:18 -0700
-X-CSE-ConnectionGUID: NWx8KBI4TP6kqOi5WAqsUQ==
-X-CSE-MsgGUID: MvFdDDONTE2eE7Od9+Lg3A==
+ 21 Apr 2026 07:18:25 -0700
+X-CSE-ConnectionGUID: HhslupnkQZaL0bBO6ACd0w==
+X-CSE-MsgGUID: H4J+wjfkQZSvdBwTj9DKqA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,191,1770624000"; d="scan'208";a="233829079"
+X-IronPort-AV: E=Sophos;i="6.23,191,1770624000"; d="scan'208";a="233829126"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2026 07:18:15 -0700
+ 21 Apr 2026 07:18:23 -0700
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  aravind.iddamsetty@linux.intel.com, badal.nilawar@intel.com,
  raag.jadav@intel.com, ravi.kishore.koppuravuri@intel.com,
  mallesh.koujalagi@intel.com, soham.purkait@intel.com
-Subject: [PATCH v3 3/5] drm/xe/xe_ras: Add helper to clear error counter
-Date: Tue, 21 Apr 2026 20:20:59 +0530
-Message-ID: <20260421145056.253300-10-riana.tauro@intel.com>
+Subject: [PATCH v3 5/5] drm/xe/ras: Add flag for Xe RAS
+Date: Tue, 21 Apr 2026 20:21:01 +0530
+Message-ID: <20260421145056.253300-12-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20260421145056.253300-7-riana.tauro@intel.com>
 References: <20260421145056.253300-7-riana.tauro@intel.com>
@@ -69,182 +69,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add structures and helper function to clear error counter value.
+Add a flag for RAS. If enabled, XE driver registers with
+drm_ras and exposes supported counters.
+
+Currently this is enabled for PVC and CRI.
 
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 ---
-Note: This will be integrated with drm_ras implementation once
-clear-error-counter patch https://patchwork.freedesktop.org/series/164601/
-is merged.
+ drivers/gpu/drm/xe/xe_device_types.h | 2 ++
+ drivers/gpu/drm/xe/xe_hw_error.c     | 2 +-
+ drivers/gpu/drm/xe/xe_pci.c          | 3 +++
+ drivers/gpu/drm/xe/xe_pci_types.h    | 1 +
+ 4 files changed, 7 insertions(+), 1 deletion(-)
 
-v2: add status codes (Aravind)
-    fix log message
-    squash structure patch (Raag)
----
- drivers/gpu/drm/xe/xe_ras.c                   | 72 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_ras.h                   |  2 +
- drivers/gpu/drm/xe/xe_ras_types.h             | 26 +++++++
- drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |  4 +-
- 4 files changed, 103 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index c79c4c873fb7..92f7a204e3e6 100644
---- a/drivers/gpu/drm/xe/xe_ras.c
-+++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -32,6 +32,17 @@ enum xe_ras_component {
- 	XE_RAS_COMP_MAX
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index e9e11bb1c65f..8106a34b0023 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -191,6 +191,8 @@ struct xe_device {
+ 		u8 has_ctx_tlb_inval:1;
+ 		/** @info.has_range_tlb_inval: Has range based TLB invalidations */
+ 		u8 has_range_tlb_inval:1;
++		/** @info.has_ras: Device supports RAS (Reliability, Availability, Serviceability) */
++		u8 has_ras:1;
+ 		/** @info.has_soc_remapper_sysctrl: Has SoC remapper system controller */
+ 		u8 has_soc_remapper_sysctrl:1;
+ 		/** @info.has_soc_remapper_telem: Has SoC remapper telemetry support */
+diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
+index 2a31b430570e..3ab0fceb151f 100644
+--- a/drivers/gpu/drm/xe/xe_hw_error.c
++++ b/drivers/gpu/drm/xe/xe_hw_error.c
+@@ -520,7 +520,7 @@ void xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl)
+ 
+ static int hw_error_info_init(struct xe_device *xe)
+ {
+-	if (xe->info.platform != XE_PVC)
++	if (!xe->info.has_ras)
+ 		return 0;
+ 
+ 	return xe_drm_ras_init(xe);
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index d55e5af4f4b7..b5cfc38d36e7 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -365,6 +365,7 @@ static const __maybe_unused struct xe_device_desc pvc_desc = {
+ 	.vm_max_level = 4,
+ 	.vram_flags = XE_VRAM_FLAGS_NEED64K,
+ 	.has_mbx_power_limits = false,
++	.has_ras = true,
  };
  
-+/* RAS response status codes */
-+enum xe_ras_response_status {
-+	XE_RAS_STATUS_SUCCESS = 0,
-+	XE_RAS_STATUS_INVALID_PARAM,
-+	XE_RAS_STATUS_OP_NOT_SUPPORTED,
-+	XE_RAS_STATUS_TIMEOUT,
-+	XE_RAS_STATUS_HARDWARE_FAILURE,
-+	XE_RAS_STATUS_INSUFFICIENT_RESOURCES,
-+	XE_RAS_STATUS_UNKNOWN_ERROR
-+};
-+
- /* Mapping from drm_xe_ras_error_component to xe_ras_component */
- static const int drm_to_xe_ras_component[] = {
- 	[DRM_XE_RAS_ERR_COMP_CORE_COMPUTE]	= XE_RAS_COMP_CORE_COMPUTE,
-@@ -49,6 +60,16 @@ static const int drm_to_xe_ras_severity[] = {
- };
- static_assert(ARRAY_SIZE(drm_to_xe_ras_severity) == DRM_XE_RAS_ERR_SEV_MAX);
- 
-+static const int xe_ras_status_to_errno[] = {
-+	[XE_RAS_STATUS_SUCCESS]			= 0,
-+	[XE_RAS_STATUS_INVALID_PARAM]		= -EINVAL,
-+	[XE_RAS_STATUS_OP_NOT_SUPPORTED]	= -EOPNOTSUPP,
-+	[XE_RAS_STATUS_TIMEOUT]			= -ETIMEDOUT,
-+	[XE_RAS_STATUS_HARDWARE_FAILURE]	= -EIO,
-+	[XE_RAS_STATUS_INSUFFICIENT_RESOURCES]	= -ENAVAIL,
-+	[XE_RAS_STATUS_UNKNOWN_ERROR]		= -ENODATA
-+};
-+
- static void prepare_sysctrl_command(struct xe_sysctrl_mailbox_command *command,
- 				    u32 cmd_mask, void *request, size_t request_len,
- 				    void *response, size_t response_len)
-@@ -120,3 +141,54 @@ int xe_ras_get_error_counter(struct xe_device *xe, enum drm_xe_ras_error_severit
- 	guard(xe_pm_runtime)(xe);
- 	return get_error_counter(xe, &error_class, value);
- }
-+
-+/**
-+ * xe_ras_clear_error_counter() - Clear error counter value
-+ * @xe: xe device instance
-+ * @severity: Error severity level to be cleared
-+ * @error_id: Error component to be cleared
-+ *
-+ * This function clears the value of a specific RAS error counter based on
-+ * the provided severity and component.
-+ *
-+ * Return: 0 on success, negative error code on failure.
-+ */
-+int xe_ras_clear_error_counter(struct xe_device *xe, enum drm_xe_ras_error_severity severity,
-+			       u32 error_id)
-+{
-+	struct xe_ras_clear_counter_response response = {0};
-+	struct xe_ras_clear_counter_request request = {0};
-+	struct xe_sysctrl_mailbox_command command = {0};
-+	struct xe_ras_error_class *error_class = &request.error_class;
-+	enum xe_sysctrl_gfsp_cmd cmd = XE_SYSCTRL_CMD_CLEAR_COUNTER;
-+	size_t rlen;
-+	u32 status;
-+	int ret;
-+
-+	error_class->common.severity = drm_to_xe_ras_severity[severity];
-+	error_class->common.component = drm_to_xe_ras_component[error_id];
-+
-+	prepare_sysctrl_command(&command, cmd, &request, sizeof(request),
-+				&response, sizeof(response));
-+
-+	guard(xe_pm_runtime)(xe);
-+	ret = xe_sysctrl_send_command(&xe->sc, &command, &rlen);
-+	if (ret) {
-+		xe_err(xe, "sysctrl: cmd %d error ret %d\n", cmd, ret);
-+		return ret;
-+	}
-+
-+	if (rlen != sizeof(response)) {
-+		xe_err(xe, "sysctrl: cmd %d response size mismatch. Expected %zu, got %zu\n",
-+		       cmd, sizeof(response), rlen);
-+		return -EIO;
-+	}
-+
-+	status = xe_ras_status_to_errno[response.status];
-+	if (status) {
-+		xe_err(xe, "sysctrl: cmd %d failed %d\n", cmd, status);
-+		return status;
-+	}
-+
-+	return 0;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
-index 1de59b5c4bfe..959eed919da4 100644
---- a/drivers/gpu/drm/xe/xe_ras.h
-+++ b/drivers/gpu/drm/xe/xe_ras.h
-@@ -12,5 +12,7 @@ struct xe_device;
- 
- int xe_ras_get_error_counter(struct xe_device *xe, enum drm_xe_ras_error_severity severity,
- 			     u32 error_id, u32 *value);
-+int xe_ras_clear_error_counter(struct xe_device *xe, enum drm_xe_ras_error_severity severity,
-+			       u32 error_id);
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
-index 4a36bc2f5e2b..b5c96e814907 100644
---- a/drivers/gpu/drm/xe/xe_ras_types.h
-+++ b/drivers/gpu/drm/xe/xe_ras_types.h
-@@ -89,4 +89,30 @@ struct xe_ras_get_counter_response {
- 	/** @reserved1: Reserved for future use */
- 	u32 reserved1[56];
- } __packed;
-+
-+/**
-+ * struct xe_ras_clear_counter_request - Request for clearing an error counter
-+ */
-+struct xe_ras_clear_counter_request {
-+	/** @error_class: Counter class to be cleared */
-+	struct xe_ras_error_class error_class;
-+	/** @reserved: Reserved for future use */
-+	u32 reserved;
-+} __packed;
-+
-+/**
-+ * struct xe_ras_clear_counter_response - Response after clearing an error counter
-+ */
-+struct xe_ras_clear_counter_response {
-+	/** @error_class: Counter class that was cleared */
-+	struct xe_ras_error_class error_class;
-+	/** @previous_counter_value: Counter value before clearing */
-+	u32 previous_counter_value;
-+	/** @clear_timestamp: Timestamp when the counter was cleared */
-+	u64 clear_timestamp;
-+	/** @status: Status of the clear operation */
-+	u32 status;
-+	/** @reserved: Reserved for future use */
-+	u32 reserved[3];
-+} __packed;
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-index 3376e0fa1b02..0ca9bebfdc6c 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-+++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-@@ -14,9 +14,11 @@
-  * enum xe_sysctrl_gfsp_cmd  - Sysctrl Command ID's for GFSP group
-  *
-  * @XE_SYSCTRL_CMD_GET_COUNTER: Get error counter value
-+ * @XE_SYSCTRL_CMD_CLEAR_COUNTER: Clear error counter value
-  */
- enum xe_sysctrl_gfsp_cmd  {
--	XE_SYSCTRL_CMD_GET_COUNTER = 0x03
-+	XE_SYSCTRL_CMD_GET_COUNTER = 0x03,
-+	XE_SYSCTRL_CMD_CLEAR_COUNTER = 0x04
+ static const struct xe_device_desc mtl_desc = {
+@@ -472,6 +473,7 @@ static const struct xe_device_desc cri_desc = {
+ 	.require_force_probe = true,
+ 	.va_bits = 57,
+ 	.vm_max_level = 4,
++	.has_ras = true,
  };
  
- enum xe_sysctrl_group {
+ static const struct xe_device_desc nvlp_desc = {
+@@ -762,6 +764,7 @@ static int xe_info_init_early(struct xe_device *xe,
+ 	xe->info.has_page_reclaim_hw_assist = desc->has_page_reclaim_hw_assist;
+ 	xe->info.has_pre_prod_wa = desc->has_pre_prod_wa;
+ 	xe->info.has_pxp = desc->has_pxp;
++	xe->info.has_ras = desc->has_ras;
+ 	xe->info.has_soc_remapper_sysctrl = desc->has_soc_remapper_sysctrl;
+ 	xe->info.has_soc_remapper_telem = desc->has_soc_remapper_telem;
+ 	xe->info.has_sriov = xe_configfs_primary_gt_allowed(to_pci_dev(xe->drm.dev)) &&
+diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
+index 5b85e2c24b7b..70a9d4995cbd 100644
+--- a/drivers/gpu/drm/xe/xe_pci_types.h
++++ b/drivers/gpu/drm/xe/xe_pci_types.h
+@@ -54,6 +54,7 @@ struct xe_device_desc {
+ 	u8 has_pre_prod_wa:1;
+ 	u8 has_page_reclaim_hw_assist:1;
+ 	u8 has_pxp:1;
++	u8 has_ras:1;
+ 	u8 has_soc_remapper_sysctrl:1;
+ 	u8 has_soc_remapper_telem:1;
+ 	u8 has_sriov:1;
 -- 
 2.47.1
 
