@@ -4,58 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45B54F8FA71
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Apr 2026 12:56:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89322F8FA71
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Apr 2026 12:56:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0676D10EC53;
-	Tue, 21 Apr 2026 12:56:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4978310EC73;
+	Tue, 21 Apr 2026 12:56:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W6HZWDHR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Dg5FBLZR";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 028E110EC53
- for <intel-xe@lists.freedesktop.org>; Tue, 21 Apr 2026 12:56:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E28910EC73
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 Apr 2026 12:56:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776776208; x=1808312208;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=sBIwrIZJoZOFkpQ99TCDzWQ0txu4V5sviLQR2Rz5/UU=;
- b=W6HZWDHRiqhLMBL8bnUjz5WajN1Q/KYVYMUqZx+17dmUfO4E8JZ5VEef
- u2rF5D+LASr+T5sNYjcWVLaLQzaD5i1aH+KzuArd0KPcnzU4KgBLFUduf
- cY39fTJ6VWOeVwT+DuHGWXcyUmqPjcCBkIyva4VcDL/T5xGQ6hedaVhiD
- pUDBW/1sltxaC0N/Zb1der7SG2WLFpU4hmVg0BTCRiAPqw8zukBUX0q3r
- 4LC7K9AEqzClJ2GnvgkFBT7aDAHyffP5wQbhJ2AXNNkujqFn9EFzb4M/x
- vUNiuKXPojaImxWytEgQkrOtxT55Y0qGutqEqYkX6pe7cluEgF2Sv7I1W Q==;
-X-CSE-ConnectionGUID: Oh7MqqhLSta3ukpamW3vew==
-X-CSE-MsgGUID: Yr7FSo5OTau1jExrN8VOLg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11762"; a="77408259"
-X-IronPort-AV: E=Sophos;i="6.23,191,1770624000"; d="scan'208";a="77408259"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2026 05:56:47 -0700
-X-CSE-ConnectionGUID: tGpQtz6rQhe/tuoOjtl7hw==
-X-CSE-MsgGUID: q6KSZTm7Snu3kP2sowBuDA==
+ t=1776776216; x=1808312216;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=hlCyDr0otqdFmzPW5gPmA4zKqRPO5ejLaQXbdyWyL4A=;
+ b=Dg5FBLZR7+VxupDKcJ/mgs89bGnng+0cSHkrXBX+LOeLH99Cp42T845/
+ 7roXo1FlL7jK2Y+BewpsybM+Ok64SowHUIeAuMHjSJdye4N59+0Uhk35t
+ IDcny3rFWFinRTFfpgp9JWKawJteWgkF8T5nqDSNw7ARUjHMhMOj7bMpW
+ /Q9xaErF2LXhmhHeaHybKYu8iiUY1wXX08WUe2hFoKVL/Le5/XgTNdMz1
+ 1WSrjxRs9r/pJWTvHn6jDIZV00f6YtjjneNyC1T/278TXxM29ihCs5tWE
+ eUoLz1eI1IKWV2JJYhZsHZGFA7rTj2/0kghVxRqmXHe64EIpdOjaK3KWc Q==;
+X-CSE-ConnectionGUID: UzH1FcK/RaKNAl2JzQlN3g==
+X-CSE-MsgGUID: D95gsl5YTQeBAZpmeKTnzQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11762"; a="80294202"
+X-IronPort-AV: E=Sophos;i="6.23,191,1770624000"; d="scan'208";a="80294202"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2026 05:56:56 -0700
+X-CSE-ConnectionGUID: 2ERk2IgbRmS1V8KrA6Fl/A==
+X-CSE-MsgGUID: RGBX4ykvT0eAQ8VI9yd0FA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,191,1770624000"; d="scan'208";a="262420088"
-Received: from amilburn-desk.amilburn-desk (HELO [10.245.245.31])
- ([10.245.245.31])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2026 05:56:46 -0700
-Message-ID: <60f1def43bb1f5a4fc738e2dcc915e3f5be72134.camel@linux.intel.com>
-Subject: Re: [CI] drm: Ensure ioctls are drained before device unplug
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 21 Apr 2026 14:56:43 +0200
-In-Reply-To: <aecuhmp/Yi8vjT1q@gsse-cloud1.jf.intel.com>
-References: <20260414091552.6153-1-thomas.hellstrom@linux.intel.com>
- <aecuhmp/Yi8vjT1q@gsse-cloud1.jf.intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+X-IronPort-AV: E=Sophos;i="6.23,191,1770624000"; d="scan'208";a="255292565"
+Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.116])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2026 05:56:52 -0700
+Date: Tue, 21 Apr 2026 14:56:48 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Andi Shyti <andi.shyti@linux.intel.com>,
+ Soham Purkait <soham.purkait@intel.com>,
+ intel-xe@lists.freedesktop.org, riana.tauro@intel.com,
+ anshuman.gupta@intel.com, aravind.iddamsetty@linux.intel.com,
+ badal.nilawar@intel.com, raag.jadav@intel.com,
+ ravi.kishore.koppuravuri@intel.com, mallesh.koujalagi@intel.com,
+ anoop.c.vijay@intel.com
+Subject: Re: [PATCH v1 2/2] drm/xe/xe_ras: Add RAS support for GPU health
+ indicator
+Message-ID: <aed0EPEZ8oQLzPNc@ashyti-mobl2.lan>
+References: <20260416093610.4085667-1-soham.purkait@intel.com>
+ <20260416093610.4085667-3-soham.purkait@intel.com>
+ <aeDN6g6HWd3v-V72@ashyti-mobl2.lan> <aeJI1WrAr33degB-@intel.com>
+ <aeZFqaIlrddHmlCn@ashyti-mobl2.lan> <aeaD3n25U8LqGTM8@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aeaD3n25U8LqGTM8@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,80 +77,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2026-04-21 at 01:00 -0700, Matthew Brost wrote:
-> On Tue, Apr 14, 2026 at 11:15:52AM +0200, Thomas Hellstr=C3=B6m wrote:
-> > There is a check that blocks ioctls after device unplug,
-> > but we have no check that running ioctls have actually
-> > completed at unplug time. (And for some IOCTLs like
-> > fence waits, that actually makes sense).
-> > However, implement ioctl draining to have CI check for
-> > lockdep issues.
-> >=20
-> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
->=20
->=20
-> CI patch, but this seems entirely correct=E2=80=94unless there=E2=80=99s =
-some black
-> magic or hand-wavy behavior involved for not protecting IOCTLs
-> against
-> unplug.
->=20
-> So=E2=80=A6
->=20
-> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Hi Rodrigo,
 
-Thanks for reviewing, Matt.=20
+> > 
+> > If we need two strings, then we create two files.
+> 
+> This part I don't agree. This is just the same as the power cases
+> which I already had pointed out.
+> 
+> But right, you do have a point here. Different from power, we don't
+> necessarily need to expose all the supported modes + the current one.
+> After all, these states won't be that different from state to state.
+> 
+> We just need to document it properly and then just print:
+> either
+> 
+> ok
+> instead of
+> [ok] warning critical
+> 
+> or
+> warning
+> instead of
+> ok [warning] critical
+> 
+> or critical
+> instead of
+> ok warning [critical]
+> 
+> The full string with all the supported modes do sound bloated for
+> this case. Considering that the supported cases themselves shouldn't
+> change much and that we keep that documented. My bad, I'm sorry for
+> the confusion here.
 
-Although I think for some Ioctls that can wait extensively for GPU,
-like fence waits and exec, we actually need to exit dev when waiting,
-otherwise that waiting would block the unplug rather than let the
-unplug through to kill the running jobs and terminate the wait.
+Think of what a miserable life have userspace developers when
+parsing power files. They need to parse for the '[', for the ']'
+the number of words, etc. We have here an excellent example of
+how *not* to do things. :-)
 
-So requires some careful thinking. Might be best if we set an IOTCTL
-flag to indicate that we want this behaviour.
+> > If we just need to provide information to system administrators,
+> > then we can either use the debugfs or procfs that don't need to
+> > be considered as uAPI.
+> 
+> That is not true. In many data center deployments the 'debugfs'
+> is not available and the admin and cluster tools still need this
+> information. It needs to be stable API.
 
-Thomas
+Bingo! :-)
 
+Then you need to define an easily parsable, well documented api,
+so that it's accessable to everyone, applications and sysadmins.
 
+Overall, I don't think this is a matter of taste, but, anyway,
+you are the maintainer and yours is the last word. To me, this
+looks incorrect.
 
->=20
-> > ---
-> > =C2=A0drivers/gpu/drm/drm_ioctl.c | 11 +++++++----
-> > =C2=A01 file changed, 7 insertions(+), 4 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/drm_ioctl.c
-> > b/drivers/gpu/drm/drm_ioctl.c
-> > index ff193155129e..c87a925f0fe4 100644
-> > --- a/drivers/gpu/drm/drm_ioctl.c
-> > +++ b/drivers/gpu/drm/drm_ioctl.c
-> > @@ -789,19 +789,22 @@ long drm_ioctl_kernel(struct file *file,
-> > drm_ioctl_t *func, void *kdata,
-> > =C2=A0{
-> > =C2=A0	struct drm_file *file_priv =3D file->private_data;
-> > =C2=A0	struct drm_device *dev =3D file_priv->minor->dev;
-> > -	int ret;
-> > +	int ret, idx;
-> > =C2=A0
-> > =C2=A0	/* Update drm_file owner if fd was passed along. */
-> > =C2=A0	drm_file_update_pid(file_priv);
-> > =C2=A0
-> > -	if (drm_dev_is_unplugged(dev))
-> > +	if (!drm_dev_enter(dev, &idx))
-> > =C2=A0		return -ENODEV;
-> > =C2=A0
-> > =C2=A0	ret =3D drm_ioctl_permit(flags, file_priv);
-> > =C2=A0	if (unlikely(ret))
-> > -		return ret;
-> > +		goto out;
-> > =C2=A0
-> > -	return func(dev, kdata, file_priv);
-> > +	ret =3D func(dev, kdata, file_priv);
-> > + out:
-> > +	drm_dev_exit(idx);
-> > +	return ret;
-> > =C2=A0}
-> > =C2=A0EXPORT_SYMBOL(drm_ioctl_kernel);
-> > =C2=A0
-> > --=20
-> > 2.53.0
-> >=20
+Thanks,
+Andi
