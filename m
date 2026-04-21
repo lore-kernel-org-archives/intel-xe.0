@@ -4,58 +4,168 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 571F7F8FA80
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Apr 2026 14:18:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24865F8FA78
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Apr 2026 14:26:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14E5010E8C3;
-	Tue, 21 Apr 2026 14:18:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBCA0899C7;
+	Tue, 21 Apr 2026 14:26:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RkiLqsMG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dDFShsz1";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86D7F10E8B3
- for <intel-xe@lists.freedesktop.org>; Tue, 21 Apr 2026 14:18:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC29D10E962;
+ Tue, 21 Apr 2026 14:26:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776781116; x=1808317116;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=kpziO4/sHrCg7gtxCwcFmTrouBjyUbYtRa8X5Wi+okY=;
- b=RkiLqsMGKyRttVWN/siZ7EDpA8U7XRHjEZNsBXAm8W1dxgMyCNr7xqWS
- hfTDF5G70GWqCn8xPog5ShrDSBMlBWmVkOxPLZEi+yT3N2wZt91U3baS7
- rdE+/8SH2UO4rg2eyHYsPEoWMhlErWLvecnr9XYI8GHJoAldGccFlg0Sv
- ymDriCQyjs7Ob82WpPku6bqYj3TIzdZzQyDDOWcxmovItPebusQY4vjUo
- 9g0CNyhmG6s7eyLDBLxCpQLXXIAfjXSvCtLdz5SOMvyoZqYKVvS1h0oCf
- SxIRB31zM/4rJT2UYgwMO8na4i/SlYtiaubc8petiTDUuEX/CYHtfltox Q==;
-X-CSE-ConnectionGUID: N6H+9a3LSnW/Ktfy3u0yUQ==
-X-CSE-MsgGUID: bV1SC7nEQW61mt4+4ucSYw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11763"; a="95272276"
-X-IronPort-AV: E=Sophos;i="6.23,191,1770624000"; d="scan'208";a="95272276"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2026 07:18:22 -0700
-X-CSE-ConnectionGUID: qEsN/9jTQ92kH6+JB+7NVw==
-X-CSE-MsgGUID: HVdL7c+LRICbzvR1lYUr4w==
+ t=1776781564; x=1808317564;
+ h=message-id:date:subject:from:to:cc:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=hPi1j21C5IIb8ey77H5ww86RILZtm3pjAAXuMI1SN/s=;
+ b=dDFShsz1MHcTwyQssYSAtU3VPyYGRgwLPyckXZjj/aNEN5kQWOaVhcm5
+ ZfER3aM3JW0rzw8hdPfN4BsFR6KsAewBnp60sl+qHOeMRh7HCU4gqSAr+
+ tdfPs06P7f+5TSohGPgSN9xbfy4whab4w5kqkLL25aA1JQWDhglyjzgPd
+ CkbiI0b/loi/C9VoNNE+1cx98yI6Py9pzJ5bxZaDhq8urkmNGuVeTRYOH
+ c7i/h3KgNeYbGsB5rjQkQCdUgjExOA4gu/lzaZqxp4wjxf/7IgUZW9aaN
+ t/qMIEVmaBykM2u29Fplb2qNKGen5SGPLadsS38kbqdWR5Vioy0+c9FLY w==;
+X-CSE-ConnectionGUID: ytRbpA/qTdidYBM0yG2x6Q==
+X-CSE-MsgGUID: uCsD4U21Q+iDViHNA/4mLA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11763"; a="88412331"
+X-IronPort-AV: E=Sophos;i="6.23,191,1770624000"; d="scan'208";a="88412331"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2026 07:26:03 -0700
+X-CSE-ConnectionGUID: 75IPo9qkQgmIffoZrnjGrA==
+X-CSE-MsgGUID: uZJZ97FXTZ2PqyrMF/vOrA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,191,1770624000"; d="scan'208";a="233829104"
-Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2026 07:18:19 -0700
-From: Riana Tauro <riana.tauro@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
- aravind.iddamsetty@linux.intel.com, badal.nilawar@intel.com,
- raag.jadav@intel.com, ravi.kishore.koppuravuri@intel.com,
- mallesh.koujalagi@intel.com, soham.purkait@intel.com
-Subject: [PATCH v3 4/5] drm/xe/xe_drm_ras: Wire get-counter support into
- xe_drm_ras for CRI
-Date: Tue, 21 Apr 2026 20:21:00 +0530
-Message-ID: <20260421145056.253300-11-riana.tauro@intel.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20260421145056.253300-7-riana.tauro@intel.com>
-References: <20260421145056.253300-7-riana.tauro@intel.com>
-MIME-Version: 1.0
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2026 07:26:03 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Tue, 21 Apr 2026 07:26:02 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Tue, 21 Apr 2026 07:26:02 -0700
+Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.9) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Tue, 21 Apr 2026 07:26:02 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=UpUKGH1GQDlsaqb3Pch2An+6YFI/wrdRHHSj8c9K+eayv39XDG3FCU7Eq9nyYbrk3Uyz8WmtF6re1dGzGH95picAjLw72Z5h4tapcT1M2/2A+kfg/bghyp7I8Wp84Yjj0GU2zRLWN29INZNCK+jD7aCd0MRRDqf5GZZDpQ2vdMI7C+0ismgQIKOVQqYRwZ3tTC2MrZm+VAGXDxVsbO9al2pq0xxpLn0Bm/w9WjcRUyXLpre3fEL/iK2t/PxoqsdRhKSkfFGAQY1JIA2tfVJsN/l5unx0e8oZIEWWZOO0dj4KyhXRUY+el6t8Trq/ce2QAiCD0lH8caOIVFggziNZSw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PMmb+c8FupxlA3RnA+UfGX6YEU2pkJoJflGZoRa15t0=;
+ b=D9WNWY3FsgUYJ+H+uYW31aGVlXHBqejnlFl4nS++VvrROgBdH7pHBTECMKKryyh9SwAySjpd9qTL50KdPTlg7EnOWcdH3g/YvItiQkFhoEl2rPfyJIVEaKvWsRJ+sMd6Og0rNiVchFQ8tmJBLo+Hxs1ssKf6IYkt++5YHiLZreSBgZz+1KZpLyrUZpjGjvPTDixSMd5QXtKqX2RQSuXzF9Fcl/BWMVhpOFdsWH5bkM21VzU3k4/PMzKuHhHi/oByTI+O6Y8XdHb3mltec3nkle+vGCYdtvRcEoqEl4zMMmaHtSa9tn2wpyAqTo18dZvbfUn6QWzlIv0SDt1NtZILvw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
+ IA1PR11MB8098.namprd11.prod.outlook.com (2603:10b6:208:44b::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.16; Tue, 21 Apr
+ 2026 14:25:55 +0000
+Received: from DS0PR11MB7958.namprd11.prod.outlook.com
+ ([fe80::8cb2:cffc:b684:9a99]) by DS0PR11MB7958.namprd11.prod.outlook.com
+ ([fe80::8cb2:cffc:b684:9a99%6]) with mapi id 15.20.9846.016; Tue, 21 Apr 2026
+ 14:25:55 +0000
+Message-ID: <2c7f8250-35e5-4bc6-9f44-fde21d6264fa@intel.com>
+Date: Tue, 21 Apr 2026 19:55:41 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] drm/drm_ras: Add clear-error-counter netlink
+ command to drm_ras
+From: "Tauro, Riana" <riana.tauro@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, <maarten.lankhorst@linux.intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <netdev@vger.kernel.org>, Zack McKevitt <zachary.mckevitt@oss.qualcomm.com>,
+ <joonas.lahtinen@linux.intel.com>, <aravind.iddamsetty@linux.intel.com>,
+ <anshuman.gupta@intel.com>, <simona.vetter@ffwll.ch>, <airlied@gmail.com>,
+ <pratik.bari@intel.com>, <joshua.santosh.ranjan@intel.com>,
+ <ashwin.kumar.kulkarni@intel.com>, <shubham.kumar@intel.com>,
+ <ravi.kishore.koppuravuri@intel.com>, <raag.jadav@intel.com>,
+ <anvesh.bakwad@intel.com>, Jakub Kicinski <kuba@kernel.org>, Lijo Lazar
+ <lijo.lazar@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>, "David S.
+ Miller" <davem@davemloft.net>, Paolo Abeni <pabeni@redhat.com>, Eric Dumazet
+ <edumazet@google.com>
+References: <20260409073318.2909379-4-riana.tauro@intel.com>
+ <20260409073318.2909379-5-riana.tauro@intel.com>
+ <e7978696-eff6-4c1f-ab0f-047dccb18b59@intel.com> <aderpXuhLoiUoxcT@intel.com>
+ <ee2681bd-5223-4957-b10e-5dbde0c0e974@intel.com>
+Content-Language: en-US
+In-Reply-To: <ee2681bd-5223-4957-b10e-5dbde0c0e974@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA5P287CA0153.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1d7::8) To DS0PR11MB7958.namprd11.prod.outlook.com
+ (2603:10b6:8:f9::19)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|IA1PR11MB8098:EE_
+X-MS-Office365-Filtering-Correlation-Id: 589bee1e-bd72-4bd1-d762-08de9fb1e5ac
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|7416014|1800799024|376014|18002099003|56012099003|22082099003;
+X-Microsoft-Antispam-Message-Info: yOXm7vmuy3zsbgY+8mvLP6JWijpYGx4A7WxPnr5GmabJG5a7C4TklpjnVUlkRvFi3B5n+iYYc5fyjyHjya5qiGAUkTnlgOd77IkridpxWUdTajN94ixRSwWY1IHqhf8LOB30LoWPSIVZj+RvtEoZr8ow41SfaTEcYPpJK2fp4rMsX7hAnKFcgQB4YsFelN9zt9WaPZEDu21E0lUzUDkjPTtxW6ucovJEi6/RtyeyenaeEj/Jat53gQ26BW6Z7BXPbjTUYuoTtuJ3dnvVlhN2hP3dzACTKZRSwViy45pnhxnZ5gucToBDXsCuwAVrXKZruaVnofQpMEgqENmMUgHkQWvabyujLoqE1Yc1rNOqzFvHP7PYvBAhZRZmbnDdIt7VDI4ZX3b9muJR4tqtnr9uCr5cncUwe4zQZ73gdnEUqlQIv4nmUk0IEpniw7WKeQlrTRavZK5lLbb/ZZ41x15Dm7i0cECIyXLG9Gbe3eBAQY1Z2GcMMKxZbSI6zG4vnBdrcbJnrpGUZ/PQ/iObzt/ECHC7m/wq+IgKWw45tk/wwG3rJvS8DM77qWQi7BICrNnhJvCJ2krQJpNLRUhPK9EnhTMoWrTCcpFOhehc3I2bkqkLoXlKBo77KdBaiDgaVtLdoqIGnLleqK16iLtBbu0Mq/EDK96yR/HujC3/OcFfkVpIYCZIisoVDTiIZS/hzopsdCiXQlCT6FGyjjlz1+tjs4hijStJhVfXBAZxs57vwJk=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(7416014)(1800799024)(376014)(18002099003)(56012099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OWM4SnN1TGNFcTlYdXlIajFteUh4OTJhRVhZc3RONFBGSUdrNEVGUVVyVC9N?=
+ =?utf-8?B?dXp5NkRyaHNmbVlzQ0tlVVJnSlRhSFJYOWErM1dBK0g5ZEplbG12YU91a3V2?=
+ =?utf-8?B?TFdNd1BYTlhORVEzajNGTm5pU1c5MGVKanl2NFR0YXd2Q1dVbW4rT0pZdi90?=
+ =?utf-8?B?M21VRlZYZHcvZHpTSmt0MWhmWk1YWnNuV0Q0MFNmbTMwaUlVVTZSZnliMjA2?=
+ =?utf-8?B?elhSaW04dmRncm81dFQvOVMyMmt0L09pRmVkcThpYU5lMExCM0hUd2lURXlC?=
+ =?utf-8?B?MlZGdWhRQ2RGbWV0WCtiV2x4NUcza256SXFkZXhCaHJqc3VHd0N3VTEvQmtM?=
+ =?utf-8?B?bVZ0RXRuM3ozRW9FbWkrazR0ak1jM0RncSsxOU5ET1pXaDZuNktHc2ZHSVpH?=
+ =?utf-8?B?dmlMbE9EeWkxVDM4NGNMTm05N0tEeExBVCt1L2lQNHMxV0Z6a0ZScDhxZEd2?=
+ =?utf-8?B?OXBvYW9jUHZDZ3hHNzR4ZitSQ1lPSHJzZkl4WWRISGZ0VTdPMHM0Y1NFUDhS?=
+ =?utf-8?B?YkRidkhoVE12UnhiblRGRElBckVoQ0M3ajdLM01ZTkxrbjE1K1kyWnZ3Rmd3?=
+ =?utf-8?B?OGZhZm1OVDhGV3BBbEI2UVJHcERYVUVVWHV0UFZZckVEUnJjelR2NFhZcVds?=
+ =?utf-8?B?dFpEU042WVJQOGxVclpwRmo4WEhzVGxuVkNxcWNkbGZXNmlmMWp4QW41amw4?=
+ =?utf-8?B?NlRxS3BWWVRjK1lPbFcrZ0hWcUZoZ3ZiaVBRK0VaYzhpejhRMGMvc0pnQ29O?=
+ =?utf-8?B?UDk4N3BVZlhaZzdsQzlZV1d6S1Q5djJ2TU5aTnp2Q25USDlVOGErVk1DVHE5?=
+ =?utf-8?B?UEV6dysxUjM1WXRmRkFseFVBM2hqeVZBMDNEUDJGcEFBemZnK1ZOMXczWUp5?=
+ =?utf-8?B?emZUbVNPdUo5VU1UYVFsbXFwRldsbXhobitTV0tBYXhYMFhmSWlHS2RVNWFN?=
+ =?utf-8?B?WUtwZVdlZ3E0bGNFZEhGRlBOWVk5WFNIZVRaeStYZUIwQmptUmt5MkJyNW5K?=
+ =?utf-8?B?TW9WM3JsK1lwdSs3alJTbXFjLzgydHRGVXU3aFUxOUZFN1ZoSHM0NUc3MkdZ?=
+ =?utf-8?B?TFRWWTUwVDhVZHorcUV0cldQeTVPU004QXJzcElMZitGRUk4ZUdRYWFwRGwx?=
+ =?utf-8?B?cW1SWmFyQTRDT0laQ1FpSVpDb0RvcmRFZlFpeldoYTlSUUNVQzIyRk9mNTZh?=
+ =?utf-8?B?ZVp4emxDRmpnZkpaTEJsNURIdFlBYXFFbUp0dlZwVWFXbzV4ekhwbVVxMU1Z?=
+ =?utf-8?B?MVc1QUdxTE1xWjJ2OFJkVktTSVdZYnQxTXArRm9wTS80UXViemNOT1VmeW1G?=
+ =?utf-8?B?TmcrcTFRZE9rRFpqbTNkcVdGTWhjNUlWZmJTRkk1WFVkRjJjYldGUGYxSlVF?=
+ =?utf-8?B?elcyTWgzTGc1TDJhdGIrckUyalEvTTZ4VDZQR0lGSlMySjZrQ1puL1NRSG1X?=
+ =?utf-8?B?Q1IzZjdLNzNJckNvTis0eFZiVGt1ZmdJdmlEZ0RWc1RnUjJDQStVS2Jua0U4?=
+ =?utf-8?B?R3lwc0lHM28vdkhHc0ZwaFJOMmRNcUFzbHNrb0NhcGFtRytmUUp6TUp1T2du?=
+ =?utf-8?B?UEVpMnBicFRMeTh6VlRuRHBNaTU3VUFlR3cybHY1ald3bENuek9ud2hQRi9H?=
+ =?utf-8?B?bGN1ZTZiVk81THM0ZXA5cGR2eUFabW9lbVcrMDgySWE3Rm1nUzQwUGZ3cS9G?=
+ =?utf-8?B?OGljRkxleEtKdG0wVzBFZS9DeW9uWFNjWnFxY1BUMlFTRFNtdTBtbUMxVjNG?=
+ =?utf-8?B?QXh6ZWd6em54M3NSZ2pzMHB6MGE3bEFMc2tzNzFkeS9JdVJtT0pQaUhGMmVZ?=
+ =?utf-8?B?OGFnOFBPQ0xnUEtZS09YaUtjMElzeUtnVXJEb3RzMk5yeEJHdEYzMGY5U0Rr?=
+ =?utf-8?B?dVR3QjYwclZaQWtSQi9oMVh3S29BYU5yY2ZsYkRNdzRORkdLY0VvMncycXQv?=
+ =?utf-8?B?S04xY2V5dTF4TzZyeFQzQkFQYVNhZlF2eThJcTJwL1lSVG5TakJ3T3ZvNlc4?=
+ =?utf-8?B?emdBMUpBRmcwZkxXU2cxb1R6YmNxZVZEUWZsTUJTOUxhV2J0TFREQ2JCeFdy?=
+ =?utf-8?B?T3JiQ0ZQWXNlVStwcVUrV1RreHlxSmpIZ29maGJvSDliZXJYbHFwbGZ5dmZq?=
+ =?utf-8?B?bWhXVGVmd0dQSXdlRmxWdGhpMjB3WFlxOTMySjNmVlh0SUxVb1NDbk1IV2dH?=
+ =?utf-8?B?b2F0dGRDQU56NjcwVUxmcUtwWDFlUXRSVXoxWTFlOGd0YjRjU0NRTVoxT2NM?=
+ =?utf-8?B?ZWZaUisyN3lYNDF4TjJGUEVycTRLNUNvVk9xUnZ1b0JvK1BiNnV3Ti9vb0hh?=
+ =?utf-8?B?WUhPdEhxY3BneUZQTUFSNXRiM0NvRGxSQ0o4dzkzY0RKc0NQVkhTZz09?=
+X-Exchange-RoutingPolicyChecked: LOEZ1yseLAWjcm6MIK0Enm72ePGlVOl1JTly0v5FU5jM+kuPoV8mPj2v8W0zO0iESTF1uH+jOsxGa1IuCQ64cYSzqHZs2pbtHY4yPimeIn8KG5rzxV9TUosmF9GgRswgSyii2DPRD5TYaF8p0VDRubSb/lx/f31cA2mEtUWNi2zg083Id2794FhIyOMlpvinJn9bMfUTtni1fAxREQo683WyhqxtFcRoqphw5pDvLsk0nwMSe5yCWCaAmIGcEQjo4iQfqT2acFag/qGaS17R6sFskldexTtmLIaYXQTOYX0T5XwjZDNOVcjvZ2fr8xvUZkRBzUaYJafvSmoeh0Q+dw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 589bee1e-bd72-4bd1-d762-08de9fb1e5ac
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7958.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Apr 2026 14:25:54.9474 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2JvB6RYnEX+dSBaafw2Jv/08XfQu3EcbsBu/xAmRhc2fJ2TKDL2sSQvVLmXttS6xJ2+TRV0uYxmKV6xcOOm7Yw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB8098
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,94 +180,304 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hook CRI get-counter support to xe_drm_ras to allow userspace to query
-counters if supported. When userspace queries a drm_ras error counter,
-fetch the latest counter value from system controller.
+Hi Maarten
 
-Integrate this with xe_drm_ras.
+Could you please help with an ack for this patch so we can merge this 
+through drm-xe-next?
 
-Usage :
+Thanks
+Riana
 
-Query all error counter value using ynl
-
-$ sudo ynl --family drm_ras --dump get-error-counter --json \
-'{"node-id":0}'
-[{'error-id': 1, 'error-name': 'core-compute', 'error-value': 0},
- {'error-id': 2, 'error-name': 'soc-internal', 'error-value': 0},
- {'error-id': 3, 'error-name': 'device-memory', 'error-value': 0},
- {'error-id': 4, 'error-name': 'pcie', 'error-value': 0},
- {'error-id': 5, 'error-name': 'fabric', 'error-value': 0}]
-
-Query single error counter value using ynl
-
-$ sudo ynl --family drm_ras  --do get-error-counter --json \
-  '{"node-id":1, "error-id":1}'
-{'error-id': 1, 'error-name': 'core-compute', 'error-value': 2}
-
-Signed-off-by: Riana Tauro <riana.tauro@intel.com>
----
-v2: split patches (Raag)
----
- drivers/gpu/drm/xe/xe_drm_ras.c | 19 ++++++++++++-------
- 1 file changed, 12 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_drm_ras.c b/drivers/gpu/drm/xe/xe_drm_ras.c
-index e07dc23a155e..7040ff0f9539 100644
---- a/drivers/gpu/drm/xe/xe_drm_ras.c
-+++ b/drivers/gpu/drm/xe/xe_drm_ras.c
-@@ -11,19 +11,28 @@
- 
- #include "xe_device_types.h"
- #include "xe_drm_ras.h"
-+#include "xe_ras.h"
- 
- static const char * const error_components[] = DRM_XE_RAS_ERROR_COMPONENT_NAMES;
- static const char * const error_severity[] = DRM_XE_RAS_ERROR_SEVERITY_NAMES;
- 
--static int hw_query_error_counter(struct xe_drm_ras_counter *info,
-+static int hw_query_error_counter(struct xe_device *xe,
-+				  const enum drm_xe_ras_error_severity severity,
- 				  u32 error_id, const char **name, u32 *val)
- {
-+	struct xe_drm_ras *ras = &xe->ras;
-+	struct xe_drm_ras_counter *info = ras->info[severity];
-+
- 	if (!info || !info[error_id].name)
- 		return -ENOENT;
- 
- 	*name = info[error_id].name;
- 	*val = atomic_read(&info[error_id].counter);
- 
-+	/* Fetch counter from system controller if supported */
-+	if (xe->info.has_sysctrl)
-+		return xe_ras_get_error_counter(xe, severity, error_id, val);
-+
- 	return 0;
- }
- 
-@@ -31,20 +40,16 @@ static int query_uncorrectable_error_counter(struct drm_ras_node *ep, u32 error_
- 					     const char **name, u32 *val)
- {
- 	struct xe_device *xe = ep->priv;
--	struct xe_drm_ras *ras = &xe->ras;
--	struct xe_drm_ras_counter *info = ras->info[DRM_XE_RAS_ERR_SEV_UNCORRECTABLE];
- 
--	return hw_query_error_counter(info, error_id, name, val);
-+	return hw_query_error_counter(xe, DRM_XE_RAS_ERR_SEV_UNCORRECTABLE, error_id, name, val);
- }
- 
- static int query_correctable_error_counter(struct drm_ras_node *ep, u32 error_id,
- 					   const char **name, u32 *val)
- {
- 	struct xe_device *xe = ep->priv;
--	struct xe_drm_ras *ras = &xe->ras;
--	struct xe_drm_ras_counter *info = ras->info[DRM_XE_RAS_ERR_SEV_CORRECTABLE];
- 
--	return hw_query_error_counter(info, error_id, name, val);
-+	return hw_query_error_counter(xe, DRM_XE_RAS_ERR_SEV_CORRECTABLE, error_id, name, val);
- }
- 
- static struct xe_drm_ras_counter *allocate_and_copy_counters(struct xe_device *xe)
--- 
-2.47.1
-
+On 4/10/2026 10:51 AM, Tauro, Riana wrote:
+> Hi Rodrigo
+>
+> On 4/9/2026 7:07 PM, Rodrigo Vivi wrote:
+>> On Thu, Apr 09, 2026 at 12:51:44PM +0530, Tauro, Riana wrote:
+>>> Hi Zack
+>>>
+>>> Could you please take a look at this patch if applicable to your 
+>>> usecase.
+>>> Please let me know if any
+>>> changes are required
+>>>
+>>> @Rodrigo This is already reviewed by Jakub and Raag.
+>>> If there are no opens, can this be merged via drm_misc
+>> if we push this to drm-misc-next, it might take a few weeks to propagate
+>> back to drm-xe-next. With other work from you and Raag going fast pace
+>> on drm-xe-next around this area, I'm afraid it could cause some 
+>> conflicts.
+>>
+>> It is definitely fine by me, but another option is to get ack from
+>> drm-misc maintainers to get this through drm-xe-next.
+>>
+>
+> Yeah this would be better with the other RAS patches close to merge.
+>
+> @Maarten Can you please help with an ack if this patch looks good to you?
+> This has been reviewed by Jakub from netdev and Raag from intel-xe
+> There are no other opens.
+>
+> Thanks
+> Riana
+>
+>>
+>> so, really okay with drm-misc-next?
+>>
+>>> Thanks
+>>> Riana
+>>>
+>>> On 4/9/2026 1:03 PM, Riana Tauro wrote:
+>>>> Introduce a new 'clear-error-counter' drm_ras command to reset the 
+>>>> counter
+>>>> value for a specific error counter of a given node.
+>>>>
+>>>> The command is a 'do' netlink request with 'node-id' and 'error-id'
+>>>> as parameters with no response payload.
+>>>>
+>>>> Usage:
+>>>>
+>>>> $ sudo ynl --family drm_ras  --do clear-error-counter --json \
+>>>> '{"node-id":1, "error-id":1}'
+>>>> None
+>>>>
+>>>> Cc: Jakub Kicinski <kuba@kernel.org>
+>>>> Cc: Zack McKevitt <zachary.mckevitt@oss.qualcomm.com>
+>>>> Cc: Lijo Lazar <lijo.lazar@amd.com>
+>>>> Cc: Hawking Zhang <Hawking.Zhang@amd.com>
+>>>> Cc: David S. Miller <davem@davemloft.net>
+>>>> Cc: Paolo Abeni <pabeni@redhat.com>
+>>>> Cc: Eric Dumazet <edumazet@google.com>
+>>>> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+>>>> Reviewed-by: Jakub Kicinski <kuba@kernel.org>
+>>>> Reviewed-by: Raag Jadav <raag.jadav@intel.com>
+>>>> ---
+>>>>    Documentation/gpu/drm-ras.rst            |  8 +++++
+>>>>    Documentation/netlink/specs/drm_ras.yaml | 13 ++++++-
+>>>>    drivers/gpu/drm/drm_ras.c                | 43 
+>>>> +++++++++++++++++++++++-
+>>>>    drivers/gpu/drm/drm_ras_nl.c             | 13 +++++++
+>>>>    drivers/gpu/drm/drm_ras_nl.h             |  2 ++
+>>>>    include/drm/drm_ras.h                    | 11 ++++++
+>>>>    include/uapi/drm/drm_ras.h               |  1 +
+>>>>    7 files changed, 89 insertions(+), 2 deletions(-)
+>>>>
+>>>> diff --git a/Documentation/gpu/drm-ras.rst 
+>>>> b/Documentation/gpu/drm-ras.rst
+>>>> index 70b246a78fc8..4636e68f5678 100644
+>>>> --- a/Documentation/gpu/drm-ras.rst
+>>>> +++ b/Documentation/gpu/drm-ras.rst
+>>>> @@ -52,6 +52,8 @@ User space tools can:
+>>>>      as a parameter.
+>>>>    * Query specific error counter values with the 
+>>>> ``get-error-counter`` command, using both
+>>>>      ``node-id`` and ``error-id`` as parameters.
+>>>> +* Clear specific error counters with the ``clear-error-counter`` 
+>>>> command, using both
+>>>> +  ``node-id`` and ``error-id`` as parameters.
+>>>>    YAML-based Interface
+>>>>    --------------------
+>>>> @@ -101,3 +103,9 @@ Example: Query an error counter for a given node
+>>>>        sudo ynl --family drm_ras --do get-error-counter --json 
+>>>> '{"node-id":0, "error-id":1}'
+>>>>        {'error-id': 1, 'error-name': 'error_name1', 'error-value': 0}
+>>>> +Example: Clear an error counter for a given node
+>>>> +
+>>>> +.. code-block:: bash
+>>>> +
+>>>> +    sudo ynl --family drm_ras --do clear-error-counter --json 
+>>>> '{"node-id":0, "error-id":1}'
+>>>> +    None
+>>>> diff --git a/Documentation/netlink/specs/drm_ras.yaml 
+>>>> b/Documentation/netlink/specs/drm_ras.yaml
+>>>> index 79af25dac3c5..e113056f8c01 100644
+>>>> --- a/Documentation/netlink/specs/drm_ras.yaml
+>>>> +++ b/Documentation/netlink/specs/drm_ras.yaml
+>>>> @@ -99,7 +99,7 @@ operations:
+>>>>          flags: [admin-perm]
+>>>>          do:
+>>>>            request:
+>>>> -          attributes:
+>>>> +          attributes: &id-attrs
+>>>>                - node-id
+>>>>                - error-id
+>>>>            reply:
+>>>> @@ -113,3 +113,14 @@ operations:
+>>>>                - node-id
+>>>>            reply:
+>>>>              attributes: *errorinfo
+>>>> +    -
+>>>> +      name: clear-error-counter
+>>>> +      doc: >-
+>>>> +           Clear error counter for a given node.
+>>>> +           The request includes the error-id and node-id of the
+>>>> +           counter to be cleared.
+>>>> +      attribute-set: error-counter-attrs
+>>>> +      flags: [admin-perm]
+>>>> +      do:
+>>>> +        request:
+>>>> +          attributes: *id-attrs
+>>>> diff --git a/drivers/gpu/drm/drm_ras.c b/drivers/gpu/drm/drm_ras.c
+>>>> index b2fa5ab86d87..d6eab29a1394 100644
+>>>> --- a/drivers/gpu/drm/drm_ras.c
+>>>> +++ b/drivers/gpu/drm/drm_ras.c
+>>>> @@ -26,7 +26,7 @@
+>>>>     * efficient lookup by ID. Nodes can be registered or unregistered
+>>>>     * dynamically at runtime.
+>>>>     *
+>>>> - * A Generic Netlink family `drm_ras` exposes two main operations to
+>>>> + * A Generic Netlink family `drm_ras` exposes the below operations to
+>>>>     * userspace:
+>>>>     *
+>>>>     * 1. LIST_NODES: Dump all currently registered RAS nodes.
+>>>> @@ -37,6 +37,10 @@
+>>>>     *    Returns all counters of a node if only Node ID is provided 
+>>>> or specific
+>>>>     *    error counters.
+>>>>     *
+>>>> + * 3. CLEAR_ERROR_COUNTER: Clear error counter of a given node.
+>>>> + *    Userspace must provide Node ID, Error ID.
+>>>> + *    Clears specific error counter of a node if supported.
+>>>> + *
+>>>>     * Node registration:
+>>>>     *
+>>>>     * - drm_ras_node_register(): Registers a new node and assigns
+>>>> @@ -66,6 +70,8 @@
+>>>>     *   operation, fetching all counters from a specific node.
+>>>>     * - drm_ras_nl_get_error_counter_doit(): Implements the 
+>>>> GET_ERROR_COUNTER doit
+>>>>     *   operation, fetching a counter value from a specific node.
+>>>> + * - drm_ras_nl_clear_error_counter_doit(): Implements the 
+>>>> CLEAR_ERROR_COUNTER doit
+>>>> + *   operation, clearing a counter value from a specific node.
+>>>>     */
+>>>>    static DEFINE_XARRAY_ALLOC(drm_ras_xa);
+>>>> @@ -314,6 +320,41 @@ int drm_ras_nl_get_error_counter_doit(struct 
+>>>> sk_buff *skb,
+>>>>        return doit_reply_value(info, node_id, error_id);
+>>>>    }
+>>>> +/**
+>>>> + * drm_ras_nl_clear_error_counter_doit() - Clear an error counter 
+>>>> of a node
+>>>> + * @skb: Netlink message buffer
+>>>> + * @info: Generic Netlink info containing attributes of the request
+>>>> + *
+>>>> + * Extracts the node ID and error ID from the netlink attributes and
+>>>> + * clears the current value.
+>>>> + *
+>>>> + * Return: 0 on success, or negative errno on failure.
+>>>> + */
+>>>> +int drm_ras_nl_clear_error_counter_doit(struct sk_buff *skb,
+>>>> +                    struct genl_info *info)
+>>>> +{
+>>>> +    struct drm_ras_node *node;
+>>>> +    u32 node_id, error_id;
+>>>> +
+>>>> +    if (!info->attrs ||
+>>>> +        GENL_REQ_ATTR_CHECK(info, 
+>>>> DRM_RAS_A_ERROR_COUNTER_ATTRS_NODE_ID) ||
+>>>> +        GENL_REQ_ATTR_CHECK(info, 
+>>>> DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_ID))
+>>>> +        return -EINVAL;
+>>>> +
+>>>> +    node_id = 
+>>>> nla_get_u32(info->attrs[DRM_RAS_A_ERROR_COUNTER_ATTRS_NODE_ID]);
+>>>> +    error_id = 
+>>>> nla_get_u32(info->attrs[DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_ID]);
+>>>> +
+>>>> +    node = xa_load(&drm_ras_xa, node_id);
+>>>> +    if (!node || !node->clear_error_counter)
+>>>> +        return -ENOENT;
+>>>> +
+>>>> +    if (error_id < node->error_counter_range.first ||
+>>>> +        error_id > node->error_counter_range.last)
+>>>> +        return -EINVAL;
+>>>> +
+>>>> +    return node->clear_error_counter(node, error_id);
+>>>> +}
+>>>> +
+>>>>    /**
+>>>>     * drm_ras_node_register() - Register a new RAS node
+>>>>     * @node: Node structure to register
+>>>> diff --git a/drivers/gpu/drm/drm_ras_nl.c 
+>>>> b/drivers/gpu/drm/drm_ras_nl.c
+>>>> index 16803d0c4a44..dea1c1b2494e 100644
+>>>> --- a/drivers/gpu/drm/drm_ras_nl.c
+>>>> +++ b/drivers/gpu/drm/drm_ras_nl.c
+>>>> @@ -22,6 +22,12 @@ static const struct nla_policy 
+>>>> drm_ras_get_error_counter_dump_nl_policy[DRM_RAS_
+>>>>        [DRM_RAS_A_ERROR_COUNTER_ATTRS_NODE_ID] = { .type = NLA_U32, },
+>>>>    };
+>>>> +/* DRM_RAS_CMD_CLEAR_ERROR_COUNTER - do */
+>>>> +static const struct nla_policy 
+>>>> drm_ras_clear_error_counter_nl_policy[DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_ID 
+>>>> + 1] = {
+>>>> +    [DRM_RAS_A_ERROR_COUNTER_ATTRS_NODE_ID] = { .type = NLA_U32, },
+>>>> +    [DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_ID] = { .type = NLA_U32, },
+>>>> +};
+>>>> +
+>>>>    /* Ops table for drm_ras */
+>>>>    static const struct genl_split_ops drm_ras_nl_ops[] = {
+>>>>        {
+>>>> @@ -43,6 +49,13 @@ static const struct genl_split_ops 
+>>>> drm_ras_nl_ops[] = {
+>>>>            .maxattr    = DRM_RAS_A_ERROR_COUNTER_ATTRS_NODE_ID,
+>>>>            .flags        = GENL_ADMIN_PERM | GENL_CMD_CAP_DUMP,
+>>>>        },
+>>>> +    {
+>>>> +        .cmd        = DRM_RAS_CMD_CLEAR_ERROR_COUNTER,
+>>>> +        .doit        = drm_ras_nl_clear_error_counter_doit,
+>>>> +        .policy        = drm_ras_clear_error_counter_nl_policy,
+>>>> +        .maxattr    = DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_ID,
+>>>> +        .flags        = GENL_ADMIN_PERM | GENL_CMD_CAP_DO,
+>>>> +    },
+>>>>    };
+>>>>    struct genl_family drm_ras_nl_family __ro_after_init = {
+>>>> diff --git a/drivers/gpu/drm/drm_ras_nl.h 
+>>>> b/drivers/gpu/drm/drm_ras_nl.h
+>>>> index 06ccd9342773..a398643572a5 100644
+>>>> --- a/drivers/gpu/drm/drm_ras_nl.h
+>>>> +++ b/drivers/gpu/drm/drm_ras_nl.h
+>>>> @@ -18,6 +18,8 @@ int drm_ras_nl_get_error_counter_doit(struct 
+>>>> sk_buff *skb,
+>>>>                          struct genl_info *info);
+>>>>    int drm_ras_nl_get_error_counter_dumpit(struct sk_buff *skb,
+>>>>                        struct netlink_callback *cb);
+>>>> +int drm_ras_nl_clear_error_counter_doit(struct sk_buff *skb,
+>>>> +                    struct genl_info *info);
+>>>>    extern struct genl_family drm_ras_nl_family;
+>>>> diff --git a/include/drm/drm_ras.h b/include/drm/drm_ras.h
+>>>> index 5d50209e51db..f2a787bc4f64 100644
+>>>> --- a/include/drm/drm_ras.h
+>>>> +++ b/include/drm/drm_ras.h
+>>>> @@ -58,6 +58,17 @@ struct drm_ras_node {
+>>>>        int (*query_error_counter)(struct drm_ras_node *node, u32 
+>>>> error_id,
+>>>>                       const char **name, u32 *val);
+>>>> +    /**
+>>>> +     * @clear_error_counter:
+>>>> +     *
+>>>> +     * This callback is used by drm_ras to clear a specific error 
+>>>> counter.
+>>>> +     * Driver should implement this callback to support clearing 
+>>>> error counters
+>>>> +     * of a node.
+>>>> +     *
+>>>> +     * Returns: 0 on success, negative error code on failure.
+>>>> +     */
+>>>> +    int (*clear_error_counter)(struct drm_ras_node *node, u32 
+>>>> error_id);
+>>>> +
+>>>>        /** @priv: Driver private data */
+>>>>        void *priv;
+>>>>    };
+>>>> diff --git a/include/uapi/drm/drm_ras.h b/include/uapi/drm/drm_ras.h
+>>>> index 5f40fa5b869d..218a3ee86805 100644
+>>>> --- a/include/uapi/drm/drm_ras.h
+>>>> +++ b/include/uapi/drm/drm_ras.h
+>>>> @@ -41,6 +41,7 @@ enum {
+>>>>    enum {
+>>>>        DRM_RAS_CMD_LIST_NODES = 1,
+>>>>        DRM_RAS_CMD_GET_ERROR_COUNTER,
+>>>> +    DRM_RAS_CMD_CLEAR_ERROR_COUNTER,
+>>>>        __DRM_RAS_CMD_MAX,
+>>>>        DRM_RAS_CMD_MAX = (__DRM_RAS_CMD_MAX - 1)
