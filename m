@@ -4,107 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F31A3F8FA6D
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Apr 2026 12:48:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45B54F8FA71
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Apr 2026 12:56:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B453B10E1AE;
-	Tue, 21 Apr 2026 12:48:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0676D10EC53;
+	Tue, 21 Apr 2026 12:56:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="TWIG9w6n";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W6HZWDHR";
 	dkim-atps=neutral
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
- [148.163.156.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA52D10E1AE
- for <intel-xe@lists.freedesktop.org>; Tue, 21 Apr 2026 12:48:13 +0000 (UTC)
-Received: from pps.filterd (m0360083.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 63LCYaeP1926131; Tue, 21 Apr 2026 12:48:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
- :content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:sender:subject:to; s=pp1;
- bh=M79HhCpXrEJibLCm0ot7+Qrs+NU6rdb9PIvmAG0wnZI=; b=TWIG9w6nErxf
- SXoy89Ivu/SGbjMR8Skso48WhgB85VrsY3DHXFOlpODlGugqAc/lkeYgG+gfc8OT
- PVq18Vs1EIAUeTc8nFt9a7pjAMBpI/yGg2ECHERdNixadBajvGq2U2PEN56JdFAR
- G7dpKnbf1VsoGAHfpFRWf5/YPKXqdetwsCfgA6MkASocy7vWyn0fmsIMBZLVL61n
- NvUlKFYkTwfSyJsMUWu+eqaAlWaPJXAEqbODK4vs13GXBODf7NAztw8qHmR5PMa4
- baGicRpWWzTmJaFj71AaLB1dckYWzyT2IB5n3hLfZ34TWTkgOnrb4FZLxxE1kD3i
- oqvnhWQTwg==
-Received: from ppma22.wdc07v.mail.ibm.com
- (5c.69.3da9.ip4.static.sl-reverse.com [169.61.105.92])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4dm2nf4afc-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 21 Apr 2026 12:48:09 +0000 (GMT)
-Received: from pps.filterd (ppma22.wdc07v.mail.ibm.com [127.0.0.1])
- by ppma22.wdc07v.mail.ibm.com (8.18.1.7/8.18.1.7) with ESMTP id 63LCZHqP017802;
- Tue, 21 Apr 2026 12:48:08 GMT
-Received: from smtprelay07.fra02v.mail.ibm.com ([9.218.2.229])
- by ppma22.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4dmmnvrtuy-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 21 Apr 2026 12:48:08 +0000 (GMT)
-Received: from smtpav03.fra02v.mail.ibm.com (smtpav03.fra02v.mail.ibm.com
- [10.20.54.102])
- by smtprelay07.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 63LCm19Z50397526
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Tue, 21 Apr 2026 12:48:02 GMT
-Received: from smtpav03.fra02v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 0D5882005A;
- Tue, 21 Apr 2026 12:48:01 +0000 (GMT)
-Received: from smtpav03.fra02v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id ECFB320040;
- Tue, 21 Apr 2026 12:48:00 +0000 (GMT)
-Received: from p1gen4-pw042f0m (unknown [9.52.223.163])
- by smtpav03.fra02v.mail.ibm.com (Postfix) with ESMTPS;
- Tue, 21 Apr 2026 12:48:00 +0000 (GMT)
-Received: from bblock by p1gen4-pw042f0m with local (Exim 4.99.1)
- (envelope-from <bblock@linux.ibm.com>) id 1wFAWG-00000008gcr-2uSw;
- Tue, 21 Apr 2026 14:48:00 +0200
-Date: Tue, 21 Apr 2026 14:48:00 +0200
-From: Benjamin Block <bblock@linux.ibm.com>
-To: "Ionut Nechita (Wind River)" <ionut.nechita@windriver.com>
-Cc: linux-pci@vger.kernel.org, bhelgaas@google.com, helgaas@kernel.org,
- sebott@linux.ibm.com, schnelle@linux.ibm.com, linux@roeck-us.net,
- lukas@wunner.de, stable@vger.kernel.org, linux-kernel@vger.kernel.org,
- intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
- michal.wajdeczko@intel.com, piotr.piorkowski@intel.com,
- dtatulea@nvidia.com, mani@kernel.org, kbusch@kernel.org,
- lkml@mageta.org, alifm@linux.ibm.com, julianr@linux.ibm.com,
- ionut_n2001@yahoo.com, sunlightlinux@gmail.com
-Subject: Re: [PATCH v13 1/2] PCI/IOV: Make pci_lock_rescan_remove() reentrant
- and protect sriov_add_vfs/sriov_del_vfs
-Message-ID: <20260421124800.GC2707369@p1gen4-pw042f0m>
-References: <cover.1776756380.git.ionut.nechita@windriver.com>
- <288517e50996200c368cfe172de86ceb02bbd342.1776756380.git.ionut.nechita@windriver.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 028E110EC53
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 Apr 2026 12:56:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1776776208; x=1808312208;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=sBIwrIZJoZOFkpQ99TCDzWQ0txu4V5sviLQR2Rz5/UU=;
+ b=W6HZWDHRiqhLMBL8bnUjz5WajN1Q/KYVYMUqZx+17dmUfO4E8JZ5VEef
+ u2rF5D+LASr+T5sNYjcWVLaLQzaD5i1aH+KzuArd0KPcnzU4KgBLFUduf
+ cY39fTJ6VWOeVwT+DuHGWXcyUmqPjcCBkIyva4VcDL/T5xGQ6hedaVhiD
+ pUDBW/1sltxaC0N/Zb1der7SG2WLFpU4hmVg0BTCRiAPqw8zukBUX0q3r
+ 4LC7K9AEqzClJ2GnvgkFBT7aDAHyffP5wQbhJ2AXNNkujqFn9EFzb4M/x
+ vUNiuKXPojaImxWytEgQkrOtxT55Y0qGutqEqYkX6pe7cluEgF2Sv7I1W Q==;
+X-CSE-ConnectionGUID: Oh7MqqhLSta3ukpamW3vew==
+X-CSE-MsgGUID: Yr7FSo5OTau1jExrN8VOLg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11762"; a="77408259"
+X-IronPort-AV: E=Sophos;i="6.23,191,1770624000"; d="scan'208";a="77408259"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2026 05:56:47 -0700
+X-CSE-ConnectionGUID: tGpQtz6rQhe/tuoOjtl7hw==
+X-CSE-MsgGUID: q6KSZTm7Snu3kP2sowBuDA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,191,1770624000"; d="scan'208";a="262420088"
+Received: from amilburn-desk.amilburn-desk (HELO [10.245.245.31])
+ ([10.245.245.31])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2026 05:56:46 -0700
+Message-ID: <60f1def43bb1f5a4fc738e2dcc915e3f5be72134.camel@linux.intel.com>
+Subject: Re: [CI] drm: Ensure ioctls are drained before device unplug
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 21 Apr 2026 14:56:43 +0200
+In-Reply-To: <aecuhmp/Yi8vjT1q@gsse-cloud1.jf.intel.com>
+References: <20260414091552.6153-1-thomas.hellstrom@linux.intel.com>
+ <aecuhmp/Yi8vjT1q@gsse-cloud1.jf.intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <288517e50996200c368cfe172de86ceb02bbd342.1776756380.git.ionut.nechita@windriver.com>
-X-TM-AS-GCONF: 00
-X-Proofpoint-Reinject: loops=2 maxloops=12
-X-Proofpoint-ORIG-GUID: _T_YS1t-0kR617j0Vc0usA0NLymckQlx
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDIxMDEyNyBTYWx0ZWRfXzv2wYY+WCjIe
- KBgiHPcxBLxGsTuee1IKtW8ise3WgABts9BprOSl012ZwwNKw35SyWA6syU2817r/qmDSM0toLU
- 7NP/hWT2zhQBXxGJRAHnoGaVZrBt98wlMN/5suML0AT9fNSk1RsMy/Xb6gWKDivB/3y1JLDtjKF
- FLqiDAOuMmOG8DiCtZZm8SVWXI9teaFw0iWZHZuwfOKNYklNhJOsDeIl7+uOClDYABfMYlx6iCe
- jxZaJ6ZHEMTyWeTZCGoynVgpwkF2IwAVObNVBiAfEviFjX18X9MTALOPt2Zp4sLAPqTDDbLt0Y6
- lROPWBdCPDBzx4MlcUJ8wmWHpDBBZMfgYAfpm5F7AxAawDYCizIBxDfIJRpl+pHuWeWBxKniMVB
- BLhsmciMRJBJkXgLfBt455APvm6c0rhiitA4wrK7lu8tvPmCF1KWHLbBSMu/yB/wQzPhBIbWMiE
- biMGOASBmX55wQ4MtwQ==
-X-Proofpoint-GUID: JO6cXdAwmXMtH6EKkilw8ZwQUwRUzAXu
-X-Authority-Analysis: v=2.4 cv=B7iJFutM c=1 sm=1 tr=0 ts=69e7720a cx=c_pps
- a=5BHTudwdYE3Te8bg5FgnPg==:117 a=5BHTudwdYE3Te8bg5FgnPg==:17
- a=8nJEP1OIZ-IA:10 a=A5OVakUREuEA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=RnoormkPH1_aCDwRdu11:22 a=iQ6ETzBq9ecOQQE5vZCe:22 a=VnNF1IyMAAAA:8
- a=fGqJzq9b8BsJZAzwzYEA:9 a=3ZKOabzyN94A:10 a=wPNLvfGTeEIA:10
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-04-21_02,2026-04-20_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 priorityscore=1501 spamscore=0 impostorscore=0 adultscore=0
- bulkscore=0 phishscore=0 suspectscore=0 lowpriorityscore=0 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2604070000 definitions=main-2604210127
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -119,64 +70,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Apr 21, 2026 at 10:34:20AM +0300, Ionut Nechita (Wind River) wrote:
-> diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
-> index b63cd0c310bc..0e62081bc5e5 100644
-> --- a/drivers/pci/probe.c
-> +++ b/drivers/pci/probe.c
-> @@ -3513,16 +3513,30 @@ EXPORT_SYMBOL_GPL(pci_rescan_bus);
->   * routines should always be executed under this mutex.
->   */
->  DEFINE_MUTEX(pci_rescan_remove_lock);
-> +static struct task_struct *pci_rescan_remove_owner;
+On Tue, 2026-04-21 at 01:00 -0700, Matthew Brost wrote:
+> On Tue, Apr 14, 2026 at 11:15:52AM +0200, Thomas Hellstr=C3=B6m wrote:
+> > There is a check that blocks ioctls after device unplug,
+> > but we have no check that running ioctls have actually
+> > completed at unplug time. (And for some IOCTLs like
+> > fence waits, that actually makes sense).
+> > However, implement ioctl draining to have CI check for
+> > lockdep issues.
+> >=20
+> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+>=20
+>=20
+> CI patch, but this seems entirely correct=E2=80=94unless there=E2=80=99s =
+some black
+> magic or hand-wavy behavior involved for not protecting IOCTLs
+> against
+> unplug.
+>=20
+> So=E2=80=A6
+>=20
+> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
-You could make this variable `const`:
+Thanks for reviewing, Matt.=20
 
-    static const struct task_struct *pci_rescan_remove_owner;
+Although I think for some Ioctls that can wait extensively for GPU,
+like fence waits and exec, we actually need to exit dev when waiting,
+otherwise that waiting would block the unplug rather than let the
+unplug through to kill the running jobs and terminate the wait.
 
-so it is clear that this pointer is not meant to be used to modify the
-task_struct in any way - just for these comparisons.
+So requires some careful thinking. Might be best if we set an IOTCTL
+flag to indicate that we want this behaviour.
 
-> +static unsigned int pci_rescan_remove_depth;
->  
->  void pci_lock_rescan_remove(void)
->  {
-> -	mutex_lock(&pci_rescan_remove_lock);
-> +	if (pci_rescan_remove_owner == current) {
-> +		pci_rescan_remove_depth++;
-> +	} else {
-> +		mutex_lock(&pci_rescan_remove_lock);
-> +		pci_rescan_remove_owner = current;
-> +		pci_rescan_remove_depth = 1;
-> +	}
->  }
->  EXPORT_SYMBOL_GPL(pci_lock_rescan_remove);
->  
->  void pci_unlock_rescan_remove(void)
->  {
-> -	mutex_unlock(&pci_rescan_remove_lock);
-> +	if (WARN_ON(pci_rescan_remove_owner != current))
-> +		return;
-> +
-> +	if (--pci_rescan_remove_depth == 0) {
-> +		pci_rescan_remove_owner = NULL;
-> +		mutex_unlock(&pci_rescan_remove_lock);
-> +	}
->  }
->  EXPORT_SYMBOL_GPL(pci_unlock_rescan_remove);
+Thomas
 
 
-But anyway, with, or without this change, this looks good to me. I hadn't run
-into any linker issues, but I only ever used our debug config.
-Also holds up with my tests on my s390 rig.
 
-
-Reviewed-by: Benjamin Block <bblock@linux.ibm.com>
-Tested-by: Benjamin Block <bblock@linux.ibm.com>
-
-
--- 
-Best Regards, Benjamin Block        /        Linux on IBM Z Kernel Development
-IBM Deutschland Research & Development GmbH    /   https://www.ibm.com/privacy
-Vors. Aufs.-R.: Wolfgang Wendt         /        Geschäftsführung: David Faller
-Sitz der Ges.: Ehningen     /     Registergericht: AmtsG Stuttgart, HRB 243294
+>=20
+> > ---
+> > =C2=A0drivers/gpu/drm/drm_ioctl.c | 11 +++++++----
+> > =C2=A01 file changed, 7 insertions(+), 4 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/drm_ioctl.c
+> > b/drivers/gpu/drm/drm_ioctl.c
+> > index ff193155129e..c87a925f0fe4 100644
+> > --- a/drivers/gpu/drm/drm_ioctl.c
+> > +++ b/drivers/gpu/drm/drm_ioctl.c
+> > @@ -789,19 +789,22 @@ long drm_ioctl_kernel(struct file *file,
+> > drm_ioctl_t *func, void *kdata,
+> > =C2=A0{
+> > =C2=A0	struct drm_file *file_priv =3D file->private_data;
+> > =C2=A0	struct drm_device *dev =3D file_priv->minor->dev;
+> > -	int ret;
+> > +	int ret, idx;
+> > =C2=A0
+> > =C2=A0	/* Update drm_file owner if fd was passed along. */
+> > =C2=A0	drm_file_update_pid(file_priv);
+> > =C2=A0
+> > -	if (drm_dev_is_unplugged(dev))
+> > +	if (!drm_dev_enter(dev, &idx))
+> > =C2=A0		return -ENODEV;
+> > =C2=A0
+> > =C2=A0	ret =3D drm_ioctl_permit(flags, file_priv);
+> > =C2=A0	if (unlikely(ret))
+> > -		return ret;
+> > +		goto out;
+> > =C2=A0
+> > -	return func(dev, kdata, file_priv);
+> > +	ret =3D func(dev, kdata, file_priv);
+> > + out:
+> > +	drm_dev_exit(idx);
+> > +	return ret;
+> > =C2=A0}
+> > =C2=A0EXPORT_SYMBOL(drm_ioctl_kernel);
+> > =C2=A0
+> > --=20
+> > 2.53.0
+> >=20
