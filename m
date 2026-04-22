@@ -4,87 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77DDBF94CD8
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Apr 2026 07:32:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C411AF94CDC
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Apr 2026 07:33:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33CD789664;
-	Wed, 22 Apr 2026 07:32:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F12610E152;
+	Wed, 22 Apr 2026 07:33:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin.net header.i=@ursulin.net header.b="Ha8ClyoB";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="D8zd0JSp";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="MDByX061";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="D8zd0JSp";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="MDByX061";
 	dkim-atps=neutral
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com
- [209.85.128.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EDD08994A
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Apr 2026 07:32:12 +0000 (UTC)
-Received: by mail-wm1-f52.google.com with SMTP id
- 5b1f17b1804b1-4891cd41959so31761955e9.3
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Apr 2026 00:32:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin.net; s=google; t=1776843131; x=1777447931; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=FfMjYVt0OEJw9kTPbllj7wGPjeMaDQDeFyapIKBwi04=;
- b=Ha8ClyoBG+CrQo1TNJzizQHkPFovPYZLw8JQQb/AZInMU1AbaLGXNOqbL8WLej8iF6
- ZF0ozGP27ozQUpoeDUcWmqGjYoGhYiZHsngJ0/uxKvCpozYsnFfhSdpO7l/vFhl5li6Z
- s609OB0EXG6gGaxLGdk167NT1hEvjMcUUCJ/fOgyASput5OgumXDuJKG97jAFtMQg8pl
- X9gMbaw/zQJahDLVZruXEgo96SALlEBgXVE6C2YyP9XzfwXdn3qQjHiaL5OaEUVE+Idd
- +IW7Ae+iAWhsSxqW9rG0xXT4aaysa4yyC6QzB4s6txVcPmH+d7ibJb+3UUkFdu26kRCz
- uvNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1776843131; x=1777447931;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=FfMjYVt0OEJw9kTPbllj7wGPjeMaDQDeFyapIKBwi04=;
- b=FfEoWmv6gcis4C47ZsH9Rxkdf4TR8HjpXybVp342LieJGSAitJtZlvAUvAgXesSFo1
- CTFD9Qk6NOPslLcd1Y+poNHzZQ+ABUnhUVFGSvvwlRySu63MuGQDkwb4z1aw10ephiQO
- DT3bpyQgszCVcAYK8CoHaU6FAyS5F6OJfmTxoIRyoi4FZ2Zam9gI1BvkqmodZ5OZ1gv6
- vCaEbdyXjqPh8VyVx79i0gOACRK7ZNZCuv0oVdwGikgYYGDYp+2yXCrKsbl3uLGFTUDm
- /Njnsx1wkNVxSbAZEOauQVlOdISsC4yGQgHvJi2FUAVlYVdkKLIFt+6k5/laH4uYrACn
- 4Uvw==
-X-Forwarded-Encrypted: i=1;
- AFNElJ9Fp918DHVZ0FNUepa+iug2z52Yj1z8jeZfdA5KwPHmaDBRQIVeNoc6yyRSBCjj8GipoXRKoyc0cw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxhB+Ml+8m0ty9YS9YmiIbAedkF56HHZ3AGnbv+FlHMqu002lMy
- d1rLEQnNCMIL+aVHpyV30nOs6TtXSijIYo7N8Ly+oyXaa+aMOuxXNtWzrVpjeiSVxdY=
-X-Gm-Gg: AeBDieuUyLc03ZXMJAoulemY0gWCeyaAsaJlQyCL4C1VBC9207aVqGCYX0USI3ZddsS
- tiW8n+qEoIXpQs2FpZ52zKOIMpApNYHXez4hjbzXBnAT+vN3eas7qjOdnu4Ar3fWrTvVwQ6beBg
- bo+KDY+cAqZl8A9tIhNHZW9R/Q3pfPsXQgLe66t+IOtYUUgWaa9ADcayETpJb80nkm4SynyFteU
- 2zFvOcNjE3YC+YRPTsiS98acVvjbQrCFGE9VwDfnlJ06RjWwzBAW7VBoxO0qZMjH1a6UMUamVYn
- OUUPCCIH/gHogW6cCubI9zJ721EXZAg8e4lJdMR7UlzvtSh00c8VHh2R64tIojQXzHcozmgqn5W
- mA9rYYmD5c1kO1KBmhZJNc8MvIrwGZKHh0FX29I1jmvJdQttHqnVqLq+z3RN7abt1VcKC2oVx9M
- tB160A4nTikL+6IFkRld84tNyZLPvOv3Ne48pjZ4yIBuu6HN1FVQgNzHA=
-X-Received: by 2002:a05:600c:c0cf:b0:489:1f3e:5f6f with SMTP id
- 5b1f17b1804b1-4891f3e62a7mr113857145e9.12.1776843130310; 
- Wed, 22 Apr 2026 00:32:10 -0700 (PDT)
-Received: from [192.168.0.101] ([90.240.106.137])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-488fb762f56sm133492965e9.15.2026.04.22.00.32.09
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 22 Apr 2026 00:32:09 -0700 (PDT)
-Message-ID: <30c84c41-192c-44ae-a614-2b9951c55727@ursulin.net>
-Date: Wed, 22 Apr 2026 08:32:08 +0100
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CA8089664
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Apr 2026 07:33:52 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 4C4955BCF8;
+ Wed, 22 Apr 2026 07:33:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1776843231; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=Z2i92acCwV7lRHLkbzIbG7MkBYcVJ2vf9FUEdie5ERE=;
+ b=D8zd0JSp0MKRgKRDGe7EYaBkM7xJwN/s/ersLmefQkztJFQ/GJ1tWEhqcRs2/4ajRCHZ/+
+ oNI9OxGV/eMgCjYBhp2i09KMbHoEwDMyCsB7Els13vxkQ07z2uk73+FlqxSv0Qm32yqZlG
+ DlEv9A8HfzL83tS0Vhs62D3+H9bSlHs=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1776843231;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=Z2i92acCwV7lRHLkbzIbG7MkBYcVJ2vf9FUEdie5ERE=;
+ b=MDByX061HW/b2Kz+bo4WcTku3HMq+kmr+bn+Q1x91IOSdETkAn84+QoTjbsRbbrlAFprWY
+ 13LInDCyMKenh/Ag==
+Authentication-Results: smtp-out2.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1776843231; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=Z2i92acCwV7lRHLkbzIbG7MkBYcVJ2vf9FUEdie5ERE=;
+ b=D8zd0JSp0MKRgKRDGe7EYaBkM7xJwN/s/ersLmefQkztJFQ/GJ1tWEhqcRs2/4ajRCHZ/+
+ oNI9OxGV/eMgCjYBhp2i09KMbHoEwDMyCsB7Els13vxkQ07z2uk73+FlqxSv0Qm32yqZlG
+ DlEv9A8HfzL83tS0Vhs62D3+H9bSlHs=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1776843231;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=Z2i92acCwV7lRHLkbzIbG7MkBYcVJ2vf9FUEdie5ERE=;
+ b=MDByX061HW/b2Kz+bo4WcTku3HMq+kmr+bn+Q1x91IOSdETkAn84+QoTjbsRbbrlAFprWY
+ 13LInDCyMKenh/Ag==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id B62ED593AF;
+ Wed, 22 Apr 2026 07:33:50 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id 6uwpKt556GmPRQAAD6G6ig
+ (envelope-from <pjakobsson@suse.de>); Wed, 22 Apr 2026 07:33:50 +0000
+From: Patrik Jakobsson <pjakobsson@suse.de>
+To: dri-devel@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/i915/display: Add quirk for interlane align bit on CH7511
+Date: Wed, 22 Apr 2026 09:33:38 +0200
+Message-ID: <20260422073339.27947-1-pjakobsson@suse.de>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] drm/ttm: Issue direct reclaim at beneficial_order
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Carlos Santa <carlos.santa@intel.com>,
- Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Daniel Colascione <dancol@dancol.org>
-References: <20260421012608.1474950-1-matthew.brost@intel.com>
- <20260421012608.1474950-2-matthew.brost@intel.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <20260421012608.1474950-2-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-2.80 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000]; MID_CONTAINS_FROM(1.00)[];
+ R_MISSING_CHARSET(0.50)[]; NEURAL_HAM_SHORT(-0.20)[-1.000];
+ MIME_GOOD(-0.10)[text/plain]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ ARC_NA(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ FREEMAIL_CC(0.00)[linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
+ RCPT_COUNT_TWELVE(0.00)[12]; MIME_TRACE(0.00)[0:+];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,suse.de:email,imap1.dmz-prg2.suse.org:helo];
+ FUZZY_RATELIMITED(0.00)[rspamd.com]; FROM_HAS_DN(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2]; RCVD_TLS_ALL(0.00)[];
+ FROM_EQ_ENVFROM(0.00)[]; TO_DN_SOME(0.00)[];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com]
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,60 +106,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+When disabling pattern training after successful link training the
+CH7511 bridge incorrectly clears the INTERLANE_ALIGN_DONE bit. This is
+interpreted as link failure when rechecking the link status and triggers
+an endless loop of retraining sequences.
 
-On 21/04/2026 02:26, Matthew Brost wrote:
-> Triggering kswap at an order higher than beneficial_order makes little
-> sense, as the driver has already indicated the optimal order at which
-> reclaim is effective. Similarly, issuing direct reclaim or triggering
-> kswap at a lower order than beneficial_order is ineffective, since the
-> driver does not benefit from reclaiming lower-order pages.
-> 
-> As a result, direct reclaim should only be issued with __GFP_NORETRY at
-> exactly beneficial_order, or as a fallback, direct reclaim without
-> __GFP_NORETRY at order 0 when failure is not an option.
-> 
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Cc: Carlos Santa <carlos.santa@intel.com>
-> Cc: Christian Koenig <christian.koenig@amd.com>
-> Cc: Huang Rui <ray.huang@amd.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Simona Vetter <simona@ffwll.ch>
-> CC: dri-devel@lists.freedesktop.org
-> Cc: Daniel Colascione <dancol@dancol.org>
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->   drivers/gpu/drm/ttm/ttm_pool.c | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
-> index 26a3689e5fd9..8425dbcc6c68 100644
-> --- a/drivers/gpu/drm/ttm/ttm_pool.c
-> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
-> @@ -165,8 +165,8 @@ static struct page *ttm_pool_alloc_page(struct ttm_pool *pool, gfp_t gfp_flags,
->   	 * Do not add latency to the allocation path for allocations orders
->   	 * device tolds us do not bring them additional performance gains.
->   	 */
-> -	if (beneficial_order && order > beneficial_order)
-> -		gfp_flags &= ~__GFP_DIRECT_RECLAIM;
-> +	if (order && beneficial_order && order != beneficial_order)
-> +		gfp_flags &= ~__GFP_RECLAIM;
->   
->   	if (!ttm_pool_uses_dma_alloc(pool)) {
->   		p = alloc_pages_node(pool->nid, gfp_flags, order);
+This patch adds a quirk to pretend the bit is still set and no
+retraining is needed.
 
-I missed this conversation so don't know if this was discussed -
-having less of 64k pages is not a concern? I mean slightly higher TLB 
-pressure etc on hardware which supports this PTE size.
+Fixes: 3b3be899fc81 ("drm/i915/dp: Recheck link state after modeset")
+Signed-off-by: Patrik Jakobsson <pjakobsson@suse.de>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c     |  9 +++++++++
+ drivers/gpu/drm/i915/display/intel_quirks.c | 17 +++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_quirks.h |  1 +
+ 3 files changed, 27 insertions(+)
 
-Also, does clearing __GFP_RECLAIM disable compaction completely and is 
-that wanted?
-
-Regards,
-
-Tvrtko
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 4955bd8b11d7..27aedb18f761 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -5715,6 +5715,15 @@ intel_dp_needs_link_retrain(struct intel_dp *intel_dp)
+ 	if (intel_dp->link.seq_train_failures)
+ 		return true;
+ 
++	/*
++	 * The CH7511 bridge incorrectly clears the INTERLANE_ALIGN_DONE bit
++	 * when disabling training pattern.
++	 */
++	if (intel_has_dpcd_quirk(intel_dp, QUIRK_IGNORE_INTERLANE_ALIGN_BIT)) {
++		link_status[DP_LANE_ALIGN_STATUS_UPDATED - DP_LANE0_1_STATUS] |=
++			DP_INTERLANE_ALIGN_DONE;
++	}
++
+ 	/* Retrain if link not ok */
+ 	return !intel_dp_link_ok(intel_dp, link_status) &&
+ 		!intel_psr_link_ok(intel_dp);
+diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
+index 883f297d4b83..1c305e861c86 100644
+--- a/drivers/gpu/drm/i915/display/intel_quirks.c
++++ b/drivers/gpu/drm/i915/display/intel_quirks.c
+@@ -94,6 +94,14 @@ static void quirk_disable_edp_panel_replay(struct intel_dp *intel_dp)
+ 	drm_info(display->drm, "Applying disable Panel Replay quirk\n");
+ }
+ 
++static void quirk_ignore_interlane_align_bit(struct intel_dp *intel_dp)
++{
++	struct intel_display *display = to_intel_display(intel_dp);
++
++	intel_set_dpcd_quirk(intel_dp, QUIRK_IGNORE_INTERLANE_ALIGN_BIT);
++	drm_info(display->drm, "Applying ignore interlane align bit quirk\n");
++}
++
+ struct intel_quirk {
+ 	int device;
+ 	int subsystem_vendor;
+@@ -269,6 +277,15 @@ static const struct intel_dpcd_quirk intel_dpcd_quirks[] = {
+ 		.sink_oui = SINK_OUI(0x00, 0x22, 0xb9),
+ 		.hook = quirk_disable_edp_panel_replay,
+ 	},
++	/* Nodka TPC6000-C152 */
++	{
++		.device = 0x0f31,
++		.subsystem_vendor = 0x8086,
++		.subsystem_device = 0x0f31,
++		.sink_oui = SINK_OUI(0x2b, 0x02, 0xf0),
++		.sink_device_id = SINK_DEVICE_ID('C', 'H', '7', '5', '1', '1'),
++		.hook = quirk_ignore_interlane_align_bit,
++	},
+ };
+ 
+ void intel_init_quirks(struct intel_display *display)
+diff --git a/drivers/gpu/drm/i915/display/intel_quirks.h b/drivers/gpu/drm/i915/display/intel_quirks.h
+index 83214eb94b0c..424462fd4a83 100644
+--- a/drivers/gpu/drm/i915/display/intel_quirks.h
++++ b/drivers/gpu/drm/i915/display/intel_quirks.h
+@@ -22,6 +22,7 @@ enum intel_quirk_id {
+ 	QUIRK_FW_SYNC_LEN,
+ 	QUIRK_EDP_LIMIT_RATE_HBR2,
+ 	QUIRK_DISABLE_EDP_PANEL_REPLAY,
++	QUIRK_IGNORE_INTERLANE_ALIGN_BIT,
+ };
+ 
+ void intel_init_quirks(struct intel_display *display);
+-- 
+2.53.0
 
