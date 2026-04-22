@@ -4,27 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB03FF9EDC9
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Apr 2026 13:10:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAA52F9EDCB
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Apr 2026 13:11:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9308610EA09;
-	Wed, 22 Apr 2026 13:10:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80A6710EA23;
+	Wed, 22 Apr 2026 13:11:13 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE6F610E2A6;
- Wed, 22 Apr 2026 13:10:36 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1706610EA16;
+ Wed, 22 Apr 2026 13:11:12 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0970891278848121641=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm=3A_Remove_DRIVER=5FGEM=5FG?=
- =?utf-8?q?PUVA_feature_flag?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Minor_GuC_PC_cleanups?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Laura Nao" <laura.nao@collabora.com>
+To: "Raag Jadav" <raag.jadav@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 22 Apr 2026 13:10:36 -0000
-Message-ID: <177686343670.484983.14122614879413527843@a3b018990fe9>
+Date: Wed, 22 Apr 2026 13:11:12 -0000
+Message-ID: <177686347208.484983.636738535971208933@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260421084701.24227-1-laura.nao@collabora.com>
-In-Reply-To: <20260421084701.24227-1-laura.nao@collabora.com>
+References: <20260422121128.1002031-1-raag.jadav@intel.com>
+In-Reply-To: <20260422121128.1002031-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,44 +39,102 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============0970891278848121641==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: drm: Remove DRIVER_GEM_GPUVA feature flag
-URL   : https://patchwork.freedesktop.org/series/165298/
-State : failure
+Series: Minor GuC PC cleanups
+URL   : https://patchwork.freedesktop.org/series/165293/
+State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:../drivers/gpu/drm/xe/xe_device.c:428:42: error: ‘DRIVER_GEM_GPUVA’ undeclared here (not in a function); did you mean ‘DRIVER_GEM’?
-  428 |             DRIVER_GEM | DRIVER_RENDER | DRIVER_GEM_GPUVA,
-      |                                          ^~~~~~~~~~~~~~~~
-      |                                          DRIVER_GEM
-make[7]: *** [../scripts/Makefile.build:289: drivers/gpu/drm/xe/xe_device.o] Error 1
-make[7]: *** Waiting for unfinished jobs....
-make[6]: *** [../scripts/Makefile.build:549: drivers/gpu/drm/xe] Error 2
-make[6]: *** Waiting for unfinished jobs....
-make[5]: *** [../scripts/Makefile.build:549: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:549: drivers/gpu] Error 2
-make[4]: *** Waiting for unfinished jobs....
-make[3]: *** [../scripts/Makefile.build:549: drivers] Error 2
-make[3]: *** Waiting for unfinished jobs....
-make[2]: *** [/kernel/Makefile:2105: .] Error 2
-make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
+CI Bug Log - changes from xe-4925-28247e192ca66016a4b374ff06acdf9dbb6cfe7c_BAT -> xe-pw-165293v1_BAT
+====================================================
 
-[13:10:08] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[13:10:12] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-4925-28247e192ca66016a4b374ff06acdf9dbb6cfe7c -> xe-pw-165293v1
+
+  IGT_8868: 731d4d56fcb40355ce9d65cb088d4b4773dd8b85 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4925-28247e192ca66016a4b374ff06acdf9dbb6cfe7c: 28247e192ca66016a4b374ff06acdf9dbb6cfe7c
+  xe-pw-165293v1: 165293v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165293v1/index.html
+
+--===============0970891278848121641==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Minor GuC PC cleanups</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165293/">https://patchwork.freedesktop.org/series/165293/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165293v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165293v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4925-28247e192ca66016a4b374ff06acdf9dbb6cfe7c_BAT -&gt; xe-pw-165293v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4925-28247e192ca66016a4b374ff06acdf9dbb6cfe7c -&gt; xe-pw-165293v1</li>
+</ul>
+<p>IGT_8868: 731d4d56fcb40355ce9d65cb088d4b4773dd8b85 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4925-28247e192ca66016a4b374ff06acdf9dbb6cfe7c: 28247e192ca66016a4b374ff06acdf9dbb6cfe7c<br />
+  xe-pw-165293v1: 165293v1</p>
+
+</body>
+</html>
+
+--===============0970891278848121641==--
