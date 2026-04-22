@@ -4,71 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E67F2F94CD4
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Apr 2026 06:52:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77DDBF94CD8
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Apr 2026 07:32:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9933010F1D0;
-	Wed, 22 Apr 2026 06:52:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33CD789664;
+	Wed, 22 Apr 2026 07:32:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="uBI2YyHQ";
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin.net header.i=@ursulin.net header.b="Ha8ClyoB";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73FDF10F1D2;
- Wed, 22 Apr 2026 06:52:02 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 5F70C60018;
- Wed, 22 Apr 2026 06:52:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C9AEC19425;
- Wed, 22 Apr 2026 06:52:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1776840721;
- bh=F+k2j61BaRiqQdtTNTgqmqkRXzyWVzQqwf1yxx9Jl5Y=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=uBI2YyHQ14xILWfOLl0M781/RFBZxHKsv77ZC0eXBHFwUqbPFiRATOVszWZUCkuoy
- P8AsHN90clI5gEzB7QzrZq4mJrZ4zgAO8JLsI6oI8YqouSwk0t0Dgb3PIz3G2erBO7
- gfHj0aU9d3+y+LdzG60/FGB3OnyhG4AuGHGGxVSdKByYp1bAJjSWJ/7z48Csc1C9Lb
- +4B0hE6FXg5eWOEiUZBsCNh0TQK6AvpA4lO8XvJFvdAh900rmQ0FOV9vkoYibxG9qo
- gudHD4vXrsQnwh9duF4E+0jCjD8KIYut7hNPttSsTAwGrdFr1ApLK4/ho+U5OnHKW/
- 5g5uCvXkkYfvA==
-Date: Wed, 22 Apr 2026 08:51:58 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Jyri Sarha <jyri.sarha@iki.fi>, 
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, Simon Ser <contact@emersion.fr>, 
- Harry Wentland <harry.wentland@amd.com>, Melissa Wen <mwen@igalia.com>, 
- Sebastian Wick <sebastian.wick@redhat.com>, Alex Hung <alex.hung@amd.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Chen-Yu Tsai <wens@kernel.org>, Samuel Holland <samuel@sholland.org>, 
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- =?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>, 
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
- dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Daniel Stone <daniels@collabora.com>, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v2 02/20] drm/atomic: Drop drm_private_state.obj
- assignment from create_state
-Message-ID: <20260422-poetic-malamute-of-greatness-ceee0f@houat>
-References: <20260320-drm-mode-config-init-v2-0-c63f1134e76c@kernel.org>
- <20260320-drm-mode-config-init-v2-2-c63f1134e76c@kernel.org>
- <bbb554a6-2034-4f6e-9b48-fa9e10b4a95a@suse.de>
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com
+ [209.85.128.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EDD08994A
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Apr 2026 07:32:12 +0000 (UTC)
+Received: by mail-wm1-f52.google.com with SMTP id
+ 5b1f17b1804b1-4891cd41959so31761955e9.3
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Apr 2026 00:32:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ursulin.net; s=google; t=1776843131; x=1777447931; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=FfMjYVt0OEJw9kTPbllj7wGPjeMaDQDeFyapIKBwi04=;
+ b=Ha8ClyoBG+CrQo1TNJzizQHkPFovPYZLw8JQQb/AZInMU1AbaLGXNOqbL8WLej8iF6
+ ZF0ozGP27ozQUpoeDUcWmqGjYoGhYiZHsngJ0/uxKvCpozYsnFfhSdpO7l/vFhl5li6Z
+ s609OB0EXG6gGaxLGdk167NT1hEvjMcUUCJ/fOgyASput5OgumXDuJKG97jAFtMQg8pl
+ X9gMbaw/zQJahDLVZruXEgo96SALlEBgXVE6C2YyP9XzfwXdn3qQjHiaL5OaEUVE+Idd
+ +IW7Ae+iAWhsSxqW9rG0xXT4aaysa4yyC6QzB4s6txVcPmH+d7ibJb+3UUkFdu26kRCz
+ uvNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1776843131; x=1777447931;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=FfMjYVt0OEJw9kTPbllj7wGPjeMaDQDeFyapIKBwi04=;
+ b=FfEoWmv6gcis4C47ZsH9Rxkdf4TR8HjpXybVp342LieJGSAitJtZlvAUvAgXesSFo1
+ CTFD9Qk6NOPslLcd1Y+poNHzZQ+ABUnhUVFGSvvwlRySu63MuGQDkwb4z1aw10ephiQO
+ DT3bpyQgszCVcAYK8CoHaU6FAyS5F6OJfmTxoIRyoi4FZ2Zam9gI1BvkqmodZ5OZ1gv6
+ vCaEbdyXjqPh8VyVx79i0gOACRK7ZNZCuv0oVdwGikgYYGDYp+2yXCrKsbl3uLGFTUDm
+ /Njnsx1wkNVxSbAZEOauQVlOdISsC4yGQgHvJi2FUAVlYVdkKLIFt+6k5/laH4uYrACn
+ 4Uvw==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ9Fp918DHVZ0FNUepa+iug2z52Yj1z8jeZfdA5KwPHmaDBRQIVeNoc6yyRSBCjj8GipoXRKoyc0cw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxhB+Ml+8m0ty9YS9YmiIbAedkF56HHZ3AGnbv+FlHMqu002lMy
+ d1rLEQnNCMIL+aVHpyV30nOs6TtXSijIYo7N8Ly+oyXaa+aMOuxXNtWzrVpjeiSVxdY=
+X-Gm-Gg: AeBDieuUyLc03ZXMJAoulemY0gWCeyaAsaJlQyCL4C1VBC9207aVqGCYX0USI3ZddsS
+ tiW8n+qEoIXpQs2FpZ52zKOIMpApNYHXez4hjbzXBnAT+vN3eas7qjOdnu4Ar3fWrTvVwQ6beBg
+ bo+KDY+cAqZl8A9tIhNHZW9R/Q3pfPsXQgLe66t+IOtYUUgWaa9ADcayETpJb80nkm4SynyFteU
+ 2zFvOcNjE3YC+YRPTsiS98acVvjbQrCFGE9VwDfnlJ06RjWwzBAW7VBoxO0qZMjH1a6UMUamVYn
+ OUUPCCIH/gHogW6cCubI9zJ721EXZAg8e4lJdMR7UlzvtSh00c8VHh2R64tIojQXzHcozmgqn5W
+ mA9rYYmD5c1kO1KBmhZJNc8MvIrwGZKHh0FX29I1jmvJdQttHqnVqLq+z3RN7abt1VcKC2oVx9M
+ tB160A4nTikL+6IFkRld84tNyZLPvOv3Ne48pjZ4yIBuu6HN1FVQgNzHA=
+X-Received: by 2002:a05:600c:c0cf:b0:489:1f3e:5f6f with SMTP id
+ 5b1f17b1804b1-4891f3e62a7mr113857145e9.12.1776843130310; 
+ Wed, 22 Apr 2026 00:32:10 -0700 (PDT)
+Received: from [192.168.0.101] ([90.240.106.137])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-488fb762f56sm133492965e9.15.2026.04.22.00.32.09
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 22 Apr 2026 00:32:09 -0700 (PDT)
+Message-ID: <30c84c41-192c-44ae-a614-2b9951c55727@ursulin.net>
+Date: Wed, 22 Apr 2026 08:32:08 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="bcajdpsxzzkhkmjz"
-Content-Disposition: inline
-In-Reply-To: <bbb554a6-2034-4f6e-9b48-fa9e10b4a95a@suse.de>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] drm/ttm: Issue direct reclaim at beneficial_order
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Carlos Santa <carlos.santa@intel.com>,
+ Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Daniel Colascione <dancol@dancol.org>
+References: <20260421012608.1474950-1-matthew.brost@intel.com>
+ <20260421012608.1474950-2-matthew.brost@intel.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tursulin@ursulin.net>
+In-Reply-To: <20260421012608.1474950-2-matthew.brost@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,55 +100,59 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
---bcajdpsxzzkhkmjz
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2 02/20] drm/atomic: Drop drm_private_state.obj
- assignment from create_state
-MIME-Version: 1.0
+On 21/04/2026 02:26, Matthew Brost wrote:
+> Triggering kswap at an order higher than beneficial_order makes little
+> sense, as the driver has already indicated the optimal order at which
+> reclaim is effective. Similarly, issuing direct reclaim or triggering
+> kswap at a lower order than beneficial_order is ineffective, since the
+> driver does not benefit from reclaiming lower-order pages.
+> 
+> As a result, direct reclaim should only be issued with __GFP_NORETRY at
+> exactly beneficial_order, or as a fallback, direct reclaim without
+> __GFP_NORETRY at order 0 when failure is not an option.
+> 
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Cc: Carlos Santa <carlos.santa@intel.com>
+> Cc: Christian Koenig <christian.koenig@amd.com>
+> Cc: Huang Rui <ray.huang@amd.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Simona Vetter <simona@ffwll.ch>
+> CC: dri-devel@lists.freedesktop.org
+> Cc: Daniel Colascione <dancol@dancol.org>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+>   drivers/gpu/drm/ttm/ttm_pool.c | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
+> index 26a3689e5fd9..8425dbcc6c68 100644
+> --- a/drivers/gpu/drm/ttm/ttm_pool.c
+> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
+> @@ -165,8 +165,8 @@ static struct page *ttm_pool_alloc_page(struct ttm_pool *pool, gfp_t gfp_flags,
+>   	 * Do not add latency to the allocation path for allocations orders
+>   	 * device tolds us do not bring them additional performance gains.
+>   	 */
+> -	if (beneficial_order && order > beneficial_order)
+> -		gfp_flags &= ~__GFP_DIRECT_RECLAIM;
+> +	if (order && beneficial_order && order != beneficial_order)
+> +		gfp_flags &= ~__GFP_RECLAIM;
+>   
+>   	if (!ttm_pool_uses_dma_alloc(pool)) {
+>   		p = alloc_pages_node(pool->nid, gfp_flags, order);
 
-On Tue, Apr 21, 2026 at 03:03:50PM +0200, Thomas Zimmermann wrote:
-> Hi
->=20
-> Am 20.03.26 um 17:27 schrieb Maxime Ripard:
-> > The initial intent of the atomic_create_state helper was to simply
-> > allocate a proper drm_private_state and returning it, without any side
-> > effect.
-> >=20
-> > However, the __drm_atomic_helper_private_obj_create_state() introduces a
-> > side effect by setting the drm_private_obj.state to the newly allocated
-> > state.
-> >=20
-> > This assignment defeats the purpose, but is also redundant since
-> > the only caller, drm_atomic_private_obj_init(), will also set this
-> > pointer to the newly allocated state.
->=20
-> Is this paragraph no longer up to date? Grepping for
-> __drm_atomic_helper_private_obj_create_state returns plenty of callers.
+I missed this conversation so don't know if this was discussed -
+having less of 64k pages is not a concern? I mean slightly higher TLB 
+pressure etc on hardware which supports this PTE size.
 
-No, it's still up to date but super confusing. I didn't mean that there
-wase one single caller of __drm_atomic_helper_private_obj_create_state()
-that would set obj->state, but rather that the
-drm_private_state_funcs.atomic_create_state hook is called only by
-drm_atomic_private_obj_init() and it will set obj->state.
+Also, does clearing __GFP_RECLAIM disable compaction completely and is 
+that wanted?
 
-So, you're right, there's plenty of drivers calling
-__drm_atomic_helper_private_obj_create_state() but we always end up
-there through drm_atomic_private_obj_init().
+Regards,
 
-Maxime
+Tvrtko
 
---bcajdpsxzzkhkmjz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaehwDQAKCRAnX84Zoj2+
-dpyKAXkBF+Uqrnq4REnKuA0OlvLZRGSTJJ2HUa7jCMcyxQLt/PBQx4V/BABYGfiY
-yGO45+UBgIaXbaB8TXvhywyna7iuhl4sopx2bu7lqy0Hut5/L8CNhH/7RgZBQYhD
-2HA5L3Ii3g==
-=qp7L
------END PGP SIGNATURE-----
-
---bcajdpsxzzkhkmjz--
