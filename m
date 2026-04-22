@@ -4,71 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB103F9B5E0
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Apr 2026 08:42:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56A3EF9B5F5
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Apr 2026 09:23:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68C3B10E07D;
-	Wed, 22 Apr 2026 08:42:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14B6A10E996;
+	Wed, 22 Apr 2026 09:23:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FXsGc3WR";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="SdjYoXB4";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9D1D10E07D;
- Wed, 22 Apr 2026 08:42:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776847339; x=1808383339;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=tgT/NiGuGyLMbkWXDtIGFUpu0M7Z2r7OkRxVmJlcCgE=;
- b=FXsGc3WRxvD2602PJK2QFWWsNEwvhf0qoG1qzJDpn7j9aXbStw4f1wvC
- hmJN0VQyRJzCWJAKoxwiYA0vN1Ae4T0Qpp6zuTdKG2h1COYTP+fHIMfen
- ipIPHPmCed92B/smSr+KKnjIVSlqR4fEhS1rSPOpKM9u87VL1478hlptC
- vqbYoqV997EorYI0nF4/l8iBey+WinYFdgLre5ZHuGQ7awechtEMXXat1
- 0qIBNrv8m5/5iBG0jvnIP4l41G6kBAB5sSGSdCBPi9rvS/h5eQxwPbFlo
- GKLf91oHqnR6OvB+GtHo8EqQMUoxiPf8o1M6tqDvt6HCV/CEg1nCdWbZZ g==;
-X-CSE-ConnectionGUID: pPwRG6QGTsmF/QkAadwv2Q==
-X-CSE-MsgGUID: YXGi5ay+RY6MG4d6/A/bLA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11763"; a="77709162"
-X-IronPort-AV: E=Sophos;i="6.23,192,1770624000"; d="scan'208";a="77709162"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Apr 2026 01:42:19 -0700
-X-CSE-ConnectionGUID: +U/3/pmqSB6F1hgjJ5IJAg==
-X-CSE-MsgGUID: Wm3z3MPtR3q2gdxyy2cDbw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,192,1770624000"; d="scan'208";a="255775796"
-Received: from abityuts-desk.ger.corp.intel.com (HELO [10.245.245.239])
- ([10.245.245.239])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Apr 2026 01:42:14 -0700
-Message-ID: <398623a092c65ce4e53d1713112fa39ac0979fd7.camel@linux.intel.com>
-Subject: Re: [PATCH 2/5] cgroup/dmem: Add reclaim callback for lowering max
- below current usage
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- intel-xe@lists.freedesktop.org
-Cc: Natalie Vock <natalie.vock@gmx.de>, Johannes Weiner
- <hannes@cmpxchg.org>,  Tejun Heo <tj@kernel.org>, Michal
- =?ISO-8859-1?Q?Koutn=FD?= <mkoutny@suse.com>, 	cgroups@vger.kernel.org,
- Huang Rui <ray.huang@amd.com>, Matthew Brost	 <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>, Maxime Ripard	 <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter	 <simona@ffwll.ch>,
- David Airlie <airlied@gmail.com>, Christian =?ISO-8859-1?Q?K=F6nig?=	
- <christian.koenig@amd.com>, Alex Deucher <alexander.deucher@amd.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, 	linux-kernel@vger.kernel.org, Thadeu Lima
- de Souza Cascardo <cascardo@igalia.com>
-Date: Wed, 22 Apr 2026 10:42:11 +0200
-In-Reply-To: <4b647952-0038-4878-b67e-6c7fc7ab27a6@linux.intel.com>
-References: <20260327081600.4885-1-thomas.hellstrom@linux.intel.com>
- <20260327081600.4885-3-thomas.hellstrom@linux.intel.com>
- <4b647952-0038-4878-b67e-6c7fc7ab27a6@linux.intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75E3610E98A;
+ Wed, 22 Apr 2026 09:23:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=lSqPa1PdmXI2jpkxmLTsPfh8jceAyrsRpIgBAmWEFSk=; b=SdjYoXB4e3eTeS+jgZukX6E879
+ rNfencW57vICi/oaA1/zhjb0/YTLZYyNArHIJyO2QuPLabv7ayFwG/V9HPAbEuYWYsy+ECMJcLmMD
+ 8DXOOAL2TNOJh4YsSOe5sm3ZG8y6X+5FV8TvF01gB5UdXa9ZG01cC00FvN9laqSsuUXj+O0Tm36W9
+ 8KFTWP+9qp6Ce0IL8cMnsm0CsvrZZBHoKisGkklipulnm8kFW/txkaMdoKJ+JtPN5yRpmBxZCaD6p
+ qGrovYUqwMjheHPYbw69t5XZs3Br3bL2E7qb2Cer6Y5FzC2cZfKHejs5C8FoE1B6wfh5jCzrx40EP
+ Z91zRiuQ==;
+Received: from
+ 2001-1c00-8d85-4b00-266e-96ff-fe07-7dcc.cable.dynamic.v6.ziggo.nl
+ ([2001:1c00:8d85:4b00:266e:96ff:fe07:7dcc]
+ helo=noisy.programming.kicks-ass.net)
+ by casper.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
+ id 1wFTo1-0000000BVot-0Nc6; Wed, 22 Apr 2026 09:23:37 +0000
+Received: by noisy.programming.kicks-ass.net (Postfix, from userid 1000)
+ id 94F393008E2; Wed, 22 Apr 2026 11:23:35 +0200 (CEST)
+Date: Wed, 22 Apr 2026 11:23:35 +0200
+From: Peter Zijlstra <peterz@infradead.org>
+To: John Stultz <jstultz@google.com>
+Cc: K Prateek Nayak <kprateek.nayak@amd.com>,
+ "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
+ willy@infradead.org, linux-kernel@vger.kernel.org,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>,
+ "Saarinen, Jani" <jani.saarinen@intel.com>, ravitejax.veesam@intel.com
+Subject: Re: Regression on linux-next (next-20260324 )
+Message-ID: <20260422092335.GH3102924@noisy.programming.kicks-ass.net>
+References: <df391df3-3a3b-4a65-b3c7-ffe3ab50ee83@intel.com>
+ <20260330195037.GW2872@noisy.programming.kicks-ass.net>
+ <20260420130318.GD3102924@noisy.programming.kicks-ass.net>
+ <CANDhNCq=oizzud3hH3oqGzTrcjB8OwGeineJ3mwZuGdDWG8fRQ@mail.gmail.com>
+ <20260421101521.GO3102624@noisy.programming.kicks-ass.net>
+ <95651a71-1adf-45ba-83eb-5744bc6d4a52@amd.com>
+ <20260421143752.GD1064669@noisy.programming.kicks-ass.net>
+ <bc5e8c5c-fc9c-4efc-b1a9-98c43c6a8762@amd.com>
+ <CANDhNCr-+x8pTLhXZW=ATHaKTYEmXMPukz4+t8P-FeJ11Jrz9Q@mail.gmail.com>
+ <20260421205647.GL3126523@noisy.programming.kicks-ass.net>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260421205647.GL3126523@noisy.programming.kicks-ass.net>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,198 +73,184 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 2026-04-22 at 10:31 +0200, Maarten Lankhorst wrote:
-> Hey,
->=20
-> (Adding Thadeu to cc since they've been working on the same issue)
->=20
-> Den 2026-03-27 kl. 09:15, skrev Thomas Hellstr=C3=B6m:
-> > Add an optional reclaim callback to struct dmem_cgroup_region.=C2=A0
-> > When
-> > dmem.max is set below current usage, invoke the callback to evict
-> > memory
-> > and retry setting the limit rather than failing immediately.=C2=A0
-> > Signal
-> > interruptions propagate back to the write() caller.
-> >=20
-> > RFC:
-> > Due to us updating the max limit _after_ the usage has been
-> > sufficiently lowered, this should be prone to failures if there are
-> > aggressive allocators running in parallel to the reclaim.
-> > So can we somehow enforce the new limit while the eviction is
-> > happening?
-> >=20
-> > Assisted-by: GitHub Copilot:claude-sonnet-4.6
-> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> > ---
-> > =C2=A0include/linux/cgroup_dmem.h | 11 +++++
-> > =C2=A0kernel/cgroup/dmem.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | =
-94
-> > +++++++++++++++++++++++++++++++++----
-> > =C2=A02 files changed, 96 insertions(+), 9 deletions(-)
-> >=20
-> > diff --git a/include/linux/cgroup_dmem.h
-> > b/include/linux/cgroup_dmem.h
-> > index dd4869f1d736..61520a431740 100644
-> > --- a/include/linux/cgroup_dmem.h
-> > +++ b/include/linux/cgroup_dmem.h
-> > @@ -26,6 +26,10 @@ bool dmem_cgroup_state_evict_valuable(struct
-> > dmem_cgroup_pool_state *limit_pool,
-> > =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bool ignore_low, bool
-> > *ret_hit_low);
-> > =C2=A0
-> > =C2=A0void dmem_cgroup_pool_state_put(struct dmem_cgroup_pool_state
-> > *pool);
-> > +void dmem_cgroup_region_set_reclaim(struct dmem_cgroup_region
-> > *region,
-> > +				=C2=A0=C2=A0=C2=A0 int (*reclaim)(struct
-> > dmem_cgroup_pool_state *pool,
-> > +						=C2=A0=C2=A0 u64
-> > target_bytes, void *priv),
-> > +				=C2=A0=C2=A0=C2=A0 void *priv);
-> > =C2=A0#else
-> > =C2=A0static inline __printf(2,3) struct dmem_cgroup_region *
-> > =C2=A0dmem_cgroup_register_region(u64 size, const char *name_fmt, ...)
-> > @@ -62,5 +66,12 @@ bool dmem_cgroup_state_evict_valuable(struct
-> > dmem_cgroup_pool_state *limit_pool,
-> > =C2=A0static inline void dmem_cgroup_pool_state_put(struct
-> > dmem_cgroup_pool_state *pool)
-> > =C2=A0{ }
-> > =C2=A0
-> > +static inline void
-> > +dmem_cgroup_region_set_reclaim(struct dmem_cgroup_region *region,
-> > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int (*reclaim)(struct
-> > dmem_cgroup_pool_state *pool,
-> > +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u64 target_bytes,
-> > void *priv),
-> > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 void *priv)
-> > +{ }
-> > +
-> > =C2=A0#endif
-> > =C2=A0#endif	/* _CGROUP_DMEM_H */
-> > diff --git a/kernel/cgroup/dmem.c b/kernel/cgroup/dmem.c
-> > index 3e6d4c0b26a1..f993fb058b74 100644
-> > --- a/kernel/cgroup/dmem.c
-> > +++ b/kernel/cgroup/dmem.c
-> > @@ -51,6 +51,18 @@ struct dmem_cgroup_region {
-> > =C2=A0	 * No new pools should be added to the region afterwards.
-> > =C2=A0	 */
-> > =C2=A0	bool unregistered;
-> > +
-> > +	/**
-> > +	 * @reclaim: Optional callback invoked when dmem.max is
-> > set below the
-> > +	 * current usage of a pool. The driver should attempt to
-> > free at least
-> > +	 * @target_bytes from @pool. May be called multiple times
-> > if usage
-> > +	 * remains above the limit after returning.
-> > +	 */
-> > +	int (*reclaim)(struct dmem_cgroup_pool_state *pool, u64
-> > target_bytes,
-> > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 void *priv);
-> > +
-> > +	/** @reclaim_priv: Private data passed to @reclaim. */
-> > +	void *reclaim_priv;
-> > =C2=A0};
-> > =C2=A0
-> > =C2=A0struct dmemcg_state {
-> > @@ -145,23 +157,59 @@ static void free_cg_pool(struct
-> > dmem_cgroup_pool_state *pool)
-> > =C2=A0}
-> > =C2=A0
-> > =C2=A0static int
-> > -set_resource_min(struct dmem_cgroup_pool_state *pool, u64 val)
-> > +set_resource_min(struct dmem_cgroup_pool_state *pool, u64 val,
-> > +		 struct dmem_cgroup_region *region)
-> > =C2=A0{
-> > =C2=A0	page_counter_set_min(&pool->cnt, val);
-> > =C2=A0	return 0;
-> > =C2=A0}
-> > =C2=A0
-> > =C2=A0static int
-> > -set_resource_low(struct dmem_cgroup_pool_state *pool, u64 val)
-> > +set_resource_low(struct dmem_cgroup_pool_state *pool, u64 val,
-> > +		 struct dmem_cgroup_region *region)
-> > =C2=A0{
-> > =C2=A0	page_counter_set_low(&pool->cnt, val);
-> > =C2=A0	return 0;
-> > =C2=A0}
-> > =C2=A0
-> > =C2=A0static int
-> > -set_resource_max(struct dmem_cgroup_pool_state *pool, u64 val)
-> > +set_resource_max(struct dmem_cgroup_pool_state *pool, u64 val,
-> > +		 struct dmem_cgroup_region *region)
-> > =C2=A0{
-> > -	return page_counter_set_max(&pool->cnt, val);
-> > +	int err =3D page_counter_set_max(&pool->cnt, val);
-> > +
-> > +	if (err !=3D -EBUSY || !region || !region->reclaim)
-> > +		return err;
-> > +
-> > +	/*
-> > +	 * The new max is below current usage.=C2=A0 Ask the driver to
-> > evict memory
-> > +	 * and retry, up to a bounded number of times.=C2=A0 Signal
-> > interruptions are
-> > +	 * propagated back to the write() caller; other reclaim
-> > failures leave
-> > +	 * -EBUSY as the result.
-> > +	 */
-> > +	for (int retries =3D 5; retries > 0; retries--) {
-> > +		u64 usage =3D page_counter_read(&pool->cnt);
-> > +		u64 target =3D usage > val ? usage - val : 0;
-> > +		int reclaim_err;
-> > +
-> > +		if (!target) {
-> > +			err =3D page_counter_set_max(&pool->cnt,
-> > val);
-> > +			break;
-> > +		}
-> > +
-> > +		reclaim_err =3D region->reclaim(pool, target,
-> > region->reclaim_priv);
-> > +		if (reclaim_err) {
-> > +			if (reclaim_err =3D=3D -EINTR || reclaim_err
-> > =3D=3D -ERESTARTSYS)
-> > +				err =3D reclaim_err;
-> > +			break;
-> > +		}
-> > +
-> > +		err =3D page_counter_set_max(&pool->cnt, val);
-> > +		if (err !=3D -EBUSY)
-> > +			break;
-> > +	}
-> > +
-> > +	return err;
-> > =C2=A0}
->=20
-> I mentioned this in chat but I wanted to mention it on the mailing
-> list for others as well,
-> can we reproduce the behavior from memory_max_write() in
-> mm/memcontrol.c?
->=20
-> 1. First set new limit through xchg.
-> 2. If O_NONBLOCK is set -> do nothing, next allocation in target
-> region will fail and cause reclaim.
-> 3. If not set -> reclaim until below new limit or interrupted by a
-> signal, return success in all cases here since we set new limit.
->=20
->=20
+On Tue, Apr 21, 2026 at 10:56:48PM +0200, Peter Zijlstra wrote:
+> Excellent, I'll write it up tomorrow.
 
-Yup.
+How's this? It 'passes' the ww_mutex selftest thing in so far as that I
+get the same:
 
-For 3, we also need to consider the case where we fail to reclaim due
-to memory being pinned. If it's OK to (usually temporary) have current
-usage above max, that would work.
+[    2.312369] Beginning ww (wound) mutex selftests
+[    4.853240] stress (stress_inorder_work) failed with -35
+[    9.379572] Beginning ww (die) mutex selftests
+[   16.435831] All ww mutex selftests passed
 
-I have that coded up and also add a patch on top to defer reclaim to a
-thread if we bail due to signal or O_NONBLOCK. Perhaps we could discuss
-whether that's a good or bad idea in that patch.
+before the offending commit and after this patch.
 
-Will send out when I've updated the IGT tests accordingly.
+---
+Subject: Subject: locking/mutex: Fix ww_mutex wait_list operations
+From: Peter Zijlstra <peterz@infradead.org>
+Date: Wed Apr 22 10:38:41 CEST 2026
 
-Thanks,
-Thomas
+Chaitanya and John reported commit 25500ba7e77c ("locking/mutex: Remove the
+list_head from struct mutex") wrecked ww_mutex.
 
+Specifically there were 2 issues:
 
+ - __ww_waiter_prev() had the termination condition wrong; it would terminate
+   when the previous entry was the first, which results in a truncated
+   iteration: W3, W2, (no W1).
+
+ - __mutex_add_waiter(@pos != NULL), as used by __ww_waiter_add() /
+   __ww_mutex_add_waiter(); this inserts @waiter before @pos (which is what
+   list_add_tail() does). But this should then also update lock->first_waiter.
+
+Much thanks to Prateek for spotting the __mutex_add_waiter() issue!
+
+Fixes: 25500ba7e77c ("locking/mutex: Remove the list_head from struct mutex")
+Reported-by: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+Closes: https://lore.kernel.org/r/af005996-05e9-4336-8450-d14ca652ba5d%40intel.com
+Reported-by: John Stultz <jstultz@google.com>
+Closes: https://lore.kernel.org/r/CANDhNCq%3Doizzud3hH3oqGzTrcjB8OwGeineJ3mwZuGdDWG8fRQ%40mail.gmail.com
+Debugged-by: K Prateek Nayak <kprateek.nayak@amd.com>
+Signed-off-by: Peter Zijlstra (Intel) <peterz@infradead.org>
+---
+ kernel/locking/mutex.c    |   40 +++++++++++++++++++++++++++-------------
+ kernel/locking/ww_mutex.h |   34 ++++++++++++++++++++++++++++++++--
+ 2 files changed, 59 insertions(+), 15 deletions(-)
+
+--- a/kernel/locking/mutex.c
++++ b/kernel/locking/mutex.c
+@@ -198,27 +198,43 @@ static inline void __mutex_clear_flag(st
+ }
+ 
+ /*
+- * Add @waiter to a given location in the lock wait_list and set the
+- * FLAG_WAITERS flag if it's the first waiter.
++ * Add @waiter to the @lock wait_list and set the FLAG_WAITERS flag if it's
++ * the first waiter.
++ *
++ * When @pos, @waiter is added before the waiter indicated by @pos. Otherwise
++ * @waiter will be added to the tail of the list.
+  */
+ static void
+ __mutex_add_waiter(struct mutex *lock, struct mutex_waiter *waiter,
+-		   struct mutex_waiter *first)
++		   struct mutex_waiter *pos)
+ 	__must_hold(&lock->wait_lock)
+ {
++	struct mutex_waiter *first = lock->first_waiter;
++
+ 	hung_task_set_blocker(lock, BLOCKER_TYPE_MUTEX);
+ 	debug_mutex_add_waiter(lock, waiter, current);
+ 
+-	if (!first)
+-		first = lock->first_waiter;
++	if (pos) {
++		/*
++		 * Insert @waiter before @pos.
++		 */
++		list_add_tail(&waiter->list, &pos->list);
++		/*
++		 * If @pos == @first, then @waiter will be the new first.
++		 */
++		if (pos == first)
++			lock->first_waiter = waiter;
++		return;
++	}
+ 
+ 	if (first) {
+ 		list_add_tail(&waiter->list, &first->list);
+-	} else {
+-		INIT_LIST_HEAD(&waiter->list);
+-		lock->first_waiter = waiter;
+-		__mutex_set_flag(lock, MUTEX_FLAG_WAITERS);
++		return;
+ 	}
++
++	INIT_LIST_HEAD(&waiter->list);
++	lock->first_waiter = waiter;
++	__mutex_set_flag(lock, MUTEX_FLAG_WAITERS);
+ }
+ 
+ static void
+@@ -229,10 +245,8 @@ __mutex_remove_waiter(struct mutex *lock
+ 		__mutex_clear_flag(lock, MUTEX_FLAGS);
+ 		lock->first_waiter = NULL;
+ 	} else {
+-		if (lock->first_waiter == waiter) {
+-			lock->first_waiter = list_first_entry(&waiter->list,
+-							      struct mutex_waiter, list);
+-		}
++		if (lock->first_waiter == waiter)
++			lock->first_waiter = list_next_entry(waiter, list);
+ 		list_del(&waiter->list);
+ 	}
+ 
+--- a/kernel/locking/ww_mutex.h
++++ b/kernel/locking/ww_mutex.h
+@@ -6,6 +6,19 @@
+ #define MUTEX_WAITER	mutex_waiter
+ #define WAIT_LOCK	wait_lock
+ 
++/*
++ *           +--------+
++ *           | first  |
++ *           +--------+
++ *                |
++ *                v
++ *  +----+     +----+     +----+
++ *  | W3 | <-> | W1 | <-> | W2 |
++ *  +----+     +----+     +----+
++ *    ^                     ^
++ *    +---------------------+
++ */
++
+ static inline struct mutex_waiter *
+ __ww_waiter_first(struct mutex *lock)
+ 	__must_hold(&lock->wait_lock)
+@@ -13,26 +26,43 @@ __ww_waiter_first(struct mutex *lock)
+ 	return lock->first_waiter;
+ }
+ 
++/*
++ * for (cur = __ww_waiter_first(); cur; cur = __ww_waiter_next())
++ *
++ * Should iterate like: W1, W2, W3
++ */
+ static inline struct mutex_waiter *
+ __ww_waiter_next(struct mutex *lock, struct mutex_waiter *w)
+ 	__must_hold(&lock->wait_lock)
+ {
+ 	w = list_next_entry(w, list);
++	/*
++	 * Terminate if the next entry is the first again, that has already
++	 * been observed.
++	 */
+ 	if (lock->first_waiter == w)
+ 		return NULL;
+ 
+ 	return w;
+ }
+ 
++/*
++ * for (cur = __ww_waiter_last(); cur; cur = __ww_waiter_prev())
++ *
++ * Should iterate like: W3, W2, W1
++ */
+ static inline struct mutex_waiter *
+ __ww_waiter_prev(struct mutex *lock, struct mutex_waiter *w)
+ 	__must_hold(&lock->wait_lock)
+ {
+-	w = list_prev_entry(w, list);
++	/*
++	 * Terminate at the first entry, the previous entry of first is the
++	 * last and that has already been observed.
++	 */
+ 	if (lock->first_waiter == w)
+ 		return NULL;
+ 
+-	return w;
++	return list_prev_entry(w, list);
+ }
+ 
+ static inline struct mutex_waiter *
