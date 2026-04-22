@@ -4,146 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4436CF9EDC4
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Apr 2026 12:47:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9C43F9EDC5
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Apr 2026 12:59:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC07010E2A9;
-	Wed, 22 Apr 2026 12:47:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5686E10E2AA;
+	Wed, 22 Apr 2026 12:59:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y7GLxbVn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LoJa7jS4";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A5EB10E2A9
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Apr 2026 12:46:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EADD310E2AA
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Apr 2026 12:59:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776862020; x=1808398020;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=Lc9JmhdaHFpWZgx+i4l8Rc5WUg3sKJBonEOA9xvHeY0=;
- b=Y7GLxbVnl/ut5dZJ6347x5o+uKKaVJY8rmNGCfk29AqQORi70ARh07c4
- lTsQRgiXwcvV1H+52GWCOvECidOZ5zN+rf5JlByYLA9xcilROofFLs1Dq
- C33o+uaCzW9AodjGrmLJNj75U3Z3H30lkpMvSLtY0N9e/G/k1+FgUmi2M
- rVt92eQcP8yTwjtoQewfBwAELhTMZzAton1oUZLx+TXY2QS5BkV1lKSpG
- qzRgwkSKDg90HgxbcBs88FM9ZP6tkSjteUD2sAWvui9KAAgBuzeyO85Bb
- a+h9p48bKE7c7Pms3PBQr8eHrl925ZlNdEvpZMpcXgM2uV6yLr3+vUCBa w==;
-X-CSE-ConnectionGUID: pyX4GKX0RTmQVmLBEaCiLg==
-X-CSE-MsgGUID: 0rdTL82CQxmc2hC6Zs7GxQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11764"; a="89199676"
-X-IronPort-AV: E=Sophos;i="6.23,192,1770624000"; d="scan'208";a="89199676"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Apr 2026 05:47:00 -0700
-X-CSE-ConnectionGUID: /jeMfcByT2Onm2NLRcnBUg==
-X-CSE-MsgGUID: aJ3zJVx7RMyT3YLRg6L3YA==
+ t=1776862783; x=1808398783;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=nSsLhb2VmlbehBBBV9TrfGfXcIgSSaRZ4bnrV4hFmYI=;
+ b=LoJa7jS412wOFdlZPJMylkEO38O9f0sfeqKKXljTHM7WauAJcHvRLTwt
+ g38IvBsW/4xs5Iecb80pi0FTqSi5uzKmeQi+RABgPcBAkBBU3c5FGQYBA
+ J2sA7YNb2fpOl8ImkLYyXjalaZoUMXw1zt85GaKtGsv6dAdhV8K3ib3Qp
+ f0J2uFAxzQBIH+BipmLx53PHHfNaG1Juq4BJ+hPCISy/UxU8gIg5+kMBh
+ fLmK56FD+c/4fKqKYfOb0eEnM4Ze8SamjAuRoqb1Q2l+O2ffxlUw9U1qa
+ RtVYm8ixQiQEFJwRThWuM1OS2lzVGUv8+X5UD8DlFbo+J7eRYoNt4B5kN Q==;
+X-CSE-ConnectionGUID: pZLvJMcrTHKcVgrvD85k4A==
+X-CSE-MsgGUID: ee2Ru+NUQ/2z51EVlE5Eww==
+X-IronPort-AV: E=McAfee;i="6800,10657,11764"; a="77997247"
+X-IronPort-AV: E=Sophos;i="6.23,192,1770624000"; d="scan'208";a="77997247"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Apr 2026 05:59:42 -0700
+X-CSE-ConnectionGUID: pruCXTmyQYCkVKfnTu5Big==
+X-CSE-MsgGUID: RyNEapzFQXqE+17F/dnbcQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,192,1770624000"; d="scan'208";a="255605051"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Apr 2026 05:46:59 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 22 Apr 2026 05:46:58 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 22 Apr 2026 05:46:58 -0700
-Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.40) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 22 Apr 2026 05:46:58 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=R9j/iALkN7BjxVDgDbQrd/XrfkVi6Oeux4HW1ABusf3oLzSe4fy7U3AxPYplIy5kbW0vru2oYAe/izqt2a5dAqOe0YKkeEbnUimQ2ZvZHyVqYF+Yh2Sg8AnYog1O5/Ie0NiERNxq+9HOcLXWuvuq9NhLQ3lz2S1YEaUciHK2myBuhWc91LcAc7gy304WhEaJXoJDdqLnvvzwJxD8HfJdifJJIZDK8h8s5pfjonf8Mv920nExK7+WFt6NN80J0XE/DalycCVoQ8MKGX0kFnDiTTcmGG8h6UGB3ofoyTeASzIlSuCZAe9017KFP8DTM+jNJOpN2fIq43YieCqonhVW9Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Vf9pDjS43hxSV/XJ2m72Se7Vy9bTlJbKm/cA2IzMkQ8=;
- b=OBXKdjiChZTM6hB3mFVyg2nOZ2dv0RknSusW3sO9pq2m/TqReZ1EEWQNvM+V8/C3+PqqGzBg0dFGEp+pePpNKSbudTB0dTmRpkndXyUMd5BmCCwVDCK8Ug+fvlxoIwN2t8GhzNPvL/OTGzF/tNjqLERgRYgxCXb2qrbyvxIMIlzuY7aemCUgxUcrJQz9Ov3jCrI68LFTXnWghBpeHu1fQwo9XT43CqXRkYDbPWTYycge2+D8zeGm7eNj3p44Q+QEEmsTySiyx6ZKNkHECG1rZp9SPqus68KmnjHsb5iJWuJTPiOekAxvffBhKFfG48LKPOVBlU8a2cwDW1qTBUfkqA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
- by PH7PR11MB8599.namprd11.prod.outlook.com (2603:10b6:510:2ff::6)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.16; Wed, 22 Apr
- 2026 12:46:56 +0000
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::1d86:a34:519a:3b0d]) by CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::1d86:a34:519a:3b0d%5]) with mapi id 15.20.9846.019; Wed, 22 Apr 2026
- 12:46:56 +0000
-Date: Wed, 22 Apr 2026 08:46:52 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Raag Jadav <raag.jadav@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <vinay.belgaumkar@intel.com>,
- <badal.nilawar@intel.com>, <sk.anirban@intel.com>
-Subject: Re: [PATCH v1 2/2] drm/xe/gt: Drop redundant forcewake
-Message-ID: <aejDPGmswKnEluQE@intel.com>
-References: <20260422121128.1002031-1-raag.jadav@intel.com>
- <20260422121128.1002031-3-raag.jadav@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20260422121128.1002031-3-raag.jadav@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0210.namprd03.prod.outlook.com
- (2603:10b6:a03:2ef::35) To CYYPR11MB8430.namprd11.prod.outlook.com
- (2603:10b6:930:c6::19)
+Received: from yadavs-z690i-a-ultra-plus.iind.intel.com ([10.190.216.90])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Apr 2026 05:59:39 -0700
+From: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Vinod Govindapillai <vinod.govindapillai@intel.com>
+Subject: [PATCH v4] drm/xe: Convert stolen memory over to ttm_range_manager
+Date: Wed, 22 Apr 2026 18:25:03 +0530
+Message-ID: <20260422125502.3088222-2-sanjay.kumar.yadav@intel.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|PH7PR11MB8599:EE_
-X-MS-Office365-Filtering-Correlation-Id: da6bdbca-9c90-48c8-6f15-08dea06d3c8c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|56012099003|18002099003|22082099003; 
-X-Microsoft-Antispam-Message-Info: ancpPvh6nll6MBxd1qWXLS91TfmzYR/CIlP9O2dnO0GwWASqj6pROcwTpWaVRjTGEjDHEW2ZiEWPrsJ6Yx6lOHNZf5FUgj/8sdmioUP+mkiCmcmkJCmwBSTz40dGgJ3gkmJaewUvsWlG0S2/TtuUIU05H8D3qFT38uKGXqJOL69FHBBn36sR0fk/NeLupF5tLATiquTBV4uU2/zftcMUHkMV16hLa4ABn32VKDfBr3b6sPrv5H6TI+C9KoMFJJGk8vg/azxGJgKZOfd8pcLPXLeW6KupjOnzoQyKgZoY1k6tVoVFIbcUm0bjHfHxm0hnmHvby4V1Speo4HEq6DDJN788m70m2gXQ8ESrgKGTpeiAPuOJWcUVs73DlyKwcUTjtqM+C+crfuxIrQd1gmwyP0gmeufkm1DdYJ90ipwKOslfhgAg/hzAYPlemPsadWVCHPBVkvxHOJw2Rc7tBOEtaJomNhNCUZ3XPkTJuBkZz5NXejUL+6vwgTH0kdLBkC7IlyQ0ubdAL+StiBdCBtDaczl74vqfZPh8+4HRjlBlmFuLFqv/XiEbGk+0zPzFzwYM14hOs7B17pDJUY0BeH7uD3VpnJTrpNmuCHUITZeb9fFZiuIWkXWVEd4H5YZ1gJH0k+kH61Y/ygUzyG4YJhdQhL64jm4je235cELwaphdjSiB2wx9qbrTx2qy81sldun9qyLxtLXRccSMS6/V907F2aoZUU/4Ov66PN/nUAiBr3Q=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(56012099003)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?vk/CblnKORyjvKN7iQ8zfBUzkeZSn3+sGQCNItb6/ECMEDMrmmWmb/el1YBU?=
- =?us-ascii?Q?/04z+woIzo4NU8yZYaQyRVvH+/TuO1gy9h7i2jzVKBXFkN7NXRpyDFGbPTkf?=
- =?us-ascii?Q?s+KU83C8CEjZTPq2s79WgMAKwStLWrttwSMFWCJLoHnCFbEqLBk5dBVpbgoB?=
- =?us-ascii?Q?1O15EB++lSlOGhQLBchTGH7xzOrZYN7rSoMr5IBEPOoud1ItTSKCN5Fn4fJl?=
- =?us-ascii?Q?WAPKtbwk/c8EjXh488eJSlx/X4EOPyycwCyqQrvHoh59LAj92Q9Q5V179aYi?=
- =?us-ascii?Q?dfLX3jqpREfm/akcpt8h2ZaUbYPtUTI85i0GBDi5WGkm62TnZ+AEXqm2NA75?=
- =?us-ascii?Q?JOAqCC2QckYPLYf2sQKsHx/TsADlionyO9zqLNnNk1kpy7XCMQWFDYWRcJEU?=
- =?us-ascii?Q?haNczd/pVoZMY3Dlh0+KexMloa9AKydo6raAL8jLwHScyhr6AS0YuiZYx0DO?=
- =?us-ascii?Q?1w+/f7qvUW+IdCD+S6LMfPYJNkNZKTKVPWJZx0UNRygpub5dPCxQWn+2hya5?=
- =?us-ascii?Q?0CBe2uIWFcP2iuj7aacV7Tzz5USQRx2VAFPKSnXps8/pE6k8Pgz8ULam5jdh?=
- =?us-ascii?Q?iJyAj7m4g+mFhDg6JyPMDX1+0k77UYn7xNOuXtcd4uwUMQ/EFPLPAkfvwZBF?=
- =?us-ascii?Q?EudSgtCH8NVTwyzg2Lkkxi+cGRtfuMPnDcluOR9f8YAiMcqljjGMJ5PKQkZF?=
- =?us-ascii?Q?MchoQlN7nagKp2ZiPSWKZ215IRtFfSH5RVWdEm8lQsIgI8QrNTDaeOkUTRZO?=
- =?us-ascii?Q?Gzq3jxPwD34aYn3Tcdiao4mipsZZdzR/QpbqyTZjeAte25dNxPqhq0xrTb+c?=
- =?us-ascii?Q?94JK9Ox2FhQkZw7qcpqT5ACAJxZGfuuTAsAcQTPB4yGqXunqINIyXmP15Nu/?=
- =?us-ascii?Q?sFLlL554o0LmvM3+lVZBWm6Qyg2UaS7qdHP8Qi6sqnlwUMaFLgj/9OdWuhCd?=
- =?us-ascii?Q?esZPIK74dn5/V3tQEyek/+SOG4jcCd2Mb2rDo2FznJc9XSxfAZbn330HL2Br?=
- =?us-ascii?Q?xcFt3X6ICaoELOKTe7imaVzDh72rZ0lv2fsFo+Gk17s0E/ybbD9XuqMUnKZG?=
- =?us-ascii?Q?Je9NAbCMQOc4bUrcBzHwjNbF9UJWw5eyGhhzCgiTBQqNYMmFV8lnTbLPxeI/?=
- =?us-ascii?Q?sAJShYsM2obWyBD97l8kp2by8ANPi/pBvtfYFZwsCfdineX81405ETYEQzNR?=
- =?us-ascii?Q?gKZJu0pbI0/tqyOLEM6jBeU0DNJUC2xf7e1ibL/Tf/OvntHArKP171gUYwMK?=
- =?us-ascii?Q?KXGnv9AbPgzDG7jJeOQ7ddvVU8FL85X0/pqqFrUSQGk4T+o0tOvhhW0LozEA?=
- =?us-ascii?Q?C855iimU+OnPI8dRptvziX4EaknfTNpiNB44zYN0I3gKlA9hz/CNHxPgVyNN?=
- =?us-ascii?Q?WDZOfP23iC+tWzjwSQSRw4gkS/NBtLr6Or9ITQtZtX9tdr6HKWiChr7A+c+K?=
- =?us-ascii?Q?GUItVAQY38TkEJp2sEHNakYu/SeaxesOqc3jVD4qY9EOcesBZlUOb97t4MXa?=
- =?us-ascii?Q?0J0n8uzMN0uAsjAGYIry0Lm05Db/6wsoR0XAwuXIaJhAEWqVjaXdl3qp2XcT?=
- =?us-ascii?Q?G1a2nDZn0Qc/YdJTCctOIiRClqf/vM6ClI+twOTMmDIXXEcTjw8BRXO9z7Qp?=
- =?us-ascii?Q?kjtNuhibXDqhN/7tlWUivCzDUUDu9oqkdiJ8UCc5W2x00PtiX6wgrpTT/PYb?=
- =?us-ascii?Q?7abZkSYzDx4ws5IhBspz029xoM2RutJomUf6NiyQz3OjWe/8IUiBn8ue74+T?=
- =?us-ascii?Q?q1Qwovol9g=3D=3D?=
-X-Exchange-RoutingPolicyChecked: WqNvPACsdCp7n7dVRDUxfjiLWoqT+Y7IgDr6EFF2/WVobKVcO5RxWf4o3qs5pHDmg5iInGCzUF05YhKwmhAbZ49iH3DB2LOIiuVdnXJppmb07LpT8UBg+2tjaqPZGHCqR+DdPCHk7ChUCmJA4tgxS/Gr7Vk/DetpFTCZoY+HkObycbLSUVf5BOzvbqYJdUTGotv0+vvHVIlWhwkD/xU3WrUjh1lXcczsOUa2Tx5xmAkKkgCz/tH0stN9bXaySTviWHR57HD8gAa2Nrj7N5AgVEHJZAYn/kxw3lTWhXJsKVqXtnuUZzwa+eitlsAXXZsKqS5perSdxr7FfaeiK1608A==
-X-MS-Exchange-CrossTenant-Network-Message-Id: da6bdbca-9c90-48c8-6f15-08dea06d3c8c
-X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Apr 2026 12:46:56.2661 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: QkL6yr3FOJRe1gN/xovqUuZGQwdAhscly/OImTGjvXYYlHb72eQjB3kFYvAulWCJ9pPPL2U8gCWr39VUEdXP6Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB8599
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,30 +66,361 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Apr 22, 2026 at 05:40:57PM +0530, Raag Jadav wrote:
-> xe_gt_suspend_prepare() doesn't require forcewake in it's code path.
-> Drop it.
+Stolen memory requires physically contiguous allocations for display
+scanout and compressed framebuffers. The stolen memory manager was
+sharing the gpu_buddy allocator backend with the VRAM manager, but
+buddy manages non-contiguous power-of-two blocks making it a poor fit.
+Stolen memory also has fundamentally different allocation patterns:
 
-Why? The commit message should explain why it doesn't need...
+- Allocation sizes are not power-of-two. Since buddy rounds up to the
+  next power-of-two block size, a ~17MB request can fail even with
+  ~22MB free, because the free space is fragmented across non-fitting
+  power-of-two blocks.
+- Hardware restrictions prevent using the first 4K page of stolen for
+  certain allocations (e.g., FBC). The display code sets fpfn=1 to
+  enforce this, but when fpfn != 0, gpu_buddy enables
+  GPU_BUDDY_RANGE_ALLOCATION mode which disables the try_harder
+  coalescing path, further reducing allocation success.
 
-> 
-> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_gt.c | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index 6d6f5a10fe85..168c700af701 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -1041,7 +1041,6 @@ void xe_gt_reset_async(struct xe_gt *gt)
->  
->  void xe_gt_suspend_prepare(struct xe_gt *gt)
->  {
-> -	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FORCEWAKE_ALL);
->  	xe_uc_suspend_prepare(&gt->uc);
->  }
->  
-> -- 
-> 2.43.0
-> 
+This combination caused FBC compressed framebuffer (CFB) allocation
+failures on platforms like NVL/PTL. In case of NVL where stolen memory
+is ~56MB and the initial plane framebuffer consumes ~34MB at probe time,
+leaving ~22MB for subsequent allocations.
+
+Use ttm_range_man_init_nocheck() to set up a drm_mm-backed TTM resource
+manager for stolen memory. This reuses the TTM core's ttm_range_manager
+callbacks, avoiding duplicate implementations.
+
+Tested on NVL with a 4K DP display: stolen_mm shows a single ~22MB
+contiguous free hole after initial plane framebuffer allocation, and
+FBC successfully allocates its CFB from that region. The corresponding
+IGT was previously skipped and now passes.
+
+v2:
+- Clarify that stolen memory requires contiguous allocations (Matt B)
+- Properly handle xe_ttm_resource_visible() for stolen instead of
+  unconditionally returning true (Matt A)
+
+v3:
+- Rebase
+- Fix xe_display_bo_fbdev_prefer_stolen() to compare in pages, since
+  ttm_range_manager stores stolen->size in pages not bytes (Matt A)
+
+v4:
+- Add kernel-doc for struct xe_ttm_stolen_mgr (Matt B)
+
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/7631
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Suggested-by: Matthew Auld <matthew.auld@intel.com>
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
+Signed-off-by: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+Acked-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Acked-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+---
+ drivers/gpu/drm/xe/display/xe_display_bo.c |  2 +-
+ drivers/gpu/drm/xe/xe_bo.c                 | 16 ++++--
+ drivers/gpu/drm/xe/xe_device_types.h       |  3 +
+ drivers/gpu/drm/xe/xe_res_cursor.h         | 14 ++++-
+ drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c     | 64 ++++++++--------------
+ drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h     | 12 ++++
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c       | 11 ++--
+ 7 files changed, 67 insertions(+), 55 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/display/xe_display_bo.c b/drivers/gpu/drm/xe/display/xe_display_bo.c
+index dc0d78ff2d79..7fbac223b097 100644
+--- a/drivers/gpu/drm/xe/display/xe_display_bo.c
++++ b/drivers/gpu/drm/xe/display/xe_display_bo.c
+@@ -138,7 +138,7 @@ bool xe_display_bo_fbdev_prefer_stolen(struct xe_device *xe, unsigned int size)
+ 	 * important and we should probably use that space with FBC or other
+ 	 * features.
+ 	 */
+-	return stolen->size >= size * 2;
++	return stolen->size >= (size * 2) >> PAGE_SHIFT;
+ }
+ 
+ static struct drm_gem_object *xe_display_bo_fbdev_create(struct drm_device *drm, int size)
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 5ce60d161e09..62850b6f684b 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -586,11 +586,17 @@ static void xe_ttm_tt_destroy(struct ttm_device *ttm_dev, struct ttm_tt *tt)
+ 	kfree(tt);
+ }
+ 
+-static bool xe_ttm_resource_visible(struct ttm_resource *mem)
++static bool xe_ttm_resource_visible(struct xe_device *xe, struct ttm_resource *mem)
+ {
+-	struct xe_ttm_vram_mgr_resource *vres =
+-		to_xe_ttm_vram_mgr_resource(mem);
++	struct xe_ttm_vram_mgr_resource *vres;
+ 
++	if (mem->mem_type == XE_PL_STOLEN) {
++		struct xe_ttm_stolen_mgr *mgr = xe->mem.stolen_mgr;
++
++		return mgr->io_base && !xe_ttm_stolen_cpu_access_needs_ggtt(xe);
++	}
++
++	vres = to_xe_ttm_vram_mgr_resource(mem);
+ 	return vres->used_visible_size == mem->size;
+ }
+ 
+@@ -608,7 +614,7 @@ bool xe_bo_is_visible_vram(struct xe_bo *bo)
+ 	if (drm_WARN_ON(bo->ttm.base.dev, !xe_bo_is_vram(bo)))
+ 		return false;
+ 
+-	return xe_ttm_resource_visible(bo->ttm.resource);
++	return xe_ttm_resource_visible(xe_bo_device(bo), bo->ttm.resource);
+ }
+ 
+ static int xe_ttm_io_mem_reserve(struct ttm_device *bdev,
+@@ -624,7 +630,7 @@ static int xe_ttm_io_mem_reserve(struct ttm_device *bdev,
+ 	case XE_PL_VRAM1: {
+ 		struct xe_vram_region *vram = xe_map_resource_to_region(mem);
+ 
+-		if (!xe_ttm_resource_visible(mem))
++		if (!xe_ttm_resource_visible(xe, mem))
+ 			return -EINVAL;
+ 
+ 		mem->bus.offset = mem->start << PAGE_SHIFT;
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 89437de3001a..32dd2ffbc796 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -42,6 +42,7 @@ struct xe_ggtt;
+ struct xe_i2c;
+ struct xe_pat_ops;
+ struct xe_pxp;
++struct xe_ttm_stolen_mgr;
+ struct xe_vram_region;
+ 
+ /**
+@@ -276,6 +277,8 @@ struct xe_device {
+ 		struct ttm_resource_manager sys_mgr;
+ 		/** @mem.shrinker: system memory shrinker. */
+ 		struct xe_shrinker *shrinker;
++		/** @mem.stolen_mgr: stolen memory manager. */
++		struct xe_ttm_stolen_mgr *stolen_mgr;
+ 	} mem;
+ 
+ 	/** @sriov: device level virtualization data */
+diff --git a/drivers/gpu/drm/xe/xe_res_cursor.h b/drivers/gpu/drm/xe/xe_res_cursor.h
+index 5f4ab08c0686..0522caafd89d 100644
+--- a/drivers/gpu/drm/xe/xe_res_cursor.h
++++ b/drivers/gpu/drm/xe/xe_res_cursor.h
+@@ -101,7 +101,15 @@ static inline void xe_res_first(struct ttm_resource *res,
+ 	cur->mem_type = res->mem_type;
+ 
+ 	switch (cur->mem_type) {
+-	case XE_PL_STOLEN:
++	case XE_PL_STOLEN: {
++		/* res->start is in pages (ttm_range_manager). */
++		cur->start = (res->start << PAGE_SHIFT) + start;
++		cur->size = size;
++		cur->remaining = size;
++		cur->node = NULL;
++		cur->mm = NULL;
++		break;
++	}
+ 	case XE_PL_VRAM0:
+ 	case XE_PL_VRAM1: {
+ 		struct gpu_buddy_block *block;
+@@ -289,6 +297,10 @@ static inline void xe_res_next(struct xe_res_cursor *cur, u64 size)
+ 
+ 	switch (cur->mem_type) {
+ 	case XE_PL_STOLEN:
++		/* Just advance within the contiguous region. */
++		cur->start += size;
++		cur->size = cur->remaining;
++		break;
+ 	case XE_PL_VRAM0:
+ 	case XE_PL_VRAM1:
+ 		start = size - cur->size;
+diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+index 27c9d72222cf..5e9070739e65 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+@@ -19,30 +19,11 @@
+ #include "xe_device.h"
+ #include "xe_gt_printk.h"
+ #include "xe_mmio.h"
+-#include "xe_res_cursor.h"
+ #include "xe_sriov.h"
+ #include "xe_ttm_stolen_mgr.h"
+-#include "xe_ttm_vram_mgr.h"
+ #include "xe_vram.h"
+ #include "xe_wa.h"
+ 
+-struct xe_ttm_stolen_mgr {
+-	struct xe_ttm_vram_mgr base;
+-
+-	/* PCI base offset */
+-	resource_size_t io_base;
+-	/* GPU base offset */
+-	resource_size_t stolen_base;
+-
+-	void __iomem *mapping;
+-};
+-
+-static inline struct xe_ttm_stolen_mgr *
+-to_stolen_mgr(struct ttm_resource_manager *man)
+-{
+-	return container_of(man, struct xe_ttm_stolen_mgr, base.manager);
+-}
+-
+ /**
+  * xe_ttm_stolen_cpu_access_needs_ggtt() - If we can't directly CPU access
+  * stolen, can we then fallback to mapping through the GGTT.
+@@ -210,12 +191,19 @@ static u64 detect_stolen(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
+ #endif
+ }
+ 
++static void xe_ttm_stolen_mgr_fini(struct drm_device *dev, void *arg)
++{
++	struct xe_device *xe = to_xe_device(dev);
++
++	ttm_range_man_fini_nocheck(&xe->ttm, XE_PL_STOLEN);
++}
++
+ int xe_ttm_stolen_mgr_init(struct xe_device *xe)
+ {
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+ 	struct xe_ttm_stolen_mgr *mgr;
+ 	u64 stolen_size, io_size;
+-	int err;
++	int ret;
+ 
+ 	mgr = drmm_kzalloc(&xe->drm, sizeof(*mgr), GFP_KERNEL);
+ 	if (!mgr)
+@@ -244,12 +232,12 @@ int xe_ttm_stolen_mgr_init(struct xe_device *xe)
+ 	if (mgr->io_base && !xe_ttm_stolen_cpu_access_needs_ggtt(xe))
+ 		io_size = stolen_size;
+ 
+-	err = __xe_ttm_vram_mgr_init(xe, &mgr->base, XE_PL_STOLEN, stolen_size,
+-				     io_size, PAGE_SIZE);
+-	if (err) {
+-		drm_dbg_kms(&xe->drm, "Stolen mgr init failed: %i\n", err);
+-		return err;
+-	}
++	ret = ttm_range_man_init_nocheck(&xe->ttm, XE_PL_STOLEN, false,
++					 stolen_size >> PAGE_SHIFT);
++	if (ret)
++		return ret;
++
++	xe->mem.stolen_mgr = mgr;
+ 
+ 	drm_dbg_kms(&xe->drm, "Initialized stolen memory support with %llu bytes\n",
+ 		    stolen_size);
+@@ -257,36 +245,32 @@ int xe_ttm_stolen_mgr_init(struct xe_device *xe)
+ 	if (io_size)
+ 		mgr->mapping = devm_ioremap_wc(&pdev->dev, mgr->io_base, io_size);
+ 
+-	return 0;
++	return drmm_add_action_or_reset(&xe->drm, xe_ttm_stolen_mgr_fini, mgr);
+ }
+ 
+ u64 xe_ttm_stolen_io_offset(struct xe_bo *bo, u32 offset)
+ {
+ 	struct xe_device *xe = xe_bo_device(bo);
+-	struct ttm_resource_manager *ttm_mgr = ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
+-	struct xe_ttm_stolen_mgr *mgr = to_stolen_mgr(ttm_mgr);
+-	struct xe_res_cursor cur;
++	struct xe_ttm_stolen_mgr *mgr = xe->mem.stolen_mgr;
+ 
+ 	XE_WARN_ON(!mgr->io_base);
+ 
+ 	if (xe_ttm_stolen_cpu_access_needs_ggtt(xe))
+ 		return mgr->io_base + xe_bo_ggtt_addr(bo) + offset;
+ 
+-	xe_res_first(bo->ttm.resource, offset, 4096, &cur);
+-	return mgr->io_base + cur.start;
++	/* Range allocator: res->start is in pages. */
++	return mgr->io_base + (bo->ttm.resource->start << PAGE_SHIFT) + offset;
+ }
+ 
+ static int __xe_ttm_stolen_io_mem_reserve_bar2(struct xe_device *xe,
+ 					       struct xe_ttm_stolen_mgr *mgr,
+ 					       struct ttm_resource *mem)
+ {
+-	struct xe_res_cursor cur;
+-
+ 	if (!mgr->io_base)
+ 		return -EIO;
+ 
+-	xe_res_first(mem, 0, 4096, &cur);
+-	mem->bus.offset = cur.start;
++	/* Range allocator always produces contiguous allocations. */
++	mem->bus.offset = mem->start << PAGE_SHIFT;
+ 
+ 	drm_WARN_ON(&xe->drm, !(mem->placement & TTM_PL_FLAG_CONTIGUOUS));
+ 
+@@ -329,8 +313,7 @@ static int __xe_ttm_stolen_io_mem_reserve_stolen(struct xe_device *xe,
+ 
+ int xe_ttm_stolen_io_mem_reserve(struct xe_device *xe, struct ttm_resource *mem)
+ {
+-	struct ttm_resource_manager *ttm_mgr = ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
+-	struct xe_ttm_stolen_mgr *mgr = ttm_mgr ? to_stolen_mgr(ttm_mgr) : NULL;
++	struct xe_ttm_stolen_mgr *mgr = xe->mem.stolen_mgr;
+ 
+ 	if (!mgr || !mgr->io_base)
+ 		return -EIO;
+@@ -343,8 +326,5 @@ int xe_ttm_stolen_io_mem_reserve(struct xe_device *xe, struct ttm_resource *mem)
+ 
+ u64 xe_ttm_stolen_gpu_offset(struct xe_device *xe)
+ {
+-	struct xe_ttm_stolen_mgr *mgr =
+-		to_stolen_mgr(ttm_manager_type(&xe->ttm, XE_PL_STOLEN));
+-
+-	return mgr->stolen_base;
++	return xe->mem.stolen_mgr->stolen_base;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h
+index 8e877d1e839b..32badaee9c88 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h
++++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h
+@@ -12,6 +12,18 @@ struct ttm_resource;
+ struct xe_bo;
+ struct xe_device;
+ 
++/**
++ * struct xe_ttm_stolen_mgr - Xe TTM stolen memory manager
++ */
++struct xe_ttm_stolen_mgr {
++	/** @io_base: PCI base offset for CPU I/O access */
++	resource_size_t io_base;
++	/** @stolen_base: GPU base offset */
++	resource_size_t stolen_base;
++	/** @mapping: I/O memory mapping for CPU access */
++	void __iomem *mapping;
++};
++
+ int xe_ttm_stolen_mgr_init(struct xe_device *xe);
+ int xe_ttm_stolen_io_mem_reserve(struct xe_device *xe, struct ttm_resource *mem);
+ bool xe_ttm_stolen_cpu_access_needs_ggtt(struct xe_device *xe);
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index 5fd0d5506a7e..79ef8e1b5e5c 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -301,14 +301,13 @@ int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
+ 			   u64 default_page_size)
+ {
+ 	struct ttm_resource_manager *man = &mgr->manager;
++	const char *name;
+ 	int err;
+ 
+-	if (mem_type != XE_PL_STOLEN) {
+-		const char *name = mem_type == XE_PL_VRAM0 ? "vram0" : "vram1";
+-		man->cg = drmm_cgroup_register_region(&xe->drm, name, size);
+-		if (IS_ERR(man->cg))
+-			return PTR_ERR(man->cg);
+-	}
++	name = mem_type == XE_PL_VRAM0 ? "vram0" : "vram1";
++	man->cg = drmm_cgroup_register_region(&xe->drm, name, size);
++	if (IS_ERR(man->cg))
++		return PTR_ERR(man->cg);
+ 
+ 	man->func = &xe_ttm_vram_mgr_func;
+ 	mgr->mem_type = mem_type;
+-- 
+2.52.0
+
