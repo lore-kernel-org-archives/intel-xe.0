@@ -4,60 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 697A0F9B601
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Apr 2026 09:46:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BD48F9B602
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Apr 2026 09:50:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D55A10ED7A;
-	Wed, 22 Apr 2026 09:46:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D75310EE23;
+	Wed, 22 Apr 2026 09:50:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OjD5NmQ9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Om0Cbmor";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AAA9F10ED7A;
- Wed, 22 Apr 2026 09:46:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8530D10E049;
+ Wed, 22 Apr 2026 09:50:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776851168; x=1808387168;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=9Tq0ixn2djtHjCYiJJgs4bad1z6zqahpcGkanyvroVQ=;
- b=OjD5NmQ9JV09RHVKk/qRi888l0iLkiu1JQSt03jueDKnLEdvFKB+q62v
- 1eLqcnV6ImeO0zvAnnlzRhF5afNzOg69OHCBfDq5MYPu0Ae10etgxgyhn
- zQkhKFxRYvG7SMwZojH9XjYr993lkjqMvKDCXp+ZY35Jqr8o5KEgk+HOa
- fe+12NXMqKOcsACmPdeof4PqlRqai/gsFe+fZ/BGEy1kSpNX9eN70eSGW
- WLj1l6nGWJLlkU5TxsihvnbYsJEdtwnUYDrEbGILy0ywV9iG27RBvZwbs
- 68FmSq4BZReXHWENsHg80z4Bs9HauLyih3KAD0D6WrKKdNd/zXyS4ejU3 g==;
-X-CSE-ConnectionGUID: cmRUBiaNQKKvyqRZyUC/rg==
-X-CSE-MsgGUID: sIMXdnQmQca1STcc1IqXLg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11763"; a="76832241"
-X-IronPort-AV: E=Sophos;i="6.23,192,1770624000"; d="scan'208";a="76832241"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Apr 2026 02:46:07 -0700
-X-CSE-ConnectionGUID: CuR/lBL8TQ+ZY7rzdWlKhw==
-X-CSE-MsgGUID: g4731+suSiu8ysRDAfQ5MA==
+ t=1776851437; x=1808387437;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=kcLv6TMheSCYHWv7Tmi77yXjSjjhJ9NvmWDLM99VOjo=;
+ b=Om0Cbmor4fVHB3C+5rYPT2RBce+D3JzUJu06IvAys5+wlqEcboEzJ9+m
+ n1VAFKVv4K8yEQ6tao3Cq6bzsesPAqSeWugfahgLoDpJ+IGqYHi8OqaRz
+ kJzH7csFv8GUwkY2qYoY4NsPMUNX8CFE5XtXkede2GQ+K4D9Bf3U4vYxg
+ 8EUBDus+nM5UZ5y4MB4rhg/g2xbbitqFu9UDNDIwM9/6rJWaWIqChdgne
+ o29QSb221mBCRLra3TCzMtvVOUi/tn4RsEwNwjHihuk4QzNM+eeerjyj9
+ jciE1e+HWacMAIeQ33blunHwudNQPb22LQDSln3L02fx33cWa7GNQHa1k g==;
+X-CSE-ConnectionGUID: J5QrofMcTLq+WRLzVUmNJQ==
+X-CSE-MsgGUID: hnsmcxsNTRuw8schEUyMZg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11763"; a="100453996"
+X-IronPort-AV: E=Sophos;i="6.23,192,1770624000"; d="scan'208";a="100453996"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Apr 2026 02:50:36 -0700
+X-CSE-ConnectionGUID: vAn15CqpS3uRGieKrfyVdQ==
+X-CSE-MsgGUID: RyVHDFWOSHCNX7u0DOWkNA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,192,1770624000"; d="scan'208";a="231277408"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.10])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Apr 2026 02:46:06 -0700
-Date: Wed, 22 Apr 2026 12:46:02 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Nemesa Garg <nemesa.garg@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 1/6] drm/i915/cursor: Check joiner cursor commit status
-Message-ID: <aeiY2q8Qeq1wGi9c@intel.com>
-References: <20260422073722.1861494-1-nemesa.garg@intel.com>
- <20260422073722.1861494-2-nemesa.garg@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,192,1770624000"; d="scan'208";a="231419495"
+Received: from amilburn-desk.amilburn-desk (HELO [10.245.245.228])
+ ([10.245.245.228])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Apr 2026 02:50:31 -0700
+Message-ID: <8ecda206-d290-4895-bf57-346419afdc3c@linux.intel.com>
+Date: Wed, 22 Apr 2026 11:50:29 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/5] cgroup/dmem: Add reclaim callback for lowering max
+ below current usage
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Natalie Vock <natalie.vock@gmx.de>, Johannes Weiner <hannes@cmpxchg.org>, 
+ Tejun Heo <tj@kernel.org>, =?UTF-8?Q?Michal_Koutn=C3=BD?=
+ <mkoutny@suse.com>, cgroups@vger.kernel.org, Huang Rui <ray.huang@amd.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>,
+ David Airlie <airlied@gmail.com>, =?UTF-8?Q?Christian_K=C3=B6nig?=
+ <christian.koenig@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
+References: <20260327081600.4885-1-thomas.hellstrom@linux.intel.com>
+ <20260327081600.4885-3-thomas.hellstrom@linux.intel.com>
+ <4b647952-0038-4878-b67e-6c7fc7ab27a6@linux.intel.com>
+ <398623a092c65ce4e53d1713112fa39ac0979fd7.camel@linux.intel.com>
+Content-Language: en-US
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+In-Reply-To: <398623a092c65ce4e53d1713112fa39ac0979fd7.camel@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260422073722.1861494-2-nemesa.garg@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,82 +84,213 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Apr 22, 2026 at 01:07:17PM +0530, Nemesa Garg wrote:
-> In joiner mode, secondary cursor commits may still be running
-> even when the primary cursor commit is done.
-> Check secondary cursor commit status before taking the fast path.
-> If any secondary commit is still pending, fallback to slow path.
+Hey,
+
+Den 2026-04-22 kl. 10:42, skrev Thomas Hellström:
+> On Wed, 2026-04-22 at 10:31 +0200, Maarten Lankhorst wrote:
+>> Hey,
+>>
+>> (Adding Thadeu to cc since they've been working on the same issue)
+>>
+>> Den 2026-03-27 kl. 09:15, skrev Thomas Hellström:
+>>> Add an optional reclaim callback to struct dmem_cgroup_region. 
+>>> When
+>>> dmem.max is set below current usage, invoke the callback to evict
+>>> memory
+>>> and retry setting the limit rather than failing immediately. 
+>>> Signal
+>>> interruptions propagate back to the write() caller.
+>>>
+>>> RFC:
+>>> Due to us updating the max limit _after_ the usage has been
+>>> sufficiently lowered, this should be prone to failures if there are
+>>> aggressive allocators running in parallel to the reclaim.
+>>> So can we somehow enforce the new limit while the eviction is
+>>> happening?
+>>>
+>>> Assisted-by: GitHub Copilot:claude-sonnet-4.6
+>>> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>>> ---
+>>>  include/linux/cgroup_dmem.h | 11 +++++
+>>>  kernel/cgroup/dmem.c        | 94
+>>> +++++++++++++++++++++++++++++++++----
+>>>  2 files changed, 96 insertions(+), 9 deletions(-)
+>>>
+>>> diff --git a/include/linux/cgroup_dmem.h
+>>> b/include/linux/cgroup_dmem.h
+>>> index dd4869f1d736..61520a431740 100644
+>>> --- a/include/linux/cgroup_dmem.h
+>>> +++ b/include/linux/cgroup_dmem.h
+>>> @@ -26,6 +26,10 @@ bool dmem_cgroup_state_evict_valuable(struct
+>>> dmem_cgroup_pool_state *limit_pool,
+>>>  				      bool ignore_low, bool
+>>> *ret_hit_low);
+>>>  
+>>>  void dmem_cgroup_pool_state_put(struct dmem_cgroup_pool_state
+>>> *pool);
+>>> +void dmem_cgroup_region_set_reclaim(struct dmem_cgroup_region
+>>> *region,
+>>> +				    int (*reclaim)(struct
+>>> dmem_cgroup_pool_state *pool,
+>>> +						   u64
+>>> target_bytes, void *priv),
+>>> +				    void *priv);
+>>>  #else
+>>>  static inline __printf(2,3) struct dmem_cgroup_region *
+>>>  dmem_cgroup_register_region(u64 size, const char *name_fmt, ...)
+>>> @@ -62,5 +66,12 @@ bool dmem_cgroup_state_evict_valuable(struct
+>>> dmem_cgroup_pool_state *limit_pool,
+>>>  static inline void dmem_cgroup_pool_state_put(struct
+>>> dmem_cgroup_pool_state *pool)
+>>>  { }
+>>>  
+>>> +static inline void
+>>> +dmem_cgroup_region_set_reclaim(struct dmem_cgroup_region *region,
+>>> +			       int (*reclaim)(struct
+>>> dmem_cgroup_pool_state *pool,
+>>> +					      u64 target_bytes,
+>>> void *priv),
+>>> +			       void *priv)
+>>> +{ }
+>>> +
+>>>  #endif
+>>>  #endif	/* _CGROUP_DMEM_H */
+>>> diff --git a/kernel/cgroup/dmem.c b/kernel/cgroup/dmem.c
+>>> index 3e6d4c0b26a1..f993fb058b74 100644
+>>> --- a/kernel/cgroup/dmem.c
+>>> +++ b/kernel/cgroup/dmem.c
+>>> @@ -51,6 +51,18 @@ struct dmem_cgroup_region {
+>>>  	 * No new pools should be added to the region afterwards.
+>>>  	 */
+>>>  	bool unregistered;
+>>> +
+>>> +	/**
+>>> +	 * @reclaim: Optional callback invoked when dmem.max is
+>>> set below the
+>>> +	 * current usage of a pool. The driver should attempt to
+>>> free at least
+>>> +	 * @target_bytes from @pool. May be called multiple times
+>>> if usage
+>>> +	 * remains above the limit after returning.
+>>> +	 */
+>>> +	int (*reclaim)(struct dmem_cgroup_pool_state *pool, u64
+>>> target_bytes,
+>>> +		       void *priv);
+>>> +
+>>> +	/** @reclaim_priv: Private data passed to @reclaim. */
+>>> +	void *reclaim_priv;
+>>>  };
+>>>  
+>>>  struct dmemcg_state {
+>>> @@ -145,23 +157,59 @@ static void free_cg_pool(struct
+>>> dmem_cgroup_pool_state *pool)
+>>>  }
+>>>  
+>>>  static int
+>>> -set_resource_min(struct dmem_cgroup_pool_state *pool, u64 val)
+>>> +set_resource_min(struct dmem_cgroup_pool_state *pool, u64 val,
+>>> +		 struct dmem_cgroup_region *region)
+>>>  {
+>>>  	page_counter_set_min(&pool->cnt, val);
+>>>  	return 0;
+>>>  }
+>>>  
+>>>  static int
+>>> -set_resource_low(struct dmem_cgroup_pool_state *pool, u64 val)
+>>> +set_resource_low(struct dmem_cgroup_pool_state *pool, u64 val,
+>>> +		 struct dmem_cgroup_region *region)
+>>>  {
+>>>  	page_counter_set_low(&pool->cnt, val);
+>>>  	return 0;
+>>>  }
+>>>  
+>>>  static int
+>>> -set_resource_max(struct dmem_cgroup_pool_state *pool, u64 val)
+>>> +set_resource_max(struct dmem_cgroup_pool_state *pool, u64 val,
+>>> +		 struct dmem_cgroup_region *region)
+>>>  {
+>>> -	return page_counter_set_max(&pool->cnt, val);
+>>> +	int err = page_counter_set_max(&pool->cnt, val);
+>>> +
+>>> +	if (err != -EBUSY || !region || !region->reclaim)
+>>> +		return err;
+>>> +
+>>> +	/*
+>>> +	 * The new max is below current usage.  Ask the driver to
+>>> evict memory
+>>> +	 * and retry, up to a bounded number of times.  Signal
+>>> interruptions are
+>>> +	 * propagated back to the write() caller; other reclaim
+>>> failures leave
+>>> +	 * -EBUSY as the result.
+>>> +	 */
+>>> +	for (int retries = 5; retries > 0; retries--) {
+>>> +		u64 usage = page_counter_read(&pool->cnt);
+>>> +		u64 target = usage > val ? usage - val : 0;
+>>> +		int reclaim_err;
+>>> +
+>>> +		if (!target) {
+>>> +			err = page_counter_set_max(&pool->cnt,
+>>> val);
+>>> +			break;
+>>> +		}
+>>> +
+>>> +		reclaim_err = region->reclaim(pool, target,
+>>> region->reclaim_priv);
+>>> +		if (reclaim_err) {
+>>> +			if (reclaim_err == -EINTR || reclaim_err
+>>> == -ERESTARTSYS)
+>>> +				err = reclaim_err;
+>>> +			break;
+>>> +		}
+>>> +
+>>> +		err = page_counter_set_max(&pool->cnt, val);
+>>> +		if (err != -EBUSY)
+>>> +			break;
+>>> +	}
+>>> +
+>>> +	return err;
+>>>  }
+>>
+>> I mentioned this in chat but I wanted to mention it on the mailing
+>> list for others as well,
+>> can we reproduce the behavior from memory_max_write() in
+>> mm/memcontrol.c?
+>>
+>> 1. First set new limit through xchg.
+>> 2. If O_NONBLOCK is set -> do nothing, next allocation in target
+>> region will fail and cause reclaim.
+>> 3. If not set -> reclaim until below new limit or interrupted by a
+>> signal, return success in all cases here since we set new limit.
+>>
+>>
 > 
-> Assisted-by: Claude:claude-sonnet-4.6
-> Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_cursor.c | 29 +++++++++++++++++++++
->  1 file changed, 29 insertions(+)
+> Yup.
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-> index 18d1014de361..609915c798ba 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cursor.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-> @@ -13,6 +13,7 @@
->  #include <drm/drm_vblank.h>
->  
->  #include "intel_atomic.h"
-> +#include "intel_crtc.h"
->  #include "intel_cursor.h"
->  #include "intel_cursor_regs.h"
->  #include "intel_de.h"
-> @@ -797,6 +798,30 @@ void intel_cursor_unpin_work(struct kthread_work *base)
->  	intel_plane_destroy_state(&plane->base, &plane_state->uapi);
->  }
->  
-> +static bool
-> +intel_cursor_joiner_commits_idle(struct intel_display *display,
-> +				 const struct intel_crtc_state *crtc_state)
-> +{
-> +	struct intel_crtc *secondary_crtc;
-> +	u8 secondary_pipes = intel_crtc_joiner_secondary_pipes(crtc_state);
-> +
-> +	if (!secondary_pipes)
-> +		return true;
-> +
-> +	for_each_intel_crtc_in_pipe_mask(display->drm, secondary_crtc, secondary_pipes) {
+> For 3, we also need to consider the case where we fail to reclaim due
+> to memory being pinned. If it's OK to (usually temporary) have current
+> usage above max, that would work.
+> 
+> I have that coded up and also add a patch on top to defer reclaim to a
+> thread if we bail due to signal or O_NONBLOCK. Perhaps we could discuss
+> whether that's a good or bad idea in that patch.
 
-You want to just iterate over intel_crtc_joined_pipe_mask() everywhere.
-That way the primary and secondary pipes all just get handled in exactly
-the same way.
+That doesn't sound like a good idea. The semantics of O_NONBLOCK
+are deliberately intended to be able to change the max without causing
+reclaim.
 
-AFAICS you've completely skipped over proper locking in this series.
+See the details in commit ("memcg: introduce non-blocking limit setting option")
 
-> +		struct intel_plane *secondary_plane =
-> +					intel_crtc_get_plane(secondary_crtc, PLANE_CURSOR);
-> +		struct intel_plane_state *secondary_plane_state =
-> +					to_intel_plane_state(secondary_plane->base.state);
-> +
-> +		if (secondary_plane_state->uapi.commit &&
-> +		    !try_wait_for_completion(&secondary_plane_state->uapi.commit->hw_done))
-> +			return false;
-> +	}
-> +
-> +	return true;
-> +}
-> +
->  static int
->  intel_legacy_cursor_update(struct drm_plane *_plane,
->  			   struct drm_crtc *_crtc,
-> @@ -843,6 +868,10 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
->  	    !try_wait_for_completion(&old_plane_state->uapi.commit->hw_done))
->  		goto slow;
->  
-> +	/* For joiner case also do the same thing as above */
-> +	if (!intel_cursor_joiner_commits_idle(display, crtc_state))
-> +		goto slow;
-> +
->  	/*
->  	 * If any parameters change that may affect watermarks,
->  	 * take the slowpath. Only changing fb or position should be
-> -- 
-> 2.25.1
+I also believe it's ok not to continue reclaiming if aborted, the caller can
+always try again if necessary.
 
--- 
-Ville Syrj�l�
-Intel
+If we want to deviate from the memcg controller, we need a very good reason
+to do so. I'd like to keep the semantics the same if possible.
+
+> Will send out when I've updated the IGT tests accordingly.
+> 
+> Thanks,
+> Thomas
+
+Kind regards,
+~Maarten Lankhorst
