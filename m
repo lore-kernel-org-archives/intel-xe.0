@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B24BF9B5F5
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Apr 2026 09:24:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 697A0F9B601
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Apr 2026 09:46:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BBEB10E99D;
-	Wed, 22 Apr 2026 09:24:58 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C32110E99D;
- Wed, 22 Apr 2026 09:24:57 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6999545537225416355=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Enable_joiner_cursor_fast_u?=
- =?utf-8?q?pdates?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nemesa Garg" <nemesa.garg@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 22 Apr 2026 09:24:57 -0000
-Message-ID: <177684989710.484983.8052323510573959772@a3b018990fe9>
-X-Patchwork-Hint: ignore
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D55A10ED7A;
+	Wed, 22 Apr 2026 09:46:09 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OjD5NmQ9";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AAA9F10ED7A;
+ Wed, 22 Apr 2026 09:46:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1776851168; x=1808387168;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=9Tq0ixn2djtHjCYiJJgs4bad1z6zqahpcGkanyvroVQ=;
+ b=OjD5NmQ9JV09RHVKk/qRi888l0iLkiu1JQSt03jueDKnLEdvFKB+q62v
+ 1eLqcnV6ImeO0zvAnnlzRhF5afNzOg69OHCBfDq5MYPu0Ae10etgxgyhn
+ zQkhKFxRYvG7SMwZojH9XjYr993lkjqMvKDCXp+ZY35Jqr8o5KEgk+HOa
+ fe+12NXMqKOcsACmPdeof4PqlRqai/gsFe+fZ/BGEy1kSpNX9eN70eSGW
+ WLj1l6nGWJLlkU5TxsihvnbYsJEdtwnUYDrEbGILy0ywV9iG27RBvZwbs
+ 68FmSq4BZReXHWENsHg80z4Bs9HauLyih3KAD0D6WrKKdNd/zXyS4ejU3 g==;
+X-CSE-ConnectionGUID: cmRUBiaNQKKvyqRZyUC/rg==
+X-CSE-MsgGUID: sIMXdnQmQca1STcc1IqXLg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11763"; a="76832241"
+X-IronPort-AV: E=Sophos;i="6.23,192,1770624000"; d="scan'208";a="76832241"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Apr 2026 02:46:07 -0700
+X-CSE-ConnectionGUID: CuR/lBL8TQ+ZY7rzdWlKhw==
+X-CSE-MsgGUID: g4731+suSiu8ysRDAfQ5MA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,192,1770624000"; d="scan'208";a="231277408"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.10])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Apr 2026 02:46:06 -0700
+Date: Wed, 22 Apr 2026 12:46:02 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Nemesa Garg <nemesa.garg@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 1/6] drm/i915/cursor: Check joiner cursor commit status
+Message-ID: <aeiY2q8Qeq1wGi9c@intel.com>
 References: <20260422073722.1861494-1-nemesa.garg@intel.com>
-In-Reply-To: <20260422073722.1861494-1-nemesa.garg@intel.com>
+ <20260422073722.1861494-2-nemesa.garg@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260422073722.1861494-2-nemesa.garg@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,144 +69,85 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6999545537225416355==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, Apr 22, 2026 at 01:07:17PM +0530, Nemesa Garg wrote:
+> In joiner mode, secondary cursor commits may still be running
+> even when the primary cursor commit is done.
+> Check secondary cursor commit status before taking the fast path.
+> If any secondary commit is still pending, fallback to slow path.
+> 
+> Assisted-by: Claude:claude-sonnet-4.6
+> Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_cursor.c | 29 +++++++++++++++++++++
+>  1 file changed, 29 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+> index 18d1014de361..609915c798ba 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cursor.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+> @@ -13,6 +13,7 @@
+>  #include <drm/drm_vblank.h>
+>  
+>  #include "intel_atomic.h"
+> +#include "intel_crtc.h"
+>  #include "intel_cursor.h"
+>  #include "intel_cursor_regs.h"
+>  #include "intel_de.h"
+> @@ -797,6 +798,30 @@ void intel_cursor_unpin_work(struct kthread_work *base)
+>  	intel_plane_destroy_state(&plane->base, &plane_state->uapi);
+>  }
+>  
+> +static bool
+> +intel_cursor_joiner_commits_idle(struct intel_display *display,
+> +				 const struct intel_crtc_state *crtc_state)
+> +{
+> +	struct intel_crtc *secondary_crtc;
+> +	u8 secondary_pipes = intel_crtc_joiner_secondary_pipes(crtc_state);
+> +
+> +	if (!secondary_pipes)
+> +		return true;
+> +
+> +	for_each_intel_crtc_in_pipe_mask(display->drm, secondary_crtc, secondary_pipes) {
 
-== Series Details ==
+You want to just iterate over intel_crtc_joined_pipe_mask() everywhere.
+That way the primary and secondary pipes all just get handled in exactly
+the same way.
 
-Series: Enable joiner cursor fast updates
-URL   : https://patchwork.freedesktop.org/series/165272/
-State : success
+AFAICS you've completely skipped over proper locking in this series.
 
-== Summary ==
+> +		struct intel_plane *secondary_plane =
+> +					intel_crtc_get_plane(secondary_crtc, PLANE_CURSOR);
+> +		struct intel_plane_state *secondary_plane_state =
+> +					to_intel_plane_state(secondary_plane->base.state);
+> +
+> +		if (secondary_plane_state->uapi.commit &&
+> +		    !try_wait_for_completion(&secondary_plane_state->uapi.commit->hw_done))
+> +			return false;
+> +	}
+> +
+> +	return true;
+> +}
+> +
+>  static int
+>  intel_legacy_cursor_update(struct drm_plane *_plane,
+>  			   struct drm_crtc *_crtc,
+> @@ -843,6 +868,10 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
+>  	    !try_wait_for_completion(&old_plane_state->uapi.commit->hw_done))
+>  		goto slow;
+>  
+> +	/* For joiner case also do the same thing as above */
+> +	if (!intel_cursor_joiner_commits_idle(display, crtc_state))
+> +		goto slow;
+> +
+>  	/*
+>  	 * If any parameters change that may affect watermarks,
+>  	 * take the slowpath. Only changing fb or position should be
+> -- 
+> 2.25.1
 
-CI Bug Log - changes from xe-4924-84de0c4efa971d100d339d4b4aef24676b86c58e_BAT -> xe-pw-165272v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-165272v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4924-84de0c4efa971d100d339d4b4aef24676b86c58e/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165272v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#7483]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4924-84de0c4efa971d100d339d4b4aef24676b86c58e/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165272v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-
-  
-  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
-
-
-Build changes
--------------
-
-  * IGT: IGT_8865 -> IGT_8866
-  * Linux: xe-4924-84de0c4efa971d100d339d4b4aef24676b86c58e -> xe-pw-165272v1
-
-  IGT_8865: 1c23bc1bdf01bf0ded2344cb217d7fe88de3b726 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8866: 85c00333c4d0066929a7ce2969d4724d3ba85def @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4924-84de0c4efa971d100d339d4b4aef24676b86c58e: 84de0c4efa971d100d339d4b4aef24676b86c58e
-  xe-pw-165272v1: 165272v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165272v1/index.html
-
---===============6999545537225416355==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Enable joiner cursor fast updates</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165272/">https://patchwork.freedesktop.org/series/165272/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165272v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165272v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4924-84de0c4efa971d100d339d4b4aef24676b86c58e_BAT -&gt; xe-pw-165272v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-165272v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4924-84de0c4efa971d100d339d4b4aef24676b86c58e/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165272v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4924-84de0c4efa971d100d339d4b4aef24676b86c58e/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165272v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8865 -&gt; IGT_8866</li>
-<li>Linux: xe-4924-84de0c4efa971d100d339d4b4aef24676b86c58e -&gt; xe-pw-165272v1</li>
-</ul>
-<p>IGT_8865: 1c23bc1bdf01bf0ded2344cb217d7fe88de3b726 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8866: 85c00333c4d0066929a7ce2969d4724d3ba85def @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4924-84de0c4efa971d100d339d4b4aef24676b86c58e: 84de0c4efa971d100d339d4b4aef24676b86c58e<br />
-  xe-pw-165272v1: 165272v1</p>
-
-</body>
-</html>
-
---===============6999545537225416355==--
+-- 
+Ville Syrjälä
+Intel
