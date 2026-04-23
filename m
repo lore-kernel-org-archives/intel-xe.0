@@ -4,71 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78F85FDEE28
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 22:49:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D2DEFDEE4D
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 22:49:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35AFF10E36C;
-	Thu, 23 Apr 2026 22:49:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CFD610E12F;
+	Thu, 23 Apr 2026 22:49:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VlRzSXnQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YwBruIBz";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD39510E107
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9F6710E17C
  for <intel-xe@lists.freedesktop.org>; Thu, 23 Apr 2026 22:49:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1776984549; x=1808520549;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=lr1GuQazOqVs4UPFWCwHXhKdMZqdWP78GVCi11iT/LY=;
- b=VlRzSXnQlmslGrJc8ipiX1b5AJ9ppNxOq5+nbRrWFA0JyHCFe/0c0S3M
- Ggr0/NDmw/V0RadBp7ACkJcA8eW9r5SLyG3rTEvyojfSn6a6mDX06mD0n
- sobHrvzrpFfVtL3rE4+BM0l2erCXiOfhVC+uyhl6G95ASK80YNgC24qHs
- hXomaHViiSbfd7UMR5/2bNP0lj/st3aOp2ZSfy0KPPcdekbmIn2YNfbly
- 0N229R7aOII96NoYM7iqav7hbZBFommosmHkZtnbXRrv1cude88y16Gvm
- GpmVBvqXXIQwR+2yo6+KSVCicSL3p0ODXcDeUd/qD2mBtB4hY6aRsmuDE g==;
-X-CSE-ConnectionGUID: aI8fuWJRTZGNZuPS3h+c5g==
-X-CSE-MsgGUID: kvB0BcyXRaWcq4Uk12eJDw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11765"; a="65497071"
-X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="65497071"
+ bh=umV+nCGv0fpUsitbhXhIUtJk6mNyrXUUkx2adJqYOXU=;
+ b=YwBruIBz+M4CS4otUONJt0Ler+9PL31KPlGwdT+0taDEeLIMrlmuFXpU
+ D2LUI/qoqWkea/k3OCVqsoLrfUlrfbdNVdQP8kxUEMhKhnu3qeGVXh4pL
+ Fp5FdoSelofbRyO84l2CZQ0cMwDAj0E4aSrPtw4zMq1FJijgPxGohIOxW
+ vgzGeUNGW+USZax/N3rQMNO1BhL1u2w+zdvN/vijwUcrsirQqDp4X7hY3
+ morJyFzqLAGcU3An7HW1JMcdPGRhhGO3X+He7+QgQW9FnE8jbao26hldM
+ UAezxqMNIF2Q0f1IHxQtzPtYkqVUUItUOF2OeXrMRY1u7ikIzyPxjNFJj w==;
+X-CSE-ConnectionGUID: gz0JwqyJTfGl+n0XtbUyEw==
+X-CSE-MsgGUID: zx3Hd9fnQSGqNKyiiRZP7Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11765"; a="65497070"
+X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="65497070"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Apr 2026 15:49:08 -0700
-X-CSE-ConnectionGUID: +OWti8PMThG3696pmlMvPQ==
-X-CSE-MsgGUID: g4NaQO6KS/yxjub3Gpzt1A==
+X-CSE-ConnectionGUID: Tzh8WluERL2XiJkQgVmMIg==
+X-CSE-MsgGUID: MORG/rFDQUuqWYI0zqMVdg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="232696202"
+X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="232696205"
 Received: from mdroper-desk1.fm.intel.com (HELO
  mdroper-desk1.amr.corp.intel.com) ([10.1.39.133])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2026 15:49:04 -0700
+ 23 Apr 2026 15:49:05 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
-Date: Thu, 23 Apr 2026 15:48:54 -0700
-Subject: [PATCH 07/10] drm/xe: Move GFX_MODE programming to RTP
+Date: Thu, 23 Apr 2026 15:48:55 -0700
+Subject: [PATCH 08/10] drm/xe: Drop unnecessary STOP_RING clearing
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260423-engine-setup-v1-7-baa94014e3e5@intel.com>
+Message-Id: <20260423-engine-setup-v1-8-baa94014e3e5@intel.com>
 References: <20260423-engine-setup-v1-0-baa94014e3e5@intel.com>
 In-Reply-To: <20260423-engine-setup-v1-0-baa94014e3e5@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matt Roper <matthew.d.roper@intel.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5874;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3492;
  i=matthew.d.roper@intel.com; h=from:subject:message-id;
- bh=lr1GuQazOqVs4UPFWCwHXhKdMZqdWP78GVCi11iT/LY=;
- b=owEBbQKS/ZANAwAKAU15JAXIcpAEAcsmYgBp6qHeKme0U63/ZXBmv4UHqtFDy5syi8FZnYZuj
- tOARgkW6HqJAjMEAAEKAB0WIQTCZ8MJRH/rTz8hbaxNeSQFyHKQBAUCaeqh3gAKCRBNeSQFyHKQ
- BI0DD/0RNeMw91DACSc/ur6hUMH5jYBhdcvp4KgxKq/YjZ5uB73f+I0HjOU0WzgUvRe8GcqJ89z
- 7Nvv2zJzmOuDfCrHq1n6ysmGJzJXp0OyRB2Ju5TVu2C5dhQNujBs4+DxNsEbWbFBRNGJdv2cfCk
- qKpeGVv7rz0NtmoSqR7FTMHtUVMVO2zEdkMt0Z6yWqcoOkdSS2CwulnoGk3rQYl/WOO1UJSIbRB
- LdCIVNhNha+mkQTFYRFLGy7BpOJ5GKygDO+/dWd6Bb0meuHWaGiE149oepzQBziJTx304ndNN/n
- dMUWCrKK5v/oQHWqbe/KQ0GMjjJuYYblH955g6ECQhDJeutnxns3fEuLAArIQyLQL/Bz8O4MFzb
- owO3Ws21GWRwQsPRkF8ghhaPDT0pU0U3/8po/Su2s4s3dzkTU8hxkBVVqlzRAcYG3qEdO4XPKNa
- er7fymHbwdpK9QV1LaFfP17ller+8EUFShvBKZdYv4xD/wVE5IC2Fs+0ZyO5X4US1lPjgz250vL
- +jNebsL4AcBgKy/JU8sT5NNbn61rXQHwG4f7Sk+cwjcJrBwYUacM4S22q06eqDzAAphWTkNWENH
- s1YXlpxaM5aWSy/J6OKAH9JcMLCCQs14De8ruEuLgItej7/zkR5SrNW+5RSJGF1g+y2iEFTOWgT
- BCwd2JEMQguTYUw==
+ bh=umV+nCGv0fpUsitbhXhIUtJk6mNyrXUUkx2adJqYOXU=;
+ b=owEBbQKS/ZANAwAKAU15JAXIcpAEAcsmYgBp6qHfZUPongjuKwIpojoOcDUPKWrRmADBe27Fn
+ WkFeQtoIMqJAjMEAAEKAB0WIQTCZ8MJRH/rTz8hbaxNeSQFyHKQBAUCaeqh3wAKCRBNeSQFyHKQ
+ BN8WD/9ASGd8XrKgEb7fa38dTRuYOejqPBgXl4CfG9/9DdDDxC/kR/O/+Gx8yJYiCR3PCX7k30i
+ LfeLJ2byFMWp7KnuU9y1EYNYrhfss7KOy01wd8iLcmW8VR42fPrVb++hqF7AkGsmxz5NPWRzmbN
+ XvYPuN1Xm+5OaeL0t2DrNMrvrcfBsemyo0zIMzXrpslyBJslXCX9EMjJLFN76krw/1gm7Ie52LQ
+ ins+jh0hkfikzI1bYNvPIYd3aAA0IDdK7oiAsvgNqDWzo0Mzl29kJ9Rie5SdpYYo/1XL57RLP6q
+ wBZ9FSoHtdB70JMfJqtI1D/JWyAiFtgsfpqeXyRmLwv0DPhG9e1zhYStnHsSgeOKiOiJoB7sxxd
+ F+7Nyp9i8xahUp88P/VoHKId+IFG969jOa1MGaiUSur8c9gVYTe97YRQW3tUM0U2iDdWSgzmjeW
+ MRoZAs0aYZeYx4gRZSpOGsoiDSfs5OvgvbyVWJZ/yEgyiTev9zCFgOSLx5wElfMhaVcp9v4hM4+
+ +T9NNOFle/rytuKon9Qhtc7D7iTdrIyUUpzIEGG73FzU4qrichfXNHfcTfQv4mSarvgHMC2Ce8F
+ wDLT8SkavfjatP6t88Os6L8K66Fni57+MgrZkwt6WKKCXkyGIyS8qei5NwnDiAstTkCBZP/RjQo
+ v9VzXlsEBOgbY4w==
 X-Developer-Key: i=matthew.d.roper@intel.com; a=openpgp;
  fpr=C267C309447FEB4F3F216DAC4D792405C8729004
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -85,150 +85,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The write GFX_MODE to disable engine "legacy mode" and to enable MSI-X
-support was unnecessarily open-coded in xe_hw_engine_enable_ring();
-it's preferable to do such programming in the engine_entries[] RTP table
-since gets reflected/verified in debugfs, and will also automatically
-ensure that the register is properly saved/restored around engine
-resets.  This also helps consolidate common logic that was duplicated
-between the main driver initialization path and the dead-code execlist
-initialization path.
+The STOP_RING bit in MI_MODE is already clear by default out of hardware
+reset and will only be '1' if the driver intentionally sets it after
+that.  Furthermore, MI_MODE is part of the CSFE context, so even if the
+hardware bit did somehow get set, a fresh value with the bit clear would
+be re-loaded from the LRC (which is initialized zeroed).
 
-This also allows us to drop GFX_MODE from the list of extra registers to
-be added to the GuC ADS' save-restore list since all registers on the
-RTP table are added automatically.
+The logic of clearing this bit appears to originate from very
+early (pre-GuC, pre-execlist) code in i915 where we needed to stop the
+ring before performing a host-initiated engine reset; after the reset
+the STOP_RING bit needed to be cleared to allow execution to resume.
 
+None of that is relevant to Xe (or even modern i915) since STOP_RING
+isn't necessary for execlist-based engine resets (and even if it were,
+Xe doesn't initiate any engine resets; the GuC handles that now).
+
+Bspec: 60356, 60184
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_execlist.c  |  5 -----
- drivers/gpu/drm/xe/xe_guc_ads.c   |  1 -
- drivers/gpu/drm/xe/xe_hw_engine.c | 16 ++++++++++------
- drivers/gpu/drm/xe/xe_rtp.c       |  8 ++++++++
- drivers/gpu/drm/xe/xe_rtp.h       | 12 ++++++++++++
- 5 files changed, 30 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h |  1 -
+ drivers/gpu/drm/xe/xe_hw_engine.c        |  3 ---
+ drivers/gpu/drm/xe/xe_lrc.c              | 20 --------------------
+ 3 files changed, 24 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
-index 337b9b4e8b4a..9fb99c038ea8 100644
---- a/drivers/gpu/drm/xe/xe_execlist.c
-+++ b/drivers/gpu/drm/xe/xe_execlist.c
-@@ -47,7 +47,6 @@ static void __start_lrc(struct xe_hw_engine *hwe, struct xe_lrc *lrc,
- 	struct xe_mmio *mmio = &gt->mmio;
- 	struct xe_device *xe = gt_to_xe(gt);
- 	u64 lrc_desc;
--	u32 ring_mode = REG_MASKED_FIELD_ENABLE(GFX_DISABLE_LEGACY_MODE);
+diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+index 4d5cd1b6f50d..c4c879a9e555 100644
+--- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+@@ -176,7 +176,6 @@
+ #define RING_TIMESTAMP_UDW(base)		XE_REG((base) + 0x358 + 4)
+ #define   RING_VALID_MASK			0x00000001
+ #define   RING_VALID				0x00000001
+-#define   STOP_RING				REG_BIT(8)
  
- 	lrc_desc = xe_lrc_descriptor(lrc);
- 
-@@ -78,10 +77,6 @@ static void __start_lrc(struct xe_hw_engine *hwe, struct xe_lrc *lrc,
- 			xe_bo_ggtt_addr(hwe->hwsp));
- 	xe_mmio_read32(mmio, RING_HWS_PGA(hwe->mmio_base));
- 
--	if (xe_device_has_msix(gt_to_xe(hwe->gt)))
--		ring_mode |= REG_MASKED_FIELD_ENABLE(GFX_MSIX_INTERRUPT_ENABLE);
--	xe_mmio_write32(mmio, GFX_MODE(hwe->mmio_base), ring_mode);
--
- 	xe_mmio_write32(mmio, RING_EXECLIST_SQ_CONTENTS_LO(hwe->mmio_base),
- 			lower_32_bits(lrc_desc));
- 	xe_mmio_write32(mmio, RING_EXECLIST_SQ_CONTENTS_HI(hwe->mmio_base),
-diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-index b403ee0b5e74..ce651da6f318 100644
---- a/drivers/gpu/drm/xe/xe_guc_ads.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-@@ -745,7 +745,6 @@ static unsigned int guc_mmio_regset_write(struct xe_guc_ads *ads,
- 		struct xe_reg reg;
- 		bool skip;
- 	} *e, extra_regs[] = {
--		{ .reg = GFX_MODE(hwe->mmio_base),			},
- 		{ .reg = RING_HWS_PGA(hwe->mmio_base),			},
- 		{ .reg = RING_IMR(hwe->mmio_base),			},
- 		{ .reg = CCS_MODE,
+ #define RING_CTX_TIMESTAMP(base)		XE_REG((base) + 0x3a8)
+ #define RING_CTX_TIMESTAMP_UDW(base)		XE_REG((base) + 0x3ac)
 diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index d28f50a64d88..8d54f943f507 100644
+index 8d54f943f507..154073027b51 100644
 --- a/drivers/gpu/drm/xe/xe_hw_engine.c
 +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -325,14 +325,8 @@ u32 xe_hw_engine_mmio_read32(struct xe_hw_engine *hwe, struct xe_reg reg)
- 
- void xe_hw_engine_enable_ring(struct xe_hw_engine *hwe)
+@@ -327,9 +327,6 @@ void xe_hw_engine_enable_ring(struct xe_hw_engine *hwe)
  {
--	u32 ring_mode = REG_MASKED_FIELD_ENABLE(GFX_DISABLE_LEGACY_MODE);
--
  	xe_hw_engine_mmio_write32(hwe, RING_HWS_PGA(0),
  				  xe_bo_ggtt_addr(hwe->hwsp));
--
--	if (xe_device_has_msix(gt_to_xe(hwe->gt)))
--		ring_mode |= REG_MASKED_FIELD_ENABLE(GFX_MSIX_INTERRUPT_ENABLE);
--	xe_hw_engine_mmio_write32(hwe, GFX_MODE(0), ring_mode);
- 	xe_hw_engine_mmio_write32(hwe, RING_MI_MODE(0),
- 				  REG_MASKED_FIELD_DISABLE(STOP_RING));
- 	xe_hw_engine_mmio_read32(hwe, RING_MI_MODE(0));
-@@ -441,6 +435,11 @@ hw_engine_setup_default_state(struct xe_hw_engine *hwe)
- 		  XE_RTP_ACTIONS(SET(RING_HWSTAM(0), ~0x0,
- 				     XE_RTP_ACTION_FLAG(ENGINE_BASE)))
- 		},
-+		{ XE_RTP_NAME("Disable engine 'legacy' mode"),
-+		  XE_RTP_RULES(FUNC(xe_rtp_match_always)),
-+		  XE_RTP_ACTIONS(SET(GFX_MODE(0), GFX_DISABLE_LEGACY_MODE,
-+				     XE_RTP_ACTION_FLAG(ENGINE_BASE)))
-+		},
- 		/*
- 		 * To allow the GSC engine to go idle on MTL we need to enable
- 		 * idle messaging and set the hysteresis value (we use 0xA=5us
-@@ -473,6 +472,11 @@ hw_engine_setup_default_state(struct xe_hw_engine *hwe)
- 		  XE_RTP_ACTIONS(FIELD_SET(RCU_MODE, RCU_MODE_FIXED_SLICE_CCS_MODE,
- 					   RCU_MODE_FIXED_SLICE_CCS_MODE))
- 		},
-+		{ XE_RTP_NAME("Enable MSI-X interrupt support"),
-+		  XE_RTP_RULES(FUNC(xe_rtp_match_always)),
-+		  XE_RTP_ACTIONS(SET(GFX_MODE(0), GFX_MSIX_INTERRUPT_ENABLE,
-+				     XE_RTP_ACTION_FLAG(ENGINE_BASE)))
-+		},
- 	};
- 
- 	xe_rtp_process_to_sr(&ctx, engine_entries, ARRAY_SIZE(engine_entries),
-diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
-index 728933a1c34f..1a4dcbbbc176 100644
---- a/drivers/gpu/drm/xe/xe_rtp.c
-+++ b/drivers/gpu/drm/xe/xe_rtp.c
-@@ -10,6 +10,7 @@
- #include <uapi/drm/xe_drm.h>
- 
- #include "xe_configfs.h"
-+#include "xe_device.h"
- #include "xe_gt.h"
- #include "xe_gt_topology.h"
- #include "xe_reg_sr.h"
-@@ -404,3 +405,10 @@ bool xe_rtp_match_has_flat_ccs(const struct xe_device *xe,
- {
- 	return xe->info.has_flat_ccs;
+-	xe_hw_engine_mmio_write32(hwe, RING_MI_MODE(0),
+-				  REG_MASKED_FIELD_DISABLE(STOP_RING));
+-	xe_hw_engine_mmio_read32(hwe, RING_MI_MODE(0));
  }
-+
-+bool xe_rtp_match_has_msix(const struct xe_device *xe,
-+			   const struct xe_gt *gt,
-+			   const struct xe_hw_engine *hwe)
-+{
-+	return xe_device_has_msix(xe);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
-index d058a629cd3e..562082b18d7b 100644
---- a/drivers/gpu/drm/xe/xe_rtp.h
-+++ b/drivers/gpu/drm/xe/xe_rtp.h
-@@ -536,4 +536,16 @@ bool xe_rtp_match_has_flat_ccs(const struct xe_device *xe,
- 			       const struct xe_gt *gt,
- 			       const struct xe_hw_engine *hwe);
  
-+/**
-+ * xe_rtp_match_has_msix - Match when platform has MSI-X
-+ * @xe: Device structure
-+ * @gt: GT structure
-+ * @hwe: Engine instance
-+ *
-+ * Returns: true if platform has MSI-X interrupt support
-+ */
-+bool xe_rtp_match_has_msix(const struct xe_device *xe,
-+			   const struct xe_gt *gt,
-+			   const struct xe_hw_engine *hwe);
-+
- #endif
+ static bool xe_hw_engine_match_fixed_cslice_mode(const struct xe_device *xe,
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index c725cde4508d..9db914584347 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -682,25 +682,6 @@ static void set_memory_based_intr(u32 *regs, struct xe_hw_engine *hwe)
+ 	}
+ }
+ 
+-static int lrc_ring_mi_mode(struct xe_hw_engine *hwe)
+-{
+-	struct xe_device *xe = gt_to_xe(hwe->gt);
+-
+-	if (GRAPHICS_VERx100(xe) >= 1250)
+-		return 0x70;
+-	else
+-		return 0x60;
+-}
+-
+-static void reset_stop_ring(u32 *regs, struct xe_hw_engine *hwe)
+-{
+-	int x;
+-
+-	x = lrc_ring_mi_mode(hwe);
+-	regs[x + 1] &= ~STOP_RING;
+-	regs[x + 1] |= STOP_RING << 16;
+-}
+-
+ static inline bool xe_lrc_has_indirect_ring_state(struct xe_lrc *lrc)
+ {
+ 	return lrc->flags & XE_LRC_FLAG_INDIRECT_RING_STATE;
+@@ -980,7 +961,6 @@ static void *empty_lrc_data(struct xe_hw_engine *hwe)
+ 	set_offsets(regs, reg_offsets(gt_to_xe(gt), hwe->class), hwe);
+ 	set_context_control(regs, hwe);
+ 	set_memory_based_intr(regs, hwe);
+-	reset_stop_ring(regs, hwe);
+ 	if (xe_gt_has_indirect_ring_state(gt)) {
+ 		regs = data + xe_gt_lrc_size(gt, hwe->class) -
+ 		       LRC_INDIRECT_RING_STATE_SIZE;
 
 -- 
 2.53.0
