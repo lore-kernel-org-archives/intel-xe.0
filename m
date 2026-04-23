@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D8D5F9937C
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 11:48:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86E8AF589AE
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 12:21:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A02D810F0BC;
-	Thu, 23 Apr 2026 11:48:14 +0000 (UTC)
-Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 247F010F0BC;
- Thu, 23 Apr 2026 11:48:13 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5746119476562242194=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D8BC10E32F;
+	Thu, 23 Apr 2026 12:21:45 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ey7+/OOp";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E41810E32F
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Apr 2026 12:21:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1776946903; x=1808482903;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=j7xvRKe9xUPNrTskenE/UyZIM2OpxempfSS5U1MiMNY=;
+ b=ey7+/OOpdYrK4Uwuo+nBCIXo+CLA4cuFZGWFPux/I176MQxpiNfThtgC
+ zeV9DWi361eJq9B2hxJSMDhcvZhHleHG9Q2WZVe6F5j9jnYW9XmjUOuAs
+ XjMANiyrK72x3T3PB1TnSZNfjS7g33n+8C/5JkU0GUDj/css9bLOMkHFu
+ qvYQmEUIB4VN6XnuF+ZFBd8abcYxTarXDhPdLUk4i7c0LcCScY4RZNOjP
+ N+ms79DrtVnEbwkshlrVH8iAs/RPJ17rsyNbWYS1FhTZYnr8iBNp7//FI
+ PA/azyELglULVayTJlFYerRcPizIQJfWcgQQjJm7QElFxMsW5YijzHsmh A==;
+X-CSE-ConnectionGUID: V/Z/pF2ySSqWdO+ZDTc5FA==
+X-CSE-MsgGUID: p2JOh3PMSa2cthj+P/T7ig==
+X-IronPort-AV: E=McAfee;i="6800,10657,11764"; a="100566402"
+X-IronPort-AV: E=Sophos;i="6.23,194,1770624000"; d="scan'208";a="100566402"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Apr 2026 05:21:43 -0700
+X-CSE-ConnectionGUID: N+/Eef1VSO+w/9yOQ2c1Rg==
+X-CSE-MsgGUID: bjJqF5DDRf+MKLS+HTlD3g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,194,1770624000"; d="scan'208";a="237632633"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Apr 2026 05:21:40 -0700
+Date: Thu, 23 Apr 2026 14:21:38 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: "Tauro, Riana" <riana.tauro@intel.com>
+Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
+ rodrigo.vivi@intel.com, aravind.iddamsetty@linux.intel.com,
+ badal.nilawar@intel.com, ravi.kishore.koppuravuri@intel.com,
+ mallesh.koujalagi@intel.com, soham.purkait@intel.com
+Subject: Re: [PATCH v3 3/5] drm/xe/xe_ras: Add helper to clear error counter
+Message-ID: <aeoO0mt4DxGCbLzm@black.igk.intel.com>
+References: <20260421145056.253300-7-riana.tauro@intel.com>
+ <20260421145056.253300-10-riana.tauro@intel.com>
+ <aen8FiaftUl2o9uj@black.igk.intel.com>
+ <ca7b405c-f7fd-40de-805f-5b82b0db9c6c@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_enable_?=
- =?utf-8?q?ccs_modifiers_on_dg2?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 23 Apr 2026 11:48:13 -0000
-Message-ID: <177694489314.2778.1704954561758894191@5ab824fced77>
-X-Patchwork-Hint: ignore
-References: <20260423101739.2772745-1-juhapekka.heikkila@gmail.com>
-In-Reply-To: <20260423101739.2772745-1-juhapekka.heikkila@gmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ca7b405c-f7fd-40de-805f-5b82b0db9c6c@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +69,124 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5746119476562242194==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Apr 23, 2026 at 04:46:27PM +0530, Tauro, Riana wrote:
+> On 4/23/2026 4:31 PM, Raag Jadav wrote:
+> > On Tue, Apr 21, 2026 at 08:20:59PM +0530, Riana Tauro wrote:
+> > > Add structures and helper function to clear error counter value.
+> > ...
+> > 
+> > > +/**
+> > > + * xe_ras_clear_error_counter() - Clear error counter value
+> > > + * @xe: xe device instance
+> > > + * @severity: Error severity level to be cleared
+> > > + * @error_id: Error component to be cleared
+> > > + *
+> > > + * This function clears the value of a specific RAS error counter based on
+> > > + * the provided severity and component.
+> > > + *
+> > > + * Return: 0 on success, negative error code on failure.
+> > > + */
+> > > +int xe_ras_clear_error_counter(struct xe_device *xe, enum drm_xe_ras_error_severity severity,
+> > Same comment as last patch.
+> 
+> Any reason? clear_error_counter is better since it states what type of
+> counter to clear
 
-== Series Details ==
+I thought it'd help with the wrapping but ofcourse it's a personal
+preference.
 
-Series: drm/i915/display: enable ccs modifiers on dg2
-URL   : https://patchwork.freedesktop.org/series/165351/
-State : success
+> > > +			       u32 error_id)
+> > > +{
+> > > +	struct xe_ras_clear_counter_response response = {0};
+> > > +	struct xe_ras_clear_counter_request request = {0};
+> > > +	struct xe_sysctrl_mailbox_command command = {0};
+> > > +	struct xe_ras_error_class *error_class = &request.error_class;
+> > > +	enum xe_sysctrl_gfsp_cmd cmd = XE_SYSCTRL_CMD_CLEAR_COUNTER;
+> > > +	size_t rlen;
+> > > +	u32 status;
+> > Shouldn't this be int? Or why not just reuse ret?
+> 
+> status from firmware structure is u32. Reused the same
 
-== Summary ==
+Yes, but the converted error code is not u32.
 
-CI Bug Log - changes from xe-4928-95fbbe4877e1543975d0d0f18a7cc0074416be41_BAT -> xe-pw-165351v1_BAT
-====================================================
+> > > +	int ret;
+> > > +
+> > > +	error_class->common.severity = drm_to_xe_ras_severity[severity];
+> > > +	error_class->common.component = drm_to_xe_ras_component[error_id];
+> > > +
+> > > +	prepare_sysctrl_command(&command, cmd, &request, sizeof(request),
+> > > +				&response, sizeof(response));
+> > > +
+> > > +	guard(xe_pm_runtime)(xe);
+> > > +	ret = xe_sysctrl_send_command(&xe->sc, &command, &rlen);
+> > > +	if (ret) {
+> > > +		xe_err(xe, "sysctrl: cmd %d error ret %d\n", cmd, ret);
+> > > +		return ret;
+> > > +	}
+> > > +
+> > > +	if (rlen != sizeof(response)) {
+> > > +		xe_err(xe, "sysctrl: cmd %d response size mismatch. Expected %zu, got %zu\n",
+> > > +		       cmd, sizeof(response), rlen);
+> > > +		return -EIO;
+> > > +	}
+> > > +
+> > > +	status = xe_ras_status_to_errno[response.status];
+> > > +	if (status) {
+> > > +		xe_err(xe, "sysctrl: cmd %d failed %d\n", cmd, status);
+> > > +		return status;
+> > Hm, so I'm wondering if this is useful to end user? Note, anything exposed
+> > to the user will be hard to change once in place.
+> 
+> These are general error codes. Why do you think it will not be useful to end
+> user?
+> It could be an invalid error counter or a timedout operation.
 
-Summary
--------
+Fair, but then I'd expect them to be present for all commands, or perhaps
+I failed to read the specs correctly, did I? ;)
 
-  **SUCCESS**
+> > > +	}
+> > > +
+> > > +	return 0;
+> > > +}
+> > ...
+> > 
+> > > +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+> > > @@ -14,9 +14,11 @@
+> > >    * enum xe_sysctrl_gfsp_cmd  - Sysctrl Command ID's for GFSP group
+> > >    *
+> > >    * @XE_SYSCTRL_CMD_GET_COUNTER: Get error counter value
+> > > + * @XE_SYSCTRL_CMD_CLEAR_COUNTER: Clear error counter value
+> > >    */
+> > >   enum xe_sysctrl_gfsp_cmd  {
+> > > -	XE_SYSCTRL_CMD_GET_COUNTER = 0x03
+> > > +	XE_SYSCTRL_CMD_GET_COUNTER = 0x03,
+> > Redundant churn. Please add comma in original patch.
+> 
+> I followed the previous feedback to avoid trailing commas on final members
+> :(
 
-  No regressions found.
+Yes, it's for "final" members which often have _MAX suffix and aren't
+expected to change once in place.
 
-  
+Raag
 
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-4928-95fbbe4877e1543975d0d0f18a7cc0074416be41 -> xe-pw-165351v1
-
-  IGT_8870: 1aba4b364b6dbdf7926cc78501e7281d5176b029 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4928-95fbbe4877e1543975d0d0f18a7cc0074416be41: 95fbbe4877e1543975d0d0f18a7cc0074416be41
-  xe-pw-165351v1: 165351v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165351v1/index.html
-
---===============5746119476562242194==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: enable ccs modifiers on dg2</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165351/">https://patchwork.freedesktop.org/series/165351/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165351v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165351v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4928-95fbbe4877e1543975d0d0f18a7cc0074416be41_BAT -&gt; xe-pw-165351v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4928-95fbbe4877e1543975d0d0f18a7cc0074416be41 -&gt; xe-pw-165351v1</li>
-</ul>
-<p>IGT_8870: 1aba4b364b6dbdf7926cc78501e7281d5176b029 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4928-95fbbe4877e1543975d0d0f18a7cc0074416be41: 95fbbe4877e1543975d0d0f18a7cc0074416be41<br />
-  xe-pw-165351v1: 165351v1</p>
-
-</body>
-</html>
-
---===============5746119476562242194==--
+> > > +	XE_SYSCTRL_CMD_CLEAR_COUNTER = 0x04
+> > Also please align with tabs for readability.
+> 
+> Sure
+> 
+> Thanks
+> Riana
+> 
+> > 
+> > Raag
+> > 
+> > >   };
+> > >   enum xe_sysctrl_group {
+> > > -- 
+> > > 2.47.1
+> > > 
