@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11986FDEE43
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 18:57:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED393FDEE45
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 19:02:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB8DF10E09B;
-	Thu, 23 Apr 2026 18:57:33 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="azNnLgEF";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 764BF10E09B;
- Thu, 23 Apr 2026 18:57:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776970653; x=1808506653;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=wKEN1wbbY38h+ZNf6pLdJyW35dWeJ3pFr2TOqCLpOMM=;
- b=azNnLgEFA5U71MeFr7ouam/9LZiU0Fvsd9GoPjUHPwCn8Rk6jqOYZTir
- xQVEEIrzgP3qoyE4w4E8xEiNuT58KgeIdVo84fsCfmy4LFoJ/oVesEAxN
- IWTd9abmWhaJCJlHq321GQKhEZwliKZbcHo+ChmNlPT2WeGfAJWOy3vyE
- bP5lT6c+o4J7S5icnESWiXknYBXNvmmL1gxvcAquXePvBktfqbOzNHc2z
- aqVwystR6U9SxnklFODjH8XF3BYoJKitOg7C9uR6D41p7TZSW9/q4UrSj
- DfNT0fPpaGOwWbAjUeTr3BBzP94GBI1Xwx9TmCrk6XPm7gA/B/jEOFAPL w==;
-X-CSE-ConnectionGUID: TrOfUD5NSBuLFAGHY5c4Aw==
-X-CSE-MsgGUID: 2/QO3m2ESiSPr9cvMTxvIw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11765"; a="100602843"
-X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="100602843"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2026 11:57:32 -0700
-X-CSE-ConnectionGUID: PHe7/TScSoy9IY801Vpskw==
-X-CSE-MsgGUID: qC2ce3H2S9y/RcWxWwYoKw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="232644317"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.188])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2026 11:57:30 -0700
-Date: Thu, 23 Apr 2026 21:57:26 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Jani Nikula <jani.nikula@intel.com>
-Subject: Re: [PATCH v2] drm/i915/display: enable ccs modifiers on dg2
-Message-ID: <aeprlsBb9-9Cs-HQ@intel.com>
-References: <20260423141148.3145665-1-juhapekka.heikkila@gmail.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A37CB10F1F3;
+	Thu, 23 Apr 2026 19:02:01 +0000 (UTC)
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B346710F201;
+ Thu, 23 Apr 2026 19:02:00 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5375813326559290398=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260423141148.3145665-1-juhapekka.heikkila@gmail.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Add_support_for_G?=
+ =?utf-8?q?PU_health_indicator?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Soham Purkait" <soham.purkait@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 23 Apr 2026 19:02:00 -0000
+Message-ID: <177697092072.4863.11698633439095732998@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260423173925.699486-1-soham.purkait@intel.com>
+In-Reply-To: <20260423173925.699486-1-soham.purkait@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,46 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Apr 23, 2026 at 05:11:48PM +0300, Juha-Pekka Heikkila wrote:
-> Since Xe driver aux ccs enablement dg2 ccs modifiers have been
-> disabled on both Xe and i915 drivers. Here allow dg2 to use
-> ccs again for framebuffers.
+--===============5375813326559290398==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I don't think they got disabled on xe since it just (for whatever
-random reason) checks for ADL in its has_auxccs().
+== Series Details ==
 
-With the commit message sorted out this is
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Series: drm/xe: Add support for GPU health indicator
+URL   : https://patchwork.freedesktop.org/series/165378/
+State : success
 
-> 
-> Fixes: 6a99e91a6ca8fec5882450128fb128265f86b32a ("drm/i915/display: Detect AuxCCS support via display parent interface")
-> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-> ---
->  drivers/gpu/drm/i915/i915_driver.c | 5 ++---
->  1 file changed, 2 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> index d31819758f3d..a4bd4f8e18b2 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.c
-> +++ b/drivers/gpu/drm/i915/i915_driver.c
-> @@ -750,9 +750,8 @@ static bool has_auxccs(struct drm_device *drm)
->  {
->  	struct drm_i915_private *i915 = to_i915(drm);
->  
-> -	return IS_GRAPHICS_VER(i915, 9, 12) ||
-> -	       IS_ALDERLAKE_P(i915) ||
-> -	       IS_METEORLAKE(i915);
-> +	return IS_GRAPHICS_VER(i915, 9, 12) &&
-> +		!HAS_FLAT_CCS(i915);
->  }
->  
->  static bool has_fenced_regions(struct drm_device *drm)
-> -- 
-> 2.43.0
+== Summary ==
 
--- 
-Ville Syrjälä
-Intel
+CI Bug Log - changes from xe-4929-ecb61ba4a1f619b6944f4d0741b4d8a0910f460c_BAT -> xe-pw-165378v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8871 -> IGT_8872
+  * Linux: xe-4929-ecb61ba4a1f619b6944f4d0741b4d8a0910f460c -> xe-pw-165378v1
+
+  IGT_8871: c829dad5f9e02f627722042e429d93824b470159 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8872: e70db143b7bafe09bdea4d33188cb10d2070d0e5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4929-ecb61ba4a1f619b6944f4d0741b4d8a0910f460c: ecb61ba4a1f619b6944f4d0741b4d8a0910f460c
+  xe-pw-165378v1: 165378v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165378v1/index.html
+
+--===============5375813326559290398==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Add support for GPU health indicator</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165378/">https://patchwork.freedesktop.org/series/165378/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165378v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165378v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4929-ecb61ba4a1f619b6944f4d0741b4d8a0910f460c_BAT -&gt; xe-pw-165378v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8871 -&gt; IGT_8872</li>
+<li>Linux: xe-4929-ecb61ba4a1f619b6944f4d0741b4d8a0910f460c -&gt; xe-pw-165378v1</li>
+</ul>
+<p>IGT_8871: c829dad5f9e02f627722042e429d93824b470159 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8872: e70db143b7bafe09bdea4d33188cb10d2070d0e5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4929-ecb61ba4a1f619b6944f4d0741b4d8a0910f460c: ecb61ba4a1f619b6944f4d0741b4d8a0910f460c<br />
+  xe-pw-165378v1: 165378v1</p>
+
+</body>
+</html>
+
+--===============5375813326559290398==--
