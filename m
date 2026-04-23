@@ -4,155 +4,102 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02A9AFAD40C
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 04:56:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 951D4FAD40B
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 05:41:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A973C10E2D7;
-	Thu, 23 Apr 2026 04:56:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30D8A10E2F2;
+	Thu, 23 Apr 2026 05:41:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O+i+i+Uo";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="W4M7UY0n";
+	dkim=pass (2048-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="T7R5wMKI";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67CFA10E039;
- Thu, 23 Apr 2026 04:56:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776920164; x=1808456164;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=jPvWRYmilJaklz7t3RcLEweKDyiCMj3NbI87eML8U4g=;
- b=O+i+i+Uo4/HLTkGmUBCP9HuJc3bKq8LwltEHnNDUUsHRB/OT8MgwPKhr
- jrf6hARn8Ka61dG2LibYwjTsWIK7LUxP9PGq3eJyULfKf8RVG/DkSqqLh
- nszDX8WG/UbNMKysnfY2yp9SRxmPFrQ+r25F3WP/zsyaEeYhNScotJYJD
- rkwtvvIVmlthf6vLfgCXU6GFnu8ugAbhzlgmhjSKmAksAGtOoZg/t2ZsM
- jZFB2R88heKW2eIO5QJTrxci/cN+tUe5gZnoTwxBxkNA/pQDtBakxhTeE
- zF/D+NT9fImvO8QOvSKaJlrdsMzyeYwqH4HjcNUEIfPL4xSkoguB0KfPP A==;
-X-CSE-ConnectionGUID: JhFBT2ikS+egG3C+Lj5bPA==
-X-CSE-MsgGUID: 38qAJpxDT66b8fkA9s896Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11764"; a="77759424"
-X-IronPort-AV: E=Sophos;i="6.23,194,1770624000"; d="scan'208";a="77759424"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Apr 2026 21:56:03 -0700
-X-CSE-ConnectionGUID: qQl64d3HT3e3ivOejyxv1Q==
-X-CSE-MsgGUID: q63aNoA1SmiGmaU/gfyRkg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,194,1770624000"; d="scan'208";a="232403411"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Apr 2026 21:56:03 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 22 Apr 2026 21:56:02 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 22 Apr 2026 21:56:02 -0700
-Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.62) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 22 Apr 2026 21:56:02 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FKonxK/jem6dXDQ8qQ2um6Cxu56+LYHZNksVKRmcCYkNqJa/gAXzLiLt6zSPsNAHbpufISWAPoHnyOF3BEWwcaPUy0SU9VUy+MsnN89Vkf1iAEfsg4sB+YDXvfLHum2RJ2KvmRoilygNvYRZ2Vm8ridwtzHgZVsIwhgVqhqQarGRMXaOYZh7uxciiOssiYGruh1mvod78aMOcDjnsISxI/4oE5WpUDZmKN5iEdHt8jF563GiP3SUVx14V546bcfu/LUZLjvjVhB9DPTbZvHuQdVHYxP5XrvVdutzpAfOOjPuGZVCOKTOz9rLqKfWG4Rr0ga5TTYLYXMNrif/J0WWRw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hfq3LpvcNBqhjoBqnspEHmwxMQ6uUe/+HfHg0MYUeh8=;
- b=fVWKnrK1AIlXOumnxXMkNEcIwiosuCzXnYZvzTVjUL3+HnZgUYhaz8crWRu7sAPu073R6B6pHmX6oMKsGHlUMs+48RcalmzMfzIWhzbt42qcYlaCjoKnRD3Wp7+YXFISWRRhOLXssT5tlI0D9qC1fetXuwNbW80HDLC+W0XtYMz+2zK5PcrRZX9oMoLjeP1mIcAOxO6u8VQcsXswAVdVO5+esM6be5TTTHu/njYIQDyoBukBAIr528ljTK9imv7/CNuCrbQ2W+cXxjPX/aCetuQgbu6AxwnNlQwcMgfJURVTuRaAIiRfBcTX0WwcZvPCLa5eTO6TifmMg3/qiyE/rA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from SN7PR11MB8042.namprd11.prod.outlook.com (2603:10b6:806:2ed::20)
- by DS4PPF31CEE2CEC.namprd11.prod.outlook.com (2603:10b6:f:fc02::1c)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9818.25; Thu, 23 Apr
- 2026 04:55:55 +0000
-Received: from SN7PR11MB8042.namprd11.prod.outlook.com
- ([fe80::6f98:55b9:6172:1b0d]) by SN7PR11MB8042.namprd11.prod.outlook.com
- ([fe80::6f98:55b9:6172:1b0d%3]) with mapi id 15.20.9846.016; Thu, 23 Apr 2026
- 04:55:55 +0000
-From: "Manna, Animesh" <animesh.manna@intel.com>
-To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-CC: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>, "Shankar, Uma" <uma.shankar@intel.com>,
- Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
-Subject: RE: [PATCH v4 03/13] drm/i915/cmtg: Set timings for CMTG
-Thread-Topic: [PATCH v4 03/13] drm/i915/cmtg: Set timings for CMTG
-Thread-Index: AQHcymygLFle3YrMBUK3c+JVuOmCk7XekaCAgAQ3pTCAAEtSAIAJESQg
-Date: Thu, 23 Apr 2026 04:55:55 +0000
-Message-ID: <SN7PR11MB8042195650F92982C02967A8F92A2@SN7PR11MB8042.namprd11.prod.outlook.com>
-References: <20260412103712.4021213-1-animesh.manna@intel.com>
- <20260412103712.4021213-4-animesh.manna@intel.com>
- <d9c82dabf89fb932b3c10aa0ee768fdda181c396@intel.com>
- <DS0PR11MB804961654148D027B4F03601F9202@DS0PR11MB8049.namprd11.prod.outlook.com>
- <aeIK8oEzWAkDJw5i@intel.com>
-In-Reply-To: <aeIK8oEzWAkDJw5i@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SN7PR11MB8042:EE_|DS4PPF31CEE2CEC:EE_
-x-ms-office365-filtering-correlation-id: c2eda070-b261-4486-378e-08dea0f49a25
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|22082099003|38070700021|18002099003|56012099003;
-x-microsoft-antispam-message-info: 4n16+9ba8CMZkVOBFCwzjzcpQHZrZMu2ebC0fieH9sLs/UvwjsXI+2Kzhs8k+jMQUx1XdkXVZRuiRKI6Mtlna77A2t1YWzsFovo7wKx1+hpZQQT1iGy8DMsWopA0agZO8ZwLzLOVT2JV/LL76ZxS+klP0rsGTjU94TcED2Wo3PDVu31Sxop6L914u9+Gd0UYHW1uayCgzI/aP/02052gHFm+FUwsBdjS92Dg57jQ2/i8CJ0aUcJOL8hEoz1ZIf7KrhFzeMuhqhJMjGHGUrIy+AfUaFj/LXqnanZFbmgDC3wlssHTfPMU/07n7fKsxqsqVu2pHiXrNHqcn3ZPe4+FlxiVsvh28qQ2DXtA+Jkf3m4VADXDn0SBprUGdhRlfSZSah7Ir7Av8W9f3WDo01S8ibxdMLQQB/g5G598xS4JaKLHj1lZzjsMmjQx5vUbqstzlifIoTDrCloZl/udeDfVtLJANp7T5u/Nyxb8CXgCYt1eCiViqO2QX1Adv/iwLE/zgxL8DDCZebR7N5ACq4b7e0tfDit0jRIiZHL2icmay72drfcXPaWMAOCJtBj3tf7wolnNw7YoWezIIwIIlVvaD3ZcniblsiMDBV9dohcnkbctzbp0f0rVnXSTUxiobYeZLVmHlag4ued2dwV//IeX8bkE9Jzvf/uGh9ZcyKqzZ5DEhu2ekgK8m5aKH7mQZZTAB26WnMWkItvf+I95Vaz+Vq+0Wf0lN7bSXYHWNSE8uP4ECN5TSFkcK4Fy27hnU+olCd4gtVzBQ5giXLkOVeVv+g249kXZjzWzVdINSa/4MUk=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN7PR11MB8042.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(22082099003)(38070700021)(18002099003)(56012099003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?3Fr1mmRXXRMz1aIUtulepE4GbMKw9hhchSRcx9g/5U0Fr7vCL6atGcKLRI?=
- =?iso-8859-1?Q?eewrH1OHWuDb+OB5bwWFLVfMNiuYwWPtES7vsbBUzCpM9b9kHsEliBv0e0?=
- =?iso-8859-1?Q?0WKLhNDmGJZJ2S74EjQlTadHavNrI2B7Yp4nt71NyLZr5EKi2iX28bFIkw?=
- =?iso-8859-1?Q?d2cnXX/XHT3Clm09SElD+556WkVVSbMGT08kC4EexnFtlBKtS0sFTJ3bXa?=
- =?iso-8859-1?Q?g+PKGE1/7SApjrQgJX5HIMv2J97uotkJmOOqiLJ4UT08oD0mDV8CG2WTzy?=
- =?iso-8859-1?Q?bbWwqkqqjlN2h4n6y94nbVUPygNC5sVqc0fD+jwpkRzIdpubm/FaDUVwc1?=
- =?iso-8859-1?Q?4NikRHeVCeKFz1ysRq74m2RirnwC3QLImYwC8iAN61yGWR+aFQndTPU4S+?=
- =?iso-8859-1?Q?x2NXITxjNHUunlRm00HL28GDfY9elXT0zWylfrU6Wrr8j+0HRA26CnqQ+d?=
- =?iso-8859-1?Q?XHgzH4Ns2xob/xbY8ujC9+MGxUiKMPMKFquPbsGYVL1kNiJlqifavJIcgl?=
- =?iso-8859-1?Q?fdPVyoWdL/t7nE6P3gqv8QC1SaRKFq77pWOjCqU6jC38tXDELso9NXG9+Z?=
- =?iso-8859-1?Q?inatCTV8nFYaU4JprYjhr+mR9xLRLzIe9F3nVae26wJfjv1F72XtHljvLs?=
- =?iso-8859-1?Q?iFVdy/oZajw92/mRxYJdH9ijy36959itILS0zCqodLWK3Eg76xG/N3NxXM?=
- =?iso-8859-1?Q?BrZx2ZtRyET+NFpnZvS5v4s4pTWzQMXloS0wZG7JBeHyFuCNm7W884grHe?=
- =?iso-8859-1?Q?NnM4sE4ZCgbbNsGk5q26+1bHY026BCq5bCeLheX8OKtoUCMbnbc4r283FU?=
- =?iso-8859-1?Q?OmmjGFS9y25pIr7EJ83m808O7LcUZvxscxcxQTREOqaQgshK6e3bsOxg8g?=
- =?iso-8859-1?Q?Q3bTJ9XfLSeWb9o+ytp9+Gpmup5xsfWWA6OJzB021K+uatXb4vzfsYoA5f?=
- =?iso-8859-1?Q?JzuSrHsBdm5F81WqAPVPFtOFPr/uqqWIzC+/YXhOGCJbA6rfnhbIFsxD0+?=
- =?iso-8859-1?Q?8J+hkAQ/Vyw1Wzh74Ndq6q+pjyydq/YqNfvqNflTVavy7K80NRHgE0Q6As?=
- =?iso-8859-1?Q?trv6vGNz8NgKsQE/HXK0uijvYMYlXGUKQxM9aq3lAhdz9s40SSD/1r5sFE?=
- =?iso-8859-1?Q?38XfP8m8OC1nxX5UENyRKbXnpTUSnR3f0K0XmuVCO8T1x3p0vvo0r3QJTr?=
- =?iso-8859-1?Q?Ayw/710fhGob/MDRF7oMf/vf/I58cfbx2C6PJgen6r42s/9KHNNSzhzNAx?=
- =?iso-8859-1?Q?x6z8M4Bcy03k6dxgsz++ropQlCJbgpguBaf9qBzDPyiMlNRXj7+bpRVJdt?=
- =?iso-8859-1?Q?V3vIVfFaXqZW/mNfRS8SsI8Wfp0EyOEz1W0jA+C3Y+CGSxpkDwZ2Gg9zDw?=
- =?iso-8859-1?Q?ONgH9JoG6WEk/uPwZcrnKATMn7lXEfzUd7IwU6Xr6gmpNrbXFFTjO/6b1E?=
- =?iso-8859-1?Q?mDLqIJoW+1+/kzfA9rMfpxKCx027B6lXr6n+FgjyWdFmCsIo8F4qAOQ2KP?=
- =?iso-8859-1?Q?pnIAknfKxrLGeyg6oOXVnzxUWjQsf0i4z1h3wqiXUPsFOkqyFPrLbhK7FN?=
- =?iso-8859-1?Q?xfq6Zc6hDIvTPyDPMDdqktZmXGJ7DnGliAqswJDnW8hM/ozrA1UVyFv7GP?=
- =?iso-8859-1?Q?Mer4hzQcBjsFvF45hf06BxTM2xZG+dh4gme6NlpTNNR9WHSQKpHsG9iA2C?=
- =?iso-8859-1?Q?O9n2g93Lj+yjJr0E0Ot38ikF2kabqMV5sVqfBmDzwI9ZZRADL0+nmvhbuk?=
- =?iso-8859-1?Q?x/fLdZoFJHSWpokyilKIg3UrfyiQzZo4Got5xy74kXpjF1JsxvyTpPfcLE?=
- =?iso-8859-1?Q?1nPum5zk9Q=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19E3C10E2F2
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Apr 2026 05:41:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1776922916;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=im1Mdl348sFe/nlHqsRdHrLzuKk+QKDCsvoUlJwx48Q=;
+ b=W4M7UY0n3jJpsbahTo7ExBYE1K4A5E/pAAilydXsyI0ET/d3jv8XIBaTwS4P76POijLlQV
+ 45cENkme0WFx63C3qbB6oN02ycG0o6dLiE0PZOXp8pQN8tKXVQBcMH5AEBNOHJBl0DP2Tk
+ VlxT+VmBLUVH03xwDgmvECvsRrZMmSY=
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
+ [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-524-fjMVmnFrMCqcTzL9es-xWg-1; Thu, 23 Apr 2026 01:41:53 -0400
+X-MC-Unique: fjMVmnFrMCqcTzL9es-xWg-1
+X-Mimecast-MFC-AGG-ID: fjMVmnFrMCqcTzL9es-xWg_1776922912
+Received: by mail-wm1-f70.google.com with SMTP id
+ 5b1f17b1804b1-48a55d82e0eso19229735e9.1
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Apr 2026 22:41:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=redhat.com; s=google; t=1776922912; x=1777527712; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=im1Mdl348sFe/nlHqsRdHrLzuKk+QKDCsvoUlJwx48Q=;
+ b=T7R5wMKIV6vAD8aFxSf2wLunoOjq9PvSy2vUd6Jzpq1bxvGRQL/OkGavt89Jb3D5fk
+ 2tm8GFvr1WR94wX7/kb5oHnTP5TgNBOd/7I5SO4AwFi47nJhOu0LOy1qehGAUUNHHTQG
+ RJjo1QvNwjKBP8YFeT9krOzByxDg4/LvNlltEDJZOi6HQeBK/480/6RTFN+GPhc7tZId
+ 3KYuMLkExaxctd66ekFbNo6N6CrQ3JPIT+XsvNmvbxE3u827gd4Mr7P4QxYTdRNJX9bC
+ ngf7B8I6cqMHfcXpfK/8RWxn7elCICNj38AD/JyIA2A8jk2R1RTbUhifgTb17ZRkiaz0
+ zhTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1776922912; x=1777527712;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=im1Mdl348sFe/nlHqsRdHrLzuKk+QKDCsvoUlJwx48Q=;
+ b=FlfS0wLRe7GDBJ/uasB5lluG0L/EoxgABsaRtGStkBmSM1DfPTkYkRDyNe6BzZknGi
+ gKi3u7jZBqv8c0AuzcfXO+MAwpvxWhicOE9dPvqLKPSQrRSiVSBI9TB8+Mmu1Ix2DYnW
+ GN+xiK/XcLwDw9k07E6SaaIB4HxnHcq54p6V8R2Ku+SCTFMu1Ywio7wNNONVlW6q2YYX
+ TOS9SI695z0taRsqJILHIJfP7hDFOPuhluqg0ORunYw0EOhS9H/MythU2BQrhJX7Xuoc
+ j9wxG4os9q1xg7YOOmTPryxn+Sb/zs9LgpDTbThkamJlb7IVAKQ4T8feYjr2oH+cAHTZ
+ wPnQ==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ/5GvH/uY8fYOWylYqnUPhG1G464qBCOe4se+7VFGeN2TScbag4ej176vQbSIePSJPd/KoK/NyVIQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Ywu8uHL4o1TbvvUmh/Q7fTELu/HH/JQQCUUW5N2sopVlKQkIq41
+ LsmODPs47C4E25tXwXwOBgrnxQBhELHBq+t8IkuCv8ZBkSz9tEKorK/iY3MI4wyh3nJUS9J44ya
+ NsidXSLMqnzWYyyMJyBkQvRVc1FG6Y++OGMtJtXaI+LW1BDACMLrWr4rchG40PfTp/a5g
+X-Gm-Gg: AeBDietXnGT4lm/xJJD/MlxIJBcqRPeVeUHDeRQO63E9HFFl/fC+Bm1jYU0IX55Akpz
+ BlaHGD804zMrrhYrkzKnZHVdWf8bUKV8d9zXQlIOU18dsEE+9b5jiP2+64XmeLMsT0g5XZIKW/i
+ nn4j6/lt6wmwfyuo7vTTOC6VezA9L1E8Mb9eWzsG94+7VDOjU4yIjDYnGQ/bkf8ADewqmEPolA4
+ zb96J0QE+443h8spsAiIhMB5tJIsCGI8zoH/Y9mZnaXBnRQR+XoUvkTKk3XjOUvMDdpp3Dl8hBh
+ Wkve5ajEWDTj0woJOT7EzrS4zKyAquv6Z9xmWwVn4rTtfDZfL4L206oHsjC9e6PfGqxOiV2jH3E
+ tZ/kuLayI
+X-Received: by 2002:a05:600c:c106:b0:489:1ba8:5be9 with SMTP id
+ 5b1f17b1804b1-4891ba85d07mr162132785e9.29.1776922912395; 
+ Wed, 22 Apr 2026 22:41:52 -0700 (PDT)
+X-Received: by 2002:a05:600c:c106:b0:489:1ba8:5be9 with SMTP id
+ 5b1f17b1804b1-4891ba85d07mr162132555e9.29.1776922911860; 
+ Wed, 22 Apr 2026 22:41:51 -0700 (PDT)
+Received: from localhost ([2a01:e0a:b25:f902::ff])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-488fb767961sm148312475e9.16.2026.04.22.22.41.51
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 22 Apr 2026 22:41:51 -0700 (PDT)
+Date: Thu, 23 Apr 2026 07:41:50 +0200
+From: Maxime Ripard <mripard@redhat.com>
+To: Dave Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Matthew Brost <matthew.brost@intel.com>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-fixes
+Message-ID: <20260423-realistic-eager-reindeer-4dacf7@houat>
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: UG83UQawhVzqAjD0dInLUIrF9DwL8B1vnA/zxGAB3FSKB42wZRAJIsAS1/oqQcLmar52otOczGMV/9YulAhMf5wIcHusNia9ecB1v9IPhlHQjHltWqFpTPST1C+2L4JnO1v9fWKVG01ynpVwXQ1+Gxadf1o9B8eEkfO0FjA5KYa9CEJ0OxWyCzee51y2cDiRY9idFog8QUQXJwl5ifQsThEWlrLGOsXvHFfTgN6LNffcnk/1xbobCvpJUtFU5F74NGYBLqLPOBVaOqbD4YtvN+IRWDCejmGg7STuebvZ80/FgX/aqTQ2DqtlULSjihaBVJZSzGL3GLb5950d/+0VBw==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB8042.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c2eda070-b261-4486-378e-08dea0f49a25
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Apr 2026 04:55:55.1639 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: e10GVxqbxBFagxL5nwtQgfV9o9XEOszkLSGQy6eIr7FbmDm3z+UPWAngu6Hkq6SyDY/Xw9vzgQDn5k4IzgEZXg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PPF31CEE2CEC
-X-OriginatorOrg: intel.com
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="swzqgswgrxkw3gj3"
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -168,258 +115,140 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
+--swzqgswgrxkw3gj3
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: [PULL] drm-misc-fixes
+MIME-Version: 1.0
 
-> -----Original Message-----
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Sent: Friday, April 17, 2026 3:57 PM
-> To: Manna, Animesh <animesh.manna@intel.com>
-> Cc: Nikula, Jani <jani.nikula@intel.com>; intel-gfx@lists.freedesktop.org=
-;
-> intel-xe@lists.freedesktop.org; Shankar, Uma <uma.shankar@intel.com>;
-> Dibin Moolakadan Subrahmanian
-> <dibin.moolakadan.subrahmanian@intel.com>
-> Subject: Re: [PATCH v4 03/13] drm/i915/cmtg: Set timings for CMTG
->=20
-> On Fri, Apr 17, 2026 at 06:03:52AM +0000, Manna, Animesh wrote:
-> >
-> >
-> > > -----Original Message-----
-> > > From: Nikula, Jani <jani.nikula@intel.com>
-> > > Sent: Tuesday, April 14, 2026 7:03 PM
-> > > To: Manna, Animesh <animesh.manna@intel.com>; intel-
-> > > gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
-> > > Cc: Shankar, Uma <uma.shankar@intel.com>; Dibin Moolakadan
-> > > Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>; Manna,
-> > > Animesh <animesh.manna@intel.com>
-> > > Subject: Re: [PATCH v4 03/13] drm/i915/cmtg: Set timings for CMTG
-> > >
-> > > On Sun, 12 Apr 2026, Animesh Manna <animesh.manna@intel.com>
-> wrote:
-> > > > Timing registers are separate for CMTG, read transcoder register
-> > > > and program cmtg transcoder with those values.
-> > > >
-> > > > v2:
-> > > > - Use sw state instead of reading directly from hardware. [Jani]
-> > > > - Move set_timing later after encoder enable. [Dibin]
-> > > >
-> > > > v3:
-> > > > - Replace id with trans. [Jani]
-> > > > - Program cmtg set_timing() along with primary transcoder timing.
-> > > >
-> > > > v4:
-> > > > - Use _MMIO_TRANS() for cmtg registers instead of direct
-> > > > multiplication. [Jani]
-> > > >
-> > > > Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-> > > > ---
-> > > >  drivers/gpu/drm/i915/display/intel_cmtg.c     | 61
-> ++++++++++++++++++-
-> > > >  drivers/gpu/drm/i915/display/intel_cmtg.h     |  3 +
-> > > >  .../gpu/drm/i915/display/intel_cmtg_regs.h    | 31 ++++++++++
-> > > >  drivers/gpu/drm/i915/display/intel_display.c  |  4 ++
-> > > >  4 files changed, 98 insertions(+), 1 deletion(-)
-> > > >
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_cmtg.c
-> > > > b/drivers/gpu/drm/i915/display/intel_cmtg.c
-> > > > index 403f9e10a8dc..a3db1368bd83 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_cmtg.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_cmtg.c
-> > > > @@ -4,7 +4,6 @@
-> > > >   */
-> > > >
-> > > >  #include <linux/string_choices.h> -#include <linux/types.h>
-> > > >
-> > > >  #include <drm/drm_device.h>
-> > > >  #include <drm/drm_print.h>
-> > > > @@ -222,3 +221,63 @@ void intel_cmtg_set_clk_select(const struct
-> > > intel_crtc_state *crtc_state)
-> > > >  	if (clk_sel_set)
-> > > >  		intel_de_rmw(display, CMTG_CLK_SEL, clk_sel_clr,
-> > > clk_sel_set);  }
-> > > > +
-> > > > +void intel_cmtg_set_timings(const struct intel_crtc_state
-> > > > +*crtc_state, bool lrr) {
-> > > > +	struct intel_display *display =3D to_intel_display(crtc_state);
-> > > > +	enum transcoder cpu_transcoder =3D crtc_state->cpu_transcoder;
-> > > > +	const struct drm_display_mode *adjusted_mode =3D &crtc_state-
-> > > >hw.adjusted_mode;
-> > > > +	u32 crtc_vdisplay, crtc_vtotal, crtc_vblank_start,
-> > > > +crtc_vblank_end;
-> > > > +
-> > > > +	if (!intel_cmtg_is_allowed(crtc_state))
-> > > > +		return;
-> > > > +
-> > > > +	crtc_vdisplay =3D adjusted_mode->crtc_vdisplay;
-> > > > +
-> > > > +	/*
-> > > > +	 * For platforms that always use VRR Timing Generator, the
-> > > VTOTAL.Vtotal
-> > > > +	 * bits are not required. Since the support for these bits is goi=
-ng to
-> > > > +	 * be deprecated in upcoming platforms, avoid writing these bits
-> > > > +for
-> > > the
-> > > > +	 * platforms that do not use legacy Timing Generator.
-> > > > +	 */
-> > > > +	crtc_vtotal =3D 1;
-> > > > +
-> > > > +	/*
-> > > > +	 * VBLANK_START not used by hw, just clear it
-> > > > +	 * to make it stand out in register dumps.
-> > > > +	 */
-> > > > +	crtc_vblank_start =3D 1;
-> > > > +
-> > > > +	crtc_vblank_end =3D adjusted_mode->crtc_vblank_end;
-> > > > +
-> > > > +	if (lrr) {
-> > > > +		intel_de_write(display,
-> > > TRANS_VTOTAL_CMTG(cpu_transcoder),
-> > > > +			       VACTIVE(crtc_vdisplay - 1) |
-> > > > +			       VTOTAL(crtc_vtotal - 1));
-> > > > +		intel_de_write(display,
-> > > TRANS_VBLANK_CMTG(cpu_transcoder),
-> > > > +			       VBLANK_START(crtc_vblank_start - 1) |
-> > > > +			       VBLANK_END(crtc_vblank_end - 1));
-> > > > +		return;
-> > > > +	}
-> > > > +
-> > > > +	intel_de_write(display, TRANS_HTOTAL_CMTG(cpu_transcoder),
-> > > > +		       HACTIVE(adjusted_mode->crtc_hdisplay - 1) |
-> > > > +		       HTOTAL(adjusted_mode->crtc_htotal - 1));
-> > > > +	intel_de_write(display, TRANS_HBLANK_CMTG(cpu_transcoder),
-> > > > +		       HBLANK_START(adjusted_mode->crtc_hblank_start - 1) |
-> > > > +		       HBLANK_END(adjusted_mode->crtc_hblank_end - 1));
-> > > > +	intel_de_write(display, TRANS_HSYNC_CMTG(cpu_transcoder),
-> > > > +		       HSYNC_START(adjusted_mode->crtc_hsync_start - 1) |
-> > > > +		       HSYNC_END(adjusted_mode->crtc_hsync_end - 1));
-> > > > +	intel_de_write(display, TRANS_VTOTAL_CMTG(cpu_transcoder),
-> > > > +		       VACTIVE(crtc_vdisplay - 1) |
-> > > > +		       VTOTAL(crtc_vtotal - 1));
-> > > > +	intel_de_write(display, TRANS_VBLANK_CMTG(cpu_transcoder),
-> > > > +		       VBLANK_START(crtc_vblank_start - 1) |
-> > > > +		       VBLANK_END(crtc_vblank_end - 1));
-> > > > +	intel_de_write(display, TRANS_VSYNC_CMTG(cpu_transcoder),
-> > > > +		       VSYNC_START(adjusted_mode->crtc_vsync_start - 1) |
-> > > > +		       VSYNC_END(adjusted_mode->crtc_vsync_end - 1));
-> > > > +	intel_de_write(display,
-> > > TRANS_SET_CTX_LATENCY_CMTG(cpu_transcoder),
-> > > > +		       crtc_state->set_context_latency); }
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_cmtg.h
-> > > > b/drivers/gpu/drm/i915/display/intel_cmtg.h
-> > > > index 660ec513626e..53a44f505dd2 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_cmtg.h
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_cmtg.h
-> > > > @@ -6,9 +6,12 @@
-> > > >  #ifndef __INTEL_CMTG_H__
-> > > >  #define __INTEL_CMTG_H__
-> > > >
-> > > > +#include <linux/types.h>
-> > > > +
-> > > >  struct intel_display;
-> > > >  struct intel_crtc_state;
-> > > >
-> > > > +void intel_cmtg_set_timings(const struct intel_crtc_state
-> > > > +*crtc_state, bool lrr);
-> > > >  void intel_cmtg_set_clk_select(const struct intel_crtc_state
-> > > > *crtc_state);  void intel_cmtg_sanitize(struct intel_display
-> > > > *display);  bool intel_cmtg_is_allowed(const struct
-> > > > intel_crtc_state *crtc_state); diff --git
-> > > > a/drivers/gpu/drm/i915/display/intel_cmtg_regs.h
-> > > > b/drivers/gpu/drm/i915/display/intel_cmtg_regs.h
-> > > > index 4a80b88d88fd..f7fc812d8ef0 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_cmtg_regs.h
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_cmtg_regs.h
-> > > > @@ -20,4 +20,35 @@
-> > > >  #define TRANS_CMTG_CTL_B		_MMIO(0x6fb88)
-> > > >  #define  CMTG_ENABLE			REG_BIT(31)
-> > > >
-> > > > +#define _TRANS_HTOTAL_CMTG_A		0x6F000
-> > > > +#define _TRANS_HTOTAL_CMTG_B		0x6F100
-> > > > +#define TRANS_HTOTAL_CMTG(trans)	_MMIO_TRANS((trans), \
-> > > > +						    _TRANS_HTOTAL_CMTG_A,
-> > > _TRANS_HTOTAL_CMTG_B)
-> > > > +#define _TRANS_HBLANK_CMTG_A		0x6F004
-> > > > +#define _TRANS_HBLANK_CMTG_B		0x6F104
-> > > > +#define TRANS_HBLANK_CMTG(trans)	_MMIO_TRANS((trans), \
-> > > > +						    _TRANS_HBLANK_CMTG_A,
-> > > _TRANS_HBLANK_CMTG_B)
-> > > > +#define _TRANS_HSYNC_CMTG_A		0x6F008
-> > > > +#define _TRANS_HSYNC_CMTG_B		0x6F108
-> > > > +#define TRANS_HSYNC_CMTG(trans)
-> > > 	_MMIO_TRANS((trans), \
-> > > > +						    _TRANS_HSYNC_CMTG_A,
-> > > _TRANS_HSYNC_CMTG_B)
-> > > > +#define _TRANS_VTOTAL_CMTG_A		0x6F00C
-> > > > +#define _TRANS_VTOTAL_CMTG_B		0x6F10C
-> > > > +#define TRANS_VTOTAL_CMTG(trans)	_MMIO_TRANS((trans), \
-> > > > +						    _TRANS_VTOTAL_CMTG_A,
-> > > _TRANS_VTOTAL_CMTG_B)
-> > > > +#define _TRANS_VBLANK_CMTG_A		0x6F010
-> > > > +#define _TRANS_VBLANK_CMTG_B		0x6F110
-> > > > +#define TRANS_VBLANK_CMTG(trans)	_MMIO_TRANS((trans), \
-> > > > +						    _TRANS_VBLANK_CMTG_A,
-> > > _TRANS_VBLANK_CMTG_B)
-> > > > +#define _TRANS_VSYNC_CMTG_A		0x6F014
-> > > > +#define _TRANS_VSYNC_CMTG_B		0x6F114
-> > > > +#define TRANS_VSYNC_CMTG(trans)
-> > > 	_MMIO_TRANS((trans), \
-> > > > +						    _TRANS_VSYNC_CMTG_A,
-> > > _TRANS_VSYNC_CMTG_B)
-> > >
-> > > I though there was already feedback that these match the regular
-> > > transcoder registers.
-> >
-> > _TRANS_HTOTAL_A         0x60000
-> > _TRANS_HTOTAL_B         0x61000
-> >
-> > _TRANS_HTOTAL_CMTG_A            0x6F000
-> > _TRANS_HTOTAL_CMTG_B            0x6F100
-> >
-> > I am not clear how to match?
->=20
-> #define TRANSCODER_CMTG0_OFFSET 0x6F000
-> #define TRANSCODER_CMTG1_OFFSET 0x6F100
+Hi Sima, Dave,
 
-Ok, just to double check my understanding, I am putting below all the chang=
-es which maybe you are suggesting.=20
-Can please confirm or if I am missing something please let me know.
+Here's this week drm-misc-fixes PR.
 
-Step1: Define offset macro.
-#define TRANSCODER_CMTGA_OFFSET 0x6F000
-#define TRANSCODER_CMTGB_OFFSET 0x6F100
+Please not that the last commit (2fc87d37be1b) has a missing link and
+creates a dim warning.
 
-Step2: Add trans_cmtg_offset array in intel_display_device_info structure a=
-nd initialize.
-.trans_cmtg_offsets =3D {                                                  =
-    \
-                [TRANSCODER_A] =3D TRANSCODER_CMTGA_OFFSET,                =
-           \
-                [TRANSCODER_B] =3D TRANSCODER_CMTGB_OFFSET,
-},
+Maxime
 
-Step3: Define INTEL_DISPLAY_DEVICE_TRANS_CMTG_OFFSET which will use trans_c=
-mtg_offset
-#define INTEL_DISPLAY_DEVICE_TRANS_CMTG_OFFSET(display, trans) \
-        (DISPLAY_INFO((display))->trans_cmtg_offsets[(trans)] - \
-         DISPLAY_INFO((display))->trans_offsets[TRANSCODER_A] + \
-         DISPLAY_MMIO_BASE((display)))
+drm-misc-fixes-2026-04-23:
+This week in drm-misc-fixes, we have:
+- A patch to raise the vblank timeout to avoid it on virtual drivers
+- a state check fix for stm_lvds
+- a use-after-free fix for dma-buf
+- a mapping fix for panthor
+- a device_node reference leak fix for arcgpu
+- a bridge reference leak fix for dw-mipi-dsi
+- a sparse warning fix for dma-fence
+- a kconfig fix for hv
+- a memory leak fix for nouveau
+- a fix to duplicate colorop when duplicating states
+- a panel initialisation order fix for visionox-rm69299
+- a fix to prevent an infinite loop for v3d
+- an overflow fix for nouveau
+The following changes since commit 857fa8f2a5b184c206c703a3d9ce05cea683cfed:
 
-Step4: Define _MMIO_TRANS2_CMTG which will use INTEL_DISPLAY_DEVICE_TRANS_C=
-MTG_OFFSET
-#define _MMIO_TRANS2_CMTG(display, trans, reg)       _MMIO(INTEL_DISPLAY_DE=
-VICE_TRANS_CMTG_OFFSET((display), (trans)) + (reg))
+  accel: ethosu: Add hardware dependency hint (2026-04-02 15:18:14 -0500)
 
-Step5: Define TRANS_HTOTAL_CMTG
-#define TRANS_HTOTAL_CMTG(display, trans)	_MMIO_TRANS2_CMTG(display, (trans=
-), _TRANS_HTOTAL_A)
-#define TRANS_HBLANK_CMTG(display, trans)   _MMIO_TRANS2_CMTG(display, (tra=
-ns), _TRANS_HBLANK_A)
-...
-...
+are available in the Git repository at:
 
-Regards,
-Animesh
->=20
-> --
-> Ville Syrj=E4l=E4
-> Intel
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-20=
+26-04-23
+
+for you to fetch changes up to 2fc87d37be1b730a149b035f9375fdb8cc5333a5:
+
+  drm/nouveau: fix u32 overflow in pushbuf reloc bounds check (2026-04-20 2=
+1:23:14 +0200)
+
+----------------------------------------------------------------
+This week in drm-misc-fixes, we have:
+- A patch to raise the vblank timeout to avoid it on virtual drivers
+- a state check fix for stm_lvds
+- a use-after-free fix for dma-buf
+- a mapping fix for panthor
+- a device_node reference leak fix for arcgpu
+- a bridge reference leak fix for dw-mipi-dsi
+- a sparse warning fix for dma-fence
+- a kconfig fix for hv
+- a memory leak fix for nouveau
+- a fix to duplicate colorop when duplicating states
+- a panel initialisation order fix for visionox-rm69299
+- a fix to prevent an infinite loop for v3d
+- an overflow fix for nouveau
+
+----------------------------------------------------------------
+Adri=E1n Larumbe (2):
+      drm/panthor: Extend VM locked region for remap case to be a superset
+      drm/panthor: Fix outdated function documentation
+
+Andi Shyti (1):
+      dma-buf: fix UAF in dma_buf_put() tracepoint
+
+Ashutosh Desai (1):
+      drm/v3d: Reject empty multisync extension to prevent infinite loop
+
+David Carlier (1):
+      drm/nouveau: fix nvkm_device leak on aperture removal failure
+
+Greg Kroah-Hartman (1):
+      drm/nouveau: fix u32 overflow in pushbuf reloc bounds check
+
+Guido G=FCnther (1):
+      drm/panel: visionox-rm69299: Make use of prepare_prev_first
+
+Luca Ceresoli (1):
+      drm/arcpgu: fix device node leak
+
+Marek Vasut (1):
+      drm/bridge: stm_lvds: Do not fail atomic_check on disabled connector
+
+Melissa Wen (1):
+      drm/drm_atomic: duplicate colorop states if plane color pipeline in u=
+se
+
+Osama Abdelkader (1):
+      drm/bridge: dw-mipi-dsi: Fix bridge leak when host attach fails
+
+Thomas Zimmermann (2):
+      drm/atomic: Increase timeout in drm_atomic_helper_wait_for_vblanks()
+      hv: Select CONFIG_SYSFB only for CONFIG_HYPERV_VMBUS
+
+Tvrtko Ursulin (1):
+      dma-fence: Silence sparse warning in dma_fence_describe
+
+Yongbang Shi (1):
+      MAINTAINERS: split hisilicon maintenance and add Yongbang Shi for hib=
+mc-drm matainers
+
+ MAINTAINERS                                    | 13 ++++++++++---
+ drivers/dma-buf/dma-buf.c                      |  3 +--
+ drivers/dma-buf/dma-fence.c                    |  4 ++--
+ drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c  |  6 +++++-
+ drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi2.c |  6 +++++-
+ drivers/gpu/drm/drm_atomic_helper.c            | 14 +++++++++++++-
+ drivers/gpu/drm/nouveau/nouveau_drm.c          |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_gem.c          |  2 +-
+ drivers/gpu/drm/panel/panel-visionox-rm69299.c |  2 ++
+ drivers/gpu/drm/panthor/panthor_gem.c          |  2 +-
+ drivers/gpu/drm/panthor/panthor_mmu.c          | 19 +++++++++++++++++++
+ drivers/gpu/drm/stm/lvds.c                     |  6 +++---
+ drivers/gpu/drm/tiny/arcpgu.c                  |  3 ++-
+ drivers/gpu/drm/v3d/v3d_submit.c               |  5 +++++
+ drivers/hv/Kconfig                             |  2 +-
+ include/drm/drm_atomic.h                       |  3 ++-
+ 16 files changed, 73 insertions(+), 19 deletions(-)
+
+--swzqgswgrxkw3gj3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaemxHgAKCRAnX84Zoj2+
+dlsIAX9sodnjELE5YmNVL7DybjaekNLOGtKOJzfl6/eK7+uS8pRI8EbgnRAO2ljb
+drSc1XsBfjyJa7q+5VqLjoptvmH3siWEekHEEhjTljt9uxlOgl/WWM11WrEtgRFH
+vlvEGOO2eg==
+=i8kY
+-----END PGP SIGNATURE-----
+
+--swzqgswgrxkw3gj3--
+
