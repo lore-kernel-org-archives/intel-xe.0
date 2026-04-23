@@ -4,73 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B908FDEE28
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 22:49:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27D92FDEE55
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 22:49:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4FFB10E12F;
-	Thu, 23 Apr 2026 22:49:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 166B310E107;
+	Thu, 23 Apr 2026 22:49:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L6sGSo/O";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DUSfhO2W";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A768F10E107
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Apr 2026 22:49:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A11A610E12C
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Apr 2026 22:49:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776984548; x=1808520548;
- h=from:subject:date:message-id:mime-version:
- content-transfer-encoding:to:cc;
- bh=S9LNcJqQGbS6+5mx3uNc8Lykv/OCulyPy+UKH+zSiRg=;
- b=L6sGSo/O4aDHDKd8HFDaCyL83W3EqWegmOPhCbao8zUK7IQ9L07zaQzm
- o/zlHDtaiG9R3Yi/6reIiid4ohjJ+pveVjs65YlUinWvFJDXL/F7gydEq
- GSz2B14YBL5xFoBC6C9tnNlc6RO1glUdiI7ib7Wu3n/wawV2DvkNi6fVS
- lPgZfWFDxVty9qdp+ecAFP0W1Ph5vinRhapXUiTwP91oQ7kdJ34Zmou93
- 3ttSou7n2DTNj1XA8ihu6UoZUAXrRMfKffHdFX5/75oMXq1e0LYF4qDSD
- 2RbMWS4sRfrjbx86Z4hzZ4MkHybA+lJHd6bZIZlxCWV+GfyJHgNWWxM3A Q==;
-X-CSE-ConnectionGUID: vfI4X90ZR0WgLmUta92UNg==
-X-CSE-MsgGUID: BfmAQPwHRqSEfL7rIooT5g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11765"; a="65497061"
-X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="65497061"
+ t=1776984549; x=1808520549;
+ h=from:date:subject:mime-version:content-transfer-encoding:
+ message-id:references:in-reply-to:to:cc;
+ bh=iqjvFkmCP48Cauc0o9G9R3Ytsp3A69hZR5jtjTCih3s=;
+ b=DUSfhO2WgSbzR1Ws+8j1DaNp2Sl/Tbq02+3DFwfMT5oEbeSORiEQddZM
+ sxWr0iWHrVvaajMCNqJQyoRS09R1xJ4vie2TJ9nM5IkYCpAuqieHUikuX
+ kzzZXoMuVXgw6XwGTdB9dzCH8LAyL/r6NKv0ZzgMw2/FpON/stCyZxiIo
+ BIAF0TNJKQTs5MRpBIy2jkRBXD1vSgkKalapJCQNxCKS7ZGni7Nm+FeC8
+ BL1mXtP8ZUdOorEwTX+mEOq8zDcoW1V5J80p3r23bkxIHVp9UZMZ460Yv
+ ZPcHxc8PWZDWSTjzhvRvge+cn8sFHsGmxF0x7eD89juGYJvEKvsKpItEW A==;
+X-CSE-ConnectionGUID: 2e6WVLdBSJG+AI+AMAetqg==
+X-CSE-MsgGUID: kivwSc6HR9m3OHpBPtMKkQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11765"; a="65497068"
+X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="65497068"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2026 15:49:07 -0700
-X-CSE-ConnectionGUID: WWdHSUU+RUCqtvhJ0rcPtg==
-X-CSE-MsgGUID: D8K+S1hCQma+Drg3QD+adw==
+ 23 Apr 2026 15:49:08 -0700
+X-CSE-ConnectionGUID: Wbd9jk6iQm2RoGvfCDvLcg==
+X-CSE-MsgGUID: 5PdyJeK4QEOhUTykWBn4vQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="232696178"
+X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="232696212"
 Received: from mdroper-desk1.fm.intel.com (HELO
  mdroper-desk1.amr.corp.intel.com) ([10.1.39.133])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2026 15:49:04 -0700
+ 23 Apr 2026 15:49:05 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH 00/10] Engine initialization cleanup
-Date: Thu, 23 Apr 2026 15:48:47 -0700
-Message-Id: <20260423-engine-setup-v1-0-baa94014e3e5@intel.com>
+Date: Thu, 23 Apr 2026 15:48:57 -0700
+Subject: [PATCH 10/10] drm/xe: Mark BCS engines as belonging to the GT
+ forcewake domain
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x3MQQqAIBBG4avIrBtQSamuEi2i/mo2FloRSHdPW
- n6L9zIlREGiTmWKuCXJHgpMpWjaxrCCZS4mq63XtbaMsEoAJ5zXwfC+cca2DqahkhwRizz/rh/
- e9wMX6WvDXgAAAA==
-X-Change-ID: 20260402-engine-setup-e66851295e18
+Message-Id: <20260423-engine-setup-v1-10-baa94014e3e5@intel.com>
+References: <20260423-engine-setup-v1-0-baa94014e3e5@intel.com>
+In-Reply-To: <20260423-engine-setup-v1-0-baa94014e3e5@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matt Roper <matthew.d.roper@intel.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2273;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3388;
  i=matthew.d.roper@intel.com; h=from:subject:message-id;
- bh=S9LNcJqQGbS6+5mx3uNc8Lykv/OCulyPy+UKH+zSiRg=;
- b=owEBbQKS/ZANAwAKAU15JAXIcpAEAcsmYgBp6qHd41lxGMrWLAfyhlYVl6cQd3ufxSMpWH93P
- TOy7dt2HXyJAjMEAAEKAB0WIQTCZ8MJRH/rTz8hbaxNeSQFyHKQBAUCaeqh3QAKCRBNeSQFyHKQ
- BGrSD/9dszqnHfGfgcwHLve7ERZxef6OBVWPPiU0WdPES7j1JvQs+8OiKP1h5V+cEX3CP3v/4Xk
- wziQXeopHa7OmGo97Yy7KN7w9KAQPP30QGHkvVF8TdhbMdFJHjkgfAwlIneHUv1hIDCD+veQMgW
- PxUa4/rw3aw/pvkyUAJ7ztmyyx0K00ZFpOdqwnoRKNmqqXtzaph9o7yrQgO1yieeiHBDhNl6d5D
- Pkndh6zL9hVRG5Zp2APRqkJFBdefW7i460s0lSsC8ykOGLqKbSFEiHPfcoIwTn2QQWhlkL2XEkK
- 3tE7dYmSoK9ae0sEmi3vF3eYe0ukzj9N3FiKJg9w+47BuW4ZzBMy8XSEMLtSH1unnByNtVQn6IP
- CzUvkxtd0DL3KNEDTWkI9HAqJ9AGHeCaaPiAyzxwybZo+y8I5vt3j7cKDfAyYqS1xTRkvWtwN0j
- 2KB6+haqRk01lrkp7WK8jxgY9fn4UK+N/iRfYVT93PtzCpKelTLLeg20LSR30cvhXB68XHSL5hr
- AqpTskPjOMWuAePFuHr6fbXa81rvlZtWV/J6f3FVrTQPk9sjrIN219R8uQ2phFwcsekBT97jVa7
- 1aOs2q03MNjMyW7BMKGUE6cilwKl1Fv/gGauBP6rMzyhnlTvpFn+E10DP7lu1ClXJyF9nf4Fwto
- 6QYjynDzZ4yVTHQ==
+ bh=iqjvFkmCP48Cauc0o9G9R3Ytsp3A69hZR5jtjTCih3s=;
+ b=owEBbQKS/ZANAwAKAU15JAXIcpAEAcsmYgBp6qHf68cvKbx0m9+9oafPGOIQxdqlvdY/2uMKc
+ /FazEBw2jKJAjMEAAEKAB0WIQTCZ8MJRH/rTz8hbaxNeSQFyHKQBAUCaeqh3wAKCRBNeSQFyHKQ
+ BBsYEAC3VyWN/ErJfCAq8lq6zaMJe/Sfquc0zk677Gw0JVlx8lmaQyy9Q5Bkt1PLTQdVkrfn5Zl
+ HBYNcGJngRKqq3VRibLhrbQiD+9oeNxx8oJ/N35EZqA7FmCzFuA/B+TPX9ryMYJ0HrSJ/o1/edC
+ sJHFhwV6wg7/a/svEwmTrCWMYRMigx9oegnz/3npOBuzZbOCfaIldTw61c/7hmefptqieUXiv/v
+ TYVrRXI4tbEnOcTYgIsDPotavc0TVRPb8bVkiMQaCyIB7lOTr0Mts2XSpUZ/rQOacz0JBsn+39K
+ 2gDZgwBKdMG70BNzB/tJJf5Sa8OVa27b32v/E8o+kz6VbN+IHsE8VsthakqO8mhx5qEaDHfmHhj
+ yezTLiaDYfWhWJXrBV/p9xbVxjHMOL/Mv3XMhN3p3bIt3A7nhw3UmYqHOJamZLDF6EjxnZh7833
+ YxnmIeTL44rOS1ZvNYj/oB+ekb3/NJpk3gJNXQ6in3B4+Lk5q4+Mvy7axKh8Y7PUh7wdJ+ARPW7
+ kb3emKySpmcCvG98R1Put5fWZ40wtsMqLSU+Fol/zAAtD64PhO+ojCNTSlmgr7eRYfUN1YYqODi
+ LlQEW+GgYfaIPyP5Dpo0GO8MHO70ydvJEkNtx8SHApcjxBr77CM8cdErsL0Pa0BHJ9QRuITyYNJ
+ sHRW7ndxF2NVmFA==
 X-Developer-Key: i=matthew.d.roper@intel.com; a=openpgp;
  fpr=C267C309447FEB4F3F216DAC4D792405C8729004
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -87,53 +86,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A lot of our engine initialization code was inherited from i915 and
-hasn't received too much cleanup since that time.  There's also some
-inconsistencies between the main initialization path used on all
-platforms, and the vestigial execlist code which isn't actually used but
-still remains in the driver as dead code for now.  Let's clean things up
-a bit and, where possible, move the required engine programming into the
-RTP infrastructure so that it will be applied on both initialization
-paths, and be dumpable/checkable via debugfs.
+On all platforms supported by the Xe driver, BCS engines are part of the
+GT forcewake domain, not the RENDER domain.  Fix the engine list
+definition to match the spec.  This mistake didn't really cause any
+real problems because the forcewake domain here was only used in a
+couple assertions that aren't really necessary and included in the
+information dumped during error capture.
 
-There's some more restructuring that should happen to more clearly
-distinguish software state initialization from hardware initialization
-(and re-initialization on various resets & suspend/resume), but I'll
-leave that to a follow-up series to prevent this one from getting too
-complicated.
-
+Bspec: 66696, 66534, 67609, 71185, 74417, 75242, 78286
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
-Matt Roper (10):
-      drm/xe: Move CCS enablement to engine setup RTP
-      drm/xe/rtp: Add "always true" match function
-      drm/xe: Stop programming BLIT_CCTL on Xe2 and later platforms
-      drm/xe: Move HWSTAM programming to RTP
-      drm/xe: Fix name and definition of GFX_MODE register
-      drm/xe: Const-ify parameters to xe_device_has_* functions
-      drm/xe: Move GFX_MODE programming to RTP
-      drm/xe: Drop unnecessary STOP_RING clearing
-      drm/xe: Drop xe_hw_engine_mmio_write32()
-      drm/xe: Mark BCS engines as belonging to the GT forcewake domain
+ drivers/gpu/drm/xe/xe_hw_engine.c | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
 
- drivers/gpu/drm/xe/regs/xe_engine_regs.h |  5 +-
- drivers/gpu/drm/xe/xe_device.h           | 14 +++---
- drivers/gpu/drm/xe/xe_execlist.c         |  9 ----
- drivers/gpu/drm/xe/xe_guc_ads.c          |  2 -
- drivers/gpu/drm/xe/xe_guc_capture.c      |  2 +-
- drivers/gpu/drm/xe/xe_hw_engine.c        | 82 +++++++++++++-------------------
- drivers/gpu/drm/xe/xe_lrc.c              | 20 --------
- drivers/gpu/drm/xe/xe_rtp.c              | 15 ++++++
- drivers/gpu/drm/xe/xe_rtp.h              | 24 ++++++++++
- 9 files changed, 81 insertions(+), 92 deletions(-)
----
-base-commit: 021ccd6f29b34f09e4b3aac0d6d52b8adaa1c4b4
-change-id: 20260402-engine-setup-e66851295e18
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index a2a2b296af91..84651088d504 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -67,7 +67,7 @@ static const struct engine_info engine_infos[] = {
+ 		.class = XE_ENGINE_CLASS_COPY,
+ 		.instance = 0,
+ 		.irq_offset = ilog2(INTR_BCS(0)),
+-		.domain = XE_FW_RENDER,
++		.domain = XE_FW_GT,
+ 		.mmio_base = BLT_RING_BASE,
+ 	},
+ 	[XE_HW_ENGINE_BCS1] = {
+@@ -75,7 +75,7 @@ static const struct engine_info engine_infos[] = {
+ 		.class = XE_ENGINE_CLASS_COPY,
+ 		.instance = 1,
+ 		.irq_offset = ilog2(INTR_BCS(1)),
+-		.domain = XE_FW_RENDER,
++		.domain = XE_FW_GT,
+ 		.mmio_base = XEHPC_BCS1_RING_BASE,
+ 	},
+ 	[XE_HW_ENGINE_BCS2] = {
+@@ -83,7 +83,7 @@ static const struct engine_info engine_infos[] = {
+ 		.class = XE_ENGINE_CLASS_COPY,
+ 		.instance = 2,
+ 		.irq_offset = ilog2(INTR_BCS(2)),
+-		.domain = XE_FW_RENDER,
++		.domain = XE_FW_GT,
+ 		.mmio_base = XEHPC_BCS2_RING_BASE,
+ 	},
+ 	[XE_HW_ENGINE_BCS3] = {
+@@ -91,7 +91,7 @@ static const struct engine_info engine_infos[] = {
+ 		.class = XE_ENGINE_CLASS_COPY,
+ 		.instance = 3,
+ 		.irq_offset = ilog2(INTR_BCS(3)),
+-		.domain = XE_FW_RENDER,
++		.domain = XE_FW_GT,
+ 		.mmio_base = XEHPC_BCS3_RING_BASE,
+ 	},
+ 	[XE_HW_ENGINE_BCS4] = {
+@@ -99,7 +99,7 @@ static const struct engine_info engine_infos[] = {
+ 		.class = XE_ENGINE_CLASS_COPY,
+ 		.instance = 4,
+ 		.irq_offset = ilog2(INTR_BCS(4)),
+-		.domain = XE_FW_RENDER,
++		.domain = XE_FW_GT,
+ 		.mmio_base = XEHPC_BCS4_RING_BASE,
+ 	},
+ 	[XE_HW_ENGINE_BCS5] = {
+@@ -107,7 +107,7 @@ static const struct engine_info engine_infos[] = {
+ 		.class = XE_ENGINE_CLASS_COPY,
+ 		.instance = 5,
+ 		.irq_offset = ilog2(INTR_BCS(5)),
+-		.domain = XE_FW_RENDER,
++		.domain = XE_FW_GT,
+ 		.mmio_base = XEHPC_BCS5_RING_BASE,
+ 	},
+ 	[XE_HW_ENGINE_BCS6] = {
+@@ -115,7 +115,7 @@ static const struct engine_info engine_infos[] = {
+ 		.class = XE_ENGINE_CLASS_COPY,
+ 		.instance = 6,
+ 		.irq_offset = ilog2(INTR_BCS(6)),
+-		.domain = XE_FW_RENDER,
++		.domain = XE_FW_GT,
+ 		.mmio_base = XEHPC_BCS6_RING_BASE,
+ 	},
+ 	[XE_HW_ENGINE_BCS7] = {
+@@ -123,7 +123,7 @@ static const struct engine_info engine_infos[] = {
+ 		.class = XE_ENGINE_CLASS_COPY,
+ 		.irq_offset = ilog2(INTR_BCS(7)),
+ 		.instance = 7,
+-		.domain = XE_FW_RENDER,
++		.domain = XE_FW_GT,
+ 		.mmio_base = XEHPC_BCS7_RING_BASE,
+ 	},
+ 	[XE_HW_ENGINE_BCS8] = {
+@@ -131,7 +131,7 @@ static const struct engine_info engine_infos[] = {
+ 		.class = XE_ENGINE_CLASS_COPY,
+ 		.instance = 8,
+ 		.irq_offset = ilog2(INTR_BCS8),
+-		.domain = XE_FW_RENDER,
++		.domain = XE_FW_GT,
+ 		.mmio_base = XEHPC_BCS8_RING_BASE,
+ 	},
+ 
 
-Best regards,
 -- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+2.53.0
 
