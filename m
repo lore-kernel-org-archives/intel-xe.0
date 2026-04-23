@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 765BCFDEE47
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 20:10:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35BE1FDEE45
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 20:15:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 386D310F23C;
-	Thu, 23 Apr 2026 20:10:56 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="ixeOZuED";
-	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A940F10F245
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Apr 2026 20:10:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1776975053;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=8glJ7TTgILqguHUb6RuJ4B6MNY8CW6X5GFuk299Uxjw=;
- b=ixeOZuEDjcp8K1ElmJl1FLWhd5Rsq+7On6oWBC/pgOZ+lMJCafUMiK9TxzU2TUqhB6jrzP
- 3H1lIb0K8/RkxmR8rBfKScFJeTKPUK+1vvmuNE7ROxPXEccz/iJMJ7CDAEpbqy9S/ErXXB
- KE9GqCOd2EWdqJ5fEtbAB6zM0Nzm9bw=
-Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-127-pED13sqPPO27LFjJ1fwGOA-1; Thu,
- 23 Apr 2026 16:10:50 -0400
-X-MC-Unique: pED13sqPPO27LFjJ1fwGOA-1
-X-Mimecast-MFC-AGG-ID: pED13sqPPO27LFjJ1fwGOA_1776975049
-Received: from mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.12])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 38ABA19560B2; Thu, 23 Apr 2026 20:10:49 +0000 (UTC)
-Received: from desnesn-thinkpadp16vgen1.rmtbr.csb (unknown [10.96.134.111])
- by mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id 5C1F819560AB; Thu, 23 Apr 2026 20:10:47 +0000 (UTC)
-From: Desnes Nunes <desnesn@redhat.com>
-To: jani.nikula@intel.com
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Desnes Nunes <desnesn@redhat.com>
-Subject: [PATCH] i915: use display instead of dereferencing dmc in
- intel_dmc_update_dc6_allowed_count
-Date: Thu, 23 Apr 2026 17:10:20 -0300
-Message-ID: <20260423201020.506908-1-desnesn@redhat.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEE5310F276;
+	Thu, 23 Apr 2026 20:15:52 +0000 (UTC)
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67C6A10F269;
+ Thu, 23 Apr 2026 20:15:51 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0294320768057549879=="
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.12
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: AarNo_8aQTD4QamB6LC5ldK2tvUReteuj_cmjqnpMDU_1776975049
-X-Mimecast-Originator: redhat.com
-Content-Transfer-Encoding: 8bit
-content-type: text/plain; charset="US-ASCII"; x-default=true
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_new_general_DRM_propert?=
+ =?utf-8?q?y_=22color_format=22_=28rev11=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nicolas Frattaroli" <nicolas.frattaroli@collabora.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 23 Apr 2026 20:15:51 -0000
+Message-ID: <177697535141.4863.18295888993018212018@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260423-color-format-v14-0-449a419ccbd4@collabora.com>
+In-Reply-To: <20260423-color-format-v14-0-449a419ccbd4@collabora.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,36 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There is no need for dereferencing the dmc pointer if the display is
-already in the scope of intel_dmc_update_dc6_allowed_count function.
+--===============0294320768057549879==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-No functional change.
+== Series Details ==
 
-Signed-off-by: Desnes Nunes <desnesn@redhat.com>
----
- drivers/gpu/drm/i915/display/intel_dmc.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Series: Add new general DRM property "color format" (rev11)
+URL   : https://patchwork.freedesktop.org/series/157911/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 1667a829e708..ba43e03d1706 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -1574,10 +1574,10 @@ void intel_dmc_update_dc6_allowed_count(struct intel_display *display,
- 	struct intel_dmc *dmc = display_to_dmc(display);
- 	u32 dc5_cur_count;
- 
--	if (DISPLAY_VER(dmc->display) < 14)
-+	if (DISPLAY_VER(display) < 14)
- 		return;
- 
--	dc5_cur_count = intel_de_read(dmc->display, DG1_DMC_DEBUG_DC5_COUNT);
-+	dc5_cur_count = intel_de_read(display, DG1_DMC_DEBUG_DC5_COUNT);
- 
- 	if (!start_tracking)
- 		dmc->dc6_allowed.count += dc5_cur_count - dmc->dc6_allowed.dc5_start;
--- 
-2.51.0
+== Summary ==
 
+CI Bug Log - changes from xe-4929-ecb61ba4a1f619b6944f4d0741b4d8a0910f460c_BAT -> xe-pw-157911v11_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8871 -> IGT_8872
+  * Linux: xe-4929-ecb61ba4a1f619b6944f4d0741b4d8a0910f460c -> xe-pw-157911v11
+
+  IGT_8871: c829dad5f9e02f627722042e429d93824b470159 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8872: e70db143b7bafe09bdea4d33188cb10d2070d0e5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4929-ecb61ba4a1f619b6944f4d0741b4d8a0910f460c: ecb61ba4a1f619b6944f4d0741b4d8a0910f460c
+  xe-pw-157911v11: 157911v11
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157911v11/index.html
+
+--===============0294320768057549879==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add new general DRM property &quot;color format&quot; (rev11)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157911/">https://patchwork.freedesktop.org/series/157911/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157911v11/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157911v11/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4929-ecb61ba4a1f619b6944f4d0741b4d8a0910f460c_BAT -&gt; xe-pw-157911v11_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8871 -&gt; IGT_8872</li>
+<li>Linux: xe-4929-ecb61ba4a1f619b6944f4d0741b4d8a0910f460c -&gt; xe-pw-157911v11</li>
+</ul>
+<p>IGT_8871: c829dad5f9e02f627722042e429d93824b470159 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8872: e70db143b7bafe09bdea4d33188cb10d2070d0e5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4929-ecb61ba4a1f619b6944f4d0741b4d8a0910f460c: ecb61ba4a1f619b6944f4d0741b4d8a0910f460c<br />
+  xe-pw-157911v11: 157911v11</p>
+
+</body>
+</html>
+
+--===============0294320768057549879==--
