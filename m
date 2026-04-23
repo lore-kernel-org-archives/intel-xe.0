@@ -4,65 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08751F99378
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 11:27:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D8D5F9937C
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 11:48:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BAEFA10EBF4;
-	Thu, 23 Apr 2026 11:27:19 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PM4OBKgx";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC34D10E865;
- Thu, 23 Apr 2026 11:27:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776943637; x=1808479637;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=5YI735XPEJkCgWEsucBd5PrMiYz/IupiNSJb7R/0oJ4=;
- b=PM4OBKgxPq9xOPoGvGQMWZSVU9jimqGlZ39UYsoAKbvLWxM9eoPQ1hvG
- pWXZse9dCv1yeIXZ5+s1RmKVWydvbvBPOcgrf2SkGkGbkJdpHuqjAlFP9
- sRbHluHiLJv3b7L5e1B2J/3aE2g0PnCej2L6CWabWu7jl0ChntRV6Slrt
- 2/mSUM7bfBOq1ASCHtUnrA0/PzHdTGvg4QqWtxd3e5McXSXMg633Z6V7Q
- XMoplaIJUERaOTeqckzI5G3+QjnQfzfKvjIg/2djRMeUTyj7mrUa4P5Ky
- n7GL3U+niLW4+Fv6wI1u49rmDZyHRtLWA7wouvY+vJTDL2MHNziIWHCTL A==;
-X-CSE-ConnectionGUID: PYeNhem4QZGhv7MrSp/mPQ==
-X-CSE-MsgGUID: eT5jcWK5SzCZH//Ul1H5Jg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11764"; a="80495789"
-X-IronPort-AV: E=Sophos;i="6.23,194,1770624000"; d="scan'208";a="80495789"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2026 04:27:17 -0700
-X-CSE-ConnectionGUID: ZEX+4CaZQgClv5j6ht9r2g==
-X-CSE-MsgGUID: 9rckGPeQRxCBLBGfWmbzJQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,194,1770624000"; d="scan'208";a="232538257"
-Received: from zzombora-mobl1 (HELO [10.245.244.147]) ([10.245.244.147])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2026 04:27:14 -0700
-Message-ID: <be42059924cde9bb16a087ee2a5abb0b9d850d68.camel@linux.intel.com>
-Subject: Re: [PATCH v2 1/5] mm: Introduce zone_appears_fragmented()
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: "David Hildenbrand (Arm)" <david@kernel.org>, Matthew Brost
- <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org
-Cc: Andrew Morton <akpm@linux-foundation.org>, Lorenzo Stoakes
- <ljs@kernel.org>,  "Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil
- Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>,  Suren
- Baghdasaryan	 <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
- linux-mm@kvack.org, 	linux-kernel@vger.kernel.org, Johannes Weiner
- <hannes@cmpxchg.org>
-Date: Thu, 23 Apr 2026 13:27:11 +0200
-In-Reply-To: <76191a17-18bf-4e9b-9ab5-dc9a48abfabb@kernel.org>
-References: <20260423055656.1696379-1-matthew.brost@intel.com>
- <20260423055656.1696379-2-matthew.brost@intel.com>
- <76191a17-18bf-4e9b-9ab5-dc9a48abfabb@kernel.org>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id A02D810F0BC;
+	Thu, 23 Apr 2026 11:48:14 +0000 (UTC)
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 247F010F0BC;
+ Thu, 23 Apr 2026 11:48:13 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5746119476562242194=="
 MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_enable_?=
+ =?utf-8?q?ccs_modifiers_on_dg2?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 23 Apr 2026 11:48:13 -0000
+Message-ID: <177694489314.2778.1704954561758894191@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260423101739.2772745-1-juhapekka.heikkila@gmail.com>
+In-Reply-To: <20260423101739.2772745-1-juhapekka.heikkila@gmail.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,101 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 2026-04-23 at 12:27 +0200, David Hildenbrand (Arm) wrote:
-> On 4/23/26 07:56, Matthew Brost wrote:
-> > Introduce zone_appears_fragmented() as a lightweight helper to
-> > allow
-> > subsystems to make coarse decisions about reclaim behavior in the
-> > presence of likely fragmentation.
-> >=20
-> > The helper implements a simple heuristic: if the number of free
-> > pages
-> > in a zone exceeds twice the high watermark, the zone is considered
-> > to
-> > have ample free memory and allocation failures are more likely due
-> > to
-> > fragmentation than overall memory pressure.
-> >=20
-> > This is intentionally imprecise and is not meant to replace the
-> > core
-> > MM compaction or fragmentation accounting logic. Instead, it
-> > provides
-> > a cheap signal for callers (e.g., shrinkers) that wish to avoid
-> > overly aggressive reclaim when sufficient free memory exists but
-> > high-order allocations may still fail.
-> >=20
-> > No functional changes; this is a preparatory helper for future
-> > users.
-> >=20
-> > Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> > Cc: Andrew Morton <akpm@linux-foundation.org>
-> > Cc: David Hildenbrand <david@kernel.org>
-> > Cc: Lorenzo Stoakes <ljs@kernel.org>
-> > Cc: "Liam R. Howlett" <Liam.Howlett@oracle.com>
-> > Cc: Vlastimil Babka <vbabka@kernel.org>
-> > Cc: Mike Rapoport <rppt@kernel.org>
-> > Cc: Suren Baghdasaryan <surenb@google.com>
-> > Cc: Michal Hocko <mhocko@suse.com>
-> > Cc: linux-mm@kvack.org
-> > Cc: linux-kernel@vger.kernel.org
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > ---
-> > =C2=A0include/linux/vmstat.h | 13 +++++++++++++
-> > =C2=A01 file changed, 13 insertions(+)
-> >=20
-> > diff --git a/include/linux/vmstat.h b/include/linux/vmstat.h
-> > index 3c9c266cf782..568d9f4f1a1f 100644
-> > --- a/include/linux/vmstat.h
-> > +++ b/include/linux/vmstat.h
-> > @@ -483,6 +483,19 @@ static inline const char *zone_stat_name(enum
-> > zone_stat_item item)
-> > =C2=A0	return vmstat_text[item];
-> > =C2=A0}
-> > =C2=A0
-> > +static inline bool zone_appears_fragmented(struct zone *zone)
-> > +{
->=20
-> "zone_likely_fragmented" or "zone_maybe_fragmented" might be clearer,
-> depending
-> on the actual semantics.
->=20
-> > +	/*
-> > +	 * Simple heuristic: if the number of free pages is more
-> > than twice the
-> > +	 * high watermark, this strongly suggests that the zone is
-> > heavily
-> > +	 * fragmented when called from a shrinker.
-> > +	 */
->=20
-> I'll cc some more people. But the "when called from a shrinker" bit
-> is
-> concerning. Are there additional semantics that should be expressed
-> in the
-> function name, for example?
->=20
-> Something that implies that this function only gives you a reasonable
-> answer in
-> a certain context.
+--===============5746119476562242194==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I think that test would not be relevant for cgroup-aware shrinking.
+== Series Details ==
 
-What about trying to pass something in the struct shrink_control? Like
-if we pass the struct scan_control's order field also in struct
-shrink_control, really expensive shrinkers could duck reclaim attempts
-from higher-order allocations that may fail anyway:
+Series: drm/i915/display: enable ccs modifiers on dg2
+URL   : https://patchwork.freedesktop.org/series/165351/
+State : success
 
-      if (sc->order > PAGE_ALLOC_COSTLY_ORDER &&
-           (sc->gfp_mask & (__GFP_NORETRY | __GFP_RETRY_MAYFAIL)) &&
-           !(sc->gfp_mask & __GFP_NOFAIL))
-           return SHRINK_STOP;
+== Summary ==
 
-Possibly exposed as an inline helper in the shrinker interface?
+CI Bug Log - changes from xe-4928-95fbbe4877e1543975d0d0f18a7cc0074416be41_BAT -> xe-pw-165351v1_BAT
+====================================================
 
-/Thomas
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
 
 
+Changes
+-------
+
+  No changes found
 
 
+Build changes
+-------------
+
+  * Linux: xe-4928-95fbbe4877e1543975d0d0f18a7cc0074416be41 -> xe-pw-165351v1
+
+  IGT_8870: 1aba4b364b6dbdf7926cc78501e7281d5176b029 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4928-95fbbe4877e1543975d0d0f18a7cc0074416be41: 95fbbe4877e1543975d0d0f18a7cc0074416be41
+  xe-pw-165351v1: 165351v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165351v1/index.html
+
+--===============5746119476562242194==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: enable ccs modifiers on dg2</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165351/">https://patchwork.freedesktop.org/series/165351/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165351v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165351v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4928-95fbbe4877e1543975d0d0f18a7cc0074416be41_BAT -&gt; xe-pw-165351v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4928-95fbbe4877e1543975d0d0f18a7cc0074416be41 -&gt; xe-pw-165351v1</li>
+</ul>
+<p>IGT_8870: 1aba4b364b6dbdf7926cc78501e7281d5176b029 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4928-95fbbe4877e1543975d0d0f18a7cc0074416be41: 95fbbe4877e1543975d0d0f18a7cc0074416be41<br />
+  xe-pw-165351v1: 165351v1</p>
+
+</body>
+</html>
+
+--===============5746119476562242194==--
