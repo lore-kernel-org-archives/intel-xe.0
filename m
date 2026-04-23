@@ -4,59 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37B50F99368
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 11:09:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6119AF99372
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 11:15:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDDA710F0B5;
-	Thu, 23 Apr 2026 11:09:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07B6E10F0AD;
+	Thu, 23 Apr 2026 11:15:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CqVKCOVW";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Sj14zMql";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 513F510F0B5
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Apr 2026 11:09:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776942546; x=1808478546;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=utZk+JTyk4eDUFflqTFKSrpJKEtNPqrsxBHCQmiLfGU=;
- b=CqVKCOVWb1hbYoevxYKq0nvPtG76JRseC22wlD1fgvf1s85AGKIyPE/F
- 1f/cxzcVifgk6yI3e40Ffq2Hf7gRI7YaepHI5QUsE3o6lRJEtN2DZQF5A
- qwZEv6Hmy262uwtBe1r1V005m7Hv1yXOWBCdujBp9uvrDSxZWTd7nsGbv
- OjTEHuJdksjSJjbz0LKLwV5Z3MS8GdfwriCiPvvAc9Ozr/AbyeW+Y0fSE
- XB9lI9Nq8VmRknNr/MejewJW793prvR7XMvx8ADFPevw/nxDjc2ujjSsw
- FQMrbveTjcBNhDyVmNNquA9djr3Ja/LqsKhVvxhMfdVsjVIXoUNHQb6c9 A==;
-X-CSE-ConnectionGUID: WZN7oTCzRmGu31KkFHIgeg==
-X-CSE-MsgGUID: 8UqwqQAVRmeNZU2xwesB/A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11764"; a="81516677"
-X-IronPort-AV: E=Sophos;i="6.23,194,1770624000"; d="scan'208";a="81516677"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2026 04:09:06 -0700
-X-CSE-ConnectionGUID: Ty9DihdsTsWkHFl9qfNMDg==
-X-CSE-MsgGUID: gT4OFLQnSjed66xNKq1VHQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,194,1770624000"; d="scan'208";a="237679808"
-Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2026 04:09:02 -0700
-Date: Thu, 23 Apr 2026 13:09:00 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Riana Tauro <riana.tauro@intel.com>
-Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
- rodrigo.vivi@intel.com, aravind.iddamsetty@linux.intel.com,
- badal.nilawar@intel.com, ravi.kishore.koppuravuri@intel.com,
- mallesh.koujalagi@intel.com, soham.purkait@intel.com
-Subject: Re: [PATCH v3 4/5] drm/xe/xe_drm_ras: Wire get-counter support into
- xe_drm_ras for CRI
-Message-ID: <aen9zByGAMBRGYCR@black.igk.intel.com>
-References: <20260421145056.253300-7-riana.tauro@intel.com>
- <20260421145056.253300-11-riana.tauro@intel.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6A6B10E308;
+ Thu, 23 Apr 2026 11:15:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Cc:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=RySvajcwr4sJSFV5Rgh1Sg6tBmWqL21R7qDcKk8OLZM=; b=Sj14zMqlNQN6TjE049NCKIw2lU
+ rnTADIeYc3tP+4CK9j1baUHC+NxALw1H3Ww+rAN7i4aQw2IMtzNYPuZC9s7RcIUPv6Qx7ByDhjp3l
+ 6bGfbMnfb7R7OJ5z53G6FzkUP5nhtmBXCV9e8vWp0T05e49jrcB3I9PKtAU61xah17dOCzXAVwVlC
+ yjtMy3CmVIgV5v5RwEeJvbdvrjmS4RF8wBnClAWJHRMUJbJsbf+SeX1xeBIi9B2jvBWZlalH1P05s
+ TJrnahS+iW16VwSzDWmLJFavpIRniyue/N6nutHPWexmjDGfylIGH/x9e2bbhJEjXWmdYEVy1OKgD
+ HNQu/79Q==;
+Received: from [90.240.106.137] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1wFs1b-0014qa-M5; Thu, 23 Apr 2026 13:15:14 +0200
+Message-ID: <fc60cf57-0662-4c40-8d70-190910d780ad@igalia.com>
+Date: Thu, 23 Apr 2026 12:15:14 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260421145056.253300-11-riana.tauro@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915/display: enable ccs modifiers on dg2
+To: Jani Nikula <jani.nikula@intel.com>,
+ Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+References: <20260423101739.2772745-1-juhapekka.heikkila@gmail.com>
+ <efeef92c230d81764e1fada17c2a81012548cead@intel.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <efeef92c230d81764e1fada17c2a81012548cead@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,82 +61,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Apr 21, 2026 at 08:21:00PM +0530, Riana Tauro wrote:
-> Hook CRI get-counter support to xe_drm_ras to allow userspace to query
-> counters if supported. When userspace queries a drm_ras error counter,
-> fetch the latest counter value from system controller.
+
+On 23/04/2026 11:28, Jani Nikula wrote:
+> On Thu, 23 Apr 2026, Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com> wrote:
+>> Since Xe driver aux ccs enablement dg2 ccs modifiers have been
+>> disabled on both Xe and i915 drivers. Here allow dg2 to use
+>> ccs again for framebuffers.
+>>
+>> Fixes: 6a99e91 ("drm/i915/display: Detect AuxCCS support via display parent interface")
+>> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+>> ---
+>>   drivers/gpu/drm/i915/i915_driver.c | 5 ++++-
+>>   1 file changed, 4 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+>> index d31819758f3d..7a73461d398a 100644
+>> --- a/drivers/gpu/drm/i915/i915_driver.c
+>> +++ b/drivers/gpu/drm/i915/i915_driver.c
+>> @@ -54,9 +54,11 @@
+>>   #include "display/intel_bw.h"
+>>   #include "display/intel_cdclk.h"
+>>   #include "display/intel_crtc.h"
+>> +#include "display/intel_display_core.h"
+>>   #include "display/intel_display_device.h"
+>>   #include "display/intel_display_driver.h"
+>>   #include "display/intel_display_power.h"
+>> +#include "display/intel_display_types.h"
+>>   #include "display/intel_dmc.h"
+>>   #include "display/intel_dp.h"
+>>   #include "display/intel_dpt.h"
+>> @@ -749,8 +751,9 @@ static void fence_priority_display(struct dma_fence *fence)
+>>   static bool has_auxccs(struct drm_device *drm)
+>>   {
+>>   	struct drm_i915_private *i915 = to_i915(drm);
+>> +	struct intel_display *display = i915->display;
+>>   
+>> -	return IS_GRAPHICS_VER(i915, 9, 12) ||
+>> +	return IS_DISPLAY_VER(display, 9, 12) ||
 > 
-> Integrate this with xe_drm_ras.
+> Sorry, can't do this in i915 core.
+
+Was DG2 never Gen12? I totally forgot.. my bad.. Adding IS_DG2 to the 
+checks below should work, no?
+
+Regards,
+
+Tvrtko
+
 > 
-> Usage :
+> BR,
+> Jani.
 > 
-> Query all error counter value using ynl
+>>   	       IS_ALDERLAKE_P(i915) ||
+>>   	       IS_METEORLAKE(i915);
+>>   }
 > 
-> $ sudo ynl --family drm_ras --dump get-error-counter --json \
-> '{"node-id":0}'
-> [{'error-id': 1, 'error-name': 'core-compute', 'error-value': 0},
->  {'error-id': 2, 'error-name': 'soc-internal', 'error-value': 0},
->  {'error-id': 3, 'error-name': 'device-memory', 'error-value': 0},
->  {'error-id': 4, 'error-name': 'pcie', 'error-value': 0},
->  {'error-id': 5, 'error-name': 'fabric', 'error-value': 0}]
-> 
-> Query single error counter value using ynl
-> 
-> $ sudo ynl --family drm_ras  --do get-error-counter --json \
->   '{"node-id":1, "error-id":1}'
 
-Nit: Align spacing with above command.
-
-> {'error-id': 1, 'error-name': 'core-compute', 'error-value': 2}
-> 
-> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-> ---
-> v2: split patches (Raag)
-> ---
->  drivers/gpu/drm/xe/xe_drm_ras.c | 19 ++++++++++++-------
->  1 file changed, 12 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_drm_ras.c b/drivers/gpu/drm/xe/xe_drm_ras.c
-> index e07dc23a155e..7040ff0f9539 100644
-> --- a/drivers/gpu/drm/xe/xe_drm_ras.c
-> +++ b/drivers/gpu/drm/xe/xe_drm_ras.c
-> @@ -11,19 +11,28 @@
->  
->  #include "xe_device_types.h"
->  #include "xe_drm_ras.h"
-> +#include "xe_ras.h"
->  
->  static const char * const error_components[] = DRM_XE_RAS_ERROR_COMPONENT_NAMES;
->  static const char * const error_severity[] = DRM_XE_RAS_ERROR_SEVERITY_NAMES;
->  
-> -static int hw_query_error_counter(struct xe_drm_ras_counter *info,
-> +static int hw_query_error_counter(struct xe_device *xe,
-> +				  const enum drm_xe_ras_error_severity severity,
->  				  u32 error_id, const char **name, u32 *val)
->  {
-> +	struct xe_drm_ras *ras = &xe->ras;
-> +	struct xe_drm_ras_counter *info = ras->info[severity];
-
-Use int ret = 0 ...
-
->  	if (!info || !info[error_id].name)
->  		return -ENOENT;
->  
->  	*name = info[error_id].name;
->  	*val = atomic_read(&info[error_id].counter);
-
-Move this as an else case below and ...
-
-> +	/* Fetch counter from system controller if supported */
-> +	if (xe->info.has_sysctrl)
-> +		return xe_ras_get_error_counter(xe, severity, error_id, val);
-
-ret = get_counter();
-
->  	return 0;
-
-return ret;
-
-Raag
-
->  }
