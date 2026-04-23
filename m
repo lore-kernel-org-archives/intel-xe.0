@@ -4,71 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC0DBFDEE57
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4FC0FDEE58
 	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 22:49:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B343810E375;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8D6710E376;
 	Thu, 23 Apr 2026 22:49:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Kl8lQO3h";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GZT/pxtz";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1476B10E121
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B33FB10E121
  for <intel-xe@lists.freedesktop.org>; Thu, 23 Apr 2026 22:49:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776984548; x=1808520548;
+ t=1776984549; x=1808520549;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=serCkpzQIfEk65OTSyn+PbZqEE+azfS2OmK67yM1d4k=;
- b=Kl8lQO3h+X+SMCney+tvi2RiR248wYePWxNUi19WGTIl62SbdjAxhunV
- QJeag/Jm2+P2hd18Wb3oFSS6Enc2tqBPfVoQRtgW/xog6rhp6ePCap2rf
- XnkvTdxfeB6RpkMy9AVsYO6PLAMruAgnWFAd0KfEyZmWNcSQA0/DdgnF+
- 5QBoD+FZR4oeBsg3DLA/ZqX9or9FovCXzDGW86a0lZ3WJPGgGkwtJdhk+
- 518m+cejsJDkdUv1GO1IqKhQEKQeYNiDyAPo7OQ/ausnJGec9BmPLOiT/
- PIoiwXAF22ins3FOGJJ7pFzDKg0oxVgq9qs+HfHmupDg/bTezuxjPtJ9q A==;
-X-CSE-ConnectionGUID: tNSZotCTQVqG2/me7+z7Eg==
-X-CSE-MsgGUID: dfm1hx8aSz23wMc973Jo5Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11765"; a="65497062"
-X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="65497062"
+ bh=efKT8TV4l5gIg8k8S7LA8ioXvvQ3FLJApwc8PfSfeIE=;
+ b=GZT/pxtzzYz/GlFSzhyNre1hNOk5B2Hm8Ss+zUirv4vSrlTEGD4Au7+7
+ 1pzDODpCwQprk56KGncWOkqViB8lzEU2kg5wWyJo4x0dFhv3F5MXDktYB
+ DXkBjwRptlV0uYPjqIGGQ28ueJfEKr8Kvp9DTWnSXqPGG1kLTMVfUDCon
+ un2VEyk2kf1a8eTfOXF95vMc6x3D168NQaAZ8xni7DQrApZKez9gMHj/s
+ xwhrBkOZ+V88dQQMdcRG8ikUC5nsYqIYuvHF/XxZWcFlzkMPaEkzWXZ6D
+ We2SEMTSpL3xMizq6tfXL+AI6Yv2Xv37+gvD2ccrZDPkIvmMD9epN1GK4 w==;
+X-CSE-ConnectionGUID: x1wwRnW1RBu9xycyU/bsLw==
+X-CSE-MsgGUID: SnOLL/YFRGK0aWt2No4NFw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11765"; a="65497069"
+X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="65497069"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2026 15:49:07 -0700
-X-CSE-ConnectionGUID: Zi/ZtCSoQnCmpDLP7CkXYA==
-X-CSE-MsgGUID: ryiP0ZAISom5ZrCKyaDa1A==
+ 23 Apr 2026 15:49:08 -0700
+X-CSE-ConnectionGUID: tITCK/XDQQy/PZXcTQBFNw==
+X-CSE-MsgGUID: bbEAsRroRkKQwAbjnYSKRA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="232696184"
+X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="232696199"
 Received: from mdroper-desk1.fm.intel.com (HELO
  mdroper-desk1.amr.corp.intel.com) ([10.1.39.133])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Apr 2026 15:49:04 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
-Date: Thu, 23 Apr 2026 15:48:48 -0700
-Subject: [PATCH 01/10] drm/xe: Move CCS enablement to engine setup RTP
+Date: Thu, 23 Apr 2026 15:48:53 -0700
+Subject: [PATCH 06/10] drm/xe: Const-ify parameters to xe_device_has_*
+ functions
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260423-engine-setup-v1-1-baa94014e3e5@intel.com>
+Message-Id: <20260423-engine-setup-v1-6-baa94014e3e5@intel.com>
 References: <20260423-engine-setup-v1-0-baa94014e3e5@intel.com>
 In-Reply-To: <20260423-engine-setup-v1-0-baa94014e3e5@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matt Roper <matthew.d.roper@intel.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4040;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1954;
  i=matthew.d.roper@intel.com; h=from:subject:message-id;
- bh=serCkpzQIfEk65OTSyn+PbZqEE+azfS2OmK67yM1d4k=;
- b=owEBbQKS/ZANAwAKAU15JAXIcpAEAcsmYgBp6qHeNNSFalZWUVfxNVOZMz4+4TjwQSuyXLan8
- NLkxGBFNhGJAjMEAAEKAB0WIQTCZ8MJRH/rTz8hbaxNeSQFyHKQBAUCaeqh3gAKCRBNeSQFyHKQ
- BKc4D/9+gbpTfYHEhI5dQnXMJPSQ2CzPF3XPb6cXGq3jpOF6Sk/JGWlpFbhMlbOkhpg0ZgXvjQh
- K3LvXkH8xI5TCG8GOqb+kDQWOIdQsHSTp2G0gnfzjgRuDzuvt7KDdojv/QBuPal2axn98ypcbPu
- +ZqC/zEBzIhb7uRve8rvR+zwee4XRLIO6AE0jzfOz/w/z5elsgbPGIxFaDzc8ZVFXpoGBih9ytG
- hXHH9V8TGUEFjY3rD5C0tOSdUGNcvUt4vGNiwNlWrlk1xKZvj+fREtjZrag2do9DIKAHkX9b41u
- 1FQeMMDJas+9Fnr8j05D1it207bky+30LpfAQsy2+1XOEkqVtlcEZmkzn02holGtA4hpvJ5ELPX
- PZ79nfJjgSryG2dSkFInFKC1d3s5cNjJTYlL1p54VFzGoHf3iFID7TmJnDyubyQcLsswkF9Vwt7
- sUkePqncyKSetPeRe6ZVbigf7+0VLBIuCimN9ccAq4LgxNI4XGf+Hw5jkLZLbVJmN7IjwhXTYOB
- oT4qTSlAzfZyMhocJSfOZ7ixrtibztFxH/JhpvM4w4DsVvI6uVHOnAQBaQntLwH22ZcWO1OSYPP
- P/E7BtXoaVcpQB+gazM1Bdsqm0dfFVTrIdGH77OYyoP/llbbBdl3tNa9QJdTCYzu2u4rPtD7nhw
- 70dhSyXjhUbOoEw==
+ bh=efKT8TV4l5gIg8k8S7LA8ioXvvQ3FLJApwc8PfSfeIE=;
+ b=owEBbQKS/ZANAwAKAU15JAXIcpAEAcsmYgBp6qHeC0O0Msnqap06BU306V7tM2cHzit073ZrG
+ eZ2wHdvnwaJAjMEAAEKAB0WIQTCZ8MJRH/rTz8hbaxNeSQFyHKQBAUCaeqh3gAKCRBNeSQFyHKQ
+ BLiMEACvN65Pmsr2OINj2MuUF8YRdXe7zT/RPHjskTf+HB/DcpnOWWE0oNS8EH5Og7cpyWW4MBJ
+ Qlr6geXHIFXh7ox+2wbzJxMlXBNGfRHfNvU1yPhxMIMi1vqnwYMEuc0pNPFMajvECq37iaoFfQS
+ 1Ltv75CtJ/0f13A1QbfQrEaaKmyXXAzsJifNM65HjigEcFvl4CNDEgUmQodB+iDbGCRM+EZTCHf
+ EJW33lA8uge44nJREUZg1kdH2PfqIAPhfEdMLhTKLalRdFg1vD8hKfiIf/g6UmHWZR0CpLctTZf
+ NJZsoaiVOdCz7fIPW/YJMyTg+C81gZRvfnIKb4f8DQGCfncQPQq1iHoUm3Z7A3qeZXAlaVcDAgV
+ ERtQ4hBVuWOLyR0SGIvdU5aZzDU2Tfx5iRrVuzz4vkBWjvzwPXLfVW6nwfGoZK33PIEzxHztnpN
+ 6UUHv95kP4JYr01U12oJgL0XtIqT2Nc2RsasCqmylPzMzfbjzrljxrvXYyqTMY88rsLMa1Lrjmt
+ UzGSSpP4cpCnFKWsqp319oNnqXIZZIuICdczFyJZe2A3JGMqJ9+WDCleVQ4DzTmXnYkkA1sFAfZ
+ 5ctGJQ058ve82LWe7uiqmxVDYCygpK2Qi3XYYtzZK6AWWSZLmfyNT1v5Mf1jHVK9ehtPwuSgr9f
+ 34Ig6sYqnUSCtrg==
 X-Developer-Key: i=matthew.d.roper@intel.com; a=openpgp;
  fpr=C267C309447FEB4F3F216DAC4D792405C8729004
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -85,92 +86,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Most register programming for engine setup happens via RTP tables in
-hw_engine_setup_default_state().  Move the programming of RCU_MODE[0]
-which enables the platform's CCS engine(s) there.  This both makes the
-code more consistent (other RCU_MODE register programming is already
-happening in this RTP table) and improves debuggability (since RTP
-contents and checks of their correct programming are exposed via
-debugfs).  It also helps consolidate the regular driver initialization
-paths with the vestigial and currently unused execlist (i.e., non-GuC)
-initialization.
-
-With the original programming, the RCU_MODE register (which is a single
-global register, not a per-engine register) was getting re-programmed
-with the same value during the initialization of each CCS engine.  When
-moved to the RTP table, we use the xe_rtp_match_first_render_or_compute
-match function so that it will just be programmed once, while doing the
-initialization for the first RCS/CCS engine, which avoids the redundant
-and unnecessary repetition.
-
-We can also safely drop the explicit addition of RCU_MODE from the GuC
-ADS save-restore list now since all registers programmed via RTP tables
-are automatically added to the GuC's list.
+None of these functions modify the Xe device parameter, and marking it
+as const will avoid warnings when the callsite wants to pass a const
+pointer.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_execlist.c  |  4 ----
- drivers/gpu/drm/xe/xe_guc_ads.c   |  1 -
- drivers/gpu/drm/xe/xe_hw_engine.c | 10 ++++------
- 3 files changed, 4 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/xe/xe_device.h | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
-index 1f8d358e60fd..026a1ec0c868 100644
---- a/drivers/gpu/drm/xe/xe_execlist.c
-+++ b/drivers/gpu/drm/xe/xe_execlist.c
-@@ -59,10 +59,6 @@ static void __start_lrc(struct xe_hw_engine *hwe, struct xe_lrc *lrc,
- 		lrc_desc |= FIELD_PREP(SW_CTX_ID, ctx_id);
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index 555c191f7510..355d69dc8f54 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -146,37 +146,37 @@ static inline struct xe_force_wake *gt_to_fw(struct xe_gt *gt)
  
--	if (hwe->class == XE_ENGINE_CLASS_COMPUTE)
--		xe_mmio_write32(mmio, RCU_MODE,
--				REG_MASKED_FIELD_ENABLE(RCU_MODE_CCS_ENABLE));
--
- 	xe_lrc_write_ctx_reg(lrc, CTX_RING_TAIL, lrc->ring.tail);
- 	lrc->ring.old_tail = lrc->ring.tail;
+ void xe_device_assert_mem_access(struct xe_device *xe);
  
-diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-index 92c6981fe220..d0497d9f43a2 100644
---- a/drivers/gpu/drm/xe/xe_guc_ads.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-@@ -748,7 +748,6 @@ static unsigned int guc_mmio_regset_write(struct xe_guc_ads *ads,
- 		{ .reg = RING_MODE(hwe->mmio_base),			},
- 		{ .reg = RING_HWS_PGA(hwe->mmio_base),			},
- 		{ .reg = RING_IMR(hwe->mmio_base),			},
--		{ .reg = RCU_MODE, .skip = hwe != hwe_rcs_reset_domain	},
- 		{ .reg = CCS_MODE,
- 		  .skip = hwe != hwe_rcs_reset_domain || !xe_gt_ccs_mode_enabled(hwe->gt) },
- 	};
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 2f9c1c063f16..3d9931f54cee 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -325,14 +325,8 @@ u32 xe_hw_engine_mmio_read32(struct xe_hw_engine *hwe, struct xe_reg reg)
- 
- void xe_hw_engine_enable_ring(struct xe_hw_engine *hwe)
+-static inline bool xe_device_has_flat_ccs(struct xe_device *xe)
++static inline bool xe_device_has_flat_ccs(const struct xe_device *xe)
  {
--	u32 ccs_mask =
--		xe_hw_engine_mask_per_class(hwe->gt, XE_ENGINE_CLASS_COMPUTE);
- 	u32 ring_mode = REG_MASKED_FIELD_ENABLE(GFX_DISABLE_LEGACY_MODE);
+ 	return xe->info.has_flat_ccs;
+ }
  
--	if (hwe->class == XE_ENGINE_CLASS_COMPUTE && ccs_mask)
--		xe_mmio_write32(&hwe->gt->mmio, RCU_MODE,
--				REG_MASKED_FIELD_ENABLE(RCU_MODE_CCS_ENABLE));
--
- 	xe_hw_engine_mmio_write32(hwe, RING_HWSTAM(0), ~0x0);
- 	xe_hw_engine_mmio_write32(hwe, RING_HWS_PGA(0),
- 				  xe_bo_ggtt_addr(hwe->hwsp));
-@@ -465,6 +459,10 @@ hw_engine_setup_default_state(struct xe_hw_engine *hwe)
- 		  XE_RTP_ACTIONS(SET(CSFE_CHICKEN1(0), CS_PRIORITY_MEM_READ,
- 				     XE_RTP_ACTION_FLAG(ENGINE_BASE)))
- 		},
-+		{ XE_RTP_NAME("Enable CCS Engine(s)"),
-+		  XE_RTP_RULES(FUNC(xe_rtp_match_first_render_or_compute)),
-+		  XE_RTP_ACTIONS(SET(RCU_MODE, RCU_MODE_CCS_ENABLE))
-+		},
- 		/* Use Fixed slice CCS mode */
- 		{ XE_RTP_NAME("RCU_MODE_FIXED_SLICE_CCS_MODE"),
- 		  XE_RTP_RULES(FUNC(xe_hw_engine_match_fixed_cslice_mode)),
+-static inline bool xe_device_has_sriov(struct xe_device *xe)
++static inline bool xe_device_has_sriov(const struct xe_device *xe)
+ {
+ 	return xe->info.has_sriov;
+ }
+ 
+-static inline bool xe_device_has_msix(struct xe_device *xe)
++static inline bool xe_device_has_msix(const struct xe_device *xe)
+ {
+ 	return xe->irq.msix.nvec > 0;
+ }
+ 
+-static inline bool xe_device_has_memirq(struct xe_device *xe)
++static inline bool xe_device_has_memirq(const struct xe_device *xe)
+ {
+ 	return GRAPHICS_VERx100(xe) >= 1250;
+ }
+ 
+-static inline bool xe_device_uses_memirq(struct xe_device *xe)
++static inline bool xe_device_uses_memirq(const struct xe_device *xe)
+ {
+ 	return xe_device_has_memirq(xe) && (IS_SRIOV_VF(xe) || xe_device_has_msix(xe));
+ }
+ 
+-static inline bool xe_device_has_lmtt(struct xe_device *xe)
++static inline bool xe_device_has_lmtt(const struct xe_device *xe)
+ {
+ 	return IS_DGFX(xe);
+ }
+ 
+-static inline bool xe_device_has_mert(struct xe_device *xe)
++static inline bool xe_device_has_mert(const struct xe_device *xe)
+ {
+ 	return xe->info.has_mert;
+ }
 
 -- 
 2.53.0
