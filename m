@@ -4,27 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D597FAD41B
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 06:53:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDDA8F94CBE
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 07:07:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22E4010EF74;
-	Thu, 23 Apr 2026 06:53:28 +0000 (UTC)
-Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51DFA10EF74;
- Thu, 23 Apr 2026 06:53:27 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2162872141057539842=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_mm=2C_drm/ttm=2C_drm/xe=3A_?=
- =?utf-8?q?Avoid_reclaim/eviction_loops_under_fragmentation?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64C3610EF7A;
+	Thu, 23 Apr 2026 07:07:59 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="o85ntXy6";
+	dkim-atps=neutral
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com
+ [209.85.128.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A908C10EF7A
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Apr 2026 07:07:57 +0000 (UTC)
+Received: by mail-yw1-f178.google.com with SMTP id
+ 00721157ae682-79db5e18ac6so76333517b3.1
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Apr 2026 00:07:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1776928077; x=1777532877; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=IrQdM6QTG5EwwwU/jz1icvgNcezQbhYbCkQmJuaCPpU=;
+ b=o85ntXy6YYTW2dt51goLSZh+JrDWez8CN9OIWQlSL6zFWRD3kbikn+FGBNcd+Ag4Dj
+ MT/1UWfo446g9pXBFvBvoqoKOtzZ/nbIQemQWZ0g190yoNLy1C2in/6ONuqF7dRZmEYg
+ +6lJul/A6HQ/5OAshAXBlrmVMVwZbbP/cjNsRePmMBvCvpFAy7PQuUAJww5SOZ+noRzT
+ tedxTxxnZgmmEA9NBGn8+l5pdN90LYl1GpT2wR08eNmFcB/Z6EMGz8+mhMjqH1SFfVUe
+ AzyZA6TN+/8cgyaJ5WJ08ft4cgQGNeVtM2KeGlNLoYnOplNQKKgCiE12QT9QyKmPTIzJ
+ b8Kw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1776928077; x=1777532877;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=IrQdM6QTG5EwwwU/jz1icvgNcezQbhYbCkQmJuaCPpU=;
+ b=oo7ZhaIC88buuPjzJHMrIwnn5K+vpgnmm3l/uo1t7ksBHAyVhYyrBGgtLwpfnTKV9A
+ K9Oikpd2U7DZWL6FvchioQqEbVot6r90UcC1UFbQ1krDXETXmF8D7GhCg1FqxlVtOjsD
+ yEYXm0WFyu6IQUSUEVp5y7jvkm7E966nsjZuPsoms31KYjBnKI+RrAv1jmajrjsApm4W
+ kSExukt7CmPFSIo9WDMEibnffeiHeh0D8mmEpU4KTA6g1BFo+NQUi6Cs9UMDvXdCqKRW
+ ZZkah5gXRbXoUe7CHG37OGxnzCHfXhHeGP1CuafcQVE1giEM4gmezNqJUchlz6QOeG4Y
+ d1vQ==
+X-Gm-Message-State: AOJu0YxMfz7kN+LwQnSCjwMvQPZxdqMt5UF54wkmcVaroNBcZyGOLGlG
+ vUyBAzHYJqi/5cd3xskMJyx9JyaFOxPtPGJlmqZg0T666Y/i/nV3et+k
+X-Gm-Gg: AeBDiesSGezbG7ENALrTG8IS5ZVX5BeZ1lm3/Eb6bZNYwl74M7PhlnYLDM6+S8aS9LV
+ 5I7BmfO0+nPIl1fieRVoxMNTDXKXbc3/YtynVNbcL5ZTbPGwpOWKA3T2oiDGQ/vYFJ/v1zfmtlg
+ rCNs5gj/i1wTzp1nlg0gI1kFgPMljOqMRQi8ZnrmmA3fll9p76gwhk6UJofU/dFWi53kUlY6Dry
+ uL8p4TIY6k43x9F8Y+j9HWNDtGJzprkr39zc9t5B/RZQyLfpf+fDyU9eGfN9yyQhd8NgEte74am
+ ivRAdF9m0cgYUqW98CVbdmOmscMqRbJ6pBnI/alMvBqI53mKShWC6oJBMc+REwCc2LdfkESrAWg
+ yA9hGKiNyfFLbxSyD8vO7dKZLSJITGSoreZggcL2cl6CgZtMzytD/h3u2tTar/XJ9D7xeOTvqai
+ sX4sS5eyvT4LU3a9f4mdeBy2qXiUqB
+X-Received: by 2002:a05:690e:150a:b0:654:6147:68a9 with SMTP id
+ 956f58d0204a3-654614785c2mr2368553d50.6.1776928076726; 
+ Thu, 23 Apr 2026 00:07:56 -0700 (PDT)
+Received: from localhost ([172.216.252.33]) by smtp.gmail.com with ESMTPSA id
+ 956f58d0204a3-65314b26598sm9027907d50.2.2026.04.23.00.07.54
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 23 Apr 2026 00:07:56 -0700 (PDT)
+Date: Thu, 23 Apr 2026 10:07:50 +0300
+From: Dan Carpenter <error27@gmail.com>
+To: Matt Roper <matthew.d.roper@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 23 Apr 2026 06:53:27 -0000
-Message-ID: <177692720732.1681.1055035428366222847@5ab824fced77>
-X-Patchwork-Hint: ignore
-References: <20260423055656.1696379-1-matthew.brost@intel.com>
-In-Reply-To: <20260423055656.1696379-1-matthew.brost@intel.com>
+Subject: [bug report] drm/xe/reg_sr: Allow register_save_restore_check
+ debugfs to verify LRC values
+Message-ID: <aenFRrHqX-d1_hUs@stanley.mountain>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +79,48 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2162872141057539842==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hello Matt Roper,
 
-== Series Details ==
+Commit 764af38af22a ("drm/xe/reg_sr: Allow
+register_save_restore_check debugfs to verify LRC values") from Feb
+18, 2026 (linux-next), leads to the following Smatch static checker
+warning:
 
-Series: mm, drm/ttm, drm/xe: Avoid reclaim/eviction loops under fragmentation
-URL   : https://patchwork.freedesktop.org/series/165329/
-State : success
+	drivers/gpu/drm/xe/xe_reg_sr.c:272 xe_reg_sr_lrc_check()
+	error: uninitialized symbol 'val'.
 
-== Summary ==
+drivers/gpu/drm/xe/xe_reg_sr.c
+    257 void xe_reg_sr_lrc_check(struct xe_reg_sr *sr,
+    258                          struct xe_gt *gt,
+    259                          struct xe_hw_engine *hwe,
+    260                          struct drm_printer *p)
+    261 {
+    262         struct xe_reg_sr_entry *entry;
+    263         unsigned long offset;
+    264 
+    265         xa_for_each(&sr->xa, offset, entry) {
+    266                 u32 val;
+    267                 int ret = xe_lrc_lookup_default_reg_value(gt, hwe->class, offset, &val);
+    268                 u32 mask = entry->clr_bits | entry->set_bits;
+    269 
+    270                 if (ret == -ENOENT)
 
-CI Bug Log - changes from xe-4927-9917a06970fd6775b7b4259be6cca21cb4e2b165_BAT -> xe-pw-165329v1_BAT
-====================================================
+Smatch wants -EINVAL to be handled as well...
 
-Summary
--------
+    271                         drm_printf(p, "%#8lx :: not found in LRC for %s\n", offset, hwe->name);
+--> 272                 else if ((val & mask) != entry->set_bits)
 
-  **SUCCESS**
+Otherwise it says that val isn't initialized.
 
-  No regressions found.
+    273                         drm_printf(p, "%#8lx & %#10x :: expected %#10x got %#10x\n",
+    274                                    offset, mask, entry->set_bits, val & mask);
+    275         }
+    276 }
 
-  
+This email is a free service from the Smatch-CI project [smatch.sf.net].
 
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-4927-9917a06970fd6775b7b4259be6cca21cb4e2b165 -> xe-pw-165329v1
-
-  IGT_8870: 1aba4b364b6dbdf7926cc78501e7281d5176b029 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4927-9917a06970fd6775b7b4259be6cca21cb4e2b165: 9917a06970fd6775b7b4259be6cca21cb4e2b165
-  xe-pw-165329v1: 165329v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165329v1/index.html
-
---===============2162872141057539842==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>mm, drm/ttm, drm/xe: Avoid reclaim/eviction loops under fragmentation</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165329/">https://patchwork.freedesktop.org/series/165329/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165329v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165329v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4927-9917a06970fd6775b7b4259be6cca21cb4e2b165_BAT -&gt; xe-pw-165329v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4927-9917a06970fd6775b7b4259be6cca21cb4e2b165 -&gt; xe-pw-165329v1</li>
-</ul>
-<p>IGT_8870: 1aba4b364b6dbdf7926cc78501e7281d5176b029 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4927-9917a06970fd6775b7b4259be6cca21cb4e2b165: 9917a06970fd6775b7b4259be6cca21cb4e2b165<br />
-  xe-pw-165329v1: 165329v1</p>
-
-</body>
-</html>
-
---===============2162872141057539842==--
+regards,
+dan carpenter
