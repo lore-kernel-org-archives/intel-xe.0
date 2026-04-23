@@ -4,72 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4FC0FDEE58
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 22:49:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42B40FDEE4D
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 22:49:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8D6710E376;
-	Thu, 23 Apr 2026 22:49:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05CFF10E121;
+	Thu, 23 Apr 2026 22:49:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GZT/pxtz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hMXcWHKd";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B33FB10E121
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80AF210E121
  for <intel-xe@lists.freedesktop.org>; Thu, 23 Apr 2026 22:49:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1776984549; x=1808520549;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=efKT8TV4l5gIg8k8S7LA8ioXvvQ3FLJApwc8PfSfeIE=;
- b=GZT/pxtzzYz/GlFSzhyNre1hNOk5B2Hm8Ss+zUirv4vSrlTEGD4Au7+7
- 1pzDODpCwQprk56KGncWOkqViB8lzEU2kg5wWyJo4x0dFhv3F5MXDktYB
- DXkBjwRptlV0uYPjqIGGQ28ueJfEKr8Kvp9DTWnSXqPGG1kLTMVfUDCon
- un2VEyk2kf1a8eTfOXF95vMc6x3D168NQaAZ8xni7DQrApZKez9gMHj/s
- xwhrBkOZ+V88dQQMdcRG8ikUC5nsYqIYuvHF/XxZWcFlzkMPaEkzWXZ6D
- We2SEMTSpL3xMizq6tfXL+AI6Yv2Xv37+gvD2ccrZDPkIvmMD9epN1GK4 w==;
-X-CSE-ConnectionGUID: x1wwRnW1RBu9xycyU/bsLw==
-X-CSE-MsgGUID: SnOLL/YFRGK0aWt2No4NFw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11765"; a="65497069"
-X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="65497069"
+ bh=SpwShHTK6cDix3R6xayRBZMfBzwEd911TSiCaIdnTjk=;
+ b=hMXcWHKdG/Zq5QOrRQ6SRuB1aXUxYDyfdYOewwxHMIf4C62x1AYCGkwz
+ FEjHD0hw2IvaK/ty1TkxFl4UcBaBpOZr87/AD0EyALKB9sUxcfr3+PxuV
+ qGUU0PP7HAR0zGeKonXqWCmCORoV6e/IsU0FKvkHwg7iHipHQ0nyVnCcw
+ lFyv4wa6CXSk/o2MsGf5fTSHNHtymcaXj0vXvbpn5BQty+MYqJpN2nYo2
+ teSSTqWyXExfECP6fv6z8lNmFotIqU8AQIwPkYD8uNsR+slAQ514rW2Nh
+ g9D8Kl2jhlozs70Qt3PREPt+tqlXPUMe211oOvJEG/tzpeP+YWlzCNLDZ w==;
+X-CSE-ConnectionGUID: iB+uhpHFQOmBAtEZVy+CiA==
+X-CSE-MsgGUID: 2+VHt7sgQxqQyOYQPnZBeA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11765"; a="65497066"
+X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="65497066"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Apr 2026 15:49:08 -0700
-X-CSE-ConnectionGUID: tITCK/XDQQy/PZXcTQBFNw==
-X-CSE-MsgGUID: bbEAsRroRkKQwAbjnYSKRA==
+X-CSE-ConnectionGUID: VrlthNRPS2uu46UI1Ai21g==
+X-CSE-MsgGUID: MFvXCWI3RC6XTKNuA530dw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="232696199"
+X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="232696209"
 Received: from mdroper-desk1.fm.intel.com (HELO
  mdroper-desk1.amr.corp.intel.com) ([10.1.39.133])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2026 15:49:04 -0700
+ 23 Apr 2026 15:49:05 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
-Date: Thu, 23 Apr 2026 15:48:53 -0700
-Subject: [PATCH 06/10] drm/xe: Const-ify parameters to xe_device_has_*
- functions
+Date: Thu, 23 Apr 2026 15:48:56 -0700
+Subject: [PATCH 09/10] drm/xe: Drop xe_hw_engine_mmio_write32()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260423-engine-setup-v1-6-baa94014e3e5@intel.com>
+Message-Id: <20260423-engine-setup-v1-9-baa94014e3e5@intel.com>
 References: <20260423-engine-setup-v1-0-baa94014e3e5@intel.com>
 In-Reply-To: <20260423-engine-setup-v1-0-baa94014e3e5@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matt Roper <matthew.d.roper@intel.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1954;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2179;
  i=matthew.d.roper@intel.com; h=from:subject:message-id;
- bh=efKT8TV4l5gIg8k8S7LA8ioXvvQ3FLJApwc8PfSfeIE=;
- b=owEBbQKS/ZANAwAKAU15JAXIcpAEAcsmYgBp6qHeC0O0Msnqap06BU306V7tM2cHzit073ZrG
- eZ2wHdvnwaJAjMEAAEKAB0WIQTCZ8MJRH/rTz8hbaxNeSQFyHKQBAUCaeqh3gAKCRBNeSQFyHKQ
- BLiMEACvN65Pmsr2OINj2MuUF8YRdXe7zT/RPHjskTf+HB/DcpnOWWE0oNS8EH5Og7cpyWW4MBJ
- Qlr6geXHIFXh7ox+2wbzJxMlXBNGfRHfNvU1yPhxMIMi1vqnwYMEuc0pNPFMajvECq37iaoFfQS
- 1Ltv75CtJ/0f13A1QbfQrEaaKmyXXAzsJifNM65HjigEcFvl4CNDEgUmQodB+iDbGCRM+EZTCHf
- EJW33lA8uge44nJREUZg1kdH2PfqIAPhfEdMLhTKLalRdFg1vD8hKfiIf/g6UmHWZR0CpLctTZf
- NJZsoaiVOdCz7fIPW/YJMyTg+C81gZRvfnIKb4f8DQGCfncQPQq1iHoUm3Z7A3qeZXAlaVcDAgV
- ERtQ4hBVuWOLyR0SGIvdU5aZzDU2Tfx5iRrVuzz4vkBWjvzwPXLfVW6nwfGoZK33PIEzxHztnpN
- 6UUHv95kP4JYr01U12oJgL0XtIqT2Nc2RsasCqmylPzMzfbjzrljxrvXYyqTMY88rsLMa1Lrjmt
- UzGSSpP4cpCnFKWsqp319oNnqXIZZIuICdczFyJZe2A3JGMqJ9+WDCleVQ4DzTmXnYkkA1sFAfZ
- 5ctGJQ058ve82LWe7uiqmxVDYCygpK2Qi3XYYtzZK6AWWSZLmfyNT1v5Mf1jHVK9ehtPwuSgr9f
- 34Ig6sYqnUSCtrg==
+ bh=SpwShHTK6cDix3R6xayRBZMfBzwEd911TSiCaIdnTjk=;
+ b=owEBbQKS/ZANAwAKAU15JAXIcpAEAcsmYgBp6qHf3JwbBMQIfu/20iwnAKvaviiQGluRBuLmm
+ nBnyc/R0R2JAjMEAAEKAB0WIQTCZ8MJRH/rTz8hbaxNeSQFyHKQBAUCaeqh3wAKCRBNeSQFyHKQ
+ BK/nD/wL5WOL8aW9j0MZ/WtE4BHnUUbzfuUmpIPSjiJQN0l0PvdihxH35jmFConDQmD1TLictm7
+ 0kkv174AAA285xOFKNMKAbNbRE77DJiYLlcko1hjw7OrHw9UHs8kIG2isH4ZZY7H61Fu1D6aMpA
+ A4H/8p5tlEFtzEbtGU1RL6qYe3RfdNiADnYAvW/Ie5Cd8rGt66YdQOU76uGqiHZ2Fa/4LkmBaaD
+ CctK6Xw7JwXm4oo9/vWpufRgpjfk4GV4q6or0SATph2Kwt3M+KPuiDOZoGzDbxDSf3qy1j9QogI
+ sDYtA2QNEzR/RFqlcdHMjnw8pTFsq96yddGIGp5SqXlzJ5dz5W9L/H0DJIpnHVld1z6+no/1NzZ
+ XAQ3VGcrw/D9bpTljbV/zGlC3xAeOfk0QzC+gIamuJhDa9bPxfFMwWD4dBJOYykDlcepK9D7+IU
+ moZLYxqoIjhA5+VBJlhMzk0BRKjQLJWS8sq+MDisn1Kag3DKYMmzjfKlsdaCE6iZyQtx9XZJHKQ
+ krHsRC8Y2L5M7Mly3shgykAEnJMqf3TkX63KR/Nj3HW3NotLm3GerjmlNfWRcMmjsosa9ThazdG
+ uWUjpR6w3hrXqlnXXAe0DAciZ6/KqfvoKB4Ah2FaGvFW+KJUazTiWF6iVVmwOJTKZ+YATYfUn8M
+ +l4k9pO6QG0fNhg==
 X-Developer-Key: i=matthew.d.roper@intel.com; a=openpgp;
  fpr=C267C309447FEB4F3F216DAC4D792405C8729004
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -86,64 +85,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-None of these functions modify the Xe device parameter, and marking it
-as const will avoid warnings when the callsite wants to pass a const
-pointer.
+xe_hw_engine_mmio_write32() is only used in a single place and is easily
+replaced by a regular xe_mmio_write32() call.  Register read/write
+interfaces are already complicated enough with MCR vs non-MCR handling,
+so we should avoid adding extra wrappers that just make it more
+confusing what to use.
+
+xe_hw_engine_mmio_write32() did have a forcewake assertion that we're
+dropping here, but that assertion wasn't entirely correct anyway.  It was
+checking hwe->domain which is currently set to XE_FW_RENDER for the BCS
+engine, even though BCS engines reside in the GT domain.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.h | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/xe_hw_engine.c | 25 ++-----------------------
+ 1 file changed, 2 insertions(+), 23 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index 555c191f7510..355d69dc8f54 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -146,37 +146,37 @@ static inline struct xe_force_wake *gt_to_fw(struct xe_gt *gt)
- 
- void xe_device_assert_mem_access(struct xe_device *xe);
- 
--static inline bool xe_device_has_flat_ccs(struct xe_device *xe)
-+static inline bool xe_device_has_flat_ccs(const struct xe_device *xe)
- {
- 	return xe->info.has_flat_ccs;
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 154073027b51..a2a2b296af91 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -282,27 +282,6 @@ static void hw_engine_fini(void *arg)
+ 	hwe->gt = NULL;
  }
  
--static inline bool xe_device_has_sriov(struct xe_device *xe)
-+static inline bool xe_device_has_sriov(const struct xe_device *xe)
+-/**
+- * xe_hw_engine_mmio_write32() - Write engine register
+- * @hwe: engine
+- * @reg: register to write into
+- * @val: desired 32-bit value to write
+- *
+- * This function will write val into an engine specific register.
+- * Forcewake must be held by the caller.
+- *
+- */
+-void xe_hw_engine_mmio_write32(struct xe_hw_engine *hwe,
+-			       struct xe_reg reg, u32 val)
+-{
+-	xe_gt_assert(hwe->gt, !(reg.addr & hwe->mmio_base));
+-	xe_force_wake_assert_held(gt_to_fw(hwe->gt), hwe->domain);
+-
+-	reg.addr += hwe->mmio_base;
+-
+-	xe_mmio_write32(&hwe->gt->mmio, reg, val);
+-}
+-
+ /**
+  * xe_hw_engine_mmio_read32() - Read engine register
+  * @hwe: engine
+@@ -325,8 +304,8 @@ u32 xe_hw_engine_mmio_read32(struct xe_hw_engine *hwe, struct xe_reg reg)
+ 
+ void xe_hw_engine_enable_ring(struct xe_hw_engine *hwe)
  {
- 	return xe->info.has_sriov;
+-	xe_hw_engine_mmio_write32(hwe, RING_HWS_PGA(0),
+-				  xe_bo_ggtt_addr(hwe->hwsp));
++	xe_mmio_write32(&hwe->gt->mmio, RING_HWS_PGA(hwe->mmio_base),
++			xe_bo_ggtt_addr(hwe->hwsp));
  }
  
--static inline bool xe_device_has_msix(struct xe_device *xe)
-+static inline bool xe_device_has_msix(const struct xe_device *xe)
- {
- 	return xe->irq.msix.nvec > 0;
- }
- 
--static inline bool xe_device_has_memirq(struct xe_device *xe)
-+static inline bool xe_device_has_memirq(const struct xe_device *xe)
- {
- 	return GRAPHICS_VERx100(xe) >= 1250;
- }
- 
--static inline bool xe_device_uses_memirq(struct xe_device *xe)
-+static inline bool xe_device_uses_memirq(const struct xe_device *xe)
- {
- 	return xe_device_has_memirq(xe) && (IS_SRIOV_VF(xe) || xe_device_has_msix(xe));
- }
- 
--static inline bool xe_device_has_lmtt(struct xe_device *xe)
-+static inline bool xe_device_has_lmtt(const struct xe_device *xe)
- {
- 	return IS_DGFX(xe);
- }
- 
--static inline bool xe_device_has_mert(struct xe_device *xe)
-+static inline bool xe_device_has_mert(const struct xe_device *xe)
- {
- 	return xe->info.has_mert;
- }
+ static bool xe_hw_engine_match_fixed_cslice_mode(const struct xe_device *xe,
 
 -- 
 2.53.0
