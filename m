@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81B8FFAD41F
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 06:37:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D597FAD41B
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 06:53:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4455810E142;
-	Thu, 23 Apr 2026 06:37:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22E4010EF74;
+	Thu, 23 Apr 2026 06:53:28 +0000 (UTC)
 Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49DF610E142;
- Thu, 23 Apr 2026 06:37:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 51DFA10EF74;
+ Thu, 23 Apr 2026 06:53:27 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============4670310731166206189=="
+ boundary="===============2162872141057539842=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/mcr=3A_Remove_unused?=
- =?utf-8?q?_xe=5Fgt=5Fmcr=5Fsteering=5Finfo=5Fto=5Fdss=5Fid=28=29?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_mm=2C_drm/ttm=2C_drm/xe=3A_?=
+ =?utf-8?q?Avoid_reclaim/eviction_loops_under_fragmentation?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shuicheng Lin" <shuicheng.lin@intel.com>
+To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 23 Apr 2026 06:37:34 -0000
-Message-ID: <177692625429.1542.17263214320221955054@5ab824fced77>
+Date: Thu, 23 Apr 2026 06:53:27 -0000
+Message-ID: <177692720732.1681.1055035428366222847@5ab824fced77>
 X-Patchwork-Hint: ignore
-References: <20260422155025.3660484-1-shuicheng.lin@intel.com>
-In-Reply-To: <20260422155025.3660484-1-shuicheng.lin@intel.com>
+References: <20260423055656.1696379-1-matthew.brost@intel.com>
+In-Reply-To: <20260423055656.1696379-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,20 +40,20 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4670310731166206189==
+--===============2162872141057539842==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: drm/xe/mcr: Remove unused xe_gt_mcr_steering_info_to_dss_id()
-URL   : https://patchwork.freedesktop.org/series/165306/
+Series: mm, drm/ttm, drm/xe: Avoid reclaim/eviction loops under fragmentation
+URL   : https://patchwork.freedesktop.org/series/165329/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-4925-28247e192ca66016a4b374ff06acdf9dbb6cfe7c_BAT -> xe-pw-165306v1_BAT
+CI Bug Log - changes from xe-4927-9917a06970fd6775b7b4259be6cca21cb4e2b165_BAT -> xe-pw-165329v1_BAT
 ====================================================
 
 Summary
@@ -80,19 +80,17 @@ Changes
 Build changes
 -------------
 
-  * IGT: IGT_8868 -> IGT_8869
-  * Linux: xe-4925-28247e192ca66016a4b374ff06acdf9dbb6cfe7c -> xe-pw-165306v1
+  * Linux: xe-4927-9917a06970fd6775b7b4259be6cca21cb4e2b165 -> xe-pw-165329v1
 
-  IGT_8868: 731d4d56fcb40355ce9d65cb088d4b4773dd8b85 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8869: 4963e78e038806cc75f885d7d5713bb0d12c01d1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4925-28247e192ca66016a4b374ff06acdf9dbb6cfe7c: 28247e192ca66016a4b374ff06acdf9dbb6cfe7c
-  xe-pw-165306v1: 165306v1
+  IGT_8870: 1aba4b364b6dbdf7926cc78501e7281d5176b029 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4927-9917a06970fd6775b7b4259be6cca21cb4e2b165: 9917a06970fd6775b7b4259be6cca21cb4e2b165
+  xe-pw-165329v1: 165329v1
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165306v1/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165329v1/index.html
 
---===============4670310731166206189==
+--===============2162872141057539842==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -112,16 +110,16 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>drm/xe/mcr: Remove unused xe_gt_mcr_steering_info_to_dss_id()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165306/">https://patchwork.freedesktop.org/series/165306/</a></td></tr>
+<tr><td><b>Series:</b></td><td>mm, drm/ttm, drm/xe: Avoid reclaim/eviction loops under fragmentation</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165329/">https://patchwork.freedesktop.org/series/165329/</a></td></tr>
 <tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165306v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165306v1/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165329v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165329v1/index.html</a></td></tr>
 
 </table>
 
 
-    <h1>CI Bug Log - changes from xe-4925-28247e192ca66016a4b374ff06acdf9dbb6cfe7c_BAT -&gt; xe-pw-165306v1_BAT</h1>
+    <h1>CI Bug Log - changes from xe-4927-9917a06970fd6775b7b4259be6cca21cb4e2b165_BAT -&gt; xe-pw-165329v1_BAT</h1>
 <h2>Summary</h2>
 <p><strong>SUCCESS</strong></p>
 <p>No regressions found.</p>
@@ -131,15 +129,13 @@ Content-Transfer-Encoding: 7bit
 <p>No changes found</p>
 <h2>Build changes</h2>
 <ul>
-<li>IGT: IGT_8868 -&gt; IGT_8869</li>
-<li>Linux: xe-4925-28247e192ca66016a4b374ff06acdf9dbb6cfe7c -&gt; xe-pw-165306v1</li>
+<li>Linux: xe-4927-9917a06970fd6775b7b4259be6cca21cb4e2b165 -&gt; xe-pw-165329v1</li>
 </ul>
-<p>IGT_8868: 731d4d56fcb40355ce9d65cb088d4b4773dd8b85 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8869: 4963e78e038806cc75f885d7d5713bb0d12c01d1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4925-28247e192ca66016a4b374ff06acdf9dbb6cfe7c: 28247e192ca66016a4b374ff06acdf9dbb6cfe7c<br />
-  xe-pw-165306v1: 165306v1</p>
+<p>IGT_8870: 1aba4b364b6dbdf7926cc78501e7281d5176b029 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4927-9917a06970fd6775b7b4259be6cca21cb4e2b165: 9917a06970fd6775b7b4259be6cca21cb4e2b165<br />
+  xe-pw-165329v1: 165329v1</p>
 
 </body>
 </html>
 
---===============4670310731166206189==--
+--===============2162872141057539842==--
