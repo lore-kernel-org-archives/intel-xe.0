@@ -4,163 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B2B1FDEE45
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 19:08:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93857FDEE45
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 19:13:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D54E10F3F1;
-	Thu, 23 Apr 2026 19:08:57 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cvMXTEF/";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5546610F390;
- Thu, 23 Apr 2026 19:08:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776971335; x=1808507335;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=isdN4wFeHOqnTGDdi5Bf+0bGEW3ajgYCmLnWGllejO4=;
- b=cvMXTEF/87S2Rk8c3VL3Pt0jYni8kpefa+rzEMYhsaUErIqqVMTEONSV
- hUR1ZYpNw9CHD6F+P8+lHWlqgksipv4GaTVXccfDaRjXjaou84WqFr0QZ
- 8LGzzmPad7F/ZEV8xmodasLFJ9UrQg9cbW9Q5q046oKKMNNI/7swT5eRG
- KUt6pmcJqtYbDvA0BcuJi8+wL3DG/A3hYUQnh24MeXEE+rE9Wm+pUbwd4
- pi8INmhzryaHean9BkpDakGgWnKkmuqt8eLTNZ/P2NDopp0alswqYlNIP
- lNA7cQpzBg/q+i3IEEfjnUtYmJyfc4g806CPr8hrKrDqn+jg6zsG2rq42 Q==;
-X-CSE-ConnectionGUID: LjznoiP3RYWeEL9O46zxRg==
-X-CSE-MsgGUID: 5jmz09F2Q6SFgHpypJ5UVA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11765"; a="78066592"
-X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="78066592"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2026 12:08:54 -0700
-X-CSE-ConnectionGUID: DPkeRuqOShOjs42diaju7A==
-X-CSE-MsgGUID: A3oJVxSfRKG1m8BfamARlg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="231710602"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2026 12:08:54 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 23 Apr 2026 12:08:54 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Thu, 23 Apr 2026 12:08:54 -0700
-Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.55) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 23 Apr 2026 12:08:53 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=aNnft2FB+1fL1Fx1A7yI8J9vobg11ygsixwmZcfc5wYN8z+df7P2UcHE8vxzOpoDHUKMe5q8u1qlZ0N3JHVlTRub2DPD3Q9Yk/pILkzhFjbxDSTJUQ/wKP8nKcA+8ARvOhe6uVsSQvBOdoOVxcwoawkRpmQLI3bj9zG0GF7e975PSNEywyIXmjqHxBL6K5tWsFO0fSgk8lFm5v6vYumvNrCld4TlI9D1uCuv3TcUZjbrPFdN9QLXpvqmQPuHyXDns8tpLNO1vRSjNpf6IG75+pQQw0Z3SJDzFyJpMRdS2fVejTOBxo5UjIx3o1rF9KrzDHfdSP64yN4sVNUREDb9pw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rbGGcmZaruyQInRVL0iPKygbqOw55/d2dYu6EUzVWyo=;
- b=TuuKxF0SOPmcSTtum1az2+ZTNz0P3lku40z7RPFQbioCDmmTLLA2kfMr18h7GhBScA5NXbcQpxz0rgL8st3yh5fki+rWx8YH/ZOUuWJSLKU7xB/amuxzKOfI3yV0iuLgtLX9cxbVVnyUH6YlRJ0PTe05dqDPOo2W9WeNbIeewFVNte9niMiSF5HHy9t3ddNb/rzX90/swdczA3tAWRzQMMplpPB9wn3Re9wA5dSG8IIax9khzlSeIjNw/6sRbZGzNRqc9mW6rACRuI8C2MsI4RNXIExB5in7oaRCAfBS1vpKGLj8EpHrGb4QyoqFPIA02IXXIdneb+y9ckocBm8uZg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by MW5PR11MB5811.namprd11.prod.outlook.com (2603:10b6:303:198::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.15; Thu, 23 Apr
- 2026 19:08:39 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c%7]) with mapi id 15.20.9846.021; Thu, 23 Apr 2026
- 19:08:39 +0000
-Date: Thu, 23 Apr 2026 12:08:36 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-CC: "David Hildenbrand (Arm)" <david@kernel.org>,
- <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>, "Andrew
- Morton" <akpm@linux-foundation.org>, Lorenzo Stoakes <ljs@kernel.org>, "Liam
- R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka <vbabka@kernel.org>,
- Mike Rapoport <rppt@kernel.org>, Suren Baghdasaryan <surenb@google.com>,
- Michal Hocko <mhocko@suse.com>, <linux-mm@kvack.org>,
- <linux-kernel@vger.kernel.org>, Johannes Weiner <hannes@cmpxchg.org>
-Subject: Re: [PATCH v2 1/5] mm: Introduce zone_appears_fragmented()
-Message-ID: <aepuNL2fwp47P1Wi@gsse-cloud1.jf.intel.com>
-References: <20260423055656.1696379-1-matthew.brost@intel.com>
- <20260423055656.1696379-2-matthew.brost@intel.com>
- <76191a17-18bf-4e9b-9ab5-dc9a48abfabb@kernel.org>
- <be42059924cde9bb16a087ee2a5abb0b9d850d68.camel@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C3A110F3F6;
+	Thu, 23 Apr 2026 19:13:25 +0000 (UTC)
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1F5C10E363;
+ Thu, 23 Apr 2026 19:13:24 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <be42059924cde9bb16a087ee2a5abb0b9d850d68.camel@linux.intel.com>
-X-ClientProxiedBy: BYAPR04CA0012.namprd04.prod.outlook.com
- (2603:10b6:a03:40::25) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|MW5PR11MB5811:EE_
-X-MS-Office365-Filtering-Correlation-Id: 637975c7-fb96-4bd0-50a8-08dea16bba0b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|7416014|376014|1800799024|22082099003|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info: l3aZpZXTXPvVmPO0Bu57l2vUWEC1Q58rVwO/lKRADZpocw7Jahhvkz9XMyD+ig3AGRU3vVP386HqYeIUgJHwp9xv5/hm6WpchSIQQ7rSkyMWOkaXjL4R7Yj9jdnCp5zt1qSFqiU0sg12ZqmLP4F63HL9A/UydtnpWrnsI+b9N74mB+8XnZD3XmOwXvY6kT9gW1HRvzpfwWvRw6smie5W0Xq1eT0N8wwISgF7Ba0SzOZDFIFh2gdoKEsGAMi7sfpixIvKoCf8ENacd27j5nRiZf2S3L/g//jb3x+px54U2lvevYRextyVT7k1ipehK/gwc7juENUV6BPPwiXnr7zLNXfKCJLk+y7ukrgS0zcMMdno0S0Gqaspo2MbeuQWEdIMPs3+TvqnT+BCAY1kLz7rQDX4p4rtmWVyHIk2QqECF7OVDq9hR8MygNZljbNOg7Q6Om5Tn4fuhddZOye8GcjqA3Z2qveaFZPfj65w5/5bjRyCW/GUXgljpj2Gc5/qmc2e1prXhFEp2Au2fGhLr8es3dujl09Em3N52t43psqqyVMTg5CBm+z6Wn8yCozHqTA1hR0F5jyedSqtU5bGJxPKfegK662tQmavji1jIz/xDg1CP95sj3rd5U5nxifydWMycwkyRcYn9S5zzwdkvnL7mkiqibN8PdhVvO0jAIZAY7f7A7v9/k7ZKsVO+Cbceiyn
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(7416014)(376014)(1800799024)(22082099003)(18002099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bERGbEJLeDhiUExiZG10anNWaUc1L1RpOTI5WUJlSFRvUTByMlVwTEljTkFC?=
- =?utf-8?B?bnM5SXRWZmY5Z3BoYnVXSDBWems0SStZcjNPU1BkT3Z5QU1SKzVSdk96WDhW?=
- =?utf-8?B?MXZvV2pFbHB4a0tGdHcxMHFBN1JYeExPc1ZZLzVEL2lnUW9oTnJmbTV5WUFS?=
- =?utf-8?B?Q09vdWhCNG80QzBySmRCYm1ucDRzdFpTT09uY2prNEV1dE05TVRuMlVPK2Vi?=
- =?utf-8?B?WHg5Ump5Uk5uTmF2MDJaZWs2Z2U1V3NCY3YyRWRIL2VjdUtaYXVnaW40MVFM?=
- =?utf-8?B?d2VzZEZWci9NUkxrWjlqdVBOaDFnUlRvcTUxRjRDbXpwdFNMNElaQTZmRnlN?=
- =?utf-8?B?S1FPSTFuaDBxNEFYdjVuTE5jbXNYbUlMRVRxcW5Ibmt1d1QyK2hyRmhTWnVM?=
- =?utf-8?B?ZTJjbVRhVEgyTmhvbHpVeDgvcmFYeFZneEN1TE9FUzE2TUtENlNqM2lxTWxl?=
- =?utf-8?B?ZytNb3A2OUJJdmZlMDRnUGVFTFUrRnRBZ1pBclJ1ZytXYnBEZWUzMmdWS25v?=
- =?utf-8?B?MEcwY25rNUNpT0ZVejg2VUdhd0lxRGRLbkx3RlVOYWdURmcyWDhOR1hQV0hk?=
- =?utf-8?B?R0pUTUlBMWJ4b2pwZW41MnFVTHBDSHVURjVKbVFIU1E2dC9xQTB6cmcwQ0ZL?=
- =?utf-8?B?amVJUFdWV3QwUFFhTWhwRS83a0F3dW5SVTJBZ0tOQXM2bmlRam40dGozTXBp?=
- =?utf-8?B?ZlF2UHJ4WEh0SmdxUWdqdS9ORnowbDFPc3A4bFJBVmFLL2k2OEVTd1NQWk1s?=
- =?utf-8?B?OFJaV1BEMkhMa0t6cnRHNGVkS1hoaVV4eTZabm1CWHJibzRmS3UyaWRLZnpH?=
- =?utf-8?B?dFdpSy9qSnM3Yzh5UG1yaitNOE0zd1RBRlVMMnJjV3FjdUpyZXNDTHZodmk2?=
- =?utf-8?B?MWZaNlU0ZUtTM0JZeUFzNGtpUjJPUG0xUTd5YTd3clE3SUR1eC9yNE01UTdR?=
- =?utf-8?B?Q3VUWmltZG5NOE1jVDg0RXFqd0Fpd0sxR1JKa1ptS0g3d1lrS3Bva1g4UHVH?=
- =?utf-8?B?cFY0MC9EcXhRc0tsSnpBcXZ1ckZJRVNwbnRrTWFmTDZQREMvT0t3LzlhWFNk?=
- =?utf-8?B?WWJvN2Q4TUVhNUx0NTkzNUtwNjRXVFUxWUdob3ZIWkVQd3NFUUs5T0RtZktF?=
- =?utf-8?B?dldRRWVqQ1BaaVVSMUxBcm84UU5UT3NpWTlBWXFORExpYmlTV3lGZ2U3bVZY?=
- =?utf-8?B?LytmamdBdTdhZVNoQ2VhaGdJT1Z2SGF5d056dFczQUlYVnROc2pwZzVuMW9C?=
- =?utf-8?B?TmFXMUlRMzFlN3hiTHpobFNaYnhzYTBkVjJEV2REUy9EMnZ5RjdrSk5TY1ov?=
- =?utf-8?B?LzZWZVBPSmx4QnRmUTU5bHd3dzJKek4yOUFWZEl0U1dNQmcxMkNWZVkzb0lB?=
- =?utf-8?B?VlY4Q3ZzZHMwcUpQMjc2NEF3aVVHblJZbTB5eCtsbE0xZ2JPclJ5SXZHOHZo?=
- =?utf-8?B?aC9ETllvUkpIRjQ5Zm9yN0hiS2paenBiTysrVDVvYVVSK0dydkRIb1ZTdnkr?=
- =?utf-8?B?dGVNMEc2R2tpQ3VBM0w5ZVJCYjk2UytsNlQwanVNeFFCRlVZUkx4M3FGUEQ5?=
- =?utf-8?B?c0RNaEhlMjljT2hDNmgydnBvcnNDdDFtUklNZmlrcS8rUnowU2JRN3JPa2tK?=
- =?utf-8?B?dG0zYjRJaFVncGtZeDhkVmJOM0dkSjFveUZ3RmFMTERSeWVLWHZqdnNtd3lK?=
- =?utf-8?B?NHNjcEtKLzZjZWdnb0V3YXlXcXBZemlLRmZBcnorVnJxdlVNZXRhbFlHUysw?=
- =?utf-8?B?cnpVR3JKRVpvd3RZblk5UnprVFVOWTlkZEJGREpOOVpyVVY3YWdjMzJPcWJS?=
- =?utf-8?B?SVdwUlpQUDlqa01LaUNDZVpqeFRGek45WGI5akpDSi8yNk1aNU5DOHd4KzYr?=
- =?utf-8?B?ZWQyVDlkMDRiR3FRdlppR1VZd3E3aW5uZmxzaEF1Q1VYRmg2eHlVTmpoekdT?=
- =?utf-8?B?L3dPOXhHZTh4T0pHZTViKzdlc2l1QjI3cVdtRlFhSHN4RUZCTW5LZG1QRU51?=
- =?utf-8?B?U1RMVWxpajhTK1RFUGEzcG9kY3l1YkdPNjZ5bitZelMvaytIYk4zNjBIWHdm?=
- =?utf-8?B?TVZBaHMwTjFCbk5CYlV3MDlXV1hXMmY4T0V6OUE0SVVsdktzdGhGMTNNaE5P?=
- =?utf-8?B?OWNWS1BJMGZVa1lTeXhna0FpTWVoOUg3cGhEZlhCSm12dzA3d3RzdEdtSWdZ?=
- =?utf-8?B?a2JENDdsUDNKZ1J3OFdYNmQrWFhNWUZUblZJVXcxTnFzVmdJZDU0bEE4TERi?=
- =?utf-8?B?eU04RzEvRTFSOThIV1MzVWtTeXo1N3g0aWVmbGFJMTJRdTljUWNLUTRmelRU?=
- =?utf-8?B?TkVabWJVQUgxek8xMDJmWWxyV21FNEcwNFlhSkxoZ3hidGxJeVZMZz09?=
-X-Exchange-RoutingPolicyChecked: Xmhu0qaJd4VtbORFJzX9HFwiwDu+1/zGLtp/0+jTdEj/wHfLz3DrtniUXiULripEi6n3HTTdnCzCgD2jWt+lleL1i4FG+VC2BCGZcRHQHz9Ox5Y5xkhonUoTJ6wR/PnH5CM6oEg7lr4+mohnLiLrG5gQLThFDPb3L6DAewAS6ce84C//3A67Z4VtRM9yBYme30N9ZvdKIHvGJbpARp9T6nGwCYtSUr6T2mR5vOzp2+9dDx+LKs/QzN9mb9bdYSE1krtb+Tv9Tj1BLnCKZ7Pf9DKLNgHqpL7hjcw9vWnjaKWMExFBhIYdVhzaNThs+HkyCkOzhDnzgatppga5Q1Mt/Q==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 637975c7-fb96-4bd0-50a8-08dea16bba0b
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2026 19:08:38.9958 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: u9M3jx+jcmJauUL577m9E72wIqHbQP8BNe8ddqT4Gx3L7KUvXLrUN5cdLJNcx1Wr+c/j3xM33P2bJi+2UR5CNg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW5PR11MB5811
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Add_new_general_DRM_prope?=
+ =?utf-8?q?rty_=22color_format=22_=28rev11=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nicolas Frattaroli" <nicolas.frattaroli@collabora.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 23 Apr 2026 19:13:24 -0000
+Message-ID: <177697160485.4335.5707692313845638508@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260423-color-format-v14-0-449a419ccbd4@collabora.com>
+In-Reply-To: <20260423-color-format-v14-0-449a419ccbd4@collabora.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -172,117 +36,227 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Apr 23, 2026 at 01:27:11PM +0200, Thomas Hellström wrote:
-> On Thu, 2026-04-23 at 12:27 +0200, David Hildenbrand (Arm) wrote:
-> > On 4/23/26 07:56, Matthew Brost wrote:
-> > > Introduce zone_appears_fragmented() as a lightweight helper to
-> > > allow
-> > > subsystems to make coarse decisions about reclaim behavior in the
-> > > presence of likely fragmentation.
-> > > 
-> > > The helper implements a simple heuristic: if the number of free
-> > > pages
-> > > in a zone exceeds twice the high watermark, the zone is considered
-> > > to
-> > > have ample free memory and allocation failures are more likely due
-> > > to
-> > > fragmentation than overall memory pressure.
-> > > 
-> > > This is intentionally imprecise and is not meant to replace the
-> > > core
-> > > MM compaction or fragmentation accounting logic. Instead, it
-> > > provides
-> > > a cheap signal for callers (e.g., shrinkers) that wish to avoid
-> > > overly aggressive reclaim when sufficient free memory exists but
-> > > high-order allocations may still fail.
-> > > 
-> > > No functional changes; this is a preparatory helper for future
-> > > users.
-> > > 
-> > > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > > Cc: Andrew Morton <akpm@linux-foundation.org>
-> > > Cc: David Hildenbrand <david@kernel.org>
-> > > Cc: Lorenzo Stoakes <ljs@kernel.org>
-> > > Cc: "Liam R. Howlett" <Liam.Howlett@oracle.com>
-> > > Cc: Vlastimil Babka <vbabka@kernel.org>
-> > > Cc: Mike Rapoport <rppt@kernel.org>
-> > > Cc: Suren Baghdasaryan <surenb@google.com>
-> > > Cc: Michal Hocko <mhocko@suse.com>
-> > > Cc: linux-mm@kvack.org
-> > > Cc: linux-kernel@vger.kernel.org
-> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > ---
-> > >  include/linux/vmstat.h | 13 +++++++++++++
-> > >  1 file changed, 13 insertions(+)
-> > > 
-> > > diff --git a/include/linux/vmstat.h b/include/linux/vmstat.h
-> > > index 3c9c266cf782..568d9f4f1a1f 100644
-> > > --- a/include/linux/vmstat.h
-> > > +++ b/include/linux/vmstat.h
-> > > @@ -483,6 +483,19 @@ static inline const char *zone_stat_name(enum
-> > > zone_stat_item item)
-> > >  	return vmstat_text[item];
-> > >  }
-> > >  
-> > > +static inline bool zone_appears_fragmented(struct zone *zone)
-> > > +{
-> > 
-> > "zone_likely_fragmented" or "zone_maybe_fragmented" might be clearer,
-> > depending
-> > on the actual semantics.
-> > 
-> > > +	/*
-> > > +	 * Simple heuristic: if the number of free pages is more
-> > > than twice the
-> > > +	 * high watermark, this strongly suggests that the zone is
-> > > heavily
-> > > +	 * fragmented when called from a shrinker.
-> > > +	 */
-> > 
-> > I'll cc some more people. But the "when called from a shrinker" bit
-> > is
-> > concerning. Are there additional semantics that should be expressed
-> > in the
-> > function name, for example?
-> > 
-> > Something that implies that this function only gives you a reasonable
-> > answer in
-> > a certain context.
-> 
-> I think that test would not be relevant for cgroup-aware shrinking.
-> 
-> What about trying to pass something in the struct shrink_control? Like
-> if we pass the struct scan_control's order field also in struct
+== Series Details ==
 
-If the order were included in shrink_control, there is about a 95%
-certain that this change would allow TTM / Xe to break the problematic
-kswapd feedback loop. This may also better express the intent of the
-problem we are trying to fix here.
+Series: Add new general DRM property "color format" (rev11)
+URL   : https://patchwork.freedesktop.org/series/157911/
+State : warning
 
-For reference, the cover letter [1] details the problem.
+== Summary ==
 
-Any guidance from the core MM folks would be appreciated—would adding
-the order to shrink_control be an acceptable solution?
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit dfecc264bb92416f1b3d5ef359842c1e6cc2d84b
+Author: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Date:   Thu Apr 23 21:03:51 2026 +0200
 
-Matt
+    drm/connector: Update docs of "colorspace" for color format prop
+    
+    The colorspace property's documentation states that BT2020_RGB and
+    BT2020_YCC are equivalent, and the output format depends on the driver.
+    
+    Now that there is a "color format" property that userspace can use to
+    explicitly set a format, update the colorspace docs to mention this.
+    
+    The behaviour here is not changed for userspace that doesn't know about
+    the color format property yet, as the color format property defaults to
+    "AUTO", where the choice of output format is left up to drivers.
+    
+    Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
++ /mt/dim checkpatch 021ccd6f29b34f09e4b3aac0d6d52b8adaa1c4b4 drm-intel
+4ce50e935462 drm/amd/display: Remove unnecessary SIGNAL_TYPE_HDMI_TYPE_A check
+4a7e64697dad drm/display: hdmi-state-helper: Use default case for unsupported formats
+51066b83b26c drm: Add new general DRM property "color format"
+e66261bc8b37 drm/connector: Let connectors have a say in their color format
+-:60: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#60: FILE: include/drm/drm_connector.h:1822:
++	enum drm_connector_color_format (*color_format)(
 
-[1] https://patchwork.freedesktop.org/series/165330/
+total: 0 errors, 0 warnings, 1 checks, 46 lines checked
+17de3f4543ad drm/display: bridge_connector: Use HDMI color format for HDMI conns
+bdca5d2dc650 drm/bridge: Act on the DRM color format property
+-:103: WARNING:ENOTSUPP: ENOTSUPP is not a SUSV4 error code, prefer EOPNOTSUPP
+#103: FILE: drivers/gpu/drm/drm_bridge.c:1292:
++			ret = -ENOTSUPP;
 
-> shrink_control, really expensive shrinkers could duck reclaim attempts
-> from higher-order allocations that may fail anyway:
-> 
->       if (sc->order > PAGE_ALLOC_COSTLY_ORDER &&
->            (sc->gfp_mask & (__GFP_NORETRY | __GFP_RETRY_MAYFAIL)) &&
->            !(sc->gfp_mask & __GFP_NOFAIL))
->            return SHRINK_STOP;
-> 
-> Possibly exposed as an inline helper in the shrinker interface?
-> 
-> /Thomas
-> 
-> 
-> 
-> 
+-:109: WARNING:ENOTSUPP: ENOTSUPP is not a SUSV4 error code, prefer EOPNOTSUPP
+#109: FILE: drivers/gpu/drm/drm_bridge.c:1297:
++		if (ret != -ENOTSUPP) {
+
+total: 0 errors, 2 warnings, 0 checks, 86 lines checked
+b6a39a21e619 drm/atomic-helper: Add HDMI bridge output bus formats helper
+-:69: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#69: FILE: drivers/gpu/drm/drm_atomic_helper.c:4131:
++drm_atomic_helper_bridge_get_hdmi_output_bus_fmts(struct drm_bridge *bridge,
++					struct drm_bridge_state *bridge_state,
+
+-:139: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#139: FILE: include/drm/drm_atomic_helper.h:300:
++drm_atomic_helper_bridge_get_hdmi_output_bus_fmts(struct drm_bridge *bridge,
++					struct drm_bridge_state *bridge_state,
+
+total: 0 errors, 0 warnings, 2 checks, 101 lines checked
+10d2c7ad2340 drm/display: hdmi-state-helper: Act on color format DRM property
+-:50: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#50: FILE: drivers/gpu/drm/display/drm_hdmi_state_helper.c:695:
++			drm_dbg_kms(connector->dev, "HDMI does not support color format '%d'.\n",
++				conn_state->color_format);
+
+total: 0 errors, 0 warnings, 1 checks, 39 lines checked
+bfe154a0b433 drm/display: hdmi-state-helper: Try subsampling in mode_valid
+1d94fe141727 drm/amdgpu: Implement "color format" DRM property
+89a54eba0930 drm/i915/hdmi: Add YCBCR444 handling for sink formats
+97cc2b01bb0d drm/i915/dp: Add YCBCR444 handling for sink formats
+fe5a9e064bfd drm/i915/hdmi: Implement "color format" DRM property
+17571854d6ba drm/i915/dp: Implement "color format" DRM property
+b39af8b11743 drm/rockchip: Add YUV422 output mode constants for VOP2
+8d6b58856ca7 drm/rockchip: vop2: Add RK3576 to the RG swap special case
+f115e5b93e1e drm/rockchip: vop2: Recognise 10-bit YUV422 as YUV format
+49f8169f6869 drm/rockchip: vop2: Set correct output format for RK3576 YUV422
+9849a0931c3a drm/bridge: dw-hdmi-qp: Use common HDMI output bus fmts helper
+d7310c4f1c1b drm/rockchip: dw_hdmi_qp: Implement "color format" DRM property
+c94fb7e4eda8 drm/rockchip: dw_hdmi_qp: Set supported_formats platdata
+b5f892b743da drm/connector: Register color format property on HDMI connectors
+977f5245b10f drm/tests: hdmi: Add tests for the color_format property
+-:112: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#112: FILE: drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c:2253:
++	priv = drm_kunit_helper_connector_hdmi_init_with_edid_funcs(test,
++				BIT(DRM_OUTPUT_COLOR_FORMAT_RGB444) |
+
+-:219: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#219: FILE: drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c:2360:
++	priv = drm_kunit_helper_connector_hdmi_init_with_edid_funcs(test,
++				BIT(DRM_OUTPUT_COLOR_FORMAT_RGB444) |
+
+total: 0 errors, 0 warnings, 2 checks, 278 lines checked
+9d3201e68f74 drm/tests: hdmi: Add tests for HDMI helper's mode_valid
+-:57: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#57: FILE: drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c:2777:
++	priv = drm_kunit_helper_connector_hdmi_init_with_edid_funcs(test,
++				BIT(HDMI_COLORSPACE_RGB) |
+
+-:92: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#92: FILE: drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c:2812:
++	priv = drm_kunit_helper_connector_hdmi_init_with_edid_funcs(test,
++				BIT(HDMI_COLORSPACE_RGB),
+
+-:118: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#118: FILE: drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c:2838:
++	priv = drm_kunit_helper_connector_hdmi_init_with_edid_funcs(test,
++				BIT(HDMI_COLORSPACE_RGB),
+
+total: 0 errors, 0 warnings, 3 checks, 126 lines checked
+6003f433e7ee drm/tests: bridge: Add KUnit tests for bridge chain format selection
+-:197: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'name' - possible side-effects?
+#197: FILE: drivers/gpu/drm/tests/drm_bridge_test.c:231:
++#define DEFINE_FMT_FUNCS_FROM_TUPLES(name) \
++static u32 *drm_test_bridge_ ## name ## _out_fmts(struct drm_bridge *bridge,			\
++						  struct drm_bridge_state *bridge_state,	\
++						  struct drm_crtc_state *crtc_state,		\
++						  struct drm_connector_state *conn_state,	\
++						  unsigned int *num_output_fmts)		\
++{												\
++	u32 *out_fmts = kcalloc(ARRAY_SIZE((name)), sizeof(u32), GFP_KERNEL);			\
++												\
++	if (out_fmts)										\
++		*num_output_fmts = get_tuples_out_fmts((name), ARRAY_SIZE((name)), out_fmts);	\
++	else											\
++		*num_output_fmts = 0;								\
++												\
++	return out_fmts;									\
++}												\
++												\
++static u32 *drm_test_bridge_ ## name ## _in_fmts(struct drm_bridge *bridge,			\
++						 struct drm_bridge_state *bridge_state,		\
++						 struct drm_crtc_state *crtc_state,		\
++						 struct drm_connector_state *conn_state,	\
++						 u32 output_fmt,				\
++						 unsigned int *num_input_fmts)			\
++{												\
++	u32 *in_fmts = kcalloc(ARRAY_SIZE((name)), sizeof(u32), GFP_KERNEL);			\
++	unsigned int num_fmts = 0;								\
++	size_t i;										\
++												\
++	if (!in_fmts) {										\
++		*num_input_fmts = 0;								\
++		return NULL;									\
++	}											\
++												\
++	for (i = 0; i < ARRAY_SIZE((name)); i++)						\
++		if ((name)[i].out_fmt == output_fmt)						\
++			in_fmts[num_fmts++] = (name)[i].in_fmt;					\
++												\
++	*num_input_fmts = num_fmts;								\
++												\
++	return in_fmts;										\
++}
+
+-:239: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'hdmi_write_infoframe_func' - possible side-effects?
+#239: FILE: drivers/gpu/drm/tests/drm_bridge_test.c:273:
++#define DRM_BRIDGE_ATOMIC_WITH_BUS_FMT_HDMI_FUNC(ident, input_fmts_func, output_fmts_func,	\
++						 hdmi_write_infoframe_func,			\
++						 hdmi_clear_infoframe_func)			\
++static const struct drm_bridge_funcs (ident) = {						\
++	.atomic_enable			= drm_test_bridge_atomic_enable,			\
++	.atomic_disable			= drm_test_bridge_atomic_disable,			\
++	.atomic_destroy_state		= drm_atomic_helper_bridge_destroy_state,		\
++	.atomic_duplicate_state		= drm_atomic_helper_bridge_duplicate_state,		\
++	.atomic_reset			= drm_atomic_helper_bridge_reset,			\
++	.atomic_get_input_bus_fmts	= (input_fmts_func),					\
++	.atomic_get_output_bus_fmts	= (output_fmts_func),					\
++	.hdmi_write_avi_infoframe	= (hdmi_write_infoframe_func),				\
++	.hdmi_clear_avi_infoframe	= (hdmi_clear_infoframe_func),				\
++	.hdmi_write_hdmi_infoframe	= (hdmi_write_infoframe_func),				\
++	.hdmi_clear_hdmi_infoframe	= (hdmi_clear_infoframe_func),				\
++}
+
+-:239: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'hdmi_clear_infoframe_func' - possible side-effects?
+#239: FILE: drivers/gpu/drm/tests/drm_bridge_test.c:273:
++#define DRM_BRIDGE_ATOMIC_WITH_BUS_FMT_HDMI_FUNC(ident, input_fmts_func, output_fmts_func,	\
++						 hdmi_write_infoframe_func,			\
++						 hdmi_clear_infoframe_func)			\
++static const struct drm_bridge_funcs (ident) = {						\
++	.atomic_enable			= drm_test_bridge_atomic_enable,			\
++	.atomic_disable			= drm_test_bridge_atomic_disable,			\
++	.atomic_destroy_state		= drm_atomic_helper_bridge_destroy_state,		\
++	.atomic_duplicate_state		= drm_atomic_helper_bridge_duplicate_state,		\
++	.atomic_reset			= drm_atomic_helper_bridge_reset,			\
++	.atomic_get_input_bus_fmts	= (input_fmts_func),					\
++	.atomic_get_output_bus_fmts	= (output_fmts_func),					\
++	.hdmi_write_avi_infoframe	= (hdmi_write_infoframe_func),				\
++	.hdmi_clear_avi_infoframe	= (hdmi_clear_infoframe_func),				\
++	.hdmi_write_hdmi_infoframe	= (hdmi_write_infoframe_func),				\
++	.hdmi_clear_hdmi_infoframe	= (hdmi_clear_infoframe_func),				\
++}
+
+-:417: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#417: FILE: drivers/gpu/drm/tests/drm_bridge_test.c:529:
++		edid = drm_edid_alloc(test_edid_hdmi_1080p_rgb_yuv_4k_yuv420_dc_max_200mhz,
++				ARRAY_SIZE(test_edid_hdmi_1080p_rgb_yuv_4k_yuv420_dc_max_200mhz));
+
+-:843: WARNING:ENOTSUPP: ENOTSUPP is not a SUSV4 error code, prefer EOPNOTSUPP
+#843: FILE: drivers/gpu/drm/tests/drm_bridge_test.c:1276:
++	KUNIT_EXPECT_EQ(test, ret, -ENOTSUPP);
+
+total: 0 errors, 1 warnings, 4 checks, 834 lines checked
+aa9c016c9262 drm/tests: bridge: Add test for HDMI output bus formats helper
+-:214: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#214: FILE: drivers/gpu/drm/tests/drm_bridge_test.c:957:
++	out_bus_fmts = bridge->funcs->atomic_get_output_bus_fmts(
+
+total: 0 errors, 0 warnings, 1 checks, 212 lines checked
+cf4ceea74912 drm/bridge: Document bridge chain format selection
+dfecc264bb92 drm/connector: Update docs of "colorspace" for color format prop
+
+
