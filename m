@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49121FC0340
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 15:28:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C766FDEE22
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 16:18:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0776410E353;
-	Thu, 23 Apr 2026 15:28:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0EF910F1A2;
+	Thu, 23 Apr 2026 16:18:56 +0000 (UTC)
 Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA61410E353;
- Thu, 23 Apr 2026 15:28:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 686D910F1A2;
+ Thu, 23 Apr 2026 16:18:55 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============0365968179295247043=="
+ boundary="===============0279872375796638260=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_enable_?=
- =?utf-8?q?ccs_modifiers_on_dg2_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_DSC_max_delta_bpp_support_?=
+ =?utf-8?q?=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
+To: "Nemesa Garg" <nemesa.garg@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 23 Apr 2026 15:28:23 -0000
-Message-ID: <177695810388.4335.15363063209276718619@5ab824fced77>
+Date: Thu, 23 Apr 2026 16:18:55 -0000
+Message-ID: <177696113542.4335.12351116165421864523@5ab824fced77>
 X-Patchwork-Hint: ignore
-References: <20260423141148.3145665-1-juhapekka.heikkila@gmail.com>
-In-Reply-To: <20260423141148.3145665-1-juhapekka.heikkila@gmail.com>
+References: <20260423143035.2267634-1-nemesa.garg@intel.com>
+In-Reply-To: <20260423143035.2267634-1-nemesa.garg@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,20 +40,20 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0365968179295247043==
+--===============0279872375796638260==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: drm/i915/display: enable ccs modifiers on dg2 (rev2)
-URL   : https://patchwork.freedesktop.org/series/165351/
+Series: DSC max delta bpp support (rev2)
+URL   : https://patchwork.freedesktop.org/series/165141/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-4929-ecb61ba4a1f619b6944f4d0741b4d8a0910f460c_BAT -> xe-pw-165351v2_BAT
+CI Bug Log - changes from xe-4929-ecb61ba4a1f619b6944f4d0741b4d8a0910f460c_BAT -> xe-pw-165141v2_BAT
 ====================================================
 
 Summary
@@ -80,17 +80,17 @@ Changes
 Build changes
 -------------
 
-  * Linux: xe-4929-ecb61ba4a1f619b6944f4d0741b4d8a0910f460c -> xe-pw-165351v2
+  * Linux: xe-4929-ecb61ba4a1f619b6944f4d0741b4d8a0910f460c -> xe-pw-165141v2
 
   IGT_8871: c829dad5f9e02f627722042e429d93824b470159 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
   xe-4929-ecb61ba4a1f619b6944f4d0741b4d8a0910f460c: ecb61ba4a1f619b6944f4d0741b4d8a0910f460c
-  xe-pw-165351v2: 165351v2
+  xe-pw-165141v2: 165141v2
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165351v2/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165141v2/index.html
 
---===============0365968179295247043==
+--===============0279872375796638260==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -110,16 +110,16 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: enable ccs modifiers on dg2 (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165351/">https://patchwork.freedesktop.org/series/165351/</a></td></tr>
+<tr><td><b>Series:</b></td><td>DSC max delta bpp support (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165141/">https://patchwork.freedesktop.org/series/165141/</a></td></tr>
 <tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165351v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165351v2/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165141v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165141v2/index.html</a></td></tr>
 
 </table>
 
 
-    <h1>CI Bug Log - changes from xe-4929-ecb61ba4a1f619b6944f4d0741b4d8a0910f460c_BAT -&gt; xe-pw-165351v2_BAT</h1>
+    <h1>CI Bug Log - changes from xe-4929-ecb61ba4a1f619b6944f4d0741b4d8a0910f460c_BAT -&gt; xe-pw-165141v2_BAT</h1>
 <h2>Summary</h2>
 <p><strong>SUCCESS</strong></p>
 <p>No regressions found.</p>
@@ -129,13 +129,13 @@ Content-Transfer-Encoding: 7bit
 <p>No changes found</p>
 <h2>Build changes</h2>
 <ul>
-<li>Linux: xe-4929-ecb61ba4a1f619b6944f4d0741b4d8a0910f460c -&gt; xe-pw-165351v2</li>
+<li>Linux: xe-4929-ecb61ba4a1f619b6944f4d0741b4d8a0910f460c -&gt; xe-pw-165141v2</li>
 </ul>
 <p>IGT_8871: c829dad5f9e02f627722042e429d93824b470159 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
   xe-4929-ecb61ba4a1f619b6944f4d0741b4d8a0910f460c: ecb61ba4a1f619b6944f4d0741b4d8a0910f460c<br />
-  xe-pw-165351v2: 165351v2</p>
+  xe-pw-165141v2: 165141v2</p>
 
 </body>
 </html>
 
---===============0365968179295247043==--
+--===============0279872375796638260==--
