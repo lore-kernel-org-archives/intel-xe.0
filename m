@@ -4,27 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C766FDEE22
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 16:18:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F79FFDEE25
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 16:29:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0EF910F1A2;
-	Thu, 23 Apr 2026 16:18:56 +0000 (UTC)
-Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 686D910F1A2;
- Thu, 23 Apr 2026 16:18:55 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0279872375796638260=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id B454710E340;
+	Thu, 23 Apr 2026 16:29:26 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="XPWle9fg";
+	dkim-atps=neutral
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CFB110E14A;
+ Thu, 23 Apr 2026 16:29:26 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id 1DBF16014C;
+ Thu, 23 Apr 2026 16:29:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADEE7C2BCAF;
+ Thu, 23 Apr 2026 16:29:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1776961764;
+ bh=1dP9r6KsChftBuI2JpeBlTGZwoiAP3vqscR1wZR1+t8=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=XPWle9fg+rCRf4fF10a5hmPtRkHDlPtsJk0d2bKNI3S/eU3sMeys6exToKvbxp3hv
+ l//Xrk5c+s28itVvpa0KD1DMBbnc9y3EuW0MKA2HUey+bLMd/UGRX8j003VF8jZDPA
+ X6xR6MAnFR2sa76Vq/VWl4y+xhPtAcrimXWxVvD/oO3nCeFI5AmD55cu1XzEcWzNe5
+ KFGlkQ8mI0imyo72pzgze1PAsGMAvnJR1NdjFUmy1XmZESypiGmVdLDojdV/QvQk2O
+ rEYfOwCFwAOcQNLH26jMxw0zZjUzJmpsCjmVl1sqMrsWrbvAmKqr9EBTQjkduHeUz3
+ tq1LKhFX6jRwg==
+Date: Thu, 23 Apr 2026 09:29:22 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: "Tauro, Riana" <riana.tauro@intel.com>
+Cc: Raag Jadav <raag.jadav@intel.com>, <aravind.iddamsetty@linux.intel.com>,
+ <rodrigo.vivi@intel.com>, <dri-devel@lists.freedesktop.org>,
+ <netdev@vger.kernel.org>, <anshuman.gupta@intel.com>,
+ <joonas.lahtinen@linux.intel.com>, <simona.vetter@ffwll.ch>,
+ <airlied@gmail.com>, <pratik.bari@intel.com>,
+ <joshua.santosh.ranjan@intel.com>, <ashwin.kumar.kulkarni@intel.com>,
+ <shubham.kumar@intel.com>, <ravi.kishore.koppuravuri@intel.com>,
+ <anvesh.bakwad@intel.com>, <maarten.lankhorst@linux.intel.com>, Zack
+ McKevitt <zachary.mckevitt@oss.qualcomm.com>, Lijo Lazar
+ <lijo.lazar@amd.com>, "Hawking Zhang" <Hawking.Zhang@amd.com>, "David S.
+ Miller" <davem@davemloft.net>, "Paolo Abeni" <pabeni@redhat.com>, Eric
+ Dumazet <edumazet@google.com>, <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 3/4] drm/drm_ras: Add DRM RAS netlink error event
+ notification
+Message-ID: <20260423092922.6c527d75@kernel.org>
+In-Reply-To: <65c6839f-a92d-4122-b347-a1250dde961d@intel.com>
+References: <20260311102913.3387468-6-riana.tauro@intel.com>
+ <20260311102913.3387468-9-riana.tauro@intel.com>
+ <acPjxf5XTYuR7sbM@black.igk.intel.com>
+ <09f253b3-ee64-4fbb-8cec-820e9769aa80@intel.com>
+ <adc6hTz-xMopiJsc@black.igk.intel.com>
+ <69c061b4-eb40-4e2d-aeaa-5dfa47b2db8c@intel.com>
+ <65c6839f-a92d-4122-b347-a1250dde961d@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_DSC_max_delta_bpp_support_?=
- =?utf-8?q?=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nemesa Garg" <nemesa.garg@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 23 Apr 2026 16:18:55 -0000
-Message-ID: <177696113542.4335.12351116165421864523@5ab824fced77>
-X-Patchwork-Hint: ignore
-References: <20260423143035.2267634-1-nemesa.garg@intel.com>
-In-Reply-To: <20260423143035.2267634-1-nemesa.garg@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +70,34 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0279872375796638260==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, 23 Apr 2026 11:22:45 +0530 Tauro, Riana wrote:
+> We had some questions regarding events in netlink
+>=20
+> 1) According to netlink spec, "Events are considered less idiomatic for=20
+> netlink and notifications should be preferred."
+> Since we currently don't have a response that matches a get operation to=
+=20
+> use notify. Would using an event be acceptable?
 
-== Series Details ==
+I have only glanced at previous messages but would it not work to
+include the counter values into the "event" as if it was it was a
+counter get?
 
-Series: DSC max delta bpp support (rev2)
-URL   : https://patchwork.freedesktop.org/series/165141/
-State : success
+If it makes no sense - it's fine. We have been adding events in some
+places, too, in networking. The thinking is basically that when the app
+that does the user space monitoring starts it will often want to know
+the state of the world. So we end up with "get state of the world"
+and "notify about state of the world" which should really be the same
+format.
 
-== Summary ==
+> 2) Is there a way to check if there are subscribers to a group before=20
+> creating the event message?
+>  =C2=A0 =C2=A0Currently the subscriber check happens in=20
+> netlink_broadcast_filtered, but a reviewer suggested we could
+>  =C2=A0 =C2=A0optimize by skipping message creation if there are no subsc=
+ribers.
 
-CI Bug Log - changes from xe-4929-ecb61ba4a1f619b6944f4d0741b4d8a0910f460c_BAT -> xe-pw-165141v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-4929-ecb61ba4a1f619b6944f4d0741b4d8a0910f460c -> xe-pw-165141v2
-
-  IGT_8871: c829dad5f9e02f627722042e429d93824b470159 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4929-ecb61ba4a1f619b6944f4d0741b4d8a0910f460c: ecb61ba4a1f619b6944f4d0741b4d8a0910f460c
-  xe-pw-165141v2: 165141v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165141v2/index.html
-
---===============0279872375796638260==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>DSC max delta bpp support (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165141/">https://patchwork.freedesktop.org/series/165141/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165141v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165141v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4929-ecb61ba4a1f619b6944f4d0741b4d8a0910f460c_BAT -&gt; xe-pw-165141v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4929-ecb61ba4a1f619b6944f4d0741b4d8a0910f460c -&gt; xe-pw-165141v2</li>
-</ul>
-<p>IGT_8871: c829dad5f9e02f627722042e429d93824b470159 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4929-ecb61ba4a1f619b6944f4d0741b4d8a0910f460c: ecb61ba4a1f619b6944f4d0741b4d8a0910f460c<br />
-  xe-pw-165141v2: 165141v2</p>
-
-</body>
-</html>
-
---===============0279872375796638260==--
+Yes, genl_has_listeners()
