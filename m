@@ -4,71 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C9D9FDEE56
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 22:49:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1BF6FDEE53
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 22:49:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4285A10E12C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16C6610E121;
 	Thu, 23 Apr 2026 22:49:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b1PeZwpu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SqTxhlqu";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A12610E107
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 663BF10E107
  for <intel-xe@lists.freedesktop.org>; Thu, 23 Apr 2026 22:49:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776984549; x=1808520549;
+ t=1776984548; x=1808520548;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=mz7POA9TjL4aqwQAFb5M9IdgvlI5PFWzpmp/WsOYeng=;
- b=b1PeZwpuuSZYlDTVNHN/F4Q5HiKtRxOEtFHRmlCPuEut0Fym+mEyWI1D
- SgYpqUuCzDcgMkDI+kvFF5/kB2tli/ZNvZ5+5fjWZ2SRBXB7tH5KchL6D
- UEuXzbw2EIKydqqnG9HOInARksvXgXVNRqFyJ9IJhc3D3wHJw9O4OG2Af
- /KEO/PZDY1raZ9qHGiSN5CkOb3VR5VAA6gbYkR1LWHR7ZYDl5lOoF09AL
- O0dDsUM3ANr8HPwo1f6TPvqtUp8bBVnXW3cH29KF7HEmQLXXnSAdOR08m
- krXYIt/LvWZ4AyN5sogOle/fZ57jHwVK/T0syVDch4C1cK1buOq65jU9/ A==;
-X-CSE-ConnectionGUID: 5LAjHH+zQrySA8socwaXnA==
-X-CSE-MsgGUID: XOV1lVNPScSS/xIGjiLfmg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11765"; a="65497067"
-X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="65497067"
+ bh=k2DJmSdKQwQFc6ITUJaj+7fApA3EYxUOY+DZ2LyL4Jw=;
+ b=SqTxhlquOJlDjuA6V8krewsl9TPRISuCWgbfU9VfZQB2HQ0q+e8dBumx
+ kR1cwaU7HMp9g8hRuMi0Vg/LFHnvW16xXPO6xmRN0+TqZxIb1kROK/6Nj
+ m9C4NYpHwAPLgDKvdgB6Mipo4UCxyNpNeVT1C02B9snvSXfICjG+yk+X7
+ vBK3IzajNz1P9zi0rjq8rk4iYK9Q+ATcXr4D8CtzUNuN2R+ZadVp9abzA
+ q/oD1dOsrjGDcTbgrzQDyAEENho1Ay7gpg7i4xcSITo+R6A9ZYNAIyOLe
+ 5CsA1bCP21mlOP4gnMT1hUWrrhvz6ItoKo192jYO9t/H9WuM2M69kJzMM w==;
+X-CSE-ConnectionGUID: PlhRz80MSk+BWl58w9YAEA==
+X-CSE-MsgGUID: 4eDX7SVHRn2PnsOSHtHs+g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11765"; a="65497065"
+X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="65497065"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Apr 2026 15:49:08 -0700
-X-CSE-ConnectionGUID: Lp/+hNZVSza1bzHWkQgWhQ==
-X-CSE-MsgGUID: JMt+g/obRdeGyTnQN+F/xw==
+X-CSE-ConnectionGUID: ReuUHv3ER3ejaRzKhrX30w==
+X-CSE-MsgGUID: kohc/DFwRym0eX3j0a9WNA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="232696193"
+X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="232696187"
 Received: from mdroper-desk1.fm.intel.com (HELO
  mdroper-desk1.amr.corp.intel.com) ([10.1.39.133])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Apr 2026 15:49:04 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
-Date: Thu, 23 Apr 2026 15:48:51 -0700
-Subject: [PATCH 04/10] drm/xe: Move HWSTAM programming to RTP
+Date: Thu, 23 Apr 2026 15:48:49 -0700
+Subject: [PATCH 02/10] drm/xe/rtp: Add "always true" match function
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260423-engine-setup-v1-4-baa94014e3e5@intel.com>
+Message-Id: <20260423-engine-setup-v1-2-baa94014e3e5@intel.com>
 References: <20260423-engine-setup-v1-0-baa94014e3e5@intel.com>
 In-Reply-To: <20260423-engine-setup-v1-0-baa94014e3e5@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matt Roper <matthew.d.roper@intel.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2300;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3029;
  i=matthew.d.roper@intel.com; h=from:subject:message-id;
- bh=mz7POA9TjL4aqwQAFb5M9IdgvlI5PFWzpmp/WsOYeng=;
- b=owEBbQKS/ZANAwAKAU15JAXIcpAEAcsmYgBp6qHeg+vuoVYsdEAZcIpapqM1yZmYC/MKrGfAM
- 8hqypmX7bWJAjMEAAEKAB0WIQTCZ8MJRH/rTz8hbaxNeSQFyHKQBAUCaeqh3gAKCRBNeSQFyHKQ
- BEKFD/wKiPpr8G+QWAdVHB1+0jEAN9LrJEcM65Hb77fRuXXzAY3qnO6JywcgrPYSWv/jhOTrmqY
- fOsv8l5ZJXnyLvcFi+5+yv6/6Y1A/6aI9p5X1zsxbUtkbXjX2WybObJaGd+096jFv3kVM5KD6eo
- a/QXoAYbBG3uTMqXXAj9yXR4lAQVfcs1Ki8BBoLfF7C1edE6KwwiwvouTWUSdXqO2SOee19E6Hi
- h33zz5OFX2DN6JNN3R05LipSde8J40Yl/drWaXhjVRwU9elHVLBbamW2igg3CDi4/pIrlcqUkR+
- /a/vTcTOYq600cVDqSNUfWVh7SYvOFI4WqQc9Trz+ib5rfhrVGajO9jgiFWatumwpcHteOGjop1
- xu3BvTa3xXcAKfjgFQpuQrV9iHLkf5oDdaTOxVdW1JwSTEkVekyEjzx04MDiVjhCq6liUjaC4Ed
- MZrqxHDD0emem5INOvHfKYQFItITwG/xRxrs17NW8Y4P9JygRQfQPyWjEppEWp3n7Z2LnbIFHyW
- tyK5zAiOL2O8iJTXGkAMwKkBFidVXyvZY5Dlf/1T0LnYl+DfowfaHG29u51/YHIt7dCV9+vwEOG
- ePjRYpNItOM1sMkIx4qNP/w1XSKEzwqbfY/I51sNE1glkyPcb1VVRYbwR3Enzr16O/X5Jpg+vK7
- 82XHCHW3HRc4Uqg==
+ bh=k2DJmSdKQwQFc6ITUJaj+7fApA3EYxUOY+DZ2LyL4Jw=;
+ b=owEBbQKS/ZANAwAKAU15JAXIcpAEAcsmYgBp6qHeKT94/Q25Wz1sx0lqJG3JbwGhvTAYL9lkz
+ 7ttseOqW/+JAjMEAAEKAB0WIQTCZ8MJRH/rTz8hbaxNeSQFyHKQBAUCaeqh3gAKCRBNeSQFyHKQ
+ BIM7EACOm7coN6o/+oQDIqNMnrJEHCSOF2k1VtW8ccEKV8cKi7I06rI6bPZp851I7A4bQfOVg9k
+ PNfU8TbsWHjuRunkxhVOKnteC32HRpcojPBl8m5/RaubJb/J2iaRB2ilhEs+LfuODIMjlt7mIJA
+ Y1U7QIRtt9BMzo394Gnoyl7vcuYYSVELQti3qTRvRz7sJMfWKVXO/UTkVv0UP1N/FI7vXMNaTsp
+ 59WKmDsoN8ZzeJ7nZbxpDCNObNwxdJFh0KE7pc3yXhEnVnWSAmuotudwoxV0HHExmhndJhVbXfv
+ awb2Hy7iGV/t+6RUhv4KtFDGRwQW7xLkq3EYnm8Gl+3EVo3Ekl5KSbJBCSCDghAw0XMvm3ai498
+ 9sMSFIN1EaOPFHXXTdfy6h9Kh3/WjgtV1n5x727iBRQJWomM4k6yXx4VarkBKoRXFI76xW6E4y/
+ mMtEvrbI+LG5h/L3Zm87St8sZ83TgY7mFExAx47hPoOCdvHMIQg03a2tm14F+9sisiRinL1sHCJ
+ ZTWQdoCgFAzBVHhtUvREDeAVyyieXXrJP2vECXgzwzwxUkylt5uGQCkQ5hVc2SqBOrRfbmLNyv9
+ HKMgPFSh6coOAoOnWGCHgseZu3ZNbds2/Ujq0bISe9CScZKureoS/BGrkhWswvZ2c6L91d2+1bT
+ 6Jbwup6b28NJg7g==
 X-Developer-Key: i=matthew.d.roper@intel.com; a=openpgp;
  fpr=C267C309447FEB4F3F216DAC4D792405C8729004
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -85,56 +85,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The write to RING_HWSTAM to disable hardware status page writes on
-interrupt was unnecessarily open-coded in xe_hw_engine_enable_ring();
-it's preferable to do such programming in the engine_entries[] RTP table
-since gets reflected/verified in debugfs, and will also automatically
-ensure that the register is properly saved/restored around engine
-resets.
+All RTP table entries are required to have at least one rule.  In cases
+where an entry should apply unconditionally across all platforms we've
+been using a graphics version range of 12.00 - forever since this covers
+all platforms supported by the driver.  However if the primary GT is
+disabled via configfs (not actually possible today, but probably
+possible in the future) or if we have a future platform that lacks a
+primary GT and only supports media/display, this rule would cause
+important programming to fail to apply on the media GT.
 
-In this case the HWSTAM register wasn't explicitly added to the GuC ADS'
-save-restore list, so there was the potential for the value to be lost
-on engine resets.  This doesn't seem to have happened in practice, so
-likely the GuC firmware is automatically saving/restoring this register
-on our behalf, but we shouldn't rely on this implicit behavior going
-forward.
-
-One other slight change with this patch is that HWSTAM will now be
-programmed on the vestigial execlist (non-GuC) initialization path.
-Since the register's default value is 0x0 and the documentation
-indicates that it's only legal to leave a single bit unmasked at a time,
-this likely would have been an illegal situation if the execlist code
-were actually usable.
+Add a simple match function that just always returns true
+unconditionally.  This solves the worries above while also being more
+immediately human-readable.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_engine.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_hw_engine.c |  2 +-
+ drivers/gpu/drm/xe/xe_rtp.c       |  7 +++++++
+ drivers/gpu/drm/xe/xe_rtp.h       | 12 ++++++++++++
+ 3 files changed, 20 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 62a47d7e3f02..06eb655a4ae5 100644
+index 3d9931f54cee..48cb52a1ec2d 100644
 --- a/drivers/gpu/drm/xe/xe_hw_engine.c
 +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -327,7 +327,6 @@ void xe_hw_engine_enable_ring(struct xe_hw_engine *hwe)
- {
- 	u32 ring_mode = REG_MASKED_FIELD_ENABLE(GFX_DISABLE_LEGACY_MODE);
- 
--	xe_hw_engine_mmio_write32(hwe, RING_HWSTAM(0), ~0x0);
- 	xe_hw_engine_mmio_write32(hwe, RING_HWS_PGA(0),
- 				  xe_bo_ggtt_addr(hwe->hwsp));
- 
-@@ -437,6 +436,11 @@ hw_engine_setup_default_state(struct xe_hw_engine *hwe)
- 					   ring_cmd_cctl_val,
- 					   XE_RTP_ACTION_FLAG(ENGINE_BASE)))
- 		},
-+		{ XE_RTP_NAME("Disable HW status page updates for interrupts"),
+@@ -430,7 +430,7 @@ hw_engine_setup_default_state(struct xe_hw_engine *hwe)
+ 	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(hwe);
+ 	const struct xe_rtp_entry_sr engine_entries[] = {
+ 		{ XE_RTP_NAME("RING_CMD_CCTL_default_MOCS"),
+-		  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, XE_RTP_END_VERSION_UNDEFINED)),
 +		  XE_RTP_RULES(FUNC(xe_rtp_match_always)),
-+		  XE_RTP_ACTIONS(SET(RING_HWSTAM(0), ~0x0,
-+				     XE_RTP_ACTION_FLAG(ENGINE_BASE)))
-+		},
- 		/*
- 		 * To allow the GSC engine to go idle on MTL we need to enable
- 		 * idle messaging and set the hysteresis value (we use 0xA=5us
+ 		  XE_RTP_ACTIONS(FIELD_SET(RING_CMD_CCTL(0),
+ 					   CMD_CCTL_WRITE_OVERRIDE_MASK |
+ 					   CMD_CCTL_READ_OVERRIDE_MASK,
+diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
+index 991f218f1cc3..728933a1c34f 100644
+--- a/drivers/gpu/drm/xe/xe_rtp.c
++++ b/drivers/gpu/drm/xe/xe_rtp.c
+@@ -352,6 +352,13 @@ void xe_rtp_process(struct xe_rtp_process_ctx *ctx,
+ }
+ EXPORT_SYMBOL_IF_KUNIT(xe_rtp_process);
+ 
++bool xe_rtp_match_always(const struct xe_device *xe,
++			 const struct xe_gt *gt,
++			 const struct xe_hw_engine *hwe)
++{
++	return true;
++}
++
+ bool xe_rtp_match_even_instance(const struct xe_device *xe,
+ 				const struct xe_gt *gt,
+ 				const struct xe_hw_engine *hwe)
+diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
+index 4537ff46a17f..d058a629cd3e 100644
+--- a/drivers/gpu/drm/xe/xe_rtp.h
++++ b/drivers/gpu/drm/xe/xe_rtp.h
+@@ -459,6 +459,18 @@ void xe_rtp_process(struct xe_rtp_process_ctx *ctx,
+ 
+ /* Match functions to be used with XE_RTP_MATCH_FUNC */
+ 
++/**
++ * xe_rtp_match_always - Match RTP entry unconditionally
++ * @xe: Device structure
++ * @gt: GT structure
++ * @hwe: Engine instance
++ *
++ * Returns: true, regardless of inputs
++ */
++bool xe_rtp_match_always(const struct xe_device *xe,
++			 const struct xe_gt *gt,
++			 const struct xe_hw_engine *hwe);
++
+ /**
+  * xe_rtp_match_even_instance - Match if engine instance is even
+  * @xe: Device structure
 
 -- 
 2.53.0
