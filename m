@@ -4,58 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89380FAD41A
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 05:57:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FE6CFAD41D
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 05:57:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C5E110EEBD;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E7EB10EF55;
 	Thu, 23 Apr 2026 05:57:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CntZfouJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K4P9/13k";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E5C310E2F2;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6EEB610EAEE;
  Thu, 23 Apr 2026 05:57:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1776923823; x=1808459823;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=nVOUkLdsj8RJ1DjsnEJi+cY0atKBV6a2oIgaHL0ZpK4=;
- b=CntZfouJPtc9arDWZTqrONpBZt5Tddq4huJbjd57CGgrJEQ9PpbmYZIR
- buWEG80lZ8ChrrebXcFmlms7Xl5SYQyREWoGtU+NF0NPld3SrD7FUl8M+
- D5OyJsYOoubu9VRVmSbDGVw3z+Q4XGUiz6vLRQNumNckNaYX/pzV06mWH
- cFKssO8Fm/3VYpZv5+8/7kIYaub/5k2mg2yyWBSFBdJpxiMKBXDIJXzuZ
- PyvN1xAqy2oN5pRq0nAQk21ElaymhD3ciQNSq2n7eP01uPVcy4v+7R9bV
- tyO8ACcQtWghzwvWbdalbNlxqQYS8p4XPcAcGH0Mw5bWLQmN8Yhyvl0+G w==;
-X-CSE-ConnectionGUID: pVMH5ZpnTFO6iir2yTw0eQ==
-X-CSE-MsgGUID: LMGtH+pORiG5AaPu0ixZfw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11764"; a="89273770"
-X-IronPort-AV: E=Sophos;i="6.23,194,1770624000"; d="scan'208";a="89273770"
+ bh=X0WxjIbHx5z6Rxp6kXcxclzwuMByqWEn9gesMvle8Ng=;
+ b=K4P9/13k/5H/9ksuFGU+7mjvwVY49SzPO45wD20mA/wKGjZFyd4JxyFB
+ HHf7/7eXHdDHgm4ZNWK7IENYMuiYNDqBTD8gWi7Vraa1oYgOmc5bBFKSj
+ MwGeSJTZJyxTk/T99NIRRO02HHLdtpKq7Dhl6pAn88CpyD4BQ3DZIAjmC
+ UVzEyfqNlidV/fkcyCB9CImkIFvCszkX4MQ000JtHis8eHtIMKQAY8dOw
+ vs5PS99tii8KumfUS82VIryI6uw0QXhrhuM4DCQ6Qj8vPrGmGU0LP6324
+ +qTNSyIG1nWPwlVj4V6Hn0gq/funtrH2VwDxOwZMGuvIOjPV+QmXoQrNa Q==;
+X-CSE-ConnectionGUID: 1YdroPYTT5WYtujgfE00mw==
+X-CSE-MsgGUID: zKGzarYGRryFI1ysNdeutA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11764"; a="89273762"
+X-IronPort-AV: E=Sophos;i="6.23,194,1770624000"; d="scan'208";a="89273762"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Apr 2026 22:57:03 -0700
-X-CSE-ConnectionGUID: IFJJlujeRIiqh+UKjfZbDw==
-X-CSE-MsgGUID: FERO1WVyS12S05OWCMyxPA==
+ 22 Apr 2026 22:57:02 -0700
+X-CSE-ConnectionGUID: p8YasWqfSRiLJkJEpizvtQ==
+X-CSE-MsgGUID: 8WOmptFtRWWVyY54GAlCVA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,194,1770624000"; d="scan'208";a="255853893"
+X-IronPort-AV: E=Sophos;i="6.23,194,1770624000"; d="scan'208";a="255853890"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  22 Apr 2026 22:57:02 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
-Cc: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Carlos Santa <carlos.santa@intel.com>,
- Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Daniel Colascione <dancol@dancol.org>
-Subject: [PATCH v2 2/5] drm/ttm: Issue direct reclaim at beneficial_order
-Date: Wed, 22 Apr 2026 22:56:53 -0700
-Message-Id: <20260423055656.1696379-3-matthew.brost@intel.com>
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ David Hildenbrand <david@kernel.org>, Lorenzo Stoakes <ljs@kernel.org>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>,
+ Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
+ linux-mm@kvack.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/5] mm: Introduce zone_appears_fragmented()
+Date: Wed, 22 Apr 2026 22:56:52 -0700
+Message-Id: <20260423055656.1696379-2-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260423055656.1696379-1-matthew.brost@intel.com>
 References: <20260423055656.1696379-1-matthew.brost@intel.com>
@@ -76,51 +74,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Triggering kswap at an order higher than beneficial_order makes little
-sense, as the driver has already indicated the optimal order at which
-reclaim is effective. Similarly, issuing direct reclaim or triggering
-kswap at a lower order than beneficial_order is ineffective, since the
-driver does not benefit from reclaiming lower-order pages.
+Introduce zone_appears_fragmented() as a lightweight helper to allow
+subsystems to make coarse decisions about reclaim behavior in the
+presence of likely fragmentation.
 
-As a result, direct reclaim should only be issued with __GFP_NORETRY at
-exactly beneficial_order, or as a fallback, direct reclaim without
-__GFP_NORETRY at order 0 when failure is not an option.
+The helper implements a simple heuristic: if the number of free pages
+in a zone exceeds twice the high watermark, the zone is considered to
+have ample free memory and allocation failures are more likely due to
+fragmentation than overall memory pressure.
 
-Cc: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+This is intentionally imprecise and is not meant to replace the core
+MM compaction or fragmentation accounting logic. Instead, it provides
+a cheap signal for callers (e.g., shrinkers) that wish to avoid
+overly aggressive reclaim when sufficient free memory exists but
+high-order allocations may still fail.
+
+No functional changes; this is a preparatory helper for future users.
+
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Carlos Santa <carlos.santa@intel.com>
-Cc: Christian Koenig <christian.koenig@amd.com>
-Cc: Huang Rui <ray.huang@amd.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Simona Vetter <simona@ffwll.ch>
-CC: dri-devel@lists.freedesktop.org
-Cc: Daniel Colascione <dancol@dancol.org>
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Cc: David Hildenbrand <david@kernel.org>
+Cc: Lorenzo Stoakes <ljs@kernel.org>
+Cc: "Liam R. Howlett" <Liam.Howlett@oracle.com>
+Cc: Vlastimil Babka <vbabka@kernel.org>
+Cc: Mike Rapoport <rppt@kernel.org>
+Cc: Suren Baghdasaryan <surenb@google.com>
+Cc: Michal Hocko <mhocko@suse.com>
+Cc: linux-mm@kvack.org
+Cc: linux-kernel@vger.kernel.org
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Christian Koenig <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/ttm/ttm_pool.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ include/linux/vmstat.h | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
-index 26a3689e5fd9..8425dbcc6c68 100644
---- a/drivers/gpu/drm/ttm/ttm_pool.c
-+++ b/drivers/gpu/drm/ttm/ttm_pool.c
-@@ -165,8 +165,8 @@ static struct page *ttm_pool_alloc_page(struct ttm_pool *pool, gfp_t gfp_flags,
- 	 * Do not add latency to the allocation path for allocations orders
- 	 * device tolds us do not bring them additional performance gains.
- 	 */
--	if (beneficial_order && order > beneficial_order)
--		gfp_flags &= ~__GFP_DIRECT_RECLAIM;
-+	if (order && beneficial_order && order != beneficial_order)
-+		gfp_flags &= ~__GFP_RECLAIM;
+diff --git a/include/linux/vmstat.h b/include/linux/vmstat.h
+index 3c9c266cf782..568d9f4f1a1f 100644
+--- a/include/linux/vmstat.h
++++ b/include/linux/vmstat.h
+@@ -483,6 +483,19 @@ static inline const char *zone_stat_name(enum zone_stat_item item)
+ 	return vmstat_text[item];
+ }
  
- 	if (!ttm_pool_uses_dma_alloc(pool)) {
- 		p = alloc_pages_node(pool->nid, gfp_flags, order);
++static inline bool zone_appears_fragmented(struct zone *zone)
++{
++	/*
++	 * Simple heuristic: if the number of free pages is more than twice the
++	 * high watermark, this strongly suggests that the zone is heavily
++	 * fragmented when called from a shrinker.
++	 */
++	if (zone_page_state(zone, NR_FREE_PAGES) > high_wmark_pages(zone) * 2)
++		return true;
++
++	return false;
++}
++
+ #ifdef CONFIG_NUMA
+ static inline const char *numa_stat_name(enum numa_stat_item item)
+ {
 -- 
 2.34.1
 
