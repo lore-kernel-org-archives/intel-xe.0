@@ -4,63 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D889FF99378
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 11:27:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08751F99378
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Apr 2026 11:27:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9548D10E508;
-	Thu, 23 Apr 2026 11:27:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAEFA10EBF4;
+	Thu, 23 Apr 2026 11:27:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nhq1BpCr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PM4OBKgx";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB6BD10E508;
- Thu, 23 Apr 2026 11:27:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC34D10E865;
+ Thu, 23 Apr 2026 11:27:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776943627; x=1808479627;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=DYIyTIuqXO90Qsqxyp1ocWS+HSeDkCEH/gYfvbDrXhE=;
- b=nhq1BpCrpfAUM/ZWhLJl/rvLc8IpaK6yw3VCkK5ytpBzCoXcBoQDY0CZ
- mt2evNjdfBOTC7yhXkJ9uV1fYbqILr0Xhv25gzdB7GHQFRYul7/A65fxU
- 2W6m/u7zAeMZ5uL31a0dxUYqN4JO87vICr5XaOJfqRZaoVmKaRA6p1IGb
- RTXHRLlDlwOL1iQbOhKVh6fstd0+8q3l9B+EIQe4QIsAuuQJ6XdK3ex0e
- aeag5G9VRDK5qgLwxI8n4DpMxLucTXC33jHCAa10bM8nOKMtKHLGavkXl
- k7rOn15ZUE55fgMabf3+Fg2lCgP7i3l6J5FVtf9z0lxp2KPaLD6CFncbL w==;
-X-CSE-ConnectionGUID: 6GxqdbSQRo6z9NcKl2RM3w==
-X-CSE-MsgGUID: Saj15iMRRquEpClMH+lb3g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11764"; a="80495782"
-X-IronPort-AV: E=Sophos;i="6.23,194,1770624000"; d="scan'208";a="80495782"
+ t=1776943637; x=1808479637;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=5YI735XPEJkCgWEsucBd5PrMiYz/IupiNSJb7R/0oJ4=;
+ b=PM4OBKgxPq9xOPoGvGQMWZSVU9jimqGlZ39UYsoAKbvLWxM9eoPQ1hvG
+ pWXZse9dCv1yeIXZ5+s1RmKVWydvbvBPOcgrf2SkGkGbkJdpHuqjAlFP9
+ sRbHluHiLJv3b7L5e1B2J/3aE2g0PnCej2L6CWabWu7jl0ChntRV6Slrt
+ 2/mSUM7bfBOq1ASCHtUnrA0/PzHdTGvg4QqWtxd3e5McXSXMg633Z6V7Q
+ XMoplaIJUERaOTeqckzI5G3+QjnQfzfKvjIg/2djRMeUTyj7mrUa4P5Ky
+ n7GL3U+niLW4+Fv6wI1u49rmDZyHRtLWA7wouvY+vJTDL2MHNziIWHCTL A==;
+X-CSE-ConnectionGUID: PYeNhem4QZGhv7MrSp/mPQ==
+X-CSE-MsgGUID: eT5jcWK5SzCZH//Ul1H5Jg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11764"; a="80495789"
+X-IronPort-AV: E=Sophos;i="6.23,194,1770624000"; d="scan'208";a="80495789"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2026 04:27:06 -0700
-X-CSE-ConnectionGUID: dhHBNbu8TkizmfEUudQx2w==
-X-CSE-MsgGUID: m7TLoEKaQrKJAb6TqGGxeA==
+ 23 Apr 2026 04:27:17 -0700
+X-CSE-ConnectionGUID: ZEX+4CaZQgClv5j6ht9r2g==
+X-CSE-MsgGUID: 9rckGPeQRxCBLBGfWmbzJQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,194,1770624000"; d="scan'208";a="232538243"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.188])
+X-IronPort-AV: E=Sophos;i="6.23,194,1770624000"; d="scan'208";a="232538257"
+Received: from zzombora-mobl1 (HELO [10.245.244.147]) ([10.245.244.147])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2026 04:27:04 -0700
-Date: Thu, 23 Apr 2026 14:27:01 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Jani Nikula <jani.nikula@intel.com>,
- Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/display: enable ccs modifiers on dg2
-Message-ID: <aeoCBQ59P1ajGxMa@intel.com>
-References: <20260423101739.2772745-1-juhapekka.heikkila@gmail.com>
- <efeef92c230d81764e1fada17c2a81012548cead@intel.com>
- <fc60cf57-0662-4c40-8d70-190910d780ad@igalia.com>
+ 23 Apr 2026 04:27:14 -0700
+Message-ID: <be42059924cde9bb16a087ee2a5abb0b9d850d68.camel@linux.intel.com>
+Subject: Re: [PATCH v2 1/5] mm: Introduce zone_appears_fragmented()
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: "David Hildenbrand (Arm)" <david@kernel.org>, Matthew Brost
+ <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+Cc: Andrew Morton <akpm@linux-foundation.org>, Lorenzo Stoakes
+ <ljs@kernel.org>,  "Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil
+ Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>,  Suren
+ Baghdasaryan	 <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
+ linux-mm@kvack.org, 	linux-kernel@vger.kernel.org, Johannes Weiner
+ <hannes@cmpxchg.org>
+Date: Thu, 23 Apr 2026 13:27:11 +0200
+In-Reply-To: <76191a17-18bf-4e9b-9ab5-dc9a48abfabb@kernel.org>
+References: <20260423055656.1696379-1-matthew.brost@intel.com>
+ <20260423055656.1696379-2-matthew.brost@intel.com>
+ <76191a17-18bf-4e9b-9ab5-dc9a48abfabb@kernel.org>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <fc60cf57-0662-4c40-8d70-190910d780ad@igalia.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,66 +77,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Apr 23, 2026 at 12:15:14PM +0100, Tvrtko Ursulin wrote:
-> 
-> On 23/04/2026 11:28, Jani Nikula wrote:
-> > On Thu, 23 Apr 2026, Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com> wrote:
-> >> Since Xe driver aux ccs enablement dg2 ccs modifiers have been
-> >> disabled on both Xe and i915 drivers. Here allow dg2 to use
-> >> ccs again for framebuffers.
-> >>
-> >> Fixes: 6a99e91 ("drm/i915/display: Detect AuxCCS support via display parent interface")
-> >> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-> >> ---
-> >>   drivers/gpu/drm/i915/i915_driver.c | 5 ++++-
-> >>   1 file changed, 4 insertions(+), 1 deletion(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> >> index d31819758f3d..7a73461d398a 100644
-> >> --- a/drivers/gpu/drm/i915/i915_driver.c
-> >> +++ b/drivers/gpu/drm/i915/i915_driver.c
-> >> @@ -54,9 +54,11 @@
-> >>   #include "display/intel_bw.h"
-> >>   #include "display/intel_cdclk.h"
-> >>   #include "display/intel_crtc.h"
-> >> +#include "display/intel_display_core.h"
-> >>   #include "display/intel_display_device.h"
-> >>   #include "display/intel_display_driver.h"
-> >>   #include "display/intel_display_power.h"
-> >> +#include "display/intel_display_types.h"
-> >>   #include "display/intel_dmc.h"
-> >>   #include "display/intel_dp.h"
-> >>   #include "display/intel_dpt.h"
-> >> @@ -749,8 +751,9 @@ static void fence_priority_display(struct dma_fence *fence)
-> >>   static bool has_auxccs(struct drm_device *drm)
-> >>   {
-> >>   	struct drm_i915_private *i915 = to_i915(drm);
-> >> +	struct intel_display *display = i915->display;
-> >>   
-> >> -	return IS_GRAPHICS_VER(i915, 9, 12) ||
-> >> +	return IS_DISPLAY_VER(display, 9, 12) ||
-> > 
-> > Sorry, can't do this in i915 core.
-> 
-> Was DG2 never Gen12? I totally forgot.. my bad.. Adding IS_DG2 to the 
-> checks below should work, no?
+On Thu, 2026-04-23 at 12:27 +0200, David Hildenbrand (Arm) wrote:
+> On 4/23/26 07:56, Matthew Brost wrote:
+> > Introduce zone_appears_fragmented() as a lightweight helper to
+> > allow
+> > subsystems to make coarse decisions about reclaim behavior in the
+> > presence of likely fragmentation.
+> >=20
+> > The helper implements a simple heuristic: if the number of free
+> > pages
+> > in a zone exceeds twice the high watermark, the zone is considered
+> > to
+> > have ample free memory and allocation failures are more likely due
+> > to
+> > fragmentation than overall memory pressure.
+> >=20
+> > This is intentionally imprecise and is not meant to replace the
+> > core
+> > MM compaction or fragmentation accounting logic. Instead, it
+> > provides
+> > a cheap signal for callers (e.g., shrinkers) that wish to avoid
+> > overly aggressive reclaim when sufficient free memory exists but
+> > high-order allocations may still fail.
+> >=20
+> > No functional changes; this is a preparatory helper for future
+> > users.
+> >=20
+> > Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> > Cc: Andrew Morton <akpm@linux-foundation.org>
+> > Cc: David Hildenbrand <david@kernel.org>
+> > Cc: Lorenzo Stoakes <ljs@kernel.org>
+> > Cc: "Liam R. Howlett" <Liam.Howlett@oracle.com>
+> > Cc: Vlastimil Babka <vbabka@kernel.org>
+> > Cc: Mike Rapoport <rppt@kernel.org>
+> > Cc: Suren Baghdasaryan <surenb@google.com>
+> > Cc: Michal Hocko <mhocko@suse.com>
+> > Cc: linux-mm@kvack.org
+> > Cc: linux-kernel@vger.kernel.org
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > ---
+> > =C2=A0include/linux/vmstat.h | 13 +++++++++++++
+> > =C2=A01 file changed, 13 insertions(+)
+> >=20
+> > diff --git a/include/linux/vmstat.h b/include/linux/vmstat.h
+> > index 3c9c266cf782..568d9f4f1a1f 100644
+> > --- a/include/linux/vmstat.h
+> > +++ b/include/linux/vmstat.h
+> > @@ -483,6 +483,19 @@ static inline const char *zone_stat_name(enum
+> > zone_stat_item item)
+> > =C2=A0	return vmstat_text[item];
+> > =C2=A0}
+> > =C2=A0
+> > +static inline bool zone_appears_fragmented(struct zone *zone)
+> > +{
+>=20
+> "zone_likely_fragmented" or "zone_maybe_fragmented" might be clearer,
+> depending
+> on the actual semantics.
+>=20
+> > +	/*
+> > +	 * Simple heuristic: if the number of free pages is more
+> > than twice the
+> > +	 * high watermark, this strongly suggests that the zone is
+> > heavily
+> > +	 * fragmented when called from a shrinker.
+> > +	 */
+>=20
+> I'll cc some more people. But the "when called from a shrinker" bit
+> is
+> concerning. Are there additional semantics that should be expressed
+> in the
+> function name, for example?
+>=20
+> Something that implies that this function only gives you a reasonable
+> answer in
+> a certain context.
 
-I think just exclude HAS_FLAT_CCS.
+I think that test would not be relevant for cgroup-aware shrinking.
 
-> 
-> Regards,
-> 
-> Tvrtko
-> 
-> > 
-> > BR,
-> > Jani.
-> > 
-> >>   	       IS_ALDERLAKE_P(i915) ||
-> >>   	       IS_METEORLAKE(i915);
-> >>   }
-> > 
+What about trying to pass something in the struct shrink_control? Like
+if we pass the struct scan_control's order field also in struct
+shrink_control, really expensive shrinkers could duck reclaim attempts
+from higher-order allocations that may fail anyway:
 
--- 
-Ville Syrjälä
-Intel
+      if (sc->order > PAGE_ALLOC_COSTLY_ORDER &&
+           (sc->gfp_mask & (__GFP_NORETRY | __GFP_RETRY_MAYFAIL)) &&
+           !(sc->gfp_mask & __GFP_NOFAIL))
+           return SHRINK_STOP;
+
+Possibly exposed as an inline helper in the shrinker interface?
+
+/Thomas
+
+
+
+
