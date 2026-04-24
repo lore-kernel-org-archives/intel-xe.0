@@ -4,44 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 774CCFE5200
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Apr 2026 10:19:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B059FE5203
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Apr 2026 10:19:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EDCA10F4BA;
-	Fri, 24 Apr 2026 10:19:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B48FB10F4D7;
+	Fri, 24 Apr 2026 10:19:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ktmbp0HM";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Xz+8UR56";
 	dkim-atps=neutral
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84FD110F4A5;
- Fri, 24 Apr 2026 10:19:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE98A10F4D5;
+ Fri, 24 Apr 2026 10:19:07 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 3AF2A6001A;
- Fri, 24 Apr 2026 10:19:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65ABAC19425;
- Fri, 24 Apr 2026 10:19:00 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 51A9960123;
+ Fri, 24 Apr 2026 10:19:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D37DC19425;
+ Fri, 24 Apr 2026 10:19:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1777025940;
- bh=skKWtWqkXldvhuwp2U5Xxf4qnnjX9+jASZIFkxD8u5A=;
- h=From:Subject:Date:To:Cc:From;
- b=ktmbp0HMb1o1k4DysM7B9s5h1qZV0xna6q9YwN4vEAztRVoDL6VGwSWQYquevBe+o
- f99L+5orLNJsTzArL+0Dl6QZ7ITMcrjJcJLM5LXattMJ/+QVWaidln47K6Ee+QvOpu
- qSgkSZDedqM9+rtQeVKcYw9wXTE7YoisGFZOKhmXICJxBOYAsV0GDURSDBpB9HPoqd
- DkskDce8a86oOkWdG8LedWKfFafm4LvXU0JK17X6fCIz+pbBkd1G4DHVQhUnpRH+E4
- 1LI3HMVhtqZF2qCgpoVYR0WXR/D+TIRgC/ns/RhuUzsf2o50a+ALXVoQzqd+uxZWgt
- SPaN7UhOfaQDQ==
+ s=k20201202; t=1777025947;
+ bh=f47900U9YnBldlELIPGlSkJt8DWEabQXDHg1J7ci0Xo=;
+ h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
+ b=Xz+8UR56hLr1eLv/f2XUnKAAcORtzPv2HmVhoJeH3JpSAA2tXw+Q3Ga2gWiUr+Bha
+ +1bw37PZdXO5b821IDB1gPfuu01J2sDewBUMorSuv/kSVV26cOCyKWlsX+Cxrspz4q
+ GglDfqxVT0nGOBjxQQR18lfnblWZteYIehMipMRbz3pPNDBlZlwcb/0W28WS++wvBU
+ /m1gkXx7NG4sr+8rCrOL0lx47avGBfO1Oo66ku7fOf1ddf5bso1WbTCMubSva94Cml
+ 62FsDjg1Csx//gIizyF7DBiw1ATlRPc7k6s1ZgWAip1iBlz0nlBga6X1/XiVFcQoNn
+ BNb63n4DS8l/g==
 From: Maxime Ripard <mripard@kernel.org>
-Subject: [PATCH v3 00/20] drm/atomic: Rework initial state allocation
-Date: Fri, 24 Apr 2026 12:18:40 +0200
-Message-Id: <20260424-drm-mode-config-init-v3-0-8b68d9db0d8b@kernel.org>
+Date: Fri, 24 Apr 2026 12:18:42 +0200
+Subject: [PATCH v3 02/20] drm/colorop: Fix typos in the doc
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/33OTQ7CIBAF4Ks0rB3DT23VlfcwLlo61IkWFLDRm
- N5dihtd6Io8Ju+bebKAnjCwbfFkHkcK5GwKalEwfWxsj0BdykxyWXElOHR+gMF1CNpZQz2QpQg
- ChVnJti5XHWepevFo6J7Z/eGdPV5vSY/vT9Y2YSaGgeK2yCYFDRbvEeZVwMv0srl7pBCdf+QLR
- 5HL/48ZBaQJ1mpT6zUKbXYn9BbPS+f7LI7yQ5G/FJkUXSkjhCqxrvSXMk3TC7IQmFY7AQAA
-X-Change-ID: 20260310-drm-mode-config-init-1e1f52b745d0
+Message-Id: <20260424-drm-mode-config-init-v3-2-8b68d9db0d8b@kernel.org>
+References: <20260424-drm-mode-config-init-v3-0-8b68d9db0d8b@kernel.org>
+In-Reply-To: <20260424-drm-mode-config-init-v3-0-8b68d9db0d8b@kernel.org>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
  Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
  Simona Vetter <simona@ffwll.ch>, Jonathan Corbet <corbet@lwn.net>, 
@@ -67,16 +64,14 @@ Cc: dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
  linux-kernel@vger.kernel.org, Daniel Stone <daniels@collabora.com>, 
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
  linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
- Maxime Ripard <mripard@kernel.org>, 
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+ Maxime Ripard <mripard@kernel.org>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5145; i=mripard@kernel.org;
- h=from:subject:message-id; bh=skKWtWqkXldvhuwp2U5Xxf4qnnjX9+jASZIFkxD8u5A=;
- b=owGbwMvMwCmsHn9OcpHtvjLG02pJDJmvnTu+rKlNXrLrWm7gxtQ3TnEv/tYfzFj67KW2r+62V
- BM2Xs7qjqksDMKcDLJiiixPZMJOL29fXOVgv/IHzBxWJpAhDFycAjCRPV2MtTI7blaWPP/C94VD
- voAnwOTX7xWy1wOSBH9nrpqkyc3XZXwsZNsmoXdztms1KGV1H7gygbG+pEpn2f9TNlN/nD8zSXf
- 1Xy/+6o7n8TqFky5bPek/nWJ8bcfprOrnxx7dual2Wf3rrBNvAA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2294; i=mripard@kernel.org;
+ h=from:subject:message-id; bh=f47900U9YnBldlELIPGlSkJt8DWEabQXDHg1J7ci0Xo=;
+ b=owGbwMvMwCmsHn9OcpHtvjLG02pJDJmvnTsP3NYxbJsYs1f9fnj23S6py4y7gm9WxtlqVTyfv
+ 8slqYirYyoLgzAng6yYIssTmbDTy9sXVznYr/wBM4eVCWQIAxenAEykUJ2x4WASg8KvheGq19Nz
+ Lpp/fap39GnO5BfV32eEdLl+dV9Q/yXq5pfuYtYH6oY3wxaFLlmWwthwd/um6F1PhDyY1jE52fe
+ eObP9z5mlfz5/u9K6t2L1sdrSd5v29lhtF1mlqysQPnP9cyUvAA==
 X-Developer-Key: i=mripard@kernel.org; a=openpgp;
  fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -93,111 +88,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+In the documentation of drm_colorop introduced by commit cfc27680ee20
+("drm/colorop: Introduce new drm_colorop mode object"), the
+documentation of __drm_colorop_state_reset() and __drm_colorop_reset()
+were mentioning CRTC when they really meant colorop, probably due to
+copy and paste.
 
-This series started from my work on the hardware state readout[1], and
-more specifically a discussion with Thomas[2].
-
-This series expands the work that has been merged recently to make
-drm_private_obj and drm_private_state allocation a bit more consistent
-and ended up creating a new atomic_create_state callback to allocate a
-new state with no side effect.
-
-The first patches document the existing behaviour and fix a few
-cleanups and typos.
-
-Then, __drm_*_state_reset() helpers are renamed to
-__drm_*_state_init() to clarify that they initialize rather than
-reset state, and we add the new atomic_create_state callback to
-every other DRM object (planes, CRTCs, connectors, colorops).
-
-Next, we leverage those new callbacks to create a new helper,
-drm_mode_config_create_initial_state(), to create the initial state
-for all the objects of a driver, and update the driver skeleton to
-recommend it.
-
-Finally, we convert the tidss driver and the bridge_connector to the
-new pattern.
-
-This was tested on a TI SK-AM62, with the tidss driver.
-
-Let me know what you think,
-Maxime
-
-1: https://lore.kernel.org/dri-devel/20250902-drm-state-readout-v1-0-14ad5315da3f@kernel.org/
-2: https://lore.kernel.org/dri-devel/5920ffe5-b6b1-484b-b320-332b9eb9db82@suse.de/
-
+Fixes: cfc27680ee20 ("drm/colorop: Introduce new drm_colorop mode object")
+Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
 Signed-off-by: Maxime Ripard <mripard@kernel.org>
 ---
-Changes in v3:
-- Reintroduce state documentation that was dropped by accident
-- Change name to drm_mode_config_create_initial_state()
-- Don't call drm_mode_config_create_initial_state() in drm_dev_register
-  anymore
-- Drop __drm_atomic_helper_*_create_state
-- Improve documentation and commit messages where necessary
-- Collected tags
-- Link to v2: https://lore.kernel.org/r/20260320-drm-mode-config-init-v2-0-c63f1134e76c@kernel.org
+ drivers/gpu/drm/drm_colorop.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-Changes in v2:
-- Change the _state_reset function names to _state_init
-- Change the colorop too
-- Various doc improvements
-- Link to v1: https://lore.kernel.org/r/20260310-drm-mode-config-init-v1-0-de7397c8e1cf@kernel.org
+diff --git a/drivers/gpu/drm/drm_colorop.c b/drivers/gpu/drm/drm_colorop.c
+index 764d12060666..48d0b7ae3fc9 100644
+--- a/drivers/gpu/drm/drm_colorop.c
++++ b/drivers/gpu/drm/drm_colorop.c
+@@ -503,11 +503,11 @@ void drm_colorop_atomic_destroy_state(struct drm_colorop *colorop,
+  * __drm_colorop_state_reset - resets colorop state to default values
+  * @colorop_state: atomic colorop state, must not be NULL
+  * @colorop: colorop object, must not be NULL
+  *
+  * Initializes the newly allocated @colorop_state with default
+- * values. This is useful for drivers that subclass the CRTC state.
++ * values. This is useful for drivers that subclass the colorop state.
+  */
+ static void __drm_colorop_state_reset(struct drm_colorop_state *colorop_state,
+ 				      struct drm_colorop *colorop)
+ {
+ 	u64 val;
+@@ -526,14 +526,14 @@ static void __drm_colorop_state_reset(struct drm_colorop_state *colorop_state,
+ /**
+  * __drm_colorop_reset - reset state on colorop
+  * @colorop: drm colorop
+  * @colorop_state: colorop state to assign
+  *
+- * Initializes the newly allocated @colorop_state and assigns it to
+- * the &drm_crtc->state pointer of @colorop, usually required when
+- * initializing the drivers or when called from the &drm_colorop_funcs.reset
+- * hook.
++ * Initializes the newly allocated @colorop_state and assigns it to the
++ * &drm_colorop->state pointer of @colorop, usually required when
++ * initializing the drivers or when called from the
++ * &drm_colorop_funcs.reset hook.
+  *
+  * This is useful for drivers that subclass the colorop state.
+  */
+ static void __drm_colorop_reset(struct drm_colorop *colorop,
+ 				struct drm_colorop_state *colorop_state)
 
----
-Maxime Ripard (20):
-      drm/atomic: Document atomic state lifetime
-      drm/colorop: Fix typos in the doc
-      drm/atomic: Drop drm_private_obj.state assignment from create_state
-      drm/atomic: Expand atomic_create_state expectations for drm_private_obj
-      drm/mode-config: Document drm_private_obj exclusion from drm_mode_config_reset()
-      drm/colorop: Rename __drm_colorop_state_reset()
-      drm/colorop: Create drm_atomic_helper_colorop_create_state()
-      drm/atomic-state-helper: Fix __drm_atomic_helper_plane_reset() doc typo
-      drm/atomic-state-helper: Rename __drm_atomic_helper_plane_state_reset()
-      drm/plane: Add new atomic_create_state callback
-      drm/atomic-state-helper: Rename __drm_atomic_helper_crtc_state_reset()
-      drm/crtc: Add new atomic_create_state callback
-      drm/atomic-state-helper: Rename __drm_atomic_helper_connector_state_reset()
-      drm/hdmi: Rename __drm_atomic_helper_connector_hdmi_reset()
-      drm/connector: Add new atomic_create_state callback
-      drm/mode-config: Create drm_mode_config_create_initial_state()
-      drm/drv: Switch skeleton to drm_mode_config_create_initial_state()
-      drm/tidss: Switch to drm_mode_config_create_initial_state()
-      drm/tidss: Convert to atomic_create_state
-      drm/bridge_connector: Convert to atomic_create_state
-
- Documentation/gpu/drm-kms.rst                      |   6 +
- drivers/gpu/drm/display/drm_bridge_connector.c     |  17 ++-
- drivers/gpu/drm/display/drm_hdmi_state_helper.c    |  13 +-
- drivers/gpu/drm/drm_atomic.c                       |  63 +++++++++
- drivers/gpu/drm/drm_atomic_state_helper.c          | 136 +++++++++++++++---
- drivers/gpu/drm/drm_colorop.c                      |  41 ++++--
- drivers/gpu/drm/drm_drv.c                          |   4 +-
- drivers/gpu/drm/drm_mode_config.c                  | 154 ++++++++++++++++++++-
- drivers/gpu/drm/i915/display/intel_crtc.c          |   2 +-
- drivers/gpu/drm/i915/display/intel_plane.c         |   2 +-
- drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c             |   2 +-
- drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c |   2 +-
- drivers/gpu/drm/tidss/tidss_crtc.c                 |  17 +--
- drivers/gpu/drm/tidss/tidss_drv.c                  |   6 +-
- drivers/gpu/drm/tidss/tidss_plane.c                |   2 +-
- drivers/gpu/drm/vc4/vc4_hdmi.c                     |   2 +-
- include/drm/display/drm_hdmi_state_helper.h        |   4 +-
- include/drm/drm_atomic.h                           |   5 +-
- include/drm/drm_atomic_state_helper.h              |  14 +-
- include/drm/drm_colorop.h                          |   2 +
- include/drm/drm_connector.h                        |  16 +++
- include/drm/drm_crtc.h                             |  16 +++
- include/drm/drm_mode_config.h                      |   1 +
- include/drm/drm_plane.h                            |  16 +++
- 24 files changed, 476 insertions(+), 67 deletions(-)
----
-base-commit: ea61048876a7137897da26dac49ee234fb38a35a
-change-id: 20260310-drm-mode-config-init-1e1f52b745d0
-
-Best regards,
 -- 
-Maxime Ripard <mripard@kernel.org>
+2.53.0
 
