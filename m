@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66FBFFE51F1
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Apr 2026 09:24:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47378FE51F3
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Apr 2026 09:24:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20C6B10E5CF;
-	Fri, 24 Apr 2026 09:24:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05E8F10E200;
+	Fri, 24 Apr 2026 09:24:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XFxjV71Y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nV0RU1vA";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DBC410E3B0;
- Fri, 24 Apr 2026 09:24:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E471810E200;
+ Fri, 24 Apr 2026 09:24:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777022665; x=1808558665;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=9mJg1O+fAJaXsHtBx5s6vCKcpJdWT/94Yh0TkVURRJk=;
- b=XFxjV71Ye6q1vtDP6ufXH5MfjBxKkbY2c04kDy2jQXLKLYoF7+8cPJFT
- s13Oe+aBZL8kv1do3xB2BGxDTdAlFNrwVPBHlJNmR21y7cr5eehNjQbwW
- OTkRvGh4Zu5RibzQdtd2+vTEOWhy/fubUoIc6lJHgvgqWEH23WXsnpqgn
- m7zXAM3rZcD5pTnw//mkbiEVnRGOKwX/Lmx1jAsqxO39O068tXAeaVeDY
- mAouPzpezwnpRW49gqS6Pte2VWFIHm7ZCg1P9arMQ8UJ/vyKTXygM5ukB
- qq+spLVy9ocK882yujAZo1nL3CMKh1YQR2QRWB3YqIUmHy0BQHrEh8PEa Q==;
-X-CSE-ConnectionGUID: qBXKktMcTm2igUedLdtS3g==
-X-CSE-MsgGUID: ODrZa1UJTY2gbvpz0H7J8g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11765"; a="81607522"
-X-IronPort-AV: E=Sophos;i="6.23,196,1770624000"; d="scan'208";a="81607522"
+ t=1777022667; x=1808558667;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=6w4ChAG+Hp3+lteqHVSks16P8x1jHexjCgUGVQruIHc=;
+ b=nV0RU1vAwOObCvoEIEgcR2vnbgrdkvBDL4Wzk/M/JPdlp3bIrothhy8r
+ 49o8YOFX1mfO9zUu3lOYai6HdOi6FDu1aWkjyVf/iHmAxNnvlGhxGUt/v
+ IpQ1bryF7eRPg1i+Sc2YoAPF5psMksj4MwysFZtsis+5PI490D/d85Ark
+ gInZPA7I3qmyK+PBtODHwS/idiNYToeEZutlTQTG+TgwMIplBCsbl5/qn
+ W+NcP6Bu3TdFcv4Jad8ZSSQKh/wfK66yrLgswCGeZuP68C7Y9PFyAP5lX
+ YUWdYQ+fSvnhB//YTLYSSzAp2wKNnUFmjfpn15iTN35aEeSZhgTxJb58y w==;
+X-CSE-ConnectionGUID: c449JPeNT9qiPxrV/6lSRg==
+X-CSE-MsgGUID: aj/mdhwDSJOT7IDXkn7hhA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11765"; a="81607525"
+X-IronPort-AV: E=Sophos;i="6.23,196,1770624000"; d="scan'208";a="81607525"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2026 02:24:25 -0700
-X-CSE-ConnectionGUID: QAbKk7QwRwuZI3AcES7gXg==
-X-CSE-MsgGUID: rLNbFQd6R5+rdssdomNgnw==
+ 24 Apr 2026 02:24:27 -0700
+X-CSE-ConnectionGUID: 2UnzrvJORMS4cQE/v+tvwA==
+X-CSE-MsgGUID: AAWakvyLTqq+Op7jNjJUfA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,196,1770624000"; d="scan'208";a="271029264"
+X-IronPort-AV: E=Sophos;i="6.23,196,1770624000"; d="scan'208";a="271029282"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2026 02:24:24 -0700
+ 24 Apr 2026 02:24:26 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 0/3] Fix AS SDP and VRR handling for DP branch devices
-Date: Fri, 24 Apr 2026 14:39:39 +0530
-Message-ID: <20260424090942.3060291-1-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 1/3] drm/i915/vrr: Avoid vrr for PCON with HDMI2.1 sink
+Date: Fri, 24 Apr 2026 14:39:40 +0530
+Message-ID: <20260424090942.3060291-2-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20260424090942.3060291-1-ankit.k.nautiyal@intel.com>
+References: <20260424090942.3060291-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -66,21 +68,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is a subset of patches separated from the series at
-https://patchwork.freedesktop.org/series/164512/ for merging.
+Currently we do not support VRR with HDMI so skip vrr compute
+config step for all DP branch devices.
 
-Currently VRR is not supported for DP branch devices, but AS SDP
-handling don't fully reflect that. This small series fixes that.
+v2: Restrict VRR on all DP branch devices instead for checking only for
+    HDMI. (Ville)
 
-Ankit Nautiyal (3):
-  drm/i915/vrr: Avoid vrr for PCON with HDMI2.1 sink
-  drm/i915/dp: Add a helper to decide if AS SDP can be used
-  drm/i915/dp: Skip AS SDP for DP branch devices
-
- drivers/gpu/drm/i915/display/intel_dp.c  | 22 +++++++++++++++++++++-
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
  drivers/gpu/drm/i915/display/intel_vrr.c | 10 ++++++++++
- 2 files changed, 31 insertions(+), 1 deletion(-)
+ 1 file changed, 10 insertions(+)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index fae1186a90b2..1b09992ce9fd 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -55,6 +55,16 @@ bool intel_vrr_is_capable(struct intel_connector *connector)
+ 		if (connector->mst.dp)
+ 			return false;
+ 		intel_dp = intel_attached_dp(connector);
++		/*
++		 * Among non-MST DP branch devices, only an HDMI 2.1 sink connected
++		 * via a PCON could support VRR. However, supporting VRR through a
++		 * PCON requires non-trivial changes that are not implemented yet.
++		 * Until that support exists, avoid VRR on all DP branch devices.
++		 *
++		 * TODO: Add support for VRR for DP->HDMI 2.1 PCON.
++		 */
++		if (drm_dp_is_branch(intel_dp->dpcd))
++			return false;
+ 
+ 		if (!drm_dp_sink_can_do_video_without_timing_msa(intel_dp->dpcd))
+ 			return false;
 -- 
 2.45.2
 
