@@ -4,55 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D8A9FE51F4
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Apr 2026 09:31:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 422A8FE51F2
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Apr 2026 09:31:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C5DC10F48B;
-	Fri, 24 Apr 2026 09:31:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05CFA10F46B;
+	Fri, 24 Apr 2026 09:31:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RPAIO4Of";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Stb8/5Yr";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D21110F471;
- Fri, 24 Apr 2026 09:31:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E0F210F47F;
+ Fri, 24 Apr 2026 09:31:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777023096; x=1808559096;
+ t=1777023101; x=1808559101;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=H7DlQN+6/6GiSYKisGkd+YGCWmiNJ16tVBkyUHdUR7M=;
- b=RPAIO4OfK8yN3Rl4J9bmcf4/bue/LPayhU0vvnZWy+j8ct21286er/VZ
- ORTnvMbJD1DASfzVq1O0pHAXjgjsVFAHibZNUwjwV8/AuyRWnJsiYs9yI
- eRKOv6T4gPz9WCFmhi4KuWEy3BhWp1S4nUQgASL6Rdnix3j9EJ4oaZe+s
- eyCv4ygp56AXy8PWz2X/vOmnND3FUbAlcL9zJaBR9mjXI+yOyC0HAugrF
- qAYec8htnpUyrUV/GBQjMIY0QJWT68LHdPoTgInKlTbMd+pM4oaY+0v9t
- aLxafYKMNvY8CHzApvdgbb+g6n6kX4PZUsPpOHuSKdIEDCRruWYglqver w==;
-X-CSE-ConnectionGUID: SkI1bt1hQcKeoVmm9yGRrg==
-X-CSE-MsgGUID: u2Wp03ZpSsWC24OuY9z3JQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11765"; a="81859294"
-X-IronPort-AV: E=Sophos;i="6.23,196,1770624000"; d="scan'208";a="81859294"
+ bh=uDfnAhuPeQpYybCGDkoBbLrE24EWqvm4HBK5ycB3WjE=;
+ b=Stb8/5Yrz1w4ZsPa1/wDmJZBGlfzUG3jlSJEWUQqOKGbWJ6AdpZpsfFw
+ sEkrpkSrTomWSk793WOx2YhEJH48Sx9BLqYzcN42xPPrMkcCaCcU7K1pI
+ oCpORrhs2VdyNRdp2kC/hmcd91VP+wSr582n1oSXLCbPOvHgoW+Cm9l9q
+ bqHEoDyMrdHO4K3sOiS/2fvagcTjVSAGMjZirZDtgCrP6W41O0DkkOWMG
+ aEBGQJ6OmLppsY4GiBJWTuZxUPHdsOwGxri1oONxYkHc16a6cBLiuqz8a
+ HKFVr9jQLc0hYJnApGWVQv8oA8deS/Pzh934hDk71UWfO0/alB56ffuga A==;
+X-CSE-ConnectionGUID: cSianU/YQVaQQA3AYvIWAw==
+X-CSE-MsgGUID: kWMkg4zJRgi4r+IzxfQ77g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11765"; a="81859302"
+X-IronPort-AV: E=Sophos;i="6.23,196,1770624000"; d="scan'208";a="81859302"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2026 02:31:36 -0700
-X-CSE-ConnectionGUID: k9BNouyVQ7e0kNmpTqzeag==
-X-CSE-MsgGUID: 6bzzMi87Sfmp44xnC++93w==
+ 24 Apr 2026 02:31:41 -0700
+X-CSE-ConnectionGUID: 0H2qq5KkR0GfETmZJK6EPQ==
+X-CSE-MsgGUID: vJCcbtnLRueccQfzIgUz+A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,196,1770624000"; d="scan'208";a="228572926"
+X-IronPort-AV: E=Sophos;i="6.23,196,1770624000"; d="scan'208";a="228572947"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2026 02:31:35 -0700
+ 24 Apr 2026 02:31:40 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 4/7] drm/dp: Add DPCD for configuring AS SDP for PR + VRR
-Date: Fri, 24 Apr 2026 14:46:43 +0530
-Message-ID: <20260424091646.3060549-5-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 7/7] drm/dp: Add target_rr_divider field in AS SDP logging
+Date: Fri, 24 Apr 2026 14:46:46 +0530
+Message-ID: <20260424091646.3060549-8-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260424091646.3060549-1-ankit.k.nautiyal@intel.com>
 References: <20260424091646.3060549-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,42 +67,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add additional DPCDs required to be configured to support VRR with Panel
-Replay. These DPCDs are specifically required for configuring Adaptive Sync
-SDP and are introduced in DP v2.1.
+The field target_rr_divider is missing from the AS SDP logging.
+Add it and print the divider value (1.001 or 1.000) as per the DP 2.1 spec.
 
-v2:
- - Correct the shift for the bits. (Ville)
- - Add DP_PR_ prefix for the PR-related fields.
-v3:
- - Use macro values in their shifted form to match the convention. (Ville)
-v4:
- - Add macro for the mask. (Ville)
-
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- include/drm/display/drm_dp.h | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/display/drm_dp_helper.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
-index 8d172863eba3..829e4d98d61c 100644
---- a/include/drm/display/drm_dp.h
-+++ b/include/drm/display/drm_dp.h
-@@ -718,6 +718,12 @@
- #define DP_EXTENDED_DPRX_SLEEP_WAKE_TIMEOUT_GRANT	    0x119   /* 1.4a */
- # define DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_GRANTED	    (1 << 0)
- 
-+#define PANEL_REPLAY_CONFIG3			0x11a /* DP 2.1 */
-+# define DP_PR_AS_SDP_SETUP_TIME_MASK		(3 << 6)
-+# define DP_PR_AS_SDP_SETUP_TIME_T1		(0 << 6)
-+# define DP_PR_AS_SDP_SETUP_TIME_DYNAMIC	(1 << 6) /* DP 2.1 Table 2-227 */
-+# define DP_PR_AS_SDP_SETUP_TIME_T2		(2 << 6)
-+
- #define DP_FEC_CONFIGURATION		    0x120    /* 1.4 */
- # define DP_FEC_READY			    (1 << 0)
- # define DP_FEC_ERR_COUNT_SEL_MASK	    (7 << 1)
+diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
+index 102328d9022d..c8421099a3ac 100644
+--- a/drivers/gpu/drm/display/drm_dp_helper.c
++++ b/drivers/gpu/drm/display/drm_dp_helper.c
+@@ -3537,6 +3537,8 @@ void drm_dp_as_sdp_log(struct drm_printer *p, const struct drm_dp_as_sdp *as_sdp
+ 		   dp_sdp_type_get_name(as_sdp->sdp_type), as_sdp->revision, as_sdp->length);
+ 	drm_printf(p, "    vtotal: %d\n", as_sdp->vtotal);
+ 	drm_printf(p, "    target_rr: %d\n", as_sdp->target_rr);
++	drm_printf(p, "    target_rr_divider: %s\n",
++		   as_sdp->target_rr_divider ? "1.001" : "1.000");
+ 	drm_printf(p, "    duration_incr_ms: %d\n", as_sdp->duration_incr_ms);
+ 	drm_printf(p, "    duration_decr_ms: %d\n", as_sdp->duration_decr_ms);
+ 	drm_printf(p, "    operation_mode: %d\n", as_sdp->mode);
 -- 
 2.45.2
 
