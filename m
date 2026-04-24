@@ -4,73 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8DD8FB44C0
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA1E3FB44B2
 	for <intel-xe@archiver.kernel.org>; Fri, 24 Apr 2026 20:50:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0181C10E3FF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E566810E3F1;
 	Fri, 24 Apr 2026 20:50:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UWHY3aVq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I2h7//Af";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE50210E3F1
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 973CC10E11F
  for <intel-xe@lists.freedesktop.org>; Fri, 24 Apr 2026 20:50:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1777063832; x=1808599832;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=VjPgHtNifJoseI0ERiH0w3nKAW96uhHQ0Rq5UPGFBqw=;
- b=UWHY3aVq97FAgDFPjAcjFH4xW30y3L34WdaSabrdsO9Y7AS3OTii8Us2
- aSVYB05aOCTuAXM9GxvK48Yp/O9g7i7bBGSzLN3dURFXIbZ4bp+cneixX
- 7namf3n7qHo1xvZCelK+dMbiemkjXgpnzbaH4TY0DP2WLI0Q9s05TJ9lP
- x1Fvga556Tal8rdh7GOmt3YTUxmIsFgwB8odPQ+Rg3ufICxYFDG311E1/
- eukFOM9zAZMztWJWw+rlTZD8Ym0dPZzkEisCTTo83fbwXl//g7JOatI9H
- 6cvxYcap3N0vJ9cy1dacg2DD4vY0aulIsVuSGV2Ynclf6vs/VqILn+2Gq w==;
-X-CSE-ConnectionGUID: xyCD6PsmTJK5kzDZbGKp3g==
-X-CSE-MsgGUID: aWgWkd0jRfaATsVBvLwbqQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11766"; a="80634000"
-X-IronPort-AV: E=Sophos;i="6.23,197,1770624000"; d="scan'208";a="80634000"
+ h=from:subject:date:message-id:mime-version:
+ content-transfer-encoding:to:cc;
+ bh=8c4VY+N9mvr+rPWDycTMlX5o1eACOoumd4WAj5eH/oE=;
+ b=I2h7//AfNC2i2XfHiezsFnjxPsarO8A9CM0xU7qL6U7kyvGz5893jv8I
+ MHSOvLtzYsDg0d5qgGFRJcmeZi+DYeBwZstu6tPHmkYkauP7BFnZ929Iv
+ YLiRFYAdYvEgnBGzqrvlTr5lRvTP1x6j8ZWnGkJ62X+8nXc94bTTwt/KV
+ MX6ucujIMQ+MNWT6YcHDYD/sU5/uTrbOXh08SpHeYiMTUopc3O+1Yd5Sn
+ 77VVQ2ekAp+mH8VVXrhPnTzavsSMwhwsZ4i4lhYCT+ioMNY8s6a8psTDQ
+ xWH5B0xDGzF9qaGxTb6eBO6RBG3ue4MqNfusWGPMtv0KuM0ZaXrNQRjfD w==;
+X-CSE-ConnectionGUID: yBdlnOJQRF2+usyqqSH0tw==
+X-CSE-MsgGUID: yScKIdO8RZaefH99oDHu0w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11766"; a="80633994"
+X-IronPort-AV: E=Sophos;i="6.23,197,1770624000"; d="scan'208";a="80633994"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Apr 2026 13:50:30 -0700
-X-CSE-ConnectionGUID: P+XDYnxdSbGPlhR58tFShg==
-X-CSE-MsgGUID: R0w0UMzHQ0a2ncJbYnqYIg==
+X-CSE-ConnectionGUID: 2HDlGQEkShupQvqrqtfAxA==
+X-CSE-MsgGUID: kUpEEi3XSTOWtpS+nEcTBg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,197,1770624000"; d="scan'208";a="256560140"
+X-IronPort-AV: E=Sophos;i="6.23,197,1770624000"; d="scan'208";a="256560122"
 Received: from mdroper-desk1.fm.intel.com (HELO
  mdroper-desk1.amr.corp.intel.com) ([10.1.39.133])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Apr 2026 13:50:29 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
-Date: Fri, 24 Apr 2026 13:48:16 -0700
-Subject: [PATCH v2 06/10] drm/xe: Const-ify parameters to xe_device_has_*
- functions
+Subject: [PATCH v2 00/10] Engine initialization cleanup
+Date: Fri, 24 Apr 2026 13:48:10 -0700
+Message-Id: <20260424-engine-setup-v2-0-59cc620a25f1@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260424-engine-setup-v2-6-59cc620a25f1@intel.com>
-References: <20260424-engine-setup-v2-0-59cc620a25f1@intel.com>
-In-Reply-To: <20260424-engine-setup-v2-0-59cc620a25f1@intel.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/1XMyw6CMBSE4VchZ21NWy4BV7yHYYE4wkm0JW1tN
+ KTvbiVuXP6TzLeRh2N4OhUbOUT2bE0OfShoWkYzQ/A1N2mpG1lJLWBmNhAe4bkKNE1bK93VUC3
+ ly+pw49fOnYfcC/tg3XvXo/quP0iX/1BUQorLOHaVVBVK1D2bgPtxsg8aUkofp618TKgAAAA=
+X-Change-ID: 20260402-engine-setup-e66851295e18
 To: intel-xe@lists.freedesktop.org
 Cc: Matt Roper <matthew.d.roper@intel.com>, 
+ Shuicheng Lin <shuicheng.lin@intel.com>, 
  Michal Wajdeczko <michal.wajdeczko@intel.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2014;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2715;
  i=matthew.d.roper@intel.com; h=from:subject:message-id;
- bh=VjPgHtNifJoseI0ERiH0w3nKAW96uhHQ0Rq5UPGFBqw=;
- b=owEBbQKS/ZANAwAKAU15JAXIcpAEAcsmYgBp69eUlPM3xGF5Plj7Jfo8Iamv73XMcddduJvyq
- MmQWaGvRRiJAjMEAAEKAB0WIQTCZ8MJRH/rTz8hbaxNeSQFyHKQBAUCaevXlAAKCRBNeSQFyHKQ
- BDIqEACInkzJlcoPto0esLXn1Cqw1urFcztbvWdUjHfUIqEJFtFIkQE7DV55bI6iJPdlDjbgSay
- lkjP8BB/7ydf0VatSeEpAxr71HZuTOqY4hY2Glk4rgFy+dWUYQshxfSFFrDiSLB9vHT4/IkEsat
- yBQGn/Wfr/hhQhViKWKwObLhc1OQXdlzZSF9I7Cs+mrAkm0pwkhiozZ2aWfke4A89P8CRarFj6u
- 9irFWIqUDrAFRR/yaD8Us8VFQxDsk2sQysBo4lQRjDMTxxYYLxvaAhvTHnPTuace0JybpdfF/lH
- mOffJdZKdv4Omno8NrOwlO8sCPzfOeKuqL9upVhv3Q3epSoxLfTdUzG3pjnrwXGtLPykT7nAJY9
- FXSclI70ZCAE7WOeZWyUs9mH4AXnta39O5XMEb7378sAb/DcyIbmZWi+4lddzdPCmcNyxbmzDhB
- PHZNzC+7w24Drdm+P29Mm+0DhMG3UD9rb5EWtR1LZTQ4CeUHyd9bD5vqdLUeuu3NpCe3AmvJU95
- IEsB6eQ/T2p1jgUHeUM4ZopmySPKRksq7skI89wi0zQBdn6rqusisyoicbh9CdDqRSgVtfiMvEB
- hCAD1xhkoMiGEVRqcsFeetAezIaVka+1yfqrQNUKynhx4k319YPCO1kjapEj2FFxUn65szX90Op
- n160dNCW+edkaFA==
+ bh=8c4VY+N9mvr+rPWDycTMlX5o1eACOoumd4WAj5eH/oE=;
+ b=owEBbQKS/ZANAwAKAU15JAXIcpAEAcsmYgBp69eTg6sMC6qoje9biQx8zVMnv/xLe/kqUD/i3
+ 5Y2MEya1QOJAjMEAAEKAB0WIQTCZ8MJRH/rTz8hbaxNeSQFyHKQBAUCaevXkwAKCRBNeSQFyHKQ
+ BNJ/D/99c2uTOe2dr+akQt5LpW7AuVgFRqLY6dnQahCm3v5c015v6pI+MK/HQWGzWT25Gq0BbiE
+ W7a0Sf3diqOUqTRqwbIAKvjnktJtmeqElo/mz4UGxqxvHT6G8LRBuvGOUlPVq7oeOCavZ1loWXZ
+ 8ywqW/i2V01LHqFa/0bEYTpIq3pROIg4q6poSFmAH6ytiJM3DisqOEuh3drxEgKrO76BUcEutj6
+ KLgIRn+gEW+zNQ4nv0aRBmYas+Cl1uF3hm73XyC0NQqbGFvnvtdNZmAjwM7Ae78GVdW8dlGk9Hn
+ EZdJH19arK9M8Hzk/EeGUUACZxjedH/j9/pnl/PpgdWmDo2QJHEtG1/FT+WCaeRa4nEt9MAmT03
+ 6K7wma6eBF4RJJE6j7UEHeUqBekSjJUL9XBXFLQ2v3JTexiYKH7guSYYDirZEKtS42uOCyiX7uY
+ 3g0BVPixb5lrbwcD3EKZnW1SfmVw4Gqe6k4NdMe8GucNmhW5nfWs3saV25ud6990qm5DW8J6pBG
+ PHQ6a2ykaOSdudXHlFRS7QFTvbHpABiEqIDivM4LN84NUmaNwbZ85DmWf/Qtm+u8KC2ewiG3Iis
+ JO0kw7pJylXk/HHSrjDRH2/I+FY+Il4WVnvtGXxQVvrF6HLr7m4ciKsQXO2KjSfC4MOo5Or8rCH
+ DUBlLuH3W53z9nA==
 X-Developer-Key: i=matthew.d.roper@intel.com; a=openpgp;
  fpr=C267C309447FEB4F3F216DAC4D792405C8729004
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -87,66 +89,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-None of these functions modify the Xe device parameter, and marking it
-as const will avoid warnings when the callsite wants to pass a const
-pointer.
+A lot of our engine initialization code was inherited from i915 and
+hasn't received too much cleanup since that time.  There's also some
+inconsistencies between the main initialization path used on all
+platforms, and the vestigial execlist code which isn't actually used but
+still remains in the driver as dead code for now.  Let's clean things up
+a bit and, where possible, move the required engine programming into the
+RTP infrastructure so that it will be applied on both initialization
+paths, and be dumpable/checkable via debugfs.
 
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+There's some more restructuring that should happen to more clearly
+distinguish software state initialization from hardware initialization
+(and re-initialization on various resets & suspend/resume), but I'll
+leave that to a follow-up series to prevent this one from getting too
+complicated.
+
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.h | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+Changes in v2:
+- Restrict CCS enablement to Xe_HP and later.  The CCS engine has never
+  been enabled on Xe_LP.
+- Fix rules on MSI-X enablement to actually use the
+  xe_rtp_match_has_msix function added.  (Shuicheng)
+- Drop xe_hw_engine_mmio_write32() prototype from header.  (Shuicheng)
+- Link to v1: https://lore.kernel.org/r/20260423-engine-setup-v1-0-baa94014e3e5@intel.com
 
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index 555c191f7510..355d69dc8f54 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -146,37 +146,37 @@ static inline struct xe_force_wake *gt_to_fw(struct xe_gt *gt)
- 
- void xe_device_assert_mem_access(struct xe_device *xe);
- 
--static inline bool xe_device_has_flat_ccs(struct xe_device *xe)
-+static inline bool xe_device_has_flat_ccs(const struct xe_device *xe)
- {
- 	return xe->info.has_flat_ccs;
- }
- 
--static inline bool xe_device_has_sriov(struct xe_device *xe)
-+static inline bool xe_device_has_sriov(const struct xe_device *xe)
- {
- 	return xe->info.has_sriov;
- }
- 
--static inline bool xe_device_has_msix(struct xe_device *xe)
-+static inline bool xe_device_has_msix(const struct xe_device *xe)
- {
- 	return xe->irq.msix.nvec > 0;
- }
- 
--static inline bool xe_device_has_memirq(struct xe_device *xe)
-+static inline bool xe_device_has_memirq(const struct xe_device *xe)
- {
- 	return GRAPHICS_VERx100(xe) >= 1250;
- }
- 
--static inline bool xe_device_uses_memirq(struct xe_device *xe)
-+static inline bool xe_device_uses_memirq(const struct xe_device *xe)
- {
- 	return xe_device_has_memirq(xe) && (IS_SRIOV_VF(xe) || xe_device_has_msix(xe));
- }
- 
--static inline bool xe_device_has_lmtt(struct xe_device *xe)
-+static inline bool xe_device_has_lmtt(const struct xe_device *xe)
- {
- 	return IS_DGFX(xe);
- }
- 
--static inline bool xe_device_has_mert(struct xe_device *xe)
-+static inline bool xe_device_has_mert(const struct xe_device *xe)
- {
- 	return xe->info.has_mert;
- }
+---
+Matt Roper (10):
+      drm/xe: Move CCS enablement to engine setup RTP
+      drm/xe/rtp: Add "always true" match function
+      drm/xe: Stop programming BLIT_CCTL on Xe2 and later platforms
+      drm/xe: Move HWSTAM programming to RTP
+      drm/xe: Fix name and definition of GFX_MODE register
+      drm/xe: Const-ify parameters to xe_device_has_* functions
+      drm/xe: Move GFX_MODE programming to RTP
+      drm/xe: Drop unnecessary STOP_RING clearing
+      drm/xe: Drop xe_hw_engine_mmio_write32()
+      drm/xe: Mark BCS engines as belonging to the GT forcewake domain
 
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h |  5 +-
+ drivers/gpu/drm/xe/xe_device.h           | 14 +++---
+ drivers/gpu/drm/xe/xe_execlist.c         |  9 ----
+ drivers/gpu/drm/xe/xe_guc_ads.c          |  2 -
+ drivers/gpu/drm/xe/xe_guc_capture.c      |  2 +-
+ drivers/gpu/drm/xe/xe_hw_engine.c        | 83 +++++++++++++-------------------
+ drivers/gpu/drm/xe/xe_hw_engine.h        |  1 -
+ drivers/gpu/drm/xe/xe_lrc.c              | 20 --------
+ drivers/gpu/drm/xe/xe_rtp.c              | 15 ++++++
+ drivers/gpu/drm/xe/xe_rtp.h              | 24 +++++++++
+ 10 files changed, 82 insertions(+), 93 deletions(-)
+---
+base-commit: 6784fa94a98ae6fceef9c2c171c3e9fb8be6585f
+change-id: 20260402-engine-setup-e66851295e18
+
+Best regards,
 -- 
-2.53.0
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
 
