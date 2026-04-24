@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 422A8FE51F2
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Apr 2026 09:31:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 374EEFE51F3
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Apr 2026 09:49:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05CFA10F46B;
-	Fri, 24 Apr 2026 09:31:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C128210F486;
+	Fri, 24 Apr 2026 09:49:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Stb8/5Yr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kJYageSc";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E0F210F47F;
- Fri, 24 Apr 2026 09:31:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8220410F480;
+ Fri, 24 Apr 2026 09:49:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777023101; x=1808559101;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=uDfnAhuPeQpYybCGDkoBbLrE24EWqvm4HBK5ycB3WjE=;
- b=Stb8/5Yrz1w4ZsPa1/wDmJZBGlfzUG3jlSJEWUQqOKGbWJ6AdpZpsfFw
- sEkrpkSrTomWSk793WOx2YhEJH48Sx9BLqYzcN42xPPrMkcCaCcU7K1pI
- oCpORrhs2VdyNRdp2kC/hmcd91VP+wSr582n1oSXLCbPOvHgoW+Cm9l9q
- bqHEoDyMrdHO4K3sOiS/2fvagcTjVSAGMjZirZDtgCrP6W41O0DkkOWMG
- aEBGQJ6OmLppsY4GiBJWTuZxUPHdsOwGxri1oONxYkHc16a6cBLiuqz8a
- HKFVr9jQLc0hYJnApGWVQv8oA8deS/Pzh934hDk71UWfO0/alB56ffuga A==;
-X-CSE-ConnectionGUID: cSianU/YQVaQQA3AYvIWAw==
-X-CSE-MsgGUID: kWMkg4zJRgi4r+IzxfQ77g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11765"; a="81859302"
-X-IronPort-AV: E=Sophos;i="6.23,196,1770624000"; d="scan'208";a="81859302"
+ t=1777024150; x=1808560150;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=08D5P+AyE7rGBQ7qwlWONRGL+2cm5LGWwy2TbXsuL/U=;
+ b=kJYageSc5msFV0Opt+VejWQSx6ft7xKnHWSx3c5OP8w6qHCz12SL/IdB
+ ejFLFxarD9joFUrr/R1l3sEjm2ay0xmf9fwyXhfd8Xys6tgpmNtATMe6G
+ A2/E1UF1jRZYPjTYn4HeG/unFuSc2cNkikcgOBRPE8uXNtk4IQvquoEQ8
+ 4QVww/SzDWmbdLyitwO/Irexol1HCaMsPaXjumbpSyjgRtAlqXDns/TUs
+ Wqwc2dfoVTqxSf7UpXilX9Ojsj2sIR7pBPsoCplxFSv9rWAy75HivzalG
+ /gje18tjTbJ9wt7cGskSveOjRmDyUZnhuU3E+2t6P58T3PSbHhAAmA0aM w==;
+X-CSE-ConnectionGUID: pqFDo30FRJO6IExpSVBS3A==
+X-CSE-MsgGUID: 5hM4MZPnSlepZCXAvj+QQA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11765"; a="88612845"
+X-IronPort-AV: E=Sophos;i="6.23,196,1770624000"; d="scan'208";a="88612845"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2026 02:31:41 -0700
-X-CSE-ConnectionGUID: 0H2qq5KkR0GfETmZJK6EPQ==
-X-CSE-MsgGUID: vJCcbtnLRueccQfzIgUz+A==
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Apr 2026 02:49:09 -0700
+X-CSE-ConnectionGUID: xpFE9/6MQNurQHal6LZvUQ==
+X-CSE-MsgGUID: d0DZqdiaQHKJ5AcaoMTkOQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,196,1770624000"; d="scan'208";a="228572947"
+X-IronPort-AV: E=Sophos;i="6.23,196,1770624000"; d="scan'208";a="228575629"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2026 02:31:40 -0700
+ 24 Apr 2026 02:49:08 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 7/7] drm/dp: Add target_rr_divider field in AS SDP logging
-Date: Fri, 24 Apr 2026 14:46:46 +0530
-Message-ID: <20260424091646.3060549-8-ankit.k.nautiyal@intel.com>
+Subject: [RESEND PATCH 0/7] AS SDP cleanups and additions for Panel Replay +
+ VRR
+Date: Fri, 24 Apr 2026 15:04:17 +0530
+Message-ID: <20260424093424.3060805-1-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20260424091646.3060549-1-ankit.k.nautiyal@intel.com>
-References: <20260424091646.3060549-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,27 +67,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The field target_rr_divider is missing from the AS SDP logging.
-Add it and print the divider value (1.001 or 1.000) as per the DP 2.1 spec.
+Resending with dri-devel added to the recipients, which was
+missed in the original submission.
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/display/drm_dp_helper.c | 2 ++
- 1 file changed, 2 insertions(+)
+This is a subset of patches separated from the series at
+https://patchwork.freedesktop.org/series/164512/ for merging.
 
-diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-index 102328d9022d..c8421099a3ac 100644
---- a/drivers/gpu/drm/display/drm_dp_helper.c
-+++ b/drivers/gpu/drm/display/drm_dp_helper.c
-@@ -3537,6 +3537,8 @@ void drm_dp_as_sdp_log(struct drm_printer *p, const struct drm_dp_as_sdp *as_sdp
- 		   dp_sdp_type_get_name(as_sdp->sdp_type), as_sdp->revision, as_sdp->length);
- 	drm_printf(p, "    vtotal: %d\n", as_sdp->vtotal);
- 	drm_printf(p, "    target_rr: %d\n", as_sdp->target_rr);
-+	drm_printf(p, "    target_rr_divider: %s\n",
-+		   as_sdp->target_rr_divider ? "1.001" : "1.000");
- 	drm_printf(p, "    duration_incr_ms: %d\n", as_sdp->duration_incr_ms);
- 	drm_printf(p, "    duration_decr_ms: %d\n", as_sdp->duration_decr_ms);
- 	drm_printf(p, "    operation_mode: %d\n", as_sdp->mode);
+These are drm-core (drm/dp) patches that clean up and extend the
+Adaptive Sync SDP definitions and helpers in preparation for
+Panel Replay + VRR support.
+
+Ankit Nautiyal (7):
+  drm/dp: Rename and relocate AS SDP payload field masks
+  drm/dp: Clean up DPRX feature enumeration macros
+  drm/dp: Add bits for AS SDP FAVT Payload Fields Parsing support
+  drm/dp: Add DPCD for configuring AS SDP for PR + VRR
+  drm/dp: Store coasting vtotal in struct drm_dp_as_sdp
+  drm/dp: Add a helper to get the SDP type as a string
+  drm/dp: Add target_rr_divider field in AS SDP logging
+
+ drivers/gpu/drm/display/drm_dp_helper.c | 39 ++++++++++++++++++++++---
+ drivers/gpu/drm/i915/display/intel_dp.c |  4 +--
+ include/drm/display/drm_dp.h            | 20 +++++++++----
+ include/drm/display/drm_dp_helper.h     |  1 +
+ 4 files changed, 52 insertions(+), 12 deletions(-)
+
 -- 
 2.45.2
 
