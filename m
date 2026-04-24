@@ -4,59 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88FD6FE51F1
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Apr 2026 09:19:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66FBFFE51F1
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Apr 2026 09:24:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4603710F458;
-	Fri, 24 Apr 2026 09:19:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20C6B10E5CF;
+	Fri, 24 Apr 2026 09:24:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FXE6wexs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XFxjV71Y";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E614210E3A4;
- Fri, 24 Apr 2026 09:19:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DBC410E3B0;
+ Fri, 24 Apr 2026 09:24:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777022382; x=1808558382;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=XhQAxsgKi7+J2rPiUPbGk2W4vS2G8988IUhHZAJFDXg=;
- b=FXE6wexsR8eDAsE40TyjoW4rUTDJrXmOMTU95KV2lKTsSZO1xCqAlkjZ
- wYbQWkb8ISxmqKbFFHdEIM26w8MgS//34LGvDAbChJl3NWoNgqlmne3ek
- iDep/mmk4Q7tAWERaQQwA0JEj2BMBc8jKqzFjdqRcJcoOewF0y1w9Gder
- zASQz6qPRV1iNEZExRC2jcYf6V4T3tDsLNhiqmvW4+5OahwYGTEy/ReqS
- RA1ytnvcnLvaoUiTAXWzR3GZX3vr1Hfi+2/B18spiv5FZuwumIi0iBPiJ
- ZVJV+rIbXj8zA6jg63xJyJQxzfiRyrwn3xlW/uXkWOM3a3o9FzbiM2XUy A==;
-X-CSE-ConnectionGUID: 5uzm3JZFTTGt5h4pttAoLw==
-X-CSE-MsgGUID: 1LFXj//2Qt+UuAqZrcIcFA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11765"; a="81607216"
-X-IronPort-AV: E=Sophos;i="6.23,196,1770624000"; d="scan'208";a="81607216"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ t=1777022665; x=1808558665;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=9mJg1O+fAJaXsHtBx5s6vCKcpJdWT/94Yh0TkVURRJk=;
+ b=XFxjV71Ye6q1vtDP6ufXH5MfjBxKkbY2c04kDy2jQXLKLYoF7+8cPJFT
+ s13Oe+aBZL8kv1do3xB2BGxDTdAlFNrwVPBHlJNmR21y7cr5eehNjQbwW
+ OTkRvGh4Zu5RibzQdtd2+vTEOWhy/fubUoIc6lJHgvgqWEH23WXsnpqgn
+ m7zXAM3rZcD5pTnw//mkbiEVnRGOKwX/Lmx1jAsqxO39O068tXAeaVeDY
+ mAouPzpezwnpRW49gqS6Pte2VWFIHm7ZCg1P9arMQ8UJ/vyKTXygM5ukB
+ qq+spLVy9ocK882yujAZo1nL3CMKh1YQR2QRWB3YqIUmHy0BQHrEh8PEa Q==;
+X-CSE-ConnectionGUID: qBXKktMcTm2igUedLdtS3g==
+X-CSE-MsgGUID: ODrZa1UJTY2gbvpz0H7J8g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11765"; a="81607522"
+X-IronPort-AV: E=Sophos;i="6.23,196,1770624000"; d="scan'208";a="81607522"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2026 02:19:41 -0700
-X-CSE-ConnectionGUID: sCShZh9HTru4u5O4hp804Q==
-X-CSE-MsgGUID: I5xUjv8QRMOlw6S/YrRoVA==
+ 24 Apr 2026 02:24:25 -0700
+X-CSE-ConnectionGUID: QAbKk7QwRwuZI3AcES7gXg==
+X-CSE-MsgGUID: rLNbFQd6R5+rdssdomNgnw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,196,1770624000"; d="scan'208";a="231902003"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.89])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2026 02:19:40 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 03/16] drm/i915: Move the i915_dpt_offset()==0 assert
-In-Reply-To: <20260423165346.20884-4-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260423165346.20884-1-ville.syrjala@linux.intel.com>
- <20260423165346.20884-4-ville.syrjala@linux.intel.com>
-Date: Fri, 24 Apr 2026 12:19:37 +0300
-Message-ID: <a4b7e308fd8cc8d9a80a121fac1eef718a399148@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,196,1770624000"; d="scan'208";a="271029264"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Apr 2026 02:24:24 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 0/3] Fix AS SDP and VRR handling for DP branch devices
+Date: Fri, 24 Apr 2026 14:39:39 +0530
+Message-ID: <20260424090942.3060291-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,64 +66,21 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 23 Apr 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Move the i915_dpt_offset() check into the lower level
-> intel_fb_pin_to_dpt() function. Clears out some of the unnecessary
-> junk from the higher level code, making it easier to introduce
-> the new fb_pin parent interface.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+This is a subset of patches separated from the series at
+https://patchwork.freedesktop.org/series/164512/ for merging.
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Currently VRR is not supported for DP branch devices, but AS SDP
+handling don't fully reflect that. This small series fixes that.
 
-> ---
->  drivers/gpu/drm/i915/i915_fb_pin.c | 13 ++++++-------
->  1 file changed, 6 insertions(+), 7 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_fb_pin.c b/drivers/gpu/drm/i915/i9=
-15_fb_pin.c
-> index b800b55530a5..400ad8768c11 100644
-> --- a/drivers/gpu/drm/i915/i915_fb_pin.c
-> +++ b/drivers/gpu/drm/i915/i915_fb_pin.c
-> @@ -101,6 +101,12 @@ intel_fb_pin_to_dpt(struct drm_gem_object *_obj, str=
-uct intel_dpt *dpt,
->  	i915_gem_object_flush_if_display(obj);
->=20=20
->  	i915_vma_get(vma);
-> +
-> +	/*
-> +	 * The DPT object contains only one vma, and there is no VT-d
-> +	 * guard, so the VMA's offset within the DPT is always 0.
-> +	 */
-> +	drm_WARN_ON(&i915->drm, i915_dpt_offset(vma));
->  err:
->  	atomic_dec(&i915->pending_fb_pin);
->=20=20
-> @@ -255,7 +261,6 @@ int intel_plane_pin_fb(struct intel_plane_state *plan=
-e_state,
->  		       const struct intel_plane_state *old_plane_state)
->  {
->  	struct intel_display *display =3D to_intel_display(plane_state);
-> -	struct drm_i915_private *i915 =3D to_i915(plane_state->uapi.plane->dev);
->  	struct intel_plane *plane =3D to_intel_plane(plane_state->uapi.plane);
->  	const struct intel_framebuffer *fb =3D
->  		to_intel_framebuffer(plane_state->hw.fb);
-> @@ -304,12 +309,6 @@ int intel_plane_pin_fb(struct intel_plane_state *pla=
-ne_state,
->  		plane_state->dpt_vma =3D vma;
->=20=20
->  		WARN_ON(plane_state->ggtt_vma =3D=3D plane_state->dpt_vma);
-> -
-> -		/*
-> -		 * The DPT object contains only one vma, and there is no VT-d
-> -		 * guard, so the VMA's offset within the DPT is always 0.
-> -		 */
-> -		drm_WARN_ON(&i915->drm, i915_dpt_offset(plane_state->dpt_vma));
->  	}
->=20=20
->  	/*
+Ankit Nautiyal (3):
+  drm/i915/vrr: Avoid vrr for PCON with HDMI2.1 sink
+  drm/i915/dp: Add a helper to decide if AS SDP can be used
+  drm/i915/dp: Skip AS SDP for DP branch devices
 
---=20
-Jani Nikula, Intel
+ drivers/gpu/drm/i915/display/intel_dp.c  | 22 +++++++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_vrr.c | 10 ++++++++++
+ 2 files changed, 31 insertions(+), 1 deletion(-)
+
+-- 
+2.45.2
+
