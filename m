@@ -4,42 +4,95 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 451F3FED3EA
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Apr 2026 16:03:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7047FED3EA
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Apr 2026 16:33:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C4AA10E3EC;
-	Fri, 24 Apr 2026 16:03:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8381510E408;
+	Fri, 24 Apr 2026 16:33:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="CH9UZO0X";
+	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="MpeN7uA0";
 	dkim-atps=neutral
-Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F25210E3EC
- for <intel-xe@lists.freedesktop.org>; Fri, 24 Apr 2026 16:03:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1777046588;
- bh=74wcFbX31LLTacwW895+s9BGxUexxeBqrZLsskclhjI=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=CH9UZO0X1+XHI59fG6jZ5leDMZbWLvQzKekAPJKLC7wrhPA8HoYb4ZUOBW9052Bg6
- K8vv+A6IeuEg19lZW6QPj/U9cas++lt0UICZH1Quou12GNent9c6dSWFShXfglT3SL
- ru09AvlhnUewhEZpeaBBInfF4zmGmfx39puux2rEs6tpS6tkwn2vWwuZaEfTz6fS9l
- h5yg7/8Bap/rzmAwcEGcG+Kqi5iHXogNeg0dyCiLAggrg+ygMX/IMolK8NTYpy7Jiu
- DNyCuWuoe6mZG9/oH93rB5iujvildeyvJLHNZ5Z3ZeXzFXawcUFkaFO7SwBjBbYND/
- 6564Tx5xXr9Jg==
-Message-ID: <92850c9a-808e-47b9-ae5f-fa10c4bda3ce@lankhorst.se>
-Date: Fri, 24 Apr 2026 18:03:07 +0200
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com
+ [209.85.128.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 738BC10E408
+ for <intel-xe@lists.freedesktop.org>; Fri, 24 Apr 2026 16:33:28 +0000 (UTC)
+Received: by mail-wm1-f49.google.com with SMTP id
+ 5b1f17b1804b1-48374014a77so104902915e9.3
+ for <intel-xe@lists.freedesktop.org>; Fri, 24 Apr 2026 09:33:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=suse.com; s=google; t=1777048407; x=1777653207; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=rigkqYAlhoqFqeCkHJ7xy8GFb3SiN14JzSLZL9wmVyo=;
+ b=MpeN7uA0ovuhwgxNHdX/E81XG0oUWtMlL3XIy3B3pXjmPD6sQobgfC147vnatpUfAI
+ U7PNYL4tvV8np1hUVp4LnM9WMx3sR356T0b1CbaHfBHnAAUSyWWiu0PfMWhsjAi93DK0
+ w3VJTcaM+j81yXX1z8t3tcT80dL+r44E8GSxpk9n6lkXtLNX/XebIGO50HgBjuJGSXmY
+ qa4SH4XVm2fxQCz3EHGsQWFV5pUTPyzMWJ2zj5rjKY0cLywx6e2DKN4Ptbynk7TOceD3
+ AhOYMUj+cWstCiTmH79TGMZozvMA+aaNq07EQmOOfPacTne7isFBmxLuzE/eKLIyEzW3
+ Ss3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1777048407; x=1777653207;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=rigkqYAlhoqFqeCkHJ7xy8GFb3SiN14JzSLZL9wmVyo=;
+ b=Q5AJYESDq4sB9DvQ7lKtuD7NAOajAKF0l+jq6qALFVGVRdLp52r/KbYWTpdpqqzzV1
+ UM6vi1zSVFkIfkKE+oLnLnu3HuavH+QnqAcax3Z8rI/7u+bLaBL2irW0qgoGejtgAHoo
+ 7/eU/FhkiBMyDw5g3/x7xzd720N1RjWWSKoNli7aJgmdJ76HsOwyD9Hwo8T9V3/hiiIJ
+ 4dOxTL1P/8iwjpzNrfvg0St1w5A0nenAmPcWQ9+AkKKt9+LMhVqzDr1PoqnFityQ9MGk
+ ctEcJDH7wY6qpuugrbjh5ZBPDCuP4EKoOzUYtQyOwN/QhsqpeVLSYIPpRZe9MQNk1nDb
+ CeFQ==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ/eRetKRdBJgNr/L0Lo4xVfEeep1NJkOKZ9auoBqz+wRUsKegms1G8ghpUSRtej8w4NKBtr0tQMhg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyKrAOR5y80KVfn+HvDNuLdnGNMC7hNuiv/wB30fOmWbzV7n1Fv
+ zt6223DJETievawNGlYxh1cQSOheZlS4SofUfTeNFdB8xpnMydXL6byxSW7LGabAa1M=
+X-Gm-Gg: AeBDievuYVK3eIhL8fke4hH+XAkzJhcDvDALasLmE9s1EAfKZWQp2M8HBVTqyBBzuad
+ 0uZA+NwnQl27zdnqEJFzAexeFffdRoO+OYqZSkn8D2JOpe6gOqGpnmUoBp+Iv3w5fPUtpJ5Sp0O
+ A4zM/HlymPlK4MhDtyZD5pzXiwlRjrT3wu0duLMbOWm4vjlYeFh0YefLAKGBhQMi50t22VcK6t5
+ HrDXbXT6/AyQbf0xUY0Wi1J0IhERTYkxYPTP87J5nVat+iv+onUHRle/mp7Yq19bx57Rg4PUiiK
+ o0JIyGrYZvqb3iAuyAJALFEooSK7ijJbIP5YoMtEpKJ6RXJxy4Uj3YrAdsUSr0K552YYP2cgStG
+ LsshvdF0t2R894gCWjB3fziEKPF506/OYHegjyAObSmmWAiCy7tTp1MUy0dPwR5D9AKfK66lmzX
+ mEfhZ+hD6Y54DEy9128ctGykHw+NRt5GeHLoSI0fQ2QqRwTT51LgS3SA==
+X-Received: by 2002:a05:600c:c0c8:b0:487:21c7:2885 with SMTP id
+ 5b1f17b1804b1-488fb73d9ffmr351003145e9.5.1777048406745; 
+ Fri, 24 Apr 2026 09:33:26 -0700 (PDT)
+Received: from blackdock.suse.cz (nat2.prg.suse.com. [195.250.132.146])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-4891c08faffsm702405535e9.1.2026.04.24.09.33.25
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 24 Apr 2026 09:33:26 -0700 (PDT)
+Date: Fri, 24 Apr 2026 18:33:24 +0200
+From: Michal =?utf-8?Q?Koutn=C3=BD?= <mkoutny@suse.com>
+To: Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ intel-xe@lists.freedesktop.org, Natalie Vock <natalie.vock@gmx.de>, 
+ Johannes Weiner <hannes@cmpxchg.org>, Tejun Heo <tj@kernel.org>,
+ cgroups@vger.kernel.org, 
+ Huang Rui <ray.huang@amd.com>, Matthew Brost <matthew.brost@intel.com>, 
+ Matthew Auld <matthew.auld@intel.com>, Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>, 
+ David Airlie <airlied@gmail.com>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, 
+ Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
+Subject: Re: [PATCH 2/5] cgroup/dmem: Add reclaim callback for lowering max
+ below current usage
+Message-ID: <soifu3hpmugejzevzggs57dreexuoammqkufegpjfvr6dzkt7u@7chmb3ppce6d>
+References: <20260327081600.4885-1-thomas.hellstrom@linux.intel.com>
+ <20260327081600.4885-3-thomas.hellstrom@linux.intel.com>
+ <4b647952-0038-4878-b67e-6c7fc7ab27a6@linux.intel.com>
+ <398623a092c65ce4e53d1713112fa39ac0979fd7.camel@linux.intel.com>
+ <8ecda206-d290-4895-bf57-346419afdc3c@linux.intel.com>
+ <3b662522e17e380953d9b981d8c2febecf42455e.camel@linux.intel.com>
+ <4f74cacc-ff98-426f-ac31-c25e6cbec314@linux.intel.com>
+ <fb353b64e9084bc8fff01f8d5cc45701a2a60a60.camel@linux.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] PCI: Fix resizable bar fails due to bridge memory region
-To: =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Cc: linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-References: <7f673ce8-fa00-47aa-a50f-812ae5073279@lankhorst.se>
- <ee594d2d-f5c8-271b-e883-9d43a47ad4ff@linux.intel.com>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <ee594d2d-f5c8-271b-e883-9d43a47ad4ff@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="dosxmscoevitfoas"
+Content-Disposition: inline
+In-Reply-To: <fb353b64e9084bc8fff01f8d5cc45701a2a60a60.camel@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,120 +107,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
 
-Den 2026-04-24 kl. 17:04, skrev Ilpo Järvinen:
-> On Fri, 24 Apr 2026, Maarten Lankhorst wrote:
-> 
->> I encountered a problem that I have on my system, where I cannot resize
->> the bar because one of the bridges has a 
-> 
-> You're missing words from here. But I can guess you've that extra BAR on 
-> in-card the bridge.
-> 
->> If I take a look at the topology, the GPU shares the memory region with a bridge,
->>
->> +-[0000:64]-+-00.0-[65-68]----00.0-[66-68]--+-01.0-[67]----00.0
->>
->> The specific bridge likely causing a failure is:
->>
->> 65:00.0 PCI bridge: Intel Corporation Device e2ff (rev 01) (prog-if 00 [Normal decode])
->>         Flags: bus master, fast devsel, latency 0, IRQ 32, IOMMU group 1
->>         Memory at 382400000000 (64-bit, prefetchable) [size=8M]
->>         ....
->>
->> Which causes upstream bridge 64:00.0 initially to allocate the region
->> [38fe0000000-38ff0000000) for the GPU, and [382ff0000000..382ff07fffff]
->> for the bridge device.
->>
->> Bridge 64 is big enough for 1 BMG with a 32 GB bar and the second 8 MB allocation:
->> pci_bus 0000:64: resource 9 [mem 0x382000000000-0x382fffffffff window] (64GB window)
->>
->> The reason for failure is that bridge 65 has a 8 MB memory region assigned,
-> 
->> and previously it was ignored when reallocating.
-> 
-> What does this mean? I don't think it was ever ignored while 
-> reallocating??
-> 
-> Note that kernel has become much more verbose in explaining why things 
-> fail so perhaps the added message is confusing you (they won't appear in 
-> the old kernels).
-> 
->> Failing case:
->> xe 0000:67:00.0: [drm] Attempting to resize bar from 256MiB -> 16384MiB
->> xe 0000:67:00.0: BAR 2 [mem 0x382fe0000000-0x382fefffffff 64bit pref]: releasing
->> pcieport 0000:66:01.0: bridge window [mem 0x382fe0000000-0x382fefffffff 64bit pref]: releasing
->> pcieport 0000:65:00.0: bridge window [mem 0x382fe0000000-0x382fefffffff 64bit pref]: releasing
->> pcieport 0000:64:00.0: bridge window [mem 0x382fe0000000-0x382ff07fffff 64bit pref]: was not released (still contains assigned resources)
->> pcieport 0000:65:00.0: bridge window [mem size 0x400000000 64bit pref]: can't assign; no space
->> pcieport 0000:65:00.0: bridge window [mem size 0x400000000 64bit pref]: failed to assign
->> pcieport 0000:65:00.0: bridge window [mem size 0x400000000 64bit pref]: can't assign; no space
->> pcieport 0000:65:00.0: bridge window [mem size 0x400000000 64bit pref]: failed to assign
->> pcieport 0000:66:01.0: bridge window [mem size 0x400000000 64bit pref]: can't assign; no space
->> pcieport 0000:66:01.0: bridge window [mem size 0x400000000 64bit pref]: failed to assign
->> pcieport 0000:66:01.0: bridge window [mem size 0x400000000 64bit pref]: can't assign; no space
->> pcieport 0000:66:01.0: bridge window [mem size 0x400000000 64bit pref]: failed to assign
->> xe 0000:67:00.0: BAR 2 [mem size 0x400000000 64bit pref]: can't assign; no space
->> xe 0000:67:00.0: BAR 2 [mem size 0x400000000 64bit pref]: failed to assign
->> xe 0000:67:00.0: BAR 2 [mem size 0x400000000 64bit pref]: can't assign; no space
->> xe 0000:67:00.0: BAR 2 [mem size 0x400000000 64bit pref]: failed to assign
->> pcieport 0000:64:00.0: PCI bridge to [bus 65-68]
->> pcieport 0000:64:00.0:   bridge window [mem 0xd7000000-0xd83fffff]
->> pcieport 0000:64:00.0:   bridge window [mem 0x382fe0000000-0x382ff07fffff 64bit pref]
->> pcieport 0000:65:00.0: PCI bridge to [bus 66-68]
->> pcieport 0000:65:00.0:   bridge window [mem 0xd7000000-0xd83fffff]
->> pcieport 0000:65:00.0:   bridge window [mem 0x382fe0000000-0x382fefffffff 64bit pref]
->> pcieport 0000:66:01.0: PCI bridge to [bus 67]
->> pcieport 0000:66:01.0:   bridge window [mem 0xd7000000-0xd81fffff]
->> pcieport 0000:66:01.0:   bridge window [mem 0x382fe0000000-0x382fefffffff 64bit pref]
->>
->> Working with the patch below:
->> xe 0000:67:00.0: [drm] Attempting to resize bar from 256MiB -> 16384MiB
->> xe 0000:67:00.0: BAR 2 [mem 0x382fe0000000-0x382fefffffff 64bit pref]: releasing
->> pcieport 0000:66:01.0: bridge window [mem 0x382fe0000000-0x382fefffffff 64bit pref]: releasing
->> pcieport 0000:65:00.0: bridge window [mem 0x382fe0000000-0x382fefffffff 64bit pref]: releasing
->> pcieport 0000:65:00.0: BAR 0 [mem 0x382ff0000000-0x382ff07fffff 64bit pref]: releasing
->> pcieport 0000:64:00.0: bridge window [mem 0x382fe0000000-0x382ff07fffff 64bit pref]: releasing
->> pcieport 0000:64:00.0: bridge window [mem 0x382000000000-0x3824007fffff 64bit pref]: assigned
->> pcieport 0000:65:00.0: bridge window [mem 0x382000000000-0x3823ffffffff 64bit pref]: assigned
->> pcieport 0000:65:00.0: BAR 0 [mem 0x382400000000-0x3824007fffff 64bit pref]: assigned
->> pcieport 0000:66:01.0: bridge window [mem 0x382000000000-0x3823ffffffff 64bit pref]: assigned
->> xe 0000:67:00.0: BAR 2 [mem 0x382000000000-0x3823ffffffff 64bit pref]: assigned
->> pcieport 0000:64:00.0: PCI bridge to [bus 65-68]
->> pcieport 0000:64:00.0:   bridge window [mem 0xd7000000-0xd83fffff]
->> pcieport 0000:64:00.0:   bridge window [mem 0x382000000000-0x3824007fffff 64bit pref]
->> pcieport 0000:65:00.0: PCI bridge to [bus 66-68]
->> pcieport 0000:65:00.0:   bridge window [mem 0xd7000000-0xd83fffff]
->> pcieport 0000:65:00.0:   bridge window [mem 0x382000000000-0x3823ffffffff 64bit pref]
->> pcieport 0000:65:00.0: PCI bridge to [bus 66-68]
->> pcieport 0000:65:00.0:   bridge window [mem 0xd7000000-0xd83fffff]
->> pcieport 0000:65:00.0:   bridge window [mem 0x382000000000-0x3823ffffffff 64bit pref]
->> pcieport 0000:66:01.0: PCI bridge to [bus 67]
->> pcieport 0000:66:01.0:   bridge window [mem 0xd7000000-0xd81fffff]
->> pcieport 0000:66:01.0:   bridge window [mem 0x382000000000-0x3823ffffffff 64bit pref]
->> xe 0000:67:00.0: [drm] BAR2 resized to 16384MiB
->>
->>
->> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
->> ---
->> I'm not 100% this is the correct fix, I don't know why the bridge itself has
->> a memory region, why the kernel allocates it and when it's supposed to
->> be used. Not a PCI expert. :-)
-> 
-> I don't know why it is there either. Nothing in the portdrv really uses it 
-> for anything. There is patchset somewhere lying around which adds a quirk 
-> that releases the "extra" BAR.
+--dosxmscoevitfoas
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 2/5] cgroup/dmem: Add reclaim callback for lowering max
+ below current usage
+MIME-Version: 1.0
 
-Thank you, I've taken a look at that patch series. It looks like patch 1/2
-would help a lot.
+On Wed, Apr 22, 2026 at 12:36:50PM +0200, Thomas Hellstr=F6m <thomas.hellst=
+rom@linux.intel.com> wrote:
+> > The task writing to max will not trigger a reclaim,
+> > only set the new max value.
+>=20
+> I still read *synchronous* reclaim.
+>=20
+> >=20
+> > But when a process, part of the affected cgroup, tries to allocate
+> > memory,
+> > it will be forced to reclaim memory until below max again.=20
+> >=20
+> > This is a workflow where instead of the updater doing all
+> > the evictions, the evictions handled by a process in the cgroup
+> > itself.
+>=20
+> But kswapd is still used to do background per-cgroup reclaim in this
+> case, right?
 
-I'm wondering if it will completely fix the issue, it is still possible
-that in the same config I have 2 identical cards, where resizing might
-work, but when GPU1's VRAM BAR is already bound, it might be unable
-to resize GPU2's VRAM BAR for the same reason as this patch.
+kswapd is driven by the global zone watermarks, it would only reclaim in
+the cgroup proportionally to its usage to fulfill that global "limit".
+The actual memcg's memory.max doesn't affect kswapd, it's really when
+reclaim is triggered upon hitting the limit from within the memcg.
 
-What would be the best way to handle this case?
+(The background per-cgroup analogy of kswapd for memcgs is proactive
+memory.reclaim but there's no dedicated kthread, it's up to the user to
+decide when and what to write into memory.reclaim.)
 
-Kind regards,
-~Maarten Lankhorst
+HTH,
+Michal
+
+--dosxmscoevitfoas
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJEEABYKADkWIQRCE24Fn/AcRjnLivR+PQLnlNv4CAUCaeubUBsUgAAAAAAEAA5t
+YW51MiwyLjUrMS4xMiwyLDIACgkQfj0C55Tb+Ai0HQD+Jgif2K031TYm0YfdjAty
+B0TzqcqwBBNpvrgnUgC67EkA/14ZknnuVjDttRPWZYhls33OFy1aAPEoFVVOc+Zd
+XuMF
+=AICI
+-----END PGP SIGNATURE-----
+
+--dosxmscoevitfoas--
