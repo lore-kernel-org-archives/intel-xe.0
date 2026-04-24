@@ -4,69 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4AE79FED3CD
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Apr 2026 14:00:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB88DFED3CE
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Apr 2026 14:05:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 015D610F5A4;
-	Fri, 24 Apr 2026 14:00:46 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="AF1I+hgO";
-	dkim-atps=neutral
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14A6910E3CD;
- Fri, 24 Apr 2026 14:00:44 +0000 (UTC)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org
- [IPv6:2001:67c:2050:b231:465::102])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4g2F3Q72tfz9tp1;
- Fri, 24 Apr 2026 16:00:34 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; t=1777039235;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=6SDpkva1CDyDwc/8PDqf/y1gmyrPMX3emqZXIY9zddg=;
- b=AF1I+hgOqZT5vH894kHT0zdrWmPq0j8KoZbftc3kgTFGiB/cMVsP0TvNIKZ5znrEY0AQpN
- FETAA3VUE9d0ilnOw/2Ak0ZhM94ditWa8HQv1N4qOAb6akW0qUhttTxUt16xHPmrxy13Tv
- W2N6/I4zhl+L+U7RSYzycDzHQutVAV0bWX+P6J8TD0nltlb6jjLUgBZUuhln92YvZHIQtd
- +WxaWklcZEkQTO5VL3pcHDMuzukkbZIHsrUSDhcCsGi3sSGu1QE6Tl4ENK/zYr6T73S2Xh
- vVlZLuO67gBH4yOQ+OcX+2HJsPI2gbjhBDbWG5BwhI/gWHlnXT/PL6iJ6+ovcA==
-Message-ID: <02f8471a-881e-462e-936a-d8048cc0ae05@mailbox.org>
-Date: Fri, 24 Apr 2026 16:00:26 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8465510F5AB;
+	Fri, 24 Apr 2026 14:05:46 +0000 (UTC)
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A99E210F5AA;
+ Fri, 24 Apr 2026 14:05:45 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2046572164087534545=="
 MIME-Version: 1.0
-Subject: Re: [PATCH v11 0/7] User readable error codes on atomic_ioctl failure
-To: "Kumar, Naveen1" <naveen1.kumar@intel.com>,
- "Murthy, Arun R" <arun.r.murthy@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- "xaver.hugl@kde.org" <xaver.hugl@kde.org>,
- "harry.wentland@amd.com" <harry.wentland@amd.com>,
- "Shankar, Uma" <uma.shankar@intel.com>,
- "louis.chauvet@bootlin.com" <louis.chauvet@bootlin.com>,
- "Yella, Ramya Krishna" <ramya.krishna.yella@intel.com>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Kandpal, Suraj" <suraj.kandpal@intel.com>
-References: <20260331-atomic-v11-0-6a1df7ec5af8@intel.com>
- <BN9PR11MB529039EC705FBA4E5E65C64FA72F2@BN9PR11MB5290.namprd11.prod.outlook.com>
- <6f5f44d3-2490-4d19-b6aa-31056410c22a@mailbox.org>
- <BN9PR11MB52901206A25AC016817AF1F7A72B2@BN9PR11MB5290.namprd11.prod.outlook.com>
-From: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
-Content-Language: en-CA
-In-Reply-To: <BN9PR11MB52901206A25AC016817AF1F7A72B2@BN9PR11MB5290.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: 32f803cdefd80af69c7
-X-MBO-RS-META: 8io57xtkundju7z81soewra6aegt14ms
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_vfio/xe=3A_avoid_duplicate_?=
+ =?utf-8?q?reset_in_xe=5Fvfio=5Fpci=5Freset=5Fdone?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: zhaoguohan@kylinos.cn
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 24 Apr 2026 14:05:45 -0000
+Message-ID: <177703954568.7267.3510123171596489900@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260424091719.58800-1-zhaoguohan@kylinos.cn>
+In-Reply-To: <20260424091719.58800-1-zhaoguohan@kylinos.cn>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,39 +36,180 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 4/24/26 13:37, Kumar, Naveen1 wrote:
->> From: Michel Dänzer <michel.daenzer@mailbox.org>
->> On 4/20/26 10:32, Kumar, Naveen1 wrote:
->>>
->>> We verified atomic commit failure detection via capability flag, error
->> code/string retrieval, and fallback path execution in Mutter via MR
->> https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/5022.
->>
->> I don't see any fallback handling in the mutter MR -
->> process_atomic_commit_error has only TODO comments for all failure codes.
->>
->> As such, in the current state I wouldn't consider it satisfying the user-space
->> implementation requirements for new UAPI.
-> 
-> Thanks for the review.
-> 
-> The current Mutter MR is intentionally scoped to enumerating the kernel-supported error codes and establishing the basic framework to collect early UAPI design feedback.
+--===============2046572164087534545==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-User-space code which doesn't do anything useful isn't suitable for giving feedback on UAPI design.
+== Series Details ==
 
-(For similar reasons, code in user-space test suites such as IGT isn't sufficient for this)
+Series: vfio/xe: avoid duplicate reset in xe_vfio_pci_reset_done
+URL   : https://patchwork.freedesktop.org/series/165429/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-4932-15ccea1aede9d776f85ed002cf0df3c8ea8bd81e_BAT -> xe-pw-165429v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 13)
+------------------------------
+
+  Additional (1): bat-bmg-3 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-165429v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_create@multigpu-create-massive-size:
+    - bat-bmg-3:          NOTRUN -> [SKIP][1] ([Intel XE#2504] / [Intel XE#7319] / [Intel XE#7350])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165429v1/bat-bmg-3/igt@xe_create@multigpu-create-massive-size.html
+
+  * igt@xe_exec_basic@multigpu-many-execqueues-many-vm-basic-defer-bind:
+    - bat-bmg-3:          NOTRUN -> [SKIP][2] ([Intel XE#2322] / [Intel XE#7372]) +53 other tests skip
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165429v1/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-basic-defer-bind.html
+
+  * igt@xe_multigpu_svm@mgpu-latency-prefetch:
+    - bat-bmg-3:          NOTRUN -> [SKIP][3] ([Intel XE#6964]) +20 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165429v1/bat-bmg-3/igt@xe_multigpu_svm@mgpu-latency-prefetch.html
+
+  * igt@xe_peer2peer@read:
+    - bat-bmg-3:          NOTRUN -> [SKIP][4] ([Intel XE#2427] / [Intel XE#6953] / [Intel XE#7326] / [Intel XE#7353]) +1 other test skip
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165429v1/bat-bmg-3/igt@xe_peer2peer@read.html
+
+  * igt@xe_query@multigpu-query-pxp-status:
+    - bat-bmg-3:          NOTRUN -> [SKIP][5] ([Intel XE#944]) +16 other tests skip
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165429v1/bat-bmg-3/igt@xe_query@multigpu-query-pxp-status.html
+
+  
+  [Intel XE#2322]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2322
+  [Intel XE#2427]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2427
+  [Intel XE#2504]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2504
+  [Intel XE#6953]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6953
+  [Intel XE#6964]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6964
+  [Intel XE#7319]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7319
+  [Intel XE#7326]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7326
+  [Intel XE#7350]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7350
+  [Intel XE#7353]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7353
+  [Intel XE#7372]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7372
+  [Intel XE#944]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/944
 
 
-> We agree the UAPI is not ready to merge without concrete fallback handling. We can go either way:
-> - Land the framework now and follow up with per-failure fallback patches, or
-> - Add at least one representative fallback case in Mutter MR to demonstrate the full flow first.
+Build changes
+-------------
 
-Every aspect of new UAPI needs to be fully utilized in real-world user-space code.
+  * IGT: IGT_8872 -> IGT_8873
+  * Linux: xe-4932-15ccea1aede9d776f85ed002cf0df3c8ea8bd81e -> xe-pw-165429v1
+
+  IGT_8872: e70db143b7bafe09bdea4d33188cb10d2070d0e5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8873: a5c5d655807ead8204e01754b6434f0ecae40b96 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4932-15ccea1aede9d776f85ed002cf0df3c8ea8bd81e: 15ccea1aede9d776f85ed002cf0df3c8ea8bd81e
+  xe-pw-165429v1: 165429v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165429v1/index.html
+
+--===============2046572164087534545==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
--- 
-Earthling Michel Dänzer       \        GNOME / Xwayland / Mesa developer
-https://redhat.com             \               Libre software enthusiast
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>vfio/xe: avoid duplicate reset in xe_vfio_pci_reset_done</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165429/">https://patchwork.freedesktop.org/series/165429/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165429v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165429v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4932-15ccea1aede9d776f85ed002cf0df3c8ea8bd81e_BAT -&gt; xe-pw-165429v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 13)</h2>
+<p>Additional (1): bat-bmg-3 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-165429v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_create@multigpu-create-massive-size:</p>
+<ul>
+<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165429v1/bat-bmg-3/igt@xe_create@multigpu-create-massive-size.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2504">Intel XE#2504</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7319">Intel XE#7319</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7350">Intel XE#7350</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_basic@multigpu-many-execqueues-many-vm-basic-defer-bind:</p>
+<ul>
+<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165429v1/bat-bmg-3/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-basic-defer-bind.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2322">Intel XE#2322</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7372">Intel XE#7372</a>) +53 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_multigpu_svm@mgpu-latency-prefetch:</p>
+<ul>
+<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165429v1/bat-bmg-3/igt@xe_multigpu_svm@mgpu-latency-prefetch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6964">Intel XE#6964</a>) +20 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_peer2peer@read:</p>
+<ul>
+<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165429v1/bat-bmg-3/igt@xe_peer2peer@read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2427">Intel XE#2427</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6953">Intel XE#6953</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7326">Intel XE#7326</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7353">Intel XE#7353</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_query@multigpu-query-pxp-status:</p>
+<ul>
+<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165429v1/bat-bmg-3/igt@xe_query@multigpu-query-pxp-status.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/944">Intel XE#944</a>) +16 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8872 -&gt; IGT_8873</li>
+<li>Linux: xe-4932-15ccea1aede9d776f85ed002cf0df3c8ea8bd81e -&gt; xe-pw-165429v1</li>
+</ul>
+<p>IGT_8872: e70db143b7bafe09bdea4d33188cb10d2070d0e5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8873: a5c5d655807ead8204e01754b6434f0ecae40b96 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4932-15ccea1aede9d776f85ed002cf0df3c8ea8bd81e: 15ccea1aede9d776f85ed002cf0df3c8ea8bd81e<br />
+  xe-pw-165429v1: 165429v1</p>
+
+</body>
+</html>
+
+--===============2046572164087534545==--
