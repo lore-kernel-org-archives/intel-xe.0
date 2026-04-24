@@ -4,71 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48A26FF885E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A623FF8862
 	for <intel-xe@archiver.kernel.org>; Mon, 27 Apr 2026 11:51:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 092A210E6E1;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1871510E6E4;
 	Mon, 27 Apr 2026 11:51:55 +0000 (UTC)
-X-Greylist: delayed 984 seconds by postgrey-1.36 at gabe;
- Sat, 25 Apr 2026 06:59:06 UTC
-Received: from dggsgout12.his.huawei.com (dggsgout12.his.huawei.com
- [45.249.212.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5ED9910E0D6;
- Sat, 25 Apr 2026 06:59:06 +0000 (UTC)
-Received: from mail.maildlp.com (unknown [172.19.163.198])
- by dggsgout12.his.huawei.com (SkyGuard) with ESMTPS id 4g2gHC1b9YzKHMXJ;
- Sat, 25 Apr 2026 14:42:15 +0800 (CST)
-Received: from mail02.huawei.com (unknown [10.116.40.128])
- by mail.maildlp.com (Postfix) with ESMTP id 4AC9640574;
- Sat, 25 Apr 2026 14:42:40 +0800 (CST)
-Received: from [10.67.111.176] (unknown [10.67.111.176])
- by APP4 (Coremail) with SMTP id gCh0CgA3HrxeYuxpzYCiBg--.33183S2;
- Sat, 25 Apr 2026 14:42:40 +0800 (CST)
-Message-ID: <220aadd9-0d92-44ce-8a70-bd30030defa9@huaweicloud.com>
-Date: Sat, 25 Apr 2026 14:42:38 +0800
+Authentication-Results: gabe.freedesktop.org;
+	dkim=permerror (0-bit key) header.d=shazbot.org header.i=@shazbot.org header.b="EoJ/eNa/";
+	dkim=permerror (0-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="BcEsU73p";
+	dkim-atps=neutral
+X-Greylist: delayed 534 seconds by postgrey-1.36 at gabe;
+ Fri, 24 Apr 2026 16:56:44 UTC
+Received: from fout-b1-smtp.messagingengine.com
+ (fout-b1-smtp.messagingengine.com [202.12.124.144])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D532610E3F0
+ for <intel-xe@lists.freedesktop.org>; Fri, 24 Apr 2026 16:56:44 +0000 (UTC)
+Received: from phl-compute-06.internal (phl-compute-06.internal [10.202.2.46])
+ by mailfout.stl.internal (Postfix) with ESMTP id 51AD51D000BC;
+ Fri, 24 Apr 2026 12:47:49 -0400 (EDT)
+Received: from phl-frontend-04 ([10.202.2.163])
+ by phl-compute-06.internal (MEProxy); Fri, 24 Apr 2026 12:47:49 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=shazbot.org; h=
+ cc:cc:content-transfer-encoding:content-type:content-type:date
+ :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to; s=fm1; t=1777049269;
+ x=1777135669; bh=7Jd/Ldgk0Yk4g9VO8dVen6H3KA5tpa2J0W6BFBzbq3c=; b=
+ EoJ/eNa/eezbMRB/mnmXbB8jLcH0ZXi22EkoUjlYQBjgNXO8evjCQI0AE5cNPFAr
+ oOptOl6e7kyaN8nvmWux+5RijvbUasBpUj66Sk3maNCJfD2lfwd22UFSzg8BSJUU
+ 9r4pK9moEtH95NKu4qrBMU+QeLvJBvCB2KmmU0ZBJYggenS5H8ox5ORG2pFPgday
+ C46rktOgqdwSGnWdVCgfyTpvv7ybycknZaUJgBD+moe2woRNkmzwXsY4JwZ+pnOn
+ +9aLaMCwKbQY5/CCe/e7r2Dlzm9fr4kie31jYTcHL5QKzj4LZj6s7DGOA6xs24Rg
+ x791a5WTSDyOOOu0Ui4zoQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:content-type:date:date:feedback-id:feedback-id
+ :from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1777049269; x=
+ 1777135669; bh=7Jd/Ldgk0Yk4g9VO8dVen6H3KA5tpa2J0W6BFBzbq3c=; b=B
+ cEsU73pEG0Ar6OLfCDdyAkMDmYI1tN81ha1PZv5j+ocOUhrw4mHTYvNWb5NkiNxD
+ S61QaE6K82j2ODZ2CqXXuPEu3CzDxutXoa2vaWnPVew9b342I7+HZMNf4GgFHbt4
+ KHuTiuiGSOLpkj2sPLzqrw0nwbnuhDM5/ruACzFgS3q6MyIuPQnd+5lsIUMQWTap
+ NWZw+jmlSqZmlKVI4KUeU3qTNfijyXXSiNt3LTBVTHs5Jyp9242pk27qL9VbXFLq
+ WxyoVe2pNMheeA9kmdxsWV8AM468b0cvshtpbUKVQHzSXbrhnlRH+4Sy4iOM/q3M
+ OKip+KveWkzb76OIAaA2g==
+X-ME-Sender: <xms:tJ7raRRRyKd1Xi0U5826oESesMsnYK_7ZvB4dkx0mnKTcwoNSzL--g>
+ <xme:tJ7raQz1lFh6cWDYmVSQ2rb1KdcWuWulYK5XW6VMY4KypOxMeiIAmOe_5wH3swbZH
+ DIciH7a11-bYPmtn2LHwh_esbivTghmGJi9yoPkwxs8csi99sWO0w>
+X-ME-Received: <xmr:tJ7raRqHZW61wBt2qcaf6Y686Qn-DTjd_oJhZuojCfImc7ZWdgTpquOHqFw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefhedrtddtgdejtdehhecutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+ ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+ hrpeffhffvvefukfgjfhfogggtgfesthejredtredtvdenucfhrhhomheptehlvgigucgh
+ ihhllhhirghmshhonhcuoegrlhgvgiesshhhrgiisghothdrohhrgheqnecuggftrfgrth
+ htvghrnhepvdekfeejkedvudfhudfhteekudfgudeiteetvdeukedvheetvdekgfdugeev
+ ueeunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+ hlvgigsehshhgriigsohhtrdhorhhgpdhnsggprhgtphhtthhopedutddpmhhouggvpehs
+ mhhtphhouhhtpdhrtghpthhtohepiihhrghoghhuohhhrghnsehkhihlihhnohhsrdgtnh
+ dprhgtphhtthhopehmihgthhgrlhdrfihinhhirghrshhkihesihhnthgvlhdrtghomhdp
+ rhgtphhtthhopehkvhhmsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepih
+ hnthgvlhdqgigvsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhgpdhrtghpthht
+ ohepjhhgghesiihivghpvgdrtggrpdhrtghpthhtohephihishhhrghihhesnhhvihguih
+ grrdgtohhmpdhrtghpthhtohepshhkohhlohhthhhumhhthhhosehnvhhiughirgdrtgho
+ mhdprhgtphhtthhopehkvghvihhnrdhtihgrnhesihhnthgvlhdrtghomhdprhgtphhtth
+ hopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrgh
+X-ME-Proxy: <xmx:tJ7rab3yBRMN8FZR3c60I9sDu4Wmcui2PW7yf2WAwxTjjP-svV4Szg>
+ <xmx:tJ7raZzqVKem2nSByBtTXZ6QCLINNq62-Jc4s9bkYcK5hudQTI4QOg>
+ <xmx:tJ7raXiSOHwxi15Uh2_kNd2TDDch0jmVPXcL0X2Nee5QRYPbs6V4_A>
+ <xmx:tJ7racpwnMVY2ACtaDsoaKQcv7zu5dc709cMzUxbZCAy0SnbZOt_wA>
+ <xmx:tZ7raSksUkz3-w8WeL3oi7cIAPpO186vl-7h3E1PVMtTYMPcp5BtUYCp>
+Feedback-ID: i03f14258:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 24 Apr 2026 12:47:47 -0400 (EDT)
+Date: Fri, 24 Apr 2026 10:47:45 -0600
+From: Alex Williamson <alex@shazbot.org>
+To: zhaoguohan@kylinos.cn
+Cc: =?UTF-8?B?TWljaGHFgg==?= Winiarski <michal.winiarski@intel.com>,
+ kvm@vger.kernel.org, intel-xe@lists.freedesktop.org, Jason Gunthorpe
+ <jgg@ziepe.ca>, Yishai Hadas <yishaih@nvidia.com>, Shameer Kolothum
+ <skolothumtho@nvidia.com>, Kevin Tian <kevin.tian@intel.com>,
+ linux-kernel@vger.kernel.org, alex@shazbot.org
+Subject: Re: [PATCH] vfio/xe: avoid duplicate reset in xe_vfio_pci_reset_done
+Message-ID: <20260424104745.03cfcebe@shazbot.org>
+In-Reply-To: <20260424091719.58800-1-zhaoguohan@kylinos.cn>
+References: <20260424091719.58800-1-zhaoguohan@kylinos.cn>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] cgroup/dmem: Add reclaim callback for lowering max
- below current usage
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Natalie Vock <natalie.vock@gmx.de>, Johannes Weiner <hannes@cmpxchg.org>, 
- Tejun Heo <tj@kernel.org>, =?UTF-8?Q?Michal_Koutn=C3=BD?=
- <mkoutny@suse.com>, cgroups@vger.kernel.org, Huang Rui <ray.huang@amd.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Simona Vetter <simona@ffwll.ch>, David Airlie <airlied@gmail.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
-References: <20260327081600.4885-1-thomas.hellstrom@linux.intel.com>
- <20260327081600.4885-3-thomas.hellstrom@linux.intel.com>
-Content-Language: en-US
-From: Chen Ridong <chenridong@huaweicloud.com>
-In-Reply-To: <20260327081600.4885-3-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: gCh0CgA3HrxeYuxpzYCiBg--.33183S2
-X-Coremail-Antispam: 1UD129KBjvJXoW3Jr4kKr4xGFWxCr47Ar1DKFg_yoW3XrykpF
- ZrCr13Kw4rXrW7Zrsay3W8uF93u3Wvgr45W34xGw4fuFsrJw1Yyr4qk3yYyF1UCF9rGr1f
- Xan0krnruFWjyrDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDU0xBIdaVrnRJUUUvjb4IE77IF4wAFF20E14v26ryj6rWUM7CY07I20VC2zVCF04k2
- 6cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4
- vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xIIjxv20xvEc7Cj
- xVAFwI0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I
- 0E14v26rxl6s0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40E
- x7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x
- 0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkIwI1lc7CjxVAaw2AF
- wI0_GFv_Wryl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4
- xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r4a6rW5
- MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I
- 0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWU
- JVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxUIa
- 0PDUUUU
-X-CM-SenderInfo: hfkh02xlgr0w46kxt4xhlfz01xgou0bp/
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Mon, 27 Apr 2026 11:51:53 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -84,215 +107,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Fri, 24 Apr 2026 17:17:19 +0800
+zhaoguohan@kylinos.cn wrote:
+
+> From: GuoHan Zhao <zhaoguohan@kylinos.cn>
+> 
+> xe_vfio_pci_reset_done() sets deferred_reset and, when it manages to
+> acquire state_mutex itself, hands the cleanup off to
+> xe_vfio_pci_state_mutex_unlock().
+> 
+> That helper already clears deferred_reset and runs xe_vfio_pci_reset()
+> before dropping the mutex. Calling xe_vfio_pci_reset() again right
+> afterwards repeats the reset handling unnecessarily.
+> 
+> Fixes: 1b81ed612e12 ("vfio/xe: Reorganize the init to decouple migration from reset")
+
+Change looks good to me, but the Fixes: attribution is wrong, this has
+been present since the original code in 1f5556ec8b9e ("vfio/xe: Add
+device specific vfio_pci driver variant for Intel graphics").  Thanks,
+
+Alex
 
 
-On 2026/3/27 16:15, Thomas Hellström wrote:
-> Add an optional reclaim callback to struct dmem_cgroup_region.  When
-> dmem.max is set below current usage, invoke the callback to evict memory
-> and retry setting the limit rather than failing immediately.  Signal
-> interruptions propagate back to the write() caller.
-> 
-> RFC:
-> Due to us updating the max limit _after_ the usage has been
-> sufficiently lowered, this should be prone to failures if there are
-> aggressive allocators running in parallel to the reclaim.
-> So can we somehow enforce the new limit while the eviction is
-> happening?
-> 
-> Assisted-by: GitHub Copilot:claude-sonnet-4.6
-> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Signed-off-by: GuoHan Zhao <zhaoguohan@kylinos.cn>
 > ---
->  include/linux/cgroup_dmem.h | 11 +++++
->  kernel/cgroup/dmem.c        | 94 +++++++++++++++++++++++++++++++++----
->  2 files changed, 96 insertions(+), 9 deletions(-)
+>  drivers/vfio/pci/xe/main.c | 2 --
+>  1 file changed, 2 deletions(-)
 > 
-> diff --git a/include/linux/cgroup_dmem.h b/include/linux/cgroup_dmem.h
-> index dd4869f1d736..61520a431740 100644
-> --- a/include/linux/cgroup_dmem.h
-> +++ b/include/linux/cgroup_dmem.h
-> @@ -26,6 +26,10 @@ bool dmem_cgroup_state_evict_valuable(struct dmem_cgroup_pool_state *limit_pool,
->  				      bool ignore_low, bool *ret_hit_low);
->  
->  void dmem_cgroup_pool_state_put(struct dmem_cgroup_pool_state *pool);
-> +void dmem_cgroup_region_set_reclaim(struct dmem_cgroup_region *region,
-> +				    int (*reclaim)(struct dmem_cgroup_pool_state *pool,
-> +						   u64 target_bytes, void *priv),
-> +				    void *priv);
->  #else
->  static inline __printf(2,3) struct dmem_cgroup_region *
->  dmem_cgroup_register_region(u64 size, const char *name_fmt, ...)
-> @@ -62,5 +66,12 @@ bool dmem_cgroup_state_evict_valuable(struct dmem_cgroup_pool_state *limit_pool,
->  static inline void dmem_cgroup_pool_state_put(struct dmem_cgroup_pool_state *pool)
->  { }
->  
-> +static inline void
-> +dmem_cgroup_region_set_reclaim(struct dmem_cgroup_region *region,
-> +			       int (*reclaim)(struct dmem_cgroup_pool_state *pool,
-> +					      u64 target_bytes, void *priv),
-> +			       void *priv)
-> +{ }
-> +
->  #endif
->  #endif	/* _CGROUP_DMEM_H */
-> diff --git a/kernel/cgroup/dmem.c b/kernel/cgroup/dmem.c
-> index 3e6d4c0b26a1..f993fb058b74 100644
-> --- a/kernel/cgroup/dmem.c
-> +++ b/kernel/cgroup/dmem.c
-> @@ -51,6 +51,18 @@ struct dmem_cgroup_region {
->  	 * No new pools should be added to the region afterwards.
->  	 */
->  	bool unregistered;
-> +
-> +	/**
-> +	 * @reclaim: Optional callback invoked when dmem.max is set below the
-> +	 * current usage of a pool. The driver should attempt to free at least
-> +	 * @target_bytes from @pool. May be called multiple times if usage
-> +	 * remains above the limit after returning.
-> +	 */
-> +	int (*reclaim)(struct dmem_cgroup_pool_state *pool, u64 target_bytes,
-> +		       void *priv);
-> +
-> +	/** @reclaim_priv: Private data passed to @reclaim. */
-> +	void *reclaim_priv;
->  };
->  
->  struct dmemcg_state {
-> @@ -145,23 +157,59 @@ static void free_cg_pool(struct dmem_cgroup_pool_state *pool)
+> diff --git a/drivers/vfio/pci/xe/main.c b/drivers/vfio/pci/xe/main.c
+> index 4ecadbbfd86e..cbff5af385ef 100644
+> --- a/drivers/vfio/pci/xe/main.c
+> +++ b/drivers/vfio/pci/xe/main.c
+> @@ -135,8 +135,6 @@ static void xe_vfio_pci_reset_done(struct pci_dev *pdev)
+>  	}
+>  	spin_unlock(&xe_vdev->reset_lock);
+>  	xe_vfio_pci_state_mutex_unlock(xe_vdev);
+> -
+> -	xe_vfio_pci_reset(xe_vdev);
 >  }
 >  
->  static int
-> -set_resource_min(struct dmem_cgroup_pool_state *pool, u64 val)
-> +set_resource_min(struct dmem_cgroup_pool_state *pool, u64 val,
-> +		 struct dmem_cgroup_region *region)
->  {
->  	page_counter_set_min(&pool->cnt, val);
->  	return 0;
->  }
->  
->  static int
-> -set_resource_low(struct dmem_cgroup_pool_state *pool, u64 val)
-> +set_resource_low(struct dmem_cgroup_pool_state *pool, u64 val,
-> +		 struct dmem_cgroup_region *region)
->  {
->  	page_counter_set_low(&pool->cnt, val);
->  	return 0;
->  }
->  
->  static int
-> -set_resource_max(struct dmem_cgroup_pool_state *pool, u64 val)
-> +set_resource_max(struct dmem_cgroup_pool_state *pool, u64 val,
-
-Though we are discussing how to set the maximum, renaming 'val' to 'max' would
-improve readability in the next version.
-
-> +		 struct dmem_cgroup_region *region)
->  {
-> -	return page_counter_set_max(&pool->cnt, val);
-> +	int err = page_counter_set_max(&pool->cnt, val);
-> +
-> +	if (err != -EBUSY || !region || !region->reclaim)
-> +		return err;
-> +
-> +	/*
-> +	 * The new max is below current usage.  Ask the driver to evict memory
-> +	 * and retry, up to a bounded number of times.  Signal interruptions are
-> +	 * propagated back to the write() caller; other reclaim failures leave
-> +	 * -EBUSY as the result.
-> +	 */
-> +	for (int retries = 5; retries > 0; retries--) {
-> +		u64 usage = page_counter_read(&pool->cnt);
-> +		u64 target = usage > val ? usage - val : 0;
-> +		int reclaim_err;
-> +
-> +		if (!target) {
-> +			err = page_counter_set_max(&pool->cnt, val);
-> +			break;
-> +		}
-> +
-> +		reclaim_err = region->reclaim(pool, target, region->reclaim_priv);
-> +		if (reclaim_err) {
-> +			if (reclaim_err == -EINTR || reclaim_err == -ERESTARTSYS)
-> +				err = reclaim_err;
-> +			break;
-> +		}
-> +
-> +		err = page_counter_set_max(&pool->cnt, val);
-> +		if (err != -EBUSY)
-> +			break;
-> +	}
-> +
-> +	return err;
->  }
->  
->  static u64 get_resource_low(struct dmem_cgroup_pool_state *pool)
-> @@ -186,9 +234,9 @@ static u64 get_resource_current(struct dmem_cgroup_pool_state *pool)
->  
->  static void reset_all_resource_limits(struct dmem_cgroup_pool_state *rpool)
->  {
-> -	set_resource_min(rpool, 0);
-> -	set_resource_low(rpool, 0);
-> -	set_resource_max(rpool, PAGE_COUNTER_MAX);
-> +	set_resource_min(rpool, 0, NULL);
-> +	set_resource_low(rpool, 0, NULL);
-> +	set_resource_max(rpool, PAGE_COUNTER_MAX, NULL);
->  }
->  
->  static void dmemcs_offline(struct cgroup_subsys_state *css)
-> @@ -570,6 +618,32 @@ void dmem_cgroup_pool_state_put(struct dmem_cgroup_pool_state *pool)
->  }
->  EXPORT_SYMBOL_GPL(dmem_cgroup_pool_state_put);
->  
-> +/**
-> + * dmem_cgroup_region_set_reclaim - Register a reclaim callback on a region.
-> + * @region: The region to register the callback for.
-> + * @reclaim: Callback to invoke when dmem.max is set below current usage.
-> + *           Called with the pool that needs reclaiming and the number of
-> + *           bytes to free. Returns 0 on progress, negative on failure.
-> + * @priv: Opaque pointer passed back to @reclaim.
-> + *
-> + * When dmem.max is lowered below the current usage of a cgroup pool, the
-> + * dmem controller will call @reclaim with a target number of bytes to free.
-> + * After @reclaim returns the controller retries setting the limit; if usage
-> + * is still too high it calls @reclaim again, up to a bounded retry count.
-> + */
-> +void dmem_cgroup_region_set_reclaim(struct dmem_cgroup_region *region,
-> +				    int (*reclaim)(struct dmem_cgroup_pool_state *pool,
-> +						   u64 target_bytes, void *priv),
-> +				    void *priv)
-> +{
-> +	if (!region)
-> +		return;
-> +
-> +	region->reclaim = reclaim;
-> +	region->reclaim_priv = priv;
-> +}
-> +EXPORT_SYMBOL_GPL(dmem_cgroup_region_set_reclaim);
-> +
->  static struct dmem_cgroup_pool_state *
->  get_cg_pool_unlocked(struct dmemcg_state *cg, struct dmem_cgroup_region *region)
->  {
-> @@ -728,7 +802,8 @@ static int dmemcg_parse_limit(char *options, struct dmem_cgroup_region *region,
->  
->  static ssize_t dmemcg_limit_write(struct kernfs_open_file *of,
->  				 char *buf, size_t nbytes, loff_t off,
-> -				 int (*apply)(struct dmem_cgroup_pool_state *, u64))
-> +				 int (*apply)(struct dmem_cgroup_pool_state *, u64,
-> +					      struct dmem_cgroup_region *))
->  {
->  	struct dmemcg_state *dmemcs = css_to_dmemcs(of_css(of));
->  	int err = 0;
-> @@ -775,7 +850,8 @@ static ssize_t dmemcg_limit_write(struct kernfs_open_file *of,
->  		}
->  
->  		/* And commit */
-> -		err = apply(pool, new_limit);
-> +		err = apply(pool, new_limit, region);
-> +
->  		dmemcg_pool_put(pool);
->  
->  out_put:
-
--- 
-Best regards,
-Ridong
+>  static const struct pci_error_handlers xe_vfio_pci_err_handlers = {
 
