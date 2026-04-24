@@ -4,68 +4,102 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F562FB44C1
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Apr 2026 07:05:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DF97FB44C4
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Apr 2026 07:26:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E75C010F31A;
-	Fri, 24 Apr 2026 07:05:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2EBD10F370;
+	Fri, 24 Apr 2026 07:26:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E5wFM9Zb";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="C6/S2Vgh";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB39A10F30E;
- Fri, 24 Apr 2026 07:05:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777014322; x=1808550322;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=wKkQjksF58KOBShBOIr4QCuWLnUJX6G0srOO77XVonw=;
- b=E5wFM9ZbUByT0F4buwvYWrYglfF5vJ1wQsyyIKPcvM24xwiziHOkbHa5
- 2avB/q7LyjgelMEHQm09KOiDioDiiV/ildVJCZJz6RMnSGhC07Q7YUe43
- MgforIpHztR8kUod3GPUcjwZB20kXO3uz3cWBl5iXyHwmmZtsM9d1RWZ2
- peJtEFaKOiyV6hg7QdDIt2mm/oypl0PJTW8sLXG8kIqz2HQLsI+1HUlkt
- lXzt83KiHkGMvQeWPiAQW2pmNal6qVTQl5rq1d+YAmU5slI5FfrGwEsBC
- v7GaKk4aLUGJLlYyb69x46rlgBJ5N2aPaIETgpi7F7w0aJXUWk5jY6r6H A==;
-X-CSE-ConnectionGUID: xR31NPqCQMqYpAuaS8NpJA==
-X-CSE-MsgGUID: VD15kLMHTUStn1+VJiTkZQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11765"; a="81852603"
-X-IronPort-AV: E=Sophos;i="6.23,196,1770624000"; d="scan'208";a="81852603"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2026 00:05:22 -0700
-X-CSE-ConnectionGUID: jALR2HnjQy2FSh+IwLvczw==
-X-CSE-MsgGUID: AFI2FRyNTSWr9Z8LdXAzDA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,196,1770624000"; d="scan'208";a="228315564"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.245.58])
- ([10.245.245.58])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2026 00:05:19 -0700
-Message-ID: <291406b26b8badf2e565996515931d9ebe50208f.camel@linux.intel.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A4AE10F32E;
+ Fri, 24 Apr 2026 07:26:25 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 08A5C444A0;
+ Fri, 24 Apr 2026 07:26:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B53E4C19425;
+ Fri, 24 Apr 2026 07:26:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1777015584;
+ bh=5dmzXPh5bpR2t1b0uCMuOAqmdZYp5LGnT+Lwxr5M/oo=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=C6/S2VghcGegNnoRZvvUqEJC5Se8UaQriA/q3zpdTKceryHugwPWmW3hLepdvu1F+
+ 2pM+7AAqUoTcF2vFap5zsQEkhXzDgXYV78p0OUuJuBbqwBv3O/8qmPDmftAAl3npF0
+ xW/rsHX18FkQjJ+YAAeoc6OliYWOCGHcOEkrOczwwIR7JJOdORUKzS+ONFq0/aasrm
+ hP3Sx+oWS6eTZF945+EHKpbaheEyeT0B2vNJIJS1KrWjWeYm3RWxWjG9f4dFefYjb2
+ Mwbeyt6hyV1NXzUvZvL3q+lySBi28hFUyuJMztEzXOwji88N0hU/rAZhQILqhxViia
+ bamHzpaHrw1WA==
+Message-ID: <a1252167-63a1-481b-9f1d-2a7bae7a3b6c@kernel.org>
+Date: Fri, 24 Apr 2026 09:26:18 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v2 1/5] mm: Introduce zone_appears_fragmented()
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: "David Hildenbrand (Arm)" <david@kernel.org>, 
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Andrew
- Morton	 <akpm@linux-foundation.org>, Lorenzo Stoakes <ljs@kernel.org>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka
- <vbabka@kernel.org>, Mike Rapoport	 <rppt@kernel.org>, Suren Baghdasaryan
- <surenb@google.com>, Michal Hocko	 <mhocko@suse.com>, linux-mm@kvack.org,
- linux-kernel@vger.kernel.org, Johannes Weiner <hannes@cmpxchg.org>
-Date: Fri, 24 Apr 2026 09:05:16 +0200
-In-Reply-To: <aeqbe/9YRKNyYuWY@gsse-cloud1.jf.intel.com>
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Andrew Morton <akpm@linux-foundation.org>, Lorenzo Stoakes <ljs@kernel.org>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>,
+ Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
+ linux-mm@kvack.org, linux-kernel@vger.kernel.org,
+ Johannes Weiner <hannes@cmpxchg.org>
 References: <20260423055656.1696379-1-matthew.brost@intel.com>
  <20260423055656.1696379-2-matthew.brost@intel.com>
  <76191a17-18bf-4e9b-9ab5-dc9a48abfabb@kernel.org>
  <be42059924cde9bb16a087ee2a5abb0b9d850d68.camel@linux.intel.com>
  <aepuNL2fwp47P1Wi@gsse-cloud1.jf.intel.com>
  <aeqbe/9YRKNyYuWY@gsse-cloud1.jf.intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
-MIME-Version: 1.0
+ <291406b26b8badf2e565996515931d9ebe50208f.camel@linux.intel.com>
+From: "David Hildenbrand (Arm)" <david@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=david@kernel.org; keydata=
+ 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
+ qIws/H2t
+In-Reply-To: <291406b26b8badf2e565996515931d9ebe50208f.camel@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,194 +114,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 2026-04-23 at 15:21 -0700, Matthew Brost wrote:
-> On Thu, Apr 23, 2026 at 12:08:36PM -0700, Matthew Brost wrote:
-> > On Thu, Apr 23, 2026 at 01:27:11PM +0200, Thomas Hellstr=C3=B6m wrote:
-> > > On Thu, 2026-04-23 at 12:27 +0200, David Hildenbrand (Arm) wrote:
-> > > > On 4/23/26 07:56, Matthew Brost wrote:
-> > > > > Introduce zone_appears_fragmented() as a lightweight helper
-> > > > > to
-> > > > > allow
-> > > > > subsystems to make coarse decisions about reclaim behavior in
-> > > > > the
-> > > > > presence of likely fragmentation.
-> > > > >=20
-> > > > > The helper implements a simple heuristic: if the number of
-> > > > > free
-> > > > > pages
-> > > > > in a zone exceeds twice the high watermark, the zone is
-> > > > > considered
-> > > > > to
-> > > > > have ample free memory and allocation failures are more
-> > > > > likely due
-> > > > > to
-> > > > > fragmentation than overall memory pressure.
-> > > > >=20
-> > > > > This is intentionally imprecise and is not meant to replace
-> > > > > the
-> > > > > core
-> > > > > MM compaction or fragmentation accounting logic. Instead, it
-> > > > > provides
-> > > > > a cheap signal for callers (e.g., shrinkers) that wish to
-> > > > > avoid
-> > > > > overly aggressive reclaim when sufficient free memory exists
-> > > > > but
-> > > > > high-order allocations may still fail.
-> > > > >=20
-> > > > > No functional changes; this is a preparatory helper for
-> > > > > future
-> > > > > users.
-> > > > >=20
-> > > > > Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> > > > > Cc: Andrew Morton <akpm@linux-foundation.org>
-> > > > > Cc: David Hildenbrand <david@kernel.org>
-> > > > > Cc: Lorenzo Stoakes <ljs@kernel.org>
-> > > > > Cc: "Liam R. Howlett" <Liam.Howlett@oracle.com>
-> > > > > Cc: Vlastimil Babka <vbabka@kernel.org>
-> > > > > Cc: Mike Rapoport <rppt@kernel.org>
-> > > > > Cc: Suren Baghdasaryan <surenb@google.com>
-> > > > > Cc: Michal Hocko <mhocko@suse.com>
-> > > > > Cc: linux-mm@kvack.org
-> > > > > Cc: linux-kernel@vger.kernel.org
-> > > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > > > ---
-> > > > > =C2=A0include/linux/vmstat.h | 13 +++++++++++++
-> > > > > =C2=A01 file changed, 13 insertions(+)
-> > > > >=20
-> > > > > diff --git a/include/linux/vmstat.h b/include/linux/vmstat.h
-> > > > > index 3c9c266cf782..568d9f4f1a1f 100644
-> > > > > --- a/include/linux/vmstat.h
-> > > > > +++ b/include/linux/vmstat.h
-> > > > > @@ -483,6 +483,19 @@ static inline const char
-> > > > > *zone_stat_name(enum
-> > > > > zone_stat_item item)
-> > > > > =C2=A0	return vmstat_text[item];
-> > > > > =C2=A0}
-> > > > > =C2=A0
-> > > > > +static inline bool zone_appears_fragmented(struct zone
-> > > > > *zone)
-> > > > > +{
-> > > >=20
-> > > > "zone_likely_fragmented" or "zone_maybe_fragmented" might be
-> > > > clearer,
-> > > > depending
-> > > > on the actual semantics.
-> > > >=20
-> > > > > +	/*
-> > > > > +	 * Simple heuristic: if the number of free pages is
-> > > > > more
-> > > > > than twice the
-> > > > > +	 * high watermark, this strongly suggests that the
-> > > > > zone is
-> > > > > heavily
-> > > > > +	 * fragmented when called from a shrinker.
-> > > > > +	 */
-> > > >=20
-> > > > I'll cc some more people. But the "when called from a shrinker"
-> > > > bit
-> > > > is
-> > > > concerning. Are there additional semantics that should be
-> > > > expressed
-> > > > in the
-> > > > function name, for example?
-> > > >=20
-> > > > Something that implies that this function only gives you a
-> > > > reasonable
-> > > > answer in
-> > > > a certain context.
-> > >=20
-> > > I think that test would not be relevant for cgroup-aware
-> > > shrinking.
-> > >=20
-> > > What about trying to pass something in the struct shrink_control?
-> > > Like
-> > > if we pass the struct scan_control's order field also in struct
-> >=20
-> > If the order were included in shrink_control, there is about a 95%
-> > certain that this change would allow TTM / Xe to break the
-> > problematic
-> > kswapd feedback loop. This may also better express the intent of
-> > the
-> > problem we are trying to fix here.
-> >=20
-> > For reference, the cover letter [1] details the problem.
-> >=20
-> > Any guidance from the core MM folks would be appreciated=E2=80=94would
-> > adding
-> > the order to shrink_control be an acceptable solution?
-> >=20
-> > Matt
-> >=20
-> > [1] https://patchwork.freedesktop.org/series/165330/
-> >=20
-> > > shrink_control, really expensive shrinkers could duck reclaim
-> > > attempts
-> > > from higher-order allocations that may fail anyway:
-> > >=20
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (sc->order > PAGE_ALLOC_COSTLY_ORDE=
-R &&
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (sc->gfp=
-_mask & (__GFP_NORETRY | __GFP_RETRY_MAYFAIL))
-> > > &&
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 !(sc->gf=
-p_mask & __GFP_NOFAIL))
->=20
-> It doesn't look like __GFP_NORETRY, __GFP_RETRY_MAYFAIL, __GFP_NOFAIL
-> make it to the sc->gfp_mask flags from the caller and get into kswapd
-> loop...
+On 4/24/26 09:05, Thomas Hellström wrote:
+> On Thu, 2026-04-23 at 15:21 -0700, Matthew Brost wrote:
+>> On Thu, Apr 23, 2026 at 12:08:36PM -0700, Matthew Brost wrote:
+>>>
+>>> If the order were included in shrink_control, there is about a 95%
+>>> certain that this change would allow TTM / Xe to break the
+>>> problematic
+>>> kswapd feedback loop. This may also better express the intent of
+>>> the
+>>> problem we are trying to fix here.
+>>>
+>>> For reference, the cover letter [1] details the problem.
+>>>
+>>> Any guidance from the core MM folks would be appreciated—would
+>>> adding
+>>> the order to shrink_control be an acceptable solution?
+>>>
+>>> Matt
+>>>
+>>> [1] https://patchwork.freedesktop.org/series/165330/
+>>>
+>>
+>> It doesn't look like __GFP_NORETRY, __GFP_RETRY_MAYFAIL, __GFP_NOFAIL
+>> make it to the sc->gfp_mask flags from the caller and get into kswapd
+>> loop...
+> 
+> Perhaps that's because they mostly (only?) make sense from direct
+> reclaim? Looks like the trace is from kswapd.
 
-Perhaps that's because they mostly (only?) make sense from direct
-reclaim? Looks like the trace is from kswapd.
+kswap obtains the desired order through pgdat->kswapd_order, as a hint from
+allocation code (wakeup_kswapd). The order can be easily merged (just use the max)
 
-Another metric to weigh in is perhaps the scan_control::priority field.
-From my understanding it is progressively decreased towards 0 with 0
-indicating most urgent shrinking.=20
+We do have the gfp_flags there, but merging them from different wakeups is a bit
+more tricky (and when to reset?).
 
-Thanks,
-Thomas
+Assume we have one urgent request for order-0 and one non-urgent
+(noretry,nofail, ...) request for order-9, we'd have to figure out a way how to
+represent that. Gets more complicated for more orders.
 
->=20
-> =C2=A01182 [=C2=A0 394.049058] xe_shrinker_scan: no skip order=3D9,
-> gfp=3D0x0000000000000cc0
-> =C2=A01183 [=C2=A0 394.049061] CPU: 2 UID: 0 PID: 110 Comm: kswapd0 Not t=
-ainted
-> 7.0.0-xe+ #355 PREEMPT(full)
-> =C2=A01184 [=C2=A0 394.049062] Hardware name: Intel Corporation Panther L=
-ake
-> Client Platform/PTL-UH LP5 T3 RVP1, BIOS
-> PTLPFWI1.R00.3332.D05.2509011438 09/01/2025
-> =C2=A01185 [=C2=A0 394.049063] Call Trace:
-> =C2=A01186 [=C2=A0 394.049065]=C2=A0 <TASK>
-> =C2=A01187 [=C2=A0 394.049066]=C2=A0 dump_stack_lvl+0x55/0x70
-> =C2=A01188 [=C2=A0 394.049073]=C2=A0 xe_shrinker_scan+0x274/0x280 [xe]
-> =C2=A01189 [=C2=A0 394.049181]=C2=A0 do_shrink_slab+0x132/0x360
-> =C2=A01190 [=C2=A0 394.049184]=C2=A0 shrink_slab+0xf0/0x3e0
-> =C2=A01191 [=C2=A0 394.049186]=C2=A0 shrink_node+0x2bd/0x800
-> =C2=A01192 [=C2=A0 394.049188]=C2=A0 balance_pgdat+0x323/0x760
-> =C2=A01193 [=C2=A0 394.049189]=C2=A0 kswapd+0x1c3/0x340
-> =C2=A01194 [=C2=A0 394.049190]=C2=A0 ? __pfx_autoremove_wake_function+0x1=
-0/0x10
-> =C2=A01195 [=C2=A0 394.049193]=C2=A0 ? __pfx_kswapd+0x10/0x10
-> =C2=A01196 [=C2=A0 394.049194]=C2=A0 kthread+0xdf/0x120
-> =C2=A01197 [=C2=A0 394.049196]=C2=A0 ? __pfx_kthread+0x10/0x10
-> =C2=A01198 [=C2=A0 394.049197]=C2=A0 ret_from_fork+0x1d0/0x220
-> =C2=A01199 [=C2=A0 394.049200]=C2=A0 ? __pfx_kthread+0x10/0x10
-> =C2=A01200 [=C2=A0 394.049200]=C2=A0 ret_from_fork_asm+0x1a/0x30
-> =C2=A01201 [=C2=A0 394.049202]=C2=A0 </TASK>
->=20
-> Will look into if this is fixable, but again any core MM guidance
-> would
-> helpful.
->=20
-> Matt
->=20
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return S=
-HRINK_STOP;
-> > >=20
-> > > Possibly exposed as an inline helper in the shrinker interface?
-> > >=20
-> > > /Thomas
-> > >=20
-> > >=20
-> > >=20
-> > >=20
+Of course, we could have some kind of array, and try to store some "priority"
+per order. But I assume plumbing that into the rest of kswapd might not be that
+easy.
+
+
+-- 
+Cheers,
+
+David
