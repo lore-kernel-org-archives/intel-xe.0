@@ -4,158 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5BBFEFED3F2
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Apr 2026 18:15:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6FEEFED3F5
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Apr 2026 18:40:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02EB610F681;
-	Fri, 24 Apr 2026 18:15:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 943D610F687;
+	Fri, 24 Apr 2026 18:40:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EHWPHmV1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HMIDWdeS";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36CD710F681
- for <intel-xe@lists.freedesktop.org>; Fri, 24 Apr 2026 18:15:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3878310F687
+ for <intel-xe@lists.freedesktop.org>; Fri, 24 Apr 2026 18:40:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777054517; x=1808590517;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=xm6hny+tOde2xUTsboekxLSzYMQBJofxPcfhASQwGvM=;
- b=EHWPHmV1kfkf78ziiJa6jb3N8uMEGyEaVc+ZQnPtfT0paV5hetMkBOzv
- eagW6FCXAJkokZGMBo2xrx2e6y4jHEgXLrkxQxS162LznGUPeUeobg6/H
- m/b+F6lhVpRUosLkIzG4SKUnnDLG/GFH/ajGt2i8VQywFNU293w7fiJ9S
- Lxb8mV2F7JF4ShamJbS76RkBMJlCzp3L/kR6/M8GuBqf1Be34Z2AMcz7p
- jbj4BN4MJmeVjcwVlMRrs3PMB4E/pACDzhi8CCIhjiYO0H95SBIee8ZD0
- gnRT1f5Q8ofjKf8BRktOTabobYWZ1rSlQrqtd1Rm5ajKABAWrGg/vc9u2 w==;
-X-CSE-ConnectionGUID: iifZiTj6S/+T3pb4ORX0yQ==
-X-CSE-MsgGUID: C5AIjIy6QYect0tCVzlE7w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11766"; a="89123265"
-X-IronPort-AV: E=Sophos;i="6.23,197,1770624000"; d="scan'208";a="89123265"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ t=1777056040; x=1808592040;
+ h=from:date:to:cc:subject:in-reply-to:message-id:
+ references:mime-version:content-id;
+ bh=ehFgGv/oqbLNDEVtIy+xd4EHLTlZfX4FxD9SMis63lY=;
+ b=HMIDWdeSvt0HjB7ZQBp4Zu91fWMOpt+l1CL7ey9vwRElQzeb39TrmUe0
+ sP7jZFhYCH0MVjfJXIYopDE/zcgz+ioyUOX7NuUZDx/pQ+Pg/D3+KG6nJ
+ OzzRb9238x3/NB9JlYduPMYHQesgeUHKm9vfF2h6FMGN7cBOU0JKh4jX0
+ hpvcxPH4uZrUFZVs+J2SLoVMD9saMORx6N4phiAgKbCph2n8hNE/dmphc
+ xg/mbjnEJOY2j/9Ymlh8CXOOUhk0ElTduZmgzlo7mPmXPZhq5KzVwTgQf
+ ORWiiDY1rvOu6KFm3kYVRLW3oX+A0XKdDJohB+L9DpdAn4DxFZFvs8McE g==;
+X-CSE-ConnectionGUID: MSmfLx+wQQ2+OOgntIa1ag==
+X-CSE-MsgGUID: nVztMJ7RQj6gvVGbVdOPkg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11766"; a="89125530"
+X-IronPort-AV: E=Sophos;i="6.23,197,1770624000"; d="scan'208";a="89125530"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2026 11:15:16 -0700
-X-CSE-ConnectionGUID: k95RpQyuQGuQHrO45QbxlQ==
-X-CSE-MsgGUID: CN57S2y1Rpm/Lqg9cpItLQ==
+ 24 Apr 2026 11:40:40 -0700
+X-CSE-ConnectionGUID: gNm6MNjVQoWbo1nrMz+JLQ==
+X-CSE-MsgGUID: tZKH6KbDSxOngD60khfypA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,197,1770624000"; d="scan'208";a="238015520"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2026 11:15:16 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 24 Apr 2026 11:15:16 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Fri, 24 Apr 2026 11:15:16 -0700
-Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.6) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 24 Apr 2026 11:15:15 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=OfdogqzY/pntDBTinnWyZz0TNM5soRcC83t6NnV+jLRdo4zsPUWBzy40UI/k6VYEP3RlhbYLJyTUFBpgZjaogYWhAlEeWsIRSjRuNNrUAJSTLjEjYFHQS4XRajw9jBc+Ru5yKOZE/j3y7ZAQgzya1OCqscjV5m3YQ1s4TrhDJAuhsJhTvg3oDiXWkw+bg2uCiszMMJ5gbr6HUJvexYF+w4kxV+ChN6zAl8xIWsF7FhokYisBPMtypcjads/kCpeYmA+U8kLXyS/InotZQSeQUzYYt43xhGP0lmITXCkClaJvo7dyqqMMjVkQA0pHFRbVb/z0/VyiiBC79e4EeKeUzg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xm6hny+tOde2xUTsboekxLSzYMQBJofxPcfhASQwGvM=;
- b=b4fG5qoM9phF+0DiBQ9a0k1cp4e/lBUrDPfNSwI46C8MR9npjbKar6ryVnWKHfuaJHgh8n2wUsWlgxdoHyQYr/R8s9WGtZUl/XnQKdz4yAq3y/VBxkwwGfkRuBH9am6HXFbxRvqoQdmTpamkZNxCzouiFyUYV7tqSHe1BKXwrOd+CEAyVuAYY6lIam9OC0asZcCPE5uDVj6iOjT72utEySnXeprWJq+UjqYaqhh6ro7RCEb9inkQTUMp3+bVCt1lkk1K7cQFkpw/sKqgehx5jACiKHSU5Rfj0Z0UY4KPQA7l2pBaCTujTEp+pKegAMrbgykSA6n1F29IgmGkigo+4g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB5456.namprd11.prod.outlook.com (2603:10b6:5:39c::14)
- by DS0PR11MB7768.namprd11.prod.outlook.com (2603:10b6:8:138::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.19; Fri, 24 Apr
- 2026 18:15:12 +0000
-Received: from DM4PR11MB5456.namprd11.prod.outlook.com
- ([fe80::62e5:4a7c:f965:9082]) by DM4PR11MB5456.namprd11.prod.outlook.com
- ([fe80::62e5:4a7c:f965:9082%6]) with mapi id 15.20.9846.021; Fri, 24 Apr 2026
- 18:15:12 +0000
-From: "Lin, Shuicheng" <shuicheng.lin@intel.com>
-To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
+X-IronPort-AV: E=Sophos;i="6.23,197,1770624000"; d="scan'208";a="256529462"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.120])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Apr 2026 11:40:37 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Fri, 24 Apr 2026 21:40:34 +0300 (EEST)
+To: Maarten Lankhorst <dev@lankhorst.se>
+cc: linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>, 
  "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "Roper, Matthew D" <matthew.d.roper@intel.com>
-Subject: RE: [PATCH 04/10] drm/xe: Move HWSTAM programming to RTP
-Thread-Topic: [PATCH 04/10] drm/xe: Move HWSTAM programming to RTP
-Thread-Index: AQHc03N4j7ySzvfeOkGdxKXfVRwq/rXuhDmA
-Date: Fri, 24 Apr 2026 18:15:12 +0000
-Message-ID: <DM4PR11MB5456E786E067C466F12988B4EA2B2@DM4PR11MB5456.namprd11.prod.outlook.com>
-References: <20260423-engine-setup-v1-0-baa94014e3e5@intel.com>
- <20260423-engine-setup-v1-4-baa94014e3e5@intel.com>
-In-Reply-To: <20260423-engine-setup-v1-4-baa94014e3e5@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB5456:EE_|DS0PR11MB7768:EE_
-x-ms-office365-filtering-correlation-id: d7c41b1e-a5fb-4647-132c-08dea22d6d6e
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|22082099003|18002099003|56012099003|38070700021;
-x-microsoft-antispam-message-info: vf7/BxHEyeDCk6bZL0Fj15JBX2kphGWMEJD3YuBh04lIMLyXm1nAkuJWOS0UXtafYwe0p3SYTbNvCEll7p+EXR5BLQkfZYGlZ1g1fhDd/S6he7u3kdAcWGPfbBiyX//veooYRxsG8kemMdKGTJaH7O33uvmtAdvXMe7pw829j7ii5T01X3FxOAPxVPMLV38JuGr7+Hy7CGlEYUJCZ/ESYX3F8oM3IzhduP85HHY39zmkCdYrDCf/j4lWt3ThbdinXePR0/2ORovAyWCfqs8/ec2iGyKwl3pnjJKG6aYemA7dhJ4nrbkl0R+6lizTXJMY2ZiDnYDz4e/8WVA045/f+q81Cr8PHXMh3adY6wXaB+QPdI4N0jPNItZrcWYg8wl7d3XFjc0KBRG+G9HXCWMwWKqUm9+NUCuK3dBOoWVzAQGK2PPHf/ibK+6Y0LVJIBUtMLrOUusXtogKbgEhU/qG5m7Gw4cdrMVx3SCW2QXtrKd0B3xEb+bSJE6EjjSxLxwGEr9plpSGlnwGgC/H75kON4cG9MGHAoE1Qh/IogMJyuSxCydCc9RGXthaKviKDF5eH84Ms2xPZaBH6wbw+igltlk4wBoiLEIimlvo2seSW+oT7RNpOMcAKKkyE70CpGWhTaVCAf1/a3/cOQ6Njypup/9reYM+WG+J08N7A4wpEHUd7ouOmifceszXvcpcm4fbYsdzZAOxO6K3O/7tNKcHyVNk1ldwzsjMal0kze+OzS9OKy2jfNgWxYmzpI/oBc7ctT0VmPxe3SIEasxhLfTa5ZQPKyvDn9V1530Vt0bVdvU=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5456.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(22082099003)(18002099003)(56012099003)(38070700021);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?NkRzbjJWcW1hYnRwQ1hYODhlb0QwWmFZb1F2R0pSRjNKYmRNQThYZDRBSjBu?=
- =?utf-8?B?ditMd05aaTBNYVYrWHY0MGRxTllXMm1VREtLWnJVYmJha004bVlBVkJhWVB3?=
- =?utf-8?B?WXhRWVRyTjdLREpHNlplUHhjZDhaY1I3c0d2bDZrUkRydDZ3NmpRY29ySlNy?=
- =?utf-8?B?d1hITFluV1plN2p1N3N0d3NxcGt3cmZFMU9pNUFFSUdua29FTndsblUrZ3k4?=
- =?utf-8?B?YWFJRXJKVzRqY2poVHBYdlM4dkEyVzYwbjZocGlzY3lwUEJnQ0xmQXVYbzFS?=
- =?utf-8?B?NXNTSFV1enRZM0IvMEQ0eGwxNzdIWnBaTldqRHRrdWt4WFp0aUdGcDFBZFFR?=
- =?utf-8?B?Vzd5N2N5UkZPUm5qenZxQUdQUWt6Wk4zMk4wenJ1SVVOWG9LZjFFSStXRTVZ?=
- =?utf-8?B?K2tzMy9aUTExV3RLRndocm0xS0dLNnVyMlFpSncweUZZeTlSNnNoK0xvUVZl?=
- =?utf-8?B?MjBqeE1aa1pCNVovbElIcHlMU25kN2ZsYzNZcGRCR0lFQWVnWW51NWNhVkh1?=
- =?utf-8?B?ZmowaHE0dmZTeXJ0eEpRTWdtb28wNDlLMW5Mc24rN21mYU1EaG8yY3BwaVZR?=
- =?utf-8?B?MmVjTTMvdXVsd2JaV3hjQ3ZsOHdhNlFKb1hBb0NzRFp1bzhGZEFXT0NnaktX?=
- =?utf-8?B?V0kzU1RiTUptZ2pzL0kwZnphamJEVDBHODN0WjJkbUx6d2Q5VkswcEhoT2tB?=
- =?utf-8?B?a2NCNjRRdDlsc3RJRHJkVlJWdlVuUExHZ2w3M29vVWVTdDFLUFBDd3l4Qm91?=
- =?utf-8?B?WTd6WE1WTUp4RzZlK1NxTTNMRHhIOHJRRTVjUTMxUXRrbnVuZitlSGdQdUps?=
- =?utf-8?B?U29lQ1YrQytOcHV6dER1UWhDdVBJRDRRTEhGdkhzU1VSaXRGMHZnS0d6U2Fi?=
- =?utf-8?B?UGUrYWtZWWQxOFhpSXpaRFpTRmpuZW5KWmRiNitLZWVkZS8vMUJDYk5UR2pT?=
- =?utf-8?B?TVVYbitRVEtidWhOVkN1RUJ4akpKVXVmVUpxdXl2cWNkb1ZQK1FybmpTakNZ?=
- =?utf-8?B?a1BiZ0VRc2NsVWhPMnRPMTFkNjA0RHNIMS9kU0sxSmxlYWQvb3VJMW5GR05Y?=
- =?utf-8?B?VXVWeEhuZzNLL1FBRDNZTnlFVlMwZWZyTmpsVGE3S0o2Y0l3NmxrK1pIUTly?=
- =?utf-8?B?WEpZcmxUTldVMWd3WGVocmVsMWRPd1dSb2lPNkVqZWhPWlg3NjRPcitoR2R0?=
- =?utf-8?B?OE1DWU02eVp5VnhFTndZaExYVHFHZFpoMHBJUG5TeWV0NHE2RlB6Lzdtby9G?=
- =?utf-8?B?YXhqVHh0akhuWkErcXovOVlVbHFTZ1VMRDEySjBFWTlSWFlNYlM4TkhHMDFs?=
- =?utf-8?B?U0t2dkhEd0ZhdndyUHJoclVlTXFCRGhBZUpsT0E0TCsyU0ZlSXRnMENUcnR1?=
- =?utf-8?B?Mm1xbzR0ejU2SFozK0ZVajI5WUU3akMrc1NuS2ZYWEdvL2FaSnlBUXJnL1Nu?=
- =?utf-8?B?SHBMTnFoL3Z6VWdhOXdQTitrRFg5UWM1RWlSOUY2KzA5TVNtNGtraDRBWmhv?=
- =?utf-8?B?OTVxTEh4Qkg0cFZqeEZidHJ2U1M1R1pPaWNWR21WZzBsSTNNUFNPNnlKWWM1?=
- =?utf-8?B?UWJJU0w1NG1ubFhpbkhydWExRDhPWFZTZW04K1NpUzMrSGYwOHNDd3VBM2JR?=
- =?utf-8?B?QUprTERWZVV4QUQ2QW9yQkM5bFkyeUEwUXlaWmhmSkdMY1JLa3c1UEh0d3hu?=
- =?utf-8?B?c2JVN25aVFF2eUZUUlRJeEpXVzFhRW03Mit0YU1qc1RoakZwcS83ZkVneGVV?=
- =?utf-8?B?TmRsT2ExRVJsalE4alhhSGgwTGZ4RGt3WGw2eUlrMDlrbWplSURBUmNhVkMv?=
- =?utf-8?B?cmJURHVhbEZPWnd0a3RBMEZHSWlRVnhFR2VkdkZEVkVLTVYwcjEzaFJVWHJr?=
- =?utf-8?B?dkZpZ0x1RTdvVERaSWNybVEwcmlMc0tzelFmbEovblJRQ2k2eHB5T0dEUFRj?=
- =?utf-8?B?bmY1TnBlQmR2WHR5RUxqR3E5cklXSFpvNFA4UWtCR1VHR2JCSkJKS0ZFSXJE?=
- =?utf-8?B?VVdmWEd0Sm8vQy9VcVZzaE45UkcrT1BNNXg1QURVSU9vc0VmVmFpY3VGTkcz?=
- =?utf-8?B?cDZLbVU2UEZDRUtvOURmaXkwdmZPQ0plSUVidHNadTBwMHRTaTl6RW1GTXNk?=
- =?utf-8?B?NVRrNmVhS2hiVHAyajJzcHYrOVl6bFV0WTZnUGRmQXJ4Njk2bFdjdkh1MU9C?=
- =?utf-8?B?UElmVitSR1ZVOUEwZ2liYkhaUXVnb2pmUEZrT3c5VGx1Q3E3YnB1T2RSMVN3?=
- =?utf-8?B?SURaQjdYMWdFZWdmTDMvMisva2NuQk85cW9YTWpLcklWVXN1V2NqZ2h0SVhR?=
- =?utf-8?B?dHl3K3d1MjcxdUZhQVdGWllsNkgrdnR0aWdUUVdMa0ZERXZ4em01QT09?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Subject: Re: [PATCH] PCI: Fix resizable bar fails due to bridge memory region
+In-Reply-To: <eddf0632-81c5-49cb-b3a8-ef172d3ccb1c@lankhorst.se>
+Message-ID: <bdcc18c0-0d75-fcfc-5ab4-3b42bdcbe7e9@linux.intel.com>
+References: <7f673ce8-fa00-47aa-a50f-812ae5073279@lankhorst.se>
+ <ee594d2d-f5c8-271b-e883-9d43a47ad4ff@linux.intel.com>
+ <92850c9a-808e-47b9-ae5f-fa10c4bda3ce@lankhorst.se>
+ <990a7758-46eb-3fc8-2714-a2b117720241@linux.intel.com>
+ <eddf0632-81c5-49cb-b3a8-ef172d3ccb1c@lankhorst.se>
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: odBCKw4PDxibezLT/W7S/sr0dZQmIMgcctsleoZ4eirlHwHzJ/gxsphPJbLOMI+vo/PA0FeLCtB7iub70F7jsWL9ARgOdG62NldCjHYAHqegu1BhgXI3kwSSqbU07V/NjVmacpyVISKCSdXiO2b+vbEusvntP84eA3WIma5/bqxMatN1beabsDC1Keftbc5p04BN7qFcRFqkDREOBBIUhD1lYt8xe/AoYlQ5KDx7nnyHXonZCSj1KRGeDPVVytaCnD6yGUBkkqFuwt90kCGxiqd9Yfgyxs4JxUOQPAq1m2uC46TMTV8mfe0JhYCqzd8NNI3U373Arx4D8tBLUc9yRA==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5456.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d7c41b1e-a5fb-4647-132c-08dea22d6d6e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Apr 2026 18:15:12.5980 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: TneCf11mxoRp0FXrWAt7yL4dDEC2rPR7GmH1NeXapxfkQDnzOZMG3/QszG/5kwc4LpcJwX8SoL22bAV8nEPOWg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7768
-X-OriginatorOrg: intel.com
+Content-Type: multipart/mixed; BOUNDARY="8323328-1411989971-1777053984=:958"
+Content-ID: <c0045560-0761-15ad-1fe1-c5dfee3adbea@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -170,48 +72,242 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-T24gVGh1LCBBcHIgMjMsIDIwMjYgMzo0OSBQTSBNYXR0IFJvcGVyIHdyb3RlOg0KPiBUaGUgd3Jp
-dGUgdG8gUklOR19IV1NUQU0gdG8gZGlzYWJsZSBoYXJkd2FyZSBzdGF0dXMgcGFnZSB3cml0ZXMg
-b24NCj4gaW50ZXJydXB0IHdhcyB1bm5lY2Vzc2FyaWx5IG9wZW4tY29kZWQgaW4geGVfaHdfZW5n
-aW5lX2VuYWJsZV9yaW5nKCk7IGl0J3MNCj4gcHJlZmVyYWJsZSB0byBkbyBzdWNoIHByb2dyYW1t
-aW5nIGluIHRoZSBlbmdpbmVfZW50cmllc1tdIFJUUCB0YWJsZSBzaW5jZSBnZXRzDQo+IHJlZmxl
-Y3RlZC92ZXJpZmllZCBpbiBkZWJ1Z2ZzLCBhbmQgd2lsbCBhbHNvIGF1dG9tYXRpY2FsbHkgZW5z
-dXJlIHRoYXQgdGhlDQo+IHJlZ2lzdGVyIGlzIHByb3Blcmx5IHNhdmVkL3Jlc3RvcmVkIGFyb3Vu
-ZCBlbmdpbmUgcmVzZXRzLg0KPiANCj4gSW4gdGhpcyBjYXNlIHRoZSBIV1NUQU0gcmVnaXN0ZXIg
-d2Fzbid0IGV4cGxpY2l0bHkgYWRkZWQgdG8gdGhlIEd1QyBBRFMnDQo+IHNhdmUtcmVzdG9yZSBs
-aXN0LCBzbyB0aGVyZSB3YXMgdGhlIHBvdGVudGlhbCBmb3IgdGhlIHZhbHVlIHRvIGJlIGxvc3Qg
-b24gZW5naW5lDQo+IHJlc2V0cy4gIFRoaXMgZG9lc24ndCBzZWVtIHRvIGhhdmUgaGFwcGVuZWQg
-aW4gcHJhY3RpY2UsIHNvIGxpa2VseSB0aGUgR3VDDQo+IGZpcm13YXJlIGlzIGF1dG9tYXRpY2Fs
-bHkgc2F2aW5nL3Jlc3RvcmluZyB0aGlzIHJlZ2lzdGVyIG9uIG91ciBiZWhhbGYsIGJ1dCB3ZQ0K
-PiBzaG91bGRuJ3QgcmVseSBvbiB0aGlzIGltcGxpY2l0IGJlaGF2aW9yIGdvaW5nIGZvcndhcmQu
-DQo+IA0KPiBPbmUgb3RoZXIgc2xpZ2h0IGNoYW5nZSB3aXRoIHRoaXMgcGF0Y2ggaXMgdGhhdCBI
-V1NUQU0gd2lsbCBub3cgYmUNCj4gcHJvZ3JhbW1lZCBvbiB0aGUgdmVzdGlnaWFsIGV4ZWNsaXN0
-IChub24tR3VDKSBpbml0aWFsaXphdGlvbiBwYXRoLg0KPiBTaW5jZSB0aGUgcmVnaXN0ZXIncyBk
-ZWZhdWx0IHZhbHVlIGlzIDB4MCBhbmQgdGhlIGRvY3VtZW50YXRpb24gaW5kaWNhdGVzIHRoYXQN
-Cj4gaXQncyBvbmx5IGxlZ2FsIHRvIGxlYXZlIGEgc2luZ2xlIGJpdCB1bm1hc2tlZCBhdCBhIHRp
-bWUsIHRoaXMgbGlrZWx5IHdvdWxkIGhhdmUNCj4gYmVlbiBhbiBpbGxlZ2FsIHNpdHVhdGlvbiBp
-ZiB0aGUgZXhlY2xpc3QgY29kZSB3ZXJlIGFjdHVhbGx5IHVzYWJsZS4NCj4gDQo+IFNpZ25lZC1v
-ZmYtYnk6IE1hdHQgUm9wZXIgPG1hdHRoZXcuZC5yb3BlckBpbnRlbC5jb20+DQoNCkxHVE0uDQpS
-ZXZpZXdlZC1ieTogU2h1aWNoZW5nIExpbiA8c2h1aWNoZW5nLmxpbkBpbnRlbC5jb20+DQoNCj4g
-LS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0veGUveGVfaHdfZW5naW5lLmMgfCA2ICsrKysrLQ0KPiAg
-MSBmaWxlIGNoYW5nZWQsIDUgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KPiANCj4gZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9od19lbmdpbmUuYw0KPiBiL2RyaXZlcnMv
-Z3B1L2RybS94ZS94ZV9od19lbmdpbmUuYw0KPiBpbmRleCA2MmE0N2Q3ZTNmMDIuLjA2ZWI2NTVh
-NGFlNSAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3hlL3hlX2h3X2VuZ2luZS5jDQo+
-ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9od19lbmdpbmUuYw0KPiBAQCAtMzI3LDcgKzMy
-Nyw2IEBAIHZvaWQgeGVfaHdfZW5naW5lX2VuYWJsZV9yaW5nKHN0cnVjdCB4ZV9od19lbmdpbmUN
-Cj4gKmh3ZSkgIHsNCj4gIAl1MzIgcmluZ19tb2RlID0NCj4gUkVHX01BU0tFRF9GSUVMRF9FTkFC
-TEUoR0ZYX0RJU0FCTEVfTEVHQUNZX01PREUpOw0KPiANCj4gLQl4ZV9od19lbmdpbmVfbW1pb193
-cml0ZTMyKGh3ZSwgUklOR19IV1NUQU0oMCksIH4weDApOw0KPiAgCXhlX2h3X2VuZ2luZV9tbWlv
-X3dyaXRlMzIoaHdlLCBSSU5HX0hXU19QR0EoMCksDQo+ICAJCQkJICB4ZV9ib19nZ3R0X2FkZHIo
-aHdlLT5od3NwKSk7DQo+IA0KPiBAQCAtNDM3LDYgKzQzNiwxMSBAQCBod19lbmdpbmVfc2V0dXBf
-ZGVmYXVsdF9zdGF0ZShzdHJ1Y3QNCj4geGVfaHdfZW5naW5lICpod2UpDQo+ICAJCQkJCSAgIHJp
-bmdfY21kX2NjdGxfdmFsLA0KPiANCj4gWEVfUlRQX0FDVElPTl9GTEFHKEVOR0lORV9CQVNFKSkp
-DQo+ICAJCX0sDQo+ICsJCXsgWEVfUlRQX05BTUUoIkRpc2FibGUgSFcgc3RhdHVzIHBhZ2UgdXBk
-YXRlcyBmb3INCj4gaW50ZXJydXB0cyIpLA0KPiArCQkgIFhFX1JUUF9SVUxFUyhGVU5DKHhlX3J0
-cF9tYXRjaF9hbHdheXMpKSwNCj4gKwkJICBYRV9SVFBfQUNUSU9OUyhTRVQoUklOR19IV1NUQU0o
-MCksIH4weDAsDQo+ICsJCQkJICAgICBYRV9SVFBfQUNUSU9OX0ZMQUcoRU5HSU5FX0JBU0UpKSkN
-Cj4gKwkJfSwNCj4gIAkJLyoNCj4gIAkJICogVG8gYWxsb3cgdGhlIEdTQyBlbmdpbmUgdG8gZ28g
-aWRsZSBvbiBNVEwgd2UgbmVlZCB0byBlbmFibGUNCj4gIAkJICogaWRsZSBtZXNzYWdpbmcgYW5k
-IHNldCB0aGUgaHlzdGVyZXNpcyB2YWx1ZSAod2UgdXNlIDB4QT01dXMNCj4gDQo+IC0tDQo+IDIu
-NTMuMA0KDQo=
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
+
+--8323328-1411989971-1777053984=:958
+Content-Type: text/plain; CHARSET=ISO-8859-15
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Content-ID: <958f26d7-4df1-be36-e515-095c74d2cc35@linux.intel.com>
+
+On Fri, 24 Apr 2026, Maarten Lankhorst wrote:
+> Den 2026-04-24 kl. 19:42, skrev Ilpo J=E4rvinen:
+> > On Fri, 24 Apr 2026, Maarten Lankhorst wrote:
+> >> Den 2026-04-24 kl. 17:04, skrev Ilpo J=E4rvinen:
+> >>> On Fri, 24 Apr 2026, Maarten Lankhorst wrote:
+> >>>
+> >>>> I encountered a problem that I have on my system, where I cannot res=
+ize
+> >>>> the bar because one of the bridges has a=20
+> >>>
+> >>> You're missing words from here. But I can guess you've that extra BAR=
+ on=20
+> >>> in-card the bridge.
+> >>>
+> >>>> If I take a look at the topology, the GPU shares the memory region w=
+ith a bridge,
+> >>>>
+> >>>> +-[0000:64]-+-00.0-[65-68]----00.0-[66-68]--+-01.0-[67]----00.0
+> >>>>
+> >>>> The specific bridge likely causing a failure is:
+> >>>>
+> >>>> 65:00.0 PCI bridge: Intel Corporation Device e2ff (rev 01) (prog-if =
+00 [Normal decode])
+> >>>>         Flags: bus master, fast devsel, latency 0, IRQ 32, IOMMU gro=
+up 1
+> >>>>         Memory at 382400000000 (64-bit, prefetchable) [size=3D8M]
+> >>>>         ....
+> >>>>
+> >>>> Which causes upstream bridge 64:00.0 initially to allocate the regio=
+n
+> >>>> [38fe0000000-38ff0000000) for the GPU, and [382ff0000000..382ff07fff=
+ff]
+> >>>> for the bridge device.
+> >>>>
+> >>>> Bridge 64 is big enough for 1 BMG with a 32 GB bar and the second 8 =
+MB allocation:
+> >>>> pci_bus 0000:64: resource 9 [mem 0x382000000000-0x382fffffffff windo=
+w] (64GB window)
+> >>>>
+> >>>> The reason for failure is that bridge 65 has a 8 MB memory region as=
+signed,
+> >>>
+> >>>> and previously it was ignored when reallocating.
+> >>>
+> >>> What does this mean? I don't think it was ever ignored while=20
+> >>> reallocating??
+> >>>
+> >>> Note that kernel has become much more verbose in explaining why thing=
+s=20
+> >>> fail so perhaps the added message is confusing you (they won't appear=
+ in=20
+> >>> the old kernels).
+> >>>
+> >>>> Failing case:
+> >>>> xe 0000:67:00.0: [drm] Attempting to resize bar from 256MiB -> 16384=
+MiB
+> >>>> xe 0000:67:00.0: BAR 2 [mem 0x382fe0000000-0x382fefffffff 64bit pref=
+]: releasing
+> >>>> pcieport 0000:66:01.0: bridge window [mem 0x382fe0000000-0x382feffff=
+fff 64bit pref]: releasing
+> >>>> pcieport 0000:65:00.0: bridge window [mem 0x382fe0000000-0x382feffff=
+fff 64bit pref]: releasing
+> >>>> pcieport 0000:64:00.0: bridge window [mem 0x382fe0000000-0x382ff07ff=
+fff 64bit pref]: was not released (still contains assigned resources)
+> >>>> pcieport 0000:65:00.0: bridge window [mem size 0x400000000 64bit pre=
+f]: can't assign; no space
+> >>>> pcieport 0000:65:00.0: bridge window [mem size 0x400000000 64bit pre=
+f]: failed to assign
+> >>>> pcieport 0000:65:00.0: bridge window [mem size 0x400000000 64bit pre=
+f]: can't assign; no space
+> >>>> pcieport 0000:65:00.0: bridge window [mem size 0x400000000 64bit pre=
+f]: failed to assign
+> >>>> pcieport 0000:66:01.0: bridge window [mem size 0x400000000 64bit pre=
+f]: can't assign; no space
+> >>>> pcieport 0000:66:01.0: bridge window [mem size 0x400000000 64bit pre=
+f]: failed to assign
+> >>>> pcieport 0000:66:01.0: bridge window [mem size 0x400000000 64bit pre=
+f]: can't assign; no space
+> >>>> pcieport 0000:66:01.0: bridge window [mem size 0x400000000 64bit pre=
+f]: failed to assign
+> >>>> xe 0000:67:00.0: BAR 2 [mem size 0x400000000 64bit pref]: can't assi=
+gn; no space
+> >>>> xe 0000:67:00.0: BAR 2 [mem size 0x400000000 64bit pref]: failed to =
+assign
+> >>>> xe 0000:67:00.0: BAR 2 [mem size 0x400000000 64bit pref]: can't assi=
+gn; no space
+> >>>> xe 0000:67:00.0: BAR 2 [mem size 0x400000000 64bit pref]: failed to =
+assign
+> >>>> pcieport 0000:64:00.0: PCI bridge to [bus 65-68]
+> >>>> pcieport 0000:64:00.0:   bridge window [mem 0xd7000000-0xd83fffff]
+> >>>> pcieport 0000:64:00.0:   bridge window [mem 0x382fe0000000-0x382ff07=
+fffff 64bit pref]
+> >>>> pcieport 0000:65:00.0: PCI bridge to [bus 66-68]
+> >>>> pcieport 0000:65:00.0:   bridge window [mem 0xd7000000-0xd83fffff]
+> >>>> pcieport 0000:65:00.0:   bridge window [mem 0x382fe0000000-0x382feff=
+fffff 64bit pref]
+> >>>> pcieport 0000:66:01.0: PCI bridge to [bus 67]
+> >>>> pcieport 0000:66:01.0:   bridge window [mem 0xd7000000-0xd81fffff]
+> >>>> pcieport 0000:66:01.0:   bridge window [mem 0x382fe0000000-0x382feff=
+fffff 64bit pref]
+> >>>>
+> >>>> Working with the patch below:
+> >>>> xe 0000:67:00.0: [drm] Attempting to resize bar from 256MiB -> 16384=
+MiB
+> >>>> xe 0000:67:00.0: BAR 2 [mem 0x382fe0000000-0x382fefffffff 64bit pref=
+]: releasing
+> >>>> pcieport 0000:66:01.0: bridge window [mem 0x382fe0000000-0x382feffff=
+fff 64bit pref]: releasing
+> >>>> pcieport 0000:65:00.0: bridge window [mem 0x382fe0000000-0x382feffff=
+fff 64bit pref]: releasing
+> >>>> pcieport 0000:65:00.0: BAR 0 [mem 0x382ff0000000-0x382ff07fffff 64bi=
+t pref]: releasing
+> >>>> pcieport 0000:64:00.0: bridge window [mem 0x382fe0000000-0x382ff07ff=
+fff 64bit pref]: releasing
+> >>>> pcieport 0000:64:00.0: bridge window [mem 0x382000000000-0x3824007ff=
+fff 64bit pref]: assigned
+> >>>> pcieport 0000:65:00.0: bridge window [mem 0x382000000000-0x3823fffff=
+fff 64bit pref]: assigned
+> >>>> pcieport 0000:65:00.0: BAR 0 [mem 0x382400000000-0x3824007fffff 64bi=
+t pref]: assigned
+> >>>> pcieport 0000:66:01.0: bridge window [mem 0x382000000000-0x3823fffff=
+fff 64bit pref]: assigned
+> >>>> xe 0000:67:00.0: BAR 2 [mem 0x382000000000-0x3823ffffffff 64bit pref=
+]: assigned
+> >>>> pcieport 0000:64:00.0: PCI bridge to [bus 65-68]
+> >>>> pcieport 0000:64:00.0:   bridge window [mem 0xd7000000-0xd83fffff]
+> >>>> pcieport 0000:64:00.0:   bridge window [mem 0x382000000000-0x3824007=
+fffff 64bit pref]
+> >>>> pcieport 0000:65:00.0: PCI bridge to [bus 66-68]
+> >>>> pcieport 0000:65:00.0:   bridge window [mem 0xd7000000-0xd83fffff]
+> >>>> pcieport 0000:65:00.0:   bridge window [mem 0x382000000000-0x3823fff=
+fffff 64bit pref]
+> >>>> pcieport 0000:65:00.0: PCI bridge to [bus 66-68]
+> >>>> pcieport 0000:65:00.0:   bridge window [mem 0xd7000000-0xd83fffff]
+> >>>> pcieport 0000:65:00.0:   bridge window [mem 0x382000000000-0x3823fff=
+fffff 64bit pref]
+> >>>> pcieport 0000:66:01.0: PCI bridge to [bus 67]
+> >>>> pcieport 0000:66:01.0:   bridge window [mem 0xd7000000-0xd81fffff]
+> >>>> pcieport 0000:66:01.0:   bridge window [mem 0x382000000000-0x3823fff=
+fffff 64bit pref]
+> >>>> xe 0000:67:00.0: [drm] BAR2 resized to 16384MiB
+> >>>>
+> >>>>
+> >>>> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+> >>>> ---
+> >>>> I'm not 100% this is the correct fix, I don't know why the bridge it=
+self has
+> >>>> a memory region, why the kernel allocates it and when it's supposed =
+to
+> >>>> be used. Not a PCI expert. :-)
+> >>>
+> >>> I don't know why it is there either. Nothing in the portdrv really us=
+es it=20
+> >>> for anything. There is patchset somewhere lying around which adds a q=
+uirk=20
+> >>> that releases the "extra" BAR.
+> >>
+> >> Thank you, I've taken a look at that patch series. It looks like patch=
+ 1/2
+> >> would help a lot.
+> >=20
+> > I should one day find time to finish that series, Bjorn didn't like how=
+=20
+> > the code didn't "disable" BAR.
+> >=20
+> > I did some (unset) work towards placing the BARs outside the bridge=20
+> > window but my algorithm was quite basic (just found min & max window
+> > addresses and put BAR outside of that range but then I thought maybe I=
+=20
+> > should add the possiblity for placing the BAR into the gap in the middl=
+e to
+> > allow placement of a large BAR in cases where 32-bit mmio blocks low-en=
+d +=20
+> > 64-bit mmio range blocking the top of the address space.
+> >=20
+> >> I'm wondering if it will completely fix the issue, it is still possibl=
+e
+> >> that in the same config I have 2 identical cards, where resizing might
+> >> work, but when GPU1's VRAM BAR is already bound, it might be unable
+> >> to resize GPU2's VRAM BAR for the same reason as this patch.
+> >=20
+> > It is always possible to find cases where a sibling pins the shared bri=
+dge=20
+> > window in place.
+> >=20
+> >> What would be the best way to handle this case?
+> >=20
+> > The best way is to size them into the largest possible sizes right from=
+=20
+> > the beginning. But when doing that, nothing must break (introducing=20
+> > regressions is not okay) so it kernel must be able to graciously fallba=
+ck=20
+> > to smaller sizes when there isn't enough space available for the larges=
+t=20
+> > size.
+> >=20
+> > What makes it complicated is that sizing and assignment are done very m=
+uch=20
+> > separately, so retrying with a smaller size is complicated. I'm working=
+=20
+> > toward this kind of solution but there are various things that have to =
+be=20
+> > fixed first.
+>=20
+> How feasible would it be to add a quirk to resize the bar (or reserve eno=
+ugh
+> space for max) very early before any allocations are done?
+
+I don't think that is viable.
+
+Resizing is way more complicated than touching a single BAR because how=20
+the bridge windows work and how resource sizes interact.
+
+No solution is allowed to cause regressions which could easily happen=20
+_much later_ into the resource allocation (very much after the quirk has=20
+finished). How'd you rollback the size changes the quirk caused at that=20
+point???
+
+What such a quirk would effectively do is make rolling back the size=20
+changes an intractable problem, so any regression would be unfixable=20
+except by piling in more and more hacks which isn't viable way forward.
+
+> I doubt any user of resizable bar is going to hotplug their GPU's.
+
+eGPUs connected over Thunderbolt are hotpluggable (whether the=20
+hotpluggability occurs in practice in those cases is another question=20
+though, or if the eGPU just sits there always connected).
+
+--=20
+ i.
+--8323328-1411989971-1777053984=:958--
