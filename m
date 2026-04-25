@@ -4,55 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B55EDFF885E
-	for <intel-xe@archiver.kernel.org>; Sat, 25 Apr 2026 00:14:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42E98FF8850
+	for <intel-xe@archiver.kernel.org>; Sat, 25 Apr 2026 00:16:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 769BE10F716;
-	Sat, 25 Apr 2026 00:14:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E442910E070;
+	Sat, 25 Apr 2026 00:16:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HK/3CVDh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D4NKZstO";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEF2F10F714
- for <intel-xe@lists.freedesktop.org>; Sat, 25 Apr 2026 00:14:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A81ED10E070
+ for <intel-xe@lists.freedesktop.org>; Sat, 25 Apr 2026 00:16:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777076085; x=1808612085;
- h=from:to:cc:subject:date:message-id:in-reply-to:
+ t=1777076214; x=1808612214;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Er4DnMdw+y3wGCJYHSUWkFkEi5RONND2P7TdElpAcak=;
- b=HK/3CVDhbWjfpcHK5fPcIx/JJjdUoQf/4zehm5z4J47mGL55qkwh9IMl
- VBKk4hJ3LnrchyIJZS22cmMQqFZSN47GNH3egHm8i5wGEclAFSIQ1H6lp
- KG8jOKkF2nG/+etkdxoCNM/S2yaRqPhtuRJy8WExdXn19R8UszxZWuMR7
- NVWtvV+xVkb+PzghQP406e1XqdC/kjW0ENSJSWWMG+Mlfr5pDsUUTcOdS
- +mMM5+mOzvD+ywap4AsFFyemm4zwPxuHNNenFEhBIU4XSZNbO9cshnHuv
- +YgaoXCWOMIfds+0TVkeIdLEbN/T4CX/i0zjJoL3iA2kMi2ZSTTPIZDPu w==;
-X-CSE-ConnectionGUID: n+bTj8TtQFijmm5DjfUAVw==
-X-CSE-MsgGUID: +QOosPBCTvGCcbIrYeV+Mw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11766"; a="78081509"
-X-IronPort-AV: E=Sophos;i="6.23,197,1770624000"; d="scan'208";a="78081509"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2026 17:14:44 -0700
-X-CSE-ConnectionGUID: PI+DYEpdR2iOM1Rk7toUCw==
-X-CSE-MsgGUID: 6gCAwweMTuyYOoC8+Y0wtg==
+ bh=ctfMHRI61IV6v5VxMtYl/SFOcLbJiBWR8udaqFSRXKw=;
+ b=D4NKZstOkecZH+56eGeYaMqEYckXY75eYpxupSq2s/b6RDe6YCoyqwZq
+ InSy5MxR20Vh91CzFuU7qdmu7zxpxZSwIqoHgNzbWkfDqsE6nM12j+SdY
+ XfWuTT1OyXJcZPZB72CmdIpHaPix0k4mfRM0DxmORQjI6fBOY81FnWt0y
+ a82Prm91/Dg0MDbta+1tBej2lnGlcqw9VzVs39r4H03g7GejWOFwKLWry
+ GbkeIijci/kMRCKgbRChhbwVmqcbNJZdo4gM22eTlAEBuGESg3jKuoyxE
+ 7hzozQetppJ1V0vUGsXsNB4d76AgFxfGM/+aHyzxKDWEwOZKRqIOdWrd3 g==;
+X-CSE-ConnectionGUID: lnymz+jkTi+b34VZY6YH7A==
+X-CSE-MsgGUID: sZ7eTff8R3yW0WQle0K8cA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11766"; a="88761671"
+X-IronPort-AV: E=Sophos;i="6.23,197,1770624000"; d="scan'208";a="88761671"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Apr 2026 17:16:53 -0700
+X-CSE-ConnectionGUID: +R7Z8/+xQIWWN8anCaSvKA==
+X-CSE-MsgGUID: Uu70lEzZT0eYuPSht53D+w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,197,1770624000"; d="scan'208";a="238156005"
-Received: from orsosgc001.jf.intel.com ([10.88.27.185])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2026 17:14:44 -0700
-From: Ashutosh Dixit <ashutosh.dixit@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: [PATCH 1/3] drm/xe/oa: Use xe_map layer
-Date: Fri, 24 Apr 2026 17:14:37 -0700
-Message-ID: <20260425001439.2148765-2-ashutosh.dixit@intel.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260425001439.2148765-1-ashutosh.dixit@intel.com>
-References: <20260425001439.2148765-1-ashutosh.dixit@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
+ ([10.88.27.185])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Apr 2026 17:16:54 -0700
+Date: Fri, 24 Apr 2026 17:16:48 -0700
+Message-ID: <85tssznbbj.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 1/3] drm/xe/oa: Use xe_map layer
+In-Reply-To: <87jytvud4b.wl-ashutosh.dixit@intel.com>
+References: <20260415020342.782987-1-ashutosh.dixit@intel.com>
+ <20260415020342.782987-2-ashutosh.dixit@intel.com>
+ <aevbDGmDb7QlHG+0@soc-5CG1426VCC.clients.intel.com>
+ <87jytvud4b.wl-ashutosh.dixit@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/30.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,231 +72,324 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-OA code should have used xe_map layer to begin with. In CRI, the OA buffer
-can be located both in system and device memory. For these reasons, move OA
-code to use the xe_map layer when accessing the OA buffer.
+On Fri, 24 Apr 2026 16:56:04 -0700, Dixit, Ashutosh wrote:
+>
+> On Fri, 24 Apr 2026 14:05:16 -0700, Umesh Nerlige Ramappa wrote:
+> >
+>
+> Hi Umesh,
+>
+> > On Tue, Apr 14, 2026 at 07:03:40PM -0700, Ashutosh Dixit wrote:
+> > > OA code should have used xe_map layer to begin with. In CRI, the OA b=
+uffer
+> > > can be located both in system and device memory. For these reasons, m=
+ove OA
+> > > code to use the xe_map layer when accessing the OA buffer.
+> > >
+> > > v2: Use xe_map layer and put_user in xe_oa_copy_to_user (Umesh)
+> > > v3: To avoid performance impact in v2, revert to v1 but move
+> > >    xe_map_copy_to_user() to xe_map.h
+> > > v4: Use bounce buffer and copy_to_user in xe_oa_copy_to_user
+> > >
+> > > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> > > ---
+> > > drivers/gpu/drm/xe/xe_oa.c       | 95 +++++++++++++++++++-------------
+> > > drivers/gpu/drm/xe/xe_oa_types.h |  4 +-
+> > > 2 files changed, 58 insertions(+), 41 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+> > > index 6337e671c97ae..4d13d8ef8103f 100644
+> > > --- a/drivers/gpu/drm/xe/xe_oa.c
+> > > +++ b/drivers/gpu/drm/xe/xe_oa.c
+> > > @@ -213,32 +213,40 @@ static u32 xe_oa_hw_tail_read(struct xe_oa_stre=
+am *stream)
+> > > #define oa_report_header_64bit(__s) \
+> > >	((__s)->oa_buffer.format->header =3D=3D HDR_64_BIT)
+> > >
+> > > -static u64 oa_report_id(struct xe_oa_stream *stream, void *report)
+> > > +static u64 oa_report_id(struct xe_oa_stream *stream, u32 tail)
+> > > {
+> > > -	return oa_report_header_64bit(stream) ? *(u64 *)report : *(u32 *)re=
+port;
+> > > +	struct iosys_map *map =3D &stream->oa_buffer.bo->vmap;
+> > > +
+> > > +	return oa_report_header_64bit(stream) ?
+> > > +		xe_map_rd(stream->oa->xe, map, tail, u64) :
+> > > +		xe_map_rd(stream->oa->xe, map, tail, u32);
+> > > }
+> >
+> > (1) The helper is just returning the report id for a report passed. In =
+this
+> > case it is tail, but the code would work for any report. I would keep t=
+he
+> > name as report or report_offset. Let the caller use specific names like
+> > tail.
+> >
+> > >
+> > > -static void oa_report_id_clear(struct xe_oa_stream *stream, u32 *rep=
+ort)
+> > > +static void oa_report_id_clear(struct xe_oa_stream *stream, u32 head)
+> > > {
+> > > -	if (oa_report_header_64bit(stream))
+> > > -		*(u64 *)report =3D 0;
+> > > -	else
+> > > -		*report =3D 0;
+> > > +	struct iosys_map *map =3D &stream->oa_buffer.bo->vmap;
+> > > +
+> > > +	oa_report_header_64bit(stream) ?
+> > > +		xe_map_wr(stream->oa->xe, map, head, u64, 0) :
+> > > +		xe_map_wr(stream->oa->xe, map, head, u32, 0);
+> > > }
+> > >
+> > > -static u64 oa_timestamp(struct xe_oa_stream *stream, void *report)
+> > > +static u64 oa_timestamp(struct xe_oa_stream *stream, u32 tail)
+> > > {
+> > > +	struct iosys_map *map =3D &stream->oa_buffer.bo->vmap;
+> > > +
+> > >	return oa_report_header_64bit(stream) ?
+> > > -		*((u64 *)report + 1) :
+> > > -		*((u32 *)report + 1);
+> > > +		xe_map_rd(stream->oa->xe, map, tail + 2, u64) :
+> > > +		xe_map_rd(stream->oa->xe, map, tail + 1, u32);
+> >
+> > (2) I think this should be tail + 8 and tail + 4. Can you please double
+> > check? The u32/u64 is only being used to access the data at the offset
+> > rather than determine how to calculate the actual offset.
+>
+> Hmm, you are right!!! I don't believe I made such a basic mistake :/ And
+> all the xe_oa tests work fine even with this.
+>
+> Anyway thanks for catching this, I'm fixing this in the next rev.
+>
+> >
+> > > }
+> > >
+> > > -static void oa_timestamp_clear(struct xe_oa_stream *stream, u32 *rep=
+ort)
+> > > +static void oa_timestamp_clear(struct xe_oa_stream *stream, u32 head)
+> > > {
+> > > -	if (oa_report_header_64bit(stream))
+> > > -		*(u64 *)&report[2] =3D 0;
+> > > -	else
+> > > -		report[1] =3D 0;
+> > > +	struct iosys_map *map =3D &stream->oa_buffer.bo->vmap;
+> > > +
+> > > +	oa_report_header_64bit(stream) ?
+> > > +		xe_map_wr(stream->oa->xe, map, head + 2, u64, 0) :
+> > > +		xe_map_wr(stream->oa->xe, map, head + 1, u32, 0);
+> >
+> > Same here - comment (2)
+> >
+> > > }
+> >
+> > Same comment (1) for all the above helpers - the name can be generic -
+> > report_offset. I see similar change in other functions below as well. If
+> > you think it is necessary, I suggest trying to move it to a separate pa=
+tch
+> > with commit message explaining why you want to rename them. That would =
+also
+> > help review this patch easily.
+>
+> So, as we know HW writes to tail and SW reads from head. So the helpers
+> with head as the arg are invoked from the read side only and the helpers
+> with tail as the arg are invoked from the write side only. That was the
+> reason for naming the arg as head/tail, rather than just "offset". I
+> thought it will make the code easier to understand and also maybe prevent
+> mistakes in the future.
+>
+> So anyway, let me ask once again if you think I should change it. Of
+> course, there's no problem changing the arg name in the helpers.
+>
+> I'll also see if it's possible to split the patch some way to make the
+> review a bit easier.
 
-v2: Use xe_map layer and put_user in xe_oa_copy_to_user (Umesh)
-v3: To avoid performance impact in v2, revert to v1 but move
-    xe_map_copy_to_user() to xe_map.h
-v4: Use bounce buffer and copy_to_user in xe_oa_copy_to_user
-v5: Fix offsets in oa_timestamp() and oa_timestamp_clear() (Umesh)
+I just sent out v5 in which I have let all this stay as is. Anyway, please
+let me know what you prefer. Thanks.
 
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
----
- drivers/gpu/drm/xe/xe_oa.c       | 95 +++++++++++++++++++-------------
- drivers/gpu/drm/xe/xe_oa_types.h |  4 +-
- 2 files changed, 58 insertions(+), 41 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 6337e671c97ae..3ae30dc609bd7 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -213,32 +213,40 @@ static u32 xe_oa_hw_tail_read(struct xe_oa_stream *stream)
- #define oa_report_header_64bit(__s) \
- 	((__s)->oa_buffer.format->header == HDR_64_BIT)
- 
--static u64 oa_report_id(struct xe_oa_stream *stream, void *report)
-+static u64 oa_report_id(struct xe_oa_stream *stream, u32 tail)
- {
--	return oa_report_header_64bit(stream) ? *(u64 *)report : *(u32 *)report;
-+	struct iosys_map *map = &stream->oa_buffer.bo->vmap;
-+
-+	return oa_report_header_64bit(stream) ?
-+		xe_map_rd(stream->oa->xe, map, tail, u64) :
-+		xe_map_rd(stream->oa->xe, map, tail, u32);
- }
- 
--static void oa_report_id_clear(struct xe_oa_stream *stream, u32 *report)
-+static void oa_report_id_clear(struct xe_oa_stream *stream, u32 head)
- {
--	if (oa_report_header_64bit(stream))
--		*(u64 *)report = 0;
--	else
--		*report = 0;
-+	struct iosys_map *map = &stream->oa_buffer.bo->vmap;
-+
-+	oa_report_header_64bit(stream) ?
-+		xe_map_wr(stream->oa->xe, map, head, u64, 0) :
-+		xe_map_wr(stream->oa->xe, map, head, u32, 0);
- }
- 
--static u64 oa_timestamp(struct xe_oa_stream *stream, void *report)
-+static u64 oa_timestamp(struct xe_oa_stream *stream, u32 tail)
- {
-+	struct iosys_map *map = &stream->oa_buffer.bo->vmap;
-+
- 	return oa_report_header_64bit(stream) ?
--		*((u64 *)report + 1) :
--		*((u32 *)report + 1);
-+		xe_map_rd(stream->oa->xe, map, tail + 8, u64) :
-+		xe_map_rd(stream->oa->xe, map, tail + 4, u32);
- }
- 
--static void oa_timestamp_clear(struct xe_oa_stream *stream, u32 *report)
-+static void oa_timestamp_clear(struct xe_oa_stream *stream, u32 head)
- {
--	if (oa_report_header_64bit(stream))
--		*(u64 *)&report[2] = 0;
--	else
--		report[1] = 0;
-+	struct iosys_map *map = &stream->oa_buffer.bo->vmap;
-+
-+	oa_report_header_64bit(stream) ?
-+		xe_map_wr(stream->oa->xe, map, head + 8, u64, 0) :
-+		xe_map_wr(stream->oa->xe, map, head + 4, u32, 0);
- }
- 
- static bool xe_oa_buffer_check_unlocked(struct xe_oa_stream *stream)
-@@ -275,9 +283,7 @@ static bool xe_oa_buffer_check_unlocked(struct xe_oa_stream *stream)
- 	 * they were written.  If not : (╯°□°）╯︵ ┻━┻
- 	 */
- 	while (xe_oa_circ_diff(stream, tail, stream->oa_buffer.tail) >= report_size) {
--		void *report = stream->oa_buffer.vaddr + tail;
--
--		if (oa_report_id(stream, report) || oa_timestamp(stream, report))
-+		if (oa_report_id(stream, tail) || oa_timestamp(stream, tail))
- 			break;
- 
- 		tail = xe_oa_circ_diff(stream, tail, report_size);
-@@ -311,30 +317,35 @@ static enum hrtimer_restart xe_oa_poll_check_timer_cb(struct hrtimer *hrtimer)
- 	return HRTIMER_RESTART;
- }
- 
-+static unsigned long
-+xe_oa_copy_to_user(struct xe_oa_stream *stream, void __user *dst, u32 head, u32 len)
-+{
-+	xe_map_memcpy_from(stream->oa->xe, stream->oa_buffer.bounce,
-+			   &stream->oa_buffer.bo->vmap, head, len);
-+	return copy_to_user(dst, stream->oa_buffer.bounce, len);
-+}
-+
- static int xe_oa_append_report(struct xe_oa_stream *stream, char __user *buf,
--			       size_t count, size_t *offset, const u8 *report)
-+			       size_t count, size_t *offset, u32 head)
- {
- 	int report_size = stream->oa_buffer.format->size;
- 	int report_size_partial;
--	u8 *oa_buf_end;
- 
- 	if ((count - *offset) < report_size)
- 		return -ENOSPC;
- 
- 	buf += *offset;
- 
--	oa_buf_end = stream->oa_buffer.vaddr + stream->oa_buffer.circ_size;
--	report_size_partial = oa_buf_end - report;
-+	report_size_partial = stream->oa_buffer.circ_size - head;
- 
- 	if (report_size_partial < report_size) {
--		if (copy_to_user(buf, report, report_size_partial))
-+		if (xe_oa_copy_to_user(stream, buf, head, report_size_partial))
- 			return -EFAULT;
- 		buf += report_size_partial;
- 
--		if (copy_to_user(buf, stream->oa_buffer.vaddr,
--				 report_size - report_size_partial))
-+		if (xe_oa_copy_to_user(stream, buf, 0, report_size - report_size_partial))
- 			return -EFAULT;
--	} else if (copy_to_user(buf, report, report_size)) {
-+	} else if (xe_oa_copy_to_user(stream, buf, head, report_size)) {
- 		return -EFAULT;
- 	}
- 
-@@ -347,7 +358,6 @@ static int xe_oa_append_reports(struct xe_oa_stream *stream, char __user *buf,
- 				size_t count, size_t *offset)
- {
- 	int report_size = stream->oa_buffer.format->size;
--	u8 *oa_buf_base = stream->oa_buffer.vaddr;
- 	u32 gtt_offset = xe_bo_ggtt_addr(stream->oa_buffer.bo);
- 	size_t start_offset = *offset;
- 	unsigned long flags;
-@@ -364,26 +374,24 @@ static int xe_oa_append_reports(struct xe_oa_stream *stream, char __user *buf,
- 
- 	for (; xe_oa_circ_diff(stream, tail, head);
- 	     head = xe_oa_circ_incr(stream, head, report_size)) {
--		u8 *report = oa_buf_base + head;
--
--		ret = xe_oa_append_report(stream, buf, count, offset, report);
-+		ret = xe_oa_append_report(stream, buf, count, offset, head);
- 		if (ret)
- 			break;
- 
- 		if (!(stream->oa_buffer.circ_size % report_size)) {
- 			/* Clear out report id and timestamp to detect unlanded reports */
--			oa_report_id_clear(stream, (void *)report);
--			oa_timestamp_clear(stream, (void *)report);
-+			oa_report_id_clear(stream, head);
-+			oa_timestamp_clear(stream, head);
- 		} else {
--			u8 *oa_buf_end = stream->oa_buffer.vaddr + stream->oa_buffer.circ_size;
--			u32 part = oa_buf_end - report;
-+			struct iosys_map *map = &stream->oa_buffer.bo->vmap;
-+			u32 part = stream->oa_buffer.circ_size - head;
- 
- 			/* Zero out the entire report */
- 			if (report_size <= part) {
--				memset(report, 0, report_size);
-+				xe_map_memset(stream->oa->xe, map, head, 0, report_size);
- 			} else {
--				memset(report, 0, part);
--				memset(oa_buf_base, 0, report_size - part);
-+				xe_map_memset(stream->oa->xe, map, head, 0, part);
-+				xe_map_memset(stream->oa->xe, map, 0, 0, report_size - part);
- 			}
- 		}
- 	}
-@@ -436,7 +444,8 @@ static void xe_oa_init_oa_buffer(struct xe_oa_stream *stream)
- 	spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
- 
- 	/* Zero out the OA buffer since we rely on zero report id and timestamp fields */
--	memset(stream->oa_buffer.vaddr, 0, xe_bo_size(stream->oa_buffer.bo));
-+	xe_map_memset(stream->oa->xe, &stream->oa_buffer.bo->vmap, 0, 0,
-+		      xe_bo_size(stream->oa_buffer.bo));
- }
- 
- static u32 __format_to_oactrl(const struct xe_oa_format *format, int counter_sel_mask)
-@@ -699,6 +708,7 @@ static int num_lri_dwords(int num_regs)
- static void xe_oa_free_oa_buffer(struct xe_oa_stream *stream)
- {
- 	xe_bo_unpin_map_no_vm(stream->oa_buffer.bo);
-+	kfree(stream->oa_buffer.bounce);
- }
- 
- static void xe_oa_free_configs(struct xe_oa_stream *stream)
-@@ -889,9 +899,16 @@ static int xe_oa_alloc_oa_buffer(struct xe_oa_stream *stream, size_t size)
- 		return PTR_ERR(bo);
- 
- 	stream->oa_buffer.bo = bo;
-+
- 	/* mmap implementation requires OA buffer to be in system memory */
- 	xe_assert(stream->oa->xe, bo->vmap.is_iomem == 0);
--	stream->oa_buffer.vaddr = bo->vmap.vaddr;
-+
-+	stream->oa_buffer.bounce = kmalloc(stream->oa_buffer.format->size, GFP_KERNEL);
-+	if (!stream->oa_buffer.bounce) {
-+		xe_bo_unpin_map_no_vm(stream->oa_buffer.bo);
-+		return -ENOMEM;
-+	}
-+
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe_oa_types.h
-index 8906c3084b5f8..3d9ec8490899c 100644
---- a/drivers/gpu/drm/xe/xe_oa_types.h
-+++ b/drivers/gpu/drm/xe/xe_oa_types.h
-@@ -164,8 +164,8 @@ struct xe_oa_buffer {
- 	/** @bo: xe_bo backing the OA buffer */
- 	struct xe_bo *bo;
- 
--	/** @vaddr: mapped vaddr of the OA buffer */
--	u8 *vaddr;
-+	/** @bounce: bounce buffer used with xe_map layer */
-+	void *bounce;
- 
- 	/** @ptr_lock: Lock protecting reads/writes to head/tail pointers */
- 	spinlock_t ptr_lock;
--- 
-2.54.0
-
+>
+> Thanks.
+> --
+> Ashutosh
+>
+>
+> >
+> > >
+> > > static bool xe_oa_buffer_check_unlocked(struct xe_oa_stream *stream)
+> > > @@ -275,9 +283,7 @@ static bool xe_oa_buffer_check_unlocked(struct xe=
+_oa_stream *stream)
+> > >	 * they were written.  If not : (=E2=95=AF=C2=B0=E2=96=A1=C2=B0=EF=BC=
+=89=E2=95=AF=EF=B8=B5 =E2=94=BB=E2=94=81=E2=94=BB
+> > >	 */
+> > >	while (xe_oa_circ_diff(stream, tail, stream->oa_buffer.tail) >=3D rep=
+ort_size) {
+> > > -		void *report =3D stream->oa_buffer.vaddr + tail;
+> > > -
+> > > -		if (oa_report_id(stream, report) || oa_timestamp(stream, report))
+> > > +		if (oa_report_id(stream, tail) || oa_timestamp(stream, tail))
+> > >			break;
+> > >
+> > >		tail =3D xe_oa_circ_diff(stream, tail, report_size);
+> > > @@ -311,30 +317,35 @@ static enum hrtimer_restart xe_oa_poll_check_ti=
+mer_cb(struct hrtimer *hrtimer)
+> > >	return HRTIMER_RESTART;
+> > > }
+> > >
+> > > +static unsigned long
+> > > +xe_oa_copy_to_user(struct xe_oa_stream *stream, void __user *dst, u3=
+2 head, u32 len)
+> > > +{
+> > > +	xe_map_memcpy_from(stream->oa->xe, stream->oa_buffer.bounce,
+> > > +			   &stream->oa_buffer.bo->vmap, head, len);
+> > > +	return copy_to_user(dst, stream->oa_buffer.bounce, len);
+> > > +}
+> > > +
+> >
+> > Still need to look at the patch below this point. Will send that out ne=
+xt
+> > week...
+> >
+> > Regards,
+> > Umesh
+> >
+> > > static int xe_oa_append_report(struct xe_oa_stream *stream, char __us=
+er *buf,
+> > > -			       size_t count, size_t *offset, const u8 *report)
+> > > +			       size_t count, size_t *offset, u32 head)
+> > > {
+> > >	int report_size =3D stream->oa_buffer.format->size;
+> > >	int report_size_partial;
+> > > -	u8 *oa_buf_end;
+> > >
+> > >	if ((count - *offset) < report_size)
+> > >		return -ENOSPC;
+> > >
+> > >	buf +=3D *offset;
+> > >
+> > > -	oa_buf_end =3D stream->oa_buffer.vaddr + stream->oa_buffer.circ_siz=
+e;
+> > > -	report_size_partial =3D oa_buf_end - report;
+> > > +	report_size_partial =3D stream->oa_buffer.circ_size - head;
+> > >
+> > >	if (report_size_partial < report_size) {
+> > > -		if (copy_to_user(buf, report, report_size_partial))
+> > > +		if (xe_oa_copy_to_user(stream, buf, head, report_size_partial))
+> > >			return -EFAULT;
+> > >		buf +=3D report_size_partial;
+> > >
+> > > -		if (copy_to_user(buf, stream->oa_buffer.vaddr,
+> > > -				 report_size - report_size_partial))
+> > > +		if (xe_oa_copy_to_user(stream, buf, 0, report_size - report_size_p=
+artial))
+> > >			return -EFAULT;
+> > > -	} else if (copy_to_user(buf, report, report_size)) {
+> > > +	} else if (xe_oa_copy_to_user(stream, buf, head, report_size)) {
+> > >		return -EFAULT;
+> > >	}
+> > >
+> > > @@ -347,7 +358,6 @@ static int xe_oa_append_reports(struct xe_oa_stre=
+am *stream, char __user *buf,
+> > >				size_t count, size_t *offset)
+> > > {
+> > >	int report_size =3D stream->oa_buffer.format->size;
+> > > -	u8 *oa_buf_base =3D stream->oa_buffer.vaddr;
+> > >	u32 gtt_offset =3D xe_bo_ggtt_addr(stream->oa_buffer.bo);
+> > >	size_t start_offset =3D *offset;
+> > >	unsigned long flags;
+> > > @@ -364,26 +374,24 @@ static int xe_oa_append_reports(struct xe_oa_st=
+ream *stream, char __user *buf,
+> > >
+> > >	for (; xe_oa_circ_diff(stream, tail, head);
+> > >	     head =3D xe_oa_circ_incr(stream, head, report_size)) {
+> > > -		u8 *report =3D oa_buf_base + head;
+> > > -
+> > > -		ret =3D xe_oa_append_report(stream, buf, count, offset, report);
+> > > +		ret =3D xe_oa_append_report(stream, buf, count, offset, head);
+> > >		if (ret)
+> > >			break;
+> > >
+> > >		if (!(stream->oa_buffer.circ_size % report_size)) {
+> > >			/* Clear out report id and timestamp to detect unlanded reports */
+> > > -			oa_report_id_clear(stream, (void *)report);
+> > > -			oa_timestamp_clear(stream, (void *)report);
+> > > +			oa_report_id_clear(stream, head);
+> > > +			oa_timestamp_clear(stream, head);
+> > >		} else {
+> > > -			u8 *oa_buf_end =3D stream->oa_buffer.vaddr + stream->oa_buffer.ci=
+rc_size;
+> > > -			u32 part =3D oa_buf_end - report;
+> > > +			struct iosys_map *map =3D &stream->oa_buffer.bo->vmap;
+> > > +			u32 part =3D stream->oa_buffer.circ_size - head;
+> > >
+> > >			/* Zero out the entire report */
+> > >			if (report_size <=3D part) {
+> > > -				memset(report, 0, report_size);
+> > > +				xe_map_memset(stream->oa->xe, map, head, 0, report_size);
+> > >			} else {
+> > > -				memset(report, 0, part);
+> > > -				memset(oa_buf_base, 0, report_size - part);
+> > > +				xe_map_memset(stream->oa->xe, map, head, 0, part);
+> > > +				xe_map_memset(stream->oa->xe, map, 0, 0, report_size - part);
+> > >			}
+> > >		}
+> > >	}
+> > > @@ -436,7 +444,8 @@ static void xe_oa_init_oa_buffer(struct xe_oa_str=
+eam *stream)
+> > >	spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
+> > >
+> > >	/* Zero out the OA buffer since we rely on zero report id and timesta=
+mp fields */
+> > > -	memset(stream->oa_buffer.vaddr, 0, xe_bo_size(stream->oa_buffer.bo)=
+);
+> > > +	xe_map_memset(stream->oa->xe, &stream->oa_buffer.bo->vmap, 0, 0,
+> > > +		      xe_bo_size(stream->oa_buffer.bo));
+> > > }
+> > >
+> > > static u32 __format_to_oactrl(const struct xe_oa_format *format, int =
+counter_sel_mask)
+> > > @@ -699,6 +708,7 @@ static int num_lri_dwords(int num_regs)
+> > > static void xe_oa_free_oa_buffer(struct xe_oa_stream *stream)
+> > > {
+> > >	xe_bo_unpin_map_no_vm(stream->oa_buffer.bo);
+> > > +	kfree(stream->oa_buffer.bounce);
+> > > }
+> > >
+> > > static void xe_oa_free_configs(struct xe_oa_stream *stream)
+> > > @@ -889,9 +899,16 @@ static int xe_oa_alloc_oa_buffer(struct xe_oa_st=
+ream *stream, size_t size)
+> > >		return PTR_ERR(bo);
+> > >
+> > >	stream->oa_buffer.bo =3D bo;
+> > > +
+> > >	/* mmap implementation requires OA buffer to be in system memory */
+> > >	xe_assert(stream->oa->xe, bo->vmap.is_iomem =3D=3D 0);
+> > > -	stream->oa_buffer.vaddr =3D bo->vmap.vaddr;
+> > > +
+> > > +	stream->oa_buffer.bounce =3D kmalloc(stream->oa_buffer.format->size=
+, GFP_KERNEL);
+> > > +	if (!stream->oa_buffer.bounce) {
+> > > +		xe_bo_unpin_map_no_vm(stream->oa_buffer.bo);
+> > > +		return -ENOMEM;
+> > > +	}
+> > > +
+> > >	return 0;
+> > > }
+> > >
+> > > diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe=
+_oa_types.h
+> > > index b03ffd5134834..99a04b8d586b5 100644
+> > > --- a/drivers/gpu/drm/xe/xe_oa_types.h
+> > > +++ b/drivers/gpu/drm/xe/xe_oa_types.h
+> > > @@ -162,8 +162,8 @@ struct xe_oa_buffer {
+> > >	/** @format: xe_bo backing the OA buffer */
+> > >	struct xe_bo *bo;
+> > >
+> > > -	/** @vaddr: mapped vaddr of the OA buffer */
+> > > -	u8 *vaddr;
+> > > +	/** @bounce: bounce buffer used with xe_map layer */
+> > > +	void *bounce;
+> > >
+> > >	/** @ptr_lock: Lock protecting reads/writes to head/tail pointers */
+> > >	spinlock_t ptr_lock;
+> > > --
+> > > 2.48.1
+> > >
