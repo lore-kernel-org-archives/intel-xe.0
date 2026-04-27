@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D53BFF8862
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Apr 2026 13:06:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B94C8FF885E
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Apr 2026 13:12:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E693110E744;
-	Mon, 27 Apr 2026 13:06:14 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SD+7uigh";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1ECD10E2B0;
- Mon, 27 Apr 2026 13:06:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777295172; x=1808831172;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=GjOxuVG4sQL59nu/J9HwwTTI5aEbFrV3iEwnvhxyBPw=;
- b=SD+7uighmOhUPSz/KuCrAA/+WVSrU8evPhM8FuXgpgLnS82FhdkkOcYC
- CZFwlBjjVqiTIY8iaCg4vSqRE9dve+JAV+A9OJnujBc5IQcaXkut1oEI9
- pJMMEbmI/w42gmqRy2v5tkkqDy/MkzC+oTq9P3QCqAkguQ+AHrIwHZ5YM
- Sph60WmNTUuP1B0PHn26lrtJfgqf5iRUvr14KHNzFSno/eEkXiwM/8/Cy
- Szi5fRjV3Uv56S7VoncF8w9hY3cBDYjuYwL4HnHHEB1JBsc1vQ8QOuWWa
- cAnf8g1sLZxfYin7U0gIApZKEBqP+iRb8BFEQLo8orU56i36nF5vhbXra g==;
-X-CSE-ConnectionGUID: H3kvCgQmSrq6lFWYuMSYFA==
-X-CSE-MsgGUID: bPotMi9MQaKvXlaGwoBc8A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11768"; a="88495002"
-X-IronPort-AV: E=Sophos;i="6.23,202,1770624000"; d="scan'208";a="88495002"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2026 06:06:12 -0700
-X-CSE-ConnectionGUID: 8lfCh+mpR4iNcn0hV5F2Ig==
-X-CSE-MsgGUID: T6Lqx7lTRn+o2Pf/Ri/9lA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,202,1770624000"; d="scan'208";a="235400500"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO
- jhogande-mobl3.intel.com) ([10.245.244.126])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2026 06:06:11 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH] drm/i915/psr: Disable Panel Replay on Dell XPS 16 DA16260 as
- a quirk
-Date: Mon, 27 Apr 2026 16:05:54 +0300
-Message-ID: <20260427130554.86040-1-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D94010E2B2;
+	Mon, 27 Apr 2026 13:12:07 +0000 (UTC)
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBDA210E2B2;
+ Mon, 27 Apr 2026 13:12:06 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0651357901105165517=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Minor_GuC_PC_cleanups_=28re?=
+ =?utf-8?q?v2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Raag Jadav" <raag.jadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 27 Apr 2026 13:12:06 -0000
+Message-ID: <177729552676.13242.12687706773569137688@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260427092928.1181893-1-raag.jadav@intel.com>
+In-Reply-To: <20260427092928.1181893-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,38 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We are observing same problems with Dell XPS 16 DA16260 as we saw with XPS
-14 DA16260. This device seem to have also LGD panel with same feature as in
-XPS 14. Due to this disable Panel Replay as a quirk on this setup as well.
+--===============0651357901105165517==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/7682
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_quirks.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
-index 883f297d4b83..b6e840bffd44 100644
---- a/drivers/gpu/drm/i915/display/intel_quirks.c
-+++ b/drivers/gpu/drm/i915/display/intel_quirks.c
-@@ -269,6 +269,14 @@ static const struct intel_dpcd_quirk intel_dpcd_quirks[] = {
- 		.sink_oui = SINK_OUI(0x00, 0x22, 0xb9),
- 		.hook = quirk_disable_edp_panel_replay,
- 	},
-+	/* Dell XPS 16 DA16260 */
-+	{
-+		.device = DEVICE_ID_ANY,
-+		.subsystem_vendor = 0x1028,
-+		.subsystem_device = 0x0dba,
-+		.sink_oui = SINK_OUI(0x00, 0x22, 0xb9),
-+		.hook = quirk_disable_edp_panel_replay,
-+	},
- };
- 
- void intel_init_quirks(struct intel_display *display)
--- 
-2.43.0
+Series: Minor GuC PC cleanups (rev2)
+URL   : https://patchwork.freedesktop.org/series/165293/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-4938-81f5e3410e2adb3d0336498c8fddaf294be2f901_BAT -> xe-pw-165293v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-4938-81f5e3410e2adb3d0336498c8fddaf294be2f901 -> xe-pw-165293v2
+
+  IGT_8873: a5c5d655807ead8204e01754b6434f0ecae40b96 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4938-81f5e3410e2adb3d0336498c8fddaf294be2f901: 81f5e3410e2adb3d0336498c8fddaf294be2f901
+  xe-pw-165293v2: 165293v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165293v2/index.html
+
+--===============0651357901105165517==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Minor GuC PC cleanups (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165293/">https://patchwork.freedesktop.org/series/165293/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165293v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165293v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4938-81f5e3410e2adb3d0336498c8fddaf294be2f901_BAT -&gt; xe-pw-165293v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4938-81f5e3410e2adb3d0336498c8fddaf294be2f901 -&gt; xe-pw-165293v2</li>
+</ul>
+<p>IGT_8873: a5c5d655807ead8204e01754b6434f0ecae40b96 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4938-81f5e3410e2adb3d0336498c8fddaf294be2f901: 81f5e3410e2adb3d0336498c8fddaf294be2f901<br />
+  xe-pw-165293v2: 165293v2</p>
+
+</body>
+</html>
+
+--===============0651357901105165517==--
