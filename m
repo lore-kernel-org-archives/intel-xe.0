@@ -4,65 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B97C1FF885E
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Apr 2026 10:36:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5159CFF885E
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Apr 2026 11:04:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 789B310E69B;
-	Mon, 27 Apr 2026 10:36:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A34B10E058;
+	Mon, 27 Apr 2026 11:04:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IlPKhoFH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jaHkhEg5";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D908810E696
- for <intel-xe@lists.freedesktop.org>; Mon, 27 Apr 2026 10:35:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E26BC10E058;
+ Mon, 27 Apr 2026 11:04:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777286159; x=1808822159;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=eNfYJi8qFB0xftXT3xe60DzRPizbftXxkLkbsak0mmk=;
- b=IlPKhoFHHCtuIGllm/KXpi0iQcEs5ZZ9nkN+5WBaWzxmhbbmDkLxFrhl
- S9t2+zFUbf0Z3Om1tNehOpWtfxKfmKLmuF46cVQnTXVfHitYMbRD993IO
- i9iiML846YNIzXG/EoPLV8nswuOU29nAR50JzpRvOqNMU0p6Bq/m9Zvmm
- 6rM2trR4PeSFC5LuDwTpvi4gSsBf1mRC/qXFLlXczOnG4lzrujSRwER/3
- yJfzhzhXNMRO3PJZ7Lx5KKZ473nbFskrB1fPO0AxnByqPlQ4rGbDh0Ant
- Y506lVY/z9fEzkokUZtp8nzJnul0PYJzFN6d/v7EAhYAw6vijI8zq1mCf g==;
-X-CSE-ConnectionGUID: yWKg9UnnTcW3gzQiUxC8Ew==
-X-CSE-MsgGUID: O9iQXGuMRvCex3N/MeyBGA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11768"; a="100826051"
-X-IronPort-AV: E=Sophos;i="6.23,201,1770624000"; d="scan'208";a="100826051"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2026 03:35:59 -0700
-X-CSE-ConnectionGUID: vAErtvypRGWcE36nxLgz8w==
-X-CSE-MsgGUID: jlmqFKliQ/iOOrfYHjHg3w==
+ t=1777287878; x=1808823878;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=nyn01qNrubzw8ywsmCHb4NJMI3YFqjPKuCzEcojY/KE=;
+ b=jaHkhEg59TqibzbIvngTOaRG/ImcLPEiRmIhPTCxkc8mGOwKxEHlrMsq
+ pPSYHF456xHcsZ9aGOaEPF5fCAJ1zKE+KeX27bVmgROjvR20kEy7lsBmg
+ Xccnkppfpp/q5r+MD9wMhIB/re8Mg/Qs6jHU9PmlAY6ElhpNmHXWDDTCa
+ 3mnKg8mL8Ina5pGWeExarFbrDC+ijg0NQe+RZPzqiUqiwB1k7lf2133Rs
+ EOrsh+3g2MuezX5+GMGGHUqMWc1LULZw7USRGfL6DF/CznRFkM8unkcnV
+ /ZQtScIjPQ5RgJV+QRuDnzbbq1snxgW46t1qBP7Xg/Zomwi+0XvtR/1PZ A==;
+X-CSE-ConnectionGUID: 9c9BOX+URfCDbHNtz60fSA==
+X-CSE-MsgGUID: +YtrFVaRT2+tqx9Salr+LA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11768"; a="78189044"
+X-IronPort-AV: E=Sophos;i="6.23,202,1770624000"; d="scan'208";a="78189044"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2026 04:04:38 -0700
+X-CSE-ConnectionGUID: +6odCcOBT3WxSsSjSa0CpQ==
+X-CSE-MsgGUID: 0peF5Lh2TBmL76v3huQWkA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,201,1770624000"; d="scan'208";a="264017016"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO fedora)
- ([10.245.244.36])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2026 03:35:56 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- David Hildenbrand <david@kernel.org>, Michal Hocko <mhocko@kernel.org>,
- Qi Zheng <zhengqi.arch@bytedance.com>,
- Shakeel Butt <shakeel.butt@linux.dev>, Lorenzo Stoakes <ljs@kernel.org>,
- Axel Rasmussen <axelrasmussen@google.com>,
- Yuanchu Xie <yuanchu@google.com>, Wei Xu <weixugc@google.com>,
- Brian Geffon <bgeffon@google.com>, Steven Barrett <steven@liquorix.net>,
- Oleksandr Natalenko <oleksandr@natalenko.name>, linux-mm@kvack.org,
- linux-kernel@vger.kernel.org
-Subject: [RFC PATCH 1/1] mm: vmscan: keep anon scanning enabled when swapcache
- folios are present
-Date: Mon, 27 Apr 2026 12:35:32 +0200
-Message-ID: <20260427103532.5623-2-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260427103532.5623-1-thomas.hellstrom@linux.intel.com>
-References: <20260427103532.5623-1-thomas.hellstrom@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,202,1770624000"; d="scan'208";a="256921674"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.53])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2026 04:04:36 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 0/6] drm/i915: crtc iteration cleanups
+Date: Mon, 27 Apr 2026 14:04:26 +0300
+Message-ID: <cover.1777287836.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -78,115 +68,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Two separate guards in the reclaim path suppress all anon-LRU scanning
-when swap space is exhausted or nearly so:
+Some cleanups to crtc iteration.
 
-  can_reclaim_anon_pages()   –  returns false when get_nr_swap_pages()==0
-                                 (or the memcg swap limit is reached);
-                                 used by the non-MGLRU get_scan_count() and
-                                 several MGLRU helper estimations.
+Jani Nikula (6):
+  drm/{i915,xe}: move xe_display_flush_cleanup_work() to i915 display
+  drm/i915/display: switch from drm_for_each_crtc() to
+    for_each_intel_crtc()
+  drm/i915/display: always pass display->drm to for_each_intel_crtc*()
+  drm/i915/display: pass struct intel_display to all
+    for_each_intel_crtc*() macros
+  drm/i915/display: stop passing i to for_each_*_intel_crtc_in_state()
+    macros
+  drm/i915/display: stop passing i to
+    for_each_pipe_crtc_modeset_{enable,disable}()
 
-  get_swappiness() [MGLRU]   –  returns 0 when the above condition holds AND
-                                 the per-memcg free-swap count drops below
-                                 MIN_LRU_BATCH, causing for_each_evictable_type()
-                                 to skip LRU_GEN_ANON entirely.
+ drivers/gpu/drm/i915/display/i9xx_wm.c        |  32 +--
+ drivers/gpu/drm/i915/display/intel_atomic.c   |   3 +-
+ drivers/gpu/drm/i915/display/intel_bw.c       |  11 +-
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |  14 +-
+ drivers/gpu/drm/i915/display/intel_crtc.c     |  13 +-
+ drivers/gpu/drm/i915/display/intel_dbuf_bw.c  |   7 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  10 +-
+ drivers/gpu/drm/i915/display/intel_display.c  | 193 +++++++++---------
+ drivers/gpu/drm/i915/display/intel_display.h  |  80 ++++----
+ .../drm/i915/display/intel_display_debugfs.c  |   6 +-
+ .../drm/i915/display/intel_display_power.c    |   2 +-
+ .../drm/i915/display/intel_display_trace.h    |   6 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       |   2 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |  11 +-
+ drivers/gpu/drm/i915/display/intel_dp_test.c  |   2 +-
+ .../gpu/drm/i915/display/intel_dp_tunnel.c    |   8 +-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c |   2 +-
+ drivers/gpu/drm/i915/display/intel_drrs.c     |   4 +-
+ drivers/gpu/drm/i915/display/intel_fbdev.c    |   6 +-
+ drivers/gpu/drm/i915/display/intel_fdi.c      |   3 +-
+ .../drm/i915/display/intel_fifo_underrun.c    |   4 +-
+ drivers/gpu/drm/i915/display/intel_flipq.c    |   2 +-
+ .../gpu/drm/i915/display/intel_global_state.c |   8 +-
+ .../drm/i915/display/intel_initial_plane.c    |   4 +-
+ drivers/gpu/drm/i915/display/intel_link_bw.c  |   2 +-
+ .../gpu/drm/i915/display/intel_load_detect.c  |   2 +-
+ .../drm/i915/display/intel_modeset_setup.c    |  32 +--
+ drivers/gpu/drm/i915/display/intel_plane.c    |   9 +-
+ drivers/gpu/drm/i915/display/intel_pmdemand.c |   6 +-
+ drivers/gpu/drm/i915/display/intel_psr.c      |   2 +-
+ drivers/gpu/drm/i915/display/intel_tc.c       |   2 +-
+ drivers/gpu/drm/i915/display/intel_vrr.c      |   4 +-
+ drivers/gpu/drm/i915/display/skl_watermark.c  |  38 ++--
+ drivers/gpu/drm/xe/display/xe_display.c       |  27 +--
+ 34 files changed, 252 insertions(+), 305 deletions(-)
 
-Both guards exist for a good reason: if there is no swap space, trying to
-write out an anon folio is pointless because folio_alloc_swap() will fail
-before a slot can be assigned.  The scan overhead is wasted and may delay
-reclaiming more useful file-backed pages.
-
-However, both guards conflate two conceptually different populations of
-anon pages:
-
-  1. Anon pages that have never been backed by swap.
-     These require a free slot before they can be reclaimed.
-     The guards are correct for this group.
-
-  2. Anon folios that are already in the swap cache (PG_swapcache set).
-     These carry a pre-allocated swap slot.  Writing them back and
-     dropping their RAM backing does NOT consume a new slot: the slot
-     already exists and its map-count is held at >= 1 (via
-     folio_dup_swap()) until the content has been safely stored.
-     Reclaiming such a folio frees nr_pages of RAM while leaving the
-     slot count unchanged.
-
-Because the two guards do not distinguish between these groups, they
-suppress anon scanning for the entire LRU once swap becomes scarce,
-even when swapcache folios are present that could be reclaimed for free.
-The practical consequence is that those folios remain in RAM,
-blocking forward progress under memory pressure.
-
-Fix this by continuing the scan while there are pages in the swap cache
-
-RFC:
-This might actually be intentional: accepting a presumably small number
-of freeable pages in the swap cache to avoid costly LRU scans?
-
-There might also be more efficient fixes, like introducing a separate
-LRU list for swapcache pages?
-
-Cc: Andrew Morton <akpm@linux-foundation.org>
-Cc: David Hildenbrand <david@kernel.org>
-Cc: Michal Hocko <mhocko@kernel.org>
-Cc: Qi Zheng <zhengqi.arch@bytedance.com>
-Cc: Shakeel Butt <shakeel.butt@linux.dev>
-Cc: Lorenzo Stoakes <ljs@kernel.org>
-Cc: Axel Rasmussen <axelrasmussen@google.com>
-Cc: Yuanchu Xie <yuanchu@google.com>
-Cc: Wei Xu <weixugc@google.com>
-Cc: Brian Geffon <bgeffon@google.com>
-Cc: Steven Barrett <steven@liquorix.net>
-Cc: Oleksandr Natalenko <oleksandr@natalenko.name>
-Cc: linux-mm@kvack.org
-Cc: linux-kernel@vger.kernel.org
-Fixes: ac35a4902374 ("mm: multi-gen LRU: minimal implementation")
-Fixes: a2a36488a61c ("mm/vmscan: Consider anonymous pages without swap")
-Assisted-by: GitHub Copilot:claude-sonnet-4.6
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- mm/vmscan.c | 21 +++++++++++++++++++--
- 1 file changed, 19 insertions(+), 2 deletions(-)
-
-diff --git a/mm/vmscan.c b/mm/vmscan.c
-index 0fc9373e8251..f50a5fc99fc9 100644
---- a/mm/vmscan.c
-+++ b/mm/vmscan.c
-@@ -377,6 +377,15 @@ static inline bool can_reclaim_anon_pages(struct mem_cgroup *memcg,
- 			return true;
- 	}
- 
-+	/*
-+	 * Even with no free swap slots, anon folios already in the swap cache
-+	 * carry a pre-allocated slot and can be written back and freed from RAM
-+	 * without consuming a new one.  Do not suppress anon scanning when such
-+	 * folios are present on this node.
-+	 */
-+	if (node_page_state(NODE_DATA(nid), NR_SWAPCACHE) > 0)
-+		return true;
-+
- 	/*
- 	 * The page can not be swapped.
- 	 *
-@@ -2736,8 +2745,16 @@ static int get_swappiness(struct lruvec *lruvec, struct scan_control *sc)
- 		return 0;
- 
- 	if (!can_demote(pgdat->node_id, sc, memcg) &&
--	    mem_cgroup_get_nr_swap_pages(memcg) < MIN_LRU_BATCH)
--		return 0;
-+	    mem_cgroup_get_nr_swap_pages(memcg) < MIN_LRU_BATCH) {
-+		/*
-+		 * Even with few free swap slots, folios already in the swap
-+		 * cache carry a pre-allocated slot and can be written back and
-+		 * freed from RAM without consuming a new one.  Keep anon
-+		 * scanning enabled while such folios remain in this lruvec.
-+		 */
-+		if (!lruvec_page_state(lruvec, NR_SWAPCACHE))
-+			return 0;
-+	}
- 
- 	return sc_swappiness(sc, memcg);
- }
 -- 
-2.53.0
+2.47.3
 
