@@ -4,159 +4,159 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9253FF8868
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Apr 2026 15:03:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 660EFFF8860
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Apr 2026 15:31:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7BB010E7AA;
-	Mon, 27 Apr 2026 15:03:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2528A10E7C3;
+	Mon, 27 Apr 2026 15:31:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KoSSbE3N";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ROfhvBl8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4EED810E7AB
- for <intel-xe@lists.freedesktop.org>; Mon, 27 Apr 2026 15:03:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FBCC10E7C1;
+ Mon, 27 Apr 2026 15:31:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777302200; x=1808838200;
- h=message-id:date:from:subject:to:cc:references:
+ t=1777303887; x=1808839887;
+ h=message-id:date:subject:from:to:cc:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=zui+jVs4HXSytzftgoAq5HwDJMmatYtURW9MfwoC7DE=;
- b=KoSSbE3NehVcAMFFiX5DqIT/OXKUWEgl8wrKwRf3OfTbREFQ4ytPFNB/
- QCTpb+qnLaGLEeEQNF4uXS+CL9vDIxD/9np4RasG5lAdk/Ns/t6A3kW0C
- sOspceJcQV6uNbeJ9JLKLUgfHRmQGQQmhdGDRQg95LcyGiA4Adg6IcCad
- 0Ppkk/F9TS2xJAhyq2sOUSsly2Y61RwDGLGZEqm1YOg+PB4YRKhCsTT6y
- mMHwaa69bgedLVCwPUntkHeerTv/mTcHupDBOh4gO4xDOOsbe2pvJAcQW
- Kg7jSnMysox2u2sB6R8Aps7WyjA5a4jIAxsXKA0wYkEzg70sHpRHEcx9b A==;
-X-CSE-ConnectionGUID: KB/F20V4QFWN02HrvGZvDw==
-X-CSE-MsgGUID: 4/oO1p8LS5ypr8nRUHQzNA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11769"; a="89278364"
-X-IronPort-AV: E=Sophos;i="6.23,202,1770624000"; d="scan'208";a="89278364"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2026 08:03:19 -0700
-X-CSE-ConnectionGUID: gu2BEs/CQVS2IQiseH6PIg==
-X-CSE-MsgGUID: 8An76ZJWT+ifogS2yHQNkg==
+ bh=0x+y3eWhfFkom/SOTdkclkyjbsPaqJUa3V3Lfa16MMc=;
+ b=ROfhvBl8g0R8YAwY4MRjEuHf+KvIf7m9ex6tDy/NXUzps9B10zqk2MV7
+ vEJufiajMlqx9XgSyEXhJcj9y04oCJcnc6LXXzaNwb7FddybvVV+AVhp1
+ tNgIoLrqnprEhI1yvNjXzTQSzKL2xhDYExvBZ2DBM8jn1XuGWWguo6S+K
+ SEbXXR/R1/Th+p1nLXcMZ58kDDGYLCaGueLShcblWQ0jzwpu517G2DKT/
+ MRIZhJUCPxsy+3hmfGSVO4Tyd5t1C9fdsdggtDYC1DgWejtz0jM5nfhyB
+ eKfccZ5ozLGeeJuixChIuUzhK6yoCAD83ews4R20uD4uiQEEiOq5fVCPS Q==;
+X-CSE-ConnectionGUID: D+DNXEyeRxSV2J9RvWvf1w==
+X-CSE-MsgGUID: R9gd3aW6R8+J6UYne+rGdA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11769"; a="78086581"
+X-IronPort-AV: E=Sophos;i="6.23,202,1770624000"; d="scan'208";a="78086581"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2026 08:31:26 -0700
+X-CSE-ConnectionGUID: 8QuFIf7PRoyBOYaT2fVQgA==
+X-CSE-MsgGUID: o3ZqtC8xSDC2M6Siw7rQ4w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,202,1770624000"; d="scan'208";a="231022639"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2026 08:03:18 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.23,202,1770624000"; d="scan'208";a="238657696"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2026 08:31:26 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 27 Apr 2026 08:03:18 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.37; Mon, 27 Apr 2026 08:31:25 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 27 Apr 2026 08:03:18 -0700
-Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.69) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Mon, 27 Apr 2026 08:31:25 -0700
+Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.70) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 27 Apr 2026 08:03:16 -0700
+ 15.2.2562.37; Mon, 27 Apr 2026 08:31:22 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gfjQe6N2I3UQ2J4vsatLT19F7A5Sg/khnTf6+oDu4zP3dPfYIxwBzLGqRmgYGUSj+qBEb9qr8kK5VhAXKqtaVQqx3yDQuIvwF/1/KnefktMpcTKGl8phEUGHpXq85jCS+lMagvuLAiIbxRjU/zIDCAsUmRUwZzSL1SEPgDq3b9Bnj0b9BJJnyLg7Pq3eZSxEFLVZxeETmlwHI47QtiS/Qwzu/yWi5BrPUXjEAW+C8mJCqzRzQ8WL5T942DCVpTo4OaTipAPZHFrdh7MNY5FZ4k93O8YSsFFcc6pEqWt4pAqjLL+R403ODNzuVrEyXSQb4CJPKxjvxXNcvpB7Y4faBA==
+ b=bi/rJpuhBjztTDx557cEUauXEu2pXIKkhUaHDBuGFqaDejR3K06qKH/jmy3G7pfTajnJyHyZ3x+ElyGAvWvLXm5PVqI/oDeQ65LVN+qcAwcfP5gAGPf0FHy+rcsuDi2L3fabrwRMA/U4wjgkPfK652FMQg6yJFgERCDdC+ONHIojCdADxR6u5biO8xUvu51RoRM8o5QwWkwNvz77pSv48sGqQpS/vVfZKNAsDqbl2xvc52C+Bf9UO8Ir5scvEWvvRA2qAH00lvou/PAsqA8p5AsmBg3Kiw42qz45OaKU9vdE80Cqg+TmXfJkFOwkEAq8Srv8C3mq1fnV4BD7JzWdLA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ke/2HlEvyFUx0KjeTl9XHhnKgJXH9IdS8P4Ox2rdu9I=;
- b=i+u/F03V3uape25PH7mc/0f87jS1JOg4egcZXJmZRqvxvoQ7dkNV/ZhTD853b4Romu3E1Kn9GhLxWNvo9t0Gprgsj1jP+4U1WmElDTK1UIqIK8EEW5ea6pt0r8gPbc1C5kfzv+VTf1HckSE8lEsCFEzW4tLEKqtZBDqA245eq/STR2NmKYSTahgPOTqsC85K8N2rf2mc+RuOjKj6K07VScnJ6g4l3mbCZxVxpKNm1Jx/kmaKuZnJz4ALkTPPw1ux47ERktpp/oCPGd75TcBSblQCt6zYoeUoyUtMOEkpTjTMxSbbqv+NVuAf5+5Qm65PQ5pUhhyOUHr/tgI7xmfvEg==
+ bh=uxe2I9bWJ13bLRwUDsXaDpveUFsnpGGKFftUHsQByHk=;
+ b=ZlK5WslVHXMSvkeGj1YR9UYXmiJx9ASQfSLzrfYeI72SanRioOzWPR/sA9VnlGrV8tSFcGRVHTjLDSsSMtlgLXiQc9SyXEqawbhHQ3pNjjEUhyWGVmZcbXDXvaYHcnXlEd3+C/Bvt6SpqrW/Ktdnl0+Fm5m3aSFa9MMeAMejythifWcTinCz+YPoZo93A+4w/yqPigOZWeazeNSUkw6wbSnh/WRZFfxgtCVvWv+IU+T0sZCpqbhCQ/x28Aqx/9eCyrf8KhlaUOkmgnR6y8zLKApmvnuLTMrmkIRzjLt8O3qR3OvsZYiJBKUNYp0O+PvlYJmjoqgZclFvE2SXFjnz8Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
- IA3PR11MB9253.namprd11.prod.outlook.com (2603:10b6:208:571::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.26; Mon, 27 Apr
- 2026 15:03:13 +0000
-Received: from DS0PR11MB7958.namprd11.prod.outlook.com
- ([fe80::8cb2:cffc:b684:9a99]) by DS0PR11MB7958.namprd11.prod.outlook.com
- ([fe80::8cb2:cffc:b684:9a99%6]) with mapi id 15.20.9870.013; Mon, 27 Apr 2026
- 15:03:13 +0000
-Message-ID: <aa7d04a9-1ced-439d-9135-b95531d61add@intel.com>
-Date: Mon, 27 Apr 2026 20:33:03 +0530
+Received: from PH0PR11MB5880.namprd11.prod.outlook.com (2603:10b6:510:143::14)
+ by BL3PR11MB6481.namprd11.prod.outlook.com (2603:10b6:208:3bc::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.15; Mon, 27 Apr
+ 2026 15:31:20 +0000
+Received: from PH0PR11MB5880.namprd11.prod.outlook.com
+ ([fe80::b706:268e:9753:cdfd]) by PH0PR11MB5880.namprd11.prod.outlook.com
+ ([fe80::b706:268e:9753:cdfd%5]) with mapi id 15.20.9870.013; Mon, 27 Apr 2026
+ 15:31:20 +0000
+Message-ID: <ae4ad484-22dc-468c-8755-1dec358b6135@intel.com>
+Date: Mon, 27 Apr 2026 21:01:12 +0530
 User-Agent: Mozilla Thunderbird
-From: "Tauro, Riana" <riana.tauro@intel.com>
-Subject: Re: [PATCH v6 3/3] drm/xe/ras: Introduce correctable error handling
-To: Raag Jadav <raag.jadav@intel.com>, <intel-xe@lists.freedesktop.org>
-CC: <matthew.brost@intel.com>, <rodrigo.vivi@intel.com>,
- <michal.wajdeczko@intel.com>, <matthew.d.roper@intel.com>,
- <umesh.nerlige.ramappa@intel.com>, <mallesh.koujalagi@intel.com>,
- <soham.purkait@intel.com>, <anoop.c.vijay@intel.com>,
- <aravind.iddamsetty@linux.intel.com>
-References: <20260410102744.427150-1-raag.jadav@intel.com>
- <20260410102744.427150-4-raag.jadav@intel.com>
+Subject: Re: [PATCH 0/9] drm/i915/casf: Integrate the sharpness filter
+ properly into the scaler code
+From: "Sharma, Swati2" <swati2.sharma@intel.com>
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ Nemesa Garg <nemesa.garg@intel.com>, <ankit.k.nautiyal@intel.com>
+References: <20260326223139.19116-1-ville.syrjala@linux.intel.com>
+ <67337fdf-1a98-4449-ac54-04b14805ad8b@intel.com> <acu_T8mBOpfZIJN2@intel.com>
+ <3af4af49-5575-4109-8a5a-58c8de5e2c99@intel.com>
 Content-Language: en-US
-In-Reply-To: <20260410102744.427150-4-raag.jadav@intel.com>
+In-Reply-To: <3af4af49-5575-4109-8a5a-58c8de5e2c99@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5P287CA0016.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:179::6) To DS0PR11MB7958.namprd11.prod.outlook.com
- (2603:10b6:8:f9::19)
+X-ClientProxiedBy: MA5P287CA0115.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1d0::15) To PH0PR11MB5880.namprd11.prod.outlook.com
+ (2603:10b6:510:143::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|IA3PR11MB9253:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0017e459-52bc-4e70-e952-08dea46e1a7b
+X-MS-TrafficTypeDiagnostic: PH0PR11MB5880:EE_|BL3PR11MB6481:EE_
+X-MS-Office365-Filtering-Correlation-Id: dc0c76ce-e9d4-4708-0bae-08dea4720803
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|22082099003|18002099003|56012099003; 
-X-Microsoft-Antispam-Message-Info: 6T8uoB1ZHr/FgnZGixnIf4dSvt4TEnzKymPpiDdiMYTO9b2qj6ZFr9LjQ8jPRx3b3PMhCQN1DpeID9oZ7wmz4sORCCrj27AM/Gw6qh6M4PeOJZiHnguXzKaOQjSSAuMDQRZrLCI1xwoZ/c4viin/tUu2z7OIgCCdrwa/C/i3LgCi1r2t4IXfENBR6ZaluVknyjsG/UCUZrNGagsIgi2AW3ZdGVOXAm6isYHotKXupp3sDov9tagfVkca2IKacwxAEW90gw2h6VhrDlVPfG6PXBQkDmvC0gmY4B+Zfb4Y8Tim2USiuT0mSudh8Dkij+HPqs0sDX+CcRuKWcH6+Y1HWkxHY0QM5ZIqV5GriF6ILMSgM//cJsgDzCcI4k9jFHKZfdM17nbcSPmH0LCkJ/legOPb7EVUu3Emo3vaC1RVDbKfcttGYo2iETu75yZEVSb6NbKVh23LFzTb5DmdzqMrKKRdUW4/LvugW2sf2pC5xMRvhLD8jF3BXrtcKrd4hJJZjXkWdvf+jaqz8sOTCf/nnnc6fjkQO1QAgBNhWDyoPMVoZJFeSpg7uA6TDD7DS+XdKIlzXY9ie5NJbMlt8IcgLFnM36MwYmliWDarRipfu1dGmCyJCPRnJDTL7UwYheRw2CuNVEdprAiljrW7TGrWv1amzqV9694SIjZLGD+opVkE6LZ8rPy23pE1ougMOfzGRy4DhPHjD0iDRTkhrEyU+9Al/5cU/ghscGsSc0cBxgI=
+ ARA:13230040|366016|376014|1800799024|18096099003|56012099003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: lSb0nbVZMz2PzjAGrz7U0hHX5+BQEKwvqpu44LpwnEGSZVFbM6vQvhE/kprgB6250bPcSsNHMDqCcU+PAb/43LPdRR2N5raauHNGi+y+QcNxId6NTzMIU5Q9UOkSbYElh7DwZjwDuwL2k70DhW03dZReGFxqTKnuLDhJmjGzr4AH2PzQji2TQ1BJcy7nUX3sKFXgutCNLm1W7FGVyV78PGQ98c/pVTBcYcKZ6UcIwF9poDWMy5ktZT/CTad2JJ30PWKH4+mt6quZCYZ2kXO12Yn6aul3M1+B/dfxWO2YyfRjbH5c/Cu8tUFZLIKGTLgyR+W6YBXMcxu5tWxp+LlhNaozOFWqU6oxh7WRUYcR/qfQZsPl3juIsy8uLAyGF3/ccqlD6hPM7Y+jDArns+wqj4OuxyXTzv8V/e0l+7YVVeVVD+xLXFxak5g3aG6YqhCz3icbPDRrwRsPKp5vTB/GS29aFnNf81zHHxlqLLOxWlBfWzClzE+xVn/xJ5rsjb0fvg3MtU4Ju+Rpm5ta5R1tN0bxTADGpiQtQBzGni9AgNRXmVGSmjeFkmGkIE2RW/W+cWfbnY1n8zeSbmPC5du1Qk1/ZvEpjTFcojqBknC2KRr8o3tBXYnLfQNFBoe9W4y+CECPS2RCrCbLB7JFOdVF0YcKWFl+2WAK+5zedBmMigHfdiNjkdplScJ4+CXoQTs2
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(22082099003)(18002099003)(56012099003);
+ IPV:NLI; SFV:NSPM; H:PH0PR11MB5880.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(18096099003)(56012099003)(22082099003)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Ui8xOG53a0NFZGRBK0d2V1JKQUZJMzdlMS80QlplZ0c2MitvRTFJd1JBQThj?=
- =?utf-8?B?dm9MeFNiQzdTVU9Yc2hEZnhxTVpSTUZEZit3WVdMa3FCRnRrYXlYSnJaTmxw?=
- =?utf-8?B?dHFGTEJ1RmgxcXppcEhWSXkyN3JGZTg4elJHdXJlNWpwdFdhVk5qOXk4aEJq?=
- =?utf-8?B?bkFpT2xYUWNuMHdHblEvR3VNLzdpY3NDMTNuckVOL1h4cEhaZ2svdk1YMHZR?=
- =?utf-8?B?bHRsQjBGV2tmZFdaK1NZeG9WbnhrL2M5TUUvbHJYcWx0b0xyZzJNbXdZTnZS?=
- =?utf-8?B?MHBzTzJuaGVVQUtnQ0xOY2FoTVVJM05SOFBOVFQ5aGpWNGdaUVNZcndYSjlG?=
- =?utf-8?B?Z0hwaWpOVFpmaE9nQUZwSzFQYk5OQXM0NWJnNGFxUmQvWURRUk9kRXdWWUsw?=
- =?utf-8?B?NDl0dXJtcVRXSXFCdm5EVWdabFU1MStpbGFRdFhXTGp5N3d2VDEySjI4OGZ4?=
- =?utf-8?B?WGVGTTkwMEQ0N2d3cXppeFZjR01qc29VckFJYzYzZWJyeTkyTUhFQ0ZNQlJt?=
- =?utf-8?B?RS8xMmNoNHFqVVFxODhRRnFqT0hReGFCMUN0NlJvNTFXNWtaMjJiaW8rWlZT?=
- =?utf-8?B?d0Q2eDZ4NU5PaEdiUHpPMWdYZWgyMWM2OGh3KyswU094M2R6emlXOXhmY0d3?=
- =?utf-8?B?ZmZTU0VHcVlMVkxRT0RKaXZGVmdLL25EQjlvRzFqcjN2M3NMa0dqWEEyUmdo?=
- =?utf-8?B?M3lkZlhBSHFxYlpOQkl2bFIrRUt6bWN4MlZ4TG1pV2FwZHBENVdXWkxhRlRV?=
- =?utf-8?B?L296cnozTWczU3crMEpreEdBbjdCUkYxUWYyMllOV0g0ZGIrNW9MdlhhczNu?=
- =?utf-8?B?SDEyZzF4bUtMSEtSNWFIeUdDY0F0Qk9JVTIzdlMybUtLNVlrRnpwem1nUkdL?=
- =?utf-8?B?TEV3dHNJdjlldDZITllrMzBMU0J2VlFiblFIQ1pzSWNZUXJVQ0Q3Qys2bXBJ?=
- =?utf-8?B?TXhIT29uN0lveGNRbi8zYk14RXR0NUM3OGJmSnFQaXZPcU1wSjF4eTY2N1dG?=
- =?utf-8?B?bFJRUUtEY1ROdUdLQVMvSDllOXhkem1xNHNYTUhId0lwcWpBNThVTkFQQUZ4?=
- =?utf-8?B?bHVTaFlSRDVHa3VxTUxab25VejdNQ0c1OU9rN1pJTE5NR1VsQ2ZqVmRaeFJa?=
- =?utf-8?B?eVJ0UGkwdzFOYU9MT1k2REQ3dExqQkJ6STBXeDEraExKaVlJa1JFVDYzaktl?=
- =?utf-8?B?TGY4ZGJ5bVgvRnJMZFRoWlZiWTJBdmpNZnJwNk5vRGpYeUdZRTZFeXFIY3VR?=
- =?utf-8?B?MUFjd2kxWDlUN1RydlArM0ZpRUhDNWplazZaU25zc1M0ZG5pUDJ5dmUySFhD?=
- =?utf-8?B?Z0d2UnZMbkxVaS9UdkxsTlpNR05DUHNsMFlkQ3RtenBwTHZ6TDg5dm8ySEdq?=
- =?utf-8?B?VXQrN3l3L0ttSzREZTd5L213eS94M0l3b3Y2T2srNmhqTWdIUVdXc2V6WldN?=
- =?utf-8?B?UUgwK2tZeHhieW5kc2o4RVlvRlRKSnl6UVAxY3NYR3NCU3ZVeU40bHJwR0tU?=
- =?utf-8?B?RDZ6Y0p5bWNtVE9hd1N5VzRzczl3SSs3THZES1kzc3UrZjYzT21NejJWa2Q3?=
- =?utf-8?B?VnZKNW1zZmc0TEhqUmNyKzZoL0xvWlBwVnZWcVFXdXN3czNrYzJHR0RoZWVM?=
- =?utf-8?B?ZDc1bTQ1eWcvRVBndHdaTFVaMkNwR3dSY3hPREtNVHgxWWI2eEI3eXRLNW85?=
- =?utf-8?B?N0JwNHhRTGpBaWhuTmNLSWF3Ny8xSFkxSkwzUW8zNXVOM3NmSmRSVXVQOXY4?=
- =?utf-8?B?WnRJaEpESWNsMTlQTzFuaFNmS05LZ1RLZDBmei9RN1NHOTlNc09uajVKb0J5?=
- =?utf-8?B?V0VnWXFONXFYZXdoZXlJMCthS2N1cUg0Qkl1Wkt0Qnhod2VERHpMWU1pdnFr?=
- =?utf-8?B?SEdzQTI4WHBLYnRpR0JrK0dEU2pEU2FMRHFOZkdyWnIrN0lVOXN0K1FMTlB5?=
- =?utf-8?B?bHcxLzErTVlRT1FxZm5rR0hvdXlFM0VEUjhLVlFUMFk2US95ZkVFbnZLQ1Bx?=
- =?utf-8?B?L0ZjNldVL293MTJmUEltNTVzK1ZqdjZjbDgzazZaRDhnb3JJZC9OOWVYL1Ba?=
- =?utf-8?B?STR5RGE4a0xLaXhBdkM3WEJlSUE2aEp5QnhZb3B1bktJK1pYN0dvT1R0QTRz?=
- =?utf-8?B?dlVrdDd4aG91MXByQklYc1dJeTM4Y2dlaTBnZlg5RStseG90ZkxpVGR6eXNR?=
- =?utf-8?B?Y2hvOXJvTnJsRjh3YnNQemZ1OEo2c1dIZnYxcVdLdUFzYzJZNGJZNkwvRHlU?=
- =?utf-8?B?UDUwNFhwckN1SFlJbWQ4elRzV1RabE9YZ1QzL2JKWUZwcUVvclBjZ3J2U2I1?=
- =?utf-8?B?N1U4bWJTTlpySzJXTG92ZGxOMndLa2RjU09Zd2JQaU1EWWVaT0JwUT09?=
-X-Exchange-RoutingPolicyChecked: pDkSmq167Q2uPhkvCF97x6R0x8NHH6Iujlv6n+K64RsChEUHH/xYs5CaM9iwDHliH6ijvPGm1jjWSWoQfSbagd0J/XgrnzfojufsrqD2IHRAs8H4FeqUaF5xk/C26XvhDZho5u5hTYT0x/yYhEnK4C+NIRNcoCZeZK+ElBV0AnDwGixU/keZaSQ3Tk5Oq++B8HQzGGrslazomJu92YDZ7vCVV8w9SWoat8FAYQ4v8oFIhkT3WXxobR5POIecBnCk9VNFAKzHIHzAvmmKZgziBFkp4siBLuZfoKJDaOl+8HVNdyfeIVsTg6kvO45kMMyBIJ0LDuqoC3FFHfZpzf+XMA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0017e459-52bc-4e70-e952-08dea46e1a7b
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7958.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?d3VyeUM2RjQ3UVMrc3hYQWtiUVczRnpBRmNtaXFVL3BZOUpORzJMYWc5aUoy?=
+ =?utf-8?B?alNCTWpLN2JPazFTTm5TbjZDN0JsSWozSnJRVXBNNGU5Q1NoT3g2bTN0WXln?=
+ =?utf-8?B?cGVkUXRXWEFmMFlHZWRUOHRTWlJObG0xdEhiYVpWTGRhL1ZvdVlNNXg5SC9j?=
+ =?utf-8?B?ZTdIOEFETUlMZ0c0RWo4VWtkWXBBK25jYWdPbGZmTlVrQ1FrYk9iUUVHT2xX?=
+ =?utf-8?B?Q1JLdWIrc3lCNFhpVngzem9xNEppTHF4MGpGNWxLaFpOVTR2NUFQYmhIdkRy?=
+ =?utf-8?B?UTB4ZE9KeDdPeUxGZVJ5ZGNGams2dEJ5OWYyVXFDbm8zb0ZNQlJKS2ZvaEpk?=
+ =?utf-8?B?YU5MbVhvVlBaektrVWtkaHI5VDZqUmZzVHBiL3ROWGlNZk9wNm5GM2dnOTdw?=
+ =?utf-8?B?SEs3dGl3bE4wWWE5b2tpSDdMZDJ4b1BZYmY1enpZUFNXaXhIL1lyNk5JQmIw?=
+ =?utf-8?B?ckswTXFOYm8vZUR3clYySEVrenpuRkppaU84eDc4aE5NV1RJSytOQkxJcFhx?=
+ =?utf-8?B?dmJYNG03aVZac05tVThkcGh6ZnFzY1NiaU1JZHFxYUlwaG9MN09uRlBaTll3?=
+ =?utf-8?B?N1NLVVdac3VXa2M2UHAxc29rQkVxTnJlNXpHMURjY3ZJek9nR1RUdlJXUGFD?=
+ =?utf-8?B?WHJzSkFEelJ5a1YxVCttWVhYcTNKYnRtUXhBQUNGWUg1amozMFN4NGcxV3lD?=
+ =?utf-8?B?RHh4d1ZIbW40bk5SdkhQbEY3MDlPMkw4Rk1Wd2N3ZWsrVUtWSngwcW0raDJU?=
+ =?utf-8?B?eVQ2ZmZLdFZZRW81S05rTnI5a09EaDNhVVZpS1ZvMlQ5QS9vWE5VWU1Uemgz?=
+ =?utf-8?B?d24yc2pYZjhSY3BwZCtkczRnR2V3aWxKVjFiN2dDTys4dUVvZVZiMzlzV0RR?=
+ =?utf-8?B?b0RTM0ZqcGQwZ1EyTmQ3KzY2QnNqYW1CNjI5Slo4NXA5OUlCVTk2Tm9lanFI?=
+ =?utf-8?B?TEY4MzQzM3htK2d6bFlvSUIwcGtadTBlblJ2TkxhNVN6MERYenc0ZVN3TmlE?=
+ =?utf-8?B?Z005NTVjdkJYT2sxKzhkM3RBTjhxaUk5emx3eGdhUkV2SkswTWIwUmhYY1Vr?=
+ =?utf-8?B?NnRjLzE0RmJXUlRSVTVKREN1ZktudGFpV1laOFo5RUtURTllYmkxNE1KZnRr?=
+ =?utf-8?B?aXNMZGROdDZRQTJNUmhnYjFlQk02Z0RrbFh2WXR6Rld6aStwcXdtejVMaHda?=
+ =?utf-8?B?M3doWVo1U2RuTWtCWjdscTFuMm5peDNxTUM5Sk5WQi9wYzhWN0RNVWM2czla?=
+ =?utf-8?B?WnN1T2RFVXZ2WGFzN2RRNmZXTW13Z0lFMVIrSHQ5R3lENzNtakM3ZWNIMVFv?=
+ =?utf-8?B?OXhUT3FxRUNUa0RmdldNRmpKS2x0cTY5cEI3bDhsVElHSG9wM2pqMzdTVFVi?=
+ =?utf-8?B?TG9nVVMrY2p1YkpWSE1scEJ3T0lCS3JCUTlUYjFZVFV1UFZoUmhXRDhobXdq?=
+ =?utf-8?B?SzJTNUdPU1R2YmJGVW9YK2N4WjZONFFwZTkvdjVlOU4vRU1mazd4c05NYjdz?=
+ =?utf-8?B?VXovaU56R01DbWhpTjBKaFFYUGx4bEFYNkdJck9vWm9ONnlScXM5bGo4T3BS?=
+ =?utf-8?B?WmtLVXN5dkNhZXNrVTVRVXlMazBXRjlZNE5tL21sRzdCWWkzV0d4V3k4dzVq?=
+ =?utf-8?B?Tk1rSUZlNTJLOEd3dkJCTkZ3OUtRYkNsS0NUWjVFaitLMjkvY2FSRk5lZ3My?=
+ =?utf-8?B?dy93UDNiT0FXRlgyclNEL1BQbm5XWkRHRGxLaHYvb3JZWWRhQ1JvNnlTcDR5?=
+ =?utf-8?B?VVlKSkRDQWRTK3FVYnhjbVhHb1pyK1RzakU0TEZLSHZMQnQvUHRHU0hxRzhL?=
+ =?utf-8?B?T2plcFU3RDhZZmZWVkIzaUc3Qy9nc3A0VmFHWUxLMHVVZ1RsY1psWHhQMEVm?=
+ =?utf-8?B?OVNVNDZzcjM1UjJHcFVsS3ozUmQvT3g2T1Y4eDlyQzF1aENId3o2cWQ0OHFm?=
+ =?utf-8?B?dm1QMlJkbEo2MWlOZmllT1pUSW9IbGR2elk4VzYwaFZoSzdneGRPUFEzcnJI?=
+ =?utf-8?B?aUJkMW5meTY2dkZEMWJNSm9WVzgzN2JnSDI5OEZFbXVGaDBQZFphZ0lORy82?=
+ =?utf-8?B?MTd3b2RmdEFzNGxyZ0dvNGxvTjUrQ3N1SU0zU2NsQkp6bXQ1bzZKUGhQSWxh?=
+ =?utf-8?B?cHRyZVZXbnI0aVVUSHAvVW5Ya09BQmdUdXpRTnhPd1JwQmNxYXZlMDVMK0xa?=
+ =?utf-8?B?TE1EL1c2VkNESkpidHpnUU1uNG5ldnVyb09YOWRHTlZWaDlkeXFZTTZOQzRL?=
+ =?utf-8?B?RWEvWUVRUXhoaW81TkFRYnlwNjNFdUZqdDhxQWg0SC9iV1lRY0dJbWdYczZh?=
+ =?utf-8?B?dkJJMGJuYnp0NVB0Y0puREQrUHNDdStqUHVqTlRjaWJWaFNQWEdhMmVvOFBL?=
+ =?utf-8?Q?lJt86NfrTzaMV96k=3D?=
+X-Exchange-RoutingPolicyChecked: LPxAknd2eiimHOTTuUnkNKFj20P3vSwRPWot/kmAIqY8JDeFMIlCb9O3OuPS96r4ZDfVBovNldRJ3ht1g9YM7wG8YpTup2EWzfz4lLDJnUGs3h9Tto1kvNS/yT5VzP/XNlljshGaJiQDz33+72yF6+SzaJJIvoNnacj2ypO8qRlIElLoyb5qEvuxzC8wbS4uZKlCOeHYPLsuSazHk8K5H2URX84d4YiWIIsUiNK3XuwqMEU7jcm7dCv3dMtT0if5wMiSjaNp2HoLOWUrEyjScd9MosJFGPf+qJ+4ybKIsuLZtA7tNFOCSjV15TBjQatIssENgAgRSH8M4S3Z/wJvVg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: dc0c76ce-e9d4-4708-0bae-08dea4720803
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB5880.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Apr 2026 15:03:13.3553 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Apr 2026 15:31:20.2835 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gcw+zRlg7+KVnA1hlrbYZr73qCo8R3hZaoszPLUDk8NBIzN+tUyjnaMy4uhxN0Vru/1Bo4danj3nqszAPqLdFg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR11MB9253
+X-MS-Exchange-CrossTenant-UserPrincipalName: voiY49s1IY8Z6KK6mPe8VyhX2SFGShu59bzG3G2iTtje4ywCh6XjPc/JDBMMogeT5kNMfib3zslcHzqBdoRtUg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR11MB6481
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -172,268 +172,183 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Hi Ville
 
-On 4/10/2026 3:57 PM, Raag Jadav wrote:
-> Add initial support for correctable error handling which is serviced
-> using system controller event. Currently we only log the errors in
-> dmesg but this serves as a foundation for RAS infrastructure and will
-> be further extended to facilitate other RAS features.
+
+On 01-04-2026 11:32 am, Sharma, Swati2 wrote:
+> Hi Ville,
 >
-> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> On 31-03-2026 06:04 pm, Ville Syrjälä wrote:
+>> On Tue, Mar 31, 2026 at 05:10:42PM +0530, Sharma, Swati2 wrote:
+>>> Hi Ville,
+>>>
+>>> On 27-03-2026 04:01 am, Ville Syrjala wrote:
+>>>> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>>>>
+>>>> The sharpness filter isn't anything special. It's just another
+>>>> mode of the pipe scaler, so treat is as such.
+>>>>
+>>>> This gets rid of tons of special casing all over the place,
+>>>> and will allow me to finally land the pending pipe prefill
+>>>> series: https://patchwork.freedesktop.org/series/156137/
+>>>>
+>>>> Note that this will fail some kms_sharpness_filter tests,
+>>>> because those tests are basically incorrect. But I couldn't
+>>>> decide yet how much of that entire test should be nuked. It
+>>>> seems to be doing a *lot* of things, most of which have
+>>>> nothing to do with the sharpness filter...
+>>> With your series I could see only 1 negative test failing -
+>>> invalid-filter-with-scaling-mode-center
+>>>
+>>> https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163952v1/shards-all.html?testfilter=sharpness 
+>>>
+>>>
+>>> Is it sharpness and scaling-mode-center can work together? Since
+>>> scaler-mode-center doesn't require
+>>>
+>>> scaler.
+>>>
+>>> You rightly said, all tests are not related to sharpness but covering
+>>> valid scenarios for scaler + sharpness.
+>>>
+>>> Apart from invalid-filter-with-scaling-mode-center, which other 
+>>> tests do
+>>> you think are incorrect? We tried covering all valid scenarios as 
+>>> per HAS.
+>> I would probably nuke all these:
+>>
+>> Nothing to do with the sharpness filter since
+>> it's on the pipe scaler, not plane scaler:
+>> - filter-modifiers
+>> - filter-rotations
+>> - filter-formats
+> Ack.
+IGT patch floated https://patchwork.freedesktop.org/series/165542/
 
-LGTM
+to remove above tests .
 
-Reviewed-by: Riana Tauro <riana.tauro@intel.com>
+Can you please elaborate about sharpness filter vs. scaling filter test 
+to be added?
 
+Is it like applying
+DRM_SCALING_FILTER_DEFAULT
+DRM_SCALING_FILTER_NEAREST_NEIGHBOR
+And SHARPNESS_FILTER
+and doing some comparison?
 
-> ---
-> v4: Fix Severity/Component logging (Mallesh)
->      s/xe_ras_error/xe_ras_error_class (Riana)
-> v5: Handle unexpected counter threshold crossed (Mallesh)
-> v6: Drop unused xe_device parameter (Mallesh)
->      Fix unexpected counter threshold logic (Mallesh)
->      Use xe_device parameter for xe_ras functions (Riana)
->      Shorten dmesg logging (Riana)
->      s/xe_ras_threshold_crossed_data/xe_ras_threshold_crossed (Riana)
-> ---
->   drivers/gpu/drm/xe/Makefile           |  1 +
->   drivers/gpu/drm/xe/xe_ras.c           | 92 +++++++++++++++++++++++++++
->   drivers/gpu/drm/xe/xe_ras.h           | 15 +++++
->   drivers/gpu/drm/xe/xe_ras_types.h     | 73 +++++++++++++++++++++
->   drivers/gpu/drm/xe/xe_sysctrl_event.c |  3 +-
->   5 files changed, 183 insertions(+), 1 deletion(-)
->   create mode 100644 drivers/gpu/drm/xe/xe_ras.c
->   create mode 100644 drivers/gpu/drm/xe/xe_ras.h
->   create mode 100644 drivers/gpu/drm/xe/xe_ras_types.h
+>>
+>> Doesn't seem to test anything at all:
+>> - filter-tap
 >
-> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> index 9e6689c86797..0e6e91a6063c 100644
-> --- a/drivers/gpu/drm/xe/Makefile
-> +++ b/drivers/gpu/drm/xe/Makefile
-> @@ -113,6 +113,7 @@ xe-y += xe_bb.o \
->   	xe_pxp_submit.o \
->   	xe_query.o \
->   	xe_range_fence.o \
-> +	xe_ras.o \
->   	xe_reg_sr.o \
->   	xe_reg_whitelist.o \
->   	xe_ring_ops.o \
-> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-> new file mode 100644
-> index 000000000000..08e91348c459
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_ras.c
-> @@ -0,0 +1,92 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright © 2026 Intel Corporation
-> + */
-> +
-> +#include "xe_printk.h"
-> +#include "xe_ras.h"
-> +#include "xe_ras_types.h"
-> +#include "xe_sysctrl.h"
-> +#include "xe_sysctrl_event_types.h"
-> +
-> +/* Severity of detected errors  */
-> +enum xe_ras_severity {
-> +	XE_RAS_SEV_NOT_SUPPORTED = 0,
-> +	XE_RAS_SEV_CORRECTABLE,
-> +	XE_RAS_SEV_UNCORRECTABLE,
-> +	XE_RAS_SEV_INFORMATIONAL,
-> +	XE_RAS_SEV_MAX
-> +};
-> +
-> +/* Major IP blocks/components where errors can originate */
-> +enum xe_ras_component {
-> +	XE_RAS_COMP_NOT_SUPPORTED = 0,
-> +	XE_RAS_COMP_DEVICE_MEMORY,
-> +	XE_RAS_COMP_CORE_COMPUTE,
-> +	XE_RAS_COMP_RESERVED,
-> +	XE_RAS_COMP_PCIE,
-> +	XE_RAS_COMP_FABRIC,
-> +	XE_RAS_COMP_SOC_INTERNAL,
-> +	XE_RAS_COMP_MAX
-> +};
-> +
-> +static const char *const xe_ras_severities[] = {
-> +	[XE_RAS_SEV_NOT_SUPPORTED]		= "Not Supported",
-> +	[XE_RAS_SEV_CORRECTABLE]		= "Correctable Error",
-> +	[XE_RAS_SEV_UNCORRECTABLE]		= "Uncorrectable Error",
-> +	[XE_RAS_SEV_INFORMATIONAL]		= "Informational Error",
-> +};
-> +static_assert(ARRAY_SIZE(xe_ras_severities) == XE_RAS_SEV_MAX);
-> +
-> +static const char *const xe_ras_components[] = {
-> +	[XE_RAS_COMP_NOT_SUPPORTED]		= "Not Supported",
-> +	[XE_RAS_COMP_DEVICE_MEMORY]		= "Device Memory",
-> +	[XE_RAS_COMP_CORE_COMPUTE]		= "Core Compute",
-> +	[XE_RAS_COMP_RESERVED]			= "Reserved",
-> +	[XE_RAS_COMP_PCIE]			= "PCIe",
-> +	[XE_RAS_COMP_FABRIC]			= "Fabric",
-> +	[XE_RAS_COMP_SOC_INTERNAL]		= "SoC Internal",
-> +};
-> +static_assert(ARRAY_SIZE(xe_ras_components) == XE_RAS_COMP_MAX);
-> +
-> +static inline const char *sev_to_str(u8 sev)
-> +{
-> +	if (sev >= XE_RAS_SEV_MAX)
-> +		sev = XE_RAS_SEV_NOT_SUPPORTED;
-> +
-> +	return xe_ras_severities[sev];
-> +}
-> +
-> +static inline const char *comp_to_str(u8 comp)
-> +{
-> +	if (comp >= XE_RAS_COMP_MAX)
-> +		comp = XE_RAS_COMP_NOT_SUPPORTED;
-> +
-> +	return xe_ras_components[comp];
-> +}
-> +
-> +void xe_ras_counter_threshold_crossed(struct xe_device *xe,
-> +				      struct xe_sysctrl_event_response *response)
-> +{
-> +	struct xe_ras_threshold_crossed *pending = (void *)&response->data;
-> +	struct xe_ras_error_class *errors = pending->counters;
-> +	u32 counter_id, ncounters = pending->ncounters;
-> +
-> +	if (!ncounters || ncounters > XE_RAS_NUM_COUNTERS) {
-> +		xe_err(xe, "sysctrl: unexpected counter threshold crossed %u\n", ncounters);
-> +		return;
-> +	}
-> +
-> +	BUILD_BUG_ON(sizeof(response->data) < sizeof(*pending));
-> +	xe_warn(xe, "[RAS]: counter threshold crossed, %u new errors\n", ncounters);
-> +
-> +	for (counter_id = 0; counter_id < ncounters; counter_id++) {
-> +		u8 severity, component;
-> +
-> +		severity = errors[counter_id].common.severity;
-> +		component = errors[counter_id].common.component;
-> +
-> +		xe_warn(xe, "[RAS]: %s %s detected\n",
-> +			comp_to_str(component), sev_to_str(severity));
-> +	}
-> +}
-> diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
-> new file mode 100644
-> index 000000000000..ea90593b62dc
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_ras.h
-> @@ -0,0 +1,15 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2026 Intel Corporation
-> + */
-> +
-> +#ifndef _XE_RAS_H_
-> +#define _XE_RAS_H_
-> +
-> +struct xe_device;
-> +struct xe_sysctrl_event_response;
-> +
-> +void xe_ras_counter_threshold_crossed(struct xe_device *xe,
-> +				      struct xe_sysctrl_event_response *response);
-> +
-> +#endif
-> diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
-> new file mode 100644
-> index 000000000000..4e63c67f806a
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_ras_types.h
-> @@ -0,0 +1,73 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2026 Intel Corporation
-> + */
-> +
-> +#ifndef _XE_RAS_TYPES_H_
-> +#define _XE_RAS_TYPES_H_
-> +
-> +#include <linux/types.h>
-> +
-> +#define XE_RAS_NUM_COUNTERS			16
-> +
-> +/**
-> + * struct xe_ras_error_common - Error fields that are common across all products
-> + */
-> +struct xe_ras_error_common {
-> +	/** @severity: Error severity */
-> +	u8 severity;
-> +	/** @component: IP block where error originated */
-> +	u8 component;
-> +} __packed;
-> +
-> +/**
-> + * struct xe_ras_error_unit - Error unit information
-> + */
-> +struct xe_ras_error_unit {
-> +	/** @tile: Tile identifier */
-> +	u8 tile;
-> +	/** @instance: Instance identifier specific to IP */
-> +	u32 instance;
-> +} __packed;
-> +
-> +/**
-> + * struct xe_ras_error_cause - Error cause information
-> + */
-> +struct xe_ras_error_cause {
-> +	/** @cause: Cause/checker */
-> +	u32 cause;
-> +	/** @reserved: For future use */
-> +	u8 reserved;
-> +} __packed;
-> +
-> +/**
-> + * struct xe_ras_error_product - Error fields that are specific to the product
-> + */
-> +struct xe_ras_error_product {
-> +	/** @unit: Unit within IP block */
-> +	struct xe_ras_error_unit unit;
-> +	/** @cause: Cause/checker */
-> +	struct xe_ras_error_cause cause;
-> +} __packed;
-> +
-> +/**
-> + * struct xe_ras_error_class - Combines common and product-specific parts
-> + */
-> +struct xe_ras_error_class {
-> +	/** @common: Common error type and component */
-> +	struct xe_ras_error_common common;
-> +	/** @product: Product-specific unit and cause */
-> +	struct xe_ras_error_product product;
-> +} __packed;
-> +
-> +/**
-> + * struct xe_ras_threshold_crossed - Data for threshold crossed event
-> + */
-> +struct xe_ras_threshold_crossed {
-> +	/** @ncounters: Number of error counters that crossed thresholds */
-> +	u32 ncounters;
-> +	/** @counters: Array of error counters that crossed threshold */
-> +	struct xe_ras_error_class counters[XE_RAS_NUM_COUNTERS];
-> +} __packed;
-> +
-> +#endif
-> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_event.c b/drivers/gpu/drm/xe/xe_sysctrl_event.c
-> index 3edde46a9711..c6ea32f3471e 100644
-> --- a/drivers/gpu/drm/xe/xe_sysctrl_event.c
-> +++ b/drivers/gpu/drm/xe/xe_sysctrl_event.c
-> @@ -6,6 +6,7 @@
->   #include "xe_device.h"
->   #include "xe_irq.h"
->   #include "xe_printk.h"
-> +#include "xe_ras.h"
->   #include "xe_sysctrl.h"
->   #include "xe_sysctrl_event_types.h"
->   #include "xe_sysctrl_mailbox.h"
-> @@ -34,7 +35,7 @@ static void get_pending_event(struct xe_sysctrl *sc, struct xe_sysctrl_mailbox_c
->   		}
->   
->   		if (response->event == XE_SYSCTRL_EVENT_THRESHOLD_CROSSED)
-> -			xe_warn(xe, "[RAS]: counter threshold crossed\n");
-> +			xe_ras_counter_threshold_crossed(xe, response);
->   		else
->   			xe_err(xe, "sysctrl: unexpected event %#x\n", response->event);
->   
+> Intention of this test is to validate different taps. As per spec,
+>
+> different TAPS will be selected based on different resolution selected.
+>
+>
+> TAP 3: mode->hdisplay <= 1920 && mode->vdisplay <= 1080
+> TAP 5: (mode->hdisplay > 1920 && mode->hdisplay < 3840) && 
+> (mode->vdisplay > 1080 && mode->vdisplay < 2160)
+> TAP 7: mode->hdisplay >= 3840 && mode->vdisplay >= 2160
+>
+>>
+>> Maybe a decent idea, but really wasteful to have these kinds
+>> of things for every little feature, as opposed to just
+>> some generic "did we restore everything after dpms/suspend
+>> correctly" test:
+>> - filter-suspend
+>> - filter-dpms
+>
+> True, but we did caught an issue during local testing with this test 
+> where we were not able
+>
+> to retain sharpness after S/R.
+>
+>>
+>> And I guess we're missing a test for sharpness filter vs.
+>> scaling filter.
+> Can you please little bit elaborate more?
+>>
+>> And the CRC stuff is really limited, so we have no idea if
+>> the thing even works from these tests. But I guess we don't
+>> really know the secret sauce algorithm, so generating a
+>> reference image is hard :/
+>
+> Yes, right. For this we created chamelium specific test
+>
+> tests/chamelium/kms_chamelium_sharpness_filter.c
+>
+> where we are comparing frame dumps with and w/o sharpness enabled
+>
+> and you can clearly see difference when sharpness is applied. Though 
+> we can't check
+>
+> degree of sharpness but can check if there was some change wrt reference.
+>
+> Test summary:
+>
+>     This test validates the content adaptive sharpness filter 
+> functionality
+>     by toggling the sharpness property on the CRTC and capturing frames
+>     using Chamelium. It ensures that the filter visually alters the 
+> output as
+>     expected.
+>
+>         step 1. Display a test image with no sharpness filter.
+>         step 2. Capture output (Frame 0).
+>         step 3. Enable sharpness filter at mid strength.
+>         step 4. Capture output (Frame 1).
+>         step 5. Disable the filter again.
+>         step 6. Capture output (Frame 2).
+>         step 7. Re-enable filter with same strength.
+>         step 8. Capture output (Frame 3).
+>         step 9. Compare frame pairs:
+>                     - Frame 0 vs Frame 1 → should differ
+>                     - Frame 1 vs Frame 2 → should differ
+>                     - Frame 0 vs Frame 2 → should match
+>                     - Frame 1 vs Frame 3 → should match
+>
+>> If/when we get writeback we should be able vary the sharpness
+>> strength and do a diff on the resulting images, and based on
+>> that confirm that it actually did something that looks
+>> reasonable.
+>
+> Sure, we do have plans to verify sharpness and colorops once WB is 
+> enabled.
+>
+> So, for time being we are relying on chamelium with frame dumps.
+>
+>>
+>>>> Cc: Nemesa Garg <nemesa.garg@intel.com>
+>>>>
+>>>> Ville Syrjälä (9):
+>>>>     drm/i915/casf: s/casf_enable/enable/
+>>>>     drm/i915/casf: Make a proper hw state copy of the 
+>>>> sharpness_strength
+>>>>     drm/i915/casf: Move the casf state to better place
+>>>>     drm/i915/casf: Extract scaler_has_casf()
+>>>>     drm/i915/casf: Handle CASF in skl_scaler_get_filter_select()
+>>>>     drm/i915/casf: Constify crtc_state
+>>>>     drn/i915/casf: Remove redundant argument from
+>>>>       intel_casf_filter_lut_load()
+>>>>     drm/i915/pfit: Call intel_pfit_compute_config() unconditionally on
+>>>>       (e)DP/HDMI
+>>>>     drm/i915/casf: Integrate the sharpness filter properly into the 
+>>>> scaler
+>>>>       code
+>>>>
+>>>>    drivers/gpu/drm/i915/display/intel_casf.c     | 102 
+>>>> +++++-----------
+>>>>    drivers/gpu/drm/i915/display/intel_casf.h     |   6 +-
+>>>>    .../drm/i915/display/intel_crtc_state_dump.c  |  11 +-
+>>>>    drivers/gpu/drm/i915/display/intel_display.c  |  46 ++------
+>>>>    .../drm/i915/display/intel_display_debugfs.c  |   5 +-
+>>>>    .../drm/i915/display/intel_display_types.h    |   5 +-
+>>>>    drivers/gpu/drm/i915/display/intel_dp.c       |   9 +-
+>>>>    drivers/gpu/drm/i915/display/intel_hdmi.c     |   8 +-
+>>>>    .../drm/i915/display/intel_modeset_setup.c    |   1 +
+>>>>    drivers/gpu/drm/i915/display/intel_pfit.c     |  13 ++-
+>>>>    drivers/gpu/drm/i915/display/skl_scaler.c     | 110 
+>>>> +++++++-----------
+>>>>    drivers/gpu/drm/i915/display/skl_scaler.h     |   2 -
+>>>>    12 files changed, 112 insertions(+), 206 deletions(-)
+>>>>
