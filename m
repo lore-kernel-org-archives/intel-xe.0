@@ -4,57 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BC03FF885E
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Apr 2026 09:11:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 374ABFF885E
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Apr 2026 09:32:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32D2410E294;
-	Mon, 27 Apr 2026 09:11:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E3D8710E63B;
+	Mon, 27 Apr 2026 09:32:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m0wovnsZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Hx/7bXQ4";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDF15897D4;
- Mon, 27 Apr 2026 09:11:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 831BC10E649
+ for <intel-xe@lists.freedesktop.org>; Mon, 27 Apr 2026 09:32:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777281093; x=1808817093;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=9g5YYRDRXhgfMhmM03pog4G/kE81zL9Kj6DK+EOc/pc=;
- b=m0wovnsZu72aAEULMeWWiuornsDTu+4VK1KUYWHyJlyOPdRvXyDaYQmh
- ca/jrradVaevwEr+keBnkG+NTteWvv69lYyRsI1ZoYqp4QY9Zu1ibKKu2
- EI/XioSuoKHWgtokXbCBEY2E3aDgnvDUaIsLR1Mfan1wYQNepp5aDkESM
- DNGc1qPL0cfc4IHHHi1ZTeQHdgrgeRp6Vc6Z9GIGiWeW19hXdlKKmYtdX
- 3d4GmudntLRcY2fKfYeFWi/0q25IurMrmWLFiZJO1IJt9JPuc8dxbl3TZ
- C+lMCI8Gibu4b84dVqDR2Xn5Ezh8lBqPYN4oteo5h5+Z/dktEnne/e6lL w==;
-X-CSE-ConnectionGUID: XReCGRbOTjiG8QXah/7soA==
-X-CSE-MsgGUID: 7W6o2SGqTdWPtSQf1fVDiQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11768"; a="89626764"
-X-IronPort-AV: E=Sophos;i="6.23,201,1770624000"; d="scan'208";a="89626764"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2026 02:11:33 -0700
-X-CSE-ConnectionGUID: cCLBB83JT/GS5AvHhJiH5A==
-X-CSE-MsgGUID: BMDF6ZuZSfiOKAmFZoZoxw==
+ t=1777282373; x=1808818373;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=u4lPWSMSIjhbtKGSFtdR789RLmYK5HnNDeif85TOoLE=;
+ b=Hx/7bXQ4IGsdrUZhMx/sk+rVi5aP0uczRnSTnG9xly4J9iuT2Tjdm5gd
+ hzoCrEKWT5nOLsyL59ZV3JWoGk6oIzF60l5Sihusy0dIEW/t0fZHm1LGW
+ ReRQpX3wd952NUq45iLYE+vd6wlt/2+J6JASY/X2HLru2NYMgKwpgpUpI
+ Wv7OkmxoYcjq4LHqithRzqwV4StBisjSfiNwNeVyPd8q7TIO5gTiYRCCo
+ 7Dqg9lheGTTowGio7IH/BSDn1EqeLcag6GA/MweWL3jLzjW4LPqGGjuah
+ uv4A9UzRLPWY1sVwG7V98yHNmRMAznx+t0KNKJzMNJv/jBykPBvqTUxH6 A==;
+X-CSE-ConnectionGUID: 9XyTsd9IRRKUE9yeWbhmdQ==
+X-CSE-MsgGUID: Wr9GZKbgQk23HLb8O/ZRbQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11768"; a="78082626"
+X-IronPort-AV: E=Sophos;i="6.23,201,1770624000"; d="scan'208";a="78082626"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2026 02:32:52 -0700
+X-CSE-ConnectionGUID: MmEVaSIFRciGUsKfjqZQNw==
+X-CSE-MsgGUID: d6lY5VMhTIyK3GPuuMYjHA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,201,1770624000"; d="scan'208";a="229020783"
-Received: from abityuts-desk.ger.corp.intel.com (HELO
- vgovind2-mobl4.intel.com) ([10.245.245.239])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2026 02:11:31 -0700
-From: Vinod Govindapillai <vinod.govindapillai@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: vinod.govindapillai@intel.com,
-	ville.syrjala@intel.com
-Subject: [PATCH] drm/i915/bw: reduce the pm demand peak bw based on display
- data-rate
-Date: Mon, 27 Apr 2026 12:11:16 +0300
-Message-ID: <20260427091116.218021-1-vinod.govindapillai@intel.com>
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by fmviesa003.fm.intel.com with ESMTP; 27 Apr 2026 02:32:50 -0700
+From: Raag Jadav <raag.jadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: rodrigo.vivi@intel.com, vinay.belgaumkar@intel.com,
+ badal.nilawar@intel.com, sk.anirban@intel.com,
+ Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v2 1/3] drm/xe/guc_pc: Make xe_guc_pc_stop() void
+Date: Mon, 27 Apr 2026 14:59:26 +0530
+Message-ID: <20260427092928.1181893-2-raag.jadav@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260427092928.1181893-1-raag.jadav@intel.com>
+References: <20260427092928.1181893-1-raag.jadav@intel.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,68 +66,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In xe3+, soc can lower the fabric frequency when the display
-needs less bandwidth than the minimum GV point. The threshold
-has been defined as 20GB/s. So if the required display data rate
-is less than this threshold and the slelected GV point is 0 and
-the GV point peak bw is greater than 20GB/s, we could set the
-peak bw for the pm demand to this threshold. The currentc pcode
-can handle this and adjust the fabric frequency accordingly.
+xe_guc_pc_stop() doesn't return any meaningful value. Refactor it into
+void function.
 
-Bspec: 68880
-Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+Signed-off-by: Raag Jadav <raag.jadav@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bw.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ drivers/gpu/drm/xe/xe_guc.c    | 9 ++-------
+ drivers/gpu/drm/xe/xe_guc_pc.c | 8 +++-----
+ drivers/gpu/drm/xe/xe_guc_pc.h | 2 +-
+ 3 files changed, 6 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index 9c3a9bbb49f6..005761baca93 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -52,6 +52,8 @@ struct intel_qgv_point {
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 1355b68d3fce..ec291588c482 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -1730,13 +1730,8 @@ void xe_guc_reset_wait(struct xe_guc *guc)
  
- #define DEPROGBWPCLIMIT		60
+ void xe_guc_stop_prepare(struct xe_guc *guc)
+ {
+-	if (!IS_SRIOV_VF(guc_to_xe(guc))) {
+-		int err;
+-
+-		err = xe_guc_pc_stop(&guc->pc);
+-		xe_gt_WARN(guc_to_gt(guc), err, "Failed to stop GuC PC: %pe\n",
+-			   ERR_PTR(err));
+-	}
++	if (!IS_SRIOV_VF(guc_to_xe(guc)))
++		xe_guc_pc_stop(&guc->pc);
+ }
  
-+#define XE3_PEAK_BW_THRESHOLD	20000
-+
- struct intel_psf_gv_point {
- 	u8 clk; /* clock in multiples of 16.6666 MHz */
- };
-@@ -1045,6 +1047,7 @@ static int mtl_find_qgv_points(struct intel_display *display,
- 	unsigned int best_rate = UINT_MAX;
- 	unsigned int num_qgv_points = display->bw.max[0].num_qgv_points;
- 	unsigned int qgv_peak_bw  = 0;
-+	int qgv_point = num_qgv_points;
- 	int i;
- 	int ret;
+ void xe_guc_stop(struct xe_guc *guc)
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+index 7ecd91ad6192..9530cddbd11d 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.c
++++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+@@ -1316,18 +1316,16 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
+  * xe_guc_pc_stop - Stop GuC's Power Conservation component
+  * @pc: Xe_GuC_PC instance
+  */
+-int xe_guc_pc_stop(struct xe_guc_pc *pc)
++void xe_guc_pc_stop(struct xe_guc_pc *pc)
+ {
+ 	struct xe_device *xe = pc_to_xe(pc);
  
-@@ -1083,6 +1086,7 @@ static int mtl_find_qgv_points(struct intel_display *display,
- 		if (max_data_rate - data_rate < best_rate) {
- 			best_rate = max_data_rate - data_rate;
- 			qgv_peak_bw = display->bw.max[bw_index].peakbw[i];
-+			qgv_point = i;
- 		}
+ 	if (xe->info.skip_guc_pc)
+-		return 0;
++		return;
  
- 		drm_dbg_kms(display->drm, "QGV point %d: max bw %d required %d qgv_peak_bw: %d\n",
-@@ -1102,6 +1106,18 @@ static int mtl_find_qgv_points(struct intel_display *display,
- 		return -EINVAL;
- 	}
+ 	mutex_lock(&pc->freq_lock);
+ 	pc->freq_ready = false;
+ 	mutex_unlock(&pc->freq_lock);
+-
+-	return 0;
+ }
  
-+	/*
-+	 * For xe3+, if display's required memory bw <= 20GB/s and the selected
-+	 * peak bw of QGV[0] is >= 20 GB/s, we can reduce the peak bw for the
-+	 * pm demand QCLK GV to 20GB/s
-+	 */
-+	if (DISPLAY_VER(display) >= 30 && data_rate <= XE3_PEAK_BW_THRESHOLD &&
-+	    qgv_point == 0 && qgv_peak_bw >= XE3_PEAK_BW_THRESHOLD) {
-+		qgv_peak_bw = XE3_PEAK_BW_THRESHOLD;
-+		drm_dbg_kms(display->drm, "Low display data-rate. Reduce PM demand bw for QGV: %d",
-+			    qgv_peak_bw);
-+	}
-+
- 	/* MTL PM DEMAND expects QGV BW parameter in multiples of 100 mbps */
- 	new_bw_state->qgv_point_peakbw = DIV_ROUND_CLOSEST(qgv_peak_bw, 100);
+ /**
+@@ -1343,7 +1341,7 @@ static void xe_guc_pc_fini_hw(void *arg)
+ 		return;
  
+ 	CLASS(xe_force_wake, fw_ref)(gt_to_fw(pc_to_gt(pc)), XE_FW_GT);
+-	XE_WARN_ON(xe_guc_pc_stop(pc));
++	xe_guc_pc_stop(pc);
+ 
+ 	/* Bind requested freq to mert_freq_cap before unload */
+ 	pc_set_cur_freq(pc, min(pc_max_freq_cap(pc), xe_guc_pc_get_rpe_freq(pc)));
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.h b/drivers/gpu/drm/xe/xe_guc_pc.h
+index 0678a4e787b3..1025a2b15f5f 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.h
++++ b/drivers/gpu/drm/xe/xe_guc_pc.h
+@@ -13,7 +13,7 @@ struct drm_printer;
+ 
+ int xe_guc_pc_init(struct xe_guc_pc *pc);
+ int xe_guc_pc_start(struct xe_guc_pc *pc);
+-int xe_guc_pc_stop(struct xe_guc_pc *pc);
++void xe_guc_pc_stop(struct xe_guc_pc *pc);
+ void xe_guc_pc_print(struct xe_guc_pc *pc, struct drm_printer *p);
+ int xe_guc_pc_action_set_param(struct xe_guc_pc *pc, u8 id, u32 value);
+ int xe_guc_pc_action_unset_param(struct xe_guc_pc *pc, u8 id);
 -- 
 2.43.0
 
