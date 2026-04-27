@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14BB3FF8868
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Apr 2026 18:43:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CBB2FF8860
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Apr 2026 18:47:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD9C010E8DE;
-	Mon, 27 Apr 2026 18:43:17 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O3Vr1s8Y";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C9FFC10E8DA;
- Mon, 27 Apr 2026 18:43:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777315397; x=1808851397;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=MZOgGXps4ARg2Jmv8Rjq+IdfnSMLpri3izUiL6i7Of8=;
- b=O3Vr1s8Y6K4PX49pNyvMVPTPkxgG64iyoRpxxhm1MSNh/pd17oFvSvqV
- 7vImL76UFRpEFmp2Q2AtbQQKA0Hc6TApfr2VwD6AXtcQ30b0O72TIeu25
- E1TKdY7Ok+soR2MbR6r5WPUxbWUTfbYxdK+qyFUboHKnPty//E3gVw1EX
- ovrRTkCPnrmoM1Yrd1arcvRPXTBPNViWBpBJlBHf5VNCPTyWHjZrS2x/d
- TpghdgGwGUcgLADMggk18OMVsWrpMmpi4htTwKHIJ3+MMqz4uhSPrBcTC
- Xo4cLJQtzOI7O59/veBFAV4K2IIDn/j6X605d5xrhpGt6Z7DXpSIGL7hp A==;
-X-CSE-ConnectionGUID: 3KeDM30FR5mS2iqW2wvD6A==
-X-CSE-MsgGUID: WBHdmafDR6O7x+p0MLDmJg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11769"; a="78197999"
-X-IronPort-AV: E=Sophos;i="6.23,202,1770624000"; d="scan'208";a="78197999"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2026 11:43:17 -0700
-X-CSE-ConnectionGUID: KyBjdXekSwyBZXwaELU5oQ==
-X-CSE-MsgGUID: jQAmmDEZQkGjjUjOaDoyDg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,202,1770624000"; d="scan'208";a="238755276"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.116])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2026 11:43:15 -0700
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH] drm/i915/scaler: Don't preserve scaler state over
- modeset/fastset
-Date: Mon, 27 Apr 2026 21:43:12 +0300
-Message-ID: <20260427184312.31945-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.52.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7E5310E8E2;
+	Mon, 27 Apr 2026 18:47:20 +0000 (UTC)
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE6C510E8DA;
+ Mon, 27 Apr 2026 18:47:19 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2100563697500108481=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_enable_?=
+ =?utf-8?q?ccs_modifiers_on_dg2_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 27 Apr 2026 18:47:19 -0000
+Message-ID: <177731563996.15554.54769712974888538@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260427165715.864721-1-juhapekka.heikkila@gmail.com>
+In-Reply-To: <20260427165715.864721-1-juhapekka.heikkila@gmail.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,45 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+--===============2100563697500108481==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Currently we try to preserve the scaler state across modeset/fastsets.
-That does not work correctly with the sharpness filter because the
-scaler selected prior to the modeset/fastset may not support the
-sharpness filter, and a new scaler will not be allocated if a
-scaler has already been selected.
+== Series Details ==
 
-Simply reset the scaler state fully on modeset/fastset so that all
-scalers get allocated from scratch.
+Series: drm/i915/display: enable ccs modifiers on dg2 (rev3)
+URL   : https://patchwork.freedesktop.org/series/165351/
+State : success
 
-It might be nice to preserve the previous scaler allocation (if
-still workable) because a failed vblank evasion in combination
-with scaler reassignment might have slightly more serious
-consequences than a vblank evasion failure without scaler
-reassignment. But the scaler allocation code will basically
-need a full rewrite to handle all the corner cases correctly.
-In the meantime let's just stick to whatever works.
+== Summary ==
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 1 -
- 1 file changed, 1 deletion(-)
+CI Bug Log - changes from xe-4940-b6f6b69b2dffa9ad1c43b2149786b4630d41acbf_BAT -> xe-pw-165351v3_BAT
+====================================================
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 674a4ece6d0f..b3d1a4de2319 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4638,7 +4638,6 @@ intel_crtc_prepare_cleared_state(struct intel_atomic_state *state,
- 
- 	saved_state->uapi = crtc_state->uapi;
- 	saved_state->inherited = crtc_state->inherited;
--	saved_state->scaler_state = crtc_state->scaler_state;
- 	saved_state->intel_dpll = crtc_state->intel_dpll;
- 	saved_state->dpll_hw_state = crtc_state->dpll_hw_state;
- 	memcpy(saved_state->icl_port_dplls, crtc_state->icl_port_dplls,
--- 
-2.52.0
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8873 -> IGT_8874
+  * Linux: xe-4940-b6f6b69b2dffa9ad1c43b2149786b4630d41acbf -> xe-pw-165351v3
+
+  IGT_8873: a5c5d655807ead8204e01754b6434f0ecae40b96 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8874: 4568b2c141ab630c34f8eb2b9afab8cbf8f3ce9e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4940-b6f6b69b2dffa9ad1c43b2149786b4630d41acbf: b6f6b69b2dffa9ad1c43b2149786b4630d41acbf
+  xe-pw-165351v3: 165351v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165351v3/index.html
+
+--===============2100563697500108481==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: enable ccs modifiers on dg2 (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165351/">https://patchwork.freedesktop.org/series/165351/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165351v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165351v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4940-b6f6b69b2dffa9ad1c43b2149786b4630d41acbf_BAT -&gt; xe-pw-165351v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8873 -&gt; IGT_8874</li>
+<li>Linux: xe-4940-b6f6b69b2dffa9ad1c43b2149786b4630d41acbf -&gt; xe-pw-165351v3</li>
+</ul>
+<p>IGT_8873: a5c5d655807ead8204e01754b6434f0ecae40b96 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8874: 4568b2c141ab630c34f8eb2b9afab8cbf8f3ce9e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4940-b6f6b69b2dffa9ad1c43b2149786b4630d41acbf: b6f6b69b2dffa9ad1c43b2149786b4630d41acbf<br />
+  xe-pw-165351v3: 165351v3</p>
+
+</body>
+</html>
+
+--===============2100563697500108481==--
