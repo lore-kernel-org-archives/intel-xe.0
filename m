@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8079FF885A
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Apr 2026 15:33:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11627FF885A
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Apr 2026 15:43:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BBE310ED65;
-	Tue, 28 Apr 2026 15:33:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C4D310ED23;
+	Tue, 28 Apr 2026 15:43:48 +0000 (UTC)
 Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D650210ED23;
- Tue, 28 Apr 2026 15:33:02 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3535510594003475612=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 399CC10E352;
+ Tue, 28 Apr 2026 15:43:47 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/psr=3A_Prevent_DC_?=
- =?utf-8?q?entry_during_active_vblank_for_Panel_Replay?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Enable_joiner_cursor_fast?=
+ =?utf-8?q?_updates_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dibin Moolakadan Subrahmanian" <dibin.moolakadan.subrahmanian@intel.com>
+To: "Nemesa Garg" <nemesa.garg@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 28 Apr 2026 15:33:02 -0000
-Message-ID: <177739038286.21512.1329172831311283336@5ab824fced77>
+Date: Tue, 28 Apr 2026 15:43:47 -0000
+Message-ID: <177739102722.22199.16859391844251837827@5ab824fced77>
 X-Patchwork-Hint: ignore
-References: <20260428123951.3803703-1-dibin.moolakadan.subrahmanian@intel.com>
-In-Reply-To: <20260428123951.3803703-1-dibin.moolakadan.subrahmanian@intel.com>
+References: <20260428141639.2373678-1-nemesa.garg@intel.com>
+In-Reply-To: <20260428141639.2373678-1-nemesa.garg@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,88 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3535510594003475612==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/psr: Prevent DC entry during active vblank for Panel Replay
-URL   : https://patchwork.freedesktop.org/series/165630/
-State : success
+Series: Enable joiner cursor fast updates (rev2)
+URL   : https://patchwork.freedesktop.org/series/165272/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4946-e066eb26712bca7174e694a358351c50a38661d6_BAT -> xe-pw-165630v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c8c12e558adaef7a4d125d83b6e1f8824bc13b82
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit da91ecae71c95cfc6333d14d5468ec3d3897be0d
+Author: Nemesa Garg <nemesa.garg@intel.com>
+Date:   Tue Apr 28 19:46:39 2026 +0530
 
-Summary
--------
+    drm/i915/cursor: Allow joiner cursor fast path update
+    
+    The legacy cursor path forced all joiner updates to the
+    slow path by checking joiner_pipes.
+    Drop the condition so that joiner cursor updates can use
+    the fast path.
+    
+    Assisted-by: Claude:claude-sonnet-4.6
+    Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
++ /mt/dim checkpatch e066eb26712bca7174e694a358351c50a38661d6 drm-intel
+fd67e0676b17 drm/i915/cursor: Check joiner cursor commit status
+b52752849925 drm/i915/cursor: Add helper to update cursor plane
+bf4304cbd3f2 drm/i915/cursor: Handle secondary cursor state
+-:112: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#112: FILE: drivers/gpu/drm/i915/display/intel_cursor.c:984:
++				to_intel_plane_state(intel_plane_duplicate_state(&pipe_plane->base));
 
-  **SUCCESS**
+-:190: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#190: FILE: drivers/gpu/drm/i915/display/intel_cursor.c:1088:
++						 drm_crtc_accurate_vblank_count(&owner_crtc->base) + 1,
 
-  No regressions found.
+total: 0 errors, 2 warnings, 0 checks, 199 lines checked
+d5862c08a5eb drm/i915/cursor: Sync joiner secondary cursor state
+-:43: ERROR:CODE_INDENT: code indent should use tabs where possible
+#43: FILE: drivers/gpu/drm/i915/display/intel_cursor.c:1032:
++        * We cannot swap crtc_state as it may be in use by an atomic commit or$
 
-  
+-:44: ERROR:CODE_INDENT: code indent should use tabs where possible
+#44: FILE: drivers/gpu/drm/i915/display/intel_cursor.c:1033:
++        * page flip that's running simultaneously. If we swap crtc_state and$
 
-Participating hosts (13 -> 13)
-------------------------------
+-:45: ERROR:CODE_INDENT: code indent should use tabs where possible
+#45: FILE: drivers/gpu/drm/i915/display/intel_cursor.c:1034:
++        * destroy the old state, we will cause a use-after-free there.$
 
-  No changes in participating hosts
+-:46: ERROR:CODE_INDENT: code indent should use tabs where possible
+#46: FILE: drivers/gpu/drm/i915/display/intel_cursor.c:1035:
++        *$
 
+-:47: ERROR:CODE_INDENT: code indent should use tabs where possible
+#47: FILE: drivers/gpu/drm/i915/display/intel_cursor.c:1036:
++        * Only update active_planes, which is needed for our internal$
 
-Changes
--------
+-:48: ERROR:CODE_INDENT: code indent should use tabs where possible
+#48: FILE: drivers/gpu/drm/i915/display/intel_cursor.c:1037:
++        * bookkeeping. Either value will do the right thing when updating$
 
-  No changes found
+-:49: ERROR:CODE_INDENT: code indent should use tabs where possible
+#49: FILE: drivers/gpu/drm/i915/display/intel_cursor.c:1038:
++        * planes atomically. If the cursor was part of the atomic update then$
 
+-:50: ERROR:CODE_INDENT: code indent should use tabs where possible
+#50: FILE: drivers/gpu/drm/i915/display/intel_cursor.c:1039:
++        * we would have taken the slowpath.$
 
-Build changes
--------------
+-:51: ERROR:CODE_INDENT: code indent should use tabs where possible
+#51: FILE: drivers/gpu/drm/i915/display/intel_cursor.c:1040:
++        */$
 
-  * Linux: xe-4946-e066eb26712bca7174e694a358351c50a38661d6 -> xe-pw-165630v1
-
-  IGT_8874: 4568b2c141ab630c34f8eb2b9afab8cbf8f3ce9e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4946-e066eb26712bca7174e694a358351c50a38661d6: e066eb26712bca7174e694a358351c50a38661d6
-  xe-pw-165630v1: 165630v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165630v1/index.html
-
---===============3535510594003475612==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 9 errors, 0 warnings, 0 checks, 56 lines checked
+f8fc6b8ac75f drm/i915/cursor: Program secondary cursor planes
+da91ecae71c9 drm/i915/cursor: Allow joiner cursor fast path update
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/psr: Prevent DC entry during active vblank for Panel Replay</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165630/">https://patchwork.freedesktop.org/series/165630/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165630v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165630v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4946-e066eb26712bca7174e694a358351c50a38661d6_BAT -&gt; xe-pw-165630v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4946-e066eb26712bca7174e694a358351c50a38661d6 -&gt; xe-pw-165630v1</li>
-</ul>
-<p>IGT_8874: 4568b2c141ab630c34f8eb2b9afab8cbf8f3ce9e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4946-e066eb26712bca7174e694a358351c50a38661d6: e066eb26712bca7174e694a358351c50a38661d6<br />
-  xe-pw-165630v1: 165630v1</p>
-
-</body>
-</html>
-
---===============3535510594003475612==--
