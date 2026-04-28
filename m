@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D61CFF8868
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Apr 2026 12:53:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FBC8FF8873
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Apr 2026 12:53:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBE1010EBAA;
-	Tue, 28 Apr 2026 12:53:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAB9410EBAE;
+	Tue, 28 Apr 2026 12:53:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hvuQ67LM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cU2uDF5V";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0168010EBAA;
- Tue, 28 Apr 2026 12:53:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D72B210EBA3;
+ Tue, 28 Apr 2026 12:53:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777380805; x=1808916805;
+ t=1777380803; x=1808916803;
  h=from:to:subject:date:message-id:in-reply-to:references:
  content-transfer-encoding:mime-version;
- bh=cUZLdxXx0SoW1YMwoqDaKj9frM4RL2iBh82Y234h248=;
- b=hvuQ67LMAwYY6mJKDmUdwFIo9b90FD+bVVNYuHnmIu7oywfEN0j4UdYe
- HY5wUdiVIo0spEmLWF4q8ZEiO0E877/+tC7JcZHO2213PsGl1GqsdUufP
- GzRNVuiXqWw4XUunq0ohnzMqYyDKF8gVNdB/p2K6pa0QGfsEeOifI1wyx
- f367cI8oghxiBeb27J+1O2cZQAu598T7yXBP/6iBjm3Kzifw6T6LCqQ7R
- Vc3og9xLMMxrqrlzjgUfEyI2PxMVrZLXXKl1djMb1yOzr36DL1BhC3A8y
- y+ZhHPgYto/CzBSE7pwGjpmP500DhLOyd/fv59eOLUSqazxFcJ+6FurI8 Q==;
-X-CSE-ConnectionGUID: iNOtYjmmTPGGVjO1xcmLBA==
-X-CSE-MsgGUID: qRt9/ejzR3e5qbYFVHEo6w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11769"; a="78398616"
-X-IronPort-AV: E=Sophos;i="6.23,204,1770624000"; d="scan'208";a="78398616"
+ bh=9ONDPXMC8DzuZGjGJLPOSaSD80bObsNPdEojhQebuks=;
+ b=cU2uDF5V5yTgrzEaLZc1Xz76QgN4bNTeaes+QJaaBcs7GHcTd03h4Sxj
+ tcJrGnYo/cWpbDHwfaV5UGU5Pjkw3mM7LTfkAcYeYds6kXzHM+AFA+uj9
+ lUl1IrnZyW2+qLEkrVg6RTUDMvqykReZM6f/iwCtHfDAqv4DvhhdgzNHY
+ wZQwZLqyIf8HYQW7THQV5fHCrtmBBvpeLdaeXAuh4+scerA2QCpRuPEqg
+ MlahsusZOe40s6M6eVBn+eKzDSeV6OcKTDEGhqj+VQ9PSeXrOuNIakxMB
+ +PnMK2GFnI+VO3wytKheGNj96w0Ci6Ixr8+KJ8bx6O2U+RVoiJu1QDkMn A==;
+X-CSE-ConnectionGUID: m5T5R6LMRHWIuDHRkWbk0A==
+X-CSE-MsgGUID: J3SqqhkMSsC/IrsqO7qEQg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11769"; a="78398607"
+X-IronPort-AV: E=Sophos;i="6.23,204,1770624000"; d="scan'208";a="78398607"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2026 05:53:25 -0700
-X-CSE-ConnectionGUID: 6noGhy6JTweXRpEaF55omA==
-X-CSE-MsgGUID: oFxMQq0RQiOBBucZLtoS2w==
+ 28 Apr 2026 05:53:23 -0700
+X-CSE-ConnectionGUID: 0rIHs6sPQlqo5sSo4JWHng==
+X-CSE-MsgGUID: TpjKvhZjT4+eoEEEwt2bPw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,204,1770624000"; d="scan'208";a="237911342"
+X-IronPort-AV: E=Sophos;i="6.23,204,1770624000"; d="scan'208";a="237911333"
 Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
  by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2026 05:53:24 -0700
+ 28 Apr 2026 05:53:22 -0700
 Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
  fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 28 Apr 2026 05:53:24 -0700
+ 15.2.2562.37; Tue, 28 Apr 2026 05:53:22 -0700
 Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
  FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Tue, 28 Apr 2026 05:53:24 -0700
-Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.71) by
+ 15.2.2562.37 via Frontend Transport; Tue, 28 Apr 2026 05:53:22 -0700
+Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.51) by
  edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 28 Apr 2026 05:53:24 -0700
+ 15.2.2562.37; Tue, 28 Apr 2026 05:53:20 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VKD1p3xu4ZVGA6UJGaIMXoFoUMHaXlIEwfYhWV/fJNOHmGe8ITwhhzEJ03dssGh17xZ9ANNoxKualmYMiRnNWvF+S1llTDLHuIlvYNODTyGgCQ5O89sO3IbbwSEOr694XP6jlk1b2sojnviwE1I91tGNNEpyN8eO+UOssQdn3s2Lres+LkNWcA8exZDMc+u64pqy1sb5Q0BoS6zil2iK7xouqICXFmZuXBsaJX43lch/aCbBB+ebnHppeHJfpYw7N1Dh7sqeKKXFHDkJCO1Y8kzLtsQ/N702GAn5DsMLia+gfKB+gblFO2Essx29TmbdCSCNeb61F+KzhPfjKUFDCQ==
+ b=aFbJ/MUxiv8wFcplns6kwlTiAAcOfRflzGajT6Tu0PkZaV4mB01da2HbTxDeO/7pNGj8SPFL0AohWBgUawHx5XBVa47IqQEyKaiCVxxzGGxDlZysUXKXyTa1lXF7nvopRMn+ET0XauHmo99LTTXtVYDFGTtHoTzp9rIvOAnaW7+G79v9ti8K45SHciOuyLbDEOuQXArCN2u3Iy78esENB5jXOzyWdUei8txH2XCBqObeG5G0XdpPGW4jigDbDRO3yzCFFCrz3bqGSd5ExqGMvLsViA9TLToqMQ2dp+5uCOFWSxIrXaxyVHsLSFgKz7qL/xUWgF2daepSpUPDmfHi8Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=t4NEvjWBBLrAkMUJRjRRy47F5iaV7qHzQTn3frd5mIk=;
- b=kXhBv1HU16SO8OWfstKMevBZmZGAFc6T257ZDAFtojr3kCjqRbkrRm0g3eBc9mZKXWRrp3r/bwt9zXxZfHUuTG42aLmuQDjRP7ClspLM+gYww/YhB5MKfpUQ8r66ceJZx/MB9buEY4xQH9epcuL6eW1ty77SOARrKMwKSd/LMm9uHyeJT61dtUP/JYFOCH3G9rOa6Ar48jfZv0IpvI4phH8Ub56BPIoEAs4gmf6g89Ioh1P5fI0aqil/Gh9whRyVhidjPuFvfnwhd4OZJU5HeKGqGs1anUgXn/ojNyXHceM7OlX2HHQhP2ToSTD2AJf0Yj4GOH2thKY8jdHHslrq8g==
+ bh=1pU5iTdRTy8+5X4eMgSXuG2hJZFXmuJxKgkw6RH2mrY=;
+ b=Tompt27EEZXDWrKd5uE/ekiGDHCBIie2a8TKHJR2B76tG0h4PiNZpLdnNXidob4a0DgwwIk/w6QxwT9HmSUOZTbWiRpV0Zlj0AHLzlJR6DESqOzjOA5W5k7pkQi9vqwNExuH7RC9ti5jJyr74MAvPm3PedQP4YveLoa8ek9qHPdBjH+c+j3iRmpNy6BPld+r57f+rDkgQKaJYdzuH7cOIVo++2m1OoCo/Sq3hn/CYpcjbRUf4o4ktSDkv2dy0MXHRaPrmHgSPaKS57ePeu/JNyArg/U5xZGMsE+C9cJ2W//OCculAOR6NeusRAt196Ru2MFZRmYOs7is/Y6ULcE9QA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,17 +69,17 @@ Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
  by MW4PR11MB7149.namprd11.prod.outlook.com (2603:10b6:303:221::14)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.17; Tue, 28 Apr
- 2026 12:53:20 +0000
+ 2026 12:53:15 +0000
 Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
  ([fe80::9ca5:4d1d:db45:f523]) by SJ0PR11MB4845.namprd11.prod.outlook.com
  ([fe80::9ca5:4d1d:db45:f523%5]) with mapi id 15.20.9846.021; Tue, 28 Apr 2026
- 12:53:20 +0000
+ 12:53:15 +0000
 From: Imre Deak <imre.deak@intel.com>
 To: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-Subject: [PATCH 024/108] drm/i915/dp_link_training: Disallow autoretrains
- after failed modeset
-Date: Tue, 28 Apr 2026 15:51:05 +0300
-Message-ID: <20260428125233.1664668-25-imre.deak@intel.com>
+Subject: [PATCH 021/108] drm/i915/display: Factor out a helper to modeset a
+ pipe with atomic state
+Date: Tue, 28 Apr 2026 15:51:02 +0300
+Message-ID: <20260428125233.1664668-22-imre.deak@intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20260428125233.1664668-1-imre.deak@intel.com>
 References: <20260428125233.1664668-1-imre.deak@intel.com>
@@ -93,56 +93,56 @@ X-ClientProxiedBy: GVX0EPF0005F6E8.SWEP280.PROD.OUTLOOK.COM
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|MW4PR11MB7149:EE_
-X-MS-Office365-Filtering-Correlation-Id: 10af138c-490f-4589-e684-08dea5251fcb
+X-MS-Office365-Filtering-Correlation-Id: 75e5d1ae-f3ee-4f0e-dd37-08dea5251cf5
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
  ARA:13230040|366016|1800799024|376014|18002099003|56012099003|22082099003; 
-X-Microsoft-Antispam-Message-Info: HHPvHxQQTa4tQ8cxfdFFIlClSHpN7EIhNrjmQnReEOCcrvY8Rlsss5aTlikZucC4l5NNGdbUA5SNof2KB6ReRK5J3sw7lmxBCXa7HuTIMGMNax50tVjU9zQxO/k3T86kRY/cImqHOAzkr/h44+5OhJbbvikshCrjOMsN7tSlwwy8BY/bDX7VictaIho9ebLIUI2QAfP20M37XPeNI6gPUCLSvZm0Htnbe1hM4zXCLVEPbqIFANBQe/UcWzzTJh4zCV1aI+uJdDZcJUEQHH+SeNoQZUF6HjTyOC0CcZs7GWFwnRaOrK30UuLTCg9pPGrMwgJLWWU4fhbhVStmci42vgP9AtP4Jh81HOftAeDFrFGiocL1KhCxuD//iwlra9Kr5kTBTbRMiytXPNUgxlxK7gtsygtjSzmU6QVpEnynzvnfuXRcwnU1dtItIM4cATFhCDZfxXHCdp4+awsEAMb9AWIE3ID1HHNKWKYbi9ytWfWGIaN/O1mCiAXceMPoKGxRRiOkwhd73aGvoH9OS+jIfwKnvR/+DHfaYQ65wsUq5T8ZFTGmZO87MGbZ9WgPdJSYMaN5YVDhKDRZsmSHnAw56SkEJsTyuC7h1LKQxD73vFGdWUZG+KaFPnydOhmeBtTE4ON76c40y+2W34jBhimimXY/2jhi5JZUYS15NGoQAXvp0acIFKUKjQl/VpcHPzGCKxCJP8hQEMYYryqeSCnJJ8prqOWZ+s4eRxvssMC4wZ4=
+X-Microsoft-Antispam-Message-Info: 9EdOdHkt6CXuihRAQGq6CzjmI10q8q8rrq4k0BqN1K7EWCv9QZIQ32ZZXWInk6EImE5SF0kW1dsG0juJkVJ4YM6iZskY9RVPGs4B7XHmzQNG+QH7qS4KLcVYu+sO9qSXpNqiN+ayIWEzSuOJOfN9C9ysYW4a5C/fNytgWZFP71W/AS2ybI4TsW7GYPKvCU4LMPrxSedtIDZtGE6JfOMQsLFNpLHCbnfsp8OfqYcL3s9uhrmmOVq77zVZChaXEtj22oPubTZZiXmlumAT/c3eBVOC1LyBtloXaD0mdC7j+3isf4xTwR4OgpYYo45slqDXi8kQOanHV1fL1ppiPTvpMlaR0W7R3aA473nQAZqE3ks2hSffr7TfSrp5qVXL8qcHDQjwciqEOiEA8soIyMaHRokfiMW+enUa06EExYERVZyEiKNv+nuXmIMe2mzBOg9vXrEBKWgFZ2KjOgJSUYEoDoteUaPChr7x2xAHRTgFoNn4iaNqyECNPC9eOBMoF9RV8JFU4selq/So50gjMT9NTkPwDs/b6g35Xy9X7UAzrygK6gb3MVAzxXRCLOu5nfCeXGRfsFbIz6CQPWJq9pUjCMVOEd7JdFMK77wYj73mLa/5P2/WEPEaXlQBBQnakErW02iypwMCI4TDSq7zy60QWEBa4bQI0/7ygdWNUQ6u4MvNcBaqm8S+cumfDxos1MIuF6YLMeuesWf+dFnqHVzVtHjkmMZehxPYqY66RP3ZOK4=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(366016)(1800799024)(376014)(18002099003)(56012099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?0AUz38F7v1gPzPautQVnIY1I+bZgoBvKFKZqYS+BXO7HnTLUoq4WOSuKBl9W?=
- =?us-ascii?Q?6Khe6GZusCbjIpLrULSYvOGnHYYIFPflelbB0DHcXs6wcfth6quq+54+4J7e?=
- =?us-ascii?Q?5bxtrDC+GMyoM1m0rPKijzZFA34xIJUKmj6B8zzw9NFkdyULt4Xtx3wEMfL4?=
- =?us-ascii?Q?E04TUqvQdd6W/WALV56VUNoE7Qr7xwuu4qORLtpZmIGxYpmSsy+ELc2hE66H?=
- =?us-ascii?Q?8MFLKBV+Kiw8OJnig2RoTf2+vum/78d2WPhyt1wuSZJpinjjgYQp9qQa8HQs?=
- =?us-ascii?Q?bxlTUF6yRtVIktWGl6SQ9aqC3oIxqgBS5d2UEY4W5XQtJu7QwDsZX4vnKOVg?=
- =?us-ascii?Q?L4uNd5Wqs81+j2qs3z928ZVC9GAKisFjXFJCpER+84r/0bXWUh8TNdheC/jc?=
- =?us-ascii?Q?kPAGysM84v4MfDY68uIrBFmkXDKGVSjXMEOkXTp/SEXIj6XLLhEi/YxxvJpm?=
- =?us-ascii?Q?9JSpVOEglyJmCGmQz7tNvY7hDlqpsiBy8h+45h6PDcZudTbsQ4KiFSjcaAEH?=
- =?us-ascii?Q?cK6YyjHG5zDt6jVz+0zmaTENfj7azzd3IoKPPTRsD5sHDQvvUQitxj4SWCr0?=
- =?us-ascii?Q?wYVGzrix5pGemX7LWX2rKbCGcgh+Hm6w3A/seNQBI1D53CMnnhOm4TMNf/T6?=
- =?us-ascii?Q?bkwFVIFIH0sX5a+LUd0+PJmjv0hbSVznlurawQu6Yv0D814LN9vdx34V9Nud?=
- =?us-ascii?Q?4o4dO0QMYcN2zZQ3bHAXi+0Ul5uHYw6pGdGJvLZvYMM/GY+4tCpbxxAGrhWX?=
- =?us-ascii?Q?YTWFORwu3DnVeZtJb+LqKBk4aGBDhko4djfhXiDa+2ghzLvjprAp8ux3efwz?=
- =?us-ascii?Q?SaTG4muOT60m/wVPAa92KW352CopakZvbfc6GMfc09J7N8a6tKOIJB6R5oVi?=
- =?us-ascii?Q?aOTE9Qz7Wa3ZUNFDfOVjTtqnvQnliMuk5IUAn3tsx/Q0+33God6le+OViHmJ?=
- =?us-ascii?Q?pE9N2j1rsARavLLip6n19/X/fSMH0Fg//ZatA0l/wEbriO6LyIe+Z/HdUUER?=
- =?us-ascii?Q?vDNtwmCWvWTt92RFsczbk5vGIqCivwew4otnwVw5fRWL/l8bu+qeoZ1snt79?=
- =?us-ascii?Q?s4vcp2SyBcxr3l0DPkiqxrTpMIwKM/tnrW8vcr0BtiyKO1XMMKEPjjk3oIO2?=
- =?us-ascii?Q?Is7KNukUUpEfSy5QMuMjwXWStm91aQunU0s9S4CJ9YG2B5dywDPUHvCQhMeJ?=
- =?us-ascii?Q?toQA85ukxZdqLBUGthc9WtuyfJIHxou7x5TPxCMDAuR8GNZF+ZgNv/k4B/l/?=
- =?us-ascii?Q?5fP/5HXGhzdqjTFBRUyCj/0WOyKoI8mzpupQQjKIbqR3CkjyYp86vJCFLzbU?=
- =?us-ascii?Q?ZcuDvUbH/Tqtjoq6B7CzRRkNOL2HznycVi1mbRjeN+gz7oPpYqmTCLc+gIwT?=
- =?us-ascii?Q?I3vgdDN6Ch9TBhJGfp9LiMpCMl8kzYB9Xhlxdd0h0pUZ2WQj8B7GBU/WRnLc?=
- =?us-ascii?Q?nMJ0o5oPyqBkh9Wyl2hMP2Tct/h2jIUCM+hhmrBrPBl4f6qdOK08vkIVc4ef?=
- =?us-ascii?Q?o+1UrZhuLfy05CXTGSzPBh0IH3qwPakYCoro7sU0BdiBAKfOFVQqS6kx4F3Y?=
- =?us-ascii?Q?KH38FugucOAw9edAMmQ+8n7Jr1EjbePZN8BCOyMte5yqmm6QEKOYi9SqBFUG?=
- =?us-ascii?Q?T2U0b5mZQnaCyG01OdQTgL1P6xj40DCe7udUwy/w4uL8AllomXvrNZBdgQ8y?=
- =?us-ascii?Q?+/WaxZMhP83gC1CHYkiirhvFHOecq3OmHDESsCU+L2f9PT1/+oUNc1zkDQOe?=
- =?us-ascii?Q?J75dFSkvAA=3D=3D?=
-X-Exchange-RoutingPolicyChecked: N1gMpKqXNkSyO98lyMsYLgu0k1ugcDEPlO6MZaszR+pRYcfEl0sGBAeP7MEH1/g8jrPini+XhLskDuHNwdGHXhxsbeKQ0GgvOUGw9x/dsF704jEQdKii0g5MTAND2i40cbY+O9fliyesGsFDKH5jJUysap9rC155qrt9pf7J+0KakgmcjBsvrMxnZySQ4RDnWyuiTP9Xtt3nkUPRypqKRMPrZdiyskFHAgoRzq33GIvNUbXTsPoDzqtmoqPuTOpWNyb7obilP4kJWxxEc/LBBpPjOB+RNDLR+AGX+3VM7u0frkeMKvH2e9sXc4PdUO/irCMoviAsVylk+DmHEuitWA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 10af138c-490f-4589-e684-08dea5251fcb
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?IzZLZSQQMtYNykmpSgc8sy5Y+AsrqU2FdIrKT5CxGM6UTr3hK8l7S1cmb7WJ?=
+ =?us-ascii?Q?e0s51JUvAs03ShyhaZmRGzgaD7TH7RKVLIWfndpzXt5K5phKSQgc7XRsCt4e?=
+ =?us-ascii?Q?woU2KIOrWl3VCzXFDzsY+Chrld/TB7aZUKj/zcfISN0N93uM7CHQorCOiYN+?=
+ =?us-ascii?Q?KRMJasF3SuBP7TnzvUpxmralIYWr0aSVXBaHAJV0uS1qESfDmuF6rN7ytsqy?=
+ =?us-ascii?Q?iY688e7sx8cC8WeDAPvFymUY4+It8fITx31JoI4qmtk7gJ4cZsG3Ppi6Q29s?=
+ =?us-ascii?Q?t4inDpAqcf8g/l2jHyJEPomiCEpipM95J5lKoDrDQgdgmxrTXyHnUmG/TRxZ?=
+ =?us-ascii?Q?Twh4qKVoFoOLWGdWzFQVju1eAFv4e6B+6yNNqINDQMs7O9tTBOH31TJe+b9u?=
+ =?us-ascii?Q?HIhS1ZYgwBuV6M3SWqgLoRS5LSf/6nEkiZjX1xEnZ5h9p2j1YbY3wM6WizBS?=
+ =?us-ascii?Q?6hvrVfAEHzUGyAdUFOVuBfQ+3xN0P7LcIvMMdTmMPg5OExUXr/kZytI9ibrF?=
+ =?us-ascii?Q?ieFXgYG7qv0s73ZYMWy8io+ylaY3TE2grhNh+s9iTGKqxTDikP48/tLX2hj8?=
+ =?us-ascii?Q?XC8mGniquhaVcaxE6c5FYTVAvwzNhAzr1d4r64HsuwstjDY/UBsrunrjrLwF?=
+ =?us-ascii?Q?EyPhvqPuSkdYgddFkJtaA6hXCax9lA7RRR3JZKrpShDuxZCGYZQqoEfd6nHu?=
+ =?us-ascii?Q?L+X5YhdQq6LIJaMAYbncRtms2vm2qwWR31touNC+vYrRQCGHj1hcET0OJ0+0?=
+ =?us-ascii?Q?Yo+9AhTc7So1ynxqUNQilJ57EQpDqI/uos29N7/05py8CwVXWAjklEbqOrgi?=
+ =?us-ascii?Q?eWXnH4AfNUA3OmbWhLaAw3Pc+wK+stQtELnic6Qs/e4G13Z6df3Ka+nE9B1Z?=
+ =?us-ascii?Q?8hh30jnFGOyUsRGnK5Kku8rreOvyrJSyj9BdpbGnksFdnPxioscUozzNNDaz?=
+ =?us-ascii?Q?ChMML+7IyqSAoxqPhKGfyYMZ1Q3OCeW6jC41EPN9gluVahh1TJ9wnuVdoa+G?=
+ =?us-ascii?Q?Yg6VDly9r1p/hQYbijN7/Iw3rhNBFogYoUqaXpfZ4Iq//V9btxxZkBg44Ytb?=
+ =?us-ascii?Q?Ms3wL1ga17B6Hp6h8tqhHShkw7BQmQngCJHu6TA3r/ZPYbFgjjch1yeEYuE1?=
+ =?us-ascii?Q?NSR/xYoRCfARq3wK9RCYw9vMXgRBMTRO5Fb38AQq+jxFeQdMX2CfkxzNY13Y?=
+ =?us-ascii?Q?kZiWJFJ2WWzkzU3yq4bQvtJ9a4RxGAtZr75rz21vYII9YBikaWCON19Qxygv?=
+ =?us-ascii?Q?93XXZNZxAiS9zK40gq9pG0JGYNu/2hHpxlT9ERBX6K2qixZm5EXw2yrEVq8Z?=
+ =?us-ascii?Q?yz4qunHeTAyff6Ra2uLsmkPzeNSvSARhtZLhF1YoO1H8pluFxhFLGWFe05wA?=
+ =?us-ascii?Q?0MUh8d5cLD8pgZQTCV9bArQVYH9f4mP8JGKO5pyhQHCrmSlLWc32R9lyX9AZ?=
+ =?us-ascii?Q?RY9kEv3+klgc3iwLtWC2/vAZzJm2luY4wMi0JcqDVyO8TLqWILK/CsstKC86?=
+ =?us-ascii?Q?LxbucvdSwf+uPR0TjjprIL+mnPBlf7POSMELDuwgE7gtlR9weB3G0mTYQVSz?=
+ =?us-ascii?Q?88lu4RQW7Po4mKDjkO69n9Syb+oQqtWLaVM4uOpDD6g+06y3FG8XddsVj+ju?=
+ =?us-ascii?Q?AT8gcR2HVlAaMECPp6CSESSX2/jDbkg0kXZFE3ViMpKT0vqfUKZHjlG3veir?=
+ =?us-ascii?Q?MnBeDbGUbtPPZJXyGOvpb1xuq6b33wtTQx4ERW+CdEC2pF9A1tgpM3/Uv/oy?=
+ =?us-ascii?Q?hpV/Kyjx1w=3D=3D?=
+X-Exchange-RoutingPolicyChecked: VUuI+S86whiqEH1xaMNRlTUgxmXc5pXow+urR7OBaz9rH3geypeY8eq4xKjUhfAPiu6GRLyNen83aW2mmoyPssTm5ufTaXZlwT5T9YJjmOr2mn2+AvsCO1Yj9DHhMgneK9v/bQmWriaE+LVCs7ehGj+jX+etg2HMaJb9sbxB/R4pJds4XW7oC1yMlw2GPuQ4c4byBzsN1bPuuTvNGe0Mf8TfVfv8KB/JoxMBTB27O+NCe3BUGB5QyJx25BtGlAGZcK3W2WQ2Rz1Gz02NRfifsKcTapu3jHBjbp4g7sD9Wc+kLcfSTYR6n44jJitUlXSq7auufEPv9v3+VqpyrWQL4Q==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 75e5d1ae-f3ee-4f0e-dd37-08dea5251cf5
 X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Apr 2026 12:53:20.1071 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Apr 2026 12:53:15.3530 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: jeodHhgc5vv1ytAl74aFd84TTkiv6CUE9DZBX+/XscmiIrutkEbK7L2zmZF8MO4Mgf5ko6yEW8HBzcPP2SPS3Q==
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9mmW/MahmcRECxF8PQaiwVkOp7i0JrFjCbMIM8/qkGWvSH7P6qMS8DDIKp8zzm4kPH84gcgOTJgdYVKcpHjcJw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB7149
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -159,185 +159,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-intel_dp_check_link_state() and intel_dp_link_params_valid() perform
-only a coarse validation of the link configuration used by the active
-mode against the available configurations (as constrained by the link
-training fallback code after a previous LT failure). Even if these
-coarse checks find a seemingly usable configuration, the modeset check,
-which performs full verification, may still fail.
-
-Disallow further autoretrain attempts if an autoretrain modeset fails.
-Further attempts would just reuse the same modeset parameters and fail
-in the same way. Autoretrain will be reallowed unconditionally when the
-sink reports a change in its capabilities. This allows an autoretrain to
-proceed once both the link validation and modeset checks confirm a
-usable configuration.
-
-Also clarify in intel_dp_check_link_state() and
-intel_dp_link_params_valid() that these checks are coarse and that a
-full validation is only performed by the subsequent atomic modeset
-check.
+Factor out a helper modesetting a pipe that accepts an existing atomic
+state. This prepares for a follow-up change that needs to allocate its
+own atomic state.
 
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- .../drm/i915/display/intel_dp_link_training.c | 98 ++++++++++++++++++-
- 1 file changed, 96 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 30 ++++++++++++++------
+ drivers/gpu/drm/i915/display/intel_display.h |  3 ++
+ 2 files changed, 25 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index b446a3523b94c..37862b915cf6e 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -99,6 +99,7 @@
-  *   - link_recovery_autoretrain_allowed()
-  *   - link_recovery_has_no_fallback()
-  *   - link_recovery_mark_train_failure()
-+ *   - link_recovery_mark_autoretrain_modeset_failure()
-  *   - link_recovery_mark_no_fallback()
-  *   - link_recovery_reset()
-  */
-@@ -1354,6 +1355,13 @@ link_recovery_has_no_fallback(struct intel_dp_link_training *link_training)
-  * is no longer possible, via userspace modesets after fallback
-  * selection.
-  *
-+ * Note that the error reported via this function is the error seen by
-+ * the link training failure handler proper after an actual link
-+ * training failure indicated by the sink device, and so the error and
-+ * corresponding actions required are distinct from an autoretrain
-+ * modeset failure. See link_recovery_mark_autoretrain_modeset_failure() to
-+ * report a modeset failure.
-+ *
-  * Return:
-  * - %true  if recovery should continue via automatic retraining.
-  * - %false if automatic retraining is no longer possible and recovery
-@@ -1370,7 +1378,30 @@ link_recovery_mark_train_failure(struct intel_dp_link_training *link_training)
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 674a4ece6d0f9..560b057ec163d 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -5629,18 +5629,15 @@ int intel_modeset_all_pipes_late(struct intel_atomic_state *state,
+ 	return 0;
  }
  
- /**
-- * link_recovery_mark_no_fallback - record that fallback is unavailable
-+ * link_recovery_mark_autoretrain_modeset_failure - record an autoretrain modeset failure
-+ * @link_training: link training state
-+ *
-+ * Record a failure of the autoretrain modeset before link training
-+ * itself could run.
-+ *
-+ * Note that the error reported via this function and the corresponding
-+ * expected actions are distinct from an actual link training failure:
-+ * the modeset failed before a link training attempt could be performed.
-+ * See link_recovery_mark_train_failure() to report an actual link
-+ * training failure.
-+ *
-+ * Update the state to indicate that further recovery is to be delegated to
-+ * userspace via a regular modeset.
-+ */
-+static void
-+link_recovery_mark_autoretrain_modeset_failure(struct intel_dp_link_training *link_training)
-+{
-+	if (link_recovery_autoretrain_allowed(link_training))
-+		link_training->recovery_state = INTEL_DP_LINK_RECOVERY_AUTORETRAIN_DISABLED;
-+}
-+
-+/**
-+ * link_recovery_mark_no_fallback - record that no fallback is possible
-  * @link_training: link training state
-  *
-  * Record that no more link fallback configuration is available.
-@@ -2021,6 +2052,23 @@ bool intel_dp_link_params_valid(struct intel_dp *intel_dp, int link_rate,
- 	 * FIXME: we need to synchronize the current link parameters with
- 	 * hardware readout. Currently fast link training doesn't work on
- 	 * boot-up.
-+	 *
-+	 * NOTE:
-+	 * This may be called from both serialized (locked and synced against
-+	 * async commit tails) and unserialized (e.g. HPD IRQ) contexts. It
-+	 * uses the current max link limits as upper bounds to reject
-+	 * obviously bogus values, even if those bounds may be observed in a
-+	 * transient or slightly stale state.
-+	 *
-+	 * This is not a full validation of the link configuration. Even in
-+	 * serialized contexts, additional constraints (e.g. source limitations,
-+	 * bandwidth checks, and other atomic state dependencies) are only
-+	 * verified during the atomic check of the subsequent commit.
-+	 *
-+	 * max_link_limits only provides independent upper bounds for rate and
-+	 * lane count. Callers must not assume it is itself an allowed link
-+	 * configuration. Although that happens to be true for now, it will
-+	 * stop being guaranteed once fallback depends only on disabled configs.
- 	 */
- 	if (link_rate == 0 ||
- 	    link_rate > intel_dp->link.max_rate)
-@@ -2151,6 +2199,22 @@ static bool intel_dp_is_connected(struct intel_dp *intel_dp)
- 		intel_dp->is_mst;
- }
- 
-+static void queue_modeset_retry_for_links_in_state(struct intel_atomic_state *state,
-+						   struct intel_encoder *encoder,
-+						   u8 pipe_mask)
-+{
-+	const struct intel_crtc_state *crtc_state;
-+	struct intel_crtc *crtc;
-+	int i;
-+
-+	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
-+		if (!(BIT(crtc->pipe) & pipe_mask))
-+			continue;
-+
-+		intel_dp_queue_modeset_retry_for_link(state, encoder, crtc_state);
-+	}
-+}
-+
- static int intel_dp_retrain_link(struct intel_encoder *encoder,
- 				 struct drm_modeset_acquire_ctx *ctx)
+-int intel_modeset_commit_pipes(struct intel_display *display,
+-			       u8 pipe_mask,
+-			       struct drm_modeset_acquire_ctx *ctx)
++int intel_modeset_commit_pipes_for_atomic_state(struct intel_atomic_state *intel_state,
++						u8 pipe_mask,
++						struct drm_modeset_acquire_ctx *ctx)
  {
-@@ -2201,11 +2265,23 @@ static int intel_dp_retrain_link(struct intel_encoder *encoder,
+-	struct drm_atomic_state *state;
++	struct drm_atomic_state *state = &intel_state->base;
++	struct intel_display *display = to_intel_display(intel_state);
+ 	struct intel_crtc *crtc;
+ 	int ret;
  
- 	intel_dp_link_training_set_force_retrain(link_training, false);
+-	state = drm_atomic_state_alloc(display->drm);
+-	if (!state)
+-		return -ENOMEM;
+-
+ 	state->acquire_ctx = ctx;
+ 	to_intel_atomic_state(state)->internal = true;
  
--	if (ret)
-+	if (ret) {
- 		drm_dbg_kms(display->drm,
- 			    "[ENCODER:%d:%s] link retraining failed: %pe\n",
- 			    encoder->base.base.id, encoder->base.name,
- 			    ERR_PTR(ret));
-+		/*
-+		 * intel_dp_needs_link_retrain() only performs a coarse check of
-+		 * retrainability, so the modeset commit may still fail. Disable
-+		 * further auto-retrain attempts in that case.
-+		 *
-+		 * A sink capability change may restore the retrainable state (see
-+		 * intel_dp_update_sink_caps(), intel_dp_reset_link_params()),
-+		 * allowing retraining to be attempted again.
-+		 */
-+		link_recovery_mark_autoretrain_modeset_failure(link_training);
-+		queue_modeset_retry_for_links_in_state(state, encoder, pipe_mask);
-+	}
+@@ -5658,6 +5655,23 @@ int intel_modeset_commit_pipes(struct intel_display *display,
+ 
+ 	ret = drm_atomic_commit(state);
  out:
- 	drm_atomic_state_put(&state->base);
++	return ret;
++}
++
++int intel_modeset_commit_pipes(struct intel_display *display,
++			       u8 pipe_mask,
++			       struct drm_modeset_acquire_ctx *ctx)
++{
++	struct drm_atomic_state *state;
++	int ret;
++
++	state = drm_atomic_state_alloc(display->drm);
++	if (!state)
++		return -ENOMEM;
++
++	ret = intel_modeset_commit_pipes_for_atomic_state(to_intel_atomic_state(state),
++							  pipe_mask, ctx);
++
+ 	drm_atomic_state_put(state);
  
-@@ -2229,6 +2305,24 @@ void intel_dp_check_link_state(struct intel_dp *intel_dp)
- 	if (!intel_dp_is_connected(intel_dp))
- 		return;
- 
-+	/*
-+	 * NOTE:
-+	 * This may race with an ongoing modeset updating the max link limits
-+	 * and, with that, the link's retrainability, so
-+	 * intel_dp_needs_link_retrain() may observe stale state.
-+	 *
-+	 * This is harmless: stale params captured as valid may spuriously
-+	 * allow retraining here, but the decision is rechecked later in a
-+	 * properly serialized context.
-+	 *
-+	 * Conversely, stale params captured as invalid may skip retraining,
-+	 * but that can only happen before the modeset has completed its own
-+	 * link training for the new, valid configuration, after which the
-+	 * link state is rechecked.
-+	 *
-+	 * See intel_dp_link_params_valid() for capturing and validating the
-+	 * params.
-+	 */
- 	if (!intel_dp_needs_link_retrain(intel_dp))
- 		return;
- 
+ 	return ret;
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index 1e76a455d7c43..79e42bfd15e70 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -478,6 +478,9 @@ int intel_modeset_pipes_in_mask_early(struct intel_atomic_state *state,
+ 				      const char *reason, u8 pipe_mask);
+ int intel_modeset_all_pipes_late(struct intel_atomic_state *state,
+ 				 const char *reason);
++int intel_modeset_commit_pipes_for_atomic_state(struct intel_atomic_state *state,
++						u8 pipe_mask,
++						struct drm_modeset_acquire_ctx *ctx);
+ int intel_modeset_commit_pipes(struct intel_display *display,
+ 			       u8 pipe_mask,
+ 			       struct drm_modeset_acquire_ctx *ctx);
 -- 
 2.49.1
 
