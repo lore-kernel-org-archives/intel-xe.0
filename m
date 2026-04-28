@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17BEBFF8868
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Apr 2026 16:13:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32C53FF885A
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Apr 2026 16:33:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B91AE10EC30;
-	Tue, 28 Apr 2026 16:13:49 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YuWBe+rK";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1468010EC30
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Apr 2026 16:13:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777392829; x=1808928829;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=GgalbcMzdtS9Bo3qYukJ4jUWgNIP8yLaVWgCXorx7Fk=;
- b=YuWBe+rKQXwFNkEzV0RApPv9YTrPOFgr/Avx2ssSWuiqh55tJPNSHSxn
- M+E6fr/iTyRwVJEkm2+nPrDVTeNT4Cc7himlTvNUMsTdAN3VQGFu05glf
- WNqV6ZrD3S4MYVQW3coj9iuWNf8oGHAyVdaWFndivgvtfytaq+VogcF9/
- F/WCoXRY1qtmBfhVvs/oh1Xg2rgoPqCBZQ3ncE+YIIbf9G3OzLNHshLXy
- G0syBP3kSegrk6YMLg+Y93LDs/eHNKimFMRHIPrVF4kVe6gnAB7fWVctL
- MV8qttV17pNawEKzu1UXsM+bIdMW8dBZiXchtfy9FXrAb7fAmoclzwIGe A==;
-X-CSE-ConnectionGUID: 5yK0HY2oQHa8MjHYOv5a0Q==
-X-CSE-MsgGUID: 7/H5dzcwQAyAowFNxSWsXw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11770"; a="78367785"
-X-IronPort-AV: E=Sophos;i="6.23,204,1770624000"; d="scan'208";a="78367785"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2026 09:13:48 -0700
-X-CSE-ConnectionGUID: t8XlvWXmSBygiqA6UWN8SA==
-X-CSE-MsgGUID: UDpuH0ATQ327kwVnmCik3A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,204,1770624000"; d="scan'208";a="257557281"
-Received: from dut4463arlhx.fm.intel.com ([10.105.10.192])
- by fmviesa001.fm.intel.com with ESMTP; 28 Apr 2026 09:13:48 -0700
-From: Brian Nguyen <brian3.nguyen@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Brian Nguyen <brian3.nguyen@intel.com>,
- Maciej Patelczyk <maciej.patelczyk@intel.com>,
- Mika Kuoppala <mika.kuoppala@linux.intel.com>,
- Stuart Summers <stuart.summers@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: [PATCH] drm/xe/xe_exec: Avoid potential lockdep cycle with
- xe_pm_block_map
-Date: Tue, 28 Apr 2026 16:13:48 +0000
-Message-ID: <20260428161347.848905-2-brian3.nguyen@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4E0810E353;
+	Tue, 28 Apr 2026 16:33:57 +0000 (UTC)
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 882DD10E353;
+ Tue, 28 Apr 2026 16:33:56 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/tests=3A_Add_kunit?=
+ =?utf-8?q?_tests_for_memory_based_interrupts?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 28 Apr 2026 16:33:56 -0000
+Message-ID: <177739403655.22199.15479444657123284094@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260428142722.582-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20260428142722.582-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,79 +36,148 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With the EUDEBUG patch series [1], lockdep will report multiple
-circular locking dependencies originating from xe_exec_ioctl that
-close through discovery_lock.
+== Series Details ==
 
-The vm->lock -> xe_pm_block_map comes from calling
-xe_pm_block_on_suspend() inside of the vm->lock critical section. The
-xe_pm_block_map annotation was added by commit f73f6dd312a5
-("drm/xe/pm: Add lockdep annotation for the pm_block completion") and
-made existing lockdep ordering visible.
+Series: drm/xe/tests: Add kunit tests for memory based interrupts
+URL   : https://patchwork.freedesktop.org/series/165651/
+State : warning
 
-Some lockdep cycle variants are observed through the preempt rebind
-worker, SVM garbage collector worker, and the mode_sem lock in xe_exec.
+== Summary ==
 
-To prevent problematic ordering, probe for pending suspend and if the
-block is needed, drop held locks before blocking, removing the common
-ordering between all 3 cycles (vm->lock -> xe_pm_block_map) and prevent
-another possible cycle (mode_sem -> xe_pm_block_map) from forming.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c8c12e558adaef7a4d125d83b6e1f8824bc13b82
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 395d15296dff07c7a84870a45283aad23fa09092
+Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Date:   Tue Apr 28 16:27:20 2026 +0200
 
-As reference, the cycles closed by inclusion of the discovery_lock are:
+    drm/xe/tests: Add kunit tests for memory based interrupts
+    
+    Add basic kunit tests for the memory based interrupts. For maximum
+    coverage, we will use non-real device definition with custom mix of
+    GT IPs that are defined with the largest number of engines.
+    
+    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
++ /mt/dim checkpatch e066eb26712bca7174e694a358351c50a38661d6 drm-intel
+4da73b511746 drm/xe/ggtt: Rename parameter name in xe_ggtt_init_kunit()
+6a2097147607 drm/xe/guc: Allow to replace xe_guc_irq_handler() with stub
+b4e281e17701 drm/xe/hwe: Allow to replace xe_hw_engine_handle_irq() with stub
+f38eaa083eb8 drm/xe/mmio: Allow to replace xe_mmio_read32|write32() with stub
+4b58aedae808 drm/xe/kunit: Promote GGTT initialization to test_init() helper
+b11451f01e7e drm/xe/kunit: Promote fake BO activation to test_init() helper
+ce476abd7a09 drm/xe/kunit: Activate empty MMIO stubs in test_init()
+af6a5b30ac29 drm/xe/memirq: Make page layout macros private
+584f5e2134a6 drm/xe/memirq: Introduce helper to calculate source page offset
+6fe6df8e9814 drm/xe/memirq: Introduce helper to calculate status vector offset
+a36bf197d3aa drm/xe/memirq: Refactor xe_memirq_hwe_handler
+5fa2e2e00719 drm/xe/memirq: Dump additional source pages if MSI-X
+395d15296dff drm/xe/tests: Add kunit tests for memory based interrupts
+-:13: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#13: 
+new file mode 100644
 
-Cycle A: discovery_lock -> mode_sem -> vm->lock -> xe_pm_block_map ->
-clientlist_mutex -> discovery_lock
+-:213: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#213: FILE: drivers/gpu/drm/xe/tests/xe_memirq_kunit.c:196:
++#define INTR_bcs(n)	((((n) < 8) ? INTR_BCS(n) : INTR_BCS8) + BUILD_BUG_ON_ZERO((n) > 8))
 
-Cycle B: discovery_lock -> work_completion(rebind_work) -> vm->lock ->
-xe_pm_block_map -> clientlist_mutex -> discovery_lock
+-:215: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'IIR' - possible side-effects?
+#215: FILE: drivers/gpu/drm/xe/tests/xe_memirq_kunit.c:198:
++#define MAKE_MEMIRQ_TEST_PARAM(NAME, SRC, S0, INST, IIR, ...) {	\
++	.name = (NAME),						\
++	.source = ilog2(INTR_##SRC) __VA_ARGS__,		\
++	.source0 = ilog2(INTR_##S0) __VA_ARGS__,		\
++	.instance = (INST),					\
++	.status = ilog2(IIR),					\
++	.iir = (IIR),						\
++}
 
-Cycle C: discovery_lock -> work_completion(garbage_collector.work) ->
-vm->lock -> xe_pm_block_map -> clientlist_mutex -> discovery_lock
+-:224: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'GUC' - possible side-effects?
+#224: FILE: drivers/gpu/drm/xe/tests/xe_memirq_kunit.c:207:
++#define MAKE_MEMIRQ_TEST_PARAM_GUC(GUC, IIR, ...) \
++	MAKE_MEMIRQ_TEST_PARAM(#GUC " " #IIR, GUC, GUC, 0, GUC_INTR_##IIR)
 
-[1] https://patchwork.freedesktop.org/series/161979/
+-:227: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'ENG' - possible side-effects?
+#227: FILE: drivers/gpu/drm/xe/tests/xe_memirq_kunit.c:210:
++#define MAKE_MEMIRQ_TEST_PARAM_HWE(ENG, INST, IIR, ...) \
++	MAKE_MEMIRQ_TEST_PARAM(#ENG #INST " " #IIR, ENG(INST), ENG(0), (INST), \
++			       GT_##IIR, ##__VA_ARGS__)
 
-Signed-off-by: Brian Nguyen <brian3.nguyen@intel.com>
-Cc: Maciej Patelczyk <maciej.patelczyk@intel.com>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Cc: Stuart Summers <stuart.summers@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_exec.c | 18 ++++++++++++------
- 1 file changed, 12 insertions(+), 6 deletions(-)
+-:227: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'INST' - possible side-effects?
+#227: FILE: drivers/gpu/drm/xe/tests/xe_memirq_kunit.c:210:
++#define MAKE_MEMIRQ_TEST_PARAM_HWE(ENG, INST, IIR, ...) \
++	MAKE_MEMIRQ_TEST_PARAM(#ENG #INST " " #IIR, ENG(INST), ENG(0), (INST), \
++			       GT_##IIR, ##__VA_ARGS__)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-index e05dabfcd43c..0717bf0c0d31 100644
---- a/drivers/gpu/drm/xe/xe_exec.c
-+++ b/drivers/gpu/drm/xe/xe_exec.c
-@@ -257,13 +257,19 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	}
- 
- 	/*
--	 * It's OK to block interruptible here with the vm lock held, since
--	 * on task freezing during suspend / hibernate, the call will
--	 * return -ERESTARTSYS and the IOCTL will be rerun.
-+	 * If suspend is pending, drop held locks then perform the
-+	 * block on suspend, avoiding potential lockdep cycle.
-+	 * On task freezing the wait itself returns -ERESTARTSYS via the freezer
-+	 * signal path; either way the caller is restarted.
- 	 */
--	err = xe_pm_block_on_suspend(xe);
--	if (err)
--		goto err_unlock_list;
-+	if (!try_wait_for_completion(&xe->pm_block)) {
-+		up_read(&vm->lock);
-+		if (mode == EXEC_MODE_DMA_FENCE)
-+			xe_hw_engine_group_put(group);
-+		xe_pm_block_on_suspend(xe);
-+		err = -ERESTARTSYS;
-+		goto err_syncs;
-+	}
- 
- 	if (!xe_vm_in_lr_mode(vm)) {
- 		vm_exec.vm = &vm->gpuvm;
--- 
-2.43.0
+-:253: CHECK:SPACING: spaces preferred around that '+' (ctx:WxV)
+#253: FILE: drivers/gpu/drm/xe/tests/xe_memirq_kunit.c:236:
++	MAKE_MEMIRQ_TEST_PARAM_HWE(VCS, 0, MI_USER_INTERRUPT, +32),
+ 	                                                      ^
+
+-:254: CHECK:SPACING: spaces preferred around that '+' (ctx:WxV)
+#254: FILE: drivers/gpu/drm/xe/tests/xe_memirq_kunit.c:237:
++	MAKE_MEMIRQ_TEST_PARAM_HWE(VCS, 1, MI_USER_INTERRUPT, +32),
+ 	                                                      ^
+
+-:255: CHECK:SPACING: spaces preferred around that '+' (ctx:WxV)
+#255: FILE: drivers/gpu/drm/xe/tests/xe_memirq_kunit.c:238:
++	MAKE_MEMIRQ_TEST_PARAM_HWE(VCS, 2, MI_USER_INTERRUPT, +32),
+ 	                                                      ^
+
+-:256: CHECK:SPACING: spaces preferred around that '+' (ctx:WxV)
+#256: FILE: drivers/gpu/drm/xe/tests/xe_memirq_kunit.c:239:
++	MAKE_MEMIRQ_TEST_PARAM_HWE(VCS, 3, MI_USER_INTERRUPT, +32),
+ 	                                                      ^
+
+-:257: CHECK:SPACING: spaces preferred around that '+' (ctx:WxV)
+#257: FILE: drivers/gpu/drm/xe/tests/xe_memirq_kunit.c:240:
++	MAKE_MEMIRQ_TEST_PARAM_HWE(VCS, 4, MI_USER_INTERRUPT, +32),
+ 	                                                      ^
+
+-:258: CHECK:SPACING: spaces preferred around that '+' (ctx:WxV)
+#258: FILE: drivers/gpu/drm/xe/tests/xe_memirq_kunit.c:241:
++	MAKE_MEMIRQ_TEST_PARAM_HWE(VCS, 5, MI_USER_INTERRUPT, +32),
+ 	                                                      ^
+
+-:259: CHECK:SPACING: spaces preferred around that '+' (ctx:WxV)
+#259: FILE: drivers/gpu/drm/xe/tests/xe_memirq_kunit.c:242:
++	MAKE_MEMIRQ_TEST_PARAM_HWE(VCS, 6, MI_USER_INTERRUPT, +32),
+ 	                                                      ^
+
+-:260: CHECK:SPACING: spaces preferred around that '+' (ctx:WxV)
+#260: FILE: drivers/gpu/drm/xe/tests/xe_memirq_kunit.c:243:
++	MAKE_MEMIRQ_TEST_PARAM_HWE(VCS, 7, MI_USER_INTERRUPT, +32),
+ 	                                                      ^
+
+-:261: CHECK:SPACING: spaces preferred around that '+' (ctx:WxV)
+#261: FILE: drivers/gpu/drm/xe/tests/xe_memirq_kunit.c:244:
++	MAKE_MEMIRQ_TEST_PARAM_HWE(VECS, 0, MI_USER_INTERRUPT, +32),
+ 	                                                       ^
+
+-:262: CHECK:SPACING: spaces preferred around that '+' (ctx:WxV)
+#262: FILE: drivers/gpu/drm/xe/tests/xe_memirq_kunit.c:245:
++	MAKE_MEMIRQ_TEST_PARAM_HWE(VECS, 1, MI_USER_INTERRUPT, +32),
+ 	                                                       ^
+
+-:263: CHECK:SPACING: spaces preferred around that '+' (ctx:WxV)
+#263: FILE: drivers/gpu/drm/xe/tests/xe_memirq_kunit.c:246:
++	MAKE_MEMIRQ_TEST_PARAM_HWE(VECS, 2, MI_USER_INTERRUPT, +32),
+ 	                                                       ^
+
+-:264: CHECK:SPACING: spaces preferred around that '+' (ctx:WxV)
+#264: FILE: drivers/gpu/drm/xe/tests/xe_memirq_kunit.c:247:
++	MAKE_MEMIRQ_TEST_PARAM_HWE(VECS, 3, MI_USER_INTERRUPT, +32),
+ 	                                                       ^
+
+total: 0 errors, 1 warnings, 17 checks, 283 lines checked
+
 
