@@ -4,62 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7272DFF885D
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Apr 2026 11:09:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACD60FF8868
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Apr 2026 11:39:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37B1110E311;
-	Tue, 28 Apr 2026 11:09:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56F2A10E313;
+	Tue, 28 Apr 2026 11:39:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YMDze/Te";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BLSSaOpx";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6D0610E311;
- Tue, 28 Apr 2026 11:09:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3C0910E313
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Apr 2026 11:39:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777374576; x=1808910576;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=ay2Te7p98W7UWUNyjbMMPjBv35QX/kzz4x6ZOlnWI4w=;
- b=YMDze/TeuUX/0lAKUlI/90Ohe7yc1z0bKSwRc4ARK6ASGPKrrBnjw14+
- yzsBrOh7Kdx/i4zqFhTvwG3meQYOBsgQejHf+To/U0gBw/4ZyITUjSCnP
- h4QMkpH36jyZBGc/BA1XvJgSQhQLIkKIY/BFyUckxjkzoQabKr4tqpezy
- wVAGFbdqspFbNjbXdKZBEloHRyUHxatf7nmEzPGSuDH66bp3a8F+/ZOFO
- RGEPOBSY7sLQ24GwXTK8g7yhTc4ynNFBHtXYiLE12NDZ/qujez4DmsbIa
- 2VMN7C8i9z6M8GpPFkMVhNKu3RliHOaFjFSTCaMAk0rF1kDkH6+RGFrXF Q==;
-X-CSE-ConnectionGUID: 3u8kfLDIRl2eTHm0Ps2sxw==
-X-CSE-MsgGUID: lPhNlEGOSFOKtLE6iTso7w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11769"; a="88589727"
-X-IronPort-AV: E=Sophos;i="6.23,204,1770624000"; d="scan'208";a="88589727"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2026 04:09:36 -0700
-X-CSE-ConnectionGUID: LD4maPvmRnS0+qHIb+3GGw==
-X-CSE-MsgGUID: EcKwJ/HIS2eJtbt13SgYdw==
+ t=1777376393; x=1808912393;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=telOxXRVxosiym1xvf9lJTmF2D+fAWqesijuT8Izzqw=;
+ b=BLSSaOpx9RcbLYPWg/2UG5Lwnj/B0H6Xzo3tkpoJVGh8WYQP6qT9yX5k
+ JC0qSoPMFOL4Jcd0LDVkbLx1lX/wKNzSOcGGhzZAnPZ4Y5PapBwFNVLwD
+ uXJj3x+nk+f7pBEfGlqdqJ9L9S9+1bBSyPg1XL96qRwAx69OI5XS+ojce
+ 813PgvM2g3fVtWRHsHWGJrHJEGbET2PmkARF+9HL6s2vfOgFxoEeqnygI
+ 7cJr53T2g8E0TrjHhp49les+ML4HTcjUlVDoh5YwPkJxHYdwSQZitVJD6
+ qS/snk4lJyf0H557ocOYbArtJlB4iIFOJ8hRbesiYW0/orPrYnPnbCqQP Q==;
+X-CSE-ConnectionGUID: POV7Bef/T9ysxaTO/xIuxQ==
+X-CSE-MsgGUID: 2RJLZ1NGRCiUV6SLpdxWKw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11769"; a="77312171"
+X-IronPort-AV: E=Sophos;i="6.23,204,1770624000"; d="scan'208";a="77312171"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2026 04:39:53 -0700
+X-CSE-ConnectionGUID: 9Tw7WCMEQluD/zG+dJBAAw==
+X-CSE-MsgGUID: HknOgkZpS+C2VPk7P0OzgA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,204,1770624000"; d="scan'208";a="229358230"
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.244.208])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2026 04:09:33 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: =?utf-8?Q?Uwe_Kleine-K=C3=B6nig_=28The_Capable_Hub=29?=
- <u.kleine-koenig@baylibre.com>,
- Matthew Brost <matthew.brost@intel.com>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] drm/xe: Don't use UTS_RELEASE directly
-In-Reply-To: <20260428102527.189593-2-u.kleine-koenig@baylibre.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260428102527.189593-2-u.kleine-koenig@baylibre.com>
-Date: Tue, 28 Apr 2026 14:09:31 +0300
-Message-ID: <be82fd356047513f23a3193d8007a2e5e8d97e35@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,204,1770624000"; d="scan'208";a="238967849"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2026 04:39:51 -0700
+Date: Tue, 28 Apr 2026 13:39:48 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Riana Tauro <riana.tauro@intel.com>
+Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
+ rodrigo.vivi@intel.com, aravind.iddamsetty@linux.intel.com,
+ badal.nilawar@intel.com, ravi.kishore.koppuravuri@intel.com,
+ mallesh.koujalagi@intel.com, soham.purkait@intel.com
+Subject: Re: [PATCH v4 13/13] drm/xe/xe_pci_error: Process errors in
+ mmio_enabled
+Message-ID: <afCchCnDdagHgl9M@black.igk.intel.com>
+References: <20260417085812.4013309-15-riana.tauro@intel.com>
+ <20260417085812.4013309-28-riana.tauro@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260417085812.4013309-28-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,76 +71,12 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 28 Apr 2026, Uwe Kleine-K=C3=B6nig (The Capable Hub) <u.kleine-koen=
-ig@baylibre.com> wrote:
-> UTS_RELEASE evaluates to a static string and changes quite easily (e.g.
-> uncommitted changes in the source tree or new commits). So when checking
-> if a patch introduces changes to the resulting binary each usage of
-> UTS_RELEASE is source of annoyance.
->
-> Instead of using UTS_RELEASE directly use init_utsname()->release which
-> evaluates to the same string but with that a change of UTS_RELEASE
-> doesn't affect xe_devcoredump.o.
->
-> Signed-off-by: Uwe Kleine-K=C3=B6nig (The Capable Hub) <u.kleine-koenig@b=
-aylibre.com>
+On Fri, Apr 17, 2026 at 02:28:25PM +0530, Riana Tauro wrote:
+> Query system controller when any non fatal error occurs to check
+> the type of the error, contain and recover.
+> 
+> The system controller is queried in the mmio_enabled callback.
+> 
+> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
-> ---
-> Hello,
->
-> (implicit) v1 of this patch is available at=20
-> https://lore.kernel.org/20260427160902.1126027-2-u.kleine-koenig%40baylib=
-re.com.
->
-> The only changes since then is that instead of dropping the kernel line,
-> init_utsname()->release is used, which is nearly what Jani Nikula
-> suggested.
-
-Almost the same, but better. ;)
-
-I wonder if most UTS_RELEASE uses in the kernel should be changed the
-same way?
-
-
-BR,
-Jani.
-
-
->
-> Best regards
-> Uwe
->
->  drivers/gpu/drm/xe/xe_devcoredump.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_=
-devcoredump.c
-> index 558a1a9841a0..07c7c89240d8 100644
-> --- a/drivers/gpu/drm/xe/xe_devcoredump.c
-> +++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-> @@ -8,7 +8,7 @@
->=20=20
->  #include <linux/ascii85.h>
->  #include <linux/devcoredump.h>
-> -#include <generated/utsrelease.h>
-> +#include <linux/utsname.h>
->=20=20
->  #include <drm/drm_managed.h>
->=20=20
-> @@ -101,7 +101,7 @@ static ssize_t __xe_devcoredump_read(char *buffer, ss=
-ize_t count,
->=20=20
->  	drm_puts(&p, "**** Xe Device Coredump ****\n");
->  	drm_printf(&p, "Reason: %s\n", ss->reason);
-> -	drm_puts(&p, "kernel: " UTS_RELEASE "\n");
-> +	drm_printf(&p, "kernel: %s\n", init_utsname()->release);
->  	drm_puts(&p, "module: " KBUILD_MODNAME "\n");
->=20=20
->  	ts =3D ktime_to_timespec64(ss->snapshot_time);
->
-> base-commit: 254f49634ee16a731174d2ae34bc50bd5f45e731
-
---=20
-Jani Nikula, Intel
+Reviewed-by: Raag Jadav <raag.jadav@intel.com>
