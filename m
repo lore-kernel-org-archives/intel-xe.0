@@ -4,54 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87430FF8873
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Apr 2026 09:55:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36F7CFF8868
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Apr 2026 10:02:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C1A110EACA;
-	Tue, 28 Apr 2026 09:55:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E295510EAE8;
+	Tue, 28 Apr 2026 10:02:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="RT5cRL60";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qanm2UHm";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3F2910EAC6;
- Tue, 28 Apr 2026 09:55:16 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 8CF1F43E2C;
- Tue, 28 Apr 2026 09:55:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9F56C2BCAF;
- Tue, 28 Apr 2026 09:55:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1777370116;
- bh=lY/rML6uz9ZIxs4GZnCj1Fq5sJipTf0WSkf6XsU+5fQ=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=RT5cRL60PRur02Ka7Bt2xPa173aOEsxKJHzEsAiNqLrmc1L5JfzjJEeSh0Mby5UHu
- AzD+yW3MnM2lyhaFyLtxmnKyELftaxVn+DO+yVHeJhQclTHJ+lr1TjLae2xsMlZURE
- WohT37zr6awZujlqOw8imG40dKFKE22c6lPAESQIKH2IsXc07MoMG9gdOwgx5lRwrr
- pQNrOXELlyhnUsMNhwAyF6xkxwlqIufvRmsMjUFCyxrlkbixLV+23o0LECPKaX8FlG
- qo78jBZfYukijVqKqI5RmdvX6RZi4mwgvretNOTakXN2MmXmHhPIZCNszrsusyR0dM
- NaUd9ZeokEpIw==
-Date: Tue, 28 Apr 2026 11:55:12 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Carlos Santa <carlos.santa@intel.com>, 
- Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>, 
- Matthew Auld <matthew.auld@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Daniel Colascione <dancol@dancol.org>
-Subject: Re: [PATCH v2 2/5] drm/ttm: Issue direct reclaim at beneficial_order
-Message-ID: <afCD6OPH_Q7qe_tx@zenone.zhora.eu>
-References: <20260423055656.1696379-1-matthew.brost@intel.com>
- <20260423055656.1696379-3-matthew.brost@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF4DB10EAE7;
+ Tue, 28 Apr 2026 10:02:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1777370563; x=1808906563;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=O/fX+/fwObLkLagIKKIXphtPD052eF9ODtQPNirPNA4=;
+ b=Qanm2UHm798g8zlTJ0quh04VdDYKcHH6U/7qjnsW5GtMN0bJR4bCdDY9
+ 7d917Dah+OVWHv57ieqqJpRqVWiAW3zPOEuMRPzJaX7giIMfCulNG9SRo
+ jsLElrMQabZN+xAR2SPzia9v96L+XlFGtHFqYSNo0XPuJ+1UsHDdkR/M9
+ 1fxAp/3XDAf64+6kHQYOPst60QIvqz+T7kFyf/fITxx+o9ZUE0eeWCw/S
+ /Z7vbZ+1DeWfdKP94+lPHc0ogRyrg3ZrxmZ1vHG5Pn1ivIXxPM3mqi9SV
+ Eh5E4fWe8kMxhKav4x9eeDBRnnDRcoBigRPPZ0HjrwKyyAJyI16B7P+qV g==;
+X-CSE-ConnectionGUID: yjSq9uIpRY6AuB9hoyFfNg==
+X-CSE-MsgGUID: QWiSH3wzTIem6jFoD/4nmg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11769"; a="89654111"
+X-IronPort-AV: E=Sophos;i="6.23,203,1770624000"; d="scan'208";a="89654111"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2026 03:02:40 -0700
+X-CSE-ConnectionGUID: 0QLQBZ8kQU2MR6y1L+2CLQ==
+X-CSE-MsgGUID: zz6QLTN/RV2NA1bgXxOy0A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,203,1770624000"; d="scan'208";a="257222117"
+Received: from abityuts-desk.ger.corp.intel.com (HELO [10.245.245.33])
+ ([10.245.245.33])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2026 03:02:36 -0700
+Message-ID: <5d36326b1b9c009cd544fe5ca195ae484dbbc915.camel@linux.intel.com>
+Subject: Re: [PATCH v2 3/4] drm/xe: Wire up dmem cgroup reclaim for VRAM
+ manager
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ intel-xe@lists.freedesktop.org
+Cc: Natalie Vock <natalie.vock@gmx.de>, Johannes Weiner
+ <hannes@cmpxchg.org>,  Tejun Heo <tj@kernel.org>, Michal
+ =?ISO-8859-1?Q?Koutn=FD?= <mkoutny@suse.com>, 	cgroups@vger.kernel.org,
+ Huang Rui <ray.huang@amd.com>, Matthew Brost	 <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, Maxime Ripard	 <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter	 <simona@ffwll.ch>,
+ David Airlie <airlied@gmail.com>, Christian =?ISO-8859-1?Q?K=F6nig?=	
+ <christian.koenig@amd.com>, Alex Deucher <alexander.deucher@amd.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, 	linux-kernel@vger.kernel.org
+Date: Tue, 28 Apr 2026 12:02:31 +0200
+In-Reply-To: <84473cbe-79ad-421e-8c8a-171e5784105f@linux.intel.com>
+References: <20260428073116.15687-1-thomas.hellstrom@linux.intel.com>
+ <20260428073116.15687-4-thomas.hellstrom@linux.intel.com>
+ <84473cbe-79ad-421e-8c8a-171e5784105f@linux.intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-15
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260423055656.1696379-3-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,37 +82,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Matt,
+On Tue, 2026-04-28 at 11:50 +0200, Maarten Lankhorst wrote:
+>=20
+>=20
+> Den 2026-04-28 kl. 09:31, skrev Thomas Hellstr=C3=B6m:
+> > Register the VRAM manager with the dmem cgroup reclaim
+> > infrastructure
+> > so that lowering dmem.max below current VRAM usage triggers TTM
+> > eviction rather than failing with -EBUSY.
+> >=20
+> > Assisted-by: GitHub Copilot:claude-sonnet-4.6
+> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> > ---
+> > =C2=A0drivers/gpu/drm/xe/xe_ttm_vram_mgr.c | 19 ++++++++++++-------
+> > =C2=A01 file changed, 12 insertions(+), 7 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> > b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> > index 5fd0d5506a7e..1bdcb3fee901 100644
+> > --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> > +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> > @@ -303,13 +303,6 @@ int __xe_ttm_vram_mgr_init(struct xe_device
+> > *xe, struct xe_ttm_vram_mgr *mgr,
+> > =C2=A0	struct ttm_resource_manager *man =3D &mgr->manager;
+> > =C2=A0	int err;
+> > =C2=A0
+> > -	if (mem_type !=3D XE_PL_STOLEN) {
+> > -		const char *name =3D mem_type =3D=3D XE_PL_VRAM0 ?
+> > "vram0" : "vram1";
+> > -		man->cg =3D drmm_cgroup_register_region(&xe->drm,
+> > name, size);
+> > -		if (IS_ERR(man->cg))
+> > -			return PTR_ERR(man->cg);
+> > -	}
+> > -
+> > =C2=A0	man->func =3D &xe_ttm_vram_mgr_func;
+> > =C2=A0	mgr->mem_type =3D mem_type;
+> > =C2=A0	mutex_init(&mgr->lock);
+> > @@ -318,6 +311,18 @@ int __xe_ttm_vram_mgr_init(struct xe_device
+> > *xe, struct xe_ttm_vram_mgr *mgr,
+> > =C2=A0	mgr->visible_avail =3D io_size;
+> > =C2=A0
+> > =C2=A0	ttm_resource_manager_init(man, &xe->ttm, size);
+> > +
+> > +	if (mem_type !=3D XE_PL_STOLEN) {
+> > +		const char *name =3D mem_type =3D=3D XE_PL_VRAM0 ?
+> > "vram0" : "vram1";
+> > +		struct dmem_cgroup_region *cg =3D
+> > +			drmm_cgroup_register_region(&xe->drm,
+> > name, size);
+> > +
+> > +		if (IS_ERR(cg))
+> > +			return PTR_ERR(cg);
+> > +
+> > +		ttm_resource_manager_set_dmem_region(man, cg);
+> > +	}
+> > +
+> > =C2=A0	err =3D gpu_buddy_init(&mgr->mm, man->size,
+> > default_page_size);
+> > =C2=A0	if (err)
+> > =C2=A0		return err;
+>=20
+> This patch will conflict with=20
+> https://patchwork.freedesktop.org/series/164694/=C2=A0which removes
+> stolen support, can we merge that patch first while we wait for AMD
+> acks?
 
-On Wed, Apr 22, 2026 at 10:56:53PM -0700, Matthew Brost wrote:
-> Triggering kswap at an order higher than beneficial_order makes little
-> sense, as the driver has already indicated the optimal order at which
-> reclaim is effective. Similarly, issuing direct reclaim or triggering
-> kswap at a lower order than beneficial_order is ineffective, since the
-> driver does not benefit from reclaiming lower-order pages.
-> 
-> As a result, direct reclaim should only be issued with __GFP_NORETRY at
-> exactly beneficial_order, or as a fallback, direct reclaim without
-> __GFP_NORETRY at order 0 when failure is not an option.
-> 
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Cc: Carlos Santa <carlos.santa@intel.com>
-> Cc: Christian Koenig <christian.koenig@amd.com>
-> Cc: Huang Rui <ray.huang@amd.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Simona Vetter <simona@ffwll.ch>
-> CC: dri-devel@lists.freedesktop.org
-> Cc: Daniel Colascione <dancol@dancol.org>
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> Reviewed-by: Christian Koenig <christian.koenig@amd.com>
+Sure, np.
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+>=20
+> Do I need an ack to get the series through drm-misc?
+
+Which series? The stolen support or this cgroup series?
 
 Thanks,
-Andi
+Thomas
+
+
+>=20
+> Kind regards,
+> ~Maarten Lankhorst
