@@ -4,88 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6ABDFFF885A
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Apr 2026 13:45:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86666FF886D
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Apr 2026 13:47:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C38010E0D7;
-	Tue, 28 Apr 2026 13:45:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49C7210E32A;
+	Tue, 28 Apr 2026 13:47:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin.net header.i=@ursulin.net header.b="kz+CYTnU";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="IZILYbaS";
 	dkim-atps=neutral
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com
- [209.85.221.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8412A10EC94
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Apr 2026 13:45:55 +0000 (UTC)
-Received: by mail-wr1-f47.google.com with SMTP id
- ffacd0b85a97d-43fe608cb92so7760966f8f.2
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Apr 2026 06:45:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin.net; s=google; t=1777383954; x=1777988754; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=2SyhFOLFL2dAJcka0XiLX/PMkANIMETJaY0FeR170e4=;
- b=kz+CYTnU0S1Rmob/cMXUqMcZ26pz7pz8GC/90nGGNc34K63SBjtsrKV/VktlddCjG/
- MXihyJL+32Mi3NvGgU3c4D1jKN+uBoo/cn20JXcX+51Fp0+gdpLG2/C7udOoOYYd2WHm
- oPEKXnM6U4MpFEJn98860zzA1HI5/psuZzOhH5kQCNq0iwFYFZXoLH82qY+1t4On6Ak+
- p31e3mmeQojNkEV5bt1S6UnDQikC+wTXA4LpCjfHAZj9l4yYKu3GXo4Ai/XHyOqBll8G
- 6G3ks5ZQeWR1PfbLP+on6Y7oouFz51RyhwKB8EG2DxS44GwBk80Plylm7jlvh1tl5DiO
- ButA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1777383954; x=1777988754;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=2SyhFOLFL2dAJcka0XiLX/PMkANIMETJaY0FeR170e4=;
- b=LIlg6mAkSN+6Jm6aZF3+76eExw5xGm9RfHq22ayiXf13SiQgWW9Zoba0d8J+Uj0wzq
- Ls12wVz7fY44rdaMJKcIDbx3Yh8/G2G6PZxLaL+sXPPBa0eOErvxXotkdD8eWx2jckXd
- zOu/cUclAmdfhL6m2AGSSu3nHhlKmMZicKf6yMSHG6vNPJC8QTj914FlgHKEToFUkhxT
- qBRduzr0euS47lgz+LUgRzpgIKsRlnFsqJVY+19j7cz33HrgybAwpXGFZO8SfcofeQqd
- xhBp2Yv3jGvswkzSIkEXJJHZ6Tu/Ys3M28GdC/7XTXQxH6/ceanhTMbdYRo5Nzmcr5jK
- x2pA==
-X-Gm-Message-State: AOJu0YztI3aDzhA1lGX4HRyFgFyUqhmFqfVFRNfV4Q7AkKl1rsnSr7tK
- F8dfWAIBhjS5PQ/Cfnmgi0l6wmoeZW9xcazgwcTpj1G76spzrb9qG/xmXZbSWtjKPcs=
-X-Gm-Gg: AeBDievW6j/p+VVSHvS9pR5u9EOMK0/Nii1jrElHRL3YmBm7gWwM2sN96ZfhFjUsulQ
- Iq+Gh3xsfmrNHKfGO9N84CFZXiaP5JTQB7zdy65g0q0B78Z2/1M/1ARAUgUewb5IdUbyD7jb0CG
- sID52j1EkW0iWkcD8KwVq1BYuwsTi7eq9iOwlugJWLNNQUDuckZFwQJnWslRz06GXQ6ClGAICjF
- gJ7aR6AZoK+65eWh9rk7rJcVifGRDT52wCTmEMfd5MoGJg8bpAvEGtiI3BeUS8T2w9IhlWCyUj/
- aPYJYi0TvXK6v8ygPZp64st0rbcr+QUDU/gU3HGhMW/f3BSoY+eMiOZdzESyZyoFU0vjRqr+Fh2
- 0qffbAlL6HvIlwQajcQVUODDVMqHgp05SwnVJMswk5NKuAxCF00kyig6vfOKTsyjT6fvC5VKVZt
- m5T2LKtZXZIcLPrKnCYj30zrBrq4Ba2erhHIq5rOE9ksEaxKa4msnlI7qsUdrh4nyf1w==
-X-Received: by 2002:a05:6000:2308:b0:43d:50c:6f18 with SMTP id
- ffacd0b85a97d-44647dcf11amr5876815f8f.11.1777383953650; 
- Tue, 28 Apr 2026 06:45:53 -0700 (PDT)
-Received: from [192.168.0.101] ([90.240.106.137])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-4463cb59ebasm6516034f8f.8.2026.04.28.06.45.52
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 28 Apr 2026 06:45:53 -0700 (PDT)
-Message-ID: <5bd5ed0a-fef2-4bd4-b7a0-d263bcfb1c7f@ursulin.net>
-Date: Tue, 28 Apr 2026 14:45:52 +0100
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A97A10E32A
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Apr 2026 13:47:43 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id B28B160008;
+ Tue, 28 Apr 2026 13:47:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B856FC2BCAF;
+ Tue, 28 Apr 2026 13:47:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1777384061;
+ bh=/BMZZMeppyQkyoT2cWaTE1/+/84UTkPiyG6v2Z2pdJE=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=IZILYbaSU2BGlTyqcFlCmvZVegcatxjG+9l3XBwc1aGLIlM9nFW3DBlnmCSY6h8BO
+ VizmpOzken0vmRq+tiGD3jq7roiabzdn4OTNWVjGJHG/oNGzKfIEuN6X71+7YNqg9X
+ BkV1UHWRs4fg3NJTCWC+MBPbhhrjMrSvAfsWHB7FmoVwO07PyjZRk1gun/TzhjLw/S
+ rnAjUVwije149bXb3xfxHB1v+OkjPs6ahux0/tPhp4CdB6XHuOcmvLiqeE9uTxaSMx
+ crpn5aEOzyzmu5CpmgLcvG+yCmGmdHmZgB0nSwxn9twK0XnIQE3IKNAb5SHZ5gStgc
+ SPtPUDwKq7nKA==
+Date: Tue, 28 Apr 2026 15:47:37 +0200
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Soham Purkait <soham.purkait@intel.com>
+Cc: intel-xe@lists.freedesktop.org, riana.tauro@intel.com, 
+ anshuman.gupta@intel.com, aravind.iddamsetty@linux.intel.com,
+ badal.nilawar@intel.com, 
+ raag.jadav@intel.com, ravi.kishore.koppuravuri@intel.com,
+ mallesh.koujalagi@intel.com, 
+ andi.shyti@intel.com, rodrigo.vivi@intel.com, anoop.c.vijay@intel.com
+Subject: Re: [PATCH v2 2/2] drm/xe/xe_ras: Add RAS support for GPU health
+ indicator
+Message-ID: <afC1NX-PvO6qqBU6@zenone.zhora.eu>
+References: <20260423173925.699486-1-soham.purkait@intel.com>
+ <20260423173925.699486-3-soham.purkait@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] drm/ttm: Issue direct reclaim at beneficial_order
-To: Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Carlos Santa <carlos.santa@intel.com>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Daniel Colascione <dancol@dancol.org>
-References: <20260421012608.1474950-1-matthew.brost@intel.com>
- <20260421012608.1474950-2-matthew.brost@intel.com>
- <30c84c41-192c-44ae-a614-2b9951c55727@ursulin.net>
- <d7dda563-280f-4126-a822-a3d43ce5048e@amd.com>
- <aekygVvRz7mu+elE@gsse-cloud1.jf.intel.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <aekygVvRz7mu+elE@gsse-cloud1.jf.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260423173925.699486-3-soham.purkait@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,109 +62,120 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Hi Soham,
 
-On 22/04/2026 21:41, Matthew Brost wrote:
-> On Wed, Apr 22, 2026 at 09:41:54AM +0200, Christian König wrote:
->> On 4/22/26 09:32, Tvrtko Ursulin wrote:
->>>
->>> On 21/04/2026 02:26, Matthew Brost wrote:
->>>> Triggering kswap at an order higher than beneficial_order makes little
->>>> sense, as the driver has already indicated the optimal order at which
->>>> reclaim is effective. Similarly, issuing direct reclaim or triggering
->>>> kswap at a lower order than beneficial_order is ineffective, since the
->>>> driver does not benefit from reclaiming lower-order pages.
->>>>
->>>> As a result, direct reclaim should only be issued with __GFP_NORETRY at
->>>> exactly beneficial_order, or as a fallback, direct reclaim without
->>>> __GFP_NORETRY at order 0 when failure is not an option.
->>>>
->>>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>>> Cc: Carlos Santa <carlos.santa@intel.com>
->>>> Cc: Christian Koenig <christian.koenig@amd.com>
->>>> Cc: Huang Rui <ray.huang@amd.com>
->>>> Cc: Matthew Auld <matthew.auld@intel.com>
->>>> Cc: Matthew Brost <matthew.brost@intel.com>
->>>> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->>>> Cc: Maxime Ripard <mripard@kernel.org>
->>>> Cc: Thomas Zimmermann <tzimmermann@suse.de>
->>>> Cc: David Airlie <airlied@gmail.com>
->>>> Cc: Simona Vetter <simona@ffwll.ch>
->>>> CC: dri-devel@lists.freedesktop.org
->>>> Cc: Daniel Colascione <dancol@dancol.org>
->>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->>>> ---
->>>>    drivers/gpu/drm/ttm/ttm_pool.c | 4 ++--
->>>>    1 file changed, 2 insertions(+), 2 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
->>>> index 26a3689e5fd9..8425dbcc6c68 100644
->>>> --- a/drivers/gpu/drm/ttm/ttm_pool.c
->>>> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
->>>> @@ -165,8 +165,8 @@ static struct page *ttm_pool_alloc_page(struct ttm_pool *pool, gfp_t gfp_flags,
->>>>         * Do not add latency to the allocation path for allocations orders
->>>>         * device tolds us do not bring them additional performance gains.
->>>>         */
->>>> -    if (beneficial_order && order > beneficial_order)
->>>> -        gfp_flags &= ~__GFP_DIRECT_RECLAIM;
->>>> +    if (order && beneficial_order && order != beneficial_order)
->>>> +        gfp_flags &= ~__GFP_RECLAIM;
->>>>          if (!ttm_pool_uses_dma_alloc(pool)) {
->>>>            p = alloc_pages_node(pool->nid, gfp_flags, order);
->>>
->>> I missed this conversation so don't know if this was discussed -
-> 
-> I meant to CC you here, but missed including you.
-> 
->>> having less of 64k pages is not a concern? I mean slightly higher TLB pressure etc on hardware which supports this PTE size.
->>
->> At least for AMD GPUs 64k doesn't matter at all.
->>
-> 
-> Same on Intel GPUs for system memory mappings - it is either 4k or 2M
-> GPU pages. VRAM can we 64k pages but that isn't involved here.
-> 
->> There was a large push from the Windows side to use that size, but we have more than enough evidence to prove that this size is actually completely nonsense for almost all use cases.
->>
->> I have no idea how we ended up with that in the first place.
->>
->> It could be that there is still HW out there which can only handle that size, but in that case such HW should just set beneficial_order to 64k.
->>
-> 
-> Or we move to a table config if we find drivers have multiple
-> beneficial_orders.
+...
 
-Or a bitmask of direct reclaim orders?
+> diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-ras b/Documentation/ABI/testing/sysfs-driver-intel-xe-ras
+> new file mode 100644
+> index 000000000000..085cb79a6e00
+> --- /dev/null
+> +++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-ras
 
-I am not saying it is required to be "smarter" than this patch does it, 
-for AMD and Intel apparently isn't, but for other drivers I don't know 
-so it does need looking into.
+Thanks for adding the documentation!
 
-Regards,
+> @@ -0,0 +1,33 @@
+> +What:		/sys/bus/pci/drivers/.../gpu_health
+> +Date:		April 2026
+> +KernelVersion:	7.0
+> +Contact:	intel-xe@lists.freedesktop.org
+> +Description:
+> +		This file exposes the current GPU health state and, for Physical
+> +		Functions (PFs), allows GPU health state to be updated.
+> +
+> +		This sysfs file is only accessible to administrative users and is
+> +		present only on Intel Xe platforms that support the GPU health
+> +		indicator interface for RAS.
+> +
+> +		For Physical Functions (PFs), the file is read-write, while for
+> +		Virtual Functions (VFs), it is read-only and does not support GPU
+> +		health state updates.
+> +
+> +		Read return a single line containing one of the valid values for
 
-Tvrtko
+/Read/Reads/ or /Read return/A read returns/
 
-> 
->>> Also, does clearing __GFP_RECLAIM disable compaction completely and is that wanted?
->>
->> Oh good point, most likely not.
->>
-> 
-> Without completely reverse engineering the core MM, I'm not sure here.
-> 
-> I just read the kernel doc for __GFP_KSWAPD_RECLAIM [1] and this to
-> indicate if this is clear compaction won't be entered.
-> 
-> Matt
-> 
-> [1] https://elixir.bootlin.com/linux/v7.0/source/include/linux/gfp_types.h#L198
->   
->> Regards,
->> Christian.
->>
->>>
->>> Regards,
->>>
->>> Tvrtko
->>>
->>
+> +		the current device health state. Only for PFs, writing one of the
+> +		valid values updates the current device health state.
 
+...
+
+> +static const char * const gpu_health_states[] = {
+> +	[XE_RAS_HEALTH_STATUS_OK]		= "ok",
+> +	[XE_RAS_HEALTH_STATUS_WARNING]		= "warning",
+> +	[XE_RAS_HEALTH_STATUS_CRITICAL]		= "critical"
+> +};
+
+Thanks for making it one word, it makes much more sense to me.
+
+...
+
+> +static ssize_t gpu_health_show(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	struct xe_device *xe = kdev_to_xe_device(dev);
+> +	struct xe_sysctrl_mailbox_command command = {0};
+> +	struct xe_ras_health_get_response response = {0};
+> +	struct xe_ras_health_get_input request = {0};
+> +	enum xe_sysctrl_mailbox_command_id cmd = XE_SYSCTRL_CMD_GET_HEALTH;
+
+do we need 'cmd' here?
+
+> +	enum xe_ras_health_status health;
+> +	int ret;
+> +	size_t rlen = 0;
+> +
+> +	prepare_sysctrl_command(&command, cmd, &request,
+> +				sizeof(request), &response, sizeof(response));
+> +	guard(xe_pm_runtime)(xe);
+> +	ret = xe_sysctrl_send_command(&xe->sc, &command, &rlen);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (rlen != sizeof(response)) {
+> +		xe_err(xe,
+> +		       "[RAS][GET_HEALTH]: invalid Sysctrl response length %zu (expected %zu)\n",
+> +		       rlen, sizeof(response));
+> +		return -EPROTO;
+> +	}
+> +	if (response.current_health > XE_RAS_HEALTH_STATUS_CRITICAL) {
+> +		xe_err(xe, "[RAS][GET_HEALTH]: invalid health state %u from Sysctrl\n",
+> +		       response.current_health);
+> +		return -EPROTO;
+> +	}
+> +
+> +	health = (enum xe_ras_health_status)response.current_health;
+> +
+> +	xe_dbg(xe, "[RAS][GET_HEALTH]: current GPU health state = %d (%s)\n",
+> +	       health, gpu_health_states[health]);
+> +
+> +	return sysfs_emit(buf, "%s\n", gpu_health_states[health]);
+> +}
+> +
+> +static ssize_t gpu_health_store(struct device *dev, struct device_attribute *attr,
+> +				const char *buf, size_t count)
+> +{
+> +	struct xe_device *xe = kdev_to_xe_device(dev);
+> +	struct xe_sysctrl_mailbox_command command = {0};
+> +	struct xe_ras_health_set_input request = {0};
+> +	struct xe_ras_health_set_response response = {0};
+> +	enum xe_sysctrl_mailbox_command_id cmd = XE_SYSCTRL_CMD_SET_HEALTH;
+
+do we need 'cmd' here?
+
+Andi
+
+> +	enum xe_ras_health_status health;
+> +	int ret;
+> +	size_t rlen = 0;
+> +	int state;
+> +	int ras_status;
+> +
+> +	state = sysfs_match_string(gpu_health_states,
+> +				   buf);
+> +	if (state < 0)
+> +		return -EINVAL;
+> +
+> +	request.new_health = (u8)state;
+> +
+> +	prepare_sysctrl_command(&command, cmd, &request,
+> +				sizeof(request), &response, sizeof(response));
