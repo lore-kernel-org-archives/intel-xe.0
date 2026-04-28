@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4205FF886D
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Apr 2026 13:57:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CC18FF885A
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Apr 2026 14:21:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 773FE10ECFA;
-	Tue, 28 Apr 2026 13:57:50 +0000 (UTC)
-Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEF7210ECFA;
- Tue, 28 Apr 2026 13:57:49 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3578126088298746810=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2AE110EBC5;
+	Tue, 28 Apr 2026 14:21:09 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IFRjEUJH";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D337310EBB7;
+ Tue, 28 Apr 2026 14:21:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1777386069; x=1808922069;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=PRYt6HgYM60zbLlUvO7b1lkGIAJBlPIob+Er9MUvj6Q=;
+ b=IFRjEUJHd0d+B0Tca5+4wLIAqXcDOj7EwwxWj4iEqhtxhVA0Dlk4ws79
+ LTQPzPBbE5bTmbEF1Os3T/o/3KaV0ObwZp7nq23ZnbSEcd+6pGrpV5Zxw
+ 0dFsAL+WM8n1I5Q2JgDb1xudlWMiluWG3+b0cKhvBMrtAVgS+HO0BcBle
+ GlsSl1o2YLVMQPUDUeXiejRAtVVfUkb9PrdLfFMK1xmeuc07cy0DhE4a+
+ 6qvrREbg25eyvMX9EdxnFYIchjkfZP8f/3w6M7TtMT7yi4D/6DfdFXLEr
+ 8LjKFEBtkUywSwVJQSCmXk5Ao2QDpHXmYdobg7zH76PvmhQqmzrzBfb+F g==;
+X-CSE-ConnectionGUID: g1DT8gPBSu6nHtToz2fn1Q==
+X-CSE-MsgGUID: 7bLS+M3vTECqoUIeoiW95A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11770"; a="89756380"
+X-IronPort-AV: E=Sophos;i="6.23,204,1770624000"; d="scan'208";a="89756380"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2026 07:21:03 -0700
+X-CSE-ConnectionGUID: kIb8dRnyQHGFhsQRhai2Iw==
+X-CSE-MsgGUID: NTl1k8hzSX2ouiJzb6eobA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,204,1770624000"; d="scan'208";a="227445400"
+Received: from nemesa.iind.intel.com ([10.190.239.22])
+ by fmviesa009.fm.intel.com with ESMTP; 28 Apr 2026 07:21:02 -0700
+From: Nemesa Garg <nemesa.garg@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Nemesa Garg <nemesa.garg@intel.com>
+Subject: [PATCH 0/6]  Enable joiner cursor fast updates
+Date: Tue, 28 Apr 2026 19:46:33 +0530
+Message-Id: <20260428141639.2373678-1-nemesa.garg@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Add_wa=5F14025941?=
- =?utf-8?q?587_for_xe3_and_xe3p_platforms?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: tilak.tirumalesh.tangudu@intel.com
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 28 Apr 2026 13:57:49 -0000
-Message-ID: <177738466977.21511.7293228463218600063@5ab824fced77>
-X-Patchwork-Hint: ignore
-References: <20260428101519.2032607-1-tilak.tirumalesh.tangudu@intel.com>
-In-Reply-To: <20260428101519.2032607-1-tilak.tirumalesh.tangudu@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +61,24 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3578126088298746810==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+    This series enables the cursor fast path for joiner mode
+and adds the missing secondary-plane handling to keep updates
+correct and synchronized.
 
-== Series Details ==
+Nemesa Garg (6):
+  drm/i915/cursor: Check joiner cursor commit status
+  drm/i915/cursor: Add helper to update cursor plane
+  drm/i915/cursor: Handle secondary cursor state
+  drm/i915/cursor: Sync joiner secondary cursor state
+  drm/i915/cursor: Program secondary cursor planes
+  drm/i915/cursor: Allow joiner cursor fast path update
 
-Series: drm/xe: Add wa_14025941587 for xe3 and xe3p platforms
-URL   : https://patchwork.freedesktop.org/series/165617/
-State : success
+ drivers/gpu/drm/i915/display/intel_cursor.c | 284 ++++++++++++++++----
+ 1 file changed, 230 insertions(+), 54 deletions(-)
 
-== Summary ==
+-- 
+2.25.1
 
-CI Bug Log - changes from xe-4946-e066eb26712bca7174e694a358351c50a38661d6_BAT -> xe-pw-165617v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-4946-e066eb26712bca7174e694a358351c50a38661d6 -> xe-pw-165617v1
-
-  IGT_8874: 4568b2c141ab630c34f8eb2b9afab8cbf8f3ce9e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4946-e066eb26712bca7174e694a358351c50a38661d6: e066eb26712bca7174e694a358351c50a38661d6
-  xe-pw-165617v1: 165617v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165617v1/index.html
-
---===============3578126088298746810==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Add wa_14025941587 for xe3 and xe3p platforms</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165617/">https://patchwork.freedesktop.org/series/165617/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165617v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165617v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4946-e066eb26712bca7174e694a358351c50a38661d6_BAT -&gt; xe-pw-165617v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4946-e066eb26712bca7174e694a358351c50a38661d6 -&gt; xe-pw-165617v1</li>
-</ul>
-<p>IGT_8874: 4568b2c141ab630c34f8eb2b9afab8cbf8f3ce9e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4946-e066eb26712bca7174e694a358351c50a38661d6: e066eb26712bca7174e694a358351c50a38661d6<br />
-  xe-pw-165617v1: 165617v1</p>
-
-</body>
-</html>
-
---===============3578126088298746810==--
