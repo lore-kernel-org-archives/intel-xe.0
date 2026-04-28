@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 183FDFF886F
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Apr 2026 14:21:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C8ECFF8868
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Apr 2026 14:27:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D303210EC6D;
-	Tue, 28 Apr 2026 14:21:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E18810EB1E;
+	Tue, 28 Apr 2026 14:27:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IudDDNsC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oAviczn6";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F91B10EBB7;
- Tue, 28 Apr 2026 14:21:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E901710EB1E
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Apr 2026 14:27:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777386068; x=1808922068;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=BV5TQKjQiPujyudnskFS6bc8p6Uz/sPqQkr7rzn/fWc=;
- b=IudDDNsCSOBFAs+igDs4ujw0aKODB4ti7NOeX6xOGtlsjdePizdk4tVY
- /QE8gfKa0ySnwcKkak7n8Wzsll/GXxhq6cztPFVflsZzzJW5WjSFJZiup
- bqubeCCjtdtrepyOY+tsuHKZlWKUcK2vSbQWhoKeN6ZlRrO6NRLTyF/wg
- M3RYhNOkBPYZj0/OapCrWq+YOY7qTDFVoHclU7axEJoTxemKGwKmhsw5s
- Dnsjjq0oD15Gil28s096bKrdOG00RSEudhRWQaX2i9WDchGC16qaOxLyK
- YBcQi01SRuJ+GIe65fybaGz9MbaqgMlImhwDNUdxPKNxTR63RsFQdVT8G Q==;
-X-CSE-ConnectionGUID: 9r9Ivev6TxeSF1hDrND9ZQ==
-X-CSE-MsgGUID: GJvVo2WvRoq8mAPJsezbAA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11770"; a="89756383"
-X-IronPort-AV: E=Sophos;i="6.23,204,1770624000"; d="scan'208";a="89756383"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2026 07:21:05 -0700
-X-CSE-ConnectionGUID: SaISIy4pTyGHX9AF0cUCvg==
-X-CSE-MsgGUID: diQtvxMwQOSTtolFgCj9hg==
+ t=1777386456; x=1808922456;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=KcuELHhRwsj+QCczXqrPWwVqJFc/NZVDYhAehVzNi5M=;
+ b=oAviczn6392vCohkGlwU6gOiNV8GnF5D4tZSbBRElWe/UESgBTpuZEOU
+ MexByxM2PXLOSyWAwM3OQqEY9WGJXw3apVMq01V0aTo24+CmpMKwCMp+x
+ ciNMvVHkKPUfgMAjyx4P0QzTcA30PbTjsbcg1Ajp/MM0GRGcH1BCNPIJU
+ ZlO2Bo7EssQbCOv87TTWzg4LZp3VNnU6j7JDqYkQO9K6hGzk0QwOskpBp
+ CR0j4Kmg/SBWSgGCr1sOtOyBY9hFb+eWTQr8xMy1P6PAo3ME6q3Up3vr1
+ Xib4F3F+BrTgyWMY0n953QE/jioGzozj0rgqmmtGfBt7ndFJukNiFWot3 A==;
+X-CSE-ConnectionGUID: j5yQKHguTniengRXQQrCzw==
+X-CSE-MsgGUID: MKcLAyfDRiyQs6GNgsMHaA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11770"; a="95862307"
+X-IronPort-AV: E=Sophos;i="6.23,204,1770624000"; d="scan'208";a="95862307"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2026 07:27:36 -0700
+X-CSE-ConnectionGUID: qLc5h9zlSSOefue1jG71Mg==
+X-CSE-MsgGUID: ZkE81MiwS1OleKnvrzEP1w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,204,1770624000"; d="scan'208";a="227445414"
-Received: from nemesa.iind.intel.com ([10.190.239.22])
- by fmviesa009.fm.intel.com with ESMTP; 28 Apr 2026 07:21:04 -0700
-From: Nemesa Garg <nemesa.garg@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Nemesa Garg <nemesa.garg@intel.com>
-Subject: [PATCH 1/6] drm/i915/cursor: Check joiner cursor commit status
-Date: Tue, 28 Apr 2026 19:46:34 +0530
-Message-Id: <20260428141639.2373678-2-nemesa.garg@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260428141639.2373678-1-nemesa.garg@intel.com>
-References: <20260428141639.2373678-1-nemesa.garg@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,204,1770624000"; d="scan'208";a="238942333"
+Received: from orenpaz-mobl.ger.corp.intel.com (HELO
+ mwajdecz-hp.clients.intel.com) ([10.245.20.98])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2026 07:27:35 -0700
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH 00/13] drm/xe/tests: Add kunit tests for memory based
+ interrupts
+Date: Tue, 28 Apr 2026 16:27:07 +0200
+Message-ID: <20260428142722.582-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,70 +66,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In joiner mode, secondary cursor commits may still be running
-even when the primary cursor commit is done.
-Check all joined cursor commit status before taking the fast path.
-If any commit is still pending, fallback to slow path.
+And improve our kunit helper to create more functional fake device.
 
-v2: Use intel_crtc_joined_pipe_mask(). [Ville]
+Michal Wajdeczko (13):
+  drm/xe/ggtt: Rename parameter name in xe_ggtt_init_kunit()
+  drm/xe/guc: Allow to replace xe_guc_irq_handler() with stub
+  drm/xe/hwe: Allow to replace xe_hw_engine_handle_irq() with stub
+  drm/xe/mmio: Allow to replace xe_mmio_read32|write32() with stub
+  drm/xe/kunit: Promote GGTT initialization to test_init() helper
+  drm/xe/kunit: Promote fake BO activation to test_init() helper
+  drm/xe/kunit: Activate empty MMIO stubs in test_init()
+  drm/xe/memirq: Make page layout macros private
+  drm/xe/memirq: Introduce helper to calculate source page offset
+  drm/xe/memirq: Introduce helper to calculate status vector offset
+  drm/xe/memirq: Refactor xe_memirq_hwe_handler
+  drm/xe/memirq: Dump additional source pages if MSI-X
+  drm/xe/tests: Add kunit tests for memory based interrupts
 
-Assisted-by: Claude:claude-sonnet-4.6
-Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cursor.c | 26 +++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+ drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c |  42 +--
+ drivers/gpu/drm/xe/tests/xe_kunit_helpers.c |  96 +++++++
+ drivers/gpu/drm/xe/tests/xe_memirq_kunit.c  | 276 ++++++++++++++++++++
+ drivers/gpu/drm/xe/tests/xe_pci_test.h      |   3 +
+ drivers/gpu/drm/xe/xe_ggtt.h                |   2 +-
+ drivers/gpu/drm/xe/xe_guc.c                 |   3 +
+ drivers/gpu/drm/xe/xe_hw_engine.c           |   3 +
+ drivers/gpu/drm/xe/xe_memirq.c              |  95 +++++--
+ drivers/gpu/drm/xe/xe_memirq_types.h        |   9 +-
+ drivers/gpu/drm/xe/xe_mmio.c                |   6 +
+ 10 files changed, 471 insertions(+), 64 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_memirq_kunit.c
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index 18d1014de361..f4db795448bf 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -13,6 +13,7 @@
- #include <drm/drm_vblank.h>
- 
- #include "intel_atomic.h"
-+#include "intel_crtc.h"
- #include "intel_cursor.h"
- #include "intel_cursor_regs.h"
- #include "intel_de.h"
-@@ -797,6 +798,27 @@ void intel_cursor_unpin_work(struct kthread_work *base)
- 	intel_plane_destroy_state(&plane->base, &plane_state->uapi);
- }
- 
-+static bool
-+intel_cursor_joiner_commits_idle(struct intel_display *display,
-+				 const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_crtc *pipe_crtc;
-+
-+	for_each_intel_crtc_in_pipe_mask(display->drm, pipe_crtc,
-+					 intel_crtc_joined_pipe_mask(crtc_state)) {
-+		struct intel_plane *pipe_plane =
-+					intel_crtc_get_plane(pipe_crtc, PLANE_CURSOR);
-+		struct intel_plane_state *pipe_plane_state =
-+					to_intel_plane_state(pipe_plane->base.state);
-+
-+		if (pipe_plane_state->uapi.commit &&
-+		    !try_wait_for_completion(&pipe_plane_state->uapi.commit->hw_done))
-+			return false;
-+	}
-+
-+	return true;
-+}
-+
- static int
- intel_legacy_cursor_update(struct drm_plane *_plane,
- 			   struct drm_crtc *_crtc,
-@@ -843,6 +865,10 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 	    !try_wait_for_completion(&old_plane_state->uapi.commit->hw_done))
- 		goto slow;
- 
-+	/* Check all joined pipes for pending commits */
-+	if (!intel_cursor_joiner_commits_idle(display, crtc_state))
-+		goto slow;
-+
- 	/*
- 	 * If any parameters change that may affect watermarks,
- 	 * take the slowpath. Only changing fb or position should be
 -- 
-2.25.1
+2.47.1
 
