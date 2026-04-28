@@ -4,57 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1D16FF886D
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Apr 2026 09:51:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87430FF8873
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Apr 2026 09:55:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 845EE10EAC5;
-	Tue, 28 Apr 2026 09:51:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C1A110EACA;
+	Tue, 28 Apr 2026 09:55:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AdPf6YCA";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="RT5cRL60";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A45910EAD4;
- Tue, 28 Apr 2026 09:51:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777369906; x=1808905906;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=uB4xlW2NiYg2+VnaZXy4cSe7/Uq3sHAwngGh2dNNuXY=;
- b=AdPf6YCA93PbuMr2CVsN01bMkV4NXmD+bf2yh7F2p0SrUXZW7+royXne
- aBBMLOg/bu3gsQomr056t7WZMjkFXjKd2fKpYd3vpPkz7JalginUd2Rmz
- 69iwRcF4L6GicxWddkBqbga1dkU+N9pwcODNIH9mb3MBilOdg/ZY5slWR
- lM/jjvtN4I63o/FE+1tLgo7HRnO7Kxgr7PugxFwK9uU6kwTygcDzkTjU+
- lKrTxdxM+vlJrWpSupno+xkc5Nbm6ktcHkjUmdhWxVymUTh64Xcuu1S2r
- 0HT34wiWQAKLS44lo3ZS/VpR/wg1BpI//sMKv53wD/uF9Or+vKmuw0nle Q==;
-X-CSE-ConnectionGUID: Rjz9rpaKSjS3c65apGgNrA==
-X-CSE-MsgGUID: nxdzMBZ7TumKJfv8oqyKqw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11769"; a="78385136"
-X-IronPort-AV: E=Sophos;i="6.23,203,1770624000"; d="scan'208";a="78385136"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2026 02:51:46 -0700
-X-CSE-ConnectionGUID: 2WUFInzNRvyFTlSsb+2fVg==
-X-CSE-MsgGUID: TbT1eCr/SSGRH/jqMdvdTA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,203,1770624000"; d="scan'208";a="238891848"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO hazy.intel.com)
- ([10.245.244.243])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2026 02:51:44 -0700
-From: Luca Coelho <luciano.coelho@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
- ville.syrjala@linux.intel.com
-Subject: [PATCH v5 8/8] drm/i915: remove HAS_PCH_NOP() dependency from clock
- gating
-Date: Tue, 28 Apr 2026 12:48:26 +0300
-Message-ID: <20260428095104.818360-9-luciano.coelho@intel.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260428095104.818360-1-luciano.coelho@intel.com>
-References: <20260428095104.818360-1-luciano.coelho@intel.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3F2910EAC6;
+ Tue, 28 Apr 2026 09:55:16 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 8CF1F43E2C;
+ Tue, 28 Apr 2026 09:55:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9F56C2BCAF;
+ Tue, 28 Apr 2026 09:55:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1777370116;
+ bh=lY/rML6uz9ZIxs4GZnCj1Fq5sJipTf0WSkf6XsU+5fQ=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=RT5cRL60PRur02Ka7Bt2xPa173aOEsxKJHzEsAiNqLrmc1L5JfzjJEeSh0Mby5UHu
+ AzD+yW3MnM2lyhaFyLtxmnKyELftaxVn+DO+yVHeJhQclTHJ+lr1TjLae2xsMlZURE
+ WohT37zr6awZujlqOw8imG40dKFKE22c6lPAESQIKH2IsXc07MoMG9gdOwgx5lRwrr
+ pQNrOXELlyhnUsMNhwAyF6xkxwlqIufvRmsMjUFCyxrlkbixLV+23o0LECPKaX8FlG
+ qo78jBZfYukijVqKqI5RmdvX6RZi4mwgvretNOTakXN2MmXmHhPIZCNszrsusyR0dM
+ NaUd9ZeokEpIw==
+Date: Tue, 28 Apr 2026 11:55:12 +0200
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Carlos Santa <carlos.santa@intel.com>, 
+ Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>, 
+ Matthew Auld <matthew.auld@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Daniel Colascione <dancol@dancol.org>
+Subject: Re: [PATCH v2 2/5] drm/ttm: Issue direct reclaim at beneficial_order
+Message-ID: <afCD6OPH_Q7qe_tx@zenone.zhora.eu>
+References: <20260423055656.1696379-1-matthew.brost@intel.com>
+ <20260423055656.1696379-3-matthew.brost@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-15
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260423055656.1696379-3-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,43 +66,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-intel_pch_init_clock_gating() already handles unsupported PCH types,
-including PCH_NOP, by doing nothing.
+Hi Matt,
 
-Drop the explicit HAS_PCH_NOP() check from the IVB clock gating
-path and always call the display helper directly. This removes one
-more direct dependency on display-side PCH macros from
-intel_clock_gating.c.
+On Wed, Apr 22, 2026 at 10:56:53PM -0700, Matthew Brost wrote:
+> Triggering kswap at an order higher than beneficial_order makes little
+> sense, as the driver has already indicated the optimal order at which
+> reclaim is effective. Similarly, issuing direct reclaim or triggering
+> kswap at a lower order than beneficial_order is ineffective, since the
+> driver does not benefit from reclaiming lower-order pages.
+> 
+> As a result, direct reclaim should only be issued with __GFP_NORETRY at
+> exactly beneficial_order, or as a fallback, direct reclaim without
+> __GFP_NORETRY at order 0 when failure is not an option.
+> 
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Cc: Carlos Santa <carlos.santa@intel.com>
+> Cc: Christian Koenig <christian.koenig@amd.com>
+> Cc: Huang Rui <ray.huang@amd.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Simona Vetter <simona@ffwll.ch>
+> CC: dri-devel@lists.freedesktop.org
+> Cc: Daniel Colascione <dancol@dancol.org>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> Reviewed-by: Christian Koenig <christian.koenig@amd.com>
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
----
- drivers/gpu/drm/i915/intel_clock_gating.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 
-diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c b/drivers/gpu/drm/i915/intel_clock_gating.c
-index c27b6f9266b1..86bdeb20f427 100644
---- a/drivers/gpu/drm/i915/intel_clock_gating.c
-+++ b/drivers/gpu/drm/i915/intel_clock_gating.c
-@@ -31,7 +31,7 @@
- #include <drm/intel/mchbar_regs.h>
- 
- #include "display/intel_display_clock_gating.h"
--#include "display/intel_display_core.h"
-+#include "display/intel_pch.h"
- #include "gt/intel_engine_regs.h"
- #include "gt/intel_gt.h"
- #include "gt/intel_gt_mcr.h"
-@@ -290,8 +290,7 @@ static void ivb_init_clock_gating(struct drm_i915_private *i915)
- 	intel_uncore_rmw(&i915->uncore, GEN6_MBCUNIT_SNPCR, GEN6_MBC_SNPCR_MASK,
- 			 GEN6_MBC_SNPCR_MED);
- 
--	if (!HAS_PCH_NOP(display))
--		intel_pch_init_clock_gating(display);
-+	intel_pch_init_clock_gating(display);
- 
- 	gen6_check_mch_setup(i915);
- }
--- 
-2.53.0
-
+Thanks,
+Andi
