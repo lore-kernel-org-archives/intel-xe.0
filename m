@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67AACFF886D
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Apr 2026 21:00:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FA54FF885A
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Apr 2026 21:11:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 292CB10E3A3;
-	Tue, 28 Apr 2026 21:00:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EF3B10EDCE;
+	Tue, 28 Apr 2026 21:11:18 +0000 (UTC)
 Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8821810E3A3;
- Tue, 28 Apr 2026 21:00:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B40110EDD5;
+ Tue, 28 Apr 2026 21:11:17 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============6939394859690152191=="
+ boundary="===============3503539599870692318=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFULL=3A_failure_for_drm/ttm=3A_Fix_ttm=5Fbo=5F?=
- =?utf-8?q?swapout=28=29_infinite_LRU_walk_on_swapout_failure?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pf=3A_Fix_EAGAIN_sig?=
+ =?utf-8?q?n_in_pf=5Fmigration=5Fconsume=28=29_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: "Shuicheng Lin" <shuicheng.lin@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 28 Apr 2026 21:00:40 -0000
-Message-ID: <177741004055.22650.8235894862722688895@5ab824fced77>
+Date: Tue, 28 Apr 2026 21:11:17 -0000
+Message-ID: <177741067704.22699.13482729878800154361@5ab824fced77>
 X-Patchwork-Hint: ignore
-References: <20260428094442.16985-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20260428094442.16985-1-thomas.hellstrom@linux.intel.com>
+References: <20260428201448.3999428-1-shuicheng.lin@intel.com>
+In-Reply-To: <20260428201448.3999428-1-shuicheng.lin@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,26 +40,59 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6939394859690152191==
+--===============3503539599870692318==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: drm/ttm: Fix ttm_bo_swapout() infinite LRU walk on swapout failure
-URL   : https://patchwork.freedesktop.org/series/165610/
-State : failure
+Series: drm/xe/pf: Fix EAGAIN sign in pf_migration_consume() (rev2)
+URL   : https://patchwork.freedesktop.org/series/165664/
+State : success
 
 == Summary ==
 
-ERROR: The runconfig 'xe-4944-aea2c496abcf55b647c14fe720bfc4ea555aac6a_FULL' does not exist in the database
+CI Bug Log - changes from xe-4946-e066eb26712bca7174e694a358351c50a38661d6_BAT -> xe-pw-165664v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8874 -> IGT_8875
+  * Linux: xe-4946-e066eb26712bca7174e694a358351c50a38661d6 -> xe-pw-165664v2
+
+  IGT_8874: 4568b2c141ab630c34f8eb2b9afab8cbf8f3ce9e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8875: 5f5503b3bd1939fa733df60df7a6bf2b2101ee5e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4946-e066eb26712bca7174e694a358351c50a38661d6: e066eb26712bca7174e694a358351c50a38661d6
+  xe-pw-165664v2: 165664v2
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165610v1/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165664v2/index.html
 
---===============6939394859690152191==
+--===============3503539599870692318==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -79,18 +112,34 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>drm/ttm: Fix ttm_bo_swapout() infinite LRU walk on swapout failure</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165610/">https://patchwork.freedesktop.org/series/165610/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
+<tr><td><b>Series:</b></td><td>drm/xe/pf: Fix EAGAIN sign in pf_migration_consume() (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165664/">https://patchwork.freedesktop.org/series/165664/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165610v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165610v1/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165664v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165664v2/index.html</a></td></tr>
 
 </table>
 
 
-    <p>ERROR: The runconfig 'xe-4944-aea2c496abcf55b647c14fe720bfc4ea555aac6a_FULL' does not exist in the database</p>
+    <h1>CI Bug Log - changes from xe-4946-e066eb26712bca7174e694a358351c50a38661d6_BAT -&gt; xe-pw-165664v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8874 -&gt; IGT_8875</li>
+<li>Linux: xe-4946-e066eb26712bca7174e694a358351c50a38661d6 -&gt; xe-pw-165664v2</li>
+</ul>
+<p>IGT_8874: 4568b2c141ab630c34f8eb2b9afab8cbf8f3ce9e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8875: 5f5503b3bd1939fa733df60df7a6bf2b2101ee5e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4946-e066eb26712bca7174e694a358351c50a38661d6: e066eb26712bca7174e694a358351c50a38661d6<br />
+  xe-pw-165664v2: 165664v2</p>
 
 </body>
 </html>
 
---===============6939394859690152191==--
+--===============3503539599870692318==--
