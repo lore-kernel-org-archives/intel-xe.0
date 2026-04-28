@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91975FF885A
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Apr 2026 14:28:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B23CFF8868
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Apr 2026 14:37:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57DD510EBC5;
-	Tue, 28 Apr 2026 14:28:06 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dcI5CkMZ";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E06A610EBC4
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Apr 2026 14:27:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777386463; x=1808922463;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=9CHCosqUhBmgjWPSb7znADUOBi9tWWXmGxpZXpH2JsU=;
- b=dcI5CkMZbts/b8QctJlEQSaRM2/d2FAX20uAqa+gbdxhd8JLsccHWoyH
- QvJwgEhfX/t2hJ9KtguNdmX6AnLaWN5oNblx7UA6uVHHl0wGCh53oEuuH
- TQBAqGXB24Jk8UxQHdD2/K09yhLqGzRI7PAVlHxllfNZKDJMF6nzf4v0M
- XgM5cGI4lSXeyvsqHhxYY7j139Y9lcv7DZsrsOi8E9SRFlfMGY9m7MqWM
- qamSXkiB0ep3yB32S4voC0kyyXii968DsTQHNf9/2gl34k37ZRa8i1zPb
- wOqLYSLf4NyczYdPfDX6JGkeRynE+hqKRmQrmIemHCfNj+Vi5MQTc8ErV A==;
-X-CSE-ConnectionGUID: 9K7u266HQMCjhWr2sOPy4w==
-X-CSE-MsgGUID: 8mI/E9CYS6CL/+/6WDksRg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11770"; a="95862324"
-X-IronPort-AV: E=Sophos;i="6.23,204,1770624000"; d="scan'208";a="95862324"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2026 07:27:43 -0700
-X-CSE-ConnectionGUID: IrI+2BNNSAiTivdO/gZmNw==
-X-CSE-MsgGUID: nzyP5WjeSbO2ARM4c8ojWA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,204,1770624000"; d="scan'208";a="238942360"
-Received: from orenpaz-mobl.ger.corp.intel.com (HELO
- mwajdecz-hp.clients.intel.com) ([10.245.20.98])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2026 07:27:42 -0700
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 05/13] drm/xe/kunit: Promote GGTT initialization to
- test_init() helper
-Date: Tue, 28 Apr 2026 16:27:12 +0200
-Message-ID: <20260428142722.582-6-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260428142722.582-1-michal.wajdeczko@intel.com>
-References: <20260428142722.582-1-michal.wajdeczko@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7C9610EBDB;
+	Tue, 28 Apr 2026 14:37:58 +0000 (UTC)
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54F8F10EBC5;
+ Tue, 28 Apr 2026 14:37:57 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/psr=3A_Prevent_D?=
+ =?utf-8?q?C_entry_during_active_vblank_for_Panel_Replay?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dibin Moolakadan Subrahmanian" <dibin.moolakadan.subrahmanian@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 28 Apr 2026 14:37:57 -0000
+Message-ID: <177738707735.21512.16213016848615027313@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260428123951.3803703-1-dibin.moolakadan.subrahmanian@intel.com>
+In-Reply-To: <20260428123951.3803703-1-dibin.moolakadan.subrahmanian@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,121 +36,50 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Our test_init() helper already do a minimal initialization of the
-kunit fake xe_device, including basic setup of main components like
-xe_tile and xe_gt, but some other main components, like xe_ggtt or
-xe_mmio, were completely untouched. Move basic GGTT initialization
-to the test_init() helper function, as it does not require much
-work, and allows to simplify other tests init functions.
+== Series Details ==
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
- drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c |  9 +++------
- drivers/gpu/drm/xe/tests/xe_kunit_helpers.c | 20 ++++++++++++++++++++
- drivers/gpu/drm/xe/tests/xe_pci_test.h      |  2 ++
- 3 files changed, 25 insertions(+), 6 deletions(-)
+Series: drm/i915/psr: Prevent DC entry during active vblank for Panel Replay
+URL   : https://patchwork.freedesktop.org/series/165630/
+State : warning
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c b/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
-index 51e1e04001ac..0108316fa64a 100644
---- a/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
-+++ b/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
-@@ -51,19 +51,16 @@ static int guc_buf_test_init(struct kunit *test)
- 		.sriov_mode = XE_SRIOV_MODE_PF,
- 		.platform = XE_TIGERLAKE, /* some random platform */
- 		.subplatform = XE_SUBPLATFORM_NONE,
-+		.ggtt_start = DUT_GGTT_START,
-+		.ggtt_size = DUT_GGTT_SIZE,
- 	};
--	struct xe_ggtt *ggtt;
- 	struct xe_guc *guc;
- 
- 	test->priv = &fake;
- 	xe_kunit_helper_xe_device_test_init(test);
- 
--	ggtt = xe_device_get_root_tile(test->priv)->mem.ggtt;
- 	guc = &xe_device_get_gt(test->priv, 0)->uc.guc;
--
--	KUNIT_ASSERT_EQ(test, 0,
--			xe_ggtt_init_kunit(ggtt, DUT_GGTT_START,
--					   DUT_GGTT_SIZE));
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, guc);
- 
- 	kunit_activate_static_stub(test, xe_managed_bo_create_pin_map,
- 				   replacement_xe_managed_bo_create_pin_map);
-diff --git a/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c b/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
-index bc5156966ce9..e4495a453f80 100644
---- a/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
-+++ b/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
-@@ -14,6 +14,7 @@
- #include "tests/xe_pci_test.h"
- #include "xe_device.h"
- #include "xe_device_types.h"
-+#include "xe_ggtt.h"
- #include "xe_pm.h"
- 
- /**
-@@ -50,6 +51,18 @@ static void kunit_action_restore_priv(void *priv)
- 	test->priv = priv;
- }
- 
-+static void fake_device_init_ggtt(struct xe_device *xe, u64 start, u64 size)
-+{
-+	struct kunit *test = kunit_get_current_test();
-+	struct xe_tile *tile;
-+	unsigned int id;
-+
-+	for_each_tile(tile, xe, id) {
-+		KUNIT_ASSERT_NOT_ERR_OR_NULL(test, tile->mem.ggtt);
-+		KUNIT_EXPECT_EQ(test, xe_ggtt_init_kunit(tile->mem.ggtt, start, size), 0);
-+	}
-+}
-+
- /**
-  * xe_kunit_helper_xe_device_test_init - Prepare a &xe_device for a KUnit test.
-  * @test: the &kunit where this fake &xe_device will be used
-@@ -64,12 +77,16 @@ static void kunit_action_restore_priv(void *priv)
-  * in &kunit.priv pointer to the struct xe_pci_fake_data supplemented with
-  * desired parameters prior to calling this function.
-  *
-+ * If xe_pci_fake_data->ggtt_size is set then this function will also do
-+ * a minimal GGTT initialization.
-+ *
-  * This function uses KUNIT_ASSERT to detect any failures.
-  *
-  * Return: Always 0.
-  */
- int xe_kunit_helper_xe_device_test_init(struct kunit *test)
- {
-+	struct xe_pci_fake_data *data = test->priv;
- 	struct xe_device *xe;
- 	struct device *dev;
- 	int err;
-@@ -86,6 +103,9 @@ int xe_kunit_helper_xe_device_test_init(struct kunit *test)
- 	err = kunit_add_action_or_reset(test, kunit_action_restore_priv, test->priv);
- 	KUNIT_ASSERT_EQ(test, err, 0);
- 
-+	if (data && data->ggtt_size)
-+		fake_device_init_ggtt(xe, data->ggtt_start, data->ggtt_size);
-+
- 	test->priv = xe;
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/xe/tests/xe_pci_test.h b/drivers/gpu/drm/xe/tests/xe_pci_test.h
-index 30505d1cbefc..e807585b88c2 100644
---- a/drivers/gpu/drm/xe/tests/xe_pci_test.h
-+++ b/drivers/gpu/drm/xe/tests/xe_pci_test.h
-@@ -22,6 +22,8 @@ struct xe_pci_fake_data {
- 	struct xe_step_info step;
- 	u32 graphics_verx100;
- 	u32 media_verx100;
-+	u64 ggtt_start;
-+	u64 ggtt_size;
- };
- 
- int xe_pci_fake_device_init(struct xe_device *xe);
--- 
-2.47.1
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c8c12e558adaef7a4d125d83b6e1f8824bc13b82
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit bba6277deb5cbc47b31b306dcf78c87beaa0ba0b
+Author: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+Date:   Tue Apr 28 18:09:51 2026 +0530
+
+    drm/i915/psr: Prevent DC entry during active vblank for Panel Replay
+    
+    On PTL+ (display ver >= 30), hold the DMC wakelock while vblank is
+    enabled for Panel Replay. Older platforms rely on
+    intel_display_power_set_target_dc_state() for this.
+    
+    The wakelock is acquired/released at two places:
+    1) Dynamically when vblank is enabled/disabled via
+       intel_psr_notify_vblank_enable_disable().
+    2) In the PSR enable/disable path.
+    
+    This handles the following ordering scenarios:
+    1) Panel Replay is enabled before vblank enable arrives.
+    2) Vblank enable arrives before Panel Replay is updated in
+       intel_psr_post_plane_update().
++ /mt/dim checkpatch e066eb26712bca7174e694a358351c50a38661d6 drm-intel
+bba6277deb5c drm/i915/psr: Prevent DC entry during active vblank for Panel Replay
+-:131: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
+
+total: 1 errors, 0 warnings, 0 checks, 97 lines checked
+
 
