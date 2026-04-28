@@ -4,58 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDE69FF885D
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Apr 2026 08:10:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2CA0FF885D
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Apr 2026 08:12:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 83EB910E09A;
-	Tue, 28 Apr 2026 08:10:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B75D310EA74;
+	Tue, 28 Apr 2026 08:12:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QurhIEsY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XJiWgCX1";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66F5A10E09A;
- Tue, 28 Apr 2026 08:10:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 297AB10EA82
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Apr 2026 08:12:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777363833; x=1808899833;
+ t=1777363948; x=1808899948;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=WzG9NeUJ9MAqO55tX19xs/F++pLlzg4Pb+Qbg/U4dTk=;
- b=QurhIEsYV5oZgvDYuPIbrmA3kq969J6nN9WZ0Bxi53qpUjaRP9BVFf6I
- fnsH6t1rOtBIa1jYe5URy700K+e2UF5rTacpP1oIqu+NRSZGvNlE3DgPi
- q+1WnQGxAd6APx9LT/XP1R48MkoNGVf97kguAUL8kOT8Gx0umj04Q9jG0
- qaTAFa1Cjcl7kv+AVZPJjPSQyOCmIxB7LkWpairuYoT6CXWI4vOp4oqLh
- FgVZYw8VdFPfOy8wt3yw/2psiK374sU3LMk0Ds2tBHSqjykK+jDSvFH6F
- xTPjueCITMuwT20D+xLzTXy/5c/266QXogr7rjN1Xp0XtGWDm6+r37pkV A==;
-X-CSE-ConnectionGUID: CKP18vIPTA6nAtFJ70t7Vw==
-X-CSE-MsgGUID: tegxtZbTTJyZVICPPu85vw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11769"; a="88960780"
-X-IronPort-AV: E=Sophos;i="6.23,203,1770624000"; d="scan'208";a="88960780"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2026 01:10:33 -0700
-X-CSE-ConnectionGUID: ayZSej1IS/WHpis7HTLL8w==
-X-CSE-MsgGUID: FaN76geAS8iuP2xl6TMYJQ==
+ message-id:mime-version;
+ bh=jHDjgCPUB1CxxAOsbvTGjHdOjV3p3Giyuyyo3H04gZ8=;
+ b=XJiWgCX1HDGKjmlDvx+pPviL4wjqsgpbJ/JUgI2Ag3NrhxfXY+1mGcLm
+ wPDcZYxysY//ICrymCypWd88xsvTbPkRHeUKof4MME27hz7LQs1ZiE4wf
+ 4rkorwBdLIa2XzQT7kQoi1glb/oJ1o1C33n8EbdV42v+Fa/INZL3kVu7Y
+ TOKvSiVfVNAZ+gmktHuIBXYieSbY5BcRRgUc4hKfb454NUtVxhVkXBQAy
+ a4TYuu07CzpgJPdL9UOQliAwMNnPmKfky98R600Fo9nDAAmXgqbAJ/Zlf
+ y71pnLS62ygaMtQaholeOMF8P/YKTVXmdDF8q8vMHpmWxEjsXvICHqoaT g==;
+X-CSE-ConnectionGUID: qCPapU6wROqX9Ni9e5lr4w==
+X-CSE-MsgGUID: ER/SNP82S4SNkaeKDj8G7w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11769"; a="65794662"
+X-IronPort-AV: E=Sophos;i="6.23,203,1770624000"; d="scan'208";a="65794662"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2026 01:12:27 -0700
+X-CSE-ConnectionGUID: n88pwTJpSD24kP1jWmnwvg==
+X-CSE-MsgGUID: gJhnjn60Q5GIe9zM6KiMjg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,203,1770624000"; d="scan'208";a="229530090"
+X-IronPort-AV: E=Sophos;i="6.23,203,1770624000"; d="scan'208";a="229324365"
 Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.244.208])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2026 01:10:31 -0700
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2026 01:12:26 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Marc <marclecussano@gmail.com>, intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org
-Subject: Re: [BUG] xe: Lunar Lake hard freeze on USB-C DP-altmode (MSI MPG
- 272URX), TC1 PHY pageflip deadlock, no kernel error before lockup
-In-Reply-To: <CAF3NygikxYLtJzcjajSV4o68bjJ-9aPczPqzaHo_=r1OPoeaew@mail.gmail.com>
+To: Shuicheng Lin <shuicheng.lin@intel.com>, linux-kernel@vger.kernel.org,
+ intel-xe@lists.freedesktop.org
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>, linux-doc@vger.kernel.org
+Subject: Re: [PATCH] scripts/kernel-doc: Detect mismatched inline member
+ documentation tags
+In-Reply-To: <20260415215032.3398330-1-shuicheng.lin@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <CAF3NygikxYLtJzcjajSV4o68bjJ-9aPczPqzaHo_=r1OPoeaew@mail.gmail.com>
-Date: Tue, 28 Apr 2026 11:10:29 +0300
-Message-ID: <2333cf303ab747e96172a6890efe0902f166585d@intel.com>
+References: <20260415215032.3398330-1-shuicheng.lin@intel.com>
+Date: Tue, 28 Apr 2026 11:12:23 +0300
+Message-ID: <0cd899be469b13ed4e6738ce8eb8716081c22d8c@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,19 +70,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sun, 19 Apr 2026, Marc <marclecussano@gmail.com> wrote:
->   Thanks for any pointers =E2=80=94 happy to file at
+On Wed, 15 Apr 2026, Shuicheng Lin <shuicheng.lin@intel.com> wrote:
+> Add validation in check_sections() to verify that inline member
+> documentation tags (/** @member: description */) match actual struct/union
+> member names. Previously, kernel-doc only validated section headers against
+> the parameter list, but inline doc tags stored in parameterdescs were never
+> cross-checked, allowing stale or mistyped member names to go undetected.
 >
->   https://gitlab.freedesktop.org/drm/xe/kernel/-/issues if preferred.
+> The new check iterates over parameterdescs keys and warns about any that
+> don't appear in the parameter list, catching issues like renamed struct
+> members where the documentation tag was not updated to match.
+>
+> This catches real issues such as:
+>   - xe_bo_types.h: @atomic_access (missing struct prefix, should be
+>     @attr.atomic_access)
+>   - xe_device_types.h: @usm.asid (member is actually asid_to_vm)
+>
+> Assisted-by: Claude:claude-opus-4.6
+> Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
 
-Yes, please. See [1].
+Cc: linux-doc@vger.kernel.org
 
-BR,
-Jani.
+> ---
+>  tools/lib/python/kdoc/kdoc_parser.py | 25 +++++++++++++++++++++++++
+>  1 file changed, 25 insertions(+)
+>
+> diff --git a/tools/lib/python/kdoc/kdoc_parser.py b/tools/lib/python/kdoc/kdoc_parser.py
+> index ca00695b47b3..f21f06c0a9b0 100644
+> --- a/tools/lib/python/kdoc/kdoc_parser.py
+> +++ b/tools/lib/python/kdoc/kdoc_parser.py
+> @@ -673,6 +673,31 @@ class KernelDoc:
+>                  self.emit_msg(ln,
+>                                f"Excess {dname} '{section}' description in '{decl_name}'")
+>  
+> +        #
+> +        # Check that documented parameter names (from doc comments, including
+> +        # inline ``/** @member: */`` tags) actually match real members in
+> +        # the declaration.  This catches mismatched or stale kernel-doc
+> +        # member tags that don't correspond to any actual struct/union
+> +        # member or function parameter.
+> +        #
+> +        for param_name, desc in self.entry.parameterdescs.items():
+> +            # Skip auto-generated entries from push_parameter()
+> +            if desc == self.undescribed:
+> +                continue
+> +            if desc in ("no arguments", "anonymous\n", "variable arguments"):
+> +                continue
+> +            if param_name.startswith("{unnamed_"):
+> +                continue
+> +            if param_name in self.entry.parameterlist:
+> +                continue
+> +
+> +            if decl_type == 'function':
+> +                dname = f"{decl_type} parameter"
+> +            else:
+> +                dname = f"{decl_type} member"
+> +            self.emit_msg(ln,
+> +                          f"Excess {dname} '{param_name}' description in '{decl_name}'")
+> +
+>      def check_return_section(self, ln, declaration_name, return_type):
+>          """
+>          If the function doesn't return void, warns about the lack of a
 
-
-[1] https://drm.pages.freedesktop.org/intel-docs/how-to-file-i915-bugs.html
-
-
---=20
+-- 
 Jani Nikula, Intel
