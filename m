@@ -4,33 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9842FF8868
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Apr 2026 09:41:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B63A6FF8868
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Apr 2026 09:45:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E71510EABE;
-	Tue, 28 Apr 2026 09:41:43 +0000 (UTC)
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20A9910EABD;
- Tue, 28 Apr 2026 09:41:42 +0000 (UTC)
-Received: from 37-219-152-235.nat.bb.dnainternet.fi ([37.219.152.235]
- helo=[192.168.101.111])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
- id 1wHewi-00000004f2U-14ID; Tue, 28 Apr 2026 12:41:38 +0300
-Message-ID: <984eda0c91a24f209660676266288464a154ccaa.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Jani Nikula <jani.nikula@linux.intel.com>, Luca Coelho
- <luciano.coelho@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, ville.syrjala@linux.intel.com
-Date: Tue, 28 Apr 2026 12:41:34 +0300
-In-Reply-To: <6cd074a68c151a55c5b689b8dcc4e8f10f089f0e@intel.com>
-References: <20260420202252.3846880-1-luciano.coelho@intel.com>
- <6cd074a68c151a55c5b689b8dcc4e8f10f089f0e@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-9 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 710F210EABF;
+	Tue, 28 Apr 2026 09:45:14 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lWsVbJ0W";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2320010EABE;
+ Tue, 28 Apr 2026 09:45:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1777369513; x=1808905513;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=HtsGNwL7hZ0zkDzN6OgQLhPV3N5XrvY+T6jNJxzmLCE=;
+ b=lWsVbJ0W7lNPrrDPTH7oYDjpC0/ygOqAfN3Dh1fgWHKIw2x5NSWYC5rj
+ iL2CFvXapm3NEsclx1NOpvH7SHuRPvjg1WMOvA620xlwKMmql+pAdlVbP
+ OEOZKg4mt2b2SNCKw1owR2zf/kyH+1W4EfZe+Nnxf81OIZ7fp1FYL5qLo
+ 7uf3ur0w7EXawEaf32eLge+oUuBsShPSN2D3KpryDHo1xZHjk8vQSZmg0
+ ESf6o9yfMZNR1GgfGYl2QT6tDVOpOJh0gy3/YosLMgZBl+iLbP4gXxnQV
+ qAkkTLi8UiypPXGOJsfM/L3RALAmhllIut7dm3qWOeUR84UBihUnrMMFx w==;
+X-CSE-ConnectionGUID: TSgTmYXvTZWCv9XjBgQQdg==
+X-CSE-MsgGUID: u90DSEK5T2qsBtV1ecU5Xg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11769"; a="89652819"
+X-IronPort-AV: E=Sophos;i="6.23,203,1770624000"; d="scan'208";a="89652819"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2026 02:45:13 -0700
+X-CSE-ConnectionGUID: B6lNAgBATgqUnABcneHejw==
+X-CSE-MsgGUID: pFBO/0EOSiuvmZStuD/9MQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,203,1770624000"; d="scan'208";a="257439238"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO fedora)
+ ([10.245.244.161])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2026 02:45:09 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Jatin Kataria <jkataria@netflix.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Matthew Brost <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org,
+ stable@vger.kernel.org, Boqun Feng <boqun@kernel.org>
+Subject: [PATCH] drm/ttm: Fix ttm_bo_swapout() infinite LRU walk on swapout
+ failure
+Date: Tue, 28 Apr 2026 11:44:42 +0200
+Message-ID: <20260428094442.16985-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-Subject: Re: [PATCH v4 0/8] drm/i915: move more display dependencies from i915
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,58 +71,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 2026-04-27 at 13:06 +0300, Jani Nikula wrote:
-> On Mon, 20 Apr 2026, Luca Coelho <luciano.coelho@intel.com> wrote:
-> > This series continues my work of refactoring the clock gating
-> > initialization, so that i915 doesn't do display-specific stuff.
-> >=20
-> > With this, all register dependencies should be gone.
-> >=20
-> > Changes in v4:
-> > 	* Explain why HAS_LLC() is not needed anymore (Jani);
-> > 	* Replace intel_display_core.h include with intel_pch.h (Jani);
-> >=20
-> > Please review.
->=20
-> There's the one omission in patch 5 that I pointed out that needs to be
-> fixed.
->=20
-> Other than that, this is
->=20
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+When ttm_tt_swapout() fails, the current code calls
+ttm_resource_add_bulk_move() followed by ttm_resource_move_to_lru_tail()
+to restore the resource's bulk_move membership.
 
-Thanks for the review!
+However, ttm_resource_move_to_lru_tail() places the resource at the tail
+of the LRU list which, relative to the walk cursor's hitch node (placed
+immediately after the resource when it was yielded), puts the resource
+*in front of the* the hitch. The next list_for_each_entry_continue() from
+the hitch finds the same resource again, causing an infinite loop.
 
+Fix by deferring del_bulk_move to the success path only.
 
-> I do have a nagging feeling that further refactoring will be needed, as
-> this introduces a plethora of new display interfaces i915 core needs to
-> call, and we should work to minimize that surface. However, this is good
-> stuff for moving the display stuff out of i915 core, so let's roll with
-> this.
+On the success path, TTM_TT_FLAG_SWAPPED has just been set by
+ttm_tt_swapout() but the resource is still tracked in the bulk_move range,
+so ttm_resource_del_bulk_move()'s !ttm_resource_unevictable() guard would
+incorrectly skip the removal. Introduce
+ttm_resource_del_bulk_move_unevictable() which bypasses that guard.
 
-Yeah, the main problem is that the calls to platform specific things
-were all over, sometimes in the beginning, sometimes in the middle and
-sometimes in the end of the flows.  Ville already mentioned that most
-of these are probably not order-sensitive, so we could generalize the
-implementation and reduce the number of interfaces.
+Reported-by: Jatin Kataria <jkataria@netflix.com>
+Fixes: fc5d96670eb2 ("drm/ttm: Move swapped objects off the manager's LRU list")
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: <dri-devel@lists.freedesktop.org>
+Cc: <stable@vger.kernel.org> # v6.13+
+Assisted-by: GitHub_Copilot:claude-sonnet-4.6
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Reviewed-by: Christian König <christian.koenig@amd.com>
+Tested-by: Boqun Feng <boqun@kernel.org>
+---
+ drivers/gpu/drm/ttm/ttm_bo.c       | 16 ++++++----------
+ drivers/gpu/drm/ttm/ttm_resource.c | 13 +++++++++++++
+ include/drm/ttm/ttm_resource.h     |  2 ++
+ 3 files changed, 21 insertions(+), 10 deletions(-)
 
-I didn't want to change the order of these workarounds in this series.
-Now that the functions are inside the display code, we can start make
-some functional changes in a more isolated way.
+diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
+index d85f0a37ac35..293401705542 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo.c
++++ b/drivers/gpu/drm/ttm/ttm_bo.c
+@@ -1177,17 +1177,13 @@ ttm_bo_swapout_cb(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo)
+ 		bdev->funcs->swap_notify(bo);
+ 
+ 	if (ttm_tt_is_populated(tt)) {
+-		spin_lock(&bdev->lru_lock);
+-		ttm_resource_del_bulk_move(bo->resource, bo);
+-		spin_unlock(&bdev->lru_lock);
+-
+ 		ret = ttm_tt_swapout(bdev, tt, swapout_walk->gfp_flags);
+-
+-		spin_lock(&bdev->lru_lock);
+-		if (ret)
+-			ttm_resource_add_bulk_move(bo->resource, bo);
+-		ttm_resource_move_to_lru_tail(bo->resource);
+-		spin_unlock(&bdev->lru_lock);
++		if (!ret) {
++			spin_lock(&bdev->lru_lock);
++			ttm_resource_del_bulk_move_unevictable(bo->resource, bo);
++			ttm_resource_move_to_lru_tail(bo->resource);
++			spin_unlock(&bdev->lru_lock);
++		}
+ 	}
+ 
+ out:
+diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
+index 9f36631d48b6..0e5f1582f13d 100644
+--- a/drivers/gpu/drm/ttm/ttm_resource.c
++++ b/drivers/gpu/drm/ttm/ttm_resource.c
+@@ -292,6 +292,19 @@ void ttm_resource_del_bulk_move(struct ttm_resource *res,
+ 		ttm_lru_bulk_move_del(bo->bulk_move, res);
+ }
+ 
++/*
++ * Remove a resource from its bulk_move, bypassing the unevictable check.
++ * Use only when the resource is known to still be tracked in the range despite
++ * the BO having just become unevictable; asserts that this is the case.
++ */
++void ttm_resource_del_bulk_move_unevictable(struct ttm_resource *res,
++					    struct ttm_buffer_object *bo)
++{
++	WARN_ON_ONCE(!ttm_resource_unevictable(res, bo));
++	if (bo->bulk_move)
++		ttm_lru_bulk_move_del(bo->bulk_move, res);
++}
++
+ /* Move a resource to the LRU or bulk tail */
+ void ttm_resource_move_to_lru_tail(struct ttm_resource *res)
+ {
+diff --git a/include/drm/ttm/ttm_resource.h b/include/drm/ttm/ttm_resource.h
+index 33e80f30b8b8..a5d386583fb6 100644
+--- a/include/drm/ttm/ttm_resource.h
++++ b/include/drm/ttm/ttm_resource.h
+@@ -448,6 +448,8 @@ void ttm_resource_add_bulk_move(struct ttm_resource *res,
+ 				struct ttm_buffer_object *bo);
+ void ttm_resource_del_bulk_move(struct ttm_resource *res,
+ 				struct ttm_buffer_object *bo);
++void ttm_resource_del_bulk_move_unevictable(struct ttm_resource *res,
++					    struct ttm_buffer_object *bo);
+ void ttm_resource_move_to_lru_tail(struct ttm_resource *res);
+ 
+ void ttm_resource_init(struct ttm_buffer_object *bo,
+-- 
+2.53.0
 
-
-> A minor nit for further reference. If you can, please try to avoid
-> combining code movement and other changes. Reviewing pure code movement
-> with 'git show --color-moved' is quick. Reviewing other mechanical
-> changes with 'git show --color-words' is also quick. Unfortunately,
-> having code movement and other inline changes in one breaks both
-> approaches, and you have to fall back to more manual review.
-
-Sorry for that.  I've been nagging about the same thing many times in
-the past myself, so it's silly I've done it too.  I've been moving this
-code forth and back quite a few times, and ended up mixing moves from
-actual changes. :(
-
---
-Cheers,
-Luca.
