@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE305FF8867
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Apr 2026 12:14:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 982A0FF8867
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Apr 2026 12:14:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AB1510EFD2;
-	Wed, 29 Apr 2026 12:14:10 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PBY+Yzjc";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93B5E10EFCA;
- Wed, 29 Apr 2026 12:14:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777464849; x=1809000849;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=0SCNNRybSa4zrfX0ohT+3pDvtwDm39EXa7+ObWgW/J8=;
- b=PBY+YzjcXacX+ot0Mb59HPy1sLDRdJw8+RMfxCldNuHZj3HIPszY0MQW
- CWrzBkxNissY7WWEWVUxwPmFfwvC3uP9onKxTQgrVRaFriT69ydS2cmfJ
- fP8Y/sXz6vGneqUAQz0HmjkWHeBP5nKhEL2JG0rz7H/8xN0ySNprfDWp7
- Ng5cQODxxpnnQOt9fKHmrjn4LkUfH71w3wpH9CWR2X1M1EOz51+ME9gnn
- 5PhXnvETKCvYmXPXoOF9ikTcpIQSvKBvLjrZZORWB4vVZyjNdTi2ws4Yf
- HJaQIwXDG8tTpLC8lKNA6a2QldvZbzJ/0i5niX66UFv10HsD6cp3Y7nV3 A==;
-X-CSE-ConnectionGUID: +mGk/KkuQMSAYEJUaMbVxw==
-X-CSE-MsgGUID: h8kh/f/WRvSkfqVGolxBtA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11770"; a="80965224"
-X-IronPort-AV: E=Sophos;i="6.23,206,1770624000"; d="scan'208";a="80965224"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2026 05:14:09 -0700
-X-CSE-ConnectionGUID: 7tGzVPlwTLWDbuow4iX44g==
-X-CSE-MsgGUID: ztV8c6OkQUqNwf5WFv57kA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,206,1770624000"; d="scan'208";a="236030269"
-Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.245.218])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2026 05:14:07 -0700
-Date: Wed, 29 Apr 2026 15:14:04 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jani.nikula@linux.intel.com
-Subject: Re: [PATCH 2/2] drm/i915/intel_panel: Use highest refresh rate mode
- for seamless VRR changes
-Message-ID: <afH2DKWGJs5nmFwh@intel.com>
-References: <20260428083323.3745772-1-ankit.k.nautiyal@intel.com>
- <20260428083323.3745772-3-ankit.k.nautiyal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5828B10EFDC;
+	Wed, 29 Apr 2026 12:14:17 +0000 (UTC)
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1378910EFDC;
+ Wed, 29 Apr 2026 12:14:16 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260428083323.3745772-3-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915=3A_refactor_disp?=
+ =?utf-8?q?lay_funcs=2C_add_display_irq_hooks?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 29 Apr 2026 12:14:16 -0000
+Message-ID: <177746485607.24138.12371042788296452400@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <cover.1777458161.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1777458161.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,363 +36,72 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Apr 28, 2026 at 02:03:23PM +0530, Ankit Nautiyal wrote:
-> intel_panel_fixed_mode() intends to choose a fixed mode at or above the
-> requested refresh rate for VRR panels, so the requested refresh can be
-> reached by extending vblank.
-> 
-> This is called in compute config to find the 'best' fixed mode for a
-> requested mode and also called during mode valid phase to prune the
-> unsupported fixed modes.
-> 
-> For Non-VRR panels there is no issue:
-> - When a user wants to do a full modeset (sets DRM_MODE_ALLOW_MODESET
->   flag) with a custom mode, the intel_panel_fixed_mode() gives the mode
->   with refresh rate nearest to the requested mode.
-> - Seamless switch to a lower mode is only possible if the platform has
->   support for Double buffered MN and the sink is Seamless-DRRS capable.
->   In this case the user sets a lower refresh rate mode and doesn't set
->   the DRM_MODE_ALLOW_MODESET flag the intel_panel_fixed_mode() returns
->   again the fixed mode whose refresh rate is nearest to the requested
->   mode.
-> - Since Duble buffered MN is not supported on LNL+, the seamless switch
->   is not possible for such panels from LNL+.
-> 
-> For VRR panels the current logic has some issues:
-> - For VRR panels intel_panel_fixed_mode() intends to choose a fixed mode
->   at or above the requested refresh rate so the requested refresh can be
->   reached by extending vblank.
-> - However, as per the current logic the helper can return a lower refresh
->   rate mode, if the lower refresh rate mode is first in the list of fixed
->   mode. Later, if the selected fixed mode's refresh rate < the requested
->   mode's refresh rate, then the requested rate is matched by extending
->   the vblank. 
-> - In case of a full modeset request with a custom mode this is not a
->   problem. But for the seamless switch features like LRR (Lower Refresh
->   Rate) and the Seamless-DRRS this creates a problem as this results in
->   change in vsync_start/end and resulting in a full modeset.
-> - Furthermore, as with the Non-VRR panel case, the Seamless-DRRS is not
->   supported on LNL+, but for VRR panels, the vblank can be extended
->   similar to LRR case. But due to the above mentioned problem in the
->   intel_panel_fixed_mode() this also results in full modeset.
-> 
-> To solve these problems for the VRR panels, identify if the user wants a
-> full modeset or expects seamless switch. If seamless switch to a lower
-> mode is desired, make intel_panel_fixed_mode() return the highest
-> refresh rate mode, provided the requested rate is in vrr range. This
-> will then be modified to extend the vblank to provide the desired
-> refresh rate.
-> 
-> This is particularly needed for DRRS panels on platforms without the
-> double buffered M/N support (display version 20+), where seamless clock
-> changes are not possible.
-> 
-> To understand the user requirement for full modeset/seamless switch, the
-> intel_panel_fixed_mode() and intel_panel_compute_config() need access to
-> the connector state to check the allow_modeset flag.
-> 
-> Add a nullable conn_state parameter to both. The mode_valid callers pass
-> NULL since they have no atomic state and the compute_config callers pass
-> their conn_state.
-> 
-> Also remove the VRR check from is_best_fixed_mode() since the selection is
-> handled upfront in intel_panel_fixed_mode().
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/icl_dsi.c     |  2 +-
->  drivers/gpu/drm/i915/display/intel_dp.c    |  6 ++--
->  drivers/gpu/drm/i915/display/intel_dsi.c   |  2 +-
->  drivers/gpu/drm/i915/display/intel_dvo.c   |  6 ++--
->  drivers/gpu/drm/i915/display/intel_lvds.c  |  4 +--
->  drivers/gpu/drm/i915/display/intel_panel.c | 35 +++++++++++-----------
->  drivers/gpu/drm/i915/display/intel_panel.h |  6 ++--
->  drivers/gpu/drm/i915/display/intel_sdvo.c  |  8 ++---
->  drivers/gpu/drm/i915/display/vlv_dsi.c     |  2 +-
->  9 files changed, 37 insertions(+), 34 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-> index afbaa0465842..1efe81404d01 100644
-> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> @@ -1671,7 +1671,7 @@ static int gen11_dsi_compute_config(struct intel_encoder *encoder,
->  	pipe_config->sink_format = INTEL_OUTPUT_FORMAT_RGB;
->  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
->  
-> -	ret = intel_panel_compute_config(intel_connector, adjusted_mode);
-> +	ret = intel_panel_compute_config(intel_connector, adjusted_mode, conn_state);
->  	if (ret)
->  		return ret;
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 35b8fb5740aa..f014ce28e69f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -1588,7 +1588,7 @@ intel_dp_mode_valid(struct drm_connector *_connector,
->  	if (intel_dp_hdisplay_bad(display, mode->hdisplay))
->  		return MODE_H_ILLEGAL;
->  
-> -	fixed_mode = intel_panel_fixed_mode(connector, mode);
-> +	fixed_mode = intel_panel_fixed_mode(connector, mode, NULL);
->  	if (intel_dp_is_edp(intel_dp) && fixed_mode) {
->  		status = intel_panel_mode_valid(connector, mode);
->  		if (status != MODE_OK)
-> @@ -3577,9 +3577,9 @@ intel_dp_compute_config(struct intel_encoder *encoder,
->  	struct intel_connector *connector = intel_dp->attached_connector;
->  	int ret = 0, link_bpp_x16;
->  
-> -	fixed_mode = intel_panel_fixed_mode(connector, adjusted_mode);
-> +	fixed_mode = intel_panel_fixed_mode(connector, adjusted_mode, conn_state);
->  	if (intel_dp_is_edp(intel_dp) && fixed_mode) {
-> -		ret = intel_panel_compute_config(connector, adjusted_mode);
-> +		ret = intel_panel_compute_config(connector, adjusted_mode, conn_state);
->  		if (ret)
->  			return ret;
->  	}
-> diff --git a/drivers/gpu/drm/i915/display/intel_dsi.c b/drivers/gpu/drm/i915/display/intel_dsi.c
-> index 9005c1f5d857..a480bb79dca7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dsi.c
-> @@ -64,7 +64,7 @@ enum drm_mode_status intel_dsi_mode_valid(struct drm_connector *connector,
->  	struct intel_display *display = to_intel_display(connector->dev);
->  	struct intel_connector *intel_connector = to_intel_connector(connector);
->  	const struct drm_display_mode *fixed_mode =
-> -		intel_panel_fixed_mode(intel_connector, mode);
-> +		intel_panel_fixed_mode(intel_connector, mode, NULL);
->  	int max_dotclk = display->cdclk.max_dotclk_freq;
->  	enum drm_mode_status status;
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_dvo.c b/drivers/gpu/drm/i915/display/intel_dvo.c
-> index 405b33aca9dd..0ec25d895777 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dvo.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dvo.c
-> @@ -224,7 +224,7 @@ intel_dvo_mode_valid(struct drm_connector *_connector,
->  	struct intel_connector *connector = to_intel_connector(_connector);
->  	struct intel_dvo *intel_dvo = intel_attached_dvo(connector);
->  	const struct drm_display_mode *fixed_mode =
-> -		intel_panel_fixed_mode(connector, mode);
-> +		intel_panel_fixed_mode(connector, mode, NULL);
->  	int max_dotclk = display->cdclk.max_dotclk_freq;
->  	int target_clock = mode->clock;
->  	enum drm_mode_status status;
-> @@ -259,7 +259,7 @@ static int intel_dvo_compute_config(struct intel_encoder *encoder,
->  	struct intel_connector *connector = to_intel_connector(conn_state->connector);
->  	struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
->  	const struct drm_display_mode *fixed_mode =
-> -		intel_panel_fixed_mode(intel_dvo->attached_connector, adjusted_mode);
-> +		intel_panel_fixed_mode(intel_dvo->attached_connector, adjusted_mode, conn_state);
->  
->  	/*
->  	 * If we have timings from the BIOS for the panel, put them in
-> @@ -270,7 +270,7 @@ static int intel_dvo_compute_config(struct intel_encoder *encoder,
->  	if (fixed_mode) {
->  		int ret;
->  
-> -		ret = intel_panel_compute_config(connector, adjusted_mode);
-> +		ret = intel_panel_compute_config(connector, adjusted_mode, conn_state);
->  		if (ret)
->  			return ret;
->  	}
-> diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
-> index cc6d4bfcff10..2e30bc3f1e62 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lvds.c
-> +++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-> @@ -396,7 +396,7 @@ intel_lvds_mode_valid(struct drm_connector *_connector,
->  	struct intel_display *display = to_intel_display(_connector->dev);
->  	struct intel_connector *connector = to_intel_connector(_connector);
->  	const struct drm_display_mode *fixed_mode =
-> -		intel_panel_fixed_mode(connector, mode);
-> +		intel_panel_fixed_mode(connector, mode, NULL);
->  	int max_pixclk = display->cdclk.max_dotclk_freq;
->  	enum drm_mode_status status;
->  
-> @@ -460,7 +460,7 @@ static int intel_lvds_compute_config(struct intel_encoder *encoder,
->  	 * with the panel scaling set up to source from the H/VDisplay
->  	 * of the original mode.
->  	 */
-> -	ret = intel_panel_compute_config(connector, adjusted_mode);
-> +	ret = intel_panel_compute_config(connector, adjusted_mode, conn_state);
->  	if (ret)
->  		return ret;
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
-> index 5e918ee0c8ea..65d017371d78 100644
-> --- a/drivers/gpu/drm/i915/display/intel_panel.c
-> +++ b/drivers/gpu/drm/i915/display/intel_panel.c
-> @@ -59,24 +59,13 @@ intel_panel_preferred_fixed_mode(struct intel_connector *connector)
->  					struct drm_display_mode, head);
->  }
->  
-> -static bool is_best_fixed_mode(struct intel_connector *connector,
-> -			       int vrefresh, int fixed_mode_vrefresh,
-> +static bool is_best_fixed_mode(int vrefresh, int fixed_mode_vrefresh,
->  			       const struct drm_display_mode *best_mode)
->  {
->  	/* we want to always return something */
->  	if (!best_mode)
->  		return true;
->  
-> -	/*
-> -	 * With VRR always pick a mode with equal/higher than requested
-> -	 * vrefresh, which we can then reduce to match the requested
-> -	 * vrefresh by extending the vblank length.
-> -	 */
-> -	if (intel_vrr_is_in_range(connector, vrefresh) &&
-> -	    intel_vrr_is_in_range(connector, fixed_mode_vrefresh) &&
-> -	    fixed_mode_vrefresh < vrefresh)
-> -		return false;
-> -
->  	/* pick the fixed_mode that is closest in terms of vrefresh */
->  	return abs(fixed_mode_vrefresh - vrefresh) <
->  		abs(drm_mode_vrefresh(best_mode) - vrefresh);
-> @@ -84,15 +73,26 @@ static bool is_best_fixed_mode(struct intel_connector *connector,
->  
->  const struct drm_display_mode *
->  intel_panel_fixed_mode(struct intel_connector *connector,
-> -		       const struct drm_display_mode *mode)
-> +		       const struct drm_display_mode *mode,
-> +		       const struct drm_connector_state *conn_state)
->  {
->  	const struct drm_display_mode *fixed_mode, *best_mode = NULL;
->  	int vrefresh = drm_mode_vrefresh(mode);
->  
-> +	/*
-> +	 * With VRR always pick the highest refresh rate mode,
-> +	 * which we can then reduce to match the requested
-> +	 * vrefresh by extending the vblank length.
-> +	 */
-> +	if (conn_state && !conn_state->state->allow_modeset &&
+== Series Details ==
 
-The foo_state->state pointer should never be used. If you need the full
-atomic state then plumb it through from the top.
+Series: drm/i915: refactor display funcs, add display irq hooks
+URL   : https://patchwork.freedesktop.org/series/165710/
+State : warning
 
-> +	    intel_vrr_is_capable(connector) &&
-> +	    intel_vrr_is_in_range(connector, vrefresh))
-> +		return intel_panel_highest_vrefresh_mode(connector);
+== Summary ==
 
-What we want is the fixed mode that matches the current adjusted mode
-exactly except for vtotal, and I think we also want to maintain the
-vsync pulse location relative to vtotal.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c8c12e558adaef7a4d125d83b6e1f8824bc13b82
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 5b39454654c4f162a593d6c08c4ddf71320c7db3
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Wed Apr 29 13:24:55 2026 +0300
 
-We should in fact fix the vsync_start/end mess first. We need to add
-TRANS_VSYNC handling to the LRR codepaths and allow that to change
-during fastsets. And intel_panel_compute_config() needs to preserve
-the vtotal-vsync distance when adjusting vtotal. I think that should
-all be fine for DP since it doesn't really use TRANS_VSYNC for
-anything.
+    drm/i915/irq: add intel_display_irq_handler() to irq funcs
+    
+    Call the platform specific display irq handler hooks via
+    intel_display_irq_handler(). Add master_ctl to struct
+    intel_display_irq_state, and pass the state pointer to the handler where
+    necessary.
+    
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 1db870ffb55b6414a78d7609ba7e08adf880dfc5 drm-intel
+efdfe68ac66e drm/i915/display: move audio funcs under audio sub-struct
+ed135fbba09a drm/i915/display: move color funcs under color sub-struct
+59fc26e721b5 drm/i915/display: move fdi funcs under fdi sub-struct
+4e9c8d59ea24 drm/i915/display: move watermark funcs under wm sub-struct
+c1d30880ab53 drm/i915/display: move hotplug irq funcs under hotplug sub-struct
+66e356137d8a drm/i915/display: move dpll funcs under dpll sub-struct
+6a860fecd6e6 drm/i915/display: move cdclk funcs under cdclk sub-struct
+81f753125b39 drm/i915/display: move display funcs under modeset sub-struct
+c6eb9b9e70e1 drm/i915/irq: deduplicate dg1_de_irq_postinstall() and gen11_de_irq_postinstall()
+5a2ba49577e7 drm/i915/irq: move VLV/CHV LPE irq handler call after irq acks
+8b06b08a5762 drm/i915/irq: constify pipe stats parameters
+-:53: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#53: FILE: drivers/gpu/drm/i915/display/intel_display_irq.h:81:
++void i915_pipestat_irq_handler(struct intel_display *display, u32 iir, const u32 pipe_stats[I915_MAX_PIPES]);
 
->
-+
->  	list_for_each_entry(fixed_mode, &connector->panel.fixed_modes, head) {
->  		int fixed_mode_vrefresh = drm_mode_vrefresh(fixed_mode);
->  
-> -		if (is_best_fixed_mode(connector, vrefresh,
-> +		if (is_best_fixed_mode(vrefresh,
->  				       fixed_mode_vrefresh, best_mode))
->  			best_mode = fixed_mode;
->  	}
-> @@ -213,10 +213,11 @@ enum drrs_type intel_panel_drrs_type(struct intel_connector *connector)
->  }
->  
->  int intel_panel_compute_config(struct intel_connector *connector,
-> -			       struct drm_display_mode *adjusted_mode)
-> +			       struct drm_display_mode *adjusted_mode,
-> +			       const struct drm_connector_state *conn_state)
->  {
->  	const struct drm_display_mode *fixed_mode =
-> -		intel_panel_fixed_mode(connector, adjusted_mode);
-> +		intel_panel_fixed_mode(connector, adjusted_mode, conn_state);
->  	int vrefresh, fixed_mode_vrefresh;
->  	bool is_vrr;
->  
-> @@ -414,7 +415,7 @@ intel_panel_mode_valid(struct intel_connector *connector,
->  		       const struct drm_display_mode *mode)
->  {
->  	const struct drm_display_mode *fixed_mode =
-> -		intel_panel_fixed_mode(connector, mode);
-> +		intel_panel_fixed_mode(connector, mode, NULL);
->  
->  	if (!fixed_mode)
->  		return MODE_OK;
-> diff --git a/drivers/gpu/drm/i915/display/intel_panel.h b/drivers/gpu/drm/i915/display/intel_panel.h
-> index 2f7a317995ea..c1189a20c8b2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_panel.h
-> +++ b/drivers/gpu/drm/i915/display/intel_panel.h
-> @@ -32,7 +32,8 @@ const struct drm_display_mode *
->  intel_panel_preferred_fixed_mode(struct intel_connector *connector);
->  const struct drm_display_mode *
->  intel_panel_fixed_mode(struct intel_connector *connector,
-> -		       const struct drm_display_mode *mode);
-> +		       const struct drm_display_mode *mode,
-> +		       const struct drm_connector_state *conn_state);
->  const struct drm_display_mode *
->  intel_panel_downclock_mode(struct intel_connector *connector,
->  			   const struct drm_display_mode *adjusted_mode);
-> @@ -47,7 +48,8 @@ enum drm_mode_status
->  intel_panel_mode_valid(struct intel_connector *connector,
->  		       const struct drm_display_mode *mode);
->  int intel_panel_compute_config(struct intel_connector *connector,
-> -			       struct drm_display_mode *adjusted_mode);
-> +			       struct drm_display_mode *adjusted_mode,
-> +			       const struct drm_connector_state *conn_state);
->  void intel_panel_add_edid_fixed_modes(struct intel_connector *connector,
->  				      bool use_alt_fixed_modes);
->  void intel_panel_add_vbt_lfp_fixed_mode(struct intel_connector *connector);
-> diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
-> index 2e1af9e869de..e07c1070a3ec 100644
-> --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-> +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-> @@ -797,7 +797,7 @@ intel_sdvo_create_preferred_input_timing(struct intel_sdvo *intel_sdvo,
->  
->  	if (IS_LVDS(intel_sdvo_connector)) {
->  		const struct drm_display_mode *fixed_mode =
-> -			intel_panel_fixed_mode(&intel_sdvo_connector->base, mode);
-> +			intel_panel_fixed_mode(&intel_sdvo_connector->base, mode, NULL);
->  
->  		if (fixed_mode->hdisplay != args.width ||
->  		    fixed_mode->vdisplay != args.height)
-> @@ -1396,11 +1396,11 @@ static int intel_sdvo_compute_config(struct intel_encoder *encoder,
->  		pipe_config->sdvo_tv_clock = true;
->  	} else if (IS_LVDS(intel_sdvo_connector)) {
->  		const struct drm_display_mode *fixed_mode =
-> -			intel_panel_fixed_mode(&intel_sdvo_connector->base, mode);
-> +			intel_panel_fixed_mode(&intel_sdvo_connector->base, mode, conn_state);
->  		int ret;
->  
->  		ret = intel_panel_compute_config(&intel_sdvo_connector->base,
-> -						 adjusted_mode);
-> +						 adjusted_mode, conn_state);
->  		if (ret)
->  			return ret;
->  
-> @@ -1562,7 +1562,7 @@ static void intel_sdvo_pre_enable(struct intel_atomic_state *state,
->  	/* lvds has a special fixed output timing. */
->  	if (IS_LVDS(intel_sdvo_connector)) {
->  		const struct drm_display_mode *fixed_mode =
-> -			intel_panel_fixed_mode(&intel_sdvo_connector->base, mode);
-> +			intel_panel_fixed_mode(&intel_sdvo_connector->base, mode, conn_state);
->  
->  		intel_sdvo_get_dtd_from_mode(&output_dtd, fixed_mode);
->  	} else {
-> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
-> index 76e8cd0f65a4..bfe465443d20 100644
-> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
-> @@ -280,7 +280,7 @@ static int intel_dsi_compute_config(struct intel_encoder *encoder,
->  	pipe_config->sink_format = INTEL_OUTPUT_FORMAT_RGB;
->  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
->  
-> -	ret = intel_panel_compute_config(intel_connector, adjusted_mode);
-> +	ret = intel_panel_compute_config(intel_connector, adjusted_mode, conn_state);
->  	if (ret)
->  		return ret;
->  
-> -- 
-> 2.45.2
+-:54: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#54: FILE: drivers/gpu/drm/i915/display/intel_display_irq.h:82:
++void i965_pipestat_irq_handler(struct intel_display *display, u32 iir, const u32 pipe_stats[I915_MAX_PIPES]);
 
--- 
-Ville Syrjälä
-Intel
+-:55: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#55: FILE: drivers/gpu/drm/i915/display/intel_display_irq.h:83:
++void valleyview_pipestat_irq_handler(struct intel_display *display, const u32 pipe_stats[I915_MAX_PIPES]);
+
+total: 0 errors, 3 warnings, 0 checks, 36 lines checked
+2085541ee845 drm/i915/irq: add display irq funcs, start with intel_display_irq_reset()
+a60a5e32ae71 drm/i915/irq: add intel_display_irq_postinstall() to irq funcs
+df48e7e2e60d drm/i915/irq: add intel_display_irq_ack() to irq funcs
+5b39454654c4 drm/i915/irq: add intel_display_irq_handler() to irq funcs
+-:267: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#267: FILE: drivers/gpu/drm/i915/display/intel_display_irq.h:70:
++bool intel_display_irq_handler(struct intel_display *display, const struct intel_display_irq_state *state);
+
+total: 0 errors, 1 warnings, 0 checks, 357 lines checked
+
+
