@@ -4,54 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DCB9FF8867
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Apr 2026 09:27:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CF24FF886D
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Apr 2026 09:32:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3097F10EF11;
-	Wed, 29 Apr 2026 09:27:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2A2410EF16;
+	Wed, 29 Apr 2026 09:31:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MhdSLB22";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U+Z8fWBs";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F276B10EF0F;
- Wed, 29 Apr 2026 09:27:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6621E10EF1B
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 Apr 2026 09:31:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777454831; x=1808990831;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=LSNQY47Oj4lQ3FzhetY87+h91Gpk0XjyATmWYx2cwo4=;
- b=MhdSLB22bI7pGu8aZkxzAcuMBhkxwqQvYneVQyw7eb9UPXn6j1JnlP1B
- YjAmaCMlaanBJoJXfeeCmtVZeOS32aBbPtp1UNxOci5+YxWNeZQyLn0Dp
- 8gy2XEiXspuRg3dDTu+lmzr3dBTXhG2vkE1i7h6UjrYAfQWLMYrhoYyrv
- eqUlbjeovAsZy5GJCGzC5DctzhSuwqYdRoyD8NQrQnfRVlU4daI3pPeEG
- 0gf8AX/YCNEdSO3MmogEZnOEIVjzKBs7DlTufjzYGjMTKjszBeplqTjW9
- Xk8Wtm4vw8RQ4IKkMYep3qgPPF+jevrX8i2fftANM6afamK+6It2tZwQL g==;
-X-CSE-ConnectionGUID: UPEIDWOdTaO6dVfxy6M63A==
-X-CSE-MsgGUID: JkE87cD+RJ6w96ha+qZPsg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11770"; a="95946316"
-X-IronPort-AV: E=Sophos;i="6.23,205,1770624000"; d="scan'208";a="95946316"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2026 02:27:11 -0700
-X-CSE-ConnectionGUID: x4PK/IYNS9SYfRWJTQ3J1g==
-X-CSE-MsgGUID: 4ZfWi71eTwmuN24pivX/Mg==
+ t=1777455118; x=1808991118;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=MkXHszNftPYPTc4enVHAaXrDUU7FcHNkH/5y7SI3ptU=;
+ b=U+Z8fWBsXfrHzgY5mczBwwMZd3y4OR2G1+AVrQZ29cWkIfgiy1eY46v+
+ uaMYHsDIJOMHn2BZwmZ+VeZqJcO+KiiinLGxs5TfcfTtmzTX8Szwh0HKl
+ QqXfSqLBOjZk0Lc1byoYnLb6OdaN+wy11fOqxUfLJMVwdPr/kZoafrIlh
+ i5M7nzoRFrsyLaVHHCsYY3E61+9PgkpU5BCESG30K05vdtJpWr/sHUxVb
+ /7l2kA9okEfOcEBhPEKm9QxW3P0p3/V19znOQGkx8OpFW/7bMnLp5TSkB
+ 1TLGZbrch9BRM4K70XZ2yfXTByrdv0WMeNZdR553QEw1cIqNfMqmn2DT9 w==;
+X-CSE-ConnectionGUID: IEVfi5k4RseC+jG1Og/Yng==
+X-CSE-MsgGUID: oz8bivPOQ5Gu3AewNg6yCg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11770"; a="82235636"
+X-IronPort-AV: E=Sophos;i="6.23,205,1770624000"; d="scan'208";a="82235636"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2026 02:31:58 -0700
+X-CSE-ConnectionGUID: sRj4/GT3RIy0TlVSzpc+uA==
+X-CSE-MsgGUID: hmBrwqy+R2qNl2pmBuNiTA==
 X-ExtLoop1: 1
-Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2026 02:27:09 -0700
-From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: animesh.manna@intel.com, uma.shankar@intel.com,
- suresh.kumar.kurmi@intel.com
-Subject: [PATCH v3 13/13] drm/i915/display: Add DC3CO count and residency in
- dmc debugfs
-Date: Wed, 29 Apr 2026 14:57:07 +0530
-Message-ID: <20260429092707.485696-14-dibin.moolakadan.subrahmanian@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260429092707.485696-1-dibin.moolakadan.subrahmanian@intel.com>
-References: <20260429092707.485696-1-dibin.moolakadan.subrahmanian@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,205,1770624000"; d="scan'208";a="239253239"
+Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
+ ([10.190.239.37])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2026 02:31:56 -0700
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.auld@intel.com, matthew.brost@intel.com,
+ thomas.hellstrom@linux.intel.com, himal.prasad.ghimiray@intel.com,
+ Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: [PATCH] drm/xe: Use drmm_mutex_init for VRAM manager lock
+Date: Wed, 29 Apr 2026 15:01:39 +0530
+Message-ID: <20260429093138.3899280-2-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -68,47 +67,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Expose DC3CO count and residency for xe3lp platforms via debugfs.
+Replace mutex_init()/mutex_destroy() with drmm_mutex_init() for the
+VRAM manager lock. This leverages DRM managed infrastructure to
+automatically destroy the mutex during device teardown, eliminating
+manual mutex_destroy() calls in both the normal fini path and the
+gpu_buddy_init() error path.
 
-Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+Assisted-by: Claude:claude-opus-4.6
+Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dmc.c      | 8 +++++++-
- drivers/gpu/drm/i915/display/intel_dmc_regs.h | 2 ++
- 2 files changed, 9 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 3ba68562bf99..446d59d25c5c 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -1650,7 +1650,13 @@ static int intel_dmc_debugfs_status_show(struct seq_file *m, void *unused)
- 		   DMC_VERSION_MINOR(dmc->version));
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index 5fd0d5506a7e..6ba47996bc7c 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -292,8 +292,6 @@ static void xe_ttm_vram_mgr_fini(struct drm_device *dev, void *arg)
+ 	ttm_resource_manager_cleanup(&mgr->manager);
  
- 	if (DISPLAY_VER(display) >= 12) {
--		if (display->platform.dgfx || DISPLAY_VER(display) >= 14) {
-+		if (DISPLAY_VER(display) >= 35) {
-+			seq_printf(m, "DC3CO count: %d\n",
-+				   intel_de_read(display, XE3P_DMC_DC3CO_COUNT));
-+
-+			seq_printf(m, "DC3CO residency: %d\n",
-+				   intel_de_read(display, DC_STATE_DC3CO_RESIDENCY));
-+		} else if (display->platform.dgfx || DISPLAY_VER(display) >= 14) {
- 			dc5_reg = DG1_DMC_DEBUG_DC5_COUNT;
- 		} else {
- 			dc5_reg = TGL_DMC_DEBUG_DC5_COUNT;
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc_regs.h b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-index 38e342b45af0..1998549b6318 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-@@ -531,6 +531,8 @@ enum pipedmc_event_id {
- #define TGL_DMC_DEBUG3		_MMIO(0x101090)
- #define DG1_DMC_DEBUG3		_MMIO(0x13415c)
+ 	ttm_set_driver_manager(&xe->ttm, mgr->mem_type, NULL);
+-
+-	mutex_destroy(&mgr->lock);
+ }
  
-+#define XE3P_DMC_DC3CO_COUNT	_MMIO(0x8f05C)
-+
- #define DMC_WAKELOCK_CFG	_MMIO(0x8F1B0)
- #define  DMC_WAKELOCK_CFG_ENABLE REG_BIT(31)
- #define DMC_WAKELOCK1_CTL	_MMIO(0x8F140)
+ int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
+@@ -312,7 +310,9 @@ int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
+ 
+ 	man->func = &xe_ttm_vram_mgr_func;
+ 	mgr->mem_type = mem_type;
+-	mutex_init(&mgr->lock);
++	err = drmm_mutex_init(&xe->drm, &mgr->lock);
++	if (err)
++		return err;
+ 	mgr->default_page_size = default_page_size;
+ 	mgr->visible_size = io_size;
+ 	mgr->visible_avail = io_size;
 -- 
-2.43.0
+2.52.0
 
