@@ -4,49 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B9DEFF8875
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Apr 2026 21:27:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C24F8FF8873
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Apr 2026 21:52:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E715D10F18B;
-	Wed, 29 Apr 2026 21:27:55 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="VF0nqJSQ";
-	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5EC410F18B;
- Wed, 29 Apr 2026 21:27:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
- Message-ID:Content-Type:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=P+YHxiWayYtMcGT4cchSQZurmu0uKrlxRQSW7KYEbZg=; b=VF0nqJSQyE6B53NmJPy9qboyPJ
- dtK0RLMlPt4j8t4eI+D9GUWR7hE+fviE0r13JHSGbEnSgVB2EKfP+E48DtgPgnWK+QwFAH9a6d41R
- UYA+qbPL/XFPJi0ot9uo8FqZ1wY0fMkk0v5bimbdUzmJck3JcGxaRRTbcHXBF4ATNcvhoyb77l3bi
- lHZzQNVQODCesD7pwToRLIqZ2Gy4y5bSp0QPO9WL8rrNoNVPakX23zZrSSSCi4+OrqB7Ux7Vz2le5
- 7PAb2GICUAY/hBSk/HqZ7xa4zsK9iFL5+WJbPeXzxVe83ayAVaQcaBq3Ju/MQJ/dvkA1CVFv4sM7/
- mCDthn9A==;
-Received: from c-73-157-168-91.hsd1.or.comcast.net ([73.157.168.91]
- helo=[192.168.1.133]) by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1wICRi-0048Hf-9Q; Wed, 29 Apr 2026 23:27:49 +0200
-Content-Type: multipart/mixed; boundary="------------QUgaupq3qhg3mywiW5XqRiiT"
-Message-ID: <6ceb624d-36ad-43a2-8635-ad2f50cc01f7@Igalia.com>
-Date: Wed, 29 Apr 2026 14:27:43 -0700
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72E2E10F195;
+	Wed, 29 Apr 2026 21:52:14 +0000 (UTC)
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE0BB10F195;
+ Wed, 29 Apr 2026 21:52:13 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0866667141306669631=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 00/26] Enable Pipe writeback
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: sowmiya.s@intel.com, uma.shankar@intel.com, swati2.sharma@intel.com,
- chaitanya.kumar.borah@intel.com, arun.r.murthy@intel.com,
- kernel-dev@igalia.com
-References: <20260325110744.1096786-1-suraj.kandpal@intel.com>
-Content-Language: en-GB
-From: John Harrison <John.Harrison@Igalia.com>
-In-Reply-To: <20260325110744.1096786-1-suraj.kandpal@intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/vf=3A_New_approach_f?=
+ =?utf-8?q?or_post-migration_LRC_fixups?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tomasz Lis" <tomasz.lis@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 29 Apr 2026 21:52:13 -0000
+Message-ID: <177749953396.26848.10053422224594410049@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260429203937.2070047-1-tomasz.lis@intel.com>
+In-Reply-To: <20260429203937.2070047-1-tomasz.lis@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,133 +36,140 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---------------QUgaupq3qhg3mywiW5XqRiiT
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+--===============0866667141306669631==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 3/25/26 04:07, Suraj Kandpal wrote:
-> This series aims to enable pipe writeback functionality on
-> ADLP where it has been tested. The plan is to slowly accomodate
-> all supported hardware after this functionality is tested on them.
-> This series currently sits on top of two series still under review
-> in drm core. They are squashed as the first two patches of this series.
-> This series enables the triggered captured mode where we need to
-> trigger a capture.
->
-> v2
-> - Do required changes to take into account the new drm writeback
->    framework
->
-> v3
-> - Fix patch series to apply cleanly
->
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+== Series Details ==
 
-Hello,
+Series: drm/xe/vf: New approach for post-migration LRC fixups
+URL   : https://patchwork.freedesktop.org/series/165741/
+State : success
 
-I tried this out (on a LNL because I don't have an ADL at the moment) 
-and hit a bunch of issues with null pointer dereferences.
+== Summary ==
 
-It looks like the intel_writeback_connector::job field is never filled 
-in but it is being used. Further, it looks like that field exists 
-because conn_state->writeback_job is gone by the time the capture 
-function is called. However, the capture function is still using that 
-null job pointer instead of caching the required info in the intel 
-specific structure.
+CI Bug Log - changes from xe-4953-f3b0eacc6be937779388c8412909b66717926980_BAT -> xe-pw-165741v1_BAT
+====================================================
 
-Specifically, in intel_writeback_atomic_commit() it says:
-     drm_writeback_queue_job(connector, conn_state);
-     intel_writeback_capture(state, intel_connector);
+Summary
+-------
 
-And the doc for the drm call explicitly says it clears the writeback_job 
-field that the capture function tries to use.
+  **SUCCESS**
 
-I made the attached changes to my local tree and I no longer get any 
-kernel panics. I do get a "flip_done timed out" followed by a bunch of 
-warns along the lines of "attached crtc is active, but connector isn't". 
-I'm guessing this is related to running on unsupported hardware? What 
-would be needed to enable this for LNL?
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 12)
+------------------------------
+
+  Missing    (1): bat-bmg-1 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-165741v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4953-f3b0eacc6be937779388c8412909b66717926980/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165741v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
+    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#7483]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4953-f3b0eacc6be937779388c8412909b66717926980/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165741v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+
+  
+  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
 
 
+Build changes
+-------------
 
-Thanks,
-John.
+  * Linux: xe-4953-f3b0eacc6be937779388c8412909b66717926980 -> xe-pw-165741v1
 
---------------QUgaupq3qhg3mywiW5XqRiiT
-Content-Type: text/x-patch; charset=UTF-8;
- name="0001-drm-i915-writeback-Fix-null-pointer-problems.patch"
-Content-Disposition: attachment;
- filename="0001-drm-i915-writeback-Fix-null-pointer-problems.patch"
-Content-Transfer-Encoding: base64
+  IGT_8879: 02b0e01dd9a5a3ab1efe976bb8c4f13cfcdbab1a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4953-f3b0eacc6be937779388c8412909b66717926980: f3b0eacc6be937779388c8412909b66717926980
+  xe-pw-165741v1: 165741v1
 
-RnJvbSAzN2ZhN2JhYjYzNDI5MTIwZTZiMTg5MGM5Zjg1OGM4NTI5OWVhMzNlIE1vbiBTZXAg
-MTcgMDA6MDA6MDAgMjAwMQpGcm9tOiBKb2huIEhhcnJpc29uIDxKb2huLkhhcnJpc29uQEln
-YWxpYS5jb20+CkRhdGU6IFdlZCwgMjkgQXByIDIwMjYgMTE6MzA6MTkgLTA3MDAKU3ViamVj
-dDogW1BBVENIXSBkcm0vaTkxNS93cml0ZWJhY2s6IEZpeCBudWxsIHBvaW50ZXIgcHJvYmxl
-bXMKClRoZSBpbnRlbF93cml0ZWJhY2tfY29ubmVjdG9yOjpqb2IgZmllbGQgd2FzIGJlaW5n
-IHVzZWQgYnV0IG5ldmVyIHNldC4KU28gZml4IHRoYXQuIEFsc28sIHRoZSBjb25uX3N0YXRl
-LT53cml0ZWJhY2tfam9iIGZpZWxkICh0aGUgRFJNIGpvYikKd2FzIGNsZWFyZWQgaW1tZWRp
-YXRlbHkgYmVmb3JlIHRoZSB0aW1lIHRoZSBjYXB0dXJlIGZ1bmN0aW9uIHdhcwpjYWxsZWQg
-KHdoaWNoIHNlZW1zIHRvIGJlIHdoeSB0aGVyZSBpcyBhIGNvcHkgaW4gdGhlIEludGVsIHNw
-ZWNpZmljCnN0cnVjdHVyZSkuIFNvIGRvbid0IHRyeSB0byBkZXJlZmVyZW5jZSB0aGF0IG51
-bGwgcG9pbnRlciBpbiB0aGUKY2FwdHVyZSBmdW5jdGlvbi4KClNpZ25lZC1vZmYtYnk6IEpv
-aG4gSGFycmlzb24gPEpvaG4uSGFycmlzb25ASWdhbGlhLmNvbT4KLS0tCiBkcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3dyaXRlYmFjay5jIHwgMTcgKysrKysrKysrKyst
-LS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAxMSBpbnNlcnRpb25zKCspLCA2IGRlbGV0aW9ucygt
-KQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfd3Jp
-dGViYWNrLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3dyaXRlYmFj
-ay5jCmluZGV4IDUyYzJkOGI5MWFmZi4uZjRiNjE3YTVkMGZiIDEwMDY0NAotLS0gYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3dyaXRlYmFjay5jCisrKyBiL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfd3JpdGViYWNrLmMKQEAgLTI2NSwyMCAr
-MjY1LDIyIEBAIHN0YXRpYyB2b2lkIGludGVsX3dyaXRlYmFja19jYXB0dXJlKHN0cnVjdCBp
-bnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLAogCXN0cnVjdCBpbnRlbF9kaXNwbGF5ICpkaXNw
-bGF5ID0gdG9faW50ZWxfZGlzcGxheShjb25uZWN0b3IpOwogCXN0cnVjdCBpbnRlbF93cml0
-ZWJhY2tfY29ubmVjdG9yICp3Yl9jb25uID0KIAkJY29ubl90b19pbnRlbF93cml0ZWJhY2tf
-Y29ubmVjdG9yKGNvbm5lY3Rvcik7Ci0Jc3RydWN0IGRybV9jb25uZWN0b3Jfc3RhdGUgKmNv
-bm5fc3RhdGUgPQotCQlkcm1fYXRvbWljX2dldF9uZXdfY29ubmVjdG9yX3N0YXRlKCZzdGF0
-ZS0+YmFzZSwgJmNvbm5lY3Rvci0+YmFzZSk7CiAJc3RydWN0IGludGVsX2NydGMgKmNydGMg
-PSBpbnRlbF9jcnRjX2Zvcl9waXBlKGRpc3BsYXksIHdiX2Nvbm4tPnBpcGUpOwogCXN0cnVj
-dCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlID0KIAkJaW50ZWxfYXRvbWljX2dldF9u
-ZXdfY3J0Y19zdGF0ZShzdGF0ZSwgY3J0Yyk7CiAJY29uc3Qgc3RydWN0IGRybV9kaXNwbGF5
-X21vZGUgKmFkanVzdGVkX21vZGUgPQogCQkmY3J0Y19zdGF0ZS0+aHcuYWRqdXN0ZWRfbW9k
-ZTsKLQlzdHJ1Y3QgZHJtX3dyaXRlYmFja19qb2IgKndiX2pvYiA9IGNvbm5fc3RhdGUtPndy
-aXRlYmFja19qb2I7Ci0Jc3RydWN0IGludGVsX3dyaXRlYmFja19qb2IgKmpvYiA9IGNvbm5f
-c3RhdGUtPndyaXRlYmFja19qb2ItPnByaXY7CisJc3RydWN0IGludGVsX3dyaXRlYmFja19q
-b2IgKmpvYiA9IHdiX2Nvbm4tPmpvYjsKIAllbnVtIHRyYW5zY29kZXIgdHJhbnMgPSB3Yl9j
-b25uLT50cmFuczsKIAl1MzIgdmFsID0gMDsKIAlpbnQgYnBwOwogCi0JYnBwID0gZ2V0X2Nv
-bG9yX21vZGVfYnBwKGRpc3BsYXksIHdiX2pvYi0+ZmItPmZvcm1hdC0+Zm9ybWF0KTsKKwlp
-ZiAoIWpvYikgeworCQlkcm1fZXJyKGRpc3BsYXktPmRybSwgIk5vIHdyaXRlYmFjayBqb2Ig
-Zm9yIGNhcHR1cmUhXG4iKTsKKwkJcmV0dXJuOworCX0KKworCWJwcCA9IGdldF9jb2xvcl9t
-b2RlX2JwcChkaXNwbGF5LCBqb2ItPmZiLT5mb3JtYXQtPmZvcm1hdCk7CiAJdmFsID0gRElW
-X1JPVU5EX1VQKChhZGp1c3RlZF9tb2RlLT5oZGlzcGxheSAqIGJwcCksIDY0KTsKIAlpbnRl
-bF9kZV93cml0ZShkaXNwbGF5LCBXRF9TVFJJREUodHJhbnMpLCBXRF9TVFJJREVfVkFMKHZh
-bCkpOwogCkBAIC0zMjEsOCArMzIzLDEwIEBAIHZvaWQgaW50ZWxfd3JpdGViYWNrX2F0b21p
-Y19jb21taXQoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUpCiAJCQlyZXR1cm47
-CiAKIAkJaWYgKGNvbm5fc3RhdGUtPndyaXRlYmFja19qb2IgJiYgY29ubl9zdGF0ZS0+d3Jp
-dGViYWNrX2pvYi0+ZmIpIHsKKwkJCXN0cnVjdCBpbnRlbF93cml0ZWJhY2tfY29ubmVjdG9y
-ICp3Yl9jb25uID0gY29ubl90b19pbnRlbF93cml0ZWJhY2tfY29ubmVjdG9yKGludGVsX2Nv
-bm5lY3Rvcik7CiAJCQlXQVJOX09OKGNvbm5lY3Rvci0+Y29ubmVjdG9yX3R5cGUgIT0gRFJN
-X01PREVfQ09OTkVDVE9SX1dSSVRFQkFDSyk7CiAKKwkJCXdiX2Nvbm4tPmpvYiA9IGNvbm5f
-c3RhdGUtPndyaXRlYmFja19qb2ItPnByaXY7CiAJCQlkcm1fd3JpdGViYWNrX3F1ZXVlX2pv
-Yihjb25uZWN0b3IsIGNvbm5fc3RhdGUpOwogCQkJaW50ZWxfd3JpdGViYWNrX2NhcHR1cmUo
-c3RhdGUsIGludGVsX2Nvbm5lY3Rvcik7CiAJCX0KQEAgLTM1Miw3ICszNTYsNyBAQCBzdGF0
-aWMgdm9pZCBpbnRlbF93cml0ZWJhY2tfZW5hYmxlX2VuY29kZXIoc3RydWN0IGludGVsX2F0
-b21pY19zdGF0ZSAqc3RhdGUsCiAJc3RydWN0IGludGVsX2NydGMgKmNydGMgPSB0b19pbnRl
-bF9jcnRjKGNydGNfc3RhdGUtPnVhcGkuY3J0Yyk7CiAJc3RydWN0IGludGVsX3dyaXRlYmFj
-a19jb25uZWN0b3IgKndiX2Nvbm4gPQogCQllbmNfdG9faW50ZWxfd3JpdGViYWNrX2Nvbm5l
-Y3RvcihlbmNvZGVyKTsKLQlzdHJ1Y3QgaW50ZWxfd3JpdGViYWNrX2pvYiAqam9iID0gd2Jf
-Y29ubi0+am9iOworCXN0cnVjdCBpbnRlbF93cml0ZWJhY2tfam9iICpqb2I7CiAJY29uc3Qg
-c3RydWN0IGRybV9kaXNwbGF5X21vZGUgKmFkanVzdGVkX21vZGUgPSAmY3J0Y19zdGF0ZS0+
-aHcuYWRqdXN0ZWRfbW9kZTsKIAllbnVtIHRyYW5zY29kZXIgdHJhbnMgPSBjcnRjX3N0YXRl
-LT5jcHVfdHJhbnNjb2RlcjsKIAlzdHJ1Y3QgaW50ZWxfY3J0YyAqcGlwZV9jcnRjOwpAQCAt
-MzYzLDYgKzM2Nyw3IEBAIHN0YXRpYyB2b2lkIGludGVsX3dyaXRlYmFja19lbmFibGVfZW5j
-b2RlcihzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwKIAlpZiAoIWNvbm5fc3Rh
-dGUtPndyaXRlYmFja19qb2IpCiAJCXJldHVybjsKIAorCWpvYiA9IGNvbm5fc3RhdGUtPndy
-aXRlYmFja19qb2ItPnByaXY7CiAJd2JfY29ubi0+dHJhbnMgPSB0cmFuczsKIAl3Yl9jb25u
-LT5waXBlID0gY3J0Yy0+cGlwZTsKIAlmYiA9IGpvYi0+ZmI7Ci0tIAoyLjQzLjAKCg==
+== Logs ==
 
---------------QUgaupq3qhg3mywiW5XqRiiT--
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165741v1/index.html
+
+--===============0866667141306669631==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/vf: New approach for post-migration LRC fixups</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165741/">https://patchwork.freedesktop.org/series/165741/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165741v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165741v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4953-f3b0eacc6be937779388c8412909b66717926980_BAT -&gt; xe-pw-165741v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 12)</h2>
+<p>Missing    (1): bat-bmg-1 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-165741v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4953-f3b0eacc6be937779388c8412909b66717926980/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165741v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4953-f3b0eacc6be937779388c8412909b66717926980/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165741v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4953-f3b0eacc6be937779388c8412909b66717926980 -&gt; xe-pw-165741v1</li>
+</ul>
+<p>IGT_8879: 02b0e01dd9a5a3ab1efe976bb8c4f13cfcdbab1a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4953-f3b0eacc6be937779388c8412909b66717926980: f3b0eacc6be937779388c8412909b66717926980<br />
+  xe-pw-165741v1: 165741v1</p>
+
+</body>
+</html>
+
+--===============0866667141306669631==--
