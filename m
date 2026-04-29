@@ -4,152 +4,161 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FBA4FF8864
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Apr 2026 05:42:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF729FF8864
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Apr 2026 06:07:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4373910EE5F;
-	Wed, 29 Apr 2026 05:42:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF24610EE6B;
+	Wed, 29 Apr 2026 06:07:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WlHHocsj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MnVrR4EB";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 949A010EE5C;
- Wed, 29 Apr 2026 05:42:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FB2D10EE6B
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 Apr 2026 06:07:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777441333; x=1808977333;
- h=from:to:cc:subject:date:message-id:references:
+ t=1777442838; x=1808978838;
+ h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=7w+PTLb8t61DUhU1QOpgyLMeev3gpBort22OA39ilRU=;
- b=WlHHocsjq4HGU2DtAHKAnKwENvyy6urym8tN90VX7q1E6nqxdgvyVd+m
- Vj7I6d7St33hieuko+z37SmfQ3gXZ2HYfeH1Wh/mR5oqsS58GkgbSAWZR
- +xnsfr/0yEpX/GEqnQbRl1WI8h2PiYse9VgNDIDT+V/GX1QdHf9mrhvPw
- sY+AlYvra24poLYoABfXTudPF+G/SYW7KLOhfZyMmeILGEl7pVdn7PR8m
- RsUScadmzG9l+4wy1+wsiw3nUuiqbWQmqFetyjiNmYm0OcIDSWrUi2IoU
- biz25Ai7YXozB/ZYr4DidzUhrdmz+S1VpD9JbXrVmMTO18BPZiUjvUzj0 g==;
-X-CSE-ConnectionGUID: qqrfbCtpQ+qMyiOYERXwHg==
-X-CSE-MsgGUID: UfRXMMIERpWEb1Z8fcuC4A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11770"; a="65893299"
-X-IronPort-AV: E=Sophos;i="6.23,205,1770624000"; d="scan'208";a="65893299"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2026 22:42:12 -0700
-X-CSE-ConnectionGUID: UAslZEEPQZ6FuQba+2Ncxg==
-X-CSE-MsgGUID: az58nbXrTxyHV94EzA6H4Q==
+ bh=aIP0KZ2i9AcehY4mHHM3SpO7Uoi0FC+bJf8g3ZtQVeY=;
+ b=MnVrR4EBEZN41JnIICtXkfsZsrhldogLu2dKRXMYF2Fix0b+LH8aQ3PB
+ aJRams+FioScxZ1EnJEpuZYPEXqEuA0TCyCmV/irbhW0bjQTZcitvKEHM
+ 2XyE4cg3EBf1CORO+cudAgxuIqVOfYM4w7Y1lZx7DMm6Asbe9DwzhMpRq
+ 89JWR3j3xiPn6QwIWMiOdqPINp8s5T0Wou0dK+Mr0oWos5FK0BmuS3QVd
+ ZtNSEJUbHlShnTP2ArV8AQJKUJ0HeT1j75v+XIZiicuLlUlcVVcN66M/7
+ xj9RgGTGPta4lmuDf+hbzbKdc/23oV2yGO1kKjqxgZ4xrzoKwohr8GKGC g==;
+X-CSE-ConnectionGUID: f3vW4KFkSIG8Xuz3E414RQ==
+X-CSE-MsgGUID: LtjcniA9Q3S8WUVBcGiqAw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11770"; a="95783429"
+X-IronPort-AV: E=Sophos;i="6.23,205,1770624000"; d="scan'208";a="95783429"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2026 23:07:17 -0700
+X-CSE-ConnectionGUID: x3aP0/h1SHKEHCt2GgGLMA==
+X-CSE-MsgGUID: OJLlOpuoQFG37gWvxKrjLQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,205,1770624000"; d="scan'208";a="234146085"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2026 22:42:07 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.23,205,1770624000"; d="scan'208";a="257487929"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2026 23:07:17 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 28 Apr 2026 22:42:05 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.37; Tue, 28 Apr 2026 23:07:17 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Tue, 28 Apr 2026 22:42:05 -0700
-Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.10) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Tue, 28 Apr 2026 23:07:17 -0700
+Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.24) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 28 Apr 2026 22:42:05 -0700
+ 15.2.2562.37; Tue, 28 Apr 2026 23:07:16 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=RSZJtKRFUecBLt/Wh1Bf1dSXtfD31I7de7Yj/YQgqpeBRHzL7A0cfaW00OTDrbXzsNf0IeCOTKRMhDSeqF6grBho4xoBETxQ1P8S18ouM+jMYvg57eWCcFEvp8CjBiwg5bO6KnkZZQC6SwdblfpVypg8PCjLO3Ve9M7sjX86GrVWgmHL434bxgjIr6GU/PfTPkxNlB1pCF+4B/1YfLBmqeuEk8FQ97/Lrjnao/EfWtiTzLdXgN+JQ1pgT7MQBMCYrrTIdwnH7MQS6tHIKm2pr5qDt768IA+FO9il4+cqRg3HyR3ZZIft8D3hiXS6xnxzIHjnitRVw+tu4+7J7v4fdg==
+ b=Y8hY77/8SBbGgtK4kPUHCe0GWyxIfKg8JtfZbbEuwI5kE5ybDj0Z5AErmZIVfrurddY/Xg9iyZa5o31ktRzkwR2hpJSv86T+9yMGUAb2qFnimiBPN4ZqzHF1AHZ/T5dHGmjoJtQmQWRvrd1KwjvKsv9pkywY5tvs2DfI/48Qb8bjRsLDvxtGXUNhI0hyM3BtFbg7ZLZJuo/hhQFmmm67cGM3Eaqogw+tqKQGGxzIquwlTUegKnvNDqLrJCcaaKAIeZAkq4772fxQBLx0pdQJKZsQyuZRXBGgLzuyDAGmoW5gW+mGMtgeIAgf7fTXfr9bIOQEr/GJsk/24YlSM2Gvzw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EO53Ou4VlDCjHs8jwEdq5Hhyjs/IlrohCXPB9AUXBPE=;
- b=EqbeyMQvsHygZ/CjupAbDGBdVYS353/fGKjWCnvsY2bt62s010OQRb9MUch9zYVtml06BS59ALkZRDxEhvXYtBdmVIu2I4lXZ3FXgf0rROuINJ/H+N1mL5/YGI30M/lZdi4s6qHX/PfMOMri66ZWnG+IIrrjB4dnw4jqzCcTe6i17a1ikNzMomQyUXzmCvfTrjtsdiRmM6iH073kPkeZT55hLaB037rWZP2h2bFqYFDANQ3dg7VX9BjZdt+kucyTEIUMFfig6LgBUSdrQcdD2spiYGBjBa07zX9diHHmhgs/4fkP9r9Klq34/ZO8e8+9Fh+xRPmB8yPHgceA6+WP+w==
+ bh=/09rvxlIEFFs88o1yTfCt49RbrjW0+jNpnfGVidUXuw=;
+ b=OOjAATNuHgKAQAf42Fst8L1svFGReZV5wZkO5hUzqLSefTUcwaw14ZVhs73+tJbJOopck+gHN70CnYC8Z5iKrAyhlUZ7dZmT2j64jOXzFYLyh97Ga5xCKvUZLwLnKAMsw2XcOWcf4v0xTVfgCJzN/2RbqbVJe108uYW0Qzvu0SZjpajdD9YyhrbyT7sm6hR/xRhkHscAUvlslwaoV/L6/8hI/9CxzSdvDqQ8m7chZnANvFA1kzWspHLnCCPQTXnCmtAz/BxoKHnSBBRhrC4kjhVCckfDVRv36mFW9sCKrWcXLGDcLTqvWELk0KQ9QSuF3w/2YcLhJDMjlOVh+FlB+Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from DS0PR11MB8049.namprd11.prod.outlook.com (2603:10b6:8:116::6) by
- DS3PR11MB9820.namprd11.prod.outlook.com (2603:10b6:8:366::11) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9870.17; Wed, 29 Apr 2026 05:42:03 +0000
-Received: from DS0PR11MB8049.namprd11.prod.outlook.com
- ([fe80::603c:772d:6793:d4eb]) by DS0PR11MB8049.namprd11.prod.outlook.com
- ([fe80::603c:772d:6793:d4eb%6]) with mapi id 15.20.9870.016; Wed, 29 Apr 2026
- 05:42:03 +0000
-From: "Manna, Animesh" <animesh.manna@intel.com>
-To: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "Shankar, Uma" <uma.shankar@intel.com>, "Kurmi, Suresh Kumar"
- <suresh.kumar.kurmi@intel.com>
-Subject: RE: [PATCH v2 07/13] drm/i915/display: Add DC3CO eligibility
- computation
-Thread-Topic: [PATCH v2 07/13] drm/i915/display: Add DC3CO eligibility
- computation
-Thread-Index: AQHc0nTHDSruToXlv0G/pqrnzEFwhbX1ieXg
-Date: Wed, 29 Apr 2026 05:42:03 +0000
-Message-ID: <DS0PR11MB80492B89EDB40A33C80851E7F9342@DS0PR11MB8049.namprd11.prod.outlook.com>
-References: <20260422162622.1869831-1-dibin.moolakadan.subrahmanian@intel.com>
- <20260422162622.1869831-8-dibin.moolakadan.subrahmanian@intel.com>
-In-Reply-To: <20260422162622.1869831-8-dibin.moolakadan.subrahmanian@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR11MB8049:EE_|DS3PR11MB9820:EE_
-x-ms-office365-filtering-correlation-id: baf7feb2-bc30-4a3a-42cb-08dea5b20ac8
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|38070700021|56012099003|22082099003|18002099003;
-x-microsoft-antispam-message-info: rnEaibQSHMOmoDgQVHhHuK7pWjfzujIzdyvlQ/I/mymwFL5EU5zpSwkN+AOHS2g2cp7OuPsERNS7x2d2UAQIl8h6ErMtcm40saJhIa7rAmWbznQbqVCsJCoQ6VIYlMM7YjyPjzzb2szsSPCRTz1sQgohH+iOFwI15rUCK3BGJmPIIRH75CJkK4iZt09pnkR9dJIVBJwlDZVSGMOXvC+2JtypHCTcEJMYDrIKVs+ALqqydXKMWUqOCIdPNLmEWgwISK/LkdcAxNfUKrYjTMaLso0nsElVWn+x+yusGfUb9pRFb5F1aYK+gn8hfIyumbtxnWseMlkPWaxahAE3hoULN/SFRykWShA2c9bdWA5zH5n0UOnDwm9gASVQkZJMZ+XIO3hO3BJ+0LNP/zifDlSmojPJ0r+VRIqBWdWMy84yI3gHplaiWgeuB5ZcXhmsqyTGkTEs23aHVRiTMFlmUwzeMd/NcqxxAXRnYphrAdA6mO5Iymw2+pESy7T89GQ3+bQKd9OYz6kg1rc8vQfA3a06AAkhHdnyPUk4VMM2SmdhEpwcVmGyBWzOGMktJI3pU5AKhPiZ/rEn9nDHO5U8QToz/hZcOObsWbTiIhIJvUQ67E6PV1BkDay/XmYp2kZs43NGsb9Cuug1tuZTnwSNUxR/raviBYFixzeph0OWjKY4x0qcv5UGIiz/gu650jLgpP9SZQ25PEQI45qdLb9/6waXsJUiBoIWtVcEVyrBPfh11KIg29QVvzR6HZwrtfLXloeAuT/oG3dUtThCInoMoeGx25L+C0XBHvmHNDQTOWcH2Ac=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8049.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(38070700021)(56012099003)(22082099003)(18002099003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?9tI6MI0kGGFb02ZBqK9OlY4y87P4tQTyYyGYqlQ3cNRHK0yEHMcHa9R+npV8?=
- =?us-ascii?Q?6Zy0rxdQoflrBqoJj1fF1CucR5qEX0ycTpWr1FfrbuO233lmPipkiwW9zZyc?=
- =?us-ascii?Q?N2XtdidHgQdxPRnSpUsJfFO3UYzlURfwHxTS/P5AUOARarfmvrAcKZakF2n6?=
- =?us-ascii?Q?0VNSIa5hAB8PqUBMP4BbYiBQtxLW6JONtEEct9wxcLcyNmAdWHkX3KdvfVND?=
- =?us-ascii?Q?UK/sfcpySUcKEefRpIRfA1b2PiZYgqaF3U+OeSdpceEgF3yUhBe0E8JX/p0g?=
- =?us-ascii?Q?R4eZP5esbiDp+3iOA7g8FNk93NsmvoEM8Y/xbbPKSVpIt0FCTenl30pFjCpZ?=
- =?us-ascii?Q?d4EmBW2RFdENsT0IhJZl311vpRYO+k5QvMIIqcA2cGuIwcw+y9vTVPW24Qdh?=
- =?us-ascii?Q?FFyugMUiRrAahz20g4MALqFxqbuXJpNHWt9wVr4Ms+GWmx8W8wSzjbMsMycT?=
- =?us-ascii?Q?yLlCPvlf4B4uBkt9a3IdG1iueGjgn0hOBJ4QLWl9hPaR0lGg86Yb1bCx7Epu?=
- =?us-ascii?Q?9BwGbl0tGj+2+lkTfiKygsn0LLs+8M+LT+YGNNssbj8WNiTLjwmrU+ydvgYQ?=
- =?us-ascii?Q?yfgy4CJW0z34nuKuuUVNy18nB/T6/3HpNwWltQRs+wVcjPjIMZ9h1ESfp3Op?=
- =?us-ascii?Q?sIcgSuJqXkXzZEk9TlX6ndNK+SfeZ/QblMf4kUWwCpstSu0QvO/zJ4QXQRA8?=
- =?us-ascii?Q?k1Nqb3QBJ2zGtanH6jW4IqRaJGtyhxaqEHIfrAviS2urxF8RGp0z5yvBM4dt?=
- =?us-ascii?Q?l3FfDH5raYolwPFsRV7JNqToOBTzmivZJo8JBBziEvjygiI4eKQDtA41O1gV?=
- =?us-ascii?Q?s2q/7z0LB8vGo7bmNLFsOu+abc711uFBKXUWZyOD/BcomRlU3rLgX2GPw6gF?=
- =?us-ascii?Q?692z8y8Ng3+/C24leswsTq8n2dYckDYdr1b/6cGSQEc/8YkseYfl+YSE36Qo?=
- =?us-ascii?Q?8SxrHf5Umd7OGmmlUYE0DU+cRczs5D6+awToH7ZaS4MsbvZSTormdIG+Nba+?=
- =?us-ascii?Q?6t3FYIoM+C0zeg6HWErm/aR0lNTl6OgmWAfE8T7lJj1oR9NP51/ykGJRKE8U?=
- =?us-ascii?Q?vvVKuIqGJdeus6HGwZ5xwgab1NWWK+oKDZ+zE/vvYNAakiSRwwM/qrpgA2fp?=
- =?us-ascii?Q?FCHTijlq0KaeNt8sZvTDfIz3g1Bv/RWxaOBB0adtBGMap66cZjdwoH1jzu2X?=
- =?us-ascii?Q?FiT2YnPwV3P4/IeUiCCgb8XfouulobW56/WCse0D+Jbp4fiGoMiyvOElLEJY?=
- =?us-ascii?Q?QGaLcu5Hj4jCYE/GFvMwx4FEFrcG5bYybcGlia56Ux3RLIVAObfwOi5HWJrQ?=
- =?us-ascii?Q?qoaQO8OGv+4oytZy9lpcgz6T2sNFIPPcXMqNSp/rDFz4AG/wR3mMqjPrDtdq?=
- =?us-ascii?Q?ZWPS/KHjK6u1NyRMNhsp/1vOhqpD1Rbv938Tg18UWIGzENAME5TsSEr6Np2D?=
- =?us-ascii?Q?eoW08dA0UGpm3QdrrS0SO4jiVnj0D/fddH/UCzG7djHoZCz4iZ7k4O25WK2n?=
- =?us-ascii?Q?umQDtv/i5VCB7530cG7nivRhi32VvPypDb4DHElVyrWChbIU9dV3GQQvmVza?=
- =?us-ascii?Q?g5b8b1Fd0Exs71pR2avRSabTC4XHwntKcer4XBOqpbxJDk5xTA3WwYqqEao7?=
- =?us-ascii?Q?rQxsKcZaAR5D71s8sUPWAd9lX3tc+zqh3Rvp1pukDwsPOfeS4sMe0Y8AvNGo?=
- =?us-ascii?Q?54M+LcSFfZ8NFa1zvgPY9kVOHy8NlyfouiJs2FuY4zcaP1wbzqEtemnDt5ql?=
- =?us-ascii?Q?TqYTBNP96w=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from DM3PR11MB8716.namprd11.prod.outlook.com (2603:10b6:0:43::13) by
+ SA1PR11MB8859.namprd11.prod.outlook.com (2603:10b6:806:469::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.16; Wed, 29 Apr
+ 2026 06:07:13 +0000
+Received: from DM3PR11MB8716.namprd11.prod.outlook.com
+ ([fe80::2e63:338a:bf30:7868]) by DM3PR11MB8716.namprd11.prod.outlook.com
+ ([fe80::2e63:338a:bf30:7868%4]) with mapi id 15.20.9870.016; Wed, 29 Apr 2026
+ 06:07:13 +0000
+Message-ID: <616ef05e-122c-4a71-9044-01ed21b74327@intel.com>
+Date: Wed, 29 Apr 2026 11:37:00 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] drm/xe/xe_ras: Add RAS support for GPU health
+ indicator
+To: "Tauro, Riana" <riana.tauro@intel.com>, <intel-xe@lists.freedesktop.org>, 
+ <anshuman.gupta@intel.com>, <aravind.iddamsetty@linux.intel.com>,
+ <badal.nilawar@intel.com>, <raag.jadav@intel.com>,
+ <ravi.kishore.koppuravuri@intel.com>, <mallesh.koujalagi@intel.com>,
+ <andi.shyti@intel.com>, <rodrigo.vivi@intel.com>
+CC: <anoop.c.vijay@intel.com>
+References: <20260423173925.699486-1-soham.purkait@intel.com>
+ <20260423173925.699486-3-soham.purkait@intel.com>
+ <f9b1624f-543a-45dd-ad02-6a656999a1e3@intel.com>
+Content-Language: en-US
+From: "Purkait, Soham" <soham.purkait@intel.com>
+In-Reply-To: <f9b1624f-543a-45dd-ad02-6a656999a1e3@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MAXPR01CA0101.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a00:5d::19) To DM3PR11MB8716.namprd11.prod.outlook.com
+ (2603:10b6:0:43::13)
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: nIhkmQk8/OV+3VWHvl69sYGEccRa5yLlYakJC3akprP1OUgECIO2b9/9q5jijB4HxqDsyy2tg6OUO4bxneoLSKcrpdLnv/8ytQQeAqKdas/5lUFwsCFK5VM0kSo+rTX5yXYCa+T9bV3zf7Q8zLaVsOQFjPBEITVObrLqD/Sr/B75xBIyf1DUr/9j/kq1f1MrI7ISaUJTNfEFaFW3mDrnNQyCWNswFVwlx1EIsD0NPNbNwDbZ5JB6hRd025NB4So7EqGS9zulpdj+MLATOpL0SSwWATjTRN+wI2v40mqdKM00VqM8cyaGaPAAWhX8IqEDnAGRWm/idrm8p0uFG7tY/Q==
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM3PR11MB8716:EE_|SA1PR11MB8859:EE_
+X-MS-Office365-Filtering-Correlation-Id: e1a0f186-0efc-419d-b5f9-08dea5b58e3e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|366016|376014|921020|18002099003|22082099003|56012099003;
+X-Microsoft-Antispam-Message-Info: TwZcqeeQRPUEf6gtwmX3q3wsSsXFv8OWtWPgzrUTp4i6Tszej4xdlVsD7cmTM/ish5T7z2NW3l+DqoC8zaTc2asXU/vhqnVTp10VMMpg6LrdN0G4FCzfeyNE7pN8etbgykNxPiy53xMHBUk3/cwn6WOufqsiTBzscvpqNWDNzZ00/v0PXUhLKIegu4qHCG3N57MIl3KZtNeOKL5h6nW3N90AUgRXw6ijHVgwenDh/KbH0KyLVDem9gvJQD3MSsGTo3e7fGRH9ATy/+H4lq4IubR9W/uTKCGLRCRR54qdRfBxNEO+8mXDMb5aX4EHHGhtnWleVIL1/NWsYq1r/jEbOVI6rJd1iMeA5aQ+7LpJyk4eZVcz2Ywe0QBpjJCRnanaVwChcyxZyWXBHiyoIVGxMGtVnf3VaW97EKTc5G/+Ha8I0SAsDIhOzwaW3DV7baCpUhOO9+wxFh6ajgq5pVnfoA/REotdRMkYi57mGeVqimyXxJwe8+PIpL1GkKrPjjlBYoYSUgS4DSPXPctdJe+8lVrQ3Pk2lKA5w2f3SQ3NWjbt7cSTclHyFFsO3oBTZ/GhCMFXrcDody0E0k5/rzGUgnloWIXJ4e2tVTg9FctCE2HldiFQNtFZPp8mWUse/0rDr14lo9oBEjr2JlqGT+GyP/Kbe7FbDZAXMGlPChxUCiM2LehvM4/1+YgUho2tljNStYNeJHPSxB2YP6YpWul4UG1pXC05vhjI5BMI/xDRH44=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM3PR11MB8716.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(921020)(18002099003)(22082099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Y0FscFlKL2JQTHh6MnpaSS9PQkp0WVRLSW8yVEpOaTFkZjFxNmlscHV1WWFP?=
+ =?utf-8?B?VWNVN09yQXNZVFJ2VHNSbXdUQkhRRUt4SEgwbHhBekhNN1VycE1WNWxUMXBk?=
+ =?utf-8?B?OWhtWHpmMmlsaVh3aTc2WWg1OGx2L0gvTWc2bUVMb2QrQW9WZmtWNmdFWkox?=
+ =?utf-8?B?eVRBRmdoTytPQ0lmMGZIaGdSSkx3QWZweWp3NXNhRjZSVlAzaGFKRFZsYlhn?=
+ =?utf-8?B?QTIzT2tqTlJBV25qS0JDUW1WZCs2Mk93UkpwVFR0MUNsL1ROU0hGZVVDS2M2?=
+ =?utf-8?B?aGZPU3I2UnpwSzFzQmg0SXhsWlRET01aUC9PWUhjaEJydUQwOHJ5NHUxdmNw?=
+ =?utf-8?B?clpod2xsRVV0cjFXaXRsU3lFVUlUNHJoejZFMTdKVk5WdVBCc2gxa3ZNYWpk?=
+ =?utf-8?B?c1ZaY1JzUEtFdWNuVE51eDd4bmJaRGFoazVUeTAzYTd2VGFSMFBjYWQwbjMz?=
+ =?utf-8?B?c2FmRUt2WlV5dXgwK2ljMi9YRCtWTGErSFk2eVM5ZytrckFhM2pVaVJxL3lJ?=
+ =?utf-8?B?bmVtRnIyUXkyNERlZXYrWTNxaUg0TThsSk1TZUlIWklweUFZWVlPYmRKbWpQ?=
+ =?utf-8?B?eE9MZWZHMGxlajVyc0EwdmV6dnBJcnFCOVNJVjQ3NlBLT2hzWk80ZDRCRVY5?=
+ =?utf-8?B?OW5WUHd0SjYxakQwaFloa21LQk82WmxUS2hzeCtWWmx3UkVTTFJZSUlYRld3?=
+ =?utf-8?B?cnVMNGxnckhONllxVFQxRG95OFJkZHQ5MzZpSHpXdU5Qa2RlNjhPZ21zTnNG?=
+ =?utf-8?B?T29FSHJqVVk0cXJJek00SWh3ZGRMdk5ENXgxS1dnWi9WcmI0eGdvV1laS3Ns?=
+ =?utf-8?B?QmV1dU1NSERvVmRPb2gxU1hvUmljUUIxNTBhQVhnMTAwZzdlRmV1YUVrV3hH?=
+ =?utf-8?B?YVpwYUtaek1lLzRJRWJydFRHanY2bkVaYzNMeGJYem1YRGdHQnVTUCs3WUh1?=
+ =?utf-8?B?dmRuRTJTQUNrTGkydXNQRUkvbGRBKytRa3NSNEl1WkV0aXJVdkdvcXMraW5D?=
+ =?utf-8?B?eTdzaUc5QndmQVN2NTF4UDgyWlhlSFBOZ1BKcFN5SjhyamIzbVFWQU1RckZS?=
+ =?utf-8?B?dTdtazdhUC9jZmM2TXVsYmt6Qld3NUFHRmZnZzFBQVdVMlJMbVJaV3JJaXcy?=
+ =?utf-8?B?UFNST3h0K0FSM3hGc2VQREFXMnBvYU1HM2J5c0svcFhyOG5GMEdnajlNRzkz?=
+ =?utf-8?B?WFZZL2ljSlZLUVNTaVl4c1Q4cFY5aGZjOFlWWEpvNkcxZG1CU1NzVmhka09T?=
+ =?utf-8?B?cnlTTjlzZHhBdUpLK2djRlk0WFVqYkcrcVpqOHJ4MlNuV081MVhzbHlvUWZ1?=
+ =?utf-8?B?c0pNYmliN3ZZMk9UMFJxU2toNS9EY1ZLT3R5aWpuakFTRDVwdnBFS3ludGJo?=
+ =?utf-8?B?RXQ3UW1ibWlVVXdNU3JMK0hSbnlXM1VtdXBrWEZXR0VnNDlFUjFDaUlHUGxm?=
+ =?utf-8?B?ODNaNzd5MXdsU2NGR2d5Wm1ENlNxYUNxRlI2WjAwOCs2MWtocDNaWVpCTVRC?=
+ =?utf-8?B?S3ZneDh3OGIrV0ljUzVXTW9ZVXRHdTB2VmlTNDNkRnlGRGx5WXZualFOREN2?=
+ =?utf-8?B?Um93V29OZlMxQy9kWmZNWHpXRUdZVGtPV3g2bW5NcW9RTUFTZzRYUk9nalcz?=
+ =?utf-8?B?dldzbW02UXJLZHZNUlBOeWd1MXYvak9oRVFhSDdvaGVIS1FNdG9xd3A3cG1X?=
+ =?utf-8?B?Vy9EY1J1Y2ViaXlwM1BqdjBPR2VDSlBvb3lTU0FJRi8rZnFDSEdSWENGWWMy?=
+ =?utf-8?B?WCt5TFZ2TVp1TWxyUjFBSVlENHg2YzZEb0Ztd0hiN2FmcHQ2cGJWc3V1NkpV?=
+ =?utf-8?B?TG1xWUw4d1NCKy9RYzdPSE5TbjEyMlNtdGZheGRqaVpvWmU5MmtMSzF3cVNY?=
+ =?utf-8?B?TU5DM093YUdwY0kwRE5qRXZKNWF0ekxjZ21ybVhUblJxb2ozRWdLSlpwbFNK?=
+ =?utf-8?B?alJKK0QxSmQ4M21aRHkrc2JITnVOdmlqTWJ5ekVCNzJSSVg3ZlQ1YVlVdzZF?=
+ =?utf-8?B?cWU0U2MxTVZvU083V0I4TEYzaWh6Q1I3eUN0Z000RDRzRjlwbk1ZNTdPaCtk?=
+ =?utf-8?B?WVI1YVdwOFpwYTN6TEczbTV5ZW9lV0pNV2lxb09aL0JKaklKM0RicjVqYjl0?=
+ =?utf-8?B?bWxBRkh2YkRWN0Y0UER5TlZScnU1aXFmV0crK2tsMHBlWjA3cmx5ODNHUjFP?=
+ =?utf-8?B?QWxyeDAzc3BRR2xlSXhmY3pSakVBS1pub0ovTFFVdnhhS0dFMGlYY1lOYnlh?=
+ =?utf-8?B?TUYvaVBJemhVbEtUSHlJY240eExobkRSSzNnY2JHd2t4Q0ZqcXhONlhjUllD?=
+ =?utf-8?B?VVdRMU9TUUlJMHBhMlRZQ1BycWRtd2NoenBPSXZqVmFEZ3RnUzlLUT09?=
+X-Exchange-RoutingPolicyChecked: G+yv1E+RIPVesmr4Uje9LTiNTms99QxPdrvXrCatEPC/Zb8p1czSNhbkupPwvkCcxDnVboZx6qeMqkFOAj8o7IWky3jE5Z+YJE+EUIsrjwP2Ybjg8RdVcFbaMCjiwqt7LOeZg9PrwBIfl/54fsduVd1gGEgk3mvXwosfiX47R50suE7sOYPWmhg+AMsCALJTHK9NKl0/8kTh6PJEOsiFKpvIgr8orJs5rYiydzpLjnY2RVpZg6RoeuUyv4grJYotMXqPOZnz646rduXHeG1S5yPZO/y1f7efo7pfBrVlVoU07MArRsfg8WYXORoI5f4DApIWUuma7G3jiCCtEWfMhQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: e1a0f186-0efc-419d-b5f9-08dea5b58e3e
+X-MS-Exchange-CrossTenant-AuthSource: DM3PR11MB8716.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8049.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: baf7feb2-bc30-4a3a-42cb-08dea5b20ac8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Apr 2026 05:42:03.6783 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 1kAUn6LEq41RYHShw1cRqsS6szKVY9UaB4mJwvsfAc1LUXO1V0s3JhOH4S04d/ZNDmBry7Ts5YIoZvUIha01Ug==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS3PR11MB9820
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2026 06:07:13.2585 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ADJTUUNl3+BumaPUBU5ets8wl5pz3YtHWoMB7s+8mJUqFLshA3Jh/QFQ16ySlAn9la2v+Erob2xWdPo1BSiyQw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB8859
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -165,317 +174,397 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Hi Riana,
 
+On 28-04-2026 13:54, Tauro, Riana wrote:
+>
+> On 4/23/2026 11:09 PM, Soham Purkait wrote:
+>> GPU health indicator exposes a single sysfs interface, gpu_health,
+>> at the device level, allowing administrators and management tools to
+>> query the GPU health status. The interface permits both read and write
+>> operations on PF and native functions, while on VFs it is exposed as
+>> read-only.
+>>
+>> The sysfs file (gpu_health) is placed at the device level and behaves as
+>> follows:
+>>
+>> $ cat /sys/.../device/gpu_health
+>> ok
+>>
+>> $ echo critical > /sys/.../device/gpu_health
+>>
+>> $ cat /sys/.../device/gpu_health
+>> critical
+>>
+>> V2:
+>>   - Return error number instead of error message in _show and
+>>     _store. (Andi)
+>>   - Remove redundant VF check in _store callback. (Andi)
+>>   - Move GPU health sysfs init error logging to xe_ras_init. (Andi)
+>>   - Return only the current health state for sysfs read. (Andi, Rodrigo)
+>>   - Add documentation for sysfs interface. (Andi, Rodrigo)
+>>
+>> Signed-off-by: Soham Purkait <soham.purkait@intel.com>
+>> ---
+>>   .../ABI/testing/sysfs-driver-intel-xe-ras     |  33 +++
+>>   drivers/gpu/drm/xe/Makefile                   |   1 +
+>>   drivers/gpu/drm/xe/xe_device.c                |   3 +
+>>   drivers/gpu/drm/xe/xe_ras.c                   | 202 ++++++++++++++++++
+>>   drivers/gpu/drm/xe/xe_ras.h                   |  13 ++
+>>   5 files changed, 252 insertions(+)
+>>   create mode 100644 Documentation/ABI/testing/sysfs-driver-intel-xe-ras
+>>   create mode 100644 drivers/gpu/drm/xe/xe_ras.c
+>>   create mode 100644 drivers/gpu/drm/xe/xe_ras.h
+>>
+>> diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-ras 
+>> b/Documentation/ABI/testing/sysfs-driver-intel-xe-ras
+>> new file mode 100644
+>> index 000000000000..085cb79a6e00
+>> --- /dev/null
+>> +++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-ras
+>> @@ -0,0 +1,33 @@
+>> +What:        /sys/bus/pci/drivers/.../gpu_health
+>> +Date:        April 2026
+>> +KernelVersion:    7.0
+>> +Contact:    intel-xe@lists.freedesktop.org
+>> +Description:
+>> +        This file exposes the current GPU health state and, for 
+>> Physical
+>> +        Functions (PFs), allows GPU health state to be updated.
+>> +
+>> +        This sysfs file is only accessible to administrative users 
+>> and is
+>> +        present only on Intel Xe platforms that support the GPU health
+>> +        indicator interface for RAS.
+>> +
+>> +        For Physical Functions (PFs), the file is read-write, while for
+>> +        Virtual Functions (VFs), it is read-only and does not 
+>> support GPU
+>> +        health state updates.
+>> +
+>> +        Read return a single line containing one of the valid values 
+>> for
+>> +        the current device health state. Only for PFs, writing one 
+>> of the
+>> +        valid values updates the current device health state.
+>> +
+>> +        The valid values for the device health state are:
+>> +
+>> +            ok
+>> +                The device is healthy and operating within normal
+>> +                parameters.
+>> +
+>> +            warning
+>> +                The device is experiencing minor issues but remains
+>> +                operational.
+>> +
+>> +            critical
+>> +                The device is in a critical state and may not be
+>> +                operational.
+>> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+>> index 95666f950a6f..28a09d06a44c 100644
+>> --- a/drivers/gpu/drm/xe/Makefile
+>> +++ b/drivers/gpu/drm/xe/Makefile
+>> @@ -112,6 +112,7 @@ xe-y += xe_bb.o \
+>>       xe_pxp_debugfs.o \
+>>       xe_pxp_submit.o \
+>>       xe_query.o \
+>> +    xe_ras.o \
+>>       xe_range_fence.o \
+>>       xe_reg_sr.o \
+>>       xe_reg_whitelist.o \
+>> diff --git a/drivers/gpu/drm/xe/xe_device.c 
+>> b/drivers/gpu/drm/xe/xe_device.c
+>> index 4b45b617a039..cb5484712f1c 100644
+>> --- a/drivers/gpu/drm/xe/xe_device.c
+>> +++ b/drivers/gpu/drm/xe/xe_device.c
+>> @@ -62,6 +62,7 @@
+>>   #include "xe_psmi.h"
+>>   #include "xe_pxp.h"
+>>   #include "xe_query.h"
+>> +#include "xe_ras.h"
+>>   #include "xe_shrinker.h"
+>>   #include "xe_soc_remapper.h"
+>>   #include "xe_survivability_mode.h"
+>> @@ -1067,6 +1068,8 @@ int xe_device_probe(struct xe_device *xe)
+>>         xe_vsec_init(xe);
+>>   +    xe_ras_init(xe);
+>> +
+>>       err = xe_sriov_init_late(xe);
+>>       if (err)
+>>           goto err_unregister_display;
+>> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+>> new file mode 100644
+>> index 000000000000..25609257bd07
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/xe/xe_ras.c
+>> @@ -0,0 +1,202 @@
+>> +// SPDX-License-Identifier: MIT
+>> +/*
+>> + * Copyright © 2026 Intel Corporation
+>> + */
+>> +
+>> +#include <linux/minmax.h>
+>> +
+>> +#include "xe_device.h"
+>> +#include "xe_device_types.h"
+>> +#include "xe_pm.h"
+>> +#include "xe_printk.h"
+>> +#include "xe_ras.h"
+>> +#include "xe_ras_types.h"
+>> +#include "xe_sriov.h"
+>> +#include "xe_sysctrl_mailbox.h"
+>> +#include "xe_sysctrl_mailbox_types.h"
+>> +
+>> +static const char * const gpu_health_states[] = {
+>> +    [XE_RAS_HEALTH_STATUS_OK]        = "ok",
+>> +    [XE_RAS_HEALTH_STATUS_WARNING]        = "warning",
+>> +    [XE_RAS_HEALTH_STATUS_CRITICAL]        = "critical"
+>> +};
+>> +
+>> +static const int ras_status_to_errno_map[] = {
+>> +    [XE_RAS_STATUS_SUCCESS]            = 0,
+>> +    [XE_RAS_STATUS_INVALID_PARAM]        = -EINVAL,
+>> +    [XE_RAS_STATUS_OP_NOT_SUPPORTED]    = -EOPNOTSUPP,
+>> +    [XE_RAS_STATUS_TIMEOUT]            = -ETIMEDOUT,
+>> +    [XE_RAS_STATUS_HARDWARE_FAILURE]    = -EIO,
+>> +    [XE_RAS_STATUS_INSUFFICIENT_RESOURCES]    = -ENAVAIL,
+>> +    [XE_RAS_STATUS_UNKNOWN_ERROR]        = -EREMOTEIO
+>> +};
+>> +
+>> +static int ras_status_to_errno(u32 status)
+>> +{
+>> +    status = min_t(u32, status, XE_RAS_STATUS_UNKNOWN_ERROR);
+>> +    return ras_status_to_errno_map[status];
+>> +}
+>> +
+>> +static void prepare_sysctrl_command(struct 
+>> xe_sysctrl_mailbox_command *command,
+>> +                    u32 cmd_mask, void *request, size_t request_len,
+>> +                    void *response, size_t response_len)
+>> +{
+>> +    struct xe_sysctrl_app_msg_hdr hdr = {0};
+>> +
+>> +    hdr.data = FIELD_PREP(APP_HDR_GROUP_ID_MASK, 
+>> XE_SYSCTRL_GROUP_GFSP) |
+>> +           FIELD_PREP(APP_HDR_COMMAND_MASK, cmd_mask);
+>> +
+>> +    command->header = hdr;
+>> +    command->data_in = request;
+>> +    command->data_in_len = request_len;
+>> +    command->data_out = response;
+>> +    command->data_out_len = response_len;
+>> +}
+>> +
+>> +static ssize_t gpu_health_show(struct device *dev, struct 
+>> device_attribute *attr, char *buf)
+>> +{
+>> +    struct xe_device *xe = kdev_to_xe_device(dev);
+>> +    struct xe_sysctrl_mailbox_command command = {0};
+>> +    struct xe_ras_health_get_response response = {0};
+>> +    struct xe_ras_health_get_input request = {0};
+>> +    enum xe_sysctrl_mailbox_command_id cmd = XE_SYSCTRL_CMD_GET_HEALTH;
+>> +    enum xe_ras_health_status health;
+>> +    int ret;
+>> +    size_t rlen = 0;
+>> +
+>> +    prepare_sysctrl_command(&command, cmd, &request,
+>> +                sizeof(request), &response, sizeof(response));
+>> +    guard(xe_pm_runtime)(xe);
+>> +    ret = xe_sysctrl_send_command(&xe->sc, &command, &rlen);
+>> +    if (ret)
+>> +        return ret;
+>> +
+>> +    if (rlen != sizeof(response)) {
+>> +        xe_err(xe,
+>> +               "[RAS][GET_HEALTH]: invalid Sysctrl response length 
+>> %zu (expected %zu)\n",
+>> +               rlen, sizeof(response));
+>> +        return -EPROTO;
+>> +    }
+>> +    if (response.current_health > XE_RAS_HEALTH_STATUS_CRITICAL) {
+>> +        xe_err(xe, "[RAS][GET_HEALTH]: invalid health state %u from 
+>> Sysctrl\n",
+>> +               response.current_health);
+>> +        return -EPROTO;
+>> +    }
+>> +
+>> +    health = (enum xe_ras_health_status)response.current_health;
+>> +
+>> +    xe_dbg(xe, "[RAS][GET_HEALTH]: current GPU health state = %d 
+>> (%s)\n",
+>> +           health, gpu_health_states[health]);
+>> +
+>> +    return sysfs_emit(buf, "%s\n", gpu_health_states[health]);
+>> +}
+>> +
+>> +static ssize_t gpu_health_store(struct device *dev, struct 
+>> device_attribute *attr,
+>> +                const char *buf, size_t count)
+>> +{
+>> +    struct xe_device *xe = kdev_to_xe_device(dev);
+>> +    struct xe_sysctrl_mailbox_command command = {0};
+>> +    struct xe_ras_health_set_input request = {0};
+>> +    struct xe_ras_health_set_response response = {0};
+>> +    enum xe_sysctrl_mailbox_command_id cmd = XE_SYSCTRL_CMD_SET_HEALTH;
+>> +    enum xe_ras_health_status health;
+>> +    int ret;
+>> +    size_t rlen = 0;
+>> +    int state;
+>> +    int ras_status;
+>> +
+>> +    state = sysfs_match_string(gpu_health_states,
+>> +                   buf);
+>> +    if (state < 0)
+>> +        return -EINVAL;
+>> +
+>> +    request.new_health = (u8)state;
+>> +
+>> +    prepare_sysctrl_command(&command, cmd, &request,
+>> +                sizeof(request), &response, sizeof(response));
+>> +    guard(xe_pm_runtime)(xe);
+>> +    ret = xe_sysctrl_send_command(&xe->sc, &command, &rlen);
+>> +    if (ret)
+>> +        return ret;
+>> +
+>> +    if (rlen != sizeof(response)) {
+>> +        xe_err(xe,
+>> +               "[RAS][SET_HEALTH]: invalid Sysctrl response length 
+>> %zu (expected %zu)\n",
+>> +               rlen, sizeof(response));
+>
+> Please keep error logs/ return codes consistent across multiple ras 
+> patches
+>
+> Refer to the patch Intel Xe - Patchwork 
+> <https://patchwork.freedesktop.org/series/160184/>. This will likely 
+> be merged first
+>
+>> +        return -EPROTO;
+>
+> Is this the right error code for userspace? We do not expect user to 
+> use any protocol.
+> And system controller might fail due to its own errors.
+>
+>> +    }
+>> +
+>> +    ras_status = ras_status_to_errno(response.operation_status);
+>> +    if (ras_status) {
+>> +        xe_err(xe,
+>> +               "[RAS][SET_HEALTH]: cmd 0x%x failed: fw_status=%u 
+>> errno=%pe\n",
+>> +               cmd, response.operation_status, ERR_PTR(ras_status));
+>> +        return ras_status;
+>> +    }
+>> +
+>> +    if (response.current_health > XE_RAS_HEALTH_STATUS_CRITICAL) {
+>> +        xe_err(xe, "[RAS][SET_HEALTH]: invalid health state %u from 
+>> Sysctrl\n",
+>> +               response.current_health);
+>> +        return -EPROTO;
+>> +    }
+>> +
+>> +    health = (enum xe_ras_health_status)response.current_health;
+>> +
+>> +    xe_dbg(xe, "[RAS][SET_HEALTH]: current GPU health state=%d (%s)\n",
+>> +           health, gpu_health_states[health]);
+>
+> Do we need this debug log since it is sysfs
+Not strictly, but it represents the current health state after setting 
+the new value, so it might be helpful when triaging health-state issues. 
+Although It is gated by dynamic debug.
+>
+>> +
+>> +    return count;
+>> +}
+>> +
+>> +static struct device_attribute dev_attr_gpu_health_rw =
+>> +    __ATTR_RW_MODE(gpu_health, 0600);
+>> +
+>> +static struct device_attribute dev_attr_gpu_health_ro =
+>> +    __ATTR_RO_MODE(gpu_health, 0400);
+>
+> Use DEVICE_ATTR_ADMIN_RW/RO. More readable
 
-> -----Original Message-----
-> From: Dibin Moolakadan Subrahmanian
-> <dibin.moolakadan.subrahmanian@intel.com>
-> Sent: Wednesday, April 22, 2026 9:56 PM
-> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
-> Cc: Manna, Animesh <animesh.manna@intel.com>; Shankar, Uma
-> <uma.shankar@intel.com>; Kurmi, Suresh Kumar
-> <suresh.kumar.kurmi@intel.com>
-> Subject: [PATCH v2 07/13] drm/i915/display: Add DC3CO eligibility
-> computation
->=20
-> Compute DC3CO eligibility during atomic_check based on pipe/port
-> constraints and runtime triggers and store result in display->power.dc3co=
-.
->=20
-> When DC3CO is allowed, request DC_STATE_EN_UPTO_DC3CO and reduce
-> the DC entry delay. Otherwise, retain the existing delay and set default
-> DC_STATE_EN_UPTO_DC6 .
->=20
-> Changes in v2:
-> - Move dc3co state from intel_atomic_state to display->power (Uma
-> Shankar)
-> - Use #define bitmasks instead of enum for DC3CO triggers (Jani Nikula)
->=20
-> BSpec: 75253
-> Signed-off-by: Dibin Moolakadan Subrahmanian
-> <dibin.moolakadan.subrahmanian@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c  | 92 ++++++++++++++++++-
-> drivers/gpu/drm/i915/display/intel_display.h  |  1 -
-> .../gpu/drm/i915/display/intel_display_core.h |  3 +-
->  .../drm/i915/display/intel_display_power.c    | 30 ++++++
->  .../drm/i915/display/intel_display_power.h    | 22 +++++
->  5 files changed, 141 insertions(+), 7 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
-> b/drivers/gpu/drm/i915/display/intel_display.c
-> index 674a4ece6d0f..de493d04a622 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -5870,6 +5870,69 @@ static bool intel_pipes_need_modeset(struct
-> intel_atomic_state *state,
->  	return false;
->  }
->=20
-> +static bool intel_dc3co_port_pipe_compatible(struct intel_dp *intel_dp,
-> +					     const struct intel_crtc_state
-> *crtc_state) {
-> +	struct intel_digital_port *dig_port =3D dp_to_dig_port(intel_dp);
-> +	enum pipe pipe =3D to_intel_crtc(crtc_state->uapi.crtc)->pipe;
-> +	enum port port =3D dig_port->base.port;
-> +	int num_pipes =3D intel_crtc_num_joined_pipes(crtc_state);
-> +
-> +	return num_pipes =3D=3D 1 && pipe <=3D PIPE_B && port <=3D PORT_B; }
-> +
-> +static void intel_dc3co_compute_state(struct intel_atomic_state *state)
-> +{
-> +	struct intel_display *display =3D to_intel_display(state);
-> +	struct intel_crtc *crtc;
-> +	struct intel_crtc_state *crtc_state;
-> +	struct intel_encoder *encoder;
-> +	struct intel_dp *intel_dp;
-> +	int active_pipes =3D 0;
-> +	u32 trigger =3D DC3CO_TRIGGER_NONE;
-> +
-> +	if (!HAS_DC3CO(display))
-> +		return;
-> +
-> +	for_each_intel_crtc(display->drm, crtc) {
-> +		trigger =3D DC3CO_TRIGGER_NONE;
-> +		crtc_state =3D intel_atomic_get_new_crtc_state(state, crtc);
-> +		if (!crtc_state)
-> +			crtc_state =3D intel_atomic_get_old_crtc_state(state,
-> crtc);
+DEVICE_ATTR_ADMIN_RW/RO(gpu_health) both expand to the same 
+dev_attr_gpu_health symbol, causing a naming collision since we need two 
+separate attribute instances (RW for PF, RO for VF)
 
-New crtc_state is overwritten with old_crtc_state and used below. Not clear=
- about the need of new_crtc_state.
-Maybe good to explain with a code comment how new_crtc_state and old_crtc_s=
-tate used in this function.
-Better to keep separate variable new_crtc_state/old_crtc_sate  and use as p=
-er need.
- =20
-> +
-> +		if (!crtc_state || !crtc_state->hw.active)
-> +			continue;
-> +
-> +		active_pipes++;
-> +
-> +		if (active_pipes > 1)
-> +			goto done;
-> +
-> +		for_each_intel_encoder_mask(display->drm, encoder,
-> +					    crtc_state->uapi.encoder_mask) {
-> +			if (encoder->type !=3D INTEL_OUTPUT_EDP)
-> +				goto done;
+Thanks,
+Soham.
 
-intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) can be used which will us=
-e crtc_state and the above looping can be avoided.
-
-> +
-> +			intel_dp =3D enc_to_intel_dp(encoder);
-> +
-> +			if (!intel_dc3co_port_pipe_compatible(intel_dp,
-> crtc_state))
-> +				goto done;
-> +		}
-> +
-> +		if (crtc_state->has_lobf)
-> +			trigger |=3D DC3CO_TRIGGER_LOBF;
-> +		if (crtc_state->has_panel_replay)
-> +			trigger |=3D DC3CO_TRIGGER_PANEL_REPLAY;
-> +		if (crtc_state->has_sel_update)
-> +			trigger |=3D DC3CO_TRIGGER_PSR2;
-> +	}
-> +
-> +done:
-> +	intel_display_power_dc3co_update(display, !!trigger, trigger);
-
-Not sure the usage of !!trigger, maybe just pass the trigger and if it is n=
-ot zero then set the allowed inside intel_display_power_dc3co_update().
-
-Regards,
-Animesh
-=20
-> +	drm_dbg_kms(display->drm, "DC3CO allowed=3D%d trigger=3D0x%x\n",
-> +		    !!trigger, trigger);
-> +}
-> +
->  static int intel_atomic_check_joiner(struct intel_atomic_state *state,
->  				     struct intel_crtc *primary_crtc)  { @@ -
-> 6544,6 +6607,7 @@ int intel_atomic_check(struct drm_device *dev,
->  	if (ret)
->  		goto fail;
->=20
-> +	intel_dc3co_compute_state(state);
->  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
->  					    new_crtc_state, i) {
->  		intel_color_assert_luts(new_crtc_state);
-> @@ -7415,6 +7479,7 @@ static void intel_atomic_commit_tail(struct
-> intel_atomic_state *state)
->  	struct intel_power_domain_mask put_domains[I915_MAX_PIPES] =3D
-> {};
->  	struct ref_tracker *wakeref =3D NULL;
->  	int i;
-> +	int power_async_delay;
->=20
->  	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i)
->  		intel_atomic_dsb_prepare(state, crtc); @@ -7621,11
-> +7686,28 @@ static void intel_atomic_commit_tail(struct intel_atomic_stat=
-e
-> *state)
->  		 */
->  		intel_uncore_arm_unclaimed_mmio_detection(uncore);
->  	}
-> -	/*
-> -	 * Delay re-enabling DC states by 17 ms to avoid the off->on->off
-> -	 * toggling overhead at and above 60 FPS.
-> -	 */
-> -	intel_display_power_put_async_delay(display,
-> POWER_DOMAIN_DC_OFF, wakeref, 17);
-> +
-> +	if (intel_display_power_dc3co_allowed(display) &&
-> +	    intel_display_power_dc3co_supported(display)) {
-> +		intel_display_power_set_target_dc_state(display,
-> DC_STATE_EN_UPTO_DC3CO);
-> +		/*
-> +		 * Use minimal re-enable delay to allow DC3CO entry on
-> +		 * the next idle frame, unlike the 17ms guard needed to
-> +		 * prevent DC5/DC6 toggling overhead at 60+ FPS.
-> +		 */
-> +		power_async_delay =3D 1;
-> +	} else {
-> +		/*
-> +		 * Delay re-enabling DC states by 17 ms to avoid the off->on-
-> >off
-> +		 * toggling overhead at and above 60 FPS.
-> +		 */
-> +		intel_display_power_set_target_dc_state(display,
-> DC_STATE_EN_UPTO_DC6);
-> +		power_async_delay =3D 17;
-> +	}
-> +
-> +	intel_display_power_put_async_delay(display,
-> +					    POWER_DOMAIN_DC_OFF,
-> wakeref, power_async_delay);
-> +
->  	intel_display_rpm_put(display, state->wakeref);
->=20
->  	/*
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.h
-> b/drivers/gpu/drm/i915/display/intel_display.h
-> index 1e76a455d7c4..2795e4b9e799 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display.h
-> @@ -521,5 +521,4 @@ bool assert_port_valid(struct intel_display *display,
-> enum port port);
->=20
->  bool intel_scanout_needs_vtd_wa(struct intel_display *display);  int
-> intel_crtc_num_joined_pipes(const struct intel_crtc_state *crtc_state);
-> -
->  #endif
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h
-> b/drivers/gpu/drm/i915/display/intel_display_core.h
-> index c5a07090cba6..13e9b986b6fc 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-> @@ -535,7 +535,8 @@ struct intel_display {
->=20
->  	struct {
->  		struct i915_power_domains domains;
-> -
-> +		/* DC3CO eligibility state */
-> +		struct intel_dc3co_state dc3co;
->  		/* Shadow for DISPLAY_PHY_CONTROL which can't be safely
-> read */
->  		u32 chv_phy_control;
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c
-> b/drivers/gpu/drm/i915/display/intel_display_power.c
-> index f626803bbd88..ff1915be59c9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -372,6 +372,35 @@ bool intel_display_power_dc3co_supported(struct
-> intel_display *display)
->  	return (power_domains->allowed_dc_mask &
-> DC_STATE_EN_UPTO_DC3CO) =3D=3D DC_STATE_EN_UPTO_DC3CO;  }
->=20
-> +void intel_display_power_dc3co_update(struct intel_display *display,
-> +				      bool allowed, u32 trigger)
-> +{
-> +	struct intel_dc3co_state *dc3co =3D &display->power.dc3co;
-> +
-> +	if (!HAS_DC3CO(display))
-> +		return;
-> +
-> +	mutex_lock(&dc3co->lock);
-> +	dc3co->allowed =3D allowed;
-> +	dc3co->trigger =3D trigger;
-> +	mutex_unlock(&dc3co->lock);
-> +}
-> +
-> +bool intel_display_power_dc3co_allowed(struct intel_display *display) {
-> +	struct intel_dc3co_state *dc3co =3D &display->power.dc3co;
-> +	bool allowed;
-> +
-> +	if (!HAS_DC3CO(display))
-> +		return false;
-> +
-> +	mutex_lock(&dc3co->lock);
-> +	allowed =3D dc3co->allowed;
-> +	mutex_unlock(&dc3co->lock);
-> +
-> +	return allowed;
-> +}
-> +
->  static void __async_put_domains_mask(struct i915_power_domains
-> *power_domains,
->  				     struct intel_power_domain_mask *mask)
-> { @@ -1051,6 +1080,7 @@ int intel_power_domains_init(struct intel_display
-> *display)
->  		sanitize_target_dc_state(display, DC_STATE_EN_UPTO_DC6);
->=20
->  	mutex_init(&power_domains->lock);
-> +	mutex_init(&display->power.dc3co.lock);
->=20
->  	INIT_DELAYED_WORK(&power_domains->async_put_work,
->  			  intel_display_power_put_async_work);
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h
-> b/drivers/gpu/drm/i915/display/intel_display_power.h
-> index 05880e9da89f..0b1a06f88ae5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-> @@ -131,6 +131,25 @@ struct intel_power_domain_mask {
->  	DECLARE_BITMAP(bits, POWER_DOMAIN_NUM);  };
->=20
-> +/*
-> + * DC3CO enabling triggers (bitmask).
-> + * DC3CO may be enabled when at least one of these triggers is active.
-> + * Additional constraints may still apply.
-> + */
-> +#define DC3CO_TRIGGER_NONE		(0)
-> +#define DC3CO_TRIGGER_PSR2		BIT(0)
-> +#define DC3CO_TRIGGER_LOBF		BIT(1)
-> +#define DC3CO_TRIGGER_PANEL_REPLAY	BIT(2)
-> +#define DC3CO_TRIGGER_ALL		(DC3CO_TRIGGER_PSR2 | \
-> +					 DC3CO_TRIGGER_LOBF | \
-> +					 DC3CO_TRIGGER_PANEL_REPLAY)
-> +
-> +struct intel_dc3co_state {
-> +	struct mutex lock; /* Protects allowed and trigger fields */
-> +	bool allowed; /* DC3CO eligibility result */
-> +	u32 trigger; /* Bitmask of active DC3CO triggers */ };
-> +
->  struct i915_power_domains {
->  	/*
->  	 * Power wells needed for initialization at driver init and suspend
-> @@ -187,6 +206,9 @@ void intel_display_power_set_target_dc_state(struct
-> intel_display *display,
->  					     u32 state);
->  u32 intel_display_power_get_current_dc_state(struct intel_display
-> *display);  bool intel_display_power_dc3co_supported(struct intel_display
-> *display);
-> +void intel_display_power_dc3co_update(struct intel_display *display,
-> +				      bool allowed, u32 trigger);
-> +bool intel_display_power_dc3co_allowed(struct intel_display *display);
->=20
->  bool intel_display_power_is_enabled(struct intel_display *display,
->  				    enum intel_display_power_domain
-> domain);
-> --
-> 2.43.0
-
+>
+>> +
+>> +static struct device_attribute *gpu_health_attr(struct xe_device *xe)
+>> +{
+>> +    return IS_SRIOV_VF(xe) ? &dev_attr_gpu_health_ro : 
+>> &dev_attr_gpu_health_rw;
+>> +}
+>> +
+>> +static void gpu_health_sysfs_fini(void *arg)
+>> +{
+>> +    struct device *dev = arg;
+>> +    struct xe_device *xe = kdev_to_xe_device(dev);
+>> +
+>> +    device_remove_file(dev, gpu_health_attr(xe));
+>> +}
+>> +
+>> +static int gpu_health_indicator_sysfs_init(struct xe_device *xe)
+>> +{
+>> +    struct device *dev = xe->drm.dev;
+>> +    int err;
+>> +
+>> +    err = device_create_file(dev, gpu_health_attr(xe));
+>> +    if (err)
+>> +        return err;
+>> +
+>> +    err = devm_add_action_or_reset(dev, gpu_health_sysfs_fini, dev);
+>> +    if (err)
+>> +        return err;
+>> +
+>> +    return 0;
+>> +}
+>> +
+>> +/**
+>> + * xe_ras_init - Initialize Xe RAS
+>> + * @xe: xe device instance
+>> + *
+>> + * Initialize Xe RAS
+>> + */
+>> +void xe_ras_init(struct xe_device *xe)
+>> +{
+>> +    int ret;
+>> +
+>> +    if (!xe->info.has_sysctrl)
+>> +        return;
+>> +
+>> +    ret = gpu_health_indicator_sysfs_init(xe);
+>> +    if (ret)
+>> +        xe_err(xe, "[RAS]: failed to initialize GPU health sysfs, 
+>> err=%d\n", ret);
+>
+> Should we fail probe here?
+>
+> Thanks
+> Riana
+>
+>> +}
+>> diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
+>> new file mode 100644
+>> index 000000000000..14cb973603e7
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/xe/xe_ras.h
+>> @@ -0,0 +1,13 @@
+>> +/* SPDX-License-Identifier: MIT */
+>> +/*
+>> + * Copyright © 2026 Intel Corporation
+>> + */
+>> +
+>> +#ifndef _XE_RAS_H_
+>> +#define _XE_RAS_H_
+>> +
+>> +struct xe_device;
+>> +
+>> +void xe_ras_init(struct xe_device *xe);
+>> +
+>> +#endif
