@@ -4,95 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3074EFF8873
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Apr 2026 16:39:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6E60FF8873
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Apr 2026 16:39:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE4AB10F3CE;
-	Thu, 30 Apr 2026 16:39:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4042710E45D;
+	Thu, 30 Apr 2026 16:39:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=baylibre-com.20251104.gappssmtp.com header.i=@baylibre-com.20251104.gappssmtp.com header.b="igJFkROa";
+	dkim=pass (2048-bit key; secure) header.d=dancol.org header.i=@dancol.org header.b="iJ9b9ndC";
 	dkim-atps=neutral
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com
- [209.85.221.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64F2C10EAC2
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Apr 2026 10:25:42 +0000 (UTC)
-Received: by mail-wr1-f46.google.com with SMTP id
- ffacd0b85a97d-43fe608cb92so7606423f8f.2
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Apr 2026 03:25:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20251104.gappssmtp.com; s=20251104; t=1777371941; x=1777976741;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=q7r5F7vvIB8eGhy3VoOY/ruLXo1fkht5EKt0iNNolYs=;
- b=igJFkROaJwnO09BZHXnpc7fALNYHB2d9LVXP8yCXZ573dAL3Ly2bfyrcCWWWuqjJYW
- 4ZQtJ9MYRp/iwDGdo1lBmsRJQUkB6gW/PvwqQuabId+MZmAT4DvyQGWIHGRQhAU6TFeT
- jCReJRvxlrvMatyq6ZB0LwUz4Yq4BvegU4YcB1GjqPY4Z431jNPoxCIA5Y2ZtBUM2wCU
- W+wx6EG2uGvnZj5DDkMW8OGE9la3EOHxXHMdS2aXKOd0qjcY3Mo7EqSmu2zqJbnYQP89
- ba+ZM3FQSqWflTcRzVgRu1t/SalTGmlWITFaRECiFrC0eRUQoj8KXhgUIhhZ81k9x7kL
- qvRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1777371941; x=1777976741;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=q7r5F7vvIB8eGhy3VoOY/ruLXo1fkht5EKt0iNNolYs=;
- b=MieqzUAXsKMucC6JPVA/XohYIdrwqhFui++UHBb8i44gV7eLIxaMyDwx6jzh9ZUBfC
- 8oQOUkCkRwF0vKjwpWhrg4h4eu/+CV1GkAbVfmi4ZF0rC+oz5mbagZKpBzDSTXWNJihB
- KPgeiBT1GjAvEYJiua0kLqdq73lPsVnN0ebYxx2sEAR7z4SfF+sRLmelMoG77JEtRGos
- MGe39DCiv+hlCyIGZK7mRHa8my4ke0kk5xCyXO9DOa70aGGAOZpODV87GpXx6bIwjuTR
- Shnn6KZEXnK881ZsclwkZsuUvr1+UEuMb+W1LR683rrQPjYCeosJWKCb2hezjEss0T7c
- BOjg==
-X-Forwarded-Encrypted: i=1;
- AFNElJ/PJ/10pW/skDND3q1IrSPWSw/a8jaX8Hf2DzKnhUJ2Kf2v+DoPtY0VElmD35cMipTuFtuBw2OTLg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy3+chq6hPNLOENT9o8Jv5ZVqSUzD07ghpTiQkd/CGFOZotBlkz
- mnuxEyoScI1YOhrEUtQBq/OqeVLKVmGzfH3puRejxWU+lONcs2Ke6GJlWozhrmquS3A=
-X-Gm-Gg: AeBDievdhxGIkOgWagnHqkbcb76o2tMooB8pjcAu3AFuxDaN8Fc4MKTNi/D+wQXgfa8
- a+2K7mkfIhNFVfHFyH142lJMXcmmnIGIZXVmz14zedXm1+4p8MXaphU57UDewG41S6VhBDvOOiK
- 97UChgkFQDlTxTGDIgevo38/ohQM7nqJ1o2rzaxbFu21xVbExOzKQPg7R3VZHYLD8NGsw1Fi7Cw
- 4i8RjGJkrIPue8e+PerYRr+sz8LnlDCsOyHwqeqHdwqFDka8sar/YKiKDqFfOL2DjIAzTZMzuFM
- t1KESOUmqErWUqIY6nif5Oxmw5bZULoPoW48Htp9mzZOk1qjMiVPAO9TKJGZDKw4CYKtiA5Wgol
- ewzzQMeVRpng0JCncOMf7CkWRD8fLXXNG6QzCb7v7IMAXqZz7BA9wtpE0xAdUL/mYHtdoN6uRSJ
- FfwVMgDvP0Y324uumci0K/s207W4UrM92G2vU/9gzxh+8WEDLUaqfelGU31EtDY8pNVTMp+mOuZ
- /PdkX8ldXoBrYKV1Q8UDswR
-X-Received: by 2002:a05:6000:1862:b0:43d:77c6:be6d with SMTP id
- ffacd0b85a97d-44647808875mr4746071f8f.7.1777371940929; 
- Tue, 28 Apr 2026 03:25:40 -0700 (PDT)
-Received: from localhost
- (p200300f65f114e088cd204a3a67aba2e.dip0.t-ipconnect.de.
- [2003:f6:5f11:4e08:8cd2:4a3:a67a:ba2e])
- by smtp.gmail.com with UTF8SMTPSA id
- ffacd0b85a97d-4463f4c0b0dsm5670168f8f.23.2026.04.28.03.25.40
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 28 Apr 2026 03:25:40 -0700 (PDT)
-From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig=20=28The=20Capable=20Hub=29?=
- <u.kleine-koenig@baylibre.com>
-To: "Matthew Brost" <matthew.brost@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH v2] drm/xe: Don't use UTS_RELEASE directly
-Date: Tue, 28 Apr 2026 12:25:25 +0200
-Message-ID: <20260428102527.189593-2-u.kleine-koenig@baylibre.com>
-X-Mailer: git-send-email 2.47.3
+Received: from dancol.org (dancol.org [96.126.100.184])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E24CF10E129;
+ Wed, 29 Apr 2026 22:52:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=dancol.org; 
+ s=x;
+ h=Content-Type:MIME-Version:Message-ID:Date:Subject:To:From; 
+ bh=uVZSEQP5zYzPKq/kXJFdSX20dlInqIpzN3iJojggZaU=; b=iJ9b9ndCysglOphySl2DVS8JO4
+ w3OcJSDc7xhmQT5veiqetcttu9ThOkdqc8YNLLo0pJN6lTV4j9PEWhBysgAhHmv9vUGOV7u6n16Kb
+ wuK/tpbveDTo+QgA8/CoapE5MsDsLXc0kISJ05RLes27rjbuZS70+OPHtyco1MU+wa4/WGw1Ms6oM
+ wtohJY08BWEkB6cNATqquh+IPtzCfsoLX/eulDz7gn6r0KJsMLku2VYpLK1U8EYICu9nAo0krypg2
+ uW+oNYNXh4o/CtnpXmmuBp4uzWTEbaJllEXYqyuxu5mD9p1q+oZFoVkXQGCyykrlvb3xHtewI3ebf
+ 4F5fuArw==;
+Received: from 2603-900b-c400-2854-5e6b-eefe-e3ac-fcb7.inf6.spectrum.com
+ ([2603:900b:c400:2854:5e6b:eefe:e3ac:fcb7]:58720 helo=localhost)
+ by dancol.org with utf8esmtpsa (TLS1.3) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.98.2)
+ (envelope-from <dancol@dancol.org>) id 1wIDm0-00000001oB3-2JdO;
+ Wed, 29 Apr 2026 18:52:52 -0400
+From: Daniel Colascione <dancol@dancol.org>
+To: Tvrtko Ursulin <tursulin@ursulin.net>
+Cc: Matthew Brost <matthew.brost@intel.com>,  Christian =?utf-8?Q?K=C3=B6n?=
+ =?utf-8?Q?ig?= <christian.koenig@amd.com>,  intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org,  Thomas =?utf-8?Q?Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>,  Carlos Santa
+ <carlos.santa@intel.com>,  Huang Rui <ray.huang@amd.com>,  Matthew Auld
+ <matthew.auld@intel.com>,  Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>,  Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,  David Airlie
+ <airlied@gmail.com>,  Simona Vetter <simona@ffwll.ch>
+Subject: Re: [PATCH 1/3] drm/ttm: Issue direct reclaim at beneficial_order
+In-Reply-To: <5bd5ed0a-fef2-4bd4-b7a0-d263bcfb1c7f@ursulin.net>
+References: <20260421012608.1474950-1-matthew.brost@intel.com>
+ <20260421012608.1474950-2-matthew.brost@intel.com>
+ <30c84c41-192c-44ae-a614-2b9951c55727@ursulin.net>
+ <d7dda563-280f-4126-a822-a3d43ce5048e@amd.com>
+ <aekygVvRz7mu+elE@gsse-cloud1.jf.intel.com>
+ <5bd5ed0a-fef2-4bd4-b7a0-d263bcfb1c7f@ursulin.net>
+User-Agent: mu4e 1.14.0-pre1; emacs 31.0.50
+Date: Wed, 29 Apr 2026 18:52:50 -0400
+Message-ID: <87se8didkt.fsf@dancol.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1798;
- i=u.kleine-koenig@baylibre.com; h=from:subject;
- bh=kYS1CLDDr+kbvgcu3WTZErio9Ph7NQimIR8DIaYmNZ4=;
- b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBp8IsXzUT00Oob8DoNg73TBwjosMQMtMdPRBhug
- eRs/ot1GMuJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCafCLFwAKCRCPgPtYfRL+
- Tjb5B/9ls6PsWfSLN8vT+vnwCKbljsHPWuFWXjV3X77dPw1583yxkZ7Hx4xZ4sz28ov/a3EryTs
- a3YNStBGBREcc0FtcNkd83vY6s1Wujy5zUFLufAPHfGk5o7umBILI7ZADmkdKleu+C7gEaqannb
- fLy5N2JRcOmMSaXliUmWsSN7MOYcbJ3hhMluR/T2LqhuYz1WqK+k1zGwJDN4IwGZ7QR5dsP47fb
- yWhzheOHWLuHPsaR6osudF+D1syJ8KUt62pzzoHyPokmYf4VHvu559y9Cc7qF0H6bswV75Ve6zf
- 9Py2ej8WJ3yXbKFCLtMJUwwvA6GX9mdKp5ge6SjAkaaZQOVq
-X-Developer-Key: i=u.kleine-koenig@baylibre.com; a=openpgp;
- fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Thu, 30 Apr 2026 16:39:35 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -108,56 +70,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-UTS_RELEASE evaluates to a static string and changes quite easily (e.g.
-uncommitted changes in the source tree or new commits). So when checking
-if a patch introduces changes to the resulting binary each usage of
-UTS_RELEASE is source of annoyance.
+Tvrtko Ursulin <tursulin@ursulin.net> writes:
 
-Instead of using UTS_RELEASE directly use init_utsname()->release which
-evaluates to the same string but with that a change of UTS_RELEASE
-doesn't affect xe_devcoredump.o.
+> On 22/04/2026 21:41, Matthew Brost wrote:
+>> On Wed, Apr 22, 2026 at 09:41:54AM +0200, Christian K=C3=B6nig wrote:
+>>> On 4/22/26 09:32, Tvrtko Ursulin wrote:
+>>>>
+>>>> On 21/04/2026 02:26, Matthew Brost wrote:
+>>>>> Triggering kswap at an order higher than beneficial_order makes little
+>>>>> sense, as the driver has already indicated the optimal order at which
+>>>>> reclaim is effective. Similarly, issuing direct reclaim or triggering
+>>>>> kswap at a lower order than beneficial_order is ineffective, since the
+>>>>> driver does not benefit from reclaiming lower-order pages.
+>>>>>
+>>>>> As a result, direct reclaim should only be issued with __GFP_NORETRY =
+at
+>>>>> exactly beneficial_order, or as a fallback, direct reclaim without
+>>>>> __GFP_NORETRY at order 0 when failure is not an option.
+>>>>>
+>>>>> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+>>>>> Cc: Carlos Santa <carlos.santa@intel.com>
+>>>>> Cc: Christian Koenig <christian.koenig@amd.com>
+>>>>> Cc: Huang Rui <ray.huang@amd.com>
+>>>>> Cc: Matthew Auld <matthew.auld@intel.com>
+>>>>> Cc: Matthew Brost <matthew.brost@intel.com>
+>>>>> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>>>>> Cc: Maxime Ripard <mripard@kernel.org>
+>>>>> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+>>>>> Cc: David Airlie <airlied@gmail.com>
+>>>>> Cc: Simona Vetter <simona@ffwll.ch>
+>>>>> CC: dri-devel@lists.freedesktop.org
+>>>>> Cc: Daniel Colascione <dancol@dancol.org>
+>>>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>>>>> ---
+>>>>>  =C2=A0 drivers/gpu/drm/ttm/ttm_pool.c | 4 ++--
+>>>>>  =C2=A0 1 file changed, 2 insertions(+), 2 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm=
+_pool.c
+>>>>> index 26a3689e5fd9..8425dbcc6c68 100644
+>>>>> --- a/drivers/gpu/drm/ttm/ttm_pool.c
+>>>>> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
+>>>>> @@ -165,8 +165,8 @@ static struct page *ttm_pool_alloc_page(struct tt=
+m_pool *pool, gfp_t gfp_flags,
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * Do not add latency to the all=
+ocation path for allocations orders
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * device tolds us do not bring =
+them additional performance gains.
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
+>>>>> -=C2=A0=C2=A0=C2=A0 if (beneficial_order && order > beneficial_order)
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 gfp_flags &=3D ~__GFP_DIR=
+ECT_RECLAIM;
+>>>>> +=C2=A0=C2=A0=C2=A0 if (order && beneficial_order && order !=3D benef=
+icial_order)
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 gfp_flags &=3D ~__GFP_REC=
+LAIM;
+>>>>>  =C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (!ttm_pool_uses_dma_alloc(p=
+ool)) {
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 p =3D alloc_p=
+ages_node(pool->nid, gfp_flags, order);
+>>>>
+>>>> I missed this conversation so don't know if this was discussed -
+>> I meant to CC you here, but missed including you.
+>>=20
+>>>> having less of 64k pages is not a concern? I mean slightly higher
+>>>> TLB pressure etc on hardware which supports this PTE size.
+>>>
+>>> At least for AMD GPUs 64k doesn't matter at all.
+>>>
+>> Same on Intel GPUs for system memory mappings - it is either 4k or
+>> 2M
+>> GPU pages. VRAM can we 64k pages but that isn't involved here.
+>>=20
+>>> There was a large push from the Windows side to use that size, but
+>>> we have more than enough evidence to prove that this size is
+>>> actually completely nonsense for almost all use cases.
+>>>
+>>> I have no idea how we ended up with that in the first place.
+>>>
+>>> It could be that there is still HW out there which can only handle
+>>> that size, but in that case such HW should just set
+>>> beneficial_order to 64k.
+>>>
+>> Or we move to a table config if we find drivers have multiple
+>> beneficial_orders.
+>
+> Or a bitmask of direct reclaim orders?
+>
+> I am not saying it is required to be "smarter" than this patch does
+> it, for AMD and Intel apparently isn't, but for other drivers I don't
+> know so it does need looking into.
+>
+> Regards,
+>
+> Tvrtko
 
-Signed-off-by: Uwe Kleine-König (The Capable Hub) <u.kleine-koenig@baylibre.com>
----
-Hello,
-
-(implicit) v1 of this patch is available at 
-https://lore.kernel.org/20260427160902.1126027-2-u.kleine-koenig%40baylibre.com.
-
-The only changes since then is that instead of dropping the kernel line,
-init_utsname()->release is used, which is nearly what Jani Nikula
-suggested.
-
-Best regards
-Uwe
-
- drivers/gpu/drm/xe/xe_devcoredump.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
-index 558a1a9841a0..07c7c89240d8 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump.c
-+++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-@@ -8,7 +8,7 @@
- 
- #include <linux/ascii85.h>
- #include <linux/devcoredump.h>
--#include <generated/utsrelease.h>
-+#include <linux/utsname.h>
- 
- #include <drm/drm_managed.h>
- 
-@@ -101,7 +101,7 @@ static ssize_t __xe_devcoredump_read(char *buffer, ssize_t count,
- 
- 	drm_puts(&p, "**** Xe Device Coredump ****\n");
- 	drm_printf(&p, "Reason: %s\n", ss->reason);
--	drm_puts(&p, "kernel: " UTS_RELEASE "\n");
-+	drm_printf(&p, "kernel: %s\n", init_utsname()->release);
- 	drm_puts(&p, "module: " KBUILD_MODNAME "\n");
- 
- 	ts = ktime_to_timespec64(ss->snapshot_time);
-
-base-commit: 254f49634ee16a731174d2ae34bc50bd5f45e731
--- 
-2.47.3
-
+Probably stupid question: for systems like my Lunar Lake Xe2, which has
+unified memory and (IIUC) no special cache-type or write-mode
+constraints for GPU mappings, would it be possible to use regular
+system-provided pages (e.g. from shmem) instead of going through the TTM
+pool and allow mTHP to provide the aligned and contiguous backing
+storage that the GPU wants? Something like GEM has, but maybe inside the
+TTM API?
