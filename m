@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 708CBFF8875
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Apr 2026 10:25:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30BC8FF8875
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Apr 2026 10:25:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2BF8E10EF61;
-	Wed, 29 Apr 2026 10:25:44 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kLHHwzVd";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A385C10EF62;
- Wed, 29 Apr 2026 10:25:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777458343; x=1808994343;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Ec+yDon4dp/8QZ35haMc+c5gH8WWBMbodI2k5lmL5I4=;
- b=kLHHwzVda+a3E3WoztSm67PbJUsRnOXvvkPpDgrIPluaVyNdg8xl34ti
- 4ObD1aprVJiiTXyCE3g+IoP2qvBdgA9qY1E1pk5cCVjkpggY77IOniLGY
- /2GyU/tajBGBmRMzbTrCkv3yzozmtPnCR183jKUPcMrI3cfk5N3ETYfu1
- TcloJ/rm9GdIKztOdAU3Lr/SAkFVQD9wMqk6Ahzutc7s6GwDugfd6AQLp
- XWluLutde9KfIs1BeHtcWFIBA7P4/5ZP3Ut4UMkHjpPI2pQKfn3GlzPWw
- sGK0tzM9kMMu7EkC+fhJaIeZ/SSiTF2+VL21f9byU08WLF1PT7/p6b1z9 g==;
-X-CSE-ConnectionGUID: Eq0XycRDTQCCgo8+pJK5Dw==
-X-CSE-MsgGUID: 1UmeB+fVTMm+DiWYLxL1MA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11770"; a="103838184"
-X-IronPort-AV: E=Sophos;i="6.23,205,1770624000"; d="scan'208";a="103838184"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2026 03:25:43 -0700
-X-CSE-ConnectionGUID: Jt/DThmiS9mqqh8lFDfvuw==
-X-CSE-MsgGUID: THfRAY74T4iS6AGih8JfXw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,205,1770624000"; d="scan'208";a="257784030"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.245.175])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2026 03:25:41 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH 10/15] drm/i915/irq: move VLV/CHV LPE irq handler call after
- irq acks
-Date: Wed, 29 Apr 2026 13:24:50 +0300
-Message-ID: <8932c31b9fec5c50f64dbb5d9f2e682b1e6d3d5c.1777458161.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1777458161.git.jani.nikula@intel.com>
-References: <cover.1777458161.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA1F410EF6E;
+	Wed, 29 Apr 2026 10:25:47 +0000 (UTC)
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1239F10EF65;
+ Wed, 29 Apr 2026 10:25:47 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4675075183188796297=="
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/madvise=3A_Track_pur?=
+ =?utf-8?q?geability_with_BO-local_counters?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arvind Yadav" <arvind.yadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 29 Apr 2026 10:25:47 -0000
+Message-ID: <177745834706.24335.10476811899599246207@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260429085214.1203334-1-arvind.yadav@intel.com>
+In-Reply-To: <20260429085214.1203334-1-arvind.yadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,67 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The location of the intel_lpe_audio_irq_handler() call seems too
-early. Group the handler calls together slightly later.
+--===============4675075183188796297==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/i915_irq.c | 18 +++++++++---------
- 1 file changed, 9 insertions(+), 9 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index ef9eadf38a53..1c87f56d668d 100644
---- a/drivers/gpu/drm/i915/i915_irq.c
-+++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -282,10 +282,6 @@ static irqreturn_t valleyview_irq_handler(int irq, void *arg)
- 		 * signalled in IIR */
- 		i9xx_pipestat_irq_ack(display, iir, pipe_stats);
- 
--		if (iir & (I915_LPE_PIPE_A_INTERRUPT |
--			   I915_LPE_PIPE_B_INTERRUPT))
--			intel_lpe_audio_irq_handler(display);
--
- 		/*
- 		 * VLV_IIR is single buffered, and reflects the level
- 		 * from PIPESTAT/PORT_HOTPLUG_STAT, hence clear it last.
-@@ -301,6 +297,10 @@ static irqreturn_t valleyview_irq_handler(int irq, void *arg)
- 		if (pm_iir)
- 			gen6_rps_irq_handler(&to_gt(dev_priv)->rps, pm_iir);
- 
-+		if (iir & (I915_LPE_PIPE_A_INTERRUPT |
-+			   I915_LPE_PIPE_B_INTERRUPT))
-+			intel_lpe_audio_irq_handler(display);
-+
- 		if (hotplug_status)
- 			i9xx_hpd_irq_handler(display, hotplug_status);
- 
-@@ -372,11 +372,6 @@ static irqreturn_t cherryview_irq_handler(int irq, void *arg)
- 		 * signalled in IIR */
- 		i9xx_pipestat_irq_ack(display, iir, pipe_stats);
- 
--		if (iir & (I915_LPE_PIPE_A_INTERRUPT |
--			   I915_LPE_PIPE_B_INTERRUPT |
--			   I915_LPE_PIPE_C_INTERRUPT))
--			intel_lpe_audio_irq_handler(display);
--
- 		/*
- 		 * VLV_IIR is single buffered, and reflects the level
- 		 * from PIPESTAT/PORT_HOTPLUG_STAT, hence clear it last.
-@@ -387,6 +382,11 @@ static irqreturn_t cherryview_irq_handler(int irq, void *arg)
- 		intel_uncore_write(&dev_priv->uncore, VLV_IER, ier);
- 		intel_uncore_write(&dev_priv->uncore, GEN8_MASTER_IRQ, GEN8_MASTER_IRQ_CONTROL);
- 
-+		if (iir & (I915_LPE_PIPE_A_INTERRUPT |
-+			   I915_LPE_PIPE_B_INTERRUPT |
-+			   I915_LPE_PIPE_C_INTERRUPT))
-+			intel_lpe_audio_irq_handler(display);
-+
- 		if (hotplug_status)
- 			i9xx_hpd_irq_handler(display, hotplug_status);
- 
--- 
-2.47.3
+Series: drm/xe/madvise: Track purgeability with BO-local counters
+URL   : https://patchwork.freedesktop.org/series/165688/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-4949-1db870ffb55b6414a78d7609ba7e08adf880dfc5_BAT -> xe-pw-165688v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-4949-1db870ffb55b6414a78d7609ba7e08adf880dfc5 -> xe-pw-165688v1
+
+  IGT_8879: 02b0e01dd9a5a3ab1efe976bb8c4f13cfcdbab1a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4949-1db870ffb55b6414a78d7609ba7e08adf880dfc5: 1db870ffb55b6414a78d7609ba7e08adf880dfc5
+  xe-pw-165688v1: 165688v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165688v1/index.html
+
+--===============4675075183188796297==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/madvise: Track purgeability with BO-local counters</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165688/">https://patchwork.freedesktop.org/series/165688/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165688v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165688v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4949-1db870ffb55b6414a78d7609ba7e08adf880dfc5_BAT -&gt; xe-pw-165688v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4949-1db870ffb55b6414a78d7609ba7e08adf880dfc5 -&gt; xe-pw-165688v1</li>
+</ul>
+<p>IGT_8879: 02b0e01dd9a5a3ab1efe976bb8c4f13cfcdbab1a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4949-1db870ffb55b6414a78d7609ba7e08adf880dfc5: 1db870ffb55b6414a78d7609ba7e08adf880dfc5<br />
+  xe-pw-165688v1: 165688v1</p>
+
+</body>
+</html>
+
+--===============4675075183188796297==--
