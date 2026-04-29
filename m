@@ -4,57 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36019FF8875
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Apr 2026 21:14:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B9DEFF8875
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Apr 2026 21:27:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5EA510E089;
-	Wed, 29 Apr 2026 21:14:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E715D10F18B;
+	Wed, 29 Apr 2026 21:27:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NTfTJgjT";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="VF0nqJSQ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0009F10E089
- for <intel-xe@lists.freedesktop.org>; Wed, 29 Apr 2026 21:14:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777497241; x=1809033241;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Vj3Jn1peSuBwgIB4jdS6j0MTX3jrACpOlzfkiyBx8Js=;
- b=NTfTJgjTXYjlkakPvra9axdiNvEpHg4ZA7oPibkAfTDiVw2vjoiDJVML
- gZl4/ZDjUXOeGlHGr1UTUXnbzi5/uxT7THUiecVgX8233gk5I6uazG2yj
- G3t8+5ipQTCiWlQIBJE9SmdM9Ne1sbXEezgGPhZxGqq5MC0nzsmj4YSGZ
- Z0mJW/cjXGsZYOZKgrfaq+FSzadjD/TF7HRP9nvuJpxTkTPG8Qt1SJ5pz
- sWPALqncM8bvh1iYU7hx23KXYvVGjKKXj6aJbsksLm+kEy7A6yftFMEBC
- qyrqAoBc9dME/f5SQ6Vg38YA1kLkuEYUX6kofsjOK8fOMylxaziyUh+PE Q==;
-X-CSE-ConnectionGUID: BacqGVyySPKLaZYBIoFoDA==
-X-CSE-MsgGUID: MgAP49RXTGWX7O2BIE2Ghw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11771"; a="78332607"
-X-IronPort-AV: E=Sophos;i="6.23,206,1770624000"; d="scan'208";a="78332607"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2026 14:14:00 -0700
-X-CSE-ConnectionGUID: 6q8ab3AgSf6GtZtev0yN8A==
-X-CSE-MsgGUID: 1GjUpsoeSxuNFmUZW9s7ow==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,206,1770624000"; d="scan'208";a="230026438"
-Received: from dut4463arlhx.fm.intel.com ([10.105.10.192])
- by fmviesa010.fm.intel.com with ESMTP; 29 Apr 2026 14:14:00 -0700
-From: Brian Nguyen <brian3.nguyen@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Brian Nguyen <brian3.nguyen@intel.com>,
- Maciej Patelczyk <maciej.patelczyk@intel.com>,
- Mika Kuoppala <mika.kuoppala@linux.intel.com>,
- Stuart Summers <stuart.summers@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: [PATCH v2] drm/xe/xe_exec: Avoid potential lockdep cycle with
- xe_pm_block_map
-Date: Wed, 29 Apr 2026 21:14:00 +0000
-Message-ID: <20260429211359.195640-2-brian3.nguyen@intel.com>
-X-Mailer: git-send-email 2.43.0
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E5EC410F18B;
+ Wed, 29 Apr 2026 21:27:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+ Message-ID:Content-Type:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=P+YHxiWayYtMcGT4cchSQZurmu0uKrlxRQSW7KYEbZg=; b=VF0nqJSQyE6B53NmJPy9qboyPJ
+ dtK0RLMlPt4j8t4eI+D9GUWR7hE+fviE0r13JHSGbEnSgVB2EKfP+E48DtgPgnWK+QwFAH9a6d41R
+ UYA+qbPL/XFPJi0ot9uo8FqZ1wY0fMkk0v5bimbdUzmJck3JcGxaRRTbcHXBF4ATNcvhoyb77l3bi
+ lHZzQNVQODCesD7pwToRLIqZ2Gy4y5bSp0QPO9WL8rrNoNVPakX23zZrSSSCi4+OrqB7Ux7Vz2le5
+ 7PAb2GICUAY/hBSk/HqZ7xa4zsK9iFL5+WJbPeXzxVe83ayAVaQcaBq3Ju/MQJ/dvkA1CVFv4sM7/
+ mCDthn9A==;
+Received: from c-73-157-168-91.hsd1.or.comcast.net ([73.157.168.91]
+ helo=[192.168.1.133]) by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1wICRi-0048Hf-9Q; Wed, 29 Apr 2026 23:27:49 +0200
+Content-Type: multipart/mixed; boundary="------------QUgaupq3qhg3mywiW5XqRiiT"
+Message-ID: <6ceb624d-36ad-43a2-8635-ad2f50cc01f7@Igalia.com>
+Date: Wed, 29 Apr 2026 14:27:43 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 00/26] Enable Pipe writeback
+To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Cc: sowmiya.s@intel.com, uma.shankar@intel.com, swati2.sharma@intel.com,
+ chaitanya.kumar.borah@intel.com, arun.r.murthy@intel.com,
+ kernel-dev@igalia.com
+References: <20260325110744.1096786-1-suraj.kandpal@intel.com>
+Content-Language: en-GB
+From: John Harrison <John.Harrison@Igalia.com>
+In-Reply-To: <20260325110744.1096786-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,89 +61,130 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With the EUDEBUG patch series [1], lockdep will report multiple
-circular locking dependencies originating from xe_exec_ioctl that
-close through discovery_lock.
+This is a multi-part message in MIME format.
+--------------QUgaupq3qhg3mywiW5XqRiiT
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-The vm->lock -> xe_pm_block_map comes from calling
-xe_pm_block_on_suspend() inside of the vm->lock critical section. The
-xe_pm_block_map annotation was added by commit f73f6dd312a5
-("drm/xe/pm: Add lockdep annotation for the pm_block completion") and
-made existing lockdep ordering visible.
+On 3/25/26 04:07, Suraj Kandpal wrote:
+> This series aims to enable pipe writeback functionality on
+> ADLP where it has been tested. The plan is to slowly accomodate
+> all supported hardware after this functionality is tested on them.
+> This series currently sits on top of two series still under review
+> in drm core. They are squashed as the first two patches of this series.
+> This series enables the triggered captured mode where we need to
+> trigger a capture.
+>
+> v2
+> - Do required changes to take into account the new drm writeback
+>    framework
+>
+> v3
+> - Fix patch series to apply cleanly
+>
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
-Some lockdep cycle variants are observed through the preempt rebind
-worker, SVM garbage collector worker, and the mode_sem lock in xe_exec.
+Hello,
 
-To prevent problematic ordering, probe for pending suspend and if the
-block is needed, drop held locks before blocking, removing the common
-ordering between all 3 cycles (vm->lock -> xe_pm_block_map) and prevent
-another possible cycle (mode_sem -> xe_pm_block_map) from forming.
+I tried this out (on a LNL because I don't have an ADL at the moment) 
+and hit a bunch of issues with null pointer dereferences.
 
-As reference, the cycles closed by inclusion of the discovery_lock are:
+It looks like the intel_writeback_connector::job field is never filled 
+in but it is being used. Further, it looks like that field exists 
+because conn_state->writeback_job is gone by the time the capture 
+function is called. However, the capture function is still using that 
+null job pointer instead of caching the required info in the intel 
+specific structure.
 
-Cycle A: discovery_lock -> mode_sem -> vm->lock -> xe_pm_block_map ->
-clientlist_mutex -> discovery_lock
+Specifically, in intel_writeback_atomic_commit() it says:
+     drm_writeback_queue_job(connector, conn_state);
+     intel_writeback_capture(state, intel_connector);
 
-Cycle B: discovery_lock -> work_completion(rebind_work) -> vm->lock ->
-xe_pm_block_map -> clientlist_mutex -> discovery_lock
+And the doc for the drm call explicitly says it clears the writeback_job 
+field that the capture function tries to use.
 
-Cycle C: discovery_lock -> work_completion(garbage_collector.work) ->
-vm->lock -> xe_pm_block_map -> clientlist_mutex -> discovery_lock
+I made the attached changes to my local tree and I no longer get any 
+kernel panics. I do get a "flip_done timed out" followed by a bunch of 
+warns along the lines of "attached crtc is active, but connector isn't". 
+I'm guessing this is related to running on unsupported hardware? What 
+would be needed to enable this for LNL?
 
-[1] https://patchwork.freedesktop.org/series/161979/
 
-v2:
- - Drop unconditional ERESTARTSYS for internal reacquiring locks.
- - Update comment accordingly.
 
-Signed-off-by: Brian Nguyen <brian3.nguyen@intel.com>
-Cc: Maciej Patelczyk <maciej.patelczyk@intel.com>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Cc: Stuart Summers <stuart.summers@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_exec.c | 20 ++++++++++++++------
- 1 file changed, 14 insertions(+), 6 deletions(-)
+Thanks,
+John.
 
-diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-index e05dabfcd43c..e36ffe5dcba8 100644
---- a/drivers/gpu/drm/xe/xe_exec.c
-+++ b/drivers/gpu/drm/xe/xe_exec.c
-@@ -202,6 +202,7 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	}
- 
- 	group = q->hwe->hw_engine_group;
-+retry_lock:
- 	mode = xe_hw_engine_group_find_exec_mode(q);
- 
- 	if (mode == EXEC_MODE_DMA_FENCE) {
-@@ -257,13 +258,20 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	}
- 
- 	/*
--	 * It's OK to block interruptible here with the vm lock held, since
--	 * on task freezing during suspend / hibernate, the call will
--	 * return -ERESTARTSYS and the IOCTL will be rerun.
-+	 * If suspend is pending, drop held locks then perform the
-+	 * block on suspend, avoiding potential lockdep cycle.
-+	 * On task freezing the wait itself returns -ERESTARTSYS via the freezer
-+	 * signal path. On successful wait, reacquire locks and retry.
- 	 */
--	err = xe_pm_block_on_suspend(xe);
--	if (err)
--		goto err_unlock_list;
-+	if (!try_wait_for_completion(&xe->pm_block)) {
-+		up_read(&vm->lock);
-+		if (mode == EXEC_MODE_DMA_FENCE)
-+			xe_hw_engine_group_put(group);
-+		err = xe_pm_block_on_suspend(xe);
-+		if (err)
-+			goto err_syncs;
-+		goto retry_lock;
-+	}
- 
- 	if (!xe_vm_in_lr_mode(vm)) {
- 		vm_exec.vm = &vm->gpuvm;
--- 
-2.43.0
+--------------QUgaupq3qhg3mywiW5XqRiiT
+Content-Type: text/x-patch; charset=UTF-8;
+ name="0001-drm-i915-writeback-Fix-null-pointer-problems.patch"
+Content-Disposition: attachment;
+ filename="0001-drm-i915-writeback-Fix-null-pointer-problems.patch"
+Content-Transfer-Encoding: base64
 
+RnJvbSAzN2ZhN2JhYjYzNDI5MTIwZTZiMTg5MGM5Zjg1OGM4NTI5OWVhMzNlIE1vbiBTZXAg
+MTcgMDA6MDA6MDAgMjAwMQpGcm9tOiBKb2huIEhhcnJpc29uIDxKb2huLkhhcnJpc29uQEln
+YWxpYS5jb20+CkRhdGU6IFdlZCwgMjkgQXByIDIwMjYgMTE6MzA6MTkgLTA3MDAKU3ViamVj
+dDogW1BBVENIXSBkcm0vaTkxNS93cml0ZWJhY2s6IEZpeCBudWxsIHBvaW50ZXIgcHJvYmxl
+bXMKClRoZSBpbnRlbF93cml0ZWJhY2tfY29ubmVjdG9yOjpqb2IgZmllbGQgd2FzIGJlaW5n
+IHVzZWQgYnV0IG5ldmVyIHNldC4KU28gZml4IHRoYXQuIEFsc28sIHRoZSBjb25uX3N0YXRl
+LT53cml0ZWJhY2tfam9iIGZpZWxkICh0aGUgRFJNIGpvYikKd2FzIGNsZWFyZWQgaW1tZWRp
+YXRlbHkgYmVmb3JlIHRoZSB0aW1lIHRoZSBjYXB0dXJlIGZ1bmN0aW9uIHdhcwpjYWxsZWQg
+KHdoaWNoIHNlZW1zIHRvIGJlIHdoeSB0aGVyZSBpcyBhIGNvcHkgaW4gdGhlIEludGVsIHNw
+ZWNpZmljCnN0cnVjdHVyZSkuIFNvIGRvbid0IHRyeSB0byBkZXJlZmVyZW5jZSB0aGF0IG51
+bGwgcG9pbnRlciBpbiB0aGUKY2FwdHVyZSBmdW5jdGlvbi4KClNpZ25lZC1vZmYtYnk6IEpv
+aG4gSGFycmlzb24gPEpvaG4uSGFycmlzb25ASWdhbGlhLmNvbT4KLS0tCiBkcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3dyaXRlYmFjay5jIHwgMTcgKysrKysrKysrKyst
+LS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAxMSBpbnNlcnRpb25zKCspLCA2IGRlbGV0aW9ucygt
+KQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfd3Jp
+dGViYWNrLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3dyaXRlYmFj
+ay5jCmluZGV4IDUyYzJkOGI5MWFmZi4uZjRiNjE3YTVkMGZiIDEwMDY0NAotLS0gYS9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3dyaXRlYmFjay5jCisrKyBiL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfd3JpdGViYWNrLmMKQEAgLTI2NSwyMCAr
+MjY1LDIyIEBAIHN0YXRpYyB2b2lkIGludGVsX3dyaXRlYmFja19jYXB0dXJlKHN0cnVjdCBp
+bnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLAogCXN0cnVjdCBpbnRlbF9kaXNwbGF5ICpkaXNw
+bGF5ID0gdG9faW50ZWxfZGlzcGxheShjb25uZWN0b3IpOwogCXN0cnVjdCBpbnRlbF93cml0
+ZWJhY2tfY29ubmVjdG9yICp3Yl9jb25uID0KIAkJY29ubl90b19pbnRlbF93cml0ZWJhY2tf
+Y29ubmVjdG9yKGNvbm5lY3Rvcik7Ci0Jc3RydWN0IGRybV9jb25uZWN0b3Jfc3RhdGUgKmNv
+bm5fc3RhdGUgPQotCQlkcm1fYXRvbWljX2dldF9uZXdfY29ubmVjdG9yX3N0YXRlKCZzdGF0
+ZS0+YmFzZSwgJmNvbm5lY3Rvci0+YmFzZSk7CiAJc3RydWN0IGludGVsX2NydGMgKmNydGMg
+PSBpbnRlbF9jcnRjX2Zvcl9waXBlKGRpc3BsYXksIHdiX2Nvbm4tPnBpcGUpOwogCXN0cnVj
+dCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlID0KIAkJaW50ZWxfYXRvbWljX2dldF9u
+ZXdfY3J0Y19zdGF0ZShzdGF0ZSwgY3J0Yyk7CiAJY29uc3Qgc3RydWN0IGRybV9kaXNwbGF5
+X21vZGUgKmFkanVzdGVkX21vZGUgPQogCQkmY3J0Y19zdGF0ZS0+aHcuYWRqdXN0ZWRfbW9k
+ZTsKLQlzdHJ1Y3QgZHJtX3dyaXRlYmFja19qb2IgKndiX2pvYiA9IGNvbm5fc3RhdGUtPndy
+aXRlYmFja19qb2I7Ci0Jc3RydWN0IGludGVsX3dyaXRlYmFja19qb2IgKmpvYiA9IGNvbm5f
+c3RhdGUtPndyaXRlYmFja19qb2ItPnByaXY7CisJc3RydWN0IGludGVsX3dyaXRlYmFja19q
+b2IgKmpvYiA9IHdiX2Nvbm4tPmpvYjsKIAllbnVtIHRyYW5zY29kZXIgdHJhbnMgPSB3Yl9j
+b25uLT50cmFuczsKIAl1MzIgdmFsID0gMDsKIAlpbnQgYnBwOwogCi0JYnBwID0gZ2V0X2Nv
+bG9yX21vZGVfYnBwKGRpc3BsYXksIHdiX2pvYi0+ZmItPmZvcm1hdC0+Zm9ybWF0KTsKKwlp
+ZiAoIWpvYikgeworCQlkcm1fZXJyKGRpc3BsYXktPmRybSwgIk5vIHdyaXRlYmFjayBqb2Ig
+Zm9yIGNhcHR1cmUhXG4iKTsKKwkJcmV0dXJuOworCX0KKworCWJwcCA9IGdldF9jb2xvcl9t
+b2RlX2JwcChkaXNwbGF5LCBqb2ItPmZiLT5mb3JtYXQtPmZvcm1hdCk7CiAJdmFsID0gRElW
+X1JPVU5EX1VQKChhZGp1c3RlZF9tb2RlLT5oZGlzcGxheSAqIGJwcCksIDY0KTsKIAlpbnRl
+bF9kZV93cml0ZShkaXNwbGF5LCBXRF9TVFJJREUodHJhbnMpLCBXRF9TVFJJREVfVkFMKHZh
+bCkpOwogCkBAIC0zMjEsOCArMzIzLDEwIEBAIHZvaWQgaW50ZWxfd3JpdGViYWNrX2F0b21p
+Y19jb21taXQoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUpCiAJCQlyZXR1cm47
+CiAKIAkJaWYgKGNvbm5fc3RhdGUtPndyaXRlYmFja19qb2IgJiYgY29ubl9zdGF0ZS0+d3Jp
+dGViYWNrX2pvYi0+ZmIpIHsKKwkJCXN0cnVjdCBpbnRlbF93cml0ZWJhY2tfY29ubmVjdG9y
+ICp3Yl9jb25uID0gY29ubl90b19pbnRlbF93cml0ZWJhY2tfY29ubmVjdG9yKGludGVsX2Nv
+bm5lY3Rvcik7CiAJCQlXQVJOX09OKGNvbm5lY3Rvci0+Y29ubmVjdG9yX3R5cGUgIT0gRFJN
+X01PREVfQ09OTkVDVE9SX1dSSVRFQkFDSyk7CiAKKwkJCXdiX2Nvbm4tPmpvYiA9IGNvbm5f
+c3RhdGUtPndyaXRlYmFja19qb2ItPnByaXY7CiAJCQlkcm1fd3JpdGViYWNrX3F1ZXVlX2pv
+Yihjb25uZWN0b3IsIGNvbm5fc3RhdGUpOwogCQkJaW50ZWxfd3JpdGViYWNrX2NhcHR1cmUo
+c3RhdGUsIGludGVsX2Nvbm5lY3Rvcik7CiAJCX0KQEAgLTM1Miw3ICszNTYsNyBAQCBzdGF0
+aWMgdm9pZCBpbnRlbF93cml0ZWJhY2tfZW5hYmxlX2VuY29kZXIoc3RydWN0IGludGVsX2F0
+b21pY19zdGF0ZSAqc3RhdGUsCiAJc3RydWN0IGludGVsX2NydGMgKmNydGMgPSB0b19pbnRl
+bF9jcnRjKGNydGNfc3RhdGUtPnVhcGkuY3J0Yyk7CiAJc3RydWN0IGludGVsX3dyaXRlYmFj
+a19jb25uZWN0b3IgKndiX2Nvbm4gPQogCQllbmNfdG9faW50ZWxfd3JpdGViYWNrX2Nvbm5l
+Y3RvcihlbmNvZGVyKTsKLQlzdHJ1Y3QgaW50ZWxfd3JpdGViYWNrX2pvYiAqam9iID0gd2Jf
+Y29ubi0+am9iOworCXN0cnVjdCBpbnRlbF93cml0ZWJhY2tfam9iICpqb2I7CiAJY29uc3Qg
+c3RydWN0IGRybV9kaXNwbGF5X21vZGUgKmFkanVzdGVkX21vZGUgPSAmY3J0Y19zdGF0ZS0+
+aHcuYWRqdXN0ZWRfbW9kZTsKIAllbnVtIHRyYW5zY29kZXIgdHJhbnMgPSBjcnRjX3N0YXRl
+LT5jcHVfdHJhbnNjb2RlcjsKIAlzdHJ1Y3QgaW50ZWxfY3J0YyAqcGlwZV9jcnRjOwpAQCAt
+MzYzLDYgKzM2Nyw3IEBAIHN0YXRpYyB2b2lkIGludGVsX3dyaXRlYmFja19lbmFibGVfZW5j
+b2RlcihzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwKIAlpZiAoIWNvbm5fc3Rh
+dGUtPndyaXRlYmFja19qb2IpCiAJCXJldHVybjsKIAorCWpvYiA9IGNvbm5fc3RhdGUtPndy
+aXRlYmFja19qb2ItPnByaXY7CiAJd2JfY29ubi0+dHJhbnMgPSB0cmFuczsKIAl3Yl9jb25u
+LT5waXBlID0gY3J0Yy0+cGlwZTsKIAlmYiA9IGpvYi0+ZmI7Ci0tIAoyLjQzLjAKCg==
+
+--------------QUgaupq3qhg3mywiW5XqRiiT--
