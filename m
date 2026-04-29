@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 041EECCFA13
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Apr 2026 14:25:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDA5EFF8873
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Apr 2026 14:27:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A17FD89241;
-	Wed, 29 Apr 2026 14:25:55 +0000 (UTC)
-Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3C4F89241;
- Wed, 29 Apr 2026 14:25:54 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1149162056476109700=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9AF5C10E3C5;
+	Wed, 29 Apr 2026 14:27:25 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jq9umxaN";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6FC610E3C5;
+ Wed, 29 Apr 2026 14:27:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1777472844; x=1809008844;
+ h=from:date:subject:mime-version:content-transfer-encoding:
+ message-id:to:cc;
+ bh=w+YQvJc2UUceVGKhepIUfzYWfqn72vKNDzNzS0OvZJA=;
+ b=jq9umxaNn7dCLeJmh5EuAYOg3Ezi1JEHXf/8AtL4omOaUAsDCEJ3iYWU
+ zioRp89EEy97VknM/oik7OzKAmVTghUKUbmRuFgrA/hrN/8ZlcOZydZza
+ xFKznYyvjxhzsoSSARau9qsR+HjKFzv094Yo25VsUo0tlhv1z042uCv99
+ 5VIk27Ux6KONNpD6aMnrBdUuxQZckI5KOX6GrpebqyRo6eXynsMyDGaBo
+ lSTXip/1LUHIUnMng01VHaBmgrQ0T3Ag7yQj9R7N9VDt/DKV9cI2HOV3h
+ gtIVwxGsRUsA1aIDK4EpWAvQg5cmNhPgc36V+/TzRRchmVP7PLvHh3+G5 A==;
+X-CSE-ConnectionGUID: ae6OTAJOTcCbsAI+z5yW6w==
+X-CSE-MsgGUID: sAd4B9ijSoC8yRpAcPy0rw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11771"; a="82008040"
+X-IronPort-AV: E=Sophos;i="6.23,206,1770624000"; d="scan'208";a="82008040"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2026 07:27:23 -0700
+X-CSE-ConnectionGUID: EwRxqO0JRoeCuhsLlns3TA==
+X-CSE-MsgGUID: KGXb7tJsRyior66ftZ7pJw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,206,1770624000"; d="scan'208";a="257608791"
+Received: from lstrano-mobl6.amr.corp.intel.com (HELO [192.168.1.16])
+ ([10.124.221.233])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2026 07:27:21 -0700
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+Date: Wed, 29 Apr 2026 11:26:56 -0300
+Subject: [PATCH] drm/i915/dmc_wl: Remove macro HAS_DMC_WAKELOCK()
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/psr=3A_DC_entry_pr?=
- =?utf-8?q?evention_during_active_vblank?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dibin Moolakadan Subrahmanian" <dibin.moolakadan.subrahmanian@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 29 Apr 2026 14:25:54 -0000
-Message-ID: <177747275499.24138.4998885948597735042@5ab824fced77>
-X-Patchwork-Hint: ignore
-References: <20260429110023.611664-1-dibin.moolakadan.subrahmanian@intel.com>
-In-Reply-To: <20260429110023.611664-1-dibin.moolakadan.subrahmanian@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260429-drop-has_dmc_wakelock-v1-1-62cb6fab1da0@intel.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x3MTQqAIBBA4avIrBPSfu0qESE61VBpKFQQ3T1p+
+ S3eeyBiIIzQsQcCnhTJuwSRMTCLdjNysskgc1nnpVTcBn/wRcfR7ma89IqbNytHVSgrRNW2uoH
+ UHgEnuv9vP7zvByfDzeFnAAAA
+X-Change-ID: 20260429-drop-has_dmc_wakelock-e939d11588a7
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+X-Mailer: b4 0.15-dev
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,140 +67,76 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1149162056476109700==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The macro HAS_DMC_WAKELOCK() is currently only used inside
+intel_dmc_wl.c and doesn't need to be exposed to the rest of the driver.
+Furthermore, there is a distinction between the display IP having
+support for the feature and the driver actually using it, so using
+HAS_DMC_WAKELOCK() outside of intel_dmc_wl.c would potentially be wrong
+anyway.
 
-== Series Details ==
+Let's drop that macro.  If other part of the driver needs to check if
+the driver is using the DMC wakelock feature, we would need actually to
+expose the function __intel_dmc_wl_supported().
 
-Series: drm/i915/psr: DC entry prevention during active vblank
-URL   : https://patchwork.freedesktop.org/series/165718/
-State : success
+Since HAS_DMC_WAKELOCK() was kind of self-documenting in the sense that
+it tells us what display IPs have support for the feature and we are now
+dropping it, let's also take this opportunity to add a documentation
+note on the subject.
 
-== Summary ==
+Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_device.h | 1 -
+ drivers/gpu/drm/i915/display/intel_dmc_wl.c         | 9 ++++++++-
+ 2 files changed, 8 insertions(+), 2 deletions(-)
 
-CI Bug Log - changes from xe-4949-1db870ffb55b6414a78d7609ba7e08adf880dfc5_BAT -> xe-pw-165718v1_BAT
-====================================================
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+index 074e3ba8fb77..12e5a522a299 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.h
++++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+@@ -162,7 +162,6 @@ struct intel_display_platforms {
+ #define HAS_DDI(__display)		(DISPLAY_INFO(__display)->has_ddi)
+ #define HAS_DISPLAY(__display)		(DISPLAY_RUNTIME_INFO(__display)->pipe_mask != 0)
+ #define HAS_DMC(__display)		(DISPLAY_RUNTIME_INFO(__display)->has_dmc)
+-#define HAS_DMC_WAKELOCK(__display)	(DISPLAY_VER(__display) >= 20)
+ #define HAS_DOUBLE_BUFFERED_M_N(__display)	(IS_DISPLAY_VER((__display), 9, 14) || (__display)->platform.broadwell)
+ #define HAS_DOUBLE_BUFFERED_LUT(__display)	(DISPLAY_VER(__display) >= 30)
+ #define HAS_DOUBLE_WIDE(__display)	(DISPLAY_VER(__display) < 4)
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+index ddf1a1f1ebc3..7769860e17ea 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+@@ -39,6 +39,13 @@
+  * current implementation, we only need one wakelock, so only
+  * DMC_WAKELOCK1_CTL is used.  The other definitions are here for
+  * potential future use.
++ *
++ * This is available starting with Xe2_LPD (display version 20) as an
++ * experimental feature and on Xe3_LPD (display version 30) as the
++ * first display release with official support.  That means that we
++ * only enable the feature by default on the latter and using it on
++ * the former requires explicitly using the enable_dmc_wl module
++ * parameter.
+  */
+ 
+ /*
+@@ -286,7 +293,7 @@ static void intel_dmc_wl_sanitize_param(struct intel_display *display)
+ {
+ 	const char *desc;
+ 
+-	if (!HAS_DMC_WAKELOCK(display)) {
++	if (DISPLAY_VER(display) < 20) {
+ 		display->params.enable_dmc_wl = ENABLE_DMC_WL_DISABLED;
+ 	} else if (display->params.enable_dmc_wl < 0) {
+ 		if (DISPLAY_VER(display) >= 30)
 
-Summary
--------
+---
+base-commit: 9ee30ac229d686465b572e6404250178b28b616b
+change-id: 20260429-drop-has_dmc_wakelock-e939d11588a7
 
-  **SUCCESS**
+Best regards,
+--  
+Gustavo Sousa <gustavo.sousa@intel.com>
 
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-165718v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4949-1db870ffb55b6414a78d7609ba7e08adf880dfc5/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165718v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#7483]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4949-1db870ffb55b6414a78d7609ba7e08adf880dfc5/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165718v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  
-  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
-
-
-Build changes
--------------
-
-  * Linux: xe-4949-1db870ffb55b6414a78d7609ba7e08adf880dfc5 -> xe-pw-165718v1
-
-  IGT_8879: 02b0e01dd9a5a3ab1efe976bb8c4f13cfcdbab1a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4949-1db870ffb55b6414a78d7609ba7e08adf880dfc5: 1db870ffb55b6414a78d7609ba7e08adf880dfc5
-  xe-pw-165718v1: 165718v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165718v1/index.html
-
---===============1149162056476109700==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/psr: DC entry prevention during active vblank</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165718/">https://patchwork.freedesktop.org/series/165718/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165718v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165718v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4949-1db870ffb55b6414a78d7609ba7e08adf880dfc5_BAT -&gt; xe-pw-165718v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-165718v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4949-1db870ffb55b6414a78d7609ba7e08adf880dfc5/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165718v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4949-1db870ffb55b6414a78d7609ba7e08adf880dfc5/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165718v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4949-1db870ffb55b6414a78d7609ba7e08adf880dfc5 -&gt; xe-pw-165718v1</li>
-</ul>
-<p>IGT_8879: 02b0e01dd9a5a3ab1efe976bb8c4f13cfcdbab1a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4949-1db870ffb55b6414a78d7609ba7e08adf880dfc5: 1db870ffb55b6414a78d7609ba7e08adf880dfc5<br />
-  xe-pw-165718v1: 165718v1</p>
-
-</body>
-</html>
-
---===============1149162056476109700==--
