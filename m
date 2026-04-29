@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E16EBFF8873
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Apr 2026 21:07:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36019FF8875
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Apr 2026 21:14:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A957E10E089;
-	Wed, 29 Apr 2026 21:07:53 +0000 (UTC)
-Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C1A210E089;
- Wed, 29 Apr 2026 21:07:52 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8557513667396891555=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5EA510E089;
+	Wed, 29 Apr 2026 21:14:02 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NTfTJgjT";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0009F10E089
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 Apr 2026 21:14:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1777497241; x=1809033241;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Vj3Jn1peSuBwgIB4jdS6j0MTX3jrACpOlzfkiyBx8Js=;
+ b=NTfTJgjTXYjlkakPvra9axdiNvEpHg4ZA7oPibkAfTDiVw2vjoiDJVML
+ gZl4/ZDjUXOeGlHGr1UTUXnbzi5/uxT7THUiecVgX8233gk5I6uazG2yj
+ G3t8+5ipQTCiWlQIBJE9SmdM9Ne1sbXEezgGPhZxGqq5MC0nzsmj4YSGZ
+ Z0mJW/cjXGsZYOZKgrfaq+FSzadjD/TF7HRP9nvuJpxTkTPG8Qt1SJ5pz
+ sWPALqncM8bvh1iYU7hx23KXYvVGjKKXj6aJbsksLm+kEy7A6yftFMEBC
+ qyrqAoBc9dME/f5SQ6Vg38YA1kLkuEYUX6kofsjOK8fOMylxaziyUh+PE Q==;
+X-CSE-ConnectionGUID: BacqGVyySPKLaZYBIoFoDA==
+X-CSE-MsgGUID: MgAP49RXTGWX7O2BIE2Ghw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11771"; a="78332607"
+X-IronPort-AV: E=Sophos;i="6.23,206,1770624000"; d="scan'208";a="78332607"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2026 14:14:00 -0700
+X-CSE-ConnectionGUID: 6q8ab3AgSf6GtZtev0yN8A==
+X-CSE-MsgGUID: 1GjUpsoeSxuNFmUZW9s7ow==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,206,1770624000"; d="scan'208";a="230026438"
+Received: from dut4463arlhx.fm.intel.com ([10.105.10.192])
+ by fmviesa010.fm.intel.com with ESMTP; 29 Apr 2026 14:14:00 -0700
+From: Brian Nguyen <brian3.nguyen@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Brian Nguyen <brian3.nguyen@intel.com>,
+ Maciej Patelczyk <maciej.patelczyk@intel.com>,
+ Mika Kuoppala <mika.kuoppala@linux.intel.com>,
+ Stuart Summers <stuart.summers@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Subject: [PATCH v2] drm/xe/xe_exec: Avoid potential lockdep cycle with
+ xe_pm_block_map
+Date: Wed, 29 Apr 2026 21:14:00 +0000
+Message-ID: <20260429211359.195640-2-brian3.nguyen@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pf=3A_Fix_MMIO_acces?=
- =?utf-8?q?s_using_PF_view_instead_of_VF_view_during_migration?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lin, Shuicheng" <shuicheng.lin@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 29 Apr 2026 21:07:52 -0000
-Message-ID: <177749687256.26192.6413797561936734912@5ab824fced77>
-X-Patchwork-Hint: ignore
-References: <20260429192259.4009211-1-shuicheng.lin@intel.com>
-In-Reply-To: <20260429192259.4009211-1-shuicheng.lin@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,140 +66,92 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8557513667396891555==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+With the EUDEBUG patch series [1], lockdep will report multiple
+circular locking dependencies originating from xe_exec_ioctl that
+close through discovery_lock.
 
-== Series Details ==
+The vm->lock -> xe_pm_block_map comes from calling
+xe_pm_block_on_suspend() inside of the vm->lock critical section. The
+xe_pm_block_map annotation was added by commit f73f6dd312a5
+("drm/xe/pm: Add lockdep annotation for the pm_block completion") and
+made existing lockdep ordering visible.
 
-Series: drm/xe/pf: Fix MMIO access using PF view instead of VF view during migration
-URL   : https://patchwork.freedesktop.org/series/165739/
-State : success
+Some lockdep cycle variants are observed through the preempt rebind
+worker, SVM garbage collector worker, and the mode_sem lock in xe_exec.
 
-== Summary ==
+To prevent problematic ordering, probe for pending suspend and if the
+block is needed, drop held locks before blocking, removing the common
+ordering between all 3 cycles (vm->lock -> xe_pm_block_map) and prevent
+another possible cycle (mode_sem -> xe_pm_block_map) from forming.
 
-CI Bug Log - changes from xe-4952-07151705e788c02b94b1c9ab7865af250a010b17_BAT -> xe-pw-165739v1_BAT
-====================================================
+As reference, the cycles closed by inclusion of the discovery_lock are:
 
-Summary
--------
+Cycle A: discovery_lock -> mode_sem -> vm->lock -> xe_pm_block_map ->
+clientlist_mutex -> discovery_lock
 
-  **SUCCESS**
+Cycle B: discovery_lock -> work_completion(rebind_work) -> vm->lock ->
+xe_pm_block_map -> clientlist_mutex -> discovery_lock
 
-  No regressions found.
+Cycle C: discovery_lock -> work_completion(garbage_collector.work) ->
+vm->lock -> xe_pm_block_map -> clientlist_mutex -> discovery_lock
 
-  
+[1] https://patchwork.freedesktop.org/series/161979/
 
-Participating hosts (13 -> 13)
-------------------------------
+v2:
+ - Drop unconditional ERESTARTSYS for internal reacquiring locks.
+ - Update comment accordingly.
 
-  No changes in participating hosts
+Signed-off-by: Brian Nguyen <brian3.nguyen@intel.com>
+Cc: Maciej Patelczyk <maciej.patelczyk@intel.com>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Cc: Stuart Summers <stuart.summers@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+---
+ drivers/gpu/drm/xe/xe_exec.c | 20 ++++++++++++++------
+ 1 file changed, 14 insertions(+), 6 deletions(-)
 
-Known issues
-------------
+diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+index e05dabfcd43c..e36ffe5dcba8 100644
+--- a/drivers/gpu/drm/xe/xe_exec.c
++++ b/drivers/gpu/drm/xe/xe_exec.c
+@@ -202,6 +202,7 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	}
+ 
+ 	group = q->hwe->hw_engine_group;
++retry_lock:
+ 	mode = xe_hw_engine_group_find_exec_mode(q);
+ 
+ 	if (mode == EXEC_MODE_DMA_FENCE) {
+@@ -257,13 +258,20 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	}
+ 
+ 	/*
+-	 * It's OK to block interruptible here with the vm lock held, since
+-	 * on task freezing during suspend / hibernate, the call will
+-	 * return -ERESTARTSYS and the IOCTL will be rerun.
++	 * If suspend is pending, drop held locks then perform the
++	 * block on suspend, avoiding potential lockdep cycle.
++	 * On task freezing the wait itself returns -ERESTARTSYS via the freezer
++	 * signal path. On successful wait, reacquire locks and retry.
+ 	 */
+-	err = xe_pm_block_on_suspend(xe);
+-	if (err)
+-		goto err_unlock_list;
++	if (!try_wait_for_completion(&xe->pm_block)) {
++		up_read(&vm->lock);
++		if (mode == EXEC_MODE_DMA_FENCE)
++			xe_hw_engine_group_put(group);
++		err = xe_pm_block_on_suspend(xe);
++		if (err)
++			goto err_syncs;
++		goto retry_lock;
++	}
+ 
+ 	if (!xe_vm_in_lr_mode(vm)) {
+ 		vm_exec.vm = &vm->gpuvm;
+-- 
+2.43.0
 
-  Here are the changes found in xe-pw-165739v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4952-07151705e788c02b94b1c9ab7865af250a010b17/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165739v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#7483]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4952-07151705e788c02b94b1c9ab7865af250a010b17/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165739v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-
-  
-  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
-
-
-Build changes
--------------
-
-  * Linux: xe-4952-07151705e788c02b94b1c9ab7865af250a010b17 -> xe-pw-165739v1
-
-  IGT_8879: 02b0e01dd9a5a3ab1efe976bb8c4f13cfcdbab1a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4952-07151705e788c02b94b1c9ab7865af250a010b17: 07151705e788c02b94b1c9ab7865af250a010b17
-  xe-pw-165739v1: 165739v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165739v1/index.html
-
---===============8557513667396891555==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/pf: Fix MMIO access using PF view instead of VF view during migration</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165739/">https://patchwork.freedesktop.org/series/165739/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165739v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165739v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4952-07151705e788c02b94b1c9ab7865af250a010b17_BAT -&gt; xe-pw-165739v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-165739v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4952-07151705e788c02b94b1c9ab7865af250a010b17/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165739v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4952-07151705e788c02b94b1c9ab7865af250a010b17/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165739v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4952-07151705e788c02b94b1c9ab7865af250a010b17 -&gt; xe-pw-165739v1</li>
-</ul>
-<p>IGT_8879: 02b0e01dd9a5a3ab1efe976bb8c4f13cfcdbab1a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4952-07151705e788c02b94b1c9ab7865af250a010b17: 07151705e788c02b94b1c9ab7865af250a010b17<br />
-  xe-pw-165739v1: 165739v1</p>
-
-</body>
-</html>
-
---===============8557513667396891555==--
