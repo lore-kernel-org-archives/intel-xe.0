@@ -4,65 +4,151 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB772FF8873
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Apr 2026 13:01:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC00EFF8873
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Apr 2026 13:02:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1583010E1C2;
-	Thu, 30 Apr 2026 13:01:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E01710E1C2;
+	Thu, 30 Apr 2026 13:02:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Pa25M4RD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F32uqIV2";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F67610E1C2;
- Thu, 30 Apr 2026 13:01:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A26AB10E1C2
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 Apr 2026 13:02:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777554062; x=1809090062;
- h=date:from:to:cc:subject:message-id:mime-version:
- content-transfer-encoding;
- bh=kf+QddkXQeU804eOxW9k4yNmlmEX4vin7JzbZV05loc=;
- b=Pa25M4RDT2HeA8OkyhP9r4u33EPi0Y792tz5xs79gye6xH7OusoT1cln
- kqQ5ZBvgL2v1YGbd3KNDAYAUSKchq4QruUfKRo6e7fAS9AcW8gG41JZpK
- isHxdsbKWLhiXXVTrFD/0kQrXpHjDF3449KnzO2F9aR81tMO9OzCDtMCb
- fQOo3pAyhIWgof373lsOQjTQNRfCbrialYEE5OSjFWYIhmlVYoQenRGzx
- uyyltApc11pggs5Z9btOJcQ9E/qTZVPORuvSwvmizjLzE+/bXfNv6Ovcb
- vuh76iC3Uz3CJHyNDFrNlfr8xQcbmD2JkemKj1e/vS2YMxuw4r492hxdS w==;
-X-CSE-ConnectionGUID: ZhbB/X6+RiCInpg38Men3g==
-X-CSE-MsgGUID: TzJZzJSaTVqGlDCRYmphqQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11771"; a="95922170"
-X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="95922170"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2026 06:01:01 -0700
-X-CSE-ConnectionGUID: matbbY+/SuG4BeNA+sQCnA==
-X-CSE-MsgGUID: /6RvWi72RiCmS1KOwO/yZA==
+ t=1777554173; x=1809090173;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=CokvTpyO46Ndrt0wCNBAtlqIY6MBCImVi3fhRALe/AU=;
+ b=F32uqIV2k775B1QWyKJueeeMzFtMqWAQhQdv6eFDDTU1TyxSC0oQZK5H
+ u7tqY3tSp++2pLyDV9zUanZ5kn/wGF3AsFPpY72DojRezwZmLbAKiH9gQ
+ RGQ7FlLqrY0GDwoC/dSl/ji5TJIXoJa8H8l1fo43yUz128nre7YW8iNlq
+ Qm8+kagkMk+6+b+IRqAyR1qVYnYO5Pk7Rk0vn9wXwFygfKKW7dgOYrigf
+ YPIXsFZ1o4mepofdvKFJ9aoSGig+tl68luSW1u8tnzHudpwVJ2QiVCaul
+ XRIp1OB0VCsJVVKwggzWQQUAREPNViOQYN6OiebypiFN02i7Twovwr/No w==;
+X-CSE-ConnectionGUID: 7Qo+Ub1SQ32mKOGGJqv68Q==
+X-CSE-MsgGUID: cRC+TiJHRZ2cctB6NEdE+w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11771"; a="89098518"
+X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="89098518"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2026 06:02:53 -0700
+X-CSE-ConnectionGUID: 2gbdp9g1RKqBljYewGDn0g==
+X-CSE-MsgGUID: iLNnywg/QrmXn3ZqAGme0Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="230229012"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO fedora)
- ([10.245.244.73])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2026 06:00:57 -0700
-Date: Thu, 30 Apr 2026 15:00:41 +0200
-From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-xe-next
-Message-ID: <afNSeZJHC3X2m3-N@fedora>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="239562023"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2026 06:02:53 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 30 Apr 2026 06:02:53 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Thu, 30 Apr 2026 06:02:53 -0700
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.67)
+ by edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 30 Apr 2026 06:02:52 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Ji2EHwTCILfo9TUVi5Kia4tH+CuldYqMciFinc10qh9dr5eCnI+Nzf4msvXfokv2L8PHH98ht/JSvBY8JJNOoSACl1pI4f6vxi/+tEIEizoxIdcAkA5VpkCIkU1KeZTgFD8gC+v1Y4TBEnH+nAQSgqrLZzs1dRPWFUD1tBD0ASiNn5n4yNXF3xfdUCF0jUT0NEh4CPxAmHLNwIdITDVFG7efhcvJV7Rpu1BknDBmfqRCNKKq2x4nW6Uh9FYkOOy/FPobhUyF52i/jW7E0CA+vhG5pRv58MdauyDmNUfPDoblCBq88ojg28RMPg0KDa8VptlS2pqymMld+acu3HGXUg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RFEbzniG+/Areo4F/cJHsIk30QR7DJcP9ELfeYtLlz4=;
+ b=hoxhUWftZTNMN11iKwB0WfWz/ie4dRwYt+ak+nNRgFFKiLlyhNiGSZ//kecRwtHBhv9JOQfiNNy1rioEAJWW/O/EvtvXOo3kTXNeKv6mY+31PiEZxSQLjMYz89dthXu0sjNgm0Mcst6ELezqXQRC9o9XndQjkjQ7moJJ8oMR1QNdMPpCUr0ixzOtH/xmLK/3bG0DoJ/E1uFqr9bilZfgSMDFOyuaadjX4YrxVl3yUP3ka2E8PEwS584rsX+xRK0Gk1ZP2UqYlfuNSdZ+9HvOSsXIMd02wEEnQ+cYBptNvwAcns/8fkFeda3cyZ9EWZdH4lwmqyBRsxdKdsNgLV+AaA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BN9PR11MB5242.namprd11.prod.outlook.com (2603:10b6:408:133::18)
+ by PH3PPF37F43E35D.namprd11.prod.outlook.com (2603:10b6:518:1::d16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.20; Thu, 30 Apr
+ 2026 13:02:47 +0000
+Received: from BN9PR11MB5242.namprd11.prod.outlook.com
+ ([fe80::5657:45bf:d335:24d5]) by BN9PR11MB5242.namprd11.prod.outlook.com
+ ([fe80::5657:45bf:d335:24d5%5]) with mapi id 15.20.9870.013; Thu, 30 Apr 2026
+ 13:02:47 +0000
+Date: Thu, 30 Apr 2026 18:28:20 +0530
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: Riana Tauro <riana.tauro@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <rodrigo.vivi@intel.com>,
+ <aravind.iddamsetty@linux.intel.com>, <badal.nilawar@intel.com>,
+ <raag.jadav@intel.com>, <ravi.kishore.koppuravuri@intel.com>,
+ <mallesh.koujalagi@intel.com>, <soham.purkait@intel.com>, Matthew Brost
+ <matthew.brost@intel.com>, Himal Prasad Ghimiray
+ <himal.prasad.ghimiray@intel.com>
+Subject: Re: [PATCH v4 04/13] drm/xe: Skip device access during PCI error
+ recovery
+Message-ID: <vtkxftaqr2aaiv7pjo5nxiv6f3eataby3qfpildmz3jko4fhoh@oxuppfnttdzv>
+References: <20260417085812.4013309-15-riana.tauro@intel.com>
+ <20260417085812.4013309-19-riana.tauro@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260417085812.4013309-19-riana.tauro@intel.com>
+X-ClientProxiedBy: MA5P287CA0049.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1d3::12) To BN9PR11MB5242.namprd11.prod.outlook.com
+ (2603:10b6:408:133::18)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN9PR11MB5242:EE_|PH3PPF37F43E35D:EE_
+X-MS-Office365-Filtering-Correlation-Id: dd20506c-5505-4b00-5767-08dea6b8c707
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|1800799024|376014|18002099003|56012099003|22082099003|27256017;
+X-Microsoft-Antispam-Message-Info: VfYk7/Q6dP7aevRhH2AGt3bpRW1JwIN6eUC31BOyIyeVLAp62OeBM+RGBYPLywVNBHJlvV3y8yWfdhXQLqYULumgS135MqiU7qYpS6FV3Irbog+XWiO0N/19tLz/vnMqfUvWzJewC02H52d4l4BGv9Kc+h+QDoxaJrqNZ3ATOqRVt7wYk7/JAYkALWvdDxXqBeThOJHpEhU1yjIQnixZrBdOT8u4G3RKZUSkB0xuf27hsBphPkYoWJry9xmhCHZA9LV63zJZYxzCieDSMxc0v2GNkXoAVu1j1dgMcCI82nnfoRhxqPqz24E0fLDGIoX1mFa3jya0DuBiTHGvA5nDyQhzC07fA1dKGgU8+aZ8io2BksWsUdWsamDqD/c/ZVuC9DDgDJKjuDTZ4lQwB2V4DebUNyVgko6q2yluVzEA30NBuVsy3pjPHwyJTpbgP/vV4ssPrT+y9cyocV4ix0AtEXfXZbyFTTrrIF8s1gFnkPq1Disq34wAkyyhr2kDt02O9NxAbVMRNbS/+Vu5HNGNL/Gr6FyYHsTBdLFthuYsdIQQ+GOiePNMXGikLB4EFf/ynLvDNq7OOPaVUqNCyjocouOlOBt+EMkdtfwIEFgksef+ZgV4cZ6CMWNBGW0wGKAJWGNpgo1pzifS/GQMx41giURgX2SBHGCNL2mX7XWV0EXnCMaPXF9RYYb+rUxvpNHmuiZMLer0u2oEvhB7ecoRTSQdC71pb1Bhax7LDy4kHFgbzYBrAOLs0PCgRFmlxtAe1W4F4udaiFUSipEf491DWxsyka8lScJJNQhT1QU7bHA=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN9PR11MB5242.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(18002099003)(56012099003)(22082099003)(27256017);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?zTK7YkXQ/n+NJixM1AQ6qOs4cdoHNjG5uESbXEL9U1xZTjMc58rnVh5bYCmZ?=
+ =?us-ascii?Q?5FeOawcOf7xgVE6zkjlX5GEwVojuTp56j1Sk2BsmESej7azhYhdNynxrQZyc?=
+ =?us-ascii?Q?G57vToWnIFq42Xod28kBjDR1yGLG3EbSBWRK+iw4P1bntRWEa4LeK3Fmy571?=
+ =?us-ascii?Q?4ARZ3zwfmXHGWdX6m+CWoLMC/OLqApfAQpQ4LnqsZTLpJGbjG50jNAVxX0iz?=
+ =?us-ascii?Q?CKfbYQ24OFoBASjxMBP9k9amPACWiFfZP6PDzFSJ+ZgCovQQovv8HlqY/65N?=
+ =?us-ascii?Q?5p83z2WjoFbbj2ceJPcQn0Ljybg5ydDMflN6Te2FV7yem/yxCULpn04MI2ks?=
+ =?us-ascii?Q?gukSc+J2hdOYcqeNADPHDntUvp2XIHQQqkbtPRD7I/deB76to/0YH/FrfTLB?=
+ =?us-ascii?Q?kYflBIz1pyInaFT6t9RKad77GMjBJzxh4uZprm+5DyTb7NUPld7pSxjg6Xjd?=
+ =?us-ascii?Q?smS5ywzfo9slGv5XbmuwxeUfkYiByS8Qrd8qIrfqqSPsKMSXfwUVtQx5vE2a?=
+ =?us-ascii?Q?p00AztQlUuuIfGrGK+vd/Rxd7WlnOU21yhpwAuPDLqJ8Ug4ENGfw+WysSSgi?=
+ =?us-ascii?Q?uzwVmds8ADbzBkBi8UScSirxjUaSvX5SylVUCCYYSyGwIWKtTWXQ6sMjgmHX?=
+ =?us-ascii?Q?P509jOcSHkSPSvPtOsmqEi4LNen9X3LwoyiJNoYlV3Z1Sg13HksNca1urUrK?=
+ =?us-ascii?Q?C5nicPi9z+zI9LlV+t8WrZ6XCmgivmv1/3mEvd8XZflf1AywBO2hcSegpUQS?=
+ =?us-ascii?Q?KiJ2tOna6U/XvxqcLu+Oh0dpuzmW8357Pm0MnX9c9RKfhwcCFOlxCJhryyvW?=
+ =?us-ascii?Q?ZoyT+BLkNtXTLoqNv6RaGj83KNGtsFlxk/pz+H7FKCnPBxmuI5rXAoI34G0A?=
+ =?us-ascii?Q?YNacX1D/t+zz9eXOelp061ieAycbtiT2VKUUEbuQqep+N05IYTJwFe4v+Y75?=
+ =?us-ascii?Q?cqzAoGIYOm1rNbKrDajnyw/lPhoBxEjntPWzyxwS3H317DdykapVLykg/N0c?=
+ =?us-ascii?Q?uKFpExlgRzm5h+F2Sz8hK7v300OIQJWSypHAr5/H6BX+O1x/MKYn1utHu5J2?=
+ =?us-ascii?Q?nKrL6/EniwpraTmmv1ep/uSiv00kKxrt4Ph66pKWO+gUmi8wuWNKQzsg/t84?=
+ =?us-ascii?Q?E+bYFfxczabn/EdYOU6oWQDwgVK9fwzepGSVsj9cHQdwp1urVQo4IPHPTClM?=
+ =?us-ascii?Q?YayRbLrrlIDT5y1On+AsEaryLwJDOYf6sFy6ujJ7reDGoBIbiKIfR8yAaxAe?=
+ =?us-ascii?Q?QyxBQv8WrP6FUdl+WcXRl+IU5WyDHLmDnJA/OkZnAGEuhX5gohLvkXo0tCdt?=
+ =?us-ascii?Q?r2VvvfEfdvKu+oMC264gUNIeKD0KfyusQYIKQvT4IepJPntk7vWYF5moN4EW?=
+ =?us-ascii?Q?ylB7fIOA0wXWePrj3DWEOGEopZl2smH5eeOYFrPr2kjC2mBqDkL1W7I6AnCu?=
+ =?us-ascii?Q?xl3u7vgxgOl9FrI8W57nU1m/a3hVQXDTo1xjlnTqWtYWDa8PBD+Um0F6v5VE?=
+ =?us-ascii?Q?RdLqzjv1GBGLDGSH0fzCuPg4Gkd815yPqbvgtLeiIRp3ghjQbQ3i0YE7V08C?=
+ =?us-ascii?Q?RI0sp/k4HzI5XGaCDr0YEEpTWAfvQDnVG3wBEIHXLaS5adQZiPyJIJU6/wv1?=
+ =?us-ascii?Q?1uad4eircJKsB31phRex0/JDcrxyOXThf1kva4tIIXxw8S8bGUiHuPLWSdNZ?=
+ =?us-ascii?Q?Lc8EJGD0voKRrDhmepp1yoW+YTwEPz4RJm5rEvp3r2ybKEUrZCg5qO/mOxU+?=
+ =?us-ascii?Q?ivQXhLRtkg=3D=3D?=
+X-Exchange-RoutingPolicyChecked: B93Uzcyi98SUPzV//q++mmjqzhARPeyk/9L5YXUTAwNt2YRk5aOcHQfbvu9yYH+Ue9FWOI3XpWZL0gRoivZXAvgD0cXZU9xL00izd+w4ShyD+PUnrbXHnrJHODCfxfjI8Pa58g2Uyn9KZ2o+lY5BLhe2+ptF1ZR/I82OppkoGiXmT/PWtrSwNVqK6EjQQtw+biUEUgQdCXHL/4Wv3Hx0A9XIqEbh98qJ2W6mcEWl1x/VKqi8aMJ50JZwPR4QaLbzuHOV0L2xPfS4foHe63dzDprYkhsCkqz2Ar8MWHsBREJSUs1ND+Ok60iQC68ALBbsfFOyYysUGqI1gXc7CVFGJA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: dd20506c-5505-4b00-5767-08dea6b8c707
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5242.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2026 13:02:47.7701 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: BndDc84j9+pJkSJ/tpLhNhWfbYQ2n9QaOPGurtx+yZ3HuKLBpBMjGactYWt44Nh/v7jkOgTJY5PrMPuFQB8FYjzumQscUR6Assg/r15VC6s=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH3PPF37F43E35D
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,521 +163,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave, Simona
-
-Here's the first drm-xe-next pull towards 7.2
-
-Highlights below.
-
-The following changes since commit 4516432284e1b2ad9e70de8067f779c9c1072189:
-
-  ttm/pool: track allocated_pages per numa node. (2026-04-08 06:52:48 +1000)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-next-2026-04-30
-
-for you to fetch changes up to 438a9200d6abdae2be64a5ce085cee0244a7c231:
-
-  drm/xe: Use drmm_mutex_init for VRAM manager lock (2026-04-30 15:42:21 +0530)
-
-----------------------------------------------------------------
-UAPI Changes:
-
-- Debugfs multi-LRC engine info (Xin Wang, 2 commits)
-  Expose multi-LRC engine classes in the debugfs engine info output
-  and improve the output readability.
-
-- drm/drm_ras: Add clear-error-counter netlink command to drm_ras
-
-Cross-subsystem Changes:
-
-Core Changes:
-
-- drm/gpusvm: Reject VMAs with VM_IO or VM_PFNMAP when creating SVM ranges
-- drm/i915/display: switch to including common step file directly
-
-Driver Changes:
-
-- Engine initialization cleanup (Matt Roper, 10 commits)
-  Clean up engine initialization code inherited from i915 by moving
-  hardware programming (CCS enablement, HWSTAM, GFX_MODE, BLIT_CCTL,
-  STOP_RING) into the RTP infrastructure.  This makes the programming
-  visible and verifiable via debugfs, and applies consistently across
-  both normal and execlist init paths.  Also fixes the name/definition
-  of GFX_MODE, marks BCS engines as belonging to the GT forcewake
-  domain, and drops the now-unused xe_hw_engine_mmio_write32() helper.
-
-- PF fair scheduling auto-provisioning (Michal Wajdeczko, 13 commits)
-  Fix several corner cases in SR-IOV PF scheduling policy provisioning,
-  then auto-provision PF and all VFs with 16ms execution-quantum and
-  preemption-timeout defaults.  This prevents a VF from monopolizing
-  the GPU by submitting workloads without gaps, without requiring the
-  user to configure sysfs manually.
-
-- System Controller support for CRI/Xe3p (Anoop Vijay + Raag Jadav, 10 commits)
-  Add xe_sysctrl infrastructure for communicating with the System
-  Controller firmware entity on CRI/Xe3p discrete GPU platforms via a
-  mailbox interface.  Includes type definitions, register definitions,
-  mailbox communication, initialization, power management, interrupt
-  handling, and event dispatch.  Builds on this to add initial RAS
-  correctable error handling, using sysctrl interrupts to receive
-  threshold-crossed events.
-
-- PXP state machine fixes (Daniele Ceraolo Spurio, 4 commits)
-  Fix PXP state machine handling: reject PXP sessions on PTL platforms
-  with older GSC firmware that does not support it, fix the restart
-  flag not being cleared after jumping back in pxp_start, remove
-  incorrect handling of an impossible state during suspend, and clean
-  up termination status on failure.
-
-- Reset/wedge/unload corner case fixes (Zhanjun Dong + Matthew Brost, 5 commits)
-  Fix memory leaks and fence signal failures that occurred during GPU
-  reset, device wedging, and driver unload by forcefully tearing down
-  remaining exec queues in GuC submit fini, always killing queues in
-  pause/abort, and triggering queue cleanup when not in wedged mode 2.
-  Also ensures GuC CT state transitions via STOP before DISABLED.
-
-- Wedge path memory allocation fixes (Matthew Brost, 3 commits)
-  Avoid GFP_KERNEL allocations in xe_device_declare_wedged(), which
-  runs in the DMA-fence signaling path.  Also drops the
-  guc_submit_wedged_fini devm registration from xe_guc_submit_wedge()
-  to clean up the wedge shutdown sequence.
-
-- PAT type cleanup and invalid index hardening (Xin Wang, 3 commits)
-  Standardize pat_index fields to u16 across the driver, default
-  XE_CACHE_NONE_COMPRESSION to XE_PAT_INVALID_IDX (matching
-  WB_COMPRESSION), and introduce xe_cache_pat_idx() — a macro helper
-  that validates cache_mode bounds and asserts on invalid PAT indices
-  before returning the index.
-
-- Reject unsafe PAT indices for CPU cached memory (Jia Yao, 2 commits)
-  Reject incoherent (coh_none) PAT indices for CPU cached memory in
-  both the madvise ioctl and vm_bind with CPU_ADDR_MIRROR flag, closing
-  a security gap where the GPU could bypass CPU caches and observe
-  stale or sensitive data.
-
-- OA improvements for CRI device memory (Ashutosh Dixit, 3 commits)
-  Move OA buffer access to the xe_map layer to support both system and
-  device memory (required for CRI), switch OA buffer mmap to use
-  drm_gem_mmap_obj, and implement workaround Wa_14026633728.
-
-- xe_drm.h documentation fixes (Shuicheng Lin, 6 commits)
-  Fix multiple documentation issues in the xe_drm.h UAPI header:
-  typos, spelling errors, grammar, wrong names and references,
-  kernel-doc cross-reference syntax, and broken code examples.
-
-- kernel-doc syntax fixes in xe headers (Shuicheng Lin, 4 commits)
-  Fix kernel-doc syntax issues across xe header files: missing '@'
-  prefixes on member tags, stale/mismatched member tags, comment
-  syntax errors, and type/parameter name mismatches in references.
-
-- Buffer object and DMA-buf resource leak fixes (Shuicheng Lin, 4 commits)
-  Fix resource leaks on error paths: DMA-buf attachment leak in
-  xe_gem_prime_import(), BO leak in xe_dma_buf_init_obj() on
-  allocation failure, and BO leaks in xe_bo_init_locked() on GGTT
-  flag validation and unaligned size validation failures.
-
-- Include guard cleanup (Shuicheng Lin, 5 commits)
-  Fix and standardize include guards across xe header files: normalize
-  double-underscore guards to single, add missing leading/trailing
-  underscores, add missing _H suffixes, and add guards to previously
-  unprotected headers.
-
-- VF CCS memory pool (Satyanarayana K V P, 2 commits)
-  Switch VF CCS read/write operations from the DRM sub-allocator to
-  DRM mm, fixing allocation failures in fence-disabled mode where
-  the sub-allocator's hole cursor assumption breaks.  Also introduces
-  a general BO-backed memory pool with shadow support using drm_mm.
-
-- i915/xe step definition unification (Jani Nikula, 3 commits)
-  Complete the migration to the shared intel_step header: switch xe
-  from its own xe_step enum to the shared intel_step naming and
-  definitions, and update i915 display code to include the common
-  step header directly.
-
-- Xe3p GT tuning fixes (3 commits)
-  Three Xe3p GT tuning corrections: fix the register offset for
-  GAMSTLB_CTRL, stop applying the CCCHKNREG1 tuning from Xe3p onward
-  (no longer needed), and mark ROW_CHICKEN5 as a masked register.
-
-- Forcewake cleanup in GT and GuC PC (Raag Jadav, 3 commits)
-  Drop a redundant forcewake reference in xe_gt, reorder forcewake
-  usage in xe_guc_pc_fini_hw() to avoid a redundant hold, and convert
-  xe_guc_pc_stop() to void since it can no longer fail.
-
-- SVM garbage collector fix on close (Matthew Brost, 2 commits)
-  Disable the SVM garbage collector work item when an SVM is closed
-  to prevent use-after-free when the GC fires after the SVM is freed.
-
-- Admin-only PF mode (Satyanarayana K V P, 2 commits)
-  Derive an "admin-only PF" mode flag from xe_device state instead of
-  using a local flag, and restrict device query responses when running
-  in admin-only PF mode to avoid exposing internal state.
-
-- Enable hwmon energy attributes and accepted power limit for CRI (2 commits)
-  Enable energy consumption hwmon attributes for the CRI platform and
-  add support for reading the accepted (sustained) power limit via
-  hwmon.
-
-----------------------------------------------------------------
-Anoop Vijay (8):
-      drm/xe/xe_sysctrl: Add System Controller types and device integration
-      drm/xe/xe_sysctrl: Add System Controller mailbox register definitions
-      drm/xe/xe_sysctrl: Add ABI and mailbox interface headers
-      drm/xe/xe_sysctrl: Add System Controller initialization support
-      drm/xe/xe_sysctrl: Add System Controller mailbox communication support
-      drm/xe/xe_sysctrl: Add System Controller power management support
-      drm/xe/xe_pci: Enable System Controller support on CRI platform
-      drm/xe/xe_sysctrl: Drop redundant endian conversions in mailbox header macros
-
-Ashutosh Dixit (3):
-      drm/xe/oa: Use xe_map layer
-      drm/xe/oa: Use drm_gem_mmap_obj for OA buffer mmap
-      drm/xe/oa: Implement Wa_14026633728
-
-Chen Ni (1):
-      drm/xe/vm: Convert comma to semicolon
-
-Clint Taylor (1):
-      drm/xe/xe3p: add gt tuning TileY 2x2 walk pattern
-
-Daniele Ceraolo Spurio (5):
-      drm/xe/pxp: Clean up termination status on failure
-      drm/xe/pxp: Remove incorrect handling of impossible state during suspend
-      drm/xe/pxp: Clear restart flag in pxp_start after jumping back
-      drm/xe/pxp: Don't allow PXP on older PTL GSC FWs
-      drm/xe: Suppress reset log for killed queues
-
-Francois Dugast (1):
-      drm/xe: Document GT statistics
-
-Gustavo Sousa (2):
-      drm/xe/xe3p_lpg: Add missing indirect ring state feature flag
-      drm/xe/hdcp: Add NULL check for media_gt in intel_hdcp_gsc_check_status()
-
-Jani Nikula (3):
-      drm/xe/step: switch to the shared step definitions with i915
-      drm/xe/step: switch from enum xe_step to intel_step naming
-      drm/i915/display: switch to including common step file directly
-
-Jia Yao (2):
-      drm/xe/uapi: Reject coh_none PAT index for CPU cached memory in madvise
-      drm/xe/uapi: Reject coh_none PAT index for CPU_ADDR_MIRROR
-
-Jonathan Cavitt (2):
-      drm/xe/vm: Add missing pad and extensions check
-      drm/xe/tlb: Init range tilemask err to zero
-
-Julia Filipchuk (1):
-      drm/xe: Enable Wa_14025515070
-
-Karthik Poosa (2):
-      drm/xe/hwmon: Read accepted power limit for CRI
-      drm/xe/hwmon: Enable energy attributes for CRI
-
-Mallesh Koujalagi (1):
-      drm/xe: Apply WA_14026999295 to engine
-
-Matt Roper (17):
-      drm/xe: Drop redundant rtp entries for Wa_14019988906 & Wa_14019877138
-      drm/xe/tuning: Stop applying CCCHKNREG1 tuning from Xe3p onward
-      drm/xe/tuning: Use proper register offset for GAMSTLB_CTRL
-      drm/xe: Mark ROW_CHICKEN5 as a masked register
-      drm/xe/debugfs: Correct printing of register whitelist ranges
-      drm/xe: Drop skip_mtcfg descriptor flag
-      drm/xe: Steer MCR for NODE/L3BANK according to L3 fusing on Xe2/Xe3
-      drm/xe: Move CCS enablement to engine setup RTP
-      drm/xe/rtp: Add "always true" match function
-      drm/xe: Stop programming BLIT_CCTL on Xe2 and later platforms
-      drm/xe: Move HWSTAM programming to RTP
-      drm/xe: Fix name and definition of GFX_MODE register
-      drm/xe: Const-ify parameters to xe_device_has_* functions
-      drm/xe: Move GFX_MODE programming to RTP
-      drm/xe: Drop unnecessary STOP_RING clearing
-      drm/xe: Drop xe_hw_engine_mmio_write32()
-      drm/xe: Mark BCS engines as belonging to the GT forcewake domain
-
-Matthew Brost (4):
-      drm/xe: Disable garbage collector work item on SVM close
-      drm/xe: Avoid memory allocations in xe_device_declare_wedged()
-      drm/xe: Drop registration of guc_submit_wedged_fini from xe_guc_submit_wedge()
-      drm/gpusvm: Reject VMAs with VM_IO or VM_PFNMAP when creating SVM ranges
-
-Michal Wajdeczko (16):
-      drm/xe/uc: Track uc firmware state changes
-      drm/xe/guc: Add support for NO_RESPONSE_BUSY in CTB
-      drm/xe/guc: Update POLICY_SCHED_IF_IDLE documentation
-      drm/xe/pf: Fix pf_get_sched_priority() function signature
-      drm/xe/pf: Force new VFs prorities only once
-      drm/xe/pf: Print applied policy KLVs
-      drm/xe/pf: Reprovision policy settings after GT reset
-      drm/xe/pf: Don't reprovision policies if already default
-      drm/xe/pf: Encode scheduling priority KLV if needed
-      drm/xe/pf: Check EQ/PT/PRIO when testing VF config
-      drm/xe/pf: Allow to change sched_if_idle policy under lock
-      drm/xe/pf: Reprovision scheduling to default when no VFs
-      drm/xe/pf: Extract helper to show which VFs are provisioned
-      drm/xe/pf: Extract helpers for bulk EQ/PT provisioning
-      drm/xe/pf: Perform fair scheduling auto-provisioning
-      drm/xe/pf: Fix VF's scheduling priority reporting
-
-Nareshkumar Gollakoti (1):
-      drm/xe: Set GT rp min frequency as 1.2GHz default for BMG/CRI
-
-Raag Jadav (6):
-      drm/xe/guc_pc: Make xe_guc_pc_stop() void
-      drm/xe/guc_pc: Reorder forcewake in xe_guc_pc_fini_hw()
-      drm/xe/gt: Drop redundant forcewake
-      drm/xe/sysctrl: Add system controller interrupt handler
-      drm/xe/sysctrl: Add system controller event support
-      drm/xe/ras: Introduce correctable error handling
-
-Riana Tauro (2):
-      drm/drm_ras: Add clear-error-counter netlink command to drm_ras
-      drm/xe/xe_drm_ras: Add support for clear-error-counter in XE drm_ras
-
-Rodrigo Vivi (2):
-      Merge drm/drm-next into drm-xe-next
-      Merge tag 'topic/step-2026-04-09' of https://gitlab.freedesktop.org/drm/i915/kernel into drm-xe-next
-
-Satyanarayana K V P (4):
-      drm/xe: Add memory pool with shadow support
-      drm/xe/vf: Use drm mm instead of drm sa for CCS read/write
-      drm/xe/pf: Restrict device query responses in admin-only PF mode
-      drm/xe/pf: Derive admin-only PF mode from xe_device state
-
-Shuicheng Lin (25):
-      drm/xe/ggtt: Remove duplicate XE_GGTT_FLAGS_64K macro definition
-      drm/xe: Add missing include guards to unprotected headers
-      drm/xe: Add missing _H to include guard suffixes
-      drm/xe: Add missing trailing underscore to include guards
-      drm/xe: Add missing leading underscore to include guards
-      drm/xe: Normalize double-underscore include guards to single-underscore
-      drm/xe/uapi: Fix typos and spelling errors in xe_drm.h documentation
-      drm/xe/uapi: Fix grammar errors in xe_drm.h documentation
-      drm/xe/uapi: Fix wrong names and references in xe_drm.h
-      drm/xe/uapi: Fix kernel-doc cross-reference syntax in xe_drm.h
-      drm/xe/uapi: Fix code examples in xe_drm.h documentation
-      drm/xe/uapi: Fix doc formatting and completeness in xe_drm.h
-      drm/xe: Fix potential NULL deref in xe_exec_queue_tlb_inval_last_fence_put_unlocked
-      drm/xe/bo: Fix bo leak on unaligned size validation in xe_bo_init_locked()
-      drm/xe/bo: Fix bo leak on GGTT flag validation in xe_bo_init_locked()
-      drm/xe: Fix bo leak in xe_dma_buf_init_obj() on allocation failure
-      drm/xe: Fix dma-buf attachment leak in xe_gem_prime_import()
-      drm/xe: Fix error cleanup in xe_exec_queue_create_ioctl()
-      drm/xe: Fix stale and mismatched kernel-doc member tags in header files
-      drm/xe: Add missing '@' prefix to kernel-doc member tags
-      drm/xe: Fix kernel-doc comment syntax issues in header files
-      drm/xe: Fix type and parameter name mismatches in kernel-doc references
-      drm/xe/eustall: Fix drm_dev_put called before stream disable in close
-      drm/xe/gsc: Fix BO leak on error in query_compatibility_version()
-      drm/xe/mcr: Remove unused xe_gt_mcr_steering_info_to_dss_id()
-
-Tejas Upadhyay (2):
-      Use xe_map_resource_to_region helper instead of direct access
-      drm/xe: Use drmm_mutex_init for VRAM manager lock
-
-Tvrtko Ursulin (1):
-      drm/xe/xelp: Fix Wa_18022495364
-
-Uwe Kleine-König (The Capable Hub) (1):
-      drm/xe: Don't use UTS_RELEASE directly
-
-Varun Gupta (1):
-      drm/xe/xe3p_lpg: Add Wa_18044193044
-
-Vinay Belgaumkar (1):
-      drm/xe: Fix bug in idledly unit conversion
-
-Xin Wang (5):
-      drm/xe: improve readability of debugfs engine info output
-      drm/xe: expose multi-lrc engine classes in debugfs info
-      drm/xe: Standardize pat_index to u16 type
-      drm/xe/pat: Default XE_CACHE_NONE_COMPRESSION to invalid
-      drm/xe/pat: Introduce xe_cache_pat_idx() macro helper
-
-Zbigniew Kempczyński (1):
-      drm/xe/pat: Print PAT_ATS during register dump
-
-Zhanjun Dong (1):
-      drm/xe: Fix null pointer dereference in devcoredump cleanup
-
- Documentation/gpu/drm-ras.rst                      |   8 +
- Documentation/gpu/xe/index.rst                     |   1 +
- Documentation/gpu/xe/xe_gt_stats.rst               |  11 +
- Documentation/netlink/specs/drm_ras.yaml           |  13 +-
- drivers/gpu/drm/drm_gpusvm.c                       |   5 +
- drivers/gpu/drm/drm_ras.c                          |  43 ++-
- drivers/gpu/drm/drm_ras_nl.c                       |  13 +
- drivers/gpu/drm/drm_ras_nl.h                       |   2 +
- drivers/gpu/drm/i915/display/intel_cdclk.c         |   2 +-
- drivers/gpu/drm/i915/display/intel_ddi.c           |   2 +-
- .../gpu/drm/i915/display/intel_display_device.c    |   2 +-
- drivers/gpu/drm/i915/display/intel_display_power.c |   2 +-
- drivers/gpu/drm/i915/display/intel_display_wa.c    |   2 +-
- drivers/gpu/drm/i915/display/intel_dp_mst.c        |   2 +-
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c      |   2 +-
- drivers/gpu/drm/i915/display/intel_fbc.c           |   2 +-
- drivers/gpu/drm/i915/display/intel_flipq.c         |   2 +-
- drivers/gpu/drm/i915/display/intel_hdcp.c          |   2 +-
- drivers/gpu/drm/i915/display/intel_pmdemand.c      |   2 +-
- drivers/gpu/drm/i915/display/intel_psr.c           |   2 +-
- drivers/gpu/drm/i915/display/skl_universal_plane.c |   2 +-
- drivers/gpu/drm/xe/Makefile                        |   5 +
- drivers/gpu/drm/xe/abi/guc_klvs_abi.h              |   8 +
- drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h            |  65 ++++
- .../gpu/drm/xe/compat-i915-headers/intel_step.h    |  13 -
- drivers/gpu/drm/xe/display/xe_fb_pin.c             |  11 +-
- drivers/gpu/drm/xe/display/xe_hdcp_gsc.c           |  12 +-
- drivers/gpu/drm/xe/regs/xe_engine_regs.h           |   5 +-
- drivers/gpu/drm/xe/regs/xe_gt_regs.h               |   7 +-
- drivers/gpu/drm/xe/regs/xe_irq_regs.h              |   1 +
- drivers/gpu/drm/xe/regs/xe_pcode_regs.h            |   3 +
- drivers/gpu/drm/xe/regs/xe_sysctrl_regs.h          |  36 ++
- .../gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c |  21 +-
- drivers/gpu/drm/xe/tests/xe_migrate.c              |   3 +-
- drivers/gpu/drm/xe/tests/xe_pci.c                  |   4 +-
- drivers/gpu/drm/xe/xe_bo.c                         |  29 +-
- drivers/gpu/drm/xe/xe_bo_types.h                   |   5 +-
- drivers/gpu/drm/xe/xe_debugfs.c                    |  43 ++-
- drivers/gpu/drm/xe/xe_dep_scheduler.h              |   5 +
- drivers/gpu/drm/xe/xe_devcoredump.c                |  10 +-
- drivers/gpu/drm/xe/xe_device.c                     |  64 +++-
- drivers/gpu/drm/xe/xe_device.h                     |  23 +-
- drivers/gpu/drm/xe/xe_device_types.h               |  22 +-
- drivers/gpu/drm/xe/xe_device_wa_oob.rules          |   1 +
- drivers/gpu/drm/xe/xe_dma_buf.c                    |  23 +-
- drivers/gpu/drm/xe/xe_drm_ras.c                    |  35 +-
- drivers/gpu/drm/xe/xe_drm_ras.h                    |   4 +-
- drivers/gpu/drm/xe/xe_eu_stall.c                   |   4 +-
- drivers/gpu/drm/xe/xe_eu_stall.h                   |   4 +-
- drivers/gpu/drm/xe/xe_exec_queue.c                 |   9 +-
- drivers/gpu/drm/xe/xe_exec_queue_types.h           |   2 +-
- drivers/gpu/drm/xe/xe_execlist.c                   |   9 -
- drivers/gpu/drm/xe/xe_ggtt.c                       |   8 +-
- drivers/gpu/drm/xe/xe_gsc.c                        |   2 +-
- drivers/gpu/drm/xe/xe_gt.c                         |   1 -
- drivers/gpu/drm/xe/xe_gt_mcr.c                     |  23 +-
- drivers/gpu/drm/xe/xe_gt_mcr.h                     |   1 -
- drivers/gpu/drm/xe/xe_gt_sriov_pf.c                |   1 +
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c         | 262 ++++++++++++--
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h         |   2 +
- drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c         | 124 ++++---
- drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h         |   4 +-
- drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h          |   1 -
- drivers/gpu/drm/xe/xe_gt_stats.c                   |  41 +++
- drivers/gpu/drm/xe/xe_gt_stats_types.h             | 118 ++++++
- drivers/gpu/drm/xe/xe_gt_types.h                   |   4 +-
- drivers/gpu/drm/xe/xe_guc.c                        |  17 +-
- drivers/gpu/drm/xe/xe_guc_ads.c                    |   5 +-
- drivers/gpu/drm/xe/xe_guc_capture.c                |   2 +-
- drivers/gpu/drm/xe/xe_guc_capture.h                |   4 +-
- drivers/gpu/drm/xe/xe_guc_capture_types.h          |   6 +-
- drivers/gpu/drm/xe/xe_guc_ct.c                     |  38 +-
- drivers/gpu/drm/xe/xe_guc_ct_types.h               |   8 +-
- drivers/gpu/drm/xe/xe_guc_fwif.h                   |   4 +-
- drivers/gpu/drm/xe/xe_guc_pc.c                     |  42 ++-
- drivers/gpu/drm/xe/xe_guc_pc.h                     |   2 +-
- drivers/gpu/drm/xe/xe_guc_relay_types.h            |   2 +-
- drivers/gpu/drm/xe/xe_guc_submit.c                 |  40 +-
- drivers/gpu/drm/xe/xe_guc_submit_types.h           |   2 +-
- drivers/gpu/drm/xe/xe_hw_engine.c                  |  89 ++---
- drivers/gpu/drm/xe/xe_hw_engine.h                  |   1 -
- drivers/gpu/drm/xe/xe_hw_engine_types.h            |   2 +-
- drivers/gpu/drm/xe/xe_hw_error.h                   |   4 +-
- drivers/gpu/drm/xe/xe_hwmon.c                      |  28 +-
- drivers/gpu/drm/xe/xe_irq.c                        |   2 +
- drivers/gpu/drm/xe/xe_lrc.c                        |  22 +-
- drivers/gpu/drm/xe/xe_mem_pool.c                   | 403 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_mem_pool.h                   |  35 ++
- drivers/gpu/drm/xe/xe_mem_pool_types.h             |  21 ++
- drivers/gpu/drm/xe/xe_migrate.c                    |  71 ++--
- drivers/gpu/drm/xe/xe_migrate.h                    |   4 +-
- drivers/gpu/drm/xe/xe_nvm.h                        |   4 +-
- drivers/gpu/drm/xe/xe_oa.c                         | 136 +++----
- drivers/gpu/drm/xe/xe_oa_types.h                   |  12 +-
- drivers/gpu/drm/xe/xe_pagefault_types.h            |   4 +-
- drivers/gpu/drm/xe/xe_pat.c                        |   9 +
- drivers/gpu/drm/xe/xe_pat.h                        |   8 +
- drivers/gpu/drm/xe/xe_pci.c                        |  13 +-
- drivers/gpu/drm/xe/xe_pci_sriov.c                  |   2 +
- drivers/gpu/drm/xe/xe_pci_types.h                  |   2 +-
- drivers/gpu/drm/xe/xe_pcode_api.h                  |   8 +-
- drivers/gpu/drm/xe/xe_pm.c                         |   6 +
- drivers/gpu/drm/xe/xe_pt.c                         |   3 +-
- drivers/gpu/drm/xe/xe_pt_types.h                   |   2 +-
- drivers/gpu/drm/xe/xe_pt_walk.h                    |  14 +-
- drivers/gpu/drm/xe/xe_pxp.c                        |   6 +
- drivers/gpu/drm/xe/xe_pxp.h                        |   6 +-
- drivers/gpu/drm/xe/xe_pxp_debugfs.h                |   6 +-
- drivers/gpu/drm/xe/xe_pxp_submit.h                 |   6 +-
- drivers/gpu/drm/xe/xe_pxp_types.h                  |   6 +-
- drivers/gpu/drm/xe/xe_query.c                      |   7 +
- drivers/gpu/drm/xe/xe_ras.c                        |  93 +++++
- drivers/gpu/drm/xe/xe_ras.h                        |  15 +
- drivers/gpu/drm/xe/xe_ras_types.h                  |  73 ++++
- drivers/gpu/drm/xe/xe_reg_sr.h                     |   4 +-
- drivers/gpu/drm/xe/xe_reg_sr_types.h               |   4 +-
- drivers/gpu/drm/xe/xe_reg_whitelist.c              |   2 +-
- drivers/gpu/drm/xe/xe_reg_whitelist.h              |   4 +-
- drivers/gpu/drm/xe/xe_rtp.c                        |  15 +
- drivers/gpu/drm/xe/xe_rtp.h                        |  28 +-
- drivers/gpu/drm/xe/xe_rtp_helpers.h                |   6 +-
- drivers/gpu/drm/xe/xe_rtp_types.h                  |   4 +-
- drivers/gpu/drm/xe/xe_sriov_pf.c                   |   6 -
- drivers/gpu/drm/xe/xe_sriov_pf_helpers.h           |   3 +-
- drivers/gpu/drm/xe/xe_sriov_pf_provision.c         |  41 +++
- drivers/gpu/drm/xe/xe_sriov_pf_provision.h         |   1 +
- drivers/gpu/drm/xe/xe_sriov_pf_types.h             |   3 -
- drivers/gpu/drm/xe/xe_sriov_vf_ccs.c               |  54 +--
- drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h         |   5 +-
- drivers/gpu/drm/xe/xe_step.c                       |   2 +-
- drivers/gpu/drm/xe/xe_step.h                       |   4 +-
- drivers/gpu/drm/xe/xe_step_types.h                 |  61 +---
- drivers/gpu/drm/xe/xe_svm.c                        |  10 +-
- drivers/gpu/drm/xe/xe_sysctrl.c                    | 132 +++++++
- drivers/gpu/drm/xe/xe_sysctrl.h                    |  24 ++
- drivers/gpu/drm/xe/xe_sysctrl_event.c              |  88 +++++
- drivers/gpu/drm/xe/xe_sysctrl_event_types.h        |  57 +++
- drivers/gpu/drm/xe/xe_sysctrl_mailbox.c            | 371 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_sysctrl_mailbox.h            |  31 ++
- drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h      |  58 +++
- drivers/gpu/drm/xe/xe_sysctrl_types.h              |  39 ++
- drivers/gpu/drm/xe/xe_tlb_inval.c                  |   2 +-
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c               |   6 +-
- drivers/gpu/drm/xe/xe_tuning.c                     |   9 +-
- drivers/gpu/drm/xe/xe_tuning.h                     |   4 +-
- drivers/gpu/drm/xe/xe_uc_fw.c                      |  11 +
- drivers/gpu/drm/xe/xe_uc_fw.h                      |   4 +
- drivers/gpu/drm/xe/xe_uc_fw_abi.h                  |   4 +-
- drivers/gpu/drm/xe/xe_vm.c                         |  17 +-
- drivers/gpu/drm/xe/xe_vm_madvise.c                 |  47 +++
- drivers/gpu/drm/xe/xe_vm_types.h                   |   3 +-
- drivers/gpu/drm/xe/xe_vram.c                       |  22 ++
- drivers/gpu/drm/xe/xe_vram.h                       |   2 +
- drivers/gpu/drm/xe/xe_wa.c                         |  21 +-
- drivers/gpu/drm/xe/xe_wa.h                         |   4 +-
- drivers/gpu/drm/xe/xe_wa_oob.rules                 |   7 +
- include/drm/drm_ras.h                              |  11 +
- include/uapi/drm/drm_ras.h                         |   1 +
- include/uapi/drm/xe_drm.h                          | 206 +++++------
- 159 files changed, 3175 insertions(+), 758 deletions(-)
- create mode 100644 Documentation/gpu/xe/xe_gt_stats.rst
- create mode 100644 drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h
- delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/intel_step.h
- create mode 100644 drivers/gpu/drm/xe/regs/xe_sysctrl_regs.h
- create mode 100644 drivers/gpu/drm/xe/xe_mem_pool.c
- create mode 100644 drivers/gpu/drm/xe/xe_mem_pool.h
- create mode 100644 drivers/gpu/drm/xe/xe_mem_pool_types.h
- create mode 100644 drivers/gpu/drm/xe/xe_ras.c
- create mode 100644 drivers/gpu/drm/xe/xe_ras.h
- create mode 100644 drivers/gpu/drm/xe/xe_ras_types.h
- create mode 100644 drivers/gpu/drm/xe/xe_sysctrl.c
- create mode 100644 drivers/gpu/drm/xe/xe_sysctrl.h
- create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_event.c
- create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_event_types.h
- create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
- create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
- create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
- create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_types.h
+On 2026-04-17 at 14:28:16 +0530, Riana Tauro wrote:
+> When a fatal error occurs and the error_detected callback is
+> invoked the device is inaccessible. The error_detected callback
+> wedges the device causing the jobs to timeout.
+> 
+> The timedout handler acquires forcewake to dump devcoredump and
+> triggers a GT reset. Since the device is inacessible this causes
+> errors. Skip all mmio accesses and gt reset when the device
+> is in recovery.
+> 
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+> ---
+> v2: add check in worker (Mallesh)
+> ---
+>  drivers/gpu/drm/xe/xe_gt.c         | 14 +++++++++++---
+>  drivers/gpu/drm/xe/xe_guc_submit.c |  9 +++++----
+>  2 files changed, 16 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+> index 8a31c963c372..5ea5524d83af 100644
+> --- a/drivers/gpu/drm/xe/xe_gt.c
+> +++ b/drivers/gpu/drm/xe/xe_gt.c
+> @@ -917,6 +917,9 @@ static void gt_reset_worker(struct work_struct *w)
+>  	if (xe_device_wedged(gt_to_xe(gt)))
+>  		goto err_pm_put;
+>  
+> +	if (xe_device_is_in_recovery(gt_to_xe(gt)))
+> +		goto err_pm_put;
+> +
+>  	/* We only support GT resets with GuC submission */
+>  	if (!xe_device_uc_enabled(gt_to_xe(gt)))
+>  		goto err_pm_put;
+> @@ -977,18 +980,23 @@ static void gt_reset_worker(struct work_struct *w)
+>  
+>  void xe_gt_reset_async(struct xe_gt *gt)
+>  {
+> -	xe_gt_info(gt, "trying reset from %ps\n", __builtin_return_address(0));
+> +	struct xe_device *xe = gt_to_xe(gt);
+> +
+> +	if (xe_device_is_in_recovery(xe))
+> +		return;
+How is this synchronize with xe_device_set_in_recovery() a mid flight
+reset can still hit the device which already passed the check
+xe_device_is_in_recovery() check.
+
+Thanks,
+Anshuman
+>  
+>  	/* Don't do a reset while one is already in flight */
+>  	if (!xe_fault_inject_gt_reset() && xe_uc_reset_prepare(&gt->uc))
+>  		return;
+>  
+> +	xe_gt_info(gt, "trying reset from %ps\n", __builtin_return_address(0));
+> +
+>  	xe_gt_info(gt, "reset queued\n");
+>  
+>  	/* Pair with put in gt_reset_worker() if work is enqueued */
+> -	xe_pm_runtime_get_noresume(gt_to_xe(gt));
+> +	xe_pm_runtime_get_noresume(xe);
+>  	if (!queue_work(gt->ordered_wq, &gt->reset.worker))
+> -		xe_pm_runtime_put(gt_to_xe(gt));
+> +		xe_pm_runtime_put(xe);
+>  }
+>  
+>  void xe_gt_suspend_prepare(struct xe_gt *gt)
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+> index 10556156eaad..1f32fb14a5c1 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> @@ -1522,7 +1522,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+>  	 * If devcoredump not captured and GuC capture for the job is not ready
+>  	 * do manual capture first and decide later if we need to use it
+>  	 */
+> -	if (!exec_queue_killed(q) && !xe->devcoredump.captured &&
+> +	if (!xe_device_is_in_recovery(xe) && !exec_queue_killed(q) && !xe->devcoredump.captured &&
+>  	    !xe_guc_capture_get_matching_and_lock(q)) {
+>  		/* take force wake before engine register manual capture */
+>  		CLASS(xe_force_wake, fw_ref)(gt_to_fw(q->gt), XE_FORCEWAKE_ALL);
+> @@ -1544,8 +1544,8 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+>  	set_exec_queue_banned(q);
+>  
+>  	/* Kick job / queue off hardware */
+> -	if (!wedged && (exec_queue_enabled(primary) ||
+> -			exec_queue_pending_disable(primary))) {
+> +	if (!xe_device_is_in_recovery(xe) && !wedged &&
+> +	    (exec_queue_enabled(primary) || exec_queue_pending_disable(primary))) {
+>  		int ret;
+>  
+>  		if (exec_queue_reset(primary))
+> @@ -1613,7 +1613,8 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+>  
+>  	trace_xe_sched_job_timedout(job);
+>  
+> -	if (!exec_queue_killed(q))
+> +	/* Do not access device if in recovery */
+> +	if (!xe_device_is_in_recovery(xe) && !exec_queue_killed(q))
+>  		xe_devcoredump(q, job,
+>  			       "Timedout job - seqno=%u, lrc_seqno=%u, guc_id=%d, flags=0x%lx",
+>  			       xe_sched_job_seqno(job), xe_sched_job_lrc_seqno(job),
+> -- 
+> 2.47.1
+> 
