@@ -4,26 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE54EFF8873
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Apr 2026 18:16:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 658E1FF8873
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Apr 2026 18:23:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93C6310E464;
-	Thu, 30 Apr 2026 18:16:42 +0000 (UTC)
-Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1345310E0C6;
- Thu, 30 Apr 2026 18:16:42 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5708940060957345262=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id E026010E480;
+	Thu, 30 Apr 2026 18:23:42 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cbZ4RVyH";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79B9610F3DB;
+ Thu, 30 Apr 2026 18:23:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1777573422; x=1809109422;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=k3yJgH8D791bhoAFURbddfZvHGIe58qtd5P3zc3tVfk=;
+ b=cbZ4RVyHFZlnZrrfO85bMXC7UvimTxpHnZOiMpLnZkRZbjpM79jiNeiS
+ 8v2kpGR7o3bErZDwywtR9WQeJOi2V9Aj6FSVKVkJ3yVeOEd7OHxazVbMR
+ aQRERvWCP9/cRCGYzKuZ+Kdt5yvg6S3I93ExFjTovadY68gyWkRANEilj
+ 2C2DKYCzDYSxSe9ZaIxQCv6QOCwBAMTr4JY9DWImb/PDMqA88FIogunfj
+ SwXppC9W5qAn7JNOemr2PE6H4MdgS1QVJySpQFPYgyT3sicYH1y9lpXl6
+ nODhUq9aF6QHPgDq/t/gGWv5DSusPGGywZZghg8++7BzyeEM/qZcRNUsC w==;
+X-CSE-ConnectionGUID: FPAqPC+uRMGl0IZP3/ymgg==
+X-CSE-MsgGUID: wlk4eTeXQRGUBcgxxZR2/Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11772"; a="82388986"
+X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="82388986"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2026 11:23:41 -0700
+X-CSE-ConnectionGUID: jJTzPlxCR6aSMAAmZ24yxQ==
+X-CSE-MsgGUID: CTLX63CKQDWyf1HT8KbPfA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="231532217"
+Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2026 11:23:41 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: Andrew Morton <akpm@linux-foundation.org>,
+ Dave Chinner <david@fromorbit.com>, Qi Zheng <zhengqi.arch@bytedance.com>,
+ Roman Gushchin <roman.gushchin@linux.dev>,
+ Muchun Song <muchun.song@linux.dev>, David Hildenbrand <david@kernel.org>,
+ Lorenzo Stoakes <ljs@kernel.org>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>,
+ Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
+ Johannes Weiner <hannes@cmpxchg.org>,
+ Shakeel Butt <shakeel.butt@linux.dev>, Kairui Song <kasong@tencent.com>,
+ Barry Song <baohua@kernel.org>, Axel Rasmussen <axelrasmussen@google.com>,
+ Yuanchu Xie <yuanchu@google.com>, Wei Xu <weixugc@google.com>,
+ linux-mm@kvack.org, linux-kernel@vger.kernel.org,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Subject: [PATCH v3 1/6] mm: Wire up order in shrink_control
+Date: Thu, 30 Apr 2026 11:23:30 -0700
+Message-Id: <20260430182335.2132382-2-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260430182335.2132382-1-matthew.brost@intel.com>
+References: <20260430182335.2132382-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_More_MERTOA_WA=27s?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ashutosh Dixit" <ashutosh.dixit@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 30 Apr 2026 18:16:42 -0000
-Message-ID: <177757300207.29832.17286339080225880140@5ab824fced77>
-X-Patchwork-Hint: ignore
-References: <20260430161459.2892545-1-ashutosh.dixit@intel.com>
-In-Reply-To: <20260430161459.2892545-1-ashutosh.dixit@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,110 +78,164 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5708940060957345262==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Pass the allocation order through shrink_control so shrinkers have
+visibility into the order that triggered reclaim.
 
-== Series Details ==
+This allows shrinkers to implement better heuristics, such as detecting
+high-order allocation pressure or fragmentation and avoiding eviction
+of working sets when reclaim is invoked from kswapd.
 
-Series: More MERTOA WA's
-URL   : https://patchwork.freedesktop.org/series/165797/
-State : success
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Cc: Dave Chinner <david@fromorbit.com>
+Cc: Qi Zheng <zhengqi.arch@bytedance.com>
+Cc: Roman Gushchin <roman.gushchin@linux.dev>
+Cc: Muchun Song <muchun.song@linux.dev>
+Cc: David Hildenbrand <david@kernel.org>
+Cc: Lorenzo Stoakes <ljs@kernel.org>
+Cc: "Liam R. Howlett" <Liam.Howlett@oracle.com>
+Cc: Vlastimil Babka <vbabka@kernel.org>
+Cc: Mike Rapoport <rppt@kernel.org>
+Cc: Suren Baghdasaryan <surenb@google.com>
+Cc: Michal Hocko <mhocko@suse.com>
+Cc: Johannes Weiner <hannes@cmpxchg.org>
+Cc: Shakeel Butt <shakeel.butt@linux.dev>
+Cc: Kairui Song <kasong@tencent.com>
+Cc: Barry Song <baohua@kernel.org>
+Cc: Axel Rasmussen <axelrasmussen@google.com>
+Cc: Yuanchu Xie <yuanchu@google.com>
+Cc: Wei Xu <weixugc@google.com>
+Cc: linux-mm@kvack.org
+Cc: linux-kernel@vger.kernel.org
+Suggested-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ include/linux/shrinker.h |  3 +++
+ mm/internal.h            |  4 ++--
+ mm/shrinker.c            | 11 +++++++----
+ mm/vmscan.c              |  7 ++++---
+ 4 files changed, 16 insertions(+), 9 deletions(-)
 
-== Summary ==
+diff --git a/include/linux/shrinker.h b/include/linux/shrinker.h
+index 1a00be90d93a..7072f693b9be 100644
+--- a/include/linux/shrinker.h
++++ b/include/linux/shrinker.h
+@@ -37,6 +37,9 @@ struct shrink_control {
+ 	/* current node being shrunk (for NUMA aware shrinkers) */
+ 	int nid;
+ 
++	/* Allocation order we are currently trying to fulfil. */
++	s8 order;
++
+ 	/*
+ 	 * How many objects scan_objects should scan and try to reclaim.
+ 	 * This is reset before every call, so it is safe for callees
+diff --git a/mm/internal.h b/mm/internal.h
+index 5a2ddcf68e0b..ff8671dccf7b 100644
+--- a/mm/internal.h
++++ b/mm/internal.h
+@@ -1759,8 +1759,8 @@ void __meminit __init_single_page(struct page *page, unsigned long pfn,
+ void __meminit __init_page_from_nid(unsigned long pfn, int nid);
+ 
+ /* shrinker related functions */
+-unsigned long shrink_slab(gfp_t gfp_mask, int nid, struct mem_cgroup *memcg,
+-			  int priority);
++unsigned long shrink_slab(gfp_t gfp_mask, int nid, s8 order,
++			  struct mem_cgroup *memcg, int priority);
+ 
+ int shmem_add_to_page_cache(struct folio *folio,
+ 			    struct address_space *mapping,
+diff --git a/mm/shrinker.c b/mm/shrinker.c
+index 76b3f750cf65..fb23a338fb22 100644
+--- a/mm/shrinker.c
++++ b/mm/shrinker.c
+@@ -466,7 +466,7 @@ static unsigned long do_shrink_slab(struct shrink_control *shrinkctl,
+ }
+ 
+ #ifdef CONFIG_MEMCG
+-static unsigned long shrink_slab_memcg(gfp_t gfp_mask, int nid,
++static unsigned long shrink_slab_memcg(gfp_t gfp_mask, int nid, s8 order,
+ 			struct mem_cgroup *memcg, int priority)
+ {
+ 	struct shrinker_info *info;
+@@ -528,6 +528,7 @@ static unsigned long shrink_slab_memcg(gfp_t gfp_mask, int nid,
+ 			struct shrink_control sc = {
+ 				.gfp_mask = gfp_mask,
+ 				.nid = nid,
++				.order = order,
+ 				.memcg = memcg,
+ 			};
+ 			struct shrinker *shrinker;
+@@ -598,6 +599,7 @@ static unsigned long shrink_slab_memcg(gfp_t gfp_mask, int nid,
+  * shrink_slab - shrink slab caches
+  * @gfp_mask: allocation context
+  * @nid: node whose slab caches to target
++ * @order: order of allocation
+  * @memcg: memory cgroup whose slab caches to target
+  * @priority: the reclaim priority
+  *
+@@ -614,8 +616,8 @@ static unsigned long shrink_slab_memcg(gfp_t gfp_mask, int nid,
+  *
+  * Returns the number of reclaimed slab objects.
+  */
+-unsigned long shrink_slab(gfp_t gfp_mask, int nid, struct mem_cgroup *memcg,
+-			  int priority)
++unsigned long shrink_slab(gfp_t gfp_mask, int nid, s8 order,
++			  struct mem_cgroup *memcg, int priority)
+ {
+ 	unsigned long ret, freed = 0;
+ 	struct shrinker *shrinker;
+@@ -628,7 +630,7 @@ unsigned long shrink_slab(gfp_t gfp_mask, int nid, struct mem_cgroup *memcg,
+ 	 * oom.
+ 	 */
+ 	if (!mem_cgroup_disabled() && !mem_cgroup_is_root(memcg))
+-		return shrink_slab_memcg(gfp_mask, nid, memcg, priority);
++		return shrink_slab_memcg(gfp_mask, nid, order, memcg, priority);
+ 
+ 	/*
+ 	 * lockless algorithm of global shrink.
+@@ -656,6 +658,7 @@ unsigned long shrink_slab(gfp_t gfp_mask, int nid, struct mem_cgroup *memcg,
+ 		struct shrink_control sc = {
+ 			.gfp_mask = gfp_mask,
+ 			.nid = nid,
++			.order = order,
+ 			.memcg = memcg,
+ 		};
+ 
+diff --git a/mm/vmscan.c b/mm/vmscan.c
+index bd1b1aa12581..a54d14ecad25 100644
+--- a/mm/vmscan.c
++++ b/mm/vmscan.c
+@@ -412,7 +412,7 @@ static unsigned long drop_slab_node(int nid)
+ 
+ 	memcg = mem_cgroup_iter(NULL, NULL, NULL);
+ 	do {
+-		freed += shrink_slab(GFP_KERNEL, nid, memcg, 0);
++		freed += shrink_slab(GFP_KERNEL, nid, 0, memcg, 0);
+ 	} while ((memcg = mem_cgroup_iter(NULL, memcg, NULL)) != NULL);
+ 
+ 	return freed;
+@@ -5068,7 +5068,8 @@ static int shrink_one(struct lruvec *lruvec, struct scan_control *sc)
+ 
+ 	success = try_to_shrink_lruvec(lruvec, sc);
+ 
+-	shrink_slab(sc->gfp_mask, pgdat->node_id, memcg, sc->priority);
++	shrink_slab(sc->gfp_mask, pgdat->node_id, sc->order, memcg,
++		    sc->priority);
+ 
+ 	if (!sc->proactive)
+ 		vmpressure(sc->gfp_mask, memcg, false, sc->nr_scanned - scanned,
+@@ -6170,7 +6171,7 @@ static void shrink_node_memcgs(pg_data_t *pgdat, struct scan_control *sc)
+ 
+ 		shrink_lruvec(lruvec, sc);
+ 
+-		shrink_slab(sc->gfp_mask, pgdat->node_id, memcg,
++		shrink_slab(sc->gfp_mask, pgdat->node_id, sc->order, memcg,
+ 			    sc->priority);
+ 
+ 		/* Record the group's reclaim efficiency */
+-- 
+2.34.1
 
-CI Bug Log - changes from xe-4959-3ac514cf64f272cc4d5143f4cc28fb18a8aba76d_BAT -> xe-pw-165797v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8879 -> IGT_8881
-  * Linux: xe-4959-3ac514cf64f272cc4d5143f4cc28fb18a8aba76d -> xe-pw-165797v1
-
-  IGT_8879: 02b0e01dd9a5a3ab1efe976bb8c4f13cfcdbab1a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8881: aa5853ef5b379b1e4558218c21ef4caeae112184 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4959-3ac514cf64f272cc4d5143f4cc28fb18a8aba76d: 3ac514cf64f272cc4d5143f4cc28fb18a8aba76d
-  xe-pw-165797v1: 165797v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165797v1/index.html
-
---===============5708940060957345262==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>More MERTOA WA&#x27;s</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165797/">https://patchwork.freedesktop.org/series/165797/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165797v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165797v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4959-3ac514cf64f272cc4d5143f4cc28fb18a8aba76d_BAT -&gt; xe-pw-165797v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8879 -&gt; IGT_8881</li>
-<li>Linux: xe-4959-3ac514cf64f272cc4d5143f4cc28fb18a8aba76d -&gt; xe-pw-165797v1</li>
-</ul>
-<p>IGT_8879: 02b0e01dd9a5a3ab1efe976bb8c4f13cfcdbab1a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8881: aa5853ef5b379b1e4558218c21ef4caeae112184 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4959-3ac514cf64f272cc4d5143f4cc28fb18a8aba76d: 3ac514cf64f272cc4d5143f4cc28fb18a8aba76d<br />
-  xe-pw-165797v1: 165797v1</p>
-
-</body>
-</html>
-
---===============5708940060957345262==--
