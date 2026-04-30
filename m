@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3265CCFA13
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Apr 2026 10:53:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7387DCCFA13
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Apr 2026 10:53:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EB0E10F30C;
-	Thu, 30 Apr 2026 10:53:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3110010F314;
+	Thu, 30 Apr 2026 10:53:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j/eJumOM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gejrpYoN";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4614610F30C
- for <intel-xe@lists.freedesktop.org>; Thu, 30 Apr 2026 10:53:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCE2E10F31C
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 Apr 2026 10:53:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777546425; x=1809082425;
+ t=1777546431; x=1809082431;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=JCbADv1d34csiWmpkx6qdfVsXefUZUEsL6YxD46Se00=;
- b=j/eJumOM8iU7himASfXHVJZKSPaTqE0sAEif5kKg9VBZ72v6aOdWDmip
- B0x9NhhfS44LThAbh62vASzRfNPnxPwJn3NqcOUDCN3Y45sf/xMf+LXRX
- Ekxp/loMVVn1xum9jsOl7H72I5twRRUrRuvPmWNi80EuFzI9U2pR23r/I
- 3NVu/BM7sEu0eWp2bVam6ne9w9m4UrzMr0YrXN8ucRYlgnTV43VygpmuQ
- hxmThYC8ptdyd9xjH3Xh6CBB2yTHB6du+pF5yBGDMwxU2eV1hx+Nk0O47
- Xz0a+XaRQdt16hVErQKKbTzp4Ra2jXkooKi+QAtBS7/MoaMxU3QdewbZO A==;
-X-CSE-ConnectionGUID: fntQ91+VRrqSBBwasmk42w==
-X-CSE-MsgGUID: xYR5+u2jTguYJup9j55lgg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11771"; a="89586060"
-X-IronPort-AV: E=Sophos;i="6.23,207,1770624000"; d="scan'208";a="89586060"
+ bh=gEFoyLvgiej2dib+jrz17kHSut6kau+UrFdYQsImN5k=;
+ b=gejrpYoNNfRyRha4vsjyW6KB1dYk75aQFTeXsjyXSA9TrPSQxK8b/Upf
+ TNgsMkxW6maf7QSQLiR70REgWG557khDbOUQLVLg+/KCOMIdkFfH3EsAB
+ TP1HCkvmFODzzoLvPIn53olQCsuGcTu4UMO3ZG8El/erLLdYZ1+ZZTsTd
+ T6qqOZ/pg0hDn3pK0zfIpTHBYL7dLZHbo9ig1DHnke1SLe0Vr6KCsVtwP
+ F41KXd6xgHp4HcIC7Netudxnr+eCn4rXWs1JYeobdkDamed71XmTTvw8f
+ lCiJZ4/qeUd1tZgTfENvav5vhvdTUDOF6TMHeoF+Mp8o4wetw1+CJjSWs w==;
+X-CSE-ConnectionGUID: pz1qWjGqT8iBeJcGZTGsSw==
+X-CSE-MsgGUID: Ss3S3vWdTOO8jau73ud7zg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11771"; a="89586068"
+X-IronPort-AV: E=Sophos;i="6.23,207,1770624000"; d="scan'208";a="89586068"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2026 03:53:44 -0700
-X-CSE-ConnectionGUID: xsWf83H/QKaYKPrB615kow==
-X-CSE-MsgGUID: 7uS9zDLCQYyrylFQUtX7Ew==
+ 30 Apr 2026 03:53:51 -0700
+X-CSE-ConnectionGUID: 0rW/HIQ7QWurSw+TM7VrXA==
+X-CSE-MsgGUID: HiumJEggTd+ICtns18SWfQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,207,1770624000"; d="scan'208";a="233518902"
+X-IronPort-AV: E=Sophos;i="6.23,207,1770624000"; d="scan'208";a="233518915"
 Received: from egrumbac-mobl6.ger.corp.intel.com (HELO
  mkuoppal-desk.home.arpa) ([10.245.250.15])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2026 03:53:39 -0700
+ 30 Apr 2026 03:53:45 -0700
 From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: simona.vetter@ffwll.ch, matthew.brost@intel.com, christian.koenig@amd.com,
@@ -50,16 +50,19 @@ Cc: simona.vetter@ffwll.ch, matthew.brost@intel.com, christian.koenig@amd.com,
  dominik.karol.piatkowski@intel.com, rodrigo.vivi@intel.com,
  andrzej.hajda@intel.com, matthew.auld@intel.com,
  maciej.patelczyk@intel.com, gwan-gyeong.mun@intel.com,
+ Oak Zeng <oak.zeng@intel.com>,
+ Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
+ Stuart Summers <stuart.summers@intel.com>,
+ Bruce Chang <yu.bruce.chang@intel.com>,
  Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Subject: [PATCH 20/24] drm/xe/eudebug: Add read/count/compare helper for eu
- attention
-Date: Thu, 30 Apr 2026 13:51:16 +0300
-Message-ID: <20260430105121.712843-21-mika.kuoppala@linux.intel.com>
+Subject: [PATCH 21/24] drm/xe/vm: Support for adding null page VMA to VM on
+ request
+Date: Thu, 30 Apr 2026 13:51:17 +0300
+Message-ID: <20260430105121.712843-22-mika.kuoppala@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260430105121.712843-1-mika.kuoppala@linux.intel.com>
 References: <20260430105121.712843-1-mika.kuoppala@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -77,163 +80,86 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
 
-Add xe_eu_attentions structure to capture and store eu attention bits.
-Add a function to count the number of eu threads that have turned on from
-eu attentions, and add a function to count the number of eu threads that
-have changed on a state between eu attentions.
+The XE2 (and PVC) HW has a limitation that the pagefault due to invalid
+access will halt the corresponding EUs. So, in order to activate the
+debugger, kmd needs to install the temporal page to unhalt the EUs.
+Plan to be used for pagefault handling when the EU debugger is running.
+The idea is to install a null page vma if the pagefault is from an invalid
+access. After installing null page pte, the user debugger can continue to
+run/inspect without causing a fatal failure or reset and stop.
+Based on Bruce's implementation [1].
 
-v2: fix array size calculation (Christoph)
-v3: remote timestamp (Maciej)
+[1] https://lore.kernel.org/intel-xe/20230829231648.4438-1-yu.bruce.chang@intel.com/
 
+v2: s/NULL_VMA/DRM_GPUVA_SPARSE (Mika)
+v3: use ERR_CAST as we dont return null (Mika)
+
+Cc: Oak Zeng <oak.zeng@intel.com>
+Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Cc: Stuart Summers <stuart.summers@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Co-developed-by: Bruce Chang <yu.bruce.chang@intel.com>
+Signed-off-by: Bruce Chang <yu.bruce.chang@intel.com>
 Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-Signed-off-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
 Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_debug.c       | 63 ++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_debug.h       |  9 +++-
- drivers/gpu/drm/xe/xe_gt_debug_types.h | 22 +++++++++
- 3 files changed, 93 insertions(+), 1 deletion(-)
- create mode 100644 drivers/gpu/drm/xe/xe_gt_debug_types.h
+ drivers/gpu/drm/xe/xe_vm.c | 33 +++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_vm.h |  3 +++
+ 2 files changed, 36 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_debug.c b/drivers/gpu/drm/xe/xe_gt_debug.c
-index 314eef6734c3..9265506da05f 100644
---- a/drivers/gpu/drm/xe/xe_gt_debug.c
-+++ b/drivers/gpu/drm/xe/xe_gt_debug.c
-@@ -3,12 +3,14 @@
-  * Copyright © 2023 Intel Corporation
-  */
- 
-+#include <linux/delay.h>
- #include "regs/xe_gt_regs.h"
- #include "xe_device.h"
- #include "xe_force_wake.h"
- #include "xe_gt.h"
- #include "xe_gt_topology.h"
- #include "xe_gt_debug.h"
-+#include "xe_gt_debug_types.h"
- #include "xe_gt_mcr.h"
- #include "xe_pm.h"
- #include "xe_macros.h"
-@@ -177,3 +179,64 @@ int xe_gt_eu_threads_needing_attention(struct xe_gt *gt)
- 
- 	return err < 0 ? 0 : err;
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index f00bd5801b0c..20acf5b63214 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -5083,3 +5083,36 @@ void xe_vm_remove_exec_queue(struct xe_vm *vm, struct xe_exec_queue *q)
+ 	}
+ 	up_write(&vm->exec_queues.lock);
  }
 +
-+static inline unsigned int
-+xe_eu_attentions_count(const struct xe_eu_attentions *a)
++struct xe_vma *xe_vm_create_null_vma(struct xe_vm *vm, u64 addr)
 +{
-+	return bitmap_weight((void *)a->att, a->size * BITS_PER_BYTE);
++	struct xe_vma_mem_attr default_attr = {
++		.preferred_loc = {
++			.devmem_fd = DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE,
++			.migration_policy = DRM_XE_MIGRATE_ALL_PAGES,
++		},
++		.atomic_access = DRM_XE_ATOMIC_UNDEFINED,
++		.default_pat_index = vm->xe->pat.idx[XE_CACHE_NONE],
++		.pat_index = vm->xe->pat.idx[XE_CACHE_NONE],
++	};
++	struct xe_vma *vma;
++	u32 page_size;
++	int err;
++
++	if (xe_vm_is_closed_or_banned(vm))
++		return ERR_PTR(-ENOENT);
++
++	page_size = vm->flags & XE_VM_FLAG_64K ? SZ_64K : SZ_4K;
++	vma = xe_vma_create(vm, NULL, 0, addr, addr + page_size - 1,
++			    &default_attr, DRM_GPUVA_SPARSE);
++	if (IS_ERR(vma))
++		return ERR_CAST(vma);
++
++	err = xe_vm_insert_vma(vm, vma);
++	if (err) {
++		xe_vma_destroy_late(vma);
++		return ERR_PTR(err);
++	}
++
++	return vma;
 +}
-+
-+void xe_gt_eu_attentions_read(struct xe_gt *gt,
-+			      struct xe_eu_attentions *a,
-+			      const unsigned int settle_time_ms)
-+{
-+	unsigned int attn, prev = 0;
-+	ktime_t end, now;
-+
-+	now = ktime_get_raw();
-+	/* Initially wait longer for attentions to appear */
-+	end = ktime_add_ms(now, settle_time_ms * 10);
-+
-+	a->size = min_t(int,
-+			xe_gt_eu_attention_bitmap_size(gt),
-+			sizeof(a->att));
-+
-+	do {
-+		if (xe_gt_eu_attention_bitmap(gt, a->att, a->size) < 0)
-+			return;
-+
-+		attn = xe_eu_attentions_count(a);
-+
-+		now = ktime_get_raw();
-+
-+		if (attn > prev) {
-+			prev = attn;
-+			end = ktime_add_ms(now, settle_time_ms);
-+		}
-+
-+		if (settle_time_ms)
-+			udelay(5);
-+
-+		/*
-+		 * XXX We are gathering data for production SIP to find
-+		 * the upper limit of settle time. For now, we wait full
-+		 * timeout value regardless.
-+		 */
-+	} while ((attn < a->size * 8) && ktime_before(now, end));
-+}
-+
-+unsigned int xe_eu_attentions_xor_count(const struct xe_eu_attentions *a,
-+					const struct xe_eu_attentions *b)
-+{
-+	unsigned int count = 0;
-+	unsigned int i;
-+
-+	if (XE_WARN_ON(a->size != b->size))
-+		return -EINVAL;
-+
-+	for (i = 0; i < a->size; i++)
-+		if (a->att[i] ^ b->att[i])
-+			count++;
-+
-+	return count;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_gt_debug.h b/drivers/gpu/drm/xe/xe_gt_debug.h
-index 9dabe9cc1d25..a1103ecf1b4e 100644
---- a/drivers/gpu/drm/xe/xe_gt_debug.h
-+++ b/drivers/gpu/drm/xe/xe_gt_debug.h
-@@ -9,9 +9,10 @@
- #include <linux/bits.h>
- #include <linux/math.h>
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index c5b900f38ded..63821e11c81a 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -436,4 +436,7 @@ static inline struct drm_exec *xe_vm_validation_exec(struct xe_vm *vm)
+ 	((READ_ONCE(tile_present) & ~READ_ONCE(tile_invalidated)) & BIT((tile)->id))
  
-+struct xe_eu_attentions;
- struct xe_gt;
- 
--#define XE_GT_ATTENTION_TIMEOUT_MS 100
-+#define XE_GT_ATTENTION_TIMEOUT_MS 150
- #define XE_GT_EU_ATT_ROWS 2u
- 
- unsigned int xe_gt_eu_att_regs(struct xe_gt *gt);
-@@ -29,4 +30,10 @@ int xe_gt_eu_attention_bitmap_size(struct xe_gt *gt);
- int xe_gt_eu_attention_bitmap(struct xe_gt *gt, u8 *bits,
- 			      unsigned int bitmap_size);
- 
-+void xe_gt_eu_attentions_read(struct xe_gt *gt,
-+			      struct xe_eu_attentions *a,
-+			      const unsigned int settle_time_ms);
+ void xe_vma_mem_attr_copy(struct xe_vma_mem_attr *to, struct xe_vma_mem_attr *from);
 +
-+unsigned int xe_eu_attentions_xor_count(const struct xe_eu_attentions *a,
-+					const struct xe_eu_attentions *b);
++struct xe_vma *xe_vm_create_null_vma(struct xe_vm *vm, u64 addr);
++
  #endif
-diff --git a/drivers/gpu/drm/xe/xe_gt_debug_types.h b/drivers/gpu/drm/xe/xe_gt_debug_types.h
-new file mode 100644
-index 000000000000..f24eed15cf7c
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_gt_debug_types.h
-@@ -0,0 +1,22 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2025 Intel Corporation
-+ */
-+
-+#ifndef __XE_GT_DEBUG_TYPES_
-+#define __XE_GT_DEBUG_TYPES_
-+
-+#include <linux/types.h>
-+
-+#define XE_GT_EU_ATT_ROWS 2u
-+#define XE_GT_EU_ATT_MAX_THREADS 16
-+#define XE_GT_EU_MAX_NUM  1024
-+
-+struct xe_eu_attentions {
-+	u8 att[XE_GT_EU_MAX_NUM *
-+	       XE_GT_EU_ATT_ROWS *
-+	       XE_GT_EU_ATT_MAX_THREADS/8];
-+	unsigned int size;
-+};
-+
-+#endif
 -- 
 2.43.0
 
