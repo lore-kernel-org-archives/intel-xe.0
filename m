@@ -4,63 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6382FFF8875
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Apr 2026 10:28:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51542CCFA13
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Apr 2026 10:51:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0714410F2DF;
-	Thu, 30 Apr 2026 10:28:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CC0D10F2E3;
+	Thu, 30 Apr 2026 10:51:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UnXAnp4o";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IJABWSRJ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E128A10F2E1;
- Thu, 30 Apr 2026 10:28:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B424210E159
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 Apr 2026 10:51:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777544895; x=1809080895;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Z7nP5Jr/BhHZhuDw8gz/eLlwGoiZTcbYzeHMFI+sVN8=;
- b=UnXAnp4ouYiYij1/HAt4MaK+f4p0xSFRAAPKVieQnU7Kvoy56PUJbmYH
- 4NnygTkIZ2+xZ6m7hwjURxipFiXJkUjUinqHEPMT/hYINRySqCIddfWoM
- sWFH0dZhQ2QFp40x1waOCXErtksRTlQqY7bIYn+KBMHDzfMHIuxwoR+ot
- 00wHcApQMrhIPGqfjtoOgXjmtf2JaihO/H11BD1ZnA2IaaswyylpECwvS
- TaFR2wfYLA8VyWGeYdXfuZrPPd2ZpeyN9Qwlvy/eNEOJIz+msd3giLWHw
- sMMF+nfHZ1TfdQovwuGDXBk7QABbYsgcfUclAmhrk7HqH5zuGdozSByPD A==;
-X-CSE-ConnectionGUID: ohDO9l2QTvawdcmgrYoTiQ==
-X-CSE-MsgGUID: nENq52V2S1eaV6DrMN5kqQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11771"; a="89182930"
-X-IronPort-AV: E=Sophos;i="6.23,207,1770624000"; d="scan'208";a="89182930"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2026 03:28:15 -0700
-X-CSE-ConnectionGUID: oL/o5pfcQTSS7u0Sj6v0qg==
-X-CSE-MsgGUID: oNtC2/nEQOqMXAGxYc2RsQ==
+ t=1777546308; x=1809082308;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=cfSVA4cuhGNAR6w1ea0TJwSchmUuHca2qaRntxvr29Q=;
+ b=IJABWSRJU3uaf90BSfQceniCJBM2nMhOYrn8gqIwhHXVw+Kk8iRvjwEX
+ D8p1EXa5HOfaPFQ6yA7dNF8ILCXwjnKAgg8ghMbhDnxJ6swUgL9wOVugG
+ yk1L85zLimROCmgM/yUAThD+zTNg/MHt0FUNb+OX00pv1s2mOwkNBQgaX
+ Y2Hjvy+q40MiRyBAymodADLRWUqfSbUgvpRIvBgoQsT4xPFXZ/a4txcvo
+ wQx03FqXRe9mqxyr28wzob+zlc9yKFin4hC8nvpaoLZerOxLs1iC2NTxL
+ 2Q0FrLymqbvy98kMtAe7JpJZEU+cMm76ETu37iKNg3FpRzCKB2OX547yx A==;
+X-CSE-ConnectionGUID: hIfcpf3QSuqfGWNOh0HxDg==
+X-CSE-MsgGUID: uPjJSh1OS7WkmyAQxr03JQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11771"; a="89585847"
+X-IronPort-AV: E=Sophos;i="6.23,207,1770624000"; d="scan'208";a="89585847"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2026 03:51:48 -0700
+X-CSE-ConnectionGUID: IS0PAV7CRAypHR/F7xaSuw==
+X-CSE-MsgGUID: 9/7u5DJPSveNiMpQywqx5g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,207,1770624000"; d="scan'208";a="258124202"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.115])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2026 03:28:13 -0700
-Date: Thu, 30 Apr 2026 13:28:10 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 15/15] drm/i915/irq: add intel_display_irq_handler() to
- irq funcs
-Message-ID: <afMuuj6B3lw10CEV@intel.com>
-References: <cover.1777458161.git.jani.nikula@intel.com>
- <4c2be8d52d11977f67d3d52ebf6414d4c0a341ef.1777458161.git.jani.nikula@intel.com>
- <afHx7st1NYZulnQM@intel.com>
- <0edc69cd1ad8c7b510622ffb8b51f436992395dc@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,207,1770624000"; d="scan'208";a="233518407"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO
+ mkuoppal-desk.home.arpa) ([10.245.250.15])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2026 03:51:42 -0700
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: simona.vetter@ffwll.ch, matthew.brost@intel.com, christian.koenig@amd.com,
+ thomas.hellstrom@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ gustavo.sousa@intel.com, jan.maslak@intel.com,
+ dominik.karol.piatkowski@intel.com, rodrigo.vivi@intel.com,
+ andrzej.hajda@intel.com, matthew.auld@intel.com,
+ maciej.patelczyk@intel.com, gwan-gyeong.mun@intel.com,
+ Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Subject: [PATCH 00/24] Intel Xe GPU Debug Support (eudebug) v8
+Date: Thu, 30 Apr 2026 13:50:56 +0300
+Message-ID: <20260430105121.712843-1-mika.kuoppala@linux.intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <0edc69cd1ad8c7b510622ffb8b51f436992395dc@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,83 +72,234 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Apr 30, 2026 at 10:59:11AM +0300, Jani Nikula wrote:
-> On Wed, 29 Apr 2026, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
-> > On Wed, Apr 29, 2026 at 01:24:55PM +0300, Jani Nikula wrote:
-> >> @@ -2088,6 +2123,28 @@ static void vlv_display_irq_ack(struct intel_display *display,
-> >>  	i9xx_pipestat_irq_ack(display, state->iir, state->pipe_stats);
-> >>  }
-> >>  
-> >> +static bool vlv_display_irq_handler(struct intel_display *display,
-> >> +				    const struct intel_display_irq_state *state)
-> >> +{
-> >> +	u32 lpe_mask = I915_LPE_PIPE_A_INTERRUPT | I915_LPE_PIPE_B_INTERRUPT;
-> >> +
-> >> +	if (display->platform.cherryview)
-> >> +		lpe_mask |= I915_LPE_PIPE_C_INTERRUPT;
-> >
-> > I would prefer a function rather than the extra variable. The other
-> > option is to just use the CHV mask always. There is nothing on the
-> > extra bit on VLV so we never unmask it.
-> 
-> Hmm. reset and postinstall also have slight variations for VLV vs. CHV,
-> but only very slight. I think they're overall close enough that
-> splitting out a funcs struct and separate funcs for CHV is more
-> distracting and duplication than helpful.
+Hi,
 
-I think with DPINVGTT we could just switch to using full 16bit masks
-and get rid of the vlv/chv difference. I should check if the unused
-bits are all tied to 0...
+This is the v8 patch series for Intel Xe GPU debug support (eudebug).
 
-> 
-> Or would something like this be satisfactory? Just a couple of small
-> wrapper functions around intel_lpe_audio_irq_handler() here that the
-> compiler would just inline:
-> 
-> 	if (display->platform.cherryview)
-> 		chv_lpe_audio_irq_handler(display, state->iir);		
-> 	else
-> 		vlv_lpe_audio_irq_handler(display, state->iir);		
-> 
-> Of course this would need to move to the ack part per your other review
-> comment.
+This series continues from the following previous submissions:
+- v1: https://lists.freedesktop.org/archives/intel-xe/2024-July/043605.html
+- v2: https://lists.freedesktop.org/archives/intel-xe/2024-October/052260.html
+- v3: https://lists.freedesktop.org/archives/intel-xe/2024-December/061476.html
+- v4: https://lists.freedesktop.org/archives/intel-xe/2025-August/091645.html
+- v5: https://lists.freedesktop.org/archives/intel-xe/2025-October/097859.html
+- v6: https://lists.freedesktop.org/archives/intel-xe/2025-December/106405.html
+- v7: https://lists.freedesktop.org/archives/intel-xe/2026-February/115750.html
 
-I was just thinking of having something like 
-vlv_lpe_irq_mask()
-{
-	if (chv)
-		return ...;
-	else
-		return ...;
-}
+# Major Changes from v7
 
-> 
-> 
-> >> @@ -51,14 +51,12 @@ void bdw_disable_vblank(struct drm_crtc *crtc);
-> >>  
-> >>  void ilk_display_irq_master_disable(struct intel_display *display, u32 *de_ier, u32 *sde_ier);
-> >>  void ilk_display_irq_master_enable(struct intel_display *display, u32 de_ier, u32 sde_ier);
-> >> -bool ilk_display_irq_handler(struct intel_display *display);
-> >> -void gen8_de_irq_handler(struct intel_display *display, u32 master_ctl);
-> >> -void gen11_display_irq_handler(struct intel_display *display);
-> >>  
-> >>  u32 gen11_gu_misc_irq_ack(struct intel_display *display, const u32 master_ctl);
-> >>  void gen11_gu_misc_irq_handler(struct intel_display *display, const u32 iir);
-> >>  
-> >>  struct intel_display_irq_state {
-> >> +	u32 master_ctl;
-> >
-> > Ideally I'd like a separate structs for different platforms,
-> > but until I resurrect my old ack vs. handle split for all
-> > platforms I guess we don't need anything else here for
-> > ilk+. So good enough for now I suppose.
-> 
-> You mean per-platform substructs/unions within struct
-> intel_display_irq_state? I can do that.
+Rework of eudebug pagefault handling to better align with xe
+core pagefaults (Maciej Patelczyk).
+Refactored eu control to streamline common parts.
+Refactored resource handle bookkeepping.
 
-Yeah something like that. Not super important right since
-we just have the master_ctl for non-gmch platforms.
+# Major Changes from v6
+
+Added documentation. Two new documentation patches introduce .rst
+documentation under Documentation/gpu/xe/ and kernel-doc for the
+eudebug interface. The eudebug source now includes DOC sections
+covering connection establishment, security model, file descriptor
+acquisition methods, and the event interface.
+
+UAPI header documentation in xe_drm_eudebug.h has been significantly
+expanded with kernel-doc comments for interface structures and ioctls.
+
+Eliminated the separate xe_eudebug_resources struct, removing a level
+of indirection. The resources lock has been consolidated with the
+target lock, which is now a mutex instead of a spinlock.
+
+Improved input validation: seqno fields are now checked to be zero on
+EU control and read_event entry. The read_event ioctl validation was
+simplified to only check for DRM_XE_EUDEBUG_EVENT_READ type.
+
+Replaced drm_file->authenticated check with xe_file and device validation,
+allowing render node access for debug targets.
+
+# Major Changes from v5
+
+With v5, when relaying vm bind with the associated ops, the transient
+bind relay state was held in struct xe_vm. As debug metadata add
+and remove ops simplifies the way binds are handled wrt v3,
+this gave us opportunity to use vm_ops for relaying instead of
+using eudebug baked bind ops state. This change removes ~200 lines.
+
+Debuggable GuC context support was reworked. Now GuC version
+is required to be 70.49.4 or higher for eudebug support.
+
+Eudebug pagefaults were reworked on top of producer/consumer
+pagefaults, introduced in core xe side. We reduced the footprint
+eudebug pagefaults have in xe pagefault handler side.
+
+# Major Changes from v4
+
+v4 omitted page fault support, it is reworked from v3 and included
+in this series.
+
+### Major Changes from v3
+
+#### 1. Elimination of ptrace_may_access() and pid
+
+In previous series, the connection attempt was made using the process ID
+(PID) as the target. Access was checked using the `ptrace_may_access()`
+helper to achieve security parity with CPU-side debugging.
+
+In v4, this has been changed to connect to a DRM client, using a file
+descriptor as the target. This approach eliminates the need for the
+`ptrace_may_access()` symbol export, as access control is now managed
+through the debugger process's access to the file descriptor. For example,
+accessing a remote DRM client requires the debugger process to
+successfully call `pidfd_getfd()` to obtain a duplicate of the target
+file descriptor. The 1:1 mapping between DRM clients and their debuggers
+eliminates the need for `EVENT_OPEN` and simplifies overall connection
+tracking.
+
+#### 2. ELF binaries not held in kernel memory
+
+In v4, debug data is delivered as a VM bind 'OP_ADD_DEBUG_DATA' extension.
+The ELF binaries are no longer stored within the Xe KMD but are instead
+kept in a file. The file path is passed as part of an extension in
+the newly introduced 'OP_ADD_DEBUG_DATA' VM bind operation. Alternatively
+pseudo-paths can be used to annotate special address ranges similar to
+/proc/<pid>/maps.
+
+#### 3. Debug metadata not carried in VMA struct
+
+Instead of attaching debug data to vma created by 'OP_MAP',
+we introduce separate ops for managing the metadata.
+Debug data is no longer held in the VMA struct. xe_vm contains a
+list of all associated debug data.
+
+#### 4. Reading debug data via debugfs
+
+This revision introduces the possibility to access debug data using per
+client debugfs entries. The intent was to achieve similar interface to
+'/proc/<pid>/maps'
+
+### Supported Hardware
+- Lunarlake (LNL)
+- Battlemage (BMG)
+- Pantherlake (PTL)
+
+The code for this submission can be found at:
+https://gitlab.freedesktop.org/miku/kernel/-/tree/eudebug-v8
+
+Tests:
+https://gitlab.freedesktop.org/DominikPiatkowski-Intel/igt-gpu-tools/-/tree/eudebug-dev-next
+
+
+Christoph Manszewski (5):
+  drm/xe: Introduce ADD_DEBUG_DATA and REMOVE_DEBUG_DATA vm bind ops
+  drm/xe/eudebug: Introduce vm bind and vm bind debug data events
+  drm/xe/eudebug_test: Introduce xe_eudebug wa kunit test
+  drm/xe: Implement SR-IOV and eudebug exclusivity
+  drm/xe: Add xe_client_debugfs and introduce debug_data file
+
+Dominik Grzegorzek (5):
+  drm/xe/eudebug: Introduce exec_queue events
+  drm/xe: Add EUDEBUG_ENABLE exec queue property
+  drm/xe/eudebug: hw enablement for eudebug
+  drm/xe/eudebug: Introduce EU control interface
+  drm/xe/eudebug: Introduce per device attention scan worker
+
+Gwan-gyeong Mun (4):
+  drm/xe/eudebug: Add read/count/compare helper for eu attention
+  drm/xe/vm: Support for adding null page VMA to VM on request
+  drm/xe/eudebug: Introduce EU pagefault handling interface
+  drm/xe/eudebug: Enable EU pagefault handling
+
+Maciej Patelczyk (2):
+  drm/xe/eudebug: Allow getting eudebug instance during discovery
+  drm/xe/eudebug: Disable SVM in Xe for Eudebug
+
+Mika Kuoppala (8):
+  drm/xe/eudebug: Introduce eudebug interface
+  drm/xe/eudebug: Add documentation
+  drm/xe/eudebug: Add connection establishment documentation
+  drm/xe/eudebug: Introduce discovery for resources
+  drm/xe/eudebug: Mark guc contexts as debuggable
+  drm/xe/eudebug: Add ufence events with acks
+  drm/xe/eudebug: vm open/pread/pwrite
+  drm/xe/eudebug: userptr vm pread/pwrite
+
+ Documentation/gpu/xe/index.rst              |    1 +
+ Documentation/gpu/xe/xe_eudebug.rst         |   83 +
+ drivers/gpu/drm/xe/Kconfig                  |   16 +-
+ drivers/gpu/drm/xe/Makefile                 |    7 +-
+ drivers/gpu/drm/xe/abi/guc_actions_abi.h    |    5 +
+ drivers/gpu/drm/xe/abi/guc_klvs_abi.h       |    1 +
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h    |    5 +
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h        |   43 +
+ drivers/gpu/drm/xe/tests/xe_eudebug.c       |  193 ++
+ drivers/gpu/drm/xe/tests/xe_live_test_mod.c |    5 +
+ drivers/gpu/drm/xe/xe_client_debugfs.c      |  118 +
+ drivers/gpu/drm/xe/xe_client_debugfs.h      |   19 +
+ drivers/gpu/drm/xe/xe_debug_data.c          |  314 +++
+ drivers/gpu/drm/xe/xe_debug_data.h          |   22 +
+ drivers/gpu/drm/xe/xe_debug_data_types.h    |   25 +
+ drivers/gpu/drm/xe/xe_device.c              |   30 +-
+ drivers/gpu/drm/xe/xe_device.h              |   42 +
+ drivers/gpu/drm/xe/xe_device_types.h        |   49 +
+ drivers/gpu/drm/xe/xe_eudebug.c             | 2360 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_eudebug.h             |  112 +
+ drivers/gpu/drm/xe/xe_eudebug_hw.c          |  725 ++++++
+ drivers/gpu/drm/xe/xe_eudebug_hw.h          |   32 +
+ drivers/gpu/drm/xe/xe_eudebug_pagefault.c   |  417 ++++
+ drivers/gpu/drm/xe/xe_eudebug_pagefault.h   |   77 +
+ drivers/gpu/drm/xe/xe_eudebug_types.h       |  228 ++
+ drivers/gpu/drm/xe/xe_eudebug_vm.c          |  436 ++++
+ drivers/gpu/drm/xe/xe_eudebug_vm.h          |    8 +
+ drivers/gpu/drm/xe/xe_exec_queue.c          |   56 +-
+ drivers/gpu/drm/xe/xe_exec_queue.h          |    2 +
+ drivers/gpu/drm/xe/xe_exec_queue_types.h    |    7 +
+ drivers/gpu/drm/xe/xe_gt_debug.c            |  242 ++
+ drivers/gpu/drm/xe/xe_gt_debug.h            |   39 +
+ drivers/gpu/drm/xe/xe_gt_debug_types.h      |   22 +
+ drivers/gpu/drm/xe/xe_guc.c                 |   17 +
+ drivers/gpu/drm/xe/xe_guc.h                 |    3 +
+ drivers/gpu/drm/xe/xe_guc_ads.c             |   17 +
+ drivers/gpu/drm/xe/xe_guc_pagefault.c       |   10 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c          |   34 +
+ drivers/gpu/drm/xe/xe_guc_submit.h          |    1 +
+ drivers/gpu/drm/xe/xe_hw_engine.h           |   14 +
+ drivers/gpu/drm/xe/xe_lrc.c                 |   10 +
+ drivers/gpu/drm/xe/xe_pagefault.c           |   77 +-
+ drivers/gpu/drm/xe/xe_pagefault_types.h     |   10 +
+ drivers/gpu/drm/xe/xe_reg_sr.c              |   21 +-
+ drivers/gpu/drm/xe/xe_reg_sr.h              |    4 +-
+ drivers/gpu/drm/xe/xe_reg_whitelist.c       |    2 +-
+ drivers/gpu/drm/xe/xe_rtp.c                 |    2 +-
+ drivers/gpu/drm/xe/xe_sync.c                |   43 +-
+ drivers/gpu/drm/xe/xe_sync.h                |    7 +-
+ drivers/gpu/drm/xe/xe_sync_types.h          |   28 +-
+ drivers/gpu/drm/xe/xe_userptr.c             |    4 +
+ drivers/gpu/drm/xe/xe_userptr.h             |   32 +
+ drivers/gpu/drm/xe/xe_vm.c                  |  201 +-
+ drivers/gpu/drm/xe/xe_vm.h                  |    3 +
+ drivers/gpu/drm/xe/xe_vm_types.h            |   19 +
+ drivers/gpu/drm/xe/xe_wa_oob.rules          |    5 +-
+ include/uapi/drm/xe_drm.h                   |   95 +
+ include/uapi/drm/xe_drm_eudebug.h           |  377 +++
+ 58 files changed, 6722 insertions(+), 55 deletions(-)
+ create mode 100644 Documentation/gpu/xe/xe_eudebug.rst
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_eudebug.c
+ create mode 100644 drivers/gpu/drm/xe/xe_client_debugfs.c
+ create mode 100644 drivers/gpu/drm/xe/xe_client_debugfs.h
+ create mode 100644 drivers/gpu/drm/xe/xe_debug_data.c
+ create mode 100644 drivers/gpu/drm/xe/xe_debug_data.h
+ create mode 100644 drivers/gpu/drm/xe/xe_debug_data_types.h
+ create mode 100644 drivers/gpu/drm/xe/xe_eudebug.c
+ create mode 100644 drivers/gpu/drm/xe/xe_eudebug.h
+ create mode 100644 drivers/gpu/drm/xe/xe_eudebug_hw.c
+ create mode 100644 drivers/gpu/drm/xe/xe_eudebug_hw.h
+ create mode 100644 drivers/gpu/drm/xe/xe_eudebug_pagefault.c
+ create mode 100644 drivers/gpu/drm/xe/xe_eudebug_pagefault.h
+ create mode 100644 drivers/gpu/drm/xe/xe_eudebug_types.h
+ create mode 100644 drivers/gpu/drm/xe/xe_eudebug_vm.c
+ create mode 100644 drivers/gpu/drm/xe/xe_eudebug_vm.h
+ create mode 100644 drivers/gpu/drm/xe/xe_gt_debug.c
+ create mode 100644 drivers/gpu/drm/xe/xe_gt_debug.h
+ create mode 100644 drivers/gpu/drm/xe/xe_gt_debug_types.h
+ create mode 100644 include/uapi/drm/xe_drm_eudebug.h
 
 -- 
-Ville Syrjälä
-Intel
+2.43.0
+
