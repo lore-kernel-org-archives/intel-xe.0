@@ -4,61 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77C27FF886F
-	for <intel-xe@archiver.kernel.org>; Mon,  4 May 2026 12:43:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AC04CD3430
+	for <intel-xe@archiver.kernel.org>; Mon,  4 May 2026 12:43:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F8DD10E6A8;
-	Mon,  4 May 2026 12:43:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BEDDF10E6B1;
+	Mon,  4 May 2026 12:43:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="qsXQoAe6";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="E/aLqins";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1807C10E20E;
- Fri,  1 May 2026 20:05:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version
- :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=xaMvyfhzCvlUTk9HYqljz7IrplwZLZCvDlnXs0RMPrI=; b=qsXQoAe6lip/+O9p//7+b6k42X
- tNvWKxcbTNFYuMGCcPp5qWcjdvTFsJlOouHvqifleN0xEJX1nVYxhKRirYdcn2ghrbtF43M0EFzyD
- 4bKqWS83qbxARVZG8Ou7QT0mzHeEfZPjroAKKQc+/Tot5C4azU5OC6WYbbEQvnw71QT675GWejZB3
- z687ICuOGnZPksc63R23Wv5JOI2Z8TTWDyqDtNFVLcjv8kkDbQmZy1sMhDZElOqQd9IZecIXmNthY
- DmcN35PXV5w7y/uvxKu4tZSPVCyqsOjmlMCUNGA16vN7G1NjRG1idW2FSZzWeUW0YteEBPs/hHNLA
- XtEcMCyg==;
-Received: from 179-125-71-251-dinamico.pombonet.net.br ([179.125.71.251]
- helo=quatroqueijos.cascardo.eti.br)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wIu6W-00502f-BB; Fri, 01 May 2026 22:04:52 +0200
-Date: Fri, 1 May 2026 17:04:44 -0300
-From: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Carlos Santa <carlos.santa@intel.com>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Daniel Colascione <dancol@dancol.org>
-Subject: Re: [PATCH 1/3] drm/ttm: Issue direct reclaim at beneficial_order
-Message-ID: <afUHXNzgcBOjIsIJ@quatroqueijos.cascardo.eti.br>
-References: <20260421012608.1474950-1-matthew.brost@intel.com>
- <20260421012608.1474950-2-matthew.brost@intel.com>
- <30c84c41-192c-44ae-a614-2b9951c55727@ursulin.net>
- <d7dda563-280f-4126-a822-a3d43ce5048e@amd.com>
- <aekygVvRz7mu+elE@gsse-cloud1.jf.intel.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABFCE10E8F2;
+ Thu, 30 Apr 2026 17:06:53 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 1828441579;
+ Thu, 30 Apr 2026 17:06:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F8DAC2BCB3;
+ Thu, 30 Apr 2026 17:06:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1777568813;
+ bh=dPdHfPCW7ng2kSeVyDlMheharmDFRf8Ia5tgN1rIr7g=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=E/aLqinsRaz6E+em9mmxb/ZmPZKQBFN0qzUWyMQ1WmwBpvNArlPyD2O/izyCgrhZt
+ eIXJpUB4ekDjPDZGqtXXWplC89vsNKrkO432KF7hiOdDOWgT0wQBFrIjP5dx7wxAhL
+ q+74f9XyxQvN8KdY0JZ3Fac04I5MqQ/RxFaIL/wPBDm8G/Ge3ilJTrCeacwiyGTX0t
+ KTrSXj2Mjq/KHwqqNkcbGDJTcEPN5qX1tqx64v2waZGOELXhsWRVRRMg0luurIZx/L
+ 4CbIQD8kOgp35xgTgEmFcZyE5Bn2vIr6wPy+iQuaoCrMpta0JHLuKgmLuFkaOPOoYQ
+ dGcLQS5WymL1w==
+Message-ID: <59b3dab5-3341-46dc-851a-419790eaf403@kernel.org>
+Date: Thu, 30 Apr 2026 19:06:48 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/5] mm: Introduce zone_appears_fragmented()
+Content-Language: en-US
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ "David Hildenbrand (Arm)" <david@kernel.org>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Andrew Morton <akpm@linux-foundation.org>, Lorenzo Stoakes <ljs@kernel.org>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>, Mike Rapoport
+ <rppt@kernel.org>, Suren Baghdasaryan <surenb@google.com>,
+ Michal Hocko <mhocko@suse.com>, linux-mm@kvack.org,
+ linux-kernel@vger.kernel.org, Johannes Weiner <hannes@cmpxchg.org>
+References: <20260423055656.1696379-1-matthew.brost@intel.com>
+ <20260423055656.1696379-2-matthew.brost@intel.com>
+ <76191a17-18bf-4e9b-9ab5-dc9a48abfabb@kernel.org>
+ <be42059924cde9bb16a087ee2a5abb0b9d850d68.camel@linux.intel.com>
+ <aepuNL2fwp47P1Wi@gsse-cloud1.jf.intel.com>
+ <aeqbe/9YRKNyYuWY@gsse-cloud1.jf.intel.com>
+ <291406b26b8badf2e565996515931d9ebe50208f.camel@linux.intel.com>
+ <a1252167-63a1-481b-9f1d-2a7bae7a3b6c@kernel.org>
+ <afLCwHaPZMu/dxqY@gsse-cloud1.jf.intel.com>
+ <f4324084f3808b9a42b87ec27bef7fe920dde9ea.camel@linux.intel.com>
+From: "Vlastimil Babka (SUSE)" <vbabka@kernel.org>
+In-Reply-To: <f4324084f3808b9a42b87ec27bef7fe920dde9ea.camel@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <aekygVvRz7mu+elE@gsse-cloud1.jf.intel.com>
 X-Mailman-Approved-At: Mon, 04 May 2026 12:43:10 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,112 +74,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Apr 22, 2026 at 01:41:37PM -0700, Matthew Brost wrote:
-> On Wed, Apr 22, 2026 at 09:41:54AM +0200, Christian König wrote:
-> > On 4/22/26 09:32, Tvrtko Ursulin wrote:
-> > > 
-> > > On 21/04/2026 02:26, Matthew Brost wrote:
-> > >> Triggering kswap at an order higher than beneficial_order makes little
-> > >> sense, as the driver has already indicated the optimal order at which
-> > >> reclaim is effective. Similarly, issuing direct reclaim or triggering
-> > >> kswap at a lower order than beneficial_order is ineffective, since the
-> > >> driver does not benefit from reclaiming lower-order pages.
-> > >>
-> > >> As a result, direct reclaim should only be issued with __GFP_NORETRY at
-> > >> exactly beneficial_order, or as a fallback, direct reclaim without
-> > >> __GFP_NORETRY at order 0 when failure is not an option.
-> > >>
-> > >> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > >> Cc: Carlos Santa <carlos.santa@intel.com>
-> > >> Cc: Christian Koenig <christian.koenig@amd.com>
-> > >> Cc: Huang Rui <ray.huang@amd.com>
-> > >> Cc: Matthew Auld <matthew.auld@intel.com>
-> > >> Cc: Matthew Brost <matthew.brost@intel.com>
-> > >> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > >> Cc: Maxime Ripard <mripard@kernel.org>
-> > >> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> > >> Cc: David Airlie <airlied@gmail.com>
-> > >> Cc: Simona Vetter <simona@ffwll.ch>
-> > >> CC: dri-devel@lists.freedesktop.org
-> > >> Cc: Daniel Colascione <dancol@dancol.org>
-> > >> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > >> ---
-> > >>   drivers/gpu/drm/ttm/ttm_pool.c | 4 ++--
-> > >>   1 file changed, 2 insertions(+), 2 deletions(-)
-> > >>
-> > >> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
-> > >> index 26a3689e5fd9..8425dbcc6c68 100644
-> > >> --- a/drivers/gpu/drm/ttm/ttm_pool.c
-> > >> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
-> > >> @@ -165,8 +165,8 @@ static struct page *ttm_pool_alloc_page(struct ttm_pool *pool, gfp_t gfp_flags,
-> > >>        * Do not add latency to the allocation path for allocations orders
-> > >>        * device tolds us do not bring them additional performance gains.
-> > >>        */
-> > >> -    if (beneficial_order && order > beneficial_order)
-> > >> -        gfp_flags &= ~__GFP_DIRECT_RECLAIM;
-> > >> +    if (order && beneficial_order && order != beneficial_order)
-> > >> +        gfp_flags &= ~__GFP_RECLAIM;
-> > >>         if (!ttm_pool_uses_dma_alloc(pool)) {
-> > >>           p = alloc_pages_node(pool->nid, gfp_flags, order);
-> > > 
-> > > I missed this conversation so don't know if this was discussed -
+On 4/30/26 09:47, Thomas HellstrÃ¶m wrote:
+> On Wed, 2026-04-29 at 19:47 -0700, Matthew Brost wrote:
+>> 
+>> So again, I think starting with wiring order into shrink_control and
+>> this helper is a good place to start, as it fixes an immediate issue.
+>> 
+>> Let me know if that seems like a reasonable direction.
 > 
-> I meant to CC you here, but missed including you.
+> +1 for wiring order into shrink_control, and possibly also the priority
+> as mentioned in an earlier email.
 > 
-> > > having less of 64k pages is not a concern? I mean slightly higher TLB pressure etc on hardware which supports this PTE size.
-> > 
-> > At least for AMD GPUs 64k doesn't matter at all.
-> > 
-> 
-> Same on Intel GPUs for system memory mappings - it is either 4k or 2M
-> GPU pages. VRAM can we 64k pages but that isn't involved here.
-> 
-> > There was a large push from the Windows side to use that size, but we have more than enough evidence to prove that this size is actually completely nonsense for almost all use cases.
-> > 
-> > I have no idea how we ended up with that in the first place.
-> > 
-> > It could be that there is still HW out there which can only handle that size, but in that case such HW should just set beneficial_order to 64k.
-> > 
-> 
-> Or we move to a table config if we find drivers have multiple
-> beneficial_orders.
-> 
-> > > Also, does clearing __GFP_RECLAIM disable compaction completely and is that wanted?
-> > 
-> > Oh good point, most likely not.
-> >
-> 
-> Without completely reverse engineering the core MM, I'm not sure here.
-> 
-> I just read the kernel doc for __GFP_KSWAPD_RECLAIM [1] and this to
-> indicate if this is clear compaction won't be entered.
-> 
+> However for cgroups-aware shrinkers, The number of free memory in a
+> zone might not be an indication of fragmentation-triggered reclaim at
+> all, it could be the result of the cgroup hitting its memory limits.
 
-AFAIU, clearing __GFP_DIRECT_RECLAIM will prevent direct compaction, but
-kswapd might still start compaction. Since clearing __GFP_KSWAPD_RECLAIM
-prevents the wakeup of kswapd, then clearing both will stop any compaction
-(and shrinking) from those allocations.
+I'm not sure I understand your concern wrt cgroups, but some hopefully
+relevant (and hopefully not wrong) points:
 
-I wonder if this change alone (well, with the other one setting the
-beneficial order for Xe) would prevent the issue you are observing, as you
-mentioned in the cover letter that this happens under kswapd.
+- fragmentation is a zone-related property, not cgroup
+- hitting a cgroup limit doesn't wake up kswapd nor go through the usual
+reclaim/compaction paths, it's a form of direct-reclaim-only
 
-By the way, that reminded me that GPU drivers trying to allocate high order
-pages was one of the reasons __GFP_NO_KSWAPD (and thus
-__GFP_KSWAPD_RECLAIM) were kept. See caf491916b1c1.
+So I believe it should be easy to recognize when your shrinker is called for
+memcg shrinking and not kswapd and thus it can't be happening due to zone
+fragmentation but must be due to memcg limits, and then you probably don't
+need to check zone_appears_fragmented() at all.
 
-Cascardo.
-
-> Matt
+> So I think if we can solve this with a combination of GFP flags,
+> plumbed-through order and plumbed-through priority, that would be
+> ideal.
 > 
-> [1] https://elixir.bootlin.com/linux/v7.0/source/include/linux/gfp_types.h#L198
->  
-> > Regards,
-> > Christian.
-> > 
-> > > 
-> > > Regards,
-> > > 
-> > > Tvrtko
-> > > 
-> > 
+> Thanks,
+> Thomas
+> 
+>> 
+>> Matt
+>> 
+>> > 
+>> > 
+>> > -- 
+>> > Cheers,
+>> > 
+>> > David
+
