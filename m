@@ -4,53 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C7CBCD342F
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Apr 2026 19:18:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26DEDCD3429
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Apr 2026 19:18:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10DB010F43A;
-	Thu, 30 Apr 2026 19:18:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82A6110F432;
+	Thu, 30 Apr 2026 19:18:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LcVpwXBv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bbGTbafS";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C77BD10E165;
- Thu, 30 Apr 2026 19:18:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78E9310E165;
+ Thu, 30 Apr 2026 19:18:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777576695; x=1809112695;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=L42AqUAT3K2YUIBwfKldplRFGyIb5HBQqwcfYoydKXo=;
- b=LcVpwXBvnHH2vKrYfd1r6JMcX7wWMq8gJzNtgmelOUMpN9b6oOPKGJH9
- nC9MUUPfl1zS143RqXObM1o6ElFgfuK32v8MRXMhI2bvuKVm7EPHDFHIK
- 4Yjy7voALTgrPAw/B1TTfc7lkhEyTKHMSd3UhiPRLXyoy0fRwZEIlVtVe
- 5FSpUHWq947w9OjnUlqITsQObGr8qIWn2u2RudjTtHINdQ3kOUIib2a6j
- tDiYrKOP6nogmzBGdEXJgRqOWtssJ4yeGGp7qb/oUeKfGC5jejNc0JaSW
- 2J4ZMguY93OPwLCE/o9KfTfRQdgXjzuDOq6+BNlMFuoqtNRGpUSlngXSb A==;
-X-CSE-ConnectionGUID: o6ioT+yzSTaJVEIIog5EtQ==
-X-CSE-MsgGUID: CXv25bn0RfqTsP/idfre2g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11772"; a="77706722"
-X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="77706722"
+ t=1777576696; x=1809112696;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=zEHdxcWSGKIgRFynMhNMN4pR3cJWvroQqSO422pNkjk=;
+ b=bbGTbafSS/FqJWZB1OIh0ir9zVv3EEp5+k1QmR4m/ylYGNtfkjMRZmqC
+ 7/w20GPUlYXwsrOMiqADoqgZXHjs1CnUw90nI670XCvI6jlKyjlmBxWkN
+ N+QScnRlSE6quP5t63lly/LIQp/D0sZwCkT/xQ6KdwBu1ILjedY6uvOtK
+ Vxs5D0Lg+QE0kgMpMGXdSUu8/rDEpw9voCbZKK+IK38PMDaw26LO+5N8/
+ dHDmdN9RzjdtUc77XrnWTq4xBZTIxO9754NN2uzHbclFFbqLVmTHuObVG
+ zGwx2yS4OiAzVbNls69IL4H6GqK2HUK/2cOry//KT3HfSplYbwyMahUDy g==;
+X-CSE-ConnectionGUID: lNm1V4FmQ06h1gqce4bhzA==
+X-CSE-MsgGUID: mL1Xnu+BQkqTCcIAGaweYw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11772"; a="77706759"
+X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="77706759"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  30 Apr 2026 12:18:14 -0700
-X-CSE-ConnectionGUID: GvPf6uxBSM6MkFg5UrhPnA==
-X-CSE-MsgGUID: dEMwV383Q5yUPDG4MwmODw==
+X-CSE-ConnectionGUID: VhZsFZUCRwWt9qBoYM/JVA==
+X-CSE-MsgGUID: iZBXx+QURvWwweTc8DyDag==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="233801143"
+X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="233801148"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  30 Apr 2026 12:18:14 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
-Cc: Dave Chinner <david@fromorbit.com>, Qi Zheng <zhengqi.arch@bytedance.com>,
- Roman Gushchin <roman.gushchin@linux.dev>,
- Johannes Weiner <hannes@cmpxchg.org>,
- Shakeel Butt <shakeel.butt@linux.dev>, Kairui Song <kasong@tencent.com>,
- Barry Song <baohua@kernel.org>, Axel Rasmussen <axelrasmussen@google.com>,
- Yuanchu Xie <yuanchu@google.com>, Wei Xu <weixugc@google.com>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+Cc: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Carlos Santa <carlos.santa@intel.com>,
  Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
@@ -59,17 +53,13 @@ Cc: Dave Chinner <david@fromorbit.com>, Qi Zheng <zhengqi.arch@bytedance.com>,
  Maxime Ripard <mripard@kernel.org>,
  Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
  Simona Vetter <simona@ffwll.ch>, Daniel Colascione <dancol@dancol.org>,
- Andrew Morton <akpm@linux-foundation.org>,
- David Hildenbrand <david@kernel.org>, Lorenzo Stoakes <ljs@kernel.org>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>,
- Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>,
- Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
- linux-mm@kvack.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v4 0/6] mm, drm/ttm,
- drm/xe: Avoid reclaim/eviction loops under fragmentation
-Date: Thu, 30 Apr 2026 12:18:03 -0700
-Message-Id: <20260430191809.2142544-1-matthew.brost@intel.com>
+ Andi Shyti <andi.shyti@linux.intel.com>
+Subject: [PATCH v4 3/6] drm/ttm: Issue direct reclaim at beneficial_order
+Date: Thu, 30 Apr 2026 12:18:06 -0700
+Message-Id: <20260430191809.2142544-4-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260430191809.2142544-1-matthew.brost@intel.com>
+References: <20260430191809.2142544-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -87,79 +77,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-TTM allocations at higher orders can drive Xe into a pathological
-reclaim loop when memory is fragmented:
+Triggering kswap at an order higher than beneficial_order makes little
+sense, as the driver has already indicated the optimal order at which
+reclaim is effective. Similarly, issuing direct reclaim or triggering
+kswap at a lower order than beneficial_order is ineffective, since the
+driver does not benefit from reclaiming lower-order pages.
 
-kswapd → shrinker → eviction → rebind (exec ioctl) → repeat
+As a result, direct reclaim should only be issued with __GFP_NORETRY at
+exactly beneficial_order, or as a fallback, direct reclaim without
+__GFP_NORETRY at order 0 when failure is not an option.
 
-In this state, reclaim is triggered despite substantial free memory,
-but fails to produce contiguous higher-order pages. The Xe shrinker then
-evicts active buffer objects, increasing faulting and rebind activity
-and further feeding the loop. The result is high CPU overhead and poor
-GPU forward progress.
-
-This issue was first reported in [1] and independently observed
-internally and by Google.
-
-A simple reproducer is:
-
-- Boot an iGPU system with mem=8G
-- Launch 10 Chrome tabs running the WebGL aquarium demo
-- Configure each tab with ~5k fish
-
-Under this workload, ftrace shows a continuous loop of:
-
-xe_shrinker_scan (kswapd)
-xe_vma_rebind_exec
-
-Performance degrades significantly, with each tab dropping to ~2 FPS on
-PTL (Ubuntu 24.04).
-
-At the same time, /proc/buddyinfo shows substantial free memory but no
-higher-order availability. For example, the Normal zone:
-
-Count: 4063 4595 3455 3400 3139 2762 2293 1655 643 0 0
-
-This corresponds to ~2.8GB free memory, but no order-9 (2MB) blocks,
-indicating severe fragmentation.
-
-This series addresses the issue in two ways:
-
-TTM: Restrict direct reclaim to beneficial_order. Larger allocations
-use __GFP_NORETRY to fail quickly rather than triggering reclaim.
-
-Xe: Introduce a heuristic in the shrinker to avoid eviction when
-running under kswapd and the system appears memory-rich but
-fragmented.
-
-With these changes, the reclaim/eviction loop is eliminated. The same
-workload improves to ~10 FPS per tab (Ubuntu 24.04) or ~15 FPS per tab
-(Ubuntu 24.10), and kswapd activity subsides.
-
-Buddyinfo after applying this series shows restored higher-order
-availability:
-
-Count: 8526 7067 3092 1959 1292 660 194 28 20 13 1
-
-Matt
-
-v2:
- - Layer with core MM / TTM helpers (Thomas)
-v4:
- - Fix build (CI)
-
-[1] https://patchwork.freedesktop.org/patch/716404/?series=164353&rev=1
-
-Cc: Dave Chinner <david@fromorbit.com>
-Cc: Qi Zheng <zhengqi.arch@bytedance.com>
-Cc: Roman Gushchin <roman.gushchin@linux.dev>
-Cc: Johannes Weiner <hannes@cmpxchg.org>
-Cc: Shakeel Butt <shakeel.butt@linux.dev>
-Cc: Kairui Song <kasong@tencent.com>
-Cc: Barry Song <baohua@kernel.org>
-Cc: Axel Rasmussen <axelrasmussen@google.com>
-Cc: Yuanchu Xie <yuanchu@google.com>
-Cc: Wei Xu <weixugc@google.com>
 Cc: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Cc: Carlos Santa <carlos.santa@intel.com>
@@ -174,37 +101,28 @@ Cc: David Airlie <airlied@gmail.com>
 Cc: Simona Vetter <simona@ffwll.ch>
 CC: dri-devel@lists.freedesktop.org
 Cc: Daniel Colascione <dancol@dancol.org>
-Cc: Andrew Morton <akpm@linux-foundation.org>
-Cc: David Hildenbrand <david@kernel.org>
-Cc: Lorenzo Stoakes <ljs@kernel.org>
-Cc: "Liam R. Howlett" <Liam.Howlett@oracle.com>
-Cc: Vlastimil Babka <vbabka@kernel.org>
-Cc: Mike Rapoport <rppt@kernel.org>
-Cc: Suren Baghdasaryan <surenb@google.com>
-Cc: Michal Hocko <mhocko@suse.com>
-Cc: linux-mm@kvack.org
-Cc: linux-kernel@vger.kernel.org
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Christian Koenig <christian.koenig@amd.com>
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+---
+ drivers/gpu/drm/ttm/ttm_pool.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Matthew Brost (6):
-  mm: Wire up order in shrink_control
-  mm: Introduce zone_maybe_fragmented_in_shrinker()
-  drm/ttm: Issue direct reclaim at beneficial_order
-  drm/ttm: Introduce ttm_bo_shrink_kswap_maybe_fragmented()
-  drm/xe: Set TTM device beneficial_order to 9 (2M)
-  drm/xe: Avoid shrinker reclaim from kswapd under fragmentation
-
- drivers/gpu/drm/ttm/ttm_bo_util.c | 38 +++++++++++++++++++++++++++++++
- drivers/gpu/drm/ttm/ttm_pool.c    |  4 ++--
- drivers/gpu/drm/xe/xe_device.c    |  3 ++-
- drivers/gpu/drm/xe/xe_shrinker.c  |  3 +++
- include/drm/ttm/ttm_bo.h          |  2 ++
- include/linux/shrinker.h          |  3 +++
- include/linux/vmstat.h            | 12 ++++++++++
- mm/internal.h                     |  4 ++--
- mm/shrinker.c                     | 13 +++++++----
- mm/vmscan.c                       |  7 +++---
- 10 files changed, 76 insertions(+), 13 deletions(-)
-
+diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
+index 26a3689e5fd9..8425dbcc6c68 100644
+--- a/drivers/gpu/drm/ttm/ttm_pool.c
++++ b/drivers/gpu/drm/ttm/ttm_pool.c
+@@ -165,8 +165,8 @@ static struct page *ttm_pool_alloc_page(struct ttm_pool *pool, gfp_t gfp_flags,
+ 	 * Do not add latency to the allocation path for allocations orders
+ 	 * device tolds us do not bring them additional performance gains.
+ 	 */
+-	if (beneficial_order && order > beneficial_order)
+-		gfp_flags &= ~__GFP_DIRECT_RECLAIM;
++	if (order && beneficial_order && order != beneficial_order)
++		gfp_flags &= ~__GFP_RECLAIM;
+ 
+ 	if (!ttm_pool_uses_dma_alloc(pool)) {
+ 		p = alloc_pages_node(pool->nid, gfp_flags, order);
 -- 
 2.34.1
 
