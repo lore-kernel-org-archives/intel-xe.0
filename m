@@ -4,59 +4,161 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD45FCCFA13
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Apr 2026 11:28:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C22EBFF8875
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Apr 2026 11:37:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82F5D10E422;
-	Thu, 30 Apr 2026 11:28:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71A4D10E426;
+	Thu, 30 Apr 2026 11:37:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KWXRq4if";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="indKV4Ax";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7925B10E422
- for <intel-xe@lists.freedesktop.org>; Thu, 30 Apr 2026 11:28:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F17210E41E;
+ Thu, 30 Apr 2026 11:37:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777548529; x=1809084529;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=1mpi356d6xZyST7gR4AwLPd9SwtAGB135eyJNThNn1w=;
- b=KWXRq4ifA2fV/dL7ABHaay9Vei3cVjnpZJteU5j6Ua71m7WUsAJO7540
- rd0RGDPURKMfc5sprg8R9srtHxEfbMCspgukXDkolt71duelEcLHCTq6C
- qHbBQ7z0ffUgKTWP/eCRQh66GgyzCfm10/0a8XQ1MURFIjnsP7EcGNg4i
- nXwUU52ZlWzAFcoF9oKUYr07hUW0mlQLuA8RV3cJx565qA60jZRIBFwul
- 4/qoj+SMg4sWg9coZyTFmidKCIgOzkBSJYugDYlspptY2Oycs+t4IDTVN
- 4Har6qkMnQtB+hq/i/kCsLkIbkMQjt3ZnwcmDYXWO8dBRHRgBJV4z6SfK A==;
-X-CSE-ConnectionGUID: dKkTgvjaQJGmhOPzpbv7ig==
-X-CSE-MsgGUID: hlOXvdadT0SmWfjg6Dhrnw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11771"; a="78483370"
-X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="78483370"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2026 04:28:49 -0700
-X-CSE-ConnectionGUID: 1HfL7i7hQ8m157ae1Xf0mQ==
-X-CSE-MsgGUID: a04sd9yGRD6y38HhWtFD8g==
+ t=1777549025; x=1809085025;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=Gej2mLt6NuTTDVHzDrkoELvL4YcfoK+ZgYgyxburM3o=;
+ b=indKV4AxUW7nhmxRQPrUJEL+NdZ4UVKzFngJ81TqXWWsJ/mJh+nufhaN
+ mYu/VxLpEjmUzczEeETkghh5G0yjee1As0dNQYUrw56d8eCkEdhRzXLma
+ i8BCafttcPaI84UvFMl1WEjBUUKm5OUQWacWrV5DyjOkwuB2uAdimY4jy
+ GC1HpBYRbhiH6jY6qEt7RMA0nSi4jK9MwjdivccL3kXIK0SJgJc9Shsq0
+ LZlwx9a0weP9b6aVUn2fOd9wqNZ8sgqITZvc0aS4jVzCFpjiWqNw01dxR
+ I+SSL74Xo1Cy+5ni2qzhSZlaqSMkU14RpY/OkZOGuhukxjUBHl5sC3c0w A==;
+X-CSE-ConnectionGUID: IPyKLDwLTti2szGbMlMDhw==
+X-CSE-MsgGUID: 1aO5VtFSRC2MDRHbCayiPg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11771"; a="89187735"
+X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="89187735"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2026 04:37:03 -0700
+X-CSE-ConnectionGUID: 8RabIXlmSeiLoweG6LFGVw==
+X-CSE-MsgGUID: 3rvyc/aPTZqMhph2pf4YOA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="234448601"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO [10.245.244.118])
- ([10.245.244.118])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2026 04:28:47 -0700
-Message-ID: <09b69b1a-e7f0-47c3-93e9-7046948b15b1@intel.com>
-Date: Thu, 30 Apr 2026 12:28:45 +0100
-MIME-Version: 1.0
+X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="230208358"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2026 04:37:02 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 30 Apr 2026 04:37:01 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Thu, 30 Apr 2026 04:37:01 -0700
+Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.45) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 30 Apr 2026 04:37:01 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=inXT8YrirB4pOoW0bT6/HWZXwlQhV+8OlUxlObN/BC6yQ8d8C/ta8dtR8QXyk8SsbWmHB/SiVhk23e9QtzStSLzdTPUlQ+Tk4g+Fro7msFFKFMub/M3/tta67vV6Eav88Kslg/D3e+kl48rPQgKlPJnCPNXXVGjrHcL0Wj6I2P1fqvQHDv9WhEyUG+nd7nen6qOvGyx4Mdz6qBulqroCqYcyNt/yW6Nzb7APkCL7fR4xNWvWMZaYhpaUbAQXr8E2k1lEr9ipCulPlGbCR6hTV2/H5mCoRIQZHmx97D0br2/TQyJoEiXEJfiIe/nFdDOdncQbDDg/RoTYzbwzgWI8Lg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ycgoFGxucOsHDlmGgFsJ8/JNnfbCMrrdrwJTIMgkDZ0=;
+ b=ny8+RjUpbNenPXAJwX15ilrEoAISQA7F/2+Cd26rrz/wOrdGZjQ0SOPxFuYHdJZDDB7hugFcH+z+u+pLiQUmdXXouRiM+6vr3Ywdkj3mLNZiVseIE9yoUbDqBnmq4gHS4wIBpN8KI+ZUzt9i31ATWujjm/mXm5+7Q4dHUwrEk1e9pSvAl/c01PBAWvkIM/FqT/XLNzi+HZjCA+rjrAuZZBaC/3AGHR8sIh2s8CZ+RLR77vDReM5aCvAqeCMlj5TxvT0FopcNF94gcj67mEBNWWZs8kDzQWPqq2lDEPFmOE8+eJ3W+bdvBpPA0PqT0Ivfh9QCRdZkUtI7AS6rXPGVdA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB7183.namprd11.prod.outlook.com (2603:10b6:8:111::10)
+ by DM4PR11MB6357.namprd11.prod.outlook.com (2603:10b6:8:b5::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.20; Thu, 30 Apr
+ 2026 11:36:58 +0000
+Received: from DM4PR11MB7183.namprd11.prod.outlook.com
+ ([fe80::d9c7:d2fb:680d:1ee1]) by DM4PR11MB7183.namprd11.prod.outlook.com
+ ([fe80::d9c7:d2fb:680d:1ee1%6]) with mapi id 15.20.9870.016; Thu, 30 Apr 2026
+ 11:36:56 +0000
+Message-ID: <2e987010-edf4-414c-9337-89224f9796fe@intel.com>
+Date: Thu, 30 Apr 2026 17:06:47 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH V7 5/9] drm/xe: Handle physical memory address error
-To: Tejas Upadhyay <tejas.upadhyay@intel.com>, intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
- himal.prasad.ghimiray@intel.com
-References: <20260413131623.2891528-11-tejas.upadhyay@intel.com>
- <20260413131623.2891528-16-tejas.upadhyay@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20260413131623.2891528-16-tejas.upadhyay@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH 2/2] drm/i915/psr: Use DMC wakelock instead of DC state
+ for VBI
+To: Gustavo Sousa <gustavo.sousa@intel.com>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+CC: <jouni.hogander@intel.com>
+References: <20260429110023.611664-1-dibin.moolakadan.subrahmanian@intel.com>
+ <20260429110023.611664-3-dibin.moolakadan.subrahmanian@intel.com>
+ <87se8dan0e.fsf@intel.com> <87pl3haldm.fsf@intel.com>
+Content-Language: en-US
+From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+In-Reply-To: <87pl3haldm.fsf@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA5P287CA0227.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1b4::8) To DM4PR11MB7183.namprd11.prod.outlook.com
+ (2603:10b6:8:111::10)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB7183:EE_|DM4PR11MB6357:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7a7b262a-b859-47fb-aa83-08dea6acc852
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|1800799024|376014|18002099003|22082099003|56012099003; 
+X-Microsoft-Antispam-Message-Info: AmW8DUx0OtZ2Df1dhScYT6ktw2XPPsPTMm9MlNWlgj6iTsLc1bfJ8vFnQiU0+a4+0fRfgz6Z0PElasJnV7BsG0lI9gckf7eWFnzqt9YyTpCLQqE2pXFF27L09IJEhF04W5mlviYfRyaLHKvHwy6pEO/p3GreXEotTraGBr1YRPy92Q4F4J9jXoaISTIsqi4PYR+WA3o/T6bKZ6H7yuzSOm2cmwoNmM6ih0HMe662xhiaAc9fA9/RLVDYZTS1G7Y4TIyZgXuIf99CalJbCj4mUX1+rVsOeBXaKIsrpsQgdq/QZUSIoHsVZWD9M7DgFMZmyyoq9kY4Dlv+v6/IYU6q9OZN3Ijr340skvS8g9CTMMu0QpuA59xzygIfRhANT6SkBWuD092d0c8Y1Wjrscg+jV5WBRhZ6ZxBzF4CKT0CYRtBllaPHppDXFFA93tiA42iqwIXhYYdfLpC2IJDNLXCg82jrzykTuVx17zyizNPSyQ+6/MLdM3D7+5Ccjmfi4VQ7+TfwPiwOLj1SgPIsHD2TUxmnUHMdRACHsnNM8/YcDgUAF66RwohNOg0BD/REELn0gD4eE2sE+yejSArEaUKOHsB40MrLXWcgTaR+etOqZSp43njonjCMTIO0WRtO26klvphTjSPgMHGQGytlXbr0bQ8KcXF4Ou5EHn0mro9YCkHB3hmeOQdwR9t4ZlH2nTH
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB7183.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(18002099003)(22082099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WkdxeEVEdnZOZGd4QWpmMnV6WnpBckkvWVV0N0dRV21Cd3JMU09XWnZIODMx?=
+ =?utf-8?B?aG9VRUV0N3BJTWE1RVVXNVdsVktUY2ZSYmFsSGZhZVpxZ2RZa1ZpcEJJc3k0?=
+ =?utf-8?B?T3FBT3VZcjkwQ1FCN3RyTjhNYTNDN2U2c043VUU5UFNGOHVudWppOThYVUF0?=
+ =?utf-8?B?M205RW9MZ2g2bGdTUEhQUGRYNVFhYUFmV0tDOWlwUDdLVk5MckU5cUtuMDZ6?=
+ =?utf-8?B?REJ6WVVCSzgrNGd1alNkSGdjbE9STW5qSHh5ekIwMm0rdTB6VDIxbVExd3V2?=
+ =?utf-8?B?OEU5aUF5MGEvNTluVGZwaGF2dXRYKzBTdG9vWGdrK3N3cXIxcHQ0WVE3NTI2?=
+ =?utf-8?B?Tzdlbml4OTd6WDVUV3JXSUxhVEtmWEdYUVFkZHRxbFE5UG83U05VUkZKT0Va?=
+ =?utf-8?B?QVJiaWJNbGxZYTNrOWJmSE43ZW5UbjFSb2Jrd25aVHpkOElpVnRFVmpiQU1n?=
+ =?utf-8?B?UTZrQ1c2R0RSWGYvbVNiWFpvK1F3NlZqSmU3T1JXNjQzTnJoSTcrR29GN2dU?=
+ =?utf-8?B?VTR5WXhPMXJ0bU9KZzBOZGRMN3dveXZ3R2p1OGVEa0JISEtYZlN5dmxkeENQ?=
+ =?utf-8?B?MTJtQkVYSmxjWVZkOWdTVGJ0TjUyYk1CZy91V1FPcm5nL3BZMndaOHA4ekZG?=
+ =?utf-8?B?N2xIVENTaC9Oa3ZTNjcrWHdHcE1ScVVyYVJVNmVvRG9HMURIVXNTL3ovNkdP?=
+ =?utf-8?B?ell6TUFZZ3c1NmhYUlBQNGRZRmhvRm1ZZjA3a1YvRDhNc2JWOTBLdEh2M242?=
+ =?utf-8?B?WXBtV2tqYWdGaFpNa2NQdkhCeUI4QjdFcW9SdFZPVkt4MjhBRVl2L0Jhczlu?=
+ =?utf-8?B?djlDRE9uQmZSN0I0QzVnemRWTHA0MndFbWYxZU9Hc1pSZ2lmV0ZHSlRSNDVF?=
+ =?utf-8?B?V2xvczkwT3didTZTT2JrK2g5Wnk3bTAwdmlROTFqS0dtUlJJLys3bHlxYVJV?=
+ =?utf-8?B?bFFGd01aM0t1TFVhcjA0U25oMkU1U3lZNkdJcGMxMzlBbllBMW5xb3g4M0R4?=
+ =?utf-8?B?b3hYYnZmQ0tQcm44aUlJTlBtcjRXWXFpbUdYckNSN3JxREpvVy9iWkJKaUZ2?=
+ =?utf-8?B?dHFRbTIyWnV0SjJDcDNXZXNydVVNczJleUdhNUh5VWQ3N09nT2J5U2ZjRnlR?=
+ =?utf-8?B?UitRd1V1ZGFHdXBXNjh6YVBJV0t1cGJDUEpMVm9XUCtvaGpCM1dRTWgybjky?=
+ =?utf-8?B?cFNTSEVRdkJUdnN6Sm5tVy9Vc3FvSmlIUkdaYm11cVdvd1pKL0lyc1p3dmMz?=
+ =?utf-8?B?ZnRKSXpSN1NoVS9sTS9TZ2UvallGdHNQbnNHN0pWU3FpTDRibFhJTGxXNnR3?=
+ =?utf-8?B?L1FIOG1OckF1VFFNTnlNZGVSSXNCZXBLOThOWjk2bkRGT2IveVE4L0RENmNj?=
+ =?utf-8?B?a2FiV09iZUFtS2FKcklwazFkd2ZUTzBRbmlPbkN1T2tPdHdLUTJKRFhZRTlm?=
+ =?utf-8?B?S0hMNlBkSzdTZENwWTE1Zm5yd2RDLzVSZWJYbk9QcWwxUXduVE1XSVVWN3pQ?=
+ =?utf-8?B?TXlMKzIwemI4QnQxZGY3eXFjUU8xdTFxeXdkNER2aGhsNUxVSUgyNGlGTjdu?=
+ =?utf-8?B?OG1HUEFVd1FXN3JKV2NMM3VDMDd1V2NVY3p0S1pzdDY2QW8zTll2VURzelJx?=
+ =?utf-8?B?bVFsUVBUVXZrQ0xmMHNqNmQwU0t6K0RvYnZVc3R2dkdOL1ZvZHZNNURVWHBB?=
+ =?utf-8?B?a2owVTVlU2tYdTNuZEhVNi9qMVdRV01JR293SUVwSTI0eGQrUWFMSVYyR2E4?=
+ =?utf-8?B?KzRmbFAwT0dCcW0xTXV1ZnVFeGxMcDlEU3JwV2hxZG5BZE16b3h6MFNHMXB5?=
+ =?utf-8?B?VmRITkNMdFVIeWZrdGJDR3NWalRxbTRFQVFwTEs5UWpWWUhlbjNhcFNXVjBJ?=
+ =?utf-8?B?c1JPTUFvemFnb3ZHVzB4bzJvdk5ZcUN3WmY3dUpVVkhZK2lFdy9vOGxvM2lI?=
+ =?utf-8?B?RHdrQ3pkL3RaT2ZSc01NMnlSeG9Sb1lLbkFPdDFqaGFQaVJnVDM5bk1zTjZ0?=
+ =?utf-8?B?RnprcVNBeEFONHA3SGs1clRlWXg0RGlmWUNkcmRERzVNbVRwckJUcDJ5cjA4?=
+ =?utf-8?B?aE41b090UFdGdFB5N0dOWFlpU1dOcklzQkY1dFNvQkc2VGhjazc4OFovSHhY?=
+ =?utf-8?B?YW4vRGZFbHVFTTJsaEFhR2FjNGJ5a2hlckV0aDdwdDNIZmxuYStoSENzTUlQ?=
+ =?utf-8?B?WFJVdW85VzNzRlNHWEdTODU4NGRZZ1BPR3lNNDdyamVsT1lzdEVFYXN2dnNl?=
+ =?utf-8?B?dGhjRE9KUitJK2pSUm9OZUREcVQ5OWc2N293ajFXaDRuVEd0Qk54bTFQeWVh?=
+ =?utf-8?B?ZWZJa2NxYml5ZXpxU3FXSlR4RUs2STY5UnM2NGl4Vk5leVBPU0dWaGErRDN4?=
+ =?utf-8?Q?XFWF2322EHWJl8Rycpeyxt82DHOEaBGw+v3QQabf+tsQf?=
+X-MS-Exchange-AntiSpam-MessageData-1: GrSPES8XFCoLTQ==
+X-Exchange-RoutingPolicyChecked: pKIWF3I0LTndGQ0I51LUJ1Qjxkf+MYqrWzMJ9oNz3u0w2tDVbtZOC4P3Jr2VlQotsvcFb/22X5zohaSqLMs6PrOIxm6dyzxWCok1cFBm4N9eDajGumO0r6ZO/foM3lhUrVJah+8GLumtB9MvAIbkT1cOQnJj9sNTUBopNDf0u4ozOEQwzCH2m2LLak51yV8Elk+T1Jr0pd0zwxRhvalcEyHxM0T7CZynrmDWe2WoEdekKJ56CcjUwgaSCzzVTl6fVoxJc6UDlwHZIgyGBIlj0/vWodw2ZPr7X0j9eAtJ0Ek52wSpb1m2Bj7j61vbLkF60anVgiEXlb61leQxVWHLtA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7a7b262a-b859-47fb-aa83-08dea6acc852
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7183.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2026 11:36:56.3956 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: n3PdNtawlS+qFvyw6IC73fIvwgGWXJvyGuJhAL3/ZR7pb/Pyx1pCD74RRlkrl3FwDq4usMTHoo7mJUWH57513fm3sRgd6vvWQvEwOmuI2w4ajOW43eHdQ/MJgvXy/OEh
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6357
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,589 +173,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 13/04/2026 14:16, Tejas Upadhyay wrote:
-> This functionality represents a significant step in making
-> the xe driver gracefully handle hardware memory degradation.
-> By integrating with the DRM Buddy allocator, the driver
-> can permanently "carve out" faulty memory so it isn't reused
-> by subsequent allocations.
-> 
-> Buddy Block Reservation:
-> ----------------------
-> When a memory address is reported as faulty, the driver instructs
-> the DRM Buddy allocator to reserve a block of the specific page
-> size (typically 4KB). This marks the memory as "dirty/used"
-> indefinitely.
-> 
-> Two-Stage Tracking:
-> -----------------
-> Offlined Pages:
-> Pages that have been successfully isolated and removed from the
-> available memory pool.
-> 
-> Queued Pages:
-> Addresses that have been flagged as faulty but are currently in
-> use by a process. These are tracked until the associated buffer
-> object (BO) is released or migrated, at which point they move
-> to the "offlined" state.
-> 
-> Sysfs Reporting:
-> --------------
-> The patch exposes these metrics through a standard interface,
-> allowing administrators to monitor VRAM health:
-> /sys/bus/pci/devices/<device_id>/vram_bad_bad_pages
-> 
-> V6:
-> - Use scope_guard for locking(MattB)
-> - Adapt addition of queue member of LRC BO(MattB)
-> - Extend and use xe_ttm_bo_purge API for vram pages(MattB)
-> - Handle dma_buf_map requests for native and remote(MattB)
-> - Address if in never initialized block, set block to NULL
-> V5:
-> - Categorise and handle BOs accordingly
-> - Fix crash found with new debugfs tests
-> V4:
-> - Set block->private NULL post bo purge
-> - Filter out gsm address early on
-> - Rebase
-> V3:
-> -rename api, remove tile dependency and add status of reservation
-> V2:
-> - Fix mm->avail counter issue
-> - Remove unused code and handle clean up in case of error
-> 
-> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_bo.c                 |  11 +-
->   drivers/gpu/drm/xe/xe_bo.h                 |   4 +-
->   drivers/gpu/drm/xe/xe_dma_buf.c            |   3 +
->   drivers/gpu/drm/xe/xe_exec_queue.c         |   9 +-
->   drivers/gpu/drm/xe/xe_pt.c                 |   3 +-
->   drivers/gpu/drm/xe/xe_ttm_vram_mgr.c       | 267 +++++++++++++++++++++
->   drivers/gpu/drm/xe/xe_ttm_vram_mgr.h       |   1 +
->   drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h |  28 +++
->   8 files changed, 320 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 7baa326c9421..d84849cca0aa 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -158,7 +158,16 @@ bool xe_bo_is_vm_bound(struct xe_bo *bo)
->   	return !list_empty(&bo->ttm.base.gpuva.list);
->   }
->   
-> -static bool xe_bo_is_user(struct xe_bo *bo)
-> +/**
-> + * xe_bo_is_user - check if BO is user created BO
-> + * @bo: The BO
-> + *
-> + * Check if  BO is user created BO. This requires the
-> + * reservation lock for the BO to be held.
-> + *
-> + * Returns: boolean
-> + */
-> +bool xe_bo_is_user(struct xe_bo *bo)
->   {
->   	return bo->flags & XE_BO_FLAG_USER;
->   }
-> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-> index 9f55b3589caf..073fae905073 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.h
-> +++ b/drivers/gpu/drm/xe/xe_bo.h
-> @@ -277,7 +277,8 @@ static inline void xe_bo_unpin_map_no_vm(struct xe_bo *bo)
->   {
->   	if (likely(bo)) {
->   		xe_bo_lock(bo, false);
-> -		xe_bo_unpin(bo);
-> +		if (!xe_bo_is_purged(bo))
-> +			xe_bo_unpin(bo);
->   		xe_bo_unlock(bo);
->   
->   		xe_bo_put(bo);
-> @@ -501,6 +502,7 @@ long xe_bo_shrink(struct ttm_operation_ctx *ctx, struct ttm_buffer_object *bo,
->   		  const struct xe_bo_shrink_flags flags,
->   		  unsigned long *scanned);
->   int xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operation_ctx *ctx);
-> +bool xe_bo_is_user(struct xe_bo *bo);
->   
->   /**
->    * xe_bo_is_mem_type - Whether the bo currently resides in the given
-> diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
-> index 7f9602b3363d..e36ea88292f5 100644
-> --- a/drivers/gpu/drm/xe/xe_dma_buf.c
-> +++ b/drivers/gpu/drm/xe/xe_dma_buf.c
-> @@ -104,6 +104,9 @@ static struct sg_table *xe_dma_buf_map(struct dma_buf_attachment *attach,
->   	struct sg_table *sgt;
->   	int r = 0;
->   
-> +	if (xe_bo_is_purged(bo))
-> +		return ERR_PTR(-ENOENT);
 
-Is it not the case that we can already purge something that gets 
-exported via dma-buf? Is this actually new for this patch?
+On 29-04-2026 20:01, Gustavo Sousa wrote:
+> Gustavo Sousa <gustavo.sousa@intel.com> writes:
+>
+>> Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+>> writes:
+>>
+>>>  From display version 30+, use the DMC wakelock mechanism for
+>>> preventing DC entry. Older platforms continue to use
+>>> set_target_dc_state() to disable DC entry during active vblank.
+>>>
+>>> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/2296
+>>> Fixes: acfc688bc51b ("drm/i915/dmc: Reduce wakelock hold time")
+>>> Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+>>> ---
+>>>   drivers/gpu/drm/i915/display/intel_psr.c | 26 +++++++++++++++---------
+>>>   1 file changed, 16 insertions(+), 10 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+>>> index 9acd47392192..d01b4013f33f 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+>>> @@ -4151,16 +4151,22 @@ void intel_psr_notify_vblank_enable_disable(struct intel_display *display,
+>>>   		mutex_unlock(&intel_dp->psr.lock);
+>>>   		break;
+>>>   	}
+>>> -
+>>> -	/*
+>>> -	 * NOTE: intel_display_power_set_target_dc_state is used
+>>> -	 * only by PSR * code for DC3CO handling. DC3CO target
+>>> -	 * state is currently disabled in * PSR code. If DC3CO
+>>> -	 * is taken into use we need take that into account here
+>>> -	 * as well.
+>>> -	 */
+>>> -	intel_display_power_set_target_dc_state(display, enable ? DC_STATE_DISABLE :
+>>> -						DC_STATE_EN_UPTO_DC6);
+>>> +	if (DISPLAY_VER(display) < 30) {
+>> Drive-by comment:
+>>
+>> I think we should avoid using open-coded version check for testing
+>> features.  It is usually better to use the HAS_SOME_FEATURE() macros
+>> that we expose in intel_display_device.h.
+>>
+>> In this case though, it is better to use to expose and use
+>> __intel_dmc_wl_supported (dropping the "__") instead of doing a display
+>> version check here, since that is what will actually tell whether the
+>> driver is using the wakelock or not.
+>>
+>> I even think we can even drop the HAS_DMC_WAKELOCK, since it is not used
+>> outside of intel_dmc_wl.c.
+> For this last part:
+> https://lore.kernel.org/all/20260429-drop-has_dmc_wakelock-v1-1-62cb6fab1da0@intel.com
 
-> +
->   	if (!attach->peer2peer && !xe_bo_can_migrate(bo, XE_PL_TT))
->   		return ERR_PTR(-EOPNOTSUPP);
->   
-> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-> index b3b80893c387..40ffc598e0f8 100644
-> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
-> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-> @@ -385,7 +385,6 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
->   				err = PTR_ERR(lrc);
->   				goto err_lrc;
->   			}
-> -
->   			lrc->bo->q = q;
->   			xe_exec_queue_set_lrc(q, lrc, i);
->   
-> @@ -1552,8 +1551,12 @@ void xe_exec_queue_update_run_ticks(struct xe_exec_queue *q)
->   	 * errors.
->   	 */
->   	lrc = q->lrc[0];
-> -	new_ts = xe_lrc_update_timestamp(lrc, &old_ts);
-> -	q->xef->run_ticks[q->class] += (new_ts - old_ts) * q->width;
-> +	xe_bo_lock(lrc->bo, false);
-> +	if (!xe_bo_is_purged(lrc->bo)) {
-> +		new_ts = xe_lrc_update_timestamp(lrc, &old_ts);
-> +		q->xef->run_ticks[q->class] += (new_ts - old_ts) * q->width;
-> +	}
-> +	xe_bo_unlock(lrc->bo);
->   
->   	drm_dev_exit(idx);
->   }
-> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-> index 8e5f4f0dea3f..1764bae6e481 100644
-> --- a/drivers/gpu/drm/xe/xe_pt.c
-> +++ b/drivers/gpu/drm/xe/xe_pt.c
-> @@ -211,7 +211,8 @@ void xe_pt_destroy(struct xe_pt *pt, u32 flags, struct llist_head *deferred)
->   		return;
->   
->   	XE_WARN_ON(!list_empty(&pt->bo->ttm.base.gpuva.list));
-> -	xe_bo_unpin(pt->bo);
-> +	if (!xe_bo_is_purged(pt->bo))
-> +		xe_bo_unpin(pt->bo);
->   	xe_bo_put_deferred(pt->bo, deferred);
->   
->   	if (pt->level > 0 && pt->num_live) {
-> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> index 01a9b92772f8..ac6f034852f7 100644
-> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> @@ -13,7 +13,10 @@
->   
->   #include "xe_bo.h"
->   #include "xe_device.h"
-> +#include "xe_exec_queue.h"
-> +#include "xe_lrc.h"
->   #include "xe_res_cursor.h"
-> +#include "xe_ttm_stolen_mgr.h"
->   #include "xe_ttm_vram_mgr.h"
->   #include "xe_vram_types.h"
->   
-> @@ -280,6 +283,24 @@ static const struct ttm_resource_manager_func xe_ttm_vram_mgr_func = {
->   	.debug	= xe_ttm_vram_mgr_debug
->   };
->   
-> +static void xe_ttm_vram_free_bad_pages(struct drm_device *dev, struct xe_ttm_vram_mgr *mgr)
-> +{
-> +	struct xe_ttm_vram_offline_resource *pos, *n;
-> +
-> +	list_for_each_entry_safe(pos, n, &mgr->offlined_pages, offlined_link) {
-> +		--mgr->n_offlined_pages;
-> +		gpu_buddy_free_list(&mgr->mm, &pos->blocks, 0);
-> +		mgr->visible_avail += pos->used_visible_size;
-> +		list_del(&pos->offlined_link);
-> +		kfree(pos);
-> +	}
-> +	list_for_each_entry_safe(pos, n, &mgr->queued_pages, queued_link) {
-> +		list_del(&pos->queued_link);
-> +		mgr->n_queued_pages--;
-> +		kfree(pos);
-> +	}
-> +}
-> +
->   static void xe_ttm_vram_mgr_fini(struct drm_device *dev, void *arg)
->   {
->   	struct xe_device *xe = to_xe_device(dev);
-> @@ -291,6 +312,10 @@ static void xe_ttm_vram_mgr_fini(struct drm_device *dev, void *arg)
->   	if (ttm_resource_manager_evict_all(&xe->ttm, man))
->   		return;
->   
-> +	mutex_lock(&mgr->lock);
-> +	xe_ttm_vram_free_bad_pages(dev, mgr);
-> +	mutex_unlock(&mgr->lock);
-> +
->   	WARN_ON_ONCE(mgr->visible_avail != mgr->visible_size);
->   
->   	gpu_buddy_fini(&mgr->mm);
-> @@ -319,6 +344,8 @@ int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
->   	man->func = &xe_ttm_vram_mgr_func;
->   	mgr->mem_type = mem_type;
->   	mutex_init(&mgr->lock);
-> +	INIT_LIST_HEAD(&mgr->offlined_pages);
-> +	INIT_LIST_HEAD(&mgr->queued_pages);
->   	mgr->default_page_size = default_page_size;
->   	mgr->visible_size = io_size;
->   	mgr->visible_avail = io_size;
-> @@ -474,3 +501,243 @@ u64 xe_ttm_vram_get_avail(struct ttm_resource_manager *man)
->   
->   	return avail;
->   }
-> +
-> +static int xe_ttm_vram_purge_page(struct xe_device *xe, struct xe_bo *bo)
-> +{
-> +	struct ttm_operation_ctx ctx = {};
-> +	struct xe_vm *vm;
-> +	u32	flags;
-> +	int ret = 0;
-> +
-> +	xe_bo_lock(bo, false);
-> +	vm = bo->vm;
-> +	flags = bo->flags;
-> +	xe_bo_unlock(bo);
-> +	/*  Ban VM if BO is PPGTT */
-> +	if (flags & XE_BO_FLAG_PAGETABLE) {
-> +		down_write(&vm->lock);
-> +		xe_vm_kill(vm, true);
-> +		up_write(&vm->lock);
-> +	}
-> +
-> +	xe_bo_lock(bo, false);
-> +	/*  Ban exec queue if BO is lrc */
-> +	if (bo->q && xe_exec_queue_get_unless_zero(bo->q)) {
-> +		/* ban queue */
-> +		xe_exec_queue_kill(bo->q);
-> +		xe_exec_queue_put(bo->q);
-> +	}
-> +
-> +	xe_bo_set_purgeable_state(bo, XE_MADV_PURGEABLE_DONTNEED);
-> +	ttm_bo_unmap_virtual(&bo->ttm);   /* nuke CPU mmap + VRAM IO mappings */
+Thanks for the review. I agree that the open-coded version check is short-sighted here.
+I will refactor the code to export and use intel_dmc_wl_supported().
 
-I think ttm or xe must already do this somewhere, when we do the purge 
-below?
-
-> +	if (xe_bo_is_pinned(bo))
-> +		xe_bo_unpin(bo);
-> +	ret = xe_ttm_bo_purge(&bo->ttm, &ctx);
-> +	xe_bo_unlock(bo);
-> +
-> +	return ret;
-> +}
-> +
-> +static int xe_ttm_vram_reserve_page_at_addr(struct xe_device *xe, unsigned long addr,
-> +					    struct xe_ttm_vram_mgr *vram_mgr, struct gpu_buddy *mm)
-> +{
-> +	struct xe_ttm_vram_offline_resource *nentry;
-> +	struct ttm_buffer_object *tbo = NULL;
-> +	struct gpu_buddy_block *block;
-> +	struct gpu_buddy_block *b, *m;
-> +	enum reserve_status {
-> +		pending = 0,
-> +		fail
-> +	};
-> +	u64 size = SZ_4K;
-> +	int ret = 0;
-> +
-> +	scoped_guard(mutex, &vram_mgr->lock) {
-> +		block = gpu_buddy_addr_to_block(mm, addr);
-> +		if (PTR_ERR(block) == -ENXIO)
-
-Maybe make make this a programmer error and also chuck a warn? Only way 
-this fires is when the addr is bogus, so something is bady wrong.
-
-> +			/* VRAM region check passed earlier; safe to proceed */
-> +			block = NULL;
-> +
-> +		nentry = kzalloc_obj(*nentry);
-> +		if (!nentry)
-> +			return -ENOMEM;
-> +		INIT_LIST_HEAD(&nentry->blocks);
-> +		nentry->status = pending;
-> +		nentry->addr = addr;
-> +
-> +		if (block) {
-> +			struct xe_bo *pbo;
-> +
-> +			WARN_ON(!block->private);
-> +			tbo = block->private;
-> +			pbo = ttm_to_xe_bo(tbo);
-> +
-> +			/* Get reference safely - BO may have zero refcount */
-> +			if (!xe_bo_get_unless_zero(pbo)) {
-> +				kfree(nentry);
-> +				return -ENOENT;
-> +			}
-> +			/* Critical kernel BO? */
-> +			if ((pbo->ttm.type == ttm_bo_type_kernel &&
-> +			     !(pbo->flags & XE_BO_FLAG_PINNED_LATE_RESTORE)) ||
-> +			    (xe_bo_is_user(pbo) && xe_bo_is_pinned(pbo))) {
-> +				kfree(nentry);
-> +				xe_ttm_vram_free_bad_pages(&xe->drm, vram_mgr);
-> +				xe_bo_put(pbo);
-> +				drm_err(&xe->drm,
-> +					"%s: addr: 0x%lx is critical kernel bo, requesting SBR\n",
-> +					__func__, addr);
-> +				/* Hint System controller driver for reset with -EIO  */
-> +				return -EIO;
-> +			}
-> +			nentry->id = ++vram_mgr->n_queued_pages;
-> +			list_add(&nentry->queued_link, &vram_mgr->queued_pages);
-> +		}
-> +	}
-> +	if (block) {
-> +		struct xe_ttm_vram_offline_resource *pos, *n;
-> +		struct xe_bo *pbo = ttm_to_xe_bo(tbo);
-> +
-> +		/* Purge BO containing address - reference held from above */
-> +		ret = xe_ttm_vram_purge_page(xe, pbo);
-> +		xe_bo_put(pbo);
-> +		if (ret) {
-> +			nentry->status = fail;
-> +			return ret;
-> +		}
-> +
-> +		/* Reserve page at address addr*/
-> +		scoped_guard(mutex, &vram_mgr->lock) {
-> +			ret = gpu_buddy_alloc_blocks(mm, addr, addr + size,
-> +						     size, size, &nentry->blocks,
-> +						     GPU_BUDDY_RANGE_ALLOCATION);
-
-I guess technically this is racy, with purging the pages and someone 
-else re-allocating the pages before you can grab mgr->lock? But we think 
-that is unlikely, and in the worst case we just wedge the device if we 
-error out here?
-
-> +
-> +			if (ret) {
-> +				drm_warn(&xe->drm, "Could not reserve page at addr:0x%lx, ret:%d\n",
-> +					 addr, ret);
-> +				nentry->status = fail;
-> +				return ret;
-> +			}
-> +
-> +			list_for_each_entry_safe(b, m, &nentry->blocks, link)
-
-No need for the _safe, since we don't modify the list.
-
-> +				b->private = NULL;
-> +
-> +			if ((addr + size) <= vram_mgr->visible_size) {
-> +				nentry->used_visible_size = size;
-> +			} else {
-> +				list_for_each_entry(b, &nentry->blocks, link) {
-> +					u64 start = gpu_buddy_block_offset(b);
-> +
-> +					if (start < vram_mgr->visible_size) {
-> +						u64 end = start + gpu_buddy_block_size(mm, b);
-> +
-> +						nentry->used_visible_size +=
-> +							min(end, vram_mgr->visible_size) - start;
-> +					}
-> +				}
-> +			}
-> +			vram_mgr->visible_avail -= nentry->used_visible_size;
-> +			list_for_each_entry_safe(pos, n, &vram_mgr->queued_pages, queued_link) {
-> +				if (pos->id == nentry->id) {
-> +					--vram_mgr->n_queued_pages;
-> +				list_del(&pos->queued_link);
-> +				break;
-> +				}
-> +			}
-> +			list_add(&nentry->offlined_link, &vram_mgr->offlined_pages);
-> +			/* TODO: FW Integration: Send command to FW for offlining page */
-> +			++vram_mgr->n_offlined_pages;
-> +			return ret;
-> +		}
-> +	} else {
-> +		scoped_guard(mutex, &vram_mgr->lock) {
-> +			ret = gpu_buddy_alloc_blocks(mm, addr, addr + size,
-> +						     size, size, &nentry->blocks,
-> +						     GPU_BUDDY_RANGE_ALLOCATION);
-> +			if (ret) {
-> +				drm_warn(&xe->drm, "Could not reserve page at addr:0x%lx, ret:%d\n",
-> +					 addr, ret);
-> +				nentry->status = fail;
-> +				return ret;
-> +			}
-> +
-> +			list_for_each_entry_safe(b, m, &nentry->blocks, link)
-
-Same here.
-
-> +				b->private = NULL;
-> +
-> +			if ((addr + size) <= vram_mgr->visible_size) {
-> +				nentry->used_visible_size = size;
-> +			} else {
-> +				struct gpu_buddy_block *block;
-> +
-> +				list_for_each_entry(block, &nentry->blocks, link) {
-> +					u64 start = gpu_buddy_block_offset(block);
-> +
-> +					if (start < vram_mgr->visible_size) {
-> +						u64 end = start + gpu_buddy_block_size(mm, block);
-> +
-> +						nentry->used_visible_size +=
-> +							min(end, vram_mgr->visible_size) - start;
-> +					}
-> +				}
-> +			}
-
-Could some of this be moved into a helper or refactored a bit? This and 
-above look very similar, also this is not that different from what we 
-already do for normal allocation flow?
-
-Would it make sense to pull this out into something like:
-
-int xe_ttm_vram_buddy_alloc(mgr, size, end, flags, priv, blocks, 
-*visible_used)
-{
-     alloc_blocks(&blocks, ...);
-
-     list_for_each_entry(b, blocks, link)
-        b->private = priv;
-
-    if (end <= vram_mgr->visible_size)
-       *visibled_used = size;
-    else {
-       ....
-    }
-
-    vram_mgr->visible_avail -= *visible_used;
-   ...
-}
-
-void xe_ttm_vram_free(mgr, blocks, *visible_used)
-{
-    list_for_each_entry(b, blocks, link)
-        b->private = NULL;
-    gpu_buddy_free_list(mm, blocks, 0);
-    vram_mgr->visible_avail += *visible_used;
-}
-
-And then convert mgr_del/new to use that, and then also re-use here? I 
-think that would make this easier to follow, plus less duplication.
-
-> +			vram_mgr->visible_avail -= nentry->used_visible_size;
-> +			nentry->id = ++vram_mgr->n_offlined_pages;
-> +			list_add(&nentry->offlined_link, &vram_mgr->offlined_pages);
-> +			/* TODO: FW Integration: Send command to FW for offlining page */
-> +		}
-> +	}
-> +	/* Success */
-> +	return ret;
-> +}
-> +
-> +static struct xe_vram_region *xe_ttm_vram_addr_to_region(struct xe_device *xe,
-> +							 resource_size_t addr)
-> +{
-> +	unsigned long stolen_base = xe_ttm_stolen_gpu_offset(xe);
-> +	struct xe_vram_region *vr;
-> +	struct xe_tile *tile;
-> +	int id;
-> +
-> +	/* Addr from stolen memory? */
-> +	if (addr + SZ_4K >= stolen_base)
-> +		return NULL;
-> +
-> +	for_each_tile(tile, xe, id) {
-> +		vr = tile->mem.vram;
-> +		if ((addr <= vr->dpa_base + vr->actual_physical_size) &&
-> +		    (addr + SZ_4K >= vr->dpa_base))
-> +			return vr;
-> +	}
-> +	return NULL;
-> +}
-> +
-> +/**
-> + * xe_ttm_vram_handle_addr_fault - Handle vram physical address error flaged
-> + * @xe: pointer to parent device
-> + * @addr: physical faulty address
-> + *
-> + * Handle the physcial faulty address error on specific tile.
-> + *
-> + * Returns 0 for success, negative error code otherwise.
-> + */
-> +int xe_ttm_vram_handle_addr_fault(struct xe_device *xe, unsigned long addr)
-> +{
-> +	struct xe_ttm_vram_mgr *vram_mgr;
-> +	struct xe_vram_region *vr;
-> +	struct gpu_buddy *mm;
-> +	int ret;
-> +
-> +	vr = xe_ttm_vram_addr_to_region(xe, addr);
-> +	if (!vr) {
-> +		drm_err(&xe->drm, "%s:%d addr:%lx error requesting SBR\n",
-> +			__func__, __LINE__, addr);
-> +		/* Hint System controller driver for reset with -EIO  */
-> +		return -EIO;
-> +	}
-> +	vram_mgr = &vr->ttm;
-> +	mm = &vram_mgr->mm;
-> +	/* Reserve page at address */
-> +	ret = xe_ttm_vram_reserve_page_at_addr(xe, addr, vram_mgr, mm);
-> +	return ret;
-
-Nit: return xe_ttm_vram_reserve_page_at_addr()
-
-> +}
-> +EXPORT_SYMBOL(xe_ttm_vram_handle_addr_fault);
-> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-> index 87b7fae5edba..8ef06d9d44f7 100644
-> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-> @@ -31,6 +31,7 @@ u64 xe_ttm_vram_get_cpu_visible_size(struct ttm_resource_manager *man);
->   void xe_ttm_vram_get_used(struct ttm_resource_manager *man,
->   			  u64 *used, u64 *used_visible);
->   
-> +int xe_ttm_vram_handle_addr_fault(struct xe_device *xe, unsigned long addr);
->   static inline struct xe_ttm_vram_mgr_resource *
->   to_xe_ttm_vram_mgr_resource(struct ttm_resource *res)
->   {
-> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-> index 9106da056b49..3ad7966798eb 100644
-> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-> @@ -19,6 +19,14 @@ struct xe_ttm_vram_mgr {
->   	struct ttm_resource_manager manager;
->   	/** @mm: DRM buddy allocator which manages the VRAM */
->   	struct gpu_buddy mm;
-> +	/** @offlined_pages: List of offlined pages */
-> +	struct list_head offlined_pages;
-> +	/** @n_offlined_pages: Number of offlined pages */
-> +	u16 n_offlined_pages;
-> +	/** @queued_pages: List of queued pages */
-> +	struct list_head queued_pages;
-> +	/** @n_queued_pages: Number of queued pages */
-> +	u16 n_queued_pages;
->   	/** @visible_size: Proped size of the CPU visible portion */
->   	u64 visible_size;
->   	/** @visible_avail: CPU visible portion still unallocated */
-> @@ -45,4 +53,24 @@ struct xe_ttm_vram_mgr_resource {
->   	unsigned long flags;
->   };
->   
-> +/**
-> + * struct xe_ttm_vram_offline_resource - Xe TTM VRAM offline  resource
-> + */
-> +struct xe_ttm_vram_offline_resource {
-> +	/** @offlined_link: Link to offlined pages */
-> +	struct list_head offlined_link;
-> +	/** @queued_link: Link to queued pages */
-> +	struct list_head queued_link;
-> +	/** @blocks: list of DRM buddy blocks */
-> +	struct list_head blocks;
-> +	/** @used_visible_size: How many CPU visible bytes this resource is using */
-> +	u64 used_visible_size;
-> +	/** @id: The id of an offline resource */
-> +	u16 id;
-> +	/** @addr: Address of faulty memory location reported by HW */
-> +	unsigned long addr;
-> +	/** @status: reservation status of resource */
-> +	bool status;
-> +};
-> +
->   #endif
-
+> --
+> Gustavo Sousa
+>
+>> --
+>> Gustavo Sousa
+>>
+>>> +		/*
+>>> +		 * NOTE: intel_display_power_set_target_dc_state is used
+>>> +		 * only by PSR code for DC3CO handling. DC3CO target
+>>> +		 * state is currently disabled in PSR code. If DC3CO
+>>> +		 * is taken into use we need take that into account here
+>>> +		 * as well.
+>>> +		 */
+>>> +		intel_display_power_set_target_dc_state(display, enable ? DC_STATE_DISABLE :
+>>> +							DC_STATE_EN_UPTO_DC6);
+>>> +	} else {
+>>> +		if (enable)
+>>> +			intel_dmc_wl_get_noreg(display);
+>>> +		else
+>>> +			intel_dmc_wl_put_noreg(display);
+>>> +	}
+>>>   }
+>>>   
+>>>   static void
+>>> -- 
+>>> 2.43.0
