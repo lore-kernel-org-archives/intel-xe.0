@@ -4,28 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09F53CD13DA
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Apr 2026 19:00:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1601CD13DA
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Apr 2026 19:06:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCB0710F41D;
-	Thu, 30 Apr 2026 19:00:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90FB710F424;
+	Thu, 30 Apr 2026 19:06:11 +0000 (UTC)
 Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C72E10F41D;
- Thu, 30 Apr 2026 19:00:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D4DD10F423;
+ Thu, 30 Apr 2026 19:06:10 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/xe=3A_Don?=
- =?utf-8?q?=27t_use_UTS=5FRELEASE_directly?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_mm=2C_drm/ttm=2C_drm/xe?=
+ =?utf-8?q?=3A_Avoid_reclaim/eviction_loops_under_fragmentation_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig_=28The_Capable_Hub=29?=
- <u.kleine-koenig@baylibre.com>
+To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 30 Apr 2026 19:00:17 -0000
-Message-ID: <177757561750.28202.8143830669970927863@5ab824fced77>
+Date: Thu, 30 Apr 2026 19:06:10 -0000
+Message-ID: <177757597030.29832.12140536713413982171@5ab824fced77>
 X-Patchwork-Hint: ignore
-References: <20260428102527.189593-2-u.kleine-koenig@baylibre.com>
-In-Reply-To: <20260428102527.189593-2-u.kleine-koenig@baylibre.com>
+References: <20260430182335.2132382-1-matthew.brost@intel.com>
+In-Reply-To: <20260430182335.2132382-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,14 +42,57 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/xe: Don't use UTS_RELEASE directly
-URL   : https://patchwork.freedesktop.org/series/165799/
-State : failure
+Series: mm, drm/ttm, drm/xe: Avoid reclaim/eviction loops under fragmentation (rev2)
+URL   : https://patchwork.freedesktop.org/series/165329/
+State : warning
 
 == Summary ==
 
-Address 'u.kleine-koenig@baylibre.com' is not on the allowlist, which prevents CI from being triggered for this patch.
-If you want Intel GFX CI to accept this address, please contact the script maintainers at i915-ci-infra@lists.freedesktop.org.
-Exception occurred during validation, bailing out!
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c8c12e558adaef7a4d125d83b6e1f8824bc13b82
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b7aea8d410b38ff13cdd77dcb31bef0f8b9b5f8b
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Thu Apr 30 11:23:35 2026 -0700
+
+    drm/xe: Avoid shrinker reclaim from kswapd under fragmentation
+    
+    When the Xe shrinker is invoked from kswapd, a large amount of free
+    memory in usable zones relative to the high watermark is a strong
+    signal that reclaim is being driven by fragmentation rather than true
+    memory pressure.
+    
+    In this case, shrinking Xe memory is unlikely to help kswapd make
+    forward progress. Instead it can evict active GPU memory despite the
+    system still having substantial free memory, increasing residency churn
+    and reducing GPU forward progress.
+    
+    Detect this case and bail out early from the Xe shrinker when running in
+    kswapd, shrinker invocation is a higher order, and any usable zone has
+    more than 2x its high watermark free.
+    
+    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Cc: Carlos Santa <carlos.santa@intel.com>
+    Cc: Matthew Auld <matthew.auld@intel.com>
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch 6472756e8384e3945f12b6726dd9dc1ac12f3bb4 drm-intel
+c8517f9b1fa3 mm: Wire up order in shrink_control
+-:79: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#79: FILE: mm/shrinker.c:470:
++static unsigned long shrink_slab_memcg(gfp_t gfp_mask, int nid, s8 order,
+ 			struct mem_cgroup *memcg, int priority)
+
+total: 0 errors, 0 warnings, 1 checks, 91 lines checked
+887652c0b41c mm: Introduce zone_maybe_fragmented_in_shrinker()
+4d1f3593c173 drm/ttm: Issue direct reclaim at beneficial_order
+a64a875d276b drm/ttm: Introduce ttm_bo_shrink_kswap_maybe_fragmented()
+892550c48b83 drm/xe: Set TTM device beneficial_order to 9 (2M)
+b7aea8d410b3 drm/xe: Avoid shrinker reclaim from kswapd under fragmentation
 
 
