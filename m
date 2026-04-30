@@ -4,58 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6E60FF8873
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Apr 2026 16:39:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD688CD13D3
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Apr 2026 16:49:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4042710E45D;
-	Thu, 30 Apr 2026 16:39:50 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=dancol.org header.i=@dancol.org header.b="iJ9b9ndC";
-	dkim-atps=neutral
-Received: from dancol.org (dancol.org [96.126.100.184])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E24CF10E129;
- Wed, 29 Apr 2026 22:52:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=dancol.org; 
- s=x;
- h=Content-Type:MIME-Version:Message-ID:Date:Subject:To:From; 
- bh=uVZSEQP5zYzPKq/kXJFdSX20dlInqIpzN3iJojggZaU=; b=iJ9b9ndCysglOphySl2DVS8JO4
- w3OcJSDc7xhmQT5veiqetcttu9ThOkdqc8YNLLo0pJN6lTV4j9PEWhBysgAhHmv9vUGOV7u6n16Kb
- wuK/tpbveDTo+QgA8/CoapE5MsDsLXc0kISJ05RLes27rjbuZS70+OPHtyco1MU+wa4/WGw1Ms6oM
- wtohJY08BWEkB6cNATqquh+IPtzCfsoLX/eulDz7gn6r0KJsMLku2VYpLK1U8EYICu9nAo0krypg2
- uW+oNYNXh4o/CtnpXmmuBp4uzWTEbaJllEXYqyuxu5mD9p1q+oZFoVkXQGCyykrlvb3xHtewI3ebf
- 4F5fuArw==;
-Received: from 2603-900b-c400-2854-5e6b-eefe-e3ac-fcb7.inf6.spectrum.com
- ([2603:900b:c400:2854:5e6b:eefe:e3ac:fcb7]:58720 helo=localhost)
- by dancol.org with utf8esmtpsa (TLS1.3) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.98.2)
- (envelope-from <dancol@dancol.org>) id 1wIDm0-00000001oB3-2JdO;
- Wed, 29 Apr 2026 18:52:52 -0400
-From: Daniel Colascione <dancol@dancol.org>
-To: Tvrtko Ursulin <tursulin@ursulin.net>
-Cc: Matthew Brost <matthew.brost@intel.com>,  Christian =?utf-8?Q?K=C3=B6n?=
- =?utf-8?Q?ig?= <christian.koenig@amd.com>,  intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org,  Thomas =?utf-8?Q?Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>,  Carlos Santa
- <carlos.santa@intel.com>,  Huang Rui <ray.huang@amd.com>,  Matthew Auld
- <matthew.auld@intel.com>,  Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>,  Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,  David Airlie
- <airlied@gmail.com>,  Simona Vetter <simona@ffwll.ch>
-Subject: Re: [PATCH 1/3] drm/ttm: Issue direct reclaim at beneficial_order
-In-Reply-To: <5bd5ed0a-fef2-4bd4-b7a0-d263bcfb1c7f@ursulin.net>
-References: <20260421012608.1474950-1-matthew.brost@intel.com>
- <20260421012608.1474950-2-matthew.brost@intel.com>
- <30c84c41-192c-44ae-a614-2b9951c55727@ursulin.net>
- <d7dda563-280f-4126-a822-a3d43ce5048e@amd.com>
- <aekygVvRz7mu+elE@gsse-cloud1.jf.intel.com>
- <5bd5ed0a-fef2-4bd4-b7a0-d263bcfb1c7f@ursulin.net>
-User-Agent: mu4e 1.14.0-pre1; emacs 31.0.50
-Date: Wed, 29 Apr 2026 18:52:50 -0400
-Message-ID: <87se8didkt.fsf@dancol.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8AD3510F3F1;
+	Thu, 30 Apr 2026 16:49:42 +0000 (UTC)
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 836D410F3EC;
+ Thu, 30 Apr 2026 16:49:41 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7127006919959184719=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Thu, 30 Apr 2026 16:39:35 +0000
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1/2?=
+ =?utf-8?q?=5D_gpu/buddy=3A_replace_dual-tree/force=5Fmerge_with_decoupled_c?=
+ =?utf-8?q?lear_tracker?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arunpravin Paneer Selvam" <arunpravin.paneerselvam@amd.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 30 Apr 2026 16:49:41 -0000
+Message-ID: <177756778153.29832.13901469559138303027@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260430140514.1850417-1-Arunpravin.PaneerSelvam@amd.com>
+In-Reply-To: <20260430140514.1850417-1-Arunpravin.PaneerSelvam@amd.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,108 +37,158 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Tvrtko Ursulin <tursulin@ursulin.net> writes:
+--===============7127006919959184719==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> On 22/04/2026 21:41, Matthew Brost wrote:
->> On Wed, Apr 22, 2026 at 09:41:54AM +0200, Christian K=C3=B6nig wrote:
->>> On 4/22/26 09:32, Tvrtko Ursulin wrote:
->>>>
->>>> On 21/04/2026 02:26, Matthew Brost wrote:
->>>>> Triggering kswap at an order higher than beneficial_order makes little
->>>>> sense, as the driver has already indicated the optimal order at which
->>>>> reclaim is effective. Similarly, issuing direct reclaim or triggering
->>>>> kswap at a lower order than beneficial_order is ineffective, since the
->>>>> driver does not benefit from reclaiming lower-order pages.
->>>>>
->>>>> As a result, direct reclaim should only be issued with __GFP_NORETRY =
-at
->>>>> exactly beneficial_order, or as a fallback, direct reclaim without
->>>>> __GFP_NORETRY at order 0 when failure is not an option.
->>>>>
->>>>> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
->>>>> Cc: Carlos Santa <carlos.santa@intel.com>
->>>>> Cc: Christian Koenig <christian.koenig@amd.com>
->>>>> Cc: Huang Rui <ray.huang@amd.com>
->>>>> Cc: Matthew Auld <matthew.auld@intel.com>
->>>>> Cc: Matthew Brost <matthew.brost@intel.com>
->>>>> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->>>>> Cc: Maxime Ripard <mripard@kernel.org>
->>>>> Cc: Thomas Zimmermann <tzimmermann@suse.de>
->>>>> Cc: David Airlie <airlied@gmail.com>
->>>>> Cc: Simona Vetter <simona@ffwll.ch>
->>>>> CC: dri-devel@lists.freedesktop.org
->>>>> Cc: Daniel Colascione <dancol@dancol.org>
->>>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->>>>> ---
->>>>>  =C2=A0 drivers/gpu/drm/ttm/ttm_pool.c | 4 ++--
->>>>>  =C2=A0 1 file changed, 2 insertions(+), 2 deletions(-)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm=
-_pool.c
->>>>> index 26a3689e5fd9..8425dbcc6c68 100644
->>>>> --- a/drivers/gpu/drm/ttm/ttm_pool.c
->>>>> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
->>>>> @@ -165,8 +165,8 @@ static struct page *ttm_pool_alloc_page(struct tt=
-m_pool *pool, gfp_t gfp_flags,
->>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * Do not add latency to the all=
-ocation path for allocations orders
->>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * device tolds us do not bring =
-them additional performance gains.
->>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
->>>>> -=C2=A0=C2=A0=C2=A0 if (beneficial_order && order > beneficial_order)
->>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 gfp_flags &=3D ~__GFP_DIR=
-ECT_RECLAIM;
->>>>> +=C2=A0=C2=A0=C2=A0 if (order && beneficial_order && order !=3D benef=
-icial_order)
->>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 gfp_flags &=3D ~__GFP_REC=
-LAIM;
->>>>>  =C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (!ttm_pool_uses_dma_alloc(p=
-ool)) {
->>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 p =3D alloc_p=
-ages_node(pool->nid, gfp_flags, order);
->>>>
->>>> I missed this conversation so don't know if this was discussed -
->> I meant to CC you here, but missed including you.
->>=20
->>>> having less of 64k pages is not a concern? I mean slightly higher
->>>> TLB pressure etc on hardware which supports this PTE size.
->>>
->>> At least for AMD GPUs 64k doesn't matter at all.
->>>
->> Same on Intel GPUs for system memory mappings - it is either 4k or
->> 2M
->> GPU pages. VRAM can we 64k pages but that isn't involved here.
->>=20
->>> There was a large push from the Windows side to use that size, but
->>> we have more than enough evidence to prove that this size is
->>> actually completely nonsense for almost all use cases.
->>>
->>> I have no idea how we ended up with that in the first place.
->>>
->>> It could be that there is still HW out there which can only handle
->>> that size, but in that case such HW should just set
->>> beneficial_order to 64k.
->>>
->> Or we move to a table config if we find drivers have multiple
->> beneficial_orders.
->
-> Or a bitmask of direct reclaim orders?
->
-> I am not saying it is required to be "smarter" than this patch does
-> it, for AMD and Intel apparently isn't, but for other drivers I don't
-> know so it does need looking into.
->
-> Regards,
->
-> Tvrtko
+== Series Details ==
 
-Probably stupid question: for systems like my Lunar Lake Xe2, which has
-unified memory and (IIUC) no special cache-type or write-mode
-constraints for GPU mappings, would it be possible to use regular
-system-provided pages (e.g. from shmem) instead of going through the TTM
-pool and allow mTHP to provide the aligned and contiguous backing
-storage that the GPU wants? Something like GEM has, but maybe inside the
-TTM API?
+Series: series starting with [1/2] gpu/buddy: replace dual-tree/force_merge with decoupled clear tracker
+URL   : https://patchwork.freedesktop.org/series/165790/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-4959-3ac514cf64f272cc4d5143f4cc28fb18a8aba76d_BAT -> xe-pw-165790v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-165790v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4959-3ac514cf64f272cc4d5143f4cc28fb18a8aba76d/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165790v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+
+  * igt@xe_waitfence@reltime:
+    - bat-ptl-2:          [PASS][3] -> [FAIL][4] ([Intel XE#6520])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4959-3ac514cf64f272cc4d5143f4cc28fb18a8aba76d/bat-ptl-2/igt@xe_waitfence@reltime.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165790v1/bat-ptl-2/igt@xe_waitfence@reltime.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - bat-adlp-7:         [DMESG-WARN][5] ([Intel XE#7483]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4959-3ac514cf64f272cc4d5143f4cc28fb18a8aba76d/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165790v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+
+  
+  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
+  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8879 -> IGT_8881
+  * Linux: xe-4959-3ac514cf64f272cc4d5143f4cc28fb18a8aba76d -> xe-pw-165790v1
+
+  IGT_8879: 02b0e01dd9a5a3ab1efe976bb8c4f13cfcdbab1a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8881: aa5853ef5b379b1e4558218c21ef4caeae112184 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4959-3ac514cf64f272cc4d5143f4cc28fb18a8aba76d: 3ac514cf64f272cc4d5143f4cc28fb18a8aba76d
+  xe-pw-165790v1: 165790v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165790v1/index.html
+
+--===============7127006919959184719==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] gpu/buddy: replace dual-tree/force_merge with decoupled clear tracker</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165790/">https://patchwork.freedesktop.org/series/165790/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165790v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165790v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4959-3ac514cf64f272cc4d5143f4cc28fb18a8aba76d_BAT -&gt; xe-pw-165790v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-165790v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4959-3ac514cf64f272cc4d5143f4cc28fb18a8aba76d/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165790v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@reltime:</p>
+<ul>
+<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4959-3ac514cf64f272cc4d5143f4cc28fb18a8aba76d/bat-ptl-2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165790v1/bat-ptl-2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4959-3ac514cf64f272cc4d5143f4cc28fb18a8aba76d/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165790v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8879 -&gt; IGT_8881</li>
+<li>Linux: xe-4959-3ac514cf64f272cc4d5143f4cc28fb18a8aba76d -&gt; xe-pw-165790v1</li>
+</ul>
+<p>IGT_8879: 02b0e01dd9a5a3ab1efe976bb8c4f13cfcdbab1a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8881: aa5853ef5b379b1e4558218c21ef4caeae112184 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4959-3ac514cf64f272cc4d5143f4cc28fb18a8aba76d: 3ac514cf64f272cc4d5143f4cc28fb18a8aba76d<br />
+  xe-pw-165790v1: 165790v1</p>
+
+</body>
+</html>
+
+--===============7127006919959184719==--
