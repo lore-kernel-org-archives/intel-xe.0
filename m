@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1601CD13DA
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Apr 2026 19:06:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA10DCD13D3
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Apr 2026 19:06:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90FB710F424;
-	Thu, 30 Apr 2026 19:06:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3FF010F423;
+	Thu, 30 Apr 2026 19:06:45 +0000 (UTC)
 Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D4DD10F423;
- Thu, 30 Apr 2026 19:06:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D74610F423;
+ Thu, 30 Apr 2026 19:06:44 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_mm=2C_drm/ttm=2C_drm/xe?=
- =?utf-8?q?=3A_Avoid_reclaim/eviction_loops_under_fragmentation_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_mm=2C_drm/ttm=2C_drm/xe=3A_Avo?=
+ =?utf-8?q?id_reclaim/eviction_loops_under_fragmentation_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 30 Apr 2026 19:06:10 -0000
-Message-ID: <177757597030.29832.12140536713413982171@5ab824fced77>
+Date: Thu, 30 Apr 2026 19:06:44 -0000
+Message-ID: <177757600457.29832.2954029064187356191@5ab824fced77>
 X-Patchwork-Hint: ignore
 References: <20260430182335.2132382-1-matthew.brost@intel.com>
 In-Reply-To: <20260430182335.2132382-1-matthew.brost@intel.com>
@@ -44,55 +44,54 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: mm, drm/ttm, drm/xe: Avoid reclaim/eviction loops under fragmentation (rev2)
 URL   : https://patchwork.freedesktop.org/series/165329/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-c8c12e558adaef7a4d125d83b6e1f8824bc13b82
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit b7aea8d410b38ff13cdd77dcb31bef0f8b9b5f8b
-Author: Matthew Brost <matthew.brost@intel.com>
-Date:   Thu Apr 30 11:23:35 2026 -0700
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../mm/shrinker.c: In function ‘shrink_slab’:
+../mm/shrinker.c:633:57: warning: passing argument 3 of ‘shrink_slab_memcg’ makes pointer from integer without a cast [-Wint-conversion]
+  633 |                 return shrink_slab_memcg(gfp_mask, nid, order, memcg, priority);
+      |                                                         ^~~~~
+      |                                                         |
+      |                                                         s8 {aka signed char}
+../mm/shrinker.c:592:44: note: expected ‘struct mem_cgroup *’ but argument is of type ‘s8’ {aka ‘signed char’}
+  592 |                         struct mem_cgroup *memcg, int priority)
+      |                         ~~~~~~~~~~~~~~~~~~~^~~~~
+../mm/shrinker.c:633:64: warning: passing argument 4 of ‘shrink_slab_memcg’ makes integer from pointer without a cast [-Wint-conversion]
+  633 |                 return shrink_slab_memcg(gfp_mask, nid, order, memcg, priority);
+      |                                                                ^~~~~
+      |                                                                |
+      |                                                                struct mem_cgroup *
+../mm/shrinker.c:592:55: note: expected ‘int’ but argument is of type ‘struct mem_cgroup *’
+  592 |                         struct mem_cgroup *memcg, int priority)
+      |                                                   ~~~~^~~~~~~~
+../mm/shrinker.c:633:24: error: too many arguments to function ‘shrink_slab_memcg’
+  633 |                 return shrink_slab_memcg(gfp_mask, nid, order, memcg, priority);
+      |                        ^~~~~~~~~~~~~~~~~
+../mm/shrinker.c:591:22: note: declared here
+  591 | static unsigned long shrink_slab_memcg(gfp_t gfp_mask, int nid,
+      |                      ^~~~~~~~~~~~~~~~~
+make[4]: *** [../scripts/Makefile.build:289: mm/shrinker.o] Error 1
+make[4]: *** Waiting for unfinished jobs....
+make[3]: *** [../scripts/Makefile.build:548: mm] Error 2
+make[3]: *** Waiting for unfinished jobs....
+make[2]: *** [/kernel/Makefile:2141: .] Error 2
+make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
 
-    drm/xe: Avoid shrinker reclaim from kswapd under fragmentation
-    
-    When the Xe shrinker is invoked from kswapd, a large amount of free
-    memory in usable zones relative to the high watermark is a strong
-    signal that reclaim is being driven by fragmentation rather than true
-    memory pressure.
-    
-    In this case, shrinking Xe memory is unlikely to help kswapd make
-    forward progress. Instead it can evict active GPU memory despite the
-    system still having substantial free memory, increasing residency churn
-    and reducing GPU forward progress.
-    
-    Detect this case and bail out early from the Xe shrinker when running in
-    kswapd, shrinker invocation is a higher order, and any usable zone has
-    more than 2x its high watermark free.
-    
-    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-    Cc: Carlos Santa <carlos.santa@intel.com>
-    Cc: Matthew Auld <matthew.auld@intel.com>
-    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-+ /mt/dim checkpatch 6472756e8384e3945f12b6726dd9dc1ac12f3bb4 drm-intel
-c8517f9b1fa3 mm: Wire up order in shrink_control
--:79: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#79: FILE: mm/shrinker.c:470:
-+static unsigned long shrink_slab_memcg(gfp_t gfp_mask, int nid, s8 order,
- 			struct mem_cgroup *memcg, int priority)
-
-total: 0 errors, 0 warnings, 1 checks, 91 lines checked
-887652c0b41c mm: Introduce zone_maybe_fragmented_in_shrinker()
-4d1f3593c173 drm/ttm: Issue direct reclaim at beneficial_order
-a64a875d276b drm/ttm: Introduce ttm_bo_shrink_kswap_maybe_fragmented()
-892550c48b83 drm/xe: Set TTM device beneficial_order to 9 (2M)
-b7aea8d410b3 drm/xe: Avoid shrinker reclaim from kswapd under fragmentation
+[19:06:10] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[19:06:15] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
