@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA10DCD13D3
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Apr 2026 19:06:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11E35CD13DA
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Apr 2026 19:09:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3FF010F423;
-	Thu, 30 Apr 2026 19:06:45 +0000 (UTC)
-Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D74610F423;
- Thu, 30 Apr 2026 19:06:44 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id C79F810E473;
+	Thu, 30 Apr 2026 19:09:32 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I0eWKewa";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 837AA10E244;
+ Thu, 30 Apr 2026 19:09:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1777576171; x=1809112171;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Li4Br/ck8mA/qGQwfI+fkvtTjhzz7x5LFe+xj/eewj4=;
+ b=I0eWKewaLoJoPRUIrnDSaUnIAMf808QFqabKI83LVusrjlGSjAkKK9Pr
+ nHpciFvOh5gTcKUX+/UCrsBMHmzfcSRMbJuohGsPVeWFJ5u0TBxAiZeCj
+ tgPlDFa0eAvH4ww+lozxvk9tLIMmtS3+NbkFwt5gXV/FvyIPfj+k/qG+R
+ Vyl+Gf/D1jIprTg8YLJzJOwUJ+d9duJDvCwCutn9cGgmjzG2EvAOhJFP6
+ BaGHjeEprxHLRdvTIO4gowcEOMux63NvD4gISAvVSYMrGa6fcLfThyDb8
+ GSowYn78wEELh7ihVSYcsI3g1U9LlAu8N9GOUd9Bz+lkgklAh/CFCrEEf g==;
+X-CSE-ConnectionGUID: CQ/3/MWeRNW1gXrhycmq7Q==
+X-CSE-MsgGUID: 17pbZR74R6+DGtNrwhchCg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11772"; a="89917863"
+X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="89917863"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2026 12:09:29 -0700
+X-CSE-ConnectionGUID: iBCc3LgzRKORPN/ZGhEz+A==
+X-CSE-MsgGUID: 232ycsuaQha1aDLMIg4zcQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="230071120"
+Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2026 12:09:29 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Subject: [PATCH] drm/xe: Do not blindly copy system CCS pages when shrinking
+Date: Thu, 30 Apr 2026 12:09:23 -0700
+Message-Id: <20260430190923.2141506-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_mm=2C_drm/ttm=2C_drm/xe=3A_Avo?=
- =?utf-8?q?id_reclaim/eviction_loops_under_fragmentation_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 30 Apr 2026 19:06:44 -0000
-Message-ID: <177757600457.29832.2954029064187356191@5ab824fced77>
-X-Patchwork-Hint: ignore
-References: <20260430182335.2132382-1-matthew.brost@intel.com>
-In-Reply-To: <20260430182335.2132382-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,62 +61,72 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+If the PAT index for a BO is configured without compression, copying CCS
+pages during BO shrinking provides no value. Skip CCS copies for BOs that
+have never been configured with compressed PAT indexes.
 
-Series: mm, drm/ttm, drm/xe: Avoid reclaim/eviction loops under fragmentation (rev2)
-URL   : https://patchwork.freedesktop.org/series/165329/
-State : failure
+Once a BO is configured with a compressed PAT index, this becomes a
+one-way transition that enables CCS copies. This heuristic is imprecise,
+but simple and functional.
 
-== Summary ==
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:../mm/shrinker.c: In function ‘shrink_slab’:
-../mm/shrinker.c:633:57: warning: passing argument 3 of ‘shrink_slab_memcg’ makes pointer from integer without a cast [-Wint-conversion]
-  633 |                 return shrink_slab_memcg(gfp_mask, nid, order, memcg, priority);
-      |                                                         ^~~~~
-      |                                                         |
-      |                                                         s8 {aka signed char}
-../mm/shrinker.c:592:44: note: expected ‘struct mem_cgroup *’ but argument is of type ‘s8’ {aka ‘signed char’}
-  592 |                         struct mem_cgroup *memcg, int priority)
-      |                         ~~~~~~~~~~~~~~~~~~~^~~~~
-../mm/shrinker.c:633:64: warning: passing argument 4 of ‘shrink_slab_memcg’ makes integer from pointer without a cast [-Wint-conversion]
-  633 |                 return shrink_slab_memcg(gfp_mask, nid, order, memcg, priority);
-      |                                                                ^~~~~
-      |                                                                |
-      |                                                                struct mem_cgroup *
-../mm/shrinker.c:592:55: note: expected ‘int’ but argument is of type ‘struct mem_cgroup *’
-  592 |                         struct mem_cgroup *memcg, int priority)
-      |                                                   ~~~~^~~~~~~~
-../mm/shrinker.c:633:24: error: too many arguments to function ‘shrink_slab_memcg’
-  633 |                 return shrink_slab_memcg(gfp_mask, nid, order, memcg, priority);
-      |                        ^~~~~~~~~~~~~~~~~
-../mm/shrinker.c:591:22: note: declared here
-  591 | static unsigned long shrink_slab_memcg(gfp_t gfp_mask, int nid,
-      |                      ^~~~~~~~~~~~~~~~~
-make[4]: *** [../scripts/Makefile.build:289: mm/shrinker.o] Error 1
-make[4]: *** Waiting for unfinished jobs....
-make[3]: *** [../scripts/Makefile.build:548: mm] Error 2
-make[3]: *** Waiting for unfinished jobs....
-make[2]: *** [/kernel/Makefile:2141: .] Error 2
-make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
+---
 
-[19:06:10] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[19:06:15] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+When running 10x tabs webgl aquarium, it was observed a ratio of ~6.5 to
+1 of BOs that can possible enable compression (xe_bo_needs_ccs_pages
+returns true) actually enable compression in the PAT index and overall
+CCS copies are reduced by roughly 1/2 when the shrinker is triggered.
+---
+ drivers/gpu/drm/xe/xe_bo.c       | 2 ++
+ drivers/gpu/drm/xe/xe_bo_types.h | 3 +++
+ drivers/gpu/drm/xe/xe_vm.c       | 3 +++
+ 3 files changed, 8 insertions(+)
 
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 5ce60d161e09..3fbb82ece4de 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -1105,6 +1105,8 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 			flags |= XE_MIGRATE_CLEAR_FLAG_CCS_DATA;
+ 
+ 		fence = xe_migrate_clear(migrate, bo, new_mem, flags);
++	} else if (handle_system_ccs && !bo->ccs_used) {
++		fence = dma_fence_get_stub();
+ 	} else {
+ 		fence = xe_migrate_copy(migrate, bo, bo, old_mem, new_mem,
+ 					handle_system_ccs);
+diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
+index 9c199badd9b2..76f73a3bf2ca 100644
+--- a/drivers/gpu/drm/xe/xe_bo_types.h
++++ b/drivers/gpu/drm/xe/xe_bo_types.h
+@@ -88,6 +88,9 @@ struct xe_bo {
+ 	/** @ccs_cleared: true means that CCS region of BO is already cleared */
+ 	bool ccs_cleared;
+ 
++	/** @ccs_used: true means that CCS region of BO is used */
++	bool ccs_used;
++
+ 	/** @bb_ccs: BB instructions of CCS read/write. Valid only for VF */
+ 	struct xe_mem_pool_node *bb_ccs[XE_SRIOV_VF_CCS_CTX_COUNT];
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index c3836f6eab35..638037e71e2d 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -3054,6 +3054,9 @@ static int vma_lock_and_validate(struct drm_exec *exec, struct xe_vma *vma,
+ 
+ 		if (flags.request_decompress)
+ 			err = xe_bo_decompress(bo);
++
++		if (xe_pat_index_get_comp_en(vm->xe, vma->attr.pat_index))
++			bo->ccs_used = true;
+ 	}
+ 
+ 	return err;
+-- 
+2.34.1
 
