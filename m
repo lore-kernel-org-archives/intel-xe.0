@@ -4,53 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39138CD3425
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Apr 2026 18:23:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72206FF8873
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Apr 2026 18:23:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 956F610F411;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4C8110F414;
 	Thu, 30 Apr 2026 18:23:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O+amK2iN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m2KycJb4";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20EB510E484;
- Thu, 30 Apr 2026 18:23:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9831310E480;
+ Thu, 30 Apr 2026 18:23:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777573423; x=1809109423;
+ t=1777573422; x=1809109422;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=4bEaboavwvba/lkphuRIAp9zSE075OT9HVs3VNTQaTs=;
- b=O+amK2iNOwb3+VZNZDUa9hYewxvxHTk0M3oi+NtzS+pzS1q/JOsvq0lq
- /C1YZeM8Kc5BknMQ/zK9zZ469Uyujef8y2qwnE6MwiYtFiJxTY2iqCcCs
- GkJpChtcBmDF4xnm/f5WCHkDIao6OqIcgK7oKz45Q2d4sIiJvaIHepA27
- erhL9Liz9W47e3M7q0HEDtIhJZWqkuWEksRh1K2Ze6PzIkxk3WqTXVWu3
- AAzDvbCsZUTXyWYibElpmp7TEH4Mb5EMM62ZBlplu0F0qZypW/oV/wNW9
- s/CXyUZaLUfdznCHot3v5SFPGi52LxA3vPw38nFL5JCCD8dZD7QZ0ron1 Q==;
-X-CSE-ConnectionGUID: tv5eznqcTsqJTNeck6UKvg==
-X-CSE-MsgGUID: uDMn+XTdQ8uBJBafVOoejw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11772"; a="82389017"
-X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="82389017"
+ bh=GHkxm0wYYb4SrQQJzp26BvqDgj5d1MTHLdsthOQOpLE=;
+ b=m2KycJb4kB8VjqQSiNji/2vtsV1cope3gWWpseJdQAoTivd4iRddC60a
+ tMDdTbwWjgRilNwgS9mSn44lkD3gQNLsqPT7FPsRHWw8yJQySLHR5KR/u
+ 77sMchg4JwTHjY2xQYBJY86OYcP/G4cBteZ2x/XlE6cXMGEAZ5O+BLdqQ
+ 1oC+w0srQOkuJYio0Mcg3OXiW0oUaVowPpQ8zHzFoWb+1KrlHHa5QJ/Ql
+ j/TuEYhcu+j6kumTMTHQ8b1RTqXDN2d9a/u8f+TYxidJRo0nrWlz1u4qB
+ 1Qvos3vBUAdQhcsdX1Te3ghQgOMSyY98/6N1Wes5LYy+GZCwFFeiluyCb g==;
+X-CSE-ConnectionGUID: m9xW0HwnT/iqozCK/U5uEw==
+X-CSE-MsgGUID: +c6xqV4SSHeQKn6FOxPklA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11772"; a="82388997"
+X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="82388997"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2026 11:23:42 -0700
-X-CSE-ConnectionGUID: JX0h51X8QJilp3bq3FlxoA==
-X-CSE-MsgGUID: sSQA2DyDS+CaCiiuJkemzw==
+ 30 Apr 2026 11:23:41 -0700
+X-CSE-ConnectionGUID: j8ntlywORQaX6R++juekDw==
+X-CSE-MsgGUID: VDeEfBTvQ664s14Kaz6mMw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="231532230"
+X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="231532218"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2026 11:23:42 -0700
+ 30 Apr 2026 11:23:41 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Carlos Santa <carlos.santa@intel.com>,
- Matthew Auld <matthew.auld@intel.com>
-Subject: [PATCH v3 6/6] drm/xe: Avoid shrinker reclaim from kswapd under
- fragmentation
-Date: Thu, 30 Apr 2026 11:23:35 -0700
-Message-Id: <20260430182335.2132382-7-matthew.brost@intel.com>
+ Andrew Morton <akpm@linux-foundation.org>,
+ David Hildenbrand <david@kernel.org>, Lorenzo Stoakes <ljs@kernel.org>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>,
+ Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
+ linux-mm@kvack.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 2/6] mm: Introduce zone_maybe_fragmented_in_shrinker()
+Date: Thu, 30 Apr 2026 11:23:31 -0700
+Message-Id: <20260430182335.2132382-3-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260430182335.2132382-1-matthew.brost@intel.com>
 References: <20260430182335.2132382-1-matthew.brost@intel.com>
@@ -71,47 +74,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When the Xe shrinker is invoked from kswapd, a large amount of free
-memory in usable zones relative to the high watermark is a strong
-signal that reclaim is being driven by fragmentation rather than true
-memory pressure.
+Introduce zone_maybe_fragmented_in_shrinker() as a lightweight helper to
+allow subsystems to make coarse decisions about reclaim behavior in the
+presence of likely fragmentation.
 
-In this case, shrinking Xe memory is unlikely to help kswapd make
-forward progress. Instead it can evict active GPU memory despite the
-system still having substantial free memory, increasing residency churn
-and reducing GPU forward progress.
+The helper implements a simple heuristic: if the number of free pages
+in a zone exceeds twice the high watermark, the zone is considered to
+have ample free memory and allocation failures are more likely due to
+fragmentation than overall memory pressure.
 
-Detect this case and bail out early from the Xe shrinker when running in
-kswapd, shrinker invocation is a higher order, and any usable zone has
-more than 2x its high watermark free.
+This is intentionally imprecise and is not meant to replace the core
+MM compaction or fragmentation accounting logic. Instead, it provides
+a cheap signal for callers (e.g., shrinkers) that wish to avoid
+overly aggressive reclaim when sufficient free memory exists but
+high-order allocations may still fail.
+
+No functional changes; this is a preparatory helper for future users.
 
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Carlos Santa <carlos.santa@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Cc: David Hildenbrand <david@kernel.org>
+Cc: Lorenzo Stoakes <ljs@kernel.org>
+Cc: "Liam R. Howlett" <Liam.Howlett@oracle.com>
+Cc: Vlastimil Babka <vbabka@kernel.org>
+Cc: Mike Rapoport <rppt@kernel.org>
+Cc: Suren Baghdasaryan <surenb@google.com>
+Cc: Michal Hocko <mhocko@suse.com>
+Cc: linux-mm@kvack.org
+Cc: linux-kernel@vger.kernel.org
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
 ---
 
-v3:
- - Wire in order to heuristic (Thomas)
+v3: s/zone_appear_fragmented/zone_maybe_fragmented_in_shrinker (David
+    Hildenbrand)
 ---
- drivers/gpu/drm/xe/xe_shrinker.c | 3 +++
- 1 file changed, 3 insertions(+)
+ include/linux/vmstat.h | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_shrinker.c b/drivers/gpu/drm/xe/xe_shrinker.c
-index 83374cd57660..792e0e216442 100644
---- a/drivers/gpu/drm/xe/xe_shrinker.c
-+++ b/drivers/gpu/drm/xe/xe_shrinker.c
-@@ -236,6 +236,9 @@ static unsigned long xe_shrinker_scan(struct shrinker *shrink, struct shrink_con
- 	if (nr_scanned >= nr_to_scan || !can_backup)
- 		goto out;
+diff --git a/include/linux/vmstat.h b/include/linux/vmstat.h
+index 3c9c266cf782..1ad48f70c9d9 100644
+--- a/include/linux/vmstat.h
++++ b/include/linux/vmstat.h
+@@ -483,6 +483,18 @@ static inline const char *zone_stat_name(enum zone_stat_item item)
+ 	return vmstat_text[item];
+ }
  
-+	if (ttm_bo_shrink_kswap_maybe_fragmented(sc->nid, sc->order))
-+		goto out;
++static inline bool zone_maybe_fragmented_in_shrinker(struct zone *zone)
++{
++	/*
++	 * Simple heuristic: if the number of free pages is more than twice the
++	 * high watermark, this may suggest that the zone is heavily fragmented.
++	 * When called from a shrinker, aggressively evicting memory in this case
++	 * may do more harm to overall system performance than good.
++	 */
++	return zone_page_state(zone, NR_FREE_PAGES) >
++		high_wmark_pages(zone) * 2;
++}
 +
- 	/* If we didn't wake before, try to do it now if needed. */
- 	if (!runtime_pm)
- 		runtime_pm = xe_shrinker_runtime_pm_get(shrinker, true, 0, can_backup);
+ #ifdef CONFIG_NUMA
+ static inline const char *numa_stat_name(enum numa_stat_item item)
+ {
 -- 
 2.34.1
 
