@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A791CD3423
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Apr 2026 20:21:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81464CD13D3
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Apr 2026 20:21:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAFAF10F468;
-	Thu, 30 Apr 2026 20:21:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49D5010F457;
+	Thu, 30 Apr 2026 20:21:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hjEA9v7I";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IH+2IoQG";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2AC810F462
- for <intel-xe@lists.freedesktop.org>; Thu, 30 Apr 2026 20:21:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB38F10F462
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 Apr 2026 20:21:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777580503; x=1809116503;
+ t=1777580502; x=1809116502;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=xJR8PradI98mQNiSEF5fJ4VMOukIZIFo9sgErMh2o9I=;
- b=hjEA9v7I7s2KfAC45krXMz8zk4VIe8h8s0FZCYE3v86jfGSk42bgKQfP
- Wq1WllKOBRgWJUSlv0FZihsLhrRS6uBsyhtxLKsB/EUJ1r1m36HSJgTzt
- 1mJRXkOlNtZ5gzM7a4xCK1vzN2xizdbyXEVriz7y6UHeTarxA+ACwJnVl
- Xcv9idc1/rAvNQoDOKJg7IsoSgL0WDst4mvKi+JNbLwP1fnGdLSZMdREc
- fKHGi9fC+TJYJK3PpN2NdbBIVQF4f3m8EoVJG8dNRWzN6zCyv/kvEmiEb
- j4L10N7ZbHc7fms0PHZfWYKLHgmsfgLqPi8WxIBiJ7P7tnbMMJBYfWZ+y w==;
-X-CSE-ConnectionGUID: fnLClEoLSxaEUCTi/mvuMA==
-X-CSE-MsgGUID: HU9yvGaGRvicbtzapEeVPg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11772"; a="82150913"
-X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="82150913"
+ bh=YB4GbFpx3N8SNWkosVtuJAde7CQ4lP8m8eA0PufRTU4=;
+ b=IH+2IoQGCBSFYPlbfiET1+NuCUINvSriNEhF37K0nz7DEMTeFsl6uUet
+ 4FQFIXDWVYIQ4k4Pj0o/7MiIUZFkrn+J3nZceoqxsixlYOmB+NldG1rmu
+ a4L5HMZ7wsRU7umwOSKePsEXCGirXpBzMYFva9Ux0h+iislR4LAGMHjok
+ KN4cFeK8hUyBTj18GOv3xkfnr2MvSSau7B1aWbtP6zowxxcbk1HjR530u
+ d91PmZk1sbLDWWsOKNVIFwgltz7cvgIxIUgsNLdN7QLKwS3urXxLLTDdL
+ cgWOaxBwy/NKvGuuvuENwe3W59+u2nFWfH3d6eO0e15aSFHKR61U9R1g3 g==;
+X-CSE-ConnectionGUID: xDIGgLgQTn+GNIdXc7a1OQ==
+X-CSE-MsgGUID: 27Njm+jVSpWnwntYskR+DQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11772"; a="82150908"
+X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="82150908"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2026 13:21:43 -0700
-X-CSE-ConnectionGUID: hyBu816KRHiMzLDZ6tavQg==
-X-CSE-MsgGUID: wWv8T5cCRficFA6WroZamw==
+ 30 Apr 2026 13:21:41 -0700
+X-CSE-ConnectionGUID: Qy7ibPrFSSOr/ql9nTll+g==
+X-CSE-MsgGUID: fE8eFl6uR/StxM0aMH6cYA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="232030533"
+X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="232030527"
 Received: from rosenzwe-mobl1.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.222.55])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2026 13:21:42 -0700
+ 30 Apr 2026 13:21:41 -0700
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Thu, 30 Apr 2026 17:20:07 -0300
-Subject: [PATCH v2 6/7] drm/xe/rtp: Fully parse the ruleset
+Date: Thu, 30 Apr 2026 17:20:06 -0300
+Subject: [PATCH v2 5/7] drm/xe/rtp: Extract rule_match_item()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260430-rtp-rule-parser-v2-6-157e98b4ab51@intel.com>
+Message-Id: <20260430-rtp-rule-parser-v2-5-157e98b4ab51@intel.com>
 References: <20260430-rtp-rule-parser-v2-0-157e98b4ab51@intel.com>
 In-Reply-To: <20260430-rtp-rule-parser-v2-0-157e98b4ab51@intel.com>
 To: intel-xe@lists.freedesktop.org
@@ -69,116 +69,275 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The function rule_matches() short-circuits evaluation of the implicit
-conjunctions (each substring of rules not containing OR) and the
-explicit disjunctions (implicit conjunctions joined by OR). In other
-words:
+The current logic in rule_matches() mixes individual rule matching
+with the logic necessary for handling OR operations.  Let's simplify
+rule_matches() to focus on the latter by extracting individual rule
+matching into a separate function called rule_match_item().
 
-  - in a conjunction, once a rule evaluate to false, we skip to the next
-    OR (if any) to evaluate the next conjunction;
-  - in a disjunction, once a conjunction evaluates to true, we return
-    true and skip evaluating all the remaining rules.
-
-While this behavior results in a correct logical value, due to how the
-"OR" short-circuiting is implemented, it has the side-effect that rule
-set does not get fully "parsed", allowing incomplete constructs like
-(rule1, OR) to evaluate to true when rule1 is true.  We should treat
-such constructs as invalid and treat them the same way we do for stuff
-like (OR, rule1).
-
-As such, update rule_matches() to "parse" the whole rule set, and that
-while keeping the short-circuit aspect of evaluation.  With that, we can
-fix the FIXME test cases that cover that behavior.
-
-v2:
-  - Do not change short-circuit *evaluation* behavior. (Matt)
-
-Cc: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_rtp_test.c |  6 ++----
- drivers/gpu/drm/xe/xe_rtp.c            | 26 +++++++++++++-------------
- 2 files changed, 15 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/xe/xe_rtp.c | 219 +++++++++++++++++++-------------------------
+ 1 file changed, 94 insertions(+), 125 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_rtp_test.c b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
-index e009c1243b7c..3429c5d1b5b6 100644
---- a/drivers/gpu/drm/xe/tests/xe_rtp_test.c
-+++ b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
-@@ -186,8 +186,7 @@ static const struct rtp_rules_test_case rtp_rules_cases[] = {
- 	{
- 		.name = "yes-or",
- 		.expected_match = true,
--		/* FIXME: The parser should raise an error here. */
--		.expected_err = 0,
-+		.expected_err = -EINVAL,
- 		XE_RTP_RULES(FUNC(match_yes), OR),
- 	},
- 	{
-@@ -205,8 +204,7 @@ static const struct rtp_rules_test_case rtp_rules_cases[] = {
- 	{
- 		.name = "yes-or-or-no",
- 		.expected_match = true,
--		/* FIXME: The parser should raise an error here. */
--		.expected_err = 0,
-+		.expected_err = -EINVAL,
- 		XE_RTP_RULES(FUNC(match_yes), OR, OR, FUNC(match_no)),
- 	},
- 	{
 diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
-index c49f80f398af..976a2e1f5592 100644
+index df72b456ab16..c49f80f398af 100644
 --- a/drivers/gpu/drm/xe/xe_rtp.c
 +++ b/drivers/gpu/drm/xe/xe_rtp.c
-@@ -129,6 +129,7 @@ static bool rule_matches_with_err(const struct xe_device *xe,
+@@ -30,6 +30,96 @@ static bool has_samedia(const struct xe_device *xe)
+ 	return xe->info.media_verx100 >= 1300;
+ }
+ 
++static bool rule_match_item(const struct xe_device *xe,
++			    struct xe_gt *gt,
++			    struct xe_hw_engine *hwe,
++			    const struct xe_rtp_rule *r)
++{
++	switch (r->match_type) {
++	case XE_RTP_MATCH_PLATFORM:
++		return xe->info.platform == r->platform;
++	case XE_RTP_MATCH_SUBPLATFORM:
++		return xe->info.platform == r->platform &&
++			xe->info.subplatform == r->subplatform;
++	case XE_RTP_MATCH_PLATFORM_STEP:
++		if (drm_WARN_ON(&xe->drm, xe->info.step.platform == STEP_NONE))
++			return false;
++
++		return xe->info.step.platform >= r->step_start &&
++			xe->info.step.platform < r->step_end;
++	case XE_RTP_MATCH_GRAPHICS_VERSION:
++		if (drm_WARN_ON(&xe->drm, !gt))
++			return false;
++
++		return xe->info.graphics_verx100 == r->ver_start &&
++			(!has_samedia(xe) || !xe_gt_is_media_type(gt));
++	case XE_RTP_MATCH_GRAPHICS_VERSION_RANGE:
++		if (drm_WARN_ON(&xe->drm, !gt))
++			return false;
++
++		return xe->info.graphics_verx100 >= r->ver_start &&
++			xe->info.graphics_verx100 <= r->ver_end &&
++			(!has_samedia(xe) || !xe_gt_is_media_type(gt));
++	case XE_RTP_MATCH_GRAPHICS_VERSION_ANY_GT:
++		if (drm_WARN_ON(&xe->drm, !gt))
++			return false;
++
++		return xe->info.graphics_verx100 == r->ver_start;
++	case XE_RTP_MATCH_GRAPHICS_STEP:
++		if (drm_WARN_ON(&xe->drm, !gt))
++			return false;
++
++		return xe->info.step.graphics >= r->step_start &&
++			xe->info.step.graphics < r->step_end &&
++			(!has_samedia(xe) || !xe_gt_is_media_type(gt));
++	case XE_RTP_MATCH_MEDIA_VERSION:
++		if (drm_WARN_ON(&xe->drm, !gt))
++			return false;
++
++		return xe->info.media_verx100 == r->ver_start &&
++			(!has_samedia(xe) || xe_gt_is_media_type(gt));
++	case XE_RTP_MATCH_MEDIA_VERSION_RANGE:
++		if (drm_WARN_ON(&xe->drm, !gt))
++			return false;
++
++		return xe->info.media_verx100 >= r->ver_start &&
++			xe->info.media_verx100 <= r->ver_end &&
++			(!has_samedia(xe) || xe_gt_is_media_type(gt));
++	case XE_RTP_MATCH_MEDIA_STEP:
++		if (drm_WARN_ON(&xe->drm, !gt))
++			return false;
++
++		return xe->info.step.media >= r->step_start &&
++			xe->info.step.media < r->step_end &&
++			(!has_samedia(xe) || xe_gt_is_media_type(gt));
++	case XE_RTP_MATCH_MEDIA_VERSION_ANY_GT:
++		if (drm_WARN_ON(&xe->drm, !gt))
++			return false;
++
++		return xe->info.media_verx100 == r->ver_start;
++	case XE_RTP_MATCH_INTEGRATED:
++		return !xe->info.is_dgfx;
++	case XE_RTP_MATCH_DISCRETE:
++		return xe->info.is_dgfx;
++	case XE_RTP_MATCH_ENGINE_CLASS:
++		if (drm_WARN_ON(&xe->drm, !hwe))
++			return false;
++
++		return hwe->class == r->engine_class;
++	case XE_RTP_MATCH_NOT_ENGINE_CLASS:
++		if (drm_WARN_ON(&xe->drm, !hwe))
++			return false;
++
++		return hwe->class != r->engine_class;
++	case XE_RTP_MATCH_FUNC:
++		return r->match_func(xe, gt, hwe);
++	default:
++		drm_warn(&xe->drm, "Invalid RTP match %u\n",
++			 r->match_type);
++		return false;
++	}
++}
++
+ static bool rule_matches_with_err(const struct xe_device *xe,
+ 				  struct xe_gt *gt,
+ 				  struct xe_hw_engine *hwe,
+@@ -39,14 +129,12 @@ static bool rule_matches_with_err(const struct xe_device *xe,
  {
  	const struct xe_rtp_rule *r;
  	unsigned int i, rcount = 0;
-+	bool short_circuit_or = false;
+-	bool match;
  
  	if (err)
  		*err = 0;
-@@ -143,13 +144,16 @@ static bool rule_matches_with_err(const struct xe_device *xe,
  
- 			/*
- 			 * This is only reached if a complete conjunction of
--			 * rules passed, in which case we shortcut the other
--			 * rules and return true.
-+			 * rules passed, in which case we short-circuit rule
-+			 * evaluation, but still keep parsing to find any syntax
-+			 * errors.
+ 	for (r = rules, i = 0; i < n_rules; r = &rules[++i]) {
+-		switch (r->match_type) {
+-		case XE_RTP_MATCH_OR:
++		if (r->match_type == XE_RTP_MATCH_OR) {
+ 			if (drm_WARN_ON(&xe->drm, !rcount)) {
+ 				if (err)
+ 					*err = -EINVAL;
+@@ -59,128 +147,11 @@ static bool rule_matches_with_err(const struct xe_device *xe,
+ 			 * rules and return true.
  			 */
--			return true;
-+			short_circuit_or = true;
-+			rcount = 0;
-+			continue;
+ 			return true;
+-		case XE_RTP_MATCH_PLATFORM:
+-			match = xe->info.platform == r->platform;
+-			break;
+-		case XE_RTP_MATCH_SUBPLATFORM:
+-			match = xe->info.platform == r->platform &&
+-				xe->info.subplatform == r->subplatform;
+-			break;
+-		case XE_RTP_MATCH_PLATFORM_STEP:
+-			if (drm_WARN_ON(&xe->drm, xe->info.step.platform == STEP_NONE)) {
+-				match = false;
+-				break;
+-			}
+-
+-			match = xe->info.step.platform >= r->step_start &&
+-				xe->info.step.platform < r->step_end;
+-			break;
+-		case XE_RTP_MATCH_GRAPHICS_VERSION:
+-			if (drm_WARN_ON(&xe->drm, !gt)) {
+-				match = false;
+-				break;
+-			}
+-
+-			match = xe->info.graphics_verx100 == r->ver_start &&
+-				(!has_samedia(xe) || !xe_gt_is_media_type(gt));
+-			break;
+-		case XE_RTP_MATCH_GRAPHICS_VERSION_RANGE:
+-			if (drm_WARN_ON(&xe->drm, !gt)) {
+-				match = false;
+-				break;
+-			}
+-
+-			match = xe->info.graphics_verx100 >= r->ver_start &&
+-				xe->info.graphics_verx100 <= r->ver_end &&
+-				(!has_samedia(xe) || !xe_gt_is_media_type(gt));
+-			break;
+-		case XE_RTP_MATCH_GRAPHICS_VERSION_ANY_GT:
+-			if (drm_WARN_ON(&xe->drm, !gt)) {
+-				match = false;
+-				break;
+-			}
+-
+-			match = xe->info.graphics_verx100 == r->ver_start;
+-			break;
+-		case XE_RTP_MATCH_GRAPHICS_STEP:
+-			if (drm_WARN_ON(&xe->drm, !gt)) {
+-				match = false;
+-				break;
+-			}
+-
+-			match = xe->info.step.graphics >= r->step_start &&
+-				xe->info.step.graphics < r->step_end &&
+-				(!has_samedia(xe) || !xe_gt_is_media_type(gt));
+-			break;
+-		case XE_RTP_MATCH_MEDIA_VERSION:
+-			if (drm_WARN_ON(&xe->drm, !gt)) {
+-				match = false;
+-				break;
+-			}
+-
+-			match = xe->info.media_verx100 == r->ver_start &&
+-				(!has_samedia(xe) || xe_gt_is_media_type(gt));
+-			break;
+-		case XE_RTP_MATCH_MEDIA_VERSION_RANGE:
+-			if (drm_WARN_ON(&xe->drm, !gt)) {
+-				match = false;
+-				break;
+-			}
+-
+-			match = xe->info.media_verx100 >= r->ver_start &&
+-				xe->info.media_verx100 <= r->ver_end &&
+-				(!has_samedia(xe) || xe_gt_is_media_type(gt));
+-			break;
+-		case XE_RTP_MATCH_MEDIA_STEP:
+-			if (drm_WARN_ON(&xe->drm, !gt)) {
+-				match = false;
+-				break;
+-			}
+-
+-			match = xe->info.step.media >= r->step_start &&
+-				xe->info.step.media < r->step_end &&
+-				(!has_samedia(xe) || xe_gt_is_media_type(gt));
+-			break;
+-		case XE_RTP_MATCH_MEDIA_VERSION_ANY_GT:
+-			if (drm_WARN_ON(&xe->drm, !gt)) {
+-				match = false;
+-				break;
+-			}
+-
+-			match = xe->info.media_verx100 == r->ver_start;
+-			break;
+-		case XE_RTP_MATCH_INTEGRATED:
+-			match = !xe->info.is_dgfx;
+-			break;
+-		case XE_RTP_MATCH_DISCRETE:
+-			match = xe->info.is_dgfx;
+-			break;
+-		case XE_RTP_MATCH_ENGINE_CLASS:
+-			if (drm_WARN_ON(&xe->drm, !hwe)) {
+-				match = false;
+-				break;
+-			}
+-
+-			match = hwe->class == r->engine_class;
+-			break;
+-		case XE_RTP_MATCH_NOT_ENGINE_CLASS:
+-			if (drm_WARN_ON(&xe->drm, !hwe)) {
+-				match = false;
+-				break;
+-			}
+-
+-			match = hwe->class != r->engine_class;
+-			break;
+-		case XE_RTP_MATCH_FUNC:
+-			match = r->match_func(xe, gt, hwe);
+-			break;
+-		default:
+-			drm_warn(&xe->drm, "Invalid RTP match %u\n",
+-				 r->match_type);
+-			match = false;
  		}
  
--		if (rule_match_item(xe, gt, hwe, r)) {
-+		if (short_circuit_or || rule_match_item(xe, gt, hwe, r)) {
- 			rcount++;
- 		} else {
+-		if (!match) {
++		if (rule_match_item(xe, gt, hwe, r)) {
++			rcount++;
++		} else {
  			/*
-@@ -166,16 +170,12 @@ static bool rule_matches_with_err(const struct xe_device *xe,
+ 			 * Advance rules until we find XE_RTP_MATCH_OR to check
+ 			 * if there's another set of conditions to check
+@@ -192,8 +163,6 @@ static bool rule_matches_with_err(const struct xe_device *xe,
+ 				return false;
+ 
+ 			rcount = 0;
+-		} else {
+-			rcount++;
  		}
  	}
  
--	if (drm_WARN_ON(&xe->drm, !rcount))
--		goto error;
--
--	return true;
--
--error:
--	if (err)
--		*err = -EINVAL;
-+	if (drm_WARN_ON(&xe->drm, !rcount)) {
-+		if (err)
-+			*err = -EINVAL;
-+	}
- 
--	return false;
-+	return short_circuit_or || rcount;
- }
- 
- static bool rule_matches(const struct xe_device *xe,
 
 -- 
 2.53.0
