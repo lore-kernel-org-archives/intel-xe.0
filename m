@@ -4,61 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AC04CD3430
-	for <intel-xe@archiver.kernel.org>; Mon,  4 May 2026 12:43:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B500FF886F
+	for <intel-xe@archiver.kernel.org>; Mon,  4 May 2026 12:43:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BEDDF10E6B1;
-	Mon,  4 May 2026 12:43:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31BF610E6AE;
+	Mon,  4 May 2026 12:43:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="E/aLqins";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="DeR2BoTw";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ABFCE10E8F2;
- Thu, 30 Apr 2026 17:06:53 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9F8510E4D1;
+ Fri,  1 May 2026 01:42:39 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 1828441579;
- Thu, 30 Apr 2026 17:06:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F8DAC2BCB3;
- Thu, 30 Apr 2026 17:06:50 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id AD4DF6015B;
+ Fri,  1 May 2026 01:42:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBC5FC2BCB3;
+ Fri,  1 May 2026 01:42:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1777568813;
- bh=dPdHfPCW7ng2kSeVyDlMheharmDFRf8Ia5tgN1rIr7g=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=E/aLqinsRaz6E+em9mmxb/ZmPZKQBFN0qzUWyMQ1WmwBpvNArlPyD2O/izyCgrhZt
- eIXJpUB4ekDjPDZGqtXXWplC89vsNKrkO432KF7hiOdDOWgT0wQBFrIjP5dx7wxAhL
- q+74f9XyxQvN8KdY0JZ3Fac04I5MqQ/RxFaIL/wPBDm8G/Ge3ilJTrCeacwiyGTX0t
- KTrSXj2Mjq/KHwqqNkcbGDJTcEPN5qX1tqx64v2waZGOELXhsWRVRRMg0luurIZx/L
- 4CbIQD8kOgp35xgTgEmFcZyE5Bn2vIr6wPy+iQuaoCrMpta0JHLuKgmLuFkaOPOoYQ
- dGcLQS5WymL1w==
-Message-ID: <59b3dab5-3341-46dc-851a-419790eaf403@kernel.org>
-Date: Thu, 30 Apr 2026 19:06:48 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] mm: Introduce zone_appears_fragmented()
-Content-Language: en-US
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- "David Hildenbrand (Arm)" <david@kernel.org>
+ s=k20201202; t=1777599758;
+ bh=s5Avm2OmpzdNLOwnBT2sIFLcF3ONT0lruv1PFQd8FBA=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=DeR2BoTwVYKieU0M5pjmAwUb/bVDgXlJr4hntEgrSPcBlfF+LITJrVSOc2N9+VRmS
+ ekYnQf+bCmDnsULRliNU29pq8gypvns0TPs06Vh5mnnkUcrtfzxhA8GcBhJV4pIxIC
+ bGC/E4sOA9Rmf3sALlgnTRrMM79+cnjJuhiotZxPE53FEvdyHycwOGPwMAW9sHzdKq
+ 88GinW/iJhP6YB6ZFqZQudA6uurILRnAf++59hKcxbNcWrGMQnXTRWbZQQigi4/DAC
+ vZwW2RSR6Pv/Y/1Ct1hJooxdh69EwpD1d9gzzaEy9r08P8mMJm/Wq6hzhqGDyQIaKt
+ gQEkmpv574rQw==
+Date: Fri, 1 May 2026 11:42:19 +1000
+From: Dave Chinner <dgc@kernel.org>
+To: Matthew Brost <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Andrew Morton <akpm@linux-foundation.org>, Lorenzo Stoakes <ljs@kernel.org>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>, Mike Rapoport
- <rppt@kernel.org>, Suren Baghdasaryan <surenb@google.com>,
+ Dave Chinner <david@fromorbit.com>, Qi Zheng <zhengqi.arch@bytedance.com>,
+ Roman Gushchin <roman.gushchin@linux.dev>,
+ Johannes Weiner <hannes@cmpxchg.org>,
+ Shakeel Butt <shakeel.butt@linux.dev>,
+ Kairui Song <kasong@tencent.com>, Barry Song <baohua@kernel.org>,
+ Axel Rasmussen <axelrasmussen@google.com>,
+ Yuanchu Xie <yuanchu@google.com>, Wei Xu <weixugc@google.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Carlos Santa <carlos.santa@intel.com>,
+ Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Daniel Colascione <dancol@dancol.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ David Hildenbrand <david@kernel.org>, Lorenzo Stoakes <ljs@kernel.org>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>,
+ Suren Baghdasaryan <surenb@google.com>,
  Michal Hocko <mhocko@suse.com>, linux-mm@kvack.org,
- linux-kernel@vger.kernel.org, Johannes Weiner <hannes@cmpxchg.org>
-References: <20260423055656.1696379-1-matthew.brost@intel.com>
- <20260423055656.1696379-2-matthew.brost@intel.com>
- <76191a17-18bf-4e9b-9ab5-dc9a48abfabb@kernel.org>
- <be42059924cde9bb16a087ee2a5abb0b9d850d68.camel@linux.intel.com>
- <aepuNL2fwp47P1Wi@gsse-cloud1.jf.intel.com>
- <aeqbe/9YRKNyYuWY@gsse-cloud1.jf.intel.com>
- <291406b26b8badf2e565996515931d9ebe50208f.camel@linux.intel.com>
- <a1252167-63a1-481b-9f1d-2a7bae7a3b6c@kernel.org>
- <afLCwHaPZMu/dxqY@gsse-cloud1.jf.intel.com>
- <f4324084f3808b9a42b87ec27bef7fe920dde9ea.camel@linux.intel.com>
-From: "Vlastimil Babka (SUSE)" <vbabka@kernel.org>
-In-Reply-To: <f4324084f3808b9a42b87ec27bef7fe920dde9ea.camel@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 0/6] mm, drm/ttm, drm/xe: Avoid reclaim/eviction loops
+ under fragmentation
+Message-ID: <afQE-2JOzfOm8enM@dread>
+References: <20260430191809.2142544-1-matthew.brost@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260430191809.2142544-1-matthew.brost@intel.com>
 X-Mailman-Approved-At: Mon, 04 May 2026 12:43:10 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,47 +82,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 4/30/26 09:47, Thomas Hellström wrote:
-> On Wed, 2026-04-29 at 19:47 -0700, Matthew Brost wrote:
->> 
->> So again, I think starting with wiring order into shrink_control and
->> this helper is a good place to start, as it fixes an immediate issue.
->> 
->> Let me know if that seems like a reasonable direction.
+On Thu, Apr 30, 2026 at 12:18:03PM -0700, Matthew Brost wrote:
+> TTM allocations at higher orders can drive Xe into a pathological
+> reclaim loop when memory is fragmented:
 > 
-> +1 for wiring order into shrink_control, and possibly also the priority
-> as mentioned in an earlier email.
+> kswapd → shrinker → eviction → rebind (exec ioctl) → repeat
 > 
-> However for cgroups-aware shrinkers, The number of free memory in a
-> zone might not be an indication of fragmentation-triggered reclaim at
-> all, it could be the result of the cgroup hitting its memory limits.
-
-I'm not sure I understand your concern wrt cgroups, but some hopefully
-relevant (and hopefully not wrong) points:
-
-- fragmentation is a zone-related property, not cgroup
-- hitting a cgroup limit doesn't wake up kswapd nor go through the usual
-reclaim/compaction paths, it's a form of direct-reclaim-only
-
-So I believe it should be easy to recognize when your shrinker is called for
-memcg shrinking and not kswapd and thus it can't be happening due to zone
-fragmentation but must be due to memcg limits, and then you probably don't
-need to check zone_appears_fragmented() at all.
-
-> So I think if we can solve this with a combination of GFP flags,
-> plumbed-through order and plumbed-through priority, that would be
-> ideal.
+> In this state, reclaim is triggered despite substantial free memory,
+> but fails to produce contiguous higher-order pages. The Xe shrinker then
+> evicts active buffer objects, increasing faulting and rebind activity
+> and further feeding the loop. The result is high CPU overhead and poor
+> GPU forward progress.
 > 
-> Thanks,
-> Thomas
+> This issue was first reported in [1] and independently observed
+> internally and by Google.
 > 
->> 
->> Matt
->> 
->> > 
->> > 
->> > -- 
->> > Cheers,
->> > 
->> > David
+> A simple reproducer is:
+> 
+> - Boot an iGPU system with mem=8G
+> - Launch 10 Chrome tabs running the WebGL aquarium demo
+> - Configure each tab with ~5k fish
+> 
+> Under this workload, ftrace shows a continuous loop of:
+> 
+> xe_shrinker_scan (kswapd)
+> xe_vma_rebind_exec
+> 
+> Performance degrades significantly, with each tab dropping to ~2 FPS on
+> PTL (Ubuntu 24.04).
+> 
+> At the same time, /proc/buddyinfo shows substantial free memory but no
+> higher-order availability. For example, the Normal zone:
+> 
+> Count: 4063 4595 3455 3400 3139 2762 2293 1655 643 0 0
+> 
+> This corresponds to ~2.8GB free memory, but no order-9 (2MB) blocks,
+> indicating severe fragmentation.
+> 
+> This series addresses the issue in two ways:
+> 
+> TTM: Restrict direct reclaim to beneficial_order. Larger allocations
+> use __GFP_NORETRY to fail quickly rather than triggering reclaim.
 
+NACK.
+
+As I have said to the people trying to hack around direct reclaim
+for high order allocations being costly for the page cache, fix the
+problem with direct reclaim. (e.g.
+https://lore.kernel.org/linux-xfs/adLlrSZ5oRAa_Hfd@dread/)
+
+We should not be hacking around a problem in the mm infrastructure
+by changing allocation context flags every high order allocation 
+call site that needs high order allocations. Understand and fix the
+infrastructure problem once and for all.
+
+> Xe: Introduce a heuristic in the shrinker to avoid eviction when
+> running under kswapd and the system appears memory-rich but
+> fragmented.
+
+NACK on architectural grounds.
+
+Custom heuristics in individual shrinkers to decide whether the
+should do what the mm subsystem has asked them to do has -always-
+been a mistake to allow. The mm subsystem makes the decision on how
+much cache shrinkage needs to occur, the shrinkers just do what they
+are told to do.
+
+If we have a problem where a workload causes excessive shrinker
+reclaim, then we need to address the problem in the infrastructure
+because excessive reclaim affects the performance of -all-
+subsystems with shrinkable caches, not just the TTM subsystem.
+
+As it is, I can't review what you've actually implemented because
+you only cc'd me on a single patch in the series. In future, please
+cc me on the whole patchset because shrinkers need to work as a
+coherent whole, not just in isolation....
+
+-Dave.
+-- 
+Dave Chinner
+dgc@kernel.org
