@@ -4,41 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDDEECD3430
-	for <intel-xe@archiver.kernel.org>; Mon,  4 May 2026 12:43:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7475FF885A
+	for <intel-xe@archiver.kernel.org>; Mon,  4 May 2026 12:43:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 864F910E6AA;
-	Mon,  4 May 2026 12:43:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F11810E6AC;
+	Mon,  4 May 2026 12:43:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; secure) header.d=panix.com header.i=@panix.com header.b="ovusLGWM";
+	dkim=fail reason="signature verification failed" (1024-bit key; secure) header.d=panix.com header.i=@panix.com header.b="EwqJlXIY";
 	dkim-atps=neutral
 Received: from mailbackend.panix.com (mailbackend.panix.com [166.84.1.89])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7E9810E276;
- Sat,  2 May 2026 08:14:40 +0000 (UTC)
-Received: from [192.168.126.122] (ip72-219-82-239.oc.oc.cox.net
- [72.219.82.239])
- by mailbackend.panix.com (Postfix) with ESMTPSA id 4g710b2LQsz4n9b;
- Sat,  2 May 2026 04:14:39 -0400 (EDT)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D503110F5BF;
+ Fri,  1 May 2026 20:06:00 +0000 (UTC)
+Received: from [10.50.4.26] (45-31-46-51.lightspeed.sndgca.sbcglobal.net
+ [45.31.46.51])
+ by mailbackend.panix.com (Postfix) with ESMTPSA id 4g6hqp6ldbz44h5;
+ Fri,  1 May 2026 16:05:58 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=panix.com; s=panix;
- t=1777709680; bh=bxqm0lW2PmvQTaH5Q++wyZMQfBtk2aVXIpYkVvoKLc4=;
+ t=1777665960; bh=cONm87vO6U8KoFRSYCxJ8KYqOQ0G13S1o+mPo2nLIvE=;
  h=Date:Subject:To:Cc:References:From:In-Reply-To;
- b=ovusLGWMO6yJx6JdnTzukjg74nhX4iiCZ2Z46DaNl6rZBv+/qR/Dz7zWEjaguVWaH
- 2qPmTCXIyroszvUBXGb31acfbMuz57NEpTt6FTDZ+gNoaqcKPu1XwVVEuYmr/RKw7E
- +m7CsAdVGItg4c4GBgDs6q42nq/rN7bnB8kC7vBw=
-Message-ID: <7f927ef8-2d3d-4609-926d-b18535794f72@panix.com>
-Date: Sat, 2 May 2026 01:14:38 -0700
+ b=EwqJlXIYdY4I1dS0lhxbfOj47Kt+Yj7YfgEwsGpNoNaJcRtXApRuMJuARolCq0MAm
+ VWpEKWIhLMocrLBh3MQnn6CnrtDMKQ+9JPuLriJSUm4E6j8ABb1QK90bYbIP1Meq8Y
+ 8nPhy8FGQQAwgpjF3QZ84CGXq4SMvIqMQoKjEAPg=
+Message-ID: <1bc0b1a7-a01f-4dc2-ad7a-3a05f975331e@panix.com>
+Date: Fri, 1 May 2026 13:05:57 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] drm/ttm: Fix GPU MM stats during pool shrinking
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: Christian Koenig <christian.koenig@amd.com>, Huang Rui
- <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,
- David Airlie <airlied@gmail.com>
-References: <20260502065338.2720646-1-matthew.brost@intel.com>
+Subject: Re: PATCH v4 0/6] mm, drm/ttm, drm/xe: Avoid reclaim/eviction loops
+ under fragmentation
+To: Matthew Brost <matthew.brost@intel.com>, airlied@gmail.com
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ David Hildenbrand <david@kernel.org>, Lorenzo Stoakes <ljs@kernel.org>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>,
+ Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
+ linux-mm@kvack.org, linux-kernel@vger.kernel.org
+References: <20260430191809.2142544-1-matthew.brost@intel.com>
+ <20260430191809.2142544-3-matthew.brost@intel.com>
+ <f25f27a1-bf09-44bd-9b37-49f159d82d6a@panix.com>
+ <afUGSmS+jNPP8O5v@gsse-cloud1.jf.intel.com>
 Content-Language: en-US
 From: Kenneth Crudup <kenny@panix.com>
-In-Reply-To: <20260502065338.2720646-1-matthew.brost@intel.com>
+In-Reply-To: <afUGSmS+jNPP8O5v@gsse-cloud1.jf.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Mon, 04 May 2026 12:43:10 +0000
@@ -57,127 +65,57 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
+On 5/1/26 13:00, Matthew Brost wrote:
 
-On 5/1/26 23:53, Matthew Brost wrote:
-> TTM pool shrinking frees pages by calling __free_pages() directly,
-> which bypasses updates to NR_GPU_ACTIVE and leaves GPU MM accounting
-> out of sync.
-> 
-> Introduce a helper, __free_pages_gpu_account(), and use it for all page
-> frees in ttm_pool.c so GPU MM statistics are updated consistently.
-> 
-> Reported-by: Kenneth Crudup <kenny@panix.com>
-> Fixes: ae80122f3896 ("drm/ttm: use gpu mm stats to track gpu memory allocations. (v4)")
-> Cc: Christian Koenig <christian.koenig@amd.com>
-> Cc: Huang Rui <ray.huang@amd.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: dri-devel@lists.freedesktop.org
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> 
-> ---
-> 
-> v2:
+> So is this 7.1-rc1? It looks like new feature to 7.1 added by Dave [1] and
+> something look off here. Thanks for pointing this out.
 
-Tested-By: Kenneth R. Crudup <kenny@panix.com>
+Yeah. I grab his master branch daily (as of 6fe0be6dc7fa RN).
 
-I think this one got it right ... this is after two bonnie++ runs:
+Is this a "shoot the messenger" thing? IOW, is the reporting off, or is 
+the memory usage really that high?
 
-----
-SwapFree:       33554428 kB
-MemTotal:       32345768 kB
-GPUActive:        676092 kB
-GPUReclaim:       584272 kB
+(BTW, those are in 30-second intervals)
 
-SwapFree:       33554428 kB
-MemTotal:       32345768 kB
-GPUActive:        750396 kB
-GPUReclaim:       516348 kB
+>> ----
+>> SwapTotal:      33554428 kB
+>> MemTotal:       32345672 kB
+>> GPUActive:        652640 kB
+>> GPUReclaim:       403988 kB
+>>
+>> SwapTotal:      33554428 kB
+>> MemTotal:       32345672 kB
+>> GPUActive:        651180 kB
+>> GPUReclaim:       406812 kB
+>>
+>> SwapTotal:      33554428 kB
+>> MemTotal:       32345672 kB
+>> GPUActive:        659004 kB
+>> GPUReclaim:       399396 kB
+>>
+>> SwapTotal:      33554428 kB
+>> MemTotal:       32345672 kB
+>> GPUActive:        666996 kB
+>> GPUReclaim:       392764 kB
+>>
+>> <some hours later>
+>> GPUActive:      91832468 kB
+>> SwapTotal:      33554428 kB
+>> MemTotal:       32345672 kB
+>> GPUReclaim:       488000 kB
+>>
+>> GPUActive:      91832332 kB
+>> SwapTotal:      33554428 kB
+>> MemTotal:       32345672 kB
+>> GPUReclaim:       487988 kB
+>>
+>> GPUActive:      91869376 kB
+>> SwapTotal:      33554428 kB
+>> MemTotal:       32345672 kB
+>> GPUReclaim:       486504 kB
+>> ----
 
-SwapFree:       33554428 kB
-MemTotal:       32345768 kB
-GPUActive:        801996 kB
-GPUReclaim:       478756 kB
-
-SwapFree:       33554428 kB
-MemTotal:       32345768 kB
-GPUActive:        794224 kB
-GPUReclaim:       481624 kB
-
-SwapFree:       33554428 kB
-MemTotal:       32345768 kB
-GPUActive:        351336 kB
-GPUReclaim:          400 kB
-
-SwapFree:       33554428 kB
-MemTotal:       32345768 kB
-GPUActive:       1015624 kB
-GPUReclaim:           72 kB
-
-SwapFree:       33554428 kB
-MemTotal:       32345768 kB
-GPUActive:        583176 kB
-GPUReclaim:           48 kB
-
-SwapFree:       33554428 kB
-MemTotal:       32345768 kB
-GPUActive:        737852 kB
-GPUReclaim:         2524 kB
-
-SwapFree:       33554428 kB
-MemTotal:       32345768 kB
-GPUActive:       1041056 kB
-GPUReclaim:          308 kB
-
-SwapFree:       33554428 kB
-MemTotal:       32345768 kB
-GPUActive:       1356568 kB
-GPUReclaim:       109992 kB
-
-SwapFree:       33554428 kB
-MemTotal:       32345768 kB
-GPUActive:       1181732 kB
-GPUReclaim:        39000 kB
-
-SwapFree:       33554428 kB
-MemTotal:       32345768 kB
-GPUActive:        989900 kB
-GPUReclaim:           68 kB
-
-SwapFree:       33554428 kB
-MemTotal:       32345768 kB
-GPUActive:        486720 kB
-GPUReclaim:          544 kB
-
-SwapFree:       33554428 kB
-MemTotal:       32345768 kB
-GPUActive:        687628 kB
-GPUReclaim:         2280 kB
-
-SwapFree:       33554428 kB
-MemTotal:       32345768 kB
-GPUActive:        634060 kB
-GPUReclaim:         1000 kB
-
-SwapFree:       33554428 kB
-MemTotal:       32345768 kB
-GPUActive:       1030168 kB
-GPUReclaim:         1696 kB
-
-SwapFree:       33554428 kB
-MemTotal:       32345768 kB
-GPUActive:       1323464 kB
-GPUReclaim:         1392 kB
-
-SwapFree:       33554428 kB
-MemTotal:       32345768 kB
-GPUActive:       1452340 kB
-GPUReclaim:        20024 kB
-----
-
-
-
--Kenny "yeah, I don't sleep much either" Crudup
+-K
 
 -- 
 Kenneth R. Crudup / Sr. SW Engineer, Scott County Consulting, Orange 
