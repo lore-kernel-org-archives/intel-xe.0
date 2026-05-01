@@ -4,57 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8BC1FF885A
-	for <intel-xe@archiver.kernel.org>; Mon,  4 May 2026 12:34:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46360FF886F
+	for <intel-xe@archiver.kernel.org>; Mon,  4 May 2026 12:43:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E95289F41;
-	Mon,  4 May 2026 12:34:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2C1B10E68A;
+	Mon,  4 May 2026 12:43:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kHFjHIGs";
+	dkim=fail reason="signature verification failed" (1024-bit key; secure) header.d=panix.com header.i=@panix.com header.b="kGIXSncC";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FE6D89F41;
- Mon,  4 May 2026 12:34:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777898077; x=1809434077;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=VTxOPleJmAjsL1JTtJHm8C3mUIEEGPyDiVFFRYe145A=;
- b=kHFjHIGshgIJxWMKZUw7dPr466zMhFIA2fNt7n76ITV4P9EfkoYwkQ4R
- 6ECXb+pAu934J5LLhZJoPGmeQ8zyIcyDsx8L79T0/LssbfqNIXKdTRtbw
- oiQfSVeYsjTzpkeNnJ4E9KoFELT727T2ob2YxCILwNzUjQRUg57/ywVX4
- EyxunBP8FYom0bKIftxqfT2hU2lZbCxYg/Hgsc/EhvhV7+AzAU20rCLT9
- um8Up5ucuXR2kvwf/S/B6jw6C/cMvlafXVTASqxODYrrlpEdV31htpRwK
- oBHlEcA3ou3NjQoUAUy6sbdPgDLcrBWc/OZAhdXRTWUFIyTsehSkYh+Nf Q==;
-X-CSE-ConnectionGUID: 9HGNVs85T2ai0gIHQNPAWQ==
-X-CSE-MsgGUID: M8pimggoSGus94mUEpaQbA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11776"; a="89444555"
-X-IronPort-AV: E=Sophos;i="6.23,215,1770624000"; d="scan'208";a="89444555"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2026 05:34:37 -0700
-X-CSE-ConnectionGUID: e3HJ076ISqeAR7TAZ4rsrg==
-X-CSE-MsgGUID: Bz93SLieSh+6XyMUwroP5w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,215,1770624000"; d="scan'208";a="234642542"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.157])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2026 05:34:36 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Garg, Nemesa" <nemesa.garg@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: RE: [PATCH 0/8] drm/i915/display: refactor display funcs
-In-Reply-To: <IA1PR11MB6467C9D685C9239670E691B8E3312@IA1PR11MB6467.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <cover.1777537663.git.jani.nikula@intel.com>
- <IA1PR11MB6467C9D685C9239670E691B8E3312@IA1PR11MB6467.namprd11.prod.outlook.com>
-Date: Mon, 04 May 2026 15:34:32 +0300
-Message-ID: <42886f5914530eb3bff0f1fa82fc87c4c0b3c1bb@intel.com>
+Received: from mailbackend.panix.com (mailbackend.panix.com [166.84.1.89])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABB5910F645
+ for <intel-xe@lists.freedesktop.org>; Fri,  1 May 2026 23:23:31 +0000 (UTC)
+Received: from [10.50.4.26] (45-31-46-51.lightspeed.sndgca.sbcglobal.net
+ [45.31.46.51])
+ by mailbackend.panix.com (Postfix) with ESMTPSA id 4g6nCk65VNz4Xbq;
+ Fri,  1 May 2026 19:23:30 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=panix.com; s=panix;
+ t=1777677811; bh=vCsgPt5FzI68qFgzA5x7Fij+v13ZuGX0JIAuQDB3Luw=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To;
+ b=kGIXSncCyFuoJlGE0wlnE9TSuGmtnYGbX8gOi3zR0tMs2XH8jZSavrLs+pw86+vBN
+ F3V06toV4LXQl87MYyLl4bdbK6w9z7k8nMVJVJySGqQcJPh8a1FuvMyEgfflNTLhGK
+ 3SYuBLyU2Vixf41V51r8PTuwra4KtguZ10dge5T4=
+Message-ID: <faa7d61c-7422-4127-af2d-a54e7b95b547@panix.com>
+Date: Fri, 1 May 2026 16:23:30 -0700
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: PATCH v4 0/6] mm, drm/ttm, drm/xe: Avoid reclaim/eviction loops
+ under fragmentation
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: airlied@gmail.com, intel-xe@lists.freedesktop.org
+References: <20260430191809.2142544-1-matthew.brost@intel.com>
+ <20260430191809.2142544-3-matthew.brost@intel.com>
+ <f25f27a1-bf09-44bd-9b37-49f159d82d6a@panix.com>
+ <afUGSmS+jNPP8O5v@gsse-cloud1.jf.intel.com>
+ <1bc0b1a7-a01f-4dc2-ad7a-3a05f975331e@panix.com>
+ <afUWr74J1OVdcwGZ@gsse-cloud1.jf.intel.com>
+ <afUqKwUnyfz1WbPh@gsse-cloud1.jf.intel.com>
+Content-Language: en-US
+From: Kenneth Crudup <kenny@panix.com>
+In-Reply-To: <afUqKwUnyfz1WbPh@gsse-cloud1.jf.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Mon, 04 May 2026 12:43:10 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,32 +60,21 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 04 May 2026, "Garg, Nemesa" <nemesa.garg@intel.com> wrote:
->> -----Original Message-----
->> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Jani
->> Nikula
->> Sent: Thursday, April 30, 2026 1:59 PM
->> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
->> Cc: Nikula, Jani <jani.nikula@intel.com>
->> Subject: [PATCH 0/8] drm/i915/display: refactor display funcs
->> 
->> Split out the display function refactor from [1] into a separate series for easier
->> review and merging.
->> 
->> BR,
->> Jani.
->> 
->> [1] https://lore.kernel.org/r/cover.1777458161.git.jani.nikula@intel.com
->> 
->> 
-> LGTM,
-> Reviewed-by: Nemesa Garg <nemesa.garg@intel.com>
 
-Thanks, pushed to din.
+On 5/1/26 15:33, Matthew Brost wrote:
 
-BR,
-Jani.
+> Looks like a simple accounting error in the shrinking path. Here is a fix
+> [1] that seems to work for me.
 
+NGL, I lucked out with this error; I wouldn't have tracked down your 
+patch series if I hadn't started looking at the Xe driver 'cause of that 
+huge GPUActive value, rightly or wrongly- I was about to begin the 
+potentially-painful process of un-merging the last DRM/Xe series from 
+Linus' master (the thrashing doesn't happen in 7.0).
+
+-Kenny "So ... thanks, Dave! :)" Crudup
 
 -- 
-Jani Nikula, Intel
+Kenneth R. Crudup / Sr. SW Engineer, Scott County Consulting, Orange 
+County CA
+
