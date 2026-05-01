@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 320EFCD3423
-	for <intel-xe@archiver.kernel.org>; Fri,  1 May 2026 17:04:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CEC2CCFA13
+	for <intel-xe@archiver.kernel.org>; Fri,  1 May 2026 17:14:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C193A10E53E;
-	Fri,  1 May 2026 17:04:47 +0000 (UTC)
-Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E7A310E139;
- Fri,  1 May 2026 17:04:47 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0643767119277350163=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD0AC10E563;
+	Fri,  1 May 2026 17:14:26 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XkDlT2Bk";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A526510E563;
+ Fri,  1 May 2026 17:14:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1777655664; x=1809191664;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=/SBxcMqOta1Lrd1fzPTsxQ80JOmJ3oX8nQz6F76FKHE=;
+ b=XkDlT2BkBHwvSbNhCyAIXG81SRKezUPsACQfZ7Fa1TpwkAiflFSSFUWJ
+ qfvJaVeJPeP4n06iOI5wGEfb5vkS2tmhoCJ7L6IpRmzNYlB0yvUwJ4vS8
+ aYK9+Z0k1SzPiQYSWW4FowPzl+l9YKgYnL9PXroe+Dt+i8h1EB2yfAHua
+ fhtGHqAk711zO2UaYCHJzb/ZH90jzx6oK0HVYFrVEdW1uLuSZG6lNZ1kv
+ u8upc/Xk8zKNYbfnXcczgSJLSLPdmafrIL50cS3d5h3e+xeFpwwqUKsA1
+ n/AdkWIJGkkS+dRIS7DZsqONK/W8ELBX/gKlr6D67NCPl0oW9YrS70pxg w==;
+X-CSE-ConnectionGUID: 6I5ae37aQr6RV3/V9PxxHQ==
+X-CSE-MsgGUID: RPsle5mBQM+6DgTePkgdsw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11773"; a="82487359"
+X-IronPort-AV: E=Sophos;i="6.23,210,1770624000"; d="scan'208";a="82487359"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 May 2026 10:14:24 -0700
+X-CSE-ConnectionGUID: hskdCO8cTPS0e3jOHLWvPw==
+X-CSE-MsgGUID: y3Rzrc2YT+eeWa5KADMVew==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,210,1770624000"; d="scan'208";a="233885986"
+Received: from osgcshtiger.sh.intel.com ([10.239.81.49])
+ by orviesa006.jf.intel.com with ESMTP; 01 May 2026 10:14:23 -0700
+From: Shuicheng Lin <shuicheng.lin@intel.com>
+To: dri-devel@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>
+Subject: [PATCH] drm/gpusvm: Drop redundant @flags.* kernel-doc on struct
+ drm_gpusvm_pages
+Date: Fri,  1 May 2026 17:13:33 +0000
+Message-Id: <20260501171333.4044699-1-shuicheng.lin@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_scripts/kernel-doc=3A_Detec?=
- =?utf-8?q?t_mismatched_inline_member_documentation_tags_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shuicheng Lin" <shuicheng.lin@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 01 May 2026 17:04:47 -0000
-Message-ID: <177765508757.31645.13773823426851733718@5ab824fced77>
-X-Patchwork-Hint: ignore
-References: <20260501160800.4043276-1-shuicheng.lin@intel.com>
-In-Reply-To: <20260501160800.4043276-1-shuicheng.lin@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +63,62 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0643767119277350163==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The kernel-doc block above struct drm_gpusvm_pages duplicates the
+descriptions of the bit-flags that live in struct drm_gpusvm_pages_flags
+using dotted notation (@flags.migrate_devmem, @flags.unmapped, ...).
+That dotted notation is intended for nested anonymous structs/unions that
+the parser flattens into the parent's parameter list.  Here, however,
+flags is of a named external type, so the parser does not flatten its
+members and the dotted entries do not match any member of
+drm_gpusvm_pages.  They also duplicate the canonical descriptions already
+present in the kernel-doc of struct drm_gpusvm_pages_flags itself.
 
-== Series Details ==
+Drop the five @flags.* lines and replace them with a single @flags entry
+that cross-references the type via kernel-doc's "&struct ..." syntax.
+This eliminates the redundancy and removes warnings emitted by the new
+parameterdescs check in scripts/kernel-doc:
 
-Series: scripts/kernel-doc: Detect mismatched inline member documentation tags (rev4)
-URL   : https://patchwork.freedesktop.org/series/164948/
-State : success
+  Excess struct member 'flags.migrate_devmem' description in
+   'drm_gpusvm_pages'
+  Excess struct member 'flags.unmapped' description in 'drm_gpusvm_pages'
+  Excess struct member 'flags.partial_unmap' description in
+   'drm_gpusvm_pages'
+  Excess struct member 'flags.has_devmem_pages' description in
+   'drm_gpusvm_pages'
+  Excess struct member 'flags.has_dma_mapping' description in
+   'drm_gpusvm_pages'
 
-== Summary ==
+No functional change.
 
-CI Bug Log - changes from xe-4964-a1e8c0d0d0d7687f5cdce1a4477e2f2cfb900c97_BAT -> xe-pw-164948v4_BAT
-====================================================
+Cc: Matthew Auld <matthew.auld@intel.com>
+Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
+---
+The failure is reported by the new kernel-doc check in: https://patchwork.freedesktop.org/series/164948/
+---
+ include/drm/drm_gpusvm.h | 7 +------
+ 1 file changed, 1 insertion(+), 6 deletions(-)
 
-Summary
--------
+diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
+index 2578ac92a8d4..96eaf0328b4d 100644
+--- a/include/drm/drm_gpusvm.h
++++ b/include/drm/drm_gpusvm.h
+@@ -137,12 +137,7 @@ struct drm_gpusvm_pages_flags {
+  * @dpagemap: The struct drm_pagemap of the device pages we're dma-mapping.
+  *            Note this is assuming only one drm_pagemap per range is allowed.
+  * @notifier_seq: Notifier sequence number of the range's pages
+- * @flags: Flags for range
+- * @flags.migrate_devmem: Flag indicating whether the range can be migrated to device memory
+- * @flags.unmapped: Flag indicating if the range has been unmapped
+- * @flags.partial_unmap: Flag indicating if the range has been partially unmapped
+- * @flags.has_devmem_pages: Flag indicating if the range has devmem pages
+- * @flags.has_dma_mapping: Flag indicating if the range has a DMA mapping
++ * @flags: Flags for the range; see &struct drm_gpusvm_pages_flags
+  */
+ struct drm_gpusvm_pages {
+ 	struct drm_pagemap_addr *dma_addr;
+-- 
+2.43.0
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-4964-a1e8c0d0d0d7687f5cdce1a4477e2f2cfb900c97 -> xe-pw-164948v4
-
-  IGT_8881: aa5853ef5b379b1e4558218c21ef4caeae112184 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4964-a1e8c0d0d0d7687f5cdce1a4477e2f2cfb900c97: a1e8c0d0d0d7687f5cdce1a4477e2f2cfb900c97
-  xe-pw-164948v4: 164948v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164948v4/index.html
-
---===============0643767119277350163==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>scripts/kernel-doc: Detect mismatched inline member documentation tags (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164948/">https://patchwork.freedesktop.org/series/164948/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164948v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164948v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4964-a1e8c0d0d0d7687f5cdce1a4477e2f2cfb900c97_BAT -&gt; xe-pw-164948v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4964-a1e8c0d0d0d7687f5cdce1a4477e2f2cfb900c97 -&gt; xe-pw-164948v4</li>
-</ul>
-<p>IGT_8881: aa5853ef5b379b1e4558218c21ef4caeae112184 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4964-a1e8c0d0d0d7687f5cdce1a4477e2f2cfb900c97: a1e8c0d0d0d7687f5cdce1a4477e2f2cfb900c97<br />
-  xe-pw-164948v4: 164948v4</p>
-
-</body>
-</html>
-
---===============0643767119277350163==--
