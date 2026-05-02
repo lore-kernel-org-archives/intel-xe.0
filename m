@@ -4,64 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09BD8CD3427
-	for <intel-xe@archiver.kernel.org>; Sat,  2 May 2026 17:55:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0083CD13DA
+	for <intel-xe@archiver.kernel.org>; Sat,  2 May 2026 18:05:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C092D10E2C3;
-	Sat,  2 May 2026 17:55:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B19F910E090;
+	Sat,  2 May 2026 18:05:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jQgFwCa8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XBBM7tnL";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B726C10E2C3
- for <intel-xe@lists.freedesktop.org>; Sat,  2 May 2026 17:55:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 874A610E090
+ for <intel-xe@lists.freedesktop.org>; Sat,  2 May 2026 18:05:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777744554; x=1809280554;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=j9GODIABf+JTEP1U2d13L7s9k0O3xP8BHyhFY0tJhGo=;
- b=jQgFwCa80oEDbicsT9rySYloH5AUFj+R/YXrUb3DJpZ0Q37FGuq0hGkP
- P4rAhaa5YcXri4pTwgFXGTGY3FHTydD5zZ6kaC9e8djKiFgM39Qufwa3a
- zQEV3LZh4z2h/j2sAl+yEjFsgYHP67oRVjvzjR5stF6uvXIyInYiw93bD
- 19aZEx8KGy7yn1WO/5jM4emMOWR9QtKXkdGlylPTHds+VMLEH5Ckh8eS/
- IjuH4MmLk2HctSbYK29cV4T02x6Mhat1dG3LhA6Z2fvqZEh3q7qS90ySO
- +E3KPM78QzpAqyIkIS1tj+dmosca1qqjlaRAtWOo4COCcB35Jw/xx3sHP w==;
-X-CSE-ConnectionGUID: Ta+kFEU9QMK1MgPocRPBaQ==
-X-CSE-MsgGUID: k/cC1WL7TWC+bLTHwt2P9w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11774"; a="78602073"
-X-IronPort-AV: E=Sophos;i="6.23,212,1770624000"; d="scan'208";a="78602073"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2026 10:55:53 -0700
-X-CSE-ConnectionGUID: 6rq3eLLRQXG+BrCQReg6pw==
-X-CSE-MsgGUID: ExM+NCPKQxyURZWH7i3+jg==
+ t=1777745122; x=1809281122;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=pn9MwgLB+7vgJTCgzBbRWeLFDRP9y/jA7sarzGMw/n8=;
+ b=XBBM7tnLhRetvNUlH6CWXd/5/T+DCJe5Os4I2ioE9lK0dOBy5j5cbJZ9
+ LuRzd7LPDVpfMtK3rm5M6j72xDUB4isib/OCGmdNjeWGP+aKs4fcmaAC9
+ WWsNvJPbo4l538pX/KHjKuM9oXp3YpYSTOSvd3EjYKbfDZDhi6SzZvzew
+ WgzAmucLWkiGN3PLY/6YPWemMxwfKzekFT6x3rAHYkTsRfPcAUMpkYCwC
+ rPuU3SI/WcHDQxCQTEG8k4pi+zAx9V5STsBGXpI+NBQtR6z7Z97uoltFn
+ kZ/JCZGqIzT96b97dk4volH9P6DzUMREwNCB/UQ8lWVHLW9FynSEqWBep Q==;
+X-CSE-ConnectionGUID: 2yAFj/Q4QRCzW1gmtBiJng==
+X-CSE-MsgGUID: Qg5UQGqOTXWGi/GSqlTofg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11774"; a="77833389"
+X-IronPort-AV: E=Sophos;i="6.23,212,1770624000"; d="scan'208";a="77833389"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 May 2026 11:05:21 -0700
+X-CSE-ConnectionGUID: Qev66k+ESM+O7aQN9prCyQ==
+X-CSE-MsgGUID: aU9hd/SpT1WkurWehosKwQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,212,1770624000"; d="scan'208";a="258489624"
-Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2026 10:55:51 -0700
-Date: Sat, 2 May 2026 19:55:48 +0200
+X-IronPort-AV: E=Sophos;i="6.23,212,1770624000"; d="scan'208";a="232488119"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by fmviesa008.fm.intel.com with ESMTP; 02 May 2026 11:05:20 -0700
 From: Raag Jadav <raag.jadav@intel.com>
-To: "Gupta, Anshuman" <anshuman.gupta@intel.com>
-Cc: "Tauro, Riana" <riana.tauro@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- "aravind.iddamsetty@linux.intel.com" <aravind.iddamsetty@linux.intel.com>,
- "Nilawar, Badal" <badal.nilawar@intel.com>,
- "Koppuravuri, Ravi Kishore" <ravi.kishore.koppuravuri@intel.com>,
- "Koujalagi, Mallesh" <mallesh.koujalagi@intel.com>,
- "Purkait, Soham" <soham.purkait@intel.com>
-Subject: Re: [PATCH v4 13/13] drm/xe/xe_pci_error: Process errors in
- mmio_enabled
-Message-ID: <afY6pD47U8xLijeT@black.igk.intel.com>
-References: <20260417085812.4013309-15-riana.tauro@intel.com>
- <20260417085812.4013309-28-riana.tauro@intel.com>
- <BN9PR11MB5242107CE3AA04F2B27AC75895352@BN9PR11MB5242.namprd11.prod.outlook.com>
+To: intel-xe@lists.freedesktop.org
+Cc: riana.tauro@intel.com,
+	Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v1] drm/xe/hw_error: Cleanup array map
+Date: Sat,  2 May 2026 23:31:43 +0530
+Message-ID: <20260502180143.1450266-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <BN9PR11MB5242107CE3AA04F2B27AC75895352@BN9PR11MB5242.namprd11.prod.outlook.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,44 +64,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Apr 30, 2026 at 04:45:05PM +0530, Gupta, Anshuman wrote:
-> > -----Original Message-----
-> > From: Tauro, Riana <riana.tauro@intel.com>
-> > 
-> > Query system controller when any non fatal error occurs to check the type of
-> > the error, contain and recover.
-> > 
-> > The system controller is queried in the mmio_enabled callback.
+xe_hw_error_map[] is not worth the memory needed to map two components.
+Clean it up and use switch() instead, which also, in turn, simplifies
+bounds checking logic.
 
-...
+add/remove: 0/1 grow/shrink: 0/1 up/down: 0/-425 (-425)
+Function                                     old     new   delta
+xe_hw_error_map                              136       -    -136
+xe_hw_error_irq_handler                     3728    3439    -289
+Total: Before=7700, After=7275, chg -5.52%
 
-> > +/* Mapping of RAS recovery action to PCI error result */ static const
-> > +pci_ers_result_t ras_recovery_action_to_pci_result[] = {
-> > +	[XE_RAS_RECOVERY_ACTION_RECOVERED] =
-> > PCI_ERS_RESULT_RECOVERED,
-> > +	[XE_RAS_RECOVERY_ACTION_RESET] =
-> > PCI_ERS_RESULT_NEED_RESET,
-> > +	[XE_RAS_RECOVERY_ACTION_DISCONNECT] =
-> > PCI_ERS_RESULT_DISCONNECT, };
-> > +
-> >  static pci_ers_result_t xe_pci_error_detected(struct pci_dev *pdev,
-> > pci_channel_state_t state)  {
-> >  	struct xe_device *xe = pdev_to_xe_device(pdev); @@ -59,9 +67,13
-> > @@ static pci_ers_result_t xe_pci_error_detected(struct pci_dev *pdev,
-> > pci_channel_
-> > 
-> >  static pci_ers_result_t xe_pci_error_mmio_enabled(struct pci_dev *pdev)  {
-> > +	struct xe_device *xe = pdev_to_xe_device(pdev);
-> > +	enum xe_ras_recovery_action action;
-> > +
-> >  	dev_err(&pdev->dev, "Xe Pci error recovery: MMIO enabled\n");
-> > +	action = xe_ras_process_errors(xe);
-> > 
-> > -	return PCI_ERS_RESULT_NEED_RESET;
-> > +	return ras_recovery_action_to_pci_result[action];
-> Don't we need the array bound check for action ?
-> Above review comment assisted by AI Tools.
+Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+---
+ drivers/gpu/drm/xe/xe_hw_error.c | 27 ++++++++++++++-------------
+ 1 file changed, 14 insertions(+), 13 deletions(-)
 
-We're not storing any meaningful data here, I'd rather use switch().
+diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
+index 9e8dcdf911e4..84dc4cb330ff 100644
+--- a/drivers/gpu/drm/xe/xe_hw_error.c
++++ b/drivers/gpu/drm/xe/xe_hw_error.c
+@@ -36,11 +36,6 @@ static const char * const hec_uncorrected_fw_errors[] = {
+ 	"Data Corruption"
+ };
+ 
+-static const unsigned long xe_hw_error_map[] = {
+-	[XE_GT_ERROR]	= DRM_XE_RAS_ERR_COMP_CORE_COMPUTE,
+-	[XE_SOC_ERROR]	= DRM_XE_RAS_ERR_COMP_SOC_INTERNAL,
+-};
+-
+ enum gt_vector_regs {
+ 	ERR_STAT_GT_VECTOR0 = 0,
+ 	ERR_STAT_GT_VECTOR1,
+@@ -65,6 +60,18 @@ static enum drm_xe_ras_error_severity hw_err_to_severity(const enum hardware_err
+ 	return DRM_XE_RAS_ERR_SEV_UNCORRECTABLE;
+ }
+ 
++static inline u32 err_src_to_id(u32 err_bit)
++{
++	switch (err_bit) {
++	case XE_GT_ERROR:
++		return DRM_XE_RAS_ERR_COMP_CORE_COMPUTE;
++	case XE_SOC_ERROR:
++		return DRM_XE_RAS_ERR_COMP_SOC_INTERNAL;
++	default:
++		return 0;
++	}
++}
++
+ static const char * const pvc_master_global_err_reg[] = {
+ 	[0 ... 1]	= "Undefined",
+ 	[2]		= "HBM SS0: Channel0",
+@@ -475,14 +482,8 @@ static void hw_error_source_handler(struct xe_tile *tile, const enum hardware_er
+ 		const char *name;
+ 		u32 error_id;
+ 
+-		/* Check error bit is within bounds */
+-		if (err_bit >= ARRAY_SIZE(xe_hw_error_map))
+-			break;
+-
+-		error_id = xe_hw_error_map[err_bit];
+-
+-		/* Check error component is within max */
+-		if (!error_id || error_id >= DRM_XE_RAS_ERR_COMP_MAX)
++		error_id = err_src_to_id(err_bit);
++		if (!error_id)
+ 			continue;
+ 
+ 		name = info[error_id].name;
+-- 
+2.43.0
 
-Raag
