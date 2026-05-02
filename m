@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B188CD3431
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F2FACD3436
 	for <intel-xe@archiver.kernel.org>; Sat,  2 May 2026 00:53:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35D7210E57D;
-	Sat,  2 May 2026 00:53:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0262B10F65A;
+	Sat,  2 May 2026 00:53:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jnMwThjg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gNFi2gAi";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9465E10E281
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B202610E245
  for <intel-xe@lists.freedesktop.org>; Sat,  2 May 2026 00:53:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1777683221; x=1809219221;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=z9zqiv65gmOKgzaUUCJJIBeWgJD2heRaLKczOQF8ZLs=;
- b=jnMwThjgo/9g7XBs7K6cXh0q/nnkhU8m3GqM73LUyFE9SKV1AVnDLoL3
- 0Rnjb70tvwgHyl2aOFxKT72EltCgPl+qS8nNjXr8EVaicsGtiJsc5+s/+
- 2LLuI23FwhaSmeTl9CNN9sbiNqol7GmKvOA9IDEuWe+l0zVYok0BF7qj+
- cLMANG6rgNVpm6Jk2JNmxQ6VKvuH/Z10vOaRxA451itPIKnh8CMW5byvE
- Qmrs6hEIKs/8nk11mjy7QraGtGHQ10Mz+24+/90seKcnwPrxRH7i5UR5h
- 8rNngqL1Po5ttVsfJVtOjLmmR0NeE3nx2er2zdlAIwgcPX7uF9za8RuYc g==;
-X-CSE-ConnectionGUID: 7R1X6ehFRY2hAuCH0QUBUA==
-X-CSE-MsgGUID: XwOq1cEkQdWL35aRS8IMoQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11773"; a="78841560"
-X-IronPort-AV: E=Sophos;i="6.23,210,1770624000"; d="scan'208";a="78841560"
+ bh=MQeK+XJfvooMkLrz9+FBqymxXizExVdbQFVoz3PCo20=;
+ b=gNFi2gAisZF4X8z2OEPDqe/obxZT4UuagOFWXIwQuloK9B4LHCxfdg2F
+ sav8PyZBLolcgbuZtMRMKuvQll//YzrznFGXSA6/v/lEPNNEqgxeI15ys
+ vvbRLk/vP0yJeWYUJHCLBPY2kpKgg+pXnonaML6e7qXgjRPgTdY12XKhs
+ eqy/pUuh4Ck7ySu/2SYBtOGrzucyS5lcX1NejEPl+ZC2JedSjEmgsItOV
+ N9I/5qROUe7uNLGlLGbnf4AZGX8O4R1/UPnZ1VGr2vlWt6CwC5EwMpPYL
+ DNBVer7A7prlqjOjyBMfk8niOE7n4qyZFi3DFD40vEJbc4JqpuxeWeqDP Q==;
+X-CSE-ConnectionGUID: CwFDevj2Q42+1lN6LUtZvA==
+X-CSE-MsgGUID: lf35P6cwQcKWQMdd1Aj2JA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11773"; a="78841562"
+X-IronPort-AV: E=Sophos;i="6.23,210,1770624000"; d="scan'208";a="78841562"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 May 2026 17:53:40 -0700
-X-CSE-ConnectionGUID: YdkZ7CDBQwa5bN0sdBAZhA==
-X-CSE-MsgGUID: XDamV8tWSRe1336Nn7rnJA==
+X-CSE-ConnectionGUID: 66pR9ddxTJ+tqdmq3Ask7g==
+X-CSE-MsgGUID: IjqH0tcrT5G/lwQoIywbmw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,210,1770624000"; d="scan'208";a="228510950"
+X-IronPort-AV: E=Sophos;i="6.23,210,1770624000"; d="scan'208";a="228510956"
 Received: from unerlige-desk1.jf.intel.com ([10.88.27.165])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 May 2026 17:53:39 -0700
@@ -46,9 +46,10 @@ To: intel-xe@lists.freedesktop.org,
 	niranjana.vishwanathapura@intel.com
 Cc: matthew.brost@intel.com,
 	stuart.summers@intel.com
-Subject: [PATCH v2 5/9] drm/xe/lrc: Refactor out engine id to hwe conversion
-Date: Fri,  1 May 2026 17:53:38 -0700
-Message-ID: <20260502005332.3135977-16-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH v2 7/9] drm/xe/multi_queue: Add trace event for the multi
+ queue timestamp
+Date: Fri,  1 May 2026 17:53:40 -0700
+Message-ID: <20260502005332.3135977-18-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260502005332.3135977-11-umesh.nerlige.ramappa@intel.com>
 References: <20260502005332.3135977-11-umesh.nerlige.ramappa@intel.com>
@@ -68,51 +69,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We need to define more helpers that read engine ID specific register, so
-move that logic outside of get_ctx_timestamp().
+Add a trace event for multi queue timestamp capture.
 
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_lrc.c | 20 +++++++++++++++-----
- 1 file changed, 15 insertions(+), 5 deletions(-)
+v2:
+- Split traces from original patch (Stuart)
+- Print primary lrc in the trace (Niranjana)
+---
+ drivers/gpu/drm/xe/xe_lrc.c       |  2 ++
+ drivers/gpu/drm/xe/xe_trace_lrc.h | 27 +++++++++++++++++++++++++++
+ 2 files changed, 29 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 2ee52efb9219..92419e5058fd 100644
+index 023202be5d52..6bd93803cb7f 100644
 --- a/drivers/gpu/drm/xe/xe_lrc.c
 +++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -2620,17 +2620,27 @@ void xe_lrc_snapshot_free(struct xe_lrc_snapshot *snapshot)
- 	kfree(snapshot);
+@@ -2711,6 +2711,8 @@ static u64 xe_lrc_update_multi_queue_timestamp(struct xe_lrc *lrc, u64 *old_ts)
+ 	*old_ts = lrc->queue_timestamp;
+ 	lrc->queue_timestamp = xe_lrc_multi_queue_timestamp(lrc);
+ 
++	trace_xe_lrc_update_queue_timestamp(lrc, *old_ts);
++
+ 	return lrc->queue_timestamp;
  }
  
--static int get_ctx_timestamp(struct xe_lrc *lrc, u32 engine_id, u64 *reg_ctx_ts)
-+static struct xe_hw_engine *engine_id_to_hwe(struct xe_gt *gt, u32 engine_id)
- {
- 	u16 class = REG_FIELD_GET(ENGINE_CLASS_ID, engine_id);
- 	u16 instance = REG_FIELD_GET(ENGINE_INSTANCE_ID, engine_id);
-+	struct xe_hw_engine *hwe = xe_gt_hw_engine(gt, class, instance, false);
-+
-+	if (xe_gt_WARN_ONCE(gt, !hwe || xe_hw_engine_is_reserved(hwe),
-+			    "Unexpected engine class:instance %d:%d for utilization\n",
-+			    class, instance))
-+		return NULL;
-+
-+	return hwe;
-+}
-+
-+static int get_ctx_timestamp(struct xe_lrc *lrc, u32 engine_id, u64 *reg_ctx_ts)
-+{
- 	struct xe_hw_engine *hwe;
- 	u64 val;
+diff --git a/drivers/gpu/drm/xe/xe_trace_lrc.h b/drivers/gpu/drm/xe/xe_trace_lrc.h
+index d525cbee1e34..fdc77102fa77 100644
+--- a/drivers/gpu/drm/xe/xe_trace_lrc.h
++++ b/drivers/gpu/drm/xe/xe_trace_lrc.h
+@@ -12,6 +12,7 @@
+ #include <linux/tracepoint.h>
+ #include <linux/types.h>
  
--	hwe = xe_gt_hw_engine(lrc->gt, class, instance, false);
--	if (xe_gt_WARN_ONCE(lrc->gt, !hwe || xe_hw_engine_is_reserved(hwe),
--			    "Unexpected engine class:instance %d:%d for context utilization\n",
--			    class, instance))
-+	hwe = engine_id_to_hwe(lrc->gt, engine_id);
-+	if (!hwe)
- 		return -1;
++#include "xe_exec_queue_types.h"
+ #include "xe_gt_types.h"
+ #include "xe_lrc.h"
+ #include "xe_lrc_types.h"
+@@ -42,6 +43,32 @@ TRACE_EVENT(xe_lrc_update_timestamp,
+ 		      __get_str(device_id))
+ );
  
- 	if (lrc_to_xe(lrc)->info.has_64bit_timestamp)
++TRACE_EVENT(xe_lrc_update_queue_timestamp,
++           TP_PROTO(struct xe_lrc *lrc, uint64_t old),
++           TP_ARGS(lrc, old),
++           TP_STRUCT__entry(
++                    __field(struct xe_lrc *, lrc)
++                    __field(u8, pos)
++                    __field(u64, old)
++                    __field(u64, new)
++                    __string(name, lrc->fence_ctx.name)
++                    __string(device_id, __dev_name_lrc(lrc))
++           ),
++
++           TP_fast_assign(
++                  __entry->lrc = lrc->multi_queue.primary_lrc;
++                  __entry->pos = lrc->multi_queue.pos;
++                  __entry->old = old;
++                  __entry->new = lrc->queue_timestamp;
++                  __assign_str(name);
++                  __assign_str(device_id);
++                  ),
++           TP_printk("lrc=:%p pos=%d lrc->name=%s old=%llu new=%llu device_id:%s",
++                     __entry->lrc, __entry->pos, __get_str(name),
++                     __entry->old, __entry->new,
++                     __get_str(device_id))
++);
++
+ #endif
+ 
+ /* This part must be outside protection */
 -- 
 2.43.0
 
