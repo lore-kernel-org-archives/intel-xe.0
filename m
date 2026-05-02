@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66FA1CD342E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27424CD342C
 	for <intel-xe@archiver.kernel.org>; Sat,  2 May 2026 00:53:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C05F310E569;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF07C10E50E;
 	Sat,  2 May 2026 00:53:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lBGfSEpR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LBfsY5Ok";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B94F210E569
- for <intel-xe@lists.freedesktop.org>; Sat,  2 May 2026 00:53:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F39DE10E281
+ for <intel-xe@lists.freedesktop.org>; Sat,  2 May 2026 00:53:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777683221; x=1809219221;
+ t=1777683220; x=1809219220;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Xi0bOpWnXyqe6T+bZH4CtAJIhy5W1spEDw9fxVTxNCU=;
- b=lBGfSEpR+MjPfU1IePK3mYpHNjeH44YAvAO0A/uaZc83Y856Iq0JaPXS
- Yc0FJCFZSRoM56fX7yMaXOAMS3n8eWnHY/Ne009EeDXvOYeI87D+UQHu8
- yGyjsqQ/JgOHBb1334bUUvLd7hbfjb7K3QHPSbTUxIxJdoJhZ5oV03Oug
- nmg6s+hnztuqd9zz5HRv+4kztpJZko8ig3BxQ8zx4kx4qYfVFAK2FgMc1
- LPdLRCpCWqHf27+8EUI5t0+B+tAA3esG+5aUcOibgzD+PUKQzMZ/w7pER
- kxINrRH64G0eeaI4hZC5UFryJ9xoBwrOC2BGq5z/5kTwh4ktbRGwD6djz Q==;
-X-CSE-ConnectionGUID: uWbc6PGaRuW9g6m1nkRu5w==
-X-CSE-MsgGUID: c/KNkzmpSMiBTa9YwiGDCw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11773"; a="78841563"
-X-IronPort-AV: E=Sophos;i="6.23,210,1770624000"; d="scan'208";a="78841563"
+ bh=GEEUtpy9qMGIjAxk6vy7e+L0JY7VTGLyRTeNSHMZ2h8=;
+ b=LBfsY5OkjIQhdrO0TKH6/0TVEPDMQjuZjch3w8mt27jWjYUzZI7IOH0Q
+ Lf9vTDBLjXROzrUWY1IO6Auhr8YVRhWMUaEZJLwQeMI4HLARu7ebRf0Yl
+ +Pq1VtmqPzZ5Lafc4OIJxhPXmA8Uy6g3xyMETK3gXibdVWCmSIex9lbdz
+ j+HzjtADIGv+fMUrqWfqVwi8yepPFqhpL9kYi6hu4+CKLzQut882OIcv5
+ HyP55Krhs0qqvQCv/0hzzQFL/jSrTrljzwkUN3L/m9zh3NoO8ZmeFuTVH
+ +nSSZYhq/BDnI6K4Vynew5tTRMptYqx43fGYj0usfKx8WMXtJHFJJsvtW w==;
+X-CSE-ConnectionGUID: zjw6ByaiS460XmlmxuwoLg==
+X-CSE-MsgGUID: 3KTC2zyNTaqCOdiFA+DdOA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11773"; a="78841556"
+X-IronPort-AV: E=Sophos;i="6.23,210,1770624000"; d="scan'208";a="78841556"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 May 2026 17:53:40 -0700
-X-CSE-ConnectionGUID: KiNtTDqsTBOE86u3pyEbQQ==
-X-CSE-MsgGUID: 8aZPen5EQAKRG3d9dgEWUg==
+X-CSE-ConnectionGUID: yfv129btTK6Qnw4rYG3cfA==
+X-CSE-MsgGUID: SrJUUvGeQV2xGtK1D/4zoA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,210,1770624000"; d="scan'208";a="228510959"
+X-IronPort-AV: E=Sophos;i="6.23,210,1770624000"; d="scan'208";a="228510937"
 Received: from unerlige-desk1.jf.intel.com ([10.88.27.165])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 May 2026 17:53:40 -0700
+ 01 May 2026 17:53:39 -0700
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	niranjana.vishwanathapura@intel.com
 Cc: matthew.brost@intel.com,
 	stuart.summers@intel.com
-Subject: [PATCH v2 8/9] drm/xe/multi_queue: Use QUEUE_TIMESTAMP as job
- timestamp for multi-queue
-Date: Fri,  1 May 2026 17:53:41 -0700
-Message-ID: <20260502005332.3135977-19-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH v2 1/9] drm/xe/lrc: Use 64 bit ctx timestamp in the LRC
+ snapshot
+Date: Fri,  1 May 2026 17:53:34 -0700
+Message-ID: <20260502005332.3135977-12-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260502005332.3135977-11-umesh.nerlige.ramappa@intel.com>
 References: <20260502005332.3135977-11-umesh.nerlige.ramappa@intel.com>
@@ -69,44 +69,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Each queue in a multi queue group has a dedicated timestamp counter. Use
-this QUEUE TIMESTAMP register to capture the start timestamp for the
-job.
+Use the 64 bit value when available for the context timestamp in the LRC
+snapshot.
 
+Suggested-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
-v2: Use xe_lrc_is_multi_queue for check (Niranjana)
----
- drivers/gpu/drm/xe/xe_ring_ops.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_lrc.c | 4 ++--
+ drivers/gpu/drm/xe/xe_lrc.h | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index cfeb4fc7d217..39a670e91ba7 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -269,8 +269,12 @@ static u32 get_ppgtt_flag(struct xe_sched_job *job)
- static int emit_copy_timestamp(struct xe_device *xe, struct xe_lrc *lrc,
- 			       u32 *dw, int i)
- {
-+	const struct xe_reg reg = xe_lrc_is_multi_queue(lrc) ?
-+				   RING_QUEUE_TIMESTAMP(0) :
-+				   RING_CTX_TIMESTAMP(0);
-+
- 	dw[i++] = MI_STORE_REGISTER_MEM | MI_SRM_USE_GGTT | MI_SRM_ADD_CS_OFFSET;
--	dw[i++] = RING_CTX_TIMESTAMP(0).addr;
-+	dw[i++] = reg.addr;
- 	dw[i++] = xe_lrc_ctx_job_timestamp_ggtt_addr(lrc);
- 	dw[i++] = 0;
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 9d12a0d2f0b5..98dc4d0eb61b 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -2475,7 +2475,7 @@ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
+ 	snapshot->replay_offset = 0;
+ 	snapshot->replay_size = lrc->replay_size;
+ 	snapshot->lrc_snapshot = NULL;
+-	snapshot->ctx_timestamp = lower_32_bits(xe_lrc_ctx_timestamp(lrc));
++	snapshot->ctx_timestamp = xe_lrc_ctx_timestamp(lrc);
+ 	snapshot->ctx_job_timestamp = xe_lrc_ctx_job_timestamp(lrc);
+ 	return snapshot;
+ }
+@@ -2528,7 +2528,7 @@ void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer
+ 	drm_printf(p, "\tRing start: (memory) 0x%08x\n", snapshot->start);
+ 	drm_printf(p, "\tStart seqno: (memory) %d\n", snapshot->start_seqno);
+ 	drm_printf(p, "\tSeqno: (memory) %d\n", snapshot->seqno);
+-	drm_printf(p, "\tTimestamp: 0x%08x\n", snapshot->ctx_timestamp);
++	drm_printf(p, "\tTimestamp: 0x%016llx\n", snapshot->ctx_timestamp);
+ 	drm_printf(p, "\tJob Timestamp: 0x%08x\n", snapshot->ctx_job_timestamp);
  
-@@ -281,7 +285,7 @@ static int emit_copy_timestamp(struct xe_device *xe, struct xe_lrc *lrc,
- 	if (IS_SRIOV_VF(xe)) {
- 		dw[i++] = MI_STORE_REGISTER_MEM | MI_SRM_USE_GGTT |
- 			MI_SRM_ADD_CS_OFFSET;
--		dw[i++] = RING_CTX_TIMESTAMP(0).addr;
-+		dw[i++] = reg.addr;
- 		dw[i++] = xe_lrc_ctx_timestamp_ggtt_addr(lrc);
- 		dw[i++] = 0;
- 	}
+ 	if (!snapshot->lrc_snapshot)
+diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+index e7c975f9e2d9..62beaffba0af 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.h
++++ b/drivers/gpu/drm/xe/xe_lrc.h
+@@ -37,7 +37,7 @@ struct xe_lrc_snapshot {
+ 	} tail;
+ 	u32 start_seqno;
+ 	u32 seqno;
+-	u32 ctx_timestamp;
++	u64 ctx_timestamp;
+ 	u32 ctx_job_timestamp;
+ };
+ 
 -- 
 2.43.0
 
