@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E38BCD3430
-	for <intel-xe@archiver.kernel.org>; Sat,  2 May 2026 00:53:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0288CD342F
+	for <intel-xe@archiver.kernel.org>; Sat,  2 May 2026 00:53:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3624210F657;
-	Sat,  2 May 2026 00:53:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1DF510E571;
+	Sat,  2 May 2026 00:53:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N9Drx64W";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PGYyJcA4";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CA0D10E50E
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 707BD10E245
  for <intel-xe@lists.freedesktop.org>; Sat,  2 May 2026 00:53:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1777683221; x=1809219221;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=tMDIM1mwxCuEDzldQO77p5/jEHILYbngXyUonah2n7w=;
- b=N9Drx64WXdGWVAdv4fwOi3N59zLq0LQs1kanOqoa0XpdENqTF7BzIHCs
- NX7aiJv9YmqvI2Xk2LpjjIcpP4bVxrCm7xRxYAHxuuxNE8Qxg96SDJ3zg
- rQOC9mxuRuMaeddVbXSuPR0DMGYMWqFHGT/ULjrXkiytc6jTaeohvKHru
- +Qh5dRAbMfI9okI7TW2gmWqwT4TocRUidMF26aXzggg8rUwRmBIGLpsho
- doF/run8Seq01cNP5kE+2nSXOdzPVgRFucNILvEBwl5J+EalzAitBc/Qs
- QjlEfxwV+EonXZOOQwStPRYkPtq7hPhXMHWodN9TlzYbuow0wxhlev686 g==;
-X-CSE-ConnectionGUID: B6dsNnTQTpWwyXZa4BfCew==
-X-CSE-MsgGUID: HnC3SOYlS2mXrbyCiQk89w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11773"; a="78841561"
-X-IronPort-AV: E=Sophos;i="6.23,210,1770624000"; d="scan'208";a="78841561"
+ bh=VCVdNU9xOQKNV2nThVjzldrAtu3Vn96XG36Re45G/Dc=;
+ b=PGYyJcA4xoCZkdmHV7nWPSGj64rwER1Usmz8Rtloao2g0hAAmPxq+8rq
+ 2JYx/VS4FHpQSPCQTyvfqhvKO7QAtRK/KAReBO+2zuxSarWJVp0twjDoI
+ LcvCSaQqNBvOgkWh2koWrnQMz1L4eK7aUNIKZmS10xrg0UkcoCU2HK84T
+ R934J4HhqysvtZyiAzXsxQP42TNU3XYGa3qUazCFt0qMM9rBv1fVbqqwO
+ 41rzXZw3ePc/scm1uMOLgHYd4JpA0DHS59AvRVv8ot/ftRbu7Gd7vDSCL
+ 8LrpDcSYP8vUT8dbzyjwHUrnwCqGEHPkPi2Y+m96mLDOExKdFyMimZ/as w==;
+X-CSE-ConnectionGUID: fRJuSq9lT5CPtbe9sWdvCg==
+X-CSE-MsgGUID: +zcXNOQ4QZ2kiExWihjStg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11773"; a="78841559"
+X-IronPort-AV: E=Sophos;i="6.23,210,1770624000"; d="scan'208";a="78841559"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 May 2026 17:53:40 -0700
-X-CSE-ConnectionGUID: 2AHFvsk3RhW9TrB0RnC2MA==
-X-CSE-MsgGUID: ZIxBHqbySZaDl4XaSyMqgw==
+X-CSE-ConnectionGUID: gob51/W4QaWwxERUc04TGg==
+X-CSE-MsgGUID: jwRqVMg8TnCHftD+QFQeIw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,210,1770624000"; d="scan'208";a="228510953"
+X-IronPort-AV: E=Sophos;i="6.23,210,1770624000"; d="scan'208";a="228510947"
 Received: from unerlige-desk1.jf.intel.com ([10.88.27.165])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 May 2026 17:53:39 -0700
@@ -46,10 +46,10 @@ To: intel-xe@lists.freedesktop.org,
 	niranjana.vishwanathapura@intel.com
 Cc: matthew.brost@intel.com,
 	stuart.summers@intel.com
-Subject: [PATCH v2 6/9] drm/xe/multi_queue: Capture queue run times for active
- queues
-Date: Fri,  1 May 2026 17:53:39 -0700
-Message-ID: <20260502005332.3135977-17-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH v2 4/9] drm/xe/multi_queue: Add helpers to access CS QUEUE
+ TIMESTAMP from lrc
+Date: Fri,  1 May 2026 17:53:37 -0700
+Message-ID: <20260502005332.3135977-15-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260502005332.3135977-11-umesh.nerlige.ramappa@intel.com>
 References: <20260502005332.3135977-11-umesh.nerlige.ramappa@intel.com>
@@ -69,185 +69,161 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If a queue is currently active on the CS, query the QUEUE TIMESTAMP
-register to get an up to date value of the runtime. To do so, ensure
-that the primary queue is active and then check if the secondary queue
-is executing on the CS.
+In secondary queue LRCs, the QUEUE TIMESTAMP register is saved and
+restored allowing us to view the individual queue run times. Add helpers
+to read this value from the LRC.
+
+BSpec: 73988
 
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
-v2:
-- Move trace to a separate patch (Stuart)
-- Refactor multi queue timestamp logic (Matt/Niranjana)
+v2: (Matt)
+- Add BSpec reference
+- Make queue_timestamp snapshot 64 bit
+- Add a snapshot of queue timestamp in ms
 ---
- drivers/gpu/drm/xe/regs/xe_engine_regs.h |   4 +
- drivers/gpu/drm/xe/xe_lrc.c              | 115 +++++++++++++++++++----
- 2 files changed, 99 insertions(+), 20 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_lrc_layout.h |  3 ++
+ drivers/gpu/drm/xe/xe_lrc.c             | 47 +++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_lrc.h             |  2 ++
+ drivers/gpu/drm/xe/xe_lrc_types.h       |  3 ++
+ 4 files changed, 55 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-index 1b4a7e9a703d..af6af6f3f5e8 100644
---- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-@@ -170,6 +170,10 @@
- #define   GFX_MSIX_INTERRUPT_ENABLE		REG_BIT(13)
+diff --git a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+index b5eff383902c..4ab86fc369fd 100644
+--- a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
++++ b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+@@ -34,6 +34,9 @@
+ #define CTX_CS_INT_VEC_REG		0x5a
+ #define CTX_CS_INT_VEC_DATA		(CTX_CS_INT_VEC_REG + 1)
  
- #define RING_CSMQDEBUG(base)			XE_REG((base) + 0x2b0)
-+#define   CURRENT_ACTIVE_QUEUE_ID_MASK		REG_GENMASK(7, 0)
++#define CTX_QUEUE_TIMESTAMP		(0xd0 + 1)
++#define CTX_QUEUE_TIMESTAMP_UDW		(0xd2 + 1)
 +
-+#define RING_QUEUE_TIMESTAMP(base)		XE_REG((base) + 0x4c0)
-+#define RING_QUEUE_TIMESTAMP_UDW(base)		XE_REG((base) + 0x4c0 + 4)
- 
- #define RING_TIMESTAMP(base)			XE_REG((base) + 0x358)
- 
+ #define INDIRECT_CTX_RING_HEAD		(0x02 + 1)
+ #define INDIRECT_CTX_RING_TAIL		(0x04 + 1)
+ #define INDIRECT_CTX_RING_START		(0x06 + 1)
 diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 92419e5058fd..023202be5d52 100644
+index d85c712d106b..2ee52efb9219 100644
 --- a/drivers/gpu/drm/xe/xe_lrc.c
 +++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -21,6 +21,7 @@
- #include "xe_configfs.h"
- #include "xe_device.h"
- #include "xe_drm_client.h"
-+#include "xe_exec_queue.h"
- #include "xe_exec_queue_types.h"
- #include "xe_gt.h"
- #include "xe_gt_clock.h"
-@@ -2655,17 +2656,65 @@ static int get_ctx_timestamp(struct xe_lrc *lrc, u32 engine_id, u64 *reg_ctx_ts)
- 	return 0;
+@@ -789,6 +789,16 @@ static u32 __xe_lrc_ctx_timestamp_udw_offset(struct xe_lrc *lrc)
+ 	return __xe_lrc_regs_offset(lrc) + CTX_TIMESTAMP_UDW * sizeof(u32);
  }
  
--/**
-- * xe_lrc_timestamp() - Current ctx timestamp
-- * @lrc: Pointer to the lrc.
-- *
-- * Return latest ctx timestamp. With support for active contexts, the
-- * calculation may be slightly racy, so follow a read-again logic to ensure that
-- * the context is still active before returning the right timestamp.
-- *
-- * Returns: New ctx timestamp value
-- */
--u64 xe_lrc_timestamp(struct xe_lrc *lrc)
-+static u64 get_queue_timestamp(struct xe_hw_engine *hwe)
++static u32 __xe_lrc_queue_timestamp_offset(struct xe_lrc *lrc)
 +{
-+	return xe_mmio_read64_2x32(&hwe->gt->mmio,
-+				   RING_QUEUE_TIMESTAMP(hwe->mmio_base));
++	return __xe_lrc_regs_offset(lrc) + CTX_QUEUE_TIMESTAMP * sizeof(u32);
 +}
 +
-+static u32 get_queue_id(struct xe_hw_engine *hwe)
++static u32 __xe_lrc_queue_timestamp_udw_offset(struct xe_lrc *lrc)
 +{
-+	u32 val = xe_mmio_read32(&hwe->gt->mmio,
-+				 RING_CSMQDEBUG(hwe->mmio_base));
-+
-+	return REG_FIELD_GET(CURRENT_ACTIVE_QUEUE_ID_MASK, val);
++	return __xe_lrc_regs_offset(lrc) + CTX_QUEUE_TIMESTAMP_UDW * sizeof(u32);
 +}
 +
-+static bool context_active(struct xe_lrc *lrc)
-+{
-+	return xe_lrc_ctx_timestamp(lrc) == CONTEXT_ACTIVE;
-+}
-+
-+static u64 xe_lrc_multi_queue_timestamp(struct xe_lrc *lrc)
-+{
-+	struct xe_lrc *primary_lrc = lrc->multi_queue.primary_lrc;
-+	struct xe_hw_engine *hwe;
-+	u64 reg_queue_ts = lrc->queue_timestamp;
-+
-+	if (IS_SRIOV_VF(lrc_to_xe(lrc)))
-+		return xe_lrc_queue_timestamp(lrc);
-+
-+	if (!primary_lrc || !context_active(primary_lrc))
-+		return xe_lrc_queue_timestamp(lrc);
-+
-+	/* WA BB populates engine id in PPHWSP of primary context only */
-+	hwe = engine_id_to_hwe(primary_lrc->gt, xe_lrc_engine_id(primary_lrc));
-+	if (!hwe)
-+		return xe_lrc_queue_timestamp(lrc);
-+
-+	if (get_queue_id(hwe) != lrc->multi_queue.pos)
-+		return xe_lrc_queue_timestamp(lrc);
-+
-+	/* queue is active, so store the queue timestamp register */
-+	reg_queue_ts = get_queue_timestamp(hwe);
-+
-+	/* double check queue and primary queue are both still active */
-+	if (get_queue_id(hwe) != lrc->multi_queue.pos ||
-+	    !context_active(primary_lrc))
-+		return xe_lrc_queue_timestamp(lrc);
-+
-+	return reg_queue_ts;
-+}
-+
-+static u64 xe_lrc_update_multi_queue_timestamp(struct xe_lrc *lrc, u64 *old_ts)
-+{
-+	*old_ts = lrc->queue_timestamp;
-+	lrc->queue_timestamp = xe_lrc_multi_queue_timestamp(lrc);
-+
-+	return lrc->queue_timestamp;
-+}
-+
-+static u64 xe_lrc_single_queue_timestamp(struct xe_lrc *lrc)
+ static inline u32 __xe_lrc_indirect_ring_offset(struct xe_lrc *lrc)
  {
- 	u64 lrc_ts, reg_ts, new_ts = lrc->ctx_timestamp;
- 	u32 engine_id;
-@@ -2697,24 +2746,50 @@ u64 xe_lrc_timestamp(struct xe_lrc *lrc)
- 	return new_ts;
+ 	u32 offset = xe_bo_size(lrc->bo) - LRC_WA_BB_SIZE -
+@@ -838,6 +848,8 @@ DECL_MAP_ADDR_HELPERS(ctx_timestamp_udw, lrc->bo)
+ DECL_MAP_ADDR_HELPERS(parallel, lrc->bo)
+ DECL_MAP_ADDR_HELPERS(indirect_ring, lrc->bo)
+ DECL_MAP_ADDR_HELPERS(engine_id, lrc->bo)
++DECL_MAP_ADDR_HELPERS(queue_timestamp, lrc->bo)
++DECL_MAP_ADDR_HELPERS(queue_timestamp_udw, lrc->bo)
+ 
+ #undef DECL_MAP_ADDR_HELPERS
+ 
+@@ -886,6 +898,30 @@ static u64 xe_lrc_ctx_timestamp(struct xe_lrc *lrc)
+ 	return (u64)udw << 32 | ldw;
  }
  
-+static u64 xe_lrc_update_ctx_timestamp(struct xe_lrc *lrc, u64 *old_ts)
-+{
-+	*old_ts = lrc->ctx_timestamp;
-+	lrc->ctx_timestamp = xe_lrc_single_queue_timestamp(lrc);
-+
-+	trace_xe_lrc_update_timestamp(lrc, *old_ts);
-+
-+	return lrc->ctx_timestamp;
-+}
-+
- /**
-- * xe_lrc_update_timestamp() - Update ctx timestamp
-+ * xe_lrc_timestamp() - Current lrc timestamp
++/**
++ * xe_lrc_queue_timestamp() - Read queue timestamp value
 + * @lrc: Pointer to the lrc.
 + *
-+ * Return latest lrc timestamp. With support for active contexts/queues, the
-+ * calculation may be slightly racy, so follow a read-again logic to ensure that
-+ * the context/queue is still active before returning the right timestamp.
-+ *
-+ * Returns: New lrc timestamp value
++ * Returns: queue timestamp value
 + */
-+u64 xe_lrc_timestamp(struct xe_lrc *lrc)
++static u64 xe_lrc_queue_timestamp(struct xe_lrc *lrc)
 +{
-+	if (xe_lrc_is_multi_queue(lrc))
-+		return xe_lrc_multi_queue_timestamp(lrc);
-+	else
-+		return xe_lrc_single_queue_timestamp(lrc);
++	struct xe_device *xe = lrc_to_xe(lrc);
++	struct iosys_map map;
++	u32 ldw, udw = 0;
++
++	if (!xe_lrc_is_multi_queue(lrc))
++		return 0;
++
++	map = __xe_lrc_queue_timestamp_map(lrc);
++	ldw = xe_map_read32(xe, &map);
++
++	map = __xe_lrc_queue_timestamp_udw_map(lrc);
++	udw = xe_map_read32(xe, &map);
++
++	return (u64)udw << 32 | ldw;
 +}
 +
-+/**
-+ * xe_lrc_update_timestamp() - Update lrc timestamp
-  * @lrc: Pointer to the lrc.
-  * @old_ts: Old timestamp value
-  *
-- * Populate @old_ts current saved ctx timestamp, read new ctx timestamp and
-+ * Populate @old_ts with current saved lrc timestamp, read new lrc timestamp and
-  * update saved value.
-  *
-- * Returns: New ctx timestamp value
-+ * Returns: New lrc timestamp value
-  */
- u64 xe_lrc_update_timestamp(struct xe_lrc *lrc, u64 *old_ts)
- {
--	*old_ts = lrc->ctx_timestamp;
--	lrc->ctx_timestamp = xe_lrc_timestamp(lrc);
--
--	trace_xe_lrc_update_timestamp(lrc, *old_ts);
--
--	return lrc->ctx_timestamp;
-+	if (xe_lrc_is_multi_queue(lrc))
-+		return xe_lrc_update_multi_queue_timestamp(lrc, old_ts);
-+	else
-+		return xe_lrc_update_ctx_timestamp(lrc, old_ts);
- }
- 
  /**
+  * xe_lrc_ctx_job_timestamp_ggtt_addr() - Get ctx job timestamp GGTT address
+  * @lrc: Pointer to the lrc.
+@@ -1551,6 +1587,12 @@ static int xe_lrc_ctx_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct
+ 	if (lrc_to_xe(lrc)->info.has_64bit_timestamp)
+ 		xe_lrc_write_ctx_reg(lrc, CTX_TIMESTAMP_UDW, 0);
+ 
++	if (xe_lrc_is_multi_queue(lrc)) {
++		lrc->queue_timestamp = 0;
++		xe_lrc_write_ctx_reg(lrc, CTX_QUEUE_TIMESTAMP, 0);
++		xe_lrc_write_ctx_reg(lrc, CTX_QUEUE_TIMESTAMP_UDW, 0);
++	}
++
+ 	if (xe->info.has_asid && vm)
+ 		xe_lrc_write_ctx_reg(lrc, CTX_ASID, vm->usm.asid);
+ 
+@@ -2479,6 +2521,9 @@ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
+ 	snapshot->ctx_timestamp = xe_lrc_ctx_timestamp(lrc);
+ 	snapshot->ctx_timestamp_ms =
+ 		xe_gt_clock_interval_to_ms(lrc->gt, xe_lrc_ctx_timestamp(lrc));
++	snapshot->queue_timestamp = xe_lrc_queue_timestamp(lrc);
++	snapshot->queue_timestamp_ms =
++		xe_gt_clock_interval_to_ms(lrc->gt, xe_lrc_queue_timestamp(lrc));
+ 	snapshot->ctx_job_timestamp = xe_lrc_ctx_job_timestamp(lrc);
+ 	return snapshot;
+ }
+@@ -2533,6 +2578,8 @@ void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer
+ 	drm_printf(p, "\tSeqno: (memory) %d\n", snapshot->seqno);
+ 	drm_printf(p, "\tTimestamp: 0x%016llx\n", snapshot->ctx_timestamp);
+ 	drm_printf(p, "\tTimestamp ms: %llu\n", snapshot->ctx_timestamp_ms);
++	drm_printf(p, "\tQueue Timestamp: 0x%016llx\n", snapshot->queue_timestamp);
++	drm_printf(p, "\tQueue Timestamp ms: %llu\n", snapshot->queue_timestamp_ms);
+ 	drm_printf(p, "\tJob Timestamp: 0x%08x\n", snapshot->ctx_job_timestamp);
+ 
+ 	if (!snapshot->lrc_snapshot)
+diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+index 3d0bf4a7bfa0..12d08808ac75 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.h
++++ b/drivers/gpu/drm/xe/xe_lrc.h
+@@ -38,8 +38,10 @@ struct xe_lrc_snapshot {
+ 	u32 start_seqno;
+ 	u32 seqno;
+ 	u64 ctx_timestamp;
++	u64 queue_timestamp;
+ 	u32 ctx_job_timestamp;
+ 	u64 ctx_timestamp_ms;
++	u64 queue_timestamp_ms;
+ };
+ 
+ #define LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR (0x34 * 4)
+diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h b/drivers/gpu/drm/xe/xe_lrc_types.h
+index 0a5c13ec2ad7..53ef48feebfc 100644
+--- a/drivers/gpu/drm/xe/xe_lrc_types.h
++++ b/drivers/gpu/drm/xe/xe_lrc_types.h
+@@ -64,6 +64,9 @@ struct xe_lrc {
+ 	/** @ctx_timestamp: readout value of CTX_TIMESTAMP on last update */
+ 	u64 ctx_timestamp;
+ 
++	/** @queue_timestamp: value of QUEUE_TIMESTAMP on last update */
++	u64 queue_timestamp;
++
+ 	/** @multi_queue: Multi queue LRC related information */
+ 	struct {
+ 		/** @multi_queue.primary_lrc: Primary lrc of this multi-queue group*/
 -- 
 2.43.0
 
