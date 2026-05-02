@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6935FCD13DA
-	for <intel-xe@archiver.kernel.org>; Sat,  2 May 2026 16:01:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A5BFCD13DA
+	for <intel-xe@archiver.kernel.org>; Sat,  2 May 2026 17:24:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10BC910E079;
-	Sat,  2 May 2026 16:01:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A754110E032;
+	Sat,  2 May 2026 17:24:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="flE/JqJQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JxaR+kQw";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 533F210E079
- for <intel-xe@lists.freedesktop.org>; Sat,  2 May 2026 16:01:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E1B410E032
+ for <intel-xe@lists.freedesktop.org>; Sat,  2 May 2026 17:24:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777737681; x=1809273681;
+ t=1777742673; x=1809278673;
  h=date:from:to:cc:subject:message-id;
- bh=MlvzcKszbnleLlwt+M9D7Q4JUX43/VF4Gn+8rbCFuQw=;
- b=flE/JqJQrj8uGbTXTFgfwFd2b4nD1gZqlxaFKC2Z27JmnXavDKXy5xq8
- EG6F5VBqEhSkEYbUBqzYNk+ue90Ae0yTV71tW/JyW4vLNgt5ByqNaDSo7
- D/6de3sy9hM8aShljAunl0MXYfNqMqmkyAFKYLoux2z8NKJ8zLlebRyTx
- +tz8TEOJueZAQ6AnodPVAtwa7jgYwUUZUpF3xyIvQIa6rcmgTs/oWKJu6
- Ls8CCvcOmci1KCw6MMRidOid8d0hchS/eGcgtPHy9+kk8h3v8uiU2/HGQ
- dDq8XXkI4qpLVWOl3GN5L72qYNr4FN8sfLduj/oWncL4T9dqodQd2yTR7 g==;
-X-CSE-ConnectionGUID: 5xBHDi6lSe+ztbdTRH0jkA==
-X-CSE-MsgGUID: XGoyhFS2Rh6JeUqMrC5w4g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11774"; a="89768856"
-X-IronPort-AV: E=Sophos;i="6.23,212,1770624000"; d="scan'208";a="89768856"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ bh=40DwIp0JxwNz1nnvanrz/BzWTvcjgn3GNGrg2N0wbcI=;
+ b=JxaR+kQwLBx8x8EvmkRiCobVVxv70voZoeHc4rNCjR15GMloAn6rd74m
+ z6LqD4xaARm5sSqcKB1FZx05CWxHnX/llaHkFnW8z15T/Z8zwQxEpW0bD
+ /kkuYWrCTn/dw1vSSBDkq3qcNnun1iwQMdu7iMxoRJGwg4gCUxlvZZAt5
+ 3gyJ+hNXlMldaa21xf49m4GaaZJddntggcb8/kFTF6glJnWi2t1lokZeY
+ uRd/moNE00T5P5SoSUMA0q4KiuvG3uApgEaOPvALA7i+cA1JJxVB/LkYx
+ RLU59C4rTPSHU3RX6eShJwL3azm6YQmf+jVGCsQGb7S5kxOjAIEhwUmn0 A==;
+X-CSE-ConnectionGUID: oYL8vQv9Rlqb5ra9RKRj5g==
+X-CSE-MsgGUID: 6bv45bjHTvC41+1XofGTYw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11774"; a="89770981"
+X-IronPort-AV: E=Sophos;i="6.23,212,1770624000"; d="scan'208";a="89770981"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2026 09:01:20 -0700
-X-CSE-ConnectionGUID: ogod/rTpS5KuRzuas4Utuw==
-X-CSE-MsgGUID: zyqzEEe9SIGRWyNAFe7+uQ==
+ 02 May 2026 10:24:33 -0700
+X-CSE-ConnectionGUID: 85ZALkruSHChU0s9UkpMPg==
+X-CSE-MsgGUID: /0Wbo8+uQBmmCgT/BDttjg==
 X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,212,1770624000"; d="scan'208";a="265489332"
 Received: from lkp-server01.sh.intel.com (HELO 781826d00641) ([10.239.97.150])
- by fmviesa003.fm.intel.com with ESMTP; 02 May 2026 09:01:18 -0700
+ by orviesa002.jf.intel.com with ESMTP; 02 May 2026 10:24:31 -0700
 Received: from kbuild by 781826d00641 with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1wJCmK-000000001WP-1iEO;
- Sat, 02 May 2026 16:01:16 +0000
-Date: Sun, 03 May 2026 00:00:29 +0800
+ (envelope-from <lkp@intel.com>) id 1wJE4o-000000001en-3ir0;
+ Sat, 02 May 2026 17:24:26 +0000
+Date: Sun, 03 May 2026 01:23:39 +0800
 From: kernel test robot <lkp@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Shuicheng Lin <shuicheng.lin@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-fixes] BUILD SUCCESS
- 662f9ddc8077792129440d05cbef2f944a07777a
-Message-ID: <202605030020.DFBW29MI-lkp@intel.com>
+Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
+ 7d9c39cfb31ff389490ca1308767c2807a9829a6
+Message-ID: <202605030130.oGMz9GO7-lkp@intel.com>
 User-Agent: s-nail v14.9.25
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,12 +64,12 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-fixes
-branch HEAD: 662f9ddc8077792129440d05cbef2f944a07777a  drm/xe/uapi: Reject coh_none PAT index for CPU_ADDR_MIRROR
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+branch HEAD: 7d9c39cfb31ff389490ca1308767c2807a9829a6  drm/xe/pf: Fix MMIO access using PF view instead of VF view during migration
 
-elapsed time: 4088m
+elapsed time: 2669m
 
-configs tested: 204
+configs tested: 173
 configs skipped: 2
 
 The following configs have been built successfully.
@@ -101,32 +102,24 @@ arm64                            allmodconfig    clang-23
 arm64                             allnoconfig    gcc-15.2.0
 arm64                               defconfig    gcc-15.2.0
 arm64                          randconfig-001    gcc-10.5.0
-arm64                 randconfig-001-20260501    gcc-12.5.0
 arm64                 randconfig-001-20260502    gcc-10.5.0
 arm64                          randconfig-002    gcc-10.5.0
-arm64                 randconfig-002-20260501    gcc-12.5.0
 arm64                 randconfig-002-20260502    gcc-10.5.0
 arm64                          randconfig-003    gcc-10.5.0
-arm64                 randconfig-003-20260501    gcc-12.5.0
 arm64                 randconfig-003-20260502    gcc-10.5.0
 arm64                          randconfig-004    gcc-10.5.0
-arm64                 randconfig-004-20260501    gcc-12.5.0
 arm64                 randconfig-004-20260502    gcc-10.5.0
 csky                             allmodconfig    gcc-15.2.0
 csky                              allnoconfig    gcc-15.2.0
 csky                                defconfig    gcc-15.2.0
 csky                           randconfig-001    gcc-10.5.0
-csky                  randconfig-001-20260501    gcc-12.5.0
 csky                  randconfig-001-20260502    gcc-10.5.0
 csky                           randconfig-002    gcc-10.5.0
-csky                  randconfig-002-20260501    gcc-12.5.0
 csky                  randconfig-002-20260502    gcc-10.5.0
 hexagon                          allmodconfig    gcc-15.2.0
 hexagon                           allnoconfig    gcc-15.2.0
 hexagon                             defconfig    gcc-15.2.0
-hexagon               randconfig-001-20260501    clang-23
 hexagon               randconfig-001-20260502    clang-23
-hexagon               randconfig-002-20260501    clang-23
 hexagon               randconfig-002-20260502    clang-23
 i386                             allmodconfig    clang-20
 i386                              allnoconfig    gcc-15.2.0
@@ -138,19 +131,10 @@ i386        buildonly-randconfig-004-20260502    gcc-14
 i386        buildonly-randconfig-005-20260502    gcc-14
 i386        buildonly-randconfig-006-20260502    gcc-14
 i386                                defconfig    gcc-15.2.0
-i386                  randconfig-011-20260501    clang-20
-i386                  randconfig-012-20260501    clang-20
-i386                  randconfig-013-20260501    clang-20
-i386                  randconfig-014-20260501    clang-20
-i386                  randconfig-015-20260501    clang-20
-i386                  randconfig-016-20260501    clang-20
-i386                  randconfig-017-20260501    clang-20
 loongarch                        allmodconfig    clang-23
 loongarch                         allnoconfig    gcc-15.2.0
 loongarch                           defconfig    clang-19
-loongarch             randconfig-001-20260501    clang-23
 loongarch             randconfig-001-20260502    clang-23
-loongarch             randconfig-002-20260501    clang-23
 loongarch             randconfig-002-20260502    clang-23
 m68k                             allmodconfig    gcc-15.2.0
 m68k                              allnoconfig    gcc-15.2.0
@@ -166,9 +150,7 @@ mips                             allyesconfig    gcc-15.2.0
 nios2                            allmodconfig    clang-23
 nios2                             allnoconfig    clang-23
 nios2                               defconfig    clang-19
-nios2                 randconfig-001-20260501    clang-23
 nios2                 randconfig-001-20260502    clang-23
-nios2                 randconfig-002-20260501    clang-23
 nios2                 randconfig-002-20260502    clang-23
 openrisc                         allmodconfig    clang-23
 openrisc                          allnoconfig    clang-23
@@ -178,26 +160,19 @@ parisc                            allnoconfig    clang-23
 parisc                           allyesconfig    clang-19
 parisc                              defconfig    gcc-15.2.0
 parisc                         randconfig-001    gcc-12.5.0
-parisc                randconfig-001-20260501    gcc-12.5.0
 parisc                randconfig-001-20260502    gcc-12.5.0
 parisc                         randconfig-002    gcc-12.5.0
-parisc                randconfig-002-20260501    gcc-12.5.0
 parisc                randconfig-002-20260502    gcc-12.5.0
 parisc64                            defconfig    clang-19
 powerpc                          allmodconfig    gcc-15.2.0
 powerpc                           allnoconfig    clang-23
-powerpc                      ppc44x_defconfig    clang-23
 powerpc                        randconfig-001    gcc-12.5.0
-powerpc               randconfig-001-20260501    gcc-12.5.0
 powerpc               randconfig-001-20260502    gcc-12.5.0
 powerpc                        randconfig-002    gcc-12.5.0
-powerpc               randconfig-002-20260501    gcc-12.5.0
 powerpc               randconfig-002-20260502    gcc-12.5.0
 powerpc64                      randconfig-001    gcc-12.5.0
-powerpc64             randconfig-001-20260501    gcc-12.5.0
 powerpc64             randconfig-001-20260502    gcc-12.5.0
 powerpc64                      randconfig-002    gcc-12.5.0
-powerpc64             randconfig-002-20260501    gcc-12.5.0
 powerpc64             randconfig-002-20260502    gcc-12.5.0
 riscv                            allmodconfig    clang-23
 riscv                             allnoconfig    clang-23
@@ -217,6 +192,7 @@ sh                               allyesconfig    clang-19
 sh                                  defconfig    gcc-14
 sh                    randconfig-001-20260502    gcc-14.3.0
 sh                    randconfig-002-20260502    gcc-14.3.0
+sh                      rts7751r2d1_defconfig    gcc-15.2.0
 sparc                             allnoconfig    clang-23
 sparc                               defconfig    gcc-15.2.0
 sparc                 randconfig-001-20260502    gcc-8.5.0
@@ -256,17 +232,11 @@ x86_64                randconfig-003-20260502    clang-20
 x86_64                randconfig-004-20260502    clang-20
 x86_64                randconfig-005-20260502    clang-20
 x86_64                randconfig-006-20260502    clang-20
-x86_64                randconfig-071-20260501    gcc-14
 x86_64                randconfig-071-20260502    gcc-14
-x86_64                randconfig-072-20260501    gcc-14
 x86_64                randconfig-072-20260502    gcc-14
-x86_64                randconfig-073-20260501    gcc-14
 x86_64                randconfig-073-20260502    gcc-14
-x86_64                randconfig-074-20260501    gcc-14
 x86_64                randconfig-074-20260502    gcc-14
-x86_64                randconfig-075-20260501    gcc-14
 x86_64                randconfig-075-20260502    gcc-14
-x86_64                randconfig-076-20260501    gcc-14
 x86_64                randconfig-076-20260502    gcc-14
 x86_64                               rhel-9.4    clang-20
 x86_64                           rhel-9.4-bpf    gcc-14
