@@ -4,54 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54119CCFA13
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90675CD3427
 	for <intel-xe@archiver.kernel.org>; Sat,  2 May 2026 00:53:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C52AD10E281;
-	Sat,  2 May 2026 00:53:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CDA010E245;
+	Sat,  2 May 2026 00:53:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jgUF/Tzd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mm+vGw5X";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F3CE10E245
- for <intel-xe@lists.freedesktop.org>; Sat,  2 May 2026 00:53:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8ED3910E245
+ for <intel-xe@lists.freedesktop.org>; Sat,  2 May 2026 00:53:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777683221; x=1809219221;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=9PZC7kSjJbytqT0zd7Kw9Dpob39xvxtuW2P/kkfYR94=;
- b=jgUF/Tzde4Yt5nJOeOIhYCbuSEqJdzkGevj4pdtna66m2T9mG7qkPl6D
- surm4axuYmvHeXGArLctX9yp7uQ86G44YJ18typDjHQqOONBN16/y73WU
- CCEOUdqaUnXKYW7nf3CmDzEXCrR36wPLRMqIF7F/sonDXPSm7hvguOjR8
- vYX1B4CDpuhdqHLZxVlJRLBQNpKsHLqywSYjTskmHpADjWNGchdNTTu4d
- iDhvUSb09WjKO0YdimKELRGXXMgMJxqQb+vlEVxAn7CRQLPiZy0gsT9nA
- VZWjIWhxCfR9w+Cyeusxodz1FkSvvRmD77RtYuvSRI4NMAxLpf9dL7Lje A==;
-X-CSE-ConnectionGUID: fRz8H211R4O4Ku0itKZPLA==
-X-CSE-MsgGUID: FFp9BrULSWCmCSPl3HveSw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11773"; a="78841557"
-X-IronPort-AV: E=Sophos;i="6.23,210,1770624000"; d="scan'208";a="78841557"
+ t=1777683220; x=1809219220;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Ulmqkm6E2qYTMsTF6EzIpImRfdPEIqFbOLTf2MwQN/E=;
+ b=Mm+vGw5XqBye1/Qn2FJ5waSstYF21h6Mx++QAr6rJI3M0x7em/2Itr68
+ 4FbgbQYmgwF59T4uTRswjlxrmUCYXmD/YCqJfEDy5caitZprZGhwJQ7d/
+ PTP72Aam0syksQsTDrkaiE+btkj+WRrlQM/eime4X9UvoAFcY6iPSu9gd
+ 2Vx+Oqb3w5OgaKO8p8XgEpvJRnSizEqWZtGPIstt/oJKjnmqOprvQ6XUg
+ RnUPIg7uxkXcXrmrvaZLIkfYKGnjPVjnRIV8oizebI7YuYgZYrBJCx4ED
+ PLfCqSK2DvSCzzDPOzRxMZkXlPcSNcjcp3JIbcybsi0jZyZXsqpOFXhAG w==;
+X-CSE-ConnectionGUID: jj0Os751R+Ok8JDZd1C3gQ==
+X-CSE-MsgGUID: 8fQuLSt3QjGbKuM1K1fvvA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11773"; a="78841554"
+X-IronPort-AV: E=Sophos;i="6.23,210,1770624000"; d="scan'208";a="78841554"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 May 2026 17:53:40 -0700
-X-CSE-ConnectionGUID: 8gUopdTxRcufBrsgwSAC2A==
-X-CSE-MsgGUID: unEuBZNgRm+kzqu5pIazTw==
+ 01 May 2026 17:53:39 -0700
+X-CSE-ConnectionGUID: QZEY6jxpStKBgugyVwH7bg==
+X-CSE-MsgGUID: KGzlTvJnQ8aEFuULoNM+2w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,210,1770624000"; d="scan'208";a="228510940"
+X-IronPort-AV: E=Sophos;i="6.23,210,1770624000"; d="scan'208";a="228510934"
 Received: from unerlige-desk1.jf.intel.com ([10.88.27.165])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 May 2026 17:53:39 -0700
+ 01 May 2026 17:53:38 -0700
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	niranjana.vishwanathapura@intel.com
 Cc: matthew.brost@intel.com,
 	stuart.summers@intel.com
-Subject: [PATCH v2 2/9] drm/xe: Add timestamp_ms to LRC snapshot
-Date: Fri,  1 May 2026 17:53:35 -0700
-Message-ID: <20260502005332.3135977-13-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH v2 0/9] Support run ticks for multi-queue use case
+Date: Fri,  1 May 2026 17:53:33 -0700
+Message-ID: <20260502005332.3135977-11-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260502005332.3135977-11-umesh.nerlige.ramappa@intel.com>
-References: <20260502005332.3135977-11-umesh.nerlige.ramappa@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -68,59 +66,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matthew Brost <matthew.brost@intel.com>
+In single queue use cases, the CTX TIMESTAMP can be used to track
+context run ticks. In multi-queue scenarios the CTX_TIMESTAMP represents
+run ticks of all the queues. To determine individual queue run ticks, we
+need to use QUEUE TIMESTAMP.
 
-Add a timestamp in milliseconds to the LRC snapshot to make it easier to
-reason about how long the LRC has been running and the average duration
-of each job.
+The series adds support to read out QUEUE TIMESTAMP for multi-queue use
+cases.
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_lrc.c | 4 ++++
- drivers/gpu/drm/xe/xe_lrc.h | 1 +
- 2 files changed, 5 insertions(+)
+v2: Review comments incorporated
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 98dc4d0eb61b..d85c712d106b 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -23,6 +23,7 @@
- #include "xe_drm_client.h"
- #include "xe_exec_queue_types.h"
- #include "xe_gt.h"
-+#include "xe_gt_clock.h"
- #include "xe_gt_printk.h"
- #include "xe_hw_fence.h"
- #include "xe_map.h"
-@@ -2476,6 +2477,8 @@ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
- 	snapshot->replay_size = lrc->replay_size;
- 	snapshot->lrc_snapshot = NULL;
- 	snapshot->ctx_timestamp = xe_lrc_ctx_timestamp(lrc);
-+	snapshot->ctx_timestamp_ms =
-+		xe_gt_clock_interval_to_ms(lrc->gt, xe_lrc_ctx_timestamp(lrc));
- 	snapshot->ctx_job_timestamp = xe_lrc_ctx_job_timestamp(lrc);
- 	return snapshot;
- }
-@@ -2529,6 +2532,7 @@ void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer
- 	drm_printf(p, "\tStart seqno: (memory) %d\n", snapshot->start_seqno);
- 	drm_printf(p, "\tSeqno: (memory) %d\n", snapshot->seqno);
- 	drm_printf(p, "\tTimestamp: 0x%016llx\n", snapshot->ctx_timestamp);
-+	drm_printf(p, "\tTimestamp ms: %llu\n", snapshot->ctx_timestamp_ms);
- 	drm_printf(p, "\tJob Timestamp: 0x%08x\n", snapshot->ctx_job_timestamp);
- 
- 	if (!snapshot->lrc_snapshot)
-diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-index 62beaffba0af..97aef0327fc8 100644
---- a/drivers/gpu/drm/xe/xe_lrc.h
-+++ b/drivers/gpu/drm/xe/xe_lrc.h
-@@ -39,6 +39,7 @@ struct xe_lrc_snapshot {
- 	u32 seqno;
- 	u64 ctx_timestamp;
- 	u32 ctx_job_timestamp;
-+	u64 ctx_timestamp_ms;
- };
- 
- #define LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR (0x34 * 4)
+Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+
+Matthew Brost (1):
+  drm/xe: Add timestamp_ms to LRC snapshot
+
+Umesh Nerlige Ramappa (8):
+  drm/xe/lrc: Use 64 bit ctx timestamp in the LRC snapshot
+  drm/xe/multi_queue: Store primary LRC and position info in LRC
+  drm/xe/multi_queue: Add helpers to access CS QUEUE TIMESTAMP from lrc
+  drm/xe/lrc: Refactor out engine id to hwe conversion
+  drm/xe/multi_queue: Capture queue run times for active queues
+  drm/xe/multi_queue: Add trace event for the multi queue timestamp
+  drm/xe/multi_queue: Use QUEUE_TIMESTAMP as job timestamp for
+    multi-queue
+  drm/xe/multi_queue: Whitelist QUEUE_TIMESTAMP register
+
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h |   4 +
+ drivers/gpu/drm/xe/regs/xe_lrc_layout.h  |   3 +
+ drivers/gpu/drm/xe/xe_exec_queue.c       |  23 ++-
+ drivers/gpu/drm/xe/xe_lrc.c              | 192 +++++++++++++++++++----
+ drivers/gpu/drm/xe/xe_lrc.h              |  10 +-
+ drivers/gpu/drm/xe/xe_lrc_types.h        |  11 ++
+ drivers/gpu/drm/xe/xe_reg_whitelist.c    |  14 ++
+ drivers/gpu/drm/xe/xe_ring_ops.c         |   8 +-
+ drivers/gpu/drm/xe/xe_trace_lrc.h        |  27 ++++
+ 9 files changed, 259 insertions(+), 33 deletions(-)
+
 -- 
 2.43.0
 
