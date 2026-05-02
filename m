@@ -4,41 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09EB0CD3436
-	for <intel-xe@archiver.kernel.org>; Mon,  4 May 2026 12:43:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDDEECD3430
+	for <intel-xe@archiver.kernel.org>; Mon,  4 May 2026 12:43:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABCF810E6AB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 864F910E6AA;
 	Mon,  4 May 2026 12:43:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; secure) header.d=panix.com header.i=@panix.com header.b="NmnmgQLW";
+	dkim=fail reason="signature verification failed" (1024-bit key; secure) header.d=panix.com header.i=@panix.com header.b="ovusLGWM";
 	dkim-atps=neutral
 Received: from mailbackend.panix.com (mailbackend.panix.com [166.84.1.89])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BEDA10E231;
- Sat,  2 May 2026 00:05:16 +0000 (UTC)
-Received: from [10.50.4.26] (45-31-46-51.lightspeed.sndgca.sbcglobal.net
- [45.31.46.51])
- by mailbackend.panix.com (Postfix) with ESMTPSA id 4g6p7v12zqz4Z6J;
- Fri,  1 May 2026 20:05:15 -0400 (EDT)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B7E9810E276;
+ Sat,  2 May 2026 08:14:40 +0000 (UTC)
+Received: from [192.168.126.122] (ip72-219-82-239.oc.oc.cox.net
+ [72.219.82.239])
+ by mailbackend.panix.com (Postfix) with ESMTPSA id 4g710b2LQsz4n9b;
+ Sat,  2 May 2026 04:14:39 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=panix.com; s=panix;
- t=1777680315; bh=yLOeTb77iO7D7G1rMqHM9UKvi2cmkepdCc7JELURt04=;
+ t=1777709680; bh=bxqm0lW2PmvQTaH5Q++wyZMQfBtk2aVXIpYkVvoKLc4=;
  h=Date:Subject:To:Cc:References:From:In-Reply-To;
- b=NmnmgQLWf5M2n77Be2fq4Pe3S2BXcN9TyQltwq0kBbWP2fLErTjI6PrIAbIvIIWXO
- PYq26fwcy92CNBRZqo4B8WYjEdpLcuSJEi8DRJiu2EpwhF+mG271jbL6sPGW3FPWtL
- 0cF7zi8Kxi5NncE/x2jMSPgqyjeiC9kTwE8+O0Iw=
-Message-ID: <18c48e7f-a2bd-4e74-9262-266cd5c2fde8@panix.com>
-Date: Fri, 1 May 2026 17:05:14 -0700
+ b=ovusLGWMO6yJx6JdnTzukjg74nhX4iiCZ2Z46DaNl6rZBv+/qR/Dz7zWEjaguVWaH
+ 2qPmTCXIyroszvUBXGb31acfbMuz57NEpTt6FTDZ+gNoaqcKPu1XwVVEuYmr/RKw7E
+ +m7CsAdVGItg4c4GBgDs6q42nq/rN7bnB8kC7vBw=
+Message-ID: <7f927ef8-2d3d-4609-926d-b18535794f72@panix.com>
+Date: Sat, 2 May 2026 01:14:38 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/ttm: Fix GPU MM stats during pool shrinking
+Subject: Re: [PATCH v2] drm/ttm: Fix GPU MM stats during pool shrinking
 To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
 Cc: Christian Koenig <christian.koenig@amd.com>, Huang Rui
  <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,
  David Airlie <airlied@gmail.com>
-References: <20260501223003.2648450-1-matthew.brost@intel.com>
+References: <20260502065338.2720646-1-matthew.brost@intel.com>
 Content-Language: en-US
 From: Kenneth Crudup <kenny@panix.com>
-In-Reply-To: <20260501223003.2648450-1-matthew.brost@intel.com>
+In-Reply-To: <20260502065338.2720646-1-matthew.brost@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Mon, 04 May 2026 12:43:10 +0000
@@ -57,75 +57,127 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 5/1/26 15:30, Matthew Brost wrote:
 
+On 5/1/26 23:53, Matthew Brost wrote:
 > TTM pool shrinking frees pages by calling __free_pages() directly,
 > which bypasses updates to NR_GPU_ACTIVE and leaves GPU MM accounting
 > out of sync.
 > 
 > Introduce a helper, __free_pages_gpu_account(), and use it for all page
 > frees in ttm_pool.c so GPU MM statistics are updated consistently.
+> 
+> Reported-by: Kenneth Crudup <kenny@panix.com>
+> Fixes: ae80122f3896 ("drm/ttm: use gpu mm stats to track gpu memory allocations. (v4)")
+> Cc: Christian Koenig <christian.koenig@amd.com>
+> Cc: Huang Rui <ray.huang@amd.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> 
+> ---
+> 
+> v2:
 
-OK, so why/how does "bonnie++" increase the GPU Memory size?
+Tested-By: Kenneth R. Crudup <kenny@panix.com>
 
-----
-SwapTotal:      33554428 kB
-MemTotal:       32345672 kB
-GPUReclaim:       621568 kB
-GPUActive:        453592 kB
-
-SwapTotal:      33554428 kB
-MemTotal:       32345672 kB
-GPUActive:       5554976 kB
-GPUReclaim:        12716 kB
-
-SwapTotal:      33554428 kB
-MemTotal:       32345672 kB
-GPUActive:      18407272 kB
-GPUReclaim:          884 kB
-
-SwapTotal:      33554428 kB
-MemTotal:       32345672 kB
-GPUActive:      24022916 kB
-GPUReclaim:          716 kB
-
-SwapTotal:      33554428 kB
-MemTotal:       32345672 kB
-GPUActive:      25258248 kB
-GPUReclaim:        16032 kB
-
-SwapTotal:      33554428 kB
-MemTotal:       32345672 kB
-GPUActive:      28207188 kB
-GPUReclaim:         3684 kB
-----
-
-... and I'm now not so sure the patch is working ... this after a 2nd 
-bonnie run:
+I think this one got it right ... this is after two bonnie++ runs:
 
 ----
-GPUActive:      44357100 kB
-SwapTotal:      33554428 kB
-MemTotal:       32345672 kB
-GPUReclaim:        94864 kB
+SwapFree:       33554428 kB
+MemTotal:       32345768 kB
+GPUActive:        676092 kB
+GPUReclaim:       584272 kB
 
-GPUActive:      44373904 kB
-SwapTotal:      33554428 kB
-MemTotal:       32345672 kB
-GPUReclaim:        94996 kB
+SwapFree:       33554428 kB
+MemTotal:       32345768 kB
+GPUActive:        750396 kB
+GPUReclaim:       516348 kB
 
-GPUActive:      44354940 kB
-SwapTotal:      33554428 kB
-MemTotal:       32345672 kB
-GPUReclaim:        98048 kB
+SwapFree:       33554428 kB
+MemTotal:       32345768 kB
+GPUActive:        801996 kB
+GPUReclaim:       478756 kB
 
-GPUActive:      44769340 kB
-SwapTotal:      33554428 kB
-MemTotal:       32345672 kB
-GPUReclaim:       122996 kB
+SwapFree:       33554428 kB
+MemTotal:       32345768 kB
+GPUActive:        794224 kB
+GPUReclaim:       481624 kB
+
+SwapFree:       33554428 kB
+MemTotal:       32345768 kB
+GPUActive:        351336 kB
+GPUReclaim:          400 kB
+
+SwapFree:       33554428 kB
+MemTotal:       32345768 kB
+GPUActive:       1015624 kB
+GPUReclaim:           72 kB
+
+SwapFree:       33554428 kB
+MemTotal:       32345768 kB
+GPUActive:        583176 kB
+GPUReclaim:           48 kB
+
+SwapFree:       33554428 kB
+MemTotal:       32345768 kB
+GPUActive:        737852 kB
+GPUReclaim:         2524 kB
+
+SwapFree:       33554428 kB
+MemTotal:       32345768 kB
+GPUActive:       1041056 kB
+GPUReclaim:          308 kB
+
+SwapFree:       33554428 kB
+MemTotal:       32345768 kB
+GPUActive:       1356568 kB
+GPUReclaim:       109992 kB
+
+SwapFree:       33554428 kB
+MemTotal:       32345768 kB
+GPUActive:       1181732 kB
+GPUReclaim:        39000 kB
+
+SwapFree:       33554428 kB
+MemTotal:       32345768 kB
+GPUActive:        989900 kB
+GPUReclaim:           68 kB
+
+SwapFree:       33554428 kB
+MemTotal:       32345768 kB
+GPUActive:        486720 kB
+GPUReclaim:          544 kB
+
+SwapFree:       33554428 kB
+MemTotal:       32345768 kB
+GPUActive:        687628 kB
+GPUReclaim:         2280 kB
+
+SwapFree:       33554428 kB
+MemTotal:       32345768 kB
+GPUActive:        634060 kB
+GPUReclaim:         1000 kB
+
+SwapFree:       33554428 kB
+MemTotal:       32345768 kB
+GPUActive:       1030168 kB
+GPUReclaim:         1696 kB
+
+SwapFree:       33554428 kB
+MemTotal:       32345768 kB
+GPUActive:       1323464 kB
+GPUReclaim:         1392 kB
+
+SwapFree:       33554428 kB
+MemTotal:       32345768 kB
+GPUActive:       1452340 kB
+GPUReclaim:        20024 kB
 ----
 
--Kenny
+
+
+-Kenny "yeah, I don't sleep much either" Crudup
 
 -- 
 Kenneth R. Crudup / Sr. SW Engineer, Scott County Consulting, Orange 
