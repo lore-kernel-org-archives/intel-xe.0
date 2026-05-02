@@ -4,29 +4,29 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F7A1FF885A
-	for <intel-xe@archiver.kernel.org>; Mon,  4 May 2026 12:43:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09EB0CD3436
+	for <intel-xe@archiver.kernel.org>; Mon,  4 May 2026 12:43:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3791010E6A7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABCF810E6AB;
 	Mon,  4 May 2026 12:43:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; secure) header.d=panix.com header.i=@panix.com header.b="olpCBwjT";
+	dkim=fail reason="signature verification failed" (1024-bit key; secure) header.d=panix.com header.i=@panix.com header.b="NmnmgQLW";
 	dkim-atps=neutral
 Received: from mailbackend.panix.com (mailbackend.panix.com [166.84.1.89])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59DE710E21A;
- Fri,  1 May 2026 22:57:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5BEDA10E231;
+ Sat,  2 May 2026 00:05:16 +0000 (UTC)
 Received: from [10.50.4.26] (45-31-46-51.lightspeed.sndgca.sbcglobal.net
  [45.31.46.51])
- by mailbackend.panix.com (Postfix) with ESMTPSA id 4g6mdY0ZkBz4Vxx;
- Fri,  1 May 2026 18:57:21 -0400 (EDT)
+ by mailbackend.panix.com (Postfix) with ESMTPSA id 4g6p7v12zqz4Z6J;
+ Fri,  1 May 2026 20:05:15 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=panix.com; s=panix;
- t=1777676241; bh=tbNoSz+TYk+wwrYQ8y6aYsYId0XhheqQ8jh56VRMikM=;
+ t=1777680315; bh=yLOeTb77iO7D7G1rMqHM9UKvi2cmkepdCc7JELURt04=;
  h=Date:Subject:To:Cc:References:From:In-Reply-To;
- b=olpCBwjTQ96jAtct84MqIaGKdURZ8J0X9P9hC6Z6qaMHCqPLZnqpBtYvguHjgbuKg
- tljhfzDb2vw9YpMxkmPDnddTKI7d4/oiM+c36imsEsvGmF9KNKfiOTJacSgxhyVbXr
- kw5DUP0LQS+YlglefWCscxnZbHET5BH1mznOJ3l4=
-Message-ID: <cc2ef040-23c2-4dab-a57f-e2df374deef9@panix.com>
-Date: Fri, 1 May 2026 15:57:19 -0700
+ b=NmnmgQLWf5M2n77Be2fq4Pe3S2BXcN9TyQltwq0kBbWP2fLErTjI6PrIAbIvIIWXO
+ PYq26fwcy92CNBRZqo4B8WYjEdpLcuSJEi8DRJiu2EpwhF+mG271jbL6sPGW3FPWtL
+ 0cF7zi8Kxi5NncE/x2jMSPgqyjeiC9kTwE8+O0Iw=
+Message-ID: <18c48e7f-a2bd-4e74-9262-266cd5c2fde8@panix.com>
+Date: Fri, 1 May 2026 17:05:14 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH] drm/ttm: Fix GPU MM stats during pool shrinking
@@ -65,69 +65,67 @@ On 5/1/26 15:30, Matthew Brost wrote:
 > 
 > Introduce a helper, __free_pages_gpu_account(), and use it for all page
 > frees in ttm_pool.c so GPU MM statistics are updated consistently.
-> 
-> Reported-by: Kenneth Crudup <kenny@panix.com>
-> Fixes: ae80122f3896 ("drm/ttm: use gpu mm stats to track gpu memory allocations. (v4)")
-> Cc: Christian Koenig <christian.koenig@amd.com>
-> Cc: Huang Rui <ray.huang@amd.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: dri-devel@lists.freedesktop.org
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->   drivers/gpu/drm/ttm/ttm_pool.c | 16 +++++++++++-----
->   1 file changed, 11 insertions(+), 5 deletions(-)
 
-Tested-By: Kenneth R. Crudup <kenny@panix.com>
+OK, so why/how does "bonnie++" increase the GPU Memory size?
 
-> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
-> index 26a3689e5fd9..95bbd9328072 100644
-> --- a/drivers/gpu/drm/ttm/ttm_pool.c
-> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
-> @@ -206,6 +206,14 @@ static struct page *ttm_pool_alloc_page(struct ttm_pool *pool, gfp_t gfp_flags,
->   	return NULL;
->   }
->   
-> +static void __free_pages_gpu_account(struct page *p, unsigned int order,
-> +				     bool reclaim)
-> +{
-> +	mod_lruvec_page_state(p, reclaim ? NR_GPU_RECLAIM : NR_GPU_ACTIVE,
-> +			      -(1 << order));
-> +	__free_pages(p, order);
-> +}
-> +
->   /* Reset the caching and pages of size 1 << order */
->   static void ttm_pool_free_page(struct ttm_pool *pool, enum ttm_caching caching,
->   			       unsigned int order, struct page *p, bool reclaim)
-> @@ -223,9 +231,7 @@ static void ttm_pool_free_page(struct ttm_pool *pool, enum ttm_caching caching,
->   #endif
->   
->   	if (!pool || !ttm_pool_uses_dma_alloc(pool)) {
-> -		mod_lruvec_page_state(p, reclaim ? NR_GPU_RECLAIM : NR_GPU_ACTIVE,
-> -				      -(1 << order));
-> -		__free_pages(p, order);
-> +		__free_pages_gpu_account(p, order, reclaim);
->   		return;
->   	}
->   
-> @@ -606,7 +612,7 @@ static int ttm_pool_restore_commit(struct ttm_pool_tt_restore *restore,
->   			 */
->   			ttm_pool_split_for_swap(restore->pool, p);
->   			copy_highpage(restore->alloced_page + i, p);
-> -			__free_pages(p, 0);
-> +			__free_pages_gpu_account(p, 0, false);
->   		}
->   
->   		restore->restored_pages++;
-> @@ -1068,7 +1074,7 @@ long ttm_pool_backup(struct ttm_pool *pool, struct ttm_tt *tt,
->   			if (flags->purge) {
->   				shrunken += num_pages;
->   				page->private = 0;
-> -				__free_pages(page, order);
-> +				__free_pages_gpu_account(page, order, false);
->   				memset(tt->pages + i, 0,
->   				       num_pages * sizeof(*tt->pages));
->   			}
+----
+SwapTotal:      33554428 kB
+MemTotal:       32345672 kB
+GPUReclaim:       621568 kB
+GPUActive:        453592 kB
+
+SwapTotal:      33554428 kB
+MemTotal:       32345672 kB
+GPUActive:       5554976 kB
+GPUReclaim:        12716 kB
+
+SwapTotal:      33554428 kB
+MemTotal:       32345672 kB
+GPUActive:      18407272 kB
+GPUReclaim:          884 kB
+
+SwapTotal:      33554428 kB
+MemTotal:       32345672 kB
+GPUActive:      24022916 kB
+GPUReclaim:          716 kB
+
+SwapTotal:      33554428 kB
+MemTotal:       32345672 kB
+GPUActive:      25258248 kB
+GPUReclaim:        16032 kB
+
+SwapTotal:      33554428 kB
+MemTotal:       32345672 kB
+GPUActive:      28207188 kB
+GPUReclaim:         3684 kB
+----
+
+... and I'm now not so sure the patch is working ... this after a 2nd 
+bonnie run:
+
+----
+GPUActive:      44357100 kB
+SwapTotal:      33554428 kB
+MemTotal:       32345672 kB
+GPUReclaim:        94864 kB
+
+GPUActive:      44373904 kB
+SwapTotal:      33554428 kB
+MemTotal:       32345672 kB
+GPUReclaim:        94996 kB
+
+GPUActive:      44354940 kB
+SwapTotal:      33554428 kB
+MemTotal:       32345672 kB
+GPUReclaim:        98048 kB
+
+GPUActive:      44769340 kB
+SwapTotal:      33554428 kB
+MemTotal:       32345672 kB
+GPUReclaim:       122996 kB
+----
+
+-Kenny
 
 -- 
 Kenneth R. Crudup / Sr. SW Engineer, Scott County Consulting, Orange 
