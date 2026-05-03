@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5EECCD13DA
-	for <intel-xe@archiver.kernel.org>; Sun,  3 May 2026 00:03:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28135CD3424
+	for <intel-xe@archiver.kernel.org>; Sun,  3 May 2026 11:41:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52E4610E10B;
-	Sun,  3 May 2026 00:03:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B648710E2FA;
+	Sun,  3 May 2026 11:41:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="nvlRp8j+";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="SDVoshme";
 	dkim-atps=neutral
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [198.137.202.133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E994310E00B;
- Sun,  3 May 2026 00:03:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- Content-Type:Cc:To:Subject:From:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:In-Reply-To:References;
- bh=KgWnLf/mFwD1Hh3sBaH+YGaBoHD9/6I/6KRlAUewflQ=; b=nvlRp8j+/HTCnnNTy6Xe57wsOY
- Gt/09apg7UK5cV5SMjE3M51EklDvplc8gJ7qcDBz4Xa9n9fGauknLzlq6cnG9fLjMkCtQ//riiUpU
- 9S+ho6d5iuD7orwVyImufSv6/btUuJOXg4wYqHrjzDJPr2/ysZRj8oF+pqjCfUW+uungX8jvuYmkJ
- WCxZNZlEjeQL5R3VxAZbI2ykZrRsyAmkuC8O+6KHiKE8VQfvHLjxQCB0k7Gl4qNjrJoy/UiRLnfbW
- VNUTl329wyVZnLBBeAqDCxt+bFD29C5EgVO3RCTGd3IhpZJx3YZlIyjiSuJ6bwB05mE5ZafbO7R/v
- bikF3WRw==;
-Received: from [50.53.43.113] (helo=[192.168.254.34])
- by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
- id 1wJKIu-00000009wgg-3Hut; Sun, 03 May 2026 00:03:24 +0000
-Message-ID: <c36e7dfb-cf62-4d21-a3b1-f54cb43e0832@infradead.org>
-Date: Sat, 2 May 2026 17:03:23 -0700
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F225610E2FA
+ for <intel-xe@lists.freedesktop.org>; Sun,  3 May 2026 11:41:06 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 414604446D;
+ Sun,  3 May 2026 11:41:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4715C2BCB4;
+ Sun,  3 May 2026 11:41:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1777808466;
+ bh=nXx1cbO4cllnCXWz0u9na2TdgFHsGj74Vc0HirDKlVw=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=SDVoshmeQtTa+D8jSkEPvk5EpptmbfHnXmnfxmJAkjv5K2BtCAkfcJAWrEPIM3du3
+ wDiy/mawK2obodhaBr6u/cZzs+mOV+lyCe+c1hyGtbK98I64/GskE6DySH6S2jLSXc
+ U/qnc+OBluiriNAvApnwQAB5mqCDVQHIgYjMNJBAe86jp+jO1PGPr0S76WfTNTxhp1
+ eS6RjAvyekUuirEV+74Q0ZGouSdxBVzVUNPcZ9DujleJ3sRYgXzJJIkchxNTgLxAXL
+ 8v5iVzKnYyZc95mLIEXF2zrLBj7M1xZXRbPUFy0uR2a7TRwvC6Z79D3Yg51r7rPNGl
+ IyiXbNotk26Mg==
+Date: Sun, 3 May 2026 13:41:02 +0200
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Raag Jadav <raag.jadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org, riana.tauro@intel.com
+Subject: Re: [PATCH v1] drm/xe/hw_error: Cleanup array map
+Message-ID: <afc0MHGBfw_McVP6@zenone.zhora.eu>
+References: <20260502180143.1450266-1-raag.jadav@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Randy Dunlap <rdunlap@infradead.org>
-Subject: does DRM_GPUSVM require hugepages?
-To: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Content-Language: en-US
-Cc: linux-next <linux-next@vger.kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260502180143.1450266-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,56 +55,22 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+Hi Raag,
 
-In linux-next-20260430, I'm seeing build errors on some ARCHes when
-DRM_XE=m (probably just "is set") but HAVE_ARCH_TRANSPARENT_HUGEPAGE
-is not set (not selected) by the ARCH.
+On Sat, May 02, 2026 at 11:31:43PM +0530, Raag Jadav wrote:
+> xe_hw_error_map[] is not worth the memory needed to map two components.
+> Clean it up and use switch() instead, which also, in turn, simplifies
+> bounds checking logic.
+> 
+> add/remove: 0/1 grow/shrink: 0/1 up/down: 0/-425 (-425)
+> Function                                     old     new   delta
+> xe_hw_error_map                              136       -    -136
+> xe_hw_error_irq_handler                     3728    3439    -289
+> Total: Before=7700, After=7275, chg -5.52%
+> 
+> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
 
-Does drm_gpusvm.c require hugepages?
-Or possibly DRM_XE needs some kind of restriction?
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 
-I see build failures on ARCH=alpha, ARCH=openrisc, ARCH=mips (32-bit
-or 64-bit), and ARCH=arm (without ARM_LPAE set).
-
-Example:
-../drivers/gpu/drm/drm_gpusvm.c: In function 'drm_gpusvm_get_pages':
-./../include/linux/compiler_types.h:699:45: error: call to '__compiletime_assert_361' declared with attribute error: BUILD_BUG failed
-  699 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
-      |                                             ^
-./../include/linux/compiler_types.h:680:25: note: in definition of macro '__compiletime_assert'
-  680 |                         prefix ## suffix();                             \
-      |                         ^~~~~~
-./../include/linux/compiler_types.h:699:9: note: in expansion of macro '_compiletime_assert'
-  699 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
-      |         ^~~~~~~~~~~~~~~~~~~
-../include/linux/build_bug.h:40:37: note: in expansion of macro 'compiletime_assert'
-   40 | #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
-      |                                     ^~~~~~~~~~~~~~~~~~
-../include/linux/build_bug.h:60:21: note: in expansion of macro 'BUILD_BUG_ON_MSG'
-   60 | #define BUILD_BUG() BUILD_BUG_ON_MSG(1, "BUILD_BUG failed")
-      |                     ^~~~~~~~~~~~~~~~
-../include/linux/huge_mm.h:113:28: note: in expansion of macro 'BUILD_BUG'
-  113 | #define HPAGE_PMD_SHIFT ({ BUILD_BUG(); 0; })
-      |                            ^~~~~~~~~
-../include/linux/huge_mm.h:120:35: note: in expansion of macro 'HPAGE_PMD_SHIFT'
-  120 | #define HPAGE_PMD_SIZE  ((1UL) << HPAGE_PMD_SHIFT)
-      |                                   ^~~~~~~~~~~~~~~
-../drivers/gpu/drm/drm_gpusvm.c:1560:52: note: in expansion of macro 'HPAGE_PMD_SIZE'
- 1560 |                                                    HPAGE_PMD_SIZE ?
-      |                                                    ^~~~~~~~~~~~~~
-make[6]: *** [../scripts/Makefile.build:289: drivers/gpu/drm/drm_gpusvm.o] Error 1
-
-where include/linux/huge_mm.h:113: says:
-
-#ifdef CONFIG_PGTABLE_HAS_HUGE_LEAVES
-#define HPAGE_PMD_SHIFT PMD_SHIFT
-#define HPAGE_PUD_SHIFT PUD_SHIFT
-#else
-#define HPAGE_PMD_SHIFT ({ BUILD_BUG(); 0; }) <<<<<<<<<<<<<<<<<< line 113
-#define HPAGE_PUD_SHIFT ({ BUILD_BUG(); 0; })
-#endif
-
--- 
-~Randy
-
+Thanks,
+Andi
