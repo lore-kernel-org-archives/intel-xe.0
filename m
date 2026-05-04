@@ -4,55 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7EBCFCD342C
-	for <intel-xe@archiver.kernel.org>; Mon,  4 May 2026 10:06:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51BEECD342C
+	for <intel-xe@archiver.kernel.org>; Mon,  4 May 2026 10:11:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BA8510E192;
-	Mon,  4 May 2026 10:06:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F45010E5CF;
+	Mon,  4 May 2026 10:11:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RKsSBp1e";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dFOmZnGs";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 141E510E192
- for <intel-xe@lists.freedesktop.org>; Mon,  4 May 2026 10:06:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1A0F10E200;
+ Mon,  4 May 2026 10:11:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777889187; x=1809425187;
+ t=1777889487; x=1809425487;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=8p4syC621wJ2PcbhN0gpT7UdZvzngP+37wP1RYvlL2I=;
- b=RKsSBp1eUUORr4xOILqVTOuCjs1VYeTh2EyHrQnB6PH/6Ly7L03aWlNv
- zKxvKZzvAMPHPyYm44SWpDwuGg67QuColzeZLvuZ8UGhQ/5vbohCMeboE
- GofCNrzKXRX1IPRwG93OqCxzJ/nOQJruCj1qztZPR6LVHTxLs2HWYlWvh
- eEat+uIOa0KKExwlIFytBt2gvg8Uvj+Ay4K6nYHcZv1rYDCbFJOf4m/nh
- QY6vR9gkIvsw7BLgVCs7eTwXQbzHE1urqZ+DVgA092lDrVWjnlAMow2rC
- 2wjd2V4v31DS/6MqyoKpLxk/bLGVzx4vR+hEzEf09U4nY88r/fDJD/BQB Q==;
-X-CSE-ConnectionGUID: gkw8IjPtSgW2uaMBtHJRVg==
-X-CSE-MsgGUID: /DDI8B+8SYShk5QTZXzhqw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11775"; a="89847221"
-X-IronPort-AV: E=Sophos;i="6.23,215,1770624000"; d="scan'208";a="89847221"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2026 03:06:26 -0700
-X-CSE-ConnectionGUID: RAQ3G5kFQbGPDFGCECh94A==
-X-CSE-MsgGUID: 9e3Nrva9TkiRJihz6YC61g==
+ bh=G75fVvkIrtp9sS6FOeKTFyKdKMUa8H0PHfuVJwLP9OE=;
+ b=dFOmZnGsVmFUq3xOZmxdVFsj3xqnxhNjNehMfEX1JK1789BG52xsMXXj
+ gBuq4Nl4SpdG8YAGNhAWfpZsChV+nuoDZTtAMgkqx03YVDglDUANa42FF
+ iZ3oJO7DLMbzNecuS6i3opQmBK9INSTMguObgIbvCFxlyIk7M+bKtgBXX
+ 5dpeYUVuAEuEI6QZpX4gjt6cBRRdqodb9DfRXeuBMytmWdiGygnJaIoYx
+ 3EktQz/N3tTpLArqcBDQ/VX6PUzxlGXpCrDmtqcJ6hJ5eyG+lP916oO+a
+ AzmYkYHRDBqsjbApS9/e0a0euyspF1Gc0KzIUkgZ3mxNIg05lRqhK5o0f w==;
+X-CSE-ConnectionGUID: 2Xmdcqd/R8ipZHwKYgS4FQ==
+X-CSE-MsgGUID: OJoQ92EYTx2fGjvWtXn/iQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11775"; a="82356832"
+X-IronPort-AV: E=Sophos;i="6.23,215,1770624000"; d="scan'208";a="82356832"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2026 03:11:27 -0700
+X-CSE-ConnectionGUID: qUx/rCauR9S+adJAbx2nJw==
+X-CSE-MsgGUID: D2FuOQWFS/G8p0rMwv0h2w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,215,1770624000"; d="scan'208";a="232825246"
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO tpalli-mobl3.intel.com)
- ([10.245.245.163])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2026 03:06:24 -0700
-From: =?UTF-8?q?Tapani=20P=C3=A4lli?= <tapani.palli@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.s.atwood@intel.com,
- =?UTF-8?q?Tapani=20P=C3=A4lli?= <tapani.palli@intel.com>
-Subject: [PATCH] drm/xe: enable sampler LD on LSC control via render surface
- state
-Date: Mon,  4 May 2026 13:05:11 +0300
-Message-ID: <20260504100511.146844-1-tapani.palli@intel.com>
-X-Mailer: git-send-email 2.53.0
+X-IronPort-AV: E=Sophos;i="6.23,215,1770624000"; d="scan'208";a="232327132"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by fmviesa007.fm.intel.com with ESMTP; 04 May 2026 03:11:25 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com, fnu.vishwanatha@intel.com,
+ santhosh.reddy.guddati@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH v2 0/2] Fix MST VCPI lookup and modeset-lock splat
+Date: Mon,  4 May 2026 15:41:16 +0530
+Message-Id: <20260504101117.3619984-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,33 +65,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This makes it possible for user space driver to control LSC usage
-for sampler loads.
+intel_conn_to_vcpi() is called from the HDCP enable path in commit_tail
+to look
+up the VCPI of the MST stream that HDCP is being enabled on. Today it
+reads the
+topology state directly from mgr->base.state and takes mgr->base.lock
+with the
+in-flight state->base.acquire_ctx.
 
-Bspec: 56846
-Signed-off-by: Tapani Pälli <tapani.palli@intel.com>
----
- drivers/gpu/drm/xe/xe_tuning.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+This breaks in two ways on MST + HDCP, especially when an
+ALLOCATE_PAYLOAD
+transaction is being driven on the mgr just before HDCP enable runs:
 
-diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
-index ce39b77a084a..f3ed27115893 100644
---- a/drivers/gpu/drm/xe/xe_tuning.c
-+++ b/drivers/gpu/drm/xe/xe_tuning.c
-@@ -92,6 +92,13 @@ static const struct xe_rtp_entry_sr gt_tunings[] = {
- 	  XE_RTP_ACTIONS(SET(XE2LPM_SCRATCH3_LBCF, RWFLUSHALLEN))
- 	},
- 
-+	/* Xe3 */
-+
-+	{ XE_RTP_NAME("Tuning: Enable Sampler LD on LSC Controlled by Render Surface State"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3000, XE_RTP_END_VERSION_UNDEFINED)),
-+	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0_UDW, ENABLE_SMP_LD_RENDER_SURFACE_CONTROL))
-+	},
-+
- 	/* Xe3p */
- 
- 	{ XE_RTP_NAME("Tuning: Set STLB Bank Hash Mode to 4KB"),
+- mgr->base.state's payload list is being mutated in place by the MST
+  payload code, so drm_atomic_get_mst_payload_state() can fail to find
+  the entry for this connector's port. That trips drm_WARN_ON(!payload)
+  and HDCP ends up programmed with VCPI 0.
+
+- By the time we reach commit_tail/encoder enable,
+  state->base.acquire_ctx
+  is no longer valid for acquiring new modeset locks. Taking
+  mgr->base.lock here produces a modeset-lock splat.
+
+This series fixes both.
+
+Suraj Kandpal (2):
+  drm/i915/hdcp: Use new MST topology state in intel_conn_to_vcpi()
+  drm/i915/hdcp: Drop mgr->base.lock acquisition in intel_conn_to_vcpi()
+
+ drivers/gpu/drm/i915/display/intel_hdcp.c | 13 ++++++++++---
+ 1 file changed, 10 insertions(+), 3 deletions(-)
+
 -- 
-2.53.0
+2.34.1
 
