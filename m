@@ -4,57 +4,159 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7AFEAFF885A
-	for <intel-xe@archiver.kernel.org>; Mon,  4 May 2026 09:49:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 219BCCD342C
+	for <intel-xe@archiver.kernel.org>; Mon,  4 May 2026 09:53:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D25610E617;
-	Mon,  4 May 2026 09:49:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF2BC10E5FD;
+	Mon,  4 May 2026 09:53:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hOSasfF+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NnQ9Waz1";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D06A110E5FD
- for <intel-xe@lists.freedesktop.org>; Mon,  4 May 2026 09:49:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E230F10E5F3;
+ Mon,  4 May 2026 09:53:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777888178; x=1809424178;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=C7qSvRCG+uXtL7yuxvngnv7z6y6kMq1NHX8CIZVDmEc=;
- b=hOSasfF+yMm2KLkgPYi+Ei8soCbJ4AErnuoxNWi+0WCu19tsXpLXkjRa
- WG7ec4oBtTJkvuxlG3NkM7rIkl5R8o9pWqOJ9t7++o45PLgGll2JaH4jL
- /ylU+nwBNuCjAZPeurQyS6DhbWirUPc/5sstvIqzIfDQvMALPdfXEd9sD
- JNHrKvQv/pcHC5pWIRN2pwFg7dm6KT+X1fvozAPa6b0vC0II/GwumtK1z
- kGy1zdvu+ZauOcsa7/G/ywIrAUkyX8kqCPQ+d9kP9JYUA5CPlKcdMcHnn
- ZWOkU5FcYY/GT7TQfGOQJV5saMHMKsnh2FPReQXEnqvQKo53o05Unt63c g==;
-X-CSE-ConnectionGUID: +HxRmwLwScilfg7C1zH4sg==
-X-CSE-MsgGUID: D/7Z1ZRsSZq7wR1QdrcMjw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11775"; a="104192926"
-X-IronPort-AV: E=Sophos;i="6.23,215,1770624000"; d="scan'208";a="104192926"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2026 02:49:37 -0700
-X-CSE-ConnectionGUID: TrjOwTrQR1miYNVcKTht+Q==
-X-CSE-MsgGUID: nXGBHbIbTpOTUgRUeO4Jag==
+ t=1777888426; x=1809424426;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=SF3ldGqtyOFM5wDzL0qeKzEA2to4Yrpbs8IktT1IKMY=;
+ b=NnQ9Waz1Y7q+qNbCO8Mm4gIfL5119t0lgYx5Msa3h5q3F9ylRCnKLDnA
+ u9w9xsUEtwrlvStjFV+zCzTuIw27UgXMSL89bkCC7Wf1ON7CkJ9bCbtrJ
+ BoIbiZSJV1Ic5P3awlRfzdQejdyVaPljkg6K5iCJ6z14vltoGCSDOch6p
+ dQBjComjSGSzgnO9RMqM9vdeo9bfkUcddtLA7GJtf9jiPvQwuhg3kVVVr
+ IDZST+kB4ZSRQXdi94IxgtuKxci2IxcpCZ2ddm6y5GQTPxNBfCVyFcbDN
+ yGL5ZIhR1yt+W26XT4u2Rc1zDGgcqf4XmofWKfmjJ8Rx9WX7mvB/gEIIx w==;
+X-CSE-ConnectionGUID: TbACx2RxQDaei3ucrNeJyA==
+X-CSE-MsgGUID: KYAhAwkqQpS77sGbD1jOog==
+X-IronPort-AV: E=McAfee;i="6800,10657,11775"; a="89434345"
+X-IronPort-AV: E=Sophos;i="6.23,215,1770624000"; d="scan'208";a="89434345"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2026 02:53:45 -0700
+X-CSE-ConnectionGUID: jONxtREcTPCJGmCV4KLAsg==
+X-CSE-MsgGUID: pVDPFjWkTXOYBXMwQyGWTA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,215,1770624000"; d="scan'208";a="239783381"
-Received: from gsd-build.iind.intel.com ([10.190.229.141])
- by orviesa004.jf.intel.com with ESMTP; 04 May 2026 02:49:35 -0700
-From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v2 1/1] drm/xe/guc: Exclude indirect ring state page from ADS
- engine state size
-Date: Mon,  4 May 2026 09:49:26 +0000
-Message-ID: <20260504094924.3760713-4-satyanarayana.k.v.p@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260504094924.3760713-3-satyanarayana.k.v.p@intel.com>
-References: <20260504094924.3760713-3-satyanarayana.k.v.p@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,215,1770624000"; d="scan'208";a="231116804"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2026 02:53:45 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Mon, 4 May 2026 02:53:45 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Mon, 4 May 2026 02:53:45 -0700
+Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.21) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Mon, 4 May 2026 02:53:44 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=lwBR+78+876uIfULwcrl9EfOuM7fJet/dJyENsAbb3Jp4IAh+gkWAmfQtJ1n0cNVrhvPQmzyLMpQGoyLhN35scYPCaLu02YyxN68jF/21VpN42oJHGtnHH8N70EtEUrp+NcjX0BJewiJk5UPt1VM5JO9Yjoa0gZsp3j/Z3ctY2syvedACOXKL8YLZ4F9I9f2so9oHHzvTF8pRmBlh9P3jW055E3BKBziIdGlIQbxtMmN26VspKa1NdxL0g32WqwsSHJ33hiseSuYAy7gNHatIun5F/2VSdXgESQoP2GTBXf2UfJh7KfYK1Z+XXmt49m+k1bb+/q+9aqeZt7+JWaEuw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=2XiqBxHPefBcihlrFQKhLILv/jewWuMzlIhM3/KPCgo=;
+ b=jlp4Z7V3Jd56peRqueIFYw4XSPKLd6sK+0GL9U3IIZW0xx1vO9sUZ0gMf2clX2Od/mL50I0RKDy1Kr1O/wi7ZXsNP+1tdS4wy1fEveONql4zhxdkUgumzEtOXggXQb+Ag2bGTh+fbq8SsfdIoFHKngWNd1+jQO2A2QImDjjcnT03CapvV4gNluz8I5toFhQFa6KqrjWwJWTzafAwQvBP1SZ0h4HdbP7dJi18r8RdhtiYcfl08uTT3/rMWdGl8ysRWAVEpfmR+qVIjkhDoeA3n4d7RB23wmK/imqsoMHtD/GRI0ohcy2Pep10x44RTstfaNefpK1MNoLMUXx2rWNAKA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5309.namprd11.prod.outlook.com (2603:10b6:5:390::5) by
+ PH7PR11MB6475.namprd11.prod.outlook.com (2603:10b6:510:1f1::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.25; Mon, 4 May
+ 2026 09:53:42 +0000
+Received: from DM4PR11MB5309.namprd11.prod.outlook.com
+ ([fe80::89e3:7ceb:6511:dd36]) by DM4PR11MB5309.namprd11.prod.outlook.com
+ ([fe80::89e3:7ceb:6511:dd36%4]) with mapi id 15.20.9870.022; Mon, 4 May 2026
+ 09:53:42 +0000
+Message-ID: <8c67967d-9a53-43d0-a454-b9ece1934db7@intel.com>
+Date: Mon, 4 May 2026 15:23:36 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] drm/i915/hdcp: Drop mgr->base.lock acquisition in
+ intel_conn_to_vcpi()
+To: Suraj Kandpal <suraj.kandpal@intel.com>, <intel-xe@lists.freedesktop.org>, 
+ <intel-gfx@lists.freedesktop.org>
+CC: <ankit.k.nautiyal@intel.com>, <fnu.vishwanatha@intel.com>
+References: <20260430032902.3409731-1-suraj.kandpal@intel.com>
+ <20260430032902.3409731-3-suraj.kandpal@intel.com>
+Content-Language: en-US
+From: "Reddy Guddati, Santhosh" <santhosh.reddy.guddati@intel.com>
+In-Reply-To: <20260430032902.3409731-3-suraj.kandpal@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA5PR01CA0129.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1d5::15) To DM4PR11MB5309.namprd11.prod.outlook.com
+ (2603:10b6:5:390::5)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5309:EE_|PH7PR11MB6475:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9ec2984a-8a69-46dc-9385-08dea9c30655
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|376014|1800799024|56012099003|22082099003|18002099003; 
+X-Microsoft-Antispam-Message-Info: TVSWIjFs9nmhaBzCxf184FIfo9cztyXvvacUSZy8tcxWe4E5PtmCwR5ycJ4E1Sjmj4wEN+8AC4gr0cggZ0RNfkjfx7dX/aDMZwWua5Qz/L0jLmL3x5CK7YX0VbcKlCN0kI+3jEBHFohr3gsxh5dHVSy8u0rJgYtBDS7LpZbhSI2t3iTOysoCAQpP2s5FKyq2/44WbzCXx9Ph1M29OTVFDjE2ahaDA8t0g0qGJgtFbjeSH8zsZVtw/n7DlABGZYKUxH06zKTb1C1vPKggdif1R6AqQyhD8pE1OCTr9o/gpQxmqcsvSrIKxi8Yd+WTKVGg2+t640mKVg4tqt+FyCzFdYsCfzG581CZm8/HTGNDrWcrtD+i8qB4Zx0breeEKXaCzg/bD1iHeebLIP8clQCCk5upztS793GOnDlDRmnLQDDaDIF0zFWCSJ1oKPpBw0C5AqIaxggU1C9j0ssn3AYDurbHLbyHhvcvkto7Xj0ndErY5I1RAWntGuFqNHGZCxYOZU4G1aV4HPIcpmRjOlV3SejRZvJdTzD1Z0ypavw80Jy4eAeQVNsSseLROiAB7RPrw/A2S1oj/QgbtxjAA6aGXcDbTMVeoTaGy9u8z3B5bM0WIbF53YuUgPfp/d7Li/PSShDh4V0zVgLg8Q/VZuZF00y/HfUEMqcKy0Vb4npdzZGbgoiolzU80ilgC0jRWZ6P
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5309.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(56012099003)(22082099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UlVRelVYRENwV1NaOEZNTDdsUVBuRUtXcHk0cndBc3EvYlZ2USt5eXMyVExz?=
+ =?utf-8?B?RFJTbVFTbUl6YjdVTmRzQ2J4dkp4aVp0d3kzby9qaTd0MTlRMy9qeWNiVzdH?=
+ =?utf-8?B?Vzc2cnhtdDJ3b0I0M2FsZkF1MXJVcTBBb2NUdjEvTS9BbTBuWDlMWTZQUmNL?=
+ =?utf-8?B?Yis4c0tlNmpiS0ZkRTR4aUFkVitwOG9PYzBnanAzM3IvZTVRTEFDMjFiWWpo?=
+ =?utf-8?B?cW8xUkY0bXBzYkowVGFVaW9TSENpZndQdXArN1RTN1kwSk5GU3A3aTc1dWNw?=
+ =?utf-8?B?d1pteHo1K0h2RGpyRCt0UlQ5NEhudnJpZXUwb2dwSzNCeFkweTRkbjZ3RElG?=
+ =?utf-8?B?K2ZpZU4veTJyQWI1TnN3Q0NxZzI1bWEra2UyRjhsSjRhYTcrSEdDMnpya1JC?=
+ =?utf-8?B?bHFzeTFNWkZVN3BBbUZwRi9xa0Frd3lUWDk5R05LOWUwdmN5UE1JWk5Hc2o0?=
+ =?utf-8?B?ZmVkN3Y0STJnSjVRUXErNUI1czBLaDUrZmFjM1hRWnphV0pVdUs0bzdrbENC?=
+ =?utf-8?B?TFYwRmdBN2xiNDIxU092ZXFESFlicThCbWhSVlJOaFl2Qmk5ejV0KzlSdDVi?=
+ =?utf-8?B?eUtXYjQxT1Zib3E3T2NGaVAzOFdMYUJ3QlNVam9SaVowcmpIaTFNWG44Wnkw?=
+ =?utf-8?B?Vldta3NCbXVwUEVudWNUUjNod2lUM3Y5Y0dHbEpSOHoyNWNJbVFVWkFucTM2?=
+ =?utf-8?B?dlJncnpvL0c5cEw0TVZPVlJpRmZKOGlWeC9Vd0d1WW1iTjNZS2cwNzZ6dlN6?=
+ =?utf-8?B?Wm1aYWNDUHNLeUVjcDlJajR5bjZUbkJ0UmRWVk5seDlZMDJhbnFQeUk4TnZL?=
+ =?utf-8?B?aE5LdlBNQVIvQ1k2ZDdVbU1CWVFZMkt3VFRZSEhMckFScklraGR2OFA1cHJ0?=
+ =?utf-8?B?R0FJdFBLL2tNZ3ByUFMxMnlBRXlIOFIvWmxlZGhHelllSHFVYkV3by8yUy9q?=
+ =?utf-8?B?dXV4Ulc1S1loNitVUi9FRGRxQzlIUlJoTnZvM240NXdDZGNrdFlFNHZ3NmI2?=
+ =?utf-8?B?eFNSeU1rZHMrVkFDVmZnNmk0ZUplKzZ2Zi9qWDhpbFJRWWk2VmZaVm8rb0Zs?=
+ =?utf-8?B?NFhZaVEwOUpzQkNVRTdWMTZkTjJUUDBlUkVRZzNzMTR2NVdpcjRxU21PNlNR?=
+ =?utf-8?B?SnVUNXJ2bDlpSytFODV1cDhtNElhRXlQZTEzV3VyU09UdnJMRHY1b3YrU2h2?=
+ =?utf-8?B?eWZqampZa1ZZUk5kdnVJRE5TYlJEUnNoY3VVd0FxNkg1WGJ5ZVk4elRBbXZJ?=
+ =?utf-8?B?bG96d1I5bitLM2dJN081QUUycHliUkE4WVQ5blRHSkRsTTRMQzE0MVdmaE5l?=
+ =?utf-8?B?YTQzdWh0Z1c0SGFNNm1UYUp2UUNtZXF0ZXBTTTlpSk1NbVJYVzEyVVFVMW9U?=
+ =?utf-8?B?aW02UzZWcjc1enh5ckg2YVFnRnYxVFJBN2l2MmM4TGs1WUkzcWp6WWJhaVBj?=
+ =?utf-8?B?OTc2N0lwL1BlS2cyalV2eWJMRHNZcGFvdkVob0IzNkkzRVlmSW9aWlRVeHpS?=
+ =?utf-8?B?T2J3TkM1cnVFbnRLQXlqdWZDNW55MmttREI1UFlzS21LUE94bWhOcnNRUCtz?=
+ =?utf-8?B?R0I1THI2bi9rVEZUQTNMaGVMOWlLazdGeTUyQ29tUlY4ZlhzT1pzbHJjVHN4?=
+ =?utf-8?B?d25md0FWVDdFTHB6cDc2c0oyaHRTNWNORkpMSHRRMVBNTmFqZSsvYWFtMnVE?=
+ =?utf-8?B?TTBTcitpMnJ5YS9scTFqZUNTTEpDdTNnOFB6WldKRTVYWU54bGo1MTJ6R3Y5?=
+ =?utf-8?B?bWZSTHVJLyszUTNPblV6T0IyYkpRSS9uNGx5SWhBeTc0UFBXSnNBRTRxd2R2?=
+ =?utf-8?B?NGF5KzgxejUzdlRWNm1Hc1lnOENyeFJMbXJILzhFREtiMG91ZllRbmlNZk5s?=
+ =?utf-8?B?Ynpzc21BU2w5VVJid2ZOaGNvWjF6ZzFKWTFtbm0xRzg4WGpVOVpJZU4rR1N0?=
+ =?utf-8?B?R0JXZDlhYUk3dFlJWGJiTUFuVTIwakhjU1VQYzMzVklGc3R0MFVHN296cDNy?=
+ =?utf-8?B?MzR0NEkwVDNwbGI5WUlVQkF2d1hFalJLZE1EUUdWMDdtR3RJSUhtb3FCckU1?=
+ =?utf-8?B?cmYwby9iaWlGZnkyZ1JtRjM0TnJqd3NCbW9EVUxuOTZqUmR0WUs5dGQ1aHFZ?=
+ =?utf-8?B?QUJ4eUFneXdsTUR4a281SVc4bXQweFVudWhTVkM2SFVDcFpISUUrRnZhdzZw?=
+ =?utf-8?B?N1YvRmFFOHRHSTNQZ1NzZlNSVUd3aGRoWUgrU3JDbGhZQjU3OERPRnB0czZH?=
+ =?utf-8?B?YnNtRFgrVVB4UkU2aVZsNUdPVkM5RDNwSklPMmhqMEhHYXFZaWY5a1NsTGw5?=
+ =?utf-8?B?WDNLbXZKUjBvNDE4YmpYcjFCMG5aUTFIZjFWeWhBVWpPcTBBY1lWWGRCQ2Jj?=
+ =?utf-8?Q?/DENYe5R/XM/VPnCIgPtymLuKQ69Dd9Ubtjdv?=
+X-Exchange-RoutingPolicyChecked: K+XuGz5hTxzrARz6B9vEwefe5UVSBOMoybPjcO8N8uKlBztV+mZBZZr7txQtZHraiMVjjhmo2S+6YCr8yE3IWS3yA9D+dVJfV3K967silAfQDfZvivhym0KbBG1wVaNUW/kxa6tazn43Cq4dJPkGEYkaAsOoOoD71t4PyOewyU11HPH+6jtHz7/3OaNeJ6qsd80ZVddgsedaWhaKK17V9M9a2mpAVsYhmv7NBo9lWMLPBcDNdKr5y2VYViiJ6FWfb12yUziJXkExbslIbmotWxYOqVLeYnbxPG0738To8WcJ4V9hlFjR5hTREvUDf1FCxLe7L+rt2Sa/OjejhrxdXQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9ec2984a-8a69-46dc-9385-08dea9c30655
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5309.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 May 2026 09:53:42.5583 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: RmoVtEFsuXq0V6B9n84SQpIm3H4f7tZrpOJI8ZSs5Yu9d52wXdKYik0hCBxXX3AzQUQoGgOrsRTrGlRIeR094cE+huYCtZpnW8lkx6C7+GETJdtLOHuk2FI7WpUa8M2Q
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6475
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,81 +171,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The engine state size reported to GuC via ADS should only include the
-engine state portion and should not include the indirect ring state page
-that comes after it in the context image. The GuC uses this size to
-overwrite the engine state in the LRC on watchdog resets and we don't
-want it to overwrite the indirect ring state as well.
+Hi Suraj,
 
-Fixes: d6219e1cd5e3 ("drm/xe: Add Indirect Ring State support")
-Suggested-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
----
-V1 -> V2:
-- Replaced xe_lrc_skip_size() with xe_lrc_engine_state_size().
-- Updated commit message (Daniel).
----
- drivers/gpu/drm/xe/xe_guc_ads.c |  5 +----
- drivers/gpu/drm/xe/xe_lrc.c     | 11 +++++++++--
- drivers/gpu/drm/xe/xe_lrc.h     |  2 +-
- 3 files changed, 11 insertions(+), 7 deletions(-)
+LGTM,
+Tested-by: Santhosh Reddy Guddati <santhosh.reddy.guddati@intel.com>
+Reviewed-by: Santhosh Reddy Guddati <santhosh.reddy.guddati@intel.com>
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-index ce651da6f318..b9bca6084a4f 100644
---- a/drivers/gpu/drm/xe/xe_guc_ads.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-@@ -515,12 +515,9 @@ static void guc_golden_lrc_init(struct xe_guc_ads *ads)
- 		 * that starts after the execlists LRC registers. This is
- 		 * required to allow the GuC to restore just the engine state
- 		 * when a watchdog reset occurs.
--		 * We calculate the engine state size by removing the size of
--		 * what comes before it in the context image (which is identical
--		 * on all engines).
- 		 */
- 		ads_blob_write(ads, ads.eng_state_size[guc_class],
--			       real_size - xe_lrc_skip_size(xe));
-+			       xe_lrc_engine_state_size(gt, class));
- 		ads_blob_write(ads, ads.golden_context_lrca[guc_class],
- 			       addr_ggtt);
- 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 9db914584347..fdfe2ed5f683 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -727,9 +727,16 @@ size_t xe_lrc_reg_size(struct xe_device *xe)
- 		return 80 * sizeof(u32);
- }
- 
--size_t xe_lrc_skip_size(struct xe_device *xe)
-+/**
-+ * xe_lrc_engine_state_size() - Get size of the engine state within LRC
-+ * @gt: the &xe_gt struct instance
-+ * @class: Hardware engine class
-+ *
-+ * Returns: Size of the engine state
-+ */
-+size_t xe_lrc_engine_state_size(struct xe_gt *gt, enum xe_engine_class class)
- {
--	return LRC_PPHWSP_SIZE + xe_lrc_reg_size(xe);
-+	return xe_gt_lrc_hang_replay_size(gt, class) - xe_lrc_reg_size(gt_to_xe(gt));
- }
- 
- static inline u32 __xe_lrc_seqno_offset(struct xe_lrc *lrc)
-diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-index e7c975f9e2d9..5440663183f6 100644
---- a/drivers/gpu/drm/xe/xe_lrc.h
-+++ b/drivers/gpu/drm/xe/xe_lrc.h
-@@ -130,7 +130,7 @@ u32 xe_lrc_parallel_ggtt_addr(struct xe_lrc *lrc);
- struct iosys_map xe_lrc_parallel_map(struct xe_lrc *lrc);
- 
- size_t xe_lrc_reg_size(struct xe_device *xe);
--size_t xe_lrc_skip_size(struct xe_device *xe);
-+size_t xe_lrc_engine_state_size(struct xe_gt *gt, enum xe_engine_class class);
- 
- void xe_lrc_dump_default(struct drm_printer *p,
- 			 struct xe_gt *gt,
--- 
-2.43.0
+On 30-04-2026 08:59, Suraj Kandpal wrote:
+> Now that intel_conn_to_vcpi() reads the MST topology state via
+> drm_atomic_get_new_mst_topology_state(), the topology state belongs
+> to this atomic commit and is already serialized through the atomic
+> state's private object machinery. There is no need to additionally
+> take mgr->base.lock here.
+> Taking it from the HDCP enable path in commit_tail with
+> state->base.acquire_ctx is also unsafe: by this point the
+> acquire_ctx is no longer in a state where new modeset locks may be
+> acquired through it, which produces a modeset-lock splat on MST +
+> HDCP. Drop the drm_modeset_lock() call.
+> 
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
+>   drivers/gpu/drm/i915/display/intel_hdcp.c | 3 +--
+>   1 file changed, 1 insertion(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index 91d2d7d823cc..a5d4e77f810f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -80,9 +80,8 @@ static int intel_conn_to_vcpi(struct intel_atomic_state *state,
+>   	/* For HDMI this is forced to be 0x0. For DP SST also this is 0x0. */
+>   	if (!connector->mst.port)
+>   		return 0;
+> -	mgr = connector->mst.port->mgr;
+>   
+> -	drm_modeset_lock(&mgr->base.lock, state->base.acquire_ctx);
+> +	mgr = connector->mst.port->mgr;
+>   	mst_state = drm_atomic_get_new_mst_topology_state(&state->base, mgr);
+>   	if (!mst_state) {
+>   		drm_dbg_kms(display->drm, "MST topology still not created\n");
 
