@@ -4,27 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63A1FFF885A
-	for <intel-xe@archiver.kernel.org>; Mon,  4 May 2026 15:43:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D0C7CD3430
+	for <intel-xe@archiver.kernel.org>; Mon,  4 May 2026 15:43:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1107310E3E3;
-	Mon,  4 May 2026 15:43:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF94210E3D2;
+	Mon,  4 May 2026 15:43:57 +0000 (UTC)
 Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F39210E3C5;
- Mon,  4 May 2026 15:43:14 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D91A710E3C5;
+ Mon,  4 May 2026 15:43:56 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0458913228800649616=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_gpu/buddy=3A_Per-order_fr?=
- =?utf-8?q?ee_and_used_block_scoreboards?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5Bv2?=
+ =?utf-8?q?=2C1/2=5D_gpu/buddy=3A_replace_dual-tree/force=5Fmerge_with_decou?=
+ =?utf-8?q?pled_clear_tracker?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Francois Dugast" <francois.dugast@intel.com>
+To: "Arunpravin Paneer Selvam" <arunpravin.paneerselvam@amd.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 04 May 2026 15:43:14 -0000
-Message-ID: <177790939425.35772.8135583948756758799@5ab824fced77>
+Date: Mon, 04 May 2026 15:43:56 -0000
+Message-ID: <177790943688.35772.3437142724912479977@5ab824fced77>
 X-Patchwork-Hint: ignore
-References: <20260504135343.1797869-1-francois.dugast@intel.com>
-In-Reply-To: <20260504135343.1797869-1-francois.dugast@intel.com>
+References: <20260504111055.262964-1-Arunpravin.PaneerSelvam@amd.com>
+In-Reply-To: <20260504111055.262964-1-Arunpravin.PaneerSelvam@amd.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,52 +41,102 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============0458913228800649616==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: gpu/buddy: Per-order free and used block scoreboards
-URL   : https://patchwork.freedesktop.org/series/165914/
-State : warning
+Series: series starting with [v2,1/2] gpu/buddy: replace dual-tree/force_merge with decoupled clear tracker
+URL   : https://patchwork.freedesktop.org/series/165893/
+State : success
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-c8c12e558adaef7a4d125d83b6e1f8824bc13b82
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 9f4f941cfd0d7c0a98dd0713cff5d28597dc1440
-Author: Francois Dugast <francois.dugast@intel.com>
-Date:   Mon May 4 15:52:42 2026 +0200
+CI Bug Log - changes from xe-4976-5e3e393d3eab6774e7aa49acd82f4bba2d8ef6a5_BAT -> xe-pw-165893v1_BAT
+====================================================
 
-    gpu/buddy: Track per-order used blocks with a scoreboard
-    
-    Extend the scoreboard approach from the previous commit to used blocks,
-    so drm_buddy_print() can report per-order allocation pressure in O(1).
-    
-    Unlike free blocks, an allocated block can leave the allocated state
-    through mark_free() (normal free and gpu_buddy_block_trim()) or be
-    consumed directly by gpu_block_free() during coalescing. Both sites are
-    guarded by gpu_buddy_block_is_allocated() and paired with the increment
-    in mark_allocated().
-    
-    Signed-off-by: Francois Dugast <francois.dugast@intel.com>
-    Assisted-by: GitHub Copilot:claude-sonnet-4.6
-+ /mt/dim checkpatch e798c5cca30e83c5793aa3d6f22456e39eeb219c drm-intel
-57294be1773b gpu/buddy: Track per-order free blocks with a scoreboard
--:22: WARNING:BAD_SIGN_OFF: Assisted-by expects 'AGENT_NAME:MODEL_VERSION [TOOL1] [TOOL2]' format
-#22: 
-Assisted-by: GitHub Copilot:claude-sonnet-4.6
+Summary
+-------
 
-total: 0 errors, 1 warnings, 0 checks, 132 lines checked
-9f4f941cfd0d gpu/buddy: Track per-order used blocks with a scoreboard
--:16: WARNING:BAD_SIGN_OFF: Assisted-by expects 'AGENT_NAME:MODEL_VERSION [TOOL1] [TOOL2]' format
-#16: 
-Assisted-by: GitHub Copilot:claude-sonnet-4.6
+  **SUCCESS**
 
-total: 0 errors, 1 warnings, 0 checks, 108 lines checked
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-4976-5e3e393d3eab6774e7aa49acd82f4bba2d8ef6a5 -> xe-pw-165893v1
+
+  IGT_8882: 3ef61dd87d23e6c8d7956b5a72ba01a6597a3fd1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4976-5e3e393d3eab6774e7aa49acd82f4bba2d8ef6a5: 5e3e393d3eab6774e7aa49acd82f4bba2d8ef6a5
+  xe-pw-165893v1: 165893v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165893v1/index.html
+
+--===============0458913228800649616==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v2,1/2] gpu/buddy: replace dual-tree/force_merge with decoupled clear tracker</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165893/">https://patchwork.freedesktop.org/series/165893/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165893v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165893v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4976-5e3e393d3eab6774e7aa49acd82f4bba2d8ef6a5_BAT -&gt; xe-pw-165893v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4976-5e3e393d3eab6774e7aa49acd82f4bba2d8ef6a5 -&gt; xe-pw-165893v1</li>
+</ul>
+<p>IGT_8882: 3ef61dd87d23e6c8d7956b5a72ba01a6597a3fd1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4976-5e3e393d3eab6774e7aa49acd82f4bba2d8ef6a5: 5e3e393d3eab6774e7aa49acd82f4bba2d8ef6a5<br />
+  xe-pw-165893v1: 165893v1</p>
+
+</body>
+</html>
+
+--===============0458913228800649616==--
