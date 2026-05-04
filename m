@@ -4,99 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97A14CD342C
-	for <intel-xe@archiver.kernel.org>; Mon,  4 May 2026 11:11:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8D94FF885A
+	for <intel-xe@archiver.kernel.org>; Mon,  4 May 2026 11:34:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9D6710E660;
-	Mon,  4 May 2026 11:11:50 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="QD4f4LsX";
-	dkim-atps=neutral
-Received: from MW6PR02CU001.outbound.protection.outlook.com
- (mail-westus2azon11012057.outbound.protection.outlook.com [52.101.48.57])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CA3C10E662;
- Mon,  4 May 2026 11:11:50 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=zSEfe7ZyxhoPYwzyJbKhLEPVQpBHLJTEjE0kMVrfly36lFTwNoHpp+4HfjfJYZqI0BEsurmUBfrqwWmLGxtai6ornvMsijOh+lr31MF0FPqmsgdxfCeL9vIlzg0+C3OUxoO+O/t2xRl1UXrjgGpXRF6Zvg/5VylIUluVndOQHXfAArqYJDJzQUEU51oFB8EUGnFoCwL0rAmz+uSGifAdD16ufiAwguoiL+dmKIw4GJ8oRd00yzERn38TEaPWRkTuF293hVM1uE3TIpEQqq3pasSEBGoMe2PJRhdcyPmAsi4TqE3Rtwojd0uRXaD71KiREu6beWQpBhtN6svQuo4ynQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5TLdAqICt0ShbXReZE5Nr1ihgwVDSSLPGqdIXq7wvqc=;
- b=AmPg56gKgWvHWNDs7Ul50CHBmq3VuTD1u1ikVU6E4bxREzlaKEmm/SJRAvENk0VVrgc45dzwqcamJ1PAkQBQlSzcGfZ4f5rdT1t9zRvHe0JJlA5pi+Srd+Oy6rRpvIdjb6QV2LiuNaXQzRjEK2zCd39YQJ8xfUfI2We0+BmPndzl3vWx1+Lhnm4i7gk/LHQiEA/TI5ipoP7y5I7biwhnUVeTedvLqLS4Qx17yhxbxArhEfOSz0oa2ikoABE0ezP8wA6BfxI+2jC5BhL6jQRMmSh2YqN/o2e6538E0ddkwAONnvqHX0OANxzpgGKCIBXm15eRsaTCDJ7mNs1a/UDNFQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=intel.com smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5TLdAqICt0ShbXReZE5Nr1ihgwVDSSLPGqdIXq7wvqc=;
- b=QD4f4LsXE3Tiq4qzBo9K7f3uPLvbgW2F5zXuTvbg+mC4pLkNw27iRYNzqeRUg0Wt0G/1EESH4L7Js0ONG1Ar5rqEvaGICGyWtt1VlVsMv5N65KAlmEne51tGxftcyFIUtcZUwS+ph8PaRyTa5oOrDGCb+8y5exLy+QEIR2vO7G8=
-Received: from BN9PR03CA0864.namprd03.prod.outlook.com (2603:10b6:408:13d::29)
- by PH7PR12MB6693.namprd12.prod.outlook.com (2603:10b6:510:1b0::6)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.25; Mon, 4 May
- 2026 11:11:40 +0000
-Received: from BN2PEPF000044A7.namprd04.prod.outlook.com
- (2603:10b6:408:13d:cafe::94) by BN9PR03CA0864.outlook.office365.com
- (2603:10b6:408:13d::29) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9870.25 via Frontend Transport; Mon,
- 4 May 2026 11:11:40 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- BN2PEPF000044A7.mail.protection.outlook.com (10.167.243.101) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9891.9 via Frontend Transport; Mon, 4 May 2026 11:11:40 +0000
-Received: from arun-nv33.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Mon, 4 May
- 2026 06:11:36 -0500
-From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-To: <matthew.auld@intel.com>, <christian.koenig@amd.com>,
- <dri-devel@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>
-CC: <alexander.deucher@amd.com>, Arunpravin Paneer Selvam
- <Arunpravin.PaneerSelvam@amd.com>
-Subject: [PATCH v2 1/2] gpu/buddy: replace dual-tree/force_merge with
- decoupled clear tracker
-Date: Mon, 4 May 2026 16:40:54 +0530
-Message-ID: <20260504111055.262964-1-Arunpravin.PaneerSelvam@amd.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83D4210E25F;
+	Mon,  4 May 2026 11:34:04 +0000 (UTC)
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFB9110E675;
+ Mon,  4 May 2026 11:34:02 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF000044A7:EE_|PH7PR12MB6693:EE_
-X-MS-Office365-Filtering-Correlation-Id: fb888884-72ef-4853-2411-08dea9cdea7a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700016|82310400026|376014|1800799024|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info: 3FcuEG8HWdKET1VKJ5kG6GHHJ/uQ2/hot3EIN9XJ/B6eFMVihd4VHK3s7eHWCmer+tXPdS9EhwUZOPn+JqR59gRpeVCnFJDrZrQ9kV60aF0F1geKHB5UB/VSh8nssVM7KBko/0qm4obQFhBEpQNlL6JPVA7icD8nOHiPw+eb9YTWqyJs1ezl5z8GeHlUNXTNqol+SafWqd/4rZRt46aLGdA7gaU1balg/izmaLU1zMkl5sMXaPTfwT40A4W1Ehnh0+5fjHAXxEgxTKHMBgGsPkrMMEivOfp+hpucDScWotfaLA5BUqSZvDs+4pOJk5spIvoPnJ00I5Zifgy+6R3HeCVhgNQjmfyew69/mdAoE8xQyhMubCTyDwLb7X6IOG/x6GNHBY+OoNXNWeVErVp2XFVdG+xAy0EHNhLsY3PdbyJZ3vazdkGhXoKuRF/spZjCu7FH3E1aIZZK2w2JNMS1xN1b+pImXl902VF38GBBKGUBpZRNb4ttaSn9qkqnAUhG/pPrUbAlu7tnU+W0BXPR1cbgOl6cO/HWbnDxQudtoE9+/cbkArJ5wiyeMhaOJUmxtl87b0hrlqr2lXRMcLMGXNrEMuwkoWSVdCzSM4bLBCq4XO+PXlktMyqoswr0UH8UYiHEnG7SfEQ0/3dOTVRnKcKF/mEk5oUlR+wFkLVT3Vy8xjLsyjtnHWBTJciaHOBTcny2TGddLYZHlJuGFHlZMvSuHbmcLTe98OB03aYsgEU=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700016)(82310400026)(376014)(1800799024)(18002099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: /9jK/ZhkZFQPfDSYCQUoMauDRzOHPe0ap0y7LG8V+EkkBRsRjlgybdArF9dfMNp8zXXjFj/mrj555Ox3A1CbNLU/2Rn/3GfLWT0RvzaplbzFFsGaqJoq748iILcqeqMGrPrftfpdbXmyX5QCZlXaU0icoakOg+owXRAXPDwnFOz1RfjQu0YxOZ+o0HHFgixyN6gFCHLDMvtfpvDZwGvwZE/W9v1+ddpI79sDPnGrFYN4P3ya15O08qtnhOc+Ui5CxcbCNq6t+I7fOqiQnB6ol07WW1CwCG7gGIb8WCP8GMT0hFPFFGT7srwaw6fg4NDPO1C+q0jxHxvedrd1bGFC1p7dz8bFnDd9zCu/efCUkyMQ2ooXrMF5jFJlUTlZOYGHyJjVCH9+ih8lcavrkn7PJiwEnYaN7QKnhPqnLth7tjUxdtTgtyKEHkhV/H1vAzNB
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 May 2026 11:11:40.0021 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: fb888884-72ef-4853-2411-08dea9cdea7a
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF000044A7.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6693
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EKUnit=3A_success_for_drm/xe=3A_enable_sampler_LD_on?=
+ =?utf-8?q?_LSC_control_via_render_surface_state?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Tapani_P=C3=A4lli?= <tapani.palli@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 04 May 2026 11:34:02 -0000
+Message-ID: <177789444291.33916.17941287548557977379@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260504100511.146844-1-tapani.palli@intel.com>
+In-Reply-To: <20260504100511.146844-1-tapani.palli@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,1750 +36,1687 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The current buddy allocator maintains separate clear_tree[] and
-dirty_tree[] rbtrees per order, preventing coalescing between cleared
-and dirty buddies. Under mixed workloads, this creates a merge barrier:
-adjacent buddies frequently end up split across trees, forcing reliance
-on __force_merge() during allocation.
+== Series Details ==
 
-__force_merge() performs an O(N x max_order) scan under the VRAM manager
-lock, leading to allocation stalls and failures for large contiguous
-requests even when sufficient total free memory is available.
+Series: drm/xe: enable sampler LD on LSC control via render surface state
+URL   : https://patchwork.freedesktop.org/series/165887/
+State : success
 
-Solution
+== Summary ==
 
-Replace the dual-tree design with:
-- A single free_tree[order] rbtree for dirty and mixed free blocks
-  (fully cleared free blocks float outside this tree)
-- A lightweight out-of-band clear tracker (gpu_clear_tracker)
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+[11:32:45] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[11:32:50] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
+[11:33:21] Starting KUnit Kernel (1/1)...
+[11:33:21] ============================================================
+Running tests with:
+$ .kunit/linux kunit.enable=1 mem=1G console=tty kunit_shutdown=halt
+[11:33:21] ================== guc_buf (11 subtests) ===================
+[11:33:21] [PASSED] test_smallest
+[11:33:21] [PASSED] test_largest
+[11:33:21] [PASSED] test_granular
+[11:33:21] [PASSED] test_unique
+[11:33:21] [PASSED] test_overlap
+[11:33:21] [PASSED] test_reusable
+[11:33:21] [PASSED] test_too_big
+[11:33:21] [PASSED] test_flush
+[11:33:21] [PASSED] test_lookup
+[11:33:21] [PASSED] test_data
+[11:33:21] [PASSED] test_class
+[11:33:21] ===================== [PASSED] guc_buf =====================
+[11:33:21] =================== guc_dbm (7 subtests) ===================
+[11:33:21] [PASSED] test_empty
+[11:33:21] [PASSED] test_default
+[11:33:21] ======================== test_size  ========================
+[11:33:21] [PASSED] 4
+[11:33:21] [PASSED] 8
+[11:33:21] [PASSED] 32
+[11:33:21] [PASSED] 256
+[11:33:21] ==================== [PASSED] test_size ====================
+[11:33:21] ======================= test_reuse  ========================
+[11:33:21] [PASSED] 4
+[11:33:21] [PASSED] 8
+[11:33:21] [PASSED] 32
+[11:33:21] [PASSED] 256
+[11:33:21] =================== [PASSED] test_reuse ====================
+[11:33:21] =================== test_range_overlap  ====================
+[11:33:21] [PASSED] 4
+[11:33:21] [PASSED] 8
+[11:33:21] [PASSED] 32
+[11:33:21] [PASSED] 256
+[11:33:21] =============== [PASSED] test_range_overlap ================
+[11:33:21] =================== test_range_compact  ====================
+[11:33:21] [PASSED] 4
+[11:33:21] [PASSED] 8
+[11:33:21] [PASSED] 32
+[11:33:21] [PASSED] 256
+[11:33:21] =============== [PASSED] test_range_compact ================
+[11:33:21] ==================== test_range_spare  =====================
+[11:33:21] [PASSED] 4
+[11:33:21] [PASSED] 8
+[11:33:21] [PASSED] 32
+[11:33:21] [PASSED] 256
+[11:33:21] ================ [PASSED] test_range_spare =================
+[11:33:21] ===================== [PASSED] guc_dbm =====================
+[11:33:21] =================== guc_idm (6 subtests) ===================
+[11:33:21] [PASSED] bad_init
+[11:33:21] [PASSED] no_init
+[11:33:21] [PASSED] init_fini
+[11:33:21] [PASSED] check_used
+[11:33:21] [PASSED] check_quota
+[11:33:21] [PASSED] check_all
+[11:33:21] ===================== [PASSED] guc_idm =====================
+[11:33:21] ================== no_relay (3 subtests) ===================
+[11:33:21] [PASSED] xe_drops_guc2pf_if_not_ready
+[11:33:21] [PASSED] xe_drops_guc2vf_if_not_ready
+[11:33:21] [PASSED] xe_rejects_send_if_not_ready
+[11:33:21] ==================== [PASSED] no_relay =====================
+[11:33:21] ================== pf_relay (14 subtests) ==================
+[11:33:21] [PASSED] pf_rejects_guc2pf_too_short
+[11:33:21] [PASSED] pf_rejects_guc2pf_too_long
+[11:33:21] [PASSED] pf_rejects_guc2pf_no_payload
+[11:33:21] [PASSED] pf_fails_no_payload
+[11:33:21] [PASSED] pf_fails_bad_origin
+[11:33:21] [PASSED] pf_fails_bad_type
+[11:33:21] [PASSED] pf_txn_reports_error
+[11:33:21] [PASSED] pf_txn_sends_pf2guc
+[11:33:21] [PASSED] pf_sends_pf2guc
+[11:33:21] [SKIPPED] pf_loopback_nop
+[11:33:21] [SKIPPED] pf_loopback_echo
+[11:33:21] [SKIPPED] pf_loopback_fail
+[11:33:21] [SKIPPED] pf_loopback_busy
+[11:33:21] [SKIPPED] pf_loopback_retry
+[11:33:21] ==================== [PASSED] pf_relay =====================
+[11:33:21] ================== vf_relay (3 subtests) ===================
+[11:33:21] [PASSED] vf_rejects_guc2vf_too_short
+[11:33:21] [PASSED] vf_rejects_guc2vf_too_long
+[11:33:21] [PASSED] vf_rejects_guc2vf_no_payload
+[11:33:21] ==================== [PASSED] vf_relay =====================
+[11:33:21] ================ pf_gt_config (9 subtests) =================
+[11:33:21] [PASSED] fair_contexts_1vf
+[11:33:21] [PASSED] fair_doorbells_1vf
+[11:33:21] [PASSED] fair_ggtt_1vf
+[11:33:21] ====================== fair_vram_1vf  ======================
+[11:33:21] [PASSED] 3.50 GiB
+[11:33:21] [PASSED] 11.5 GiB
+[11:33:21] [PASSED] 15.5 GiB
+[11:33:21] [PASSED] 31.5 GiB
+[11:33:21] [PASSED] 63.5 GiB
+[11:33:21] [PASSED] 1.91 GiB
+[11:33:21] ================== [PASSED] fair_vram_1vf ==================
+[11:33:21] ================ fair_vram_1vf_admin_only  =================
+[11:33:21] [PASSED] 3.50 GiB
+[11:33:21] [PASSED] 11.5 GiB
+[11:33:21] [PASSED] 15.5 GiB
+[11:33:21] [PASSED] 31.5 GiB
+[11:33:21] [PASSED] 63.5 GiB
+[11:33:21] [PASSED] 1.91 GiB
+[11:33:21] ============ [PASSED] fair_vram_1vf_admin_only =============
+[11:33:21] ====================== fair_contexts  ======================
+[11:33:21] [PASSED] 1 VF
+[11:33:21] [PASSED] 2 VFs
+[11:33:21] [PASSED] 3 VFs
+[11:33:21] [PASSED] 4 VFs
+[11:33:21] [PASSED] 5 VFs
+[11:33:21] [PASSED] 6 VFs
+[11:33:21] [PASSED] 7 VFs
+[11:33:21] [PASSED] 8 VFs
+[11:33:21] [PASSED] 9 VFs
+[11:33:21] [PASSED] 10 VFs
+[11:33:21] [PASSED] 11 VFs
+[11:33:21] [PASSED] 12 VFs
+[11:33:21] [PASSED] 13 VFs
+[11:33:21] [PASSED] 14 VFs
+[11:33:21] [PASSED] 15 VFs
+[11:33:21] [PASSED] 16 VFs
+[11:33:21] [PASSED] 17 VFs
+[11:33:21] [PASSED] 18 VFs
+[11:33:21] [PASSED] 19 VFs
+[11:33:21] [PASSED] 20 VFs
+[11:33:21] [PASSED] 21 VFs
+[11:33:21] [PASSED] 22 VFs
+[11:33:21] [PASSED] 23 VFs
+[11:33:21] [PASSED] 24 VFs
+[11:33:21] [PASSED] 25 VFs
+[11:33:21] [PASSED] 26 VFs
+[11:33:21] [PASSED] 27 VFs
+[11:33:21] [PASSED] 28 VFs
+[11:33:21] [PASSED] 29 VFs
+[11:33:21] [PASSED] 30 VFs
+[11:33:21] [PASSED] 31 VFs
+[11:33:21] [PASSED] 32 VFs
+[11:33:21] [PASSED] 33 VFs
+[11:33:21] [PASSED] 34 VFs
+[11:33:21] [PASSED] 35 VFs
+[11:33:21] [PASSED] 36 VFs
+[11:33:21] [PASSED] 37 VFs
+[11:33:21] [PASSED] 38 VFs
+[11:33:21] [PASSED] 39 VFs
+[11:33:21] [PASSED] 40 VFs
+[11:33:21] [PASSED] 41 VFs
+[11:33:21] [PASSED] 42 VFs
+[11:33:21] [PASSED] 43 VFs
+[11:33:21] [PASSED] 44 VFs
+[11:33:21] [PASSED] 45 VFs
+[11:33:21] [PASSED] 46 VFs
+[11:33:21] [PASSED] 47 VFs
+[11:33:21] [PASSED] 48 VFs
+[11:33:21] [PASSED] 49 VFs
+[11:33:21] [PASSED] 50 VFs
+[11:33:21] [PASSED] 51 VFs
+[11:33:21] [PASSED] 52 VFs
+[11:33:21] [PASSED] 53 VFs
+[11:33:21] [PASSED] 54 VFs
+[11:33:21] [PASSED] 55 VFs
+[11:33:21] [PASSED] 56 VFs
+[11:33:21] [PASSED] 57 VFs
+[11:33:21] [PASSED] 58 VFs
+[11:33:21] [PASSED] 59 VFs
+[11:33:21] [PASSED] 60 VFs
+[11:33:21] [PASSED] 61 VFs
+[11:33:21] [PASSED] 62 VFs
+[11:33:21] [PASSED] 63 VFs
+[11:33:21] ================== [PASSED] fair_contexts ==================
+[11:33:21] ===================== fair_doorbells  ======================
+[11:33:21] [PASSED] 1 VF
+[11:33:21] [PASSED] 2 VFs
+[11:33:21] [PASSED] 3 VFs
+[11:33:21] [PASSED] 4 VFs
+[11:33:21] [PASSED] 5 VFs
+[11:33:21] [PASSED] 6 VFs
+[11:33:21] [PASSED] 7 VFs
+[11:33:21] [PASSED] 8 VFs
+[11:33:21] [PASSED] 9 VFs
+[11:33:21] [PASSED] 10 VFs
+[11:33:21] [PASSED] 11 VFs
+[11:33:21] [PASSED] 12 VFs
+[11:33:21] [PASSED] 13 VFs
+[11:33:21] [PASSED] 14 VFs
+[11:33:21] [PASSED] 15 VFs
+[11:33:21] [PASSED] 16 VFs
+[11:33:21] [PASSED] 17 VFs
+[11:33:21] [PASSED] 18 VFs
+[11:33:21] [PASSED] 19 VFs
+[11:33:21] [PASSED] 20 VFs
+[11:33:21] [PASSED] 21 VFs
+[11:33:21] [PASSED] 22 VFs
+[11:33:21] [PASSED] 23 VFs
+[11:33:21] [PASSED] 24 VFs
+[11:33:21] [PASSED] 25 VFs
+[11:33:21] [PASSED] 26 VFs
+[11:33:21] [PASSED] 27 VFs
+[11:33:21] [PASSED] 28 VFs
+[11:33:21] [PASSED] 29 VFs
+[11:33:21] [PASSED] 30 VFs
+[11:33:21] [PASSED] 31 VFs
+[11:33:21] [PASSED] 32 VFs
+[11:33:21] [PASSED] 33 VFs
+[11:33:21] [PASSED] 34 VFs
+[11:33:21] [PASSED] 35 VFs
+[11:33:21] [PASSED] 36 VFs
+[11:33:21] [PASSED] 37 VFs
+[11:33:21] [PASSED] 38 VFs
+[11:33:21] [PASSED] 39 VFs
+[11:33:21] [PASSED] 40 VFs
+[11:33:21] [PASSED] 41 VFs
+[11:33:21] [PASSED] 42 VFs
+[11:33:21] [PASSED] 43 VFs
+[11:33:21] [PASSED] 44 VFs
+[11:33:21] [PASSED] 45 VFs
+[11:33:21] [PASSED] 46 VFs
+[11:33:21] [PASSED] 47 VFs
+[11:33:21] [PASSED] 48 VFs
+[11:33:21] [PASSED] 49 VFs
+[11:33:21] [PASSED] 50 VFs
+[11:33:21] [PASSED] 51 VFs
+[11:33:21] [PASSED] 52 VFs
+[11:33:21] [PASSED] 53 VFs
+[11:33:21] [PASSED] 54 VFs
+[11:33:21] [PASSED] 55 VFs
+[11:33:21] [PASSED] 56 VFs
+[11:33:21] [PASSED] 57 VFs
+[11:33:21] [PASSED] 58 VFs
+[11:33:21] [PASSED] 59 VFs
+[11:33:21] [PASSED] 60 VFs
+[11:33:21] [PASSED] 61 VFs
+[11:33:21] [PASSED] 62 VFs
+[11:33:21] [PASSED] 63 VFs
+[11:33:21] ================= [PASSED] fair_doorbells ==================
+[11:33:21] ======================== fair_ggtt  ========================
+[11:33:21] [PASSED] 1 VF
+[11:33:21] [PASSED] 2 VFs
+[11:33:21] [PASSED] 3 VFs
+[11:33:21] [PASSED] 4 VFs
+[11:33:21] [PASSED] 5 VFs
+[11:33:21] [PASSED] 6 VFs
+[11:33:21] [PASSED] 7 VFs
+[11:33:21] [PASSED] 8 VFs
+[11:33:21] [PASSED] 9 VFs
+[11:33:21] [PASSED] 10 VFs
+[11:33:21] [PASSED] 11 VFs
+[11:33:21] [PASSED] 12 VFs
+[11:33:21] [PASSED] 13 VFs
+[11:33:21] [PASSED] 14 VFs
+[11:33:21] [PASSED] 15 VFs
+[11:33:21] [PASSED] 16 VFs
+[11:33:21] [PASSED] 17 VFs
+[11:33:21] [PASSED] 18 VFs
+[11:33:21] [PASSED] 19 VFs
+[11:33:21] [PASSED] 20 VFs
+[11:33:21] [PASSED] 21 VFs
+[11:33:21] [PASSED] 22 VFs
+[11:33:21] [PASSED] 23 VFs
+[11:33:21] [PASSED] 24 VFs
+[11:33:21] [PASSED] 25 VFs
+[11:33:21] [PASSED] 26 VFs
+[11:33:21] [PASSED] 27 VFs
+[11:33:21] [PASSED] 28 VFs
+[11:33:21] [PASSED] 29 VFs
+[11:33:21] [PASSED] 30 VFs
+[11:33:21] [PASSED] 31 VFs
+[11:33:21] [PASSED] 32 VFs
+[11:33:21] [PASSED] 33 VFs
+[11:33:21] [PASSED] 34 VFs
+[11:33:21] [PASSED] 35 VFs
+[11:33:21] [PASSED] 36 VFs
+[11:33:21] [PASSED] 37 VFs
+[11:33:21] [PASSED] 38 VFs
+[11:33:21] [PASSED] 39 VFs
+[11:33:21] [PASSED] 40 VFs
+[11:33:21] [PASSED] 41 VFs
+[11:33:21] [PASSED] 42 VFs
+[11:33:21] [PASSED] 43 VFs
+[11:33:21] [PASSED] 44 VFs
+[11:33:21] [PASSED] 45 VFs
+[11:33:21] [PASSED] 46 VFs
+[11:33:21] [PASSED] 47 VFs
+[11:33:21] [PASSED] 48 VFs
+[11:33:21] [PASSED] 49 VFs
+[11:33:21] [PASSED] 50 VFs
+[11:33:21] [PASSED] 51 VFs
+[11:33:21] [PASSED] 52 VFs
+[11:33:21] [PASSED] 53 VFs
+[11:33:21] [PASSED] 54 VFs
+[11:33:21] [PASSED] 55 VFs
+[11:33:21] [PASSED] 56 VFs
+[11:33:21] [PASSED] 57 VFs
+[11:33:21] [PASSED] 58 VFs
+[11:33:21] [PASSED] 59 VFs
+[11:33:21] [PASSED] 60 VFs
+[11:33:21] [PASSED] 61 VFs
+[11:33:21] [PASSED] 62 VFs
+[11:33:21] [PASSED] 63 VFs
+[11:33:21] ==================== [PASSED] fair_ggtt ====================
+[11:33:21] ======================== fair_vram  ========================
+[11:33:21] [PASSED] 1 VF
+[11:33:21] [PASSED] 2 VFs
+[11:33:21] [PASSED] 3 VFs
+[11:33:21] [PASSED] 4 VFs
+[11:33:21] [PASSED] 5 VFs
+[11:33:21] [PASSED] 6 VFs
+[11:33:21] [PASSED] 7 VFs
+[11:33:21] [PASSED] 8 VFs
+[11:33:21] [PASSED] 9 VFs
+[11:33:21] [PASSED] 10 VFs
+[11:33:21] [PASSED] 11 VFs
+[11:33:21] [PASSED] 12 VFs
+[11:33:21] [PASSED] 13 VFs
+[11:33:21] [PASSED] 14 VFs
+[11:33:21] [PASSED] 15 VFs
+[11:33:21] [PASSED] 16 VFs
+[11:33:21] [PASSED] 17 VFs
+[11:33:21] [PASSED] 18 VFs
+[11:33:21] [PASSED] 19 VFs
+[11:33:21] [PASSED] 20 VFs
+[11:33:21] [PASSED] 21 VFs
+[11:33:21] [PASSED] 22 VFs
+[11:33:21] [PASSED] 23 VFs
+[11:33:21] [PASSED] 24 VFs
+[11:33:21] [PASSED] 25 VFs
+[11:33:21] [PASSED] 26 VFs
+[11:33:21] [PASSED] 27 VFs
+[11:33:21] [PASSED] 28 VFs
+[11:33:21] [PASSED] 29 VFs
+[11:33:21] [PASSED] 30 VFs
+[11:33:21] [PASSED] 31 VFs
+[11:33:21] [PASSED] 32 VFs
+[11:33:21] [PASSED] 33 VFs
+[11:33:21] [PASSED] 34 VFs
+[11:33:21] [PASSED] 35 VFs
+[11:33:21] [PASSED] 36 VFs
+[11:33:21] [PASSED] 37 VFs
+[11:33:21] [PASSED] 38 VFs
+[11:33:21] [PASSED] 39 VFs
+[11:33:21] [PASSED] 40 VFs
+[11:33:21] [PASSED] 41 VFs
+[11:33:21] [PASSED] 42 VFs
+[11:33:21] [PASSED] 43 VFs
+[11:33:21] [PASSED] 44 VFs
+[11:33:21] [PASSED] 45 VFs
+[11:33:21] [PASSED] 46 VFs
+[11:33:21] [PASSED] 47 VFs
+[11:33:21] [PASSED] 48 VFs
+[11:33:21] [PASSED] 49 VFs
+[11:33:21] [PASSED] 50 VFs
+[11:33:21] [PASSED] 51 VFs
+[11:33:21] [PASSED] 52 VFs
+[11:33:21] [PASSED] 53 VFs
+[11:33:21] [PASSED] 54 VFs
+[11:33:21] [PASSED] 55 VFs
+[11:33:21] [PASSED] 56 VFs
+[11:33:21] [PASSED] 57 VFs
+[11:33:21] [PASSED] 58 VFs
+[11:33:21] [PASSED] 59 VFs
+[11:33:21] [PASSED] 60 VFs
+[11:33:21] [PASSED] 61 VFs
+[11:33:21] [PASSED] 62 VFs
+[11:33:21] [PASSED] 63 VFs
+[11:33:21] ==================== [PASSED] fair_vram ====================
+[11:33:21] ================== [PASSED] pf_gt_config ===================
+[11:33:21] ===================== lmtt (1 subtest) =====================
+[11:33:21] ======================== test_ops  =========================
+[11:33:21] [PASSED] 2-level
+[11:33:21] [PASSED] multi-level
+[11:33:21] ==================== [PASSED] test_ops =====================
+[11:33:21] ====================== [PASSED] lmtt =======================
+[11:33:21] ================= pf_service (11 subtests) =================
+[11:33:21] [PASSED] pf_negotiate_any
+[11:33:21] [PASSED] pf_negotiate_base_match
+[11:33:21] [PASSED] pf_negotiate_base_newer
+[11:33:21] [PASSED] pf_negotiate_base_next
+[11:33:21] [SKIPPED] pf_negotiate_base_older
+[11:33:21] [PASSED] pf_negotiate_base_prev
+[11:33:21] [PASSED] pf_negotiate_latest_match
+[11:33:21] [PASSED] pf_negotiate_latest_newer
+[11:33:21] [PASSED] pf_negotiate_latest_next
+[11:33:21] [SKIPPED] pf_negotiate_latest_older
+[11:33:21] [SKIPPED] pf_negotiate_latest_prev
+[11:33:21] =================== [PASSED] pf_service ====================
+[11:33:21] ================= xe_guc_g2g (2 subtests) ==================
+[11:33:21] ============== xe_live_guc_g2g_kunit_default  ==============
+[11:33:21] ========= [SKIPPED] xe_live_guc_g2g_kunit_default ==========
+[11:33:21] ============== xe_live_guc_g2g_kunit_allmem  ===============
+[11:33:21] ========== [SKIPPED] xe_live_guc_g2g_kunit_allmem ==========
+[11:33:21] =================== [SKIPPED] xe_guc_g2g ===================
+[11:33:21] =================== xe_mocs (2 subtests) ===================
+[11:33:21] ================ xe_live_mocs_kernel_kunit  ================
+[11:33:21] =========== [SKIPPED] xe_live_mocs_kernel_kunit ============
+[11:33:21] ================ xe_live_mocs_reset_kunit  =================
+[11:33:21] ============ [SKIPPED] xe_live_mocs_reset_kunit ============
+[11:33:21] ==================== [SKIPPED] xe_mocs =====================
+[11:33:21] ================= xe_migrate (2 subtests) ==================
+[11:33:21] ================= xe_migrate_sanity_kunit  =================
+[11:33:21] ============ [SKIPPED] xe_migrate_sanity_kunit =============
+[11:33:21] ================== xe_validate_ccs_kunit  ==================
+[11:33:21] ============= [SKIPPED] xe_validate_ccs_kunit ==============
+[11:33:21] =================== [SKIPPED] xe_migrate ===================
+[11:33:21] ================== xe_dma_buf (1 subtest) ==================
+[11:33:21] ==================== xe_dma_buf_kunit  =====================
+[11:33:21] ================ [SKIPPED] xe_dma_buf_kunit ================
+[11:33:21] =================== [SKIPPED] xe_dma_buf ===================
+[11:33:21] ================= xe_bo_shrink (1 subtest) =================
+[11:33:21] =================== xe_bo_shrink_kunit  ====================
+[11:33:21] =============== [SKIPPED] xe_bo_shrink_kunit ===============
+[11:33:21] ================== [SKIPPED] xe_bo_shrink ==================
+[11:33:21] ==================== xe_bo (2 subtests) ====================
+[11:33:21] ================== xe_ccs_migrate_kunit  ===================
+[11:33:21] ============== [SKIPPED] xe_ccs_migrate_kunit ==============
+[11:33:21] ==================== xe_bo_evict_kunit  ====================
+[11:33:21] =============== [SKIPPED] xe_bo_evict_kunit ================
+[11:33:21] ===================== [SKIPPED] xe_bo ======================
+[11:33:21] ==================== args (13 subtests) ====================
+[11:33:21] [PASSED] count_args_test
+[11:33:21] [PASSED] call_args_example
+[11:33:21] [PASSED] call_args_test
+[11:33:21] [PASSED] drop_first_arg_example
+[11:33:21] [PASSED] drop_first_arg_test
+[11:33:21] [PASSED] first_arg_example
+[11:33:21] [PASSED] first_arg_test
+[11:33:21] [PASSED] last_arg_example
+[11:33:21] [PASSED] last_arg_test
+[11:33:21] [PASSED] pick_arg_example
+[11:33:21] [PASSED] if_args_example
+[11:33:21] [PASSED] if_args_test
+[11:33:21] [PASSED] sep_comma_example
+[11:33:21] ====================== [PASSED] args =======================
+[11:33:21] =================== xe_pci (3 subtests) ====================
+[11:33:21] ==================== check_graphics_ip  ====================
+[11:33:21] [PASSED] 12.00 Xe_LP
+[11:33:21] [PASSED] 12.10 Xe_LP+
+[11:33:21] [PASSED] 12.55 Xe_HPG
+[11:33:21] [PASSED] 12.60 Xe_HPC
+[11:33:21] [PASSED] 12.70 Xe_LPG
+[11:33:21] [PASSED] 12.71 Xe_LPG
+[11:33:21] [PASSED] 12.74 Xe_LPG+
+[11:33:21] [PASSED] 20.01 Xe2_HPG
+[11:33:21] [PASSED] 20.02 Xe2_HPG
+[11:33:21] [PASSED] 20.04 Xe2_LPG
+[11:33:21] [PASSED] 30.00 Xe3_LPG
+[11:33:21] [PASSED] 30.01 Xe3_LPG
+[11:33:21] [PASSED] 30.03 Xe3_LPG
+[11:33:21] [PASSED] 30.04 Xe3_LPG
+[11:33:21] [PASSED] 30.05 Xe3_LPG
+[11:33:21] [PASSED] 35.10 Xe3p_LPG
+[11:33:21] [PASSED] 35.11 Xe3p_XPC
+[11:33:21] ================ [PASSED] check_graphics_ip ================
+[11:33:21] ===================== check_media_ip  ======================
+[11:33:21] [PASSED] 12.00 Xe_M
+[11:33:21] [PASSED] 12.55 Xe_HPM
+[11:33:21] [PASSED] 13.00 Xe_LPM+
+[11:33:21] [PASSED] 13.01 Xe2_HPM
+[11:33:21] [PASSED] 20.00 Xe2_LPM
+[11:33:21] [PASSED] 30.00 Xe3_LPM
+[11:33:21] [PASSED] 30.02 Xe3_LPM
+[11:33:21] [PASSED] 35.00 Xe3p_LPM
+[11:33:21] [PASSED] 35.03 Xe3p_HPM
+[11:33:21] ================= [PASSED] check_media_ip ==================
+[11:33:21] =================== check_platform_desc  ===================
+[11:33:21] [PASSED] 0x9A60 (TIGERLAKE)
+[11:33:21] [PASSED] 0x9A68 (TIGERLAKE)
+[11:33:21] [PASSED] 0x9A70 (TIGERLAKE)
+[11:33:21] [PASSED] 0x9A40 (TIGERLAKE)
+[11:33:21] [PASSED] 0x9A49 (TIGERLAKE)
+[11:33:21] [PASSED] 0x9A59 (TIGERLAKE)
+[11:33:21] [PASSED] 0x9A78 (TIGERLAKE)
+[11:33:21] [PASSED] 0x9AC0 (TIGERLAKE)
+[11:33:21] [PASSED] 0x9AC9 (TIGERLAKE)
+[11:33:21] [PASSED] 0x9AD9 (TIGERLAKE)
+[11:33:21] [PASSED] 0x9AF8 (TIGERLAKE)
+[11:33:21] [PASSED] 0x4C80 (ROCKETLAKE)
+[11:33:21] [PASSED] 0x4C8A (ROCKETLAKE)
+[11:33:21] [PASSED] 0x4C8B (ROCKETLAKE)
+[11:33:21] [PASSED] 0x4C8C (ROCKETLAKE)
+[11:33:21] [PASSED] 0x4C90 (ROCKETLAKE)
+[11:33:21] [PASSED] 0x4C9A (ROCKETLAKE)
+[11:33:21] [PASSED] 0x4680 (ALDERLAKE_S)
+[11:33:21] [PASSED] 0x4682 (ALDERLAKE_S)
+[11:33:21] [PASSED] 0x4688 (ALDERLAKE_S)
+[11:33:21] [PASSED] 0x468A (ALDERLAKE_S)
+[11:33:21] [PASSED] 0x468B (ALDERLAKE_S)
+[11:33:21] [PASSED] 0x4690 (ALDERLAKE_S)
+[11:33:21] [PASSED] 0x4692 (ALDERLAKE_S)
+[11:33:21] [PASSED] 0x4693 (ALDERLAKE_S)
+[11:33:21] [PASSED] 0x46A0 (ALDERLAKE_P)
+[11:33:21] [PASSED] 0x46A1 (ALDERLAKE_P)
+[11:33:21] [PASSED] 0x46A2 (ALDERLAKE_P)
+[11:33:21] [PASSED] 0x46A3 (ALDERLAKE_P)
+[11:33:21] [PASSED] 0x46A6 (ALDERLAKE_P)
+[11:33:21] [PASSED] 0x46A8 (ALDERLAKE_P)
+[11:33:21] [PASSED] 0x46AA (ALDERLAKE_P)
+[11:33:21] [PASSED] 0x462A (ALDERLAKE_P)
+[11:33:21] [PASSED] 0x4626 (ALDERLAKE_P)
+[11:33:21] [PASSED] 0x4628 (ALDERLAKE_P)
+[11:33:21] [PASSED] 0x46B0 (ALDERLAKE_P)
+[11:33:21] [PASSED] 0x46B1 (ALDERLAKE_P)
+[11:33:21] [PASSED] 0x46B2 (ALDERLAKE_P)
+[11:33:21] [PASSED] 0x46B3 (ALDERLAKE_P)
+[11:33:21] [PASSED] 0x46C0 (ALDERLAKE_P)
+[11:33:21] [PASSED] 0x46C1 (ALDERLAKE_P)
+[11:33:21] [PASSED] 0x46C2 (ALDERLAKE_P)
+[11:33:21] [PASSED] 0x46C3 (ALDERLAKE_P)
+[11:33:21] [PASSED] 0x46D0 (ALDERLAKE_N)
+[11:33:21] [PASSED] 0x46D1 (ALDERLAKE_N)
+[11:33:21] [PASSED] 0x46D2 (ALDERLAKE_N)
+[11:33:21] [PASSED] 0x46D3 (ALDERLAKE_N)
+[11:33:21] [PASSED] 0x46D4 (ALDERLAKE_N)
+[11:33:21] [PASSED] 0xA721 (ALDERLAKE_P)
+[11:33:21] [PASSED] 0xA7A1 (ALDERLAKE_P)
+[11:33:21] [PASSED] 0xA7A9 (ALDERLAKE_P)
+[11:33:21] [PASSED] 0xA7AC (ALDERLAKE_P)
+[11:33:21] [PASSED] 0xA7AD (ALDERLAKE_P)
+[11:33:21] [PASSED] 0xA720 (ALDERLAKE_P)
+[11:33:21] [PASSED] 0xA7A0 (ALDERLAKE_P)
+[11:33:21] [PASSED] 0xA7A8 (ALDERLAKE_P)
+[11:33:21] [PASSED] 0xA7AA (ALDERLAKE_P)
+[11:33:21] [PASSED] 0xA7AB (ALDERLAKE_P)
+[11:33:21] [PASSED] 0xA780 (ALDERLAKE_S)
+[11:33:21] [PASSED] 0xA781 (ALDERLAKE_S)
+[11:33:21] [PASSED] 0xA782 (ALDERLAKE_S)
+[11:33:21] [PASSED] 0xA783 (ALDERLAKE_S)
+[11:33:21] [PASSED] 0xA788 (ALDERLAKE_S)
+[11:33:21] [PASSED] 0xA789 (ALDERLAKE_S)
+[11:33:21] [PASSED] 0xA78A (ALDERLAKE_S)
+[11:33:21] [PASSED] 0xA78B (ALDERLAKE_S)
+[11:33:21] [PASSED] 0x4905 (DG1)
+[11:33:21] [PASSED] 0x4906 (DG1)
+[11:33:21] [PASSED] 0x4907 (DG1)
+[11:33:21] [PASSED] 0x4908 (DG1)
+[11:33:21] [PASSED] 0x4909 (DG1)
+[11:33:21] [PASSED] 0x56C0 (DG2)
+[11:33:21] [PASSED] 0x56C2 (DG2)
+[11:33:21] [PASSED] 0x56C1 (DG2)
+[11:33:21] [PASSED] 0x7D51 (METEORLAKE)
+[11:33:21] [PASSED] 0x7DD1 (METEORLAKE)
+[11:33:21] [PASSED] 0x7D41 (METEORLAKE)
+[11:33:21] [PASSED] 0x7D67 (METEORLAKE)
+[11:33:21] [PASSED] 0xB640 (METEORLAKE)
+[11:33:21] [PASSED] 0x56A0 (DG2)
+[11:33:21] [PASSED] 0x56A1 (DG2)
+[11:33:21] [PASSED] 0x56A2 (DG2)
+[11:33:21] [PASSED] 0x56BE (DG2)
+[11:33:21] [PASSED] 0x56BF (DG2)
+[11:33:21] [PASSED] 0x5690 (DG2)
+[11:33:21] [PASSED] 0x5691 (DG2)
+[11:33:21] [PASSED] 0x5692 (DG2)
+[11:33:21] [PASSED] 0x56A5 (DG2)
+[11:33:21] [PASSED] 0x56A6 (DG2)
+[11:33:21] [PASSED] 0x56B0 (DG2)
+[11:33:21] [PASSED] 0x56B1 (DG2)
+[11:33:21] [PASSED] 0x56BA (DG2)
+[11:33:21] [PASSED] 0x56BB (DG2)
+[11:33:21] [PASSED] 0x56BC (DG2)
+[11:33:21] [PASSED] 0x56BD (DG2)
+[11:33:21] [PASSED] 0x5693 (DG2)
+[11:33:21] [PASSED] 0x5694 (DG2)
+[11:33:21] [PASSED] 0x5695 (DG2)
+[11:33:21] [PASSED] 0x56A3 (DG2)
+[11:33:21] [PASSED] 0x56A4 (DG2)
+[11:33:21] [PASSED] 0x56B2 (DG2)
+[11:33:21] [PASSED] 0x56B3 (DG2)
+[11:33:21] [PASSED] 0x5696 (DG2)
+[11:33:21] [PASSED] 0x5697 (DG2)
+[11:33:21] [PASSED] 0xB69 (PVC)
+[11:33:21] [PASSED] 0xB6E (PVC)
+[11:33:21] [PASSED] 0xBD4 (PVC)
+[11:33:21] [PASSED] 0xBD5 (PVC)
+[11:33:21] [PASSED] 0xBD6 (PVC)
+[11:33:21] [PASSED] 0xBD7 (PVC)
+[11:33:21] [PASSED] 0xBD8 (PVC)
+[11:33:21] [PASSED] 0xBD9 (PVC)
+[11:33:21] [PASSED] 0xBDA (PVC)
+[11:33:21] [PASSED] 0xBDB (PVC)
+[11:33:21] [PASSED] 0xBE0 (PVC)
+[11:33:21] [PASSED] 0xBE1 (PVC)
+[11:33:21] [PASSED] 0xBE5 (PVC)
+[11:33:21] [PASSED] 0x7D40 (METEORLAKE)
+[11:33:21] [PASSED] 0x7D45 (METEORLAKE)
+[11:33:21] [PASSED] 0x7D55 (METEORLAKE)
+[11:33:21] [PASSED] 0x7D60 (METEORLAKE)
+[11:33:21] [PASSED] 0x7DD5 (METEORLAKE)
+[11:33:21] [PASSED] 0x6420 (LUNARLAKE)
+[11:33:21] [PASSED] 0x64A0 (LUNARLAKE)
+[11:33:21] [PASSED] 0x64B0 (LUNARLAKE)
+[11:33:21] [PASSED] 0xE202 (BATTLEMAGE)
+[11:33:21] [PASSED] 0xE209 (BATTLEMAGE)
+[11:33:21] [PASSED] 0xE20B (BATTLEMAGE)
+[11:33:21] [PASSED] 0xE20C (BATTLEMAGE)
+[11:33:21] [PASSED] 0xE20D (BATTLEMAGE)
+[11:33:21] [PASSED] 0xE210 (BATTLEMAGE)
+[11:33:21] [PASSED] 0xE211 (BATTLEMAGE)
+[11:33:21] [PASSED] 0xE212 (BATTLEMAGE)
+[11:33:21] [PASSED] 0xE216 (BATTLEMAGE)
+[11:33:21] [PASSED] 0xE220 (BATTLEMAGE)
+[11:33:21] [PASSED] 0xE221 (BATTLEMAGE)
+[11:33:21] [PASSED] 0xE222 (BATTLEMAGE)
+[11:33:21] [PASSED] 0xE223 (BATTLEMAGE)
+[11:33:21] [PASSED] 0xB080 (PANTHERLAKE)
+[11:33:21] [PASSED] 0xB081 (PANTHERLAKE)
+[11:33:21] [PASSED] 0xB082 (PANTHERLAKE)
+[11:33:21] [PASSED] 0xB083 (PANTHERLAKE)
+[11:33:21] [PASSED] 0xB084 (PANTHERLAKE)
+[11:33:21] [PASSED] 0xB085 (PANTHERLAKE)
+[11:33:21] [PASSED] 0xB086 (PANTHERLAKE)
+[11:33:21] [PASSED] 0xB087 (PANTHERLAKE)
+[11:33:21] [PASSED] 0xB08F (PANTHERLAKE)
+[11:33:21] [PASSED] 0xB090 (PANTHERLAKE)
+[11:33:21] [PASSED] 0xB0A0 (PANTHERLAKE)
+[11:33:21] [PASSED] 0xB0B0 (PANTHERLAKE)
+[11:33:21] [PASSED] 0xFD80 (PANTHERLAKE)
+[11:33:21] [PASSED] 0xFD81 (PANTHERLAKE)
+[11:33:21] [PASSED] 0xD740 (NOVALAKE_S)
+[11:33:21] [PASSED] 0xD741 (NOVALAKE_S)
+[11:33:21] [PASSED] 0xD742 (NOVALAKE_S)
+[11:33:21] [PASSED] 0xD743 (NOVALAKE_S)
+[11:33:21] [PASSED] 0xD744 (NOVALAKE_S)
+[11:33:21] [PASSED] 0xD745 (NOVALAKE_S)
+[11:33:21] [PASSED] 0x674C (CRESCENTISLAND)
+[11:33:21] [PASSED] 0xD750 (NOVALAKE_P)
+[11:33:21] [PASSED] 0xD751 (NOVALAKE_P)
+[11:33:21] [PASSED] 0xD752 (NOVALAKE_P)
+[11:33:21] [PASSED] 0xD753 (NOVALAKE_P)
+[11:33:21] [PASSED] 0xD754 (NOVALAKE_P)
+[11:33:21] [PASSED] 0xD755 (NOVALAKE_P)
+[11:33:21] [PASSED] 0xD756 (NOVALAKE_P)
+[11:33:21] [PASSED] 0xD757 (NOVALAKE_P)
+[11:33:21] [PASSED] 0xD75F (NOVALAKE_P)
+[11:33:21] =============== [PASSED] check_platform_desc ===============
+[11:33:21] ===================== [PASSED] xe_pci ======================
+[11:33:21] =================== xe_rtp (2 subtests) ====================
+[11:33:21] =============== xe_rtp_process_to_sr_tests  ================
+[11:33:21] [PASSED] coalesce-same-reg
+[11:33:21] [PASSED] no-match-no-add
+[11:33:21] [PASSED] match-or
+[11:33:21] [PASSED] match-or-xfail
+[11:33:21] [PASSED] no-match-no-add-multiple-rules
+[11:33:21] [PASSED] two-regs-two-entries
+[11:33:21] [PASSED] clr-one-set-other
+[11:33:21] [PASSED] set-field
+[11:33:21] [PASSED] conflict-duplicate
+[11:33:21] [PASSED] conflict-not-disjoint
+[11:33:21] [PASSED] conflict-reg-type
+[11:33:21] =========== [PASSED] xe_rtp_process_to_sr_tests ============
+[11:33:21] ================== xe_rtp_process_tests  ===================
+[11:33:21] [PASSED] active1
+[11:33:21] [PASSED] active2
+[11:33:21] [PASSED] active-inactive
+[11:33:21] [PASSED] inactive-active
+[11:33:21] [PASSED] inactive-1st_or_active-inactive
+[11:33:21] [PASSED] inactive-2nd_or_active-inactive
+[11:33:21] [PASSED] inactive-last_or_active-inactive
+[11:33:21] [PASSED] inactive-no_or_active-inactive
+[11:33:21] ============== [PASSED] xe_rtp_process_tests ===============
+[11:33:21] ===================== [PASSED] xe_rtp ======================
+[11:33:21] ==================== xe_wa (1 subtest) =====================
+[11:33:21] ======================== xe_wa_gt  =========================
+[11:33:21] [PASSED] TIGERLAKE B0
+[11:33:21] [PASSED] DG1 A0
+[11:33:21] [PASSED] DG1 B0
+[11:33:21] [PASSED] ALDERLAKE_S A0
+[11:33:21] [PASSED] ALDERLAKE_S B0
+[11:33:21] [PASSED] ALDERLAKE_S C0
+[11:33:21] [PASSED] ALDERLAKE_S D0
+[11:33:21] [PASSED] ALDERLAKE_P A0
+[11:33:21] [PASSED] ALDERLAKE_P B0
+[11:33:21] [PASSED] ALDERLAKE_P C0
+[11:33:21] [PASSED] ALDERLAKE_S RPLS D0
+[11:33:21] [PASSED] ALDERLAKE_P RPLU E0
+[11:33:21] [PASSED] DG2 G10 C0
+[11:33:21] [PASSED] DG2 G11 B1
+[11:33:21] [PASSED] DG2 G12 A1
+[11:33:21] [PASSED] METEORLAKE 12.70(Xe_LPG) A0 13.00(Xe_LPM+) A0
+[11:33:21] [PASSED] METEORLAKE 12.71(Xe_LPG) A0 13.00(Xe_LPM+) A0
+[11:33:21] [PASSED] METEORLAKE 12.74(Xe_LPG+) A0 13.00(Xe_LPM+) A0
+[11:33:21] [PASSED] LUNARLAKE 20.04(Xe2_LPG) A0 20.00(Xe2_LPM) A0
+[11:33:21] [PASSED] LUNARLAKE 20.04(Xe2_LPG) B0 20.00(Xe2_LPM) A0
+[11:33:21] [PASSED] BATTLEMAGE 20.01(Xe2_HPG) A0 13.01(Xe2_HPM) A1
+[11:33:21] [PASSED] PANTHERLAKE 30.00(Xe3_LPG) A0 30.00(Xe3_LPM) A0
+[11:33:21] ==================== [PASSED] xe_wa_gt =====================
+[11:33:21] ====================== [PASSED] xe_wa ======================
+[11:33:21] ============================================================
+[11:33:21] Testing complete. Ran 597 tests: passed: 579, skipped: 18
+[11:33:21] Elapsed time: 36.047s total, 4.379s configuring, 31.002s building, 0.612s running
 
-Fully cleared free blocks are tracked outside the buddy trees using an
-augmented interval rbtree, enabling O(log E) lookup of the largest
-cleared extents.
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/tests/.kunitconfig
+[11:33:21] Configuring KUnit Kernel ...
+Regenerating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[11:33:23] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
+[11:33:47] Starting KUnit Kernel (1/1)...
+[11:33:47] ============================================================
+Running tests with:
+$ .kunit/linux kunit.enable=1 mem=1G console=tty kunit_shutdown=halt
+[11:33:47] ============ drm_test_pick_cmdline (2 subtests) ============
+[11:33:47] [PASSED] drm_test_pick_cmdline_res_1920_1080_60
+[11:33:47] =============== drm_test_pick_cmdline_named  ===============
+[11:33:47] [PASSED] NTSC
+[11:33:47] [PASSED] NTSC-J
+[11:33:47] [PASSED] PAL
+[11:33:47] [PASSED] PAL-M
+[11:33:47] =========== [PASSED] drm_test_pick_cmdline_named ===========
+[11:33:47] ============== [PASSED] drm_test_pick_cmdline ==============
+[11:33:47] == drm_test_atomic_get_connector_for_encoder (1 subtest) ===
+[11:33:47] [PASSED] drm_test_drm_atomic_get_connector_for_encoder
+[11:33:47] ==== [PASSED] drm_test_atomic_get_connector_for_encoder ====
+[11:33:47] =========== drm_validate_clone_mode (2 subtests) ===========
+[11:33:47] ============== drm_test_check_in_clone_mode  ===============
+[11:33:47] [PASSED] in_clone_mode
+[11:33:47] [PASSED] not_in_clone_mode
+[11:33:47] ========== [PASSED] drm_test_check_in_clone_mode ===========
+[11:33:47] =============== drm_test_check_valid_clones  ===============
+[11:33:47] [PASSED] not_in_clone_mode
+[11:33:47] [PASSED] valid_clone
+[11:33:47] [PASSED] invalid_clone
+[11:33:47] =========== [PASSED] drm_test_check_valid_clones ===========
+[11:33:47] ============= [PASSED] drm_validate_clone_mode =============
+[11:33:47] ============= drm_validate_modeset (1 subtest) =============
+[11:33:47] [PASSED] drm_test_check_connector_changed_modeset
+[11:33:47] ============== [PASSED] drm_validate_modeset ===============
+[11:33:47] ====== drm_test_bridge_get_current_state (2 subtests) ======
+[11:33:47] [PASSED] drm_test_drm_bridge_get_current_state_atomic
+[11:33:47] [PASSED] drm_test_drm_bridge_get_current_state_legacy
+[11:33:47] ======== [PASSED] drm_test_bridge_get_current_state ========
+[11:33:47] ====== drm_test_bridge_helper_reset_crtc (3 subtests) ======
+[11:33:47] [PASSED] drm_test_drm_bridge_helper_reset_crtc_atomic
+[11:33:47] [PASSED] drm_test_drm_bridge_helper_reset_crtc_atomic_disabled
+[11:33:47] [PASSED] drm_test_drm_bridge_helper_reset_crtc_legacy
+[11:33:47] ======== [PASSED] drm_test_bridge_helper_reset_crtc ========
+[11:33:47] ============== drm_bridge_alloc (2 subtests) ===============
+[11:33:47] [PASSED] drm_test_drm_bridge_alloc_basic
+[11:33:47] [PASSED] drm_test_drm_bridge_alloc_get_put
+[11:33:47] ================ [PASSED] drm_bridge_alloc =================
+[11:33:47] ============= drm_cmdline_parser (40 subtests) =============
+[11:33:47] [PASSED] drm_test_cmdline_force_d_only
+[11:33:47] [PASSED] drm_test_cmdline_force_D_only_dvi
+[11:33:47] [PASSED] drm_test_cmdline_force_D_only_hdmi
+[11:33:47] [PASSED] drm_test_cmdline_force_D_only_not_digital
+[11:33:47] [PASSED] drm_test_cmdline_force_e_only
+[11:33:47] [PASSED] drm_test_cmdline_res
+[11:33:47] [PASSED] drm_test_cmdline_res_vesa
+[11:33:47] [PASSED] drm_test_cmdline_res_vesa_rblank
+[11:33:47] [PASSED] drm_test_cmdline_res_rblank
+[11:33:47] [PASSED] drm_test_cmdline_res_bpp
+[11:33:47] [PASSED] drm_test_cmdline_res_refresh
+[11:33:47] [PASSED] drm_test_cmdline_res_bpp_refresh
+[11:33:47] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced
+[11:33:47] [PASSED] drm_test_cmdline_res_bpp_refresh_margins
+[11:33:47] [PASSED] drm_test_cmdline_res_bpp_refresh_force_off
+[11:33:47] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on
+[11:33:47] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_analog
+[11:33:47] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_digital
+[11:33:47] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced_margins_force_on
+[11:33:47] [PASSED] drm_test_cmdline_res_margins_force_on
+[11:33:47] [PASSED] drm_test_cmdline_res_vesa_margins
+[11:33:47] [PASSED] drm_test_cmdline_name
+[11:33:47] [PASSED] drm_test_cmdline_name_bpp
+[11:33:47] [PASSED] drm_test_cmdline_name_option
+[11:33:47] [PASSED] drm_test_cmdline_name_bpp_option
+[11:33:47] [PASSED] drm_test_cmdline_rotate_0
+[11:33:47] [PASSED] drm_test_cmdline_rotate_90
+[11:33:47] [PASSED] drm_test_cmdline_rotate_180
+[11:33:47] [PASSED] drm_test_cmdline_rotate_270
+[11:33:47] [PASSED] drm_test_cmdline_hmirror
+[11:33:47] [PASSED] drm_test_cmdline_vmirror
+[11:33:47] [PASSED] drm_test_cmdline_margin_options
+[11:33:47] [PASSED] drm_test_cmdline_multiple_options
+[11:33:47] [PASSED] drm_test_cmdline_bpp_extra_and_option
+[11:33:47] [PASSED] drm_test_cmdline_extra_and_option
+[11:33:47] [PASSED] drm_test_cmdline_freestanding_options
+[11:33:47] [PASSED] drm_test_cmdline_freestanding_force_e_and_options
+[11:33:47] [PASSED] drm_test_cmdline_panel_orientation
+[11:33:47] ================ drm_test_cmdline_invalid  =================
+[11:33:47] [PASSED] margin_only
+[11:33:47] [PASSED] interlace_only
+[11:33:47] [PASSED] res_missing_x
+[11:33:47] [PASSED] res_missing_y
+[11:33:47] [PASSED] res_bad_y
+[11:33:47] [PASSED] res_missing_y_bpp
+[11:33:47] [PASSED] res_bad_bpp
+[11:33:47] [PASSED] res_bad_refresh
+[11:33:47] [PASSED] res_bpp_refresh_force_on_off
+[11:33:47] [PASSED] res_invalid_mode
+[11:33:47] [PASSED] res_bpp_wrong_place_mode
+[11:33:47] [PASSED] name_bpp_refresh
+[11:33:47] [PASSED] name_refresh
+[11:33:47] [PASSED] name_refresh_wrong_mode
+[11:33:47] [PASSED] name_refresh_invalid_mode
+[11:33:47] [PASSED] rotate_multiple
+[11:33:47] [PASSED] rotate_invalid_val
+[11:33:47] [PASSED] rotate_truncated
+[11:33:47] [PASSED] invalid_option
+[11:33:47] [PASSED] invalid_tv_option
+[11:33:47] [PASSED] truncated_tv_option
+[11:33:47] ============ [PASSED] drm_test_cmdline_invalid =============
+[11:33:47] =============== drm_test_cmdline_tv_options  ===============
+[11:33:47] [PASSED] NTSC
+[11:33:47] [PASSED] NTSC_443
+[11:33:47] [PASSED] NTSC_J
+[11:33:47] [PASSED] PAL
+[11:33:47] [PASSED] PAL_M
+[11:33:47] [PASSED] PAL_N
+[11:33:47] [PASSED] SECAM
+[11:33:47] [PASSED] MONO_525
+[11:33:47] [PASSED] MONO_625
+[11:33:47] =========== [PASSED] drm_test_cmdline_tv_options ===========
+[11:33:47] =============== [PASSED] drm_cmdline_parser ================
+[11:33:47] ========== drmm_connector_hdmi_init (20 subtests) ==========
+[11:33:47] [PASSED] drm_test_connector_hdmi_init_valid
+[11:33:47] [PASSED] drm_test_connector_hdmi_init_bpc_8
+[11:33:47] [PASSED] drm_test_connector_hdmi_init_bpc_10
+[11:33:47] [PASSED] drm_test_connector_hdmi_init_bpc_12
+[11:33:47] [PASSED] drm_test_connector_hdmi_init_bpc_invalid
+[11:33:47] [PASSED] drm_test_connector_hdmi_init_bpc_null
+[11:33:47] [PASSED] drm_test_connector_hdmi_init_formats_empty
+[11:33:47] [PASSED] drm_test_connector_hdmi_init_formats_no_rgb
+[11:33:47] === drm_test_connector_hdmi_init_formats_yuv420_allowed  ===
+[11:33:47] [PASSED] supported_formats=0x9 yuv420_allowed=1
+[11:33:47] [PASSED] supported_formats=0x9 yuv420_allowed=0
+[11:33:47] [PASSED] supported_formats=0x5 yuv420_allowed=1
+[11:33:47] [PASSED] supported_formats=0x5 yuv420_allowed=0
+[11:33:47] === [PASSED] drm_test_connector_hdmi_init_formats_yuv420_allowed ===
+[11:33:47] [PASSED] drm_test_connector_hdmi_init_null_ddc
+[11:33:47] [PASSED] drm_test_connector_hdmi_init_null_product
+[11:33:47] [PASSED] drm_test_connector_hdmi_init_null_vendor
+[11:33:47] [PASSED] drm_test_connector_hdmi_init_product_length_exact
+[11:33:47] [PASSED] drm_test_connector_hdmi_init_product_length_too_long
+[11:33:47] [PASSED] drm_test_connector_hdmi_init_product_valid
+[11:33:47] [PASSED] drm_test_connector_hdmi_init_vendor_length_exact
+[11:33:47] [PASSED] drm_test_connector_hdmi_init_vendor_length_too_long
+[11:33:47] [PASSED] drm_test_connector_hdmi_init_vendor_valid
+[11:33:47] ========= drm_test_connector_hdmi_init_type_valid  =========
+[11:33:47] [PASSED] HDMI-A
+[11:33:47] [PASSED] HDMI-B
+[11:33:47] ===== [PASSED] drm_test_connector_hdmi_init_type_valid =====
+[11:33:47] ======== drm_test_connector_hdmi_init_type_invalid  ========
+[11:33:47] [PASSED] Unknown
+[11:33:47] [PASSED] VGA
+[11:33:47] [PASSED] DVI-I
+[11:33:47] [PASSED] DVI-D
+[11:33:47] [PASSED] DVI-A
+[11:33:47] [PASSED] Composite
+[11:33:47] [PASSED] SVIDEO
+[11:33:47] [PASSED] LVDS
+[11:33:47] [PASSED] Component
+[11:33:47] [PASSED] DIN
+[11:33:47] [PASSED] DP
+[11:33:47] [PASSED] TV
+[11:33:47] [PASSED] eDP
+[11:33:47] [PASSED] Virtual
+[11:33:47] [PASSED] DSI
+[11:33:47] [PASSED] DPI
+[11:33:47] [PASSED] Writeback
+[11:33:47] [PASSED] SPI
+[11:33:47] [PASSED] USB
+[11:33:47] ==== [PASSED] drm_test_connector_hdmi_init_type_invalid ====
+[11:33:47] ============ [PASSED] drmm_connector_hdmi_init =============
+[11:33:47] ============= drmm_connector_init (3 subtests) =============
+[11:33:47] [PASSED] drm_test_drmm_connector_init
+[11:33:47] [PASSED] drm_test_drmm_connector_init_null_ddc
+[11:33:47] ========= drm_test_drmm_connector_init_type_valid  =========
+[11:33:47] [PASSED] Unknown
+[11:33:47] [PASSED] VGA
+[11:33:47] [PASSED] DVI-I
+[11:33:47] [PASSED] DVI-D
+[11:33:47] [PASSED] DVI-A
+[11:33:47] [PASSED] Composite
+[11:33:47] [PASSED] SVIDEO
+[11:33:47] [PASSED] LVDS
+[11:33:47] [PASSED] Component
+[11:33:47] [PASSED] DIN
+[11:33:47] [PASSED] DP
+[11:33:47] [PASSED] HDMI-A
+[11:33:47] [PASSED] HDMI-B
+[11:33:47] [PASSED] TV
+[11:33:47] [PASSED] eDP
+[11:33:47] [PASSED] Virtual
+[11:33:47] [PASSED] DSI
+[11:33:47] [PASSED] DPI
+[11:33:47] [PASSED] Writeback
+[11:33:47] [PASSED] SPI
+[11:33:47] [PASSED] USB
+[11:33:47] ===== [PASSED] drm_test_drmm_connector_init_type_valid =====
+[11:33:47] =============== [PASSED] drmm_connector_init ===============
+[11:33:47] ========= drm_connector_dynamic_init (6 subtests) ==========
+[11:33:47] [PASSED] drm_test_drm_connector_dynamic_init
+[11:33:47] [PASSED] drm_test_drm_connector_dynamic_init_null_ddc
+[11:33:47] [PASSED] drm_test_drm_connector_dynamic_init_not_added
+[11:33:47] [PASSED] drm_test_drm_connector_dynamic_init_properties
+[11:33:47] ===== drm_test_drm_connector_dynamic_init_type_valid  ======
+[11:33:47] [PASSED] Unknown
+[11:33:47] [PASSED] VGA
+[11:33:47] [PASSED] DVI-I
+[11:33:47] [PASSED] DVI-D
+[11:33:47] [PASSED] DVI-A
+[11:33:47] [PASSED] Composite
+[11:33:47] [PASSED] SVIDEO
+[11:33:47] [PASSED] LVDS
+[11:33:47] [PASSED] Component
+[11:33:47] [PASSED] DIN
+[11:33:47] [PASSED] DP
+[11:33:47] [PASSED] HDMI-A
+[11:33:47] [PASSED] HDMI-B
+[11:33:47] [PASSED] TV
+[11:33:47] [PASSED] eDP
+[11:33:47] [PASSED] Virtual
+[11:33:47] [PASSED] DSI
+[11:33:47] [PASSED] DPI
+[11:33:47] [PASSED] Writeback
+[11:33:47] [PASSED] SPI
+[11:33:47] [PASSED] USB
+[11:33:47] = [PASSED] drm_test_drm_connector_dynamic_init_type_valid ==
+[11:33:47] ======== drm_test_drm_connector_dynamic_init_name  =========
+[11:33:47] [PASSED] Unknown
+[11:33:47] [PASSED] VGA
+[11:33:47] [PASSED] DVI-I
+[11:33:47] [PASSED] DVI-D
+[11:33:47] [PASSED] DVI-A
+[11:33:47] [PASSED] Composite
+[11:33:47] [PASSED] SVIDEO
+[11:33:47] [PASSED] LVDS
+[11:33:47] [PASSED] Component
+[11:33:47] [PASSED] DIN
+[11:33:47] [PASSED] DP
+[11:33:47] [PASSED] HDMI-A
+[11:33:47] [PASSED] HDMI-B
+[11:33:47] [PASSED] TV
+[11:33:47] [PASSED] eDP
+[11:33:47] [PASSED] Virtual
+[11:33:47] [PASSED] DSI
+[11:33:47] [PASSED] DPI
+[11:33:47] [PASSED] Writeback
+[11:33:47] [PASSED] SPI
+[11:33:47] [PASSED] USB
+[11:33:47] ==== [PASSED] drm_test_drm_connector_dynamic_init_name =====
+[11:33:47] =========== [PASSED] drm_connector_dynamic_init ============
+[11:33:47] ==== drm_connector_dynamic_register_early (4 subtests) =====
+[11:33:47] [PASSED] drm_test_drm_connector_dynamic_register_early_on_list
+[11:33:47] [PASSED] drm_test_drm_connector_dynamic_register_early_defer
+[11:33:47] [PASSED] drm_test_drm_connector_dynamic_register_early_no_init
+[11:33:47] [PASSED] drm_test_drm_connector_dynamic_register_early_no_mode_object
+[11:33:47] ====== [PASSED] drm_connector_dynamic_register_early =======
+[11:33:47] ======= drm_connector_dynamic_register (7 subtests) ========
+[11:33:47] [PASSED] drm_test_drm_connector_dynamic_register_on_list
+[11:33:47] [PASSED] drm_test_drm_connector_dynamic_register_no_defer
+[11:33:47] [PASSED] drm_test_drm_connector_dynamic_register_no_init
+[11:33:47] [PASSED] drm_test_drm_connector_dynamic_register_mode_object
+[11:33:47] [PASSED] drm_test_drm_connector_dynamic_register_sysfs
+[11:33:47] [PASSED] drm_test_drm_connector_dynamic_register_sysfs_name
+[11:33:47] [PASSED] drm_test_drm_connector_dynamic_register_debugfs
+[11:33:47] ========= [PASSED] drm_connector_dynamic_register ==========
+[11:33:47] = drm_connector_attach_broadcast_rgb_property (2 subtests) =
+[11:33:47] [PASSED] drm_test_drm_connector_attach_broadcast_rgb_property
+[11:33:47] [PASSED] drm_test_drm_connector_attach_broadcast_rgb_property_hdmi_connector
+[11:33:47] === [PASSED] drm_connector_attach_broadcast_rgb_property ===
+[11:33:47] ========== drm_get_tv_mode_from_name (2 subtests) ==========
+[11:33:47] ========== drm_test_get_tv_mode_from_name_valid  ===========
+[11:33:47] [PASSED] NTSC
+[11:33:47] [PASSED] NTSC-443
+[11:33:47] [PASSED] NTSC-J
+[11:33:47] [PASSED] PAL
+[11:33:47] [PASSED] PAL-M
+[11:33:47] [PASSED] PAL-N
+[11:33:47] [PASSED] SECAM
+[11:33:47] [PASSED] Mono
+[11:33:47] ====== [PASSED] drm_test_get_tv_mode_from_name_valid =======
+[11:33:47] [PASSED] drm_test_get_tv_mode_from_name_truncated
+[11:33:47] ============ [PASSED] drm_get_tv_mode_from_name ============
+[11:33:47] = drm_test_connector_hdmi_compute_mode_clock (12 subtests) =
+[11:33:47] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb
+[11:33:47] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb_10bpc
+[11:33:47] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb_10bpc_vic_1
+[11:33:47] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb_12bpc
+[11:33:47] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb_12bpc_vic_1
+[11:33:47] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb_double
+[11:33:47] = drm_test_connector_hdmi_compute_mode_clock_yuv420_valid  =
+[11:33:47] [PASSED] VIC 96
+[11:33:47] [PASSED] VIC 97
+[11:33:47] [PASSED] VIC 101
+[11:33:47] [PASSED] VIC 102
+[11:33:47] [PASSED] VIC 106
+[11:33:47] [PASSED] VIC 107
+[11:33:47] === [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv420_valid ===
+[11:33:47] [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv420_10_bpc
+[11:33:47] [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv420_12_bpc
+[11:33:47] [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv422_8_bpc
+[11:33:47] [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv422_10_bpc
+[11:33:47] [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv422_12_bpc
+[11:33:47] === [PASSED] drm_test_connector_hdmi_compute_mode_clock ====
+[11:33:47] == drm_hdmi_connector_get_broadcast_rgb_name (2 subtests) ==
+[11:33:47] === drm_test_drm_hdmi_connector_get_broadcast_rgb_name  ====
+[11:33:47] [PASSED] Automatic
+[11:33:47] [PASSED] Full
+[11:33:47] [PASSED] Limited 16:235
+[11:33:47] === [PASSED] drm_test_drm_hdmi_connector_get_broadcast_rgb_name ===
+[11:33:47] [PASSED] drm_test_drm_hdmi_connector_get_broadcast_rgb_name_invalid
+[11:33:47] ==== [PASSED] drm_hdmi_connector_get_broadcast_rgb_name ====
+[11:33:47] == drm_hdmi_connector_get_output_format_name (2 subtests) ==
+[11:33:47] === drm_test_drm_hdmi_connector_get_output_format_name  ====
+[11:33:47] [PASSED] RGB
+[11:33:47] [PASSED] YUV 4:2:0
+[11:33:47] [PASSED] YUV 4:2:2
+[11:33:47] [PASSED] YUV 4:4:4
+[11:33:47] === [PASSED] drm_test_drm_hdmi_connector_get_output_format_name ===
+[11:33:47] [PASSED] drm_test_drm_hdmi_connector_get_output_format_name_invalid
+[11:33:47] ==== [PASSED] drm_hdmi_connector_get_output_format_name ====
+[11:33:47] ============= drm_damage_helper (21 subtests) ==============
+[11:33:47] [PASSED] drm_test_damage_iter_no_damage
+[11:33:47] [PASSED] drm_test_damage_iter_no_damage_fractional_src
+[11:33:47] [PASSED] drm_test_damage_iter_no_damage_src_moved
+[11:33:47] [PASSED] drm_test_damage_iter_no_damage_fractional_src_moved
+[11:33:47] [PASSED] drm_test_damage_iter_no_damage_not_visible
+[11:33:47] [PASSED] drm_test_damage_iter_no_damage_no_crtc
+[11:33:47] [PASSED] drm_test_damage_iter_no_damage_no_fb
+[11:33:47] [PASSED] drm_test_damage_iter_simple_damage
+[11:33:47] [PASSED] drm_test_damage_iter_single_damage
+[11:33:47] [PASSED] drm_test_damage_iter_single_damage_intersect_src
+[11:33:47] [PASSED] drm_test_damage_iter_single_damage_outside_src
+[11:33:47] [PASSED] drm_test_damage_iter_single_damage_fractional_src
+[11:33:47] [PASSED] drm_test_damage_iter_single_damage_intersect_fractional_src
+[11:33:47] [PASSED] drm_test_damage_iter_single_damage_outside_fractional_src
+[11:33:47] [PASSED] drm_test_damage_iter_single_damage_src_moved
+[11:33:47] [PASSED] drm_test_damage_iter_single_damage_fractional_src_moved
+[11:33:47] [PASSED] drm_test_damage_iter_damage
+[11:33:47] [PASSED] drm_test_damage_iter_damage_one_intersect
+[11:33:47] [PASSED] drm_test_damage_iter_damage_one_outside
+[11:33:47] [PASSED] drm_test_damage_iter_damage_src_moved
+[11:33:47] [PASSED] drm_test_damage_iter_damage_not_visible
+[11:33:47] ================ [PASSED] drm_damage_helper ================
+[11:33:47] ============== drm_dp_mst_helper (3 subtests) ==============
+[11:33:47] ============== drm_test_dp_mst_calc_pbn_mode  ==============
+[11:33:47] [PASSED] Clock 154000 BPP 30 DSC disabled
+[11:33:47] [PASSED] Clock 234000 BPP 30 DSC disabled
+[11:33:47] [PASSED] Clock 297000 BPP 24 DSC disabled
+[11:33:47] [PASSED] Clock 332880 BPP 24 DSC enabled
+[11:33:47] [PASSED] Clock 324540 BPP 24 DSC enabled
+[11:33:47] ========== [PASSED] drm_test_dp_mst_calc_pbn_mode ==========
+[11:33:47] ============== drm_test_dp_mst_calc_pbn_div  ===============
+[11:33:47] [PASSED] Link rate 2000000 lane count 4
+[11:33:47] [PASSED] Link rate 2000000 lane count 2
+[11:33:47] [PASSED] Link rate 2000000 lane count 1
+[11:33:47] [PASSED] Link rate 1350000 lane count 4
+[11:33:47] [PASSED] Link rate 1350000 lane count 2
+[11:33:47] [PASSED] Link rate 1350000 lane count 1
+[11:33:47] [PASSED] Link rate 1000000 lane count 4
+[11:33:47] [PASSED] Link rate 1000000 lane count 2
+[11:33:47] [PASSED] Link rate 1000000 lane count 1
+[11:33:47] [PASSED] Link rate 810000 lane count 4
+[11:33:47] [PASSED] Link rate 810000 lane count 2
+[11:33:47] [PASSED] Link rate 810000 lane count 1
+[11:33:47] [PASSED] Link rate 540000 lane count 4
+[11:33:47] [PASSED] Link rate 540000 lane count 2
+[11:33:47] [PASSED] Link rate 540000 lane count 1
+[11:33:47] [PASSED] Link rate 270000 lane count 4
+[11:33:47] [PASSED] Link rate 270000 lane count 2
+[11:33:47] [PASSED] Link rate 270000 lane count 1
+[11:33:47] [PASSED] Link rate 162000 lane count 4
+[11:33:47] [PASSED] Link rate 162000 lane count 2
+[11:33:47] [PASSED] Link rate 162000 lane count 1
+[11:33:47] ========== [PASSED] drm_test_dp_mst_calc_pbn_div ===========
+[11:33:47] ========= drm_test_dp_mst_sideband_msg_req_decode  =========
+[11:33:47] [PASSED] DP_ENUM_PATH_RESOURCES with port number
+[11:33:47] [PASSED] DP_POWER_UP_PHY with port number
+[11:33:47] [PASSED] DP_POWER_DOWN_PHY with port number
+[11:33:47] [PASSED] DP_ALLOCATE_PAYLOAD with SDP stream sinks
+[11:33:47] [PASSED] DP_ALLOCATE_PAYLOAD with port number
+[11:33:47] [PASSED] DP_ALLOCATE_PAYLOAD with VCPI
+[11:33:47] [PASSED] DP_ALLOCATE_PAYLOAD with PBN
+[11:33:47] [PASSED] DP_QUERY_PAYLOAD with port number
+[11:33:47] [PASSED] DP_QUERY_PAYLOAD with VCPI
+[11:33:47] [PASSED] DP_REMOTE_DPCD_READ with port number
+[11:33:47] [PASSED] DP_REMOTE_DPCD_READ with DPCD address
+[11:33:47] [PASSED] DP_REMOTE_DPCD_READ with max number of bytes
+[11:33:47] [PASSED] DP_REMOTE_DPCD_WRITE with port number
+[11:33:47] [PASSED] DP_REMOTE_DPCD_WRITE with DPCD address
+[11:33:47] [PASSED] DP_REMOTE_DPCD_WRITE with data array
+[11:33:47] [PASSED] DP_REMOTE_I2C_READ with port number
+[11:33:47] [PASSED] DP_REMOTE_I2C_READ with I2C device ID
+[11:33:47] [PASSED] DP_REMOTE_I2C_READ with transactions array
+[11:33:47] [PASSED] DP_REMOTE_I2C_WRITE with port number
+[11:33:47] [PASSED] DP_REMOTE_I2C_WRITE with I2C device ID
+[11:33:47] [PASSED] DP_REMOTE_I2C_WRITE with data array
+[11:33:47] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream ID
+[11:33:47] [PASSED] DP_QUERY_STREAM_ENC_STATUS with client ID
+[11:33:47] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream event
+[11:33:47] [PASSED] DP_QUERY_STREAM_ENC_STATUS with valid stream event
+[11:33:47] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream behavior
+[11:33:47] [PASSED] DP_QUERY_STREAM_ENC_STATUS with a valid stream behavior
+[11:33:47] ===== [PASSED] drm_test_dp_mst_sideband_msg_req_decode =====
+[11:33:47] ================ [PASSED] drm_dp_mst_helper ================
+[11:33:47] ================== drm_exec (7 subtests) ===================
+[11:33:47] [PASSED] sanitycheck
+[11:33:47] [PASSED] test_lock
+[11:33:47] [PASSED] test_lock_unlock
+[11:33:47] [PASSED] test_duplicates
+[11:33:47] [PASSED] test_prepare
+[11:33:47] [PASSED] test_prepare_array
+[11:33:47] [PASSED] test_multiple_loops
+[11:33:47] ==================== [PASSED] drm_exec =====================
+[11:33:47] =========== drm_format_helper_test (17 subtests) ===========
+[11:33:47] ============== drm_test_fb_xrgb8888_to_gray8  ==============
+[11:33:47] [PASSED] single_pixel_source_buffer
+[11:33:47] [PASSED] single_pixel_clip_rectangle
+[11:33:47] [PASSED] well_known_colors
+[11:33:47] [PASSED] destination_pitch
+[11:33:47] ========== [PASSED] drm_test_fb_xrgb8888_to_gray8 ==========
+[11:33:47] ============= drm_test_fb_xrgb8888_to_rgb332  ==============
+[11:33:47] [PASSED] single_pixel_source_buffer
+[11:33:47] [PASSED] single_pixel_clip_rectangle
+[11:33:47] [PASSED] well_known_colors
+[11:33:47] [PASSED] destination_pitch
+[11:33:47] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb332 ==========
+[11:33:47] ============= drm_test_fb_xrgb8888_to_rgb565  ==============
+[11:33:47] [PASSED] single_pixel_source_buffer
+[11:33:47] [PASSED] single_pixel_clip_rectangle
+[11:33:47] [PASSED] well_known_colors
+[11:33:47] [PASSED] destination_pitch
+[11:33:47] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb565 ==========
+[11:33:47] ============ drm_test_fb_xrgb8888_to_xrgb1555  =============
+[11:33:47] [PASSED] single_pixel_source_buffer
+[11:33:47] [PASSED] single_pixel_clip_rectangle
+[11:33:47] [PASSED] well_known_colors
+[11:33:47] [PASSED] destination_pitch
+[11:33:47] ======== [PASSED] drm_test_fb_xrgb8888_to_xrgb1555 =========
+[11:33:47] ============ drm_test_fb_xrgb8888_to_argb1555  =============
+[11:33:47] [PASSED] single_pixel_source_buffer
+[11:33:47] [PASSED] single_pixel_clip_rectangle
+[11:33:47] [PASSED] well_known_colors
+[11:33:47] [PASSED] destination_pitch
+[11:33:47] ======== [PASSED] drm_test_fb_xrgb8888_to_argb1555 =========
+[11:33:47] ============ drm_test_fb_xrgb8888_to_rgba5551  =============
+[11:33:47] [PASSED] single_pixel_source_buffer
+[11:33:47] [PASSED] single_pixel_clip_rectangle
+[11:33:47] [PASSED] well_known_colors
+[11:33:47] [PASSED] destination_pitch
+[11:33:47] ======== [PASSED] drm_test_fb_xrgb8888_to_rgba5551 =========
+[11:33:47] ============= drm_test_fb_xrgb8888_to_rgb888  ==============
+[11:33:47] [PASSED] single_pixel_source_buffer
+[11:33:47] [PASSED] single_pixel_clip_rectangle
+[11:33:47] [PASSED] well_known_colors
+[11:33:47] [PASSED] destination_pitch
+[11:33:47] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb888 ==========
+[11:33:47] ============= drm_test_fb_xrgb8888_to_bgr888  ==============
+[11:33:47] [PASSED] single_pixel_source_buffer
+[11:33:47] [PASSED] single_pixel_clip_rectangle
+[11:33:47] [PASSED] well_known_colors
+[11:33:47] [PASSED] destination_pitch
+[11:33:47] ========= [PASSED] drm_test_fb_xrgb8888_to_bgr888 ==========
+[11:33:47] ============ drm_test_fb_xrgb8888_to_argb8888  =============
+[11:33:47] [PASSED] single_pixel_source_buffer
+[11:33:47] [PASSED] single_pixel_clip_rectangle
+[11:33:47] [PASSED] well_known_colors
+[11:33:47] [PASSED] destination_pitch
+[11:33:47] ======== [PASSED] drm_test_fb_xrgb8888_to_argb8888 =========
+[11:33:47] =========== drm_test_fb_xrgb8888_to_xrgb2101010  ===========
+[11:33:47] [PASSED] single_pixel_source_buffer
+[11:33:47] [PASSED] single_pixel_clip_rectangle
+[11:33:47] [PASSED] well_known_colors
+[11:33:47] [PASSED] destination_pitch
+[11:33:47] ======= [PASSED] drm_test_fb_xrgb8888_to_xrgb2101010 =======
+[11:33:47] =========== drm_test_fb_xrgb8888_to_argb2101010  ===========
+[11:33:47] [PASSED] single_pixel_source_buffer
+[11:33:47] [PASSED] single_pixel_clip_rectangle
+[11:33:47] [PASSED] well_known_colors
+[11:33:47] [PASSED] destination_pitch
+[11:33:47] ======= [PASSED] drm_test_fb_xrgb8888_to_argb2101010 =======
+[11:33:47] ============== drm_test_fb_xrgb8888_to_mono  ===============
+[11:33:47] [PASSED] single_pixel_source_buffer
+[11:33:47] [PASSED] single_pixel_clip_rectangle
+[11:33:47] [PASSED] well_known_colors
+[11:33:47] [PASSED] destination_pitch
+[11:33:47] ========== [PASSED] drm_test_fb_xrgb8888_to_mono ===========
+[11:33:47] ==================== drm_test_fb_swab  =====================
+[11:33:47] [PASSED] single_pixel_source_buffer
+[11:33:47] [PASSED] single_pixel_clip_rectangle
+[11:33:47] [PASSED] well_known_colors
+[11:33:47] [PASSED] destination_pitch
+[11:33:47] ================ [PASSED] drm_test_fb_swab =================
+[11:33:47] ============ drm_test_fb_xrgb8888_to_xbgr8888  =============
+[11:33:47] [PASSED] single_pixel_source_buffer
+[11:33:47] [PASSED] single_pixel_clip_rectangle
+[11:33:47] [PASSED] well_known_colors
+[11:33:47] [PASSED] destination_pitch
+[11:33:47] ======== [PASSED] drm_test_fb_xrgb8888_to_xbgr8888 =========
+[11:33:47] ============ drm_test_fb_xrgb8888_to_abgr8888  =============
+[11:33:47] [PASSED] single_pixel_source_buffer
+[11:33:47] [PASSED] single_pixel_clip_rectangle
+[11:33:47] [PASSED] well_known_colors
+[11:33:47] [PASSED] destination_pitch
+[11:33:47] ======== [PASSED] drm_test_fb_xrgb8888_to_abgr8888 =========
+[11:33:47] ================= drm_test_fb_clip_offset  =================
+[11:33:47] [PASSED] pass through
+[11:33:47] [PASSED] horizontal offset
+[11:33:47] [PASSED] vertical offset
+[11:33:47] [PASSED] horizontal and vertical offset
+[11:33:47] [PASSED] horizontal offset (custom pitch)
+[11:33:47] [PASSED] vertical offset (custom pitch)
+[11:33:47] [PASSED] horizontal and vertical offset (custom pitch)
+[11:33:47] ============= [PASSED] drm_test_fb_clip_offset =============
+[11:33:47] =================== drm_test_fb_memcpy  ====================
+[11:33:47] [PASSED] single_pixel_source_buffer: XR24 little-endian (0x34325258)
+[11:33:47] [PASSED] single_pixel_source_buffer: XRA8 little-endian (0x38415258)
+[11:33:47] [PASSED] single_pixel_source_buffer: YU24 little-endian (0x34325559)
+[11:33:47] [PASSED] single_pixel_clip_rectangle: XB24 little-endian (0x34324258)
+[11:33:47] [PASSED] single_pixel_clip_rectangle: XRA8 little-endian (0x38415258)
+[11:33:47] [PASSED] single_pixel_clip_rectangle: YU24 little-endian (0x34325559)
+[11:33:47] [PASSED] well_known_colors: XB24 little-endian (0x34324258)
+[11:33:47] [PASSED] well_known_colors: XRA8 little-endian (0x38415258)
+[11:33:47] [PASSED] well_known_colors: YU24 little-endian (0x34325559)
+[11:33:47] [PASSED] destination_pitch: XB24 little-endian (0x34324258)
+[11:33:47] [PASSED] destination_pitch: XRA8 little-endian (0x38415258)
+[11:33:47] [PASSED] destination_pitch: YU24 little-endian (0x34325559)
+[11:33:47] =============== [PASSED] drm_test_fb_memcpy ================
+[11:33:47] ============= [PASSED] drm_format_helper_test ==============
+[11:33:47] ================= drm_format (18 subtests) =================
+[11:33:47] [PASSED] drm_test_format_block_width_invalid
+[11:33:47] [PASSED] drm_test_format_block_width_one_plane
+[11:33:47] [PASSED] drm_test_format_block_width_two_plane
+[11:33:47] [PASSED] drm_test_format_block_width_three_plane
+[11:33:47] [PASSED] drm_test_format_block_width_tiled
+[11:33:47] [PASSED] drm_test_format_block_height_invalid
+[11:33:47] [PASSED] drm_test_format_block_height_one_plane
+[11:33:47] [PASSED] drm_test_format_block_height_two_plane
+[11:33:47] [PASSED] drm_test_format_block_height_three_plane
+[11:33:47] [PASSED] drm_test_format_block_height_tiled
+[11:33:47] [PASSED] drm_test_format_min_pitch_invalid
+[11:33:47] [PASSED] drm_test_format_min_pitch_one_plane_8bpp
+[11:33:47] [PASSED] drm_test_format_min_pitch_one_plane_16bpp
+[11:33:47] [PASSED] drm_test_format_min_pitch_one_plane_24bpp
+[11:33:47] [PASSED] drm_test_format_min_pitch_one_plane_32bpp
+[11:33:47] [PASSED] drm_test_format_min_pitch_two_plane
+[11:33:47] [PASSED] drm_test_format_min_pitch_three_plane_8bpp
+[11:33:47] [PASSED] drm_test_format_min_pitch_tiled
+[11:33:47] =================== [PASSED] drm_format ====================
+[11:33:47] ============== drm_framebuffer (10 subtests) ===============
+[11:33:47] ========== drm_test_framebuffer_check_src_coords  ==========
+[11:33:47] [PASSED] Success: source fits into fb
+[11:33:47] [PASSED] Fail: overflowing fb with x-axis coordinate
+[11:33:47] [PASSED] Fail: overflowing fb with y-axis coordinate
+[11:33:47] [PASSED] Fail: overflowing fb with source width
+[11:33:47] [PASSED] Fail: overflowing fb with source height
+[11:33:47] ====== [PASSED] drm_test_framebuffer_check_src_coords ======
+[11:33:47] [PASSED] drm_test_framebuffer_cleanup
+[11:33:47] =============== drm_test_framebuffer_create  ===============
+[11:33:47] [PASSED] ABGR8888 normal sizes
+[11:33:47] [PASSED] ABGR8888 max sizes
+[11:33:47] [PASSED] ABGR8888 pitch greater than min required
+[11:33:47] [PASSED] ABGR8888 pitch less than min required
+[11:33:47] [PASSED] ABGR8888 Invalid width
+[11:33:47] [PASSED] ABGR8888 Invalid buffer handle
+[11:33:47] [PASSED] No pixel format
+[11:33:47] [PASSED] ABGR8888 Width 0
+[11:33:47] [PASSED] ABGR8888 Height 0
+[11:33:47] [PASSED] ABGR8888 Out of bound height * pitch combination
+[11:33:47] [PASSED] ABGR8888 Large buffer offset
+[11:33:47] [PASSED] ABGR8888 Buffer offset for inexistent plane
+[11:33:47] [PASSED] ABGR8888 Invalid flag
+[11:33:47] [PASSED] ABGR8888 Set DRM_MODE_FB_MODIFIERS without modifiers
+[11:33:47] [PASSED] ABGR8888 Valid buffer modifier
+[11:33:47] [PASSED] ABGR8888 Invalid buffer modifier(DRM_FORMAT_MOD_SAMSUNG_64_32_TILE)
+[11:33:47] [PASSED] ABGR8888 Extra pitches without DRM_MODE_FB_MODIFIERS
+[11:33:47] [PASSED] ABGR8888 Extra pitches with DRM_MODE_FB_MODIFIERS
+[11:33:47] [PASSED] NV12 Normal sizes
+[11:33:47] [PASSED] NV12 Max sizes
+[11:33:47] [PASSED] NV12 Invalid pitch
+[11:33:47] [PASSED] NV12 Invalid modifier/missing DRM_MODE_FB_MODIFIERS flag
+[11:33:47] [PASSED] NV12 different  modifier per-plane
+[11:33:47] [PASSED] NV12 with DRM_FORMAT_MOD_SAMSUNG_64_32_TILE
+[11:33:47] [PASSED] NV12 Valid modifiers without DRM_MODE_FB_MODIFIERS
+[11:33:47] [PASSED] NV12 Modifier for inexistent plane
+[11:33:47] [PASSED] NV12 Handle for inexistent plane
+[11:33:47] [PASSED] NV12 Handle for inexistent plane without DRM_MODE_FB_MODIFIERS
+[11:33:47] [PASSED] YVU420 DRM_MODE_FB_MODIFIERS set without modifier
+[11:33:47] [PASSED] YVU420 Normal sizes
+[11:33:47] [PASSED] YVU420 Max sizes
+[11:33:47] [PASSED] YVU420 Invalid pitch
+[11:33:47] [PASSED] YVU420 Different pitches
+[11:33:47] [PASSED] YVU420 Different buffer offsets/pitches
+[11:33:47] [PASSED] YVU420 Modifier set just for plane 0, without DRM_MODE_FB_MODIFIERS
+[11:33:47] [PASSED] YVU420 Modifier set just for planes 0, 1, without DRM_MODE_FB_MODIFIERS
+[11:33:47] [PASSED] YVU420 Modifier set just for plane 0, 1, with DRM_MODE_FB_MODIFIERS
+[11:33:47] [PASSED] YVU420 Valid modifier
+[11:33:47] [PASSED] YVU420 Different modifiers per plane
+[11:33:47] [PASSED] YVU420 Modifier for inexistent plane
+[11:33:47] [PASSED] YUV420_10BIT Invalid modifier(DRM_FORMAT_MOD_LINEAR)
+[11:33:47] [PASSED] X0L2 Normal sizes
+[11:33:47] [PASSED] X0L2 Max sizes
+[11:33:47] [PASSED] X0L2 Invalid pitch
+[11:33:47] [PASSED] X0L2 Pitch greater than minimum required
+[11:33:47] [PASSED] X0L2 Handle for inexistent plane
+[11:33:47] [PASSED] X0L2 Offset for inexistent plane, without DRM_MODE_FB_MODIFIERS set
+[11:33:47] [PASSED] X0L2 Modifier without DRM_MODE_FB_MODIFIERS set
+[11:33:47] [PASSED] X0L2 Valid modifier
+[11:33:47] [PASSED] X0L2 Modifier for inexistent plane
+[11:33:47] =========== [PASSED] drm_test_framebuffer_create ===========
+[11:33:47] [PASSED] drm_test_framebuffer_free
+[11:33:47] [PASSED] drm_test_framebuffer_init
+[11:33:47] [PASSED] drm_test_framebuffer_init_bad_format
+[11:33:47] [PASSED] drm_test_framebuffer_init_dev_mismatch
+[11:33:47] [PASSED] drm_test_framebuffer_lookup
+[11:33:47] [PASSED] drm_test_framebuffer_lookup_inexistent
+[11:33:47] [PASSED] drm_test_framebuffer_modifiers_not_supported
+[11:33:47] ================= [PASSED] drm_framebuffer =================
+[11:33:47] ================ drm_gem_shmem (8 subtests) ================
+[11:33:47] [PASSED] drm_gem_shmem_test_obj_create
+[11:33:47] [PASSED] drm_gem_shmem_test_obj_create_private
+[11:33:47] [PASSED] drm_gem_shmem_test_pin_pages
+[11:33:47] [PASSED] drm_gem_shmem_test_vmap
+[11:33:47] [PASSED] drm_gem_shmem_test_get_sg_table
+[11:33:47] [PASSED] drm_gem_shmem_test_get_pages_sgt
+[11:33:47] [PASSED] drm_gem_shmem_test_madvise
+[11:33:47] [PASSED] drm_gem_shmem_test_purge
+[11:33:47] ================== [PASSED] drm_gem_shmem ==================
+[11:33:47] === drm_atomic_helper_connector_hdmi_check (27 subtests) ===
+[11:33:47] [PASSED] drm_test_check_broadcast_rgb_auto_cea_mode
+[11:33:47] [PASSED] drm_test_check_broadcast_rgb_auto_cea_mode_vic_1
+[11:33:47] [PASSED] drm_test_check_broadcast_rgb_full_cea_mode
+[11:33:47] [PASSED] drm_test_check_broadcast_rgb_full_cea_mode_vic_1
+[11:33:47] [PASSED] drm_test_check_broadcast_rgb_limited_cea_mode
+[11:33:47] [PASSED] drm_test_check_broadcast_rgb_limited_cea_mode_vic_1
+[11:33:47] ====== drm_test_check_broadcast_rgb_cea_mode_yuv420  =======
+[11:33:47] [PASSED] Automatic
+[11:33:47] [PASSED] Full
+[11:33:47] [PASSED] Limited 16:235
+[11:33:47] == [PASSED] drm_test_check_broadcast_rgb_cea_mode_yuv420 ===
+[11:33:47] [PASSED] drm_test_check_broadcast_rgb_crtc_mode_changed
+[11:33:47] [PASSED] drm_test_check_broadcast_rgb_crtc_mode_not_changed
+[11:33:47] [PASSED] drm_test_check_disable_connector
+[11:33:47] [PASSED] drm_test_check_hdmi_funcs_reject_rate
+[11:33:47] [PASSED] drm_test_check_max_tmds_rate_bpc_fallback_rgb
+[11:33:47] [PASSED] drm_test_check_max_tmds_rate_bpc_fallback_yuv420
+[11:33:47] [PASSED] drm_test_check_max_tmds_rate_bpc_fallback_ignore_yuv422
+[11:33:47] [PASSED] drm_test_check_max_tmds_rate_bpc_fallback_ignore_yuv420
+[11:33:47] [PASSED] drm_test_check_driver_unsupported_fallback_yuv420
+[11:33:47] [PASSED] drm_test_check_output_bpc_crtc_mode_changed
+[11:33:47] [PASSED] drm_test_check_output_bpc_crtc_mode_not_changed
+[11:33:47] [PASSED] drm_test_check_output_bpc_dvi
+[11:33:47] [PASSED] drm_test_check_output_bpc_format_vic_1
+[11:33:47] [PASSED] drm_test_check_output_bpc_format_display_8bpc_only
+[11:33:47] [PASSED] drm_test_check_output_bpc_format_display_rgb_only
+[11:33:47] [PASSED] drm_test_check_output_bpc_format_driver_8bpc_only
+[11:33:47] [PASSED] drm_test_check_output_bpc_format_driver_rgb_only
+[11:33:47] [PASSED] drm_test_check_tmds_char_rate_rgb_8bpc
+[11:33:47] [PASSED] drm_test_check_tmds_char_rate_rgb_10bpc
+[11:33:47] [PASSED] drm_test_check_tmds_char_rate_rgb_12bpc
+[11:33:47] ===== [PASSED] drm_atomic_helper_connector_hdmi_check ======
+[11:33:47] === drm_atomic_helper_connector_hdmi_reset (6 subtests) ====
+[11:33:47] [PASSED] drm_test_check_broadcast_rgb_value
+[11:33:47] [PASSED] drm_test_check_bpc_8_value
+[11:33:47] [PASSED] drm_test_check_bpc_10_value
+[11:33:47] [PASSED] drm_test_check_bpc_12_value
+[11:33:47] [PASSED] drm_test_check_format_value
+[11:33:47] [PASSED] drm_test_check_tmds_char_value
+[11:33:47] ===== [PASSED] drm_atomic_helper_connector_hdmi_reset ======
+[11:33:47] = drm_atomic_helper_connector_hdmi_mode_valid (4 subtests) =
+[11:33:47] [PASSED] drm_test_check_mode_valid
+[11:33:47] [PASSED] drm_test_check_mode_valid_reject
+[11:33:47] [PASSED] drm_test_check_mode_valid_reject_rate
+[11:33:47] [PASSED] drm_test_check_mode_valid_reject_max_clock
+[11:33:47] === [PASSED] drm_atomic_helper_connector_hdmi_mode_valid ===
+[11:33:47] = drm_atomic_helper_connector_hdmi_infoframes (5 subtests) =
+[11:33:47] [PASSED] drm_test_check_infoframes
+[11:33:47] [PASSED] drm_test_check_reject_avi_infoframe
+[11:33:47] [PASSED] drm_test_check_reject_hdr_infoframe_bpc_8
+[11:33:47] [PASSED] drm_test_check_reject_hdr_infoframe_bpc_10
+[11:33:47] [PASSED] drm_test_check_reject_audio_infoframe
+[11:33:47] === [PASSED] drm_atomic_helper_connector_hdmi_infoframes ===
+[11:33:47] ================= drm_managed (2 subtests) =================
+[11:33:47] [PASSED] drm_test_managed_release_action
+[11:33:47] [PASSED] drm_test_managed_run_action
+[11:33:47] =================== [PASSED] drm_managed ===================
+[11:33:47] =================== drm_mm (6 subtests) ====================
+[11:33:47] [PASSED] drm_test_mm_init
+[11:33:47] [PASSED] drm_test_mm_debug
+[11:33:47] [PASSED] drm_test_mm_align32
+[11:33:47] [PASSED] drm_test_mm_align64
+[11:33:47] [PASSED] drm_test_mm_lowest
+[11:33:47] [PASSED] drm_test_mm_highest
+[11:33:47] ===================== [PASSED] drm_mm ======================
+[11:33:47] ============= drm_modes_analog_tv (5 subtests) =============
+[11:33:47] [PASSED] drm_test_modes_analog_tv_mono_576i
+[11:33:47] [PASSED] drm_test_modes_analog_tv_ntsc_480i
+[11:33:47] [PASSED] drm_test_modes_analog_tv_ntsc_480i_inlined
+[11:33:47] [PASSED] drm_test_modes_analog_tv_pal_576i
+[11:33:47] [PASSED] drm_test_modes_analog_tv_pal_576i_inlined
+[11:33:47] =============== [PASSED] drm_modes_analog_tv ===============
+[11:33:47] ============== drm_plane_helper (2 subtests) ===============
+[11:33:47] =============== drm_test_check_plane_state  ================
+[11:33:47] [PASSED] clipping_simple
+[11:33:47] [PASSED] clipping_rotate_reflect
+[11:33:47] [PASSED] positioning_simple
+[11:33:47] [PASSED] upscaling
+[11:33:47] [PASSED] downscaling
+[11:33:47] [PASSED] rounding1
+[11:33:48] [PASSED] rounding2
+[11:33:48] [PASSED] rounding3
+[11:33:48] [PASSED] rounding4
+[11:33:48] =========== [PASSED] drm_test_check_plane_state ============
+[11:33:48] =========== drm_test_check_invalid_plane_state  ============
+[11:33:48] [PASSED] positioning_invalid
+[11:33:48] [PASSED] upscaling_invalid
+[11:33:48] [PASSED] downscaling_invalid
+[11:33:48] ======= [PASSED] drm_test_check_invalid_plane_state ========
+[11:33:48] ================ [PASSED] drm_plane_helper =================
+[11:33:48] ====== drm_connector_helper_tv_get_modes (1 subtest) =======
+[11:33:48] ====== drm_test_connector_helper_tv_get_modes_check  =======
+[11:33:48] [PASSED] None
+[11:33:48] [PASSED] PAL
+[11:33:48] [PASSED] NTSC
+[11:33:48] [PASSED] Both, NTSC Default
+[11:33:48] [PASSED] Both, PAL Default
+[11:33:48] [PASSED] Both, NTSC Default, with PAL on command-line
+[11:33:48] [PASSED] Both, PAL Default, with NTSC on command-line
+[11:33:48] == [PASSED] drm_test_connector_helper_tv_get_modes_check ===
+[11:33:48] ======== [PASSED] drm_connector_helper_tv_get_modes ========
+[11:33:48] ================== drm_rect (9 subtests) ===================
+[11:33:48] [PASSED] drm_test_rect_clip_scaled_div_by_zero
+[11:33:48] [PASSED] drm_test_rect_clip_scaled_not_clipped
+[11:33:48] [PASSED] drm_test_rect_clip_scaled_clipped
+[11:33:48] [PASSED] drm_test_rect_clip_scaled_signed_vs_unsigned
+[11:33:48] ================= drm_test_rect_intersect  =================
+[11:33:48] [PASSED] top-left x bottom-right: 2x2+1+1 x 2x2+0+0
+[11:33:48] [PASSED] top-right x bottom-left: 2x2+0+0 x 2x2+1-1
+[11:33:48] [PASSED] bottom-left x top-right: 2x2+1-1 x 2x2+0+0
+[11:33:48] [PASSED] bottom-right x top-left: 2x2+0+0 x 2x2+1+1
+[11:33:48] [PASSED] right x left: 2x1+0+0 x 3x1+1+0
+[11:33:48] [PASSED] left x right: 3x1+1+0 x 2x1+0+0
+[11:33:48] [PASSED] up x bottom: 1x2+0+0 x 1x3+0-1
+[11:33:48] [PASSED] bottom x up: 1x3+0-1 x 1x2+0+0
+[11:33:48] [PASSED] touching corner: 1x1+0+0 x 2x2+1+1
+[11:33:48] [PASSED] touching side: 1x1+0+0 x 1x1+1+0
+[11:33:48] [PASSED] equal rects: 2x2+0+0 x 2x2+0+0
+[11:33:48] [PASSED] inside another: 2x2+0+0 x 1x1+1+1
+[11:33:48] [PASSED] far away: 1x1+0+0 x 1x1+3+6
+[11:33:48] [PASSED] points intersecting: 0x0+5+10 x 0x0+5+10
+[11:33:48] [PASSED] points not intersecting: 0x0+0+0 x 0x0+5+10
+[11:33:48] ============= [PASSED] drm_test_rect_intersect =============
+[11:33:48] ================ drm_test_rect_calc_hscale  ================
+[11:33:48] [PASSED] normal use
+[11:33:48] [PASSED] out of max range
+[11:33:48] [PASSED] out of min range
+[11:33:48] [PASSED] zero dst
+[11:33:48] [PASSED] negative src
+[11:33:48] [PASSED] negative dst
+[11:33:48] ============ [PASSED] drm_test_rect_calc_hscale ============
+[11:33:48] ================ drm_test_rect_calc_vscale  ================
+[11:33:48] [PASSED] normal use
+[11:33:48] [PASSED] out of max range
+[11:33:48] [PASSED] out of min range
+[11:33:48] [PASSED] zero dst
+[11:33:48] [PASSED] negative src
+[11:33:48] [PASSED] negative dst
+[11:33:48] ============ [PASSED] drm_test_rect_calc_vscale ============
+[11:33:48] ================== drm_test_rect_rotate  ===================
+[11:33:48] [PASSED] reflect-x
+[11:33:48] [PASSED] reflect-y
+[11:33:48] [PASSED] rotate-0
+[11:33:48] [PASSED] rotate-90
+[11:33:48] [PASSED] rotate-180
+[11:33:48] [PASSED] rotate-270
+[11:33:48] ============== [PASSED] drm_test_rect_rotate ===============
+[11:33:48] ================ drm_test_rect_rotate_inv  =================
+[11:33:48] [PASSED] reflect-x
+[11:33:48] [PASSED] reflect-y
+[11:33:48] [PASSED] rotate-0
+[11:33:48] [PASSED] rotate-90
+[11:33:48] [PASSED] rotate-180
+[11:33:48] [PASSED] rotate-270
+[11:33:48] ============ [PASSED] drm_test_rect_rotate_inv =============
+[11:33:48] ==================== [PASSED] drm_rect =====================
+[11:33:48] ============ drm_sysfb_modeset_test (1 subtest) ============
+[11:33:48] ============ drm_test_sysfb_build_fourcc_list  =============
+[11:33:48] [PASSED] no native formats
+[11:33:48] [PASSED] XRGB8888 as native format
+[11:33:48] [PASSED] remove duplicates
+[11:33:48] [PASSED] convert alpha formats
+[11:33:48] [PASSED] random formats
+[11:33:48] ======== [PASSED] drm_test_sysfb_build_fourcc_list =========
+[11:33:48] ============= [PASSED] drm_sysfb_modeset_test ==============
+[11:33:48] ================== drm_fixp (2 subtests) ===================
+[11:33:48] [PASSED] drm_test_int2fixp
+[11:33:48] [PASSED] drm_test_sm2fixp
+[11:33:48] ==================== [PASSED] drm_fixp =====================
+[11:33:48] ============================================================
+[11:33:48] Testing complete. Ran 621 tests: passed: 621
+[11:33:48] Elapsed time: 26.229s total, 1.760s configuring, 24.294s building, 0.174s running
 
-Buddy coalescing is now unconditional in __gpu_buddy_free(), regardless
-of clear/dirty state. This removes the merge barrier and eliminates the
-need for __force_merge().
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/ttm/tests/.kunitconfig
+[11:33:48] Configuring KUnit Kernel ...
+Regenerating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[11:33:49] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
+[11:33:59] Starting KUnit Kernel (1/1)...
+[11:33:59] ============================================================
+Running tests with:
+$ .kunit/linux kunit.enable=1 mem=1G console=tty kunit_shutdown=halt
+[11:33:59] ================= ttm_device (5 subtests) ==================
+[11:33:59] [PASSED] ttm_device_init_basic
+[11:33:59] [PASSED] ttm_device_init_multiple
+[11:33:59] [PASSED] ttm_device_fini_basic
+[11:33:59] [PASSED] ttm_device_init_no_vma_man
+[11:33:59] ================== ttm_device_init_pools  ==================
+[11:33:59] [PASSED] No DMA allocations, no DMA32 required
+[11:33:59] [PASSED] DMA allocations, DMA32 required
+[11:33:59] [PASSED] No DMA allocations, DMA32 required
+[11:33:59] [PASSED] DMA allocations, no DMA32 required
+[11:33:59] ============== [PASSED] ttm_device_init_pools ==============
+[11:33:59] =================== [PASSED] ttm_device ====================
+[11:33:59] ================== ttm_pool (8 subtests) ===================
+[11:33:59] ================== ttm_pool_alloc_basic  ===================
+[11:33:59] [PASSED] One page
+[11:33:59] [PASSED] More than one page
+[11:33:59] [PASSED] Above the allocation limit
+[11:33:59] [PASSED] One page, with coherent DMA mappings enabled
+[11:33:59] [PASSED] Above the allocation limit, with coherent DMA mappings enabled
+[11:33:59] ============== [PASSED] ttm_pool_alloc_basic ===============
+[11:33:59] ============== ttm_pool_alloc_basic_dma_addr  ==============
+[11:33:59] [PASSED] One page
+[11:33:59] [PASSED] More than one page
+[11:33:59] [PASSED] Above the allocation limit
+[11:33:59] [PASSED] One page, with coherent DMA mappings enabled
+[11:33:59] [PASSED] Above the allocation limit, with coherent DMA mappings enabled
+[11:33:59] ========== [PASSED] ttm_pool_alloc_basic_dma_addr ==========
+[11:33:59] [PASSED] ttm_pool_alloc_order_caching_match
+[11:33:59] [PASSED] ttm_pool_alloc_caching_mismatch
+[11:33:59] [PASSED] ttm_pool_alloc_order_mismatch
+[11:33:59] [PASSED] ttm_pool_free_dma_alloc
+[11:33:59] [PASSED] ttm_pool_free_no_dma_alloc
+[11:33:59] [PASSED] ttm_pool_fini_basic
+[11:33:59] ==================== [PASSED] ttm_pool =====================
+[11:33:59] ================ ttm_resource (8 subtests) =================
+[11:33:59] ================= ttm_resource_init_basic  =================
+[11:33:59] [PASSED] Init resource in TTM_PL_SYSTEM
+[11:33:59] [PASSED] Init resource in TTM_PL_VRAM
+[11:33:59] [PASSED] Init resource in a private placement
+[11:33:59] [PASSED] Init resource in TTM_PL_SYSTEM, set placement flags
+[11:33:59] ============= [PASSED] ttm_resource_init_basic =============
+[11:33:59] [PASSED] ttm_resource_init_pinned
+[11:33:59] [PASSED] ttm_resource_fini_basic
+[11:33:59] [PASSED] ttm_resource_manager_init_basic
+[11:33:59] [PASSED] ttm_resource_manager_usage_basic
+[11:33:59] [PASSED] ttm_resource_manager_set_used_basic
+[11:33:59] [PASSED] ttm_sys_man_alloc_basic
+[11:33:59] [PASSED] ttm_sys_man_free_basic
+[11:33:59] ================== [PASSED] ttm_resource ===================
+[11:33:59] =================== ttm_tt (15 subtests) ===================
+[11:33:59] ==================== ttm_tt_init_basic  ====================
+[11:33:59] [PASSED] Page-aligned size
+[11:33:59] [PASSED] Extra pages requested
+[11:33:59] ================ [PASSED] ttm_tt_init_basic ================
+[11:33:59] [PASSED] ttm_tt_init_misaligned
+[11:33:59] [PASSED] ttm_tt_fini_basic
+[11:33:59] [PASSED] ttm_tt_fini_sg
+[11:33:59] [PASSED] ttm_tt_fini_shmem
+[11:33:59] [PASSED] ttm_tt_create_basic
+[11:33:59] [PASSED] ttm_tt_create_invalid_bo_type
+[11:33:59] [PASSED] ttm_tt_create_ttm_exists
+[11:33:59] [PASSED] ttm_tt_create_failed
+[11:33:59] [PASSED] ttm_tt_destroy_basic
+[11:33:59] [PASSED] ttm_tt_populate_null_ttm
+[11:33:59] [PASSED] ttm_tt_populate_populated_ttm
+[11:33:59] [PASSED] ttm_tt_unpopulate_basic
+[11:33:59] [PASSED] ttm_tt_unpopulate_empty_ttm
+[11:33:59] [PASSED] ttm_tt_swapin_basic
+[11:33:59] ===================== [PASSED] ttm_tt ======================
+[11:33:59] =================== ttm_bo (14 subtests) ===================
+[11:33:59] =========== ttm_bo_reserve_optimistic_no_ticket  ===========
+[11:33:59] [PASSED] Cannot be interrupted and sleeps
+[11:33:59] [PASSED] Cannot be interrupted, locks straight away
+[11:33:59] [PASSED] Can be interrupted, sleeps
+[11:33:59] ======= [PASSED] ttm_bo_reserve_optimistic_no_ticket =======
+[11:33:59] [PASSED] ttm_bo_reserve_locked_no_sleep
+[11:33:59] [PASSED] ttm_bo_reserve_no_wait_ticket
+[11:33:59] [PASSED] ttm_bo_reserve_double_resv
+[11:33:59] [PASSED] ttm_bo_reserve_interrupted
+[11:33:59] [PASSED] ttm_bo_reserve_deadlock
+[11:33:59] [PASSED] ttm_bo_unreserve_basic
+[11:33:59] [PASSED] ttm_bo_unreserve_pinned
+[11:33:59] [PASSED] ttm_bo_unreserve_bulk
+[11:33:59] [PASSED] ttm_bo_fini_basic
+[11:33:59] [PASSED] ttm_bo_fini_shared_resv
+[11:33:59] [PASSED] ttm_bo_pin_basic
+[11:33:59] [PASSED] ttm_bo_pin_unpin_resource
+[11:33:59] [PASSED] ttm_bo_multiple_pin_one_unpin
+[11:33:59] ===================== [PASSED] ttm_bo ======================
+[11:33:59] ============== ttm_bo_validate (22 subtests) ===============
+[11:33:59] ============== ttm_bo_init_reserved_sys_man  ===============
+[11:33:59] [PASSED] Buffer object for userspace
+[11:33:59] [PASSED] Kernel buffer object
+[11:33:59] [PASSED] Shared buffer object
+[11:33:59] ========== [PASSED] ttm_bo_init_reserved_sys_man ===========
+[11:33:59] ============== ttm_bo_init_reserved_mock_man  ==============
+[11:33:59] [PASSED] Buffer object for userspace
+[11:33:59] [PASSED] Kernel buffer object
+[11:33:59] [PASSED] Shared buffer object
+[11:33:59] ========== [PASSED] ttm_bo_init_reserved_mock_man ==========
+[11:33:59] [PASSED] ttm_bo_init_reserved_resv
+[11:33:59] ================== ttm_bo_validate_basic  ==================
+[11:33:59] [PASSED] Buffer object for userspace
+[11:33:59] [PASSED] Kernel buffer object
+[11:33:59] [PASSED] Shared buffer object
+[11:33:59] ============== [PASSED] ttm_bo_validate_basic ==============
+[11:33:59] [PASSED] ttm_bo_validate_invalid_placement
+[11:33:59] ============= ttm_bo_validate_same_placement  ==============
+[11:33:59] [PASSED] System manager
+[11:33:59] [PASSED] VRAM manager
+[11:33:59] ========= [PASSED] ttm_bo_validate_same_placement ==========
+[11:33:59] [PASSED] ttm_bo_validate_failed_alloc
+[11:33:59] [PASSED] ttm_bo_validate_pinned
+[11:33:59] [PASSED] ttm_bo_validate_busy_placement
+[11:33:59] ================ ttm_bo_validate_multihop  =================
+[11:33:59] [PASSED] Buffer object for userspace
+[11:33:59] [PASSED] Kernel buffer object
+[11:33:59] [PASSED] Shared buffer object
+[11:33:59] ============ [PASSED] ttm_bo_validate_multihop =============
+[11:33:59] ========== ttm_bo_validate_no_placement_signaled  ==========
+[11:33:59] [PASSED] Buffer object in system domain, no page vector
+[11:33:59] [PASSED] Buffer object in system domain with an existing page vector
+[11:33:59] ====== [PASSED] ttm_bo_validate_no_placement_signaled ======
+[11:33:59] ======== ttm_bo_validate_no_placement_not_signaled  ========
+[11:33:59] [PASSED] Buffer object for userspace
+[11:33:59] [PASSED] Kernel buffer object
+[11:33:59] [PASSED] Shared buffer object
+[11:33:59] ==== [PASSED] ttm_bo_validate_no_placement_not_signaled ====
+[11:33:59] [PASSED] ttm_bo_validate_move_fence_signaled
+[11:33:59] ========= ttm_bo_validate_move_fence_not_signaled  =========
+[11:33:59] [PASSED] Waits for GPU
+[11:33:59] [PASSED] Tries to lock straight away
+[11:33:59] ===== [PASSED] ttm_bo_validate_move_fence_not_signaled =====
+[11:33:59] [PASSED] ttm_bo_validate_swapout
+[11:33:59] [PASSED] ttm_bo_validate_happy_evict
+[11:33:59] [PASSED] ttm_bo_validate_all_pinned_evict
+[11:33:59] [PASSED] ttm_bo_validate_allowed_only_evict
+[11:33:59] [PASSED] ttm_bo_validate_deleted_evict
+[11:33:59] [PASSED] ttm_bo_validate_busy_domain_evict
+[11:33:59] [PASSED] ttm_bo_validate_evict_gutting
+[11:33:59] [PASSED] ttm_bo_validate_recrusive_evict
+[11:33:59] ================= [PASSED] ttm_bo_validate =================
+[11:33:59] ============================================================
+[11:33:59] Testing complete. Ran 102 tests: passed: 102
+[11:33:59] Elapsed time: 11.609s total, 1.718s configuring, 9.676s building, 0.183s running
 
-Benefits
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-- Correct high-order allocations after mixed clear/dirty workloads
-- Elimination of O(N x max_order) merge cost from the allocation path
-- O(log E) cleared-extent lookup replacing O(N) scans
-- Predictable allocation latency under fragmentation
-- Reduced complexity with a single tree per order
-
-Test:
-dEQP-VK.memory.allocation.basic.size_8KiB.reverse.count_4000
-
-Below data is from /sys/kernel/debug/dri/1/amdgpu_vram_mm:
-
-Base (dual-tree), before VKCTS test:
-  order- 6 free:   6 MiB,  blocks: 26
-  order- 5 free:   1 MiB,  blocks: 15
-  order- 4 free: 960 KiB,  blocks: 15
-  order- 3 free:   5 MiB,  blocks: 171
-  order- 2 free:   2 MiB,  blocks: 176
-  order- 1 free:   1 MiB,  blocks: 165
-  order- 0 free:  16 KiB,  blocks: 4
-
-Base (dual-tree), after VKCTS test:
-  order- 6 free: 768 KiB,  blocks: 3
-  order- 5 free: 499 MiB,  blocks: 3999
-  order- 4 free: 250 MiB,  blocks: 4001
-  order- 3 free: 129 MiB,  blocks: 4157
-  order- 2 free:  65 MiB,  blocks: 4161
-  order- 1 free:  63 MiB,  blocks: 8138
-  order- 0 free:  20 KiB,  blocks: 5
-
-Clear tracker, before VKCTS test:
-  order- 6 free:   4 MiB,  blocks: 19
-  order- 5 free:   2 MiB,  blocks: 18
-  order- 4 free: 704 KiB,  blocks: 11
-  order- 3 free:   5 MiB,  blocks: 168
-  order- 2 free:   2 MiB,  blocks: 174
-  order- 1 free:   1 MiB,  blocks: 167
-  order- 0 free:  32 KiB,  blocks: 8
-
-Clear tracker, after VKCTS test:
-  order- 6 free:   4 MiB,  blocks: 19
-  order- 5 free:   2 MiB,  blocks: 18
-  order- 4 free: 704 KiB,  blocks: 11
-  order- 3 free:   5 MiB,  blocks: 168
-  order- 2 free:   2 MiB,  blocks: 174
-  order- 1 free:   1 MiB,  blocks: 167
-  order- 0 free:  28 KiB,  blocks: 7
-
-v2:
- - Code-style cleanup and minor refactoring
- - Renamed locals for clarity
-
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Christian König <christian.koenig@amd.com>
-Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
----
- drivers/gpu/buddy.c         | 997 ++++++++++++++++++++++--------------
- drivers/gpu/drm/drm_buddy.c |  44 +-
- include/linux/gpu_buddy.h   |  61 ++-
- 3 files changed, 692 insertions(+), 410 deletions(-)
-
-diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
-index 52686672e99f..8c6bd8b95cdb 100644
---- a/drivers/gpu/buddy.c
-+++ b/drivers/gpu/buddy.c
-@@ -34,6 +34,334 @@
- #endif
- 
- static struct kmem_cache *slab_blocks;
-+static struct kmem_cache *slab_extents;
-+
-+/*
-+ * Clear tracker
-+ * -------------
-+ *
-+ * The clear tracker maintains an augmented interval rbtree of contiguous
-+ * cleared (zeroed) address ranges, decoupled from the buddy free trees.
-+ * Each node covers a maximal coalesced run; adjacent extents are merged
-+ * on insertion so the tree always holds the smallest possible number of
-+ * extents.  The augmentation field @subtree_max_size lets the allocator
-+ * locate the largest cleared extent in O(log E).
-+ */
-+
-+static u64 extent_size(struct gpu_clear_extent *clear_extent)
-+{
-+	return clear_extent->end - clear_extent->start;
-+}
-+
-+RB_DECLARE_CALLBACKS_MAX(static, gpu_clear_augment_cb,
-+			 struct gpu_clear_extent, rb,
-+			 u64, subtree_max_size,
-+			 extent_size)
-+
-+static struct gpu_clear_extent *extent_alloc(void)
-+{
-+	return kmem_cache_zalloc(slab_extents, GFP_KERNEL);
-+}
-+
-+static void extent_free(struct gpu_clear_extent *clear_extent)
-+{
-+	kmem_cache_free(slab_extents, clear_extent);
-+}
-+
-+/* Return the rightmost extent whose start is strictly below @offset. */
-+static struct gpu_clear_extent *
-+prev_extent(struct gpu_clear_tracker *clear_tracker, u64 offset)
-+{
-+	struct rb_node *rb = clear_tracker->root.rb_node;
-+	struct gpu_clear_extent *clear_extent = NULL;
-+
-+	while (rb) {
-+		struct gpu_clear_extent *tmp_extent =
-+			rb_entry(rb, struct gpu_clear_extent, rb);
-+
-+		if (tmp_extent->start < offset) {
-+			clear_extent = tmp_extent;
-+			rb = rb->rb_right;
-+		} else {
-+			rb = rb->rb_left;
-+		}
-+	}
-+
-+	return clear_extent;
-+}
-+
-+/* Return the leftmost extent whose start is at or above @offset. */
-+static struct gpu_clear_extent *
-+next_extent(struct gpu_clear_tracker *clear_tracker, u64 offset)
-+{
-+	struct rb_node *rb = clear_tracker->root.rb_node;
-+	struct gpu_clear_extent *clear_extent = NULL;
-+
-+	while (rb) {
-+		struct gpu_clear_extent *tmp_extent =
-+			rb_entry(rb, struct gpu_clear_extent, rb);
-+
-+		if (tmp_extent->start >= offset) {
-+			clear_extent = tmp_extent;
-+			rb = rb->rb_left;
-+		} else {
-+			rb = rb->rb_right;
-+		}
-+	}
-+
-+	return clear_extent;
-+}
-+
-+static void insert_extent(struct gpu_clear_tracker *clear_tracker,
-+			  struct gpu_clear_extent *clear_extent)
-+{
-+	struct rb_node **link = &clear_tracker->root.rb_node;
-+	struct rb_node *parent = NULL;
-+
-+	while (*link) {
-+		struct gpu_clear_extent *tmp_extent;
-+
-+		parent = *link;
-+		tmp_extent = rb_entry(parent, struct gpu_clear_extent, rb);
-+
-+		if (clear_extent->start < tmp_extent->start)
-+			link = &parent->rb_left;
-+		else
-+			link = &parent->rb_right;
-+	}
-+
-+	clear_extent->subtree_max_size = extent_size(clear_extent);
-+	rb_link_node(&clear_extent->rb, parent, link);
-+	rb_insert_augmented(&clear_extent->rb, &clear_tracker->root, &gpu_clear_augment_cb);
-+}
-+
-+static void remove_extent(struct gpu_clear_tracker *clear_tracker,
-+			  struct gpu_clear_extent *clear_extent)
-+{
-+	rb_erase_augmented(&clear_extent->rb, &clear_tracker->root, &gpu_clear_augment_cb);
-+	RB_CLEAR_NODE(&clear_extent->rb);
-+}
-+
-+static void gpu_clear_tracker_init(struct gpu_clear_tracker *clear_tracker)
-+{
-+	clear_tracker->root = RB_ROOT;
-+	clear_tracker->total_clear = 0;
-+}
-+
-+static void gpu_clear_tracker_fini(struct gpu_clear_tracker *clear_tracker)
-+{
-+	struct rb_node *rb;
-+
-+	while ((rb = rb_first(&clear_tracker->root))) {
-+		struct gpu_clear_extent *clear_extent =
-+			rb_entry(rb, struct gpu_clear_extent, rb);
-+
-+		remove_extent(clear_tracker, clear_extent);
-+		extent_free(clear_extent);
-+	}
-+
-+	clear_tracker->total_clear = 0;
-+}
-+
-+/*
-+ * Mark the range [start, start + size] as cleared. Merge with the neighbour on
-+ * each side if they are contiguous, so the tree never holds two adjacent ranges.
-+ */
-+static void gpu_clear_tracker_mark_clear(struct gpu_clear_tracker *clear_tracker,
-+					 u64 start, u64 size)
-+{
-+	struct gpu_clear_extent *left, *right, *clear_extent;
-+	u64 end = start + size;
-+
-+	if (!size)
-+		return;
-+
-+	/* Find contiguous neighbours, if any. */
-+	left = prev_extent(clear_tracker, start);
-+	if (left && left->end != start)
-+		left = NULL;
-+
-+	right = next_extent(clear_tracker, end);
-+	if (right && right->start != end)
-+		right = NULL;
-+
-+	if (left && right) {
-+		/* Merge left + new + right into a single extent. */
-+		remove_extent(clear_tracker, left);
-+		remove_extent(clear_tracker, right);
-+		left->end = right->end;
-+		extent_free(right);
-+		insert_extent(clear_tracker, left);
-+	} else if (left) {
-+		/* Extend left neighbour rightwards. */
-+		remove_extent(clear_tracker, left);
-+		left->end = end;
-+		insert_extent(clear_tracker, left);
-+	} else if (right) {
-+		/* Extend right neighbour leftwards. */
-+		remove_extent(clear_tracker, right);
-+		right->start = start;
-+		insert_extent(clear_tracker, right);
-+	} else {
-+		/* Standalone extent. */
-+		clear_extent = extent_alloc();
-+		if (!clear_extent)
-+			return;
-+
-+		clear_extent->start = start;
-+		clear_extent->end   = end;
-+		insert_extent(clear_tracker, clear_extent);
-+	}
-+
-+	clear_tracker->total_clear += size;
-+}
-+
-+/*
-+ * Mark the range [start, start + size] as dirty. Remove the range from every
-+ * overlapping clear extent, splitting one extent in two if the dirty range
-+ * falls strictly inside it.
-+ */
-+static void gpu_clear_tracker_mark_dirty(struct gpu_clear_tracker *clear_tracker,
-+					 u64 start, u64 size)
-+{
-+	struct gpu_clear_extent *clear_extent, *next;
-+	u64 end = start + size;
-+
-+	if (!size)
-+		return;
-+
-+	clear_extent = prev_extent(clear_tracker, start + 1);
-+	if (!clear_extent)
-+		clear_extent = next_extent(clear_tracker, start);
-+
-+	while (clear_extent && clear_extent->start < end) {
-+		struct rb_node *next_node = rb_next(&clear_extent->rb);
-+		u64 extent_start = clear_extent->start;
-+		u64 extent_end = clear_extent->end;
-+
-+		if (next_node)
-+			next = rb_entry(next_node, struct gpu_clear_extent, rb);
-+		else
-+			next = NULL;
-+
-+		/* Skip a non-overlapping neighbour returned by prev_extent(). */
-+		if (extent_end <= start) {
-+			clear_extent = next;
-+			continue;
-+		}
-+
-+		if (extent_start < start && extent_end > end) {
-+			/* Dirty range falls strictly inside: split into left + right. */
-+			struct gpu_clear_extent *right = extent_alloc();
-+			if (!right)
-+				return;
-+
-+			remove_extent(clear_tracker, clear_extent);
-+
-+			clear_extent->end = start;
-+			right->start = end;
-+			right->end   = extent_end;
-+
-+			insert_extent(clear_tracker, clear_extent);
-+			insert_extent(clear_tracker, right);
-+
-+			clear_tracker->total_clear -= size;
-+		} else if (extent_start >= start && extent_end <= end) {
-+			/* Extent fully covered: drop it. */
-+			remove_extent(clear_tracker, clear_extent);
-+			extent_free(clear_extent);
-+
-+			clear_tracker->total_clear -= (extent_end - extent_start);
-+		} else if (extent_start < start) {
-+			/* Extent overlaps from the left: trim its right end. */
-+			remove_extent(clear_tracker, clear_extent);
-+			clear_extent->end = start;
-+			insert_extent(clear_tracker, clear_extent);
-+
-+			clear_tracker->total_clear -= (extent_end - start);
-+		} else {
-+			/* Extent overlaps from the right: trim its left end. */
-+			remove_extent(clear_tracker, clear_extent);
-+			clear_extent->start = end;
-+			insert_extent(clear_tracker, clear_extent);
-+
-+			clear_tracker->total_clear -= (end - extent_start);
-+		}
-+
-+		clear_extent = next;
-+	}
-+}
-+
-+/*
-+ * Returns true if the range [start, start + size] lies entirely within
-+ * a single clear extent in the tracker, i.e. the whole range is known
-+ * to be cleared.
-+ */
-+static bool gpu_clear_tracker_is_clear(struct gpu_clear_tracker *clear_tracker,
-+				       u64 start, u64 size)
-+{
-+	struct gpu_clear_extent *clear_extent;
-+	u64 end = start + size;
-+
-+	clear_extent = prev_extent(clear_tracker, start + 1);
-+	if (!clear_extent)
-+		return false;
-+
-+	return clear_extent->start <= start && clear_extent->end >= end;
-+}
-+
-+/*
-+ * Search the tracker for a clear extent of at least @min_size bytes
-+ * and return it. The walk prefers higher-address candidates: at each
-+ * node it descends into the right subtree first, then checks the node
-+ * itself, and only falls back to the left subtree if neither matches.
-+ *
-+ * The augmented @subtree_max_size lets us skip whole subtrees that
-+ * cannot contain a large-enough extent, so the search runs in
-+ * O(log E) where E is the number of clear extents.
-+ *
-+ * Returns NULL if no extent satisfies @min_size.
-+ */
-+static struct gpu_clear_extent *
-+gpu_clear_tracker_find(struct gpu_clear_tracker *clear_tracker, u64 min_size)
-+{
-+	struct rb_node *rb = clear_tracker->root.rb_node;
-+
-+	while (rb) {
-+		struct gpu_clear_extent *clear_extent =
-+			rb_entry(rb, struct gpu_clear_extent, rb);
-+		struct rb_node *right = rb->rb_right;
-+		struct rb_node *left  = rb->rb_left;
-+
-+		/* Prefer the right (higher-address) subtree. */
-+		if (right) {
-+			struct gpu_clear_extent *r =
-+				rb_entry(right, struct gpu_clear_extent, rb);
-+
-+			if (r->subtree_max_size >= min_size) {
-+				rb = right;
-+				continue;
-+			}
-+		}
-+
-+		if (extent_size(clear_extent) >= min_size)
-+			return clear_extent;
-+
-+		if (left) {
-+			struct gpu_clear_extent *l =
-+				rb_entry(left, struct gpu_clear_extent, rb);
-+
-+			if (l->subtree_max_size >= min_size) {
-+				rb = left;
-+				continue;
-+			}
-+		}
-+
-+		break;
-+	}
-+
-+	return NULL;
-+}
- 
- static unsigned int
- gpu_buddy_block_state(struct gpu_buddy_block *block)
-@@ -101,13 +429,6 @@ static void gpu_block_free(struct gpu_buddy *mm,
- 	kmem_cache_free(slab_blocks, block);
- }
- 
--static enum gpu_buddy_free_tree
--get_block_tree(struct gpu_buddy_block *block)
--{
--	return gpu_buddy_block_is_clear(block) ?
--	       GPU_BUDDY_CLEAR_TREE : GPU_BUDDY_DIRTY_TREE;
--}
--
- static struct gpu_buddy_block *
- rbtree_get_free_block(const struct rb_node *node)
- {
-@@ -120,14 +441,8 @@ rbtree_last_free_block(struct rb_root *root)
- 	return rbtree_get_free_block(rb_last(root));
- }
- 
--static bool rbtree_is_empty(struct rb_root *root)
--{
--	return RB_EMPTY_ROOT(root);
--}
--
- static void rbtree_insert(struct gpu_buddy *mm,
--			  struct gpu_buddy_block *block,
--			  enum gpu_buddy_free_tree tree)
-+			  struct gpu_buddy_block *block)
- {
- 	struct rb_node **link, *parent = NULL;
- 	unsigned int block_alignment, order;
-@@ -137,7 +452,7 @@ static void rbtree_insert(struct gpu_buddy *mm,
- 	order = gpu_buddy_block_order(block);
- 	block_alignment = gpu_buddy_block_offset_alignment(block);
- 
--	root = &mm->free_trees[tree][order];
-+	root = &mm->free_tree[order];
- 	link = &root->rb_node;
- 
- 	while (*link) {
-@@ -167,26 +482,14 @@ static void rbtree_remove(struct gpu_buddy *mm,
- 			  struct gpu_buddy_block *block)
- {
- 	unsigned int order = gpu_buddy_block_order(block);
--	enum gpu_buddy_free_tree tree;
--	struct rb_root *root;
- 
--	tree = get_block_tree(block);
--	root = &mm->free_trees[tree][order];
-+	if (gpu_buddy_block_is_clear(block))
-+		return;
- 
--	rb_erase_augmented(&block->rb, root, &gpu_buddy_augment_cb);
-+	rb_erase_augmented(&block->rb, &mm->free_tree[order], &gpu_buddy_augment_cb);
- 	RB_CLEAR_NODE(&block->rb);
- }
- 
--static void clear_reset(struct gpu_buddy_block *block)
--{
--	block->header &= ~GPU_BUDDY_HEADER_CLEAR;
--}
--
--static void mark_cleared(struct gpu_buddy_block *block)
--{
--	block->header |= GPU_BUDDY_HEADER_CLEAR;
--}
--
- static void mark_allocated(struct gpu_buddy *mm,
- 			   struct gpu_buddy_block *block)
- {
-@@ -199,13 +502,18 @@ static void mark_allocated(struct gpu_buddy *mm,
- static void mark_free(struct gpu_buddy *mm,
- 		      struct gpu_buddy_block *block)
- {
--	enum gpu_buddy_free_tree tree;
--
- 	block->header &= ~GPU_BUDDY_HEADER_STATE;
- 	block->header |= GPU_BUDDY_FREE;
- 
--	tree = get_block_tree(block);
--	rbtree_insert(mm, block, tree);
-+	if (gpu_clear_tracker_is_clear(&mm->clear,
-+				       gpu_buddy_block_offset(block),
-+				       gpu_buddy_block_size(mm, block))) {
-+		block->header |= GPU_BUDDY_HEADER_CLEAR;
-+		RB_CLEAR_NODE(&block->rb);
-+	} else {
-+		block->header &= ~GPU_BUDDY_HEADER_CLEAR;
-+		rbtree_insert(mm, block);
-+	}
- }
- 
- static void mark_split(struct gpu_buddy *mm,
-@@ -243,36 +551,18 @@ __get_buddy(struct gpu_buddy_block *block)
- }
- 
- static unsigned int __gpu_buddy_free(struct gpu_buddy *mm,
--				     struct gpu_buddy_block *block,
--				     bool force_merge)
-+				     struct gpu_buddy_block *block)
- {
- 	struct gpu_buddy_block *parent;
- 	unsigned int order;
- 
- 	while ((parent = block->parent)) {
--		struct gpu_buddy_block *buddy;
--
--		buddy = __get_buddy(block);
-+		struct gpu_buddy_block *buddy = __get_buddy(block);
- 
- 		if (!gpu_buddy_block_is_free(buddy))
- 			break;
- 
--		if (!force_merge) {
--			/*
--			 * Check the block and its buddy clear state and exit
--			 * the loop if they both have the dissimilar state.
--			 */
--			if (gpu_buddy_block_is_clear(block) !=
--			    gpu_buddy_block_is_clear(buddy))
--				break;
--
--			if (gpu_buddy_block_is_clear(block))
--				mark_cleared(parent);
--		}
--
- 		rbtree_remove(mm, buddy);
--		if (force_merge && gpu_buddy_block_is_clear(buddy))
--			mm->clear_avail -= gpu_buddy_block_size(mm, buddy);
- 
- 		gpu_block_free(mm, block);
- 		gpu_block_free(mm, buddy);
-@@ -286,66 +576,15 @@ static unsigned int __gpu_buddy_free(struct gpu_buddy *mm,
- 	return order;
- }
- 
--static int __force_merge(struct gpu_buddy *mm,
--			 u64 start,
--			 u64 end,
--			 unsigned int min_order)
-+static void undo_partial_split(struct gpu_buddy *mm,
-+			       struct gpu_buddy_block *block)
- {
--	unsigned int tree, order;
--	int i;
--
--	if (!min_order)
--		return -ENOMEM;
--
--	if (min_order > mm->max_order)
--		return -EINVAL;
--
--	for_each_free_tree(tree) {
--		for (i = min_order - 1; i >= 0; i--) {
--			struct rb_node *iter = rb_last(&mm->free_trees[tree][i]);
--
--			while (iter) {
--				struct gpu_buddy_block *block, *buddy;
--				u64 block_start, block_end;
--
--				block = rbtree_get_free_block(iter);
--				iter = rb_prev(iter);
--
--				if (!block || !block->parent)
--					continue;
--
--				block_start = gpu_buddy_block_offset(block);
--				block_end = block_start + gpu_buddy_block_size(mm, block) - 1;
--
--				if (!contains(start, end, block_start, block_end))
--					continue;
-+	struct gpu_buddy_block *buddy = __get_buddy(block);
- 
--				buddy = __get_buddy(block);
--				if (!gpu_buddy_block_is_free(buddy))
--					continue;
--
--				gpu_buddy_assert(gpu_buddy_block_is_clear(block) !=
--						 gpu_buddy_block_is_clear(buddy));
--
--				/*
--				 * Advance to the next node when the current node is the buddy,
--				 * as freeing the block will also remove its buddy from the tree.
--				 */
--				if (iter == &buddy->rb)
--					iter = rb_prev(iter);
--
--				rbtree_remove(mm, block);
--				if (gpu_buddy_block_is_clear(block))
--					mm->clear_avail -= gpu_buddy_block_size(mm, block);
--
--				order = __gpu_buddy_free(mm, block, true);
--				if (order >= min_order)
--					return 0;
--			}
--		}
--	}
--
--	return -ENOMEM;
-+	if (buddy &&
-+	    gpu_buddy_block_is_free(block) &&
-+	    gpu_buddy_block_is_free(buddy))
-+		__gpu_buddy_free(mm, block);
- }
- 
- /**
-@@ -362,7 +601,7 @@ static int __force_merge(struct gpu_buddy *mm,
-  */
- int gpu_buddy_init(struct gpu_buddy *mm, u64 size, u64 chunk_size)
- {
--	unsigned int i, j, root_count = 0;
-+	unsigned int root_count = 0;
- 	u64 offset = 0;
- 
- 	if (size < chunk_size)
-@@ -384,22 +623,13 @@ int gpu_buddy_init(struct gpu_buddy *mm, u64 size, u64 chunk_size)
- 
- 	BUG_ON(mm->max_order > GPU_BUDDY_MAX_ORDER);
- 
--	mm->free_trees = kmalloc_array(GPU_BUDDY_MAX_FREE_TREES,
--				       sizeof(*mm->free_trees),
--				       GFP_KERNEL);
--	if (!mm->free_trees)
-+	mm->free_tree = kcalloc(mm->max_order + 1,
-+				 sizeof(struct rb_root),
-+				 GFP_KERNEL);
-+	if (!mm->free_tree)
- 		return -ENOMEM;
- 
--	for_each_free_tree(i) {
--		mm->free_trees[i] = kmalloc_array(mm->max_order + 1,
--						  sizeof(struct rb_root),
--						  GFP_KERNEL);
--		if (!mm->free_trees[i])
--			goto out_free_tree;
--
--		for (j = 0; j <= mm->max_order; ++j)
--			mm->free_trees[i][j] = RB_ROOT;
--	}
-+	gpu_clear_tracker_init(&mm->clear);
- 
- 	mm->n_roots = hweight64(size);
- 
-@@ -444,9 +674,8 @@ int gpu_buddy_init(struct gpu_buddy *mm, u64 size, u64 chunk_size)
- 		gpu_block_free(mm, mm->roots[root_count]);
- 	kfree(mm->roots);
- out_free_tree:
--	while (i--)
--		kfree(mm->free_trees[i]);
--	kfree(mm->free_trees);
-+	gpu_clear_tracker_fini(&mm->clear);
-+	kfree(mm->free_tree);
- 	return -ENOMEM;
- }
- EXPORT_SYMBOL(gpu_buddy_init);
-@@ -460,7 +689,7 @@ EXPORT_SYMBOL(gpu_buddy_init);
-  */
- void gpu_buddy_fini(struct gpu_buddy *mm)
- {
--	u64 root_size, size, start;
-+	u64 root_size, size;
- 	unsigned int order;
- 	int i;
- 
-@@ -468,22 +697,17 @@ void gpu_buddy_fini(struct gpu_buddy *mm)
- 
- 	for (i = 0; i < mm->n_roots; ++i) {
- 		order = ilog2(size) - ilog2(mm->chunk_size);
--		start = gpu_buddy_block_offset(mm->roots[i]);
--		__force_merge(mm, start, start + size, order);
-+		root_size = mm->chunk_size << order;
- 
- 		gpu_buddy_assert(gpu_buddy_block_is_free(mm->roots[i]));
--
- 		gpu_block_free(mm, mm->roots[i]);
--
--		root_size = mm->chunk_size << order;
- 		size -= root_size;
- 	}
- 
- 	gpu_buddy_assert(mm->avail == mm->size);
- 
--	for_each_free_tree(i)
--		kfree(mm->free_trees[i]);
--	kfree(mm->free_trees);
-+	gpu_clear_tracker_fini(&mm->clear);
-+	kfree(mm->free_tree);
- 	kfree(mm->roots);
- }
- EXPORT_SYMBOL(gpu_buddy_fini);
-@@ -509,13 +733,6 @@ static int split_block(struct gpu_buddy *mm,
- 	}
- 
- 	mark_split(mm, block);
--
--	if (gpu_buddy_block_is_clear(block)) {
--		mark_cleared(block->left);
--		mark_cleared(block->right);
--		clear_reset(block);
--	}
--
- 	mark_free(mm, block->left);
- 	mark_free(mm, block->right);
- 
-@@ -533,41 +750,55 @@ static int split_block(struct gpu_buddy *mm,
-  */
- void gpu_buddy_reset_clear(struct gpu_buddy *mm, bool is_clear)
- {
--	enum gpu_buddy_free_tree src_tree, dst_tree;
--	u64 root_size, size, start;
--	unsigned int order;
--	int i;
-+	unsigned int i;
- 
--	size = mm->size;
--	for (i = 0; i < mm->n_roots; ++i) {
--		order = ilog2(size) - ilog2(mm->chunk_size);
--		start = gpu_buddy_block_offset(mm->roots[i]);
--		__force_merge(mm, start, start + size, order);
-+	gpu_clear_tracker_fini(&mm->clear);
-+	gpu_clear_tracker_init(&mm->clear);
-+
-+	if (is_clear) {
-+		for (i = 0; i <= mm->max_order; ++i) {
-+			struct rb_node *node;
-+
-+			node = rb_first(&mm->free_tree[i]);
-+			while (node) {
-+				struct gpu_buddy_block *block =
-+					rb_entry(node, struct gpu_buddy_block, rb);
-+
-+				node = rb_next(node);
-+				rb_erase_augmented(&block->rb, &mm->free_tree[i], &gpu_buddy_augment_cb);
-+				RB_CLEAR_NODE(&block->rb);
-+				block->header |= GPU_BUDDY_HEADER_CLEAR;
-+				gpu_clear_tracker_mark_clear(&mm->clear,
-+							     gpu_buddy_block_offset(block),
-+							     gpu_buddy_block_size(mm, block));
-+			}
-+		}
-+	} else {
-+		LIST_HEAD(dfs);
- 
--		root_size = mm->chunk_size << order;
--		size -= root_size;
--	}
-+		for (i = 0; i < mm->n_roots; ++i)
-+			list_add(&mm->roots[i]->tmp_link, &dfs);
- 
--	src_tree = is_clear ? GPU_BUDDY_DIRTY_TREE : GPU_BUDDY_CLEAR_TREE;
--	dst_tree = is_clear ? GPU_BUDDY_CLEAR_TREE : GPU_BUDDY_DIRTY_TREE;
-+		while (!list_empty(&dfs)) {
-+			struct gpu_buddy_block *block =
-+				list_first_entry(&dfs, struct gpu_buddy_block, tmp_link);
- 
--	for (i = 0; i <= mm->max_order; ++i) {
--		struct rb_root *root = &mm->free_trees[src_tree][i];
--		struct gpu_buddy_block *block, *tmp;
-+			list_del(&block->tmp_link);
- 
--		rbtree_postorder_for_each_entry_safe(block, tmp, root, rb) {
--			rbtree_remove(mm, block);
--			if (is_clear) {
--				mark_cleared(block);
--				mm->clear_avail += gpu_buddy_block_size(mm, block);
--			} else {
--				clear_reset(block);
--				mm->clear_avail -= gpu_buddy_block_size(mm, block);
-+			if (gpu_buddy_block_is_split(block)) {
-+				list_add(&block->right->tmp_link, &dfs);
-+				list_add(&block->left->tmp_link, &dfs);
-+				continue;
- 			}
- 
--			rbtree_insert(mm, block, dst_tree);
-+			if (gpu_buddy_block_is_free(block) && gpu_buddy_block_is_clear(block)) {
-+				block->header &= ~GPU_BUDDY_HEADER_CLEAR;
-+				rbtree_insert(mm, block);
-+			}
- 		}
- 	}
-+
-+	mm->clear_avail = mm->clear.total_clear;
- }
- EXPORT_SYMBOL(gpu_buddy_reset_clear);
- 
-@@ -580,12 +811,21 @@ EXPORT_SYMBOL(gpu_buddy_reset_clear);
- void gpu_buddy_free_block(struct gpu_buddy *mm,
- 			  struct gpu_buddy_block *block)
- {
-+	bool was_clear = gpu_buddy_block_is_clear(block);
-+	u64 size   = gpu_buddy_block_size(mm, block);
-+	u64 offset = gpu_buddy_block_offset(block);
-+
- 	BUG_ON(!gpu_buddy_block_is_allocated(block));
--	mm->avail += gpu_buddy_block_size(mm, block);
--	if (gpu_buddy_block_is_clear(block))
--		mm->clear_avail += gpu_buddy_block_size(mm, block);
- 
--	__gpu_buddy_free(mm, block, false);
-+	block->header &= ~GPU_BUDDY_HEADER_CLEAR;
-+	mm->avail += size;
-+
-+	if (was_clear) {
-+		gpu_clear_tracker_mark_clear(&mm->clear, offset, size);
-+		mm->clear_avail = mm->clear.total_clear;
-+	}
-+
-+	__gpu_buddy_free(mm, block);
- }
- EXPORT_SYMBOL(gpu_buddy_free_block);
- 
-@@ -599,10 +839,15 @@ static void __gpu_buddy_free_list(struct gpu_buddy *mm,
- 	gpu_buddy_assert(!(mark_dirty && mark_clear));
- 
- 	list_for_each_entry_safe(block, on, objects, link) {
-+		/*
-+		 * Propagate the caller's clear/dirty intent onto the block header
-+		 * before handing it to gpu_buddy_free_block(), which will then
-+		 * update the clear tracker accordingly.
-+		 */
- 		if (mark_clear)
--			mark_cleared(block);
-+			block->header |= GPU_BUDDY_HEADER_CLEAR;
- 		else if (mark_dirty)
--			clear_reset(block);
-+			block->header &= ~GPU_BUDDY_HEADER_CLEAR;
- 		gpu_buddy_free_block(mm, block);
- 		cond_resched();
- 	}
-@@ -637,23 +882,14 @@ void gpu_buddy_free_list(struct gpu_buddy *mm,
- }
- EXPORT_SYMBOL(gpu_buddy_free_list);
- 
--static bool block_incompatible(struct gpu_buddy_block *block, unsigned int flags)
--{
--	bool needs_clear = flags & GPU_BUDDY_CLEAR_ALLOCATION;
--
--	return needs_clear != gpu_buddy_block_is_clear(block);
--}
--
- static struct gpu_buddy_block *
- __alloc_range_bias(struct gpu_buddy *mm,
- 		   u64 start, u64 end,
- 		   unsigned int order,
--		   unsigned long flags,
--		   bool fallback)
-+		   unsigned long flags)
- {
- 	u64 req_size = mm->chunk_size << order;
- 	struct gpu_buddy_block *block;
--	struct gpu_buddy_block *buddy;
- 	LIST_HEAD(dfs);
- 	int err;
- 	int i;
-@@ -696,9 +932,6 @@ __alloc_range_bias(struct gpu_buddy *mm,
- 				continue;
- 		}
- 
--		if (!fallback && block_incompatible(block, flags))
--			continue;
--
- 		if (contains(start, end, block_start, block_end) &&
- 		    order == gpu_buddy_block_order(block)) {
- 			/*
-@@ -716,68 +949,32 @@ __alloc_range_bias(struct gpu_buddy *mm,
- 				goto err_undo;
- 		}
- 
--		list_add(&block->right->tmp_link, &dfs);
- 		list_add(&block->left->tmp_link, &dfs);
-+		list_add(&block->right->tmp_link, &dfs);
- 	} while (1);
- 
- 	return ERR_PTR(-ENOSPC);
- 
- err_undo:
--	/*
--	 * We really don't want to leave around a bunch of split blocks, since
--	 * bigger is better, so make sure we merge everything back before we
--	 * free the allocated blocks.
--	 */
--	buddy = __get_buddy(block);
--	if (buddy &&
--	    (gpu_buddy_block_is_free(block) &&
--	     gpu_buddy_block_is_free(buddy)))
--		__gpu_buddy_free(mm, block, false);
-+	undo_partial_split(mm, block);
- 	return ERR_PTR(err);
- }
- 
--static struct gpu_buddy_block *
--__gpu_buddy_alloc_range_bias(struct gpu_buddy *mm,
--			     u64 start, u64 end,
--			     unsigned int order,
--			     unsigned long flags)
--{
--	struct gpu_buddy_block *block;
--	bool fallback = false;
--
--	block = __alloc_range_bias(mm, start, end, order,
--				   flags, fallback);
--	if (IS_ERR(block))
--		return __alloc_range_bias(mm, start, end, order,
--					  flags, !fallback);
--
--	return block;
--}
--
- static struct gpu_buddy_block *
- get_maxblock(struct gpu_buddy *mm,
- 	     unsigned int order,
--	     enum gpu_buddy_free_tree tree)
-+	     unsigned long flags)
- {
--	struct gpu_buddy_block *max_block = NULL, *block = NULL;
--	struct rb_root *root;
-+	struct gpu_buddy_block *max_block = NULL, *block;
- 	unsigned int i;
- 
- 	for (i = order; i <= mm->max_order; ++i) {
--		root = &mm->free_trees[tree][i];
--		block = rbtree_last_free_block(root);
-+		block = rbtree_last_free_block(&mm->free_tree[i]);
- 		if (!block)
- 			continue;
--
--		if (!max_block) {
-+		if (!max_block ||
-+		    gpu_buddy_block_offset(block) > gpu_buddy_block_offset(max_block))
- 			max_block = block;
--			continue;
--		}
--
--		if (gpu_buddy_block_offset(block) >
--		    gpu_buddy_block_offset(max_block)) {
--			max_block = block;
--		}
- 	}
- 
- 	return max_block;
-@@ -789,44 +986,23 @@ alloc_from_freetree(struct gpu_buddy *mm,
- 		    unsigned long flags)
- {
- 	struct gpu_buddy_block *block = NULL;
--	struct rb_root *root;
--	enum gpu_buddy_free_tree tree;
- 	unsigned int tmp;
- 	int err;
- 
--	tree = (flags & GPU_BUDDY_CLEAR_ALLOCATION) ?
--		GPU_BUDDY_CLEAR_TREE : GPU_BUDDY_DIRTY_TREE;
--
- 	if (flags & GPU_BUDDY_TOPDOWN_ALLOCATION) {
--		block = get_maxblock(mm, order, tree);
-+		block = get_maxblock(mm, order, flags);
- 		if (block)
--			/* Store the obtained block order */
- 			tmp = gpu_buddy_block_order(block);
- 	} else {
- 		for (tmp = order; tmp <= mm->max_order; ++tmp) {
--			/* Get RB tree root for this order and tree */
--			root = &mm->free_trees[tree][tmp];
--			block = rbtree_last_free_block(root);
-+			block = rbtree_last_free_block(&mm->free_tree[tmp]);
- 			if (block)
- 				break;
- 		}
- 	}
- 
--	if (!block) {
--		/* Try allocating from the other tree */
--		tree = (tree == GPU_BUDDY_CLEAR_TREE) ?
--			GPU_BUDDY_DIRTY_TREE : GPU_BUDDY_CLEAR_TREE;
--
--		for (tmp = order; tmp <= mm->max_order; ++tmp) {
--			root = &mm->free_trees[tree][tmp];
--			block = rbtree_last_free_block(root);
--			if (block)
--				break;
--		}
--
--		if (!block)
--			return ERR_PTR(-ENOSPC);
--	}
-+	if (!block)
-+		return ERR_PTR(-ENOSPC);
- 
- 	BUG_ON(!gpu_buddy_block_is_free(block));
- 
-@@ -835,14 +1011,18 @@ alloc_from_freetree(struct gpu_buddy *mm,
- 		if (unlikely(err))
- 			goto err_undo;
- 
--		block = block->right;
-+		if (!(flags & GPU_BUDDY_CLEAR_ALLOCATION) &&
-+		    gpu_buddy_block_is_clear(block->right))
-+			block = block->left;
-+		else
-+			block = block->right;
- 		tmp--;
- 	}
- 	return block;
- 
- err_undo:
- 	if (tmp != order)
--		__gpu_buddy_free(mm, block, false);
-+		__gpu_buddy_free(mm, block);
- 	return ERR_PTR(err);
- }
- 
-@@ -863,12 +1043,11 @@ static bool gpu_buddy_subtree_can_satisfy(struct rb_node *node,
- 
- static struct gpu_buddy_block *
- gpu_buddy_find_block_aligned(struct gpu_buddy *mm,
--			     enum gpu_buddy_free_tree tree,
- 			     unsigned int order,
- 			     unsigned int alignment,
- 			     unsigned long flags)
- {
--	struct rb_root *root = &mm->free_trees[tree][order];
-+	struct rb_root *root = &mm->free_tree[order];
- 	struct rb_node *rb = root->rb_node;
- 
- 	while (rb) {
-@@ -906,8 +1085,6 @@ gpu_buddy_offset_aligned_allocation(struct gpu_buddy *mm,
- {
- 	struct gpu_buddy_block *block = NULL;
- 	unsigned int order, tmp, alignment;
--	struct gpu_buddy_block *buddy;
--	enum gpu_buddy_free_tree tree;
- 	unsigned long pages;
- 	int err;
- 
-@@ -915,19 +1092,8 @@ gpu_buddy_offset_aligned_allocation(struct gpu_buddy *mm,
- 	pages = size >> ilog2(mm->chunk_size);
- 	order = fls(pages) - 1;
- 
--	tree = (flags & GPU_BUDDY_CLEAR_ALLOCATION) ?
--		GPU_BUDDY_CLEAR_TREE : GPU_BUDDY_DIRTY_TREE;
--
- 	for (tmp = order; tmp <= mm->max_order; ++tmp) {
--		block = gpu_buddy_find_block_aligned(mm, tree, tmp,
--						     alignment, flags);
--		if (!block) {
--			tree = (tree == GPU_BUDDY_CLEAR_TREE) ?
--				GPU_BUDDY_DIRTY_TREE : GPU_BUDDY_CLEAR_TREE;
--			block = gpu_buddy_find_block_aligned(mm, tree, tmp,
--							     alignment, flags);
--		}
--
-+		block = gpu_buddy_find_block_aligned(mm, tmp, alignment, flags);
- 		if (block)
- 			break;
- 	}
-@@ -954,27 +1120,18 @@ gpu_buddy_offset_aligned_allocation(struct gpu_buddy *mm,
- 	return block;
- 
- err_undo:
--	/*
--	 * We really don't want to leave around a bunch of split blocks, since
--	 * bigger is better, so make sure we merge everything back before we
--	 * free the allocated blocks.
--	 */
--	buddy = __get_buddy(block);
--	if (buddy &&
--	    (gpu_buddy_block_is_free(block) &&
--	     gpu_buddy_block_is_free(buddy)))
--		__gpu_buddy_free(mm, block, false);
-+	undo_partial_split(mm, block);
- 	return ERR_PTR(err);
- }
- 
- static int __alloc_range(struct gpu_buddy *mm,
- 			 struct list_head *dfs,
- 			 u64 start, u64 size,
-+			 unsigned long flags,
- 			 struct list_head *blocks,
- 			 u64 *total_allocated_on_err)
- {
- 	struct gpu_buddy_block *block;
--	struct gpu_buddy_block *buddy;
- 	u64 total_allocated = 0;
- 	LIST_HEAD(allocated);
- 	u64 end;
-@@ -1007,16 +1164,24 @@ static int __alloc_range(struct gpu_buddy *mm,
- 
- 		if (contains(start, end, block_start, block_end)) {
- 			if (gpu_buddy_block_is_free(block)) {
-+				u64 bsize = gpu_buddy_block_size(mm, block);
-+				u64 boff  = gpu_buddy_block_offset(block);
-+
- 				mark_allocated(mm, block);
--				total_allocated += gpu_buddy_block_size(mm, block);
--				mm->avail -= gpu_buddy_block_size(mm, block);
--				if (gpu_buddy_block_is_clear(block))
--					mm->clear_avail -= gpu_buddy_block_size(mm, block);
-+				total_allocated += bsize;
-+				mm->avail -= bsize;
-+
-+				if (gpu_clear_tracker_is_clear(&mm->clear,
-+							       boff, bsize)) {
-+					if (flags & GPU_BUDDY_CLEAR_ALLOCATION)
-+						block->header |= GPU_BUDDY_HEADER_CLEAR;
-+				}
-+				gpu_clear_tracker_mark_dirty(&mm->clear,
-+							     boff, bsize);
-+				mm->clear_avail = mm->clear.total_clear;
-+
- 				list_add_tail(&block->link, &allocated);
- 				continue;
--			} else if (!mm->clear_avail) {
--				err = -ENOSPC;
--				goto err_free;
- 			}
- 		}
- 
-@@ -1040,16 +1205,7 @@ static int __alloc_range(struct gpu_buddy *mm,
- 	return 0;
- 
- err_undo:
--	/*
--	 * We really don't want to leave around a bunch of split blocks, since
--	 * bigger is better, so make sure we merge everything back before we
--	 * free the allocated blocks.
--	 */
--	buddy = __get_buddy(block);
--	if (buddy &&
--	    (gpu_buddy_block_is_free(block) &&
--	     gpu_buddy_block_is_free(buddy)))
--		__gpu_buddy_free(mm, block, false);
-+	undo_partial_split(mm, block);
- 
- err_free:
- 	if (err == -ENOSPC && total_allocated_on_err) {
-@@ -1065,6 +1221,7 @@ static int __alloc_range(struct gpu_buddy *mm,
- static int __gpu_buddy_alloc_range(struct gpu_buddy *mm,
- 				   u64 start,
- 				   u64 size,
-+				   unsigned long flags,
- 				   u64 *total_allocated_on_err,
- 				   struct list_head *blocks)
- {
-@@ -1074,20 +1231,23 @@ static int __gpu_buddy_alloc_range(struct gpu_buddy *mm,
- 	for (i = 0; i < mm->n_roots; ++i)
- 		list_add_tail(&mm->roots[i]->tmp_link, &dfs);
- 
--	return __alloc_range(mm, &dfs, start, size,
-+	return __alloc_range(mm, &dfs, start, size, flags,
- 			     blocks, total_allocated_on_err);
- }
- 
- static int __alloc_contig_try_harder(struct gpu_buddy *mm,
- 				     u64 size,
- 				     u64 min_block_size,
-+				     unsigned long flags,
- 				     struct list_head *blocks)
- {
- 	u64 rhs_offset, lhs_offset, lhs_size, filled;
- 	struct gpu_buddy_block *block;
--	unsigned int tree, order;
- 	LIST_HEAD(blocks_lhs);
-+	struct rb_root *root;
-+	struct rb_node *iter;
- 	unsigned long pages;
-+	unsigned int order;
- 	u64 modify_size;
- 	int err;
- 
-@@ -1097,45 +1257,40 @@ static int __alloc_contig_try_harder(struct gpu_buddy *mm,
- 	if (order == 0)
- 		return -ENOSPC;
- 
--	for_each_free_tree(tree) {
--		struct rb_root *root;
--		struct rb_node *iter;
--
--		root = &mm->free_trees[tree][order];
--		if (rbtree_is_empty(root))
--			continue;
-+	root = &mm->free_tree[order];
-+	if (RB_EMPTY_ROOT(root))
-+		return -ENOSPC;
- 
--		iter = rb_last(root);
--		while (iter) {
--			block = rbtree_get_free_block(iter);
--
--			/* Allocate blocks traversing RHS */
--			rhs_offset = gpu_buddy_block_offset(block);
--			err =  __gpu_buddy_alloc_range(mm, rhs_offset, size,
--						       &filled, blocks);
--			if (!err || err != -ENOSPC)
--				return err;
--
--			lhs_size = max((size - filled), min_block_size);
--			if (!IS_ALIGNED(lhs_size, min_block_size))
--				lhs_size = round_up(lhs_size, min_block_size);
--
--			/* Allocate blocks traversing LHS */
--			lhs_offset = gpu_buddy_block_offset(block) - lhs_size;
--			err =  __gpu_buddy_alloc_range(mm, lhs_offset, lhs_size,
--						       NULL, &blocks_lhs);
--			if (!err) {
--				list_splice(&blocks_lhs, blocks);
--				return 0;
--			} else if (err != -ENOSPC) {
--				gpu_buddy_free_list_internal(mm, blocks);
--				return err;
--			}
--			/* Free blocks for the next iteration */
-+	iter = rb_last(root);
-+	while (iter) {
-+		block = rbtree_get_free_block(iter);
-+
-+		/* Allocate blocks traversing RHS */
-+		rhs_offset = gpu_buddy_block_offset(block);
-+		err =  __gpu_buddy_alloc_range(mm, rhs_offset, size,
-+					       flags, &filled, blocks);
-+		if (!err || err != -ENOSPC)
-+			return err;
-+
-+		lhs_size = max((size - filled), min_block_size);
-+		if (!IS_ALIGNED(lhs_size, min_block_size))
-+			lhs_size = round_up(lhs_size, min_block_size);
-+
-+		/* Allocate blocks traversing LHS */
-+		lhs_offset = gpu_buddy_block_offset(block) - lhs_size;
-+		err =  __gpu_buddy_alloc_range(mm, lhs_offset, lhs_size,
-+					       flags, NULL, &blocks_lhs);
-+		if (!err) {
-+			list_splice(&blocks_lhs, blocks);
-+			return 0;
-+		} else if (err != -ENOSPC) {
- 			gpu_buddy_free_list_internal(mm, blocks);
--
--			iter = rb_prev(iter);
-+			return err;
- 		}
-+		/* Free blocks for the next iteration */
-+		gpu_buddy_free_list_internal(mm, blocks);
-+
-+		iter = rb_prev(iter);
- 	}
- 
- 	return -ENOSPC;
-@@ -1169,6 +1324,7 @@ int gpu_buddy_block_trim(struct gpu_buddy *mm,
- 	struct gpu_buddy_block *block;
- 	u64 block_start, block_end;
- 	LIST_HEAD(dfs);
-+	bool was_clear;
- 	u64 new_start;
- 	int err;
- 
-@@ -1209,22 +1365,38 @@ int gpu_buddy_block_trim(struct gpu_buddy *mm,
- 	}
- 
- 	list_del(&block->link);
-+
-+	was_clear = gpu_buddy_block_is_clear(block);
-+	block->header &= ~GPU_BUDDY_HEADER_CLEAR;
-+
-+	if (was_clear) {
-+		gpu_clear_tracker_mark_clear(&mm->clear,
-+					     gpu_buddy_block_offset(block),
-+					     gpu_buddy_block_size(mm, block));
-+		mm->clear_avail = mm->clear.total_clear;
-+	}
-+
- 	mark_free(mm, block);
- 	mm->avail += gpu_buddy_block_size(mm, block);
--	if (gpu_buddy_block_is_clear(block))
--		mm->clear_avail += gpu_buddy_block_size(mm, block);
- 
- 	/* Prevent recursively freeing this node */
- 	parent = block->parent;
- 	block->parent = NULL;
- 
- 	list_add(&block->tmp_link, &dfs);
--	err =  __alloc_range(mm, &dfs, new_start, new_size, blocks, NULL);
-+	err =  __alloc_range(mm, &dfs, new_start, new_size,
-+			     was_clear ? GPU_BUDDY_CLEAR_ALLOCATION : 0,
-+			     blocks, NULL);
- 	if (err) {
- 		mark_allocated(mm, block);
- 		mm->avail -= gpu_buddy_block_size(mm, block);
--		if (gpu_buddy_block_is_clear(block))
--			mm->clear_avail -= gpu_buddy_block_size(mm, block);
-+		if (was_clear) {
-+			gpu_clear_tracker_mark_dirty(&mm->clear,
-+						     gpu_buddy_block_offset(block),
-+						     gpu_buddy_block_size(mm, block));
-+			mm->clear_avail = mm->clear.total_clear;
-+			block->header |= GPU_BUDDY_HEADER_CLEAR;
-+		}
- 		list_add(&block->link, blocks);
- 	}
- 
-@@ -1233,6 +1405,21 @@ int gpu_buddy_block_trim(struct gpu_buddy *mm,
- }
- EXPORT_SYMBOL(gpu_buddy_block_trim);
- 
-+static bool clear_steer_window(struct gpu_buddy *mm, u64 min_sz,
-+			       u64 *start, u64 *end, unsigned long *flags)
-+{
-+	struct gpu_clear_extent *ext =
-+		gpu_clear_tracker_find(&mm->clear, min_sz);
-+
-+	if (!ext)
-+		return false;
-+
-+	*start  = ext->start;
-+	*end    = ext->end;
-+	*flags |= GPU_BUDDY_RANGE_ALLOCATION;
-+	return true;
-+}
-+
- static struct gpu_buddy_block *
- __gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
- 			 u64 start, u64 end,
-@@ -1240,18 +1427,24 @@ __gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
- 			 unsigned int order,
- 			 unsigned long flags)
- {
-+	/* Steer cleared allocations to a cleared extent that fits the order */
-+	if (!(flags & GPU_BUDDY_RANGE_ALLOCATION) &&
-+	    (flags & GPU_BUDDY_CLEAR_ALLOCATION) && mm->clear_avail)
-+		clear_steer_window(mm, mm->chunk_size << order,
-+				   &start, &end, &flags);
-+
- 	if (flags & GPU_BUDDY_RANGE_ALLOCATION)
- 		/* Allocate traversing within the range */
--		return  __gpu_buddy_alloc_range_bias(mm, start, end,
--						     order, flags);
--	else if (size < min_block_size)
-+		return __alloc_range_bias(mm, start, end, order, flags);
-+
-+	if (size < min_block_size)
- 		/* Allocate from an offset-aligned region without size rounding */
- 		return gpu_buddy_offset_aligned_allocation(mm, size,
- 							   min_block_size,
- 							   flags);
--	else
--		/* Allocate from freetree */
--		return alloc_from_freetree(mm, order, flags);
-+
-+	/* Allocate from freetree */
-+	return alloc_from_freetree(mm, order, flags);
- }
- 
- /**
-@@ -1310,7 +1503,7 @@ int gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
- 		if (!IS_ALIGNED(start | end, min_block_size))
- 			return -EINVAL;
- 
--		return __gpu_buddy_alloc_range(mm, start, size, NULL, blocks);
-+		return __gpu_buddy_alloc_range(mm, start, size, flags, NULL, blocks);
- 	}
- 
- 	original_size = size;
-@@ -1336,7 +1529,7 @@ int gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
- 		if ((flags & GPU_BUDDY_CONTIGUOUS_ALLOCATION) &&
- 		    !(flags & GPU_BUDDY_RANGE_ALLOCATION))
- 			return __alloc_contig_try_harder(mm, original_size,
--							 original_min_size, blocks);
-+							 original_min_size, flags, blocks);
- 
- 		return -EINVAL;
- 	}
-@@ -1351,8 +1544,6 @@ int gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
- 		BUG_ON(size >= min_block_size && order < min_order);
- 
- 		do {
--			unsigned int fallback_order;
--
- 			block = __gpu_buddy_alloc_blocks(mm, start,
- 							 end,
- 							 size,
-@@ -1362,30 +1553,11 @@ int gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
- 			if (!IS_ERR(block))
- 				break;
- 
--			if (size < min_block_size) {
--				fallback_order = order;
--			} else if (order == min_order) {
--				fallback_order = min_order;
--			} else {
-+			if (size >= min_block_size && order > min_order) {
- 				order--;
- 				continue;
- 			}
- 
--			/* Try allocation through force merge method */
--			if (mm->clear_avail &&
--			    !__force_merge(mm, start, end, fallback_order)) {
--				block = __gpu_buddy_alloc_blocks(mm, start,
--								 end,
--								 size,
--								 min_block_size,
--								 fallback_order,
--								 flags);
--				if (!IS_ERR(block)) {
--					order = fallback_order;
--					break;
--				}
--			}
--
- 			/*
- 			 * Try contiguous block allocation through
- 			 * try harder method.
-@@ -1395,6 +1567,7 @@ int gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
- 				return __alloc_contig_try_harder(mm,
- 								 original_size,
- 								 original_min_size,
-+								 flags,
- 								 blocks);
- 			err = -ENOSPC;
- 			goto err_free;
-@@ -1402,8 +1575,23 @@ int gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
- 
- 		mark_allocated(mm, block);
- 		mm->avail -= gpu_buddy_block_size(mm, block);
--		if (gpu_buddy_block_is_clear(block))
--			mm->clear_avail -= gpu_buddy_block_size(mm, block);
-+
-+		/*
-+		 * Mark the block CLEAR only if the caller requested cleared
-+		 * memory and the entire block lies within a cleared extent.
-+		 * Either way, drop the block's range from the clear tracker
-+		 * since it is now allocated.
-+		 */
-+		if (flags & GPU_BUDDY_CLEAR_ALLOCATION &&
-+		    gpu_clear_tracker_is_clear(&mm->clear,
-+					       gpu_buddy_block_offset(block),
-+					       gpu_buddy_block_size(mm, block)))
-+			block->header |= GPU_BUDDY_HEADER_CLEAR;
-+
-+		gpu_clear_tracker_mark_dirty(&mm->clear,
-+					     gpu_buddy_block_offset(block),
-+					     gpu_buddy_block_size(mm, block));
-+		mm->clear_avail = mm->clear.total_clear;
- 		kmemleak_update_trace(block);
- 		list_add_tail(&block->link, &allocated);
- 
-@@ -1473,26 +1661,52 @@ EXPORT_SYMBOL(gpu_buddy_block_print);
-  */
- void gpu_buddy_print(struct gpu_buddy *mm)
- {
-+	u64 *clear_count;
-+	unsigned int i;
- 	int order;
- 
- 	pr_info("chunk_size: %lluKiB, total: %lluMiB, free: %lluMiB, clear_free: %lluMiB\n",
- 		mm->chunk_size >> 10, mm->size >> 20, mm->avail >> 20, mm->clear_avail >> 20);
- 
-+	clear_count = kcalloc(mm->max_order + 1, sizeof(*clear_count), GFP_KERNEL);
-+
-+	if (clear_count) {
-+		LIST_HEAD(dfs);
-+
-+		for (i = 0; i < mm->n_roots; i++)
-+			list_add_tail(&mm->roots[i]->tmp_link, &dfs);
-+
-+		while (!list_empty(&dfs)) {
-+			struct gpu_buddy_block *block =
-+				list_first_entry(&dfs, struct gpu_buddy_block, tmp_link);
-+
-+			list_del(&block->tmp_link);
-+
-+			if (gpu_buddy_block_is_split(block)) {
-+				list_add(&block->right->tmp_link, &dfs);
-+				list_add(&block->left->tmp_link, &dfs);
-+			} else if (gpu_buddy_block_is_free(block) &&
-+				   gpu_buddy_block_is_clear(block)) {
-+				clear_count[gpu_buddy_block_order(block)]++;
-+			}
-+		}
-+	}
-+
- 	for (order = mm->max_order; order >= 0; order--) {
- 		struct gpu_buddy_block *block, *tmp;
- 		struct rb_root *root;
- 		u64 count = 0, free;
--		unsigned int tree;
- 
--		for_each_free_tree(tree) {
--			root = &mm->free_trees[tree][order];
-+		root = &mm->free_tree[order];
- 
--			rbtree_postorder_for_each_entry_safe(block, tmp, root, rb) {
--				BUG_ON(!gpu_buddy_block_is_free(block));
--				count++;
--			}
-+		rbtree_postorder_for_each_entry_safe(block, tmp, root, rb) {
-+			BUG_ON(!gpu_buddy_block_is_free(block));
-+			count++;
- 		}
- 
-+		if (clear_count)
-+			count += clear_count[order];
-+
- 		free = count * (mm->chunk_size << order);
- 		if (free < SZ_1M)
- 			pr_info("order-%2d free: %8llu KiB, blocks: %llu\n",
-@@ -1501,11 +1715,14 @@ void gpu_buddy_print(struct gpu_buddy *mm)
- 			pr_info("order-%2d free: %8llu MiB, blocks: %llu\n",
- 				order, free >> 20, count);
- 	}
-+
-+	kfree(clear_count);
- }
- EXPORT_SYMBOL(gpu_buddy_print);
- 
- static void gpu_buddy_module_exit(void)
- {
-+	kmem_cache_destroy(slab_extents);
- 	kmem_cache_destroy(slab_blocks);
- }
- 
-@@ -1515,6 +1732,12 @@ static int __init gpu_buddy_module_init(void)
- 	if (!slab_blocks)
- 		return -ENOMEM;
- 
-+	slab_extents = KMEM_CACHE(gpu_clear_extent, 0);
-+	if (!slab_extents) {
-+		kmem_cache_destroy(slab_blocks);
-+		return -ENOMEM;
-+	}
-+
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
-index 841f3de5f307..a0ba2e61ec23 100644
---- a/drivers/gpu/drm/drm_buddy.c
-+++ b/drivers/gpu/drm/drm_buddy.c
-@@ -9,6 +9,7 @@
- #include <linux/kmemleak.h>
- #include <linux/module.h>
- #include <linux/sizes.h>
-+#include <linux/slab.h>
- 
- #include <linux/gpu_buddy.h>
- #include <drm/drm_buddy.h>
-@@ -40,26 +41,51 @@ EXPORT_SYMBOL(drm_buddy_block_print);
-  */
- void drm_buddy_print(struct gpu_buddy *mm, struct drm_printer *p)
- {
-+	u64 *clear_count;
- 	int order;
-+	unsigned int i;
- 
- 	drm_printf(p, "chunk_size: %lluKiB, total: %lluMiB, free: %lluMiB, clear_free: %lluMiB\n",
- 		   mm->chunk_size >> 10, mm->size >> 20, mm->avail >> 20, mm->clear_avail >> 20);
- 
-+	clear_count = kcalloc(mm->max_order + 1, sizeof(*clear_count), GFP_KERNEL);
-+
-+	if (clear_count) {
-+		LIST_HEAD(dfs);
-+
-+		for (i = 0; i < mm->n_roots; i++)
-+			list_add_tail(&mm->roots[i]->tmp_link, &dfs);
-+
-+		while (!list_empty(&dfs)) {
-+			struct gpu_buddy_block *block =
-+				list_first_entry(&dfs, struct gpu_buddy_block, tmp_link);
-+
-+			list_del(&block->tmp_link);
-+
-+			if ((block->header & GPU_BUDDY_HEADER_STATE) == GPU_BUDDY_SPLIT) {
-+				list_add(&block->right->tmp_link, &dfs);
-+				list_add(&block->left->tmp_link, &dfs);
-+			} else if (gpu_buddy_block_is_free(block) &&
-+				   gpu_buddy_block_is_clear(block)) {
-+				clear_count[gpu_buddy_block_order(block)]++;
-+			}
-+		}
-+	}
-+
- 	for (order = mm->max_order; order >= 0; order--) {
- 		struct gpu_buddy_block *block, *tmp;
- 		struct rb_root *root;
- 		u64 count = 0, free;
--		unsigned int tree;
--
--		for_each_free_tree(tree) {
--			root = &mm->free_trees[tree][order];
- 
--			rbtree_postorder_for_each_entry_safe(block, tmp, root, rb) {
--				BUG_ON(!gpu_buddy_block_is_free(block));
--				count++;
--			}
-+		root = &mm->free_tree[order];
-+		rbtree_postorder_for_each_entry_safe(block, tmp, root, rb) {
-+			BUG_ON(!gpu_buddy_block_is_free(block));
-+			count++;
- 		}
- 
-+		if (clear_count)
-+			count += clear_count[order];
-+
- 		drm_printf(p, "order-%2d ", order);
- 
- 		free = count * (mm->chunk_size << order);
-@@ -70,6 +96,8 @@ void drm_buddy_print(struct gpu_buddy *mm, struct drm_printer *p)
- 
- 		drm_printf(p, ", blocks: %llu\n", count);
- 	}
-+
-+	kfree(clear_count);
- }
- EXPORT_SYMBOL(drm_buddy_print);
- 
-diff --git a/include/linux/gpu_buddy.h b/include/linux/gpu_buddy.h
-index 5fa917ba5450..435c873f3469 100644
---- a/include/linux/gpu_buddy.h
-+++ b/include/linux/gpu_buddy.h
-@@ -67,15 +67,6 @@
-  */
- #define GPU_BUDDY_TRIM_DISABLE			BIT(5)
- 
--enum gpu_buddy_free_tree {
--	GPU_BUDDY_CLEAR_TREE = 0,
--	GPU_BUDDY_DIRTY_TREE,
--	GPU_BUDDY_MAX_FREE_TREES,
--};
--
--#define for_each_free_tree(tree) \
--	for ((tree) = 0; (tree) < GPU_BUDDY_MAX_FREE_TREES; (tree)++)
--
- /**
-  * struct gpu_buddy_block - Block within a buddy allocator
-  *
-@@ -103,6 +94,14 @@ struct gpu_buddy_block {
- #define   GPU_BUDDY_ALLOCATED	   (1 << 10)
- #define   GPU_BUDDY_FREE	   (2 << 10)
- #define   GPU_BUDDY_SPLIT	   (3 << 10)
-+/*
-+ * GPU_BUDDY_HEADER_CLEAR has two roles:
-+ *  - FREE state:      set when the block's full range is cleared (tracker
-+ *                     confirmed).  Cleared free blocks float in the buddy
-+ *                     tree and are NOT inserted into free_tree[].
-+ *  - ALLOCATED state: set when the block was served from cleared memory,
-+ *                     informing the caller that no GPU clear pass is needed.
-+ */
- #define GPU_BUDDY_HEADER_CLEAR  GENMASK_ULL(9, 9)
- /* Free to be used, if needed in the future */
- #define GPU_BUDDY_HEADER_UNUSED GENMASK_ULL(8, 6)
-@@ -135,6 +134,38 @@ struct gpu_buddy_block {
- /* Order-zero must be at least SZ_4K */
- #define GPU_BUDDY_MAX_ORDER (63 - 12)
- 
-+/**
-+ * struct gpu_clear_extent - a contiguous cleared (zeroed) address range
-+ *
-+ * Tracks a single contiguous address range whose memory content is known
-+ * to be zeroed.  Extents are non-overlapping and stored in an augmented
-+ * red-black tree sorted by @start.  The augmented value @subtree_max_size
-+ * allows O(log N) search for an extent of at least a given size.
-+ */
-+struct gpu_clear_extent {
-+/* private: */
-+	struct rb_node	rb;
-+	u64		start;
-+	u64		end;
-+	u64		subtree_max_size;
-+};
-+
-+/**
-+ * struct gpu_clear_tracker - tracks cleared (zeroed) address intervals
-+ *
-+ * Maintains a set of non-overlapping cleared extents as an augmented
-+ * red-black tree.  The tracker is embedded inside struct gpu_buddy and
-+ * replaces the former dual (clear/dirty) free-tree scheme.
-+ *
-+ * @total_clear: Total bytes of cleared memory currently tracked.
-+ */
-+struct gpu_clear_tracker {
-+/* private: */
-+	struct rb_root	root;
-+/* public: */
-+	u64		total_clear;
-+};
-+
- /**
-  * struct gpu_buddy - GPU binary buddy allocator
-  *
-@@ -158,13 +189,12 @@ struct gpu_buddy_block {
- struct gpu_buddy {
- /* private: */
- 	/*
--	 * Array of red-black trees for free block management.
--	 * Indexed as free_trees[clear/dirty][order] where:
--	 * - Index 0 (GPU_BUDDY_CLEAR_TREE): blocks with zeroed content
--	 * - Index 1 (GPU_BUDDY_DIRTY_TREE): blocks with unknown content
--	 * Each tree holds free blocks of the corresponding order.
-+	 * One RB-tree per order containing only dirty/mixed free blocks.
-+	 * Cleared free blocks are NOT inserted here; they float in the buddy
-+	 * tree and are located exclusively via the @clear tracker.
- 	 */
--	struct rb_root **free_trees;
-+	struct rb_root *free_tree;
-+
- 	/*
- 	 * Array of root blocks representing the top-level blocks of the
- 	 * binary tree(s). Multiple roots exist when the total size is not
-@@ -172,6 +202,7 @@ struct gpu_buddy {
- 	 * that fits in the remaining space.
- 	 */
- 	struct gpu_buddy_block **roots;
-+	struct gpu_clear_tracker clear;
- /* public: */
- 	unsigned int n_roots;
- 	unsigned int max_order;
-
-base-commit: d37690b5e02418a2365548300628ef3895a24ed2
--- 
-2.34.1
 
