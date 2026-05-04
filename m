@@ -4,147 +4,154 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AF9BFF885A
-	for <intel-xe@archiver.kernel.org>; Mon,  4 May 2026 15:46:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36835CD3427
+	for <intel-xe@archiver.kernel.org>; Mon,  4 May 2026 15:47:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA15610E3C5;
-	Mon,  4 May 2026 15:46:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC30B10E3C5;
+	Mon,  4 May 2026 15:47:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WJrtm4te";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O3YyQpHx";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34D3510E3C5
- for <intel-xe@lists.freedesktop.org>; Mon,  4 May 2026 15:46:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99CC110E3C5
+ for <intel-xe@lists.freedesktop.org>; Mon,  4 May 2026 15:47:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777909614; x=1809445614;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=dxe54J4qLMe5IT6x2rIkZkX9lMCk2M/yKwvyHK3fIoE=;
- b=WJrtm4tehaUAHvGLUgmsSc6CooIlUDoSBbQbMNN+ZHU1LBIQb9uud9Gg
- vmaAbYa/+mqmh7eX+hhs7RoFZhW7umJDHVaxpsVP8gyx8aKV7bkOyqHqh
- vkOd+4KT3ymq5gtpegvdRCGuc4nPAfnSGGYalqPdaf6fZbg56nQmKXfgP
- AQ9EFkwUovZ4L4jHNN5IhD+sKupMz9vn7WglDJNE06arP0xZ2t6UAyXyC
- EI/vnnNRrrpcYHBPS+tgZpG7cNhxVbVxypeFvX0gqUUt4vJSZ8KELbBXN
- 6xwLruB4QJlNxI0riyJkvEQQT3itNVZnpVDI0FVPaUzoE4RbjfGxq7Kj+ g==;
-X-CSE-ConnectionGUID: BMhhNI+qTMa9MUMeq0zujQ==
-X-CSE-MsgGUID: 9USbTxx4QYGwJGsXPO/VxA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11776"; a="78473227"
-X-IronPort-AV: E=Sophos;i="6.23,215,1770624000"; d="scan'208";a="78473227"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2026 08:46:53 -0700
-X-CSE-ConnectionGUID: tGTIS82KRj6YMjgYj9CeKA==
-X-CSE-MsgGUID: l3HT5zU0TOGeH6dUyPKwAQ==
+ t=1777909661; x=1809445661;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=B59y7Qli8ezV19f1u42p2Bm6O7jvRyduFM++pktSdIs=;
+ b=O3YyQpHxAcRevZ7u3bT7BifD7LsBHTr1ylGMCLFWjds8VIqA2HhK80d8
+ iU+4IIOozE3Y5uYJuLE3KNqPaqgxg0C5ipIkrduzIpRe21F1hi34IMepx
+ hr8UgggxtM+4kdH8kVmXex50ZlhkfoNqImxUGiIil3Qv5uqedV4AW6Ri4
+ qKEDTa28fa2LLnrg0WdDu8pp376TeiXP3EUpUJajqflUcG2T+WQkvNmMT
+ YaQ3DsNJQKrUoDuW94/YDDNrPfLKE8SMF7SuHbUzH0uLN4Kw5zry3By8l
+ zZtGC36Mty1UhnadEwTP+hoIiY3JFZvAJIP6VKhBiu7BBQc4KOu7QmEIE Q==;
+X-CSE-ConnectionGUID: n6I0m7wyS9SacXgVJ64Ydg==
+X-CSE-MsgGUID: rqT7GUBXS4GSjfY0aC5mEg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11776"; a="66300235"
+X-IronPort-AV: E=Sophos;i="6.23,215,1770624000"; d="scan'208";a="66300235"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2026 08:47:39 -0700
+X-CSE-ConnectionGUID: fqzJxB9ISY2Bygf/A/Igqw==
+X-CSE-MsgGUID: FR2Djbt+TnWHRrbifl43Cw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,215,1770624000"; d="scan'208";a="239843717"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2026 08:46:53 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.23,215,1770624000"; d="scan'208";a="235416253"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2026 08:47:39 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 4 May 2026 08:46:52 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.37; Mon, 4 May 2026 08:47:38 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 4 May 2026 08:46:52 -0700
-Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.69) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Mon, 4 May 2026 08:47:38 -0700
+Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.49) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 4 May 2026 08:46:49 -0700
+ 15.2.2562.37; Mon, 4 May 2026 08:47:38 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=heXF8gNqnp8y7nA3UkHmUPzNbqqiM3C5HseM0WT0YomX39R8ZMbafcw+4uto/DskZQWosZXMQLsA01zsapVZ7k7mSEi0I5M8vdnkBvQsS/yyi7EUKCHvjsbn5n2gzzXgAsixTK1ttgABnJdagmg/YXG5EQ1nBNrNtdyx3bjkTkvugtRYgxjaRPnt2w+AjF+4miaCGkKTqoVj7FSFaTd+94/vzKkWi+ZmPSBZlDCiSGVYR1EOdA2ShDmuA9fVv8Sf8YSxYg8cjGHBRdlU3FuZrBu2wTI98NbGBtaSfZLIUPO/OHCGM/EG72723tm+xU131LnAHPf5uEaSwoHabfE0Lw==
+ b=D0LPPqIOldrzhjI5tmQYYpVnwznZczMdDxtuMQ8TAlGW1FsSMP5W6Lo3PYqGgV07BQYj7LSA/Is/PDI3CRxbmm4QWiKTzLa9S34Q3Z1MGdETIYmqlKPOCvdb2gQsw1qU0gj9Jl2WXdPXyEgR90dxBRcbMSWHr39Q8J5sFG8fmn7enapsUkxiG08RNLS8DJYIU+KlaRrZ7VQSwk6Lqw3o9fp4na6vxTQGdvb+PNtlsZRlarMQTXnH1U9I+NpNbWKrtr/oQ0AtzekqJAru8lwX82C/b3zXYTjFiSJYxeeQ0yN2cvrZEL2YKhWjt4amUTv8L9S6yHukirLXoxqRSZSRWw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3VNBmoGydVR4OzEFiiUg5clhM6Nrvkm2CHGXKxkjAgE=;
- b=dLmn1B5oeoWpDx7AYC4FHe/VLVFStmWJEBxuwenb5LfoUUaf8XSN71XONitThlc1znxO/9Ii6n1EbuNUs5nDz790WAfLqElbbKp7Nre8Glh2z6psteJQsW1JGlMoY3Byb3poroLLwCgCFxmVP/yzH87POyXBP523+fbAf3TAy2HzlboecjrnYl+dsdfulm/guz5ejoScrNoGHqmRQFXgq11coPO2a6pQgdme5PvXKawhG/k21KUB6Mc8ix16a5IM+0ukAl2zObzhQ+hAnAA1sMO8JV+HIVkNO1WKrAAiRlUOXC4dHJqt0j1C2CDtkW2SA5f2J1bkClo283HkRTFfRg==
+ bh=mGJVBKdXsmGRJ6q9lo6NwA/ME7wtmDNNSPCFPSxE4fM=;
+ b=TjeK46coC3TAdIb6hxeS2yxnykHSHaO0XZW4mJBQpTdVm2AlMYcwBcZMTFv7K2ADtcvVFk8XYP1vmuYizFTnF5qs/Q17eUir21gBAuEYOTDhBJxdVBtce9+ZqbrjBD6Fa/epU5O9CEI6ns65WGlifWzPhX+vo5tiFwbCU53rLVjkISFyMY1PSGeUFnxHtoH4QvXGfb/Inogg/ApqG2aTBHy2H5cVSjBJRzZ7lD9s+OBSijfQliyJ21M/9LcKpICt+zK7o3lr3VrW3u/jRa6cjp/6Yhm7+NpHav4Oe6+JTOv2wqNmPL1kI/fHb0AeW4aT/6lhfZXBebHSBi6huN/q8w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by DM3PPF7C7D8332C.namprd11.prod.outlook.com (2603:10b6:f:fc00::f31)
- with Microsoft SMTP Server (version=TLS1_2,
+Received: from DM4PR11MB5456.namprd11.prod.outlook.com (2603:10b6:5:39c::14)
+ by PH0PR11MB5190.namprd11.prod.outlook.com (2603:10b6:510:3c::24) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.25; Mon, 4 May
- 2026 15:46:40 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c%7]) with mapi id 15.20.9870.023; Mon, 4 May 2026
- 15:46:40 +0000
-Date: Mon, 4 May 2026 08:46:38 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Daniele Ceraolo Spurio
- <daniele.ceraolospurio@intel.com>, Michal Wajdeczko
- <michal.wajdeczko@intel.com>
-Subject: Re: [PATCH v2 1/1] drm/xe/guc: Exclude indirect ring state page from
- ADS engine state size
-Message-ID: <afi/XpbQb3aej8Tl@gsse-cloud1.jf.intel.com>
-References: <20260504094924.3760713-3-satyanarayana.k.v.p@intel.com>
- <20260504094924.3760713-4-satyanarayana.k.v.p@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20260504094924.3760713-4-satyanarayana.k.v.p@intel.com>
-X-ClientProxiedBy: SJ0PR05CA0094.namprd05.prod.outlook.com
- (2603:10b6:a03:334::9) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DM3PPF7C7D8332C:EE_
-X-MS-Office365-Filtering-Correlation-Id: cfea3a0b-d357-4bb7-995c-08dea9f45571
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|56012099003|18002099003|22082099003; 
-X-Microsoft-Antispam-Message-Info: p3LSSViJNbDUXN4OWtK8rP4SNHpFnZU60QNy8gzOmNXjIy4dcbFnE6S97PSgU98t0U1UCheTf40zxJxTA6D2+nJtnmyPCcl+QIAgSndimGPA1kHbtF8i8/PohnWiZ84owa5BfESbTg9uzvNqL6NzM1XuZZI8rSJ1KBvefB9cqMJTx+P5KG8jIkN2Na94PoiPCFuiTFfzLj0nZxKmqVgDsQ0/DPYEBj/ImVP1CHyCh8Tt1FwyCCgNDvOE87NpTfpPIz1pfyDCbPb+UAKGdQFmBzVBucsIBJY8lcDh9q6Q6QRaQILsLxxpVOZVWKXflFYkUTqrA19y4hZduPKddn6k1eJV9CwEwvLFjb7ImjWiPslK8PzEBrJUFlWtqyFmROoeD03/tGmY/OaVHKXljn4sU417n0BPykQ0TbK3mS8kWIOiK3noiVJt8gDSXZEASx+cIkRzPU5SeRI9fs3ThX8oBQosp4Dzhe2dRXTKog/DZOgbQAjvF7e26dygRma1raxAeyAWLR41bpNT/iLosrxxprb4ZOBG+zBFYi20bhLhIFik31x2vIOFBDDBPNmDtw9FyecM7dc1CJOiMPcl+OA1mxLoWSJM4agyrfPJ2rPAD8FonEZuPs6o1ioffs5AsxOxmnP2SXiSBZJFA9bhHzFLgAWoyZOh1rTO5wRWZ6z8OdhSzKnsftFyxFqL2n9bTon1
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(56012099003)(18002099003)(22082099003);
+ 2026 15:47:35 +0000
+Received: from DM4PR11MB5456.namprd11.prod.outlook.com
+ ([fe80::62e5:4a7c:f965:9082]) by DM4PR11MB5456.namprd11.prod.outlook.com
+ ([fe80::62e5:4a7c:f965:9082%6]) with mapi id 15.20.9870.023; Mon, 4 May 2026
+ 15:47:34 +0000
+From: "Lin, Shuicheng" <shuicheng.lin@intel.com>
+To: "Summers, Stuart" <stuart.summers@intel.com>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Vivi, 
+ Rodrigo" <rodrigo.vivi@intel.com>, "Brost, Matthew"
+ <matthew.brost@intel.com>, "Nerlige Ramappa, Umesh"
+ <umesh.nerlige.ramappa@intel.com>, "Wajdeczko, Michal"
+ <michal.wajdeczko@intel.com>, "Roper, Matthew D" <matthew.d.roper@intel.com>, 
+ "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
+Subject: RE: [PATCH 2/9] drm/xe: Sort xe_config_device fields and defaults
+ alphabetically
+Thread-Topic: [PATCH 2/9] drm/xe: Sort xe_config_device fields and defaults
+ alphabetically
+Thread-Index: AQHc24Cg/jwjkdurxUG8NyK5kb3jcLX9/nSA
+Date: Mon, 4 May 2026 15:47:34 +0000
+Message-ID: <DM4PR11MB5456B057842B07F2656BADAFEA312@DM4PR11MB5456.namprd11.prod.outlook.com>
+References: <20260504044348.209625-1-stuart.summers@intel.com>
+ <20260504044348.209625-3-stuart.summers@intel.com>
+In-Reply-To: <20260504044348.209625-3-stuart.summers@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB5456:EE_|PH0PR11MB5190:EE_
+x-ms-office365-filtering-correlation-id: 01e81826-1973-470a-292d-08dea9f475f1
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|376014|1800799024|366016|56012099003|18002099003|22082099003|38070700021;
+x-microsoft-antispam-message-info: qw0e6CrvaBxRfzTt7710JTFUbgtNPF31EVfrgpAG9ZkiVlYUhchMZ0VND8AZHPGRZeZCTg/+qhQ+5naGUa4cLQE4kiCAKV9O/Ilsf26ZMwlrXgsiyS45mpKph1+rkSrbdW0xcBQjMc+52MzPAeD2H/wi6rW3V/0DOg1pGAXUVNYluQZMOhgFHVZIFO2LA+sCwxiCnp6RfCu10zGqAMfaB5Iz/nq2/wA7J8/axgTIete2CUvU3diOs1+vBBV6FXS/DLrH/G9S9P+j+6bdLnvUFkJiOwJBfEiKZQb+QQ+SMSlXTCxtbxhrM4ysoEm5POKD00yBTBAd8MZ3+TrtVhpf3gj2s7j3ZDMUgS5dkFAmmWE3EY/4faASS7IodD8UWZgw/bT84FEskq7pSNlahsoIwMKrDNNkX4+A1JqjrxczRRrVOJ0sV+ZmvxkaumIp7dJRd8TtRfxEMjWwOrLrD2A6Si1n6a6ENnjf44+4Jh9MvdtWLL58KfEqiVc4FZzzD5u3E/pDp1txp9KaPnXI0vHGLvHrUQVBk0EdDZA0eCCGJ0CbhbIx7XegKG6X8petSOhpSmz8O8XTqrFO8xKF9U0svIcY/ReXhPbUMRTlnlhcJXydmWRdmkIg8qkFrhVgsV7z84gkSWuXEpjutNRk4xJi5+QVlLYJ5BZwHdIzS3VreJJzE2COfNbJX89citp7DNyA6/jRwcxH7RGarFAkxeP06g==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5456.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(56012099003)(18002099003)(22082099003)(38070700021);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ugA+obUpnjIzR1heeyVuRNM7PoUAOq6Wpm1pmxpfqlxpWMZqUZQvJzpDsWFM?=
- =?us-ascii?Q?MWlIiThA9lTh4YtVSGDEcna3XuAPVTvXSOni85OdkwVSxuGg8RUdxp+cjmMx?=
- =?us-ascii?Q?iUFJZVg3wiNfLeWfmB3Kaz+IvUBdck1KaP4n6EnZEtPLVtEAnC5dszHmLFJa?=
- =?us-ascii?Q?5H1FuCjt6QK8BGg6DQaz2qYZxGm+frbjszMe+/lAfJs2kEZU4JBuh85xaqRY?=
- =?us-ascii?Q?2Exy5nmzOjGpZgi5CyvvN2NyF6JkTD6yoGCugT3F3K5pVP10xZ+ofJDdlwL3?=
- =?us-ascii?Q?y8AN5T2ONcBAOe0iKKn42p1c4sdIkM4AZL9MzmLvJw/6KFlfVJRCa/5BluZN?=
- =?us-ascii?Q?LRDlhEPnx9dfslsgss66/NdxS4brsFakW3/LC6dcLqLx/k6dCKo+H9M7+GzJ?=
- =?us-ascii?Q?N5Y+Or0WZ5wMfq12rlteX7v1HyVCRF75+MntQNniGE0NtqR0z6wH9PH5XG68?=
- =?us-ascii?Q?H/ZExEO1CsDBY5RFEV9i+64KCU21F+4SwtmYWRYIUuodgHqLar8jlDp6llvu?=
- =?us-ascii?Q?wD4Wn6T95g7O4VRkGqabxee1UzQvdDzBR+we8ALcwmRbjs6kebguE0U+ry+h?=
- =?us-ascii?Q?g/7WrTKvvnSsPhlWldd24yGkdm25SQmhi/h2q82ElXQoZtZw4Bc2FCA04NLi?=
- =?us-ascii?Q?VyXZFEvy/gbdHClEjWln8TyWuCFedxrAPQD5FYCSHBN1ktDaGw2WFEMTBZZ3?=
- =?us-ascii?Q?UswIx06MjSPfuv4qDXbzPAZwuN7dUsQmjYg1ejuce9xsA6U0QExgMidv4mhf?=
- =?us-ascii?Q?g/yLOq9YgG/8uP7SI7Gr6WlW0vmowAVjanceJa5hPmvP5Y5IhV34J2CtClQ2?=
- =?us-ascii?Q?3RlisnOd2JNpokvmKhC+dBaULy7t4yh/Mm1FMZ8GH/oGuR1nQsu++CWnWnqW?=
- =?us-ascii?Q?ZyUQcNwIaRkFEHkZ7opX1ss+HmWmsrxP0a5bjmlkA9yzmX30AcyBaN+Qr4aJ?=
- =?us-ascii?Q?pXmso7xOZ0F7DuIDSvXeXi3rkOBEC5i4FB7sewdGN3aKB35NGXloTD8TqRjz?=
- =?us-ascii?Q?q+zxLdSe9TFiyRpnSrqVEEsaNNK9rOkQRk5SUK1W+O45a2t8sK8bc9UvFsOx?=
- =?us-ascii?Q?tH8Fm/mmQGBAuNO8zKO2V6gD/lpyo6fhabwNrxSfDk1HcM/47Czvg4uAlY6N?=
- =?us-ascii?Q?fbTVSvN+e8PE56lVIl3a71nHwF9qqd9edpELnGWfKLmANuyz9k0o/W3oAiy9?=
- =?us-ascii?Q?Gwft0zxKuReTHTRsjPl6CXr3BzQ3qjaAu50mVMKjyriFti2VfJ8w4nNjHIu4?=
- =?us-ascii?Q?02GpI2UAwiNZiu8JBkW+d2zyV1LuAfjjJj+jm0XO22zUF39kRMmCt5T1jT0d?=
- =?us-ascii?Q?z+XdxzXGwiuM4K0sQ1cvIaCNyuz0oCbiVL1g+WjCst/nhqm7TrADTeiuIjnI?=
- =?us-ascii?Q?zl6A8nzUkYBrhA7zDT++rgXa7DqAukQDOcwPqk//qFO2FfdZzIXTqKz/QGAs?=
- =?us-ascii?Q?gqNyEsLVwnkdv6MXdOzoq1PCAQN1KBEToVg3b4XPrPM446GXbjgQ/6GYWxiW?=
- =?us-ascii?Q?aSwkRc5Pq46sahuD/2tvf2zcbD7pJRcGe5ngI9jzO66Y2bYF1aZmiV78Clp2?=
- =?us-ascii?Q?Zro1clIIc52np3VLn3VfZ5/oDn548VGySw1x02bvHbdVM8YxYUpMy/OwzSnj?=
- =?us-ascii?Q?P+4drzUXFirCjhwIii5ER+nW668uPJHQlxFFWrhMbM98cWr1PQSIE9nqpRC7?=
- =?us-ascii?Q?xnK2iVjRrpLjkTLxrNx4qYJIJMG/fK+5ZpLceQp20v6Tm+aZ34gO5/GLjoq4?=
- =?us-ascii?Q?o4qVbwomZgRJITHw0oLzbiThtsqNmWQ=3D?=
-X-Exchange-RoutingPolicyChecked: Yg0BIa6/BPZoLzJt61Wx/MRlkw5z2h26697izDsjI8fLsGjznkt0OQlelYKFOaOOciz1G4kGRb+QKsSPOiEoBCoSyIwhZmV7KH37mNT9WYBNVpks7ph1T5HbJGpjshjB7rPNFDLVnrewqQgYrKxbHwQHnl8/xu4OmjVUiDFQ1YjzP79iGjFBYDta4cpWODg7j17CYacbM0kfjlw8id9Sr2nnK2IBmh7KWYgdtMSjovYqWYRVoP/Nje0I4bbLfRjOUfXcs5TUVmOP0XytsLLr2HkbExsqQhwzMKF9J3OgsjPzQZw5BIZeJqS0CU5T1eQ3GieYtbw99hM8iSbo76Is9Q==
-X-MS-Exchange-CrossTenant-Network-Message-Id: cfea3a0b-d357-4bb7-995c-08dea9f45571
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?cLgsygT1/8LZtAVQv6+4cxKj4hljC7o85CfVPMXtmkLf6agXUII3WdPJKUqk?=
+ =?us-ascii?Q?MrmHH6Ad/CUs8RzBzGX16Q8r220DijbKUvm8x18Ie5xZmlAQLYyF2QrRSJMb?=
+ =?us-ascii?Q?DE3xhvzW6NKYmSm75Gvo6O7UuIZh/6zrt3cNniYO6Z3KQ5NAxy4aLXDL841H?=
+ =?us-ascii?Q?da+/lgZEaZSSLi2ARhJTZbWvnQg8lvA08KDGbTArg7EndkYyFC13FUK/dCLB?=
+ =?us-ascii?Q?6tFutvdXZyAK2IenIu+KbDrGqJlIYZalG9uhrnYSE4XrNvUjHVSljAV8/mGt?=
+ =?us-ascii?Q?HOGrznvwTWBI/d/jRfeoQawwG078it5LekBrM6bi8K4qRwkHNyyJtdK/IpOR?=
+ =?us-ascii?Q?XztYGq8M6y7HPevbzxdgx6g9dAqbC7++xRPlSpU1PdpyblMpIGzUTtY1WIEw?=
+ =?us-ascii?Q?A/lxDi8VgMnNTTGUQAIsYjs90ls1WZSPXbVTdiSDXNrmxKRFmkanx6Yy6+LJ?=
+ =?us-ascii?Q?JyHnMF+F0tNtyiunDSaQK/gNchlkKQYeW3HgT/eBknG6syayIzYEAv+L6yPF?=
+ =?us-ascii?Q?tnHLbbSUyNrS+paTevceBN2nHSQGVRfuPARjii+Y2sIVXrbiQXnnD0WCWzBC?=
+ =?us-ascii?Q?6KTyNor9eOnyERojvMfdbzI0gflGyTTZdFv341rOfe+GHDyx2zSbH5s8BWKs?=
+ =?us-ascii?Q?i/krxReUvZmdB71RKGtRMZh34G3R2qvvZ2Ph92nKfIIO0RDcOMfizczr7wIl?=
+ =?us-ascii?Q?TAbhWDdXMG26jldqB55bXI61JojAaWiM0YoV4NtB2HgGCJj/CV+XdqvvltuY?=
+ =?us-ascii?Q?96w2DaiEqLTzlVG9Sv5md5+1W3SHc9sNroJiG5CRyszXfZSQUCOJl29f9dTS?=
+ =?us-ascii?Q?oZOvuDmEGOZfi5OjxiTCpiDAaK2LtIPDpTrJJ3Tl5+ex9sJWMTF4QafHKI+t?=
+ =?us-ascii?Q?+dt8a0yqYgpyY9WY2rz+cYKvnW/AVaVTc1rfiog2fFYw4t9e9vGyaAAqJVBW?=
+ =?us-ascii?Q?3W0Imt+AS6PgbWi8FR5sBfyMqJpKHixmrZ+IZSa8ME0h4acwNAaKoEVza9KB?=
+ =?us-ascii?Q?+KUG8Od05r+ztFqE+1eQLEqOOX6FHcQTtWEt7Kxd+Ll/M7Wh9zzC3AyEPKx0?=
+ =?us-ascii?Q?cTZelbLso2f+K3p3QicsR+nP4/SRvT2FRRHKufKwRTWfuApqIrQlc7s5SazX?=
+ =?us-ascii?Q?aaFWALCIEDLyvRHkNIx898ZkUOL7yW8nlbUjCZ/Kb4bOYNwAQ+TRkJK3vTiV?=
+ =?us-ascii?Q?dLBdrYG0qEu/i88eVuGFDt2uJ1p+hJlyrinepVU4M163mxKs60Ha+aByClmI?=
+ =?us-ascii?Q?EnygGuuSWHChNNcxLVzVAyEvbOpS1Zmijw5IXZFP53k9ceP7xllybgdpGL27?=
+ =?us-ascii?Q?EeIBbAxg96Kj0V6HXZ0rgqbosC5G2VLArBRGFiJt6lo9zwhBiUJuMtirvMaR?=
+ =?us-ascii?Q?gixKRVfVLtyQswnQVbMKZkwgW0jV092rGBfEfWZSwNp8N8et9JTK8gnfLVZM?=
+ =?us-ascii?Q?Dz+g4R2liMMJ+7iIFDBpMMFE/DxQ5PYByh9VslgXbiLx0q+s2y6SXF22zDtA?=
+ =?us-ascii?Q?wqhkRThgSQ36KF8KeS6ZN+Qkg2MTGc0PAgkR2i1aFeFUAfUQWoQLT5evImFU?=
+ =?us-ascii?Q?7/Y1FpRy/HZukNdc9sFSeDIQdTJ96TBCbAbP4nC1KD0VFWHurx38eeyLdm2g?=
+ =?us-ascii?Q?olnJWSJQ/UScsdq0vrpkunzpiw6W7OFKKOCuFW/qzaBg7B7pfGLD6vcYnSkX?=
+ =?us-ascii?Q?GRAdGSLvByMaX2HieQqdJ+4M0p8XQS4WaVANw/8NHp9LHx1JZa2tUZFDhb1W?=
+ =?us-ascii?Q?6ZfczjE2tw=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-Exchange-RoutingPolicyChecked: wp2Ezvyzkw3gAUd7piZTqgYo9uuIGa4eHRwGBkZtN/JZpTfKRpVgkN0+1sfl1xZXgGqzOSR+k+vCtlKJNrxghZL5Fw4mQ4bpK2eVdshtevGlwEYNsMJ+lw+7J2Q5PT4k2BZXQdvgUh7YXFhM8y+uDNbUScztA6IIRr8uFKJW8HenPfBTxIZ4r4uRqU+dvf1M5eiZkGBBIfpNSU8/2wvNf/IItwoFmH9WKAI7o7nUPQG3/6bDTeKKbVhatoycWx7ARAlhMzAfAeuqbSTHCkuUZBHG9/Imj5RLZFX929nZu4QM3HNNwDx7g6Ui0oVz3bg9pRdwHFhWvRde40Zt/UwUMw==
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 May 2026 15:46:40.6071 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: W5svJUUyPHmfZOeEKk2HECLsw88zGUjMuFPyFkwdSAbuTEl07qaO88FpnJgka3D8ebqpQlj5EX7zJWi5q0uZug==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PPF7C7D8332C
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5456.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 01e81826-1973-470a-292d-08dea9f475f1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 May 2026 15:47:34.8611 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 0zNGBTQCRupKEY9w0dOjGlToC0n6t0tm1MbALcfRvpzliNpPQgJt8iDwVmvPDDqeWzOYgPKYFso+gx+kRRpfpw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5190
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -160,96 +167,394 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, May 04, 2026 at 09:49:26AM +0000, Satyanarayana K V P wrote:
-> The engine state size reported to GuC via ADS should only include the
-> engine state portion and should not include the indirect ring state page
-> that comes after it in the context image. The GuC uses this size to
-> overwrite the engine state in the LRC on watchdog resets and we don't
-> want it to overwrite the indirect ring state as well.
-> 
-
-I actually noticed this well over a year ago when looking at a indirect
-ring state problem.
-
-> Fixes: d6219e1cd5e3 ("drm/xe: Add Indirect Ring State support")
-> Suggested-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-
-This looks right to me, so:
-
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-
-But also since Daniele reviewed v1, ensure he doesn't have any other
-comments before merging this.
-
-Matt
-
+On Sun, May 3, 2026 9:44 PM Stuart Summers wrote:
+> Sort the fields in struct xe_config_device and the corresponding
+> device_defaults initializer in alphabetical order. Non-SRIOV fields come =
+first
+> (alphabetically), followed by the SRIOV sub-struct with its own fields in
+> alphabetical order. Also sort the PRI_CUSTOM_ATTR calls in
+> dump_custom_dev_config() to match and the documentation for each of the
+> fields.
+>=20
+> Signed-off-by: Stuart Summers <stuart.summers@intel.com>
+> Assisted-by: Copilot:claude-opus-4.7
 > ---
-> V1 -> V2:
-> - Replaced xe_lrc_skip_size() with xe_lrc_engine_state_size().
-> - Updated commit message (Daniel).
-> ---
->  drivers/gpu/drm/xe/xe_guc_ads.c |  5 +----
->  drivers/gpu/drm/xe/xe_lrc.c     | 11 +++++++++--
->  drivers/gpu/drm/xe/xe_lrc.h     |  2 +-
->  3 files changed, 11 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-> index ce651da6f318..b9bca6084a4f 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ads.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-> @@ -515,12 +515,9 @@ static void guc_golden_lrc_init(struct xe_guc_ads *ads)
->  		 * that starts after the execlists LRC registers. This is
->  		 * required to allow the GuC to restore just the engine state
->  		 * when a watchdog reset occurs.
-> -		 * We calculate the engine state size by removing the size of
-> -		 * what comes before it in the context image (which is identical
-> -		 * on all engines).
->  		 */
->  		ads_blob_write(ads, ads.eng_state_size[guc_class],
-> -			       real_size - xe_lrc_skip_size(xe));
-> +			       xe_lrc_engine_state_size(gt, class));
->  		ads_blob_write(ads, ads.golden_context_lrca[guc_class],
->  			       addr_ggtt);
->  
-> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-> index 9db914584347..fdfe2ed5f683 100644
-> --- a/drivers/gpu/drm/xe/xe_lrc.c
-> +++ b/drivers/gpu/drm/xe/xe_lrc.c
-> @@ -727,9 +727,16 @@ size_t xe_lrc_reg_size(struct xe_device *xe)
->  		return 80 * sizeof(u32);
->  }
->  
-> -size_t xe_lrc_skip_size(struct xe_device *xe)
-> +/**
-> + * xe_lrc_engine_state_size() - Get size of the engine state within LRC
-> + * @gt: the &xe_gt struct instance
-> + * @class: Hardware engine class
+>  drivers/gpu/drm/xe/xe_configfs.c | 192 +++++++++++++++----------------
+>  1 file changed, 96 insertions(+), 96 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_configfs.c
+> b/drivers/gpu/drm/xe/xe_configfs.c
+> index 69abc69ec0f3..1e134057fae8 100644
+> --- a/drivers/gpu/drm/xe/xe_configfs.c
+> +++ b/drivers/gpu/drm/xe/xe_configfs.c
+> @@ -73,53 +73,79 @@
+>   * Configure Attributes
+>   * =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>   *
+> - * Survivability mode:
+> - * -------------------
+> + * Context restore BB
+> + * ------------------
+>   *
+> - * Enable survivability mode on supported cards. This setting only takes
+> - * effect when probing the device. Example to enable it::
+> + * Allow to execute a batch buffer during any context switches. When
+> + the
+> + * GPU is restoring the context, it executes additional commands. It's
+> + useful
+> + * for testing additional workarounds and validating certain HW
+> + behaviors: it's
+> + * not intended for normal execution and will taint the kernel with
+> + TAINT_TEST
+> + * when used.
+>   *
+> - *	# echo 1 >
+> /sys/kernel/config/xe/0000:03:00.0/enable_survivability_mode
+> + * The syntax allows to pass straight instructions to be executed by
+> + the engine
+> + * in a batch buffer or set specific registers.
+>   *
+> - * This attribute can only be set before binding to the device.
+> + * #. Generic instruction::
+>   *
+> - * Allowed GT types:
+> - * -----------------
+> + *	<engine-class> cmd <instr> [[dword0] [dword1] [...]]
+>   *
+> - * Allow only specific types of GTs to be detected and initialized by th=
+e
+> - * driver.  Any combination of GT types can be enabled/disabled, althoug=
+h
+> - * some settings will cause the device to fail to probe.
+> + * #. Simple register setting::
+>   *
+> - * Writes support both comma- and newline-separated input format. Reads
+> - * will always return one GT type per line. "primary" and "media" are th=
+e
+> - * GT type names supported by this interface.
+> + *	<engine-class> reg <address> <value>
+>   *
+> - * This attribute can only be set before binding to the device.
+> + * Commands are saved per engine class: all instances of that class
+> + will execute
+> + * those commands during context switch. The instruction, dword
+> + arguments,
+> + * addresses and values are in hex format like in the examples below.
+>   *
+> - * Examples:
+> + * #. Execute a LRI command to write 0xDEADBEEF to register 0x4f10 after=
+ the
+> + *    normal context restore::
+>   *
+> - * Allow both primary and media GTs to be initialized and used.  This ma=
+tches
+> - * the driver's default behavior::
+> + *	# echo 'rcs cmd 11000001 4F100 DEADBEEF' \
+> + *		> /sys/kernel/config/xe/0000:03:00.0/ctx_restore_post_bb
+>   *
+> - *	# echo 'primary,media' >
+> /sys/kernel/config/xe/0000:03:00.0/gt_types_allowed
+> + * #. Execute a LRI command to write 0xDEADBEEF to register 0x4f10 at th=
+e
+> + *    beginning of the context restore::
+>   *
+> - * Allow only the primary GT of each tile to be initialized and used,
+> - * effectively disabling the media GT if it exists on the platform::
+> + *	# echo 'rcs cmd 11000001 4F100 DEADBEEF' \
+> + *		> /sys/kernel/config/xe/0000:03:00.0/ctx_restore_mid_bb
+> +
+> + * #. Load certain values in a couple of registers (it can be used as a =
+simpler
+> + *    alternative to the `cmd`) action::
+>   *
+> - *	# echo 'primary' >
+> /sys/kernel/config/xe/0000:03:00.0/gt_types_allowed
+> + *	# cat > /sys/kernel/config/xe/0000:03:00.0/ctx_restore_post_bb
+> <<EOF
+> + *	rcs reg 4F100 DEADBEEF
+> + *	rcs reg 4F104 FFFFFFFF
+> + *	EOF
+>   *
+> - * Allow only the media GT of each tile to be initialized and used,
+> - * effectively disabling the primary GT.  **This configuration will caus=
+e
+> - * device probe failure on all current platforms, but may be allowed on
+> - * igpu platforms in the future**::
+> + *    .. note::
+>   *
+> - *	# echo 'media' >
+> /sys/kernel/config/xe/0000:03:00.0/gt_types_allowed
+> + *       When using multiple lines, make sure to use a command that is
+> + *       implemented with a single write syscall, like HEREDOC.
+>   *
+> - * Disable all GTs.  Only other GPU IP (such as display) is potentially =
+usable.
+> - * **This configuration will cause device probe failure on all current
+> - * platforms, but may be allowed on igpu platforms in the future**::
+> + * Currently this is implemented only for post and mid context restore
+> + and
+> + * these attributes can only be set before binding to the device.
+>   *
+> - *	# echo '' > /sys/kernel/config/xe/0000:03:00.0/gt_types_allowed
+> + * PSMI
+> + * ----
 > + *
-> + * Returns: Size of the engine state
-> + */
-> +size_t xe_lrc_engine_state_size(struct xe_gt *gt, enum xe_engine_class class)
->  {
-> -	return LRC_PPHWSP_SIZE + xe_lrc_reg_size(xe);
-> +	return xe_gt_lrc_hang_replay_size(gt, class) - xe_lrc_reg_size(gt_to_xe(gt));
+> + * Enable extra debugging capabilities to trace engine execution. Only
+> + useful
+> + * during early platform enabling and requires additional hardware
+> connected.
+> + * Once it's enabled, additionals WAs are added and runtime
+> + configuration is
+> + * done via debugfs. Example to enable it::
+> + *
+> + *	# echo 1 > /sys/kernel/config/xe/0000:03:00.0/enable_psmi
+> + *
+> + * This attribute can only be set before binding to the device.
+> + *
+> + * Survivability mode:
+> + * -------------------
+> + *
+> + * Enable survivability mode on supported cards. This setting only
+> + takes
+> + * effect when probing the device. Example to enable it::
+> + *
+> + *	# echo 1 >
+> /sys/kernel/config/xe/0000:03:00.0/enable_survivability_mode
+> + *
+> + * This attribute can only be set before binding to the device.
+>   *
+>   * Allowed engines:
+>   * ----------------
+> @@ -147,69 +173,43 @@
+>   *
+>   * This attribute can only be set before binding to the device.
+>   *
+> - * PSMI
+> - * ----
+> + * Allowed GT types:
+> + * -----------------
+>   *
+> - * Enable extra debugging capabilities to trace engine execution. Only u=
+seful
+> - * during early platform enabling and requires additional hardware conne=
+cted.
+> - * Once it's enabled, additionals WAs are added and runtime configuratio=
+n is
+> - * done via debugfs. Example to enable it::
+> + * Allow only specific types of GTs to be detected and initialized by
+> + the
+> + * driver.  Any combination of GT types can be enabled/disabled,
+> + although
+> + * some settings will cause the device to fail to probe.
+>   *
+> - *	# echo 1 > /sys/kernel/config/xe/0000:03:00.0/enable_psmi
+> + * Writes support both comma- and newline-separated input format. Reads
+> + * will always return one GT type per line. "primary" and "media" are
+> + the
+> + * GT type names supported by this interface.
+>   *
+>   * This attribute can only be set before binding to the device.
+>   *
+> - * Context restore BB
+> - * ------------------
+> - *
+> - * Allow to execute a batch buffer during any context switches. When the
+> - * GPU is restoring the context, it executes additional commands. It's u=
+seful
+> - * for testing additional workarounds and validating certain HW behavior=
+s: it's
+> - * not intended for normal execution and will taint the kernel with TAIN=
+T_TEST
+> - * when used.
+> - *
+> - * The syntax allows to pass straight instructions to be executed by the=
+ engine
+> - * in a batch buffer or set specific registers.
+> - *
+> - * #. Generic instruction::
+> - *
+> - *	<engine-class> cmd <instr> [[dword0] [dword1] [...]]
+> - *
+> - * #. Simple register setting::
+> - *
+> - *	<engine-class> reg <address> <value>
+> - *
+> - * Commands are saved per engine class: all instances of that class will=
+ execute
+> - * those commands during context switch. The instruction, dword
+> arguments,
+> - * addresses and values are in hex format like in the examples below.
+> + * Examples:
+>   *
+> - * #. Execute a LRI command to write 0xDEADBEEF to register 0x4f10 after=
+ the
+> - *    normal context restore::
+> + * Allow both primary and media GTs to be initialized and used.  This
+> + matches
+> + * the driver's default behavior::
+>   *
+> - *	# echo 'rcs cmd 11000001 4F100 DEADBEEF' \
+> - *		> /sys/kernel/config/xe/0000:03:00.0/ctx_restore_post_bb
+> + *	# echo 'primary,media' >
+> /sys/kernel/config/xe/0000:03:00.0/gt_types_allowed
+>   *
+> - * #. Execute a LRI command to write 0xDEADBEEF to register 0x4f10 at th=
+e
+> - *    beginning of the context restore::
+> + * Allow only the primary GT of each tile to be initialized and used,
+> + * effectively disabling the media GT if it exists on the platform::
+>   *
+> - *	# echo 'rcs cmd 11000001 4F100 DEADBEEF' \
+> - *		> /sys/kernel/config/xe/0000:03:00.0/ctx_restore_mid_bb
+> -
+> - * #. Load certain values in a couple of registers (it can be used as a =
+simpler
+> - *    alternative to the `cmd`) action::
+> + *	# echo 'primary' >
+> /sys/kernel/config/xe/0000:03:00.0/gt_types_allowed
+>   *
+> - *	# cat > /sys/kernel/config/xe/0000:03:00.0/ctx_restore_post_bb
+> <<EOF
+> - *	rcs reg 4F100 DEADBEEF
+> - *	rcs reg 4F104 FFFFFFFF
+> - *	EOF
+> + * Allow only the media GT of each tile to be initialized and used,
+> + * effectively disabling the primary GT.  **This configuration will
+> + cause
+> + * device probe failure on all current platforms, but may be allowed on
+> + * igpu platforms in the future**::
+>   *
+> - *    .. note::
+> + *	# echo 'media' >
+> /sys/kernel/config/xe/0000:03:00.0/gt_types_allowed
+>   *
+> - *       When using multiple lines, make sure to use a command that is
+> - *       implemented with a single write syscall, like HEREDOC.
+> + * Disable all GTs.  Only other GPU IP (such as display) is potentially =
+usable.
+> + * **This configuration will cause device probe failure on all current
+> + * platforms, but may be allowed on igpu platforms in the future**::
+>   *
+> - * Currently this is implemented only for post and mid context restore a=
+nd
+> - * these attributes can only be set before binding to the device.
+> + *	# echo '' > /sys/kernel/config/xe/0000:03:00.0/gt_types_allowed
+>   *
+>   * Max SR-IOV Virtual Functions
+>   * ----------------------------
+> @@ -256,15 +256,15 @@ struct xe_config_group_device {
+>  	struct config_group sriov;
+>=20
+>  	struct xe_config_device {
+> -		u64 gt_types_allowed;
+> -		u64 engines_allowed;
+> -		struct wa_bb ctx_restore_post_bb[XE_ENGINE_CLASS_MAX];
+>  		struct wa_bb ctx_restore_mid_bb[XE_ENGINE_CLASS_MAX];
+> -		bool enable_survivability_mode;
+> +		struct wa_bb ctx_restore_post_bb[XE_ENGINE_CLASS_MAX];
+>  		bool enable_psmi;
+> +		bool enable_survivability_mode;
+> +		u64 engines_allowed;
+> +		u64 gt_types_allowed;
+>  		struct {
+> -			unsigned int max_vfs;
+>  			bool admin_only_pf;
+> +			unsigned int max_vfs;
+>  		} sriov;
+>  	} config;
+
+Here is the comment from [1], which seems reasonable to me.
+"
+Does sorting struct members alphabetically here introduce unnecessary memor=
+y
+padding?
+Placing the bool fields enable_psmi and enable_survivability_mode immediate=
+ly
+before the u64 fields engines_allowed and gt_types_allowed introduces 6 byt=
+es
+of padding. In the sriov sub-struct, placing the bool admin_only_pf before =
+the
+unsigned int max_vfs introduces 3 bytes of padding.
+Could these fields be ordered by size to minimize padding instead of being
+sorted alphabetically?
+"
+
+If we decide to sort them, we could add comments like below for the flags i=
+n struct intel_device_info.
+" * Keep all flags below alphabetically sorted"
+
+[1]: https://sashiko.dev/#/patchset/20260504044348.209625-1-stuart.summers%=
+40intel.com
+
+Shuicheng
+
+>=20
+> @@ -277,13 +277,13 @@ struct xe_config_group_device {  };
+>=20
+>  static const struct xe_config_device device_defaults =3D {
+> -	.gt_types_allowed =3D U64_MAX,
+> -	.engines_allowed =3D U64_MAX,
+> -	.enable_survivability_mode =3D false,
+>  	.enable_psmi =3D false,
+> +	.enable_survivability_mode =3D false,
+> +	.engines_allowed =3D U64_MAX,
+> +	.gt_types_allowed =3D U64_MAX,
+>  	.sriov =3D {
+> -		.max_vfs =3D XE_DEFAULT_MAX_VFS,
+>  		.admin_only_pf =3D XE_DEFAULT_ADMIN_ONLY_PF,
+> +		.max_vfs =3D XE_DEFAULT_MAX_VFS,
+>  	},
+>  };
+>=20
+> @@ -814,17 +814,17 @@ static ssize_t ctx_restore_post_bb_store(struct
+> config_item *item,  CONFIGFS_ATTR(, ctx_restore_mid_bb);
+> CONFIGFS_ATTR(, ctx_restore_post_bb);  CONFIGFS_ATTR(, enable_psmi);
+> +CONFIGFS_ATTR(, enable_survivability_mode);
+>  CONFIGFS_ATTR(, engines_allowed);
+>  CONFIGFS_ATTR(, gt_types_allowed);
+> -CONFIGFS_ATTR(, enable_survivability_mode);
+>=20
+>  static struct configfs_attribute *xe_config_device_attrs[] =3D {
+>  	&attr_ctx_restore_mid_bb,
+>  	&attr_ctx_restore_post_bb,
+>  	&attr_enable_psmi,
+> +	&attr_enable_survivability_mode,
+>  	&attr_engines_allowed,
+>  	&attr_gt_types_allowed,
+> -	&attr_enable_survivability_mode,
+>  	NULL,
+>  };
+>=20
+> @@ -929,12 +929,12 @@ static ssize_t sriov_admin_only_pf_store(struct
+> config_item *item, const char *p
+>  	return len;
 >  }
->  
->  static inline u32 __xe_lrc_seqno_offset(struct xe_lrc *lrc)
-> diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-> index e7c975f9e2d9..5440663183f6 100644
-> --- a/drivers/gpu/drm/xe/xe_lrc.h
-> +++ b/drivers/gpu/drm/xe/xe_lrc.h
-> @@ -130,7 +130,7 @@ u32 xe_lrc_parallel_ggtt_addr(struct xe_lrc *lrc);
->  struct iosys_map xe_lrc_parallel_map(struct xe_lrc *lrc);
->  
->  size_t xe_lrc_reg_size(struct xe_device *xe);
-> -size_t xe_lrc_skip_size(struct xe_device *xe);
-> +size_t xe_lrc_engine_state_size(struct xe_gt *gt, enum xe_engine_class class);
->  
->  void xe_lrc_dump_default(struct drm_printer *p,
->  			 struct xe_gt *gt,
-> -- 
+>=20
+> -CONFIGFS_ATTR(sriov_, max_vfs);
+>  CONFIGFS_ATTR(sriov_, admin_only_pf);
+> +CONFIGFS_ATTR(sriov_, max_vfs);
+>=20
+>  static struct configfs_attribute *xe_config_sriov_attrs[] =3D {
+> -	&sriov_attr_max_vfs,
+>  	&sriov_attr_admin_only_pf,
+> +	&sriov_attr_max_vfs,
+>  	NULL,
+>  };
+>=20
+> @@ -1096,10 +1096,10 @@ static void dump_custom_dev_config(struct
+> pci_dev *pdev,
+>  				 dev->config.attr_); \
+>  	} while (0)
+>=20
+> -	PRI_CUSTOM_ATTR("%llx", gt_types_allowed);
+> -	PRI_CUSTOM_ATTR("%llx", engines_allowed);
+>  	PRI_CUSTOM_ATTR("%d", enable_psmi);
+>  	PRI_CUSTOM_ATTR("%d", enable_survivability_mode);
+> +	PRI_CUSTOM_ATTR("%llx", engines_allowed);
+> +	PRI_CUSTOM_ATTR("%llx", gt_types_allowed);
+>  	PRI_CUSTOM_ATTR("%u", sriov.admin_only_pf);
+>=20
+>  #undef PRI_CUSTOM_ATTR
+> --
 > 2.43.0
-> 
+
