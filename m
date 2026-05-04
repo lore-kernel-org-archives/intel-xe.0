@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 447EECD3423
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D4D3CD3436
 	for <intel-xe@archiver.kernel.org>; Mon,  4 May 2026 04:43:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D73DD10E366;
-	Mon,  4 May 2026 04:43:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DF8E10E36C;
+	Mon,  4 May 2026 04:43:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AsqHlnVF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BL4g4VsQ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEC6D10E183
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1B9510E366
  for <intel-xe@lists.freedesktop.org>; Mon,  4 May 2026 04:43:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1777869832; x=1809405832;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=tGlkdYdYOzX0IQ4subMjpvayey6giPYynSRhzXWw9N8=;
- b=AsqHlnVF1ZgndwHCgUjsze2mRP2QkCkyy9D7OoAAWHo6TiRm0CpTWA6y
- v6oKXOYkuXyB+r4JHFmWjZjDdyDJ+YZS5OxKzKYFN6dgiKdGJUg7yltfN
- fJcR/zWSYny+Ump133Okw3SqwZqvVjFbmMS9x9X7cLN+GYuogxicUb81b
- kmefttMAqRDIJIZ38/ldPvRLYQoebJDaBZL/nAM7ABZ7pQoS1M740lR6b
- +GOskfHfY0G+ui9VlwlJrACPB8CoGfXDrPl7nI5hbsPU1ZOMj3eg3NYo0
- iFR5vl9BrE7F7c2v3mmDhtzIFKAU0/6AwVkBPwcR4ULFxGCN6tKgzM4xR g==;
-X-CSE-ConnectionGUID: +OHJYitJStS4tY5xJTRX/w==
-X-CSE-MsgGUID: /0u7i9XJQB+p45x9qxKBHg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11775"; a="96293559"
-X-IronPort-AV: E=Sophos;i="6.23,214,1770624000"; d="scan'208";a="96293559"
+ bh=POXARUTNIS28ioqV0Mlrt+SWX5NMM02RhGbQN27SLdQ=;
+ b=BL4g4VsQt+7RGZdNGtXOOjBOnoUqX/K3KQ0LSoX0HJ42vjZF6Cd4JY8u
+ TaHi6o8TBdfH8vTFstioVfb52xtxD4Z9rUCA9rQRRuz1ypWoBn+UKSWEG
+ rHnnTYn8zjsmNP38CqqIs5tFKLllk8SB4d+hpavPNAfgu4Rra7YPaO00W
+ lPc5o9yGdBL7BRgdp/dJyfrq0kyJV4YGE/Aewj9Pdf8SNj+hHFEQG8dLF
+ mU1v9aMNyBFU3sqaJxR708WyaqfJ8RKUMTms/DbdIh4V7J3++BNJvdLK4
+ 3220zCDzYkz8O3O2CGbdSPYYLcDcS4Ulxde+59BJMvDXxe+CGFcbUEyaW Q==;
+X-CSE-ConnectionGUID: nSFIkj/kRm66Y3Qdd9yO/g==
+X-CSE-MsgGUID: YiOyJdCOQBGVwaWvm9t7sA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11775"; a="96293557"
+X-IronPort-AV: E=Sophos;i="6.23,214,1770624000"; d="scan'208";a="96293557"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2026 21:43:52 -0700
-X-CSE-ConnectionGUID: ngo4gZiPRim8Dpv4vI5KRw==
-X-CSE-MsgGUID: ebZ9kOsxRuGNnThDN/pIlw==
+ 03 May 2026 21:43:51 -0700
+X-CSE-ConnectionGUID: MQ4NUHXeQcqDITWyANSlnA==
+X-CSE-MsgGUID: jFZERkBSTOGSyejYajNi1Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,214,1770624000"; d="scan'208";a="232773671"
+X-IronPort-AV: E=Sophos;i="6.23,214,1770624000"; d="scan'208";a="232773662"
 Received: from dut4435arlh.fm.intel.com ([10.105.8.106])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  03 May 2026 21:43:50 -0700
@@ -48,9 +48,10 @@ Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
  Michal.Wajdeczko@intel.com, matthew.d.roper@intel.com,
  daniele.ceraolospurio@intel.com, shuicheng.lin@intel.com,
  Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 4/9] drm/xe: Add a new debug focused configfs group
-Date: Mon,  4 May 2026 04:43:41 +0000
-Message-ID: <20260504044348.209625-5-stuart.summers@intel.com>
+Subject: [PATCH 1/9] drm/xe: Rename survivability_mode to
+ enable_survivability_mode
+Date: Mon,  4 May 2026 04:43:38 +0000
+Message-ID: <20260504044348.209625-2-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260504044348.209625-1-stuart.summers@intel.com>
 References: <20260504044348.209625-1-stuart.summers@intel.com>
@@ -71,105 +72,191 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add the skeleton code for a new debug specific configfs group.
+Rename the survivability_mode field in struct xe_config_device to
+enable_survivability_mode to be consistent with the enable_psmi naming
+convention used for similar boolean config flags.
 
 Signed-off-by: Stuart Summers <stuart.summers@intel.com>
 Assisted-by: Copilot:claude-opus-4.7
 ---
- drivers/gpu/drm/xe/Makefile            |  2 ++
- drivers/gpu/drm/xe/xe_configfs.c       |  4 ++++
- drivers/gpu/drm/xe/xe_configfs_debug.c | 14 ++++++++++++++
- drivers/gpu/drm/xe/xe_configfs_debug.h |  8 ++++++++
- drivers/gpu/drm/xe/xe_configfs_types.h |  7 +++++++
- 5 files changed, 35 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_configfs_debug.c
- create mode 100644 drivers/gpu/drm/xe/xe_configfs_debug.h
+ drivers/gpu/drm/xe/xe_configfs.c           | 39 +++++++++++-----------
+ drivers/gpu/drm/xe/xe_configfs.h           |  4 +--
+ drivers/gpu/drm/xe/xe_survivability_mode.c |  2 +-
+ 3 files changed, 23 insertions(+), 22 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 09661f079d03..b58667b0b18e 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -161,6 +161,8 @@ xe-$(CONFIG_HWMON) += xe_hwmon.o
- 
- xe-$(CONFIG_PERF_EVENTS) += xe_pmu.o
- xe-$(CONFIG_CONFIGFS_FS) += xe_configfs.o
-+xe_debug_configfs_obj-$(CONFIG_DRM_XE_DEBUG) := xe_configfs_debug.o
-+xe-$(CONFIG_CONFIGFS_FS) += $(xe_debug_configfs_obj-y)
- 
- # graphics virtualization (SR-IOV) support
- xe-y += \
 diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
-index 12b7fe65446d..85df8ce5cf2a 100644
+index 32102600a148..69abc69ec0f3 100644
 --- a/drivers/gpu/drm/xe/xe_configfs.c
 +++ b/drivers/gpu/drm/xe/xe_configfs.c
-@@ -1006,6 +1006,10 @@ static struct config_group *xe_config_make_device_group(struct config_group *gro
- 		config_group_init_type_name(&dev->sriov, "sriov", &xe_config_sriov_type);
- 		configfs_add_default_group(&dev->sriov, &dev->group);
- 	}
-+#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
-+	config_group_init_type_name(&dev->debug, "debug", &xe_configfs_debug_type);
-+	configfs_add_default_group(&dev->debug, &dev->group);
-+#endif
- 
- 	mutex_init(&dev->lock);
- 
-diff --git a/drivers/gpu/drm/xe/xe_configfs_debug.c b/drivers/gpu/drm/xe/xe_configfs_debug.c
-new file mode 100644
-index 000000000000..45617282cec5
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_configfs_debug.c
-@@ -0,0 +1,14 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+#include <linux/configfs.h>
-+#include <linux/module.h>
-+
-+#include "xe_configfs_debug.h"
-+#include "xe_configfs_types.h"
-+
-+const struct config_item_type xe_configfs_debug_type = {
-+	.ct_owner	= THIS_MODULE,
-+};
-diff --git a/drivers/gpu/drm/xe/xe_configfs_debug.h b/drivers/gpu/drm/xe/xe_configfs_debug.h
-new file mode 100644
-index 000000000000..01170dc2f97e
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_configfs_debug.h
-@@ -0,0 +1,8 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+#ifndef _XE_CONFIGFS_DEBUG_H_
-+#define _XE_CONFIGFS_DEBUG_H_
-+
-+#endif /* _XE_CONFIGFS_DEBUG_H_ */
-diff --git a/drivers/gpu/drm/xe/xe_configfs_types.h b/drivers/gpu/drm/xe/xe_configfs_types.h
-index 935097aafa96..c9d94a3c26a7 100644
---- a/drivers/gpu/drm/xe/xe_configfs_types.h
-+++ b/drivers/gpu/drm/xe/xe_configfs_types.h
-@@ -24,6 +24,9 @@ struct wa_bb {
- struct xe_config_group_device {
- 	struct config_group group;
- 	struct config_group sriov;
-+#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
-+	struct config_group debug;
-+#endif
- 
- 	struct xe_config_device {
+@@ -58,7 +58,7 @@
+  *	│   └── ...
+  *	:
+  *	└── 0000:03:00.0
+- *	    ├── survivability_mode
++ *	    ├── enable_survivability_mode
+  *	    ├── gt_types_allowed
+  *	    ├── engines_allowed
+  *	    └── enable_psmi
+@@ -79,7 +79,7 @@
+  * Enable survivability mode on supported cards. This setting only takes
+  * effect when probing the device. Example to enable it::
+  *
+- *	# echo 1 > /sys/kernel/config/xe/0000:03:00.0/survivability_mode
++ *	# echo 1 > /sys/kernel/config/xe/0000:03:00.0/enable_survivability_mode
+  *
+  * This attribute can only be set before binding to the device.
+  *
+@@ -260,7 +260,7 @@ struct xe_config_group_device {
+ 		u64 engines_allowed;
+ 		struct wa_bb ctx_restore_post_bb[XE_ENGINE_CLASS_MAX];
  		struct wa_bb ctx_restore_mid_bb[XE_ENGINE_CLASS_MAX];
-@@ -56,4 +59,8 @@ static inline struct xe_config_device *xe_configfs_to_device(struct config_item
- 	return &xe_configfs_to_group_device(item)->config;
+-		bool survivability_mode;
++		bool enable_survivability_mode;
+ 		bool enable_psmi;
+ 		struct {
+ 			unsigned int max_vfs;
+@@ -279,7 +279,7 @@ struct xe_config_group_device {
+ static const struct xe_config_device device_defaults = {
+ 	.gt_types_allowed = U64_MAX,
+ 	.engines_allowed = U64_MAX,
+-	.survivability_mode = false,
++	.enable_survivability_mode = false,
+ 	.enable_psmi = false,
+ 	.sriov = {
+ 		.max_vfs = XE_DEFAULT_MAX_VFS,
+@@ -357,20 +357,21 @@ static bool is_bound(struct xe_config_group_device *dev)
+ 	return ret;
  }
  
-+#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
-+extern const struct config_item_type xe_configfs_debug_type;
-+#endif
-+
- #endif /* _XE_CONFIGFS_TYPES_H_ */
+-static ssize_t survivability_mode_show(struct config_item *item, char *page)
++static ssize_t enable_survivability_mode_show(struct config_item *item, char *page)
+ {
+ 	struct xe_config_device *dev = to_xe_config_device(item);
+ 
+-	return sprintf(page, "%d\n", dev->survivability_mode);
++	return sprintf(page, "%d\n", dev->enable_survivability_mode);
+ }
+ 
+-static ssize_t survivability_mode_store(struct config_item *item, const char *page, size_t len)
++static ssize_t enable_survivability_mode_store(struct config_item *item, const char *page,
++					       size_t len)
+ {
+ 	struct xe_config_group_device *dev = to_xe_config_group_device(item);
+-	bool survivability_mode;
++	bool enable_survivability_mode;
+ 	int ret;
+ 
+-	ret = kstrtobool(page, &survivability_mode);
++	ret = kstrtobool(page, &enable_survivability_mode);
+ 	if (ret)
+ 		return ret;
+ 
+@@ -378,7 +379,7 @@ static ssize_t survivability_mode_store(struct config_item *item, const char *pa
+ 	if (is_bound(dev))
+ 		return -EBUSY;
+ 
+-	dev->config.survivability_mode = survivability_mode;
++	dev->config.enable_survivability_mode = enable_survivability_mode;
+ 
+ 	return len;
+ }
+@@ -815,7 +816,7 @@ CONFIGFS_ATTR(, ctx_restore_post_bb);
+ CONFIGFS_ATTR(, enable_psmi);
+ CONFIGFS_ATTR(, engines_allowed);
+ CONFIGFS_ATTR(, gt_types_allowed);
+-CONFIGFS_ATTR(, survivability_mode);
++CONFIGFS_ATTR(, enable_survivability_mode);
+ 
+ static struct configfs_attribute *xe_config_device_attrs[] = {
+ 	&attr_ctx_restore_mid_bb,
+@@ -823,7 +824,7 @@ static struct configfs_attribute *xe_config_device_attrs[] = {
+ 	&attr_enable_psmi,
+ 	&attr_engines_allowed,
+ 	&attr_gt_types_allowed,
+-	&attr_survivability_mode,
++	&attr_enable_survivability_mode,
+ 	NULL,
+ };
+ 
+@@ -847,7 +848,7 @@ static bool xe_config_device_is_visible(struct config_item *item,
+ {
+ 	struct xe_config_group_device *dev = to_xe_config_group_device(item);
+ 
+-	if (attr == &attr_survivability_mode) {
++	if (attr == &attr_enable_survivability_mode) {
+ 		if (!dev->desc->is_dgfx || dev->desc->platform < XE_BATTLEMAGE)
+ 			return false;
+ 	}
+@@ -1098,7 +1099,7 @@ static void dump_custom_dev_config(struct pci_dev *pdev,
+ 	PRI_CUSTOM_ATTR("%llx", gt_types_allowed);
+ 	PRI_CUSTOM_ATTR("%llx", engines_allowed);
+ 	PRI_CUSTOM_ATTR("%d", enable_psmi);
+-	PRI_CUSTOM_ATTR("%d", survivability_mode);
++	PRI_CUSTOM_ATTR("%d", enable_survivability_mode);
+ 	PRI_CUSTOM_ATTR("%u", sriov.admin_only_pf);
+ 
+ #undef PRI_CUSTOM_ATTR
+@@ -1128,20 +1129,20 @@ void xe_configfs_check_device(struct pci_dev *pdev)
+ }
+ 
+ /**
+- * xe_configfs_get_survivability_mode - get configfs survivability mode attribute
++ * xe_configfs_get_enable_survivability_mode - get configfs survivability mode attribute
+  * @pdev: pci device
+  *
+- * Return: survivability_mode attribute in configfs
++ * Return: enable_survivability_mode attribute in configfs
+  */
+-bool xe_configfs_get_survivability_mode(struct pci_dev *pdev)
++bool xe_configfs_get_enable_survivability_mode(struct pci_dev *pdev)
+ {
+ 	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
+ 	bool mode;
+ 
+ 	if (!dev)
+-		return device_defaults.survivability_mode;
++		return device_defaults.enable_survivability_mode;
+ 
+-	mode = dev->config.survivability_mode;
++	mode = dev->config.enable_survivability_mode;
+ 	config_group_put(&dev->group);
+ 
+ 	return mode;
+diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
+index 07d62bf0c152..517de4946d35 100644
+--- a/drivers/gpu/drm/xe/xe_configfs.h
++++ b/drivers/gpu/drm/xe/xe_configfs.h
+@@ -18,7 +18,7 @@ struct pci_dev;
+ int xe_configfs_init(void);
+ void xe_configfs_exit(void);
+ void xe_configfs_check_device(struct pci_dev *pdev);
+-bool xe_configfs_get_survivability_mode(struct pci_dev *pdev);
++bool xe_configfs_get_enable_survivability_mode(struct pci_dev *pdev);
+ bool xe_configfs_primary_gt_allowed(struct pci_dev *pdev);
+ bool xe_configfs_media_gt_allowed(struct pci_dev *pdev);
+ u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev);
+@@ -37,7 +37,7 @@ bool xe_configfs_admin_only_pf(struct pci_dev *pdev);
+ static inline int xe_configfs_init(void) { return 0; }
+ static inline void xe_configfs_exit(void) { }
+ static inline void xe_configfs_check_device(struct pci_dev *pdev) { }
+-static inline bool xe_configfs_get_survivability_mode(struct pci_dev *pdev) { return false; }
++static inline bool xe_configfs_get_enable_survivability_mode(struct pci_dev *pdev) { return false; }
+ static inline bool xe_configfs_primary_gt_allowed(struct pci_dev *pdev) { return true; }
+ static inline bool xe_configfs_media_gt_allowed(struct pci_dev *pdev) { return true; }
+ static inline u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev) { return U64_MAX; }
+diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
+index db64cac39c94..7c85bdb267af 100644
+--- a/drivers/gpu/drm/xe/xe_survivability_mode.c
++++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
+@@ -377,7 +377,7 @@ bool xe_survivability_mode_is_requested(struct xe_device *xe)
+ 	if (!IS_DGFX(xe) || IS_SRIOV_VF(xe) || xe->info.platform < XE_BATTLEMAGE)
+ 		return false;
+ 
+-	survivability_mode = xe_configfs_get_survivability_mode(pdev);
++	survivability_mode = xe_configfs_get_enable_survivability_mode(pdev);
+ 	/* Enable survivability mode if set via configfs */
+ 	if (survivability_mode)
+ 		return true;
 -- 
 2.43.0
 
