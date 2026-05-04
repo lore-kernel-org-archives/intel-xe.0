@@ -4,62 +4,165 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DC0CCD3423
-	for <intel-xe@archiver.kernel.org>; Mon,  4 May 2026 08:47:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4782CCD3423
+	for <intel-xe@archiver.kernel.org>; Mon,  4 May 2026 09:02:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E49210E069;
-	Mon,  4 May 2026 08:47:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0799210E5EA;
+	Mon,  4 May 2026 09:02:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hscX6w+U";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MsxAnbq+";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B8CFC10E069
- for <intel-xe@lists.freedesktop.org>; Mon,  4 May 2026 08:47:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE69B10E0EE
+ for <intel-xe@lists.freedesktop.org>; Mon,  4 May 2026 09:02:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777884474; x=1809420474;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=5rJXQKUvK4J4O9V1fe4iOOSYFltjLbhWztc3mpb4AVo=;
- b=hscX6w+U0L0i+EWWKvJE7nBbt6KixuGtQaoezjpSThTWXGOBw4BRypyB
- /C7UGOmZ79fyEWvSJefMGMvsl305DkUEC9gruBeJIEbP65CfybkJypsIW
- Fe548y5iPDp4O9KgnGabdk3cKnoZW3gsUEsDvREOnuF0FBCMt0MwGvVBM
- kwYa5aiCkrpA+THQKiT7S8tZr4vkhm7Sy3jXKytvr7XCGd9jcle/1tW5j
- BW0b9QTVRGUkAyhlwwjyas7kBMm2SoBsEHWsNYhgztel37JsBL2NQJd/M
- cLeECLYWnKCSQN75Mc+Y0McZFZfNueI+XyWZrtRhuAF40fg0c5EpauI2Q A==;
-X-CSE-ConnectionGUID: sezMCZDfQx6PH44cMsxCQQ==
-X-CSE-MsgGUID: /RxXtDinQq6Q/6yQx9eULw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11775"; a="66269739"
-X-IronPort-AV: E=Sophos;i="6.23,215,1770624000"; d="scan'208";a="66269739"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2026 01:47:53 -0700
-X-CSE-ConnectionGUID: AZR3FBzfSluz7K4RbygDHg==
-X-CSE-MsgGUID: VJ1gtAdrTYikRnapnqhFYA==
+ t=1777885349; x=1809421349;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=rZQ83Ty23qVGznkgRxvgmL5GTQApo4OUrb+K7g3BtuI=;
+ b=MsxAnbq+uKtRK7jYxruYmubPd6QhMdoqhgOTNMAIFWAt309cYu2g+UG5
+ THEN9wl22bUokrzMRYs/HeH/1uX2PP8dOorwoX6IK6rfS1vCj1K5sk5TC
+ z+cuNQY+L34nzx/edySaMos6O3oinl1FIcdET/zg3RAfLbOPKxlLZ+5cN
+ 4Ge+I8PaiOWolYJQBXIhgYrSfEGL1c3PWvZFJEo9rtYZGqvKGFs98hRzi
+ tYyFF9u7rec/xGguTaSyJ++dCNDZOk3hyiwGEL4izVbW6sSYAAyRODsNZ
+ uBkV6D2fPemNMTjgyBci24NfLKXYKBVGVPKA4ALou+JjlsZmH4OwrURZn A==;
+X-CSE-ConnectionGUID: r3TpL88PT9OU4yKqgiEQrA==
+X-CSE-MsgGUID: 5xWHyTfsTaq+QUhqMn+3wA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11775"; a="96307754"
+X-IronPort-AV: E=Sophos;i="6.23,215,1770624000"; d="scan'208";a="96307754"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2026 02:02:28 -0700
+X-CSE-ConnectionGUID: 1s52tsF+QLGqbhy245EPjQ==
+X-CSE-MsgGUID: 7TV/cGvlRu2h5OKIlmu63A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,215,1770624000"; d="scan'208";a="273570967"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.157])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2026 01:47:50 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Stuart Summers <stuart.summers@intel.com>
-Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
- matthew.brost@intel.com, umesh.nerlige.ramappa@intel.com,
- Michal.Wajdeczko@intel.com, matthew.d.roper@intel.com,
- daniele.ceraolospurio@intel.com, shuicheng.lin@intel.com, Stuart Summers
- <stuart.summers@intel.com>
-Subject: Re: [PATCH 3/9] drm/xe: Split out configfs data structures
-In-Reply-To: <20260504044348.209625-4-stuart.summers@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260504044348.209625-1-stuart.summers@intel.com>
- <20260504044348.209625-4-stuart.summers@intel.com>
-Date: Mon, 04 May 2026 11:47:47 +0300
-Message-ID: <be85da366bbb91d83d66d4e2fccf1679c6c8c96b@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,215,1770624000"; d="scan'208";a="230866010"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2026 02:02:28 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Mon, 4 May 2026 02:02:27 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Mon, 4 May 2026 02:02:27 -0700
+Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.1) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Mon, 4 May 2026 02:02:27 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=eP0Ql1C3iF6KijC9hKFv8qMOnYBZRv/+zOVzLcYSjs72ErVFvYO+MWuaYXRt9BRkvCyd5mLUk438QeR0Dqg7LlHEV/7Tw98ejdqKfoiE3ot8+SrZqcdxLZ1MWz6aajTa53Q+JyJxDRc8J6b1mEVEubngaXAfNJfJnS6074BA0a7uXIu2ssWABTcNyhwhYVlDsgj5wJpBoq04FK9ePYUGBBng5yQHWVt82vHhSk6uAtZ8OR0o1hAozTepxu72yacNehbj5VdzXFNEmj0Wfy93LR7wtvw7vxIsJmByHH3gpLJK4rUVZzrbQ6U2FXXoKtyyLv5Czesn3bvOVlRVyVCZAQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=rZQ83Ty23qVGznkgRxvgmL5GTQApo4OUrb+K7g3BtuI=;
+ b=PBEkHt+hJc5KgWvcq/ytlUIIm1W/p5hnq1Wyv+zGnty5okB6DAkei/emeH9g4+fvPRDm8RzYa4QkQkSjFox8l7osAiMGc+wsI5HKuEoJzeOvjJ9o0YYjGGkurI+hUtZ3oHw3tckv2ns76V4LKbJKy00NM5eAF6z4V5MwqsFESMM8+7b9mVIzCfMGgV5AWNdxwruV7Z27ImP9juIaomqsOIKQKk4iCxd+Xot6fHTMYuOaUhEOic70FZ2W5BnMd85QLxQ4OrvzmyPmyxCdXT6G2h6Mste1/yHJ7QPW6B8yWh4OQGtMQdsjegq50MwZ6HYTEDcNj87YmlAaMCWy4NRfaw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DS0PR11MB8718.namprd11.prod.outlook.com (2603:10b6:8:1b9::20)
+ by SN7PR11MB6972.namprd11.prod.outlook.com (2603:10b6:806:2ac::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.25; Mon, 4 May
+ 2026 09:02:25 +0000
+Received: from DS0PR11MB8718.namprd11.prod.outlook.com
+ ([fe80::6aa:411d:4bfa:619c]) by DS0PR11MB8718.namprd11.prod.outlook.com
+ ([fe80::6aa:411d:4bfa:619c%5]) with mapi id 15.20.9870.023; Mon, 4 May 2026
+ 09:02:25 +0000
+From: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
+To: "Auld, Matthew" <matthew.auld@intel.com>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>
+CC: "Brost, Matthew" <matthew.brost@intel.com>,
+ "thomas.hellstrom@linux.intel.com" <thomas.hellstrom@linux.intel.com>,
+ "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
+Subject: RE: [RFC PATCH V7 10/10] drm/xe/cri: Add sysfs interface for bad gpu
+ vram pages
+Thread-Topic: [RFC PATCH V7 10/10] drm/xe/cri: Add sysfs interface for bad gpu
+ vram pages
+Thread-Index: AQHczXXJNRUW2O41jUOBAkZAyIqnlrX3tmkAgAX2/JA=
+Date: Mon, 4 May 2026 09:02:25 +0000
+Message-ID: <DS0PR11MB87189655103B8C7C9C81A7BD81312@DS0PR11MB8718.namprd11.prod.outlook.com>
+References: <20260416074958.3722666-12-tejas.upadhyay@intel.com>
+ <20260416074958.3722666-22-tejas.upadhyay@intel.com>
+ <03f64ea2-5626-49d5-8ef9-afa7311ee697@intel.com>
+In-Reply-To: <03f64ea2-5626-49d5-8ef9-afa7311ee697@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS0PR11MB8718:EE_|SN7PR11MB6972:EE_
+x-ms-office365-filtering-correlation-id: adaa6a69-969c-4d13-019a-08dea9bbdc66
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|10070799003|366016|1800799024|376014|38070700021|18002099003|22082099003|56012099003;
+x-microsoft-antispam-message-info: efP0AJkVBhO45U3RKjv62PgT8TevcLjgBLdNzpAWkKRz6vfgWy+AXTpiVveDLXmuxQNeoyCooNxQuSvqOpq1x2eAaZxx9+i30K1K6Bd0D4WGznnnKG7Kl1T3uGIMG3rS7WzF+cE6DUlP7Y9v4NradP0xCG7dmxZMD9vbxnOpk3Rd6UUS7iPUxDcqE7oOVkr4kaR75temXcjbdD+kPgsgykIzNaRCCl9aXZOihZCDt6ZW2a5i+fGnztnPJdeEMlkxq4s8GDyP8Db8G+lhxmLOGf8g7yoY6/uNxoSlJPESHzXkRP1fbSOACyQjuXIXpLhIbXmmZAv/O1eUPupxCyQ1E2brjYBtrTShzhh/byJiyZV/8kd3Af9Ne2jbZdlRYyMKWnTE84QVOA6VvwlfIPkQjE9/cdnalEU0DWpOXb4emm+JOxb4TIGeqYvpG6tjbPpWPyzmMS937JByO/kV9GG1xzwPLLBv9rLsTBrLqNy1jx0qfgfDZQsxmN1EAxAXRqUGAv//SniIN5nGdx4EU6BMfRJfQA+d+5gCCdcgFME0anYNYdcTi141yhbFkpzCOyZ3hl4JaPNrbhxjivL4m0O6CzFJjvCiL/iDyAA1VTxeC6QF+R74WmvXHY8JwuOqT0gLkTq5bVAPoCtm1ugIjqvv109Ovk0E22v8vq1z1Sx3YC46YHJqoAaMX9ev/u6LjymfYASiKp9UYGvOORcTDk9/3LR0oFRfiRc3VrePCAb6ymFM7Ys26VT+YwmFrIzs5Yng
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8718.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(10070799003)(366016)(1800799024)(376014)(38070700021)(18002099003)(22082099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 2
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?bTVnc3RJVDRQWUNLZlo1NlRRK1JpM3hhZ0U3YW0wSEZScEQ2YXRzMHNEaVN1?=
+ =?utf-8?B?eWxRVUZpUHl6RFhLdWF6ZklkSDVxTUVucUZjTW1tbUFJODA0Z0h2Zjc0bXF4?=
+ =?utf-8?B?aWdyZDdUazdvVmlhWkliNGcyVExvMit1MThwWlBWVGlZMnNtT2w0bUtXOU91?=
+ =?utf-8?B?clJvL09YbXYxNkRBSE9TTk95eE82TXNhdkZ2ZytaSlRtSnNYWDkxTFk2ZUE4?=
+ =?utf-8?B?WFpiM1FxdkUyUjk3a0dMazYzS0g1d25uNFIrbG8zNWp3YzZhMXU4cFV6WFpu?=
+ =?utf-8?B?M3hmcXMrZjgreWdTNVYzRXE4U0NDSGlqaENkWWlpU3hNSkdYL0dSdXR2WE9o?=
+ =?utf-8?B?RWZsNkpmcE5aQVlUMlJ2aXM4aUpKSEJhY2ZBcyt4L0I0aEd6NktaamN3YWRo?=
+ =?utf-8?B?UGgvRWh0R1d4dDd0TEtKRVhycUF6bGZ5Qmx3dUF5N0dVdXgxQ1FHYmpDUkI4?=
+ =?utf-8?B?L0cyZnVMSThSc1Q2c3pzNk1vMzJ0cnBVaG5jUHJHbWJlc0ZBRTZGeUQzQVJQ?=
+ =?utf-8?B?T2VjSTRpb1RpTmtxejQyQjZxVGREMDhnSFlTNEgrQXpSZkYreldlYzNVTk5x?=
+ =?utf-8?B?dm8xR2tZcUJ1aC9WcC9CTnNSUUh2TTJpQ1pJK29ncGw0czhLSTh4UlllZ0Fi?=
+ =?utf-8?B?UWFTeWo0REtoWUpVMHdScWlSWTY5eHVjN0VPM1hOSXZBMzViWVF3c01wTStp?=
+ =?utf-8?B?UU1kdnBEWTBiNnVBbUp2cTV0QmlMUmNXTHkra1BXc3ZTU0J2cUtOekVVL3RT?=
+ =?utf-8?B?cDNBR3NWQkt4cEZsSFRRMTY4ODhia2RVczlLOEc0Nk01STVSMUpNSDMxRDNL?=
+ =?utf-8?B?T3BubjJsQXBwL2dDY0NQOVdyRTdCN3BNNGJodlVsZnV2UEVOVkNzYTdsck5W?=
+ =?utf-8?B?RXQrczZEUlZaaEtHL0MrTGFhcXpTMDlYUjVRVGk0U1E3TUE2dkJVa25DbUYw?=
+ =?utf-8?B?VExJNS95TXFZYVhXa2RDVzB6VmsvN2xvaklLVGMrWE9DYmptc0lCdXVwd3N6?=
+ =?utf-8?B?VHBrQkxPaEdMcy91cXBsMlBxK0NqMHFFSTM0bG9QOWFsVEVjU2RseW1NZkNU?=
+ =?utf-8?B?Y1g0L1hIcEUrUzlDTkkzSnE1ZTU4SFNneUZ2UkZvUXNpcTZHYUJsQ2F6czM2?=
+ =?utf-8?B?QnBuZFlSdVFzblFpSnVjR1dpTlJWUGptbEJJTlR2RitwR0FkTExwWU9zWERr?=
+ =?utf-8?B?dWVJalpZVnlRR1FGRUVRYVE5YmhwYjZKRk1IN2Y2VW4ycUYycnVxamhoQlpN?=
+ =?utf-8?B?ZDVaTkQycnZzUzNEN3c1RHlHa2twZEtUV2NIVG8rVFh1V3NybUlhQzcwMzJP?=
+ =?utf-8?B?WDB5ME5rcFhpZmoxVEFNdk1IMk1VM0E3YjhHdnZOUTBNKzlCZFFRaHRzNndY?=
+ =?utf-8?B?YlNiZFFXZ0I3MUlvODBMK202QUFqV1NJaVBoSDhENktlbkIybUxvdlZ0c1Nt?=
+ =?utf-8?B?aDR3bzVhNUxaMTVqbUJVTWtuSmdabWQzS2szZ1pBTzAxSm9uUUw1eEZDY01p?=
+ =?utf-8?B?S092bzYwYXpwQUZwWEZyMEhiclZ2Mk1raEFUQndMcXNjV2dIY0k3SmtkMHBj?=
+ =?utf-8?B?dHN5WHphVXlLWDhwOFZ0QUJMcEwrZmZoK1JJMWpJbE0wdW5ETEdVZTQ4bnAw?=
+ =?utf-8?B?cDRqdVZOZU84bHJNU0VNN0N1TVlWc2oyOTJXNFNlalgvYlVIWFlsWjAvTjdX?=
+ =?utf-8?B?bGppZTU4N1BLUm85MFNUdmZzL0g0ZVo3cDg0NFg3WkRoSjlnaE95NXBkWXEx?=
+ =?utf-8?B?STYvaTJkUzA5UERvVFdPVk5ycTM1bEY1NG1RbVYyWFFhbDBtQ2syRVBBY01W?=
+ =?utf-8?B?THdoSy9GcHFlbVUza2d5SllVNGpQZzdubktiQUpsbFc0ZllWUjlDMlpTQnl4?=
+ =?utf-8?B?QThFYTB0OEhOR21vanBZZHQ0WUlFUFRrUmgyZE5CTmJzL0lWWjBaRXdRb3c0?=
+ =?utf-8?B?UGFJTnA1VStXZWhrc3Q1bE8wOEtYbDRFamloWHBaaGR4ZUh4bXcxc2FLMVcr?=
+ =?utf-8?B?N2JpZmR6TnVxbTdyOVlIMGZSRVloTko0QVFleGx4VlFWNXRONWJuQjFqc29t?=
+ =?utf-8?B?c0czQkpFeFhGZUVVSUFQV3pEZEZsVVBqVnl5eFhWYkhjalhxNEFES3ZnbnlW?=
+ =?utf-8?B?WGpreXNTcFNpMERXcmZ6YWl4QW5sa0ZRSDZIVnBEZmdpQXQ3QXZWTDB4Q1dO?=
+ =?utf-8?B?eEYrSkZqRGdpRFc4ckx1UTA4Rm91Wm4zU29RdzZNbXBwN1hIZEQwQktibk9n?=
+ =?utf-8?B?SFkwTDZVZFVWbS90WWh1cERGL0JRVlRjSWwwYjN4TFY2QmpNZUVwU2lXVlND?=
+ =?utf-8?B?ZzNjK3JUblRhVUh6TUhkMmN1TWtMVmVXSE9Jd0VSeXEzSHBEQ0VNVzBPREEy?=
+ =?utf-8?Q?uh6SbNpgFmBbVM1CvELbhKRg9M1a9zMyYvFikUkua/fMk?=
+x-ms-exchange-antispam-messagedata-1: EaestnF5ob0NjA==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-Exchange-RoutingPolicyChecked: Jc3wK99RZEVhkG014RAzt9K2dZr89PJmIsgGNqu+1rz4FiMXSnlav0ZoKwcPTTR1iYmxX6BRKH1R1bddhWBapHYbJJrOUOL+LoEymQzHs5CEPH8/7kJwZF3+c/ltaymPm5LwVFKc/IBLn79EdI9S9CszfMbavZeQZHRQETucLYFW5WS4eXUcMpk5TJMZYyukV5JR66C16YtRTK2zbpprl7DuHyva00YFCnIKPL7i4kfyFSQ0jRmt6emdJn0CPJy++hwt82TesE+Er1yPTf5db5q9LPj39cxJlAkXwuNapKpVSa1Slp2hkm85EiXa8fJpKu4On+8eg96vP15DzRyzag==
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8718.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: adaa6a69-969c-4d13-019a-08dea9bbdc66
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 May 2026 09:02:25.4736 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: SSoWU6yu4FqwRhl7X9th2yKSfogHJh++Ddx3UvrQIOPUtuMC9HwPwQ8ULZIiEojSVJW1mpbnpTJZADItqpK4tHLm4r6y82khg/LMWM8g5xw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6972
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,412 +177,153 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 04 May 2026, Stuart Summers <stuart.summers@intel.com> wrote:
-> Split the configfs data structures into their own _types.h file.
-
-Why? The commit message must always answer the question, "why".
-
-The obvious downside here is that you expose the types that were
-previously hidden in xe_configfs.c to anyone who includes
-xe_configfs_types.h. And that header depends on a ton of other headers,
-making the header interdepencies worse overall.
-
-Maybe you need that header later for something, but please spell that
-out here.
-
-
-BR,
-Jani.
-
->
-> Signed-off-by: Stuart Summers <stuart.summers@intel.com>
-> Assisted-by: Copilot:claude-opus-4.7
-> ---
->  drivers/gpu/drm/xe/xe_configfs.c       | 85 +++++++-------------------
->  drivers/gpu/drm/xe/xe_configfs_types.h | 59 ++++++++++++++++++
->  2 files changed, 80 insertions(+), 64 deletions(-)
->  create mode 100644 drivers/gpu/drm/xe/xe_configfs_types.h
->
-> diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_con=
-figfs.c
-> index 1e134057fae8..12b7fe65446d 100644
-> --- a/drivers/gpu/drm/xe/xe_configfs.c
-> +++ b/drivers/gpu/drm/xe/xe_configfs.c
-> @@ -4,7 +4,6 @@
->   */
->=20=20
->  #include <linux/bitops.h>
-> -#include <linux/ctype.h>
->  #include <linux/configfs.h>
->  #include <linux/cleanup.h>
->  #include <linux/find.h>
-> @@ -15,12 +14,10 @@
->=20=20
->  #include "instructions/xe_mi_commands.h"
->  #include "xe_configfs.h"
-> +#include "xe_configfs_types.h"
->  #include "xe_defaults.h"
->  #include "xe_gt_types.h"
-> -#include "xe_hw_engine_types.h"
->  #include "xe_module.h"
-> -#include "xe_pci_types.h"
-> -#include "xe_sriov_types.h"
->=20=20
->  /**
->   * DOC: Xe Configfs
-> @@ -245,36 +242,6 @@
->   *	# rmdir /sys/kernel/config/xe/0000:03:00.0/
->   */
->=20=20
-> -/* Similar to struct xe_bb, but not tied to HW (yet) */
-> -struct wa_bb {
-> -	u32 *cs;
-> -	u32 len; /* in dwords */
-> -};
-> -
-> -struct xe_config_group_device {
-> -	struct config_group group;
-> -	struct config_group sriov;
-> -
-> -	struct xe_config_device {
-> -		struct wa_bb ctx_restore_mid_bb[XE_ENGINE_CLASS_MAX];
-> -		struct wa_bb ctx_restore_post_bb[XE_ENGINE_CLASS_MAX];
-> -		bool enable_psmi;
-> -		bool enable_survivability_mode;
-> -		u64 engines_allowed;
-> -		u64 gt_types_allowed;
-> -		struct {
-> -			bool admin_only_pf;
-> -			unsigned int max_vfs;
-> -		} sriov;
-> -	} config;
-> -
-> -	/* protects attributes */
-> -	struct mutex lock;
-> -	/* matching descriptor */
-> -	const struct xe_device_desc *desc;
-> -	/* tentative SR-IOV mode */
-> -	enum xe_sriov_mode mode;
-> -};
->=20=20
->  static const struct xe_config_device device_defaults =3D {
->  	.enable_psmi =3D false,
-> @@ -322,16 +289,6 @@ static const struct {
->  	{ .name =3D "media", .type =3D XE_GT_TYPE_MEDIA },
->  };
->=20=20
-> -static struct xe_config_group_device *to_xe_config_group_device(struct c=
-onfig_item *item)
-> -{
-> -	return container_of(to_config_group(item), struct xe_config_group_devic=
-e, group);
-> -}
-> -
-> -static struct xe_config_device *to_xe_config_device(struct config_item *=
-item)
-> -{
-> -	return &to_xe_config_group_device(item)->config;
-> -}
-> -
->  static bool is_bound(struct xe_config_group_device *dev)
->  {
->  	unsigned int domain, bus, slot, function;
-> @@ -359,7 +316,7 @@ static bool is_bound(struct xe_config_group_device *d=
-ev)
->=20=20
->  static ssize_t enable_survivability_mode_show(struct config_item *item, =
-char *page)
->  {
-> -	struct xe_config_device *dev =3D to_xe_config_device(item);
-> +	struct xe_config_device *dev =3D xe_configfs_to_device(item);
->=20=20
->  	return sprintf(page, "%d\n", dev->enable_survivability_mode);
->  }
-> @@ -367,7 +324,7 @@ static ssize_t enable_survivability_mode_show(struct =
-config_item *item, char *pa
->  static ssize_t enable_survivability_mode_store(struct config_item *item,=
- const char *page,
->  					       size_t len)
->  {
-> -	struct xe_config_group_device *dev =3D to_xe_config_group_device(item);
-> +	struct xe_config_group_device *dev =3D xe_configfs_to_group_device(item=
-);
->  	bool enable_survivability_mode;
->  	int ret;
->=20=20
-> @@ -386,7 +343,7 @@ static ssize_t enable_survivability_mode_store(struct=
- config_item *item, const c
->=20=20
->  static ssize_t gt_types_allowed_show(struct config_item *item, char *pag=
-e)
->  {
-> -	struct xe_config_device *dev =3D to_xe_config_device(item);
-> +	struct xe_config_device *dev =3D xe_configfs_to_device(item);
->  	char *p =3D page;
->=20=20
->  	for (size_t i =3D 0; i < ARRAY_SIZE(gt_types); i++)
-> @@ -399,7 +356,7 @@ static ssize_t gt_types_allowed_show(struct config_it=
-em *item, char *page)
->  static ssize_t gt_types_allowed_store(struct config_item *item, const ch=
-ar *page,
->  				      size_t len)
->  {
-> -	struct xe_config_group_device *dev =3D to_xe_config_group_device(item);
-> +	struct xe_config_group_device *dev =3D xe_configfs_to_group_device(item=
-);
->  	char *buf __free(kfree) =3D kstrdup(page, GFP_KERNEL);
->  	char *p =3D buf;
->  	u64 typemask =3D 0;
-> @@ -437,7 +394,7 @@ static ssize_t gt_types_allowed_store(struct config_i=
-tem *item, const char *page
->=20=20
->  static ssize_t engines_allowed_show(struct config_item *item, char *page)
->  {
-> -	struct xe_config_device *dev =3D to_xe_config_device(item);
-> +	struct xe_config_device *dev =3D xe_configfs_to_device(item);
->  	char *p =3D page;
->=20=20
->  	for (size_t i =3D 0; i < ARRAY_SIZE(engine_info); i++) {
-> @@ -529,7 +486,7 @@ static int parse_engine(const char *s, const char *en=
-d_chars, u64 *mask,
->  static ssize_t engines_allowed_store(struct config_item *item, const cha=
-r *page,
->  				     size_t len)
->  {
-> -	struct xe_config_group_device *dev =3D to_xe_config_group_device(item);
-> +	struct xe_config_group_device *dev =3D xe_configfs_to_group_device(item=
-);
->  	ssize_t patternlen, p;
->  	u64 mask, val =3D 0;
->=20=20
-> @@ -552,14 +509,14 @@ static ssize_t engines_allowed_store(struct config_=
-item *item, const char *page,
->=20=20
->  static ssize_t enable_psmi_show(struct config_item *item, char *page)
->  {
-> -	struct xe_config_device *dev =3D to_xe_config_device(item);
-> +	struct xe_config_device *dev =3D xe_configfs_to_device(item);
->=20=20
->  	return sprintf(page, "%d\n", dev->enable_psmi);
->  }
->=20=20
->  static ssize_t enable_psmi_store(struct config_item *item, const char *p=
-age, size_t len)
->  {
-> -	struct xe_config_group_device *dev =3D to_xe_config_group_device(item);
-> +	struct xe_config_group_device *dev =3D xe_configfs_to_group_device(item=
-);
->  	bool val;
->  	int ret;
->=20=20
-> @@ -634,14 +591,14 @@ static ssize_t wa_bb_show(struct xe_config_group_de=
-vice *dev,
->=20=20
->  static ssize_t ctx_restore_mid_bb_show(struct config_item *item, char *p=
-age)
->  {
-> -	struct xe_config_group_device *dev =3D to_xe_config_group_device(item);
-> +	struct xe_config_group_device *dev =3D xe_configfs_to_group_device(item=
-);
->=20=20
->  	return wa_bb_show(dev, dev->config.ctx_restore_mid_bb, page, SZ_4K);
->  }
->=20=20
->  static ssize_t ctx_restore_post_bb_show(struct config_item *item, char *=
-page)
->  {
-> -	struct xe_config_group_device *dev =3D to_xe_config_group_device(item);
-> +	struct xe_config_group_device *dev =3D xe_configfs_to_group_device(item=
-);
->=20=20
->  	return wa_bb_show(dev, dev->config.ctx_restore_post_bb, page, SZ_4K);
->  }
-> @@ -798,7 +755,7 @@ static ssize_t wa_bb_store(struct wa_bb wa_bb[static =
-XE_ENGINE_CLASS_MAX],
->  static ssize_t ctx_restore_mid_bb_store(struct config_item *item,
->  					const char *data, size_t sz)
->  {
-> -	struct xe_config_group_device *dev =3D to_xe_config_group_device(item);
-> +	struct xe_config_group_device *dev =3D xe_configfs_to_group_device(item=
-);
->=20=20
->  	return wa_bb_store(dev->config.ctx_restore_mid_bb, dev, data, sz);
->  }
-> @@ -806,7 +763,7 @@ static ssize_t ctx_restore_mid_bb_store(struct config=
-_item *item,
->  static ssize_t ctx_restore_post_bb_store(struct config_item *item,
->  					 const char *data, size_t sz)
->  {
-> -	struct xe_config_group_device *dev =3D to_xe_config_group_device(item);
-> +	struct xe_config_group_device *dev =3D xe_configfs_to_group_device(item=
-);
->=20=20
->  	return wa_bb_store(dev->config.ctx_restore_post_bb, dev, data, sz);
->  }
-> @@ -830,7 +787,7 @@ static struct configfs_attribute *xe_config_device_at=
-trs[] =3D {
->=20=20
->  static void xe_config_device_release(struct config_item *item)
->  {
-> -	struct xe_config_group_device *dev =3D to_xe_config_group_device(item);
-> +	struct xe_config_group_device *dev =3D xe_configfs_to_group_device(item=
-);
->=20=20
->  	mutex_destroy(&dev->lock);
->=20=20
-> @@ -846,7 +803,7 @@ static struct configfs_item_operations xe_config_devi=
-ce_ops =3D {
->  static bool xe_config_device_is_visible(struct config_item *item,
->  					struct configfs_attribute *attr, int n)
->  {
-> -	struct xe_config_group_device *dev =3D to_xe_config_group_device(item);
-> +	struct xe_config_group_device *dev =3D xe_configfs_to_group_device(item=
-);
->=20=20
->  	if (attr =3D=3D &attr_enable_survivability_mode) {
->  		if (!dev->desc->is_dgfx || dev->desc->platform < XE_BATTLEMAGE)
-> @@ -869,7 +826,7 @@ static const struct config_item_type xe_config_device=
-_type =3D {
->=20=20
->  static ssize_t sriov_max_vfs_show(struct config_item *item, char *page)
->  {
-> -	struct xe_config_group_device *dev =3D to_xe_config_group_device(item->=
-ci_parent);
-> +	struct xe_config_group_device *dev =3D xe_configfs_to_group_device(item=
-->ci_parent);
->=20=20
->  	guard(mutex)(&dev->lock);
->=20=20
-> @@ -881,7 +838,7 @@ static ssize_t sriov_max_vfs_show(struct config_item =
-*item, char *page)
->=20=20
->  static ssize_t sriov_max_vfs_store(struct config_item *item, const char =
-*page, size_t len)
->  {
-> -	struct xe_config_group_device *dev =3D to_xe_config_group_device(item->=
-ci_parent);
-> +	struct xe_config_group_device *dev =3D xe_configfs_to_group_device(item=
-->ci_parent);
->  	unsigned int max_vfs;
->  	int ret;
->=20=20
-> @@ -903,7 +860,7 @@ static ssize_t sriov_max_vfs_store(struct config_item=
- *item, const char *page, s
->=20=20
->  static ssize_t sriov_admin_only_pf_show(struct config_item *item, char *=
-page)
->  {
-> -	struct xe_config_group_device *dev =3D to_xe_config_group_device(item->=
-ci_parent);
-> +	struct xe_config_group_device *dev =3D xe_configfs_to_group_device(item=
-->ci_parent);
->=20=20
->  	guard(mutex)(&dev->lock);
->=20=20
-> @@ -912,7 +869,7 @@ static ssize_t sriov_admin_only_pf_show(struct config=
-_item *item, char *page)
->=20=20
->  static ssize_t sriov_admin_only_pf_store(struct config_item *item, const=
- char *page, size_t len)
->  {
-> -	struct xe_config_group_device *dev =3D to_xe_config_group_device(item->=
-ci_parent);
-> +	struct xe_config_group_device *dev =3D xe_configfs_to_group_device(item=
-->ci_parent);
->  	bool admin_only_pf;
->  	int ret;
->=20=20
-> @@ -941,7 +898,7 @@ static struct configfs_attribute *xe_config_sriov_att=
-rs[] =3D {
->  static bool xe_config_sriov_is_visible(struct config_item *item,
->  				       struct configfs_attribute *attr, int n)
->  {
-> -	struct xe_config_group_device *dev =3D to_xe_config_group_device(item->=
-ci_parent);
-> +	struct xe_config_group_device *dev =3D xe_configfs_to_group_device(item=
-->ci_parent);
->=20=20
->  	if (attr =3D=3D &sriov_attr_max_vfs && dev->mode !=3D XE_SRIOV_MODE_PF)
->  		return false;
-> @@ -1084,7 +1041,7 @@ static struct xe_config_group_device *find_xe_confi=
-g_group_device(struct pci_dev
->  	if (!item)
->  		return NULL;
->=20=20
-> -	return to_xe_config_group_device(item);
-> +	return xe_configfs_to_group_device(item);
->  }
->=20=20
->  static void dump_custom_dev_config(struct pci_dev *pdev,
-> diff --git a/drivers/gpu/drm/xe/xe_configfs_types.h b/drivers/gpu/drm/xe/=
-xe_configfs_types.h
-> new file mode 100644
-> index 000000000000..935097aafa96
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_configfs_types.h
-> @@ -0,0 +1,59 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright =C2=A9 2026 Intel Corporation
-> + */
-> +#ifndef _XE_CONFIGFS_TYPES_H_
-> +#define _XE_CONFIGFS_TYPES_H_
-> +
-> +#include <linux/configfs.h>
-> +#include <linux/mutex.h>
-> +#include <linux/types.h>
-> +
-> +#include "xe_hw_engine_types.h"
-> +#include "xe_pci_types.h"
-> +#include "xe_sriov_types.h"
-> +
-> +struct config_item;
-> +
-> +/* Similar to struct xe_bb, but not tied to HW (yet) */
-> +struct wa_bb {
-> +	u32 *cs;
-> +	u32 len; /* in dwords */
-> +};
-> +
-> +struct xe_config_group_device {
-> +	struct config_group group;
-> +	struct config_group sriov;
-> +
-> +	struct xe_config_device {
-> +		struct wa_bb ctx_restore_mid_bb[XE_ENGINE_CLASS_MAX];
-> +		struct wa_bb ctx_restore_post_bb[XE_ENGINE_CLASS_MAX];
-> +		bool enable_psmi;
-> +		bool enable_survivability_mode;
-> +		u64 engines_allowed;
-> +		u64 gt_types_allowed;
-> +		struct {
-> +			bool admin_only_pf;
-> +			unsigned int max_vfs;
-> +		} sriov;
-> +	} config;
-> +
-> +	/* protects attributes */
-> +	struct mutex lock;
-> +	/* matching descriptor */
-> +	const struct xe_device_desc *desc;
-> +	/* tentative SR-IOV mode */
-> +	enum xe_sriov_mode mode;
-> +};
-> +
-> +static inline struct xe_config_group_device *xe_configfs_to_group_device=
-(struct config_item *item)
-> +{
-> +	return container_of(to_config_group(item), struct xe_config_group_devic=
-e, group);
-> +}
-> +
-> +static inline struct xe_config_device *xe_configfs_to_device(struct conf=
-ig_item *item)
-> +{
-> +	return &xe_configfs_to_group_device(item)->config;
-> +}
-> +
-> +#endif /* _XE_CONFIGFS_TYPES_H_ */
-
---=20
-Jani Nikula, Intel
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogQXVsZCwgTWF0dGhldyA8
+bWF0dGhldy5hdWxkQGludGVsLmNvbT4NCj4gU2VudDogMzAgQXByaWwgMjAyNiAxOToyMw0KPiBU
+bzogVXBhZGh5YXksIFRlamFzIDx0ZWphcy51cGFkaHlheUBpbnRlbC5jb20+OyBpbnRlbC0NCj4g
+eGVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IENjOiBCcm9zdCwgTWF0dGhldyA8bWF0dGhldy5i
+cm9zdEBpbnRlbC5jb20+Ow0KPiB0aG9tYXMuaGVsbHN0cm9tQGxpbnV4LmludGVsLmNvbTsgR2hp
+bWlyYXksIEhpbWFsIFByYXNhZA0KPiA8aGltYWwucHJhc2FkLmdoaW1pcmF5QGludGVsLmNvbT4N
+Cj4gU3ViamVjdDogUmU6IFtSRkMgUEFUQ0ggVjcgMTAvMTBdIGRybS94ZS9jcmk6IEFkZCBzeXNm
+cyBpbnRlcmZhY2UgZm9yIGJhZCBncHUNCj4gdnJhbSBwYWdlcw0KPiANCj4gT24gMTYvMDQvMjAy
+NiAwODo0OSwgVGVqYXMgVXBhZGh5YXkgd3JvdGU6DQo+ID4gU3RhcnRpbmcgQ1JJLCBJbmNsdWRl
+IGEgc3lzZnMgaW50ZXJmYWNlIGRlc2lnbmVkIHRvIGV4cG9zZSBpbmZvcm1hdGlvbg0KPiA+IGFi
+b3V0IGJhZCBWUkFNIHBhZ2Vz4oCUdGhvc2UgaWRlbnRpZmllZCBhcyBoYXZpbmcgaGFyZHdhcmUg
+ZmF1bHRzIChlLmcuLA0KPiA+IEVDQyBlcnJvcnMpLiBUaGlzIGludGVyZmFjZSBhbGxvd3MgdXNl
+cnNwYWNlIHRvb2xzIGFuZCBhZG1pbmlzdHJhdG9ycw0KPiA+IHRvIG1vbml0b3IgdGhlIGhlYWx0
+aCBvZiB0aGUgR1BVJ3MgbG9jYWwgbWVtb3J5IGFuZCB0cmFjayB0aGUgc3RhdHVzDQo+ID4gb2Yg
+cGFnZSByZXRpcmVtZW50LlRvIGdldCBkZXRhaWxzIG9uIGJhZCBncHUgdnJhbSBwYWdlcyBjYW4g
+YmUgZm91bmQNCj4gPiB1bmRlciAvc3lzL2J1cy9wY2kvZGV2aWNlcy9iZGYvdnJhbV9iYWRfcGFn
+ZXMuDQo+ID4NCj4gPiBXaGVyZSBUaGUgZm9ybWF0IGlzLCBwZm4gOiBncHUgcGFnZSBzaXplIDog
+ZmxhZ3MNCj4gDQo+IFdpdGggImdwdSBwYWdlIHNpemUiIHRoaXMgaXMgcmVhbGx5IGp1c3QgdGhl
+IG1pbiBibG9jayBzaXplPw0KPiBncHUtcGFnZS1zaXplIGlzIG5vcm1hbGx5IGludGVycHJldGVk
+IGFzIEdUVCBwYWdlIHNpemUsIHdoaWNoIGlzIGEgZGlmZmVyZW50DQo+IHRoaW5nLiBCdXQgaXMg
+dGhhdCBub3QgYWx3YXlzIDRLIGhlcmU/IFNpbmNlIHRoYXQgaXMgdGhlIGdyYW51bGFyaXR5IG9m
+IHRoZSBhZGRyDQo+IHJlc2VydmF0aW9uPyBJcyBpdCB1c2VmdWwgdG8gcHJpbnQgdGhhdD8gSXMg
+a25vd2luZyB0aGF0IHBmbiB4IGlzIG9mZmxpbmVkIG5vdA0KPiBlbm91Z2g/DQoNCkkgdGhpbmsg
+eW91IGFyZSByaWdodCwgaXRzIGFsd2F5cyA0Sy4gQnV0IEkgd2lsbCBjaGVjayB3aXRoIEFyYXZp
+bmQgYXMgZm9yIHdoYXQgcmVhc29uIGRlc2lnbiBkb2MgaXMgc2F5aW5nIGZvcm1hdCB0byBiZSAg
+InBmbiA6IGdwdSBwYWdlIHNpemUgOiBmbGFncyIuIEFkZGluZyBoaW0gaW4gY2MuDQoNCj4gDQo+
+IEFsc28gd2hhdCBpcyB0aGUgc3RvcnkgaWYgeW91IGhhdmUgbXVsdGlwbGUgVlJBTSBpbnN0YW5j
+ZXMgaGVyZT8gVGhlcmUgaXMgb25seQ0KPiBvbmUgdnJhbV9iYWRfcGFnZXMgZmlsZT8gV291bGQg
+dGhpcyB0cmVhdCBWUkFNIGFzIG9uZSBnaWFudCB1bmlmaWVkIHRoaW5nPw0KDQpUaGlzIGlzIHRh
+cmdldGVkIGZvciBDUkksIHRodXMgc2luZ2xlIFZSQU0gaXMgaW4gcmVmZXJlbmNlIHJpZ2h0IG5v
+dy4gV2UgY2FuIGV4dGVuZCBpbiBmdXR1cmUgaWYgbmVlZCBiZSBvciBtYXkgYmUgaXQgd2lsbCBz
+aW5nbGUgaHVnZSB0aGluZyBvbmx5IGluIGZ1dHVyZSBmb3IgbXVsdGlwbGUgdnJhbS4NCg0KVGVq
+YXMNCj4gDQo+ID4NCj4gPiBmbGFnczoNCj4gPiBSOiByZXNlcnZlZCwgdGhpcyBncHUgcGFnZSBp
+cyByZXNlcnZlZC4NCj4gPiBQOiBwZW5kaW5nIGZvciByZXNlcnZlLCB0aGlzIGdwdSBwYWdlIGlz
+IG1hcmtlZCBhcyBiYWQsIHdpbGwgYmUgcmVzZXJ2ZWQNCj4gPiAgICAgaW4gbmV4dCB3aW5kb3cg
+b2YgcGFnZV9yZXNlcnZlLg0KPiA+IEY6IHVuYWJsZSB0byByZXNlcnZlLiB0aGlzIGdwdSBwYWdl
+IGNhbuKAmXQgYmUgcmVzZXJ2ZWQgZHVlIHRvIHNvbWUgcmVhc29ucy4NCj4gPg0KPiA+IEZvciBl
+eGFtcGxlIGlmIHlvdSByZWFkIHVzaW5nIGNhdA0KPiA+IC9zeXMvYnVzL3BjaS9kZXZpY2VzL2Jk
+Zi92cmFtX2JhZF9wYWdlcywNCj4gPiBtYXhfcGFnZXMgOiAxMDAwMA0KPiA+IDB4MDAwMDAwMDAg
+OiAweDAwMDAxMDAwIDogUg0KPiA+IDB4MDAwMDEyMzQgOiAweDAwMDAxMDAwIDogUA0KPiA+DQo+
+ID4gdjM6DQo+ID4gLSBNb3ZlIEZXIGNvbW11bmljYXRpb24gaW4gUkFTIGNvZGUNCj4gPiB2MjoN
+Cj4gPiAtIEFkZCBtYXhfcGFnZXMgaW5mbyBhcyBwZXIgdXBkYXRlZCBkZXNpZ24gZG9jDQo+ID4g
+LSBSZWJhc2UNCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IFRlamFzIFVwYWRoeWF5IDx0ZWphcy51
+cGFkaHlheUBpbnRlbC5jb20+DQo+ID4gLS0tDQo+ID4gICBkcml2ZXJzL2dwdS9kcm0veGUveGVf
+ZGV2aWNlX3N5c2ZzLmMgICAgICAgfCAgNyArKw0KPiA+ICAgZHJpdmVycy9ncHUvZHJtL3hlL3hl
+X3R0bV92cmFtX21nci5jICAgICAgIHwgNzkNCj4gKysrKysrKysrKysrKysrKysrKysrKw0KPiA+
+ICAgZHJpdmVycy9ncHUvZHJtL3hlL3hlX3R0bV92cmFtX21nci5oICAgICAgIHwgIDEgKw0KPiA+
+ICAgZHJpdmVycy9ncHUvZHJtL3hlL3hlX3R0bV92cmFtX21ncl90eXBlcy5oIHwgIDIgKw0KPiA+
+ICAgNCBmaWxlcyBjaGFuZ2VkLCA4OSBpbnNlcnRpb25zKCspDQo+ID4NCj4gPiBkaWZmIC0tZ2l0
+IGEvZHJpdmVycy9ncHUvZHJtL3hlL3hlX2RldmljZV9zeXNmcy5jDQo+ID4gYi9kcml2ZXJzL2dw
+dS9kcm0veGUveGVfZGV2aWNlX3N5c2ZzLmMNCj4gPiBpbmRleCBhNzNlMGU5NTdjYjAuLjQ3YzVi
+ZTQxODBmZSAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfZGV2aWNlX3N5
+c2ZzLmMNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfZGV2aWNlX3N5c2ZzLmMNCj4g
+PiBAQCAtOCwxMiArOCwxNCBAQA0KPiA+ICAgI2luY2x1ZGUgPGxpbnV4L3BjaS5oPg0KPiA+ICAg
+I2luY2x1ZGUgPGxpbnV4L3N5c2ZzLmg+DQo+ID4NCj4gPiArI2luY2x1ZGUgInhlX2NvbmZpZ2Zz
+LmgiDQo+ID4gICAjaW5jbHVkZSAieGVfZGV2aWNlLmgiDQo+ID4gICAjaW5jbHVkZSAieGVfZGV2
+aWNlX3N5c2ZzLmgiDQo+ID4gICAjaW5jbHVkZSAieGVfbW1pby5oIg0KPiA+ICAgI2luY2x1ZGUg
+InhlX3Bjb2RlX2FwaS5oIg0KPiA+ICAgI2luY2x1ZGUgInhlX3Bjb2RlLmgiDQo+ID4gICAjaW5j
+bHVkZSAieGVfcG0uaCINCj4gPiArI2luY2x1ZGUgInhlX3R0bV92cmFtX21nci5oIg0KPiA+DQo+
+ID4gICAvKioNCj4gPiAgICAqIERPQzogWGUgZGV2aWNlIHN5c2ZzDQo+ID4gQEAgLTI2Nyw2ICsy
+NjksNyBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGF0dHJpYnV0ZV9ncm91cA0KPiBhdXRvX2xpbmtf
+ZG93bmdyYWRlX2F0dHJfZ3JvdXAgPSB7DQo+ID4gICBpbnQgeGVfZGV2aWNlX3N5c2ZzX2luaXQo
+c3RydWN0IHhlX2RldmljZSAqeGUpDQo+ID4gICB7DQo+ID4gICAJc3RydWN0IGRldmljZSAqZGV2
+ID0geGUtPmRybS5kZXY7DQo+ID4gKwlib29sIHBvbGljeTsNCj4gPiAgIAlpbnQgcmV0Ow0KPiA+
+DQo+ID4gICAJaWYgKHhlLT5kM2NvbGQuY2FwYWJsZSkgew0KPiA+IEBAIC0yODUsNSArMjg4LDkg
+QEAgaW50IHhlX2RldmljZV9zeXNmc19pbml0KHN0cnVjdCB4ZV9kZXZpY2UgKnhlKQ0KPiA+ICAg
+CQkJcmV0dXJuIHJldDsNCj4gPiAgIAl9DQo+ID4NCj4gPiArCXBvbGljeSA9IHhlX2NvbmZpZ2Zz
+X2dldF9iYWRfcGFnZV9yZXNlcnZhdGlvbih0b19wY2lfZGV2KGRldikpOw0KPiA+ICsJaWYgKHhl
+LT5pbmZvLnBsYXRmb3JtID09IFhFX0NSRVNDRU5USVNMQU5EICYmIHBvbGljeSkNCj4gPiArCQl4
+ZV90dG1fdnJhbV9zeXNmc19pbml0KHhlKTsNCj4gPiArDQo+ID4gICAJcmV0dXJuIDA7DQo+ID4g
+ICB9DQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV90dG1fdnJhbV9tZ3Iu
+Yw0KPiA+IGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX3R0bV92cmFtX21nci5jDQo+ID4gaW5kZXgg
+N2Y1OGU3ZThjM2UxLi42MTFkOTQ1YzllYjQgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9ncHUv
+ZHJtL3hlL3hlX3R0bV92cmFtX21nci5jDQo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL3hlL3hl
+X3R0bV92cmFtX21nci5jDQo+ID4gQEAgLTc2MCwzICs3NjAsODIgQEAgaW50IHhlX3R0bV92cmFt
+X2hhbmRsZV9hZGRyX2ZhdWx0KHN0cnVjdA0KPiB4ZV9kZXZpY2UgKnhlLCB1bnNpZ25lZCBsb25n
+IGFkZHIpDQo+ID4gICAJcmV0dXJuIHJldDsNCj4gPiAgIH0NCj4gPiAgIEVYUE9SVF9TWU1CT0wo
+eGVfdHRtX3ZyYW1faGFuZGxlX2FkZHJfZmF1bHQpOw0KPiA+ICsNCj4gPiArc3RhdGljIHZvaWQg
+eGVfdHRtX3ZyYW1fZHVtcF9iYWRfcGFnZXNfaW5mbyhjaGFyICpidWYsIHN0cnVjdA0KPiA+ICt4
+ZV90dG1fdnJhbV9tZ3IgKm1ncikgew0KPiA+ICsJY29uc3QgdW5zaWduZWQgaW50IGVsZW1lbnRf
+c2l6ZSA9IHNpemVvZigiMHhhYmNkYWJjZCA6IDB4MTIzNDU2NzggOg0KPiBSXG4iKSAtIDE7DQo+
+ID4gKwljb25zdCB1bnNpZ25lZCBpbnQgbWF4cGFnZV9zaXplID0gc2l6ZW9mKCJtYXhfcGFnZXM6
+IDEwMDAwXG4iKSAtIDE7DQo+ID4gKwlzdHJ1Y3QgeGVfdHRtX3ZyYW1fb2ZmbGluZV9yZXNvdXJj
+ZSAqcG9zLCAqbjsNCj4gPiArCXN0cnVjdCBncHVfYnVkZHlfYmxvY2sgKmJsb2NrOw0KPiA+ICsJ
+c3NpemVfdCBzID0gMDsNCj4gPiArDQo+ID4gKwltdXRleF9sb2NrKCZtZ3ItPmxvY2spOw0KPiA+
+ICsJcyArPSBzY25wcmludGYoJmJ1ZltzXSwgbWF4cGFnZV9zaXplICsgMSwgIm1heF9wYWdlczog
+JWRcbiIsIG1nci0NCj4gPm1heF9wYWdlcyk7DQo+ID4gKwlsaXN0X2Zvcl9lYWNoX2VudHJ5X3Nh
+ZmUocG9zLCBuLCAmbWdyLT5vZmZsaW5lZF9wYWdlcywgb2ZmbGluZWRfbGluaykNCj4gew0KPiA+
+ICsJCWJsb2NrID0gbGlzdF9maXJzdF9lbnRyeSgmcG9zLT5ibG9ja3MsDQo+ID4gKwkJCQkJIHN0
+cnVjdCBncHVfYnVkZHlfYmxvY2ssDQo+ID4gKwkJCQkJIGxpbmspOw0KPiA+ICsJCXMgKz0gc2Nu
+cHJpbnRmKCZidWZbc10sIGVsZW1lbnRfc2l6ZSArIDEsDQo+ID4gKwkJCSAgICAgICAiMHglMDhs
+bHggOiAweCUwOGxseCA6ICUxc1xuIiwNCj4gPiArCQkJICAgICAgIGdwdV9idWRkeV9ibG9ja19v
+ZmZzZXQoYmxvY2spID4+IFBBR0VfU0hJRlQsDQo+ID4gKwkJCSAgICAgICBncHVfYnVkZHlfYmxv
+Y2tfc2l6ZSgmbWdyLT5tbSwgYmxvY2spLA0KPiA+ICsJCQkgICAgICAgIlIiKTsNCj4gPiArCX0N
+Cj4gPiArCWxpc3RfZm9yX2VhY2hfZW50cnlfc2FmZShwb3MsIG4sICZtZ3ItPnF1ZXVlZF9wYWdl
+cywgcXVldWVkX2xpbmspDQo+IHsNCj4gPiArCQlibG9jayA9IGxpc3RfZmlyc3RfZW50cnkoJnBv
+cy0+YmxvY2tzLA0KPiA+ICsJCQkJCSBzdHJ1Y3QgZ3B1X2J1ZGR5X2Jsb2NrLA0KPiA+ICsJCQkJ
+CSBsaW5rKTsNCj4gPiArCQlzICs9IHNjbnByaW50ZigmYnVmW3NdLCBlbGVtZW50X3NpemUgKyAx
+LA0KPiA+ICsJCQkgICAgICAgIjB4JTA4bGx4IDogMHglMDhsbHggOiAlMXNcbiIsDQo+ID4gKwkJ
+CSAgICAgICBncHVfYnVkZHlfYmxvY2tfb2Zmc2V0KGJsb2NrKSA+PiBQQUdFX1NISUZULA0KPiA+
+ICsJCQkgICAgICAgZ3B1X2J1ZGR5X2Jsb2NrX3NpemUoJm1nci0+bW0sIGJsb2NrKSwNCj4gPiAr
+CQkJICAgICAgIHBvcy0+c3RhdHVzID8gIlAiIDogIkYiKTsNCj4gPiArCX0NCj4gPiArCW11dGV4
+X3VubG9jaygmbWdyLT5sb2NrKTsNCj4gPiArfQ0KPiA+ICsNCj4gPiArc3RhdGljIHNzaXplX3Qg
+dnJhbV9iYWRfcGFnZXNfc2hvdyhzdHJ1Y3QgZGV2aWNlICpkZXYsIHN0cnVjdA0KPiA+ICtkZXZp
+Y2VfYXR0cmlidXRlICphdHRyLCBjaGFyICpidWYpIHsNCj4gPiArCXN0cnVjdCBwY2lfZGV2ICpw
+ZGV2ID0gdG9fcGNpX2RldihkZXYpOw0KPiA+ICsJc3RydWN0IHhlX2RldmljZSAqeGUgPSBwZGV2
+X3RvX3hlX2RldmljZShwZGV2KTsNCj4gPiArCXN0cnVjdCB0dG1fcmVzb3VyY2VfbWFuYWdlciAq
+bWFuOw0KPiA+ICsJc3RydWN0IHhlX3R0bV92cmFtX21nciAqbWdyOw0KPiA+ICsNCj4gPiArCW1h
+biA9IHR0bV9tYW5hZ2VyX3R5cGUoJnhlLT50dG0sIFhFX1BMX1ZSQU0wKTsNCj4gPiArCWlmICht
+YW4pIHsNCj4gPiArCQltZ3IgPSB0b194ZV90dG1fdnJhbV9tZ3IobWFuKTsNCj4gPiArCQl4ZV90
+dG1fdnJhbV9kdW1wX2JhZF9wYWdlc19pbmZvKGJ1ZiwgbWdyKTsNCj4gPiArCX0NCj4gPiArDQo+
+ID4gKwlyZXR1cm4gc3lzZnNfZW1pdChidWYsICIlc1xuIiwgYnVmKTsgfSBzdGF0aWMNCj4gPiAr
+REVWSUNFX0FUVFJfUk8odnJhbV9iYWRfcGFnZXMpOw0KPiA+ICsNCj4gPiArc3RhdGljIHZvaWQg
+eGVfdHRtX3ZyYW1fc3lzZnNfZmluaSh2b2lkICphcmcpIHsNCj4gPiArCXN0cnVjdCB4ZV9kZXZp
+Y2UgKnhlID0gYXJnOw0KPiA+ICsNCj4gPiArCWRldmljZV9yZW1vdmVfZmlsZSh4ZS0+ZHJtLmRl
+diwgJmRldl9hdHRyX3ZyYW1fYmFkX3BhZ2VzKTsgfQ0KPiA+ICsNCj4gPiArLyoqDQo+ID4gKyAq
+IHhlX3R0bV92cmFtX3N5c2ZzX2luaXQgLSBJbml0aWFsaXplIHZyYW0gc3lzZnMgY29tcG9uZW50
+DQo+ID4gKyAqIEB0aWxlOiBYZSBUaWxlIG9iamVjdA0KPiA+ICsgKg0KPiA+ICsgKiBJdCBuZWVk
+cyB0byBiZSBpbml0aWFsaXplZCBhZnRlciB0aGUgbWFpbiB0aWxlIGNvbXBvbmVudCBpcyByZWFk
+eQ0KPiA+ICsgKg0KPiA+ICsgKiBSZXR1cm5zOiAwIG9uIHN1Y2Nlc3MsIG5lZ2F0aXZlIGVycm9y
+IGNvZGUgb24gZXJyb3IuDQo+ID4gKyAqLw0KPiA+ICtpbnQgeGVfdHRtX3ZyYW1fc3lzZnNfaW5p
+dChzdHJ1Y3QgeGVfZGV2aWNlICp4ZSkgew0KPiA+ICsJaW50IGVycjsNCj4gPiArDQo+ID4gKwll
+cnIgPSBkZXZpY2VfY3JlYXRlX2ZpbGUoeGUtPmRybS5kZXYsICZkZXZfYXR0cl92cmFtX2JhZF9w
+YWdlcyk7DQo+ID4gKwlpZiAoZXJyKSB7DQo+ID4gKwkJZGV2X2Vycih4ZS0+ZHJtLmRldiwgIkZh
+aWxlZCB0byBjcmVhdGUgdnJhbV9iYWRfcGFnZXMgc3lzZnMNCj4gZmlsZTogJWRcbiIsIGVycik7
+DQo+ID4gKwkJcmV0dXJuIDA7DQo+ID4gKwl9DQo+ID4gKw0KPiA+ICsJcmV0dXJuIGRldm1fYWRk
+X2FjdGlvbl9vcl9yZXNldCh4ZS0+ZHJtLmRldiwNCj4geGVfdHRtX3ZyYW1fc3lzZnNfZmluaSwN
+Cj4gPiAreGUpOyB9IEVYUE9SVF9TWU1CT0woeGVfdHRtX3ZyYW1fc3lzZnNfaW5pdCk7DQo+ID4g
+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV90dG1fdnJhbV9tZ3IuaA0KPiA+IGIv
+ZHJpdmVycy9ncHUvZHJtL3hlL3hlX3R0bV92cmFtX21nci5oDQo+ID4gaW5kZXggOGVmMDZkOWQ0
+NGY3Li5jMzNlMWE4ZDkyMTcgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3hlL3hl
+X3R0bV92cmFtX21nci5oDQo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX3R0bV92cmFt
+X21nci5oDQo+ID4gQEAgLTMyLDYgKzMyLDcgQEAgdm9pZCB4ZV90dG1fdnJhbV9nZXRfdXNlZChz
+dHJ1Y3QNCj4gdHRtX3Jlc291cmNlX21hbmFnZXIgKm1hbiwNCj4gPiAgIAkJCSAgdTY0ICp1c2Vk
+LCB1NjQgKnVzZWRfdmlzaWJsZSk7DQo+ID4NCj4gPiAgIGludCB4ZV90dG1fdnJhbV9oYW5kbGVf
+YWRkcl9mYXVsdChzdHJ1Y3QgeGVfZGV2aWNlICp4ZSwgdW5zaWduZWQNCj4gPiBsb25nIGFkZHIp
+Ow0KPiA+ICtpbnQgeGVfdHRtX3ZyYW1fc3lzZnNfaW5pdChzdHJ1Y3QgeGVfZGV2aWNlICp4ZSk7
+DQo+ID4gICBzdGF0aWMgaW5saW5lIHN0cnVjdCB4ZV90dG1fdnJhbV9tZ3JfcmVzb3VyY2UgKg0K
+PiA+ICAgdG9feGVfdHRtX3ZyYW1fbWdyX3Jlc291cmNlKHN0cnVjdCB0dG1fcmVzb3VyY2UgKnJl
+cykNCj4gPiAgIHsNCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3hlL3hlX3R0bV92
+cmFtX21ncl90eXBlcy5oDQo+ID4gYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfdHRtX3ZyYW1fbWdy
+X3R5cGVzLmgNCj4gPiBpbmRleCAwN2VkODhiNDdlMDQuLmIyMzc5NjA2NmExYSAxMDA2NDQNCj4g
+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfdHRtX3ZyYW1fbWdyX3R5cGVzLmgNCj4gPiAr
+KysgYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfdHRtX3ZyYW1fbWdyX3R5cGVzLmgNCj4gPiBAQCAt
+MzksNiArMzksOCBAQCBzdHJ1Y3QgeGVfdHRtX3ZyYW1fbWdyIHsNCj4gPiAgIAl1MzIgbWVtX3R5
+cGU7DQo+ID4gICAJLyoqIEBvZmZsaW5lX21vZGU6IGRlYnVnZnMgaG9vayBmb3Igc2V0dGluZyBw
+YWdlIG9mZmxpbmUgbW9kZSAqLw0KPiA+ICAgCXU2NCBvZmZsaW5lX21vZGU7DQo+ID4gKwkvKiog
+QG1heF9wYWdlczogbWF4IHBhZ2VzIHRoYXQgY2FuIGJlIGluIG9mZmxpbmUgcXVldWUgcmV0cmll
+dmVkDQo+IGZyb20gRlcgKi8NCj4gPiArCXUxNiBtYXhfcGFnZXM7DQo+ID4gICB9Ow0KPiA+DQo+
+ID4gICAvKioNCg0K
