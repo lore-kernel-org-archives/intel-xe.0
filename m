@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DDD5FF885A
-	for <intel-xe@archiver.kernel.org>; Mon,  4 May 2026 11:00:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 021E5CD342C
+	for <intel-xe@archiver.kernel.org>; Mon,  4 May 2026 11:05:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F076810E21D;
-	Mon,  4 May 2026 11:00:08 +0000 (UTC)
-Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B70AF10E21D;
- Mon,  4 May 2026 11:00:07 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8216559229724423969=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id B25DD10E641;
+	Mon,  4 May 2026 11:05:57 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OnDumLrf";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85B6510E641
+ for <intel-xe@lists.freedesktop.org>; Mon,  4 May 2026 11:05:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1777892756; x=1809428756;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=WNKaPz1RRrAxhpPGcGOuV5IkMm7v3IQ8V2tY30RPUMU=;
+ b=OnDumLrfbGtBIyRNHxCG6yth1S9DXoT17+XqzKs2XUmQP44v18z3vzB0
+ MvAuVpTVx/R3bR34c/gXSBX2qaIsddXg0TH4I+Z5gYTtFLwlA/crQf2sW
+ nTwGfgu2I3GvZI1xYZCqRJQAzR5kjCrjR7QHrL+Jlq/r/QS949YslqRiS
+ zCVrTNiM/B1lGCWZpOJRsCK5udNXHjXVopbpiYBOUdZWhUx1MxMJdL1Q9
+ 5t2E9lGX35WFaRve44Q66vjezKByLuNTtLyg+LQC+/l5FRGxukDmPI8+a
+ IbAJoCMCYBwCIZmVG3jo62k+FDrSJIVe7UWk0w3YaLe7wF9vZJ0HdOwjI Q==;
+X-CSE-ConnectionGUID: T3wnlGYpTzCZRiRp8qeqVw==
+X-CSE-MsgGUID: mmdfXPwgSquTkC+VzScLvQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11775"; a="96173565"
+X-IronPort-AV: E=Sophos;i="6.23,215,1770624000"; d="scan'208";a="96173565"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2026 04:05:56 -0700
+X-CSE-ConnectionGUID: Z4y6YaCVSgueIhlAjzdvRw==
+X-CSE-MsgGUID: 6QpKvhSuRWq6YDZNsyd88w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,215,1770624000"; d="scan'208";a="234625920"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by orviesa010.jf.intel.com with ESMTP; 04 May 2026 04:05:53 -0700
+From: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+To: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
+ matthew.brost@intel.com
+Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com, riana.tauro@intel.com,
+ karthik.poosa@intel.com, sk.anirban@intel.com, raag.jadav@intel.com,
+ Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Subject: [PATCH v5] drm/xe/xe_survivability: Simplify runtime survivability
+ error handling
+Date: Mon,  4 May 2026 16:33:01 +0530
+Message-ID: <20260504110300.1467303-2-mallesh.koujalagi@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Do_not_include_LRC_indirect?=
- =?utf-8?q?_ring_state_size_in_engine_state_size_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 04 May 2026 11:00:07 -0000
-Message-ID: <177789240773.33916.13282316002404744345@5ab824fced77>
-X-Patchwork-Hint: ignore
-References: <20260504094924.3760713-3-satyanarayana.k.v.p@intel.com>
-In-Reply-To: <20260504094924.3760713-3-satyanarayana.k.v.p@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,61 +64,113 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8216559229724423969==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+xe_survivability_mode_runtime_enable() returns an int, but its caller
+csc_hw_error_work() ignores the return value and cannot take any
+meaningful recovery action on failure. The function logs errors via
+dev_err() and proceeds to declare the device wedged regardless of
+sysfs creation failure, making the return value redundant.
 
-== Series Details ==
+Change the return type to void and remove the unnecessary
+error handling in the caller.
 
-Series: Do not include LRC indirect ring state size in engine state size (rev2)
-URL   : https://patchwork.freedesktop.org/series/165754/
-State : failure
+v2:
+- Return is not require after the sysfs creation fail. (Rodrigo/Riana)
+- Change int to void return type. (Rodrigo)
+- Remove extra message from csc_hw_error_work().
 
-== Summary ==
+v3:
+- Remove ret variable. (Raag)
 
-ERROR: The runconfig 'xe-4971-cc244a15b8011c1c2db8b356322598bfd632983c_BAT' does not exist in the database
+v4:
+- Drop ret variable from other part of code.
 
-== Logs ==
+v5:
+- Reframe as refactoring instead of bug fix. (Raag)
+- Remove Fixes tag and update subject line.
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165754v2/index.html
+Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_hw_error.c           |  5 +----
+ drivers/gpu/drm/xe/xe_survivability_mode.c | 14 ++++----------
+ drivers/gpu/drm/xe/xe_survivability_mode.h |  2 +-
+ 3 files changed, 6 insertions(+), 15 deletions(-)
 
---===============8216559229724423969==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
+index 2a31b430570e..64d2260e761b 100644
+--- a/drivers/gpu/drm/xe/xe_hw_error.c
++++ b/drivers/gpu/drm/xe/xe_hw_error.c
+@@ -169,11 +169,8 @@ static void csc_hw_error_work(struct work_struct *work)
+ {
+ 	struct xe_tile *tile = container_of(work, typeof(*tile), csc_hw_error_work);
+ 	struct xe_device *xe = tile_to_xe(tile);
+-	int ret;
+ 
+-	ret = xe_survivability_mode_runtime_enable(xe);
+-	if (ret)
+-		drm_err(&xe->drm, "Failed to enable runtime survivability mode\n");
++	xe_survivability_mode_runtime_enable(xe);
+ }
+ 
+ static void csc_hw_error_handler(struct xe_tile *tile, const enum hardware_error hw_err)
+diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
+index db64cac39c94..427afd144f3a 100644
+--- a/drivers/gpu/drm/xe/xe_survivability_mode.c
++++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
+@@ -396,25 +396,21 @@ bool xe_survivability_mode_is_requested(struct xe_device *xe)
+  * Runtime survivability mode is enabled when certain errors cause the device to be
+  * in non-recoverable state. The device is declared wedged with the appropriate
+  * recovery method and survivability mode sysfs exposed to userspace
+- *
+- * Return: 0 if runtime survivability mode is enabled, negative error code otherwise.
+  */
+-int xe_survivability_mode_runtime_enable(struct xe_device *xe)
++void xe_survivability_mode_runtime_enable(struct xe_device *xe)
+ {
+ 	struct xe_survivability *survivability = &xe->survivability;
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+-	int ret;
+ 
+ 	if (!IS_DGFX(xe) || IS_SRIOV_VF(xe) || xe->info.platform < XE_BATTLEMAGE) {
+ 		dev_err(&pdev->dev, "Runtime Survivability Mode not supported\n");
+-		return -EINVAL;
++		return;
+ 	}
+ 
+ 	populate_survivability_info(xe);
+ 
+-	ret = create_survivability_sysfs(pdev);
+-	if (ret)
+-		dev_err(&pdev->dev, "Failed to create survivability mode sysfs\n");
++	if (create_survivability_sysfs(pdev))
++		dev_err(&pdev->dev, "Failed to create survivability sysfs\n");
+ 
+ 	survivability->type = XE_SURVIVABILITY_TYPE_RUNTIME;
+ 	dev_err(&pdev->dev, "Runtime Survivability mode enabled\n");
+@@ -422,8 +418,6 @@ int xe_survivability_mode_runtime_enable(struct xe_device *xe)
+ 	xe_device_set_wedged_method(xe, DRM_WEDGE_RECOVERY_VENDOR);
+ 	xe_device_declare_wedged(xe);
+ 	dev_err(&pdev->dev, "Firmware flash required, Please refer to the userspace documentation for more details!\n");
+-
+-	return 0;
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.h b/drivers/gpu/drm/xe/xe_survivability_mode.h
+index 1cc94226aa82..cd040e4d18bb 100644
+--- a/drivers/gpu/drm/xe/xe_survivability_mode.h
++++ b/drivers/gpu/drm/xe/xe_survivability_mode.h
+@@ -11,7 +11,7 @@
+ struct xe_device;
+ 
+ int xe_survivability_mode_boot_enable(struct xe_device *xe);
+-int xe_survivability_mode_runtime_enable(struct xe_device *xe);
++void xe_survivability_mode_runtime_enable(struct xe_device *xe);
+ bool xe_survivability_mode_is_boot_enabled(struct xe_device *xe);
+ bool xe_survivability_mode_is_requested(struct xe_device *xe);
+ 
+-- 
+2.34.1
 
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Do not include LRC indirect ring state size in engine state size (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165754/">https://patchwork.freedesktop.org/series/165754/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165754v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165754v2/index.html</a></td></tr>
-
-</table>
-
-
-    <p>ERROR: The runconfig 'xe-4971-cc244a15b8011c1c2db8b356322598bfd632983c_BAT' does not exist in the database</p>
-
-</body>
-</html>
-
---===============8216559229724423969==--
