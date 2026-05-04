@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33114CD3423
-	for <intel-xe@archiver.kernel.org>; Mon,  4 May 2026 06:23:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02760FF885A
+	for <intel-xe@archiver.kernel.org>; Mon,  4 May 2026 06:23:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB5B710E382;
-	Mon,  4 May 2026 06:23:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC56710E383;
+	Mon,  4 May 2026 06:23:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J16EJYOV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jQfh0pRm";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 809C610E382
- for <intel-xe@lists.freedesktop.org>; Mon,  4 May 2026 06:23:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 392B010E383
+ for <intel-xe@lists.freedesktop.org>; Mon,  4 May 2026 06:23:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777875805; x=1809411805;
+ t=1777875809; x=1809411809;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=83zwkRKfWIxtVMAzQbbJDeayCKRubykuK4RSsUz4B4Q=;
- b=J16EJYOVxNvLnyh6w3ZyNXpwQ9kYan0V3OmssFp0GmAWJT/4s4zicAUW
- uR5ZNLFm6PqU0EH3D0f8go2aoz/EAoXlgoTfdW7dWLryH29E8LuBO1u0f
- oRz5eeygKlJ6zBYL9F4gywC53Nhf7nR+hV0x1RXsnBXD/4vUIbXizicjP
- 6G2r8HL27mX7DCKiXptneHqW47oak3f+qmLLEaKwxJfopYksXpI+AGF0l
- RJd7oYsbwW0Q4T6JgzX3cur3JElgd/Lno/57mJIjZjlDWHqFLuQD51PoJ
- yuAEXvmMuit90lajxZ2VrJ0Bft4UHrm/vGvz/xFLk4bO8OeXRRwdgLS1u w==;
-X-CSE-ConnectionGUID: QfRylJAvQVygtUwjvcfdQg==
-X-CSE-MsgGUID: NHbhBlfwQvSyfwBYbrbdoQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11775"; a="78592339"
-X-IronPort-AV: E=Sophos;i="6.23,215,1770624000"; d="scan'208";a="78592339"
+ bh=PxvXSnDiU1t7Gvg5c27EqvWIq+UKUs5Dw3S74oq3rq4=;
+ b=jQfh0pRm5FkSJaskJg8MU0Rc8OvBde4OzCsjduT8Wq2wbhUDY0ckh38l
+ iD021n9MaYSASR9akwTHSkqiGgNBA+O2ZAYQE3j11Mj51XNK7YfHFVZ6u
+ 4ZhBe/0WYoGl07MK/d/WliauJqck54AKor8qS6SGFoyIyj9mvYCWsce5Y
+ yzaELIxyCFuHIGU5W9JECO180ybQ53B9Gn6GrwNFaH6lEMWiYOWYY3Y74
+ vDZP/Hw0wTvT/Ppp2jV0iUtNikAGWQVSHYtB76Y5Tq2/dpVJrUulCezyw
+ 8CBrvFHcVW2NnjHS3dxYsTpgrCWZWsZe6kHrTqkbQJRoQs67f16AjNFEl g==;
+X-CSE-ConnectionGUID: 3MQG7VSnTzWkkJRl4g9Aiw==
+X-CSE-MsgGUID: fXVua8+jRxWvmApX9fMQtQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11775"; a="78592341"
+X-IronPort-AV: E=Sophos;i="6.23,215,1770624000"; d="scan'208";a="78592341"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2026 23:23:25 -0700
-X-CSE-ConnectionGUID: qRQIDaloT9mq2MpMkCVIJA==
-X-CSE-MsgGUID: EK5U14WdScSGAK0pkhw2LQ==
+ 03 May 2026 23:23:29 -0700
+X-CSE-ConnectionGUID: sy8lpP9qQY+rd2xdySQReg==
+X-CSE-MsgGUID: wM75y5hzToix5hw7+/dV7Q==
 X-ExtLoop1: 1
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2026 23:23:22 -0700
+ 03 May 2026 23:23:26 -0700
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  aravind.iddamsetty@linux.intel.com, badal.nilawar@intel.com,
  raag.jadav@intel.com, ravi.kishore.koppuravuri@intel.com,
- mallesh.koujalagi@intel.com, soham.purkait@intel.com,
- Anoop Vijay <anoop.c.vijay@intel.com>,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: [PATCH v5 5/6] drm/xe/xe_ras: Move xe drm_ras registration
-Date: Mon,  4 May 2026 12:26:20 +0530
-Message-ID: <20260504065614.3832331-13-riana.tauro@intel.com>
+ mallesh.koujalagi@intel.com, soham.purkait@intel.com
+Subject: [PATCH v5 6/6] drm/xe/xe_ras: Control xe drm_ras registration with a
+ flag
+Date: Mon,  4 May 2026 12:26:21 +0530
+Message-ID: <20260504065614.3832331-14-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20260504065614.3832331-8-riana.tauro@intel.com>
 References: <20260504065614.3832331-8-riana.tauro@intel.com>
@@ -70,156 +69,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move xe drm_ras registration to RAS initialization flow and keep
-hardware error initialization for processing errors reported
-via irq.
+Add a flag to control xe drm_ras registration.
+Enable this flag for PVC and CRI to support exposing RAS error counters via netlink.
 
-Also reorder soc remapper and system controller initialization to
-early probe as ras init is dependent on both.
-
-Cc: Anoop Vijay <anoop.c.vijay@intel.com>
-Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c   | 19 +++++++++++--------
- drivers/gpu/drm/xe/xe_hw_error.c | 13 -------------
- drivers/gpu/drm/xe/xe_ras.c      | 20 ++++++++++++++++++++
- drivers/gpu/drm/xe/xe_ras.h      |  1 +
- 4 files changed, 32 insertions(+), 21 deletions(-)
+v2: rename flag to drm_ras
+    move drm_ras registration to ras_init (Raag)
+---
+ drivers/gpu/drm/xe/xe_device_types.h | 2 ++
+ drivers/gpu/drm/xe/xe_pci.c          | 3 +++
+ drivers/gpu/drm/xe/xe_pci_types.h    | 1 +
+ drivers/gpu/drm/xe/xe_ras.c          | 2 +-
+ 4 files changed, 7 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 4b45b617a039..041af7ffc8bb 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -62,6 +62,7 @@
- #include "xe_psmi.h"
- #include "xe_pxp.h"
- #include "xe_query.h"
-+#include "xe_ras.h"
- #include "xe_shrinker.h"
- #include "xe_soc_remapper.h"
- #include "xe_survivability_mode.h"
-@@ -962,6 +963,16 @@ int xe_device_probe(struct xe_device *xe)
- 	if (err)
- 		return err;
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 89437de3001a..4ba3dffddaf3 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -155,6 +155,8 @@ struct xe_device {
+ 		u8 has_cached_pt:1;
+ 		/** @info.has_device_atomics_on_smem: Supports device atomics on SMEM */
+ 		u8 has_device_atomics_on_smem:1;
++		/** @info.has_drm_ras: Device supports drm_ras (Reliability, Availability, Serviceability) */
++		u8 has_drm_ras:1;
+ 		/** @info.has_fan_control: Device supports fan control */
+ 		u8 has_fan_control:1;
+ 		/** @info.has_flat_ccs: Whether flat CCS metadata is used */
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index d55e5af4f4b7..739cebef1200 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -355,6 +355,7 @@ static const __maybe_unused struct xe_device_desc pvc_desc = {
+ 	PLATFORM(PVC),
+ 	.dma_mask_size = 52,
+ 	.has_display = false,
++	.has_drm_ras = true,
+ 	.has_gsc_nvm = 1,
+ 	.has_heci_gscfi = 1,
+ 	.max_gt_per_tile = 1,
+@@ -456,6 +457,7 @@ static const struct xe_device_desc cri_desc = {
+ 	PLATFORM(CRESCENTISLAND),
+ 	.dma_mask_size = 52,
+ 	.has_display = false,
++	.has_drm_ras = true,
+ 	.has_flat_ccs = false,
+ 	.has_gsc_nvm = 1,
+ 	.has_i2c = true,
+@@ -747,6 +749,7 @@ static int xe_info_init_early(struct xe_device *xe,
  
-+	err = xe_soc_remapper_init(xe);
-+	if (err)
-+		return err;
-+
-+	err = xe_sysctrl_init(xe);
-+	if (err)
-+		return err;
-+
-+	xe_ras_init(xe);
-+
- 	/*
- 	 * Now that GT is initialized (TTM in particular),
- 	 * we can try to init display, and inherit the initial fb.
-@@ -1002,10 +1013,6 @@ int xe_device_probe(struct xe_device *xe)
+ 	xe->info.is_dgfx = desc->is_dgfx;
+ 	xe->info.has_cached_pt = desc->has_cached_pt;
++	xe->info.has_drm_ras = desc->has_drm_ras;
+ 	xe->info.has_fan_control = desc->has_fan_control;
+ 	/* runtime fusing may force flat_ccs to disabled later */
+ 	xe->info.has_flat_ccs = desc->has_flat_ccs;
+diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
+index 5b85e2c24b7b..24d4a3d00517 100644
+--- a/drivers/gpu/drm/xe/xe_pci_types.h
++++ b/drivers/gpu/drm/xe/xe_pci_types.h
+@@ -40,6 +40,7 @@ struct xe_device_desc {
  
- 	xe_nvm_init(xe);
- 
--	err = xe_soc_remapper_init(xe);
--	if (err)
--		return err;
--
- 	err = xe_heci_gsc_init(xe);
- 	if (err)
- 		return err;
-@@ -1044,10 +1051,6 @@ int xe_device_probe(struct xe_device *xe)
- 	if (err)
- 		goto err_unregister_display;
- 
--	err = xe_sysctrl_init(xe);
--	if (err)
--		goto err_unregister_display;
--
- 	err = xe_device_sysfs_init(xe);
- 	if (err)
- 		goto err_unregister_display;
-diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
-index 2a31b430570e..c6836957dca7 100644
---- a/drivers/gpu/drm/xe/xe_hw_error.c
-+++ b/drivers/gpu/drm/xe/xe_hw_error.c
-@@ -518,14 +518,6 @@ void xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl)
- 	}
- }
- 
--static int hw_error_info_init(struct xe_device *xe)
--{
--	if (xe->info.platform != XE_PVC)
--		return 0;
--
--	return xe_drm_ras_init(xe);
--}
--
- /*
-  * Process hardware errors during boot
-  */
-@@ -552,16 +544,11 @@ static void process_hw_errors(struct xe_device *xe)
- void xe_hw_error_init(struct xe_device *xe)
- {
- 	struct xe_tile *tile = xe_device_get_root_tile(xe);
--	int ret;
- 
- 	if (!IS_DGFX(xe) || IS_SRIOV_VF(xe))
- 		return;
- 
- 	INIT_WORK(&tile->csc_hw_error_work, csc_hw_error_work);
- 
--	ret = hw_error_info_init(xe);
--	if (ret)
--		drm_err(&xe->drm, "Failed to initialize XE DRM RAS (%pe)\n", ERR_PTR(ret));
--
- 	process_hw_errors(xe);
- }
+ 	u8 has_cached_pt:1;
+ 	u8 has_display:1;
++	u8 has_drm_ras:1;
+ 	u8 has_fan_control:1;
+ 	u8 has_flat_ccs:1;
+ 	u8 has_gsc_nvm:1;
 diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index 07f6837694e7..7d2945bb819e 100644
+index 7d2945bb819e..44cea530f110 100644
 --- a/drivers/gpu/drm/xe/xe_ras.c
 +++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -4,6 +4,7 @@
-  */
+@@ -270,7 +270,7 @@ void xe_ras_init(struct xe_device *xe)
+ {
+ 	int ret;
  
- #include "xe_device.h"
-+#include "xe_drm_ras.h"
- #include "xe_pm.h"
- #include "xe_printk.h"
- #include "xe_ras.h"
-@@ -258,3 +259,22 @@ int xe_ras_clear_counter(struct xe_device *xe, enum drm_xe_ras_error_severity se
+-	if (xe->info.platform != XE_PVC)
++	if (!xe->info.has_drm_ras)
+ 		return;
  
- 	return ret;
- }
-+
-+/**
-+ * xe_ras_init - Initialize Xe RAS
-+ * @xe: xe device instance
-+ *
-+ * Initialize Xe RAS
-+ */
-+void xe_ras_init(struct xe_device *xe)
-+{
-+	int ret;
-+
-+	if (xe->info.platform != XE_PVC)
-+		return;
-+
-+	ret = xe_drm_ras_init(xe);
-+	if (ret)
-+		drm_err(&xe->drm, "Failed to initialize xe_drm_ras %d\n", ret);
-+}
-+
-diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
-index bbb9d42bd128..a06fb67dc882 100644
---- a/drivers/gpu/drm/xe/xe_ras.h
-+++ b/drivers/gpu/drm/xe/xe_ras.h
-@@ -17,5 +17,6 @@ int xe_ras_get_counter(struct xe_device *xe, enum drm_xe_ras_error_severity seve
- 		       u32 error_id, u32 *value);
- int xe_ras_clear_counter(struct xe_device *xe, enum drm_xe_ras_error_severity severity,
- 			 u32 error_id);
-+void xe_ras_init(struct xe_device *xe);
- 
- #endif
+ 	ret = xe_drm_ras_init(xe);
 -- 
 2.47.1
 
