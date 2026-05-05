@@ -4,100 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE110CD3439
-	for <intel-xe@archiver.kernel.org>; Tue,  5 May 2026 18:48:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACBD2FF8855
+	for <intel-xe@archiver.kernel.org>; Tue,  5 May 2026 18:50:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A174610EBDF;
-	Tue,  5 May 2026 18:48:08 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="WWfnPQYY";
-	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B060210E19F
- for <intel-xe@lists.freedesktop.org>; Tue,  5 May 2026 18:48:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1778006885;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=ZD1WNE1k/WmJPg25LWZyiq7MLw0O15fr/MzhzoxqC8A=;
- b=WWfnPQYY++V53X79FgXOpOend2g0I55LhDmH2BsD9IveqjtTdvW8yZBAnCm5Q7CryEU3gt
- fjnHfFZMG9guebslynpibtsGH9c+TZTvKCBvuqPcH41uGnC7exT86Ep9KDIS8jBngFS0Ps
- MQT5OLOcy9oKnQ9xmtWOaVqY17ZT+a4=
-Received: from mail-lj1-f197.google.com (mail-lj1-f197.google.com
- [209.85.208.197]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-329-tF1RKXqsNo6Gw0C5t0Y6hw-1; Tue, 05 May 2026 14:48:01 -0400
-X-MC-Unique: tF1RKXqsNo6Gw0C5t0Y6hw-1
-X-Mimecast-MFC-AGG-ID: tF1RKXqsNo6Gw0C5t0Y6hw_1778006880
-Received: by mail-lj1-f197.google.com with SMTP id
- 38308e7fff4ca-393a397310bso9678101fa.1
- for <intel-xe@lists.freedesktop.org>; Tue, 05 May 2026 11:48:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1778006880; x=1778611680;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=C1bqbiEVoTmEPJHjXzHnukQrIZ297oQVbCi2us/0k/k=;
- b=ZZaeWWLaakZgmoImWD25dV9Igr6uj4AQIu52oMO3ms/mpv5HZz2VRppVf/Ts94rnG/
- JeKk9V89M+LnyPEL402ahXCoANVju5Y0GAjUDDomKj0M41xfHBpOU6HfYTuNhnSazEub
- yEi1tcR4KjpC6aOwzwy0EzokWVZC5Sy62U0PhoGAtxpV29QSRA0wt2Hk0fzsYshotXMq
- VlFaNIUZIOWbq5Elb0XGPvCffZlKMg5MCFy8ZfSolj3WO+nsQH5R0rvDd1krcCT/dRPH
- Ms34ASaema79OjuNRY1fFhv59d8dw7nHIsCa4kgs3pKaLet/gRdIpTE6el3CEA9Kq8KY
- xx+w==
-X-Forwarded-Encrypted: i=1;
- AFNElJ/pzz/vKjVf4GCHAc8QvT5P1d05/0yhG9Ot0mAfpc008DwNE8cfhZcaxt0qs1eYxna0Tu0BXUdO5w==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwyPQ0ySDpiQxeeykxIc45LbS2PTpiVVme1+WMQhKHglMBYEUBw
- /azkOyEgqusCUiNiB5K69Q0Wk6qyF8zbPFBRI7SP50WOjz0BQoMOpbFdMYOj0Um89rXF+R0Jspj
- NqOKHodZySJIWZOCo9mplMfX9g0lof2G1ofQdDYnXcvgMdApEPXCSVff5VZqUSxJi7b4=
-X-Gm-Gg: AeBDies6uQfZXPDV3TUfH+0Gx5KQvtna+CnnIZMe+ixw3CyZVp8YKGj2SDsXiF9HTGN
- EX4Ae6qBj7llNvsZ4WOYN6SQAGzsYCf0RmWHjsFWYk50k7/Ymei/i00n7wztEj03gFJNH2sXJsp
- awGR0sQjC4Ys8R0oWlAKn0B/z4uOmqwRq1qkQ7Zt61pArNugcosv4lBOeLmqZRUsKnGnZRx21oP
- u1bEqkmpooYHqVi/Oq+X6+S1ZpGFJav2sOU5cWZ0mOW08FkQLKtiRXIRxEiptfMUIEdPdtd6UKl
- Kw87oTavECdK0pbGY50+XwSWihK9gUxLAY7iZ4o3riLmvTLMs67GYprvRcg/Hshd5CB/JGQv7ag
- 1I/GG+NrMpKK+0DlSHfrZrpkN7eUudGf+3nzp4BMVk3QWdh+bkwxAbejsTg==
-X-Received: by 2002:a2e:864e:0:b0:38e:2fcc:78fe with SMTP id
- 38308e7fff4ca-393c40bcb5cmr1627351fa.3.1778006880090; 
- Tue, 05 May 2026 11:48:00 -0700 (PDT)
-X-Received: by 2002:a2e:864e:0:b0:38e:2fcc:78fe with SMTP id
- 38308e7fff4ca-393c40bcb5cmr1627151fa.3.1778006879554; 
- Tue, 05 May 2026 11:47:59 -0700 (PDT)
-Received: from [192.168.1.86] (85-23-51-1.bb.dnainternet.fi. [85.23.51.1])
- by smtp.gmail.com with ESMTPSA id
- 38308e7fff4ca-393610ba631sm44569421fa.12.2026.05.05.11.47.58
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 05 May 2026 11:47:59 -0700 (PDT)
-Message-ID: <433d0729-b141-4f19-a0c3-656f033e8ea1@redhat.com>
-Date: Tue, 5 May 2026 21:47:58 +0300
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60BAE10EBE3;
+	Tue,  5 May 2026 18:50:58 +0000 (UTC)
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD4C210EBDF;
+ Tue,  5 May 2026 18:50:57 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 0/5] Migrate on fault for device pages
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: Alistair Popple <apopple@nvidia.com>, linux-mm@kvack.org,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, David Hildenbrand <david@kernel.org>,
- Jason Gunthorpe <jgg@nvidia.com>, Leon Romanovsky <leonro@nvidia.com>,
- Balbir Singh <balbirs@nvidia.com>, Zi Yan <ziy@nvidia.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka
- <vbabka@suse.cz>, Mike Rapoport <rppt@kernel.org>,
- Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>
-References: <20260505051658.2219537-1-mpenttil@redhat.com>
- <afmXIq8VY_vs1GPo@nvdebian.thelocal>
- <ecd81b6b-62ef-4dab-a93e-e65598d64841@redhat.com>
- <afowaUffi0JrnADf@gsse-cloud1.jf.intel.com>
-From: =?UTF-8?Q?Mika_Penttil=C3=A4?= <mpenttil@redhat.com>
-In-Reply-To: <afowaUffi0JrnADf@gsse-cloud1.jf.intel.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: jEU_c6UPhn7t_DS-4Q_pWdrBb2EWKFIW1XU45Duk_vE_1778006880
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Migrate_on_fault_for_devi?=
+ =?utf-8?q?ce_pages_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: mpenttil@redhat.com
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 05 May 2026 18:50:57 -0000
+Message-ID: <177800705789.40958.13381685956626687291@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260505184421.2324798-1-mpenttil@redhat.com>
+In-Reply-To: <20260505184421.2324798-1-mpenttil@redhat.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,149 +36,258 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 5/5/26 21:01, Matthew Brost wrote:
+Series: Migrate on fault for device pages (rev2)
+URL   : https://patchwork.freedesktop.org/series/165953/
+State : warning
 
-> On Tue, May 05, 2026 at 10:18:14AM +0300, Mika Penttil=C3=A4 wrote:
->> On 5/5/26 10:09, Alistair Popple wrote:
->>
->>> Thanks for doing this work Mika. I've been meaning to take a look at th=
-is series
->>> for a while. I'm currently at LSFMM but will try and take a look this w=
-eek or
->>> next as it sounds quite useful.
->>>
->>>  - Alistair
->> Thanks Alistair and no problem, appreciate your insights whenever you ha=
-ve time.
->>
-> It looks like this series is breaking Intel's CI [1]. Looks like
-> something in RCU is blowing up:
->
-> <4> [212.361418] ------------[ cut here ]------------
-> <4> [212.361431] Voluntary context switch within RCU read-side critical s=
-ection!
-> <4> [212.361432] WARNING: kernel/rcu/tree_plugin.h:332 at rcu_note_contex=
-t_switch+0x82/0x780, CPU#11: kworker/u65:5/2352
-> <4> [212.361440] Modules linked in: snd_hda_codec_intelhdmi snd_hda_codec=
-_hdmi mei_lb mei_gsc_proxy mtd_intel_dg mei_gsc xe drm_gpuvm drm_gpusvm_hel=
-per drm_buddy gpu_sched drm_ttm_helper ttm drm_suballoc_helper drm_exec drm=
-_display_helper cec rc_core drm_kunit_helpers i2c_algo_bit kunit overlay in=
-tel_rapl_msr intel_rapl_common intel_uncore_frequency intel_uncore_frequenc=
-y_common intel_tcc_cooling x86_pkg_temp_thermal intel_powerclamp hid_generi=
-c coretemp eeepc_wmi cmdlinepart asus_wmi binfmt_misc sparse_keymap spi_nor=
- mei_hdcp mei_pxp mtd wmi_bmof kvm_intel kvm irqbypass aesni_intel gf128mul=
- r8169 usbhid rapl hid intel_cstate realtek snd_hda_intel phy_package snd_i=
-ntel_dspcfg intel_pmc_core snd_hda_codec idma64 nls_iso8859_1 pmt_telemetry=
- snd_hda_core video snd_hwdep pmt_discovery snd_pcm i2c_i801 pinctrl_alderl=
-ake pmt_class snd_timer i2c_mux intel_pmc_ssram_telemetry acpi_tad acpi_pad=
- mei_me snd i2c_smbus spi_intel_pci soundcore mei spi_intel wmi intel_vsec =
-dm_multipath msr nvme_fabrics fuse efi_pstore nfnetlink autofs4
-> <4> [212.361711] CPU: 11 UID: 0 PID: 2352 Comm: kworker/u65:5 Tainted: G =
-S   U              7.1.0-rc2-lgci-xe-xe-pw-165953v1-debug+ #1 PREEMPT(lazy)=
-=20
-> <4> [212.361715] Tainted: [S]=3DCPU_OUT_OF_SPEC, [U]=3DUSER
-> <4> [212.361716] Hardware name: ASUS System Product Name/PRIME Z790-P WIF=
-I, BIOS 0812 02/24/2023
-> <4> [212.361718] Workqueue: xe_page_fault_work_queue xe_pagefault_queue_w=
-ork [xe]
-> <4> [212.361833] RIP: 0010:rcu_note_context_switch+0x82/0x780
-> <4> [212.361838] Code: 45 85 c0 74 0f 65 8b 05 24 84 ab 02 85 c0 0f 84 8d=
- 01 00 00 45 84 ed 75 16 8b 83 bc 08 00 00 85 c0 7e 0c 48 8d 3d de ad 4d 02=
- <67> 48 0f b9 3a 8b 83 bc 08 00 00 85 c0 7e 0d 80 bb c0 08 00 00 00
-> <4> [212.361840] RSP: 0018:ffffc9000186f4a0 EFLAGS: 00010002
-> <4> [212.361843] RAX: 0000000000000001 RBX: ffff88810a3a8040 RCX: 0000000=
-000000000
-> <4> [212.361845] RDX: 0000000000000000 RSI: 0000000000000000 RDI: fffffff=
-f839bcea0
-> <4> [212.361846] RBP: ffffc9000186f4e8 R08: 0000000000000001 R09: 0000000=
-000000000
-> <4> [212.361848] R10: 0000000000000000 R11: 0000000000000000 R12: ffff888=
-85f1b6a00
-> <4> [212.361849] R13: 0000000000000000 R14: ffffffff83248312 R15: ffffc90=
-00186f630
-> <4> [212.361851] FS:  0000000000000000(0000) GS:ffff8888db203000(0000) kn=
-lGS:0000000000000000
-> <4> [212.361853] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> <4> [212.361854] CR2: 00007fe433b2f088 CR3: 000000000344a000 CR4: 0000000=
-000f52ef0
-> <4> [212.361856] PKRU: 55555554
-> <4> [212.361858] Call Trace:
-> <4> [212.361859]  <TASK>
-> <4> [212.361862]  ? lock_is_held_type+0xa3/0x130
-> <4> [212.361868]  __schedule+0x103/0x1f70
-> <4> [212.361870]  ? lock_acquire+0xc4/0x300
-> <4> [212.361874]  ? find_held_lock+0x31/0x90
-> <4> [212.361877]  ? schedule+0x10e/0x180
-> <4> [212.361880]  ? lock_release+0xd0/0x2b0
-> <4> [212.361885]  schedule+0x3a/0x180
-> <4> [212.361888]  io_schedule+0x4c/0x80
-> <4> [212.361890]  ? softleaf_entry_wait_on_locked+0x147/0x2b0
-> <4> [212.361894]  softleaf_entry_wait_on_locked+0x24f/0x2b0
-> <4> [212.361899]  ? __pfx_wake_page_function+0x10/0x10
-> <4> [212.361904]  migration_entry_wait+0xff/0x190
-> <4> [212.361909]  hmm_vma_handle_pte+0x440/0x790
-> <4> [212.361914]  hmm_vma_walk_pmd+0x5c8/0x1360
-> <4> [212.361918]  ? xe_pagefault_queue_work+0x1a9/0x520 [xe]
-> <4> [212.362015]  walk_pgd_range+0x57f/0xd70
-> <4> [212.362017]  ? lock_is_held_type+0xa3/0x130
-> <4> [212.362028]  __walk_page_range+0x8e/0x290
-> <4> [212.362034]  walk_page_range_mm_unsafe+0x19e/0x270
-> <4> [212.362036]  ? trace_hardirqs_on+0x22/0xf0
-> <4> [212.362043]  walk_page_range+0x2a/0x40
-> <4> [212.362045]  hmm_range_fault+0x94/0x190
-> <4> [212.362053]  drm_gpusvm_get_pages+0x269/0xa30 [drm_gpusvm_helper]
-> <4> [212.362067]  drm_gpusvm_range_get_pages+0x2e/0x50 [drm_gpusvm_helper=
-]
-> <4> [212.362071]  __xe_svm_handle_pagefault+0x3e0/0xef0 [xe]
-> <4> [212.362181]  ? __lock_acquire+0x43e/0x2790
-> <4> [212.362188]  ? lock_is_held_type+0xa3/0x130
-> <4> [212.362193]  ? lock_is_held_type+0xa3/0x130
-> <4> [212.362197]  ? xe_vm_find_overlapping_vma+0x57/0x1e0 [xe]
-> <4> [212.362304]  xe_svm_handle_pagefault+0x3d/0xb0 [xe]
-> <4> [212.362412]  xe_pagefault_queue_work+0x1a9/0x520 [xe]
-> <4> [212.362509]  process_one_work+0x239/0x740
-> <4> [212.362518]  worker_thread+0x200/0x3f0
-> <4> [212.362521]  ? __pfx_worker_thread+0x10/0x10
-> <4> [212.362524]  kthread+0x10d/0x150
-> <4> [212.362527]  ? __pfx_kthread+0x10/0x10
-> <4> [212.362530]  ret_from_fork+0x3bd/0x470
-> <4> [212.362533]  ? __pfx_kthread+0x10/0x10
-> <4> [212.362536]  ret_from_fork_asm+0x1a/0x30
-> <4> [212.362546]  </TASK>
-> <4> [212.362547] irq event stamp: 2057044
->
-> I=E2=80=99ll be out this Thursday for five weeks, but assuming you can so=
-rt this
-> part out, I=E2=80=99m fine with the series moving forward. I=E2=80=99ve l=
-ooked at this
-> several times, and it seems sane enough to me.
->
-> On our list we also have the Sashiko setup [2], which I=E2=80=99ve found =
-to be
-> incredibly helpful for series that do deep MM work. I=E2=80=99m not sure =
-why
-> Sashiko is saying this series didn=E2=80=99t apply, since it applied clea=
-nly to
-> our CI branches. If you can get Sashiko to run on it, that might be
-> helpful as well.
->
-> Matt
+== Summary ==
 
-Yes there seemed to be a missing pte_unmap() before migration_entry_wait().=
-.. fixed and sent v10.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c8c12e558adaef7a4d125d83b6e1f8824bc13b82
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 323748c3bffcdd9e173e14479fd0f98e2438df74
+Author: Mika Penttilä <mpenttil@redhat.com>
+Date:   Tue May 5 21:44:21 2026 +0300
 
---Mika
+    lib/test_hmm:: add a new testcase for the migrate on fault
+    
+    Enhance the hmm test driver (lib/test_hmm) with migrate on fault case.
+    
+    Cc: David Hildenbrand <david@kernel.org>
+    Cc: Jason Gunthorpe <jgg@nvidia.com>
+    Cc: Leon Romanovsky <leonro@nvidia.com>
+    Cc: Alistair Popple <apopple@nvidia.com>
+    Cc: Balbir Singh <balbirs@nvidia.com>
+    Cc: Zi Yan <ziy@nvidia.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Signed-off-by: Marco Pagani <marpagan@redhat.com>
+    Signed-off-by: Mika Penttilä <mpenttil@redhat.com>
++ /mt/dim checkpatch e782e6a579775723266be631e06276d43aa7a907 drm-intel
+729d3c89a1aa mm/Kconfig: changes for migrate on fault for device pages
+a5466856c900 mm: Add helper to convert HMM pfn to migrate pfn
+-:174: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#174: FILE: mm/migrate_device.c:1543:
++
++}
 
+total: 0 errors, 0 warnings, 1 checks, 132 lines checked
+928a21744ab2 mm/hmm: do the plumbing for HMM to participate in migration
+-:127: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
+#127: FILE: mm/hmm.c:56:
++	spinlock_t			*ptl;
 
->
-> [1] https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165953v1/shard-bmg-4/=
-igt@xe_exec_system_allocator@process-many-stride-mmap-race-nomemset.html
-> [2] https://sashiko.dev/#/patchset/20260505051658.2219537-1-mpenttil%40re=
-dhat.com
->
->
+-:130: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'hmm_vma_walk' may be better as '(hmm_vma_walk)' to avoid precedence issues
+#130: FILE: mm/hmm.c:59:
++#define HMM_ASSERT_PTE_LOCKED(hmm_vma_walk, locked)		\
++		WARN_ON_ONCE(hmm_vma_walk->ptelocked != locked)
+
+-:130: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'locked' may be better as '(locked)' to avoid precedence issues
+#130: FILE: mm/hmm.c:59:
++#define HMM_ASSERT_PTE_LOCKED(hmm_vma_walk, locked)		\
++		WARN_ON_ONCE(hmm_vma_walk->ptelocked != locked)
+
+-:133: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'hmm_vma_walk' may be better as '(hmm_vma_walk)' to avoid precedence issues
+#133: FILE: mm/hmm.c:62:
++#define HMM_ASSERT_PMD_LOCKED(hmm_vma_walk, locked)		\
++		WARN_ON_ONCE(hmm_vma_walk->pmdlocked != locked)
+
+-:133: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'locked' may be better as '(locked)' to avoid precedence issues
+#133: FILE: mm/hmm.c:62:
++#define HMM_ASSERT_PMD_LOCKED(hmm_vma_walk, locked)		\
++		WARN_ON_ONCE(hmm_vma_walk->pmdlocked != locked)
+
+-:136: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'hmm_vma_walk' - possible side-effects?
+#136: FILE: mm/hmm.c:65:
++#define HMM_ASSERT_UNLOCKED(hmm_vma_walk)		\
++		WARN_ON_ONCE(hmm_vma_walk->ptelocked ||	\
++			     hmm_vma_walk->pmdlocked)
+
+-:136: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'hmm_vma_walk' may be better as '(hmm_vma_walk)' to avoid precedence issues
+#136: FILE: mm/hmm.c:65:
++#define HMM_ASSERT_UNLOCKED(hmm_vma_walk)		\
++		WARN_ON_ONCE(hmm_vma_walk->ptelocked ||	\
++			     hmm_vma_walk->pmdlocked)
+
+-:233: CHECK:BRACES: braces {} should be used on all arms of this statement
+#233: FILE: mm/hmm.c:357:
++			if (!hmm_select_migrate(range)) {
+[...]
++			} else
+[...]
+
+-:239: WARNING:UNNECESSARY_ELSE: else is not generally useful after a break or return
+#239: FILE: mm/hmm.c:363:
++				return -EBUSY;
++			} else
+
+-:239: CHECK:BRACES: Unbalanced braces around else statement
+#239: FILE: mm/hmm.c:363:
++			} else
+
+-:246: CHECK:BRACES: braces {} should be used on all arms of this statement
+#246: FILE: mm/hmm.c:369:
++		if (hmm_vma_walk->ptelocked) {
+[...]
++		} else
+[...]
+
+-:249: CHECK:BRACES: Unbalanced braces around else statement
+#249: FILE: mm/hmm.c:372:
++		} else
+
+-:260: CHECK:BRACES: braces {} should be used on all arms of this statement
+#260: FILE: mm/hmm.c:391:
++			if (hmm_vma_walk->ptelocked) {
+[...]
++			} else
+[...]
+
+-:263: CHECK:BRACES: Unbalanced braces around else statement
+#263: FILE: mm/hmm.c:394:
++			} else
+
+-:274: CHECK:BRACES: braces {} should be used on all arms of this statement
+#274: FILE: mm/hmm.c:409:
++	if (hmm_vma_walk->ptelocked) {
+[...]
++	} else
+[...]
+
+-:277: CHECK:BRACES: Unbalanced braces around else statement
+#277: FILE: mm/hmm.c:412:
++	} else
+
+-:287: CHECK:BRACES: braces {} should be used on all arms of this statement
+#287: FILE: mm/hmm.c:457:
++		if (softleaf_is_device_private(entry)) {
+[...]
+ 		else
+[...]
+
+-:383: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'hmm_vma_walk->vma != walk->vma'
+#383: FILE: mm/hmm.c:550:
++	if (hmm_vma_walk->vma && (hmm_vma_walk->vma != walk->vma))
+
+-:432: CHECK:BRACES: braces {} should be used on all arms of this statement
+#432: FILE: mm/hmm.c:594:
++	if (minfo) {
+[...]
++	} else
+[...]
+
+-:436: CHECK:BRACES: Unbalanced braces around else statement
+#436: FILE: mm/hmm.c:598:
++	} else
+
+-:470: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#470: FILE: mm/hmm.c:631:
++	if (pmd_trans_huge(pmd) || !pmd_present(pmd)) {
++
+
+-:485: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#485: FILE: mm/hmm.c:646:
++		if (pmd_trans_huge(pmd)) {
++
+
+-:554: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#554: FILE: mm/hmm.c:696:
+ 
++	}
+
+-:572: CHECK:BRACES: braces {} should be used on all arms of this statement
+#572: FILE: mm/hmm.c:715:
++	if (minfo) {
+[...]
++	} else
+[...]
+
+-:576: CHECK:BRACES: Unbalanced braces around else statement
+#576: FILE: mm/hmm.c:719:
++	} else
+
+-:603: CHECK:BRACES: braces {} should be used on all arms of this statement
+#603: FILE: mm/hmm.c:743:
++	if (hmm_vma_walk->ptelocked) {
+[...]
++	} else
+[...]
+
+-:606: CHECK:BRACES: Unbalanced braces around else statement
+#606: FILE: mm/hmm.c:746:
++	} else
+
+-:682: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#682: FILE: mm/hmm.c:980:
++		if (is_fault_path && mmu_interval_check_retry(range->notifier,
++					     range->notifier_seq)) {
+
+total: 0 errors, 1 warnings, 27 checks, 648 lines checked
+b72d51f7d004 mm: setup device page migration in HMM pagewalk
+-:195: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#195: FILE: mm/hmm.c:612:
++	     IS_ALIGNED(end, HPAGE_PMD_SIZE))) {
++
+
+-:219: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#219: FILE: mm/hmm.c:636:
++
++
+
+-:382: CHECK:BRACES: braces {} should be used on all arms of this statement
+#382: FILE: mm/hmm.c:796:
++	if (fault_folio == folio || folio_trylock(folio)) {
+[...]
++	} else
+[...]
+
+-:439: CHECK:BRACES: Unbalanced braces around else statement
+#439: FILE: mm/hmm.c:853:
++	} else
+
+-:458: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
+#458: FILE: mm/hmm.c:869:
++	spinlock_t *ptl;
+
+-:480: CHECK:BRACES: braces {} should be used on all arms of this statement
+#480: FILE: mm/hmm.c:891:
++		if (folio != fault_folio) {
+[...]
++		}  else
+[...]
+
+-:486: CHECK:BRACES: Unbalanced braces around else statement
+#486: FILE: mm/hmm.c:897:
++		}  else
+
+-:495: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#495: FILE: mm/hmm.c:906:
++
++	}
+
+total: 0 errors, 0 warnings, 8 checks, 1062 lines checked
+323748c3bffc lib/test_hmm:: add a new testcase for the migrate on fault
+-:124: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#124: FILE: lib/test_hmm.c:1349:
++
++
+
+-:197: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#197: FILE: tools/testing/selftests/mm/hmm-tests.c:995:
+ 
++
+
+total: 0 errors, 0 warnings, 2 checks, 208 lines checked
+
 
