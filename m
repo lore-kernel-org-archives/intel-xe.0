@@ -4,146 +4,146 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B9DFFF885A
-	for <intel-xe@archiver.kernel.org>; Tue,  5 May 2026 04:12:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25C7DFF885A
+	for <intel-xe@archiver.kernel.org>; Tue,  5 May 2026 04:17:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E9C110E021;
-	Tue,  5 May 2026 04:12:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C431A10E92F;
+	Tue,  5 May 2026 04:17:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dss0zVbw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mk/uBzij";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E80AF10E021
- for <intel-xe@lists.freedesktop.org>; Tue,  5 May 2026 04:12:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CB3E10E92F
+ for <intel-xe@lists.freedesktop.org>; Tue,  5 May 2026 04:17:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777954342; x=1809490342;
+ t=1777954624; x=1809490624;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=fME4TZ8tNir0/L9v9rHpXfUEpgIfxNrIXzej/w/HNg0=;
- b=dss0zVbw1i3kfQCDT+Bc1yporG7VlBbwYa51NRD69rsNt0K3zElgIMEh
- uVFEJGImlWcmyq+9fmaebMAWBRPy2FvknXsDU/zUa41rDhK7zh/TM+VUP
- roeMJhvccFPQQ1dX8F9x/EYDDH1ARQqq2AImx8t913zIy/SWaXtPDGX9q
- yWB+2OYbpdUCdCLARmcRNjeFuxOQhdnWdkG2NuVyg9rnAQNOPE7SGlXWZ
- yYbUGmVXSfX+waCRP4BGXqT4hEWUNw39gHNjj3hG2DgZr8OY9DXugsG7+
- W2FmltcZ/jHzof1VMQDiZDKFkes7lvo1d5slNT4vFHcgJHKP3QqrQPS9c Q==;
-X-CSE-ConnectionGUID: WhEViVpRSR2FUOsj4NMHxw==
-X-CSE-MsgGUID: 8aeWPD6ESGeD5YRbtKjnDA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11776"; a="89920800"
-X-IronPort-AV: E=Sophos;i="6.23,216,1770624000"; d="scan'208";a="89920800"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2026 21:12:17 -0700
-X-CSE-ConnectionGUID: Qjq7q4BpR+GpsMRIb6iLww==
-X-CSE-MsgGUID: kvwAQkxfQrq7SY7AdJ80tg==
+ bh=3YZlM0Hn8rvSUcVlXfWeSKyITc4NmHRBsu+dwbt0t2M=;
+ b=Mk/uBzij/6OAarQUmWiOWDGa/jPIgZW4eDf7l/82mtfDEOnQ6b0j+u1a
+ H6SJNOYrgga58KsBVDRBKt51tZnE4ZhYAEfYb3QykMMjuZE9P6RWs2rkO
+ 9BGU8meKwvyO25nV6KDrILd/k7jdgM3+tQPfx0LV1JQDp7cLZu6K60/hW
+ SI9xVgyGz10gx5WSZJ5SUiTAEgUZA8xsx3y17u/eLkie/HMgGyL8gjd5y
+ P8rIhZ8xdzp9S+P4uy93TZMayCZYJWu3FY3vlXAG/hR9I23wqbFEPEHFk
+ wOxlC4yOUtyd6Vg951Xn8gUno0N9kRVqDdW8D3ShDL3CTw8t0Gi8jj0Ij Q==;
+X-CSE-ConnectionGUID: RV7za/fvRXWXoh/m3NVKFA==
+X-CSE-MsgGUID: REYcZanDRW+AXEZk7tFc+Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11776"; a="82669569"
+X-IronPort-AV: E=Sophos;i="6.23,216,1770624000"; d="scan'208";a="82669569"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2026 21:17:03 -0700
+X-CSE-ConnectionGUID: M65JUIf8QK61YIUttQw1Rw==
+X-CSE-MsgGUID: Hx6raGfeTm2rKNAJZtAO1w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,216,1770624000"; d="scan'208";a="259053404"
+X-IronPort-AV: E=Sophos;i="6.23,216,1770624000"; d="scan'208";a="232562855"
 Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2026 21:12:16 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2026 21:17:03 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
  fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 4 May 2026 21:12:16 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.2.2562.37; Mon, 4 May 2026 21:17:02 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 4 May 2026 21:12:16 -0700
-Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.28) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Mon, 4 May 2026 21:17:02 -0700
+Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.35) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 4 May 2026 21:12:16 -0700
+ 15.2.2562.37; Mon, 4 May 2026 21:17:02 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KVRph5tbCfIEggRZfaCfVpcgAF5ijjl0aAzRJ1Vi59LHYl84xXnNewikowY3+/PLEvN6GFGp96vZb11xbFqSGlKczAWygtgLu5zDpYZuPHmqYuBELgDcDWG2o6HurFWa+EuTSo6zEDEZ1QEuQNAWn0TUrzygxt/2ZsgkCJ2tpLOfArYZCeeRb86+sLACJ2n9chvqSPcUfZLTNOO84Qj8zYoXnT0j5N3uXKe/2+DwMi5KlPXDhg2OiPHPhUup6aBcrQav9AYeEhxQpi7aTi2D7zLod5GdImL8dymLaGkiZBbqgj+5ltWWHiYRUmv2uin2gVRTk3cbAzZDxjepB8BTIQ==
+ b=cCr0G4yCTTLgknSPR3bmZVNIbI7ZO8pNLwzTiG0WabuLtlb0PH2n0pSwKwIyLHKSjpKZiZNAsAGf+AHXJkWYs7+qaorpZncN7RWJEfIN9EaD8ieP8hObf34l7th/xVHAOA8sskrEnSheZyieg2Q1hlAQCHwVs5AOKQBoKjUgi+yAhrn9eJWPLKVrugpYh3fpxhAsLlh3/+GQY9pO3rUv55yG+OuPrR0SMkwyXgYz/DbRl1M0dZq7wL6/U44GkaLZ2Z+13GgeNF4F+ihPaJiwMhlBEnQmnsSG0Aidd1V7k0OHwkMrAlwpqP7DzECZWKAhqtxwnbzT5ztIoGfxyNCCqw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=occs4HexWQPD/6aJ3Jsww63LsLjRltNhYkBlflGcFMw=;
- b=G7aVswQTr67NeQ7kkFJ0fzyyGFfdBcrrCeJlwyy3OcUODfI4/N5xDAEs7wxYcOrqPWklHlr4nG8l2e8chlnPu1N06R+3fQtnfBTfHER1FZH+8K6h/keNig2yPUc+rfTHO5ECZbYBOiubt8F+4Sj91Btd1/vP+yP3ILrjYHBeXuR60EIZjhGadd4W43KXebVVx56T8FkBtN4zVYouTGHvfJV7d/JuD9h/BRF/cp1Ec6qKy6pwfmkyEQtAugaoiHPsCEvY/1snqDyrMRcfum+qNiv9f0vByk8R7cf4oW0SZwlB6kGHRRSkYs28KJ2leP92dkCuA51XrBUS/iKnJg16Tw==
+ bh=/03xExiHilDjzBPckTyHvLA1DxkzPUFXerLoGBujXjo=;
+ b=DVupr4jzRSaS5UFN92RYZwCs2XGd5zYBlgiWxtBJ2/KPQQUnHZfqmDifx+by0tZdwr4QJx1K1das1bzxAVXDPAlEZ6hkqFJbYpzOP0ZPcFHFBDH5jriyPvtmy55mcZ7/0YtxzK2u4aGQu647nrq9J1g8+ibFoZ+bDj7xOQsQMPVzv/JgGEDbE7Q7gIll7YTb+z6kZBK2iXpkFJdtQNZVCDV7lzgHPFo7a/FLFfInm9JSQLFl/aPK2EXFTexMdVBfvNBwJ869IL9nDSEE9dgTReb+/FxdrCWUn6oA13omTVLqqZPqGxa8gvR8Yx/PeFLv/DL/3pmCZSgVviJSZc7K4g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from BL3PR11MB6410.namprd11.prod.outlook.com (2603:10b6:208:3b9::15)
- by DSVPR11MB9720.namprd11.prod.outlook.com (2603:10b6:8:351::8) with
- Microsoft SMTP Server (version=TLS1_2,
+ by MW4PR11MB5889.namprd11.prod.outlook.com (2603:10b6:303:168::10)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.25; Tue, 5 May
- 2026 04:12:15 +0000
+ 2026 04:16:56 +0000
 Received: from BL3PR11MB6410.namprd11.prod.outlook.com
  ([fe80::b01a:aa33:165:efc]) by BL3PR11MB6410.namprd11.prod.outlook.com
  ([fe80::b01a:aa33:165:efc%6]) with mapi id 15.20.9870.023; Tue, 5 May 2026
- 04:12:14 +0000
-Date: Mon, 4 May 2026 21:12:12 -0700
+ 04:16:56 +0000
+Date: Mon, 4 May 2026 21:16:53 -0700
 From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 CC: <intel-xe@lists.freedesktop.org>, <matthew.brost@intel.com>,
  <stuart.summers@intel.com>
-Subject: Re: [PATCH v2 6/9] drm/xe/multi_queue: Capture queue run times for
- active queues
-Message-ID: <afluHJJvWpbcBTsp@nvishwa1-desk>
+Subject: Re: [PATCH v2 5/9] drm/xe/lrc: Refactor out engine id to hwe
+ conversion
+Message-ID: <aflvNYselsMZwDNs@nvishwa1-desk>
 References: <20260502005332.3135977-11-umesh.nerlige.ramappa@intel.com>
- <20260502005332.3135977-17-umesh.nerlige.ramappa@intel.com>
+ <20260502005332.3135977-16-umesh.nerlige.ramappa@intel.com>
 Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <20260502005332.3135977-17-umesh.nerlige.ramappa@intel.com>
-X-ClientProxiedBy: SJ2PR07CA0012.namprd07.prod.outlook.com
- (2603:10b6:a03:505::13) To BL3PR11MB6410.namprd11.prod.outlook.com
+In-Reply-To: <20260502005332.3135977-16-umesh.nerlige.ramappa@intel.com>
+X-ClientProxiedBy: BYAPR01CA0053.prod.exchangelabs.com (2603:10b6:a03:94::30)
+ To BL3PR11MB6410.namprd11.prod.outlook.com
  (2603:10b6:208:3b9::15)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL3PR11MB6410:EE_|DSVPR11MB9720:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2fc649b1-6680-4219-9dfd-08deaa5c7d2e
+X-MS-TrafficTypeDiagnostic: BL3PR11MB6410:EE_|MW4PR11MB5889:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8f1d7126-eec2-4e2d-88f4-08deaa5d2533
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|18002099003|22082099003|56012099003; 
-X-Microsoft-Antispam-Message-Info: jJ/7rgA8LIYNCYyOFxhtOgYjWm0PMwlv2hFDs+UshLvMbMQYXiAoHDPQb8XoeMZKcaW/NqfmzFDFtkyT/bqD+t5hUMhwGtLk6IMcYevOpLGgRv1N/PufaYXXj4SzGl7EUFW3ZTu4p3cj8zHVyumblzFXQcHsO//AL9MbVUncG4Xv0ovFyS6y96rM3Knl9bdRmc9XUO+k5R8AK48ebLYmGENpIoo7CiR0kGv1PtDWAhiZgsWNPI+x23QCbSmZ4qL5iNwIKCEWKaDih/vm499UQTgrIdeffDV8gNhYscOvERFQohS8U8be1En53950OuHnLDIdLlBSXF6MvsjU/aT3OKWLf4L0PN1TppXtv3wPasXEoZDypqy0DbQdSMGTrH9JaS5/tK2xpi42rA0ZJYGFP54oUsEIDZtUw28BedDUfqCOJJSnX2oiTFT3J8azpzsB6xe9oqxvBwtewPJ7piMMYe+j/ZtIm89vnuDnW3WP/VGy0Dk0bY4seT1Ug+S0F5+sgamnRZ26dH4DlrStpAmqOM7RJWJZqUOZcB00QX1yn10sPA6fmv3E5PY6WF6l2RrRoIHcST7k3f2D0WOII3l6Mfcpw2+7DSUF5IMUkEA706abRkOHFbqQmgNjmjhDy0XmG6yD/G/dj53/IKA/SqY5a+DpYZvvshSZuGh3jfeJFtPdnQy6+N4GgXfISJmg3R93
+ ARA:13230040|366016|1800799024|376014|56012099003|22082099003|18002099003; 
+X-Microsoft-Antispam-Message-Info: hQ2pJdb01CC+HxeqBv+JZyz37bQKgsKDcNKIwuwDYySaWpjs55poo6X+TU1zPSS2Xlrmn/0ed2j7quu8SL2BsJ5vQutLFSkJaFf2ZjBjsCVr7Ubb/74Id+2PdjvyhwCArA03sx6eGW/v1/BVMT3HEvd1z6xqf81xF12Fev8N6guzam7YSRGGvzbh+v3NTRm/HoY6vdZOrL1hCWQg3a2hVRaAfraioGJugft56K1UdjP3CdUKYbA9uUlJ/kzSwB2Q45kmROIDuNjCAtEMmuMDLyl+0OgKRbuMSogd5qyfoXawW23o2nzcjFNEeSzvNeBv0eXEJib0oZBjNrI7un62oEHL00nTiZnOgCdU3lgzYh2Io1ACQTTYicqMLNp1CazuAO8Y/l0nx5YjYKOR928BpdpKWzmPhpIC7kvTJ/Fj92Rh1rlBGDbx/EnqbneFwJSD49MFIGd2AygliUpOVmAxYKtolbaGvXL1B+ilAv56WUObvYZNuytXaQUzc1b7Wfk13Y04M2UqFoVwW1KcMWPJJGqjpPjwQIbG+PltHr/gEr+cHh+q/oZ1UjH3CEUY16CibkW/+OvVhJxOE1jktl7v+f2Kh7y9KhusC2KHBVirxv4EPcbPy3jZXCfZRQrBZGzxk6XIU482MNSDiQgSkk4sYJMa9D3L0Exo9KcAEPCOEMmBbGEihrqtYGPjyy3Cv/qC
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BL3PR11MB6410.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(18002099003)(22082099003)(56012099003);
+ SFS:(13230040)(366016)(1800799024)(376014)(56012099003)(22082099003)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?CNXHUo2pGMtB4Fenmx2BNsnGTjPipvTvs1qcDEr3MmMFSJSOfFa61Hw4G84K?=
- =?us-ascii?Q?WLEiITI4jisysGdwbWsxrLPR5MsJ8L3Tt84D9t3gmv8uljymrZYZCAi7X2N2?=
- =?us-ascii?Q?9PGWDav1/iOwKSc9Pj13UfJR3V7SMRYZw90xmPb9s/J9hQMrdLl/KRF8eQdq?=
- =?us-ascii?Q?KPC5gMcdPa0I9/Rtn/hVNLtiVgzhIQgh7UG0Rj+QtDY5hfBCluCwRs0faQ1Q?=
- =?us-ascii?Q?pwZmr1ip+EDfiydFY9OAJpbASfpVhuhruU62mS14mO3Ly4OckBGZQ60UTKjJ?=
- =?us-ascii?Q?taogcbWdFN/qWAoZlazrmZpyGrGoJ8jEA4d7R009OyzGp0S8YtQehbmBl94K?=
- =?us-ascii?Q?CVoPeMst5tVPbEfw7Xy1JnFEpwFY/BgtlLuQ8dRhJ1gbVPqcaKBE0ZoHUEeM?=
- =?us-ascii?Q?96eoYa76dQMxjDcOncyO6hfL33kv7r0qTxFNscfS5ui/ym6JU8SmjoL7/a9t?=
- =?us-ascii?Q?eSJlul/W33D4kQ//Gi4JTEjp/GhkLLrU8wgrenyEePL0LiDK/kINg1TLPEPg?=
- =?us-ascii?Q?esv4MzcJpmf6koyaClsXdl5+rZJkxnaQMapejSMGM+kaCC338ECGB8RtBmqK?=
- =?us-ascii?Q?QIrln0hl+Uo38sRa8pHTSeaU2RfyXMfdEt52HoPifCayeLEI5l4vFnMYH9z4?=
- =?us-ascii?Q?uXQusyHqeGJgHekfHAaU6mpgDoUtuo9ozXYM0FDCq0WuzCiJccalb7w6HJJq?=
- =?us-ascii?Q?wVodEg1yxuCikaMZ9kRDuZKPOh1Ev+Lfzl8UvbfsuI/ZPdCQWcpGjWRQ1CVN?=
- =?us-ascii?Q?P3sXB8/QqnIfcilble9uPMaFrHgmzsv+HaYRhQ/8twVxEtROpw0t1tP6a0A/?=
- =?us-ascii?Q?BJnzDEqySGKii+BN/uWXzPaYRMSn6LHXtHQNrZGHmco+wh31VXL+9PbUEZIQ?=
- =?us-ascii?Q?SZkEMLRm6nyh+G5PbUVSen9TDWd8/bI0fUtyKYytveUbU1BEmCHOsLjWX6bp?=
- =?us-ascii?Q?by6gO5dBx7psAlwBq/GARB887A7TjHAU1mAatD3ZZ+i67Jqmwr1HTAC019bG?=
- =?us-ascii?Q?qJ3XJp3klYWWN9R8mLKo/CWrkq0ZkHBDTY2SkeM8LqIn53g6w0/slGld8XZH?=
- =?us-ascii?Q?zc0bUok8/+RQPFCcFeFzBfUqes62cUjp7TbwuKHfgiqV/lddHw3XZQVysz4l?=
- =?us-ascii?Q?bYMHR46/jtOvXvzWA+bmQMB1NoEXJeJVQ7FdCnhf2qGqqR8BJUNJn3bpxycq?=
- =?us-ascii?Q?dgg59R5frxnVOiTDPqq0S51Nmtz5h5lvqU8vdjP7g89jwE3Ud+7OnmLCOQkF?=
- =?us-ascii?Q?xdMsGCvHBp27gS0Q0JXcb52NTcmQqu7K0rG8BfAi+UcmmJefcGOgZg+7QbPd?=
- =?us-ascii?Q?LMkJLUY5NtIfqocSpe14nGOnrkXavzKIvctgmLY/iZEAJ+WS3VXV2iXN6z03?=
- =?us-ascii?Q?bvxRjsPz8DamrZd8SVWsZnu4i1TYgjiHmde2AzcXy9ISzrv8tl7fJU3qh964?=
- =?us-ascii?Q?5DDj58VUFbCYWkoR4XBhpdXvvUSZfk9lNsqFFWM983wOnEW2F8F2jircjtMd?=
- =?us-ascii?Q?ijxQXDW/5vzN6POm5xO0Bz9ooHpE/Di1q/BVFIHAny0S+qryD0hLJbdb2rA3?=
- =?us-ascii?Q?n5oYoaRy1Nf0OS5HMfgwITl2Wvcf6255uYRMZSshy+acDVXr2CopsdF9CRyZ?=
- =?us-ascii?Q?xJu056bO/v2lWtMTKoZ0kn9pHUpBnBC58l+VCWGcjy8GO0jUeVHfyHLocF2/?=
- =?us-ascii?Q?euayM2HEXsV+rx8VGtRxNxOlQ72KaWC5mKZDJSEM8jZxfFMUXDoxohYg/1l5?=
- =?us-ascii?Q?xmLj5fQQ3MpsQPuz8aArFjEMdNjvX9BaS3haL5GPaSsjXVyBjVQv?=
-X-Exchange-RoutingPolicyChecked: owdvwV+9YnaMdSIqJW+PQ972LD9YFOuu7qrtbrl8GaoldajLYGg4XnWLOumYEWN0j+WWWsEgHCAjFFW26tZYiPndSY+caTJOVuNyfR2SNnxgMJVyyj2K9BLigL60oFalKyaeSicTEDeZYYienqF6Otg6lpg6czrwvRuypeax1vr4+dszVmEikSBuUfM+9qhMtneXJxG/X2FFfTeH+0iqisAkgb+V6uJ+dcoeXMUxaPzWPhpTPx/m6jUgWCE/SbB9QkgGYOeNRglnl4CKT5FfJD+I85W03ARvRZtAkoneJHVJTcMo6SEi0gNPeeuq5E9Y/rOByO8I05cFijarA4qZnA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2fc649b1-6680-4219-9dfd-08deaa5c7d2e
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?9Oax7sAr4h22/vLpNPLUEdELepvJo9jMJIq1VtieeL/hx86uR7R3Fm0vdj8C?=
+ =?us-ascii?Q?LRTJPD+q/np0hNBGAu2Fw2K8FwKWHzXXU1rnI53OjqTqboAnVAYR703I+Bji?=
+ =?us-ascii?Q?rDAiCtkmTLtqWfCUtk6eizXJdAPqu1uyrLoQgyG7SRAtAGVeal1anUUXq5sM?=
+ =?us-ascii?Q?W9+XC1FlrAm/iojDQk3UDgWeF5ekP+0GiXCREGMKLzL+jejXMundAT8aoPdW?=
+ =?us-ascii?Q?vgjZ6CweU2//iDM64swIN7Yf4NXMcl0SgpMB8X0GdArZNGmFIl7RHGYK8481?=
+ =?us-ascii?Q?WioSQadXWq5gXrPri2uW9YnatPNLLX6GVDLaEkePbE7CJdRNYTEyMwRzej3Q?=
+ =?us-ascii?Q?XuVWxyDRyTxHOu5/yps/65TqxgUdorQChl4t1LUymMBp/52cdShzNEE2kOd7?=
+ =?us-ascii?Q?6ZEnjSv3SGXc2snU4Rikte7OYtHY0Pab8mcH/3jW7drJVqgeFgiwMDOx+Kn5?=
+ =?us-ascii?Q?u/q7ln0GajCkl8mdWbRcUE+cm1rMMtiiZ1Z6xoULMQx9gjvvyAFZa+ilbjsv?=
+ =?us-ascii?Q?+fYh/MiQ1grXMQrn/LkVgEhj7t2p2g7zgeSgCAAykeyWaxv4ysQa8jhaCB6k?=
+ =?us-ascii?Q?kmhg19qzkLVY9vofTHKeKRi9qin/uXEs/hSMmAM1CCIMH0fU0qlcYWzGNMwn?=
+ =?us-ascii?Q?7MDL8GmeFs4BZC4YzXVAMDRMWkXMJNuw6oB3zI8888e+0rBvsisJScarJ0TT?=
+ =?us-ascii?Q?M4nQwvtFBngYg3p65mR1wRWvdpbhNldSVIq+RWe93/vwNEXywZ7EfmeBOzwR?=
+ =?us-ascii?Q?2bzJj3bNcWaiuR0j6pJuVtkuyhqoq66q11bCtvxAkOQnfhGj+5rXHGMLgXdQ?=
+ =?us-ascii?Q?8VoY5n8cJHcfTIHAs9jKJAttY2zimz8HHSVpT33MHV9L4cRHKufB2EbOBtwC?=
+ =?us-ascii?Q?QQRUAQW3KKL9WyW9s1Fv4xpP7YKo7G5zoMWoXPFedRi3ExKaeUVeVu4wxSJ8?=
+ =?us-ascii?Q?lWNzSkESiZOyM71YsCOlUyRntnW4Wd9zad99JqQ04QW1dya9rkoXe2ldNxz8?=
+ =?us-ascii?Q?wH756suUQqkzAtAlbL7rhs+pifkOXmuwXyxSOiFf9Rmt/L8GvrgyX+RjkZYp?=
+ =?us-ascii?Q?A1YviTQTJKu3EwLk/G6np5qCSp7+IKouzjrlA1kTNedPbB54qjfBGavuKO79?=
+ =?us-ascii?Q?mjBxuWIDCAJOXFE6m2++hfkJF9iVgjg3apYIp+8CaKxZK3DX6prJ/2vqRBNt?=
+ =?us-ascii?Q?g+fDR4qrlbuVM3Q22GEcSmUEL0w/dyP+u64kDFqVTjOT5Mn2p6D3eHLpS2Sz?=
+ =?us-ascii?Q?Y+Tj8RlO9CVtgLChZXK/i6gWDJSnoowJEdFU4cAg8ytsfI/agHfv82j0GI4r?=
+ =?us-ascii?Q?sBYxuwKlsGUr23spUKICylGed0iuzFhHlVly1ARDZTbmqWThrngByeSP63ua?=
+ =?us-ascii?Q?1V7Dq8j3CpZEqTrVf1jb2+hRTqgCr9wp8wLiXspoIv9M+gVSNog0X/L5w8Qf?=
+ =?us-ascii?Q?Ls46Q9D11137FE3jkz8Y2+r6m1QtyTaEy0ebFEYjQnccXWzx7C3/efCm3oDo?=
+ =?us-ascii?Q?8r+ZrDNQZvc1ZUQ8/iN83WmbaBD+7btyn467GiM5URPvFDc3uIk6SNDr89B7?=
+ =?us-ascii?Q?PG9gRLEq6liBe5Fbknx7mfmfleQldhP29Iw49F3N6h9fc7AmwbJ6dPaeSYrn?=
+ =?us-ascii?Q?nzqZdkQ+/Ijd+bSVf0YFaxBCRMR5dCr2M/qHtM8jiWm7sikhfK6LUJ7zYB5Y?=
+ =?us-ascii?Q?ko6VewfFrqK/DBb2sPxTe2tQgzQ/NZi/Bs5d3kGqwQp34zFxHRjgySqzZeYw?=
+ =?us-ascii?Q?O2AxRnB315tlVpeofwpHExpbSzKwPX7k7JH8SjUUbeEVr0iqBiCq?=
+X-Exchange-RoutingPolicyChecked: VHpcaVFL7jrMlE8Q/5TeWCnFQv6RNK1s45+CxEYevY4T04GSQUjASb66NG9p9Qk1uC8s1tseJspbLpgDeOnFzxjRiy5gqS6SnhyUvKtGhWJEREEZnMWyS0BFamT4BA1ZHKMBnGMtM1+AP1Kma+7uUbHwjUhl6h5XTtXUva7acGnlrm93eLrkTFXl3bw5kpGWx+G6WBIcd0+c2FnR9O/9JCC/dtJKHsFdhXJLEMWZFkGZvxzR+GJ9xHn2PaKMfv5T+PTMN+MiBPw5uSApU1CSAwcK5rpNOUNUwOGwDhdF8uXrwtREdWtxjr1TBb0CBhKul95JE8VJK7x6Vpz+lTYM4A==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8f1d7126-eec2-4e2d-88f4-08deaa5d2533
 X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6410.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2026 04:12:14.8717 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2026 04:16:56.7111 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: djt+HEZJRhOPbStztycVRpqNspipBrVLYhL+WRlgIZqW39mpP22Vc/ubyp0Tz/M0yLKRFkk0uEvbGg3Odv8hAM6PnbH4iP7e7J/3FuwTO9ZLALsG3B7D9NqBFLtT/Loj
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DSVPR11MB9720
+X-MS-Exchange-CrossTenant-UserPrincipalName: dWT/tFCITVARMmAZ2HCTfZH+NfdjS6EAwbzaAScTcYK4vr3Z8OD94r92lDFdao3gjSb0cSRN06NbVTcR6iTFWC9zCKhPPAzg52DhgJkMtEscXJ1uHERUzlGEWUKhajtZ
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB5889
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -159,205 +159,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, May 01, 2026 at 05:53:39PM -0700, Umesh Nerlige Ramappa wrote:
->If a queue is currently active on the CS, query the QUEUE TIMESTAMP
->register to get an up to date value of the runtime. To do so, ensure
->that the primary queue is active and then check if the secondary queue
->is executing on the CS.
+On Fri, May 01, 2026 at 05:53:38PM -0700, Umesh Nerlige Ramappa wrote:
+>We need to define more helpers that read engine ID specific register, so
+>move that logic outside of get_ctx_timestamp().
 >
 >Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 >---
->v2:
->- Move trace to a separate patch (Stuart)
->- Refactor multi queue timestamp logic (Matt/Niranjana)
->---
-> drivers/gpu/drm/xe/regs/xe_engine_regs.h |   4 +
-> drivers/gpu/drm/xe/xe_lrc.c              | 115 +++++++++++++++++++----
-> 2 files changed, 99 insertions(+), 20 deletions(-)
->
->diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
->index 1b4a7e9a703d..af6af6f3f5e8 100644
->--- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
->+++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
->@@ -170,6 +170,10 @@
-> #define   GFX_MSIX_INTERRUPT_ENABLE		REG_BIT(13)
->
-> #define RING_CSMQDEBUG(base)			XE_REG((base) + 0x2b0)
->+#define   CURRENT_ACTIVE_QUEUE_ID_MASK		REG_GENMASK(7, 0)
->+
->+#define RING_QUEUE_TIMESTAMP(base)		XE_REG((base) + 0x4c0)
->+#define RING_QUEUE_TIMESTAMP_UDW(base)		XE_REG((base) + 0x4c0 + 4)
->
-> #define RING_TIMESTAMP(base)			XE_REG((base) + 0x358)
+> drivers/gpu/drm/xe/xe_lrc.c | 20 +++++++++++++++-----
+> 1 file changed, 15 insertions(+), 5 deletions(-)
 >
 >diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
->index 92419e5058fd..023202be5d52 100644
+>index 2ee52efb9219..92419e5058fd 100644
 >--- a/drivers/gpu/drm/xe/xe_lrc.c
 >+++ b/drivers/gpu/drm/xe/xe_lrc.c
->@@ -21,6 +21,7 @@
-> #include "xe_configfs.h"
-> #include "xe_device.h"
-> #include "xe_drm_client.h"
->+#include "xe_exec_queue.h"
-> #include "xe_exec_queue_types.h"
-> #include "xe_gt.h"
-> #include "xe_gt_clock.h"
->@@ -2655,17 +2656,65 @@ static int get_ctx_timestamp(struct xe_lrc *lrc, u32 engine_id, u64 *reg_ctx_ts)
-> 	return 0;
+>@@ -2620,17 +2620,27 @@ void xe_lrc_snapshot_free(struct xe_lrc_snapshot *snapshot)
+> 	kfree(snapshot);
 > }
 >
->-/**
->- * xe_lrc_timestamp() - Current ctx timestamp
->- * @lrc: Pointer to the lrc.
->- *
->- * Return latest ctx timestamp. With support for active contexts, the
->- * calculation may be slightly racy, so follow a read-again logic to ensure that
->- * the context is still active before returning the right timestamp.
->- *
->- * Returns: New ctx timestamp value
->- */
->-u64 xe_lrc_timestamp(struct xe_lrc *lrc)
->+static u64 get_queue_timestamp(struct xe_hw_engine *hwe)
->+{
->+	return xe_mmio_read64_2x32(&hwe->gt->mmio,
->+				   RING_QUEUE_TIMESTAMP(hwe->mmio_base));
+>-static int get_ctx_timestamp(struct xe_lrc *lrc, u32 engine_id, u64 *reg_ctx_ts)
+>+static struct xe_hw_engine *engine_id_to_hwe(struct xe_gt *gt, u32 engine_id)
+> {
+> 	u16 class = REG_FIELD_GET(ENGINE_CLASS_ID, engine_id);
+> 	u16 instance = REG_FIELD_GET(ENGINE_INSTANCE_ID, engine_id);
+>+	struct xe_hw_engine *hwe = xe_gt_hw_engine(gt, class, instance, false);
+>+
+>+	if (xe_gt_WARN_ONCE(gt, !hwe || xe_hw_engine_is_reserved(hwe),
+>+			    "Unexpected engine class:instance %d:%d for utilization\n",
+>+			    class, instance))
+>+		return NULL;
+>+
+>+	return hwe;
 >+}
+
+Looks good. But the error message doesn't say which function is causing this.
+And also it will only print it once though there are multiple paths (scenarios)
+to get to here. Probably that is fine as things will be broken anyway if this
+happens.
+
+Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+
 >+
->+static u32 get_queue_id(struct xe_hw_engine *hwe)
+>+static int get_ctx_timestamp(struct xe_lrc *lrc, u32 engine_id, u64 *reg_ctx_ts)
 >+{
-
-NIT...may be rename it as get_multi_queue_active_queue()?
-
->+	u32 val = xe_mmio_read32(&hwe->gt->mmio,
->+				 RING_CSMQDEBUG(hwe->mmio_base));
->+
->+	return REG_FIELD_GET(CURRENT_ACTIVE_QUEUE_ID_MASK, val);
->+}
->+
->+static bool context_active(struct xe_lrc *lrc)
->+{
->+	return xe_lrc_ctx_timestamp(lrc) == CONTEXT_ACTIVE;
->+}
->+
->+static u64 xe_lrc_multi_queue_timestamp(struct xe_lrc *lrc)
->+{
->+	struct xe_lrc *primary_lrc = lrc->multi_queue.primary_lrc;
->+	struct xe_hw_engine *hwe;
->+	u64 reg_queue_ts = lrc->queue_timestamp;
->+
->+	if (IS_SRIOV_VF(lrc_to_xe(lrc)))
->+		return xe_lrc_queue_timestamp(lrc);
->+
->+	if (!primary_lrc || !context_active(primary_lrc))
->+		return xe_lrc_queue_timestamp(lrc);
-
-May be print a warning if primary_lrc is not set?
-
->+
->+	/* WA BB populates engine id in PPHWSP of primary context only */
->+	hwe = engine_id_to_hwe(primary_lrc->gt, xe_lrc_engine_id(primary_lrc));
+> 	struct xe_hw_engine *hwe;
+> 	u64 val;
+>
+>-	hwe = xe_gt_hw_engine(lrc->gt, class, instance, false);
+>-	if (xe_gt_WARN_ONCE(lrc->gt, !hwe || xe_hw_engine_is_reserved(hwe),
+>-			    "Unexpected engine class:instance %d:%d for context utilization\n",
+>-			    class, instance))
+>+	hwe = engine_id_to_hwe(lrc->gt, engine_id);
 >+	if (!hwe)
->+		return xe_lrc_queue_timestamp(lrc);
->+
->+	if (get_queue_id(hwe) != lrc->multi_queue.pos)
->+		return xe_lrc_queue_timestamp(lrc);
->+
->+	/* queue is active, so store the queue timestamp register */
->+	reg_queue_ts = get_queue_timestamp(hwe);
->+
->+	/* double check queue and primary queue are both still active */
->+	if (get_queue_id(hwe) != lrc->multi_queue.pos ||
->+	    !context_active(primary_lrc))
->+		return xe_lrc_queue_timestamp(lrc);
->+
->+	return reg_queue_ts;
->+}
->+
->+static u64 xe_lrc_update_multi_queue_timestamp(struct xe_lrc *lrc, u64 *old_ts)
->+{
->+	*old_ts = lrc->queue_timestamp;
->+	lrc->queue_timestamp = xe_lrc_multi_queue_timestamp(lrc);
-
-Same here, add a warning message if lrc is not multi-queue?
-
->+
->+	return lrc->queue_timestamp;
->+}
->+
->+static u64 xe_lrc_single_queue_timestamp(struct xe_lrc *lrc)
-> {
-
-Hmm...NIT...we never used the word 'single_queue' so far to refer to
-non-multi-queue case. May be rename it to xe_lrc_ctx_timestamp()
-or something?
-
-Also, may be update this funcion to make use the newly added
-context_active() function?
-
-Niranjana
-
-> 	u64 lrc_ts, reg_ts, new_ts = lrc->ctx_timestamp;
-> 	u32 engine_id;
->@@ -2697,24 +2746,50 @@ u64 xe_lrc_timestamp(struct xe_lrc *lrc)
-> 	return new_ts;
-> }
+> 		return -1;
 >
->+static u64 xe_lrc_update_ctx_timestamp(struct xe_lrc *lrc, u64 *old_ts)
->+{
->+	*old_ts = lrc->ctx_timestamp;
->+	lrc->ctx_timestamp = xe_lrc_single_queue_timestamp(lrc);
->+
->+	trace_xe_lrc_update_timestamp(lrc, *old_ts);
->+
->+	return lrc->ctx_timestamp;
->+}
->+
-> /**
->- * xe_lrc_update_timestamp() - Update ctx timestamp
->+ * xe_lrc_timestamp() - Current lrc timestamp
->+ * @lrc: Pointer to the lrc.
->+ *
->+ * Return latest lrc timestamp. With support for active contexts/queues, the
->+ * calculation may be slightly racy, so follow a read-again logic to ensure that
->+ * the context/queue is still active before returning the right timestamp.
->+ *
->+ * Returns: New lrc timestamp value
->+ */
->+u64 xe_lrc_timestamp(struct xe_lrc *lrc)
->+{
->+	if (xe_lrc_is_multi_queue(lrc))
->+		return xe_lrc_multi_queue_timestamp(lrc);
->+	else
->+		return xe_lrc_single_queue_timestamp(lrc);
->+}
->+
->+/**
->+ * xe_lrc_update_timestamp() - Update lrc timestamp
->  * @lrc: Pointer to the lrc.
->  * @old_ts: Old timestamp value
->  *
->- * Populate @old_ts current saved ctx timestamp, read new ctx timestamp and
->+ * Populate @old_ts with current saved lrc timestamp, read new lrc timestamp and
->  * update saved value.
->  *
->- * Returns: New ctx timestamp value
->+ * Returns: New lrc timestamp value
->  */
-> u64 xe_lrc_update_timestamp(struct xe_lrc *lrc, u64 *old_ts)
-> {
->-	*old_ts = lrc->ctx_timestamp;
->-	lrc->ctx_timestamp = xe_lrc_timestamp(lrc);
->-
->-	trace_xe_lrc_update_timestamp(lrc, *old_ts);
->-
->-	return lrc->ctx_timestamp;
->+	if (xe_lrc_is_multi_queue(lrc))
->+		return xe_lrc_update_multi_queue_timestamp(lrc, old_ts);
->+	else
->+		return xe_lrc_update_ctx_timestamp(lrc, old_ts);
-> }
->
-> /**
+> 	if (lrc_to_xe(lrc)->info.has_64bit_timestamp)
 >-- 
 >2.43.0
 >
