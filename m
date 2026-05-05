@@ -4,63 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A057CD343A
-	for <intel-xe@archiver.kernel.org>; Tue,  5 May 2026 03:14:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A92DCD13DA
+	for <intel-xe@archiver.kernel.org>; Tue,  5 May 2026 03:19:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F35D610E916;
-	Tue,  5 May 2026 03:14:58 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V6NxglNP";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26B6F10E084;
- Tue,  5 May 2026 03:14:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777950897; x=1809486897;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=0hnl5LiK9JetEo5y2dEGrpJApTWcKUejox+F223rtO0=;
- b=V6NxglNPH5a7Oi6QXWE6F6HWXBsCVKhZsQru64Wpn/n4oEAk05mF2xWc
- 21u7OVoI9tFNqL+cxa1C+RIiRjD9V6YoETBo8xS8jWWZfSwK6nHhRZO6v
- S0M7f+r392yrqcEMy8xhWDOSASEFCsPBGV2K5NXVbHSh+uLQnp6CpEWp3
- hNg7jkEraxhZlV6QI46GReZC1MfIKnD014ZGzuEcVjHQXZ1yoqj4BC2MU
- ccalmv72kQVS739OmvGBZfNtXMpjDpaT4mkNhc3NW52ScWa8HyW6kEJ2Y
- ZZe3SUGnxTuEm6vAGln7U/zKMNyhNZp7aKr0QA3LXyeVUhKANqqJkjLIx Q==;
-X-CSE-ConnectionGUID: fOC9MVcdQoeHw41S30DC2w==
-X-CSE-MsgGUID: vuMkQi7RSveb6Q2n/5oDvQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11776"; a="78837536"
-X-IronPort-AV: E=Sophos;i="6.23,216,1770624000"; d="scan'208";a="78837536"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2026 20:14:55 -0700
-X-CSE-ConnectionGUID: wffLoEc5ShSxn8waASDU3w==
-X-CSE-MsgGUID: HfEqPezSRKmRRPOrT5QLFA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,216,1770624000"; d="scan'208";a="235939034"
-Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2026 20:14:56 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org
-Subject: [PATCH v3 1/2] drm/ttm: Drop tt->restore after successful restore
-Date: Mon,  4 May 2026 20:14:49 -0700
-Message-Id: <20260505031450.3262489-2-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260505031450.3262489-1-matthew.brost@intel.com>
-References: <20260505031450.3262489-1-matthew.brost@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2E2B10E033;
+	Tue,  5 May 2026 03:19:54 +0000 (UTC)
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3A69891A3;
+ Tue,  5 May 2026 03:19:53 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_TTM_shrinker_fragmentatio?=
+ =?utf-8?q?n_/_partial_restore_fixes?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 05 May 2026 03:19:53 -0000
+Message-ID: <177795119399.37859.3577865795060072791@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260505031450.3262489-1-matthew.brost@intel.com>
+In-Reply-To: <20260505031450.3262489-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,119 +36,120 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-ttm_pool_restore_and_alloc() can successfully complete the restore
-process via ttm_pool_restore_commit(), but tt->restore is not dropped
-afterward. As a result, subsequent backup/restore flows observe what
-appears to be a completed restore, while in reality shmem handles are
-still installed in tt->pages, leading to the stack trace below.
+== Series Details ==
 
-Fix this by freeing and dropping tt->restore in
-ttm_pool_restore_and_alloc() upon successful completion of the restore.
+Series: TTM shrinker fragmentation / partial restore fixes
+URL   : https://patchwork.freedesktop.org/series/165946/
+State : warning
 
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c8c12e558adaef7a4d125d83b6e1f8824bc13b82
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit e936f0c435a1580d82067427d6b7d54334c4ac62
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Mon May 4 20:14:50 2026 -0700
+
+    drm/ttm/pool: back up at native page order
+    
+    ttm_pool_split_for_swap() splits high-order pool pages into order-0
+    pages during backup so each 4K page can be released to the system as
+    soon as it has been written to shmem. While this minimizes the
+    allocator's working set during reclaim, it actively fragments memory:
+    every TTM-backed compound page that the shrinker touches is shattered
+    into order-0 pages, even when the rest of the system would prefer that
+    the high-order block stay intact. Under sustained kswapd pressure this
+    is enough to drive other parts of MM into recovery loops from which
+    they cannot easily escape, because the memory TTM just freed is no
+    longer contiguous.
+    
+    Stop unconditionally splitting on the backup path and back up each
+    compound at its native order in ttm_pool_backup():
+    
+      - For each non-handle slot, read the order from the head page and
+        back up all 1<<order subpages to consecutive shmem indices,
+        writing the resulting handles into tt->pages[] as we go.
+      - On success, the compound is freed once at its native order. No
+        split_page(), no per-4K refcount juggling, no fragmentation
+        introduced from this path.
+      - Slots that already hold a backup handle from a previous partial
+        attempt are skipped. A compound that would extend past a
+        fault-injection-truncated num_pages is skipped rather than split.
+    
+    A per-subpage backup failure cannot be made fully atomic: backing up a
+    subpage allocates a shmem folio before the source page can be released,
+    so under true OOM any subpage in a compound (not just the first) may
+    fail to be backed up with the rest of the source compound still live
+    and contiguous. To make forward progress in that case, fall back to
+    splitting the source compound and backing up its remaining subpages
+    individually:
+    
+      - On the first per-subpage failure for a compound (and only if
+        order > 0), call ttm_pool_split_for_swap() to split the source
+        compound, release the subpages whose contents already live in
+        shmem (their handles in tt->pages stay valid), and retry the
+        failing subpage at order 0.
+      - Subsequent successful subpage backups in the now-split compound
+        free their source page individually as soon as the handle is
+        written.
+      - A second failure after splitting terminates the loop with partial
+        progress; the remaining order-0 subpages stay in tt->pages as
+        plain page pointers and are cleaned up by the normal
+        ttm_pool_drop_backed_up() / ttm_pool_free_range() paths.
+    
+    This restores the original split-on-OOM fallback behavior while
+    keeping the common, non-OOM case fragmentation-free. It also
+    preserves the "partial backup is allowed" contract: shrunken is
+    incremented per backed-up subpage so the caller still sees forward
+    progress when a compound only partially succeeds.
+    
+    The restore-side leftover-page branch in ttm_pool_restore_commit() is
+    left as-is for now: that path can still split a previously-retained
+    compound, but in practice it is unreachable under realistic workloads
+    (per profiling we have not been able to trigger it), so it is not
+    worth complicating the restore state machine to avoid the split there.
+    If it ever becomes a problem in practice it can be addressed
+    independently.
+    
+    ttm_pool_split_for_swap() itself is retained both for the OOM
+    fallback above and for the restore path's remaining caller. The
+    DMA-mapped pre-backup unmap loop, the purge path, ttm_pool_free_*,
+    and ttm_pool_unmap_and_free() already operate at native order and
+    are unchanged.
+    
+    Cc: Christian Koenig <christian.koenig@amd.com>
+    Cc: Huang Rui <ray.huang@amd.com>
+    Cc: Matthew Auld <matthew.auld@intel.com>
+    Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+    Cc: Maxime Ripard <mripard@kernel.org>
+    Cc: Thomas Zimmermann <tzimmermann@suse.de>
+    Cc: David Airlie <airlied@gmail.com>
+    Cc: Simona Vetter <simona@ffwll.ch>
+    Cc: dri-devel@lists.freedesktop.org
+    Cc: linux-kernel@vger.kernel.org
+    Cc: stable@vger.kernel.org
+    Fixes: b63d715b8090 ("drm/ttm/pool, drm/ttm/tt: Provide a helper to shrink pages")
+    Suggested-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Assisted-by: Claude:claude-opus-4.6
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch 94d56a898a2db27f841b17f6966a81ba502fe63c drm-intel
+fa47772cd5c0 drm/ttm: Drop tt->restore after successful restore
+-:18: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#18: 
 20545 [  309.784531] RIP: 0010:sg_alloc_append_table_from_pages+0x38c/0x490
-20547 [  309.809570] RSP: 0018:ffffc9000623b838 EFLAGS: 00010206
-20548 [  309.814827] RAX: 0000000000001000 RBX: ffff88816e42a160 RCX: 0000000000000000
-20549 [  309.821986] RDX: 0000000000002000 RSI: 0000000000000003 RDI: 0000000000001000
-20550 [  309.829147] RBP: ffff88816e42a168 R08: 0000000000000002 R09: 000000007ffff000
-20551 [  309.836310] R10: ffffc9000623b928 R11: 0000000000000000 R12: 000000007ffff000
-20552 [  309.843471] R13: ffff88815ba5a100 R14: 0000000000000000 R15: 0000000000000001
-20553 [  309.850634] FS:  00007f9ff305e700(0000) GS:ffff888276c94000(0000) knlGS:0000000000000000
-20554 [  309.858749] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-20555 [  309.864519] CR2: 00007f9fca701000 CR3: 00000001565e2005 CR4: 0000000008f70ef0
-20556 [  309.871678] PKRU: 55555558
-20557 [  309.874403] Call Trace:
-20558 [  309.876866]  <TASK>
-20559 [  309.878988]  sg_alloc_table_from_pages_segment+0x60/0x100
-20560 [  309.884415]  ? ttm_resource_manager_usage+0x36/0x60 [ttm]
-20561 [  309.889845]  ? xe_tt_map_sg+0x7d/0xd0 [xe]
-20562 [  309.894045]  xe_tt_map_sg+0x7d/0xd0 [xe]
-20563 [  309.898037]  xe_bo_move+0x927/0xaa0 [xe]
-20564 [  309.902029]  ttm_bo_handle_move_mem+0xba/0x170 [ttm]
-20565 [  309.907022]  ttm_bo_validate+0xbe/0x190 [ttm]
-20566 [  309.911405]  xe_bo_validate+0x9a/0x120 [xe]
-20567 [  309.915663]  xe_gpuvm_validate+0xd9/0x140 [xe]
-20568 [  309.920206]  drm_gpuvm_validate+0x2f0/0x5b0 [drm_gpuvm]
-20569 [  309.925459]  ? drm_exec_lock_obj+0x63/0x210 [drm_exec]
-20570 [  309.930627]  xe_vm_validate_rebind+0x46/0xb0 [xe]
-20571 [  309.935428]  xe_exec_fn+0x20/0x40 [xe]
-20572 [  309.939249]  drm_gpuvm_exec_lock+0x78/0xc0 [drm_gpuvm]
-20573 [  309.944410]  xe_validation_exec_lock+0x5a/0xa0 [xe]
-20574 [  309.949385]  xe_exec_ioctl+0x806/0xc30 [xe]
-20575 [  309.953639]  ? ttwu_queue_wakelist+0xd9/0xf0
-20576 [  309.957935]  ? __pfx_xe_exec_fn+0x10/0x10 [xe]
-20577 [  309.962449]  ? __wake_up_common+0x73/0xa0
-20578 [  309.966482]  ? __pfx_xe_exec_ioctl+0x10/0x10 [xe]
-20579 [  309.971263]  drm_ioctl_kernel+0xa3/0x100
-20580 [  309.975209]  drm_ioctl+0x213/0x440
-20581 [  309.978637]  ? __pfx_xe_exec_ioctl+0x10/0x10 [xe]
-20582 [  309.983415]  xe_drm_ioctl+0x67/0xd0 [xe]
-20583 [  309.987408]  __x64_sys_ioctl+0x7f/0xd0
 
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Christian Koenig <christian.koenig@amd.com>
-Cc: Huang Rui <ray.huang@amd.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Simona Vetter <simona@ffwll.ch>
-Cc: dri-devel@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org
-Cc: stable@vger.kernel.org
-Fixes: b63d715b8090 ("drm/ttm/pool, drm/ttm/tt: Provide a helper to shrink pages")
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+total: 0 errors, 1 warnings, 0 checks, 32 lines checked
+e936f0c435a1 drm/ttm/pool: back up at native page order
 
----
-
-v3:
- - Call ttm_pool_apply_caching after freeing local restore (sashiko)
- - Save alloc in snapshot on restore failure (sashiko)
----
- drivers/gpu/drm/ttm/ttm_pool.c | 15 ++++++++++++---
- 1 file changed, 12 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
-index 278bbe7a11ad..53d1e36f0b48 100644
---- a/drivers/gpu/drm/ttm/ttm_pool.c
-+++ b/drivers/gpu/drm/ttm/ttm_pool.c
-@@ -902,6 +902,7 @@ int ttm_pool_restore_and_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
- {
- 	struct ttm_pool_tt_restore *restore = tt->restore;
- 	struct ttm_pool_alloc_state alloc;
-+	int ret;
- 
- 	if (WARN_ON(!ttm_tt_is_backed_up(tt)))
- 		return -EINVAL;
-@@ -925,14 +926,22 @@ int ttm_pool_restore_and_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
- 	} else {
- 		alloc = restore->snapshot_alloc;
- 		if (ttm_pool_restore_valid(restore)) {
--			int ret = ttm_pool_restore_commit(restore, tt->backup,
--							  ctx, &alloc);
-+			ret = ttm_pool_restore_commit(restore, tt->backup,
-+						      ctx, &alloc);
- 
- 			if (ret)
- 				return ret;
- 		}
--		if (!alloc.remaining_pages)
-+		if (!alloc.remaining_pages) {
-+			kfree(tt->restore);
-+			tt->restore = NULL;
-+
-+			ret = ttm_pool_apply_caching(&alloc);
-+			if (ret)
-+				return ret;
-+
- 			return 0;
-+		}
- 	}
- 
- 	return __ttm_pool_alloc(pool, tt, ctx, &alloc, restore);
--- 
-2.34.1
 
