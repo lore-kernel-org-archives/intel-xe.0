@@ -4,99 +4,147 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7AB5FF885A
-	for <intel-xe@archiver.kernel.org>; Tue,  5 May 2026 03:43:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 647E2FF885A
+	for <intel-xe@archiver.kernel.org>; Tue,  5 May 2026 03:46:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F1ED10E02D;
-	Tue,  5 May 2026 03:43:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19C3D10E02D;
+	Tue,  5 May 2026 03:46:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (4096-bit key; unprotected) header.d=canonical.com header.i=@canonical.com header.b="D/lqd835";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nxRToYxb";
 	dkim-atps=neutral
-X-Greylist: delayed 439 seconds by postgrey-1.36 at gabe;
- Tue, 05 May 2026 03:43:24 UTC
-Received: from smtp-relay-internal-0.canonical.com
- (smtp-relay-internal-0.canonical.com [185.125.188.122])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BC3610E02D
- for <intel-xe@lists.freedesktop.org>; Tue,  5 May 2026 03:43:24 +0000 (UTC)
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com
- [209.85.214.198])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 3F7103FE9D
- for <intel-xe@lists.freedesktop.org>; Tue,  5 May 2026 03:36:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
- s=20251003; t=1777952164;
- bh=5nXNXtq4bXqnzVo7coZe7ghW1MNIY/5OFZVdGYJv4uc=;
- h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
- b=D/lqd8354x5ssb5iU2+OyzxQMR2fgZwqVX1Y/lTd0K8uWE0JZ0sTXP2o8nqWBqjDw
- KJhN5oumt5uVUDiTkO97hFchfYq/MNUE3E0jdCHcrKpZtMYSD2eQ4sdw6FJzJEmdvw
- bsfNvDGescMCUhH4lhlkCGnKU5/vMIRwHHjKTrrnYuO0wlK+qRC7+KvS+skj+RZUIz
- G24ptRaD8+lSGXxmM3PNG6Gfi/7PRcDeVK0JGIBZZJno/A0lda28lWZHb6d/utVavv
- ntpOPhFOwt/knAwIkgK8S27tr4jf79Wpic8LEH8LvB1CkfzyIoD1TnrPs0sKTjQdgf
- /e6nUImnZRTq+NWrwLbujkyxpfPfGLCe8X3P7dw/WtvorPLYZq4u1hl6PAS9Z+b521
- bl3Jxe30hib1I0ukUqfWNzn5GW2gJ6/NGUXKzS4aiJRzY545bNno3JhNvnA8vJfDNb
- c5TFi8nMaHJxpNRKQ5IBuzEKAoo1yPzAV2onei2mN3GdNIgqYexZptSe5Hqfcfv53M
- mzma4B48Q8bqFy40BQjcEuS+pD9A/6ujcT2yI8Iom2m8kgzcXYUEoeLMALTZTbY0be
- nudaH3ndITgwXlyWFjNA4n0i9dOEqXKGY0EUYFKkkgriymA/Gi3hfh+ElivwaEwnvF
- WB88lRu1+CJfHUNu3lZy7oDA=
-Received: by mail-pl1-f198.google.com with SMTP id
- d9443c01a7336-2b7b2e90480so4859655ad.0
- for <intel-xe@lists.freedesktop.org>; Mon, 04 May 2026 20:36:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1777952162; x=1778556962;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=5nXNXtq4bXqnzVo7coZe7ghW1MNIY/5OFZVdGYJv4uc=;
- b=HdkbpOaGMBapvjlTaSrS/Nqy/bFBQLbSOuUsCUovrXp9z10K2nycaCA44Is19zyVw2
- sLl/l+w3vCKiy6l7h/sEEG/S47g6c86TrpNisL6OLO0nKxcQuSJ5ey/gJtRnMViF0/c2
- z96WV1Jike53KB1HDLQTQaueOv5J0mI2XIoa6Oz8oXjfZD4t3FmYIhCphVFfGwRBcTq7
- uawp5MqXJw6KYkWJPWCvPpuK//P0wP0t9QI9n74GHrwL90XWKxYfuTpKEKdiTb7XUsuP
- BV5oC61vlggMOWA67j6gEGhzQqssnLl//N6i6ihEru3RXQ3e3eVZD/aUxAjwZmmIKZ1Z
- LhVg==
-X-Forwarded-Encrypted: i=1;
- AFNElJ9JjorCkHFD6k7klDdpZIplJ60UYUjX4nzbCtiBMa1pNQZdUVmbYxWjoTh+WI7bMSkh4s7tLcdC7Q==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw9ipQuEk37aMN7J9k7bkWx+936rjQ2WS/ZHQx6JaGvQzHjQCDn
- t/8TawYyW74m0SlcUUm3S9sa+lFGIwtPNyKKN7MwxYSH0a45TNCdFLIQkJMoipueVely2E7m6vQ
- wU/23d+dHAnRJphMwhr9Rzrbr4uPjXQ3y4lMvPRRQvlQm+AYMTyujfftJlSgzgvXmXF8qOjto29
- yyJ6UQbBZt
-X-Gm-Gg: AeBDiesH8fHME66vVXuHBsnjih+SBSfllBik6W9FXRKrCvpzvgYjlKzXa8o4PKiVZ9O
- a6r7jWNAasoFncha42b7GTxCj87iwqG1i7bzNiAr6hjPHQ3cfu4VUskiukrPjPyS7bXfjxwrT+S
- a9XsUw0PnluePD6LLUCwbr3Dfo8RTQQcr8FU23/VmuDLR6eFibRQNtoyCsrbAv+KWkbn67eECBf
- tP4N6ZkDABp5zeIJg9t+CLHPcEq/1670x5+6InQD+evclRB8alnqU5L78xUMKJBZ16/GQ3ue7xR
- 58dJRWi0BlhAfyFgml2tuE+X0vuByUV3pEGKLTgWpN01SaoWNark1gSdxFHKfsgoAjevBZtI8Y5
- CCBKYtVEAllnOOlwGR2xBWc3zuAhB0ZNBr7o5NtCN8fRrJvvxadvcOsGL+mP0Zk6fr2J6kf/kj3
- MHfNC2Ou3XO7qruZ6Xb5vVD5TCIEFQSjFJk2sKh5fNZUSFeJa8kX9HEgYWNWMsKVtm3AY0bo2rK
- necHUuq1HZw
-X-Received: by 2002:a17:903:1b64:b0:2ba:1e94:d03b with SMTP id
- d9443c01a7336-2ba53e967b8mr6021945ad.6.1777952162425; 
- Mon, 04 May 2026 20:36:02 -0700 (PDT)
-X-Received: by 2002:a17:903:1b64:b0:2ba:1e94:d03b with SMTP id
- d9443c01a7336-2ba53e967b8mr6021765ad.6.1777952162048; 
- Mon, 04 May 2026 20:36:02 -0700 (PDT)
-Received: from an-XPS-15-9520..
- (2001-b011-2008-6553-c5e9-d4dc-67fd-a915.dynamic-ip6.hinet.net.
- [2001:b011:2008:6553:c5e9:d4dc:67fd:a915])
- by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-2b9cae16a9esm114405985ad.50.2026.05.04.20.35.59
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 04 May 2026 20:36:01 -0700 (PDT)
-From: ChunAn Wu <an.wu@canonical.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2] drm/i915/tc: Recover AUX channel after external TC port
- mode change
-Date: Tue,  5 May 2026 11:35:57 +0800
-Message-Id: <20260505033558.157604-1-an.wu@canonical.com>
-X-Mailer: git-send-email 2.34.1
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA98F10E02D
+ for <intel-xe@lists.freedesktop.org>; Tue,  5 May 2026 03:46:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1777952776; x=1809488776;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=tci2QSIov+1jCD/wEgNeeywm56KJXGIXgmsRxAjxsDo=;
+ b=nxRToYxbUmYjOICRQQwT16kpcwZ55yGqDx7jnHTssgPrdvDHGaT3uFsP
+ om3Tjgib76gB1zF8MC0DD+t+7Su0n1an7qYVmT0LKrJ03jAk8djuyDaSm
+ hx8wKIdvrLWMGQSHCyv9PPwPNhevK+a+zQMkYfw6U9MnRlPH2ASJSXYw6
+ c2k/8YoLpOGyzqY3Oohr/dD8qgC6N7ArCH0mDu40E+lluo+iqKWbgCt00
+ DwJ1a1KFl9S/bgveztLpFaqfsMm1cLDkj3vdkAHr7Q6C+Tqs0Ra6rL9Co
+ Rx2O+KgP/VgHHB3IZIJIi/eee6qbKE8Viw5UdUzmQzAuwkc4b2KCbsEtG A==;
+X-CSE-ConnectionGUID: uRCv6MdnSteSTtznltbjrQ==
+X-CSE-MsgGUID: NdtE5h4kStOY+cVQotnK3Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11776"; a="96383353"
+X-IronPort-AV: E=Sophos;i="6.23,216,1770624000"; d="scan'208";a="96383353"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2026 20:46:16 -0700
+X-CSE-ConnectionGUID: Dl4+yJtgSfClk/mjPHzqsw==
+X-CSE-MsgGUID: 2oXnuJdpRRm/ZC6C7krtFg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,216,1770624000"; d="scan'208";a="234681005"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2026 20:46:17 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Mon, 4 May 2026 20:46:16 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Mon, 4 May 2026 20:46:16 -0700
+Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.24) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Mon, 4 May 2026 20:46:15 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=HnmztK4X76BVqfK1ceoWpozeHgzPQKoARV3Sjz8EUt0bOQ7ZDVVtyEYBTz5160+XilDWy37+pOqAWEHfiUQ2xcE5icgaTXCyhu8vK59H4qg8t4/9SCc93IOGd8ALrvEn4tNMlyHujV1ZDnkqW88k3QefZRScsvwIJzLSuBwR+IfhunmBn0vVnoa1yr8VKfB0kOevKvf/CKURzsFzmvFRebBUu86YGmz62TeAdn7hwbTPNbqz5Ncc/n0xTryJ6lEvTQLASoIFY17F75CnEhVEFeWC7KwVwaXetYKq0mnk+hJSbTzYpBUXR6lBzCfTcbTFMjKO4IcooQFhs4CBFHoEvw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=y7205M0fT2Za3MhsaXYVGFBmgplujJGIsjPFefLHpOU=;
+ b=aVvtvITq0vjQrRSdsVCn2KhYjcTMcSanVHSGjv5xVq1oRNns+VFY7P1OkxZ8yX5d7suyyD5LAz0KGM4rZ5q7vuzh9qUhhbFlsEvSxiznXeBJ4GUGyx0fd5qRXIMKpArS4Zj72f/98uY7vjnxNJ2QzB2Ajh5v0wPO0YkI6bEuFouW7zK+Wr1DBAtyq7sUqUlLxZjmNRMiVvUD/2/dQyVjw8efNaIXH7iCLZ7mTlby1Q2QVTksvUgpmdYkcY/DwOsvHZQUKPvyoq3K/6UtzxoQkX5zuNE1vcWKVjeyF+BJge84RdtH1qPhtfY3/1fEI3i0jDJ5t3DQdFvbRD9Y+a59QA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BL3PR11MB6410.namprd11.prod.outlook.com (2603:10b6:208:3b9::15)
+ by PH0PR11MB5782.namprd11.prod.outlook.com (2603:10b6:510:147::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.25; Tue, 5 May
+ 2026 03:46:13 +0000
+Received: from BL3PR11MB6410.namprd11.prod.outlook.com
+ ([fe80::b01a:aa33:165:efc]) by BL3PR11MB6410.namprd11.prod.outlook.com
+ ([fe80::b01a:aa33:165:efc%6]) with mapi id 15.20.9870.023; Tue, 5 May 2026
+ 03:46:12 +0000
+Date: Mon, 4 May 2026 20:46:10 -0700
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <matthew.brost@intel.com>,
+ <stuart.summers@intel.com>
+Subject: Re: [PATCH v2 3/9] drm/xe/multi_queue: Store primary LRC and
+ position info in LRC
+Message-ID: <afloAo3OMhrZxVMK@nvishwa1-desk>
+References: <20260502005332.3135977-11-umesh.nerlige.ramappa@intel.com>
+ <20260502005332.3135977-14-umesh.nerlige.ramappa@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20260502005332.3135977-14-umesh.nerlige.ramappa@intel.com>
+X-ClientProxiedBy: BYAPR06CA0050.namprd06.prod.outlook.com
+ (2603:10b6:a03:14b::27) To BL3PR11MB6410.namprd11.prod.outlook.com
+ (2603:10b6:208:3b9::15)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL3PR11MB6410:EE_|PH0PR11MB5782:EE_
+X-MS-Office365-Filtering-Correlation-Id: 42db2cd3-f796-4673-0434-08deaa58da1c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|366016|376014|56012099003|18002099003|22082099003; 
+X-Microsoft-Antispam-Message-Info: 78BynKKE4kY4HZljw94xb7hD5dqcHAWo+5YVk4Xn7l2UTgYLxMal660jIWebzW/ZptbT16CRQHRgkekgAm3ahkaa/4hAL8/h1vIS5u6gLwpK3DLEPpxQ/CPZrChAa7o29NFPIeqGOjw8rxPGYqiyOwNOaIdctoWXb+0f2RIU1yPyQHstRVO0jkVHdmkSoHYp4aubeMP5JZcQKXIFb7YqCkQqSh4M/+AqwHyJjK7Ss0vgW+knrO3Z8X9IMF9XrYmcwEhRNXNiVDFzPrQ5Ewlzq/umAwLMTIrY6jvmy3E8UP6zOhmJz7tgi5DuOR7RU7svEwj20YucSGOhmDO9RxQ33V2gNnvZYRCpTtTWOm4r10sgwUoYLAIcNFrin4gBR4NztQXnQfZrxKqo97My2zGQY5AIiIllNC8s247oD75Ywg7jHTT3Ht6rx1XH9Rj0pYrV7/rhTMEuXCTeBPqbxnukF1gKfk3VW+sboJHoe87cIKgOzgK2DWwiDsEjkrb2qna7gY80s+VehrgnOzfn2frjtxllnN5va12CNfSIQoEhzW253Blegj27JL/QIDjZWCE3R5Bey271yZzwfK4If0F1mLdEWBdCojSpb1JSlmGQNQ43bRJKpk7aVg4LcLsrNL4VWCvOvSE5P+Wb0FY1DgkwDs9HUyVJYk5Y4irh+45hP/39WGN1T7kfkDaurz/HdTcE
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL3PR11MB6410.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(56012099003)(18002099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?bkGPoKHmlgeVt+6wz03+zFrhHp8JwM5YTmlfYGQANUgdGcgqLB0A3KBNIUE6?=
+ =?us-ascii?Q?l/tJxXFMRVkRvudK4uR+n1f9pyAfxa/mJFUoxwkU3o5nP1rwksLCe/l5f7l1?=
+ =?us-ascii?Q?BmNhZ28OgANzzLjdg/kKE2FHgJp6pvpwI70XBeS2oVvhipTYTQhxqNgYRbNF?=
+ =?us-ascii?Q?QFgsTd3IZwv4liFhNym4TeiAhbCWzTydhUo4QPmKyp++2oOkLIglGE0O7Ebl?=
+ =?us-ascii?Q?zD9SMnGEs0i1nMIr8wDl6xfp2YRpbnQ4uJ0OEjNX8FjboOnCklU78ABAJMqK?=
+ =?us-ascii?Q?mZ4FHXP647cJJQAut3ZrPiOADc8Dk6Lu8OEUuSf3UcqUQxGc8F4gnTnwa9yc?=
+ =?us-ascii?Q?dREkLPoVB4vzMdxud0G/vvadveFWWw7cQWI7aQNNa31x3W3g192icNDCR0tt?=
+ =?us-ascii?Q?o0j+bYuwW/c3rlqcAOueD2MQRCsAe3BqrBa1ssQCdAYegmf4OtSQWA23Nwqm?=
+ =?us-ascii?Q?N441zvth93u0FynOya92eBrQS03ovdQRnkd5I9AsDtcXOZSDV/1+7AP6BKUp?=
+ =?us-ascii?Q?n//RvTu5PirBQuKAuC3p+SV9OwYuCQoOps0bvnzTwa/MgRgr+nKapGO26MHd?=
+ =?us-ascii?Q?Jm8EksVyPtqtottzv9U03525JqVk1v/7ToSYwrWkVovUZj25n1eaa2eCIsb3?=
+ =?us-ascii?Q?SIKgVFeTgxyw8B7YEcTJPfuPmdGJypzlLnZzAdIngq+L1LdnPV8dh4AsuM0/?=
+ =?us-ascii?Q?ZBE+2dPEOhcpBpeGJGwweLv2DXAOllCNMV6WSfjG6CTTX5PdePyEgl6ZC64e?=
+ =?us-ascii?Q?+7FKhQt93M0X1BWIro+M/iYoLm1LY8tU+4jevh2lz2x/pPhL7VTXjs3XLlUM?=
+ =?us-ascii?Q?tginHjOXIkUglf+XeBp3Mdb4aTBBfwhmwXUdvX/Wi6GkhNPh9K8Rh8nAnkOc?=
+ =?us-ascii?Q?SwWCBFp7yeaT3DXF2hQOMqv9rEN2lDso+Q1wns5jB/kdIJzPt1NPF9eTI2Qo?=
+ =?us-ascii?Q?YND3YpfwX25gB71lkKGkStKJ9vB7FDx9G0V1+u0UFh5SNwFfGxu40DtWh9qg?=
+ =?us-ascii?Q?Yk4n/0431jN8RdqAL/reNYZwi7xJMfJjuOF3LgsGFKFQt2Vp1j2LPx/s5xAc?=
+ =?us-ascii?Q?6M4+J+o90w7ag9/ZZjEVuLZ4OS9U054N2rBTF2B+gjInllG1Fdz/B3wT8oVK?=
+ =?us-ascii?Q?BMUXMcA5mYy8aYapwtAv0jZkD12wzW0Av3Fccz+/31uQNk3fwzJxPipjVWOf?=
+ =?us-ascii?Q?CPcjmBOXOB6PpkkI2Sqx9DtBTE9IKBUASvDscMvgqR8ElKuwHUlTEtVyGmma?=
+ =?us-ascii?Q?fkzoBZVrnF3NAORyq/nLCWETK1FMmLcz98ipig06l3Qb8cb+JpxiHCZW7y/V?=
+ =?us-ascii?Q?b4VKN1/Lcg2PxSWA6C1LN1YuVtfePxpY9T3jxjBWp6c7l4m2CC3fNmfR1uZS?=
+ =?us-ascii?Q?v1JNAeRU+TX/QmaCApHf4uo3tmWijeTQZV88+TAY6pekUvigEwVQVKxOMFMH?=
+ =?us-ascii?Q?Gn/DTiPFKiHck9McZa9SjgwDkcu/C79Ur4PWEagqWb4hnNNSQROGeM5J9qaC?=
+ =?us-ascii?Q?pZmodlFe7zAZHvd4JalHt1ZZvEXdwinrMo4ORLRfJ3p7V5lS+5Wk1t8SACX2?=
+ =?us-ascii?Q?vDrxrG9zUZch95dotr7lignm26iocAPSjCRB8ySEKl4nTv0FNgN9MCN0EuF0?=
+ =?us-ascii?Q?7TOFweuOvRYV2KLztwAWXoa6mbiAhxNiMF55wCasxaHmZOWKE1e/OH4vOVo7?=
+ =?us-ascii?Q?QQEjHqJ+Dx9rt9IgyFEm5J/uvdDiZlLnL2E4k7xTV/ZbNn8zrtL32lH2/Cbr?=
+ =?us-ascii?Q?x92zbh+H6c/OKUzkHDFWqWoTw7KXFvKgMHIVd8+tuGArKiV9uhcd?=
+X-Exchange-RoutingPolicyChecked: bv/LIylU6a8NqZKPl0gUyy9fuU7Rv6tfaFsWrWB/TbdOXiv/C8nFkgaaNh90//8NlQmiqO0l8n9bRFSdjcsb+phJ+NGyFjmqD6AgHyfLdNfpWkYqq4zsLAJoqc9uwbhm85m0VF/f4V71EVVhh7asKdrLnyj7cj+l30j2GZKvPluL/8rCpnVOf+xBKmez0qTUQHhiZMo20HL6j102wLaiVAYfc42+FnZM5MOOipgrp1S+7DVlBSbrhw0HbXj2AQwKF+uzzpLON2ngAQyMBeLBwyjGLAvT4FaxCRw+uYdg08YxM/onr8wtTnXLJUvpIiZVdL1FfbGOF4a6npK/emDwmQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 42db2cd3-f796-4673-0434-08deaa58da1c
+X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6410.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2026 03:46:12.7948 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: lPTBR22xOirTfK0HrBBI1iXN0D+jD4sbxSJpwzlqEGwiSba7JlEo/DpVdC+eZfpgs0XudolrsUg6E/y1d0tW/cY1CYYWdX3iiCiNUI1a8CIa/L3vQ6P54cd2ygaMm7AX
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5782
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,194 +159,146 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When Fn+F4 triggers mirror mode, the BIOS/EC reconfigures a TC port
-mode (e.g. DP-Alt to TBT-Alt via UCSI) without generating HPD. The
-driver's cached TC mode becomes stale, so intel_dp_aux_xfer() uses
-the wrong power domain and IO routing, and AUX transactions fail.
+On Fri, May 01, 2026 at 05:53:36PM -0700, Umesh Nerlige Ramappa wrote:
+>Given an LRC belonging to the secondary queue, in order to check if its
+>context group is active, we need to check the LRC of the primary queue.
+>In addition to that we want to compare the secondary queue position to
+>CSMQDEBUG register to check if the queue itself is active.
+>
+>To do so, store primary LRC and position information in the LRC as well
+>as take a reference to the primary LRC from each LRC in the queue group.
+>
+>A note on references involved:
+>
+>- In general the Queue takes a ref on its LRC.
+>- In addition, for multi-queue,
+>a. Primary Queue takes a ref for each Secondary LRC.
+>b. Each Secondary Queue takes a ref to the Primary Queue
+>
+>In the current patch, each LRC in the queue group is storing a pointer
+>to Primary LRC. There is a small window of time in the primary queue
+>free path where the primary LRC may be freed before the secondary LRC.
+>
+>__xe_exec_queue_fini(q); // frees|puts primary q LRCs
+>...
+>window where secondary Q LRC is pointing to invalid primary LRC
+>...
+>__xe_exec_queue_free(q); // frees|puts secondary q LRCs in multi-Q case
+>
+>In this window the reference in Secondary LRC is invalid. While there
+>may be nothing accessing the secondary LRCs reference, to be safe, this
+>patch is taking a reference to Primary LRC from the secondary LRC.
+>
+>Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>---
+>v2:
+>- Store primary LRC instead of primary queue (Niranjana)
+>- Drop the valid flag and check if primary_lrc is NULL (Niranjana)
+>- Document/Revisit references (Matt/Umesh)
+>---
+> drivers/gpu/drm/xe/xe_exec_queue.c | 23 ++++++++++++++++++++---
+> drivers/gpu/drm/xe/xe_lrc.h        |  5 +++++
+> drivers/gpu/drm/xe/xe_lrc_types.h  |  8 ++++++++
+> 3 files changed, 33 insertions(+), 3 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+>index b287d0e0e60a..e34601d28520 100644
+>--- a/drivers/gpu/drm/xe/xe_exec_queue.c
+>+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+>@@ -129,8 +129,14 @@ static void xe_exec_queue_group_cleanup(struct xe_exec_queue *q)
+> 		return;
+>
+> 	/* Primary queue cleanup */
+>-	xa_for_each(&group->xa, idx, lrc)
+>+	xa_for_each(&group->xa, idx, lrc) {
+>+		/* drop secondary lrc ref to primary lrc */
+>+		xe_lrc_put(lrc->multi_queue.primary_lrc);
+>+		/* drop primary queue ref to secondary lrc */
+> 		xe_lrc_put(lrc);
+>+	}
+>+	/* drop primary lrc ref to itself */
+>+	xe_lrc_put(q->lrc[0]);
+>
+> 	xa_destroy(&group->xa);
+> 	mutex_destroy(&group->list_lock);
+>@@ -275,8 +281,15 @@ static void xe_exec_queue_set_lrc(struct xe_exec_queue *q, struct xe_lrc *lrc, u
+> {
+> 	xe_assert(gt_to_xe(q->gt), idx < q->width);
+>
+>-	scoped_guard(spinlock, &q->lrc_lookup_lock)
+>+	scoped_guard(spinlock, &q->lrc_lookup_lock) {
+> 		q->lrc[idx] = lrc;
+>+		if (xe_exec_queue_is_multi_queue(q)) {
+>+			struct xe_lrc *primary_lrc = q->multi_queue.group->primary->lrc[0];
+>+
+>+			lrc->multi_queue.pos = q->multi_queue.pos;
 
-This occurs when the USB-C-to-HDMI dongle does not support TBT, so
-the mode switch creates a mismatch. It also occurs with slow monitors
-whose delayed HPD/DDC/EDID recovery causes the Type-C layer to settle
-on a stale tbt-alt state before the dongle finishes re-negotiation.
+I think q->multi_queue.pos is not yet set for secondary queues at this point.
+It is set later in the xe_exec_queue_group_add() call.
 
-Add intel_tc_port_aux_recover() to detect hardware/cached TC mode
-divergence and reset the PHY. Wrap it with
-intel_dp_aux_xfer_with_recovery() to retry with corrected settings.
+>+			lrc->multi_queue.primary_lrc = xe_lrc_get(primary_lrc);
 
-Tested on Panther Lake and Lunar Lake with a BenQ HDMI monitor via
-USB-C-to-HDMI dongle.
+I think we don't need to get/put the primary_lrc reference.
+Each queue holds a reference to its LRC. The secondary queues holds a reference
+to the primary queue. So, essentially, the secondary LRCs are holding a reference
+to primary lrc. So, I think, we don't need to hold reference again.
 
-Signed-off-by: ChunAn Wu <an.wu@canonical.com>
----
- drivers/gpu/drm/i915/display/intel_dp_aux.c | 41 +++++++++--
- drivers/gpu/drm/i915/display/intel_tc.c     | 75 +++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_tc.h     |  1 +
- 3 files changed, 113 insertions(+), 4 deletions(-)
+Niranjana
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-index b20ec3e589fa..d496b2231656 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-@@ -481,6 +481,39 @@ static u32 intel_dp_aux_xfer_flags(const struct drm_dp_aux_msg *msg)
- 	return 0;
- }
- 
-+/**
-+ * intel_dp_aux_xfer_with_recovery - AUX transfer with TC port recovery
-+ * @intel_dp: the DP port
-+ * @send: buffer of bytes to send
-+ * @send_bytes: number of bytes to send
-+ * @recv: buffer to store received reply
-+ * @recv_size: maximum number of bytes to receive
-+ * @aux_send_ctl_flags: extra flags for the AUX send control register
-+ *
-+ * Wrapper around intel_dp_aux_xfer() that attempts to recover from an
-+ * external TC port mode change (e.g., dp-alt -> tbt-alt via hotkey BIOS
-+ * action) when the initial AUX transfer fails. On failure, recovery is
-+ * attempted once via intel_tc_port_aux_recover() before retrying.
-+ *
-+ * Returns: number of received bytes on success, negative error code on failure.
-+ */
-+static int
-+intel_dp_aux_xfer_with_recovery(struct intel_dp *intel_dp,
-+				const u8 *send, int send_bytes,
-+				u8 *recv, int recv_size,
-+				u32 aux_send_ctl_flags)
-+{
-+	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-+	int ret;
-+
-+	ret = intel_dp_aux_xfer(intel_dp, send, send_bytes, recv, recv_size,
-+				aux_send_ctl_flags);
-+	if (ret < 0 && intel_tc_port_aux_recover(dig_port))
-+		ret = intel_dp_aux_xfer(intel_dp, send, send_bytes, recv,
-+					recv_size, aux_send_ctl_flags);
-+	return ret;
-+}
-+
- static ssize_t
- intel_dp_aux_transfer(struct drm_dp_aux *aux, struct drm_dp_aux_msg *msg)
- {
-@@ -508,8 +541,8 @@ intel_dp_aux_transfer(struct drm_dp_aux *aux, struct drm_dp_aux_msg *msg)
- 		if (msg->buffer)
- 			memcpy(txbuf + HEADER_SIZE, msg->buffer, msg->size);
- 
--		ret = intel_dp_aux_xfer(intel_dp, txbuf, txsize,
--					rxbuf, rxsize, flags);
-+		ret = intel_dp_aux_xfer_with_recovery(intel_dp, txbuf, txsize,
-+						      rxbuf, rxsize, flags);
- 		if (ret > 0) {
- 			msg->reply = rxbuf[0] >> 4;
- 
-@@ -531,8 +564,8 @@ intel_dp_aux_transfer(struct drm_dp_aux *aux, struct drm_dp_aux_msg *msg)
- 		if (drm_WARN_ON(display->drm, rxsize > 20))
- 			return -E2BIG;
- 
--		ret = intel_dp_aux_xfer(intel_dp, txbuf, txsize,
--					rxbuf, rxsize, flags);
-+		ret = intel_dp_aux_xfer_with_recovery(intel_dp, txbuf, txsize,
-+						      rxbuf, rxsize, flags);
- 		if (ret > 0) {
- 			msg->reply = rxbuf[0] >> 4;
- 			/*
-diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
-index a21dd4e3fe4c..1b23161e4eea 100644
---- a/drivers/gpu/drm/i915/display/intel_tc.c
-+++ b/drivers/gpu/drm/i915/display/intel_tc.c
-@@ -1861,6 +1861,81 @@ void intel_tc_port_link_cancel_reset_work(struct intel_digital_port *dig_port)
- 	cancel_delayed_work(&tc->link_reset_work);
- }
- 
-+/**
-+ * intel_tc_port_aux_recover - Recover AUX channel after external TC mode change
-+ * @dig_port: digital port
-+ *
-+ * When firmware causes a TC port mode change (e.g., dp-alt -> disconnect ->
-+ * tbt-alt) during a hotkey-triggered display mode switch, AUX transactions
-+ * using the stale power domain and IO flags will fail with timeouts or errors.
-+ * This happens because:
-+ *
-+ *   1. The display driver holds the TC link in dp-alt mode (link_refcount > 0)
-+ *   2. Firmware (e.g., via HP WMI hotkey BIOS action) reconfigures the TC port
-+ *      mode externally without notifying the display driver
-+ *   3. tc->mode stays as TC_PORT_DP_ALT while HW transitions to a different
-+ *      mode, invalidating the AUX power domain and IO flags used by
-+ *      intel_dp_aux_xfer()
-+ *
-+ * This function detects the discrepancy between tc->mode and actual HW state,
-+ * and re-synchronizes them via a TC PHY reset. After recovery, AUX retries
-+ * will use the correct power domain and control flags.
-+ *
-+ * The link_refcount is temporarily cleared to allow intel_tc_port_reset_mode()
-+ * to proceed without the PHY-ownership assertion that fires when link_refcount
-+ * is non-zero and firmware has already released PHY ownership.
-+ *
-+ * Must be called outside the TC port lock (tc->lock).
-+ *
-+ * Returns: %true if recovery was performed and AUX can be retried,
-+ *          %false if recovery was not needed or not possible.
-+ */
-+bool intel_tc_port_aux_recover(struct intel_digital_port *dig_port)
-+{
-+	struct intel_tc_port *tc;
-+	struct intel_display *display;
-+	bool recovered = false;
-+
-+	if (!intel_encoder_is_tc(&dig_port->base))
-+		return false;
-+
-+	tc = to_tc_port(dig_port);
-+	display = to_intel_display(dig_port);
-+
-+	mutex_lock(&tc->lock);
-+
-+	/*
-+	 * Recovery is only needed when the link is actively held AND the HW
-+	 * TC mode has diverged from the driver's cached state.
-+	 */
-+	if (!tc->link_refcount || !intel_tc_port_needs_reset(tc))
-+		goto out;
-+
-+	drm_dbg_kms(display->drm,
-+		    "Port %s: AUX recover: external TC mode change detected (%s -> HW), reconnecting TC PHY\n",
-+		    tc->port_name, tc_port_mode_name(tc->mode));
-+
-+	/*
-+	 * Temporarily clear link_refcount so intel_tc_port_reset_mode() can
-+	 * run the PHY disconnect/connect cycle without the ownership assertion
-+	 * that fires when link_refcount > 0 and firmware has already released
-+	 * PHY ownership externally.
-+	 */
-+	tc->link_refcount = 0;
-+	intel_tc_port_reset_mode(tc, 1, false);
-+	tc->link_refcount = 1;
-+
-+	recovered = tc->mode != TC_PORT_DISCONNECTED;
-+	if (!recovered)
-+		drm_warn(display->drm,
-+			 "Port %s: AUX recover: failed to restore TC port mode\n",
-+			 tc->port_name);
-+
-+out:
-+	mutex_unlock(&tc->lock);
-+	return recovered;
-+}
-+
- static void __intel_tc_port_lock(struct intel_tc_port *tc,
- 				 int required_lanes)
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_tc.h b/drivers/gpu/drm/i915/display/intel_tc.h
-index 6719aea5bd58..d44998a3081a 100644
---- a/drivers/gpu/drm/i915/display/intel_tc.h
-+++ b/drivers/gpu/drm/i915/display/intel_tc.h
-@@ -108,6 +108,7 @@ bool intel_tc_port_ref_held(struct intel_digital_port *dig_port);
- bool intel_tc_port_link_needs_reset(struct intel_digital_port *dig_port);
- bool intel_tc_port_link_reset(struct intel_digital_port *dig_port);
- void intel_tc_port_link_cancel_reset_work(struct intel_digital_port *dig_port);
-+bool intel_tc_port_aux_recover(struct intel_digital_port *dig_port);
- 
- int intel_tc_port_init(struct intel_digital_port *dig_port, bool is_legacy);
- void intel_tc_port_cleanup(struct intel_digital_port *dig_port);
--- 
-2.34.1
-
+>+		}
+>+	}
+> }
+>
+> /**
+>@@ -388,8 +401,12 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
+>
+> 			xe_exec_queue_set_lrc(q, lrc, i);
+>
+>-			if (__lrc)
+>+			if (__lrc) {
+>+				if (xe_exec_queue_is_multi_queue(q))
+>+					xe_lrc_put(__lrc->multi_queue.primary_lrc);
+>+
+> 				xe_lrc_put(__lrc);
+>+			}
+> 			__lrc = lrc;
+>
+> 		} while (marker != xe_vf_migration_fixups_complete_count(q->gt));
+>diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+>index 97aef0327fc8..3d0bf4a7bfa0 100644
+>--- a/drivers/gpu/drm/xe/xe_lrc.h
+>+++ b/drivers/gpu/drm/xe/xe_lrc.h
+>@@ -91,6 +91,11 @@ static inline size_t xe_lrc_ring_size(void)
+> 	return SZ_16K;
+> }
+>
+>+static inline bool xe_lrc_is_multi_queue(struct xe_lrc *lrc)
+>+{
+>+	return lrc->multi_queue.primary_lrc;
+>+}
+>+
+> size_t xe_gt_lrc_hang_replay_size(struct xe_gt *gt, enum xe_engine_class class);
+> size_t xe_gt_lrc_size(struct xe_gt *gt, enum xe_engine_class class);
+> u32 xe_lrc_pphwsp_offset(struct xe_lrc *lrc);
+>diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h b/drivers/gpu/drm/xe/xe_lrc_types.h
+>index 5a718f759ed6..0a5c13ec2ad7 100644
+>--- a/drivers/gpu/drm/xe/xe_lrc_types.h
+>+++ b/drivers/gpu/drm/xe/xe_lrc_types.h
+>@@ -63,6 +63,14 @@ struct xe_lrc {
+>
+> 	/** @ctx_timestamp: readout value of CTX_TIMESTAMP on last update */
+> 	u64 ctx_timestamp;
+>+
+>+	/** @multi_queue: Multi queue LRC related information */
+>+	struct {
+>+		/** @multi_queue.primary_lrc: Primary lrc of this multi-queue group*/
+>+		struct xe_lrc *primary_lrc;
+>+		/** @multi_queue.pos: Position of LRC within the multi-queue group */
+>+		u8 pos;
+>+	} multi_queue;
+> };
+>
+> struct xe_lrc_snapshot;
+>-- 
+>2.43.0
+>
