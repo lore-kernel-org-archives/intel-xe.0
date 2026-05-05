@@ -4,63 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9550CD3430
-	for <intel-xe@archiver.kernel.org>; Tue,  5 May 2026 09:02:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5496DCD3430
+	for <intel-xe@archiver.kernel.org>; Tue,  5 May 2026 09:16:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9D1710E9FA;
-	Tue,  5 May 2026 09:02:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F113410E0F1;
+	Tue,  5 May 2026 09:16:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ha8zObKs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ct0rprXE";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0157010E9F5;
- Tue,  5 May 2026 09:02:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02F8F10E0F1;
+ Tue,  5 May 2026 09:16:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777971769; x=1809507769;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=km3XXeySFy6SVYXHhF4s5Stfz9taVh0BL2AI1OyPFlQ=;
- b=Ha8zObKsphZxOVsxSjzkAjK1z1T12G0nmTMJd0gA9mUz/QIEOh23G61E
- mEdyIxoUky2L5M4oKKdg3QOOXpNgpbaB3pu0Ii16FQstCFLCEX+bwe7vM
- rC680QqXm1p9ts+9ThRqt8CYkMz1vVbkxpagKwIupPc1+kmhzvjhqTFtd
- hJzV0yOxR9gxUXJnTR/kdiJ62A/XlrEizinai/J/fuJXjdVg3b6yFvDYu
- QRKyqAwU6guSz2JqmmYtBVyeps8xsV1wIBshzMdCluFsp3O6Q1msfQVZ/
- uFOxwbPpRk2GAD7MjuQgy0Y9NQH3theyBc3mgIR6K3fJDDjQtuvlARMJJ Q==;
-X-CSE-ConnectionGUID: Y2V4Q+itSaa95chqs5GAIw==
-X-CSE-MsgGUID: 48Irdh7cTnSpC8VD7CnkQQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11776"; a="78698036"
-X-IronPort-AV: E=Sophos;i="6.23,217,1770624000"; d="scan'208";a="78698036"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2026 02:02:46 -0700
-X-CSE-ConnectionGUID: o4zNNE+DQJinUao9qGH2Tg==
-X-CSE-MsgGUID: SqTAs1PJRIqMdPPuss4fAg==
+ t=1777972616; x=1809508616;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=O/+F1FuTyMlqTiyDMdls+PKaIOICmHcg65+7XwlYPg8=;
+ b=Ct0rprXELeUYjoDmfcRAfuqe9dK/uj3RH5orQC0AdQgdAP+XZf7oldsH
+ 3s1JnjSZ3vZWs9s8pOXk9swpBLL85o6fBCersnaxvXz2q4X6eqGFzFbgB
+ Y9RIEqSmw2cav3Y3kGSUczwL60EnClHAVia7TUcMP7jpka/9+GUiIdKCB
+ rUGBv1zfi3t4Pfawpk3bzqQ4Rh4R55AivLkytEcCAqImMEMz1c4s9dkZV
+ ICnSLRCKzoZ2IrGR5QIAzK9LfGTAGHs6ov2yGJcsOpZCsLHiTxwguG+/e
+ I/0G5ZbE08M5PNZG8gTwqT3WXFrdXmufmRlBMhWpsQrFDxdmR0E7LNpMV A==;
+X-CSE-ConnectionGUID: M8DrBZJ5QP+LywYQKKtnsQ==
+X-CSE-MsgGUID: XG9oJZHJSke5kiCJMyfTMA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11776"; a="78887960"
+X-IronPort-AV: E=Sophos;i="6.23,217,1770624000"; d="scan'208";a="78887960"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2026 02:16:55 -0700
+X-CSE-ConnectionGUID: Y1O+9djhR4WGSJB4bIr9tQ==
+X-CSE-MsgGUID: xfAyxY/dSxGVofW8pghd0A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,217,1770624000"; d="scan'208";a="237533123"
-Received: from zzombora-mobl1 (HELO [10.245.244.41]) ([10.245.244.41])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2026 02:02:39 -0700
-Message-ID: <12feb16f1f8dd00458e982785d45415d42a3e768.camel@linux.intel.com>
-Subject: Re: [PATCH v4 2/2] drm/ttm/pool: back up at native page order
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: Christian Koenig <christian.koenig@amd.com>, Huang Rui
- <ray.huang@amd.com>,  Matthew Auld <matthew.auld@intel.com>, Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard	
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Date: Tue, 05 May 2026 11:02:35 +0200
-In-Reply-To: <20260505033013.3266938-3-matthew.brost@intel.com>
-References: <20260505033013.3266938-1-matthew.brost@intel.com>
- <20260505033013.3266938-3-matthew.brost@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+X-IronPort-AV: E=Sophos;i="6.23,217,1770624000"; d="scan'208";a="234752496"
+Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.244.55])
+ by orviesa006-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 May 2026 02:16:53 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com,
+ =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>,
+ ville.syrjala@linux.intel.com
+Subject: [RESEND 0/4] drm/i915/display: start switching to display specific
+ reg types
+Date: Tue,  5 May 2026 12:16:44 +0300
+Message-ID: <cover.1777972548.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,305 +71,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 2026-05-04 at 20:30 -0700, Matthew Brost wrote:
-> ttm_pool_split_for_swap() splits high-order pool pages into order-0
-> pages during backup so each 4K page can be released to the system as
-> soon as it has been written to shmem. While this minimizes the
-> allocator's working set during reclaim, it actively fragments memory:
-> every TTM-backed compound page that the shrinker touches is shattered
-> into order-0 pages, even when the rest of the system would prefer
-> that
-> the high-order block stay intact. Under sustained kswapd pressure
-> this
-> is enough to drive other parts of MM into recovery loops from which
-> they cannot easily escape, because the memory TTM just freed is no
-> longer contiguous.
->=20
-> Stop unconditionally splitting on the backup path and back up each
-> compound at its native order in ttm_pool_backup():
->=20
-> =C2=A0 - For each non-handle slot, read the order from the head page and
-> =C2=A0=C2=A0=C2=A0 back up all 1<<order subpages to consecutive shmem ind=
-ices,
-> =C2=A0=C2=A0=C2=A0 writing the resulting handles into tt->pages[] as we g=
-o.
-> =C2=A0 - On success, the compound is freed once at its native order. No
-> =C2=A0=C2=A0=C2=A0 split_page(), no per-4K refcount juggling, no fragment=
-ation
-> =C2=A0=C2=A0=C2=A0 introduced from this path.
-> =C2=A0 - Slots that already hold a backup handle from a previous partial
-> =C2=A0=C2=A0=C2=A0 attempt are skipped. A compound that would extend past=
- a
-> =C2=A0=C2=A0=C2=A0 fault-injection-truncated num_pages is skipped rather =
-than split.
->=20
-> A per-subpage backup failure cannot be made fully atomic: backing up
-> a
-> subpage allocates a shmem folio before the source page can be
-> released,
-> so under true OOM any subpage in a compound (not just the first) may
-> fail to be backed up with the rest of the source compound still live
-> and contiguous. To make forward progress in that case, fall back to
-> splitting the source compound and backing up its remaining subpages
-> individually:
->=20
-> =C2=A0 - On the first per-subpage failure for a compound (and only if
-> =C2=A0=C2=A0=C2=A0 order > 0), call ttm_pool_split_for_swap() to split th=
-e source
-> =C2=A0=C2=A0=C2=A0 compound, release the subpages whose contents already =
-live in
-> =C2=A0=C2=A0=C2=A0 shmem (their handles in tt->pages stay valid), and ret=
-ry the
-> =C2=A0=C2=A0=C2=A0 failing subpage at order 0.
-> =C2=A0 - Subsequent successful subpage backups in the now-split compound
-> =C2=A0=C2=A0=C2=A0 free their source page individually as soon as the han=
-dle is
-> =C2=A0=C2=A0=C2=A0 written.
-> =C2=A0 - A second failure after splitting terminates the loop with partia=
-l
-> =C2=A0=C2=A0=C2=A0 progress; the remaining order-0 subpages stay in tt->p=
-ages as
-> =C2=A0=C2=A0=C2=A0 plain page pointers and are cleaned up by the normal
-> =C2=A0=C2=A0=C2=A0 ttm_pool_drop_backed_up() / ttm_pool_free_range() path=
-s.
->=20
-> This restores the original split-on-OOM fallback behavior while
-> keeping the common, non-OOM case fragmentation-free. It also
-> preserves the "partial backup is allowed" contract: shrunken is
-> incremented per backed-up subpage so the caller still sees forward
-> progress when a compound only partially succeeds.
->=20
-> The restore-side leftover-page branch in ttm_pool_restore_commit() is
-> left as-is for now: that path can still split a previously-retained
-> compound, but in practice it is unreachable under realistic workloads
-> (per profiling we have not been able to trigger it), so it is not
-> worth complicating the restore state machine to avoid the split
-> there.
-> If it ever becomes a problem in practice it can be addressed
-> independently.
->=20
-> ttm_pool_split_for_swap() itself is retained both for the OOM
-> fallback above and for the restore path's remaining caller. The
-> DMA-mapped pre-backup unmap loop, the purge path, ttm_pool_free_*,
-> and ttm_pool_unmap_and_free() already operate at native order and
-> are unchanged.
->=20
-> Cc: Christian Koenig <christian.koenig@amd.com>
-> Cc: Huang Rui <ray.huang@amd.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Simona Vetter <simona@ffwll.ch>
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: stable@vger.kernel.org
-> Fixes: b63d715b8090 ("drm/ttm/pool, drm/ttm/tt: Provide a helper to
-> shrink pages")
-> Suggested-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> Assisted-by: Claude:claude-opus-4.6
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->=20
-> ---
->=20
-> A follow-up should attempt writeback to shmem at folio order as well,
-> but the API for doing so is unclear and may be incomplete.
->=20
-> This patch is related to the pending series [1] and significantly
-> reduces the likelihood of Xe entering a kswapd loop under
-> fragmentation.
-> The kswapd =E2=86=92 shrinker =E2=86=92 Xe shrinker =E2=86=92 TTM backup =
-path is still
-> exercised; however, with this change the backup path no longer
-> worsens
-> fragmentation, which previously amplified reclaim pressure and
-> reinforced the kswapd loop.
->=20
-> Nonetheless, the pathological case that [1] aims to address still
-> exists
-> and requires a proper solution. Even with this patch, a kswapd loop
-> due
-> to severe fragmentation can still be triggered, although it is now
-> substantially harder to reproduce.
->=20
-> v2:
-> =C2=A0- Split pages and free immediately if backup fails are higher order
-> =C2=A0=C2=A0 (Thomas)
-> v3:
-> =C2=A0- Skip handles in purge path (sashiko)
->=20
-> [1] https://patchwork.freedesktop.org/series/165330/
-> ---
-> =C2=A0drivers/gpu/drm/ttm/ttm_pool.c | 87 ++++++++++++++++++++++++++++---=
--
-> --
-> =C2=A01 file changed, 72 insertions(+), 15 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c
-> b/drivers/gpu/drm/ttm/ttm_pool.c
-> index c7aab60b7f01..f9e631a20979 100644
-> --- a/drivers/gpu/drm/ttm/ttm_pool.c
-> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
-> @@ -1047,12 +1047,11 @@ long ttm_pool_backup(struct ttm_pool *pool,
-> struct ttm_tt *tt,
-> =C2=A0{
-> =C2=A0	struct file *backup =3D tt->backup;
-> =C2=A0	struct page *page;
-> -	unsigned long handle;
-> =C2=A0	gfp_t alloc_gfp;
-> =C2=A0	gfp_t gfp;
-> =C2=A0	int ret =3D 0;
-> =C2=A0	pgoff_t shrunken =3D 0;
-> -	pgoff_t i, num_pages;
-> +	pgoff_t i, num_pages, npages;
-> =C2=A0
-> =C2=A0	if (WARN_ON(ttm_tt_is_backed_up(tt)))
-> =C2=A0		return -EINVAL;
-> @@ -1072,7 +1071,8 @@ long ttm_pool_backup(struct ttm_pool *pool,
-> struct ttm_tt *tt,
-> =C2=A0			unsigned int order;
-> =C2=A0
-> =C2=A0			page =3D tt->pages[i];
-> -			if (unlikely(!page)) {
-> +			if (unlikely(!page ||
-> +				=C2=A0=C2=A0=C2=A0=C2=A0
-> ttm_backup_page_ptr_is_handle(page))) {
-> =C2=A0				num_pages =3D 1;
-> =C2=A0				continue;
-> =C2=A0			}
-> @@ -1108,28 +1108,85 @@ long ttm_pool_backup(struct ttm_pool *pool,
-> struct ttm_tt *tt,
-> =C2=A0	if (IS_ENABLED(CONFIG_FAULT_INJECTION) &&
-> should_fail(&backup_fault_inject, 1))
-> =C2=A0		num_pages =3D DIV_ROUND_UP(num_pages, 2);
-> =C2=A0
-> -	for (i =3D 0; i < num_pages; ++i) {
-> -		s64 shandle;
-> +	for (i =3D 0; i < num_pages; i +=3D npages) {
-> +		unsigned int order;
-> +		pgoff_t j;
-> +		bool folio_has_been_split =3D false;
-> =C2=A0
-> +		npages =3D 1;
-> =C2=A0		page =3D tt->pages[i];
-> =C2=A0		if (unlikely(!page))
-> =C2=A0			continue;
-> =C2=A0
-> -		ttm_pool_split_for_swap(pool, page);
-> +		/* Already-handled entry from a previous attempt. */
-> +		if (unlikely(ttm_backup_page_ptr_is_handle(page)))
-> +			continue;
-> +
-> +		order =3D ttm_pool_page_order(pool, page);
-> +		npages =3D 1UL << order;
-> =C2=A0
-> -		shandle =3D ttm_backup_backup_page(backup, page,
-> flags->writeback, i,
-> -						 gfp, alloc_gfp);
-> -		if (shandle < 0) {
-> -			/* We allow partially shrunken tts */
-> -			ret =3D shandle;
-> +		/*
-> +		 * Back up the compound atomically at its native
-> order. If
-> +		 * fault injection truncated num_pages mid-compound,
-> skip
-> +		 * the partial tail rather than splitting.
-> +		 */
-> +		if (unlikely(i + npages > num_pages))
-> =C2=A0			break;
-> +
-> +		for (j =3D 0; j < npages; ++j) {
-> +			s64 shandle;
 
-I still think we should move part of this loop to
-ttm_backup_backup_folio() at this point, rather than open-coding it
-here. It's the design we want to move forward with and would probably
-make the pool code cleaner as well. If we think failures would be
-common we could have ttm_backup_backup_folio() return the number of
-pages that were actually backed up or error Otherwise just return
-success or error and on error truncate the shmem pages that were
-already copied.
+Jani Nikula (4):
+  drm/i915/display: add typedef for intel_reg_t and use it
+  drm/i915/display: add struct intel_irq_regs and use it
+  drm/i915/display: add struct intel_error_regs and use it
+  drm/i915/display: define and use intel_reg_{offset,equal,valid}()
+    helpers
 
-Thanks,
-Thomas
+ drivers/gpu/drm/i915/display/g4x_dp.c         |  4 +-
+ drivers/gpu/drm/i915/display/g4x_dp.h         | 10 ++--
+ drivers/gpu/drm/i915/display/g4x_hdmi.c       |  2 +-
+ drivers/gpu/drm/i915/display/g4x_hdmi.h       |  6 +--
+ drivers/gpu/drm/i915/display/icl_dsi.c        |  2 +-
+ drivers/gpu/drm/i915/display/intel_audio.c    |  2 +-
+ drivers/gpu/drm/i915/display/intel_color.c    |  4 +-
+ .../gpu/drm/i915/display/intel_combo_phy.c    |  2 +-
+ drivers/gpu/drm/i915/display/intel_crt.c      |  6 +--
+ drivers/gpu/drm/i915/display/intel_crt.h      |  6 +--
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  |  2 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      | 26 +++++-----
+ drivers/gpu/drm/i915/display/intel_ddi.h      |  6 +--
+ drivers/gpu/drm/i915/display/intel_de.c       | 30 +++++------
+ drivers/gpu/drm/i915/display/intel_de.h       | 48 +++++++++---------
+ drivers/gpu/drm/i915/display/intel_display.c  |  8 +--
+ drivers/gpu/drm/i915/display/intel_display.h  | 10 ++--
+ .../drm/i915/display/intel_display_device.c   |  2 +-
+ .../gpu/drm/i915/display/intel_display_irq.c  | 20 ++++----
+ .../drm/i915/display/intel_display_power.c    |  4 +-
+ .../i915/display/intel_display_power_well.c   |  8 +--
+ .../drm/i915/display/intel_display_reg_defs.h | 35 +++++++++++++
+ .../gpu/drm/i915/display/intel_display_regs.h | 50 +++++++++----------
+ .../drm/i915/display/intel_display_types.h    | 12 ++---
+ drivers/gpu/drm/i915/display/intel_dmc.c      | 50 +++++++++----------
+ drivers/gpu/drm/i915/display/intel_dmc_wl.c   | 14 +++---
+ drivers/gpu/drm/i915/display/intel_dmc_wl.h   |  6 +--
+ drivers/gpu/drm/i915/display/intel_dp.c       |  2 +-
+ drivers/gpu/drm/i915/display/intel_dp_aux.c   | 28 +++++------
+ drivers/gpu/drm/i915/display/intel_dpio_phy.c |  8 +--
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 32 ++++++------
+ drivers/gpu/drm/i915/display/intel_dsb.c      | 22 ++++----
+ drivers/gpu/drm/i915/display/intel_dsb.h      | 10 ++--
+ drivers/gpu/drm/i915/display/intel_dvo_dev.h  |  2 +-
+ drivers/gpu/drm/i915/display/intel_fdi.c      | 12 ++---
+ .../drm/i915/display/intel_fifo_underrun.c    |  4 +-
+ drivers/gpu/drm/i915/display/intel_gmbus.c    |  4 +-
+ drivers/gpu/drm/i915/display/intel_hdcp.c     |  2 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c     | 28 +++++------
+ drivers/gpu/drm/i915/display/intel_lt_phy.c   |  6 +--
+ drivers/gpu/drm/i915/display/intel_lvds.c     |  6 +--
+ drivers/gpu/drm/i915/display/intel_lvds.h     |  6 +--
+ drivers/gpu/drm/i915/display/intel_mchbar.c   | 14 +++---
+ drivers/gpu/drm/i915/display/intel_mchbar.h   |  8 +--
+ .../gpu/drm/i915/display/intel_pch_display.c  | 14 +++---
+ drivers/gpu/drm/i915/display/intel_pps.c      | 38 +++++++-------
+ drivers/gpu/drm/i915/display/intel_psr.c      | 36 ++++++-------
+ drivers/gpu/drm/i915/display/intel_sdvo.c     |  6 +--
+ drivers/gpu/drm/i915/display/intel_sdvo.h     | 10 ++--
+ drivers/gpu/drm/i915/display/intel_snps_phy.c |  4 +-
+ drivers/gpu/drm/i915/display/intel_tc.c       | 10 ++--
+ drivers/gpu/drm/i915/display/intel_vblank.c   |  2 +-
+ drivers/gpu/drm/i915/display/intel_vdsc.c     | 10 ++--
+ drivers/gpu/drm/i915/display/intel_vga.c      |  4 +-
+ drivers/gpu/drm/i915/display/vlv_dsi.c        | 16 +++---
+ 55 files changed, 377 insertions(+), 342 deletions(-)
 
+-- 
+2.47.3
 
-> +
-> +try_again_after_split:
-> +			if (IS_ENABLED(CONFIG_FAULT_INJECTION) &&
-> +			=C2=A0=C2=A0=C2=A0 should_fail(&backup_fault_inject, 1))
-> +				shandle =3D -ENOMEM;
-> +			else
-> +				shandle =3D
-> ttm_backup_backup_page(backup, page + j,
-> +							=09
-> flags->writeback,
-> +								 i +
-> j, gfp,
-> +							=09
-> alloc_gfp);
-> +
-> +			if (shandle < 0 && !folio_has_been_split &&
-> order) {
-> +				pgoff_t k;
-> +
-> +				/*
-> +				 * True OOM: could not allocate a
-> shmem folio
-> +				 * for the next subpage. Fall back
-> to splitting
-> +				 * the source compound and backing
-> up subpages
-> +				 * individually. Release the
-> already-backed-up
-> +				 * subpages whose contents now live
-> in shmem;
-> +				 * any further failure terminates
-> the loop with
-> +				 * partial progress (handled by the
-> caller).
-> +				 */
-> +				folio_has_been_split =3D true;
-> +				ttm_pool_split_for_swap(pool, page);
-> +
-> +				for (k =3D 0; k < j; ++k) {
-> +					__free_pages_gpu_account(pag
-> e + k, 0, false);
-> +					shrunken++;
-> +				}
-> +
-> +				goto try_again_after_split;
-> +			} else if (shandle < 0) {
-> +				ret =3D shandle;
-> +				goto out;
-> +			} else if (folio_has_been_split) {
-> +				__free_pages_gpu_account(page + j,
-> 0, false);
-> +				shrunken++;
-> +			}
-> +
-> +			tt->pages[i + j] =3D
-> ttm_backup_handle_to_page_ptr(shandle);
-> +		}
-> +
-> +		if (!folio_has_been_split) {
-> +			/* Compound fully backed up; free at native
-> order. */
-> +			page->private =3D 0;
-> +			__free_pages_gpu_account(page, order,
-> false);
-> +			shrunken +=3D npages;
-> =C2=A0		}
-> -		handle =3D shandle;
-> -		tt->pages[i] =3D
-> ttm_backup_handle_to_page_ptr(handle);
-> -		__free_pages_gpu_account(page, 0, false);
-> -		shrunken++;
-> =C2=A0	}
-> =C2=A0
-> +out:
-> =C2=A0	return shrunken ? shrunken : ret;
-> =C2=A0}
-> =C2=A0
