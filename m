@@ -4,149 +4,100 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DCCEBFF8855
-	for <intel-xe@archiver.kernel.org>; Tue,  5 May 2026 18:45:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE110CD3439
+	for <intel-xe@archiver.kernel.org>; Tue,  5 May 2026 18:48:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C15C10EBDF;
-	Tue,  5 May 2026 18:45:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A174610EBDF;
+	Tue,  5 May 2026 18:48:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Icod5YKu";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="WWfnPQYY";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BECF510E0C6
- for <intel-xe@lists.freedesktop.org>; Tue,  5 May 2026 18:45:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778006713; x=1809542713;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=B+BaD4zHBrkZAstXvOM3H/TqcUyHmpj/oR9dsoVmt5s=;
- b=Icod5YKufIU3GwzpMeWBjJcmiE4MQW3IPg4nuxrKHYosVEKI0SXaX7E8
- CZ+4D2vfoLtdRpE6vLxMJd8kOlzScQNEg6Z+J7x20q9xseVE5hrckwZTa
- Bl8uDGVLd2IK/VHmxvrxg0bjBcHa2QvJtX/cN4k4KTw6RBmzCsEXYbgr9
- 6gWfAYlYnJnO8mYnsBCamh2OEOQblcQu487mDjcSEtNyKPo7RYT554Ojc
- saPsYACwxkcnl9n+gbMAm+vjHa7hQoiVMSWNJJljOAvsnFUm7mz2Yk7X3
- 5EFmHxDr4nTs/LKDOQzysktagwENQC1FoVb4kMDFZCJ/TzDXNL5uXCLGi g==;
-X-CSE-ConnectionGUID: kDdCoYPuTkaTC5VHfaNCFA==
-X-CSE-MsgGUID: spOghgXFRg2qxR76z6tZTg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11777"; a="78938557"
-X-IronPort-AV: E=Sophos;i="6.23,218,1770624000"; d="scan'208";a="78938557"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2026 11:45:12 -0700
-X-CSE-ConnectionGUID: iMkzFooUS9W7KFQ8qXIlNw==
-X-CSE-MsgGUID: YEeHd7AKRU6S5LNEP23I7g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,218,1770624000"; d="scan'208";a="259243640"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2026 11:45:12 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 5 May 2026 11:45:11 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Tue, 5 May 2026 11:45:11 -0700
-Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.3) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 5 May 2026 11:45:11 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GwMBf2EuugKyQbwHCD1zdfSJIm9DEH7Z5SNb5MrwiT0qMQK5qI95kMabVjB7kbtRy3IDwXZ4KXEDzoLrjt/FMXebRFAP1ZFVzaXIf7Gu2E42oh9vC95XW0JvuUyorMh9I3d8xdvtQLj7MxTAJXJ6aZSzO4wsUS/Yo8zn23TOCm6F2MO0e4bcwaGLyEBCELzhP1H2We1fTPTFn/lFkd52xXm6xs3IRxtALlBgFiI3o7WfdkTq5OMBiaRKaajllBETltaS5wf1M9ELoLmUbinYZqnCPkP4Gji/HZWg1OapgKj6aHgklyoBkbsRSzZyxKyrlM7emiSMPsggUGoi/rud5Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=V5HdvFYtNTy2y/kBCC388cz5eDuutBuEbTUfvnHmTkU=;
- b=SdJ7tv3a0moFoh+J3JbOkxePetLAMnRPoEdohwtLukrUs24/Yt4H1cqFFWVDw3diNroGHz5+ANzSAi/OVvFkubsIfuMV02EUDrFpD3MS6g+eZAl4J8REDE2qcfXaOHQp5zdmk+0COqzdKZDzOsGiT5kt4VNGkHkOKDRl3+P6FZYqYD5TIKsN09cphhGxUeO0EkWo9usb1inxh5XoUJBZX1+ts2o6w24iNtajcqKHe7qmXs7glVv2frrCJDjU44C3EDrAWSSwxVLrc8neXu11YkRSTCSGRCxBK6uXIkhdIMHOj/lqhT/DVW3wLvMxK4V8xGyQj5FyQKAlYAhnYhRKDg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6425.namprd11.prod.outlook.com (2603:10b6:510:1f7::20)
- by IA1PR11MB8245.namprd11.prod.outlook.com (2603:10b6:208:448::5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.25; Tue, 5 May
- 2026 18:45:04 +0000
-Received: from PH7PR11MB6425.namprd11.prod.outlook.com
- ([fe80::715e:202c:8b30:1f56]) by PH7PR11MB6425.namprd11.prod.outlook.com
- ([fe80::715e:202c:8b30:1f56%6]) with mapi id 15.20.9870.023; Tue, 5 May 2026
- 18:45:04 +0000
-Date: Tue, 5 May 2026 11:45:02 -0700
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <matthew.brost@intel.com>,
- <stuart.summers@intel.com>
-Subject: Re: [PATCH v2 3/9] drm/xe/multi_queue: Store primary LRC and
- position info in LRC
-Message-ID: <afo6ru4u83dDRJFC@nvishwa1-desk>
-References: <20260502005332.3135977-11-umesh.nerlige.ramappa@intel.com>
- <20260502005332.3135977-14-umesh.nerlige.ramappa@intel.com>
- <afloAo3OMhrZxVMK@nvishwa1-desk>
- <afo4axPANAfvgzW7@soc-5CG1426VCC.clients.intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <afo4axPANAfvgzW7@soc-5CG1426VCC.clients.intel.com>
-X-ClientProxiedBy: BY1P220CA0014.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:a03:59d::9) To PH7PR11MB6425.namprd11.prod.outlook.com
- (2603:10b6:510:1f7::20)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B060210E19F
+ for <intel-xe@lists.freedesktop.org>; Tue,  5 May 2026 18:48:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1778006885;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=ZD1WNE1k/WmJPg25LWZyiq7MLw0O15fr/MzhzoxqC8A=;
+ b=WWfnPQYY++V53X79FgXOpOend2g0I55LhDmH2BsD9IveqjtTdvW8yZBAnCm5Q7CryEU3gt
+ fjnHfFZMG9guebslynpibtsGH9c+TZTvKCBvuqPcH41uGnC7exT86Ep9KDIS8jBngFS0Ps
+ MQT5OLOcy9oKnQ9xmtWOaVqY17ZT+a4=
+Received: from mail-lj1-f197.google.com (mail-lj1-f197.google.com
+ [209.85.208.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-329-tF1RKXqsNo6Gw0C5t0Y6hw-1; Tue, 05 May 2026 14:48:01 -0400
+X-MC-Unique: tF1RKXqsNo6Gw0C5t0Y6hw-1
+X-Mimecast-MFC-AGG-ID: tF1RKXqsNo6Gw0C5t0Y6hw_1778006880
+Received: by mail-lj1-f197.google.com with SMTP id
+ 38308e7fff4ca-393a397310bso9678101fa.1
+ for <intel-xe@lists.freedesktop.org>; Tue, 05 May 2026 11:48:01 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1778006880; x=1778611680;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=C1bqbiEVoTmEPJHjXzHnukQrIZ297oQVbCi2us/0k/k=;
+ b=ZZaeWWLaakZgmoImWD25dV9Igr6uj4AQIu52oMO3ms/mpv5HZz2VRppVf/Ts94rnG/
+ JeKk9V89M+LnyPEL402ahXCoANVju5Y0GAjUDDomKj0M41xfHBpOU6HfYTuNhnSazEub
+ yEi1tcR4KjpC6aOwzwy0EzokWVZC5Sy62U0PhoGAtxpV29QSRA0wt2Hk0fzsYshotXMq
+ VlFaNIUZIOWbq5Elb0XGPvCffZlKMg5MCFy8ZfSolj3WO+nsQH5R0rvDd1krcCT/dRPH
+ Ms34ASaema79OjuNRY1fFhv59d8dw7nHIsCa4kgs3pKaLet/gRdIpTE6el3CEA9Kq8KY
+ xx+w==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ/pzz/vKjVf4GCHAc8QvT5P1d05/0yhG9Ot0mAfpc008DwNE8cfhZcaxt0qs1eYxna0Tu0BXUdO5w==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwyPQ0ySDpiQxeeykxIc45LbS2PTpiVVme1+WMQhKHglMBYEUBw
+ /azkOyEgqusCUiNiB5K69Q0Wk6qyF8zbPFBRI7SP50WOjz0BQoMOpbFdMYOj0Um89rXF+R0Jspj
+ NqOKHodZySJIWZOCo9mplMfX9g0lof2G1ofQdDYnXcvgMdApEPXCSVff5VZqUSxJi7b4=
+X-Gm-Gg: AeBDies6uQfZXPDV3TUfH+0Gx5KQvtna+CnnIZMe+ixw3CyZVp8YKGj2SDsXiF9HTGN
+ EX4Ae6qBj7llNvsZ4WOYN6SQAGzsYCf0RmWHjsFWYk50k7/Ymei/i00n7wztEj03gFJNH2sXJsp
+ awGR0sQjC4Ys8R0oWlAKn0B/z4uOmqwRq1qkQ7Zt61pArNugcosv4lBOeLmqZRUsKnGnZRx21oP
+ u1bEqkmpooYHqVi/Oq+X6+S1ZpGFJav2sOU5cWZ0mOW08FkQLKtiRXIRxEiptfMUIEdPdtd6UKl
+ Kw87oTavECdK0pbGY50+XwSWihK9gUxLAY7iZ4o3riLmvTLMs67GYprvRcg/Hshd5CB/JGQv7ag
+ 1I/GG+NrMpKK+0DlSHfrZrpkN7eUudGf+3nzp4BMVk3QWdh+bkwxAbejsTg==
+X-Received: by 2002:a2e:864e:0:b0:38e:2fcc:78fe with SMTP id
+ 38308e7fff4ca-393c40bcb5cmr1627351fa.3.1778006880090; 
+ Tue, 05 May 2026 11:48:00 -0700 (PDT)
+X-Received: by 2002:a2e:864e:0:b0:38e:2fcc:78fe with SMTP id
+ 38308e7fff4ca-393c40bcb5cmr1627151fa.3.1778006879554; 
+ Tue, 05 May 2026 11:47:59 -0700 (PDT)
+Received: from [192.168.1.86] (85-23-51-1.bb.dnainternet.fi. [85.23.51.1])
+ by smtp.gmail.com with ESMTPSA id
+ 38308e7fff4ca-393610ba631sm44569421fa.12.2026.05.05.11.47.58
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 05 May 2026 11:47:59 -0700 (PDT)
+Message-ID: <433d0729-b141-4f19-a0c3-656f033e8ea1@redhat.com>
+Date: Tue, 5 May 2026 21:47:58 +0300
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6425:EE_|IA1PR11MB8245:EE_
-X-MS-Office365-Filtering-Correlation-Id: e89bba66-ee05-4aa9-b7bf-08deaad66bd6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|1800799024|22082099003|18002099003|56012099003; 
-X-Microsoft-Antispam-Message-Info: iJUAerBJE1O1VLQzZeuLS1M3/82SrelA9jXBG66qUkHDl8+jU5gnucnd0oP2I6h464uqtspf7xdNDKpKVvS4fvtStIWlk3ctpNS6eBrqjrex0+KZmQbxmva8Wo1974At+QbQUJguSrtsNGaKUyZVVsKb/Cilk7qux7++gfcLbWAQkiAklJu7JIQunwTpD83+gq8O+qkTGCpsa2C6xdg+N3LOg+u9Uzryh03yZ15kffACDK95YzzrHIG/ujtcq/NoRVyKcvf+H9H2myCOrfVvkF4+RtXadXDxmaQKLUgDiFFkf/NTpsnP1s5XwWQrzSKqOtGdLgtYE8clQJRHCbaWnllU5FcqgZ6aANAVbjix/0zlM/p8pYTp1XXmQ8lpVW8j9+psIUodp6bIK39XQph+F8sFnGn86NHkRNRkyOfsXvfeVmHfYeJuJbVyocYBX8hSA/DOFrsSu/gzX+qZO1f16YLSN7uKzwnJwRYwCqgsekXGl+fMG8IghePVJGpzsKPeMqq1lDIipQZTYOMLLBHRrFKu+R2aX0aXWDXviTcLSofxBWcbdU4MC8euKHvAu4JpjY49pbc6hDmsdFZsNeC+U6tR1Yn9nDtNAmOTWJI6K1wE3L4JLjmtfYBrxgCH4oY+ZEOO2Cn3ifvshqlrzU05so+I2aSQ52O6n/EF6KhGTAR0yHd/hS3IwN70qw3Tzpdg
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6425.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(22082099003)(18002099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?U9evYp0li6bGq4xbV2GrzOYagovrPkWhtq92K5HrV4lplXQsd/Wkijc8aoOP?=
- =?us-ascii?Q?q9pHyTg/YuanO0RLL5iOo5eosexN6gMeoETABHjIsXYIdIIh2IeTrdBHFKSQ?=
- =?us-ascii?Q?uBsKNvMskT+WdZ7rII00VwCu1K7jmhbZEpugicGcOtowyVjAfr3RNjHovipV?=
- =?us-ascii?Q?S+I+w9DdJ5unSMB9fSfbUd8+Vwm/P8vcAkF20HhAzA+ek2zJTpERFCv8Fgl1?=
- =?us-ascii?Q?dkxx2bFfXGZ4rreptsjc4z0XBXmESzsY219u/RlD2nhQQB/verBAP+ixSZO/?=
- =?us-ascii?Q?D2Z1tRg6hDoG9hPv3rBWxNrlqSdzXJO3UJDVkj5CJKO4qKdKXc/0auWpg0tz?=
- =?us-ascii?Q?B3xC7/6r37I4zDWwD/dLZTU2hQ3VDtyPAniIlITAy4p1bObDPtWNxvioTfbf?=
- =?us-ascii?Q?6LclYj+CzfQIDM4THC6l5zsR+1qB83sxcqyP4IYuJ/xlUAbz3dTDgiz+u7RL?=
- =?us-ascii?Q?WmOiQv6MpLsNIyVJvxVpW7Qxst1AI3ueq3rYUltEamoY8JEy4ZVpLGLhxN+h?=
- =?us-ascii?Q?CGKsKeymD/eYfuTIuMYDhjK1P/pAsbq12kdFTY8VGq8d9Vnm7s8ly/PGqFSI?=
- =?us-ascii?Q?ue7vcUsijXh/Uh3lk9vvPMTpQiToqHOcQLwQg10BxRQMaJvgNkHW3RC322mT?=
- =?us-ascii?Q?YWailQIPXaf+kl9C+hbeSsxg3Gaate4G/HMceI/g9aOdf09G1O8kaeIONBj2?=
- =?us-ascii?Q?RB/R/Rrc7wb4kFvHi3yWLXt6VXV4FzMTmhlPxg4D2blphzTkziu0Fz1nSY5w?=
- =?us-ascii?Q?sAtgwVai5aHR12BSnkUOzb9quKdsTt3srMPHLA4g9vWe7p504/iZYqz6fXN8?=
- =?us-ascii?Q?pWWb9nNWzw15jvMv7jDc7rEr293VILxm2GMjAhBnuQ6lE3NHI1VEeuts1Dt2?=
- =?us-ascii?Q?gCFb/a98G6cvrRPM0w86nRk7F0TqbJ59v93S13SuRYQmvuY57/UhpKP2iO/T?=
- =?us-ascii?Q?t/Yj1Cpa9uEf89NtopjsSrc/u99f4cp23nEHbF5VD1yOxGZH4zd45v33JH/V?=
- =?us-ascii?Q?/Z1yDHL8gKCI+3nAJs2gRmovLXpGpXPJv7uFrc/rCldfsoB5M4hYWDnlPQk7?=
- =?us-ascii?Q?Z65lp7UEYqfJAQdYvuDoxSpENlsTKHYq8sDm51qtenj9jIEq+Rnv7VTXLNkX?=
- =?us-ascii?Q?fS3SrzpQRfq3hF6v6gvXp0kXNU+mDgGUj3FCpyShlVkvw+EPDwjjeBNxZDIe?=
- =?us-ascii?Q?n+Z779koXkPQ+k/ewbfm1cpNkMNtVq/2qrPqVe69owRcBC2N3aYWUQrr9vX1?=
- =?us-ascii?Q?FZ9nG3poYF/6ruoV9UNJOU16mr5Dns+MyturdgadriQ7f6r5pteKtM10Vyj4?=
- =?us-ascii?Q?dauXQiOGCNkvX2UlmeTmJyq/i+HpwfMNB2ffpIJ9mo0ZRZyQWxVubNyW1zGu?=
- =?us-ascii?Q?4ZWtcw0bAIxRj8kAnQacoKswNv4D53vYcSeFcj8/VlV9spUjRVkT5r2S4OuU?=
- =?us-ascii?Q?K4QtUotIEblRth2moMlr6skMG8T7QEtJNjWehTCJsMarcf4a7DtQdU/Q2GiU?=
- =?us-ascii?Q?XpTyQCFuGjHp8YxoMwdfNz65EgXXGxlb71Jj0g4GIggJeEH8QCEojs8I0RB5?=
- =?us-ascii?Q?QViXdJDTKW9R86o4pTsK3UXzJqSAixP3BzgwakBkfGkZ669dZF9ixyKigM4W?=
- =?us-ascii?Q?R/xAnPm8YYMW+xBWu9/d/Y8g3bs80yz4/DU+c/QkFaqKoiHIl8JiJ0vJBC9i?=
- =?us-ascii?Q?p5E9ge7A7ZenNRA10CFW5z9i/Ih7pQ8sYhaHc+yLTrC4FCxz2LmtivaQ0Nf+?=
- =?us-ascii?Q?Ng5m9cNVyQv5ktfaQ9W4hSmoDu4p3PADyvYipw+hLD5RUaflyPfj?=
-X-Exchange-RoutingPolicyChecked: VtenLnTy79qEEWkBBxxSAxjC/4uTBENyynO/0zumxH+v63Z590+89wXtyaw9r2eNUP68RQClpwRo1iKfuEFCvhSOY5AJSaPjlvD3ysn9ZZzKi7HpWi/BrFELuSM9pDM+H0antJgzLlSAEj9arsIR5baEmKIxL65PgWRa2fdZgc2mCx0c0vcJ2+by40MyxQH/XWe3TbzlNdGyqvPeeN6GDywhS8Rutw6GjhvdpWZEIliIKQS+61Z0qAkm2zpZnErnKAzOqp6PigEknwucv+D1mcuENrGwafQx4Wy4oJLCc/EOFgpN9WqtZ5tmSVb3W2QYG2dugrhN4aIlVT+u6QRYtw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: e89bba66-ee05-4aa9-b7bf-08deaad66bd6
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6425.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2026 18:45:04.4310 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qQdGIicgmOEEEc82voiKvxAs6+tMH3cJ8m02lXuBvr45IiQ9pfLKTVOWdoxsMid/9UeVVBH/YJy15qOR+tcGnqwpmoZuSdGS9MMTLueSgPkO3e2X+n9rVXJnIcgnTxBs
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB8245
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 0/5] Migrate on fault for device pages
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: Alistair Popple <apopple@nvidia.com>, linux-mm@kvack.org,
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, David Hildenbrand <david@kernel.org>,
+ Jason Gunthorpe <jgg@nvidia.com>, Leon Romanovsky <leonro@nvidia.com>,
+ Balbir Singh <balbirs@nvidia.com>, Zi Yan <ziy@nvidia.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka
+ <vbabka@suse.cz>, Mike Rapoport <rppt@kernel.org>,
+ Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>
+References: <20260505051658.2219537-1-mpenttil@redhat.com>
+ <afmXIq8VY_vs1GPo@nvdebian.thelocal>
+ <ecd81b6b-62ef-4dab-a93e-e65598d64841@redhat.com>
+ <afowaUffi0JrnADf@gsse-cloud1.jf.intel.com>
+From: =?UTF-8?Q?Mika_Penttil=C3=A4?= <mpenttil@redhat.com>
+In-Reply-To: <afowaUffi0JrnADf@gsse-cloud1.jf.intel.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: jEU_c6UPhn7t_DS-4Q_pWdrBb2EWKFIW1XU45Duk_vE_1778006880
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,181 +112,146 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, May 05, 2026 at 11:35:23AM -0700, Umesh Nerlige Ramappa wrote:
->On Mon, May 04, 2026 at 08:46:10PM -0700, Niranjana Vishwanathapura wrote:
->>On Fri, May 01, 2026 at 05:53:36PM -0700, Umesh Nerlige Ramappa wrote:
->>>Given an LRC belonging to the secondary queue, in order to check if its
->>>context group is active, we need to check the LRC of the primary queue.
->>>In addition to that we want to compare the secondary queue position to
->>>CSMQDEBUG register to check if the queue itself is active.
->>>
->>>To do so, store primary LRC and position information in the LRC as well
->>>as take a reference to the primary LRC from each LRC in the queue group.
->>>
->>>A note on references involved:
->>>
->>>- In general the Queue takes a ref on its LRC.
->>>- In addition, for multi-queue,
->>>a. Primary Queue takes a ref for each Secondary LRC.
->>>b. Each Secondary Queue takes a ref to the Primary Queue
->>>
->>>In the current patch, each LRC in the queue group is storing a pointer
->>>to Primary LRC. There is a small window of time in the primary queue
->>>free path where the primary LRC may be freed before the secondary LRC.
->>>
->>>__xe_exec_queue_fini(q); // frees|puts primary q LRCs
->>>...
->>>window where secondary Q LRC is pointing to invalid primary LRC
->>>...
->>>__xe_exec_queue_free(q); // frees|puts secondary q LRCs in multi-Q case
->>>
->>>In this window the reference in Secondary LRC is invalid. While there
->>>may be nothing accessing the secondary LRCs reference, to be safe, this
->>>patch is taking a reference to Primary LRC from the secondary LRC.
->>>
->>>Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
->>>---
->>>v2:
->>>- Store primary LRC instead of primary queue (Niranjana)
->>>- Drop the valid flag and check if primary_lrc is NULL (Niranjana)
->>>- Document/Revisit references (Matt/Umesh)
->>>---
->>>drivers/gpu/drm/xe/xe_exec_queue.c | 23 ++++++++++++++++++++---
->>>drivers/gpu/drm/xe/xe_lrc.h        |  5 +++++
->>>drivers/gpu/drm/xe/xe_lrc_types.h  |  8 ++++++++
->>>3 files changed, 33 insertions(+), 3 deletions(-)
->>>
->>>diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
->>>index b287d0e0e60a..e34601d28520 100644
->>>--- a/drivers/gpu/drm/xe/xe_exec_queue.c
->>>+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
->>>@@ -129,8 +129,14 @@ static void xe_exec_queue_group_cleanup(struct xe_exec_queue *q)
->>>		return;
->>>
->>>	/* Primary queue cleanup */
->>>-	xa_for_each(&group->xa, idx, lrc)
->>>+	xa_for_each(&group->xa, idx, lrc) {
->>>+		/* drop secondary lrc ref to primary lrc */
->>>+		xe_lrc_put(lrc->multi_queue.primary_lrc);
->>>+		/* drop primary queue ref to secondary lrc */
->>>		xe_lrc_put(lrc);
->>>+	}
->>>+	/* drop primary lrc ref to itself */
->>>+	xe_lrc_put(q->lrc[0]);
->>>
->>>	xa_destroy(&group->xa);
->>>	mutex_destroy(&group->list_lock);
->>>@@ -275,8 +281,15 @@ static void xe_exec_queue_set_lrc(struct xe_exec_queue *q, struct xe_lrc *lrc, u
->>>{
->>>	xe_assert(gt_to_xe(q->gt), idx < q->width);
->>>
->>>-	scoped_guard(spinlock, &q->lrc_lookup_lock)
->>>+	scoped_guard(spinlock, &q->lrc_lookup_lock) {
->>>		q->lrc[idx] = lrc;
->>>+		if (xe_exec_queue_is_multi_queue(q)) {
->>>+			struct xe_lrc *primary_lrc = q->multi_queue.group->primary->lrc[0];
->>>+
->>>+			lrc->multi_queue.pos = q->multi_queue.pos;
+
+On 5/5/26 21:01, Matthew Brost wrote:
+
+> On Tue, May 05, 2026 at 10:18:14AM +0300, Mika Penttil=C3=A4 wrote:
+>> On 5/5/26 10:09, Alistair Popple wrote:
 >>
->>I think q->multi_queue.pos is not yet set for secondary queues at this point.
->>It is set later in the xe_exec_queue_group_add() call.
->
->Hmm, I recall seeing that a while ago and that's why I leaned toward 
->having a lrc->q (back reference to the queue that the LRC belongs to, 
->but that's prohibited). Anyways, I will try to move this logic outsize 
->to a late point then.
->
+>>> Thanks for doing this work Mika. I've been meaning to take a look at th=
+is series
+>>> for a while. I'm currently at LSFMM but will try and take a look this w=
+eek or
+>>> next as it sounds quite useful.
+>>>
+>>>  - Alistair
+>> Thanks Alistair and no problem, appreciate your insights whenever you ha=
+ve time.
 >>
->>>+			lrc->multi_queue.primary_lrc = xe_lrc_get(primary_lrc);
->>
->>I think we don't need to get/put the primary_lrc reference.
->>Each queue holds a reference to its LRC. The secondary queues holds a reference
->>to the primary queue. So, essentially, the secondary LRCs are holding a reference
->>to primary lrc. So, I think, we don't need to hold reference again.
+> It looks like this series is breaking Intel's CI [1]. Looks like
+> something in RCU is blowing up:
 >
->I would look at the queue and LRC as different objects in memory.
+> <4> [212.361418] ------------[ cut here ]------------
+> <4> [212.361431] Voluntary context switch within RCU read-side critical s=
+ection!
+> <4> [212.361432] WARNING: kernel/rcu/tree_plugin.h:332 at rcu_note_contex=
+t_switch+0x82/0x780, CPU#11: kworker/u65:5/2352
+> <4> [212.361440] Modules linked in: snd_hda_codec_intelhdmi snd_hda_codec=
+_hdmi mei_lb mei_gsc_proxy mtd_intel_dg mei_gsc xe drm_gpuvm drm_gpusvm_hel=
+per drm_buddy gpu_sched drm_ttm_helper ttm drm_suballoc_helper drm_exec drm=
+_display_helper cec rc_core drm_kunit_helpers i2c_algo_bit kunit overlay in=
+tel_rapl_msr intel_rapl_common intel_uncore_frequency intel_uncore_frequenc=
+y_common intel_tcc_cooling x86_pkg_temp_thermal intel_powerclamp hid_generi=
+c coretemp eeepc_wmi cmdlinepart asus_wmi binfmt_misc sparse_keymap spi_nor=
+ mei_hdcp mei_pxp mtd wmi_bmof kvm_intel kvm irqbypass aesni_intel gf128mul=
+ r8169 usbhid rapl hid intel_cstate realtek snd_hda_intel phy_package snd_i=
+ntel_dspcfg intel_pmc_core snd_hda_codec idma64 nls_iso8859_1 pmt_telemetry=
+ snd_hda_core video snd_hwdep pmt_discovery snd_pcm i2c_i801 pinctrl_alderl=
+ake pmt_class snd_timer i2c_mux intel_pmc_ssram_telemetry acpi_tad acpi_pad=
+ mei_me snd i2c_smbus spi_intel_pci soundcore mei spi_intel wmi intel_vsec =
+dm_multipath msr nvme_fabrics fuse efi_pstore nfnetlink autofs4
+> <4> [212.361711] CPU: 11 UID: 0 PID: 2352 Comm: kworker/u65:5 Tainted: G =
+S   U              7.1.0-rc2-lgci-xe-xe-pw-165953v1-debug+ #1 PREEMPT(lazy)=
+=20
+> <4> [212.361715] Tainted: [S]=3DCPU_OUT_OF_SPEC, [U]=3DUSER
+> <4> [212.361716] Hardware name: ASUS System Product Name/PRIME Z790-P WIF=
+I, BIOS 0812 02/24/2023
+> <4> [212.361718] Workqueue: xe_page_fault_work_queue xe_pagefault_queue_w=
+ork [xe]
+> <4> [212.361833] RIP: 0010:rcu_note_context_switch+0x82/0x780
+> <4> [212.361838] Code: 45 85 c0 74 0f 65 8b 05 24 84 ab 02 85 c0 0f 84 8d=
+ 01 00 00 45 84 ed 75 16 8b 83 bc 08 00 00 85 c0 7e 0c 48 8d 3d de ad 4d 02=
+ <67> 48 0f b9 3a 8b 83 bc 08 00 00 85 c0 7e 0d 80 bb c0 08 00 00 00
+> <4> [212.361840] RSP: 0018:ffffc9000186f4a0 EFLAGS: 00010002
+> <4> [212.361843] RAX: 0000000000000001 RBX: ffff88810a3a8040 RCX: 0000000=
+000000000
+> <4> [212.361845] RDX: 0000000000000000 RSI: 0000000000000000 RDI: fffffff=
+f839bcea0
+> <4> [212.361846] RBP: ffffc9000186f4e8 R08: 0000000000000001 R09: 0000000=
+000000000
+> <4> [212.361848] R10: 0000000000000000 R11: 0000000000000000 R12: ffff888=
+85f1b6a00
+> <4> [212.361849] R13: 0000000000000000 R14: ffffffff83248312 R15: ffffc90=
+00186f630
+> <4> [212.361851] FS:  0000000000000000(0000) GS:ffff8888db203000(0000) kn=
+lGS:0000000000000000
+> <4> [212.361853] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> <4> [212.361854] CR2: 00007fe433b2f088 CR3: 000000000344a000 CR4: 0000000=
+000f52ef0
+> <4> [212.361856] PKRU: 55555554
+> <4> [212.361858] Call Trace:
+> <4> [212.361859]  <TASK>
+> <4> [212.361862]  ? lock_is_held_type+0xa3/0x130
+> <4> [212.361868]  __schedule+0x103/0x1f70
+> <4> [212.361870]  ? lock_acquire+0xc4/0x300
+> <4> [212.361874]  ? find_held_lock+0x31/0x90
+> <4> [212.361877]  ? schedule+0x10e/0x180
+> <4> [212.361880]  ? lock_release+0xd0/0x2b0
+> <4> [212.361885]  schedule+0x3a/0x180
+> <4> [212.361888]  io_schedule+0x4c/0x80
+> <4> [212.361890]  ? softleaf_entry_wait_on_locked+0x147/0x2b0
+> <4> [212.361894]  softleaf_entry_wait_on_locked+0x24f/0x2b0
+> <4> [212.361899]  ? __pfx_wake_page_function+0x10/0x10
+> <4> [212.361904]  migration_entry_wait+0xff/0x190
+> <4> [212.361909]  hmm_vma_handle_pte+0x440/0x790
+> <4> [212.361914]  hmm_vma_walk_pmd+0x5c8/0x1360
+> <4> [212.361918]  ? xe_pagefault_queue_work+0x1a9/0x520 [xe]
+> <4> [212.362015]  walk_pgd_range+0x57f/0xd70
+> <4> [212.362017]  ? lock_is_held_type+0xa3/0x130
+> <4> [212.362028]  __walk_page_range+0x8e/0x290
+> <4> [212.362034]  walk_page_range_mm_unsafe+0x19e/0x270
+> <4> [212.362036]  ? trace_hardirqs_on+0x22/0xf0
+> <4> [212.362043]  walk_page_range+0x2a/0x40
+> <4> [212.362045]  hmm_range_fault+0x94/0x190
+> <4> [212.362053]  drm_gpusvm_get_pages+0x269/0xa30 [drm_gpusvm_helper]
+> <4> [212.362067]  drm_gpusvm_range_get_pages+0x2e/0x50 [drm_gpusvm_helper=
+]
+> <4> [212.362071]  __xe_svm_handle_pagefault+0x3e0/0xef0 [xe]
+> <4> [212.362181]  ? __lock_acquire+0x43e/0x2790
+> <4> [212.362188]  ? lock_is_held_type+0xa3/0x130
+> <4> [212.362193]  ? lock_is_held_type+0xa3/0x130
+> <4> [212.362197]  ? xe_vm_find_overlapping_vma+0x57/0x1e0 [xe]
+> <4> [212.362304]  xe_svm_handle_pagefault+0x3d/0xb0 [xe]
+> <4> [212.362412]  xe_pagefault_queue_work+0x1a9/0x520 [xe]
+> <4> [212.362509]  process_one_work+0x239/0x740
+> <4> [212.362518]  worker_thread+0x200/0x3f0
+> <4> [212.362521]  ? __pfx_worker_thread+0x10/0x10
+> <4> [212.362524]  kthread+0x10d/0x150
+> <4> [212.362527]  ? __pfx_kthread+0x10/0x10
+> <4> [212.362530]  ret_from_fork+0x3bd/0x470
+> <4> [212.362533]  ? __pfx_kthread+0x10/0x10
+> <4> [212.362536]  ret_from_fork_asm+0x1a/0x30
+> <4> [212.362546]  </TASK>
+> <4> [212.362547] irq event stamp: 2057044
 >
->In taking a reference here, I am addressing only one specific corner 
->case:
+> I=E2=80=99ll be out this Thursday for five weeks, but assuming you can so=
+rt this
+> part out, I=E2=80=99m fine with the series moving forward. I=E2=80=99ve l=
+ooked at this
+> several times, and it seems sane enough to me.
 >
->- Consider all secondary queues are freed
->- Since primary queue holds a reference to all secondary LRCs, all   
->secondary LRCs are still in memory.
->- When all references to primary queue are released, we end up in   
->xe_exec_queue_fini(primary_q).
+> On our list we also have the Sashiko setup [2], which I=E2=80=99ve found =
+to be
+> incredibly helpful for series that do deep MM work. I=E2=80=99m not sure =
+why
+> Sashiko is saying this series didn=E2=80=99t apply, since it applied clea=
+nly to
+> our CI branches. If you can get Sashiko to run on it, that might be
+> helpful as well.
 >
->In this function the LRC for primary_q is freed first, and then the 
->secondary_q lrcs are freed, so there is a small window of time where 
->the reference from secondary LRC to primary LRC is invalid. IMO, that 
->small windows of time is enough for strange issues.
+> Matt
+
+Yes there seemed to be a missing pte_unmap() before migration_entry_wait().=
+.. fixed and sent v10.
+
+--Mika
+
+
+>
+> [1] https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165953v1/shard-bmg-4/=
+igt@xe_exec_system_allocator@process-many-stride-mmap-race-nomemset.html
+> [2] https://sashiko.dev/#/patchset/20260505051658.2219537-1-mpenttil%40re=
+dhat.com
+>
 >
 
-By that time, all secondary queues have been deregistered and destroyed.
-So, there shouldn't be any secondary LRC trying to access the primary
-LRC. May be we can set primary_lrc to NULL while releaseing LRC reference
-which should be sane enough and we really don't need primary_lrc reference
-taking.
-
-Niranjana
-
->Umesh
->>
->>Niranjana
->>
->>>+		}
->>>+	}
->>>}
->>>
->>>/**
->>>@@ -388,8 +401,12 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
->>>
->>>			xe_exec_queue_set_lrc(q, lrc, i);
->>>
->>>-			if (__lrc)
->>>+			if (__lrc) {
->>>+				if (xe_exec_queue_is_multi_queue(q))
->>>+					xe_lrc_put(__lrc->multi_queue.primary_lrc);
->>>+
->>>				xe_lrc_put(__lrc);
->>>+			}
->>>			__lrc = lrc;
->>>
->>>		} while (marker != xe_vf_migration_fixups_complete_count(q->gt));
->>>diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
->>>index 97aef0327fc8..3d0bf4a7bfa0 100644
->>>--- a/drivers/gpu/drm/xe/xe_lrc.h
->>>+++ b/drivers/gpu/drm/xe/xe_lrc.h
->>>@@ -91,6 +91,11 @@ static inline size_t xe_lrc_ring_size(void)
->>>	return SZ_16K;
->>>}
->>>
->>>+static inline bool xe_lrc_is_multi_queue(struct xe_lrc *lrc)
->>>+{
->>>+	return lrc->multi_queue.primary_lrc;
->>>+}
->>>+
->>>size_t xe_gt_lrc_hang_replay_size(struct xe_gt *gt, enum xe_engine_class class);
->>>size_t xe_gt_lrc_size(struct xe_gt *gt, enum xe_engine_class class);
->>>u32 xe_lrc_pphwsp_offset(struct xe_lrc *lrc);
->>>diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h b/drivers/gpu/drm/xe/xe_lrc_types.h
->>>index 5a718f759ed6..0a5c13ec2ad7 100644
->>>--- a/drivers/gpu/drm/xe/xe_lrc_types.h
->>>+++ b/drivers/gpu/drm/xe/xe_lrc_types.h
->>>@@ -63,6 +63,14 @@ struct xe_lrc {
->>>
->>>	/** @ctx_timestamp: readout value of CTX_TIMESTAMP on last update */
->>>	u64 ctx_timestamp;
->>>+
->>>+	/** @multi_queue: Multi queue LRC related information */
->>>+	struct {
->>>+		/** @multi_queue.primary_lrc: Primary lrc of this multi-queue group*/
->>>+		struct xe_lrc *primary_lrc;
->>>+		/** @multi_queue.pos: Position of LRC within the multi-queue group */
->>>+		u8 pos;
->>>+	} multi_queue;
->>>};
->>>
->>>struct xe_lrc_snapshot;
->>>-- 
->>>2.43.0
->>>
