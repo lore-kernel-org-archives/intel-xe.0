@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81D98CD3441
-	for <intel-xe@archiver.kernel.org>; Tue,  5 May 2026 23:44:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E898ECD343B
+	for <intel-xe@archiver.kernel.org>; Tue,  5 May 2026 23:44:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D43F10EC4F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4331810E4C5;
 	Tue,  5 May 2026 23:44:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cf/wO5lX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mJkkjGE+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B2C410E4C1
- for <intel-xe@lists.freedesktop.org>; Tue,  5 May 2026 23:44:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB87E10E18F
+ for <intel-xe@lists.freedesktop.org>; Tue,  5 May 2026 23:44:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1778024658; x=1809560658;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=kIX6L5Ji3iaaCEEXlsBlAl6q0qSn9ombiGsRaUoKHRE=;
- b=cf/wO5lXvimgOJZhb3nZwroO5FRd18o8sgkEyL3irD5wZ1C3JGypr4iY
- +Aj8E7wtuRnpQSNRApBBsje3U8r2paLj5hg99satru7aqVMfaVDE6gn2F
- 5wY0FQUwcPgxr6cHonqR8HwiREwzUiX8pJOqsTcrdUNo2D2DQ4zlFjufr
- RZJ992RPnCZ61jqCRqy4/jIQEV8kUGNZchkdQkgtSEob5ak42aBfPXhR+
- XOUREJOkohMPozPKvedbvV0NIrolLlrGXqaymJjjRrDz0fqiV2iEXTtQD
- mZJ+exrJktSptS6pRCL4XE5lAfWj5Gl6Q5TSBC7TvSRenRWmlWEVfMd7l A==;
-X-CSE-ConnectionGUID: lC5uUnDxSCGevfoxfrsnVg==
-X-CSE-MsgGUID: 74Qj/70xSYeWGgGo2ZXQhQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11777"; a="78771098"
-X-IronPort-AV: E=Sophos;i="6.23,218,1770624000"; d="scan'208";a="78771098"
+ bh=A4+WRS465WwvElMdD/Qey2xw5fxA/BtAgDooCnL1TzA=;
+ b=mJkkjGE+Jz7iFPDiDC3zzrDC+a3WpLhQqsBvGt3O4QnloafKpYai8MqO
+ bWJE23JmTEambIpVRTYLbWgdl55f9Pyrlyi7ExCNbgwuEp7RbOJYaY4ab
+ 1dqHOTTKOKB17Lnf2fBtH2jzcG5ADApQX4+568tWqlrKdFOWjuil/+Opo
+ UFewwyuuW5owxV26MkQFpg1voq+hq8ZmL72zRtKJwCWtrN50I/HvQutZ1
+ nS01ppTpASpciNdwvf9r1GrI8Vz5T4mCV6RpGPwv48jtrwLD+Er78pTED
+ x7ubohDoLUKq3cmbQRIWQfooJfndC69VmGXcoN3LKodL3dqhFJPm8r8N4 w==;
+X-CSE-ConnectionGUID: 7FfdR5rNRhab604Oo8pibw==
+X-CSE-MsgGUID: vtwOJePARWKWFGTsfUl+zA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11777"; a="78771095"
+X-IronPort-AV: E=Sophos;i="6.23,218,1770624000"; d="scan'208";a="78771095"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2026 16:44:17 -0700
-X-CSE-ConnectionGUID: d6p4HfJ2RT2kwAVO0q5jAQ==
-X-CSE-MsgGUID: 0DU78g+/STCdBuWBfq6ZSQ==
+ 05 May 2026 16:44:16 -0700
+X-CSE-ConnectionGUID: Z9cogdgIShKF+FpBzcTm5A==
+X-CSE-MsgGUID: fJthG3BJRIa1G5WYhkty0Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,218,1770624000"; d="scan'208";a="231569050"
+X-IronPort-AV: E=Sophos;i="6.23,218,1770624000"; d="scan'208";a="231569040"
 Received: from orsosgc001.jf.intel.com ([10.88.27.185])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2026 16:44:17 -0700
+ 05 May 2026 16:44:16 -0700
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	niranjana.vishwanathapura@intel.com
 Cc: matthew.brost@intel.com,
 	stuart.summers@intel.com
-Subject: [PATCH v3 07/11] drm/xe/lrc: Refactor out engine id to hwe conversion
-Date: Tue,  5 May 2026 16:44:16 -0700
-Message-ID: <20260505234408.3552147-20-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH v3 04/11] drm/xe/multi_queue: Refactor check for multi queue
+ support for engine class
+Date: Tue,  5 May 2026 16:44:13 -0700
+Message-ID: <20260505234408.3552147-17-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260505234408.3552147-13-umesh.nerlige.ramappa@intel.com>
 References: <20260505234408.3552147-13-umesh.nerlige.ramappa@intel.com>
@@ -68,52 +69,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We need to define more helpers that read engine ID specific register, so
-move that logic outside of get_ctx_timestamp().
+xe exec queue code is using a check to see if a class of engines support
+multi queue. This check is also needed by other code, so move it to
+xe_gt and export it for others.
 
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 ---
- drivers/gpu/drm/xe/xe_lrc.c | 20 +++++++++++++++-----
- 1 file changed, 15 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_exec_queue.c |  7 +------
+ drivers/gpu/drm/xe/xe_gt.c         | 14 ++++++++++++++
+ drivers/gpu/drm/xe/xe_gt.h         |  3 +++
+ 3 files changed, 18 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 127a2ebc3679..e7f7f0efcf2d 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -2606,17 +2606,27 @@ void xe_lrc_snapshot_free(struct xe_lrc_snapshot *snapshot)
- 	kfree(snapshot);
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 071b8c41df43..9b36ff5b09a6 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -852,11 +852,6 @@ static int xe_exec_queue_group_init(struct xe_device *xe, struct xe_exec_queue *
+ 	return 0;
  }
  
--static int get_ctx_timestamp(struct xe_lrc *lrc, u32 engine_id, u64 *reg_ctx_ts)
-+static struct xe_hw_engine *engine_id_to_hwe(struct xe_gt *gt, u32 engine_id)
+-static inline bool xe_exec_queue_supports_multi_queue(struct xe_exec_queue *q)
+-{
+-	return q->gt->info.multi_queue_engine_class_mask & BIT(q->class);
+-}
+-
+ static int xe_exec_queue_group_validate(struct xe_device *xe, struct xe_exec_queue *q,
+ 					u32 primary_id)
  {
- 	u16 class = REG_FIELD_GET(ENGINE_CLASS_ID, engine_id);
- 	u16 instance = REG_FIELD_GET(ENGINE_INSTANCE_ID, engine_id);
-+	struct xe_hw_engine *hwe = xe_gt_hw_engine(gt, class, instance, false);
-+
-+	if (xe_gt_WARN_ONCE(gt, !hwe || xe_hw_engine_is_reserved(hwe),
-+			    "Unexpected engine class:instance %d:%d for utilization\n",
-+			    class, instance))
-+		return NULL;
-+
-+	return hwe;
+@@ -931,7 +926,7 @@ static void xe_exec_queue_group_delete(struct xe_device *xe, struct xe_exec_queu
+ static int exec_queue_set_multi_group(struct xe_device *xe, struct xe_exec_queue *q,
+ 				      u64 value)
+ {
+-	if (XE_IOCTL_DBG(xe, !xe_exec_queue_supports_multi_queue(q)))
++	if (XE_IOCTL_DBG(xe, !xe_gt_hwe_class_supports_multi_queue(q->gt, q->class)))
+ 		return -ENODEV;
+ 
+ 	if (XE_IOCTL_DBG(xe, !xe_device_uc_enabled(xe)))
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index cdc678d1ae1f..0b49252e2001 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -1170,6 +1170,20 @@ struct xe_hw_engine *xe_gt_any_hw_engine(struct xe_gt *gt)
+ 	return NULL;
+ }
+ 
++/**
++ * xe_gt_hwe_class_supports_multi_queue() - Check hwe class supports multi queue.
++ *
++ * @gt: the GT object
++ * @class: hwe class type
++ *
++ * Return: true if the hw engine class supports multi queue, else false
++ */
++bool xe_gt_hwe_class_supports_multi_queue(const struct xe_gt *gt,
++					  enum xe_engine_class class)
++{
++	return gt->info.multi_queue_engine_class_mask & BIT(class);
 +}
 +
-+static int get_ctx_timestamp(struct xe_lrc *lrc, u32 engine_id, u64 *reg_ctx_ts)
-+{
- 	struct xe_hw_engine *hwe;
- 	u64 val;
+ /**
+  * xe_gt_declare_wedged() - Declare GT wedged
+  * @gt: the GT object
+diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
+index de7e47763411..1972ab01e716 100644
+--- a/drivers/gpu/drm/xe/xe_gt.h
++++ b/drivers/gpu/drm/xe/xe_gt.h
+@@ -155,4 +155,7 @@ static inline bool xe_gt_recovery_pending(struct xe_gt *gt)
+ 		xe_gt_sriov_vf_recovery_pending(gt);
+ }
  
--	hwe = xe_gt_hw_engine(lrc->gt, class, instance, false);
--	if (xe_gt_WARN_ONCE(lrc->gt, !hwe || xe_hw_engine_is_reserved(hwe),
--			    "Unexpected engine class:instance %d:%d for context utilization\n",
--			    class, instance))
-+	hwe = engine_id_to_hwe(lrc->gt, engine_id);
-+	if (!hwe)
- 		return -1;
- 
- 	if (lrc_to_xe(lrc)->info.has_64bit_timestamp)
++bool xe_gt_hwe_class_supports_multi_queue(const struct xe_gt *gt,
++					  enum xe_engine_class class);
++
+ #endif
 -- 
 2.51.0
 
