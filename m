@@ -4,161 +4,112 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48F4ACD342F
-	for <intel-xe@archiver.kernel.org>; Tue,  5 May 2026 08:15:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9375FF885A
+	for <intel-xe@archiver.kernel.org>; Tue,  5 May 2026 08:20:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0001510E150;
-	Tue,  5 May 2026 08:15:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6BC2710E9D5;
+	Tue,  5 May 2026 08:20:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gtUhD5PM";
+	dkim=pass (4096-bit key; unprotected) header.d=canonical.com header.i=@canonical.com header.b="ksSC86DB";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 525CA10E150
- for <intel-xe@lists.freedesktop.org>; Tue,  5 May 2026 08:15:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777968914; x=1809504914;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:mime-version;
- bh=a8wSk0MU4CyGyiQxiXgq7XtJsCOTJaTEODg40hhg81g=;
- b=gtUhD5PMqxWRWBuNjtqhjdBG7NrjfrDFiOF40hm1AafzZTBkyo8ow4gN
- saOmAiuXzEcKcmblYIvSswyKRNwqxXYV/0tSpi0pAi+/sBTGwZPUEEjKJ
- 1cUs9iKBQ3/4q+LUSX2c7p4RAm8PFu9eex3YA55fEBp7eFX4V/WfrsgLd
- IFSdt0ikkZRz9iklyYmk5bmOZ7GHoYm15lHwdoEd5kPph8NjTwLWhMpNK
- 7tt3JdmH7nFkFKHNOJnoaYECfal+GWDV7SCaEfMxlycrc5IOODNnkNjFG
- IVOOZq+eWc0MW1nTNOuHMaPj4BOLDsga7lvdrwSFy1wiqQEUxCZkTRPar w==;
-X-CSE-ConnectionGUID: UTbljE6oRlGkmimx8TdnoQ==
-X-CSE-MsgGUID: vbdl5jreT2unbPVvRF5xdg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11776"; a="66360491"
-X-IronPort-AV: E=Sophos;i="6.23,217,1770624000"; d="scan'208,217";a="66360491"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2026 01:15:14 -0700
-X-CSE-ConnectionGUID: 1DQDru55TauWz35sBVXMFw==
-X-CSE-MsgGUID: lMTifv9iRuqBONRsRAyC+Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,217,1770624000"; 
- d="scan'208,217";a="232610466"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2026 01:15:14 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 5 May 2026 01:15:13 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Tue, 5 May 2026 01:15:13 -0700
-Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.54) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 5 May 2026 01:15:12 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=eG0fC3g0OSuQ6We0iDLDL5HnqataNWuaLbvMohbP6GwWm1QRm/Aoo9/vjQvcwCW1AgyUU0EUn/ZiSee4JFKyWwbYKavXFdR4oPWL4cDO2lQi6p75+n4RCtLcCewMQ5RAL3KNgMQj8ZVDCrggdfB5AI3KAQi2npglwF2jr5tCHNWo6gaDT1fb7UmttugvXu9gWbuGsDxSh0QMnaYdHo1B4fJSLrpCms/uyfAm884Pjq9FyNMlg4zxTvcJ4/Qy36y6qKO7w6giUC8K+ZW7yEpC9GRPcYbkis9khJeXdUZMIJkdYeW9g0SW7XAJRgKgrprNNpbp4gvTJU5xbFm9dL1WVw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DOVwiADn3XUS78F/7ggp+vDNuBKLZSsdzEpa1ZXAuD4=;
- b=A+/aOm/YPBf7mLE+qweqhOav79K/x4ovYfcZ5KUGfq7Zbb9GRBRD9RDUIgmAxFu0KR6kgzaJ4DrWj8jqE/rh2FYJLZNBOU06Uu9oiGqLdpOVO/X0C4+Jenu1QhpN0dOS/rgcdVIPIxvEm8BvySpO/hD+D7o9umP1G5qjUKkvxdlAZVzY1l32k2Lzcq0M0BgYlDGDwU9h/yvyi47gw2hFACZu3FsBeu/tksCrcHS+tW31ohZkDqVkJfjnhxOF11fVGX1XVIkdI4Tz/SKsC2fa6s1SMK8A6O+TQpnr+JgFKbAYH/bLKF7FadaNjnaTrcmVd1SXmdCNmmHboXpIX+qQXQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BN0PR11MB5709.namprd11.prod.outlook.com (2603:10b6:408:148::6)
- by PH0PR11MB5048.namprd11.prod.outlook.com (2603:10b6:510:3d::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.25; Tue, 5 May
- 2026 08:15:10 +0000
-Received: from BN0PR11MB5709.namprd11.prod.outlook.com
- ([fe80::ad31:3f30:20b8:26c]) by BN0PR11MB5709.namprd11.prod.outlook.com
- ([fe80::ad31:3f30:20b8:26c%5]) with mapi id 15.20.9870.023; Tue, 5 May 2026
- 08:15:10 +0000
-Content-Type: multipart/alternative;
- boundary="------------DGniJIYmai0VhKvJOmxfgtsO"
-Message-ID: <a6bc1c52-e070-4c4f-a331-b1fe008632f6@intel.com>
-Date: Tue, 5 May 2026 13:45:01 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH V7 05/10] drm/xe: Extend BO purge to handle vram pages
- as well
-To: Matthew Brost <matthew.brost@intel.com>, Tejas Upadhyay
- <tejas.upadhyay@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <matthew.auld@intel.com>,
- <thomas.hellstrom@linux.intel.com>, <himal.prasad.ghimiray@intel.com>
-References: <20260416074958.3722666-12-tejas.upadhyay@intel.com>
- <20260416074958.3722666-17-tejas.upadhyay@intel.com>
- <afLQGypRcDWYSAjb@gsse-cloud1.jf.intel.com>
-Content-Language: en-US
-From: "Yadav, Arvind" <arvind.yadav@intel.com>
-In-Reply-To: <afLQGypRcDWYSAjb@gsse-cloud1.jf.intel.com>
-X-ClientProxiedBy: MA5P287CA0177.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1af::10) To BN0PR11MB5709.namprd11.prod.outlook.com
- (2603:10b6:408:148::6)
+Received: from smtp-relay-internal-1.canonical.com
+ (smtp-relay-internal-1.canonical.com [185.125.188.123])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E318D10E9D8
+ for <intel-xe@lists.freedesktop.org>; Tue,  5 May 2026 08:20:44 +0000 (UTC)
+Received: from mail-oi1-f198.google.com (mail-oi1-f198.google.com
+ [209.85.167.198])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id DB7513F718
+ for <intel-xe@lists.freedesktop.org>; Tue,  5 May 2026 08:20:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+ s=20251003; t=1777969243;
+ bh=8JEzRFrWSkLX7LdspWMSjOqLl2fGmC9J4eMYZIUeN5M=;
+ h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+ To:Cc:Content-Type;
+ b=ksSC86DB83VWpnGGTh0psDoEQy7Q0SNdwNr3iSPK//jtzI4vwftbD//XwQ11oz650
+ UUrftaeJ37Nbz/83FodLplH+b3+KOTPn6mf/BBs4yK0BKhmGq2/Uw/Up0lPLdi97cS
+ Z39BljM4qImFxjh+YZySgyTL6JZQDAk7IppWtwdH/vks9XCLbmnxxYgiBASwHupU+Z
+ fUbzXASl9d6H6gHPo0fPMeAIUBn50vYWC5QHSOFuR7Es87C2k9lmCz87ws67EhKr/A
+ faZcqw6I4V6ZDQEUR5BKjefuTmvpADCOR6HnrYvxuH6Qhx/4SXLVyZCBtgbZBr/I9n
+ fFKUZGEagMdTfQJSN8prm+7jFS9t6K/FFkY4IsEU1V+Exa9mTqhLlE81Q57n1NGJV7
+ fUJwT8vYuP9q+Z7OnIy1v8XE10sPrLyFFyZDg9aVCdNYSJGOw5HhT2WfA1JOHbV5Ef
+ jrjMLuH4exI+sig193jXTOeaf5R+quoKbcLladtNr5sHIZvG1hnb8zzn2t32eQXf1y
+ qBrAbxFvEZZYlFo8QxzVaQpKDcJ94ELH4g5c80PUCaSaLvFO+fRgYvIoX2VJDg2nW7
+ MK7YJfAUlmcjtYP25dgKsRKU35RAUBAGqI7BtdBJeotkaKLrvCpFYRlxvBZ5pjLQjg
+ 9zPZ2/tdC7NvHmSsa0b2n/rk=
+Received: by mail-oi1-f198.google.com with SMTP id
+ 5614622812f47-479dd4bf463so1205349b6e.1
+ for <intel-xe@lists.freedesktop.org>; Tue, 05 May 2026 01:20:42 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1777969242; cv=none;
+ d=google.com; s=arc-20240605;
+ b=HpdqrscMTwBXjRC/gKnu4GXWf7M7ZaxF+7s8eaJqZWnV2caeAnjUl7aaih6hB8K5yo
+ teDhvNd0NUqRjCE5HfO7MHY8x3fqzUXdAX9C5G3wQXnpCkkeZPD5KwI7oFxfbLeaa34J
+ DIeOUCJmZHAcATF9buWhgxXXWClu422ioF1B/HfbhzVsf3pwky20l9+zow4sDV/wWqZf
+ s4vWZMUgceU0py/l8gaME92rYUv8tJxOU1jP+x/KiGPNZjyFNxp2Rn/2cbuszjXKoYC7
+ NxqOjYac6DWdztCM/oKlhFDQbjgMfcv4DIOWDmTLNLJ5jWRnU3lgrPqbHl9KGb9VNVnZ
+ KR9Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version;
+ bh=8JEzRFrWSkLX7LdspWMSjOqLl2fGmC9J4eMYZIUeN5M=;
+ fh=OBzfpaQhzuzTtokugUzSKsu4TMA/p0zbrgquAnp4vCo=;
+ b=KM2P+tMVH3OPp2XmQKBVPYUAbOdp22OJuEl0/bggrwTt1RhiDpxHJqvkjX9myRj1v/
+ G69p0Of3nii+qsSYt2ssCMDfVClsTWfHzeLP0uivsOI8QeBv8Xkv8C9HsMMgGD5zrIbJ
+ LoG4LtU1vk8Rb1t4EyH2J0iAKQwH4WkDoOWhaMrtQZa+oTtNXDbzF4EC1gNleouyBmJF
+ UmMlIC0T/EBeTBwcbWrL9WCVAWGTFwxUNyf6sz1YvlbjqNkox6yU3mhbCW3iYVTM+gEh
+ ShOi3XOV1ZM+cdUxe70qx67doxKY+1AdS542tTAUcN4gS0pd9bMYESjLytUEtKN8aOhK
+ PM1g==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1777969242; x=1778574042;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=8JEzRFrWSkLX7LdspWMSjOqLl2fGmC9J4eMYZIUeN5M=;
+ b=mOhA32ITqvl5/lZQUyA5HQSdwfyv1X7jSmhHQnkg0c8Rg85eqeTbfE4KQwd39ZZ6rJ
+ HyMIiKL2ACC9oocXfZO2GIDqu2sjIJOb1wT5sVgVoZGPyZ5Qo/ltVR5jh5XxeOaL83sl
+ wrbk845TUMSCfXpQgWeDp4cLV+DnqQlUAoYy6COEcDx8cySHLZoJrRJzsw/9ExwJWDL2
+ yYFgRG97JFT/rcaBt/AoTRJyDHMfm+PlGsOcA2+XkOa7KHp2OVj0o7sUbOqx18x/RAt6
+ v07/vJ/lhoxYZLsfevnxp8otyHPVyXjKHl+50US1zOm39ycHsLaYlJLzyuhT7n4Z5qyv
+ KAaw==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ+4IC6v3XS4GFQTfhF8u2u8JphCoCReNBKo1fWIIHbmj/IUk+46DVON67QtRehIspKm9r0Z5kj9hQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy7XPAgXYJDe+8ZrIEpjLAJ7mWrm2LqWadcrQcDo+0RHNWuudNP
+ VneVhknEihEBNEp6kOhq4Sby5y1yNKIoXtUPofM6ItpCQ11D9KF1oJmAKKd2GR+S2Fr+z++ktwv
+ RNti8JdHAqZvGp8Hgn0YTMYb8BXddp3N3xZZemEYkMogxNcHsNGCdRHzmqMxwfosLYfcsKnbDc0
+ vedDZFUutKkVrOHnhFPZr5Hj5FeKpQCfU6+UHoZ1zqcAHFiC/anUxsLK1+aPM=
+X-Gm-Gg: AeBDieubeNpHOe12WxHE3EoS4/NHkJIzG5FtFWv/kxppMZYqNSq7LPRHW57c+bxWRuf
+ 1AEehL2FMpyuYjDxk+rGSdmftVaJgONpDmI+OXJXOOyhLkDHS10OxqSuPosSu687I8PUgd67VEV
+ 7841GcgA2EEhwQpNVdpQKETgnL+fpQTmyc0OPtMLi8aYre5HdtCySNRCGdWKzL/KNC/oXlFaD87
+ cBkYSpUttIC6g2ESQ4u4qCMIvOyIfp7CpARCt9E4mLaFNpFqSE9YnCZnsIsnz9C
+X-Received: by 2002:a05:6808:16ac:b0:46c:e542:cc16 with SMTP id
+ 5614622812f47-47c88bdb0d6mr4061241b6e.0.1777969241722; 
+ Tue, 05 May 2026 01:20:41 -0700 (PDT)
+X-Received: by 2002:a05:6808:16ac:b0:46c:e542:cc16 with SMTP id
+ 5614622812f47-47c88bdb0d6mr4061235b6e.0.1777969241387; Tue, 05 May 2026
+ 01:20:41 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN0PR11MB5709:EE_|PH0PR11MB5048:EE_
-X-MS-Office365-Filtering-Correlation-Id: 77e97433-bd6b-4b1b-482f-08deaa7e6c89
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|56012099003|8096899003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: x9CQsG8X7bt0wCBTIqsF9wWX9TFw7DOwJqLvqEvv5HRdqbzXlaxLpqT6U+mtNoraImsgsh61t8zgNoyWcBVtV3rJMKIVP/iznUKxk7C1hVPro2k1IOVcuK2p4PXkdoWyhKDc8BubzhwPqy/HFQV8jHzjULpn5nuwVvAref+f5I4DGIalnJGBW3AcfPJKc5oPVjd6Wvm03rdPe9hl7IAFyNByeoUpmPBKxAOIHIUlaEZL4UpXQcGim4uC+NKfmySHobLy1hhlM+8jd674IoPnqQm8EOO5e+aYWKASztGkrqrzNRzsZDGehleBZnASjyAs8adtnquCa//OzNhaIAU+9FPVsRPotAxN2xfkvRZrnGoufYIKBZT2ht4BJSMEgVef1aWmlzEIOaHlFCLDVjKPixyVmc03nnncKZCTYSqt2cDnYLvSFLT2t+FublIwPT9Dhi/UoPQB9wXuYs5dplA3yJmRWRzIJ/3aqTDxaaj/PAUOMyziVbb20ZU2qAmY9JdzckAa5MbxIST0+GTW6q+czyLVm0uWbeCDHQ9AVUKReu+xYPZ9sF2ftu1uULh5VAYi/msIw+/bgxLlW9SB1jeQ7ADKKxc64IdpSeEjj57pATf2E+LR1tDzqe1P3tKb8ksPUamITY9A4xXtvNP+YMwZWxEDMSLPAqXv68SrexpLWlKsUCUsz3095cGrx55w7Uzz
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN0PR11MB5709.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(56012099003)(8096899003)(22082099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VDB4YmdNamVMTWlaUnNJZE03aGxCWlZDUElhWHROcTQveTJ5dThZaG5PZkZG?=
- =?utf-8?B?YUNZRlV1aWpXTG1HMmpER0gyUmlBVmhhdDBhZ21zellhb0hmWUQyVER4aXJ4?=
- =?utf-8?B?Q3NJL2dQWTZIcVZWY2piVjd2YXcvYXdPd0hXY3NaVVFBTXVFMWNJUnBwcnVu?=
- =?utf-8?B?MVVpZEVvZ29TN1pyeVVYMW01cmNPdncxMnFMS0V1aFhacjVJazFoeDhneVJo?=
- =?utf-8?B?Qmhuc0htSkw1alJJOUJ4a2VENjRHVFd4YllTY2g3SWxocXMxMHdSTi81TENz?=
- =?utf-8?B?MGUzTFo1a0dXWXhEVlpuMzYxZzNiaHl4WmpsemVtV1IybnJ2SU00Yk1lbXgv?=
- =?utf-8?B?dEhLZDJLbXF6TGVsS2dGUGZyZGJEZUVJNWZIS2pKaGhnS3dnZitxR0J3b2Vw?=
- =?utf-8?B?cm9WeTkxTEp6OEx4cENPVElEMWN2cmZmR3c5Zm91SG5oL2NiRkJ4SmlLZTBW?=
- =?utf-8?B?RVVkai9DcTdtczhlMjU5NExHdVdmb1BLeTJ3WmVzZGU3NmdiUTVHeE9QUERT?=
- =?utf-8?B?UVNOR2ZLcTlhZk1TRWlxWit1U2RTcXJ6REswNE5ZVldiRStWWWpGdmpUV0NV?=
- =?utf-8?B?cEg4K0liVm0rYmV5b3JGeXEvU0xOd243eVpQM3YrRkUwbEk2bzNPalZ3RzZk?=
- =?utf-8?B?K3Q3SWFsOWJ2ck9uOFY2aGdBYWtXaUsyZEF0MUlNcEtBN01uZk0rUk1SUVF2?=
- =?utf-8?B?aGtOR2hDalRiT1BhK0ZXVTBqWllKT2xkMCtuUStBajBUVEJUY1ZPU05uSG9U?=
- =?utf-8?B?UHNGK05ENEV4cGRkY0ZNem1Lbmk0ZVJQODdybElsZjZqYm43NWZDSzFTbUVP?=
- =?utf-8?B?ajNzb3lGTTVHUUYyR0dUOFRQZXRwWWZ5K1NoMGZuS0U4VnNVVXR6Q1ZiUk5P?=
- =?utf-8?B?emRlUFlqd1hDamJYYWxwVGFlTU9CY0YvSU5CdHVsanAwaVhDYUhobkEvdlpq?=
- =?utf-8?B?K01wK0hEWXNPdEQvb09sQ1kydHlON2VjeVNRZkdjUUp0ZjF3MlFlZWJBNVcy?=
- =?utf-8?B?L1k1NXdKMjZpWFFrZysveGUwbmxwTEhkSGVNeVp1TE1MaGNTb0ZpL015N0pZ?=
- =?utf-8?B?Uk1pQ0wxL3BGd2VTdThvcXpvRVFOaVFQTUoxdEkxMk5qVVRWSkg3TE1MK0tu?=
- =?utf-8?B?blBrQ25nQk1rdEgybWxPQm5adFJPWS9UcnVLd3RKeEE4dEZ0RXFHRUUycEx6?=
- =?utf-8?B?MG9xcXhDZkgwdE15amRrNzNNNG1EMThsemxiczk2OGNSMjI4MEsvK3oySnBn?=
- =?utf-8?B?V1c1SFErWk9QVlZEaUdWQkxiRWVZRDhkNzNsYkhNT2gzTUd6YVRGMXFpQ3Yy?=
- =?utf-8?B?VzdjWVptR0tFTE84S0dxeGRMU1RmRUhIY0dPZXpiR3FIUjBXS3YvaGFaM1V3?=
- =?utf-8?B?UTdOS1RlU0Z4NXBvUll6STE2c2tMVDhtU2lrc1ZQMDRSOWE1dHFPa3IwdktM?=
- =?utf-8?B?ZmMvQURLaUlMeHhRekVyOGo5dWtXSTlYcFJvYXd2dU1BNUxWVnpsdU1Dd0Z5?=
- =?utf-8?B?UnRldFJRQ0ptTnZVR3N5Tk9FL0M0QjFwVGFEbnB2Wi90c29pWFRaZS8wOFhQ?=
- =?utf-8?B?RjYwK210bno4OWdKRmg5U2dBNkVKenMvbU52K2pMNFhiVFMwRmJidHhPTWJn?=
- =?utf-8?B?RXE0aUpQNUtVMjU5QU9qQXFYRWRSaVhxaDdnMThkbkJGSmViUnI2VHlrOWlG?=
- =?utf-8?B?OHNHVzRiT21ST0srUEpWZW5JakhQTTduUFMwUkJ4WkpRY0FBWFVCR1hOR1BG?=
- =?utf-8?B?WVZlOHRkUGRWamRrSTRFOVpINFEwSmNsYmI4cTZhWWxNRzhXc0N3cGl3UFpl?=
- =?utf-8?B?MUhSdVhrOVVXbFQxcW1keHhnR3VPZUNrK2xJanFJMEZOVWc5WmxHdU04Q2R0?=
- =?utf-8?B?RVFWMGl0WGhJNGZ2OElUaW9WZHEwV2l2bmRJU1hRNEZvcTZrNGZaTHpmMm1H?=
- =?utf-8?B?Q0h6c1BRZ0hka0RpT2JScGZBQW13M3Zlc3hDQisrN2pxeXZlSll0UzdxcFZC?=
- =?utf-8?B?S3JxeE1Odi80QVZwV1VWOXhiUkJnZ2Q2eVp5U2h1Y2pObUx2K1ZnV0t6bEdG?=
- =?utf-8?B?MFVXMlJaVHdVZlowSitEY253MFlvdlc4L3djak5paXl5MDlac1l1RkNuTTdo?=
- =?utf-8?B?SWh5TlpoYVM0VnJDcHN1ZDJ1QnlGYzlLcXBnRkhRNFNtWmFPQ05NUXRQendx?=
- =?utf-8?B?OTk4WTk3QU1kQ3lOUG00MFlrWkhweVR4SEkzT2FNQnpXSEQ4TWhhM2RSbXR1?=
- =?utf-8?B?K3ZtNHIxN3k5NWFpWUhlWXRUazRHU2F5OFp4L0xTZUFFMmdPODY1KzFrWnBt?=
- =?utf-8?B?NmJUd1FyNjlCMjFJOWs0ay9lUG9YdGphNGNBWldkQW1xRXpNQjNMZz09?=
-X-Exchange-RoutingPolicyChecked: HHjmrSy0i8kpl7ViiL5LWxE/xJ75TvvI2DuCEnInTbNJ0eafvxNFf7LVP9yG8KaDWiir5CGmEDMQB/OCsnYNSqng+8RKhBbKLU0lRF6lwUWhGDJxrriBvWfmULr60zDf5THTLNpHQ3cDHP+XJQKQA7tzA8LxoznwRTNgljuYycKeMhF0M6sbdaiL6wuyF/v6xqbQhvgY6sdNNGlxjt6LrWhX/Ff1tW19hjzYN/HLL0XSv5yqTgqxQ/7woAfxuzqcqtAqmrC94zjr3BWdheGaHDs6+8mRVP9J3zmCCl8x5js4fmDhqRtedlJV7adKRxJqVz31h4j0f4CijD1PBdFzzg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 77e97433-bd6b-4b1b-482f-08deaa7e6c89
-X-MS-Exchange-CrossTenant-AuthSource: BN0PR11MB5709.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2026 08:15:10.5749 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: EymSGWrQq+RPhO1dR6qPkApfNL/gOoaDlWwWOQEk6CjIYfyx3YSQOIpVHIkFGqB7NoerZpdB/0IlaAlqamEqqw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5048
-X-OriginatorOrg: intel.com
+References: <20260505033558.157604-1-an.wu@canonical.com>
+ <68d0176c7022293678a49e7641ad9308ed0438a4@intel.com>
+In-Reply-To: <68d0176c7022293678a49e7641ad9308ed0438a4@intel.com>
+From: An Wu <an.wu@canonical.com>
+Date: Tue, 5 May 2026 16:20:29 +0800
+X-Gm-Features: AVHnY4JYz1TmQQSPELvwMPMUJtc529GxngMoDPQv7g3Xl24b5Lqr9aVqGcaPHRA
+Message-ID: <CAO4Mv0b9KpxrT712LfmoGA7Au_R4noHXufEdheuHC5y_u4c-ew@mail.gmail.com>
+Subject: Re: [PATCH v2] drm/i915/tc: Recover AUX channel after external TC
+ port mode change
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org
+Content-Type: multipart/alternative; boundary="0000000000000e052506510db93f"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -173,193 +124,596 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---------------DGniJIYmai0VhKvJOmxfgtsO
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+--0000000000000e052506510db93f
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Jani
+    The auto check bot told me the alignment is wrong. So I fixed the
+alignment.
 
-On 30-04-2026 09:14, Matthew Brost wrote:
-> On Thu, Apr 16, 2026 at 01:19:54PM +0530, Tejas Upadhyay wrote:
->> Recent driver update introduce support for purgeable buffer
->> objects (BOs), extending the API to include VRAM pages to
->> better manage memory pressure and enable memory offlining.
->>
->> Signed-off-by: Tejas Upadhyay<tejas.upadhyay@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_bo.c | 5 +----
->>   drivers/gpu/drm/xe/xe_bo.h | 1 +
->>   2 files changed, 2 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
->> index 5ce60d161e09..04d3b25c7c8e 100644
->> --- a/drivers/gpu/drm/xe/xe_bo.c
->> +++ b/drivers/gpu/drm/xe/xe_bo.c
->> @@ -903,7 +903,7 @@ void xe_bo_set_purgeable_state(struct xe_bo *bo,
->>    *
->>    * Return: 0 on success, negative error code on failure
->>    */
->> -static int xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operation_ctx *ctx)
->> +int xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operation_ctx *ctx)
->>   {
->>   	struct xe_bo *bo = ttm_to_xe_bo(ttm_bo);
->>   	struct ttm_placement place = {};
->> @@ -911,9 +911,6 @@ static int xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operatio
->>   
->>   	xe_bo_assert_held(bo);
->>   
->> -	if (!ttm_bo->ttm)
->> -		return 0;
->> -
-> I think blindly deleting this is fine but I'd run this by Arvind to make
-> sure in normal purge flow this won't do anything bad but afiak in normal
-> purge flows ttm_bo->ttm will never be NULL.
+```
+-:77: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#77: FILE: drivers/gpu/drm/i915/display/intel_dp_aux.c:545:
++               ret =3D intel_dp_aux_xfer_with_recovery(intel_dp, txbuf,
+txsize,
++                                                      rxbuf, rxsize,
+flags);
 
+-:88: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#88: FILE: drivers/gpu/drm/i915/display/intel_dp_aux.c:568:
++               ret =3D intel_dp_aux_xfer_with_recovery(intel_dp, txbuf,
+txsize,
++                                                      rxbuf, rxsize,
+flags);
+```
 
-The purge paths (|xe_bo_move(evict=true, DONTNEED)| and |swap_notify|), 
-|ttm_bo->ttm| is always non‑NULL. TTM allocates |ttm_tt| before invoking 
-|->move| on a populated BO. So removing this check is safe.
+BR
+    An
 
-~Arvind
+On Tue, May 5, 2026 at 4:02=E2=80=AFPM Jani Nikula <jani.nikula@linux.intel=
+.com>
+wrote:
 
-
+> On Tue, 05 May 2026, ChunAn Wu <an.wu@canonical.com> wrote:
+> > When Fn+F4 triggers mirror mode, the BIOS/EC reconfigures a TC port
+> > mode (e.g. DP-Alt to TBT-Alt via UCSI) without generating HPD. The
+> > driver's cached TC mode becomes stale, so intel_dp_aux_xfer() uses
+> > the wrong power domain and IO routing, and AUX transactions fail.
+> >
+> > This occurs when the USB-C-to-HDMI dongle does not support TBT, so
+> > the mode switch creates a mismatch. It also occurs with slow monitors
+> > whose delayed HPD/DDC/EDID recovery causes the Type-C layer to settle
+> > on a stale tbt-alt state before the dongle finishes re-negotiation.
+> >
+> > Add intel_tc_port_aux_recover() to detect hardware/cached TC mode
+> > divergence and reset the PHY. Wrap it with
+> > intel_dp_aux_xfer_with_recovery() to retry with corrected settings.
+> >
+> > Tested on Panther Lake and Lunar Lake with a BenQ HDMI monitor via
+> > USB-C-to-HDMI dongle.
 >
-> If not then adjust the existing call...
+> What are the changes between v1 and v2?
 >
-> @@ -978,7 +978,8 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
->           * The move_notify callback will handle invalidation asynchronously.
->           */
->          if (evict && xe_bo_madv_is_dontneed(bo)) {
-> -               ret = xe_ttm_bo_purge(ttm_bo, ctx);
-> +               if (ttm_bo->ttm)
-> +                       ret = xe_ttm_bo_purge(ttm_bo, ctx);
->                  if (ret)
->                          return ret;
+> >
+> > Signed-off-by: ChunAn Wu <an.wu@canonical.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dp_aux.c | 41 +++++++++--
+> >  drivers/gpu/drm/i915/display/intel_tc.c     | 75 +++++++++++++++++++++
+> >  drivers/gpu/drm/i915/display/intel_tc.h     |  1 +
+> >  3 files changed, 113 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> > index b20ec3e589fa..d496b2231656 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> > @@ -481,6 +481,39 @@ static u32 intel_dp_aux_xfer_flags(const struct
+> drm_dp_aux_msg *msg)
+> >       return 0;
+> >  }
+> >
+> > +/**
+> > + * intel_dp_aux_xfer_with_recovery - AUX transfer with TC port recover=
+y
+> > + * @intel_dp: the DP port
+> > + * @send: buffer of bytes to send
+> > + * @send_bytes: number of bytes to send
+> > + * @recv: buffer to store received reply
+> > + * @recv_size: maximum number of bytes to receive
+> > + * @aux_send_ctl_flags: extra flags for the AUX send control register
+> > + *
+> > + * Wrapper around intel_dp_aux_xfer() that attempts to recover from an
+> > + * external TC port mode change (e.g., dp-alt -> tbt-alt via hotkey BI=
+OS
+> > + * action) when the initial AUX transfer fails. On failure, recovery i=
+s
+> > + * attempted once via intel_tc_port_aux_recover() before retrying.
+> > + *
+> > + * Returns: number of received bytes on success, negative error code o=
+n
+> failure.
+> > + */
+> > +static int
+> > +intel_dp_aux_xfer_with_recovery(struct intel_dp *intel_dp,
+> > +                             const u8 *send, int send_bytes,
+> > +                             u8 *recv, int recv_size,
+> > +                             u32 aux_send_ctl_flags)
+> > +{
+> > +     struct intel_digital_port *dig_port =3D dp_to_dig_port(intel_dp);
+> > +     int ret;
+> > +
+> > +     ret =3D intel_dp_aux_xfer(intel_dp, send, send_bytes, recv,
+> recv_size,
+> > +                             aux_send_ctl_flags);
+> > +     if (ret < 0 && intel_tc_port_aux_recover(dig_port))
+> > +             ret =3D intel_dp_aux_xfer(intel_dp, send, send_bytes, rec=
+v,
+> > +                                     recv_size, aux_send_ctl_flags);
+> > +     return ret;
+> > +}
+> > +
+> >  static ssize_t
+> >  intel_dp_aux_transfer(struct drm_dp_aux *aux, struct drm_dp_aux_msg
+> *msg)
+> >  {
+> > @@ -508,8 +541,8 @@ intel_dp_aux_transfer(struct drm_dp_aux *aux, struc=
+t
+> drm_dp_aux_msg *msg)
+> >               if (msg->buffer)
+> >                       memcpy(txbuf + HEADER_SIZE, msg->buffer,
+> msg->size);
+> >
+> > -             ret =3D intel_dp_aux_xfer(intel_dp, txbuf, txsize,
+> > -                                     rxbuf, rxsize, flags);
+> > +             ret =3D intel_dp_aux_xfer_with_recovery(intel_dp, txbuf,
+> txsize,
+> > +                                                   rxbuf, rxsize,
+> flags);
+> >               if (ret > 0) {
+> >                       msg->reply =3D rxbuf[0] >> 4;
+> >
+> > @@ -531,8 +564,8 @@ intel_dp_aux_transfer(struct drm_dp_aux *aux, struc=
+t
+> drm_dp_aux_msg *msg)
+> >               if (drm_WARN_ON(display->drm, rxsize > 20))
+> >                       return -E2BIG;
+> >
+> > -             ret =3D intel_dp_aux_xfer(intel_dp, txbuf, txsize,
+> > -                                     rxbuf, rxsize, flags);
+> > +             ret =3D intel_dp_aux_xfer_with_recovery(intel_dp, txbuf,
+> txsize,
+> > +                                                   rxbuf, rxsize,
+> flags);
+> >               if (ret > 0) {
+> >                       msg->reply =3D rxbuf[0] >> 4;
+> >                       /*
+> > diff --git a/drivers/gpu/drm/i915/display/intel_tc.c
+> b/drivers/gpu/drm/i915/display/intel_tc.c
+> > index a21dd4e3fe4c..1b23161e4eea 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_tc.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_tc.c
+> > @@ -1861,6 +1861,81 @@ void intel_tc_port_link_cancel_reset_work(struct
+> intel_digital_port *dig_port)
+> >       cancel_delayed_work(&tc->link_reset_work);
+> >  }
+> >
+> > +/**
+> > + * intel_tc_port_aux_recover - Recover AUX channel after external TC
+> mode change
+> > + * @dig_port: digital port
+> > + *
+> > + * When firmware causes a TC port mode change (e.g., dp-alt ->
+> disconnect ->
+> > + * tbt-alt) during a hotkey-triggered display mode switch, AUX
+> transactions
+> > + * using the stale power domain and IO flags will fail with timeouts o=
+r
+> errors.
+> > + * This happens because:
+> > + *
+> > + *   1. The display driver holds the TC link in dp-alt mode
+> (link_refcount > 0)
+> > + *   2. Firmware (e.g., via HP WMI hotkey BIOS action) reconfigures th=
+e
+> TC port
+> > + *      mode externally without notifying the display driver
+> > + *   3. tc->mode stays as TC_PORT_DP_ALT while HW transitions to a
+> different
+> > + *      mode, invalidating the AUX power domain and IO flags used by
+> > + *      intel_dp_aux_xfer()
+> > + *
+> > + * This function detects the discrepancy between tc->mode and actual H=
+W
+> state,
+> > + * and re-synchronizes them via a TC PHY reset. After recovery, AUX
+> retries
+> > + * will use the correct power domain and control flags.
+> > + *
+> > + * The link_refcount is temporarily cleared to allow
+> intel_tc_port_reset_mode()
+> > + * to proceed without the PHY-ownership assertion that fires when
+> link_refcount
+> > + * is non-zero and firmware has already released PHY ownership.
+> > + *
+> > + * Must be called outside the TC port lock (tc->lock).
+> > + *
+> > + * Returns: %true if recovery was performed and AUX can be retried,
+> > + *          %false if recovery was not needed or not possible.
+> > + */
+> > +bool intel_tc_port_aux_recover(struct intel_digital_port *dig_port)
+> > +{
+> > +     struct intel_tc_port *tc;
+> > +     struct intel_display *display;
+> > +     bool recovered =3D false;
+> > +
+> > +     if (!intel_encoder_is_tc(&dig_port->base))
+> > +             return false;
+> > +
+> > +     tc =3D to_tc_port(dig_port);
+> > +     display =3D to_intel_display(dig_port);
+> > +
+> > +     mutex_lock(&tc->lock);
+> > +
+> > +     /*
+> > +      * Recovery is only needed when the link is actively held AND the
+> HW
+> > +      * TC mode has diverged from the driver's cached state.
+> > +      */
+> > +     if (!tc->link_refcount || !intel_tc_port_needs_reset(tc))
+> > +             goto out;
+> > +
+> > +     drm_dbg_kms(display->drm,
+> > +                 "Port %s: AUX recover: external TC mode change
+> detected (%s -> HW), reconnecting TC PHY\n",
+> > +                 tc->port_name, tc_port_mode_name(tc->mode));
+> > +
+> > +     /*
+> > +      * Temporarily clear link_refcount so intel_tc_port_reset_mode()
+> can
+> > +      * run the PHY disconnect/connect cycle without the ownership
+> assertion
+> > +      * that fires when link_refcount > 0 and firmware has already
+> released
+> > +      * PHY ownership externally.
+> > +      */
+> > +     tc->link_refcount =3D 0;
+> > +     intel_tc_port_reset_mode(tc, 1, false);
+> > +     tc->link_refcount =3D 1;
+> > +
+> > +     recovered =3D tc->mode !=3D TC_PORT_DISCONNECTED;
+> > +     if (!recovered)
+> > +             drm_warn(display->drm,
+> > +                      "Port %s: AUX recover: failed to restore TC port
+> mode\n",
+> > +                      tc->port_name);
+> > +
+> > +out:
+> > +     mutex_unlock(&tc->lock);
+> > +     return recovered;
+> > +}
+> > +
+> >  static void __intel_tc_port_lock(struct intel_tc_port *tc,
+> >                                int required_lanes)
+> >  {
+> > diff --git a/drivers/gpu/drm/i915/display/intel_tc.h
+> b/drivers/gpu/drm/i915/display/intel_tc.h
+> > index 6719aea5bd58..d44998a3081a 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_tc.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_tc.h
+> > @@ -108,6 +108,7 @@ bool intel_tc_port_ref_held(struct
+> intel_digital_port *dig_port);
+> >  bool intel_tc_port_link_needs_reset(struct intel_digital_port
+> *dig_port);
+> >  bool intel_tc_port_link_reset(struct intel_digital_port *dig_port);
+> >  void intel_tc_port_link_cancel_reset_work(struct intel_digital_port
+> *dig_port);
+> > +bool intel_tc_port_aux_recover(struct intel_digital_port *dig_port);
+> >
+> >  int intel_tc_port_init(struct intel_digital_port *dig_port, bool
+> is_legacy);
+> >  void intel_tc_port_cleanup(struct intel_digital_port *dig_port);
 >
-> Matt
+> --
+> Jani Nikula, Intel
 >
->>   	if (!xe_bo_madv_is_dontneed(bo))
->>   		return 0;
->>   
->> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
->> index 68dea7d25a6b..9f55b3589caf 100644
->> --- a/drivers/gpu/drm/xe/xe_bo.h
->> +++ b/drivers/gpu/drm/xe/xe_bo.h
->> @@ -500,6 +500,7 @@ struct xe_bo_shrink_flags {
->>   long xe_bo_shrink(struct ttm_operation_ctx *ctx, struct ttm_buffer_object *bo,
->>   		  const struct xe_bo_shrink_flags flags,
->>   		  unsigned long *scanned);
->> +int xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operation_ctx *ctx);
->>   
->>   /**
->>    * xe_bo_is_mem_type - Whether the bo currently resides in the given
->> -- 
->> 2.52.0
->>
---------------DGniJIYmai0VhKvJOmxfgtsO
+
+--0000000000000e052506510db93f
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
 
-<!DOCTYPE html><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 30-04-2026 09:14, Matthew Brost
-      wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:afLQGypRcDWYSAjb@gsse-cloud1.jf.intel.com">
-      <pre wrap="" class="moz-quote-pre">On Thu, Apr 16, 2026 at 01:19:54PM +0530, Tejas Upadhyay wrote:
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">Recent driver update introduce support for purgeable buffer
-objects (BOs), extending the API to include VRAM pages to
-better manage memory pressure and enable memory offlining.
+<div dir=3D"ltr">Hi=C2=A0Jani<div>=C2=A0 =C2=A0 The auto check bot told me =
+the alignment=C2=A0is wrong. So I fixed the alignment.</div><div><br></div>=
+<div>```</div><div>-:77: CHECK:PARENTHESIS_ALIGNMENT: Alignment should matc=
+h open parenthesis<br>#77: FILE: drivers/gpu/drm/i915/display/intel_dp_aux.=
+c:545:<br>+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ret =3D i=
+ntel_dp_aux_xfer_with_recovery(intel_dp, txbuf, txsize,<br>+=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 rxbuf, rxsize, flags);<br><br>-:88: CHECK:PAREN=
+THESIS_ALIGNMENT: Alignment should match open parenthesis<br>#88: FILE: dri=
+vers/gpu/drm/i915/display/intel_dp_aux.c:568:<br>+=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ret =3D intel_dp_aux_xfer_with_recovery(inte=
+l_dp, txbuf, txsize,<br>+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 rxbuf, r=
+xsize, flags);<br></div><div>```</div><div><br></div><div>BR</div><div>=C2=
+=A0 =C2=A0 An</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cl=
+ass=3D"gmail_attr">On Tue, May 5, 2026 at 4:02=E2=80=AFPM Jani Nikula &lt;<=
+a href=3D"mailto:jani.nikula@linux.intel.com" target=3D"_blank">jani.nikula=
+@linux.intel.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" =
+style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pa=
+dding-left:1ex">On Tue, 05 May 2026, ChunAn Wu &lt;<a href=3D"mailto:an.wu@=
+canonical.com" target=3D"_blank">an.wu@canonical.com</a>&gt; wrote:<br>
+&gt; When Fn+F4 triggers mirror mode, the BIOS/EC reconfigures a TC port<br=
+>
+&gt; mode (e.g. DP-Alt to TBT-Alt via UCSI) without generating HPD. The<br>
+&gt; driver&#39;s cached TC mode becomes stale, so intel_dp_aux_xfer() uses=
+<br>
+&gt; the wrong power domain and IO routing, and AUX transactions fail.<br>
+&gt;<br>
+&gt; This occurs when the USB-C-to-HDMI dongle does not support TBT, so<br>
+&gt; the mode switch creates a mismatch. It also occurs with slow monitors<=
+br>
+&gt; whose delayed HPD/DDC/EDID recovery causes the Type-C layer to settle<=
+br>
+&gt; on a stale tbt-alt state before the dongle finishes re-negotiation.<br=
+>
+&gt;<br>
+&gt; Add intel_tc_port_aux_recover() to detect hardware/cached TC mode<br>
+&gt; divergence and reset the PHY. Wrap it with<br>
+&gt; intel_dp_aux_xfer_with_recovery() to retry with corrected settings.<br=
+>
+&gt;<br>
+&gt; Tested on Panther Lake and Lunar Lake with a BenQ HDMI monitor via<br>
+&gt; USB-C-to-HDMI dongle.<br>
+<br>
+What are the changes between v1 and v2?<br>
+<br>
+&gt;<br>
+&gt; Signed-off-by: ChunAn Wu &lt;<a href=3D"mailto:an.wu@canonical.com" ta=
+rget=3D"_blank">an.wu@canonical.com</a>&gt;<br>
+&gt; ---<br>
+&gt;=C2=A0 drivers/gpu/drm/i915/display/intel_dp_aux.c | 41 +++++++++--<br>
+&gt;=C2=A0 drivers/gpu/drm/i915/display/intel_tc.c=C2=A0 =C2=A0 =C2=A0| 75 =
++++++++++++++++++++++<br>
+&gt;=C2=A0 drivers/gpu/drm/i915/display/intel_tc.h=C2=A0 =C2=A0 =C2=A0|=C2=
+=A0 1 +<br>
+&gt;=C2=A0 3 files changed, 113 insertions(+), 4 deletions(-)<br>
+&gt;<br>
+&gt; diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu=
+/drm/i915/display/intel_dp_aux.c<br>
+&gt; index b20ec3e589fa..d496b2231656 100644<br>
+&gt; --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c<br>
+&gt; +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c<br>
+&gt; @@ -481,6 +481,39 @@ static u32 intel_dp_aux_xfer_flags(const struct d=
+rm_dp_aux_msg *msg)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0return 0;<br>
+&gt;=C2=A0 }<br>
+&gt;=C2=A0 <br>
+&gt; +/**<br>
+&gt; + * intel_dp_aux_xfer_with_recovery - AUX transfer with TC port recove=
+ry<br>
+&gt; + * @intel_dp: the DP port<br>
+&gt; + * @send: buffer of bytes to send<br>
+&gt; + * @send_bytes: number of bytes to send<br>
+&gt; + * @recv: buffer to store received reply<br>
+&gt; + * @recv_size: maximum number of bytes to receive<br>
+&gt; + * @aux_send_ctl_flags: extra flags for the AUX send control register=
+<br>
+&gt; + *<br>
+&gt; + * Wrapper around intel_dp_aux_xfer() that attempts to recover from a=
+n<br>
+&gt; + * external TC port mode change (e.g., dp-alt -&gt; tbt-alt via hotke=
+y BIOS<br>
+&gt; + * action) when the initial AUX transfer fails. On failure, recovery =
+is<br>
+&gt; + * attempted once via intel_tc_port_aux_recover() before retrying.<br=
+>
+&gt; + *<br>
+&gt; + * Returns: number of received bytes on success, negative error code =
+on failure.<br>
+&gt; + */<br>
+&gt; +static int<br>
+&gt; +intel_dp_aux_xfer_with_recovery(struct intel_dp *intel_dp,<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0const u8 *send, int send_bytes,<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0u8 *recv, int recv_size,<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0u32 aux_send_ctl_flags)<br>
+&gt; +{<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0struct intel_digital_port *dig_port =3D dp_to_dig=
+_port(intel_dp);<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0int ret;<br>
+&gt; +<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0ret =3D intel_dp_aux_xfer(intel_dp, send, send_by=
+tes, recv, recv_size,<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0aux_send_ctl_flags);<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0if (ret &lt; 0 &amp;&amp; intel_tc_port_aux_recov=
+er(dig_port))<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ret =3D intel_dp_aux_=
+xfer(intel_dp, send, send_bytes, recv,<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0recv_size, a=
+ux_send_ctl_flags);<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0return ret;<br>
+&gt; +}<br>
+&gt; +<br>
+&gt;=C2=A0 static ssize_t<br>
+&gt;=C2=A0 intel_dp_aux_transfer(struct drm_dp_aux *aux, struct drm_dp_aux_=
+msg *msg)<br>
+&gt;=C2=A0 {<br>
+&gt; @@ -508,8 +541,8 @@ intel_dp_aux_transfer(struct drm_dp_aux *aux, stru=
+ct drm_dp_aux_msg *msg)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (msg-&gt;buff=
+er)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0memcpy(txbuf + HEADER_SIZE, msg-&gt;buffer, msg-&gt;size);<br>
+&gt;=C2=A0 <br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ret =3D intel_dp_aux_=
+xfer(intel_dp, txbuf, txsize,<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0rxbuf, rxsiz=
+e, flags);<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ret =3D intel_dp_aux_=
+xfer_with_recovery(intel_dp, txbuf, txsize,<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0rxbuf, rxsize, flags);<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (ret &gt; 0) =
+{<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0msg-&gt;reply =3D rxbuf[0] &gt;&gt; 4;<br>
+&gt;=C2=A0 <br>
+&gt; @@ -531,8 +564,8 @@ intel_dp_aux_transfer(struct drm_dp_aux *aux, stru=
+ct drm_dp_aux_msg *msg)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (drm_WARN_ON(=
+display-&gt;drm, rxsize &gt; 20))<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0return -E2BIG;<br>
+&gt;=C2=A0 <br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ret =3D intel_dp_aux_=
+xfer(intel_dp, txbuf, txsize,<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0rxbuf, rxsiz=
+e, flags);<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ret =3D intel_dp_aux_=
+xfer_with_recovery(intel_dp, txbuf, txsize,<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0rxbuf, rxsize, flags);<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (ret &gt; 0) =
+{<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0msg-&gt;reply =3D rxbuf[0] &gt;&gt; 4;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0/*<br>
+&gt; diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm=
+/i915/display/intel_tc.c<br>
+&gt; index a21dd4e3fe4c..1b23161e4eea 100644<br>
+&gt; --- a/drivers/gpu/drm/i915/display/intel_tc.c<br>
+&gt; +++ b/drivers/gpu/drm/i915/display/intel_tc.c<br>
+&gt; @@ -1861,6 +1861,81 @@ void intel_tc_port_link_cancel_reset_work(struc=
+t intel_digital_port *dig_port)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0cancel_delayed_work(&amp;tc-&gt;link_reset_w=
+ork);<br>
+&gt;=C2=A0 }<br>
+&gt;=C2=A0 <br>
+&gt; +/**<br>
+&gt; + * intel_tc_port_aux_recover - Recover AUX channel after external TC =
+mode change<br>
+&gt; + * @dig_port: digital port<br>
+&gt; + *<br>
+&gt; + * When firmware causes a TC port mode change (e.g., dp-alt -&gt; dis=
+connect -&gt;<br>
+&gt; + * tbt-alt) during a hotkey-triggered display mode switch, AUX transa=
+ctions<br>
+&gt; + * using the stale power domain and IO flags will fail with timeouts =
+or errors.<br>
+&gt; + * This happens because:<br>
+&gt; + *<br>
+&gt; + *=C2=A0 =C2=A01. The display driver holds the TC link in dp-alt mode=
+ (link_refcount &gt; 0)<br>
+&gt; + *=C2=A0 =C2=A02. Firmware (e.g., via HP WMI hotkey BIOS action) reco=
+nfigures the TC port<br>
+&gt; + *=C2=A0 =C2=A0 =C2=A0 mode externally without notifying the display =
+driver<br>
+&gt; + *=C2=A0 =C2=A03. tc-&gt;mode stays as TC_PORT_DP_ALT while HW transi=
+tions to a different<br>
+&gt; + *=C2=A0 =C2=A0 =C2=A0 mode, invalidating the AUX power domain and IO=
+ flags used by<br>
+&gt; + *=C2=A0 =C2=A0 =C2=A0 intel_dp_aux_xfer()<br>
+&gt; + *<br>
+&gt; + * This function detects the discrepancy between tc-&gt;mode and actu=
+al HW state,<br>
+&gt; + * and re-synchronizes them via a TC PHY reset. After recovery, AUX r=
+etries<br>
+&gt; + * will use the correct power domain and control flags.<br>
+&gt; + *<br>
+&gt; + * The link_refcount is temporarily cleared to allow intel_tc_port_re=
+set_mode()<br>
+&gt; + * to proceed without the PHY-ownership assertion that fires when lin=
+k_refcount<br>
+&gt; + * is non-zero and firmware has already released PHY ownership.<br>
+&gt; + *<br>
+&gt; + * Must be called outside the TC port lock (tc-&gt;lock).<br>
+&gt; + *<br>
+&gt; + * Returns: %true if recovery was performed and AUX can be retried,<b=
+r>
+&gt; + *=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 %false if recovery was not neede=
+d or not possible.<br>
+&gt; + */<br>
+&gt; +bool intel_tc_port_aux_recover(struct intel_digital_port *dig_port)<b=
+r>
+&gt; +{<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0struct intel_tc_port *tc;<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0struct intel_display *display;<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0bool recovered =3D false;<br>
+&gt; +<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0if (!intel_encoder_is_tc(&amp;dig_port-&gt;base))=
+<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return false;<br>
+&gt; +<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0tc =3D to_tc_port(dig_port);<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0display =3D to_intel_display(dig_port);<br>
+&gt; +<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0mutex_lock(&amp;tc-&gt;lock);<br>
+&gt; +<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0/*<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 * Recovery is only needed when the link is activ=
+ely held AND the HW<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 * TC mode has diverged from the driver&#39;s cac=
+hed state.<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 */<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0if (!tc-&gt;link_refcount || !intel_tc_port_needs=
+_reset(tc))<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0goto out;<br>
+&gt; +<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0drm_dbg_kms(display-&gt;drm,<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&quot;P=
+ort %s: AUX recover: external TC mode change detected (%s -&gt; HW), reconn=
+ecting TC PHY\n&quot;,<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0tc-&gt;=
+port_name, tc_port_mode_name(tc-&gt;mode));<br>
+&gt; +<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0/*<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 * Temporarily clear link_refcount so intel_tc_po=
+rt_reset_mode() can<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 * run the PHY disconnect/connect cycle without t=
+he ownership assertion<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 * that fires when link_refcount &gt; 0 and firmw=
+are has already released<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 * PHY ownership externally.<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 */<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0tc-&gt;link_refcount =3D 0;<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0intel_tc_port_reset_mode(tc, 1, false);<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0tc-&gt;link_refcount =3D 1;<br>
+&gt; +<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0recovered =3D tc-&gt;mode !=3D TC_PORT_DISCONNECT=
+ED;<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0if (!recovered)<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0drm_warn(display-&gt;=
+drm,<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 &quot;Port %s: AUX recover: failed to restore TC port mode\n&quot;,=
+<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 tc-&gt;port_name);<br>
+&gt; +<br>
+&gt; +out:<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0mutex_unlock(&amp;tc-&gt;lock);<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0return recovered;<br>
+&gt; +}<br>
+&gt; +<br>
+&gt;=C2=A0 static void __intel_tc_port_lock(struct intel_tc_port *tc,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 int required_lanes)<br>
+&gt;=C2=A0 {<br>
+&gt; diff --git a/drivers/gpu/drm/i915/display/intel_tc.h b/drivers/gpu/drm=
+/i915/display/intel_tc.h<br>
+&gt; index 6719aea5bd58..d44998a3081a 100644<br>
+&gt; --- a/drivers/gpu/drm/i915/display/intel_tc.h<br>
+&gt; +++ b/drivers/gpu/drm/i915/display/intel_tc.h<br>
+&gt; @@ -108,6 +108,7 @@ bool intel_tc_port_ref_held(struct intel_digital_p=
+ort *dig_port);<br>
+&gt;=C2=A0 bool intel_tc_port_link_needs_reset(struct intel_digital_port *d=
+ig_port);<br>
+&gt;=C2=A0 bool intel_tc_port_link_reset(struct intel_digital_port *dig_por=
+t);<br>
+&gt;=C2=A0 void intel_tc_port_link_cancel_reset_work(struct intel_digital_p=
+ort *dig_port);<br>
+&gt; +bool intel_tc_port_aux_recover(struct intel_digital_port *dig_port);<=
+br>
+&gt;=C2=A0 <br>
+&gt;=C2=A0 int intel_tc_port_init(struct intel_digital_port *dig_port, bool=
+ is_legacy);<br>
+&gt;=C2=A0 void intel_tc_port_cleanup(struct intel_digital_port *dig_port);=
+<br>
+<br>
+-- <br>
+Jani Nikula, Intel<br>
+</blockquote></div>
 
-Signed-off-by: Tejas Upadhyay <a class="moz-txt-link-rfc2396E" href="mailto:tejas.upadhyay@intel.com">&lt;tejas.upadhyay@intel.com&gt;</a>
----
- drivers/gpu/drm/xe/xe_bo.c | 5 +----
- drivers/gpu/drm/xe/xe_bo.h | 1 +
- 2 files changed, 2 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 5ce60d161e09..04d3b25c7c8e 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -903,7 +903,7 @@ void xe_bo_set_purgeable_state(struct xe_bo *bo,
-  *
-  * Return: 0 on success, negative error code on failure
-  */
--static int xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operation_ctx *ctx)
-+int xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operation_ctx *ctx)
- {
- 	struct xe_bo *bo = ttm_to_xe_bo(ttm_bo);
- 	struct ttm_placement place = {};
-@@ -911,9 +911,6 @@ static int xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operatio
- 
- 	xe_bo_assert_held(bo);
- 
--	if (!ttm_bo-&gt;ttm)
--		return 0;
--
-</pre>
-      </blockquote>
-      <pre wrap="" class="moz-quote-pre">
-I think blindly deleting this is fine but I'd run this by Arvind to make
-sure in normal purge flow this won't do anything bad but afiak in normal
-purge flows ttm_bo-&gt;ttm will never be NULL.</pre>
-    </blockquote>
-    <p><br>
-    </p>
-    <p>The&nbsp;purge paths (<code>xe_bo_move(evict=true, DONTNEED)</code>
-      and <code>swap_notify</code>), <code>ttm_bo-&gt;ttm</code> is
-      always non‑NULL. TTM allocates <code>ttm_tt</code> before
-      invoking <code>-&gt;move</code> on a populated BO. So removing
-      this check is safe.</p>
-    <p>~Arvind</p>
-    <p><br>
-    </p>
-    <blockquote type="cite" cite="mid:afLQGypRcDWYSAjb@gsse-cloud1.jf.intel.com">
-      <pre wrap="" class="moz-quote-pre">
-
-If not then adjust the existing call...
-
-@@ -978,7 +978,8 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
-         * The move_notify callback will handle invalidation asynchronously.
-         */
-        if (evict &amp;&amp; xe_bo_madv_is_dontneed(bo)) {
--               ret = xe_ttm_bo_purge(ttm_bo, ctx);
-+               if (ttm_bo-&gt;ttm)
-+                       ret = xe_ttm_bo_purge(ttm_bo, ctx);
-                if (ret)
-                        return ret;
-
-Matt 
-
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre"> 	if (!xe_bo_madv_is_dontneed(bo))
- 		return 0;
- 
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 68dea7d25a6b..9f55b3589caf 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -500,6 +500,7 @@ struct xe_bo_shrink_flags {
- long xe_bo_shrink(struct ttm_operation_ctx *ctx, struct ttm_buffer_object *bo,
- 		  const struct xe_bo_shrink_flags flags,
- 		  unsigned long *scanned);
-+int xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operation_ctx *ctx);
- 
- /**
-  * xe_bo_is_mem_type - Whether the bo currently resides in the given
--- 
-2.52.0
-
-</pre>
-      </blockquote>
-    </blockquote>
-  </body>
-</html>
-
---------------DGniJIYmai0VhKvJOmxfgtsO--
+--0000000000000e052506510db93f--
