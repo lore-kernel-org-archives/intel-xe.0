@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64757FF885A
-	for <intel-xe@archiver.kernel.org>; Tue,  5 May 2026 09:33:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0EB4FF885A
+	for <intel-xe@archiver.kernel.org>; Tue,  5 May 2026 09:36:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10F4F10EA16;
-	Tue,  5 May 2026 09:33:52 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WdmNz7MT";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D11310EA16;
- Tue,  5 May 2026 09:33:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777973631; x=1809509631;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=zC85hwRfuu/eBQfcZfR1bL5Fss7ScSU6b2YmZVq7/+c=;
- b=WdmNz7MT91BEak6ik5ZbJRNgAS1VdyVbHSd8UGWC0g0Y6Pmwatxb4sTX
- HFUQl6Ke8oLO/w4570tcrWnS5ZNMdLyV0yWc2ZPsGzbrXCgkz7NcUMwkz
- FQ/VDiFahzzCAJeeZWZApFgpZqiGEbm9s1KQmEJ8VJGHIEtD62qS1BPnO
- GQdTOzX2AUjH1Epl+YiCClEmdleaFRL663ypzlhVUICjYAxJ050UGqbTh
- ho+kgIQQL33H3mzWbFC61+DJouc9ASgVReT5mof42ZM+UKuYdgx16ggZV
- eXXisvoRw5IwqgJd3Tdy1v1vXXi56+z79reM1kOoKSVWEaYexptPf7TAN w==;
-X-CSE-ConnectionGUID: r63gVZwMQNakGC9KxvpSkA==
-X-CSE-MsgGUID: tB16RGEMTwy8uQYPn9Pa3Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11776"; a="78889688"
-X-IronPort-AV: E=Sophos;i="6.23,217,1770624000"; d="scan'208";a="78889688"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2026 02:33:51 -0700
-X-CSE-ConnectionGUID: T1BvX/UeStKHKMntSqpvDg==
-X-CSE-MsgGUID: GHyA6LkjRPyLNrVcee55zQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,217,1770624000"; d="scan'208";a="273915241"
-Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by orviesa001.jf.intel.com with ESMTP; 05 May 2026 02:33:49 -0700
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: gwan-gyeong.mun@intel.com, uma.shankar@intel.com, imre.deak@intel.com,
- chaitanya.kumar.borah@gmail.com, stable@vger.kernel.org,
- suraj.kandpal@intel.com
-Subject: [PATCH v3] drm/i915/dp: Fix VSC dynamic range signaling for RGB
- formats
-Date: Tue,  5 May 2026 14:39:20 +0530
-Message-Id: <20260505090920.2479112-1-chaitanya.kumar.borah@intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 610D610EA16;
+	Tue,  5 May 2026 09:36:11 +0000 (UTC)
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BA5510EA16;
+ Tue,  5 May 2026 09:36:10 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_start?=
+ =?utf-8?q?_switching_to_display_specific_reg_types_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 05 May 2026 09:36:10 -0000
+Message-ID: <177797377010.38316.2615901012648694488@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <cover.1777972548.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1777972548.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,52 +36,66 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For RGB, set dynamic_range to CTA or VESA based on
-crtc_state->limited_color_range so sinks apply correct
-quantization. YCbCr remains limited (CTA) range.
-(DP v1.4, Table 5-1)
+== Series Details ==
 
-v2:
-- Added Reported-by and Tested-by tags
+Series: drm/i915/display: start switching to display specific reg types (rev2)
+URL   : https://patchwork.freedesktop.org/series/164540/
+State : warning
 
-v3:
-- Add back YCbCr comment(Suraj)
+== Summary ==
 
-Cc: stable@vger.kernel.org #v5.8+
-Reported-by: DeepChirp <DeepChirp@outlook.com>
-Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/15874
-Tested-by: DeepChirp <DeepChirp@outlook.com>
-Fixes: 9799c4c3b76e ("drm/i915/dp: Add compute routine for DP VSC SDP")
-Assisted-by: GitHub Copilot (GPT-5.4)
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c8c12e558adaef7a4d125d83b6e1f8824bc13b82
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 42c553cadf4ecc1107e6b9e2b12063d0b811b139
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Tue May 5 12:16:48 2026 +0300
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 98df93884e9a..c1279afe0224 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -3163,8 +3163,13 @@ static void intel_dp_compute_vsc_colorimetry(const struct intel_crtc_state *crtc
- 	drm_WARN_ON(display->drm,
- 		    vsc->bpc == 6 && vsc->pixelformat != DP_PIXELFORMAT_RGB);
- 
--	/* all YCbCr are always limited range */
--	vsc->dynamic_range = DP_DYNAMIC_RANGE_CTA;
-+	if (vsc->pixelformat == DP_PIXELFORMAT_RGB)
-+		vsc->dynamic_range = crtc_state->limited_color_range ?
-+			DP_DYNAMIC_RANGE_CTA : DP_DYNAMIC_RANGE_VESA;
-+	/* All YCbCr formats are always limited range. */
-+	else
-+		vsc->dynamic_range = DP_DYNAMIC_RANGE_CTA;
-+
- 	vsc->content_type = DP_CONTENT_TYPE_NOT_DEFINED;
- }
- 
--- 
-2.25.1
+    drm/i915/display: define and use intel_reg_{offset, equal, valid}() helpers
+    
+    Add display specific helpers for getting the register offset, checking
+    for equality and validity. Add them as static inlines for increased type
+    safety.
+    
+    Reviewed-by: Michał Grzelak <michal.grzelak@intel.com>
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch fa7a3955d5aca4e8e7299ee765637de39009850e drm-intel
+a21795ae8e8b drm/i915/display: add typedef for intel_reg_t and use it
+-:813: WARNING:NEW_TYPEDEFS: do not add new typedefs
+#813: FILE: drivers/gpu/drm/i915/display/intel_display_reg_defs.h:11:
++typedef i915_reg_t intel_reg_t;
+
+total: 0 errors, 1 warnings, 0 checks, 1982 lines checked
+5274071c22cf drm/i915/display: add struct intel_irq_regs and use it
+-:96: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#96: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1410:
++#define GEN8_DE_PIPE_IRQ_REGS(pipe)	INTEL_IRQ_REGS(GEN8_DE_PIPE_IMR(pipe), \
++						       GEN8_DE_PIPE_IER(pipe), \
++						       GEN8_DE_PIPE_IIR(pipe))
+
+total: 0 errors, 0 warnings, 1 checks, 128 lines checked
+b5e25ef972c4 drm/i915/display: add struct intel_error_regs and use it
+42c553cadf4e drm/i915/display: define and use intel_reg_{offset, equal, valid}() helpers
+-:164: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#164: FILE: drivers/gpu/drm/i915/display/intel_dmc.c:1153:
++			    i+1, intel_reg_offset(dmc_info->mmioaddr[i+1]),
+ 			     ^
+
+-:164: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#164: FILE: drivers/gpu/drm/i915/display/intel_dmc.c:1153:
++			    i+1, intel_reg_offset(dmc_info->mmioaddr[i+1]),
+ 			                                              ^
+
+total: 0 errors, 0 warnings, 2 checks, 246 lines checked
+
 
