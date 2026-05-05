@@ -4,152 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E534CFF885A
-	for <intel-xe@archiver.kernel.org>; Tue,  5 May 2026 08:34:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12309CD3430
+	for <intel-xe@archiver.kernel.org>; Tue,  5 May 2026 08:44:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A0AE910E9E7;
-	Tue,  5 May 2026 08:34:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF92C10E9F1;
+	Tue,  5 May 2026 08:44:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UBHmhnoB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hu2KgjJG";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9526610E9E5;
- Tue,  5 May 2026 08:34:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CDA8810E9F6
+ for <intel-xe@lists.freedesktop.org>; Tue,  5 May 2026 08:44:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777970099; x=1809506099;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- in-reply-to:mime-version;
- bh=gxgNOt6lAt4072ouIe+6OlLAOPhkudQUuf83sPG6cQk=;
- b=UBHmhnoBI3d8UWTLNDq8VJDJD3ooKxwF3kiY6SSnJrwcVxgn4Q2528nz
- 3BKtdJFMQFM9pkhJ7sRkbHF8Nzxe76J1Qr5J2X1pOOLatG7i7haxNBfoY
- 6qi1Ieli3P3FUwUGxPKClhLMlWndVt9N/SMYPo6V3QEZj7E7fOoS8/amK
- qhm0W9Nr+uUzNl+efLmDAUgDvp/jA4+DeoP5TLC93jrwJF6/8Zzf9Wk3l
- RyiGbH0xlTvuH4+sgLs+QJHr3ggyRFX2xbb+2RBvD75oYuT5FNqPz4hLY
- gVbdf33p++NVdX0r+XxlzvGj9Ng/DlYsS5hxuZnDMLaie5h3fLZOTLZbe g==;
-X-CSE-ConnectionGUID: MMP0D35VQMGNem/qagD0CA==
-X-CSE-MsgGUID: FsGj48j7RNGwuvAXjZ3aaQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11776"; a="90290603"
-X-IronPort-AV: E=Sophos;i="6.23,217,1770624000"; d="scan'208";a="90290603"
+ t=1777970654; x=1809506654;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=eSWgBprOalpZVVWKOdjz4WbqTrmd/F6Ty44sA3jFZ1w=;
+ b=hu2KgjJGkGr34ih2/dK9ggGbPQIttk+Qn7h+D4x50wxQbEH21bcSg+q2
+ /MlMNsvZgszAeOhO9vxTm1rmoOgxw13v7RZhrGXUncQH58KRRTajSB2Jo
+ EYhpL/qMVRMtblvtaLkHzI8+2IxfnvJugPERMTKBRnuBNopZT1OjIKho6
+ KCZTKKHx2PHoZtMApKQ5OslVW14+KzZxiKz3Jj+yTnegpfQYmbqcVK418
+ 9nYpsoDzJLF9TUSGEzTeV8esNsD03IMFnrd8qSvdKBadjgst2Cxr4YHcz
+ ZBAwBOwoB3CArMEE/BhytEVurYF8QL5Kfum2T9wWonqPAk0yUz0bctdas w==;
+X-CSE-ConnectionGUID: 1Z5287DJSUSxI2qjsvcW0g==
+X-CSE-MsgGUID: FOQzy+uYQLK1AoP1Ne2ytw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11776"; a="78859563"
+X-IronPort-AV: E=Sophos;i="6.23,217,1770624000"; d="scan'208";a="78859563"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2026 01:34:58 -0700
-X-CSE-ConnectionGUID: DWi7rtaAR5mMxtMzMRKpbA==
-X-CSE-MsgGUID: uXiwme64QZe+FrY7GBsrFw==
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2026 01:44:14 -0700
+X-CSE-ConnectionGUID: RUcsBHdrSf+m02x2Ve9+yg==
+X-CSE-MsgGUID: nHXo2LGwQ8aLM3muA7xAEw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,217,1770624000"; d="scan'208";a="234742161"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2026 01:34:58 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 5 May 2026 01:34:57 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Tue, 5 May 2026 01:34:57 -0700
-Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.65) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 5 May 2026 01:34:56 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=cWq90OsiSo/7moWbiMvIDiw5QuukshUtdMBr2P8qKQNTiZUowA20i2vENeGZXNR2iZ19W8E9B2Sq0FY4Jf49fZpJczCehrpdd1MkMsw08NmeWNhkS3Iu83lQDno3N83f50mq+TkKa7iuT+YzhgY/MPMYBn5Sl7uc/B2220apt8XoRdWoY2SwUOxY5M5Z+8JdJSGadLnHgz0ixD9o7ZsBUgB0maGj2nLQVdkz9jtXtmFNoy0mPdi/STRI8gtB7YMJtrHNUKYB255T5xzO4UdZ53nK+VlRLKcdGjVINXCnoWQ8VkyAwrMzYZc891lUvIIWrSn/s8QYuWtfW2NoIrZVkw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pF/U47VagkHc+yFjT5kFOpjy28C4TikVKOw+V46TsgE=;
- b=oD/ETDZ0VKfcqplrkPqFi6uGo6/5du4BnxVz3i3TzCOj520zysM9XPgXALXWImJZBNA9dxF8TWbcF9SoguXe5BX4hBWOBE+Dk95mFUE25uOBLkJwWwgYv217Oz0UE1nhKURy/WHPT2/fwCv5LJ0oYiX7U+SDhtsNBm8/EsZTy/NfgDG/4t037QAmUYczTmqbNXJ1FzNlXbt+lq9XCGNtO3w8sfY+mW3D1OmtPW2gqQwexM9fwROERFY/HRiBYaRqKMxUjbPCmLmPBa9wfl3JFHTs00EB8eTVnUuJWGRrchBKS0up2qaCnBH9F3/obqkhmCymN8JFtR4CxiC1Wqa97Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
- by SA1PR11MB6845.namprd11.prod.outlook.com (2603:10b6:806:29f::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.25; Tue, 5 May
- 2026 08:34:53 +0000
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::9ca5:4d1d:db45:f523]) by SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::9ca5:4d1d:db45:f523%5]) with mapi id 15.20.9870.023; Tue, 5 May 2026
- 08:34:52 +0000
-Date: Tue, 5 May 2026 11:34:43 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: ChunAn Wu <an.wu@canonical.com>
-CC: Jani Nikula <jani.nikula@linux.intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] drm/i915/tc: Recover AUX channel after external TC
- port mode change
-Message-ID: <afmroyG15GjNRJUM@ideak-desk.lan>
-References: <20260505033558.157604-1-an.wu@canonical.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20260505033558.157604-1-an.wu@canonical.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-X-ClientProxiedBy: GVYP280CA0002.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:150:fa::9) To SJ0PR11MB4845.namprd11.prod.outlook.com
- (2603:10b6:a03:2d1::10)
+X-IronPort-AV: E=Sophos;i="6.23,217,1770624000"; d="scan'208";a="234744684"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO [10.245.244.65])
+ ([10.245.244.65])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2026 01:44:12 -0700
+Message-ID: <21811e89-5f7a-48bd-b0bf-76065cee6bcc@intel.com>
+Date: Tue, 5 May 2026 09:44:10 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|SA1PR11MB6845:EE_
-X-MS-Office365-Filtering-Correlation-Id: f2b99427-0c51-4b39-41aa-08deaa812d8b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|1800799024|56012099003|18002099003|22082099003; 
-X-Microsoft-Antispam-Message-Info: bsDj1lSs1fHLCFzN6gsZKvtYtLmxH+xUJIv7skNqRTR6bcXL8zh9+H4zECOFbkTmMRtX6Vi9KyNIf+nt5SJGmLvlnco7lc1ch9HKArZLVubRTmmpN4fwAGSG6okOLATux/u6U8IATuGZDqbFOMjEbAGJIRQXTblqM6aO1wVJBlCRgV2un3SZxkyO73zJ7p0ptMuuI7TTgJ1Uhiq1ZCbJIHrlONJ45Zz7avZCUZX/VscRTOhMXibpd/+8ApI8V4f5QIVMJGQegGKDLYCNH2CbzQPKnDxPzNJrPyL3I7lm40EcV59ebuZppcfSq874L3Zxa22oPFPl+YdHaWWYFR4AtAsvU4JTbBFynPp4FshMpZNjdtNPgeSwaS6+BPclTUj3Q/W5zb4iMuJ6kas7/NsmPr1EF1DCiGaROpxa0dFbVyBp92JV7BnOWeXd/+kp4YFBK1TXM08G0K4lOvhgjSTj/inFzCHB+tWEqlFKKwzrXLQRM80ZOxj3Vd8KGll8b7CO3MxxDHSAE79cUDxxAoEidVVvRrxMwl4iDGqanfDyUxzlNpaIMHsbNpWCzIoxYuSkoIwoVa3tqtghnlwKvu3aMNc/Em1Vq0y+78hS46J0RkWgdnvQEctN/XndFVWD2es+WhmcCTiN5Zn2dPqt8/b9v8N29Y8g3muryMxVIrnSmY0Zv5QayPH20o2Sed0OmRzh
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(56012099003)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?mVgvp08CvK7o/LR5/ZrsIyl6qSG769tb005fzscQZ4P99OyC792Uqb9wTadN?=
- =?us-ascii?Q?5LjPccZsKUhgKnBdBP1Wl22NuGJq+NsYOn2R05XsN0b/fkNg927Fobkf+VqX?=
- =?us-ascii?Q?FCGV3FdozBJJmEaQgvccRy11qV6aeLLBPkGOIHhTz/E3bB9dHO6AeV9xx9TA?=
- =?us-ascii?Q?bruEMJqCqd6vHaD5U88l/KqnRCC2hn3FuCZxyBbgZWt0g+XBcWtUfFWjcn/B?=
- =?us-ascii?Q?NgDCuYRiqq3beL27UWgIvBA7aU4qju9IWFfYEhf7xmdk5QiF5mx44dgCJMe3?=
- =?us-ascii?Q?a7gOdb+IoR84JtTnN7PhqLtDPq0/nzMr/SQ7WRZ9I2kf3PwGTIu2F/Aq8UyQ?=
- =?us-ascii?Q?QTKbPTwFtBYWvttsSkMRc4yymOW2qZKy3Ucy1gWVxiQmu1HpNkVF0BDJbEho?=
- =?us-ascii?Q?k5WQn+Q5ZgfwgsWEleZXZincoQLwe6/kHxv7uhUqeqvVd+B54OfvypWGZ2pI?=
- =?us-ascii?Q?LzVY/eGejFtKUMNumjuISbD5W/o5qma848xQCjUZgosOFjdXv8mkABi5INOE?=
- =?us-ascii?Q?YCyqHSLhf4v2h8UvIV/x404vky892NdpoZGo3APB/cc0KbXsIwcQ0nOGrHwB?=
- =?us-ascii?Q?0CnIGdsbANLvJiOVuk7JXZdKT0mFtybrxVGM+HNrQ6kJmwxv8moXooPAGf4c?=
- =?us-ascii?Q?nimscJy9yVFkldL4CDUFSOYa2xmlEBLbQWG2KDRR2uA6sFvXBvwlNNXfgY5A?=
- =?us-ascii?Q?mKa4LS7xzYmuurRCUIJedksgIqLHtJ6GRVz3wsJunZgn2LjcY06fZIW5+81e?=
- =?us-ascii?Q?5P9JKnF8e7YwQD2SxOagRrMyKJFnv8ji3UywI5mMw4Mq9CVH8wA1/6H4syok?=
- =?us-ascii?Q?5FDRba9Dr6lZtIZZBgu0dGjqVhNWtrksdDAs/KqLJwEm7iqkMTlsT1nUaXbB?=
- =?us-ascii?Q?UEptDmnVWeNf+jU6BfdNu2aXquGGdDxfIGq78rSc1dAe69kA2dgcUvDsXb1O?=
- =?us-ascii?Q?8XzftUh8gR61GS04VYAzY7hSJ2psxf5s6yOV46g0Y2V5mrPSVGqMqIoytx4U?=
- =?us-ascii?Q?gxRorjwvc9TNNIOgjsI6xpAsjouPwsDfRwKMSj7yuapHyG6Q7aU54lMz7W9P?=
- =?us-ascii?Q?k+RIkqX6fWbXTuVBpDQ6Rr/9RKbPLft6cSlt1nmcXNQx5rui9DSHMsiupT5M?=
- =?us-ascii?Q?I6Aa45qEV71QfjRLJHurnEeCDObwWFaCJx0OpTlGYSyBQHXsyON+07OlSiBF?=
- =?us-ascii?Q?KKMmfPYyk5fzCTKcVdbEgc+vyKTAUutDktfzuDd9wQtSHxFs3iLvyVuq2TjC?=
- =?us-ascii?Q?64ddZfkwXzbYNIN0xq0ipd798fvR58WY4LfFeCk+q5JbHO9vrUEzIhY7p4TP?=
- =?us-ascii?Q?tMswepa/4dme2B4EMSS0yzf0PJNPGaLVLO9A+BVqWtCStrfU3inBr5wIDx9Y?=
- =?us-ascii?Q?tvLisZZeLUcFdKsCq4TxRUGPyvcZQ1rzkxr9Gakkoi+eECz23VnEMadqXfHT?=
- =?us-ascii?Q?8/9xqLnXI0S6tHWpMHXsmD4BhHNtDNGFX2Ya4P96+fTJWwMSt52TYacF2Z7E?=
- =?us-ascii?Q?zFHd3lX3NGgpLIkf+pThPbb4J0v16inr9+u2Afsh2dhKOqWL0ziTY30NvXwU?=
- =?us-ascii?Q?y87N8CsdRdYgHaJI5p9KNN6nJNMxbK5WqHK7wP52I07Y0cowZDaQGZSlITMh?=
- =?us-ascii?Q?OU1E4NtHs9E2HUm7LAIAUE/tso7+JeLwDWRr+bY+Q5r8qehqj+5qRk6PUdre?=
- =?us-ascii?Q?kiizh1IVJ87gw+t92oNLSpjMhu6ywWlj11BWB4Lqivcy/CKKhsMjq7SWXWp+?=
- =?us-ascii?Q?AnBPk2b5cg=3D=3D?=
-X-Exchange-RoutingPolicyChecked: Yt5CUgz7Z5g/EMxD2RfpKMPyt7/MNfsNKDn499/oFVUBgUO5tvJr2rf+4J5JlMUBCAgLuG62kXXndiQoTfVldG+5PDzrogRz4F8XE7t94nT9DqLgX8+tTwPVZ9/u2WS7jszL/OY7cxIRGJwebdCwUeXX/ohklLzcbwnocvEAXPvWBHCRzcFEr3tfwJ2ftRMwHluE2AhRsg069C4rQdmFqU8v+SVxIAGbOJPQsGrkzSrm/rityDW+aRB58yrxfwycpcJlkLIv/APyvV3AwUpGsCXfdqvAT0rgiOHlpccGPmPj5M4hsufyBNNMTVUoie495nhu01wA1Hk63Xz6GC4ZZA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: f2b99427-0c51-4b39-41aa-08deaa812d8b
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2026 08:34:52.8465 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: v6rbSllcAMm+Ml7Z8PRNEONTKj53xmS6t192j4uXl68UY3knQGdDy65qnjqCPq5XBQCz/8IU0tAn331sC+V5XQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6845
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH V7 10/10] drm/xe/cri: Add sysfs interface for bad gpu
+ vram pages
+To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Cc: "Brost, Matthew" <matthew.brost@intel.com>,
+ "thomas.hellstrom@linux.intel.com" <thomas.hellstrom@linux.intel.com>,
+ "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
+References: <20260416074958.3722666-12-tejas.upadhyay@intel.com>
+ <20260416074958.3722666-22-tejas.upadhyay@intel.com>
+ <03f64ea2-5626-49d5-8ef9-afa7311ee697@intel.com>
+ <DS0PR11MB87189655103B8C7C9C81A7BD81312@DS0PR11MB8718.namprd11.prod.outlook.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <DS0PR11MB87189655103B8C7C9C81A7BD81312@DS0PR11MB8718.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,141 +73,242 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, May 05, 2026 at 11:35:57AM +0800, ChunAn Wu wrote:
-> When Fn+F4 triggers mirror mode, the BIOS/EC reconfigures a TC port
-> mode (e.g. DP-Alt to TBT-Alt via UCSI) without generating HPD. The
-> driver's cached TC mode becomes stale, so intel_dp_aux_xfer() uses
-> the wrong power domain and IO routing, and AUX transactions fail.
+On 04/05/2026 10:02, Upadhyay, Tejas wrote:
 > 
-> This occurs when the USB-C-to-HDMI dongle does not support TBT, so
-> the mode switch creates a mismatch. It also occurs with slow monitors
-> whose delayed HPD/DDC/EDID recovery causes the Type-C layer to settle
-> on a stale tbt-alt state before the dongle finishes re-negotiation.
 > 
-> Add intel_tc_port_aux_recover() to detect hardware/cached TC mode
-> divergence and reset the PHY. Wrap it with
-> intel_dp_aux_xfer_with_recovery() to retry with corrected settings.
+>> -----Original Message-----
+>> From: Auld, Matthew <matthew.auld@intel.com>
+>> Sent: 30 April 2026 19:23
+>> To: Upadhyay, Tejas <tejas.upadhyay@intel.com>; intel-
+>> xe@lists.freedesktop.org
+>> Cc: Brost, Matthew <matthew.brost@intel.com>;
+>> thomas.hellstrom@linux.intel.com; Ghimiray, Himal Prasad
+>> <himal.prasad.ghimiray@intel.com>
+>> Subject: Re: [RFC PATCH V7 10/10] drm/xe/cri: Add sysfs interface for bad gpu
+>> vram pages
+>>
+>> On 16/04/2026 08:49, Tejas Upadhyay wrote:
+>>> Starting CRI, Include a sysfs interface designed to expose information
+>>> about bad VRAM pages—those identified as having hardware faults (e.g.,
+>>> ECC errors). This interface allows userspace tools and administrators
+>>> to monitor the health of the GPU's local memory and track the status
+>>> of page retirement.To get details on bad gpu vram pages can be found
+>>> under /sys/bus/pci/devices/bdf/vram_bad_pages.
+>>>
+>>> Where The format is, pfn : gpu page size : flags
+>>
+>> With "gpu page size" this is really just the min block size?
+>> gpu-page-size is normally interpreted as GTT page size, which is a different
+>> thing. But is that not always 4K here? Since that is the granularity of the addr
+>> reservation? Is it useful to print that? Is knowing that pfn x is offlined not
+>> enough?
 > 
-> Tested on Panther Lake and Lunar Lake with a BenQ HDMI monitor via
-> USB-C-to-HDMI dongle.
+> I think you are right, its always 4K. But I will check with Aravind as for what reason design doc is saying format to be  "pfn : gpu page size : flags". Adding him in cc.
 > 
-> Signed-off-by: ChunAn Wu <an.wu@canonical.com>
-> ---
->
-> [...]
->
-> +/**
-> + * intel_tc_port_aux_recover - Recover AUX channel after external TC mode change
-> + * @dig_port: digital port
-> + *
-> + * When firmware causes a TC port mode change (e.g., dp-alt -> disconnect ->
-> + * tbt-alt) during a hotkey-triggered display mode switch, AUX transactions
-> + * using the stale power domain and IO flags will fail with timeouts or errors.
-> + * This happens because:
-> + *
-> + *   1. The display driver holds the TC link in dp-alt mode (link_refcount > 0)
-> + *   2. Firmware (e.g., via HP WMI hotkey BIOS action) reconfigures the TC port
-> + *      mode externally without notifying the display driver
-> + *   3. tc->mode stays as TC_PORT_DP_ALT while HW transitions to a different
-> + *      mode, invalidating the AUX power domain and IO flags used by
-> + *      intel_dp_aux_xfer()
-> + *
-> + * This function detects the discrepancy between tc->mode and actual HW state,
-> + * and re-synchronizes them via a TC PHY reset. After recovery, AUX retries
-> + * will use the correct power domain and control flags.
-> + *
-> + * The link_refcount is temporarily cleared to allow intel_tc_port_reset_mode()
-> + * to proceed without the PHY-ownership assertion that fires when link_refcount
-> + * is non-zero and firmware has already released PHY ownership.
-> + *
-> + * Must be called outside the TC port lock (tc->lock).
-> + *
-> + * Returns: %true if recovery was performed and AUX can be retried,
-> + *          %false if recovery was not needed or not possible.
-> + */
-> +bool intel_tc_port_aux_recover(struct intel_digital_port *dig_port)
-> +{
-> +	struct intel_tc_port *tc;
-> +	struct intel_display *display;
-> +	bool recovered = false;
-> +
-> +	if (!intel_encoder_is_tc(&dig_port->base))
-> +		return false;
-> +
-> +	tc = to_tc_port(dig_port);
-> +	display = to_intel_display(dig_port);
-> +
-> +	mutex_lock(&tc->lock);
-> +
-> +	/*
-> +	 * Recovery is only needed when the link is actively held AND the HW
-> +	 * TC mode has diverged from the driver's cached state.
-> +	 */
-> +	if (!tc->link_refcount || !intel_tc_port_needs_reset(tc))
-> +		goto out;
-> +
-> +	drm_dbg_kms(display->drm,
-> +		    "Port %s: AUX recover: external TC mode change detected (%s -> HW), reconnecting TC PHY\n",
-> +		    tc->port_name, tc_port_mode_name(tc->mode));
-> +
-> +	/*
-> +	 * Temporarily clear link_refcount so intel_tc_port_reset_mode() can
-> +	 * run the PHY disconnect/connect cycle without the ownership assertion
-> +	 * that fires when link_refcount > 0 and firmware has already released
-> +	 * PHY ownership externally.
-> +	 */
-> +	tc->link_refcount = 0;
+>>
+>> Also what is the story if you have multiple VRAM instances here? There is only
+>> one vram_bad_pages file? Would this treat VRAM as one giant unified thing?
+> 
+> This is targeted for CRI, thus single VRAM is in reference right now. We can extend in future if need be or may be it will single huge thing only in future for multiple vram.
 
-This looks wrong, NAK from my side:
+Since this is uapi, I think would be good to be forward looking and make 
+sure we don't need to complety re-design if now asked to support 
+multiple VRAM instances. I think one flat unfied thing listing all the 
+pfns, should work, but I guess depends on the consumer of this and how 
+they are going to use this.
 
-A non-zero link_refcount guards an active output, which must maintain
-the TypeC mode with which the output was enabled. So that TypeC mode
-cannot be reset from under the active output as done in this patch.
-
-The commit message fails to mention how the display driver is supposed
-to notice that the user have pressed F4 and the firmware has
-reconfigured things in the background. Assuming that the FW's
-reconfiguration in the background is actually a valid thing to do, i.e.
-doesn't result in getting the active TypeC port into a broken state, the
-transition to the new TypeC mode should happen in the regular way: via
-an HPD event, if neecessary using the
-drm_connector_funcs::oob_hotplug_event interface, disabling any active
-outputs and _then_ switching the driver's idea of the TypeC mode to
-reflect the HW state.
-
-> +	intel_tc_port_reset_mode(tc, 1, false);
-> +	tc->link_refcount = 1;
-> +
-> +	recovered = tc->mode != TC_PORT_DISCONNECTED;
-> +	if (!recovered)
-> +		drm_warn(display->drm,
-> +			 "Port %s: AUX recover: failed to restore TC port mode\n",
-> +			 tc->port_name);
-> +
-> +out:
-> +	mutex_unlock(&tc->lock);
-> +	return recovered;
-> +}
-> +
->  static void __intel_tc_port_lock(struct intel_tc_port *tc,
->  				 int required_lanes)
->  {
-> diff --git a/drivers/gpu/drm/i915/display/intel_tc.h b/drivers/gpu/drm/i915/display/intel_tc.h
-> index 6719aea5bd58..d44998a3081a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_tc.h
-> +++ b/drivers/gpu/drm/i915/display/intel_tc.h
-> @@ -108,6 +108,7 @@ bool intel_tc_port_ref_held(struct intel_digital_port *dig_port);
->  bool intel_tc_port_link_needs_reset(struct intel_digital_port *dig_port);
->  bool intel_tc_port_link_reset(struct intel_digital_port *dig_port);
->  void intel_tc_port_link_cancel_reset_work(struct intel_digital_port *dig_port);
-> +bool intel_tc_port_aux_recover(struct intel_digital_port *dig_port);
->  
->  int intel_tc_port_init(struct intel_digital_port *dig_port, bool is_legacy);
->  void intel_tc_port_cleanup(struct intel_digital_port *dig_port);
-> -- 
-> 2.34.1
 > 
+> Tejas
+>>
+>>>
+>>> flags:
+>>> R: reserved, this gpu page is reserved.
+>>> P: pending for reserve, this gpu page is marked as bad, will be reserved
+>>>      in next window of page_reserve.
+>>> F: unable to reserve. this gpu page can’t be reserved due to some reasons.
+>>>
+>>> For example if you read using cat
+>>> /sys/bus/pci/devices/bdf/vram_bad_pages,
+>>> max_pages : 10000
+>>> 0x00000000 : 0x00001000 : R
+>>> 0x00001234 : 0x00001000 : P
+>>>
+>>> v3:
+>>> - Move FW communication in RAS code
+>>> v2:
+>>> - Add max_pages info as per updated design doc
+>>> - Rebase
+>>>
+>>> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+>>> ---
+>>>    drivers/gpu/drm/xe/xe_device_sysfs.c       |  7 ++
+>>>    drivers/gpu/drm/xe/xe_ttm_vram_mgr.c       | 79
+>> ++++++++++++++++++++++
+>>>    drivers/gpu/drm/xe/xe_ttm_vram_mgr.h       |  1 +
+>>>    drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h |  2 +
+>>>    4 files changed, 89 insertions(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c
+>>> b/drivers/gpu/drm/xe/xe_device_sysfs.c
+>>> index a73e0e957cb0..47c5be4180fe 100644
+>>> --- a/drivers/gpu/drm/xe/xe_device_sysfs.c
+>>> +++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
+>>> @@ -8,12 +8,14 @@
+>>>    #include <linux/pci.h>
+>>>    #include <linux/sysfs.h>
+>>>
+>>> +#include "xe_configfs.h"
+>>>    #include "xe_device.h"
+>>>    #include "xe_device_sysfs.h"
+>>>    #include "xe_mmio.h"
+>>>    #include "xe_pcode_api.h"
+>>>    #include "xe_pcode.h"
+>>>    #include "xe_pm.h"
+>>> +#include "xe_ttm_vram_mgr.h"
+>>>
+>>>    /**
+>>>     * DOC: Xe device sysfs
+>>> @@ -267,6 +269,7 @@ static const struct attribute_group
+>> auto_link_downgrade_attr_group = {
+>>>    int xe_device_sysfs_init(struct xe_device *xe)
+>>>    {
+>>>    	struct device *dev = xe->drm.dev;
+>>> +	bool policy;
+>>>    	int ret;
+>>>
+>>>    	if (xe->d3cold.capable) {
+>>> @@ -285,5 +288,9 @@ int xe_device_sysfs_init(struct xe_device *xe)
+>>>    			return ret;
+>>>    	}
+>>>
+>>> +	policy = xe_configfs_get_bad_page_reservation(to_pci_dev(dev));
+>>> +	if (xe->info.platform == XE_CRESCENTISLAND && policy)
+>>> +		xe_ttm_vram_sysfs_init(xe);
+>>> +
+>>>    	return 0;
+>>>    }
+>>> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+>>> b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+>>> index 7f58e7e8c3e1..611d945c9eb4 100644
+>>> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+>>> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+>>> @@ -760,3 +760,82 @@ int xe_ttm_vram_handle_addr_fault(struct
+>> xe_device *xe, unsigned long addr)
+>>>    	return ret;
+>>>    }
+>>>    EXPORT_SYMBOL(xe_ttm_vram_handle_addr_fault);
+>>> +
+>>> +static void xe_ttm_vram_dump_bad_pages_info(char *buf, struct
+>>> +xe_ttm_vram_mgr *mgr) {
+>>> +	const unsigned int element_size = sizeof("0xabcdabcd : 0x12345678 :
+>> R\n") - 1;
+>>> +	const unsigned int maxpage_size = sizeof("max_pages: 10000\n") - 1;
+>>> +	struct xe_ttm_vram_offline_resource *pos, *n;
+>>> +	struct gpu_buddy_block *block;
+>>> +	ssize_t s = 0;
+>>> +
+>>> +	mutex_lock(&mgr->lock);
+>>> +	s += scnprintf(&buf[s], maxpage_size + 1, "max_pages: %d\n", mgr-
+>>> max_pages);
+>>> +	list_for_each_entry_safe(pos, n, &mgr->offlined_pages, offlined_link)
+>> {
+>>> +		block = list_first_entry(&pos->blocks,
+>>> +					 struct gpu_buddy_block,
+>>> +					 link);
+>>> +		s += scnprintf(&buf[s], element_size + 1,
+>>> +			       "0x%08llx : 0x%08llx : %1s\n",
+>>> +			       gpu_buddy_block_offset(block) >> PAGE_SHIFT,
+>>> +			       gpu_buddy_block_size(&mgr->mm, block),
+>>> +			       "R");
+>>> +	}
+>>> +	list_for_each_entry_safe(pos, n, &mgr->queued_pages, queued_link)
+>> {
+>>> +		block = list_first_entry(&pos->blocks,
+>>> +					 struct gpu_buddy_block,
+>>> +					 link);
+>>> +		s += scnprintf(&buf[s], element_size + 1,
+>>> +			       "0x%08llx : 0x%08llx : %1s\n",
+>>> +			       gpu_buddy_block_offset(block) >> PAGE_SHIFT,
+>>> +			       gpu_buddy_block_size(&mgr->mm, block),
+>>> +			       pos->status ? "P" : "F");
+>>> +	}
+>>> +	mutex_unlock(&mgr->lock);
+>>> +}
+>>> +
+>>> +static ssize_t vram_bad_pages_show(struct device *dev, struct
+>>> +device_attribute *attr, char *buf) {
+>>> +	struct pci_dev *pdev = to_pci_dev(dev);
+>>> +	struct xe_device *xe = pdev_to_xe_device(pdev);
+>>> +	struct ttm_resource_manager *man;
+>>> +	struct xe_ttm_vram_mgr *mgr;
+>>> +
+>>> +	man = ttm_manager_type(&xe->ttm, XE_PL_VRAM0);
+>>> +	if (man) {
+>>> +		mgr = to_xe_ttm_vram_mgr(man);
+>>> +		xe_ttm_vram_dump_bad_pages_info(buf, mgr);
+>>> +	}
+>>> +
+>>> +	return sysfs_emit(buf, "%s\n", buf); } static
+>>> +DEVICE_ATTR_RO(vram_bad_pages);
+>>> +
+>>> +static void xe_ttm_vram_sysfs_fini(void *arg) {
+>>> +	struct xe_device *xe = arg;
+>>> +
+>>> +	device_remove_file(xe->drm.dev, &dev_attr_vram_bad_pages); }
+>>> +
+>>> +/**
+>>> + * xe_ttm_vram_sysfs_init - Initialize vram sysfs component
+>>> + * @tile: Xe Tile object
+>>> + *
+>>> + * It needs to be initialized after the main tile component is ready
+>>> + *
+>>> + * Returns: 0 on success, negative error code on error.
+>>> + */
+>>> +int xe_ttm_vram_sysfs_init(struct xe_device *xe) {
+>>> +	int err;
+>>> +
+>>> +	err = device_create_file(xe->drm.dev, &dev_attr_vram_bad_pages);
+>>> +	if (err) {
+>>> +		dev_err(xe->drm.dev, "Failed to create vram_bad_pages sysfs
+>> file: %d\n", err);
+>>> +		return 0;
+>>> +	}
+>>> +
+>>> +	return devm_add_action_or_reset(xe->drm.dev,
+>> xe_ttm_vram_sysfs_fini,
+>>> +xe); } EXPORT_SYMBOL(xe_ttm_vram_sysfs_init);
+>>> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+>>> b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+>>> index 8ef06d9d44f7..c33e1a8d9217 100644
+>>> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+>>> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+>>> @@ -32,6 +32,7 @@ void xe_ttm_vram_get_used(struct
+>> ttm_resource_manager *man,
+>>>    			  u64 *used, u64 *used_visible);
+>>>
+>>>    int xe_ttm_vram_handle_addr_fault(struct xe_device *xe, unsigned
+>>> long addr);
+>>> +int xe_ttm_vram_sysfs_init(struct xe_device *xe);
+>>>    static inline struct xe_ttm_vram_mgr_resource *
+>>>    to_xe_ttm_vram_mgr_resource(struct ttm_resource *res)
+>>>    {
+>>> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
+>>> b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
+>>> index 07ed88b47e04..b23796066a1a 100644
+>>> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
+>>> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
+>>> @@ -39,6 +39,8 @@ struct xe_ttm_vram_mgr {
+>>>    	u32 mem_type;
+>>>    	/** @offline_mode: debugfs hook for setting page offline mode */
+>>>    	u64 offline_mode;
+>>> +	/** @max_pages: max pages that can be in offline queue retrieved
+>> from FW */
+>>> +	u16 max_pages;
+>>>    };
+>>>
+>>>    /**
+> 
+
