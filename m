@@ -4,164 +4,156 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9749CD3427
-	for <intel-xe@archiver.kernel.org>; Tue,  5 May 2026 18:01:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FD4ECD3427
+	for <intel-xe@archiver.kernel.org>; Tue,  5 May 2026 18:03:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B67410E13C;
-	Tue,  5 May 2026 18:01:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C705E10E13C;
+	Tue,  5 May 2026 18:03:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fgKPw7El";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZJXJtXze";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 219E310E13C;
- Tue,  5 May 2026 18:01:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EECB110E13C
+ for <intel-xe@lists.freedesktop.org>; Tue,  5 May 2026 18:03:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778004090; x=1809540090;
+ t=1778004226; x=1809540226;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=vfFPXlXmlBvtx0t8BHRc4LhjcctynVoztjvrMrAwLRc=;
- b=fgKPw7ElJX00pb0H3eLs9g4mUa95DrHZq1RwlS849PVv7gk9AK2mavzJ
- tw/DWzDYttHq4YMsIihs7X8WG3/0bro2xjPvPi5sZExWs5iq4bmLvO8+5
- cKvhbd3BM0/imGc5F61e4f4RWFpB4kgIjcAhM9mQsyJxJ51HyMWUeALZZ
- /FiYeldQM9vruZkxYZvzbOnnNf6grj4je8dpJ2nj7GbASjMMI9tbE6iqX
- uR5AcybbpGpV7+vYBcRfudKXujWx70OPnJPYmYfzYzx+CzY6+DXsyXgYa
- IAtM0yuuJldyIFoUqChjvzeAR9k4DRtbFujFXN3quX1XL5K967gt00Z3p w==;
-X-CSE-ConnectionGUID: yZreN7XET6qz6cqS9ccy9g==
-X-CSE-MsgGUID: tSXW0M7zSvq2R0VquuSYAA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11777"; a="78984017"
-X-IronPort-AV: E=Sophos;i="6.23,218,1770624000"; d="scan'208";a="78984017"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2026 11:01:28 -0700
-X-CSE-ConnectionGUID: su1qaolORVi1Z0UhqIACoQ==
-X-CSE-MsgGUID: XCj3B8hFSWKyJ5fL+LfFuw==
+ in-reply-to:mime-version;
+ bh=cCa+Bl2NNOs8NAUw8FAFJQ/1B/6bWrzAIKL2drtm8zw=;
+ b=ZJXJtXzeaYLxpkHqItnqr5Le0H+8kY31tGAxaWy4JB+YlwDGQsiT+unJ
+ oq1yjJsB9+Ccq6SaUEKezB3qd/44Ap9LDaPu+K/yY0mJhOsCGqPeb1jCI
+ mzGIgKG5x8TbkBjZQZ8txFbXsHCbvo89XxViVDtwPJjZWfVcZphSh2FB+
+ c7sRYcpS0bISGf/++DE7mkICpRxmFaoISaRiGQweqM8d6B2I2ASmdZXbR
+ FDzRnViCWpRlsjpP4JiUQvy4FUsNkxkkHvStxMNWBijON6pT+mbJJWx98
+ VuRzDUigzE6yHjalAWL570rPXPliKrW8iXLI/zawzJBM7NI21xAQxW0Ei A==;
+X-CSE-ConnectionGUID: CkrK3J1jQLKWojuNmdTXDA==
+X-CSE-MsgGUID: XfFFpDjGRdaOaZWjIzr7sA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11777"; a="82736289"
+X-IronPort-AV: E=Sophos;i="6.23,218,1770624000"; d="scan'208";a="82736289"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2026 11:03:45 -0700
+X-CSE-ConnectionGUID: J/vWdqhUQU+EMw6G8ZCbJw==
+X-CSE-MsgGUID: zE4E36msTROP6KPRueFSFg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,218,1770624000"; d="scan'208";a="235003281"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2026 11:01:27 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 5 May 2026 11:01:27 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+X-IronPort-AV: E=Sophos;i="6.23,218,1770624000"; d="scan'208";a="240874807"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2026 11:03:46 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Tue, 5 May 2026 11:01:27 -0700
-Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.49) by
+ 15.2.2562.37; Tue, 5 May 2026 11:03:44 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Tue, 5 May 2026 11:03:44 -0700
+Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.21) by
  edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 5 May 2026 11:01:26 -0700
+ 15.2.2562.37; Tue, 5 May 2026 11:03:44 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=U9A3I9GNMM1HgbZzR+hX29elRR1mFBrHaVfgFXP0+9HqI9ZI4uGUzBn0zm5ShqvebWPFB55A79pavf0D+uJLZdTunJWlgfFtsBjqQRgV4BvvBz7ddziC+X3Zj5aR7lyessM0mqXrix16P2EVkwqiK5mQa3pxEdlngEbJBdrPGWI1PjNs0aZF7qG0X3/Pu1KnLJZQaXJGCiuY5D+V9K91yfo4IKLOwXmIwSL7+m0KGab2+U1BSzcihxnmSS8gIzoDyAw9pvKrBjNI00MzVytLg7/pkur5/+bCNnA3+Lt4P8fTRtuMAiwn0Ob4IAlkl8EqfrwAXQqyp3pfTTwgLf4zag==
+ b=P3McJwhYG+NJ382gyl51lda9xuFCOg9zLfaYakrmT+cNi70eBtgP122HHIWHml6MTQZ6GpDnv6ZypGPqZcvF2npNppNJFEQ4TINdEonEgZy4C9r6Co6usIZ6RgY8ml/QcUeK/z4ADCDssL1Uz/nYv488OklwHlJRX0pIMy7182HyPLnVipjbLJHfuYrd/mNrR19rpeSkfKsxzlUONhf6rw/wJik+m7H/uwO4IWIi60ge2hay9oTZlHS1KWNyH3cL0JyUuruaBvF4JTdCw0blw1ttkY6SDpyeKftm1tf+2nC49rfMImoXNnaFEXYXz7dBI6Rd/5trP25oLrIjsKC50g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=f29UzgsWLFXpbX1nxzpe4lTTFqELS3+sSBHlsjqOCyg=;
- b=XS0kTYkGtLiJ0/FwD0IejEUaPxFolq4+m3CavoWUHert4oXw/yYxC0Qjmz4Ie+mIF/zIOddZV1FOVPYpPBE7Q0tI+zn4GUL3v2ZtRq8qpm7pCcfKggDT+etFO7PWHQTdpUzyAYFdtvTIxwmt1xAjEIkwvXTV/Y876anOEHEZ0ZJqc+r9bMed5gOTS33lc+v91jZC+5p6ewBvlUFaVq6w4KqiA3DkFZq2pC3EdXCLfGNdcfvjoI6zEb5Uk3UrBTGW30qBOLtR+KiXB5YG5dn4qH5qbI70g37wCwm64uAvXlJW9CeJxBQDa5uqD4es+TUH3U4k6RRW+vd/X/WUuxaFaQ==
+ bh=Svz7pR06braZ89Em3a5rSNIoTuNufjHHJ0IMwqyxdWc=;
+ b=eUC4Bpv/6eHk5snwSLjHiHXO4jv7q3dZ27lX3W8tOYTq5ZcGFfvjzU8qVNoYl4cbGXO8cwwqc9hTr/2QhWZ1klf7kNF3j213d1wID5xwBMz50JIIuEGoiIOfihYquZuHE/MvRREWxdVTM5AQW3pXxBpse/8NY1qmpu7YiACTAwFKsQVKs8zaNvFIpCeRMSCaSWPyf2WVv9PB9HALhy0iOgLw1vv4+TdOOkyFmu6Ul6ZLMbOSfoZ6ouJpabDxgHkT7uJNxG5CA/h3YjtZ0dhmBNZf7Y8XPBsLzcZQMq2H034iLhulEZ1o2uTddCyeE0j3Gt0SdiIjUrDOiNQfA55QVQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by LV8PR11MB8486.namprd11.prod.outlook.com (2603:10b6:408:1e8::14)
- with Microsoft SMTP Server (version=TLS1_2,
+Received: from DS0PR11MB7408.namprd11.prod.outlook.com (2603:10b6:8:136::15)
+ by LV2PR11MB6045.namprd11.prod.outlook.com (2603:10b6:408:17b::20) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.25; Tue, 5 May
- 2026 18:01:16 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c%7]) with mapi id 15.20.9870.023; Tue, 5 May 2026
- 18:01:16 +0000
-Date: Tue, 5 May 2026 11:01:13 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Mika =?iso-8859-1?Q?Penttil=E4?= <mpenttil@redhat.com>
-CC: Alistair Popple <apopple@nvidia.com>, <linux-mm@kvack.org>,
- <dri-devel@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>, David Hildenbrand <david@kernel.org>, "Jason
- Gunthorpe" <jgg@nvidia.com>, Leon Romanovsky <leonro@nvidia.com>, Balbir
- Singh <balbirs@nvidia.com>, Zi Yan <ziy@nvidia.com>, Andrew Morton
- <akpm@linux-foundation.org>, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka
- <vbabka@suse.cz>, Mike Rapoport <rppt@kernel.org>, Suren Baghdasaryan
- <surenb@google.com>, Michal Hocko <mhocko@suse.com>
-Subject: Re: [PATCH v9 0/5] Migrate on fault for device pages
-Message-ID: <afowaUffi0JrnADf@gsse-cloud1.jf.intel.com>
-References: <20260505051658.2219537-1-mpenttil@redhat.com>
- <afmXIq8VY_vs1GPo@nvdebian.thelocal>
- <ecd81b6b-62ef-4dab-a93e-e65598d64841@redhat.com>
-Content-Type: text/plain; charset="utf-8"
+ 2026 18:03:39 +0000
+Received: from DS0PR11MB7408.namprd11.prod.outlook.com
+ ([fe80::53aa:3f7a:59cd:e057]) by DS0PR11MB7408.namprd11.prod.outlook.com
+ ([fe80::53aa:3f7a:59cd:e057%4]) with mapi id 15.20.9870.023; Tue, 5 May 2026
+ 18:03:39 +0000
+Date: Tue, 5 May 2026 11:03:32 -0700
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <matthew.brost@intel.com>,
+ <stuart.summers@intel.com>
+Subject: Re: [PATCH v2 2/9] drm/xe: Add timestamp_ms to LRC snapshot
+Message-ID: <afow9Ap0QC+lv2YQ@soc-5CG1426VCC.clients.intel.com>
+References: <20260502005332.3135977-11-umesh.nerlige.ramappa@intel.com>
+ <20260502005332.3135977-13-umesh.nerlige.ramappa@intel.com>
+ <afky3io69uo2yxKU@nvishwa1-desk>
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <ecd81b6b-62ef-4dab-a93e-e65598d64841@redhat.com>
-X-ClientProxiedBy: SJ0P220CA0013.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:a03:41b::20) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+In-Reply-To: <afky3io69uo2yxKU@nvishwa1-desk>
+X-ClientProxiedBy: MW4PR03CA0196.namprd03.prod.outlook.com
+ (2603:10b6:303:b8::21) To DS0PR11MB7408.namprd11.prod.outlook.com
+ (2603:10b6:8:136::15)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|LV8PR11MB8486:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5e261d5d-e3ab-4d5a-055a-08deaad04d72
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7408:EE_|LV2PR11MB6045:EE_
+X-MS-Office365-Filtering-Correlation-Id: b199d928-3b08-4f06-9b97-08deaad0a27f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|7416014|1800799024|366016|18002099003|22082099003|56012099003;
-X-Microsoft-Antispam-Message-Info: XHj+T6VKWSBKVkQB0tOnU4MxI3dQl4yAVwZLTKuJj7Rp5AyZKKXfrOxy8v28+LBtUM3Q13Aj3Mt2IzYvRIAM8lphIXKO2mdJYWmXhGb6zu/9ymzPisymcMtLgMen35KIS4zXet0W6q1SgWot0LpzZ24FwW5nWTfFuHWCREhzg13GMsv/HB/PfCOCkjsyqbOiuX8rgX4m8mYAnpHsWB2bHFMkl7S8nci83FkR2Fl5lLVfrqp2RjzZVyd3WGDos0s/xj8xZZONnlFRz6vZNpnp6324k4RPUgNz6i9nMNSOPDXv+bL3OaQLX/ZakXNcScsuG9jQ3IeB6pUu5cExjWO010SLoihO4IicyGUNne6XJm449jIdVPv3p6ygOsqaKnqNx8Mo3LCsc/TZyPfBbqnbegpVLM/55ciaRCRcRnxy3VWzQPuPyvAEcQ4u8dm/9GyoPpzQLO/XaLD/97fQyWET6JmIs1LgHUgqFiLMCSQt8qKh1PsfGU4smwkPEzAZ0Ljmv1gENdEBmPSrM8whkGiktuxQh71gerMGhMAv59rRx+hBvIlJYCKiFHVfPjdC9rQLZgWb0sIL7YF7Ocvy5fJP8HfY5iUKqoJbCanTV2fmyXT/c76NtP4ha/yXiAB51JZUViPtP6jcVUtNM2p17KwrAQ==
+ ARA:13230040|1800799024|366016|376014|22082099003|56012099003|18002099003; 
+X-Microsoft-Antispam-Message-Info: zAbY6NngwpYCi7wHx9U2tZMewp9Kfi3A6p0ZomOR6TSqx7YtQ5x6u4hYXV9tPdNcuQmXbXMojDuk6cD/11uXMHRNh6Oais73kqhBA33M5RO4vFIOqP8Bw8yxEowSPrg9y3Je6paowz/fesK3GN6Ee5EqgBwL2JFIHst5ymnwSFysEkp9bE77Fodwcpdj2eS2nqxeyxM6Or/uIBToFWM0DxdWaTF4lt1cvfrFgrMeYSiFvsCEN2ofd5SldGKi0o0Bul8j14DJrcKxZdkfNi03KzZmLWhhdkKAk75uFECMdJjo/fugWrdt8MvzuDTviKktc9iPxO0bkcOSTlV5INmDJ/7gwjH9S5fm70YxwbZeJzz1Yj+j/sFG9bfFJ741RMSZtefuhoMIK/iMmOgk+F08LU6h8R5AWzGeWsrzITiMum9bo/1aWkjPXejj40gSWOlHwk7XS4BUl2c+ZWQKlKA1vVBhalJvRV8+jTJ5QFDcZ13rc2ghCpdOy7tScXvFOyD/5RZpezJJYz7YAhO1o2U0PnZsujHFAgjpguG7JO0IB2Fn8aaPCOdhX9eo9BgEqwUNrcWCpm53lW/a4zcxwoirJkTWzQzzFc0fhJuS2zlw57PbqtdBpFs5kZ7x1svAhLGxqym0Tam5hN+uYudOAWRSOxOBM+52zs+8xddG5jzAf3ZknKvj821f6EV8JG+ZW+8m
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(7416014)(1800799024)(366016)(18002099003)(22082099003)(56012099003);
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7408.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(22082099003)(56012099003)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZXhqbnNiRGt6T3hpNDd0Z1oxTUlyaGZRUHhPeGhFVGNLWG4xRVNhVmt6SmpF?=
- =?utf-8?B?VGFGY1FZZFVXcVEzV0krdlc4cnd4UlgzUitVRFJXa1JiaExYY3FDOFByd2d4?=
- =?utf-8?B?amFRR0NheE1LS1RjVFI3bTdMZWd3RG1Tc0tJQjluM3hJdmQvQUY3MWJGZXhr?=
- =?utf-8?B?RVZDY0RzdjdZaWwwOGUzUkR0MGtVajlsaE13TUhWeXB4VmhvanM5S0dCYVVi?=
- =?utf-8?B?YjVKTCthQWJqR3VrNVE2UzZHUHp2b1hkdGk3N2wzcUtLUzg0MXlNN0k1N2J1?=
- =?utf-8?B?Y0djd2VBWmcrV1M4V2VBK1RqMDV2MVRkakVNYktoMEdENGdvWFJmYzYzcW1S?=
- =?utf-8?B?cXF1ak5rajZnOW9SZUxhNkhBa2c3SERVRWdIa2c1TUlzT3V1bEtVdW5tVzk2?=
- =?utf-8?B?eUV5NnN3UnZsRitmWUliZElPTG04dFBYakxHQXNhWmc0TTFpUG55U3hSUHk2?=
- =?utf-8?B?UFV1M0Mzdm5IOUpQUWhYWG1nc1Z3TmoySC9CMi9mT25xTzJDUENVeUM2VXlV?=
- =?utf-8?B?THc1ZjQ1TGp6d0ZLUHdmZm05WEJ2Ym04bDBZc3BVTW5EMnZjdDhlcEhYMkNE?=
- =?utf-8?B?RDVWOVhrbDZ2c0RwMnlHdWREcTArMk5ONUhhRU12cTVQL0ZDOTBYSTVtV2xT?=
- =?utf-8?B?UEtOMitveTZQMDNGeWNoMCtoWU1PWlY5MU9XcnJNNTk3eHdmSHdNOEhDMlRn?=
- =?utf-8?B?eDRvSFVZZHgrWlN5UEVnci9nb0FGTHlHU2FXLzZBbXAzN1hzTnE3a2NvL1lw?=
- =?utf-8?B?MHcvNitXdkt0ckRXS1BzNzZPUGdFV1hNN0k1Tkt5VzQ4bEdzR29NQmRDb01v?=
- =?utf-8?B?RVpMNmtyUGhSVTBnZU5xalhzeXBnRms2dDBsc0JaNVk4cGk1MW9BNytsSkk3?=
- =?utf-8?B?N2JQUXNwT2pjWkpieDlEZEsxbDhBY3BDdENQSlBrWmFDcWJBeXU2OGExeWxs?=
- =?utf-8?B?a1RrcUJ4YmlIVXlhT2Q3Rlo0MWlNa0VOWUg1ODNuaVdXRytkdXJFZ1J6UTNs?=
- =?utf-8?B?SFB4M1FuYUlKb1kzcjJhZ3lWRlA5aysvMHdReXA2bnBRbTdzcm4waWZEUXhB?=
- =?utf-8?B?S3kxMURWZlQwaWtqM003Mmlpd2lkS05PbWFnaTl2RzVOV1BBQW1WYWtESEZ4?=
- =?utf-8?B?a0hUU0Z1d1VpNGdYaXkySDF5WU11WmdVRmVPRERMUS9YaG1zSGZwMUNYc0ht?=
- =?utf-8?B?M3RMQVU3amtFMTBlUmFoaXZNRDVmUGVlb3NucFNhcWRDU1YrUU1zVWM1MmVl?=
- =?utf-8?B?YmRaUUFCSmQ2ME53enBxMkxsY3BqK2t5TndpT2xoTU5QSXhKbGUrMUJwTVhB?=
- =?utf-8?B?YUlPM2NERmtwbHRlRmMrTnQyb05FaDlTdXlKRUJ1NzQxSkpWVHRRZkhHQi9p?=
- =?utf-8?B?MUo2SjlXc1h0a0JnZzRGSUZlQis3MCtiWHczam1OOGJWU1BFc1NkdU96MWM2?=
- =?utf-8?B?cHhjWG1pN043M3Zoc0ZBUGpNNW00aCtXRGNNYjZNSmcxbHVVSmYwbUdGR2tn?=
- =?utf-8?B?aVdvWWtDckE5Y3hSajVzakdWYmFVak5zbzJsTzlrVmQ0VTlURlh2cmRlVity?=
- =?utf-8?B?aU5IME1vT2d3NnNkemllSG0vWWMzVVp1WmRFem9yZlgrZlJmV2E4c0NGbUhu?=
- =?utf-8?B?TlBhQ2w0QmNkZ0IwN2VNbldLU0hBK0J1YWVGWmRNbXJOMXc1VEoxQWlmK09h?=
- =?utf-8?B?TUhoOVI3OEU1cEprbE82N3VDdll5Z2dodTdaWVBUajNYOU4yRXFwb25Cay9h?=
- =?utf-8?B?ZGV0RFUyTDNyUndiOXhGRUdXSEFZRnZQa0Fma3N3V1UyUlBnNnlFUXVzNkJB?=
- =?utf-8?B?ZHYxc0Q5cEsvUFNvWWhGWkhNRmREY3BONHZTNnlHZ1hBakhwUWszNEs3Zk03?=
- =?utf-8?B?eVBCUzFLRWM2ODFvM3pDM0krL3FIb2x2L0c1RUorKzMzNFRDZExyUmVtVmYz?=
- =?utf-8?B?ZkVJaUdqbEsxN2tiWVluM2dRckJyQWxHTzN1dzkwdjVrdGVjZDBRblp0VkE4?=
- =?utf-8?B?cUlleUw2ZWZZK2Y3NTE4R1phRzE5ZWhSSTg3b0RmenBmYzZoa2paOFlQR2Fk?=
- =?utf-8?B?YVVFVHZ2cGFrZlcybFpMb2FpM3pMdThsYTVkUEcxRnpoZkE4WldwL3VTbzFn?=
- =?utf-8?B?RWdjbnY3QzRDMmlxbjI0eHppRGNHck5BcXRBSjNOS1pVS2RQVXJod2FhcnBl?=
- =?utf-8?B?bW5FME1rbGhQVHFncGh1ampBK084bEp5UTFieHhvM3RZMHdoU1FXaUtlTzN0?=
- =?utf-8?B?ZnNyN1NuaHhadjJsTm56WGdYV1lyM3JRZzAzRm5ralA5NldxUmF2TjdpVXZP?=
- =?utf-8?B?TmFzdmoycjdmL3g4VkVSblV2RitURitqaUJCUzJnbDB4YWVNQnc5Z0JKck9o?=
- =?utf-8?Q?oF3GIuH9F8O7Xh0Y=3D?=
-X-Exchange-RoutingPolicyChecked: wh5OoCS9cPvcTuwnzp8kOYFMNBFKd6EGLVpFJl/p6W1/PrNi1JAZ+2bwDB3raVz49OMKdLppIVyaT3APtfbMafpE6rqmHnWSKEuV+/vrg5yq+ge1f+DJ+WX5n0SVvtEdnTeO5uJEozntPdqGsOStNKsOIUFp00yfIZVv1HLvK4OncRMisxroHCqlM1NNAfGuvQlqhmFL26sEE0lVWXzKBZ1z2bOiQxqhYBtUvkOMSwk6+u8N/9WhYp75+I8/XJy10qJXPFs/D7PRL5GOV0SraliF8V0YTC2tQDNO7z3mZUs9fvVgY1LBYPgl2Z/C4+KvAkeV+V9uS/MbkWpwJA8ptA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5e261d5d-e3ab-4d5a-055a-08deaad04d72
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dUp3ZGdwOVVxUmMrUXhoNTB4dmtWTDREMVo3R3JsODV4emZtTkprNVQrTCs1?=
+ =?utf-8?B?MEVVYzF1aE9RVS92ZFAyWTZZTHRxY00yaXZXY2cyQ05LeGhWbUVrU2lJdnRD?=
+ =?utf-8?B?RDczOWNjeXZ3Ujh6M3FXUkVrUlBMdjFZWU42ckdFTmlJMHZVV05qbXpkN05q?=
+ =?utf-8?B?dGFDMXMxREtlcEFsb0JtZms4YlBET2pKekt0cmp3bDNYb0RyK05hUHA2Q1c0?=
+ =?utf-8?B?eXIrMVh6V3VmR25HZ3k1S0hacFFDVWgrOGhtR3M4MTYxbGtPa1hpT2kyZ1Qy?=
+ =?utf-8?B?Z0hYR1g2V2R2Q09odTRpQnZ2V0lXVGVVTE5NSUVhazVoM1RkaVNyZnFPNjNr?=
+ =?utf-8?B?ZlFGYzBjWE8wVjB1aDArM0VlSVluanJPSWVqVDlkQ1ZKUTdxTEJ4RFNPMjJi?=
+ =?utf-8?B?dURUcUoyRk9SVTc1SXJvS2RqRVBuRGNRb2U3bmljaXR3V1ZGUFNCNE83ekFS?=
+ =?utf-8?B?RVI3VzlEQVppTXFKSXNOUENNTDdoS1JmeWlDMnV2ZjVRSW5rd1FSSHpqempV?=
+ =?utf-8?B?WWU4Z04rdDJnZHFCV3VxdG9UVnFaR0ZDY2N4SDdRVUQxMjF1WVU0aG9OYVFw?=
+ =?utf-8?B?UXd6dmVCTHlrL2pjazhvZSt3ODBNVGxSMUJwZU5EMHRIWWR4N1lCSjJOUXFI?=
+ =?utf-8?B?NzhkUTcyR0pQWkYxajJ0NGRuTE9iQmVGZEVMbWZpZ1ZIUkROWnlXcWovQmF0?=
+ =?utf-8?B?dmVnbkxzYk1kTDZxbThFa3ZGMUJsTnZuRXl2U0xhMFlkTGNucmY2LzlCZmJF?=
+ =?utf-8?B?V3B4d2xLSDRyYXUyNDVuMWFMcDBsZmRJM0owTFQ4T2lVUXlBZ2lmWDBERjBw?=
+ =?utf-8?B?YzZJU3FRZW41aVNuejNtWTlaMlovSFl2alJKci9BRkM1NVliaGJNeVhWdUd3?=
+ =?utf-8?B?TTRyenRNSjNiSUovYllWbzRtMmQ2ZFJJVzQ1T0I0dlRDR3lPTnUwNENERndx?=
+ =?utf-8?B?cU5UUDUyREJNWkM5SERpVzNMU1VkUW0xaVJzNjUwa2l2ZTAvb1cyTzJnSjJa?=
+ =?utf-8?B?ZjM3aFlXNWs0ZkFscytPZzFSaU5IMzdROWNISWI4R2N5bWZPd2NUV1g0RFA0?=
+ =?utf-8?B?b3oxZGJaOXc0VUxESWRZdjlmbFMrK2xkbzN5YmoweDl5d0Vwa0c0cDM1RENz?=
+ =?utf-8?B?Vlo1VlRncEdQa1BJZ0h6WURCVTJYeTdqdG1NVXA5RmF3KzhvR2lPWTVtaHRp?=
+ =?utf-8?B?THhhV0oyZzdwNXVvVi8xeUErbjFzbVlZNndZbVFtTjJpQTByaU1mbTAvdEhr?=
+ =?utf-8?B?cFRCNHVpbldBSkVldHhKdWttQklkeFNqdnhxYmU3YXpkazBCbk1xUCtMRExW?=
+ =?utf-8?B?MThRbU1IdDdpRUdNTTdmeUJ1Y0pmL2hFTUtSazlOZUNTOHlyeHo2UUVnWnhN?=
+ =?utf-8?B?YU5zcTF3RCtWNFN3dlRlZW9ubUl4QUo1VmUvcHhZZkRzRVhJdGdGTlJPUk4v?=
+ =?utf-8?B?WGxRaU4xLzg0Y0hMZDU0c1M4M3BhWXl0SzRjVStwc3BGeW02d25WRmo3Y3Fs?=
+ =?utf-8?B?QnRPMUxZejdJZnAwcUtmOGo0emlvQnZhL0phK3FTQ3p2ODBjaUZxdEdMSUxX?=
+ =?utf-8?B?RnQ4TjNLY2czQ1FvNS9CVGtBOVlyT0VsM2RQajNTeTlhOHRKSFBpK2RVb2Zy?=
+ =?utf-8?B?MENjK0ZPeXVGaVJWbGlxNXpsWnl0S0pIdVpmejVjUENuOEhxLzZyVlVmTW5W?=
+ =?utf-8?B?U1ZjTUxUSmxta2U2WDBaVG1zbmVDU3BDRTdaUkw2enA0bm1UWjlRcm83VEdw?=
+ =?utf-8?B?S1lKYTQ4d29sL1FJcjdvWWtHb2hsb3VaYnh6WjUyOThQSzkwOWhyUXBhNnh6?=
+ =?utf-8?B?aVorZ3FKckxzc2RkZTZqa2NBWE1Ha3ZTNWxyVnNadStKSTlqZW16VjFQcDFM?=
+ =?utf-8?B?UGRHQXlDZUdGTVNmMzQzV29pOW4yVEZ6LytCVzhGdHNKenFTeWhPMHpWZTlp?=
+ =?utf-8?B?aUxWSXhrV1NsaUpUTXo5S1dUaDl5TWc5R090WHY0ckRoVkdWWkxiOVE1Ky9I?=
+ =?utf-8?B?c21FYkJMTzA2TjJkd0hGZWhNNFUzS1BCRDlnUmdZdHAzdkM0TjdvTEV0UGhv?=
+ =?utf-8?B?dDEveEdnNGN2OHlwc0FTZlAxc0l4Sjk3QzVCa1Z2Q3FKOHBwREFvQk9pOW9P?=
+ =?utf-8?B?SlV6UVdXSTFqS2hKTkx6T2QvbHZYc0ZqeFpBNXR5WTlEdFNNQ0lhenE0VHM5?=
+ =?utf-8?B?NlN4cVcyVlZyZnBQRkF6QXMrRXB0bHZkUFJaYWxzZVo3Zmw2cm5hNUt1SS83?=
+ =?utf-8?B?THBadjhhQzBnYVdNNW5xZ1l0YWU5V0o2VGNxQUFCUlA3N0FweTlaK3ZUZ2RT?=
+ =?utf-8?B?OW1NMGJpUGQzWVI3ejZoU2dIdVBmTzJ4Q2FJTVJ0N2Q3N2c0aDV4V0Qwejgx?=
+ =?utf-8?Q?YnJJvp5uuJR5U+QXqOZ80+9T6n37w4NDQATRv?=
+X-Exchange-RoutingPolicyChecked: I+I043x5C2ShGy7Q5nI8JWfevmFyGaC1qDSvRn1v/iOmm+Qm2OYHPfWHBTOdujcZIGL+3Vif/6v0HxBwS7KR1S0vkja6FrmUT9+EEHIjJZVzOawD8j/Ry3Kni+aDZpvmS5PsCB6yE0jiBmzXR/hrQREvpcJMexUfyMpTGZ8C7QYga61R22LYa4++VnJumRYlWF0adjz8CVXAUdfvMbBofRGrnrKtcHPrawnJd8OyBXGlO6gGR2BX+qxiAXTWWw3QryA+0Qsqw/tqBb4sgXsLxmZB8mNHH5JXmMCu6UeEW3WspKlCpc2FbKqrjCBZUKR1DmEz8t4ewLyzn5gA/4hOVg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: b199d928-3b08-4f06-9b97-08deaad0a27f
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7408.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2026 18:01:16.4181 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2026 18:03:39.1490 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1JzoxTCKojZnyeIjqnmcziKvuQus9B4JMitFB7lklsJQnyEQ6KXkRp/VEUKRYHpPHBi09xHiWTk/1lLgA76VzA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR11MB8486
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7TewiM3tKKm43ET8POg3tUhgOXjHJ+gTbhm2Ppey3u3KLojXfuSfXdlYtGx6/ia/aXeK9Dl2nQReDynnIL6QCVOqYz2dzCsXnZstpX406dI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR11MB6045
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -177,317 +169,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, May 05, 2026 at 10:18:14AM +0300, Mika Penttil=C3=A4 wrote:
->=20
-> On 5/5/26 10:09, Alistair Popple wrote:
->=20
-> > Thanks for doing this work Mika. I've been meaning to take a look at th=
-is series
-> > for a while. I'm currently at LSFMM but will try and take a look this w=
-eek or
-> > next as it sounds quite useful.
-> >
-> >  - Alistair
->=20
-> Thanks Alistair and no problem, appreciate your insights whenever you hav=
-e time.
->=20
+On Mon, May 04, 2026 at 04:59:26PM -0700, Niranjana Vishwanathapura wrote:
+>On Fri, May 01, 2026 at 05:53:35PM -0700, Umesh Nerlige Ramappa wrote:
+>>From: Matthew Brost <matthew.brost@intel.com>
+>>
+>>Add a timestamp in milliseconds to the LRC snapshot to make it easier to
+>>reason about how long the LRC has been running and the average duration
+>>of each job.
+>>
+>>Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>>---
+>>drivers/gpu/drm/xe/xe_lrc.c | 4 ++++
+>>drivers/gpu/drm/xe/xe_lrc.h | 1 +
+>>2 files changed, 5 insertions(+)
+>>
+>>diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+>>index 98dc4d0eb61b..d85c712d106b 100644
+>>--- a/drivers/gpu/drm/xe/xe_lrc.c
+>>+++ b/drivers/gpu/drm/xe/xe_lrc.c
+>>@@ -23,6 +23,7 @@
+>>#include "xe_drm_client.h"
+>>#include "xe_exec_queue_types.h"
+>>#include "xe_gt.h"
+>>+#include "xe_gt_clock.h"
+>>#include "xe_gt_printk.h"
+>>#include "xe_hw_fence.h"
+>>#include "xe_map.h"
+>>@@ -2476,6 +2477,8 @@ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
+>>	snapshot->replay_size = lrc->replay_size;
+>>	snapshot->lrc_snapshot = NULL;
+>>	snapshot->ctx_timestamp = xe_lrc_ctx_timestamp(lrc);
+>>+	snapshot->ctx_timestamp_ms =
+>>+		xe_gt_clock_interval_to_ms(lrc->gt, xe_lrc_ctx_timestamp(lrc));
+>>	snapshot->ctx_job_timestamp = xe_lrc_ctx_job_timestamp(lrc);
+>>	return snapshot;
+>>}
+>>@@ -2529,6 +2532,7 @@ void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer
+>>	drm_printf(p, "\tStart seqno: (memory) %d\n", snapshot->start_seqno);
+>>	drm_printf(p, "\tSeqno: (memory) %d\n", snapshot->seqno);
+>>	drm_printf(p, "\tTimestamp: 0x%016llx\n", snapshot->ctx_timestamp);
+>>+	drm_printf(p, "\tTimestamp ms: %llu\n", snapshot->ctx_timestamp_ms);
+>
+>Do we need a separate field for this? Maybe add it in a single line?
+>drm_printf(p, "\tTimestamp: 0x%016llx (%llums)\n", snapshot->ctx_timestamp, snapshot->ctx_timestamp_ms);
+>
+>I am hoping we don't have any script that is using these capture dumps which we might be breaking here.
 
-It looks like this series is breaking Intel's CI [1]. Looks like
-something in RCU is blowing up:
+I don't know, but I think it's easier for scripts if the new prints are 
+on separate line. Also the intention was to keep Matt's patch separate 
+here.
 
-<4> [212.361418] ------------[ cut here ]------------
-<4> [212.361431] Voluntary context switch within RCU read-side critical sec=
-tion!
-<4> [212.361432] WARNING: kernel/rcu/tree_plugin.h:332 at rcu_note_context_=
-switch+0x82/0x780, CPU#11: kworker/u65:5/2352
-<4> [212.361440] Modules linked in: snd_hda_codec_intelhdmi snd_hda_codec_h=
-dmi mei_lb mei_gsc_proxy mtd_intel_dg mei_gsc xe drm_gpuvm drm_gpusvm_helpe=
-r drm_buddy gpu_sched drm_ttm_helper ttm drm_suballoc_helper drm_exec drm_d=
-isplay_helper cec rc_core drm_kunit_helpers i2c_algo_bit kunit overlay inte=
-l_rapl_msr intel_rapl_common intel_uncore_frequency intel_uncore_frequency_=
-common intel_tcc_cooling x86_pkg_temp_thermal intel_powerclamp hid_generic =
-coretemp eeepc_wmi cmdlinepart asus_wmi binfmt_misc sparse_keymap spi_nor m=
-ei_hdcp mei_pxp mtd wmi_bmof kvm_intel kvm irqbypass aesni_intel gf128mul r=
-8169 usbhid rapl hid intel_cstate realtek snd_hda_intel phy_package snd_int=
-el_dspcfg intel_pmc_core snd_hda_codec idma64 nls_iso8859_1 pmt_telemetry s=
-nd_hda_core video snd_hwdep pmt_discovery snd_pcm i2c_i801 pinctrl_alderlak=
-e pmt_class snd_timer i2c_mux intel_pmc_ssram_telemetry acpi_tad acpi_pad m=
-ei_me snd i2c_smbus spi_intel_pci soundcore mei spi_intel wmi intel_vsec dm=
-_multipath msr nvme_fabrics fuse efi_pstore nfnetlink autofs4
-<4> [212.361711] CPU: 11 UID: 0 PID: 2352 Comm: kworker/u65:5 Tainted: G S =
-  U              7.1.0-rc2-lgci-xe-xe-pw-165953v1-debug+ #1 PREEMPT(lazy)=20
-<4> [212.361715] Tainted: [S]=3DCPU_OUT_OF_SPEC, [U]=3DUSER
-<4> [212.361716] Hardware name: ASUS System Product Name/PRIME Z790-P WIFI,=
- BIOS 0812 02/24/2023
-<4> [212.361718] Workqueue: xe_page_fault_work_queue xe_pagefault_queue_wor=
-k [xe]
-<4> [212.361833] RIP: 0010:rcu_note_context_switch+0x82/0x780
-<4> [212.361838] Code: 45 85 c0 74 0f 65 8b 05 24 84 ab 02 85 c0 0f 84 8d 0=
-1 00 00 45 84 ed 75 16 8b 83 bc 08 00 00 85 c0 7e 0c 48 8d 3d de ad 4d 02 <=
-67> 48 0f b9 3a 8b 83 bc 08 00 00 85 c0 7e 0d 80 bb c0 08 00 00 00
-<4> [212.361840] RSP: 0018:ffffc9000186f4a0 EFLAGS: 00010002
-<4> [212.361843] RAX: 0000000000000001 RBX: ffff88810a3a8040 RCX: 000000000=
-0000000
-<4> [212.361845] RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff8=
-39bcea0
-<4> [212.361846] RBP: ffffc9000186f4e8 R08: 0000000000000001 R09: 000000000=
-0000000
-<4> [212.361848] R10: 0000000000000000 R11: 0000000000000000 R12: ffff88885=
-f1b6a00
-<4> [212.361849] R13: 0000000000000000 R14: ffffffff83248312 R15: ffffc9000=
-186f630
-<4> [212.361851] FS:  0000000000000000(0000) GS:ffff8888db203000(0000) knlG=
-S:0000000000000000
-<4> [212.361853] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-<4> [212.361854] CR2: 00007fe433b2f088 CR3: 000000000344a000 CR4: 000000000=
-0f52ef0
-<4> [212.361856] PKRU: 55555554
-<4> [212.361858] Call Trace:
-<4> [212.361859]  <TASK>
-<4> [212.361862]  ? lock_is_held_type+0xa3/0x130
-<4> [212.361868]  __schedule+0x103/0x1f70
-<4> [212.361870]  ? lock_acquire+0xc4/0x300
-<4> [212.361874]  ? find_held_lock+0x31/0x90
-<4> [212.361877]  ? schedule+0x10e/0x180
-<4> [212.361880]  ? lock_release+0xd0/0x2b0
-<4> [212.361885]  schedule+0x3a/0x180
-<4> [212.361888]  io_schedule+0x4c/0x80
-<4> [212.361890]  ? softleaf_entry_wait_on_locked+0x147/0x2b0
-<4> [212.361894]  softleaf_entry_wait_on_locked+0x24f/0x2b0
-<4> [212.361899]  ? __pfx_wake_page_function+0x10/0x10
-<4> [212.361904]  migration_entry_wait+0xff/0x190
-<4> [212.361909]  hmm_vma_handle_pte+0x440/0x790
-<4> [212.361914]  hmm_vma_walk_pmd+0x5c8/0x1360
-<4> [212.361918]  ? xe_pagefault_queue_work+0x1a9/0x520 [xe]
-<4> [212.362015]  walk_pgd_range+0x57f/0xd70
-<4> [212.362017]  ? lock_is_held_type+0xa3/0x130
-<4> [212.362028]  __walk_page_range+0x8e/0x290
-<4> [212.362034]  walk_page_range_mm_unsafe+0x19e/0x270
-<4> [212.362036]  ? trace_hardirqs_on+0x22/0xf0
-<4> [212.362043]  walk_page_range+0x2a/0x40
-<4> [212.362045]  hmm_range_fault+0x94/0x190
-<4> [212.362053]  drm_gpusvm_get_pages+0x269/0xa30 [drm_gpusvm_helper]
-<4> [212.362067]  drm_gpusvm_range_get_pages+0x2e/0x50 [drm_gpusvm_helper]
-<4> [212.362071]  __xe_svm_handle_pagefault+0x3e0/0xef0 [xe]
-<4> [212.362181]  ? __lock_acquire+0x43e/0x2790
-<4> [212.362188]  ? lock_is_held_type+0xa3/0x130
-<4> [212.362193]  ? lock_is_held_type+0xa3/0x130
-<4> [212.362197]  ? xe_vm_find_overlapping_vma+0x57/0x1e0 [xe]
-<4> [212.362304]  xe_svm_handle_pagefault+0x3d/0xb0 [xe]
-<4> [212.362412]  xe_pagefault_queue_work+0x1a9/0x520 [xe]
-<4> [212.362509]  process_one_work+0x239/0x740
-<4> [212.362518]  worker_thread+0x200/0x3f0
-<4> [212.362521]  ? __pfx_worker_thread+0x10/0x10
-<4> [212.362524]  kthread+0x10d/0x150
-<4> [212.362527]  ? __pfx_kthread+0x10/0x10
-<4> [212.362530]  ret_from_fork+0x3bd/0x470
-<4> [212.362533]  ? __pfx_kthread+0x10/0x10
-<4> [212.362536]  ret_from_fork_asm+0x1a/0x30
-<4> [212.362546]  </TASK>
-<4> [212.362547] irq event stamp: 2057044
+>
+>>	drm_printf(p, "\tJob Timestamp: 0x%08x\n", snapshot->ctx_job_timestamp);
+>>
+>>	if (!snapshot->lrc_snapshot)
+>>diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+>>index 62beaffba0af..97aef0327fc8 100644
+>>--- a/drivers/gpu/drm/xe/xe_lrc.h
+>>+++ b/drivers/gpu/drm/xe/xe_lrc.h
+>>@@ -39,6 +39,7 @@ struct xe_lrc_snapshot {
+>>	u32 seqno;
+>>	u64 ctx_timestamp;
+>>	u32 ctx_job_timestamp;
+>>+	u64 ctx_timestamp_ms;
+>
+>NIT...may be put ctx_timestamp_ms right after ctx_timestamp?
+>That way, we won't be adding a u32 in between two u64s.
 
-I=E2=80=99ll be out this Thursday for five weeks, but assuming you can sort=
- this
-part out, I=E2=80=99m fine with the series moving forward. I=E2=80=99ve loo=
-ked at this
-several times, and it seems sane enough to me.
+will change,
 
-On our list we also have the Sashiko setup [2], which I=E2=80=99ve found to=
- be
-incredibly helpful for series that do deep MM work. I=E2=80=99m not sure wh=
-y
-Sashiko is saying this series didn=E2=80=99t apply, since it applied cleanl=
-y to
-our CI branches. If you can get Sashiko to run on it, that might be
-helpful as well.
-
-Matt
-
-[1] https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165953v1/shard-bmg-4/ig=
-t@xe_exec_system_allocator@process-many-stride-mmap-race-nomemset.html
-[2] https://sashiko.dev/#/patchset/20260505051658.2219537-1-mpenttil%40redh=
-at.com
-
-> --Mika
->=20
-> >
-> > On 2026-05-05 at 15:16 +1000, mpenttil@redhat.com wrote...
-> >> From: Mika Penttil=C3=A4 <mpenttil@redhat.com>
-> >>
-> >> Currently, the way device page faulting and migration works
-> >> is not optimal, if you want to do both fault handling and
-> >> migration at once.
-> >>
-> >> Being able to migrate not present pages (or pages mapped with incorrec=
-t
-> >> permissions, eg. COW) to the GPU requires doing either of the
-> >> following sequences:
-> >>
-> >> 1. hmm_range_fault() - fault in non-present pages with correct permiss=
-ions, etc.
-> >> 2. migrate_vma_*() - migrate the pages
-> >>
-> >> Or:
-> >>
-> >> 1. migrate_vma_*() - migrate present pages
-> >> 2. If non-present pages detected by migrate_vma_*():
-> >>    a) call hmm_range_fault() to fault pages in
-> >>    b) call migrate_vma_*() again to migrate now present pages
-> >>
-> >> The problem with the first sequence is that you always have to do two
-> >> page walks even when most of the time the pages are present or zero pa=
-ge
-> >> mappings so the common case takes a performance hit.
-> >>
-> >> The second sequence is better for the common case, but far worse if
-> >> pages aren't present because now you have to walk the page tables thre=
-e
-> >> times (once to find the page is not present, once so hmm_range_fault()
-> >> can find a non-present page to fault in and once again to setup the
-> >> migration). It is also tricky to code correctly. One page table walk
-> >> could costs over 1000 cpu cycles on X86-64, which is a significant hit=
-.
-> >>
-> >> We should be able to walk the page table once, faulting
-> >> pages in as required and replacing them with migration entries if
-> >> requested.
-> >>
-> >> Add a new flag to HMM APIs, HMM_PFN_REQ_MIGRATE,
-> >> which tells to prepare for migration also during fault handling.
-> >> Also, for the migrate_vma_setup() call paths, a flag, MIGRATE_VMA_FAUL=
-T,
-> >> is added to tell to add fault handling to migrate.
-> >>
-> >> One extra benefit of migrating with hmm_range_fault() path
-> >> is the migrate_vma.vma gets populated, so no need to
-> >> retrieve that separataly.
-> >>
-> >> Tested in X86-64 VM with HMM test device, passing the selftests.
-> >> For performance, the migrate throughput tests from the selftests
-> >> show similar numbers (within error margin) as unmodified kernel.
-> >> Tested also rebased on the
-> >> "Remove device private pages from physical address space" series:
-> >> https://lore.kernel.org/linux-mm/20260130111050.53670-1-jniethe@nvidia=
-.com/
-> >> plus a small patch to adjust with no problems.
-> >>
-> >> Changes v8-v9
-> >>   - rebase on drm-tip
-> >>   - fixed uaf around  migrate_vma_split_folio() usage
-> >>   - added missing pmd unlock
-> >>
-> >> Changes v7-v8
-> >>   - rebase on 7.0
-> >>   - fixed subject in two patches
-> >>   - enhanced commit messages
-> >>   - squashed patch 6 into patch 4 to fix kernel test robot warning
-> >>   - readded dropped Cc block from cover letter
-> >>   - fixed white space
-> >>
-> >> Changes v6-v7
-> >>   - rebase on 7.0.0-rc6
-> >>   - added documentation and comments
-> >>   - denote to be migrated zero page as HMM_PFN_MIGRATE alone
-> >>   - got rid of HMM_PFN_INOUT_FLAGS movement in patch 2
-> >>   - picked up Acked-By from David for patch 1
-> >>  =20
-> >> Changes v5-v6
-> >>   - rebase on 7.0.0-rc4
-> >>   - use range based TLB flushing while unmapping ptes
-> >>   - gate migration behind HMM_PFN_REQ_MIGRATE for fault and
-> >>     migrate paths
-> >>   - always infer migration flags from migrate->flags only
-> >>
-> >> Changes v4-v5
-> >>   - rebase on 6.19
-> >>   - fixed David's email address
-> >>   - fixed link issue without CONFIG_TRANSPARENT_HUGEPAGE
-> >>   - refactored into smaller commits
-> >>   - added more comments to code
-> >>
-> >> Changes v3-v4:
-> >>   - rebase on 6.19-rc8
-> >>   - fixed issues found by kernel test robot with random configs
-> >>   - fixed typos
-> >>
-> >> Changes v2-v3:
-> >>   - rebase on 6.19-rc7
-> >>   - fixed issues found by kernel test robot
-> >>   - fixed smatch issues reported by Dan Carpenter <dan.carpenter@linar=
-o.org>
-> >>   - fixes to lock handling (pmd/pte) on errors
-> >>   - added assertions for pmd/pte lock states
-> >>   - other issues discovered by Matthew, thanks!
-> >>
-> >> Changes v1-v2:
-> >>   - rebase on 6.19-rc6
-> >>   - fixed issues found by kernel test robot
-> >>   - fixed locking (pmd/ptl) to cover handle_ and prepare_ regions
-> >>     parts if migrating
-> >>   - other issues discovered by Matthew, thanks!
-> >>
-> >> Changes RFC-v1:
-> >>   - rebase on 6.19-rc5
-> >>   - adjust for the device THP
-> >>   - changes from feedback
-> >>
-> >> Revisions:
-> >>   - RFC https://lore.kernel.org/linux-mm/20250814072045.3637192-1-mpen=
-ttil@redhat.com/
-> >>   - v1: https://lore.kernel.org/all/20260114091923.3950465-1-mpenttil@=
-redhat.com/
-> >>   - v2: https://lore.kernel.org/all/20260119112502.645059-1-mpenttil@r=
-edhat.com/
-> >>   - v3: https://lore.kernel.org/all/20260126111939.1332983-2-mpenttil@=
-redhat.com/
-> >>   - v4: https://lore.kernel.org/all/20260202112622.2104213-1-mpenttil@=
-redhat.com/
-> >>   - v5: https://lore.kernel.org/linux-mm/20260211081301.2940672-1-mpen=
-ttil@redhat.com/
-> >>   - v6: https://lore.kernel.org/linux-mm/20260316062407.3354636-1-mpen=
-ttil@redhat.com/
-> >>   - v7: https://lore.kernel.org/linux-mm/20260330115611.347988-1-mpent=
-til@redhat.com/
-> >>   - v8: https://lore.kernel.org/linux-mm/20260414041226.1539439-1-mpen=
-ttil@redhat.com/
-> >>
-> >> Cc: David Hildenbrand <david@kernel.org>
-> >> Cc: Jason Gunthorpe <jgg@nvidia.com>
-> >> Cc: Leon Romanovsky <leonro@nvidia.com>
-> >> Cc: Alistair Popple <apopple@nvidia.com>
-> >> Cc: Balbir Singh <balbirs@nvidia.com>
-> >> Cc: Zi Yan <ziy@nvidia.com>
-> >> Cc: Matthew Brost <matthew.brost@intel.com>
-> >> Cc: Andrew Morton <akpm@linux-foundation.org>
-> >> Cc: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-> >> Cc: "Liam R. Howlett" <Liam.Howlett@oracle.com>
-> >> Cc: Vlastimil Babka <vbabka@suse.cz>
-> >> Cc: Mike Rapoport <rppt@kernel.org>
-> >> Cc: Suren Baghdasaryan <surenb@google.com>
-> >> Cc: Michal Hocko <mhocko@suse.com>
-> >>
-> >> Mika Penttil=C3=A4 (5):
-> >>   mm/Kconfig: changes for migrate on fault for device pages
-> >>   mm: Add helper to convert HMM pfn to migrate pfn
-> >>   mm/hmm: do the plumbing for HMM to participate in migration
-> >>   mm: setup device page migration in HMM pagewalk
-> >>   lib/test_hmm:: add a new testcase for the migrate on fault
-> >>
-> >>  include/linux/hmm.h                    |  19 +-
-> >>  include/linux/migrate.h                |  26 +-
-> >>  lib/test_hmm.c                         | 101 ++-
-> >>  lib/test_hmm_uapi.h                    |  19 +-
-> >>  mm/Kconfig                             |   2 +
-> >>  mm/hmm.c                               | 835 +++++++++++++++++++++++-=
--
-> >>  mm/migrate_device.c                    | 583 +++--------------
-> >>  tools/testing/selftests/mm/hmm-tests.c |  54 ++
-> >>  8 files changed, 1066 insertions(+), 573 deletions(-)
-> >>
-> >> drm-tip
-> >> base-commit: 94d56a898a2db27f841b17f6966a81ba502fe63c
-> >> --=20
-> >> 2.50.0
-> >>
->=20
+Umesh
+>
+>Niranjana
+>
+>>};
+>>
+>>#define LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR (0x34 * 4)
+>>-- 
+>>2.43.0
+>>
