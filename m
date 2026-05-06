@@ -4,151 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C54E2CD342C
-	for <intel-xe@archiver.kernel.org>; Wed,  6 May 2026 19:54:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77B26CD3439
+	for <intel-xe@archiver.kernel.org>; Wed,  6 May 2026 19:59:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8070910EE95;
-	Wed,  6 May 2026 19:54:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38DBA10EEA5;
+	Wed,  6 May 2026 19:59:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dcwdOv8C";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EC0MFPA/";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3526410E20D;
- Wed,  6 May 2026 19:54:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB46610EEA1
+ for <intel-xe@lists.freedesktop.org>; Wed,  6 May 2026 19:59:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778097247; x=1809633247;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=Ga7a47i0MfBdMLK13NHemc0sdsKoNX/DCAcx3yg5OkM=;
- b=dcwdOv8CG4gtWfO8QA+Mw+/vIeUOdYfSPqQ+Chyxov86RlWck7OJt7SY
- UNs4QUy3huXS+J2EUI3b/UxLX8yxyMn6C1yRfCOFBiylOFBQBOxoMWMni
- rLbFZohTOMigzjZNX8W/xFUpBCbnUL/HW7XBBi8XyqYNzR9WyjL8xSd03
- 54D9rlQsOZ8+pP+QGVRRoAlmr60YFfZ8yOmsUEQJ9XsaLhRaNsnJ1yvdk
- W8UrnTWMku2+CJH37f/3S+aJfjCuzf881qYZ66WFGkQcWEE4pA0XSAvox
- IPrsDCVgh08XutMsNqfCTaarJywVDA4fdUkmhJtXOoHtDKaJRYvU0Qz2q g==;
-X-CSE-ConnectionGUID: hu+Sq70nSRezx+9aNaIh+g==
-X-CSE-MsgGUID: Kb67EdS8RLaMx6cNMK4B6w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11778"; a="104500640"
-X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="104500640"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2026 12:54:06 -0700
-X-CSE-ConnectionGUID: Cj4EeBeqQmu0u1N9hSTMxg==
-X-CSE-MsgGUID: 7QQH9Iy3SZi+mxtn2fMO2A==
+ t=1778097574; x=1809633574;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=ER328sLUwimCbuWTMWIiOxKHGPwMqnIBDUVIunTkos0=;
+ b=EC0MFPA/CW0lfG3P7QM/0yGUYPmJ26D9LvWTyDpemU6evpDktAmVN9EL
+ MhFBF615RTu4vGu18viW39nrbmnPVuJ85fmiQ1CL06hKERDN3TIkPgBuP
+ I6ZfQCqGy/jSBbl+G9/kVy6+DnCoCfqX7r1Mopf/qEBIE2CQcXGW/aknf
+ J/q9h2xlMZaFG7/xiQF1oAu8nKNUOAYvdcd/hcBGuFpEcH8DKtZ77xtnl
+ MzDaP8LLHnUM8LESV5cn+5LjALnmmj7973XdpSjY01LqXbI/RKsqryJM4
+ zWPDtbsCC71JiVOauDH02txWWuqpEoZdfKhZdK5HE3awoe5zFXQDIVYln A==;
+X-CSE-ConnectionGUID: TEqm5Wh0Sk2Zt1R4o+gCRA==
+X-CSE-MsgGUID: ih5AhmzWQq2icJv1bqEt3g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11778"; a="82885091"
+X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="82885091"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2026 12:59:34 -0700
+X-CSE-ConnectionGUID: K28VpcpCQduqoja89Zz+xA==
+X-CSE-MsgGUID: C+06mTx+SIO41zpDscydoQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="236148749"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2026 12:54:07 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 6 May 2026 12:54:06 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 6 May 2026 12:54:06 -0700
-Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.56)
- by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 6 May 2026 12:54:05 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=llS0hlsCSzetkC9IhOmrhfn6822sLMq2Mnkd2I/t6WdQkffrsnIsoX4nqG8jqvNlPxJ99xQIpNURpxWkATOwns6r9bnXxDZydd61GGfqGDq3CMc+YH6o2VB4GIk1Edng/B1bvOn/OaOw+/2rZtJteiJp/2Cai0+5zcNR1xxdJJNuFCKbiE0b7VQftp6R9/V5w9z1mQD39otLvTxFUoC/0tp5mUltnv09hHjYjg9ow/EtSZvPP9hhVy+IJ0j3perCakmAcp46qOEID1Akpg52GfBB6uG5RQypj8LAiiaoA4YspSTgfu36qJ6mhp6YWqj/O+Hdu5ZYNUcVPlOPEwlbyQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yMa4yhVgpL/I7iEiU1SR7bkvNE7eobKfUKvX7S1D290=;
- b=aGw+nWQUxATFcg57yLixzYqtcj0y/1yNLNXNniRoy1MTvKvm0wWSQboOFhz5AYbrm2e4Jw02sMmSbee+azasQXCLhdA9woWgjZO621SbO1zPJe7PNbgmGllDJl7qW2eUswdtJJJiGf2auzRUbJhtUhATnnYYQJBeobpMBuJcDPUaRXAmk6jU84zm8Qeca+IWjwOWUvUxRhHRrrfJjHRm0N1hdWC/VnRXRa26hvXhXYavh9AMCc3/5YbHKOYgSmYGsxmOETiCAbPpcntVMrB0iL96unZVaTKnmXBkPYzNb/MGoMeILpo82ZrAeCq3A6EapBMLdWShQN2FiBc2wscJ4A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
- by CY8PR11MB6817.namprd11.prod.outlook.com (2603:10b6:930:63::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.15; Wed, 6 May
- 2026 19:53:59 +0000
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::1d86:a34:519a:3b0d]) by CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::1d86:a34:519a:3b0d%5]) with mapi id 15.20.9891.008; Wed, 6 May 2026
- 19:53:59 +0000
-Date: Wed, 6 May 2026 15:53:54 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-CC: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Thomas Zimmermann <tzimmermann@suse.de>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>, Oded Gabbay <ogabbay@kernel.org>,
- <dri-devel@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, <dim-tools@lists.freedesktop.org>
-Subject: Re: [PULL] drm-intel-next
-Message-ID: <afucUhn-9PH9h4dr@intel.com>
-References: <afot1cjSpeAjYzg2@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <afot1cjSpeAjYzg2@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0008.namprd03.prod.outlook.com
- (2603:10b6:a03:33a::13) To CYYPR11MB8430.namprd11.prod.outlook.com
- (2603:10b6:930:c6::19)
+X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="236349279"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO [10.245.244.213])
+ ([10.245.244.213])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2026 12:59:33 -0700
+Message-ID: <ac67eec8376792e795f37645b83c1f4c7fed8ba4.camel@linux.intel.com>
+Subject: Re: [PATCH] drm/xe/dma-buf: handle empty bo and UAF races
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>, stable@vger.kernel.org
+Date: Wed, 06 May 2026 21:59:29 +0200
+In-Reply-To: <20260506184332.86743-2-matthew.auld@intel.com>
+References: <20260506184332.86743-2-matthew.auld@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|CY8PR11MB6817:EE_
-X-MS-Office365-Filtering-Correlation-Id: d561c90d-83de-425a-17b5-08deaba936f9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|7416014|18002099003|22082099003|56012099003;
-X-Microsoft-Antispam-Message-Info: 9IvqHp5bp3irkSQAsFYg+UtnZhHMKvfRFBqpI/niQAy7YuilsM1rRTlAHeFqlvzc38EaMc/eu7qarBteIy4ie0fDVhr857tX67doNuA7D02o1m5NiMmoghJaDTcCIEWPYEySvHzbUf2Qm9Swap4BTO3Yyck1ZiJHFcoVKtMk7g+Xq1rAv5QXWW/V+2/5zszSDSBqrVfIMJs/qE8kXS+ONxhHAHTYM02mpwj4Wsn/Hn5CtlxWnAqHthRi+ZiKWLo/mURsXFdSrx5zziZHUD6M2p4Z3oQTH6e+u1jxsoPzNFZRWDUr+4N3yDQShWQ0LNrT+ANPIW4NHzAN192gO2c8BS37NSOIS1KwH0j7Fqwb3L4PzAy26vi2S1oFLHXMkMkV2qVZoZD2rWbloeLQSg2fLnc2mQbLesPrHnx0HUVbYtStpx9JKZXkZhIFYw/7omRfIAei4oZlqXPKloGGUBHIcGUHv6p23FIKqggiPycTH/V2azf8kO7LQtn2tQ7bY74KIvS0alAXgfc+DPq5FNJFH3Z3YuC6lbvnNVIqzwY0E0Yrkwl4hO00nzpPn1/woeEURVlm1caCA6GbA1N85t4bO9nnsrQHcQwfOcZleIv4NYQjCse18QPlRZ53wRST72We8Lt5cu53ie0yRyTt/EqoT7PJjHIgdu5hQykIoRMy+B5Fz5XYKMo7g5ERd+/d0JL5
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(7416014)(18002099003)(22082099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ts9gRIllDkAl0jMFFdKgYKo1aRn7WtrJB5OEf9qYiWkQ7ekEn/IpmespDIk8?=
- =?us-ascii?Q?J61kEaSrth3z/pM5TZxUapDnG089dXScRwNDJgAPbkVNfI0MpeILPAc5Dswv?=
- =?us-ascii?Q?r1cBcTgxofORtZARjNkncjSBXKCIObLDbL5Zg/taA5q0bjjSWRNiCQdJfDuO?=
- =?us-ascii?Q?XmTuVDm/TFNm4ONWBLwITR31VHGJQc23VS8GrS2uKGT2RMSsswbR63yBcYaR?=
- =?us-ascii?Q?311FaUmtAs/9cJIq/U6DWPEzAFJv4oa/YeSei8PotxBPzw1A1Ix71w0atkTc?=
- =?us-ascii?Q?j3XbU1tBUk4waQhScYgJzcf0+yxjXnqLYMOqFKOQp3e2ZJO9cphNZVYRLeyI?=
- =?us-ascii?Q?DscFkYtjcKd4bjH2Cx7uwbtyEVkNEvByYS1mD7273NOxUwLYV6cpFIP9NZmh?=
- =?us-ascii?Q?W52dmtk4nejeaMgMLOk8AqTaUYq7pYj59IAxyadnmerqvUFmxfAuJ8fAEdB/?=
- =?us-ascii?Q?S75UraASa6LJ3zSYd0gKHGmhCMYhwJ0aHnBCdyaQPJNHo8HeMToPCe7vMiKx?=
- =?us-ascii?Q?eHrn78fvLzHt57/Rghpl4EQI1Sniow/TH6ryDdqLyajAUh9m21XtZWujCwGO?=
- =?us-ascii?Q?kiL2N8TRcmob6jPU9n/xyZFkc5hhz0QCWasX9iZctKN8jZQrGJSqWY8MZQqC?=
- =?us-ascii?Q?Mb246wamU9O1gHfiRvl/0TNOhaSJPXnPPyhIXPypMP8NEjdgM2vg9Dpr3v/h?=
- =?us-ascii?Q?97+xIkhpMBijyvRfmXXLjUBLWShSzztzsUJnVWl1aGJax1RRWKyWKoZ0wGjq?=
- =?us-ascii?Q?UFJ9S+tigUT60S67pyNVJByhlN7RSjQ3kh3MFfi9F/BV3XsJIZZi4nf2wAAX?=
- =?us-ascii?Q?tRYdiMdCkPYBl+70pCBgN0umrrZod5Ee1GnOqDJTIqi6MOU59wQxAgTCyzL3?=
- =?us-ascii?Q?W88+Kb9+WLCS9jkwA85XWtEjAEzrng7txEAtV6jZCvTtPYwMilfWcCfE5yXK?=
- =?us-ascii?Q?HXAO551O5hoefa482pFfgWA2IIg6xwEMz63ejHZawTDliSYVqqLut6fjR/ar?=
- =?us-ascii?Q?CxG2Ra2QTcCba32wktTHv7cWyCanC9K5j/13F9Udk7YEobGA3nMvsBub62EQ?=
- =?us-ascii?Q?t59TWFBkkt4mu6aBT7nlxUyVcQTR1ZamP/PKXelHrrnmCMejWvK7OvkR1u/D?=
- =?us-ascii?Q?4oMKpHugGnHvDSDL7hyKmHY2jOqNRKQJ8pphlzh5eaq7pcQ/1TBiv3kLk7T+?=
- =?us-ascii?Q?ySuRkEiwUT4RBfywfl0YTZ7Vq/e2TiW/iL1r6zfA0USBdY4HawDMLsfCyqO1?=
- =?us-ascii?Q?zWQN5dfkrvHuC3BArcF6ISyZ+U2r+sflAv7pEMNC5VTzYVCjjzGJJ15Ei4P7?=
- =?us-ascii?Q?pNyk4auukByZUy69zRPva3I2AUP8kvhA3Om4A2pCwxuOeErmQhTFl33BnIaY?=
- =?us-ascii?Q?N7OL0uew5lIMzXWeRv/+ZfL9LMSQHYVV1ECVBRK/MGP4JCHdq4axlkULsSNW?=
- =?us-ascii?Q?BAeo9V85xGil6Okueo4+oUzP4S3Jof13W6jTLqc6hUY2XIY8BSnBYq7bok89?=
- =?us-ascii?Q?KkFNmk7UOF4VfjqPm+8MNz7Kk2PJkDGlfzD7NAc+EwFdwFAGpaszvSSY+MKr?=
- =?us-ascii?Q?sEWVJcAQEhrPSlqhWwXuN1O4/GsPl5/nsfjW7lu2RHWp2BiCMckNWjLIgzUK?=
- =?us-ascii?Q?pYViTE3hdqc5n25Wz/yZFuqcS1kObD5/Di9NCv+WX5PtJAui1mIE5oBs+ILh?=
- =?us-ascii?Q?3Wrtiau6844bTiaeL1bSELRap0RXrR+qoXUJiu0zMp0N4WFKsVnJjHmeHfd4?=
- =?us-ascii?Q?EemgADmKbg=3D=3D?=
-X-Exchange-RoutingPolicyChecked: qqFT/1ec9NxgvUcZjqYgoSeZi05K5jUUXFxdYvf82w+7T95mcUuL604iQ2J91n2BzE1ZjeYQ4KdYXF0f2St7PmI421k51ry5VeY0IUQ+0PSHBSNBose1J0T3L25njcWikx5aLDNU+oz9eT1yF5598zv5axo1SxLuSzOn0KOeoSI0rN7wr7yFAxaaqgGP3O2O8P2W4uaB3EMGo+auxAFSyhGBybh8hU/dgouI1OXDYFFWJLccljwLCcdH74KPFUpYa/w1MzsipouQBVNt9QL3o9GHptdgX0/UHU5B6oXIZNASJI8S1vYmokIJkq8BcTQwu3CspHX96ibvtZFUuhyQYg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: d561c90d-83de-425a-17b5-08deaba936f9
-X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 May 2026 19:53:59.6235 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: B1ENnMvHWexQGvHBhg8kda4nFUE6B4M6oD1VOGVhj4j+HPp8Gt2I6QrQRarCuWStkVurda+uHy8hzR3BQ9pKeg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6817
-X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -163,24 +69,137 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, May 05, 2026 at 01:50:13PM -0400, Rodrigo Vivi wrote:
-> Hi Dave and Sima,
-> 
-> 
-> Julian Braha (1):
->       drm/i915: replace select with dependency for visible DEBUG_OBJECTS
+On Wed, 2026-05-06 at 19:43 +0100, Matthew Auld wrote:
+> There look to be some nasty races here when triggering the
+> invalidate_mappings hook:
+>=20
+> 1) We do xe_bo_alloc() followed by the attach, before the actual full
+> bo
+> =C2=A0=C2=A0 init step in xe_dma_buf_init_obj(). However the bo is visibl=
+e on
+> the
+> =C2=A0=C2=A0 attachments list after the attach.=C2=A0 This is bad since e=
+xporter
+> driver,
+> =C2=A0=C2=A0 say amdgpu, can at any time call back into our invalidate_ma=
+ppings
+> hook,
+> =C2=A0=C2=A0 with an empty/bogus bo, leading to potential bugs/crashes.
+>=20
+> 2) Similar to 1) but here we get a UAF, when the invalidate_mappings
+> =C2=A0=C2=A0 hook is triggered. For example, we get as far as
+> xe_bo_init_locked()
+> =C2=A0=C2=A0 but this fails in some way. But here the bo will be freed on
+> error, but
+> =C2=A0=C2=A0 we still have it attached from dma-buf pov, so if the
+> =C2=A0=C2=A0 invalidate_mappings is now triggered then the bo we access i=
+s gone
+> and
+> =C2=A0=C2=A0 we trigger UAF and more bugs/crashes.
+>=20
+> To fix this, move the attach step until after we actually have a
+> fully
+> set up buffer object. Note that the bo is not published to userspace
+> until later, so not sure what the comment "Don't publish the bo
+> until we have a valid attachment", is referring to.
+>=20
+> We have at least two different customers reporting hitting a NULL ptr
+> deref in evict_flags when importing something from amdgpu, followed
+> by
+> triggering the evict flow. Hit rate is also pretty low, which would
+> hint at some kind of race, so something like 1) or 2) might explain
+> this.
+>=20
+> Assisted-by: Gemini:gemini-3 #debug
+> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/7903
+> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/4055
+> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel
+> GPUs")
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: <stable@vger.kernel.org> # v6.8+
+> ---
+> =C2=A0drivers/gpu/drm/xe/xe_dma_buf.c | 23 ++++++++---------------
+> =C2=A01 file changed, 8 insertions(+), 15 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c
+> b/drivers/gpu/drm/xe/xe_dma_buf.c
+> index b9828da15897..e6c2f7d30abb 100644
+> --- a/drivers/gpu/drm/xe/xe_dma_buf.c
+> +++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+> @@ -357,11 +357,6 @@ struct drm_gem_object
+> *xe_gem_prime_import(struct drm_device *dev,
+> =C2=A0		}
+> =C2=A0	}
+> =C2=A0
+> -	/*
+> -	 * Don't publish the bo until we have a valid attachment,
+> and a
+> -	 * valid attachment needs the bo address. So pre-create a bo
+> before
+> -	 * creating the attachment and publish.
+> -	 */
+> =C2=A0	bo =3D xe_bo_alloc();
+> =C2=A0	if (IS_ERR(bo))
+> =C2=A0		return ERR_CAST(bo);
+> @@ -371,6 +366,13 @@ struct drm_gem_object
+> *xe_gem_prime_import(struct drm_device *dev,
+> =C2=A0	if (test)
+> =C2=A0		attach_ops =3D test->attach_ops;
+> =C2=A0#endif
+> +	/*
+> +	 * xe_dma_buf_init_obj() takes ownership of bo on both
+> success
+> +	 * and failure, so we must not touch bo after this call.
+> +	 */
+> +	obj =3D xe_dma_buf_init_obj(dev, bo, dma_buf);
+> +	if (IS_ERR(obj))
+> +		return obj;
 
-This patch breaks some build scenarious depending on your Kconfig.
-we have a revert merged in the drm-intel-next:
+IIRC this publishes the bo on the LRUs, as per the removed comment.
+What happens if, for example, the shrinker kicks in and shrinks it? But
+similarly perhaps we should have obj->import_attach set already at
+publish time?
 
-b32b3cabf91e ("Revert "drm/i915: replace select with dependency for visible DEBUG_OBJECTS"")
+If this is indeed the case we might have to revert to some trickery.
+Like invalidate_mappings() returning early if the init is not complete,
+and set obj->import_attach under the lock in xe_dma_buf_init_obj?
 
-Please let me know if you prefer a small PR with the few patches that we have
-left now on drm-intel-next including this revert or if you intend to drop this
-PR and I can prepare a bigger one.
+Also I think IIRC xe_bo_alloc() was created specifically for this
+situation, so unless there are more users of that, and the ordering in
+this patch is indeed correct, we might be able to get rid of the two-
+step bo creation here.
 
-Just let me know your preference here.
+/Thomas
 
-Sorry,
-Rodrigo.
 
+> =C2=A0
+> =C2=A0	attach =3D dma_buf_dynamic_attach(dma_buf, dev->dev,
+> attach_ops, &bo->ttm.base);
+> =C2=A0	if (IS_ERR(attach)) {
+> @@ -378,21 +380,12 @@ struct drm_gem_object
+> *xe_gem_prime_import(struct drm_device *dev,
+> =C2=A0		goto out_err;
+> =C2=A0	}
+> =C2=A0
+> -	/*
+> -	 * xe_dma_buf_init_obj() takes ownership of bo on both
+> success
+> -	 * and failure, so we must not touch bo after this call.
+> -	 */
+> -	obj =3D xe_dma_buf_init_obj(dev, bo, dma_buf);
+> -	if (IS_ERR(obj)) {
+> -		dma_buf_detach(dma_buf, attach);
+> -		return obj;
+> -	}
+> =C2=A0	get_dma_buf(dma_buf);
+> =C2=A0	obj->import_attach =3D attach;
+> =C2=A0	return obj;
+> =C2=A0
+> =C2=A0out_err:
+> -	xe_bo_free(bo);
+> +	xe_bo_put(bo);
+> =C2=A0
+> =C2=A0	return obj;
+> =C2=A0}
