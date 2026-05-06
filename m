@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BD59CD3439
-	for <intel-xe@archiver.kernel.org>; Wed,  6 May 2026 22:35:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49E09CD342C
+	for <intel-xe@archiver.kernel.org>; Wed,  6 May 2026 22:35:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A41410EF05;
-	Wed,  6 May 2026 22:35:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C10B110EF04;
+	Wed,  6 May 2026 22:35:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GRtkXmPp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OZia7xCJ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE87110EEF8
- for <intel-xe@lists.freedesktop.org>; Wed,  6 May 2026 22:35:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E0D210EEFD
+ for <intel-xe@lists.freedesktop.org>; Wed,  6 May 2026 22:35:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1778106911; x=1809642911;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=5Qa8oA/veSZcJMTG9sPEZIIodcz/eHLKJ4kbt03v9Xw=;
- b=GRtkXmPplUzqHPla4Q8oZBW3+gUJq6oa732CS18bCIKLIg/xV14WZM4F
- ErFvNBJdVvoyuNRGz1yxfy8UFypKcA1svv5uzEQ0jZ3jkE2LhAYQ22AvT
- /q5Fo9drZwFDXQ3t+ufGEwZ+UXgC/bNTurSZL77SGAbCg/swfxaLdCjs6
- d8epAIdpsBDFy4L9flUY2LPIxnssB0nikuHYECq7QIY9x8ri0NDHM4CS5
- hKjsELyVbiCxHmKE2m1zoyluLjF2dCXFXzJCev47dYzn6GrqnMKFWgyIY
- W/sLV9myrurmQiJVNwNeD0Dt5zd2qdZUEkLJAa0FqW72snnaaOgS6Bux3 Q==;
-X-CSE-ConnectionGUID: 58dz85ESTOm9CBajlgbgjQ==
-X-CSE-MsgGUID: yneo5eLRRlytPY0m7Ayp8A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11778"; a="90429708"
-X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="90429708"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=HKn7hDS2Gw73OlIQ/XNWXc2phiVI2Wulwl8+GqqFH54=;
+ b=OZia7xCJx4QQUt/8i+h3MUO/2PETGU9bKEwh9sqzWYSSYM6EpG5sIlrS
+ jzzWkyq5F7ed2cRPGLJ3ytl0dAIXIAavf9aSQuC/z6ZEU/KSvjX/X4cbf
+ 2nV9tmOOu8vVNx5kS15OWw6wxeCjhVlrejBWuT3Hp4TWH25/FkQb2uF0Z
+ KjbycghvQv95/KZhuJmD/vqX3ga/HIRPKvdBdmTVqbAv+IMb5Pge5NBgj
+ bq+tCmS9RpxCiPTrsUvpwbhHm3/cw/PQx/tVa5QTL2acfgNyh04Nk5R58
+ DULxgbvFIzMJC6NbQ5rPENKRrhfMDco5dtrR1smoe6230nLBoeQCYA6Ac A==;
+X-CSE-ConnectionGUID: u5pOx9pWQh2Pz5EeR89vRw==
+X-CSE-MsgGUID: iPY4Fk/TSzKYv5hOD61/ag==
+X-IronPort-AV: E=McAfee;i="6800,10657,11778"; a="90429709"
+X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="90429709"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 May 2026 15:35:10 -0700
-X-CSE-ConnectionGUID: oujKsPwKTYejMwVTTn7paw==
-X-CSE-MsgGUID: +EStKH0sSsakeQjIZD/hbw==
+X-CSE-ConnectionGUID: L4ajmZuhSQuDvsyyNu1hAg==
+X-CSE-MsgGUID: qXsF4OQbQqemme65ih9rsw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="259707461"
+X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="259707464"
 Received: from orsosgc001.jf.intel.com ([10.88.27.185])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 May 2026 15:35:10 -0700
@@ -46,10 +46,13 @@ To: intel-xe@lists.freedesktop.org,
 	niranjana.vishwanathapura@intel.com
 Cc: matthew.brost@intel.com,
 	stuart.summers@intel.com
-Subject: [PATCH v4 00/11] Support run ticks for multi-queue use case
-Date: Wed,  6 May 2026 15:35:01 -0700
-Message-ID: <20260506223500.3769614-13-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH v4 01/11] drm/xe/lrc: Use 64 bit ctx timestamp in the LRC
+ snapshot
+Date: Wed,  6 May 2026 15:35:02 -0700
+Message-ID: <20260506223500.3769614-14-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20260506223500.3769614-13-umesh.nerlige.ramappa@intel.com>
+References: <20260506223500.3769614-13-umesh.nerlige.ramappa@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,49 +69,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In single queue use cases, the CTX TIMESTAMP can be used to track
-context run ticks. In multi-queue scenarios the CTX_TIMESTAMP represents
-run ticks of all the queues. To determine individual queue run ticks, we
-need to use QUEUE TIMESTAMP.
+Use the 64 bit value when available for the context timestamp in the LRC
+snapshot.
 
-The series adds support to read out QUEUE TIMESTAMP for multi-queue use
-cases.
-
-v2: Include review comments from Matt, Stuart, Niranjana
-v3: Include review comments from Niranjana
-v4: Include review comments from Niranjana
-
+Suggested-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+---
+ drivers/gpu/drm/xe/xe_lrc.c | 4 ++--
+ drivers/gpu/drm/xe/xe_lrc.h | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-Matthew Brost (1):
-  drm/xe: Add timestamp_ms to LRC snapshot
-
-Umesh Nerlige Ramappa (10):
-  drm/xe/lrc: Use 64 bit ctx timestamp in the LRC snapshot
-  drm/xe/lrc: Refactor xe_lrc_timestamp to simplify logic
-  drm/xe/multi_queue: Refactor check for multi queue support for engine
-    class
-  drm/xe/multi_queue: Store primary LRC and position info in LRC
-  drm/xe/multi_queue: Add helpers to access CS QUEUE TIMESTAMP from lrc
-  drm/xe/lrc: Refactor out engine id to hwe conversion
-  drm/xe/multi_queue: Capture queue run times for active queues
-  drm/xe/multi_queue: Add trace event for the multi queue timestamp
-  drm/xe/multi_queue: Use QUEUE_TIMESTAMP as job timestamp for
-    multi-queue
-  drm/xe/multi_queue: Whitelist QUEUE_TIMESTAMP register
-
- drivers/gpu/drm/xe/regs/xe_engine_regs.h |   4 +
- drivers/gpu/drm/xe/regs/xe_lrc_layout.h  |   3 +
- drivers/gpu/drm/xe/xe_exec_queue.c       |  13 +-
- drivers/gpu/drm/xe/xe_gt.h               |  15 ++
- drivers/gpu/drm/xe/xe_lrc.c              | 247 ++++++++++++++++++-----
- drivers/gpu/drm/xe/xe_lrc.h              |  14 +-
- drivers/gpu/drm/xe/xe_lrc_types.h        |  11 +
- drivers/gpu/drm/xe/xe_reg_whitelist.c    |  14 ++
- drivers/gpu/drm/xe/xe_ring_ops.c         |   8 +-
- drivers/gpu/drm/xe/xe_trace_lrc.h        |  27 +++
- 10 files changed, 299 insertions(+), 57 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index fdfe2ed5f683..570ff9f55849 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -2462,7 +2462,7 @@ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
+ 	snapshot->replay_offset = 0;
+ 	snapshot->replay_size = lrc->replay_size;
+ 	snapshot->lrc_snapshot = NULL;
+-	snapshot->ctx_timestamp = lower_32_bits(xe_lrc_ctx_timestamp(lrc));
++	snapshot->ctx_timestamp = xe_lrc_ctx_timestamp(lrc);
+ 	snapshot->ctx_job_timestamp = xe_lrc_ctx_job_timestamp(lrc);
+ 	return snapshot;
+ }
+@@ -2515,7 +2515,7 @@ void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer
+ 	drm_printf(p, "\tRing start: (memory) 0x%08x\n", snapshot->start);
+ 	drm_printf(p, "\tStart seqno: (memory) %d\n", snapshot->start_seqno);
+ 	drm_printf(p, "\tSeqno: (memory) %d\n", snapshot->seqno);
+-	drm_printf(p, "\tTimestamp: 0x%08x\n", snapshot->ctx_timestamp);
++	drm_printf(p, "\tTimestamp: 0x%016llx\n", snapshot->ctx_timestamp);
+ 	drm_printf(p, "\tJob Timestamp: 0x%08x\n", snapshot->ctx_job_timestamp);
+ 
+ 	if (!snapshot->lrc_snapshot)
+diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+index 5440663183f6..bef7af9a578b 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.h
++++ b/drivers/gpu/drm/xe/xe_lrc.h
+@@ -37,7 +37,7 @@ struct xe_lrc_snapshot {
+ 	} tail;
+ 	u32 start_seqno;
+ 	u32 seqno;
+-	u32 ctx_timestamp;
++	u64 ctx_timestamp;
+ 	u32 ctx_job_timestamp;
+ };
+ 
 -- 
 2.51.0
 
