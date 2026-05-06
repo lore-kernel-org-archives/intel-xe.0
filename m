@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C528CD342C
-	for <intel-xe@archiver.kernel.org>; Wed,  6 May 2026 22:35:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F66ACD343F
+	for <intel-xe@archiver.kernel.org>; Wed,  6 May 2026 22:35:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C777A10EF0B;
-	Wed,  6 May 2026 22:35:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C497510EEF1;
+	Wed,  6 May 2026 22:35:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AGdCQ45q";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PuJQwgU4";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DB5310E1FE
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9BB010EF0A
  for <intel-xe@lists.freedesktop.org>; Wed,  6 May 2026 22:35:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1778106912; x=1809642912;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=pavmZlDws2d+QBTW7aExijrddARNQ6irr0l2praQKQo=;
- b=AGdCQ45q/Kl4S+nIIi5eB7W/If83Z9wPw3xW/Fg7DjExLD+h67yy+t+A
- qaWRpW5Dym03wYMuimp9vrpX6Hc+5zFjr0v7HP21h5Xd7wzWLHDme7w6y
- hpaBrsXHZ+EqubqrnY4gL8shRVrUrFmFoYzt55Uvvi6dDectd4SMnb+GZ
- NTSBtuVJWG+iTW4FaWUVoYNplTTqv+IDPrPtMna1ttaz87O4QlHyq0N9B
- ygkD96te2cBP8iExTS5pL+vsiJp7Zf3vjsEyIfpJjEMOK/BmmVtQEYGYF
- FqvDxScIbnId4EokQx7bZr+DYN1C7ugQehEu5IfcLBTYWwEezxNIimWFJ Q==;
-X-CSE-ConnectionGUID: iSrj1TjFROOD11eWjcSJwA==
-X-CSE-MsgGUID: 7kVHomLtQdaK2L4IkPU16A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11778"; a="90429715"
-X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="90429715"
+ bh=RZWl17Dcy8wYTtFFz5xXQWc3ySsh1yw2Aa+HCNSNSiQ=;
+ b=PuJQwgU4cmu4I3+vpLSR6ZfPmswbVgCawIR9fK9YdSVraJ5LV9aYOyZw
+ 02eR1m48/nRkmToYWD0+gxZf9YVsDUPgKKghtqCljvciLmXnKaebxyz5r
+ vaPAE/9tTtlF8y8HdkkDXbuXdcTeIF21qYsuVv/FKNijRn6ykdTFFo+dm
+ XUu9N+mB8jABKcM2iGgS71jYTi/E5Ke8+hdGwi+m6SMM5XjcBIzEqe5RC
+ Kgdazsy0YkYO/K2ZUU2DvjpwmCI5wnV2/vr4FCKww08+QhVnwlYe0JSvm
+ oMYYyLt4lNJ7Be39LuhpNvn74jLbiX2iH+rYiny0wl2hExchTwqAV4HUM A==;
+X-CSE-ConnectionGUID: RCHOLPK7QtaWtVJIpD2DtA==
+X-CSE-MsgGUID: LpNlnE6OQkuubVuKV+eEKw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11778"; a="90429720"
+X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="90429720"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 May 2026 15:35:11 -0700
-X-CSE-ConnectionGUID: lffCSJAFSxyb4N+H5Swfvg==
-X-CSE-MsgGUID: RdKn3+m1TEyytygBMUjZSQ==
+X-CSE-ConnectionGUID: /dHSid1uRdydg4zc+u0r3g==
+X-CSE-MsgGUID: RyIiRi6mRpmeqPtVqRRr4A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="259707479"
+X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="259707489"
 Received: from orsosgc001.jf.intel.com ([10.88.27.185])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 May 2026 15:35:11 -0700
@@ -46,10 +46,10 @@ To: intel-xe@lists.freedesktop.org,
 	niranjana.vishwanathapura@intel.com
 Cc: matthew.brost@intel.com,
 	stuart.summers@intel.com
-Subject: [PATCH v4 06/11] drm/xe/multi_queue: Add helpers to access CS QUEUE
- TIMESTAMP from lrc
-Date: Wed,  6 May 2026 15:35:07 -0700
-Message-ID: <20260506223500.3769614-19-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH v4 09/11] drm/xe/multi_queue: Add trace event for the multi
+ queue timestamp
+Date: Wed,  6 May 2026 15:35:10 -0700
+Message-ID: <20260506223500.3769614-22-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260506223500.3769614-13-umesh.nerlige.ramappa@intel.com>
 References: <20260506223500.3769614-13-umesh.nerlige.ramappa@intel.com>
@@ -69,177 +69,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In secondary queue LRCs, the QUEUE TIMESTAMP register is saved and
-restored allowing us to view the individual queue run times. Add helpers
-to read this value from the LRC.
-
-BSpec: 73988
+Add a trace event for multi queue timestamp capture.
 
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
-v2: (Matt)
-- Add BSpec reference
-- Make queue_timestamp snapshot 64 bit
-- Add a snapshot of queue timestamp in ms
+v2:
+- Split traces from original patch (Stuart)
+- Print primary lrc in the trace (Niranjana)
 
 v3:
-- Replace xe_lrc_is_multi_queue check in lrc init (Niranajana)
-- Use assert instead of check in xe_lrc_queue_timestamp
+- Include primary_lrc as well as lrc in the trace (Niranjana)
 
 v4: (Niranjana)
-- Add comment for clearing QUEUE_TIMESTAMP in LRC
-- Print snapshot based on xe_lrc_is_multi_queue
+- Drop pos from trace
+- Drop ':' before the pointer value
 ---
- drivers/gpu/drm/xe/regs/xe_lrc_layout.h |  3 ++
- drivers/gpu/drm/xe/xe_lrc.c             | 54 +++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_lrc.h             |  2 +
- drivers/gpu/drm/xe/xe_lrc_types.h       |  3 ++
- 4 files changed, 62 insertions(+)
+ drivers/gpu/drm/xe/xe_lrc.c       |  2 ++
+ drivers/gpu/drm/xe/xe_trace_lrc.h | 27 +++++++++++++++++++++++++++
+ 2 files changed, 29 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-index b5eff383902c..4ab86fc369fd 100644
---- a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-+++ b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-@@ -34,6 +34,9 @@
- #define CTX_CS_INT_VEC_REG		0x5a
- #define CTX_CS_INT_VEC_DATA		(CTX_CS_INT_VEC_REG + 1)
- 
-+#define CTX_QUEUE_TIMESTAMP		(0xd0 + 1)
-+#define CTX_QUEUE_TIMESTAMP_UDW		(0xd2 + 1)
-+
- #define INDIRECT_CTX_RING_HEAD		(0x02 + 1)
- #define INDIRECT_CTX_RING_TAIL		(0x04 + 1)
- #define INDIRECT_CTX_RING_START		(0x06 + 1)
 diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 3def999ce48a..46e9b98a2dfd 100644
+index 869ce0c09939..cd5daf628a89 100644
 --- a/drivers/gpu/drm/xe/xe_lrc.c
 +++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -777,6 +777,16 @@ static u32 __xe_lrc_ctx_timestamp_udw_offset(struct xe_lrc *lrc)
- 	return __xe_lrc_regs_offset(lrc) + CTX_TIMESTAMP_UDW * sizeof(u32);
+@@ -2723,6 +2723,8 @@ static u64 xe_lrc_update_multi_queue_timestamp(struct xe_lrc *lrc, u64 *old_ts)
+ 	*old_ts = lrc->queue_timestamp;
+ 	lrc->queue_timestamp = xe_lrc_multi_queue_timestamp(lrc);
+ 
++	trace_xe_lrc_update_queue_timestamp(lrc, *old_ts);
++
+ 	return lrc->queue_timestamp;
  }
  
-+static u32 __xe_lrc_queue_timestamp_offset(struct xe_lrc *lrc)
-+{
-+	return __xe_lrc_regs_offset(lrc) + CTX_QUEUE_TIMESTAMP * sizeof(u32);
-+}
-+
-+static u32 __xe_lrc_queue_timestamp_udw_offset(struct xe_lrc *lrc)
-+{
-+	return __xe_lrc_regs_offset(lrc) + CTX_QUEUE_TIMESTAMP_UDW * sizeof(u32);
-+}
-+
- static inline u32 __xe_lrc_indirect_ring_offset(struct xe_lrc *lrc)
- {
- 	u32 offset = xe_bo_size(lrc->bo) - LRC_WA_BB_SIZE -
-@@ -826,6 +836,8 @@ DECL_MAP_ADDR_HELPERS(ctx_timestamp_udw, lrc->bo)
- DECL_MAP_ADDR_HELPERS(parallel, lrc->bo)
- DECL_MAP_ADDR_HELPERS(indirect_ring, lrc->bo)
- DECL_MAP_ADDR_HELPERS(engine_id, lrc->bo)
-+DECL_MAP_ADDR_HELPERS(queue_timestamp, lrc->bo)
-+DECL_MAP_ADDR_HELPERS(queue_timestamp_udw, lrc->bo)
+diff --git a/drivers/gpu/drm/xe/xe_trace_lrc.h b/drivers/gpu/drm/xe/xe_trace_lrc.h
+index d525cbee1e34..5c4cfa0c1fe9 100644
+--- a/drivers/gpu/drm/xe/xe_trace_lrc.h
++++ b/drivers/gpu/drm/xe/xe_trace_lrc.h
+@@ -12,6 +12,7 @@
+ #include <linux/tracepoint.h>
+ #include <linux/types.h>
  
- #undef DECL_MAP_ADDR_HELPERS
++#include "xe_exec_queue_types.h"
+ #include "xe_gt_types.h"
+ #include "xe_lrc.h"
+ #include "xe_lrc_types.h"
+@@ -42,6 +43,32 @@ TRACE_EVENT(xe_lrc_update_timestamp,
+ 		      __get_str(device_id))
+ );
  
-@@ -874,6 +886,29 @@ static u64 xe_lrc_ctx_timestamp(struct xe_lrc *lrc)
- 	return (u64)udw << 32 | ldw;
- }
++TRACE_EVENT(xe_lrc_update_queue_timestamp,
++	    TP_PROTO(struct xe_lrc *lrc, uint64_t old),
++	    TP_ARGS(lrc, old),
++	    TP_STRUCT__entry(
++		     __field(struct xe_lrc *, lrc)
++		     __field(struct xe_lrc *, primary_lrc)
++		     __field(u64, old)
++		     __field(u64, new)
++		     __string(name, lrc->fence_ctx.name)
++		     __string(device_id, __dev_name_lrc(lrc))
++		     ),
++
++	    TP_fast_assign(
++		   __entry->lrc = lrc;
++		   __entry->primary_lrc = lrc->multi_queue.primary_lrc;
++		   __entry->old = old;
++		   __entry->new = lrc->queue_timestamp;
++		   __assign_str(name);
++		   __assign_str(device_id);
++		   ),
++	    TP_printk("lrc=%p primary_lrc=%p lrc->name=%s old=%llu new=%llu device_id:%s",
++		      __entry->lrc, __entry->primary_lrc, __get_str(name),
++		      __entry->old, __entry->new,
++		      __get_str(device_id))
++);
++
+ #endif
  
-+/**
-+ * xe_lrc_queue_timestamp() - Read queue timestamp value
-+ * @lrc: Pointer to the lrc.
-+ *
-+ * Returns: queue timestamp value
-+ */
-+static u64 xe_lrc_queue_timestamp(struct xe_lrc *lrc)
-+{
-+	struct xe_device *xe = lrc_to_xe(lrc);
-+	struct iosys_map map;
-+	u32 ldw, udw = 0;
-+
-+	xe_assert(xe, xe_lrc_is_multi_queue(lrc));
-+
-+	map = __xe_lrc_queue_timestamp_map(lrc);
-+	ldw = xe_map_read32(xe, &map);
-+
-+	map = __xe_lrc_queue_timestamp_udw_map(lrc);
-+	udw = xe_map_read32(xe, &map);
-+
-+	return (u64)udw << 32 | ldw;
-+}
-+
- /**
-  * xe_lrc_ctx_job_timestamp_ggtt_addr() - Get ctx job timestamp GGTT address
-  * @lrc: Pointer to the lrc.
-@@ -1538,6 +1573,18 @@ static int xe_lrc_ctx_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct
- 	if (lrc_to_xe(lrc)->info.has_64bit_timestamp)
- 		xe_lrc_write_ctx_reg(lrc, CTX_TIMESTAMP_UDW, 0);
- 
-+	/*
-+	 * Note: It's possible that this LRC may belong to an exec_queue that is
-+	 * not part of a multi-queue group. That said, it doesn't hurt to set
-+	 * this field anyways since any class that supports multi-queue will
-+	 * have these LRC fields defined.
-+	 */
-+	if (xe_gt_supports_multi_queue(gt, hwe->class)) {
-+		lrc->queue_timestamp = 0;
-+		xe_lrc_write_ctx_reg(lrc, CTX_QUEUE_TIMESTAMP, 0);
-+		xe_lrc_write_ctx_reg(lrc, CTX_QUEUE_TIMESTAMP_UDW, 0);
-+	}
-+
- 	if (xe->info.has_asid && vm)
- 		xe_lrc_write_ctx_reg(lrc, CTX_ASID, vm->usm.asid);
- 
-@@ -2470,9 +2517,14 @@ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
- 		snapshot->multi_queue.primary_context_desc =
- 			xe_lrc_ggtt_addr(lrc->multi_queue.primary_lrc);
- 		snapshot->multi_queue.pos = lrc->multi_queue.pos;
-+		snapshot->queue_timestamp = xe_lrc_queue_timestamp(lrc);
-+		snapshot->queue_timestamp_ms =
-+			xe_gt_clock_interval_to_ms(lrc->gt, snapshot->queue_timestamp);
- 	} else {
- 		snapshot->multi_queue.primary_context_desc = 0;
- 		snapshot->multi_queue.pos = 0;
-+		snapshot->queue_timestamp = 0;
-+		snapshot->queue_timestamp_ms = 0;
- 	}
- 	snapshot->ctx_job_timestamp = xe_lrc_ctx_job_timestamp(lrc);
- 	return snapshot;
-@@ -2528,6 +2580,8 @@ void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer
- 	drm_printf(p, "\tSeqno: (memory) %d\n", snapshot->seqno);
- 	drm_printf(p, "\tTimestamp: 0x%016llx\n", snapshot->ctx_timestamp);
- 	drm_printf(p, "\tTimestamp ms: %llu\n", snapshot->ctx_timestamp_ms);
-+	drm_printf(p, "\tQueue Timestamp: 0x%016llx\n", snapshot->queue_timestamp);
-+	drm_printf(p, "\tQueue Timestamp ms: %llu\n", snapshot->queue_timestamp_ms);
- 	drm_printf(p, "\tJob Timestamp: 0x%08x\n", snapshot->ctx_job_timestamp);
- 	if (snapshot->multi_queue.primary_context_desc) {
- 		drm_printf(p, "\tMulti queue primary Context Desc: 0x%08x\n",
-diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-index d0deb916e4f1..131bd2b0ceab 100644
---- a/drivers/gpu/drm/xe/xe_lrc.h
-+++ b/drivers/gpu/drm/xe/xe_lrc.h
-@@ -39,6 +39,8 @@ struct xe_lrc_snapshot {
- 	u32 seqno;
- 	u64 ctx_timestamp;
- 	u64 ctx_timestamp_ms;
-+	u64 queue_timestamp;
-+	u64 queue_timestamp_ms;
- 	u32 ctx_job_timestamp;
- 	struct {
- 		u32 primary_context_desc;
-diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h b/drivers/gpu/drm/xe/xe_lrc_types.h
-index 0a5c13ec2ad7..53ef48feebfc 100644
---- a/drivers/gpu/drm/xe/xe_lrc_types.h
-+++ b/drivers/gpu/drm/xe/xe_lrc_types.h
-@@ -64,6 +64,9 @@ struct xe_lrc {
- 	/** @ctx_timestamp: readout value of CTX_TIMESTAMP on last update */
- 	u64 ctx_timestamp;
- 
-+	/** @queue_timestamp: value of QUEUE_TIMESTAMP on last update */
-+	u64 queue_timestamp;
-+
- 	/** @multi_queue: Multi queue LRC related information */
- 	struct {
- 		/** @multi_queue.primary_lrc: Primary lrc of this multi-queue group*/
+ /* This part must be outside protection */
 -- 
 2.51.0
 
