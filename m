@@ -4,52 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC773CD343B
-	for <intel-xe@archiver.kernel.org>; Wed,  6 May 2026 14:32:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85820CD343B
+	for <intel-xe@archiver.kernel.org>; Wed,  6 May 2026 14:38:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6098310EDC9;
-	Wed,  6 May 2026 14:32:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F66810EDC4;
+	Wed,  6 May 2026 14:38:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VV9jevj5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jMB5ZXjn";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97E0610EDC9
- for <intel-xe@lists.freedesktop.org>; Wed,  6 May 2026 14:32:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA03110EDC4;
+ Wed,  6 May 2026 14:38:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778077974; x=1809613974;
- h=date:from:to:cc:subject:message-id;
- bh=A5PisjVvgGoCfjSxH/9LQbKyi8m9fWXhzARRamnSrdE=;
- b=VV9jevj5ZPLwGtCUDDOVty9wbv84Y1W1Kh/XO2yRXqbxbbT3KqH1rvRX
- ExqPthaThHTXju9QHtedyCS0He60hQVX42Pv+O5RE9R9pyxL9OJ9klo+3
- iJm2kly6uOnY6Zqp7DmqwnXAyI2AKlCoIaDRBFTY4Ei2zyo53sESse34q
- 0Pvn1EFvG+jU5WTwrqQi/2AWpeuzR12a1n36m2iuMgpylBsYe051iNnYA
- izce/nNLqD0Q0SqR48txEpKRYGzfxDaolHuOCm2dzqZZfLua4Q78Mb3CQ
- sxY5Yu3iEiwZtY0LgFbqkT56KNctAj1cufrY5ciVpQarq9M0o2wcV7S2c w==;
-X-CSE-ConnectionGUID: puAdHOQWRhmLcCSbwVAzkg==
-X-CSE-MsgGUID: hRPah2mWR5aM9NNWnc3XeQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11778"; a="101684368"
-X-IronPort-AV: E=Sophos;i="6.23,219,1770624000"; d="scan'208";a="101684368"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ t=1778078338; x=1809614338;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=3cyqpWM4hY2WHFw6kor77wf8w5w1B47aBYbK7oUub5M=;
+ b=jMB5ZXjnxcrnqJ1OcRFWmaupwZE9VD4GbjJ/wCeKQFRFkO4y0qqNEN03
+ wB1zQ8wmybFIFhgXxR8xgM+tSGgONwxJ04xF3eKQnohI8OUk2E5z8DsM3
+ xyyKmE620T28h3jROCmWDDyyNkb+qXw2VTTgffNJERpm0Do7JctC2PjFc
+ CF5L9H35vdMfRLDLMgTFAzGKbONsrurtw9Ju42LT2UMU0jY0CIWVnT8BE
+ x19+rL+EsX4QhscTlHbpGQzpKwHxNbAlSqe+G/pWFXg6hOnoMUvrT9BKf
+ AoF0Kkvnew73Tm0EFrps8+Itya92O+nHSn5go75NlL0QpMqlc5xz9lTQK Q==;
+X-CSE-ConnectionGUID: dGwOZq2ASEa3u3ifQtW9gg==
+X-CSE-MsgGUID: GRMYdwItTba3xraMhFNXcA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11778"; a="101685860"
+X-IronPort-AV: E=Sophos;i="6.23,219,1770624000"; d="scan'208";a="101685860"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2026 07:32:46 -0700
-X-CSE-ConnectionGUID: mx3ZFWiuRvCRWvvEaG6VUg==
-X-CSE-MsgGUID: ZSoE2jByRSCb53iV0dTFWA==
+ 06 May 2026 07:38:57 -0700
+X-CSE-ConnectionGUID: MO97WVf1RiKlPmy703qAnA==
+X-CSE-MsgGUID: +9Zcu98LQayImxZ/dfr1kg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,219,1770624000"; d="scan'208";a="240142417"
-Received: from lkp-server01.sh.intel.com (HELO 9ec114424ce8) ([10.239.97.150])
- by orviesa003.jf.intel.com with ESMTP; 06 May 2026 07:32:45 -0700
-Received: from kbuild by 9ec114424ce8 with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1wKdIo-000000000yt-2hgG;
- Wed, 06 May 2026 14:32:42 +0000
-Date: Wed, 06 May 2026 22:32:42 +0800
-From: kernel test robot <lkp@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-fixes] BUILD SUCCESS
- b29987dfd943e655df6e3b641ecffad5cc1509c2
-Message-ID: <202605062233.hKXHZngw-lkp@intel.com>
-User-Agent: s-nail v14.9.25
+X-IronPort-AV: E=Sophos;i="6.23,219,1770624000"; d="scan'208";a="236074423"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO [10.245.244.213])
+ ([10.245.244.213])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2026 07:38:52 -0700
+Message-ID: <ab7836a9a776c73e96fd296ea8440ca075af5bad.camel@linux.intel.com>
+Subject: Re: [PATCH v5 5/5] drm/xe: Make use of
+ shrink_control::opportunistic_compaction hint
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: Andrew Morton <akpm@linux-foundation.org>, Dave Chinner	
+ <david@fromorbit.com>, Qi Zheng <zhengqi.arch@bytedance.com>, Roman
+ Gushchin	 <roman.gushchin@linux.dev>, Muchun Song <muchun.song@linux.dev>,
+ David Hildenbrand <david@kernel.org>, Lorenzo Stoakes <ljs@kernel.org>,
+ "Liam R. Howlett"	 <Liam.Howlett@oracle.com>, Vlastimil Babka
+ <vbabka@kernel.org>, Mike Rapoport	 <rppt@kernel.org>, Suren Baghdasaryan
+ <surenb@google.com>, Michal Hocko	 <mhocko@suse.com>, Johannes Weiner
+ <hannes@cmpxchg.org>, Shakeel Butt	 <shakeel.butt@linux.dev>, Kairui Song
+ <kasong@tencent.com>, Barry Song	 <baohua@kernel.org>, Axel Rasmussen
+ <axelrasmussen@google.com>, Yuanchu Xie	 <yuanchu@google.com>, Wei Xu
+ <weixugc@google.com>, linux-mm@kvack.org, 	linux-kernel@vger.kernel.org
+Date: Wed, 06 May 2026 16:38:48 +0200
+In-Reply-To: <20260506033300.3534883-6-matthew.brost@intel.com>
+References: <20260506033300.3534883-1-matthew.brost@intel.com>
+ <20260506033300.3534883-6-matthew.brost@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+MIME-Version: 1.0
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,263 +82,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-fixes
-branch HEAD: b29987dfd943e655df6e3b641ecffad5cc1509c2  drm/xe/guc: Exclude indirect ring state page from ADS engine state size
+On Tue, 2026-05-05 at 20:33 -0700, Matthew Brost wrote:
+> Xe/TTM backup reclaim can be extremely expensive under fragmentation
+> pressure as reclaim may migrate or destroy actively used GPU working
+> sets despite the system still having substantial free memory
+> available.
+>=20
+> Under high-order opportunistic reclaim, repeatedly backing up GPU
+> memory can lead to reclaim/rebind ping-pong behavior where active GPU
+> working sets are continuously torn down and reconstructed without
+> materially improving allocation success.
+>=20
+> Use the new shrink_control::opportunistic_compaction hint to avoid Xe
+> backup reclaim during fragmentation-driven high-order reclaim
+> attempts.
+> In this mode the shrinker skips advertising backup-backed reclaimable
+> memory and avoids initiating backup operations entirely.
+>=20
+> Order-0 and non-opportunistic reclaim behavior remain unchanged, so
+> Xe backup reclaim still participates normally during genuine memory
+> pressure.
+>=20
+> Cc: Andrew Morton <akpm@linux-foundation.org>
+> Cc: Dave Chinner <david@fromorbit.com>
+> Cc: Qi Zheng <zhengqi.arch@bytedance.com>
+> Cc: Roman Gushchin <roman.gushchin@linux.dev>
+> Cc: Muchun Song <muchun.song@linux.dev>
+> Cc: David Hildenbrand <david@kernel.org>
+> Cc: Lorenzo Stoakes <ljs@kernel.org>
+> Cc: "Liam R. Howlett" <Liam.Howlett@oracle.com>
+> Cc: Vlastimil Babka <vbabka@kernel.org>
+> Cc: Mike Rapoport <rppt@kernel.org>
+> Cc: Suren Baghdasaryan <surenb@google.com>
+> Cc: Michal Hocko <mhocko@suse.com>
+> Cc: Johannes Weiner <hannes@cmpxchg.org>
+> Cc: Shakeel Butt <shakeel.butt@linux.dev>
+> Cc: Kairui Song <kasong@tencent.com>
+> Cc: Barry Song <baohua@kernel.org>
+> Cc: Axel Rasmussen <axelrasmussen@google.com>
+> Cc: Yuanchu Xie <yuanchu@google.com>
+> Cc: Wei Xu <weixugc@google.com>
+> Cc: linux-mm@kvack.org
+> Cc: linux-kernel@vger.kernel.org
+> Assisted-by: Claude:claude-opus-4.6
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-elapsed time: 730m
+Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
 
-configs tested: 244
-configs skipped: 22
-
-The following configs have been built successfully.
-More configs may be tested in the coming days.
-
-tested configs:
-alpha                             allnoconfig    gcc-15.2.0
-alpha                            allyesconfig    gcc-15.2.0
-alpha                               defconfig    gcc-15.2.0
-arc                              allmodconfig    clang-16
-arc                               allnoconfig    gcc-15.2.0
-arc                              allyesconfig    clang-23
-arc                                 defconfig    gcc-15.2.0
-arc                            randconfig-001    gcc-8.5.0
-arc                   randconfig-001-20260506    gcc-12.5.0
-arc                   randconfig-001-20260506    gcc-8.5.0
-arc                            randconfig-002    gcc-8.5.0
-arc                   randconfig-002-20260506    gcc-12.5.0
-arc                   randconfig-002-20260506    gcc-8.5.0
-arm                               allnoconfig    gcc-15.2.0
-arm                              allyesconfig    clang-16
-arm                                 defconfig    gcc-15.2.0
-arm                            randconfig-001    gcc-8.5.0
-arm                   randconfig-001-20260506    gcc-12.5.0
-arm                   randconfig-001-20260506    gcc-8.5.0
-arm                            randconfig-002    gcc-8.5.0
-arm                   randconfig-002-20260506    gcc-12.5.0
-arm                   randconfig-002-20260506    gcc-8.5.0
-arm                            randconfig-003    gcc-8.5.0
-arm                   randconfig-003-20260506    gcc-12.5.0
-arm                   randconfig-003-20260506    gcc-8.5.0
-arm                            randconfig-004    gcc-8.5.0
-arm                   randconfig-004-20260506    gcc-12.5.0
-arm                   randconfig-004-20260506    gcc-8.5.0
-arm64                            allmodconfig    clang-23
-arm64                             allnoconfig    gcc-15.2.0
-arm64                               defconfig    gcc-15.2.0
-arm64                 randconfig-001-20260506    gcc-15.2.0
-arm64                 randconfig-002-20260506    gcc-15.2.0
-arm64                 randconfig-003-20260506    gcc-15.2.0
-arm64                 randconfig-004-20260506    gcc-15.2.0
-csky                             alldefconfig    gcc-15.2.0
-csky                             allmodconfig    gcc-15.2.0
-csky                              allnoconfig    gcc-15.2.0
-csky                                defconfig    gcc-15.2.0
-csky                  randconfig-001-20260506    gcc-15.2.0
-csky                  randconfig-002-20260506    gcc-15.2.0
-hexagon                          allmodconfig    gcc-15.2.0
-hexagon                           allnoconfig    gcc-15.2.0
-hexagon                             defconfig    gcc-15.2.0
-hexagon                        randconfig-001    gcc-11.5.0
-hexagon               randconfig-001-20260506    clang-23
-hexagon               randconfig-001-20260506    gcc-11.5.0
-hexagon                        randconfig-002    gcc-11.5.0
-hexagon               randconfig-002-20260506    clang-23
-hexagon               randconfig-002-20260506    gcc-11.5.0
-i386                             allmodconfig    clang-20
-i386                              allnoconfig    gcc-15.2.0
-i386                             allyesconfig    clang-20
-i386                 buildonly-randconfig-001    clang-20
-i386        buildonly-randconfig-001-20260506    clang-20
-i386        buildonly-randconfig-001-20260506    gcc-14
-i386                 buildonly-randconfig-002    clang-20
-i386        buildonly-randconfig-002-20260506    clang-20
-i386        buildonly-randconfig-002-20260506    gcc-14
-i386                 buildonly-randconfig-003    clang-20
-i386        buildonly-randconfig-003-20260506    clang-20
-i386                 buildonly-randconfig-004    clang-20
-i386        buildonly-randconfig-004-20260506    clang-20
-i386                 buildonly-randconfig-005    clang-20
-i386        buildonly-randconfig-005-20260506    clang-20
-i386                 buildonly-randconfig-006    clang-20
-i386        buildonly-randconfig-006-20260506    clang-20
-i386        buildonly-randconfig-006-20260506    gcc-14
-i386                                defconfig    gcc-15.2.0
-i386                           randconfig-001    gcc-14
-i386                  randconfig-001-20260506    gcc-14
-i386                           randconfig-002    gcc-14
-i386                  randconfig-002-20260506    gcc-14
-i386                           randconfig-003    gcc-14
-i386                  randconfig-003-20260506    gcc-14
-i386                           randconfig-004    gcc-14
-i386                  randconfig-004-20260506    gcc-14
-i386                           randconfig-005    gcc-14
-i386                  randconfig-005-20260506    gcc-14
-i386                           randconfig-006    gcc-14
-i386                  randconfig-006-20260506    gcc-14
-i386                           randconfig-007    gcc-14
-i386                  randconfig-007-20260506    gcc-14
-i386                  randconfig-011-20260506    clang-20
-i386                  randconfig-012-20260506    clang-20
-i386                  randconfig-013-20260506    clang-20
-i386                  randconfig-014-20260506    clang-20
-i386                  randconfig-015-20260506    clang-20
-i386                  randconfig-016-20260506    clang-20
-i386                  randconfig-017-20260506    clang-20
-loongarch                        allmodconfig    clang-23
-loongarch                         allnoconfig    gcc-15.2.0
-loongarch                           defconfig    clang-19
-loongarch                      randconfig-001    gcc-11.5.0
-loongarch             randconfig-001-20260506    clang-23
-loongarch             randconfig-001-20260506    gcc-11.5.0
-loongarch                      randconfig-002    gcc-11.5.0
-loongarch             randconfig-002-20260506    clang-23
-loongarch             randconfig-002-20260506    gcc-11.5.0
-m68k                             allmodconfig    gcc-15.2.0
-m68k                              allnoconfig    gcc-15.2.0
-m68k                             allyesconfig    clang-16
-m68k                         apollo_defconfig    gcc-15.2.0
-m68k                                defconfig    clang-19
-microblaze                       alldefconfig    gcc-15.2.0
-microblaze                        allnoconfig    gcc-15.2.0
-microblaze                       allyesconfig    gcc-15.2.0
-microblaze                          defconfig    clang-19
-mips                             allmodconfig    gcc-15.2.0
-mips                              allnoconfig    gcc-15.2.0
-mips                             allyesconfig    gcc-15.2.0
-mips                         db1xxx_defconfig    clang-23
-nios2                            allmodconfig    clang-23
-nios2                             allnoconfig    clang-23
-nios2                               defconfig    clang-19
-nios2                          randconfig-001    gcc-11.5.0
-nios2                 randconfig-001-20260506    clang-23
-nios2                 randconfig-001-20260506    gcc-11.5.0
-nios2                 randconfig-001-20260506    gcc-8.5.0
-nios2                          randconfig-002    gcc-11.5.0
-nios2                 randconfig-002-20260506    clang-23
-nios2                 randconfig-002-20260506    gcc-11.5.0
-nios2                 randconfig-002-20260506    gcc-8.5.0
-openrisc                         allmodconfig    clang-23
-openrisc                          allnoconfig    clang-23
-openrisc                            defconfig    gcc-15.2.0
-openrisc                       virt_defconfig    gcc-15.2.0
-parisc                           allmodconfig    gcc-15.2.0
-parisc                            allnoconfig    clang-23
-parisc                           allyesconfig    clang-19
-parisc                              defconfig    gcc-15.2.0
-parisc                         randconfig-001    gcc-13.4.0
-parisc                randconfig-001-20260506    gcc-13.4.0
-parisc                         randconfig-002    gcc-13.4.0
-parisc                randconfig-002-20260506    gcc-13.4.0
-parisc64                            defconfig    clang-19
-powerpc                          allmodconfig    gcc-15.2.0
-powerpc                           allnoconfig    clang-23
-powerpc                        randconfig-001    gcc-13.4.0
-powerpc               randconfig-001-20260506    gcc-13.4.0
-powerpc                        randconfig-002    gcc-13.4.0
-powerpc               randconfig-002-20260506    gcc-13.4.0
-powerpc64                      randconfig-001    gcc-13.4.0
-powerpc64             randconfig-001-20260506    gcc-13.4.0
-powerpc64                      randconfig-002    gcc-13.4.0
-powerpc64             randconfig-002-20260506    gcc-13.4.0
-riscv                            allmodconfig    clang-23
-riscv                             allnoconfig    clang-23
-riscv                            allyesconfig    clang-16
-riscv                               defconfig    gcc-15.2.0
-riscv                          randconfig-001    gcc-8.5.0
-riscv                 randconfig-001-20260506    gcc-8.5.0
-riscv                          randconfig-002    gcc-8.5.0
-riscv                 randconfig-002-20260506    gcc-8.5.0
-s390                             allmodconfig    clang-19
-s390                              allnoconfig    clang-23
-s390                             allyesconfig    gcc-15.2.0
-s390                                defconfig    gcc-15.2.0
-s390                           randconfig-001    gcc-8.5.0
-s390                  randconfig-001-20260506    gcc-8.5.0
-s390                           randconfig-002    gcc-8.5.0
-s390                  randconfig-002-20260506    gcc-8.5.0
-sh                               alldefconfig    gcc-15.2.0
-sh                               allmodconfig    gcc-15.2.0
-sh                                allnoconfig    clang-23
-sh                               allyesconfig    clang-19
-sh                                  defconfig    gcc-14
-sh                 kfr2r09-romimage_defconfig    gcc-15.2.0
-sh                             randconfig-001    gcc-8.5.0
-sh                    randconfig-001-20260506    gcc-8.5.0
-sh                             randconfig-002    gcc-8.5.0
-sh                    randconfig-002-20260506    gcc-8.5.0
-sparc                             allnoconfig    clang-23
-sparc                               defconfig    gcc-15.2.0
-sparc                 randconfig-001-20260506    gcc-11.5.0
-sparc                 randconfig-002-20260506    gcc-11.5.0
-sparc64                          allmodconfig    clang-23
-sparc64                             defconfig    gcc-14
-sparc64               randconfig-001-20260506    gcc-11.5.0
-sparc64               randconfig-002-20260506    gcc-11.5.0
-um                               allmodconfig    clang-19
-um                                allnoconfig    clang-23
-um                               allyesconfig    gcc-15.2.0
-um                                  defconfig    gcc-14
-um                             i386_defconfig    gcc-14
-um                    randconfig-001-20260506    gcc-11.5.0
-um                    randconfig-002-20260506    gcc-11.5.0
-um                           x86_64_defconfig    gcc-14
-x86_64                           allmodconfig    clang-20
-x86_64                            allnoconfig    clang-23
-x86_64                           allyesconfig    clang-20
-x86_64      buildonly-randconfig-001-20260506    clang-20
-x86_64      buildonly-randconfig-002-20260506    clang-20
-x86_64      buildonly-randconfig-002-20260506    gcc-14
-x86_64      buildonly-randconfig-003-20260506    clang-20
-x86_64      buildonly-randconfig-004-20260506    clang-20
-x86_64      buildonly-randconfig-005-20260506    clang-20
-x86_64      buildonly-randconfig-005-20260506    gcc-14
-x86_64      buildonly-randconfig-006-20260506    clang-20
-x86_64                              defconfig    gcc-14
-x86_64                                  kexec    clang-20
-x86_64                randconfig-001-20260506    clang-20
-x86_64                randconfig-001-20260506    gcc-13
-x86_64                randconfig-002-20260506    clang-20
-x86_64                randconfig-003-20260506    clang-20
-x86_64                randconfig-004-20260506    clang-20
-x86_64                randconfig-005-20260506    clang-20
-x86_64                randconfig-005-20260506    gcc-13
-x86_64                randconfig-006-20260506    clang-20
-x86_64                         randconfig-011    clang-20
-x86_64                randconfig-011-20260506    clang-20
-x86_64                         randconfig-012    clang-20
-x86_64                randconfig-012-20260506    clang-20
-x86_64                         randconfig-013    clang-20
-x86_64                randconfig-013-20260506    clang-20
-x86_64                         randconfig-014    clang-20
-x86_64                randconfig-014-20260506    clang-20
-x86_64                         randconfig-015    clang-20
-x86_64                randconfig-015-20260506    clang-20
-x86_64                         randconfig-016    clang-20
-x86_64                randconfig-016-20260506    clang-20
-x86_64                         randconfig-071    clang-20
-x86_64                randconfig-071-20260506    clang-20
-x86_64                         randconfig-072    clang-20
-x86_64                randconfig-072-20260506    clang-20
-x86_64                         randconfig-073    clang-20
-x86_64                randconfig-073-20260506    clang-20
-x86_64                         randconfig-074    clang-20
-x86_64                randconfig-074-20260506    clang-20
-x86_64                         randconfig-075    clang-20
-x86_64                randconfig-075-20260506    clang-20
-x86_64                         randconfig-076    clang-20
-x86_64                randconfig-076-20260506    clang-20
-x86_64                               rhel-9.4    clang-20
-x86_64                           rhel-9.4-bpf    gcc-14
-x86_64                          rhel-9.4-func    clang-20
-x86_64                    rhel-9.4-kselftests    clang-20
-x86_64                         rhel-9.4-kunit    gcc-14
-x86_64                           rhel-9.4-ltp    gcc-14
-x86_64                          rhel-9.4-rust    clang-20
-xtensa                            allnoconfig    clang-23
-xtensa                           allyesconfig    clang-23
-xtensa                randconfig-001-20260506    gcc-11.5.0
-xtensa                randconfig-002-20260506    gcc-11.5.0
-
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> ---
+> =C2=A0drivers/gpu/drm/xe/xe_shrinker.c | 20 +++++++++++++++++---
+> =C2=A01 file changed, 17 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_shrinker.c
+> b/drivers/gpu/drm/xe/xe_shrinker.c
+> index 83374cd57660..4646b0f5b82b 100644
+> --- a/drivers/gpu/drm/xe/xe_shrinker.c
+> +++ b/drivers/gpu/drm/xe/xe_shrinker.c
+> @@ -139,10 +139,17 @@ static unsigned long
+> =C2=A0xe_shrinker_count(struct shrinker *shrink, struct shrink_control
+> *sc)
+> =C2=A0{
+> =C2=A0	struct xe_shrinker *shrinker =3D to_xe_shrinker(shrink);
+> -	unsigned long num_pages;
+> +	unsigned long num_pages =3D 0;
+> =C2=A0	bool can_backup =3D !!(sc->gfp_mask & __GFP_FS);
+> =C2=A0
+> -	num_pages =3D ttm_backup_bytes_avail() >> PAGE_SHIFT;
+> +	/*
+> +	 * Skip accounting backup-able pages when this is an
+> opportunistic
+> +	 * high-order pass: TTM backup work shrinks at native page
+> granularity
+> +	 * and is unlikely to produce the contiguous block the
+> caller wants,
+> +	 * so don't advertise it as reclaimable for this hint.
+> +	 */
+> +	if (!sc->order || !sc->opportunistic_compaction)
+> +		num_pages =3D ttm_backup_bytes_avail() >> PAGE_SHIFT;
+> =C2=A0	read_lock(&shrinker->lock);
+> =C2=A0
+> =C2=A0	if (can_backup)
+> @@ -233,7 +240,14 @@ static unsigned long xe_shrinker_scan(struct
+> shrinker *shrink, struct shrink_con
+> =C2=A0	}
+> =C2=A0
+> =C2=A0	sc->nr_scanned =3D nr_scanned;
+> -	if (nr_scanned >=3D nr_to_scan || !can_backup)
+> +	/*
+> +	 * Stop after the purge pass for opportunistic high-order
+> reclaim:
+> +	 * the subsequent backup/writeback pass works at native page
+> order
+> +	 * and is unlikely to free a contiguous high-order block, so
+> doing
+> +	 * it here would just churn working sets for no compaction
+> benefit.
+> +	 */
+> +	if (nr_scanned >=3D nr_to_scan || !can_backup ||
+> +	=C2=A0=C2=A0=C2=A0 (sc->order && sc->opportunistic_compaction))
+> =C2=A0		goto out;
+> =C2=A0
+> =C2=A0	/* If we didn't wake before, try to do it now if needed. */
