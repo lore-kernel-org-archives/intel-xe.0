@@ -4,147 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 514FFCD343B
-	for <intel-xe@archiver.kernel.org>; Wed,  6 May 2026 03:31:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C62EECD342F
+	for <intel-xe@archiver.kernel.org>; Wed,  6 May 2026 03:33:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11EE510E144;
-	Wed,  6 May 2026 03:31:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F3F210E4D2;
+	Wed,  6 May 2026 03:33:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QKHeLnRL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hQgimQ0V";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48A4410E144
- for <intel-xe@lists.freedesktop.org>; Wed,  6 May 2026 03:31:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46F1F10E144;
+ Wed,  6 May 2026 03:33:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778038297; x=1809574297;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=QId3+nZEPmrlGKIBZ9pFteYkvbHmK0AAfyvbU5eseQ0=;
- b=QKHeLnRL2oErZs9HuToLozW6qWXUFrCmdNaLzJcUEbLON3fURLM/yi3k
- QfdYiPe40pcdddwXBLWgKdDHr6rsjTwP+WYutEMV9JJdrh2KoZm03mlNt
- xq1Bi1MA1w7AFxnKb7Aivkkq45SowD5B46ZchIYYEA9fneJNPrHafEm2H
- RLwW2oJcb5AnpHNGdMrCGs7L1j8KpU8NpGJvT+nmk6Ke90vE/yreEwLZm
- UT+AUt26TAzQJqyyOZbb7m/FqfP2hf2CYItv4THSlgi/EUHEsp6TJMizA
- KBi006fN1UoPbC5hWEB94SZwEvao4k75fJdfcn26EjwrQf+wv6piBNbvj g==;
-X-CSE-ConnectionGUID: x1mhVWMUTQu87vGAnfwcIw==
-X-CSE-MsgGUID: nDCg1QdsRm6eL4HmeYnFYw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11777"; a="96354706"
-X-IronPort-AV: E=Sophos;i="6.23,218,1770624000"; d="scan'208";a="96354706"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2026 20:31:37 -0700
-X-CSE-ConnectionGUID: o8s4TiksTUmhEChOIUxwfA==
-X-CSE-MsgGUID: RS3ZZj6ZR4GMeOTUIOMakg==
+ t=1778038388; x=1809574388;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=81vapQm0G2+s7Q9rjkTUxp8N8diOM+t3xvAi5oamm8g=;
+ b=hQgimQ0VBR+3Zh6wyVIBbmGq7k4jVw1Q1o/g3sno3C+McUPK7MoMXxt5
+ AtGkmVwvgskofR0t+HDThvX5AURSU27xvdtGD3oqfdu4moZXh5DHH/FVt
+ 0xeNVRBijcOTd/QtRQFae+2/874KqWY7fH51h+55Rne6EHkgtRy7dXtj4
+ /s5tDFSpBfz7pmwCi8MxylW/BLCiEeBljp3ovaLs5e3zlxGM8BKwHKrnG
+ v7TF0Niv90bK3lYqg//Fle6fhCaXFv9Bq+TzpXT93pUwjcns/Sq4urLQ3
+ nt6ZuhnwHmUWdVeKeG5i58Ce087zTg6Kn9zAu217Ny2NjlQlJFtUwoSPq g==;
+X-CSE-ConnectionGUID: P/xmPgJHQ1C6VZh39fIvyA==
+X-CSE-MsgGUID: IGjp/6cyQZqlBof+YPbnEg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11777"; a="78829032"
+X-IronPort-AV: E=Sophos;i="6.23,218,1770624000"; d="scan'208";a="78829032"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2026 20:33:07 -0700
+X-CSE-ConnectionGUID: nIPvi29BS/e4PKxK3VvyMQ==
+X-CSE-MsgGUID: 7ksHOWx2SLuT43UQAcKJtw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,218,1770624000"; d="scan'208";a="235004745"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2026 20:31:37 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 5 May 2026 20:31:36 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Tue, 5 May 2026 20:31:36 -0700
-Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.35) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 5 May 2026 20:31:35 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=D6tYjQXojY0yhhnnPTCgOG7gn9hzNyd9Dm0elVV4qfmzF25uFhyi/eRERiCt3fMe+zQ8f+K1asANcsi7nJPF5tfCAtW9qq9v7z52PzSOwYlPGckfuI2DsUmdWYCRq9VwS/yFWddp7dd2YqRdnn+R9wkiez8q2AeK8fQ6w2NP2yk4Nt2JNOHRIveitjRrDrsmxj07n0A8JlR4eTRdTckJP0QB59cWDN2Yqg/NBgJTXIpzpuKMuzWrABMd/BgcnOElnKOBD6mQc4pzfTJEK6sQNIFryZ1qVlDWrS8/CGGfIxKg70xdMPptW3aGYByTPrwTI8izK9j7M55nsFEvW6nATA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9Gn3HlKLxr1cVOEFyCqraS3D3KBfrA7YqmMMHbwEW1U=;
- b=VqlRCE4xvT6pKJu6QlSZXkQOXYRwt628O/U2vnwzQtvLp3G/InEwQXEbtCXVT+uNnVMH9gRauEmMOoqqRPHtd5pBTu8KcgclDfXePDGdjCg9hz2ZIojJqutBwp6zUUf1Pix3ONvwCope3pa1NSuoSSEFMOGbgd47JpfarHAK4blAgWkNcw+Du8zHi/D5+Yb17CS3E3a9uKD8qoM7vsCgdeX+5T56Ad22oj0+xruQ4Mr9nArnT4Utqo+0p9Lf1YShF+ISQ8dCeQgov1QwNjKLUmcZB4SiFh74bz4GvL+dgp1dH2gHDj6T9CRYDTx1PLc3dkxICSJL4HQFQxQ0WSCerg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BL3PR11MB6410.namprd11.prod.outlook.com (2603:10b6:208:3b9::15)
- by DS0PR11MB8162.namprd11.prod.outlook.com (2603:10b6:8:166::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.25; Wed, 6 May
- 2026 03:31:28 +0000
-Received: from BL3PR11MB6410.namprd11.prod.outlook.com
- ([fe80::b01a:aa33:165:efc]) by BL3PR11MB6410.namprd11.prod.outlook.com
- ([fe80::b01a:aa33:165:efc%4]) with mapi id 15.20.9891.008; Wed, 6 May 2026
- 03:31:27 +0000
-Date: Tue, 5 May 2026 20:31:25 -0700
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <matthew.brost@intel.com>,
- <stuart.summers@intel.com>
-Subject: Re: [PATCH v3 11/11] drm/xe/multi_queue: Whitelist QUEUE_TIMESTAMP
- register
-Message-ID: <afq2DW2AFRfGs5Dr@nvishwa1-desk>
-References: <20260505234408.3552147-13-umesh.nerlige.ramappa@intel.com>
- <20260505234408.3552147-24-umesh.nerlige.ramappa@intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20260505234408.3552147-24-umesh.nerlige.ramappa@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0388.namprd03.prod.outlook.com
- (2603:10b6:a03:3a1::33) To BL3PR11MB6410.namprd11.prod.outlook.com
- (2603:10b6:208:3b9::15)
+X-IronPort-AV: E=Sophos;i="6.23,218,1770624000"; d="scan'208";a="266342146"
+Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2026 20:33:06 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: Andrew Morton <akpm@linux-foundation.org>,
+ Dave Chinner <david@fromorbit.com>, Qi Zheng <zhengqi.arch@bytedance.com>,
+ Roman Gushchin <roman.gushchin@linux.dev>,
+ Muchun Song <muchun.song@linux.dev>, David Hildenbrand <david@kernel.org>,
+ Lorenzo Stoakes <ljs@kernel.org>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>,
+ Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
+ Johannes Weiner <hannes@cmpxchg.org>,
+ Shakeel Butt <shakeel.butt@linux.dev>, Kairui Song <kasong@tencent.com>,
+ Barry Song <baohua@kernel.org>, Axel Rasmussen <axelrasmussen@google.com>,
+ Yuanchu Xie <yuanchu@google.com>, Wei Xu <weixugc@google.com>,
+ linux-mm@kvack.org, linux-kernel@vger.kernel.org,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Subject: [PATCH v5 1/5] mm: Wire up order in shrink_control
+Date: Tue,  5 May 2026 20:32:56 -0700
+Message-Id: <20260506033300.3534883-2-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260506033300.3534883-1-matthew.brost@intel.com>
+References: <20260506033300.3534883-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL3PR11MB6410:EE_|DS0PR11MB8162:EE_
-X-MS-Office365-Filtering-Correlation-Id: b9232cd6-570b-4a20-464d-08deab1ff520
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|18002099003|22082099003|56012099003; 
-X-Microsoft-Antispam-Message-Info: hYf5sd3xohUMkFlIiBbNabMmpy7oK0F2tNRjAlYT4+fuTZBj4WAvNM91Jc/BqkIOh43WIsc1xOHJbWxQjdVR6in2QdJUqZ1q2GwjtpShRsS46eRhuHHVIA9ACyfGoB7/arAZXmZR68gCvazP0TMUaaEpyWBCTaT3zD1YZr14Jrzg8qq93jNFW2cerpowq8AQeIeWqy2Fj4fExHJIwe2WNj2G2gaxxmn6EWXWM97LIJm92PfhgSuF0T6fYwHxKm+FLGofJEHHDZhvUi8YPGnvpAb1g8r5R5Ay3SK6BUaLqRa7JkKPI/WuvrW2HO3fSqUJhO/IsbihHq2zVckyPwiiRQxgBz1aOsyVKNFQHqlTkIdbb+xcM56yZo0IHYhU8LH2byn3WSaR7j9UMWNQBhDZFEtk3s0zerIfbiYLwIQPPxlEbY+WPggIHsJhf/i2FNAG2aLMLQGb/iiax47CRjk6p3aoNsSVljg6N5loiW1P2u2YOOVckrr7FOSMCJBOqTVpBeWV9zGC3GPN3kgmcUrlMBe6tKHQBkB2QXClEgQhzLUvTDYZhP7yXXSM1VCI1tj1YV2Ob05+4ItYSMeyI1s7AMOqPQV91UpkPNZka70eS8INlYi1ltqpYMJmVSNN04JGF8ZSwLkgkA/5Ea0tG/5SEg/BMFrbTrongqIELMtfCUtmefltWiXgRPi80CMYG80+PQ3hN8trGidxCKmTNwPePg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL3PR11MB6410.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(18002099003)(22082099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?yNfu9kattBso1ShDnAQqdUuajUGndpUN4f2C0Dr68v7I8G6tflJXTuFr9dwI?=
- =?us-ascii?Q?DmbjS7iSJmnoG9mMxIyab5QbTpiEa7QGUKZkroqql80CwI5dEtDPsVCyhh5u?=
- =?us-ascii?Q?zAs2pQz2pVTTBp9yKfmWFPct0ymJ6AGwjfSZe7bdaaVnK3njLT4c4xGLAcIR?=
- =?us-ascii?Q?tQDOhPsFtONhDBEXdiwts4VKi8lDXfZXUdA5rOpnl4n1FjlSRPnyJWnh8Akw?=
- =?us-ascii?Q?QRb6JGqqqJYOgA8Wh2xSB1Ke+oxyKoEZnSjWfPBHIuI73YAe512ttE/FryVs?=
- =?us-ascii?Q?GzLjoOHe0WYNTH5zKLlDgFNMeZIwq9P9B9j8HUR61QIMDcroUX+j6d7dXMPY?=
- =?us-ascii?Q?F4CnD9XeinFvPKeOh9CVG7EBLor3xSopFv3lqgpHWilM7o/AHR5b7iWWWJ5J?=
- =?us-ascii?Q?ZzjBXEGKh3Uw66YI2LDDykaJOXPH001QZdX+mSaR16PAC6hnlfgVIPP4c3R5?=
- =?us-ascii?Q?1Vq2fMOezORxauB5HSOyXO7Ofenfh3UL07fFFLTOAqpbUlgHacOoMGCAF8xA?=
- =?us-ascii?Q?NKlHT4TIVskjIFt3yGGpQBvX+sVJ1XE8jZiBuoBTZevxfg6ZvyUXbhTsmKqK?=
- =?us-ascii?Q?YLb3BgMgWIDvt5jnobqHJNDCztceL19y4PuJPdXpfgZikTYGooNKTmlpNzvf?=
- =?us-ascii?Q?0LHSrGKqmYv4QP3ppazKKKWybPFcNVIEVQeySi5lrviiqvZj84kCc/vf4SZv?=
- =?us-ascii?Q?ToiZfzeaV2jbCJYIMpcg3ybeKm6Mhuharu8JKk5Zjyi4GP62LiRm+kMBFWFR?=
- =?us-ascii?Q?Jy2ExhPDC+Jo81wf0WqCUtwhjW82XKUiZ6FFDWgKN8L2rMJ+3vsRFza95RC/?=
- =?us-ascii?Q?x/X66cGuUFSyW6lUCrLeKhYLCUGKp4AQPZ2A/q6w0pqzdSVQGud8PARN2uvS?=
- =?us-ascii?Q?wiSFqd9n6ooLTkW9+nhS58Oab05HugnZl3BhKGfxR3O88JYciiSW8Vr+iu9I?=
- =?us-ascii?Q?D4NI1YKqBSczfVoA4OgVJnlS3nyehCjBQNSD5ehb8QOg4t+fkqM5k0E1rTzP?=
- =?us-ascii?Q?cfSYPIHgt8pzHvYTzMSvl6TWAXO4OXmelgCnBmh9AHxI/Kdd3/GHdfky5UyJ?=
- =?us-ascii?Q?GsZstpBNZ83S2qF6KHeGDpIQYDbItqMKZWQSXSrtr3jFOAlx5NJM9kw70EH/?=
- =?us-ascii?Q?CZCDxcqRKi/6rIl/V0lSMn/m68eBS3IFVWXU2vM0VoqPHb4gJSBDSBCh9yaz?=
- =?us-ascii?Q?jcHiY/smYKDMQyGVGmSCH4KzBRstOJ7iB5tLPldAMBM80voAGfEQnxFx3uE+?=
- =?us-ascii?Q?TrESAgitmwgZFtSiXvxtWj/oW3CNufqgcNh6yBzgTM4uaRQxtTaZ6Rd+rEKh?=
- =?us-ascii?Q?H7hoqq53thjxVMl+9dSTcKgLRn+tQHfk97D29WT3RB1E4pbsPcvgnMgCuJk7?=
- =?us-ascii?Q?EjYTdequduefGbE7Fy+sqpXOaT3V/qQU+lQXOSZxgAYYb5x/ikBYsryYW743?=
- =?us-ascii?Q?4G3k7gvXgiZ9DNqB6zLQX2CDwrF1O1c76xz2IcJlVGBtmXlZF1LHn3LqgSRc?=
- =?us-ascii?Q?80Qh47nV10/q7dfzt5qXStvmPWRYwowgrQRXAqB3sk8qs1stmOb0WT3RRheX?=
- =?us-ascii?Q?es3yzzrBmgIYK76ziNFL7SAjmQ8PSGyn5gCsQOHmFrLQZJBfu0cfUTVfHszf?=
- =?us-ascii?Q?QtCBCLQv7zyOVW6DdmzcUD0xkA4Grph3FF4o5rr6r081tA7KPDSoNJtkOSKX?=
- =?us-ascii?Q?VxcbfH3LHx+YLEsz+xCka+wo44z6hKevxC3ti4J8+z70VuYwvq8niFJ7fJjS?=
- =?us-ascii?Q?/64V7LRGSHWcqJf4rLflR+DWPBHMD4aIKlvFcpt45FqSUHV9XCua?=
-X-Exchange-RoutingPolicyChecked: GG0Oo1X7C4pI81Abut2qizTd89bFMVWlRogkiw1agWixexpkd7YU6d8Yn8aBWkHBYrgGarDHlirCuHRmvQy2IXXcKMt+BDLD2GEthOB/mgC2yA2xB24XHB19uAvHCTD7bLa5d7k1eZihJwN954MaV2JBWwRYMjSuGgtiY2hsMfBr4LLM4k/4y7ni7I0twW4Yp0QPtftJrp0RnzW0Bl05e4newQ5QXhmZLcjLT56HuDlVgKQuADOUucGkReAuj2gEs6b+Z5ipBIxNTTc2UEoPRppKwb1T7OXGi6EB0dszt0WKB42PL5ryeoG5cNTZW8dknNM1mGcP2w8Mx8GlALMXdg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: b9232cd6-570b-4a20-464d-08deab1ff520
-X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6410.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 May 2026 03:31:27.9411 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: bgqKQox3DkekBh4iQwlVkuD69H2qKnXG3ABFBa+1m/I6U63aJypbvx6wA2MObcgoNJ3m/Chrew0YL9rr3P6fmYI4xWsrEwbxvFmOJ2TN0wknZFFbQ4kZzXutTCuH83In
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB8162
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,68 +81,170 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, May 05, 2026 at 04:44:20PM -0700, Umesh Nerlige Ramappa wrote:
->In a multi-queue use case, when a job is running on the secondary queue,
->the CTX_TIMESTAMP does not reflect the queues run ticks. Instead, we use
->the QUEUE TIMESTAMP to check how long the job ran. For user space to see
->the run ticks for a secondary queue, whitelist the QUEUE_TIMESTAMP
->register.
->
->Compute PR: https://github.com/intel/compute-runtime/pull/923
->
->Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Pass the allocation order through shrink_control so shrinkers have
+visibility into the order that triggered reclaim.
 
-LGTM.
-Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+This allows shrinkers to implement better heuristics, such as detecting
+high-order allocation pressure or fragmentation and avoiding eviction
+of working sets when reclaim is invoked from kswapd.
 
->---
->v2: Whitelist QUEUE_TIMESTAMP only for copy and compute engines (Niranjana)
->v3: (Niranjana)
->- s/multiq/multi_queue/
->- Base the condition on multi_queue_engine_class_mask
->---
-> drivers/gpu/drm/xe/xe_reg_whitelist.c | 14 ++++++++++++++
-> 1 file changed, 14 insertions(+)
->
->diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
->index 8cc313182968..6f96bf84df66 100644
->--- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
->+++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
->@@ -9,6 +9,7 @@
-> #include "regs/xe_gt_regs.h"
-> #include "regs/xe_oa_regs.h"
-> #include "xe_device.h"
->+#include "xe_gt.h"
-> #include "xe_gt_types.h"
-> #include "xe_gt_printk.h"
-> #include "xe_platform_types.h"
->@@ -33,6 +34,13 @@ static bool match_has_mert(const struct xe_device *xe,
-> 	return xe_device_has_mert((struct xe_device *)xe);
-> }
->
->+static bool match_multi_queue_class(const struct xe_device *xe,
->+				    const struct xe_gt *gt,
->+				    const struct xe_hw_engine *hwe)
->+{
->+	return xe_gt_hwe_class_supports_multi_queue(gt, hwe->class);
->+}
->+
-> static const struct xe_rtp_entry_sr register_whitelist[] = {
-> 	{ XE_RTP_NAME("WaAllowPMDepthAndInvocationCountAccessFromUMD, 1408556865"),
-> 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210), ENGINE_CLASS(RENDER)),
->@@ -54,6 +62,12 @@ static const struct xe_rtp_entry_sr register_whitelist[] = {
-> 				RING_FORCE_TO_NONPRIV_ACCESS_RD,
-> 				XE_RTP_ACTION_FLAG(ENGINE_BASE)))
-> 	},
->+	{ XE_RTP_NAME("allow_read_queue_timestamp"),
->+	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3500, 3511), FUNC(match_multi_queue_class)),
->+	  XE_RTP_ACTIONS(WHITELIST(RING_QUEUE_TIMESTAMP(0),
->+				   RING_FORCE_TO_NONPRIV_ACCESS_RD,
->+				   XE_RTP_ACTION_FLAG(ENGINE_BASE)))
->+	},
-> 	{ XE_RTP_NAME("16014440446"),
-> 	  XE_RTP_RULES(PLATFORM(PVC)),
-> 	  XE_RTP_ACTIONS(WHITELIST(XE_REG(0x4400),
->-- 
->2.51.0
->
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Cc: Dave Chinner <david@fromorbit.com>
+Cc: Qi Zheng <zhengqi.arch@bytedance.com>
+Cc: Roman Gushchin <roman.gushchin@linux.dev>
+Cc: Muchun Song <muchun.song@linux.dev>
+Cc: David Hildenbrand <david@kernel.org>
+Cc: Lorenzo Stoakes <ljs@kernel.org>
+Cc: "Liam R. Howlett" <Liam.Howlett@oracle.com>
+Cc: Vlastimil Babka <vbabka@kernel.org>
+Cc: Mike Rapoport <rppt@kernel.org>
+Cc: Suren Baghdasaryan <surenb@google.com>
+Cc: Michal Hocko <mhocko@suse.com>
+Cc: Johannes Weiner <hannes@cmpxchg.org>
+Cc: Shakeel Butt <shakeel.butt@linux.dev>
+Cc: Kairui Song <kasong@tencent.com>
+Cc: Barry Song <baohua@kernel.org>
+Cc: Axel Rasmussen <axelrasmussen@google.com>
+Cc: Yuanchu Xie <yuanchu@google.com>
+Cc: Wei Xu <weixugc@google.com>
+Cc: linux-mm@kvack.org
+Cc: linux-kernel@vger.kernel.org
+Suggested-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ include/linux/shrinker.h |  3 +++
+ mm/internal.h            |  4 ++--
+ mm/shrinker.c            | 13 ++++++++-----
+ mm/vmscan.c              |  7 ++++---
+ 4 files changed, 17 insertions(+), 10 deletions(-)
+
+diff --git a/include/linux/shrinker.h b/include/linux/shrinker.h
+index 1a00be90d93a..7072f693b9be 100644
+--- a/include/linux/shrinker.h
++++ b/include/linux/shrinker.h
+@@ -37,6 +37,9 @@ struct shrink_control {
+ 	/* current node being shrunk (for NUMA aware shrinkers) */
+ 	int nid;
+ 
++	/* Allocation order we are currently trying to fulfil. */
++	s8 order;
++
+ 	/*
+ 	 * How many objects scan_objects should scan and try to reclaim.
+ 	 * This is reset before every call, so it is safe for callees
+diff --git a/mm/internal.h b/mm/internal.h
+index 5a2ddcf68e0b..ff8671dccf7b 100644
+--- a/mm/internal.h
++++ b/mm/internal.h
+@@ -1759,8 +1759,8 @@ void __meminit __init_single_page(struct page *page, unsigned long pfn,
+ void __meminit __init_page_from_nid(unsigned long pfn, int nid);
+ 
+ /* shrinker related functions */
+-unsigned long shrink_slab(gfp_t gfp_mask, int nid, struct mem_cgroup *memcg,
+-			  int priority);
++unsigned long shrink_slab(gfp_t gfp_mask, int nid, s8 order,
++			  struct mem_cgroup *memcg, int priority);
+ 
+ int shmem_add_to_page_cache(struct folio *folio,
+ 			    struct address_space *mapping,
+diff --git a/mm/shrinker.c b/mm/shrinker.c
+index 76b3f750cf65..c83f3b3daa08 100644
+--- a/mm/shrinker.c
++++ b/mm/shrinker.c
+@@ -466,7 +466,7 @@ static unsigned long do_shrink_slab(struct shrink_control *shrinkctl,
+ }
+ 
+ #ifdef CONFIG_MEMCG
+-static unsigned long shrink_slab_memcg(gfp_t gfp_mask, int nid,
++static unsigned long shrink_slab_memcg(gfp_t gfp_mask, int nid, s8 order,
+ 			struct mem_cgroup *memcg, int priority)
+ {
+ 	struct shrinker_info *info;
+@@ -528,6 +528,7 @@ static unsigned long shrink_slab_memcg(gfp_t gfp_mask, int nid,
+ 			struct shrink_control sc = {
+ 				.gfp_mask = gfp_mask,
+ 				.nid = nid,
++				.order = order,
+ 				.memcg = memcg,
+ 			};
+ 			struct shrinker *shrinker;
+@@ -587,7 +588,7 @@ static unsigned long shrink_slab_memcg(gfp_t gfp_mask, int nid,
+ 	return freed;
+ }
+ #else /* !CONFIG_MEMCG */
+-static unsigned long shrink_slab_memcg(gfp_t gfp_mask, int nid,
++static unsigned long shrink_slab_memcg(gfp_t gfp_mask, int nid, s8 order,
+ 			struct mem_cgroup *memcg, int priority)
+ {
+ 	return 0;
+@@ -598,6 +599,7 @@ static unsigned long shrink_slab_memcg(gfp_t gfp_mask, int nid,
+  * shrink_slab - shrink slab caches
+  * @gfp_mask: allocation context
+  * @nid: node whose slab caches to target
++ * @order: order of allocation
+  * @memcg: memory cgroup whose slab caches to target
+  * @priority: the reclaim priority
+  *
+@@ -614,8 +616,8 @@ static unsigned long shrink_slab_memcg(gfp_t gfp_mask, int nid,
+  *
+  * Returns the number of reclaimed slab objects.
+  */
+-unsigned long shrink_slab(gfp_t gfp_mask, int nid, struct mem_cgroup *memcg,
+-			  int priority)
++unsigned long shrink_slab(gfp_t gfp_mask, int nid, s8 order,
++			  struct mem_cgroup *memcg, int priority)
+ {
+ 	unsigned long ret, freed = 0;
+ 	struct shrinker *shrinker;
+@@ -628,7 +630,7 @@ unsigned long shrink_slab(gfp_t gfp_mask, int nid, struct mem_cgroup *memcg,
+ 	 * oom.
+ 	 */
+ 	if (!mem_cgroup_disabled() && !mem_cgroup_is_root(memcg))
+-		return shrink_slab_memcg(gfp_mask, nid, memcg, priority);
++		return shrink_slab_memcg(gfp_mask, nid, order, memcg, priority);
+ 
+ 	/*
+ 	 * lockless algorithm of global shrink.
+@@ -656,6 +658,7 @@ unsigned long shrink_slab(gfp_t gfp_mask, int nid, struct mem_cgroup *memcg,
+ 		struct shrink_control sc = {
+ 			.gfp_mask = gfp_mask,
+ 			.nid = nid,
++			.order = order,
+ 			.memcg = memcg,
+ 		};
+ 
+diff --git a/mm/vmscan.c b/mm/vmscan.c
+index bd1b1aa12581..a54d14ecad25 100644
+--- a/mm/vmscan.c
++++ b/mm/vmscan.c
+@@ -412,7 +412,7 @@ static unsigned long drop_slab_node(int nid)
+ 
+ 	memcg = mem_cgroup_iter(NULL, NULL, NULL);
+ 	do {
+-		freed += shrink_slab(GFP_KERNEL, nid, memcg, 0);
++		freed += shrink_slab(GFP_KERNEL, nid, 0, memcg, 0);
+ 	} while ((memcg = mem_cgroup_iter(NULL, memcg, NULL)) != NULL);
+ 
+ 	return freed;
+@@ -5068,7 +5068,8 @@ static int shrink_one(struct lruvec *lruvec, struct scan_control *sc)
+ 
+ 	success = try_to_shrink_lruvec(lruvec, sc);
+ 
+-	shrink_slab(sc->gfp_mask, pgdat->node_id, memcg, sc->priority);
++	shrink_slab(sc->gfp_mask, pgdat->node_id, sc->order, memcg,
++		    sc->priority);
+ 
+ 	if (!sc->proactive)
+ 		vmpressure(sc->gfp_mask, memcg, false, sc->nr_scanned - scanned,
+@@ -6170,7 +6171,7 @@ static void shrink_node_memcgs(pg_data_t *pgdat, struct scan_control *sc)
+ 
+ 		shrink_lruvec(lruvec, sc);
+ 
+-		shrink_slab(sc->gfp_mask, pgdat->node_id, memcg,
++		shrink_slab(sc->gfp_mask, pgdat->node_id, sc->order, memcg,
+ 			    sc->priority);
+ 
+ 		/* Record the group's reclaim efficiency */
+-- 
+2.34.1
+
