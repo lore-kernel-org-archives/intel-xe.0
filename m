@@ -4,76 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81140CD342C
-	for <intel-xe@archiver.kernel.org>; Wed,  6 May 2026 16:44:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FFE7CD3439
+	for <intel-xe@archiver.kernel.org>; Wed,  6 May 2026 16:46:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42EA010EE1A;
-	Wed,  6 May 2026 16:44:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3961710EE1C;
+	Wed,  6 May 2026 16:46:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="fdJMF1YB";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="qRc7v0++";
 	dkim-atps=neutral
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com
- [209.85.210.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AD4210EE17
- for <intel-xe@lists.freedesktop.org>; Wed,  6 May 2026 16:44:53 +0000 (UTC)
-Received: by mail-pf1-f170.google.com with SMTP id
- d2e1a72fcca58-82f8b60e485so3209751b3a.0
- for <intel-xe@lists.freedesktop.org>; Wed, 06 May 2026 09:44:53 -0700 (PDT)
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com
+ [209.85.210.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9566610EE21
+ for <intel-xe@lists.freedesktop.org>; Wed,  6 May 2026 16:46:17 +0000 (UTC)
+Received: by mail-pf1-f174.google.com with SMTP id
+ d2e1a72fcca58-82f8893bff3so3170910b3a.2
+ for <intel-xe@lists.freedesktop.org>; Wed, 06 May 2026 09:46:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1778085893; x=1778690693; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1778085977; x=1778690777; darn=lists.freedesktop.org;
  h=content-transfer-encoding:in-reply-to:from:content-language
  :references:cc:to:subject:user-agent:mime-version:date:message-id
  :from:to:cc:subject:date:message-id:reply-to;
- bh=N4Q6MSodkGOeqtC71K6cHMIejF8w6gSkWWa1tMdwofY=;
- b=fdJMF1YBPBnF+ZUpi4xSon3+GYKG57ElPLSefcrbX0CEH8P5/bkJDfMQDM+VwRi7uX
- VoXhPATWoGMwFBEl+CJZbfyrBZOqUH2GKklVESL8/MvtpxjzhA0w3UaUDXH4Tvd+AOQh
- VvxW9Mi8jjCkn4mbYiBP3EORhINQDv3PddlbAjlKxjNlLfv1YF7biQdsBRRFH//1hBAe
- j6CT9linQxhUtpkfqMW5b98X0xPBWNoFmy56EhwlDts1yR5j9NE6pT/+65hIToRst3Qz
- dhm6pnCtY/0NHqc5DWHZhXFm79gLWGxTXc8uSFfbTOtx4ToD7aHLE71r7fqyNbQUnEva
- 4GFQ==
+ bh=2iHyzzY7IE/rC7HEhQGg/8O8s6YqqNQ0FIxXhZwCh7k=;
+ b=qRc7v0++C41UpN8IQyvNl0d6Z6SOMBeDmFKCGNPoDjNJpTwkj9n4C9MhYY4ESqQ1cp
+ Gz6eCKJ3Ncdzf/4SZAN0sqyeO0AtCuFLXxPbM/Jzn3n/7ZrWTNrZgomB3QZ8XIF4AIzy
+ FtiHpbPs67qOQSaGXFUcQupkNXzv3bJwg7S/Ck3bE68lwQ9cH8TOlxwu3a7FdaVRhGUA
+ B/k3Co7/+OvZtd/3NfkHcaXmEcZh1TVJdD7O8puo4pZN42Kq7j2Xq67sKKCash8wb0Qa
+ 8c4a+TF5YOG+ws+8dZD7vuXRGehte4dqoewcyIyNREBDowQk4jB4We4bDUMllKZ35+Qi
+ URAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1778085893; x=1778690693;
+ d=1e100.net; s=20251104; t=1778085977; x=1778690777;
  h=content-transfer-encoding:in-reply-to:from:content-language
  :references:cc:to:subject:user-agent:mime-version:date:message-id
  :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=N4Q6MSodkGOeqtC71K6cHMIejF8w6gSkWWa1tMdwofY=;
- b=p5pILiygtg/00ShA1HgYcDBLi9WZKrgnatYVbVKAczQBw6HRfDeBXHyf9rbZRp++JS
- C6aFoEY7eRB1RUO3jNJycAxmX7leNx/t2+lTgny1CK6Di1GWdeYzLI9NmssNu9KKk7l/
- hPMla7QDkXHrpJ/OhZgFvfN/aQXCTuN5AfjWE84tqFfyfDUY1i2LqIMhX8GDpe5cB5q7
- umWR7gC04KGXcpFbdD3Ml7VDOC47dbMjy+SAbwoovX1Az14EVsh/3MIax1Fd7d68aEsf
- q0Vk+UspQYXwrhyzh1tPsSTxYsRQLbNayr5UdXhdd8W/VU+OkR/JBWRP6vIaKQrBUb/R
- XPxg==
-X-Gm-Message-State: AOJu0Yzv4GdoHrlkyj5CaJ+jeCS334YnA+rJXJ5ONyMz2KjoMk/WiI7B
- ch5gfbC3T/ZYPqawFZpgpHXujjCHSgOSFXGOJicxvxcNyXu44zpPqBA8luDdK9od
-X-Gm-Gg: AeBDietzot0BE5qCwGosX7U17A5L0kupKnhxw5WFmT7VfUKax/Ya25mhygknXQOwuis
- j1+wodmk2pOzl+KoFooKvG5whyzzdpdVhUQHymH+QbEVwM2HezIp3AcKN1ZViBX8trygPsEghF3
- /B6fialAmimN8aBzf1zxsm+bRb0Hq+eS6H+1QSK74LshDa3zOANohRC+l6Zos1zSpxQUwSuSrYI
- QRgpt+mqoYD7ck14haH07leyWYXoUFhkBxmFp3vKMgSulJS1PSLjn+AyjWhSyE5R89qoUtoPz5L
- 3esui3qBPxsJS1EdcVCSwV7e/Qtx5r25lJ9JikrpNYTDMSgOFKRc8Vecrmz8LbIBV8PtJIOWcL3
- kXiX94GjrmK8VlnuXA2uE/lfNp1zkdrgCRyPqL1MTjae1MmAM6vGxZL4Naa6EPpcinBPe18eNKB
- 8JYC0Jpd6UWQZMcUdxr8+n8wPwNiAo0io5m00QO83Lm+AtLLnPlsN/XPJxre8AqXe5j0sKNO4a7
- K12n6nlew==
-X-Received: by 2002:a05:6a00:3c8a:b0:838:af72:fb37 with SMTP id
- d2e1a72fcca58-83a5b0dc944mr4032546b3a.7.1778085892643; 
- Wed, 06 May 2026 09:44:52 -0700 (PDT)
+ bh=2iHyzzY7IE/rC7HEhQGg/8O8s6YqqNQ0FIxXhZwCh7k=;
+ b=LCbgPgBjHdqOFH7P9wi9yVyXVTQDDeKpQzJd+UptQjhEWlvGXvf66BO5/KDAwguiWx
+ vfnjGhRKYut73kJpzxnjclBPNoEyfs6SsbKgC6eZ+s+oZnrG+2qe06A9dYeR44zAVeUj
+ cHgKZ+bjqyPpmV+eGLL8WSnouTFeWBX6L9VaOLeNibfgOZSdiYHCh3v2cKeeejgKv6H3
+ NROqqyj/Cs2pdL9snWGuXZF7vOMV0fIR3pni+x7aDGD/A/MC/8iDhyHA6Lhd0zh43EL9
+ bSyh463P5N5Frjh9SlC+atE7EUyAeIusXnXJLHyjmCIx0i0V8x8+DK4x44A2Tfr4yCxI
+ NRKg==
+X-Gm-Message-State: AOJu0YygLGfqlTosnZ9t/0Qje6E6SpYsOA/FfFO8x0apbC09z4S9eZWT
+ 0lsnmgWj/ZUqXmS/QM9x5jAyKS3XKca5ZLVyNIPbRVF7wsnbkM1M/tzf
+X-Gm-Gg: AeBDieuwYFDNcRJ5k5PVqFb39DcSSWYJgADseOJSq2/rgkGZpgKi7Dmu+MTus4BbKgI
+ JkfdRDGhmX9HZWYkpVRCi/g/ZNXsiW+ohCO8rgTst8m1MOFutlq1vIIxUdql7gQzSac5KmV9aXm
+ LpmyLg37e3fBPShNdlOc2IEdu6Psy+OQoCy6oUkuBDpGwQsTPSMxqDLUZ4BJfGkxc1vAvNVaAQc
+ /V04GKMEVOfNb+gcCewIGy4ODT17amFkJ0wuuRzIJcYUpG4qfGKd42+4BsUs4Rv3/FhyN95eea1
+ oaVDudrf0vivMfxLgBUCQpZR862VOmGMxvwtOD2UXE8RahgaGcxJJ6+tEJiF+yPDe9RQS77IVxv
+ bAWwHD2/y3gTtVN7dzziJGGfT1WNbshmRdgA6tCqhSgue7c4teF/aP6CE8v09rr5whWdZqR22Yw
+ rEEla4d/UzmTHhcDKt7W3WdwJmZ8a33mfxfrlZzwcgua9NhxsUs0wpMHrEFK2bcboecQo03g8T1
+ odAEmSQYQ==
+X-Received: by 2002:a05:6a00:2990:b0:837:40f6:cb88 with SMTP id
+ d2e1a72fcca58-83a5dc5df44mr4141131b3a.26.1778085976962; 
+ Wed, 06 May 2026 09:46:16 -0700 (PDT)
 Received: from [134.134.139.77] ([134.134.139.77])
  by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-83967dbcfc0sm7222443b3a.42.2026.05.06.09.44.50
+ d2e1a72fcca58-839679c8c1bsm7388946b3a.34.2026.05.06.09.46.15
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 06 May 2026 09:44:52 -0700 (PDT)
-Message-ID: <c509d626-563b-4335-8466-337d1217fd48@gmail.com>
-Date: Wed, 6 May 2026 19:44:47 +0300
+ Wed, 06 May 2026 09:46:16 -0700 (PDT)
+Message-ID: <c4081d03-c47e-42e0-87b4-0a517c0748f5@gmail.com>
+Date: Wed, 6 May 2026 19:46:12 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] drm/xe: Use fb cached min alignment
+Subject: Re: [PATCH 2/2] drm/xe: Respect pin_params.alignment for GGTT
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
 References: <20260430154602.11393-1-ville.syrjala@linux.intel.com>
+ <20260430154602.11393-2-ville.syrjala@linux.intel.com>
 Content-Language: en-US
 From: =?UTF-8?Q?Juha-Pekka_Heikkil=C3=A4?= <juhapekka.heikkila@gmail.com>
-In-Reply-To: <20260430154602.11393-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20260430154602.11393-2-ville.syrjala@linux.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -95,46 +96,28 @@ look all ok.
 Reviewed-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 
 On 30/04/2026 18.46, Ville Syrjala wrote:
-> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > 
-> Instead of just looking at the first plane use the fb cached overall
-> minimum alignment.
+> Fix __xe_pin_fb_vma_ggtt() to actually respect the GGTT alignment
+> specified by the display code. Misalignment can cause GTT faults
+> etc.
 > 
-> This aligns with how the i915 version of intel_plane_pin_fb works.
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> [vsyrjala: Rebase due to pin_params]
 > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > ---
->   drivers/gpu/drm/xe/display/xe_fb_pin.c | 10 +++++++++-
->   1 file changed, 9 insertions(+), 1 deletion(-)
+>   drivers/gpu/drm/xe/display/xe_fb_pin.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 > diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> index 948446346c53..3e8114fbfbaa 100644
+> index 3e8114fbfbaa..8d0067f908c5 100644
 > --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
 > +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> @@ -459,6 +459,14 @@ static bool reuse_vma(struct intel_plane_state *new_plane_state,
->   	return true;
->   }
+> @@ -286,7 +286,7 @@ static int __xe_pin_fb_vma_ggtt(struct drm_gem_object *obj,
+>   	 */
+>   	guard(xe_pm_runtime_noresume)(xe);
 >   
-> +static unsigned int
-> +intel_plane_fb_min_alignment(const struct intel_plane_state *plane_state)
-> +{
-> +	const struct intel_framebuffer *fb = to_intel_framebuffer(plane_state->hw.fb);
-> +
-> +	return fb->min_alignment;
-> +}
-> +
->   int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
->   		       const struct intel_plane_state *old_plane_state)
->   {
-> @@ -469,7 +477,7 @@ int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
->   	struct intel_plane *plane = to_intel_plane(new_plane_state->uapi.plane);
->   	struct intel_fb_pin_params pin_params = {
->   		.view = &new_plane_state->view.gtt,
-> -		.alignment = plane->min_alignment(plane, fb, 0),
-> +		.alignment = intel_plane_fb_min_alignment(new_plane_state),
->   		.needs_cpu_lmem_access = intel_fb_needs_cpu_access(fb),
->   	};
+> -	align = XE_PAGE_SIZE;
+> +	align = max(XE_PAGE_SIZE, pin_params->alignment);
+>   	if (xe_bo_is_vram(bo) && xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
+>   		align = max(align, SZ_64K);
 >   
 
