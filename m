@@ -4,54 +4,95 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DBC6CD342F
-	for <intel-xe@archiver.kernel.org>; Wed,  6 May 2026 01:22:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 537AFCD342F
+	for <intel-xe@archiver.kernel.org>; Wed,  6 May 2026 01:42:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38AC410E4B1;
-	Wed,  6 May 2026 01:22:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECB1110E4BE;
+	Wed,  6 May 2026 01:42:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="begpMqq2";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="T6BuRyxC";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78F6810E4B1
- for <intel-xe@lists.freedesktop.org>; Wed,  6 May 2026 01:22:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778030533; x=1809566533;
- h=date:from:to:cc:subject:message-id;
- bh=Ztl6DJaG0TyE9wcP4i7s8ulbIRS3D8N7yZToICFHqWg=;
- b=begpMqq2LmBafAnEYaJeRV/eZd9O2240+Exe8pCAh9nKH6rXzFHHgYLh
- 2GpRleCzwGjtIHI7DpJF7r0320zijaCwCxQngfaX7RPKruwU6v2Ju9AnG
- 33eG9/+GHZxGFjD37OhJX4zwZzqUcoMNYX+jm0VMLv3zTvtcNVzlcFPXx
- FQCmm357XBh2/hKBMAmCcnl7WHdJrLw+XtbckeRnrEzIoU+tfa8jnGIBE
- yV403WpDzm8J4MPBPIx0TPK9LgMMnRGsYrPIr5/IksYRBGbeVOT8zZkoF
- EUpE1VXsjftYCpidel8+c0mo+0uOxmXf3Yo8oFjb7BZI0ViMgasej22eC Q==;
-X-CSE-ConnectionGUID: XU+GjKQORMCPfCMc1RKcAg==
-X-CSE-MsgGUID: p2Xp8nJHQ0abMCYN92JEKw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11777"; a="82766759"
-X-IronPort-AV: E=Sophos;i="6.23,218,1770624000"; d="scan'208";a="82766759"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2026 18:22:13 -0700
-X-CSE-ConnectionGUID: 4RUGdHY4RhWtLj4OJA/MNg==
-X-CSE-MsgGUID: pPVrQ36gTQG9idnozaQniQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,218,1770624000"; d="scan'208";a="231589458"
-Received: from lkp-server01.sh.intel.com (HELO 9ec114424ce8) ([10.239.97.150])
- by fmviesa010.fm.intel.com with ESMTP; 05 May 2026 18:22:11 -0700
-Received: from kbuild by 9ec114424ce8 with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1wKQxk-000000000aT-33V7;
- Wed, 06 May 2026 01:22:08 +0000
-Date: Wed, 06 May 2026 09:21:53 +0800
-From: kernel test robot <lkp@intel.com>
-To: Andrew Morton <akpm@linux-foundation.org>
-Cc: Linux Memory Management List <linux-mm@kvack.org>,
- intel-xe@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- Thierry Reding <treding@nvidia.com>
-Subject: [linux-next:master] BUILD REGRESSION
- 4cd074ae20bbcc293bbbce9163abe99d68ae6ae0
-Message-ID: <202605060939.1pVmWmry-lkp@intel.com>
-User-Agent: s-nail v14.9.25
+Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com
+ [209.85.222.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75A0F10E4C0
+ for <intel-xe@lists.freedesktop.org>; Wed,  6 May 2026 01:42:26 +0000 (UTC)
+Received: by mail-qk1-f182.google.com with SMTP id
+ af79cd13be357-8ea8563c693so663265085a.2
+ for <intel-xe@lists.freedesktop.org>; Tue, 05 May 2026 18:42:26 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1778031745; cv=none;
+ d=google.com; s=arc-20240605;
+ b=hUCv6BLiWGZ5E7+X4Aoi94rrruziGKyWobI72UA1Oci8LX3p8RGu5bwgYdzDc5cBnx
+ n3/SrS9tM/xqpqEJaJww6vJgXJdLvgpydqH5NY01TyzgMr+ODnig0gClszvg3KFvRGwA
+ NXXN99qpZFGEaG7T0jOZu4IwIN5HN7qGQ0fbkQP7fk80XAKTow7Anr2Q7+5T4xyIszNj
+ e+ZfI9igbfERd0G+sJDhFUhRhEdC6x0DA3pzidGg3+uqRbwwNDRYOLUzZfJnSLkvUbtO
+ nhYD2aFGdj3pX/kZFVZd9d6t5GjOCuf7xYN4yixuwC+3SzTllUsSFQ/uJLsUGpHxZeU6
+ 1ddg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:dkim-signature;
+ bh=EN3POji8Ptv8pq9FbWY1N6uNRjXtcQOLJtybMOZu3UA=;
+ fh=SQ0TvJbX3Sah0gdBAdfUeMudt1oFgQFn8xsWX7jRyqY=;
+ b=JgbHabDfuCEKdtB28rFSEpNW8iR7byouTu+VozqwrTbbYamDocsvMAC1+p67P+aAsA
+ 9xoTyo6/GPCjFylV+TTpf78huRh/XdksJ/AdNDDaJ/lWhchUOLmnF/qTznnmu9TPW7BN
+ vDBSSajYIkP30XrYAa4Gq8S+dxJlLgYyEwO5RjpZ8yPHTpBUY5wiOVe3/fJbraYOSTf0
+ XHofv+WqMAiDpLnXcTZfloAsBZIWDj/bvgWWokkYbsU6WRyiMdHv7ku+0wNrZhrj7BXg
+ FnxHlDjYbNSzNUmOraRz0M6pwXuajV39RAsRmnA5mhee/uTg2OijUbxjxyaA2lIu1fm8
+ SDag==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1778031745; x=1778636545; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=EN3POji8Ptv8pq9FbWY1N6uNRjXtcQOLJtybMOZu3UA=;
+ b=T6BuRyxCgtkqnPrxwymxZunOs3Z7e4P7XatenSTt0c2+lGfOZVS5afar5btJFtyQEl
+ v3JQHGM1AViu7c/VO1JP9+eJnQ5jWjesJ/wBQ0LlJAg7oAb8pcZt8ygyRKdL86jM5Ez5
+ jJeSR5QZKGEnpzCkoLvcnQlXCLKT0dFz2YWOPUoxUxRCldYpMCHzdue/3piCQCwfm3OR
+ 1e6N/CiFMEWGLQSzAZXG8magwN8HXdkL5a0zRsGCFx+MBwrUecFw+ob6ap9c1BPlNZUw
+ rUlukJmJxekLIX77qMoqhqRI9VLVWnxzLJXKtsnJTrSk3lQeINYXTjO2eL4sov7ebCIE
+ eymA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1778031745; x=1778636545;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=EN3POji8Ptv8pq9FbWY1N6uNRjXtcQOLJtybMOZu3UA=;
+ b=q8+/YuyxKMd/Rt5RIEC75Wx1oWgWdWacX9ZGKOp1jqz2NXNzAH4L4NTTdL7Y+Z4O/i
+ 7wCLamRKBAQ2KJ9oxyZwknvg5dQFPBgh99buHNE7SASciQJbzI6WxYEzuy6AmkoUkpzE
+ 1YwaY6kCEvr4V9FpRv8Kuunb3tT7wH1UgJhtR24VlJHDBzP/Q29wfSpJPYNzG7SjQZot
+ i15+t7+HVlIP4MLQ7Oj0P1jjfqrnMbxQShpRccs7xYXxSIxPzFrZ8P5Xe9dbIYG65FKz
+ pqKwNeEe1lpgThwJAs6AZXP1Oap535YNEVZefz8kY/vljBpEnrW/txjmwHhoa9odf28u
+ X5og==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ9+3RaDlJzUc5PABQaTwyWPmCNEHAH6gipln8nsEbSwz/zzFf5T30OGRau8gUX2rfEN/wj6k+tXKA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwYjyKWtVkNdytNqV5a7AIsDKbJ5po6+sSYgOX1XhrtExsdKMwx
+ rD/SyRljIzkwhL3ssXg4sSt6Dm48BRMquB9EbtXLxo7fQzmDsyR9Fhq2CCFKfLq4iQZ77WY17mO
+ Vl/9C/PeEx9UMiNadDA0HZt+9C/q1Lcs=
+X-Gm-Gg: AeBDietotwf7MSN8vtjgCHZYaeJuCn3pna/Q9nhi8hzPm5dgAfansxP2CPTfn6SujmB
+ E9W1KZsdi92R1uYm1Sp+9gfnCHHbquYSAa+CvIPP32wUJMWs9zlBcx94Mak/7+JCVuv7o3v5nGz
+ 2gKj5fBLZHDBJitnK73P60zZpkV+kWcGtvQG4wRCZ51JaV/lcC4HS+xPo98MJ0aqVRjr846O9ny
+ 3Q7vAAWrgHmqLM73KDbmaFvuEsg/c5m6EGrCIGUIgFOFTcD75qZ/BQX6pR8p/uPWf2NYChvODEZ
+ PHpwlANBokj5B3wOaoviHbFGfmfvVYevWJcOICgoaa77OzqRuAnZ2OEZ/MoR5kscIhn9jGLQtlI
+ teA==
+X-Received: by 2002:a05:620a:4594:b0:8f8:8860:fb8b with SMTP id
+ af79cd13be357-904d69d9e87mr244631885a.52.1778031745287; Tue, 05 May 2026
+ 18:42:25 -0700 (PDT)
+MIME-Version: 1.0
+References: <c36e7dfb-cf62-4d21-a3b1-f54cb43e0832@infradead.org>
+In-Reply-To: <c36e7dfb-cf62-4d21-a3b1-f54cb43e0832@infradead.org>
+From: Dave Airlie <airlied@gmail.com>
+Date: Wed, 6 May 2026 11:42:13 +1000
+X-Gm-Features: AVHnY4J4iD5smXrIpAMHJFcsa01tqBk4AJ9BDVgb7geE_sA9sedvb_-AQbfyQag
+Message-ID: <CAPM=9txXGY7Pv7ge-x3roA422c=Ycefc7Ens20dEiHuKrKR=3g@mail.gmail.com>
+Subject: Re: does DRM_GPUSVM require hugepages?
+To: Randy Dunlap <rdunlap@infradead.org>,
+ Matthew Brost <matthew.brost@intel.com>, 
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Simona Vetter <simona@ffwll.ch>, 
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ linux-next <linux-next@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,239 +107,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
-branch HEAD: 4cd074ae20bbcc293bbbce9163abe99d68ae6ae0  Add linux-next specific files for 20260505
+On Sun, 3 May 2026 at 10:03, Randy Dunlap <rdunlap@infradead.org> wrote:
+>
+> Hi,
+>
+> In linux-next-20260430, I'm seeing build errors on some ARCHes when
+> DRM_XE=m (probably just "is set") but HAVE_ARCH_TRANSPARENT_HUGEPAGE
+> is not set (not selected) by the ARCH.
 
-Unverified Error/Warning (likely false positive, kindly check if interested):
+I'm seeing this locally on my arm32 builds, Matthew, Thomas?
 
-    drivers/gpu/drm/xe/xe_hw_engine.c:481:1: warning: the frame size of 1056 bytes is larger than 1024 bytes [-Wframe-larger-than=]
-    drivers/misc/mei/vsc-fw-loader.c:646:34: sparse: sparse: incorrect type in assignment (different base types)
-    ftrace.c:(.text+0x18): undefined reference to `__atomic_fetch_add_8'
-    ld: ftrace.c:(.text+0x36): undefined reference to `__atomic_fetch_add_8'
+Dave.
 
-Error/Warning ids grouped by kconfigs:
-
-recent_errors
-|-- arm64-randconfig-r061-20260505
-|   |-- drivers-clk-mmp-clk-pxa1908-apbc.c:Unneeded-semicolon
-|   `-- drivers-clk-mmp-clk-pxa1908-apbcp.c:Unneeded-semicolon
-|-- arm64-randconfig-r121-20260505
-|   `-- drivers-misc-mei-vsc-fw-loader.c:sparse:sparse:incorrect-type-in-assignment-(different-base-types)-expected-unsigned-char-usertype-img_cnt-got-restricted-__le16-usertype
-|-- i386-buildonly-randconfig-004
-|   |-- ftrace.c:(.text):undefined-reference-to-__atomic_fetch_add_8
-|   `-- ld:ftrace.c:(.text):undefined-reference-to-__atomic_fetch_add_8
-`-- x86_64-dcg_x86_64_defconfig-func
-    `-- drivers-gpu-drm-xe-xe_hw_engine.c:warning:the-frame-size-of-bytes-is-larger-than-bytes
-
-elapsed time: 736m
-
-configs tested: 202
-configs skipped: 11
-
-tested configs:
-alpha                             allnoconfig    gcc-15.2.0
-alpha                            allyesconfig    gcc-15.2.0
-alpha                               defconfig    gcc-15.2.0
-arc                              allmodconfig    gcc-15.2.0
-arc                               allnoconfig    gcc-15.2.0
-arc                              allyesconfig    gcc-15.2.0
-arc                                 defconfig    gcc-15.2.0
-arc                   randconfig-001-20260506    gcc-9.5.0
-arc                   randconfig-002-20260506    gcc-12.5.0
-arm                               allnoconfig    clang-23
-arm                              allyesconfig    gcc-15.2.0
-arm                                 defconfig    clang-23
-arm                   randconfig-001-20260506    clang-23
-arm                   randconfig-002-20260506    clang-23
-arm                   randconfig-003-20260506    gcc-13.4.0
-arm                   randconfig-004-20260506    gcc-8.5.0
-arm64                            allmodconfig    clang-19
-arm64                             allnoconfig    gcc-15.2.0
-arm64                               defconfig    gcc-15.2.0
-arm64                 randconfig-001-20260505    gcc-8.5.0
-arm64                 randconfig-002-20260505    clang-16
-arm64                 randconfig-003-20260505    clang-23
-arm64                 randconfig-004-20260505    clang-23
-csky                             alldefconfig    gcc-15.2.0
-csky                             allmodconfig    gcc-15.2.0
-csky                              allnoconfig    gcc-15.2.0
-csky                                defconfig    gcc-15.2.0
-csky                  randconfig-001-20260505    gcc-15.2.0
-csky                  randconfig-002-20260505    gcc-14.3.0
-hexagon                          allmodconfig    clang-17
-hexagon                           allnoconfig    clang-23
-hexagon                             defconfig    clang-23
-hexagon               randconfig-001-20260505    clang-23
-hexagon               randconfig-002-20260505    clang-23
-i386                             allmodconfig    clang-20
-i386                             allmodconfig    gcc-14
-i386                              allnoconfig    gcc-14
-i386                             allyesconfig    clang-20
-i386                             allyesconfig    gcc-14
-i386                 buildonly-randconfig-001    clang-20
-i386        buildonly-randconfig-001-20260505    gcc-13
-i386        buildonly-randconfig-001-20260506    clang-20
-i386        buildonly-randconfig-001-20260506    gcc-14
-i386                 buildonly-randconfig-002    clang-20
-i386        buildonly-randconfig-002-20260505    gcc-14
-i386        buildonly-randconfig-002-20260506    clang-20
-i386        buildonly-randconfig-002-20260506    gcc-14
-i386                 buildonly-randconfig-003    clang-20
-i386        buildonly-randconfig-003-20260505    clang-20
-i386        buildonly-randconfig-003-20260506    clang-20
-i386                 buildonly-randconfig-004    clang-20
-i386        buildonly-randconfig-004-20260505    clang-20
-i386        buildonly-randconfig-004-20260506    clang-20
-i386                 buildonly-randconfig-005    clang-20
-i386        buildonly-randconfig-005-20260505    gcc-14
-i386        buildonly-randconfig-005-20260506    clang-20
-i386                 buildonly-randconfig-006    clang-20
-i386        buildonly-randconfig-006-20260505    gcc-14
-i386        buildonly-randconfig-006-20260506    clang-20
-i386        buildonly-randconfig-006-20260506    gcc-14
-i386                                defconfig    clang-20
-i386                  randconfig-001-20260505    gcc-14
-i386                  randconfig-002-20260505    gcc-14
-i386                  randconfig-003-20260505    clang-20
-i386                  randconfig-004-20260505    gcc-14
-i386                  randconfig-005-20260505    clang-20
-i386                  randconfig-006-20260505    clang-20
-i386                  randconfig-007-20260505    gcc-14
-i386                  randconfig-011-20260506    clang-20
-i386                  randconfig-012-20260506    clang-20
-i386                  randconfig-013-20260506    clang-20
-i386                  randconfig-014-20260506    clang-20
-i386                  randconfig-014-20260506    gcc-14
-i386                  randconfig-015-20260506    clang-20
-i386                  randconfig-015-20260506    gcc-14
-i386                  randconfig-016-20260506    clang-20
-i386                  randconfig-017-20260506    clang-20
-loongarch                        allmodconfig    clang-19
-loongarch                         allnoconfig    clang-23
-loongarch                           defconfig    clang-19
-loongarch             randconfig-001-20260505    clang-20
-loongarch             randconfig-002-20260505    clang-18
-m68k                             allmodconfig    gcc-15.2.0
-m68k                              allnoconfig    gcc-15.2.0
-m68k                             allyesconfig    gcc-15.2.0
-m68k                                defconfig    gcc-15.2.0
-microblaze                        allnoconfig    gcc-15.2.0
-microblaze                       allyesconfig    gcc-15.2.0
-microblaze                          defconfig    gcc-15.2.0
-mips                             allmodconfig    gcc-15.2.0
-mips                              allnoconfig    gcc-15.2.0
-mips                             allyesconfig    gcc-15.2.0
-nios2                            allmodconfig    gcc-11.5.0
-nios2                             allnoconfig    gcc-11.5.0
-nios2                               defconfig    gcc-11.5.0
-nios2                 randconfig-001-20260505    gcc-8.5.0
-nios2                 randconfig-002-20260505    gcc-9.5.0
-openrisc                         allmodconfig    gcc-15.2.0
-openrisc                          allnoconfig    gcc-15.2.0
-openrisc                            defconfig    gcc-15.2.0
-parisc                           allmodconfig    gcc-15.2.0
-parisc                            allnoconfig    gcc-15.2.0
-parisc                           allyesconfig    gcc-15.2.0
-parisc                              defconfig    gcc-15.2.0
-parisc                randconfig-001-20260506    gcc-13.4.0
-parisc                randconfig-002-20260506    gcc-10.5.0
-parisc64                            defconfig    gcc-15.2.0
-powerpc                          allmodconfig    gcc-15.2.0
-powerpc                           allnoconfig    gcc-15.2.0
-powerpc               randconfig-001-20260506    gcc-10.5.0
-powerpc               randconfig-002-20260506    gcc-8.5.0
-powerpc64             randconfig-001-20260506    gcc-8.5.0
-powerpc64             randconfig-002-20260506    gcc-13.4.0
-riscv                            allmodconfig    clang-23
-riscv                             allnoconfig    gcc-15.2.0
-riscv                            allyesconfig    clang-16
-riscv                               defconfig    clang-23
-riscv                 randconfig-001-20260506    gcc-8.5.0
-riscv                 randconfig-002-20260506    clang-23
-s390                             allmodconfig    clang-18
-s390                              allnoconfig    clang-23
-s390                             allyesconfig    gcc-15.2.0
-s390                                defconfig    clang-23
-s390                  randconfig-001-20260506    gcc-11.5.0
-s390                  randconfig-002-20260506    gcc-8.5.0
-sh                               allmodconfig    gcc-15.2.0
-sh                                allnoconfig    gcc-15.2.0
-sh                               allyesconfig    gcc-15.2.0
-sh                         ap325rxa_defconfig    gcc-15.2.0
-sh                                  defconfig    gcc-14
-sh                                  defconfig    gcc-15.2.0
-sh                    randconfig-001-20260506    gcc-12.5.0
-sh                    randconfig-002-20260506    gcc-9.5.0
-sparc                             allnoconfig    gcc-15.2.0
-sparc                               defconfig    gcc-15.2.0
-sparc                 randconfig-001-20260506    gcc-15.2.0
-sparc                 randconfig-002-20260506    gcc-11.5.0
-sparc64                          allmodconfig    clang-23
-sparc64                             defconfig    clang-20
-sparc64                             defconfig    gcc-14
-sparc64               randconfig-001-20260506    clang-23
-sparc64               randconfig-002-20260506    clang-23
-um                               allmodconfig    clang-19
-um                                allnoconfig    clang-23
-um                               allyesconfig    gcc-14
-um                                  defconfig    clang-23
-um                                  defconfig    gcc-14
-um                             i386_defconfig    gcc-14
-um                    randconfig-001-20260506    gcc-14
-um                    randconfig-002-20260506    clang-23
-um                           x86_64_defconfig    clang-23
-um                           x86_64_defconfig    gcc-14
-x86_64                           allmodconfig    clang-20
-x86_64                            allnoconfig    clang-20
-x86_64                           allyesconfig    clang-20
-x86_64      buildonly-randconfig-001-20260506    clang-20
-x86_64      buildonly-randconfig-002-20260506    gcc-14
-x86_64      buildonly-randconfig-003-20260506    clang-20
-x86_64      buildonly-randconfig-004-20260506    clang-20
-x86_64      buildonly-randconfig-005-20260506    gcc-12
-x86_64      buildonly-randconfig-006-20260506    clang-20
-x86_64                              defconfig    gcc-14
-x86_64                                  kexec    clang-20
-x86_64                randconfig-001-20260505    clang-20
-x86_64                randconfig-001-20260506    clang-20
-x86_64                randconfig-002-20260505    gcc-14
-x86_64                randconfig-002-20260506    clang-20
-x86_64                randconfig-003-20260505    clang-20
-x86_64                randconfig-003-20260506    clang-20
-x86_64                randconfig-004-20260505    clang-20
-x86_64                randconfig-004-20260506    clang-20
-x86_64                randconfig-005-20260505    clang-20
-x86_64                randconfig-005-20260506    clang-20
-x86_64                randconfig-006-20260505    clang-20
-x86_64                randconfig-006-20260506    clang-20
-x86_64                randconfig-011-20260505    clang-20
-x86_64                randconfig-012-20260505    clang-20
-x86_64                randconfig-013-20260505    clang-20
-x86_64                randconfig-014-20260505    clang-20
-x86_64                randconfig-015-20260505    clang-20
-x86_64                randconfig-016-20260505    gcc-14
-x86_64                randconfig-071-20260506    clang-20
-x86_64                randconfig-071-20260506    gcc-14
-x86_64                randconfig-072-20260506    clang-20
-x86_64                randconfig-072-20260506    gcc-14
-x86_64                randconfig-073-20260506    clang-20
-x86_64                randconfig-073-20260506    gcc-14
-x86_64                randconfig-074-20260506    clang-20
-x86_64                randconfig-075-20260506    clang-20
-x86_64                randconfig-075-20260506    gcc-14
-x86_64                randconfig-076-20260506    clang-20
-x86_64                               rhel-9.4    clang-20
-x86_64                           rhel-9.4-bpf    gcc-14
-x86_64                          rhel-9.4-func    clang-20
-x86_64                    rhel-9.4-kselftests    clang-20
-x86_64                         rhel-9.4-kunit    gcc-14
-x86_64                           rhel-9.4-ltp    gcc-14
-x86_64                          rhel-9.4-rust    clang-20
-xtensa                            allnoconfig    gcc-15.2.0
-xtensa                           allyesconfig    gcc-15.2.0
-xtensa                randconfig-001-20260506    gcc-15.2.0
-xtensa                randconfig-002-20260506    gcc-13.4.0
-
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+>
+> Does drm_gpusvm.c require hugepages?
+> Or possibly DRM_XE needs some kind of restriction?
+>
+> I see build failures on ARCH=alpha, ARCH=openrisc, ARCH=mips (32-bit
+> or 64-bit), and ARCH=arm (without ARM_LPAE set).
+>
+> Example:
+> ../drivers/gpu/drm/drm_gpusvm.c: In function 'drm_gpusvm_get_pages':
+> ./../include/linux/compiler_types.h:699:45: error: call to '__compiletime_assert_361' declared with attribute error: BUILD_BUG failed
+>   699 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+>       |                                             ^
+> ./../include/linux/compiler_types.h:680:25: note: in definition of macro '__compiletime_assert'
+>   680 |                         prefix ## suffix();                             \
+>       |                         ^~~~~~
+> ./../include/linux/compiler_types.h:699:9: note: in expansion of macro '_compiletime_assert'
+>   699 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+>       |         ^~~~~~~~~~~~~~~~~~~
+> ../include/linux/build_bug.h:40:37: note: in expansion of macro 'compiletime_assert'
+>    40 | #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
+>       |                                     ^~~~~~~~~~~~~~~~~~
+> ../include/linux/build_bug.h:60:21: note: in expansion of macro 'BUILD_BUG_ON_MSG'
+>    60 | #define BUILD_BUG() BUILD_BUG_ON_MSG(1, "BUILD_BUG failed")
+>       |                     ^~~~~~~~~~~~~~~~
+> ../include/linux/huge_mm.h:113:28: note: in expansion of macro 'BUILD_BUG'
+>   113 | #define HPAGE_PMD_SHIFT ({ BUILD_BUG(); 0; })
+>       |                            ^~~~~~~~~
+> ../include/linux/huge_mm.h:120:35: note: in expansion of macro 'HPAGE_PMD_SHIFT'
+>   120 | #define HPAGE_PMD_SIZE  ((1UL) << HPAGE_PMD_SHIFT)
+>       |                                   ^~~~~~~~~~~~~~~
+> ../drivers/gpu/drm/drm_gpusvm.c:1560:52: note: in expansion of macro 'HPAGE_PMD_SIZE'
+>  1560 |                                                    HPAGE_PMD_SIZE ?
+>       |                                                    ^~~~~~~~~~~~~~
+> make[6]: *** [../scripts/Makefile.build:289: drivers/gpu/drm/drm_gpusvm.o] Error 1
+>
+> where include/linux/huge_mm.h:113: says:
+>
+> #ifdef CONFIG_PGTABLE_HAS_HUGE_LEAVES
+> #define HPAGE_PMD_SHIFT PMD_SHIFT
+> #define HPAGE_PUD_SHIFT PUD_SHIFT
+> #else
+> #define HPAGE_PMD_SHIFT ({ BUILD_BUG(); 0; }) <<<<<<<<<<<<<<<<<< line 113
+> #define HPAGE_PUD_SHIFT ({ BUILD_BUG(); 0; })
+> #endif
+>
+> --
+> ~Randy
+>
