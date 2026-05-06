@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F66ACD343F
-	for <intel-xe@archiver.kernel.org>; Wed,  6 May 2026 22:35:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54B6BCD3444
+	for <intel-xe@archiver.kernel.org>; Wed,  6 May 2026 22:35:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C497510EEF1;
-	Wed,  6 May 2026 22:35:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C803110EF11;
+	Wed,  6 May 2026 22:35:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PuJQwgU4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gS0I4uUD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9BB010EF0A
- for <intel-xe@lists.freedesktop.org>; Wed,  6 May 2026 22:35:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B9AB10EEF1
+ for <intel-xe@lists.freedesktop.org>; Wed,  6 May 2026 22:35:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1778106912; x=1809642912;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=RZWl17Dcy8wYTtFFz5xXQWc3ySsh1yw2Aa+HCNSNSiQ=;
- b=PuJQwgU4cmu4I3+vpLSR6ZfPmswbVgCawIR9fK9YdSVraJ5LV9aYOyZw
- 02eR1m48/nRkmToYWD0+gxZf9YVsDUPgKKghtqCljvciLmXnKaebxyz5r
- vaPAE/9tTtlF8y8HdkkDXbuXdcTeIF21qYsuVv/FKNijRn6ykdTFFo+dm
- XUu9N+mB8jABKcM2iGgS71jYTi/E5Ke8+hdGwi+m6SMM5XjcBIzEqe5RC
- Kgdazsy0YkYO/K2ZUU2DvjpwmCI5wnV2/vr4FCKww08+QhVnwlYe0JSvm
- oMYYyLt4lNJ7Be39LuhpNvn74jLbiX2iH+rYiny0wl2hExchTwqAV4HUM A==;
-X-CSE-ConnectionGUID: RCHOLPK7QtaWtVJIpD2DtA==
-X-CSE-MsgGUID: LpNlnE6OQkuubVuKV+eEKw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11778"; a="90429720"
-X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="90429720"
+ bh=Me1jr7vEsGL11uaOrYDKgHAkvycp2johpgwT5brL9uI=;
+ b=gS0I4uUD1lGB6rQQPSL1+wzLMIQ0VZRtaLUOQGXndZyma2pxNY4ubOhi
+ iDQAYzkYgaQfpeDcbGyJtyHP3PZmiFSYWJm6neB+rAun03uzt9boLhFw7
+ UI5jV0/47sul3KHhgE/5GEVUtDo6hLM8w5ZqNCGSarzGZAXdcP2cKDlCi
+ 0ZCpA0Qd5RkJtyrgefcEDS1ndIHp+cKDac0gQndTrs/rgvmj1mqwRojha
+ LbRMADa+i4O1Z9t4i5GOx+YEORNYWccJQG3zWdVm3mztQjSl0EDbCM/m5
+ 4hvyUXf1VVbGn1H6A4QSWywSjvu3iApDMx5D8PArGW9SGZd07ER8lwsSH A==;
+X-CSE-ConnectionGUID: IlE/PRRhTymMqeQ98ViteQ==
+X-CSE-MsgGUID: UiK40IoeTMCYBOKI8J2MEw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11778"; a="90429722"
+X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="90429722"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2026 15:35:11 -0700
-X-CSE-ConnectionGUID: /dHSid1uRdydg4zc+u0r3g==
-X-CSE-MsgGUID: RyIiRi6mRpmeqPtVqRRr4A==
+ 06 May 2026 15:35:12 -0700
+X-CSE-ConnectionGUID: 94leBRMKSW6XSBYd+wxaag==
+X-CSE-MsgGUID: JxPmmvYpTgmhv9JXTIvc4g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="259707489"
+X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="259707496"
 Received: from orsosgc001.jf.intel.com ([10.88.27.185])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2026 15:35:11 -0700
+ 06 May 2026 15:35:12 -0700
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	niranjana.vishwanathapura@intel.com
 Cc: matthew.brost@intel.com,
 	stuart.summers@intel.com
-Subject: [PATCH v4 09/11] drm/xe/multi_queue: Add trace event for the multi
- queue timestamp
-Date: Wed,  6 May 2026 15:35:10 -0700
-Message-ID: <20260506223500.3769614-22-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH v4 11/11] drm/xe/multi_queue: Whitelist QUEUE_TIMESTAMP
+ register
+Date: Wed,  6 May 2026 15:35:12 -0700
+Message-ID: <20260506223500.3769614-24-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260506223500.3769614-13-umesh.nerlige.ramappa@intel.com>
 References: <20260506223500.3769614-13-umesh.nerlige.ramappa@intel.com>
@@ -69,83 +69,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a trace event for multi queue timestamp capture.
+In a multi-queue use case, when a job is running on the secondary queue,
+the CTX_TIMESTAMP does not reflect the queues run ticks. Instead, we use
+the QUEUE TIMESTAMP to check how long the job ran. For user space to see
+the run ticks for a secondary queue, whitelist the QUEUE_TIMESTAMP
+register.
+
+Compute PR: https://github.com/intel/compute-runtime/pull/923
 
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 ---
-v2:
-- Split traces from original patch (Stuart)
-- Print primary lrc in the trace (Niranjana)
+v2: Whitelist QUEUE_TIMESTAMP only for copy and compute engines (Niranjana)
 
-v3:
-- Include primary_lrc as well as lrc in the trace (Niranjana)
+v3: (Niranjana)
+- s/multiq/multi_queue/
+- Base the condition on multi_queue_engine_class_mask
 
-v4: (Niranjana)
-- Drop pos from trace
-- Drop ':' before the pointer value
+v4: s/xe_gt_hwe_class_supports_multi_queue/xe_gt_supports_multi_queue/
 ---
- drivers/gpu/drm/xe/xe_lrc.c       |  2 ++
- drivers/gpu/drm/xe/xe_trace_lrc.h | 27 +++++++++++++++++++++++++++
- 2 files changed, 29 insertions(+)
+ drivers/gpu/drm/xe/xe_reg_whitelist.c | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 869ce0c09939..cd5daf628a89 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -2723,6 +2723,8 @@ static u64 xe_lrc_update_multi_queue_timestamp(struct xe_lrc *lrc, u64 *old_ts)
- 	*old_ts = lrc->queue_timestamp;
- 	lrc->queue_timestamp = xe_lrc_multi_queue_timestamp(lrc);
- 
-+	trace_xe_lrc_update_queue_timestamp(lrc, *old_ts);
-+
- 	return lrc->queue_timestamp;
+diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+index 8cc313182968..fb65940848d7 100644
+--- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
++++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+@@ -9,6 +9,7 @@
+ #include "regs/xe_gt_regs.h"
+ #include "regs/xe_oa_regs.h"
+ #include "xe_device.h"
++#include "xe_gt.h"
+ #include "xe_gt_types.h"
+ #include "xe_gt_printk.h"
+ #include "xe_platform_types.h"
+@@ -33,6 +34,13 @@ static bool match_has_mert(const struct xe_device *xe,
+ 	return xe_device_has_mert((struct xe_device *)xe);
  }
  
-diff --git a/drivers/gpu/drm/xe/xe_trace_lrc.h b/drivers/gpu/drm/xe/xe_trace_lrc.h
-index d525cbee1e34..5c4cfa0c1fe9 100644
---- a/drivers/gpu/drm/xe/xe_trace_lrc.h
-+++ b/drivers/gpu/drm/xe/xe_trace_lrc.h
-@@ -12,6 +12,7 @@
- #include <linux/tracepoint.h>
- #include <linux/types.h>
- 
-+#include "xe_exec_queue_types.h"
- #include "xe_gt_types.h"
- #include "xe_lrc.h"
- #include "xe_lrc_types.h"
-@@ -42,6 +43,32 @@ TRACE_EVENT(xe_lrc_update_timestamp,
- 		      __get_str(device_id))
- );
- 
-+TRACE_EVENT(xe_lrc_update_queue_timestamp,
-+	    TP_PROTO(struct xe_lrc *lrc, uint64_t old),
-+	    TP_ARGS(lrc, old),
-+	    TP_STRUCT__entry(
-+		     __field(struct xe_lrc *, lrc)
-+		     __field(struct xe_lrc *, primary_lrc)
-+		     __field(u64, old)
-+		     __field(u64, new)
-+		     __string(name, lrc->fence_ctx.name)
-+		     __string(device_id, __dev_name_lrc(lrc))
-+		     ),
++static bool match_multi_queue_class(const struct xe_device *xe,
++				    const struct xe_gt *gt,
++				    const struct xe_hw_engine *hwe)
++{
++	return xe_gt_supports_multi_queue(gt, hwe->class);
++}
 +
-+	    TP_fast_assign(
-+		   __entry->lrc = lrc;
-+		   __entry->primary_lrc = lrc->multi_queue.primary_lrc;
-+		   __entry->old = old;
-+		   __entry->new = lrc->queue_timestamp;
-+		   __assign_str(name);
-+		   __assign_str(device_id);
-+		   ),
-+	    TP_printk("lrc=%p primary_lrc=%p lrc->name=%s old=%llu new=%llu device_id:%s",
-+		      __entry->lrc, __entry->primary_lrc, __get_str(name),
-+		      __entry->old, __entry->new,
-+		      __get_str(device_id))
-+);
-+
- #endif
- 
- /* This part must be outside protection */
+ static const struct xe_rtp_entry_sr register_whitelist[] = {
+ 	{ XE_RTP_NAME("WaAllowPMDepthAndInvocationCountAccessFromUMD, 1408556865"),
+ 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210), ENGINE_CLASS(RENDER)),
+@@ -54,6 +62,12 @@ static const struct xe_rtp_entry_sr register_whitelist[] = {
+ 				RING_FORCE_TO_NONPRIV_ACCESS_RD,
+ 				XE_RTP_ACTION_FLAG(ENGINE_BASE)))
+ 	},
++	{ XE_RTP_NAME("allow_read_queue_timestamp"),
++	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3500, 3511), FUNC(match_multi_queue_class)),
++	  XE_RTP_ACTIONS(WHITELIST(RING_QUEUE_TIMESTAMP(0),
++				   RING_FORCE_TO_NONPRIV_ACCESS_RD,
++				   XE_RTP_ACTION_FLAG(ENGINE_BASE)))
++	},
+ 	{ XE_RTP_NAME("16014440446"),
+ 	  XE_RTP_RULES(PLATFORM(PVC)),
+ 	  XE_RTP_ACTIONS(WHITELIST(XE_REG(0x4400),
 -- 
 2.51.0
 
