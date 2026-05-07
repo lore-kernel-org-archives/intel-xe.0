@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52252CD343F
-	for <intel-xe@archiver.kernel.org>; Thu,  7 May 2026 16:31:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5AB2CD343F
+	for <intel-xe@archiver.kernel.org>; Thu,  7 May 2026 16:31:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1008210F206;
-	Thu,  7 May 2026 16:31:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 792F910F206;
+	Thu,  7 May 2026 16:31:29 +0000 (UTC)
 Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9B2B10F206;
- Thu,  7 May 2026 16:31:01 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0FE910E29B;
+ Thu,  7 May 2026 16:31:28 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6980638529128912110=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Support_run_ticks_for_mul?=
- =?utf-8?q?ti-queue_use_case_=28rev5=29?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/intel/display=3A_Add_su?=
+ =?utf-8?q?pport_for_pipe_background_color_=28v4=29_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 07 May 2026 16:31:01 -0000
-Message-ID: <177817146188.47093.15595740811834280423@5ab824fced77>
+Date: Thu, 07 May 2026 16:31:28 -0000
+Message-ID: <177817148878.47093.17972816594161442756@5ab824fced77>
 X-Patchwork-Hint: ignore
-References: <20260507162016.3888309-13-umesh.nerlige.ramappa@intel.com>
-In-Reply-To: <20260507162016.3888309-13-umesh.nerlige.ramappa@intel.com>
+References: <20260505200133.636584-2-dev@lankhorst.se>
+In-Reply-To: <20260505200133.636584-2-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,59 +40,102 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============6980638529128912110==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: Support run ticks for multi-queue use case (rev5)
-URL   : https://patchwork.freedesktop.org/series/164654/
-State : warning
+Series: drm/intel/display: Add support for pipe background color (v4) (rev2)
+URL   : https://patchwork.freedesktop.org/series/166019/
+State : success
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-061140b9bc586ae7f40abc1249c97e1cc72d1b9d
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit ca9f6fd6ae6a19deb5a89a4a1ed6a4e26a7a5eca
-Author: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Date:   Thu May 7 09:20:28 2026 -0700
+CI Bug Log - changes from xe-5013-b023767ff66180ad432701eb5ba4ccf8f70de46d_BAT -> xe-pw-166019v2_BAT
+====================================================
 
-    drm/xe/multi_queue: Whitelist QUEUE_TIMESTAMP register
-    
-    In a multi-queue use case, when a job is running on the secondary queue,
-    the CTX_TIMESTAMP does not reflect the queues run ticks. Instead, we use
-    the QUEUE TIMESTAMP to check how long the job ran. For user space to see
-    the run ticks for a secondary queue, whitelist the QUEUE_TIMESTAMP
-    register.
-    
-    Compute PR: https://github.com/intel/compute-runtime/pull/923
-    
-    Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-    Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-+ /mt/dim checkpatch ca078d725c0fa0a78c4cfcbc73dcd0845589535a drm-intel
-b5e60c1deb7f drm/xe/lrc: Use 64 bit ctx timestamp in the LRC snapshot
-a3671f957bd2 drm/xe: Add timestamp_ms to LRC snapshot
-d7a38500f4aa drm/xe/lrc: Refactor xe_lrc_timestamp to simplify logic
-02ab44f81b8a drm/xe/multi_queue: Refactor check for multi queue support for engine class
-0dd7afe210fd drm/xe/multi_queue: Store primary LRC and position info in LRC
-2141970532a9 drm/xe/multi_queue: Add helpers to access CS QUEUE TIMESTAMP from lrc
-6663405f0bd7 drm/xe/lrc: Refactor out engine id to hwe conversion
-d692e6c7636a drm/xe/multi_queue: Capture queue run times for active queues
-34b33e8e25fe drm/xe/multi_queue: Add trace event for the multi queue timestamp
--:44: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
-#44: FILE: drivers/gpu/drm/xe/xe_trace_lrc.h:49:
-+	    TP_STRUCT__entry(
+Summary
+-------
 
--:53: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
-#53: FILE: drivers/gpu/drm/xe/xe_trace_lrc.h:58:
-+	    TP_fast_assign(
+  **SUCCESS**
 
-total: 0 errors, 0 warnings, 2 checks, 47 lines checked
-46e0c6509116 drm/xe/multi_queue: Use QUEUE_TIMESTAMP as job timestamp for multi-queue
-ca9f6fd6ae6a drm/xe/multi_queue: Whitelist QUEUE_TIMESTAMP register
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5013-b023767ff66180ad432701eb5ba4ccf8f70de46d -> xe-pw-166019v2
+
+  IGT_8899: 3e5747e536f148bf232049e49a00e2b683f91a83 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5013-b023767ff66180ad432701eb5ba4ccf8f70de46d: b023767ff66180ad432701eb5ba4ccf8f70de46d
+  xe-pw-166019v2: 166019v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166019v2/index.html
+
+--===============6980638529128912110==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/intel/display: Add support for pipe background color (v4) (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166019/">https://patchwork.freedesktop.org/series/166019/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166019v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166019v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5013-b023767ff66180ad432701eb5ba4ccf8f70de46d_BAT -&gt; xe-pw-166019v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5013-b023767ff66180ad432701eb5ba4ccf8f70de46d -&gt; xe-pw-166019v2</li>
+</ul>
+<p>IGT_8899: 3e5747e536f148bf232049e49a00e2b683f91a83 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5013-b023767ff66180ad432701eb5ba4ccf8f70de46d: b023767ff66180ad432701eb5ba4ccf8f70de46d<br />
+  xe-pw-166019v2: 166019v2</p>
+
+</body>
+</html>
+
+--===============6980638529128912110==--
