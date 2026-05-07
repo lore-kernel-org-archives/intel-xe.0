@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFD7FCD37A9
-	for <intel-xe@archiver.kernel.org>; Thu,  7 May 2026 16:20:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 264C7CD37A7
+	for <intel-xe@archiver.kernel.org>; Thu,  7 May 2026 16:20:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6061410F1F7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 892CA10F206;
 	Thu,  7 May 2026 16:20:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SVn7jjgZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gGjRwP4k";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16B3510F206
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 35B3710F207
  for <intel-xe@lists.freedesktop.org>; Thu,  7 May 2026 16:20:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1778170825; x=1809706825;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=M1p8rN3xz4rUFKHyZmDbN0pYm3rTukJHwbrwvJOEYEk=;
- b=SVn7jjgZJjAF+oXFQp5JIeXfwDVsXeDf4SbgBwK1ebrefR9rnONwyVA5
- qazr1hKrGm3iQC1yEHDYyePr05z4g6xc/am+m4SynFdmcJye9JktBpfRq
- MSk4JCNOc2oEWC2+3hAanLe8aGF+Q5YSrq1h+1YASeT+sEy/vkoSpN605
- /cGlxPzwKePkklELMLlSCW123Jw7PhpPQAXEbXS9q7rQi2HL64FOCw4fv
- dscLCVrs64EkTjSaS0OOvWoKafIFfnEuA3iNDWrSzmNt/i+LUZRO/YCRu
- gwObycIcyru3ez+IG3RBV3q6Pb8ceqpclx+E7bitUk9c/MTB0vWwtuqfJ w==;
-X-CSE-ConnectionGUID: aRwZgQTXR1W4JI7DgiipTg==
-X-CSE-MsgGUID: qFa7f6sVSvSTL4vouxSjlg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11779"; a="79063601"
-X-IronPort-AV: E=Sophos;i="6.23,221,1770624000"; d="scan'208";a="79063601"
+ bh=nWkaThPzDFFc2rb5y3NZQcXF1FTqhwCyAvTw4NJo2hQ=;
+ b=gGjRwP4k+PGMdJ5z/u8B0jyUK8KtPgv/m7MX2OW5ynRqC3jZsyySskf6
+ Zv/jWwe0bUjdJ+OpTsTJY035CpIU/CHWpE2Hjjqgnr5yGGP7nWxf6Vt+8
+ w9njino0leBRC5GtvJIGtrlRwQIrnbG0g6pAeSLTC8+p+3Xcdgqbw8z+9
+ 6exbLoJNXILmWbJn2fby3vTYD82N8Su0H0wYqRtY3NlWJ6r3bJxeNoHwV
+ Gjzq4qiXkGBn/94nBJWnDot9x0Q/br+c+HQ4c9l1w4z0rP8/nRdtw+Ho3
+ r7H7iHCNnu82uySbcThAHzI5UBs2XDqIgRk7DTNyPxvAFWBVKIH/1COII g==;
+X-CSE-ConnectionGUID: Zl/7v7VJSW6knus040EJgQ==
+X-CSE-MsgGUID: o9YzY6JlTHmSZPfFp/9OaQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11779"; a="79063603"
+X-IronPort-AV: E=Sophos;i="6.23,221,1770624000"; d="scan'208";a="79063603"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 May 2026 09:20:24 -0700
-X-CSE-ConnectionGUID: AvLJs1siT62O7xzIXwu9OA==
-X-CSE-MsgGUID: MGT65cwqQGmJsgxqztSFPg==
+X-CSE-ConnectionGUID: CBcmpwiaT3mrhjfy+N2oAw==
+X-CSE-MsgGUID: 1zf2WqIJQoiw719gzu7a2w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,221,1770624000"; d="scan'208";a="266876566"
+X-IronPort-AV: E=Sophos;i="6.23,221,1770624000"; d="scan'208";a="266876575"
 Received: from orsosgc001.jf.intel.com ([10.88.27.185])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 May 2026 09:20:24 -0700
@@ -46,9 +46,10 @@ To: intel-xe@lists.freedesktop.org,
 	niranjana.vishwanathapura@intel.com
 Cc: matthew.brost@intel.com,
 	stuart.summers@intel.com
-Subject: [PATCH v5 02/11] drm/xe: Add timestamp_ms to LRC snapshot
-Date: Thu,  7 May 2026 09:20:19 -0700
-Message-ID: <20260507162016.3888309-15-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH v5 05/11] drm/xe/multi_queue: Store primary LRC and position
+ info in LRC
+Date: Thu,  7 May 2026 09:20:22 -0700
+Message-ID: <20260507162016.3888309-18-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260507162016.3888309-13-umesh.nerlige.ramappa@intel.com>
 References: <20260507162016.3888309-13-umesh.nerlige.ramappa@intel.com>
@@ -68,63 +69,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matthew Brost <matthew.brost@intel.com>
+For an LRC belonging to the secondary queue, in order to check if its
+context group is active, we need to check the LRC of the primary queue.
+In addition to that we want to compare the secondary queue position to
+CSMQDEBUG register to check if the queue itself is active.
 
-Add a timestamp in milliseconds to the LRC snapshot to make it easier to
-reason about how long the LRC has been running and the average duration
-of each job.
+To do so, store primary LRC and position information in the LRC.
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+A note on references involved:
+
+- In general the Queue takes a ref on its LRC.
+- In addition, for multi-queue,
+a. Primary Queue takes a ref for each Secondary LRC.
+b. Each Secondary Queue takes a ref to the Primary Queue
+
+In the current patch, each LRC in the queue group is storing a pointer
+to primary LRC. Both primary and secondary LRCs are freed only when
+primary queue is destroyed. At this time, all secondary queues are
+already destroyed, so there is no one using secondary LRCs. We should be
+good without taking any additional references.
+
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 ---
-v2: Group u32s to avoid padding (Niranjana)
----
- drivers/gpu/drm/xe/xe_lrc.c | 4 ++++
- drivers/gpu/drm/xe/xe_lrc.h | 1 +
- 2 files changed, 5 insertions(+)
+v2:
+- Store primary LRC instead of primary queue (Niranjana)
+- Drop the valid flag and check if primary_lrc is NULL (Niranjana)
+- Document/Revisit references (Matt/Umesh)
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 570ff9f55849..66682a678cc2 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -23,6 +23,7 @@
- #include "xe_drm_client.h"
- #include "xe_exec_queue_types.h"
- #include "xe_gt.h"
-+#include "xe_gt_clock.h"
- #include "xe_gt_printk.h"
- #include "xe_hw_fence.h"
- #include "xe_map.h"
-@@ -2463,6 +2464,8 @@ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
- 	snapshot->replay_size = lrc->replay_size;
- 	snapshot->lrc_snapshot = NULL;
- 	snapshot->ctx_timestamp = xe_lrc_ctx_timestamp(lrc);
-+	snapshot->ctx_timestamp_ms =
-+		xe_gt_clock_interval_to_ms(lrc->gt, xe_lrc_ctx_timestamp(lrc));
- 	snapshot->ctx_job_timestamp = xe_lrc_ctx_job_timestamp(lrc);
- 	return snapshot;
- }
-@@ -2516,6 +2519,7 @@ void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer
- 	drm_printf(p, "\tStart seqno: (memory) %d\n", snapshot->start_seqno);
- 	drm_printf(p, "\tSeqno: (memory) %d\n", snapshot->seqno);
- 	drm_printf(p, "\tTimestamp: 0x%016llx\n", snapshot->ctx_timestamp);
-+	drm_printf(p, "\tTimestamp ms: %llu\n", snapshot->ctx_timestamp_ms);
- 	drm_printf(p, "\tJob Timestamp: 0x%08x\n", snapshot->ctx_job_timestamp);
+v3:
+- Drop the reference logic since it's not needed (Niranjana)
+- Move lrc->multi_queue initialization to a later point (Niranjana)
+
+v4: (Niranjana)
+- Set lrc[0].multi_queue.primary_lrc in xe_exec_queue_set_lrc
+- Set lrc[0].multi_queue.pos in xe_exec_queue_group_add
+- Include primary_context_desc and pos in snapshot
+
+v5:
+- Drop primary_context_desc and pos from lrc snapshot (Niranjana)
+- Fix checkpatch warning
+---
+ drivers/gpu/drm/xe/xe_exec_queue.c | 7 ++++++-
+ drivers/gpu/drm/xe/xe_lrc.h        | 5 +++++
+ drivers/gpu/drm/xe/xe_lrc_types.h  | 8 ++++++++
+ 3 files changed, 19 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 62a75c8fe72f..1b5ca3ce578a 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -275,8 +275,12 @@ static void xe_exec_queue_set_lrc(struct xe_exec_queue *q, struct xe_lrc *lrc, u
+ {
+ 	xe_assert(gt_to_xe(q->gt), idx < q->width);
  
- 	if (!snapshot->lrc_snapshot)
+-	scoped_guard(spinlock, &q->lrc_lookup_lock)
++	scoped_guard(spinlock, &q->lrc_lookup_lock) {
+ 		q->lrc[idx] = lrc;
++		if (xe_exec_queue_is_multi_queue(q))
++			q->lrc[idx]->multi_queue.primary_lrc =
++				q->multi_queue.group->primary->lrc[0];
++	}
+ }
+ 
+ /**
+@@ -907,6 +911,7 @@ static int xe_exec_queue_group_add(struct xe_device *xe, struct xe_exec_queue *q
+ 	}
+ 
+ 	q->multi_queue.pos = pos;
++	q->lrc[0]->multi_queue.pos = pos;
+ 
+ 	return 0;
+ }
 diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-index bef7af9a578b..d280e6572398 100644
+index d280e6572398..557dce004d48 100644
 --- a/drivers/gpu/drm/xe/xe_lrc.h
 +++ b/drivers/gpu/drm/xe/xe_lrc.h
-@@ -38,6 +38,7 @@ struct xe_lrc_snapshot {
- 	u32 start_seqno;
- 	u32 seqno;
+@@ -91,6 +91,11 @@ static inline size_t xe_lrc_ring_size(void)
+ 	return SZ_16K;
+ }
+ 
++static inline bool xe_lrc_is_multi_queue(struct xe_lrc *lrc)
++{
++	return lrc->multi_queue.primary_lrc;
++}
++
+ size_t xe_gt_lrc_hang_replay_size(struct xe_gt *gt, enum xe_engine_class class);
+ size_t xe_gt_lrc_size(struct xe_gt *gt, enum xe_engine_class class);
+ u32 xe_lrc_pphwsp_offset(struct xe_lrc *lrc);
+diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h b/drivers/gpu/drm/xe/xe_lrc_types.h
+index 5a718f759ed6..0a5c13ec2ad7 100644
+--- a/drivers/gpu/drm/xe/xe_lrc_types.h
++++ b/drivers/gpu/drm/xe/xe_lrc_types.h
+@@ -63,6 +63,14 @@ struct xe_lrc {
+ 
+ 	/** @ctx_timestamp: readout value of CTX_TIMESTAMP on last update */
  	u64 ctx_timestamp;
-+	u64 ctx_timestamp_ms;
- 	u32 ctx_job_timestamp;
++
++	/** @multi_queue: Multi queue LRC related information */
++	struct {
++		/** @multi_queue.primary_lrc: Primary lrc of this multi-queue group*/
++		struct xe_lrc *primary_lrc;
++		/** @multi_queue.pos: Position of LRC within the multi-queue group */
++		u8 pos;
++	} multi_queue;
  };
  
+ struct xe_lrc_snapshot;
 -- 
 2.51.0
 
