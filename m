@@ -4,58 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D30B2CD3427
-	for <intel-xe@archiver.kernel.org>; Thu,  7 May 2026 12:16:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CEE2CD343F
+	for <intel-xe@archiver.kernel.org>; Thu,  7 May 2026 12:22:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7E9A10F0C4;
-	Thu,  7 May 2026 12:16:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C91510F0E9;
+	Thu,  7 May 2026 12:22:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="bsVHsUVW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eqZEozzV";
 	dkim-atps=neutral
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F31910E04E;
- Tue,  5 May 2026 02:23:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=codeconstruct.com.au; s=2022a; t=1777947334;
- bh=BApm5x/0VbUOUr1fl2peC91jkJOoBSmbM/z6SHNpzuM=;
- h=Subject:From:To:Cc:Date:In-Reply-To:References;
- b=bsVHsUVWF5POnDk0Wg3YNEtKzO+e6gxuMaCDnHHBflUyMQzsSvQ5rvyXvDEwwD1Ay
- oZkb3MrPLjrb+lrXWGCZJcj927VZ5HOdtq0HfgQBAw/G2268IPi2REGMnUV+FMwAKK
- K5wZe5XF00670D8TSN+9qhaqtOr9O/DIyiDekRUhEp492s/gohAxEoptk/8rqJNhgD
- EW9q1xPFYzyM2iofeo58wZE53tXCafUlQIdZsqONi9WbFFlI/f7sVVJxsI1n+1JT83
- CjmZjyXIuGg4ffwR5CvT3g00gjfOB0Q6fArfsm2rrfJhLY2iD3ya4YlPd9tjGd71MD
- zl+tlR8D3lqPg==
-Received: from [192.168.72.167] (210-10-213-150.per.static-ipl.aapt.com.au
- [210.10.213.150])
- by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 5E4E0606D5;
- Tue,  5 May 2026 10:15:34 +0800 (AWST)
-Message-ID: <ad53295e19832cb1c0dc691eb53ac9cfce490aed.camel@codeconstruct.com.au>
-Subject: Re: [RFC PATCH 1/1] xe/xe_mctp_mailbox: Add support for MCTP
- transport over mailbox
-From: Jeremy Kerr <jk@codeconstruct.com.au>
-To: Badal Nilawar <badal.nilawar@intel.com>,
- dri-devel@lists.freedesktop.org,  intel-xe@lists.freedesktop.org,
- netdev@vger.kernel.org,  linux-kernel@vger.kernel.org
-Cc: rodrigo.vivi@intel.com, wojciech.drewek@intel.com,
- michael.brooks@intel.com,  heikki.krogerus@intel.com,
- michael.j.ruhl@intel.com,  thomas.hellstrom@linux.intel.com,
- michal.winiarski@intel.com,  anshuman.gupta@intel.com,
- jacob.e.keller@intel.com,  maarten.lankhorst@linux.intel.com,
- matthew.brost@intel.com,  anthony.l.nguyen@intel.com,
- przemyslaw.kitszel@intel.com,  mika.westerberg@linux.intel.com,
- andriy.shevchenko@linux.intel.com,  singaravelan.nallasellan@intel.com,
- kelvin.gardiner@intel.com,  matt@codeconstruct.com.au,
- andrew+netdev@lunn.ch, davem@davemloft.net,  edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, james.ausmus@intel.com
-Date: Tue, 05 May 2026 10:15:34 +0800
-In-Reply-To: <20260504193420.1232842-4-badal.nilawar@intel.com>
-References: <20260504193420.1232842-3-badal.nilawar@intel.com>
- <20260504193420.1232842-4-badal.nilawar@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86EFD10F0E9
+ for <intel-xe@lists.freedesktop.org>; Thu,  7 May 2026 12:22:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1778156547; x=1809692547;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=wj/T+DjDc0bDFFMxMNbIil9/nzvahQqGtDwyv2zUMao=;
+ b=eqZEozzVEYx4ujqwEunNbAeuAxVLhCBwKTGnuJ52i+NvuAihS0Kl5eAa
+ aMIwhXpRyiNc0Evtov5ahBFGjvb1NGRjrm560OMPOJFyrVm6W35pfF5Uf
+ ROJj1GPGQuHMT2Kndy7MDcZSqhbYZM5SUmWlS7HeH0IfUebieXRdqOyRB
+ Rl2L5r+6OwfbLtihDSCj4TuuQOh/uOnUNVXaEBU8PHwqiKJz+QzwaMVtG
+ MhCcJny9yimlt65ZKY7sr4nOMr6OlvITcD29531WDML9ES5qWenjsc5X/
+ Rw3mGABvGjJ2rWvTonWxUrIPIfFeQdc4DubaPHMPXLqIGE3bxdMET+nsP g==;
+X-CSE-ConnectionGUID: WN3/wChlRUOH3kp4/9C76w==
+X-CSE-MsgGUID: utnb3gdnRr+6Au6fQOIPWw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11778"; a="104561504"
+X-IronPort-AV: E=Sophos;i="6.23,221,1770624000"; d="scan'208";a="104561504"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2026 05:22:26 -0700
+X-CSE-ConnectionGUID: Udo+t9AwTrmcARpAUnb0IA==
+X-CSE-MsgGUID: 98h12M0eR16P1C4cxE8B4w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,221,1770624000"; d="scan'208";a="233372087"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO [10.245.245.94])
+ ([10.245.245.94])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2026 05:22:25 -0700
+Message-ID: <c434737c3613a2dff0e2442e89c7ec58640efed4.camel@linux.intel.com>
+Subject: Re: [PATCH v2 2/2] drm/xe/dma-buf: fix UAF with retry loop
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>, stable@vger.kernel.org
+Date: Thu, 07 May 2026 14:22:22 +0200
+In-Reply-To: <20260507115519.115309-4-matthew.auld@intel.com>
+References: <20260507115519.115309-3-matthew.auld@intel.com>
+ <20260507115519.115309-4-matthew.auld@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-User-Agent: Evolution 3.46.4-2+deb12u1 
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-X-Mailman-Approved-At: Thu, 07 May 2026 12:16:34 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,154 +70,166 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-SGkgQmFkYWwsCgo+IEFkZCBzdXBwb3J0IGZvciBNQ1RQIHRyYW5zcG9ydCBvdmVyIHRoZSBJbnRl
-bCB2ZW5kb3Itc3BlY2lmaWMgbWFpbGJveAo+IHByb3RvY29sIHRvIGVuYWJsZSBpbi1iYW5kIGZp
-cm13YXJlIHVwZGF0ZXMgZm9yIEdQVS9BTUMgdmlhIFBMRE0KCkkga25vdyB0aGlzIGlzIGFuIFJG
-QywgYnV0IHlvdSdyZSBtaXNzaW5nIHRoZSBkaXN0aW5jdGl2ZSBwYXJ0LCBhcm91bmQKdGhlIGhh
-cmR3YXJlIGludGVyYWN0aW9ucyBvbiB0aGUgdHJhbnNwb3J0IHNpZGUuIFRoZSBza2VsZXRvbiBv
-ZiBhIE1DVFAKZHJpdmVyIGlzIG1vc3RseSB0aGUgc2FtZSBhcyBleGlzdGluZyB0cmFuc3BvcnQg
-ZHJpdmVycywgc28gdGhlcmUncyBub3QKYSBsb3QgdG8gY29tbWVudCBvbiBhdCBwcmVzZW50LgoK
-U29tZSBpdGVtcyBvbiB0aGUgcGFydHMgaGVyZSB0aG91Z2g6IAoKSSdkIHN1Z2dlc3Qgbm90IHVz
-aW5nIHRoZSB0ZXJtICJNQ1RQIG92ZXIgbWFpbGJveCIgLyBtY3RwX21haWxib3ggaW4KZ2VuZXJh
-bDsgdGhlcmUgYXJlIGxvdHMgb2YgIm1haWxib3giIGltcGxlbWVudGF0aW9ucyBhcm91bmQsIGlu
-Y2x1ZGluZwp0aGUgcHJvcG9zZWQgUENDIG1haWxib3ggZHJpdmVyLiBQZXJoYXBzICJNQ1RQIG92
-ZXIgWGUgbWFpbGJveCI/Cgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfbWN0
-cF9tYWlsYm94LmMgYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfbWN0cF9tYWlsYm94LmMKPiBuZXcg
-ZmlsZSBtb2RlIDEwMDY0NAo+IGluZGV4IDAwMDAwMDAwMDAwMC4uZjFhODEyMDhhOWExCj4gLS0t
-IC9kZXYvbnVsbAo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9tY3RwX21haWxib3guYwo+
-IEBAIC0wLDAgKzEsMTg2IEBACj4gKy8vIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBNSVQKClRo
-aXMgd2lsbCBuZWVkIHRvIGluY2x1ZGUgR1BMdjIuCgo+ICsvKgo+ICsgKiBNQ1RQLW92ZXItTUFJ
-TEJPWCB0cmFuc3BvcnQgZm9yIFhlLgo+ICsgKgo+ICsgKiBDb3B5cmlnaHQgMjAyNiBJbnRlbCBD
-b3Jwb3JhdGlvbgo+ICsgKi8KPiArCj4gKyNpbmNsdWRlICJ4ZV9kZXZpY2VfdHlwZXMuaCIKPiAr
-Cj4gKyNpbmNsdWRlIDxsaW51eC9uZXRkZXZpY2UuaD4KPiArI2luY2x1ZGUgPGxpbnV4L2ppZmZp
-ZXMuaD4KPiArI2luY2x1ZGUgPGxpbnV4L3dvcmtxdWV1ZS5oPgo+ICsKPiArI2luY2x1ZGUgPG5l
-dC9tY3RwLmg+Cj4gKyNpbmNsdWRlIDxuZXQvbWN0cGRldmljZS5oPgo+ICsjaW5jbHVkZSA8bmV0
-L3BrdF9zY2hlZC5oPgo+ICsKPiArI2luY2x1ZGUgPHVhcGkvbGludXgvaWZfYXJwLmg+Cj4gKwo+
-ICsjaW5jbHVkZSAieGVfbWN0cF9tYWlsYm94LmgiCj4gKwo+ICsjZGVmaW5lIFhFX01DVFBfTUFJ
-TEJPWF9SWF9QT0xMX01TIDEwMAo+ICsKPiArLyoqIEBtY3RwX21haWxib3g6IFN0cnVjdCBmb3Ig
-bWN0cCBvdmVyIG1haWxib3ggKi8KPiArc3RydWN0IHhlX21jdHBfbWFpbGJveCB7Cj4gK8KgwqDC
-oMKgwqDCoMKgLyoqIEBtY3RwX21haWxib3gubmV0ZGV2OiBuZXR3b3JrIGRldmljZcKgICovCj4g
-K8KgwqDCoMKgwqDCoMKgc3RydWN0IG5ldF9kZXZpY2UgKm5ldGRldjsKPiArwqDCoMKgwqDCoMKg
-wqAvKiogQHJ1bm5pbmc6IHRydWUgd2hpbGUgbmV0ZGV2IGlzIG9wZW5lZCAqLwo+ICvCoMKgwqDC
-oMKgwqDCoGJvb2wgcnVubmluZzsKPiArwqDCoMKgwqDCoMKgwqAvKiogQHdvcms6IHdvcmtlciB0
-byBoYW5kbGUgbWN0cCByZXF1ZXN0cyBmcm9tIGZpcm13YXJlICovCj4gK8KgwqDCoMKgwqDCoMKg
-c3RydWN0IGRlbGF5ZWRfd29yayB3b3JrOwo+ICvCoMKgwqDCoMKgwqDCoC8qKiBAd3E6IHdvcmtx
-dWV1ZSB0byBzY2hlY2R1bGUgbWN0cCByeCB3b3JrZXIgKi8KPiArwqDCoMKgwqDCoMKgwqBzdHJ1
-Y3Qgd29ya3F1ZXVlX3N0cnVjdCAqd3E7Cj4gK307Cj4gKwo+ICsvKgo+ICsgKiBtYWlsYm94IHBy
-b3RvY29sIGlzIGludGVycnVwdCBmcmVlIHNvIGZvciByZWNlaXZlIHBhdGggaS5lLiBlbmRwb2lu
-dCB0byBob3N0Cj4gKyAqIHRoZXJlIGlzIG5vIGlycSBhdmFpbGFibGUgc28gcnggaGFuZGxlciBu
-ZWVkIHRvIGJlIHBvbGxlZCBpbiB3b3JrZXIgcGVyaW9kaWNhbGx5Lgo+ICsgKi8KClRoaXMgaXMg
-dW5mb3J0dW5hdGUgLSB0aGVyZSdzIG5vIGZhY2lsaXR5IHlvdSBjYW4gdXNlIHRvIHRyaWdnZXIg
-Ulg/Cgo+ICtzdGF0aWMgdm9pZCBtY3RwX21haWxib3hfcnhfaGFuZGxlcihzdHJ1Y3Qgd29ya19z
-dHJ1Y3QgKndvcmspCj4gK3sKPiArwqDCoMKgwqDCoMKgwqBzdHJ1Y3QgeGVfbWN0cF9tYWlsYm94
-ICptY3RwX21haWxib3ggPQo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBjb250YWlu
-ZXJfb2Yod29yaywgc3RydWN0IHhlX21jdHBfbWFpbGJveCwgd29yay53b3JrKTsKPiArwqDCoMKg
-wqDCoMKgwqBzdHJ1Y3QgbmV0X2RldmljZSAqbmV0ZGV2ID0gbWN0cF9tYWlsYm94LT5uZXRkZXY7
-Cj4gKwo+ICvCoMKgwqDCoMKgwqDCoGlmICghbmV0ZGV2KQo+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqByZXR1cm47Cj4gKwo+ICvCoMKgwqDCoMKgwqDCoGRldl9ob2xkKG5ldGRldik7
-Cj4gKwo+ICvCoMKgwqDCoMKgwqDCoC8qCj4gK8KgwqDCoMKgwqDCoMKgICogaWYgKG1jdHBfbWFp
-bGJveF9yeF9yZWFkeSgpKSB7Cj4gK8KgwqDCoMKgwqDCoMKgICogR2V0IGRhdGEgb3ZlciBNQUlM
-Qk9YCj4gK8KgwqDCoMKgwqDCoMKgICogQWxsb2NhdGUgc2tiIGFuZCBjb3B5IHJ4IGRhdGEgdG8g
-c2tiCj4gK8KgwqDCoMKgwqDCoMKgICogUXVldWUgc2tiIHRvIHVwcGVyIGxheWVyCj4gK8KgwqDC
-oMKgwqDCoMKgICogbmV0aWZfcngoc2tiKTsKPiArwqDCoMKgwqDCoMKgwqB9Cj4gK8KgwqDCoMKg
-wqDCoMKgICovCj4gK8KgwqDCoMKgwqDCoMKgZGV2X3B1dChuZXRkZXYpOwo+ICsKPiArwqDCoMKg
-wqDCoMKgwqBpZiAobWN0cF9tYWlsYm94LT5ydW5uaW5nKQo+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqBxdWV1ZV9kZWxheWVkX3dvcmsobWN0cF9tYWlsYm94LT53cSwgJm1jdHBfbWFp
-bGJveC0+d29yaywKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIG1zZWNzX3RvX2ppZmZpZXMoWEVfTUNUUF9NQUlMQk9Y
-X1JYX1BPTExfTVMpKTsKPiArfQoKT25lIHBhY2tldCBwZXIgMTAwbXMgd2lsbCBtZWFuIHlvdSB3
-aWxsIHZlcnkgbGlrZWx5IG1pc3MgYSByZXRyeSB0aW1lb3V0Cm9uIGZyYWdtZW50ZWQgbWVzc2Fn
-ZXMuIFlvdSBwcm9iYWJseSB3YW50IHRvIHNjaGVkdWxlIHRoZSBuZXh0IFJYCmltbWVkaWF0ZWx5
-IHVudGlsIHRoZSBtYWlsYm94IGlzIGVtcHR5LCBhc3N1bWluZyB0aGF0IHdpbGwgd29yayB3aXRo
-IHRoZQpzZW1hbnRpY3Mgb2YgdGhlIFhlIG1haWxib3guCgpFdmVuIHRoZW4sIGEgc2luZ2xlLXBh
-Y2tldCAod29yc3QtY2FzZSkgdHJhbnNtaXNzaW9uIGRlbGF5IG9mIDEwMG1zIGlzCmdldHRpbmcg
-YSBiaXQgbGFyZ2UuIEl0IG1heSBiZSBuZWNlc3NhcnkgdG8gaW5jcmVhc2UgdGhlIHBvbGxpbmcK
-ZnJlcXVlbmN5LCBidXQgdGhhdCBoYXMgZG93bnNpZGVzLiBIZW5jZSB0aGUgcXVlc3Rpb24gYWJv
-dXQgYW4gUlgKbm90aWZpY2F0aW9uIGZhY2lsaXR5LgoKPiArCj4gK3N0YXRpYyBuZXRkZXZfdHhf
-dCBtY3RwX21haWxib3hfc3RhcnRfeG1pdChzdHJ1Y3Qgc2tfYnVmZiAqc2tiLAo+ICvCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgIHN0cnVjdCBuZXRfZGV2aWNlICpkZXYpCj4gK3sKPiArwqDCoMKg
-wqDCoMKgwqAvKiBSRkMgc3R1Yjogc2VuZCBza2Igb3ZlciBNQUlMQk9YICovCj4gK8KgwqDCoMKg
-wqDCoMKgZGV2X2RzdGF0c190eF9kcm9wcGVkKGRldik7Cj4gK8KgwqDCoMKgwqDCoMKga2ZyZWVf
-c2tiKHNrYik7Cj4gKwo+ICvCoMKgwqDCoMKgwqDCoHJldHVybiBORVRERVZfVFhfT0s7Cj4gK30K
-PiArCj4gK3N0YXRpYyBpbnQgbWN0cF9tYWlsYm94X29wZW4oc3RydWN0IG5ldF9kZXZpY2UgKmRl
-dikKPiArewo+ICvCoMKgwqDCoMKgwqDCoHN0cnVjdCB4ZV9tY3RwX21haWxib3ggKm1jdHBfbWFp
-bGJveCA9IG5ldGRldl9wcml2KGRldik7Cj4gKwo+ICvCoMKgwqDCoMKgwqDCoG1jdHBfbWFpbGJv
-eC0+cnVubmluZyA9IHRydWU7Cj4gK8KgwqDCoMKgwqDCoMKgbmV0aWZfc3RhcnRfcXVldWUoZGV2
-KTsKPiArCj4gK8KgwqDCoMKgwqDCoMKgcXVldWVfZGVsYXllZF93b3JrKG1jdHBfbWFpbGJveC0+
-d3EsICZtY3RwX21haWxib3gtPndvcmssIDApOwo+ICsKPiArwqDCoMKgwqDCoMKgwqByZXR1cm4g
-MDsKPiArfQo+ICsKPiArc3RhdGljIGludCBtY3RwX21haWxib3hfc3RvcChzdHJ1Y3QgbmV0X2Rl
-dmljZSAqZGV2KQo+ICt7Cj4gK8KgwqDCoMKgwqDCoMKgc3RydWN0IHhlX21jdHBfbWFpbGJveCAq
-bWN0cF9tYWlsYm94ID0gbmV0ZGV2X3ByaXYoZGV2KTsKPiArCj4gK8KgwqDCoMKgwqDCoMKgbWN0
-cF9tYWlsYm94LT5ydW5uaW5nID0gZmFsc2U7Cj4gK8KgwqDCoMKgwqDCoMKgbmV0aWZfc3RvcF9x
-dWV1ZShkZXYpOwo+ICsKPiArwqDCoMKgwqDCoMKgwqBjYW5jZWxfZGVsYXllZF93b3JrX3N5bmMo
-Jm1jdHBfbWFpbGJveC0+d29yayk7Cj4gK8KgwqDCoMKgwqDCoMKgZmx1c2hfd29ya3F1ZXVlKG1j
-dHBfbWFpbGJveC0+d3EpOwo+ICsKPiArwqDCoMKgwqDCoMKgwqByZXR1cm4gMDsKPiArfQo+ICsK
-PiArc3RhdGljIGNvbnN0IHN0cnVjdCBuZXRfZGV2aWNlX29wcyBtY3RwX21haWxib3hfbmV0ZGV2
-X29wcyA9IHsKPiArwqDCoMKgwqDCoMKgwqAubmRvX3N0YXJ0X3htaXQgPSBtY3RwX21haWxib3hf
-c3RhcnRfeG1pdCwKPiArwqDCoMKgwqDCoMKgwqAubmRvX29wZW4gPSBtY3RwX21haWxib3hfb3Bl
-biwKPiArwqDCoMKgwqDCoMKgwqAubmRvX3N0b3AgPSBtY3RwX21haWxib3hfc3RvcCwKPiArfTsK
-PiArCj4gK3N0YXRpYyB2b2lkIG1jdHBfbWFpbGJveF9uZXRkZXZfc2V0dXAoc3RydWN0IG5ldF9k
-ZXZpY2UgKmRldikKPiArewo+ICvCoMKgwqDCoMKgwqDCoC8qIFBvcHVsYXRlIG5ldGRldiBzdHJ1
-Y3R1cmUgKi8KPiArwqDCoMKgwqDCoMKgwqBkZXYtPnR5cGUgPSBBUlBIUkRfTUNUUDsKPiArwqDC
-oMKgwqDCoMKgwqAvKgo+ICvCoMKgwqDCoMKgwqDCoCAqwqDCoMKgwqDCoMKgZGV2LT5tdHUgPSBN
-Q1RQX01BSUxCT1hfTVRVX01JTjsKPiArwqDCoMKgwqDCoMKgwqAgKsKgwqDCoMKgwqDCoGRldi0+
-bWluX210dSA9IE1DVFBfTUFJTEJPWF9NVFVfTUlOOwo+ICvCoMKgwqDCoMKgwqDCoCAqwqDCoMKg
-wqDCoMKgZGV2LT5tYXhfbXR1ID0gTUNUUF9NQUlMQk9YX01UVV9NQVg7Cj4gK8KgwqDCoMKgwqDC
-oMKgICoKPiArwqDCoMKgwqDCoMKgwqAgKsKgwqDCoMKgwqDCoGRldi0+aGFyZF9oZWFkZXJfbGVu
-ID0gc2l6ZW9mKHN0cnVjdCBtY3RwX21haWxib3hfaGRyKTsKCldoYXQncyBpbiBzdHJ1Y3QgbWN0
-cF9tYWlsYm94X2hkcj8gSSBhc3N1bWUgeW91IGRvbid0IG5lZWQgdG8gaGFuZGxlIGFueQpwaHlz
-aWNhbCBhZGRyZXNzaW5nLCBidXQgY2FuIHlvdSBjb25maXJtPwoKPiArwqDCoMKgwqDCoMKgwqAg
-KsKgwqDCoMKgwqDCoGRldi0+dHhfcXVldWVfbGVuID0gREVGQVVMVF9UWF9RVUVVRV9MRU47Cj4g
-K8KgwqDCoMKgwqDCoMKgICovCj4gK8KgwqDCoMKgwqDCoMKgZGV2LT5mbGFncyA9IElGRl9OT0FS
-UDsKPiArwqDCoMKgwqDCoMKgwqBkZXYtPm5ldGRldl9vcHMgPSAmbWN0cF9tYWlsYm94X25ldGRl
-dl9vcHM7Cj4gK8KgwqDCoMKgwqDCoMKgZGV2LT5wY3B1X3N0YXRfdHlwZSA9IE5FVERFVl9QQ1BV
-X1NUQVRfRFNUQVRTOwo+ICt9Cj4gKwo+ICtzdGF0aWMgdm9pZCB4ZV9tY3RwX21haWxib3hfZmlu
-aSh2b2lkICphcmcpCj4gK3sKPiArwqDCoMKgwqDCoMKgwqBzdHJ1Y3QgeGVfZGV2aWNlICp4ZSA9
-IGFyZzsKPiArwqDCoMKgwqDCoMKgwqBzdHJ1Y3QgeGVfbWN0cF9tYWlsYm94ICptY3RwX21haWxi
-b3ggPSB4ZS0+bWN0cF9tYWlsYm94Owo+ICvCoMKgwqDCoMKgwqDCoHN0cnVjdCBuZXRfZGV2aWNl
-ICpuZXRkZXY7Cj4gKwo+ICvCoMKgwqDCoMKgwqDCoGlmICghbWN0cF9tYWlsYm94KQo+ICvCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1cm47Cj4gKwo+ICvCoMKgwqDCoMKgwqDCoG5l
-dGRldiA9IG1jdHBfbWFpbGJveC0+bmV0ZGV2Owo+ICvCoMKgwqDCoMKgwqDCoGlmICghbmV0ZGV2
-KSB7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHhlLT5tY3RwX21haWxib3ggPSBO
-VUxMOwo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1cm47Cj4gK8KgwqDCoMKg
-wqDCoMKgfQo+ICsKPiArwqDCoMKgwqDCoMKgwqBpZiAobWN0cF9tYWlsYm94LT53cSkgewo+ICvC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBtY3RwX21haWxib3gtPnJ1bm5pbmcgPSBmYWxz
-ZTsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgY2FuY2VsX2RlbGF5ZWRfd29ya19z
-eW5jKCZtY3RwX21haWxib3gtPndvcmspOwo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqBkZXN0cm95X3dvcmtxdWV1ZShtY3RwX21haWxib3gtPndxKTsKPiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgbWN0cF9tYWlsYm94LT53cSA9IE5VTEw7Cj4gK8KgwqDCoMKgwqDCoMKg
-fQo+ICsKPiArwqDCoMKgwqDCoMKgwqB4ZS0+bWN0cF9tYWlsYm94ID0gTlVMTDsKPiArwqDCoMKg
-wqDCoMKgwqBtY3RwX3VucmVnaXN0ZXJfbmV0ZGV2KG5ldGRldik7Cj4gK8KgwqDCoMKgwqDCoMKg
-ZnJlZV9uZXRkZXYobmV0ZGV2KTsKPiArfQo+ICsKPiAraW50IHhlX21jdHBfbWFpbGJveF9pbml0
-KHN0cnVjdCB4ZV9kZXZpY2UgKnhlKQo+ICt7Cj4gK8KgwqDCoMKgwqDCoMKgc3RydWN0IHhlX21j
-dHBfbWFpbGJveCAqbWN0cF9tYWlsYm94Owo+ICvCoMKgwqDCoMKgwqDCoHN0cnVjdCBuZXRfZGV2
-aWNlICpuZXRkZXY7Cj4gK8KgwqDCoMKgwqDCoMKgaW50IHJldCwgZXJyOwo+ICsKPiArwqDCoMKg
-wqDCoMKgwqBuZXRkZXYgPSBhbGxvY19uZXRkZXYoc2l6ZW9mKCptY3RwX21haWxib3gpLCAibWN0
-cF9tYWlsYm94JWQiLCBORVRfTkFNRV9FTlVNLAo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBtY3RwX21haWxib3hfbmV0ZGV2X3NldHVw
-KTsKCkknZCBzdWdnZXN0IG1jdHB4ZSVkIGhlcmUuIFdlIGRvbid0IHRlbmQgdG8gaGF2ZSB1bmRl
-cnNjb3JlcyBpbiBuZXRkZXYKbmFtZXMsIGFuZCAnbWFpbGJveCcgaXMgcXVpdGUgZ2VuZXJpYy4K
-CkNhbiB5b3UgdGllIHRoZSBuYW1lIHRvIHRoZSBpbnN0YW5jZSBvZiB0aGUgR1BVIChhbmQgdGhl
-biB1c2UKTkVUX05BTUVfUFJFRElDVEFCTEUpIHBlcmhhcHM/Cgo+ICvCoMKgwqDCoMKgwqDCoGlm
-ICghbmV0ZGV2KQo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gLUVOT01F
-TTsKPiArCj4gK8KgwqDCoMKgwqDCoMKgU0VUX05FVERFVl9ERVYobmV0ZGV2LCB4ZS0+ZHJtLmRl
-dik7Cj4gK8KgwqDCoMKgwqDCoMKgbWN0cF9tYWlsYm94ID0gbmV0ZGV2X3ByaXYobmV0ZGV2KTsK
-PiArwqDCoMKgwqDCoMKgwqBtY3RwX21haWxib3gtPm5ldGRldiA9IG5ldGRldjsKPiArCj4gK8Kg
-wqDCoMKgwqDCoMKgcmV0ID0gbWN0cF9yZWdpc3Rlcl9uZXRkZXYobmV0ZGV2LCBOVUxMLCBNQ1RQ
-X1BIWVNfQklORElOR19WRU5ET1IpOwo+ICvCoMKgwqDCoMKgwqDCoGlmIChyZXQpIHsKPiArwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZnJlZV9uZXRkZXYobmV0ZGV2KTsKPiArwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIHJldDsKPiArwqDCoMKgwqDCoMKgwqB9Cj4g
-Kwo+ICvCoMKgwqDCoMKgwqDCoElOSVRfREVMQVlFRF9XT1JLKCZtY3RwX21haWxib3gtPndvcmss
-IG1jdHBfbWFpbGJveF9yeF9oYW5kbGVyKTsKPiArwqDCoMKgwqDCoMKgwqBtY3RwX21haWxib3gt
-PndxID0gYWxsb2Nfb3JkZXJlZF93b3JrcXVldWUoIm1jdHAtbWFpbGJveC1vcmRlcmVkLXdxIiwg
-MCk7Cj4gK8KgwqDCoMKgwqDCoMKgaWYgKCFtY3RwX21haWxib3gtPndxKSB7Cj4gK8KgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoG1jdHBfdW5yZWdpc3Rlcl9uZXRkZXYobmV0ZGV2KTsKPiAr
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZnJlZV9uZXRkZXYobmV0ZGV2KTsKPiArwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIC1FTk9NRU07Cj4gK8KgwqDCoMKgwqDC
-oMKgfQo+ICsKPiArwqDCoMKgwqDCoMKgwqB4ZS0+bWN0cF9tYWlsYm94ID0gbWN0cF9tYWlsYm94
-Owo+ICvCoMKgwqDCoMKgwqDCoGVyciA9IGRldm1fYWRkX2FjdGlvbl9vcl9yZXNldCh4ZS0+ZHJt
-LmRldiwgeGVfbWN0cF9tYWlsYm94X2ZpbmksIHhlKTsKPiArwqDCoMKgwqDCoMKgwqBpZiAoZXJy
-KQo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gZXJyOwo+ICsKPiArwqDC
-oMKgwqDCoMKgwqByZXR1cm4gMDsKPiArfQoKQ2hlZXJzLAoKCkplcmVteQo=
+On Thu, 2026-05-07 at 12:55 +0100, Matthew Auld wrote:
+> Retry doesn't work here, since bo will be freed on error, leading to
+> UAF. However, now that we do the alloc & init before the attach, we
+> can
+> now combine this as one unit and have the init do the alloc for us.
+> This
+> should make the retry safe.
+>=20
+> Reported by Sashiko.
+>=20
+> Closes:
+> https://sashiko.dev/#/patchset/20260506184332.86743-2-matthew.auld%40inte=
+l.com
+> Fixes: eb289a5f6cc6 ("drm/xe: Convert xe_dma_buf.c for exhaustive
+> eviction")
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: <stable@vger.kernel.org> # v6.18+
 
+lgtm.
+Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+
+
+
+> ---
+> =C2=A0drivers/gpu/drm/xe/xe_dma_buf.c | 42 +++++++++---------------------=
+-
+> --
+> =C2=A01 file changed, 11 insertions(+), 31 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c
+> b/drivers/gpu/drm/xe/xe_dma_buf.c
+> index 2332db502c8b..a54ec278a915 100644
+> --- a/drivers/gpu/drm/xe/xe_dma_buf.c
+> +++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+> @@ -258,16 +258,8 @@ struct dma_buf *xe_gem_prime_export(struct
+> drm_gem_object *obj, int flags)
+> =C2=A0	return ERR_PTR(ret);
+> =C2=A0}
+> =C2=A0
+> -/*
+> - * Takes ownership of @storage: on success it is transferred to the
+> returned
+> - * drm_gem_object; on failure it is freed before returning the
+> error.
+> - * This matches the contract of xe_bo_init_locked() which frees
+> @storage on
+> - * its error paths, so callers need not (and must not) free @storage
+> after
+> - * this call.
+> - */
+> =C2=A0static struct drm_gem_object *
+> -xe_dma_buf_init_obj(struct drm_device *dev, struct xe_bo *storage,
+> -		=C2=A0=C2=A0=C2=A0 struct dma_buf *dma_buf)
+> +xe_dma_buf_create_obj(struct drm_device *dev, struct dma_buf
+> *dma_buf)
+> =C2=A0{
+> =C2=A0	struct dma_resv *resv =3D dma_buf->resv;
+> =C2=A0	struct xe_device *xe =3D to_xe_device(dev);
+> @@ -278,10 +270,8 @@ xe_dma_buf_init_obj(struct drm_device *dev,
+> struct xe_bo *storage,
+> =C2=A0	int ret =3D 0;
+> =C2=A0
+> =C2=A0	dummy_obj =3D drm_gpuvm_resv_object_alloc(&xe->drm);
+> -	if (!dummy_obj) {
+> -		xe_bo_free(storage);
+> +	if (!dummy_obj)
+> =C2=A0		return ERR_PTR(-ENOMEM);
+> -	}
+> =C2=A0
+> =C2=A0	dummy_obj->resv =3D resv;
+> =C2=A0	xe_validation_guard(&ctx, &xe->val, &exec, (struct
+> xe_val_flags) {}, ret) {
+> @@ -290,8 +280,7 @@ xe_dma_buf_init_obj(struct drm_device *dev,
+> struct xe_bo *storage,
+> =C2=A0		if (ret)
+> =C2=A0			break;
+> =C2=A0
+> -		/* xe_bo_init_locked() frees storage on error */
+> -		bo =3D xe_bo_init_locked(xe, storage, NULL, resv,
+> NULL, dma_buf->size,
+> +		bo =3D xe_bo_init_locked(xe, NULL, NULL, resv, NULL,
+> dma_buf->size,
+> =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0, /* Will require 1way or
+> 2way for vm_bind */
+> =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ttm_bo_type_sg,
+> XE_BO_FLAG_SYSTEM, &exec);
+> =C2=A0		drm_exec_retry_on_contention(&exec);
+> @@ -342,7 +331,6 @@ struct drm_gem_object *xe_gem_prime_import(struct
+> drm_device *dev,
+> =C2=A0	const struct dma_buf_attach_ops *attach_ops;
+> =C2=A0	struct dma_buf_attachment *attach;
+> =C2=A0	struct drm_gem_object *obj;
+> -	struct xe_bo *bo;
+> =C2=A0
+> =C2=A0	if (dma_buf->ops =3D=3D &xe_dmabuf_ops) {
+> =C2=A0		obj =3D dma_buf->priv;
+> @@ -357,22 +345,14 @@ struct drm_gem_object
+> *xe_gem_prime_import(struct drm_device *dev,
+> =C2=A0		}
+> =C2=A0	}
+> =C2=A0
+> -	bo =3D xe_bo_alloc();
+> -	if (IS_ERR(bo))
+> -		return ERR_CAST(bo);
+> -
+> =C2=A0	/*
+> -	 * xe_dma_buf_init_obj() takes ownership of the raw bo, so
+> do not touch
+> -	 * on fail, since it will already take care of cleanup. On
+> success we
+> -	 * still need to drop the ref, if something later fails.
+> -	 *
+> -	 * In addition this needs to happen before the attach, since
+> -	 * it will create a new attachment for this, and add it to
+> the list of
+> -	 * attachments, at which point it is globally visible, and
+> at any point
+> -	 * the export side can call into on invalidate_mappings
+> callback, which
+> -	 * require a working object.
+> +	 * This needs to happen before the attach, since it will
+> create a new
+> +	 * attachment for this, and add it to the list of
+> attachments, at which
+> +	 * point it is globally visible, and at any point the export
+> side can
+> +	 * call into on invalidate_mappings callback, which require
+> a working
+> +	 * object.
+> =C2=A0	 */
+> -	obj =3D xe_dma_buf_init_obj(dev, bo, dma_buf);
+> +	obj =3D xe_dma_buf_create_obj(dev, dma_buf);
+
+Cant you just use xe_bo_create_novm() here?
+
+
+> =C2=A0	if (IS_ERR(obj))
+> =C2=A0		return obj;
+> =C2=A0
+> @@ -382,7 +362,7 @@ struct drm_gem_object *xe_gem_prime_import(struct
+> drm_device *dev,
+> =C2=A0		attach_ops =3D test->attach_ops;
+> =C2=A0#endif
+> =C2=A0
+> -	attach =3D dma_buf_dynamic_attach(dma_buf, dev->dev,
+> attach_ops, &bo->ttm.base);
+> +	attach =3D dma_buf_dynamic_attach(dma_buf, dev->dev,
+> attach_ops, obj);
+> =C2=A0	if (IS_ERR(attach)) {
+> =C2=A0		obj =3D ERR_CAST(attach);
+> =C2=A0		goto out_err;
+> @@ -393,7 +373,7 @@ struct drm_gem_object *xe_gem_prime_import(struct
+> drm_device *dev,
+> =C2=A0	return obj;
+> =C2=A0
+> =C2=A0out_err:
+> -	xe_bo_put(bo);
+> +	xe_bo_put(gem_to_xe_bo(obj));
+> =C2=A0
+> =C2=A0	return obj;
+> =C2=A0}
