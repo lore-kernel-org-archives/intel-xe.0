@@ -4,153 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82097CD3427
-	for <intel-xe@archiver.kernel.org>; Thu,  7 May 2026 05:50:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DCA14CD343B
+	for <intel-xe@archiver.kernel.org>; Thu,  7 May 2026 06:31:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E86610E18B;
-	Thu,  7 May 2026 05:50:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E18D10EF76;
+	Thu,  7 May 2026 06:31:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PNEUKlW+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bShL6kkY";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 458DD10E02C;
- Thu,  7 May 2026 05:50:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF45510EF76
+ for <intel-xe@lists.freedesktop.org>; Thu,  7 May 2026 06:31:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778133004; x=1809669004;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=trgXmQJ/SKMKWuowEC/oNJzEsqiViR3y3FZhuvEUQnM=;
- b=PNEUKlW+W71W5Ha7pDybcoCZCZC/P+jxDIiem4Yizq05l10zEXQXAsGv
- pEIEW8XoUgxtaE1NfJWOlJyKhKPzrqAa5gb35qcGwIshJ6nP0HPSbtU9Z
- DLah8uHcUA7w6PgcU/D+7uq7/NEoqWeWMLkGrGkQFjrG2CqF7bBbkSqfa
- VQLbuWOuEqydjfpqvCaeErkz6tCk+nCq0JgHX0aIGwHmyMxE5nNKuUd4H
- qt5bfEmQXGYhWB1kndG2jFDyUi0cSW9VFvFO4XgH43WWlv7kGFDbTpWDb
- Y+lZNAk3nfgCyYh8n8W/kfyCBA6uyDXzst4V+l3Me6b6IwJlb5qGxnMHz g==;
-X-CSE-ConnectionGUID: VuOgM+iTR8W5xsCU81sPTg==
-X-CSE-MsgGUID: w5mKUuI6T4ew7qPIlHzrMg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11778"; a="78969654"
-X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="78969654"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2026 22:50:04 -0700
-X-CSE-ConnectionGUID: Y9g+6ikhTEapj77rz0WYyw==
-X-CSE-MsgGUID: ZdgEVYuLRm+tp73PIOWjaQ==
+ t=1778135506; x=1809671506;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=RYmcnkXdP8SDw3AKhAxZBvjc1xfPWqzXEdvyvujwoC4=;
+ b=bShL6kkYfe3TV977jeAc1vq27XzBJoHUOGwEGnzqvpPJMgx+J4sTKR6O
+ AnxNBvI2Rmpy8hGpQ84wYyzxD2kxcp3/HoAE2a5x1fO4r0OyF66uoRXYG
+ 29XBPteDK0iilqbHCTpKjK1QFnEFigr7GsBoYGRzK5ZeTU4uKY9Trb8Z4
+ 6B1n+Xo9NUdhvtWvPsmnv4+kPuqVz7xJjlAyGiaHv61bBB0uBD/Zi9Z28
+ 3CDlaVHKDTiYI1lbsFkZBp4Te5UDNJfM9QqONgpKPOaH3Ek0n+5ek52+O
+ fOxV6zHCi+XE9KXMrtxr8AnBXQYzSE8SWN/zMVzV2U/O4ZY0CYLomk4Dl w==;
+X-CSE-ConnectionGUID: 9HQOL8suQzGf3LnMbGggUw==
+X-CSE-MsgGUID: 0WvQXJnUSPqy827Jn0kGCA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11778"; a="90455073"
+X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="90455073"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2026 23:31:45 -0700
+X-CSE-ConnectionGUID: cp43u5yqQrW/QSpuZn2daw==
+X-CSE-MsgGUID: Qk/p/9ZjS/qfmmdTifxozQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="241344174"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2026 22:50:04 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 6 May 2026 22:50:03 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 6 May 2026 22:50:03 -0700
-Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.67)
- by edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 6 May 2026 22:50:02 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LKPMvmQGMiVL8/onx78Oe5QLSq0SEv2ZBi1lT/l55+v9o0EZ3IJsgj0MQkEi2n+jv2MJl+g0Y7ulTBdnaKAP16gCxjzf3CUKOCJ7RYI8E6PCnMn9uN3fKu1hqA/ElxyhHk+tw52tF1aI9EfxXAsIlYXTHC1e8e+epl+DAyZL8QFdgFdrMkxGerkGABKW74VDKy8f8AakLL/6TI8XFUF6N+kNEE9kvF+we/lyU/7st7hGxPWigq3E41c2EdCP9iOlS7V4Xz76zY2fCSOuGt8R+ipL7kqs5k/r7mv7gfZdVe80ENqLsD+ptiOPlq+aZslDddnrO/cWNuS97dL0g7aY0w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/r+F26dZLch1IYBQ0wBbs8wLJJ2ef3FifFvDWHnSZuY=;
- b=SsIht9hpW2HFm7ulh8verXStQaEO2oCci2s2iU7o1fXL9d+pTBxAb31WuGJ+YXU2/ZFr1LRr/jaoW7wP/gXRedUfNlk2XD9M5tS0GzkzRwDuAkG47J/ls42NU8Jj8U8t7/X0gJ+fFeRPeUIKjUSN5RaxNkqE+lcO4CmFNC1uf4iwxtnfxMr9WLitm6De2xdMC7eRBkG2yaqCC2MH2q7tm0NuEnfciQR+VONBQbR97BR1XSf8i8bFeyg1f54i9PWOnpojnx0kxnnyrhSvAbYWEBlCayisfY3NYCDdpaBm9BqooY6M+fC2FzOHiXBCpFbjSzWV0x2ir1Q+hGbVq+Jf/w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
- by BY1PR11MB8029.namprd11.prod.outlook.com (2603:10b6:a03:526::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.15; Thu, 7 May
- 2026 05:49:59 +0000
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::9ca5:4d1d:db45:f523]) by SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::9ca5:4d1d:db45:f523%5]) with mapi id 15.20.9870.023; Thu, 7 May 2026
- 05:49:59 +0000
-Date: Thu, 7 May 2026 08:49:50 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: "Almahallawy, Khaled" <khaled.almahallawy@intel.com>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Lin,
- Charlton" <charlton.lin@intel.com>
-Subject: Re: [PATCH 019/108] drm/i915/dp_link_training: Track link recovery
- state with an enum
-Message-ID: <afwn_kmHV0-lxDZX@ideak-desk.lan>
-References: <20260428125233.1664668-1-imre.deak@intel.com>
- <20260428125233.1664668-20-imre.deak@intel.com>
- <22c8e2d9fe291f26195a71d4f77c62f20dfbb330.camel@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <22c8e2d9fe291f26195a71d4f77c62f20dfbb330.camel@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-X-ClientProxiedBy: GVX0EPF00073CE5.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:158:400::1c7) To SJ0PR11MB4845.namprd11.prod.outlook.com
- (2603:10b6:a03:2d1::10)
+X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="235375465"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO [10.245.245.94])
+ ([10.245.245.94])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2026 23:31:44 -0700
+Message-ID: <7977ff722a61b0e235e3c8007d474ffb2e7b9506.camel@linux.intel.com>
+Subject: Re: [PATCH] drm/xe: Add bounds check for num_binds to prevent
+ memory exhaustion
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>, Ramesh Adhikari
+ <adhikari.resume@gmail.com>
+Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com, 
+ stable@vger.kernel.org
+Date: Thu, 07 May 2026 08:31:40 +0200
+In-Reply-To: <afuWYH88a4UaABXs@gsse-cloud1.jf.intel.com>
+References: <20260506180636.23771-1-adhikari.resume@gmail.com>
+ <afuWYH88a4UaABXs@gsse-cloud1.jf.intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|BY1PR11MB8029:EE_
-X-MS-Office365-Filtering-Correlation-Id: a59cea8b-6ade-4b5a-2eb6-08deabfc791f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|3023799003|22082099003|56012099003|18002099003;
-X-Microsoft-Antispam-Message-Info: h5Aj9FLnreAYdHxzCII0vCd9Oslq4Hk5oM1jCUdATmh74eoMgufFRehfrgF+zeRRYroujliJj6CdCDexAbT6mVij5VYjCAAMa5pIJ8RyZyM9E+NBF6HI0iK7Q8Q2h3APf6Tut5Jgnk1g6R/Mq0A73DNT56/y9h0saHa1SU3sGe3EiJ/Ln3DsapbtrgTW0AGIadNRygAEpxmp2ViWsuIPDw5QMf8BX1F6zTYLav8iK/SRCAyG0MnQI17nXq6ZKmzTIG3ig1QH/l9BMOYmRChm8W+ZPiOos5eyj00UxTm0M4v+FdeWvmq649G+oLbcZfWV82RkYbDS8Gw4/cJW6/ICDvC0MHT47GAkLUVOPOL4gHuxJXadtfPDZkF5vnY/1TXgclvZKTThzXOPpr1HL3Nd3w5lGzNpyJNMBWhc4C/rBWfAOYowGGlVSBA/4qcwCYcWkDoUldqD5NuFWqkLYG8wFkRMb956ur9aLS+Tg4LdvseyFWswOO02KchIqP0DlgD2ncfccvk4VjV5U8GEAHd/riFhKiyT36/PW9LqFjYNvjk7dJgpTDHPdI/VE5O8tZcUJajXh1jr4lDkOLZMUcICOczvaFKfQE77/hiScg3PVOG3VN+NJd93uORCugiyueZpIYhx3ZeWrqR7o9uAEPyLWlvJ6FO3dcyP9KSX7m+SJFoztSYEv1PNhlm8gOLkF4HW
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(3023799003)(22082099003)(56012099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?VdHW62alxUFXZecHMX/3AF9l59UZE/+/OMdQplmF1JncYp+wA9+Srma2lN?=
- =?iso-8859-1?Q?Q33OmifftEijerbGC46CWj6R/9t0rqmu44EY+AFEhf6+t6FWmGpP+cVdS3?=
- =?iso-8859-1?Q?tY6KlPxgbkUbW7hCvmu3z/fZ/enNt+TZoNnImjJvrmoSAjrzT1XptB3QCR?=
- =?iso-8859-1?Q?VRiF3m4fqCsNvrFq2MUCRrh7NXXLk4+k5/m/VzHbhAMLeP3MF9mK+MXMrU?=
- =?iso-8859-1?Q?wkSQ+V9n5ECVifecGxIiaMujpqt2nwl8g7bm64Yht+jRz7KC6lIvdDKQU/?=
- =?iso-8859-1?Q?vxZAnhPe83gBSvvtXIRsAQoRd27neao5BIPaLdCFGalMgoRAfnh6/inDLK?=
- =?iso-8859-1?Q?DSIXbX62RlXn8RcWapfVjDFvFaaQ/7U8wH+dSyQfOSVMKezTU0TaFNM9bm?=
- =?iso-8859-1?Q?7x2oCqBKpmffvBj6UCbMNvRGeAtr4RAyesmJ5ZjRCPei8P9fNEHrz97bjI?=
- =?iso-8859-1?Q?ccIanx9/V4KtHGRR2H42b3fKTtNQdMpZGeqDemhBmCX1QPG5joyqz12/4Z?=
- =?iso-8859-1?Q?BpAyafgbRK0jGlSQUDX6dE74cJIAr4acPRodTZk0Jr/cTeBISJk8M9Vy6R?=
- =?iso-8859-1?Q?WVwZv+aHPh4BBKYQOHcWR2WtMUbpS45UHK+thjBX7QPXBjKfyYREZhxWBV?=
- =?iso-8859-1?Q?MXC9TmyLXbVqTPyyLy3N+MjN05wBWqYBzMrjKwdGpD60idoG92jj4IypOL?=
- =?iso-8859-1?Q?ZXNHcApupdbF1K6EGpWvazDTzgcTzkSpuzAk9MHc9+ZxxrMebhE6hePQ1/?=
- =?iso-8859-1?Q?Oi66Ia3khqyuzARb/GF3ZUuBrSrVcj9C9RDzzWOODg89k6ZvWkeS3RlQAQ?=
- =?iso-8859-1?Q?gRyXXxEcxQxYlp4258MfRdO3d+2Rw+U0q8OVCxIAHhKHMqFJv/97o2U+Fs?=
- =?iso-8859-1?Q?l/bMOyc/OvH9VHLs/AdByvDwdgIdCbs8Q8h461po99sBjLldZmXbKdkCKO?=
- =?iso-8859-1?Q?IW/2FekvQysjfksTs73b8k/aqKAEYj3Q2gdc4J6Zre3DHF6GEjtzsW8te/?=
- =?iso-8859-1?Q?mDAnWdltp5CQsIzttch3t2OTAQJeF0wdpYXlLzbJcQEFMxlefTzLINiVkg?=
- =?iso-8859-1?Q?iMY27jcHb9zmjD+peyCy9hWxFweTHptwbq8nu+onSad2IzR3hyzMjKXNDf?=
- =?iso-8859-1?Q?51zEzyoRXUC+TWhWJEctym+S8U6wpcOd+KNsXurz9zuCCDd2PwUv8MEb+k?=
- =?iso-8859-1?Q?MMPY9l2q6nQLHjY56LborkWE3McKF9BByEloCy8wKwDfUO76mADklv1rE1?=
- =?iso-8859-1?Q?/II0va4e/nCru5RySBmwr0mMWKNdLtziS9El/WQwOiVwtVNJHngjzDjl5Q?=
- =?iso-8859-1?Q?yAizpcrmPt8ZMlGYAJdJIy9nJD3PRHDU7yK54/ytTu3wbqLmSebrWgYev6?=
- =?iso-8859-1?Q?yGq1SEBfPCVhzIqbdasy4gjlZylen/fdWqomHzgZYIdJGId59DCOnRMlzR?=
- =?iso-8859-1?Q?HXhNXGCN+tViYEdXr0x50xGk7AaGKhlU7D2AoX3ebzHMcHoPEB3V9if6GM?=
- =?iso-8859-1?Q?rHnuQ5EVfqQoJZ8L1a4PDVsryaVpdyk21MWSdEhPzTwKt9eooaQkBYI1wu?=
- =?iso-8859-1?Q?ffNzab308LGkyPl8d/fGYUEMpMesxAjFgTKfQGgNvmU2uwpwg9trMnCRfY?=
- =?iso-8859-1?Q?oUrSuMRntwU1d4RnqkZQRdEjWB7JRv8e5uP/mIn78JIDlei3zMgN3kYdSl?=
- =?iso-8859-1?Q?p/7IgHzK56VkA9cxffXcBfb14UGqxqu2FSv3kqmkzwKI0BaN3pv+FPI7cu?=
- =?iso-8859-1?Q?3eIyhlUNX/XRsdIEmoWkquRja9gsejd9ZERB5DitiinN/nXhtWLxUcdv7N?=
- =?iso-8859-1?Q?t4sij8XTcQ=3D=3D?=
-X-Exchange-RoutingPolicyChecked: Rnw2SABefnDZ4Jo85XSfTfccSVH6dqIyN+1TXggXxlRWDljH2XuPnOdekUPXwVh552WsCfreuvVSaRCCajN6ZJUemadTIdtOaJ9qnFk/jeS3vAMW2nUDx+WUgZGaGLEWEi1gyzM9F1+bLijaw9X9svKICY5sgujlRR/pwNJewHzurXWmMIRHsteG89vxKUUv/KoesUd1mxC5yS7z+/lrHfUCgGuXwOmV0Qfx5cqoqqf9rgp60kJMlQckHzZqYaTTUawnk33Ep/QIgEqZObX53n+QZE01u+9RYpY3Dre1JnJAp7swp9ELLcTpknktUfGPeB31Y9JoHpVi0JSNMHWYMA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: a59cea8b-6ade-4b5a-2eb6-08deabfc791f
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 May 2026 05:49:59.5324 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: MjN9CBtw1Q1fUb130Z8Wu31Fe8riWwif7/QGpIumcAnsy1bjS2Dn5PFZd9rwg6zzeyqFvfWuYNpaggGIMlmJ9Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY1PR11MB8029
-X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,188 +70,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, May 06, 2026 at 11:22:57PM +0300, Almahallawy, Khaled wrote:
-> On Tue, 2026-04-28 at 15:51 +0300, Imre Deak wrote:
-> > Replace the sequential link training failure counter with an explicit
-> > link recovery state enum.
-> > 
-> > This makes the recovery states and transitions clearer: idle,
-> > automatic
-> > retraining pending, and automatic retraining disabled.
-> > 
-> > A follow-up change will also move the retrain_disabled flag into this
-> > enum.
-> > 
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+On Wed, 2026-05-06 at 12:28 -0700, Matthew Brost wrote:
+> On Wed, May 06, 2026 at 11:36:36PM +0530, Ramesh Adhikari wrote:
+> > The xe_vm_bind_ioctl function accepts user-controlled num_binds
+> > without
+> >=20
+> > bounds checking, allowing arbitrarily large memory allocations.
+> > This
+> >=20
+> > follows the same vulnerability pattern that was fixed for num_syncs
+> > in
+> >=20
+> > commit 8e461304009d ("drm/xe: Limit num_syncs to prevent huge
+> > allocations").
+> >=20
+>=20
+> The difference here is we issues kvmalloc (2G) vs kmalloc (4M) in the
+> sync case. So still possible a user triggers kvmalloc over 2G...
+>=20
+> > Add DRM_XE_MAX_BINDS (1024) limit and validate num_binds before
+> > allocation,
+> >=20
+> > matching the num_syncs fix pattern.
+> >=20
+> > Similar unbounded allocations exist for num_mem_ranges and OA
+> > n_regs,
+> >=20
+> > which should be addressed in follow-up patches.
+> >=20
+> > Cc: stable@vger.kernel.org
+> >=20
+> > Signed-off-by: Ramesh <adhikari.resume@gmail.com>
 > > ---
-> >  .../drm/i915/display/intel_dp_link_training.c | 55 ++++++++++++++++-
-> > --
-> >  1 file changed, 48 insertions(+), 7 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> > b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> > index 90bd1b0f1ab7d..c44416e0e328f 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> > @@ -61,14 +61,54 @@
-> >  		lt_dbg(_intel_dp, _dp_phy, "Sink disconnected: "
-> > _format, ## __VA_ARGS__); \
-> >  } while (0)
-> >  
-> > -#define MAX_SEQ_TRAIN_FAILURES 2
-> > +/**
-> > + * enum intel_dp_link_recovery_state - LT recovery state
-> > + * @INTEL_DP_LINK_RECOVERY_IDLE:
-> > + *   No link training failure is currently tracked and no recovery
-> > is
-> > + *   in progress. This is the initial state after driver
-> > initialization,
-> > + *   power state transitions, sink (re-)connection, or after a
-> > successful
-> > + *   link training.
-> > + *
-> > + * @INTEL_DP_LINK_RECOVERY_AUTORETRAIN_PENDING:
-> > + *   A first link training failure has been observed and an
-> > automatic
-> > + *   retraining attempt with the same link parameters is pending.
-> > Exactly
-> > + *   one such attempt is allowed before switching to userspace-
-> > driven
-> > + *   recovery.
-> 
-> When running Link Layer fallback CTS for DP1.4, we noticed UCD500
-> complaints because we retry the same link parameters. In fact, we used
-> to change:
-> 
-> #define MAX_SEQ_TRAIN_FAILURES 1
-> 
-> I expect the same complaint will happen in DP2.1 fallback CTS.
-> 
-> If I look at the following from the DP2.1 specs:
-> * Table 3-31: DPTX Fallback Mandates (Normative)
-> * Figure 3-12: Link Training LANEx_CR_DONE Sequence
-> * Figure 3-13: Link Training LANEx_CHANNEL_EQ_DONE Sequence
-> * Figure 3-14: Link Training LANEx_CR_DONE Sequence for Maximum Link
-> Data Bandwidth Policy
-> * Figure 3-15: Link Training LANEx_CHANNEL_EQ_DONE Sequence for Maximum
-> Link Data Bandwidth Policy
-> 
-> I do not see it retraining using the same link parameters.
-> So, do you think we should make this configurable, maybe?
-
-This patchset keeps the existing behavior, one aim being to document in
-detail that behavior, and any changes to the current logic to select a
-link configuration at any point should be considered only as a follow-up
-to it.
-
-I have a doubt that a rigid/fixed sequence of selecting link
-configurations after a link training failure, based on the above
-interpretation of the CTS, is justified: that selection has other
-conditions besides the sink's requirements: the source may see a good
-reason - specific to the source - to retry a link configuration before
-disabling it. In any case, I think considering changes to the current
-fallback policy should be considered as a follow-up to this patchset.
-
-> Thank You
-> Khaled
-> 
-> 
-> > + *
-> > + * @INTEL_DP_LINK_RECOVERY_AUTORETRAIN_DISABLED:
-> > + *   Automatic retraining is no longer possible. At this point, a
-> > + *   fallback selection is made and userspace is notified to take
-> > over
-> > + *   recovery, performing modesets with parameters it determines are
-> > + *   required. The driver then selects a link configuration from the
-> > + *   remaining fallback configuration set. Subsequent link training
-> > + *   failures trigger further fallback selections and userspace
-> > + *   notifications.
-> > + *
-> > + * Describes the link recovery state used by the Intel DP link
-> > recovery
-> > + * logic.
-> > + *
-> > + * See also:
-> > + *   - link_recovery_autoretrain_pending()
-> > + *   - link_recovery_autoretrain_allowed()
-> > + *   - link_recovery_mark_train_failure()
-> > + *   - link_recovery_reset()
-> > + */
-> > +enum intel_dp_link_recovery_state {
-> > +	/*
-> > +	 * Keep the enum values ordered from least to most severe
-> > +	 * recovery state; helper logic relies on that ordering.
-> > +	 */
-> > +	INTEL_DP_LINK_RECOVERY_IDLE,
-> > +	INTEL_DP_LINK_RECOVERY_AUTORETRAIN_PENDING,
-> > +	INTEL_DP_LINK_RECOVERY_AUTORETRAIN_DISABLED,
-> > +};
-> >  
-> >  struct intel_dp_link_training {
-> >  	struct intel_dp *dp;
-> >  
-> > +	enum intel_dp_link_recovery_state recovery_state;
+> > =C2=A0drivers/gpu/drm/xe/xe_vm.c | 5 +++++
+> > =C2=A0include/uapi/drm/xe_drm.h=C2=A0 | 1 +
+> > =C2=A02 files changed, 6 insertions(+)
+> >=20
+> > diff --git a/drivers/gpu/drm/xe/xe_vm.c
+> > b/drivers/gpu/drm/xe/xe_vm.c
+> > index a717a2b8dea..1ff66874f43 100644
+> > --- a/drivers/gpu/drm/xe/xe_vm.c
+> > +++ b/drivers/gpu/drm/xe/xe_vm.c
+> > @@ -3841,6 +3841,11 @@ int xe_vm_bind_ioctl(struct drm_device *dev,
+> > void *data, struct drm_file *file)
+> > =C2=A0		return -EINVAL;
+> > =C2=A0
+> > =C2=A0	err =3D vm_bind_ioctl_check_args(xe, vm, args, &bind_ops);
 > > +
-> >  	bool retrain_disabled;
-> > -	/* Sequential link training failures after a passing LT */
-> > -	int seq_train_failures;
-> >  	int force_train_failure;
-> >  	bool force_retrain;
-> >  };
-> > @@ -1260,7 +1300,7 @@ intel_dp_128b132b_intra_hop(struct intel_dp
-> > *intel_dp,
-> >  static bool
-> >  link_recovery_autoretrain_pending(struct intel_dp_link_training
-> > *link_training)
-> >  {
-> > -	return link_training->seq_train_failures == 1;
-> > +	return link_training->recovery_state ==
-> > INTEL_DP_LINK_RECOVERY_AUTORETRAIN_PENDING;
-> >  }
-> >  
-> >  /**
-> > @@ -1274,7 +1314,7 @@ link_recovery_autoretrain_pending(struct
-> > intel_dp_link_training *link_training)
-> >  static bool
-> >  link_recovery_autoretrain_allowed(struct intel_dp_link_training
-> > *link_training)
-> >  {
-> > -	return link_training->seq_train_failures <
-> > MAX_SEQ_TRAIN_FAILURES;
-> > +	return link_training->recovery_state <
-> > INTEL_DP_LINK_RECOVERY_AUTORETRAIN_DISABLED;
-> >  }
-> >  
-> >  /**
-> > @@ -1299,11 +1339,12 @@ link_recovery_mark_train_failure(struct
-> > intel_dp_link_training *link_training)
-> >  {
-> >  	if (link_recovery_autoretrain_allowed(link_training))
-> >  		/* Move to autoretrain pending or autoretrain
-> > disabled state. */
-> > -		link_training->seq_train_failures++;
-> > +		link_training->recovery_state++;
-> >  
-> >  	return link_recovery_autoretrain_allowed(link_training);
-> >  }
-> >  
-> > +
-> >  /**
-> >   * link_recovery_reset - reset the link recovery state
-> >   * @link_training: link training state
-> > @@ -1313,7 +1354,7 @@ link_recovery_mark_train_failure(struct
-> > intel_dp_link_training *link_training)
-> >   */
-> >  static void link_recovery_reset(struct intel_dp_link_training
-> > *link_training)
-> >  {
-> > -	link_training->seq_train_failures = 0;
-> > +	link_training->recovery_state = INTEL_DP_LINK_RECOVERY_IDLE;
-> >  }
-> >  
-> >  /**
-> 
+> > +	if (XE_IOCTL_DBG(xe, args->num_binds > DRM_XE_MAX_BINDS))
+> > {
+> > +		err =3D -EINVAL;kvmalloc
+> > +		goto put_vm;
+> > +	}
+>=20
+> We had something like this early Xe, IIRC, the max was 512 but we
+> found
+> for Vk / Mesa they will a huge number in an array of binds. So 1k
+> likely
+> isn't enough and this patch would be considered uAPI regression, so
+> this
+> as is a no go. Maybe we can figure out some reasonable upper bound
+> (64k,
+> 128k), idk.
+
+IIRC we debated this back and forth. The challenging argument was that
+if we consume all memory we'd get an error back, which is sort of true
+but then we should've really made sure that all memory allocated was
+also accounted against the cgroup, with __GFP_ACCOUNT. We only did that
+for one large allocation.
+
+But I think we made sure to avoid future regressions (functional, not
+performance) by requiring UMD to handle -ENOBUFS, meaning "split the
+array bind and retry". So whatever limit we come up with we should not
+return -EINVAL but -ENOBUFS.=20
+
+Thanks,
+Thomas
+
+
+
+>=20
+> Matt
+>=20
+> > =C2=A0	if (err)
+> > =C2=A0		goto put_vm;
+> > =C2=A0
+> > diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> > index ae2fda23ce7..804ccb23b11 100644
+> > --- a/include/uapi/drm/xe_drm.h
+> > +++ b/include/uapi/drm/xe_drm.h
+> > @@ -1606,6 +1606,7 @@ struct drm_xe_exec {
+> > =C2=A0	__u32 exec_queue_id;
+> > =C2=A0
+> > =C2=A0#define DRM_XE_MAX_SYNCS 1024
+> > +#define DRM_XE_MAX_BINDS 1024
+> > =C2=A0	/** @num_syncs: Amount of struct drm_xe_sync in array. */
+> > =C2=A0	__u32 num_syncs;
+> > =C2=A0
+> > --=20
+> > 2.43.0
+> >=20
