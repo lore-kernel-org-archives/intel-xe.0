@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49F7BCD37AB
-	for <intel-xe@archiver.kernel.org>; Thu,  7 May 2026 16:20:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05CB0CD343F
+	for <intel-xe@archiver.kernel.org>; Thu,  7 May 2026 16:20:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8B1410F1F8;
-	Thu,  7 May 2026 16:20:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBDDF10F20B;
+	Thu,  7 May 2026 16:20:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b4QHvrO2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VDKgk4bD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2178510E0BD
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DA7B10F206
  for <intel-xe@lists.freedesktop.org>; Thu,  7 May 2026 16:20:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778170825; x=1809706825;
+ t=1778170826; x=1809706826;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=w1sCa2c4rnE3FwmTrM8++EB6/9j0IajUbp9Wz7BPi3U=;
- b=b4QHvrO2yA53KuLravO1wJUk8ElAkeHcLg96741vcdzk0cA2zDJ1p3S1
- /mU1thrvd7U6HV62QS2o3jgzfpwhQEdKrIf2wvfZoIAdonarBDtu9g5Go
- GEwQk5eJuUWSYVr8nb3ZibIjk8/eiaIclt0fLYn8GSCAw8PX/8ho6Kl+g
- Gi7+tXO2a2SHI+p7pVe7d39UxIm+6SMops6J0OtMmD8IeFZof1ZsfkeB/
- xan3paAGM2OcPSmthuPNbtaSLXNE7h8+wE/m6o/kUQ0LwKSjhIzMJJx6p
- 3oL8Oc672xoe5p33ZD6EGZxsCDrLrJN2AWOqVv+FAwWqnzVXeLvOiNO4E Q==;
-X-CSE-ConnectionGUID: wTws2z1IQj6TOrYBeLONpw==
-X-CSE-MsgGUID: iiw57501TjCWFLPTUPCrmw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11779"; a="79063602"
-X-IronPort-AV: E=Sophos;i="6.23,221,1770624000"; d="scan'208";a="79063602"
+ bh=Me1jr7vEsGL11uaOrYDKgHAkvycp2johpgwT5brL9uI=;
+ b=VDKgk4bDzoatRPKzIO1rqvFz3dFIat4gzSfIC8JP66Xe1EcTys0qIuFh
+ tt3pqxmIvdAskuCoK/dOhQdGwx4IXKOFoDo7+53dWV84Ny7Xz9Oicj3aK
+ NAykMNr+vILkl+Z+VOn2LRACYMSUJcdeAw4gmPCB2bI9k5PIJFcsjDXmM
+ 2CBcvezFh517oZAAJIC6b/NPQoeE4v9eCO5vX83AafOUjl42FboYC+Ywe
+ aPtNV2/qdA+IW4JZWLE13dWamXc96oruXoW1McSpqE3l/UvaFSK7SdHhR
+ Hr02XlGtO94xPje/G3hs48Vd5Ajk9lw2kzVh9hYHtjrBdwNOya+Ni4xEh g==;
+X-CSE-ConnectionGUID: E0MFFbL7Sy+dSYDGc3dYHw==
+X-CSE-MsgGUID: L29HrSSZS1GOvni8y832Tw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11779"; a="79063610"
+X-IronPort-AV: E=Sophos;i="6.23,221,1770624000"; d="scan'208";a="79063610"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 May 2026 09:20:24 -0700
-X-CSE-ConnectionGUID: N0P02p6RTEaJhBuULgs76w==
-X-CSE-MsgGUID: 0M/ef9c9ScqXIxGnvVsweg==
+X-CSE-ConnectionGUID: xLXlDoy3TI+5p/wmjYEagQ==
+X-CSE-MsgGUID: yMkIl5nWTpSql8NJPe14zA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,221,1770624000"; d="scan'208";a="266876572"
+X-IronPort-AV: E=Sophos;i="6.23,221,1770624000"; d="scan'208";a="266876596"
 Received: from orsosgc001.jf.intel.com ([10.88.27.185])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 May 2026 09:20:24 -0700
@@ -46,10 +46,10 @@ To: intel-xe@lists.freedesktop.org,
 	niranjana.vishwanathapura@intel.com
 Cc: matthew.brost@intel.com,
 	stuart.summers@intel.com
-Subject: [PATCH v5 04/11] drm/xe/multi_queue: Refactor check for multi queue
- support for engine class
-Date: Thu,  7 May 2026 09:20:21 -0700
-Message-ID: <20260507162016.3888309-17-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH v5 11/11] drm/xe/multi_queue: Whitelist QUEUE_TIMESTAMP
+ register
+Date: Thu,  7 May 2026 09:20:28 -0700
+Message-ID: <20260507162016.3888309-24-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260507162016.3888309-13-umesh.nerlige.ramappa@intel.com>
 References: <20260507162016.3888309-13-umesh.nerlige.ramappa@intel.com>
@@ -69,71 +69,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe exec queue code is using a check to see if a class of engines support
-multi queue. This check is also needed by other code, so move it to
-xe_gt and export it for others.
+In a multi-queue use case, when a job is running on the secondary queue,
+the CTX_TIMESTAMP does not reflect the queues run ticks. Instead, we use
+the QUEUE TIMESTAMP to check how long the job ran. For user space to see
+the run ticks for a secondary queue, whitelist the QUEUE_TIMESTAMP
+register.
+
+Compute PR: https://github.com/intel/compute-runtime/pull/923
 
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 ---
-v2: (Niranjana)
-- s/xe_gt_hwe_class_supports_multi_queue/xe_gt_supports_multi_queue/
-- Update comment for helper
-- Move helper to header and make it static inline
----
- drivers/gpu/drm/xe/xe_exec_queue.c |  7 +------
- drivers/gpu/drm/xe/xe_gt.h         | 15 +++++++++++++++
- 2 files changed, 16 insertions(+), 6 deletions(-)
+v2: Whitelist QUEUE_TIMESTAMP only for copy and compute engines (Niranjana)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 071b8c41df43..62a75c8fe72f 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -852,11 +852,6 @@ static int xe_exec_queue_group_init(struct xe_device *xe, struct xe_exec_queue *
- 	return 0;
+v3: (Niranjana)
+- s/multiq/multi_queue/
+- Base the condition on multi_queue_engine_class_mask
+
+v4: s/xe_gt_hwe_class_supports_multi_queue/xe_gt_supports_multi_queue/
+---
+ drivers/gpu/drm/xe/xe_reg_whitelist.c | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+
+diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+index 8cc313182968..fb65940848d7 100644
+--- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
++++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+@@ -9,6 +9,7 @@
+ #include "regs/xe_gt_regs.h"
+ #include "regs/xe_oa_regs.h"
+ #include "xe_device.h"
++#include "xe_gt.h"
+ #include "xe_gt_types.h"
+ #include "xe_gt_printk.h"
+ #include "xe_platform_types.h"
+@@ -33,6 +34,13 @@ static bool match_has_mert(const struct xe_device *xe,
+ 	return xe_device_has_mert((struct xe_device *)xe);
  }
  
--static inline bool xe_exec_queue_supports_multi_queue(struct xe_exec_queue *q)
--{
--	return q->gt->info.multi_queue_engine_class_mask & BIT(q->class);
--}
--
- static int xe_exec_queue_group_validate(struct xe_device *xe, struct xe_exec_queue *q,
- 					u32 primary_id)
- {
-@@ -931,7 +926,7 @@ static void xe_exec_queue_group_delete(struct xe_device *xe, struct xe_exec_queu
- static int exec_queue_set_multi_group(struct xe_device *xe, struct xe_exec_queue *q,
- 				      u64 value)
- {
--	if (XE_IOCTL_DBG(xe, !xe_exec_queue_supports_multi_queue(q)))
-+	if (XE_IOCTL_DBG(xe, !xe_gt_supports_multi_queue(q->gt, q->class)))
- 		return -ENODEV;
- 
- 	if (XE_IOCTL_DBG(xe, !xe_device_uc_enabled(xe)))
-diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
-index de7e47763411..4150aa594f05 100644
---- a/drivers/gpu/drm/xe/xe_gt.h
-+++ b/drivers/gpu/drm/xe/xe_gt.h
-@@ -155,4 +155,19 @@ static inline bool xe_gt_recovery_pending(struct xe_gt *gt)
- 		xe_gt_sriov_vf_recovery_pending(gt);
- }
- 
-+/**
-+ * xe_gt_supports_multi_queue() - Check if gt supports multi queue for the
-+ * specified engine class.
-+ *
-+ * @gt: the GT object
-+ * @class: hwe class type
-+ *
-+ * Return: true if the hw engine class supports multi queue, else false
-+ */
-+static inline bool xe_gt_supports_multi_queue(const struct xe_gt *gt,
-+					      enum xe_engine_class class)
++static bool match_multi_queue_class(const struct xe_device *xe,
++				    const struct xe_gt *gt,
++				    const struct xe_hw_engine *hwe)
 +{
-+	return gt->info.multi_queue_engine_class_mask & BIT(class);
++	return xe_gt_supports_multi_queue(gt, hwe->class);
 +}
 +
- #endif
+ static const struct xe_rtp_entry_sr register_whitelist[] = {
+ 	{ XE_RTP_NAME("WaAllowPMDepthAndInvocationCountAccessFromUMD, 1408556865"),
+ 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210), ENGINE_CLASS(RENDER)),
+@@ -54,6 +62,12 @@ static const struct xe_rtp_entry_sr register_whitelist[] = {
+ 				RING_FORCE_TO_NONPRIV_ACCESS_RD,
+ 				XE_RTP_ACTION_FLAG(ENGINE_BASE)))
+ 	},
++	{ XE_RTP_NAME("allow_read_queue_timestamp"),
++	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3500, 3511), FUNC(match_multi_queue_class)),
++	  XE_RTP_ACTIONS(WHITELIST(RING_QUEUE_TIMESTAMP(0),
++				   RING_FORCE_TO_NONPRIV_ACCESS_RD,
++				   XE_RTP_ACTION_FLAG(ENGINE_BASE)))
++	},
+ 	{ XE_RTP_NAME("16014440446"),
+ 	  XE_RTP_RULES(PLATFORM(PVC)),
+ 	  XE_RTP_ACTIONS(WHITELIST(XE_REG(0x4400),
 -- 
 2.51.0
 
