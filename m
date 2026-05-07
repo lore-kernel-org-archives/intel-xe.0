@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C240CD3427
-	for <intel-xe@archiver.kernel.org>; Thu,  7 May 2026 08:26:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A87FCD3427
+	for <intel-xe@archiver.kernel.org>; Thu,  7 May 2026 08:58:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54D4910F13E;
-	Thu,  7 May 2026 08:26:30 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TpHx9XOV";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 721D710F13F;
- Thu,  7 May 2026 08:26:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778142390; x=1809678390;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=efDW2Yy1MzjWGN0VtBl7N2Y1IaJdWmPoAr5EL/blPTo=;
- b=TpHx9XOV/Zk/LiczWvyXy2TAA0B+nnJ7Emqah8rqtvEixEKr3/YDI9j5
- AEjv998c6rZzl6xQevaSwcWYqVmFd/+Ty6bJVIG/656r+aCM9ucYHgu/U
- D9x0OK2SKzcg6TQbKVwf9qoHpel5mcLqnFeoGTvQyO+y0yVO3lKEisNeq
- HY+3Z9Z1kz6QuSrhiXVvggP2zHx3CkVyIT9x7vIzSdjohZmY914R12jbt
- fsrMH34yLbfQ2ctLs818xHkSOpJHK0Pt9XKWIqRjcjnwPsoJCNcmROY1o
- mv0kz7G+UwAvMKcLTT2ukR6DxtXb/B71Z9ktWRQaNYilH9tqW72piTfnU Q==;
-X-CSE-ConnectionGUID: uW15A3xjSHWNM2Kbugd4gw==
-X-CSE-MsgGUID: h6TdW4PWRLungf2tAN17/w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11778"; a="78804669"
-X-IronPort-AV: E=Sophos;i="6.23,221,1770624000"; d="scan'208";a="78804669"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2026 01:26:29 -0700
-X-CSE-ConnectionGUID: rRJTwhdRQ3KFcVlD/ODtSw==
-X-CSE-MsgGUID: iO4bfA60Qni3rj90xZmk3A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,221,1770624000"; d="scan'208";a="260106484"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.117])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2026 01:26:27 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 043/108] drm/i915/dp_link_caps: Add helper to get common
- rate index
-In-Reply-To: <20260428125233.1664668-44-imre.deak@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260428125233.1664668-1-imre.deak@intel.com>
- <20260428125233.1664668-44-imre.deak@intel.com>
-Date: Thu, 07 May 2026 11:26:25 +0300
-Message-ID: <7c6ca65645c530587fec7fa4603a53fa44b3ef8a@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E70F810E1D9;
+	Thu,  7 May 2026 08:58:27 +0000 (UTC)
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AB1410E1D9;
+ Thu,  7 May 2026 08:58:26 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5443743112675315485=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1/2?=
+ =?utf-8?q?=5D_drm/i915/ddi=3A_Fix_cleanup_after_DP_connector_init_failure?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 07 May 2026 08:58:26 -0000
+Message-ID: <177814430662.46664.16273881521010395691@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260507065940.2046690-1-imre.deak@intel.com>
+In-Reply-To: <20260507065940.2046690-1-imre.deak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,148 +36,193 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 28 Apr 2026, Imre Deak <imre.deak@intel.com> wrote:
-> Add intel_dp_link_caps_common_rate_idx() to look up supported link rates
-> tracked by the link_caps module by rate. This prepares for tracking these
-> capabilities internally within the link caps module.
+--===============5443743112675315485==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-It's a big series, and it's not obvious at which patch to reply for
-something generic. Might as well be here, as this function is preserved
-unchanged in the end.
+== Series Details ==
 
-When the rates and their handling were not abstracted, working with
-indexes to rates array made sense. It all started simple.
+Series: series starting with [1/2] drm/i915/ddi: Fix cleanup after DP connector init failure
+URL   : https://patchwork.freedesktop.org/series/166106/
+State : success
 
-I think with the intel_dp_link_caps.c abstraction, having the rate index
-or link config index in the interface is a leaky abstraction. The caller
-has to deal with an index, or pos, or iter_pos, that the caller has no
-idea what it's an index to.
+== Summary ==
 
-I think storing the various link configs in an array, and indexing it
-with some value, is an implementation detail that the interface is
-supposed to abstract. Imagine changing that implementation to use a
-linked list instead of an array. How much of the interface would you
-have to change? How much the indexes in the interface would get in the
-way of changing what's supposed to be an implementation detail? You'd
-end up having to deal with an "index" that the caller has no idea what
-it's an index to, and the callee having to translate that to a linked
-list where indexes make no sense.
+CI Bug Log - changes from xe-5008-7ed4c518419c65c63950c86186a91134e9aa6750_BAT -> xe-pw-166106v1_BAT
+====================================================
 
-I'm thinking maybe the interface should only deal with link
-configs. "This is the link config I have, give me the next one."
+Summary
+-------
 
-BR,
-Jani.
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 13)
+------------------------------
+
+  Additional (1): bat-ptl-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-166106v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_evict@evict-beng-small-cm:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][1] ([Intel XE#5764]) +10 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166106v1/bat-ptl-vm/igt@xe_evict@evict-beng-small-cm.html
+
+  * igt@xe_exec_balancer@twice-parallel-basic:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][2] ([Intel XE#7482]) +17 other tests skip
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166106v1/bat-ptl-vm/igt@xe_exec_balancer@twice-parallel-basic.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][3] ([Intel XE#5775])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166106v1/bat-ptl-vm/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  * igt@xe_mmap@vram:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][4] ([Intel XE#5776])
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166106v1/bat-ptl-vm/igt@xe_mmap@vram.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][5] ([Intel XE#5777] / [Intel XE#7590])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166106v1/bat-ptl-vm/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelp:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][6] ([Intel XE#5771] / [Intel XE#7590])
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166106v1/bat-ptl-vm/igt@xe_pat@pat-index-xelp.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][7] ([Intel XE#5780] / [Intel XE#7590])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166106v1/bat-ptl-vm/igt@xe_pat@pat-index-xelpg.html
+
+  
+  [Intel XE#5764]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5764
+  [Intel XE#5771]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5771
+  [Intel XE#5775]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5775
+  [Intel XE#5776]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5776
+  [Intel XE#5777]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5777
+  [Intel XE#5780]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5780
+  [Intel XE#7482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482
+  [Intel XE#7590]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590
 
 
->
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  .../gpu/drm/i915/display/intel_dp_link_caps.c | 25 +++++++++++++++++++
->  .../gpu/drm/i915/display/intel_dp_link_caps.h |  1 +
->  .../drm/i915/display/intel_dp_link_training.c |  5 ++--
->  drivers/gpu/drm/i915/display/intel_dp_test.c  |  7 +++---
->  4 files changed, 32 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_caps.c b/drivers/gpu/drm/i915/display/intel_dp_link_caps.c
-> index b1b78e7cda897..c99fc7704b3e8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_link_caps.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_caps.c
-> @@ -60,6 +60,31 @@ int intel_dp_common_rate(struct intel_dp *intel_dp, int index)
->  	return intel_dp->common_rates[index];
->  }
->  
-> +/**
-> + * intel_dp_link_caps_common_rate_idx - get index of a common link rate
-> + * @link_caps: link capabilities state
-> + * @rate: common link rate to look up
-> + *
-> + * Look up @rate in the rate list currently supported by @link_caps, common to
-> + * both the source and the sink.
-> + *
-> + * The returned value is an index into the common rate list returned by
-> + * intel_dp_link_caps_all_common_rates() and accepted by
-> + * intel_dp_link_caps_common_rate().
-> + *
-> + * Return:
-> + * - Index of @rate in the current common rate list.
-> + * - %-1 if @rate is not present.
-> + */
-> +int intel_dp_link_caps_common_rate_idx(struct intel_dp_link_caps *link_caps, int rate)
-> +{
-> +	struct intel_dp *intel_dp = link_caps->dp;
-> +
-> +	return intel_dp_rate_index(intel_dp->common_rates,
-> +				   intel_dp->num_common_rates,
-> +				   rate);
-> +}
-> +
->  /* Theoretical max between source and sink */
->  int intel_dp_max_common_rate(struct intel_dp *intel_dp)
->  {
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_caps.h b/drivers/gpu/drm/i915/display/intel_dp_link_caps.h
-> index b2eb61272652e..7ec1612a044ed 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_link_caps.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_caps.h
-> @@ -14,6 +14,7 @@ struct intel_dp_link_config;
->  int intel_dp_common_len_rate_limit(const struct intel_dp *intel_dp,
->  				   int max_rate);
->  int intel_dp_common_rate(struct intel_dp *intel_dp, int index);
-> +int intel_dp_link_caps_common_rate_idx(struct intel_dp_link_caps *link_caps, int rate);
->  int intel_dp_max_common_rate(struct intel_dp *intel_dp);
->  int intel_dp_link_caps_num_common_rates(struct intel_dp_link_caps *link_caps);
->  void intel_dp_link_caps_all_common_rates(struct intel_dp_link_caps *link_caps,
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> index 5218220b82b0b..456540925db55 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> @@ -1805,9 +1805,8 @@ static int reduce_link_rate(struct intel_dp *intel_dp, int current_rate)
->  	if (forced_params.rate)
->  		return -1;
->  
-> -	rate_index = intel_dp_rate_index(intel_dp->common_rates,
-> -					 intel_dp->num_common_rates,
-> -					 current_rate);
-> +	rate_index = intel_dp_link_caps_common_rate_idx(link_caps,
-> +							current_rate);
->  
->  	if (rate_index <= 0)
->  		return -1;
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_test.c b/drivers/gpu/drm/i915/display/intel_dp_test.c
-> index 5cfa1dd411dab..0b791eee3b910 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_test.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_test.c
-> @@ -14,6 +14,7 @@
->  #include "intel_display_regs.h"
->  #include "intel_display_types.h"
->  #include "intel_dp.h"
-> +#include "intel_dp_link_caps.h"
->  #include "intel_dp_link_training.h"
->  #include "intel_dp_mst.h"
->  #include "intel_dp_test.h"
-> @@ -32,6 +33,7 @@ void intel_dp_test_compute_config(struct intel_dp *intel_dp,
->  				  struct intel_crtc_state *pipe_config,
->  				  struct link_config_limits *limits)
->  {
-> +	struct intel_dp_link_caps *link_caps = intel_dp->link.caps;
->  	struct intel_display *display = to_intel_display(intel_dp);
->  
->  	/* For DP Compliance we override the computed bpp for the pipe */
-> @@ -54,9 +56,8 @@ void intel_dp_test_compute_config(struct intel_dp *intel_dp,
->  		 */
->  		if (intel_dp_link_params_valid(intel_dp, intel_dp->compliance.test_link_rate,
->  					       intel_dp->compliance.test_lane_count)) {
-> -			index = intel_dp_rate_index(intel_dp->common_rates,
-> -						    intel_dp->num_common_rates,
-> -						    intel_dp->compliance.test_link_rate);
-> +			index = intel_dp_link_caps_common_rate_idx(link_caps,
-> +								   intel_dp->compliance.test_link_rate);
->  			if (index >= 0) {
->  				limits->min_rate = intel_dp->compliance.test_link_rate;
->  				limits->max_rate = intel_dp->compliance.test_link_rate;
+Build changes
+-------------
 
--- 
-Jani Nikula, Intel
+  * Linux: xe-5008-7ed4c518419c65c63950c86186a91134e9aa6750 -> xe-pw-166106v1
+
+  IGT_8899: 3e5747e536f148bf232049e49a00e2b683f91a83 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5008-7ed4c518419c65c63950c86186a91134e9aa6750: 7ed4c518419c65c63950c86186a91134e9aa6750
+  xe-pw-166106v1: 166106v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166106v1/index.html
+
+--===============5443743112675315485==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915/ddi: Fix cleanup after DP connector init failure</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166106/">https://patchwork.freedesktop.org/series/166106/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166106v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166106v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5008-7ed4c518419c65c63950c86186a91134e9aa6750_BAT -&gt; xe-pw-166106v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 13)</h2>
+<p>Additional (1): bat-ptl-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-166106v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_evict@evict-beng-small-cm:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166106v1/bat-ptl-vm/igt@xe_evict@evict-beng-small-cm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5764">Intel XE#5764</a>) +10 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_balancer@twice-parallel-basic:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166106v1/bat-ptl-vm/igt@xe_exec_balancer@twice-parallel-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482">Intel XE#7482</a>) +17 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166106v1/bat-ptl-vm/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5775">Intel XE#5775</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_mmap@vram:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166106v1/bat-ptl-vm/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5776">Intel XE#5776</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166106v1/bat-ptl-vm/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5777">Intel XE#5777</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelp:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166106v1/bat-ptl-vm/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5771">Intel XE#5771</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166106v1/bat-ptl-vm/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5780">Intel XE#5780</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5008-7ed4c518419c65c63950c86186a91134e9aa6750 -&gt; xe-pw-166106v1</li>
+</ul>
+<p>IGT_8899: 3e5747e536f148bf232049e49a00e2b683f91a83 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5008-7ed4c518419c65c63950c86186a91134e9aa6750: 7ed4c518419c65c63950c86186a91134e9aa6750<br />
+  xe-pw-166106v1: 166106v1</p>
+
+</body>
+</html>
+
+--===============5443743112675315485==--
