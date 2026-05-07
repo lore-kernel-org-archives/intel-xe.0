@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A87FCD3427
-	for <intel-xe@archiver.kernel.org>; Thu,  7 May 2026 08:58:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0D08CD3427
+	for <intel-xe@archiver.kernel.org>; Thu,  7 May 2026 09:03:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E70F810E1D9;
-	Thu,  7 May 2026 08:58:27 +0000 (UTC)
-Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AB1410E1D9;
- Thu,  7 May 2026 08:58:26 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5443743112675315485=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7155910F045;
+	Thu,  7 May 2026 09:03:58 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="erjTrUsr";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E456410F002
+ for <intel-xe@lists.freedesktop.org>; Thu,  7 May 2026 09:03:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1778144637; x=1809680637;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=8KKCqCLdP7VcTPidivBPuZRSXLAgixp2kuM6JXfRflQ=;
+ b=erjTrUsrbuJjmEAHhAAAka9gZx8rwbygp3aepPR5/I0uuAzxHYnPgZZH
+ aXvJRxgwc8VASSbJn96qmzvqx+pMEz74P86kldDRUshZsfcOJaTHIvzcT
+ 8trmUROZ/84AmXLa96Bc5NP66oD8+Lkm7QuD7hPXTYLFYaCYxOAgBUtD5
+ pCQWqzRSDVUWKxzFZQzhnJ8kzgDZYDkXQWCSwGb5Ni9NEIEF9iDPp7ZG2
+ uqogicqZFdQnBmRENqjmDbuNSUEY+mFgOjlBUGxfD9bV/UCc1OV0Ww1gB
+ WIPszdkOg4caj9gg3MTkQ0eU5kupGvoEnx5KVidPT/X971D09T/3TL/tz Q==;
+X-CSE-ConnectionGUID: oyIEqI9iR32BN5RYhIMaFA==
+X-CSE-MsgGUID: 1ZU3p+9nRAKOzXsrr7zr3A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11778"; a="78940753"
+X-IronPort-AV: E=Sophos;i="6.23,221,1770624000"; d="scan'208";a="78940753"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2026 02:03:57 -0700
+X-CSE-ConnectionGUID: 4iO4Kb+2RTyWikIpTfbF8g==
+X-CSE-MsgGUID: MlY12JthQASlk1ZUlFd1+w==
+X-ExtLoop1: 1
+Received: from amilburn-desk.amilburn-desk (HELO [10.245.245.139])
+ ([10.245.245.139])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2026 02:03:55 -0700
+Message-ID: <f4957d06-3c0b-4ffe-928c-e82bf7615d75@intel.com>
+Date: Thu, 7 May 2026 10:03:53 +0100
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1/2?=
- =?utf-8?q?=5D_drm/i915/ddi=3A_Fix_cleanup_after_DP_connector_init_failure?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 07 May 2026 08:58:26 -0000
-Message-ID: <177814430662.46664.16273881521010395691@5ab824fced77>
-X-Patchwork-Hint: ignore
-References: <20260507065940.2046690-1-imre.deak@intel.com>
-In-Reply-To: <20260507065940.2046690-1-imre.deak@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe/dma-buf: handle empty bo and UAF races
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>, stable@vger.kernel.org
+References: <20260506184332.86743-2-matthew.auld@intel.com>
+ <ac67eec8376792e795f37645b83c1f4c7fed8ba4.camel@linux.intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <ac67eec8376792e795f37645b83c1f4c7fed8ba4.camel@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,193 +67,153 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5443743112675315485==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 06/05/2026 20:59, Thomas Hellström wrote:
+> On Wed, 2026-05-06 at 19:43 +0100, Matthew Auld wrote:
+>> There look to be some nasty races here when triggering the
+>> invalidate_mappings hook:
+>>
+>> 1) We do xe_bo_alloc() followed by the attach, before the actual full
+>> bo
+>>     init step in xe_dma_buf_init_obj(). However the bo is visible on
+>> the
+>>     attachments list after the attach.  This is bad since exporter
+>> driver,
+>>     say amdgpu, can at any time call back into our invalidate_mappings
+>> hook,
+>>     with an empty/bogus bo, leading to potential bugs/crashes.
+>>
+>> 2) Similar to 1) but here we get a UAF, when the invalidate_mappings
+>>     hook is triggered. For example, we get as far as
+>> xe_bo_init_locked()
+>>     but this fails in some way. But here the bo will be freed on
+>> error, but
+>>     we still have it attached from dma-buf pov, so if the
+>>     invalidate_mappings is now triggered then the bo we access is gone
+>> and
+>>     we trigger UAF and more bugs/crashes.
+>>
+>> To fix this, move the attach step until after we actually have a
+>> fully
+>> set up buffer object. Note that the bo is not published to userspace
+>> until later, so not sure what the comment "Don't publish the bo
+>> until we have a valid attachment", is referring to.
+>>
+>> We have at least two different customers reporting hitting a NULL ptr
+>> deref in evict_flags when importing something from amdgpu, followed
+>> by
+>> triggering the evict flow. Hit rate is also pretty low, which would
+>> hint at some kind of race, so something like 1) or 2) might explain
+>> this.
+>>
+>> Assisted-by: Gemini:gemini-3 #debug
+>> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/7903
+>> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/4055
+>> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel
+>> GPUs")
+>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>> Cc: Matthew Brost <matthew.brost@intel.com>
+>> Cc: <stable@vger.kernel.org> # v6.8+
+>> ---
+>>   drivers/gpu/drm/xe/xe_dma_buf.c | 23 ++++++++---------------
+>>   1 file changed, 8 insertions(+), 15 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c
+>> b/drivers/gpu/drm/xe/xe_dma_buf.c
+>> index b9828da15897..e6c2f7d30abb 100644
+>> --- a/drivers/gpu/drm/xe/xe_dma_buf.c
+>> +++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+>> @@ -357,11 +357,6 @@ struct drm_gem_object
+>> *xe_gem_prime_import(struct drm_device *dev,
+>>   		}
+>>   	}
+>>   
+>> -	/*
+>> -	 * Don't publish the bo until we have a valid attachment,
+>> and a
+>> -	 * valid attachment needs the bo address. So pre-create a bo
+>> before
+>> -	 * creating the attachment and publish.
+>> -	 */
+>>   	bo = xe_bo_alloc();
+>>   	if (IS_ERR(bo))
+>>   		return ERR_CAST(bo);
+>> @@ -371,6 +366,13 @@ struct drm_gem_object
+>> *xe_gem_prime_import(struct drm_device *dev,
+>>   	if (test)
+>>   		attach_ops = test->attach_ops;
+>>   #endif
+>> +	/*
+>> +	 * xe_dma_buf_init_obj() takes ownership of bo on both
+>> success
+>> +	 * and failure, so we must not touch bo after this call.
+>> +	 */
+>> +	obj = xe_dma_buf_init_obj(dev, bo, dma_buf);
+>> +	if (IS_ERR(obj))
+>> +		return obj;
+> 
+> IIRC this publishes the bo on the LRUs, as per the removed comment.
+> What happens if, for example, the shrinker kicks in and shrinks it? But
+> similarly perhaps we should have obj->import_attach set already at
+> publish time?
 
-== Series Details ==
+I don't think anything bad will happen? I would view it as an sg object 
+without any real backing store or attachment. Trying to 
+move/shrink/evict should be a noop, like moving from SYS -> SYS 
+(starting placement for type_sg). But since this a type_sg bo, I think 
+shrinker will already ignore it right?
 
-Series: series starting with [1/2] drm/i915/ddi: Fix cleanup after DP connector init failure
-URL   : https://patchwork.freedesktop.org/series/166106/
-State : success
+ From user POV, the handle is only published until much later at the end 
+of drm_gem_prime_fd_to_handle(), after our import callback here, AFAICT. 
+So I don't think there is a risk of the user somehow using the imported 
+bo in an ioctl, before we have done the attach etc.
 
-== Summary ==
+One other data point is perhaps amdgpu, which does seem to do the create 
++ attach as normal steps.
 
-CI Bug Log - changes from xe-5008-7ed4c518419c65c63950c86186a91134e9aa6750_BAT -> xe-pw-166106v1_BAT
-====================================================
+> 
+> If this is indeed the case we might have to revert to some trickery.
+> Like invalidate_mappings() returning early if the init is not complete,
+> and set obj->import_attach under the lock in xe_dma_buf_init_obj?
+> 
+> Also I think IIRC xe_bo_alloc() was created specifically for this
+> situation, so unless there are more users of that, and the ordering in
+> this patch is indeed correct, we might be able to get rid of the two-
+> step bo creation here.
+> 
+> /Thomas
+> 
+> 
+>>   
+>>   	attach = dma_buf_dynamic_attach(dma_buf, dev->dev,
+>> attach_ops, &bo->ttm.base);
+>>   	if (IS_ERR(attach)) {
+>> @@ -378,21 +380,12 @@ struct drm_gem_object
+>> *xe_gem_prime_import(struct drm_device *dev,
+>>   		goto out_err;
+>>   	}
+>>   
+>> -	/*
+>> -	 * xe_dma_buf_init_obj() takes ownership of bo on both
+>> success
+>> -	 * and failure, so we must not touch bo after this call.
+>> -	 */
+>> -	obj = xe_dma_buf_init_obj(dev, bo, dma_buf);
+>> -	if (IS_ERR(obj)) {
+>> -		dma_buf_detach(dma_buf, attach);
+>> -		return obj;
+>> -	}
+>>   	get_dma_buf(dma_buf);
+>>   	obj->import_attach = attach;
+>>   	return obj;
+>>   
+>>   out_err:
+>> -	xe_bo_free(bo);
+>> +	xe_bo_put(bo);
+>>   
+>>   	return obj;
+>>   }
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 13)
-------------------------------
-
-  Additional (1): bat-ptl-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-166106v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_evict@evict-beng-small-cm:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][1] ([Intel XE#5764]) +10 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166106v1/bat-ptl-vm/igt@xe_evict@evict-beng-small-cm.html
-
-  * igt@xe_exec_balancer@twice-parallel-basic:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][2] ([Intel XE#7482]) +17 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166106v1/bat-ptl-vm/igt@xe_exec_balancer@twice-parallel-basic.html
-
-  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][3] ([Intel XE#5775])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166106v1/bat-ptl-vm/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
-
-  * igt@xe_mmap@vram:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][4] ([Intel XE#5776])
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166106v1/bat-ptl-vm/igt@xe_mmap@vram.html
-
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][5] ([Intel XE#5777] / [Intel XE#7590])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166106v1/bat-ptl-vm/igt@xe_pat@pat-index-xehpc.html
-
-  * igt@xe_pat@pat-index-xelp:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][6] ([Intel XE#5771] / [Intel XE#7590])
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166106v1/bat-ptl-vm/igt@xe_pat@pat-index-xelp.html
-
-  * igt@xe_pat@pat-index-xelpg:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][7] ([Intel XE#5780] / [Intel XE#7590])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166106v1/bat-ptl-vm/igt@xe_pat@pat-index-xelpg.html
-
-  
-  [Intel XE#5764]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5764
-  [Intel XE#5771]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5771
-  [Intel XE#5775]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5775
-  [Intel XE#5776]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5776
-  [Intel XE#5777]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5777
-  [Intel XE#5780]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5780
-  [Intel XE#7482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482
-  [Intel XE#7590]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590
-
-
-Build changes
--------------
-
-  * Linux: xe-5008-7ed4c518419c65c63950c86186a91134e9aa6750 -> xe-pw-166106v1
-
-  IGT_8899: 3e5747e536f148bf232049e49a00e2b683f91a83 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5008-7ed4c518419c65c63950c86186a91134e9aa6750: 7ed4c518419c65c63950c86186a91134e9aa6750
-  xe-pw-166106v1: 166106v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166106v1/index.html
-
---===============5443743112675315485==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915/ddi: Fix cleanup after DP connector init failure</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166106/">https://patchwork.freedesktop.org/series/166106/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166106v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166106v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5008-7ed4c518419c65c63950c86186a91134e9aa6750_BAT -&gt; xe-pw-166106v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 13)</h2>
-<p>Additional (1): bat-ptl-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-166106v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_evict@evict-beng-small-cm:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166106v1/bat-ptl-vm/igt@xe_evict@evict-beng-small-cm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5764">Intel XE#5764</a>) +10 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_balancer@twice-parallel-basic:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166106v1/bat-ptl-vm/igt@xe_exec_balancer@twice-parallel-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482">Intel XE#7482</a>) +17 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166106v1/bat-ptl-vm/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5775">Intel XE#5775</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_mmap@vram:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166106v1/bat-ptl-vm/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5776">Intel XE#5776</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166106v1/bat-ptl-vm/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5777">Intel XE#5777</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166106v1/bat-ptl-vm/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5771">Intel XE#5771</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelpg:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166106v1/bat-ptl-vm/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5780">Intel XE#5780</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5008-7ed4c518419c65c63950c86186a91134e9aa6750 -&gt; xe-pw-166106v1</li>
-</ul>
-<p>IGT_8899: 3e5747e536f148bf232049e49a00e2b683f91a83 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5008-7ed4c518419c65c63950c86186a91134e9aa6750: 7ed4c518419c65c63950c86186a91134e9aa6750<br />
-  xe-pw-166106v1: 166106v1</p>
-
-</body>
-</html>
-
---===============5443743112675315485==--
