@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59D03CD3427
-	for <intel-xe@archiver.kernel.org>; Thu,  7 May 2026 09:16:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5C46CD3442
+	for <intel-xe@archiver.kernel.org>; Thu,  7 May 2026 09:21:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CD3B10E57B;
-	Thu,  7 May 2026 09:16:18 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hfZabrDg";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3EE110E23F;
- Thu,  7 May 2026 09:16:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778145376; x=1809681376;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=R7Mr9l5eIXGrb+zO7NHspWcx7rMxie+B16LQ5lGm6Vk=;
- b=hfZabrDgeLyIi78vDOBU1Y5zTB0YcyHTOdRnmTyHcnNEsgu9zwI/+hJk
- J9o/rGO9NLfxLnxJOaaaNoXKT8JBGPDQjMkQ+DsWAQRM1tC8eCwNSNvFy
- Z+RhDzt3i2UWTtOSBkyadlaRaJXZLaNilzBceELc8iOmKn6oMeT0kEH2O
- KF47bVpgnGpIzGNSPmOMj5TAVfCqoOuwWzzVWYKk+iJhSIxaKbMHz+8jV
- ZNJABEaupSFD8yNYv1Ab+IY/B8jpZAYjnAKgglCaHmGM+tovB7FsPaniZ
- TDmCemj7Jr/ApKP3GClevEPm2T+MucbOjVPfGmIaOBet0uint2GsJs43n g==;
-X-CSE-ConnectionGUID: OUK7EEmnQxeueCQXPk6cAw==
-X-CSE-MsgGUID: IGpWvKmuSoSSlmN84+Uegw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11778"; a="89680166"
-X-IronPort-AV: E=Sophos;i="6.23,221,1770624000"; d="scan'208";a="89680166"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2026 02:16:15 -0700
-X-CSE-ConnectionGUID: 2P1uR1UfTUm44tRAZMcvnQ==
-X-CSE-MsgGUID: luxL0P3JTiWm2kcRN7C6cA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,221,1770624000"; d="scan'208";a="240400004"
-Received: from ettammin-mobl3.ger.corp.intel.com (HELO fdugast-desk.home)
- ([10.245.245.93])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2026 02:16:13 -0700
-From: Francois Dugast <francois.dugast@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, matthew.brost@intel.com,
- himal.prasad.ghimiray@intel.com,
- Francois Dugast <francois.dugast@intel.com>
-Subject: [PATCH] drm: Drop HPAGE_PMD_SIZE dependency in dma_iova_try_alloc
- calls
-Date: Thu,  7 May 2026 11:16:06 +0200
-Message-ID: <20260507091606.1067973-1-francois.dugast@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 645FA10E56E;
+	Thu,  7 May 2026 09:21:52 +0000 (UTC)
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6AC2310E56E;
+ Thu,  7 May 2026 09:21:50 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm=3A_Drop_HPAGE=5FPMD?=
+ =?utf-8?q?=5FSIZE_dependency_in_dma=5Fiova=5Ftry=5Falloc_calls?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Francois Dugast" <francois.dugast@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 07 May 2026 09:21:50 -0000
+Message-ID: <177814571043.47093.2947173279194332891@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260507091606.1067973-1-francois.dugast@intel.com>
+In-Reply-To: <20260507091606.1067973-1-francois.dugast@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,61 +36,54 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The phys argument to dma_iova_try_alloc() is used only to compute
-the sub-granule offset (phys & (granule - 1)). Since HPAGE_PMD_SIZE
-is a power of two larger than any IOMMU granule, this expression
-always evaluates to zero.
+== Series Details ==
 
-Replace the ternary expressions with a plain 0, which is what the
-API documentation recommends for callers doing PAGE_SIZE-aligned
-transfers. This also removes the dependency on HPAGE_PMD_SIZE and
-thus on CONFIG_PGTABLE_HAS_HUGE_LEAVES / HAVE_ARCH_TRANSPARENT_HUGEPAGE,
-fixing build failures on architectures such as arm32 that lack that
-config.
+Series: drm: Drop HPAGE_PMD_SIZE dependency in dma_iova_try_alloc calls
+URL   : https://patchwork.freedesktop.org/series/166117/
+State : warning
 
-Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 2d2e26352351dcdd8e75bf750d017d6ff558e141
+Author: Francois Dugast <francois.dugast@intel.com>
+Date:   Thu May 7 11:16:06 2026 +0200
+
+    drm: Drop HPAGE_PMD_SIZE dependency in dma_iova_try_alloc calls
+    
+    The phys argument to dma_iova_try_alloc() is used only to compute
+    the sub-granule offset (phys & (granule - 1)). Since HPAGE_PMD_SIZE
+    is a power of two larger than any IOMMU granule, this expression
+    always evaluates to zero.
+    
+    Replace the ternary expressions with a plain 0, which is what the
+    API documentation recommends for callers doing PAGE_SIZE-aligned
+    transfers. This also removes the dependency on HPAGE_PMD_SIZE and
+    thus on CONFIG_PGTABLE_HAS_HUGE_LEAVES / HAVE_ARCH_TRANSPARENT_HUGEPAGE,
+    fixing build failures on architectures such as arm32 that lack that
+    config.
+    
+    Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+    Assisted-by: GitHub Copilot:claude-sonnet-4.6 # Documentation
+    Link: https://lore.kernel.org/intel-xe/c36e7dfb-cf62-4d21-a3b1-f54cb43e0832@infradead.org/
++ /mt/dim checkpatch 30f8a0629f6924f24369cac9161b1a9741880259 drm-intel
+2d2e26352351 drm: Drop HPAGE_PMD_SIZE dependency in dma_iova_try_alloc calls
+-:20: WARNING:BAD_SIGN_OFF: Assisted-by expects 'AGENT_NAME:MODEL_VERSION [TOOL1] [TOOL2]' format
+#20: 
 Assisted-by: GitHub Copilot:claude-sonnet-4.6 # Documentation
-Link: https://lore.kernel.org/intel-xe/c36e7dfb-cf62-4d21-a3b1-f54cb43e0832@infradead.org/
----
- drivers/gpu/drm/drm_gpusvm.c  | 5 +----
- drivers/gpu/drm/drm_pagemap.c | 5 +----
- 2 files changed, 2 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
-index 365a9c0b522a..958cb605aedd 100644
---- a/drivers/gpu/drm/drm_gpusvm.c
-+++ b/drivers/gpu/drm/drm_gpusvm.c
-@@ -1556,10 +1556,7 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
- 
- 			if (!i)
- 				dma_iova_try_alloc(gpusvm->drm->dev, state,
--						   npages * PAGE_SIZE >=
--						   HPAGE_PMD_SIZE ?
--						   HPAGE_PMD_SIZE : 0,
--						   npages * PAGE_SIZE);
-+						   0, npages * PAGE_SIZE);
- 
- 			if (dma_use_iova(state)) {
- 				err = dma_iova_link(gpusvm->drm->dev, state,
-diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
-index d82ea7ccb8da..15c78eca180b 100644
---- a/drivers/gpu/drm/drm_pagemap.c
-+++ b/drivers/gpu/drm/drm_pagemap.c
-@@ -347,10 +347,7 @@ drm_pagemap_migrate_map_system_pages(struct device *dev,
- 
- 		if (!try_alloc) {
- 			dma_iova_try_alloc(dev, &state->dma_state,
--					   (npages - i) * PAGE_SIZE >=
--					   HPAGE_PMD_SIZE ?
--					   HPAGE_PMD_SIZE : 0,
--					   npages * PAGE_SIZE);
-+					   0, npages * PAGE_SIZE);
- 			try_alloc = true;
- 		}
- 
--- 
-2.43.0
+total: 0 errors, 1 warnings, 0 checks, 22 lines checked
+
 
