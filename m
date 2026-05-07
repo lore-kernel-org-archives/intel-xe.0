@@ -4,67 +4,156 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44243CD3442
-	for <intel-xe@archiver.kernel.org>; Thu,  7 May 2026 09:49:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24B65CD3427
+	for <intel-xe@archiver.kernel.org>; Thu,  7 May 2026 10:07:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7C0F10EFE3;
-	Thu,  7 May 2026 09:49:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8E8110E25B;
+	Thu,  7 May 2026 10:07:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cuIWHBEV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SnAcmpVz";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A66B310EFE3
- for <intel-xe@lists.freedesktop.org>; Thu,  7 May 2026 09:49:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A60B10E25B
+ for <intel-xe@lists.freedesktop.org>; Thu,  7 May 2026 10:07:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778147395; x=1809683395;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=ScmP1JQWwaBDwuMZ5MlAH2OdSivLurKq4BHpDVQ7SA8=;
- b=cuIWHBEVNKiHSmKDZgWhFyrbv+rggdHf12X03MwlU+UwFkdv2CT2KaBT
- Yy0Oi1zC0uOgsQYUWLbigAm9C5xT1caSgoieIp1p54WSWwqZhpBQZpgj0
- faVFM5C8ZZ/3bbfIPNDMIjsayS2xjl8IFvq17TL8RmTpvfQcuYWOpN4+a
- 3eZvmpQZOuyG0xHbmZ971gtb192AKQRpRCfdDXI9y5IhdZYbv+Olml1D6
- 5sNF0kmf57bz2Q87oQZXoFlSG10HcaaE7Z9SXrWZjpm2WTxSF0j4VQ+Aa
- X1g3Z7N4z8DaURwurdBshnlvXhI0+N+FLYdgYplSGwT5OHdu9eM4tU70f A==;
-X-CSE-ConnectionGUID: +YatzrGISfuvTCdk4Wpxyg==
-X-CSE-MsgGUID: VQMryE4tR4mSiOiABNquYg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11778"; a="79084762"
-X-IronPort-AV: E=Sophos;i="6.23,221,1770624000"; d="scan'208";a="79084762"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2026 02:49:48 -0700
-X-CSE-ConnectionGUID: QNuSoHaJTruDx483Cghicg==
-X-CSE-MsgGUID: wHwJijGAQjeyFxRkocqVDw==
+ t=1778148445; x=1809684445;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=I0X4A4DUp3sbJZa4LZGGH45+saMiCFLLKNbBPoA3BSw=;
+ b=SnAcmpVz5hrYLWErzNPAfACk+r3mTqpiOdIv4RNrwxMIlgZBcopR32w7
+ W40DRsVVU/k0OnhCnOG7NiaXwVE2UkNdMxlCfFGlueCCyj49JtNK4vD1c
+ MOjbwFPOXyNVUe8dpSbKbP7jxS0qiRC9t0Vk3wkL41LRGm2LdQ7U6Nka8
+ J9lYXGXiB3jeDSZYIVnZ4rB3ylPF8RTS0q2UJaF1lbdqIYmdW6LJVWIds
+ 9hGWjGXDEU1c9vGaa6N4rZ8FxsB+51UAhJFsumr24EAjl4eqXYVWEVKU7
+ DVUIhRryUI0GJgDEkfpsfBdQYI4IEo+JEEGOBm2qiKrsQCdrDMjWsvXzv g==;
+X-CSE-ConnectionGUID: NZ/edyf1QyupnF+PxrY0tg==
+X-CSE-MsgGUID: /gZyWXyZTWuEEmqVcs2rNg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11778"; a="96662852"
+X-IronPort-AV: E=Sophos;i="6.23,221,1770624000"; d="scan'208";a="96662852"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2026 03:07:24 -0700
+X-CSE-ConnectionGUID: S5cSY/4JRo2AuPkXGR0InA==
+X-CSE-MsgGUID: zYBmu4PHQi6PGLtphwBcyA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,221,1770624000"; d="scan'208";a="259845550"
-Received: from amilburn-desk.amilburn-desk (HELO [10.245.245.139])
- ([10.245.245.139])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2026 02:49:43 -0700
-Message-ID: <8885adcc-1560-46c8-90b5-7a2c00d542f1@intel.com>
-Date: Thu, 7 May 2026 10:49:41 +0100
-MIME-Version: 1.0
+X-IronPort-AV: E=Sophos;i="6.23,221,1770624000"; d="scan'208";a="274565627"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2026 03:07:24 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 7 May 2026 03:07:23 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Thu, 7 May 2026 03:07:23 -0700
+Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.32) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 7 May 2026 03:07:20 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Wr1rc930TJv2aNY0ajalwIm69QiEwE0Ax6rboP31fe/AxTmKb+GKr1z62ieIqNDmQZpc+cUEwNcaQ3QgHkxAnFc/hRVbao/rH2LthUscIxVBWdsB8h78WWyDuvXTDKMONBcSmwoI20F0uirxsvcArKcTHtyE/+IKaMd1os5YdBLYTn464eUjsfs7XiItSunBx7eO9TEY8UficmnQil31NFXS36Xda3NNXAWQIXIOGBxogIV/xhR8dCaDpi5+lT8AMOc6rkTyyVck7mVFwQKBoGCGksZeIEcKKNFZYLrxXiQqooZW7ElrVxIgzXl5m79u7j8FTMD85SyoJmdHonr4eg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zAGAdl0Wxhg3Mdi6crqG/Nx8Sv3WPPZLkSr8p6HWgz8=;
+ b=Gvo7JrVqKa2eNoVqGyG9XbQ03Vl+TYaDlBGnSz/jvz0V+byqCMczCl0ElsbLR5YlLeihg0LORNYUzVmHcJVdkqy6ys/NRH6JnnDikfN+ttv5KiKMf/ue/rjqXpUw+YPko//KOQk2sCKxRTzQN7FZ+s3bKQXBjRyKfa5jIVSmCghrL0Ko3ryH2lGYPf00OBFG0W4qQv3b+wsZ5g536iNIkAUhgnUaS31IUA64YAyWUUsixSzHFs0NSG46JrPmqPXcg1ZdwpWDikpX3G2uqQmMlxYVOvmNYAexqwASlsmC0JWoxbvaIX24xaYG3Ch5NqWcTjQFob0//u3wY715ph0o2g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from SA1PR11MB5900.namprd11.prod.outlook.com (2603:10b6:806:238::21)
+ by CH3PR11MB8140.namprd11.prod.outlook.com (2603:10b6:610:15b::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.15; Thu, 7 May
+ 2026 10:07:18 +0000
+Received: from SA1PR11MB5900.namprd11.prod.outlook.com
+ ([fe80::d294:7b1f:a7a2:e803]) by SA1PR11MB5900.namprd11.prod.outlook.com
+ ([fe80::d294:7b1f:a7a2:e803%7]) with mapi id 15.20.9891.008; Thu, 7 May 2026
+ 10:07:18 +0000
+Message-ID: <5ff42e81-ff93-4435-8d88-6577110ec5a7@intel.com>
+Date: Thu, 7 May 2026 12:07:14 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH V7 10/10] drm/xe/cri: Add sysfs interface for bad gpu
- vram pages
-To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Cc: "Brost, Matthew" <matthew.brost@intel.com>,
- "thomas.hellstrom@linux.intel.com" <thomas.hellstrom@linux.intel.com>,
- "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>,
- "Iddamsetty, Aravind" <aravind.iddamsetty@intel.com>
-References: <20260416074958.3722666-12-tejas.upadhyay@intel.com>
- <20260416074958.3722666-22-tejas.upadhyay@intel.com>
- <03f64ea2-5626-49d5-8ef9-afa7311ee697@intel.com>
- <DS0PR11MB87189655103B8C7C9C81A7BD81312@DS0PR11MB8718.namprd11.prod.outlook.com>
- <21811e89-5f7a-48bd-b0bf-76065cee6bcc@intel.com>
- <DS0PR11MB871832818742B56736EC2920813C2@DS0PR11MB8718.namprd11.prod.outlook.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <DS0PR11MB871832818742B56736EC2920813C2@DS0PR11MB8718.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v4 10/12] drm/xe: Add debugfs pagefault_info
+To: <intel-xe@lists.freedesktop.org>
+References: <20260226042834.2963245-1-matthew.brost@intel.com>
+ <20260226042834.2963245-11-matthew.brost@intel.com>
+Content-Language: en-US
+From: Maciej Patelczyk <maciej.patelczyk@intel.com>
+In-Reply-To: <20260226042834.2963245-11-matthew.brost@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VI1PR08CA0214.eurprd08.prod.outlook.com
+ (2603:10a6:802:15::23) To SA1PR11MB5900.namprd11.prod.outlook.com
+ (2603:10b6:806:238::21)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA1PR11MB5900:EE_|CH3PR11MB8140:EE_
+X-MS-Office365-Filtering-Correlation-Id: 885e7caf-aa75-4c2c-831f-08deac206bfb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|1800799024|376014|3023799003|18002099003|56012099003|22082099003;
+X-Microsoft-Antispam-Message-Info: 0EluCVvX6cVp8GuiVpZtJWUKPBpGLjCv4Gk6rIO3XwlwVh5LP/p9HM3ahLzEii5X86wuxQtbEZdmD1cZpc7jAhVD+5fbVjKo3h05kiCG0VU4d+w4YYTGEahtrIjlkcFMSCbZroeF43jvbZo3G2Tx3KECvC3+SWtlwrHHxiHqim5Ta1u4/NCREnh7bfcbNzUeKBW5k7tA54AnmENhu74HEez7MMeCX7wO7Cow5KolQzF5iy+RyNupucrpO1dW9BxlFWBrygYxs1B9dOhfIr1GjdWFK2KuMbxwiKzsN5Lion92dztNYproB7Xd6GtQyGwk1NFTmlEH4cjZQ8OV1Tnq1bgh6HpdrMZuUEd9/jELtzgajK23Kr5ZALbOScvHpavucZLLapyDp10NvSZ/FDWnBQfw2CTUNXmSpoXTtaTD+OjByNnGJweveqB7AXb7lJ2UTt5zolXEtNT6eDiZlCdBY78a3BY6oMBR9vgjST4vhgLoxixKEYpbUR042/SCIzWq93jSG68Fk+IDbH7ex6sSfw/9985LWzR0+tbPQMgMf+hMKX4nZS2S5Zkom3u3wq9Gw2vmccZCbiVqBrgPcP0TvuCbMyPh0FFkpRrKBdY81fTtA3/T8l0QV67nu5ianoe7+TltQLU/S3AniyJFjK/byZmU0ls4wwCAGySz38469jmIpL9e4mCncMPcvOxbo9sG
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SA1PR11MB5900.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(3023799003)(18002099003)(56012099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QlBYa2xpVVVnZkovbmJOZk1QY0NLaTZ6dmNwWnRzeGVhR25iWmwxK0E2YzZU?=
+ =?utf-8?B?cGdGTFZjbFNhdkFTT1dNdExuQlNiNWdDNEZnblZFcG51MWt4YVhvRlIxKzF5?=
+ =?utf-8?B?L2lNUGJ1NHh1djJhNWcxeTVxUFVWRVg3YnBxc280ZkRaVlVhNzB4ZW9BcmhN?=
+ =?utf-8?B?c0NseEYvOWpUWENTRE9WSWlXNFFtc2kwaExDc1UxSElYZ0NseUNjZFkyckZX?=
+ =?utf-8?B?aTFXK0s5ZDVHWmFmanNGd3lCUzRXSkY3QVpvbkg4b0cxTnI2M290T2QzVFRl?=
+ =?utf-8?B?RWw4Ym9pRGtjZFdHMHp4MHJjVDZzTk0rTkpManZ2clFGWUUrR2NWc2tWamJE?=
+ =?utf-8?B?T0p3WmxWenYrUlpKamFSQ2JITWowbFYyUXowQWJ6ZEJJNStydzR3UzF0ejdn?=
+ =?utf-8?B?Yis4NTl5NWtDSVNPNDlUV0N5UVJaMTJBUVJ4UmtHYkpvRHVyazlVcjJXa2NX?=
+ =?utf-8?B?V29FL0N5KzhnZXREbmRqMXZYVzU5anYvVEdVSC9mcGlXS005MTlWZzcyeUky?=
+ =?utf-8?B?endaYVkvVnJwYnlRYmFZSzJBUVBqWGVSeTZYbzF4SkJEZktBclpZWkltdGlB?=
+ =?utf-8?B?RlZEdTFMNGNJTzNFZERJK3dDSE1tRTU4K1dzZ3RpWDhBS3V2dTJJWk5wdzhM?=
+ =?utf-8?B?T3hxb2hZT3NYRTQ5VmIvZjZ4M2dyV011SFNFUXRYNk45eS8rVzl1dGs5OVJB?=
+ =?utf-8?B?WE1DMWE3YXJETjkwSng0SmoxYnRZU1QzamFoR3d6Vzd5bHpiMjNPUG1xakFa?=
+ =?utf-8?B?bndvbGlwUGlzK3JOYklWVldLWkJhdDRTbnVQUndTZDFYQnBTbit1ZDltbmx0?=
+ =?utf-8?B?NXNBM0V3bUZ2MDlIekJrbGVob0RURFljOGlKcHRxQzdFSElreUk4MmJ4VTR1?=
+ =?utf-8?B?bHpDMzQwRFhqYndIOFlWbDhMck4ySzNaRHh0TVJhOFIrZ2RCZnNiTWt4NzYz?=
+ =?utf-8?B?UU8zZmcwdmJhTWZsMnY0UVVzTUwwbytGWWd3UEZ6eExYZUp2ejNqTVV6Y1Bz?=
+ =?utf-8?B?Qi9qMkJJeWNsVCttbU5HdS9QcmdwOUJMb0gvZ1JEMkNaWkJKN1hyQllBWFRk?=
+ =?utf-8?B?L0FabDQwaktMNkQxNER2Z1U4LzA1amlERGtXQ3JsOWNUTHQ5THQ4RUMyMFZF?=
+ =?utf-8?B?U3NudFhyMng0MDVUeEJ4VlZOK2JnL0lJbS9GTVhrOUc0Tk1wM3ZzbWg0SzZP?=
+ =?utf-8?B?K05VS29ybVVMZ2VXRWJGajAydUZQMm9POHdCZ0U2MVRVWmZtdEZ0d2plY0FB?=
+ =?utf-8?B?eTZ6cCtwVUVqT1pESVBxZXFWOVdUbE1yWFFIQ1I5Z2N4bUlNRi85TE1uNHph?=
+ =?utf-8?B?RklkSlRWbHdYTlhQTHVyTzNBSUJLeVcycENCemhhYS95RC8xU1BtY05qRnVL?=
+ =?utf-8?B?aFhTTkViMkU0dTFuUGpQZ0NRUWVmSlFkYkh3ZUtPMjJ4SmVZa1k4WDZsdStJ?=
+ =?utf-8?B?OFc4L2xyYW1wSE9abkdndmxMTUFXdGFiWktZQjFiWUhTckY4U25WVVJrc0kv?=
+ =?utf-8?B?VjZFRmtVeE14TWRWNkhERHZDUXBqQWJEUFFFYlJNZzFSUlNJZm1jcEFhKzAx?=
+ =?utf-8?B?QzFwMDI0WUUyMnNqODE5YTYyT2RIMmloeXNkOTJ3VTQ3S01XeUsyazhrYkVM?=
+ =?utf-8?B?aGxvNi9Vd0pGNmFYSndlV3JlWko1Q3dIb3hJemhUTENQME9IY1l6TmRDR3pz?=
+ =?utf-8?B?bmdnbXQzR1FSdlBoS1lpZ0Z5WEprYkovTzlLUlhkRjZMb3hqaTVIazFISkZQ?=
+ =?utf-8?B?cVpjVmNoQ1A3WEFiU1JzbFNuOWxxcTBWRkozVmJuRUlibTd1QnZ2UVBTa21s?=
+ =?utf-8?B?WDVXWjcxckpJaktYQTNhcDB0Uk9UVnM1RXAvUW41cGMrbERZZ2NWVk5QSWpr?=
+ =?utf-8?B?cE5pTnFwQUpoU1VvMFBwa0QrWXBPVHlMYnVHemlxNnppZFAwb00zMk1BQUJH?=
+ =?utf-8?B?L1VpZmdPdWFBVFlOdkQ2dHhtWHA0eU1wdTlaaks2aU44WXBkWkU3dVBTQ216?=
+ =?utf-8?B?OUg1a1Q5aGxUcTQwQjBZZER6K0thNUxNREh2dkNPWTdkQjY0V25LRmZmdkJ1?=
+ =?utf-8?B?NzdZQ0VYc3oreEd4MG1oVDVPam9zbkphM0dYbVUvY1lSdFVYWnJhRU4vZ2h0?=
+ =?utf-8?B?ejVtRFM4MlV6czc4QkZ5K0NuZ2YwMllQNHlCSDdJbkxYYTFCQ3ZrODg1bFpi?=
+ =?utf-8?B?U2ZlaVVocXJNRzcwTDljMStvdktiQXRCd1dXNVI1WlFRRjdpT3hSSFFJMU5n?=
+ =?utf-8?B?TGt0d2hqOWhLMFZncUNTbzRuVkViTVJoaUpyUFFnR0NXWlI4M1p0TDNyTTI5?=
+ =?utf-8?B?TEJ1WG1UNXZsMW4xbVN0VVJhMm1iUklDRFZOSmkxWjBLZktKUGJvTVpTb204?=
+ =?utf-8?Q?b/9TlaFN4A5gvAGI=3D?=
+X-Exchange-RoutingPolicyChecked: RnRq+ZtvliP4itz5mjgd1S6F1R+g92q27+68xPLGskT5tLuyUNiPpLmBJTdDwk0y2zzTGosF3wjXvdLAUjXqToM6MwA1aJBc0JSpikij1UgnFqrPJWJLbzzyLEsZdvmjMGOydLVBYb8wQC85gdwEzgFEziEICjZpNw7oVqPIFiKCLHWs6L6rSOezr/FDYfxEQHDIxjJ8Z6rhiaJ0Zp/lK6ehbv0jQ3joOGe1Jvt/4u5isXRz4kgXSITOW8vAPkZZB0aULnn6yqt4yXoQdf+rGEVMzVH5HRCSPuwADdpZ0APrVwKYVqlRRyvbwmimG8QeajqAmvBn9q1pX42lmQA5pQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 885e7caf-aa75-4c2c-831f-08deac206bfb
+X-MS-Exchange-CrossTenant-AuthSource: SA1PR11MB5900.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 May 2026 10:07:18.6253 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: LK0Ng47pZPgttoUj3Nu3MUVvV786s4/xdOmgMbi4+SbimdV5TTxAobCQiexMvJVk3YC/DUOQZconkuarKu8eq5HYwW2D9MtIjLgk/PeLwoo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8140
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,277 +168,170 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 07/05/2026 08:37, Upadhyay, Tejas wrote:
-> 
-> 
->> -----Original Message-----
->> From: Auld, Matthew <matthew.auld@intel.com>
->> Sent: 05 May 2026 14:14
->> To: Upadhyay, Tejas <tejas.upadhyay@intel.com>; intel-
->> xe@lists.freedesktop.org
->> Cc: Brost, Matthew <matthew.brost@intel.com>;
->> thomas.hellstrom@linux.intel.com; Ghimiray, Himal Prasad
->> <himal.prasad.ghimiray@intel.com>
->> Subject: Re: [RFC PATCH V7 10/10] drm/xe/cri: Add sysfs interface for bad gpu
->> vram pages
->>
->> On 04/05/2026 10:02, Upadhyay, Tejas wrote:
->>>
->>>
->>>> -----Original Message-----
->>>> From: Auld, Matthew <matthew.auld@intel.com>
->>>> Sent: 30 April 2026 19:23
->>>> To: Upadhyay, Tejas <tejas.upadhyay@intel.com>; intel-
->>>> xe@lists.freedesktop.org
->>>> Cc: Brost, Matthew <matthew.brost@intel.com>;
->>>> thomas.hellstrom@linux.intel.com; Ghimiray, Himal Prasad
->>>> <himal.prasad.ghimiray@intel.com>
->>>> Subject: Re: [RFC PATCH V7 10/10] drm/xe/cri: Add sysfs interface for
->>>> bad gpu vram pages
->>>>
->>>> On 16/04/2026 08:49, Tejas Upadhyay wrote:
->>>>> Starting CRI, Include a sysfs interface designed to expose
->>>>> information about bad VRAM pages—those identified as having hardware
->>>>> faults (e.g., ECC errors). This interface allows userspace tools and
->>>>> administrators to monitor the health of the GPU's local memory and
->>>>> track the status of page retirement.To get details on bad gpu vram
->>>>> pages can be found under /sys/bus/pci/devices/bdf/vram_bad_pages.
->>>>>
->>>>> Where The format is, pfn : gpu page size : flags
->>>>
->>>> With "gpu page size" this is really just the min block size?
->>>> gpu-page-size is normally interpreted as GTT page size, which is a
->>>> different thing. But is that not always 4K here? Since that is the
->>>> granularity of the addr reservation? Is it useful to print that? Is
->>>> knowing that pfn x is offlined not enough?
->>>
->>> I think you are right, its always 4K. But I will check with Aravind as for what
->> reason design doc is saying format to be  "pfn : gpu page size : flags". Adding
->> him in cc.
->>>
->>>>
->>>> Also what is the story if you have multiple VRAM instances here?
->>>> There is only one vram_bad_pages file? Would this treat VRAM as one giant
->> unified thing?
->>>
->>> This is targeted for CRI, thus single VRAM is in reference right now. We can
->> extend in future if need be or may be it will single huge thing only in future for
->> multiple vram.
->>
->> Since this is uapi, I think would be good to be forward looking and make sure
->> we don't need to complety re-design if now asked to support multiple VRAM
->> instances. I think one flat unfied thing listing all the pfns, should work, but I
->> guess depends on the consumer of this and how they are going to use this.
-> 
-> I discussed with Aravind, it is intended for one big thing only not per VRAM, no such requirement. Also the gpu_page_size could be 4K now but for future compatibility, like we had in PVC for some cases we had 64K page size, we kept it in format.
+On 26/02/2026 05:28, Matthew Brost wrote:
 
-The PVC 64K page (and some early BMG), was a GTT page thing, so from 
-allocator pov you could still allocate 4K, and I think we did exactly 
-that for memory that was never touched via GTT. If the FW gives 64K 
-addresses then I think makes sense.
+> Add a debugfs entry to dump Xe page fault queue state. The output
+> includes queue geometry (entry size, total size, head/tail), per-entry
+> allocation state counts, and whether each page fault worker cache is
+> currently valid.
+>
+> This is intended to help debug page fault storms, chaining, and retry
+> behaviour without needing tracing.
+>
+> Assisted-by: Chat-GPT # Documentation
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_debugfs.c   | 11 ++++++
+>   drivers/gpu/drm/xe/xe_pagefault.c | 62 +++++++++++++++++++++++++++++++
+>   drivers/gpu/drm/xe/xe_pagefault.h |  3 ++
+>   3 files changed, 76 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+> index 844cfafe1ec7..f02481be2501 100644
+> --- a/drivers/gpu/drm/xe/xe_debugfs.c
+> +++ b/drivers/gpu/drm/xe/xe_debugfs.c
+> @@ -19,6 +19,7 @@
+>   #include "xe_gt_printk.h"
+>   #include "xe_guc_ads.h"
+>   #include "xe_mmio.h"
+> +#include "xe_pagefault.h"
+>   #include "xe_pm.h"
+>   #include "xe_psmi.h"
+>   #include "xe_pxp_debugfs.h"
+> @@ -109,6 +110,15 @@ static int sriov_info(struct seq_file *m, void *data)
+>   	return 0;
+>   }
+>   
+> +static int pagefault_info(struct seq_file *m, void *data)
+> +{
+> +	struct xe_device *xe = node_to_xe(m->private);
+> +	struct drm_printer p = drm_seq_file_printer(m);
+> +
+> +	xe_pagefault_print_info(xe, &p);
+> +	return 0;
+> +}
+> +
+>   static int workarounds(struct xe_device *xe, struct drm_printer *p)
+>   {
+>   	guard(xe_pm_runtime)(xe);
+> @@ -184,6 +194,7 @@ static const struct drm_info_list debugfs_list[] = {
+>   	{"info", info, 0},
+>   	{ .name = "sriov_info", .show = sriov_info, },
+>   	{ .name = "workarounds", .show = workaround_info, },
+> +	{ .name = "pagefault_info", .show = pagefault_info, },
+>   };
+>   
+>   static const struct drm_info_list debugfs_residencies[] = {
+> diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
+> index c497dd8d9724..2cfda29321c9 100644
+> --- a/drivers/gpu/drm/xe/xe_pagefault.c
+> +++ b/drivers/gpu/drm/xe/xe_pagefault.c
+> @@ -97,6 +97,7 @@ enum xe_pagefault_alloc_state {
+>   	XE_PAGEFAULT_ALLOC_STATE_QUEUED		= 1,
+>   	XE_PAGEFAULT_ALLOC_STATE_CHAINED	= 2,
+>   	XE_PAGEFAULT_ALLOC_STATE_ACTIVE		= 3,
+> +	XE_PAGEFAULT_ALLOC_STATE_COUNT		= 4,
+>   };
+>   
+>   static int xe_pagefault_entry_size(void)
+> @@ -846,3 +847,64 @@ int xe_pagefault_handler(struct xe_device *xe, struct xe_pagefault *pf)
+>   
+>   	return full ? -ENOSPC : 0;
+>   }
+> +
+> +/**
+> + * xe_pagefault_print_info() - dump page fault queue/cache debug information
+> + * @xe: Xe device
+> + * @p: DRM printer to emit output to
+> + *
+> + * Print a snapshot of the page fault queue state for debugging. The output
+> + * includes queue parameters (entry size, total size, head/tail), a histogram
+> + * of per-entry allocation state values, and the validity of each per-worker
+> + * page fault cache.
+> + *
+> + * This function is intended for debugfs and similar diagnostics. It acquires
+> + * the page fault queue spinlock internally to serialize against IRQ-side
+> + * producers and the worker consumer path, so callers must not hold the queue
+> + * lock.
+> + */
+> +void xe_pagefault_print_info(struct xe_device *xe, struct drm_printer *p)
+> +{
+> +	struct xe_pagefault_queue *pf_queue = &xe->usm.pf_queue;
+> +	struct xe_pagefault_work *pf_work;
+> +	static const char * const alloc_state_names[] = {
+> +		[XE_PAGEFAULT_ALLOC_STATE_FREE] = "free",
+> +		[XE_PAGEFAULT_ALLOC_STATE_QUEUED] = "queued",
+> +		[XE_PAGEFAULT_ALLOC_STATE_CHAINED] = "chained",
+> +		[XE_PAGEFAULT_ALLOC_STATE_ACTIVE] = "active",
+> +	};
+> +	u32 i, counts[XE_PAGEFAULT_ALLOC_STATE_COUNT] = {};
+> +
+> +	guard(spinlock_irq)(&pf_queue->lock);
+> +
+> +	drm_printf(p, "pagefault size: %u\n", xe_pagefault_entry_size());
+> +	drm_printf(p, "pagefault queue size: %u\n", pf_queue->size);
+> +	drm_printf(p, "pagefault queue head: %u\n", pf_queue->head);
+> +	drm_printf(p, "pagefault queue tail: %u\n", pf_queue->tail);
+> +
+> +	for (i = 0; i < pf_queue->size; i += xe_pagefault_entry_size()) {
+> +		struct xe_pagefault *pf = pf_queue->data + i;
+> +
+> +		if (pf->consumer.alloc_state >=
+> +		    XE_PAGEFAULT_ALLOC_STATE_COUNT) {
+> +			drm_printf(p, "pagefault[%u] corrupted alloc_state=%u\n",
+> +				   i, pf->consumer.alloc_state);
+> +			continue;
+> +		}
+> +
+> +		counts[pf->consumer.alloc_state]++;
+> +	}
+> +
+> +	for (i = 0; i < XE_PAGEFAULT_ALLOC_STATE_COUNT; ++i)
+> +		drm_printf(p, "pagefault queue %s count: %u\n",
+> +			   alloc_state_names[i], counts[i]);
+> +
+> +	for (i = 0, pf_work = xe->usm.pf_workers;
+> +	     i < xe->info.num_pf_work; ++i, ++pf_work) {
+> +		if (pf_work->cache.start == XE_PAGEFAULT_CACHE_START_INVALID)
+> +			drm_printf(p, "pagefault work[%u] cache invalid\n", i);
+> +		else
+> +			drm_printf(p, "pagefault work[%u] cache valid\n", i);
+> +
+> +	}
+> +}
+> diff --git a/drivers/gpu/drm/xe/xe_pagefault.h b/drivers/gpu/drm/xe/xe_pagefault.h
+> index feaf2a69674a..e9c5d1f03760 100644
+> --- a/drivers/gpu/drm/xe/xe_pagefault.h
+> +++ b/drivers/gpu/drm/xe/xe_pagefault.h
+> @@ -8,6 +8,7 @@
+>   
+>   #include "xe_pagefault_types.h"
+>   
+> +struct drm_printer;
+>   struct xe_device;
+>   struct xe_gt;
+>   struct xe_pagefault;
+> @@ -18,6 +19,8 @@ void xe_pagefault_reset(struct xe_device *xe, struct xe_gt *gt);
+>   
+>   int xe_pagefault_handler(struct xe_device *xe, struct xe_pagefault *pf);
+>   
+> +void xe_pagefault_print_info(struct xe_device *xe, struct drm_printer *p);
+> +
+>   #define XE_PAGEFAULT_END_ADDR_MASK	(~0xfffull)
+>   
+>   /**
 
-Also just realised we might get some funny behaviour with CPU PAGE_SIZE 
-!= 4K, since allocator chunk_size will currently match the CPU 
-PAGE_SIZE. Driver doesn't yet support that fully, but might in the future.
+There could be only as many chains as there are many workers.
 
-Perhaps just "PFN size: <>" at the top, instead of repeating on every 
-line? AFAICT it should always be the same, on that machine?
+In a very specific case right after pf goes from ACTIVE to FREE this 
+could get a snapshot from which one can deduce that there is less chains 
+that really are.
 
-> 
-> Tejas
->>
->>>
->>> Tejas
->>>>
->>>>>
->>>>> flags:
->>>>> R: reserved, this gpu page is reserved.
->>>>> P: pending for reserve, this gpu page is marked as bad, will be reserved
->>>>>       in next window of page_reserve.
->>>>> F: unable to reserve. this gpu page can’t be reserved due to some reasons.
->>>>>
->>>>> For example if you read using cat
->>>>> /sys/bus/pci/devices/bdf/vram_bad_pages,
->>>>> max_pages : 10000
->>>>> 0x00000000 : 0x00001000 : R
->>>>> 0x00001234 : 0x00001000 : P
->>>>>
->>>>> v3:
->>>>> - Move FW communication in RAS code
->>>>> v2:
->>>>> - Add max_pages info as per updated design doc
->>>>> - Rebase
->>>>>
->>>>> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
->>>>> ---
->>>>>     drivers/gpu/drm/xe/xe_device_sysfs.c       |  7 ++
->>>>>     drivers/gpu/drm/xe/xe_ttm_vram_mgr.c       | 79
->>>> ++++++++++++++++++++++
->>>>>     drivers/gpu/drm/xe/xe_ttm_vram_mgr.h       |  1 +
->>>>>     drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h |  2 +
->>>>>     4 files changed, 89 insertions(+)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c
->>>>> b/drivers/gpu/drm/xe/xe_device_sysfs.c
->>>>> index a73e0e957cb0..47c5be4180fe 100644
->>>>> --- a/drivers/gpu/drm/xe/xe_device_sysfs.c
->>>>> +++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
->>>>> @@ -8,12 +8,14 @@
->>>>>     #include <linux/pci.h>
->>>>>     #include <linux/sysfs.h>
->>>>>
->>>>> +#include "xe_configfs.h"
->>>>>     #include "xe_device.h"
->>>>>     #include "xe_device_sysfs.h"
->>>>>     #include "xe_mmio.h"
->>>>>     #include "xe_pcode_api.h"
->>>>>     #include "xe_pcode.h"
->>>>>     #include "xe_pm.h"
->>>>> +#include "xe_ttm_vram_mgr.h"
->>>>>
->>>>>     /**
->>>>>      * DOC: Xe device sysfs
->>>>> @@ -267,6 +269,7 @@ static const struct attribute_group
->>>> auto_link_downgrade_attr_group = {
->>>>>     int xe_device_sysfs_init(struct xe_device *xe)
->>>>>     {
->>>>>     	struct device *dev = xe->drm.dev;
->>>>> +	bool policy;
->>>>>     	int ret;
->>>>>
->>>>>     	if (xe->d3cold.capable) {
->>>>> @@ -285,5 +288,9 @@ int xe_device_sysfs_init(struct xe_device *xe)
->>>>>     			return ret;
->>>>>     	}
->>>>>
->>>>> +	policy = xe_configfs_get_bad_page_reservation(to_pci_dev(dev));
->>>>> +	if (xe->info.platform == XE_CRESCENTISLAND && policy)
->>>>> +		xe_ttm_vram_sysfs_init(xe);
->>>>> +
->>>>>     	return 0;
->>>>>     }
->>>>> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
->>>>> b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
->>>>> index 7f58e7e8c3e1..611d945c9eb4 100644
->>>>> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
->>>>> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
->>>>> @@ -760,3 +760,82 @@ int xe_ttm_vram_handle_addr_fault(struct
->>>> xe_device *xe, unsigned long addr)
->>>>>     	return ret;
->>>>>     }
->>>>>     EXPORT_SYMBOL(xe_ttm_vram_handle_addr_fault);
->>>>> +
->>>>> +static void xe_ttm_vram_dump_bad_pages_info(char *buf, struct
->>>>> +xe_ttm_vram_mgr *mgr) {
->>>>> +	const unsigned int element_size = sizeof("0xabcdabcd : 0x12345678 :
->>>> R\n") - 1;
->>>>> +	const unsigned int maxpage_size = sizeof("max_pages: 10000\n") - 1;
->>>>> +	struct xe_ttm_vram_offline_resource *pos, *n;
->>>>> +	struct gpu_buddy_block *block;
->>>>> +	ssize_t s = 0;
->>>>> +
->>>>> +	mutex_lock(&mgr->lock);
->>>>> +	s += scnprintf(&buf[s], maxpage_size + 1, "max_pages: %d\n", mgr-
->>>>> max_pages);
->>>>> +	list_for_each_entry_safe(pos, n, &mgr->offlined_pages,
->>>>> +offlined_link)
->>>> {
->>>>> +		block = list_first_entry(&pos->blocks,
->>>>> +					 struct gpu_buddy_block,
->>>>> +					 link);
->>>>> +		s += scnprintf(&buf[s], element_size + 1,
->>>>> +			       "0x%08llx : 0x%08llx : %1s\n",
->>>>> +			       gpu_buddy_block_offset(block) >> PAGE_SHIFT,
->>>>> +			       gpu_buddy_block_size(&mgr->mm, block),
->>>>> +			       "R");
->>>>> +	}
->>>>> +	list_for_each_entry_safe(pos, n, &mgr->queued_pages, queued_link)
->>>> {
->>>>> +		block = list_first_entry(&pos->blocks,
->>>>> +					 struct gpu_buddy_block,
->>>>> +					 link);
->>>>> +		s += scnprintf(&buf[s], element_size + 1,
->>>>> +			       "0x%08llx : 0x%08llx : %1s\n",
->>>>> +			       gpu_buddy_block_offset(block) >> PAGE_SHIFT,
->>>>> +			       gpu_buddy_block_size(&mgr->mm, block),
->>>>> +			       pos->status ? "P" : "F");
->>>>> +	}
->>>>> +	mutex_unlock(&mgr->lock);
->>>>> +}
->>>>> +
->>>>> +static ssize_t vram_bad_pages_show(struct device *dev, struct
->>>>> +device_attribute *attr, char *buf) {
->>>>> +	struct pci_dev *pdev = to_pci_dev(dev);
->>>>> +	struct xe_device *xe = pdev_to_xe_device(pdev);
->>>>> +	struct ttm_resource_manager *man;
->>>>> +	struct xe_ttm_vram_mgr *mgr;
->>>>> +
->>>>> +	man = ttm_manager_type(&xe->ttm, XE_PL_VRAM0);
->>>>> +	if (man) {
->>>>> +		mgr = to_xe_ttm_vram_mgr(man);
->>>>> +		xe_ttm_vram_dump_bad_pages_info(buf, mgr);
->>>>> +	}
->>>>> +
->>>>> +	return sysfs_emit(buf, "%s\n", buf); } static
->>>>> +DEVICE_ATTR_RO(vram_bad_pages);
->>>>> +
->>>>> +static void xe_ttm_vram_sysfs_fini(void *arg) {
->>>>> +	struct xe_device *xe = arg;
->>>>> +
->>>>> +	device_remove_file(xe->drm.dev, &dev_attr_vram_bad_pages); }
->>>>> +
->>>>> +/**
->>>>> + * xe_ttm_vram_sysfs_init - Initialize vram sysfs component
->>>>> + * @tile: Xe Tile object
->>>>> + *
->>>>> + * It needs to be initialized after the main tile component is
->>>>> +ready
->>>>> + *
->>>>> + * Returns: 0 on success, negative error code on error.
->>>>> + */
->>>>> +int xe_ttm_vram_sysfs_init(struct xe_device *xe) {
->>>>> +	int err;
->>>>> +
->>>>> +	err = device_create_file(xe->drm.dev, &dev_attr_vram_bad_pages);
->>>>> +	if (err) {
->>>>> +		dev_err(xe->drm.dev, "Failed to create vram_bad_pages sysfs
->>>> file: %d\n", err);
->>>>> +		return 0;
->>>>> +	}
->>>>> +
->>>>> +	return devm_add_action_or_reset(xe->drm.dev,
->>>> xe_ttm_vram_sysfs_fini,
->>>>> +xe); } EXPORT_SYMBOL(xe_ttm_vram_sysfs_init);
->>>>> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
->>>>> b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
->>>>> index 8ef06d9d44f7..c33e1a8d9217 100644
->>>>> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
->>>>> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
->>>>> @@ -32,6 +32,7 @@ void xe_ttm_vram_get_used(struct
->>>> ttm_resource_manager *man,
->>>>>     			  u64 *used, u64 *used_visible);
->>>>>
->>>>>     int xe_ttm_vram_handle_addr_fault(struct xe_device *xe, unsigned
->>>>> long addr);
->>>>> +int xe_ttm_vram_sysfs_init(struct xe_device *xe);
->>>>>     static inline struct xe_ttm_vram_mgr_resource *
->>>>>     to_xe_ttm_vram_mgr_resource(struct ttm_resource *res)
->>>>>     {
->>>>> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
->>>>> b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
->>>>> index 07ed88b47e04..b23796066a1a 100644
->>>>> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
->>>>> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
->>>>> @@ -39,6 +39,8 @@ struct xe_ttm_vram_mgr {
->>>>>     	u32 mem_type;
->>>>>     	/** @offline_mode: debugfs hook for setting page offline mode */
->>>>>     	u64 offline_mode;
->>>>> +	/** @max_pages: max pages that can be in offline queue retrieved
->>>> from FW */
->>>>> +	u16 max_pages;
->>>>>     };
->>>>>
->>>>>     /**
->>>
-> 
+Just thinking if there ever be 0 active and say 100 chained. Looks like 
+possible.
+
+
+Looks good,
+
+Reviewed-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
 
