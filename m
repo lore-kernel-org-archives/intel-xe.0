@@ -4,159 +4,159 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B044CD3436
-	for <intel-xe@archiver.kernel.org>; Fri,  8 May 2026 12:04:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07B8DCD37AD
+	for <intel-xe@archiver.kernel.org>; Fri,  8 May 2026 12:26:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1343310E32D;
-	Fri,  8 May 2026 12:04:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F185010F48C;
+	Fri,  8 May 2026 12:26:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TMOR6lqn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ImDMv33O";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E29D10E32D
- for <intel-xe@lists.freedesktop.org>; Fri,  8 May 2026 12:03:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6265C10F481;
+ Fri,  8 May 2026 12:26:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778241840; x=1809777840;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=AIjDNafJaghRAKRK5zIGRZV8IINX0/tObBw5lkGhA9I=;
- b=TMOR6lqnUVUveOzmNxcLG1w4pHNsIl+oSE2W/aSB2KkjKhXEJ7hKmGI4
- U6/WuiDMX1VIJ/BhRrxnlqOGUZHBYM8oZjjaIeaJBfjnJm/pSKMh2vilJ
- lfWUQQhZFqeNN0hvdqar8ITB4WEhQVuZHd4oPsAJJ09lZkILEyqP8hfRs
- eiRNs/Xf7SNtDrRhECJj5Cr1E5Vl0D+4sknpqiq5oguBwPoJbsDaKn/iW
- QMEr2QsW4rrePjBGgq59n96H54ISTmNyqLc5SXoMXJjS3QrcxBaEc5i7/
- 7O+Seq4shBknugnrEP3DKMcBmYdMsoPE+rxdsbUYlg5QpZOWziDsPmi7d A==;
-X-CSE-ConnectionGUID: Anj1vAvdTeye06JTtK8vDw==
-X-CSE-MsgGUID: 6HZNZtWAS9yyAWuqWiQsYw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11779"; a="90310361"
-X-IronPort-AV: E=Sophos;i="6.23,223,1770624000"; d="scan'208";a="90310361"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2026 05:04:00 -0700
-X-CSE-ConnectionGUID: JVuC6wibRLmFzv4z4pNWYA==
-X-CSE-MsgGUID: wB1lUTjeRtScQSSf0viLjQ==
+ t=1778243207; x=1809779207;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-id:content-transfer-encoding:mime-version;
+ bh=JT0YpHgQO/tgs6tfrDdEz+sPWtQwt9PF1U2RHITzkZI=;
+ b=ImDMv33Osd2OgeZCy3gWFm/210CfLw35sjwpnq5MUGYM/Qe74FgdyWF6
+ 2Nh+vaq1fUokTiSkuFVxaOz3o27u2dYJY/CiY6x7CyKR2DvmdqkhEtRjn
+ b2HztVs4IZ1LdFckBFmtXcB2JKlEUEn1ucapq7Kl93FAtKiP42cWFhJqG
+ vI5yxoXQY2qbXmvRWrR7ZTlefsWSRlNrBBoQM4El7gcytVzWK622idLF9
+ 4esABxDuX3ZLShgy0C8ATM932WN1+OlG9xSA+Apg1iNYxaLOJ9B6MIfr0
+ sEiRcJCoVX05bPC49QgE46udrr0ZHpVUf0cEtE4W2HTPZrvHgAaJe2UUu Q==;
+X-CSE-ConnectionGUID: lyBgdJKtS9+nIwtdTeYleA==
+X-CSE-MsgGUID: 7afZNn6DSqSSmlJG324MtQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11779"; a="90589946"
+X-IronPort-AV: E=Sophos;i="6.23,223,1770624000"; d="scan'208";a="90589946"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2026 05:26:47 -0700
+X-CSE-ConnectionGUID: NgnG6BY3RMiBuleQKYjthg==
+X-CSE-MsgGUID: WlCHyKDIR0Crwg/H33suhg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,223,1770624000"; d="scan'208";a="236874974"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2026 05:03:59 -0700
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2026 05:26:47 -0700
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Fri, 8 May 2026 05:26:46 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 8 May 2026 05:03:58 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Fri, 8 May 2026 05:26:46 -0700
+Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.4) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Fri, 8 May 2026 05:03:58 -0700
-Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.33) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 8 May 2026 05:03:58 -0700
+ 15.2.2562.37; Fri, 8 May 2026 05:26:46 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EqgPyL7QSdY0vXCDRaleCgXWaUkr3a/wZnXrFsoe4HCksGfu+t6ZdfcI2tGt8153R6eHYabykHY3eStdQWIP3Chzt1V/oX3VL4HCW7SMjZ3YKlAdKCRs129uZyLbfwM0AbiJbl4wlwEWcMXjm6tv/ld37uaFm6HNYiW8vBetJiOQo3UvbCk6RDxwIOgdmopRsQNXcWQl+0kcLIRNtnfTWWOAtgbRlJG8ZCVp++h7P3ciJwQK1hkVwecqDRU5txpsgqmdVlqskLcY9R0RsAOmi/L9cBhCG2p9RIegIqeRInHXZnImU9iRnkAFbDmsvPWKoLBbyvypVqW9Rni1TRwV9A==
+ b=mE8p+gxSdWyVWMs23zL2CI6udkMK/05E8YTQfQ9GHjCDaQydycn/qp3mQyl+U9XXuGTQ7Cra1BCIYZRtgFBfTakmFTwYQ0BNC7Hr5r5AOZZu+dzeqUValXpao6Z07dyBSIwol4BNfroLLuU4gpSjIFVXNhR1oOGsODwKF6yHz24ROIqsv/PtKpzuYqyOiPHpXPCcJllFj7oID3H+ZcpdMkXPmXhMq/h4MFCMWHaTJJ1ZmnV2F7dBTQmpQNTdqHTALnqg0VBdtZ9mOeN81Z8PUfszhqCke0wC6A2SGeJ62Qja8DbbICPQd1BAlYejJWDOBmhxmd+Y0oylAdIc7J5cIA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nk7rTggvWjEEVgZFVUnYECeHJDaFXUdRlwb9IQvUifE=;
- b=ca21j/FIE961a6DQBPgdZ5eFkXaZUY9EJK4vmMIXQmMb0vXXgbg8oRT/FEUCh/5/IEuVSCVhL0QuLN++mJeobhY+YHC6RJv1fUjyZlhh5KofkIakne9zIb5UxSnm2meU2B3i38ru8aqt5feRhVs8jD5dNUBRRPAm3SZ0bDlo1P7zefo+pwktg2iJFY8qXvyCO31pSg6EOo3mAM4261SOnCu07Gmt4L//D/snlYqgETV6HPSek1+bV1qLf3trDzPXUhAgwya73Hd+SvEkPXh6dsmJX3SQZWRa56sLkA9EX//5BGquOhZJVQhGq63/OjQsf7mARhOXj/lNDVFseNwOuA==
+ bh=JT0YpHgQO/tgs6tfrDdEz+sPWtQwt9PF1U2RHITzkZI=;
+ b=BsOZDUnapATs0dop/kZcLHY7pzjr6+ZTu45wZeS7d46g5KxNQi9m3aoqJUTp9J41tQQV15FDufg7w/DdZflqo+WQ9QcxDA4p24jJfpIaNDoUs/2SuEbz7Jy7LIKxTSLiSkGs7ksn4sGwzqO2pPvkEZhEWjSrWEuxDQbuEUHhyrdnFaV2+cPep0LkOuigmyEU/qUFtU8fMIpU34BcW8DGnoEaGswbf3eIl4sJokv8GPaVV6DZBM7Cse7WQllvvXpH0qzVjjc2mkXXfeafMYKRs4YqQxgjWC7Oa72jH4qqYIsrwujiW4iVzjV+BQWLeDONIn1jN2UZP76EUfFTtRqcNg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SA1PR11MB5900.namprd11.prod.outlook.com (2603:10b6:806:238::21)
- by MN2PR11MB4726.namprd11.prod.outlook.com (2603:10b6:208:269::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.15; Fri, 8 May
- 2026 12:03:56 +0000
-Received: from SA1PR11MB5900.namprd11.prod.outlook.com
- ([fe80::d294:7b1f:a7a2:e803]) by SA1PR11MB5900.namprd11.prod.outlook.com
- ([fe80::d294:7b1f:a7a2:e803%7]) with mapi id 15.20.9891.019; Fri, 8 May 2026
- 12:03:56 +0000
-Message-ID: <08310532-c78a-4767-aea2-abc86877a156@intel.com>
-Date: Fri, 8 May 2026 14:03:49 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 08/12] drm/xe: Chain page faults via queue-resident
- cache to avoid fault storms
-To: Matthew Brost <matthew.brost@intel.com>, <intel-xe@lists.freedesktop.org>
-CC: <stuart.summers@intel.com>, <arvind.yadav@intel.com>,
- <himal.prasad.ghimiray@intel.com>, <thomas.hellstrom@linux.intel.com>,
- <francois.dugast@intel.com>
-References: <20260226042834.2963245-1-matthew.brost@intel.com>
- <20260226042834.2963245-9-matthew.brost@intel.com>
+Received: from DM4PR11MB6019.namprd11.prod.outlook.com (2603:10b6:8:60::5) by
+ DS0PR11MB7901.namprd11.prod.outlook.com (2603:10b6:8:f4::20) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9891.20; Fri, 8 May 2026 12:26:43 +0000
+Received: from DM4PR11MB6019.namprd11.prod.outlook.com
+ ([fe80::9086:5e0b:ad24:762]) by DM4PR11MB6019.namprd11.prod.outlook.com
+ ([fe80::9086:5e0b:ad24:762%6]) with mapi id 15.20.9870.023; Fri, 8 May 2026
+ 12:26:43 +0000
+From: "Hogander, Jouni" <jouni.hogander@intel.com>
+To: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Deak,
+ Imre" <imre.deak@intel.com>
+Subject: Re: [PATCH 1/2] drm/i915/ddi: Fix cleanup after DP connector init
+ failure
+Thread-Topic: [PATCH 1/2] drm/i915/ddi: Fix cleanup after DP connector init
+ failure
+Thread-Index: AQHc3e9eOd515vejp0uN68P36+OwnLYED/qA
+Date: Fri, 8 May 2026 12:26:43 +0000
+Message-ID: <789f07e13b359dff1f4fb273a4a27dea7eb51883.camel@intel.com>
+References: <20260507065940.2046690-1-imre.deak@intel.com>
+In-Reply-To: <20260507065940.2046690-1-imre.deak@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-From: Maciej Patelczyk <maciej.patelczyk@intel.com>
-In-Reply-To: <20260226042834.2963245-9-matthew.brost@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: DUZPR01CA0064.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:3c2::17) To SA1PR11MB5900.namprd11.prod.outlook.com
- (2603:10b6:806:238::21)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA1PR11MB5900:EE_|MN2PR11MB4726:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8e17465d-7d0d-47ee-05cc-08deacf9e11d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|22082099003|18002099003|56012099003; 
-X-Microsoft-Antispam-Message-Info: a6qKvOs8vmxkP0yLrYDXH2eJl+PB4CkL0cl9zRYkO4YdHxBeydVZnfGmaGqrA3ZjIDViJT6lba7LAyBf96wdGcExDI+Wv6gS9JuqFSYk3NuyEtDBHysYtwcvQfdqIjHDfjcN0QMZ4g2ZpywsKj0gWw9iycp3XFop5/OlZmhqy/2apmujfGRHRGfpKfPW1q7rlZXS9H2TzIzr9251Q5AwnutnBnhGI/20ahZEOw+LRSkmBK8XJK7NYaXAvlgOTDzpeHWYkoKGEKbpHcqnVXhSv7OzP+G+O7sH8OmfhRaCWQd+ncOmZH1bU/Vy9ttaAzai4vLfkdSqEMOBipAqufVSt1GpBXaC5h80k3900jg7FqCVOqmwlFP7tOirvL6Gh1VAitGoXV7To+eB3JbfUTCTIzLzurNISZ/oqpBKVUfdeNvIxhaQZrZCBlMA4J48PJAiw8ftogDfQnq4pH2lAiROZ4a+fVrdMmKKddl3K5bM+yiKmovlA8D0hPzRQmSbQjRcGxOBw4pySQM+t/lRdBLjsIEJ3IXro1XLyz8BRLXBoXKKOP63UGjPG+3cjTcAnvIcZuloIt+6+Xkfedau+yOFN2GjBWZDic6pzLRlsUNTfJ72IOcaHLSa0Agj+2jHU1pdRDj3vz27xL7CKoazzdfvhA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SA1PR11MB5900.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(22082099003)(18002099003)(56012099003);
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB6019:EE_|DS0PR11MB7901:EE_
+x-ms-office365-filtering-correlation-id: a04942e5-6eca-46a1-9ffa-08deacfd1074
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|366016|376014|1800799024|3023799003|56012099003|22082099003|38070700021|18002099003;
+x-microsoft-antispam-message-info: GxsGTSmBmlx1DQmIDMxKZi/HtKumafzv7DORe5kyLSwhbFXMbSUsFU4v9GPpIwO/CZrkKPfa8q5Xsd+RgiKM1Vlw8bWcr+Hm/uwiB2j88GLChn8oIRp5MQAKv/Fvy8ZKAcV4T5ffm41CDw8t48ro/8NVzb5kITFfhsvBDDwaVzikKwI7QzjlmttvltYkAAcwf8dufnbWt4W4EMV6Tfu8HGuhCLOoGXxPKxhNqTZGfhLsKcD9rtKkrTIohX1yeDgJmUtxjeaOuwHQQA/RthW8qKdmNa3Vqdi1vSTbnDmqvDzibFURxOo4d2hAKGnv+V6/ennOrAjQoukb1Iu71TAiZ/3aeh+yZCNDfNsL+KJihzhZMNpOgZsqz9mgpqSgyhttXxpAPkM8MNbW/Pvl8HDNkd3OBJx83q4SJ5rg0eY7NSMVdQ77SNDbu8wg1aVaCAD2NHBrbf5CMmOqqiucW8OdH2p/myYuxpiNA8nrkoNbEzkmVVrKKnFpt2yXWRnmmVT4BKJwx3RGdTrHTKbfXxPD/fpSfCCmzdLJkAFzMH4H9pcxB5/l+ix31XMAcFMHbtxmZDoWj9/L83et/X6AJ5mw+6ZBdQ7Xu9SXpfFfyRdnyxBjEc16kQsHqNMHV+4CAdaLbJS6S/NvZmqzx9ls7KuM/MzfRM2jVdqpHVgs+JDfZsuiKgJlxviYE7b5nxZfaMY2cfswh4LqCWw9DPQvQ7snC2khOXvSK52QIQSJ1wRwCzclmmuBjo8jKhcWR/1sjpYj
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB6019.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(3023799003)(56012099003)(22082099003)(38070700021)(18002099003);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?S2NKZ011SEp4TVBNbEoxQko5akJJLzVmY09KQUFOMStOeU9kbTFiZXVPOFgr?=
- =?utf-8?B?anNySG9iZHVHQnNad28yd0VzWkFMMTc3eDdxcTQ1NUI5bjIraVV2MTc5ZU5t?=
- =?utf-8?B?MW5CVzM2L1FFZU5JaFNrNDE5ZHlFaExNUlFlaWtWb0lldkxsSDFTYXRSWGsy?=
- =?utf-8?B?YmFoR2xqYUdYUkthcXVBQ2FXN3J4cEI4d3lRYzhLM0ZTbHpEbHRFbGlNa2RP?=
- =?utf-8?B?SGVXZWI3SXE1bS9XM3JlTTlrZ1RoVlNVTkV2Rm1IcHZTYVg5aWhUcTVRUEhp?=
- =?utf-8?B?UHQ4ZTNQRnhNdWFWTGtST0tZQVY5RmxqTVNPZUFYRkdISlphZUM4eEFVTUFQ?=
- =?utf-8?B?aFl0ZUF5L3AxTHpCalJPTnBGV2JDQ2JFdHVhK2d1YXhFUGI3dDUzS0MzVHhY?=
- =?utf-8?B?dU9YLy9EUFY2cUlOa2I4dlYzSk80WEo4aUhxWGUxR0pmZFVUZHdIdklISW10?=
- =?utf-8?B?T05SR0xxbDZHVnplRmVrd21iL3I2a3pZZjRiUlNJSGJsK0xNNEFIOEZqUndX?=
- =?utf-8?B?SXBWREtKa0FjZEVyNEF6TGFTNGQybHluYnN2U1V1UHdMTmJRa081R0FLQXZ1?=
- =?utf-8?B?cnM2S25QQzlIM3ppRGZEVDVubi9HVG5INlNnRG53bzFWNzJYRkJ2cGY2TXRV?=
- =?utf-8?B?ZmZkWEVmaHE1T2lIV1lrTlJDUDJzN3ZqOG9rbWpKemxsUXhYbDF3RkVkc0tR?=
- =?utf-8?B?WHJJRnJMcG13OS92Y3FDSnllMkpzeGJxMkxpR2RGOUpCdHZuL2FvaDZDVktQ?=
- =?utf-8?B?VjJTdmJleERaRmV4d0J0N0lRaWU2dFplYXY5WGZ4UnBqR1pmU3hXQkVXdmJP?=
- =?utf-8?B?WEhTWSsvU0FkdTVaR3NUc3pxbVd6c0FlaW9wVHk4d2Rzc3QzNXVXQlpYWTFC?=
- =?utf-8?B?QnVKWjl0WHdSVHU1NjZFNXNRaWpZYWY4Sy9odFcrUzJDVzl1WmNWU3BXNnNl?=
- =?utf-8?B?bjFzQ3NsT1N5QlU3dDZLcWZwcGU4T3ExeXNzd1ZMQmo5SkpFNnBVVWlabzc3?=
- =?utf-8?B?c0k2TGw0WjZKT3pBSmpodVoyS1ppYi9iWXA5RjM5SDJvY2xZWEdmSmxaWTUv?=
- =?utf-8?B?MFYvQ1o4Szh4MWxIUG9KT3pReFZvc3lJMk5HUWhEYTlBekVtam9kbVcwS21j?=
- =?utf-8?B?Q2pkQ2dYRDhNbUVMbnZYdzRGSlBobko1QUF1TGc4aUg3Z1lYV29XR2dzOTlD?=
- =?utf-8?B?cVozVFlRd1RnVm4yYlFWNk55cG5LZHhUbVBCQzVLS08rV2JTNWhlZEgrYUdS?=
- =?utf-8?B?RUZFRjRQc2VTak9QSE9RSFNOKzdCaTJCa0MwbzVPRndJTzdpTjJRYzlpWkpa?=
- =?utf-8?B?bjVVV3RxTWk5OEF3SzRBcmVrcUZUU29FRHRtYllwbndIdGphcUg3WnR1c09R?=
- =?utf-8?B?dTE1WEN2ZkFYaGxQS2s1S2hFN05FVStwYnlORUNSdGRQbzhkMS83UXhxSFhq?=
- =?utf-8?B?bE4vc1NzRUYrRWRhczltSVRFMFFBalh0Y1FGckEwZEtZM28yekttN1hJTjk1?=
- =?utf-8?B?SmRrenB2Sm5kRE9GQjkvU1VYeWlpa0cxZVlKVlJlbUlzYjg0TkU3NlR5M1dz?=
- =?utf-8?B?dVQ1aDhJY0pydjlyemVZMHBseW9EQkdPVnRkcUtTMjNUOFEyRUM5MnZaWWhR?=
- =?utf-8?B?ZDh3dXFmeDFUQUViZ1NqUzdtSWdxSUt5ZFlCdU9vQkgvdEQrdWtrYVRpcCtq?=
- =?utf-8?B?b2JMUUF5MWxIMlpkZG44R3RRSzd2ZkFtR0RyTjR2Q0dqcXZ5KzAwYXp1Uk9r?=
- =?utf-8?B?L3JaeHBlOWNyZDVDTzBmRkFZOGM0ZzVYQ1dwTFZleHpOZW1XTDcrcXFWQTBh?=
- =?utf-8?B?OWxmRXBxODI0Y0kwWlk4RENldzQzZzJFUllqMUg2OW1ZQmY2bU82bmxHQ0Zp?=
- =?utf-8?B?VVBjWWNBM3BKNDdkM2JwbTU3U29MRnozNXl1Z2lyMXlNTkR4cFJOaHNEaVIv?=
- =?utf-8?B?M0FuSVluZ1FEYXkwWFlXRmtQd1kreTQ4d2o0eVVWd1NRZUhobnRNbUpqT3M5?=
- =?utf-8?B?VDlPcGp4ZWZ3SGptZlkycDdTUkE0Tzg4M3dJSnhGcUE1aUYwaXV2dVdBOWhs?=
- =?utf-8?B?Tlo0OEhxRlZUZW9kbDdVNlhlTURrbzBlbWZBTDNRRDAxdEpwclhlRkNxMk5r?=
- =?utf-8?B?dEorQUVjSlNVWTh5cjd6bDFpL05UaWRlSTZHR2g5M3NtaUV5SG44ejIvTXEw?=
- =?utf-8?B?NUlLTTV5RXdBWjU0cmJHNmNVUHdWRUpwaFYzdmVaWittVE5lZFZpSjZvWlN0?=
- =?utf-8?B?RjlQMU5DK0VCdGlnZGRxUk1ZY1pPVXd4MUF3bGFKcUwzb1A3OHMzR2JJSzYz?=
- =?utf-8?B?cExLZTRYTEs4USt5SkVRMWExNTBKd3FBMC84R2wyTUd1Tmg4cGN0Ui9jTTY3?=
- =?utf-8?Q?X8bwmgSnpaUoprZs=3D?=
-X-Exchange-RoutingPolicyChecked: akcmGQN+0JbvWGWFnF5E+xn35xrSlh7EFp0mU5UatbYUTbweHDiuL8GgXLIJK8cO4A/1ux/hRCfjGuwPcfaQfhA2tGKmC1HmO6cHLYhpUwflFsN0pCyEC6enyp2JIaKqmDTFoilo6Du9KYC3JA6Ad3BjfUmODO6SiMtuAxGu1Bq890EFIBZuSYCkCeNtV837fH3s5fdIvi+PakRez94y0Xv8/4xVHqNjaNhQpwjard2ydO65wDzWgOaekF4VvPm29u55VI3AeQW4WIEXnXcWt1/qBKmyr+YLhEhCfUxrjR8OFa1nDbl9kn4HBGlGpI1QYHqmxj7TG75xlGglV+pY2w==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8e17465d-7d0d-47ee-05cc-08deacf9e11d
-X-MS-Exchange-CrossTenant-AuthSource: SA1PR11MB5900.namprd11.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?MGhyOFdTUFhOTUFFd05QUUU2K3U3YWFrbjZoOGtvSHBHNi9mTHZiNGZxV0hi?=
+ =?utf-8?B?K0Z6VXpOcjRMREJWMTduemQxc2JxMXdkVEhsN3RaRWY4TnZSU294NURIMHB2?=
+ =?utf-8?B?cjJSZGVNb0xvZGhLNk02THV1MURtb1V3TjVLcWd2cmZybVM2Sm92N0g0QkpY?=
+ =?utf-8?B?MFN2aFoyeU5uTjYybVMvcytONFVzVitNcUJOTERIUUwxWHNWVG5rNHgrQkIw?=
+ =?utf-8?B?ckZnVDlBeDFKU0dLcU11UDNtTXkvSnZ3c1oyKzFkMHc3NjBieUFWcUVxY2R3?=
+ =?utf-8?B?aE50RWszdHlndjNzSVE3NzQvYlZDbS9vS1RUaENzWEtjR1NlRDZVTXVyam9n?=
+ =?utf-8?B?Q29IY3l6cFhVK05RdkkyTHQ2NmFLQUVKSk1yalZGTjZNS2M5MVZjSW5TMW0r?=
+ =?utf-8?B?WDFLTXUyMVlkWmxWWHlhRUh2QUlwZ2laWGlNVVZHeTh5WXQydUhpYkVBbVhw?=
+ =?utf-8?B?Z0dqZzdEMExCSnFqTXJsS3ZGZ2EvL1FLMmNlbEJsdFBZcnhwaVVTL2NvSEdU?=
+ =?utf-8?B?azhSNk80SUdFaXNCbFNGaG1LeU53MjF1czg1dFZOMllxSzNPV0hZYks0TlZM?=
+ =?utf-8?B?bXliZityaWxYQU80MitpZjd1SFA1aG5Mb0NrRkJhYkllTlVCL1hVZ1BHTDdj?=
+ =?utf-8?B?N1poSnFLRlVwZXY0TE5jVlE2UE9RVWpuOElScU9lREZqQjZJLytLRHFUQTNL?=
+ =?utf-8?B?WWlHZEg5OHkrcklNbUcrelh0bXZ2a3Jic1lXN3lNUDhFVVc5ZnNOaEZzMHls?=
+ =?utf-8?B?bHBNaVN6V1Nnb0VvcnQ1SFUxbjk5bXUzMVlsUFhCTGlqREhsbklhRzlVWnpP?=
+ =?utf-8?B?RFo4TXVHUUJ0ZTZleGtoUzRWQzU2c1lZWFFiTExQelJnL3E0dG5jYnNUNG5a?=
+ =?utf-8?B?TlNGN05iaUw4NGFiOWQvdWEvYXdERm92UWVrRGhhUk1HQWJNVlNVdmowdWhz?=
+ =?utf-8?B?a2pxRkg0RkNiWlMrOTlqRGY4VDExVytjS1RKM3ovcENlZng1ZGdSWCtHdWR2?=
+ =?utf-8?B?YWVxZC93cS9nT1hKeTh5MXFSS2NScVZZTE92b2E3MldtTGRFSEZkd2NpMi84?=
+ =?utf-8?B?SE85SU02aHJlQUxSY2x5cGlGYStjcHhsZFAxTEtKbXVxcDZoZWVkcUdNSFNw?=
+ =?utf-8?B?ZC9OMXRMRFk4NENwTFZ0ZzY5RVNRWXFWNktOT3U0blBMam9XMmFSSTJvK0N5?=
+ =?utf-8?B?QTMrR3Ftd0pnd0RYaEZGaFZsQ0xmNEQvTll3cnBzKzkya0pWcnFicmwrWm01?=
+ =?utf-8?B?L2VhOVErOHZDR3dQdGtheS8zRElKTUROVDRxMmFrRlBYajJHSUdOU2I2TkZ5?=
+ =?utf-8?B?TlQ4NU0rTU44TSsyNE5PbkFLUG1MT0RnWkxQQXdjWjJJdVJ2ZGN2dWJjeGNC?=
+ =?utf-8?B?bHMwUjg0aVZmU3FielpaUEwyQUZzbzhnUEIrQkVDQktsU0hvKzIraFJLeGcx?=
+ =?utf-8?B?cVRHbUc2WUp3Wks5TEtKc0h4K0dxNHpkc2dKQk5IWWxicnE0azc2ZW85a1pX?=
+ =?utf-8?B?Wjk4SkoxVHpzc1BGRFJTK25tczNBNlVGWG9zQ0VuM29rN1FidzByMzA0cXFC?=
+ =?utf-8?B?UHJySTBCVHJRRyt3cHcrNXZVbnJaRVJ2bWpyMERsejZOTVlocHZZbHBVbncv?=
+ =?utf-8?B?NTlXQittVHVxUVA5UnhKQzk2aHRiQS9DajdiRmwrWW1ZNDZUTkhXWE1oWXV5?=
+ =?utf-8?B?RnB1bU5NQ3NlYWhYL2pJSVBWVy9UWWtSZWFvSU15cGxkb3o3b2paWlUxWTVz?=
+ =?utf-8?B?QTRiZ2g1Mm9rdEhPdzhhSnJ6Sy90RUdCRkJmMG1HTXFnRHFTcWJRRWJVQnZC?=
+ =?utf-8?B?a21acXJxN0UrRWZ5UDUxN0dMOWNxUEJUSCswajBXMW9MM0lEOVBJYldmQXh2?=
+ =?utf-8?B?M3c0eHhFTm03eUsxMXAwNXdLZEJNRHM0Vm40UXZpczJ6TGpFTDVKeVhZbkdN?=
+ =?utf-8?B?bGtUa08xTFpSYjR3TW1sd3p6SlQrcUJpRU1mSllCYWRNeEIwL09iZEc1K3JU?=
+ =?utf-8?B?aTRvKzZHemxZZk1YUFFBazArSGxyZUpBVnZLd2JUMi9uTzdTMFMrR3kwTmlF?=
+ =?utf-8?B?L0MvZ3dYVTh1emNyVHJXRWlTcXVJVXIxVENReEhLZDB4K04rYlpXVlRsSThx?=
+ =?utf-8?B?K3ZaRVpyaEF5Q3B4dGNNRkM2NldET0VnVGpTOTQvenZ3dTFQQjJTY3NQUDJz?=
+ =?utf-8?B?R0V3QlJMd1JWRFpTYW0wZDVZRGxPN2wxWGcxcEFWVzBEbDhFNlE3UTIxZFYw?=
+ =?utf-8?B?QW02Y0drZmYxdHB6WG8rKzZ5eWpiV01SRjZmWUl5YWtvN3Rpc0JKK2xmOEt2?=
+ =?utf-8?B?MnBYR0J2U1p5RXZ3c3F6c2ZqNWpabWIvRlk1WWlLdy9pMitubWhoT2pjbFlN?=
+ =?utf-8?Q?EJ3OG4wAp07fpZPI=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <3421056A07CCAB489E5630755473FC98@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-Exchange-RoutingPolicyChecked: OGCHfhViArdqWW4cQcf+XX1gUM39FEGJ5Y3C/iB+bbjdQOE/FhsPIfg9lYpR5Gr+u6hQV9YHoZVgoQnGVTyPxSFVse392Q81Fdwdt3My0sIIbjj3OreyolRN9OGlB3kvv0pczQgD9wn0JdA2jSngnS+cTeRHmSDHg/pnkF6RKX5K6eXRyia+5PWX4agK+rAKmil1vL8SRojgFL5+8fTRJeVm52y4RLTn/Tfk9ggeU/dn0PTSwaf0gSFBSsoQP2X5MPcL6kwsSAbsXBwwX79YK1IgSfKP3pIsPSeXGSzWMnUgQbHlRXpraeWjRU59/MG4Xe/7sXFadTxMy4ry+uMWXw==
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 May 2026 12:03:55.9594 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: WflU46YNwQD1mgU7r0OLbjeJ1bUTUE53NbTPyzAIGQpNc0GUtY8HOHvbZBKYm3bfk83M1cFa4Gq9S3S0kieJFD4A71/Pl+wyoe9E04yp2FY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4726
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6019.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a04942e5-6eca-46a1-9ffa-08deacfd1074
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 May 2026 12:26:43.5861 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: dHY41Ri+KC2GeO8kYancEkFqmgkNdBPWzLVvwEVp3nDiO1o/yshF9XOB8I1D6n5K+hGR4aN4jkTusg1lYJAf3MH0k8WkWlTHy9UG3cKn6dQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7901
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -172,972 +172,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 26/02/2026 05:28, Matthew Brost wrote:
-
-> Some Xe platforms can generate pagefault storms where many faults target
-> the same address range in a short time window (e.g. many EU threads
-> faulting the same page). The current worker/locking model effectively
-> serializes faults for a given range and repeatedly performs VMA/range
-> lookups for each fault, which creates head-of-queue blocking and wastes
-> CPU in the hot path.
->
-> Introduce a page fault chaining cache that coalesces faults targeting
-> the samr ASID and address range.
->
-> Each worker tracks the active fault range it is servicing. Fault entries
-> reside in stable queue storage, allowing the IRQ handler to match new
-> faults against the worker cache and directly chain cache hits onto the
-> active entry without allocation or waiting for dequeue. Once the leading
-> fault completes, the worker acknowledges the entire chain.
->
-> A small allocation state is added to each entry so queue, worker, and
-> IRQ pathd can safely reference the same fault object. This prevents
-> reuse while the fault is active and guarantees that chained faults
-> remain valid until acknowledged.
->
-> Fault handlers also record the serviced range so subsequent faults can
-> be acknowledged without re-running the full resolution path.
->
-> This removes repeated fault resolution during fault storms and
-> significantly improves forward progress in SVM workloads.
->
-> Assisted-by: Chat-GPT # Documentation
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_pagefault.c       | 434 +++++++++++++++++++++---
->   drivers/gpu/drm/xe/xe_pagefault.h       |  71 ++++
->   drivers/gpu/drm/xe/xe_pagefault_types.h |  78 +++--
->   drivers/gpu/drm/xe/xe_svm.c             |  16 +-
->   drivers/gpu/drm/xe/xe_svm.h             |   9 +-
->   5 files changed, 523 insertions(+), 85 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
-> index 030452923ab9..9c14f9505faf 100644
-> --- a/drivers/gpu/drm/xe/xe_pagefault.c
-> +++ b/drivers/gpu/drm/xe/xe_pagefault.c
-> @@ -35,6 +35,70 @@
->    * xe_pagefault.c implements the consumer layer.
->    */
->   
-> +/**
-> + * DOC: Xe page fault cache
-> + *
-> + * Some Xe hardware can trigger “fault storms,” which are many page faults to
-> + * the same address within a short period of time. An example is many EU threads
-> + * faulting on the same page simultaneously. With the current page fault locking
-> + * structure, only one page fault for a given address range can be processed at
-> + * a time. This causes head-of-queue blocking across workers, killing
-> + * parallelism. If the page fault handler must repeatedly look up resources
-> + * (VMAs, ranges) to determine that the pages are valid for each fault in the
-> + * storm, the time complexity grows rapidly.
-> + *
-> + * To address this, each page fault worker maintains a cache of the active fault
-> + * being processed. Subsequent faults that hit in the cache are chained to the
-> + * pending fault, and all chained faults are acknowledged once the initial fault
-> + * completes. This alleviates head-of-queue blocking and quickly chains faults
-> + * in the upper layers, avoiding expensive lookups in the main fault-handling
-> + * path.
-> + *
-> + * Faults are buffered in the page fault queue in a way that provides stable
-> + * storage for outstanding faults. In particular, faults may be chained directly
-> + * while still resident in the queue storage (i.e., outside the worker’s current
-> + * head/tail dequeue position). This allows the IRQ handler to match newly
-> + * arrived faults against the per-worker cache and immediately chain cache hits
-> + * onto the active fault under the queue lock, without allocating memory or
-> + * waiting for the worker to pop the fault first.
-> + *
-> + * A per-fault state field is used to assert correctness of these invariants.
-> + * The state tracks whether an entry is free, queued, chained, or currently
-> + * active. Transitions are performed under the page fault queue lock, and the
-> + * worker acknowledges faults by walking the chain and returning entries to the
-> + * free state once they are complete.
-> + */
-> +
-> +/**
-> + * enum xe_pagefault_alloc_state - lifetime state for a page fault queue entry
-> + * @XE_PAGEFAULT_ALLOC_STATE_FREE:
-> + *	Entry is unused and may be overwritten by the producer, consumer retry
-> + *	or requeue..
-> + * @XE_PAGEFAULT_ALLOC_STATE_QUEUED:
-> + *	Entry has been enqueued and may be dequeued by a worker.
-> + * @XE_PAGEFAULT_ALLOC_STATE_ACTIVE:
-> + *	Entry has been dequeued and is the worker's currently serviced fault.
-> + *	The worker may attach additional faults to it via consumer.next.
-> + * @XE_PAGEFAULT_ALLOC_STATE_CHAINED:
-> + *	Entry is not independently serviced; it has been chained onto an
-> + *	ACTIVE entry via consumer.next and will be acknowledged when the
-> + *	leading fault completes.
-> + *
-> + * The page fault queue provides stable storage for outstanding faults so the
-> + * IRQ handler can chain new cache hits directly onto a worker's active fault.
-> + * Because entries may remain referenced outside the consumer dequeue window,
-> + * the producer must only write into entries in the FREE state.
-> + *
-> + * State transitions are protected by the page fault queue lock. Workers return
-> + * entries to FREE after acknowledging the fault (either as ACTIVE or CHAINED).
-> + */
-> +enum xe_pagefault_alloc_state {
-> +	XE_PAGEFAULT_ALLOC_STATE_FREE		= 0,
-> +	XE_PAGEFAULT_ALLOC_STATE_QUEUED		= 1,
-> +	XE_PAGEFAULT_ALLOC_STATE_CHAINED	= 2,
-> +	XE_PAGEFAULT_ALLOC_STATE_ACTIVE		= 3,
-> +};
-> +
->   static int xe_pagefault_entry_size(void)
->   {
->   	/*
-> @@ -64,7 +128,7 @@ static int xe_pagefault_begin(struct drm_exec *exec, struct xe_vma *vma,
->   }
->   
->   static int xe_pagefault_handle_vma(struct xe_gt *gt, struct xe_vma *vma,
-> -				   bool atomic)
-> +				   struct xe_pagefault *pf, bool atomic)
->   {
->   	struct xe_vm *vm = xe_vma_vm(vma);
->   	struct xe_tile *tile = gt_to_tile(gt);
-> @@ -89,8 +153,11 @@ static int xe_pagefault_handle_vma(struct xe_gt *gt, struct xe_vma *vma,
->   
->   	/* Check if VMA is valid, opportunistic check only */
->   	if (xe_vm_has_valid_gpu_mapping(tile, vma->tile_present,
-> -					vma->tile_invalidated) && !atomic)
-> +					vma->tile_invalidated) && !atomic) {
-> +		xe_pagefault_set_start_addr(pf, xe_vma_start(vma));
-> +		xe_pagefault_set_end_addr(pf, xe_vma_end(vma));
->   		return 0;
-> +	}
->   
->   	do {
->   		if (xe_vma_is_userptr(vma) &&
-> @@ -128,6 +195,10 @@ static int xe_pagefault_handle_vma(struct xe_gt *gt, struct xe_vma *vma,
->   	} while (err == -EAGAIN);
->   
->   	if (!err) {
-> +		/* Give hint to immediately ack faults */
-> +		xe_pagefault_set_start_addr(pf, xe_vma_start(vma));
-> +		xe_pagefault_set_end_addr(pf, xe_vma_end(vma));
-> +
->   		dma_fence_wait(fence, false);
->   		dma_fence_put(fence);
->   	}
-> @@ -199,10 +270,10 @@ static int xe_pagefault_service(struct xe_pagefault *pf)
->   	atomic = xe_pagefault_access_is_atomic(pf->consumer.access_type);
->   
->   	if (xe_vma_is_cpu_addr_mirror(vma))
-> -		err = xe_svm_handle_pagefault(vm, vma, gt,
-> +		err = xe_svm_handle_pagefault(vm, vma, pf, gt,
->   					      pf->consumer.page_addr, atomic);
->   	else
-> -		err = xe_pagefault_handle_vma(gt, vma, atomic);
-> +		err = xe_pagefault_handle_vma(gt, vma, pf, atomic);
->   
->   unlock_vm:
->   	if (!err)
-> @@ -214,33 +285,228 @@ static int xe_pagefault_service(struct xe_pagefault *pf)
->   	return err;
->   }
->   
-> +#define XE_PAGEFAULT_CACHE_START_INVALID	U64_MAX
-> +#define xe_pagefault_cache_start_invalidate(val)	\
-> +	(val = XE_PAGEFAULT_CACHE_START_INVALID)
-> +
-> +static void
-> +__xe_pagefault_cache_invalidate(struct xe_pagefault_queue *pf_queue,
-> +				struct xe_pagefault_work *pf_work)
-> +{
-> +	lockdep_assert_held(&pf_queue->lock);
-> +
-> +	xe_pagefault_cache_start_invalidate(pf_work->cache.start);
-> +}
-> +
-> +static void
-> +xe_pagefault_cache_invalidate(struct xe_pagefault_queue *pf_queue,
-> +			      struct xe_pagefault_work *pf_work)
-> +{
-> +	spin_lock_irq(&pf_queue->lock);
-> +	__xe_pagefault_cache_invalidate(pf_queue, pf_work);
-> +	spin_unlock_irq(&pf_queue->lock);
-> +}
-> +
-> +static bool xe_pagefault_queue_full(struct xe_pagefault_queue *pf_queue)
-> +{
-> +	lockdep_assert_held(&pf_queue->lock);
-> +
-> +	return CIRC_SPACE(pf_queue->head, pf_queue->tail,
-> +			  pf_queue->size) <= xe_pagefault_entry_size();
-> +}
-> +
-> +static struct xe_pagefault *
-> +__xe_pagefault_queue_add(struct xe_pagefault_queue *pf_queue,
-> +			 struct xe_pagefault *pf)
-> +{
-> +	struct xe_device *xe = container_of(pf_queue, typeof(*xe),
-> +					    usm.pf_queue);
-> +	struct xe_pagefault *lpf;
-> +
-> +	lockdep_assert_held(&pf_queue->lock);
-> +
-> +	do {
-> +		xe_assert(xe, !xe_pagefault_queue_full(pf_queue));
-> +
-> +		lpf = (pf_queue->data + pf_queue->head);
-> +		pf_queue->head = (pf_queue->head + xe_pagefault_entry_size()) %
-> +			pf_queue->size;
-> +	} while (lpf->consumer.alloc_state != XE_PAGEFAULT_ALLOC_STATE_FREE);
-> +
-> +	memcpy(lpf, pf, sizeof(*pf));
-> +	lpf->consumer.alloc_state = XE_PAGEFAULT_ALLOC_STATE_QUEUED;
-> +
-> +	return lpf;
-> +}
-> +
->   static void xe_pagefault_queue_retry(struct xe_pagefault_queue *pf_queue,
-> -				     struct xe_pagefault *pf)
-> +				     struct xe_pagefault *pf,
-> +				     struct xe_pagefault_work *pf_work)
->   {
-> +	struct xe_device *xe = container_of(pf_queue, typeof(*xe),
-> +					    usm.pf_queue);
-> +
-> +	xe_assert(xe, pf->consumer.alloc_state ==
-> +		  XE_PAGEFAULT_ALLOC_STATE_ACTIVE);
-> +
->   	spin_lock_irq(&pf_queue->lock);
-> -	if (!pf_queue->tail)
-> -		pf_queue->tail = pf_queue->size - xe_pagefault_entry_size();
-> -	else
-> -		pf_queue->tail -= xe_pagefault_entry_size();
-> -	memcpy(pf_queue->data + pf_queue->tail, pf, sizeof(*pf));
-> +	pf->consumer.alloc_state = XE_PAGEFAULT_ALLOC_STATE_FREE;
-> +	__xe_pagefault_queue_add(pf_queue, pf);
-> +	__xe_pagefault_cache_invalidate(pf_queue, pf_work);
->   	spin_unlock_irq(&pf_queue->lock);
->   }
->   
-> -static bool xe_pagefault_queue_pop(struct xe_pagefault_queue *pf_queue,
-> -				   struct xe_pagefault *pf)
-> +static struct xe_pagefault *
-> +xe_pagefault_queue_requeue(struct xe_pagefault_queue *pf_queue,
-> +			   struct xe_pagefault *pf, struct xe_gt *gt)
-This is specifically for chained entries and it's _unchain_and_requeue 
-actually.
->   {
-> -	bool found_fault = false;
-> +	struct xe_device *xe = container_of(pf_queue, typeof(*xe),
-> +					    usm.pf_queue);
-> +	struct xe_pagefault *next = pf->consumer.next, *lpf;
-> +
-> +	xe_assert(xe, pf->consumer.alloc_state ==
-> +		  XE_PAGEFAULT_ALLOC_STATE_CHAINED);
->   
->   	spin_lock_irq(&pf_queue->lock);
-> -	if (pf_queue->tail != pf_queue->head) {
-> -		memcpy(pf, pf_queue->data + pf_queue->tail, sizeof(*pf));
-> -		pf_queue->tail = (pf_queue->tail + xe_pagefault_entry_size()) %
-> -			pf_queue->size;
-> -		found_fault = true;
-> -	}
-> +	pf->consumer.alloc_state = XE_PAGEFAULT_ALLOC_STATE_FREE;
-> +	lpf = __xe_pagefault_queue_add(pf_queue, pf);
-> +	lpf->consumer.next = NULL;
-> +	lpf->consumer.fault_type_level |= XE_PAGEFAULT_REQUEUE_MASK;
->   	spin_unlock_irq(&pf_queue->lock);
->   
-> -	return found_fault;
-> +	return next;
-> +}
-> +
-> +static bool xe_pagefault_cache_match(struct xe_pagefault *pf, u64 start,
-> +				     u64 end, u64 cache_asid)
-Maybe without 'cache' since the comparison is for function's arguments.
-> +{
-> +	struct xe_device *xe = gt_to_xe(pf->gt);
-> +	u64 page_addr = pf->consumer.page_addr;
-> +	u32 pf_asid = pf->consumer.asid;
-> +
-> +	xe_assert(xe, pf->consumer.alloc_state !=
-> +		  XE_PAGEFAULT_ALLOC_STATE_FREE);
-> +
-> +	return page_addr >= start && page_addr < end &&
-> +		pf_asid == cache_asid;
-> +}
-> +
-> +static bool xe_pagefault_cache_hit(struct xe_pagefault_queue *pf_queue,
-> +				   struct xe_pagefault *pf)
-
-I would say that the function chains entry to worker's active chain.
-
-I think you could rename it to xe_pagefault_entry_chained() or similar.
-
- From 'cache_hit' I expect just the answer if it matches to any cache.
-
-> +{
-> +	struct xe_device *xe = container_of(pf_queue, typeof(*xe),
-> +					    usm.pf_queue);
-> +	struct xe_pagefault_work *pf_work;
-> +	bool requeue = FIELD_GET(XE_PAGEFAULT_REQUEUE_MASK,
-> +				 pf->consumer.fault_type_level);
-> +	int i;
-> +
-> +	lockdep_assert_held(&pf_queue->lock);
-> +	xe_assert(xe, pf->consumer.alloc_state ==
-> +		  XE_PAGEFAULT_ALLOC_STATE_QUEUED);
-> +
-> +	/*
-> +	 * If this is a retry, we may already have a chain attached. In that
-> +	 * case, we cannot hit in the cache because chains cannot easily be
-> +	 * combined.
-> +	 */
-> +	if (pf->consumer.next)
-> +		return false;
-> +
-> +	for (i = 0, pf_work = xe->usm.pf_workers;
-> +	     i < xe->info.num_pf_work; ++i, ++pf_work) {
-> +		u64 start = pf_work->cache.start;
-> +		u64 end = requeue ? start + SZ_4K : pf_work->cache.end;
-> +		u32 asid = pf_work->cache.asid;
-> +
-> +		if (xe_pagefault_cache_match(pf, start, end, asid)) {
-> +			xe_assert(xe, pf_work->cache.pf->consumer.alloc_state ==
-> +				  XE_PAGEFAULT_ALLOC_STATE_ACTIVE);
-> +
-> +			pf->consumer.alloc_state =
-> +				XE_PAGEFAULT_ALLOC_STATE_CHAINED;
-> +			pf->consumer.next = pf_work->cache.pf->consumer.next;
-> +			pf_work->cache.pf->consumer.next = pf;
-> +
-> +			return true;
-> +		}
-> +	}
-> +
-> +	return false;
-> +}
-> +
-> +static void xe_pagefault_queue_advance(struct xe_pagefault_queue *pf_queue)
-> +{
-> +	lockdep_assert_held(&pf_queue->lock);
-> +
-> +	pf_queue->tail = (pf_queue->tail + xe_pagefault_entry_size()) %
-> +		pf_queue->size;
-> +}
-> +
-> +static bool xe_pagefault_queue_pop(struct xe_pagefault_queue *pf_queue,
-> +				   struct xe_pagefault **pf, int id)
-> +{
-> +	struct xe_device *xe = container_of(pf_queue, typeof(*xe),
-> +					    usm.pf_queue);
-> +	struct xe_pagefault_work *pf_work;
-> +	struct xe_pagefault *lpf;
-> +	size_t align = SZ_2M;
-> +
-> +	guard(spinlock_irq)(&pf_queue->lock);
-> +
-> +	for (*pf = NULL; !*pf;) {
-> +		if (pf_queue->tail == pf_queue->head)
-> +			return false;
-xe_pagefault_queue_empty(pf_queue)?
-> +
-> +		lpf = (pf_queue->data + pf_queue->tail);
-
-Maybe add a helper
-
-static inline struct xe_pagefault *xe_pagefault_queue_get_tail_locked(struct xe_pagefault_queue *pf_queue)
-{
-	return pf_queue->data + pf_queue->tail;
-}
-
-Getting tail is used more than once in a code.
-
-> +		xe_pagefault_queue_advance(pf_queue);
-> +
-> +		if (lpf->consumer.alloc_state !=
-> +		    XE_PAGEFAULT_ALLOC_STATE_QUEUED)
-> +			continue;
-> +
-> +		if (xe_pagefault_cache_hit(pf_queue, lpf))
-> +			continue;
-
-This chains STATE_QUEUED entry into matching worker.
-
-> +
-> +		*pf = lpf;	/* Hand back page fault for processing */
-> +	}
-> +
-> +	/*
-> +	 * No cache hit; allocate a new cache entry. We assume most faults
-> +	 * within a 2M range will hit the same pages. If this assumption proves
-> +	 * false, the mismatched fault is requeued after the initial fault is
-> +	 * acknowledged.
-> +	 */
-> +	pf_work = xe->usm.pf_workers + id;
-> +	if (FIELD_GET(XE_PAGEFAULT_REQUEUE_MASK,
-> +		      lpf->consumer.fault_type_level))
-> +		align = SZ_4K;
-> +	pf_work->cache.start = ALIGN_DOWN(lpf->consumer.page_addr, align);
-> +	pf_work->cache.end = pf_work->cache.start + align;
-> +	pf_work->cache.asid = lpf->consumer.asid;
-> +	pf_work->cache.pf = lpf;
-> +	lpf->consumer.alloc_state = XE_PAGEFAULT_ALLOC_STATE_ACTIVE;
-> +
-> +	/* Drain queue until empty or new fault found */
-> +	while (1) {
-> +		if (pf_queue->tail == pf_queue->head)
-> +			break;
-> +
-> +		lpf = (pf_queue->data + pf_queue->tail);
-> +
-> +		if (lpf->consumer.alloc_state !=
-> +		    XE_PAGEFAULT_ALLOC_STATE_QUEUED) {
-> +			xe_pagefault_queue_advance(pf_queue);
-> +			continue;
-> +		}
-> +
-> +		if (!xe_pagefault_cache_hit(pf_queue, lpf))
-> +			break;
-> +
-> +		xe_pagefault_queue_advance(pf_queue);
-> +	}
-> +
-In this while(1) initial chaining begins. If there are queued pagefaults 
-before any worker starts in this loop they will be chained for the first 
-time.
-> +	return true;
->   }
->   
->   static void xe_pagefault_print(struct xe_pagefault *pf)
-> @@ -276,40 +542,91 @@ static void xe_pagefault_queue_work(struct work_struct *w)
->   		container_of(w, typeof(*pf_work), work);
->   	struct xe_device *xe = pf_work->xe;
->   	struct xe_pagefault_queue *pf_queue = &xe->usm.pf_queue;
-> -	struct xe_pagefault pf;
-> +	struct xe_pagefault *pf;
->   	ktime_t start = xe_gt_stats_ktime_get();
-> -	struct xe_gt *gt = NULL;
->   	unsigned long threshold;
-> +	u64 cache_start = XE_PAGEFAULT_CACHE_START_INVALID, cache_end = 0;
-> +	u32 cache_asid = 0;
->   
->   #define USM_QUEUE_MAX_RUNTIME_MS      20
->   	threshold = jiffies + msecs_to_jiffies(USM_QUEUE_MAX_RUNTIME_MS);
->   
-> -	while (xe_pagefault_queue_pop(pf_queue, &pf)) {
-> -		int err;
->   
-> -		if (!pf.gt)	/* Fault squashed during reset */
-> -			continue;
-> +	while (xe_pagefault_queue_pop(pf_queue, &pf, pf_work->id)) {
-> +		struct xe_gt *gt = pf->gt;
-> +		u32 asid = pf->consumer.asid;
-> +		int err = 0;
-> +
-> +		/* Last fault same address, ack immediately */
-> +		if (xe_pagefault_cache_match(pf, cache_start, cache_end,
-> +					     cache_asid))
-> +			goto ack_fault;
->   
-> -		gt = pf.gt;
-> -		err = xe_pagefault_service(&pf);
-> +		err = xe_pagefault_service(pf);
->   
->   		if (err == -EAGAIN) {
-> -			xe_pagefault_queue_retry(pf_queue, &pf);
-> +			xe_pagefault_queue_retry(pf_queue, pf, pf_work);
->   			queue_work(xe->usm.pf_wq, w);
->   			break;
-> -		} else if (err) {
-> -			if (!(pf.consumer.access_type & XE_PAGEFAULT_ACCESS_PREFETCH)) {
-> -				xe_pagefault_print(&pf);
-> -				xe_gt_info(pf.gt, "Fault response: Unsuccessful %pe\n",
-> +		} else if (err ) {
-Checkpatch will catch it anyway. Space after err.
-> +			if (!(pf->consumer.access_type & XE_PAGEFAULT_ACCESS_PREFETCH)) {
-> +				xe_pagefault_cache_start_invalidate(cache_start);
-> +				xe_pagefault_print(pf);
-> +				xe_gt_info(pf->gt, "Fault response: Unsuccessful %pe\n",
->   					   ERR_PTR(err));
->   			} else {
-> -				xe_gt_stats_incr(pf.gt, XE_GT_STATS_ID_INVALID_PREFETCH_PAGEFAULT_COUNT, 1);
-> -				xe_gt_dbg(pf.gt, "Prefetch Fault response: Unsuccessful %pe\n",
-> +				xe_gt_stats_incr(pf->gt, XE_GT_STATS_ID_INVALID_PREFETCH_PAGEFAULT_COUNT, 1);
-> +				xe_gt_dbg(pf->gt, "Prefetch Fault response: Unsuccessful %pe\n",
->   					  ERR_PTR(err));
->   			}
-> +		} else {
-> +			/* Cache valid fault locally */
-> +			cache_start = xe_pagefault_start_addr(pf);
-> +			cache_end = xe_pagefault_end_addr(pf);
-> +			cache_asid = asid;
->   		}
->   
-> -		pf.producer.ops->ack_fault(&pf, err);
-> +ack_fault:
-> +		xe_assert(xe, pf->consumer.alloc_state ==
-> +			  XE_PAGEFAULT_ALLOC_STATE_ACTIVE);
-> +		xe_assert(xe, pf == pf_work->cache.pf);
-> +
-> +		while (pf) {
-> +			struct xe_pagefault *next;
-> +
-> +			xe_assert(xe, pf->consumer.alloc_state ==
-> +				  XE_PAGEFAULT_ALLOC_STATE_CHAINED ||
-> +				  pf->consumer.alloc_state ==
-> +				  XE_PAGEFAULT_ALLOC_STATE_ACTIVE);
-> +
-> +			pf->producer.ops->ack_fault(pf, err);
-> +
-> +			if (pf->consumer.alloc_state ==
-> +			    XE_PAGEFAULT_ALLOC_STATE_ACTIVE)
-> +				xe_pagefault_cache_invalidate(pf_queue,
-> +							      pf_work);
-
-This gives me a lot of thinking.
-
-Why to invalidate the cache now? The xe_pagefault_handler tries to chain 
-incoming entries with existing chain but it has limitations
-
-  I think a lock could be grabbed here or above since the whole section 
-here will become protected.
-
-> +
-> +			/*
-> +			 * Removed from the cache, so next is stable within this
-> +			 * chain. Once alloc_state transitions to
-> +			 * XE_PAGEFAULT_ALLOC_STATE_FREE, the local entry must
-> +			 * not be touched.
-> +			 */
-> +			next = pf->consumer.next;
-> +			WRITE_ONCE(pf->consumer.alloc_state,
-> +				   XE_PAGEFAULT_ALLOC_STATE_FREE);
-> +			pf = next;
-> +
-> +			/*
-> +			 * Requeue chained faults which do not match the last
-> +			 * fault processed
-> +			 */
-> +			while (pf && !xe_pagefault_cache_match(pf, cache_start,
-> +							       cache_end,
-> +							       cache_asid))
-> +				pf = xe_pagefault_queue_requeue(pf_queue, pf,
-> +								gt);
-
-After 'while' if pf then update the pf->consumer.alloc_state to ACTIVE, 
-update the worker cache to pf
-
-then release the lock. xe_pagefault_queue_requeue becomes _locked then.
-
-This way the handler could add new entries while worker is active.
-
-
-Or potentially queue_pop could catch later on such loose entry and chain 
-it...
-
-
-Second thing. I'm not sure I understand this requeue action.
-
-Is it for instance because initially all 2MB range pagefaults were 
-chained and after xe_pagefault_service() the range was narrowed down to 4k?
-
-If so then some of those pagefaults should really be unchained and requeued.
-
-> +		}
->   
->   		if (time_after(jiffies, threshold)) {
->   			queue_work(xe->usm.pf_wq, w);
-> @@ -318,10 +635,8 @@ static void xe_pagefault_queue_work(struct work_struct *w)
->   	}
->   #undef USM_QUEUE_MAX_RUNTIME_MS
->   
-> -	if (gt)
-> -		xe_gt_stats_incr(xe_root_mmio_gt(gt_to_xe(gt)),
-> -				 XE_GT_STATS_ID_PAGEFAULT_US,
-> -				 xe_gt_stats_ktime_us_delta(start));
-> +	xe_gt_stats_incr(xe_root_mmio_gt(xe), XE_GT_STATS_ID_PAGEFAULT_US,
-> +			 xe_gt_stats_ktime_us_delta(start));
->   }
->   
->   static int xe_pagefault_queue_init(struct xe_device *xe,
-> @@ -408,6 +723,7 @@ int xe_pagefault_init(struct xe_device *xe)
->   
->   		pf_work->xe = xe;
->   		pf_work->id = i;
-> +		xe_pagefault_cache_start_invalidate(pf_work->cache.start);
->   		INIT_WORK(&pf_work->work, xe_pagefault_queue_work);
->   	}
->   
-> @@ -430,12 +746,15 @@ static void xe_pagefault_queue_reset(struct xe_device *xe, struct xe_gt *gt,
->   	/* Squash all pending faults on the GT */
->   
->   	spin_lock_irq(&pf_queue->lock);
-> -	for (i = pf_queue->tail; i != pf_queue->head;
-> -	     i = (i + xe_pagefault_entry_size()) % pf_queue->size) {
-> +	for (i = 0; i < pf_queue->size; i += xe_pagefault_entry_size()) {
->   		struct xe_pagefault *pf = pf_queue->data + i;
->   
-> -		if (pf->gt == gt)
-> -			pf->gt = NULL;
-> +		if (pf->gt != gt)
-> +			continue;
-> +
-> +		pf->consumer.alloc_state =
-> +			XE_PAGEFAULT_ALLOC_STATE_FREE;
-> +		pf->consumer.next = NULL;
->   	}
->   	spin_unlock_irq(&pf_queue->lock);
->   }
-> @@ -453,12 +772,11 @@ void xe_pagefault_reset(struct xe_device *xe, struct xe_gt *gt)
->   	xe_pagefault_queue_reset(xe, gt, &xe->usm.pf_queue);
->   }
->   
-> -static bool xe_pagefault_queue_full(struct xe_pagefault_queue *pf_queue)
-> +static bool xe_pagefault_queue_empty(struct xe_pagefault_queue *pf_queue)
->   {
->   	lockdep_assert_held(&pf_queue->lock);
->   
-> -	return CIRC_SPACE(pf_queue->head, pf_queue->tail, pf_queue->size) <=
-> -		xe_pagefault_entry_size();
-> +	return pf_queue->head == pf_queue->tail;
->   }
->   
->   /*
-> @@ -486,18 +804,26 @@ int xe_pagefault_handler(struct xe_device *xe, struct xe_pagefault *pf)
->   {
->   	struct xe_pagefault_queue *pf_queue = &xe->usm.pf_queue;
->   	unsigned long flags;
-> -	int work_index;
->   	bool full;
->   
->   	spin_lock_irqsave(&pf_queue->lock, flags);
-> -	work_index = xe_pagefault_work_index(xe);
->   	full = xe_pagefault_queue_full(pf_queue);
->   	if (!full) {
-> -		memcpy(pf_queue->data + pf_queue->head, pf, sizeof(*pf));
-> -		pf_queue->head = (pf_queue->head + xe_pagefault_entry_size()) %
-> -			pf_queue->size;
-> -		queue_work(xe->usm.pf_wq,
-> -			   &xe->usm.pf_workers[work_index].work);
-> +		struct xe_pagefault *lpf;
-> +		bool empty = xe_pagefault_queue_empty(pf_queue);
-> +
-> +		lpf = __xe_pagefault_queue_add(pf_queue, pf);
-> +		lpf->consumer.next = NULL;
-> +
-> +		if (xe_pagefault_cache_hit(pf_queue, lpf)) {
-> +			if (empty)
-> +				xe_pagefault_queue_advance(pf_queue);
-> +		} else {
-> +			int work_index = xe_pagefault_work_index(xe);
-> +
-> +			queue_work(xe->usm.pf_wq,
-> +				   &xe->usm.pf_workers[work_index].work);
-> +		}
->   	} else {
->   		drm_warn(&xe->drm,
->   			 "PageFault Queue full, shouldn't be possible\n");
-> diff --git a/drivers/gpu/drm/xe/xe_pagefault.h b/drivers/gpu/drm/xe/xe_pagefault.h
-> index bd0cdf9ed37f..feaf2a69674a 100644
-> --- a/drivers/gpu/drm/xe/xe_pagefault.h
-> +++ b/drivers/gpu/drm/xe/xe_pagefault.h
-> @@ -6,6 +6,8 @@
->   #ifndef _XE_PAGEFAULT_H_
->   #define _XE_PAGEFAULT_H_
->   
-> +#include "xe_pagefault_types.h"
-> +
->   struct xe_device;
->   struct xe_gt;
->   struct xe_pagefault;
-> @@ -16,4 +18,73 @@ void xe_pagefault_reset(struct xe_device *xe, struct xe_gt *gt);
->   
->   int xe_pagefault_handler(struct xe_device *xe, struct xe_pagefault *pf);
->   
-> +#define XE_PAGEFAULT_END_ADDR_MASK	(~0xfffull)
-> +
-> +/**
-> + * xe_pagefault_set_end_addr() - store serviced range end for a pagefault
-> + * @pf: Pagefault entry
-> + * @end_addr: Inclusive end address of the serviced fault range
-> + *
-> + * The pagefault consumer stores the resolved fault range so subsequent faults
-> + * hitting the same range can be immediately acknowledged without re-running
-> + * the full fault handling path.
-> + *
-> + * The end address shares storage with other consumer metadata and therefore
-> + * must be masked with %XE_PAGEFAULT_END_ADDR_MASK before storing. Bits outside
-> + * the mask are reserved for internal state tracking and must be preserved.
-> + */
-> +static inline void
-> +xe_pagefault_set_end_addr(struct xe_pagefault *pf, u64 end_addr)
-> +{
-> +	pf->consumer.end_addr &= ~XE_PAGEFAULT_END_ADDR_MASK;
-> +	pf->consumer.end_addr |= end_addr;
-> +}
-> +
-> +/**
-> + * xe_pagefault_end_addr() - read serviced range end for a pagefault
-> + * @pf: Pagefault entry
-> + *
-> + * Returns the inclusive end address of the range previously recorded by
-> + * xe_pagefault_set_end_addr(). Only the bits covered by
-> + * %XE_PAGEFAULT_END_ADDR_MASK are returned; other bits in the storage are
-> + * reserved for internal state.
-> + *
-> + * Return: End address of the serviced fault range.
-> + */
-> +static inline u64 xe_pagefault_end_addr(struct xe_pagefault *pf)
-> +{
-> +	return pf->consumer.end_addr & XE_PAGEFAULT_END_ADDR_MASK;
-> +}
-> +
-> +#undef XE_PAGEFAULT_END_ADDR_MASK
-> +
-> +/**
-> + * xe_pagefault_set_start_addr() - store serviced range start for a pagefault
-> + * @pf: Pagefault entry
-> + * @start_addr: Start address of the serviced fault range
-> + *
-> + * The pagefault consumer stores the resolved fault range so subsequent faults
-> + * hitting the same range can be immediately acknowledged without re-running
-> + * the full fault handling path.
-> + */
-> +static inline void
-> +xe_pagefault_set_start_addr(struct xe_pagefault *pf, u64 start_addr)
-> +{
-> +	pf->consumer.page_addr = start_addr;
-> +}
-> +
-> +/**
-> + * xe_pagefault_start_addr() - read serviced range start for a pagefault
-> + * @pf: Pagefault entry
-> + *
-> + * Returns the inclusive start address of the range previously recorded by
-> + * xe_pagefault_set_start_addr().
-> + *
-> + * Return: Start address of the serviced fault range.
-> + */
-> +static inline u64 xe_pagefault_start_addr(struct xe_pagefault *pf)
-> +{
-> +	return pf->consumer.page_addr;
-> +}
-> +
->   #endif
-> diff --git a/drivers/gpu/drm/xe/xe_pagefault_types.h b/drivers/gpu/drm/xe/xe_pagefault_types.h
-> index 75bc53205601..57cb292105d7 100644
-> --- a/drivers/gpu/drm/xe/xe_pagefault_types.h
-> +++ b/drivers/gpu/drm/xe/xe_pagefault_types.h
-> @@ -60,36 +60,55 @@ struct xe_pagefault {
->   	/**
->   	 * @consumer: State for the software handling the fault. Populated by
->   	 * the producer and may be modified by the consumer to communicate
-> -	 * information back to the producer upon fault acknowledgment.
-> +	 * information back to the producer upon fault acknowledgment. After
-> +	 * fault acknowledgment, the producer should only access consumer fields
-> +	 * via well defined helpers.
->   	 */
->   	struct {
-> -		/** @consumer.page_addr: address of page fault */
-> -		u64 page_addr;
-> -		/** @consumer.asid: address space ID */
-> -		u32 asid;
->   		/**
-> -		 * @consumer.access_type: access type and prefetch flag packed
-> -		 * into a u8.
-> +		 * @consumer.page_addr: address of page fault, populated by
-> +		 * consumer after fault completion
->   		 */
-> -		u8 access_type;
-> +		u64 page_addr;
-> +		union {
-> +			struct {
-> +				/** @alloc_state: page fault allocation state */
-> +				u8 alloc_state;
-> +				/**
-> +				 * @consumer.access_type: access type, u8 rather
-> +				 * than enum to keep size compact
-> +				 */
-> +				u8 access_type;
->   #define XE_PAGEFAULT_ACCESS_TYPE_MASK	GENMASK(1, 0)
->   #define XE_PAGEFAULT_ACCESS_PREFETCH	BIT(7)
-> -		/**
-> -		 * @consumer.fault_type_level: fault type and level, u8 rather
-> -		 * than enum to keep size compact
-> -		 */
-> -		u8 fault_type_level;
-> +				/**
-> +				 * @consumer.fault_type_level: fault type and
-> +				 * level, u8 rather than enum to keep size
-> +				 * compact
-> +				 */
-> +				u8 fault_type_level;
->   #define XE_PAGEFAULT_TYPE_LEVEL_NACK		0xff	/* Producer indicates nack fault */
-> -#define XE_PAGEFAULT_LEVEL_MASK			GENMASK(3, 0)
-> -#define XE_PAGEFAULT_TYPE_MASK			GENMASK(7, 4)
-> -		/** @consumer.engine_class_instance: engine class and instance */
-> -		u8 engine_class_instance;
-> +#define XE_PAGEFAULT_LEVEL_MASK			GENMASK(2, 0)
-> +#define XE_PAGEFAULT_TYPE_MASK			GENMASK(6, 3)
-> +#define XE_PAGEFAULT_REQUEUE_MASK		BIT(7)
-> +				/** @consumer.engine_class_instance: engine class and instance */
-> +				u8 engine_class_instance;
->   #define XE_PAGEFAULT_ENGINE_CLASS_MASK		GENMASK(3, 0)
->   #define XE_PAGEFAULT_ENGINE_INSTANCE_MASK	GENMASK(7, 4)
-> -		/** @pad: alignment padding */
-> -		u8 pad;
-> -		/** consumer.reserved: reserved bits for future expansion */
-> -		u64 reserved;
-> +				/** @consumer.asid: address space ID */
-> +				u32 asid;
-> +			};
-> +			/**
-> +			 * @consumer.end_addr: end address of page fault,
-> +			 * populated by consumer after fault completion
-> +			 */
-> +			u64 end_addr;
-> +		};
-> +		/**
-> +		 * @consumer.next: next pagefault chained to this fault,
-> +		 * protected by pf_queue lock
-> +		 */
-> +		struct xe_pagefault *next;
->   	} consumer;
->   	/**
->   	 * @producer: State for the producer (i.e., HW/FW interface). Populated
-> @@ -131,7 +150,7 @@ struct xe_pagefault_queue {
->   	u32 head;
->   	/** @tail: Tail pointer in bytes, moved by consumer, protected by @lock */
->   	u32 tail;
-> -	/** @lock: protects page fault queue */
-> +	/** @lock: protects page fault queue, workers caches */
->   	spinlock_t lock;
->   };
->   
-> @@ -146,6 +165,21 @@ struct xe_pagefault_work {
->   	struct xe_device *xe;
->   	/** @id: Identifier for this work item */
->   	int id;
-> +	/**
-> +	 * @cache: Page fault cache for the currently processed fault
-> +	 *
-> +	 * Protected by the page fault queue lock.
-> +	 */
-> +	struct {
-> +		/** @cache.start: Start address of the current page fault */
-> +		u64 start;
-> +		/** @cache.end: End address of the current page fault */
-> +		u64 end;
-> +		/** @cache.asid: Address space ID of the current page fault */
-> +		u32 asid;
-> +		/** @cache.pf: Pointer to the current page fault */
-> +		struct xe_pagefault *pf;
-> +	} cache;
->   	/** @work: Work item used to process the page fault */
->   	struct work_struct work;
->   };
-> diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-> index 66eee490a0c3..fc439fd85187 100644
-> --- a/drivers/gpu/drm/xe/xe_svm.c
-> +++ b/drivers/gpu/drm/xe/xe_svm.c
-> @@ -15,6 +15,7 @@
->   #include "xe_gt_stats.h"
->   #include "xe_migrate.h"
->   #include "xe_module.h"
-> +#include "xe_pagefault.h"
->   #include "xe_pm.h"
->   #include "xe_pt.h"
->   #include "xe_svm.h"
-> @@ -1215,8 +1216,8 @@ DECL_SVM_RANGE_US_STATS(bind, BIND)
->   DECL_SVM_RANGE_US_STATS(fault, PAGEFAULT)
->   
->   static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
-> -				     struct xe_gt *gt, u64 fault_addr,
-> -				     bool need_vram)
-> +				     struct xe_pagefault *pf, struct xe_gt *gt,
-> +				     u64 fault_addr, bool need_vram)
->   {
->   	int devmem_possible = IS_DGFX(vm->xe) &&
->   		IS_ENABLED(CONFIG_DRM_XE_PAGEMAP);
-> @@ -1372,6 +1373,10 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
->   	xe_svm_range_bind_us_stats_incr(gt, range, bind_start);
->   
->   out:
-> +	/* Give hint to immediately ack faults */
-> +	xe_pagefault_set_start_addr(pf,  xe_svm_range_start(range));
-> +	xe_pagefault_set_end_addr(pf, xe_svm_range_end(range));
-> +
->   	xe_svm_range_fault_us_stats_incr(gt, range, start);
->   	mutex_unlock(&range->lock);
->   	drm_gpusvm_range_put(&range->base);
-> @@ -1394,6 +1399,7 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
->    * xe_svm_handle_pagefault() - SVM handle page fault
->    * @vm: The VM.
->    * @vma: The CPU address mirror VMA.
-> + * @pf: Pagefault structure
->    * @gt: The gt upon the fault occurred.
->    * @fault_addr: The GPU fault address.
->    * @atomic: The fault atomic access bit.
-> @@ -1404,8 +1410,8 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
->    * Return: 0 on success, negative error code on error.
->    */
->   int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
-> -			    struct xe_gt *gt, u64 fault_addr,
-> -			    bool atomic)
-> +			    struct xe_pagefault *pf, struct xe_gt *gt,
-> +			    u64 fault_addr, bool atomic)
->   {
->   	int need_vram, ret;
->   retry:
-> @@ -1413,7 +1419,7 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
->   	if (need_vram < 0)
->   		return need_vram;
->   
-> -	ret =  __xe_svm_handle_pagefault(vm, vma, gt, fault_addr,
-> +	ret =  __xe_svm_handle_pagefault(vm, vma, pf, gt, fault_addr,
->   					 need_vram ? true : false);
->   	if (ret == -EAGAIN) {
->   		/*
-> diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-> index ebcca34f7f4d..07be92579971 100644
-> --- a/drivers/gpu/drm/xe/xe_svm.h
-> +++ b/drivers/gpu/drm/xe/xe_svm.h
-> @@ -21,6 +21,7 @@ struct drm_file;
->   struct xe_bo;
->   struct xe_gt;
->   struct xe_device;
-> +struct xe_pagefault;
->   struct xe_vram_region;
->   struct xe_tile;
->   struct xe_vm;
-> @@ -107,8 +108,8 @@ void xe_svm_fini(struct xe_vm *vm);
->   void xe_svm_close(struct xe_vm *vm);
->   
->   int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
-> -			    struct xe_gt *gt, u64 fault_addr,
-> -			    bool atomic);
-> +			    struct xe_pagefault *pf, struct xe_gt *gt,
-> +			    u64 fault_addr, bool atomic);
->   
->   bool xe_svm_has_mapping(struct xe_vm *vm, u64 start, u64 end);
->   
-> @@ -296,8 +297,8 @@ void xe_svm_close(struct xe_vm *vm)
->   
->   static inline
->   int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
-> -			    struct xe_gt *gt, u64 fault_addr,
-> -			    bool atomic)
-> +			    struct xe_pagefault *pf, struct xe_gt *gt,
-> +			    u64 fault_addr, bool atomic)
->   {
->   	return 0;
->   }
-
-This is huge and impressive work! The patch and the whole series.
-
-I can't say I'm done with the review.  Will continue it as need to get 
-the understanding of it for
-
-Intel Xe GPU Debug Support (eudebug) 
-(https://patchwork.freedesktop.org/series/165777/)
-
-
-Regards,
-
-Maciej
-
+T24gVGh1LCAyMDI2LTA1LTA3IGF0IDA5OjU5ICswMzAwLCBJbXJlIERlYWsgd3JvdGU6DQo+IEZp
+eCB0aGUgZXJyb3IgcGF0aCBkdXJpbmcgRERJIGVuY29kZXIvY29ubmVjdG9yIGluaXRpYWxpemF0
+aW9uIGJ5DQo+IGNhbGxpbmcgdGhlIG1pc3NpbmcgVEMgcG9ydCBjbGVhbnVwIGZ1bmN0aW9uLg0K
+PiANCj4gVGhpcyBmaXhlcyB0aGUgbGVha2VkIFRDIHBvcnQgc3RhdGUuDQoNCkRvIHdlIG5lZWQg
+IkZpeGVzOiIgbGluZSBoZXJlPyBPdGhlcndpc2UgcGF0Y2ggbG9va3Mgb2s6DQoNClJldmlld2Vk
+LWJ5OiBKb3VuaSBIw7ZnYW5kZXIgPGpvdW5pLmhvZ2FuZGVyQGludGVsLmNvbT4NCg0KPiANCj4g
+U2lnbmVkLW9mZi1ieTogSW1yZSBEZWFrIDxpbXJlLmRlYWtAaW50ZWwuY29tPg0KPiAtLS0NCj4g
+wqBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jIHwgMTMgKysrKysrKyst
+LS0tLQ0KPiDCoDEgZmlsZSBjaGFuZ2VkLCA4IGluc2VydGlvbnMoKyksIDUgZGVsZXRpb25zKC0p
+DQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
+ZGkuYw0KPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMNCj4gaW5k
+ZXggMjY4MTk0MGE1Y2ZlMy4uZTM3Y2MzMmVlODNlZCAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jDQo+IEBAIC01NDExLDcgKzU0MTEsNyBAQCB2b2lkIGlu
+dGVsX2RkaV9pbml0KHN0cnVjdCBpbnRlbF9kaXNwbGF5DQo+ICpkaXNwbGF5LA0KPiDCoAlpZiAo
+bmVlZF9hdXhfY2goZW5jb2RlciwgaW5pdF9kcCkpIHsNCj4gwqAJCWRpZ19wb3J0LT5hdXhfY2gg
+PSBpbnRlbF9kcF9hdXhfY2goZW5jb2Rlcik7DQo+IMKgCQlpZiAoZGlnX3BvcnQtPmF1eF9jaCA9
+PSBBVVhfQ0hfTk9ORSkNCj4gLQkJCWdvdG8gZXJyOw0KPiArCQkJZ290byBlcnJfYXV4X2NoX2lu
+aXQ7DQo+IMKgCX0NCj4gwqANCj4gwqAJLyoNCj4gQEAgLTU0NDcsNyArNTQ0Nyw3IEBAIHZvaWQg
+aW50ZWxfZGRpX2luaXQoc3RydWN0IGludGVsX2Rpc3BsYXkNCj4gKmRpc3BsYXksDQo+IMKgCQlk
+aWdfcG9ydC0+dW5sb2NrID0gaW50ZWxfdGNfcG9ydF91bmxvY2s7DQo+IMKgDQo+IMKgCQlpZiAo
+aW50ZWxfdGNfcG9ydF9pbml0KGRpZ19wb3J0LCBpc19sZWdhY3kpIDwgMCkNCj4gLQkJCWdvdG8g
+ZXJyOw0KPiArCQkJZ290byBlcnJfYXV4X2NoX2luaXQ7DQo+IMKgCX0NCj4gwqANCj4gwqAJZHJt
+X1dBUk5fT04oZGlzcGxheS0+ZHJtLCBwb3J0ID4gUE9SVF9JKTsNCj4gQEAgLTU0NzgsNyArNTQ3
+OCw3IEBAIHZvaWQgaW50ZWxfZGRpX2luaXQoc3RydWN0IGludGVsX2Rpc3BsYXkNCj4gKmRpc3Bs
+YXksDQo+IMKgDQo+IMKgCWlmIChpbml0X2RwKSB7DQo+IMKgCQlpZiAoaW50ZWxfZGRpX2luaXRf
+ZHBfY29ubmVjdG9yKGRpZ19wb3J0KSkNCj4gLQkJCWdvdG8gZXJyOw0KPiArCQkJZ290byBlcnJf
+ZHBfY29ubmVjdG9yX2luaXQ7DQo+IMKgDQo+IMKgCQlkaWdfcG9ydC0+aHBkX3B1bHNlID0gaW50
+ZWxfZHBfaHBkX3B1bHNlOw0KPiDCoA0KPiBAQCAtNTQ5MiwxMiArNTQ5MiwxNSBAQCB2b2lkIGlu
+dGVsX2RkaV9pbml0KHN0cnVjdCBpbnRlbF9kaXNwbGF5DQo+ICpkaXNwbGF5LA0KPiDCoAkgKi8N
+Cj4gwqAJaWYgKGVuY29kZXItPnR5cGUgIT0gSU5URUxfT1VUUFVUX0VEUCAmJiBpbml0X2hkbWkp
+IHsNCj4gwqAJCWlmIChpbnRlbF9kZGlfaW5pdF9oZG1pX2Nvbm5lY3RvcihkaWdfcG9ydCkpDQo+
+IC0JCQlnb3RvIGVycjsNCj4gKwkJCWdvdG8gZXJyX2RwX2Nvbm5lY3Rvcl9pbml0Ow0KPiDCoAl9
+DQo+IMKgDQo+IMKgCXJldHVybjsNCj4gwqANCj4gLWVycjoNCj4gK2Vycl9kcF9jb25uZWN0b3Jf
+aW5pdDoNCj4gKwlpZiAoaW50ZWxfZW5jb2Rlcl9pc190YyhlbmNvZGVyKSkNCj4gKwkJaW50ZWxf
+dGNfcG9ydF9jbGVhbnVwKGRpZ19wb3J0KTsNCj4gK2Vycl9hdXhfY2hfaW5pdDoNCj4gwqAJZHJt
+X2VuY29kZXJfY2xlYW51cCgmZW5jb2Rlci0+YmFzZSk7DQo+IMKgCWtmcmVlKGRpZ19wb3J0KTsN
+Cj4gwqB9DQoNCg==
