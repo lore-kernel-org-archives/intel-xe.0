@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E7EFCD3445
-	for <intel-xe@archiver.kernel.org>; Fri,  8 May 2026 14:41:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51E81CD3445
+	for <intel-xe@archiver.kernel.org>; Fri,  8 May 2026 14:42:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E57FA10E0B9;
-	Fri,  8 May 2026 14:41:14 +0000 (UTC)
-Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B2B210E0B9;
- Fri,  8 May 2026 14:41:13 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FCB110E0B9;
+	Fri,  8 May 2026 14:42:25 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BW5lbC5d";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 434A410E0B9;
+ Fri,  8 May 2026 14:42:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1778251344; x=1809787344;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=L9atX5SZFWNouSYJhqu1tV2vrxchfVuB1/bN3moV0EI=;
+ b=BW5lbC5dRq4OuZYRKDBbPLDwvKLpK1139uYrZa3owmEbHj/ymXS0Ggy1
+ n7E34R0meOMyy3K+p0LXHZoGxw7rVxVqEfmuyZ37YgIqSf+Ud+fsAi2gZ
+ VmPr3xpSJDOD3mbJTME7hQj4aRQE0PZ2uc6XkNBGoe9HWytANckiFZ+aK
+ UOlxi38D1xJ8/97HwdIfXsUJDXkYcjbUBTOL9ri0dRZY1snDq6UPwBZrL
+ RDaT2vqezDtg8ggWdgOD3JEulRcxlSzmnLMu8gNUHflZt3UTAh9gouHQZ
+ DuZZWPc8IOThvmnaa4bmQ2CLPrEdOBovmDdhS3T7u5bpbjC4obqwHZ5cG g==;
+X-CSE-ConnectionGUID: NJ/7NPh3R+OC/uTPL6qcUg==
+X-CSE-MsgGUID: oQzBvdu2R/6837j9IpLnGg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11780"; a="81784555"
+X-IronPort-AV: E=Sophos;i="6.23,223,1770624000"; d="scan'208";a="81784555"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2026 07:42:24 -0700
+X-CSE-ConnectionGUID: 9oI9ot+wQ+KYsn8XVUMGHw==
+X-CSE-MsgGUID: vvrVgJFzTBCZpp0abx90pw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,223,1770624000"; d="scan'208";a="232443532"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.40])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2026 07:42:23 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 017/108] drm/i915/dp_link_training: Add helper to mark
+ link training failure
+In-Reply-To: <20260428125233.1664668-18-imre.deak@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260428125233.1664668-1-imre.deak@intel.com>
+ <20260428125233.1664668-18-imre.deak@intel.com>
+Date: Fri, 08 May 2026 17:42:20 +0300
+Message-ID: <1df1beb8661ad06de0b6e29b983720507ab72b06@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915=3A_Introduce_=27?=
- =?utf-8?q?fb=5Fpin=27_parent_interface_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 08 May 2026 14:41:13 -0000
-Message-ID: <177825127356.52104.3737464210184097045@5ab824fced77>
-X-Patchwork-Hint: ignore
-References: <20260508143426.26504-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20260508143426.26504-1-ville.syrjala@linux.intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,85 +66,105 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, 28 Apr 2026, Imre Deak <imre.deak@intel.com> wrote:
+> Add link_recovery_mark_train_failure() to record the failure and make
+> the link recovery state transition explicit after a link training
+> failure: recovery can continue with an autoretrain, or must be handed
+> over to userspace after fallback selection.
+>
+> This also prepares for replacing the sequential link training failure
+> counter with an enum in a follow-up change.
+>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  .../drm/i915/display/intel_dp_link_training.c | 33 +++++++++++++++++--
+>  1 file changed, 30 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> index 1c2cef7d61f37..eb922dca69c5b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> @@ -1277,6 +1277,33 @@ link_recovery_autoretrain_allowed(struct intel_dp_link_training *link_training)
+>  	return link_training->seq_train_failures < MAX_SEQ_TRAIN_FAILURES;
+>  }
+>  
+> +/**
+> + * link_recovery_mark_train_failure - record a link training failure
+> + * @link_training: link training state
+> + *
+> + * Record a link training failure and advance the recovery state to
+> + * indicate the next required recovery step.
+> + *
+> + * The caller must proceed with recovery as instructed by the return
+> + * value, either via automatic retraining or, once automatic retraining
+> + * is no longer possible, via userspace modesets after fallback
+> + * selection.
+> + *
+> + * Return:
+> + * - %true  if recovery should continue via automatic retraining.
+> + * - %false if automatic retraining is no longer possible and recovery
+> + *          must be delegated to userspace.
+> + */
+> +static bool
+> +link_recovery_mark_train_failure(struct intel_dp_link_training *link_training)
+> +{
+> +	if (link_recovery_autoretrain_allowed(link_training))
 
-Series: drm/i915: Introduce 'fb_pin' parent interface (rev3)
-URL   : https://patchwork.freedesktop.org/series/165375/
-State : warning
+Yeah, I still think combining the above check with the below reads
+wrong.
 
-== Summary ==
+> +		/* Move to autoretrain pending or autoretrain disabled state. */
+> +		link_training->seq_train_failures++;
+> +
+> +	return link_recovery_autoretrain_allowed(link_training);
+> +}
+> +
+>  /**
+>   * intel_dp_stop_link_train - stop link training
+>   * @intel_dp: DP struct
+> @@ -1813,6 +1840,7 @@ void intel_dp_start_link_train(struct intel_atomic_state *state,
+>  	struct intel_encoder *encoder = &dig_port->base;
+>  	struct intel_dp_link_training *link_training =
+>  		intel_dp->link.training;
+> +	bool can_autoretrain;
+>  	bool passed;
+>  	/*
+>  	 * Reinit the LTTPRs here to ensure that they are switched to
+> @@ -1844,8 +1872,7 @@ void intel_dp_start_link_train(struct intel_atomic_state *state,
+>  		return;
+>  	}
+>  
+> -	if (link_recovery_autoretrain_allowed(link_training))
+> -		link_training->seq_train_failures++;
+> +	can_autoretrain = link_recovery_mark_train_failure(link_training);
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-061140b9bc586ae7f40abc1249c97e1cc72d1b9d
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 7b454b7e0cd58238633a9903b6942c2bb30a1609
-Author: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Date:   Fri May 8 17:34:26 2026 +0300
+The documentation says "the caller must" but the variable says "can".
 
-    drm/i915: Consolidate the intel_plane_(un)pin_fb() implementations
-    
-    Currently i915 and xe each implement their own versions of
-    intel_plane_(un)pin(). Now that we have the fb_pin parent
-    interface we can consolidate this to a single implementation.
-    
-    The result is a mixture of the i915 and xe implementations.
-    The reuse_vma() hack comes from xe (and i915 doesn't implement
-    that part of the parent interface, and the pin_params are
-    taken from i915 since the platforms supported by i915 need
-    more things.
-    
-    Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-    Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-+ /mt/dim checkpatch af196eb1d004764e417f682cdcc91cd2abd372b2 drm-intel
-893f93d35024 drm/i915: Introduce intel_parent_fb_pin_get_map()
--:195: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#195: 
-new file mode 100644
+Maybe the code here would read better if this wasn't conveyed in the
+return value but rather in a separate call to
+link_recovery_autoretrain_allowed().
 
-total: 0 errors, 1 warnings, 0 checks, 210 lines checked
-580ab5ad82a5 drm/i915: Move intel_fb_pin_params to the parent interface
-1694345256f4 drm/i915: Move the i915_dpt_offset()==0 assert
-ae4af3c62f4a drm/i915: Reorganize intel_plane_pin_fb() a bit
--:44: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
-#44: FILE: drivers/gpu/drm/i915/i915_fb_pin.c:285:
-+						intel_plane_uses_fence(plane_state) ? &fence_id : NULL);
+Or should it be link_recovery_must_autoretrain() or
+link_recovery_need_autoretrain()?
 
-total: 0 errors, 1 warnings, 0 checks, 94 lines checked
-d7870d42f06a drm/i915: Introduce i915_fb_pin_dpt_(un)pin()
-2663a9574ae4 drm/i915: Introduce i915_fb_pin_ggtt_(un)pin()
-625053df57ee drm/xe: Move the FORCE_WC assert into __xe_pin_fb_vma()
-c6cb8abdb767 drm/xe: Kill the fbdev vma reuse hack
-43576781d704 drm/xe: Reorganize intel_plane_pin_fb() a bit
-768939d4ed2c drm/xe: Introduce xe_fb_pin_dpt_(un)pin()
-baf078f0a2fc drm/xe: Introduce xe_fb_pin_ggtt_(un)pin()
-cd05abab35e8 drm/xe: Restructure reuse_vma()
-e5644c7b97eb drm/i915: Introduce the main fb_pin parent interface
--:152: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
-#152: FILE: drivers/gpu/drm/i915/i915_fb_pin.c:366:
-+						   intel_plane_uses_fence(plane_state) ? &fence_id : NULL);
+BR,
+Jani.
 
-total: 0 errors, 1 warnings, 0 checks, 280 lines checked
-50940f95ccc3 drm/i915/fbdev: Use intel_parent_fb_pin_ggtt_(un)pin()
-30a81da11f68 drm/xe: Use xe_fb_pin_ggtt_pin() for the initial FB pin
-7b454b7e0cd5 drm/i915: Consolidate the intel_plane_(un)pin_fb() implementations
--:36: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#36: 
-deleted file mode 100644
+>  
+>  	/*
+>  	 * Ignore the link failure in CI
+> @@ -1864,7 +1891,7 @@ void intel_dp_start_link_train(struct intel_atomic_state *state,
+>  		return;
+>  	}
+>  
+> -	if (link_recovery_autoretrain_allowed(link_training))
+> +	if (can_autoretrain)
+>  		return;
+>  
+>  	if (intel_dp_schedule_fallback_link_training(state, intel_dp, crtc_state))
 
--:160: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
-#160: FILE: drivers/gpu/drm/i915/display/intel_plane.c:1262:
-+						   intel_plane_uses_fence(plane_state) ? &fence_id : NULL);
-
-total: 0 errors, 2 warnings, 0 checks, 397 lines checked
-
-
+-- 
+Jani Nikula, Intel
