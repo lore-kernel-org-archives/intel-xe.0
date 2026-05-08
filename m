@@ -4,61 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D21ECD3436
-	for <intel-xe@archiver.kernel.org>; Fri,  8 May 2026 14:09:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD815CD3445
+	for <intel-xe@archiver.kernel.org>; Fri,  8 May 2026 14:11:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BFB610E5F5;
-	Fri,  8 May 2026 14:09:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6823F10F4E0;
+	Fri,  8 May 2026 14:11:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QWIiFV+W";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O9Tbz1dC";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E97EB10E5F5;
- Fri,  8 May 2026 14:09:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55C5410E323;
+ Fri,  8 May 2026 14:11:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778249351; x=1809785351;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=/XXMN3xSvLY3PPxbOo6RjNbIxU+BdnPE98T7XBZ21Mg=;
- b=QWIiFV+Wk+PAM4XRYmN+xvTUUrttCuHFTj4BSDgxMWR5QMVL1OZU8/Qj
- FzcjVzCLiTT3TBLW+bbIZJCgdGFuzxPVl0IGIcUG43fUC8aY20fSdjX/8
- 8oFiETraNSuLsFPwCP6OD4g3L3uzpZuXeL0wqv/te8tSnwi5TdGtVfGAY
- 2h9fDtTze5ta2Mpmrb73Zg34kZvXqnr+1xNLVJti7256GJBGzL3SJ/pRx
- Zj424CxHOUfiPE7ifIU8++Z/gjrc9/S7G9EDiuo7PqB4HDdJPRnRa3kgR
- 9kjCOe/GuMv86mIGzmsL0PIq8HRlR2SkWotmVNR0Edl/xU4dH0SISxiPz Q==;
-X-CSE-ConnectionGUID: fLoWVGaNTqWH2ZGlXquHOg==
-X-CSE-MsgGUID: b2UFJcRCQm6KHvS9eM1GKw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11780"; a="82838044"
-X-IronPort-AV: E=Sophos;i="6.23,223,1770624000"; d="scan'208";a="82838044"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2026 07:09:10 -0700
-X-CSE-ConnectionGUID: DPujUWcZQPWcUuHU1Zf7MQ==
-X-CSE-MsgGUID: c2Fuq9bZSxi0HZpeL7Hy8g==
+ t=1778249496; x=1809785496;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=XctBmPjhk+VqJyvRVEghzyfPTqN7cNjISgXTBV3Hy7U=;
+ b=O9Tbz1dCBIaWg0AyAtZMmEFno5kHFeaKzxypD/kCBxQpndxS3wtlRr4R
+ /y5bezMg1MJVc8s0a9t/BvEz0T8VHmuiJKKxXy0XdFhis5EG7De9nqtJb
+ 8qapyGAduLeP6URSDveiWNYcl3jwCRywZD5cjuKrVMHdLmWgoGivRGbuM
+ aobLPTxF1JIPXwkavg8YsS4cpnef+yi1WKULWJyCZEcPf11YROMXOoJSB
+ uPgcfGyzFb1cBDbv679RhkbZ0tLSQ8e4SbDkHRUidnvh1zHynL3t83Fr0
+ kvVWSX+Ie7djbRMnnNvJMMAK/YSnHzpeHZTuVhzayDH9oYAs0Da1O0SDJ g==;
+X-CSE-ConnectionGUID: aeZcEAVVTjmJx1egLqGpYg==
+X-CSE-MsgGUID: XOXxtnmvTZ+0J/JBzGxzJA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11780"; a="89806357"
+X-IronPort-AV: E=Sophos;i="6.23,223,1770624000"; d="scan'208";a="89806357"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2026 07:11:36 -0700
+X-CSE-ConnectionGUID: 7mNLjmkSQ4uCaeWriHVmIA==
+X-CSE-MsgGUID: +bSVuyG1RCO79EDu51lsKw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,223,1770624000"; d="scan'208";a="241771738"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO [10.245.244.63])
- ([10.245.244.63])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2026 07:09:07 -0700
-Message-ID: <ac1e5cd9-8449-4ae2-883f-88b1f28b05ba@intel.com>
-Date: Fri, 8 May 2026 15:09:04 +0100
+X-IronPort-AV: E=Sophos;i="6.23,223,1770624000"; d="scan'208";a="237019350"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.40])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2026 07:11:35 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 007/108] drm/i915/dp_link_training: Flush commits in
+ debugfs entries
+In-Reply-To: <af3mfZ6rFQDw3gyF@ideak-desk.lan>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260428125233.1664668-1-imre.deak@intel.com>
+ <20260428125233.1664668-8-imre.deak@intel.com>
+ <159abd8f9ae013230c8d997ae3c949f79ada2100@intel.com>
+ <af3mfZ6rFQDw3gyF@ideak-desk.lan>
+Date: Fri, 08 May 2026 17:11:31 +0300
+Message-ID: <03c8293f6b259f7352190df0433e72903530cee7@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] gpu/buddy: Track per-order free blocks with a
- scoreboard
-To: Francois Dugast <francois.dugast@intel.com>,
- dri-devel@lists.freedesktop.org,
- "Paneer Selvam, Arunpravin" <Arunpravin.PaneerSelvam@amd.com>
-Cc: intel-xe@lists.freedesktop.org
-References: <20260504135343.1797869-1-francois.dugast@intel.com>
- <20260504135343.1797869-2-francois.dugast@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20260504135343.1797869-2-francois.dugast@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,186 +72,175 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 04/05/2026 14:52, Francois Dugast wrote:
-> Reporting per-order free block counts in drm_buddy_print() currently
-> requires walking all rbtrees, which is O(n) over the total number of
-> free blocks and holds the allocator lock for the duration. This becomes
-> expensive on large VRAM heaps with many small free fragments.
-> 
-> Maintain a free_scoreboard[] array indexed by order instead, so that
-> the count for any order is always available in O(1). The scoreboard is
-> kept accurate by hooking into the four places where a block's free state
-> changes: mark_free(), mark_allocated(), mark_split(), and the two sites
-> in __gpu_buddy_free() and __force_merge() that call rbtree_remove()
-> directly on free blocks without going through mark_*().
-> 
-> The print functions are simplified as a result: the rbtree traversal
-> is replaced by a direct array lookup.
-> 
-> Signed-off-by: Francois Dugast <francois.dugast@intel.com>
-> Assisted-by: GitHub Copilot:claude-sonnet-4.6
+On Fri, 08 May 2026, Imre Deak <imre.deak@intel.com> wrote:
+> On Fri, May 08, 2026 at 04:09:49PM +0300, Jani Nikula wrote:
+>> On Tue, 28 Apr 2026, Imre Deak <imre.deak@intel.com> wrote:
+>> > Flush pending connector commits before accessing the link training state
+>> > from debugfs. Access to connector state - like the link training state -
+>> > that may be updated from an asynchronous commit tail must hold the
+>> > connection mutex and wait for the tail to complete. The commit tail
+>> > cannot hold the connection mutex, so all other accessors must wait for
+>> > it explicitly.
+>> >
+>> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+>> > ---
+>> >  .../drm/i915/display/intel_dp_link_training.c | 23 +++++++++++++++++++
+>> >  1 file changed, 23 insertions(+)
+>> >
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+>> > index 653b974e925c2..6dfb6b8db235e 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+>> > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+>> > @@ -1866,8 +1866,11 @@ static int i915_dp_force_link_rate_show(struct seq_file *m, void *data)
+>> >  	if (err)
+>> >  		return err;
+>> >  
+>> > +	intel_dp_flush_connector_commits(connector);
+>> 
+>> Not part of this patch, but I have a hard time making the connection
+>> from "flush connector commits" to "wait for completion timeout on
+>> hw_done".
+>> 
+>> What this patch does is add that "flush" all over the place, making it
+>> even harder to make the connection.
+>> 
+>> It's not helping that struct drm_crtc_helper_funcs has ->atomic_flush
+>> hook, which i915 does not use.
+>> 
+>> Maybe what I'm saying is I'm stupid and don't understand what flush
+>> means here.
+>
+> The commit message tries to explain that, probably it'd be better to
+> document this as well as the generic way to serialize some state being
+> accessed against an asynchronous atomic commit: the tail of such
+> asynchronous commits cannot take WW locks - which are generally used to
+> protect the state of a DRM object. Here that state is the link training
+> state of an encoder object. Since the async commit's tail cannot itself
+> take locks, the way to ensure the exclusive access to the state is:
+>
+> - In contexts other than the async commit's tail itself 1) take locks used
+>   in all other contexts to guard the state (mode_config.connection_mutex
+>   here). 2) with the lock held wait for the completion of any pending
+>   asynchronous commits (which also waits for the completion for the
+>   asyncrhonous commit's tail).
+> - In the async commit tail, the state can be access without taking locks
+>   or doing any other serialization, since all other accessors of the
+>   state will wait for the commit tail.
+>
+> Flush means waiting for the asynchronous commits to complete based on
+> the above.
 
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Maybe the function should be named accordingly...?
 
-> ---
->   drivers/gpu/buddy.c         | 35 ++++++++++++++++++++---------------
->   drivers/gpu/drm/drm_buddy.c | 16 ++--------------
->   include/linux/gpu_buddy.h   |  7 +++++++
->   3 files changed, 29 insertions(+), 29 deletions(-)
-> 
-> diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
-> index 52686672e99f..d831165e87ea 100644
-> --- a/drivers/gpu/buddy.c
-> +++ b/drivers/gpu/buddy.c
-> @@ -193,6 +193,8 @@ static void mark_allocated(struct gpu_buddy *mm,
->   	block->header &= ~GPU_BUDDY_HEADER_STATE;
->   	block->header |= GPU_BUDDY_ALLOCATED;
->   
-> +	mm->free_scoreboard[gpu_buddy_block_order(block)]--;
-> +
->   	rbtree_remove(mm, block);
->   }
->   
-> @@ -204,6 +206,8 @@ static void mark_free(struct gpu_buddy *mm,
->   	block->header &= ~GPU_BUDDY_HEADER_STATE;
->   	block->header |= GPU_BUDDY_FREE;
->   
-> +	mm->free_scoreboard[gpu_buddy_block_order(block)]++;
-> +
->   	tree = get_block_tree(block);
->   	rbtree_insert(mm, block, tree);
->   }
-> @@ -214,6 +218,8 @@ static void mark_split(struct gpu_buddy *mm,
->   	block->header &= ~GPU_BUDDY_HEADER_STATE;
->   	block->header |= GPU_BUDDY_SPLIT;
->   
-> +	mm->free_scoreboard[gpu_buddy_block_order(block)]--;
-> +
->   	rbtree_remove(mm, block);
->   }
->   
-> @@ -271,6 +277,7 @@ static unsigned int __gpu_buddy_free(struct gpu_buddy *mm,
->   		}
->   
->   		rbtree_remove(mm, buddy);
-> +		mm->free_scoreboard[gpu_buddy_block_order(buddy)]--;
->   		if (force_merge && gpu_buddy_block_is_clear(buddy))
->   			mm->clear_avail -= gpu_buddy_block_size(mm, buddy);
->   
-> @@ -335,6 +342,7 @@ static int __force_merge(struct gpu_buddy *mm,
->   					iter = rb_prev(iter);
->   
->   				rbtree_remove(mm, block);
-> +				mm->free_scoreboard[gpu_buddy_block_order(block)]--;
->   				if (gpu_buddy_block_is_clear(block))
->   					mm->clear_avail -= gpu_buddy_block_size(mm, block);
->   
-> @@ -384,11 +392,17 @@ int gpu_buddy_init(struct gpu_buddy *mm, u64 size, u64 chunk_size)
->   
->   	BUG_ON(mm->max_order > GPU_BUDDY_MAX_ORDER);
->   
-> +	mm->free_scoreboard = kcalloc(mm->max_order + 1,
-> +				      sizeof(*mm->free_scoreboard),
-> +				      GFP_KERNEL);
-> +	if (!mm->free_scoreboard)
-> +		return -ENOMEM;
-> +
->   	mm->free_trees = kmalloc_array(GPU_BUDDY_MAX_FREE_TREES,
->   				       sizeof(*mm->free_trees),
->   				       GFP_KERNEL);
->   	if (!mm->free_trees)
-> -		return -ENOMEM;
-> +		goto out_free_scoreboard;
->   
->   	for_each_free_tree(i) {
->   		mm->free_trees[i] = kmalloc_array(mm->max_order + 1,
-> @@ -447,6 +461,8 @@ int gpu_buddy_init(struct gpu_buddy *mm, u64 size, u64 chunk_size)
->   	while (i--)
->   		kfree(mm->free_trees[i]);
->   	kfree(mm->free_trees);
-> +out_free_scoreboard:
-> +	kfree(mm->free_scoreboard);
->   	return -ENOMEM;
->   }
->   EXPORT_SYMBOL(gpu_buddy_init);
-> @@ -485,6 +501,7 @@ void gpu_buddy_fini(struct gpu_buddy *mm)
->   		kfree(mm->free_trees[i]);
->   	kfree(mm->free_trees);
->   	kfree(mm->roots);
-> +	kfree(mm->free_scoreboard);
->   }
->   EXPORT_SYMBOL(gpu_buddy_fini);
->   
-> @@ -1479,21 +1496,9 @@ void gpu_buddy_print(struct gpu_buddy *mm)
->   		mm->chunk_size >> 10, mm->size >> 20, mm->avail >> 20, mm->clear_avail >> 20);
->   
->   	for (order = mm->max_order; order >= 0; order--) {
-> -		struct gpu_buddy_block *block, *tmp;
-> -		struct rb_root *root;
-> -		u64 count = 0, free;
-> -		unsigned int tree;
-> -
-> -		for_each_free_tree(tree) {
-> -			root = &mm->free_trees[tree][order];
-> -
-> -			rbtree_postorder_for_each_entry_safe(block, tmp, root, rb) {
-> -				BUG_ON(!gpu_buddy_block_is_free(block));
-> -				count++;
-> -			}
-> -		}
-> +		u64 count = mm->free_scoreboard[order];
-> +		u64 free = count * (mm->chunk_size << order);
->   
-> -		free = count * (mm->chunk_size << order);
->   		if (free < SZ_1M)
->   			pr_info("order-%2d free: %8llu KiB, blocks: %llu\n",
->   				order, free >> 10, count);
-> diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
-> index 841f3de5f307..7839b54d3da7 100644
-> --- a/drivers/gpu/drm/drm_buddy.c
-> +++ b/drivers/gpu/drm/drm_buddy.c
-> @@ -46,23 +46,11 @@ void drm_buddy_print(struct gpu_buddy *mm, struct drm_printer *p)
->   		   mm->chunk_size >> 10, mm->size >> 20, mm->avail >> 20, mm->clear_avail >> 20);
->   
->   	for (order = mm->max_order; order >= 0; order--) {
-> -		struct gpu_buddy_block *block, *tmp;
-> -		struct rb_root *root;
-> -		u64 count = 0, free;
-> -		unsigned int tree;
-> -
-> -		for_each_free_tree(tree) {
-> -			root = &mm->free_trees[tree][order];
-> -
-> -			rbtree_postorder_for_each_entry_safe(block, tmp, root, rb) {
-> -				BUG_ON(!gpu_buddy_block_is_free(block));
-> -				count++;
-> -			}
-> -		}
-> +		u64 count = mm->free_scoreboard[order];
-> +		u64 free = count * (mm->chunk_size << order);
->   
->   		drm_printf(p, "order-%2d ", order);
->   
-> -		free = count * (mm->chunk_size << order);
->   		if (free < SZ_1M)
->   			drm_printf(p, "free: %8llu KiB", free >> 10);
->   		else
-> diff --git a/include/linux/gpu_buddy.h b/include/linux/gpu_buddy.h
-> index 5fa917ba5450..250841ca4bcf 100644
-> --- a/include/linux/gpu_buddy.h
-> +++ b/include/linux/gpu_buddy.h
-> @@ -172,6 +172,13 @@ struct gpu_buddy {
->   	 * that fits in the remaining space.
->   	 */
->   	struct gpu_buddy_block **roots;
-> +	/*
-> +	 * Per-order free block scoreboard: free_scoreboard[order] holds the
-> +	 * number of blocks of that order currently in the free state.
-> +	 * Incremented in mark_free(), decremented in mark_allocated() and
-> +	 * mark_split() when a block leaves the free state.
-> +	 */
-> +	u64 *free_scoreboard;
->   /* public: */
->   	unsigned int n_roots;
->   	unsigned int max_order;
+BR,
+Jani.
 
+
+>
+>> BR,
+>> Jani.
+>> 
+>> 
+>> > +
+>> >  	if (intel_dp->link.active)
+>> >  		current_rate = intel_dp->link_rate;
+>> > +
+>> >  	force_rate = intel_dp->link.force_rate;
+>> >  
+>> >  	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
+>> > @@ -1939,6 +1942,8 @@ static ssize_t i915_dp_force_link_rate_write(struct file *file,
+>> >  	if (err)
+>> >  		return err;
+>> >  
+>> > +	intel_dp_flush_connector_commits(connector);
+>> > +
+>> >  	intel_dp_reset_link_params(intel_dp);
+>> >  	intel_dp->link.force_rate = rate;
+>> >  
+>> > @@ -1964,6 +1969,8 @@ static int i915_dp_force_lane_count_show(struct seq_file *m, void *data)
+>> >  	if (err)
+>> >  		return err;
+>> >  
+>> > +	intel_dp_flush_connector_commits(connector);
+>> > +
+>> >  	if (intel_dp->link.active)
+>> >  		current_lane_count = intel_dp->lane_count;
+>> >  	force_lane_count = intel_dp->link.force_lane_count;
+>> > @@ -2041,6 +2048,8 @@ static ssize_t i915_dp_force_lane_count_write(struct file *file,
+>> >  	if (err)
+>> >  		return err;
+>> >  
+>> > +	intel_dp_flush_connector_commits(connector);
+>> > +
+>> >  	intel_dp_reset_link_params(intel_dp);
+>> >  	intel_dp->link.force_lane_count = lane_count;
+>> >  
+>> > @@ -2063,6 +2072,8 @@ static int i915_dp_max_link_rate_show(void *data, u64 *val)
+>> >  	if (err)
+>> >  		return err;
+>> >  
+>> > +	intel_dp_flush_connector_commits(connector);
+>> > +
+>> >  	*val = intel_dp->link.max_rate;
+>> >  
+>> >  	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
+>> > @@ -2082,6 +2093,8 @@ static int i915_dp_max_lane_count_show(void *data, u64 *val)
+>> >  	if (err)
+>> >  		return err;
+>> >  
+>> > +	intel_dp_flush_connector_commits(connector);
+>> > +
+>> >  	*val = intel_dp->link.max_lane_count;
+>> >  
+>> >  	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
+>> > @@ -2101,6 +2114,8 @@ static int i915_dp_force_link_training_failure_show(void *data, u64 *val)
+>> >  	if (err)
+>> >  		return err;
+>> >  
+>> > +	intel_dp_flush_connector_commits(connector);
+>> > +
+>> >  	*val = intel_dp->link.force_train_failure;
+>> >  
+>> >  	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
+>> > @@ -2122,6 +2137,8 @@ static int i915_dp_force_link_training_failure_write(void *data, u64 val)
+>> >  	if (err)
+>> >  		return err;
+>> >  
+>> > +	intel_dp_flush_connector_commits(connector);
+>> > +
+>> >  	intel_dp->link.force_train_failure = val;
+>> >  
+>> >  	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
+>> > @@ -2143,6 +2160,8 @@ static int i915_dp_force_link_retrain_show(void *data, u64 *val)
+>> >  	if (err)
+>> >  		return err;
+>> >  
+>> > +	intel_dp_flush_connector_commits(connector);
+>> > +
+>> >  	*val = intel_dp->link.force_retrain;
+>> >  
+>> >  	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
+>> > @@ -2161,6 +2180,8 @@ static int i915_dp_force_link_retrain_write(void *data, u64 val)
+>> >  	if (err)
+>> >  		return err;
+>> >  
+>> > +	intel_dp_flush_connector_commits(connector);
+>> > +
+>> >  	intel_dp->link.force_retrain = val;
+>> >  
+>> >  	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
+>> > @@ -2184,6 +2205,8 @@ static int i915_dp_link_retrain_disabled_show(struct seq_file *m, void *data)
+>> >  	if (err)
+>> >  		return err;
+>> >  
+>> > +	intel_dp_flush_connector_commits(connector);
+>> > +
+>> >  	seq_printf(m, "%s\n", str_yes_no(intel_dp->link.retrain_disabled));
+>> >  
+>> >  	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
+>> 
+>> -- 
+>> Jani Nikula, Intel
+
+-- 
+Jani Nikula, Intel
