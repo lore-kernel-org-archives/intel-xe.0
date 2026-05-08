@@ -4,161 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F3A4CD3436
-	for <intel-xe@archiver.kernel.org>; Fri,  8 May 2026 06:37:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18FBFCD3436
+	for <intel-xe@archiver.kernel.org>; Fri,  8 May 2026 06:56:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA04C10E5CB;
-	Fri,  8 May 2026 06:37:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D418D10F369;
+	Fri,  8 May 2026 06:56:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Gw61g1sA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L8KHJCk6";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C15F410E5CB
- for <intel-xe@lists.freedesktop.org>; Fri,  8 May 2026 06:37:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EA1C10F369;
+ Fri,  8 May 2026 06:56:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778222268; x=1809758268;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=cHAZoa/5sGTBnxsIK+NQT18rVEUwJEd6UJ0hhUtOdrI=;
- b=Gw61g1sAj+I91VXndHUOYDzQ1jypQxbhJCJ9EYyh0EldlHpx0RW3cjsF
- ZPpW88Qd2B3TiOZfFSEoPYSe6ZlbvlY7D57NyPXINc+G3lsxwSdtd7CSa
- r2Z7BGw8tbf/WRUJgQndjyJWyWsjgOwORgk++XJtZDOTEDBfacPjr4hh3
- 2c9xid9M8Y1YwE/H/1oYvM0r8uASZ+ieh3AopLOceR7GBYaezBYafc0b4
- 8UosYcvXCpieVy54xzbR4nZQtsTK5LH8qA+MezG0e731IVfG3e4+EOIag
- CW5aWNsZQs0v5oCw6HtEozxy1sh3zEM0P/NsSqCtdE/cNx/oBJ/DppRaB Q==;
-X-CSE-ConnectionGUID: HQpYiBVVTgmUdd0PNgvcoA==
-X-CSE-MsgGUID: Qq4MtWOQS+u5IFzOrp8H1A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11779"; a="90287569"
-X-IronPort-AV: E=Sophos;i="6.23,223,1770624000"; d="scan'208";a="90287569"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2026 23:37:48 -0700
-X-CSE-ConnectionGUID: W5WPtxjZTdOIV1MC+P0cFg==
-X-CSE-MsgGUID: rkvM16CnQqCS9SdB16IQ7w==
+ t=1778223364; x=1809759364;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=47POBLVaUrXtK1fn5h2rHbXgKdBedhfQvXbum5KWZpY=;
+ b=L8KHJCk6taFyMXyAoAmZyKAbRI4ljiOboWt1PV+cdcPFKuUcGU53eDZV
+ OllX892Dwr9BU7Z5Es02CnlKmCKclnmduTUd6f/9cweldEN212jEgeikh
+ u9wL3hIQunc34UypSq0M7a11w/sD2lueud9mDZOTsclPufA2Rdnrd4sxJ
+ OlSMeIYI1+I7L+SUI4RRhMkIL4ZUJH0UqVQbNH6ABndjdH816jdQcnSzx
+ uGorDDZduLCK0YV3pkn99HEhi6ai2SCtz4WIpkbipjDh9yms2u4JnBcId
+ Gb50FdHeoWxczpf4q5IFWspdg0OAHxlR6pAn/nN/A/IWkPkGR0w728OKK w==;
+X-CSE-ConnectionGUID: z7a1qwv5SN6aQcp0zk+W/A==
+X-CSE-MsgGUID: RVvl4OzcTj6CRTRDvCAj/w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11779"; a="79373325"
+X-IronPort-AV: E=Sophos;i="6.23,223,1770624000"; d="scan'208";a="79373325"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2026 23:56:03 -0700
+X-CSE-ConnectionGUID: F50X2WD0Tn6WkjwwFx5+Nw==
+X-CSE-MsgGUID: vHEYlSuQSi2eEDhF3COPEQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,223,1770624000"; d="scan'208";a="240675452"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2026 23:37:48 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 7 May 2026 23:37:46 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Thu, 7 May 2026 23:37:46 -0700
-Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.52) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 7 May 2026 23:37:45 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=foT7nmkS8rw3ztV8jqpsNeJ7FNc14NrS4dciDb3ApN3Iu/H+8vkPdVH7Syl21oWBgIO5mJ984ENe494EOgjdhdR3gHQsImtDw5jl93cBwIzM9ljNb/JFVn9UcAUIH9B90gYnRs87xxM40YP6O4iPKRIRohwKGqLgIoO9B1e1YJckZThB5P7C2CuVcOL9FHZDOGnP6gpYpRiGZ3zji3EHXmuRFP2aTxxiYb6gfkv84od3c7txarCd87SVDZbGw63QmyDRwLbPMECBBfI0QPmUMW7YjY9XKdsD471EuL7hSqOss7WH8A9rBfxVB5YLDivsRTXs9wiCzy52RuwpjSY42Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=N92n4wl5N8wIQ1odm3atR+PYGAWtYc7tf/IpORNa+kk=;
- b=lzjnAP0PUgjCkNufx0X27hETfMfvzK+KuziDiS9NRWLGMRV1BZLjyBfATaIMqjSRZlfGhrt6kZPIljFP4t5Q8TVJdG2CQt5++3gIN0SRh2GDJjSo4fcbiG5E2sNNUWH6O4WTjExEj0eAYOnQrSJhNs5aFOKvGgzpF+SAHInSXm6FVzu8DLBT6je+1K8f6s4hT0+6MU21ogPqRgmu25NW+Enw3Mez8YuwHiG1kXlBgnYnnjSYSwgeEaqw6rOC0FaAyhmcKBRAQi3046b63CZWJFsPwMTB1yY8+Yy9KRQLIMaCJ5bS+1GywBAEZMtvdbs9A5mvarJVafuE8H4/KcoSUg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6207.namprd11.prod.outlook.com (2603:10b6:208:3c5::21)
- by CH3PR11MB7724.namprd11.prod.outlook.com (2603:10b6:610:123::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.19; Fri, 8 May
- 2026 06:37:43 +0000
-Received: from MN0PR11MB6207.namprd11.prod.outlook.com
- ([fe80::52eb:929f:a8b2:139d]) by MN0PR11MB6207.namprd11.prod.outlook.com
- ([fe80::52eb:929f:a8b2:139d%5]) with mapi id 15.20.9891.008; Fri, 8 May 2026
- 06:37:42 +0000
-Message-ID: <4ac5d412-de6f-4e04-9000-f9b61e1bc5d3@intel.com>
-Date: Fri, 8 May 2026 12:07:32 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/6] drm/xe/uapi: Add additional error components to xe
- drm_ras
-To: Riana Tauro <riana.tauro@intel.com>
-CC: <anshuman.gupta@intel.com>, <rodrigo.vivi@intel.com>,
- <aravind.iddamsetty@linux.intel.com>, <badal.nilawar@intel.com>,
- <raag.jadav@intel.com>, <ravi.kishore.koppuravuri@intel.com>,
- <soham.purkait@intel.com>, <intel-xe@lists.freedesktop.org>
-References: <20260504065614.3832331-8-riana.tauro@intel.com>
- <20260504065614.3832331-9-riana.tauro@intel.com>
-Content-Language: en-US
-From: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>
-In-Reply-To: <20260504065614.3832331-9-riana.tauro@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5P287CA0163.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1ba::11) To MN0PR11MB6207.namprd11.prod.outlook.com
- (2603:10b6:208:3c5::21)
+X-IronPort-AV: E=Sophos;i="6.23,223,1770624000"; d="scan'208";a="232153647"
+Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
+ ([10.190.239.37])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2026 23:56:00 -0700
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.auld@intel.com, Arunpravin.PaneerSelvam@amd.com,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ Tejas Upadhyay <tejas.upadhyay@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH V2] drm/buddy: Integrate lockdep annotations for gpu buddy
+ manager
+Date: Fri,  8 May 2026 12:25:45 +0530
+Message-ID: <20260508065544.4049240-2-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6207:EE_|CH3PR11MB7724:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6024d788-4e7c-4d21-0412-08deaccc4e6b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|56012099003|22082099003|18002099003; 
-X-Microsoft-Antispam-Message-Info: OLD5DXnLrte7XyGp/1whtkZOOlrLlh78Fp7yYO9J87C4/AeLEr7IzdmFXsPmItOz8uWmDD0yQI+wsnPq6dD7bsfrX3Yve3IrGobtEZ6ESWHgqXc6i6GlnUUNW32KdinJSaBtiDp+D06MWMAYqhvhQiNysx+F3LpqfnoLghXu6EHxirsIrL11YvBvWLt7V0BBssuJW9oQ4o/EQlRck45dy1APsjg86bx0IcicptU2+nlXGCDfQqQhJWXMgfwG1a7Rq0qgB1dV3zgMaPYEO7FmF5CE73k6FwqoUtljeInfxoyAWLX79CvJec2kw3Nn/YouFduytp1eroCrfsFgNz9PIjYy8Gw2C1L0NhEPYBHWueplPY0kUlrK5RfunO2m2RHn9kpJoItimlhLrNc1CvlBvBO/lRwrccBtvG6BUD2OleFZKlJ5U52OAUo42kU/hIlAzcPZ26KC3BdZxfhQi8krQpYTBvjqh6sIaDCWGZYn1XXSKwoW8MGuUwBZfTmml0k4dBMCCfejbQRcQ2CkTFiu3dbZU12bP88zOkvh657xWJ2O/9zmv7Y/L6/8m7Jixx3KJxepNzKPNWg0aS0afj9HA7+VrNd1ZdoKc5/OapH+qLbflizA/QTqt05YrXtMH8olk9z3RxlMJyAmvjeTkUikL9ISiLA4cCNRNyNH138SFXgnh8BqGZCvmBgoS7txg7ww
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6207.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(56012099003)(22082099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Vk9OV1A3YnpSSlh1cXFhNXY5Y0JZN3p3TERoYUJvSGkrcDU0RmQzNWRkNTJQ?=
- =?utf-8?B?MXVlbjBMb3lob0JqaHY2clV5L3FOd1dwaks5M3ZQekVCdjBTWlhFUklGS0FD?=
- =?utf-8?B?aitZWEd3THJLY09RUEhaRHZFSlZndjViQVpVZU1rY29yYnVLZmNEZHhhVTlC?=
- =?utf-8?B?K0w5Q1pBOTJURVNDTTRSSGQ1ZDhTL1VWby9zRmZkZzBIaFNJS1R0SlFvMEdy?=
- =?utf-8?B?dUFyODAyYWl0a0lsMG50WWg5a3owWkRNS01KeWpDWFVGT204c0ZSSGpDY21x?=
- =?utf-8?B?MUpHUWZGM0k3OVcvTXgwZEl1b1dSNXMwajhtTFFNaW5RR0tJOFJKNUhGMUJV?=
- =?utf-8?B?d0I1Y2NhUWlHZ1BKVWNsS2d5NDZlVVJHVmRHYnlrY3M2QkhhWGxJL2NCSVVP?=
- =?utf-8?B?ajhaTlBxclUyTXRZeDE2WTR2UnFPWDVEcVRvWEdXcjgvL3N3TjVqQnRBSnU2?=
- =?utf-8?B?aTFkSmhrbTN6LzRQS3JwMW81T3R3cmhzc3NYMHlCbEZGendxcDIyUGMxRm1m?=
- =?utf-8?B?R09jTHJqNXN4dXZmUlcwSkRabVZrWkN2UE5yUC8vQVM2aVlOMWh3ZTN2MTFY?=
- =?utf-8?B?YmM4eEtGL3Rwa2diMmFqV05HeHQ2WWt0TzBTcGtCR0l3OTFwTW5oemJEWVUv?=
- =?utf-8?B?Z0RDVm5ONi9YS2dYSDJraG5LcDhkQW9JbHNhMnRiNnZOZThTQlNuTFpSSXZr?=
- =?utf-8?B?ZjVEdmY2Y0lTbVJwa2pPK3p0dUVrWTFSOWNTMCtEWklWMFVQUURnSHd5Vmti?=
- =?utf-8?B?bUhxc2RCcFV6NUYyWlNhajJCb0JjMjcrcW9ZZEt3OW5iMEo0bGtYTmYza0M2?=
- =?utf-8?B?cU1OL0xnN2krMXVXTE9VdjNXOXV0TThvS1NPRW9uTEFrcFg4Mms4QmkydXo5?=
- =?utf-8?B?ODRobW82RzZFbXhaNHRtWlB6RDlxWDRuVDF1V1ZOZTYxYVBPRzd2VmRnTHhN?=
- =?utf-8?B?RHliWVBHeGlvWXExVkc1Q0Q3NTVtcTF3Vk9zV3FBTDVuMVgzL3FpQnlwMmJx?=
- =?utf-8?B?L1lFdGRoNEdrU3ZOMnRSL2N5MmJNRVEvM2xsRmVmYVp4V042YnJ0SW9hTlZu?=
- =?utf-8?B?ZWdJZGk3VjdtMkVtRE9xMFdaUllhMUNXb204MkFaTVgyWVlMZTBmM1ErczBy?=
- =?utf-8?B?ZlA5ak9mWkJNUGlmRUxGNmNUYVZSanBQTGJOVFlUZVB3aDJGd3FKQ0U0d01a?=
- =?utf-8?B?ZUhDR0RlWHNSUER3L0NVYmFJRlZCWHNlZkhFLzdhcjlGeDBIKzNZRmQ4N242?=
- =?utf-8?B?NkowRkIyRVhVa1NWdExPUmtYSHNFeG5YVEp3a0xVcVZ5Z2owSXZuSEtIbkJy?=
- =?utf-8?B?YzF6UlJMYjByMGF6c081TEx5eUJFZnJ6bW1NVkZSZk1jNndCMEVqWEhCa1pt?=
- =?utf-8?B?Y1VhRzVCeTNnRTcrQ3AzNXIzTkdaaHBNVHhFZXhkUFVPZmVjZTNWaDJYSWVn?=
- =?utf-8?B?SzdnZTNWbFNnR1RQd24rVktHbmZEaDU1MTZ3ejUxYWphczZFMy83YUhxbXRl?=
- =?utf-8?B?R0U1STliemw1MUpVak9Lam1GZTFJNFN3bU14V3ZpZ3c4RTV0ZEFFaVkxaFEw?=
- =?utf-8?B?Y1JVbmFhMlhJc3ptQWQzMDM2QU1CUjJydlY0aHRRT1NJbEQ2WDlaTmU4WDFi?=
- =?utf-8?B?WmtYVkRKM0VCU0ZnZ3NRK0FvcFY2dzlzeDNHWTJHemY0U3hlaFpNNlRROTd6?=
- =?utf-8?B?YzVZSWY5YWZTRFhEREpHOWIzMlEzTlJ0M250N29kREVKRzRoSVBGVWQvSmQ2?=
- =?utf-8?B?RXhPSkFFY1lXbnhycE10UTJKTTBQeE1Kd2Q2djIzVm1jQVBGWVBmVTUwWGpy?=
- =?utf-8?B?QWZUV05PTEhwSEl5SGZHamoralBmSStVZjA1U203QzJkSlhQdldiTW9ITkJM?=
- =?utf-8?B?SjZUZlFTUS9kMWtHaVFEUWNMQjYvU3E5OWx5dzRhTmk2VG9VNmpPSjRJSUJN?=
- =?utf-8?B?ZXdoVnpWb2lkemxZM2JBOUdMbEdNbjF6NTMrd3hlc3A0VkYxeXcrb3haSmFp?=
- =?utf-8?B?ekRiMkJrUTF6eU9GcmRuTFFKWlZuZjdzTXRMRFErWWVSU3QrVVdkWld3THZo?=
- =?utf-8?B?SkdyR3VRUzdkRDFFVDhaN2hyVHZvSDhSKzIzbnUrVXF3RGpTNWdIWEdxL3N2?=
- =?utf-8?B?SGR1b1dua0FIKzNhS2VZR204bmQvZVZpYTN4MWxKZjN4STdrQjdOeFVWR2VI?=
- =?utf-8?B?L2F4RUR5SmZKQzNiRStFdmwwbW1TbEpqL1RQamRSNjVMYVAxYm9BNjAxcWFY?=
- =?utf-8?B?eXpaZjA0ZGFhbEdsblJPVnBJWVovQ01vaTlBYTNlMGJuL1l2eEYyK2Q1cnNY?=
- =?utf-8?B?TzFkcUhWSnRTb3B0eFQ0MXBPOHhtbTV6UHkxODFsRXlMbk5CaTRuak5VS2VF?=
- =?utf-8?Q?h+05RK097Hx7SmKI=3D?=
-X-Exchange-RoutingPolicyChecked: YN9WAk9UKq84UZH3XPnU9v12FeUBZKJPFyIr1IE5M5RxN+eUKQlbWsrvVlGWxI48cnZkGhsVAEvfa9NZuPQLyGbKX6exV868OrmAbCCYsSBSO9itVFVuRNPb4e7qVndPioVExWTp1rR3TMdg9YwN/eL5iXxRsNUsxW4IPFvEfCPxldKbK8gRwuHJKOvetN4XmKk2l558lC3lnc0bZfcBf3GWNvrl9z7vmO4rpnGA1OGYdDfUSysennLIaxEO9HXvMkHwoss/hRDnsNMPgt+WaxIneWBo/PuWAxUp7WiWGP/j8kSYIbfvBMmuwbbBWK28u+Q+tqMk07z5qO90eiG+PA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6024d788-4e7c-4d21-0412-08deaccc4e6b
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6207.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 May 2026 06:37:42.6137 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ZJ8G9RHf7aZS8o19h7+UkOZolw+S37gTvjklu7M47yfoG7tmjTc9qU6n6GIS/782nqVCmNrALFbtYON0KMWjHhPjzcDFWsZlqNWppF2giWE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7724
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -173,54 +69,180 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+gpu_buddy APIs are expected to be called with the driver-provided lock
+held, but there is no runtime enforcement of this contract. Add lockdep
+annotations to catch locking violations early.
 
-On 04-05-2026 12:26 pm, Riana Tauro wrote:
-> Add additional Error components supported by XE drm_ras (Reliability,
-> Availability and Serviceability).
->
-> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-> Reviewed-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-> ---
->   include/uapi/drm/xe_drm.h | 11 ++++++++++-
->   1 file changed, 10 insertions(+), 1 deletion(-)
->
-> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> index 48e9f1fdb78d..50c80af4ad4e 100644
-> --- a/include/uapi/drm/xe_drm.h
-> +++ b/include/uapi/drm/xe_drm.h
-> @@ -2589,6 +2589,12 @@ enum drm_xe_ras_error_component {
->   	DRM_XE_RAS_ERR_COMP_CORE_COMPUTE = 1,
->   	/** @DRM_XE_RAS_ERR_COMP_SOC_INTERNAL: SoC Internal Error */
->   	DRM_XE_RAS_ERR_COMP_SOC_INTERNAL,
-> +	/** @DRM_XE_RAS_ERR_COMP_DEVICE_MEMORY: Device Memory Error */
-> +	DRM_XE_RAS_ERR_COMP_DEVICE_MEMORY,
-> +	/** @DRM_XE_RAS_ERR_COMP_PCIE: PCIe Subsystem Error */
-> +	DRM_XE_RAS_ERR_COMP_PCIE,
-> +	/** @DRM_XE_RAS_ERR_COMP_FABRIC: Fabric Subsystem Error */
-> +	DRM_XE_RAS_ERR_COMP_FABRIC,
->   	/** @DRM_XE_RAS_ERR_COMP_MAX: Max Error */
->   	DRM_XE_RAS_ERR_COMP_MAX	/* non-ABI */
->   };
-> @@ -2606,7 +2612,10 @@ enum drm_xe_ras_error_component {
->    */
->   #define DRM_XE_RAS_ERROR_COMPONENT_NAMES {				\
->   	[DRM_XE_RAS_ERR_COMP_CORE_COMPUTE] = "core-compute",		\
-> -	[DRM_XE_RAS_ERR_COMP_SOC_INTERNAL] = "soc-internal"		\
-> +	[DRM_XE_RAS_ERR_COMP_SOC_INTERNAL] = "soc-internal",		\
-> +	[DRM_XE_RAS_ERR_COMP_DEVICE_MEMORY] = "device-memory",		\
-> +	[DRM_XE_RAS_ERR_COMP_PCIE] = "pcie",				\
-> +	[DRM_XE_RAS_ERR_COMP_FABRIC] = "fabric",			\
->   }
+Introduce gpu_buddy_driver_set_lock() for the driver to register the
+lock that protects the buddy manager. Add gpu_buddy_driver_lock_held()
+assertions to all exported gpu_buddy and drm_buddy APIs that
+access/modify the manager state. The lock_dep_map field is only compiled
+in when CONFIG_LOCKDEP is enabled, adding zero overhead to production
+builds.
 
-Please add static assert check to keep names in sync.
+Wire up xe_ttm_vram_mgr to register its mutex with the buddy manager
+after initialization.
 
-With that addressed:
+Assisted-by: Copilot:claude-opus-4.6
+Suggested-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+---
+ drivers/gpu/buddy.c                  | 11 ++++++++
+ drivers/gpu/drm/drm_buddy.c          |  1 +
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c |  1 +
+ include/linux/gpu_buddy.h            | 41 ++++++++++++++++++++++++++++
+ 4 files changed, 54 insertions(+)
 
-Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
+index 52686672e99f..eb1457376307 100644
+--- a/drivers/gpu/buddy.c
++++ b/drivers/gpu/buddy.c
+@@ -437,6 +437,9 @@ int gpu_buddy_init(struct gpu_buddy *mm, u64 size, u64 chunk_size)
+ 		root_count++;
+ 	} while (size);
+ 
++#ifdef CONFIG_LOCKDEP
++	mm->lock_dep_map = NULL;
++#endif
+ 	return 0;
+ 
+ out_free_roots:
+@@ -538,6 +541,7 @@ void gpu_buddy_reset_clear(struct gpu_buddy *mm, bool is_clear)
+ 	unsigned int order;
+ 	int i;
+ 
++	gpu_buddy_driver_lock_held(mm);
+ 	size = mm->size;
+ 	for (i = 0; i < mm->n_roots; ++i) {
+ 		order = ilog2(size) - ilog2(mm->chunk_size);
+@@ -580,6 +584,7 @@ EXPORT_SYMBOL(gpu_buddy_reset_clear);
+ void gpu_buddy_free_block(struct gpu_buddy *mm,
+ 			  struct gpu_buddy_block *block)
+ {
++	gpu_buddy_driver_lock_held(mm);
+ 	BUG_ON(!gpu_buddy_block_is_allocated(block));
+ 	mm->avail += gpu_buddy_block_size(mm, block);
+ 	if (gpu_buddy_block_is_clear(block))
+@@ -633,6 +638,7 @@ void gpu_buddy_free_list(struct gpu_buddy *mm,
+ {
+ 	bool mark_clear = flags & GPU_BUDDY_CLEARED;
+ 
++	gpu_buddy_driver_lock_held(mm);
+ 	__gpu_buddy_free_list(mm, objects, mark_clear, !mark_clear);
+ }
+ EXPORT_SYMBOL(gpu_buddy_free_list);
+@@ -1172,6 +1178,8 @@ int gpu_buddy_block_trim(struct gpu_buddy *mm,
+ 	u64 new_start;
+ 	int err;
+ 
++	gpu_buddy_driver_lock_held(mm);
++
+ 	if (!list_is_singular(blocks))
+ 		return -EINVAL;
+ 
+@@ -1287,6 +1295,8 @@ int gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
+ 	unsigned long pages;
+ 	int err;
+ 
++	gpu_buddy_driver_lock_held(mm);
++
+ 	if (size < mm->chunk_size)
+ 		return -EINVAL;
+ 
+@@ -1475,6 +1485,7 @@ void gpu_buddy_print(struct gpu_buddy *mm)
+ {
+ 	int order;
+ 
++	gpu_buddy_driver_lock_held(mm);
+ 	pr_info("chunk_size: %lluKiB, total: %lluMiB, free: %lluMiB, clear_free: %lluMiB\n",
+ 		mm->chunk_size >> 10, mm->size >> 20, mm->avail >> 20, mm->clear_avail >> 20);
+ 
+diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+index 841f3de5f307..faa025498de4 100644
+--- a/drivers/gpu/drm/drm_buddy.c
++++ b/drivers/gpu/drm/drm_buddy.c
+@@ -42,6 +42,7 @@ void drm_buddy_print(struct gpu_buddy *mm, struct drm_printer *p)
+ {
+ 	int order;
+ 
++	gpu_buddy_driver_lock_held(mm);
+ 	drm_printf(p, "chunk_size: %lluKiB, total: %lluMiB, free: %lluMiB, clear_free: %lluMiB\n",
+ 		   mm->chunk_size >> 10, mm->size >> 20, mm->avail >> 20, mm->clear_avail >> 20);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index 6ba47996bc7c..9f67df646955 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -322,6 +322,7 @@ int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
+ 	if (err)
+ 		return err;
+ 
++	gpu_buddy_driver_set_lock(&mgr->mm, &mgr->lock);
+ 	ttm_set_driver_manager(&xe->ttm, mem_type, &mgr->manager);
+ 	ttm_resource_manager_set_used(&mgr->manager, true);
+ 
+diff --git a/include/linux/gpu_buddy.h b/include/linux/gpu_buddy.h
+index 5fa917ba5450..71941a039648 100644
+--- a/include/linux/gpu_buddy.h
++++ b/include/linux/gpu_buddy.h
+@@ -154,6 +154,7 @@ struct gpu_buddy_block {
+  * @avail: Total free space currently available for allocation in bytes.
+  * @clear_avail: Free space available in the clear tree (zeroed memory) in bytes.
+  *               This is a subset of @avail.
++ * @lock_dep_map: Annotates gpu_buddy API with a driver provided lock.
+  */
+ struct gpu_buddy {
+ /* private: */
+@@ -179,8 +180,48 @@ struct gpu_buddy {
+ 	u64 size;
+ 	u64 avail;
+ 	u64 clear_avail;
++#ifdef CONFIG_LOCKDEP
++	struct lockdep_map *lock_dep_map;
++#endif
+ };
+ 
++#ifdef CONFIG_LOCKDEP
++/**
++ * gpu_buddy_driver_set_lock() - Set the lock protecting accesses to GPU BUDDY
++ * @mm: Pointer to GPU buddy structure.
++ * @lock: the lock used to protect the gpu buddy. The locking primitive
++ * must contain a dep_map field.
++ *
++ * Call this to annotate gpu_buddy APIs which access/modify gpu_buddy manager
++ */
++#define gpu_buddy_driver_set_lock(mm, lock) \
++	do { \
++		struct gpu_buddy *__mm = (mm); \
++		if (!WARN(__mm->lock_dep_map, "GPU BUDDY MM lock should be set only once.")) \
++			__mm->lock_dep_map = &(lock)->dep_map; \
++	} while (0)
++#else
++#define gpu_buddy_driver_set_lock(mm, lock) do { (void)(mm); (void)(lock); } while (0)
++#endif
++
++#ifdef CONFIG_LOCKDEP
++/**
++ * gpu_buddy_driver_lock_held() - Assert GPU BUDDY manager lock is held
++ * @mm: Pointer to the GPU BUDDY structure.
++ *
++ * Ensure driver lock is held.
++ */
++static inline void gpu_buddy_driver_lock_held(struct gpu_buddy *mm)
++{
++	if (mm->lock_dep_map)
++		lockdep_assert(lock_is_held_type(mm->lock_dep_map, 0));
++}
++#else
++static inline void gpu_buddy_driver_lock_held(struct gpu_buddy *mm)
++{
++}
++#endif
++
+ static inline u64
+ gpu_buddy_block_offset(const struct gpu_buddy_block *block)
+ {
+-- 
+2.52.0
 
-Thanks,
-
--/Mallesh
-
->   
->   #if defined(__cplusplus)
