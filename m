@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D28CCD3445
-	for <intel-xe@archiver.kernel.org>; Fri,  8 May 2026 20:57:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27BBDCD3445
+	for <intel-xe@archiver.kernel.org>; Fri,  8 May 2026 21:42:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB48C10E341;
-	Fri,  8 May 2026 20:57:40 +0000 (UTC)
-Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FC5F10E341;
- Fri,  8 May 2026 20:57:39 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============9133081422673527584=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CE9710E26C;
+	Fri,  8 May 2026 21:42:52 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="avIKswWm";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAC5610E26C
+ for <intel-xe@lists.freedesktop.org>; Fri,  8 May 2026 21:42:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1778276572; x=1809812572;
+ h=from:date:subject:mime-version:content-transfer-encoding:
+ message-id:references:in-reply-to:to:cc;
+ bh=wi2ksnzSjX7mxynZSA5EdITNJek6Un3bI78IqW6FWjQ=;
+ b=avIKswWmoVEzfq/3RDCOzlsTWoO19sEf75FiJ/ay/cNA0EofLbFt63hZ
+ PK1CVcOB06gq/Rz2gzTvipKSKqtHcDCrD8V2igFo34DG3gdqwx2rg/+dZ
+ tpebio8c6cIsGsHk7L/rfWeBOoOEb3pVYmM0/84/V+qCsPxAXZTdEaCjF
+ kyXDmKnnQkVNR0j/7NilAE+FmhEMQFeQThSGOj8VyT+EeX7guS3wVzToM
+ PxFEGvS9DfJ9mOI09Da+w66r0L5Fv6zD1n1aMe2HZ0+kKRL+eMw771ui9
+ lo4UPLDbqV39m1ciKv0LccjnoTQR8rPp6fPkzDJdYPUzoWqJsNO5HvsL9 Q==;
+X-CSE-ConnectionGUID: va0wl1c/QqqZN+YGX/KRqA==
+X-CSE-MsgGUID: g4IB3fwEQm6LAaB7NBBmrg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11780"; a="90635985"
+X-IronPort-AV: E=Sophos;i="6.23,224,1770624000"; d="scan'208";a="90635985"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2026 14:42:52 -0700
+X-CSE-ConnectionGUID: BMbvEYEiSuiVxCpJVBd4KQ==
+X-CSE-MsgGUID: 2HgsW/vIRhSGSC4IdvpA6w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,224,1770624000"; d="scan'208";a="267244230"
+Received: from jjgreens-desk20.amr.corp.intel.com (HELO [192.168.1.16])
+ ([10.124.220.81])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2026 14:42:50 -0700
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+Date: Fri, 08 May 2026 18:42:31 -0300
+Subject: [PATCH v2 1/8] drm/xe: Define CACHE_MODE_1 as MCR register
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/multi=5Fqueue=3A_Cod?=
- =?utf-8?q?e_refactor_and_cleanup?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 08 May 2026 20:57:39 -0000
-Message-ID: <177827385938.53705.3766412193656758210@5ab824fced77>
-X-Patchwork-Hint: ignore
-References: <20260508194428.61819-4-niranjana.vishwanathapura@intel.com>
-In-Reply-To: <20260508194428.61819-4-niranjana.vishwanathapura@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260508-rtp-mcr-check-v2-1-9897b147a5d2@intel.com>
+References: <20260508-rtp-mcr-check-v2-0-9897b147a5d2@intel.com>
+In-Reply-To: <20260508-rtp-mcr-check-v2-0-9897b147a5d2@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>, 
+ Matt Roper <matthew.d.roper@intel.com>
+X-Mailer: b4 0.15-dev
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +66,35 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============9133081422673527584==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+CACHE_MODE_1 is a MCR register for all platforms that currently use it
+in the Xe driver.  Use XE_REG_MCR() when defining it.
 
-== Series Details ==
+Fixes: 8cd7e9759766 ("drm/xe: Add missing DG2 lrc workarounds")
+Fixes: ff063430caa8 ("drm/xe/mtl: Add some initial MTL workarounds")
+Bspec: 66534, 67788
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+---
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Series: drm/xe/multi_queue: Code refactor and cleanup
-URL   : https://patchwork.freedesktop.org/series/166240/
-State : success
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 16c87ce3f614..408933aee08a 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -152,7 +152,7 @@
+ 
+ #define XEHPG_INSTDONE_GEOM_SVGUNIT		XE_REG_MCR(0x666c)
+ 
+-#define CACHE_MODE_1				XE_REG(0x7004, XE_REG_OPTION_MASKED)
++#define CACHE_MODE_1				XE_REG_MCR(0x7004, XE_REG_OPTION_MASKED)
+ #define   MSAA_OPTIMIZATION_REDUC_DISABLE	REG_BIT(11)
+ 
+ #define COMMON_SLICE_CHICKEN1			XE_REG(0x7010, XE_REG_OPTION_MASKED)
 
-== Summary ==
+-- 
+2.53.0
 
-CI Bug Log - changes from xe-5030-32e3e7a9b5d137996e6f57a4aa0c248f12db9544_BAT -> xe-pw-166240v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5030-32e3e7a9b5d137996e6f57a4aa0c248f12db9544 -> xe-pw-166240v1
-
-  IGT_8900: 529869b7d0fba64ed67819111079ff269bc8159a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5030-32e3e7a9b5d137996e6f57a4aa0c248f12db9544: 32e3e7a9b5d137996e6f57a4aa0c248f12db9544
-  xe-pw-166240v1: 166240v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166240v1/index.html
-
---===============9133081422673527584==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/multi_queue: Code refactor and cleanup</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166240/">https://patchwork.freedesktop.org/series/166240/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166240v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166240v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5030-32e3e7a9b5d137996e6f57a4aa0c248f12db9544_BAT -&gt; xe-pw-166240v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5030-32e3e7a9b5d137996e6f57a4aa0c248f12db9544 -&gt; xe-pw-166240v1</li>
-</ul>
-<p>IGT_8900: 529869b7d0fba64ed67819111079ff269bc8159a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5030-32e3e7a9b5d137996e6f57a4aa0c248f12db9544: 32e3e7a9b5d137996e6f57a4aa0c248f12db9544<br />
-  xe-pw-166240v1: 166240v1</p>
-
-</body>
-</html>
-
---===============9133081422673527584==--
