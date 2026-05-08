@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8378CD3447
-	for <intel-xe@archiver.kernel.org>; Fri,  8 May 2026 12:50:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 692D0CD37A7
+	for <intel-xe@archiver.kernel.org>; Fri,  8 May 2026 13:09:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73A2C10F4A1;
-	Fri,  8 May 2026 12:50:41 +0000 (UTC)
-Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 534AA10F4A7;
- Fri,  8 May 2026 12:50:40 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5764921566349202047=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id F156B10E31B;
+	Fri,  8 May 2026 13:09:55 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J6v/S0yx";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 81C8D10E31A;
+ Fri,  8 May 2026 13:09:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1778245795; x=1809781795;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=LujI0/T8a+RHnzdgMCvgNRfOJLQDturS0zOBT2Nzr18=;
+ b=J6v/S0yxclE9+tYQlH2ODjOyUIYkvq2lnBtryNG5fURpJsPBrNL5OKXa
+ sVWiaZqgCGirZLSop2UGbU4K8PXHvEaubb5A4oVaqMAWY6/r1ZVComsYu
+ 655NznWnEU405CmhCKPFp3JoHO0R64DYd3xStCMWSGhzEO9GzbGpzLOBT
+ +z7GthZUuwAqiQP4b9zP5bPMXE4fuemz4K0jokRNjAS0peZVtRZzD7O61
+ cjhG7ATP9a7Xy8qjKqiUfL9oDb5RgoU0o20QimMB7YzLSF1zXiDUUh4MQ
+ um9+tqCaxpWDRZQxoqE+Z1jSgxUJNXkF+qCf6LLzYqoauE5oNutkfLABA g==;
+X-CSE-ConnectionGUID: Lb8LQLFxQrSQcy3OMq8G4Q==
+X-CSE-MsgGUID: bVnYM0bORGe/HH/qOxjYCQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11779"; a="90674640"
+X-IronPort-AV: E=Sophos;i="6.23,223,1770624000"; d="scan'208";a="90674640"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2026 06:09:55 -0700
+X-CSE-ConnectionGUID: heDupAZBSba3KAK7n0o0Hw==
+X-CSE-MsgGUID: Pl7FUbieRxW9DjQmJlMg0Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,223,1770624000"; d="scan'208";a="260495760"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.40])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2026 06:09:52 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 007/108] drm/i915/dp_link_training: Flush commits in
+ debugfs entries
+In-Reply-To: <20260428125233.1664668-8-imre.deak@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260428125233.1664668-1-imre.deak@intel.com>
+ <20260428125233.1664668-8-imre.deak@intel.com>
+Date: Fri, 08 May 2026 16:09:49 +0300
+Message-ID: <159abd8f9ae013230c8d997ae3c949f79ada2100@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5Bv3?=
- =?utf-8?q?=2C1/2=5D_drm/xe/dma-buf=3A_handle_empty_bo_and_UAF_races?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 08 May 2026 12:50:40 -0000
-Message-ID: <177824464033.52104.5319545665754580845@5ab824fced77>
-X-Patchwork-Hint: ignore
-References: <20260508102635.149172-3-matthew.auld@intel.com>
-In-Reply-To: <20260508102635.149172-3-matthew.auld@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,140 +66,147 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5764921566349202047==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 28 Apr 2026, Imre Deak <imre.deak@intel.com> wrote:
+> Flush pending connector commits before accessing the link training state
+> from debugfs. Access to connector state - like the link training state -
+> that may be updated from an asynchronous commit tail must hold the
+> connection mutex and wait for the tail to complete. The commit tail
+> cannot hold the connection mutex, so all other accessors must wait for
+> it explicitly.
+>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  .../drm/i915/display/intel_dp_link_training.c | 23 +++++++++++++++++++
+>  1 file changed, 23 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> index 653b974e925c2..6dfb6b8db235e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> @@ -1866,8 +1866,11 @@ static int i915_dp_force_link_rate_show(struct seq_file *m, void *data)
+>  	if (err)
+>  		return err;
+>  
+> +	intel_dp_flush_connector_commits(connector);
 
-== Series Details ==
+Not part of this patch, but I have a hard time making the connection
+from "flush connector commits" to "wait for completion timeout on
+hw_done".
 
-Series: series starting with [v3,1/2] drm/xe/dma-buf: handle empty bo and UAF races
-URL   : https://patchwork.freedesktop.org/series/166203/
-State : success
+What this patch does is add that "flush" all over the place, making it
+even harder to make the connection.
 
-== Summary ==
+It's not helping that struct drm_crtc_helper_funcs has ->atomic_flush
+hook, which i915 does not use.
 
-CI Bug Log - changes from xe-5025-680a4832a8182b13ac5d55ab0c03c54ebc2baadd_BAT -> xe-pw-166203v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-166203v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5025-680a4832a8182b13ac5d55ab0c03c54ebc2baadd/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166203v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#7483]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5025-680a4832a8182b13ac5d55ab0c03c54ebc2baadd/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166203v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-
-  
-  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
+Maybe what I'm saying is I'm stupid and don't understand what flush
+means here.
 
 
-Build changes
--------------
-
-  * Linux: xe-5025-680a4832a8182b13ac5d55ab0c03c54ebc2baadd -> xe-pw-166203v1
-
-  IGT_8900: 529869b7d0fba64ed67819111079ff269bc8159a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5025-680a4832a8182b13ac5d55ab0c03c54ebc2baadd: 680a4832a8182b13ac5d55ab0c03c54ebc2baadd
-  xe-pw-166203v1: 166203v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166203v1/index.html
-
---===============5764921566349202047==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+BR,
+Jani.
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+> +
+>  	if (intel_dp->link.active)
+>  		current_rate = intel_dp->link_rate;
+> +
+>  	force_rate = intel_dp->link.force_rate;
+>  
+>  	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
+> @@ -1939,6 +1942,8 @@ static ssize_t i915_dp_force_link_rate_write(struct file *file,
+>  	if (err)
+>  		return err;
+>  
+> +	intel_dp_flush_connector_commits(connector);
+> +
+>  	intel_dp_reset_link_params(intel_dp);
+>  	intel_dp->link.force_rate = rate;
+>  
+> @@ -1964,6 +1969,8 @@ static int i915_dp_force_lane_count_show(struct seq_file *m, void *data)
+>  	if (err)
+>  		return err;
+>  
+> +	intel_dp_flush_connector_commits(connector);
+> +
+>  	if (intel_dp->link.active)
+>  		current_lane_count = intel_dp->lane_count;
+>  	force_lane_count = intel_dp->link.force_lane_count;
+> @@ -2041,6 +2048,8 @@ static ssize_t i915_dp_force_lane_count_write(struct file *file,
+>  	if (err)
+>  		return err;
+>  
+> +	intel_dp_flush_connector_commits(connector);
+> +
+>  	intel_dp_reset_link_params(intel_dp);
+>  	intel_dp->link.force_lane_count = lane_count;
+>  
+> @@ -2063,6 +2072,8 @@ static int i915_dp_max_link_rate_show(void *data, u64 *val)
+>  	if (err)
+>  		return err;
+>  
+> +	intel_dp_flush_connector_commits(connector);
+> +
+>  	*val = intel_dp->link.max_rate;
+>  
+>  	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
+> @@ -2082,6 +2093,8 @@ static int i915_dp_max_lane_count_show(void *data, u64 *val)
+>  	if (err)
+>  		return err;
+>  
+> +	intel_dp_flush_connector_commits(connector);
+> +
+>  	*val = intel_dp->link.max_lane_count;
+>  
+>  	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
+> @@ -2101,6 +2114,8 @@ static int i915_dp_force_link_training_failure_show(void *data, u64 *val)
+>  	if (err)
+>  		return err;
+>  
+> +	intel_dp_flush_connector_commits(connector);
+> +
+>  	*val = intel_dp->link.force_train_failure;
+>  
+>  	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
+> @@ -2122,6 +2137,8 @@ static int i915_dp_force_link_training_failure_write(void *data, u64 val)
+>  	if (err)
+>  		return err;
+>  
+> +	intel_dp_flush_connector_commits(connector);
+> +
+>  	intel_dp->link.force_train_failure = val;
+>  
+>  	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
+> @@ -2143,6 +2160,8 @@ static int i915_dp_force_link_retrain_show(void *data, u64 *val)
+>  	if (err)
+>  		return err;
+>  
+> +	intel_dp_flush_connector_commits(connector);
+> +
+>  	*val = intel_dp->link.force_retrain;
+>  
+>  	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
+> @@ -2161,6 +2180,8 @@ static int i915_dp_force_link_retrain_write(void *data, u64 val)
+>  	if (err)
+>  		return err;
+>  
+> +	intel_dp_flush_connector_commits(connector);
+> +
+>  	intel_dp->link.force_retrain = val;
+>  
+>  	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
+> @@ -2184,6 +2205,8 @@ static int i915_dp_link_retrain_disabled_show(struct seq_file *m, void *data)
+>  	if (err)
+>  		return err;
+>  
+> +	intel_dp_flush_connector_commits(connector);
+> +
+>  	seq_printf(m, "%s\n", str_yes_no(intel_dp->link.retrain_disabled));
+>  
+>  	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
 
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v3,1/2] drm/xe/dma-buf: handle empty bo and UAF races</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166203/">https://patchwork.freedesktop.org/series/166203/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166203v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166203v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5025-680a4832a8182b13ac5d55ab0c03c54ebc2baadd_BAT -&gt; xe-pw-166203v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-166203v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5025-680a4832a8182b13ac5d55ab0c03c54ebc2baadd/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166203v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5025-680a4832a8182b13ac5d55ab0c03c54ebc2baadd/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166203v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5025-680a4832a8182b13ac5d55ab0c03c54ebc2baadd -&gt; xe-pw-166203v1</li>
-</ul>
-<p>IGT_8900: 529869b7d0fba64ed67819111079ff269bc8159a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5025-680a4832a8182b13ac5d55ab0c03c54ebc2baadd: 680a4832a8182b13ac5d55ab0c03c54ebc2baadd<br />
-  xe-pw-166203v1: 166203v1</p>
-
-</body>
-</html>
-
---===============5764921566349202047==--
+-- 
+Jani Nikula, Intel
