@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A970BCD4850
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8B4ACD4857
 	for <intel-xe@archiver.kernel.org>; Mon, 11 May 2026 14:41:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 695E210E7C7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9293410E7BC;
 	Mon, 11 May 2026 14:41:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="GqZXOw6o";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="bNKQNnRH";
 	dkim-atps=neutral
-Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com
- [209.85.210.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0727888697
- for <intel-xe@lists.freedesktop.org>; Sat,  9 May 2026 16:24:26 +0000 (UTC)
-Received: by mail-ot1-f48.google.com with SMTP id
- 46e09a7af769-7dcd54a8d17so186554a34.0
- for <intel-xe@lists.freedesktop.org>; Sat, 09 May 2026 09:24:25 -0700 (PDT)
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com
+ [209.85.167.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 120BE10E101
+ for <intel-xe@lists.freedesktop.org>; Sat,  9 May 2026 16:24:28 +0000 (UTC)
+Received: by mail-oi1-f170.google.com with SMTP id
+ 5614622812f47-46fab5f4f59so154712b6e.1
+ for <intel-xe@lists.freedesktop.org>; Sat, 09 May 2026 09:24:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1778343865; x=1778948665; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1778343867; x=1778948667; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=LO2P0xIyQDisD90PKW6kTEf7ozKUuDCN/MlNOVEwtA8=;
- b=GqZXOw6oXghP0yIrow/tU24BgNnJyQXl+7h1EJHsugVbpI802zf1C+53cbwCAgTa7w
- r40ua542vETZ3WwwdTlgc8sP8CYQafyflucoNp6B9G8C2MjMEwlvke3Icz4Pc8jGoFwP
- k3KYuJIsa38gxqbrJNxJ68qFXz6MWWGUAM570glqJHzaKUpUS5og/uRNowXREq4Zhzmh
- LJxm1uIf4ndADEdUapWPUqVRFYb5rN9+PYqnRdvUIUD+46pjLhGTw6gaTHaXzmZeirrj
- 90su9JlTGOqRqabb3KH7XAHErJafSNDX10GSoknhvUJrLIZn5q+dBRhBOXuQcJa2vWta
- YIRQ==
+ bh=vYSUkeQk08X5s5eiMKardz3dR/jsqi1HIQzkNjMFZNU=;
+ b=bNKQNnRH3frfDVqRmtApxVheo+ntM2oqFfI/tvJLuA2LryNMQprnT6kI05IJ9o/x25
+ nTC0Y96M6O8KgR4InBS4pjeG4QhDAqbEs7lSNp+gvaxRrtko1PfOsgRXdC8hbhiX4vJ1
+ pkXHqFPd41PrdwBx4J0YZNpbbythPPS7b4AM6vy8WFk+ZK9ILDKtsQkZj/SNFiF3t/Ov
+ /QS+WjOOdBY1p2wCT9EIFq7GiM4h1Y2OssaiqvBs0QS/NzXhcqKZz6qwQLL8oCUry10n
+ rZw8qXI80K2lPDDoVzt4VCohOIGEtj6tdRp2zNIjey+umzcw5gQGHhtzROit3ssA8toW
+ +IUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1778343865; x=1778948665;
+ d=1e100.net; s=20251104; t=1778343867; x=1778948667;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=LO2P0xIyQDisD90PKW6kTEf7ozKUuDCN/MlNOVEwtA8=;
- b=BkamU537+gre+jZ8b1b7KAt//HKKxEss91+M1Q67fC21aFeXTQuc0E+DV+Tq8dg3uD
- dLO1t4pphfYYZ+rw+hFBUlQ7nO2ScjJypXWtH1d3g6qGqlbRs/5hOZGp9e6oh6YXp4bo
- +UDiAeOpcjSglA80KPVFXTE/fFpxWm4OGj4Fe1qtjP7ETYWqW8KKZTBQWRwrpqeohAwt
- ARSlQdH9ashqmsjTBbTWT9SF4xyQ+onCzDiNvEiOoql3noH2vhy6TK4AGBYmIFATw8Zf
- bYIIbi1xLeH8Xf+uQd2THIusjP6TVuwg9eb/I6VqgGqDl6NYaizUysjxxLhnD04esuGK
- 45hA==
-X-Gm-Message-State: AOJu0YxhDGkZCWpkjnZVgQHGf6DIjq+ThhDuY/Y6vJ+Q07YmaDXkJWA4
- zQ0LYDeo7Uu7W3viOw2cQpaDiE/hs8N57CXBJoMohM2li+DRHvxP3rl7
-X-Gm-Gg: Acq92OGNrOkoHARLCPE6030oN5vJCRKIB99Bb0v1OlRMaCVXcbEZL8tO8kieFoo1rLe
- WyI6wja0jPX1SjsLUTU/DNRYduKR6TR6ahYxsQI9rW5A+X26JvN755aG+eIPsW8uKL8ovZFWbAc
- VtERtDuASZtg1tj7vEhzeY10XL0nk9HZiy/cHmJVVrXmV4kSkGjcdQB7944tyyC/mFLT0WGIqQk
- kAShIt/Kj4V2MBFxsSztrAUUVO+Ls0tzSTWkZH7kAuw12RXDfKgBeMv03//WuAAr1K9yRYqbmil
- 55fHG5AO4yocyeh5xOVzXLFpnHFKElDzuPo+0MSDggisXndSn/R5wxtylZxRaKGlHSBrnWuVVM8
- o5Sb/4vGr09LX3U8c+b3Ic8/D18sGxltitcB9EIUk7tvJqGh7MNbpkgKfVhgGlJBGzcZ0d/ysNm
- NpuWP6OezCQcuLj0SXAHaVxpUsnkGRWXU5uLdG10NFHqAlFOoE3tUdZYtz6diXMQyNC4ap7yRIi
- A/TZBKwCsHDYDJCNXIRjbRk
-X-Received: by 2002:a05:6870:fbac:b0:434:357:6dcd with SMTP id
- 586e51a60fabf-434fc418c5amr6222410fac.8.1778343865106; 
- Sat, 09 May 2026 09:24:25 -0700 (PDT)
+ bh=vYSUkeQk08X5s5eiMKardz3dR/jsqi1HIQzkNjMFZNU=;
+ b=ChVSe1ZQSCquN1jvy1LAViB5QToPkbe9dC8mYSQs899IiI9M7ueY+CH9KiQN2xet+J
+ tgCl689m1u+V8Zn3HV1b6J6GmzRlca9mOQaPSFO2O32LsPM08bn2SFKY/ShyD6+1jdkr
+ FYZ+QtrByhGH/r9Hb90Jwkgltlc6TJAnrx/ydnPgAh5pXs8iAIQZZAoGCAwrvpB5zMhb
+ sxIvvQmwAOfpF7ZvA6G7zAaf/aktCG87W370I/i3GfVCua47lPXpoLLQtgjNi7ZBVjbJ
+ GeyD2Bs8ycBQlX1h2EFZKWpo8S9tIf9Ratm5IRjtHCsMnRRxclkknBVEIGzO4zcXREjX
+ Z41w==
+X-Gm-Message-State: AOJu0YzTTWpf/KRFetBaFGa/wGBKaroybgiK5B4wC2PZfNkjg4VFWR/Y
+ 3ohzc3ayt0t9VlVmXBlWCKUgc1V5pYhVgjrbhxWzo9v3+UoOSk+7kWgd
+X-Gm-Gg: Acq92OEKzCGFiGoV8T+2PnCAFOWjYYmjgz0aAV0psePYmHs6KSc/mHQyjJG1SIn3tnn
+ f3voU9Cll9BQ0FmLKoaLocBUwUr5tK6jI3G5XIq9o7bIICniRjpV2zoyews2ER+Nln2oRbAvTWw
+ Bts+hPh5OXw17B6IJ0HQIg41YIIpGRg1JYTCH0x3hdVn2LB2yppRIZmD66R9ZoxtCTyLhGOJrZn
+ 0NxpgdJ+s0ega7z5AV5X3Gm9NdFbp3hCmKeZSOrEtEMIYSpJAsAhpYGF5s+pPEsLUKKsVaoOMyY
+ jsgoriziz8DZv550qn0iLjw3mtVmhfSHf0rY+AFb9eBafSX+uwHY2y/IXoq05W2CDK1epvVdyKd
+ +tCUETjCHz4xvNi1ICZQrqVe2rES3Mu+5OPDVHtALgq8rMbHLPUdGznG0b1KWOKoitmRi3jjQy/
+ v2KGh7+quLPAEWy7uQgUjUJLSy+Y4hgPfWH4QNR1gKG4O/8v0BWZcCR12BIgtSztIBGE3UIkEjR
+ l0HipQKxu+Tza4imO9uXhQpXOZNH9aE7sQ=
+X-Received: by 2002:a05:6808:19a3:b0:467:53b0:b414 with SMTP id
+ 5614622812f47-480451ce0c8mr5800487b6e.6.1778343867067; 
+ Sat, 09 May 2026 09:24:27 -0700 (PDT)
 Received: from localhost ([136.49.184.116]) by smtp.gmail.com with ESMTPSA id
- 586e51a60fabf-435571099a4sm4623244fac.7.2026.05.09.09.24.24
+ 5614622812f47-47c763b2c87sm17071559b6e.4.2026.05.09.09.24.26
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 09 May 2026 09:24:24 -0700 (PDT)
+ Sat, 09 May 2026 09:24:26 -0700 (PDT)
 From: Aaron Esau <aaron1esau@gmail.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
@@ -67,10 +67,9 @@ Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  joonas.lahtinen@linux.intel.com, tursulin@ursulin.net,
  mika.kahola@intel.com, stable@vger.kernel.org,
  Aaron Esau <aaron1esau@gmail.com>
-Subject: [PATCH 1/3] drm/i915/cx0: check PLL ACK bit in
- intel_cx0_pll_is_enabled()
-Date: Sat,  9 May 2026 11:24:05 -0500
-Message-ID: <20260509162407.510539-2-aaron1esau@gmail.com>
+Subject: [PATCH 3/3] drm/i915/cx0: return errors from CX0 PLL enable on failure
+Date: Sat,  9 May 2026 11:24:07 -0500
+Message-ID: <20260509162407.510539-4-aaron1esau@gmail.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260509162407.510539-1-aaron1esau@gmail.com>
 References: <20260509162407.510539-1-aaron1esau@gmail.com>
@@ -91,48 +90,177 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-intel_cx0_pll_is_enabled() only checks the PCLK_PLL_REQUEST bit in
-PORT_CLOCK_CTL, which is set by the driver during the PLL enable
-sequence. It does not check the PCLK_PLL_ACK bit, which is the
-hardware's response indicating the PLL actually locked.
+intel_cx0pll_enable() silently continues when the PHY fails to come
+out of SOC reset or the PLL fails to lock. When the CX0 PHY MSGBUS
+is unresponsive, this causes all subsequent PLL register writes to be
+silently dropped and the PLL lock request to time out, leaving the
+display hardware in a broken state.
 
-When the CX0 PHY MSGBUS is unresponsive (e.g. after a failed s2idle
-resume), the PLL register programming via MSGBUS silently fails and
-the PLL never locks, but intel_cx0_pll_is_enabled() returns true
-because the driver-set REQUEST bit is present. This causes all
-downstream state readout and verification to operate on a PLL that
-is not actually enabled.
+Return -ETIMEDOUT from intel_cx0_phy_lane_reset() when the PHY fails
+to come out of SOC reset. Return -ETIMEDOUT from intel_cx0pll_enable()
+when the PLL fails to lock. Propagate these errors through
+intel_mtl_pll_enable() and mtl_pll_enable() to the shared DPLL
+framework, which (as of the previous patch) will abort the CRTC
+enable sequence rather than driving a pipe with a non-functional PLL.
 
-Check both the REQUEST and ACK bits so that a PLL is only reported
-as enabled when the hardware has confirmed it locked.
-
-Fixes: bf8531990380 ("drm/i915/display: Allow display PHYs to reset power state")
+Fixes: 51390cc0e00a ("drm/i915/mtl: Add Support for C10 PHY message bus and pll programming")
 Cc: stable@vger.kernel.org
-Cc: Mika Kahola <mika.kahola@intel.com>
 Signed-off-by: Aaron Esau <aaron1esau@gmail.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 47 ++++++++++++-------
+ drivers/gpu/drm/i915/display/intel_cx0_phy.h  |  6 +--
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  4 +-
+ 3 files changed, 34 insertions(+), 23 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 7288065d2..4cacea802 100644
+index 4cacea802..f5c8444ef 100644
 --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -3581,9 +3581,12 @@ static bool intel_cx0_pll_is_enabled(struct intel_encoder *encoder)
- 	struct intel_display *display = to_intel_display(encoder);
- 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
- 	u8 lane = dig_port->lane_reversal ? INTEL_CX0_LANE1 : INTEL_CX0_LANE0;
-+	u32 val;
- 
--	return intel_de_read(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port)) &
--			     intel_cx0_get_pclk_pll_request(lane);
-+	val = intel_de_read(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port));
-+
-+	return (val & intel_cx0_get_pclk_pll_request(lane)) &&
-+	       (val & intel_cx0_get_pclk_pll_ack(lane));
+@@ -3103,8 +3103,8 @@ static u32 intel_cx0_get_pclk_refclk_ack(u8 lane_mask)
+ 	return val;
  }
  
- void intel_mtl_tbt_pll_disable_clock(struct intel_encoder *encoder)
+-static void intel_cx0_phy_lane_reset(struct intel_encoder *encoder,
+-				     bool lane_reversal)
++static int intel_cx0_phy_lane_reset(struct intel_encoder *encoder,
++				    bool lane_reversal)
+ {
+ 	struct intel_display *display = to_intel_display(encoder);
+ 	enum port port = encoder->port;
+@@ -3121,10 +3121,12 @@ static void intel_cx0_phy_lane_reset(struct intel_encoder *encoder,
+ 
+ 	if (intel_de_wait_for_set_us(display, XELPDP_PORT_BUF_CTL1(display, port),
+ 				     XELPDP_PORT_BUF_SOC_PHY_READY,
+-				     XELPDP_PORT_BUF_SOC_READY_TIMEOUT_US))
+-		drm_warn(display->drm,
+-			 "PHY %c failed to bring out of SOC reset\n",
+-			 phy_name(phy));
++				     XELPDP_PORT_BUF_SOC_READY_TIMEOUT_US)) {
++		drm_err(display->drm,
++			"PHY %c failed to bring out of SOC reset\n",
++			phy_name(phy));
++		return -ETIMEDOUT;
++	}
+ 
+ 	intel_de_rmw(display, XELPDP_PORT_BUF_CTL2(display, port), lane_pipe_reset,
+ 		     lane_pipe_reset);
+@@ -3160,6 +3162,8 @@ static void intel_cx0_phy_lane_reset(struct intel_encoder *encoder,
+ 		drm_warn(display->drm,
+ 			 "PHY %c failed to bring out of lane reset\n",
+ 			 phy_name(phy));
++
++	return 0;
+ }
+ 
+ static void intel_cx0_program_phy_lane(struct intel_encoder *encoder, int lane_count,
+@@ -3220,17 +3224,18 @@ static u32 intel_cx0_get_pclk_pll_ack(u8 lane_mask)
+ 	return val;
+ }
+ 
+-static void intel_cx0pll_enable(struct intel_encoder *encoder,
+-				const struct intel_cx0pll_state *pll_state)
++static int intel_cx0pll_enable(struct intel_encoder *encoder,
++			       const struct intel_cx0pll_state *pll_state)
+ {
+ 	int port_clock = pll_state->use_c10 ? pll_state->c10.clock : pll_state->c20.clock;
+ 	struct intel_display *display = to_intel_display(encoder);
+ 	enum phy phy = intel_encoder_to_phy(encoder);
+ 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
++	struct ref_tracker *wakeref = intel_cx0_phy_transaction_begin(encoder);
+ 	bool lane_reversal = dig_port->lane_reversal;
+ 	u8 maxpclk_lane = lane_reversal ? INTEL_CX0_LANE1 :
+ 					  INTEL_CX0_LANE0;
+-	struct ref_tracker *wakeref = intel_cx0_phy_transaction_begin(encoder);
++	int ret;
+ 
+ 	/*
+ 	 * Lane reversal is never used in DP-alt mode, in that case the
+@@ -3246,7 +3251,9 @@ static void intel_cx0pll_enable(struct intel_encoder *encoder,
+ 	intel_program_port_clock_ctl(encoder, pll_state, port_clock, lane_reversal);
+ 
+ 	/* 2. Bring PHY out of reset. */
+-	intel_cx0_phy_lane_reset(encoder, lane_reversal);
++	ret = intel_cx0_phy_lane_reset(encoder, lane_reversal);
++	if (ret)
++		goto out;
+ 
+ 	/*
+ 	 * 3. Change Phy power state to Ready.
+@@ -3296,9 +3303,12 @@ static void intel_cx0pll_enable(struct intel_encoder *encoder,
+ 	if (intel_de_wait_us(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
+ 			     intel_cx0_get_pclk_pll_ack(INTEL_CX0_BOTH_LANES),
+ 			     intel_cx0_get_pclk_pll_ack(maxpclk_lane),
+-			     XELPDP_PCLK_PLL_ENABLE_TIMEOUT_US, NULL))
+-		drm_warn(display->drm, "Port %c PLL not locked\n",
+-			 phy_name(phy));
++			     XELPDP_PCLK_PLL_ENABLE_TIMEOUT_US, NULL)) {
++		drm_err(display->drm, "Port %c PLL not locked\n",
++			phy_name(phy));
++		ret = -ETIMEDOUT;
++		goto out;
++	}
+ 
+ 	/*
+ 	 * 11. Follow the Display Voltage Frequency Switching Sequence After
+@@ -3320,7 +3330,10 @@ static void intel_cx0pll_enable(struct intel_encoder *encoder,
+ 						    XELPDP_P2_STATE_READY);
+ 	}
+ 
++out:
+ 	intel_cx0_phy_transaction_end(encoder, wakeref);
++
++	return ret;
+ }
+ 
+ void intel_mtl_tbt_pll_calc_state(struct intel_dpll_hw_state *hw_state)
+@@ -3458,11 +3471,11 @@ void intel_mtl_tbt_pll_enable_clock(struct intel_encoder *encoder, int port_cloc
+ 		       port_clock);
+ }
+ 
+-void intel_mtl_pll_enable(struct intel_encoder *encoder,
+-			  struct intel_dpll *pll,
+-			  const struct intel_dpll_hw_state *dpll_hw_state)
++int intel_mtl_pll_enable(struct intel_encoder *encoder,
++			 struct intel_dpll *pll,
++			 const struct intel_dpll_hw_state *dpll_hw_state)
+ {
+-	intel_cx0pll_enable(encoder, &dpll_hw_state->cx0pll);
++	return intel_cx0pll_enable(encoder, &dpll_hw_state->cx0pll);
+ }
+ 
+ void intel_mtl_pll_enable_clock(struct intel_encoder *encoder,
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+index ae98ac23e..1d6cc32d7 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+@@ -28,9 +28,9 @@ struct intel_hdmi;
+ void intel_clear_response_ready_flag(struct intel_encoder *encoder,
+ 				     int lane);
+ bool intel_encoder_is_c10phy(struct intel_encoder *encoder);
+-void intel_mtl_pll_enable(struct intel_encoder *encoder,
+-			  struct intel_dpll *pll,
+-			  const struct intel_dpll_hw_state *dpll_hw_state);
++int intel_mtl_pll_enable(struct intel_encoder *encoder,
++			 struct intel_dpll *pll,
++			 const struct intel_dpll_hw_state *dpll_hw_state);
+ void intel_mtl_pll_disable(struct intel_encoder *encoder);
+ enum icl_port_dpll_id
+ intel_mtl_port_pll_type(struct intel_encoder *encoder,
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+index 78fd2e5f9..ce31deadc 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+@@ -4441,9 +4441,7 @@ static int mtl_pll_enable(struct intel_display *display,
+ 	if (drm_WARN_ON(display->drm, !encoder))
+ 		return -ENODEV;
+ 
+-	intel_mtl_pll_enable(encoder, pll, dpll_hw_state);
+-
+-	return 0;
++	return intel_mtl_pll_enable(encoder, pll, dpll_hw_state);
+ }
+ 
+ static void mtl_pll_disable(struct intel_display *display,
 -- 
 2.54.0
 
