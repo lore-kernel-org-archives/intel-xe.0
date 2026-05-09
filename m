@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 664A4CD3445
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4366CD37BC
 	for <intel-xe@archiver.kernel.org>; Sat,  9 May 2026 16:41:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E6B910E3DA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62B0A10E3E2;
 	Sat,  9 May 2026 16:41:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="INw8skmM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XKm/Buhz";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA09210E3DB;
- Sat,  9 May 2026 16:41:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFC6410E3DA;
+ Sat,  9 May 2026 16:41:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778344913; x=1809880913;
+ t=1778344916; x=1809880916;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Pi8fE21YKYe8OFjNKnKvKZpWmOFOeU9vnFwExHvN+2g=;
- b=INw8skmMxO0uPxHNj3r0i4Gj36LaMGvTz6V1kobCGRWIkExjl/Yn9w7Y
- 70Ss51GeFEfRU7n2H54srEVIu7NniupW7NCsRZAo1g6lU5HyN6pTB/xYK
- LjlRXpogmblQvplGfV8tCbZa883EGp3sAHsXkfSSlT7Ojg3EnBomVKvB3
- SO3rMY2+Hr2uZKScH4sirnXHxFOG1c6zM4nfBsuTZEL3ZW6JU04SPCzl6
- Kn/tw5A9TxQQq17dmlcgZY8vdwHZnzZbtVQpU2Iq3+7zqZgqAmB0qPcO/
- MH7QB3Cx4V2oaydR6i9IfoA92hNpXQo1lU7QeQdh/TQcZEHEK5tBOxf8V w==;
-X-CSE-ConnectionGUID: xr9FGGOaSWSmu43ojSxYyQ==
-X-CSE-MsgGUID: EJ8O/F5vQeeKWAuZkD9GZw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11781"; a="90763611"
-X-IronPort-AV: E=Sophos;i="6.23,225,1770624000"; d="scan'208";a="90763611"
+ bh=EjtY4WJBCG4t4bdB3Rl52R+HDdYYMWgAOFl4frXcMZc=;
+ b=XKm/BuhzCgP0h/2rPOt5PeglXYyO/t4hRL4bgG+72pIRYtp3OHODJ9H1
+ Par/EKWqCPjW77anYZLPrEA95TkX+3dk2Y2XArvzVwO5aUk0xFtAO2Tuz
+ bADfcSxBtbH8dLEuIIFO5qPduvhP5S6u5jA7xiRLW3Y9NhwRgu/fk3bPS
+ /XzpkR5Jg8NumMwYtXN4P7VbpjWKNqRCtKJ64aEwkUvcHHxvjdZYcTvv0
+ J1yhgwW+V9uDSmXboSMSY6xa8EWVeKYWZ5FWeiP4FYvQwN7K+JPQtoRe/
+ mMWFjD+ZBI0wW/Qm4/ZG66KbozLu/jeyU1l74k66HcZFuhjHafVwB21FO w==;
+X-CSE-ConnectionGUID: WYOT1D6JQ1+k04somA72Gw==
+X-CSE-MsgGUID: vCOCwmDJRAOcwZeUkNz1iw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11781"; a="90763615"
+X-IronPort-AV: E=Sophos;i="6.23,225,1770624000"; d="scan'208";a="90763615"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2026 09:41:53 -0700
-X-CSE-ConnectionGUID: aJIskvqhQx6sItusAaAEJg==
-X-CSE-MsgGUID: Tx0dRIWRT6+9fAs6ivWwNQ==
+ 09 May 2026 09:41:56 -0700
+X-CSE-ConnectionGUID: Cv4fiznHS8KnHVRGrm5SOw==
+X-CSE-MsgGUID: C6WnfMQwSIKrj4azpeMlwg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,225,1770624000"; d="scan'208";a="236212246"
+X-IronPort-AV: E=Sophos;i="6.23,225,1770624000"; d="scan'208";a="236212257"
 Received: from dev-417.igk.intel.com ([10.91.214.181])
- by orviesa010.jf.intel.com with ESMTP; 09 May 2026 09:41:51 -0700
+ by orviesa010.jf.intel.com with ESMTP; 09 May 2026 09:41:54 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, nemesa.garg@intel.com,
  =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v3 4/9] drm/i915/casf: rename sumcoeff into sum_coeff
-Date: Sat,  9 May 2026 18:40:43 +0200
-Message-ID: <20260509164048.627399-5-michal.grzelak@intel.com>
+Subject: [PATCH v3 6/9] drm/i915/scaler: remove id in favor of scaler_id
+Date: Sat,  9 May 2026 18:40:45 +0200
+Message-ID: <20260509164048.627399-7-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260509164048.627399-1-michal.grzelak@intel.com>
 References: <20260509164048.627399-1-michal.grzelak@intel.com>
@@ -70,42 +70,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Stick to using snake_case in intel_casf_scaler_compute_coeff() where
-it is possible.
+id is not really used anywhere in skl_scaler_get_config(). Replace it
+with scaler_id.
+
+Return if no scaler was found.
+
+v1->v2
+- check if any scaler was found (Ville)
 
 Cc: Nemesa Garg <nemesa.garg@intel.com>
+Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_casf.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/skl_scaler.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_casf.c b/drivers/gpu/drm/i915/display/intel_casf.c
-index b9643548d182..cafd21a03632 100644
---- a/drivers/gpu/drm/i915/display/intel_casf.c
-+++ b/drivers/gpu/drm/i915/display/intel_casf.c
-@@ -218,7 +218,7 @@ static void intel_casf_scaler_compute_coeff(struct intel_crtc_state *crtc_state)
- {
- 	const u16 *filtercoeff;
- 	u16 filter_coeff[SCALER_FILTER_NUM_TAPS];
--	u16 sumcoeff = 0;
-+	u16 sum_coeff = 0;
- 	int i;
+diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
+index d15e0194ca10..6d9080ec74ce 100644
+--- a/drivers/gpu/drm/i915/display/skl_scaler.c
++++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+@@ -951,7 +951,6 @@ void skl_scaler_get_config(struct intel_crtc_state *crtc_state)
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct intel_crtc_scaler_state *scaler_state = &crtc_state->scaler_state;
+ 	int scaler_id;
+-	int id = -1;
  
- 	if (crtc_state->pch_pfit.casf.win_size == 0)
-@@ -229,10 +229,10 @@ static void intel_casf_scaler_compute_coeff(struct intel_crtc_state *crtc_state)
- 		filtercoeff = filtercoeff_3;
+ 	/* find scaler attached to this pipe */
+ 	for (scaler_id = 0; scaler_id < crtc->num_scalers; scaler_id++) {
+@@ -961,8 +960,6 @@ void skl_scaler_get_config(struct intel_crtc_state *crtc_state)
+ 		if ((ctl & (PS_SCALER_EN | PS_BINDING_MASK)) != (PS_SCALER_EN | PS_BINDING_PIPE))
+ 			continue;
  
- 	for (i = 0; i < SCALER_FILTER_NUM_TAPS; i++)
--		sumcoeff += *(filtercoeff + i);
-+		sum_coeff += *(filtercoeff + i);
+-		id = scaler_id;
+-
+ 		if (scaler_has_casf(display, scaler_id))
+ 			intel_casf_sharpness_get_config(crtc_state);
  
- 	for (i = 0; i < SCALER_FILTER_NUM_TAPS; i++) {
--		filter_coeff[i] = (*(filtercoeff + i) * 100 / sumcoeff);
-+		filter_coeff[i] = (*(filtercoeff + i) * 100 / sum_coeff);
- 		convert_sharpness_coeff_binary(&crtc_state->pch_pfit.casf.coeff[i],
- 					      filter_coeff[i]);
+@@ -981,8 +978,11 @@ void skl_scaler_get_config(struct intel_crtc_state *crtc_state)
+ 		break;
  	}
+ 
+-	scaler_state->scaler_id = id;
+-	if (id >= 0)
++	if (scaler_id == crtc->num_scalers)
++		return;
++
++	scaler_state->scaler_id = scaler_id;
++	if (scaler_id >= 0)
+ 		scaler_state->scaler_users |= (1 << SKL_CRTC_INDEX);
+ 	else
+ 		scaler_state->scaler_users &= ~(1 << SKL_CRTC_INDEX);
 -- 
 2.45.2
 
