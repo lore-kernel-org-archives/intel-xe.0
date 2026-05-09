@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43838CD37BF
-	for <intel-xe@archiver.kernel.org>; Sat,  9 May 2026 16:41:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B32EBCD3447
+	for <intel-xe@archiver.kernel.org>; Sat,  9 May 2026 16:47:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED08510E3E4;
-	Sat,  9 May 2026 16:41:57 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="THVcCiT6";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89E7D10E3E9;
- Sat,  9 May 2026 16:41:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778344918; x=1809880918;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=XxVF2rfs+VPrxZPr8mKenRqm7vBl2ngAJ4w9j5mhPGg=;
- b=THVcCiT6Us+IOqTykRpjq+Y2pIP1FjepMS6GLQ14FMRK/5sfA0e1k5e2
- WSND7hs7Xv0dHIfxnJlxdWO3DU/5Ro1XjP6l91k4daE5+1prrXJXxvEML
- zffDEMCjYcVUPxtmzbwDNS4z2Klr+3N0hlQxhSJ6LZ32DXzYSAedmTPai
- lOWzy1vyxTZzuPBGwjel2a5TC+2LOM2x3Dqi7bLeasTBasGsp9/il0F5I
- PMCQfYwsJ7SjuVXcXygazH+VDVMbGrzKF31bL+CvvjTBhqm42sfHR7fIX
- EMUx7i2jvXMc7xuYvFKzNvvu8RpcKA80yNLVVRCRkfbnQf3CxoUcjlZuV Q==;
-X-CSE-ConnectionGUID: 3bUegHavShKkzhdwN6eCXw==
-X-CSE-MsgGUID: peLxIBVwSlOA51JqTrWfuw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11781"; a="90763619"
-X-IronPort-AV: E=Sophos;i="6.23,225,1770624000"; d="scan'208";a="90763619"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2026 09:41:58 -0700
-X-CSE-ConnectionGUID: g9043+/TRoOLgG0mNlo4DA==
-X-CSE-MsgGUID: KUY4HYvDThqek/tM67iP5g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,225,1770624000"; d="scan'208";a="236212262"
-Received: from dev-417.igk.intel.com ([10.91.214.181])
- by orviesa010.jf.intel.com with ESMTP; 09 May 2026 09:41:56 -0700
-From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com, nemesa.garg@intel.com,
- =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v3 7/9] drm/i915/scaler: unloop scaler readout that is run once
-Date: Sat,  9 May 2026 18:40:46 +0200
-Message-ID: <20260509164048.627399-8-michal.grzelak@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20260509164048.627399-1-michal.grzelak@intel.com>
-References: <20260509164048.627399-1-michal.grzelak@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 508AC10E1BE;
+	Sat,  9 May 2026 16:47:07 +0000 (UTC)
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 01BE810E1BE;
+ Sat,  9 May 2026 16:47:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_casf_=26_scaler_refactori?=
+ =?utf-8?q?ng?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Sat, 09 May 2026 16:47:05 -0000
+Message-ID: <177834522599.54640.13701987762664678035@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260509164048.627399-1-michal.grzelak@intel.com>
+In-Reply-To: <20260509164048.627399-1-michal.grzelak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,86 +36,59 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Most of the loop's code is run once because of the continue statement at
-it's start and break statement at it's end. Kick it out of the loop.
+== Series Details ==
 
-While at it, skl_scaler_get_config()'s loop is skipped when specified
-condition is met and broken when the condition is not met. Equivalently,
-invert the condition and break the loop.
+Series: casf & scaler refactoring
+URL   : https://patchwork.freedesktop.org/series/166252/
+State : warning
 
-Changelog:
-v2->v3
-- keep ctl inside the loop (Ville)
+== Summary ==
 
-Cc: Nemesa Garg <nemesa.garg@intel.com>
-Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/skl_scaler.c | 36 +++++++++++------------
- 1 file changed, 18 insertions(+), 18 deletions(-)
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 1a46323f3d7a181f7c21bb917cf04c3ba05cc623
+Author: Michał Grzelak <michal.grzelak@intel.com>
+Date:   Sat May 9 18:40:48 2026 +0200
 
-diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-index 6d9080ec74ce..4e2f4c4ffc45 100644
---- a/drivers/gpu/drm/i915/display/skl_scaler.c
-+++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-@@ -951,35 +951,35 @@ void skl_scaler_get_config(struct intel_crtc_state *crtc_state)
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	struct intel_crtc_scaler_state *scaler_state = &crtc_state->scaler_state;
- 	int scaler_id;
-+	u32 pos, size;
- 
- 	/* find scaler attached to this pipe */
- 	for (scaler_id = 0; scaler_id < crtc->num_scalers; scaler_id++) {
--		u32 ctl, pos, size;
-+		u32 ctl;
- 
- 		ctl = intel_de_read(display, SKL_PS_CTRL(crtc->pipe, scaler_id));
--		if ((ctl & (PS_SCALER_EN | PS_BINDING_MASK)) != (PS_SCALER_EN | PS_BINDING_PIPE))
--			continue;
-+		if ((ctl & (PS_SCALER_EN | PS_BINDING_MASK)) == (PS_SCALER_EN | PS_BINDING_PIPE))
-+			break;
-+	}
- 
--		if (scaler_has_casf(display, scaler_id))
--			intel_casf_sharpness_get_config(crtc_state);
-+	if (scaler_id == crtc->num_scalers)
-+		return;
- 
--		crtc_state->pch_pfit.enabled = true;
-+	if (scaler_has_casf(display, scaler_id))
-+		intel_casf_sharpness_get_config(crtc_state);
- 
--		pos = intel_de_read(display, SKL_PS_WIN_POS(crtc->pipe, scaler_id));
--		size = intel_de_read(display, SKL_PS_WIN_SZ(crtc->pipe, scaler_id));
-+	crtc_state->pch_pfit.enabled = true;
- 
--		drm_rect_init(&crtc_state->pch_pfit.dst,
--			      REG_FIELD_GET(PS_WIN_XPOS_MASK, pos),
--			      REG_FIELD_GET(PS_WIN_YPOS_MASK, pos),
--			      REG_FIELD_GET(PS_WIN_XSIZE_MASK, size),
--			      REG_FIELD_GET(PS_WIN_YSIZE_MASK, size));
-+	pos = intel_de_read(display, SKL_PS_WIN_POS(crtc->pipe, scaler_id));
-+	size = intel_de_read(display, SKL_PS_WIN_SZ(crtc->pipe, scaler_id));
- 
--		scaler_state->scalers[scaler_id].in_use = true;
--		break;
--	}
-+	drm_rect_init(&crtc_state->pch_pfit.dst,
-+		      REG_FIELD_GET(PS_WIN_XPOS_MASK, pos),
-+		      REG_FIELD_GET(PS_WIN_YPOS_MASK, pos),
-+		      REG_FIELD_GET(PS_WIN_XSIZE_MASK, size),
-+		      REG_FIELD_GET(PS_WIN_YSIZE_MASK, size));
- 
--	if (scaler_id == crtc->num_scalers)
--		return;
-+	scaler_state->scalers[scaler_id].in_use = true;
- 
- 	scaler_state->scaler_id = scaler_id;
- 	if (scaler_id >= 0)
--- 
-2.45.2
+    drm/i915/scaler: eliminate dead code
+    
+    We short-cut skl_scaler_get_config() when skl_pipe_scaler_get_hw_state()
+    has failed. Remove codepaths that assume scaler_id < 0.
+    
+    Cc: Nemesa Garg <nemesa.garg@intel.com>
+    Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
+    Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
++ /mt/dim checkpatch 11d2d2a0077bf9aef71906f0db84bdab357ac773 drm-intel
+37c0fe40f301 drm/i915/casf: fix comment typos
+e9073e2a4b4a drm/i915/casf: rename *_coef*() into *_coeff*()
+-:48: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#48: FILE: drivers/gpu/drm/i915/display/intel_casf.c:200:
++static void convert_sharpness_coeff_binary(struct scaler_filter_coeff *coeff,
+ 					  u16 coefficient)
+
+-:66: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#66: FILE: drivers/gpu/drm/i915/display/intel_casf.c:237:
++		convert_sharpness_coeff_binary(&crtc_state->pch_pfit.casf.coeff[i],
+ 					      filter_coeff[i]);
+
+total: 0 errors, 0 warnings, 2 checks, 40 lines checked
+cb87a628a660 drm/i915: rename t into tap
+759e1566c577 drm/i915/casf: rename sumcoeff into sum_coeff
+8317d8fbd21a drm/i915/scaler: s/i/scaler_id/ where appropriate
+2fae462e4bbb drm/i915/scaler: remove id in favor of scaler_id
+fe9d7f35346e drm/i915/scaler: unloop scaler readout that is run once
+ff96ab6c6452 drm/i915/scaler: abstract scaler searching loop
+1a46323f3d7a drm/i915/scaler: eliminate dead code
+
 
