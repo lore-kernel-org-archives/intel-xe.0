@@ -4,96 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5635DCD37BE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD4E1CD484C
 	for <intel-xe@archiver.kernel.org>; Mon, 11 May 2026 14:41:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11C8A10E7B2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B14210E7BD;
 	Mon, 11 May 2026 14:41:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="JtcCKlmk";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="dQdwaU2n";
 	dkim-atps=neutral
-Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com
- [209.85.221.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8750110E1C0
- for <intel-xe@lists.freedesktop.org>; Fri,  8 May 2026 06:48:39 +0000 (UTC)
-Received: by mail-vk1-f180.google.com with SMTP id
- 71dfb90a1353d-575602688deso550787e0c.1
- for <intel-xe@lists.freedesktop.org>; Thu, 07 May 2026 23:48:39 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1778222918; cv=none;
- d=google.com; s=arc-20240605;
- b=kTwxmbIrfGlAJgCMx5EBw86QyJbIoV1bbkPcKrirL8i1mNgNqG1ofW2cAL0+rhTSrR
- 6xgi5T1Ils2ZghlAiB0AS57KwLzKaQgtogGGrCSLHE5I6buWSoL6cGSU7888bEcqLmWa
- luCcABDeJIXWBqU8XCxh4Xg4qL9FJqXOu819BJr40Rw2diWPsdQpbJtfadk1G17Ks98a
- TfVyzX56upI3NRdqCLgs3BAlxWwscBu/jxHWV0s1q9Bh/g7/aZGzc+thw5guhTnOBevV
- HuAAGvIz3H2CVyAADwXHTEVbstOgMQkIJXjU43Yp/U23JENJlNJwGDaPr4Z37YwD9p3s
- Qc8Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=PlYtjNBoIg67o0Kg+ur2eEMfxgNBWO5gDdNf6ayVmuQ=;
- fh=5rdAm7ayLNz/ieRGY4M0Pw1DDMrqF0QSGiKuATF7Qp4=;
- b=OMsEaDuEKjlqULHErL19EjdDaOoFK1gVc0As+5vRcFZ9vqNF4jYk7aCRXPfIYI/8t0
- wCyG/LX8s+I3uWOoybXd8Df2Hgve+HeDGQRgtU6h1JpnXDfHUxaVE+Ri3bNWmnGI0VZu
- DDC198yqOub+xP7DAiOgDYYuwFwnRkW3fmf4ote5OhK3m521EuKl+aeWMm2QZGmTi+q1
- wzFusJfUNW8dy2k5VdodI6ENaBv0kwS1Jw+D7nc4BjipFVtD6lMMTOZX7E74+sk58aA6
- GE7dIH14N6Pp7RofoD8xaIOEQ8qLIJRlycj72wm4JaezEmmv2/IbeFvGmj7hqABQW/hR
- MkRw==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com
+ [209.85.160.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05D5510E197
+ for <intel-xe@lists.freedesktop.org>; Sat,  9 May 2026 16:24:27 +0000 (UTC)
+Received: by mail-oa1-f51.google.com with SMTP id
+ 586e51a60fabf-435153d99easo467571fac.2
+ for <intel-xe@lists.freedesktop.org>; Sat, 09 May 2026 09:24:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1778222918; x=1778827718; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
+ d=gmail.com; s=20251104; t=1778343866; x=1778948666; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=PlYtjNBoIg67o0Kg+ur2eEMfxgNBWO5gDdNf6ayVmuQ=;
- b=JtcCKlmkUlX956Co5Z66Q8YnvMz/hGVppgjHPlwUYmmxAdt0mwQ16oy0DLytBxAn2o
- SpZshPVlTLuCdV+oniFUz1tdwCVJiKWmvQ2W3WKt7cbMIkiZ4WSlT1HDIpTqRrOQbgRF
- D1Y0h7w0F+LSvShm+xXmZz7hjnPpNRAJLtATYSoX3w2G5to+nq6REgu0bw9eyzlyu8DN
- 4AD/y5hVcCLbuJR+8eJasXgvSz3bJP7ZI0U0jSgtPeQCZF0qWj6rb2yJZIr05y8XEGG2
- f53uqQP3jNwdfaTEEvWoAWZJRQUGxN0qYAQQbfdzfTjvgXMTYn3+zHFVTdvzUNdmYpvB
- ghEA==
+ bh=agw8Xmb0yn99pL/oH0Zm03pOn4MhFsZEOxVqcmxAjFE=;
+ b=dQdwaU2n4O1qYjpX2C+I1fuEmAV9+IMj0/gJ+urgEj/X9Hfcb37mOJSrpr+NE6+kUZ
+ YBtvskXBnkStawVfHxjTrR+8FXFQlqVKWwOBKPgMieDBI+6oNfemJohprn7o377cxK6P
+ YTLEUCb/zyViV7qr6nclZi36nPV73D6878JEatEyZnoMhevYpK+Yb7MbQVa6U3p4b1jM
+ VOJehMmjMrjJLONqKYFK8JVYe3HqysxItCmRz1g0qGF18uHLtivpdZ3539bQK40lrSPE
+ oFubzmZvpYl1VbDS/b/td1sx0dNKIsSM8MowY8+YkFu5hvOb3sKRXJ3irEUqR9NEiYaS
+ oZ7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1778222918; x=1778827718;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ d=1e100.net; s=20251104; t=1778343866; x=1778948666;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=PlYtjNBoIg67o0Kg+ur2eEMfxgNBWO5gDdNf6ayVmuQ=;
- b=Jjk9SksLTnsFF4g/8eOuXNI/jAS6HpE1r55XdRC2R4teHQQKpgo4PZKUYlRlzCsTWU
- R6LBTh70Vs7tOEiIcUFeQVmfeK0jI3fHBndCToL7kzlxERbOUojgpM9rNiRktabuk0mH
- Zh7TY/v0lB90q678pCSumle9aHrJ4HQrJ1yR9q2+q6b6rFVKv3ljc//xJVxDrMIOlXec
- Nv8PvrYeRtY0Quabu/EF7xpwnm6iKkJmSCq68cWubvXrKBgo6ADcZ+rRTDJ1dFvivlVw
- Rt3EqPJS5UpaKGyGb7Ze5TH2T2TI9X5S8Q3xcq7m/6VyR7gvtdsjWtszdCLbuFul6oaz
- dGdg==
-X-Forwarded-Encrypted: i=1;
- AFNElJ+RTymdu2DTR0/5Cj47l+nBPAPQnRukp07O/l54dkYJkLyhuzzjggRFOGwoWsL1GGVH4Wg1Zf+XNw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwbupksdvgnXiKu7WLzl8MxdJMryeCNZsWkvoexhrb6eEFEBzDN
- qVkMq9IzowISLkX1TAutJ5/COBYuESEtvfbsxOP4Ie4/gI4SaVgl917VLklnA5En1iKe/wpZoQ/
- +v48wCg5tPizPRGoodqRm1v/WgIufcw==
-X-Gm-Gg: Acq92OFR5TatDb4zLHkXYm7OP2UqPM2mapca3xenaULms/gJ02bH4PCRSRvKDXpkSQ2
- I8C5KGX133t8tQO+1tPPWXUbcedh9Km+Dk4IlxS4HZ9vmK33AO18l/kvFrQ/lyJK44vHiY1vEmY
- yveYpw7i83In0JZE5a7KlYkIoP10vPq0Rk437pwfdReYujvPFyN1qUUYF5X+7H6BBHQE6Hnt0xJ
- 53xLZ30r4YvIfWT90c9hq2SXDDIRg5KDuhV/NIwDpu/959IGzaYzGOpcCJL+ze/tg1cJMA3ID9U
- AxUcAwBLpYKOvK22aYlg3hk4lhnNqxfUvS0wzsZB
-X-Received: by 2002:a05:6122:1b8f:b0:56f:6d11:b962 with SMTP id
- 71dfb90a1353d-575593b49e7mr6099620e0c.2.1778222918094; Thu, 07 May 2026
- 23:48:38 -0700 (PDT)
+ bh=agw8Xmb0yn99pL/oH0Zm03pOn4MhFsZEOxVqcmxAjFE=;
+ b=s87VUNJlJpj1txAIZlGh96pw94spAu9okAL2kdxF2CeRQyqBJeGkZUSweTxeHnPigA
+ IYtlbZxwySjel42d5ri+/mUb093hILaDZCMwUrQWnZNKQyunAsuInDTHLfVECaJ2pb0T
+ 6rZM7Zv5qFf1HAEs/gflgs09jeiP5sXR6uLGmYe8EVrH0BiUbXFxkgTE3FSbDkH+pzEk
+ rhWhE/GQrnRJv4DQ5Gl18NghdrTZTrbq5L6oy0athcOW0FpnGY6lBK2RlPsf6CajDW7K
+ 7IOoLVHVFkgALLhCGzwhILA0vKwS4cp3OvBZ7L7fZiuGZPw/3ICeiTBsFVPOm2cQpFCi
+ IAvg==
+X-Gm-Message-State: AOJu0YyQ4S400N/YEDVsdVgIHhAWJfPUZjqZmj5TjhjOVZ7wrE5kY+ln
+ M3fkqY5J/NIzK3nLnc1sWhgYNWKR8WuaFkHqFnIkr4JXRvmU26ee0cs7
+X-Gm-Gg: Acq92OEkSN63gwhTVN8GBDsNG0KaZzhPxxHbzYorxb+bIsL2TexaRTR3BDtTrnGA2DK
+ 5mr+91NpbRI7yDUNqb2aicK8bCynJ1HL7vMc0ff8WiRu0aouR/pFU8Y2+hLkmn8Cu+sXzVQ0kNQ
+ rpdz5/UIe2jI0q9bG7UAYjlf51L4gU9qJM2uxcw7OEtWF2QCdFM85vJmBew7aMevLn0NWstwuES
+ gOhwy0Y7XgxFLP1Yl/mXCqaB7mzj7CViI8AsnlnrXEkKlpJEyVuF+FkrcAYo/sVesjdyczNCvGl
+ bPk7Or9JIXm65QRV6yhvJwfBhJfK+szJedWd78KO9HfsmvQzdRf+WNpD9O1Gkgd0/UtbRz2NdEd
+ RgFW+xC00NImAYRMR7/dvU1H3If4fq992O3zmLILMT5ssExj8jpaYMfOUGD85BB8bO1RAioS3/g
+ hOui39gEFZzQeYghg6XlCluSpz2sMZURazXvL6xQynXsnR45kxQE2HXgv6Wp/MR1jSk6Cp3t31o
+ aT8jJLf95gnRzhbeAXk1bYo
+X-Received: by 2002:a05:6870:2d5:b0:434:2a0e:1560 with SMTP id
+ 586e51a60fabf-434f60ee4edmr6394699fac.2.1778343865970; 
+ Sat, 09 May 2026 09:24:25 -0700 (PDT)
+Received: from localhost ([136.49.184.116]) by smtp.gmail.com with ESMTPSA id
+ 586e51a60fabf-43557371c56sm4590698fac.9.2026.05.09.09.24.25
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 09 May 2026 09:24:25 -0700 (PDT)
+From: Aaron Esau <aaron1esau@gmail.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
+ joonas.lahtinen@linux.intel.com, tursulin@ursulin.net,
+ mika.kahola@intel.com, stable@vger.kernel.org,
+ Aaron Esau <aaron1esau@gmail.com>
+Subject: [PATCH 2/3] drm/i915/dpll: add error propagation to DPLL enable path
+Date: Sat,  9 May 2026 11:24:06 -0500
+Message-ID: <20260509162407.510539-3-aaron1esau@gmail.com>
+X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260509162407.510539-1-aaron1esau@gmail.com>
+References: <20260509162407.510539-1-aaron1esau@gmail.com>
 MIME-Version: 1.0
-References: <20260507055352.61017-1-adhikari.resume@gmail.com>
- <8bad8080780f3a1c2c45cc1385322edf09284414.camel@linux.intel.com>
- <afyhiigGVX3skCfF@gsse-cloud1.jf.intel.com>
-In-Reply-To: <afyhiigGVX3skCfF@gsse-cloud1.jf.intel.com>
-From: Ramesh Adhikari <adhikari.resume@gmail.com>
-Date: Fri, 8 May 2026 12:18:26 +0530
-X-Gm-Features: AVHnY4Jg5ClrapY2lCPUaUxnqA7l_ozgRBzQN6dwp_dL-l4wXRzx-bvdqR2AQfw
-Message-ID: <CAC-THR-bZD8s0Pcs=ezyirUk7L-3O+YiLsj_TY0V0jyA46ok1Q@mail.gmail.com>
-Subject: Re: [PATCH v2] drm/xe: Add bounds check for num_binds to prevent
- memory exhaustion
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com, 
- stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 11 May 2026 14:41:03 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -109,121 +90,363 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Matthew,
+The .enable callback in struct intel_dpll_funcs returns void, providing
+no way to report PLL enable failures to callers. This leaves
+_intel_enable_shared_dpll() and intel_dpll_enable() unable to detect
+when a PLL fails to lock, causing pll->on to be set to true
+unconditionally and the CRTC enable sequence to proceed against a
+non-functional PLL.
 
+Change the .enable callback to return int. Update all implementations
+to return 0 (no functional change for platforms where enable cannot
+fail). Thread the error through _intel_enable_shared_dpll() and
+intel_dpll_enable(), rolling back active_mask and power domain state
+on failure.
 
+Update hsw_crtc_enable() and ilk_pch_enable() to check the return
+value and bail out before attempting to drive a pipe with no working
+PLL.
 
-When I was tracing through the code, I found that vm_bind_ioctl_ops_create
-allocates about 160 bytes per bind (drm_gpuva_ops + xe_vma_op) in the loop,
-and those allocations use GFP_KERNEL without __GFP_ACCOUNT. That's separate
-from the main arrays you already have protected with __GFP_ACCOUNT.
+No functional change on any platform yet, as all .enable callbacks
+return 0. A subsequent patch will make the CX0 PHY PLL enable path
+return errors on failure.
 
-At 2048 binds that's only 320KB unaccounted, which is why I thought it was
-safe to start conservative. But you're right - at 64k binds it would still
-only be about 10MB unaccounted, which is probably fine and won't force
-unnecessary fallbacks.
+Signed-off-by: Aaron Esau <aaron1esau@gmail.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c  | 10 ++-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 87 ++++++++++++++-----
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  2 +-
+ .../gpu/drm/i915/display/intel_pch_display.c  |  7 +-
+ 4 files changed, 80 insertions(+), 26 deletions(-)
 
-Should I send a v4 with 64k? Or do you think the loop allocations I found
-need a different approach?
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 0f82bf771..74bfeed31 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -1645,8 +1645,14 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
+ 
+ 	intel_encoders_pre_pll_enable(state, crtc);
+ 
+-	if (new_crtc_state->intel_dpll)
+-		intel_dpll_enable(new_crtc_state);
++	if (new_crtc_state->intel_dpll) {
++		if (intel_dpll_enable(new_crtc_state)) {
++			drm_err(display->drm,
++				"[CRTC:%d:%s] PLL enable failed, aborting crtc enable\n",
++				crtc->base.base.id, crtc->base.name);
++			return;
++		}
++	}
+ 
+ 	intel_encoders_pre_enable(state, crtc);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+index 9aa84a430..78fd2e5f9 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+@@ -69,9 +69,9 @@ struct intel_dpll_funcs {
+ 	 * Hook for enabling the pll, called from intel_enable_dpll() if
+ 	 * the pll is not already enabled.
+ 	 */
+-	void (*enable)(struct intel_display *display,
+-		       struct intel_dpll *pll,
+-		       const struct intel_dpll_hw_state *dpll_hw_state);
++	int (*enable)(struct intel_display *display,
++		      struct intel_dpll *pll,
++		      const struct intel_dpll_hw_state *dpll_hw_state);
+ 
+ 	/*
+ 	 * Hook for disabling the pll, called from intel_disable_dpll()
+@@ -245,14 +245,28 @@ intel_tc_pll_enable_reg(struct intel_display *display,
+ 	return MG_PLL_ENABLE(tc_port);
+ }
+ 
+-static void _intel_enable_shared_dpll(struct intel_display *display,
+-				      struct intel_dpll *pll)
++static int _intel_enable_shared_dpll(struct intel_display *display,
++				     struct intel_dpll *pll)
+ {
++	int ret;
++
+ 	if (pll->info->power_domain)
+ 		pll->wakeref = intel_display_power_get(display, pll->info->power_domain);
+ 
+-	pll->info->funcs->enable(display, pll, &pll->state.hw_state);
++	ret = pll->info->funcs->enable(display, pll, &pll->state.hw_state);
++	if (ret) {
++		drm_err(display->drm, "%s: PLL enable failed (err %d)\n",
++			pll->info->name, ret);
++		pll->on = false;
++		if (pll->info->power_domain)
++			intel_display_power_put(display, pll->info->power_domain,
++						pll->wakeref);
++		return ret;
++	}
++
+ 	pll->on = true;
++
++	return 0;
+ }
+ 
+ static void _intel_disable_shared_dpll(struct intel_display *display,
+@@ -270,17 +284,20 @@ static void _intel_disable_shared_dpll(struct intel_display *display,
+  * @crtc_state: CRTC, and its state, which has a DPLL
+  *
+  * Enable DPLL used by @crtc.
++ *
++ * Returns: 0 on success, negative error code on failure.
+  */
+-void intel_dpll_enable(const struct intel_crtc_state *crtc_state)
++int intel_dpll_enable(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct intel_dpll *pll = crtc_state->intel_dpll;
+ 	unsigned int pipe_mask = intel_crtc_joined_pipe_mask(crtc_state);
+ 	unsigned int old_mask;
++	int ret = 0;
+ 
+ 	if (drm_WARN_ON(display->drm, !pll))
+-		return;
++		return -EINVAL;
+ 
+ 	mutex_lock(&display->dpll.lock);
+ 	old_mask = pll->active_mask;
+@@ -305,10 +322,14 @@ void intel_dpll_enable(const struct intel_crtc_state *crtc_state)
+ 
+ 	drm_dbg_kms(display->drm, "enabling %s\n", pll->info->name);
+ 
+-	_intel_enable_shared_dpll(display, pll);
++	ret = _intel_enable_shared_dpll(display, pll);
++	if (ret)
++		pll->active_mask &= ~pipe_mask;
+ 
+ out:
+ 	mutex_unlock(&display->dpll.lock);
++
++	return ret;
+ }
+ 
+ /**
+@@ -577,7 +598,7 @@ static void ibx_assert_pch_refclk_enabled(struct intel_display *display)
+ 				 "PCH refclk assertion failure, should be active but is disabled\n");
+ }
+ 
+-static void ibx_pch_dpll_enable(struct intel_display *display,
++static int ibx_pch_dpll_enable(struct intel_display *display,
+ 				struct intel_dpll *pll,
+ 				const struct intel_dpll_hw_state *dpll_hw_state)
+ {
+@@ -604,6 +625,8 @@ static void ibx_pch_dpll_enable(struct intel_display *display,
+ 	intel_de_write(display, PCH_DPLL(id), hw_state->dpll);
+ 	intel_de_posting_read(display, PCH_DPLL(id));
+ 	udelay(200);
++
++	return 0;
+ }
+ 
+ static void ibx_pch_dpll_disable(struct intel_display *display,
+@@ -707,7 +730,7 @@ static const struct intel_dpll_mgr pch_pll_mgr = {
+ 	.compare_hw_state = ibx_compare_hw_state,
+ };
+ 
+-static void hsw_ddi_wrpll_enable(struct intel_display *display,
++static int hsw_ddi_wrpll_enable(struct intel_display *display,
+ 				 struct intel_dpll *pll,
+ 				 const struct intel_dpll_hw_state *dpll_hw_state)
+ {
+@@ -717,9 +740,11 @@ static void hsw_ddi_wrpll_enable(struct intel_display *display,
+ 	intel_de_write(display, WRPLL_CTL(id), hw_state->wrpll);
+ 	intel_de_posting_read(display, WRPLL_CTL(id));
+ 	udelay(20);
++
++	return 0;
+ }
+ 
+-static void hsw_ddi_spll_enable(struct intel_display *display,
++static int hsw_ddi_spll_enable(struct intel_display *display,
+ 				struct intel_dpll *pll,
+ 				const struct intel_dpll_hw_state *dpll_hw_state)
+ {
+@@ -728,6 +753,8 @@ static void hsw_ddi_spll_enable(struct intel_display *display,
+ 	intel_de_write(display, SPLL_CTL, hw_state->spll);
+ 	intel_de_posting_read(display, SPLL_CTL);
+ 	udelay(20);
++
++	return 0;
+ }
+ 
+ static void hsw_ddi_wrpll_disable(struct intel_display *display,
+@@ -1300,10 +1327,11 @@ static const struct intel_dpll_funcs hsw_ddi_spll_funcs = {
+ 	.get_freq = hsw_ddi_spll_get_freq,
+ };
+ 
+-static void hsw_ddi_lcpll_enable(struct intel_display *display,
++static int hsw_ddi_lcpll_enable(struct intel_display *display,
+ 				 struct intel_dpll *pll,
+ 				 const struct intel_dpll_hw_state *hw_state)
+ {
++	return 0;
+ }
+ 
+ static void hsw_ddi_lcpll_disable(struct intel_display *display,
+@@ -1393,7 +1421,7 @@ static void skl_ddi_pll_write_ctrl1(struct intel_display *display,
+ 	intel_de_posting_read(display, DPLL_CTRL1);
+ }
+ 
+-static void skl_ddi_pll_enable(struct intel_display *display,
++static int skl_ddi_pll_enable(struct intel_display *display,
+ 			       struct intel_dpll *pll,
+ 			       const struct intel_dpll_hw_state *dpll_hw_state)
+ {
+@@ -1413,15 +1441,19 @@ static void skl_ddi_pll_enable(struct intel_display *display,
+ 
+ 	if (intel_de_wait_for_set_ms(display, DPLL_STATUS, DPLL_LOCK(id), 5))
+ 		drm_err(display->drm, "DPLL %d not locked\n", id);
++
++	return 0;
+ }
+ 
+-static void skl_ddi_dpll0_enable(struct intel_display *display,
++static int skl_ddi_dpll0_enable(struct intel_display *display,
+ 				 struct intel_dpll *pll,
+ 				 const struct intel_dpll_hw_state *dpll_hw_state)
+ {
+ 	const struct skl_dpll_hw_state *hw_state = &dpll_hw_state->skl;
+ 
+ 	skl_ddi_pll_write_ctrl1(display, pll, hw_state);
++
++	return 0;
+ }
+ 
+ static void skl_ddi_pll_disable(struct intel_display *display,
+@@ -2053,7 +2085,7 @@ static const struct intel_dpll_mgr skl_pll_mgr = {
+ 	.compare_hw_state = skl_compare_hw_state,
+ };
+ 
+-static void bxt_ddi_pll_enable(struct intel_display *display,
++static int bxt_ddi_pll_enable(struct intel_display *display,
+ 			       struct intel_dpll *pll,
+ 			       const struct intel_dpll_hw_state *dpll_hw_state)
+ {
+@@ -2158,6 +2190,8 @@ static void bxt_ddi_pll_enable(struct intel_display *display,
+ 	temp &= ~LANESTAGGER_STRAP_OVRD;
+ 	temp |= hw_state->pcsdw12;
+ 	intel_de_write(display, BXT_PORT_PCS_DW12_GRP(phy, ch), temp);
++
++	return 0;
+ }
+ 
+ static void bxt_ddi_pll_disable(struct intel_display *display,
+@@ -4007,7 +4041,7 @@ static void adlp_cmtg_clock_gating_wa(struct intel_display *display, struct inte
+ 		drm_dbg_kms(display->drm, "Unexpected flags in TRANS_CMTG_CHICKEN: %08x\n", val);
+ }
+ 
+-static void combo_pll_enable(struct intel_display *display,
++static int combo_pll_enable(struct intel_display *display,
+ 			     struct intel_dpll *pll,
+ 			     const struct intel_dpll_hw_state *dpll_hw_state)
+ {
+@@ -4029,9 +4063,11 @@ static void combo_pll_enable(struct intel_display *display,
+ 	adlp_cmtg_clock_gating_wa(display, pll);
+ 
+ 	/* DVFS post sequence would be here. See the comment above. */
++
++	return 0;
+ }
+ 
+-static void icl_tbt_pll_enable(struct intel_display *display,
++static int icl_tbt_pll_enable(struct intel_display *display,
+ 			       struct intel_dpll *pll,
+ 			       const struct intel_dpll_hw_state *dpll_hw_state)
+ {
+@@ -4050,9 +4086,11 @@ static void icl_tbt_pll_enable(struct intel_display *display,
+ 	icl_pll_enable(display, pll, TBT_PLL_ENABLE);
+ 
+ 	/* DVFS post sequence would be here. See the comment above. */
++
++	return 0;
+ }
+ 
+-static void mg_pll_enable(struct intel_display *display,
++static int mg_pll_enable(struct intel_display *display,
+ 			  struct intel_dpll *pll,
+ 			  const struct intel_dpll_hw_state *dpll_hw_state)
+ {
+@@ -4075,6 +4113,8 @@ static void mg_pll_enable(struct intel_display *display,
+ 	icl_pll_enable(display, pll, enable_reg);
+ 
+ 	/* DVFS post sequence would be here. See the comment above. */
++
++	return 0;
+ }
+ 
+ static void icl_pll_disable(struct intel_display *display,
+@@ -4392,16 +4432,18 @@ static int mtl_pll_get_freq(struct intel_display *display,
+ 	return intel_cx0pll_calc_port_clock(encoder, &dpll_hw_state->cx0pll);
+ }
+ 
+-static void mtl_pll_enable(struct intel_display *display,
++static int mtl_pll_enable(struct intel_display *display,
+ 			   struct intel_dpll *pll,
+ 			   const struct intel_dpll_hw_state *dpll_hw_state)
+ {
+ 	struct intel_encoder *encoder = get_intel_encoder(display, pll);
+ 
+ 	if (drm_WARN_ON(display->drm, !encoder))
+-		return;
++		return -ENODEV;
+ 
+ 	intel_mtl_pll_enable(encoder, pll, dpll_hw_state);
++
++	return 0;
+ }
+ 
+ static void mtl_pll_disable(struct intel_display *display,
+@@ -4422,10 +4464,11 @@ static const struct intel_dpll_funcs mtl_pll_funcs = {
+ 	.get_freq = mtl_pll_get_freq,
+ };
+ 
+-static void mtl_tbt_pll_enable(struct intel_display *display,
++static int mtl_tbt_pll_enable(struct intel_display *display,
+ 			       struct intel_dpll *pll,
+ 			       const struct intel_dpll_hw_state *hw_state)
+ {
++	return 0;
+ }
+ 
+ static void mtl_tbt_pll_disable(struct intel_display *display,
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+index 5b71c8605..21fae6fd0 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+@@ -435,7 +435,7 @@ int intel_dpll_get_freq(struct intel_display *display,
+ bool intel_dpll_get_hw_state(struct intel_display *display,
+ 			     struct intel_dpll *pll,
+ 			     struct intel_dpll_hw_state *dpll_hw_state);
+-void intel_dpll_enable(const struct intel_crtc_state *crtc_state);
++int intel_dpll_enable(const struct intel_crtc_state *crtc_state);
+ void intel_dpll_disable(const struct intel_crtc_state *crtc_state);
+ void intel_dpll_swap_state(struct intel_atomic_state *state);
+ void intel_dpll_init(struct intel_display *display);
+diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.c b/drivers/gpu/drm/i915/display/intel_pch_display.c
+index 16619f7be..cb979a946 100644
+--- a/drivers/gpu/drm/i915/display/intel_pch_display.c
++++ b/drivers/gpu/drm/i915/display/intel_pch_display.c
+@@ -399,7 +399,12 @@ void ilk_pch_enable(struct intel_atomic_state *state,
+ 	 * get_dpll unconditionally resets the pll - we need that
+ 	 * to have the right LVDS enable sequence.
+ 	 */
+-	intel_dpll_enable(crtc_state);
++	if (intel_dpll_enable(crtc_state)) {
++		drm_err(display->drm,
++			"[CRTC:%d:%s] PCH PLL enable failed, aborting PCH enable\n",
++			crtc->base.base.id, crtc->base.name);
++		return;
++	}
+ 
+ 	/* set transcoder timing, panel must allow it */
+ 	assert_pps_unlocked(display, pipe);
+-- 
+2.54.0
 
-Thanks,
-Ramesh
-
-On Thu, May 7, 2026 at 7:58=E2=80=AFPM Matthew Brost <matthew.brost@intel.c=
-om> wrote:
->
-> On Thu, May 07, 2026 at 08:47:07AM +0200, Thomas Hellstr=C3=B6m wrote:
-> > On Thu, 2026-05-07 at 11:23 +0530, Ramesh Adhikari wrote:
-> > > The xe_vm_bind_ioctl function accepts user-controlled num_binds
-> > > without
-> > > bounds checking, allowing arbitrarily large memory allocations. This
-> > > follows the same vulnerability pattern that was fixed for num_syncs
-> > > in
-> > > commit 8e461304009d ("drm/xe: Limit num_syncs to prevent huge
-> > > allocations").
-> > >
-> > > Add DRM_XE_MAX_BINDS (2048) limit and validate num_binds before
-> > > allocation.
-> > >
-> > > v2: Increased limit from 1024 to 2048 based on Mesa source analysis:
-> > >     - Mesa's maximum usage: 960 binds (conformance test dEQP-VK)
-> > >     - Confirmed by Intel Mesa developer in commit ba6bbdc
-> >
-> > Please use the standard way of referring to commits.
-> >
-> > This is the maximum usage in the conformance suite. That commit does
-> > not mention maximum usage for applications in the wild, for which we
-> > can't have any regressions.
-> >
->
-> I still think 1k, 2k to artifically too low. The Vk interface for array
-> of binds doesn't have a limit nor do sync interface either. In case of
-> sync I believe we found a typical max usage of of something like 10 but
-> set artifical limit to 1k just be paranoid. I'd up the limit beyond 1k
-> or 2k to prevent seemly valid use cases from forcing a split fallback in
-> user space. Even if each individual bind maps to 4k internal (usually
-> this just a handfull of bytes for the PTE writes) - 2k binds would 8M of
-> temporary memory. Ofc we can increase this future but I really don't see
-> the downside of starting with something larger now.
->
-> Matt
->
-> >
-> > >     - 2048 provides 2.13x safety margin while limiting allocation to
-> > > 64KB
-> > >     - Prevents unbounded allocation (attacker could send 268M binds =
-=3D
-> > > 18.8GB)
-> >
-> > Referring to my previous email, it actually looks like most if not all
-> > allocations in this path use __GFP_ACCOUNT | __GFP_RETRY_MAYFAIL |
-> > __GFP_NOWARN, Did you actually verify that a malicious bind
-> > significantly can exceed the cgroup limits?
-> >
-> >
-> > >
-> > > Cc: stable@vger.kernel.org
-> > >
-> > > Signed-off-by: Ramesh <adhikari.resume@gmail.com>
-> > > ---
-> > >  drivers/gpu/drm/xe/xe_vm.c | 5 +++++
-> > >  include/uapi/drm/xe_drm.h  | 1 +
-> > >  2 files changed, 6 insertions(+)
-> > >
-> > > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> > > index a717a2b8dea..1ff66874f43 100644
-> > > --- a/drivers/gpu/drm/xe/xe_vm.c
-> > > +++ b/drivers/gpu/drm/xe/xe_vm.c
-> > > @@ -3841,6 +3841,11 @@ int xe_vm_bind_ioctl(struct drm_device *dev,
-> > > void *data, struct drm_file *file)
-> > >             return -EINVAL;
-> > >
-> > >     err =3D vm_bind_ioctl_check_args(xe, vm, args, &bind_ops);
-> > > +
-> > > +   if (XE_IOCTL_DBG(xe, args->num_binds > DRM_XE_MAX_BINDS)) {
-> > > +           err =3D -EINVAL;
-> >
-> > If we end up concluding that this is indeed needed, we should return
-> > -ENOBUFS here to trigger a graceful retry.
-> >
-> > Thanks,
-> > Thomas
-> >
-> >
-> > > +           goto put_vm;
-> > > +   }
-> > >     if (err)
-> > >             goto put_vm;
-> > >
-> > > diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> > > index ae2fda23ce7..e666b73c81d 100644
-> > > --- a/include/uapi/drm/xe_drm.h
-> > > +++ b/include/uapi/drm/xe_drm.h
-> > > @@ -1606,6 +1606,7 @@ struct drm_xe_exec {
-> > >     __u32 exec_queue_id;
-> > >
-> > >  #define DRM_XE_MAX_SYNCS 1024
-> > > +#define DRM_XE_MAX_BINDS 2048
-> > >     /** @num_syncs: Amount of struct drm_xe_sync in array. */
-> > >     __u32 num_syncs;
-> > >
