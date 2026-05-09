@@ -4,50 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB927CD37AC
-	for <intel-xe@archiver.kernel.org>; Mon, 11 May 2026 14:41:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22B55CD484F
+	for <intel-xe@archiver.kernel.org>; Mon, 11 May 2026 14:41:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C12710E7BF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D62A310E7C1;
 	Mon, 11 May 2026 14:41:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=proton.me header.i=@proton.me header.b="eE686EVL";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="gEg2ZEul";
 	dkim-atps=neutral
-Received: from mail-244102.protonmail.ch (mail-244102.protonmail.ch
- [109.224.244.102])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFF6A10E00C;
- Thu,  7 May 2026 12:29:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
- s=rf6dlxadgragpeknl2zvhwifqq.protonmail; t=1778156569; x=1778415769;
- bh=yXyy/1avikG//9PNJ0NYNRcQ/+6OhcdCpQSlhFY4bVQ=;
- h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
- Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
- Message-ID:BIMI-Selector;
- b=eE686EVLPG9E3IvxDNMtZPAUgQnZvjYhBtGeYCeLsfCNrwyUOwDYNTExiom1wb1Vv
- qxf5nbN2AYwB+PjB6b4dqbRmwRB6HO9ooY5fYpYBLWpa0Jrj4sc5E1DnxJYfqEFebE
- pjq0qImRlNPXZuB/Kjwt4l0RDL2eqGnBDNaN2Fa6Zw9J60dvsjbk8K/SC9kyx70guD
- zRaMFJ8yT4aNrsf/KcU9MiDUzcCrQfOd+3neh79Rt+4WHcxEvs/Xro0+zBG7mfowTX
- HKw6d77yk6g1BGDajPKTBLEZHfo54YyENhNsf1cmjFijEBhEN7yZf+DNbhP37d96Ie
- XL4adMF90c2LQ==
-Date: Thu, 07 May 2026 12:22:42 +0000
-To: Thomas Zimmermann <tzimmermann@suse.de>
-From: Aditya Garg <gargaditya08@proton.me>
-Cc: mripard@kernel.org, maarten.lankhorst@linux.intel.com, airlied@redhat.com,
- airlied@gmail.com, simona@ffwll.ch, admin@kodeit.net, paul@crapouillou.net,
- zack.rusin@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
- dri-devel@lists.freedesktop.org, linux-hyperv@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-mips@vger.kernel.org, virtualization@lists.linux.dev
-Subject: Re: [PATCH 05/10] drm/appletbdrm: Allocate request/response buffers
- in begin_fb_access
-Message-ID: <G66ElwoYASE3O3RpWWuKm9V5LNUTUtjJ_lGUsDxN3EujU3wsp3vpT-KcXMsrFfYEZkBwq9TNaD3Pc2g4oaueu4B-JXN3PTCoNGY999s5WHU=@proton.me>
-In-Reply-To: <20260507075725.29738-6-tzimmermann@suse.de>
-References: <20260507075725.29738-1-tzimmermann@suse.de>
- <20260507075725.29738-6-tzimmermann@suse.de>
-Feedback-ID: 145777226:user:proton
-X-Pm-Message-ID: 809317f98a9202275d5c4ae88ce01ca05792218d
+Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com
+ [209.85.210.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2898D10E197
+ for <intel-xe@lists.freedesktop.org>; Sat,  9 May 2026 16:24:25 +0000 (UTC)
+Received: by mail-ot1-f44.google.com with SMTP id
+ 46e09a7af769-7dbcb45153cso209919a34.3
+ for <intel-xe@lists.freedesktop.org>; Sat, 09 May 2026 09:24:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1778343864; x=1778948664; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=kgw+L8XNnYGvME6rXbV9iC3YSJ8U6lhlX0++8uG2LmQ=;
+ b=gEg2ZEulHN6AJ6IvTw+kKDcFUpPeH5DUfo+iO7caFt9DPCRB1UEHbc/Mc6ekbYGvgk
+ qGlViM7pnJCl+/maNAyDgxEvcW0fZUpZLkOVhKN2SgzaIMdIkRjuGOa4n85r4Rt5vilM
+ MV4S8+BiA8d6vKokkxB9rJxPfBbfQb+MssWRl1tTfig22NSl2e0+ROTMpjxmyiPUKroI
+ RSHFtUXkabwxqL4bOhM0Ee2JaEZONSngliyx9d6MwuZNUK5/C0pHEVeYWpOtPzX2n4Vk
+ mC6ePJLwIxfKdpDCfaqDNvsw2DmobG1cOY8ChNLNkj4q40hxn372/x5bEIVaT6xBGZwJ
+ 3jWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1778343864; x=1778948664;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=kgw+L8XNnYGvME6rXbV9iC3YSJ8U6lhlX0++8uG2LmQ=;
+ b=ZJ2GaXN5177A4FAv2b0tAVN6hSTnKHDXjoHB2xLM1ico0dgmdw1aBinhfLbr3rQ6Tg
+ wu3DjfEffcYnCrIzLjkkjygG9NX6jjcpBcGsAt/nZU+CP6DJyKyl/td2b5d8+byJmMz2
+ 8pktzVQKz7NqGAecDbxHKUGAXst8swr4Y9Rmdg2i/BFZY3A9OtyzC0kaB/eO8Bq2Q+rO
+ RxXY/2U9awlTOd4Tpr55VHuU8CXJH/NwXZAA2usxTI4ZM8alffxOZV5a4+GNT6Kv3iWV
+ DrLiKvftKG7HW1R9e8rsbAB/D386gMk7wkZ/GJ++nnqB6elfnGycOQFdpmIT2zNnBBb/
+ NaaQ==
+X-Gm-Message-State: AOJu0YxUgATzYMh/mLRCqWSQns+HavqjOmhDLcgH7uW8+jWWDVYCaZog
+ nmjITdJg1sPwFulxhu0MOzqZHfW/CxpQEd7eJ1GolsqlAV6Mx4c5C72m
+X-Gm-Gg: Acq92OG0YTW66pg57Sk1aU0VSOGHGiLnMAwYbbe772iL0QF2qe81eNM/OPxRvtpg4pr
+ XMKszUzn4lEjfUDqCewq6BtnFz0TmNWzQ0BedkXXBUeEpvPBewwIULCfGaRmf+PN6LBEr9Ga1sk
+ I4VXyNS7aetFxLGrUADhj8dzV4b5E/d1pLDea3LS1gozd5yAlPUpcEl7zqp0zblqAKSKLS0rpqA
+ 100C45HTWEE9uoIUSPr3e1kGY8Sf3ipx2NkE+4+Q0Pc2v79rytZwouAoqnW3Ryw/R4yHvPruRU6
+ MS+Ew6TLTEQOL++4ifRlrVXW0dailpKzad0MimAr9Rczi9a21Lb6Aj1mnI66iP6VTUJorqf/pi6
+ whGLMyoDoA+HF+V+IDHUJRJVQvsjLDvHucsHzfZdsEEK8EZaens5a06vU5b128VUN3kVaTad0Wz
+ UNzBWEWlezmlFxXcGwNzfB7KMBhuNAo4N1gQbI2XEXlCWE7iGwJjBlJUcS2gvLECJyx2Hb0UlAk
+ e4CS5NqrTflpEGElmf0tJxM
+X-Received: by 2002:a05:6808:4f65:b0:47c:3d8d:1ff8 with SMTP id
+ 5614622812f47-48045236867mr5560241b6e.7.1778343864317; 
+ Sat, 09 May 2026 09:24:24 -0700 (PDT)
+Received: from localhost ([136.49.184.116]) by smtp.gmail.com with ESMTPSA id
+ 5614622812f47-47c76986404sm16691775b6e.15.2026.05.09.09.24.23
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 09 May 2026 09:24:23 -0700 (PDT)
+From: Aaron Esau <aaron1esau@gmail.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
+ joonas.lahtinen@linux.intel.com, tursulin@ursulin.net,
+ mika.kahola@intel.com, stable@vger.kernel.org,
+ Aaron Esau <aaron1esau@gmail.com>
+Subject: [PATCH 0/3] drm/i915/cx0: fix PLL enable failure handling on Meteor
+ Lake
+Date: Sat,  9 May 2026 11:24:04 -0500
+Message-ID: <20260509162407.510539-1-aaron1esau@gmail.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 11 May 2026 14:41:03 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,19 +88,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thursday, May 7th, 2026 at 1:27 PM, Thomas Zimmermann <tzimmermann@suse.=
-de> wrote:
+On Meteor Lake with a hybrid Intel/NVIDIA GPU setup, s2idle resume can
+leave the CX0 PHY MSGBUS unresponsive. When this happens, the PLL
+enable sequence silently fails: register writes via MSGBUS are dropped,
+the PLL never locks, but the driver marks it as enabled and proceeds to
+drive the pipe.
 
-> In atomic_check, damage handling is not fully evaluated. Another
-> atomic_check helper could trigger a full modeset and thus invalidate
-> damage clips.
->=20
-> Allocation of the request/response buffers in appletbdrm depends on
-> correct damage information. Otherwise it might allocate incorrectly
-> sized buffers. Allocate the buffers in the driver's begin_fb_access
-> helper. It runs early during the commit when damage clipping has been
-> fully evaluated.
->=20
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+The root cause of the MSGBUS becoming unresponsive appears to be the
+NVIDIA dGPU not participating in S0ix (addressed via the
+NVreg_EnableS0ixPowerManagement module parameter). However, the i915
+driver should handle PLL enable failures gracefully regardless of the
+trigger.
 
-Acked-by: Aditya Garg <gargaditya08@proton.me>
+This series:
+  1. Fixes intel_cx0_pll_is_enabled() to check the hardware ACK bit,
+     not just the driver-set REQUEST bit, so a PLL that failed to lock
+     is correctly reported as disabled.
+  2. Adds error propagation through the DPLL enable path: changes the
+     .enable callback to return int, threads errors through
+     _intel_enable_shared_dpll() and intel_dpll_enable(), and checks
+     the result in hsw_crtc_enable() and ilk_pch_enable().
+  3. Makes the CX0 PLL enable path return -ETIMEDOUT when the PHY
+     fails to come out of reset or the PLL fails to lock.
+
+Found on a Lenovo ThinkPad with Intel Ultra 7 155H and NVIDIA RTX 2000
+Ada. Kernel traces before each crash:
+
+  i915: Failed to bring PHY A to idle.
+  i915: PHY A Read 0c70 failed after 3 retries.
+  i915: Timeout waiting for DDI BUF A to get active
+  i915: [CRTC:149:pipe A] flip_done timed out
+
+Aaron Esau (3):
+  drm/i915/cx0: check PLL ACK bit in intel_cx0_pll_is_enabled()
+  drm/i915/dpll: add error propagation to DPLL enable path
+  drm/i915/cx0: return errors from CX0 PLL enable on failure
+
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 54 ++++++++----
+ drivers/gpu/drm/i915/display/intel_cx0_phy.h  |  6 +-
+ drivers/gpu/drm/i915/display/intel_display.c  | 10 ++-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 87 ++++++++++++++-----
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  2 +-
+ .../gpu/drm/i915/display/intel_pch_display.c  |  7 +-
+ 6 files changed, 117 insertions(+), 49 deletions(-)
+
+-- 
+2.54.0
+
