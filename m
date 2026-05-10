@@ -4,74 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9358CD484A
-	for <intel-xe@archiver.kernel.org>; Mon, 11 May 2026 14:41:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A1A0CD484E
+	for <intel-xe@archiver.kernel.org>; Mon, 11 May 2026 14:41:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74F3A10E7B5;
-	Mon, 11 May 2026 14:41:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 099E810E7C3;
+	Mon, 11 May 2026 14:41:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="VByT4egl";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=kcore.it header.i=@kcore.it header.b="WYXmb1qC";
 	dkim-atps=neutral
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com
- [209.85.214.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1720010F340
- for <intel-xe@lists.freedesktop.org>; Fri,  8 May 2026 06:45:31 +0000 (UTC)
-Received: by mail-pl1-f170.google.com with SMTP id
- d9443c01a7336-2baca4df358so8965435ad.2
- for <intel-xe@lists.freedesktop.org>; Thu, 07 May 2026 23:45:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1778222730; x=1778827530; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=2A39dF+p7aFgXp967/D764wgb7uWfzZBjZMIRm9YyxU=;
- b=VByT4eglxBcBZAL10CkkLovFZgbLQKKrNE0nKGgyZiTKYuYUQUj5YlpFTmWC09n6wR
- 8jwzgOKOoywKwjsdaK5MPYRsDkPl8GgB6MUVxUefBHHyv/JfOA6fcRzBUgOnOXPMCVyP
- I6VJAQ/Wf+eUoIAUHW8an8B9HD04OJdjGfHsOhPPq6twcH/IyDZOuHJV4mzg3m89bUEl
- 5U/deMv1eJpic7CaPEWU9PrUta8UJ+kw1t+3ceSsX+drdCQ8andscWvXc8k6wktyjBio
- dBtn6TJmD/YSc3SqEa/QIOGLer0YRp5Nt0yRF6PL2phHk85nmPmH6g9IutQKgPxVVwPv
- yvZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1778222730; x=1778827530;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=2A39dF+p7aFgXp967/D764wgb7uWfzZBjZMIRm9YyxU=;
- b=dYyaB0pwVsf/MjGBS5/v3F/9hil+Qgt8pNiVyndUhoFMGqEQH5ChKfQ3zsgu9rdsjj
- 5bGvyboRN8RxyjuZrxsz5+/EGDje8lgNdsSNSlnLvOp7mft4OLoW65TAELAVsRMXNgp2
- mS89zuyHXXyRDv8qakUdic2camwbb063HqoIDB8JONb6ivv8U3GdiHV75v2d8LBzhCvk
- PjDwX6KaXDppslPNyvfVEwORm9seJFNK2zAbJTpZaMLRw28XuLx4UrN6QKd3cE5tVoz/
- iIAYnrzt61tro3e0EfSdswhbQmRExnBCz7bB31ud48NyjvYnrWtlan61NhOleHRDyJuZ
- kVVA==
-X-Gm-Message-State: AOJu0Ywl5csqHbJCoYWfLx0TA/FkISRg/9r3WlHAZiYCy2eNdNaVpUo/
- hU6GCaiSL3ATJ7y7k1WEH/Zz/YMh8w0/5+CegR54p2gpPLPhYRpRnb+Z65XhmJg=
-X-Gm-Gg: Acq92OE4ewMVhGMaVBY+qGQoeEWZ1mNO3i/EsP48Ho8G90qf58Bl94GACdcLsHiJ0+f
- yCdkBOAmLWai0jJW6fZziTWEh57LeqOWniqnZsFkk8JLtjUXy42FE/pnkwWjYMR2bfG+joERnWh
- +laeQzePOR2hr32Q3XDVk01K+riSXAyR9WVCO7GI0+XZGQRf+5zgrn++YS21QUTecrxsRcRW1L9
- FqjCL94abUGMYASwIZ0eH8Wd9YfF2d+euDSZafnXqzqzoug0lDUV8Xmr/44qSCk6jRhABUpepcM
- VbpKc3UsNgOXVacVNV0dkCnb1Wk5nky1m5c8ZU/fJNjkhNWfL5gOYhCmDuRyTXNbx9RDl3ZF/Q1
- 3tL6t6Tv90qAwgks705mhDuyHEoPgevQKKDypIPWCkAcQ0Imx24cYkEL1FkQtLszJsNfvbNcRIq
- WaQ0CX3zSVIImN0JdqfbQWEFfwIKBzs6ncSn6iCbpC0JHjQkLVsXyp1PhcJxKNFTkBBOuf0ht9u
- g2bMSpUt7p8NB8=
-X-Received: by 2002:a17:902:7798:b0:2b2:5503:1b8c with SMTP id
- d9443c01a7336-2ba794b7f8fmr79747875ad.11.1778222730082; 
- Thu, 07 May 2026 23:45:30 -0700 (PDT)
-Received: from coe.tail83f5bd.ts.net ([202.177.225.148])
- by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-2baf1e6199csm13223695ad.55.2026.05.07.23.45.27
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 07 May 2026 23:45:29 -0700 (PDT)
-From: Ramesh Adhikari <adhikari.resume@gmail.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com, stable@vger.kernel.org,
- Ramesh Adhikari <adhikari.resume@gmail.com>
-Subject: [PATCH v3] drm/xe: Add bounds check for num_binds to prevent memory
- exhaustion
-Date: Fri,  8 May 2026 12:15:10 +0530
-Message-ID: <20260508064510.158728-1-adhikari.resume@gmail.com>
-X-Mailer: git-send-email 2.43.0
+X-Greylist: delayed 984 seconds by postgrey-1.36 at gabe;
+ Sun, 10 May 2026 17:46:38 UTC
+Received: from spark.kcore.it (spark.kcore.it [49.13.27.68])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A9F410E133;
+ Sun, 10 May 2026 17:46:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kcore.it;
+ s=spark; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+ Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=TJ58bbmrh+pyeR1MRXgtBNPGCye/bC7K9b1jnY3KMLk=; b=WYXmb1qCPjPTtZM1Q/ywAGdcx5
+ p/7/ajKQNAjoaf+Sy40DyWLpxQwen6YuyortBavxEosoHFMCbUXNEZFM8zTiom99HyDHvYIKus1KI
+ H4Cm0cPBZP4zTx0QSt6Y6RBOOPdjPPFJu7Jvoj5sHXjl/D8Xi3eurMAJ9Lw1oyG+lUMQ=;
+Received: from mnencia by spark.kcore.it with local (Exim 4.96)
+ (envelope-from <mnencia@kcore.it>) id 1wM7yj-000BFA-2l;
+ Sun, 10 May 2026 19:30:09 +0200
+Date: Sun, 10 May 2026 19:30:09 +0200
+From: Marco Nenciarini <mnencia@kcore.it>
+To: Aaron Esau <aaron1esau@gmail.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Mika Kahola <mika.kahola@intel.com>, stable@vger.kernel.org
+Subject: Re: [PATCH 0/3] drm/i915/cx0: fix PLL enable failure handling on
+ Meteor Lake
+Message-ID: <agDAocAQF_wpZYs5@spark.kcore.it>
+References: <20260509162407.510539-1-aaron1esau@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature"; boundary="H+WTlR/4MbHBIrr6"
+Content-Disposition: inline
+In-Reply-To: <20260509162407.510539-1-aaron1esau@gmail.com>
 X-Mailman-Approved-At: Mon, 11 May 2026 14:41:03 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -87,73 +62,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The xe_vm_bind_ioctl function accepts user-controlled num_binds without
-any bounds checking. I noticed this follows the same pattern that was
-fixed for num_syncs in commit 8e461304009d.
 
-While the main allocations (bind_ops, bos, ops arrays) use __GFP_ACCOUNT,
-I found that vm_bind_ioctl_ops_create makes additional allocations in a
-loop that don't:
+--H+WTlR/4MbHBIrr6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-  - drm_gpuva_ops (16 bytes) at drm_gpuvm.c:2949
-  - xe_vma_op (144 bytes) at xe_vm.c:1318
+Hi Aaron,
 
-Both use kzalloc_obj() which defaults to GFP_KERNEL without __GFP_ACCOUNT.
+Short version: same regression reproduces on Arrow Lake-P with a
+different NVIDIA SKU, and NVreg_EnableS0ixPowerManagement=3D1 is already
+set on this machine. The S0ix knob alone is not sufficient to suppress
+the race here, so the i915 side of the fix matters even on systems
+where the NVIDIA workaround is in place.
 
-I traced through what happens with a large num_binds value. For 268M binds,
-the loop at line 3971 runs 268M times, allocating 160 bytes per iteration.
-That's about 43 GB allocated without cgroup accounting before the code even
-hits the main allocation at line 4009 (which will fail because it exceeds
-the 4MB kmalloc limit). So even though the big allocation fails, the damage
-from the loop allocations already happened.
+Hardware:
+  Dell Pro Max 16 Premium (MA16250)
+  Intel Arrow Lake-P, Arc Pro 140T iGPU [8086:7d51]
+  NVIDIA RTX PRO 1000 Blackwell [10de:2db8]
+  NVIDIA driver 595.71.05 (open kernel modules)
 
-I'm adding a limit of 2048 binds, checked before any allocations happen.
-I found that Mesa uses at most 960 binds in conformance tests (from commit
-ba6bbdc291), so 2048 gives about 2x headroom. At 2048 binds, we're only
-allocating 320KB in the loop, which seems reasonable.
+Kernel: 7.0.4+deb13-amd64 (Debian 7.0.4-1~bpo13+1).
 
-I'm using -ENOBUFS instead of -EINVAL so Mesa can retry with smaller
-batches if needed, as Thomas suggested.
+NVIDIA module options:
+  NVreg_EnableS0ixPowerManagement=3D1
+  NVreg_PreserveVideoMemoryAllocations=3D1
+  NVreg_DynamicPowerManagement=3D0x00
 
-A note on my methodology: I don't have Xe hardware, so this is based on
-reading through the code and tracing the allocation paths. I verified the
-struct sizes and followed the call chains manually. If I got something
-wrong or missed something, please let me know - this is my first kernel
-patch and I'm still learning.
+Representative trace from a recent boot, ~45 minutes in, on the
+internal eDP panel. The trigger was a VT switch out of the graphical
+session via systemd-logind (vt_ioctl, fbcon_switch,
+intel_fbdev_pan_display), not a direct s2idle resume; a suspend/resume
+cycle had occurred earlier in the same boot:
 
-v3: Changed to -ENOBUFS, moved the check earlier, added more details
-    about the allocations I found
+  i915 0000:00:02.0: [drm] *ERROR* Failed to bring PHY A to idle.
+  i915 0000:00:02.0: [drm] *ERROR* PHY A Read 0c70 failed after 3 retries.
+  i915 0000:00:02.0: [drm] *ERROR* PHY A Write 0c70 failed after 3 retries.
+  i915 0000:00:02.0: [drm] *ERROR* Timeout waiting for DDI BUF A to get act=
+ive
+  i915 0000:00:02.0: [drm] *ERROR* Timed out waiting for DP idle patterns
+  i915 0000:00:02.0: [drm] *ERROR* [CRTC:149:pipe A] flip_done timed out
+  i915 0000:00:02.0: [drm] *ERROR* [CRTC:149:pipe A] mismatch in port_clock
+                                   (expected 540000, found 61440)
+  WARNING ... intel_modeset_verify_crtc+0x325/0x550 [i915]
+  WARNING ... verify_single_dpll_state+0x1a2/0x560 [i915]
 
-v2: Bumped limit from 1024 to 2048 after looking at Mesa usage
+After this point, every suspend/resume cycle in the same boot is
+followed by [CONNECTOR:506:eDP-1] commit wait timed out, which is the
+symptom your series is meant to make the driver fail cleanly on.
 
-Cc: stable@vger.kernel.org
-Signed-off-by: Ramesh Adhikari <adhikari.resume@gmail.com>
----
- drivers/gpu/drm/xe/xe_vm.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+Happy to test the series on this hardware. Let me know whether you
+prefer it tested against the current posting on drm-tip, or if a v2 is
+in flight.
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 1ff66874f43..1ab020cbdc1 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3840,12 +3840,14 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	if (XE_IOCTL_DBG(xe, !vm))
- 		return -EINVAL;
- 
--	err = vm_bind_ioctl_check_args(xe, vm, args, &bind_ops);
--
-+	/* Prevent unbounded allocations in vm_bind_ioctl_ops_create loop */
- 	if (XE_IOCTL_DBG(xe, args->num_binds > DRM_XE_MAX_BINDS)) {
--		err = -EINVAL;
-+		err = -ENOBUFS;
- 		goto put_vm;
- 	}
-+
-+	err = vm_bind_ioctl_check_args(xe, vm, args, &bind_ops);
-+
- 	if (err)
- 		goto put_vm;
- 
--- 
-2.43.0
+One small note: the cover-letter title says Meteor Lake, but the
+cx0/C10 PHY path is shared with Arrow Lake-P (and Lunar Lake), so the
+scope of the fix is wider than the title suggests. Worth widening in
+v2 if you respin.
 
+Thanks,
+Marco
+
+--=20
+Marco Nenciarini - mnencia@kcore.it
+7C23 B804 3E65 D298 0A21  B6E2 589F 03F0 1BA5 5038
+
+--H+WTlR/4MbHBIrr6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEfCO4BD5l0pgKIbbiWJ8D8BulUDgFAmoAwKAACgkQWJ8D8Bul
+UDgNlBAAjBBS1Ph+31LDOsuy/1ezA8j6S6cHo0pJWtgSNqNoQUBsfj5CrfiAHB4P
+HnK65pEuyUhAPSK3SijI2lGNs5qlHiMvdcs+vY4sU6OiT7DW4oQ1cUv8v6V981zY
+yZKfA0eeJbp/kxGgEKddCwD7qaZSxv3HFSUk/Xb4niR8Ma1alxwyrcQGpuL1aQ1E
+vgEy21nRy+tqIiowbKKmEqyvDnNEEUxWw60XZR/sr/3JzzVhzqrYeOjqSpKT7EYZ
+eix6asWQnLsEuQ5DimWBR4G8DFDDD+2RtwXHoo9pp/jhLLDEk/9hZptQRfdz6Cug
+gJQpx1TalvftNOUI9kp80cqRBNI/UfMdOuMv97p8ptKmUodnjFe/b282DvEB5eH8
+nKxdumfg/3OdRSOmM9OrFhCIMrYza8yn9ZNFWGPybZi0RG0GJSI3n+aIOoAWzmQo
+89JFFmU1aGrPLA5kJbyLaX5GDDaBeXQ1vfSgqB9Vuk5QXRETh9fwWdS2/WobTR+7
+IlVXg8r1v8lkiUeiqFLs6yQfzhZnzFZZPDt4EClYp7IiHathwmhmQaHhbwM2hyp/
+p1lDuyagjOYykvWHMmD0402/EpReSzeQ0Qt+gOUVAX9yuzwS7efq9hwEAXlHitSp
+uMVtVusODO2rX68NXXKduB6QTZspNXx9vzyS6Ac/uKwELP+vHH8=
+=Dt7q
+-----END PGP SIGNATURE-----
+
+--H+WTlR/4MbHBIrr6--
