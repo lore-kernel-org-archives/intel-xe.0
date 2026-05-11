@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4101CCD37BE
-	for <intel-xe@archiver.kernel.org>; Mon, 11 May 2026 21:09:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53C1ECD484E
+	for <intel-xe@archiver.kernel.org>; Mon, 11 May 2026 21:09:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F20F710E20D;
-	Mon, 11 May 2026 21:09:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E22210E044;
+	Mon, 11 May 2026 21:09:28 +0000 (UTC)
 Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C553E10E20D;
- Mon, 11 May 2026 21:09:22 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E03B10E20E;
+ Mon, 11 May 2026 21:09:26 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6805323993627341812=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/hw=5Fengine=3A_Fix?=
- =?utf-8?q?_double-free_of_managed_BO_in_error_path?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/gsc=3A_Fix_double-fr?=
+ =?utf-8?q?ee_of_managed_BO_in_error_path?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Shuicheng Lin" <shuicheng.lin@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 11 May 2026 21:09:22 -0000
-Message-ID: <177853376280.58917.16964078544063824598@5ab824fced77>
+Date: Mon, 11 May 2026 21:09:26 -0000
+Message-ID: <177853376644.58917.15950930264237922297@5ab824fced77>
 X-Patchwork-Hint: ignore
-References: <20260511154622.223795-1-shuicheng.lin@intel.com>
-In-Reply-To: <20260511154622.223795-1-shuicheng.lin@intel.com>
+References: <20260511154134.223696-1-shuicheng.lin@intel.com>
+In-Reply-To: <20260511154134.223696-1-shuicheng.lin@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,46 +40,106 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============6805323993627341812==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: drm/xe/hw_engine: Fix double-free of managed BO in error path
-URL   : https://patchwork.freedesktop.org/series/166336/
-State : warning
+Series: drm/xe/gsc: Fix double-free of managed BO in error path
+URL   : https://patchwork.freedesktop.org/series/166335/
+State : success
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-061140b9bc586ae7f40abc1249c97e1cc72d1b9d
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 2fab880f0fc5304fb16f28ce4e78e4569aa9408c
-Author: Shuicheng Lin <shuicheng.lin@intel.com>
-Date:   Mon May 11 15:46:22 2026 +0000
+CI Bug Log - changes from xe-5041-f8ee23694aa6be213355905a78f79bb1b0861565_BAT -> xe-pw-166335v1_BAT
+====================================================
 
-    drm/xe/hw_engine: Fix double-free of managed BO in error path
-    
-    The error path in hw_engine_init() explicitly frees a BO allocated
-    with xe_managed_bo_create_pin_map() via xe_bo_unpin_map_no_vm().
-    Since the managed BO already has a devm cleanup action registered,
-    this causes a double-free when devm unwinds during probe failure.
-    
-    Remove the explicit free and let devm handle it, consistent with
-    all other xe_managed_bo_create_pin_map() callers.
-    
-    Fixes: 23e939bc8f56 ("drm/xe: Add a helper for DRM device-lifetime BO create")
-    Assisted-by: Claude:claude-opus-4.6
-    Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
-+ /mt/dim checkpatch 311a7de0a4e360124ba1abb933df42b021ef8b9d drm-intel
-2fab880f0fc5 drm/xe/hw_engine: Fix double-free of managed BO in error path
--:14: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id '23e939bc8f56', maybe rebased or not pulled?
-#14: 
-Fixes: 23e939bc8f56 ("drm/xe: Add a helper for DRM device-lifetime BO create")
+Summary
+-------
 
-total: 0 errors, 1 warnings, 0 checks, 16 lines checked
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8902 -> IGT_8903
+  * Linux: xe-5041-f8ee23694aa6be213355905a78f79bb1b0861565 -> xe-pw-166335v1
+
+  IGT_8902: d28bd0b9e0347c58ca9b012c02de7e2ad5ffe847 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8903: 6f88532e2fe22529195cc2f8cabff93d994688f8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5041-f8ee23694aa6be213355905a78f79bb1b0861565: f8ee23694aa6be213355905a78f79bb1b0861565
+  xe-pw-166335v1: 166335v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166335v1/index.html
+
+--===============6805323993627341812==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/gsc: Fix double-free of managed BO in error path</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166335/">https://patchwork.freedesktop.org/series/166335/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166335v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166335v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5041-f8ee23694aa6be213355905a78f79bb1b0861565_BAT -&gt; xe-pw-166335v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8902 -&gt; IGT_8903</li>
+<li>Linux: xe-5041-f8ee23694aa6be213355905a78f79bb1b0861565 -&gt; xe-pw-166335v1</li>
+</ul>
+<p>IGT_8902: d28bd0b9e0347c58ca9b012c02de7e2ad5ffe847 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8903: 6f88532e2fe22529195cc2f8cabff93d994688f8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5041-f8ee23694aa6be213355905a78f79bb1b0861565: f8ee23694aa6be213355905a78f79bb1b0861565<br />
+  xe-pw-166335v1: 166335v1</p>
+
+</body>
+</html>
+
+--===============6805323993627341812==--
