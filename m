@@ -4,27 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7164CD37AC
-	for <intel-xe@archiver.kernel.org>; Mon, 11 May 2026 14:47:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6949CD37BE
+	for <intel-xe@archiver.kernel.org>; Mon, 11 May 2026 15:27:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7835310E7CE;
-	Mon, 11 May 2026 14:47:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15CF610E1D0;
+	Mon, 11 May 2026 15:27:32 +0000 (UTC)
 Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13C4C10E7CE;
- Mon, 11 May 2026 14:47:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A0BB10E7E8;
+ Mon, 11 May 2026 15:27:30 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============8696407661129923870=="
+ boundary="===============8983215588098230139=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_More_Fixes_for_color_pipeli?=
- =?utf-8?q?ne?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1/2?=
+ =?utf-8?q?=5D_drm/i915/psr=3A_Block_DC_states_on_vblank_enable_when_Panel_R?=
+ =?utf-8?q?eplay_supported?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 11 May 2026 14:47:41 -0000
-Message-ID: <177851086107.57957.6710073696305171090@5ab824fced77>
+Date: Mon, 11 May 2026 15:27:30 -0000
+Message-ID: <177851325062.58001.10905393805341622306@5ab824fced77>
 X-Patchwork-Hint: ignore
-References: <20260511053213.3122314-1-chaitanya.kumar.borah@intel.com>
-In-Reply-To: <20260511053213.3122314-1-chaitanya.kumar.borah@intel.com>
+References: <20260511121551.2373824-1-jouni.hogander@intel.com>
+In-Reply-To: <20260511121551.2373824-1-jouni.hogander@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,20 +41,20 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8696407661129923870==
+--===============8983215588098230139==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: More Fixes for color pipeline
-URL   : https://patchwork.freedesktop.org/series/166292/
+Series: series starting with [1/2] drm/i915/psr: Block DC states on vblank enable when Panel Replay supported
+URL   : https://patchwork.freedesktop.org/series/166311/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-5039-a86f5af06a7f8fa3c0a87caa138d06824f87878c_BAT -> xe-pw-166292v1_BAT
+CI Bug Log - changes from xe-5040-6cfe03d5832de891397bc05fe788e79de49c51cc_BAT -> xe-pw-166311v1_BAT
 ====================================================
 
 Summary
@@ -80,17 +81,17 @@ Changes
 Build changes
 -------------
 
-  * Linux: xe-5039-a86f5af06a7f8fa3c0a87caa138d06824f87878c -> xe-pw-166292v1
+  * Linux: xe-5040-6cfe03d5832de891397bc05fe788e79de49c51cc -> xe-pw-166311v1
 
   IGT_8902: d28bd0b9e0347c58ca9b012c02de7e2ad5ffe847 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5039-a86f5af06a7f8fa3c0a87caa138d06824f87878c: a86f5af06a7f8fa3c0a87caa138d06824f87878c
-  xe-pw-166292v1: 166292v1
+  xe-5040-6cfe03d5832de891397bc05fe788e79de49c51cc: 6cfe03d5832de891397bc05fe788e79de49c51cc
+  xe-pw-166311v1: 166311v1
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166292v1/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166311v1/index.html
 
---===============8696407661129923870==
+--===============8983215588098230139==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -110,16 +111,16 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>More Fixes for color pipeline</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166292/">https://patchwork.freedesktop.org/series/166292/</a></td></tr>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915/psr: Block DC states on vblank enable when Panel Replay supported</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166311/">https://patchwork.freedesktop.org/series/166311/</a></td></tr>
 <tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166292v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166292v1/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166311v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166311v1/index.html</a></td></tr>
 
 </table>
 
 
-    <h1>CI Bug Log - changes from xe-5039-a86f5af06a7f8fa3c0a87caa138d06824f87878c_BAT -&gt; xe-pw-166292v1_BAT</h1>
+    <h1>CI Bug Log - changes from xe-5040-6cfe03d5832de891397bc05fe788e79de49c51cc_BAT -&gt; xe-pw-166311v1_BAT</h1>
 <h2>Summary</h2>
 <p><strong>SUCCESS</strong></p>
 <p>No regressions found.</p>
@@ -129,13 +130,13 @@ Content-Transfer-Encoding: 7bit
 <p>No changes found</p>
 <h2>Build changes</h2>
 <ul>
-<li>Linux: xe-5039-a86f5af06a7f8fa3c0a87caa138d06824f87878c -&gt; xe-pw-166292v1</li>
+<li>Linux: xe-5040-6cfe03d5832de891397bc05fe788e79de49c51cc -&gt; xe-pw-166311v1</li>
 </ul>
 <p>IGT_8902: d28bd0b9e0347c58ca9b012c02de7e2ad5ffe847 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5039-a86f5af06a7f8fa3c0a87caa138d06824f87878c: a86f5af06a7f8fa3c0a87caa138d06824f87878c<br />
-  xe-pw-166292v1: 166292v1</p>
+  xe-5040-6cfe03d5832de891397bc05fe788e79de49c51cc: 6cfe03d5832de891397bc05fe788e79de49c51cc<br />
+  xe-pw-166311v1: 166311v1</p>
 
 </body>
 </html>
 
---===============8696407661129923870==--
+--===============8983215588098230139==--
