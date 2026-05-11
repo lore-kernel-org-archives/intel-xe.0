@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E01FCD37AC
-	for <intel-xe@archiver.kernel.org>; Mon, 11 May 2026 12:28:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02722CD4842
+	for <intel-xe@archiver.kernel.org>; Mon, 11 May 2026 12:28:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5E3D10E726;
-	Mon, 11 May 2026 12:28:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2DFA10E731;
+	Mon, 11 May 2026 12:28:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mEGertW6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LEWFu/pK";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2003C10E726;
- Mon, 11 May 2026 12:28:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF76410E743;
+ Mon, 11 May 2026 12:28:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778502519; x=1810038519;
+ t=1778502526; x=1810038526;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gYx23AbQz5mZ3QvoOe2ut4bHxR++z3r+p1L1LoNlaKE=;
- b=mEGertW6J4c90Bu6dCWgLVogDENSPkE7FSQevXr8Sy0IkavId+hc9iYP
- F0w5DSAiJlIjBWEWDqjalwdU+CahV5A06nybzAZ444czlbnG774MWMeCj
- 2GLNGlvEUf1/aBuTNUCjOsIagFUFBy9ufs4B5lbz67u8CLRyeiwYYsWmm
- dtvqu+Yz/gGCASylFA0+VjFvpv+dp+YAEuYkYSZSjIJXDJYK2EYE9Z7z3
- fby/Nm1IRSSxxZlejCiFUoCn/3OT1If4PWVwVapr8/cG7ldqWGzr6yFH0
- Phl5HcRRqUi9VJ3hTspJmuYuiohSY40OkeTLn4YF0z2PbVWTXC0uyJ0Of Q==;
-X-CSE-ConnectionGUID: MsMEWnexQt+rhc3AdTw1WA==
-X-CSE-MsgGUID: SjV1PydaRnqMHug3ks0WJA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11782"; a="90762750"
-X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; d="scan'208";a="90762750"
+ bh=1QT1GfOjakGLTtxmrMVYP2Y7dHT5K666xLBZhwOpBdc=;
+ b=LEWFu/pKQARJVYs9FVqKxUB0P+ZHnUOV3eqvDP3+dRdu1332mQFttgRa
+ s5JZ4uDvCbU2GXoKkt5r64z5veK5y0zOzOXMrs+iSRMlcnSxd2zOdHwlb
+ bdogvi1GUwZg5gL4OZaFsV7+EQk/bapCzoE4/mL4dacc0AArRFZaxgop9
+ kz24Nmme/9Jxwjh/MpNT6q3/1sNfbfJn9WuB9vQ1O7oz0KxA+gHLl1Lpj
+ 4kaEZpXKIjQIIFQsofXoeOy2JtqbNsmcDbI9n0aC124jGjcv2ibEFHiYf
+ EwTyxurKHoHgo5+26Ev5ukhJ7yUehGevkq6H9VGP8V+rnSNXAgxcON6uH A==;
+X-CSE-ConnectionGUID: Ana4P1DuQx+1rU/8U9uDBg==
+X-CSE-MsgGUID: PcyqHrkmS/+saYLi5IOj7Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11782"; a="90762772"
+X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; d="scan'208";a="90762772"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2026 05:28:39 -0700
-X-CSE-ConnectionGUID: hoBJNn1vRUmSO9VW4XAH3g==
-X-CSE-MsgGUID: jQAf1M9nQR+AjklkmbndcQ==
+ 11 May 2026 05:28:45 -0700
+X-CSE-ConnectionGUID: /vmvm5ykQgKB1e9dBfuH1w==
+X-CSE-MsgGUID: M02VFyxuS12olZf9DPn3ww==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; d="scan'208";a="267801423"
+X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; d="scan'208";a="267801434"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO
  vgovind2-mobl4.intel.com) ([10.245.245.16])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2026 05:28:37 -0700
+ 11 May 2026 05:28:44 -0700
 From: Vinod Govindapillai <vinod.govindapillai@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: vinod.govindapillai@intel.com,
 	ville.syrjala@linux.intel.com
-Subject: [PATCH v2 02/11] drm/i915/pm_demand: introduce HAS_PMDEMAND macro
-Date: Mon, 11 May 2026 15:28:07 +0300
-Message-ID: <20260511122816.1235478-3-vinod.govindapillai@intel.com>
+Subject: [PATCH v2 04/11] drm/i915/bw: Extract icl_init_qgv_info()
+Date: Mon, 11 May 2026 15:28:09 +0300
+Message-ID: <20260511122816.1235478-5-vinod.govindapillai@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260511122816.1235478-1-vinod.govindapillai@intel.com>
 References: <20260511122816.1235478-1-vinod.govindapillai@intel.com>
@@ -71,147 +71,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-PM demand feature introduces a new way to set bw, power and
-performance requirements to pcode from display version 14 onwards.
-Use an identifiable name as a macro to distinguish the pm demand
-specific changes in the code.
+Simplify the initialization of qgv points info by extracting
+the code to initialize the qgv points info from dram info based
+on the memory type.
 
 Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bw.c             |  4 ++--
- drivers/gpu/drm/i915/display/intel_display_device.h |  1 +
- drivers/gpu/drm/i915/display/intel_display_irq.c    |  2 +-
- drivers/gpu/drm/i915/display/intel_display_power.c  |  4 ++--
- drivers/gpu/drm/i915/display/intel_pmdemand.c       | 12 ++++++------
- 5 files changed, 12 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bw.c | 23 +++++++++++++++++------
+ 1 file changed, 17 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index 9c3a9bbb49f6..d99e921df0b9 100644
+index d99e921df0b9..e9cfa3edd09e 100644
 --- a/drivers/gpu/drm/i915/display/intel_bw.c
 +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -181,7 +181,7 @@ static int icl_pcode_restrict_qgv_points(struct intel_display *display,
- {
- 	int ret;
- 
--	if (DISPLAY_VER(display) >= 14)
-+	if (HAS_PMDEMAND(display))
- 		return 0;
- 
- 	/* bspec says to keep retrying for at least 1 ms */
-@@ -1206,7 +1206,7 @@ static int intel_bw_check_qgv_points(struct intel_display *display,
- 
- 	data_rate = DIV_ROUND_UP(data_rate, 1000);
- 
--	if (DISPLAY_VER(display) >= 14)
-+	if (HAS_PMDEMAND(display))
- 		return mtl_find_qgv_points(display, data_rate, num_active_planes,
- 					   new_bw_state);
- 	else
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index 074e3ba8fb77..65283286771a 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -194,6 +194,7 @@ struct intel_display_platforms {
- #define HAS_OVERLAY(__display)		(DISPLAY_INFO(__display)->has_overlay)
- #define HAS_PIPEDMC(__display)		(DISPLAY_VER(__display) >= 12)
- #define HAS_PIXEL_NORMALIZER(__display)	(DISPLAY_VER(__display) >= 35)
-+#define HAS_PMDEMAND(__display)		(DISPLAY_VER(__display) >= 14)
- #define HAS_PSR(__display)		(DISPLAY_INFO(__display)->has_psr)
- #define HAS_PSR_HW_TRACKING(__display)	(DISPLAY_INFO(__display)->has_psr_hw_tracking)
- #define HAS_PSR2_SEL_FETCH(__display)	(DISPLAY_VER(__display) >= 12)
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index 70c1bba7c0a8..69bc9101d21d 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -1260,7 +1260,7 @@ gen8_de_misc_irq_handler(struct intel_display *display, u32 iir)
- 		}
- 	}
- 
--	if (DISPLAY_VER(display) >= 14) {
-+	if (HAS_PMDEMAND(display)) {
- 		if (iir & (XELPDP_PMDEMAND_RSP |
- 			   XELPDP_PMDEMAND_RSPTOUT_ERR)) {
- 			if (iir & XELPDP_PMDEMAND_RSPTOUT_ERR)
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 80ecf373fb19..94e025e231d5 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -1122,7 +1122,7 @@ static void gen9_dbuf_enable(struct intel_display *display)
- 
- 	slices_mask = BIT(DBUF_S1) | display->dbuf.enabled_slices;
- 
--	if (DISPLAY_VER(display) >= 14)
-+	if (HAS_PMDEMAND(display))
- 		intel_pmdemand_program_dbuf(display, slices_mask);
- 
- 	/*
-@@ -1136,7 +1136,7 @@ static void gen9_dbuf_disable(struct intel_display *display)
- {
- 	gen9_dbuf_slices_update(display, 0);
- 
--	if (DISPLAY_VER(display) >= 14)
-+	if (HAS_PMDEMAND(display))
- 		intel_pmdemand_program_dbuf(display, 0);
+@@ -238,13 +238,11 @@ intel_read_qgv_point_info(struct intel_display *display,
+ 		return icl_pcode_read_qgv_point_info(display, sp, point);
  }
  
-diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c b/drivers/gpu/drm/i915/display/intel_pmdemand.c
-index 7819b724795b..3a2e7825eb52 100644
---- a/drivers/gpu/drm/i915/display/intel_pmdemand.c
-+++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
-@@ -152,7 +152,7 @@ intel_pmdemand_update_phys_mask(struct intel_display *display,
+-static int icl_get_qgv_points(struct intel_display *display,
+-			      const struct dram_info *dram_info,
+-			      struct intel_qgv_info *qi,
+-			      bool is_y_tile)
++static int icl_init_qgv_info(struct intel_display *display,
++			     const struct dram_info *dram_info,
++			     struct intel_qgv_info *qi,
++			     bool is_y_tile)
  {
- 	enum phy phy;
+-	int i, ret;
+-
+ 	qi->num_points = dram_info->num_qgv_points;
+ 	qi->num_psf_points = dram_info->num_psf_gv_points;
  
--	if (DISPLAY_VER(display) < 14)
-+	if (!HAS_PMDEMAND(display))
- 		return;
+@@ -316,6 +314,19 @@ static int icl_get_qgv_points(struct intel_display *display,
+ 		qi->max_numchannels = 1;
+ 	}
  
- 	if (!encoder)
-@@ -174,7 +174,7 @@ intel_pmdemand_update_port_clock(struct intel_display *display,
- 				 struct intel_pmdemand_state *pmdemand_state,
- 				 enum pipe pipe, int port_clock)
- {
--	if (DISPLAY_VER(display) < 14)
-+	if (!HAS_PMDEMAND(display))
- 		return;
- 
- 	pmdemand_state->ddi_clocks[pipe] = port_clock;
-@@ -326,7 +326,7 @@ int intel_pmdemand_atomic_check(struct intel_atomic_state *state)
- 	const struct intel_dbuf_state *new_dbuf_state;
- 	struct intel_pmdemand_state *new_pmdemand_state;
- 
--	if (DISPLAY_VER(display) < 14)
-+	if (!HAS_PMDEMAND(display))
- 		return 0;
- 
- 	if (!intel_pmdemand_needs_update(state))
-@@ -406,7 +406,7 @@ intel_pmdemand_init_pmdemand_params(struct intel_display *display,
- {
- 	u32 reg1, reg2;
- 
--	if (DISPLAY_VER(display) < 14)
-+	if (!HAS_PMDEMAND(display))
- 		return;
- 
- 	mutex_lock(&display->pmdemand.lock);
-@@ -639,7 +639,7 @@ void intel_pmdemand_pre_plane_update(struct intel_atomic_state *state)
- 	const struct intel_pmdemand_state *old_pmdemand_state =
- 		intel_atomic_get_old_pmdemand_state(state);
- 
--	if (DISPLAY_VER(display) < 14)
-+	if (!HAS_PMDEMAND(display))
- 		return;
- 
- 	if (!new_pmdemand_state ||
-@@ -662,7 +662,7 @@ void intel_pmdemand_post_plane_update(struct intel_atomic_state *state)
- 	const struct intel_pmdemand_state *old_pmdemand_state =
- 		intel_atomic_get_old_pmdemand_state(state);
- 
--	if (DISPLAY_VER(display) < 14)
-+	if (!HAS_PMDEMAND(display))
- 		return;
- 
- 	if (!new_pmdemand_state ||
++	return 0;
++}
++
++static int icl_get_qgv_points(struct intel_display *display,
++			      const struct dram_info *dram_info,
++			      struct intel_qgv_info *qi,
++			      bool is_y_tile)
++{
++	int i, ret;
++
++	if (icl_init_qgv_info(display, dram_info, qi, is_y_tile))
++		return -EINVAL;
++
+ 	if (drm_WARN_ON(display->drm,
+ 			qi->num_points > ARRAY_SIZE(qi->points)))
+ 		qi->num_points = ARRAY_SIZE(qi->points);
 -- 
 2.43.0
 
