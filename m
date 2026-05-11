@@ -4,147 +4,130 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B34E1CD37BE
-	for <intel-xe@archiver.kernel.org>; Mon, 11 May 2026 22:45:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC808CD37BE
+	for <intel-xe@archiver.kernel.org>; Mon, 11 May 2026 22:48:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C08B10E906;
-	Mon, 11 May 2026 22:45:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F8B610E906;
+	Mon, 11 May 2026 22:48:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H2WM1hQa";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="kQ5eDgM5";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D488E10E8FA;
- Mon, 11 May 2026 22:45:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778539507; x=1810075507;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=NNHAJa8zJSIyg7+hnw1n4LMoOYlr5e7m4jtNipzchpQ=;
- b=H2WM1hQabkOSnwj5njc+VsCDMR93S7fz97Ehd2ZsYYhTxEOW4zfrz2cZ
- ODoVoe8mWZITcUEOYrtxevB9CrtJrdQ8K35iM7nl8UhTvI7MtW5L5OksN
- CkoQ4J8HaNjK0Ax0dElaDU/SampWQzv0ekzIvaJe1fcQg7+axRMSX9h4P
- gePC4xA5XMY6XcGgI/hNAY224MIj+34gVvrA05KeaAIrtV/JlSGL/xnxI
- /AiXaU9Rj6IgjIVtemrEisSdis/4xZ/ovCW/fjgGnLp+Q+tXzziGdR/H9
- 5OImiYgiNIDluM3EppVOknqDeKyXk0quBaCdO7b+NW2QXQqYR4n4pBY9Y g==;
-X-CSE-ConnectionGUID: Xw7b1UpJTwmrWg6E1nz2Mg==
-X-CSE-MsgGUID: rezuTBRSTHOL4Li49WhkeQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="79336670"
-X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="79336670"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2026 15:45:06 -0700
-X-CSE-ConnectionGUID: G6OsYT97TBeWc3aRSrD5BQ==
-X-CSE-MsgGUID: mxgWl3iRSteXH8uD2KogSg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="261082550"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2026 15:45:06 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 11 May 2026 15:45:05 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 11 May 2026 15:45:05 -0700
-Received: from PH7PR06CU001.outbound.protection.outlook.com (52.101.201.7) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 11 May 2026 15:45:05 -0700
+Received: from SA9PR02CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11013013.outbound.protection.outlook.com
+ [40.93.196.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1F4510E902;
+ Mon, 11 May 2026 22:48:45 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=AByvPiRGc9P8vF5xoJiHLS8XnZ9MUCNLxC+LZddMbvjXlPSUhNu0x2AU2Ylo40CEfxJ0+x6wNqZ+5/TadUjywl2GTCwQ6UY2wQdPYXe9P1+LilpeBb4gh6BhU7BiVm4WYUF1d9fbtT8beteNrtKsEDpVSSlb56DSdNgvdOtMXQ0KtJ96G9paKfYHVM/bVxTb/dnT7mA1k2IqYds0AC9gobb2FEyAO/6dmu7pcXSHgmoypLVcHxOamfmDUotF/oxyYI6I3gAOFk9fRE5T+jpM+D39vWZHOYEQ1zu8gCBHur5GQGHo1Bt2tWypdzcjRfblgDxBsBYJG16IBmfvMHXL1w==
+ b=BuzIDk8Tpey0sumH9F3PESFLEK4rU/nCs82HjujT5f8zg8tDYBg0x84/y1iuQ27Uanc/7b2YdRp4r3Yl5jBA23guHI/s9LM3vAx2wE5S5JWnDKedY277IponzEkucipNk0Zp4fm1v5pTvzUm/VJACBcamexHt7fdLff1btmysIAPAj8p1Yo5X4NFgH/hAFZIRxNcTEl9RHm9aOBPhg2R5+odIe8uKX+MlljaXOJMJuHrFXdWOgKkChWGhMradG/pN/r7lalrxt71lALewNxDexnFP1s9HaqZFxXfKxXkjlEk4ZzY+X1FD2DhREmZ4McWYYWAUNDjne2+c6+t1cJU8Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=54caJQWufF48RLDGLQDx+iYNDS8PXih8guO1W9zn6lc=;
- b=MjmsbiJc8CN0FIAJl5MC24TkmO+Zh+pnrV+Sr2LcSeUn5RzyrCFv8ozSQ55Hm9JUeSkSpruTm082gcdoPxgsmQ1wfznV5bWD8ZQ0JU0ZR8svpN0IoqEpGtniJcGrGcPhvqNojtecCSqqi4V2BDb9zFOfMigJsrbH5aagvIhh93rSmLLBIplhyst3Ca2wpphN6nSvjgGdtd0SZX5xqrpr7K3jaTeJEFxCCISymxEe2QcI0Cfc+lmc6PV/3oQjKVCYkWCo88NBSY/UESD4xvSqxqIR7GhCh7XrL1znNssZC86mO9kmlNMOoco2OAUfstTxPFD9RgMMGn4kqPzyvukCBQ==
+ bh=34fmHfHLuYL6yOYa7+w4Tf35A4aKcUPqmxiOnnDyqPY=;
+ b=MYLHn1vMEKHvWooWX0HxvcrajC/2H+IJFvPWl8MiagjfLCXJVytQjBZpQK7aWNJEhgmxoOKrJvSGieyAGxD7FvDrxCL+/zZHoGgOFT5jrzbBu7SKZfN6E7JujsG5HPk/bjHA72aQDzz9l0GMcXzjMAym7JkX8e9YS2h2ght7pToGGZk6B4vjCnu2ejBuIOnOLXUtuxbN5jFevbfMSCgSwKt6TDPN5swajFzxLYfmQdQF+taqPAh1nSqqqcIB+S5BO2rQ6q81Y4r+5CCHBygBN9GlWrHvHWeed7JR5k+SQiBEzwp0Iz7SRV02XpFwO84Iag3NrhJMLBAV2tniddipRw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=34fmHfHLuYL6yOYa7+w4Tf35A4aKcUPqmxiOnnDyqPY=;
+ b=kQ5eDgM5sOq2rU2o+B02Tcvvw9hHVxkbTNZDyVJfBuXyiw3D9Q1i5kUDvdFJWhTRsYqt2B9R2QBuHdsbS+W3IpF4a19HJUzqXCNWfe9a52qGf93vgUiWUfQiAtFcxReNzE7PfuSF/FKBbE9CzMD9SmYaCO7uLcfVFU8b7CrGYsTdxkt1hLMqyIomb0RAUJm/JX5txJ0UOqBxycRmwA1gHT47iGGvgOk8UnVqgW4BQMPfWqwuYRvbzyeRVQJOPwuoK3UxGac2BS9VbejR0ZMsg9z9YI5/n01NjgMTMOGDWSVaPmUMs6uA1ajjCN9KMBqT8yJMWwiFqXyshtDQwgOHJQ==
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by SJ5PPF8622363CD.namprd11.prod.outlook.com (2603:10b6:a0f:fc02::83c) with
- Microsoft SMTP Server (version=TLS1_2,
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from LV8PR12MB9620.namprd12.prod.outlook.com (2603:10b6:408:2a1::19)
+ by MN0PR12MB6293.namprd12.prod.outlook.com (2603:10b6:208:3c2::22)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.23; Mon, 11 May
- 2026 22:45:01 +0000
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e]) by DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e%7]) with mapi id 15.20.9891.021; Mon, 11 May 2026
- 22:44:57 +0000
-Date: Mon, 11 May 2026 15:44:54 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>, "Jani
- Nikula" <jani.nikula@intel.com>
-Subject: Re: [PATCH v2 3/4] drm/i915/bw: Rename struct intel_sa_info to
- intel_display_bw_params
-Message-ID: <20260511224454.GA2131374@mdroper-desk1.amr.corp.intel.com>
-References: <20260511-separate-platform-from-diplay-ip-specific-bw-params-v2-0-e762cb8662da@intel.com>
- <20260511-separate-platform-from-diplay-ip-specific-bw-params-v2-3-e762cb8662da@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+ 2026 22:48:42 +0000
+Received: from LV8PR12MB9620.namprd12.prod.outlook.com
+ ([fe80::299d:f5e0:3550:1528]) by LV8PR12MB9620.namprd12.prod.outlook.com
+ ([fe80::299d:f5e0:3550:1528%5]) with mapi id 15.20.9891.021; Mon, 11 May 2026
+ 22:48:42 +0000
+Date: Mon, 11 May 2026 19:48:41 -0300
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Xu Yilun <yilun.xu@linux.intel.com>
+Cc: Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Dongwon Kim <dongwon.kim@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ iommu@lists.linux.dev, Kevin Tian <kevin.tian@intel.com>,
+ Leon Romanovsky <leonro@nvidia.com>, linaro-mm-sig@lists.linaro.org,
+ linux-media@vger.kernel.org, Matthew Brost <matthew.brost@intel.com>,
+ Simona Vetter <simona.vetter@ffwll.ch>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
+ Vivek Kasireddy <vivek.kasireddy@intel.com>
+Subject: Re: [PATCH RFC 21/26] dma-buf: Add the Physical Address List DMA
+ mapping type
+Message-ID: <20260511224841.GA1197107@nvidia.com>
+References: <21-v1-b5cab63049c0+191af-dmabuf_map_type_jgg@nvidia.com>
+ <c413710b-4c28-4ed8-88ec-aeb8c4482011@amd.com>
+ <20260413121628.GE2588311@nvidia.com>
+ <f6d38a08-009c-4efe-9dc3-6bcf00ac35f7@amd.com>
+ <20260422115306.GI3199414@nvidia.com>
+ <fd8065ce-fd0e-4df5-9c80-8e9603657cfe@amd.com>
+ <20260422131337.GJ3199414@nvidia.com>
+ <e67426b9-4ded-4f6c-8309-7f847adb4540@amd.com>
+ <20260422150000.GK3199414@nvidia.com>
+ <af7GzASJiASopYiN@yilunxu-OptiPlex-7050>
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260511-separate-platform-from-diplay-ip-specific-bw-params-v2-3-e762cb8662da@intel.com>
-X-ClientProxiedBy: SJ0PR05CA0065.namprd05.prod.outlook.com
- (2603:10b6:a03:332::10) To DS0PR11MB8182.namprd11.prod.outlook.com
- (2603:10b6:8:163::17)
+In-Reply-To: <af7GzASJiASopYiN@yilunxu-OptiPlex-7050>
+X-ClientProxiedBy: YT4P288CA0064.CANP288.PROD.OUTLOOK.COM
+ (2603:10b6:b01:d2::19) To LV8PR12MB9620.namprd12.prod.outlook.com
+ (2603:10b6:408:2a1::19)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|SJ5PPF8622363CD:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4d40f2ed-a08a-4a0d-1940-08deafaeecfa
+X-MS-TrafficTypeDiagnostic: LV8PR12MB9620:EE_|MN0PR12MB6293:EE_
+X-MS-Office365-Filtering-Correlation-Id: a4ec01ac-6ae7-4d6a-ff39-08deafaf7337
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|22082099003|56012099003|18002099003|3023799003|11063799003;
-X-Microsoft-Antispam-Message-Info: iqfFrJsLIyaQR+vcOQu5TG58q1uIxlegpMNhjvx5++XTLBcz1OgKEoKL2vC4mWZ7d5ZLWrJHrjJn9DyQPZ39LXuez17bKovwpCag5OX5auU9cW04GRcEGRkNnMpBRRInUfnDpaaXYZ2ZjfE/7YG7HmLYqQVbj2kPk6yu4VEduTYZzLPh2cqanM02GdJi/pU0UmBbXbau/VnS61bjyLb3oJax8bc4RxstL5C3n3Fb7DzohSG9tgXjGnmDzUw6210iHBVkOVREgpD/l31KlZit4zoGdlO/CobbUsO1mxlnwZc/J8I7NPYY6u4qZ+Vo609nLJn6UQ00aSIdBCXyPZlkRKf6iTrl/LZSGPwu6x8P2vVn8bSTfgDK2mFyqMyywfqHcfndSEm7UQxHudh1edUyu5vam8lmL1o42MF/UVMmqI22lj11GrvznMTTglaS0/9CEquozXOZrNxL1bOZaM2ZReeW13hbqM+HqFpAprAFyE+IOC69niyMdnkHosDohEsLDmx8aTFHfA39Dn77OSuBIUHw6WJBKuLM2Pbbj/3jPQPnIA+LebSOUDGd21SoMkMVL+sI8rWBsXlNFFSmiIZbDeC/MXRcUz1l0Q+HZxJqGPpEPG/uiNC9I+X6nc9DeOV4PKsM+cXNi+tQiQ5GS65q5CTWMg1U1uH5b2yZGzIFaNQ+z1onwyxQV3Fpp3PtIpqo
+ ARA:13230040|7416014|376014|366016|1800799024|56012099003|22082099003|18002099003|11063799003;
+X-Microsoft-Antispam-Message-Info: NkUryylRYpF4AN+g75t4XKt1Xy6npWeHukAEWYC/k3dvztsZEROaQ92UqepYD6q3prOlBKWxC020O0WrMNJVkxde0yFj8jDfl350jF5If4x+3rwY8kjzsFefo23f4HUKXJKKi+Kwo8waftVBW8a5D4xB2gdk/Q3jq+fgedmuUZ6E1xGb4ST7zSPb8hJoDjnNVB+Z2QyGiUt6wUlxzDQyoNLtpEuGmyDwSacMGD5fFcbahJELtMo9ZNFdu+O2PumuDu0FBC2LbVdzQCeBenNRbyxilKELgOsgqpA5uNy9W1UkIx5myh9PSEZU5rNx39R2oi+uxxueTM7ovseKQxsRWpEGhvU3K16Q6lqZ7HZbml423T2qtKEyOPCdzeM8KD+FDLMeJpucm2O0QIWxiTOXkqK98w4R4xIMf6MTVznfJD+t5SvgfitI8ZU4oHEL9+Xj76TiscDYuq2zHcthv5SVm12KB2BzT17kPWYuyNNLmACugj+RjAy4pTd+7iugc3+WAYuL1E8nYTK++J+fHlnAs3eE75pgRJoWpqDgr89Mk03+kZAhIPxMf27EUhpXSYXgB82YenFSPScjt81i5J31fWVfJIO1uyHLjI9vYehY/KdfNervAJz9oRaPHpyKI0FT4aXCS3V2uT7352y8CBzLaYfiMhzNV2sZNxeViLaArRsP7uwPZTROcNaGz3NYCtT9
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(22082099003)(56012099003)(18002099003)(3023799003)(11063799003);
+ IPV:NLI; SFV:NSPM; H:LV8PR12MB9620.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(7416014)(376014)(366016)(1800799024)(56012099003)(22082099003)(18002099003)(11063799003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?TZoNUz1XW8aDo6za7deQZvviFj4hiJP9lg0WLnBmyIWYGZxtYhrF2ge85GKA?=
- =?us-ascii?Q?arGVMs+6CDD05jNQ2onNzNespK202pWGVY3ZSmNwmljQRcjAm54GTBacQQid?=
- =?us-ascii?Q?nUrN0h8KGrTy+vdDIt55K6h4/S2uaqkv2ITzhpvrPo64m7xjLYymY7kYkmk5?=
- =?us-ascii?Q?HQYOYVyi8Zw2QRtquAIA2pfC0MLBMItLx+GczejeVQV7T4NwMoA2cJoQmiHs?=
- =?us-ascii?Q?Fphof4Kd9+p8q7hxmBeWAuXM36zIldw9tOmk01BuZTYcQ6gDcWKooS/3ZVMp?=
- =?us-ascii?Q?56qhUfXupAtLW6t2jbE6yik7w7TpOU8ftnAU4eDStvHDLzuEy645Sq3vD0cH?=
- =?us-ascii?Q?cNmO3/q8CupYrjAL+xDnIHrSClBku9Sbh1hUFDKlpcaIeSxcTZqx2Y/sIw7y?=
- =?us-ascii?Q?uxWAS3oV6XioJN2JWm/CYLOkD4H7Upr030ab7j9pAW/2cMv0RiyEw1XheEhH?=
- =?us-ascii?Q?vCrFpEFsLsKnolLh+MkLBUcO3dcU9GbaiBClQ9e3XyKQz9Hz5tbCiGyc651b?=
- =?us-ascii?Q?3ljFU64zN913mstdWRY18aTusrmqqpQLs0N3Sus9RpjPzsM0kg4NGeQ4Iib1?=
- =?us-ascii?Q?R5h9u+eU3O/eVgHHx3afphBEoBB2DtimELge2RTpy2anO+0JwxC69u2h139n?=
- =?us-ascii?Q?yjtbCQGTQ3yPZr0prJZSuCPTZHbVbZPMniARHhuYOCWY1aXylw/yli5qwnt0?=
- =?us-ascii?Q?6Olatp8mzt4HBZFeOExYGvxuK8Ao4hLj9r7SC1EUF18J753XjdxY+N3u4/mZ?=
- =?us-ascii?Q?Z02nQTTkMSMs23Y7xvA8vEzQDmxchY97NFlOhglkZoqmdhKWreetaNwn6u+D?=
- =?us-ascii?Q?mSbenAXqeOxAlEvSoveuyjg0xkIthhoUjf5JHDADSqlrTd1nRosOWo2Scool?=
- =?us-ascii?Q?RWtcmEJaJAXTGhTqsvp148nQcoZt94uY70pUiJfVWiH9NnkRj9P/gy3qrze9?=
- =?us-ascii?Q?XaMuUUCUtMZu4N2NCb27er0ZHr5EH+dMt7g0BkDyT3/7QDw4Om3UVhjmprtR?=
- =?us-ascii?Q?xiaygFRKXp1kcMsPl0D45BPASn/Tx08QTc5R2WTvN59Eaq/0gW8X4RwA7HCx?=
- =?us-ascii?Q?crfL8VKTix3v/bQGiY6lrIMzgcHrkuSeI0JoRTGwSCWo5/Fv89Tp4YsKh0eh?=
- =?us-ascii?Q?DVOXmvg7lo+tTUZoK0Jo1fJ44ljAOpfKrxi6B9nhmBgPkU1Ri1lkWHr9zPUD?=
- =?us-ascii?Q?C9BRwdqc5xx26k46ZAqCaJUOtaKK1RYdRUEEos1RkiX9R0um8U+WiyXTn6dk?=
- =?us-ascii?Q?dq0pypmJxC8C4AGQfa/qGNbi1l9h75de24AopQuUgVHcjo/ZDHBFB0hT8t+M?=
- =?us-ascii?Q?lBpceqlsR+4FNm77DyM85V/sGvQEpjiVQ8PIZktWkgIVb4B9CHlA725lA8cE?=
- =?us-ascii?Q?6v7/IscNQbbin0XhTSKsYAWt3P2uEV3wttkI9iclJb0kVbsfjLY4le4Ag24G?=
- =?us-ascii?Q?RjS6SkcENh1U8FDj54i3aq59VdTa4i9Z4o013ifbHRVL6aiGXHIuOuRA20el?=
- =?us-ascii?Q?crTBS7Pn237xa7cRMKCmRyVCV0JD+GX9gWLi+QdXVzcD+Yi9FN1HHI4dweNw?=
- =?us-ascii?Q?xfh6mzf5NJ/aDUoA/OajnjjD9Atd9fxzPTnjs+B5qVenu7oKNalLYjpfbfuj?=
- =?us-ascii?Q?rIxSK3+S0Z8Q6KsC3yh+KkECasm9FBjvmeqV53ro/uI0mCxskuI8tAM3LwMp?=
- =?us-ascii?Q?QVzHh+bo+3Tn5Bw/Wy6nvD7yfP/Cks5ZR7RgvOlGA/Q+36ZHVPzwm9Lz6KAV?=
- =?us-ascii?Q?yX50X8tazAQOqaX3yKLNJjRWkjvcmtM=3D?=
-X-Exchange-RoutingPolicyChecked: lZ1y9aIvp/YEPY5Q5AonJJlL1u2sQRuoRyB1kEStQ4C5zR7qxoVGBrzm0h9WKWCib4+QqkOuBrV0p8mSLkBQqasEZBW1j5rmwBsifdA9I2sKyV0jIk/NQ2NZZcc8YLnCae0efZ2l8Q4qwwshapuMzziKh7W79bDTy9iXg3KFcdHQNcq85TAHGvVoCYJNXjZCWo6Dxx/amnwfrnj/RAWL9CpxEGi6ppoY8FXsn+WH0iJsBPwmZqmlD7Z7elPhIhzLx0FT1gubF1dYlQZ/lNVumja+tiVyrq+z8xm7evUtYjM0b5TwDTaUJzBVpje1CnzLxtxEdPO/Xb30lwDelP/l6g==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4d40f2ed-a08a-4a0d-1940-08deafaeecfa
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?dVwmFDil+D5xpY6yzP45s/3HQSz5CkfDIBsAXpt1GE/5LyrmJDXE+J+1JME4?=
+ =?us-ascii?Q?IU4ynkIYH4j/+XGWdxXKmDVWuJpndn/ZX3popVLdouu6G+JVFZdV5oviI4cv?=
+ =?us-ascii?Q?diHmefEzIj7H3YqeBcV6hXztq8/5GTbcyN7tGQteB79f934PbcZrQz1CycZG?=
+ =?us-ascii?Q?Yd484vRtiSyRO7KdlsvoLe7np73e/x+zr3LAcDlOp2HDmL7FqTrkzRhxfRVA?=
+ =?us-ascii?Q?KoVVM58FNtPR++pVE5Zhba+w6tVZinZN9llf/zGl5pPMg8at1VSk2RXwQrnb?=
+ =?us-ascii?Q?c1RPiKCCasZ3T6CKRq/YRq6BWX1BK63VK9eJFk3yGfhBV2x8tocLP5PnuS7+?=
+ =?us-ascii?Q?TLVV8JpB7GCgcsKGx8JIBW5PYrmOhHMrWMlE8TwPHfuzX3+v3ECq7+LQOMLL?=
+ =?us-ascii?Q?VR2BezLHCzxyaTbKq8gZPoDj8W8YsP2SX2kOQoiBWaf+r6HsOn+tUCLy6ApN?=
+ =?us-ascii?Q?JkYhUZ0RKJfuqF/k1c2PezlFyUjbEzW4ZvVqlg4Z8dXKJ2S1+oewqe5gXDk+?=
+ =?us-ascii?Q?VT3BREcHgmuvuLjHMfkVGR6n/m9AN4LV0/cKvZMTmQ9RS5ikCH76FMFxi/az?=
+ =?us-ascii?Q?q/ylPUrk5BymCBvaicOu+SO2zh5v4EIrB+Q3PzQaGF/Kxk7elnTfRkJxIywx?=
+ =?us-ascii?Q?GZazpuPrQpuZm8R2JwgZ2izCnd7AerMCVZgMgkUTcoDvQ8Ev3q4f5FBMMdq7?=
+ =?us-ascii?Q?/1WKwszUeOLmdDoZiQdCe2v5XqlZzNeFF0Q4VxUtPzBCNV/8aTeHFyW9YBX0?=
+ =?us-ascii?Q?/2VIxFUtCEhI/5MFLmtuME/BAXI3ZtFLNDkCTcIx0aTNe65yCoxQow/atRVz?=
+ =?us-ascii?Q?e1HD8PvlDwPO7y88yT4+OYm372zehzcgtvVPQX+9hHr+7G4aR6LoursjvdeC?=
+ =?us-ascii?Q?HsZDSP51NVZH8RQq7nIO1DZQpsM3QqrQwz2nIn6RmChCxPuMOWGr9lNyTjXP?=
+ =?us-ascii?Q?aQ6HjZ68pBkRmPkbwb+bz1A2ckUh+GrnGhlzX/99RQki3wiPWJl5rwlnYCJY?=
+ =?us-ascii?Q?dZmuaa9O0Bm+ZeVdkkluAacDiXN0bSkNhjz5HaoFy/wZb8cWo4YMx9LODaNq?=
+ =?us-ascii?Q?Xi4l/ig0u+zQP9KZYATi3d9k8kdbHIk4OlNpQv6RqcHNCHpjHb+241/dc03l?=
+ =?us-ascii?Q?2PLUqtu7y/Tq2StBzvY0s36WG6iVZn42RH5/XQ58AkkDxnM1+//FR38u6505?=
+ =?us-ascii?Q?EqeMO4avtwCxsi0VAzCr/1KvKn2GTxPL/mkddPo13z6+7LsORAAwBcmL5+1n?=
+ =?us-ascii?Q?xI/GbHzQz9Os/pXc3KtlWPdrODdf+MK0TWib2po7NStlpMsGzHUC18ERCQWX?=
+ =?us-ascii?Q?/bilgOahvt9AfzeTWI8AWi7f6sM17fDRtrTLZKJz7wYSFrTFF9DjTvm5LZFf?=
+ =?us-ascii?Q?ddRFrOjbNVtvusEHFTJhzYNQLo2IAqPSrS6kTWU+l58/hcK7oweSBLcj1b4M?=
+ =?us-ascii?Q?Gn5YXnoO7Dm1G0Xc5Ip7bdmFRXB4kHHx6VRTFSLt9uq79EM6vWTsrZu2TUqn?=
+ =?us-ascii?Q?tkRjz6CoFs+hwb+/RfRDjD1Qs5NKT8jae0m1/oJHyYh1vWd640itwXzCwsDm?=
+ =?us-ascii?Q?iTmfp5GktfFv3gOLBh3/lPSPZqFd2ief8U/BilawA5HE5LnpEmSlvGxEnaMf?=
+ =?us-ascii?Q?P0srVi3VrqjOML2Zf7VHIVNdd2EimGJIwjaeClSvp47jbykGBWKzDlOicIKh?=
+ =?us-ascii?Q?CDKwhIWqB/5sW77Sar+NWL1vJi7W4wYeCxWeQ2B914o0Nfl2?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a4ec01ac-6ae7-4d6a-ff39-08deafaf7337
+X-MS-Exchange-CrossTenant-AuthSource: LV8PR12MB9620.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 May 2026 22:44:57.0328 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 May 2026 22:48:42.2994 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: aCXnzxEoeF7UI7zqP/iOSvkej+11cAAHpT1e5h2uUJn6yabe/Xn6gN8P1AsIDS2kU3D07kCAlLQvLLGLNdqz4P0jYTbLIaxnmcoyNXmPWB4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPF8622363CD
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2Q5zmiKIXDC058cnpcfzI8Bisrye2BTbX9tIEhtjXqESrfYZJ7J1JueOaKm5zceB
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6293
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,158 +142,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, May 11, 2026 at 01:30:58PM -0300, Gustavo Sousa wrote:
-> To align with struct intel_platform_bw_params, rename struct
-> intel_sa_info to intel_display_bw_params.  Also add comments to contrast
-> their purposes.
+On Sat, May 09, 2026 at 01:31:56PM +0800, Xu Yilun wrote:
+> > Would you be open to an in-between? The exporter and importer both
+> > have information that should not leak into each other's drivers. 
+> > 
+> > What if the dmabuf mapping type core code was the only thing that had
+> > access to *BOTH*? The exporter provides the address data, the importer
+> > provides the iommu_domain. The core code, and only the core code, has
+> > both and does the required operation?
 > 
-> v2:
->   - Use gen11 and gen12 as prefixes for ICL's and TGL's display-specific
->     parameters variables. (Matt)
->   - Prefer to use "display" instead of "disp" in variable names. (Jani)
->   - Drop the redundant "disp" from the variable names.
+> I think that may not work for KVM. On IOMMU side, IOMMUFD acts as the
+> address space (iova) manager and dma_api/IOMMU driver acts as the
+> actual page table mapper. But for KVM, it is both. KVM doesn't allow
+> another component to provide an unknown address space (GPA space) and
+> say "map it", so doesn't expose to other components about "KVM domain".
 > 
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> Even if we expose "KVM domain", KVM still acts as the importer and the
+> mapper, is it wierd to say we trust KVM-the-mapper, but don't trust
+> KVM-the-as-manager?
+> 
+> Is it also wierd that we trust IOMMU-the-mapper, but don't trust
+> IOMMUFD-the-as-manager? There are more IOMMU drivers than IOMMUFD...
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Yeah, it doesn't work well for kvm, and yes it is really weird and
+worse that phys in every way..
 
-> ---
->  drivers/gpu/drm/i915/display/intel_bw.c | 36 ++++++++++++++++++++-------------
->  1 file changed, 22 insertions(+), 14 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-> index 2e580c1a3fab..c01356d38e64 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> @@ -372,6 +372,10 @@ static int icl_sagv_max_dclk(const struct intel_qgv_info *qi)
->  	return dclk;
->  }
->  
-> +/*
-> + * Bandwidth parameters that are tied to the SoC (as opposed to struct
-> + * intel_display_bw_params).
-> + */
->  struct intel_soc_bw_params {
->  	u8 deprogbwlimit;
->  	u8 derating;
-> @@ -465,22 +469,26 @@ static const struct intel_soc_bw_params *get_soc_bw_params(struct intel_display
->  	return NULL;
->  }
->  
-> -struct intel_sa_info {
-> +/*
-> + * Bandwidth parameters that are tied to the display IP (as opposed to struct
-> + * intel_soc_bw_params).
-> + */
-> +struct intel_display_bw_params {
->  	u16 displayrtids;
->  	u8 deburst;
->  };
->  
-> -static const struct intel_sa_info icl_sa_info = {
-> +static const struct intel_display_bw_params gen11_bw_params = {
->  	.deburst = 8,
->  	.displayrtids = 128,
->  };
->  
-> -static const struct intel_sa_info tgl_sa_info = {
-> +static const struct intel_display_bw_params gen12_bw_params = {
->  	.deburst = 16,
->  	.displayrtids = 256,
->  };
->  
-> -static const struct intel_sa_info mtl_sa_info = {
-> +static const struct intel_display_bw_params xelpdp_bw_params = {
->  	.deburst = 32,
->  	.displayrtids = 256,
->  };
-> @@ -488,7 +496,7 @@ static const struct intel_sa_info mtl_sa_info = {
->  static int icl_get_bw_info(struct intel_display *display,
->  			   const struct dram_info *dram_info,
->  			   const struct intel_soc_bw_params *soc_bw_params,
-> -			   const struct intel_sa_info *sa)
-> +			   const struct intel_display_bw_params *display_bw_params)
->  {
->  	struct intel_qgv_info qi = {};
->  	bool is_y_tile = true; /* assume y tile may be used */
-> @@ -508,7 +516,7 @@ static int icl_get_bw_info(struct intel_display *display,
->  
->  	dclk_max = icl_sagv_max_dclk(&qi);
->  	maxdebw = min(soc_bw_params->deprogbwlimit * 1000, dclk_max * 16 * 6 / 10);
-> -	ipqdepth = min(ipqdepthpch, sa->displayrtids / num_channels);
-> +	ipqdepth = min(ipqdepthpch, display_bw_params->displayrtids / num_channels);
->  	qi.deinterleave = DIV_ROUND_UP(num_channels, is_y_tile ? 4 : 2);
->  
->  	for (i = 0; i < num_groups; i++) {
-> @@ -516,7 +524,7 @@ static int icl_get_bw_info(struct intel_display *display,
->  		int clpchgroup;
->  		int j;
->  
-> -		clpchgroup = (sa->deburst * qi.deinterleave / num_channels) << i;
-> +		clpchgroup = (display_bw_params->deburst * qi.deinterleave / num_channels) << i;
->  		bi->num_planes = (ipqdepth - clpchgroup) / clpchgroup + 1;
->  
->  		bi->num_qgv_points = qi.num_points;
-> @@ -560,7 +568,7 @@ static int icl_get_bw_info(struct intel_display *display,
->  static int tgl_get_bw_info(struct intel_display *display,
->  			   const struct dram_info *dram_info,
->  			   const struct intel_soc_bw_params *soc_bw_params,
-> -			   const struct intel_sa_info *sa)
-> +			   const struct intel_display_bw_params *display_bw_params)
->  {
->  	struct intel_qgv_info qi = {};
->  	bool is_y_tile = true; /* assume y tile may be used */
-> @@ -598,7 +606,7 @@ static int tgl_get_bw_info(struct intel_display *display,
->  	peakbw = num_channels * DIV_ROUND_UP(qi.channel_width, 8) * dclk_max;
->  	maxdebw = min(soc_bw_params->deprogbwlimit * 1000, peakbw * DEPROGBWPCLIMIT / 100);
->  
-> -	ipqdepth = min(ipqdepthpch, sa->displayrtids / num_channels);
-> +	ipqdepth = min(ipqdepthpch, display_bw_params->displayrtids / num_channels);
->  	/*
->  	 * clperchgroup = 4kpagespermempage * clperchperblock,
->  	 * clperchperblock = 8 / num_channels * interleave
-> @@ -611,7 +619,7 @@ static int tgl_get_bw_info(struct intel_display *display,
->  		int clpchgroup;
->  		int j;
->  
-> -		clpchgroup = (sa->deburst * qi.deinterleave / num_channels) << i;
-> +		clpchgroup = (display_bw_params->deburst * qi.deinterleave / num_channels) << i;
->  
->  		if (i < num_groups - 1) {
->  			bi_next = &display->bw.max[i + 1];
-> @@ -851,7 +859,7 @@ void intel_bw_init_hw(struct intel_display *display)
->  	if (DISPLAY_VERx100(display) >= 1401 && display->platform.dgfx) {
->  		xe2_hpd_get_bw_info(display, dram_info, soc_bw_params);
->  	} else if (DISPLAY_VER(display) >= 14) {
-> -		tgl_get_bw_info(display, dram_info, soc_bw_params, &mtl_sa_info);
-> +		tgl_get_bw_info(display, dram_info, soc_bw_params, &xelpdp_bw_params);
->  	} else if (display->platform.dg2) {
->  		dg2_get_bw_info(display);
->  	} else if (DISPLAY_VER(display) >= 12) {
-> @@ -862,11 +870,11 @@ void intel_bw_init_hw(struct intel_display *display)
->  		 * parameters.
->  		 */
->  		if (display->platform.rocketlake)
-> -			tgl_get_bw_info(display, dram_info, soc_bw_params, &icl_sa_info);
-> +			tgl_get_bw_info(display, dram_info, soc_bw_params, &gen11_bw_params);
->  		else
-> -			tgl_get_bw_info(display, dram_info, soc_bw_params, &tgl_sa_info);
-> +			tgl_get_bw_info(display, dram_info, soc_bw_params, &gen12_bw_params);
->  	} else if (DISPLAY_VER(display) == 11) {
-> -		icl_get_bw_info(display, dram_info, soc_bw_params, &icl_sa_info);
-> +		icl_get_bw_info(display, dram_info, soc_bw_params, &gen11_bw_params);
->  	}
->  }
->  
-> 
-> -- 
-> 2.53.0
-> 
-
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+Jason
