@@ -4,29 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 911A3CD4840
-	for <intel-xe@archiver.kernel.org>; Mon, 11 May 2026 18:58:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A109BCD37BE
+	for <intel-xe@archiver.kernel.org>; Mon, 11 May 2026 18:59:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4252F10E867;
-	Mon, 11 May 2026 18:58:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 603AD10E8A1;
+	Mon, 11 May 2026 18:59:11 +0000 (UTC)
 Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B48010E567;
- Mon, 11 May 2026 18:58:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD67510E87C;
+ Mon, 11 May 2026 18:59:10 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_PCI/ASPM=3A_Int?=
- =?utf-8?q?el_Battlemage_=28Arc_Pro_B70=29_bricks_at_boot_when_=60pcie=5Fasp?=
- =?utf-8?q?m=2Epolicy=3Dpowersupersave=60_enables_ASPM=5FL1=2E1_on_AMD_root_?=
- =?utf-8?q?port_link?=
+Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/xe=3A_Add_b?=
+ =?utf-8?q?ounds_check_for_num=5Fbinds_to_prevent_memory_exhaustion_=28rev5?=
+ =?utf-8?q?=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Pavel Shirshov" <pshirshov@7mind.io>
+To: "Ramesh Adhikari" <adhikari.resume@gmail.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 11 May 2026 18:58:58 -0000
-Message-ID: <177852593862.58917.13624728056871004376@5ab824fced77>
+Date: Mon, 11 May 2026 18:59:10 -0000
+Message-ID: <177852595076.58917.7013710507578084823@5ab824fced77>
 X-Patchwork-Hint: ignore
-References: <3f0598ec-1f93-4817-b54d-c7433e03830e@app.fastmail.com>
-In-Reply-To: <3f0598ec-1f93-4817-b54d-c7433e03830e@app.fastmail.com>
+References: <20260507145807.140317-1-adhikari.resume@gmail.com>
+In-Reply-To: <20260507145807.140317-1-adhikari.resume@gmail.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,13 +43,13 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: PCI/ASPM: Intel Battlemage (Arc Pro B70) bricks at boot when `pcie_aspm.policy=powersupersave` enables ASPM_L1.1 on AMD root port link
-URL   : https://patchwork.freedesktop.org/series/166332/
+Series: drm/xe: Add bounds check for num_binds to prevent memory exhaustion (rev5)
+URL   : https://patchwork.freedesktop.org/series/166134/
 State : failure
 
 == Summary ==
 
-Address 'pshirshov@7mind.io' is not on the allowlist, which prevents CI from being triggered for this patch.
+Address 'adhikari.resume@gmail.com' is not on the allowlist, which prevents CI from being triggered for this patch.
 If you want Intel GFX CI to accept this address, please contact the script maintainers at i915-ci-infra@lists.freedesktop.org.
 Exception occurred during validation, bailing out!
 
