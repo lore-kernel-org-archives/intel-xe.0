@@ -4,59 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A47BCD37AC
-	for <intel-xe@archiver.kernel.org>; Mon, 11 May 2026 12:03:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78923CD37AC
+	for <intel-xe@archiver.kernel.org>; Mon, 11 May 2026 12:16:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0BA010E6D7;
-	Mon, 11 May 2026 12:03:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39C3A10E6E4;
+	Mon, 11 May 2026 12:16:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XSjgcdFc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X4zee22n";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B697210E6C3
- for <intel-xe@lists.freedesktop.org>; Mon, 11 May 2026 12:03:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B648610E6E4;
+ Mon, 11 May 2026 12:16:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778501012; x=1810037012;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=O4A6rm6VM6NC/EhbObVukyH2SCgMK+NvrcSTe6rXOMQ=;
- b=XSjgcdFcyLIvV0IAVUsy2CAopli8v1q1UPqCmWVkMp7UzxqqCN4HtSTt
- rg+KgIDKDss48hmFEhOn8tuXsYWESMwKjqSQxDdqYQoGNAO3kAJqW3wHu
- Kg2h/hdFe7imhrZyY0sbLS95JgxxL2WgtaBGVHqo5B4JflFqDU5PqywT6
- O/ARYwlT2WsJQwqR1+ZhVMyrnUic3DVFLQoTQ7wd6c74lAEc/EgAmRiJw
- Cy1Qy0WbUYrMEI5xfxnIMJBvk6jxS1zQ44H2GDFZYh96qwy430unRV/hx
- ou0f4J8ZZjtUHWDxuTyEjzV70s/S84o1dF7jVMImHpgnsZ0alVA4XQQ9a w==;
-X-CSE-ConnectionGUID: VvmKPScLRMeKWdswVaW/fQ==
-X-CSE-MsgGUID: H6O5Nt/8Qzq7njArrisjzg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11782"; a="90850677"
-X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; d="scan'208";a="90850677"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2026 05:03:32 -0700
-X-CSE-ConnectionGUID: 4tyGwudyQQK4gWuKmbBQbA==
-X-CSE-MsgGUID: Q2dcD7dYS7eLMU5aGrl/Yw==
+ t=1778501773; x=1810037773;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=8HPEzE7WWxeIPpkvv9ZTlyBTcyaTA8Jyi/x39v8AChM=;
+ b=X4zee22na01Ef3XJmYk2x8TL+kSYr10q+L7CQADXymyurkVzgb2Jr0/o
+ 4zgfktVMiG6Q0pcpJ29xLbL+JClXucuTkEZRQizQtqIeIJi4Sk9rZk5i8
+ HuiK2B8tLTk3f9eg/SDZiBG4nLF/BSlNWuza6A6abJWfULpAelynPzRml
+ IstpvvHRg30yKExZ26VB7QpPdktjMzfSvRqaLdRgDGUZ+RaB2TUsMJpSD
+ CFhx6HKBIRhEMmWPfeBNGnHE05T96de7rSqkiLzFlq8Qr2D2fS9kOBc/f
+ nBQjrG6JovoWnLYRiBh4QjzRA+couC3vruSegd6bMoL7rh15sEOXuSS73 g==;
+X-CSE-ConnectionGUID: CBv71/GPS4+ym/Gmhsm8tg==
+X-CSE-MsgGUID: YbFuN22bQvKetDmlwyB2sg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11782"; a="79333213"
+X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; d="scan'208";a="79333213"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2026 05:16:12 -0700
+X-CSE-ConnectionGUID: 044v73eCQv2ww6iYgVQ16w==
+X-CSE-MsgGUID: aUXl3/R+QBGdfEIPAa0UUA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; d="scan'208";a="231043652"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.244.253])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2026 05:03:29 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: Re: [PATCH v2 4/8] drm/xe/kunit: Add xe_kunit_helper_is_live_test()
-In-Reply-To: <871pfirwy7.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260508-rtp-mcr-check-v2-0-9897b147a5d2@intel.com>
- <20260508-rtp-mcr-check-v2-4-9897b147a5d2@intel.com>
- <c4e5c9ed6e931ef2d5ba5b87b7be549c8615f7c0@intel.com>
- <871pfirwy7.fsf@intel.com>
-Date: Mon, 11 May 2026 15:03:26 +0300
-Message-ID: <619ba2cfdac33128f92c4f83b8573770146cead8@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; d="scan'208";a="242404924"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO
+ jhogande-mobl3.intel.com) ([10.245.246.183])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2026 05:16:10 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
+ stable@vger.kernel.org
+Subject: [PATCH 1/2] drm/i915/psr: Block DC states on vblank enable when Panel
+ Replay supported
+Date: Mon, 11 May 2026 15:15:50 +0300
+Message-ID: <20260511121551.2373824-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,82 +70,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 11 May 2026, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> Jani Nikula <jani.nikula@linux.intel.com> writes:
->
->> On Fri, 08 May 2026, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
->>> +/**
->>> + * xe_kunit_helper_is_live_test - Return true if @test is a live test.
->>> + * @test: the &kunit test
->>> + *
->>> + * Return: True for a live test and false otherwise.
->>> + */
->>
->> Pardon me for being blunt, but I think this is the worst kind of
->> kernel-doc comment.
->
-> I appreciate the bluntness! :-)
->
->>
->> It doesn't provide any additional information to what the function name
->> and signature already convey (which is to say excellent job on naming
->> the function), but it fails to explain what "live test" means.
->
-> I kind of just added this kernel-doc to fill a hole for "consistency",
-> but, yeah, it does not provide any new info.
->
->>
->> The extra bits of useful information people might need after seeing the
->> function xe_kunit_helper_is_live_test() in code are: What is a live
->> test, and what is it if it's not live? Dead?
->
-> Zombie? ;-)
->
-> Joking apart, I personally tend to use "regular" to refer to non-live
-> tests. I do agree we are missing some documentation on the subject.  I'm
-> not sure though this function should be the place to do it.  I think we
-> would be better off with a "DOC:" section for that (and also explain
-> other bits in there).  I think it would be sensible to rename
-> xe_kunit_helpers.c to simply xe_kunit.c and add such a section.
->
-> With that in place, this function would be kind of self-explanatory,
-> right? Is this a case we just drop the kernel-doc?
->
-> Or should we try to be consistent on "every public function should have
-> a kernel-doc"?  Is that even a rule or am I imagining things? :-)
+Currently we are blocking DC states only when Panel Replay is enabled on
+vblank enable. It may happen that Panel Replay is getting enabled when
+vblank is already enabled. Fix this by blocking DC states always if Panel
+Replay is supported.
 
-I believe xe maintainership leans more towards requiring kernel-doc
-comments than we do with i915 or display. I think the hard requirement
-leads to a lot of unnecessary boilerplate, more geared towards filling
-the requirement than being informative and helpful.
+While at it take care of possible dual eDP case by looping all encoders
+supporting PSR.
 
-Personally, I value overview DOC: comments much more than kernel-doc
-comments. If I were to add any hard requirement for documentation, it
-would be for DOC: comments for each .c file.
+Fixes: 0c427ac78a1d ("drm/i915/psr: Add interface to notify PSR of vblank enable/disable")
+Cc: <stable@vger.kernel.org> # v6.16+
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_psr.c | 19 ++++++++++---------
+ 1 file changed, 10 insertions(+), 9 deletions(-)
 
-Bottom line, for xe, ask for xe maintainer opinion.
-
-
-BR,
-Jani.
-
->
-> --
-> Gustavo Sousa
->
->>
->>
->> BR,
->> Jani.
->>
->>> +bool xe_kunit_helper_is_live_test(struct kunit *test)
->>> +{
->>> +	KUNIT_STATIC_STUB_REDIRECT(xe_kunit_helper_is_live_test, test);
->>> +	return false;
->>> +}
->>
->> -- 
->> Jani Nikula, Intel
-
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 9958230a3dd9..657b1614cd65 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -4141,32 +4141,33 @@ void intel_psr_notify_vblank_enable_disable(struct intel_display *display,
+ 					    bool enable)
+ {
+ 	struct intel_encoder *encoder;
++	bool block_dc_states = false;
+ 
+ 	for_each_intel_encoder_with_psr(display->drm, encoder) {
+ 		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+ 
+ 		mutex_lock(&intel_dp->psr.lock);
+-		if (intel_dp->psr.panel_replay_enabled) {
+-			mutex_unlock(&intel_dp->psr.lock);
+-			break;
+-		}
++		if (CAN_PANEL_REPLAY(intel_dp))
++			block_dc_states = true;
+ 
+-		if (intel_dp->psr.enabled && intel_dp->psr.pkg_c_latency_used)
++		if (intel_dp->psr.enabled && !intel_dp->psr.panel_replay_enabled &&
++		    intel_dp->psr.pkg_c_latency_used)
+ 			intel_psr_apply_underrun_on_idle_wa_locked(intel_dp);
+ 
+ 		mutex_unlock(&intel_dp->psr.lock);
+-		return;
+ 	}
+ 
+ 	/*
+ 	 * NOTE: intel_display_power_set_target_dc_state is used
+-	 * only by PSR * code for DC3CO handling. DC3CO target
++	 * only by PSR code for DC3CO handling. DC3CO target
+ 	 * state is currently disabled in * PSR code. If DC3CO
+ 	 * is taken into use we need take that into account here
+ 	 * as well.
+ 	 */
+-	intel_display_power_set_target_dc_state(display, enable ? DC_STATE_DISABLE :
+-						DC_STATE_EN_UPTO_DC6);
++	if (block_dc_states)
++		intel_display_power_set_target_dc_state(display, enable ?
++							DC_STATE_DISABLE :
++							DC_STATE_EN_UPTO_DC6);
+ }
+ 
+ static void
 -- 
-Jani Nikula, Intel
+2.43.0
+
