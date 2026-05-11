@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FC99CD37AC
-	for <intel-xe@archiver.kernel.org>; Mon, 11 May 2026 13:25:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43DB9CD37AC
+	for <intel-xe@archiver.kernel.org>; Mon, 11 May 2026 13:34:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08DE310E74C;
-	Mon, 11 May 2026 13:25:18 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DFuX4BST";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D92B710E728;
- Mon, 11 May 2026 13:25:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778505917; x=1810041917;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version:content-id;
- bh=0AJH8elwU2s8KFirikXSOPnVKp9/S963D5Srz8NT0/4=;
- b=DFuX4BSTk8z7PofQyp7bVjolwsX98p7aC/CA7mrMUC6x++g4vnOfuIhy
- F6jY1fmmtOYdzZSHzZoEuY9Q7uCT/TyB9iQ2doxsiS0ctNmwToe8XrBwI
- YCjzZgrage5uBeFuGlOiYh5l1OJxzipnr7yHWynMy3Z9KAxwUIf+oBd0u
- nXkzLSw39h2l40Ruq6gGXPKvDjMW1qJNL//Hvo7T4cDL/XwSo8wAJ0KqZ
- UL4KaWd10Ma2x3LB29XBEsWPzugSIuEn52B14/WSfYW27rbsmlvUBsc/k
- IdrRloUYiqf3mM2YPF82qZITbmCSCzIP+89C/+J88PvftwnsryxGfXlf4 A==;
-X-CSE-ConnectionGUID: oleDvYAVQ0SUTzA62wM9bw==
-X-CSE-MsgGUID: vJaREap6RTi6cfiHZBcubw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="79338087"
-X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="79338087"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2026 06:25:17 -0700
-X-CSE-ConnectionGUID: SOQn5w02SqyGbvz9M4gOtw==
-X-CSE-MsgGUID: k16o8aNPSXWDBj1xxUsmeg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="267810814"
-Received: from dev-417.igk.intel.com ([10.91.214.181])
- by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2026 06:25:16 -0700
-Date: Mon, 11 May 2026 15:25:13 +0200 (CEST)
-From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
-To: =?ISO-8859-15?Q?Jouni_H=F6gander?= <jouni.hogander@intel.com>
-cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- stable@vger.kernel.org
-Subject: Re: [PATCH 2/2] drm/i915/psr: Use DC_OFF wake reference to block
- DC6 on vblank enable
-In-Reply-To: <20260511121551.2373824-2-jouni.hogander@intel.com>
-Message-ID: <7af4c9b9-c2f8-8970-ec4f-b244df92dd08@intel.com>
-References: <20260511121551.2373824-1-jouni.hogander@intel.com>
- <20260511121551.2373824-2-jouni.hogander@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB2DF10E53B;
+	Mon, 11 May 2026 13:34:40 +0000 (UTC)
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A516610E53B;
+ Mon, 11 May 2026 13:34:39 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7719296058194336476=="
 MIME-Version: 1.0
-Content-Type: multipart/mixed; BOUNDARY="8323329-983092090-1778505731=:541093"
-Content-ID: <135e2c34-5465-c537-ee08-5e56dd62c7ab@intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/madvise=3A_Skip_inva?=
+ =?utf-8?q?lidation_for_purgeable_state_updates?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arvind Yadav" <arvind.yadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 11 May 2026 13:34:39 -0000
+Message-ID: <177850647966.56505.10813590261871132241@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260511055405.91510-1-arvind.yadav@intel.com>
+In-Reply-To: <20260511055405.91510-1-arvind.yadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,104 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+--===============7719296058194336476==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
---8323329-983092090-1778505731=:541093
-Content-Type: text/plain; CHARSET=ISO-8859-2; format=flowed
-Content-Transfer-Encoding: 8BIT
-Content-ID: <98b15bf3-fc96-01fc-9e4c-282201889e14@intel.com>
+== Series Details ==
 
-On Mon, 11 May 2026, Jouni Högander wrote:
-> We are observing following warnings:
->
-> *ERROR* power well DC_off state mismatch (refcount 0/enabled 1)
->
-> gen9_dc_off_power_well_enabled is concidering target state DC_STATE_DISABLE
+Series: drm/xe/madvise: Skip invalidation for purgeable state updates
+URL   : https://patchwork.freedesktop.org/series/166291/
+State : success
 
-s/concidering/considering/
+== Summary ==
 
-Reviewed-by: Micha³ Grzelak <michal.grzelak@intel.com>
+CI Bug Log - changes from xe-5039-a86f5af06a7f8fa3c0a87caa138d06824f87878c_BAT -> xe-pw-166291v1_BAT
+====================================================
 
-BR,
-Micha³
+Summary
+-------
 
-> as DC_OFF power well being enabled. Fix this by using wakeref for the
-> purpose.
->
-> Fixes: aa451abcffb5 ("drm/i915/display: Prevent DC6 while vblank is enabled for Panel Replay")
-> Cc: <stable@vger.kernel.org> # v6.13+
-> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-> ---
-> .../drm/i915/display/intel_display_types.h    |  2 ++
-> drivers/gpu/drm/i915/display/intel_psr.c      | 24 +++++++------------
-> 2 files changed, 11 insertions(+), 15 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 26e59110e743..e2861476b215 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1789,6 +1789,8 @@ struct intel_psr {
-> 	u8 active_non_psr_pipes;
->
-> 	const char *no_psr_reason;
-> +
-> +	struct ref_tracker *vblank_wakeref;
-> };
->
-> struct intel_dp {
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-> index 657b1614cd65..a8f02f928bd8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -4141,14 +4141,20 @@ void intel_psr_notify_vblank_enable_disable(struct intel_display *display,
-> 					    bool enable)
-> {
-> 	struct intel_encoder *encoder;
-> -	bool block_dc_states = false;
->
-> 	for_each_intel_encoder_with_psr(display->drm, encoder) {
-> 		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
->
-> 		mutex_lock(&intel_dp->psr.lock);
-> -		if (CAN_PANEL_REPLAY(intel_dp))
-> -			block_dc_states = true;
-> +		if (CAN_PANEL_REPLAY(intel_dp)) {
-> +			if (enable)
-> +				intel_dp->psr.vblank_wakeref =
-> +					intel_display_power_get(display,
-> +								POWER_DOMAIN_DC_OFF);
-> +			else
-> +				intel_display_power_put(display, POWER_DOMAIN_DC_OFF,
-> +							intel_dp->psr.vblank_wakeref);
-> +		}
->
-> 		if (intel_dp->psr.enabled && !intel_dp->psr.panel_replay_enabled &&
-> 		    intel_dp->psr.pkg_c_latency_used)
-> @@ -4156,18 +4162,6 @@ void intel_psr_notify_vblank_enable_disable(struct intel_display *display,
->
-> 		mutex_unlock(&intel_dp->psr.lock);
-> 	}
-> -
-> -	/*
-> -	 * NOTE: intel_display_power_set_target_dc_state is used
-> -	 * only by PSR code for DC3CO handling. DC3CO target
-> -	 * state is currently disabled in * PSR code. If DC3CO
-> -	 * is taken into use we need take that into account here
-> -	 * as well.
-> -	 */
-> -	if (block_dc_states)
-> -		intel_display_power_set_target_dc_state(display, enable ?
-> -							DC_STATE_DISABLE :
-> -							DC_STATE_EN_UPTO_DC6);
-> }
->
-> static void
-> -- 
-> 2.43.0
->
->
---8323329-983092090-1778505731=:541093--
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5039-a86f5af06a7f8fa3c0a87caa138d06824f87878c -> xe-pw-166291v1
+
+  IGT_8902: d28bd0b9e0347c58ca9b012c02de7e2ad5ffe847 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5039-a86f5af06a7f8fa3c0a87caa138d06824f87878c: a86f5af06a7f8fa3c0a87caa138d06824f87878c
+  xe-pw-166291v1: 166291v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166291v1/index.html
+
+--===============7719296058194336476==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/madvise: Skip invalidation for purgeable state updates</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166291/">https://patchwork.freedesktop.org/series/166291/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166291v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166291v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5039-a86f5af06a7f8fa3c0a87caa138d06824f87878c_BAT -&gt; xe-pw-166291v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5039-a86f5af06a7f8fa3c0a87caa138d06824f87878c -&gt; xe-pw-166291v1</li>
+</ul>
+<p>IGT_8902: d28bd0b9e0347c58ca9b012c02de7e2ad5ffe847 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5039-a86f5af06a7f8fa3c0a87caa138d06824f87878c: a86f5af06a7f8fa3c0a87caa138d06824f87878c<br />
+  xe-pw-166291v1: 166291v1</p>
+
+</body>
+</html>
+
+--===============7719296058194336476==--
