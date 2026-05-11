@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B28FCD4840
-	for <intel-xe@archiver.kernel.org>; Mon, 11 May 2026 16:25:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42BE8CD37BE
+	for <intel-xe@archiver.kernel.org>; Mon, 11 May 2026 16:27:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBA7D10E808;
-	Mon, 11 May 2026 16:25:09 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VG1jFpyC";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05FF010E808;
- Mon, 11 May 2026 16:25:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778516708; x=1810052708;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=lwopUE8/yDCHMwZy/+ucK4EpsJaJ9gDkggd5H3h/eZo=;
- b=VG1jFpyCGBQjIke2BzJ74EKO5RUOgaVtpWasWv8UWwIKhRyOi790NHLE
- QSfkYFBDC95w0ejXIgXX3ftJHn+jZD4yYbxeV3mkVLcMLRRvUu8owvnEm
- qeCZIYgVbg4jdm8CWfSMDPmBBk6lXm8flmHL90LxeySr15I5+KcKOK/hz
- oga1H1tC1VIT4RcBB9WMI+npXgJoBUfMvV8P7m6VlGUwTy3LZDy17zS1r
- xqDxLk9dkiOQZu6ke6dlqfmbReOS4ZZkyz2VW1VrKXyuExs6vrZtJUj5b
- X4dWPEinj7oXDTb3oY0J+VznWKw0g8+gLLEy3D3bJJXv0ElO+yqjla/31 A==;
-X-CSE-ConnectionGUID: 0n46+M+8Q9aFH8b4zjwumg==
-X-CSE-MsgGUID: XDIzU1CvRQO60UhsUaTfJA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="83023048"
-X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="83023048"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2026 09:25:07 -0700
-X-CSE-ConnectionGUID: 8OSRMlNfSUOOjgD1CkPVvg==
-X-CSE-MsgGUID: sbKhPI1OTFy9cYaycmlv8w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="241489203"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO fedora)
- ([10.245.244.248])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2026 09:25:05 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Huang Rui <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>, Dave Airlie <airlied@redhat.com>,
- dri-devel@lists.freedesktop.org, stable@vger.kernel.org
-Subject: [PATCH] drm/ttm: Fix ttm_bo_shrink() infinite LRU walk on backup
- failure
-Date: Mon, 11 May 2026 18:24:43 +0200
-Message-ID: <20260511162443.24352-1-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.54.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC42D10E817;
+	Mon, 11 May 2026 16:27:03 +0000 (UTC)
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 10BE110E80D;
+ Mon, 11 May 2026 16:27:03 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5593371253376701930=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm=3A_Improve_logic_behind?=
+ =?utf-8?q?_damage_handling_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Thomas Zimmermann" <tzimmermann@suse.de>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 11 May 2026 16:27:03 -0000
+Message-ID: <177851682305.58002.11613092228252932435@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260511122421.114014-1-tzimmermann@suse.de>
+In-Reply-To: <20260511122421.114014-1-tzimmermann@suse.de>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,57 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Apply the same fix as b2ed01e7ad ("drm/ttm: Fix ttm_bo_swapout()
-infinite LRU walk on swapout failure") to the ttm_bo_shrink() path.
+--===============5593371253376701930==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Move del_bulk_move from before the backup to after success only,
-using ttm_resource_del_bulk_move_unevictable() since the resource
-is now unevictable once fully backed up.
+== Series Details ==
 
-Fixes: 70d645deac98 ("drm/ttm: Add helpers for shrinking")
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Huang Rui <ray.huang@amd.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Dave Airlie <airlied@redhat.com>
-Cc: dri-devel@lists.freedesktop.org
-Cc: <stable@vger.kernel.org> # v6.15+
-Assisted-by: GitHub_Copilot:claude-opus-4.6
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/ttm/ttm_bo_util.c | 11 +++--------
- 1 file changed, 3 insertions(+), 8 deletions(-)
+Series: drm: Improve logic behind damage handling (rev2)
+URL   : https://patchwork.freedesktop.org/series/166108/
+State : success
 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
-index f83b7d5ec6c6..3e3c201a0222 100644
---- a/drivers/gpu/drm/ttm/ttm_bo_util.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
-@@ -1112,19 +1112,14 @@ long ttm_bo_shrink(struct ttm_operation_ctx *ctx, struct ttm_buffer_object *bo,
- 	if (lret < 0)
- 		return lret;
- 
--	if (bo->bulk_move) {
--		spin_lock(&bdev->lru_lock);
--		ttm_resource_del_bulk_move(bo->resource, bo);
--		spin_unlock(&bdev->lru_lock);
--	}
--
- 	lret = ttm_tt_backup(bdev, bo->ttm, (struct ttm_backup_flags)
- 			     {.purge = flags.purge,
- 			      .writeback = flags.writeback});
- 
--	if (lret <= 0 && bo->bulk_move) {
-+	if (lret > 0) {
- 		spin_lock(&bdev->lru_lock);
--		ttm_resource_add_bulk_move(bo->resource, bo);
-+		ttm_resource_del_bulk_move_unevictable(bo->resource, bo);
-+		ttm_resource_move_to_lru_tail(bo->resource);
- 		spin_unlock(&bdev->lru_lock);
- 	}
- 
--- 
-2.54.0
+== Summary ==
 
+CI Bug Log - changes from xe-5040-6cfe03d5832de891397bc05fe788e79de49c51cc_BAT -> xe-pw-166108v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5040-6cfe03d5832de891397bc05fe788e79de49c51cc -> xe-pw-166108v2
+
+  IGT_8902: d28bd0b9e0347c58ca9b012c02de7e2ad5ffe847 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5040-6cfe03d5832de891397bc05fe788e79de49c51cc: 6cfe03d5832de891397bc05fe788e79de49c51cc
+  xe-pw-166108v2: 166108v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166108v2/index.html
+
+--===============5593371253376701930==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm: Improve logic behind damage handling (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166108/">https://patchwork.freedesktop.org/series/166108/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166108v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166108v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5040-6cfe03d5832de891397bc05fe788e79de49c51cc_BAT -&gt; xe-pw-166108v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5040-6cfe03d5832de891397bc05fe788e79de49c51cc -&gt; xe-pw-166108v2</li>
+</ul>
+<p>IGT_8902: d28bd0b9e0347c58ca9b012c02de7e2ad5ffe847 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5040-6cfe03d5832de891397bc05fe788e79de49c51cc: 6cfe03d5832de891397bc05fe788e79de49c51cc<br />
+  xe-pw-166108v2: 166108v2</p>
+
+</body>
+</html>
+
+--===============5593371253376701930==--
