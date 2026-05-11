@@ -4,52 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CC22CD37B2
-	for <intel-xe@archiver.kernel.org>; Mon, 11 May 2026 15:41:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 302A6CD37BE
+	for <intel-xe@archiver.kernel.org>; Mon, 11 May 2026 15:46:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C98A110E1D4;
-	Mon, 11 May 2026 15:41:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1AA310E1D4;
+	Mon, 11 May 2026 15:46:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UTgaB5QI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cxg7ndTw";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2306110E1D4
- for <intel-xe@lists.freedesktop.org>; Mon, 11 May 2026 15:41:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CB5B10E1D4
+ for <intel-xe@lists.freedesktop.org>; Mon, 11 May 2026 15:46:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778514106; x=1810050106;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=PJriS10ar4SoIyHS1Uz86VpWuI2MdaljdU7h2GOXvZw=;
- b=UTgaB5QIDgM3vovbtGn6Nr/ji5vHpYVyJVXZ6JHxr3+8dVtWEi3Zhra2
- +9bzuFaJqne1T1LmIy7WEkhCO2j8oNYx9cQULvht6N59lX05RWf6j8ixQ
- VaYmjhEz4m4JJcX+HEoJ767sjDYs1zbnf9rcvou/Oax4Z9lChFbYhtN3Q
- o1JYrh4j2bDP7gzmXT9Vxe4Kjmycdi1ETFQ7GZ+FU7A2ugDgAG/AwKZwL
- IWL0XvPqdTmNSXxkUw93ew0YtRuMNeu15DEIL6SwWZD7W6Nl1/xP8sfKg
- hYSMzyX6aNHlBpbLJvYkwTuJrQRc0GOrcmmTdI/oAmxsQdlsg4lozZR2p g==;
-X-CSE-ConnectionGUID: AJjRmiT9SDy25JsTwPkW6g==
-X-CSE-MsgGUID: WazGO8XBSpuU2C5gb1iTaw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="79351760"
-X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="79351760"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2026 08:41:45 -0700
-X-CSE-ConnectionGUID: YRwXfUunQAuMxWoTi7eD6Q==
-X-CSE-MsgGUID: P3JPi0q5TU+UZ3GyFRRx3w==
+ t=1778514387; x=1810050387;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=kB89qdXOyZLuTbG6QgzINZW54APg6GSemzWZ4Yl4oTQ=;
+ b=cxg7ndTwNrqGlWXlTTCYH25Q5l0G+DXwNk4Tdqjosr1Oax15y1XD80ds
+ d0W1gV9e+g9eJYxv1MQTUtKH5Z3FhdTRY/UwUREz1IYLS78XD+4PCBRJj
+ eirC6V6QBe08kJLrL0R1rDr6c/q/q+m8q4j4TfrlSCbcwk9p4rvmM4cb0
+ W53WwXH+0TFdDPYxLLR035GXulVF2Rnmz83nGrsDK4Ne+XOIP8HZuGGLV
+ LoY6okUq8NyX66LNKmzJrZNt7v2wtgMs9VtC0dr4x8WHejo99ZZnm5QUk
+ QCdLlvND9oRiwTs6kVvIsoQGuTzGXadTV2XhAXuMaxB4/sV3VXSTxHE+h A==;
+X-CSE-ConnectionGUID: Zw2YpNdxRV6MoAJNCh6aNA==
+X-CSE-MsgGUID: 0IjVxBlfRJiPmuXauEuNvw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="102067667"
+X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="102067667"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2026 08:46:27 -0700
+X-CSE-ConnectionGUID: x1oClgffRMGzoC/YJYkQNg==
+X-CSE-MsgGUID: no4WJUhGSwybL0Pr3uxQpg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="236633321"
-Received: from osgcshtiger.sh.intel.com ([10.239.81.49])
- by orviesa010.jf.intel.com with ESMTP; 11 May 2026 08:41:43 -0700
-From: Shuicheng Lin <shuicheng.lin@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Shuicheng Lin <shuicheng.lin@intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Subject: [PATCH] drm/xe/gsc: Fix double-free of managed BO in error path
-Date: Mon, 11 May 2026 15:41:34 +0000
-Message-Id: <20260511154134.223696-1-shuicheng.lin@intel.com>
-X-Mailer: git-send-email 2.34.1
+X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="236513812"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2026 08:46:25 -0700
+Date: Mon, 11 May 2026 17:46:21 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Riana Tauro <riana.tauro@intel.com>
+Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
+ rodrigo.vivi@intel.com, aravind.iddamsetty@linux.intel.com,
+ badal.nilawar@intel.com, ravi.kishore.koppuravuri@intel.com,
+ mallesh.koujalagi@intel.com, soham.purkait@intel.com
+Subject: Re: [PATCH v5 6/6] drm/xe/xe_ras: Control xe drm_ras registration
+ with a flag
+Message-ID: <agH5zTCLhIaJTTsp@black.igk.intel.com>
+References: <20260504065614.3832331-8-riana.tauro@intel.com>
+ <20260504065614.3832331-14-riana.tauro@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260504065614.3832331-14-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,48 +71,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The error path in xe_gsc_init_post_hwconfig() explicitly frees a BO
-allocated with xe_managed_bo_create_pin_map() via
-xe_bo_unpin_map_no_vm(). Since the managed BO already has a devm
-cleanup action registered, this causes a double-free when devm
-unwinds during probe failure.
+On Mon, May 04, 2026 at 12:26:21PM +0530, Riana Tauro wrote:
+> Add a flag to control xe drm_ras registration.
 
-Remove the explicit free and let devm handle it, consistent with
-all other xe_managed_bo_create_pin_map() callers.
+Technically we don't control anything, it's just a matter of preference :D
 
-Fixes: 2e5d47fe7839 ("drm/xe/uc: Use managed bo for HuC and GSC objects")
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Assisted-by: Claude:claude-opus-4.6
-Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
----
-Resend for CI.
----
- drivers/gpu/drm/xe/xe_gsc.c | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+But nit: "Add drm_ras feature flag."
 
-diff --git a/drivers/gpu/drm/xe/xe_gsc.c b/drivers/gpu/drm/xe/xe_gsc.c
-index 0d13e357fb43..aab59dc647fb 100644
---- a/drivers/gpu/drm/xe/xe_gsc.c
-+++ b/drivers/gpu/drm/xe/xe_gsc.c
-@@ -482,8 +482,7 @@ int xe_gsc_init_post_hwconfig(struct xe_gsc *gsc)
- 				 EXEC_QUEUE_FLAG_PERMANENT, 0);
- 	if (IS_ERR(q)) {
- 		xe_gt_err(gt, "Failed to create queue for GSC submission\n");
--		err = PTR_ERR(q);
--		goto out_bo;
-+		return PTR_ERR(q);
- 	}
- 
- 	wq = alloc_ordered_workqueue("gsc-ordered-wq", 0);
-@@ -506,8 +505,6 @@ int xe_gsc_init_post_hwconfig(struct xe_gsc *gsc)
- 
- out_q:
- 	xe_exec_queue_put(q);
--out_bo:
--	xe_bo_unpin_map_no_vm(bo);
- 	return err;
- }
- 
--- 
-2.43.0
+> Enable this flag for PVC and CRI to support exposing RAS error counters via netlink.
 
+How's checkpatch happy with this? :/
+
+> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+
+Reviewed-by: Raag Jadav <raag.jadav@intel.com>
