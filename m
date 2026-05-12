@@ -4,27 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68A78CD4F24
-	for <intel-xe@archiver.kernel.org>; Tue, 12 May 2026 16:48:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 378F6CD4F25
+	for <intel-xe@archiver.kernel.org>; Tue, 12 May 2026 16:52:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EB5810E0F9;
-	Tue, 12 May 2026 16:48:30 +0000 (UTC)
-Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9269610E0F9;
- Tue, 12 May 2026 16:48:28 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8391530533187607767=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7627F10E589;
+	Tue, 12 May 2026 16:52:12 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CagINQ09";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0233610E2A4;
+ Tue, 12 May 2026 16:52:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1778604731; x=1810140731;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=uMkUDHv26fadIJfwxhlXn+Q0B6/mz2BnhUKt8UxkY80=;
+ b=CagINQ09P3J75S/Q5adv8Lhk1wluhwpLb57T7AxH0Gav2msIBiI7k8VX
+ hNzEuD4I6Tdi2WVBIwjKAWcuv7GeiHj0NgvMFL8cix7cVyNuTX3ptNnft
+ A9+uQR6wMJxcY4/kWB7BOeN9U6W+ssCeav5SsvA4RbYA+IAvvTkOAx2gI
+ ry1IFh7B1pGSpZkOtN4EB4AjdC4u5RdOepeWas/UptJPQTPi9qHEOdgN4
+ Xx3z+fOiRtruWwsJMrFJw7Qiq0veRrrs9gFRlUVZaf2p5dAFpEdKX3xxt
+ iv3QcGFnUBjUZ+kuDnomDWnT6oq6b+e0RJZfYUIzTjRHaNPIqeKIAAOcA w==;
+X-CSE-ConnectionGUID: fY/hg2SDQEOljE+O8eqDbA==
+X-CSE-MsgGUID: tMgQ6gBxQ+aXtiR0dEefoA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11784"; a="83392662"
+X-IronPort-AV: E=Sophos;i="6.23,231,1770624000"; d="scan'208";a="83392662"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2026 09:52:11 -0700
+X-CSE-ConnectionGUID: mdXamUsESZybcZORmnVW8A==
+X-CSE-MsgGUID: 7WKw3oElQ361cW01f6HeUg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,231,1770624000"; d="scan'208";a="237911691"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2026 09:52:06 -0700
+Date: Tue, 12 May 2026 18:52:03 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: "Tauro, Riana" <riana.tauro@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ netdev@vger.kernel.org, simona.vetter@ffwll.ch, airlied@gmail.com,
+ kuba@kernel.org, lijo.lazar@amd.com, Hawking.Zhang@amd.com,
+ davem@davemloft.net, pabeni@redhat.com, edumazet@google.com,
+ maarten@lankhorst.se, zachary.mckevitt@oss.qualcomm.com,
+ rodrigo.vivi@intel.com, michal.wajdeczko@intel.com,
+ matthew.d.roper@intel.com, umesh.nerlige.ramappa@intel.com,
+ mallesh.koujalagi@intel.com, soham.purkait@intel.com,
+ anoop.c.vijay@intel.com, aravind.iddamsetty@linux.intel.com
+Subject: Re: [PATCH v1 09/11] drm/xe/ras: Set error threshold support
+Message-ID: <agNasxWroK70Z_Jg@black.igk.intel.com>
+References: <20260417211730.837345-1-raag.jadav@intel.com>
+ <20260417211730.837345-10-raag.jadav@intel.com>
+ <5e90b9aa-9432-43b5-ae40-1fce383bb043@intel.com>
+ <agM8ynv2w-iqsp-O@black.igk.intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_reclaim_to_the_dmem_cgr?=
- =?utf-8?q?oup_controller_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 12 May 2026 16:48:28 -0000
-Message-ID: <177860450859.61707.13669857175057967939@5ab824fced77>
-X-Patchwork-Hint: ignore
-References: <20260512082406.44470-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20260512082406.44470-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <agM8ynv2w-iqsp-O@black.igk.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +74,30 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8391530533187607767==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, May 12, 2026 at 04:44:34PM +0200, Raag Jadav wrote:
+> On Mon, May 11, 2026 at 10:51:38PM +0530, Tauro, Riana wrote:
+> > On 4/18/2026 2:46 AM, Raag Jadav wrote:
+> > > System controller allows programming per error threshold value, which
+> > > it uses to raise error events to the driver. Set it using mailbox
+> > > command so that it can be programmed by the user.
 
-== Series Details ==
+...
 
-Series: Add reclaim to the dmem cgroup controller (rev4)
-URL   : https://patchwork.freedesktop.org/series/163970/
-State : success
+> > > +	if (response.status) {
+> > > +		xe_err(xe, "sysctrl: set threshold operation failed %#x\n", response.status);
+> > 
+> > Status should be converted to visible error codes. check [PATCH v5 3/6]
+> > drm/xe/xe_ras: Add helper to clear error counter - Riana Tauro
+> > 
+> > <https://lore.kernel.org/intel-xe/20260504065614.3832331-11-riana.tauro@intel.com/>
+> 
+> Coming right up.
 
-== Summary ==
+So I went through this and I'm wondering if these would be applicable
+for non-RAS mailbox users as well? In that case should they be part
+of sysctrl code?
 
-CI Bug Log - changes from xe-5047-b83102e9c06357b09f2cfbe944269786cb6985c4_BAT -> xe-pw-163970v4_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8903 -> IGT_8905
-  * Linux: xe-5047-b83102e9c06357b09f2cfbe944269786cb6985c4 -> xe-pw-163970v4
-
-  IGT_8903: 6f88532e2fe22529195cc2f8cabff93d994688f8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8905: b04ca530eb2959c8edbf9d90f6bb98a9fdee2296 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5047-b83102e9c06357b09f2cfbe944269786cb6985c4: b83102e9c06357b09f2cfbe944269786cb6985c4
-  xe-pw-163970v4: 163970v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163970v4/index.html
-
---===============8391530533187607767==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add reclaim to the dmem cgroup controller (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163970/">https://patchwork.freedesktop.org/series/163970/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163970v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163970v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5047-b83102e9c06357b09f2cfbe944269786cb6985c4_BAT -&gt; xe-pw-163970v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8903 -&gt; IGT_8905</li>
-<li>Linux: xe-5047-b83102e9c06357b09f2cfbe944269786cb6985c4 -&gt; xe-pw-163970v4</li>
-</ul>
-<p>IGT_8903: 6f88532e2fe22529195cc2f8cabff93d994688f8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8905: b04ca530eb2959c8edbf9d90f6bb98a9fdee2296 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5047-b83102e9c06357b09f2cfbe944269786cb6985c4: b83102e9c06357b09f2cfbe944269786cb6985c4<br />
-  xe-pw-163970v4: 163970v4</p>
-
-</body>
-</html>
-
---===============8391530533187607767==--
+Raag
