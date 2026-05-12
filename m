@@ -4,73 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33146CD4855
-	for <intel-xe@archiver.kernel.org>; Tue, 12 May 2026 11:04:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73531CD4851
+	for <intel-xe@archiver.kernel.org>; Tue, 12 May 2026 11:04:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD2FF10EA3C;
-	Tue, 12 May 2026 11:04:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3619F10EA30;
+	Tue, 12 May 2026 11:04:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SMi1J4y1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AHLbgl4T";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7904E10EA33;
- Tue, 12 May 2026 11:04:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 958D710E25B;
+ Tue, 12 May 2026 11:04:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778583857; x=1810119857;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=MSH2boMJr1nmtEanV/SvdOBNmmUx2sB8SsWmTowAyfM=;
- b=SMi1J4y1bRSHS6gRY0kBMUABfrIeX408nQZaHnNJ1t+5iU1NnEzWVon5
- QAsf4J+1MLkMavkN2JAy25KEk5yN5SqAh7gnSj20Qvl6o2L7099BEzfEE
- aoBtve+0pkw3XZ/V1DaOpZK8UJUCcTpWtnjaWGWDyhkn7e807C+s0g0Nf
- UwnhDeUEZFI4uESd/i+pCOouoTSWQquYj26T0EPYJNUMCghlyNE2S2OFU
- IiE2qkh2AJRD4hBp4w/03nP1ELlUJ1UTIeNc6SgAFu4u0wcZB4Jr2gVTV
- B/HPrnPDDZ5BPLpncwNbw+soGK9zSOOwDnvzQySgxbCpNQqMWIxZNxeKp w==;
-X-CSE-ConnectionGUID: 6x7TugalRmqol08DxKj6ug==
-X-CSE-MsgGUID: sM5a3oJJTNqce7kI6llXCA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="104944486"
-X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="104944486"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2026 04:04:17 -0700
-X-CSE-ConnectionGUID: Qs88e5KCQ2eVbu9ppWPW6g==
-X-CSE-MsgGUID: cHhEi+iXQ46g602I48OnPw==
+ t=1778583879; x=1810119879;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=jiWmdth/SKFxwF7IFhVlPlP9Preu4Z9kLCDZ5p0XtNs=;
+ b=AHLbgl4TOfhgGTYU3LVR43Tgw3Kk1sj1l5s9CU+sc+iS4mpgdN0kybyz
+ X0345LXGYvjaxHe7Du5E4ijcdXXd9LggZHH+ILrLg6CC3Lm5ieHHl0O2E
+ ul2QCxJdfx2qdjpBQhFI5T2vurJgf4KACC2FEEgSAUE5LsMcZSaozE6sF
+ PT2EX6CSDRbS472Ap9G8F84omegllcT+kMZAKW7T5bNNqhsj1FCX75aHQ
+ FKFaCnEXiIknOx2gfMUJuKl872FsLAt+JP3Zpe5R1Dh5RkDqLpXrnYpEJ
+ 21FYeCw8EOJgtKLBVz7SPK06CT1H1vLzRvHVTVorQW8Fy9W+822Q3IZiG w==;
+X-CSE-ConnectionGUID: KMKdfmDSRNqSRsmLZG8g2g==
+X-CSE-MsgGUID: cRYC9r1SQVG5Clpd1uG1ww==
+X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="79510071"
+X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="79510071"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2026 04:04:39 -0700
+X-CSE-ConnectionGUID: roCT46ZUTzSPGGyd5tHNqg==
+X-CSE-MsgGUID: Jl4IVjz7SNmTY6+d593GLw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="231339495"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO fedora) ([10.245.245.172])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2026 04:04:11 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- David Hildenbrand <david@kernel.org>, Lorenzo Stoakes <ljs@kernel.org>,
- "Liam R. Howlett" <liam@infradead.org>,
- Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>,
- Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
- Hugh Dickins <hughd@google.com>,
- Baolin Wang <baolin.wang@linux.alibaba.com>,
- Brendan Jackman <jackmanb@google.com>,
- Johannes Weiner <hannes@cmpxchg.org>, Zi Yan <ziy@nvidia.com>,
- Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, dri-devel@lists.freedesktop.org,
- linux-mm@kvack.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] drm/ttm: Use ttm_backup_insert_folio() for zero-copy
- swapout
-Date: Tue, 12 May 2026 13:03:39 +0200
-Message-ID: <20260512110339.6244-3-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260512110339.6244-1-thomas.hellstrom@linux.intel.com>
-References: <20260512110339.6244-1-thomas.hellstrom@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="237979527"
+Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.203])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2026 04:04:37 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>
+Subject: Re: [PATCH v3 1/1] drm/{i915,xe}/pcode: rename GEN6_PCODE_DATA to
+ match spec
+In-Reply-To: <20260507193601.533356-2-michal.grzelak@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260507193601.533356-1-michal.grzelak@intel.com>
+ <20260507193601.533356-2-michal.grzelak@intel.com>
+Date: Tue, 12 May 2026 14:04:32 +0300
+Message-ID: <745a0967145a74727ed67259f4acdae9d19b0583@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,293 +72,272 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add ttm_backup_insert_folio(), a thin wrapper around shmem_insert_folio()
-that returns a handle, for use by drivers with large isolated folios.
+On Thu, 07 May 2026, Micha=C5=82 Grzelak <michal.grzelak@intel.com> wrote:
+> Variable naming of val and val1 should match register macro naming.
+> Historically, corresponding macros were named GEN6_PCODE_DATA and
+> GEN6_PCODE_DATA1.
+>
+> Rename register macro GEN6_PCODE_DATA to GEN6_PCODE_DATA0 since spec
+> appended '0' to the register name. Rename val into val0 in functions
+> declaring val1.
 
-Replace the alloc+copy ttm_backup_backup_page() path in ttm_pool_backup()
-with the zero-copy ttm_backup_insert_folio() path.
+The changes to i915 and xe are completely independent. Please split.
 
-On success NR_GPU_ACTIVE is decremented and the caller's reference is
-released; shmem takes ownership.  The alloc_gfp argument used for
-allocating shmem backing pages is no longer needed.
+BR,
+Jani.
 
-If insertion fails for a higher-order page, it is split into order-0
-pages with ttm_pool_split_for_swap() and the loop retries each page
-individually.
+>
+> Bspec: 19978
+>
+> Changelog:
+> v2->v3
+> - resolve conflict from rebase
+>
+> v1->v2
+> - rebase onto drm-tip (Jani)
+>
+> Signed-off-by: Micha=C5=82 Grzelak <michal.grzelak@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_parent.c   |  4 ++--
+>  drivers/gpu/drm/i915/display/intel_parent.h   |  2 +-
+>  drivers/gpu/drm/i915/gvt/handlers.c           |  2 +-
+>  drivers/gpu/drm/i915/i915_reg.h               |  2 +-
+>  drivers/gpu/drm/i915/intel_gvt_mmio_table.c   |  2 +-
+>  drivers/gpu/drm/i915/intel_pcode.c            | 14 +++++++-------
+>  drivers/gpu/drm/i915/intel_pcode.h            |  2 +-
+>  drivers/gpu/drm/xe/display/xe_display_pcode.c |  4 ++--
+>  drivers/gpu/drm/xe/xe_pcode.c                 |  4 ++--
+>  drivers/gpu/drm/xe/xe_pcode.h                 |  2 +-
+>  10 files changed, 19 insertions(+), 19 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_parent.c b/drivers/gpu/dr=
+m/i915/display/intel_parent.c
+> index 67b21a42d354..7901b95ab114 100644
+> --- a/drivers/gpu/drm/i915/display/intel_parent.c
+> +++ b/drivers/gpu/drm/i915/display/intel_parent.c
+> @@ -219,9 +219,9 @@ void intel_parent_pc8_unblock(struct intel_display *d=
+isplay)
+>  }
+>=20=20
+>  /* pcode */
+> -int intel_parent_pcode_read(struct intel_display *display, u32 mbox, u32=
+ *val, u32 *val1)
+> +int intel_parent_pcode_read(struct intel_display *display, u32 mbox, u32=
+ *val0, u32 *val1)
+>  {
+> -	return display->parent->pcode->read(display->drm, mbox, val, val1);
+> +	return display->parent->pcode->read(display->drm, mbox, val0, val1);
+>  }
+>=20=20
+>  int intel_parent_pcode_write_timeout(struct intel_display *display, u32 =
+mbox, u32 val, int timeout_ms)
+> diff --git a/drivers/gpu/drm/i915/display/intel_parent.h b/drivers/gpu/dr=
+m/i915/display/intel_parent.h
+> index 5f0c835b9416..f095ef900a10 100644
+> --- a/drivers/gpu/drm/i915/display/intel_parent.h
+> +++ b/drivers/gpu/drm/i915/display/intel_parent.h
+> @@ -79,7 +79,7 @@ void intel_parent_pc8_block(struct intel_display *displ=
+ay);
+>  void intel_parent_pc8_unblock(struct intel_display *display);
+>=20=20
+>  /* pcode */
+> -int intel_parent_pcode_read(struct intel_display *display, u32 mbox, u32=
+ *val, u32 *val1);
+> +int intel_parent_pcode_read(struct intel_display *display, u32 mbox, u32=
+ *val0, u32 *val1);
+>  int intel_parent_pcode_write_timeout(struct intel_display *display, u32 =
+mbox, u32 val, int timeout_ms);
+>  int intel_parent_pcode_write(struct intel_display *display, u32 mbox, u3=
+2 val);
+>  int intel_parent_pcode_request(struct intel_display *display, u32 mbox, =
+u32 request,
+> diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/g=
+vt/handlers.c
+> index 9f61867e2478..22dd0179863e 100644
+> --- a/drivers/gpu/drm/i915/gvt/handlers.c
+> +++ b/drivers/gpu/drm/i915/gvt/handlers.c
+> @@ -1706,7 +1706,7 @@ static int mailbox_write(struct intel_vgpu *vgpu, u=
+nsigned int offset,
+>  {
+>  	u32 value =3D *(u32 *)p_data;
+>  	u32 cmd =3D value & 0xff;
+> -	u32 *data0 =3D &vgpu_vreg_t(vgpu, GEN6_PCODE_DATA);
+> +	u32 *data0 =3D &vgpu_vreg_t(vgpu, GEN6_PCODE_DATA0);
+>=20=20
+>  	switch (cmd) {
+>  	case GEN9_PCODE_READ_MEM_LATENCY:
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
+reg.h
+> index 64e906380131..d873072b7a92 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -697,7 +697,7 @@
+>  #define    EDRAM_WAYS_IDX(cap)			(((cap) >> 5) & 0x7)
+>  #define    EDRAM_SETS_IDX(cap)			(((cap) >> 8) & 0x3)
+>=20=20
+> -#define GEN6_PCODE_DATA				_MMIO(0x138128)
+> +#define GEN6_PCODE_DATA0			_MMIO(0x138128)
+>  #define   GEN6_PCODE_FREQ_IA_RATIO_SHIFT	8
+>  #define   GEN6_PCODE_FREQ_RING_RATIO_SHIFT	16
+>  #define GEN6_PCODE_DATA1			_MMIO(0x13812C)
+> diff --git a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c b/drivers/gpu/dr=
+m/i915/intel_gvt_mmio_table.c
+> index de118fae0a49..25b72b20e709 100644
+> --- a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
+> +++ b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
+> @@ -611,7 +611,7 @@ static int iterate_generic_mmio(struct intel_gvt_mmio=
+_table_iter *iter)
+>  	MMIO_D(GEN6_UCGCTL1);
+>  	MMIO_D(GEN6_UCGCTL2);
+>  	MMIO_F(_MMIO(0x4f000), 0x90);
+> -	MMIO_D(GEN6_PCODE_DATA);
+> +	MMIO_D(GEN6_PCODE_DATA0);
+>  	MMIO_D(_MMIO(0x13812c));
+>  	MMIO_D(GEN7_ERR_INT);
+>  	MMIO_D(HSW_EDRAM_CAP);
+> diff --git a/drivers/gpu/drm/i915/intel_pcode.c b/drivers/gpu/drm/i915/in=
+tel_pcode.c
+> index c07d48fc1b35..1c9d1f413757 100644
+> --- a/drivers/gpu/drm/i915/intel_pcode.c
+> +++ b/drivers/gpu/drm/i915/intel_pcode.c
+> @@ -58,7 +58,7 @@ static int gen7_check_mailbox_status(u32 mbox)
+>  }
+>=20=20
+>  static int __snb_pcode_rw(struct intel_uncore *uncore, u32 mbox,
+> -			  u32 *val, u32 *val1,
+> +			  u32 *val0, u32 *val1,
+>  			  int fast_timeout_us, int slow_timeout_ms,
+>  			  bool is_read)
+>  {
+> @@ -73,7 +73,7 @@ static int __snb_pcode_rw(struct intel_uncore *uncore, =
+u32 mbox,
+>  	if (intel_uncore_read_fw(uncore, GEN6_PCODE_MAILBOX) & GEN6_PCODE_READY)
+>  		return -EAGAIN;
+>=20=20
+> -	intel_uncore_write_fw(uncore, GEN6_PCODE_DATA, *val);
+> +	intel_uncore_write_fw(uncore, GEN6_PCODE_DATA0, *val0);
+>  	intel_uncore_write_fw(uncore, GEN6_PCODE_DATA1, val1 ? *val1 : 0);
+>  	intel_uncore_write_fw(uncore,
+>  			      GEN6_PCODE_MAILBOX, GEN6_PCODE_READY | mbox);
+> @@ -87,7 +87,7 @@ static int __snb_pcode_rw(struct intel_uncore *uncore, =
+u32 mbox,
+>  		return -ETIMEDOUT;
+>=20=20
+>  	if (is_read)
+> -		*val =3D intel_uncore_read_fw(uncore, GEN6_PCODE_DATA);
+> +		*val0 =3D intel_uncore_read_fw(uncore, GEN6_PCODE_DATA0);
+>  	if (is_read && val1)
+>  		*val1 =3D intel_uncore_read_fw(uncore, GEN6_PCODE_DATA1);
+>=20=20
+> @@ -97,12 +97,12 @@ static int __snb_pcode_rw(struct intel_uncore *uncore=
+, u32 mbox,
+>  		return gen6_check_mailbox_status(mbox);
+>  }
+>=20=20
+> -int snb_pcode_read(struct intel_uncore *uncore, u32 mbox, u32 *val, u32 =
+*val1)
+> +int snb_pcode_read(struct intel_uncore *uncore, u32 mbox, u32 *val0, u32=
+ *val1)
+>  {
+>  	int err;
+>=20=20
+>  	mutex_lock(&uncore->i915->sb_lock);
+> -	err =3D __snb_pcode_rw(uncore, mbox, val, val1, 500, 20, true);
+> +	err =3D __snb_pcode_rw(uncore, mbox, val0, val1, 500, 20, true);
+>  	mutex_unlock(&uncore->i915->sb_lock);
+>=20=20
+>  	if (err) {
+> @@ -278,11 +278,11 @@ int snb_pcode_write_p(struct intel_uncore *uncore, =
+u32 mbcmd, u32 p1, u32 p2, u3
+>  	return err;
+>  }
+>=20=20
+> -static int intel_pcode_read(struct drm_device *drm, u32 mbox, u32 *val, =
+u32 *val1)
+> +static int intel_pcode_read(struct drm_device *drm, u32 mbox, u32 *val0,=
+ u32 *val1)
+>  {
+>  	struct drm_i915_private *i915 =3D to_i915(drm);
+>=20=20
+> -	return snb_pcode_read(&i915->uncore, mbox, val, val1);
+> +	return snb_pcode_read(&i915->uncore, mbox, val0, val1);
+>  }
+>=20=20
+>  static int intel_pcode_write_timeout(struct drm_device *drm, u32 mbox, u=
+32 val, int timeout_ms)
+> diff --git a/drivers/gpu/drm/i915/intel_pcode.h b/drivers/gpu/drm/i915/in=
+tel_pcode.h
+> index 19795ea8172e..deecc64bc1b3 100644
+> --- a/drivers/gpu/drm/i915/intel_pcode.h
+> +++ b/drivers/gpu/drm/i915/intel_pcode.h
+> @@ -11,7 +11,7 @@
+>  struct drm_device;
+>  struct intel_uncore;
+>=20=20
+> -int snb_pcode_read(struct intel_uncore *uncore, u32 mbox, u32 *val, u32 =
+*val1);
+> +int snb_pcode_read(struct intel_uncore *uncore, u32 mbox, u32 *val0, u32=
+ *val1);
+>  int snb_pcode_write_timeout(struct intel_uncore *uncore, u32 mbox, u32 v=
+al, int timeout_ms);
+>  #define snb_pcode_write(uncore, mbox, val) \
+>  	snb_pcode_write_timeout((uncore), (mbox), (val), 1)
+> diff --git a/drivers/gpu/drm/xe/display/xe_display_pcode.c b/drivers/gpu/=
+drm/xe/display/xe_display_pcode.c
+> index f6820ef7e666..8dc9cbdb18ec 100644
+> --- a/drivers/gpu/drm/xe/display/xe_display_pcode.c
+> +++ b/drivers/gpu/drm/xe/display/xe_display_pcode.c
+> @@ -6,12 +6,12 @@
+>  #include "xe_device.h"
+>  #include "xe_pcode.h"
+>=20=20
+> -static int xe_display_pcode_read(struct drm_device *drm, u32 mbox, u32 *=
+val, u32 *val1)
+> +static int xe_display_pcode_read(struct drm_device *drm, u32 mbox, u32 *=
+val0, u32 *val1)
+>  {
+>  	struct xe_device *xe =3D to_xe_device(drm);
+>  	struct xe_tile *tile =3D xe_device_get_root_tile(xe);
+>=20=20
+> -	return xe_pcode_read(tile, mbox, val, val1);
+> +	return xe_pcode_read(tile, mbox, val0, val1);
+>  }
+>=20=20
+>  static int xe_display_pcode_write_timeout(struct drm_device *drm, u32 mb=
+ox, u32 val, int timeout_ms)
+> diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
+> index dc66d0c7ee06..37303ac09080 100644
+> --- a/drivers/gpu/drm/xe/xe_pcode.c
+> +++ b/drivers/gpu/drm/xe/xe_pcode.c
+> @@ -132,12 +132,12 @@ int xe_pcode_write64_timeout(struct xe_tile *tile, =
+u32 mbox, u32 data0, u32 data
+>  	return err;
+>  }
+>=20=20
+> -int xe_pcode_read(struct xe_tile *tile, u32 mbox, u32 *val, u32 *val1)
+> +int xe_pcode_read(struct xe_tile *tile, u32 mbox, u32 *val0, u32 *val1)
+>  {
+>  	int err;
+>=20=20
+>  	mutex_lock(&tile->pcode.lock);
+> -	err =3D pcode_mailbox_rw(tile, mbox, val, val1, 1, true, false);
+> +	err =3D pcode_mailbox_rw(tile, mbox, val0, val1, 1, true, false);
+>  	mutex_unlock(&tile->pcode.lock);
+>=20=20
+>  	return err;
+> diff --git a/drivers/gpu/drm/xe/xe_pcode.h b/drivers/gpu/drm/xe/xe_pcode.h
+> index 490e4f269607..ccb5f71c78c6 100644
+> --- a/drivers/gpu/drm/xe/xe_pcode.h
+> +++ b/drivers/gpu/drm/xe/xe_pcode.h
+> @@ -17,7 +17,7 @@ int xe_pcode_probe_early(struct xe_device *xe);
+>  int xe_pcode_ready(struct xe_device *xe, bool locked);
+>  int xe_pcode_init_min_freq_table(struct xe_tile *tile, u32 min_gt_freq,
+>  				 u32 max_gt_freq);
+> -int xe_pcode_read(struct xe_tile *tile, u32 mbox, u32 *val, u32 *val1);
+> +int xe_pcode_read(struct xe_tile *tile, u32 mbox, u32 *val0, u32 *val1);
+>  int xe_pcode_write_timeout(struct xe_tile *tile, u32 mbox, u32 val,
+>  			   int timeout_ms);
+>  int xe_pcode_write64_timeout(struct xe_tile *tile, u32 mbox, u32 data0,
 
-Assisted-by: GitHub_Copilot:claude-sonnet-4.6
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/ttm/ttm_backup.c | 92 ++++++++++++--------------------
- drivers/gpu/drm/ttm/ttm_pool.c   | 67 ++++++++++++++++-------
- include/drm/ttm/ttm_backup.h     | 11 ++--
- 3 files changed, 87 insertions(+), 83 deletions(-)
-
-diff --git a/drivers/gpu/drm/ttm/ttm_backup.c b/drivers/gpu/drm/ttm/ttm_backup.c
-index 81df4cb5606b..a37e9404b895 100644
---- a/drivers/gpu/drm/ttm/ttm_backup.c
-+++ b/drivers/gpu/drm/ttm/ttm_backup.c
-@@ -6,7 +6,6 @@
- #include <drm/ttm/ttm_backup.h>
- 
- #include <linux/export.h>
--#include <linux/page-flags.h>
- #include <linux/swap.h>
- 
- /*
-@@ -68,73 +67,50 @@ int ttm_backup_copy_page(struct file *backup, struct page *dst,
- }
- 
- /**
-- * ttm_backup_backup_page() - Backup a page
-+ * ttm_backup_insert_folio() - Zero-copy insert of an isolated folio into backup.
-  * @backup: The struct backup pointer to use.
-- * @page: The page to back up.
-- * @writeback: Whether to perform immediate writeback of the page.
-- * This may have performance implications.
-- * @idx: A unique integer for each page and each struct backup.
-- * This allows the backup implementation to avoid managing
-- * its address space separately.
-- * @page_gfp: The gfp value used when the page was allocated.
-- * This is used for accounting purposes.
-- * @alloc_gfp: The gfp to be used when allocating memory.
-+ * @folio: The folio to insert. Must be isolated (not on LRU), unlocked,
-+ *         have exactly one reference (the caller's), and have no page-table
-+ *         mappings.  The folio must not be swapbacked or in the swapcache,
-+ *         and folio->private must have been cleared by the caller.
-+ * @order: The allocation order of @folio.  If @order > 0 and @folio is not
-+ *         already a large folio, it is promoted to a compound folio of this
-+ *         order (see shmem_insert_folio()).  split_page() must NOT have been
-+ *         called; tail-page refcounts must be 0.
-+ * @writeback: Whether to attempt immediate writeback to swap after insertion.
-+ *             Best-effort; failure is silently ignored.
-+ * @idx: Page-cache index within @backup.  Must be aligned to (1 << @order).
-+ * @folio_gfp: The gfp value used when the folio was allocated.
-+ *             Used for memory-cgroup charging.
-  *
-- * Context: If called from reclaim context, the caller needs to
-- * assert that the shrinker gfp has __GFP_FS set, to avoid
-- * deadlocking on lock_page(). If @writeback is set to true and
-- * called from reclaim context, the caller also needs to assert
-- * that the shrinker gfp has __GFP_IO set, since without it,
-- * we're not allowed to start backup IO.
-+ * Context: May be called from reclaim context.  If @writeback is true, the
-+ * caller must assert that the shrinker gfp has __GFP_IO set.
-  *
-- * Return: A handle on success. Negative error code on failure.
-+ * The folio is transferred zero-copy into the shmem page cache.  On success
-+ * the caller should release their reference with folio_put() and track the
-+ * handle for later recovery via ttm_backup_copy_page() and release via
-+ * ttm_backup_drop().  Handles for sub-pages of a compound folio follow
-+ * sequentially: handle + j addresses sub-page j.
-  *
-- * Note: This function could be extended to back up a folio and
-- * implementations would then split the folio internally if needed.
-- * Drawback is that the caller would then have to keep track of
-- * the folio size- and usage.
-+ * Return: A positive handle on success. Negative error code on failure;
-+ *         the folio is returned to its original non-compound state and the
-+ *         caller retains ownership.
-  */
- s64
--ttm_backup_backup_page(struct file *backup, struct page *page,
--		       bool writeback, pgoff_t idx, gfp_t page_gfp,
--		       gfp_t alloc_gfp)
-+ttm_backup_insert_folio(struct file *backup, struct folio *folio,
-+			unsigned int order, bool writeback, pgoff_t idx,
-+			gfp_t folio_gfp)
- {
--	struct address_space *mapping = backup->f_mapping;
--	unsigned long handle = 0;
--	struct folio *to_folio;
- 	int ret;
- 
--	to_folio = shmem_read_folio_gfp(mapping, idx, alloc_gfp);
--	if (IS_ERR(to_folio))
--		return PTR_ERR(to_folio);
--
--	folio_mark_accessed(to_folio);
--	folio_lock(to_folio);
--	folio_mark_dirty(to_folio);
--	copy_highpage(folio_file_page(to_folio, idx), page);
--	handle = ttm_backup_shmem_idx_to_handle(idx);
--
--	if (writeback && !folio_mapped(to_folio) &&
--	    folio_clear_dirty_for_io(to_folio)) {
--		folio_set_reclaim(to_folio);
--		ret = shmem_writeout(to_folio, NULL, NULL);
--		if (!folio_test_writeback(to_folio))
--			folio_clear_reclaim(to_folio);
--		/*
--		 * If writeout succeeds, it unlocks the folio.	errors
--		 * are otherwise dropped, since writeout is only best
--		 * effort here.
--		 */
--		if (ret)
--			folio_unlock(to_folio);
--	} else {
--		folio_unlock(to_folio);
--	}
--
--	folio_put(to_folio);
--
--	return handle;
-+	WARN_ON_ONCE(folio_get_private(folio));
-+	ret = shmem_insert_folio(backup, folio, order, idx, writeback, folio_gfp);
-+	if (ret)
-+		return ret;
-+
-+	return ttm_backup_shmem_idx_to_handle(idx);
- }
-+EXPORT_SYMBOL_GPL(ttm_backup_insert_folio);
- 
- /**
-  * ttm_backup_fini() - Free the struct backup resources after last use.
-diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
-index d380a3c7fe40..8ea3a125c465 100644
---- a/drivers/gpu/drm/ttm/ttm_pool.c
-+++ b/drivers/gpu/drm/ttm/ttm_pool.c
-@@ -487,7 +487,7 @@ static void ttm_pool_split_for_swap(struct ttm_pool *pool, struct page *p)
- /**
-  * DOC: Partial backup and restoration of a struct ttm_tt.
-  *
-- * Swapout using ttm_backup_backup_page() and swapin using
-+ * Swapout using ttm_backup_insert_folio() and swapin using
-  * ttm_backup_copy_page() may fail.
-  * The former most likely due to lack of swap-space or memory, the latter due
-  * to lack of memory or because of signal interruption during waits.
-@@ -1045,12 +1045,11 @@ long ttm_pool_backup(struct ttm_pool *pool, struct ttm_tt *tt,
- {
- 	struct file *backup = tt->backup;
- 	struct page *page;
--	unsigned long handle;
--	gfp_t alloc_gfp;
- 	gfp_t gfp;
- 	int ret = 0;
- 	pgoff_t shrunken = 0;
--	pgoff_t i, num_pages;
-+	pgoff_t i, num_pages, npages;
-+	unsigned long j;
- 
- 	if (WARN_ON(ttm_tt_is_backed_up(tt)))
- 		return -EINVAL;
-@@ -1070,7 +1069,8 @@ long ttm_pool_backup(struct ttm_pool *pool, struct ttm_tt *tt,
- 			unsigned int order;
- 
- 			page = tt->pages[i];
--			if (unlikely(!page)) {
-+			if (unlikely(!page ||
-+				     ttm_backup_page_ptr_is_handle(page))) {
- 				num_pages = 1;
- 				continue;
- 			}
-@@ -1098,34 +1098,63 @@ long ttm_pool_backup(struct ttm_pool *pool, struct ttm_tt *tt,
- 	else
- 		gfp = GFP_HIGHUSER;
- 
--	alloc_gfp = GFP_KERNEL | __GFP_HIGH | __GFP_NOWARN | __GFP_RETRY_MAYFAIL;
--
- 	num_pages = tt->num_pages;
- 
- 	/* Pretend doing fault injection by shrinking only half of the pages. */
- 	if (IS_ENABLED(CONFIG_FAULT_INJECTION) && should_fail(&backup_fault_inject, 1))
- 		num_pages = DIV_ROUND_UP(num_pages, 2);
- 
--	for (i = 0; i < num_pages; ++i) {
--		s64 shandle;
-+	for (i = 0; i < num_pages; i += npages) {
-+		unsigned int order;
-+		s64 handle;
- 
-+		npages = 1;
- 		page = tt->pages[i];
- 		if (unlikely(!page))
- 			continue;
- 
--		ttm_pool_split_for_swap(pool, page);
-+		/* Already-handled entry from a previous attempt. */
-+		if (unlikely(ttm_backup_page_ptr_is_handle(page)))
-+			continue;
-+
-+		order = ttm_pool_page_order(pool, page);
-+		npages = 1UL << order;
- 
--		shandle = ttm_backup_backup_page(backup, page, flags->writeback, i,
--						 gfp, alloc_gfp);
--		if (shandle < 0) {
--			/* We allow partially shrunken tts */
--			ret = shandle;
-+		/*
-+		 * If fault injection truncated num_pages mid-compound, skip
-+		 * the partial tail rather than inserting it.
-+		 */
-+		if (unlikely(i + npages > num_pages))
-+			break;
-+
-+		/*
-+		 * Transfer this page zero-copy into shmem.  page->private
-+		 * stores the TTM order; clear it before inserting.
-+		 */
-+		page->private = 0;
-+		handle = ttm_backup_insert_folio(backup, page_folio(page),
-+						 order, flags->writeback,
-+						 i, gfp);
-+		if (unlikely(handle < 0)) {
-+			if (order) {
-+				page->private = order;
-+				ttm_pool_split_for_swap(pool, page);
-+				npages = 0;
-+				continue;
-+			}
-+			ret = (int)handle;
- 			break;
- 		}
--		handle = shandle;
--		tt->pages[i] = ttm_backup_handle_to_page_ptr(handle);
--		__free_pages_gpu_account(page, 0, false);
--		shrunken++;
-+
-+		/*
-+		 * NR_GPU_ACTIVE is node-only; use mod_node_page_state()
-+		 * directly after the folio becomes memcg-charged.
-+		 */
-+		mod_node_page_state(page_pgdat(page), NR_GPU_ACTIVE, -(1 << order));
-+		folio_put(page_folio(page));
-+		for (j = 0; j < npages; j++)
-+			tt->pages[i + j] = ttm_backup_handle_to_page_ptr(handle + j);
-+		shrunken += npages;
- 	}
- 
- 	return shrunken ? shrunken : ret;
-diff --git a/include/drm/ttm/ttm_backup.h b/include/drm/ttm/ttm_backup.h
-index 29b9c855af77..0c2feed0bffb 100644
---- a/include/drm/ttm/ttm_backup.h
-+++ b/include/drm/ttm/ttm_backup.h
-@@ -13,9 +13,8 @@
-  * ttm_backup_handle_to_page_ptr() - Convert handle to struct page pointer
-  * @handle: The handle to convert.
-  *
-- * Converts an opaque handle received from the
-- * ttm_backup_backup_page() function to an (invalid)
-- * struct page pointer suitable for a struct page array.
-+ * Converts an opaque handle received from ttm_backup_insert_folio()
-+ * function to an (invalid) struct page pointer suitable for a struct page array.
-  *
-  * Return: An (invalid) struct page pointer.
-  */
-@@ -59,9 +58,9 @@ int ttm_backup_copy_page(struct file *backup, struct page *dst,
- 			 pgoff_t handle, bool intr, gfp_t additional_gfp);
- 
- s64
--ttm_backup_backup_page(struct file *backup, struct page *page,
--		       bool writeback, pgoff_t idx, gfp_t page_gfp,
--		       gfp_t alloc_gfp);
-+ttm_backup_insert_folio(struct file *backup, struct folio *folio,
-+			unsigned int order, bool writeback, pgoff_t idx,
-+			gfp_t folio_gfp);
- 
- void ttm_backup_fini(struct file *backup);
- 
--- 
-2.54.0
-
+--=20
+Jani Nikula, Intel
