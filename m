@@ -4,147 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F391CD4851
-	for <intel-xe@archiver.kernel.org>; Tue, 12 May 2026 13:15:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CEECCD4851
+	for <intel-xe@archiver.kernel.org>; Tue, 12 May 2026 13:29:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62B5710EA9C;
-	Tue, 12 May 2026 13:15:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD74510EAAE;
+	Tue, 12 May 2026 13:29:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PNRXXEcm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ea6pgNYu";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 078F610EA9C;
- Tue, 12 May 2026 13:15:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF10210EAA7;
+ Tue, 12 May 2026 13:29:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778591708; x=1810127708;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=5NyNzkH8GZFfWAKDOBF2c7+UA71fOzpuvBhwHoC29/k=;
- b=PNRXXEcmg/p3pGzbV+NpsFgxmuWhMVaCI/Ef/5tKJxlXHgms192eA1KX
- VX9PyaobmE41PyK6fRPl4gmZRvy88/3tEfNj6C2nBldKLVs/q+tN7BgyJ
- kYIfigD26ThFKuwd5f8hd6maRjIqLKdyxgYSiJi9d15+X4dXHIAJC9PVN
- NJjUe6Azqu8jqdv0XtdG3/K+hjz37k3lWoAeeVRw59wscoF4I/hhNDpIu
- nsUXwIaRoACbxWYtQWKW72x6K3EsKguHKappgJhNhxqlpGtNaRToJDaaT
- jL7iZdkjIxRZ8ilXxT45cD4yHVzteWvF2RqAoMR7F3QhqhV5Yp1es/61G A==;
-X-CSE-ConnectionGUID: xAkmWoLpRlqg2vw36qL+BQ==
-X-CSE-MsgGUID: rpdZXjAdTUStliRjSwtqnA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="79482897"
-X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="79482897"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2026 06:15:08 -0700
-X-CSE-ConnectionGUID: JhzfqjmZQCOqCAj2u5+c3A==
-X-CSE-MsgGUID: JnVtv68USQGG8MPRk6CLMg==
+ t=1778592568; x=1810128568;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Aa7rxsAs/sYFwfgXB3mJJNsnj4/qBnaD6Y7+0T/crN0=;
+ b=ea6pgNYu115SlRY6TbSB08CggRBvaTCJtgwTPMyj5ejWUobBEZARxE0h
+ m2TGgDDYjp8OGrBGT4vk5OMCmkggkqKtOjGELYC5kC2zxuz91jUl/8B09
+ UMifbN9hL4tLoQpG8Lez7LZOibGNeyrWs4nJ4AtqEA0xSN/8lRsJZzyvb
+ Mnq2kF8h7fCZatqi3DnKmDeH1RHSaxzFJoPBKGTjlVcbV5q8iKjHvVnb9
+ jreiJpGaBFrWsHtHM3ZIICMA629pem8wG05DpThtLuLN3Q5MYoKE5QVVZ
+ lxM/AJUCki6Y3ycO2C47nxo8CCqnmqVjJ6M/jARbx3ESXWNcFr03huyT8 Q==;
+X-CSE-ConnectionGUID: g9vtMUYYQ9mBC+simu9FYg==
+X-CSE-MsgGUID: WtJIfY91TJ6Sg0BKDlrq/Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="102164645"
+X-IronPort-AV: E=Sophos;i="6.23,231,1770624000"; d="scan'208";a="102164645"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2026 06:29:27 -0700
+X-CSE-ConnectionGUID: 7kKFv5NTS86pPpiz/ke8Iw==
+X-CSE-MsgGUID: 9sHYz3+QQHOXQoDuvVTnwQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="233297021"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2026 06:15:04 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 12 May 2026 06:15:03 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Tue, 12 May 2026 06:15:03 -0700
-Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.3) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 12 May 2026 06:15:03 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=d4cwEDBQOBWJC7LFDlIWoaWZKzVBjk3YivwxbI5hpjIWiWBJE978oMv7ok2Jx3yQ/guqjume+THMMyHadOy3++dHLOGHSv6caOIScuSTMtcaFY+LfyvjxsEHZK9S1/5yQB5sOT8lXPyWFXsEVBYmTiv6U+LZBRruEG/Jg24A9yaBSiTjIkp7KGOA6EzBykoQSg7nt0p2x9Ni8NPSpZJ5dEcKzVkJWoXDJ7tswQXvgJEVUyV8KeJtI+M50VZowXPKvtsAhLquh+TuIqHqXpafJjo4Kn9qKWl62zTu+3dOn1LhvWjK3+8eE08LHvcvoMNL+ojRNn6N6dZnfEqKd55tcg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8f1XheWRpav7MJpzgLjEW41s4xDs+0Sy51ZxnBWs0rU=;
- b=cylIRn5Lo/Xj8aGZlwnlaxs2kCuy5VmeyqyflWlikUSS6BvknVoyNhP5xb86tZbbtxcJCS1GS+VZoJDDhwK5EQF6ZxYIJhDhlYDc9+reeywiUAU9oHJLIv5nxytBi50nBB1hE0QX/+JjElmITt4uSj5+FF+3i99QsC/9w6l/qSKvqo+dlOgnxc5FPixjjduLbYmpAbN+lzKB4W4cVC9Xi7CajJ6SwdmuJ0GEeOxOaUtetJpmFFoYb1bOLQn3NhkRFifLsg+9SuN6Jxu5jaeKfta1SPgx5KxcLWFNWFBIFcUaU+Pf6l/WoVuYh8O5NCbupxpc/l4m1PSRO87RPZjGgA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
- by IA1PR11MB7680.namprd11.prod.outlook.com (2603:10b6:208:3fb::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.23; Tue, 12 May
- 2026 13:14:55 +0000
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::a0e5:e99c:ee7b:620a]) by PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::a0e5:e99c:ee7b:620a%5]) with mapi id 15.20.9913.009; Tue, 12 May 2026
- 13:14:54 +0000
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>, Matt Roper <matthew.d.roper@intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH v2 1/4] drm/i915/bw: Extract platform-specific parameters
-In-Reply-To: <171b0f5dfd5400d72d4bddbdb793e8da8b136cbd@intel.com>
-References: <20260511-separate-platform-from-diplay-ip-specific-bw-params-v2-0-e762cb8662da@intel.com>
- <20260511-separate-platform-from-diplay-ip-specific-bw-params-v2-1-e762cb8662da@intel.com>
- <20260511223847.GY2131374@mdroper-desk1.amr.corp.intel.com>
- <171b0f5dfd5400d72d4bddbdb793e8da8b136cbd@intel.com>
-Date: Tue, 12 May 2026 10:14:51 -0300
-Message-ID: <87fr3w3h2s.fsf@intel.com>
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR03CA0226.namprd03.prod.outlook.com
- (2603:10b6:a03:39f::21) To PH8PR11MB8287.namprd11.prod.outlook.com
- (2603:10b6:510:1c7::14)
+X-IronPort-AV: E=Sophos;i="6.23,231,1770624000"; d="scan'208";a="237855854"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by orviesa009.jf.intel.com with ESMTP; 12 May 2026 06:29:23 -0700
+From: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+To: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ rodrigo.vivi@intel.com
+Cc: andrealmeid@igalia.com, christian.koenig@amd.com, airlied@gmail.com,
+ simona.vetter@ffwll.ch, mripard@kernel.org,
+ maarten.lankhorst@linux.intel.com, tzimmermann@suse.de,
+ anshuman.gupta@intel.com, badal.nilawar@intel.com, riana.tauro@intel.com,
+ karthik.poosa@intel.com, sk.anirban@intel.com, raag.jadav@intel.com,
+ Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Subject: [PATCH v5 0/5] Introduce cold reset recovery method
+Date: Tue, 12 May 2026 18:56:15 +0530
+Message-ID: <20260512132614.1793083-7-mallesh.koujalagi@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|IA1PR11MB7680:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9a4958a8-f150-42fd-707e-08deb0287548
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|3023799003|11063799003|56012099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: CSM/jgk6BkP7Ms6nPTB4SHbWWBvJN2RR3KGcnImROnFRSYenVPZkghNxkmjLw8MgYGKIj7jJOHyKK39djDW+qly/cG5g41l6cfapGQ9v1mHkg5ePp+ytDugtG/ugpg6PHSSYJ3pmIjQb/dZQ5EL8HB1t2pXTsvX0kbccNBMOFX8JtEZkTI4V0xpFfpo/FtWVHdADNQMRpTF5dpNYGd7/9LKl4OInT0mH0DwXvCwxHu7H2CAXg2gWYLhP9V00vV7+oBTY97oDLJn4JEl/EYZlipImtwgoR33+UyWw6IUQz9oPmEMCJJMTm2wO+yjx/tOVkkN2nJN4sBJ69K8T7BZWYSTkIQ9TXy315g2TB4LpyQqCwKBZLbeThZ6bTv8Z6oSvKW2QuRQguyMNuKwRWVlHJ/Fzv4ulNfqHKdqYDD64wFzM3KRqKoRP66voB8Ssoxnp49hLNjmN8iI1cPfFdWDnyPz9PaqG09API4fu9pgNvUWWYRYdddEQI90Itk45UhU3Mfey9eHroZlHWG4yrZoa6HD2LnAhLa8/nbSzOi7Cxa1VL0GFOLQjETGS8NfyGpVpEItkAIX24Cmpp0eP3OsQpEyNGI/GHI7HGxtyi8ojB6oEbfKO8ryt5C1pG+1aOOdg6sDcuJbb/JdAMNz1n8+E/HnYZREv6KLKoRhuOPK5kAtf9fBZ6UiJDJUku5fOX7Wo
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(3023799003)(11063799003)(56012099003)(22082099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?qNOH0bhivNqbwvTBD0ce9VjTCouUEVmvwj00kGGtQE61Yck1I0ULefK2punH?=
- =?us-ascii?Q?xoLKDCkdO5YwEtiQLRXIFaUstw1z2n4t8wLeYSjaFPYYNEyKMbDdrczvqidV?=
- =?us-ascii?Q?rT6cialeQkV2DcspP/JnSabamDB/1JYyzfEWFrsaKd3k7LuC/kU2xmhyVB7Q?=
- =?us-ascii?Q?hg/KH7GycXsgXAHBnHWZyCY6o3LFK5A94UV9YCM4gG9j1DB1AQ3EEHEAFMvC?=
- =?us-ascii?Q?pUVXj8YOdmTOOQCW4or8q4nb2hNlmbhDHK5pHQ2Vo8DGEJ+aN83QgH5Nax8l?=
- =?us-ascii?Q?wmZVoA7IxF8dGr6/Khu7hVl/IUZbjCms1ulsqEx8oocLqMibjRC4LvukgX7M?=
- =?us-ascii?Q?Vu5sP1v61e2Focm3bmbSKbMUpm1zeBRvoDHOprbiVQTv7E4HSHzEcVgsjXIH?=
- =?us-ascii?Q?52hdO+7Hd+/G2OjdkOQRH1SvUGeNaj2zd7nSiqwvYALEu1dBtdS8Z0k20nLQ?=
- =?us-ascii?Q?BtIPVFjVtv8XA9awuG7amR6DTqO6fWTtuOpzWvG8R/AJvYigfoCuNKI+5TSJ?=
- =?us-ascii?Q?G0+KKjmXBhbtHX2FMYU5TZAH7+3unGeTqyuqThnoz/4OoQjpvtXoTeveIwdN?=
- =?us-ascii?Q?VA2WDyoDoVpbp5u6xc0pH3STW9agnw3mmm8oaSAgytY4o6a90m3wmX9TN79k?=
- =?us-ascii?Q?8o4HNv0kbOkkio7+rQY6UlzwQRzZekSF2JW968CfBkczlZqvQFCnnoUAkWqH?=
- =?us-ascii?Q?nK4CaM2WPfpcCZAEnn/SgTCJSX7d5T/FBqzVFgsTJC6kUc251Tba6xN1N3No?=
- =?us-ascii?Q?/we44ClSZ5qfdnCDJw575epCT38llClDuhEkWSXOEwr4FkY/cTgRXWLGS02f?=
- =?us-ascii?Q?C4SvN/QSfz5Q84vSVBpIINfNlRU5qA8tkbP4GWY4UjaNniQ74/rssijLh/f/?=
- =?us-ascii?Q?fHlM7l259EnpRnc69SbismaX9uwqfhLwyNMgvSlqHlSy7nR5TwgWIGVrx31y?=
- =?us-ascii?Q?60s7ENFMMfdcf0ZHozZRuEkSJkw4XZuG0JtYaYNjDI5PNqw5qyg38MS6IvHb?=
- =?us-ascii?Q?C4xvDa6WqVOZC5hVT/KrWVpXOUgrQ1KU9gbxq7Lu7qROpHe+yiq+VhVvjUXq?=
- =?us-ascii?Q?6vkN+8CmqT5TMbVdHNP4zeCUS2JLz0PQ5H8Nsa0zcRltvCYitbdJFMr4kbwk?=
- =?us-ascii?Q?4a1+vUuKSaW/NvsJgfIXXRwWsMWn6lnBwzgOYhUetL88xFkILgwQ4JtgA+Cm?=
- =?us-ascii?Q?pxSvIq26xalWcTt4l/Rb+eriXMluPStNGWbM7VoZNsTQojcfbAmLf6+bzbhX?=
- =?us-ascii?Q?bl7iiO65oT6YOoAg8DGigjr6JdC5ILZaEeP2vzeVuyeAEGIyV+mP6nT5N28u?=
- =?us-ascii?Q?UJeLCl1d02f4kCKEI3dYgnPa2x5q8uIi7ZLkUg/HFlICM4xhTB4Jp8A823bD?=
- =?us-ascii?Q?AG3PpUdQwy5m69dlwBwsz0/ROtj+gVStXdPOlwY7lODSz7IVQ2TVFn5lethO?=
- =?us-ascii?Q?rwnoCirbVonl8hY9Dfw+r4g+kMwofJ6EDgGlV7/4WzG9DQvhoIyERAFwmiTb?=
- =?us-ascii?Q?ps9I7hWdczxsGu07VLh5WefQn7213SprBxIi4CCaJwpAMFRXxB94eYO/AByE?=
- =?us-ascii?Q?wrQrDuAVLiM8vDRR4/+mT2WMvJrtDZbBagf60/BHcRpTvQTHXxQElPWZQ8st?=
- =?us-ascii?Q?dYv5mLajnG375nQImK5N0Hmki6zBypdIDcmczpuBXCCYE4bTkfSd/A2KzdBo?=
- =?us-ascii?Q?ig0b/QEqveOIGnEJLn0Ys3EkZDSDnMxlXBYK2Od+IZhbg8RwUfJdVRNEV0Zq?=
- =?us-ascii?Q?8c1lCaZ2fg=3D=3D?=
-X-Exchange-RoutingPolicyChecked: hkE/GXJAzgjb4U+vXzlV/EtT7YZ5SpVdraVQPmuu8CwO3RjVAJMqSvvyNEMWDOI/zZ3q6uPG2PsZ3maAjhCV1IEXHb6TRdKdjBD1VK4QYPS78z/m5BYOEDKgGPdnqtVKu+x1A+T9x4/iXljYACguBDcPBIRlEvJeQ7JwILKODzSrcMdKD+WrYJQC9GVQ9l2IUwxuLI5wKQVGKkHFCqV19aut40Ep6i9cnxogC+rWUOjtl+A9jwiJTYGoq04cvSx1iRjZlEma5rnta3lent5Sc3jZzUeevCaSGtxxLRDnqBPq/HeJJ15DvAi7Stfc9e5BryJNY+fX7sqkIVdrcT3RIw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9a4958a8-f150-42fd-707e-08deb0287548
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2026 13:14:54.8608 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DmsgWG/eApNphuVJke4ZARMt9HHyjfrHD1dhKkhJ8OUgJzgLbhZSswuvc62e165lAWDBfpiMiEmFt3/Xl2h5qg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7680
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,391 +70,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Jani Nikula <jani.nikula@intel.com> writes:
+This series builds on top of Introduce Xe Uncorrectable Error Handling[1]
+and adds support for handling errors that require a complete
+device power cycle (cold reset) to recover.
 
-> On Mon, 11 May 2026, Matt Roper <matthew.d.roper@intel.com> wrote:
->> On Mon, May 11, 2026 at 01:30:56PM -0300, Gustavo Sousa wrote:
->>> We got confirmation from the hardware team that the bandwidth parameters
->>> deprogbwlimit and derating are platform-specific and not tied to the
->>> display IP.  As such, let's make sure that we use platform checks for
->>> those.
->>> 
->>> The rest of the members of struct intel_sa_info are tied to the display
->>> IP and we will deal with them as a follow-up.
->>> 
->>> v2:
->>>   - Use good old if-ladder instead of weird-looking pattern "assign ret,
->>>     check platform, then return ret". (Jani, Matt)
->>>   - Have a single call site for get_platform_bw_params() and pass the
->>>     result as parameter to the *_get_bw_info() functions. (Jani)
->>>   - Avoid using "plat" as abbreviation for "platform". (Jani)
->>>   - s/_plat_bw_params/_bw_params/, since all of the instances are
->>>     prefixed with platform names. (Jani)
->>>   - s/struct intel_platform_bw_params/struct intel_soc_bw_params/.
->>>     (Matt)
->>>   - Do not return a default value; prefer to return NULL and
->>>     intentionally cause a NULL pointer dereference if a platform is
->>>     missing. (Gustavo)
->>> 
->>> Cc: Jani Nikula <jani.nikula@intel.com>
->>> Cc: Matt Roper <matthew.d.roper@intel.com>
->>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
->>> ---
->>>  drivers/gpu/drm/i915/display/intel_bw.c | 161 ++++++++++++++++++++++----------
->>>  1 file changed, 113 insertions(+), 48 deletions(-)
->>> 
->>> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
->>> index 9c3a9bbb49f6..cf6756b8ae52 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_bw.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
->>> @@ -372,81 +372,147 @@ static int icl_sagv_max_dclk(const struct intel_qgv_info *qi)
->>>  	return dclk;
->>>  }
->>>  
->>> +struct intel_soc_bw_params {
->>> +	u8 deprogbwlimit;
->>> +	u8 derating;
->>> +};
->>> +
->>> +static const struct intel_soc_bw_params icl_bw_params = {
->>> +	.deprogbwlimit = 25,
->>> +	.derating = 10,
->>> +};
->>> +
->>> +static const struct intel_soc_bw_params tgl_bw_params = {
->>> +	.deprogbwlimit = 34,
->>> +	.derating = 10,
->>> +};
->>> +
->>> +static const struct intel_soc_bw_params rkl_bw_params = {
->>> +	.deprogbwlimit = 20,
->>> +	.derating = 10,
->>> +};
->>> +
->>> +static const struct intel_soc_bw_params adl_s_bw_params = {
->>> +	.deprogbwlimit = 38,
->>> +	.derating = 10,
->>> +};
->>> +
->>> +static const struct intel_soc_bw_params adl_p_bw_params = {
->>> +	.deprogbwlimit = 38,
->>> +	.derating = 20,
->>> +};
->>> +
->>> +static const struct intel_soc_bw_params bmg_bw_params = {
->>> +	.deprogbwlimit = 53,
->>> +	.derating = 30,
->>> +};
->>> +
->>> +static const struct intel_soc_bw_params bmg_ecc_bw_params = {
->>> +	.deprogbwlimit = 53,
->>> +	.derating = 45,
->>> +};
->>> +
->>> +static const struct intel_soc_bw_params ptl_bw_params = {
->>> +	.deprogbwlimit = 65,
->>> +	.derating = 10,
->>> +};
->>> +
->>> +static const struct intel_soc_bw_params wcl_bw_params = {
->>> +	.deprogbwlimit = 22,
->>> +	.derating = 10,
->>> +};
->>> +
->>> +static const struct intel_soc_bw_params *get_soc_bw_params(struct intel_display *display)
->>> +{
->>> +	if (display->platform.dgfx) {
->>> +		if (display->platform.dg1) {
->>> +			return &tgl_bw_params;
->>> +		} else if (display->platform.battlemage) {
->>> +			const struct dram_info *dram_info = intel_dram_info(display);
->>> +
->>> +			if (dram_info->type == INTEL_DRAM_GDDR_ECC)
->>> +				return &bmg_ecc_bw_params;
->>> +			else
->>> +				return &bmg_bw_params;
->>> +		}
->>> +	} else {
->>> +		if (display->platform.icelake ||
->>> +		    display->platform.jasperlake ||
->>> +		    display->platform.elkhartlake) {
->>> +			return &icl_bw_params;
->>> +		} else if (display->platform.tigerlake) {
->>> +			return &tgl_bw_params;
->>> +		} else if (display->platform.rocketlake) {
->>> +			return &rkl_bw_params;
->>> +		} else if (display->platform.alderlake_s) {
->>> +			return &adl_s_bw_params;
->>> +		} else if (display->platform.alderlake_p) {
->>> +			return &adl_p_bw_params;
->>> +		} else if (display->platform.meteorlake ||
->>> +			   display->platform.lunarlake) {
->>> +			return &adl_s_bw_params;
->>
->> Any reason not to combine this with the ADL-S branch of the if/else
->> ladder?
->>
->>> +		} else if (display->platform.pantherlake ||
->>> +			   display->platform.novalake) {
->>> +			if (display->platform.pantherlake_wildcatlake)
->>> +				return &wcl_bw_params;
->>
->> Can we just flatten this out rather than nesting?
->>
->>         } else if (display->platform.pantherlake_wildcatlake) {
->>                 return &wcl_bw_params;
->>         } else if (display->platform.pantherlake ||
->>                    display->platform.novalake) {
->>                 return &ptl_bw_params;
->>         }
->>
->>
->>> +			else
->>> +				return &ptl_bw_params;
->>> +		}
->>> +	}
->>> +
->>> +	drm_WARN(display->drm, 1, "Platform-specific bandwidth parameters not found!\n");
->>
->> I think 
->>
->>   i915_driver_hw_probe -> intel_bw_init_hw -> get_soc_bw_params
->>
->> is called unconditionally on all platforms for i915, not just the recent
->> ones where we started caring about memory bandwidth, so I'm not sure if
->> this WARN is appropriate since we'll always hit it on the pre-gen11
->> stuff.
->>
->> Since the values populated here only get used when paired with display
->> IP version 11 or later, we should probably add that as a condition since
->> those are the only cases where it matters that we found a set of SoC
->> parameters.
->
-> In general, we should stop calling low level display init functions from
-> i915 core code. Can we move the init call to some display init function?
+Certain error conditions leave the device in a persistent hardware
+error state that cannot be cleared through existing recovery mechanisms
+such as driver reload or PCIe reset. In these cases, functionality can
+only be restored by performing a cold reset.
 
-I guess we could try to move the calls to intel_dram_detect() and
-intel_bw_init_hw() into intel_display_driver_probe_noirq()?
+To support this, the series introduces a new DRM wedging recovery
+method, DRM_WEDGE_RECOVERY_COLD_RESET (BIT(4)). When a device is wedged
+with this method, the DRM core notifies userspace via a uevent that a cold
+reset is required. This allows userspace to take appropriate action to
+power-cycle the device.
 
---
-Gustavo Sousa
+Example uevent received:
+  SUBSYSTEM=drm
+  WEDGED=cold-reset
+  DEVPATH=/devices/.../drm/card0
 
->
-> That said, it'll still get called on all sorts of platforms.
->
-> BR,
-> Jani.
->
->
->>
->>
->> Matt
->>
->>> +
->>> +	return NULL;
->>> +}
->>> +
->>>  struct intel_sa_info {
->>>  	u16 displayrtids;
->>> -	u8 deburst, deprogbwlimit, derating;
->>> +	u8 deburst;
->>>  };
->>>  
->>>  static const struct intel_sa_info icl_sa_info = {
->>>  	.deburst = 8,
->>> -	.deprogbwlimit = 25, /* GB/s */
->>>  	.displayrtids = 128,
->>> -	.derating = 10,
->>>  };
->>>  
->>>  static const struct intel_sa_info tgl_sa_info = {
->>>  	.deburst = 16,
->>> -	.deprogbwlimit = 34, /* GB/s */
->>>  	.displayrtids = 256,
->>> -	.derating = 10,
->>>  };
->>>  
->>>  static const struct intel_sa_info rkl_sa_info = {
->>>  	.deburst = 8,
->>> -	.deprogbwlimit = 20, /* GB/s */
->>>  	.displayrtids = 128,
->>> -	.derating = 10,
->>>  };
->>>  
->>>  static const struct intel_sa_info adls_sa_info = {
->>>  	.deburst = 16,
->>> -	.deprogbwlimit = 38, /* GB/s */
->>>  	.displayrtids = 256,
->>> -	.derating = 10,
->>>  };
->>>  
->>>  static const struct intel_sa_info adlp_sa_info = {
->>>  	.deburst = 16,
->>> -	.deprogbwlimit = 38, /* GB/s */
->>>  	.displayrtids = 256,
->>> -	.derating = 20,
->>>  };
->>>  
->>>  static const struct intel_sa_info mtl_sa_info = {
->>>  	.deburst = 32,
->>> -	.deprogbwlimit = 38, /* GB/s */
->>>  	.displayrtids = 256,
->>> -	.derating = 10,
->>> -};
->>> -
->>> -static const struct intel_sa_info xe2_hpd_sa_info = {
->>> -	.derating = 30,
->>> -	.deprogbwlimit = 53,
->>> -	/* Other values not used by simplified algorithm */
->>> -};
->>> -
->>> -static const struct intel_sa_info xe2_hpd_ecc_sa_info = {
->>> -	.derating = 45,
->>> -	.deprogbwlimit = 53,
->>> -	/* Other values not used by simplified algorithm */
->>>  };
->>>  
->>>  static const struct intel_sa_info xe3lpd_sa_info = {
->>>  	.deburst = 32,
->>> -	.deprogbwlimit = 65, /* GB/s */
->>>  	.displayrtids = 256,
->>> -	.derating = 10,
->>>  };
->>>  
->>>  static const struct intel_sa_info xe3lpd_3002_sa_info = {
->>>  	.deburst = 32,
->>> -	.deprogbwlimit = 22, /* GB/s */
->>>  	.displayrtids = 256,
->>> -	.derating = 10,
->>>  };
->>>  
->>>  static int icl_get_bw_info(struct intel_display *display,
->>>  			   const struct dram_info *dram_info,
->>> +			   const struct intel_soc_bw_params *soc_bw_params,
->>>  			   const struct intel_sa_info *sa)
->>>  {
->>>  	struct intel_qgv_info qi = {};
->>> @@ -466,7 +532,7 @@ static int icl_get_bw_info(struct intel_display *display,
->>>  	}
->>>  
->>>  	dclk_max = icl_sagv_max_dclk(&qi);
->>> -	maxdebw = min(sa->deprogbwlimit * 1000, dclk_max * 16 * 6 / 10);
->>> +	maxdebw = min(soc_bw_params->deprogbwlimit * 1000, dclk_max * 16 * 6 / 10);
->>>  	ipqdepth = min(ipqdepthpch, sa->displayrtids / num_channels);
->>>  	qi.deinterleave = DIV_ROUND_UP(num_channels, is_y_tile ? 4 : 2);
->>>  
->>> @@ -496,7 +562,7 @@ static int icl_get_bw_info(struct intel_display *display,
->>>  			bw = DIV_ROUND_UP(sp->dclk * clpchgroup * 32 * num_channels, ct);
->>>  
->>>  			bi->deratedbw[j] = min(maxdebw,
->>> -					       bw * (100 - sa->derating) / 100);
->>> +					       bw * (100 - soc_bw_params->derating) / 100);
->>>  
->>>  			drm_dbg_kms(display->drm,
->>>  				    "BW%d / QGV %d: num_planes=%d deratedbw=%u\n",
->>> @@ -518,6 +584,7 @@ static int icl_get_bw_info(struct intel_display *display,
->>>  
->>>  static int tgl_get_bw_info(struct intel_display *display,
->>>  			   const struct dram_info *dram_info,
->>> +			   const struct intel_soc_bw_params *soc_bw_params,
->>>  			   const struct intel_sa_info *sa)
->>>  {
->>>  	struct intel_qgv_info qi = {};
->>> @@ -554,7 +621,7 @@ static int tgl_get_bw_info(struct intel_display *display,
->>>  	dclk_max = icl_sagv_max_dclk(&qi);
->>>  
->>>  	peakbw = num_channels * DIV_ROUND_UP(qi.channel_width, 8) * dclk_max;
->>> -	maxdebw = min(sa->deprogbwlimit * 1000, peakbw * DEPROGBWPCLIMIT / 100);
->>> +	maxdebw = min(soc_bw_params->deprogbwlimit * 1000, peakbw * DEPROGBWPCLIMIT / 100);
->>>  
->>>  	ipqdepth = min(ipqdepthpch, sa->displayrtids / num_channels);
->>>  	/*
->>> @@ -599,7 +666,7 @@ static int tgl_get_bw_info(struct intel_display *display,
->>>  			bw = DIV_ROUND_UP(sp->dclk * clpchgroup * 32 * num_channels, ct);
->>>  
->>>  			bi->deratedbw[j] = min(maxdebw,
->>> -					       bw * (100 - sa->derating) / 100);
->>> +					       bw * (100 - soc_bw_params->derating) / 100);
->>>  			bi->peakbw[j] = DIV_ROUND_CLOSEST(sp->dclk *
->>>  							  num_channels *
->>>  							  qi.channel_width, 8);
->>> @@ -661,7 +728,7 @@ static void dg2_get_bw_info(struct intel_display *display)
->>>  
->>>  static int xe2_hpd_get_bw_info(struct intel_display *display,
->>>  			       const struct dram_info *dram_info,
->>> -			       const struct intel_sa_info *sa)
->>> +			       const struct intel_soc_bw_params *soc_bw_params)
->>>  {
->>>  	struct intel_qgv_info qi = {};
->>>  	int num_channels = dram_info->num_channels;
->>> @@ -676,14 +743,14 @@ static int xe2_hpd_get_bw_info(struct intel_display *display,
->>>  	}
->>>  
->>>  	peakbw = num_channels * qi.channel_width / 8 * icl_sagv_max_dclk(&qi);
->>> -	maxdebw = min(sa->deprogbwlimit * 1000, peakbw * DEPROGBWPCLIMIT / 10);
->>> +	maxdebw = min(soc_bw_params->deprogbwlimit * 1000, peakbw * DEPROGBWPCLIMIT / 10);
->>>  
->>>  	for (i = 0; i < qi.num_points; i++) {
->>>  		const struct intel_qgv_point *point = &qi.points[i];
->>>  		int bw = num_channels * (qi.channel_width / 8) * point->dclk;
->>>  
->>>  		display->bw.max[0].deratedbw[i] =
->>> -			min(maxdebw, (100 - sa->derating) * bw / 100);
->>> +			min(maxdebw, (100 - soc_bw_params->derating) * bw / 100);
->>>  		display->bw.max[0].peakbw[i] = bw;
->>>  
->>>  		drm_dbg_kms(display->drm, "QGV %d: deratedbw=%u peakbw: %u\n",
->>> @@ -792,6 +859,7 @@ static unsigned int icl_qgv_bw(struct intel_display *display,
->>>  void intel_bw_init_hw(struct intel_display *display)
->>>  {
->>>  	const struct dram_info *dram_info = intel_dram_info(display);
->>> +	const struct intel_soc_bw_params *soc_bw_params = get_soc_bw_params(display);
->>>  
->>>  	if (!HAS_DISPLAY(display))
->>>  		return;
->>> @@ -807,28 +875,25 @@ void intel_bw_init_hw(struct intel_display *display)
->>>  
->>>  	if (DISPLAY_VER(display) >= 30) {
->>>  		if (DISPLAY_VERx100(display) == 3002)
->>> -			tgl_get_bw_info(display, dram_info, &xe3lpd_3002_sa_info);
->>> +			tgl_get_bw_info(display, dram_info, soc_bw_params, &xe3lpd_3002_sa_info);
->>>  		else
->>> -			tgl_get_bw_info(display, dram_info, &xe3lpd_sa_info);
->>> +			tgl_get_bw_info(display, dram_info, soc_bw_params, &xe3lpd_sa_info);
->>>  	} else if (DISPLAY_VERx100(display) >= 1401 && display->platform.dgfx) {
->>> -		if (dram_info->type == INTEL_DRAM_GDDR_ECC)
->>> -			xe2_hpd_get_bw_info(display, dram_info, &xe2_hpd_ecc_sa_info);
->>> -		else
->>> -			xe2_hpd_get_bw_info(display, dram_info, &xe2_hpd_sa_info);
->>> +		xe2_hpd_get_bw_info(display, dram_info, soc_bw_params);
->>>  	} else if (DISPLAY_VER(display) >= 14) {
->>> -		tgl_get_bw_info(display, dram_info, &mtl_sa_info);
->>> +		tgl_get_bw_info(display, dram_info, soc_bw_params, &mtl_sa_info);
->>>  	} else if (display->platform.dg2) {
->>>  		dg2_get_bw_info(display);
->>>  	} else if (display->platform.alderlake_p) {
->>> -		tgl_get_bw_info(display, dram_info, &adlp_sa_info);
->>> +		tgl_get_bw_info(display, dram_info, soc_bw_params, &adlp_sa_info);
->>>  	} else if (display->platform.alderlake_s) {
->>> -		tgl_get_bw_info(display, dram_info, &adls_sa_info);
->>> +		tgl_get_bw_info(display, dram_info, soc_bw_params, &adls_sa_info);
->>>  	} else if (display->platform.rocketlake) {
->>> -		tgl_get_bw_info(display, dram_info, &rkl_sa_info);
->>> +		tgl_get_bw_info(display, dram_info, soc_bw_params, &rkl_sa_info);
->>>  	} else if (DISPLAY_VER(display) == 12) {
->>> -		tgl_get_bw_info(display, dram_info, &tgl_sa_info);
->>> +		tgl_get_bw_info(display, dram_info, soc_bw_params, &tgl_sa_info);
->>>  	} else if (DISPLAY_VER(display) == 11) {
->>> -		icl_get_bw_info(display, dram_info, &icl_sa_info);
->>> +		icl_get_bw_info(display, dram_info, soc_bw_params, &icl_sa_info);
->>>  	}
->>>  }
->>>  
->>> 
->>> -- 
->>> 2.53.0
->>> 
->
-> -- 
-> Jani Nikula, Intel
+Detailed description in commit message.
+
+[1] https://patchwork.freedesktop.org/series/160482/
+This patch series introduces a call to punit_error_handler() from
+within handle_soc_internal_errors() when PUNIT errors detected.
+
+v2:
+- Add use case: Handling errors from power management unit,
+  which requires a complete power cycle to
+  recover. (Christian)
+- Add several instead of number to avoid update. (Jani)
+
+v3:
+- Update any scenario that requires cold-reset. (Riana)
+- Update document with generic scenario. (Riana)
+- Consistent with terminology. (Raag)
+- Remove already covered information.
+- Use PUNIT instead of PMU. (Riana)
+- Use consistent wordingi.
+- Remove log. (Raag)
+
+v4:
+- Rename cold reset to power cyclce. (Raag)
+- Update doc. (Raag/Riana)
+- Change commit message. (Raag)
+- Make function static. (Raag)
+
+v5:
+- Make it consistent with consumer expectations. (Raag)
+- Update commit message.
+- Remove unbind.
+- Simplify cold-reset script.
+- Remove kdoc for static function.
+- Remove xe_ prefix for static function.
+
+Cc: André Almeida <andrealmeid@igalia.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+
+Mallesh Koujalagi (4):
+  drm: Add DRM_WEDGE_RECOVERY_COLD_RESET recovery method
+  drm/doc: Document DRM_WEDGE_RECOVERY_COLD_RESET recovery method
+  drm/xe: Handle PUNIT errors by requesting cold-reset recovery
+  drm/xe: Suppress Surprise Link Down on non-hotplug device
+
+Riana Tauro (1):
+  Introduce Xe Uncorrectable Error Handling
+
+ Documentation/gpu/drm-uapi.rst                |  64 +-
+ drivers/gpu/drm/drm_drv.c                     |   2 +
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ drivers/gpu/drm/xe/xe_device.c                |  19 +-
+ drivers/gpu/drm/xe/xe_device.h                |  15 +
+ drivers/gpu/drm/xe/xe_device_types.h          |   6 +
+ drivers/gpu/drm/xe/xe_gt.c                    |  14 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c            |   9 +-
+ drivers/gpu/drm/xe/xe_pci.c                   |  10 +
+ drivers/gpu/drm/xe/xe_pci_error.c             | 138 +++++
+ drivers/gpu/drm/xe/xe_ras.c                   | 552 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ras.h                   |   5 +-
+ drivers/gpu/drm/xe/xe_ras_types.h             | 215 +++++++
+ drivers/gpu/drm/xe/xe_survivability_mode.c    |  13 +-
+ drivers/gpu/drm/xe/xe_sysctrl_event.c         |   2 +-
+ drivers/gpu/drm/xe/xe_sysctrl_event_types.h   |   2 +-
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |  11 +
+ include/drm/drm_device.h                      |   1 +
+ 18 files changed, 1058 insertions(+), 21 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_pci_error.c
+
+-- 
+2.34.1
+
