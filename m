@@ -4,59 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6700CD4F26
-	for <intel-xe@archiver.kernel.org>; Tue, 12 May 2026 08:22:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D3ABCD4855
+	for <intel-xe@archiver.kernel.org>; Tue, 12 May 2026 08:24:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6171410E26A;
-	Tue, 12 May 2026 08:22:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B3C410E9A4;
+	Tue, 12 May 2026 08:24:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hHORD1GE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BRxAa6HR";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1F9510E261;
- Tue, 12 May 2026 08:22:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06EF910E689;
+ Tue, 12 May 2026 08:24:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778574133; x=1810110133;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=BFeb1t9oRZkuAf/a39zznexfPydLuQQnbQ9ksv3izFA=;
- b=hHORD1GEpONw9x1MsbCgtuLX78eqWrPkTOtNjyOHF5fNmwjPZbwM7YAE
- 0w6MrxRPd060g6b/0G5bGl8xzZQC1CM2eXYdOY+X8r4yFCuCtA5A1Vf9P
- ROdhSs7y8bD2MLw6dT46B3PFNcngcV1vtomR9AgNo30FTbplOD9eXvjmh
- fOxDV+AtuxJrZlV6ldjvGGWKAFLe/z1esqu16n4TjUoYe4YYx9UJQMrzG
- OXfhLHvV3113QkciGC0z4USHYZCSVEsdKrixZsUq4rRMAIksfhmFlZwHw
- jrWuCMMaEK7ZimA+M9tJcdm69nNhvw9H/AWTiYKIe0cfBB1gzdR8fmG+b g==;
-X-CSE-ConnectionGUID: F3xEaFMwRsqULIlt9At8TA==
-X-CSE-MsgGUID: k7TGr2+mS5m9UDw4MxVSuw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="67005426"
-X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="67005426"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2026 01:22:12 -0700
-X-CSE-ConnectionGUID: oeTHSj0lSZeoounHYKXyUw==
-X-CSE-MsgGUID: LWXzwCngTpySGpsxaQwhnQ==
+ t=1778574271; x=1810110271;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=xc0h2c0hTybRTSZ+FW2dCypjXJeU1NQ2RPW7zVtWjvI=;
+ b=BRxAa6HRAjBtkzbaiNs7/EWIvQKFnlmjJEKnZQHq54/tU0vn+GcjuG1c
+ pj1bXn7sMOIEuY6A8AyoX5lHHtT5VzN5II/SZiYA4iNEvTyKJoOFDFFLZ
+ OJHa8FV4g+Rd93g83ONqnLceHg8DOxHBwc5+LYhSle6wcSy0+wj1/ahFC
+ Hp6s+xbE/hYvVE97c/fg0ayEeeyjPSL9x6f9iTIIgj9exKhL6LAiyp91Z
+ 9k5tR2/W4R7mngwKk/bwtpSxkf3Ip7SmG7hiS6g3wwPFoZgVamYhrGadM
+ h9UQfETnhlQSZI28tLH/3Hd+6fZDC16XlPrEr82eD9XDIjH+kr6H6Koik g==;
+X-CSE-ConnectionGUID: hWD5Hf9iQdaJOASdGB+lzg==
+X-CSE-MsgGUID: +8wE3hXzS2+K+/7DwCzpzQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="79194951"
+X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="79194951"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2026 01:24:31 -0700
+X-CSE-ConnectionGUID: qJawPWxjTCKRJOtEr5rDnw==
+X-CSE-MsgGUID: wG9sh6JfR2urEwoB3UyDsA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="233387047"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.158])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2026 01:22:11 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>, Gustavo Sousa
- <gustavo.sousa@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 4/4] drm/i915/bw: Extract get_display_bw_params()
-In-Reply-To: <20260511224923.GB2131374@mdroper-desk1.amr.corp.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260511-separate-platform-from-diplay-ip-specific-bw-params-v2-0-e762cb8662da@intel.com>
- <20260511-separate-platform-from-diplay-ip-specific-bw-params-v2-4-e762cb8662da@intel.com>
- <20260511224923.GB2131374@mdroper-desk1.amr.corp.intel.com>
-Date: Tue, 12 May 2026 11:22:08 +0300
-Message-ID: <0a68170c66f746503b0ed5f285b165ac5ddc9657@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="237945499"
+Received: from vpanait-mobl.ger.corp.intel.com (HELO fedora) ([10.245.245.172])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2026 01:24:24 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Natalie Vock <natalie.vock@gmx.de>, Johannes Weiner <hannes@cmpxchg.org>,
+ Tejun Heo <tj@kernel.org>,
+ =?UTF-8?q?Michal=20Koutn=C3=BD?= <mkoutny@suse.com>,
+ cgroups@vger.kernel.org, Huang Rui <ray.huang@amd.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>,
+ David Airlie <airlied@gmail.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/5] Add reclaim to the dmem cgroup controller
+Date: Tue, 12 May 2026 10:24:01 +0200
+Message-ID: <20260512082406.44470-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,110 +79,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 11 May 2026, Matt Roper <matthew.d.roper@intel.com> wrote:
-> On Mon, May 11, 2026 at 01:30:59PM -0300, Gustavo Sousa wrote:
->> Just like it is done for the platform-specific bandwidth parameters, use
->> a separate function named get_display_bw_params() to return the display
->> IP-specific parameters.  This simplifies intel_bw_init_hw() by having
->> just one call for each of the *_get_bw_info() functions.
->> 
->> v2:
->>   - Prefer to call get_display_bw_params() only once in
->>     intel_bw_init_hw() instead of having multiple calls in each of the
->>     affected *_get_bw_info() functions. (Jani)
->> 
->> Cc: Jani Nikula <jani.nikula@intel.com>
->> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_bw.c | 36 +++++++++++++++++++++------------
->>  1 file changed, 23 insertions(+), 13 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
->> index c01356d38e64..acd1b6901b46 100644
->> --- a/drivers/gpu/drm/i915/display/intel_bw.c
->> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
->> @@ -493,6 +493,26 @@ static const struct intel_display_bw_params xelpdp_bw_params = {
->>  	.displayrtids = 256,
->>  };
->>  
->> +static const struct intel_display_bw_params *get_display_bw_params(struct intel_display *display)
->> +{
->> +	if (DISPLAY_VER(display) >= 14) {
->> +		return &xelpdp_bw_params;
->> +	} else if (DISPLAY_VER(display) >= 12) {
->> +		/*
->> +		 * RKL's SoC was based on ICL and the display, even though being
->> +		 * gen12, had changes to the memory interface to match gen11's,
->> +		 * consequently inheriting gen11's display-specific bandwidth
->> +		 * parameters.
->> +		 */
->> +		if (display->platform.rocketlake)
->> +			return &gen11_bw_params;
->> +		else
->> +			return &gen12_bw_params;
->> +	} else {
->> +		return &gen11_bw_params;
->
-> It doesn't really matter, but this is technically going to assign gen11
-> parameters for all the pre-gen11 platforms that call through here on
-> i915.  If we never use the values it probably doesn't hurt anything, but
-> it might be best to make this a condition on gen11 rather than an 'else'
-> just to avoid any confusion.
->
->
-> Matt
->
->> +	}
->> +}
->> +
->>  static int icl_get_bw_info(struct intel_display *display,
->>  			   const struct dram_info *dram_info,
->>  			   const struct intel_soc_bw_params *soc_bw_params,
->> @@ -843,6 +863,7 @@ void intel_bw_init_hw(struct intel_display *display)
->>  {
->>  	const struct dram_info *dram_info = intel_dram_info(display);
->>  	const struct intel_soc_bw_params *soc_bw_params = get_soc_bw_params(display);
->> +	const struct intel_display_bw_params *display_bw_params = get_display_bw_params(display);
+When writing a "max" limit lower than the current usage, the
+existing code silently failed. This series aims to improve
+on that by returning -EBUSY on failure and also attempt
+to synchronously reclaim device memory to push the usage
+under the new max limit to avoid the error.
 
-Feels like it gets increasingly weird to call all these functions
-unconditionally when we bail out for !display right below.
+Patch 1 fixes a pre-existing amdgpu_vram_mgr_init() error path
+Patch 2 implements and documents a reclaim callback interface
+      for the dmem controller.
+Patch 3 implements a TTM reclaim callback.
+Patch 4-5 hooks up the reclaim callback to the dmem cgroups-
+      aware drivers xe and amdgpu.
 
-BR,
-Jani.
+v2:
+- Remove the error propagation that was in a previous series (Maarten)
+- A number of updates in patch 1. See its commit message for
+  details (Maarten)
 
->>  
->>  	if (!HAS_DISPLAY(display))
->>  		return;
->> @@ -858,23 +879,12 @@ void intel_bw_init_hw(struct intel_display *display)
->>  
->>  	if (DISPLAY_VERx100(display) >= 1401 && display->platform.dgfx) {
->>  		xe2_hpd_get_bw_info(display, dram_info, soc_bw_params);
->> -	} else if (DISPLAY_VER(display) >= 14) {
->> -		tgl_get_bw_info(display, dram_info, soc_bw_params, &xelpdp_bw_params);
->>  	} else if (display->platform.dg2) {
->>  		dg2_get_bw_info(display);
->>  	} else if (DISPLAY_VER(display) >= 12) {
->> -		/*
->> -		 * RKL's SoC was based on ICL and the display, even though being
->> -		 * gen12, had changes to the memory interface to match gen11's,
->> -		 * consequently inheriting gen11's display-specific bandwidth
->> -		 * parameters.
->> -		 */
->> -		if (display->platform.rocketlake)
->> -			tgl_get_bw_info(display, dram_info, soc_bw_params, &gen11_bw_params);
->> -		else
->> -			tgl_get_bw_info(display, dram_info, soc_bw_params, &gen12_bw_params);
->> +		tgl_get_bw_info(display, dram_info, soc_bw_params, display_bw_params);
->>  	} else if (DISPLAY_VER(display) == 11) {
->> -		icl_get_bw_info(display, dram_info, soc_bw_params, &gen11_bw_params);
->> +		icl_get_bw_info(display, dram_info, soc_bw_params, display_bw_params);
->>  	}
->>  }
->>  
->> 
->> -- 
->> 2.53.0
->> 
+v3:
+- Add patch 1 fixing a pre-existing amdgpu_vram_mgr_init() error path
+  bug where drmm_cgroup_register_region() was called before
+  INIT_LIST_HEAD() and gpu_buddy_init(), causing a kernel panic on
+  failure. (Sashiko-bot)
+- Use an rwsem to protect reclaim callback registration and region
+  unregister against concurrent reclaim invocations. (Sashiko-bot)
+- Fix ttm_resource_manager_set_dmem_region() storing an error pointer
+  in man->cg unconditionally. (Sashiko-bot)
+- Fix kernel-doc function name format for ttm_bo_evict_cgroup() and
+  ttm_resource_manager_set_dmem_region().
+
+v4:
+- Rebased on drm-tip; dropped the XE_PL_STOLEN guard in the xe patch
+  as stolen memory uses a separate TTM manager.
+
+User-space tests are at
+https://patchwork.freedesktop.org/series/163935/
+
+Test-with: 20260428065411.4222-1-thomas.hellstrom@linux.intel.com
+
+Thomas Hellström (5):
+  drm/amdgpu: Fix init ordering in amdgpu_vram_mgr_init()
+  cgroup/dmem: Add reclaim callback for lowering max below current usage
+  drm/ttm: Hook up a cgroup-aware reclaim callback for the dmem
+    controller
+  drm/xe: Wire up dmem cgroup reclaim for VRAM manager
+  drm/amdgpu: Wire up dmem cgroup reclaim for VRAM manager
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c      |   2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c |  10 +-
+ drivers/gpu/drm/ttm/ttm_bo.c                 |  95 ++++++++++++++++-
+ drivers/gpu/drm/ttm/ttm_bo_util.c            |   3 +-
+ drivers/gpu/drm/ttm/ttm_resource.c           |  37 +++++++
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c         |  14 ++-
+ include/drm/ttm/ttm_bo.h                     |  10 ++
+ include/drm/ttm/ttm_resource.h               |   4 +
+ include/linux/cgroup_dmem.h                  |  24 +++++
+ kernel/cgroup/dmem.c                         | 106 +++++++++++++++++--
+ 10 files changed, 283 insertions(+), 22 deletions(-)
 
 -- 
-Jani Nikula, Intel
+2.54.0
+
