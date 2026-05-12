@@ -4,60 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56559CD4851
-	for <intel-xe@archiver.kernel.org>; Tue, 12 May 2026 11:11:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F005CCD4851
+	for <intel-xe@archiver.kernel.org>; Tue, 12 May 2026 11:12:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F83910E25B;
-	Tue, 12 May 2026 11:11:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B531010EA30;
+	Tue, 12 May 2026 11:12:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hCnsuE97";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="YrT55/kJ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B42C310E25B;
- Tue, 12 May 2026 11:11:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778584278; x=1810120278;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=rb3tKkextS5zKAiaJEQkXsRhNp3nZyeU6KPOuV3zmug=;
- b=hCnsuE973HUFtZcNDUnZzGpkry8qVPSPHADF1n7VCSVZjIHsEfSyoD9n
- ETpcArhCV56Bi2Bqhv+DGRTMNgs5m/SksGQHROpV0RvGYkBNPCh3dBYoW
- 1ZY9PkwEitKPUfCb43a0277ShR8uLIqnzFKVUlc6M6FRS3HWNKJW8F/pl
- WwSZQVx3+YEtBrfpWExVW2HCEccy1ts7Lr0xiFMbxo81CVb0pPjtNpeos
- aO3lC0JJWfC/BlrxjaqTqz5nj0Yp9wTVqsC6c2ftk09QZzl6pPs5Db/RK
- usveJkc5m9B7Ao/5Y7iH7GPl/Nrezippk0nDoND/IoRf33Hokv9FD7a3V g==;
-X-CSE-ConnectionGUID: mVvR9wzBRGyqHAw1hyjC4g==
-X-CSE-MsgGUID: fG6l2PVuSPmOvP5Dg9GLxA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="79510780"
-X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="79510780"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2026 04:11:18 -0700
-X-CSE-ConnectionGUID: J4cQkHTaQzyDeN8tYtBtaw==
-X-CSE-MsgGUID: USvWOxsARmSC/sHzz1HiUg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="237980878"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.245.203])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2026 04:11:16 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: jouni.hogander@intel.com, gustavo.sousa@intel.com,
- ankit.k.nautiyal@intel.com
-Subject: Re: [PATCH v2 3/3] drm/i915/psr: Use DMC wakelock instead of DC
- state for VBI
-In-Reply-To: <20260430134505.1728443-4-dibin.moolakadan.subrahmanian@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260430134505.1728443-1-dibin.moolakadan.subrahmanian@intel.com>
- <20260430134505.1728443-4-dibin.moolakadan.subrahmanian@intel.com>
-Date: Tue, 12 May 2026 14:11:11 +0300
-Message-ID: <78aeb45ca7f758089337b644814d195ad2dfdbe3@intel.com>
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9EB7B10E25B;
+ Tue, 12 May 2026 11:12:12 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id 0CED36001A;
+ Tue, 12 May 2026 11:12:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3210FC2BCB0;
+ Tue, 12 May 2026 11:12:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1778584331;
+ bh=O7iu6+OHQt+UcCqoDQCwDlQvXcpD6wcdi/7smEjbNtk=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=YrT55/kJDMGUXJeFkWGNBK9FzoIl4HS2K6NQ40lshLexigxa5igujPnwY12XGUrdu
+ 3oOa+gU1cmvJzjolELAzIxd1yfyzBMid+STDPGTAVRXPms6RXDWIpzMXF38HeWtyme
+ Ka4fvM+RMH0KUQI8fV+iGOT4B8dK8A4buH5UB0r4sTDQf1kgCzyFayooBEM7pzO/PJ
+ GoGMSrEhq+0uNzqLXoY1e31sUQOX3HcKOGlCi98r4NmTLZpXDf20q4FjJlcrWrtAdj
+ 3zudKRjf0pgTQ9Q85TuX+CuSQUL1OfuEfr/+Uo0tklnbaK2GOoVSx1wYq74kryTblm
+ kMgb/SVWhPzKw==
+Date: Tue, 12 May 2026 13:12:08 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Jonathan Corbet <corbet@lwn.net>, 
+ Shuah Khan <skhan@linuxfoundation.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Jyri Sarha <jyri.sarha@iki.fi>,
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Simon Ser <contact@emersion.fr>, 
+ Harry Wentland <harry.wentland@amd.com>, Melissa Wen <mwen@igalia.com>, 
+ Sebastian Wick <sebastian.wick@redhat.com>, Alex Hung <alex.hung@amd.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Chen-Yu Tsai <wens@kernel.org>, Samuel Holland <samuel@sholland.org>, 
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ =?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>, 
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+ dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Daniel Stone <daniels@collabora.com>, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH v3 16/20] drm/mode-config: Create
+ drm_mode_config_create_initial_state()
+Message-ID: <20260512-thundering-premium-cassowary-8bfdb6@houat>
+References: <20260424-drm-mode-config-init-v3-0-8b68d9db0d8b@kernel.org>
+ <20260424-drm-mode-config-init-v3-16-8b68d9db0d8b@kernel.org>
+ <20260504174148.GS1344263@killaraus.ideasonboard.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="4wqckenerejplylm"
+Content-Disposition: inline
+In-Reply-To: <20260504174148.GS1344263@killaraus.ideasonboard.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,68 +83,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 30 Apr 2026, Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com> wrote:
-> Use the DMC wakelock mechanism for preventing DC entry.
-> platforms without wakelock support will continue to use
-> set_target_dc_state() to disable DC entry during active vblank.
 
-Why? Every commit message needs to answer the question *why*. I can
-match the "what" above with the code, but it doesn't explain at all why
-we should make this change.
+--4wqckenerejplylm
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3 16/20] drm/mode-config: Create
+ drm_mode_config_create_initial_state()
+MIME-Version: 1.0
 
-BR,
-Jani.
+On Mon, May 04, 2026 at 08:41:48PM +0300, Laurent Pinchart wrote:
+> > Historically, this was one
+> > + *   of drm_mode_config_reset() job, so one might still encounter it in
+> > + *   a driver.
+> > + *
+> > + * - at reset time, for example during suspend/resume,
+> > + *   drm_mode_config_reset() will reset the software and hardware state
+> > + *   to a known default and will store it in the object's state pointe=
+r.
+> > + *   Not all objects are affected by drm_mode_config_reset() though.
+>=20
+> Does the reset implementation store a new state in the object's state
+> pointer, or does it reset the contents of the already allocated state ?
+> I read the documentation here as meaning the former, if it's actually
+> the latter it should be reworded.
 
+It's undefined. Both approach works, most drivers will destroy the old
+one and allocate a new one, but mediatek will just clear and
+re-initialize the old one:
 
->
-> Changes in v2:
-> - Use intel_dmc_wl_supported() instead of
->   DISPLAY_VER check (Gustavo Sousa).
->
-> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/2296
-> Fixes: acfc688bc51b ("drm/i915/dmc: Reduce wakelock hold time")
-> Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_psr.c | 26 +++++++++++++++---------
->  1 file changed, 16 insertions(+), 10 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-> index 9acd47392192..5b48a677bf39 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -4151,16 +4151,22 @@ void intel_psr_notify_vblank_enable_disable(struct intel_display *display,
->  		mutex_unlock(&intel_dp->psr.lock);
->  		break;
->  	}
-> -
-> -	/*
-> -	 * NOTE: intel_display_power_set_target_dc_state is used
-> -	 * only by PSR * code for DC3CO handling. DC3CO target
-> -	 * state is currently disabled in * PSR code. If DC3CO
-> -	 * is taken into use we need take that into account here
-> -	 * as well.
-> -	 */
-> -	intel_display_power_set_target_dc_state(display, enable ? DC_STATE_DISABLE :
-> -						DC_STATE_EN_UPTO_DC6);
-> +	if (!intel_dmc_wl_supported(display)) {
-> +		/*
-> +		 * NOTE: intel_display_power_set_target_dc_state is used
-> +		 * only by PSR code for DC3CO handling. DC3CO target
-> +		 * state is currently disabled in PSR code. If DC3CO
-> +		 * is taken into use we need take that into account here
-> +		 * as well.
-> +		 */
-> +		intel_display_power_set_target_dc_state(display, enable ? DC_STATE_DISABLE :
-> +							DC_STATE_EN_UPTO_DC6);
-> +	} else {
-> +		if (enable)
-> +			intel_dmc_wl_get_noreg(display);
-> +		else
-> +			intel_dmc_wl_put_noreg(display);
-> +	}
->  }
->  
->  static void
+https://elixir.bootlin.com/linux/v7.1-rc3/source/drivers/gpu/drm/mediatek/m=
+tk_plane.c#L28
 
--- 
-Jani Nikula, Intel
+Maxime
+
+--4wqckenerejplylm
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCagMK/gAKCRAnX84Zoj2+
+dkDYAXsF9DsH6J/5fuYI/okfNgVOZH2InlN8hfiL7W1ViQhomunSdZTAPqO4sg2a
+qYX3ht8BgPEsGsJ4a24dNbTDI8IuNZgDQ5B+kNfoyQNlBIPqgsydcK5kBH91+hEB
+93znUn0Yeg==
+=9Kyz
+-----END PGP SIGNATURE-----
+
+--4wqckenerejplylm--
