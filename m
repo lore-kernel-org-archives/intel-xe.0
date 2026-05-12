@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B1E9CD4851
-	for <intel-xe@archiver.kernel.org>; Tue, 12 May 2026 14:37:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97A68CD4851
+	for <intel-xe@archiver.kernel.org>; Tue, 12 May 2026 14:44:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B68F210EABF;
-	Tue, 12 May 2026 14:37:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56B7E10EAE6;
+	Tue, 12 May 2026 14:44:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EaESo/MM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NOI3/1Jf";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8928710E262;
- Tue, 12 May 2026 14:37:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 024E310EAE6;
+ Tue, 12 May 2026 14:44:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778596671; x=1810132671;
+ t=1778597075; x=1810133075;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=WYr5m3QewSCuYPj5Y8aDfV6V209VvUnkAHIIKUHVfUA=;
- b=EaESo/MMAMq15x0Lofbax/yHadViBIa1pLUJ0M+qzK8kc2siI94DWsvu
- 7AMrUsj8N9qWo9k3Kyr6Ak2a8zudKVBHQ+MTy7emrJhJROP0RsIOJnZ5J
- /IoWXIB4YtIjZyxEf5Xfa7T7+WqudqwKP5+ec7izoGxrJtzTl/xYJh/9B
- bfYjYpvhwTrsG4byiKC40/XcppKB9/SfFBW+6LHrpDk/vyF3MlcMQglBh
- oFV1TJgYOnw/4R29VT92O5tAlc4g+pRU/iG5GojPVoMIv9iy0WiGXJzUH
- kr3nVNHrLgtd54/WrTJAmPVEyAIsqhQilTU8UEF9ECf4acoHl3LQn2ZWC g==;
-X-CSE-ConnectionGUID: D6rC19f8TGOdjoZ1+JHMmw==
-X-CSE-MsgGUID: f556Fi90Qj2gNDJKhevPJg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11784"; a="83359919"
-X-IronPort-AV: E=Sophos;i="6.23,231,1770624000"; d="scan'208";a="83359919"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2026 07:37:50 -0700
-X-CSE-ConnectionGUID: OGsVD7iCQd+npCT6CeFarg==
-X-CSE-MsgGUID: qx11dIs2S0ShvIT9w6mrsA==
+ mime-version:in-reply-to;
+ bh=+2mlVVyC8rNfQKGiNjq8NYbKcjmNDprm2GMVkzAJa3E=;
+ b=NOI3/1JfIsCVeNY6n6tAAr8cHaVcPHLHnwDP3nU+hog3qf7mRmrT8SX0
+ NBpZeNcyHvIOdXfB2jooBKXdx2RVAWcwtVBU8kky027B6DzkzrNhwoJsR
+ bZg8/g5pq/MKoA35gplh5DDDZDwOQ5IwroK0FTUEBcZx2Bl3SfxsinNcQ
+ /nhTH4VMm5kylRqPgVtynJmSbBt6wbW4s1dxBQ0ENIBAJPOzWtr3Dl8Dm
+ kyEpMf2VfwAan6kkURgOLMXRz+klqElFXYFuPWjUsUVeKSZiWTAgzjFoW
+ +hNMnSIhI66iX/9MLV5+sCo17PjqxfBus4kBG1VTfKyHaDsjW3DioQQUj g==;
+X-CSE-ConnectionGUID: vtPHGkYxTqKh/FS4zWdSng==
+X-CSE-MsgGUID: 77OfnvEnRnSZ6Avntp61qg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11784"; a="79491147"
+X-IronPort-AV: E=Sophos;i="6.23,231,1770624000"; d="scan'208";a="79491147"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2026 07:44:35 -0700
+X-CSE-ConnectionGUID: f+vJYqrCSW2Xpqci1/0FiA==
+X-CSE-MsgGUID: cUk01pY5RcK7VJ4iUtoQGA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,231,1770624000"; d="scan'208";a="233481547"
+X-IronPort-AV: E=Sophos;i="6.23,231,1770624000"; d="scan'208";a="242784455"
 Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2026 07:37:46 -0700
-Date: Tue, 12 May 2026 16:37:43 +0200
+ by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2026 07:44:30 -0700
+Date: Tue, 12 May 2026 16:44:26 +0200
 From: Raag Jadav <raag.jadav@intel.com>
 To: "Tauro, Riana" <riana.tauro@intel.com>
 Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
@@ -53,16 +53,15 @@ Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  matthew.d.roper@intel.com, umesh.nerlige.ramappa@intel.com,
  mallesh.koujalagi@intel.com, soham.purkait@intel.com,
  anoop.c.vijay@intel.com, aravind.iddamsetty@linux.intel.com
-Subject: Re: [PATCH v1 08/11] drm/xe/ras: Get error threshold support
-Message-ID: <agM7NzEdT5SsOi4f@black.igk.intel.com>
+Subject: Re: [PATCH v1 09/11] drm/xe/ras: Set error threshold support
+Message-ID: <agM8ynv2w-iqsp-O@black.igk.intel.com>
 References: <20260417211730.837345-1-raag.jadav@intel.com>
- <20260417211730.837345-9-raag.jadav@intel.com>
- <81b9b5f6-6107-467a-879c-c2906e8d1f58@intel.com>
+ <20260417211730.837345-10-raag.jadav@intel.com>
+ <5e90b9aa-9432-43b5-ae40-1fce383bb043@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <81b9b5f6-6107-467a-879c-c2906e8d1f58@intel.com>
+In-Reply-To: <5e90b9aa-9432-43b5-ae40-1fce383bb043@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,85 +76,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, May 11, 2026 at 10:40:29PM +0530, Tauro, Riana wrote:
+On Mon, May 11, 2026 at 10:51:38PM +0530, Tauro, Riana wrote:
 > On 4/18/2026 2:46 AM, Raag Jadav wrote:
 > > System controller allows programming per error threshold value, which
-> > it uses to raise error events to the driver. Get it using mailbox
-> > command so that it can be exposed to the user.
+> > it uses to raise error events to the driver. Set it using mailbox
+> > command so that it can be programmed by the user.
 > > 
-> > Signed-off-by: Raag Jadav<raag.jadav@intel.com>
+> > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
 > > ---
-> >   drivers/gpu/drm/xe/xe_ras.c                   | 73 +++++++++++++++++++
-> >   drivers/gpu/drm/xe/xe_ras.h                   |  3 +
-> >   drivers/gpu/drm/xe/xe_ras_types.h             | 22 ++++++
+> >   drivers/gpu/drm/xe/xe_ras.c                   | 42 +++++++++++++++++++
+> >   drivers/gpu/drm/xe/xe_ras.h                   |  1 +
+> >   drivers/gpu/drm/xe/xe_ras_types.h             | 28 +++++++++++++
 > >   drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |  2 +
-> >   4 files changed, 100 insertions(+)
+> >   4 files changed, 73 insertions(+)
 > > 
 > > diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-> > index 08e91348c459..3e93f838aa4a 100644
+> > index 3e93f838aa4a..26e063166c5f 100644
 > > --- a/drivers/gpu/drm/xe/xe_ras.c
 > > +++ b/drivers/gpu/drm/xe/xe_ras.c
-> > @@ -3,11 +3,14 @@
-> >    * Copyright © 2026 Intel Corporation
-> >    */
-> > +#include "xe_pm.h"
-> >   #include "xe_printk.h"
-> >   #include "xe_ras.h"
-> >   #include "xe_ras_types.h"
-> >   #include "xe_sysctrl.h"
-> >   #include "xe_sysctrl_event_types.h"
-> > +#include "xe_sysctrl_mailbox.h"
-> > +#include "xe_sysctrl_mailbox_types.h"
-> >   /* Severity of detected errors  */
-> >   enum xe_ras_severity {
-> > @@ -49,6 +52,23 @@ static const char *const xe_ras_components[] = {
-> >   };
-> >   static_assert(ARRAY_SIZE(xe_ras_components) == XE_RAS_COMP_MAX);
-> > +/* uAPI mapping */
-> > +static const int drm_to_xe_ras_components[] = {
-> > +	[DRM_XE_RAS_ERR_COMP_CORE_COMPUTE]	= XE_RAS_COMP_CORE_COMPUTE,
-> > +	[DRM_XE_RAS_ERR_COMP_SOC_INTERNAL]	= XE_RAS_COMP_SOC_INTERNAL,
-> > +	[DRM_XE_RAS_ERR_COMP_DEVICE_MEMORY]	= XE_RAS_COMP_DEVICE_MEMORY,
-> > +	[DRM_XE_RAS_ERR_COMP_PCIE]		= XE_RAS_COMP_PCIE,
-> > +	[DRM_XE_RAS_ERR_COMP_FABRIC]		= XE_RAS_COMP_FABRIC
-> > +};
-> > +static_assert(ARRAY_SIZE(drm_to_xe_ras_components) == DRM_XE_RAS_ERR_COMP_MAX);
-> > +
-> > +/* uAPI mapping */
-> > +static const int drm_to_xe_ras_severities[] = {
-> > +	[DRM_XE_RAS_ERR_SEV_CORRECTABLE]	= XE_RAS_SEV_CORRECTABLE,
-> > +	[DRM_XE_RAS_ERR_SEV_UNCORRECTABLE]	= XE_RAS_SEV_UNCORRECTABLE
-> > +};
-> > +static_assert(ARRAY_SIZE(drm_to_xe_ras_severities) == DRM_XE_RAS_ERR_SEV_MAX);
-> > +
-> >   static inline const char *sev_to_str(u8 sev)
-> >   {
-> >   	if (sev >= XE_RAS_SEV_MAX)
-> > @@ -90,3 +110,56 @@ void xe_ras_counter_threshold_crossed(struct xe_device *xe,
-> >   			comp_to_str(component), sev_to_str(severity));
-> >   	}
+> > @@ -163,3 +163,45 @@ int xe_ras_get_threshold(struct xe_device *xe, u32 severity, u32 component, u32
+> >   	       comp_to_str(counter.common.component), sev_to_str(counter.common.severity));
+> >   	return 0;
 > >   }
 > > +
-> > +static void ras_command_prepare(struct xe_sysctrl_mailbox_command *command,
-> > +				void *request, size_t request_len, void *response,
-> > +				size_t response_len, u8 hdr_cmd)
+> > +int xe_ras_set_threshold(struct xe_device *xe, u32 severity, u32 component, u32 threshold)
 > > +{
-> > +	struct xe_sysctrl_app_msg_hdr header = {};
-> > +
-> > +	header.data = REG_FIELD_PREP(APP_HDR_GROUP_ID_MASK, XE_SYSCTRL_GROUP_GFSP) |
-> > +		      REG_FIELD_PREP(APP_HDR_COMMAND_MASK, hdr_cmd);
-> > +
-> > +	command->header = header;
-> > +	command->data_in = request;
-> > +	command->data_in_len = request_len;
-> > +	command->data_out = response;
-> > +	command->data_out_len = response_len;
-> > +}
-> > +
-> > +int xe_ras_get_threshold(struct xe_device *xe, u32 severity, u32 component, u32 *threshold)
-> > +{
-> > +	struct xe_ras_get_threshold_response response = {};
-> > +	struct xe_ras_get_threshold_request request = {};
+> > +	struct xe_ras_set_threshold_response response = {};
+> > +	struct xe_ras_set_threshold_request request = {};
 > > +	struct xe_sysctrl_mailbox_command command = {};
 > > +	struct xe_ras_error_class counter = {};
 > > +	size_t len;
@@ -163,115 +110,124 @@ On Mon, May 11, 2026 at 10:40:29PM +0530, Tauro, Riana wrote:
 > > +
 > > +	counter.common.severity = drm_to_xe_ras_severities[severity];
 > > +	counter.common.component = drm_to_xe_ras_components[component];
-> 
-> I see this is only for correctable errors. We do not have correctable memory
-> errors
-> Do we want to return -EOPNOTSUPP for memory errors?
-
-Could be done, but I'm expecting it to come from firmware since driver
-is more or less acting as a transport here.
-
-Raag
-
 > > +	request.counter = counter;
-> > +
+> > +	request.threshold = threshold;
+> 
+> We might need a max check here to avoid unnecessary values from user.
+
+We may want to avoid hardcoding it in driver since it can potentially be
+different per product.
+
 > > +	ras_command_prepare(&command, &request, sizeof(request), &response,
-> > +			    sizeof(response), XE_SYSCTRL_CMD_GET_THRESHOLD);
-> > +
+> > +			    sizeof(response), XE_SYSCTRL_CMD_SET_THRESHOLD);
+> 
+> Nit: command, request, response seems to be a better format
+
+Sure, I'll likely create a separate sysctrl helper.
+
 > > +	guard(xe_pm_runtime)(xe);
 > > +	ret = xe_sysctrl_send_command(&xe->sc, &command, &len);
 > > +	if (ret) {
-> > +		xe_err(xe, "sysctrl: failed to get threshold %d\n", ret);
+> > +		xe_err(xe, "sysctrl: failed to set threshold %d\n", ret);
 > > +		return ret;
 > > +	}
 > > +
 > > +	if (len != sizeof(response)) {
-> > +		xe_err(xe, "sysctrl: unexpected get threshold response length %zu (expected %zu)\n",
+> > +		xe_err(xe, "sysctrl: unexpected set threshold response length %zu (expected %zu)\n",
 > > +		       len, sizeof(response));
 > > +		return -EIO;
 > > +	}
 > > +
-> > +	counter = response.counter;
+> > +	if (response.status) {
+> > +		xe_err(xe, "sysctrl: set threshold operation failed %#x\n", response.status);
 > 
-> Do we expect this to change?
+> Status should be converted to visible error codes. check [PATCH v5 3/6]
+> drm/xe/xe_ras: Add helper to clear error counter - Riana Tauro
+> 
+> <https://lore.kernel.org/intel-xe/20260504065614.3832331-11-riana.tauro@intel.com/>
 
-Nope, but it helps with wrapping below.
+Coming right up.
 
-> > +	*threshold = response.threshold;
+Raag
+
+> > +		return -EIO;
+> > +	}
 > > +
-> > +	xe_dbg(xe, "[RAS]: Get threshold %u for %s %s\n", response.threshold,
+> > +	counter = response.counter;
+> > +
+> > +	xe_dbg(xe, "[RAS]: Set threshold %u for %s %s\n", response.threshold,
 > > +	       comp_to_str(counter.common.component), sev_to_str(counter.common.severity));
-> 
-> Do we need this. it should be visible to the user via netlink
-
-It's for us, not the user.
-
+> Again not required. Value should be visible to user
 > > +	return 0;
 > > +}
 > > diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
-> > index ea90593b62dc..982bbe61461e 100644
+> > index 982bbe61461e..d1f71b1de723 100644
 > > --- a/drivers/gpu/drm/xe/xe_ras.h
 > > +++ b/drivers/gpu/drm/xe/xe_ras.h
-> > @@ -6,10 +6,13 @@
-> >   #ifndef _XE_RAS_H_
-> >   #define _XE_RAS_H_
-> > +#include <linux/types.h>
-> > +
-> >   struct xe_device;
-> >   struct xe_sysctrl_event_response;
+> > @@ -14,5 +14,6 @@ struct xe_sysctrl_event_response;
 > >   void xe_ras_counter_threshold_crossed(struct xe_device *xe,
 > >   				      struct xe_sysctrl_event_response *response);
-> > +int xe_ras_get_threshold(struct xe_device *xe, u32 severity, u32 component, u32 *threshold);
+> >   int xe_ras_get_threshold(struct xe_device *xe, u32 severity, u32 component, u32 *threshold);
+> > +int xe_ras_set_threshold(struct xe_device *xe, u32 severity, u32 component, u32 threshold);
 > >   #endif
 > > diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
-> > index 4e63c67f806a..d5da93d65cf5 100644
+> > index d5da93d65cf5..d7e4a02a661d 100644
 > > --- a/drivers/gpu/drm/xe/xe_ras_types.h
 > > +++ b/drivers/gpu/drm/xe/xe_ras_types.h
-> > @@ -70,4 +70,26 @@ struct xe_ras_threshold_crossed {
-> >   	struct xe_ras_error_class counters[XE_RAS_NUM_COUNTERS];
+> > @@ -92,4 +92,32 @@ struct xe_ras_get_threshold_response {
+> >   	u32 reserved[4];
 > >   } __packed;
 > > +/**
-> > + * struct xe_ras_get_threshold_request - Request structure for get threshold
+> > + * struct xe_ras_set_threshold_request - Request structure for set threshold
 > > + */
-> > +struct xe_ras_get_threshold_request {
-> > +	/** @counter: Counter to get threshold for */
+> > +struct xe_ras_set_threshold_request {
+> > +	/** @counter: Counter to set threshold for */
 > > +	struct xe_ras_error_class counter;
+> > +	/** @threshold: Threshold value to set */
+> > +	u32 threshold;
 > > +	/** @reserved: Reserved for future use */
 > > +	u32 reserved;
 > > +} __packed;
 > > +
 > > +/**
-> > + * struct xe_ras_get_threshold_response - Response structure for get threshold
+> > + * struct xe_ras_set_threshold_response - Response structure for set threshold
 > > + */
-> > +struct xe_ras_get_threshold_response {
+> > +struct xe_ras_set_threshold_response {
 > > +	/** @counter: Counter id */
 > 
 > Nit: ID
-
-Sure.
-
-Raag
-
+> 
 > > +	struct xe_ras_error_class counter;
-> > +	/** @threshold: Threshold value */
+> > +	/** @threshold_old: Old threshold value */
+> 
+> Nit: prev
+> 
+> Thanks
+> Riana
+> 
+> > +	u32 threshold_old;
+> > +	/** @threshold: New threshold value */
 > > +	u32 threshold;
+> > +	/** @status: Set threshold operation status */
+> > +	u32 status;
 > > +	/** @reserved: Reserved for future use */
-> > +	u32 reserved[4];
+> > +	u32 reserved[2];
 > > +} __packed;
 > > +
 > >   #endif
 > > diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-> > index 84d7c647e743..a1b71218deca 100644
+> > index a1b71218deca..b865768e903b 100644
 > > --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
 > > +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-> > @@ -22,9 +22,11 @@ enum xe_sysctrl_group {
-> >   /**
+> > @@ -23,10 +23,12 @@ enum xe_sysctrl_group {
 > >    * enum xe_sysctrl_gfsp_cmd - Commands supported by GFSP group
 > >    *
-> > + * @XE_SYSCTRL_CMD_GET_THRESHOLD: Retrieve error threshold
+> >    * @XE_SYSCTRL_CMD_GET_THRESHOLD: Retrieve error threshold
+> > + * @XE_SYSCTRL_CMD_SET_THRESHOLD: Set error threshold
 > >    * @XE_SYSCTRL_CMD_GET_PENDING_EVENT: Retrieve pending event
 > >    */
 > >   enum xe_sysctrl_gfsp_cmd {
-> > +	XE_SYSCTRL_CMD_GET_THRESHOLD		= 0x05,
+> >   	XE_SYSCTRL_CMD_GET_THRESHOLD		= 0x05,
+> > +	XE_SYSCTRL_CMD_SET_THRESHOLD		= 0x06,
 > >   	XE_SYSCTRL_CMD_GET_PENDING_EVENT	= 0x07,
 > >   };
