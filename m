@@ -4,72 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9861ACD4851
-	for <intel-xe@archiver.kernel.org>; Tue, 12 May 2026 11:31:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA544CD4F21
+	for <intel-xe@archiver.kernel.org>; Tue, 12 May 2026 11:44:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3916810E274;
-	Tue, 12 May 2026 11:31:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9784210E1FF;
+	Tue, 12 May 2026 11:44:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jyU+gTot";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="m+1IZa7R";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A371B10EA3F;
- Tue, 12 May 2026 11:31:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778585480; x=1810121480;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=V6Uv9TsQGyM3BpUljm+Hu+p0og4dIdrPBdVttzvu94U=;
- b=jyU+gToth8R0k1a48azdXi4zo54mFjr3movVbAj0JKZcBfOETj07+APQ
- tyuUvVE5Gt3xbbpx3lIxnK7JUqnBQugMC/tsH+Tt0A3HdzTcweV9H0iC0
- j0cXqv4r32d/PWsPrnpYAL7y3UMITs6QbMe0WKZoyC+AxO+Fkf0kh4weQ
- 1jbrNyK4JB45veuTfZDXuNtVm82SN5jOW7ThK2GD9tanOJUA/Cn9R3eBC
- C8y7wTE0PlQaa12beG47A8xwr6js8I2Cwg3VGALM/1HiwAwI+NGUTH4E7
- vfz0qABqaAdvWuOaOYJeHln4B0ynaUH1CIDlvBw0Cm7zF7b7G4ggO7mwC Q==;
-X-CSE-ConnectionGUID: AhbwN4oVR3Ow8EDpSn9mEw==
-X-CSE-MsgGUID: QCKSpkctS46E8n4ca25QCw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="83106069"
-X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="83106069"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2026 04:31:18 -0700
-X-CSE-ConnectionGUID: QPACu6dxSXW/7GV7ONnHHQ==
-X-CSE-MsgGUID: 1AekJlt5QxutbES8KnsWgA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="236760144"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO [10.245.245.172])
- ([10.245.245.172])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2026 04:31:13 -0700
-Message-ID: <b4800086347aa3b27edc42b6536cb3a2b76a1aa8.camel@linux.intel.com>
-Subject: Re: [PATCH 1/2] mm/shmem: add shmem_insert_folio()
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: "David Hildenbrand (Arm)" <david@kernel.org>, 
- intel-xe@lists.freedesktop.org
-Cc: Andrew Morton <akpm@linux-foundation.org>, Lorenzo Stoakes
- <ljs@kernel.org>,  "Liam R. Howlett"	 <liam@infradead.org>, Vlastimil Babka
- <vbabka@kernel.org>, Mike Rapoport	 <rppt@kernel.org>, Suren Baghdasaryan
- <surenb@google.com>, Michal Hocko	 <mhocko@suse.com>, Hugh Dickins
- <hughd@google.com>, Baolin Wang	 <baolin.wang@linux.alibaba.com>, Brendan
- Jackman <jackmanb@google.com>,  Johannes Weiner <hannes@cmpxchg.org>, Zi
- Yan <ziy@nvidia.com>, Christian Koenig <christian.koenig@amd.com>,  Huang
- Rui <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>, Matthew
- Brost	 <matthew.brost@intel.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>,  Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, dri-devel@lists.freedesktop.org,
- linux-mm@kvack.org, 	linux-kernel@vger.kernel.org
-Date: Tue, 12 May 2026 13:31:09 +0200
-In-Reply-To: <f14d99d3-c1ff-453b-a280-17b8c4d5af94@kernel.org>
-References: <20260512110339.6244-1-thomas.hellstrom@linux.intel.com>
- <20260512110339.6244-2-thomas.hellstrom@linux.intel.com>
- <f14d99d3-c1ff-453b-a280-17b8c4d5af94@kernel.org>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C76A10E1FF;
+ Tue, 12 May 2026 11:44:01 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 2271141913;
+ Tue, 12 May 2026 11:44:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9CBF0C2BCB0;
+ Tue, 12 May 2026 11:43:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1778586241;
+ bh=H+ti7zY/i4rnciLzAJI+9KovwD+hoVGMIVTnLhNKeX8=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=m+1IZa7Rz8qrTSMnetT0o7flalUm6rwu31zjfmm1CRbRgqFCWMfUVmNAVBgYfwYYN
+ Oto9ybQ+WxwnaTDUS8PSL3MCKBvNMW9dSqPlqK1ezYX6jCwFdlzHliB46QlG3OhSA4
+ 7tNO5yw5uRZVhR3YMiDOy6uu/P5oX3gRGEZdQt2Bdeprx2s+mlExiSR4RY6JNZjyGY
+ ByERcfRQRWYkZ3U15YvVWWYh1sl7STMcJ69dNWsuX1LLzJPVrtZJs2s+zqLwIrz+kd
+ WIsQQ7HQjmh7RzVi6TyUSDyXzPd4JV+c1zuZXuODBrhOBN5NWo/nl1cVfHkhOyqBzf
+ G+TPwEgcAur/g==
+Message-ID: <4a9c4170-c6b7-424c-969c-19240f07e46b@kernel.org>
+Date: Tue, 12 May 2026 13:43:55 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 2/5] mm: Add helper to convert HMM pfn to migrate pfn
+To: mpenttil@redhat.com, linux-mm@kvack.org
+Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Jason Gunthorpe <jgg@nvidia.com>,
+ Leon Romanovsky <leonro@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
+ Balbir Singh <balbirs@nvidia.com>, Zi Yan <ziy@nvidia.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka
+ <vbabka@suse.cz>, Mike Rapoport <rppt@kernel.org>,
+ Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>
+References: <20260505184421.2324798-1-mpenttil@redhat.com>
+ <20260505184421.2324798-3-mpenttil@redhat.com>
+From: "David Hildenbrand (Arm)" <david@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=david@kernel.org; keydata=
+ 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
+ qIws/H2t
+In-Reply-To: <20260505184421.2324798-3-mpenttil@redhat.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,156 +111,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi David,
 
-Thanks for having a look.
+> +
+> +/**
+> + * migrate_hmm_range_setup() - prepare to migrate a range of memory
+> + * @range: contains pointer to struct migrate_vma to be set up.
+> + *
+> + * When collecting has been done with hmm_range_fault(), this
+> + * should be called next, and completes range->migrate by
+> + * populating migrate->src[] and migrate->dst[]
+> + * using range->hmm_pfns[].
+> + * Also, migrate->cpages and migrate->npages get initialized.
+> + * After migrate_hmm_range_setup(), range->migrate is good
+> + * for the rest of the migrate_vma_* flow.
+> + */
+> +void migrate_hmm_range_setup(struct hmm_range *range)
+> +{
+> +	struct migrate_vma *migrate = range->migrate;
+> +
+> +	if (!migrate)
+> +		return;
+> +
+> +	migrate->npages = (migrate->end - migrate->start) >> PAGE_SHIFT;
+> +	migrate->cpages = 0;
+> +
+> +	for (unsigned long i = 0; i < migrate->npages; i++) {
+> +		unsigned long pfn = range->hmm_pfns[i];
+> +
+> +		/*
+> +		 * We are only interested in entries to be
+> +		 * migrated.
+> +		 */
+> +		if (!(pfn & HMM_PFN_MIGRATE)) {
+> +			migrate->src[i] = 0;
+> +			migrate->dst[i] = 0;
+> +			continue;
+> +		}
+> +
+> +		migrate->cpages++;
+> +
+> +		/* HMM_PFN_MIGRATE without HMM_PFN_VALID denotes the special zero page */
+> +		if (pfn & (HMM_PFN_VALID))
 
-On Tue, 2026-05-12 at 13:07 +0200, David Hildenbrand (Arm) wrote:
->=20
-> > =C2=A0
-> > +/**
-> > + * undo_compound_page() - Reverse the effect of
-> > prep_compound_page().
-> > + * @page: The head page of a compound page to demote.
-> > + *
-> > + * Returns the pages to non-compound state as if
-> > prep_compound_page()
-> > + * had never been called.=C2=A0 split_page() must NOT have been called
-> > on
-> > + * the compound page; tail refcounts must be 0.=C2=A0 The caller must
-> > ensure
-> > + * no other users hold references to the compound page.
-> > + */
-> > +void undo_compound_page(struct page *page)
-> > +{
-> > +	unsigned int i, nr =3D 1U << compound_order(page);
-> > +
-> > +	page[1].flags.f &=3D ~PAGE_FLAGS_SECOND;
-> > +	for (i =3D 1; i < nr; i++) {
-> > +		page[i].mapping =3D NULL;
-> > +		clear_compound_head(&page[i]);
-> > +	}
-> > +	ClearPageHead(page);
-> > +}
-> > +
-> > =C2=A0static inline void set_buddy_order(struct page *page, unsigned in=
-t
-> > order)
-> > =C2=A0{
-> > =C2=A0	set_page_private(page, order);
-> > diff --git a/mm/shmem.c b/mm/shmem.c
-> > index 3b5dc21b323c..45e80a74f77c 100644
-> > --- a/mm/shmem.c
-> > +++ b/mm/shmem.c
-> > @@ -937,6 +937,111 @@ int shmem_add_to_page_cache(struct folio
-> > *folio,
-> > =C2=A0	return 0;
-> > =C2=A0}
-> > =C2=A0
-> > +/**
-> > + * shmem_insert_folio() - Insert an isolated folio into a shmem
-> > file.
-> > + * @file: The shmem file created with shmem_file_setup().
-> > + * @folio: The folio to insert. Must be isolated (not on LRU),
-> > unlocked,
-> > + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 have exactly one re=
-ference (the caller's), have no
-> > page-table
-> > + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mappings, and have =
-folio->mapping =3D=3D NULL.
-> > + * @order: The allocation order of @folio.=C2=A0 If @order > 0 and
-> > @folio is
-> > + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 not already a large=
- (compound) folio, it will be
-> > promoted to a
-> > + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compound folio of t=
-his order inside this function.=C2=A0
-> > This requires
-> > + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 the standard post-a=
-lloc state: head refcount =3D=3D 1, tail
-> > + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 refcounts =3D=3D 0 =
-(i.e. split_page() must NOT have been
-> > called).
-> > + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 On failure the prom=
-otion is reversed and the folio is
-> > returned
-> > + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 to its original non=
--compound state.
-> > + * @index: Page-cache index at which to insert. Must be aligned to
-> > + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (1 << @order) and w=
-ithin the file's size.
-> > + * @writeback: If true, attempt immediate writeback to swap after
-> > insertion.
-> > + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 Best-effort; failure is silently ignored.
-> > + * @folio_gfp: The GFP flags to use for memory-cgroup charging.
-> > + *
-> > + * The folio is inserted zero-copy into the shmem page cache and
-> > placed on
-> > + * the anon LRU, where it participates in normal kernel reclaim
-> > (written to
-> > + * swap under memory pressure).=C2=A0 Any previous content at @index i=
-s
-> > discarded.
-> > + * On success the caller should release their reference with
-> > folio_put() and
-> > + * track the (@file, @index) pair for later recovery via
-> > shmem_read_folio()
-> > + * and release via shmem_truncate_range().
-> > + *
-> > + * Return: 0 on success.=C2=A0 On failure the folio is returned to its
-> > original
-> > + * state and the caller retains ownership.
-> > + */
-> > +int shmem_insert_folio(struct file *file, struct folio *folio,
-> > unsigned int order,
-> > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pgoff_t index, bool writeback, =
-gfp_t
-> > folio_gfp)
-> > +{
-> > +	struct address_space *mapping =3D file->f_mapping;
-> > +	struct inode *inode =3D mapping->host;
-> > +	bool promoted;
-> > +	long nr_pages;
-> > +	int ret;
-> > +
-> > +	promoted =3D order > 0 && !folio_test_large(folio);
-> > +	if (promoted)
-> > +		prep_compound_page(&folio->page, order);
-> > +	nr_pages =3D folio_nr_pages(folio);
-> > +
-> > +	VM_BUG_ON_FOLIO(folio_test_lru(folio), folio);
-> > +	VM_BUG_ON_FOLIO(folio_mapped(folio), folio);
-> > +	VM_BUG_ON_FOLIO(folio_test_swapcache(folio), folio);
-> > +	VM_BUG_ON_FOLIO(folio->mapping, folio);
-> > +	VM_BUG_ON(index !=3D round_down(index, nr_pages));
->=20
-> No new VM_BUG_ON_FOLIO etc.
+No need for ()
 
-OK, can eliminate those. Is VM_WARN_ON_FOLIO() preferred,
-or any other type of assert?
+> +			migrate->src[i] = migrate_pfn(page_to_pfn(hmm_pfn_to_page(pfn)))
 
->=20
-> But in general, pushing in random allocated pages into shmem,
-> converting them to
-> folios is not something I particularly enjoy seeing.
->=20
+Is there no easier way to avoid going through a page?
 
-OK, let me understand the concern. The pages are allocated as multi-
-page folios using alloc_pages(gfp, order), but typically not promoted
-to compound pages, until inserted here. Is it that promotion that is of
-concern or inserting pages of unknown origin into shmem? Anything we
-can do to alleviate that concern?
+I guess you really just want "migrate_pfn(pfn & ~HMM_PFN_FLAGS)".
 
-Given the problem statement in the cover-letter, would there be a
-better direction to take here? We could, for example, bypass shmem and
-insert the folios directly into the swap-cache, (although there is an
-issue with the swap-cache when the number of swap_entries are close to
-being depleted).
+Maybe add a hmm_pfn_to_pfn() helper that does the "pfn & ~HMM_PFN_FLAGS" ?
 
-https://patchwork.freedesktop.org/series/165518/
+> +				| MIGRATE_PFN_MIGRATE;
 
-Thanks,
-Thomas
+We (MM folks) usually put the | onto the previous line to then properly indent
+the second line
 
+migrate->src[i] = migrate_pfn(page_to_pfn(hmm_pfn_to_page(pfn))) |
+		  MIGRATE_PFN_MIGRATE;
 
+> +		else
+> +			migrate->src[i] = MIGRATE_PFN_MIGRATE;
+
+It might be cleaner to just set migrate->src[i] = 0; here and to unconditionally
+
+	migrate->src[i] |= MIGRATE_PFN_MIGRATE;
+
+So you don't have the MIGRATE_PFN_MIGRATE on two paths.
+
+> +
+> +		migrate->src[i] |= (pfn & HMM_PFN_WRITE) ? MIGRATE_PFN_WRITE : 0;
+> +		migrate->src[i] |= (pfn & HMM_PFN_COMPOUND) ? MIGRATE_PFN_COMPOUND : 0;
+> +		migrate->dst[i] = 0;
+> +	}
+> +
+> +	if (migrate->cpages)
+> +		migrate_vma_unmap(migrate);
+
+Can you remind me why we do this here, in the setup() phase? The function doc
+does not really describe that.
+
+-- 
+Cheers,
+
+David
