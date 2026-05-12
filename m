@@ -4,96 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6DFBCD4F24
-	for <intel-xe@archiver.kernel.org>; Wed, 13 May 2026 15:13:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40EC3CD4F41
+	for <intel-xe@archiver.kernel.org>; Wed, 13 May 2026 15:13:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92ECE10EF22;
-	Wed, 13 May 2026 15:13:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58D4010EF29;
+	Wed, 13 May 2026 15:13:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="jo+Ul1LW";
-	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="aKQjii0m";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="nmRF+qkO";
+	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="hC9EorXb";
 	dkim-atps=neutral
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
  [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7ABC910EF09
- for <intel-xe@lists.freedesktop.org>; Wed, 13 May 2026 15:05:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96B4410E5A0
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 May 2026 11:59:57 +0000 (UTC)
 Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
  by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 64DAZbNh2338787
- for <intel-xe@lists.freedesktop.org>; Wed, 13 May 2026 15:05:32 GMT
+ 64CBco1M075267
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 May 2026 11:59:56 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
  cc:content-transfer-encoding:content-type:date:from:in-reply-to
  :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
- sKKql0vh/Nr4+jL7SLsLVXl/MczXH430C80D/Yrjpr8=; b=jo+Ul1LWRR5iviyZ
- qLUx6IUh9CqgAMkRLobae3Aj0krsT7uGIoY5CzUkECDWyEZZyQUxECDJFz+4QVts
- 5A9m+84/fE7PET0ZmQuetwPhPFfb21FyNCpzuljbPd2ETpf46FzRP0CBj0IXZCVI
- 15WU153OC7ix1C+tCNXQStuR3VxMh8cLoMj0H6quIEuE1H0WBQSAy+g/fnULLjQu
- tOjAfSkbWpMwrNj7beT903Vawbo+RoFiNNV+LdpuD2kO+fTwFLSN+MT38NHc1D7C
- UnmNzymi6hC6lgQPRJ9/27KCvR2fnYjWclcm5G9k1Nd5dEe6PEMkX4zq5q+NKTYl
- 5dQIVQ==
-Received: from mail-oo1-f71.google.com (mail-oo1-f71.google.com
- [209.85.161.71])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e49vxc2g8-1
+ AsIlzmh9tphlDY1UgVWouFfmn5szfdJ33CZ+C2oPx7E=; b=nmRF+qkO4mGQ0+Nj
+ XiOUNC4GoKCSEBmbKGynKNgdlODGWZYMxmqGXvqXoBsKRaeWPJTBnRg2XrDqeT0z
+ Ep2XUuJIQ5+uli6AJEgiVUfzZqzJzapiWo9BCo5LW9efKZJglz7MMm9E1cDLqrne
+ UH2pSb0c163G1U6RUcWsfb77vHwCZ8MFL/U2UUhoeIBwEg7RmNFRiKLN55ZIlcHk
+ sjxroEZszldR6ogPUFJ7pgbs+rTamRBngCZN4kmYqAGufDsqIyh3mh8vuBKEeOjj
+ qxVhLeTPT4RRu5ASdw81uaVfUslDLE/b5CM8gcElkYUoNjoLGoSAjuHoCKgeC5rZ
+ u8jleA==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
+ [209.85.160.199])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e43gyg529-1
  (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
- for <intel-xe@lists.freedesktop.org>; Wed, 13 May 2026 15:05:32 +0000 (GMT)
-Received: by mail-oo1-f71.google.com with SMTP id
- 006d021491bc7-69b7e3ce238so1002638eaf.3
- for <intel-xe@lists.freedesktop.org>; Wed, 13 May 2026 08:05:32 -0700 (PDT)
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 May 2026 11:59:56 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id
+ d75a77b69052e-50ea1a7a5d0so28729591cf.3
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 May 2026 04:59:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oss.qualcomm.com; s=google; t=1778684732; x=1779289532;
+ d=oss.qualcomm.com; s=google; t=1778587196; x=1779191996;
  darn=lists.freedesktop.org; 
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:from:to:cc:subject:date:message-id
- :reply-to; bh=sKKql0vh/Nr4+jL7SLsLVXl/MczXH430C80D/Yrjpr8=;
- b=aKQjii0mLkrZOMmucD7EinS+2Kp3y6qhEyrdYW+5CcTufKiU7BF7grzlI6VoOoVL6U
- fxh3pFfHepoA9IxMsY1sU8IGWYrMtQsUcUGKaEgt+dNIFvTrub41LzFCAPMg2SvGVzk9
- Rem7D7ERYuM0+ypEDQ+v7846PvZE3Y1aUHeoSeNL2iRteLwicFDevIO+RKihRjpdNWMX
- WW100vOug180RvjWU8tFC0e4VsJeqrc+hF6he+7pFVkUdM+pBGYg20znx/QZbTCd/9NQ
- wH1AsyCUJQtey3feYp3UwOOgb4MB17lu/Qm5P5vxbUBycLxxWVjHhLWknMY8AxSLOlLa
- yuPA==
+ :reply-to; bh=AsIlzmh9tphlDY1UgVWouFfmn5szfdJ33CZ+C2oPx7E=;
+ b=hC9EorXbWLpT2EDk2sqInmz+P37ORlwSo7eZglhA8VJ+Mv7SHShBi//XFzc3ffIw+W
+ LLkO/3K0y5/jK8wYnePPmreda4fWumARgwqVdnaT7+8xbMki0QpPMk8TGnAKm4LtUFsk
+ /af5XKKFzHDd/wz2ndnCwhIETqtpCgK7rBio5Lt78O1HiBBhSiXFRF/H0cPrYh2vVN3e
+ Cqodn/kjKoyOCpDUF9wINwUyk4mvSCu/sTkAhRzTBCNcTczAL/UXuzO57aGoRbm8WLFQ
+ ET4TLLUxvvEGNDmi5Dre2urExifpBomfT+7IzcKc33cYrOMvavjZgmn/3U08jyxkgUxj
+ G7PQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1778684732; x=1779289532;
+ d=1e100.net; s=20251104; t=1778587196; x=1779191996;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
  :cc:subject:date:message-id:reply-to;
- bh=sKKql0vh/Nr4+jL7SLsLVXl/MczXH430C80D/Yrjpr8=;
- b=EEoQHTuRMcQvv1aZ1B+2COLz/pzLsbJ7PfniHRt/tqNOpOJfBeS4X+cV3ZNYaAeErr
- MMKJQrbPe8EyTKI5Z3c8qO16kGL+l2qLYPbH1Y3htOwL/T1rzmnaFrRv7M6ouLYhbm5r
- GiE6jTmKS4GWS7yNXnHoW0bYRBIv2HNr6/qe869boXtupSXvlR/9Hk0SJCA4HfLEMEDs
- 1X1pk55iTOdepG0xuxNnB++5rPxFMIbVv1VGgFit7CC25jZnwIshRdsXb9nSDWSh9CEZ
- v1xGZnkZwcOOktOGgOj0eIR+VkOuN7DzNCfSP1cdrANuq2MhPiE4P5Yr0PtD6W4A2snx
- zjfQ==
+ bh=AsIlzmh9tphlDY1UgVWouFfmn5szfdJ33CZ+C2oPx7E=;
+ b=ayNPx20s2UGgTy+wSIDSIOiF6yiE/JvjqIji3fOVQRrIQGAqXxg1CLT8VtfoDS1k/O
+ hTuSWuH004YnBnVWXxXCGAtSBaFJj/2ysCVMiEuCykYPidARkZ2d+8uI0RJWqBSB9SbS
+ OUPiWCRyuHXIEXo81tcjNgetoRvM6Tw4au2CGCgXK9kAeY+m9Gih1Sft9mKL3DjkVMIf
+ UT46nTg0djXq3XtNPmxctq3vPuKSMY9KC4lch5Xx7+tXHRaCEmrMrL+lFK6BMVo3Txj0
+ zcsuJngej5VOr2GMjOj6YbN5jd+PIp36T+Oslbyghowj7fqe/cgnegcDVJCVqlgbIZgY
+ 5oEQ==
 X-Forwarded-Encrypted: i=1;
- AFNElJ+sp5UcaV5/fIK3BFRjeCyUJB3TsA9SKKe9H5MfihZFTKsQgvWvuWkOVMId7+kCLCSvHR+EZDpv+g==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YydEi9iyjJtIYwcSNkeL1VJPgGJA4Gwdui5AhKeHK3ABBmQ8KDK
- riQVIMNNQ8FEAjuiT3i+qP2/h3d5vUJVUT8kay78iUl1dK0Ch7MNpkYyO446J9N92vRqIcV61my
- 5diJcsewGy+BSW6jDYXQh1pWhQ3imimYmS5Y5El5OvcrmtLZUFfZQIaQxSd2cDyVWXyzeDQ==
-X-Gm-Gg: Acq92OHc+2pKjPq3Xo/MvysCjTCwXf+GJQVbiSnoQcULbTdNPsp7yZWUtotMP60+vFR
- +jpVRNJnNY2uH656n1fZp63VzwtjRxFJQbjafH8ynF3PS3fdJUmyJRh1GlSjbAMY8v4mkd0YhLA
- c4s8ecRmkVlRcJg9s+7jyvWME7QVB0sMMR5HWzBPPhaPMiE1jh3K7SpRXCwxnUH+psKQ3M1zO4d
- MM1X2Zi4SqkFluJ2icf0amAtHGUY4LSZMqJdp7g5v6In9Z3avB4ntBvZu4HsR2KPflDDOhyXdYW
- SpvadU5GMtQmN2Qrc2kQY/MnZEbXSm+RsDScWaBxUSPVmv+VAsBCCbmXTq89LJkGWUzzUkTYiS0
- tpLHXCdj6lY1m7o4+yYYIXRwSRmSSmYMNGkxfE2RIjRGigKtIEw==
-X-Received: by 2002:a05:6820:81cb:b0:696:1a85:5873 with SMTP id
- 006d021491bc7-69b78e116bamr1863270eaf.31.1778684731893; 
- Wed, 13 May 2026 08:05:31 -0700 (PDT)
-X-Received: by 2002:a05:6820:81cb:b0:696:1a85:5873 with SMTP id
- 006d021491bc7-69b78e116bamr1863208eaf.31.1778684731249; 
- Wed, 13 May 2026 08:05:31 -0700 (PDT)
-Received: from brgl-qcom.local ([2a01:cb1d:dc:7e00:63ec:4acc:c4f6:423])
+ AFNElJ9fZVoRKOpFJ7WBXWBz3vHlSuexhdfwtM0X2pfb+trZEWzjw/cxOWX/qIBq9ah56mTLrfA3UiqZ/Q==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyIPVZrLW8D5a7lC6OeeVf1BWMzyiYNQLMcS6E0stm0Q5GOYY8V
+ vo4eb0gfqHHTCK8V5adwfsvPtmpuokKIXTmuHIE+SZKtc13mvkvFBJAYIkRCjvgtcDzaglnozSo
+ TO4cdi0DjlUMJ9KbmFL1fOk6OPvqZ3aEtcAxNjp+gB3EenL7TYZ4Hjl+0/IuIC+wyBm/9Yw==
+X-Gm-Gg: Acq92OH9lEz5ni6qMt5syGnO74fI2U1B1z+89KXAAyB/YNRPf1Q1uE7Dce9i6K4qMXR
+ 44SH/037csJyMAZkS3OY28urAz7NGH1PiaBFaUxTS8FtadPBUzOnPWgkFSttEYL1YntLzK6Wihy
+ hKWAO5i85FYECd8RAVipc9uhDuZ7wyNSF2jFqx35SZotllTrBJGHpENyr0CT3T5GMwyJNczgr6F
+ ap1cyDm7YvnzmhsSCib35bd3prvSH1y+6YLYOVP7u4twTi+hyKWEzkp7D656TAsXbt7Z5be70+x
+ aKLK1xFcVvSURKgKYu04PhlkzkYHMT79SngtXCMNp+4gNl3RitEMgAQPVtRnOTqwjvRo6DliX1G
+ 7dlAGKBy4DzkWJ04jY9b8v3u7bcfQOAp4BNwkuhVdylHcg2PjIm4=
+X-Received: by 2002:ac8:5fc5:0:b0:50d:819f:e7bd with SMTP id
+ d75a77b69052e-5148e7caa96mr244596001cf.4.1778587196130; 
+ Tue, 12 May 2026 04:59:56 -0700 (PDT)
+X-Received: by 2002:ac8:5fc5:0:b0:50d:819f:e7bd with SMTP id
+ d75a77b69052e-5148e7caa96mr244595371cf.4.1778587195623; 
+ Tue, 12 May 2026 04:59:55 -0700 (PDT)
+Received: from brgl-qcom.local ([2a01:cb1d:dc:7e00:74a7:1c82:3f14:b431])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-48e8f542e56sm43216455e9.34.2026.05.13.08.05.29
+ 5b1f17b1804b1-48e9067811dsm73933355e9.9.2026.05.12.04.59.54
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 13 May 2026 08:05:30 -0700 (PDT)
+ Tue, 12 May 2026 04:59:54 -0700 (PDT)
 From: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Date: Wed, 13 May 2026 17:04:52 +0200
-Subject: [PATCH v6 5/6] kunit: provide kunit_software_node_register()
+Date: Tue, 12 May 2026 13:59:24 +0200
+Subject: [PATCH v5 2/7] driver core: platform: make the swnode check stricter
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260513-swnode-remove-on-dev-unreg-v6-5-f9c58939df27@oss.qualcomm.com>
-References: <20260513-swnode-remove-on-dev-unreg-v6-0-f9c58939df27@oss.qualcomm.com>
-In-Reply-To: <20260513-swnode-remove-on-dev-unreg-v6-0-f9c58939df27@oss.qualcomm.com>
+Message-Id: <20260512-swnode-remove-on-dev-unreg-v5-2-0035eff63812@oss.qualcomm.com>
+References: <20260512-swnode-remove-on-dev-unreg-v5-0-0035eff63812@oss.qualcomm.com>
+In-Reply-To: <20260512-swnode-remove-on-dev-unreg-v5-0-0035eff63812@oss.qualcomm.com>
 To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  "Rafael J. Wysocki" <rafael@kernel.org>,
  Danilo Krummrich <dakr@kernel.org>,
@@ -113,46 +113,47 @@ Cc: brgl@kernel.org, driver-core@lists.linux.dev, linux-kernel@vger.kernel.org,
  dri-devel@lists.freedesktop.org,
  Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3111;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1181;
  i=bartosz.golaszewski@oss.qualcomm.com; h=from:subject:message-id;
- bh=TN3rwCiI8I0/geUE/YlaOBRn/fGhaU1EpgPqlk5aLxI=;
- b=owEBbQKS/ZANAwAKAQWdLsv/NoTDAcsmYgBqBJMo2xq6fi/uo8K/0LGlBjhlkl317KmZZ3X2c
- J8MKavEKAOJAjMEAAEKAB0WIQSR5RMt5bVGHXuiZfwFnS7L/zaEwwUCagSTKAAKCRAFnS7L/zaE
- w8hkD/9/IGJadpEJ5ke4yZkGtfmJ4R8w3TmhY6kcA40le/WTJyx80wQ+gjd5lru5gAsV0mAbnof
- XlyvWqO7ruMYDglY9A5H4F+J+nFvOMS/sUYYgt0yPaVGTicqBTBWFC6bg/VswcDXVZvsK5n1Nzz
- PCJz61LAkMZN6yu5dGlnVkv1Z9wUF+aNXja6Vvug7TQBJLWauOa/06K9pqw8z4TEyTOhg3YUc7M
- 5DLMNS/QvMr7Iqq2uFkoo0s3SbwIwikDbryC2u9yF+E6+QnUWaJk52TJAWLNzXC5EZwrTrnEk3a
- CZoeQM8C9vyN+27aSWqpUvl8kSy0U+hkRb0WRYWt1T7s+0vLN193mOc3HV7/G2huwCv6+3rkdth
- kAOlFHrUFOqEpv1IhZalUWt2t1BpB8wsM+fDWUcOof6J0dknJN15mlfITcaKXciSsq+RLYuACPn
- WUfMSLBQ3qg9+ucgaiArHiS7SjMH2OkMqm66GaahYTvvgdVFbUZPHRdUSoas0OQ+k+Td7xd+EGm
- iabYBmPyPsgm75klBfAYPT9P1VJXgyZVAXfx0DrrKKc6pfbqb2ilDJHPjhlgCKKvgeTKj3DJYdA
- j7yHuEsWVjtJosH8fzkOssRL7Fk3I4zjoAYKZ0d5CKBMu6IO8I4HSyY1HM9+ZRhnj+Hagi5RQlC
- KBAl1lO+06kg5bA==
+ bh=FnVwIXx6Ku4B5jDoy/RTsmZKiOzQrXf6yp9wvc3bzuw=;
+ b=owEBbQKS/ZANAwAKAQWdLsv/NoTDAcsmYgBqAxYuSqeVpF+6Oi3kvW3NNEoHQCk6tpKW1Pyi7
+ 2WNxlR1TDOJAjMEAAEKAB0WIQSR5RMt5bVGHXuiZfwFnS7L/zaEwwUCagMWLgAKCRAFnS7L/zaE
+ w9OvD/9TDVT4yBV+W9E73T/WZHkxETcn/5Zk5PW7qxDBDuCaLa4ncmLsd4i8n3W9vPP3YJlGFyD
+ XewbZFaa3M/WHPF1KHDoYn6jJpB3qM42PWskLqakoaze3tZ4pcAVreLZyExLmbgrmNXB2mdAU3w
+ f6oKrs5sh8GkgNtnPG+ck4C98lSqXvjFfllUJzMbrzlO6qCEG75mxRevG+DgCP5HLCxhx/R+lVl
+ 7QS0S4RKlNGZlPER3Vv6r+yl3EcpztihZtDO9qUeOvOahADyWw4YKVYH++iGn4jawAuqTRvJ/nM
+ a8L+U/mv+V7fxOyab0Dmyp4UnOOM/TYiqiIlF5LaysyZRzV+qVwPchvoewhU8JiqQ0Vm2/qn7oQ
+ x5MZkj79CENg7XMcb78yVc1cTsAtk2Yb1BG8fFejh7Xq1ODw7mTOSp9aX9aoIft76v40+g4ioSy
+ zwlzhz8C0spx54GhTfCtCDCD6GWV35k8fm9iHd5FYuOlO0TXf3sEZVpW9X9b9DOzwnJHtZxWYEf
+ rHMmbTrSz3LLLt0td8k9VygyecaznwyolREajGcE8uElhU90E7lJPlDoOxAL+cogg7ulDA5tAB9
+ oycQ+wKAEJ6jX23cG+XhjCdqJ/BF0ayheRl1mivwmjiEkik83S3A810JinvBU50vzJV6THDwRwG
+ bf1h9uELBVNrWuw==
 X-Developer-Key: i=bartosz.golaszewski@oss.qualcomm.com; a=openpgp;
  fpr=169DEB6C0BC3C46013D2C79F11A72EA01471D772
-X-Proofpoint-ORIG-GUID: -9xhVbmJ2vhxm_rYnc2d4wX1_OxlOA-3
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTEzMDE1NSBTYWx0ZWRfX5B9nzXi8bw0y
- fqN9wSHdMqPZgc5Qrf5+gjXkWdyzx3zPay7E2SxFcXdWHYWfRJy17SIStGCewuAhsaPcjpUblVv
- EZzkDs3fyad5oNe5L5Fv8S/NnwHBg2AtS9e+t1ZwEB20Xdd7Nvh8TwfwjsV6UQ7cblYN4BqPQz9
- kKYtGUfIO6JcWNTiz+vnEkM2HYjIBCSVC6hVMCsuM4IFEOAp7JksLYAfLaSoZsWANozZgPJuMUP
- 0Hr1/xE1GWaCINhWBhZs44CN0bZhEJb7/w6TZPddH+9mQwYOO60aI8k0Mi9AnPkNUfQaIbmkLtZ
- KIgPukBxTmh5vjNTKvzhpCyM/bXX8qhVI4k+DdioKt0BSpQsmq40qLpofCGilfaRqkWf5uXuusy
- k+boI+WkpkhlU+pG1DzpNIivyHNelHpI8MqciDUhP8cVRiicU7CIaL99T7qPaBq7Z+VlaSo99Lv
- ZAK3bf1P526g7w0pBCg==
-X-Proofpoint-GUID: -9xhVbmJ2vhxm_rYnc2d4wX1_OxlOA-3
-X-Authority-Analysis: v=2.4 cv=A8Fc+aWG c=1 sm=1 tr=0 ts=6a04933c cx=c_pps
- a=V4L7fE8DliODT/OoDI2WOg==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+X-Authority-Analysis: v=2.4 cv=fMAJG5ae c=1 sm=1 tr=0 ts=6a03163c cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
  a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
  a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22 a=EUspDBNiAAAA:8
- a=zroAqjQEQs_9sBr7nkcA:9 a=QEXdDO2ut3YA:10 a=WZGXeFmKUf7gPmL3hEjn:22
+ a=mI8QAYneSzpRMWOT9SIA:9 a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22
+X-Proofpoint-ORIG-GUID: NKGD3Fz4SFECXxKIi5UzZ3pJOcsvbXgE
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTEyMDEyNCBTYWx0ZWRfX/bvF1ZjEC/ME
+ wEEBqjGDBqnHtK8EDf9LZWCewPrOwVVInhmxS76ClhWL3jPmaNqeSpTPcxQizowOXtpeMR4QD9u
+ 02x+6lZa2QIpvDIJG6RfnINAg1/5mjX5TAQX6l0I7IwppKAF7Tp9hjA2RQdLph3Owia+PpHrJB7
+ R5i31rY+OWTTAydpWO35PJMH0kocGF8MXRL8ATSOrT2qgaaTbtI0v70VeRlsQTNHR0GRHtS7dYQ
+ 8+ZV/bdtxwYYeS0tgFuVmjeTUCyUKol7pGVNZ8gDk/AvECoMqyaqvRdCQwZCQtNDwLNcrqfMdQ6
+ r6RrNdQSxTxjF9ij6jebe25Y61u2sqH3CqKaDWU0hy3bB1zH4HLQKUk5huMUK4BUIZDGVEBL/CP
+ 7+moVFRzwuBJ0lHRpn6lpg1NMBRvQt5v6cQ1nLWvlginTJUqIgj+bewivcuoiVRk7EA0R+m5xbC
+ ZmbLPDvPgQVZsVFsVYQ==
+X-Proofpoint-GUID: NKGD3Fz4SFECXxKIi5UzZ3pJOcsvbXgE
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-13_01,2026-05-13_01,2025-10-01_01
+ definitions=2026-05-11_05,2026-05-08_02,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 suspectscore=0 impostorscore=0 bulkscore=0 phishscore=0
- clxscore=1015 priorityscore=1501 spamscore=0 lowpriorityscore=0 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2605050000 definitions=main-2605130155
+ priorityscore=1501 impostorscore=0 suspectscore=0 malwarescore=0
+ clxscore=1011 spamscore=0 adultscore=0 lowpriorityscore=0 phishscore=0
+ bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.22.0-2605050000
+ definitions=main-2605120124
 X-Mailman-Approved-At: Wed, 13 May 2026 15:13:19 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -168,112 +169,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Implement a helper for registering kunit test-managed software nodes.
+Check all three possible situations in which two software nodes for a
+single platform device can be created/assigned in
+platform_device_register_full() and bail-out early.
 
 Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
 ---
- include/kunit/fwnode.h | 19 ++++++++++++++++++
- lib/kunit/Makefile     |  3 ++-
- lib/kunit/fwnode.c     | 52 ++++++++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 73 insertions(+), 1 deletion(-)
+ drivers/base/platform.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-diff --git a/include/kunit/fwnode.h b/include/kunit/fwnode.h
-new file mode 100644
-index 0000000000000000000000000000000000000000..48ad79f3e193ad932cd943aadf159a57149223d8
---- /dev/null
-+++ b/include/kunit/fwnode.h
-@@ -0,0 +1,19 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * KUnit resource management helpers for firmware nodes.
-+ *
-+ * Copyright (C) Qualcomm Technologies, Inc. and/or its subsidiaries
-+ */
-+
-+#ifndef _KUNIT_FWNODE_H
-+#define _KUNIT_FWNODE_H
-+
-+struct kunit;
-+struct fwnode_handle;
-+struct software_node;
-+
-+struct fwnode_handle *
-+kunit_software_node_register(struct kunit *test,
-+			     const struct software_node *node);
-+
-+#endif /* _KUNIT_FWNODE_H */
-diff --git a/lib/kunit/Makefile b/lib/kunit/Makefile
-index 656f1fa35abcc635e67d5b4cb1bc586b48415ac5..7549a701791b5b7eaa8e0637b6818cdfd0b655a8 100644
---- a/lib/kunit/Makefile
-+++ b/lib/kunit/Makefile
-@@ -10,7 +10,8 @@ kunit-objs +=				test.o \
- 					executor.o \
- 					attributes.o \
- 					device.o \
--					platform.o
-+					platform.o \
-+					fwnode.o
+diff --git a/drivers/base/platform.c b/drivers/base/platform.c
+index 75b4698d0e582e67adafa78c312d75c72fd654cf..18f33bec36726490255bc7ca3c4ab07d9b7606b0 100644
+--- a/drivers/base/platform.c
++++ b/drivers/base/platform.c
+@@ -848,7 +848,13 @@ struct platform_device *platform_device_register_full(const struct platform_devi
+ 	int ret;
+ 	struct platform_device *pdev;
  
- ifeq ($(CONFIG_KUNIT_DEBUGFS),y)
- kunit-objs +=				debugfs.o
-diff --git a/lib/kunit/fwnode.c b/lib/kunit/fwnode.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..bc8bf06762dd71a741a3419c1ca04028d6ad3ec8
---- /dev/null
-+++ b/lib/kunit/fwnode.c
-@@ -0,0 +1,52 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) Qualcomm Technologies, Inc. and/or its subsidiaries
-+ */
-+
-+#include <kunit/fwnode.h>
-+#include <kunit/test.h>
-+
-+#include <linux/fwnode.h>
-+#include <linux/property.h>
-+
-+static void kunit_software_node_unregister(void *data)
-+{
-+	const struct software_node *swnode = data;
-+
-+	software_node_unregister(swnode);
-+}
-+
-+/**
-+ * kunit_software_node_register() - Register a KUnit-managed software node
-+ * @test: test context
-+ * @swnode: Software node to register
-+ *
-+ * Register a test-managed software node and return its firmware node handle.
-+ * The software node is unregistered after the test case completes.
-+ *
-+ * Return: Firmware node handle of the registered software node or IS_ERR()
-+ * on failure.
-+ */
-+struct fwnode_handle *
-+kunit_software_node_register(struct kunit *test,
-+			     const struct software_node *swnode)
-+{
-+	struct fwnode_handle *fwnode;
-+	int ret;
-+
-+	ret = software_node_register(swnode);
-+	if (ret)
-+		return ERR_PTR(ret);
-+
-+	fwnode = software_node_fwnode(swnode);
-+	if (WARN_ON(!fwnode))
-+		return ERR_PTR(-ENOENT);
-+
-+	ret = kunit_add_action_or_reset(test, kunit_software_node_unregister,
-+					(void *)swnode);
-+	if (ret)
-+		return ERR_PTR(ret);
-+
-+	return fwnode;
-+}
-+EXPORT_SYMBOL_GPL(kunit_software_node_register);
+-	if (pdevinfo->swnode && pdevinfo->properties)
++	/*
++	 * Only one software node per device is allowed. Make sure we don't
++	 * accept or create two.
++	 */
++	if ((pdevinfo->swnode && pdevinfo->properties) ||
++	    (pdevinfo->swnode && is_software_node(pdevinfo->fwnode)) ||
++	    (pdevinfo->properties && is_software_node(pdevinfo->fwnode)))
+ 		return ERR_PTR(-EINVAL);
+ 
+ 	pdev = platform_device_alloc(pdevinfo->name, pdevinfo->id);
 
 -- 
 2.47.3
