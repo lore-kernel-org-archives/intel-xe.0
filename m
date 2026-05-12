@@ -4,27 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F20C9CD343F
-	for <intel-xe@archiver.kernel.org>; Tue, 12 May 2026 18:11:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50833CD4F24
+	for <intel-xe@archiver.kernel.org>; Tue, 12 May 2026 18:15:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B7D510EBCE;
-	Tue, 12 May 2026 18:11:53 +0000 (UTC)
-Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED2C010EBCE;
- Tue, 12 May 2026 18:11:51 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5370188892845765850=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 095D610EBCE;
+	Tue, 12 May 2026 18:15:39 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="eFmlmYCA";
+	dkim-atps=neutral
+Received: from mail-dy1-f172.google.com (mail-dy1-f172.google.com
+ [74.125.82.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FB1810EBCE
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 May 2026 18:15:38 +0000 (UTC)
+Received: by mail-dy1-f172.google.com with SMTP id
+ 5a478bee46e88-2ef2a1cc06dso10858239eec.0
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 May 2026 11:15:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1778609738; x=1779214538; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=TqTMATn1TJBwDzhvgfdwIn2iY4blCTuTwL1WgCFtdYE=;
+ b=eFmlmYCA0U1BZ8Tm9o4uPEX8BoM1Szt1KfvoRzmmNYdyqMvS8eKUTZ4CjT7GrCDeVY
+ 3sM7n+TrnDElLGOohEHIFPnEwmoLhJ6ZfSVbuUDgJLpkdXjsVKxGDMO6AywRZv7su+l3
+ TAu+tNJu4yMwAZ8/orkcd+TlKBNBH5r2iNSZL/NbyJOXCocFhlitBSC5iZd1SLOLjB6E
+ pVaFULq9e7rRpVScXd5ivtj3b6ElFuB29mnS1l8RTVfskiSSPgJ3lN/X6KMaqIqVsrXg
+ SctFE6PkQ7Ryx60/Qnk92apPT9DvXJktNauRIu3V0cQJcljH8wrRboRi+z70ThE7TQqr
+ MZ8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1778609738; x=1779214538;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=TqTMATn1TJBwDzhvgfdwIn2iY4blCTuTwL1WgCFtdYE=;
+ b=IGn51j+EyJ0OkDFMH3GM/aQWgy66gZQzqigORg1QZiLA5SQl0K0vU88VAKJYe0aCmx
+ J9w0zT9dGKbtQwUtPZN23RMBV9QfroAMCLGUvjA6I+Sm/irjf/AvGb/apr4ZhQBprAf1
+ +MJeMcSPk6EPbDNy2WZhdrgUfb270zJzloGapku1sjKhewQMWImtNjfYydzN0YLgPFkQ
+ HGVa/cE/CI7SZATf91WmgpQLELb5pzLAgz5dOav+Xzcb3vpZk0pwM77jW41isnTGWJoN
+ YShgqEfxtIXK5/VHlvGfgDKF8mY9JMpyRQxfjS2nZ9ROWdtARYC9otwgm7YIgeZWLM/T
+ 1Ukg==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ8e85R3DDlieaWayWBG4lebGrOYXPnBGCBzNbAPgJ2cCZFx6/1EdQK4m++VUnnGAQRd11QwPkr0Ow==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxk8TdPTnl1kcjLn7nJRCI/qSrimrnCaaT+8dSa2gX71ukT+5oB
+ O7MwEQt1XkxkGqWF73H9xILQ+sbBQaAt+ofoqJQ9SV3QmB+KYRk4w3nF
+X-Gm-Gg: Acq92OE9/J9etK++Kl5ukfNnzCrAC1KNKasDLa+I4DYoI07v8VISZlMdQ5i7IpRwxyg
+ 4+PJqqe0JFi1cT/qtr9C1kELl51zu6VE8mAmWYBj7807EZViQUv04G2jcYSGYNj/8iWmjkg0WNg
+ QK/r4W5iHdLzBL9YAkbHllZtGeUV20VMBuKbtBUVwZkTxVyt5B9vaGZpWiXSuE4Fbl6hVzdNDj6
+ cUZ1iGCRB4ae/Wp1JQPRxsB3pSKCaVgihVbHM0d3BiksNzYNVO7TVk2bX1pSHDyF8yO/1Q5gYmF
+ PVMdI+z7T/wKg5ZUivlkTRoSMYwss055oBWl6XrGnlIqTr4iEWbfSuJNfe+AnvAlEh0X0bNn4FT
+ Ck2ffEs0heZE+dUP8GnqhN8YVvYGgGEe0y4CKS19UGAyFX8fB+TlOUKL2tNjQgfiNRhowqE61jv
+ WF9ujmFlnxOA77g9FNDHTZd6ERh3iYr1WTrFh6diAEr2XdrHXm+JTOOuFVR+DwFZd4
+X-Received: by 2002:a05:7301:22a9:b0:2f5:6dfc:cb6d with SMTP id
+ 5a478bee46e88-301187bab75mr130655eec.11.1778609737694; 
+ Tue, 12 May 2026 11:15:37 -0700 (PDT)
+Received: from google.com ([2a00:79e0:2ebe:8:84ac:d22c:b037:1a93])
+ by smtp.gmail.com with ESMTPSA id
+ 5a478bee46e88-2f88847502fsm22940594eec.14.2026.05.12.11.15.36
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 12 May 2026 11:15:37 -0700 (PDT)
+Date: Tue, 12 May 2026 11:15:33 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Brendan Higgins <brendan.higgins@linux.dev>, David Gow <david@davidgow.net>,
+ Rae Moar <raemoar63@gmail.com>, 
+ Andy Shevchenko <andy@kernel.org>, Maximilian Luz <luzmaximilian@gmail.com>, 
+ Hans de Goede <hansg@kernel.org>,
+ Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, 
+ Matthew Brost <matthew.brost@intel.com>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ brgl@kernel.org, 
+ driver-core@lists.linux.dev, linux-kernel@vger.kernel.org,
+ linux-kselftest@vger.kernel.org, 
+ kunit-dev@googlegroups.com, platform-driver-x86@vger.kernel.org, 
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v5 3/7] driver core: platform: provide
+ platform_device_add_software_node()
+Message-ID: <agNrB3BeIgFlZimz@google.com>
+References: <20260512-swnode-remove-on-dev-unreg-v5-0-0035eff63812@oss.qualcomm.com>
+ <20260512-swnode-remove-on-dev-unreg-v5-3-0035eff63812@oss.qualcomm.com>
+ <DIGUBLZXZXPJ.8CX0K5EL6255@kernel.org>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Insert_instead_of_copy_page?=
- =?utf-8?q?s_into_shmem_when_shrinking?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 12 May 2026 18:11:51 -0000
-Message-ID: <177860951196.63850.7545849275020644525@5ab824fced77>
-X-Patchwork-Hint: ignore
-References: <20260512110339.6244-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20260512110339.6244-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DIGUBLZXZXPJ.8CX0K5EL6255@kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +102,28 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5370188892845765850==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, May 12, 2026 at 06:31:44PM +0200, Danilo Krummrich wrote:
+> On Tue May 12, 2026 at 1:59 PM CEST, Bartosz Golaszewski wrote:
+> > +int platform_device_add_software_node(struct platform_device *pdev,
+> > +				      const struct software_node *swnode)
+> > +{
+> > +	return device_add_software_node(&pdev->dev, swnode);
+> 
+> I think this should be device_create_managed_software_node(), see also [1].
 
-== Series Details ==
+The main issue is that we do not know if the software node is registered
+or not when platform device is registered, and are trying to use
+heuristic to figure it out and decide if we need to clean it up or not.
 
-Series: Insert instead of copy pages into shmem when shrinking
-URL   : https://patchwork.freedesktop.org/series/166409/
-State : success
+You need a new variant of device_add_software_node()
+(device_set_software_node ?) that would bump up reference of already
+registered software nodes but if node is not registered yet created it
+as managed.
 
-== Summary ==
+Thanks.
 
-CI Bug Log - changes from xe-5048-82b65e2afc27ff2bad3e0dfa3fd40c4f39f9f472_BAT -> xe-pw-166409v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5048-82b65e2afc27ff2bad3e0dfa3fd40c4f39f9f472 -> xe-pw-166409v1
-
-  IGT_8905: b04ca530eb2959c8edbf9d90f6bb98a9fdee2296 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5048-82b65e2afc27ff2bad3e0dfa3fd40c4f39f9f472: 82b65e2afc27ff2bad3e0dfa3fd40c4f39f9f472
-  xe-pw-166409v1: 166409v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166409v1/index.html
-
---===============5370188892845765850==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Insert instead of copy pages into shmem when shrinking</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166409/">https://patchwork.freedesktop.org/series/166409/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166409v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166409v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5048-82b65e2afc27ff2bad3e0dfa3fd40c4f39f9f472_BAT -&gt; xe-pw-166409v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5048-82b65e2afc27ff2bad3e0dfa3fd40c4f39f9f472 -&gt; xe-pw-166409v1</li>
-</ul>
-<p>IGT_8905: b04ca530eb2959c8edbf9d90f6bb98a9fdee2296 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5048-82b65e2afc27ff2bad3e0dfa3fd40c4f39f9f472: 82b65e2afc27ff2bad3e0dfa3fd40c4f39f9f472<br />
-  xe-pw-166409v1: 166409v1</p>
-
-</body>
-</html>
-
---===============5370188892845765850==--
+-- 
+Dmitry
