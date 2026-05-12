@@ -4,99 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 228F6CD4F21
-	for <intel-xe@archiver.kernel.org>; Tue, 12 May 2026 12:08:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94191CD4851
+	for <intel-xe@archiver.kernel.org>; Tue, 12 May 2026 12:32:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D6B6410EA7D;
-	Tue, 12 May 2026 12:08:27 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="fOgjKmYQ";
-	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7BF010EA7E
- for <intel-xe@lists.freedesktop.org>; Tue, 12 May 2026 12:08:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1778587705;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=dXH5HtvUwwvubt7XZZtwSLlnbyrqCuGNkjWnyw6B3Tw=;
- b=fOgjKmYQzyaKUCAJ2UfHXSZJyQ54ALvWtsIL0ExDvOhToBSrFQZO5wM9OmJrCGxH9X7s0U
- 0rHg7shJqhzyUE1XB/e4i/z8UNeQWVMAXgHUH8LS4AAfnqq5Yb/cIXYmkX+1ClpBbhVEkv
- Ol3PBl2+znQ4kOAFsp9UQp62BshlmJo=
-Received: from mail-lj1-f199.google.com (mail-lj1-f199.google.com
- [209.85.208.199]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-422-Zf2yj2o6PsiWnyjftTqCsw-1; Tue, 12 May 2026 08:08:23 -0400
-X-MC-Unique: Zf2yj2o6PsiWnyjftTqCsw-1
-X-Mimecast-MFC-AGG-ID: Zf2yj2o6PsiWnyjftTqCsw_1778587702
-Received: by mail-lj1-f199.google.com with SMTP id
- 38308e7fff4ca-393c9ff86c8so22821051fa.2
- for <intel-xe@lists.freedesktop.org>; Tue, 12 May 2026 05:08:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1778587702; x=1779192502;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=dXH5HtvUwwvubt7XZZtwSLlnbyrqCuGNkjWnyw6B3Tw=;
- b=ihMKWGx6e4/1amN4v2mCIvdiwkc1xNieF/RG/gcoGk+R25KnttUIj9GRIoSV9YpcES
- UymDwVzPVs6OnY6/sjDzkn0PFbzs2GnmYAM63+bZ2KlbFL3X0fA2YirImv4DXznM1J9u
- UCxYWvx87m4yxmAP9kPj2/EeG7sYWda/hSWoV9ItdzLabS8EseJoiKTsUYIolV4ooWCl
- m1yJbeUVoqg51phfMv6j/ZCfJge0H7vys5z/G2zPTYfT2A+SdJcOceRNBbD4fYYBb0Kf
- 9r5WIpyoczU89fF/X6mFA7pIJyihm+M8fBhaLCykk7qHv1TgyZSE9TZOZ4eyZtoYqgBw
- bvHw==
-X-Forwarded-Encrypted: i=1;
- AFNElJ9B6WAhzfaasnEj7R5Iw9qdWXQeAZIvdHO0aFu4JCMwhjhnw545IvM+DbVt2aOrqCs1dnP5hOYP3A==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw83VQhoEwrmI044yh8EjAfX5poer5r6GTEifqL/922fcCTYEgC
- FwYTdUpBh6WqD73ZwOHzfeGA2Xr0zsr59AEyucp7URuyra/nJ5pFhdwMXtM5bJoy+Va3Cp06iA5
- quDiC6nyMRJ5zrL7bxmX93hcGK1AJPBNBqMymHJxAZfrfRHIYe8wqnmN+C0LbFYbRe1g=
-X-Gm-Gg: Acq92OGqk6E8jxHQVqiMME3N6NaDwjanHs8FVd5g1wot5nDccOlagnqKXYqpBjqMZL/
- wJwS4ylokCCxt+X37Q2VgOqooQPU2j/5yfTGeCrsmT3npJSOvEaYJ1Z8uCSzPMYtkM450iB0U8g
- ld0y1ebe8BQ3N9vmd5KNRwKWAoDWE7UEdAVbWXaQjDFSqh6WMOmGxuTVwvu0bvvSE9Rk2tGRSNM
- iUH9wiR0QJXGYsefTkE2wcw7AltOKGOP2Zk18/RVp1q82616EWQmHz/TkHcf/I8UUtUlpxM+Q7b
- lIRqIWQMYzrL8dgqOh0aEeFDNv9JWOmp56VrnmNlJgQcgjj58XZtmShw/o/1WkNWITsaDiWefH/
- mBpGCOa34Pdyu5BFuC23fPyQWQ+O8INU2tc13cCKEmKfUyXk=
-X-Received: by 2002:a05:6512:1281:b0:5a8:cdd8:1eb0 with SMTP id
- 2adb3069b0e04-5a8cdd81ed5mr2576288e87.1.1778587702181; 
- Tue, 12 May 2026 05:08:22 -0700 (PDT)
-X-Received: by 2002:a05:6512:1281:b0:5a8:cdd8:1eb0 with SMTP id
- 2adb3069b0e04-5a8cdd81ed5mr2576269e87.1.1778587701675; 
- Tue, 12 May 2026 05:08:21 -0700 (PDT)
-Received: from [192.168.1.86] (85-23-51-1.bb.dnainternet.fi. [85.23.51.1])
- by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-5a8a95661aasm3290978e87.68.2026.05.12.05.08.20
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 12 May 2026 05:08:21 -0700 (PDT)
-Message-ID: <7e3abb7c-c57d-419a-969a-fcd150ccca99@redhat.com>
-Date: Tue, 12 May 2026 15:08:20 +0300
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A31F10E0E5;
+	Tue, 12 May 2026 12:32:57 +0000 (UTC)
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64DE710E0E5;
+ Tue, 12 May 2026 12:32:56 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7918230769917899351=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 2/5] mm: Add helper to convert HMM pfn to migrate pfn
-To: "David Hildenbrand (Arm)" <david@kernel.org>, linux-mm@kvack.org
-Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Jason Gunthorpe <jgg@nvidia.com>,
- Leon Romanovsky <leonro@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
- Balbir Singh <balbirs@nvidia.com>, Zi Yan <ziy@nvidia.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka
- <vbabka@suse.cz>, Mike Rapoport <rppt@kernel.org>,
- Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>
-References: <20260505184421.2324798-1-mpenttil@redhat.com>
- <20260505184421.2324798-3-mpenttil@redhat.com>
- <4a9c4170-c6b7-424c-969c-19240f07e46b@kernel.org>
-From: =?UTF-8?Q?Mika_Penttil=C3=A4?= <mpenttil@redhat.com>
-In-Reply-To: <4a9c4170-c6b7-424c-969c-19240f07e46b@kernel.org>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: mzuSGgk0nlNNq0xixB9VbovWnubcc0iHOydp5Mmvzj8_1778587702
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Check_for_dead_co?=
+ =?utf-8?q?nfig_space_on_reading_all_1s?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arun R Murthy" <arun.r.murthy@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 12 May 2026 12:32:56 -0000
+Message-ID: <177858917640.61708.9516967709523141681@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260512060128.209698-1-arun.r.murthy@intel.com>
+In-Reply-To: <20260512060128.209698-1-arun.r.murthy@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,103 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 5/12/26 14:43, David Hildenbrand (Arm) wrote:
+--===============7918230769917899351==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
->> +
->> +/**
->> + * migrate_hmm_range_setup() - prepare to migrate a range of memory
->> + * @range: contains pointer to struct migrate_vma to be set up.
->> + *
->> + * When collecting has been done with hmm_range_fault(), this
->> + * should be called next, and completes range->migrate by
->> + * populating migrate->src[] and migrate->dst[]
->> + * using range->hmm_pfns[].
->> + * Also, migrate->cpages and migrate->npages get initialized.
->> + * After migrate_hmm_range_setup(), range->migrate is good
->> + * for the rest of the migrate_vma_* flow.
->> + */
->> +void migrate_hmm_range_setup(struct hmm_range *range)
->> +{
->> +	struct migrate_vma *migrate = range->migrate;
->> +
->> +	if (!migrate)
->> +		return;
->> +
->> +	migrate->npages = (migrate->end - migrate->start) >> PAGE_SHIFT;
->> +	migrate->cpages = 0;
->> +
->> +	for (unsigned long i = 0; i < migrate->npages; i++) {
->> +		unsigned long pfn = range->hmm_pfns[i];
->> +
->> +		/*
->> +		 * We are only interested in entries to be
->> +		 * migrated.
->> +		 */
->> +		if (!(pfn & HMM_PFN_MIGRATE)) {
->> +			migrate->src[i] = 0;
->> +			migrate->dst[i] = 0;
->> +			continue;
->> +		}
->> +
->> +		migrate->cpages++;
->> +
->> +		/* HMM_PFN_MIGRATE without HMM_PFN_VALID denotes the special zero page */
->> +		if (pfn & (HMM_PFN_VALID))
-> No need for ()
+== Series Details ==
 
-ack
+Series: drm/xe: Check for dead config space on reading all 1s
+URL   : https://patchwork.freedesktop.org/series/166378/
+State : success
 
->
->> +			migrate->src[i] = migrate_pfn(page_to_pfn(hmm_pfn_to_page(pfn)))
-> Is there no easier way to avoid going through a page?
->
-> I guess you really just want "migrate_pfn(pfn & ~HMM_PFN_FLAGS)".
->
-> Maybe add a hmm_pfn_to_pfn() helper that does the "pfn & ~HMM_PFN_FLAGS" ?
+== Summary ==
 
-Basically yes. I noticed this was helpful for instance with the "separate address space for device_private"
-patchset not to depend on the coding.
+CI Bug Log - changes from xe-5047-b83102e9c06357b09f2cfbe944269786cb6985c4_BAT -> xe-pw-166378v1_BAT
+====================================================
 
->
->> +				| MIGRATE_PFN_MIGRATE;
-> We (MM folks) usually put the | onto the previous line to then properly indent
-> the second line
+Summary
+-------
 
-Okay I will change.
+  **SUCCESS**
 
->
-> migrate->src[i] = migrate_pfn(page_to_pfn(hmm_pfn_to_page(pfn))) |
-> 		  MIGRATE_PFN_MIGRATE;
->
->> +		else
->> +			migrate->src[i] = MIGRATE_PFN_MIGRATE;
-> It might be cleaner to just set migrate->src[i] = 0; here and to unconditionally
->
-> 	migrate->src[i] |= MIGRATE_PFN_MIGRATE;
->
-> So you don't have the MIGRATE_PFN_MIGRATE on two paths.
+  No regressions found.
 
-Good point.
+  
 
->
->> +
->> +		migrate->src[i] |= (pfn & HMM_PFN_WRITE) ? MIGRATE_PFN_WRITE : 0;
->> +		migrate->src[i] |= (pfn & HMM_PFN_COMPOUND) ? MIGRATE_PFN_COMPOUND : 0;
->> +		migrate->dst[i] = 0;
->> +	}
->> +
->> +	if (migrate->cpages)
->> +		migrate_vma_unmap(migrate);
-> Can you remind me why we do this here, in the setup() phase? The function doc
-> does not really describe that.
+Participating hosts (13 -> 13)
+------------------------------
 
-It is to be in par what migrate_vma_setup() does today after the "collect" phase.
+  No changes in participating hosts
 
-Thanks,
-Mika
 
->
+Changes
+-------
 
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8903 -> IGT_8904
+  * Linux: xe-5047-b83102e9c06357b09f2cfbe944269786cb6985c4 -> xe-pw-166378v1
+
+  IGT_8903: 6f88532e2fe22529195cc2f8cabff93d994688f8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8904: 07cadbb0bf25b18ac37467c4505f87eb50d4e435 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5047-b83102e9c06357b09f2cfbe944269786cb6985c4: b83102e9c06357b09f2cfbe944269786cb6985c4
+  xe-pw-166378v1: 166378v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166378v1/index.html
+
+--===============7918230769917899351==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Check for dead config space on reading all 1s</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166378/">https://patchwork.freedesktop.org/series/166378/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166378v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166378v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5047-b83102e9c06357b09f2cfbe944269786cb6985c4_BAT -&gt; xe-pw-166378v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8903 -&gt; IGT_8904</li>
+<li>Linux: xe-5047-b83102e9c06357b09f2cfbe944269786cb6985c4 -&gt; xe-pw-166378v1</li>
+</ul>
+<p>IGT_8903: 6f88532e2fe22529195cc2f8cabff93d994688f8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8904: 07cadbb0bf25b18ac37467c4505f87eb50d4e435 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5047-b83102e9c06357b09f2cfbe944269786cb6985c4: b83102e9c06357b09f2cfbe944269786cb6985c4<br />
+  xe-pw-166378v1: 166378v1</p>
+
+</body>
+</html>
+
+--===============7918230769917899351==--
