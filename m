@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94191CD4851
-	for <intel-xe@archiver.kernel.org>; Tue, 12 May 2026 12:32:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C455ECD4F21
+	for <intel-xe@archiver.kernel.org>; Tue, 12 May 2026 12:33:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A31F10E0E5;
-	Tue, 12 May 2026 12:32:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7190210E0E5;
+	Tue, 12 May 2026 12:33:31 +0000 (UTC)
 Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64DE710E0E5;
- Tue, 12 May 2026 12:32:56 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7918230769917899351=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 852B610EA7C;
+ Tue, 12 May 2026 12:33:30 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Check_for_dead_co?=
- =?utf-8?q?nfig_space_on_reading_all_1s?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_gpu/buddy=3A_Per-order_fr?=
+ =?utf-8?q?ee_and_used_block_scoreboards_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arun R Murthy" <arun.r.murthy@intel.com>
+To: "Francois Dugast" <francois.dugast@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 12 May 2026 12:32:56 -0000
-Message-ID: <177858917640.61708.9516967709523141681@5ab824fced77>
+Date: Tue, 12 May 2026 12:33:30 -0000
+Message-ID: <177858921053.61707.1253629425710817490@5ab824fced77>
 X-Patchwork-Hint: ignore
-References: <20260512060128.209698-1-arun.r.murthy@intel.com>
-In-Reply-To: <20260512060128.209698-1-arun.r.murthy@intel.com>
+References: <20260511164217.150237-1-francois.dugast@intel.com>
+In-Reply-To: <20260511164217.150237-1-francois.dugast@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,106 +40,69 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7918230769917899351==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Check for dead config space on reading all 1s
-URL   : https://patchwork.freedesktop.org/series/166378/
-State : success
+Series: gpu/buddy: Per-order free and used block scoreboards (rev3)
+URL   : https://patchwork.freedesktop.org/series/165914/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-5047-b83102e9c06357b09f2cfbe944269786cb6985c4_BAT -> xe-pw-166378v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 1644f68e601283ea1dfcd47029099f2dcd89e3ae
+Author: Francois Dugast <francois.dugast@intel.com>
+Date:   Mon May 11 18:41:06 2026 +0200
 
-Summary
--------
+    gpu/buddy: Track per-order used blocks with a scoreboard
+    
+    Extend the scoreboard approach from the previous commit to used blocks,
+    so drm_buddy_print() can report per-order allocation pressure in O(1).
+    
+    Unlike free blocks, an allocated block can leave the allocated state
+    through mark_free() (normal free and gpu_buddy_block_trim()) or be
+    consumed directly by gpu_block_free() during coalescing. Both sites are
+    guarded by gpu_buddy_block_is_allocated() and paired with the increment
+    in mark_allocated().
+    
+    v2:
+    - Update after fix for use-after-free in split_block() call sites
+    - Change goto label to out_free_used_scoreboard for clarity
+    - Make drm_buddy_print() and gpu_buddy_print() symmetric for used and
+      free
+    
+    Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+    Assisted-by: GitHub Copilot:claude-sonnet-4.6
++ /mt/dim checkpatch b83102e9c06357b09f2cfbe944269786cb6985c4 drm-intel
+e1e022f337b4 gpu/buddy: Fix use-after-free in split_block() call sites
+-:24: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#24: 
+Reported-by: Sashiko <sashiko-bot@kernel.org>
+Signed-off-by: Francois Dugast <francois.dugast@intel.com>
 
-  **SUCCESS**
+-:26: WARNING:BAD_SIGN_OFF: Assisted-by expects 'AGENT_NAME:MODEL_VERSION [TOOL1] [TOOL2]' format
+#26: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
 
-  No regressions found.
+total: 0 errors, 2 warnings, 0 checks, 44 lines checked
+d8c958ca521a gpu/buddy: Track per-order free blocks with a scoreboard
+-:25: WARNING:BAD_SIGN_OFF: Assisted-by expects 'AGENT_NAME:MODEL_VERSION [TOOL1] [TOOL2]' format
+#25: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
 
-  
+total: 0 errors, 1 warnings, 0 checks, 160 lines checked
+1644f68e6012 gpu/buddy: Track per-order used blocks with a scoreboard
+-:22: WARNING:BAD_SIGN_OFF: Assisted-by expects 'AGENT_NAME:MODEL_VERSION [TOOL1] [TOOL2]' format
+#22: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
 
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8903 -> IGT_8904
-  * Linux: xe-5047-b83102e9c06357b09f2cfbe944269786cb6985c4 -> xe-pw-166378v1
-
-  IGT_8903: 6f88532e2fe22529195cc2f8cabff93d994688f8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8904: 07cadbb0bf25b18ac37467c4505f87eb50d4e435 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5047-b83102e9c06357b09f2cfbe944269786cb6985c4: b83102e9c06357b09f2cfbe944269786cb6985c4
-  xe-pw-166378v1: 166378v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166378v1/index.html
-
---===============7918230769917899351==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Check for dead config space on reading all 1s</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166378/">https://patchwork.freedesktop.org/series/166378/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166378v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166378v1/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 1 warnings, 0 checks, 129 lines checked
 
 
-    <h1>CI Bug Log - changes from xe-5047-b83102e9c06357b09f2cfbe944269786cb6985c4_BAT -&gt; xe-pw-166378v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8903 -&gt; IGT_8904</li>
-<li>Linux: xe-5047-b83102e9c06357b09f2cfbe944269786cb6985c4 -&gt; xe-pw-166378v1</li>
-</ul>
-<p>IGT_8903: 6f88532e2fe22529195cc2f8cabff93d994688f8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8904: 07cadbb0bf25b18ac37467c4505f87eb50d4e435 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5047-b83102e9c06357b09f2cfbe944269786cb6985c4: b83102e9c06357b09f2cfbe944269786cb6985c4<br />
-  xe-pw-166378v1: 166378v1</p>
-
-</body>
-</html>
-
---===============7918230769917899351==--
