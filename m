@@ -4,70 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71355CD4F35
-	for <intel-xe@archiver.kernel.org>; Tue, 12 May 2026 08:24:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D27EDCD4855
+	for <intel-xe@archiver.kernel.org>; Tue, 12 May 2026 08:25:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C78A10E689;
-	Tue, 12 May 2026 08:24:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C12910E689;
+	Tue, 12 May 2026 08:25:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a0IsP+ks";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PYpuPkJP";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51E3710E689;
- Tue, 12 May 2026 08:24:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DA8410E689;
+ Tue, 12 May 2026 08:25:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778574295; x=1810110295;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=8Sxz1gQEQWkfKyhR1YiDU8YRuK607mnZzr+wJTJ9WSg=;
- b=a0IsP+ksu32K/hpxPuejYwgmyOoejBzXI0bTlhB+kKff3TkWMtoFeIkd
- kGG9Ib5RsD2BXvFXYZTNbbq3k3NHrGHf/w0VMzY1EJr4MBjiPjzymqwxW
- i8aj12tZ21BHlzkCbpJ675ZEglrebwPGL5ibh1+skOUNf40QaJ9qjN4qj
- 5vowGsLOo18s2YACkZrAfsOdyGGpeocoOq1GiGR//iEJ4vvL11GOBNG+S
- hofnmCAPqsDUr+s9wPNVjvZ2iTDmzE25rfAfQExLZ4xqFxTPWkdEoUVNX
- 4ooJx7JQaogMAJ3bgedi/8Tbyf+qOwAdVTXhNoa8Gv8cfRGjyEYq3czGY Q==;
-X-CSE-ConnectionGUID: H/TYFj+VQFqvFbj66HCJew==
-X-CSE-MsgGUID: neu2pfPUSnyfmTw9V3TQAw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="79195035"
-X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="79195035"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2026 01:24:55 -0700
-X-CSE-ConnectionGUID: vga29cUKQb2hZpAYaqfUkw==
-X-CSE-MsgGUID: tuj7vXnJSYqtsBHPY9Cl1A==
+ t=1778574338; x=1810110338;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=YrjSJtmoWAFjzHkux/wspVsGTjMwQIfJjLVO7epuQT4=;
+ b=PYpuPkJPNfATL9vpuhOTwQHzkasvyfQvUPITEhjDFV/Ryq763rk1G79h
+ WUpnMENvAeWNVF6Eu0bH8g5urtkfTtEyGv/kvWDIw2NfaUFeTyxHXFnCW
+ RezE0H60vEvGLipEPul4QVvOGSFQttFzG5K9quzPpdlxH1P1Jx6Q3VcUr
+ Duq2Houe5EsSv9CtioqMvkb+Ukb7SEMWW5KQMfkmsM39QFlH3dt0lwjEh
+ 3wjgeTl3x8WT54gYqkcVzV7+EpxpsJTtu/sdAcAQyE+hG7HYbkLLf2XOd
+ N7xWFCeKK2LyVuVPfG5jJ2rp9jhxqNdarOfJEimXGcZwoqiI/COLWc5XR g==;
+X-CSE-ConnectionGUID: YSIDIq19T/S1K3mEBZP3XA==
+X-CSE-MsgGUID: eOFqJBPUSCGbdvXdRD43KA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="67005716"
+X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="67005716"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2026 01:25:38 -0700
+X-CSE-ConnectionGUID: JbtYTFCMS7+rgL8RTRPH9A==
+X-CSE-MsgGUID: GiA4pX7iS/mdjX2dwObfXQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="237945603"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO fedora) ([10.245.245.172])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2026 01:24:49 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Natalie Vock <natalie.vock@gmx.de>, Johannes Weiner <hannes@cmpxchg.org>,
- Tejun Heo <tj@kernel.org>,
- =?UTF-8?q?Michal=20Koutn=C3=BD?= <mkoutny@suse.com>,
- cgroups@vger.kernel.org, Huang Rui <ray.huang@amd.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>,
- David Airlie <airlied@gmail.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v4 5/5] drm/amdgpu: Wire up dmem cgroup reclaim for VRAM
- manager
-Date: Tue, 12 May 2026 10:24:06 +0200
-Message-ID: <20260512082406.44470-6-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260512082406.44470-1-thomas.hellstrom@linux.intel.com>
-References: <20260512082406.44470-1-thomas.hellstrom@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="233387923"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.158])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2026 01:25:36 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: imre.deak@intel.com, Gustavo Sousa <gustavo.sousa@intel.com>
+Cc: James Xiong <james.xiong@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v3] drm/i915/dmc: fix assert_dmc_loaded WARN during
+ async firmware load
+In-Reply-To: <agHSpKZtCqmciCU9@ideak-desk.lan>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260508181329.666762-1-james.xiong@intel.com>
+ <87tsseqgrb.fsf@intel.com> <agHOCIcYOsDPyUi0@ideak-desk.lan>
+ <87o6imqfd8.fsf@intel.com> <agHSpKZtCqmciCU9@ideak-desk.lan>
+Date: Tue, 12 May 2026 11:25:33 +0300
+Message-ID: <7f0894a1c5d2e7b276e5d039f6a240813fce8b81@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,64 +72,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Register the VRAM manager with the dmem cgroup reclaim infrastructure
-so that lowering dmem.max below current VRAM usage triggers TTM
-eviction rather than failing with -EBUSY.
+On Mon, 11 May 2026, Imre Deak <imre.deak@intel.com> wrote:
+> On Mon, May 11, 2026 at 09:50:59AM -0300, Gustavo Sousa wrote:
+>> Imre Deak <imre.deak@intel.com> writes:
+>> 
+>> > On Mon, May 11, 2026 at 09:20:56AM -0300, Gustavo Sousa wrote:
+>> >> James Xiong <james.xiong@intel.com> writes:
+>> >> 
+>> >> > During driver probe, DMC firmware is loaded asynchronously via a
+>> >> > workqueue. There is a race between parse_dmc_fw() setting the payload
+>> >> > pointer (making has_dmc_id_fw() return true) and intel_dmc_load_program()
+>> >> > writing the firmware to hardware registers. If the probe thread calls
+>> >> > intel_dmc_enable_pipe() -> assert_dmc_loaded() in this window via
+>> >> > intel_modeset_setup_hw_state(), it sees parsed payload but stale HW
+>> >> > registers, triggering a ~20% intermittent WARNING on ADL-N warm boot.
+>> >> >
+>> >> > v2: Fix by calling intel_dmc_wait_fw_load() in
+>> >> >     intel_modeset_setup_hw_state() before iterating the CRTCs (Gustavo
+>> >> >     Sousa).
+>> >> >
+>> >> > v3: Move intel_dmc_wait_fw_load() into intel_dmc_enable_pipe() itself
+>> >> >     so the function is self-contained (Jani Nikula, Gustavo Sousa).
+>> >> >
+>> >> > Signed-off-by: James Xiong <james.xiong@intel.com>
+>> >> 
+>> >> +Imre
+>> >> 
+>> >> Perhaps this deserves a fixes tag?
+>> >
+>> > Since that would result in backporting the fix to -stable, it depends on
+>> > whether enabling the pipe DMC functionality before the firmware is
+>> > loaded is an actual functionality problem.
+>> 
+>> I think we depend on pipe DMC for the flip queue functionality, so I
+>> suspect it could be an issue.
+>
+> AFAIU stable rules require knowing that a fix fixes something for a
+> user.
 
-Guard place->flags in amdgpu_ttm_bo_eviction_valuable() against NULL,
-as the TTM reclaim path passes a NULL place in cgroup drain mode.
+The rules may say that, but the reality doesn't match the rules. Lots
+more stuff gets backported to stable nowadays.
 
-v3:
-- Rebased on fix for uninitialized list and buddy allocator on the
-  drmm_cgroup_register_region() error path.
+BR,
+Jani
 
-Assisted-by: GitHub_Copilot:claude-sonnet-4.6
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c      | 2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 9 ++++++---
- 2 files changed, 7 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-index 2740de94e93c..8cbcd33f51a5 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-@@ -1488,7 +1488,7 @@ static bool amdgpu_ttm_bo_eviction_valuable(struct ttm_buffer_object *bo,
- 	dma_resv_for_each_fence(&resv_cursor, bo->base.resv,
- 				DMA_RESV_USAGE_BOOKKEEP, f) {
- 		if (amdkfd_fence_check_mm(f, current->mm) &&
--		    !(place->flags & TTM_PL_FLAG_CONTIGUOUS))
-+		    !(place && (place->flags & TTM_PL_FLAG_CONTIGUOUS)))
- 			return false;
- 	}
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-index ac3f71d77140..a1f1ae264a40 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-@@ -916,6 +916,7 @@ int amdgpu_vram_mgr_init(struct amdgpu_device *adev)
- {
- 	struct amdgpu_vram_mgr *mgr = &adev->mman.vram_mgr;
- 	struct ttm_resource_manager *man = &mgr->manager;
-+	struct dmem_cgroup_region *cg;
- 	int err;
- 
- 	ttm_resource_manager_init(man, &adev->mman.bdev,
-@@ -932,9 +933,11 @@ int amdgpu_vram_mgr_init(struct amdgpu_device *adev)
- 	if (err)
- 		return err;
- 
--	man->cg = drmm_cgroup_register_region(adev_to_drm(adev), "vram", adev->gmc.real_vram_size);
--	if (IS_ERR(man->cg))
--		return PTR_ERR(man->cg);
-+	cg = drmm_cgroup_register_region(adev_to_drm(adev), "vram",
-+					 adev->gmc.real_vram_size);
-+	if (IS_ERR(cg))
-+		return PTR_ERR(cg);
-+	ttm_resource_manager_set_dmem_region(man, cg);
- 
- 	ttm_set_driver_manager(&adev->mman.bdev, TTM_PL_VRAM, &mgr->manager);
- 	ttm_resource_manager_set_used(man, true);
+> I suppose one way to make this sure would be reproducing a problem
+> with PIPE DMC explicitly enabled early, before the firmware is loaded.
+>
+>> That said, I'm not very involved in that, so I can say for sure.
+>> 
+>> --
+>> Gustavo Sousa
+>> 
+>> >
+>> >> If so, maybe it should be this one:
+>> >> 
+>> >> Fixes: 3af2ff0840be ("drm/i915: Enable a PIPEDMC whenever its corresponding pipe is enabled")
+>> >> 
+>> >> The change itself looks good to me, so
+>> >> 
+>> >> Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+>> >> 
+>> >> > ---
+>> >> >  drivers/gpu/drm/i915/display/intel_dmc.c | 7 ++++++-
+>> >> >  1 file changed, 6 insertions(+), 1 deletion(-)
+>> >> >
+>> >> > diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+>> >> > index 0df4f42ba3e3..4151eae92744 100644
+>> >> > --- a/drivers/gpu/drm/i915/display/intel_dmc.c
+>> >> > +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+>> >> > @@ -786,7 +786,12 @@ void intel_dmc_enable_pipe(const struct intel_crtc_state *crtc_state)
+>> >> >  	enum pipe pipe = crtc->pipe;
+>> >> >  	enum intel_dmc_id dmc_id = PIPE_TO_DMC_ID(pipe);
+>> >> >  
+>> >> > -	if (!is_valid_dmc_id(dmc_id) || !has_dmc_id_fw(display, dmc_id))
+>> >> > +	if (!is_valid_dmc_id(dmc_id))
+>> >> > +		return;
+>> >> > +
+>> >> > +	intel_dmc_wait_fw_load(display);
+>> >> > +
+>> >> > +	if (!has_dmc_id_fw(display, dmc_id))
+>> >> >  		return;
+>> >> >  
+>> >> >  	if (!can_enable_pipedmc(crtc_state)) {
+>> >> > -- 
+>> >> > 2.34.1
+
 -- 
-2.54.0
-
+Jani Nikula, Intel
