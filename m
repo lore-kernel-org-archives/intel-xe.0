@@ -4,60 +4,105 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73531CD4851
-	for <intel-xe@archiver.kernel.org>; Tue, 12 May 2026 11:04:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0E1ACD4855
+	for <intel-xe@archiver.kernel.org>; Tue, 12 May 2026 11:07:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3619F10EA30;
-	Tue, 12 May 2026 11:04:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 905AF10EA30;
+	Tue, 12 May 2026 11:07:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AHLbgl4T";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="pErSm8eU";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 958D710E25B;
- Tue, 12 May 2026 11:04:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778583879; x=1810119879;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=jiWmdth/SKFxwF7IFhVlPlP9Preu4Z9kLCDZ5p0XtNs=;
- b=AHLbgl4TOfhgGTYU3LVR43Tgw3Kk1sj1l5s9CU+sc+iS4mpgdN0kybyz
- X0345LXGYvjaxHe7Du5E4ijcdXXd9LggZHH+ILrLg6CC3Lm5ieHHl0O2E
- ul2QCxJdfx2qdjpBQhFI5T2vurJgf4KACC2FEEgSAUE5LsMcZSaozE6sF
- PT2EX6CSDRbS472Ap9G8F84omegllcT+kMZAKW7T5bNNqhsj1FCX75aHQ
- FKFaCnEXiIknOx2gfMUJuKl872FsLAt+JP3Zpe5R1Dh5RkDqLpXrnYpEJ
- 21FYeCw8EOJgtKLBVz7SPK06CT1H1vLzRvHVTVorQW8Fy9W+822Q3IZiG w==;
-X-CSE-ConnectionGUID: KMKdfmDSRNqSRsmLZG8g2g==
-X-CSE-MsgGUID: cRYC9r1SQVG5Clpd1uG1ww==
-X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="79510071"
-X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="79510071"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2026 04:04:39 -0700
-X-CSE-ConnectionGUID: roCT46ZUTzSPGGyd5tHNqg==
-X-CSE-MsgGUID: Jl4IVjz7SNmTY6+d593GLw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="237979527"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.245.203])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2026 04:04:37 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>
-Subject: Re: [PATCH v3 1/1] drm/{i915,xe}/pcode: rename GEN6_PCODE_DATA to
- match spec
-In-Reply-To: <20260507193601.533356-2-michal.grzelak@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260507193601.533356-1-michal.grzelak@intel.com>
- <20260507193601.533356-2-michal.grzelak@intel.com>
-Date: Tue, 12 May 2026 14:04:32 +0300
-Message-ID: <745a0967145a74727ed67259f4acdae9d19b0583@intel.com>
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D393910EA30;
+ Tue, 12 May 2026 11:07:23 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id 1F78C6001A;
+ Tue, 12 May 2026 11:07:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33080C2BCF5;
+ Tue, 12 May 2026 11:07:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1778584042;
+ bh=57ogFlXCXaF1a1TezDYO8b80gCjSnt1NZ3GTKLJt/JE=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=pErSm8eUzMBKLoiqQ3o+ZC2Y1VLqi3F3ko7yg46V+XNADbrN3N1rBhGHzpOVxdbLu
+ g2ivbpVppCIXQrje70P/jD5NlL978DxORCWNzYJBTW5v1fY2XACE1c2DdS1w7vWuCN
+ yxP/YrCIC302cn1uccn/GnFQUs8DdLnpZUcprBFRyUJt+ikOHSwQqyemjFgmFYZJXz
+ oDoNl6rRLJvwwnYO0oAQFvoHtSp95vQPaM3UlhtrM3oSTWFcH8XRMufPuCC4NiWXZW
+ O0n0LyS4Ok8iTJcJ83nj+91ZmF5qQBmgC7npf9Xh1zBhhG6MBLX5wlrM5zteLuMySS
+ oYo3Ojon4WUmA==
+Message-ID: <f14d99d3-c1ff-453b-a280-17b8c4d5af94@kernel.org>
+Date: Tue, 12 May 2026 13:07:16 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] mm/shmem: add shmem_insert_folio()
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Andrew Morton <akpm@linux-foundation.org>,
+ Lorenzo Stoakes <ljs@kernel.org>, "Liam R. Howlett" <liam@infradead.org>,
+ Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>,
+ Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
+ Hugh Dickins <hughd@google.com>, Baolin Wang
+ <baolin.wang@linux.alibaba.com>, Brendan Jackman <jackmanb@google.com>,
+ Johannes Weiner <hannes@cmpxchg.org>, Zi Yan <ziy@nvidia.com>,
+ Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
+ linux-kernel@vger.kernel.org
+References: <20260512110339.6244-1-thomas.hellstrom@linux.intel.com>
+ <20260512110339.6244-2-thomas.hellstrom@linux.intel.com>
+From: "David Hildenbrand (Arm)" <david@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=david@kernel.org; keydata=
+ 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
+ qIws/H2t
+In-Reply-To: <20260512110339.6244-2-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,272 +117,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 07 May 2026, Micha=C5=82 Grzelak <michal.grzelak@intel.com> wrote:
-> Variable naming of val and val1 should match register macro naming.
-> Historically, corresponding macros were named GEN6_PCODE_DATA and
-> GEN6_PCODE_DATA1.
->
-> Rename register macro GEN6_PCODE_DATA to GEN6_PCODE_DATA0 since spec
-> appended '0' to the register name. Rename val into val0 in functions
-> declaring val1.
 
-The changes to i915 and xe are completely independent. Please split.
+>  
+> +/**
+> + * undo_compound_page() - Reverse the effect of prep_compound_page().
+> + * @page: The head page of a compound page to demote.
+> + *
+> + * Returns the pages to non-compound state as if prep_compound_page()
+> + * had never been called.  split_page() must NOT have been called on
+> + * the compound page; tail refcounts must be 0.  The caller must ensure
+> + * no other users hold references to the compound page.
+> + */
+> +void undo_compound_page(struct page *page)
+> +{
+> +	unsigned int i, nr = 1U << compound_order(page);
+> +
+> +	page[1].flags.f &= ~PAGE_FLAGS_SECOND;
+> +	for (i = 1; i < nr; i++) {
+> +		page[i].mapping = NULL;
+> +		clear_compound_head(&page[i]);
+> +	}
+> +	ClearPageHead(page);
+> +}
+> +
+>  static inline void set_buddy_order(struct page *page, unsigned int order)
+>  {
+>  	set_page_private(page, order);
+> diff --git a/mm/shmem.c b/mm/shmem.c
+> index 3b5dc21b323c..45e80a74f77c 100644
+> --- a/mm/shmem.c
+> +++ b/mm/shmem.c
+> @@ -937,6 +937,111 @@ int shmem_add_to_page_cache(struct folio *folio,
+>  	return 0;
+>  }
+>  
+> +/**
+> + * shmem_insert_folio() - Insert an isolated folio into a shmem file.
+> + * @file: The shmem file created with shmem_file_setup().
+> + * @folio: The folio to insert. Must be isolated (not on LRU), unlocked,
+> + *         have exactly one reference (the caller's), have no page-table
+> + *         mappings, and have folio->mapping == NULL.
+> + * @order: The allocation order of @folio.  If @order > 0 and @folio is
+> + *         not already a large (compound) folio, it will be promoted to a
+> + *         compound folio of this order inside this function.  This requires
+> + *         the standard post-alloc state: head refcount == 1, tail
+> + *         refcounts == 0 (i.e. split_page() must NOT have been called).
+> + *         On failure the promotion is reversed and the folio is returned
+> + *         to its original non-compound state.
+> + * @index: Page-cache index at which to insert. Must be aligned to
+> + *         (1 << @order) and within the file's size.
+> + * @writeback: If true, attempt immediate writeback to swap after insertion.
+> + *             Best-effort; failure is silently ignored.
+> + * @folio_gfp: The GFP flags to use for memory-cgroup charging.
+> + *
+> + * The folio is inserted zero-copy into the shmem page cache and placed on
+> + * the anon LRU, where it participates in normal kernel reclaim (written to
+> + * swap under memory pressure).  Any previous content at @index is discarded.
+> + * On success the caller should release their reference with folio_put() and
+> + * track the (@file, @index) pair for later recovery via shmem_read_folio()
+> + * and release via shmem_truncate_range().
+> + *
+> + * Return: 0 on success.  On failure the folio is returned to its original
+> + * state and the caller retains ownership.
+> + */
+> +int shmem_insert_folio(struct file *file, struct folio *folio, unsigned int order,
+> +		       pgoff_t index, bool writeback, gfp_t folio_gfp)
+> +{
+> +	struct address_space *mapping = file->f_mapping;
+> +	struct inode *inode = mapping->host;
+> +	bool promoted;
+> +	long nr_pages;
+> +	int ret;
+> +
+> +	promoted = order > 0 && !folio_test_large(folio);
+> +	if (promoted)
+> +		prep_compound_page(&folio->page, order);
+> +	nr_pages = folio_nr_pages(folio);
+> +
+> +	VM_BUG_ON_FOLIO(folio_test_lru(folio), folio);
+> +	VM_BUG_ON_FOLIO(folio_mapped(folio), folio);
+> +	VM_BUG_ON_FOLIO(folio_test_swapcache(folio), folio);
+> +	VM_BUG_ON_FOLIO(folio->mapping, folio);
+> +	VM_BUG_ON(index != round_down(index, nr_pages));
 
-BR,
-Jani.
+No new VM_BUG_ON_FOLIO etc.
 
->
-> Bspec: 19978
->
-> Changelog:
-> v2->v3
-> - resolve conflict from rebase
->
-> v1->v2
-> - rebase onto drm-tip (Jani)
->
-> Signed-off-by: Micha=C5=82 Grzelak <michal.grzelak@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_parent.c   |  4 ++--
->  drivers/gpu/drm/i915/display/intel_parent.h   |  2 +-
->  drivers/gpu/drm/i915/gvt/handlers.c           |  2 +-
->  drivers/gpu/drm/i915/i915_reg.h               |  2 +-
->  drivers/gpu/drm/i915/intel_gvt_mmio_table.c   |  2 +-
->  drivers/gpu/drm/i915/intel_pcode.c            | 14 +++++++-------
->  drivers/gpu/drm/i915/intel_pcode.h            |  2 +-
->  drivers/gpu/drm/xe/display/xe_display_pcode.c |  4 ++--
->  drivers/gpu/drm/xe/xe_pcode.c                 |  4 ++--
->  drivers/gpu/drm/xe/xe_pcode.h                 |  2 +-
->  10 files changed, 19 insertions(+), 19 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_parent.c b/drivers/gpu/dr=
-m/i915/display/intel_parent.c
-> index 67b21a42d354..7901b95ab114 100644
-> --- a/drivers/gpu/drm/i915/display/intel_parent.c
-> +++ b/drivers/gpu/drm/i915/display/intel_parent.c
-> @@ -219,9 +219,9 @@ void intel_parent_pc8_unblock(struct intel_display *d=
-isplay)
->  }
->=20=20
->  /* pcode */
-> -int intel_parent_pcode_read(struct intel_display *display, u32 mbox, u32=
- *val, u32 *val1)
-> +int intel_parent_pcode_read(struct intel_display *display, u32 mbox, u32=
- *val0, u32 *val1)
->  {
-> -	return display->parent->pcode->read(display->drm, mbox, val, val1);
-> +	return display->parent->pcode->read(display->drm, mbox, val0, val1);
->  }
->=20=20
->  int intel_parent_pcode_write_timeout(struct intel_display *display, u32 =
-mbox, u32 val, int timeout_ms)
-> diff --git a/drivers/gpu/drm/i915/display/intel_parent.h b/drivers/gpu/dr=
-m/i915/display/intel_parent.h
-> index 5f0c835b9416..f095ef900a10 100644
-> --- a/drivers/gpu/drm/i915/display/intel_parent.h
-> +++ b/drivers/gpu/drm/i915/display/intel_parent.h
-> @@ -79,7 +79,7 @@ void intel_parent_pc8_block(struct intel_display *displ=
-ay);
->  void intel_parent_pc8_unblock(struct intel_display *display);
->=20=20
->  /* pcode */
-> -int intel_parent_pcode_read(struct intel_display *display, u32 mbox, u32=
- *val, u32 *val1);
-> +int intel_parent_pcode_read(struct intel_display *display, u32 mbox, u32=
- *val0, u32 *val1);
->  int intel_parent_pcode_write_timeout(struct intel_display *display, u32 =
-mbox, u32 val, int timeout_ms);
->  int intel_parent_pcode_write(struct intel_display *display, u32 mbox, u3=
-2 val);
->  int intel_parent_pcode_request(struct intel_display *display, u32 mbox, =
-u32 request,
-> diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/g=
-vt/handlers.c
-> index 9f61867e2478..22dd0179863e 100644
-> --- a/drivers/gpu/drm/i915/gvt/handlers.c
-> +++ b/drivers/gpu/drm/i915/gvt/handlers.c
-> @@ -1706,7 +1706,7 @@ static int mailbox_write(struct intel_vgpu *vgpu, u=
-nsigned int offset,
->  {
->  	u32 value =3D *(u32 *)p_data;
->  	u32 cmd =3D value & 0xff;
-> -	u32 *data0 =3D &vgpu_vreg_t(vgpu, GEN6_PCODE_DATA);
-> +	u32 *data0 =3D &vgpu_vreg_t(vgpu, GEN6_PCODE_DATA0);
->=20=20
->  	switch (cmd) {
->  	case GEN9_PCODE_READ_MEM_LATENCY:
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
-reg.h
-> index 64e906380131..d873072b7a92 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -697,7 +697,7 @@
->  #define    EDRAM_WAYS_IDX(cap)			(((cap) >> 5) & 0x7)
->  #define    EDRAM_SETS_IDX(cap)			(((cap) >> 8) & 0x3)
->=20=20
-> -#define GEN6_PCODE_DATA				_MMIO(0x138128)
-> +#define GEN6_PCODE_DATA0			_MMIO(0x138128)
->  #define   GEN6_PCODE_FREQ_IA_RATIO_SHIFT	8
->  #define   GEN6_PCODE_FREQ_RING_RATIO_SHIFT	16
->  #define GEN6_PCODE_DATA1			_MMIO(0x13812C)
-> diff --git a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c b/drivers/gpu/dr=
-m/i915/intel_gvt_mmio_table.c
-> index de118fae0a49..25b72b20e709 100644
-> --- a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-> +++ b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-> @@ -611,7 +611,7 @@ static int iterate_generic_mmio(struct intel_gvt_mmio=
-_table_iter *iter)
->  	MMIO_D(GEN6_UCGCTL1);
->  	MMIO_D(GEN6_UCGCTL2);
->  	MMIO_F(_MMIO(0x4f000), 0x90);
-> -	MMIO_D(GEN6_PCODE_DATA);
-> +	MMIO_D(GEN6_PCODE_DATA0);
->  	MMIO_D(_MMIO(0x13812c));
->  	MMIO_D(GEN7_ERR_INT);
->  	MMIO_D(HSW_EDRAM_CAP);
-> diff --git a/drivers/gpu/drm/i915/intel_pcode.c b/drivers/gpu/drm/i915/in=
-tel_pcode.c
-> index c07d48fc1b35..1c9d1f413757 100644
-> --- a/drivers/gpu/drm/i915/intel_pcode.c
-> +++ b/drivers/gpu/drm/i915/intel_pcode.c
-> @@ -58,7 +58,7 @@ static int gen7_check_mailbox_status(u32 mbox)
->  }
->=20=20
->  static int __snb_pcode_rw(struct intel_uncore *uncore, u32 mbox,
-> -			  u32 *val, u32 *val1,
-> +			  u32 *val0, u32 *val1,
->  			  int fast_timeout_us, int slow_timeout_ms,
->  			  bool is_read)
->  {
-> @@ -73,7 +73,7 @@ static int __snb_pcode_rw(struct intel_uncore *uncore, =
-u32 mbox,
->  	if (intel_uncore_read_fw(uncore, GEN6_PCODE_MAILBOX) & GEN6_PCODE_READY)
->  		return -EAGAIN;
->=20=20
-> -	intel_uncore_write_fw(uncore, GEN6_PCODE_DATA, *val);
-> +	intel_uncore_write_fw(uncore, GEN6_PCODE_DATA0, *val0);
->  	intel_uncore_write_fw(uncore, GEN6_PCODE_DATA1, val1 ? *val1 : 0);
->  	intel_uncore_write_fw(uncore,
->  			      GEN6_PCODE_MAILBOX, GEN6_PCODE_READY | mbox);
-> @@ -87,7 +87,7 @@ static int __snb_pcode_rw(struct intel_uncore *uncore, =
-u32 mbox,
->  		return -ETIMEDOUT;
->=20=20
->  	if (is_read)
-> -		*val =3D intel_uncore_read_fw(uncore, GEN6_PCODE_DATA);
-> +		*val0 =3D intel_uncore_read_fw(uncore, GEN6_PCODE_DATA0);
->  	if (is_read && val1)
->  		*val1 =3D intel_uncore_read_fw(uncore, GEN6_PCODE_DATA1);
->=20=20
-> @@ -97,12 +97,12 @@ static int __snb_pcode_rw(struct intel_uncore *uncore=
-, u32 mbox,
->  		return gen6_check_mailbox_status(mbox);
->  }
->=20=20
-> -int snb_pcode_read(struct intel_uncore *uncore, u32 mbox, u32 *val, u32 =
-*val1)
-> +int snb_pcode_read(struct intel_uncore *uncore, u32 mbox, u32 *val0, u32=
- *val1)
->  {
->  	int err;
->=20=20
->  	mutex_lock(&uncore->i915->sb_lock);
-> -	err =3D __snb_pcode_rw(uncore, mbox, val, val1, 500, 20, true);
-> +	err =3D __snb_pcode_rw(uncore, mbox, val0, val1, 500, 20, true);
->  	mutex_unlock(&uncore->i915->sb_lock);
->=20=20
->  	if (err) {
-> @@ -278,11 +278,11 @@ int snb_pcode_write_p(struct intel_uncore *uncore, =
-u32 mbcmd, u32 p1, u32 p2, u3
->  	return err;
->  }
->=20=20
-> -static int intel_pcode_read(struct drm_device *drm, u32 mbox, u32 *val, =
-u32 *val1)
-> +static int intel_pcode_read(struct drm_device *drm, u32 mbox, u32 *val0,=
- u32 *val1)
->  {
->  	struct drm_i915_private *i915 =3D to_i915(drm);
->=20=20
-> -	return snb_pcode_read(&i915->uncore, mbox, val, val1);
-> +	return snb_pcode_read(&i915->uncore, mbox, val0, val1);
->  }
->=20=20
->  static int intel_pcode_write_timeout(struct drm_device *drm, u32 mbox, u=
-32 val, int timeout_ms)
-> diff --git a/drivers/gpu/drm/i915/intel_pcode.h b/drivers/gpu/drm/i915/in=
-tel_pcode.h
-> index 19795ea8172e..deecc64bc1b3 100644
-> --- a/drivers/gpu/drm/i915/intel_pcode.h
-> +++ b/drivers/gpu/drm/i915/intel_pcode.h
-> @@ -11,7 +11,7 @@
->  struct drm_device;
->  struct intel_uncore;
->=20=20
-> -int snb_pcode_read(struct intel_uncore *uncore, u32 mbox, u32 *val, u32 =
-*val1);
-> +int snb_pcode_read(struct intel_uncore *uncore, u32 mbox, u32 *val0, u32=
- *val1);
->  int snb_pcode_write_timeout(struct intel_uncore *uncore, u32 mbox, u32 v=
-al, int timeout_ms);
->  #define snb_pcode_write(uncore, mbox, val) \
->  	snb_pcode_write_timeout((uncore), (mbox), (val), 1)
-> diff --git a/drivers/gpu/drm/xe/display/xe_display_pcode.c b/drivers/gpu/=
-drm/xe/display/xe_display_pcode.c
-> index f6820ef7e666..8dc9cbdb18ec 100644
-> --- a/drivers/gpu/drm/xe/display/xe_display_pcode.c
-> +++ b/drivers/gpu/drm/xe/display/xe_display_pcode.c
-> @@ -6,12 +6,12 @@
->  #include "xe_device.h"
->  #include "xe_pcode.h"
->=20=20
-> -static int xe_display_pcode_read(struct drm_device *drm, u32 mbox, u32 *=
-val, u32 *val1)
-> +static int xe_display_pcode_read(struct drm_device *drm, u32 mbox, u32 *=
-val0, u32 *val1)
->  {
->  	struct xe_device *xe =3D to_xe_device(drm);
->  	struct xe_tile *tile =3D xe_device_get_root_tile(xe);
->=20=20
-> -	return xe_pcode_read(tile, mbox, val, val1);
-> +	return xe_pcode_read(tile, mbox, val0, val1);
->  }
->=20=20
->  static int xe_display_pcode_write_timeout(struct drm_device *drm, u32 mb=
-ox, u32 val, int timeout_ms)
-> diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
-> index dc66d0c7ee06..37303ac09080 100644
-> --- a/drivers/gpu/drm/xe/xe_pcode.c
-> +++ b/drivers/gpu/drm/xe/xe_pcode.c
-> @@ -132,12 +132,12 @@ int xe_pcode_write64_timeout(struct xe_tile *tile, =
-u32 mbox, u32 data0, u32 data
->  	return err;
->  }
->=20=20
-> -int xe_pcode_read(struct xe_tile *tile, u32 mbox, u32 *val, u32 *val1)
-> +int xe_pcode_read(struct xe_tile *tile, u32 mbox, u32 *val0, u32 *val1)
->  {
->  	int err;
->=20=20
->  	mutex_lock(&tile->pcode.lock);
-> -	err =3D pcode_mailbox_rw(tile, mbox, val, val1, 1, true, false);
-> +	err =3D pcode_mailbox_rw(tile, mbox, val0, val1, 1, true, false);
->  	mutex_unlock(&tile->pcode.lock);
->=20=20
->  	return err;
-> diff --git a/drivers/gpu/drm/xe/xe_pcode.h b/drivers/gpu/drm/xe/xe_pcode.h
-> index 490e4f269607..ccb5f71c78c6 100644
-> --- a/drivers/gpu/drm/xe/xe_pcode.h
-> +++ b/drivers/gpu/drm/xe/xe_pcode.h
-> @@ -17,7 +17,7 @@ int xe_pcode_probe_early(struct xe_device *xe);
->  int xe_pcode_ready(struct xe_device *xe, bool locked);
->  int xe_pcode_init_min_freq_table(struct xe_tile *tile, u32 min_gt_freq,
->  				 u32 max_gt_freq);
-> -int xe_pcode_read(struct xe_tile *tile, u32 mbox, u32 *val, u32 *val1);
-> +int xe_pcode_read(struct xe_tile *tile, u32 mbox, u32 *val0, u32 *val1);
->  int xe_pcode_write_timeout(struct xe_tile *tile, u32 mbox, u32 val,
->  			   int timeout_ms);
->  int xe_pcode_write64_timeout(struct xe_tile *tile, u32 mbox, u32 data0,
+But in general, pushing in random allocated pages into shmem, converting them to
+folios is not something I particularly enjoy seeing.
 
---=20
-Jani Nikula, Intel
+-- 
+Cheers,
+
+David
