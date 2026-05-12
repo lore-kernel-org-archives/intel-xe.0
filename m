@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 378F0CD4F24
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68366CD343F
 	for <intel-xe@archiver.kernel.org>; Tue, 12 May 2026 18:33:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD9FF10EBD5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CEEC510EBDB;
 	Tue, 12 May 2026 18:33:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zza0A3m5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iAPBg1PH";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1725610EBD5
- for <intel-xe@lists.freedesktop.org>; Tue, 12 May 2026 18:33:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA11A10E59D
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 May 2026 18:33:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778610836; x=1810146836;
+ t=1778610834; x=1810146834;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ixkmdyJcEN0BVmeW2gPNz/BMVtrcPm5l9sbUdTN+6/w=;
- b=Zza0A3m5qGV+B1NCSK1T2YKsDj81XkJ7GqT6zmuXqxfK9k3cDy2jIveb
- /4PIKpSOk/ZWJuVPctQhToGEETbEPdXm3TzOuYFwVd9NAa2Kq1C0VXMVP
- NerSEDP1ArQQe+JZCiiRkZz3Urr99xULPKvJQVbGYIZp1a4/Ps43F0n/v
- vh9zVw/Ld6xpA4jmi8j5nBphlcG+JtrR9haFzsQdA2UE/SGC6aQ7V64Ng
- v8H/QfJt6CPQqfHtGFhJO4nHfCiSrr3ZN2sJ1TrJMLG2K1XTkkW2EVF4U
- 0zXyYI+7vHzEwWvxuBcGPVbZifD3/67v+2Xl/lY0gufV7DC/bL096yJcs A==;
-X-CSE-ConnectionGUID: 1skTNqucSKGdI8BDjYiv+w==
-X-CSE-MsgGUID: XK85dPMHRROOJQiQTDp+uA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11784"; a="79425713"
-X-IronPort-AV: E=Sophos;i="6.23,231,1770624000"; d="scan'208";a="79425713"
+ bh=MnbXcz2F2xPw5LYd2E3uChSE2rQ7S1Fj6dWe+C+r8iU=;
+ b=iAPBg1PHmD256wlNG3fCiZhO8PyuQ3V+9Cewx5nsII3/3TPBqha721kA
+ 0YcU8AI0frl3bBHs5mjeR2MRZNIvncbEOZYxlxLUAAn8ugSkNGFiasjQq
+ jvAErMLvBs4Y3OKmg1FkdpIU9kkzZktSYbDGb1MA02ffUufzgA13z2AcC
+ ZF3W9/xFpBtocGDd1pZTpf3ilNLFEyDwThO8ycIWanJUXVTaocJCArnhN
+ YqvXz8zjHWB1kUI4/JEOLMNVB4JyNwSfrYkvSJzRYM5zIAWhCQGHX8gOA
+ 5jCFw4DN+Npctmv0gVcCY04tkuSK9V1MCOz9KnQazn1HFxVWJf9GfLyRC Q==;
+X-CSE-ConnectionGUID: qZRtmPawTTmz9F1gZyClWQ==
+X-CSE-MsgGUID: TVcR5YGDR+W7o8nzW3NmtA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11784"; a="79425712"
+X-IronPort-AV: E=Sophos;i="6.23,231,1770624000"; d="scan'208";a="79425712"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2026 11:33:55 -0700
-X-CSE-ConnectionGUID: DjDznaCRQiW543QNgSRdQw==
-X-CSE-MsgGUID: CFRSQGXvQk+1acZ5UUX3CQ==
+ 12 May 2026 11:33:54 -0700
+X-CSE-ConnectionGUID: yauDVq2fR4KEX7f8OMMHzw==
+X-CSE-MsgGUID: 7duqEfz2QB+5svCFONkI2w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,231,1770624000"; d="scan'208";a="234791084"
+X-IronPort-AV: E=Sophos;i="6.23,231,1770624000"; d="scan'208";a="234791078"
 Received: from dmagui1x-mobl.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.118.167])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2026 11:33:54 -0700
+ 12 May 2026 11:33:52 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH 2/7] drm/xe/display: Drop xe_display_driver_remove() stub
-Date: Tue, 12 May 2026 20:33:37 +0200
-Message-ID: <20260512183342.3374-3-michal.wajdeczko@intel.com>
+Subject: [PATCH 1/7] drm/xe: Drop unused drm/drm_atomic_helper.h include
+Date: Tue, 12 May 2026 20:33:36 +0200
+Message-ID: <20260512183342.3374-2-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260512183342.3374-1-michal.wajdeczko@intel.com>
 References: <20260512183342.3374-1-michal.wajdeczko@intel.com>
@@ -68,28 +68,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The function was removed by commit d41d048043c4 ("drm/xe/display:
-Drop xe_display_driver_remove()") but we missed to remove its stub.
+We don't need this header in xe_device.c file.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
 Cc: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_display.h | 1 -
+ drivers/gpu/drm/xe/xe_device.c | 1 -
  1 file changed, 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_display.h b/drivers/gpu/drm/xe/display/xe_display.h
-index 76db95c25f7e..fb1db84db966 100644
---- a/drivers/gpu/drm/xe/display/xe_display.h
-+++ b/drivers/gpu/drm/xe/display/xe_display.h
-@@ -42,7 +42,6 @@ void xe_display_pm_runtime_resume(struct xe_device *xe);
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 4b45b617a039..6512f1dfe691 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -10,7 +10,6 @@
+ #include <linux/fault-inject.h>
+ #include <linux/units.h>
  
- static inline int xe_display_driver_probe_defer(struct pci_dev *pdev) { return 0; }
- static inline void xe_display_driver_set_hooks(struct drm_driver *driver) { }
--static inline void xe_display_driver_remove(struct xe_device *xe) {}
- 
- static inline int xe_display_probe(struct xe_device *xe) { return 0; }
- 
+-#include <drm/drm_atomic_helper.h>
+ #include <drm/drm_client.h>
+ #include <drm/drm_gem_ttm_helper.h>
+ #include <drm/drm_ioctl.h>
 -- 
 2.47.1
 
