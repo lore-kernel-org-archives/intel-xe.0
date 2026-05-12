@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E66E8CD4F24
-	for <intel-xe@archiver.kernel.org>; Tue, 12 May 2026 18:33:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 378F0CD4F24
+	for <intel-xe@archiver.kernel.org>; Tue, 12 May 2026 18:33:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 979AA10E59D;
-	Tue, 12 May 2026 18:33:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD9FF10EBD5;
+	Tue, 12 May 2026 18:33:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CWkbi9Te";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zza0A3m5";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED59B10E59D
- for <intel-xe@lists.freedesktop.org>; Tue, 12 May 2026 18:33:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1725610EBD5
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 May 2026 18:33:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778610834; x=1810146834;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=6f/IaGIk2qYbhEETFfdczZyVT0FSP2Cr0wJ8+TyUpZI=;
- b=CWkbi9TeS+Y2UZF4c5Xlux996cvnctgeZVDv3yyLVaNRiNob0Pb6X9Zu
- KemPsE9sujdblepi9YaOL52clfwV+qpsonEzXcOEeJWq7IvqxxusYmBs8
- 93RmPzCM1CZqjv6cGr1AsdtAzFlFGIobNGL5lB1xwYzcL/3rWWzoB1OHu
- YN9CogS95g+3ZvVfFxEf9TY0M728CirSFIRILehJ8dB95N62gpZ2l0qZH
- NTZM5pG2pjtgDedJiCOoxi+2cgymT+Ze0KSPK8NJL3WnGrHygRPdowKKq
- Md5O8JVafSOra96ZB7CdtFU8T5QK+rKHohT2WW+hWBhQiN6lLJwF4Tg/x g==;
-X-CSE-ConnectionGUID: SblMU5QmRgChQLDJ4OSi6g==
-X-CSE-MsgGUID: LzobwNeCShCUYgbfB+gmlQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11784"; a="79425706"
-X-IronPort-AV: E=Sophos;i="6.23,231,1770624000"; d="scan'208";a="79425706"
+ t=1778610836; x=1810146836;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=ixkmdyJcEN0BVmeW2gPNz/BMVtrcPm5l9sbUdTN+6/w=;
+ b=Zza0A3m5qGV+B1NCSK1T2YKsDj81XkJ7GqT6zmuXqxfK9k3cDy2jIveb
+ /4PIKpSOk/ZWJuVPctQhToGEETbEPdXm3TzOuYFwVd9NAa2Kq1C0VXMVP
+ NerSEDP1ArQQe+JZCiiRkZz3Urr99xULPKvJQVbGYIZp1a4/Ps43F0n/v
+ vh9zVw/Ld6xpA4jmi8j5nBphlcG+JtrR9haFzsQdA2UE/SGC6aQ7V64Ng
+ v8H/QfJt6CPQqfHtGFhJO4nHfCiSrr3ZN2sJ1TrJMLG2K1XTkkW2EVF4U
+ 0zXyYI+7vHzEwWvxuBcGPVbZifD3/67v+2Xl/lY0gufV7DC/bL096yJcs A==;
+X-CSE-ConnectionGUID: 1skTNqucSKGdI8BDjYiv+w==
+X-CSE-MsgGUID: XK85dPMHRROOJQiQTDp+uA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11784"; a="79425713"
+X-IronPort-AV: E=Sophos;i="6.23,231,1770624000"; d="scan'208";a="79425713"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2026 11:33:53 -0700
-X-CSE-ConnectionGUID: 2qQTD2ySSqm1bIFO9aHQJg==
-X-CSE-MsgGUID: /wjKIxGxTFyP9Fp6ent2Dw==
+ 12 May 2026 11:33:55 -0700
+X-CSE-ConnectionGUID: DjDznaCRQiW543QNgSRdQw==
+X-CSE-MsgGUID: CFRSQGXvQk+1acZ5UUX3CQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,231,1770624000"; d="scan'208";a="234791072"
+X-IronPort-AV: E=Sophos;i="6.23,231,1770624000"; d="scan'208";a="234791084"
 Received: from dmagui1x-mobl.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.118.167])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2026 11:33:51 -0700
+ 12 May 2026 11:33:54 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH 0/7] drm/xe: Make drm_driver const
-Date: Tue, 12 May 2026 20:33:35 +0200
-Message-ID: <20260512183342.3374-1-michal.wajdeczko@intel.com>
+ Jani Nikula <jani.nikula@intel.com>
+Subject: [PATCH 2/7] drm/xe/display: Drop xe_display_driver_remove() stub
+Date: Tue, 12 May 2026 20:33:37 +0200
+Message-ID: <20260512183342.3374-3-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260512183342.3374-1-michal.wajdeczko@intel.com>
+References: <20260512183342.3374-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,32 +68,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Today, to enable display support, we rely on making runtime modifications
-to drm_driver definitions, but that is risky as drm_driver pointer is
-shared by all xe device instances and we might introduce unwanted bits.
+The function was removed by commit d41d048043c4 ("drm/xe/display:
+Drop xe_display_driver_remove()") but we missed to remove its stub.
 
-Fix that by relying on the updates to the drm_device.driver_features bits
-instead, following the design of the 'driver_features' feature.
-
-While around, make also some minor cleanups.
-
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+---
 Cc: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/xe/display/xe_display.h | 1 -
+ 1 file changed, 1 deletion(-)
 
-Michal Wajdeczko (7):
-  drm/xe: Drop unused drm/drm_atomic_helper.h include
-  drm/xe/display: Drop xe_display_driver_remove() stub
-  drm/xe/display: Prefer forward declarations
-  drm/xe/display: Add macro with display driver ops
-  drm/xe/display: Add macro with display driver features
-  drm/xe/display: Drop xe_display_driver_set_hooks()
-  drm/xe: Make drm_driver const
-
- drivers/gpu/drm/xe/display/xe_display.c | 33 ++++++++-----------------
- drivers/gpu/drm/xe/display/xe_display.h | 21 +++++++++++++---
- drivers/gpu/drm/xe/xe_device.c          | 13 +++++-----
- 3 files changed, 34 insertions(+), 33 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/display/xe_display.h b/drivers/gpu/drm/xe/display/xe_display.h
+index 76db95c25f7e..fb1db84db966 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.h
++++ b/drivers/gpu/drm/xe/display/xe_display.h
+@@ -42,7 +42,6 @@ void xe_display_pm_runtime_resume(struct xe_device *xe);
+ 
+ static inline int xe_display_driver_probe_defer(struct pci_dev *pdev) { return 0; }
+ static inline void xe_display_driver_set_hooks(struct drm_driver *driver) { }
+-static inline void xe_display_driver_remove(struct xe_device *xe) {}
+ 
+ static inline int xe_display_probe(struct xe_device *xe) { return 0; }
+ 
 -- 
 2.47.1
 
