@@ -4,70 +4,155 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91DDDCD4851
-	for <intel-xe@archiver.kernel.org>; Tue, 12 May 2026 10:16:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15E97CD4F21
+	for <intel-xe@archiver.kernel.org>; Tue, 12 May 2026 10:23:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C8EC10E25C;
-	Tue, 12 May 2026 10:16:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C830B10E074;
+	Tue, 12 May 2026 10:23:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="iyynMxhK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ea/q6c9I";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D56510E25C;
- Tue, 12 May 2026 10:16:57 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id AC4EA43CDA;
- Tue, 12 May 2026 10:16:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BB70C2BCB0;
- Tue, 12 May 2026 10:16:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1778581016;
- bh=w6hATkZRGSRSJowaFjN45EX2kl/oM+c7ccdVW67Eh3s=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=iyynMxhKI/8Jg0jAf3zt9NS9aZuPuBUsWGBl6pjep56D0BX7ArOWIvumJnsk4Hxuq
- mnnaRaFvBV5mkvEsDlbtbvUSCRvLWYdvCMf4sNeM7vNilIbeePN5AkWfwxvjAQev7g
- /0A4u2buvc8ZFh87pXWIBdFrJFLxqXQwPpvDqOdq1iuaVD2hhWsouG5CMcWCdCXTZv
- ifyJNn5+17bVPbWwPFuyMigi7nZbU+5QYcAqZqfLOaUQjlplaxZPW1O+AKlvC2/zNq
- 0oO5sua9onBYaQGmy1JTt0SnaAYmCKIZGFkBl54L+OfZD1RfSStH8Oms9Ts4XPZzEe
- eFQvD4RfZWaYw==
-Date: Tue, 12 May 2026 12:16:53 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Jonathan Corbet <corbet@lwn.net>, 
- Shuah Khan <skhan@linuxfoundation.org>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Jyri Sarha <jyri.sarha@iki.fi>,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, Simon Ser <contact@emersion.fr>, 
- Harry Wentland <harry.wentland@amd.com>, Melissa Wen <mwen@igalia.com>, 
- Sebastian Wick <sebastian.wick@redhat.com>, Alex Hung <alex.hung@amd.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Chen-Yu Tsai <wens@kernel.org>, Samuel Holland <samuel@sholland.org>, 
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- =?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>, 
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
- dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Daniel Stone <daniels@collabora.com>, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v3 12/20] drm/crtc: Add new atomic_create_state callback
-Message-ID: <20260512-unbiased-apricot-jaguar-a63eba@houat>
-References: <20260424-drm-mode-config-init-v3-0-8b68d9db0d8b@kernel.org>
- <20260424-drm-mode-config-init-v3-12-8b68d9db0d8b@kernel.org>
- <20260504172858.GO1344263@killaraus.ideasonboard.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="xucbq2efeno5xzls"
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53EA510E074
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 May 2026 10:23:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1778581399; x=1810117399;
+ h=date:from:to:subject:message-id:references:in-reply-to:
+ mime-version; bh=QBabNj+ddwdQ9oda+DAgPIgOpCnbW9qJt7WvVkNK910=;
+ b=ea/q6c9IamvwZI2NNS+uj2iFOH86v6mIzqPozHI7jEDCWgcTYB+w40IN
+ Hf3VFqHCSpGNU0H5YC8o8O3bp6si5sCpxU5ow4n9IddP4IAnyNJVQjdG2
+ bLe5I2pmFOu3CTK6TbxV/Iy4By7u4RUgWDYnl2WJY/o21J6heiHBWg6nr
+ 1uEJZA+lruwj5JjFY/FORpKpjlGR3LlC7rHTzMab9ViQP0x1nDRRPci0Z
+ jNlWvp5xsH82tuEC5zUdVeVdyk/Ay47WkEsVkTzquIUMNdAaGZyRkQdtc
+ jT48l3cadtBn0VZeM3mnP31aGMIhtH36tWe/WGm+VjFtzNcWAbpZ3V93Y A==;
+X-CSE-ConnectionGUID: 6LobueuqQNeuH2rfarlc1g==
+X-CSE-MsgGUID: ZxGD2SLaQ0ubR/Q+KY080A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="89788086"
+X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="89788086"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2026 03:23:19 -0700
+X-CSE-ConnectionGUID: 1Z9nRK8MRhm7j10+pgfykg==
+X-CSE-MsgGUID: cGDKS9oGRjilQfdIGSLlbA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="235061550"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2026 03:23:19 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Tue, 12 May 2026 03:23:18 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Tue, 12 May 2026 03:23:18 -0700
+Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.10) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Tue, 12 May 2026 03:23:17 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Hi6MXjfIR2pbE6vwreY69bXc0sm6T0XX8CKHhc1nJxBlFzAScAPcKL/iJAukJLt5D5TvqV3sAK6tbwtxzX6a7QET8+z9MKzxy45hYw7nHcRCJ17BTJ4zlNT8kqY80L08HOyueLU11npFJmlN5McvQndXAp6vDdxH4KGfEaoPwrrGAHXWMcKLKQCEXdIv0uDQMb5Q7+beTVJZfongsRe1fKqNqXi8QpNh/ynxXiE8orqch+Nblc3awFcF0RC8s6f0o/5/9EaV9E4LQrH+ZGd/hT6Hm+lbaFr1+wutL9uGTGcvhmOPXZH1iWjoLLQEA62poduDP7EmUMfRN6B3kXYuvA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=aDDMO2Iqdq/DnoUfwxrHvJpUArQRz8VkV9kvW5DuRzE=;
+ b=FoezmECdp+Iug1Q9gPNpXZYiWoRICtGkHTtAV8RLD3TM1jfxwbMDrKxuaGk6VSd1yxaX8kPsEPfhtdhLHHYnmmzp11lOzGI+IDNH7GXgZiaCX8KpvvsaS+hOMRA2EuXcLSw+AM9dUq44uPI7NHMlrveX8ot2JxnCuI+2rZn26hbSdr7lSazDxf4Ni6mWlXrYkNBW7LVjbVLH7gmK9zkyxvaqggBYw5KAG87V1KPpNxQmYjJXDlqNKxFuAGStUONkxFCfL2UOoWiEqij2N3w5hGKB1Ev2q770/4gxiJtyDg9D8csGHRPpwa6cWYjpaseewWNVHmhBCWKawBkTTiIKog==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH8PR11MB6974.namprd11.prod.outlook.com (2603:10b6:510:225::16)
+ by DS0PR11MB7333.namprd11.prod.outlook.com (2603:10b6:8:13e::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9913.11; Tue, 12 May
+ 2026 10:23:14 +0000
+Received: from PH8PR11MB6974.namprd11.prod.outlook.com
+ ([fe80::44a4:1ecf:f303:d08f]) by PH8PR11MB6974.namprd11.prod.outlook.com
+ ([fe80::44a4:1ecf:f303:d08f%4]) with mapi id 15.20.9891.008; Tue, 12 May 2026
+ 10:23:14 +0000
+Date: Tue, 12 May 2026 15:53:05 +0530
+From: "Vivekanandan, Balasubramani" <balasubramani.vivekanandan@intel.com>
+To: Shekhar Chauhan <shekhar.chauhan@intel.com>,
+ <intel-xe@lists.freedesktop.org>
+Subject: Re: drm/xe/devcoredump: Drop a FIXME in devcoredump
+Message-ID: <agL_iRQF1m1xaP4o@bvivekan-mob1>
+References: <20260512055508.1380191-1-shekhar.chauhan@intel.com>
+ <agLUJsi3ZoPFyc0j@bvivekan-mob1>
+ <0a9d21ce-4af3-44a4-81be-dcf39d9f9cc5@intel.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <20260504172858.GO1344263@killaraus.ideasonboard.com>
+In-Reply-To: <0a9d21ce-4af3-44a4-81be-dcf39d9f9cc5@intel.com>
+X-ClientProxiedBy: MA5PR01CA0070.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1b7::10) To PH8PR11MB6974.namprd11.prod.outlook.com
+ (2603:10b6:510:225::16)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR11MB6974:EE_|DS0PR11MB7333:EE_
+X-MS-Office365-Filtering-Correlation-Id: 79f5bd2d-d4c4-4575-e054-08deb0107972
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|1800799024|366016|22082099003|18002099003|56012099003|11063799003;
+X-Microsoft-Antispam-Message-Info: 2aypGDYVqBwzLE9VUIK5mAMOUnlaEQimWiq5cMQcAWc8C3Diqv8CVEkm6UThDmn7hz5/kbiqZ3npe8LMi2uYbwTiPJkkti2erZvVkGX1j3VqrdQJ6VEu8022ZRsRDtJ8Loz/+NPSq0I0ZfWnCXoU4xBFGIuh6mmXytgrY9nl1o0dD3ITuEdyzTp79fgn7o/Am+87YGg4RJvKmMo0bCmPE+fPQcsDTF/qlXRsfoF02L/vDiv0FQO/eCyZlhYWNuLTJeCCI3Oijq8J0fl1/BcmEmpMWpaWwZy7IvRS+6iPfPTrB+D7e4dnlQX2lEx3oA6sB76i3QjemRBX2reGx5S8eNePSNmbUA8tUOrNu0Xfa8RiL6zEbKb/cO9yltgr4Sv9wKaABMc3U+Y78CDBexKLFNmMbEdFdxw1FIKHvjz3hRDx8A8x26HVzhkkabLSkA9yUcIMW8Rs2UFFr7h+wxoa7a9uf+//F0XPI8ohVDBsw08sINh1L7DhwbtpFkY27UAxmFAiteN0n/iCz2D7ykv4uVZ+uLb8eR1ghuDMT/Kvn8VKjuUR9oBASx2FAnPX8/v8JPoJGYn5Z7g2OQzmrRH0LjjWyq+Z1BxEp+/rQrhsIpnNMWpr7gSjeExnyDTWITA2cQ197TT+9aiF8E+WA4JXEw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB6974.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(22082099003)(18002099003)(56012099003)(11063799003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZmVYUlE3dWpubFhoMko3OUlUdnI3NDRFdkZxU3VGeFZLejllZ1pRN3ZwY09x?=
+ =?utf-8?B?UXg2czJiNWJXQW9yaEJsa00zeSt2UnlReS9wUDJ3VU55MktwQ1JRdURhM1lR?=
+ =?utf-8?B?YjMvS0gxbjNaQ3hSYStnVlRMWGJzUW9ab2dyRDd3UjFoMjcwR2kzVEp2ZUhX?=
+ =?utf-8?B?b3FuQTVBL1ovMkV2RW1zRlZ3VStQa25nYUdsd0xTQXBZV0hueDNBbHFwZGlp?=
+ =?utf-8?B?SG50dFpqeE4rNWR4WFlYSmpMcFEvZmk0M3QrTi9XOVZaczR5dWNKN2tiVWN3?=
+ =?utf-8?B?NWJMeEhmbU5WQkp4dXc5S3RkL3oxTXlNOWt1cVU1ZmRIU1p5NU9TaXplWmFF?=
+ =?utf-8?B?NG11ZkszOXRpMDAxUWswYmF1NEU0c1k0eWFzWmRKTS9xSm5oOE1yVjZTRXp6?=
+ =?utf-8?B?aWd6Y1JLaGpQYTBqYnhCSFRkNWpXazk3ZkJUdHJhRUROYVBHZS82SWpTaDcr?=
+ =?utf-8?B?elhMTmEzeTFFSlp3eHNjaVBlY29TamNPQkRHSlU0TzFOa3d2ZE1qVmhoWEdn?=
+ =?utf-8?B?eGMwV3IzbWZWMkdITUttU2xCTkJXNllYTCtCNWJFdjRQUStjSjdOUG5aUUJ1?=
+ =?utf-8?B?VEMzMENDNEhCdTVBSjA1QjVjcmVNMHdiVXIzVnVnelJ2OHpmMzVTUHMvR2Jn?=
+ =?utf-8?B?MHBTKzY0TUVqak5OMk9wUVlRL2VxdENpeUtaaXZxVUZMZ2RqZFlJVkRzUVFU?=
+ =?utf-8?B?VjNqdTFtM0tMY1ZPb2VFWXVISktRbC9lRXZZY0duOXNML0piZ0FOckVMbUVu?=
+ =?utf-8?B?QWpSNFlSU0dyWExjanl1Q2huRCtEOVRMTEwrWEhObUhmZERjWk4vdHl4dFJN?=
+ =?utf-8?B?MExBaWsxYmh3QlZ4SGZleTBLYXg2R1kxOEg1TnhvOVN6Nmc3dGxQL2Q2aWtn?=
+ =?utf-8?B?MXJTK2FOYWIxUm5BNGQ4UmJuOGFJZGNGNXY0TE9DaDBCd2lWVmRKVFNnYmZa?=
+ =?utf-8?B?VXlrTWtXUDdPYm5nZ3FtWk9XcS9XZGlBSCszSlg0clF4UGFjd1FwVUJKV3Ir?=
+ =?utf-8?B?TWV6ZFk0akY4enBFOGExd1FibjE0YjdNTGhtNnZJVHJ0NlR0cXFVUlJMTmFr?=
+ =?utf-8?B?Ym9PWTBQV1MvMGZrR2JBdXJ3NXJtbVFqRG9mTWMrendiVWZhcHFwS1J4YVYr?=
+ =?utf-8?B?K0poK0dqNHA5YWc1THcyMUlVSTlwSjhKTEhaT0tTMXQwVVZWa2dqSDNSQ0Jt?=
+ =?utf-8?B?OHpyUVNMdVRlemcxbW1zT3BKSHJ4Vk1Cb0NReVBlWnpNMVBGb0J4RDNzU3pF?=
+ =?utf-8?B?NklCb0lkOEFRU1pJK2RWKzA0L09wTDhwMXA1S210VjJYcHF4UmRRNllLS1lH?=
+ =?utf-8?B?VDhEanplY0N4R3VWLzd5SS9ad3JVOHRxU1hXTGE5emQ4b0g2MVRZSHpCWnNt?=
+ =?utf-8?B?d0tRVlVrT1RvUGszTGRqK3VaTEp3RkpPcG01RXZqdDZPQmN2eU8waVE5U3V3?=
+ =?utf-8?B?UHVHZU9ibUVQVlZySHdWeGp3VVc5SE1uUy9STTZoTDVwVStIY0RzbDgyZ1Uz?=
+ =?utf-8?B?NEhsNnhuREJSRmhZTW5nSDZLY2NpQ3lPbUE1eXNwcTBNdWh6QVRPZ3M0SEh4?=
+ =?utf-8?B?TjBKcE1FazV4dE9LbWprUTVGcWVoZVlFbGNDY05CWFRRSStIT3VhVWlWTEZG?=
+ =?utf-8?B?WjMzSXFnMHhuTzNRUEhPZGNCYUh0MmpyUzEvWG02QVJobHluUHNDUWVWWFRX?=
+ =?utf-8?B?RU5tYTJrNVJsZUxibWRKWTExNVhaZEVYTFNMN1NLdjd2ZEhYNHVpRDg2UXQ0?=
+ =?utf-8?B?bnRKOTVEMXE0cUhTbGd3cENzbG1xNnczU0hNdVNhTm9Ccm1vd0NaLzNGemdm?=
+ =?utf-8?B?VWRqQ0wrY3Zqc0plMStSZlcyaUFSMUo3NkhFWnhlSEpvUWZzdmtrR1NtWjB1?=
+ =?utf-8?B?MFcveC9DWXZ6SVV5Szk2QUg4VjUzQVoreHlnVEpwYjdyeEo2NDNjMVpQTWM1?=
+ =?utf-8?B?ekNSWk1scHg1SEJNL3VrUWRxbjl5VXorTWlBc3ZDMmQrMzZ3NHZOWkJGNXBl?=
+ =?utf-8?B?c3RFdnMrSDZ2N0FTNU1jZGM5S1Bsa3VyV0l3SHBsbUU2UVlHZ2FtNmZDSlZW?=
+ =?utf-8?B?WTlabmtzeXo1dm5GR21UTkJNczB6ekpOaURoanhXbW93cnI2aTgyRXQ5ZUJ5?=
+ =?utf-8?B?VkNWdzA4WjM4c0NScWdkemRhK2czRVZvazJqVlNyQ0hvV0QyWDBEZldQd245?=
+ =?utf-8?B?Zm5hdCtMZDlMcjNIY0hISGM2ZFBJVWZsNWR4Y3k0WlgyWFhOMzlwNncyaGhE?=
+ =?utf-8?B?dFI2enI3YXdhQmQ5RTJHNllacENIOE5pMExnQmYzSFcvZGQ0YVFwYVhBZDl3?=
+ =?utf-8?B?V0FRK0RYVTY0QWkyYjFYQXd1TDk5ZU1zeldGUk1vZ0duWGhCVXdnRFVpd3o3?=
+ =?utf-8?Q?rxYlM1sCvUFztVj4xyacuEOJaDVojFGsQuNPT?=
+X-Exchange-RoutingPolicyChecked: i89huaGwGEQTL5esqxbUWd5UCZuxsNHduwXSlyj03ZpYsld4VopV9B28vBCaNmwaMirczFcTgWxZ5nUX2ele6l3R7BzJMve3mYtk80UJQooIenJyLFX9K2zYUqaUvwXsqzrurq1Dx1YPBQH+Rge6X6q6KflZLTuOJsz3mZLPa737zy36L9795UwOLGlfWtcgTz3Ynre0jd9lKPOxJ5pt+uFU8LK6arYxGmLizhPXzL0y3JKQajlxOTLz4jRhE+fNM80sKEKcdFx2gGIWmZ+9JwFTdeEpgj+j0ch//TNCXpHRG1n5gaWdLxgoTGFer1BJ4lF9I3l80RITehPu1hrJWg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 79f5bd2d-d4c4-4575-e054-08deb0107972
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB6974.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2026 10:23:14.1006 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: wjsRPycMvlkFMi90qf9bGxxPWVQX83nEpUDgXsRSSA+Q2aIuEfGZN+TvOL6e/hLQ40yNdIMyivzaXQncMDfL2+8bkBNZubXntZogJqe0LvMXWHPc6wwURblzSdOoF8K1
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7333
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,124 +167,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On 12.05.2026 14:27, Shekhar Chauhan wrote:
+> 
+> On 5/12/2026 12:47, Vivekanandan, Balasubramani wrote:
+> > On 12.05.2026 11:25, Shekhar Chauhan wrote:
+> > > The FIXME says that xe_engine_snapshot_print.. is accessing persistent
+> > > driver data, unlike what the FIXME says that it does. Drop the FIXME
+> > > since the current code is not going to access the hardware while
+> > > dumping.
+> > Is there any typo in the above commit message? Did you intent to say
+> > 
+> > The xe_engine_snapshot_print.. is accessing persistent
+> > driver data, unlike what the FIXME says that it does.
+> > 
+> > After making that correction,
+> > 
+> > Reviewed-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+> Okay, that can be done (although my initial intent was to keep it as "that"
+> to signify what the FIXME said). But, making it as "the" instead of "that"
+> also makes sense.
+> 
+> Since it is a minor change, do you think I should send a new revision for it
+> or is this something the maintainer(s) can just take care of while merging?
 
---xucbq2efeno5xzls
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 12/20] drm/crtc: Add new atomic_create_state callback
-MIME-Version: 1.0
+I can make the change the apply the patch.
 
-Hi,
+Regards,
+Bala
 
-On Mon, May 04, 2026 at 08:28:58PM +0300, Laurent Pinchart wrote:
-> On Fri, Apr 24, 2026 at 12:18:52PM +0200, Maxime Ripard wrote:
-> > Commit 47b5ac7daa46 ("drm/atomic: Add new atomic_create_state callback
-> > to drm_private_obj") introduced a new pattern for allocating drm object
-> > states.
-> >=20
-> > Instead of relying on the reset() callback, it created a new
-> > atomic_create_state hook. This is helpful because reset is a bit
-> > overloaded: it's used to create the initial software state, reset it,
-> > but also reset the hardware.
-> >=20
-> > It can also be used either at probe time, to create the initial state
-> > and possibly reset the hardware to an expected default, but also during
-> > suspend/resume.
-> >=20
-> > Both these cases come with different expectations too: during the
-> > initialization, we want to initialize all states, but during
-> > suspend/resume, drm_private_states for example are expected to be kept
-> > around.
-> >=20
-> > reset() also isn't fallible, which makes it harder to handle
-> > initialization errors properly. This is only really relevant for some
-> > drivers though, since all the helpers for reset only create a new
-> > state, and don't touch the hardware at all.
-> >=20
-> > It was thus decided to create a new hook that would allocate and
-> > initialize a pristine state without any side effect:
-> > atomic_create_state to untangle a bit some of it, and to separate the
-> > initialization with the actual reset one might need during a
-> > suspend/resume.
-> >=20
-> > Continue the transition to the new pattern with CRTCs.
-> >=20
-> > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> > Signed-off-by: Maxime Ripard <mripard@kernel.org>
-> > ---
-> >  drivers/gpu/drm/drm_atomic_state_helper.c | 47 +++++++++++++++++++++++=
-++++++++
-> >  drivers/gpu/drm/drm_mode_config.c         | 21 +++++++++++++-
-> >  include/drm/drm_atomic_state_helper.h     |  4 +++
-> >  include/drm/drm_crtc.h                    | 16 +++++++++++
-> >  4 files changed, 87 insertions(+), 1 deletion(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/drm_atomic_state_helper.c b/drivers/gpu/dr=
-m/drm_atomic_state_helper.c
-> > index 9cd8550cabb7..b7da134c8c50 100644
-> > --- a/drivers/gpu/drm/drm_atomic_state_helper.c
-> > +++ b/drivers/gpu/drm/drm_atomic_state_helper.c
-> > @@ -103,10 +103,32 @@ __drm_atomic_helper_crtc_reset(struct drm_crtc *c=
-rtc,
-> > =20
-> >  	crtc->state =3D crtc_state;
-> >  }
-> >  EXPORT_SYMBOL(__drm_atomic_helper_crtc_reset);
-> > =20
-> > +/**
-> > + * __drm_atomic_helper_crtc_create_state - initializes crtc state
->=20
-> "Initialize a CRTC state"
-
-Good catch, thanks.
-
-> The name of the function is misleading ("*_create_*" while you state it
-> performs initialization).
->
-> > + * @crtc: crtc object
-> > + * @state: new state to initialize
-> > + *
-> > + * Initializes the newly allocated @state, usually required when
-> > + * initializing the drivers.
-> > + *
-> > + * @state is assumed to be zeroed.
-> > + *
-> > + * This is useful for drivers that subclass @drm_crtc_state.
-> > + */
-> > +void __drm_atomic_helper_crtc_create_state(struct drm_crtc *crtc,
-> > +					   struct drm_crtc_state *state)
-> > +{
-> > +	__drm_atomic_helper_crtc_state_init(state, crtc);
-> > +
-> > +	if (drm_dev_has_vblank(crtc->dev))
-> > +		drm_crtc_vblank_reset(crtc);
->=20
-> This is confusing to me (at least before reading the rest of the
-> series), and itn't mentioned in the function documentation or in the
-> commit message.
->
-> Furthermore, __drm_atomic_helper_crtc_create_state() is later used in
-> tidss_crtc_create_state(), which is the
-> drm_crtc_funcs.atomic_create_state() implementation of the tidss driver.
-> The atomic_create_state documentation states that "This callback must
-> have no side effect", and drm_crtc_vblank_reset() has side effects.
-
-That's a good point. I've dropped that function entirely and moved the
-drm_crtc_vblank_reset() call in drm_mode_config_crtc_create_state().
-
-Maxime
-
---xucbq2efeno5xzls
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCagL+FQAKCRAnX84Zoj2+
-dnNzAX0fzjsGevsyIM+1eS7aSdqPXqaWO2e4vKxwlm1t0+VWLC1LChDXcVfr74JX
-gfLRKAABgLDj6dDvAIYO++YmRFrG/pDTCiRABTfTFmqA3MNWXLLdVzFuX/WVI0ll
-s+ZfkvI9qg==
-=NbJq
------END PGP SIGNATURE-----
-
---xucbq2efeno5xzls--
+> 
+> -shekhar
+> 
+> > 
+> > Regards,
+> > Bala
+> > 
+> > 
+> > > More details about this patch:
+> > > https://patchwork.freedesktop.org/patch/703884/?series=161407&rev=1
+> > > The starting two feedbacks make sense and the original patch is wrong
+> > > in adding those changes, but the last feedback is the one which
+> > > highlights the point.
+> > > 
+> > > Signed-off-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
+> > > ---
+> > >   drivers/gpu/drm/xe/xe_guc_capture.c | 6 ------
+> > >   1 file changed, 6 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
+> > > index bc49e40165a3..21f7caf9ea08 100644
+> > > --- a/drivers/gpu/drm/xe/xe_guc_capture.c
+> > > +++ b/drivers/gpu/drm/xe/xe_guc_capture.c
+> > > @@ -1841,12 +1841,6 @@ void xe_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot, struct drm
+> > >   		   str_yes_no(snapshot->kernel_reserved));
+> > >   	for (type = GUC_STATE_CAPTURE_TYPE_GLOBAL; type < GUC_STATE_CAPTURE_TYPE_MAX; type++) {
+> > > -		/*
+> > > -		 * FIXME: During devcoredump print we should avoid accessing the
+> > > -		 * driver pointers for gt or engine. Printing should be done only
+> > > -		 * using the snapshot captured. Here we are accessing the gt
+> > > -		 * pointer. It should be fixed.
+> > > -		 */
+> > >   		list = xe_guc_capture_get_reg_desc_list(gt, GUC_CAPTURE_LIST_INDEX_PF, type,
+> > >   							capture_class, false);
+> > >   		snapshot_print_by_list_order(snapshot, p, type, list);
+> 
+> -- 
+> Shekhar Chauhan
+> Linux Graphics Software Engineer
+> Intel Corporation
+> 
