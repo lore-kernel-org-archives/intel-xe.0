@@ -4,60 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D077CD4F35
-	for <intel-xe@archiver.kernel.org>; Tue, 12 May 2026 10:51:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7903CD4855
+	for <intel-xe@archiver.kernel.org>; Tue, 12 May 2026 11:04:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 500BC10E2F8;
-	Tue, 12 May 2026 10:51:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3949A10EA2B;
+	Tue, 12 May 2026 11:04:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JpuDCRh2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y2WobDpG";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBB1210E26B;
- Tue, 12 May 2026 10:51:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 102B710E2F8;
+ Tue, 12 May 2026 11:04:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778583101; x=1810119101;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=B3hS72iLs17s6+NFd5lcvAOr/XV+qfLFp3Vu+zEXkBk=;
- b=JpuDCRh2H40+v96uGdojSJz20vK1Zs+MSzb+XNSsKhmsVNSmH+Per11u
- Yjp2UAVXF1PdZjWGdADXacDP/vEiGLSHSe/hK6aufck1WotaiIJCBkHd+
- LhUGC1AjkOc7YPCJlscI//QEKgSMoAIucmM2muZOVMesfZN4Pfem3dnek
- dZQc+mD1qHCl5spX9AE2CV6Kmi+EPesUP6S23kdlsNOM9DJ9dvn6D1q9w
- Vp/40vxoiFqtoR8u70RxaSiHcBDmy6CkXR2LFDj29nCgiYtyLRv/siFhB
- YeQmCJvFNh8xTjKXw9xz80qMbbkK3RnAhgO7X9/dqPgPHlpy0j+zBcxOl A==;
-X-CSE-ConnectionGUID: AFHpfj5OSy6wixBu3Oqcgg==
-X-CSE-MsgGUID: 7buCQCXQSAOHKcFiVU4pWw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="89791126"
-X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="89791126"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2026 03:51:41 -0700
-X-CSE-ConnectionGUID: DyBIFdq+RoKxLf03evjm7Q==
-X-CSE-MsgGUID: +Pywwp5vTcu6AbRrb0c+Tw==
+ t=1778583846; x=1810119846;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=7KOlaCmQVQ38tmd3TXFpuRwgbIM2E/PLAoYmYrZ5mX0=;
+ b=Y2WobDpG4CSJaZu/BJcSyrd10/KV34QMv9u2l2Bim+jcXdSXQ2vN2vpw
+ nz+kD232gm55SjDVAAtrrJH901NEDxpGSoNOup3bKaVorNpIJEgSfqA+0
+ eItWJvQhe31FrL/Pw3xYZa7vAdgvR1HSwQr0PGKXCrye1MgHrqITK9gzN
+ XuhDHEKRd6BsyJDqWyOBy3rWudf31M8a6z5TFSBMhui9JndP7cTyd3Kkz
+ cLjdV5s2t+1gQNQtybhDOhIT6op5j9hI2s7xwK6TsSGN3Uj2aQAeAicmB
+ 5+gRn8tmyJYen9lgvmNNtJ8iPFUR2LtX0rQn28my6s78bv9CK+G2ml5Mp Q==;
+X-CSE-ConnectionGUID: ykih6GgER3uWmSOD8tZMMw==
+X-CSE-MsgGUID: 1G5qVnmkRAuyGZMPSlO8EA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="104944450"
+X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="104944450"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2026 04:04:05 -0700
+X-CSE-ConnectionGUID: TOA3ylJtRESQSd0LzmadNg==
+X-CSE-MsgGUID: XsVunJPJTWeK9QXHKv0OgA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="261228942"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.245.203])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2026 03:51:37 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com, uma.shankar@intel.com,
- chaitanya.kumar.borah@intel.com, pranay.samala@intel.com
-Subject: Re: [PATCH v3 3/4] drm/i915: Avoid programming color HW blocks for
- NV12 Y planes
-In-Reply-To: <20260511053213.3122314-4-chaitanya.kumar.borah@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260511053213.3122314-1-chaitanya.kumar.borah@intel.com>
- <20260511053213.3122314-4-chaitanya.kumar.borah@intel.com>
-Date: Tue, 12 May 2026 13:51:34 +0300
-Message-ID: <e6f018b234eec50c96035973f9028af74acb3feb@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="231339480"
+Received: from vpanait-mobl.ger.corp.intel.com (HELO fedora) ([10.245.245.172])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2026 04:04:00 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ David Hildenbrand <david@kernel.org>, Lorenzo Stoakes <ljs@kernel.org>,
+ "Liam R. Howlett" <liam@infradead.org>,
+ Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>,
+ Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
+ Hugh Dickins <hughd@google.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Brendan Jackman <jackmanb@google.com>,
+ Johannes Weiner <hannes@cmpxchg.org>, Zi Yan <ziy@nvidia.com>,
+ Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, dri-devel@lists.freedesktop.org,
+ linux-mm@kvack.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] Insert instead of copy pages into shmem when shrinking
+Date: Tue, 12 May 2026 13:03:37 +0200
+Message-ID: <20260512110339.6244-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,91 +82,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 11 May 2026, Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com> wrote:
-> link_nv12_planes() currently copies the full UV plane hw state to
-> the Y plane. This includes the color pipeline blobs (ctm, degamma_lut,
-> gamma_lut, lut_3d) which is incorrect as we don't need to program these
-> HW blocks for Y plane.
->
-> This is harmless currently as the color pipeline uapi does not support
-> YUV (both packed and planar) formats but that can change in the future.
->
-> Add a new static helper intel_plane_y_copy_hw_state() that copies only
-> the rendering parameters a Y plane actually needs, leaving all color
-> pipeline blobs unset. Remove the helper intel_plane_copy_hw_state() as
-> there are no users for it.
->
-> Assisted-by: GitHub Copilot:Claude Sonnet 4.6
-> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_plane.c | 26 +++++++++++++---------
->  drivers/gpu/drm/i915/display/intel_plane.h |  2 --
->  2 files changed, 16 insertions(+), 12 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_plane.c b/drivers/gpu/drm/i915/display/intel_plane.c
-> index a8efe0011b23..559eef467dda 100644
-> --- a/drivers/gpu/drm/i915/display/intel_plane.c
-> +++ b/drivers/gpu/drm/i915/display/intel_plane.c
-> @@ -450,16 +450,22 @@ void intel_plane_copy_uapi_to_hw_state(struct intel_atomic_state *state,
->  	intel_plane_color_copy_uapi_to_hw_state(state, plane_state, from_plane_state, crtc);
->  }
->  
-> -void intel_plane_copy_hw_state(struct intel_plane_state *plane_state,
-> -			       const struct intel_plane_state *from_plane_state)
-> +static void intel_plane_y_copy_hw_state(struct intel_plane_state *y_plane_state,
-> +					const struct intel_plane_state *uv_plane_state)
->  {
-> -	intel_plane_clear_hw_state(plane_state);
-> -
-> -	memcpy(&plane_state->hw, &from_plane_state->hw,
-> -	       sizeof(plane_state->hw));
-> -
-> -	if (plane_state->hw.fb)
-> -		drm_framebuffer_get(plane_state->hw.fb);
-> +	intel_plane_clear_hw_state(y_plane_state);
-> +
-> +	y_plane_state->hw.crtc		= uv_plane_state->hw.crtc;
-> +	y_plane_state->hw.fb		= uv_plane_state->hw.fb;
-> +	if (y_plane_state->hw.fb)
-> +		drm_framebuffer_get(y_plane_state->hw.fb);
-> +
-> +	y_plane_state->hw.alpha		= uv_plane_state->hw.alpha;
-> +	y_plane_state->hw.pixel_blend_mode = uv_plane_state->hw.pixel_blend_mode;
-> +	y_plane_state->hw.rotation	= uv_plane_state->hw.rotation;
-> +	y_plane_state->hw.color_encoding = uv_plane_state->hw.color_encoding;
-> +	y_plane_state->hw.color_range	= uv_plane_state->hw.color_range;
-> +	y_plane_state->hw.scaling_filter = uv_plane_state->hw.scaling_filter;
+To be able to easily maintain pools of pages mapped uncached or
+write-combined, TTM doesn't use shmem directly for buffer object memory,
+but on shrinking, page contents are backed up to shmem objects so that
+the content later can be swapped out.
 
-Please drop the extra spaces before ='s.
+At shrink time that puts some strain on the memory reserves. To copy
+a high-order page, one either has to dip far into the kernel
+reserves (one high-order page size) before any memory can be released,
+or one can chose to split the high-order page into order 0 pages and
+free them as soon as they are copied. The latter approach is used
+by TTM but that tends to fragment higher-order pages.
 
-BR,
-Jani.
+One approach to get around this is to insert the higher-order pages
+directly into shmem objects, so that if CONFIG_THP_SWAP is enabled,
+they can be swapped out without splitting. And at shrink time there
+will be no additional memory allocation save for the shmem radix tree
+allocations.
 
->  }
->  
->  static void unlink_nv12_plane(struct intel_crtc_state *crtc_state,
-> @@ -1549,7 +1555,7 @@ static void link_nv12_planes(struct intel_crtc_state *crtc_state,
->  	crtc_state->rel_data_rate[y_plane->id] = crtc_state->rel_data_rate_y[uv_plane->id];
->  
->  	/* Copy parameters to Y plane */
-> -	intel_plane_copy_hw_state(y_plane_state, uv_plane_state);
-> +	intel_plane_y_copy_hw_state(y_plane_state, uv_plane_state);
->  	y_plane_state->uapi.src = uv_plane_state->uapi.src;
->  	y_plane_state->uapi.dst = uv_plane_state->uapi.dst;
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_plane.h b/drivers/gpu/drm/i915/display/intel_plane.h
-> index 9d627d321f2e..a5bb0caa54a1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_plane.h
-> +++ b/drivers/gpu/drm/i915/display/intel_plane.h
-> @@ -39,8 +39,6 @@ void intel_plane_copy_uapi_to_hw_state(struct intel_atomic_state *state,
->  				       struct intel_plane_state *plane_state,
->  				       const struct intel_plane_state *from_plane_state,
->  				       struct intel_crtc *crtc);
-> -void intel_plane_copy_hw_state(struct intel_plane_state *plane_state,
-> -			       const struct intel_plane_state *from_plane_state);
->  void intel_plane_async_flip(struct intel_dsb *dsb,
->  			    struct intel_plane *plane,
->  			    const struct intel_crtc_state *crtc_state,
+Add a shmem interface to insert isolated pages, with enough
+asserts to avoid a user of the interface inserting pages
+confusing shmem. Then make TTM use that interface.
+
+As an alternative, one could add an interface to insert pages
+directly into the swap cache, but since the swap cache doesn't seem
+intended for inserting pages for which we don't immediately
+schedule a writeout, the shmem approach was chosen.
+
+Thomas Hellström (2):
+  mm/shmem: add shmem_insert_folio()
+  drm/ttm: Use ttm_backup_insert_folio() for zero-copy swapout
+
+ drivers/gpu/drm/ttm/ttm_backup.c |  92 ++++++++++-----------------
+ drivers/gpu/drm/ttm/ttm_pool.c   |  67 ++++++++++++++------
+ include/drm/ttm/ttm_backup.h     |  11 ++--
+ include/linux/mm.h               |   1 +
+ include/linux/shmem_fs.h         |   2 +
+ mm/page_alloc.c                  |  21 +++++++
+ mm/shmem.c                       | 105 +++++++++++++++++++++++++++++++
+ 7 files changed, 216 insertions(+), 83 deletions(-)
 
 -- 
-Jani Nikula, Intel
+2.54.0
+
