@@ -4,61 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09A40CD4F24
-	for <intel-xe@archiver.kernel.org>; Wed, 13 May 2026 14:58:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C811CD4F24
+	for <intel-xe@archiver.kernel.org>; Wed, 13 May 2026 15:13:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A32A910EF09;
-	Wed, 13 May 2026 14:58:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFA8110EF1B;
+	Wed, 13 May 2026 15:13:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nb6QF9K7";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="bh0TgWy+";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 846E110EF02;
- Wed, 13 May 2026 14:57:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778684279; x=1810220279;
- h=message-id:subject:from:to:date:in-reply-to:references:
- content-transfer-encoding:mime-version;
- bh=nVS3kt3V8BGNmtrLQJEFZZE5l/jxxtNeysdVWTtN0kI=;
- b=nb6QF9K74lsrjm9o2QnbRzHdzjYJxb6Lu2VgKxJajSihmjCWQ4Bp3ZNt
- xV396qnPxxDB2hREB0aRsRIgEZtAJtFj+DoNRELspMgmWt9KsCndxE4oN
- oFTV6fEzFOtyhqy6JceXzql3h1UOsSFCX+0yIVTN9k2/EGFh3NwD0zZ39
- thAakc3IyF5+zgBxL3bP2FBBahn763U+cthSdq4cQlUVNMfJANHWShXHl
- fsnt+R4ocuPQ8Ke2swvP3xPwMnAmbzJiliwlJ3z6MQlWFLupjgZx539pV
- f4N15yfmTAz28S25NW/fjDA8HDiCesvNl+IyjjXzUaryvjDJ4HVB9wENM w==;
-X-CSE-ConnectionGUID: nVGAHTtOTj2UKunKtjZhDQ==
-X-CSE-MsgGUID: sUHBsjgXQHekiS32BeFaMg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11785"; a="79728665"
-X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="79728665"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2026 07:57:58 -0700
-X-CSE-ConnectionGUID: Rcu9dULLSC+mWoHyRgMcNA==
-X-CSE-MsgGUID: 16+KQekbSn+gyRn1Ae+vaw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="239917959"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO [10.245.244.49])
- ([10.245.244.49])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2026 07:57:55 -0700
-Message-ID: <233b5a1e9383e9c9ac6a10beee635cfcffc2336b.camel@linux.intel.com>
-Subject: Re: [PATCH] drm/xe: Fix operator precedence bug in
- emit_flush_invalidate
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: lirongqing <lirongqing@baidu.com>, Matthew Brost
- <matthew.brost@intel.com>,  Rodrigo Vivi <rodrigo.vivi@intel.com>, David
- Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,  Matthew Auld
- <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org,
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB13210EE0A
+ for <intel-xe@lists.freedesktop.org>; Wed, 13 May 2026 11:55:26 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 87876444A5
+ for <intel-xe@lists.freedesktop.org>; Wed, 13 May 2026 11:55:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D076C2BCF5
+ for <intel-xe@lists.freedesktop.org>; Wed, 13 May 2026 11:55:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1778673326;
+ bh=C3ROoSAwEcHmpVj4q2nXE9Zx2ZOZUZAfV3pe+l9yKtQ=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=bh0TgWy+eepwj2qnbn9Rc3qYpCqJLPwMWlEQbiwSrKH5tnYeUUxAyM+acmatna/d0
+ bT+bKrITNGzPCW7k/nmRZFlOqsOwK8hE73H/w62ib0yp1843+uP6BxNttJwaMKvExP
+ N1yvsRysJsvMOJvCF07i4kCwa8710Bf7vSOmvABfpxMurufWzXS1Wow/dqJJ5ybMdP
+ dT7G/QMOcYEGUGyCcrrP5C9TGD/MGKFrOnoXNydAdFCCYKgsH5hiBcU7p48blC/lpy
+ pVHuh+PGbdSN0o3cwqyC82SUJY/j0Bqp61k8JN/YjLFwO298TbChViZHTjcsEbVrGD
+ Rc4Y5M8iAMRmA==
+Received: by mail-lf1-f50.google.com with SMTP id
+ 2adb3069b0e04-5a8c94cefcdso2693685e87.0
+ for <intel-xe@lists.freedesktop.org>; Wed, 13 May 2026 04:55:26 -0700 (PDT)
+X-Forwarded-Encrypted: i=1;
+ AFNElJ82KNJsLSYYsNsrz2Mer0ulEv4NHg52aB3c/jbiqaiX7TQeI3uwjOXo551inukHbHLAgvCT3Uhu3g==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyFUe/d+yzACXpMr01kaOLOVI2i35az+jU+di8syP0HcSI8vD4o
+ GfndwPmcLkYOel4k1yYBUzHG8V0fvgrlWaY2lQiS3Vr4XAOkCCc5v92bYKEHXvccmXtUmyyrW1e
+ eBHP8GIvcl4Qzo7ZDYsLXBbAaFQLKfKIGe73VHk9YDA==
+X-Received: by 2002:a05:6512:68a:b0:5a8:9b6a:5749 with SMTP id
+ 2adb3069b0e04-5a8ef9af8a5mr1068752e87.28.1778673324966; Wed, 13 May 2026
+ 04:55:24 -0700 (PDT)
+MIME-Version: 1.0
+References: <20260512-swnode-remove-on-dev-unreg-v5-0-0035eff63812@oss.qualcomm.com>
+ <20260512-swnode-remove-on-dev-unreg-v5-3-0035eff63812@oss.qualcomm.com>
+ <DIGUBLZXZXPJ.8CX0K5EL6255@kernel.org>
+In-Reply-To: <DIGUBLZXZXPJ.8CX0K5EL6255@kernel.org>
+From: Bartosz Golaszewski <brgl@kernel.org>
+Date: Wed, 13 May 2026 13:55:11 +0200
+X-Gmail-Original-Message-ID: <CAMRc=MdnKgkxsiw7UtpXaSYf+5WHMWZidy4YukPhndZY2Uft9w@mail.gmail.com>
+X-Gm-Features: AVHnY4IuEQ8uACIYu2CQFY2xUnaqBV75CJzYWeWWso-yewElWdvH5VZ2Hb43cmI
+Message-ID: <CAMRc=MdnKgkxsiw7UtpXaSYf+5WHMWZidy4YukPhndZY2Uft9w@mail.gmail.com>
+Subject: Re: [PATCH v5 3/7] driver core: platform: provide
+ platform_device_add_software_node()
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Brendan Higgins <brendan.higgins@linux.dev>, 
+ David Gow <david@davidgow.net>, Rae Moar <raemoar63@gmail.com>, 
+ Andy Shevchenko <andy@kernel.org>, Maximilian Luz <luzmaximilian@gmail.com>, 
+ Hans de Goede <hansg@kernel.org>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+ Matthew Brost <matthew.brost@intel.com>, 
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, driver-core@lists.linux.dev,
+ linux-kernel@vger.kernel.org, 
+ linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
+ platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org, 
  dri-devel@lists.freedesktop.org
-Date: Wed, 13 May 2026 16:57:52 +0200
-In-Reply-To: <20260513113725.2313-1-lirongqing@baidu.com>
-References: <20260513113725.2313-1-lirongqing@baidu.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
-MIME-Version: 1.0
+X-Mailman-Approved-At: Wed, 13 May 2026 15:13:19 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,51 +88,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 2026-05-13 at 07:37 -0400, lirongqing wrote:
-> From: Li RongQing <lirongqing@baidu.com>
->=20
-> The expression:
-> =C2=A0=C2=A0=C2=A0 MI_FLUSH_IMM_DW | (flush_flags & MI_INVALIDATE_TLB) ?:=
- 0;
->=20
-> is parsed as:
-> =C2=A0=C2=A0=C2=A0 (MI_FLUSH_DW | MI_FLUSH_DW_OP_STOREDW | MI_FLUSH_IMM_D=
-W |
-> =C2=A0=C2=A0=C2=A0=C2=A0 (flush_flags & MI_INVALIDATE_TLB)) ?: 0;
->=20
-> Since the combined constant flags are always non-zero, the GNU
-> extension
-> '?: 0' acts as a no-op and does not change the value. Remove this
-> redundant
-> and confusing logic.
->=20
-> Signed-off-by: Li RongQing <lirongqing@baidu.com>
+On Tue, May 12, 2026 at 6:31=E2=80=AFPM Danilo Krummrich <dakr@kernel.org> =
+wrote:
+>
+> On Tue May 12, 2026 at 1:59 PM CEST, Bartosz Golaszewski wrote:
+> > +int platform_device_add_software_node(struct platform_device *pdev,
+> > +                                   const struct software_node *swnode)
+> > +{
+> > +     return device_add_software_node(&pdev->dev, swnode);
+>
+> I think this should be device_create_managed_software_node(), see also [1=
+].
+>
+> That said, now that I see the resulting code and the corresponding sublet=
+ies, I
+> think we should reconsider your (well predicted) "temporary
+> platform_device_release_full()" idea for -fixes, while iterating this for=
+ -next.
+>
 
-Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+Agreed, I think it's much safer this way.
 
-Will push to drm-xe-next once CI is clean.
-
-
-> ---
-> =C2=A0drivers/gpu/drm/xe/xe_ring_ops.c | 2 +-
-> =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c
-> b/drivers/gpu/drm/xe/xe_ring_ops.c
-> index cfeb4fc..ee468d3 100644
-> --- a/drivers/gpu/drm/xe/xe_ring_ops.c
-> +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-> @@ -144,7 +144,7 @@ static int emit_bb_start(u64 batch_addr, u32
-> ppgtt_flag, u32 *dw, int i)
-> =C2=A0static int emit_flush_invalidate(u32 addr, u32 val, u32 flush_flags=
-,
-> u32 *dw, int i)
-> =C2=A0{
-> =C2=A0	dw[i++] =3D MI_FLUSH_DW | MI_FLUSH_DW_OP_STOREDW |
-> -		=C2=A0 MI_FLUSH_IMM_DW | (flush_flags &
-> MI_INVALIDATE_TLB) ?: 0;
-> +		=C2=A0 MI_FLUSH_IMM_DW | (flush_flags &
-> MI_INVALIDATE_TLB);
-> =C2=A0
-> =C2=A0	dw[i++] =3D addr | MI_FLUSH_DW_USE_GTT;
-> =C2=A0	dw[i++] =3D 0;
+Bart
