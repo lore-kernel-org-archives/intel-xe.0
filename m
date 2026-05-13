@@ -4,97 +4,100 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B540ACD4F44
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 652D3CD4F43
 	for <intel-xe@archiver.kernel.org>; Wed, 13 May 2026 15:13:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8DB810EF27;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C90C110EF32;
 	Wed, 13 May 2026 15:13:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="fIwAsONb";
-	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Y74oa6Dr";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="S24A/8Qm";
+	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="TlWborfa";
 	dkim-atps=neutral
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
  [205.220.168.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D990B10EF11
- for <intel-xe@lists.freedesktop.org>; Wed, 13 May 2026 15:05:24 +0000 (UTC)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EFA5110EF04
+ for <intel-xe@lists.freedesktop.org>; Wed, 13 May 2026 15:05:19 +0000 (UTC)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
  by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 64DF14gm4082543
- for <intel-xe@lists.freedesktop.org>; Wed, 13 May 2026 15:05:24 GMT
+ 64DATs5j2321368
+ for <intel-xe@lists.freedesktop.org>; Wed, 13 May 2026 15:05:19 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
- cgh4QSLn17J1vANVwWglRn08I0SloVcQwiRt7QECtys=; b=fIwAsONbzLCkXtYa
- KNPlSOOqNAe4a7eV25WrOsZNkAMwnBRCwGJW0f72LtbvhF701i2hs//5C9ug1O52
- Cezkr9qa1gLF137cR+2GT7wARtjoEftddoBKFyMBYIFeATgpJUvNy2Hv7DveHgtC
- 5VkysksqreuXTQLbqoR4KSyQArbPBWpLS+JECRBUTsC7pIldtjM/ewvqCCsAUwQP
- pXxa4w44Y0oHU5hy4nKkZ5D4HK+jRLQk2KCX/sH9T2vZWjx+l3BDNjgfzfz5vXVv
- STlF2fXaEB8yWu0oKF6/h6sYrydwrSNTuC2g1kBlqIre/cr5mguxaLVBHB/s2HPg
- rUtFtg==
-Received: from mail-ot1-f69.google.com (mail-ot1-f69.google.com
- [209.85.210.69])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e4p6e1edf-1
+ cc:content-transfer-encoding:content-type:date:from:message-id
+ :mime-version:subject:to; s=qcppdkim1; bh=7G74dft31Lo1+haHnmSpHq
+ lZXb5mdDLiyXN6E5wj57U=; b=S24A/8Qmzcan0EorjYsERpeGgy3QqFCNAZ6rcn
+ OIEJ9AyKQUTmmSsBVcUwkqpyk5qws30lN6EzaoSqkeDcfFyVKPpQuLOwJhzFV6de
+ IbGgFT4gh6Rqwyg0RjrYFvHl1CuH3iDzVX0FdzfMzX/KKxrLvVBu0JKK5VwyKVvk
+ vSjgZydzClcn/v4m+m/QFmLAw81c0R1OYZ8sU+bHFWmd0xqDf5m6GLnZ3BJdreTc
+ HhGihtm/FCv8QI5/lWDjeXbusA2Ty9EHinaSW9OE5NigeYz/5/TANRRPaYYf2mHD
+ vZXHuXJRGGfUAiKQk+KM+3N/XhfBze6iE+QS7xv9FfLUHLRA==
+Received: from mail-oo1-f71.google.com (mail-oo1-f71.google.com
+ [209.85.161.71])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e4hguam0k-1
  (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
- for <intel-xe@lists.freedesktop.org>; Wed, 13 May 2026 15:05:24 +0000 (GMT)
-Received: by mail-ot1-f69.google.com with SMTP id
- 46e09a7af769-7de75c9be4aso14777604a34.0
- for <intel-xe@lists.freedesktop.org>; Wed, 13 May 2026 08:05:24 -0700 (PDT)
+ for <intel-xe@lists.freedesktop.org>; Wed, 13 May 2026 15:05:19 +0000 (GMT)
+Received: by mail-oo1-f71.google.com with SMTP id
+ 006d021491bc7-6961163ad6aso12631629eaf.1
+ for <intel-xe@lists.freedesktop.org>; Wed, 13 May 2026 08:05:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oss.qualcomm.com; s=google; t=1778684723; x=1779289523;
+ d=oss.qualcomm.com; s=google; t=1778684718; x=1779289518;
  darn=lists.freedesktop.org; 
- h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
- :mime-version:subject:date:from:from:to:cc:subject:date:message-id
- :reply-to; bh=cgh4QSLn17J1vANVwWglRn08I0SloVcQwiRt7QECtys=;
- b=Y74oa6DrptcSCI1yR9DkxoAn66HDwX4p0+qDO6P4fC80BWItJPVt2hiAge6/Z8ySNW
- uOtMxGDvGSjt22wcPO7cKQ76A19t5S0ctGAAHuNV4fHhn6JDo7BOqxTX6ZuuABgjppzv
- 58mIGgRmAx4yUpEDZIDn7z4yIYA5BvgYHJ7fGVRtdxqq0tcDmT9jrDIHwHQL8JPQk3zO
- AegeKcXvpGXor03YZO69tgbZA/RTf8j+X5RYaXVvGLx6xuxElBlw/+IVAW3sefRf6hc0
- 5oCW3qSlbRDM8GA0Uhe+oNH3/yW9so3JqiA8FRXUrUnvSUfYesl04IPAYCBPCuQBy+TN
- CF7g==
+ h=cc:to:content-transfer-encoding:mime-version:message-id:date
+ :subject:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=7G74dft31Lo1+haHnmSpHqlZXb5mdDLiyXN6E5wj57U=;
+ b=TlWborfasGr5LLdy+XsmSOk72LM7ko2nVd7l+0/79EIOBgB1RCBVxMUdTTgRn/r1iB
+ jxVZV0ttRK2Gl0UusHME4Q9gctegtyYAKW2BmjnZV7aAg/ew4cLT8R4PhhVS/yzqrNjM
+ wm/jpYsaHPUBint3WUgqGL/iCSknUTV+FPWydyulhINnzdsusYOYM+um/txtHz3mwnNd
+ T36xKy2DbryKCmF0cVj4pBToJOCRewdLuEKM8mtCrYX1+Qvg5eH1IohShf1F2xz7fASo
+ jOUAczR29uWWpZ4ewGw22w8D2YCPvl4be5QovW+WYDZTEI7K/BxNUAIvgFdIU/JpWYzk
+ bxXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1778684723; x=1779289523;
- h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
- :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
- :cc:subject:date:message-id:reply-to;
- bh=cgh4QSLn17J1vANVwWglRn08I0SloVcQwiRt7QECtys=;
- b=Cmk9dJrYoRRJMKdBVxV7KFWNpElIsWh6o5/bpcF/UR3yUKtXMSxTSFheOQQAhWi0fn
- 0JjOIst1IiSWNu2UxamqIVGLoLzBbGzVFzEHgXsoUhvzykL/odOVQZfyYDqzSauhAjw8
- wajU9PpIj11U9nzglYFNpMCLYgGyoY0OLKehtYQTEpwwGFBwagbfLSFi8TMyyjmv8ct4
- fZTIUKZP8VjstX75tZADbLWo/Hrjk3qYilz/C1hFBkYym+032pKiSaME6+GnW6kZPO+U
- XfvAz+21BfbjjNZbEwZd7siVjVWmoQZLvMA0TqZ6OGJ1rqPIg7Sdm1f+epWr2Et3kqKS
- d3Wg==
+ d=1e100.net; s=20251104; t=1778684718; x=1779289518;
+ h=cc:to:content-transfer-encoding:mime-version:message-id:date
+ :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=7G74dft31Lo1+haHnmSpHqlZXb5mdDLiyXN6E5wj57U=;
+ b=IDU88XfyzrLJ/am/IX8GGQHvu05rlbYgOhaS4dtfpxBCZGWwbGyNDAqbyd4tKPQXcI
+ GijyuHHWKe9rN9p0tWVklOn/KkgycbtAe8LNcaJft1G/0zK4VMi9sFTq+o+UkR2bAuVW
+ xkQM9WXXdovRLzWUxm3VzxbIy7GvJIH2Xn/FoLYxFHtNUI0F4GZBCskmN71dnzVX06KF
+ zIMkDokKLliANWvWj1Hh4sCzXdmdpRYYhPoxsvjI64O5oCQ95H1YcG3HimbX6oyr+yhS
+ SWU2VLLu25VxQasGJkXKvX9+Rd84uluEyjxgrvr/0Pk8kWrmwSXQHmesuEFfsRnhcDke
+ yI2Q==
 X-Forwarded-Encrypted: i=1;
- AFNElJ9Mb8QupxCD1X79Ss76B3fbwI+X6582Ix58ns2WANelaIfseFkvmRWZz4hF24g+GRHOREWW0Lyreg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw0DcUlelO44fwYutz4hTmM23dAcnrzsMamU6ype9d4hKxxB4y8
- Hffbez0MNOXuJr2Xjdt6DlIEJDwX/MG79GwKzqX9AkFeTROAErFhGIn17WadI6tf3+r5aPZTW+h
- sLPbJ41v5Lke6JKeovJemr93lTyHtsVejZJnFa9yk+JK4165LF+34jvcoJxNauKtufk8ymg==
-X-Gm-Gg: Acq92OEOirlNb0Q8735YmfisA6b4QA8vYzTyV7sMpZrUFujOqj/1g1dN3mWjlVg3RzK
- w31FMTZ4Rf/96MFDylyNO4Y2dOK0VrPQBTUSLrbQika68Y/OFxASjVTXn8CgZaYsTo28zKEM3PU
- 56VJgVfX0YyMve3jeWKt2Arfw2Na/Nw3/ENsE4j9ULdfM70QehVpCKr+yLchhQtVszppv3IRovP
- qGexbdcGqRRVera8IC/Ymzj5zAyOu2iqwOpZxdX34VzC5SFVn2yXi1iEmvl/pGPj7sy5UkdMyZy
- y35cqxfUdrDOuCXeikEmkz1QZJDsqXhk+Po8FmjP35rq1IMwxZFzYL8MinAt1tnyb/lxTOE+zFp
- r8fHr/5LUGQbY7qqM4SrHwkqtF8wAofFwo6beEXWgH+MpQAE9cA==
-X-Received: by 2002:a05:6820:188d:b0:69b:544f:b2e1 with SMTP id
- 006d021491bc7-69b78d497f2mr2330088eaf.2.1778684723511; 
- Wed, 13 May 2026 08:05:23 -0700 (PDT)
-X-Received: by 2002:a05:6820:188d:b0:69b:544f:b2e1 with SMTP id
- 006d021491bc7-69b78d497f2mr2330022eaf.2.1778684722980; 
- Wed, 13 May 2026 08:05:22 -0700 (PDT)
+ AFNElJ9zjXfysHN1SZ7NhsIz0TUPXIWv4gAVSqxWFjfEmu7Q8aRacfYPIxA0V8XlmWbnLgftOlocP9hVKw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxGL5RF7Q7TD2X6Du1j3MFJ5+bhpkT6TrV7a88meTTNKxrJpH9v
+ Sc4hEba+KgL5md0QljblCAZBHd+pmyZY1z7tcxFfH8YcdhetLVoLdK/qr7obg9+M7zyHLC20DvO
+ +u12qzV/jw8xvJ7KofI2i0lnIh6JiouBGhIOXCEuUw2UqHKVxkqxncTyraFO7AKW3ju1k7g==
+X-Gm-Gg: Acq92OEUqae5pmXY99rLkhiYlMmogIQr5GXtSTbfHw76lw+/UaNuKIReg2SrFwcKseR
+ 2l/O0uk58dGUk22qdCJEjtgnuwbjOwOlTxE381LO7YYT1tIVTFCa9MaRbbw+3YxIBhpWl8cJgzZ
+ enwTN3CTA8Wt7H2A2hLUoIVLcdEI/pZ9+4j1DZkfPNoDNfgy3xWQc3WQzjAYlkXsHClXL+gRrQB
+ NyU0LvsJ0rz7gE3813YS1/3VMIql5EtLUPv8CKm6BKMN3SZQO0xOzLJm6eVMVZ9Lfb0JB7PqDhp
+ ui4mBxg/yibCzS0A+ZdFm2KDNSP7nYoaAJA+vrNaP8Ewr1A5yO2HXcfPM3pNW3n8z3Kc9dZcNdj
+ kjYx+Vp6ErT7ARQof1mnLRJx91sKrAeuU7+H3EdHDrvUAhYmaNA==
+X-Received: by 2002:a05:6820:2914:b0:694:a02f:75ad with SMTP id
+ 006d021491bc7-69b78e78ddbmr2196256eaf.59.1778684718470; 
+ Wed, 13 May 2026 08:05:18 -0700 (PDT)
+X-Received: by 2002:a05:6820:2914:b0:694:a02f:75ad with SMTP id
+ 006d021491bc7-69b78e78ddbmr2196188eaf.59.1778684717795; 
+ Wed, 13 May 2026 08:05:17 -0700 (PDT)
 Received: from brgl-qcom.local ([2a01:cb1d:dc:7e00:63ec:4acc:c4f6:423])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-48e8f542e56sm43216455e9.34.2026.05.13.08.05.20
+ 5b1f17b1804b1-48e8f542e56sm43216455e9.34.2026.05.13.08.05.15
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 13 May 2026 08:05:22 -0700 (PDT)
+ Wed, 13 May 2026 08:05:16 -0700 (PDT)
 From: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Date: Wed, 13 May 2026 17:04:49 +0200
-Subject: [PATCH v6 2/6] platform/surface: gpe: use
- platform_device_register_full()
+Subject: [PATCH v6 0/6] driver core: remove software node from platform
+ devices on device release
+Date: Wed, 13 May 2026 17:04:47 +0200
+Message-Id: <20260513-swnode-remove-on-dev-unreg-v6-0-f9c58939df27@oss.qualcomm.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260513-swnode-remove-on-dev-unreg-v6-2-f9c58939df27@oss.qualcomm.com>
-References: <20260513-swnode-remove-on-dev-unreg-v6-0-f9c58939df27@oss.qualcomm.com>
-In-Reply-To: <20260513-swnode-remove-on-dev-unreg-v6-0-f9c58939df27@oss.qualcomm.com>
+X-B4-Tracking: v=1; b=H4sIABCTBGoC/43QzU7DMAwH8FeZciZTYidtxYn3QBya2N0i0QYSl
+ g1NfXfSXeiBVlws/X34+eMuMqfAWTwf7iJxCTnEqYbm6SD8uZ9OLAPVLEBBo4xWMl+nSCwTj7G
+ wjJMkLvIyJT5JA27wxgG6vhMV+Eg8hNsDf32r+RzyV0zfj1lFL91/sUVLJT21hMoOSA5eYs7Hz
+ 0v/7uM4HmsRi15gJQLuilBFxRY0emJg2hBxLXa7IlbRIjryrXYAvCGalYj7V5tlR21bQ73qmXB
+ DtL+i1bAr2kVUaHkYGuz0X3+c5/kHM8CRkxMCAAA=
+X-Change-ID: 20260410-swnode-remove-on-dev-unreg-42bfc4b23ba8
 To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  "Rafael J. Wysocki" <rafael@kernel.org>,
  Danilo Krummrich <dakr@kernel.org>,
@@ -114,46 +117,48 @@ Cc: brgl@kernel.org, driver-core@lists.linux.dev, linux-kernel@vger.kernel.org,
  dri-devel@lists.freedesktop.org,
  Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2217;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3789;
  i=bartosz.golaszewski@oss.qualcomm.com; h=from:subject:message-id;
- bh=8YXXx+c7Bfn1zIL1XiDsFM7WtZrjadc3NSaS7UHHFkI=;
- b=owEBbQKS/ZANAwAKAQWdLsv/NoTDAcsmYgBqBJMl2Rv+Zsya8pgVoXljSmeDSjKOIFoePae2P
- wqY8CfPQXSJAjMEAAEKAB0WIQSR5RMt5bVGHXuiZfwFnS7L/zaEwwUCagSTJQAKCRAFnS7L/zaE
- w3CuD/98ugd/Cm4ouSqqIrpnFdGzXCZq235gFk9owOU/zFx+CoQTW5DwiQs2+zWJPfopBalIUME
- xllUWojs8pk6AXWy0bLhJ8zpleeq5qpzciSpxHU4Ox66qfOsbYs1Nf9DEbUTMsmre2IWFMuKCit
- lbARISHLXyEqKBji0cGiUsppbj8U6v9R2zWub4w6fJmFh4T0oJhIw9AgxBK6RRG24AWBHPBiXvf
- CTPZ25F2LLehNMX0T+Ju3IJfP+ohgaSYt/bze8gFxBb4O+dRQsKZsTOiBtR7rFzF7TQZJlevuVB
- W0FWbgZ2uFIdHSw2/nyYT+T3EowHBJ1Xcf4tVhvidSBFrhio06ERNni6e34XyhP3V3hNX2Y3ylh
- JILB7jqFDOd8r0gKUkx1bC/+xt4pTD80KpXdbXMF028sk4C2ItXFTZxeqPHqYoI8fo6mKY89z0d
- X9pFFWf+lAk8EfToQUr8hMYfxnHeqyTmL4UhzKGdq2scsEwAHIFXS9UsFouJiA26z6pTcU/R39Y
- 5ofXM3GpgBV1jjMwVRSKLhsMqpEMSbkebl8kzR2Y5ttzc9swYZhOwSrrM7CK2excO5pyytVVN70
- 5Samp3Z3aZATl7T1tj6zWcXGCPgxxIc4MZvaf5nmXS9neEb/fGL/byvOi4PRUI/SLF8ZcNCeth+
- ap34w4jYSGt1xsQ==
+ bh=0V71TtYcYEciG9iq1qyh+HCEIwd3+5DXRbbrqXQ54qs=;
+ b=owEBbQKS/ZANAwAKAQWdLsv/NoTDAcsmYgBqBJMf0AQ5uwUBUI7xyN99CXF/d1xvwkayzkzbY
+ U+f7MKCbBWJAjMEAAEKAB0WIQSR5RMt5bVGHXuiZfwFnS7L/zaEwwUCagSTHwAKCRAFnS7L/zaE
+ w4wVD/4qIYDdscO1r9fZg7OMg4AxykbTGMhI8QAx5HQ9Nag2ozqAmn4UL5llwqMtW3WykfL/xxM
+ JoKniDCBR28q8omg6PKuq2jhQnu2SduVxUa+N9zFlCm0VM/Gi2cnJ+JNsgX2XNXsckiqQcNMR8e
+ pSpPAfQXLGJwva0x+V12SIkxJ3oVYOhhVNSr9/cUPyZTlvTSEqIN6OJLHrJbOoQfL/Nz7+L93oL
+ UdoRZbK4855dX0SKR88YanH9xq7hJaFxYDJ+Ha2qM8Fi6ZScIkCqTaU3ez5dE14iS5HpdxnHkNu
+ rtt0+HI3hoEHHQEzWbVDjHmyhwF6nz0pvd4y8UVIlGdDLEkGxue7V33n9PrAMlNOOwjUqF7jYqx
+ dlEkG+Bgoyf6SyBdiLZxB7Nzl9zt9DlltvjFuMt019Y796DbS5zqRo5QlnXcxWFVOKf/kkfeIOl
+ kMEU642tLKmpN6QWZxylQOqa/3W5AVpXwAZiZACbdzxJXOvAe2X84qLprOCG0VlaGzvUAlgUi8e
+ c+LsXIvkdO6w1o73laxmTU9yqWDH/5ScSKEYRagXDFglXsHaG0AcavLbmcYoD/c3JcK5RQPgenn
+ M2Wjq9AvbcaJu8po9jrCbdxHqV2FMb9RYEFIS+sKbvzMjmDbO7iuXVHUqXwDjPOFJbUqINmqh9A
+ KItTVFjyUybEwbg==
 X-Developer-Key: i=bartosz.golaszewski@oss.qualcomm.com; a=openpgp;
  fpr=169DEB6C0BC3C46013D2C79F11A72EA01471D772
-X-Proofpoint-ORIG-GUID: kdkazUsmflzs2_rCqaqn6SASLVt1EoqG
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTEzMDE1NCBTYWx0ZWRfX9B6yU1nf2znj
- JJ65juhznKsmSR580/clIrYcZjuhGUnv+zAsdHUdx6qlYovrVTvkiIi2M+KaJ940rXkSQ/9+FjE
- DNMKJqCEKmcFTZ+xEQZVnpjwi1JaqhcenFvToy5+F6TWSX3jyOELF5+dTbXMhfIeJLnG2nmzF1o
- nWaqw5n+Eozq0HSlExsvOhcUeQ0EdCmLcriKecNcRlv7MmKv887FlRbohxuZZMg6syLw0rHXcLz
- qYQuccTHOIYE9cl4TYlLtnxVuwQ0vuXuqeVsSwlVWrgXX+mK1X6gDLfIHunoYj7tznWj+44YtvW
- WYdz8e4O1EmpLDHnJBecSEZLcdKRaIEko5FznmvrxldFNHro2A9DwIgJD9kz8CSPnIUP8txKKJF
- 3C9DIhgC7rANhFHhpBxHFfSEZfhwfXAvPB73d6qwjacEFAxuZ3rDqFs/oN0uYfGsydgJNfBv5eJ
- 9jShMgzboAb9KyHt+2Q==
-X-Proofpoint-GUID: kdkazUsmflzs2_rCqaqn6SASLVt1EoqG
-X-Authority-Analysis: v=2.4 cv=Wukb99fv c=1 sm=1 tr=0 ts=6a049334 cx=c_pps
- a=z9lCQkyTxNhZyzAvolXo/A==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+X-Authority-Analysis: v=2.4 cv=X4di7mTe c=1 sm=1 tr=0 ts=6a04932f cx=c_pps
+ a=V4L7fE8DliODT/OoDI2WOg==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
  a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22 a=EUspDBNiAAAA:8
- a=vKDqCkOE6BQjc6v61vgA:9 a=QEXdDO2ut3YA:10 a=EyFUmsFV_t8cxB2kMr4A:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=yOCtJkima9RkubShWh1s:22 a=bC-a23v3AAAA:8
+ a=EUspDBNiAAAA:8 a=pY5QAryt2IY3wJuL2WEA:9 a=QEXdDO2ut3YA:10
+ a=WZGXeFmKUf7gPmL3hEjn:22 a=FO4_E8m0qiDe52t0p3_H:22
+X-Proofpoint-GUID: 1_uCOSGZAwh0vPYmmKa8RNQC1d-tlLf4
+X-Proofpoint-ORIG-GUID: 1_uCOSGZAwh0vPYmmKa8RNQC1d-tlLf4
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTEzMDE1NCBTYWx0ZWRfX3XEBNB+cVYWu
+ Y3yIi7YD2zJEgs+ygS1pmGKVs20CpuNUm13vIIIe8zHtdBrZPytHKwCIaPNITX38Gsbvdkqp3+9
+ ytuCX5P06QavouPI0ajOqX2ulJRszM0zerbZMGdJ82a9nhXNCxX+6qKjFbtGBi8eZCd2aougTSV
+ Mxurc3qwzqBwgSctyFE9yskMvEKzibuX+dm4trBhgwrchCQe3b/dsWESg8P9o7beRd5oEm/auf7
+ wiDC67KGp8GGPRj0Hq7Zn+IvRKQWGrH4tHo9VJtjQFYnJNU4dnVHWxuPBRLxzUt5qgifNzdqyJ6
+ I+v2KR1PHQk1GKll4Bdl2ba3IU/Fis7HjqVtvxQmUao+k9WyLac5ocEqOo3usTS6WUSawjZsuvd
+ YxqzGMDX2XWxiCLD1MdX2n04U9iKEeCtE1Jo9EbPLCgDg8kbhxz+CsrCWC30O+1dO9m6vFZO0Ok
+ s8zwq2spydDad0U+6iQ==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-05-13_01,2026-05-13_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 malwarescore=0 spamscore=0 clxscore=1015 priorityscore=1501
- lowpriorityscore=0 phishscore=0 suspectscore=0 impostorscore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2605050000 definitions=main-2605130154
+ impostorscore=0 priorityscore=1501 lowpriorityscore=0 adultscore=0
+ phishscore=0 malwarescore=0 suspectscore=0 spamscore=0 clxscore=1015
+ bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.22.0-2605050000
+ definitions=main-2605130154
 X-Mailman-Approved-At: Wed, 13 May 2026 15:13:19 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -169,78 +174,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Creating a software node for a given set of properties and adding it to
-a platform device can be achieved with a single call to
-platform_device_register_full(). There's nothing in this driver that
-suggests using the more fine-grained interfaces was intentional so
-switch to using the high-level helper.
+This fixes an issue in platform device code where, if we specify a
+software node for a platform device using struct platform_device_info,
+it will not be removed on device .release().
+
+In this approach we first provide a fix to an existing problem in v7.1
+which requires a specialized release() variant, then address issues in
+drivers where a unified approach would cause a regression and then merge
+the two release() callbacks into one.
+
+Merging strategy: patch 1 is a self-contained fix and should land in
+v7.1. The rest of the commits can wait until patch 1 is upstream.
+
+DRM and platform maintainers: please Ack the two driver patches in this
+series.
 
 Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
 ---
- drivers/platform/surface/surface_gpe.c | 36 +++++++++++-----------------------
- 1 file changed, 11 insertions(+), 25 deletions(-)
+Changes in v6:
+- Make patch 1 a minimal fix that can go into v7.1
+- Don't provide platform_device_add_software_node(), instead: rework
+  drivers in question to use other existing interfaces instead
+- Fix life-time issues in the xe_i2c patch and remove unneeded fwnode
+  removal
+- Fix typos and tweak commit messages
+- Link to v5: https://patch.msgid.link/20260512-swnode-remove-on-dev-unreg-v5-0-0035eff63812@oss.qualcomm.com
 
-diff --git a/drivers/platform/surface/surface_gpe.c b/drivers/platform/surface/surface_gpe.c
-index b359413903b13c4f8e8b284ef7ae6f6db3f47d72..b8bb47b0d91f036ee5073d21534f8f26a4d5ed15 100644
---- a/drivers/platform/surface/surface_gpe.c
-+++ b/drivers/platform/surface/surface_gpe.c
-@@ -290,9 +290,9 @@ static struct platform_device *surface_gpe_device;
- 
- static int __init surface_gpe_init(void)
- {
-+	struct platform_device_info pdevinfo;
- 	const struct dmi_system_id *match;
- 	struct platform_device *pdev;
--	struct fwnode_handle *fwnode;
- 	int status;
- 
- 	match = dmi_first_match(dmi_lid_device_table);
-@@ -305,34 +305,20 @@ static int __init surface_gpe_init(void)
- 	if (status)
- 		return status;
- 
--	fwnode = fwnode_create_software_node(match->driver_data, NULL);
--	if (IS_ERR(fwnode)) {
--		status = PTR_ERR(fwnode);
--		goto err_node;
--	}
--
--	pdev = platform_device_alloc("surface_gpe", PLATFORM_DEVID_NONE);
--	if (!pdev) {
--		status = -ENOMEM;
--		goto err_alloc;
-+	pdevinfo = (struct platform_device_info){
-+		.name = "surface_gpe",
-+		.id = PLATFORM_DEVID_NONE,
-+		.properties = match->driver_data,
-+	};
-+
-+	pdev = platform_device_register_full(&pdevinfo);
-+	if (IS_ERR(pdev)) {
-+		platform_driver_unregister(&surface_gpe_driver);
-+		return PTR_ERR(pdev);
- 	}
- 
--	pdev->dev.fwnode = fwnode;
--
--	status = platform_device_add(pdev);
--	if (status)
--		goto err_add;
--
- 	surface_gpe_device = pdev;
- 	return 0;
--
--err_add:
--	platform_device_put(pdev);
--err_alloc:
--	fwnode_remove_software_node(fwnode);
--err_node:
--	platform_driver_unregister(&surface_gpe_driver);
--	return status;
- }
- module_init(surface_gpe_init);
- 
+Changes in v5:
+- Provide a helper for users of platform_device_alloc() that wish to
+  assign a software node to a platform device
+- Rework drivers that could regress after the swnode leak fix
+- Split the series into several patches as necessary
+- Link to v4: https://patch.msgid.link/20260430-swnode-remove-on-dev-unreg-v4-0-01574da0aed3@oss.qualcomm.com
 
+Changes in v4:
+- Drop redundant !pdevinfo->swnode check in
+  platform_device_register_full()
+- Handle all three combinations with which two software nodes can be
+  assigned to a platform device
+- Extend the new kunit test to verify all three combinations
+- Link to v3: https://patch.msgid.link/20260428-swnode-remove-on-dev-unreg-v3-0-533bdc71b22e@oss.qualcomm.com
+
+Changes in v3:
+- Make sure the reference of the primary software node we possibly take,
+  is always released by moving the get() before calls that may fail
+- Don't allow passing two software nodes
+- Add a test case for that situation
+- Link to v2: https://patch.msgid.link/20260423-swnode-remove-on-dev-unreg-v2-0-0e5213cde2ed@oss.qualcomm.com
+
+Changes in v2:
+- Change the order between removing the software node and dropping the
+  reference to the device's OF node
+- Address a situation where a software node is used as the primary
+  firmware node
+- Add a patch adding a new kunit helper
+- Add another test case
+- Link to v1: https://patch.msgid.link/20260410-swnode-remove-on-dev-unreg-v1-0-cd7d305f3db2@oss.qualcomm.com
+
+---
+Bartosz Golaszewski (6):
+      driver core: platform: remove software node on release()
+      platform/surface: gpe: use platform_device_register_full()
+      drm/xe/i2c: use device_create_managed_software_node()
+      driver core: platform: unify release path
+      kunit: provide kunit_software_node_register()
+      driver core: platform: tests: add test cases for correct swnode removal
+
+ drivers/base/platform.c                  |  19 +++-
+ drivers/base/test/platform-device-test.c | 166 +++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_i2c.c              |  22 ++--
+ drivers/gpu/drm/xe/xe_i2c.h              |   1 -
+ drivers/platform/surface/surface_gpe.c   |  36 ++-----
+ include/kunit/fwnode.h                   |  19 ++++
+ lib/kunit/Makefile                       |   3 +-
+ lib/kunit/fwnode.c                       |  52 ++++++++++
+ 8 files changed, 276 insertions(+), 42 deletions(-)
+---
+base-commit: 5d6919055dec134de3c40167a490f33c74c12581
+change-id: 20260410-swnode-remove-on-dev-unreg-42bfc4b23ba8
+
+Best regards,
 -- 
-2.47.3
+Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
 
