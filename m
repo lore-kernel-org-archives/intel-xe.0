@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B7DFCD37AC
-	for <intel-xe@archiver.kernel.org>; Wed, 13 May 2026 16:36:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BC15CD37AC
+	for <intel-xe@archiver.kernel.org>; Wed, 13 May 2026 16:39:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A747710E110;
-	Wed, 13 May 2026 16:36:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4847510EF7E;
+	Wed, 13 May 2026 16:39:56 +0000 (UTC)
 Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E47C10E110;
- Wed, 13 May 2026 16:36:06 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3927039333569469949=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C18E10EF71;
+ Wed, 13 May 2026 16:39:55 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_driver_core=3A_remove_softw?=
- =?utf-8?q?are_node_from_platform_devices_on_device_release_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915=3A_add_display_i?=
+ =?utf-8?q?rq_hooks_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Bartosz Golaszewski" <bartosz.golaszewski@oss.qualcomm.com>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 13 May 2026 16:36:06 -0000
-Message-ID: <177869016644.68993.3815869685477769708@5ab824fced77>
+Date: Wed, 13 May 2026 16:39:55 -0000
+Message-ID: <177869039563.68993.9973215222125830135@5ab824fced77>
 X-Patchwork-Hint: ignore
-References: <20260512-swnode-remove-on-dev-unreg-v5-0-0035eff63812@oss.qualcomm.com>
-In-Reply-To: <20260512-swnode-remove-on-dev-unreg-v5-0-0035eff63812@oss.qualcomm.com>
+References: <cover.1778688699.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1778688699.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,88 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3927039333569469949==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: driver core: remove software node from platform devices on device release (rev2)
-URL   : https://patchwork.freedesktop.org/series/166515/
-State : success
+Series: drm/i915: add display irq hooks (rev3)
+URL   : https://patchwork.freedesktop.org/series/165936/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-5057-fac83f02a1733658723f3ac8fbb5532bcf3c56bf_BAT -> xe-pw-166515v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 08cac07cafff393a95c8e5bbdea9a10a05dcfc71
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Wed May 13 19:13:31 2026 +0300
 
-Summary
--------
+    drm/i915/irq: add intel_display_irq_handler() to irq funcs
+    
+    Call the platform specific display irq handler hooks via
+    intel_display_irq_handler().
+    
+    v3: Pure vfunc change (Ville)
+    
+    v2: Rebase, handle LPE audio in ack (Ville)
+    
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 21b42374be17d486baf9392b56377afde67a778d drm-intel
+0d73ccdb90fd drm/i915/irq: deduplicate dg1_de_irq_postinstall() and gen11_de_irq_postinstall()
+893bc59c4e01 drm/i915/irq: constify pipe stats parameters
+-:57: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#57: FILE: drivers/gpu/drm/i915/display/intel_display_irq.h:81:
++void i915_pipestat_irq_handler(struct intel_display *display, u32 iir, const u32 pipe_stats[I915_MAX_PIPES]);
 
-  **SUCCESS**
+-:58: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#58: FILE: drivers/gpu/drm/i915/display/intel_display_irq.h:82:
++void i965_pipestat_irq_handler(struct intel_display *display, u32 iir, const u32 pipe_stats[I915_MAX_PIPES]);
 
-  No regressions found.
+-:59: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#59: FILE: drivers/gpu/drm/i915/display/intel_display_irq.h:83:
++void valleyview_pipestat_irq_handler(struct intel_display *display, const u32 pipe_stats[I915_MAX_PIPES]);
 
-  
+total: 0 errors, 3 warnings, 0 checks, 36 lines checked
+f3f1da9d7759 drm/i915/irq: add display irq funcs, start with intel_display_irq_reset()
+438f34ca2c9a drm/i915/irq: add intel_display_irq_postinstall() to irq funcs
+42663327fd75 drm/i915/irq: add platform specific display irq ack functions
+0fc8ef8bcae2 drm/i915/irq: add platform specific display irq handler functions
+-:192: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#192: FILE: drivers/gpu/drm/i915/display/intel_display_irq.h:73:
++bool ilk_display_irq_handler(struct intel_display *display, const struct intel_display_irq_state *state);
 
-Participating hosts (13 -> 13)
-------------------------------
+-:193: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#193: FILE: drivers/gpu/drm/i915/display/intel_display_irq.h:74:
++bool gen8_display_irq_handler(struct intel_display *display, const struct intel_display_irq_state *state);
 
-  No changes in participating hosts
+-:194: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#194: FILE: drivers/gpu/drm/i915/display/intel_display_irq.h:75:
++bool gen11_display_irq_handler(struct intel_display *display, const struct intel_display_irq_state *state);
 
+-:195: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#195: FILE: drivers/gpu/drm/i915/display/intel_display_irq.h:76:
++bool i965_display_irq_handler(struct intel_display *display, const struct intel_display_irq_state *state);
 
-Changes
--------
+-:196: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#196: FILE: drivers/gpu/drm/i915/display/intel_display_irq.h:77:
++bool i915_display_irq_handler(struct intel_display *display, const struct intel_display_irq_state *state);
 
-  No changes found
+-:197: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#197: FILE: drivers/gpu/drm/i915/display/intel_display_irq.h:78:
++bool vlv_display_irq_handler(struct intel_display *display, const struct intel_display_irq_state *state);
 
+total: 0 errors, 6 warnings, 0 checks, 277 lines checked
+976efead2eb1 drm/i915/irq: add intel_display_irq_ack() to irq funcs
+08cac07cafff drm/i915/irq: add intel_display_irq_handler() to irq funcs
+-:163: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#163: FILE: drivers/gpu/drm/i915/display/intel_display_irq.h:70:
++bool intel_display_irq_handler(struct intel_display *display, const struct intel_display_irq_state *state);
 
-Build changes
--------------
-
-  * Linux: xe-5057-fac83f02a1733658723f3ac8fbb5532bcf3c56bf -> xe-pw-166515v2
-
-  IGT_8909: e68d82b442e3909dd053c97542aeb029707124cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5057-fac83f02a1733658723f3ac8fbb5532bcf3c56bf: fac83f02a1733658723f3ac8fbb5532bcf3c56bf
-  xe-pw-166515v2: 166515v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166515v2/index.html
-
---===============3927039333569469949==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 1 warnings, 0 checks, 207 lines checked
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>driver core: remove software node from platform devices on device release (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166515/">https://patchwork.freedesktop.org/series/166515/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166515v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166515v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5057-fac83f02a1733658723f3ac8fbb5532bcf3c56bf_BAT -&gt; xe-pw-166515v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5057-fac83f02a1733658723f3ac8fbb5532bcf3c56bf -&gt; xe-pw-166515v2</li>
-</ul>
-<p>IGT_8909: e68d82b442e3909dd053c97542aeb029707124cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5057-fac83f02a1733658723f3ac8fbb5532bcf3c56bf: fac83f02a1733658723f3ac8fbb5532bcf3c56bf<br />
-  xe-pw-166515v2: 166515v2</p>
-
-</body>
-</html>
-
---===============3927039333569469949==--
