@@ -4,53 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0EE0CD4F24
-	for <intel-xe@archiver.kernel.org>; Wed, 13 May 2026 10:17:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 258BFCD37B6
+	for <intel-xe@archiver.kernel.org>; Wed, 13 May 2026 10:24:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6480A10E5C3;
-	Wed, 13 May 2026 10:17:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5892110E405;
+	Wed, 13 May 2026 10:24:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GV/GZf7R";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jNA1jK3r";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73F3210E5C3
- for <intel-xe@lists.freedesktop.org>; Wed, 13 May 2026 10:17:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54FB310E2F7;
+ Wed, 13 May 2026 10:24:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778667464; x=1810203464;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=SeMQAueQjjAjFy297YVP05UOCs73KXPLfbXgQ18+m7A=;
- b=GV/GZf7R6xy1RljcM+sM+54jtu6gqVW9YfyWzgKBjIz+w3cd+VmeAAkA
- l+68uwVQIgV/gHzBuBoWQQZYfeO5TS7mXVzISbQ+DjvWXSTn4ahCy8e4C
- qmd75G+Hmz8AMsP6LrCotVZmgPrLIjODv4CNWZjJZ4p/HqvoBZ/61xgrl
- 0V/SMEJG7qOlYTrLJwCwgeEf0U8gzXcAyTGFFx9z0pVvFV22rDpxgvgVB
- IydBV1820tA3Sy+3IfeY/BXlknD3qPpRU3o+3RPyXTuj0GBZWFRTn8z4T
- OTeFHLa/UEgdq/ASub8ucJTuAFtJju2jVIObil5/0MuyBHf2V6IN5PgyL Q==;
-X-CSE-ConnectionGUID: urvo7p6vQH2YPAZibIgMLg==
-X-CSE-MsgGUID: HX81gpPlR6e9s7X7BIW/Kw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11784"; a="79621447"
-X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="79621447"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2026 03:17:19 -0700
-X-CSE-ConnectionGUID: ZZcL40ZMRTe8NAa9EFAJ2g==
-X-CSE-MsgGUID: d2hBXCFgTeKg2BV6KnBdGw==
+ t=1778667859; x=1810203859;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=4wefMVkZ2b1CWXY9jD02Xn87mvdkQbPY1jMc+Kksl2U=;
+ b=jNA1jK3rYq9OlXgXsq9xEGOfRAKk6WMfNi2+z0pK3M2y7GIshe/6b+6n
+ c14mhjjpQBhog8cFvHPByMWok5qTm8DAifp+7b3i5uzDPTvoVJQ4PJFwy
+ CX+HUEjXRv9ISoaqmAzrXPpwLiWZ3R2laWAJ9cOd4aA+/vNydqOuxKT/b
+ /VZW6/Tqf/hEkkLkIumOn6zuTPqpWXuiPzPryLf6Ody28+GprbSvnL1ig
+ 2HQhV7aYlkK8t/IF9TdM+ht7l90T4qTFsJXItvYe8NqFUVZuj10g+QGxc
+ qMtBDRfa/qku5+i3Q9R+22jpFuyb5eXPwdpdIjqEGVv9b+grgxME9lYOA g==;
+X-CSE-ConnectionGUID: ak6OBCN8SoSliL/7OMaMwg==
+X-CSE-MsgGUID: KWNvP5FIQL2/9MnWbB1F7g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11784"; a="102257683"
+X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="102257683"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2026 03:24:19 -0700
+X-CSE-ConnectionGUID: w58b6nA/QrCbcOi/jOowPA==
+X-CSE-MsgGUID: 7zU/hjTiQMmeDGSx5RVxpg==
 X-ExtLoop1: 1
-Received: from tilak-z690i-a-ultra-plus.iind.intel.com ([10.190.239.38])
- by fmviesa003.fm.intel.com with ESMTP; 13 May 2026 03:17:17 -0700
-From: tilak.tirumalesh.tangudu@intel.com
-To: tilak.tirumalesh.tangudu@intel.com, matthew.d.roper@intel.com,
- thomas.hellstrom@intel.com, daniele.ceraolospurio@intel.com,
- matthew.auld@intel.com, stuart.summers@intel.com,
+X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="242056400"
+Received: from lkp-server01.sh.intel.com (HELO dca79079c3eb) ([10.239.97.150])
+ by orviesa003.jf.intel.com with ESMTP; 13 May 2026 03:24:17 -0700
+Received: from kbuild by dca79079c3eb with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1wN6lB-000000003v9-2N10;
+ Wed, 13 May 2026 10:24:13 +0000
+Date: Wed, 13 May 2026 18:24:00 +0800
+From: kernel test robot <lkp@intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
  intel-xe@lists.freedesktop.org
-Subject: [PATCH] drm/xe: LR mode TLB coherence for userptr, rebind,
- and exec ordering
-Date: Wed, 13 May 2026 15:46:59 +0530
-Message-ID: <20260513101659.3470307-1-tilak.tirumalesh.tangudu@intel.com>
-X-Mailer: git-send-email 2.46.0
+Cc: oe-kbuild-all@lists.linux.dev,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Huang Rui <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Dave Airlie <airlied@redhat.com>, dri-devel@lists.freedesktop.org,
+ stable@vger.kernel.org
+Subject: Re: [PATCH] drm/ttm: Fix ttm_bo_shrink() infinite LRU walk on backup
+ failure
+Message-ID: <202605131824.SbQ7agaE-lkp@intel.com>
+References: <20260511162443.24352-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260511162443.24352-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,139 +76,110 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
+Hi Thomas,
 
-LR mode currently relies on context-switch based TLB coherence while
-per-batch invalidation is disabled. This is unsafe when hardware
-auto-tail update advances execution, allowing newly fetched work
-to run before the expected implicit coherence point at context
--switch or re-enable.
+kernel test robot noticed the following build errors:
 
-1.On the LR path, add a dependency on q->lr.pfence so newly
-submitted exec jobs wait for outstanding preempt/rebind work
-to fully complete. This avoids out-of-order execution where
-a new batch could run with stale TLB/PTE state.
+[auto build test ERROR on drm-misc/drm-misc-next]
+[also build test ERROR on linus/master v7.1-rc3 next-20260508]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-2.For LR rebinds in non-fault mode, force explicit invalidation
-instead of relying on implicit context re-enable behavior.
-This avoids stale TLB entries surviving across rebind.
+url:    https://github.com/intel-lab-lkp/linux/commits/Thomas-Hellstr-m/drm-ttm-Fix-ttm_bo_shrink-infinite-LRU-walk-on-backup-failure/20260513-095356
+base:   https://gitlab.freedesktop.org/drm/misc/kernel.git drm-misc-next
+patch link:    https://lore.kernel.org/r/20260511162443.24352-1-thomas.hellstrom%40linux.intel.com
+patch subject: [PATCH] drm/ttm: Fix ttm_bo_shrink() infinite LRU walk on backup failure
+config: x86_64-allmodconfig (https://download.01.org/0day-ci/archive/20260513/202605131824.SbQ7agaE-lkp@intel.com/config)
+compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260513/202605131824.SbQ7agaE-lkp@intel.com/reproduce)
 
-3.Include LR mode in the initial userptr invalidation condition so
-LR queues always perform the required TLB invalidation. This avoids
-cases where LR execution continues with stale userptr translations
-after a mapping change.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202605131824.SbQ7agaE-lkp@intel.com/
 
-Assisted-by: GitHub Copilot:claude-sonnet-4.6
-Signed-off-by: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
----
- drivers/gpu/drm/xe/xe_exec.c      | 11 +++++++++++
- drivers/gpu/drm/xe/xe_pt.c        | 18 ++++++++++++------
- drivers/gpu/drm/xe/xe_sched_job.c |  6 ++++++
- drivers/gpu/drm/xe/xe_sched_job.h |  2 ++
- drivers/gpu/drm/xe/xe_userptr.c   |  2 +-
- 5 files changed, 32 insertions(+), 7 deletions(-)
+All errors (new ones prefixed by >>):
 
-diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-index e05dabfcd43c..2abf851ef7a1 100644
---- a/drivers/gpu/drm/xe/xe_exec.c
-+++ b/drivers/gpu/drm/xe/xe_exec.c
-@@ -301,6 +301,17 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 			goto err_put_job;
- 	}
- 
-+	/* LR jobs wait for preempt/rebind to complete, but only when a
-+	 * preemption/rebind is actually in-flight.
-+	 */
-+	if (xe_vm_in_lr_mode(vm) && q->lr.pfence &&
-+	    test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &q->lr.pfence->flags)) {
-+		err = xe_sched_job_add_fence_dep(job,
-+						 dma_fence_get(q->lr.pfence));
-+		if (err)
-+			goto err_put_job;
-+	}
-+
- 	for (i = 0; i < num_syncs && !err; i++)
- 		err = xe_sync_entry_add_deps(&syncs[i], job);
- 	if (err)
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 2669ff5ee747..0281dc9ca07f 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -2006,9 +2006,10 @@ static int bind_op_prepare(struct xe_vm *vm, struct xe_tile *tile,
- 
- 		/*
- 		 * If rebind, we have to invalidate TLB on !LR vms to invalidate
--		 * cached PTEs point to freed memory. On LR vms this is done
--		 * automatically when the context is re-enabled by the rebind worker,
--		 * or in fault mode it was invalidated on PTE zapping.
-+		 * cached PTEs point to freed memory. On LR vms in non-fault mode,
-+		 * implicit context re-enable is not a reliable coherence point,
-+		 * so force explicit invalidation here. In fault mode the TLB
-+		 * was already invalidated during PTE zapping.
- 		 *
- 		 * If !rebind, and scratch enabled VMs, there is a chance the scratch
- 		 * PTE is already cached in the TLB so it needs to be invalidated.
-@@ -2019,9 +2020,14 @@ static int bind_op_prepare(struct xe_vm *vm, struct xe_tile *tile,
- 		if ((!pt_op->rebind && xe_vm_has_scratch(vm) &&
- 		     xe_vm_in_lr_mode(vm)))
- 			pt_update_ops->needs_invalidation = true;
--		else if (pt_op->rebind && !xe_vm_in_lr_mode(vm))
--			/* We bump also if batch_invalidate_tlb is true */
--			vm->tlb_flush_seqno++;
-+		else if (pt_op->rebind) {
-+			if (xe_vm_in_lr_mode(vm) && !xe_vm_in_fault_mode(vm))
-+				/* Force explicit invalidation for LR rebinds */
-+				pt_update_ops->needs_invalidation = true;
-+			else if (!xe_vm_in_lr_mode(vm))
-+				/* We bump also if batch_invalidate_tlb is true */
-+				vm->tlb_flush_seqno++;
-+		}
- 
- 		vma->tile_staged |= BIT(tile->id);
- 		pt_op->vma = vma;
-diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
-index ae5b38b2a884..2f6c84c662d5 100644
---- a/drivers/gpu/drm/xe/xe_sched_job.c
-+++ b/drivers/gpu/drm/xe/xe_sched_job.c
-@@ -353,6 +353,12 @@ xe_sched_job_snapshot_print(struct xe_sched_job_snapshot *snapshot,
- 		drm_printf(p, "batch_addr[%u]: 0x%016llx\n", i, snapshot->batch_addr[i]);
- }
- 
-+int xe_sched_job_add_fence_dep(struct xe_sched_job *job,
-+			       struct dma_fence *fence)
-+{
-+	return drm_sched_job_add_dependency(&job->drm, fence);
-+}
-+
- int xe_sched_job_add_deps(struct xe_sched_job *job, struct dma_resv *resv,
- 			  enum dma_resv_usage usage)
- {
-diff --git a/drivers/gpu/drm/xe/xe_sched_job.h b/drivers/gpu/drm/xe/xe_sched_job.h
-index 1c1cb44216c3..771fab005175 100644
---- a/drivers/gpu/drm/xe/xe_sched_job.h
-+++ b/drivers/gpu/drm/xe/xe_sched_job.h
-@@ -89,6 +89,8 @@ struct xe_sched_job_snapshot *xe_sched_job_snapshot_capture(struct xe_sched_job
- void xe_sched_job_snapshot_free(struct xe_sched_job_snapshot *snapshot);
- void xe_sched_job_snapshot_print(struct xe_sched_job_snapshot *snapshot, struct drm_printer *p);
- 
-+int xe_sched_job_add_fence_dep(struct xe_sched_job *job,
-+			       struct dma_fence *fence);
- int xe_sched_job_add_deps(struct xe_sched_job *job, struct dma_resv *resv,
- 			  enum dma_resv_usage usage);
- 
-diff --git a/drivers/gpu/drm/xe/xe_userptr.c b/drivers/gpu/drm/xe/xe_userptr.c
-index 6761005c0b90..9c6fd1004c7c 100644
---- a/drivers/gpu/drm/xe/xe_userptr.c
-+++ b/drivers/gpu/drm/xe/xe_userptr.c
-@@ -102,7 +102,7 @@ xe_vma_userptr_do_inval(struct xe_vm *vm, struct xe_userptr_vma *uvma, bool is_d
- 				    false, MAX_SCHEDULE_TIMEOUT);
- 	XE_WARN_ON(err <= 0);
- 
--	if (xe_vm_in_fault_mode(vm) && userptr->initial_bind) {
-+	if ((xe_vm_in_lr_mode(vm) || xe_vm_in_fault_mode(vm)) && userptr->initial_bind) {
- 		if (!userptr->finish_inuse) {
- 			/*
- 			 * Defer the TLB wait to an extra pass so the caller
--- 
-2.46.0
+>> drivers/gpu/drm/ttm/ttm_bo_util.c:1121:3: error: call to undeclared function 'ttm_resource_del_bulk_move_unevictable'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+    1121 |                 ttm_resource_del_bulk_move_unevictable(bo->resource, bo);
+         |                 ^
+   drivers/gpu/drm/ttm/ttm_bo_util.c:1121:3: note: did you mean 'ttm_resource_del_bulk_move'?
+   include/drm/ttm/ttm_resource.h:449:6: note: 'ttm_resource_del_bulk_move' declared here
+     449 | void ttm_resource_del_bulk_move(struct ttm_resource *res,
+         |      ^
+   1 error generated.
 
+
+vim +/ttm_resource_del_bulk_move_unevictable +1121 drivers/gpu/drm/ttm/ttm_bo_util.c
+
+  1067	
+  1068	/**
+  1069	 * ttm_bo_shrink() - Helper to shrink a ttm buffer object.
+  1070	 * @ctx: The struct ttm_operation_ctx used for the shrinking operation.
+  1071	 * @bo: The buffer object.
+  1072	 * @flags: Flags governing the shrinking behaviour.
+  1073	 *
+  1074	 * The function uses the ttm_tt_back_up functionality to back up or
+  1075	 * purge a struct ttm_tt. If the bo is not in system, it's first
+  1076	 * moved there.
+  1077	 *
+  1078	 * Return: The number of pages shrunken or purged, or
+  1079	 * negative error code on failure.
+  1080	 */
+  1081	long ttm_bo_shrink(struct ttm_operation_ctx *ctx, struct ttm_buffer_object *bo,
+  1082			   const struct ttm_bo_shrink_flags flags)
+  1083	{
+  1084		static const struct ttm_place sys_placement_flags = {
+  1085			.fpfn = 0,
+  1086			.lpfn = 0,
+  1087			.mem_type = TTM_PL_SYSTEM,
+  1088			.flags = 0,
+  1089		};
+  1090		static struct ttm_placement sys_placement = {
+  1091			.num_placement = 1,
+  1092			.placement = &sys_placement_flags,
+  1093		};
+  1094		struct ttm_device *bdev = bo->bdev;
+  1095		long lret;
+  1096	
+  1097		dma_resv_assert_held(bo->base.resv);
+  1098	
+  1099		if (flags.allow_move && bo->resource->mem_type != TTM_PL_SYSTEM) {
+  1100			int ret = ttm_bo_validate(bo, &sys_placement, ctx);
+  1101	
+  1102			/* Consider -ENOMEM and -ENOSPC non-fatal. */
+  1103			if (ret) {
+  1104				if (ret == -ENOMEM || ret == -ENOSPC)
+  1105					ret = -EBUSY;
+  1106				return ret;
+  1107			}
+  1108		}
+  1109	
+  1110		ttm_bo_unmap_virtual(bo);
+  1111		lret = ttm_bo_wait_ctx(bo, ctx);
+  1112		if (lret < 0)
+  1113			return lret;
+  1114	
+  1115		lret = ttm_tt_backup(bdev, bo->ttm, (struct ttm_backup_flags)
+  1116				     {.purge = flags.purge,
+  1117				      .writeback = flags.writeback});
+  1118	
+  1119		if (lret > 0) {
+  1120			spin_lock(&bdev->lru_lock);
+> 1121			ttm_resource_del_bulk_move_unevictable(bo->resource, bo);
+  1122			ttm_resource_move_to_lru_tail(bo->resource);
+  1123			spin_unlock(&bdev->lru_lock);
+  1124		}
+  1125	
+  1126		if (lret < 0 && lret != -EINTR)
+  1127			return -EBUSY;
+  1128	
+  1129		return lret;
+  1130	}
+  1131	EXPORT_SYMBOL(ttm_bo_shrink);
+  1132	
+
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
