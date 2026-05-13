@@ -4,165 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C832CD4F24
-	for <intel-xe@archiver.kernel.org>; Wed, 13 May 2026 06:53:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BAD92CD37B6
+	for <intel-xe@archiver.kernel.org>; Wed, 13 May 2026 07:21:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D83C210ECD0;
-	Wed, 13 May 2026 06:53:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F5E710E1C0;
+	Wed, 13 May 2026 07:21:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VuOeyIuk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JpJvT+Af";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4331E10ECC8;
- Wed, 13 May 2026 06:53:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98F8510E1C0;
+ Wed, 13 May 2026 07:21:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778655232; x=1810191232;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=6sfPIPE/vPtGEjWaMgEM6hIBGGu/Ohn289wQkpRjMsk=;
- b=VuOeyIukB6DzE7UZFXn9GslZGpP/NIj0fdXoGmzk4LyZr2U9dhMX9YwJ
- 6Np1qzXUNdLjEq/9/aYZsWfMspvKltD9YyKv8/gwdundclUBu1CaEbSdx
- vXwQr/WnHBVO2piB2+RySZn48964MkcUd9MX+in7oeGdFrdywXTNu6amu
- h+Uve9LbCASHGVC9QQDcxBO/DwOA788uFp20k2NaC/E5P3J9eWCQj6yzU
- 0dKMGVX6al/GNCby1V7dMUl9JWsWEPUebV1/gXRVJ9VCFyhVhA5ILtWF9
- Oj2q5ttYU9LpKNTtMFO1ZNjt4oV6jWJzgXCBVKOkPQTJS6mmqGkHwPaDm Q==;
-X-CSE-ConnectionGUID: iGDIt1UBT9CL5NJbcen0EQ==
-X-CSE-MsgGUID: RK/XvbYpTt6pGUQAtT04gg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11784"; a="105033464"
-X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="105033464"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2026 23:53:52 -0700
-X-CSE-ConnectionGUID: mzosOsapT1e/G7+iElOAEA==
-X-CSE-MsgGUID: U2Ih2ODmSwaJ5ybpxMWxTg==
+ t=1778656860; x=1810192860;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=8Pf3UZtBPmTUC54/TMtWx2SebrwAHuEtJ5XI7lvahhg=;
+ b=JpJvT+AftCkOtoWCHsNZeSW1A2kS0s+I8Q4vGflob1u5eGTDLwIuymKn
+ 43kuzgQboA06Y2uL0lr8IE56lhp6LTbMIR2YvayMX56g+G3ef1SGbhvok
+ ZjVHpVABMCHH1OQuvFkkWvC892a5eB5B3/J2yiXKRsL0wBCmcnTndubJi
+ PIyG77fbakDGoFUlLjJklEaA+iJzDC0X+jgGEQUT3w1C7WKsEGpL1Qw5E
+ kJslDEHDsplKmypu8lzB1F7/28twTyVwxVGGwpdMcrEIVSM1VzGKNAI18
+ JefEgwcOhYu4SL7ek0CkT/E6cy7wq1tpKtZRnrfC95/YYUDvoomCSwrWG A==;
+X-CSE-ConnectionGUID: pn5ScXRzQkmZO8lpZbi72A==
+X-CSE-MsgGUID: /qhsToqFSHe2sLGc0Pvaog==
+X-IronPort-AV: E=McAfee;i="6800,10657,11784"; a="90156121"
+X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="90156121"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2026 00:21:00 -0700
+X-CSE-ConnectionGUID: cspXtXtrQXapiE9erISACw==
+X-CSE-MsgGUID: I/qqA0Z/Sh+bSpHlKEaJzA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="242350525"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2026 23:53:51 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 12 May 2026 23:53:51 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Tue, 12 May 2026 23:53:51 -0700
-Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.18) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 12 May 2026 23:53:50 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ORlh2q9nc+VBOinfvCf3A4WIemGVQX5ZKOGFUGD4qiCTkd44IHjRutH0kalNE/qA1jjtLMLJezxAN9FN2L8v194Tcp8q1uUyVN0xkna3mhHbVBovxd+UUID6vpk1YrdcayXak0TKNQPlOK23a61IEl1TnIKiDKyJtYUfcpVbgCobaDynw4AeBbFUUkrMcuvfxcJIKsr7l1J83L3JhxWN6Gxx4fQUCfnr04pmg+4N7a9HNc+UctJZBzJOHaKpYhC58J0so2mpv5gCTnoJ0z7Dq22Lj/gFpyDwyKS7x1BAoPz+Rdr6Jxg+QZoSsy6ITAqWwZ95aPnuAe7wJVwGLG3gaw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6sfPIPE/vPtGEjWaMgEM6hIBGGu/Ohn289wQkpRjMsk=;
- b=XGUch3APZnRkVsvKCFnETkTeiHt9LKdVDoeHgM2cezxLfy9So4XBiEu8JUxxGe7D42Ltm3VDEogiIBpewJXBY5WcFDk9OpjBO/dIY493JGbQcG7oojYDRZBDEqzzV8bC27cFUnqZBwtmPb1Zo0qP8+Yi2ht1tqEhURMJSXpHpBeBYtxVbMiThNey5dlnAs1NV71pg4/NNs2ly+oDW+M020UxJyNUhvFfrqYeZhHmbwpUzFu9CVSV1ewNM0jgVDByw7jNLdcjMRZY2r5hArw1d5v9FUvR+cRADyC2PWzVoq86xAARoNmtOYvF+XbIGFyqA3RlTNeaUCrQp47FVmEYXg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from SJ5PPF57F27BA08.namprd11.prod.outlook.com
- (2603:10b6:a0f:fc02::82b) by CO1PR11MB5140.namprd11.prod.outlook.com
- (2603:10b6:303:9e::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.25; Wed, 13 May
- 2026 06:53:48 +0000
-Received: from SJ5PPF57F27BA08.namprd11.prod.outlook.com
- ([fe80::282c:f936:28b9:d506]) by SJ5PPF57F27BA08.namprd11.prod.outlook.com
- ([fe80::282c:f936:28b9:d506%6]) with mapi id 15.20.9891.021; Wed, 13 May 2026
- 06:53:47 +0000
-From: "Kahola, Mika" <mika.kahola@intel.com>
-To: Aaron Esau <aaron1esau@gmail.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>, "Vivi, Rodrigo"
- <rodrigo.vivi@intel.com>, "joonas.lahtinen@linux.intel.com"
- <joonas.lahtinen@linux.intel.com>, "tursulin@ursulin.net"
- <tursulin@ursulin.net>, "stable@vger.kernel.org" <stable@vger.kernel.org>
-Subject: RE: [PATCH 1/3] drm/i915/cx0: check PLL ACK bit in
- intel_cx0_pll_is_enabled()
-Thread-Topic: [PATCH 1/3] drm/i915/cx0: check PLL ACK bit in
- intel_cx0_pll_is_enabled()
-Thread-Index: AQHc39BVPLjSubGTTUObsFGPe2gve7YLiCuA
-Date: Wed, 13 May 2026 06:53:47 +0000
-Message-ID: <SJ5PPF57F27BA0870B2475230D097682F9BEF062@SJ5PPF57F27BA08.namprd11.prod.outlook.com>
-References: <20260509162407.510539-1-aaron1esau@gmail.com>
- <20260509162407.510539-2-aaron1esau@gmail.com>
-In-Reply-To: <20260509162407.510539-2-aaron1esau@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ5PPF57F27BA08:EE_|CO1PR11MB5140:EE_
-x-ms-office365-filtering-correlation-id: 0ae08d69-ce14-428a-d0f6-08deb0bc6208
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|56012099003|22082099003|18002099003|38070700021|11063799003;
-x-microsoft-antispam-message-info: v+idv9bcxxtOcws+GPtFlVuHHCLiweuOpPq1fQfn5qiM0KB/i4aydNqVHpw+az5QYJAkOTRUwWNpjcZUbydp0h8N2FFIsmmyVVvV1BMaI/Wl/8uQfyIJKFe3/ZvaX0bzjMefAtx7UmZYp3dFf93C96HC6+yjoXja4Gq3Vm2GHcaTsCWbR2U1O1jiz2guTgsisXkFD4+1ac+xA28KitNtZCFuhDWZHanWzCt8/VGYZM3OwNOV7FA3mcjDbxdR0vOhD0+4DF+UbJu3qidRgSIt2WtOK7SpVRMNQy/Stuqoehi7YPolJpqeKBFJBM8E5zYW7XqFPD7WTkh+WWvDhOuLlbn5CjoXR0TwcPcyZCV8YNEvDad4FYf0lAP22OSkS7zkUP2O1unGdxRkLVxSMUMtE5MMriv4+fHPmJuvVL+Vl78rYg7zu5ib96CpEUPGH99buMYHaaJGu9alYr1GJAYrUtrrWhwq0uD9aER1hPYdJh4ktfD2WFBlP2L0zsAYjhZPPF5w5ShkKVpVqmC5Cr2TIKtKvLf53WH0M+68gvDxZmQgVm86N6w1tKD1zCOX6T2M5sGPg/ywCjqzdCo5xORS+dPswaPk8wtuQV2u1nnjU/MyTY1rDmqJP8xk1BQv29j13cHi8sRZoEikdzIvfxeotn2L/B/F3OQyuAJjqtWP+xTMZdzqJMi32wUU5xsbvfIbS8PBBA0wVxLRR52n7O9qeFU/b9v0NVpxcT67X4QkWqW3c5PGd2qlDyhuMLpNAONS
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ5PPF57F27BA08.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(56012099003)(22082099003)(18002099003)(38070700021)(11063799003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ZEZpdnF5Q1gzTkZDU3ZaZkl2MjdSRzRBNXQvRWxnSUwvNHU1cFRCRlhMRXlU?=
- =?utf-8?B?MC9wa2VkQ2JzOHR6cGEvR1BTVFJjY1dFTDF3NnhRSUU4OU0yc0U1bmczYlFO?=
- =?utf-8?B?NzBNbFgrTFJkTjd3dEhhMmE3ek5rK29DelZ6ZDd5L29uRUhqOVhpRm1meTZ5?=
- =?utf-8?B?NjAzZzkwTFB4Q0wrOUdUeW5LWkVEUVU2VEdjdHZoV0JPNTZqaXpzUXhVQUUy?=
- =?utf-8?B?ckJLOTVmWVVKajVLSG1CZEQ4dTFoZFZ1alJxK05hVEdsa1FZV01PWWw1aVFl?=
- =?utf-8?B?RHhmNDk4Z2xmbDQzdm9Rb3dDL2hWVE80SVczY0x5dUxzRzNmWWJNeVhUeGlU?=
- =?utf-8?B?L0xsVGQrQjFjaWNZakVBVEliR0s2Q2VCRVg1aHcySGt5UzY3MitFaVlOZmxP?=
- =?utf-8?B?WFN3M0FTNlV3OE1SL0Fha2lKS1ZJVUF3MVkzY1FoZmtSanExUCs1alVTUUxp?=
- =?utf-8?B?MGlzdytya2pnQUlodFFIUVFvaCt1Qi9vOGgwSGNCTGg5TkgvMjJINUpsM2Jj?=
- =?utf-8?B?ZkJwNnJYOGo2aE9Wb1J0S1BHV3VHUGtFQW5XN2pQMHp6TEtTMG9OWWE0akNQ?=
- =?utf-8?B?a0tBaENjU1ZiTEhVODRGSkVZVVRVaE1oSDhQbFJNUDc2b2x5S0ZhcHFZTEpR?=
- =?utf-8?B?Tkd6YzMvZThueGxnWERLTTRpaU96d0VobjNPMVp0c3MxTzVjVVg2MFRmckxR?=
- =?utf-8?B?MXBLd0oxMFZaRDZhdG1iWE9ZSUJ3aHFTYjVTWXBjUW56WTQ5by81NFF0R2JM?=
- =?utf-8?B?Tml2U0dib2poazVsdURCcFpvV29sUnJZdHZPTkltRHpmcHhBT1Uwc0UzV2lr?=
- =?utf-8?B?N0ZWRDNTa2ludkxZUTM5elBxN0ZxTEdBdDl1RWZwTWpkM0IxQ3ljRnl6WlVp?=
- =?utf-8?B?ZWxoelk4VFNJWGpsenZRdDNEenNIVGd0T05zeUh0bC9PRG1oLy82YkRLOHRB?=
- =?utf-8?B?Y2tmSDZNWTJieGx4cmJQK0t6eEd2T2lQRS8xS2FBeVhPcDk5WXVDNndFQVB4?=
- =?utf-8?B?cW5DcmFnclB2VmdIVVdsZjQxYS96cVEvZ3hVRW54eGdLUXUyRWRRYnovYk5x?=
- =?utf-8?B?WGVMRVo2UnY0dXFRd1hYT2dmT2EzcTJibXBwUW9ScTIxRmlFUjNGRE5FMEhB?=
- =?utf-8?B?dCtPOEdyRDZRR1phR0VaVnJmRHRiUm1KN0Jva25RaG45dkxseHlyOGNpSjdZ?=
- =?utf-8?B?VnVXRXBqT3cyZ1d2RXM2Y05QaGVJaGl5OCtPQVZaSlg3Q1RhbFk4NlVscVpV?=
- =?utf-8?B?c3ZsNndVaXdhSlFrTDRaQWtsSDZyMi92c2NkUml5UmdRb2tZcHBqTVZ5elpr?=
- =?utf-8?B?WUdad0M3a2ZXczhnbkZTZHFyMnQzeU9XQnA1TWRMUWhmNEFoTmw1Q21Nandu?=
- =?utf-8?B?Y1psV1F4WTlpYk9Hd01TbWwxWjlKc3FPRlRQZWZjYWlHU1dPK3Z1MGZwMHZN?=
- =?utf-8?B?UVZJZUxtMHI3Yzl1cVlHbS9nRzNTbFdEWmxHcHZIaHMwV2d6ZFVGaGZ2b2xZ?=
- =?utf-8?B?SGkzU3RJbjdERUNTSEk5R20xZGdleDR0WUdPZVBaZmx2NlpYTEVTSWNiSkZW?=
- =?utf-8?B?Z1pkU1RFd2dmOVk4Qm9zVEpJSkVqLy9uODNZcDVySTBGK3U3Z01KcXRleEtV?=
- =?utf-8?B?UnpTRWd1MkZRbFF2NTJaUnFsT2JWUWRxVzFWVlg3ZmJaZTMyYnNpbTBvUVJ4?=
- =?utf-8?B?L2RGWXR5OW9FenpJeEhlZE4zblM4dkhlRHMvSW13WXpLajVBNVpwMnlqVlI5?=
- =?utf-8?B?bUFvVzZHQkZhWXgza20zUnZrbWNabWpqOStCYlM3a3Jtb2l3cmkyZ0RyOTJS?=
- =?utf-8?B?Z3J5bEJRQWpkQXZTRWdEVmVzdnFWMkpuL0xtRDMxd004NXZRMVRYNThGUzJv?=
- =?utf-8?B?d2tPcUc3VkdFRngyNmZPZElwSXJZTVgwM2xUTUFHUnFKaE91TEE1aDUwL3pC?=
- =?utf-8?B?Q2JoWnZmUE5oWDZIcmNyMmFndHJpa0R2QUM3MHlMaGRiQTZJMisyTGo0Rmo1?=
- =?utf-8?B?WmFhcXpuWlNhSnhGbnAwWkpJV24ramNVbE1xSWl6YzVlc0pZdUh0VThFaWV0?=
- =?utf-8?B?ZWtLbU0veWZJN2ZyeXdZQkFwdEFJRWlNdWwzcUxMZm1FbEhvcHlNcXV3WkMy?=
- =?utf-8?B?dmwxRXRhbnE1aDVXK0t6YzZIbDNoWDBOVFBLeVI2dCtDd3hrUG1Mem41ZDZB?=
- =?utf-8?B?d244QjVERlFneUdlUnltaXE5NHhtUlhHVUtmelYvdnMweDdEa2FZdU4zVVdJ?=
- =?utf-8?B?cVlGTW5vbHRsbWs2V3ZBRVhMcGtHRFB4Nm8rRmZJU0Jza1NOVXNXNFZjczVr?=
- =?utf-8?Q?LilHW6STW15Odzausm?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="242964678"
+Received: from lkp-server01.sh.intel.com (HELO dca79079c3eb) ([10.239.97.150])
+ by fmviesa005.fm.intel.com with ESMTP; 13 May 2026 00:20:58 -0700
+Received: from kbuild by dca79079c3eb with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1wN3tn-000000003eR-13jN;
+ Wed, 13 May 2026 07:20:55 +0000
+Date: Wed, 13 May 2026 15:20:46 +0800
+From: kernel test robot <lkp@intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: oe-kbuild-all@lists.linux.dev,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Huang Rui <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Dave Airlie <airlied@redhat.com>, dri-devel@lists.freedesktop.org,
+ stable@vger.kernel.org
+Subject: Re: [PATCH] drm/ttm: Fix ttm_bo_shrink() infinite LRU walk on backup
+ failure
+Message-ID: <202605131522.yUSpVs9Q-lkp@intel.com>
+References: <20260511162443.24352-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: HWvgeqhcm67xoo/ITOF0mdP5ao+HRQeS8hVlF6aq8RDJniAQ5Q5W1ZRo6kC0PUXcat/TUmbjNaCE6WoGP+icWaGXyvdz4bQ0f+0KhN4D01uBsNVt2NXvATzMi2ICVZvcqH/KcI/Cjk8qkKJ4ZacaSut8lHm5a3jU7OO6kf6nmGkbGWuBq6OwNSIRyz5vq16Jy+Dtnr0Qm9bGvJSfQwXJ0U7ne8jfOk6W8Of6lklHS4VWacfjaIje6M1fEN1+JNxopEGFzedDO1cOrJCR28EnP97K5MtU/djDlWhH6SVM9QeWRfX1z8vtR9+dntx5hLhtuwbKKjdLhbUERrYv5lFGgw==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PPF57F27BA08.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0ae08d69-ce14-428a-d0f6-08deb0bc6208
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 May 2026 06:53:47.7597 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: xB3j37j8rQlZZMFK6sPZjDpvWiGC9XwHNiYh5wZUic6WHc38IL8gEx43lJnjh4Pq+cbP23ueh77iXl4fOYz7Bg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5140
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260511162443.24352-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -177,58 +76,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBBYXJvbiBFc2F1IDxhYXJvbjFl
-c2F1QGdtYWlsLmNvbT4NCj4gU2VudDogU2F0dXJkYXksIDkgTWF5IDIwMjYgMTkuMjQNCj4gVG86
-IGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gQ2M6IGludGVsLXhlQGxpc3RzLmZy
-ZWVkZXNrdG9wLm9yZzsgZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgamFuaS5uaWt1
-bGFAbGludXguaW50ZWwuY29tOyBWaXZpLCBSb2RyaWdvDQo+IDxyb2RyaWdvLnZpdmlAaW50ZWwu
-Y29tPjsgam9vbmFzLmxhaHRpbmVuQGxpbnV4LmludGVsLmNvbTsgdHVyc3VsaW5AdXJzdWxpbi5u
-ZXQ7IEthaG9sYSwgTWlrYSA8bWlrYS5rYWhvbGFAaW50ZWwuY29tPjsNCj4gc3RhYmxlQHZnZXIu
-a2VybmVsLm9yZzsgQWFyb24gRXNhdSA8YWFyb24xZXNhdUBnbWFpbC5jb20+DQo+IFN1YmplY3Q6
-IFtQQVRDSCAxLzNdIGRybS9pOTE1L2N4MDogY2hlY2sgUExMIEFDSyBiaXQgaW4gaW50ZWxfY3gw
-X3BsbF9pc19lbmFibGVkKCkNCj4gDQo+IGludGVsX2N4MF9wbGxfaXNfZW5hYmxlZCgpIG9ubHkg
-Y2hlY2tzIHRoZSBQQ0xLX1BMTF9SRVFVRVNUIGJpdCBpbiBQT1JUX0NMT0NLX0NUTCwgd2hpY2gg
-aXMgc2V0IGJ5IHRoZSBkcml2ZXIgZHVyaW5nIHRoZSBQTEwNCj4gZW5hYmxlIHNlcXVlbmNlLiBJ
-dCBkb2VzIG5vdCBjaGVjayB0aGUgUENMS19QTExfQUNLIGJpdCwgd2hpY2ggaXMgdGhlIGhhcmR3
-YXJlJ3MgcmVzcG9uc2UgaW5kaWNhdGluZyB0aGUgUExMIGFjdHVhbGx5IGxvY2tlZC4NCj4gDQo+
-IFdoZW4gdGhlIENYMCBQSFkgTVNHQlVTIGlzIHVucmVzcG9uc2l2ZSAoZS5nLiBhZnRlciBhIGZh
-aWxlZCBzMmlkbGUgcmVzdW1lKSwgdGhlIFBMTCByZWdpc3RlciBwcm9ncmFtbWluZyB2aWEgTVNH
-QlVTIHNpbGVudGx5DQo+IGZhaWxzIGFuZCB0aGUgUExMIG5ldmVyIGxvY2tzLCBidXQgaW50ZWxf
-Y3gwX3BsbF9pc19lbmFibGVkKCkgcmV0dXJucyB0cnVlIGJlY2F1c2UgdGhlIGRyaXZlci1zZXQg
-UkVRVUVTVCBiaXQgaXMgcHJlc2VudC4gVGhpcw0KPiBjYXVzZXMgYWxsIGRvd25zdHJlYW0gc3Rh
-dGUgcmVhZG91dCBhbmQgdmVyaWZpY2F0aW9uIHRvIG9wZXJhdGUgb24gYSBQTEwgdGhhdCBpcyBu
-b3QgYWN0dWFsbHkgZW5hYmxlZC4NCj4gDQo+IENoZWNrIGJvdGggdGhlIFJFUVVFU1QgYW5kIEFD
-SyBiaXRzIHNvIHRoYXQgYSBQTEwgaXMgb25seSByZXBvcnRlZCBhcyBlbmFibGVkIHdoZW4gdGhl
-IGhhcmR3YXJlIGhhcyBjb25maXJtZWQgaXQgbG9ja2VkLg0KPiANCj4gRml4ZXM6IGJmODUzMTk5
-MDM4MCAoImRybS9pOTE1L2Rpc3BsYXk6IEFsbG93IGRpc3BsYXkgUEhZcyB0byByZXNldCBwb3dl
-ciBzdGF0ZSIpDQo+IENjOiBzdGFibGVAdmdlci5rZXJuZWwub3JnDQo+IENjOiBNaWthIEthaG9s
-YSA8bWlrYS5rYWhvbGFAaW50ZWwuY29tPg0KPiBTaWduZWQtb2ZmLWJ5OiBBYXJvbiBFc2F1IDxh
-YXJvbjFlc2F1QGdtYWlsLmNvbT4NCj4gLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX2N4MF9waHkuYyB8IDcgKysrKystLQ0KPiAgMSBmaWxlIGNoYW5nZWQsIDUgaW5z
-ZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2N4MF9waHkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfY3gwX3BoeS5jDQo+IGluZGV4IDcyODgwNjVkMi4uNGNhY2VhODAyIDEw
-MDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2N4MF9waHku
-Yw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2N4MF9waHkuYw0K
-PiBAQCAtMzU4MSw5ICszNTgxLDEyIEBAIHN0YXRpYyBib29sIGludGVsX2N4MF9wbGxfaXNfZW5h
-YmxlZChzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlcikNCg0KaW50ZWxfY3gwX3BsbF9pc19l
-bmFibGVkKCkgZG9lcyBub3QgdGVsbCB1cyB0aGF0IHRoZSBQTEwgaXMgZW5hYmxlZCBpbiBIVywg
-b25seSB0aGF0IFNXIGhhcyBzZXQgdGhlIGVuYWJsZS9yZXF1ZXN0IGJpdC4gSSBhZ3JlZSB0aGUg
-ZnVuY3Rpb24gbmFtZSBjb3VsZCBiZSBjbGVhcmVyIGFib3V0IHRoYXQgc2luY2UgaXQgcmVhbGx5
-IGNoZWNrcyB3aGV0aGVyIFNXIGhhcyBpbml0aWF0ZWQgUExMIGVuYWJsZS4gR2l2ZW4gdGhhdCwg
-SSBkb24ndCB0aGluayBpbnRlbF9jeDBwbGxfcmVhZG91dF9od19zdGF0ZSgpIG9yIGludGVsX2N4
-MF9wbGxfcG93ZXJfc2F2ZV93YSgpIG5lZWRzIHRvIHdhaXQgZm9yIHRoZSBIVyBhY2sgYmVmb3Jl
-IHJlYWRpbmcgc3RhdGUgYmFjay4gRm9yIHRoaXMgcmVhZG91dCBwYXRoLCBjaGVja2luZyB0aGF0
-IGVuYWJsZSB3YXMgcmVxdWVzdGVkIHNob3VsZCBiZSBzdWZmaWNpZW50Lg0KDQotTWlrYS0NCg0K
-PiAgCXN0cnVjdCBpbnRlbF9kaXNwbGF5ICpkaXNwbGF5ID0gdG9faW50ZWxfZGlzcGxheShlbmNv
-ZGVyKTsNCj4gIAlzdHJ1Y3QgaW50ZWxfZGlnaXRhbF9wb3J0ICpkaWdfcG9ydCA9IGVuY190b19k
-aWdfcG9ydChlbmNvZGVyKTsNCj4gIAl1OCBsYW5lID0gZGlnX3BvcnQtPmxhbmVfcmV2ZXJzYWwg
-PyBJTlRFTF9DWDBfTEFORTEgOiBJTlRFTF9DWDBfTEFORTA7DQo+ICsJdTMyIHZhbDsNCj4gDQo+
-IC0JcmV0dXJuIGludGVsX2RlX3JlYWQoZGlzcGxheSwgWEVMUERQX1BPUlRfQ0xPQ0tfQ1RMKGRp
-c3BsYXksIGVuY29kZXItPnBvcnQpKSAmDQo+IC0JCQkgICAgIGludGVsX2N4MF9nZXRfcGNsa19w
-bGxfcmVxdWVzdChsYW5lKTsNCj4gKwl2YWwgPSBpbnRlbF9kZV9yZWFkKGRpc3BsYXksIFhFTFBE
-UF9QT1JUX0NMT0NLX0NUTChkaXNwbGF5LA0KPiArZW5jb2Rlci0+cG9ydCkpOw0KPiArDQo+ICsJ
-cmV0dXJuICh2YWwgJiBpbnRlbF9jeDBfZ2V0X3BjbGtfcGxsX3JlcXVlc3QobGFuZSkpICYmDQo+
-ICsJICAgICAgICh2YWwgJiBpbnRlbF9jeDBfZ2V0X3BjbGtfcGxsX2FjayhsYW5lKSk7DQo+ICB9
-DQo+IA0KPiAgdm9pZCBpbnRlbF9tdGxfdGJ0X3BsbF9kaXNhYmxlX2Nsb2NrKHN0cnVjdCBpbnRl
-bF9lbmNvZGVyICplbmNvZGVyKQ0KPiAtLQ0KPiAyLjU0LjANCg0K
+Hi Thomas,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on drm-misc/drm-misc-next]
+[also build test ERROR on linus/master v7.1-rc3 next-20260508]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Thomas-Hellstr-m/drm-ttm-Fix-ttm_bo_shrink-infinite-LRU-walk-on-backup-failure/20260513-095356
+base:   https://gitlab.freedesktop.org/drm/misc/kernel.git drm-misc-next
+patch link:    https://lore.kernel.org/r/20260511162443.24352-1-thomas.hellstrom%40linux.intel.com
+patch subject: [PATCH] drm/ttm: Fix ttm_bo_shrink() infinite LRU walk on backup failure
+config: powerpc-allmodconfig (https://download.01.org/0day-ci/archive/20260513/202605131522.yUSpVs9Q-lkp@intel.com/config)
+compiler: powerpc64-linux-gcc (GCC) 15.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260513/202605131522.yUSpVs9Q-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202605131522.yUSpVs9Q-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/gpu/drm/ttm/ttm_bo_util.c: In function 'ttm_bo_shrink':
+>> drivers/gpu/drm/ttm/ttm_bo_util.c:1121:17: error: implicit declaration of function 'ttm_resource_del_bulk_move_unevictable'; did you mean 'ttm_resource_del_bulk_move'? [-Wimplicit-function-declaration]
+    1121 |                 ttm_resource_del_bulk_move_unevictable(bo->resource, bo);
+         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         |                 ttm_resource_del_bulk_move
+
+
+vim +1121 drivers/gpu/drm/ttm/ttm_bo_util.c
+
+  1067	
+  1068	/**
+  1069	 * ttm_bo_shrink() - Helper to shrink a ttm buffer object.
+  1070	 * @ctx: The struct ttm_operation_ctx used for the shrinking operation.
+  1071	 * @bo: The buffer object.
+  1072	 * @flags: Flags governing the shrinking behaviour.
+  1073	 *
+  1074	 * The function uses the ttm_tt_back_up functionality to back up or
+  1075	 * purge a struct ttm_tt. If the bo is not in system, it's first
+  1076	 * moved there.
+  1077	 *
+  1078	 * Return: The number of pages shrunken or purged, or
+  1079	 * negative error code on failure.
+  1080	 */
+  1081	long ttm_bo_shrink(struct ttm_operation_ctx *ctx, struct ttm_buffer_object *bo,
+  1082			   const struct ttm_bo_shrink_flags flags)
+  1083	{
+  1084		static const struct ttm_place sys_placement_flags = {
+  1085			.fpfn = 0,
+  1086			.lpfn = 0,
+  1087			.mem_type = TTM_PL_SYSTEM,
+  1088			.flags = 0,
+  1089		};
+  1090		static struct ttm_placement sys_placement = {
+  1091			.num_placement = 1,
+  1092			.placement = &sys_placement_flags,
+  1093		};
+  1094		struct ttm_device *bdev = bo->bdev;
+  1095		long lret;
+  1096	
+  1097		dma_resv_assert_held(bo->base.resv);
+  1098	
+  1099		if (flags.allow_move && bo->resource->mem_type != TTM_PL_SYSTEM) {
+  1100			int ret = ttm_bo_validate(bo, &sys_placement, ctx);
+  1101	
+  1102			/* Consider -ENOMEM and -ENOSPC non-fatal. */
+  1103			if (ret) {
+  1104				if (ret == -ENOMEM || ret == -ENOSPC)
+  1105					ret = -EBUSY;
+  1106				return ret;
+  1107			}
+  1108		}
+  1109	
+  1110		ttm_bo_unmap_virtual(bo);
+  1111		lret = ttm_bo_wait_ctx(bo, ctx);
+  1112		if (lret < 0)
+  1113			return lret;
+  1114	
+  1115		lret = ttm_tt_backup(bdev, bo->ttm, (struct ttm_backup_flags)
+  1116				     {.purge = flags.purge,
+  1117				      .writeback = flags.writeback});
+  1118	
+  1119		if (lret > 0) {
+  1120			spin_lock(&bdev->lru_lock);
+> 1121			ttm_resource_del_bulk_move_unevictable(bo->resource, bo);
+  1122			ttm_resource_move_to_lru_tail(bo->resource);
+  1123			spin_unlock(&bdev->lru_lock);
+  1124		}
+  1125	
+  1126		if (lret < 0 && lret != -EINTR)
+  1127			return -EBUSY;
+  1128	
+  1129		return lret;
+  1130	}
+  1131	EXPORT_SYMBOL(ttm_bo_shrink);
+  1132	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
