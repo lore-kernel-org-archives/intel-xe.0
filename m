@@ -4,27 +4,128 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C8F2CD4851
-	for <intel-xe@archiver.kernel.org>; Wed, 13 May 2026 08:05:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C61C4CD4851
+	for <intel-xe@archiver.kernel.org>; Wed, 13 May 2026 08:06:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1ED7D10E06A;
-	Wed, 13 May 2026 08:05:34 +0000 (UTC)
-Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9991F10E06A;
- Wed, 13 May 2026 08:05:33 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C4DA10E06A;
+	Wed, 13 May 2026 08:06:30 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="fibdBxt5";
+	dkim-atps=neutral
+Received: from CY7PR03CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11010062.outbound.protection.outlook.com
+ [40.93.198.62])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECA1710E06A;
+ Wed, 13 May 2026 08:06:28 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=UOt1LTzU7BZmeE3ZAEFZzXA9fSCAmZq6Nsh89ABPBMb9EKTwDju3FfBREfvd116oWJRjFL4fi66RLGZm3jwpcLQUN+ZTgO+YSL85sz/tgX/tJKrWDXEA/lXATHnU9VyT8mTx4Z+tfipN7KYUUssmlGSQrEA4sSDalzM5axJhj0wK9ZkXGZATUcM4rLVC3o21+b+omQWR7MQ4PSGfArIrxVj9Sj3ESniIPw/eLTiYQeJ8Zcx8pPDC/cPAhOdk/igbmkSOrngtm99FTIBkxP8Z+GiJ9fAgSrbKa0CjJ+Y9D3LWDONAZ8AHoeXb2oXdCO9d9BOTst3xyyNRs52Gdo0GPg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=CX9Ivbjjk2qhQu6YAP9Z+XzqJ+t6QkrAVysbOAZJ/sk=;
+ b=q4cMb/pPC9OW/7TzxiVvA673y9SarhVPpipM4MkSln9XW7Nh7coy2RZN4EWOEBfWgLWWeIf0famTqJBoRUzUKiT+Q3MZNUX46vw2JdzFyvwNQh67QQgbpkOgrKHGPLzi3cSVsOsFNDJvbbgN0ZNOQn8ZcrRu70J+x9EE4aHy05ICJECiyWIkJwo7W+Yqvk+cs5cbyzMDZJcpVVku+K0SlcJUV8KWvwNZuiA8tEu3GORcYB4kdfayxrgDmYFGZiD9Z0CBVDTTn6QeYWEeLBqkn/rsRZmApr88ehXmdpkRC/MGyGXL1ajAIP6doHsfWlBE0S00n3Dj2B+qUR1xZOV+ew==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CX9Ivbjjk2qhQu6YAP9Z+XzqJ+t6QkrAVysbOAZJ/sk=;
+ b=fibdBxt5POc2KXR7OEodOK88ugBIF4Usu1Vfe7GURULbYSI280w3iAJwcyjYCFk7MX7FfxfhCfvHRUDppBgzR/8cLxElysfK8XLtL7hc6/oNr2lOrwEm9uwS7OxZxAEbsx1Imqjb8SFytzzi8T+QhmRYfz9IIOsrZYBD3EzP3BE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by CH2PR12MB4166.namprd12.prod.outlook.com (2603:10b6:610:78::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9913.11; Wed, 13 May
+ 2026 08:06:21 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.20.9891.021; Wed, 13 May 2026
+ 08:06:21 +0000
+Message-ID: <ceb093fc-f028-4c03-8f16-08ab2d0b1ed7@amd.com>
+Date: Wed, 13 May 2026 10:06:12 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH i-g-t 0/8] dmem: add amdgpu support and one more test
+To: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>,
+ igt-dev@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, maarten.lankhorst@linux.intel.com,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Natalie Vock <natalie.vock@gmx.de>, kernel-dev@igalia.com,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ "Prosyak, Vitaly" <Vitaly.Prosyak@amd.com>
+References: <20260512215156.4083082-1-cascardo@igalia.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20260512215156.4083082-1-cascardo@igalia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR2P281CA0099.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:9c::9) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915=3A_crtc_iteratio?=
- =?utf-8?q?n_cleanups_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 13 May 2026 08:05:33 -0000
-Message-ID: <177865953362.66369.11908399807596403433@5ab824fced77>
-X-Patchwork-Hint: ignore
-References: <cover.1778659089.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1778659089.git.jani.nikula@intel.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|CH2PR12MB4166:EE_
+X-MS-Office365-Filtering-Correlation-Id: c6e29abf-a7f3-4410-ffe9-08deb0c684c6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|376014|7416014|1800799024|11063799003|22082099003|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info: b80D50iCrxOpswCxSB1pPKIcsjMMb5YjrhpxZClKEcbSg4caQ+NkeYpk1ruBwcTZ00dWYZX6d6SnZcjgaOjUfFEz1Ozj9d3e7qwX0BOfZRYMI/oKI6z87ONELx8JiJCl4Wc7mqhYBq7I49rdjggdeum1+irT25tNs0AmcGMX2+pbREWundE+nuDFbI283BYaPRhYixb/geTxofU5lhKjc3FbP3kynizyndndyPBX2Ni+CG8s33HJgTIR2Qna9PnFLepadnie9NgVuWnrlEml8A10zk2C1CImdTUOfGzLNKOq2FqApB/MUf4xz7SOBmPXCZs3R4WIkwHQYEw5b1ocV922DzctwJRYcyFyaD4c73rXpixq5pfQKNYBCfFhoIu4eveI2UmxjuqM+OcPbTrU+MnZFNKAXOiTtOTISgsT7mdWWhYn9pojcm7Ueo2M2Kbhd254p+eCMxURtw8Syaq2piOO/u44Fz/QB78iWG6XqFEhmjxTJPKPcP6eIvYY2VKm15bxWnb6wgSkju/SAMKpWpOlq/zerUSY+shzc71tF8FwkT6sAdInHkzILDyxsneXBVwi/eHHnK5PglmNYZQVKPV8z9nls2T1hSyuAxefb4KzZ/H+zFkkdUlumGZdgV4Yg9WRjDZKYCqXyKpKTpiJtQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(7416014)(1800799024)(11063799003)(22082099003)(18002099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UnY2Z204MlI1RWt1ZzlRektia2U4MFo1THZES2dMSTBUV3E2bVlPMlNoZjF1?=
+ =?utf-8?B?QklzWUJwNi9qaFRoU3doQXdvczduK2NRdzhUaS8zdlN6WEhpWTU0TlZQUGxa?=
+ =?utf-8?B?TDRIYWdwdFlOdENicjdtZFowYTczMDAweFA0S2pmZ0RRa21TZ3Vub0F4MWNC?=
+ =?utf-8?B?bFRBWVUzckswWnBDSE0xNjIxOGhmdW41TFlJckk5YUhYYjFzY3RpSnJhOFVl?=
+ =?utf-8?B?cmMwZXc3UDJ5d3BaSjAxbjg2NWM3RkFkTDd2enllRGViODZjTW55cFFoTHFS?=
+ =?utf-8?B?NXVmRURTMUdoMi9LbmFXY1Zhc20yQ1YyRFBtSncvdzJIbk1CUlBQWVFpOTY4?=
+ =?utf-8?B?c0RtbHpQS1lBc041UGxJaWVBVTBGZWdUWVE0NTR1U2dhMEIyRnRwMms5VHdw?=
+ =?utf-8?B?MStua3BOVnE5cDdzay9OSUNXVUpBZjZENnF2VHRnalduc3JjcGFydW9EQTBM?=
+ =?utf-8?B?MnpZRWszeDNoVzdYUTYyZHpiTklRYjcyTzQ5c1owK3lnQzErdEkrOGU2RklU?=
+ =?utf-8?B?SHI3UFhPSm54a3RDekh6UnFvZGJRYjJBTUJBVmsyMDR6TStaTWMrMUxORHFs?=
+ =?utf-8?B?NDRIVlRXT1p6N2tEY01VY1c1cWdIc0hRTnJPVm9paUFUb0hrOVlsbGE2WTI4?=
+ =?utf-8?B?bThCRzNxSW93bm5ubGo4RjAxWGRydjJzNlNyRVNPdG01MnBsQUI3a1ptelpJ?=
+ =?utf-8?B?VmdwUlo5bjJXc3Z3elQ5QlVmUFloYlFLdTYrVDZrS3A2T0xWcG9kRDJHbkU4?=
+ =?utf-8?B?ZzZJVnhId1k3ZHZpYktmN1VOaC9xU0JtVkx4aFV3MEl1eG9MdTRyRGxBMW1D?=
+ =?utf-8?B?cFlLbXp3ek9VTUcxVVMwSFBZcVhiWEFxaFowNEpLTFhlVTY3VmJmZmlqY0VD?=
+ =?utf-8?B?NWprOUpYVFpCZmdKckhNMUtmNkhlUjVDd3dmdldFeVBNMExVYzA2d2UweEd3?=
+ =?utf-8?B?c09KYS9udWJ6NkJPRzVrOVAzbXFoM0FmTlkvS2VLWHY0ZGtubjI2cE9WcmFH?=
+ =?utf-8?B?eDV5NXpVbGlnYytSUkpuYTJoTVpmQkFWNC9SRXNUM3NBemJkRFMwYWt5RWZF?=
+ =?utf-8?B?dDYzd1hxRlhhQTBDQlVKb0h6cFd1WUFHbU43OTFZQ1RyUFc4SjQxaEtKaWZa?=
+ =?utf-8?B?K0xYQWY4bkJaZjZ4Wk5xZ21PVFhDVks2M2MrRUN2NGxGWEJHZkhpYmJkTGFZ?=
+ =?utf-8?B?anhJUytIeGZlTE5hdW5ZeDhBZm5rc1F0VW1iKzNLSm1MbnJZbkZvcU5OckdZ?=
+ =?utf-8?B?cVhCUnV4UEQ3Vm96VXZub3BZdzQ0eUpGQXNpRFo5Q1RzOWJYMGlsL0VPOThL?=
+ =?utf-8?B?TG9CTlptT3FFbkUwV0RQbDJFTWpVZ3RiQmx0VDJnaVZxaTVRN0xqamFqQ3JD?=
+ =?utf-8?B?bWxrS09QK1RuYms5b2sraGxGcENCaXY4S2IrdTJjT3dyREkwTDV1b3NjVEdi?=
+ =?utf-8?B?SmI2YW1ENGVIWkFZU0MwYXdSN2FINzZHWWRvZUdDK2xoUGFZNmtFL3lSSTJo?=
+ =?utf-8?B?RTVTTEw3eS80Y29WRVlhRE5TWXZMZGN6Lzdsaklxc0dFWU8xSWtOSlJBakRr?=
+ =?utf-8?B?LzhlZm5kZUlwdXE0QWhOS1hTQW9STzA5RHdieW9WVjFHUzBRSFlKb1ZPTVN3?=
+ =?utf-8?B?Sy9yaEVrRFJaNVljL1FSbnVvT2FTT1lKZEJZVkd4dkcwRHh0RzBwd3l0VUJE?=
+ =?utf-8?B?L1NhYXZna21RbFV2Y2pjeUJaVW5wY3ZvL3F1bXZZWFptUHUyVjZOVTVUZWJa?=
+ =?utf-8?B?czJqam5RWWpKeW5wckNEQmkveVhiKzA0bTVqYlpUNFNia2cxQmJONWYzSUsx?=
+ =?utf-8?B?K3RrNFUxQm9PV1pJUlV1Y2x3WjdVUnloOUFzd1c2R0UvbGhjS1hMaVZUVDdk?=
+ =?utf-8?B?a3RpdkxhUTgzZmVpc1pMRUsvVEd5S0xyekd6czNyVmtpbG9JVVROVDRwYUJP?=
+ =?utf-8?B?NFhpVkpkQUM1SjA1eGdjV2FEV0NRQnpPTFlMOGtKME1MMk00Sk93NnVFdHNO?=
+ =?utf-8?B?Nm1ycmp0U0dZMG9XajB6ZzBuRGo2Y1cvMlc5SDJ1M0xnTCs1SFlLeloybXp3?=
+ =?utf-8?B?OHY1SjV2N3JGWnBKdHpWcSt0dUFWdGlraktrbFNTRVBTK3F2djd3UzM1dStT?=
+ =?utf-8?B?U2FkaURLUVBlVlJEakJnNUpGVENsNk9HMVhoZ2VPVWZVQ3dXVG9la3NvK3k1?=
+ =?utf-8?B?VHN3eGJlQlpVOGp0eS9EcEJqK1JMeXczU1JXZ0NEYlpWaHNOWklQcHBST1A3?=
+ =?utf-8?B?dmhEajdKYkhYZm4zSEViZ1BvM1hPQ2U3RUxjQUM2YmpKS0VDU0dVdWZacGsw?=
+ =?utf-8?Q?GWJt0cDL8BHZkML4X/?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c6e29abf-a7f3-4410-ffe9-08deb0c684c6
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2026 08:06:21.2666 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: SDkQnbQbpnJZvakzCCqPlmJNkc8sw7fwyR5Mc0EIoqsPX4H94bZIhLhhqT7AABVp
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4166
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,368 +137,55 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/i915: crtc iteration cleanups (rev2)
-URL   : https://patchwork.freedesktop.org/series/165524/
-State : warning
-
-== Summary ==
-
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-061140b9bc586ae7f40abc1249c97e1cc72d1b9d
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit f463751a39fa1d10178fe45104ecaf32cf82d0e7
-Author: Jani Nikula <jani.nikula@intel.com>
-Date:   Wed May 13 10:58:40 2026 +0300
-
-    drm/i915/display: stop passing i to for_each_pipe_crtc_modeset_{enable, disable}()
-    
-    Refactor for_each_pipe_crtc_modeset_{enable,disable}() and their
-    underlying for_each_crtc_in_masks{,_reverse}() helpers to utilize
-    __UNIQUE_ID() to avoid having to pass the for loop variable to them.
-    
-    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-+ /mt/dim checkpatch 434cb4b7f013cfce5ffd936d2a8a4daf0ef53d50 drm-intel
-31e1fb3e801c drm/{i915, xe}: move xe_display_flush_cleanup_work() to i915 display
-82467de221eb drm/i915/display: switch from drm_for_each_crtc() to for_each_intel_crtc()
-ae571af1078a drm/i915/display: always pass display->drm to for_each_intel_crtc*()
-99c6f078e5a2 drm/i915/display: pass struct intel_display to all for_each_intel_crtc*() macros
--:396: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#396: FILE: drivers/gpu/drm/i915/display/intel_display.h:225:
-+#define for_each_intel_crtc_in_pipe_mask(display, crtc, pipe_mask) \
-+	for_each_intel_crtc((display), (crtc)) \
- 		for_each_if((pipe_mask) & BIT((crtc)->pipe))
-
-BUT SEE:
-
-   do {} while (0) advice is over-stated in a few situations:
-
-   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
-   file-scope, where C disallows code (it must be in functions).  See
-   $exceptions if you have one to add by name.
-
-   More troublesome is declarative macros used at top of new scope,
-   like DECLARE_PER_CPU.  These might just compile with a do-while-0
-   wrapper, but would be incorrect.  Most of these are handled by
-   detecting struct,union,etc declaration primitives in $exceptions.
-
-   Theres also macros called inside an if (block), which "return" an
-   expression.  These cannot do-while, and need a ({}) wrapper.
-
-   Enjoy this qualification while we work to improve our heuristics.
-
--:396: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'crtc' - possible side-effects?
-#396: FILE: drivers/gpu/drm/i915/display/intel_display.h:225:
-+#define for_each_intel_crtc_in_pipe_mask(display, crtc, pipe_mask) \
-+	for_each_intel_crtc((display), (crtc)) \
- 		for_each_if((pipe_mask) & BIT((crtc)->pipe))
-
--:402: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#402: FILE: drivers/gpu/drm/i915/display/intel_display.h:229:
-+#define for_each_intel_crtc_in_pipe_mask_reverse(display, crtc, pipe_mask) \
-+	for_each_intel_crtc_reverse((display), (crtc)) \
- 		for_each_if((pipe_mask) & BIT((crtc)->pipe))
-
-BUT SEE:
-
-   do {} while (0) advice is over-stated in a few situations:
-
-   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
-   file-scope, where C disallows code (it must be in functions).  See
-   $exceptions if you have one to add by name.
-
-   More troublesome is declarative macros used at top of new scope,
-   like DECLARE_PER_CPU.  These might just compile with a do-while-0
-   wrapper, but would be incorrect.  Most of these are handled by
-   detecting struct,union,etc declaration primitives in $exceptions.
-
-   Theres also macros called inside an if (block), which "return" an
-   expression.  These cannot do-while, and need a ({}) wrapper.
-
-   Enjoy this qualification while we work to improve our heuristics.
-
--:402: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'crtc' - possible side-effects?
-#402: FILE: drivers/gpu/drm/i915/display/intel_display.h:229:
-+#define for_each_intel_crtc_in_pipe_mask_reverse(display, crtc, pipe_mask) \
-+	for_each_intel_crtc_reverse((display), (crtc)) \
- 		for_each_if((pipe_mask) & BIT((crtc)->pipe))
-
--:494: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (27, 35)
-#494: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:87:
-+			   for_each_intel_crtc(display, it__) {
- 				   __entry->frame[it__->pipe] = intel_crtc_get_vblank_counter(it__);
-
--:503: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (27, 35)
-#503: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:117:
-+			   for_each_intel_crtc(display, it__) {
- 				   __entry->frame[it__->pipe] = intel_crtc_get_vblank_counter(it__);
-
--:512: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (27, 35)
-#512: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:247:
-+			   for_each_intel_crtc(display, crtc) {
- 				   __entry->frame[crtc->pipe] = intel_crtc_get_vblank_counter(crtc);
-
-total: 2 errors, 3 warnings, 2 checks, 786 lines checked
-15e028d8bc5e drm/i915/display: stop passing i to for_each_*_intel_crtc_in_state() macros
--:489: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
-#489: FILE: drivers/gpu/drm/i915/display/intel_display.c:7038:
-+		for_each_oldnew_intel_crtc_in_state_reverse(state, crtc, old_crtc_state, new_crtc_state) {
-
--:649: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#649: FILE: drivers/gpu/drm/i915/display/intel_display.h:290:
-+#define for_each_old_intel_crtc_in_state(__state, crtc, old_crtc_state) \
- 	for_each_intel_crtc(to_intel_display(__state), (crtc)) \
-+		for_each_if((old_crtc_state) = intel_atomic_get_old_crtc_state((__state), (crtc)))
-
-BUT SEE:
-
-   do {} while (0) advice is over-stated in a few situations:
-
-   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
-   file-scope, where C disallows code (it must be in functions).  See
-   $exceptions if you have one to add by name.
-
-   More troublesome is declarative macros used at top of new scope,
-   like DECLARE_PER_CPU.  These might just compile with a do-while-0
-   wrapper, but would be incorrect.  Most of these are handled by
-   detecting struct,union,etc declaration primitives in $exceptions.
-
-   Theres also macros called inside an if (block), which "return" an
-   expression.  These cannot do-while, and need a ({}) wrapper.
-
-   Enjoy this qualification while we work to improve our heuristics.
-
--:649: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__state' - possible side-effects?
-#649: FILE: drivers/gpu/drm/i915/display/intel_display.h:290:
-+#define for_each_old_intel_crtc_in_state(__state, crtc, old_crtc_state) \
- 	for_each_intel_crtc(to_intel_display(__state), (crtc)) \
-+		for_each_if((old_crtc_state) = intel_atomic_get_old_crtc_state((__state), (crtc)))
-
--:649: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'crtc' - possible side-effects?
-#649: FILE: drivers/gpu/drm/i915/display/intel_display.h:290:
-+#define for_each_old_intel_crtc_in_state(__state, crtc, old_crtc_state) \
- 	for_each_intel_crtc(to_intel_display(__state), (crtc)) \
-+		for_each_if((old_crtc_state) = intel_atomic_get_old_crtc_state((__state), (crtc)))
-
--:656: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#656: FILE: drivers/gpu/drm/i915/display/intel_display.h:294:
-+#define for_each_new_intel_crtc_in_state(__state, crtc, new_crtc_state) \
- 	for_each_intel_crtc(to_intel_display(__state), (crtc)) \
-+		for_each_if((new_crtc_state) = intel_atomic_get_new_crtc_state((__state), (crtc)))
-
-BUT SEE:
-
-   do {} while (0) advice is over-stated in a few situations:
-
-   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
-   file-scope, where C disallows code (it must be in functions).  See
-   $exceptions if you have one to add by name.
-
-   More troublesome is declarative macros used at top of new scope,
-   like DECLARE_PER_CPU.  These might just compile with a do-while-0
-   wrapper, but would be incorrect.  Most of these are handled by
-   detecting struct,union,etc declaration primitives in $exceptions.
-
-   Theres also macros called inside an if (block), which "return" an
-   expression.  These cannot do-while, and need a ({}) wrapper.
-
-   Enjoy this qualification while we work to improve our heuristics.
-
--:656: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__state' - possible side-effects?
-#656: FILE: drivers/gpu/drm/i915/display/intel_display.h:294:
-+#define for_each_new_intel_crtc_in_state(__state, crtc, new_crtc_state) \
- 	for_each_intel_crtc(to_intel_display(__state), (crtc)) \
-+		for_each_if((new_crtc_state) = intel_atomic_get_new_crtc_state((__state), (crtc)))
-
--:656: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'crtc' - possible side-effects?
-#656: FILE: drivers/gpu/drm/i915/display/intel_display.h:294:
-+#define for_each_new_intel_crtc_in_state(__state, crtc, new_crtc_state) \
- 	for_each_intel_crtc(to_intel_display(__state), (crtc)) \
-+		for_each_if((new_crtc_state) = intel_atomic_get_new_crtc_state((__state), (crtc)))
-
--:663: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#663: FILE: drivers/gpu/drm/i915/display/intel_display.h:298:
-+#define for_each_new_intel_crtc_in_state_reverse(__state, crtc, new_crtc_state) \
- 	for_each_intel_crtc_reverse(to_intel_display(__state), (crtc)) \
-+		for_each_if((new_crtc_state) = intel_atomic_get_new_crtc_state((__state), (crtc)))
-
-BUT SEE:
-
-   do {} while (0) advice is over-stated in a few situations:
-
-   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
-   file-scope, where C disallows code (it must be in functions).  See
-   $exceptions if you have one to add by name.
-
-   More troublesome is declarative macros used at top of new scope,
-   like DECLARE_PER_CPU.  These might just compile with a do-while-0
-   wrapper, but would be incorrect.  Most of these are handled by
-   detecting struct,union,etc declaration primitives in $exceptions.
-
-   Theres also macros called inside an if (block), which "return" an
-   expression.  These cannot do-while, and need a ({}) wrapper.
-
-   Enjoy this qualification while we work to improve our heuristics.
-
--:663: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__state' - possible side-effects?
-#663: FILE: drivers/gpu/drm/i915/display/intel_display.h:298:
-+#define for_each_new_intel_crtc_in_state_reverse(__state, crtc, new_crtc_state) \
- 	for_each_intel_crtc_reverse(to_intel_display(__state), (crtc)) \
-+		for_each_if((new_crtc_state) = intel_atomic_get_new_crtc_state((__state), (crtc)))
-
--:663: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'crtc' - possible side-effects?
-#663: FILE: drivers/gpu/drm/i915/display/intel_display.h:298:
-+#define for_each_new_intel_crtc_in_state_reverse(__state, crtc, new_crtc_state) \
- 	for_each_intel_crtc_reverse(to_intel_display(__state), (crtc)) \
-+		for_each_if((new_crtc_state) = intel_atomic_get_new_crtc_state((__state), (crtc)))
-
--:670: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#670: FILE: drivers/gpu/drm/i915/display/intel_display.h:302:
-+#define for_each_oldnew_intel_crtc_in_state(__state, crtc, old_crtc_state, new_crtc_state) \
- 	for_each_intel_crtc(to_intel_display(__state), (crtc)) \
-+		for_each_if(((old_crtc_state) = intel_atomic_get_old_crtc_state((__state), (crtc)), \
- 			     (new_crtc_state) = intel_atomic_get_new_crtc_state((__state), (crtc))))
-
-BUT SEE:
-
-   do {} while (0) advice is over-stated in a few situations:
-
-   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
-   file-scope, where C disallows code (it must be in functions).  See
-   $exceptions if you have one to add by name.
-
-   More troublesome is declarative macros used at top of new scope,
-   like DECLARE_PER_CPU.  These might just compile with a do-while-0
-   wrapper, but would be incorrect.  Most of these are handled by
-   detecting struct,union,etc declaration primitives in $exceptions.
-
-   Theres also macros called inside an if (block), which "return" an
-   expression.  These cannot do-while, and need a ({}) wrapper.
-
-   Enjoy this qualification while we work to improve our heuristics.
-
--:670: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__state' - possible side-effects?
-#670: FILE: drivers/gpu/drm/i915/display/intel_display.h:302:
-+#define for_each_oldnew_intel_crtc_in_state(__state, crtc, old_crtc_state, new_crtc_state) \
- 	for_each_intel_crtc(to_intel_display(__state), (crtc)) \
-+		for_each_if(((old_crtc_state) = intel_atomic_get_old_crtc_state((__state), (crtc)), \
- 			     (new_crtc_state) = intel_atomic_get_new_crtc_state((__state), (crtc))))
-
--:670: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'crtc' - possible side-effects?
-#670: FILE: drivers/gpu/drm/i915/display/intel_display.h:302:
-+#define for_each_oldnew_intel_crtc_in_state(__state, crtc, old_crtc_state, new_crtc_state) \
- 	for_each_intel_crtc(to_intel_display(__state), (crtc)) \
-+		for_each_if(((old_crtc_state) = intel_atomic_get_old_crtc_state((__state), (crtc)), \
- 			     (new_crtc_state) = intel_atomic_get_new_crtc_state((__state), (crtc))))
-
--:674: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#674: FILE: drivers/gpu/drm/i915/display/intel_display.h:304:
-+		for_each_if(((old_crtc_state) = intel_atomic_get_old_crtc_state((__state), (crtc)), \
-
--:678: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#678: FILE: drivers/gpu/drm/i915/display/intel_display.h:307:
-+#define for_each_oldnew_intel_crtc_in_state_reverse(__state, crtc, old_crtc_state, new_crtc_state) \
- 	for_each_intel_crtc_reverse(to_intel_display(__state), (crtc)) \
-+		for_each_if(((old_crtc_state) = intel_atomic_get_old_crtc_state((__state), (crtc)), \
- 			     (new_crtc_state) = intel_atomic_get_new_crtc_state((__state), (crtc))))
-
-BUT SEE:
-
-   do {} while (0) advice is over-stated in a few situations:
-
-   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
-   file-scope, where C disallows code (it must be in functions).  See
-   $exceptions if you have one to add by name.
-
-   More troublesome is declarative macros used at top of new scope,
-   like DECLARE_PER_CPU.  These might just compile with a do-while-0
-   wrapper, but would be incorrect.  Most of these are handled by
-   detecting struct,union,etc declaration primitives in $exceptions.
-
-   Theres also macros called inside an if (block), which "return" an
-   expression.  These cannot do-while, and need a ({}) wrapper.
-
-   Enjoy this qualification while we work to improve our heuristics.
-
--:678: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__state' - possible side-effects?
-#678: FILE: drivers/gpu/drm/i915/display/intel_display.h:307:
-+#define for_each_oldnew_intel_crtc_in_state_reverse(__state, crtc, old_crtc_state, new_crtc_state) \
- 	for_each_intel_crtc_reverse(to_intel_display(__state), (crtc)) \
-+		for_each_if(((old_crtc_state) = intel_atomic_get_old_crtc_state((__state), (crtc)), \
- 			     (new_crtc_state) = intel_atomic_get_new_crtc_state((__state), (crtc))))
-
--:678: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'crtc' - possible side-effects?
-#678: FILE: drivers/gpu/drm/i915/display/intel_display.h:307:
-+#define for_each_oldnew_intel_crtc_in_state_reverse(__state, crtc, old_crtc_state, new_crtc_state) \
- 	for_each_intel_crtc_reverse(to_intel_display(__state), (crtc)) \
-+		for_each_if(((old_crtc_state) = intel_atomic_get_old_crtc_state((__state), (crtc)), \
- 			     (new_crtc_state) = intel_atomic_get_new_crtc_state((__state), (crtc))))
-
--:682: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#682: FILE: drivers/gpu/drm/i915/display/intel_display.h:309:
-+		for_each_if(((old_crtc_state) = intel_atomic_get_old_crtc_state((__state), (crtc)), \
-
-total: 5 errors, 3 warnings, 10 checks, 745 lines checked
-f463751a39fa drm/i915/display: stop passing i to for_each_pipe_crtc_modeset_{enable, disable}()
--:125: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'crtc' - possible side-effects?
-#125: FILE: drivers/gpu/drm/i915/display/intel_display.h:328:
-+#define __for_each_crtc_in_masks(display, crtc, first_pipes, second_pipes, i) \
-+	for (int (i) = 0; \
- 	     (i) < (I915_MAX_PIPES * 2) && ((crtc) = intel_crtc_for_pipe(display, (i) % I915_MAX_PIPES), 1); \
- 	     (i)++) \
- 		for_each_if((crtc) && ((first_pipes) | ((second_pipes) << I915_MAX_PIPES)) & BIT(i))
-
--:125: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i' - possible side-effects?
-#125: FILE: drivers/gpu/drm/i915/display/intel_display.h:328:
-+#define __for_each_crtc_in_masks(display, crtc, first_pipes, second_pipes, i) \
-+	for (int (i) = 0; \
- 	     (i) < (I915_MAX_PIPES * 2) && ((crtc) = intel_crtc_for_pipe(display, (i) % I915_MAX_PIPES), 1); \
- 	     (i)++) \
- 		for_each_if((crtc) && ((first_pipes) | ((second_pipes) << I915_MAX_PIPES)) & BIT(i))
-
--:133: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'crtc' - possible side-effects?
-#133: FILE: drivers/gpu/drm/i915/display/intel_display.h:334:
-+#define __for_each_crtc_in_masks_reverse(display, crtc, first_pipes, second_pipes, i) \
-+	for (int (i) = (I915_MAX_PIPES * 2 - 1); \
- 	     (i) >= 0 && ((crtc) = intel_crtc_for_pipe(display, (i) % I915_MAX_PIPES), 1); \
- 	     (i)--) \
- 		for_each_if((crtc) && ((first_pipes) | ((second_pipes) << I915_MAX_PIPES)) & BIT(i))
-
--:133: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i' - possible side-effects?
-#133: FILE: drivers/gpu/drm/i915/display/intel_display.h:334:
-+#define __for_each_crtc_in_masks_reverse(display, crtc, first_pipes, second_pipes, i) \
-+	for (int (i) = (I915_MAX_PIPES * 2 - 1); \
- 	     (i) >= 0 && ((crtc) = intel_crtc_for_pipe(display, (i) % I915_MAX_PIPES), 1); \
- 	     (i)--) \
- 		for_each_if((crtc) && ((first_pipes) | ((second_pipes) << I915_MAX_PIPES)) & BIT(i))
-
--:150: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'crtc_state' - possible side-effects?
-#150: FILE: drivers/gpu/drm/i915/display/intel_display.h:340:
-+#define for_each_pipe_crtc_modeset_disable(display, crtc, crtc_state) \
-+	__for_each_crtc_in_masks(display, crtc, \
-+				 _intel_modeset_primary_pipes(crtc_state), \
-+				 _intel_modeset_secondary_pipes(crtc_state), \
-+				 __UNIQUE_ID(i))
-
--:156: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'crtc_state' - possible side-effects?
-#156: FILE: drivers/gpu/drm/i915/display/intel_display.h:346:
-+#define for_each_pipe_crtc_modeset_enable(display, crtc, crtc_state) \
-+	__for_each_crtc_in_masks_reverse(display, crtc,			\
-+					 _intel_modeset_primary_pipes(crtc_state), \
-+					 _intel_modeset_secondary_pipes(crtc_state), \
-+					 __UNIQUE_ID(i))
-
-total: 0 errors, 0 warnings, 6 checks, 167 lines checked
-
+On 5/12/26 23:51, Thadeu Lima de Souza Cascardo wrote:
+> This work builds on top of Thomas Hellström's patches at [1].
+> 
+> Besides the case of eviction when setting dmem.max, which still needs
+> support from [2], there are other cases for testing dmem behavior and
+> potential regressions. Thomas' patches lay over the groundwork for this,
+> while this patchset addes one basic test of checking current usage and that
+> drivers respect max setting when no eviction is taking place yet.
+> 
+> This patchset also introduces a driver layer such that the same tests can
+> work with different drivers. amdgpu support is here added too.
+
+Of hand that looks really nice.
+
+Please always keep Vitaly CCed for igt test patches which affect amdgpu as well.
+
+Thanks,
+Christian.
+
+> 
+> [1] https://patchwork.freedesktop.org/series/163935/
+> 
+> Thadeu Lima de Souza Cascardo (8):
+>   Introduce dmem driver and implement Xe support
+>   Adjust xe_cgroups test to use igt_dmem_driver
+>   Make xe_cgroup test a generic test
+>   amdgpu: add amdgpu_cgroup_region_name
+>   igt_dmem_driver: add amdgpu support
+>   dmem: add test for current/max
+>   dmem: only check for dmem availability once
+>   dmem: get region once per driver
+> 
+>  lib/amdgpu/amd_dmem.c    |  94 ++++++++++
+>  lib/amdgpu/amd_memory.c  |  25 +++
+>  lib/amdgpu/amd_memory.h  |   2 +
+>  lib/igt_dmem_driver.h    |  25 +++
+>  lib/meson.build          |   2 +
+>  lib/xe/xe_dmem.c         | 145 +++++++++++++++
+>  tests/drv_dmem_cgroups.c | 390 +++++++++++++++++++++++++++++++++++++++
+>  tests/intel/xe_cgroups.c | 296 -----------------------------
+>  tests/meson.build        |   2 +-
+>  9 files changed, 684 insertions(+), 297 deletions(-)
+>  create mode 100644 lib/amdgpu/amd_dmem.c
+>  create mode 100644 lib/igt_dmem_driver.h
+>  create mode 100644 lib/xe/xe_dmem.c
+>  create mode 100644 tests/drv_dmem_cgroups.c
+>  delete mode 100644 tests/intel/xe_cgroups.c
+> 
 
