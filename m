@@ -4,171 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66528CD4F42
-	for <intel-xe@archiver.kernel.org>; Wed, 13 May 2026 18:24:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0ADCCD4F21
+	for <intel-xe@archiver.kernel.org>; Wed, 13 May 2026 18:56:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B3F8410EFE9;
-	Wed, 13 May 2026 18:24:06 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="Xs5+o8is";
-	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="A3IDU65Z";
-	dkim-atps=neutral
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C978310F013
- for <intel-xe@lists.freedesktop.org>; Wed, 13 May 2026 18:24:05 +0000 (UTC)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 64DGuJW43995620
- for <intel-xe@lists.freedesktop.org>; Wed, 13 May 2026 18:24:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
- li1QTXDLKUg9Sb2Wzb5S3vgbZrLxrrKq59N8rWxZa0g=; b=Xs5+o8is26i9TDoz
- y3y7X36LjlcrVNTHGo46xIwoGiWfsMdLrS54s/66GDd4akyYZMGQR05NxojrB/R+
- x/9om5EnZ9cPMwmqjxdXO1GVzf+uLhKU5CcYtgZP3w1wETTy2UpkHnSCy0lTgFNF
- ha1pCTN8J/of06OBBF50O1zZWQNiYO0LjxltuBQ4cad3lD3n9Lbl5sffy0vcEfCL
- IoOHFVq8f5zOfv2bTths8NCpQ2GK04suj0VD8Xy6mhDvF5bNx4+W9zSZqTgl2C2M
- hBBxbdFwO6cc+uphD7iBz/MXTLPdYOgJZa1BHoEcpYdI1axmH16oOGw+BayBf7hp
- B5Hjqw==
-Received: from mail-vs1-f70.google.com (mail-vs1-f70.google.com
- [209.85.217.70])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e4w8urb61-1
- (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
- for <intel-xe@lists.freedesktop.org>; Wed, 13 May 2026 18:24:04 +0000 (GMT)
-Received: by mail-vs1-f70.google.com with SMTP id
- ada2fe7eead31-636fce7dc8dso1504277137.2
- for <intel-xe@lists.freedesktop.org>; Wed, 13 May 2026 11:24:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oss.qualcomm.com; s=google; t=1778696644; x=1779301444;
- darn=lists.freedesktop.org; 
- h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
- :mime-version:subject:date:from:from:to:cc:subject:date:message-id
- :reply-to; bh=li1QTXDLKUg9Sb2Wzb5S3vgbZrLxrrKq59N8rWxZa0g=;
- b=A3IDU65ZkFjhTpDBTRsZrKppNHoMJpN6R5JdELUFIMk0BZS/GOLbU9ycu+uXlPntaJ
- hop2DtnobTBsmia8FhmxKzX9uMJUvcZzUc781f5moKlnlWWlIQMma0KSNwAwPyG49RZd
- ih4mPkou+TYCGGiOk7mAm81kdhVAfMAf8FBAOPpgMnOOgl5dG3Pu872kEMfwjx1A08IZ
- GSEnNs4g5MXT2/htHn7GXvq8oClx1sA2Y/jgt6K+r7S8RRTeTzpt+SM1MuTS+F7qNaC9
- nRkr16wOXSc9ZKX+W2J5n7qjvY5sU8QGQJwEhrZXM4XCEkShym+jxDdqrcGcQM15vGF2
- reUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1778696644; x=1779301444;
- h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
- :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
- :cc:subject:date:message-id:reply-to;
- bh=li1QTXDLKUg9Sb2Wzb5S3vgbZrLxrrKq59N8rWxZa0g=;
- b=amak2vBpp1vjmsULzxcW7/4C7JbSh4AWerP9p0j1buAjRFzyVHob1AD1weWqTY/U+h
- KkNiNaiydjEU3F33hIPWJ3Y0E5iqcKTblYYLVopij0u35kDTSdhbq62G2Grkq+9moMh8
- LaJlSnrtUTRo6b10+N7o3gdZfVpjRZCA8g6BCtIah5Gp4N3ZtJAlKxQ3JSkEMAUZFR6i
- LB+ZDwUQPn8ZNAzvWd/YfJdAGV5d+U+Pv47NN81bIVnEPgvqNTlneJzmQHyvaLFOvkca
- T4eA3OSRruGM+RRzRJXXl1hfrPcwsmQgkcPDI6f3D6HLhjiIq8c3hIwTwAmlNtVL7WKg
- nohA==
-X-Forwarded-Encrypted: i=1;
- AFNElJ9dBoJm/UkWor7oWrfcjbmPSZjkbpTtVpIggA0StYDm86CYdB1SPq6P7UgLNJMOTX6MnoLAktnODA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwUn3fVvKFKnUSlbRRdU1PbFrc3rtm/6N7U1Ys5eW8bcKKt0TlP
- vuTl0AqgxmxP9KJ6HM6GFIyqi/qKyETibInRImERHdfW+T5yXRnhAxXCDJ2NfRNnfhJx0RVvasN
- eYt4laGmEiBaO2kiLRAHbuJZMTUPGYsAlvNHA7yxUwNSddumpFTG94usb1tpk6340YC88Yw==
-X-Gm-Gg: Acq92OEfs8z0NArQ5EwI3MEBf3yW9DJdbeHZxh/roBxO8eN3AjsGf2hxadKbc0u/xO6
- /z42VtAhYhtkKBEAuzVI+GBMnNOU0iDgGvE9UjbbK0MltT4NKATAN4NzODsGOrkE9xzsxEXe/h7
- b+QtFLgX0uX0jX3uS+j+Lszy6KNVaorMd3BPzZF/cDsNsRZZgq81ZO8FAnbZr22H7dVHltxbp1s
- ckPyjsUquYPcsKMF/mF6lDrFubofBkR1tyGjHOW+PSzhJhWhQeaJA+aFK91KlY4fp4tNJwoWQnw
- C1BLiWDRJC7234gEhz/rtELGJhYqZ1RpywY9QIW/DYjCJGQV1dcsfeDv8QLKpoIJZpj+SCfletd
- xldiA4MSQLubA2wkInZdS4gUK0rMg1aNMJ5frSGuHq+93SC9KwjTKJYM5O+a6CZgiSccpZpDgpy
- ZUeZz9rKCfDb6pD5J2XXnj8xBPxj8kC9pKOKlfiQiPQMMYHA==
-X-Received: by 2002:a05:6102:4a95:b0:631:2a80:e492 with SMTP id
- ada2fe7eead31-63774777cf0mr2754243137.30.1778696644260; 
- Wed, 13 May 2026 11:24:04 -0700 (PDT)
-X-Received: by 2002:a05:6102:4a95:b0:631:2a80:e492 with SMTP id
- ada2fe7eead31-63774777cf0mr2754191137.30.1778696643647; 
- Wed, 13 May 2026 11:24:03 -0700 (PDT)
-Received: from umbar.lan
- (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
- [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
- by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-5a8a951d1f6sm4212851e87.23.2026.05.13.11.24.02
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 13 May 2026 11:24:02 -0700 (PDT)
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date: Wed, 13 May 2026 21:23:26 +0300
-Subject: [PATCH RESEND v3 6/6] usb: typec: ucsi: huawei-gaokun: pass down
- HPD_IRQ events
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7342710E14A;
+	Wed, 13 May 2026 18:56:34 +0000 (UTC)
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7299110E14A;
+ Wed, 13 May 2026 18:56:33 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6515323785088505839=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260513-hpd-irq-events-v3-6-086857017f16@oss.qualcomm.com>
-References: <20260513-hpd-irq-events-v3-0-086857017f16@oss.qualcomm.com>
-In-Reply-To: <20260513-hpd-irq-events-v3-0-086857017f16@oss.qualcomm.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Adrien Grassein <adrien.grassein@gmail.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Clark <robin.clark@oss.qualcomm.com>,
- Dmitry Baryshkov <lumag@kernel.org>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Pengyu Luo <mitltlatltl@gmail.com>, Nikita Travkin <nikita@trvn.ru>,
- Yongxing Mou <yongxing.mou@oss.qualcomm.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-usb@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-X-Mailer: b4 0.15.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1309;
- i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
- bh=mxGolAt7ROQ681cKNciUMVefMdiRDsSwC5zox5THv9w=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBqBMG0hilhJ2gGkZQQxe/0GBPH0fFPTqqZlimMt
- 5EPtgQGMWaJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCagTBtAAKCRCLPIo+Aiko
- 1UfqB/sEB1F2WFxCMTR2F1PIB/yP08QefwUon51gJHLQXhYRVsVZgMzGsE56RR40iDFtt0PCNNR
- e8/bhQUFNOGrzI8yy7h2fUumtwY6WquWhqqhJdrMaos/EEi0wqo92efWacjzI8ohK4UFbJt5bjN
- ffYm9hQw7mZu7rzFKn0nk5m4neMOewWtG2qMy4tDxV+FcYWNWYNdbOIiroBSVTXPvibDr1zfc6B
- lWhGMFxqUSjlgv/QMEhFapwgacJOv8N956Zein+/YYHUDvNrrMCD25WxF9YwwoRqVq6nRJacaJq
- 0UUW8vbtRRRMty0+1dZCHZVxEpa+Qw3X4pIkBQ/WmrrFhFvO
-X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
-X-Authority-Analysis: v=2.4 cv=WP1PmHsR c=1 sm=1 tr=0 ts=6a04c1c4 cx=c_pps
- a=N1BjEkVkxJi3uNfLdpvX3g==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22 a=pGLkceISAAAA:8
- a=QyXUC8HyAAAA:8 a=EUspDBNiAAAA:8 a=xNxaoOyMFJLcTYWjjPMA:9 a=QEXdDO2ut3YA:10
- a=crWF4MFLhNY0qMRaF8an:22
-X-Proofpoint-GUID: 3uORwwqNfHRzcb4RrO2orsAvYAN0NNbU
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTEzMDE4MyBTYWx0ZWRfX9Sw5erGG7ZdO
- CMkvnmAVynp2801AZQ0HiyklBa6Bbyaxd23LysA5jOZGorORQj0lpuQieNYtnHWh5FnrpiBniZC
- +BIywgHuswz8WsO+rGPD2FcYm1RQxqaaIzxRbph5uO5K9yK5xWzMVurR2MHSG+YGglg9Ztp+jhS
- DBsgvJPka6b6lshSIsIy4ysCAjKwzYIaruDDvSBc7y3GgyrUD0Lv0DZ+DmDkMkxd8Tzt8glmPCX
- hBrFXkUob43Y0E3kcpFhkrCfqhXO2zLTzrG467qRrBcWBpzv+Fswj6SbmBryj1s5tcFYa1L1ygJ
- xmx/qoq8a8/ucH2N/L2sGXkzcNXR+fpuKMhz0c1LYT9y+ST40V493kFjbJBeImFRilLe6uvJfgT
- chGGzG8OSIWfMJPxlEO/zT+zO/6SDwh/H9zE1VKv/cN4yPA1o+HFCDdP7WToIqyPxSZrbVKfhuq
- OjncU/uqVs3uViH5gpA==
-X-Proofpoint-ORIG-GUID: 3uORwwqNfHRzcb4RrO2orsAvYAN0NNbU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-13_02,2026-05-13_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 priorityscore=1501 clxscore=1015 malwarescore=0
- bulkscore=0 spamscore=0 impostorscore=0 suspectscore=0 adultscore=0
- phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2605050000
- definitions=main-2605130183
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_CMTG_enablement_=28rev7=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Animesh Manna" <animesh.manna@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 13 May 2026 18:56:33 -0000
+Message-ID: <177869859345.69473.11656800831080875545@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260513163857.1541888-1-animesh.manna@intel.com>
+In-Reply-To: <20260513163857.1541888-1-animesh.manna@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -180,42 +35,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Pass IRQ_HPD events to the HPD bridge, letting those to be delivered to
-the DisplayPort driver.
+--===============6515323785088505839==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Pengyu Luo <mitltlatltl@gmail.com>
-Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
----
- drivers/usb/typec/ucsi/ucsi_huawei_gaokun.c | 11 +++++++----
- 1 file changed, 7 insertions(+), 4 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/usb/typec/ucsi/ucsi_huawei_gaokun.c b/drivers/usb/typec/ucsi/ucsi_huawei_gaokun.c
-index ca749fde49bd..5e3f887ecbd8 100644
---- a/drivers/usb/typec/ucsi/ucsi_huawei_gaokun.c
-+++ b/drivers/usb/typec/ucsi/ucsi_huawei_gaokun.c
-@@ -299,10 +299,13 @@ static void gaokun_ucsi_handle_altmode(struct gaokun_ucsi_port *port)
- 
- 	/* UCSI callback .connector_status() have set orientation */
- 	if (port->bridge)
--		drm_aux_hpd_bridge_notify(&port->bridge->dev,
--					  port->hpd_state ?
--					  connector_status_connected :
--					  connector_status_disconnected);
-+		drm_aux_hpd_bridge_notify_extra(&port->bridge->dev,
-+						port->hpd_state ?
-+						connector_status_connected :
-+						connector_status_disconnected,
-+						port->hpd_irq ?
-+						DRM_CONNECTOR_DP_IRQ_HPD :
-+						DRM_CONNECTOR_NO_EXTRA_STATUS);
- 
- 	gaokun_ec_ucsi_pan_ack(uec->ec, port->idx);
- }
+Series: CMTG enablement (rev7)
+URL   : https://patchwork.freedesktop.org/series/157663/
+State : success
 
--- 
-2.47.3
+== Summary ==
 
+CI Bug Log - changes from xe-5058-21b42374be17d486baf9392b56377afde67a778d_BAT -> xe-pw-157663v7_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5058-21b42374be17d486baf9392b56377afde67a778d -> xe-pw-157663v7
+
+  IGT_8909: e68d82b442e3909dd053c97542aeb029707124cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5058-21b42374be17d486baf9392b56377afde67a778d: 21b42374be17d486baf9392b56377afde67a778d
+  xe-pw-157663v7: 157663v7
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157663v7/index.html
+
+--===============6515323785088505839==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>CMTG enablement (rev7)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157663/">https://patchwork.freedesktop.org/series/157663/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157663v7/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157663v7/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5058-21b42374be17d486baf9392b56377afde67a778d_BAT -&gt; xe-pw-157663v7_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5058-21b42374be17d486baf9392b56377afde67a778d -&gt; xe-pw-157663v7</li>
+</ul>
+<p>IGT_8909: e68d82b442e3909dd053c97542aeb029707124cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5058-21b42374be17d486baf9392b56377afde67a778d: 21b42374be17d486baf9392b56377afde67a778d<br />
+  xe-pw-157663v7: 157663v7</p>
+
+</body>
+</html>
+
+--===============6515323785088505839==--
