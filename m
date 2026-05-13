@@ -4,62 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 252E1CD4851
-	for <intel-xe@archiver.kernel.org>; Wed, 13 May 2026 08:54:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFB75CD4851
+	for <intel-xe@archiver.kernel.org>; Wed, 13 May 2026 08:56:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DAD0D10E5B6;
-	Wed, 13 May 2026 08:54:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FAAE10ED5B;
+	Wed, 13 May 2026 08:56:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WscbgpiU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PKXoTz6w";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F11FF10E5B6;
- Wed, 13 May 2026 08:54:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD7E610ED57
+ for <intel-xe@lists.freedesktop.org>; Wed, 13 May 2026 08:55:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778662455; x=1810198455;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=Jgp2UTOFNInsOSeSpPgO0/7DmN2y2j0R3zuWEKTH2EQ=;
- b=WscbgpiUBUVfWYsno48tPSMsrFNHyv5x8UJiUZuoIwSYvaG1aDXabH8S
- onyVGyaH+3Pw6flYKHuA1zyxDijBeMKtly8yC5hX/l2q4yl5Q0CIJvpwt
- 57yqcRuQhYOjwHcBsGqIff284AulQKlS5ZGOQb7YkF4Dm2KYa7HVAc2Xf
- q52yw68IOw97xK1OKL2SIKuqxJSELGDvTQ1vngJW+d55D5Lrg+ENNAMzh
- DhGbwcp9q0Dt6q0SvIQxQ7TfbjOlhZz6AYHMfLtBFqITgR/+FutwZoIqM
- CXxI3ThvvVxb5q8zGqqAZrQYccM8EbwgS+2pOaOZrIQrwtNWO/us45QPP w==;
-X-CSE-ConnectionGUID: u++Eq4omTMGeEIB6pv3dkA==
-X-CSE-MsgGUID: pT+AX7zkQvq+HELNqjkf3A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11784"; a="82151214"
-X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="82151214"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2026 01:54:15 -0700
-X-CSE-ConnectionGUID: D7jmCdnESpW3WBvi8P2EGw==
-X-CSE-MsgGUID: GqmBRViOSG612pY7NMdvUA==
+ t=1778662560; x=1810198560;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=QJfrEY9qA3PVpKuH1iRY4Tf6L070NezAOKjbX7dSr+c=;
+ b=PKXoTz6wSWQ+m7w64U3WHDyd4adLSA9LfyZl8GbB8N0fF6OIMgaDSpbj
+ 0HLIceNa97bpP+3HGzG7t4Hm0ChtpK+nC6NJYBZ79V2i+k0BuLHl8ANE8
+ BNVGkMCs5GnDR3u91UpHWR00uUMUGOIr4bH8ffBWPtvExIHmbnZWoLeaa
+ n29qOCP6DUiCX8lew4GkuUGSbkfaakly3jcTdmr/qglCdw0Zb+dg4CQos
+ vKqX0w6wMl7oliBV83BMk9ePzE4Pa10e26DkzwVAqbmj5Aod5Ip6s0OdX
+ MPevz62RqNnh7EMxc9IMfaB62eHenOWo1BEdZoikbI5sVmWk3NLfFp6Xo w==;
+X-CSE-ConnectionGUID: 5yEo4zmxRnSeoR70/9v+rg==
+X-CSE-MsgGUID: dV8AbubnRDaV/Pye5ErNtQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11784"; a="67112581"
+X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="67112581"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2026 01:56:00 -0700
+X-CSE-ConnectionGUID: LIvYY3cZT7iUW5TW8EB4qQ==
+X-CSE-MsgGUID: Nf85r9F0QJS0JVoKLZhHtA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="238267969"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO [10.245.244.49])
- ([10.245.244.49])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2026 01:54:12 -0700
-Message-ID: <54760b7dc968b830d3db4606fee43a02e8184ce9.camel@linux.intel.com>
-Subject: Re: [PATCH i-g-t 0/8] dmem: add amdgpu support and one more test
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Thadeu
- Lima de Souza Cascardo <cascardo@igalia.com>, igt-dev@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, maarten.lankhorst@linux.intel.com, Natalie
- Vock	 <natalie.vock@gmx.de>, kernel-dev@igalia.com, Tvrtko Ursulin	
- <tvrtko.ursulin@igalia.com>, "Prosyak, Vitaly" <Vitaly.Prosyak@amd.com>
-Date: Wed, 13 May 2026 10:54:08 +0200
-In-Reply-To: <ceb093fc-f028-4c03-8f16-08ab2d0b1ed7@amd.com>
-References: <20260512215156.4083082-1-cascardo@igalia.com>
- <ceb093fc-f028-4c03-8f16-08ab2d0b1ed7@amd.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="276138339"
+Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.244.102])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2026 01:55:58 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: Re: [PATCH 4/7] drm/xe/display: Add macro with display driver ops
+In-Reply-To: <20260512183342.3374-5-michal.wajdeczko@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260512183342.3374-1-michal.wajdeczko@intel.com>
+ <20260512183342.3374-5-michal.wajdeczko@intel.com>
+Date: Wed, 13 May 2026 11:55:55 +0300
+Message-ID: <99f7a5b9b5f7dff28c11821806f0834c2c994057@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,71 +69,116 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 2026-05-13 at 10:06 +0200, Christian K=C3=B6nig wrote:
-> On 5/12/26 23:51, Thadeu Lima de Souza Cascardo wrote:
-> > This work builds on top of Thomas Hellstr=C3=B6m's patches at [1].
-> >=20
-> > Besides the case of eviction when setting dmem.max, which still
-> > needs
-> > support from [2], there are other cases for testing dmem behavior
-> > and
-> > potential regressions. Thomas' patches lay over the groundwork for
-> > this,
-> > while this patchset addes one basic test of checking current usage
-> > and that
-> > drivers respect max setting when no eviction is taking place yet.
-> >=20
-> > This patchset also introduces a driver layer such that the same
-> > tests can
-> > work with different drivers. amdgpu support is here added too.
->=20
-> Of hand that looks really nice.
->=20
-> Please always keep Vitaly CCed for igt test patches which affect
-> amdgpu as well.
->=20
-> Thanks,
-> Christian.
+On Tue, 12 May 2026, Michal Wajdeczko <michal.wajdeczko@intel.com> wrote:
+> Instead of updating the drm_driver.fbdev_probe field in the runtime,
+> we can use macro which value depends on the actual Kconfig setup.
+>
+> The hook .fbdev_probe shall not be used until confirmed by enabling
+> a DRIVER_MODESET driver feature flag, which still depends on the
+> xe_modparam.probe_display parameter.
 
-Agree this looks nice.
-For the xe changes (once [1] gets merged)
-Acked-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+I don't undestand what you're trying to say with "until confirmed by
+enabling ..."
 
-Thanks,
-Thomas
+The change itself seems sound.
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 
->=20
-> >=20
-> > [1] https://patchwork.freedesktop.org/series/163935/
-> >=20
-> > Thadeu Lima de Souza Cascardo (8):
-> > =C2=A0 Introduce dmem driver and implement Xe support
-> > =C2=A0 Adjust xe_cgroups test to use igt_dmem_driver
-> > =C2=A0 Make xe_cgroup test a generic test
-> > =C2=A0 amdgpu: add amdgpu_cgroup_region_name
-> > =C2=A0 igt_dmem_driver: add amdgpu support
-> > =C2=A0 dmem: add test for current/max
-> > =C2=A0 dmem: only check for dmem availability once
-> > =C2=A0 dmem: get region once per driver
-> >=20
-> > =C2=A0lib/amdgpu/amd_dmem.c=C2=A0=C2=A0=C2=A0 |=C2=A0 94 ++++++++++
-> > =C2=A0lib/amdgpu/amd_memory.c=C2=A0 |=C2=A0 25 +++
-> > =C2=A0lib/amdgpu/amd_memory.h=C2=A0 |=C2=A0=C2=A0 2 +
-> > =C2=A0lib/igt_dmem_driver.h=C2=A0=C2=A0=C2=A0 |=C2=A0 25 +++
-> > =C2=A0lib/meson.build=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 |=C2=A0=C2=A0 2 +
-> > =C2=A0lib/xe/xe_dmem.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-| 145 +++++++++++++++
-> > =C2=A0tests/drv_dmem_cgroups.c | 390
-> > +++++++++++++++++++++++++++++++++++++++
-> > =C2=A0tests/intel/xe_cgroups.c | 296 -----------------------------
-> > =C2=A0tests/meson.build=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
-=A0=C2=A0 2 +-
-> > =C2=A09 files changed, 684 insertions(+), 297 deletions(-)
-> > =C2=A0create mode 100644 lib/amdgpu/amd_dmem.c
-> > =C2=A0create mode 100644 lib/igt_dmem_driver.h
-> > =C2=A0create mode 100644 lib/xe/xe_dmem.c
-> > =C2=A0create mode 100644 tests/drv_dmem_cgroups.c
-> > =C2=A0delete mode 100644 tests/intel/xe_cgroups.c
-> >=20
+>
+> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/xe/display/xe_display.c | 12 ++++++++----
+>  drivers/gpu/drm/xe/display/xe_display.h | 11 +++++++++++
+>  drivers/gpu/drm/xe/xe_device.c          |  2 ++
+>  3 files changed, 21 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+> index 263e92203c9d..7e7d476da8ce 100644
+> --- a/drivers/gpu/drm/xe/display/xe_display.c
+> +++ b/drivers/gpu/drm/xe/display/xe_display.c
+> @@ -85,10 +85,6 @@ void xe_display_driver_set_hooks(struct drm_driver *driver)
+>  	if (!xe_modparam.probe_display)
+>  		return;
+>  
+> -#ifdef CONFIG_DRM_FBDEV_EMULATION
+> -	driver->fbdev_probe = intel_fbdev_driver_fbdev_probe;
+> -#endif
+> -
+>  	driver->driver_features |= DRIVER_MODESET | DRIVER_ATOMIC;
+>  }
+>  
+> @@ -603,3 +599,11 @@ int xe_display_probe(struct xe_device *xe)
+>  	unset_display_features(xe);
+>  	return 0;
+>  }
+> +
+> +#ifdef CONFIG_DRM_FBDEV_EMULATION
+> +int xe_display_driver_fbdev_probe(struct drm_fb_helper *fbh,
+> +				  struct drm_fb_helper_surface_size *sizes)
+> +{
+> +	return intel_fbdev_driver_fbdev_probe(fbh, sizes);
+> +}
+> +#endif
+> diff --git a/drivers/gpu/drm/xe/display/xe_display.h b/drivers/gpu/drm/xe/display/xe_display.h
+> index 95acf0fd8e7b..deec0232532e 100644
+> --- a/drivers/gpu/drm/xe/display/xe_display.h
+> +++ b/drivers/gpu/drm/xe/display/xe_display.h
+> @@ -9,6 +9,8 @@
+>  #include <linux/types.h>
+>  
+>  struct drm_driver;
+> +struct drm_fb_helper;
+> +struct drm_fb_helper_surface_size;
+>  struct pci_dev;
+>  struct xe_device;
+>  
+> @@ -16,6 +18,8 @@ struct xe_device;
+>  
+>  bool xe_display_driver_probe_defer(struct pci_dev *pdev);
+>  void xe_display_driver_set_hooks(struct drm_driver *driver);
+> +int xe_display_driver_fbdev_probe(struct drm_fb_helper *fbh,
+> +				  struct drm_fb_helper_surface_size *sizes);
+>  
+>  int xe_display_probe(struct xe_device *xe);
+>  
+> @@ -40,8 +44,15 @@ void xe_display_pm_runtime_suspend(struct xe_device *xe);
+>  void xe_display_pm_runtime_suspend_late(struct xe_device *xe);
+>  void xe_display_pm_runtime_resume(struct xe_device *xe);
+>  
+> +#define XE_DISPLAY_DRIVER_OPS						\
+> +	.fbdev_probe = PTR_IF(IS_ENABLED(CONFIG_DRM_FBDEV_EMULATION),	\
+> +			      xe_display_driver_fbdev_probe)
+> +
+>  #else
+>  
+> +#define XE_DISPLAY_DRIVER_OPS \
+> +	.fbdev_probe = NULL
+> +
+>  static inline int xe_display_driver_probe_defer(struct pci_dev *pdev) { return 0; }
+>  static inline void xe_display_driver_set_hooks(struct drm_driver *driver) { }
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> index 6512f1dfe691..3bca4c1d1d5f 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -414,6 +414,7 @@ static struct drm_driver regular_driver = {
+>  	.major = DRIVER_MAJOR,
+>  	.minor = DRIVER_MINOR,
+>  	.patchlevel = DRIVER_PATCHLEVEL,
+> +	XE_DISPLAY_DRIVER_OPS,
+>  };
+>  
+>  #ifdef CONFIG_PCI_IOV
+> @@ -435,6 +436,7 @@ static struct drm_driver admin_only_driver = {
+>  	.major = DRIVER_MAJOR,
+>  	.minor = DRIVER_MINOR,
+>  	.patchlevel = DRIVER_PATCHLEVEL,
+> +	XE_DISPLAY_DRIVER_OPS,
+>  };
+>  
+>  /**
+
+-- 
+Jani Nikula, Intel
