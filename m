@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C156ACD37B6
-	for <intel-xe@archiver.kernel.org>; Wed, 13 May 2026 05:12:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E3E4CD4851
+	for <intel-xe@archiver.kernel.org>; Wed, 13 May 2026 06:26:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80BE410ECC2;
-	Wed, 13 May 2026 05:12:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE7F68953E;
+	Wed, 13 May 2026 06:26:40 +0000 (UTC)
 Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 111F610E2EA;
- Wed, 13 May 2026 05:12:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E6328953E;
+ Wed, 13 May 2026 06:26:39 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============0355289387207779891=="
+ boundary="===============8485260137738871428=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Make_drm=5Fdriver?=
- =?utf-8?q?_const?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Introduce_error_threshold_t?=
+ =?utf-8?q?o_drm=5Fras_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+To: "Raag Jadav" <raag.jadav@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 13 May 2026 05:12:40 -0000
-Message-ID: <177864916006.65349.1096391686904768063@5ab824fced77>
+Date: Wed, 13 May 2026 06:26:39 -0000
+Message-ID: <177865359905.65533.7222243717474044680@5ab824fced77>
 X-Patchwork-Hint: ignore
-References: <20260512183342.3374-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20260512183342.3374-1-michal.wajdeczko@intel.com>
+References: <20260512191610.1817578-1-raag.jadav@intel.com>
+In-Reply-To: <20260512191610.1817578-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,20 +40,20 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0355289387207779891==
+--===============8485260137738871428==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: drm/xe: Make drm_driver const
-URL   : https://patchwork.freedesktop.org/series/166441/
+Series: Introduce error threshold to drm_ras (rev2)
+URL   : https://patchwork.freedesktop.org/series/165091/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-5052-161329a551bb5ebd34524b781cd7fb3d84b994be_BAT -> xe-pw-166441v1_BAT
+CI Bug Log - changes from xe-5053-8fbb3d48e61c7e68cefdba85c3fa3ba59e7a93b4_BAT -> xe-pw-165091v2_BAT
 ====================================================
 
 Summary
@@ -80,17 +80,19 @@ Changes
 Build changes
 -------------
 
-  * Linux: xe-5052-161329a551bb5ebd34524b781cd7fb3d84b994be -> xe-pw-166441v1
+  * IGT: IGT_8907 -> IGT_8909
+  * Linux: xe-5053-8fbb3d48e61c7e68cefdba85c3fa3ba59e7a93b4 -> xe-pw-165091v2
 
   IGT_8907: 6b305d78c65768c09cc7c0e902273bf409bbd218 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5052-161329a551bb5ebd34524b781cd7fb3d84b994be: 161329a551bb5ebd34524b781cd7fb3d84b994be
-  xe-pw-166441v1: 166441v1
+  IGT_8909: e68d82b442e3909dd053c97542aeb029707124cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5053-8fbb3d48e61c7e68cefdba85c3fa3ba59e7a93b4: 8fbb3d48e61c7e68cefdba85c3fa3ba59e7a93b4
+  xe-pw-165091v2: 165091v2
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166441v1/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165091v2/index.html
 
---===============0355289387207779891==
+--===============8485260137738871428==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -110,16 +112,16 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>drm/xe: Make drm_driver const</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166441/">https://patchwork.freedesktop.org/series/166441/</a></td></tr>
+<tr><td><b>Series:</b></td><td>Introduce error threshold to drm_ras (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165091/">https://patchwork.freedesktop.org/series/165091/</a></td></tr>
 <tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166441v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166441v1/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165091v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165091v2/index.html</a></td></tr>
 
 </table>
 
 
-    <h1>CI Bug Log - changes from xe-5052-161329a551bb5ebd34524b781cd7fb3d84b994be_BAT -&gt; xe-pw-166441v1_BAT</h1>
+    <h1>CI Bug Log - changes from xe-5053-8fbb3d48e61c7e68cefdba85c3fa3ba59e7a93b4_BAT -&gt; xe-pw-165091v2_BAT</h1>
 <h2>Summary</h2>
 <p><strong>SUCCESS</strong></p>
 <p>No regressions found.</p>
@@ -129,13 +131,15 @@ Content-Transfer-Encoding: 7bit
 <p>No changes found</p>
 <h2>Build changes</h2>
 <ul>
-<li>Linux: xe-5052-161329a551bb5ebd34524b781cd7fb3d84b994be -&gt; xe-pw-166441v1</li>
+<li>IGT: IGT_8907 -&gt; IGT_8909</li>
+<li>Linux: xe-5053-8fbb3d48e61c7e68cefdba85c3fa3ba59e7a93b4 -&gt; xe-pw-165091v2</li>
 </ul>
 <p>IGT_8907: 6b305d78c65768c09cc7c0e902273bf409bbd218 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5052-161329a551bb5ebd34524b781cd7fb3d84b994be: 161329a551bb5ebd34524b781cd7fb3d84b994be<br />
-  xe-pw-166441v1: 166441v1</p>
+  IGT_8909: e68d82b442e3909dd053c97542aeb029707124cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5053-8fbb3d48e61c7e68cefdba85c3fa3ba59e7a93b4: 8fbb3d48e61c7e68cefdba85c3fa3ba59e7a93b4<br />
+  xe-pw-165091v2: 165091v2</p>
 
 </body>
 </html>
 
---===============0355289387207779891==--
+--===============8485260137738871428==--
