@@ -4,27 +4,111 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F11D5CD4F24
-	for <intel-xe@archiver.kernel.org>; Wed, 13 May 2026 09:46:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D223CD37B6
+	for <intel-xe@archiver.kernel.org>; Wed, 13 May 2026 10:03:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC52110ED94;
-	Wed, 13 May 2026 09:46:47 +0000 (UTC)
-Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F14DC10E317;
- Wed, 13 May 2026 09:46:46 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8291980428486979108=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5105710EDC1;
+	Wed, 13 May 2026 10:03:37 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="QYQeNyMT";
+	dkim-atps=neutral
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3CAFB10EDB5;
+ Wed, 13 May 2026 10:03:35 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 05597444FB;
+ Wed, 13 May 2026 10:03:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6F18C2BCB7;
+ Wed, 13 May 2026 10:03:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1778666614;
+ bh=uNr/uFHa8lFJk/JJ/8kd9ZumVdyGQuQQfbYHdUl02UA=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=QYQeNyMThpHjuSLKa58f6dppmWVqBeBwSraMrvGJW3jNALwIswOENNrssr9p9eTBR
+ Q3aMvEfZFP+wFNDCbqCVIID/PyxalTbdPQy/d4sWJJkNODltdx2dFIbqTgYHOVCSoB
+ o+x01VAEcKRnWfVOq896D4oaoy82xi+n3/bEaUkrzst0INftTsXsRAbZiIOeyhKflz
+ lQnQVp928t+BO9kjs9ISzqh2vYZ6O2GILsrYPSDEY8qXCcVUiFVRWEABkx3wFA5bqt
+ Gmlh0fwZTTPBaae/HTBvWClE4tJyF27OeL2ZLc8nZbQ5TX6bjVBl/M+txt/WCt4NBV
+ rFKP3SPG1FF5Q==
+Message-ID: <65596f86-e6a3-48b0-aa3d-2e608964e29d@kernel.org>
+Date: Wed, 13 May 2026 12:03:26 +0200
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915=3A_crtc_iteration_?=
- =?utf-8?q?cleanups_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 13 May 2026 09:46:46 -0000
-Message-ID: <177866560698.66861.16948626030481593250@5ab824fced77>
-X-Patchwork-Hint: ignore
-References: <cover.1778659089.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1778659089.git.jani.nikula@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] mm/shmem: add shmem_insert_folio()
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Andrew Morton <akpm@linux-foundation.org>,
+ Lorenzo Stoakes <ljs@kernel.org>, "Liam R. Howlett" <liam@infradead.org>,
+ Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>,
+ Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
+ Hugh Dickins <hughd@google.com>, Baolin Wang
+ <baolin.wang@linux.alibaba.com>, Brendan Jackman <jackmanb@google.com>,
+ Johannes Weiner <hannes@cmpxchg.org>, Zi Yan <ziy@nvidia.com>,
+ Huang Rui <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
+ linux-kernel@vger.kernel.org
+References: <20260512110339.6244-1-thomas.hellstrom@linux.intel.com>
+ <20260512110339.6244-2-thomas.hellstrom@linux.intel.com>
+ <f14d99d3-c1ff-453b-a280-17b8c4d5af94@kernel.org>
+ <b4800086347aa3b27edc42b6536cb3a2b76a1aa8.camel@linux.intel.com>
+ <26479389-459b-4cc4-914d-e7d29d5e5cc9@kernel.org>
+ <c6b4031a-5625-4b1b-8a51-6e47241d32c9@amd.com>
+ <bbde0793-fd21-4a9c-b85d-f13d8b787c50@kernel.org>
+ <1ce447ceea88bbe56c7d28654a51fc2856a7f986.camel@linux.intel.com>
+From: "David Hildenbrand (Arm)" <david@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=david@kernel.org; keydata=
+ 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
+ qIws/H2t
+In-Reply-To: <1ce447ceea88bbe56c7d28654a51fc2856a7f986.camel@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +120,70 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8291980428486979108==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 5/13/26 10:51, Thomas Hellström wrote:
+> On Wed, 2026-05-13 at 10:37 +0200, David Hildenbrand (Arm) wrote:
+>> On 5/13/26 09:47, Christian König wrote:
+>>> Hi David & Thomas,
+>>>
+>>> ...
+>>>
+>>> Exactly that is one of the major reasons why we aren't using a
+>>> shmem as backing store for TTM buffers in the first place.
+>>
+>> What was the problem with that the last time this was considered?
+>>
+>> shmem nowadays supports THP (e.g., 2M) and even mTHP (e.g., 64K).
+>>
+>> For internal mounts, it must be enabled accordingly
+>> (/sys/kernel/mm/transparent_hugepage/.../shmem_enabled).
+>>
+>> Some distributions still default to "never". I guess if an admin
+>> enables it, you
+>> would just get THPs.
+> 
+> FWIW, the i915 driver which uses shmem "natively" uses a special mount
+> here that gives back THPs.
+> 
+>>
+>> If "distro default" is the only problem, I guess we could think about
+>> how to
+>> improve that. For example, just let internal GPU DRM objects allocate
+>> any folio
+>> size available and supported etc.
+>>
+>> Would that make it possible to just use shmem natively? (e.g., how
+>> would this
+>> interact with shmem features like folio migration, would that be
+>> workable with
+>> DRM objects?).
+> 
+> Currently the drivers that use shmem in this way use
+> "mapping_set_unevictable()" as long as the object is bound to the GPU.
+> Then shrinkers can unbind from GPU and revert that setting.
 
-== Series Details ==
+Right, but mapping_set_unevictable() only affects folio_evictable() - -reclaim
+behavior. Not other properties (such as folio migration).
 
-Series: drm/i915: crtc iteration cleanups (rev2)
-URL   : https://patchwork.freedesktop.org/series/165524/
-State : success
+> 
+> The problem, (as also stated in the cover letter of this series) is for
+> drivers that need to change caching of the pages to WC or UC.
 
-== Summary ==
+I assume you mean "To be able to easily maintain pools of pages mapped uncached
+or write-combined".
 
-CI Bug Log - changes from xe-5053-8fbb3d48e61c7e68cefdba85c3fa3ba59e7a93b4_BAT -> xe-pw-165524v2_BAT
-====================================================
+Can you point me at the code that changes the caching of the pages?
 
-Summary
--------
+> That's an
+> extremely costly operation so TTM needs to pool such allocations.
+> That's where using shmem natively becomes very ugly, because you can't
+> really use a 1:1 mapping between shmem objects and DRM objects anymore.
 
-  **SUCCESS**
+So you would require different caching attributes within a DRM object?
 
-  No regressions found.
+-- 
+Cheers,
 
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8907 -> IGT_8909
-  * Linux: xe-5053-8fbb3d48e61c7e68cefdba85c3fa3ba59e7a93b4 -> xe-pw-165524v2
-
-  IGT_8907: 6b305d78c65768c09cc7c0e902273bf409bbd218 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8909: e68d82b442e3909dd053c97542aeb029707124cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5053-8fbb3d48e61c7e68cefdba85c3fa3ba59e7a93b4: 8fbb3d48e61c7e68cefdba85c3fa3ba59e7a93b4
-  xe-pw-165524v2: 165524v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165524v2/index.html
-
---===============8291980428486979108==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: crtc iteration cleanups (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165524/">https://patchwork.freedesktop.org/series/165524/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165524v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165524v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5053-8fbb3d48e61c7e68cefdba85c3fa3ba59e7a93b4_BAT -&gt; xe-pw-165524v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8907 -&gt; IGT_8909</li>
-<li>Linux: xe-5053-8fbb3d48e61c7e68cefdba85c3fa3ba59e7a93b4 -&gt; xe-pw-165524v2</li>
-</ul>
-<p>IGT_8907: 6b305d78c65768c09cc7c0e902273bf409bbd218 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8909: e68d82b442e3909dd053c97542aeb029707124cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5053-8fbb3d48e61c7e68cefdba85c3fa3ba59e7a93b4: 8fbb3d48e61c7e68cefdba85c3fa3ba59e7a93b4<br />
-  xe-pw-165524v2: 165524v2</p>
-
-</body>
-</html>
-
---===============8291980428486979108==--
+David
