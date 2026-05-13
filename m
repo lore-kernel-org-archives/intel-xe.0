@@ -4,39 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5BCDCCD4F21
-	for <intel-xe@archiver.kernel.org>; Wed, 13 May 2026 19:35:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74EA9CD37AC
+	for <intel-xe@archiver.kernel.org>; Wed, 13 May 2026 19:43:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 182D210F030;
-	Wed, 13 May 2026 19:35:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 09F5D10F033;
+	Wed, 13 May 2026 19:43:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="qG7ffT5K";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="PswWi5U5";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9992110F02F;
- Wed, 13 May 2026 19:35:55 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E566210F033;
+ Wed, 13 May 2026 19:43:29 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id CB98F60052;
- Wed, 13 May 2026 19:35:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1BADC19425;
- Wed, 13 May 2026 19:35:46 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 98C4744142;
+ Wed, 13 May 2026 19:43:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15B38C19425;
+ Wed, 13 May 2026 19:43:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1778700954;
- bh=NmlmhJchdEEPAxfALJc7ddzIb6+LDxvUj3dXafADxGk=;
+ s=k20201202; t=1778701409;
+ bh=mjCtTKqd0fVUd6hQ2t6t5iSRgHn1i0rQEkCW2VMbau8=;
  h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=qG7ffT5K6SA1jvg4rw3t0icFPpAUNdco6mG4Ox3ShD78+OZIdQdZ/Ch482XtwYYdm
- v789yre3HMwccaFoAhdtnGabe8nS/fLIuG2HLU8u1Kdif7PCseLLY6FHXlqtRrQL69
- ICdciY2O914HyapHzMXutQGW9j7Y31MMwIxjnueGRyQlDfDoNaisPrQbIbt7llzBtk
- luP4XXYqPgvLcGeJ+pITZ9szEY2J9Art9M9VYGVFFabLgT7MRj8xVq/nsmwu4DlIdC
- 7wMyHAWuPHa7gWgBK4HB5J0hTHNsZIz53fHPIWGIh2cTcDKO3eWDnytPqUjRh1Jb4T
- owpQ+SKDt+T3A==
-Message-ID: <ea5063c9-9db1-4314-a8d0-c693de412b65@kernel.org>
-Date: Wed, 13 May 2026 21:35:44 +0200
+ b=PswWi5U5R2uMro/LaDmbP7VIqiyhF4gylLPGQUCiQuw0rY6WNXUl9KHQApUPsQd6W
+ 4fU1gwteWEOaTMqkI93WiVxzlsmY5RLpkTOQXBs6OeNljyWOTHpXMEU4+yZXIS+rIb
+ XTuaFLkH7nuXrHcfhoWVIGxw5BzbyLGpgaAIcBPmGVhYdwBm/LLY61kmnLbpkEKz9G
+ nM1PwFq8U0jihBiIGhcNyZDYC5qFhXFqz3+0b9dvi7xkmrzYaK2DorsMyuKzCS8Vi3
+ IcRb/pFyeq0zW/AxYEUbhRztgWkD72M0Ua/qp8qdEhEzO/vFNX+lBO5Fqbi9da9bIt
+ wjjySZetYrNcA==
+Message-ID: <c2881d16-a12c-4598-8f8d-3b6523266fcc@kernel.org>
+Date: Wed, 13 May 2026 21:43:20 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH 1/2] mm/shmem: add shmem_insert_folio()
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  intel-xe@lists.freedesktop.org
 Cc: Andrew Morton <akpm@linux-foundation.org>,
  Lorenzo Stoakes <ljs@kernel.org>, "Liam R. Howlett" <liam@infradead.org>,
@@ -59,11 +59,7 @@ References: <20260512110339.6244-1-thomas.hellstrom@linux.intel.com>
  <26479389-459b-4cc4-914d-e7d29d5e5cc9@kernel.org>
  <c6b4031a-5625-4b1b-8a51-6e47241d32c9@amd.com>
  <bbde0793-fd21-4a9c-b85d-f13d8b787c50@kernel.org>
- <1ce447ceea88bbe56c7d28654a51fc2856a7f986.camel@linux.intel.com>
- <65596f86-e6a3-48b0-aa3d-2e608964e29d@kernel.org>
- <c0b5b94dfb4d04a1319bfb110f326afd2c29d48b.camel@linux.intel.com>
- <d7cc273b-17a2-4b5f-af6a-0dc708c8cabf@kernel.org>
- <d5e310c7f4506ef373c705180b33b9d5b2645b1a.camel@linux.intel.com>
+ <0ba9bc77-ace1-4077-a193-4540880b242b@amd.com>
 From: "David Hildenbrand (Arm)" <david@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=david@kernel.org; keydata=
@@ -110,7 +106,7 @@ Autocrypt: addr=david@kernel.org; keydata=
  3iyY2Nsd7JxfKu1PRhCGwXzRw5TlfEsoRI7V9A8isUCoqE2Dzh3FvYHVeX4Us+bRL/oqareJ
  CIFqgYMyvHj7Q06kTKmauOe4Nf0l0qEkIuIzfoLJ3qr5UyXc2hLtWyT9Ir+lYlX9efqh7mOY
  qIws/H2t
-In-Reply-To: <d5e310c7f4506ef373c705180b33b9d5b2645b1a.camel@linux.intel.com>
+In-Reply-To: <0ba9bc77-ace1-4077-a193-4540880b242b@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -127,35 +123,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 5/13/26 16:53, Thomas Hellström wrote:
-> On Wed, 2026-05-13 at 13:36 +0200, David Hildenbrand (Arm) wrote:
->> On 5/13/26 12:37, Thomas Hellström wrote:
->>
->>
+On 5/13/26 13:54, Christian König wrote:
+> On 5/13/26 10:37, David Hildenbrand (Arm) wrote:
+>> On 5/13/26 09:47, Christian König wrote:
+>>> Hi David & Thomas,
 >>>
-> [...]
->>> One alternative would be a single large sparse shmem object common
->>> for
->>> all DRM objects, with a range allocator, but that also got pretty
->>> ugly
->>> when I tried to implement that.
->>
->> Does not sound too crazy, though.
->>
+>>> ...
 >>>
+>>> Exactly that is one of the major reasons why we aren't using a shmem as backing store for TTM buffers in the first place.
+>>
+>> What was the problem with that the last time this was considered?
+>>
+>> shmem nowadays supports THP (e.g., 2M) and even mTHP (e.g., 64K).
+>>
+>> For internal mounts, it must be enabled accordingly
+>> (/sys/kernel/mm/transparent_hugepage/.../shmem_enabled).
+>>
+>> Some distributions still default to "never". I guess if an admin enables it, you
+>> would just get THPs.
 > 
-> Yeah, I stumbled on finding a reasonable idea to connect a shmem folio
-> to the pool LRUs and the range allocator metadata.
+> Yeah, exactly that is not acceptable. We have some customers who already use that approach through udmabuf, so we already have some experience with it.
 > 
-> Assuming a shmem folio is pinned using the memfd pinning interface,
-> would folio->private be temporarily available?
+> And I can't count how often I had to explain that it's a configuration issue and that the admin has to enable THP to get decent performance.
 
-I think shmem uses folio->private only when the folio is in the swapcache
-(through folio->swap). So one has to protect against that.
+A lot of concern with shmem and THP is around memory waste.
 
-So you're thinking of a model, where a shmem file is essentially fully "owned"
-by a DRM object, and that owner could make use of folio->private as long as the
-folio is prevented from getting swapped out? (e.g., longterm pinned etc)
+But the DRM use case of shmem is really different than ordinary shmem usage, in
+particular when it can steer the folio size used (and better control memory
+waste I assume?).
+
+> 
+>> If "distro default" is the only problem, I guess we could think about how to
+>> improve that. For example, just let internal GPU DRM objects allocate any folio
+>> size available and supported etc.
+> 
+> Mhm, that sounds not so bad.
+> 
+> I think what drivers really need is that they can give the order to shmem_read_folio_gfp() and get a folio with that order or -ENOMEM as return.
+
+Is it really helpful to fail and not make progress on a fragmented system?
+
+I'd assume you'd want the largest folio up to a specific order. Not larger,
+because it would waste memory. But maybe smaller to make progress.
+
+> 
+> In other words we need to enforce it and if the desired page size doesn't work we can then still decide if we want a fallback or not based on the use case the driver tries to implement.
+
+In which use case would you not want to fallback? Would it be something to
+tackle separately later?
+
+> 
+>> Would that make it possible to just use shmem natively? (e.g., how would this
+>> interact with shmem features like folio migration, would that be workable with
+>> DRM objects?).
+> 
+> Mostly, I mean there is still the use case for UC and USWC memory but at least for AMD GPUs that is mostly negligible (we need it for a handfull of workarounds for HW bugs etc...).
+
+Thanks!
 
 -- 
 Cheers,
