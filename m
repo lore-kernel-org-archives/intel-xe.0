@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4853ACD4F25
-	for <intel-xe@archiver.kernel.org>; Thu, 14 May 2026 15:00:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 383E5CD4851
+	for <intel-xe@archiver.kernel.org>; Thu, 14 May 2026 15:00:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0633910F266;
-	Thu, 14 May 2026 15:00:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECF4C10E166;
+	Thu, 14 May 2026 15:00:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TTFay/i8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m+w8BMvp";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4ACAC10F25A
- for <intel-xe@lists.freedesktop.org>; Thu, 14 May 2026 15:00:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8421C10F269
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 May 2026 15:00:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778770830; x=1810306830;
+ t=1778770832; x=1810306832;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=vUO2Tp1w4rs4k135VqPrSLtvZRd+2BYqiLkFVYEA/+Y=;
- b=TTFay/i8THAhvYdNTiW9jQPgbXnff29c1vTs1Z3j1yd32qVIbIQD5d/q
- P9okZa14FscL9NFDDA6Veh6eoLIUBLAidNMlO2KYiBZrWT3c17gwu9r+V
- QOq1sIy+tZW4+fXzs3cjNSJlxZ2DyAVTwlztgjPzIqbVt/9z4W3algZF9
- PwtCW+D4aViwdQ3HArAfhTs9T07LybZv3Ph+W4z+FneXnYn/MAi5ndYVp
- b4yLXkE+8B6+H+dYG5tKrNIcZ343VqYjNdj8MA2XIPpPiCBdyELVZOvvG
- Sw5nML63kZ2MNBzP4uAdUCr9ovbIOQLQ5Tkbjr9kPQLjPyLhWaXmmN6Wg g==;
-X-CSE-ConnectionGUID: 0CkDXY8xRQOSOmnnzXqQ3w==
-X-CSE-MsgGUID: HLAb5diKTwmAOWYzC99LuA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11786"; a="91178850"
-X-IronPort-AV: E=Sophos;i="6.23,234,1770624000"; d="scan'208";a="91178850"
+ bh=aSNioQFwSdJzFE/HLM+lQxpDakW8cg3iH39X4uq+mIo=;
+ b=m+w8BMvp4fBwbTmE/b6N9MMruWAgBlHi8Zwl79DW6nv0hUtc29fR3dOJ
+ ih9Mn07ZQUdGlFmU3MLeJ1OGbD+9fdOIAmPE0Q5ZS+MhpJyGBdPb46/KE
+ eJvRo5SXk/70t0Yze+d0MJ3wAS7pABN7+Dv3GSf1Z5JZuN2bb2u7oquVn
+ 369Tuylqy3LozpuBrSkA8tCyhIo30C48y7rQTMcZVbgh21XapAhl8w/Nz
+ XbKqmjZUwolozicz4nHofotzMJJd1G4DT17WUtJOuOOlmkvJ3jvSajLAR
+ Q//9bkQADdDcSna1bPSUsJ8mLhMkayVFaIEVaFLYPl+SYfDWiIKpkhDeY Q==;
+X-CSE-ConnectionGUID: xMciLaQSQuWCMPfqV9iAJw==
+X-CSE-MsgGUID: Tt8U52ENRUSa0tgheQGiiA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11786"; a="91178854"
+X-IronPort-AV: E=Sophos;i="6.23,234,1770624000"; d="scan'208";a="91178854"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2026 08:00:30 -0700
-X-CSE-ConnectionGUID: j/iq+GUrRG+xfTvenUuOFQ==
-X-CSE-MsgGUID: NPbSswqERzmzTk+e8lrhPQ==
+ 14 May 2026 08:00:32 -0700
+X-CSE-ConnectionGUID: KXUmbrSbT4WjcP6Gt/Ie3g==
+X-CSE-MsgGUID: BFYGQZOtRW6SLYDEAYMNeQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,234,1770624000"; d="scan'208";a="262152874"
+X-IronPort-AV: E=Sophos;i="6.23,234,1770624000"; d="scan'208";a="262152882"
 Received: from johnmoon-mobl.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.112.169])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2026 08:00:28 -0700
+ 14 May 2026 08:00:30 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Ilia Levi <ilia.levi@intel.com>
-Subject: [PATCH 7/9] drm/xe/memirq: Dump all source pages if MSI-X
-Date: Thu, 14 May 2026 17:00:08 +0200
-Message-ID: <20260514150010.7123-8-michal.wajdeczko@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH 9/9] drm/xe/memirq: Drop cached iosys_map for MEMIRQ status
+Date: Thu, 14 May 2026 17:00:10 +0200
+Message-ID: <20260514150010.7123-10-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260514150010.7123-1-michal.wajdeczko@intel.com>
 References: <20260514150010.7123-1-michal.wajdeczko@intel.com>
@@ -68,80 +67,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When using MSI-X, engines report their source/status on a separate
-MEMIRQ pages, so we need to dump additional source pages, not just
-the first one.
+Since addition of the MSI-X support, we mostly rely on the offset
+calculations done by XE_MEMIRQ_STATUS_OFFSET. We don't use this
+separate map pointing to the first status page anymore.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Ilia Levi <ilia.levi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_memirq.c       | 18 +++++++++++++++---
- drivers/gpu/drm/xe/xe_memirq_types.h |  2 ++
- 2 files changed, 17 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_memirq.c       | 2 --
+ drivers/gpu/drm/xe/xe_memirq_types.h | 2 --
+ 2 files changed, 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_memirq.c b/drivers/gpu/drm/xe/xe_memirq.c
-index bd2417207b0b..7bc7dc106a79 100644
+index 65038571b6d5..7fe1b00a0607 100644
 --- a/drivers/gpu/drm/xe/xe_memirq.c
 +++ b/drivers/gpu/drm/xe/xe_memirq.c
-@@ -221,6 +221,7 @@ static int memirq_alloc_pages(struct xe_memirq *memirq)
+@@ -219,11 +219,9 @@ static int memirq_alloc_pages(struct xe_memirq *memirq)
+ 
+ 	memirq->bo = bo;
  	memirq->source = IOSYS_MAP_INIT_OFFSET(&bo->vmap, XE_MEMIRQ_SOURCE_OFFSET(0));
- 	memirq->status = IOSYS_MAP_INIT_OFFSET(&bo->vmap, XE_MEMIRQ_STATUS_OFFSET(0));
- 	memirq->mask = IOSYS_MAP_INIT_OFFSET(&bo->vmap, XE_MEMIRQ_ENABLE_OFFSET);
-+	memirq->num_pages = num_pages;
+-	memirq->status = IOSYS_MAP_INIT_OFFSET(&bo->vmap, XE_MEMIRQ_STATUS_OFFSET(0));
+ 	memirq->num_pages = num_pages;
  
  	memirq_assert(memirq, !memirq->source.is_iomem);
- 	memirq_assert(memirq, !memirq->status.is_iomem);
-@@ -532,6 +533,18 @@ bool xe_memirq_guc_sw_int_0_irq_pending(struct xe_memirq *memirq, struct xe_guc
- 				       guc_name(guc));
- }
+-	memirq_assert(memirq, !memirq->status.is_iomem);
  
-+static void memirq_dump_source_pages(struct xe_memirq *memirq)
-+{
-+	memirq_assert(memirq, !memirq->bo->vmap.is_iomem);
-+
-+	for (int n = 0; n < memirq->num_pages; n++) {
-+		memirq_debug(memirq, "SOURCE %*ph\n", 32,
-+			     memirq->bo->vmap.vaddr + XE_MEMIRQ_SOURCE_OFFSET(n));
-+		memirq_debug(memirq, "SOURCE %*ph\n", 32,
-+			     memirq->bo->vmap.vaddr + XE_MEMIRQ_SOURCE_OFFSET(n) + 32);
-+	}
-+}
-+
- /**
-  * xe_memirq_handler - The `Memory Based Interrupts`_ Handler.
-  * @memirq: the &xe_memirq
-@@ -551,9 +564,8 @@ void xe_memirq_handler(struct xe_memirq *memirq)
- 	if (!memirq->bo)
- 		return;
- 
--	memirq_assert(memirq, !memirq->source.is_iomem);
--	memirq_debug(memirq, "SOURCE %*ph\n", 32, memirq->source.vaddr);
--	memirq_debug(memirq, "SOURCE %*ph\n", 32, memirq->source.vaddr + 32);
-+	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG_MEMIRQ))
-+		memirq_dump_source_pages(memirq);
- 
- 	for_each_gt(gt, xe, gtid) {
- 		if (gt->tile != tile)
+ 	memirq_debug(memirq, "pages: count %u size %zu\n", num_pages, bo_size);
+ 	memirq_debug(memirq, "page0: source %#x status %#x mask %#x\n",
 diff --git a/drivers/gpu/drm/xe/xe_memirq_types.h b/drivers/gpu/drm/xe/xe_memirq_types.h
-index 02ac938cadb4..eab384342878 100644
+index 4ea3d1976d4f..c2b0b33d55cd 100644
 --- a/drivers/gpu/drm/xe/xe_memirq_types.h
 +++ b/drivers/gpu/drm/xe/xe_memirq_types.h
-@@ -14,6 +14,7 @@ struct xe_bo;
-  * struct xe_memirq - Data used by the `Memory Based Interrupts`_.
-  *
+@@ -16,14 +16,12 @@ struct xe_bo;
   * @bo: buffer object with `Memory Based Interrupts Page Layout`_.
-+ * @num_pages: number of per-instance source/status pages.
+  * @num_pages: number of per-instance source/status pages.
   * @source: iosys pointer to `Interrupt Source Report Page`_.
-  * @status: iosys pointer to `Interrupt Status Report Page`_.
-  * @mask: iosys pointer to Interrupt Enable Mask.
-@@ -21,6 +22,7 @@ struct xe_bo;
+- * @status: iosys pointer to `Interrupt Status Report Page`_.
+  * @enabled: internal flag used to control processing of the interrupts.
   */
  struct xe_memirq {
  	struct xe_bo *bo;
-+	unsigned int num_pages;
+ 	unsigned int num_pages;
  	struct iosys_map source;
- 	struct iosys_map status;
- 	struct iosys_map mask;
+-	struct iosys_map status;
+ 	bool enabled;
+ };
+ 
 -- 
 2.47.1
 
