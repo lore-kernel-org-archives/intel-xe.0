@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 383E5CD4851
-	for <intel-xe@archiver.kernel.org>; Thu, 14 May 2026 15:00:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7F13CD4F25
+	for <intel-xe@archiver.kernel.org>; Thu, 14 May 2026 15:00:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECF4C10E166;
-	Thu, 14 May 2026 15:00:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C61D10F24D;
+	Thu, 14 May 2026 15:00:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m+w8BMvp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gSqEDS4y";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8421C10F269
- for <intel-xe@lists.freedesktop.org>; Thu, 14 May 2026 15:00:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E5E510F25A
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 May 2026 15:00:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778770832; x=1810306832;
+ t=1778770826; x=1810306826;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=aSNioQFwSdJzFE/HLM+lQxpDakW8cg3iH39X4uq+mIo=;
- b=m+w8BMvp4fBwbTmE/b6N9MMruWAgBlHi8Zwl79DW6nv0hUtc29fR3dOJ
- ih9Mn07ZQUdGlFmU3MLeJ1OGbD+9fdOIAmPE0Q5ZS+MhpJyGBdPb46/KE
- eJvRo5SXk/70t0Yze+d0MJ3wAS7pABN7+Dv3GSf1Z5JZuN2bb2u7oquVn
- 369Tuylqy3LozpuBrSkA8tCyhIo30C48y7rQTMcZVbgh21XapAhl8w/Nz
- XbKqmjZUwolozicz4nHofotzMJJd1G4DT17WUtJOuOOlmkvJ3jvSajLAR
- Q//9bkQADdDcSna1bPSUsJ8mLhMkayVFaIEVaFLYPl+SYfDWiIKpkhDeY Q==;
-X-CSE-ConnectionGUID: xMciLaQSQuWCMPfqV9iAJw==
-X-CSE-MsgGUID: Tt8U52ENRUSa0tgheQGiiA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11786"; a="91178854"
-X-IronPort-AV: E=Sophos;i="6.23,234,1770624000"; d="scan'208";a="91178854"
+ bh=rMx7Iznd5tC5yKk1VnRDYpq4ZBdxgqz7/4HNeleHHo4=;
+ b=gSqEDS4ye4sKwLpCuJhHsCN618Qqld06ZcuforADsKxRkaxPvyh8Q+14
+ 9zPoHhowbXWtmiLeVnBiyLxcmjpKVk2VTHsvzulvrEhWthUNnxMNbdSQV
+ fJ2QXI8kYeHrZ4TZReJwobSUQgH+a90cEZU+K5Ocy1TUSToW4AIjJRJxJ
+ 3FOLEVcyz9H7dxk+bDsutfntc1MGJuSMf/hbGHRgsPVjKfN8q+PFI+kIv
+ iQfy8wV5sTwl0tS+94kniEvZu1srC8EQSRUrQHVqg2A/zKGjyGREg9WF9
+ sfejiPqAXgUc90hrPNVNuRRRlps415M4NAqt3w0Eqs7YAK9E6OY+4ThUK g==;
+X-CSE-ConnectionGUID: JILgQPdVTKWHUz1mpMtl2w==
+X-CSE-MsgGUID: ym59gzf3TI+uAf8p9tiVag==
+X-IronPort-AV: E=McAfee;i="6800,10657,11786"; a="91178837"
+X-IronPort-AV: E=Sophos;i="6.23,234,1770624000"; d="scan'208";a="91178837"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2026 08:00:32 -0700
-X-CSE-ConnectionGUID: KXUmbrSbT4WjcP6Gt/Ie3g==
-X-CSE-MsgGUID: BFYGQZOtRW6SLYDEAYMNeQ==
+ 14 May 2026 08:00:26 -0700
+X-CSE-ConnectionGUID: 5ih9mJkUQ/W8aNTplzzodQ==
+X-CSE-MsgGUID: FfXzl1uJSV6eMoSvXNNHPg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,234,1770624000"; d="scan'208";a="262152882"
+X-IronPort-AV: E=Sophos;i="6.23,234,1770624000"; d="scan'208";a="262152863"
 Received: from johnmoon-mobl.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.112.169])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2026 08:00:30 -0700
+ 14 May 2026 08:00:24 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 9/9] drm/xe/memirq: Drop cached iosys_map for MEMIRQ status
-Date: Thu, 14 May 2026 17:00:10 +0200
-Message-ID: <20260514150010.7123-10-michal.wajdeczko@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Ilia Levi <ilia.levi@intel.com>
+Subject: [PATCH 4/9] drm/xe/memirq: Use IRQ page from HW engine definition
+Date: Thu, 14 May 2026 17:00:05 +0200
+Message-ID: <20260514150010.7123-5-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260514150010.7123-1-michal.wajdeczko@intel.com>
 References: <20260514150010.7123-1-michal.wajdeczko@intel.com>
@@ -67,50 +68,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Since addition of the MSI-X support, we mostly rely on the offset
-calculations done by XE_MEMIRQ_STATUS_OFFSET. We don't use this
-separate map pointing to the first status page anymore.
+We can now drop repeated calculations of the actual IRQ page used
+by the engines from our memory based interrupt handler and other
+functions.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_memirq.c       | 2 --
- drivers/gpu/drm/xe/xe_memirq_types.h | 2 --
- 2 files changed, 4 deletions(-)
+Cc: Ilia Levi <ilia.levi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_memirq.c | 38 +++++++++-------------------------
+ 1 file changed, 10 insertions(+), 28 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_memirq.c b/drivers/gpu/drm/xe/xe_memirq.c
-index 65038571b6d5..7fe1b00a0607 100644
+index 6d27102b8011..285fffea62d8 100644
 --- a/drivers/gpu/drm/xe/xe_memirq.c
 +++ b/drivers/gpu/drm/xe/xe_memirq.c
-@@ -219,11 +219,9 @@ static int memirq_alloc_pages(struct xe_memirq *memirq)
+@@ -263,15 +263,6 @@ int xe_memirq_init(struct xe_memirq *memirq)
+ 	return 0;
+ }
  
- 	memirq->bo = bo;
- 	memirq->source = IOSYS_MAP_INIT_OFFSET(&bo->vmap, XE_MEMIRQ_SOURCE_OFFSET(0));
--	memirq->status = IOSYS_MAP_INIT_OFFSET(&bo->vmap, XE_MEMIRQ_STATUS_OFFSET(0));
- 	memirq->num_pages = num_pages;
+-static u32 __memirq_source_page(struct xe_memirq *memirq, u16 instance)
+-{
+-	memirq_assert(memirq, instance <= XE_HW_ENGINE_MAX_INSTANCE);
+-	memirq_assert(memirq, memirq->bo);
+-
+-	instance = hw_reports_to_instance_zero(memirq) ? instance : 0;
+-	return xe_bo_ggtt_addr(memirq->bo) + XE_MEMIRQ_SOURCE_OFFSET(instance);
+-}
+-
+ /**
+  * xe_memirq_source_ptr - Get GGTT's offset of the `Interrupt Source Report Page`_.
+  * @memirq: the &xe_memirq to query
+@@ -286,16 +277,7 @@ u32 xe_memirq_source_ptr(struct xe_memirq *memirq, struct xe_hw_engine *hwe)
+ {
+ 	memirq_assert(memirq, xe_device_uses_memirq(memirq_to_xe(memirq)));
  
- 	memirq_assert(memirq, !memirq->source.is_iomem);
--	memirq_assert(memirq, !memirq->status.is_iomem);
+-	return __memirq_source_page(memirq, hwe->instance);
+-}
+-
+-static u32 __memirq_status_page(struct xe_memirq *memirq, u16 instance)
+-{
+-	memirq_assert(memirq, instance <= XE_HW_ENGINE_MAX_INSTANCE);
+-	memirq_assert(memirq, memirq->bo);
+-
+-	instance = hw_reports_to_instance_zero(memirq) ? instance : 0;
+-	return xe_bo_ggtt_addr(memirq->bo) + XE_MEMIRQ_STATUS_OFFSET(instance);
++	return xe_bo_ggtt_addr(memirq->bo) + XE_MEMIRQ_SOURCE_OFFSET(hwe->irq_page);
+ }
  
- 	memirq_debug(memirq, "pages: count %u size %zu\n", num_pages, bo_size);
- 	memirq_debug(memirq, "page0: source %#x status %#x mask %#x\n",
-diff --git a/drivers/gpu/drm/xe/xe_memirq_types.h b/drivers/gpu/drm/xe/xe_memirq_types.h
-index 4ea3d1976d4f..c2b0b33d55cd 100644
---- a/drivers/gpu/drm/xe/xe_memirq_types.h
-+++ b/drivers/gpu/drm/xe/xe_memirq_types.h
-@@ -16,14 +16,12 @@ struct xe_bo;
-  * @bo: buffer object with `Memory Based Interrupts Page Layout`_.
-  * @num_pages: number of per-instance source/status pages.
-  * @source: iosys pointer to `Interrupt Source Report Page`_.
-- * @status: iosys pointer to `Interrupt Status Report Page`_.
-  * @enabled: internal flag used to control processing of the interrupts.
+ /**
+@@ -312,7 +294,7 @@ u32 xe_memirq_status_ptr(struct xe_memirq *memirq, struct xe_hw_engine *hwe)
+ {
+ 	memirq_assert(memirq, xe_device_uses_memirq(memirq_to_xe(memirq)));
+ 
+-	return __memirq_status_page(memirq, hwe->instance);
++	return xe_bo_ggtt_addr(memirq->bo) + XE_MEMIRQ_STATUS_OFFSET(hwe->irq_page);
+ }
+ 
+ /**
+@@ -500,16 +482,16 @@ static void memirq_dispatch_guc(struct xe_memirq *memirq, struct iosys_map *stat
   */
- struct xe_memirq {
- 	struct xe_bo *bo;
- 	unsigned int num_pages;
- 	struct iosys_map source;
--	struct iosys_map status;
- 	bool enabled;
- };
+ void xe_memirq_hwe_handler(struct xe_memirq *memirq, struct xe_hw_engine *hwe)
+ {
+-	u16 offset = hwe->irq_offset;
+-	u16 instance = hw_reports_to_instance_zero(memirq) ? hwe->instance : 0;
+-	struct iosys_map src_offset = IOSYS_MAP_INIT_OFFSET(&memirq->bo->vmap,
+-							    XE_MEMIRQ_SOURCE_OFFSET(instance));
++	struct iosys_map source =
++		IOSYS_MAP_INIT_OFFSET(&memirq->bo->vmap,
++				      XE_MEMIRQ_SOURCE_OFFSET(hwe->irq_page));
+ 
+-	if (memirq_received(memirq, &src_offset, offset, "SRC")) {
+-		struct iosys_map status_offset =
++	if (memirq_received(memirq, &source, hwe->irq_offset, "SRC")) {
++		struct iosys_map status =
+ 			IOSYS_MAP_INIT_OFFSET(&memirq->bo->vmap,
+-					      XE_MEMIRQ_STATUS_OFFSET(instance) + offset * SZ_16);
+-		memirq_dispatch_engine(memirq, &status_offset, hwe);
++					      XE_MEMIRQ_VECTOR_OFFSET(hwe->irq_page,
++								      hwe->irq_offset));
++		memirq_dispatch_engine(memirq, &status, hwe);
+ 	}
+ }
  
 -- 
 2.47.1
