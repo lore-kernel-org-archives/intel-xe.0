@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BB1BCD4F41
-	for <intel-xe@archiver.kernel.org>; Thu, 14 May 2026 21:45:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF188CD4F3D
+	for <intel-xe@archiver.kernel.org>; Thu, 14 May 2026 21:45:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A31D10E601;
-	Thu, 14 May 2026 21:45:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C4EA10E61A;
+	Thu, 14 May 2026 21:45:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FGPrEHsd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Lo6YZpUn";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2ADC10E5FC
- for <intel-xe@lists.freedesktop.org>; Thu, 14 May 2026 21:45:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E34C10E61A
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 May 2026 21:45:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778795116; x=1810331116;
+ t=1778795119; x=1810331119;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=NGI9H+VYACKdu1ch7RA7OC6vppvmU5+dSUUpR/pByeM=;
- b=FGPrEHsdAMgELGKr/n8rGvp5VOF3DQrMtwrxY2Q2YSfsbzXpt/5dM/0V
- Ccex9JuNJ6p13QIBdcmMbEafA0qg9eQvjPlxnmTfjd+VnXyeBGp1lyyHC
- 02Dne1bpKane+Zvs+wkn0lSdVcDKtOp2n8Ppv7nQ1JLzPTGdHX9LaSHX3
- Y1vwF9ryoiFEIIFO2Wdv8fX/41q+7/7cXmNpq09nVpAgGg17r2LuBO9Md
- gTiwW5e5+LaZSAKA2bM8iSc8uYyeFSnevxHkTKipk/doewTKTi+OThi//
- VVVCs/WgNSjxzcjO5YJyWJqFriuhvAtPop7ite9xz/5QLW0zsYa/bT4xz w==;
-X-CSE-ConnectionGUID: Xi9CgoDvSc+R1GWw0+z/6w==
-X-CSE-MsgGUID: VgxfsWg4T++P0a70ZYCPsA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11786"; a="67277255"
-X-IronPort-AV: E=Sophos;i="6.23,235,1770624000"; d="scan'208";a="67277255"
+ bh=v+9VGxJ8N1NzjxJona9SB3ergey9cjdEsk52SI1KyDk=;
+ b=Lo6YZpUnnjxr8kGLhPrhYiyfzNTwrBWw+6K5NT38uk+wRzELEqQy9OE3
+ 4vVqZgkGnJgkRchut22+/49q7EaM14xsECBwRcVRl2JhciFHTAYki2n/I
+ fXREtOryUVqfkxRO1gr+5SXoAlkB0922f8GtEwPHzyfhLsFr8wViXLtW+
+ W82R1tlPcN2GFNjT5ZcEfxgZXeTAY4oFakKqMCnaVin1xau5Bz4qsrxJ7
+ 61TUrKyqYgkeRBdL2JkglwCEn9UOS+AafC1QiVEBAdWBngMgm5PizswxG
+ 2sACUXQrPIQQTz/5iahsbgt2jyeglE7rUJHjBlLgPcie1ztu7VTXEZ6fW g==;
+X-CSE-ConnectionGUID: nE4YPpQYRDCL4lzHeL02IA==
+X-CSE-MsgGUID: KWfDJfTFSRW4iojtV1O/Lg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11786"; a="67277259"
+X-IronPort-AV: E=Sophos;i="6.23,235,1770624000"; d="scan'208";a="67277259"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2026 14:45:15 -0700
-X-CSE-ConnectionGUID: Zkpp+FK+SKCABPkuwwet5Q==
-X-CSE-MsgGUID: ASFtOqJVTMyb5HrunfkC0w==
+ 14 May 2026 14:45:19 -0700
+X-CSE-ConnectionGUID: Raa0kCymRRGJtELBU1mm3A==
+X-CSE-MsgGUID: gMFpkLfIQIWbmwqzvxkoXw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,235,1770624000"; d="scan'208";a="238613184"
+X-IronPort-AV: E=Sophos;i="6.23,235,1770624000"; d="scan'208";a="238613213"
 Received: from aschofie-mobl2.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.221.189])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2026 14:45:14 -0700
+ 14 May 2026 14:45:18 -0700
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Thu, 14 May 2026 18:44:45 -0300
-Subject: [PATCH v3 2/7] drm/xe: Define and use MCR version of
- COMMON_SLICE_CHICKEN1
+Date: Thu, 14 May 2026 18:44:48 -0300
+Subject: [PATCH v3 5/7] drm/xe/kunit: Use KUNIT_EXPECT_EQ() in xe_wa_gt()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260514-rtp-mcr-check-v3-2-30dd47855fee@intel.com>
+Message-Id: <20260514-rtp-mcr-check-v3-5-30dd47855fee@intel.com>
 References: <20260514-rtp-mcr-check-v3-0-30dd47855fee@intel.com>
 In-Reply-To: <20260514-rtp-mcr-check-v3-0-30dd47855fee@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Gustavo Sousa <gustavo.sousa@intel.com>, 
+ Michal Wajdeczko <michal.wajdeczko@intel.com>, 
  Matt Roper <matthew.d.roper@intel.com>
 X-Mailer: b4 0.15-dev
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -70,47 +70,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The register COMMON_SLICE_CHICKEN1 is a MCR register on Xe2.
-Let's make sure to define a MCR version of it and use it for the
-relevant IP versions.
+Use KUNIT_EXPECT_EQ() in xe_wa_gt() as reg_sr errors in one GT do not
+impact the next GT in the test.
 
-Use XEHP_ as prefix for the register name, since it is MCR as of Xe_HP.
-
-Fixes: a5d221924e13 ("drm/xe/xe2_hpg: Add set of workarounds")
-Fixes: 9f18b55b6d3f ("drm/xe/xe2: Add workaround 18033852989")
-Bspec: 66534, 71185
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_gt_regs.h | 1 +
- drivers/gpu/drm/xe/xe_wa.c           | 2 +-
- 2 files changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/tests/xe_wa_test.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index 408933aee08a..b21c66a1b777 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -156,6 +156,7 @@
- #define   MSAA_OPTIMIZATION_REDUC_DISABLE	REG_BIT(11)
+diff --git a/drivers/gpu/drm/xe/tests/xe_wa_test.c b/drivers/gpu/drm/xe/tests/xe_wa_test.c
+index 49d191043dfa..2bf6fab015cd 100644
+--- a/drivers/gpu/drm/xe/tests/xe_wa_test.c
++++ b/drivers/gpu/drm/xe/tests/xe_wa_test.c
+@@ -55,7 +55,7 @@ static void xe_wa_gt(struct kunit *test)
+ 		xe_wa_process_gt(gt);
+ 		xe_tuning_process_gt(gt);
  
- #define COMMON_SLICE_CHICKEN1			XE_REG(0x7010, XE_REG_OPTION_MASKED)
-+#define XEHP_COMMON_SLICE_CHICKEN1		XE_REG_MCR(0x7010, XE_REG_OPTION_MASKED)
- #define   DISABLE_BOTTOM_CLIP_RECTANGLE_TEST	REG_BIT(14)
+-		KUNIT_ASSERT_EQ(test, gt->reg_sr.errors, 0);
++		KUNIT_EXPECT_EQ(test, gt->reg_sr.errors, 0);
+ 	}
+ }
  
- #define HIZ_CHICKEN					XE_REG(0x7018, XE_REG_OPTION_MASKED)
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index 49f5e3e4c7cc..d6f94486673e 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -664,7 +664,7 @@ static const struct xe_rtp_entry_sr lrc_was[] = {
- 	},
- 	{ XE_RTP_NAME("18033852989"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, 2004), ENGINE_CLASS(RENDER)),
--	  XE_RTP_ACTIONS(SET(COMMON_SLICE_CHICKEN1, DISABLE_BOTTOM_CLIP_RECTANGLE_TEST))
-+	  XE_RTP_ACTIONS(SET(XEHP_COMMON_SLICE_CHICKEN1, DISABLE_BOTTOM_CLIP_RECTANGLE_TEST))
- 	},
- 	{ XE_RTP_NAME("15016589081"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, 2004), ENGINE_CLASS(RENDER)),
 
 -- 
 2.53.0
