@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DA9ACD4F25
-	for <intel-xe@archiver.kernel.org>; Thu, 14 May 2026 08:36:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AAAACD4F25
+	for <intel-xe@archiver.kernel.org>; Thu, 14 May 2026 08:51:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2509210E382;
-	Thu, 14 May 2026 08:36:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA3B010E399;
+	Thu, 14 May 2026 08:50:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O6+3Gks6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ITc5R/5o";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DF9910E382;
- Thu, 14 May 2026 08:36:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C615110E382;
+ Thu, 14 May 2026 08:50:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778747765; x=1810283765;
+ t=1778748658; x=1810284658;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=aJLLTyRMLEAGSJa7N0aHnU6a9CRNGaFQ7l1XGulOEa4=;
- b=O6+3Gks69mFPzbh1XWDOC05TyHny8PpD60nBN0bMoevUkTOzLMhmFxJD
- TZxCPN/odXjUSNv9LPp4D90pjgEn71KLXdvNwR+vcl9VXoaf2VsIs1R+W
- fNs2gZSHCXeb07ST2sJeOrhDcJavnK7jEI5VknMsz80TWspqwGGa7n3E0
- 32Gsrhuj4dm0bKQFwHSTSzFJ0RV5VMJVkXRkcfz7g1WThO/9z4yugQc6k
- S/X1bqzNeLBM2AcNgxti/ymB3qDAiMoSQpkH0qwF3I6eQme14k2mSLJOi
- XrugHR+DdkXJpHrjMvB45o/meZTzOGlMF4jRc8GWFtA5e+gAVsIWBnznb g==;
-X-CSE-ConnectionGUID: Rl+VuhZyROCjZkKuH9Exxg==
-X-CSE-MsgGUID: H0gBha3ZSVKzCNmHleWzGQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11785"; a="90379242"
-X-IronPort-AV: E=Sophos;i="6.23,234,1770624000"; d="scan'208";a="90379242"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2026 01:36:04 -0700
-X-CSE-ConnectionGUID: bERuLJ/xTyCupiYBrlJ2gA==
-X-CSE-MsgGUID: JTftsTYiRXKYXs1vaTgskg==
+ bh=s1GP4zXeY63UPg7GVUSEQehGgvHOEjrwYan0aSI2ca4=;
+ b=ITc5R/5ocbfr5+lR3gUNiNUwqIvLwYBJy7vmDtnzSsaenOM9Vc/CboQD
+ OCqLrXY+WFkweH1BeT6NeiLBApTo8p6QAbxRcdawsJWq4wEJYPJk/Sw+i
+ Rz9JgUiOwGGwX18j91yS0/2D/T34Q0w187ATxKIKtqriiAUvSdxKgE8lB
+ TudUW39euDS6Ilv/xPhmZkisSVHbFs5gUmAWq/t9rEVp1gb7X+ubQ16H/
+ Yg7LhJ1sqTKmCPVOX1vhwZq91zm/JEhClR52vQmkkLCPf+X5ktgl+CToF
+ ThiBzbp/H0Ik1h+EyRm2W8pofS/b+Kd5wIUEz3JOEdJf2CpDPizSkHkNr A==;
+X-CSE-ConnectionGUID: nzjh7KTOTV6XJ/xr+gRJPQ==
+X-CSE-MsgGUID: ajnCu6uRQoOGhwymygEfMw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11785"; a="79717868"
+X-IronPort-AV: E=Sophos;i="6.23,234,1770624000"; d="scan'208";a="79717868"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 May 2026 01:50:49 -0700
+X-CSE-ConnectionGUID: q2UoWm4WS/SwG8dcOjyBDw==
+X-CSE-MsgGUID: B2mOq6SeRdOuTQupHmu54g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,234,1770624000"; d="scan'208";a="242323042"
+X-IronPort-AV: E=Sophos;i="6.23,234,1770624000"; d="scan'208";a="233894092"
 Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2026 01:36:01 -0700
-Date: Thu, 14 May 2026 10:35:57 +0200
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 May 2026 01:50:46 -0700
+Date: Thu, 14 May 2026 10:50:43 +0200
 From: Raag Jadav <raag.jadav@intel.com>
 To: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
@@ -51,15 +51,15 @@ Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  tzimmermann@suse.de, anshuman.gupta@intel.com,
  badal.nilawar@intel.com, riana.tauro@intel.com,
  karthik.poosa@intel.com, sk.anirban@intel.com
-Subject: Re: [PATCH v5 5/5] drm/xe: Suppress Surprise Link Down on
- non-hotplug device
-Message-ID: <agWJbWQXA9XJnool@black.igk.intel.com>
+Subject: Re: [PATCH v5 3/5] drm/doc: Document DRM_WEDGE_RECOVERY_COLD_RESET
+ recovery method
+Message-ID: <agWM41MpCMqDt4mb@black.igk.intel.com>
 References: <20260512132614.1793083-7-mallesh.koujalagi@intel.com>
- <20260512132614.1793083-12-mallesh.koujalagi@intel.com>
+ <20260512132614.1793083-10-mallesh.koujalagi@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260512132614.1793083-12-mallesh.koujalagi@intel.com>
+In-Reply-To: <20260512132614.1793083-10-mallesh.koujalagi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,94 +74,145 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, May 12, 2026 at 06:56:20PM +0530, Mallesh Koujalagi wrote:
-> If the slot is not hotplug capable, pcie_suppress_surprise_link_down()
-> masks the Surprise Link Down bit (PCI_ERR_UNC_SURPDN) in the USP's AER
-> Uncorrectable Error Mask register before punit_error_handler()
-> triggers the cold reset.
-
-Can you please elaborate on the "why" part? Is this something Intel
-specific?
-
+On Tue, May 12, 2026 at 06:56:18PM +0530, Mallesh Koujalagi wrote:
+> When ``WEDGED=cold-reset`` is sent, it indicates that the device has
+> encountered an error condition that cannot be resolved through other
+> recovery methods such as driver rebind or bus reset, and requires a
+> complete device power cycle to restore functionality.
+> 
 > Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_ras.c | 51 +++++++++++++++++++++++++++++++++++++
->  1 file changed, 51 insertions(+)
+> v2:
+> - Add several instead of number to avoid update. (Jani)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-> index 604470565bf3..67b4f25370c9 100644
-> --- a/drivers/gpu/drm/xe/xe_ras.c
-> +++ b/drivers/gpu/drm/xe/xe_ras.c
-> @@ -224,8 +224,59 @@ static enum xe_ras_recovery_action handle_core_compute_errors(struct xe_device *
->  	return XE_RAS_RECOVERY_ACTION_RECOVERED;
->  }
+> v3:
+> - Update document with generic scenario. (Riana)
+> - Consistent with terminology. (Raag)
+> - Remove already covered information.
+> 
+> v4:
+> - Update doc. (Raag/Riana)
+> - Change commit message.
+> 
+> v5:
+> - Update commit message. (Raag)
+> - Remove unbind.
+> - Simplify cold-reset script.
+> ---
+>  Documentation/gpu/drm-uapi.rst | 64 +++++++++++++++++++++++++++++++++-
+>  1 file changed, 63 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/gpu/drm-uapi.rst b/Documentation/gpu/drm-uapi.rst
+> index 32206ce62931..809386f16521 100644
+> --- a/Documentation/gpu/drm-uapi.rst
+> +++ b/Documentation/gpu/drm-uapi.rst
+> @@ -422,7 +422,7 @@ needed.
+>  Recovery
+>  --------
 >  
-> +#ifdef CONFIG_PCIEAER
-> +static bool pcie_slot_is_hotplug_capable(struct pci_dev *usp)
+> -Current implementation defines four recovery methods, out of which, drivers
+> +Current implementation defines several recovery methods, out of which, drivers
+>  can use any one, multiple or none. Method(s) of choice will be sent in the
+>  uevent environment as ``WEDGED=<method1>[,..,<methodN>]`` in order of less to
+>  more side-effects. See the section `Vendor Specific Recovery`_
+> @@ -439,6 +439,7 @@ following expectations.
+>      rebind          unbind + bind driver
+>      bus-reset       unbind + bus reset/re-enumeration + bind
+>      vendor-specific vendor specific recovery method
+> +    cold-reset      remove device + slot power cycle + rescan
+>      unknown         consumer policy
+>      =============== ========================================
+>  
+> @@ -451,6 +452,17 @@ debug purpose in order to root cause the hang. This is useful because the first
+>  hang is usually the most critical one which can result in consequential hangs
+>  or complete wedging.
+>  
+> +Cold Reset Recovery
+> +-------------------
+> +
+> +When ``WEDGED=cold-reset`` is sent, it indicates that the device has
+> +encountered an error condition that cannot be resolved through other
+> +recovery methods such as driver rebind or bus reset, and requires a complete
+> +device power cycle to restore functionality.
+> +
+> +This method is used by devices that are plugged directly into the PCIe slot
+> +which supports removing the power.
 
-Shouldn't all of it be part of xe_pci_error.c?
+This looks good to me.
 
-> +{
-> +	struct pci_dev *root_port = pci_upstream_bridge(usp);
-> +	u32 sltcap;
+>  Vendor Specific Recovery
+>  ------------------------
+>  
+> @@ -528,6 +540,56 @@ Recovery script::
+>      echo -n $DEVICE > $DRIVER/unbind
+>      echo -n $DEVICE > $DRIVER/bind
+>  
+> +Example - cold-reset
+> +--------------------
 > +
-> +	if (!root_port)
-> +		return false;
+> +Udev rule::
 > +
-> +	if (pcie_capability_read_dword(root_port, PCI_EXP_SLTCAP, &sltcap))
-> +		return false;
+> +    SUBSYSTEM=="drm", ENV{WEDGED}=="cold-reset", DEVPATH=="*/drm/card[0-9]",
+> +    RUN+="/path/to/cold-reset.sh $env{DEVPATH}"
 > +
-> +	return (sltcap & (PCI_EXP_SLTCAP_HPC | PCI_EXP_SLTCAP_PCP)) ==
-> +		(PCI_EXP_SLTCAP_HPC | PCI_EXP_SLTCAP_PCP);
-> +}
+> +Recovery script::
 > +
-> +static void pcie_suppress_surprise_link_down(struct pci_dev *usp)
-> +{
-> +	u32 aer_uncorr_mask;
-> +	u16 aer_cap;
+> +    #!/bin/sh
 > +
-> +	aer_cap = usp->aer_cap;
-> +	if (!aer_cap)
-> +		return;
+> +    [ -z "$1" ] && echo "Usage: $0 <device-path>" && exit 1
 > +
-> +	pci_read_config_dword(usp, aer_cap + PCI_ERR_UNCOR_MASK, &aer_uncorr_mask);
-> +	aer_uncorr_mask |= PCI_ERR_UNC_SURPDN;
-> +	pci_write_config_dword(usp, aer_cap + PCI_ERR_UNCOR_MASK, aer_uncorr_mask);
-> +	dev_dbg(&usp->dev, "Non-hotplug slot: Surprise Link Down masked for cold reset\n");
+> +    # Get device
+> +    DEVPATH=$(readlink -f /sys/$1/device 2>/dev/null || readlink -f /sys/$1)
+> +    DEVICE=$(basename $DEVPATH)
+> +
+> +    echo "Cold reset: $DEVICE"
+> +
+> +    # Try slot power reset first
+> +    SLOT=""
+> +    for addr_file in /sys/bus/pci/slots/*/address; do
 
-So is it required for all devices that want to use cold-reset method
-generically? If yes, shouldn't this be part of recovery script or atleast
-documented somewhere?
+This looks like we're peeking into every slot present on the machine which
+is not very optimal. Can't we just follow device hierarchy in DEVPATH to
+look for the slot that is relevant for us?
+
+> +	    [ -f "$addr_file" ] || break
+> +	    addr=$(cat "$addr_file" 2>/dev/null)
+> +	    [ -n "$addr" ] || continue
+> +	    case "$DEVICE" in
+> +		    "$addr"*) SLOT=$(basename "$(dirname "$addr_file")"); break ;;
+> +	    esac
+> +    done
+> +
+> +    if [ -n "$SLOT" ]; then
+> +	echo "Using slot $SLOT"
+> +
+> +	# Remove device
+> +	echo 1 > /sys/bus/pci/devices/$DEVICE/remove
+> +
+> +	# Power cycle slot
+> +	echo 0 > /sys/bus/pci/slots/$SLOT/power
+> +	sleep 2
+
+Is this tested on actual machine? Is there an explanation for the amount
+of sleep needed that serves all cases generically?
+
+> +	echo 1 > /sys/bus/pci/slots/$SLOT/power
+> +	sleep 1
+
+Ditto.
 
 Raag
 
-> +}
-> +#endif /* CONFIG_PCIEAER */
+> +	# Rescan
+> +	echo 1 > /sys/bus/pci/rescan
+> +	echo "Done!"
+> +    else
+> +	echo "No slot found"
+> +    fi
 > +
->  static void punit_error_handler(struct xe_device *xe)
->  {
-> +#ifdef CONFIG_PCIEAER
-> +	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-> +	struct pci_dev *vsp, *usp;
-> +
-> +	/*
-> +	 * Device Hierarchy:
-> +	 *
-> +	 * Root Port --> Upstream Switch Port (USP) --> Virtual Switch Port (VSP) --> SGunit
-> +	 *
-> +	 * Cold reset power-cycles the slot, dropping the PCIe link. On a non-hotplug
-> +	 * slot this triggers a spurious Surprise Link Down AER event on the USP.
-> +	 * Suppress it if the slot is not hotplug capable.
-> +	 */
-> +	vsp = pci_upstream_bridge(pdev);
-> +	usp = vsp ? pci_upstream_bridge(vsp) : NULL;
-> +
-> +	if (usp && !pcie_slot_is_hotplug_capable(usp))
-> +		pcie_suppress_surprise_link_down(usp);
-> +#endif
->  	xe_device_set_wedged_method(xe, DRM_WEDGE_RECOVERY_COLD_RESET);
->  	xe_device_declare_wedged(xe);
->  }
+>  Customization
+>  -------------
+>  
 > -- 
 > 2.34.1
 > 
