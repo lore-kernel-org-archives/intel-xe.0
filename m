@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAB3ECD4F39
-	for <intel-xe@archiver.kernel.org>; Thu, 14 May 2026 05:44:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0C16CD4F39
+	for <intel-xe@archiver.kernel.org>; Thu, 14 May 2026 05:58:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BF5910E35B;
-	Thu, 14 May 2026 05:44:58 +0000 (UTC)
-Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8574810E35B;
- Thu, 14 May 2026 05:44:57 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C53A10E369;
+	Thu, 14 May 2026 05:58:56 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dTEMfjCj";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 971B410E138;
+ Thu, 14 May 2026 05:58:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1778738335; x=1810274335;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=7I6T0HIIYSy6kzvSENfJbEfuQfQT4318S1ePO1DVDbo=;
+ b=dTEMfjCjv/nAyKaC+E2ZKB7kwG97ZBBcF0lvSUdos4RJf0eSfJvlmyU1
+ o1VrC+lR/X5aoVrWBy1JMaQX7/D94LBiAIUeOJ73Jx+o5kRSG3evxnxTQ
+ BXtgDlHb4NIjyVkhA8WurWJQ17cHxjqULzMGnS7DRHIza52fIjh5np5+b
+ Zl6HG+u5Pq17vHeN8+CgZ7PnOd0yFpodIPcKhRlqqSmLqJUMJBKDdiT6h
+ vgsNUxoGw1EBniAuZYVel67yJB3/n3OWrNwweryoSP7cOHflrJLRvWaIz
+ LuIDr4rN/1ar9k7TZDiyUoS6zO3xEw0Hg0b+mTl8W5Kf9n791gO3nme2V Q==;
+X-CSE-ConnectionGUID: MKVTGSAnSvC6z0t4sQz1+A==
+X-CSE-MsgGUID: 0yLlknW1S1C9bN7z0XC0nA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11785"; a="67203215"
+X-IronPort-AV: E=Sophos;i="6.23,234,1770624000"; d="scan'208";a="67203215"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2026 22:58:54 -0700
+X-CSE-ConnectionGUID: RFsjeCBCTP+dUItm07UvXQ==
+X-CSE-MsgGUID: 38xbwQmnRvWct1rEwJu+mg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,234,1770624000"; d="scan'208";a="237434211"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by orviesa010.jf.intel.com with ESMTP; 13 May 2026 22:58:52 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com, jani.nikula@intel.com,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH 0/2] drm/i915/backlight: Sanitize BIOS-enabled PCH PWM in
+ full-AUX VESA path
+Date: Thu, 14 May 2026 11:28:46 +0530
+Message-Id: <20260514055848.871938-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe=3A_Unify_fault_injectio?=
- =?utf-8?q?n_hooks_for_CSC=2C_GT_reset_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mallesh Koujalagi" <mallesh.koujalagi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 14 May 2026 05:44:57 -0000
-Message-ID: <177873749754.71145.8486110572700168471@5ab824fced77>
-X-Patchwork-Hint: ignore
-References: <20260514045248.1837326-2-mallesh.koujalagi@intel.com>
-In-Reply-To: <20260514045248.1837326-2-mallesh.koujalagi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,44 +63,27 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+In full-AUX VESA mode (aux_enable && aux_set) the driver never touches the
+native PCH PWM. If BIOS left the PWM CTL register enabled, the PCH PWM keeps
+the system alive during s2idle and blocks S0ix. This series sanitizes that
+stale BIOS state on first enable so S0ix is no longer blocked, while keeping
+runtime behaviour otherwise unchanged.
+Patch 1 is a minor debug-message rename cleanup.
 
-Series: drm/xe: Unify fault injection hooks for CSC, GT reset (rev4)
-URL   : https://patchwork.freedesktop.org/series/164761/
-State : failure
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
-== Summary ==
+Suraj Kandpal (2):
+  drm/i915/backlight: Rename debug message in the setup() callback
+  drm/i915/backlight: Sanitize BIOS-enabled PCH PWM in full-AUX VESA
+    path
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:../drivers/gpu/drm/xe/xe_fault_inject.c:21:45: error: ‘FAULT_ATTR_INITIALIZER’ undeclared here (not in a function)
-   21 |                                     .attr = FAULT_ATTR_INITIALIZER },
-      |                                             ^~~~~~~~~~~~~~~~~~~~~~
-make[7]: *** [../scripts/Makefile.build:289: drivers/gpu/drm/xe/xe_fault_inject.o] Error 1
-make[7]: *** Waiting for unfinished jobs....
-make[6]: *** [../scripts/Makefile.build:548: drivers/gpu/drm/xe] Error 2
-make[5]: *** [../scripts/Makefile.build:548: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:548: drivers/gpu] Error 2
-make[3]: *** [../scripts/Makefile.build:548: drivers] Error 2
-make[2]: *** [/kernel/Makefile:2143: .] Error 2
-make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
+ .../gpu/drm/i915/display/intel_backlight.c    | 14 ++++----
+ .../drm/i915/display/intel_dp_aux_backlight.c | 32 +++++++++++++------
+ 2 files changed, 30 insertions(+), 16 deletions(-)
 
-[05:44:23] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[05:44:28] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+-- 
+2.34.1
 
