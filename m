@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7174CD4F39
-	for <intel-xe@archiver.kernel.org>; Thu, 14 May 2026 17:25:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4B81CD4F25
+	for <intel-xe@archiver.kernel.org>; Thu, 14 May 2026 17:27:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6011210E3F7;
-	Thu, 14 May 2026 17:25:58 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H9Mh2IAp";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F40E810E3F7
- for <intel-xe@lists.freedesktop.org>; Thu, 14 May 2026 17:25:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778779557; x=1810315557;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=WrqMisIHkqFu6OPkNi9kR//gQMpSpyRozPLcYFT4yyQ=;
- b=H9Mh2IApZd5Fi2A29wBRdLNLDg74tcZuvZfmOkzNZHow4KVhrG2t0qPa
- zL4ngKXoZUa0wp2Y1cWDXQccnI8QkpbveKAek7KztrVCafKnq7ngo8FNa
- 18sL+tKZ1mOkJkL1z8G4qAU6okwBIqJymp0+ZzfnLEVBV7/ZwjdSiDZO4
- pSz+T62c6NIgrlQj6smqt3jEbidspNkb69otuH417v4he5pTHT4OiAxQx
- vNd06J8NMj5pN8q0Ha3Acx3RQbOAnosv2aNsYig3QiADk2eM1pKrix5GM
- TKj6t1n+TaFwTemyVYLMwkJropG/oIahpE28+P34UPwMeB7yKaX6/yYM8 Q==;
-X-CSE-ConnectionGUID: NcfOWhp8T0SvZ7+AGSJYYA==
-X-CSE-MsgGUID: jknMBwyxSAKFddP6yO3K5w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11786"; a="83342677"
-X-IronPort-AV: E=Sophos;i="6.23,235,1770624000"; d="scan'208";a="83342677"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2026 10:25:56 -0700
-X-CSE-ConnectionGUID: jg3bfxc/Rziu6vwnRNkSCg==
-X-CSE-MsgGUID: Jt/qy13yRXO5FB7ZMuPJWw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,235,1770624000"; d="scan'208";a="238708625"
-Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2026 10:25:53 -0700
-Date: Thu, 14 May 2026 19:25:51 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Riana Tauro <riana.tauro@intel.com>
-Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
- rodrigo.vivi@intel.com, aravind.iddamsetty@linux.intel.com,
- badal.nilawar@intel.com, ravi.kishore.koppuravuri@intel.com,
- mallesh.koujalagi@intel.com, soham.purkait@intel.com,
- Anoop Vijay <anoop.c.vijay@intel.com>,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: Re: [PATCH v6 5/6] drm/xe: Move xe drm_ras initialization
-Message-ID: <agYFn5uI84i2yZqK@black.igk.intel.com>
-References: <20260514052205.1340143-8-riana.tauro@intel.com>
- <20260514052205.1340143-13-riana.tauro@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9434410E3F7;
+	Thu, 14 May 2026 17:27:33 +0000 (UTC)
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 425F010E3F7;
+ Thu, 14 May 2026 17:27:32 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0638603821816614053=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260514052205.1340143-13-riana.tauro@intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/vf=3A_Fix_signature_?=
+ =?utf-8?q?of_print_functions?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 14 May 2026 17:27:32 -0000
+Message-ID: <177877965225.72886.10111820160732456859@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260514155726.7165-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20260514155726.7165-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,22 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, May 14, 2026 at 10:52:11AM +0530, Riana Tauro wrote:
-> Move xe drm_ras registration to RAS initialization flow and keep
-> hardware error initialization for processing errors reported
-> via irq.
-> 
-> Move soc remapper and system controller initialization
-> up in xe_device_probe as RAS initialization depends on both.
+--===============0638603821816614053==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Which means their flags should also be somewhere in vf_update_device_info()
-but that can be done later.
+== Series Details ==
 
-> Cc: Anoop Vijay <anoop.c.vijay@intel.com>
-> Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+Series: drm/xe/vf: Fix signature of print functions
+URL   : https://patchwork.freedesktop.org/series/166583/
+State : success
 
-Reviewed-by: Raag Jadav <raag.jadav@intel.com>
+== Summary ==
+
+CI Bug Log - changes from xe-5063-121c16f9d8c56ea07263df84ab971cc10870fe88_BAT -> xe-pw-166583v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5063-121c16f9d8c56ea07263df84ab971cc10870fe88 -> xe-pw-166583v1
+
+  IGT_8912: 22222b7d987067331459c2a866e6387a669b7f70 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5063-121c16f9d8c56ea07263df84ab971cc10870fe88: 121c16f9d8c56ea07263df84ab971cc10870fe88
+  xe-pw-166583v1: 166583v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166583v1/index.html
+
+--===============0638603821816614053==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/vf: Fix signature of print functions</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166583/">https://patchwork.freedesktop.org/series/166583/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166583v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166583v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5063-121c16f9d8c56ea07263df84ab971cc10870fe88_BAT -&gt; xe-pw-166583v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5063-121c16f9d8c56ea07263df84ab971cc10870fe88 -&gt; xe-pw-166583v1</li>
+</ul>
+<p>IGT_8912: 22222b7d987067331459c2a866e6387a669b7f70 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5063-121c16f9d8c56ea07263df84ab971cc10870fe88: 121c16f9d8c56ea07263df84ab971cc10870fe88<br />
+  xe-pw-166583v1: 166583v1</p>
+
+</body>
+</html>
+
+--===============0638603821816614053==--
