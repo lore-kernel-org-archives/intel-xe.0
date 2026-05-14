@@ -4,62 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AAAACD4F25
-	for <intel-xe@archiver.kernel.org>; Thu, 14 May 2026 08:51:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C60B1CD4851
+	for <intel-xe@archiver.kernel.org>; Thu, 14 May 2026 09:10:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA3B010E399;
-	Thu, 14 May 2026 08:50:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8750610E09C;
+	Thu, 14 May 2026 09:10:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ITc5R/5o";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EUxS94kL";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C615110E382;
- Thu, 14 May 2026 08:50:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC39310E09C
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 May 2026 09:10:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778748658; x=1810284658;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=s1GP4zXeY63UPg7GVUSEQehGgvHOEjrwYan0aSI2ca4=;
- b=ITc5R/5ocbfr5+lR3gUNiNUwqIvLwYBJy7vmDtnzSsaenOM9Vc/CboQD
- OCqLrXY+WFkweH1BeT6NeiLBApTo8p6QAbxRcdawsJWq4wEJYPJk/Sw+i
- Rz9JgUiOwGGwX18j91yS0/2D/T34Q0w187ATxKIKtqriiAUvSdxKgE8lB
- TudUW39euDS6Ilv/xPhmZkisSVHbFs5gUmAWq/t9rEVp1gb7X+ubQ16H/
- Yg7LhJ1sqTKmCPVOX1vhwZq91zm/JEhClR52vQmkkLCPf+X5ktgl+CToF
- ThiBzbp/H0Ik1h+EyRm2W8pofS/b+Kd5wIUEz3JOEdJf2CpDPizSkHkNr A==;
-X-CSE-ConnectionGUID: nzjh7KTOTV6XJ/xr+gRJPQ==
-X-CSE-MsgGUID: ajnCu6uRQoOGhwymygEfMw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11785"; a="79717868"
-X-IronPort-AV: E=Sophos;i="6.23,234,1770624000"; d="scan'208";a="79717868"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2026 01:50:49 -0700
-X-CSE-ConnectionGUID: q2UoWm4WS/SwG8dcOjyBDw==
-X-CSE-MsgGUID: B2mOq6SeRdOuTQupHmu54g==
+ t=1778749825; x=1810285825;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=P1gCfVRAt0Ga93d81KDyV03GheasYoBOFE125bZyRoE=;
+ b=EUxS94kLZM8F8XJfccQQMAgpAuk0daby5zNcLAuQ6LXnWI5QfOnsCe7U
+ gfNhCtHVFEztCsE1v1crICpKftfkVDpjtiOonBFpMAhwh9rwCKu5SWh97
+ x5uQaoVLrdlmx2YXid2j5O2Bvx9ySmdRUGDaftUd/ciK7vzSnJGZQW99M
+ 89PGkpLd6YhdzQ5/HHLjYQXRCQDaA2DJKj6J7dizHAhbwBnl0StB5wRPd
+ saM0QHSaE0I2gvJpLfg82srcngPgrUszlNbImQMw9UqCMJ1wxPv5N1DhG
+ 4SpSkQLAjL/QHCkHzZ1y/3ozBN+WlLZ91vjwU6nQAb5SQ8i25YgFZ00CB w==;
+X-CSE-ConnectionGUID: SMAMiWdwRoWWqko+q6dZfw==
+X-CSE-MsgGUID: EpVpS3UhQx6Yiga+q1qFIA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11785"; a="91150208"
+X-IronPort-AV: E=Sophos;i="6.23,234,1770624000"; d="scan'208";a="91150208"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 May 2026 02:10:25 -0700
+X-CSE-ConnectionGUID: uGcgfvrYRkOtKFhot3ZJZw==
+X-CSE-MsgGUID: HlpWv81mRQKqYYODi8XTvA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,234,1770624000"; d="scan'208";a="233894092"
-Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2026 01:50:46 -0700
-Date: Thu, 14 May 2026 10:50:43 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- rodrigo.vivi@intel.com, andrealmeid@igalia.com,
- christian.koenig@amd.com, airlied@gmail.com, simona.vetter@ffwll.ch,
- mripard@kernel.org, maarten.lankhorst@linux.intel.com,
- tzimmermann@suse.de, anshuman.gupta@intel.com,
- badal.nilawar@intel.com, riana.tauro@intel.com,
- karthik.poosa@intel.com, sk.anirban@intel.com
-Subject: Re: [PATCH v5 3/5] drm/doc: Document DRM_WEDGE_RECOVERY_COLD_RESET
- recovery method
-Message-ID: <agWM41MpCMqDt4mb@black.igk.intel.com>
-References: <20260512132614.1793083-7-mallesh.koujalagi@intel.com>
- <20260512132614.1793083-10-mallesh.koujalagi@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,234,1770624000"; d="scan'208";a="243317166"
+Received: from cs2n1.iind.intel.com (HELO cs2n1..) ([10.223.246.13])
+ by orviesa005.jf.intel.com with ESMTP; 14 May 2026 02:10:22 -0700
+From: "Meenakshisundaram, Mohanram" <mohanram.meenakshisundaram@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: rodrigo.vivi@intel.com, michal.wajdeczko@intel.com,
+	"Meenakshisundaram, Mohanram" <mohanram.meenakshisundaram@intel.com>,
+	Meenakshisundaram@freedesktop.org
+Subject: [PATCH] drm/xe/pf: Fix CFI failure in debugfs access
+Date: Thu, 14 May 2026 14:33:52 +0530
+Message-Id: <20260514090352.1554803-1-mohanram.meenakshisundaram@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260512132614.1793083-10-mallesh.koujalagi@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,145 +65,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, May 12, 2026 at 06:56:18PM +0530, Mallesh Koujalagi wrote:
-> When ``WEDGED=cold-reset`` is sent, it indicates that the device has
-> encountered an error condition that cannot be resolved through other
-> recovery methods such as driver rebind or bus reset, and requires a
-> complete device power cycle to restore functionality.
-> 
-> Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-> ---
-> v2:
-> - Add several instead of number to avoid update. (Jani)
-> 
-> v3:
-> - Update document with generic scenario. (Riana)
-> - Consistent with terminology. (Raag)
-> - Remove already covered information.
-> 
-> v4:
-> - Update doc. (Raag/Riana)
-> - Change commit message.
-> 
-> v5:
-> - Update commit message. (Raag)
-> - Remove unbind.
-> - Simplify cold-reset script.
-> ---
->  Documentation/gpu/drm-uapi.rst | 64 +++++++++++++++++++++++++++++++++-
->  1 file changed, 63 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/gpu/drm-uapi.rst b/Documentation/gpu/drm-uapi.rst
-> index 32206ce62931..809386f16521 100644
-> --- a/Documentation/gpu/drm-uapi.rst
-> +++ b/Documentation/gpu/drm-uapi.rst
-> @@ -422,7 +422,7 @@ needed.
->  Recovery
->  --------
->  
-> -Current implementation defines four recovery methods, out of which, drivers
-> +Current implementation defines several recovery methods, out of which, drivers
->  can use any one, multiple or none. Method(s) of choice will be sent in the
->  uevent environment as ``WEDGED=<method1>[,..,<methodN>]`` in order of less to
->  more side-effects. See the section `Vendor Specific Recovery`_
-> @@ -439,6 +439,7 @@ following expectations.
->      rebind          unbind + bind driver
->      bus-reset       unbind + bus reset/re-enumeration + bind
->      vendor-specific vendor specific recovery method
-> +    cold-reset      remove device + slot power cycle + rescan
->      unknown         consumer policy
->      =============== ========================================
->  
-> @@ -451,6 +452,17 @@ debug purpose in order to root cause the hang. This is useful because the first
->  hang is usually the most critical one which can result in consequential hangs
->  or complete wedging.
->  
-> +Cold Reset Recovery
-> +-------------------
-> +
-> +When ``WEDGED=cold-reset`` is sent, it indicates that the device has
-> +encountered an error condition that cannot be resolved through other
-> +recovery methods such as driver rebind or bus reset, and requires a complete
-> +device power cycle to restore functionality.
-> +
-> +This method is used by devices that are plugged directly into the PCIe slot
-> +which supports removing the power.
+Reading debugfs file (/sys/kernel/debug/dri/0/gt*/pf/adverse_events)
+with CFI (Control Flow Integrity) enabled, the kernel panics at
+xe_gt_debugfs_simple_show+0x82/0xc0.
 
-This looks good to me.
+xe_gt_debugfs_simple_show() declars a function pointer expecting int
+return type, but xe_gt_sriov_pf_monitor_print_events() is void return
+type, leading to CFI failure and kernel panic.
 
->  Vendor Specific Recovery
->  ------------------------
->  
-> @@ -528,6 +540,56 @@ Recovery script::
->      echo -n $DEVICE > $DRIVER/unbind
->      echo -n $DEVICE > $DRIVER/bind
->  
-> +Example - cold-reset
-> +--------------------
-> +
-> +Udev rule::
-> +
-> +    SUBSYSTEM=="drm", ENV{WEDGED}=="cold-reset", DEVPATH=="*/drm/card[0-9]",
-> +    RUN+="/path/to/cold-reset.sh $env{DEVPATH}"
-> +
-> +Recovery script::
-> +
-> +    #!/bin/sh
-> +
-> +    [ -z "$1" ] && echo "Usage: $0 <device-path>" && exit 1
-> +
-> +    # Get device
-> +    DEVPATH=$(readlink -f /sys/$1/device 2>/dev/null || readlink -f /sys/$1)
-> +    DEVICE=$(basename $DEVPATH)
-> +
-> +    echo "Cold reset: $DEVICE"
-> +
-> +    # Try slot power reset first
-> +    SLOT=""
-> +    for addr_file in /sys/bus/pci/slots/*/address; do
+[507620.973657] CFI failure at xe_gt_debugfs_simple_show+0x82/0xc0 [xe]
+(target: xe_gt_sriov_pf_monitor_print_events+0x0/0x130 [xe]; expected
+type: 0xd72c7139)
+[507620.975434] Oops: invalid opcode: 0000 [#1] SMP NOPTI
+[507620.976932] Tainted: [U]=USER, [O]=OOT_MODULE
+[507620.977871] RIP: 0010:xe_gt_debugfs_simple_show+0x82/0xc0 [xe]
+[507620.984760] Call Trace:
+[507620.985204]  ? __cfi___drm_printfn_seq_file+0x10/0x10
+[507620.985628]  ? __cfi___drm_puts_seq_file+0x10/0x10
+[507620.986008]  seq_read_iter+0x1de/0x550
+[507620.986323]  seq_read+0x134/0x170
+[507620.986608]  full_proxy_read+0x9a/0x150
+[507620.986939]  vfs_read+0xf0/0x390
+[507620.987228]  ksys_read+0x74/0x100
+[507620.987523]  do_syscall_64+0x61/0xf10
+[507620.987842]  ? arch_exit_to_user_mode_prepare+0x9/0xb0
+[507620.988243]  asm_fred_entrypoint_user+0x41/0x41
+[507620.988602] RIP: 0033:0x784a76af9d57
 
-This looks like we're peeking into every slot present on the machine which
-is not very optimal. Can't we just follow device hierarchy in DEVPATH to
-look for the slot that is relevant for us?
+Fix xe_gt_sriov_pf_monitor_print_events() function by updating to return
+an int type.
 
-> +	    [ -f "$addr_file" ] || break
-> +	    addr=$(cat "$addr_file" 2>/dev/null)
-> +	    [ -n "$addr" ] || continue
-> +	    case "$DEVICE" in
-> +		    "$addr"*) SLOT=$(basename "$(dirname "$addr_file")"); break ;;
-> +	    esac
-> +    done
-> +
-> +    if [ -n "$SLOT" ]; then
-> +	echo "Using slot $SLOT"
-> +
-> +	# Remove device
-> +	echo 1 > /sys/bus/pci/devices/$DEVICE/remove
-> +
-> +	# Power cycle slot
-> +	echo 0 > /sys/bus/pci/slots/$SLOT/power
-> +	sleep 2
+Fixes: 335d62ade5fe ("drm/xe/pf: Track adverse events notifications from GuC")
 
-Is this tested on actual machine? Is there an explanation for the amount
-of sleep needed that serves all cases generically?
+Signed-off-by: Meenakshisundaram, Mohanram <mohanram.meenakshisundaram@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.c | 6 +++++-
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.h | 2 +-
+ 2 files changed, 6 insertions(+), 2 deletions(-)
 
-> +	echo 1 > /sys/bus/pci/slots/$SLOT/power
-> +	sleep 1
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.c
+index 7d532bded02a..49585d0d1dea 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.c
+@@ -114,8 +114,10 @@ int xe_gt_sriov_pf_monitor_process_guc2pf(struct xe_gt *gt, const u32 *msg, u32
+  * VFs with no events are not printed.
+  *
+  * This function can only be called on PF.
++ *
++ * Return: 0 on success
+  */
+-void xe_gt_sriov_pf_monitor_print_events(struct xe_gt *gt, struct drm_printer *p)
++int xe_gt_sriov_pf_monitor_print_events(struct xe_gt *gt, struct drm_printer *p)
+ {
+ 	unsigned int n, total_vfs = xe_gt_sriov_pf_get_totalvfs(gt);
+ 	const struct xe_gt_sriov_monitor *data;
+@@ -144,4 +146,6 @@ void xe_gt_sriov_pf_monitor_print_events(struct xe_gt *gt, struct drm_printer *p
+ #undef __format
+ #undef __value
+ 	}
++
++	return 0;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.h
+index 7ca9351a271b..0b8f088d3a16 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.h
+@@ -13,7 +13,7 @@ struct drm_printer;
+ struct xe_gt;
+ 
+ void xe_gt_sriov_pf_monitor_flr(struct xe_gt *gt, u32 vfid);
+-void xe_gt_sriov_pf_monitor_print_events(struct xe_gt *gt, struct drm_printer *p);
++int xe_gt_sriov_pf_monitor_print_events(struct xe_gt *gt, struct drm_printer *p);
+ 
+ #ifdef CONFIG_PCI_IOV
+ int xe_gt_sriov_pf_monitor_process_guc2pf(struct xe_gt *gt, const u32 *msg, u32 len);
+-- 
+2.34.1
 
-Ditto.
-
-Raag
-
-> +	# Rescan
-> +	echo 1 > /sys/bus/pci/rescan
-> +	echo "Done!"
-> +    else
-> +	echo "No slot found"
-> +    fi
-> +
->  Customization
->  -------------
->  
-> -- 
-> 2.34.1
-> 
