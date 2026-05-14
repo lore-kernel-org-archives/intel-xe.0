@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F0F1CD4851
-	for <intel-xe@archiver.kernel.org>; Thu, 14 May 2026 05:43:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32CD1CD4F39
+	for <intel-xe@archiver.kernel.org>; Thu, 14 May 2026 05:44:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E5E310E35B;
-	Thu, 14 May 2026 05:43:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE49A10E35B;
+	Thu, 14 May 2026 05:44:23 +0000 (UTC)
 Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6995110E35B;
- Thu, 14 May 2026 05:43:26 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0441096817108740029=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 117A910E35B;
+ Thu, 14 May 2026 05:44:23 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_get-error-counter_and_c?=
- =?utf-8?q?lear-error-counter_support_for_CRI_=28rev5=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Unify_fault_inj?=
+ =?utf-8?q?ection_hooks_for_CSC=2C_GT_reset_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Riana Tauro" <riana.tauro@intel.com>
+To: "Mallesh Koujalagi" <mallesh.koujalagi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 14 May 2026 05:43:26 -0000
-Message-ID: <177873740640.71145.10328638292418819379@5ab824fced77>
+Date: Thu, 14 May 2026 05:44:23 -0000
+Message-ID: <177873746306.71145.3701825902961580392@5ab824fced77>
 X-Patchwork-Hint: ignore
-References: <20260514052205.1340143-8-riana.tauro@intel.com>
-In-Reply-To: <20260514052205.1340143-8-riana.tauro@intel.com>
+References: <20260514045248.1837326-2-mallesh.koujalagi@intel.com>
+In-Reply-To: <20260514045248.1837326-2-mallesh.koujalagi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,106 +40,58 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0441096817108740029==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Add get-error-counter and clear-error-counter support for CRI (rev5)
-URL   : https://patchwork.freedesktop.org/series/164393/
-State : success
+Series: drm/xe: Unify fault injection hooks for CSC, GT reset (rev4)
+URL   : https://patchwork.freedesktop.org/series/164761/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-5061-3d32fac0aa7111d9e43810d7fb1b3c42528f9133_BAT -> xe-pw-164393v5_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 34afd9ab91b8578f61fc25e5d99682c8074e4a15
+Author: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Date:   Thu May 14 10:22:49 2026 +0530
 
-Summary
--------
+    drm/xe: Unify fault injection hooks for CSC, GT reset
+    
+    The fault injection code was scattered: the GT reset
+    hook lived in xe_gt.h as an inline function with its own global
+    variable, the CSC hook had a separate global in xe_hw_error.c with
+    an extern declaration, and each was individually registered in
+    xe_debugfs.c. Adding a new error type meant editing many files and
+    copy-pasting the same boilerplate.
+    
+    Create a single, centralized fault injection module
+    (xe_fault_inject.c/h) that manages all fault types through
+    one table. Each type is just an entry in an enum and a one-line
+    row in a descriptor array -- no more scattered globals,
+    externs, or per-type inline helpers.
+    
+    Debugfs interface (under /sys/kernel/debug/dri/0/):
+     - fail_gt_reset         - GT reset failure
+     - inject_csc_hw_error   - CSC firmware error
+    
+    Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
++ /mt/dim checkpatch dee34cfbffbfe2196a9332f966b006cd2e54e976 drm-intel
+34afd9ab91b8 drm/xe: Unify fault injection hooks for CSC, GT reset
+-:86: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#86: 
+new file mode 100644
 
-  **SUCCESS**
+-:188: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#188: FILE: drivers/gpu/drm/xe/xe_fault_inject.h:24:
++static inline void xe_fault_inject_debugfs_register(struct xe_device *xe,
++						     struct dentry *root)
 
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8909 -> IGT_8910
-  * Linux: xe-5061-3d32fac0aa7111d9e43810d7fb1b3c42528f9133 -> xe-pw-164393v5
-
-  IGT_8909: e68d82b442e3909dd053c97542aeb029707124cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8910: f29c30f540896e8b9cb55609c0d7d1c789b62914 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5061-3d32fac0aa7111d9e43810d7fb1b3c42528f9133: 3d32fac0aa7111d9e43810d7fb1b3c42528f9133
-  xe-pw-164393v5: 164393v5
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164393v5/index.html
-
---===============0441096817108740029==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 1 warnings, 1 checks, 248 lines checked
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add get-error-counter and clear-error-counter support for CRI (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164393/">https://patchwork.freedesktop.org/series/164393/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164393v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164393v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5061-3d32fac0aa7111d9e43810d7fb1b3c42528f9133_BAT -&gt; xe-pw-164393v5_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8909 -&gt; IGT_8910</li>
-<li>Linux: xe-5061-3d32fac0aa7111d9e43810d7fb1b3c42528f9133 -&gt; xe-pw-164393v5</li>
-</ul>
-<p>IGT_8909: e68d82b442e3909dd053c97542aeb029707124cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8910: f29c30f540896e8b9cb55609c0d7d1c789b62914 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5061-3d32fac0aa7111d9e43810d7fb1b3c42528f9133: 3d32fac0aa7111d9e43810d7fb1b3c42528f9133<br />
-  xe-pw-164393v5: 164393v5</p>
-
-</body>
-</html>
-
---===============0441096817108740029==--
