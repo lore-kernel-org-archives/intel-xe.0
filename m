@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBCF5CD4F25
-	for <intel-xe@archiver.kernel.org>; Thu, 14 May 2026 21:45:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4D54CD4F3D
+	for <intel-xe@archiver.kernel.org>; Thu, 14 May 2026 21:45:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C68810F331;
-	Thu, 14 May 2026 21:45:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8457610F349;
+	Thu, 14 May 2026 21:45:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UOXbwO1U";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xz7G1h03";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D5FD910E5FC
- for <intel-xe@lists.freedesktop.org>; Thu, 14 May 2026 21:45:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9EBEE10F342
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 May 2026 21:45:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778795117; x=1810331117;
+ t=1778795121; x=1810331121;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=gMZ5vJmn1dvcFLKvUZR+GDy47blefSV25FI4gFCiAlU=;
- b=UOXbwO1Ua7OjWMn7xOKnMhdfm7uNusp/wwK2wbhXawP+UFb1/gYPlGVO
- RIGzkFLkMPoPvraEnKvw0YawV6BXLN25jACXghaGV+s9oHAN7CRDTMfRr
- oC2HYNzdPdBJk6gwa4sysKkR1avGb2bPHOSAD/umnwirta3I/vnc8abhO
- 1zo8UqJHzWJMwnU6GZxkCe4q/SXUSNdRGN+e9uex98+B8GzHAvOVvRIja
- JgP6w5hut68USD38a617Aw8ah0ywjjzHO+qKmMLI+BW8i3WsMjqtUx5pm
- SXe5CDqhuttmLC9cypm/ejvVJNk5mMWwhJxrqkKv352yAEnbrx/qd1mYl g==;
-X-CSE-ConnectionGUID: QHi53KwGQci1dJW2jd6BQQ==
-X-CSE-MsgGUID: OJKpcRZQS/uHAT2jj4bK+g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11786"; a="67277256"
-X-IronPort-AV: E=Sophos;i="6.23,235,1770624000"; d="scan'208";a="67277256"
+ bh=k02S8dCHh2aaCGqXRUKpxriAiEt7j6LZZX6fa/RL2ts=;
+ b=Xz7G1h03LFhlMC/DXT1B5Ifd9c7sSS+uaI+9s0bpyTXT+duT8NLemjf+
+ IOZUjs2xIzI8qTXJph2YsNabCmi9zXUm1sKuMTvLH6nnuwt2ANE9m/Egt
+ 1I9ThId24rJ8cyf0H06AuXqsysqvMvFc2LBuJ6jc8bf2msjA5A1Dobswe
+ M0+YTLOn28hkX74Z5lHE+wYn5369LHyMr0fTsx9X8e+rvNh77GgEEyGPE
+ iSxoP12tgv2tVi3M2wNvM7/dRhNkPNIx4Vo8ExjC7mASTYwIgPW63q6JI
+ RIx0DhiwznYY7wsNOWHY0bkAau9zf8mazaZpX2m1tA17tnqI5EX2NIhdq A==;
+X-CSE-ConnectionGUID: R0LU5iN5Rw2OoeGLYItHgA==
+X-CSE-MsgGUID: y7d2gZBzRF6FE0Gnu2bPcw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11786"; a="67277260"
+X-IronPort-AV: E=Sophos;i="6.23,235,1770624000"; d="scan'208";a="67277260"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2026 14:45:17 -0700
-X-CSE-ConnectionGUID: dBQ2q7JCQFS2cJ6srxUHKg==
-X-CSE-MsgGUID: 26RrlDiaTrGdBD6wUuC+kA==
+ 14 May 2026 14:45:20 -0700
+X-CSE-ConnectionGUID: nnyKMusxQyegVac6NBToVg==
+X-CSE-MsgGUID: XV7Cf5wkR3CI9BGF3b3JOA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,235,1770624000"; d="scan'208";a="238613191"
+X-IronPort-AV: E=Sophos;i="6.23,235,1770624000"; d="scan'208";a="238613223"
 Received: from aschofie-mobl2.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.221.189])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2026 14:45:15 -0700
+ 14 May 2026 14:45:19 -0700
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Thu, 14 May 2026 18:44:46 -0300
-Subject: [PATCH v3 3/7] drm/xe: Define and use MCR version of
- COMMON_SLICE_CHICKEN4
+Date: Thu, 14 May 2026 18:44:49 -0300
+Subject: [PATCH v3 6/7] drm/xe/mcr: Extract reg_in_steering_type_ranges()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260514-rtp-mcr-check-v3-3-30dd47855fee@intel.com>
+Message-Id: <20260514-rtp-mcr-check-v3-6-30dd47855fee@intel.com>
 References: <20260514-rtp-mcr-check-v3-0-30dd47855fee@intel.com>
 In-Reply-To: <20260514-rtp-mcr-check-v3-0-30dd47855fee@intel.com>
 To: intel-xe@lists.freedesktop.org
@@ -70,76 +69,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The register COMMON_SLICE_CHICKEN4 is a MCR register on both Xe2 and
-Xe3. Let's make sure to define a MCR version of it and use it for the
-relevant IP versions.
+The logic to check if a register falls within one of the ranges for a
+steering type is already duplicated in
+xe_gt_mcr_get_nonterminated_steering().  We will also want to use that
+same logic in another upcoming function.  Let's factor out that logic
+and put it into a function named reg_in_steering_type_ranges().
 
-Use XEHP_ as prefix for the register name, since it is MCR as of Xe_HP.
-
-v2:
-  - Also change for one entry in lrc_tunnings, which was caught by
-    manual testing and add corresponging Fixes tag in commit message.
-    (Gustavo)
-
-Fixes: 8d6f16f1f082 ("drm/xe: Extend Wa_22021007897 to Xe3 platforms")
-Fixes: e5c13e2c505b ("drm/xe/xe2hpg: Add Wa_22021007897")
-Fixes: 8ccf5f6b2295 ("drm/xe/tuning: Apply windower hardware filtering setting on Xe3 and Xe3p")
-Bspec: 66534, 71185, 74417
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_gt_regs.h | 1 +
- drivers/gpu/drm/xe/xe_tuning.c       | 2 +-
- drivers/gpu/drm/xe/xe_wa.c           | 4 ++--
- 3 files changed, 4 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_mcr.c | 43 +++++++++++++++++++++++-------------------
+ 1 file changed, 24 insertions(+), 19 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index b21c66a1b777..08251c7a1a4b 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -179,6 +179,7 @@
- #define XEHPG_SC_INSTDONE_EXTRA2		XE_REG_MCR(0x7108)
+diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
+index df281688c617..2b2a4d9c3749 100644
+--- a/drivers/gpu/drm/xe/xe_gt_mcr.c
++++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
+@@ -600,6 +600,20 @@ void xe_gt_mcr_set_implicit_defaults(struct xe_gt *gt)
+ 	}
+ }
  
- #define COMMON_SLICE_CHICKEN4			XE_REG(0x7300, XE_REG_OPTION_MASKED)
-+#define XEHP_COMMON_SLICE_CHICKEN4		XE_REG_MCR(0x7300, XE_REG_OPTION_MASKED)
- #define   SBE_PUSH_CONSTANT_BEHIND_FIX_ENABLE	REG_BIT(12)
- #define   DISABLE_TDC_LOAD_BALANCING_CALC	REG_BIT(6)
- #define   HW_FILTERING				REG_BIT(5)
-diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
-index ce39b77a084a..9a1b3862e192 100644
---- a/drivers/gpu/drm/xe/xe_tuning.c
-+++ b/drivers/gpu/drm/xe/xe_tuning.c
-@@ -134,7 +134,7 @@ static const struct xe_rtp_entry_sr engine_tunings[] = {
- static const struct xe_rtp_entry_sr lrc_tunings[] = {
- 	{ XE_RTP_NAME("Tuning: Windower HW Filtering"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3000, 3599), ENGINE_CLASS(RENDER)),
--	  XE_RTP_ACTIONS(SET(COMMON_SLICE_CHICKEN4, HW_FILTERING))
-+	  XE_RTP_ACTIONS(SET(XEHP_COMMON_SLICE_CHICKEN4, HW_FILTERING))
- 	},
++static bool reg_in_steering_type_ranges(struct xe_gt *gt,
++					struct xe_reg reg,
++					int type)
++{
++	if (!gt->steering[type].ranges)
++		return false;
++
++	for (int i = 0; gt->steering[type].ranges[i].end > 0; i++)
++		if (xe_mmio_in_range(&gt->mmio, &gt->steering[type].ranges[i], reg))
++			return true;
++
++	return false;
++}
++
+ /*
+  * xe_gt_mcr_get_nonterminated_steering - find group/instance values that
+  *    will steer a register to a non-terminated instance
+@@ -621,30 +635,21 @@ bool xe_gt_mcr_get_nonterminated_steering(struct xe_gt *gt,
+ 					  u8 *group, u8 *instance)
+ {
+ 	const struct xe_reg reg = to_xe_reg(reg_mcr);
+-	const struct xe_mmio_range *implicit_ranges;
  
- 	/* DG2 */
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index d6f94486673e..cb811f8a7781 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -767,7 +767,7 @@ static const struct xe_rtp_entry_sr lrc_was[] = {
- 	},
- 	{ XE_RTP_NAME("22021007897"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, 2002), ENGINE_CLASS(RENDER)),
--	  XE_RTP_ACTIONS(SET(COMMON_SLICE_CHICKEN4, SBE_PUSH_CONSTANT_BEHIND_FIX_ENABLE))
-+	  XE_RTP_ACTIONS(SET(XEHP_COMMON_SLICE_CHICKEN4, SBE_PUSH_CONSTANT_BEHIND_FIX_ENABLE))
- 	},
+ 	for (int type = 0; type < IMPLICIT_STEERING; type++) {
+-		if (!gt->steering[type].ranges)
+-			continue;
+-
+-		for (int i = 0; gt->steering[type].ranges[i].end > 0; i++) {
+-			if (xe_mmio_in_range(&gt->mmio, &gt->steering[type].ranges[i], reg)) {
+-				drm_WARN(&gt_to_xe(gt)->drm, !gt->steering[type].initialized,
+-					 "Uninitialized usage of MCR register %s/%#x\n",
+-					 xe_steering_types[type].name, reg.addr);
+-
+-				*group = gt->steering[type].group_target;
+-				*instance = gt->steering[type].instance_target;
+-				return true;
+-			}
++		if (reg_in_steering_type_ranges(gt, reg, type)) {
++			drm_WARN(&gt_to_xe(gt)->drm, !gt->steering[type].initialized,
++				 "Uninitialized usage of MCR register %s/%#x\n",
++				 xe_steering_types[type].name, reg.addr);
++
++			*group = gt->steering[type].group_target;
++			*instance = gt->steering[type].instance_target;
++			return true;
+ 		}
+ 	}
  
- 	/* Xe3_LPG */
-@@ -783,7 +783,7 @@ static const struct xe_rtp_entry_sr lrc_was[] = {
- 	},
- 	{ XE_RTP_NAME("22021007897"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3000, 3005), ENGINE_CLASS(RENDER)),
--	  XE_RTP_ACTIONS(SET(COMMON_SLICE_CHICKEN4, SBE_PUSH_CONSTANT_BEHIND_FIX_ENABLE))
-+	  XE_RTP_ACTIONS(SET(XEHP_COMMON_SLICE_CHICKEN4, SBE_PUSH_CONSTANT_BEHIND_FIX_ENABLE))
- 	},
- 	{ XE_RTP_NAME("14024681466"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3000, 3005), ENGINE_CLASS(RENDER)),
+-	implicit_ranges = gt->steering[IMPLICIT_STEERING].ranges;
+-	if (implicit_ranges)
+-		for (int i = 0; implicit_ranges[i].end > 0; i++)
+-			if (xe_mmio_in_range(&gt->mmio, &implicit_ranges[i], reg))
+-				return false;
++	if (reg_in_steering_type_ranges(gt, reg, IMPLICIT_STEERING))
++		return false;
+ 
+ 	/*
+ 	 * Not found in a steering table and not a register with implicit
 
 -- 
 2.53.0
