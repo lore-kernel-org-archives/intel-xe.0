@@ -4,60 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76D43CD4F25
-	for <intel-xe@archiver.kernel.org>; Thu, 14 May 2026 21:45:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52E3BCD4F39
+	for <intel-xe@archiver.kernel.org>; Thu, 14 May 2026 21:45:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1708310E5F7;
-	Thu, 14 May 2026 21:45:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14F8D10E5FC;
+	Thu, 14 May 2026 21:45:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dHvWOXgR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M8i9Git1";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B65AA10E5F7
- for <intel-xe@lists.freedesktop.org>; Thu, 14 May 2026 21:45:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73AEA10E5F7
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 May 2026 21:45:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1778795114; x=1810331114;
- h=from:subject:date:message-id:mime-version:
- content-transfer-encoding:to:cc;
- bh=7TEVS3aUHEx/9/XIlT+hs4MIv+FjMnPYn+9GxK3Sp2A=;
- b=dHvWOXgRsK8PvRLpEzEUF8zD7EWyg21Inw7fj5sVtdRWS9H8Ek9gkzWr
- V2jurNjaWsvXHHM7213PLMlYkUGoPWkuNlnEyB4D8oaAvogg4Wn2uiNDJ
- DPFye8doJSGXNcH4XQzVjT7/bimG+epHVbjqoRtJ9WSK/FwcdUz9YzxZ0
- dZF6BTtLK+8JrGz0lrzYjGbaM2rruIucchjjJt/Lt4w7XUVvBfUPkIhVB
- Oi+9TKxlmb4IWajNvxPaEV4qWXRQ4/aFflIAVzwRx42NrdL+XeY2KeDMX
- S8lU8lhEakgErbpJPed+izgYP0c/Z1q87Hx2LfXn8Mw3lY5hHcJfAN6Rj w==;
-X-CSE-ConnectionGUID: 6pWT01ttSsac93uEStuy3Q==
-X-CSE-MsgGUID: lqY+bwVGTnWLgAXTOl4kmQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11786"; a="67277253"
-X-IronPort-AV: E=Sophos;i="6.23,235,1770624000"; d="scan'208";a="67277253"
+ h=from:date:subject:mime-version:content-transfer-encoding:
+ message-id:references:in-reply-to:to:cc;
+ bh=wi2ksnzSjX7mxynZSA5EdITNJek6Un3bI78IqW6FWjQ=;
+ b=M8i9Git1Ms7fGD9PVXfgm0TyThiizroXq6OzZavh73VFNtLkMt39LJWR
+ wRERKKzvQUfIwbXBAhQELofd26dnP3sIzNQ9SFIwrwh14zBNsBLxQn7tf
+ KzF/IZ5kAZ/AY3rWlK8HC9f+9vYM/Sn4tGzADkxp/stpaWdTnemWyoTrG
+ 29H8Nxfsg07IzO0ZcqjNWcQopxKm+kXDfKovdMhGcZ9ToF2zbLULEhHpN
+ Hx6i1zn31L/c3zXObqG11ux6BZE2Sa3k52+A1HnMH9QoOqzFozUtDj0wC
+ wONBgrd6Eo9nPqnnovH9yTVtfTaZMYbAZ2RfuJjUkReu7y81Ho8NLX99L A==;
+X-CSE-ConnectionGUID: ZXB6bDdHRDeb6FZDBXZapQ==
+X-CSE-MsgGUID: NTgqO3XSRJaVFuYrGnjkPQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11786"; a="67277254"
+X-IronPort-AV: E=Sophos;i="6.23,235,1770624000"; d="scan'208";a="67277254"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2026 14:45:13 -0700
-X-CSE-ConnectionGUID: yDgjttscSkSI57MFtQWeGg==
-X-CSE-MsgGUID: QQe5lmRgQsuWdZxsOGxr5w==
+ 14 May 2026 14:45:14 -0700
+X-CSE-ConnectionGUID: S2mr3k26SfCRFP/a7bRo1Q==
+X-CSE-MsgGUID: Mx+uMAKrRPKuf6FK8w8hzg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,235,1770624000"; d="scan'208";a="238613176"
+X-IronPort-AV: E=Sophos;i="6.23,235,1770624000"; d="scan'208";a="238613181"
 Received: from aschofie-mobl2.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.221.189])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2026 14:45:11 -0700
+ 14 May 2026 14:45:13 -0700
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Subject: [PATCH v3 0/7] Fix MCR inconsistencies in RTP tables
-Date: Thu, 14 May 2026 18:44:43 -0300
-Message-Id: <20260514-rtp-mcr-check-v3-0-30dd47855fee@intel.com>
+Date: Thu, 14 May 2026 18:44:44 -0300
+Subject: [PATCH v3 1/7] drm/xe: Define CACHE_MODE_1 as MCR register
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/13MSwrCMBSF4a2UOzaSe/tI48h9iIM0SW1Q25KUo
- JTu3bQgSofnwP/NEKx3NsApm8Hb6IIb+jTyQwa6U/3NMmfSBuJUcURifhrZU3umO6vvrJWi0g0
- q08oCUjN627rX5l2uaXcuTIN/b3zE9f1K1U6KyDgzBfFGalQ5ibPrJ/s46uEJqxTpV5e83teUa
- llL0WAhVGnov16W5QNuGF+96AAAAA==
-X-Change-ID: 20260112-rtp-mcr-check-f976cb1adf94
+Message-Id: <20260514-rtp-mcr-check-v3-1-30dd47855fee@intel.com>
+References: <20260514-rtp-mcr-check-v3-0-30dd47855fee@intel.com>
+In-Reply-To: <20260514-rtp-mcr-check-v3-0-30dd47855fee@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Gustavo Sousa <gustavo.sousa@intel.com>, 
- Matt Roper <matthew.d.roper@intel.com>, 
- Michal Wajdeczko <michal.wajdeczko@intel.com>
+ Matt Roper <matthew.d.roper@intel.com>
 X-Mailer: b4 0.15-dev
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,75 +69,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The Xe driver uses struct xe_reg as base type to represent a register
-definition, and defines struct xe_reg_mcr as a sort of subtype to
-represent multicast replicated (MCR) registers.  It uses this subtyping
-to "force" the use of the correct MCR-based API for MMIO operations on
-MCR registers.
+CACHE_MODE_1 is a MCR register for all platforms that currently use it
+in the Xe driver.  Use XE_REG_MCR() when defining it.
 
-In regular driver code, usage of those MCR registers usually need some
-reasoning about whether the access will need to be steered or a
-multicast; and the correct MCR API will be selected.
-
-For RTP tables, on the other hand, that's not the case.  The developer
-when defining an action the developer can either select a regular or a
-MCR register and the register save/restore logic will make the selection
-between regular vs MCR MMIO access depending on the register instance
-defined in the RTP action.
-
-That allows some mistakes to go unnoticed: a non-MCR register instance
-could be used for an RTP action against a platform where such a register
-is actually MCR; and vice-versa.
-
-This series fixes those mistakes.
-
+Fixes: 8cd7e9759766 ("drm/xe: Add missing DG2 lrc workarounds")
+Fixes: ff063430caa8 ("drm/xe/mtl: Add some initial MTL workarounds")
+Bspec: 66534, 67788
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
-Changes in v3:
-- Dropped patch "drm/xe/kunit: Add xe_kunit_helper_is_live_test()",
-  which became unnecessary in v2.
-- This version is being sent mainly to get fresh CI results before
-  applying, just in case any new inconsistencies were introduced in the
-  meantime.
-- Link to v2: https://patch.msgid.link/20260508-rtp-mcr-check-v2-0-9897b147a5d2@intel.com
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Changes in v2:
-- Incorporated review feedback. Please see individual patches for the
-  respective changelogs.
-- Dropped inclusion of hw_engines in xe_wa test.  We will implement a more
-  focused test to check for MCR inconsistencies in the future, which will
-  iterate over all applicable RTP tables.
-- As a result of the above, dropped MMIO interception patches, as they became
-  unnecessary.
-- Link to v1: https://patch.msgid.link/20260116-rtp-mcr-check-v1-0-d420b9c1a327@intel.com
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 16c87ce3f614..408933aee08a 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -152,7 +152,7 @@
+ 
+ #define XEHPG_INSTDONE_GEOM_SVGUNIT		XE_REG_MCR(0x666c)
+ 
+-#define CACHE_MODE_1				XE_REG(0x7004, XE_REG_OPTION_MASKED)
++#define CACHE_MODE_1				XE_REG_MCR(0x7004, XE_REG_OPTION_MASKED)
+ #define   MSAA_OPTIMIZATION_REDUC_DISABLE	REG_BIT(11)
+ 
+ #define COMMON_SLICE_CHICKEN1			XE_REG(0x7010, XE_REG_OPTION_MASKED)
 
----
-Gustavo Sousa (7):
-      drm/xe: Define CACHE_MODE_1 as MCR register
-      drm/xe: Define and use MCR version of COMMON_SLICE_CHICKEN1
-      drm/xe: Define and use MCR version of COMMON_SLICE_CHICKEN4
-      drm/xe: Extract xe_hw_engine_setup_reg_lrc()
-      drm/xe/kunit: Use KUNIT_EXPECT_EQ() in xe_wa_gt()
-      drm/xe/mcr: Extract reg_in_steering_type_ranges()
-      drm/xe/reg_sr: Do sanity check for MCR vs non-MCR
-
- drivers/gpu/drm/xe/regs/xe_gt_regs.h   |  4 +-
- drivers/gpu/drm/xe/tests/xe_rtp_test.c | 71 ++++++++++++++++++++++++++++++----
- drivers/gpu/drm/xe/tests/xe_wa_test.c  | 14 ++++++-
- drivers/gpu/drm/xe/xe_gt.c             |  8 ++--
- drivers/gpu/drm/xe/xe_gt_mcr.c         | 67 +++++++++++++++++++++++---------
- drivers/gpu/drm/xe/xe_gt_mcr.h         |  1 +
- drivers/gpu/drm/xe/xe_hw_engine.c      | 15 ++++++-
- drivers/gpu/drm/xe/xe_hw_engine.h      |  2 +-
- drivers/gpu/drm/xe/xe_reg_sr.c         | 36 +++++++++++++++++
- drivers/gpu/drm/xe/xe_tuning.c         |  2 +-
- drivers/gpu/drm/xe/xe_wa.c             |  6 +--
- 11 files changed, 186 insertions(+), 40 deletions(-)
----
-base-commit: 2edbd77a2045d12d30c95dbb5842b831e3da0035
-change-id: 20260112-rtp-mcr-check-f976cb1adf94
-
-Best regards,
---  
-Gustavo Sousa <gustavo.sousa@intel.com>
+-- 
+2.53.0
 
