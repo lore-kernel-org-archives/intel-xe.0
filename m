@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A038ACD37AC
-	for <intel-xe@archiver.kernel.org>; Thu, 14 May 2026 04:49:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95BF7CD4846
+	for <intel-xe@archiver.kernel.org>; Thu, 14 May 2026 04:49:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C7FD10F10D;
-	Thu, 14 May 2026 04:49:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5950010E35B;
+	Thu, 14 May 2026 04:49:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JH7PUnid";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gcYgK8eV";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F49910F113
- for <intel-xe@lists.freedesktop.org>; Thu, 14 May 2026 04:49:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2D1B10E35B
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 May 2026 04:49:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778734140; x=1810270140;
+ t=1778734144; x=1810270144;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=1RZ4jUxb56gcPPg/byrIh7Y5htdWBeh2EZCxFsseyQI=;
- b=JH7PUnidehNv+hCiiUZxlHmcxe3ycg4AmjsduJ0Lwjhi5s2Qv2Yr4avT
- amakZ/RbYr1TzH0HaXlegZo9uls4nuXk18v2clpJlrhKjLrFp7vneFb6z
- 7GWVTycTWxgbDNC++sR54JhhJ24jQeVFssInU3eeGbohEGfsdekWy/xOG
- n419WVxETQLqa4vRWf8ZCLPGDra3uDsr9UeQb+xyCkpnBtpIiAtVSFq33
- QlN1WQSJu0/fDIu6dp9YmdHndNl83Npz3uPujzgDKNLbZRY1vDTNFgCZO
- xh28UEedAk8c/h93cFgpAWnxD2NswgbU0l4jlLmV3CrU6KsyG9zr5KQA9 Q==;
-X-CSE-ConnectionGUID: sSbkBrfxQB+8jmoJKAzwDw==
-X-CSE-MsgGUID: 1gSu3uzXR8WKWkbYV2wfcw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11785"; a="90364223"
-X-IronPort-AV: E=Sophos;i="6.23,234,1770624000"; d="scan'208";a="90364223"
+ bh=2JqsQVlDvOFeyfsJpMbpXjqLjJpfbZrVdd5HMeL9HOY=;
+ b=gcYgK8eVrLvSnid0ZldavlSdHSesOYmR1IqU4Wez0oVs7Ce+sD1sshZZ
+ B6BUxxndXwkzLBVwjIt7Jr7kD6kI/qmJfOjsHpHiY9DhgVd4bZbdqeLgQ
+ io22RqgDzhGCB4oqKpA/ty967MIlblTth+jJCKvSXtrjUwM3NFvzYXBuH
+ iilRC9468WPz4JmsJOnrrYbhoDwLgFs5DHI53f1OfuBuN1YRJf/NNtr7k
+ d3pSkJZvPpXHV4HP7E7CfxV6678+jDCOWg6h3rXtKQsxNPME87CfDI9Eo
+ gX5EzgkQJjsoIBYZ5wuNVxnNynBuwIytSQSIoqYjROwVGMj4240xjo3DD g==;
+X-CSE-ConnectionGUID: dIl9ZOMtTviI3wd6H3QQMQ==
+X-CSE-MsgGUID: llGW8qEsTj6eT7UGuPLV5Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11785"; a="90364238"
+X-IronPort-AV: E=Sophos;i="6.23,234,1770624000"; d="scan'208";a="90364238"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2026 21:49:00 -0700
-X-CSE-ConnectionGUID: t1RvteaUSMO+feG+a4IeEg==
-X-CSE-MsgGUID: mEdkJbReS7yrjq/2LtDecg==
+ 13 May 2026 21:49:04 -0700
+X-CSE-ConnectionGUID: krgpyb7JTiSs/nOmQn1rMA==
+X-CSE-MsgGUID: mOwxFe6gSI2JQwX79O78FQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,234,1770624000"; d="scan'208";a="243258146"
+X-IronPort-AV: E=Sophos;i="6.23,234,1770624000"; d="scan'208";a="243258166"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2026 21:48:57 -0700
+ 13 May 2026 21:49:02 -0700
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  aravind.iddamsetty@linux.intel.com, badal.nilawar@intel.com,
  raag.jadav@intel.com, ravi.kishore.koppuravuri@intel.com,
  mallesh.koujalagi@intel.com, soham.purkait@intel.com
-Subject: [PATCH v6 3/6] drm/xe/xe_ras: Add support to clear error counter
-Date: Thu, 14 May 2026 10:52:09 +0530
-Message-ID: <20260514052205.1340143-11-riana.tauro@intel.com>
+Subject: [PATCH v6 4/6] drm/xe/xe_drm_ras: Wire get/clear counter callbacks
+Date: Thu, 14 May 2026 10:52:10 +0530
+Message-ID: <20260514052205.1340143-12-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20260514052205.1340143-8-riana.tauro@intel.com>
 References: <20260514052205.1340143-8-riana.tauro@intel.com>
@@ -69,209 +69,149 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add structures and helper function to clear error counter value.
+Hook CRI get-error-counter and clear-error-counter support to
+xe_drm_ras to allow userspace to query and clear counters if supported.
+When userspace requests for a drm_ras error counter, query the system
+controller to get/clear the value.
+
+Integrate this with xe_drm_ras.
+
+Usage :
+
+Query all error counter value using ynl
+
+$ sudo ynl --family drm_ras --dump get-error-counter --json \
+'{"node-id":0}'
+[{'error-id': 1, 'error-name': 'core-compute', 'error-value': 0},
+ {'error-id': 2, 'error-name': 'soc-internal', 'error-value': 0},
+ {'error-id': 3, 'error-name': 'device-memory', 'error-value': 0},
+ {'error-id': 4, 'error-name': 'pcie', 'error-value': 0},
+ {'error-id': 5, 'error-name': 'fabric', 'error-value': 0}]
+
+Query single error counter value using ynl
+
+$ sudo ynl --family drm_ras  --do get-error-counter --json \
+'{"node-id":1, "error-id":1}'
+{'error-id': 1, 'error-name': 'core-compute', 'error-value': 2}
+
+Clear counter using ynl
+
+$ sudo ynl --family drm_ras  --do clear-error-counter --json '\
+{"node-id":1, "error-id":1}'
+None
 
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 ---
-v2: add status codes (Aravind)
-    fix log message
-    squash structure patch (Raag)
+v2: split patches (Raag)
 
-v3: rename function
-    add comma to enum members to avoid
-    redundant churn
-    align with tabs (Raag)
+v3: fix early return 
+    align spacing in commit message (Raag)
+    integrate clear counter with drm_ras
 
 v4: rebase
 
-v5: move header prepare function to sysctrl layer
-    rename error_class to counter
-    add a debug log (Raag)
-    change error codes to -ENOSPC and -EIO
-    print actual response status (Mallesh)
+v5: rename functions (Raag)
 ---
- drivers/gpu/drm/xe/xe_ras.c                   | 84 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_ras.h                   |  2 +
- drivers/gpu/drm/xe/xe_ras_types.h             | 25 ++++++
- drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |  2 +
- 4 files changed, 113 insertions(+)
+ drivers/gpu/drm/xe/xe_drm_ras.c | 41 +++++++++++++++++++++------------
+ 1 file changed, 26 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index 07b306a99bdc..4e18fd3afff1 100644
---- a/drivers/gpu/drm/xe/xe_ras.c
-+++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -34,6 +34,17 @@ enum xe_ras_component {
- 	XE_RAS_COMP_MAX
- };
+diff --git a/drivers/gpu/drm/xe/xe_drm_ras.c b/drivers/gpu/drm/xe/xe_drm_ras.c
+index c21c8b428de6..0f517e0f79eb 100644
+--- a/drivers/gpu/drm/xe/xe_drm_ras.c
++++ b/drivers/gpu/drm/xe/xe_drm_ras.c
+@@ -11,27 +11,46 @@
  
-+/* RAS response status codes */
-+enum xe_ras_response_status {
-+	XE_RAS_STATUS_SUCCESS = 0,
-+	XE_RAS_STATUS_INVALID_PARAM,
-+	XE_RAS_STATUS_OP_NOT_SUPPORTED,
-+	XE_RAS_STATUS_TIMEOUT,
-+	XE_RAS_STATUS_HARDWARE_FAILURE,
-+	XE_RAS_STATUS_INSUFFICIENT_RESOURCES,
-+	XE_RAS_STATUS_UNKNOWN_ERROR
-+};
-+
- static const char *const xe_ras_severities[] = {
- 	[XE_RAS_SEV_NOT_SUPPORTED]		= "Not Supported",
- 	[XE_RAS_SEV_CORRECTABLE]		= "Correctable Error",
-@@ -53,6 +64,16 @@ static const char *const xe_ras_components[] = {
- };
- static_assert(ARRAY_SIZE(xe_ras_components) == XE_RAS_COMP_MAX);
+ #include "xe_device_types.h"
+ #include "xe_drm_ras.h"
++#include "xe_ras.h"
  
-+static const int ras_status_to_errno_map[] = {
-+	[XE_RAS_STATUS_SUCCESS]			= 0,
-+	[XE_RAS_STATUS_INVALID_PARAM]		= -EINVAL,
-+	[XE_RAS_STATUS_OP_NOT_SUPPORTED]	= -EOPNOTSUPP,
-+	[XE_RAS_STATUS_TIMEOUT]			= -ETIMEDOUT,
-+	[XE_RAS_STATUS_HARDWARE_FAILURE]	= -EIO,
-+	[XE_RAS_STATUS_INSUFFICIENT_RESOURCES]	= -ENOSPC,
-+	[XE_RAS_STATUS_UNKNOWN_ERROR]		= -EIO
-+};
-+
- /* Mapping from drm_xe_ras_error_component to xe_ras_component */
- static const int drm_to_xe_ras_component[] = {
- 	[DRM_XE_RAS_ERR_COMP_CORE_COMPUTE]	= XE_RAS_COMP_CORE_COMPUTE,
-@@ -70,6 +91,14 @@ static const int drm_to_xe_ras_severity[] = {
- };
- static_assert(ARRAY_SIZE(drm_to_xe_ras_severity) == DRM_XE_RAS_ERR_SEV_MAX);
+ static const char * const error_components[] = DRM_XE_RAS_ERROR_COMPONENT_NAMES;
+ static const char * const error_severity[] = DRM_XE_RAS_ERROR_SEVERITY_NAMES;
  
-+static int ras_status_to_errno(enum xe_ras_response_status status)
-+{
-+	if (status > XE_RAS_STATUS_UNKNOWN_ERROR)
-+		status = XE_RAS_STATUS_UNKNOWN_ERROR;
-+
-+	return ras_status_to_errno_map[status];
-+}
-+
- static inline const char *sev_to_str(u8 severity)
+-static int hw_query_error_counter(struct xe_drm_ras_counter *info,
+-				  u32 error_id, const char **name, u32 *val)
++static int query_error_counter(struct xe_device *xe,
++			       enum drm_xe_ras_error_severity severity,
++			       u32 error_id, const char **name, u32 *val)
  {
- 	if (severity >= XE_RAS_SEV_MAX)
-@@ -169,3 +198,58 @@ int xe_ras_get_counter(struct xe_device *xe, enum drm_xe_ras_error_severity seve
- 	guard(xe_pm_runtime)(xe);
- 	return get_counter(xe, &error_class, value);
++	struct xe_drm_ras *ras = &xe->ras;
++	struct xe_drm_ras_counter *info = ras->info[severity];
++
+ 	if (!info || !info[error_id].name)
+ 		return -ENOENT;
+ 
+ 	*name = info[error_id].name;
++
++	/* Fetch counter from system controller if supported */
++	if (xe->info.has_sysctrl)
++		return xe_ras_get_counter(xe, severity, error_id, val);
++
+ 	*val = atomic_read(&info[error_id].counter);
+ 
+ 	return 0;
  }
-+
-+/**
-+ * xe_ras_clear_counter() - Clear error counter value
-+ * @xe: Xe device instance
-+ * @severity: Error severity level to be cleared
-+ * @error_id: Error component to be cleared
-+ *
-+ * This function clears the value of a specific error counter based on
-+ * the error severity and component.
-+ *
-+ * Return: 0 on success, negative error code on failure.
-+ */
-+int xe_ras_clear_counter(struct xe_device *xe, enum drm_xe_ras_error_severity severity,
-+			 u32 error_id)
-+{
-+	struct xe_ras_clear_counter_response response = {0};
-+	struct xe_ras_clear_counter_request request = {0};
-+	struct xe_sysctrl_mailbox_command command = {0};
-+	struct xe_ras_error_class *counter;
-+	size_t rlen;
-+	int ret;
-+
-+	counter = &request.counter;
-+	counter->common.severity = drm_to_xe_ras_severity[severity];
-+	counter->common.component = drm_to_xe_ras_component[error_id];
-+
-+	xe_sysctrl_prepare_command(&command, XE_SYSCTRL_GROUP_GFSP, XE_SYSCTRL_CMD_CLEAR_COUNTER,
-+				   &request, sizeof(request), &response, sizeof(response));
-+
-+	guard(xe_pm_runtime)(xe);
-+	ret = xe_sysctrl_send_command(&xe->sc, &command, &rlen);
-+	if (ret) {
-+		xe_err(xe, "sysctrl: failed to clear counter %d\n", ret);
-+		return ret;
-+	}
-+
-+	if (rlen != sizeof(response)) {
-+		xe_err(xe, "sysctrl: unexpected clear counter response length %zu (expected %zu)\n",
-+		       rlen, sizeof(response));
-+		return -EIO;
-+	}
-+
-+	ret = ras_status_to_errno(response.status);
-+	if (ret) {
-+		xe_err(xe, "sysctrl: clear counter command failed with status %d\n",
-+		       response.status);
-+		return ret;
-+	}
-+
-+	xe_dbg(xe, "[RAS]: %s %s counter cleared\n",
-+	       comp_to_str(response.counter.common.component),
-+	       sev_to_str(response.counter.common.severity));
-+
-+	return 0;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
-index 74582c911b02..bbb9d42bd128 100644
---- a/drivers/gpu/drm/xe/xe_ras.h
-+++ b/drivers/gpu/drm/xe/xe_ras.h
-@@ -15,5 +15,7 @@ void xe_ras_counter_threshold_crossed(struct xe_device *xe,
- 				      struct xe_sysctrl_event_response *response);
- int xe_ras_get_counter(struct xe_device *xe, enum drm_xe_ras_error_severity severity,
- 		       u32 error_id, u32 *value);
-+int xe_ras_clear_counter(struct xe_device *xe, enum drm_xe_ras_error_severity severity,
-+			 u32 error_id);
  
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
-index 6dee03ba2816..3c511e511c7c 100644
---- a/drivers/gpu/drm/xe/xe_ras_types.h
-+++ b/drivers/gpu/drm/xe/xe_ras_types.h
-@@ -100,4 +100,29 @@ struct xe_ras_get_counter_response {
- 	u32 reserved1[56];
- } __packed;
- 
-+/**
-+ * struct xe_ras_clear_counter_request - Request for clearing an error counter
-+ */
-+struct xe_ras_clear_counter_request {
-+	/** @counter: Counter class to be cleared */
-+	struct xe_ras_error_class counter;
-+	/** @reserved: Reserved for future use */
-+	u32 reserved;
-+} __packed;
+-static int hw_clear_error_counter(struct xe_drm_ras_counter *info, u32 error_id)
++static int clear_error_counter(struct xe_device *xe,
++			       enum drm_xe_ras_error_severity severity,
++			       u32 error_id)
+ {
++	struct xe_drm_ras *ras = &xe->ras;
++	struct xe_drm_ras_counter *info = ras->info[severity];
 +
-+/**
-+ * struct xe_ras_clear_counter_response - Response after clearing an error counter
-+ */
-+struct xe_ras_clear_counter_response {
-+	/** @counter: Counter class that was cleared */
-+	struct xe_ras_error_class counter;
-+	/** @prev_value: Counter value before clearing */
-+	u32 prev_value;
-+	/** @clear_timestamp: Timestamp when the counter was cleared */
-+	u64 clear_timestamp;
-+	/** @status: Status of the clear operation */
-+	u32 status;
-+	/** @reserved: Reserved for future use */
-+	u32 reserved[3];
-+} __packed;
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-index b315847cbf64..6e3753554510 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-+++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-@@ -23,10 +23,12 @@ enum xe_sysctrl_group {
-  * enum xe_sysctrl_gfsp_cmd - Commands supported by GFSP group
-  *
-  * @XE_SYSCTRL_CMD_GET_COUNTER: Get error counter value
-+ * @XE_SYSCTRL_CMD_CLEAR_COUNTER: Clear error counter value
-  * @XE_SYSCTRL_CMD_GET_PENDING_EVENT: Retrieve pending event
-  */
- enum xe_sysctrl_gfsp_cmd {
- 	XE_SYSCTRL_CMD_GET_COUNTER		= 0x03,
-+	XE_SYSCTRL_CMD_CLEAR_COUNTER		= 0x04,
- 	XE_SYSCTRL_CMD_GET_PENDING_EVENT	= 0x07,
- };
+ 	if (!info || !info[error_id].name)
+ 		return -ENOENT;
  
++	/* Clear counter from system controller if supported */
++	if (xe->info.has_sysctrl)
++		return xe_ras_clear_counter(xe, severity, error_id);
++
+ 	atomic_set(&info[error_id].counter, 0);
+ 
+ 	return 0;
+@@ -41,38 +60,30 @@ static int query_uncorrectable_error_counter(struct drm_ras_node *ep, u32 error_
+ 					     const char **name, u32 *val)
+ {
+ 	struct xe_device *xe = ep->priv;
+-	struct xe_drm_ras *ras = &xe->ras;
+-	struct xe_drm_ras_counter *info = ras->info[DRM_XE_RAS_ERR_SEV_UNCORRECTABLE];
+ 
+-	return hw_query_error_counter(info, error_id, name, val);
++	return query_error_counter(xe, DRM_XE_RAS_ERR_SEV_UNCORRECTABLE, error_id, name, val);
+ }
+ 
+ static int clear_uncorrectable_error_counter(struct drm_ras_node *node, u32 error_id)
+ {
+ 	struct xe_device *xe = node->priv;
+-	struct xe_drm_ras *ras = &xe->ras;
+-	struct xe_drm_ras_counter *info = ras->info[DRM_XE_RAS_ERR_SEV_UNCORRECTABLE];
+ 
+-	return hw_clear_error_counter(info, error_id);
++	return clear_error_counter(xe, DRM_XE_RAS_ERR_SEV_UNCORRECTABLE, error_id);
+ }
+ 
+ static int query_correctable_error_counter(struct drm_ras_node *ep, u32 error_id,
+ 					   const char **name, u32 *val)
+ {
+ 	struct xe_device *xe = ep->priv;
+-	struct xe_drm_ras *ras = &xe->ras;
+-	struct xe_drm_ras_counter *info = ras->info[DRM_XE_RAS_ERR_SEV_CORRECTABLE];
+ 
+-	return hw_query_error_counter(info, error_id, name, val);
++	return query_error_counter(xe, DRM_XE_RAS_ERR_SEV_CORRECTABLE, error_id, name, val);
+ }
+ 
+ static int clear_correctable_error_counter(struct drm_ras_node *node, u32 error_id)
+ {
+ 	struct xe_device *xe = node->priv;
+-	struct xe_drm_ras *ras = &xe->ras;
+-	struct xe_drm_ras_counter *info = ras->info[DRM_XE_RAS_ERR_SEV_CORRECTABLE];
+ 
+-	return hw_clear_error_counter(info, error_id);
++	return clear_error_counter(xe, DRM_XE_RAS_ERR_SEV_CORRECTABLE, error_id);
+ }
+ 
+ static struct xe_drm_ras_counter *allocate_and_copy_counters(struct xe_device *xe)
 -- 
 2.47.1
 
