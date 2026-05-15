@@ -4,103 +4,132 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D00D5CD4851
-	for <intel-xe@archiver.kernel.org>; Fri, 15 May 2026 07:08:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1209CD343F
+	for <intel-xe@archiver.kernel.org>; Fri, 15 May 2026 07:34:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF88110F41A;
-	Fri, 15 May 2026 07:08:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC1B510F437;
+	Fri, 15 May 2026 07:34:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="f9y2fAq5";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="2c0UskpY";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="f9y2fAq5";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="2c0UskpY";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="sER8GJpw";
 	dkim-atps=neutral
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE5BF10F423
- for <intel-xe@lists.freedesktop.org>; Fri, 15 May 2026 07:08:19 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 891CE6B267;
- Fri, 15 May 2026 07:08:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1778828898; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=2CIZJ0KNhnjRVLvePOXzXMnViDBYZKjxm39DChZWJHc=;
- b=f9y2fAq5zN7yE+mDQPEqZyGOP772CGhNjO4d39lK3uN6R6i4dPglZJyff1cfpuWst18Cgm
- HOJ9cuga7mBmrR1A7W9p1baHVIYVVNSHxW5642zpHOlPWWyXUn6f3LJnHiGrO8I+Ak3b/P
- tPkAfJWEWrnmphy1Qzjd2NLw6/7Fcyg=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1778828898;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=2CIZJ0KNhnjRVLvePOXzXMnViDBYZKjxm39DChZWJHc=;
- b=2c0UskpYDJla4kibe5BUza/2mZNNnvGuAmDO7pSkK+fNCmYwmstq/Y3mrQfEL9s1dmaLzI
- hqCwlKTQenhwqYBw==
-Authentication-Results: smtp-out1.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1778828898; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=2CIZJ0KNhnjRVLvePOXzXMnViDBYZKjxm39DChZWJHc=;
- b=f9y2fAq5zN7yE+mDQPEqZyGOP772CGhNjO4d39lK3uN6R6i4dPglZJyff1cfpuWst18Cgm
- HOJ9cuga7mBmrR1A7W9p1baHVIYVVNSHxW5642zpHOlPWWyXUn6f3LJnHiGrO8I+Ak3b/P
- tPkAfJWEWrnmphy1Qzjd2NLw6/7Fcyg=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1778828898;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=2CIZJ0KNhnjRVLvePOXzXMnViDBYZKjxm39DChZWJHc=;
- b=2c0UskpYDJla4kibe5BUza/2mZNNnvGuAmDO7pSkK+fNCmYwmstq/Y3mrQfEL9s1dmaLzI
- hqCwlKTQenhwqYBw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 1B426593A9;
- Fri, 15 May 2026 07:08:18 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id 1hI6BWLGBmpXXwAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Fri, 15 May 2026 07:08:18 +0000
-Date: Fri, 15 May 2026 09:08:16 +0200
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-fixes
-Message-ID: <20260515070816.GA88575@2a02-2455-9062-2500-7dec-552d-233d-9fe0.dyn6.pyur.net>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Received: from BN8PR05CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11011001.outbound.protection.outlook.com [52.101.57.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A96FF10F437;
+ Fri, 15 May 2026 07:34:03 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=oZyojdNxuHRCdzFQinZInzDU6uUXKRnOPtWMjA4Rq7z3ID9+hsrcJTqmKZoCuGCNBt8k0GsqX3YvkR8T0f/jIisuV/FaNtpX378K5maGiYxX3M9Fwh8f2mSKIUZP9u2DFk7ybXsyKFGB4zcwqu5B+gmciLh6AgjyjMUu7ZmbnbWhcZiswmVWBat6IEtkm309lugJzXdZ5svika+mrzeoKFzU/ovgxVgMyvSmFg4EKM3bDt6AdUXCbVjYs691mN6c+ZeBLStQD2UvH5s6rBO3RNFcvfaNz6lnz//VwMH+bpbW0Ngn2+HUUzckUW+5o2UU9XEyg00LMBmrS+hyMKWUhQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=FqigN8oZtdoEo+0dl8rZFcItunqBzYV4+jKJkaNIreQ=;
+ b=HDRq5ivlX5OuFiUQiIOmwBCMy5dPcGMLkIChUSkL7247Q+XLeKG6ECjw2K5NU1GnZqkcVn8KbXo+TAIcVGidn15q4n81ImR+NKMOAcVPY94fCEee3z7uPItHlMM9AX/adX5x6Vk8HH6BC8sLgj6nXUl0NY3Ke6sSYHoTMXhyEmZ943r3z1NTHLLVHNfji4MFOrtcPyvBRAG32NH9tl/Zh+vKfoKNH+S3MDkkei4Q7fyhfzyT/H4zKA8dCqxXK+L3pJTmn4k1yuJvwMbEnAFGdrahIRRRta609rT7XpT/GzCZa0QcS+T+RDOXlgD+EH0VrGoo//pXlW28L8JN6bgsEw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FqigN8oZtdoEo+0dl8rZFcItunqBzYV4+jKJkaNIreQ=;
+ b=sER8GJpwNFGq412GbgDG+nemkSM2SNG6tCmzbKfnoRs4VNnc1dCahx252vGpFRxCj/DeYOl0HCPDg5ZxRHWQnqMcvq35f8G1LmEcffzECOVhWWdT0t17ro6NFGhk0VtR6UxBrkjuzf+mft2OZd1C2+WX3T9sBwPWgQrxwBdOs1SZy9pkDaetKur0wTpGbHeTDvtGxnGA22bTT7WWteh/Q9iiabU02nLPTiEqRek7wA+BwwKl4wEuukRshilXo2DO6db4qkmlrlBaKymh3Ks7mlY6lpO+qWY5MH5r0JonAIQGg68h7wmALv20nu6LbE9SIzDj1FBBn34ir+E44uB2NQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from PH8PR12MB7277.namprd12.prod.outlook.com (2603:10b6:510:223::13)
+ by PH7PR12MB9174.namprd12.prod.outlook.com (2603:10b6:510:2ed::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.25.19; Fri, 15 May
+ 2026 07:33:59 +0000
+Received: from PH8PR12MB7277.namprd12.prod.outlook.com
+ ([fe80::2920:e6d9:4461:e2b4]) by PH8PR12MB7277.namprd12.prod.outlook.com
+ ([fe80::2920:e6d9:4461:e2b4%5]) with mapi id 15.21.0025.016; Fri, 15 May 2026
+ 07:33:59 +0000
+Message-ID: <d355e30e-a7d1-4da1-83d7-29131ddc845c@nvidia.com>
+Date: Fri, 15 May 2026 17:33:52 +1000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 0/5] Migrate on fault for device pages
+To: =?UTF-8?Q?Mika_Penttil=C3=A4?= <mpenttil@redhat.com>
+Cc: linux-mm@kvack.org, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ David Hildenbrand <david@kernel.org>, Jason Gunthorpe <jgg@nvidia.com>,
+ Leon Romanovsky <leonro@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
+ Zi Yan <ziy@nvidia.com>, Matthew Brost <matthew.brost@intel.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka
+ <vbabka@suse.cz>, Mike Rapoport <rppt@kernel.org>,
+ Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>
+References: <20260505184421.2324798-1-mpenttil@redhat.com>
+ <agaN29W7hAklrCxz@parvat> <2fe8d022-a414-4b23-af4f-9cecf1aac3d1@redhat.com>
+Content-Language: en-US
+From: Balbir Singh <balbirs@nvidia.com>
+In-Reply-To: <2fe8d022-a414-4b23-af4f-9cecf1aac3d1@redhat.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MISSING_XM_UA(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
- MIME_TRACE(0.00)[0:+]; RCPT_COUNT_TWELVE(0.00)[16];
- FUZZY_RATELIMITED(0.00)[rspamd.com]; ARC_NA(0.00)[];
- FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
- FREEMAIL_ENVRCPT(0.00)[gmail.com];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:url,imap1.dmz-prg2.suse.org:helo]
+X-ClientProxiedBy: SJ0PR05CA0063.namprd05.prod.outlook.com
+ (2603:10b6:a03:332::8) To PH8PR12MB7277.namprd12.prod.outlook.com
+ (2603:10b6:510:223::13)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR12MB7277:EE_|PH7PR12MB9174:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3ab661a7-e783-4de7-8ae5-08deb25453a4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|376014|7416014|366016|18002099003|56012099003|22082099003|11063799003|4143699003;
+X-Microsoft-Antispam-Message-Info: N67YFEJXJvkDBs2uK2eS7bdWJwLM6rmpqbbQrGDLsUoUe6lYRuyaD/NXByEY/TtDCeUPQyF1zI5bbVzehnCx0YkTwo6yeLaWNSSwG42/3gRgnlJfvQPrGeE7kz7HeSU+M4gYRlC5MKNrrr+vDHTkLpGFq76v13G1NBVeHrAV2NOUXObwai9HlItMxvBx6WDMuEFETJbnWJdaVn4gy1ZrmzrwH05bBOWG0NoUEtbP+7cx6cYKS2wrq8ilqnFfAFBdYFVkuiQbZEQVm8loMYS/8uVP15giy5JO+1B6QovLByA8jPKHTdqCaGp76BIpwBMGiWhjLVkrtaTfDAe2L0hewnJT4SJ9OH6iwTgFe7+MYeXELjWpG4+378p+8W9VpP8FLqsvh5tbL+apsoZHqjM8J4lrf7c6h3HTCKwxWd8A4oAXmWodlvjnCwioLetcO6LgXsGhjF1pd+cYiycRdtBxLbClw3RNgU6e7lJg2Uimh/4ojUutpYLDNrBhJL0YKllNkRjerBGyI/OBsNWf7ggJRNywZ0FVpK44EicB0hShfKItAUH7UXNwdnmnFtY1VnQjXYMDZqFak9tt6FBlajuFo7ZcuXEUDsxVXu6o8UAWwwILwWpirEsmPWfPMJGVRCWGG0eV60G8oCHnmamgSadJXyQfgPnWz5WyF2KocMHo8d2BGmk8UmAY/rwUiKwWQ6aP
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR12MB7277.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(7416014)(366016)(18002099003)(56012099003)(22082099003)(11063799003)(4143699003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Mk9RTVdXcmNPeWpVUEV0UDJqZ0hHNXg0TGVzOWZiVVdsbFZYSG5YNFVhRW52?=
+ =?utf-8?B?NkVvcFhibkdvZ2F1Vm9FTG9jVjdFaVJFWnFiRnpmSGRlMyt4bUtmMndBL2tY?=
+ =?utf-8?B?cTU2aTdNSXBDSE02M3hvL2VrYjRyY2c3QWpzb3dvZXBsOGZFL3RSNlZLWlVR?=
+ =?utf-8?B?TWR3UnJ4akxWUHJqbVJvRFVlQkY0Z0JBTndCR3FGWjN4QmwxUzh1MzlvbitW?=
+ =?utf-8?B?bVRHZjN0eXhVTlhyQ1BNMGVxU0laMmdqN3M1cEk2cmdtNUM1ZjRNU1hGWndZ?=
+ =?utf-8?B?RUpGNGhRU0JycWpnUXkzbkVBZmVPRDkzYTBNS2E2MU5CS0ZqaEpocHZpS2NT?=
+ =?utf-8?B?ZEdoZUFTY1hkT1NFbTFxS0R3RW9NR0FaQnFrb1hpNjNmelc2M0l2TUFNKzFC?=
+ =?utf-8?B?aDJZSlNwdGxsQXhWNmZBSFFhUUtqUCtsUGkwVDFpRFRUYktCSklxRW0rYjc2?=
+ =?utf-8?B?QnFuVjBUcHVKUFpheFA4REt3VXg2Mm5FZDJlYWRHNnR4SG1CNjkrNHNpOWVi?=
+ =?utf-8?B?amZ3YWx1VC9hZ1NLK1VDazdPUDdMVGJITVYxbnUybTY1SnB5bko3bGU3R3Fs?=
+ =?utf-8?B?bWF5amJ5U2IwWHhrSVJ3NzlDeUx3bEdBVkU2Rk5iWDVZN1NzN0IxenZhekpt?=
+ =?utf-8?B?V25idm5idnZhYlZXak54Q0t5anU1WGg2amxrRzJzTGJWcnVJOC9iMXVCRVlR?=
+ =?utf-8?B?QVJRZVI1YmUwd0FvWUxCNFBpUGFEYVZxVC9Tc2hweXhIQU1jZ1VXbVFONlQ4?=
+ =?utf-8?B?aXVTMENvVTZ3cWdzVnorWjB1ZkhnWXI3OTZlbE9EZHpzcWJnTDI5ajh1NGh5?=
+ =?utf-8?B?c3FwY2ozK3B6VThVeE1YdGJQdElKaVZpYVFiSVFEYVF1R21lVGVsMDZSQ29L?=
+ =?utf-8?B?M0lHaTloUlhsMWFBakJMZm05TjBQcTJnSlFLOTA2bkFOU3BuKzFXcHc3RHRZ?=
+ =?utf-8?B?VTcrbnhWazVIV1lzUmkzUGFIRUZZa3NhZEhCemZldC9zQ01MblY0bzNmRWll?=
+ =?utf-8?B?OUNvTjF2VzhUVlRieFVERU14ZUhCdk40QWwzOVZEMFZLazlqTGxGZFJjMzJy?=
+ =?utf-8?B?Y3ZhUHBIY2lBcTkrUWpYVXBabXk2RnVlYXpsZzZYV0x3R3JaQTF1dmJ4RjZv?=
+ =?utf-8?B?dE5pQlFzd2FxZjVUR0RtMDdXcS95YVgrQ1ZKR1B0RmlLZ0FLcFhUaUEvWVF2?=
+ =?utf-8?B?MjVJYzZ5NUpqTXV3dm11eUpSM01xZlhHTE1DaUdzdjNTWTMzN3FEU1A3dmVN?=
+ =?utf-8?B?R1ZhTzdDYjhGNDJ6SVZIb1NEUURyY0ozek9DSHl6YlE3MmhmQTZYSWJSWmM1?=
+ =?utf-8?B?VmNVY0JCTXU1ZlJveUhkaUFHVEhnMHE4d05UK1dUTVR2K21waEZYUyt5T0ZH?=
+ =?utf-8?B?WCtERm9qZkY4REVaUDEvV0ltdTlQR3B4RmVxd3BFeHpHL1pJT3NWTHkzUjRl?=
+ =?utf-8?B?SjVZSTFjdlJmb3dLWWFuVmp2QzJLOFFyUS9HQlErUi94YkE5eVRCazhXbFpm?=
+ =?utf-8?B?d0ZKWHFremxZbGdzdnNUSFBmVVNMRUtQaUVJNHJRNStXN2FKdE5kM21PUml4?=
+ =?utf-8?B?RDh0ZW94My93V2dGbUhScDNZNnI2ZlJ3Vlp6WXk4TjllZ0ZPTVA0UzdLRkVL?=
+ =?utf-8?B?TUxSTkhLaHZMYmdoUHM4dVBIcXV0SERxUXM1OHpaL1ZrYzZSc1pYcC9udENz?=
+ =?utf-8?B?WnUzTGRQRWNsNXl0RVpWUXArSko4TWFpVytPNEJuaVJWdkNzMW9nWVNlcTFl?=
+ =?utf-8?B?bzZzWG1Db2xBSjA1YTlpaW1XNG83WGgxWjRUZXBNNkFqN0EyUkk1Z1A5UXEv?=
+ =?utf-8?B?eFRvZjlyVWJ4dG9yQ0V3cDBLZk16TDdDZURsVlpXejlBdk5mUEdybDNUaDFz?=
+ =?utf-8?B?Q2ZYU1RGU3p3UmlMSTZYYTExRFo2OFBWNFp3Y0tUZzJrcVlkRDVlSlNxd0hE?=
+ =?utf-8?B?Y2lYVUw1SzNXUFc1SUozTUZxWTI2MTZCaS9pbHNJQ2pLRkRydDM0ZjNmcUNJ?=
+ =?utf-8?B?bFRkSVg1TGlNZzVXUGxhMHNVdGNHKzJFL2dpcWt1UjVzMXRSbU5PWUdmK3dY?=
+ =?utf-8?B?djBRYTl5cjBxVktQV0hORGhZSXRLQnVwVDY0U25qblhNR0lXd0c0Wi9LNVVk?=
+ =?utf-8?B?TVN4MGdRYkhrNXRZcFZLQUFkMU1sMGcwTVhvSU9lSEhOaUpzWTVTekJRMzR5?=
+ =?utf-8?B?WnJhaWRpaWxFd21UUnl6MHBvOTZVS3FXN1ZPRTdYekMwV2RFSFJpR2JGbXEx?=
+ =?utf-8?B?UnNKSEl3QnhmVzAwK2ZwOUxYeDY0MWpCVXZGTnd1a1BWSVZBV0FmTTQvakcz?=
+ =?utf-8?B?ZERmRFNnYTR2OGthUXV2MXpPbEtIaGxZR3ErVmtuTDF1dzUrZHpmdz09?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3ab661a7-e783-4de7-8ae5-08deb25453a4
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR12MB7277.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 May 2026 07:33:58.7340 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: VAwxtpZorpB4s2BxqM0tokvaWJTds1kkqUkKharQ/SJ4VKVsRQTTwcRD+fsHnLy0gUicot/gAihqDa8f8L5cJA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB9174
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,116 +144,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
+On 5/15/26 14:05, Mika PenttilÃ¤ wrote:
+> Hi,
+> 
+>> FYI: While testing with hmm_tests I ran into
+>>
+>> [  107.866004] ============================================
+>> [  107.866284] WARNING: possible recursive locking detected
+>> [  107.866577] 7.1.0-rc3-00311-g4277273ca0e1 #12 Not tainted
+>> [  107.866877] --------------------------------------------
+>> [  107.867217] hmm-tests/1098 is trying to acquire lock:
+>> [  107.867491] ffff888113571b38 (&mm->mmap_lock){++++}-{4:4}, at: dmirror_range_fault+0x147/0x610 [test_hmm] <- line 368 of lib/test_hmm.c
+>> [  107.868076] 
+>> [  107.868076] but task is already holding lock:
+>> [  107.868383] ffff888113571b38 (&mm->mmap_lock){++++}-{4:4}, at: dmirror_fault_and_migrate_to_device.constprop.0+0x3aa/0x6a0 [test_hmm] <- line 1267 of lib/test_hmm.c
+>> [  107.869076] 
+>> [  107.869076] other info that might help us debug this:
+>> [  107.869415]  Possible unsafe locking scenario:
+>> [  107.869415] 
+>> [  107.869729]        CPU0
+>> [  107.869866]        ----
+>> [  107.870054]   lock(&mm->mmap_lock);
+>> [  107.870247]   lock(&mm->mmap_lock);
+>> [  107.870436] 
+>> [  107.870436]  *** DEADLOCK ***
+>> [  107.870436] 
+>> [  107.870743]  May be due to missing lock nesting notation
+>> [  107.870743] 
+>> [  107.871158] 1 lock held by hmm-tests/1098:
+>> [  107.871377]  #0: ffff888113571b38 (&mm->mmap_lock){++++}-{4:4}, at: dmirror_fault_and_migrate_to_device.constprop.0+0x3aa/0x6a0 [test_hmm]
+>> [  107.872081] 
+>> [  107.872081] stack backtrace:
+>> [  107.872348] CPU: 1 UID: 0 PID: 1098 Comm: hmm-tests Not tainted 7.1.0-rc3-00311-g4277273ca0e1 #12 PREEMPT(full) 
+>> [  107.872350] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS edk2-20260213-6.fc44 02/13/2026
+>> [  107.872354] Call Trace:
+>> [  107.872357]  <TASK>
+>> [  107.872358]  dump_stack_lvl+0x5d/0x80
+>> [  107.872385]  print_deadlock_bug.cold+0xc0/0xe2
+>> [  107.872393]  __lock_acquire+0x10cf/0x1b90
+>> [  107.872400]  lock_acquire+0x189/0x2f0
+>> [  107.872401]  ? dmirror_range_fault+0x147/0x610 [test_hmm]
+>> [  107.872404]  down_read+0x9b/0x4b0
+>> [  107.872420]  ? dmirror_range_fault+0x147/0x610 [test_hmm]
+>> [  107.872421]  ? lock_acquire+0x189/0x2f0
+>> [  107.872422]  ? __pfx_down_read+0x10/0x10
+>> [  107.872424]  ? __lock_acquire+0x3c2/0x1b90
+>> [  107.872425]  dmirror_range_fault+0x147/0x610 [test_hmm]
+>> [  107.872427]  ? __pfx_down_read+0x10/0x10
+>> [  107.872429]  ? __pfx_dmirror_range_fault+0x10/0x10 [test_hmm]
+>> [  107.872430]  ? __lock_acquire+0x3c2/0x1b90
+>> [  107.872434]  dmirror_fault_and_migrate_to_device.constprop.0+0x3bf/0x6a0 [test_hmm]
+>> [  107.872436]  ? __pfx_dmirror_fault_and_migrate_to_device.constprop.0+0x10/0x10 [test_hmm]
+>> [  107.872439]  ? find_held_lock+0x2b/0x80
+>> [  107.872444]  ? dmirror_device_remove_chunks+0x5b8/0xa00 [test_hmm]
+>> [  107.872445]  ? __is_insn_slot_addr+0xee/0x1f0
+>> [  107.872458]  ? lock_acquire+0x189/0x2f0
+>> [  107.872460]  ? avc_has_extended_perms+0x234/0x1350
+>> [  107.872476]  ? __might_fault+0x89/0x150
+>> [  107.872484]  ? lock_release+0xe1/0x320
+>> [  107.872486]  dmirror_fops_unlocked_ioctl+0x9ba/0xdb0 [test_hmm]
+>> [  107.872488]  ? ioctl_has_perm.constprop.0.isra.0+0x2fe/0x6c0
+>> [  107.872494]  ? __pfx_dmirror_fops_unlocked_ioctl+0x10/0x10 [test_hmm]
+>> [  107.872498]  ? count_memcg_events_mm.constprop.0+0x22/0x1a0
+>> [  107.872499]  ? __pfx_ioctl_has_perm.constprop.0.isra.0+0x10/0x10
+>> [  107.872501]  ? count_memcg_events_mm.constprop.0+0xaa/0x1a0
+>> [  107.872503]  ? lock_release+0xe1/0x320
+>> [  107.872504]  ? find_held_lock+0x2b/0x80
+>> [  107.872506]  ? exc_page_fault+0x7e/0xf0
+>> [  107.872510]  __x64_sys_ioctl+0x13c/0x1d0
+>> [  107.872521]  ? lockdep_hardirqs_on_prepare+0xd9/0x190
+>> [  107.872523]  do_syscall_64+0xf3/0x6a0
+>> [  107.872526]  ? exc_page_fault+0xde/0xf0
+>> [  107.872528]  entry_SYSCALL_64_after_hwframe+0x77/0x7f
+>> [  107.872529] RIP: 0033:0x7f7381c543ad
+>> [  107.872531] Code: 04 25 28 00 00 00 48 89 45 c8 31 c0 48 8d 45 10 c7 45 b0 10 00 00 00 48 89 45 b8 48 8d 45 d0 48 89 45 c0 b8 10 00 00 00 0f 05 <89> c2 3d 00 f0 ff ff 77 1a 48 8b 45 c8 64 48 2b 04 25 28 00 00 00
+>> [  107.872532] RSP: 002b:00007ffc3160a9b0 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+>> [  107.872539] RAX: ffffffffffffffda RBX: 00007f7381b44000 RCX: 00007f7381c543ad
+>> [  107.872540] RDX: 00007ffc3160aa30 RSI: 00000000c0284803 RDI: 0000000000000022
+>> [  107.872541] RBP: 00007ffc3160aa00 R08: 00000000ffffffff R09: 0000000000000000
+>> [  107.872541] R10: 0000000000000022 R11: 0000000000000246 R12: 00007ffc3160aa24
+>> [  107.872542] R13: 000000000041f380 R14: 0000000000000200 R15: 00007f7381200000
+>> [  107.872544]  </TASK>
+>>
+>>
+>> Thanks,
+>> Balbir
+>>
+> Thanks, I could reproduce. Had lockdep dropped off so went unnoticed. It is nesting mmap_read_lock in the test suite, I will change that in next version.
+> 
+> --Mika
+> 
+> 
 
-this is the weekly PR from drm-misc-fixes.
+I'll wait for the next version
 
-Best regards
-Thomas
-
-drm-misc-fixes-2026-05-15:
-Short summary of fixes pull:
-
-bridge:
-- imx8qxp-pxl2dpi: avoid ERR_PTR with device_node cleanup
-
-gma500:
-- oaktrail_lvds: fix i2c handling
-
-loongson:
-- use managed cleanup for connector polling
-
-panfrost:
-- handle results from reservation locking correctly
-
-qaic:
-- check for integer overflows in mmap logic
-
-rocket:
-- handle results from reservation locking correctly
-
-ttm:
-- avoid infinite loop in swap out
-- avoid infinite loop in BO shrinking
-- convert -EAGAIN from dmem_cgroup_try_charge to -ENOSPC
-The following changes since commit b15838b03cd0c6cf35651cfde62d17f14bb1d566:
-
-  drm/bochs: Drop manual put on probe error path (2026-05-07 10:51:18 +0200)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2026-05-15
-
-for you to fetch changes up to 0a9c56dd387605d17dabeedd9fdd2c4c1d0bab7b:
-
-  drm/loongson: Use managed KMS polling (2026-05-15 08:50:54 +0200)
-
-----------------------------------------------------------------
-Short summary of fixes pull:
-
-bridge:
-- imx8qxp-pxl2dpi: avoid ERR_PTR with device_node cleanup
-
-gma500:
-- oaktrail_lvds: fix i2c handling
-
-loongson:
-- use managed cleanup for connector polling
-
-panfrost:
-- handle results from reservation locking correctly
-
-qaic:
-- check for integer overflows in mmap logic
-
-rocket:
-- handle results from reservation locking correctly
-
-ttm:
-- avoid infinite loop in swap out
-- avoid infinite loop in BO shrinking
-- convert -EAGAIN from dmem_cgroup_try_charge to -ENOSPC
-
-----------------------------------------------------------------
-Guangshuo Li (1):
-      drm/bridge: imx8qxp-pxl2dpi: avoid ERR_PTR with device_node cleanup
-
-Gyeyoung Baek (2):
-      accel/rocket: Fix prep_bo ioctl leaking positive return from dma_resv_wait_timeout()
-      drm/panfrost: Fix wait_bo ioctl leaking positive return from dma_resv_wait_timeout()
-
-Johan Hovold (3):
-      drm/gma500/oaktrail_hdmi: fix i2c adapter leak on setup
-      drm/gma500/oaktrail_lvds: fix hang on init failure
-      drm/gma500/oaktrail_lvds: fix i2c adapter leaks on init
-
-Myeonghun Pak (1):
-      drm/loongson: Use managed KMS polling
-
-Thomas Hellström (3):
-      drm/ttm: Fix ttm_bo_swapout() infinite LRU walk on swapout failure
-      drm/ttm: Convert -EAGAIN from dmem_cgroup_try_charge to -ENOSPC
-      drm/ttm: Fix ttm_bo_shrink() infinite LRU walk on backup failure
-
-Zack McKevitt (1):
-      accel/qaic: Add overflow check to remap_pfn_range during mmap
-
- drivers/accel/qaic/qaic_data.c               | 23 ++++++++++++++--
- drivers/accel/rocket/rocket_gem.c            |  2 ++
- drivers/gpu/drm/bridge/imx/imx8qxp-pxl2dpi.c | 40 ++++++++++++++++------------
- drivers/gpu/drm/gma500/oaktrail_hdmi.c       |  1 +
- drivers/gpu/drm/gma500/oaktrail_lvds.c       |  9 +++++--
- drivers/gpu/drm/loongson/lsdc_drv.c          |  2 +-
- drivers/gpu/drm/panfrost/panfrost_drv.c      |  2 ++
- drivers/gpu/drm/ttm/ttm_bo.c                 | 18 +++++--------
- drivers/gpu/drm/ttm/ttm_bo_util.c            | 11 +++-----
- drivers/gpu/drm/ttm/ttm_resource.c           | 18 ++++++++++++-
- include/drm/ttm/ttm_resource.h               |  2 ++
- 11 files changed, 86 insertions(+), 42 deletions(-)
-
--- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
+Balbir
