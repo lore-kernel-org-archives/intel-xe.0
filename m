@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66CC6CD343F
-	for <intel-xe@archiver.kernel.org>; Fri, 15 May 2026 08:26:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 491C4CD343F
+	for <intel-xe@archiver.kernel.org>; Fri, 15 May 2026 08:26:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FC9910F46A;
-	Fri, 15 May 2026 08:26:16 +0000 (UTC)
-Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D521510F3CA;
- Fri, 15 May 2026 08:26:15 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7977661079353339236=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9D7710F46A;
+	Fri, 15 May 2026 08:26:35 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZZHgiqj6";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCEE010F3CA;
+ Fri, 15 May 2026 08:26:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1778833595; x=1810369595;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=pM9LBdf+qEY0gHKZZJcPA9iGg5XWc1ed6iXwYY/4pzQ=;
+ b=ZZHgiqj62lng06uOOud0/D8tX+KVMjiuVIQHHB8t+tpJZ7h5nQoWCKxJ
+ uMcFFSKckz3z+2CaW3W2zT/fI+HLHyeGkomJGXBrlMjC3ljqXDqFxpVZG
+ mEJjgZCubhxmuPqoBfxQUeNfOseTokCTxhS+hnAP7xT3DEmXgGBjJf6oW
+ gWD057mqjBrUiGZFT7PgOkc3tTe7H9U982JNmc/pItJN56wfQrwHCb2Dm
+ ysCF8HZdkZlPBf+qPWx1QtQ6znn3EQR+mTQ0YFyxjlCB8W4s6gUn4p2fs
+ RGJ/XN22S8AeJmmkDzqxjjAPEpC4irjjyQCxCeL9R+vx7lKqlSmTKWl6O A==;
+X-CSE-ConnectionGUID: XLubfoNoQwKIisqzsHsbeA==
+X-CSE-MsgGUID: T5DIn3lQSVSh7l6E4g0xYQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11786"; a="90889722"
+X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="90889722"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2026 01:26:34 -0700
+X-CSE-ConnectionGUID: Ff2H5J9YROKv4E5V1xe+4A==
+X-CSE-MsgGUID: mReUAsQWSFybiPIPfV60Eg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="242628784"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.71])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2026 01:26:33 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+Subject: Re: [PATCH v3 1/5] drm/i915/bw: Don't call intel_dram_info() too early
+In-Reply-To: <20260514-separate-platform-from-diplay-ip-specific-bw-params-v3-1-68727d6fe3ec@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260514-separate-platform-from-diplay-ip-specific-bw-params-v3-0-68727d6fe3ec@intel.com>
+ <20260514-separate-platform-from-diplay-ip-specific-bw-params-v3-1-68727d6fe3ec@intel.com>
+Date: Fri, 15 May 2026 11:26:29 +0300
+Message-ID: <1607a6c47f563d56cb315a7b556a80303ee8a55b@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFULL=3A_failure_for_drm/xe=3A_Refresh_MEMIRQ_c?=
- =?utf-8?q?ode?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 15 May 2026 08:26:15 -0000
-Message-ID: <177883357586.74242.5573142599354260070@5ab824fced77>
-X-Patchwork-Hint: ignore
-References: <20260514150010.7123-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20260514150010.7123-1-michal.wajdeczko@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,61 +67,43 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7977661079353339236==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, 14 May 2026, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+> If we end-up bailing early from intel_bw_init_hw() due to
+> !HAS_DISPLAY(display), the call to intel_dram_info() to initialize
+> dram_info will be meaningless.  Move the call to be done after that
+> check.
+>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 
-== Series Details ==
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-Series: drm/xe: Refresh MEMIRQ code
-URL   : https://patchwork.freedesktop.org/series/166580/
-State : failure
+> ---
+>  drivers/gpu/drm/i915/display/intel_bw.c | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+> index 9c3a9bbb49f6..7eef693b51ad 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bw.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
+> @@ -791,11 +791,13 @@ static unsigned int icl_qgv_bw(struct intel_display *display,
+>  
+>  void intel_bw_init_hw(struct intel_display *display)
+>  {
+> -	const struct dram_info *dram_info = intel_dram_info(display);
+> +	const struct dram_info *dram_info;
+>  
+>  	if (!HAS_DISPLAY(display))
+>  		return;
+>  
+> +	dram_info = intel_dram_info(display);
+> +
+>  	/*
+>  	 * Starting with Xe3p_LPD, the hardware tells us whether memory has ECC
+>  	 * enabled that would impact display bandwidth.  However, so far there
 
-== Summary ==
-
-ERROR: The runconfig 'xe-5063-121c16f9d8c56ea07263df84ab971cc10870fe88_FULL' does not exist in the database
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166580v1/index.html
-
---===============7977661079353339236==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Refresh MEMIRQ code</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166580/">https://patchwork.freedesktop.org/series/166580/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166580v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166580v1/index.html</a></td></tr>
-
-</table>
-
-
-    <p>ERROR: The runconfig 'xe-5063-121c16f9d8c56ea07263df84ab971cc10870fe88_FULL' does not exist in the database</p>
-
-</body>
-</html>
-
---===============7977661079353339236==--
+-- 
+Jani Nikula, Intel
