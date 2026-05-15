@@ -4,56 +4,151 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4203CD4F25
-	for <intel-xe@archiver.kernel.org>; Fri, 15 May 2026 16:11:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88C5ECD343F
+	for <intel-xe@archiver.kernel.org>; Fri, 15 May 2026 16:18:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47E6210F589;
-	Fri, 15 May 2026 16:11:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46E4B10E3AA;
+	Fri, 15 May 2026 16:18:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AyaQVwiq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OZDDUFPR";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 199A410F583;
- Fri, 15 May 2026 16:11:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A69BF10E3AA
+ for <intel-xe@lists.freedesktop.org>; Fri, 15 May 2026 16:18:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778861462; x=1810397462;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=kjkfywNHxl/uItXweCrTEh2p5VmOonndEClKUAIur4c=;
- b=AyaQVwiq11yEEGBK+CHyS4F2kvLxg+RcYbPsFKAM7bj4cGOzvtzgrwUw
- vb/LJltb5jhk8KeHvJtlQbAU8SisyfQ5Nbrkzlz0eFUoB6/FfT41BZPH1
- 7tqexRZTfXxk7UTqzc9bb5AogQFG15eTBRXRXe046j1TOn7x64pV+MOep
- o2yOL6e7LA+34KLE3hpx0Al4TrxUOIiL5C8ezyjzCVfkF3jvO9fqtwq+9
- 4LXoD/Xw/FVLSgJEwyTHv/Y0LvW38gYYXjNnfyl3NDH+QdodAjJ2eSAqJ
- MQeD0iWrEeh7hkcjm1NMgvMSAW4v+fMPQ6xa0tQTAtt0odcw5XmjH1bap w==;
-X-CSE-ConnectionGUID: VmDiMhMWQaaDw0ArH21lXg==
-X-CSE-MsgGUID: XeDPKjsSRMyNOwInv3yb+g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11787"; a="79798549"
-X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="79798549"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2026 09:11:01 -0700
-X-CSE-ConnectionGUID: i+esdDu8R+uIbORGc+/jNg==
-X-CSE-MsgGUID: lRzRcIEvRqy1IJFuzMXZxQ==
+ t=1778861894; x=1810397894;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=uNRG6A8XBUZ/LYrzKSxqF4VkeCV3oGGc9NE60ujlsLU=;
+ b=OZDDUFPRuutR7kc3+g1J7wDEtzayUFc/pAg4vzX6Pq++d7qp7781FCBC
+ PUtYY9wE81IPaWWhd0jyTEkbA2vh82USE8wx646eesQnZfU44u8wzfk6m
+ YQZwOQyPbrluJCF2gfcHWo+vtBORZRx5qK1ilbRxgj/jb1Z/J4RfLQhAb
+ Ng74m1qbjc8j3WsnyPodK7ODGttVOZgs1Dcn7Rsu55L1twIeTJP65qYZW
+ egO4bDWCn06e879O4MltmJl32uvPvlryVwt//FRhjAPX8rwurrtD3bMJB
+ shcCBdNCWYXCiMip+qDTS6W51qq/J/oM23tUuG/ovQlZyaG1VOs351Qt4 w==;
+X-CSE-ConnectionGUID: 1Ch8bKt4TqGhYQmDJAYaIg==
+X-CSE-MsgGUID: 3J3fS+j7T2Gq1s05BkVWrQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11787"; a="79784255"
+X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="79784255"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2026 09:18:14 -0700
+X-CSE-ConnectionGUID: x//khmSJSdy+BQWUENTF5A==
+X-CSE-MsgGUID: jrj4qV8tT7SZyMMQ+tkGSQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="243705492"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa005.jf.intel.com with ESMTP; 15 May 2026 09:10:58 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com,
- gustavo.sousa@intel.com, jani.nikula@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH] drm/i915/display: Use PIPEDMC_FRMTMSTMP on display ver >= 30
-Date: Fri, 15 May 2026 21:40:56 +0530
-Message-Id: <20260515161056.1007030-1-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260515155340.1000997-1-suraj.kandpal@intel.com>
-References: <20260515155340.1000997-1-suraj.kandpal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="238853483"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2026 09:18:14 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Fri, 15 May 2026 09:18:12 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Fri, 15 May 2026 09:18:12 -0700
+Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.50) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Fri, 15 May 2026 09:18:09 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=My7l7kn3kmnXtcNuOAXwAOcFXCDNfDE0mQWcZ/2ROh4Uu5tcXlT08d9eg+M9LHILEcIkBXYugTfAw78qumviPGFHrI/m2UreS7Pycxd8e+0Upbo7dgLZbc24FtzOgJbTwMpO6d1mn+Lnh/c1F3X7FFLPrW6FnveHP2KU+iIJbjCzr7nRvfvOXOsOqghnPVaQ/MxogFohBTKVExx0jiRXMdLsrnQas/z7vvcauUyEM3fy15kD2mbrm8LIMd+20wL+j4YTA2ZeKVs7rjTtukBtyLnlQDpxrTI2uI53MGHUV1qcQ4Vi9sRmXL3udhpfaIB5OVuYzs23M4H7kbc7Wka7Eg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zaAnQwDNT3b0QQdn2SmIOBaNTKzaLGSivrlZiQzFZaA=;
+ b=knG046QKlzLskc+4ulqJQ9i42FUsRGZeOeHWaqS3daBjmYtI/ERZbXiYZGAP+CJd1czzXYmrNGKahJbA8cyABSIwgiLiDPmStihGzpkckRPqh3SwI7xKa+4bgG3N3qVqcqqlo7et/g3whpuAVRTXbAFfjwrs+vm4zu2bSoMoNmIXe1Tut6740MarKhOhryZVBeVg6dM8TtCrJGpMUVSCtjMJ0uW5eNHU5Dl0SuEdpl55J+AEbCGv86wFUQ+/oyqv3bX7+2Ou2YEDTPNTT3zi2xKz9wMBpmH5SIenT6G4C2NgdbmIp07Yg7Wwu/lg7j7O5bB+swz4tCb4J4S0D4BNeQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
+ (2603:10b6:f:fc00::f13) by PH7PR11MB5766.namprd11.prod.outlook.com
+ (2603:10b6:510:130::5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9913.12; Fri, 15 May
+ 2026 16:18:06 +0000
+Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
+ ([fe80::308:3508:f7cd:9717]) by DM3PPF208195D8D.namprd11.prod.outlook.com
+ ([fe80::308:3508:f7cd:9717%3]) with mapi id 15.20.9913.009; Fri, 15 May 2026
+ 16:18:06 +0000
+From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>
+CC: "Nikula, Jani" <jani.nikula@intel.com>, "stable@vger.kernel.org"
+ <stable@vger.kernel.org>
+Subject: RE: [PATCH] drm/xe/display: fix oops in suspend/shutdown without
+ display
+Thread-Topic: [PATCH] drm/xe/display: fix oops in suspend/shutdown without
+ display
+Thread-Index: AQHc5IVB7zjPTRlkq0uBWWzBCC1FJbYPQ5gQ
+Date: Fri, 15 May 2026 16:18:06 +0000
+Message-ID: <DM3PPF208195D8D504F655566B2A718B650E3042@DM3PPF208195D8D.namprd11.prod.outlook.com>
+References: <20260515160920.1082842-1-jani.nikula@intel.com>
+In-Reply-To: <20260515160920.1082842-1-jani.nikula@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM3PPF208195D8D:EE_|PH7PR11MB5766:EE_
+x-ms-office365-filtering-correlation-id: c9145f46-08a0-4f32-25ab-08deb29d8bf3
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|366016|376014|38070700021|18002099003|56012099003|11063799003|22082099003;
+x-microsoft-antispam-message-info: PXC7GRlGpVw0jHfDL6cQSYEA+5ck2eVwR76Qc+hSNGvrTcXFD75UM5WZeGDBkK9tl3BXbq92mNJaOGHio6y9wTEEnZshnczNjmMzJtfveP9HNUVZxkeht0rfuKxcwjXY9ar8+7fuvM7c/KebfNjB/DE6WFSmeioVHdAAvpGMU4D+V8+kYqGf81LOG9sUEfU1ETYl4EcyEeg8WqBCcpuK3ugURv20vyEecRF5K3CdOGsxv8NI9O5TN1UiyJA/sBK9ezFw0IVfB5poe/1FemWr/xl/e8TUMIg4eSfzkDQ5LkblPZp3papzgbIH5508VpaDMcxt0AFS2FPE0vWaGfH73xnPDGmVSKsuv0c9rUXsubxwRb0EK1T46a20nUpVm89RDJACPpwTk71KAQUnih3m4DfNNUFytDCQ09Jki2KhZGbnVMDG/wInwEmpgzEaXL32Rm+Mx47x+bZXnekI90g9Lja8c8Aq/G9ugRBfalA1CSxW1E68KRdQ48hAwyDPxU6ec2nvyW91ClC0yM1mnictQy9PC6Xixy+ki+pr1NVxkhl6A5bVlA0q1H4w02WU88LmmkK/hxsg8YEwHxl42jP0IQlXqisX0C3qOwFQ+n20aJ4ucP0bUpYtnVMbfVnPprPqgresqUuRhCOuzVchqIjutwXoPTSH1UykxVlI6NW8zlEHGJHwcB9GSbKuGGYTYak9PHBa44qHXjubepPkvVxazA==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM3PPF208195D8D.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(38070700021)(18002099003)(56012099003)(11063799003)(22082099003);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?01+o9krvFDa8z30fZ+ZGdRuw+ESZZhUu+i2ToODS3TuiAmdR2T+Y4mWrhnYm?=
+ =?us-ascii?Q?W/ErwKYtSWr95uzJGIPNQ0z9FO2UT7JmH7IfYAbD0GGcJkXhiCtVodmgy6sC?=
+ =?us-ascii?Q?V3RixzDEW8Yher9cFLR3ExI4sI1RZ3ZBiAW9z8Ah55sctV4HbPF5RZZqf2Xv?=
+ =?us-ascii?Q?0Jr7cFsS6m/dS9nwQcc2OVacyR48e1w4Zm/qbwAmbwvbZVOucWLCXJCZZTgG?=
+ =?us-ascii?Q?T4xa8KqRECzD3gEyneJrKEU5bW7a9ijaW0YssRxHlIMedCMTya51kcILfX3M?=
+ =?us-ascii?Q?YhyROBUkLtBR4nUbhvkGTeR3nmJomOUMfb2Q1lLrrDmANXHNVUJ1JFjv881N?=
+ =?us-ascii?Q?MPKEJShjHa0plGHw30jsGugjWE/2dEc2mTbCFE2nQknXFzjZCmhWnWNJn8aZ?=
+ =?us-ascii?Q?ZTHoUF97DGJBNS2cAKNlChHzAeEcE7x0oacs7tDuJuViC4ikftaYRtcuZPY6?=
+ =?us-ascii?Q?I66GlQT2oO6RD4J7cN8bb/O3YhdJKVfYzGE0N92U0rF0gCqWIRzBQa0WVDY5?=
+ =?us-ascii?Q?mJHrwRwCSRrNsxnJj5SYqCuQmrAIjoA1QHnTUTMncCmIUQwmwEtYvZeqjSFS?=
+ =?us-ascii?Q?5Q+y1ua7RXHAjjT3QZCC/Lv6TnxhiI09gvViPpEGAG3tKbCB7GuMlaMIC7cT?=
+ =?us-ascii?Q?nhbvMGswRmKuaBbsa/79tAhHGUr7W7RBTK2w85AHdYqlAf89LPlo9o4tDyPn?=
+ =?us-ascii?Q?5TYgs//OKYKAA/RsG6G87wBS5Gnhzvb5SCmwrsx0jDS10I+NCMiRj4TwEElH?=
+ =?us-ascii?Q?o5LwbyxWpd9y/1qLygu0iyUFl5lSSEN7nrPSHjm3eLkpxeYaJdfqk+r8JHqo?=
+ =?us-ascii?Q?cuxGfxkzD8YuDheu0AUneb4FvXQ17nyBoovpvFhu8eNx0hKFIH5nZnetLfsY?=
+ =?us-ascii?Q?WawjNzWnLL+lVSuNd278xAWgXTf9sYkseclZ4BPGjzeqDwZPOInMFsvDR8yD?=
+ =?us-ascii?Q?5ek+8iXC0x0QXDiUj9zc2/tAmdRyDXmwM8J2XGguT/UBS4RfH0wWZZ1N/c1P?=
+ =?us-ascii?Q?ofBqSrxcvU9ZlBB1XVsOKPKCVk0bBJjoooDuh+70O9iqAX49uEU0z/aiAtR6?=
+ =?us-ascii?Q?1Dyvb86yCeRTFXlLz9UzLltuxdpfdXcQpmM/0IJdM228gfqsRoGeRKGh40M+?=
+ =?us-ascii?Q?/3/QwcrvxMbcgscmqwTz6YNIktQJse1qe2VnwPDlQ+wPUGSVbdaKwTc9nqma?=
+ =?us-ascii?Q?lNTG4Aw5TIM2sprwzPPhMONobIRGyuvrNUIhgp0Twu+XHKhnapr1Y0poDNpd?=
+ =?us-ascii?Q?3TU23KethZhXshL2UOLqCJGc2V6pPUKla+IG5vZuKsdogiNbt4f+PvMv92Ww?=
+ =?us-ascii?Q?6PUYN7kQ+bMrF2hJhafV1twgL0Y/hMRhitJGPAxO5Yie/NaQ8oBJ2RPrdCpy?=
+ =?us-ascii?Q?p81Ik7pvEf637kVqhPdYd6IT6aAV6sNyhWIvFAgZV3iY4x+Uj8ECE0RUqxqO?=
+ =?us-ascii?Q?BbNmYYJyspbl5k4Em99EvMchUtvrsb2NNqFU97dsGBUR1FzbjEVMMjBLqOPE?=
+ =?us-ascii?Q?O6mVdqVafuC+M6kBB10dK0ky2elxVfOxV8ndRlMp+yGhYmM2S+1m4dkQHtRR?=
+ =?us-ascii?Q?6pObdznQCEaiVmuXi4YVNB6R2M+5R8Ec9ZAdUUnwJyCJIUyf3go2SaiQ0fET?=
+ =?us-ascii?Q?dxoAN/20aVGcDJuwDgdzp03Wt347or7YR+ngZVOYIugMkQwhjc0jVga4OaZl?=
+ =?us-ascii?Q?Ty8loPyV7H60n23FdXTV8uAgc9vaUFuh4dg5spPaHN8uB/2XxRFuhVpWr835?=
+ =?us-ascii?Q?KtThzVuMCg=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-Exchange-RoutingPolicyChecked: iM13UAycD4WXkHx+FMI99B17sYQYStl7AjmbzvgS56FEtDrvFoUockkb7NZjIoVnT+lZ38vrp5EorTinFyeBU5djvYtKuYOZ5wQi+5ZuZrSgBO30K7y5P0nCOXRp4qKmi6WehyAuNNike1W5FwybifhU0vWOZHK/m4DzYb33WnFQoN12CHNfe2Kt/V50Dao/nJU4MG0/U1kbgMqx7wEyJCq5nMg6kU1SN8sn7RMRBVl9BU/qH0XCmrQOw+USMSd8YnkkhfdQDF0QXmZ4Z4kntUVPWLxvt6tJQo1SBb4S3UsKiKiTJ/aB7sk+1qDdFCtiMWMFQEtChlGkH0cIHpId+g==
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM3PPF208195D8D.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c9145f46-08a0-4f32-25ab-08deb29d8bf3
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 May 2026 16:18:06.0684 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 1FyGeohRIjZLPWvNoB/hBbZyPzxGF1MZ760e1CLcwwjh9CbsP9kvCab2NM/Jv6my28o4CWdTbYnp0EB5W3GGYA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB5766
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,109 +163,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Starting with display version 30, the per-pipe frame timestamp is read
-from the PIPEDMC register block (PIPEDMC_FRMTMSTMP) instead of the
-legacy PIPE_FRMTMSTMP MMIO. Extend PIPE_FRMTMSTMP() to take the display
-and select the appropriate register based on DISPLAY_VER(), and update
-all callers intel_vblank accordingly.
+> Subject: [PATCH] drm/xe/display: fix oops in suspend/shutdown without
+> display
+>=20
+> The xe driver keeps track of whether to probe display, and whether displa=
+y
+> hardware is there, using xe->info.probe_display. It gets set to false if =
+there's no
+> display after intel_display_device_probe(). However, the display may also=
+ be
+> disabled via fuses, detected at a later time in
+> intel_display_device_info_runtime_init().
+>=20
+> In this case, the xe driver does for_each_intel_crtc() on uninitialized m=
+ode
+> config in xe_display_flush_cleanup_work(), leading to a NULL pointer
+> dereference, and generally calls display code with display info cleared.
+>=20
+> Check for intel_display_device_present() after
+> intel_display_device_info_runtime_init(), and reset
+> xe->info.probe_display as necessary. Also do unset_display_features()
+> for completeness, although display runtime init has already done that. Th=
+is will
+> need to be unified across all cases later.
+>=20
+> Move intel_display_device_info_runtime_init() call slightly earlier, simi=
+lar to
+> i915, to avoid a bunch of unnecessary setup for no display cases.
+>=20
+> Note #1: The xe driver has no business doing low level display plumbing l=
+ike
+> for_each_intel_crtc() to begin with. It all needs to happen in display co=
+de.
+>=20
+> Note #2: The actual bug is present already in commit 44e694958b95
+> ("drm/xe/display: Implement display support"), but the oops was likely
+> introduced later at commit ddf6492e0e50 ("drm/xe/display: Make display
+> suspend/resume work on discrete").
+>=20
+> Fixes: 44e694958b95 ("drm/xe/display: Implement display support")
+> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/7904
+> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/6150
+> Cc: <stable@vger.kernel.org> # v6.8+
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Bspec: 79482
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
-v1 -> v2:
-- Define registers in correct location (Jani)
-- Use the intel_display_wa() helper to select the correct register (Gustavo)
-- Fix early vblank timeout issue when DMC is not loaded
+LGTM,
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
- .../gpu/drm/i915/display/intel_display_wa.c    |  2 ++
- .../gpu/drm/i915/display/intel_display_wa.h    |  1 +
- drivers/gpu/drm/i915/display/intel_dmc_regs.h  |  6 ++++++
- drivers/gpu/drm/i915/display/intel_vblank.c    | 18 ++++++++++++++----
- 4 files changed, 23 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
-index 7d3d63a59882..44c2a503c911 100644
---- a/drivers/gpu/drm/i915/display/intel_display_wa.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
-@@ -110,6 +110,8 @@ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa,
- 		return DISPLAY_VERx100(display) == 3000 ||
- 			DISPLAY_VERx100(display) == 2000 ||
- 			DISPLAY_VERx100(display) == 1401;
-+	case INTEL_DISPLAY_WA_14022946399:
-+		return DISPLAY_VER(display) >= 30;
- 	case INTEL_DISPLAY_WA_14025769978:
- 		return DISPLAY_VER(display) == 35;
- 	case INTEL_DISPLAY_WA_15013987218:
-diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
-index 15fec843f15e..884463a894c8 100644
---- a/drivers/gpu/drm/i915/display/intel_display_wa.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
-@@ -42,6 +42,7 @@ enum intel_display_wa {
- 	INTEL_DISPLAY_WA_14014143976,
- 	INTEL_DISPLAY_WA_14016740474,
- 	INTEL_DISPLAY_WA_14020863754,
-+	INTEL_DISPLAY_WA_14022946399,
- 	INTEL_DISPLAY_WA_14025769978,
- 	INTEL_DISPLAY_WA_15013987218,
- 	INTEL_DISPLAY_WA_15018326506,
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc_regs.h b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-index 38e342b45af0..985642a79a52 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-@@ -644,4 +644,10 @@ enum pipedmc_event_id {
- #define _PIPEDMC_DCB_BALANCE_RESET_B		0x986a8
- #define PIPEDMC_DCB_BALANCE_RESET(pipe)		_MMIO_PIPE(pipe, _PIPEDMC_DCB_BALANCE_RESET_A,\
- 							   _PIPEDMC_DCB_BALANCE_RESET_B)
-+
-+#define _PIPEDMC_FRMTMSTMP_A			0x5f0ac
-+#define _PIPEDMC_FRMTMSTMP_B			0x5f4ac
-+#define PIPEDMC_FRMTMSTMP(pipe)			\
-+	_MMIO_PIPE(pipe, _PIPEDMC_FRMTMSTMP_A, _PIPEDMC_FRMTMSTMP_B)
-+
- #endif /* __INTEL_DMC_REGS_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index 28d81199792e..145c342f445f 100644
---- a/drivers/gpu/drm/i915/display/intel_vblank.c
-+++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -15,6 +15,8 @@
- #include "intel_display_regs.h"
- #include "intel_display_types.h"
- #include "intel_display_utils.h"
-+#include "intel_display_wa.h"
-+#include "intel_dmc_regs.h"
- #include "intel_vblank.h"
- #include "intel_vrr.h"
- 
-@@ -156,8 +158,12 @@ static u32 intel_crtc_scanlines_since_frame_timestamp(struct intel_crtc *crtc)
- 		 * pipe frame time stamp. The time stamp value
- 		 * is sampled at every start of vertical blank.
- 		 */
--		scan_prev_time = intel_de_read_fw(display,
--						  PIPE_FRMTMSTMP(crtc->pipe));
-+		if (intel_display_wa(display, INTEL_DISPLAY_WA_14022946399))
-+			scan_prev_time = intel_de_read_fw(display,
-+							  PIPEDMC_FRMTMSTMP(crtc->pipe));
-+		else
-+			scan_prev_time = intel_de_read_fw(display,
-+							  PIPE_FRMTMSTMP(crtc->pipe));
- 
- 		/*
- 		 * The TIMESTAMP_CTR register has the current
-@@ -165,8 +171,12 @@ static u32 intel_crtc_scanlines_since_frame_timestamp(struct intel_crtc *crtc)
- 		 */
- 		scan_curr_time = intel_de_read_fw(display, IVB_TIMESTAMP_CTR);
- 
--		scan_post_time = intel_de_read_fw(display,
--						  PIPE_FRMTMSTMP(crtc->pipe));
-+		if (intel_display_wa(display, INTEL_DISPLAY_WA_14022946399))
-+			scan_post_time = intel_de_read_fw(display,
-+							  PIPEDMC_FRMTMSTMP(crtc->pipe));
-+		else
-+			scan_post_time = intel_de_read_fw(display,
-+							  PIPE_FRMTMSTMP(crtc->pipe));
- 	} while (scan_post_time != scan_prev_time);
- 
- 	return div_u64(mul_u32_u32(scan_curr_time - scan_prev_time,
--- 
-2.34.1
+> ---
+>  drivers/gpu/drm/xe/display/xe_display.c | 11 +++++++++--
+>  1 file changed, 9 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/display/xe_display.c
+> b/drivers/gpu/drm/xe/display/xe_display.c
+> index 053abd6f6514..5f25932730f4 100644
+> --- a/drivers/gpu/drm/xe/display/xe_display.c
+> +++ b/drivers/gpu/drm/xe/display/xe_display.c
+> @@ -104,6 +104,15 @@ int xe_display_init_early(struct xe_device *xe)
+>=20
+>  	intel_display_driver_early_probe(display);
+>=20
+> +	intel_display_device_info_runtime_init(display);
+> +
+> +	/* Display may have been disabled at runtime init */
+> +	if (!intel_display_device_present(display)) {
+> +		xe->info.probe_display =3D false;
+> +		unset_display_features(xe);
+> +		return 0;
+> +	}
+> +
+>  	/* Early display init.. */
+>  	intel_opregion_setup(display);
+>=20
+> @@ -117,8 +126,6 @@ int xe_display_init_early(struct xe_device *xe)
+>=20
+>  	intel_bw_init_hw(display);
+>=20
+> -	intel_display_device_info_runtime_init(display);
+> -
+>  	err =3D intel_display_driver_probe_noirq(display);
+>  	if (err)
+>  		goto err_opregion;
+> --
+> 2.47.3
 
