@@ -4,59 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDF3BCD343F
-	for <intel-xe@archiver.kernel.org>; Fri, 15 May 2026 15:50:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78A0ACD343F
+	for <intel-xe@archiver.kernel.org>; Fri, 15 May 2026 15:53:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 847D810E209;
-	Fri, 15 May 2026 15:50:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 210D210E190;
+	Fri, 15 May 2026 15:53:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a1WHB3Sr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nt2HpvXt";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4DA810E209;
- Fri, 15 May 2026 15:50:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD81210E190;
+ Fri, 15 May 2026 15:53:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778860210; x=1810396210;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=3LFrlXfQ7/z/OfD85fsq5YFKrRrDvfBU3i9Mtws3Msw=;
- b=a1WHB3SrsfxASmT5TAVFsltnSFGWE7YAsyvL0jJnodAJm5pVkEOFg2gm
- fp00wFJySZ1xu1TmtEXXsq8I7dFSqP6BdxLUGcJuHSUQH648IrS5nA7PR
- Pb2qDxsZE7BgRSf2nkfUsTrw98TRFw1o2TAVHJ48Mvcy0+iFqytbZpGFd
- QOo6D9wJ9VMkZ71OL22WivxtmR6OcHt8cskGD/i13gKS3zYHE5fLjlRuW
- Z3OFfDHXNfbHozBlVrNmQuh9zpcvWOdeSluwPkYJ+moEC/u7d0iW9wkUr
- VXwPOALdGRvbXTeLKFfnIDJCPi+UBvYqwtNRF4dDPBQJZYx6om3fUhkOU w==;
-X-CSE-ConnectionGUID: f4zO+lpjRTuJeon+poiAEg==
-X-CSE-MsgGUID: vF5KsYPATiSG+I1Y41T7bg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11787"; a="79937648"
-X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="79937648"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2026 08:50:09 -0700
-X-CSE-ConnectionGUID: 5e0B/OC6Sveb/+dBT22eQw==
-X-CSE-MsgGUID: MdtRjBDXShG2hxdsv0+t0A==
+ t=1778860428; x=1810396428;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=NnVmRh74bzU4s0rzDm5vd1frnNUHKvjU0xREINI6OyY=;
+ b=Nt2HpvXttnrkd03/cmq+hhdmKl6uUJRjrhGRxvkPWEoOgkgYDTK2Qdyl
+ h7wXkzkCVHcc0COWPCZdHGoH4NzMPtso5DXvO6bOQy3yMqtjy5sESFnWk
+ 4+AvY96byqeVxZEpVc7bejgp+0NOjgxycaMsGpH4kK/+A0WdjGRU0ntLo
+ i67ATV90jLCpXGB/tUBYYJ5U5Ytiaxclc5kWV4VtGfBnSVXQXw3U6rKFR
+ x+6MsTyTByDoJwHS3sb6c6P03xnotnZG9AUHZbAFTBe7LAsZGa7Vl6LEx
+ LF80ovvfwy3ygeBLb+157m5NenxvDqARoFBeBCHsFKs2iPvwlokKOScJY w==;
+X-CSE-ConnectionGUID: SoHkT7cwTXin/XDP8434mw==
+X-CSE-MsgGUID: 6eyx0pfKTZOU/2uc0lajBA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11787"; a="90920819"
+X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="90920819"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2026 08:53:48 -0700
+X-CSE-ConnectionGUID: kO3p1QMgQemwmlj/CmD1lw==
+X-CSE-MsgGUID: wYM6IhQ4RCmkkdx7DX76lw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="237733002"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO [10.245.245.96])
- ([10.245.245.96])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2026 08:50:09 -0700
-Message-ID: <4cfae05b-1853-469c-a370-6d8995a4eac3@intel.com>
-Date: Fri, 15 May 2026 16:50:06 +0100
+X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="240543084"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by fmviesa004.fm.intel.com with ESMTP; 15 May 2026 08:53:45 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH] Revert "drm/i915/backlight: Remove try_vesa_interface"
+Date: Fri, 15 May 2026 21:23:40 +0530
+Message-Id: <20260515155340.1000997-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] gpu/buddy: Track per-order free blocks with a
- scoreboard
-To: Francois Dugast <francois.dugast@intel.com>, intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org
-References: <20260511164217.150237-1-francois.dugast@intel.com>
- <20260511164217.150237-3-francois.dugast@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20260511164217.150237-3-francois.dugast@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,231 +65,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 11/05/2026 17:41, Francois Dugast wrote:
-> Reporting per-order free block counts in drm_buddy_print() currently
-> requires walking all rbtrees, which is O(n) over the total number of
-> free blocks and holds the allocator lock for the duration. This becomes
-> expensive on large VRAM heaps with many small free fragments.
-> 
-> Maintain a free_scoreboard[] array indexed by order instead, so that
-> the count for any order is always available in O(1). The scoreboard is
-> kept accurate by hooking into the four places where a block's free state
-> changes: mark_free(), mark_allocated(), mark_split(), and the sites in
-> __gpu_buddy_free(), __force_merge(), and the four err_undo paths that
-> call rbtree_remove() directly on free blocks without going through
-> mark_*().
-> 
-> The print functions are simplified as a result: the rbtree traversal
-> is replaced by a direct array lookup.
-> 
-> v2: Update after fix for use-after-free in split_block() call sites
-> 
-> Signed-off-by: Francois Dugast <francois.dugast@intel.com>
-> Assisted-by: GitHub Copilot:claude-sonnet-4.6
-> ---
->   drivers/gpu/buddy.c         | 39 +++++++++++++++++++++++--------------
->   drivers/gpu/drm/drm_buddy.c | 16 ++-------------
->   include/linux/gpu_buddy.h   |  7 +++++++
->   3 files changed, 33 insertions(+), 29 deletions(-)
-> 
-> diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
-> index dac2027bb64a..01247e3201fb 100644
-> --- a/drivers/gpu/buddy.c
-> +++ b/drivers/gpu/buddy.c
-> @@ -193,6 +193,8 @@ static void mark_allocated(struct gpu_buddy *mm,
->   	block->header &= ~GPU_BUDDY_HEADER_STATE;
->   	block->header |= GPU_BUDDY_ALLOCATED;
->   
-> +	mm->free_scoreboard[gpu_buddy_block_order(block)]--;
-> +
->   	rbtree_remove(mm, block);
->   }
->   
-> @@ -204,6 +206,8 @@ static void mark_free(struct gpu_buddy *mm,
->   	block->header &= ~GPU_BUDDY_HEADER_STATE;
->   	block->header |= GPU_BUDDY_FREE;
->   
-> +	mm->free_scoreboard[gpu_buddy_block_order(block)]++;
-> +
->   	tree = get_block_tree(block);
->   	rbtree_insert(mm, block, tree);
->   }
-> @@ -214,6 +218,8 @@ static void mark_split(struct gpu_buddy *mm,
->   	block->header &= ~GPU_BUDDY_HEADER_STATE;
->   	block->header |= GPU_BUDDY_SPLIT;
->   
-> +	mm->free_scoreboard[gpu_buddy_block_order(block)]--;
-> +
->   	rbtree_remove(mm, block);
->   }
->   
-> @@ -271,6 +277,7 @@ static unsigned int __gpu_buddy_free(struct gpu_buddy *mm,
->   		}
->   
->   		rbtree_remove(mm, buddy);
-> +		mm->free_scoreboard[gpu_buddy_block_order(buddy)]--;
->   		if (force_merge && gpu_buddy_block_is_clear(buddy))
->   			mm->clear_avail -= gpu_buddy_block_size(mm, buddy);
->   
-> @@ -335,6 +342,7 @@ static int __force_merge(struct gpu_buddy *mm,
->   					iter = rb_prev(iter);
->   
->   				rbtree_remove(mm, block);
-> +				mm->free_scoreboard[gpu_buddy_block_order(block)]--;
->   				if (gpu_buddy_block_is_clear(block))
->   					mm->clear_avail -= gpu_buddy_block_size(mm, block);
->   
-> @@ -384,11 +392,17 @@ int gpu_buddy_init(struct gpu_buddy *mm, u64 size, u64 chunk_size)
->   
->   	BUG_ON(mm->max_order > GPU_BUDDY_MAX_ORDER);
->   
-> +	mm->free_scoreboard = kcalloc(mm->max_order + 1,
-> +				      sizeof(*mm->free_scoreboard),
-> +				      GFP_KERNEL);
-> +	if (!mm->free_scoreboard)
-> +		return -ENOMEM;
-> +
->   	mm->free_trees = kmalloc_array(GPU_BUDDY_MAX_FREE_TREES,
->   				       sizeof(*mm->free_trees),
->   				       GFP_KERNEL);
->   	if (!mm->free_trees)
-> -		return -ENOMEM;
-> +		goto out_free_scoreboard;
->   
->   	for_each_free_tree(i) {
->   		mm->free_trees[i] = kmalloc_array(mm->max_order + 1,
-> @@ -450,6 +464,8 @@ int gpu_buddy_init(struct gpu_buddy *mm, u64 size, u64 chunk_size)
->   	while (i--)
->   		kfree(mm->free_trees[i]);
->   	kfree(mm->free_trees);
-> +out_free_scoreboard:
-> +	kfree(mm->free_scoreboard);
->   	return -ENOMEM;
->   }
->   EXPORT_SYMBOL(gpu_buddy_init);
-> @@ -488,6 +504,7 @@ void gpu_buddy_fini(struct gpu_buddy *mm)
->   		kfree(mm->free_trees[i]);
->   	kfree(mm->free_trees);
->   	kfree(mm->roots);
-> +	kfree(mm->free_scoreboard);
->   }
->   EXPORT_SYMBOL(gpu_buddy_fini);
->   
-> @@ -739,6 +756,7 @@ __alloc_range_bias(struct gpu_buddy *mm,
->   	    (gpu_buddy_block_is_free(block) &&
->   	     gpu_buddy_block_is_free(buddy))) {
->   		rbtree_remove(mm, block);
-> +		mm->free_scoreboard[gpu_buddy_block_order(block)]--;
->   		__gpu_buddy_free(mm, block, false);
+This reverts commit 40d2f5820951dee818d05c14677277048bd85f9f.
 
-Wondering if it now makes sense to refactor this and consolidate in one 
-place? Maybe something like:
+Removing the try_vesa_interface gate caused a backlight regression on
+panels whose VBT correctly reports INTEL_BACKLIGHT_DISPLAY_DDI and whose
+PWM path is the actual backlight control, but whose DPCD optimistically
+advertises DP_EDP_BACKLIGHT_AUX_ENABLE_CAP / _BRIGHTNESS_AUX_SET_CAP.
+After the commit such panels silently bind to the VESA AUX backlight
+funcs; AUX writes complete but the panel ignores them, leaving
+brightness stuck (no-op backlight). Observed on at least KBL and TGL
+eDP setups.
 
-__gpu_buddy_undo_splits()
-{
-	if (is_free(block) && is_free(buddy) {
-             rbtree_remove(mm, block);
-             mm->free_scoreboard[gpu_buddy_block_order(block)]--;
-             __gpu_buddy_free(mm, block, false);
-         }
-}
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ .../drm/i915/display/intel_dp_aux_backlight.c | 19 ++++++++++++-------
+ 1 file changed, 12 insertions(+), 7 deletions(-)
 
->   	}
->   	return ERR_PTR(err);
-> @@ -851,6 +869,7 @@ alloc_from_freetree(struct gpu_buddy *mm,
->   err_undo:
->   	if (tmp != order) {
->   		rbtree_remove(mm, block);
-> +		mm->free_scoreboard[gpu_buddy_block_order(block)]--;
->   		__gpu_buddy_free(mm, block, false);
->   	}
->   	return ERR_PTR(err);
-> @@ -974,6 +993,7 @@ gpu_buddy_offset_aligned_allocation(struct gpu_buddy *mm,
->   	    (gpu_buddy_block_is_free(block) &&
->   	     gpu_buddy_block_is_free(buddy))) {
->   		rbtree_remove(mm, block);
-> +		mm->free_scoreboard[gpu_buddy_block_order(block)]--;
->   		__gpu_buddy_free(mm, block, false);
->   	}
->   	return ERR_PTR(err);
-> @@ -1062,6 +1082,7 @@ static int __alloc_range(struct gpu_buddy *mm,
->   	    (gpu_buddy_block_is_free(block) &&
->   	     gpu_buddy_block_is_free(buddy))) {
->   		rbtree_remove(mm, block);
-> +		mm->free_scoreboard[gpu_buddy_block_order(block)]--;
->   		__gpu_buddy_free(mm, block, false);
->   	}
->   
-> @@ -1498,21 +1519,9 @@ void gpu_buddy_print(struct gpu_buddy *mm)
->   		mm->chunk_size >> 10, mm->size >> 20, mm->avail >> 20, mm->clear_avail >> 20);
->   
->   	for (order = mm->max_order; order >= 0; order--) {
-> -		struct gpu_buddy_block *block, *tmp;
-> -		struct rb_root *root;
-> -		u64 count = 0, free;
-> -		unsigned int tree;
-> -
-> -		for_each_free_tree(tree) {
-> -			root = &mm->free_trees[tree][order];
-> -
-> -			rbtree_postorder_for_each_entry_safe(block, tmp, root, rb) {
-> -				BUG_ON(!gpu_buddy_block_is_free(block));
-> -				count++;
-> -			}
-> -		}
-> +		u64 count = mm->free_scoreboard[order];
-> +		u64 free = count * (mm->chunk_size << order);
->   
-> -		free = count * (mm->chunk_size << order);
->   		if (free < SZ_1M)
->   			pr_info("order-%2d free: %8llu KiB, blocks: %llu\n",
->   				order, free >> 10, count);
-> diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
-> index faa025498de4..eef995e08a37 100644
-> --- a/drivers/gpu/drm/drm_buddy.c
-> +++ b/drivers/gpu/drm/drm_buddy.c
-> @@ -47,23 +47,11 @@ void drm_buddy_print(struct gpu_buddy *mm, struct drm_printer *p)
->   		   mm->chunk_size >> 10, mm->size >> 20, mm->avail >> 20, mm->clear_avail >> 20);
->   
->   	for (order = mm->max_order; order >= 0; order--) {
-> -		struct gpu_buddy_block *block, *tmp;
-> -		struct rb_root *root;
-> -		u64 count = 0, free;
-> -		unsigned int tree;
-> -
-> -		for_each_free_tree(tree) {
-> -			root = &mm->free_trees[tree][order];
-> -
-> -			rbtree_postorder_for_each_entry_safe(block, tmp, root, rb) {
-> -				BUG_ON(!gpu_buddy_block_is_free(block));
-> -				count++;
-> -			}
-> -		}
-> +		u64 count = mm->free_scoreboard[order];
-> +		u64 free = count * (mm->chunk_size << order);
->   
->   		drm_printf(p, "order-%2d ", order);
->   
-> -		free = count * (mm->chunk_size << order);
->   		if (free < SZ_1M)
->   			drm_printf(p, "free: %8llu KiB", free >> 10);
->   		else
-> diff --git a/include/linux/gpu_buddy.h b/include/linux/gpu_buddy.h
-> index 71941a039648..a28f7d7637ca 100644
-> --- a/include/linux/gpu_buddy.h
-> +++ b/include/linux/gpu_buddy.h
-> @@ -173,6 +173,13 @@ struct gpu_buddy {
->   	 * that fits in the remaining space.
->   	 */
->   	struct gpu_buddy_block **roots;
-> +	/*
-> +	 * Per-order free block scoreboard: free_scoreboard[order] holds the
-> +	 * number of blocks of that order currently in the free state.
-> +	 * Incremented in mark_free(), decremented wherever rbtree_remove() is
-> +	 * called on a free block.
-> +	 */
-> +	u64 *free_scoreboard;
->   /* public: */
->   	unsigned int n_roots;
->   	unsigned int max_order;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+index a8d56ebf06a2..7a6c07f6aaeb 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+@@ -691,10 +691,9 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
+ 	struct intel_dp *intel_dp = intel_attached_dp(connector);
+ 	struct drm_device *dev = connector->base.dev;
+ 	struct intel_panel *panel = &connector->panel;
+-	bool try_intel_interface = false;
++	bool try_intel_interface = false, try_vesa_interface = false;
+ 
+-	/*
+-	 * Check the VBT and user's module parameters to figure out which
++	/* Check the VBT and user's module parameters to figure out which
+ 	 * interfaces to probe
+ 	 */
+ 	switch (display->params.enable_dpcd_backlight) {
+@@ -703,6 +702,7 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
+ 	case INTEL_DP_AUX_BACKLIGHT_AUTO:
+ 		switch (panel->vbt.backlight.type) {
+ 		case INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE:
++			try_vesa_interface = true;
+ 			break;
+ 		case INTEL_BACKLIGHT_DISPLAY_DDI:
+ 			try_intel_interface = true;
+@@ -715,12 +715,20 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
+ 		if (panel->vbt.backlight.type != INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE)
+ 			try_intel_interface = true;
+ 
++		try_vesa_interface = true;
++		break;
++	case INTEL_DP_AUX_BACKLIGHT_FORCE_VESA:
++		try_vesa_interface = true;
+ 		break;
+ 	case INTEL_DP_AUX_BACKLIGHT_FORCE_INTEL:
+ 		try_intel_interface = true;
+ 		break;
+ 	}
+ 
++	/* For eDP 1.5 and above we are supposed to use VESA interface for brightness control */
++	if (intel_dp->edp_dpcd[0] >= DP_EDP_15)
++		try_vesa_interface = true;
++
+ 	/*
+ 	 * Since Intel has their own backlight control interface, the majority of machines out there
+ 	 * using DPCD backlight controls with Intel GPUs will be using this interface as opposed to
+@@ -733,9 +741,6 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
+ 	 * panel with Intel's OUI - which is also required for us to be able to detect Intel's
+ 	 * backlight interface at all. This means that the only sensible way for us to detect both
+ 	 * interfaces is to probe for Intel's first, and VESA's second.
+-	 *
+-	 * Also there is a chance some VBTs may advertise false Intel backlight support even if the
+-	 * TCON DPCD says otherwise. This means we keep VESA interface as fallback in that case.
+ 	 */
+ 	if (try_intel_interface && intel_dp->edp_dpcd[0] <= DP_EDP_14b &&
+ 	    intel_dp_aux_supports_hdr_backlight(connector)) {
+@@ -745,7 +750,7 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
+ 		return 0;
+ 	}
+ 
+-	if (intel_dp_aux_supports_vesa_backlight(connector)) {
++	if (try_vesa_interface && intel_dp_aux_supports_vesa_backlight(connector)) {
+ 		drm_dbg_kms(dev, "[CONNECTOR:%d:%s] Using VESA eDP backlight controls\n",
+ 			    connector->base.base.id, connector->base.name);
+ 		panel->backlight.funcs = &intel_dp_vesa_bl_funcs;
+-- 
+2.34.1
 
