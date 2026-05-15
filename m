@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90D64CD343F
-	for <intel-xe@archiver.kernel.org>; Fri, 15 May 2026 08:24:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66CC6CD343F
+	for <intel-xe@archiver.kernel.org>; Fri, 15 May 2026 08:26:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5702810F3CA;
-	Fri, 15 May 2026 08:24:51 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HOykemlu";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B43810E629;
- Fri, 15 May 2026 08:24:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778833489; x=1810369489;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Y4lvcR5GIrIxt/8BQHn+pNvyz+7XPSraK99OmJ9Hwrk=;
- b=HOykemlu9ybSaOqLAbvOTyi/pEronyH32ZbrmCE62xGwRHzH6Gegfl3P
- u+s7dPg45thMhp36AAdbv+RObmMa7rXFwn0p+MJpeehkwEY15FE6iRW0j
- 3WeU83bBpL4S3KlP1PN+G19AQ0CsSyij2APMXZsTxRwuxd8Ya2COjmnN4
- Hr124J28GeuavsOcU+bphHUtZ90sl2fLZG+NkT2O/uzDcWH9zGeh6HXz9
- Q9fHM2SAC0MJHimY5zKhTtrM7lN5No/uy2wARF+aT9y/ZAblcQzH8qkSJ
- abKL+WApdYG+RrswmYN3vZsegW/piNTvh0XHCTxqIOLZ2Zs7uGfuZlJi7 g==;
-X-CSE-ConnectionGUID: xoo8rr8ETCO3SSdU1vu/kw==
-X-CSE-MsgGUID: gmPo+ZYKQ2GTRSDHXk4duA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11786"; a="67315877"
-X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="67315877"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2026 01:24:49 -0700
-X-CSE-ConnectionGUID: C/gDNrbRSTS9DetS4bl+8A==
-X-CSE-MsgGUID: TMFxvvm6Q9K2fHF0+OJ+2g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="237773066"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa010.jf.intel.com with ESMTP; 15 May 2026 01:24:48 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH] drm/i915/display: Use PIPEDMC_FRMTMSTMP on display ver >= 30
-Date: Fri, 15 May 2026 13:54:43 +0530
-Message-Id: <20260515082443.975592-1-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FC9910F46A;
+	Fri, 15 May 2026 08:26:16 +0000 (UTC)
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D521510F3CA;
+ Fri, 15 May 2026 08:26:15 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7977661079353339236=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFULL=3A_failure_for_drm/xe=3A_Refresh_MEMIRQ_c?=
+ =?utf-8?q?ode?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 15 May 2026 08:26:15 -0000
+Message-ID: <177883357586.74242.5573142599354260070@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260514150010.7123-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20260514150010.7123-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,80 +36,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Starting with display version 30, the per-pipe frame timestamp is read
-from the PIPEDMC register block (PIPEDMC_FRMTMSTMP) instead of the
-legacy PIPE_FRMTMSTMP MMIO. Extend PIPE_FRMTMSTMP() to take the display
-and select the appropriate register based on DISPLAY_VER(), and update
-all callers (intel_vblank, intel_initial_plane) accordingly.
+--===============7977661079353339236==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Bspec: 79482
-WA: 14022946399
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_regs.h  | 7 +++++--
- drivers/gpu/drm/i915/display/intel_initial_plane.c | 4 ++--
- drivers/gpu/drm/i915/display/intel_vblank.c        | 4 ++--
- 3 files changed, 9 insertions(+), 6 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-index 4321f8b529da..579f802215d3 100644
---- a/drivers/gpu/drm/i915/display/intel_display_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-@@ -3149,8 +3149,11 @@ enum skl_power_gate {
- /* g4x+, except vlv/chv! */
- #define _PIPE_FRMTMSTMP_A		0x70048
- #define _PIPE_FRMTMSTMP_B		0x71048
--#define PIPE_FRMTMSTMP(pipe)		\
--	_MMIO_PIPE(pipe, _PIPE_FRMTMSTMP_A, _PIPE_FRMTMSTMP_B)
-+#define _PIPEDMC_FRMTMSTMP_A		0x5f0ac
-+#define _PIPEDMC_FRMTMSTMP_B		0x5f4ac
-+#define PIPE_FRMTMSTMP(display, pipe)	(DISPLAY_VER(display) >= 30 ? \
-+	_MMIO_PIPE(pipe, _PIPEDMC_FRMTMSTMP_A, _PIPEDMC_FRMTMSTMP_B) : \
-+	_MMIO_PIPE(pipe, _PIPE_FRMTMSTMP_A, _PIPE_FRMTMSTMP_B))
- 
- /* g4x+, except vlv/chv! */
- #define _PIPE_FLIPTMSTMP_A		0x7004C
-diff --git a/drivers/gpu/drm/i915/display/intel_initial_plane.c b/drivers/gpu/drm/i915/display/intel_initial_plane.c
-index 034fe199c2a1..004cbdb6be32 100644
---- a/drivers/gpu/drm/i915/display/intel_initial_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_initial_plane.c
-@@ -34,9 +34,9 @@ void intel_initial_plane_vblank_wait(struct intel_crtc *crtc)
- 		return;
- 	}
- 
--	start_ts = intel_de_read(display, PIPE_FRMTMSTMP(crtc->pipe));
-+	start_ts = intel_de_read(display, PIPE_FRMTMSTMP(display, crtc->pipe));
- 
--	ret = poll_timeout_us(end_ts = intel_de_read(display, PIPE_FRMTMSTMP(crtc->pipe)),
-+	ret = poll_timeout_us(end_ts = intel_de_read(display, PIPE_FRMTMSTMP(display, crtc->pipe)),
- 			      end_ts != start_ts, 1000, 1000 * 1000, false);
- 	if (ret)
- 		drm_warn(display->drm, "[CRTC:%d:%s] early vblank wait timed out\n",
-diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index 28d81199792e..52ff47936f9e 100644
---- a/drivers/gpu/drm/i915/display/intel_vblank.c
-+++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -157,7 +157,7 @@ static u32 intel_crtc_scanlines_since_frame_timestamp(struct intel_crtc *crtc)
- 		 * is sampled at every start of vertical blank.
- 		 */
- 		scan_prev_time = intel_de_read_fw(display,
--						  PIPE_FRMTMSTMP(crtc->pipe));
-+						  PIPE_FRMTMSTMP(display, crtc->pipe));
- 
- 		/*
- 		 * The TIMESTAMP_CTR register has the current
-@@ -166,7 +166,7 @@ static u32 intel_crtc_scanlines_since_frame_timestamp(struct intel_crtc *crtc)
- 		scan_curr_time = intel_de_read_fw(display, IVB_TIMESTAMP_CTR);
- 
- 		scan_post_time = intel_de_read_fw(display,
--						  PIPE_FRMTMSTMP(crtc->pipe));
-+						  PIPE_FRMTMSTMP(display, crtc->pipe));
- 	} while (scan_post_time != scan_prev_time);
- 
- 	return div_u64(mul_u32_u32(scan_curr_time - scan_prev_time,
--- 
-2.34.1
+Series: drm/xe: Refresh MEMIRQ code
+URL   : https://patchwork.freedesktop.org/series/166580/
+State : failure
 
+== Summary ==
+
+ERROR: The runconfig 'xe-5063-121c16f9d8c56ea07263df84ab971cc10870fe88_FULL' does not exist in the database
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166580v1/index.html
+
+--===============7977661079353339236==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Refresh MEMIRQ code</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166580/">https://patchwork.freedesktop.org/series/166580/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166580v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166580v1/index.html</a></td></tr>
+
+</table>
+
+
+    <p>ERROR: The runconfig 'xe-5063-121c16f9d8c56ea07263df84ab971cc10870fe88_FULL' does not exist in the database</p>
+
+</body>
+</html>
+
+--===============7977661079353339236==--
