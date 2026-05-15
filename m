@@ -4,55 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FA82CD343F
-	for <intel-xe@archiver.kernel.org>; Fri, 15 May 2026 16:09:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4203CD4F25
+	for <intel-xe@archiver.kernel.org>; Fri, 15 May 2026 16:11:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8CC610F57C;
-	Fri, 15 May 2026 16:09:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47E6210F589;
+	Fri, 15 May 2026 16:11:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bZOQKMaR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AyaQVwiq";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 539AA10F57C
- for <intel-xe@lists.freedesktop.org>; Fri, 15 May 2026 16:09:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 199A410F583;
+ Fri, 15 May 2026 16:11:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778861366; x=1810397366;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=/qwfmphsvoMYhGUVfe4Y35OnOwPvpkGV3OVuXBLUD48=;
- b=bZOQKMaRdJody7MFjjoyhSEr0bQP2prNUeoJgNj2pX65bNBARY/kLM7e
- kcsVZd2JK2UbR+RC4FuzxbQjM5MgweFB0YMek41Eq2+hLnLahkYSYteew
- 3Nr88JBmwAhTggLYwwfyR0OJazrYkxwyZ3K5sLMshhIVWEeoRi3blHEsA
- /LOlUlJs0cuU+ZNXBS/MHYMMLoTADLJ7TuZI+TZ4VPbHfzpI3wyf8Dazt
- n5v00cE9hVH86TOwNpOjaEtz3wDCddCAqSHU2m/FmzaqVXuC4fV8BV812
- qx6Vy1eWF+JlhPX2jiuOjwhcqWzV9sdZwLn3quL/uiechKXO4NnV+x+41 w==;
-X-CSE-ConnectionGUID: OsoY18vHRkapyKfV7FYcTA==
-X-CSE-MsgGUID: 7Tw26LXzQEWd58J0EWhQig==
-X-IronPort-AV: E=McAfee;i="6800,10657,11787"; a="79783065"
-X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="79783065"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2026 09:09:26 -0700
-X-CSE-ConnectionGUID: HHwsv6PwShGo2GoWEIuBTA==
-X-CSE-MsgGUID: aCDb2Ul7SeaA8eYakYAP2w==
+ t=1778861462; x=1810397462;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=kjkfywNHxl/uItXweCrTEh2p5VmOonndEClKUAIur4c=;
+ b=AyaQVwiq11yEEGBK+CHyS4F2kvLxg+RcYbPsFKAM7bj4cGOzvtzgrwUw
+ vb/LJltb5jhk8KeHvJtlQbAU8SisyfQ5Nbrkzlz0eFUoB6/FfT41BZPH1
+ 7tqexRZTfXxk7UTqzc9bb5AogQFG15eTBRXRXe046j1TOn7x64pV+MOep
+ o2yOL6e7LA+34KLE3hpx0Al4TrxUOIiL5C8ezyjzCVfkF3jvO9fqtwq+9
+ 4LXoD/Xw/FVLSgJEwyTHv/Y0LvW38gYYXjNnfyl3NDH+QdodAjJ2eSAqJ
+ MQeD0iWrEeh7hkcjm1NMgvMSAW4v+fMPQ6xa0tQTAtt0odcw5XmjH1bap w==;
+X-CSE-ConnectionGUID: VmDiMhMWQaaDw0ArH21lXg==
+X-CSE-MsgGUID: XeDPKjsSRMyNOwInv3yb+g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11787"; a="79798549"
+X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="79798549"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2026 09:11:01 -0700
+X-CSE-ConnectionGUID: i+esdDu8R+uIbORGc+/jNg==
+X-CSE-MsgGUID: lRzRcIEvRqy1IJFuzMXZxQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="237737079"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.71])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2026 09:09:24 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	stable@vger.kernel.org
-Subject: [PATCH] drm/xe/display: fix oops in suspend/shutdown without display
-Date: Fri, 15 May 2026 19:09:20 +0300
-Message-ID: <20260515160920.1082842-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
+X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="243705492"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by orviesa005.jf.intel.com with ESMTP; 15 May 2026 09:10:58 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com,
+ gustavo.sousa@intel.com, jani.nikula@intel.com,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH] drm/i915/display: Use PIPEDMC_FRMTMSTMP on display ver >= 30
+Date: Fri, 15 May 2026 21:40:56 +0530
+Message-Id: <20260515161056.1007030-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260515155340.1000997-1-suraj.kandpal@intel.com>
+References: <20260515155340.1000997-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,74 +68,109 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The xe driver keeps track of whether to probe display, and whether
-display hardware is there, using xe->info.probe_display. It gets set to
-false if there's no display after intel_display_device_probe(). However,
-the display may also be disabled via fuses, detected at a later time in
-intel_display_device_info_runtime_init().
+Starting with display version 30, the per-pipe frame timestamp is read
+from the PIPEDMC register block (PIPEDMC_FRMTMSTMP) instead of the
+legacy PIPE_FRMTMSTMP MMIO. Extend PIPE_FRMTMSTMP() to take the display
+and select the appropriate register based on DISPLAY_VER(), and update
+all callers intel_vblank accordingly.
 
-In this case, the xe driver does for_each_intel_crtc() on uninitialized
-mode config in xe_display_flush_cleanup_work(), leading to a NULL
-pointer dereference, and generally calls display code with display info
-cleared.
-
-Check for intel_display_device_present() after
-intel_display_device_info_runtime_init(), and reset
-xe->info.probe_display as necessary. Also do unset_display_features()
-for completeness, although display runtime init has already done
-that. This will need to be unified across all cases later.
-
-Move intel_display_device_info_runtime_init() call slightly earlier,
-similar to i915, to avoid a bunch of unnecessary setup for no display
-cases.
-
-Note #1: The xe driver has no business doing low level display plumbing
-like for_each_intel_crtc() to begin with. It all needs to happen in
-display code.
-
-Note #2: The actual bug is present already in commit 44e694958b95
-("drm/xe/display: Implement display support"), but the oops was likely
-introduced later at commit ddf6492e0e50 ("drm/xe/display: Make display
-suspend/resume work on discrete").
-
-Fixes: 44e694958b95 ("drm/xe/display: Implement display support")
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/7904
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/6150
-Cc: <stable@vger.kernel.org> # v6.8+
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Bspec: 79482
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_display.c | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
+v1 -> v2:
+- Define registers in correct location (Jani)
+- Use the intel_display_wa() helper to select the correct register (Gustavo)
+- Fix early vblank timeout issue when DMC is not loaded
 
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index 053abd6f6514..5f25932730f4 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -104,6 +104,15 @@ int xe_display_init_early(struct xe_device *xe)
- 
- 	intel_display_driver_early_probe(display);
- 
-+	intel_display_device_info_runtime_init(display);
+ .../gpu/drm/i915/display/intel_display_wa.c    |  2 ++
+ .../gpu/drm/i915/display/intel_display_wa.h    |  1 +
+ drivers/gpu/drm/i915/display/intel_dmc_regs.h  |  6 ++++++
+ drivers/gpu/drm/i915/display/intel_vblank.c    | 18 ++++++++++++++----
+ 4 files changed, 23 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
+index 7d3d63a59882..44c2a503c911 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_wa.c
++++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
+@@ -110,6 +110,8 @@ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa,
+ 		return DISPLAY_VERx100(display) == 3000 ||
+ 			DISPLAY_VERx100(display) == 2000 ||
+ 			DISPLAY_VERx100(display) == 1401;
++	case INTEL_DISPLAY_WA_14022946399:
++		return DISPLAY_VER(display) >= 30;
+ 	case INTEL_DISPLAY_WA_14025769978:
+ 		return DISPLAY_VER(display) == 35;
+ 	case INTEL_DISPLAY_WA_15013987218:
+diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
+index 15fec843f15e..884463a894c8 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_wa.h
++++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
+@@ -42,6 +42,7 @@ enum intel_display_wa {
+ 	INTEL_DISPLAY_WA_14014143976,
+ 	INTEL_DISPLAY_WA_14016740474,
+ 	INTEL_DISPLAY_WA_14020863754,
++	INTEL_DISPLAY_WA_14022946399,
+ 	INTEL_DISPLAY_WA_14025769978,
+ 	INTEL_DISPLAY_WA_15013987218,
+ 	INTEL_DISPLAY_WA_15018326506,
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc_regs.h b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
+index 38e342b45af0..985642a79a52 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
+@@ -644,4 +644,10 @@ enum pipedmc_event_id {
+ #define _PIPEDMC_DCB_BALANCE_RESET_B		0x986a8
+ #define PIPEDMC_DCB_BALANCE_RESET(pipe)		_MMIO_PIPE(pipe, _PIPEDMC_DCB_BALANCE_RESET_A,\
+ 							   _PIPEDMC_DCB_BALANCE_RESET_B)
 +
-+	/* Display may have been disabled at runtime init */
-+	if (!intel_display_device_present(display)) {
-+		xe->info.probe_display = false;
-+		unset_display_features(xe);
-+		return 0;
-+	}
++#define _PIPEDMC_FRMTMSTMP_A			0x5f0ac
++#define _PIPEDMC_FRMTMSTMP_B			0x5f4ac
++#define PIPEDMC_FRMTMSTMP(pipe)			\
++	_MMIO_PIPE(pipe, _PIPEDMC_FRMTMSTMP_A, _PIPEDMC_FRMTMSTMP_B)
 +
- 	/* Early display init.. */
- 	intel_opregion_setup(display);
+ #endif /* __INTEL_DMC_REGS_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
+index 28d81199792e..145c342f445f 100644
+--- a/drivers/gpu/drm/i915/display/intel_vblank.c
++++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+@@ -15,6 +15,8 @@
+ #include "intel_display_regs.h"
+ #include "intel_display_types.h"
+ #include "intel_display_utils.h"
++#include "intel_display_wa.h"
++#include "intel_dmc_regs.h"
+ #include "intel_vblank.h"
+ #include "intel_vrr.h"
  
-@@ -117,8 +126,6 @@ int xe_display_init_early(struct xe_device *xe)
+@@ -156,8 +158,12 @@ static u32 intel_crtc_scanlines_since_frame_timestamp(struct intel_crtc *crtc)
+ 		 * pipe frame time stamp. The time stamp value
+ 		 * is sampled at every start of vertical blank.
+ 		 */
+-		scan_prev_time = intel_de_read_fw(display,
+-						  PIPE_FRMTMSTMP(crtc->pipe));
++		if (intel_display_wa(display, INTEL_DISPLAY_WA_14022946399))
++			scan_prev_time = intel_de_read_fw(display,
++							  PIPEDMC_FRMTMSTMP(crtc->pipe));
++		else
++			scan_prev_time = intel_de_read_fw(display,
++							  PIPE_FRMTMSTMP(crtc->pipe));
  
- 	intel_bw_init_hw(display);
+ 		/*
+ 		 * The TIMESTAMP_CTR register has the current
+@@ -165,8 +171,12 @@ static u32 intel_crtc_scanlines_since_frame_timestamp(struct intel_crtc *crtc)
+ 		 */
+ 		scan_curr_time = intel_de_read_fw(display, IVB_TIMESTAMP_CTR);
  
--	intel_display_device_info_runtime_init(display);
--
- 	err = intel_display_driver_probe_noirq(display);
- 	if (err)
- 		goto err_opregion;
+-		scan_post_time = intel_de_read_fw(display,
+-						  PIPE_FRMTMSTMP(crtc->pipe));
++		if (intel_display_wa(display, INTEL_DISPLAY_WA_14022946399))
++			scan_post_time = intel_de_read_fw(display,
++							  PIPEDMC_FRMTMSTMP(crtc->pipe));
++		else
++			scan_post_time = intel_de_read_fw(display,
++							  PIPE_FRMTMSTMP(crtc->pipe));
+ 	} while (scan_post_time != scan_prev_time);
+ 
+ 	return div_u64(mul_u32_u32(scan_curr_time - scan_prev_time,
 -- 
-2.47.3
+2.34.1
 
