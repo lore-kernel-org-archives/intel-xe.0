@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43E8CCD4F25
-	for <intel-xe@archiver.kernel.org>; Sat, 16 May 2026 09:35:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8376BCD4F21
+	for <intel-xe@archiver.kernel.org>; Sat, 16 May 2026 09:35:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AE7E10E37C;
-	Sat, 16 May 2026 09:35:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A24F10E189;
+	Sat, 16 May 2026 09:35:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X12M5u6a";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fv1+W3T+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C150B10E189
- for <intel-xe@lists.freedesktop.org>; Sat, 16 May 2026 09:35:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09CCF10E189
+ for <intel-xe@lists.freedesktop.org>; Sat, 16 May 2026 09:35:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778924134; x=1810460134;
+ t=1778924139; x=1810460139;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=OomUiu7EGzJBDD11lbMRKOvHk6tg4Z96205LdjkZNsQ=;
- b=X12M5u6asBPWmfhmmeirn1bGViKwzlFTxFkxzgd1WBcveDNfHt1HiqDU
- 1nxVE2GkpA7ktKKwRb4eoyec3ZHEy2tUcNSAQLG6VeekKOPT/4VBoQLss
- W1u+wnocNl0++1r3vmqp03waL3ApVdxfmP85ZgxVYyvpeg1wxSyJdvqPw
- WAv6FIfzzGnytdFLBhNBNjPtWT5oiIWCaPZbr47oEKQKZRQDn6+qTvPHv
- HUf9X2FBPzSDjsSQ9Fx+pysG1W8uhtDyc/kONu2veZdO9tRnyu3UqRu4M
- 7hEK+I3HgjMxKvh6iYekWeYKBZeIj0uCVxerhju2Cz+VsVyQmHirzy9k/ A==;
-X-CSE-ConnectionGUID: 67nhUCCORRKgo/i5g5+faw==
-X-CSE-MsgGUID: 7tA/Yq1hSwymz0Hgrc2Wzw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11787"; a="90441910"
-X-IronPort-AV: E=Sophos;i="6.23,238,1770624000"; d="scan'208";a="90441910"
+ bh=SjKB7hcU0jVavlFwyBxJENIes9evQ/4KufW6V1ZBMn8=;
+ b=fv1+W3T+9Rn5zg5VXrdupOCCq2GWioTjo78lzIpaQAr0CIACJQGXULbP
+ S8Dx06u3hZ3uyvvHDsdGSMvFZNFbSiVwGLeUPSVij3rNqYi3KUqetL2Ao
+ BxWQHEQRGPwTpwmWDUxCtMF8A+JGc1RmDvG9b1Qq8pNM1X7IsEOwYaNv4
+ QvOGXtYZ+RxN9ycD4VkV8KwJbsjiQAOAmYTmVOGg2CcMHrn9tX3qZExpJ
+ cNoQU5ciyP9lcafz3HIs9FMh6CcO/bDQeRmxKc0Q/6Hw4TOtoOD+KjCv4
+ XZPO8KNQcZHFQcuq/zSkZ1j6MzcswiIqFiCZQ1hbSkTp18RmX7GxiNcx5 g==;
+X-CSE-ConnectionGUID: WsW8/+2GTjSPHsAOBpzpvg==
+X-CSE-MsgGUID: J1mB1B4NStKldgtbQo+LQw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11787"; a="90441925"
+X-IronPort-AV: E=Sophos;i="6.23,238,1770624000"; d="scan'208";a="90441925"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2026 02:35:34 -0700
-X-CSE-ConnectionGUID: EWuOLOnAQEC+pIr30TGjCg==
-X-CSE-MsgGUID: aiggJIxUT2G1ZVSsVGRWTw==
+ 16 May 2026 02:35:39 -0700
+X-CSE-ConnectionGUID: b1AYPl4MSaq68oeLMSLHcw==
+X-CSE-MsgGUID: qg7V9EloTC28YOMkDQta/Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,238,1770624000"; d="scan'208";a="243911644"
+X-IronPort-AV: E=Sophos;i="6.23,238,1770624000"; d="scan'208";a="243911648"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by orviesa005.jf.intel.com with ESMTP; 16 May 2026 02:35:28 -0700
+ by orviesa005.jf.intel.com with ESMTP; 16 May 2026 02:35:34 -0700
 From: Raag Jadav <raag.jadav@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com,
@@ -49,9 +49,9 @@ Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com,
  jani.nikula@intel.com, lukasz.laguna@intel.com, zhanjun.dong@intel.com,
  lukas@wunner.de, daniele.ceraolospurio@intel.com, badal.nilawar@intel.com,
  Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v7 3/8] drm/xe/gt: Introduce FLR helpers
-Date: Sat, 16 May 2026 15:01:26 +0530
-Message-ID: <20260516093131.27442-4-raag.jadav@intel.com>
+Subject: [PATCH v7 4/8] drm/xe/bo_evict: Introduce xe_bo_restore_map()
+Date: Sat, 16 May 2026 15:01:27 +0530
+Message-ID: <20260516093131.27442-5-raag.jadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260516093131.27442-1-raag.jadav@intel.com>
 References: <20260516093131.27442-1-raag.jadav@intel.com>
@@ -71,340 +71,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In preparation of usecases which require preparing/re-initializing GT and
-all its uCs before/after PCIe FLR, introduce flr_prepare/reinit() helpers.
+PCIe FLR clears all hardware state along with GGTT mappings of all
+existing bos. Iterate over early and late kernel bo list and restore
+their GGTT mappings in hardware, so that driver can make use of them
+during re-initialization after PCIe FLR.
 
 Signed-off-by: Raag Jadav <raag.jadav@intel.com>
 Tested-by: Lukasz Laguna <lukasz.laguna@intel.com>
 ---
 v2: Add kernel doc (Matthew Brost)
-v4: Teardown exec queues instead of mangling scheduler pending list (Matthew Brost)
-v6: Add IS_DGFX() assert (Daniele)
-    s/flr_done/reinit (Daniele)
 ---
- drivers/gpu/drm/xe/xe_gsc.c      | 14 +++++++
- drivers/gpu/drm/xe/xe_gsc.h      |  1 +
- drivers/gpu/drm/xe/xe_gt.c       | 23 ++++++++++
- drivers/gpu/drm/xe/xe_gt.h       |  2 +
- drivers/gpu/drm/xe/xe_guc.c      | 29 +++++++++++++
- drivers/gpu/drm/xe/xe_guc.h      |  2 +
- drivers/gpu/drm/xe/xe_huc.c      | 14 +++++++
- drivers/gpu/drm/xe/xe_huc.h      |  1 +
- drivers/gpu/drm/xe/xe_uc.c       | 72 ++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_uc.h       |  2 +
- drivers/gpu/drm/xe/xe_uc_types.h | 14 +++++++
- 11 files changed, 174 insertions(+)
+ drivers/gpu/drm/xe/xe_bo_evict.c | 51 +++++++++++++++++++++++++++-----
+ drivers/gpu/drm/xe/xe_bo_evict.h |  2 ++
+ 2 files changed, 45 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gsc.c b/drivers/gpu/drm/xe/xe_gsc.c
-index aab59dc647fb..7d5700624e46 100644
---- a/drivers/gpu/drm/xe/xe_gsc.c
-+++ b/drivers/gpu/drm/xe/xe_gsc.c
-@@ -549,6 +549,20 @@ void xe_gsc_wait_for_worker_completion(struct xe_gsc *gsc)
- 		flush_work(&gsc->work);
+diff --git a/drivers/gpu/drm/xe/xe_bo_evict.c b/drivers/gpu/drm/xe/xe_bo_evict.c
+index 7661fca7f278..fa75140c88fe 100644
+--- a/drivers/gpu/drm/xe/xe_bo_evict.c
++++ b/drivers/gpu/drm/xe/xe_bo_evict.c
+@@ -189,14 +189,8 @@ int xe_bo_evict_all(struct xe_device *xe)
+ 				     xe_bo_evict_pinned);
  }
  
-+/**
-+ * xe_gsc_reinit() - Re-initialize GSC after FLR
-+ * @gsc: The GSC object
-+ *
-+ * Returns: 0 on success, negative error code otherwise.
-+ */
-+int xe_gsc_reinit(struct xe_gsc *gsc)
-+{
-+	if (!xe_uc_fw_is_loadable(&gsc->fw))
-+		return 0;
-+
-+	return xe_uc_fw_reinit(&gsc->fw);
-+}
-+
- void xe_gsc_stop_prepare(struct xe_gsc *gsc)
+-static int xe_bo_restore_and_map_ggtt(struct xe_bo *bo)
++static int xe_bo_map_ggtt(struct xe_bo *bo)
  {
- 	struct xe_gt *gt = gsc_to_gt(gsc);
-diff --git a/drivers/gpu/drm/xe/xe_gsc.h b/drivers/gpu/drm/xe/xe_gsc.h
-index b8b8e0810ad9..ce390bffb163 100644
---- a/drivers/gpu/drm/xe/xe_gsc.h
-+++ b/drivers/gpu/drm/xe/xe_gsc.h
-@@ -15,6 +15,7 @@ struct xe_hw_engine;
- 
- int xe_gsc_init(struct xe_gsc *gsc);
- int xe_gsc_init_post_hwconfig(struct xe_gsc *gsc);
-+int xe_gsc_reinit(struct xe_gsc *gsc);
- void xe_gsc_wait_for_worker_completion(struct xe_gsc *gsc);
- void xe_gsc_stop_prepare(struct xe_gsc *gsc);
- void xe_gsc_load_start(struct xe_gsc *gsc);
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 783eb6d631b5..acc28389b0d8 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -908,6 +908,29 @@ static int do_gt_restart(struct xe_gt *gt)
+-	int ret;
+-
+-	ret = xe_bo_restore_pinned(bo);
+-	if (ret)
+-		return ret;
+-
+ 	if (bo->flags & XE_BO_FLAG_GGTT) {
+ 		struct xe_tile *tile;
+ 		u8 id;
+@@ -212,6 +206,41 @@ static int xe_bo_restore_and_map_ggtt(struct xe_bo *bo)
  	return 0;
  }
  
 +/**
-+ * xe_gt_flr_prepare() - Prepare GT for FLR
-+ * @gt: the GT object
++ * xe_bo_restore_map() - Restore GGTT mappings of kernel bos
++ * @xe: xe device
 + *
-+ * Prepare all GT uCs for FLR.
-+ */
-+void xe_gt_flr_prepare(struct xe_gt *gt)
-+{
-+	xe_gt_sanitize(gt);
-+	xe_uc_flr_prepare(&gt->uc);
-+}
-+
-+/**
-+ * xe_gt_reinit() - Re-initialize GT after FLR
-+ * @gt: the GT object
++ * PCIe FLR clears all hardware state along with GGTT mappings of all
++ * existing bos. Iterate over early and late kernel bo list and restore
++ * their GGTT mappings in hardware, so that driver can make use of them
++ * during re-initialization after PCIe FLR.
 + *
 + * Returns: 0 on success, negative error code otherwise.
 + */
-+int xe_gt_reinit(struct xe_gt *gt)
-+{
-+	return xe_uc_reinit(&gt->uc);
-+}
-+
- static void gt_reset_worker(struct work_struct *w)
- {
- 	struct xe_gt *gt = container_of(w, typeof(*gt), reset.worker);
-diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
-index 4150aa594f05..488009b9b938 100644
---- a/drivers/gpu/drm/xe/xe_gt.h
-+++ b/drivers/gpu/drm/xe/xe_gt.h
-@@ -45,8 +45,10 @@ static inline bool xe_fault_inject_gt_reset(void)
- }
- 
- struct xe_gt *xe_gt_alloc(struct xe_tile *tile);
-+void xe_gt_flr_prepare(struct xe_gt *gt);
- int xe_gt_init_early(struct xe_gt *gt);
- int xe_gt_init(struct xe_gt *gt);
-+int xe_gt_reinit(struct xe_gt *gt);
- void xe_gt_mmio_init(struct xe_gt *gt);
- void xe_gt_declare_wedged(struct xe_gt *gt);
- int xe_gt_record_default_lrcs(struct xe_gt *gt);
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index e468b638271b..ec291588c482 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -1689,6 +1689,35 @@ void xe_guc_sanitize(struct xe_guc *guc)
- 	xe_guc_submit_disable(guc);
- }
- 
-+/**
-+ * xe_guc_flr_prepare() - Prepare GuC for FLR
-+ * @guc: The GuC object
-+ *
-+ * Stop GuC submission and tear down exec queues.
-+ */
-+void xe_guc_flr_prepare(struct xe_guc *guc)
-+{
-+	if (!xe_uc_fw_is_loadable(&guc->fw))
-+		return;
-+
-+	xe_guc_submit_stop(guc);
-+	xe_guc_submit_pause_abort(guc);
-+}
-+
-+/**
-+ * xe_guc_reinit() - Re-initialize GuC after FLR
-+ * @guc: The GuC object
-+ *
-+ * Returns: 0 on success, negative error code otherwise.
-+ */
-+int xe_guc_reinit(struct xe_guc *guc)
-+{
-+	if (!xe_uc_fw_is_loadable(&guc->fw))
-+		return 0;
-+
-+	return xe_uc_fw_reinit(&guc->fw);
-+}
-+
- int xe_guc_reset_prepare(struct xe_guc *guc)
- {
- 	return xe_guc_submit_reset_prepare(guc);
-diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
-index 02514914f404..0eea9277439a 100644
---- a/drivers/gpu/drm/xe/xe_guc.h
-+++ b/drivers/gpu/drm/xe/xe_guc.h
-@@ -32,10 +32,12 @@
- struct drm_printer;
- 
- void xe_guc_comm_init_early(struct xe_guc *guc);
-+void xe_guc_flr_prepare(struct xe_guc *guc);
- int xe_guc_init_noalloc(struct xe_guc *guc);
- int xe_guc_init(struct xe_guc *guc);
- int xe_guc_init_post_hwconfig(struct xe_guc *guc);
- int xe_guc_post_load_init(struct xe_guc *guc);
-+int xe_guc_reinit(struct xe_guc *guc);
- int xe_guc_reset(struct xe_guc *guc);
- int xe_guc_upload(struct xe_guc *guc);
- int xe_guc_min_load_for_hwconfig(struct xe_guc *guc);
-diff --git a/drivers/gpu/drm/xe/xe_huc.c b/drivers/gpu/drm/xe/xe_huc.c
-index 57afe21444b1..c73e1acbd091 100644
---- a/drivers/gpu/drm/xe/xe_huc.c
-+++ b/drivers/gpu/drm/xe/xe_huc.c
-@@ -296,6 +296,20 @@ void xe_huc_sanitize(struct xe_huc *huc)
- 	xe_uc_fw_sanitize(&huc->fw);
- }
- 
-+/**
-+ * xe_huc_reinit() - Re-initialize HuC after FLR
-+ * @huc: The HuC object
-+ *
-+ * Returns: 0 on success, negative error code otherwise.
-+ */
-+int xe_huc_reinit(struct xe_huc *huc)
-+{
-+	if (!xe_uc_fw_is_loadable(&huc->fw))
-+		return 0;
-+
-+	return xe_uc_fw_reinit(&huc->fw);
-+}
-+
- void xe_huc_print_info(struct xe_huc *huc, struct drm_printer *p)
- {
- 	struct xe_gt *gt = huc_to_gt(huc);
-diff --git a/drivers/gpu/drm/xe/xe_huc.h b/drivers/gpu/drm/xe/xe_huc.h
-index fa1c45e70443..cb1a770b4a9c 100644
---- a/drivers/gpu/drm/xe/xe_huc.h
-+++ b/drivers/gpu/drm/xe/xe_huc.h
-@@ -19,6 +19,7 @@ enum xe_huc_auth_types {
- 
- int xe_huc_init(struct xe_huc *huc);
- int xe_huc_init_post_hwconfig(struct xe_huc *huc);
-+int xe_huc_reinit(struct xe_huc *huc);
- int xe_huc_upload(struct xe_huc *huc);
- int xe_huc_auth(struct xe_huc *huc, enum xe_huc_auth_types type);
- bool xe_huc_is_authenticated(struct xe_huc *huc, enum xe_huc_auth_types type);
-diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
-index 75091bde0d50..a9b2442494ec 100644
---- a/drivers/gpu/drm/xe/xe_uc.c
-+++ b/drivers/gpu/drm/xe/xe_uc.c
-@@ -15,6 +15,7 @@
- #include "xe_guc_pc.h"
- #include "xe_guc_rc.h"
- #include "xe_guc_engine_activity.h"
-+#include "xe_guc_submit.h"
- #include "xe_huc.h"
- #include "xe_sriov.h"
- #include "xe_wopcm.h"
-@@ -275,6 +276,77 @@ static void uc_reset_wait(struct xe_uc *uc)
- 		goto again;
- }
- 
-+static void uc_flr_prepare(struct work_struct *w)
-+{
-+	struct xe_uc_flr *flr = container_of(w, struct xe_uc_flr, work);
-+	struct xe_uc *uc = flr->uc;
-+
-+	xe_assert(uc_to_xe(uc), xe_device_wedged(uc_to_xe(uc)));
-+
-+	xe_uc_reset_prepare(uc);
-+	xe_guc_flr_prepare(&uc->guc);
-+}
-+
-+static void uc_flr_sanitize(struct work_struct *w)
-+{
-+	struct xe_uc_flr *flr = container_of(w, struct xe_uc_flr, work);
-+	struct xe_uc *uc = flr->uc;
-+
-+	/* TODO: Sanitize GSC firmware */
-+	xe_assert(uc_to_xe(uc), IS_DGFX(uc_to_xe(uc)));
-+
-+	xe_uc_stop(uc);
-+	xe_uc_sanitize(uc);
-+}
-+
-+/**
-+ * xe_uc_flr_prepare() - Prepare uCs for FLR
-+ * @uc: The uC object
-+ *
-+ * Tear down pending work and stop all uCs.
-+ */
-+void xe_uc_flr_prepare(struct xe_uc *uc)
-+{
-+	struct xe_uc_flr flr = { .uc = uc };
-+	struct xe_gt *gt = uc_to_gt(uc);
-+
-+	/*
-+	 * We'll be tearing down exec queues which signals all fences and frees the
-+	 * jobs but all of that happens asynchronously, so make sure we don't disrupt
-+	 * the scheduler while jobs are still in-flight.
-+	 */
-+	INIT_WORK_ONSTACK(&flr.work, uc_flr_prepare);
-+	queue_work(gt->ordered_wq, &flr.work);
-+	flush_work(&flr.work);
-+	destroy_work_on_stack(&flr.work);
-+
-+	INIT_WORK_ONSTACK(&flr.work, uc_flr_sanitize);
-+	queue_work(gt->ordered_wq, &flr.work);
-+	flush_work(&flr.work);
-+	destroy_work_on_stack(&flr.work);
-+}
-+
-+/**
-+ * xe_uc_reinit() - Re-initialize uCs after FLR
-+ * @uc: The uC object
-+ *
-+ * Returns: 0 on success, negative error code otherwise.
-+ */
-+int xe_uc_reinit(struct xe_uc *uc)
++int xe_bo_restore_map(struct xe_device *xe)
 +{
 +	int ret;
 +
-+	ret = xe_guc_reinit(&uc->guc);
-+	if (ret)
-+		return ret;
++	ret = xe_bo_apply_to_pinned(xe, &xe->pinned.early.kernel_bo_present,
++				    &xe->pinned.early.kernel_bo_present, xe_bo_map_ggtt);
++	if (!ret)
++		ret = xe_bo_apply_to_pinned(xe, &xe->pinned.late.kernel_bo_present,
++					    &xe->pinned.late.kernel_bo_present, xe_bo_map_ggtt);
 +
-+	ret = xe_huc_reinit(&uc->huc);
-+	if (ret)
-+		return ret;
-+
-+	return xe_gsc_reinit(&uc->gsc);
++	return ret;
 +}
 +
- void xe_uc_suspend_prepare(struct xe_uc *uc)
- {
- 	xe_gsc_wait_for_worker_completion(&uc->gsc);
-diff --git a/drivers/gpu/drm/xe/xe_uc.h b/drivers/gpu/drm/xe/xe_uc.h
-index 255a54a8f876..e06f7937111f 100644
---- a/drivers/gpu/drm/xe/xe_uc.h
-+++ b/drivers/gpu/drm/xe/xe_uc.h
-@@ -8,10 +8,12 @@
++static int xe_bo_restore_and_map_ggtt(struct xe_bo *bo)
++{
++	int ret;
++
++	ret = xe_bo_restore_pinned(bo);
++	if (ret)
++		return ret;
++
++	return xe_bo_map_ggtt(bo);
++}
++
+ /**
+  * xe_bo_restore_early - restore early phase kernel BOs to VRAM
+  *
+@@ -270,7 +299,13 @@ int xe_bo_restore_late(struct xe_device *xe)
+ 	return ret;
+ }
  
- struct xe_uc;
- 
-+void xe_uc_flr_prepare(struct xe_uc *uc);
- int xe_uc_init_noalloc(struct xe_uc *uc);
- int xe_uc_init(struct xe_uc *uc);
- int xe_uc_init_post_hwconfig(struct xe_uc *uc);
- int xe_uc_load_hw(struct xe_uc *uc);
-+int xe_uc_reinit(struct xe_uc *uc);
- int xe_uc_reset_prepare(struct xe_uc *uc);
- void xe_uc_runtime_resume(struct xe_uc *uc);
- void xe_uc_runtime_suspend(struct xe_uc *uc);
-diff --git a/drivers/gpu/drm/xe/xe_uc_types.h b/drivers/gpu/drm/xe/xe_uc_types.h
-index 1708379dc834..2b47382f7b3b 100644
---- a/drivers/gpu/drm/xe/xe_uc_types.h
-+++ b/drivers/gpu/drm/xe/xe_uc_types.h
-@@ -25,4 +25,18 @@ struct xe_uc {
- 	struct xe_wopcm wopcm;
- };
- 
+-static void xe_bo_pci_dev_remove_pinned(struct xe_device *xe)
 +/**
-+ * struct xe_uc_flr - uC FLR teardown
++ * xe_bo_pci_dev_remove_pinned() - Unmap external bos
++ * @xe: xe device
++ *
++ * Drop dma mappings of all external pinned bos.
 + */
-+struct xe_uc_flr {
-+	/** @uc: uC to schedule FLR worker on */
-+	struct xe_uc *uc;
-+
-+	/**
-+	 * @work: worker for FLR teardown to be done async allowing to safely
-+	 * flush all code paths
-+	 */
-+	struct work_struct work;
-+};
-+
- #endif
++void xe_bo_pci_dev_remove_pinned(struct xe_device *xe)
+ {
+ 	struct xe_tile *tile;
+ 	unsigned int id;
+diff --git a/drivers/gpu/drm/xe/xe_bo_evict.h b/drivers/gpu/drm/xe/xe_bo_evict.h
+index e8385cb7f5e9..d4f5b87243e7 100644
+--- a/drivers/gpu/drm/xe/xe_bo_evict.h
++++ b/drivers/gpu/drm/xe/xe_bo_evict.h
+@@ -14,7 +14,9 @@ int xe_bo_notifier_prepare_all_pinned(struct xe_device *xe);
+ void xe_bo_notifier_unprepare_all_pinned(struct xe_device *xe);
+ int xe_bo_restore_early(struct xe_device *xe);
+ int xe_bo_restore_late(struct xe_device *xe);
++int xe_bo_restore_map(struct xe_device *xe);
+ 
++void xe_bo_pci_dev_remove_pinned(struct xe_device *xe);
+ void xe_bo_pci_dev_remove_all(struct xe_device *xe);
+ 
+ int xe_bo_pinned_init(struct xe_device *xe);
 -- 
 2.43.0
 
