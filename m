@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF960CD4F4A
-	for <intel-xe@archiver.kernel.org>; Mon, 18 May 2026 14:50:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A863FCD4F4A
+	for <intel-xe@archiver.kernel.org>; Mon, 18 May 2026 14:52:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F05C10E2F1;
-	Mon, 18 May 2026 14:50:28 +0000 (UTC)
-Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34FE710E2F1;
- Mon, 18 May 2026 14:50:27 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============9036853676246722728=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6557E10E323;
+	Mon, 18 May 2026 14:52:49 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bEHIIJkt";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E766C10E323;
+ Mon, 18 May 2026 14:52:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1779115968; x=1810651968;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=7mvHWZQ+X6bZ0fX2ptU0F4YAnGGr6MBGOVgr2nlrlWw=;
+ b=bEHIIJktZDAjVVPraac8e+iZc3FIACp26M2baJzP+F8bCDEsrcyc4EvD
+ mXq8PSGxsqVxAQzqmnzZ5NAROIpQ1JZ/YwHmyf1DHNffdLafr4JooQOr6
+ gJrqTrT+SdVKeypLmnsT+mr8M+svb1ikyuHMXP6ix2Uj0RABXBCtLcsyr
+ IWs0EsUaCdEPxjiYW4Cdejpi6mXdEDCv5SCPZrN5xSG+EINhX8s+lKEdC
+ d+zdNv9sY90HPMEmKw0EPARD6y8TyievQjqiEHms0jh2ZAjHHq+rh8H9I
+ u1/Uu51VQI8FlAN9oz6dlCvmcmjUoyFs8CjzMytsnCN1nwlY7kbTjy3GF Q==;
+X-CSE-ConnectionGUID: 0ST5vd99TbGgTDI9BjpiwQ==
+X-CSE-MsgGUID: mggF6XSDSH2kGtBUWva6Ng==
+X-IronPort-AV: E=McAfee;i="6800,10657,11790"; a="97400241"
+X-IronPort-AV: E=Sophos;i="6.23,242,1770624000"; d="scan'208";a="97400241"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 May 2026 07:52:48 -0700
+X-CSE-ConnectionGUID: yRYFsSGUTzS7kD1ZdWy1dw==
+X-CSE-MsgGUID: jbt4vA45RoO5glrt7xzvbw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,242,1770624000"; d="scan'208";a="243747401"
+Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.108])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 May 2026 07:52:45 -0700
+Date: Mon, 18 May 2026 17:52:41 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915/display: use set_context_latency for DSB
+ W2-line waits
+Message-ID: <agsnuYVMWNSJwf4F@intel.com>
+References: <20260518060522.2945720-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Unify_fault_injec?=
- =?utf-8?q?tion_hooks_for_CSC=2C_GT_reset_=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mallesh Koujalagi" <mallesh.koujalagi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 18 May 2026 14:50:27 -0000
-Message-ID: <177911582721.80757.11586748047452043495@5ab824fced77>
-X-Patchwork-Hint: ignore
-References: <20260518134658.113460-2-mallesh.koujalagi@intel.com>
-In-Reply-To: <20260518134658.113460-2-mallesh.koujalagi@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260518060522.2945720-1-ankit.k.nautiyal@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +69,99 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============9036853676246722728==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, May 18, 2026 at 11:35:22AM +0530, Ankit Nautiyal wrote:
+> set_context_latency represents W2 window/latency lines.
+> Earlier, delayed and undelayed vblank coincided, so this matched the
+> distance from vactive end to undelayed vblank start.
+> 
+> After guardband optimization changes, delayed vblank start can move
+> away from undelayed vblank. In DSB non-VRR paths, the older
+> intel_mode_vblank_delay() is still used in some code paths.
+> 
+> Fix this by using set_context_latency directly for W2-line waits.
+> 
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dsb.c | 11 ++---------
+>  1 file changed, 2 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+> index fec8a56e21ea..8521f5969aca 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dsb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+> @@ -745,6 +745,7 @@ void intel_dsb_vblank_evade(struct intel_atomic_state *state,
+>  		intel_pre_commit_crtc_state(state, crtc);
+>  	int latency = intel_usecs_to_scanlines(&crtc_state->hw.adjusted_mode,
+>  					       intel_dsb_arm_exec_time_us());
+> +	int vblank_delay = crtc_state->set_context_latency;
+>  	int start, end;
+>  
+>  	/*
+> @@ -760,7 +761,6 @@ void intel_dsb_vblank_evade(struct intel_atomic_state *state,
+>  		intel_dsb_emit_wait_dsl(dsb, DSB_OPCODE_WAIT_DSL_OUT, 0, 0);
+>  
+>  	if (pre_commit_is_vrr_active(state, crtc) && crtc_state->vrr.dc_balance.enable) {
+> -		int vblank_delay = crtc_state->set_context_latency;
+>  		int vmin_vblank_start, vmax_vblank_start;
+>  
+>  		vmin_vblank_start = intel_vrr_dcb_vmin_vblank_start_next(crtc_state);
+> @@ -789,8 +789,6 @@ void intel_dsb_vblank_evade(struct intel_atomic_state *state,
+>  		start = end - vblank_delay - latency;
+>  		intel_dsb_wait_scanline_out(state, dsb, start, end);
+>  	} else if (pre_commit_is_vrr_active(state, crtc)) {
+> -		int vblank_delay = crtc_state->set_context_latency;
+> -
+>  		end = intel_vrr_vmin_vblank_start(crtc_state);
+>  		start = end - vblank_delay - latency;
+>  		intel_dsb_wait_scanline_out(state, dsb, start, end);
+> @@ -799,8 +797,6 @@ void intel_dsb_vblank_evade(struct intel_atomic_state *state,
+>  		start = end - vblank_delay - latency;
+>  		intel_dsb_wait_scanline_out(state, dsb, start, end);
+>  	} else {
+> -		int vblank_delay = intel_mode_vblank_delay(&crtc_state->hw.adjusted_mode);
+> -
+>  		end = intel_mode_vblank_start(&crtc_state->hw.adjusted_mode);
+>  		start = end - vblank_delay - latency;
+>  		intel_dsb_wait_scanline_out(state, dsb, start, end);
+> @@ -889,7 +885,7 @@ void intel_dsb_wait_for_delayed_vblank(struct intel_atomic_state *state,
+>  		intel_pre_commit_crtc_state(state, crtc);
+>  	const struct drm_display_mode *adjusted_mode =
+>  		&crtc_state->hw.adjusted_mode;
+> -	int wait_scanlines;
+> +	int wait_scanlines = crtc_state->set_context_latency + 1;
+>  
+>  	if (pre_commit_is_vrr_active(state, crtc)) {
+>  		/*
+> @@ -912,9 +908,6 @@ void intel_dsb_wait_for_delayed_vblank(struct intel_atomic_state *state,
+>  		 * scanline until the delayed vblank occurs after
+>  		 * TRANS_PUSH has been written.
+>  		 */
+> -		wait_scanlines = crtc_state->set_context_latency + 1;
+> -	} else {
+> -		wait_scanlines = intel_mode_vblank_delay(adjusted_mode);
 
-== Series Details ==
+After further consideration I think the current code is in fact correct.
+intel_dsb_wait_vblanks()/DSB_WAIT_FOR_VBLANK will wait for the undelayed
+vblank when VRR is disabled, so this does need the full wait.
 
-Series: drm/xe: Unify fault injection hooks for CSC, GT reset (rev6)
-URL   : https://patchwork.freedesktop.org/series/164761/
-State : success
+So I think the actual issue is more of a userspace bug in that they
+assume the event fires at vblank_start and guesstimate the deadline
+based on the time when the event was received. What they need to do
+is calculate the deadline based on the event timestamp.
 
-== Summary ==
+Another option might be to switch to using the safe window even for
+the '!vrr && always_use_vrr_tg()' case. But that probably needs some
+actual thought...
 
-CI Bug Log - changes from xe-5080-01f44ea3ecb5404c53ba288053f42e0a52cd36ef_BAT -> xe-pw-164761v6_BAT
-====================================================
+>  	}
+>  
+>  	intel_dsb_wait_usec(dsb, intel_scanlines_to_usecs(adjusted_mode, wait_scanlines));
+> -- 
+> 2.45.2
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5080-01f44ea3ecb5404c53ba288053f42e0a52cd36ef -> xe-pw-164761v6
-
-  IGT_8917: 65d691069f26fc2a42c79e2364241320b85d48bc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5080-01f44ea3ecb5404c53ba288053f42e0a52cd36ef: 01f44ea3ecb5404c53ba288053f42e0a52cd36ef
-  xe-pw-164761v6: 164761v6
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164761v6/index.html
-
---===============9036853676246722728==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Unify fault injection hooks for CSC, GT reset (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164761/">https://patchwork.freedesktop.org/series/164761/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164761v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164761v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5080-01f44ea3ecb5404c53ba288053f42e0a52cd36ef_BAT -&gt; xe-pw-164761v6_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5080-01f44ea3ecb5404c53ba288053f42e0a52cd36ef -&gt; xe-pw-164761v6</li>
-</ul>
-<p>IGT_8917: 65d691069f26fc2a42c79e2364241320b85d48bc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5080-01f44ea3ecb5404c53ba288053f42e0a52cd36ef: 01f44ea3ecb5404c53ba288053f42e0a52cd36ef<br />
-  xe-pw-164761v6: 164761v6</p>
-
-</body>
-</html>
-
---===============9036853676246722728==--
+-- 
+Ville Syrjälä
+Intel
