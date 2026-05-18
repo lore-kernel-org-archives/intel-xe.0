@@ -4,63 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45C50CD4F49
-	for <intel-xe@archiver.kernel.org>; Mon, 18 May 2026 14:18:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4F39CD4F49
+	for <intel-xe@archiver.kernel.org>; Mon, 18 May 2026 14:40:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBFAC10E889;
-	Mon, 18 May 2026 14:18:06 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fyz+9Tc4";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12EA910E889;
- Mon, 18 May 2026 14:18:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779113885; x=1810649885;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=oJ4zgKFd8pxw17H9l8r8lD7Mw7hZSQVq852ZTL/I0uY=;
- b=fyz+9Tc4Lf9xDx91oR+ZcMvs8xDQZcPaLODkqxrsflTok+eDj/+zACnB
- sxNaYRy9MuwS5v66XwiE6L1pS58lIFFH4kG40VkfacKxJQkBp1Kt4ivMU
- aWyul6jE/RmyVCmVZaMBXaXhxiwbEeWG8hw9YQvg6FNV27hi+iubcwVWF
- AZeeyMAtaIBMkDAXvdOw/ANc0xNHCSlh+Kr/RU/BYBN7hjDZ/y89G56nA
- zIIt2Iu/7Jgls/yisqgkhBKgt52K9oSl5ocEEAc4DQVHxIlsxYzPa+h6d
- pzWAcvR752goVp4R0Lp7YCBKGRhkwX4WjhLJWbeEp3OYZc2HjltE0ouQL g==;
-X-CSE-ConnectionGUID: hwA9YOkTTN+K88xBDxOW3A==
-X-CSE-MsgGUID: txkCSn7WToWhyC5pVib7pw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11790"; a="91070124"
-X-IronPort-AV: E=Sophos;i="6.23,242,1770624000"; d="scan'208";a="91070124"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2026 07:18:04 -0700
-X-CSE-ConnectionGUID: hhi7NE2vQ/qmY584TOAvZg==
-X-CSE-MsgGUID: 8wuJNg/qTMGwBRUuTH3+HQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,242,1770624000"; d="scan'208";a="238441715"
-Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.244.108])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2026 07:18:02 -0700
-Date: Mon, 18 May 2026 17:17:59 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com,
- gustavo.sousa@intel.com, jani.nikula@intel.com
-Subject: Re: [PATCH] drm/i915/display: Use PIPEDMC_FRMTMSTMP on display ver
- >= 30
-Message-ID: <agsflxLSJ-nmCu7I@intel.com>
-References: <20260515155340.1000997-1-suraj.kandpal@intel.com>
- <20260515161056.1007030-1-suraj.kandpal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B4E910E2FA;
+	Mon, 18 May 2026 14:40:02 +0000 (UTC)
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 749E710E2FA;
+ Mon, 18 May 2026 14:40:01 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260515161056.1007030-1-suraj.kandpal@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_gpu/buddy=3A_Per-order_fr?=
+ =?utf-8?q?ee_and_used_block_scoreboards_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Francois Dugast" <francois.dugast@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 18 May 2026 14:40:01 -0000
+Message-ID: <177911520147.78652.714808695626037371@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260518141446.124508-1-francois.dugast@intel.com>
+In-Reply-To: <20260518141446.124508-1-francois.dugast@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,125 +36,75 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, May 15, 2026 at 09:40:56PM +0530, Suraj Kandpal wrote:
-> Starting with display version 30, the per-pipe frame timestamp is read
-> from the PIPEDMC register block (PIPEDMC_FRMTMSTMP) instead of the
-> legacy PIPE_FRMTMSTMP MMIO. Extend PIPE_FRMTMSTMP() to take the display
-> and select the appropriate register based on DISPLAY_VER(), and update
-> all callers intel_vblank accordingly.
-> 
-> Bspec: 79482
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
-> v1 -> v2:
-> - Define registers in correct location (Jani)
-> - Use the intel_display_wa() helper to select the correct register (Gustavo)
-> - Fix early vblank timeout issue when DMC is not loaded
-> 
->  .../gpu/drm/i915/display/intel_display_wa.c    |  2 ++
->  .../gpu/drm/i915/display/intel_display_wa.h    |  1 +
->  drivers/gpu/drm/i915/display/intel_dmc_regs.h  |  6 ++++++
->  drivers/gpu/drm/i915/display/intel_vblank.c    | 18 ++++++++++++++----
->  4 files changed, 23 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
-> index 7d3d63a59882..44c2a503c911 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_wa.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
-> @@ -110,6 +110,8 @@ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa,
->  		return DISPLAY_VERx100(display) == 3000 ||
->  			DISPLAY_VERx100(display) == 2000 ||
->  			DISPLAY_VERx100(display) == 1401;
-> +	case INTEL_DISPLAY_WA_14022946399:
-> +		return DISPLAY_VER(display) >= 30;
+== Series Details ==
 
-According to bspec PIPEDMC_FRMTMSTMP shouldn't even exist on PTL.
-Did you actually check that the register works?
+Series: gpu/buddy: Per-order free and used block scoreboards (rev4)
+URL   : https://patchwork.freedesktop.org/series/165914/
+State : warning
 
-And I believe the hw register corruption issue being addressed by
-w/a 14022946399 (also applies to LNL) should anyway be fixed on the
-platforms that have PIPEDMC_FRMTMSTMP so this w/a stuff here makes
-no sense.
+== Summary ==
 
->  	case INTEL_DISPLAY_WA_14025769978:
->  		return DISPLAY_VER(display) == 35;
->  	case INTEL_DISPLAY_WA_15013987218:
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
-> index 15fec843f15e..884463a894c8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_wa.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
-> @@ -42,6 +42,7 @@ enum intel_display_wa {
->  	INTEL_DISPLAY_WA_14014143976,
->  	INTEL_DISPLAY_WA_14016740474,
->  	INTEL_DISPLAY_WA_14020863754,
-> +	INTEL_DISPLAY_WA_14022946399,
->  	INTEL_DISPLAY_WA_14025769978,
->  	INTEL_DISPLAY_WA_15013987218,
->  	INTEL_DISPLAY_WA_15018326506,
-> diff --git a/drivers/gpu/drm/i915/display/intel_dmc_regs.h b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-> index 38e342b45af0..985642a79a52 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-> @@ -644,4 +644,10 @@ enum pipedmc_event_id {
->  #define _PIPEDMC_DCB_BALANCE_RESET_B		0x986a8
->  #define PIPEDMC_DCB_BALANCE_RESET(pipe)		_MMIO_PIPE(pipe, _PIPEDMC_DCB_BALANCE_RESET_A,\
->  							   _PIPEDMC_DCB_BALANCE_RESET_B)
-> +
-> +#define _PIPEDMC_FRMTMSTMP_A			0x5f0ac
-> +#define _PIPEDMC_FRMTMSTMP_B			0x5f4ac
-> +#define PIPEDMC_FRMTMSTMP(pipe)			\
-> +	_MMIO_PIPE(pipe, _PIPEDMC_FRMTMSTMP_A, _PIPEDMC_FRMTMSTMP_B)
-> +
->  #endif /* __INTEL_DMC_REGS_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-> index 28d81199792e..145c342f445f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vblank.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-> @@ -15,6 +15,8 @@
->  #include "intel_display_regs.h"
->  #include "intel_display_types.h"
->  #include "intel_display_utils.h"
-> +#include "intel_display_wa.h"
-> +#include "intel_dmc_regs.h"
->  #include "intel_vblank.h"
->  #include "intel_vrr.h"
->  
-> @@ -156,8 +158,12 @@ static u32 intel_crtc_scanlines_since_frame_timestamp(struct intel_crtc *crtc)
->  		 * pipe frame time stamp. The time stamp value
->  		 * is sampled at every start of vertical blank.
->  		 */
-> -		scan_prev_time = intel_de_read_fw(display,
-> -						  PIPE_FRMTMSTMP(crtc->pipe));
-> +		if (intel_display_wa(display, INTEL_DISPLAY_WA_14022946399))
-> +			scan_prev_time = intel_de_read_fw(display,
-> +							  PIPEDMC_FRMTMSTMP(crtc->pipe));
-> +		else
-> +			scan_prev_time = intel_de_read_fw(display,
-> +							  PIPE_FRMTMSTMP(crtc->pipe));
->  
->  		/*
->  		 * The TIMESTAMP_CTR register has the current
-> @@ -165,8 +171,12 @@ static u32 intel_crtc_scanlines_since_frame_timestamp(struct intel_crtc *crtc)
->  		 */
->  		scan_curr_time = intel_de_read_fw(display, IVB_TIMESTAMP_CTR);
->  
-> -		scan_post_time = intel_de_read_fw(display,
-> -						  PIPE_FRMTMSTMP(crtc->pipe));
-> +		if (intel_display_wa(display, INTEL_DISPLAY_WA_14022946399))
-> +			scan_post_time = intel_de_read_fw(display,
-> +							  PIPEDMC_FRMTMSTMP(crtc->pipe));
-> +		else
-> +			scan_post_time = intel_de_read_fw(display,
-> +							  PIPE_FRMTMSTMP(crtc->pipe));
->  	} while (scan_post_time != scan_prev_time);
->  
->  	return div_u64(mul_u32_u32(scan_curr_time - scan_prev_time,
-> -- 
-> 2.34.1
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 6a9bcb3c868da49bb3b1bb325729dfe845e6b6d7
+Author: Francois Dugast <francois.dugast@intel.com>
+Date:   Mon May 18 16:14:30 2026 +0200
 
--- 
-Ville Syrjälä
-Intel
+    gpu/buddy: Track per-order used blocks with a scoreboard
+    
+    Extend the scoreboard approach from the previous commit to used blocks,
+    so drm_buddy_print() can report per-order allocation pressure in O(1).
+    
+    Unlike free blocks, an allocated block can leave the allocated state
+    through mark_free() (normal free and gpu_buddy_block_trim()) or be
+    consumed directly by gpu_block_free() during coalescing. Both sites are
+    guarded by gpu_buddy_block_is_allocated() and paired with the increment
+    in mark_allocated().
+    
+    v2:
+    - Update after fix for use-after-free in split_block() call sites
+    - Change goto label to out_free_used_scoreboard for clarity
+    - Make drm_buddy_print() and gpu_buddy_print() symmetric for used and
+      free
+    
+    Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+    Assisted-by: GitHub Copilot:claude-sonnet-4.6
++ /mt/dim checkpatch dd6c69e211ead406faa36e4e2ec21f2ad8b75bbc drm-intel
+646e0fe8e092 gpu/buddy: Fix use-after-free in split_block() call sites
+-:24: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#24: 
+Reported-by: Sashiko <sashiko-bot@kernel.org>
+Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+
+-:26: WARNING:BAD_SIGN_OFF: Assisted-by expects 'AGENT_NAME:MODEL_VERSION [TOOL1] [TOOL2]' format
+#26: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
+
+total: 0 errors, 2 warnings, 0 checks, 44 lines checked
+ee737f53ae0b gpu/buddy: Remove redundant condition in alloc_from_freetree() error path
+c374c837ca4e gpu/buddy: Introduce __gpu_buddy_undo_splits() helper
+090bdd49ce30 gpu/buddy: Track per-order free blocks with a scoreboard
+-:27: WARNING:BAD_SIGN_OFF: Assisted-by expects 'AGENT_NAME:MODEL_VERSION [TOOL1] [TOOL2]' format
+#27: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
+
+total: 0 errors, 1 warnings, 0 checks, 139 lines checked
+6a9bcb3c868d gpu/buddy: Track per-order used blocks with a scoreboard
+-:22: WARNING:BAD_SIGN_OFF: Assisted-by expects 'AGENT_NAME:MODEL_VERSION [TOOL1] [TOOL2]' format
+#22: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
+
+total: 0 errors, 1 warnings, 0 checks, 129 lines checked
+
+
