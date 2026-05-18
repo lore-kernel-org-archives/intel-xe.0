@@ -4,54 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1C79CD4F50
-	for <intel-xe@archiver.kernel.org>; Mon, 18 May 2026 14:14:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01F02CD4F52
+	for <intel-xe@archiver.kernel.org>; Mon, 18 May 2026 14:15:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B57A110E883;
-	Mon, 18 May 2026 14:14:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B704C10E884;
+	Mon, 18 May 2026 14:15:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a9gVuZfP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bbM0sCfX";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E65BB10E5DA;
- Mon, 18 May 2026 14:14:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32EEF10E883;
+ Mon, 18 May 2026 14:14:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779113698; x=1810649698;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=tR0KxukUXrz2IgbVSJNBiQdUnGpksWcRCLl4DzgPNZE=;
- b=a9gVuZfP538cYe6oF4Fp9KmT+cSp2PiCOVh1xZOFWnzQHuA7K74v7bkp
- mR125Z/LQz5TkdadFPqZqAeOl7trFCbCjqccwua3+URF0NX8404qtqFFS
- DLqo9UqTg6VNyC21pZCLoIW5zeSzUj0J84NFlS/Gabwbp2gBwRFPvx/au
- D7jTMte4eIeORvCBCTux2iLxALT5hGSxEnSvaptBU8TKyMbHk9sdBEvZx
- nd10PsiobRTpps5y3W8P/StEnKmrSI/4/fiKLWuvpNMFRHDMEMb3QrgD1
- NShMpyt1SQFKT522VRGZOluz7Ar1HFVO2l0dooXmtmMkglKvK/bLpQfGw g==;
-X-CSE-ConnectionGUID: fZnmRhszTaOCKW/aLb1ktg==
-X-CSE-MsgGUID: dLiUmSKsRESvF47f6PXxmw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11790"; a="79105893"
-X-IronPort-AV: E=Sophos;i="6.23,242,1770624000"; d="scan'208";a="79105893"
+ t=1779113699; x=1810649699;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=4EvNw1wDXPsNky1eHTbr2/ETInl09PNUQKfyZJqxj1w=;
+ b=bbM0sCfXosQcpPINtzuc63FoBXbLWfehPTh7aVoTZUxhxRmsxn2oNP5/
+ VCjG+Pi0E9bTp9k6n+Pco428vFbLje40cT0oGdSJvDOWQe0PPxph/FATS
+ JqyvClEbEnWLe1VS9YZamMiwgys65AxLEqe715HH+y43f99UfV6ustO1a
+ 1WkoPuqsQQ1gIrZvClm7CVCGP5ZwKlivwVxDO8lW6wpYXdFxRfg/P8bni
+ Q/AEBaRoXmRW/20BQfcdJ0UWK9RQio0oMUHV7FJfVARHCEcQwXY8H5DhB
+ /3Ekw6RQYAJcbkR27bK/Ik2oj6wDJKVsvgXoA2rklnt4digtVoOdZOYdY w==;
+X-CSE-ConnectionGUID: CJL3fKdeQ9OGdMAGh/8cIw==
+X-CSE-MsgGUID: V4eb5XivRFKo/7rq8uo4Ag==
+X-IronPort-AV: E=McAfee;i="6800,10657,11790"; a="79105895"
+X-IronPort-AV: E=Sophos;i="6.23,242,1770624000"; d="scan'208";a="79105895"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2026 07:14:58 -0700
-X-CSE-ConnectionGUID: 63s+UT/nTb6ss9JSzLX8Sg==
-X-CSE-MsgGUID: M3AHzj8NQxqlepRx1jWVpg==
+ 18 May 2026 07:14:59 -0700
+X-CSE-ConnectionGUID: BhoXyfPtQ8KJNCC36tuaHg==
+X-CSE-MsgGUID: 5iiDC3yNTryYDoovbDepuQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,242,1770624000"; d="scan'208";a="244417238"
+X-IronPort-AV: E=Sophos;i="6.23,242,1770624000"; d="scan'208";a="244417242"
 Received: from dalessan-mobl3.ger.corp.intel.com (HELO fdugast-desk.intel.com)
  ([10.245.244.73])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2026 07:14:56 -0700
+ 18 May 2026 07:14:57 -0700
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org, matthew.auld@intel.com,
- Francois Dugast <francois.dugast@intel.com>
-Subject: [PATCH v3 0/5] gpu/buddy: Per-order free and used block scoreboards
-Date: Mon, 18 May 2026 16:14:25 +0200
-Message-ID: <20260518141446.124508-1-francois.dugast@intel.com>
+ Francois Dugast <francois.dugast@intel.com>,
+ Sashiko <sashiko-bot@kernel.org>
+Subject: [PATCH v3 1/5] gpu/buddy: Fix use-after-free in split_block() call
+ sites
+Date: Mon, 18 May 2026 16:14:26 +0200
+Message-ID: <20260518141446.124508-2-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260518141446.124508-1-francois.dugast@intel.com>
+References: <20260518141446.124508-1-francois.dugast@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,36 +70,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-drm_buddy_print() currently reports per-order free block counts by
-walking all rbtrees, which is O(n) in the total number of free blocks
-and holds the allocator lock for the duration. On large VRAM heaps with
-many small fragments this becomes expensive.
+When split_block() fails it returns before calling mark_split(), leaving
+the block in the FREE state and still linked in the rbtree.  The four
+err_undo paths then call __gpu_buddy_free() without first removing the
+block from the tree, which leads to two distinct bugs:
 
-This series replaces the rbtree walk with two lightweight scoreboard
-arrays — free_scoreboard and used_scoreboard — indexed by order and
-maintained incrementally at the points where block state transitions
-occur. The print functions become simple array lookups, and drivers
-reading debugfs (/sys/kernel/debug/dri/0/tile0/vram_mm) now get both
-free and used counts per order at O(1) cost.
+ - If the buddy is also free, __gpu_buddy_free() merges the two siblings
+   by calling gpu_block_free(mm, block) while block->rb is still linked
+   in the tree.  Any subsequent rbtree traversal will follow the now-
+   dangling pointer, causing a use-after-free.
 
-v3: Add __gpu_buddy_undo_splits() helper as suggested by Matt
+ - In alloc_from_freetree(), where there is no buddy guard,
+   __gpu_buddy_free() always reaches mark_free() -> rbtree_insert() with
+   block still in the tree, corrupting the rbtree.
 
-v2: Add first patch to fix bug reported by Sashiko [1] then update
-    following patches accordingly
+The same pattern is already used correctly in __force_merge(): call
+rbtree_remove() to unlink the block before handing it to
+__gpu_buddy_free().  Apply the same fix to all four err_undo sites.
 
-Francois Dugast (5):
-  gpu/buddy: Fix use-after-free in split_block() call sites
-  gpu/buddy: Remove redundant condition in alloc_from_freetree() error
-    path
-  gpu/buddy: Introduce __gpu_buddy_undo_splits() helper
-  gpu/buddy: Track per-order free blocks with a scoreboard
-  gpu/buddy: Track per-order used blocks with a scoreboard
+Reported-by: Sashiko <sashiko-bot@kernel.org>
+Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
+---
+ drivers/gpu/buddy.c | 16 ++++++++++++----
+ 1 file changed, 12 insertions(+), 4 deletions(-)
 
- drivers/gpu/buddy.c         | 104 ++++++++++++++++++++++--------------
- drivers/gpu/drm/drm_buddy.c |  30 +++++------
- include/linux/gpu_buddy.h   |  15 ++++++
- 3 files changed, 90 insertions(+), 59 deletions(-)
-
+diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
+index eb1457376307..dac2027bb64a 100644
+--- a/drivers/gpu/buddy.c
++++ b/drivers/gpu/buddy.c
+@@ -737,8 +737,10 @@ __alloc_range_bias(struct gpu_buddy *mm,
+ 	buddy = __get_buddy(block);
+ 	if (buddy &&
+ 	    (gpu_buddy_block_is_free(block) &&
+-	     gpu_buddy_block_is_free(buddy)))
++	     gpu_buddy_block_is_free(buddy))) {
++		rbtree_remove(mm, block);
+ 		__gpu_buddy_free(mm, block, false);
++	}
+ 	return ERR_PTR(err);
+ }
+ 
+@@ -847,8 +849,10 @@ alloc_from_freetree(struct gpu_buddy *mm,
+ 	return block;
+ 
+ err_undo:
+-	if (tmp != order)
++	if (tmp != order) {
++		rbtree_remove(mm, block);
+ 		__gpu_buddy_free(mm, block, false);
++	}
+ 	return ERR_PTR(err);
+ }
+ 
+@@ -968,8 +972,10 @@ gpu_buddy_offset_aligned_allocation(struct gpu_buddy *mm,
+ 	buddy = __get_buddy(block);
+ 	if (buddy &&
+ 	    (gpu_buddy_block_is_free(block) &&
+-	     gpu_buddy_block_is_free(buddy)))
++	     gpu_buddy_block_is_free(buddy))) {
++		rbtree_remove(mm, block);
+ 		__gpu_buddy_free(mm, block, false);
++	}
+ 	return ERR_PTR(err);
+ }
+ 
+@@ -1054,8 +1060,10 @@ static int __alloc_range(struct gpu_buddy *mm,
+ 	buddy = __get_buddy(block);
+ 	if (buddy &&
+ 	    (gpu_buddy_block_is_free(block) &&
+-	     gpu_buddy_block_is_free(buddy)))
++	     gpu_buddy_block_is_free(buddy))) {
++		rbtree_remove(mm, block);
+ 		__gpu_buddy_free(mm, block, false);
++	}
+ 
+ err_free:
+ 	if (err == -ENOSPC && total_allocated_on_err) {
 -- 
 2.43.0
 
