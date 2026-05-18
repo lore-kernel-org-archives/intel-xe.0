@@ -4,162 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60336CD4F3C
-	for <intel-xe@archiver.kernel.org>; Mon, 18 May 2026 09:20:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F185CD4F54
+	for <intel-xe@archiver.kernel.org>; Mon, 18 May 2026 09:27:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BA6610E5B6;
-	Mon, 18 May 2026 09:20:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C718810E741;
+	Mon, 18 May 2026 09:27:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lLE8sg/v";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="VbNxSZvD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9687E10E5B6
- for <intel-xe@lists.freedesktop.org>; Mon, 18 May 2026 09:20:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779096021; x=1810632021;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=tSF3nyyLqjlC5mbf3s1jaZ2R6bUY8Ses+2EmD7MQgDY=;
- b=lLE8sg/v5a5tiosrTFbXXNCST/8oPRp8ntLhhkymgxKz7XrcK4PDYIwt
- vKkJuUdUPlLxJDmTnypAX65LWVV4RAjtT4S6FQ7uYtPmtNdqRV1d2OKdh
- knx6kX3BYa5ldOttlv70Uk0i2Q+RpRxSIX8qMxgy3FredLMHUSZMjLhel
- nBqkYA7S4kD3/9Z88MgNkQ4OCMRmhFSlRX68a4LQelpdqXWdf3u7FGfDY
- KSOEb6TY4U8QO8z3lIPENuwxQhwSKPVqvv7uf941kLBMueAbMkm3OGCZa
- sbzwXvjbNvXwV8VaxTfARVea1ZiW/OVy89Qcqm2UJlYt0cLKFBeRKq6IH g==;
-X-CSE-ConnectionGUID: j48BQgjXTrO3fu40ZN8Bzw==
-X-CSE-MsgGUID: QYX2wftSTu6uu+Nt1jZJOg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11789"; a="82509441"
-X-IronPort-AV: E=Sophos;i="6.23,241,1770624000"; d="scan'208";a="82509441"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2026 02:20:21 -0700
-X-CSE-ConnectionGUID: VOX2VwCuSsOhoNG+nk9hIg==
-X-CSE-MsgGUID: l3y98X0cQr2iFBDYFCFLAw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,241,1770624000"; d="scan'208";a="238490716"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2026 02:20:21 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 18 May 2026 02:20:20 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 18 May 2026 02:20:20 -0700
-Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.62) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 18 May 2026 02:20:20 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bkLwjm3jj65ZYIdhPfUyL/RQvoo3zqKQko0cnk3LecYG3TnYfqyZbfOBviQl+by7dc7nCTCmzEj2im27WkmWDskZqNxSciLzNq+VTykkE6r84CNlCWV1gpKCEGe2cAjyO3nADjqiHe6iPuLi/Z3IBH9kUKcAc/23+A7mBL4xOyXG/F77OUKVqvseuSnAjVS7Ygrov77SHGdYJrdzYwP8kTi7IqWC894ZMgUQEw6TkMoLqeDooZfpVCxKl9kxdyqDUNN+L5AJfd2BLQ0d0kmwdP/K7C1U5dPE+CKh+Qu1a2x2DVNZEBZcC3i2oowZfMv/GQz6BNgoWU0nUHYaXx+1AA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9kM5Lj3fgKJINXMgrsRzLF997HWjxsvj5UjaokJvn6A=;
- b=gIgBBOtWmMPOhC9rTMxYnvhfqsWlbjtwwj3r3/lEFiJtXvhlMZyLfdo4UeYt35WAYV/6WHW8oug2kNH2AX+kHzBKm7xLjsVAUnCTW9YqvtqK6RYK9ve6hr5r+v08uI/nSHTwf1bJnePG3nKWpbwH12txXu25QnczEgTOhBIBCqz9jYpjyO+RKRa+XcL4gTTZWQbN9cWmxafJwZ7XknnH45915D6Rmsu9PfWdAaQ1pCGCYJd/X/DD3Vz0zgx5WHExeqVa9iVtCCVsZohhsCcWIYl5xpXMIHgePcWv909J1BsocRCIDltFd61qQkjKNqr17EXjCZo7BCjOhr97R4SI8g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6207.namprd11.prod.outlook.com (2603:10b6:208:3c5::21)
- by DS4PPF708A6BB3E.namprd11.prod.outlook.com (2603:10b6:f:fc02::30)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.22; Mon, 18 May
- 2026 09:20:18 +0000
-Received: from MN0PR11MB6207.namprd11.prod.outlook.com
- ([fe80::52eb:929f:a8b2:139d]) by MN0PR11MB6207.namprd11.prod.outlook.com
- ([fe80::52eb:929f:a8b2:139d%5]) with mapi id 15.21.0025.022; Mon, 18 May 2026
- 09:20:17 +0000
-Message-ID: <78042236-560f-4f37-95da-45daf6d5cc9d@intel.com>
-Date: Mon, 18 May 2026 14:50:07 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 09/14] drm/xe/xe_ras: Add support to query device
- memory errors
-To: Riana Tauro <riana.tauro@intel.com>, <intel-xe@lists.freedesktop.org>
-CC: <anshuman.gupta@intel.com>, <rodrigo.vivi@intel.com>,
- <aravind.iddamsetty@linux.intel.com>, <badal.nilawar@intel.com>,
- <raag.jadav@intel.com>, <ravi.kishore.koppuravuri@intel.com>,
- <soham.purkait@intel.com>, Tejas Upadhyay <tejas.upadhyay@intel.com>, "Himal
- Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
-References: <20260511172908.1122252-16-riana.tauro@intel.com>
- <20260511172908.1122252-25-riana.tauro@intel.com>
-Content-Language: en-US
-From: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>
-In-Reply-To: <20260511172908.1122252-25-riana.tauro@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5PR01CA0236.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1f4::10) To MN0PR11MB6207.namprd11.prod.outlook.com
- (2603:10b6:208:3c5::21)
+Received: from lankhorst.se (unknown [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7C9E10E73F;
+ Mon, 18 May 2026 09:27:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1779096467;
+ bh=XbodfArtk963br0QFw9GXyNWq55Zm9I+SeTXVFzVNwU=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=VbNxSZvDqq3bollE25Km53ugXzgG2sHHc/gEx1uNBiW+fXPvcJLNTDm9x7IVMXHUi
+ aNyaijgOskEAYOO8pf7IyO7CLQYieesXlSOKAs0vRacGpeqeF6SWCyF2GRh0H6J0/H
+ 1uuukFtNYYy+ebhbkO2zbc62DGbyJ1mTajrt7aqaRKPF27ZJ70JKif4qs3lWYYKBsc
+ xkJRyRLB98OJqKbzi1tkuO6XltVvnGR4mAFtZYp9KuZYGFYFTqHalTcitw4dAzeIms
+ W3PJvBAdV9SdF0fupZkYBhYqCEUs5hNYymwZYm7WSHG8zGeA/yJQngABDMAwRfrVkv
+ fnNYq8mqoLVMA==
+Message-ID: <c0825b9e-533b-4af7-9e0c-55cf43fea30e@lankhorst.se>
+Date: Mon, 18 May 2026 11:27:46 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6207:EE_|DS4PPF708A6BB3E:EE_
-X-MS-Office365-Filtering-Correlation-Id: 40860ad0-56f6-4ba8-dfb4-08deb4beacb5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|22082099003|18002099003|56012099003|11063799003|4143699003;
-X-Microsoft-Antispam-Message-Info: mNJSKo0fKMwALvROjO8t/8RJHpXy+7BIayrMOSa3ME9QtgmbMhSp7nRU5HAgQVwqlzXNKhfyCz97d86yZz+NFNKAo1MUb0PyOdfiFH6b2SvGMcLl/F5hT/Ha4BnkLdKKTFumpVL7+inKpSzzfTuiVI8a0ghGP74Sir2/fPfP1l8RhTFdxBhlfS6Oz13Pd5y8ainw0sFpW81wGN1rxG/XzEeb5eqHCpmu/L2wFIOHl9L7ZbCodzK3JfmD7+JrgGKu/5U+sslitfzdUD3SxpF9O+QUN6CcP4AoKjSVgSB5ZReHHuEDy1IzVWqHex2vfPEFLqdddn1PCZc+OKX2H+UxU5lyv4s3JaE8hkV9PNVxmusVS/3Ueg2Q9vbCOfpEk2YNEJL1hpNPs2OIu10aXA9MXEuHATf7kVzCZwux57M8e/xb+Haq8JR2xcUhQgtVOqP6vfHcXG4UlmyWhIGv9BGRmUeHNIHfTLdffeVsvrbelAl0Su3Oa3Zq3pruV/Noex1q8EPh/TXkFKv+EP+N4haPMsoIiYs700Ir/dZk9H+tRh6EwcaStpnFwD24DMIQ8HBXpi98OKfXT6VzJpet9AsUc7QK1/b+K6ohZIirnRBhHn7ytlAgxLPqdKceJYK7E0AsQrRYP9zvCnzRIq8FQk0V2lMYG/a/uLPR+vFQ2TDUTC3wGFSHwD2RFcOc97SuWBET
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6207.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(22082099003)(18002099003)(56012099003)(11063799003)(4143699003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Wi8xLzFNbE5xVmkycWVOelJXcE9jRVlSaWFZejRiR2xWSmMzYjVnTThUV1k4?=
- =?utf-8?B?NWdNcnl6UXdaWXM0a0ZYQmJhZjVSVHFIazVHbjJ1Wm5MdHBzL2pNQWw2Uytl?=
- =?utf-8?B?SGd4U0JOTnE2SXhPZHFkclp6YW1LYWY5VGYrV1kxck1VU1I1T3htMzVQVmpu?=
- =?utf-8?B?UXdha1duYmVJajhPQkhQRnZTbnJuVlQ0VnF3b2FUdXBsTDZDa0NaaDhiM3FY?=
- =?utf-8?B?QWhEWWxDRmVEcUgvUmVrcFU3MytkRmZYTFZHd2xYZWk4a2VOL0RiaDNFcENJ?=
- =?utf-8?B?ai84aE5iQWJZOTBmTmZudW5pcEVYYVNRN3NxaFA4emFELzRETnI1bThTSXRU?=
- =?utf-8?B?RHhQNW9pdVhnclpvY251bm13K1BLYUNxNDZGSUM3b3JpNDlFYVBGNG84YVNa?=
- =?utf-8?B?cDJBQlBxRFUrenNIWGhmQXNnL01nSTlsVDQ1anI2d0JJRHVXR1RJVXFtS05E?=
- =?utf-8?B?QW53ZlVHc1N2KzdSSTZRcUlVN0w3OVVsREJMRUlNOUhjRGthb2N2dTJvbmJO?=
- =?utf-8?B?RGlEUU9TMzAxaWFwdjRqUDV0Z3NoeXRxSGtaa1hzdm04VTE2V0NVa0RHYmlL?=
- =?utf-8?B?cmt5cGRLRUhkdzZWcTJZQXRhWmNLR3hHTTlZcHRCSTI0aEl2WFJtVzErb015?=
- =?utf-8?B?eXdTdUJrNXhFQ0ZJR09HQ0dtSFZPQTRIWndmN1VvMTMzNmtUVVIzYWJ4Ymx6?=
- =?utf-8?B?Z3g1eWU3WXpXUjVYUDFiU0RyVG5ZNHRjWlRlMXJaMjdvUnFVK3pUL2dzMVhW?=
- =?utf-8?B?dzgyRGVqY2hZQi9zVHJBcUtUcDhDc1Z4V1RvUllIelRDSE1BVHJvemJ5ZDJl?=
- =?utf-8?B?WW5DZ0RkVmVGcXdrSThuTzd5THF0d0FtWVB6a2dIT1AxdnRBeWlTU0trTUpW?=
- =?utf-8?B?dmcySVNqekkxdGZrd2lwVkNKLzlRZVF0d3BYKzVBVGF3WkFhY3FzSzRvMWZN?=
- =?utf-8?B?OEtqMkY0U3I0c0I0V2FJNDB0NWt1TjhZc0krcjBwcGZsaXVBK01Fc01GRC9l?=
- =?utf-8?B?Y1FEL0xBNTZuaXVEQXcrbzhPVStpM3hOVjFHNlY0amVJbSt5eVNFbXhpY1VO?=
- =?utf-8?B?TWtwSWZoQ0VUQ285WTl5Q01wd1pBd3cyREtiei9wK0Rqc3phZ2xpaUs2aGRX?=
- =?utf-8?B?NVdlRmVQZWg5LzVTbHlhS0paWFVQYmZTOTM2TXpmdXhZUm1qL1NOL0kwVHFR?=
- =?utf-8?B?NDB4cjZaV0FsTXZ6c2xsRXVOWEtOUE03ckl4Tko3RFpEckQrNXJIWk9QbWhZ?=
- =?utf-8?B?MFpzZ0tOVHZjSTczYUF4REJvR1pNUGJKTUh0Ykl0d0RKUUhyZnBaZDd5UHN0?=
- =?utf-8?B?N0t5Y0VaVDBoTUFKQjlXc2VTeS9UWlhrbmJORHFTdjlERVo3VlVlbit6MDha?=
- =?utf-8?B?ZTIvVlJqN2FVSlovMjduY04xazdwa0VidURrM2ovSGN1UmRxNjFvM0JSYWRT?=
- =?utf-8?B?S3paaE5QeitpSzlzU0pwLzBMVTFZRTdRQUlrMUx2bXRFU0F2UlB6ajJNdGpS?=
- =?utf-8?B?d0F1cjAxRElFeit3dnRVMVlxTmgxMWR4V2c2VnlDbHJKQjh0bzg3MXNqSWhx?=
- =?utf-8?B?aHZxOXA1UjVSdThuOTFyZnVEdmFRUkJKMlp5S2Y2Z0pkNTZCVXdxN2g4Y0l5?=
- =?utf-8?B?VUpwbDhrVktqbmJSbWlZRXFIUUlLRTdMcWd4RUNUT1JOY1JZZnZzL3FEV0pw?=
- =?utf-8?B?YUltRElEKzc2VDJHTGdoR1hhcmJxNFY3QVJSci9wQXZmaEtlcHBsTFd1cmhU?=
- =?utf-8?B?dFI3WkppRDV5VTcrVjhaSGdhZzh3TXQ1QzNSajFaVW5oQ0dxbk9NekFzUi9j?=
- =?utf-8?B?ZkZ0cFlGR1lhZTVmZ3p0RnRJS1FLM1MzNXVyUjcwVlpTa2VpYmpkTTNDc2wv?=
- =?utf-8?B?OVVyVUQrOXR2Wm43UkE1SVFqbHd4UWtTRUR2WHZjZHk0VkwrSHFDamgySzdu?=
- =?utf-8?B?ZEpUUkM2THcvQ01aY1ZJTzR6NG1RaEozbm0rc1FnZG5rT2ljc2l5VThwM0ZB?=
- =?utf-8?B?OUdGbWdDL1lrRDUvK3hiQmx6WWc1N045cDhDdWR3Sk5DV1ZLVW9jaThnN3Rr?=
- =?utf-8?B?VDAySEptUjlnR0poNmZxdk1iWEV2UFFiN2J6NkwxNDZFZjNvdy8yOHpGVlV4?=
- =?utf-8?B?S2ZPYnMySXhqeVlRd1A4VnU3MEFFYUpiSUtRWFNQdktlcVJCNFdTaXR2Y2pX?=
- =?utf-8?B?NmZpZnhXSGFBaHZNYThFbW1RT0ZDa2F3SFlLa3FMTVJsTDRJRzZOVFBQWWgw?=
- =?utf-8?B?SGFZVlFUakx5WXByclFxeStrVTdaUUNXNmRENUZpUHhoMXpEd04vbEJlNDdO?=
- =?utf-8?B?ck1mbHNLbFMrdUNHNkN1Y2hNNjU3bFZmZjhPRlJsKzd1TXFKNGxPYVg1Sm5q?=
- =?utf-8?Q?ol1CrwpK+Qgxfe/g=3D?=
-X-Exchange-RoutingPolicyChecked: vnEzzhowSffaVU4NSGSp/GTSmZ0CRGnTURxbgBHr6QY0RUBEglnPlI6agc6Y4qLmBvGpxRVFNW8Qv7v90UI//Na7q1yBbFM9oxjj3dm5fo6VtPDMhyNMDBT31SUoTfBKh+LlJ5a3qTW9en3hH4+mAjwGI0DH69PJ2AFpFZc8wwXd/xCiQUTkEhpqn5NQhyCjYtTiA1aX+Uxc53oD8fAYVQkyDMwskhDKPyB+g96K1Korxs7BXubpM4qUgeFbDLU1klB3iptCGvQ4u6Z3sFokX0Mj9jI4DTuWgnYdUqEsxFkZ8BxtHOATq+qRizY35ffK+0Gh8xf7jBQPlPRmhw3pZw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 40860ad0-56f6-4ba8-dfb4-08deb4beacb5
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6207.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 May 2026 09:20:17.1307 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: bhxRKU4E56pIBR9DhK/JaWl9Qy0o2PEQg7pTpk+oUzY3dp3tlm85jYoj9/2T08OLrJ0VdGIu1gRg7xjcLI/BxW7wLHUp743DdOug1rMrPzU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PPF708A6BB3E
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 12/14] drm/xe: Use the correct stolen offset in initial FB
+ readout
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+References: <20260511214122.8468-1-ville.syrjala@linux.intel.com>
+ <20260511214122.8468-13-ville.syrjala@linux.intel.com>
+Content-Language: en-US
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <20260511214122.8468-13-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -174,94 +55,145 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Hey Ville,
 
-On 11-05-2026 10:59 pm, Riana Tauro wrote:
-> Add initial support to query uncorrectable device memory errors from
-> system controller. Double bit ECC (Error Correcting Code) errors will
-> be handled using Page offlining in a later patch. The other device memory
-> error categories require a Secondary Bus Reset (SBR) to recover.
->
-> Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
-> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+Den 2026-05-11 kl. 23:41, skrev Ville Syrjala:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> The current assumption that the initial FB offset into stolen and
+> GGTT are the same is completely wrong for MTL+. On these platforms
+> the GOP always places the FB at start of stolen, but then maps it
+> to the top of GGTT.
+> 
+> Read the correct phys_base from the PTE so that we at least take
+> over the correct part of the physical memory.
+> 
+> The GGTT offset is more annoying to deal with there. The horrible
+> ggtt->start and GUC_GGTT_TOP hacks prevent us from even keeping the
+> original GGTT mapping (ggtt->start blocks pre-MTL hardware and
+> GUC_GGTT_TOP blcoks MTL+). For now just hack this and remap the
+> FB to live at ggtt->start. On MTL+ this might even work correctly
+> since we're unlikely to overlap with the original mapping. But on
+> earlier platforms we're guaranteed to have an overlap if the FB
+> is larger than ggtt->start. Such an overlap will cause visible
+> glitches on the screen as the PTEs get overwritten while the
+> display hardware is still using them for scanout.
+> 
+> On i915 we don't have the ggtt->start hack and thus can always
+> bind the FB to actual start of GGTT. i915 does have the equivalent
+> of GUC_GGTT_TOP so it can't leave the mapping to the end of GGTT
+> either sadly.
+> 
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > ---
-> v2: simplify structures
-> ---
->   drivers/gpu/drm/xe/xe_ras.c       | 18 ++++++++++++++++++
->   drivers/gpu/drm/xe/xe_ras_types.h | 17 +++++++++++++++++
->   2 files changed, 35 insertions(+)
->
-> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-> index 0d4e2116ef61..803f5fd204bd 100644
-> --- a/drivers/gpu/drm/xe/xe_ras.c
-> +++ b/drivers/gpu/drm/xe/xe_ras.c
-> @@ -153,6 +153,21 @@ static enum xe_ras_recovery_action handle_soc_internal_errors(struct xe_device *
->   	return XE_RAS_RECOVERY_ACTION_RESET;
->   }
->   
-> +static enum xe_ras_recovery_action handle_device_memory_errors(struct xe_device *xe,
-> +							       struct xe_ras_error_array *arr)
-> +{
-> +	struct xe_ras_memory_error *error_info = (struct xe_ras_memory_error *)arr->error_details;
+>  drivers/gpu/drm/xe/display/xe_initial_plane.c | 35 +++++++++++++++----
+>  1 file changed, 28 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
+> index d0a9f8599096..da44f6d1a5f8 100644
+> --- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
+> +++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
+> @@ -42,6 +42,7 @@ initial_plane_bo(struct xe_device *xe,
+>  {
+>  	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
+>  	struct xe_bo *bo;
+> +	dma_addr_t dma_addr;
+>  	resource_size_t phys_base;
+>  	u32 base, size, flags;
+>  	u64 page_size = xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_64K : SZ_4K;
+> @@ -64,7 +65,8 @@ initial_plane_bo(struct xe_device *xe,
+>  			return NULL;
+>  		}
+>  
+> -		phys_base = pte & ~(page_size - 1);
+> +		dma_addr = pte & ~(page_size - 1);
+> +		phys_base = dma_addr;
+>  
+>  		flags |= XE_BO_FLAG_VRAM0;
+>  
+> @@ -78,10 +80,6 @@ initial_plane_bo(struct xe_device *xe,
+>  				&phys_base);
+>  			return NULL;
+>  		}
+> -
+> -		drm_dbg_kms(&xe->drm,
+> -			    "Using phys_base=%pa, based on initial plane programming\n",
+> -			    &phys_base);
+>  	} else {
+>  		struct ttm_resource_manager *stolen;
+>  		u64 pte;
+> @@ -99,11 +97,29 @@ initial_plane_bo(struct xe_device *xe,
+>  			return NULL;
+>  		}
+>  
+> -		phys_base = base;
+> +		dma_addr = pte & ~(page_size - 1);
+> +		phys_base = dma_addr - xe_ttm_stolen_gpu_offset(xe);
 > +
-> +	if (error_info->category & XE_RAS_MEMORY_ECC) {
-> +		xe_err(xe, "[RAS]: double-bit ECC error detected at sw address 0x%llx\n",
-> +		       error_info->sw_address);
-> +		/* TODO: page offline handling for double-bit ECC errors and return accordingly */
-> +	}
+>  		flags |= XE_BO_FLAG_STOLEN;
+>  	}
+>  
+> -	bo = xe_bo_create_pin_map_at_novm(xe, tile0, size, phys_base, phys_base,
+> +	drm_dbg_kms(&xe->drm,
+> +		    "Initial plane dma_addr=%pa phys_base=%pa\n",
+> +		    &dma_addr, &phys_base);
 > +
-> +	/* Request a reset for other device memory error categories */
-> +	return XE_RAS_RECOVERY_ACTION_RESET;
-> +}
-> +
->   void xe_ras_counter_threshold_crossed(struct xe_device *xe,
->   				      struct xe_sysctrl_event_response *response)
->   {
-> @@ -246,6 +261,9 @@ enum xe_ras_recovery_action xe_ras_process_errors(struct xe_device *xe)
->   			case XE_RAS_COMP_SOC_INTERNAL:
->   				action = handle_soc_internal_errors(xe, arr);
->   				break;
-> +			case XE_RAS_COMP_DEVICE_MEMORY:
-> +				action = handle_device_memory_errors(xe, arr);
-> +				break;
->   			default:
->   				/* For any other component, reset */
->   				action = XE_RAS_RECOVERY_ACTION_RESET;
-> diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
-> index c5a283317d90..5999e7b4af1c 100644
-> --- a/drivers/gpu/drm/xe/xe_ras_types.h
-> +++ b/drivers/gpu/drm/xe/xe_ras_types.h
-> @@ -11,6 +11,7 @@
->   #define XE_RAS_NUM_ERROR_ARR			3
->   #define XE_RAS_NUM_COUNTERS			16
->   #define XE_RAS_SOC_IEH_PUNIT			BIT(1)
-> +#define XE_RAS_MEMORY_ECC			BIT(1)
->   
->   /**
->    * enum xe_ras_recovery_action - RAS recovery actions
-> @@ -175,4 +176,20 @@ struct xe_ras_ieh_error {
->   	/** @additional_info: Additional information */
->   	u32 additional_info[10];
->   } __packed;
-> +
-> +/**
-> + * struct xe_ras_memory_error - Device memory error details
-> + */
-> +struct xe_ras_memory_error {
-> +	/** @category: Device memory error category */
-> +	u8 category;
-> +	/** @reserved: Reserved for future use */
-> +	u8 reserved[7];
-> +	/** @hardware_address: Hardware physical address details */
-> +	u64 hardware_address;
-> +	/** @sw_address: Software address where error occurred */
-> +	u64 sw_address;
-> +	/** @reserved2: Reserved for future use */
-> +	u32 reserved2[10];
-> +} __packed;
+> +	/*
+> +	 * Pin to xe_ggtt_start() to avoid conflicting with
+> +	 * the horrible ggtt->start and GUC_GGTT_TOP hacks.
+> +	 *
+> +	 * FIXME this is complete crap. To do this properly we
+> +	 * need to prevent the original PTEs from being overwritten
+> +	 * while bindind to the new address. Any overlap between
+> +	 * the old and new ranges will corrupt the old PTEs that
+> +	 * the display hardware is currently using for scanout.
+> +	 */
+> +	base = xe_ggtt_start(tile0->mem.ggtt);
 
-nit:After fixing reserved field naming consistency.
+The comment is mostly accurate in describing your solution. You have all
+the pieces to know which part of GGTT are allocatable. Only
+xe_ggtt_size() bytes starting at xe_ggtt_start() are allocatable.
+This is because xe also supports VF's, which only has a part of the GGTT
+usable.
 
-Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+ggtt->start can be adjusted at runtime when the VF is migrated to a new
+location. I'm open for better solutions that are still O(1).
+See xe_ggtt_shift_nodes() for some details, or read through the SR-IOV
+documentation of the xe module.
 
->   #endif
+The previous assumption used GGTT address == physical address on all
+platforms, which was accurate at the time it was written. Judging from
+the comments it now breaks on MTL.
+
+Fortunately, you can derive the exact address of the current allocation.
+That makes it easy to handle this correctly. Can you extend
+xe_ggtt_insert_node() with a start + end argument, or create
+xe_ggtt_insert_node_at() that has those arguments?
+
+If you then reserve the current allocation in advance, the workaround
+that required creating xe_ggtt_insert_bo_at() can then be removed.
+
+After the BO is mapped, it's safe to call xe_ggtt_node_remove() on the
+current location with invalidate set to false. The contents will be
+cleared by xe_ggtt_init() later on during the init sequence.
+
+Kind regards,
+~Maarten Lankhorst
+
+> +	bo = xe_bo_create_pin_map_at_novm(xe, tile0, size, phys_base, base,
+>  					  ttm_bo_type_kernel, flags, 0, false);
+>  	if (IS_ERR(bo)) {
+>  		drm_dbg_kms(&xe->drm,
+> @@ -112,6 +128,11 @@ initial_plane_bo(struct xe_device *xe,
+>  		return NULL;
+>  	}
+>  
+> +	drm_dbg_kms(&xe->drm,
+> +		    "Initial plane fb bound to 0x%llx in the ggtt (original 0x%x)\n",
+> +		    xe_ggtt_node_addr(bo->ggtt_node[tile0->id]),
+> +		    plane_config->base);
+> +
+>  	return bo;
+>  }
+>  
+
