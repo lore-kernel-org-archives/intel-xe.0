@@ -4,58 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42135CD4F49
-	for <intel-xe@archiver.kernel.org>; Mon, 18 May 2026 14:17:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45C50CD4F49
+	for <intel-xe@archiver.kernel.org>; Mon, 18 May 2026 14:18:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2E7A10E30B;
-	Mon, 18 May 2026 14:17:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBFAC10E889;
+	Mon, 18 May 2026 14:18:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fA5mLwqM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fyz+9Tc4";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CDEF10E30B
- for <intel-xe@lists.freedesktop.org>; Mon, 18 May 2026 14:17:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12EA910E889;
+ Mon, 18 May 2026 14:18:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779113850; x=1810649850;
- h=message-id:subject:from:to:date:in-reply-to:references:
- content-transfer-encoding:mime-version;
- bh=XomeIdoSVFSpCakZgmz1lEVACxOGzoajYaddL5DzmLE=;
- b=fA5mLwqM6PmhhD0vKdR//Vb/fJpt9qFNVJHE38FQeYjSvtBXYEmtynDU
- H2DqatAvl8c7mOI2kZpHZkQZgMM0xLuFrEtApzu8QGs6GtIQWo5ZUW+sL
- oQ6R+rqKWA59bc7/ys2z1XX8gFx5Q2gV+Urw1fHTjCy28EyAiqTo77GF9
- Ta165ZVSRm/yPjdUmDlomsY09PjQIFNgsbpzPIAiuwDrWuJmOoKLyIOMf
- SaJVGI9bZbBCwDruwWrGc0cxIJHfMnk+SGf2T//bkMYT+ZPAFDy5/OY2z
- hyOYzjirS5J7XLBJUM+PCCgUFj+5ZpRa0cjQV517nx6pVmjwZUaiO/Dn6 g==;
-X-CSE-ConnectionGUID: N9BbcgaHQFabERNeDIZWiw==
-X-CSE-MsgGUID: tN/PnJUbSBmZtKQuiB19YA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11790"; a="80086714"
-X-IronPort-AV: E=Sophos;i="6.23,242,1770624000"; d="scan'208";a="80086714"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2026 07:17:30 -0700
-X-CSE-ConnectionGUID: w5FfrFgQR3ak8/0o/CLBcw==
-X-CSE-MsgGUID: 8cJ9bzOWSliLD4NfDXVr4w==
+ t=1779113885; x=1810649885;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=oJ4zgKFd8pxw17H9l8r8lD7Mw7hZSQVq852ZTL/I0uY=;
+ b=fyz+9Tc4Lf9xDx91oR+ZcMvs8xDQZcPaLODkqxrsflTok+eDj/+zACnB
+ sxNaYRy9MuwS5v66XwiE6L1pS58lIFFH4kG40VkfacKxJQkBp1Kt4ivMU
+ aWyul6jE/RmyVCmVZaMBXaXhxiwbEeWG8hw9YQvg6FNV27hi+iubcwVWF
+ AZeeyMAtaIBMkDAXvdOw/ANc0xNHCSlh+Kr/RU/BYBN7hjDZ/y89G56nA
+ zIIt2Iu/7Jgls/yisqgkhBKgt52K9oSl5ocEEAc4DQVHxIlsxYzPa+h6d
+ pzWAcvR752goVp4R0Lp7YCBKGRhkwX4WjhLJWbeEp3OYZc2HjltE0ouQL g==;
+X-CSE-ConnectionGUID: hwA9YOkTTN+K88xBDxOW3A==
+X-CSE-MsgGUID: txkCSn7WToWhyC5pVib7pw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11790"; a="91070124"
+X-IronPort-AV: E=Sophos;i="6.23,242,1770624000"; d="scan'208";a="91070124"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 May 2026 07:18:04 -0700
+X-CSE-ConnectionGUID: hhi7NE2vQ/qmY584TOAvZg==
+X-CSE-MsgGUID: 8wuJNg/qTMGwBRUuTH3+HQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,242,1770624000"; d="scan'208";a="236810232"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO [10.245.244.99])
- ([10.245.244.99])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2026 07:17:29 -0700
-Message-ID: <559613ff276c92d19fc9a976a8c1ffde044a2c46.camel@linux.intel.com>
-Subject: Re: [PATCH] drm/xe: Revoke drm_vma_node on xe_mmio_gem free
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: "Levi, Ilia" <ilia.levi@intel.com>, Shuicheng Lin
- <shuicheng.lin@intel.com>, 	intel-xe@lists.freedesktop.org
-Date: Mon, 18 May 2026 16:17:26 +0200
-In-Reply-To: <ba5b737e-0200-4912-b839-39fe4ec6aaeb@intel.com>
-References: <20260514191649.592407-1-shuicheng.lin@intel.com>
- <ba5b737e-0200-4912-b839-39fe4ec6aaeb@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+X-IronPort-AV: E=Sophos;i="6.23,242,1770624000"; d="scan'208";a="238441715"
+Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.108])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 May 2026 07:18:02 -0700
+Date: Mon, 18 May 2026 17:17:59 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com,
+ gustavo.sousa@intel.com, jani.nikula@intel.com
+Subject: Re: [PATCH] drm/i915/display: Use PIPEDMC_FRMTMSTMP on display ver
+ >= 30
+Message-ID: <agsflxLSJ-nmCu7I@intel.com>
+References: <20260515155340.1000997-1-suraj.kandpal@intel.com>
+ <20260515161056.1007030-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260515161056.1007030-1-suraj.kandpal@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,86 +75,122 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi!
+On Fri, May 15, 2026 at 09:40:56PM +0530, Suraj Kandpal wrote:
+> Starting with display version 30, the per-pipe frame timestamp is read
+> from the PIPEDMC register block (PIPEDMC_FRMTMSTMP) instead of the
+> legacy PIPE_FRMTMSTMP MMIO. Extend PIPE_FRMTMSTMP() to take the display
+> and select the appropriate register based on DISPLAY_VER(), and update
+> all callers intel_vblank accordingly.
+> 
+> Bspec: 79482
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
+> v1 -> v2:
+> - Define registers in correct location (Jani)
+> - Use the intel_display_wa() helper to select the correct register (Gustavo)
+> - Fix early vblank timeout issue when DMC is not loaded
+> 
+>  .../gpu/drm/i915/display/intel_display_wa.c    |  2 ++
+>  .../gpu/drm/i915/display/intel_display_wa.h    |  1 +
+>  drivers/gpu/drm/i915/display/intel_dmc_regs.h  |  6 ++++++
+>  drivers/gpu/drm/i915/display/intel_vblank.c    | 18 ++++++++++++++----
+>  4 files changed, 23 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
+> index 7d3d63a59882..44c2a503c911 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_wa.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
+> @@ -110,6 +110,8 @@ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa,
+>  		return DISPLAY_VERx100(display) == 3000 ||
+>  			DISPLAY_VERx100(display) == 2000 ||
+>  			DISPLAY_VERx100(display) == 1401;
+> +	case INTEL_DISPLAY_WA_14022946399:
+> +		return DISPLAY_VER(display) >= 30;
 
-On Sun, 2026-05-17 at 13:47 +0300, Levi, Ilia wrote:
-> On 5/14/2026 10:16 PM, Shuicheng Lin wrote:
-> > xe_mmio_gem_create() calls drm_vma_node_allow() but nothing ever
-> > calls
-> > drm_vma_node_revoke(). The drm_vma_offset_file rb-tree entry
-> > allocated
-> > by drm_vma_node_allow() is not freed by drm_gem_object_release(),
-> > so
-> > it is leaked on every create/destroy cycle.
-> >=20
-> > Store the owning drm_file in struct xe_mmio_gem and call
-> > drm_vma_node_revoke() from xe_mmio_gem_free().
->=20
->=20
-> Good catch, but I don't think it makes sense to cache the drm_file.
-> Consider adding it as a parameter to xe_mmio_gem_destroy and
-> call drm_vma_node_revoke from there.
->=20
-> - Ilia
+According to bspec PIPEDMC_FRMTMSTMP shouldn't even exist on PTL.
+Did you actually check that the register works?
 
-What's the proposed use-case of xe_mmio_gem? We shouldn't really have
-unused code present in the upstream driver until we have an agreed-upon
-use-case and UAPI?
+And I believe the hw register corruption issue being addressed by
+w/a 14022946399 (also applies to LNL) should anyway be fixed on the
+platforms that have PIPEDMC_FRMTMSTMP so this w/a stuff here makes
+no sense.
 
-Thanks,
-Thomas
+>  	case INTEL_DISPLAY_WA_14025769978:
+>  		return DISPLAY_VER(display) == 35;
+>  	case INTEL_DISPLAY_WA_15013987218:
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
+> index 15fec843f15e..884463a894c8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_wa.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
+> @@ -42,6 +42,7 @@ enum intel_display_wa {
+>  	INTEL_DISPLAY_WA_14014143976,
+>  	INTEL_DISPLAY_WA_14016740474,
+>  	INTEL_DISPLAY_WA_14020863754,
+> +	INTEL_DISPLAY_WA_14022946399,
+>  	INTEL_DISPLAY_WA_14025769978,
+>  	INTEL_DISPLAY_WA_15013987218,
+>  	INTEL_DISPLAY_WA_15018326506,
+> diff --git a/drivers/gpu/drm/i915/display/intel_dmc_regs.h b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
+> index 38e342b45af0..985642a79a52 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
+> @@ -644,4 +644,10 @@ enum pipedmc_event_id {
+>  #define _PIPEDMC_DCB_BALANCE_RESET_B		0x986a8
+>  #define PIPEDMC_DCB_BALANCE_RESET(pipe)		_MMIO_PIPE(pipe, _PIPEDMC_DCB_BALANCE_RESET_A,\
+>  							   _PIPEDMC_DCB_BALANCE_RESET_B)
+> +
+> +#define _PIPEDMC_FRMTMSTMP_A			0x5f0ac
+> +#define _PIPEDMC_FRMTMSTMP_B			0x5f4ac
+> +#define PIPEDMC_FRMTMSTMP(pipe)			\
+> +	_MMIO_PIPE(pipe, _PIPEDMC_FRMTMSTMP_A, _PIPEDMC_FRMTMSTMP_B)
+> +
+>  #endif /* __INTEL_DMC_REGS_H__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
+> index 28d81199792e..145c342f445f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vblank.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+> @@ -15,6 +15,8 @@
+>  #include "intel_display_regs.h"
+>  #include "intel_display_types.h"
+>  #include "intel_display_utils.h"
+> +#include "intel_display_wa.h"
+> +#include "intel_dmc_regs.h"
+>  #include "intel_vblank.h"
+>  #include "intel_vrr.h"
+>  
+> @@ -156,8 +158,12 @@ static u32 intel_crtc_scanlines_since_frame_timestamp(struct intel_crtc *crtc)
+>  		 * pipe frame time stamp. The time stamp value
+>  		 * is sampled at every start of vertical blank.
+>  		 */
+> -		scan_prev_time = intel_de_read_fw(display,
+> -						  PIPE_FRMTMSTMP(crtc->pipe));
+> +		if (intel_display_wa(display, INTEL_DISPLAY_WA_14022946399))
+> +			scan_prev_time = intel_de_read_fw(display,
+> +							  PIPEDMC_FRMTMSTMP(crtc->pipe));
+> +		else
+> +			scan_prev_time = intel_de_read_fw(display,
+> +							  PIPE_FRMTMSTMP(crtc->pipe));
+>  
+>  		/*
+>  		 * The TIMESTAMP_CTR register has the current
+> @@ -165,8 +171,12 @@ static u32 intel_crtc_scanlines_since_frame_timestamp(struct intel_crtc *crtc)
+>  		 */
+>  		scan_curr_time = intel_de_read_fw(display, IVB_TIMESTAMP_CTR);
+>  
+> -		scan_post_time = intel_de_read_fw(display,
+> -						  PIPE_FRMTMSTMP(crtc->pipe));
+> +		if (intel_display_wa(display, INTEL_DISPLAY_WA_14022946399))
+> +			scan_post_time = intel_de_read_fw(display,
+> +							  PIPEDMC_FRMTMSTMP(crtc->pipe));
+> +		else
+> +			scan_post_time = intel_de_read_fw(display,
+> +							  PIPE_FRMTMSTMP(crtc->pipe));
+>  	} while (scan_post_time != scan_prev_time);
+>  
+>  	return div_u64(mul_u32_u32(scan_curr_time - scan_prev_time,
+> -- 
+> 2.34.1
 
-
-
-
->=20
->=20
-> >=20
-> > The xe_mmio_gem helpers currently have no in-tree users; this
-> > prevents
-> > a latent leak once they are used.
-> >=20
-> > Fixes: 1ffcf8b8ae8a ("drm/xe: Support for mmap-ing mmio regions")
-> > Assisted-by: Claude:claude-opus-4.6
-> > Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
-> > ---
-> > Cc: Ilia Levi <ilia.levi@intel.com>
-> > ---
-> > =C2=A0drivers/gpu/drm/xe/xe_mmio_gem.c | 5 +++++
-> > =C2=A01 file changed, 5 insertions(+)
-> >=20
-> > diff --git a/drivers/gpu/drm/xe/xe_mmio_gem.c
-> > b/drivers/gpu/drm/xe/xe_mmio_gem.c
-> > index 8c803ef233cc..78f6cc6fe9a1 100644
-> > --- a/drivers/gpu/drm/xe/xe_mmio_gem.c
-> > +++ b/drivers/gpu/drm/xe/xe_mmio_gem.c
-> > @@ -36,6 +36,7 @@ static vm_fault_t xe_mmio_gem_vm_fault(struct
-> > vm_fault *);
-> > =C2=A0
-> > =C2=A0struct xe_mmio_gem {
-> > =C2=A0	struct drm_gem_object base;
-> > +	struct drm_file *file;
-> > =C2=A0	phys_addr_t phys_addr;
-> > =C2=A0};
-> > =C2=A0
-> > @@ -96,6 +97,8 @@ struct xe_mmio_gem *xe_mmio_gem_create(struct
-> > xe_device *xe, struct drm_file *fi
-> > =C2=A0	if (err)
-> > =C2=A0		goto free_gem;
-> > =C2=A0
-> > +	obj->file =3D file;
-> > +
-> > =C2=A0	return obj;
-> > =C2=A0
-> > =C2=A0free_gem:
-> > @@ -121,6 +124,8 @@ static void xe_mmio_gem_free(struct
-> > drm_gem_object *base)
-> > =C2=A0{
-> > =C2=A0	struct xe_mmio_gem *obj =3D to_xe_mmio_gem(base);
-> > =C2=A0
-> > +	if (obj->file)
-> > +		drm_vma_node_revoke(&base->vma_node, obj->file);
-> > =C2=A0	drm_gem_object_release(base);
-> > =C2=A0	kfree(obj);
-> > =C2=A0}
->=20
+-- 
+Ville Syrjälä
+Intel
