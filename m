@@ -4,28 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65BB2CD4F3C
-	for <intel-xe@archiver.kernel.org>; Mon, 18 May 2026 17:00:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40964CD4F4A
+	for <intel-xe@archiver.kernel.org>; Mon, 18 May 2026 17:27:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F24310E916;
-	Mon, 18 May 2026 17:00:02 +0000 (UTC)
-Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D41010E8F8;
- Mon, 18 May 2026 17:00:01 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7566104588359824879=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id E6B2F10E92F;
+	Mon, 18 May 2026 17:27:01 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GLvmj+d5";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94DA410E92F
+ for <intel-xe@lists.freedesktop.org>; Mon, 18 May 2026 17:27:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1779125220; x=1810661220;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=XM0qfcnfjybvrCdfHO4PFHQrj7egpXPoaUmFoW2zH1s=;
+ b=GLvmj+d5IJCa5vcBMvEK4pRz3i72XiaJsMEqcVwzqw2JmRajQG9yO6J6
+ JwIzjnvL/NDj7tUpUMFCojZi9Ud1Ub34+OoUlW/h9CGsW0zjzmDI0DSaP
+ /v2GcjKtZMO2TkmnefpxXT2wEGM1/Ew8RKqGi0HE9GU+FMWKFN3cFNnQz
+ 4BGU3dbMlbxOXrNdSTl672wceYjO5HYNe2QxKWp7VD0xSikRDWTSCn0y1
+ IjS7jNjNViLRGp7BZ5T9YUdLeAucWjNZ3j3h7fXs1XKjYYA7jKijN/ryN
+ 15wh8CT0qlesBaYtlCrzGJhYYXt/OeKQoNvkPSF+3q7bPyA47obNzfNrj Q==;
+X-CSE-ConnectionGUID: qac9UPS/Qa25csF8HpuCRw==
+X-CSE-MsgGUID: Oe4RTPj1RvuKWkVbd3G6+g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11790"; a="80160125"
+X-IronPort-AV: E=Sophos;i="6.23,242,1770624000"; d="scan'208";a="80160125"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 May 2026 10:26:57 -0700
+X-CSE-ConnectionGUID: WLH9XvMWQ82ou/ptJ6s9Yg==
+X-CSE-MsgGUID: LtNJejYfTJuUjjgtttoIvQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,242,1770624000"; d="scan'208";a="239751276"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 May 2026 10:26:54 -0700
+Date: Mon, 18 May 2026 19:26:52 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Riana Tauro <riana.tauro@intel.com>
+Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
+ rodrigo.vivi@intel.com, aravind.iddamsetty@linux.intel.com,
+ badal.nilawar@intel.com, ravi.kishore.koppuravuri@intel.com,
+ mallesh.koujalagi@intel.com, soham.purkait@intel.com
+Subject: Re: [PATCH v6 2/6] drm/xe/xe_ras: Add support to get error counter
+ in CRI
+Message-ID: <agtL3NF1BFyEX841@black.igk.intel.com>
+References: <20260514052205.1340143-8-riana.tauro@intel.com>
+ <20260514052205.1340143-10-riana.tauro@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/bw=3A_Split_bandwi?=
- =?utf-8?q?dth_params_into_platform-_and_display-IP-specific_structs_=28rev3?=
- =?utf-8?q?=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gustavo Sousa" <gustavo.sousa@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 18 May 2026 17:00:01 -0000
-Message-ID: <177912360157.80757.7736052130608147582@5ab824fced77>
-X-Patchwork-Hint: ignore
-References: <20260518-separate-platform-from-diplay-ip-specific-bw-params-v4-0-918528006549@intel.com>
-In-Reply-To: <20260518-separate-platform-from-diplay-ip-specific-bw-params-v4-0-918528006549@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260514052205.1340143-10-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,125 +68,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7566104588359824879==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, May 14, 2026 at 10:52:08AM +0530, Riana Tauro wrote:
+> Add request/response structures and helper functions to query system
+> controller to get error counter value.
 
-== Series Details ==
+...
 
-Series: drm/i915/bw: Split bandwidth params into platform- and display-IP-specific structs (rev3)
-URL   : https://patchwork.freedesktop.org/series/166340/
-State : success
+> +	xe_dbg(xe, "[RAS]: get counter value %u for %s %s\n", response.counter_value,
+> +	       comp_to_str(response.counter.common.component),
+> +	       sev_to_str(response.counter.common.severity));
 
-== Summary ==
+A bit heavy handed with nesting :D
+You can use a local counter which will also help remove the wrapping[1].
 
-CI Bug Log - changes from xe-5082-dd6c69e211ead406faa36e4e2ec21f2ad8b75bbc_BAT -> xe-pw-166340v3_BAT
-====================================================
+[1] https://lore.kernel.org/intel-xe/20260512191610.1817578-7-raag.jadav@intel.com/
 
-Summary
--------
+...
 
-  **SUCCESS**
+> +/**
+> + * struct xe_ras_get_counter_request - Request for get error counter
+> + */
+> +struct xe_ras_get_counter_request {
+> +	/** @counter: Error counter to be queried */
+> +	struct xe_ras_error_class counter;
+> +	/** @reserved: Reserved for future use */
+> +	u32 reserved;
+> +} __packed;
+> +
+> +/**
+> + * struct xe_ras_get_counter_response - Response for get error counter
+> + */
+> +struct xe_ras_get_counter_response {
+> +	/** @counter: Error counter that was queried */
+> +	struct xe_ras_error_class counter;
+> +	/** @counter_value: Current counter value */
+> +	u32 counter_value;
 
-  No regressions found.
+Nit: It's already 'get_counter', so perhaps just 'value'?
 
-  
+> +	/** @timestamp: Timestamp when counter was last updated */
+> +	u64 timestamp;
+> +	/** @threshold_value: Threshold value for the counter */
+> +	u32 threshold_value;
 
-Participating hosts (13 -> 13)
-------------------------------
+Ditto, 'threshold'?
 
-  No changes in participating hosts
+> +	/** @counter_status: Status of the counter */
+> +	u32 counter_status:8;
 
-Known issues
-------------
+'status'?
 
-  Here are the changes found in xe-pw-166340v3_BAT that come from known issues:
+We should probably make these consistent across series', so let me know
+which ones you prefer.
 
-### IGT changes ###
+> +	/** @reserved: Reserved for future use */
+> +	u32 reserved:24;
+> +	/** @reserved1: Reserved for future use */
+> +	u32 reserved1[56];
+> +} __packed;
+> +
+>  #endif
+> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
+> index 3caa9f15875f..b7c4d8c37819 100644
+> --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
+> +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
+> @@ -293,6 +293,34 @@ static int sysctrl_send_command(struct xe_sysctrl *sc,
+>  	return 0;
+>  }
+>  
+> +/**
+> + * xe_sysctrl_prepare_command() - Prepare System controller command structure
+> + * @command: Sysctrl command structure
+> + * @group: Command group ID
+> + * @cmd_id: Command code
+> + * @request: Pointer to request buffer (can be NULL)
+> + * @request_len: Size of request buffer
+> + * @response: Pointer to response buffer
+> + * @response_len: Size of response buffer
+> + *
+> + * Helper function to prepare sysctrl command to be sent via xe_sysctrl_send_command()
+> + */
+> +void xe_sysctrl_prepare_command(struct xe_sysctrl_mailbox_command *command, u8 group, u8 cmd_id,
 
-#### Issues hit ####
+There's already a sysctrl_prepare_command() in place, so let's make this
+a bit distinguishable.
 
-  * igt@xe_live_ktest@xe_dma_buf:
-    - bat-bmg-vm:         [PASS][1] -> [ABORT][2] ([Intel XE#8023]) +1 other test abort
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5082-dd6c69e211ead406faa36e4e2ec21f2ad8b75bbc/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166340v3/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html
+PS: I've used xe_sysctrl_populate_command() in my series but I'll leave
+it to you.
 
-  
-  [Intel XE#8023]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8023
+Raag
 
-
-Build changes
--------------
-
-  * Linux: xe-5082-dd6c69e211ead406faa36e4e2ec21f2ad8b75bbc -> xe-pw-166340v3
-
-  IGT_8917: 65d691069f26fc2a42c79e2364241320b85d48bc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5082-dd6c69e211ead406faa36e4e2ec21f2ad8b75bbc: dd6c69e211ead406faa36e4e2ec21f2ad8b75bbc
-  xe-pw-166340v3: 166340v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166340v3/index.html
-
---===============7566104588359824879==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/bw: Split bandwidth params into platform- and display-IP-specific structs (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166340/">https://patchwork.freedesktop.org/series/166340/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166340v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166340v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5082-dd6c69e211ead406faa36e4e2ec21f2ad8b75bbc_BAT -&gt; xe-pw-166340v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-166340v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_dma_buf:<ul>
-<li>bat-bmg-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5082-dd6c69e211ead406faa36e4e2ec21f2ad8b75bbc/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166340v3/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8023">Intel XE#8023</a>) +1 other test abort</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5082-dd6c69e211ead406faa36e4e2ec21f2ad8b75bbc -&gt; xe-pw-166340v3</li>
-</ul>
-<p>IGT_8917: 65d691069f26fc2a42c79e2364241320b85d48bc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5082-dd6c69e211ead406faa36e4e2ec21f2ad8b75bbc: dd6c69e211ead406faa36e4e2ec21f2ad8b75bbc<br />
-  xe-pw-166340v3: 166340v3</p>
-
-</body>
-</html>
-
---===============7566104588359824879==--
+> +				void *request, size_t request_len, void *response,
+> +				size_t response_len)
+> +{
+> +	struct xe_sysctrl_app_msg_hdr header = {0};
+> +
+> +	header.data = FIELD_PREP(APP_HDR_GROUP_ID_MASK, group) |
+> +		      FIELD_PREP(APP_HDR_COMMAND_MASK, cmd_id);
+> +
+> +	command->header = header;
+> +	command->data_in = request;
+> +	command->data_in_len = request_len;
+> +	command->data_out = response;
+> +	command->data_out_len = response_len;
+> +}
