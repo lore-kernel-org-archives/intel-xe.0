@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC6E7CD343F
-	for <intel-xe@archiver.kernel.org>; Mon, 18 May 2026 19:25:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DA8FCD4F54
+	for <intel-xe@archiver.kernel.org>; Mon, 18 May 2026 19:26:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E3CB10E14A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C913910E33D;
 	Mon, 18 May 2026 19:25:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lox14AJr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DjFEW7Xr";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B3EA10E14A
- for <intel-xe@lists.freedesktop.org>; Mon, 18 May 2026 19:25:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E1D010E14A
+ for <intel-xe@lists.freedesktop.org>; Mon, 18 May 2026 19:25:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1779132358; x=1810668358;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=Kpac3ypHxGW60Eoz3liYkv4ETxZrarLgsrhKRDOAeB0=;
- b=lox14AJr3YJga7f4j2bBM62aKiCiXwvkenA6mUaHcUSqmdJqRtzCtGs1
- BDraf6+ClwSzPdTvjafm/q0EFb7ou3CwQOQuhM6YCY7gYtxtjTUW5Ddwr
- m0iE4ZDf5Cf6W9E5xYePdKghhe1LvZaXlTfJBuh0wd1kaqmTsq/67/e0u
- KB2cXMozfnYMfZQGn7v06Qfq3YEt6gdvyi5zAVJNrd5xindWG/4P/stCh
- mw3RfJco3VyTe10DgYj5AJS2g+d9xm3OzcDN0RLwRL7AKB0ihZG3bFKut
- SiHObBm/yy/rjjKO4TKsoY90MQs8Sl7EAkHbOwdAKgDvdbP3ePmOThj1F w==;
-X-CSE-ConnectionGUID: e5ccgDwTROWkbnbxPtysEQ==
-X-CSE-MsgGUID: 3gZ7x4MtTba5gXSwSRRgcg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11790"; a="90304787"
-X-IronPort-AV: E=Sophos;i="6.23,242,1770624000"; d="scan'208";a="90304787"
+ bh=D3rWqIobQdH5G82bh6eTlredloxIEhxd8oI5jTW6AN8=;
+ b=DjFEW7Xr5S2t44X7Xxnm7LlFaeSh2OBgHaKrYzGRndxYcyaGVq4vfmAd
+ Lx8hUUdfLLnn2BpamRgfcFoAa6ZDGp8c8kNI6triPDHLx5JmBw3yTuG5e
+ QegvCO2LXdJYyEyDIplJkHbmvjS40iKCIiQTDYqQ3eiwlIXNE1UPPyhkh
+ 8LpRe7RDdB3zg/oXHtV81EvtPSpCprp9hzlZ8VFvmWBK1SxtHd9dlvRe9
+ 67hFqck+vDMwWbb23duU2zRL2qvxM8EDQlamxbLVn21mANDdIK+Cie4UR
+ nznOh/w0YChggWxmf69jz3jLxJaRKDK0xqETDGyh6vw8JCGGbzZi5a2zw g==;
+X-CSE-ConnectionGUID: kRRhZKLFSCCQbPVAGDe8HQ==
+X-CSE-MsgGUID: FWtSJzRoTFSSK0wt4614sA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11790"; a="90304786"
+X-IronPort-AV: E=Sophos;i="6.23,242,1770624000"; d="scan'208";a="90304786"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2026 12:25:58 -0700
-X-CSE-ConnectionGUID: HjFlSIn3QvKzLXug32f4+Q==
-X-CSE-MsgGUID: oNftazktQv+WhEg1Rr2lOQ==
+ 18 May 2026 12:25:57 -0700
+X-CSE-ConnectionGUID: 7j006pKUQcCLg5mtoCfWzQ==
+X-CSE-MsgGUID: fetmGcTLQlqnUuc6Hdr7gw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,242,1770624000"; d="scan'208";a="235276018"
+X-IronPort-AV: E=Sophos;i="6.23,242,1770624000"; d="scan'208";a="235276015"
 Received: from johnmoon-mobl.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.112.169])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2026 12:25:57 -0700
+ 18 May 2026 12:25:56 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 2/9] drm/xe/memirq: Make page layout macros private
-Date: Mon, 18 May 2026 21:25:40 +0200
-Message-ID: <20260518192547.600-3-michal.wajdeczko@intel.com>
+Subject: [PATCH v2 1/9] drm/xe: Add IRQ page to HW engine definition
+Date: Mon, 18 May 2026 21:25:39 +0200
+Message-ID: <20260518192547.600-2-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260518192547.600-1-michal.wajdeczko@intel.com>
 References: <20260518192547.600-1-michal.wajdeczko@intel.com>
@@ -66,53 +66,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There is no need to expose the macros describing memory-based
-interrupts page layouts in the .h file as we only use them in
-the private code. Move them to the .c file near the kernel-doc.
+For each HW engine definition, we already make changes to the IRQ
+offset, as required when using MSI-X, but we leave actual MEMIRQ
+page selection to the MEMIRQ handler, repeated on every interrupt.
 
+As a preparation step to simplify the MEMIRQ handler, store the
+MEMIRQ page number as part of the HW engine definition.
+
+Suggested-by: Ilia Levi <ilia.levi@intel.com>
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Ilia Levi <ilia.levi@intel.com>
 Reviewed-by: Ilia Levi <ilia.levi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_memirq.c       | 7 +++++++
- drivers/gpu/drm/xe/xe_memirq_types.h | 7 -------
- 2 files changed, 7 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/xe_hw_engine.c       | 11 ++++++++---
+ drivers/gpu/drm/xe/xe_hw_engine_types.h |  2 ++
+ 2 files changed, 10 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_memirq.c b/drivers/gpu/drm/xe/xe_memirq.c
-index 3848ff81c1f9..118c2285e893 100644
---- a/drivers/gpu/drm/xe/xe_memirq.c
-+++ b/drivers/gpu/drm/xe/xe_memirq.c
-@@ -152,6 +152,13 @@ static const char *guc_name(struct xe_guc *guc)
-  *
-  */
- 
-+/* ISR */
-+#define XE_MEMIRQ_STATUS_OFFSET(inst)	((inst) * SZ_4K + 0x0)
-+/* IIR */
-+#define XE_MEMIRQ_SOURCE_OFFSET(inst)	((inst) * SZ_4K + 0x400)
-+/* IMR */
-+#define XE_MEMIRQ_ENABLE_OFFSET		0x440
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 05f0932dbb94..8c66ff6f3d3c 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -514,9 +514,14 @@ static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
+ 	hwe->class = info->class;
+ 	hwe->instance = info->instance;
+ 	hwe->mmio_base = info->mmio_base;
+-	hwe->irq_offset = xe_device_has_msix(gt_to_xe(gt)) ?
+-		get_msix_irq_offset(gt, info->class) :
+-		info->irq_offset;
++	if (xe_device_has_msix(gt_to_xe(gt))) {
++		hwe->irq_offset = get_msix_irq_offset(gt, info->class);
++		hwe->irq_page = info->instance;
 +
- static inline bool hw_reports_to_instance_zero(struct xe_memirq *memirq)
- {
- 	/*
-diff --git a/drivers/gpu/drm/xe/xe_memirq_types.h b/drivers/gpu/drm/xe/xe_memirq_types.h
-index 9d0f6c1cdb9d..02ac938cadb4 100644
---- a/drivers/gpu/drm/xe/xe_memirq_types.h
-+++ b/drivers/gpu/drm/xe/xe_memirq_types.h
-@@ -10,13 +10,6 @@
- 
- struct xe_bo;
- 
--/* ISR */
--#define XE_MEMIRQ_STATUS_OFFSET(inst)	((inst) * SZ_4K + 0x0)
--/* IIR */
--#define XE_MEMIRQ_SOURCE_OFFSET(inst)	((inst) * SZ_4K + 0x400)
--/* IMR */
--#define XE_MEMIRQ_ENABLE_OFFSET		0x440
--
- /**
-  * struct xe_memirq - Data used by the `Memory Based Interrupts`_.
-  *
++	} else {
++		hwe->irq_offset = info->irq_offset;
++		hwe->irq_page = 0;
++	}
+ 	hwe->domain = info->domain;
+ 	hwe->name = info->name;
+ 	hwe->fence_irq = &gt->fence_irq[info->class];
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+index 0f87128c6529..2cf898e682f5 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
++++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+@@ -118,6 +118,8 @@ struct xe_hw_engine {
+ 	u16 logical_instance;
+ 	/** @irq_offset: IRQ offset of this hw engine */
+ 	u16 irq_offset;
++	/** @irq_page: MEMIRQ page used by this HW engine */
++	u16 irq_page;
+ 	/** @mmio_base: MMIO base address of this hw engine*/
+ 	u32 mmio_base;
+ 	/**
 -- 
 2.47.1
 
