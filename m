@@ -4,61 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84CACCD4F3C
-	for <intel-xe@archiver.kernel.org>; Mon, 18 May 2026 13:46:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AA19CD4F4A
+	for <intel-xe@archiver.kernel.org>; Mon, 18 May 2026 13:49:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4636710E307;
-	Mon, 18 May 2026 13:46:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CFDE10E84A;
+	Mon, 18 May 2026 13:49:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IFH+hSxg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gkHeg62r";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DD2C10E307;
- Mon, 18 May 2026 13:46:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA53D10E84A
+ for <intel-xe@lists.freedesktop.org>; Mon, 18 May 2026 13:49:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779111997; x=1810647997;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=MoQHKK+EgBqa7h8HstICWE6L/YZ08Wnif5gPzPOFnzQ=;
- b=IFH+hSxg3BZtl5MxsJTSCLLF09IT8q+kTtb1xYzW1wcmIzfZAJR/p0Fz
- ZeCLgL8gfpvvir9EOdJClt8rqK5x64ELNuysLi2/VheRzTtrO/tAR/085
- 188I+mECZoq0EM9tB2m+9Ut8KWjuINKD44JL8zfbDwGeCywb2DnJ0g1kb
- qJBdQ0V1dhkXWgx5693ShaPdDOE8a4aeJXvh6kV0mqla80l9VKdm3+exn
- XytkNfOHJdkCidTAOcpH3dbEyFdOShMxqVKLVexeKCISLkfwEFUsqA4k0
- rmzMs23zhL66IO5Zpx6+J1Cef/EjDMZ/WTy0JFML73XueEToXIArkpUIR w==;
-X-CSE-ConnectionGUID: D9xXSGndTjq6jirUEC61TA==
-X-CSE-MsgGUID: EzMI6ktBTZ2cZVPxmqlKPg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11790"; a="79679291"
-X-IronPort-AV: E=Sophos;i="6.23,242,1770624000"; d="scan'208";a="79679291"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2026 06:46:36 -0700
-X-CSE-ConnectionGUID: VIcT1Lk2QMSl0eB57h5FUw==
-X-CSE-MsgGUID: Hd7YnJ5WRmCC5F9D9pBQKw==
+ t=1779112197; x=1810648197;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=WpRE/bw5wFr0uRdvapGnZ0XF0RLOSA1XUJ9gpmR7bSk=;
+ b=gkHeg62rTx9WmTxnsk3oj8OjtzVodp7sbNHy/kE6EVY4UDmd645YY19R
+ cs9/PSycwLM2Q+DbbvK41vPWjtjHVddYT5DggxWQDirPQSkLOSkTEJiRD
+ g2sgh7y1lq2uf7b2bKDF6iz9OGhio3KQNPKyqu16dZDGIovgfCo9V7spt
+ gH8zRYVaJL+I4B+8+huhwDAuneD6hhoCmpPeef7M21XzUxPJoRPOwct6m
+ DUJiYQBewcfx4XrUdYLe5rA5OvxuWlHHJ86scphoyvzG1VGDlhZC0st62
+ wPctDJkSjr7xwwNl9YHK7eWL5KpVORX1++woqGIc87m+Kpu9k1Mv2PTf6 Q==;
+X-CSE-ConnectionGUID: KFgevig/T9233/sKwSVTvQ==
+X-CSE-MsgGUID: 9dGwRUAuTC+xcaCrk3+IaA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11790"; a="79944047"
+X-IronPort-AV: E=Sophos;i="6.23,242,1770624000"; d="scan'208";a="79944047"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 May 2026 06:49:57 -0700
+X-CSE-ConnectionGUID: WW7x9MvyTdu5pawXguN9Jw==
+X-CSE-MsgGUID: CIjBrMoDQD2KcAePgCQ5Bg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,242,1770624000"; d="scan'208";a="239513479"
-Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.244.108])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2026 06:46:34 -0700
-Date: Mon, 18 May 2026 16:46:30 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Maarten Lankhorst <dev@lankhorst.se>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 09/14] drm/xe: Abstract the initial FB PTE checks a bit
-Message-ID: <agsYNq7xz0Agp3-U@intel.com>
-References: <20260511214122.8468-1-ville.syrjala@linux.intel.com>
- <20260511214122.8468-10-ville.syrjala@linux.intel.com>
- <54bd10bc-84e2-45ad-9df9-cefe91dcf208@lankhorst.se>
+X-IronPort-AV: E=Sophos;i="6.23,242,1770624000"; d="scan'208";a="243728681"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by orviesa004.jf.intel.com with ESMTP; 18 May 2026 06:49:52 -0700
+From: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+To: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
+ matthew.brost@intel.com
+Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com,
+ vinay.belgaumkar@intel.com, riana.tauro@intel.com, karthik.poosa@intel.com,
+ sk.anirban@intel.com, raag.jadav@intel.com,
+ Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Subject: [PATCH v5] drm/xe: Unify fault injection hooks for CSC, GT reset
+Date: Mon, 18 May 2026 19:16:59 +0530
+Message-ID: <20260518134658.113460-2-mallesh.koujalagi@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <54bd10bc-84e2-45ad-9df9-cefe91dcf208@lankhorst.se>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,75 +68,361 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, May 18, 2026 at 10:15:10AM +0200, Maarten Lankhorst wrote:
-> Hey Ville,
-> 
-> Den 2026-05-11 kl. 23:41, skrev Ville Syrjala:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >
-> > Add a few helpers that allow us to abstract the xe initial FB PTE
-> > check a bit. Still very ad-hoc compared to the nicely abstracted
-> > i915 counterpart, but whatever.
-> >
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/xe/display/xe_initial_plane.c | 17 ++++++++++++++---
-> >  1 file changed, 14 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-> > index b7e0685351bb..0dabc5709d01 100644
-> > --- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
-> > +++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-> > @@ -18,8 +18,19 @@
-> >  #include "xe_fb_pin.h"
-> >  #include "xe_ggtt.h"
-> >  #include "xe_mmio.h"
-> > +#include "xe_ttm_stolen_mgr.h"
-> >  #include "xe_vram_types.h"
-> >  
-> > +static bool is_pte_local(u64 pte)
-> > +{
-> > +	return pte & XE_GGTT_PTE_DM;
-> > +}
-> > +
-> > +static bool need_pte_local(struct xe_device *xe)
-> > +{
-> > +	return IS_DGFX(xe);
-> > +}
-> > +
-> >  static struct xe_bo *
-> >  initial_plane_bo(struct xe_device *xe,
-> >  		 struct intel_initial_plane_config *plane_config)
-> > @@ -43,13 +54,13 @@ initial_plane_bo(struct xe_device *xe,
-> >  	if (IS_DGFX(xe)) {
-> >  		u64 pte = xe_ggtt_read_pte(tile0->mem.ggtt, base);
-> >  
-> > -		if (!(pte & XE_GGTT_PTE_DM)) {
-> > -			drm_err(&xe->drm,
-> > -				"Initial plane programming missing DM bit\n");
-> > +		if (is_pte_local(pte) != need_pte_local(xe)) {
-> > +			drm_err(&xe->drm, "Initial plane PTE has bad local memory bit\n");
-> >  			return NULL;
-> >  		}
-> This is unnecessary, this is already inside the IS_DGFX branch, so all you're doing is checking twice.
-> Remove need_pte_local and use the has_lmembar() check directly in the next patch?
+The fault injection code was scattered: the GT reset
+hook lived in xe_gt.h as an inline function with its own global
+variable, the CSC hook had a separate global in xe_hw_error.c with
+an extern declaration, and each was individually registered in
+xe_debugfs.c. Adding a new error type meant editing many files and
+copy-pasting the same boilerplate.
 
-The point is to abstract this mess to look a bit more like the clean
-version in i915. Ideally I'd like to end up with a single codepath like
-in i915, but xe doesn't seem to have anything like intel_mem_region
-so it's a bit hard to achieve right now :(
+Create a single, centralized fault injection module
+(xe_fault_inject.c/h) that manages all fault types through
+one table. Each type is just an entry in an enum and a one-line
+row in a descriptor array -- no more scattered globals,
+externs, or per-type inline helpers.
 
-> 
-> >  		phys_base = pte & ~(page_size - 1);
-> > +
-> >  		flags |= XE_BO_FLAG_VRAM0;
-> >  
-> >  		/*
-> Extra newline.
-> 
-> Kind regards,
-> ~Maarten Lankhorst
+Debugfs interface (under /sys/kernel/debug/dri/0/):
+ - fail_gt_reset         - GT reset failure
+ - inject_csc_hw_error   - CSC firmware error
 
+Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Reviewed-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+---
+v2:
+- Add multiple platform support. (Vinay)
+- Handle VF properly.
+- Rename to XE_FAULT_GT_RESET/XE_FAULT_CSC_HW_ERROR and
+  create xe_fault_inject_types.h file including those name.
+
+v3:
+- Solved patch apply issue on tip.
+
+v4:
+- Add proper header file.
+
+v5:
+- Properly refer FAULT_ATTR_INITIALIZER. (Vinay)
+- Change xe_fault_inject_descs to xe_fault_inject_entry.
+- Change 2025 to 2026.
+---
+ drivers/gpu/drm/xe/Makefile                |  2 +
+ drivers/gpu/drm/xe/xe_debugfs.c            |  9 +--
+ drivers/gpu/drm/xe/xe_fault_inject.c       | 68 ++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_fault_inject.h       | 31 ++++++++++
+ drivers/gpu/drm/xe/xe_fault_inject_types.h | 21 +++++++
+ drivers/gpu/drm/xe/xe_gt.c                 |  5 +-
+ drivers/gpu/drm/xe/xe_gt.h                 |  8 ---
+ drivers/gpu/drm/xe/xe_hw_error.c           | 11 +---
+ 8 files changed, 129 insertions(+), 26 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_fault_inject.c
+ create mode 100644 drivers/gpu/drm/xe/xe_fault_inject.h
+ create mode 100644 drivers/gpu/drm/xe/xe_fault_inject_types.h
+
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 09661f079d03..d4acb8e9c3b7 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -361,6 +361,8 @@ ifeq ($(CONFIG_DEBUG_FS),y)
+ 
+ 	xe-$(CONFIG_PCI_IOV) += xe_gt_sriov_pf_debugfs.o
+ 
++	xe-$(CONFIG_FAULT_INJECTION) += xe_fault_inject.o
++
+ 	xe-$(CONFIG_DRM_XE_DISPLAY) += \
+ 		i915-display/intel_display_debugfs.o \
+ 		i915-display/intel_display_debugfs_params.o \
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index 22b471303984..8402189b24ef 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -6,7 +6,6 @@
+ #include "xe_debugfs.h"
+ 
+ #include <linux/debugfs.h>
+-#include <linux/fault-inject.h>
+ #include <linux/string_helpers.h>
+ 
+ #include <drm/drm_debugfs.h>
+@@ -14,6 +13,7 @@
+ #include "regs/xe_pmt.h"
+ #include "xe_bo.h"
+ #include "xe_device.h"
++#include "xe_fault_inject.h"
+ #include "xe_force_wake.h"
+ #include "xe_gt.h"
+ #include "xe_gt_debugfs.h"
+@@ -38,9 +38,6 @@
+ #include "xe_vm.h"
+ #endif
+ 
+-DECLARE_FAULT_ATTR(gt_reset_failure);
+-DECLARE_FAULT_ATTR(inject_csc_hw_error);
+-
+ static void read_residency_counter(struct xe_device *xe, struct xe_mmio *mmio,
+ 				   u32 offset, const char *name, struct drm_printer *p)
+ {
+@@ -563,8 +560,6 @@ void xe_debugfs_register(struct xe_device *xe)
+ 		drm_debugfs_create_files(debugfs_residencies,
+ 					 ARRAY_SIZE(debugfs_residencies),
+ 					 root, minor);
+-		fault_create_debugfs_attr("inject_csc_hw_error", root,
+-					  &inject_csc_hw_error);
+ 	}
+ 
+ 	debugfs_create_file("forcewake_all", 0400, root, xe,
+@@ -610,7 +605,7 @@ void xe_debugfs_register(struct xe_device *xe)
+ 
+ 	xe_psmi_debugfs_register(xe);
+ 
+-	fault_create_debugfs_attr("fail_gt_reset", root, &gt_reset_failure);
++	xe_fault_inject_debugfs_register(xe, root);
+ 
+ 	if (IS_SRIOV_PF(xe))
+ 		xe_sriov_pf_debugfs_register(xe, root);
+diff --git a/drivers/gpu/drm/xe/xe_fault_inject.c b/drivers/gpu/drm/xe/xe_fault_inject.c
+new file mode 100644
+index 000000000000..405dab10c942
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_fault_inject.c
+@@ -0,0 +1,68 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright Â© 2026 Intel Corporation
++ */
++
++#include <linux/bits.h>
++#include <linux/fault-inject.h>
++
++#include "xe_device.h"
++#include "xe_fault_inject.h"
++#include "xe_platform_types.h"
++#include "xe_sriov.h"
++
++static struct {
++	const char *name;
++	u32 platforms;
++	bool skip_on_vf;
++	struct fault_attr attr;
++} xe_fault_inject_entry[XE_FAULT_MAX] = {
++	[XE_FAULT_GT_RESET]	= { .name = "fail_gt_reset",
++				    .attr = FAULT_ATTR_INITIALIZER },
++	[XE_FAULT_CSC_HW_ERROR]	= { .name = "inject_csc_hw_error",
++				    .platforms = BIT(XE_BATTLEMAGE),
++				    .skip_on_vf = true,
++				    .attr = FAULT_ATTR_INITIALIZER },
++};
++
++/**
++ * xe_fault_inject - Check if a fault should be injected
++ * @type: fault injection type to check
++ *
++ * Returns true if a fault should be injected for the given type.
++ * Controlled via debugfs fault injection attributes.
++ */
++bool xe_fault_inject(enum xe_fault_type type)
++{
++	if (type >= XE_FAULT_MAX)
++		return false;
++
++	return should_fail(&xe_fault_inject_entry[type].attr, 1);
++}
++
++/**
++ * xe_fault_inject_debugfs_register - Register fault injection debugfs entries
++ * @xe: xe device instance
++ * @root: debugfs root directory
++ *
++ * Creates debugfs fault injection attributes for all supported fault
++ * injection types. Platform-specific entries are only registered on
++ * matching platforms. Entries marked skip_on_vf are not registered for
++ * SR-IOV VF devices.
++ */
++void xe_fault_inject_debugfs_register(struct xe_device *xe, struct dentry *root)
++{
++	int i;
++
++	for (i = 0; i < XE_FAULT_MAX; i++) {
++		if (IS_SRIOV_VF(xe) && xe_fault_inject_entry[i].skip_on_vf)
++			continue;
++
++		if (xe_fault_inject_entry[i].platforms &&
++		    !(xe_fault_inject_entry[i].platforms & BIT(xe->info.platform)))
++			continue;
++
++		fault_create_debugfs_attr(xe_fault_inject_entry[i].name, root,
++					  &xe_fault_inject_entry[i].attr);
++	}
++}
+diff --git a/drivers/gpu/drm/xe/xe_fault_inject.h b/drivers/gpu/drm/xe/xe_fault_inject.h
+new file mode 100644
+index 000000000000..91883ffb5f4b
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_fault_inject.h
+@@ -0,0 +1,31 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright Â© 2026 Intel Corporation
++ */
++
++#ifndef _XE_FAULT_INJECT_H_
++#define _XE_FAULT_INJECT_H_
++
++#include <linux/types.h>
++
++#include "xe_fault_inject_types.h"
++
++struct xe_device;
++struct dentry;
++
++#if IS_ENABLED(CONFIG_DEBUG_FS) && IS_ENABLED(CONFIG_FAULT_INJECTION)
++bool xe_fault_inject(enum xe_fault_type type);
++void xe_fault_inject_debugfs_register(struct xe_device *xe, struct dentry *root);
++#else
++static inline bool xe_fault_inject(enum xe_fault_type type)
++{
++	return false;
++}
++
++static inline void xe_fault_inject_debugfs_register(struct xe_device *xe,
++						    struct dentry *root)
++{
++}
++#endif
++
++#endif /* _XE_FAULT_INJECT_H_ */
+diff --git a/drivers/gpu/drm/xe/xe_fault_inject_types.h b/drivers/gpu/drm/xe/xe_fault_inject_types.h
+new file mode 100644
+index 000000000000..d5402b5a3fd6
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_fault_inject_types.h
+@@ -0,0 +1,21 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright Â© 2026 Intel Corporation
++ */
++
++#ifndef _XE_FAULT_INJECT_TYPES_H_
++#define _XE_FAULT_INJECT_TYPES_H_
++
++/**
++ * enum xe_fault_type - Fault injection types
++ * @XE_FAULT_GT_RESET: GT reset failure injection
++ * @XE_FAULT_CSC_HW_ERROR: CSC hardware error injection
++ * @XE_FAULT_MAX: Number of fault injection types
++ */
++enum xe_fault_type {
++	XE_FAULT_GT_RESET,
++	XE_FAULT_CSC_HW_ERROR,
++	XE_FAULT_MAX
++};
++
++#endif /* _XE_FAULT_INJECT_TYPES_H_ */
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 783eb6d631b5..242683cd5906 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -25,6 +25,7 @@
+ #include "xe_eu_stall.h"
+ #include "xe_exec_queue.h"
+ #include "xe_execlist.h"
++#include "xe_fault_inject.h"
+ #include "xe_force_wake.h"
+ #include "xe_ggtt.h"
+ #include "xe_gsc.h"
+@@ -923,7 +924,7 @@ static void gt_reset_worker(struct work_struct *w)
+ 
+ 	xe_gt_info(gt, "reset started\n");
+ 
+-	if (xe_fault_inject_gt_reset()) {
++	if (xe_fault_inject(XE_FAULT_GT_RESET)) {
+ 		err = -ECANCELED;
+ 		goto err_fail;
+ 	}
+@@ -980,7 +981,7 @@ void xe_gt_reset_async(struct xe_gt *gt)
+ 	xe_gt_info(gt, "trying reset from %ps\n", __builtin_return_address(0));
+ 
+ 	/* Don't do a reset while one is already in flight */
+-	if (!xe_fault_inject_gt_reset() && xe_uc_reset_prepare(&gt->uc))
++	if (!xe_fault_inject(XE_FAULT_GT_RESET) && xe_uc_reset_prepare(&gt->uc))
+ 		return;
+ 
+ 	xe_gt_info(gt, "reset queued\n");
+diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
+index 4150aa594f05..f8e3ca63aabb 100644
+--- a/drivers/gpu/drm/xe/xe_gt.h
++++ b/drivers/gpu/drm/xe/xe_gt.h
+@@ -6,8 +6,6 @@
+ #ifndef _XE_GT_H_
+ #define _XE_GT_H_
+ 
+-#include <linux/fault-inject.h>
+-
+ #include <drm/drm_util.h>
+ 
+ #include "xe_device.h"
+@@ -38,12 +36,6 @@
+ 	xe_gt_is_media_type(gt_) ? MEDIA_VER(xe) : GRAPHICS_VER(xe); \
+ })
+ 
+-extern struct fault_attr gt_reset_failure;
+-static inline bool xe_fault_inject_gt_reset(void)
+-{
+-	return IS_ENABLED(CONFIG_DEBUG_FS) && should_fail(&gt_reset_failure, 1);
+-}
+-
+ struct xe_gt *xe_gt_alloc(struct xe_tile *tile);
+ int xe_gt_init_early(struct xe_gt *gt);
+ int xe_gt_init(struct xe_gt *gt);
+diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
+index 5135e8e4093f..192e68e847a5 100644
+--- a/drivers/gpu/drm/xe/xe_hw_error.c
++++ b/drivers/gpu/drm/xe/xe_hw_error.c
+@@ -4,7 +4,6 @@
+  */
+ 
+ #include <linux/bitmap.h>
+-#include <linux/fault-inject.h>
+ 
+ #include "regs/xe_gsc_regs.h"
+ #include "regs/xe_hw_error_regs.h"
+@@ -12,6 +11,7 @@
+ 
+ #include "xe_device.h"
+ #include "xe_drm_ras.h"
++#include "xe_fault_inject.h"
+ #include "xe_hw_error.h"
+ #include "xe_mmio.h"
+ #include "xe_survivability_mode.h"
+@@ -25,8 +25,6 @@
+ 						 (PVC_COR_ERR_MASK & REG_BIT(err_bit)) : \
+ 						 (PVC_FAT_ERR_MASK & REG_BIT(err_bit)))
+ 
+-extern struct fault_attr inject_csc_hw_error;
+-
+ static const char * const error_severity[] = DRM_XE_RAS_ERROR_SEVERITY_NAMES;
+ 
+ static const char * const hec_uncorrected_fw_errors[] = {
+@@ -167,11 +165,6 @@ static_assert(ARRAY_SIZE(pvc_master_local_nonfatal_err_reg) == XE_RAS_REG_SIZE);
+ 						 pvc_master_local_fatal_err_reg : \
+ 						 pvc_master_local_nonfatal_err_reg)
+ 
+-static bool fault_inject_csc_hw_error(void)
+-{
+-	return IS_ENABLED(CONFIG_DEBUG_FS) && should_fail(&inject_csc_hw_error, 1);
+-}
+-
+ static void csc_hw_error_work(struct work_struct *work)
+ {
+ 	struct xe_tile *tile = container_of(work, typeof(*tile), csc_hw_error_work);
+@@ -507,7 +500,7 @@ void xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl)
+ {
+ 	enum hardware_error hw_err;
+ 
+-	if (fault_inject_csc_hw_error())
++	if (xe_fault_inject(XE_FAULT_CSC_HW_ERROR))
+ 		schedule_work(&tile->csc_hw_error_work);
+ 
+ 	for (hw_err = 0; hw_err < HARDWARE_ERROR_MAX; hw_err++) {
 -- 
-Ville Syrjälä
-Intel
+2.34.1
+
