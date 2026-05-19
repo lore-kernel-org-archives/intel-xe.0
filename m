@@ -4,77 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC5F5CD5BA3
-	for <intel-xe@archiver.kernel.org>; Tue, 19 May 2026 09:03:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB98DCD4851
+	for <intel-xe@archiver.kernel.org>; Tue, 19 May 2026 09:09:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69ACB10EBBF;
-	Tue, 19 May 2026 09:03:02 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="o96zwUNc";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D62F10EBC6;
- Tue, 19 May 2026 09:03:01 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 1314744286;
- Tue, 19 May 2026 09:03:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7034BC2BCC6;
- Tue, 19 May 2026 09:03:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1779181381;
- bh=n4eohByrrLdrAD3Xh6iy0bQauhz8JMCGndNHIg0F7dc=;
- h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
- b=o96zwUNcWww+LTO0iktiLeRO6orq12L6LNfcJmwAqInqvObBa0hRNAT8CMGVTZ9aa
- qNraVN/IKnFn76/d+OdovSqcW56cUFcmWtFQ9o20nzPUSaLkzKE/DktOK6P9d+SFdt
- 8otxAXCko+u1wRCznC8rkAcLRIEvWeN0RmPq9fLt/bnuugqSkGzL2FIeGEQiVlWhU3
- b+WSw7vqG9N1B8r8M6q2aILGxg/ym90u6INmK53JUrLWAp8ViIrd8AKafrnO9mCf7H
- lH64ENDDthze7qi6tmrjXLBpsrRjeqy16wd7EnKVzKMAtx2PSgXJYk0c30YPk3C3dF
- 03bHbgHvA0pVg==
-From: Maxime Ripard <mripard@kernel.org>
-Date: Tue, 19 May 2026 11:02:01 +0200
-Subject: [PATCH v5 19/19] drm/bridge_connector: Convert to atomic_create_state
-MIME-Version: 1.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5CAB10EBAA;
+	Tue, 19 May 2026 09:09:29 +0000 (UTC)
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF5F210EBD2;
+ Tue, 19 May 2026 09:09:27 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260519-drm-mode-config-init-v5-19-388b03321e38@kernel.org>
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/atomic=3A_Rework_init?=
+ =?utf-8?q?ial_state_allocation_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maxime Ripard" <mripard@kernel.org>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 19 May 2026 09:09:27 -0000
+Message-ID: <177918176790.84994.8923181889968970676@5ab824fced77>
+X-Patchwork-Hint: ignore
 References: <20260519-drm-mode-config-init-v5-0-388b03321e38@kernel.org>
 In-Reply-To: <20260519-drm-mode-config-init-v5-0-388b03321e38@kernel.org>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Jonathan Corbet <corbet@lwn.net>, 
- Shuah Khan <skhan@linuxfoundation.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Jyri Sarha <jyri.sarha@iki.fi>, 
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Simon Ser <contact@emersion.fr>, Harry Wentland <harry.wentland@amd.com>, 
- Melissa Wen <mwen@igalia.com>, Sebastian Wick <sebastian.wick@redhat.com>, 
- Alex Hung <alex.hung@amd.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Chen-Yu Tsai <wens@kernel.org>, 
- Samuel Holland <samuel@sholland.org>, 
- Dave Stevenson <dave.stevenson@raspberrypi.com>, 
- =?utf-8?q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>, 
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
-Cc: dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Daniel Stone <daniels@collabora.com>, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
- Maxime Ripard <mripard@kernel.org>, 
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2233; i=mripard@kernel.org;
- h=from:subject:message-id; bh=n4eohByrrLdrAD3Xh6iy0bQauhz8JMCGndNHIg0F7dc=;
- b=owGbwMvMwCmsHn9OcpHtvjLG02pJDFk86owzv83Pmbz77pyvkxW4/6gY897abGniOf1PvanH0
- XO9qh12HVNZGIQ5GWTFFFmeyISdXt6+uMrBfuUPmDmsTCBDGLg4BWAiiz4x1ilXdGgZb61hWuNY
- +SHuXTW3dHHFdZmVJSJG21N/Sl+aFKD2uasyv0ku7jN79E8JpbdujLXiCbNVcw4e/tyy6Bp/jdS
- ETFOF/S+3bvg6WzXn+bUKmfgC6ZKKJvf1mhyuOjzT7pjxLQEA
-X-Developer-Key: i=mripard@kernel.org; a=openpgp;
- fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,63 +36,99 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The connector created by drm_bridge_connector only initializes a
-pristine state in reset, which is equivalent to what
-atomic_create_state would expect. Convert to it.
+== Series Details ==
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Signed-off-by: Maxime Ripard <mripard@kernel.org>
----
- drivers/gpu/drm/display/drm_bridge_connector.c | 15 +++++++++++----
- 1 file changed, 11 insertions(+), 4 deletions(-)
+Series: drm/atomic: Rework initial state allocation (rev4)
+URL   : https://patchwork.freedesktop.org/series/163606/
+State : warning
 
-diff --git a/drivers/gpu/drm/display/drm_bridge_connector.c b/drivers/gpu/drm/display/drm_bridge_connector.c
-index 50408af746d8..cafa498c3848 100644
---- a/drivers/gpu/drm/display/drm_bridge_connector.c
-+++ b/drivers/gpu/drm/display/drm_bridge_connector.c
-@@ -263,26 +263,33 @@ static void drm_bridge_connector_debugfs_init(struct drm_connector *connector,
- 		if (bridge->funcs->debugfs_init)
- 			bridge->funcs->debugfs_init(bridge, root);
- 	}
- }
- 
--static void drm_bridge_connector_reset(struct drm_connector *connector)
-+static struct drm_connector_state *
-+drm_bridge_connector_create_state(struct drm_connector *connector)
- {
- 	struct drm_bridge_connector *bridge_connector =
- 		to_drm_bridge_connector(connector);
-+	struct drm_connector_state *conn_state;
-+
-+	conn_state = drm_atomic_helper_connector_create_state(connector);
-+	if (IS_ERR(conn_state))
-+		return conn_state;
- 
--	drm_atomic_helper_connector_reset(connector);
- 	if (bridge_connector->bridge_hdmi)
- 		__drm_atomic_helper_connector_hdmi_state_init(connector,
--							      connector->state);
-+							      conn_state);
-+
-+	return conn_state;
- }
- 
- static const struct drm_connector_funcs drm_bridge_connector_funcs = {
--	.reset = drm_bridge_connector_reset,
- 	.detect = drm_bridge_connector_detect,
- 	.force = drm_bridge_connector_force,
- 	.fill_modes = drm_helper_probe_single_connector_modes,
-+	.atomic_create_state = drm_bridge_connector_create_state,
- 	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
- 	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
- 	.debugfs_init = drm_bridge_connector_debugfs_init,
- 	.oob_hotplug_event = drm_bridge_connector_oob_hotplug_event,
- };
+== Summary ==
 
--- 
-2.54.0
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 0644fee557fbe95403c2ce56ab80ab482b9a8f73
+Author: Maxime Ripard <mripard@kernel.org>
+Date:   Tue May 19 11:02:01 2026 +0200
+
+    drm/bridge_connector: Convert to atomic_create_state
+    
+    The connector created by drm_bridge_connector only initializes a
+    pristine state in reset, which is equivalent to what
+    atomic_create_state would expect. Convert to it.
+    
+    Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+    Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+    Signed-off-by: Maxime Ripard <mripard@kernel.org>
++ /mt/dim checkpatch 2844416c4b83e0fbbc72a2687231178f8984b868 drm-intel
+44a79a978336 drm/atomic: Document atomic commit lifetime
+ab742407d646 drm/colorop: Fix typos in the doc
+3237cb01b8d1 drm/atomic: Drop drm_private_obj.state assignment from create_state
+af2b9e17bf97 drm/atomic: Expand atomic_create_state expectations for drm_private_obj
+eba1f6b9301c drm/mode-config: Document drm_private_obj exclusion from drm_mode_config_reset()
+c1a04e782ca5 drm/colorop: Rename __drm_colorop_state_reset()
+56df316c487c drm/colorop: Create drm_atomic_helper_colorop_create_state()
+94a9e44b13f5 drm/atomic-state-helper: Fix __drm_atomic_helper_plane_reset() doc typo
+09c267eb1170 drm/atomic-state-helper: Rename __drm_atomic_helper_plane_state_reset()
+-:91: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#91: FILE: include/drm/drm_atomic_state_helper.h:57:
++void __drm_atomic_helper_plane_state_init(struct drm_plane_state *state,
+ 					   struct drm_plane *plane);
+
+total: 0 errors, 0 warnings, 1 checks, 51 lines checked
+32c7733a99dc drm/plane: Add new atomic_create_state callback
+-:49: WARNING:LONG_LINE_COMMENT: line length of 102 exceeds 100 columns
+#49: FILE: drivers/gpu/drm/drm_atomic_state_helper.c:344:
++ * drm_atomic_helper_plane_create_state - default &drm_plane_funcs.atomic_create_state hook for planes
+
+total: 0 errors, 1 warnings, 0 checks, 106 lines checked
+c9fe46780d8f drm/atomic-state-helper: Rename __drm_atomic_helper_crtc_state_reset()
+-:88: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#88: FILE: include/drm/drm_atomic_state_helper.h:44:
++void __drm_atomic_helper_crtc_state_init(struct drm_crtc_state *state,
+ 					  struct drm_crtc *crtc);
+
+total: 0 errors, 0 warnings, 1 checks, 48 lines checked
+f1dd5cbef8c0 drm/crtc: Add new atomic_create_state callback
+a8fdde9105ab drm/atomic-state-helper: Rename __drm_atomic_helper_connector_state_reset()
+-:76: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#76: FILE: include/drm/drm_atomic_state_helper.h:74:
++void __drm_atomic_helper_connector_state_init(struct drm_connector_state *conn_state,
+ 					       struct drm_connector *connector);
+
+total: 0 errors, 0 warnings, 1 checks, 41 lines checked
+39797e5e8a8d drm/hdmi: Rename __drm_atomic_helper_connector_hdmi_reset()
+-:51: WARNING:LONG_LINE_COMMENT: line length of 103 exceeds 100 columns
+#51: FILE: drivers/gpu/drm/display/drm_hdmi_state_helper.c:309:
++ * __drm_atomic_helper_connector_hdmi_state_init() - Initialize all HDMI @drm_connector_state resources
+
+total: 0 errors, 1 warnings, 0 checks, 76 lines checked
+030ba25f7b59 drm/connector: Add new atomic_create_state callback
+-:50: WARNING:LONG_LINE_COMMENT: line length of 114 exceeds 100 columns
+#50: FILE: drivers/gpu/drm/drm_atomic_state_helper.c:538:
++ * drm_atomic_helper_connector_create_state - default &drm_connector_funcs.atomic_create_state hook for connectors
+
+-:87: CHECK:BRACES: braces {} should be used on all arms of this statement
+#87: FILE: drivers/gpu/drm/drm_connector.c:621:
++	if (connector->funcs->atomic_create_state) {
+[...]
++	} else if (connector->funcs->reset)
+[...]
+
+total: 0 errors, 1 warnings, 1 checks, 123 lines checked
+29e139df8043 drm/mode-config: Create drm_mode_config_create_initial_state()
+853c1e9e89ff drm/drv: Switch skeleton to drm_mode_config_create_initial_state()
+2668854416ed drm/tidss: Convert to atomic_create_state
+0644fee557fb drm/bridge_connector: Convert to atomic_create_state
+
 
