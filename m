@@ -4,63 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06426CD4F5E
-	for <intel-xe@archiver.kernel.org>; Tue, 19 May 2026 16:27:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 465BDCD4F5B
+	for <intel-xe@archiver.kernel.org>; Tue, 19 May 2026 16:31:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCFDE10EDC3;
-	Tue, 19 May 2026 16:27:30 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nsrtbew7";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8ABF310EDBB;
- Tue, 19 May 2026 16:27:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779208048; x=1810744048;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=3LzFi/6/g9T/wa3rJ6jSGLMahhUdpNE6toetCS9jqYg=;
- b=Nsrtbew7TLw9WB5yv/QsJjz6rZe+2vO0FMFyn2Q9EeuT4z6Q58FaidSu
- Z/6UBZ2Yq2i85SpeCaRjQ9BrZJWdCbgvRx9ovbg48dKWPQ/+XKOmTAKSG
- 8Rd+153IlRS5dNb/BdsPyTSFSC6XR+a826V6uVMW7sIDjUtQnwfY3gj/T
- qTvMf1wbS9uogNvbuur0qBXXFwTJLEWWTxI7dU22TpiAC7rmzXk3NbY7P
- 7FI8auyT9nrdDJT8UDIkiCw4AGtrquoRLu9o1YnwORzazgSsHoVbvIALO
- 9BqCYA2DWMErva0Q/jE0LAmf4WsgtH+FRxrxtkxz+LTQ2N8SQHO9f0cZ8 g==;
-X-CSE-ConnectionGUID: 5DAazheuQS6U4QT/J9FTOA==
-X-CSE-MsgGUID: EWM2bgNpTSiEAG8F8mXkDQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11791"; a="91198174"
-X-IronPort-AV: E=Sophos;i="6.23,243,1770624000"; d="scan'208";a="91198174"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2026 09:27:28 -0700
-X-CSE-ConnectionGUID: AbeiZtWWSBGHiDmrwQzkIg==
-X-CSE-MsgGUID: EQgujk5jTza9jwVPJ1+z8A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,243,1770624000"; d="scan'208";a="263334962"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.218])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2026 09:27:26 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>, "Grzelak, Michal"
- <michal.grzelak@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>
-Cc: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Subject: RE: [PATCH v3 04/31] drm/i915/bios: store VBT #57's metadata in
- intel_vbt_data
-In-Reply-To: <DM3PPF208195D8D19839A5B3145823CC4FAE3002@DM3PPF208195D8D.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260507013137.527510-1-michal.grzelak@intel.com>
- <20260507013137.527510-5-michal.grzelak@intel.com>
- <DM3PPF208195D8D19839A5B3145823CC4FAE3002@DM3PPF208195D8D.namprd11.prod.outlook.com>
-Date: Tue, 19 May 2026 19:27:24 +0300
-Message-ID: <bd8fd489ed736d970e0ab2b181d9d9bb45c8b7a1@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id F08A410EDC5;
+	Tue, 19 May 2026 16:31:13 +0000 (UTC)
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF6FF10EDC5;
+ Tue, 19 May 2026 16:31:12 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8988078018036957326=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dmc=3A_Test_Xe3LPD?=
+ =?utf-8?q?_DMC_v2=2E35?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dnyaneshwar Bhadane" <dnyaneshwar.bhadane@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 19 May 2026 16:31:12 -0000
+Message-ID: <177920827271.86973.13333768004927831866@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260519154109.1382415-1-dnyaneshwar.bhadane@intel.com>
+In-Reply-To: <20260519154109.1382415-1-dnyaneshwar.bhadane@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,107 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 19 May 2026, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
->> -----Original Message-----
->> From: Grzelak, Michal <michal.grzelak@intel.com>
->> Sent: Thursday, May 7, 2026 7:01 AM
->> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
->> Cc: Nikula, Jani <jani.nikula@intel.com>; Kandpal, Suraj
->> <suraj.kandpal@intel.com>; Grzelak, Michal <michal.grzelak@intel.com>
->> Subject: [PATCH v3 04/31] drm/i915/bios: store VBT #57's metadata in
->> intel_vbt_data
->>=20
->> Store number of rows and number of tables in intel_vbt_data when search =
-for
->> the VBT #57 succeeded.
->>=20
->> Display version determines number of rows present in each table. pre-MTL
->> platforms should have 10 rows while MTL+ should have 16 rows.
->>=20
->> Signed-off-by: Micha=C5=82 Grzelak <michal.grzelak@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_bios.c         | 7 +++++++
->>  drivers/gpu/drm/i915/display/intel_display_core.h | 3 +++
->>  2 files changed, 10 insertions(+)
->>=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c
->> b/drivers/gpu/drm/i915/display/intel_bios.c
->> index 3f9e4d31c7375..d64668c1022a7 100644
->> --- a/drivers/gpu/drm/i915/display/intel_bios.c
->> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
->> @@ -2200,6 +2200,9 @@ parse_vswing_preemph_override(struct
->> intel_display *display)
->>  		return;
->>=20
->>  	drm_dbg_kms(display->drm, "VS/PE-O parsing not yet supported\n");
->> +
->> +	display->vbt.num_tables =3D block->num_tables;
->> +	display->vbt.num_rows =3D DISPLAY_VER(display) >=3D 14 ? 16 : 10;
->
-> Where did you get these numbers from. Bspec reference maybe.
-> I also see you harcoding this in the next patches maybe you need a helper=
- that can be used.
-> Also DG2 also uses 16 rows from what I can see=20
->
->>  }
->>=20
->>  static u8 translate_iboost(struct intel_display *display, u8 val) @@ -2=
-997,6
->> +3000,10 @@ init_vbt_defaults(struct intel_display *display)
->>=20
->> !HAS_PCH_SPLIT(display));
->>  	drm_dbg_kms(display->drm, "Set default to SSC at %d kHz\n",
->>  		    display->vbt.lvds_ssc_freq);
->> +
->> +	/* Vswing / Preemphasis Override */
->> +	display->vbt.num_tables =3D 0;
->> +	display->vbt.num_rows =3D 0;
->
-> Why expilicitly make the 0 now vbt gets initialized with everything 0'd o=
-ut. As intel_display is kazalloc'd
->
->>  }
->>=20
->>  /* Common defaults which may be overridden by VBT. */ diff --git
->> a/drivers/gpu/drm/i915/display/intel_display_core.h
->> b/drivers/gpu/drm/i915/display/intel_display_core.h
->> index 76745ce6a716e..36ea4873deeb0 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
->> @@ -242,6 +242,9 @@ struct intel_vbt_data {
->>  	struct list_head display_devices;
->>  	struct list_head bdb_blocks;
->>=20
->> +	int num_tables;
->> +	int num_rows;
->
-> Lets keep this u8 here too for consistency
+--===============8988078018036957326==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Why? IMO always use int *unless* there's a reason not to.
+== Series Details ==
 
-> Also maybe num_vswing_tables,
-> num_vswing_rows_per_table.
+Series: drm/i915/dmc: Test Xe3LPD DMC v2.35
+URL   : https://patchwork.freedesktop.org/series/166880/
+State : success
 
-I'd rather see a sub-struct.
+== Summary ==
 
-BR,
-Jani.
+CI Bug Log - changes from xe-5096-eb3e9b1d7cc66ea95ab946f8f68d1c5b31096497_BAT -> xe-pw-166880v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
 
 
->
-> Regards,
-> Suraj Kandpal
->
->> +
->>  	struct sdvo_device_mapping {
->>  		u8 initialized;
->>  		u8 dvo_port;
->> --
->> 2.45.2
->
+Changes
+-------
 
---=20
-Jani Nikula, Intel
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8920 -> IGT_8921
+  * Linux: xe-5096-eb3e9b1d7cc66ea95ab946f8f68d1c5b31096497 -> xe-pw-166880v1
+
+  IGT_8920: f850fd46bb65d821ca7e3a8895e685eff2128ef5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8921: 8921
+  xe-5096-eb3e9b1d7cc66ea95ab946f8f68d1c5b31096497: eb3e9b1d7cc66ea95ab946f8f68d1c5b31096497
+  xe-pw-166880v1: 166880v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166880v1/index.html
+
+--===============8988078018036957326==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dmc: Test Xe3LPD DMC v2.35</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166880/">https://patchwork.freedesktop.org/series/166880/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166880v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166880v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5096-eb3e9b1d7cc66ea95ab946f8f68d1c5b31096497_BAT -&gt; xe-pw-166880v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8920 -&gt; IGT_8921</li>
+<li>Linux: xe-5096-eb3e9b1d7cc66ea95ab946f8f68d1c5b31096497 -&gt; xe-pw-166880v1</li>
+</ul>
+<p>IGT_8920: f850fd46bb65d821ca7e3a8895e685eff2128ef5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8921: 8921<br />
+  xe-5096-eb3e9b1d7cc66ea95ab946f8f68d1c5b31096497: eb3e9b1d7cc66ea95ab946f8f68d1c5b31096497<br />
+  xe-pw-166880v1: 166880v1</p>
+
+</body>
+</html>
+
+--===============8988078018036957326==--
