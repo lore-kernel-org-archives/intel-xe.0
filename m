@@ -4,59 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C03A6CD4F5B
-	for <intel-xe@archiver.kernel.org>; Tue, 19 May 2026 13:20:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60B2ACD5BA4
+	for <intel-xe@archiver.kernel.org>; Tue, 19 May 2026 13:24:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F9E310E3B0;
-	Tue, 19 May 2026 13:20:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 256AF10ECEF;
+	Tue, 19 May 2026 13:24:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U7FUZxlU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="daWtkC1t";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D7FD10ECD8;
- Tue, 19 May 2026 13:20:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 140A510ECF1
+ for <intel-xe@lists.freedesktop.org>; Tue, 19 May 2026 13:24:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779196838; x=1810732838;
+ t=1779197079; x=1810733079;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=vyUooBjIlGxyOWFhxEPFJS4Yo+FXEHBAVqE/hJo4ThU=;
- b=U7FUZxlUb2aRbsdexHDPSjjvUqPcOfJHvcTpirjTY6HKibEGmz/hTp+P
- gGh8X92y2Y1vsyRFBoH3mO7nm+ngqzZvrJOgXNvMlq+DTN0GJQB1mz5gD
- cf4yMwZeAOz/J4HYS+HNzfq+X3ml1r9tdO6ngsiyQ6k/Bzl4aesiOziUN
- PF6NFEiWzU3kjiJrUNgMGqd7YxE4AdOw0YHqwJF5lP3j5CLCHMQ6d0bsa
- wz2Kc/Ap591aHccpjCZrahVyQda6xAWc7tPqLuK2mw/uBZmah6lac68b3
- R8Yhl2yYJTh4SLZ1lTh5jPru9YDWsk3LpuOxmcXBgv1nwP3FAm3VimMnj w==;
-X-CSE-ConnectionGUID: Q9uHuAw+TbGVRTpWkze3Rw==
-X-CSE-MsgGUID: abEg/SUGSFOo1H76WsYpJg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11791"; a="79220019"
-X-IronPort-AV: E=Sophos;i="6.23,243,1770624000"; d="scan'208";a="79220019"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2026 06:20:37 -0700
-X-CSE-ConnectionGUID: x8p7w1m0Tku2ogCXQEifkg==
-X-CSE-MsgGUID: sbSXfrVwQR6LlhhZHl8C8Q==
+ mime-version:in-reply-to;
+ bh=YY0CGALY271ZevGzIqJk1m3ifB4oFvDlJ3Pw1kOy5HY=;
+ b=daWtkC1t27dLeLTEi9fmrEsiMtHoTX9zRPSHPEYhbzH7soXjwUpjHWPm
+ l3x3KJjcGyH7DShINDkdZcSjwvpDsreiYRlk7rNXuuaTZsQu/hjTtIo6V
+ MCkxwMe9ZCCNHHZkMP82At9ahLyHO1bUMwGh5T92Su1R2Lvs7gIFTRbOF
+ MgG39x19q1BNUR1rCCqzOVKyyYxp/MNeC9CqmJ6+mk24gqHw6QbHSA68j
+ D7PVzoI7zztW9yxtISPI44iFOZCFac3JBKwhZlTnhNU1zOzElY0zh6Lro
+ vbvDT7kS8EnHXaUslRTybMbaKHszp5afA9eAwHDku/hP4ZZl0Eionuhis Q==;
+X-CSE-ConnectionGUID: ntULaHYVTyqlI6REYjTFIw==
+X-CSE-MsgGUID: 0oDCR31+T0SPRF+epUtEFw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11791"; a="79925128"
+X-IronPort-AV: E=Sophos;i="6.23,243,1770624000"; d="scan'208";a="79925128"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2026 06:24:38 -0700
+X-CSE-ConnectionGUID: r+lWrSYsSVKI5vzGgrjxkg==
+X-CSE-MsgGUID: GeIryMXUQX62dzMeJWWIyw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,243,1770624000"; d="scan'208";a="238774207"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.16])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2026 06:20:35 -0700
-Date: Tue, 19 May 2026 16:20:31 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [RESEND] drm/i915/aux: use polling when irqs are unavailable
-Message-ID: <agxjn1P9K7DGA8QO@intel.com>
-References: <20260416163744.288107-1-michal.grzelak@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,243,1770624000"; d="scan'208";a="240027530"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2026 06:24:37 -0700
+Date: Tue, 19 May 2026 15:24:34 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Arun R Murthy <arun.r.murthy@intel.com>
+Cc: intel-xe@lists.freedesktop.org, Michal.Wajdeczko@intel.com,
+ matthew.d.roper@intel.com, badal.nilawar@intel.com
+Subject: Re: [PATCHv2] drm/xe: Check for dead config space on reading all 1s
+Message-ID: <agxkkgXMMpLtELLN@black.igk.intel.com>
+References: <20260512060128.209698-1-arun.r.murthy@intel.com>
+ <20260519033104.480503-1-arun.r.murthy@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260416163744.288107-1-michal.grzelak@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+In-Reply-To: <20260519033104.480503-1-arun.r.murthy@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,78 +68,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Apr 16, 2026 at 06:37:44PM +0200, Michał Grzelak wrote:
-> PTL with physically disconnected display was observed to have 40s longer
-> execution time when testing xe_fault_injection@xe_guc_mmio_send_recv.
-> The issue has not been seen when reverting commit 40a9f77a28fa ("Revert
-> "drm/i915/dp: change aux_ctl reg read to polling read"").
-> 
-> Apparently the configuration suffers from not having AUX enabled when
-> using interrupts. One probable cause can be xe enabling interrupts too
-> late: interrupts need memory allocations which currently can't be done
-> before the display FB takeover is done.
-> 
-> As for now, use polling for AUX in case interrupts are unavailable.
-> 
-> Fixes: 40a9f77a28fa ("Revert "drm/i915/dp: change aux_ctl reg read to polling read"")
-> Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
+Cc: Badal
 
-Pushed to drm-intel-next. Thanks.
-
+On Tue, May 19, 2026 at 09:01:04AM +0530, Arun R Murthy wrote:
+> After ioremap the BAR mapped address is read once as a sanity check and
+> if found to be all 1s then return avoiding the driver initialization of
+> a dead device.
+> 
+> v2: Move the sanity check to mmio_probe_early() - Michal
+> 
+> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/7941
+> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_dp_aux.c | 20 ++++++++++++++++----
->  1 file changed, 16 insertions(+), 4 deletions(-)
+>  drivers/gpu/drm/xe/xe_mmio.c | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> index b20ec3e589fad..9c9b6410366d5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> @@ -12,6 +12,7 @@
->  #include "intel_dp.h"
->  #include "intel_dp_aux.h"
->  #include "intel_dp_aux_regs.h"
-> +#include "intel_parent.h"
->  #include "intel_pps.h"
->  #include "intel_quirks.h"
->  #include "intel_tc.h"
-> @@ -60,18 +61,29 @@ intel_dp_aux_wait_done(struct intel_dp *intel_dp)
->  	struct intel_display *display = to_intel_display(intel_dp);
->  	i915_reg_t ch_ctl = intel_dp->aux_ch_ctl_reg(intel_dp);
->  	const unsigned int timeout_ms = 10;
-> +	bool done = true;
->  	u32 status;
-> -	bool done;
-> +	int ret;
+> diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+> index 78adb303b663..d206e3720eed 100644
+> --- a/drivers/gpu/drm/xe/xe_mmio.c
+> +++ b/drivers/gpu/drm/xe/xe_mmio.c
+> @@ -90,6 +90,7 @@ int xe_mmio_probe_early(struct xe_device *xe)
+>  {
+>  	struct xe_tile *root_tile = xe_device_get_root_tile(xe);
+>  	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+> +	u32 sanity = 0;
 >  
-> +	if (intel_parent_irq_enabled(display)) {
->  #define C (((status = intel_de_read_notrace(display, ch_ctl)) & DP_AUX_CH_CTL_SEND_BUSY) == 0)
-> -	done = wait_event_timeout(display->gmbus.wait_queue, C,
-> -				  msecs_to_jiffies_timeout(timeout_ms));
-> +		done = wait_event_timeout(display->gmbus.wait_queue, C,
-> +					  msecs_to_jiffies_timeout(timeout_ms));
-> +
-> +#undef C
-> +	} else {
-> +		ret = intel_de_wait_ms(display, ch_ctl,
-> +				       DP_AUX_CH_CTL_SEND_BUSY, 0,
-> +				       timeout_ms, &status);
-> +
-> +		if (ret == -ETIMEDOUT)
-> +			done = false;
-> +	}
+>  	/*
+>  	 * Map the entire BAR.
+> @@ -103,6 +104,21 @@ int xe_mmio_probe_early(struct xe_device *xe)
+>  		return -EIO;
+>  	}
 >  
->  	if (!done)
->  		drm_err(display->drm,
->  			"%s: did not complete or timeout within %ums (status 0x%08x)\n",
->  			intel_dp->aux.name, timeout_ms, status);
-> -#undef C
->  
->  	return status;
->  }
-> -- 
-> 2.45.2
+> +	/*
+> +	 * If the parent PCIe bridge failed to leave D3cold, or the device
 
--- 
-Ville Syrjälä
-Intel
+So shouldn't this also be in PM path?
+
+Raag
+
+> +	 * fell off the bus, MMIO reads return all-ones. Detect that here
+> +	 * before any other subsystem (SR-IOV, GuC, pcode...) consumes a
+> +	 * bogus 0xFFFFFFFF.
+> +	 */
+> +	sanity = readl(xe->mmio.regs);
+> +	if (sanity == U32_MAX && !pci_device_is_present(pdev)) {
+> +		drm_err(&xe->drm,
+> +			"MMIO reads all 1s and device not present; aborting probe\n");
+> +		pci_iounmap(pdev, xe->mmio.regs);
+> +		xe->mmio.regs = NULL;
+> +		return -ENODEV;
+> +	}
+> +
+>  	/* Setup first tile; other tiles (if present) will be setup later. */
+>  	xe_mmio_init(&root_tile->mmio, root_tile, xe->mmio.regs, SZ_4M);
+>  
+> -- 
+> 2.25.1
+> 
