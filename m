@@ -4,94 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85B5ECD5BB1
-	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 12:29:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C76E3CD5BB2
+	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 12:29:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAF9010E4D1;
-	Thu, 21 May 2026 12:29:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01F9E10E4EA;
+	Thu, 21 May 2026 12:29:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=shazbot.org header.i=@shazbot.org header.b="xEKejN2M";
-	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="pyhZSDN/";
+	dkim=pass (2048-bit key; secure) header.d=elitecode.cz header.i=@elitecode.cz header.b="LFw9lcG8";
 	dkim-atps=neutral
-Received: from fhigh-b3-smtp.messagingengine.com
- (fhigh-b3-smtp.messagingengine.com [202.12.124.154])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 75B8910E0C9
- for <intel-xe@lists.freedesktop.org>; Wed, 20 May 2026 17:22:26 +0000 (UTC)
-Received: from phl-compute-12.internal (phl-compute-12.internal [10.202.2.52])
- by mailfhigh.stl.internal (Postfix) with ESMTP id 4480D7A0088;
- Wed, 20 May 2026 13:22:25 -0400 (EDT)
-Received: from phl-frontend-03 ([10.202.2.162])
- by phl-compute-12.internal (MEProxy); Wed, 20 May 2026 13:22:25 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=shazbot.org; h=
- cc:cc:content-transfer-encoding:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm2; t=1779297745;
- x=1779384145; bh=s5dvkWtEODdyoI8bOKVGpIdgoX0fcCuk5jrlqtqFDrw=; b=
- xEKejN2MNN5XlBB2sNNYbYDhnNkrWsZc/y2/sEaspFQXnhE6F0IYS2uhxR0J0oDY
- 08oCuoP0/GOOkWxscEGyujvYH12gw8YPy5JOdLi8oCMD2QE2Ne2Ir/gEpOgrMHlw
- wXPbRZyaZnjolilBTzhPUIbjG11YHeJT6ilEYWwWrXqCd4L8xK+HTecgP7MR0E8W
- 7KGQuc7+eq9yvfxdoVLkWswezkMwyBijdhVANgkGID7qzxecI641UPQLHxgDkegB
- eNXWq3X5tejU19ugLJrAZE/x9jyJwwUzW5rml5opLHTTSd5o4yUo9eVdSWUp+RgJ
- WZEas8Ipmh9FLTOqI1aCbw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:feedback-id:feedback-id
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1779297745; x=
- 1779384145; bh=s5dvkWtEODdyoI8bOKVGpIdgoX0fcCuk5jrlqtqFDrw=; b=p
- yhZSDN/dlAAgS7nL+8nwGrn0furYE39opSQHn+7mhKOtr+PPdKanoY1nqU27kjGx
- QEMWl+p47zmYNB2A5+pOglVRtEZdc9LbfnqDh/d60j9yeo84+VpzSyMaFtnJ7/Ov
- yS5cZ2oAjHEghQXHon0AL+McOe2U2mKTfi4j/+UvfitR+YpSe3Jz+h2Dj7kR/+t8
- pgzHcsdhOKT3GYjhQvguDVNT5nWSxNi+PyvSy4vx896odFJOxtWA7yyuNoVp4me8
- 5BXNseW0qK2KmYm60N4bdDuql22doSBgD2c2AGezPGJqVvzlXGwEEaVMiAF7AIF/
- qMo/nUjiZ9onLRelCczDw==
-X-ME-Sender: <xms:z-0Nap6uAGhrbWj-yDA9NHLz4V_JRy3eLkB7Cv0t3mXcTaCja4_1_w>
- <xme:z-0NatTLPjWhLfKiToSiSHeOTuYdBuri9V53kVMPWc1W-H_1UVL2swAh2MNcgPwAZ
- nOgNERAwELaXXM9TQNzTcT7UYPEdVr3zGJb41F2Jgsbp4a1zAIY>
-X-ME-Received: <xmr:z-0NastiPVPkiyr4wY44OJk7WgUN3XBmfqc2Ryr5vn-mfIVdW_q9sngPeEg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefhedrtddtgddugeehvddvucetufdoteggodetrf
- dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
- rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
- gurhepfffhvfevuffkjghfofggtgfgsehtqhertdertdejnecuhfhrohhmpeetlhgvgicu
- hghilhhlihgrmhhsohhnuceorghlvgigsehshhgriigsohhtrdhorhhgqeenucggtffrrg
- htthgvrhhnpeegudevhfejueefveduieeuueeifeettdekveekhffgvdetfeelueehgfdt
- heffhfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
- grlhgvgiesshhhrgiisghothdrohhrghdpnhgspghrtghpthhtohepuddvpdhmohguvgep
- shhmthhpohhuthdprhgtphhtthhopeiihhgrohhguhhohhgrnheskhihlhhinhhoshdrtg
- hnpdhrtghpthhtohepmhhitghhrghlrdifihhnihgrrhhskhhisehinhhtvghlrdgtohhm
- pdhrtghpthhtohepkhhvmhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhope
- hinhhtvghlqdigvgeslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrghdprhgtphht
- thhopehjghhgseiiihgvphgvrdgtrgdprhgtphhtthhopeihihhshhgrihhhsehnvhhiug
- hirgdrtghomhdprhgtphhtthhopehskhholhhothhhuhhmthhhohesnhhvihguihgrrdgt
- ohhmpdhrtghpthhtohepkhgvvhhinhdrthhirghnsehinhhtvghlrdgtohhmpdhrtghpth
- htoheprhhoughrihhgohdrvhhivhhisehinhhtvghlrdgtohhm
-X-ME-Proxy: <xmx:z-0Nav8RdxoqD3ErBvEx8eGsZeEWHkWQ-wnqJpF55QzG6z8fcsjcVg>
- <xmx:z-0NalzO25DDQ5AgJps67VEeJrUMzcMwCKyMMcKf2dfapU7_IKTFow>
- <xmx:z-0Nah_Rdzt0SMwunZQdpQr2FewfigOgo7kqD9yCWoOUoPa2of591A>
- <xmx:z-0NajPHZxyM38iyvL05FV1dk5lJB3HVgStAma7xB7pKjbedyzHLsQ>
- <xmx:0e0Nag9IV7Fx8cb0O6p3-2wCg7N27qYmWt3dftVTxmfT2EULehAbvHnC>
-Feedback-ID: i03f14258:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 20 May 2026 13:22:22 -0400 (EDT)
-Date: Wed, 20 May 2026 11:22:20 -0600
-From: Alex Williamson <alex@shazbot.org>
-To: =?UTF-8?B?TWljaGHFgg==?= Winiarski <michal.winiarski@intel.com>
-Cc: zhaoguohan@kylinos.cn, kvm@vger.kernel.org,
- intel-xe@lists.freedesktop.org, Jason Gunthorpe <jgg@ziepe.ca>, Yishai
- Hadas <yishaih@nvidia.com>, Shameer Kolothum <skolothumtho@nvidia.com>,
- Kevin Tian <kevin.tian@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas =?UTF-8?B?SGVsbHN0csO2bQ==?= <thomas.hellstrom@linux.intel.com>,
- linux-kernel@vger.kernel.org, alex@shazbot.org
-Subject: Re: [PATCH v2] vfio/xe: avoid duplicate reset in
- xe_vfio_pci_reset_done
-Message-ID: <20260520112220.274025fa@shazbot.org>
-In-Reply-To: <20260427012128.117051-1-zhaoguohan@kylinos.cn>
-References: <20260424091719.58800-1-zhaoguohan@kylinos.cn>
- <20260427012128.117051-1-zhaoguohan@kylinos.cn>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+Received: from mail-106110.protonmail.ch (mail-106110.protonmail.ch
+ [79.135.106.110])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1FA610EBA9
+ for <intel-xe@lists.freedesktop.org>; Tue, 19 May 2026 09:02:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=elitecode.cz;
+ s=protonmail; t=1779180939; x=1779440139;
+ bh=e2fcIk6vbMLyHzZitairxpCkqEdZgCdT5SJo2A/rGkw=;
+ h=Date:To:From:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+ Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+ b=LFw9lcG8lbTxPIJrxpm6fjGJ4Xf67Bo+s8hAs5qHVKy6igSoQDl7AVfkIyBA92IaP
+ +QdVxwsi2aC3L+LKU4PpZEGMGNlhm7qkeza5pmuZwu98vdpP9+0o8PKI7rQkwmop4Z
+ 5UfPQ+y4qFsziP5YFptSYHYnrXTRLrnvC+x6164Uzw0RJiyZU4rva1kyHeItELM/m2
+ 6PS88kpKGHRHIB0b4R7PiBb5nx4mSxDrm8AWk3bVbtqbjnZ3e/KkXqSu98DXrixyjd
+ kVIdnIzT+0wBzuBUn0+TMWrs4D58EYlexqsbrvT3QrYdKJ1i6Ls/iXoCQE77SmA86m
+ dz+Wzfq4IVfzg==
+Date: Tue, 19 May 2026 08:55:35 +0000
+To: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+From: Jakub Bystron <jb@elitecode.cz>
+Subject: [BUG] xe: Meteor Lake 7d55 eDP PHY A/DPLL state mismatch,
+ flip_done timeout
+Message-ID: <TDn3cEkpVu-dBI63qMzn4sYGIkclsctG5pYDF70-dxuekRCixI_FpRQmeJL6UjZH_MtI8PBkjEsJxc93SEV9OmQvlT_CCrD2-qDb8Ss8X-Q=@elitecode.cz>
+Feedback-ID: 63222119:user:proton
+X-Pm-Message-ID: 07a4879091bd90135371c630bc1c2f41ca55b8c1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Thu, 21 May 2026 12:29:21 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -108,47 +53,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 27 Apr 2026 09:21:28 +0800
-zhaoguohan@kylinos.cn wrote:
+Hi,
 
-> From: GuoHan Zhao <zhaoguohan@kylinos.cn>
->=20
-> xe_vfio_pci_reset_done() sets deferred_reset and, when it manages to
-> acquire state_mutex itself, hands the cleanup off to
-> xe_vfio_pci_state_mutex_unlock().
->=20
-> That helper already clears deferred_reset and runs xe_vfio_pci_reset()
-> before dropping the mutex. Calling xe_vfio_pci_reset() again right
-> afterwards repeats the reset handling unnecessarily.
->=20
-> Fixes: 1f5556ec8b9e ("vfio/xe: Add device specific vfio_pci driver varian=
-t for Intel graphics")
-> Signed-off-by: GuoHan Zhao <zhaoguohan@kylinos.cn>
-> ---
-> v2:
-> - Correct the Fixes tag to point to 1f5556ec8b9e
+I hit a display-side xe failure on a Lenovo ThinkPad P1 Gen 7 with
+Meteor Lake / Core Ultra 7 165H integrated graphics.
 
+Hardware:
+Manufacturer: LENOVO
+Product:      21KV001UCK
+BIOS:         N48ET33W (1.20)
+GPU:          Intel Meteor Lake iGPU, PCI ID 8086:7d55
 
-Micha=C5=82, any objection?  I'd prefer to include this with your ack.
-Thanks,
+Kernel:
+Linux 7.0.9_1, Void Linux
 
-Alex
-=20
->  drivers/vfio/pci/xe/main.c | 2 --
->  1 file changed, 2 deletions(-)
->=20
-> diff --git a/drivers/vfio/pci/xe/main.c b/drivers/vfio/pci/xe/main.c
-> index 4ecadbbfd86e..cbff5af385ef 100644
-> --- a/drivers/vfio/pci/xe/main.c
-> +++ b/drivers/vfio/pci/xe/main.c
-> @@ -135,8 +135,6 @@ static void xe_vfio_pci_reset_done(struct pci_dev *pd=
-ev)
->  	}
->  	spin_unlock(&xe_vdev->reset_lock);
->  	xe_vfio_pci_state_mutex_unlock(xe_vdev);
-> -
-> -	xe_vfio_pci_reset(xe_vdev);
->  }
-> =20
->  static const struct pci_error_handlers xe_vfio_pci_err_handlers =3D {
+Environment:
+Xorg
+Internal eDP panel
+
+Kernel command line:
+i915.force_probe=3D!7d55 xe.force_probe=3D7d55 i915.enable_psr=3D0 xe.enabl=
+e_psr=3D0
+
+The kernel is tainted due to force_probe. i915 is explicitly blocked and xe=
+ is used for 8086:7d55.
+
+Symptom:
+After some uptime, the internal display pipeline appears to wedge. This loo=
+ks display/modeset/eDP related, not a Mesa/3D workload issue. PSR was alrea=
+dy disabled.
+
+Relevant dmesg excerpt:
+
+[10513.839237] xe 0000:00:02.0: [drm] *ERROR* Failed to bring PHY A to idle=
+.
+[10513.844179] xe 0000:00:02.0: [drm] *ERROR* PHY A Read 0c70 failed after =
+3 retries.
+[10513.851165] xe 0000:00:02.0: [drm] *ERROR* PHY A Write 0c70 failed after=
+ 3 retries.
+[10514.042599] xe 0000:00:02.0: [drm] *ERROR* Timeout waiting for DDI BUF A=
+ to get active
+[10515.226516] xe 0000:00:02.0: [drm] *ERROR* Timed out waiting for DP idle=
+ patterns
+[10525.710458] xe 0000:00:02.0: [drm] *ERROR* [CRTC:149:pipe A] flip_done t=
+imed out
+[10525.890816] xe 0000:00:02.0: [drm] *ERROR* [CRTC:149:pipe A] mismatch in=
+ pixel_rate (expected 154130, found 38971)
+[10525.890823] xe 0000:00:02.0: [drm] *ERROR* [CRTC:149:pipe A] mismatch in=
+ dpll_hw_state
+[10525.890847] xe 0000:00:02.0: [drm] *ERROR* [CRTC:149:pipe A] mismatch in=
+ hw.pipe_mode.crtc_clock (expected 154130, found 38971)
+[10525.890849] xe 0000:00:02.0: [drm] *ERROR* [CRTC:149:pipe A] mismatch in=
+ hw.adjusted_mode.crtc_clock (expected 154130, found 38971)
+[10525.890849] xe 0000:00:02.0: [drm] *ERROR* [CRTC:149:pipe A] mismatch in=
+ port_clock (expected 243000, found 61440)
+[10525.890853] ------------[ cut here ]------------
+[10525.890853] xe 0000:00:02.0: [drm] pipe state doesn't match!
+[10525.890854] WARNING: drivers/gpu/drm/i915/display/intel_modeset_verify.c=
+:225 at intel_modeset_verify_crtc+0x325/0x550 [xe], CPU#3: Xorg/1485
+[10526.070073] ------------[ cut here ]------------
+[10526.070074] xe 0000:00:02.0: [drm] DPLL 0: pll hw state mismatch
+[10526.070076] WARNING: drivers/gpu/drm/i915/display/intel_dpll_mgr.c:4945 =
+at verify_single_dpll_state+0x199/0x540 [xe], CPU#3: Xorg/1485
+[10536.462596] xe 0000:00:02.0: [drm] *ERROR* flip_done timed out
+[10536.462615] xe 0000:00:02.0: [drm] *ERROR* [CRTC:149:pipe A] commit wait=
+ timed out
+[10546.702509] xe 0000:00:02.0: [drm] *ERROR* flip_done timed out
+[10546.702526] xe 0000:00:02.0: [drm] *ERROR* [CONNECTOR:506:eDP-1] commit =
+wait timed out
+[10556.942486] xe 0000:00:02.0: [drm] *ERROR* flip_done timed out
+[10556.942505] xe 0000:00:02.0: [drm] *ERROR* [PLANE:33:plane 1A] commit wa=
+it timed out
+[10557.966373] ------------[ cut here ]------------
+[10557.966382] xe 0000:00:02.0: [drm] vblank wait timed out on crtc 0
+[10557.966388] WARNING: drivers/gpu/drm/drm_vblank.c:1320 at drm_crtc_wait_=
+one_vblank+0x183/0x1f0 [drm], CPU#12: kworker/12:0/17806
+[10558.421946] xe 0000:00:02.0: [drm] PHY A failed to change powerdown stat=
+e
+
+I can reproduce this on this machine with the kernel and command line above=
+. In this configuration, xe is not usable for a normal Xorg desktop session=
+ on this Meteor Lake 8086:7d55 system, so I currently have to fall back to =
+i915 for stability.
+
+Regards,
+Jakub
 
