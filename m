@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 756CACD5BAA
-	for <intel-xe@archiver.kernel.org>; Tue, 19 May 2026 11:23:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9312ECD4851
+	for <intel-xe@archiver.kernel.org>; Tue, 19 May 2026 11:23:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1ED0610EC75;
-	Tue, 19 May 2026 11:23:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32B5A10EC72;
+	Tue, 19 May 2026 11:23:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kqJrnEvz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m+gDn2Zb";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA9BF10EC64;
- Tue, 19 May 2026 11:22:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B365310EC6C;
+ Tue, 19 May 2026 11:23:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779189780; x=1810725780;
+ t=1779189784; x=1810725784;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=s6txK7+YgiQUWastLLdm4mn2hUBb5LXgBNSXHoMi8Kg=;
- b=kqJrnEvz+st70Y1QBXNEzfpeI/NYpNj9OQyxJ5zO49Wz7vWW7OsgzV90
- 65YC1qhGyuiL0/dxwhpHGat7RudZgyRTtB9aOtfyNwvEIrniNfT+umlVh
- KbI2UlBvEorC5UcC2YDLkO5EYssadTTIpYSgY/CiBFDYnrIghp0bXXB1k
- hyXZQ/3ASa3Wh2GLCllOqxr4lk6S5FR/Q9GcprHbbpduepWkd0IrIv1gh
- ENFn7LPJnFvX5Pdf1iqAVKYyBpnawdh5lbxpcQa8/qxSh+o+RLDLWeWTx
- v0dOKQBkpo5EoKiKPKg60BkUQVGmXJdA+lyzLbVX+yjH8Dadp0gfI5Cos A==;
-X-CSE-ConnectionGUID: XAGceFrqQnGrNe55qCHx+g==
-X-CSE-MsgGUID: dR381YaEQlWxvxKyFXdT9g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11790"; a="97498502"
-X-IronPort-AV: E=Sophos;i="6.23,243,1770624000"; d="scan'208";a="97498502"
+ bh=3GmO9xt/RY4f28hUdvLLrD45bl+dJTBiQF/Nu1qTpnw=;
+ b=m+gDn2ZbW0chCoPnR94GD1pnUoEvnOEcnSX14bjGSfl6KOGQnQFXXNRt
+ H9aQE9YfC7rOK+5z0uGS281nvP2M7nGDQDiQvKA9zcVimQwynruWL9Cgi
+ g4TfGS1m0Upqsq5t59VKIajB5muqIYV6zvLXPSW/c+BMWqwdYbPwbeN+D
+ nOY0UKHRj2Z7Zfar++Ot5QII+DUizod/UsctzM2N5pOPyeSA3XRMvgBtk
+ LMcPohI081Isnk8AmLgQxizta0k7s8obVsvXok0zT6musm6GdylX80XR9
+ fId8r7k2okvr7zdG1lCVPddnNzSdJAsGl/Ai/BDTgcfZ0VvVunLHm87Os A==;
+X-CSE-ConnectionGUID: /vByM0OEQ5aybII7No2n8Q==
+X-CSE-MsgGUID: 0QNVY4wISXOBFbnal1bz1w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11790"; a="97498519"
+X-IronPort-AV: E=Sophos;i="6.23,243,1770624000"; d="scan'208";a="97498519"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2026 04:22:59 -0700
-X-CSE-ConnectionGUID: CgUke6Z1StWekW4gUb0k3g==
-X-CSE-MsgGUID: 54qA0qJ6QE2uB1oXH9v1Dg==
+ 19 May 2026 04:23:03 -0700
+X-CSE-ConnectionGUID: wazGstbwSWCSo0IBNPWebQ==
+X-CSE-MsgGUID: 3CIcZx2mTXKLHw/wQQdxuQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,243,1770624000"; d="scan'208";a="239606388"
+X-IronPort-AV: E=Sophos;i="6.23,243,1770624000"; d="scan'208";a="239606458"
 Received: from smoticic-mobl1.ger.corp.intel.com (HELO hazy.intel.com)
  ([10.245.245.12])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2026 04:22:58 -0700
+ 19 May 2026 04:23:02 -0700
 From: Luca Coelho <luciano.coelho@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 1/4] drm/i915/display: harden masks in HSW_AUD_PIN_ELD_CP_VLD
- macros
-Date: Tue, 19 May 2026 14:11:13 +0300
-Message-ID: <20260519112243.1454375-2-luciano.coelho@intel.com>
+Subject: [PATCH 4/4] drm/i915/display: harden shift in
+ intel_pmdemand_update_phys_mask()
+Date: Tue, 19 May 2026 14:11:16 +0300
+Message-ID: <20260519112243.1454375-5-luciano.coelho@intel.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260519112243.1454375-1-luciano.coelho@intel.com>
 References: <20260519112243.1454375-1-luciano.coelho@intel.com>
@@ -68,49 +68,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-HSW_AUD_PIN_ELD_CP_VLD has a 4-bit field per transcoder for
-TRANSCODER_A..TRANSCODER_D only (bits 0..15).  Any other transcoder
-value (TRANSCODER_EDP, TRANSCODER_DSI_*, INVALID_TRANSCODER) is not
-valid here.
+BIT() takes a non-negative shift amount, but phy is of type enum phy,
+which can in theory be PHY_NONE (-1).
 
-This is not a problem with the current implementation, because trans
-is always valid when these macros are called, but it's more robust to
-mask the index to the low 2 bits so the shift is always well-defined.
+This is not a problem with the current implementation, because phy is
+always valid when this code is reached (Type-C encoders are rejected
+earlier), but it's more robust to store it as unsigned int so the
+shifts are always well-defined.
 
 Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_audio_regs.h | 16 ++++++++++++----
- 1 file changed, 12 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_pmdemand.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_audio_regs.h b/drivers/gpu/drm/i915/display/intel_audio_regs.h
-index 4c31844d21df..25df7af4f67f 100644
---- a/drivers/gpu/drm/i915/display/intel_audio_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_audio_regs.h
-@@ -109,12 +109,20 @@
- #define _HSW_AUD_EDID_DATA_B		0x65150
- #define HSW_AUD_EDID_DATA(trans)	_MMIO_TRANS(trans, _HSW_AUD_EDID_DATA_A, _HSW_AUD_EDID_DATA_B)
+diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+index 7819b724795b..d02ac2408e29 100644
+--- a/drivers/gpu/drm/i915/display/intel_pmdemand.c
++++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+@@ -150,7 +150,7 @@ intel_pmdemand_update_phys_mask(struct intel_display *display,
+ 				struct intel_pmdemand_state *pmdemand_state,
+ 				bool set_bit)
+ {
+-	enum phy phy;
++	unsigned int phy;
  
-+/*
-+ * HSW_AUD_PIN_ELD_CP_VLD has a 4-bit field per transcoder for
-+ * TRANSCODER_A..TRANSCODER_D only (bits 0..15).  Any other transcoder
-+ * value (TRANSCODER_EDP, TRANSCODER_DSI_*, INVALID_TRANSCODER) is not
-+ * valid here.  Mask the index to the low 2 bits so the shift is
-+ * always well-defined.
-+ */
- #define HSW_AUD_PIPE_CONV_CFG		_MMIO(0x6507c)
- #define HSW_AUD_PIN_ELD_CP_VLD		_MMIO(0x650c0)
--#define   AUDIO_INACTIVE(trans)		((1 << 3) << ((trans) * 4))
--#define   AUDIO_OUTPUT_ENABLE(trans)	((1 << 2) << ((trans) * 4))
--#define   AUDIO_CP_READY(trans)		((1 << 1) << ((trans) * 4))
--#define   AUDIO_ELD_VALID(trans)	((1 << 0) << ((trans) * 4))
-+#define   __AUDIO_MASK_TRANS(trans)	(((unsigned int)(trans) & 0x3) * 4)
-+#define   AUDIO_INACTIVE(trans)		((u32)BIT(3) << __AUDIO_MASK_TRANS(trans))
-+#define   AUDIO_OUTPUT_ENABLE(trans)	((u32)BIT(2) << __AUDIO_MASK_TRANS(trans))
-+#define   AUDIO_CP_READY(trans)		((u32)BIT(1) << __AUDIO_MASK_TRANS(trans))
-+#define   AUDIO_ELD_VALID(trans)	((u32)BIT(0) << __AUDIO_MASK_TRANS(trans))
- 
- #define _AUD_TCA_DP_2DOT0_CTRL		0x650bc
- #define _AUD_TCB_DP_2DOT0_CTRL		0x651bc
+ 	if (DISPLAY_VER(display) < 14)
+ 		return;
 -- 
 2.53.0
 
