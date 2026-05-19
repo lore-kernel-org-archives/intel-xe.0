@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DE01CD5BAC
-	for <intel-xe@archiver.kernel.org>; Tue, 19 May 2026 12:29:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BE91CD5BA4
+	for <intel-xe@archiver.kernel.org>; Tue, 19 May 2026 12:48:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D902C10ECB1;
-	Tue, 19 May 2026 12:29:11 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b/90rENi";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE20B10ECB1
- for <intel-xe@lists.freedesktop.org>; Tue, 19 May 2026 12:29:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779193750; x=1810729750;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=RWKbxxLEL8uhPMASgNMU6p6Gh/GgTnJOVikKOZFHdxQ=;
- b=b/90rENinP9iaevpz+AER+4nH/Ob81gSbJxgblcOst64+okHeS2r+tQJ
- E/ZrCeGFmturkfyRe+ImhGGFoE0Yo3CZlwj4RDOSZAvVvS3WeKJduWUU5
- 6WiwiWYRpo4o3uaNTj65hOyzVFrayCWNet1MU83VzpPhdGfPmmUm9dqeU
- goZxUqxB5EsRem8WrvmMwYgtDeCeofiKjRzAy/s8dCKR7RobPP5rCV5Ex
- m4Lyyj5OVt8PmZi7A2QnHyNhbj652FGvoq3uMMBuOHVLltnz8KIRnI8r1
- Rnxz6Sj8B1w16uJk5AFZ56TDyEDS5CUsa+6GpUApUUndjqfTcHGuOY8fY w==;
-X-CSE-ConnectionGUID: /qsK0GiQToeeTgYQYQEYmw==
-X-CSE-MsgGUID: y+/wsRPtTWOfYtnKVxfiug==
-X-IronPort-AV: E=McAfee;i="6800,10657,11791"; a="79919461"
-X-IronPort-AV: E=Sophos;i="6.23,243,1770624000"; d="scan'208";a="79919461"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2026 05:29:09 -0700
-X-CSE-ConnectionGUID: kxMOdriCQUeynEs1OZjQBw==
-X-CSE-MsgGUID: FhpHwN39T/yJz/yKt/g9wg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,243,1770624000"; d="scan'208";a="263261615"
-Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
- ([10.190.239.37])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2026 05:29:08 -0700
-From: Tejas Upadhyay <tejas.upadhyay@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.auld@intel.com, matthew.brost@intel.com,
- thomas.hellstrom@linux.intel.com, himal.prasad.ghimiray@intel.com,
- Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH V10 10/10] drm/xe/cri: Add sysfs interface for bad gpu vram
- pages
-Date: Tue, 19 May 2026 17:58:25 +0530
-Message-ID: <20260519122817.45770-22-tejas.upadhyay@intel.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260519122817.45770-12-tejas.upadhyay@intel.com>
-References: <20260519122817.45770-12-tejas.upadhyay@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7D3F10ECA5;
+	Tue, 19 May 2026 12:48:34 +0000 (UTC)
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97CBF10ECA5;
+ Tue, 19 May 2026 12:48:33 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3399128131555172907=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_harden_?=
+ =?utf-8?q?some_bit-shifting_operations?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Luca Coelho" <luciano.coelho@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 19 May 2026 12:48:33 -0000
+Message-ID: <177919491361.86973.14083674312124716709@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260519112243.1454375-1-luciano.coelho@intel.com>
+In-Reply-To: <20260519112243.1454375-1-luciano.coelho@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,192 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Starting CRI, Include a sysfs interface designed to expose information
-about bad VRAM pages—those identified as having hardware faults
-(e.g., ECC errors). This interface allows userspace tools and
-administrators to monitor the health of the GPU's local memory and
-track the status of page retirement.To get details on bad gpu vram
-pages can be found under /sys/bus/pci/devices/bdf/vram_bad_pages.
+--===============3399128131555172907==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Where The format is, pfn : gpu page size : flags
+== Series Details ==
 
-flags:
-R: reserved, this gpu page is reserved.
-P: pending for reserve, this gpu page is marked as bad, will be reserved
-   in next window of page_reserve.
-F: unable to reserve. this gpu page can’t be reserved due to some reasons.
+Series: drm/i915/display: harden some bit-shifting operations
+URL   : https://patchwork.freedesktop.org/series/166864/
+State : success
 
-For example if you read using cat /sys/bus/pci/devices/bdf/vram_bad_pages,
-max_pages : 10000
-0x00000000 : 0x00001000 : R
-0x00001234 : 0x00001000 : P
+== Summary ==
 
-v3:
-- Move FW communication in RAS code
-v2:
-- Add max_pages info as per updated design doc
-- Rebase
+CI Bug Log - changes from xe-5093-2844416c4b83e0fbbc72a2687231178f8984b868_BAT -> xe-pw-166864v1_BAT
+====================================================
 
-Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
----
- drivers/gpu/drm/xe/xe_device_sysfs.c       |  7 ++
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c       | 79 ++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.h       |  1 +
- drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h |  2 +
- 4 files changed, 89 insertions(+)
+Summary
+-------
 
-diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
-index a73e0e957cb0..47c5be4180fe 100644
---- a/drivers/gpu/drm/xe/xe_device_sysfs.c
-+++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
-@@ -8,12 +8,14 @@
- #include <linux/pci.h>
- #include <linux/sysfs.h>
- 
-+#include "xe_configfs.h"
- #include "xe_device.h"
- #include "xe_device_sysfs.h"
- #include "xe_mmio.h"
- #include "xe_pcode_api.h"
- #include "xe_pcode.h"
- #include "xe_pm.h"
-+#include "xe_ttm_vram_mgr.h"
- 
- /**
-  * DOC: Xe device sysfs
-@@ -267,6 +269,7 @@ static const struct attribute_group auto_link_downgrade_attr_group = {
- int xe_device_sysfs_init(struct xe_device *xe)
- {
- 	struct device *dev = xe->drm.dev;
-+	bool policy;
- 	int ret;
- 
- 	if (xe->d3cold.capable) {
-@@ -285,5 +288,9 @@ int xe_device_sysfs_init(struct xe_device *xe)
- 			return ret;
- 	}
- 
-+	policy = xe_configfs_get_bad_page_reservation(to_pci_dev(dev));
-+	if (xe->info.platform == XE_CRESCENTISLAND && policy)
-+		xe_ttm_vram_sysfs_init(xe);
-+
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-index f18eb51e98a1..35b5eaf590fa 100644
---- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-@@ -765,3 +765,82 @@ int xe_ttm_vram_handle_addr_fault(struct xe_device *xe, unsigned long addr)
- 	return xe_ttm_vram_reserve_page_at_addr(xe, addr, vram_mgr, mm);
- }
- EXPORT_SYMBOL(xe_ttm_vram_handle_addr_fault);
-+
-+static void xe_ttm_vram_dump_bad_pages_info(char *buf, struct xe_ttm_vram_mgr *mgr)
-+{
-+	const unsigned int element_size = sizeof("0xabcdabcd : 0x12345678 : R\n") - 1;
-+	const unsigned int maxpage_size = sizeof("max_pages: 10000\n") - 1;
-+	struct xe_ttm_vram_offline_resource *pos, *n;
-+	struct gpu_buddy_block *block;
-+	ssize_t s = 0;
-+
-+	mutex_lock(&mgr->lock);
-+	s += scnprintf(&buf[s], maxpage_size + 1, "max_pages: %d\n", mgr->max_pages);
-+	list_for_each_entry_safe(pos, n, &mgr->offlined_pages, offlined_link) {
-+		block = list_first_entry(&pos->blocks,
-+					 struct gpu_buddy_block,
-+					 link);
-+		s += scnprintf(&buf[s], element_size + 1,
-+			       "0x%08llx : 0x%08llx : %1s\n",
-+			       gpu_buddy_block_offset(block) >> PAGE_SHIFT,
-+			       gpu_buddy_block_size(&mgr->mm, block),
-+			       "R");
-+	}
-+	list_for_each_entry_safe(pos, n, &mgr->queued_pages, queued_link) {
-+		block = list_first_entry(&pos->blocks,
-+					 struct gpu_buddy_block,
-+					 link);
-+		s += scnprintf(&buf[s], element_size + 1,
-+			       "0x%08llx : 0x%08llx : %1s\n",
-+			       gpu_buddy_block_offset(block) >> PAGE_SHIFT,
-+			       gpu_buddy_block_size(&mgr->mm, block),
-+			       pos->status ? "P" : "F");
-+	}
-+	mutex_unlock(&mgr->lock);
-+}
-+
-+static ssize_t vram_bad_pages_show(struct device *dev, struct device_attribute *attr, char *buf)
-+{
-+	struct pci_dev *pdev = to_pci_dev(dev);
-+	struct xe_device *xe = pdev_to_xe_device(pdev);
-+	struct ttm_resource_manager *man;
-+	struct xe_ttm_vram_mgr *mgr;
-+
-+	man = ttm_manager_type(&xe->ttm, XE_PL_VRAM0);
-+	if (man) {
-+		mgr = to_xe_ttm_vram_mgr(man);
-+		xe_ttm_vram_dump_bad_pages_info(buf, mgr);
-+	}
-+
-+	return sysfs_emit(buf, "%s\n", buf);
-+}
-+static DEVICE_ATTR_RO(vram_bad_pages);
-+
-+static void xe_ttm_vram_sysfs_fini(void *arg)
-+{
-+	struct xe_device *xe = arg;
-+
-+	device_remove_file(xe->drm.dev, &dev_attr_vram_bad_pages);
-+}
-+
-+/**
-+ * xe_ttm_vram_sysfs_init - Initialize vram sysfs component
-+ * @tile: Xe Tile object
-+ *
-+ * It needs to be initialized after the main tile component is ready
-+ *
-+ * Returns: 0 on success, negative error code on error.
-+ */
-+int xe_ttm_vram_sysfs_init(struct xe_device *xe)
-+{
-+	int err;
-+
-+	err = device_create_file(xe->drm.dev, &dev_attr_vram_bad_pages);
-+	if (err) {
-+		dev_err(xe->drm.dev, "Failed to create vram_bad_pages sysfs file: %d\n", err);
-+		return 0;
-+	}
-+
-+	return devm_add_action_or_reset(xe->drm.dev, xe_ttm_vram_sysfs_fini, xe);
-+}
-+EXPORT_SYMBOL(xe_ttm_vram_sysfs_init);
-diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-index 8ef06d9d44f7..c33e1a8d9217 100644
---- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-+++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-@@ -32,6 +32,7 @@ void xe_ttm_vram_get_used(struct ttm_resource_manager *man,
- 			  u64 *used, u64 *used_visible);
- 
- int xe_ttm_vram_handle_addr_fault(struct xe_device *xe, unsigned long addr);
-+int xe_ttm_vram_sysfs_init(struct xe_device *xe);
- static inline struct xe_ttm_vram_mgr_resource *
- to_xe_ttm_vram_mgr_resource(struct ttm_resource *res)
- {
-diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-index 07ed88b47e04..b23796066a1a 100644
---- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-+++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-@@ -39,6 +39,8 @@ struct xe_ttm_vram_mgr {
- 	u32 mem_type;
- 	/** @offline_mode: debugfs hook for setting page offline mode */
- 	u64 offline_mode;
-+	/** @max_pages: max pages that can be in offline queue retrieved from FW */
-+	u16 max_pages;
- };
- 
- /**
--- 
-2.52.0
+  **SUCCESS**
 
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5093-2844416c4b83e0fbbc72a2687231178f8984b868 -> xe-pw-166864v1
+
+  IGT_8920: f850fd46bb65d821ca7e3a8895e685eff2128ef5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5093-2844416c4b83e0fbbc72a2687231178f8984b868: 2844416c4b83e0fbbc72a2687231178f8984b868
+  xe-pw-166864v1: 166864v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166864v1/index.html
+
+--===============3399128131555172907==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: harden some bit-shifting operations</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166864/">https://patchwork.freedesktop.org/series/166864/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166864v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166864v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5093-2844416c4b83e0fbbc72a2687231178f8984b868_BAT -&gt; xe-pw-166864v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5093-2844416c4b83e0fbbc72a2687231178f8984b868 -&gt; xe-pw-166864v1</li>
+</ul>
+<p>IGT_8920: f850fd46bb65d821ca7e3a8895e685eff2128ef5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5093-2844416c4b83e0fbbc72a2687231178f8984b868: 2844416c4b83e0fbbc72a2687231178f8984b868<br />
+  xe-pw-166864v1: 166864v1</p>
+
+</body>
+</html>
+
+--===============3399128131555172907==--
