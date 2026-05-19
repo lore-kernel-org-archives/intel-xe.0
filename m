@@ -4,27 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 465BDCD4F5B
-	for <intel-xe@archiver.kernel.org>; Tue, 19 May 2026 16:31:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9EABCD4F5B
+	for <intel-xe@archiver.kernel.org>; Tue, 19 May 2026 16:32:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F08A410EDC5;
-	Tue, 19 May 2026 16:31:13 +0000 (UTC)
-Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF6FF10EDC5;
- Tue, 19 May 2026 16:31:12 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8988078018036957326=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id A979010EDC5;
+	Tue, 19 May 2026 16:32:27 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MZF5RBWq";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E20D810EDC5;
+ Tue, 19 May 2026 16:32:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1779208347; x=1810744347;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=fK1EZ/BBfksNi4a3noJ0pUwBujJjciKvPXRh2OIYDuU=;
+ b=MZF5RBWqj4ggTffzhDUtJWNzo2rALBpghE+NcSt6sp82M5YMOqrtk0f5
+ IihAE4IXU925RygDIBU4V4G6HZwJDnlCupHUqZTlASoCQEw++aNN8ilps
+ eGIYRN92nAi+t3aPuO/sGLffKeh73feFfZ4rSfqQ+HJX0dNRIBs7Q4BBa
+ TOgmTbjlViXseYb/i1+yGCV+nwACCJFoCgPOtnsnbg0pq6XJ+HwlwlJHN
+ zQyDlrE9gTqXe6r+RuI8gZhzp2lTUyD47tR1z+VmdzJtzRhEr4yFntG/G
+ rbt4Bk2aXQdcOPddPQ1MBWHAjvgtjmiNts20Y6lPwnmGYK9NacMWHBYaE A==;
+X-CSE-ConnectionGUID: Yxh+Wl0IQ2uVfDpfS8ymNA==
+X-CSE-MsgGUID: ObvX5stpTOijRWva80b/oQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11791"; a="80263607"
+X-IronPort-AV: E=Sophos;i="6.23,243,1770624000"; d="scan'208";a="80263607"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2026 09:32:26 -0700
+X-CSE-ConnectionGUID: vQ2CgVAkRdCnoJ8XDqkx5w==
+X-CSE-MsgGUID: 7o2ZhC3/QfaLc+TFQuBl5A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,243,1770624000"; d="scan'208";a="244808039"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.218])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2026 09:32:25 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>, "Grzelak, Michal"
+ <michal.grzelak@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>
+Subject: RE: [PATCH v3 12/31] drm/i915/ddi: expose VS/PE-O buffers to
+ intel_encoder
+In-Reply-To: <DM3PPF208195D8DAC7B75B4A5EC5683E025E3002@DM3PPF208195D8D.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260507013137.527510-1-michal.grzelak@intel.com>
+ <20260507013137.527510-13-michal.grzelak@intel.com>
+ <DM3PPF208195D8DAC7B75B4A5EC5683E025E3002@DM3PPF208195D8D.namprd11.prod.outlook.com>
+Date: Tue, 19 May 2026 19:32:22 +0300
+Message-ID: <2c9f1720aae37405b1540ebfcb0ca4fa9abbe980@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dmc=3A_Test_Xe3LPD?=
- =?utf-8?q?_DMC_v2=2E35?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dnyaneshwar Bhadane" <dnyaneshwar.bhadane@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 19 May 2026 16:31:12 -0000
-Message-ID: <177920827271.86973.13333768004927831866@5ab824fced77>
-X-Patchwork-Hint: ignore
-References: <20260519154109.1382415-1-dnyaneshwar.bhadane@intel.com>
-In-Reply-To: <20260519154109.1382415-1-dnyaneshwar.bhadane@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +71,111 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8988078018036957326==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 19 May 2026, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
+>>=20
+>> Add into intel_encoder constant pointer to intel_ddi_buf_trans. Track wi=
+th it
+>> VS/PE-O buffer from corresponding BIOS encoder.
+>>=20
+>> Add helper function into intel_bios.[ch] to extract port's intel_ddi_buf=
+_trans
+>> pointer. Cache the pointer by default into each intel_encoder during
+>> intel_ddi_init().
+>>=20
+>> This is needed as devdata->buf_trans has been allocated per each port du=
+ring
+>> parsing DDI ports in intel_bios.c. Meanwhile every encoder will need to =
+know
+>> if VS/PE overriding is requested during intel_ddi_buf_trans_init().
+>>=20
+>> Signed-off-by: Micha=C5=82 Grzelak <michal.grzelak@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_bios.c          | 6 ++++++
+>>  drivers/gpu/drm/i915/display/intel_bios.h          | 2 ++
+>>  drivers/gpu/drm/i915/display/intel_ddi.c           | 1 +
+>>  drivers/gpu/drm/i915/display/intel_display_types.h | 1 +
+>>  4 files changed, 10 insertions(+)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c
+>> b/drivers/gpu/drm/i915/display/intel_bios.c
+>> index 1b813a3dff245..6893aa9f01aec 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+>> @@ -3851,6 +3851,12 @@ bool intel_bios_encoder_supports_tbt(const
+>> struct intel_bios_encoder_data *devda
+>>  	return devdata->display->vbt.version >=3D 209 && devdata->child.tbt;  }
+>>=20
+>> +const struct intel_ddi_buf_trans *
+>> +intel_bios_encoder_extract_vswing(const struct intel_bios_encoder_data
+>> +*devdata) {
+>> +	return devdata->buf_trans;
+>> +}
+>> +
+>>  bool intel_bios_encoder_overrides_vswing(const struct
+>> intel_bios_encoder_data *devdata)  {
+>>  	return devdata->display->vbt.version >=3D 218 && diff --git
+>> a/drivers/gpu/drm/i915/display/intel_bios.h
+>> b/drivers/gpu/drm/i915/display/intel_bios.h
+>> index 50c8fc91fbe85..cf040b9b7915b 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_bios.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_bios.h
+>> @@ -73,6 +73,8 @@ bool intel_bios_get_dsc_params(struct intel_encoder
+>> *encoder,  const struct intel_bios_encoder_data *
+>> intel_bios_encoder_data_lookup(struct intel_display *display, enum port
+>> port);
+>>=20
+>> +const struct intel_ddi_buf_trans *
+>> +intel_bios_encoder_extract_vswing(const struct intel_bios_encoder_data
+>> +*devdata);
+>>  bool intel_bios_encoder_overrides_vswing(const struct
+>> intel_bios_encoder_data *devdata);  bool
+>> intel_bios_encoder_supports_dvi(const struct intel_bios_encoder_data
+>> *devdata);  bool intel_bios_encoder_supports_hdmi(const struct
+>> intel_bios_encoder_data *devdata); diff --git
+>> a/drivers/gpu/drm/i915/display/intel_ddi.c
+>> b/drivers/gpu/drm/i915/display/intel_ddi.c
+>> index 2681940a5cfe3..eb188b27ec96b 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+>> @@ -5249,6 +5249,7 @@ void intel_ddi_init(struct intel_display *display,
+>>=20
+>>  	encoder =3D &dig_port->base;
+>>  	encoder->devdata =3D devdata;
+>> +	encoder->vspeo =3D intel_bios_encoder_extract_vswing(devdata);
+>>=20
+>>  	drm_encoder_init(display->drm, &encoder->base, &intel_ddi_funcs,
+>>  			 DRM_MODE_ENCODER_TMDS, "%s",
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
+>> b/drivers/gpu/drm/i915/display/intel_display_types.h
+>> index 26e59110e7435..0f27bcfb69223 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+>> @@ -297,6 +297,7 @@ struct intel_encoder {
+>>=20
+>>  	/* VBT information for this encoder (may be NULL for older platforms)
+>> */
+>>  	const struct intel_bios_encoder_data *devdata;
+>> +	const struct intel_ddi_buf_trans *vspeo;
+>
+> I don=E2=80=99t get why this is really needed you have devdata available =
+you can get this data on fly why the helper and caching . Even after cachin=
+g it points to same table.
 
-== Series Details ==
+Agreed.
 
-Series: drm/i915/dmc: Test Xe3LPD DMC v2.35
-URL   : https://patchwork.freedesktop.org/series/166880/
-State : success
+>
+> Regards,
+> Suraj Kandpal
+>
+>>  };
+>>=20
+>>  struct intel_panel_bl_funcs {
+>> --
+>> 2.45.2
+>
 
-== Summary ==
-
-CI Bug Log - changes from xe-5096-eb3e9b1d7cc66ea95ab946f8f68d1c5b31096497_BAT -> xe-pw-166880v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8920 -> IGT_8921
-  * Linux: xe-5096-eb3e9b1d7cc66ea95ab946f8f68d1c5b31096497 -> xe-pw-166880v1
-
-  IGT_8920: f850fd46bb65d821ca7e3a8895e685eff2128ef5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8921: 8921
-  xe-5096-eb3e9b1d7cc66ea95ab946f8f68d1c5b31096497: eb3e9b1d7cc66ea95ab946f8f68d1c5b31096497
-  xe-pw-166880v1: 166880v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166880v1/index.html
-
---===============8988078018036957326==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dmc: Test Xe3LPD DMC v2.35</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166880/">https://patchwork.freedesktop.org/series/166880/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166880v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166880v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5096-eb3e9b1d7cc66ea95ab946f8f68d1c5b31096497_BAT -&gt; xe-pw-166880v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8920 -&gt; IGT_8921</li>
-<li>Linux: xe-5096-eb3e9b1d7cc66ea95ab946f8f68d1c5b31096497 -&gt; xe-pw-166880v1</li>
-</ul>
-<p>IGT_8920: f850fd46bb65d821ca7e3a8895e685eff2128ef5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8921: 8921<br />
-  xe-5096-eb3e9b1d7cc66ea95ab946f8f68d1c5b31096497: eb3e9b1d7cc66ea95ab946f8f68d1c5b31096497<br />
-  xe-pw-166880v1: 166880v1</p>
-
-</body>
-</html>
-
---===============8988078018036957326==--
+--=20
+Jani Nikula, Intel
