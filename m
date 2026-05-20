@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7B9ACD5BAB
-	for <intel-xe@archiver.kernel.org>; Wed, 20 May 2026 17:30:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D802CD5BA4
+	for <intel-xe@archiver.kernel.org>; Wed, 20 May 2026 17:30:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 783D510F102;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DD3A10F112;
 	Wed, 20 May 2026 17:30:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WHvwuJu+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JXyB3GGr";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50C2D10E426
- for <intel-xe@lists.freedesktop.org>; Wed, 20 May 2026 17:30:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C786410F109
+ for <intel-xe@lists.freedesktop.org>; Wed, 20 May 2026 17:30:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779298205; x=1810834205;
+ t=1779298213; x=1810834213;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9fVtdO3rgR2JgefZBDHR5e6hvEiEn30EFgfMumDp7Vk=;
- b=WHvwuJu+3CFuKeAUyRSJWt05+X+PJtyC/4nnZH4oYitBdTXZI7udiJBd
- FYpzRR1WZDNxd3LWSvHXxQ7ocdgEFv89xfIKkha4MKVRG7svpYaT4pyTH
- I6NOBaWDpSMY/P+8KSbRO5aXUPckK8wRRDYPF16MWTmrcwLosehM4xFxJ
- 55nXFMfZyixmapdEBup1TxGQHGZ/0raUOikzCMCocXQdF1ov+FP5IrtBW
- anHkLOoIux1kJXh2xPeVot88uwJEYFSk/2LTeEZO0kkN5J+3qO8pEnPPN
- ADXhaEmzM+8E1QIIhR/If+2Wdn1H2Op462Ps2BHqdbyPpF3+nhpemxOrx w==;
-X-CSE-ConnectionGUID: CZjooAK0RbeB+UeC0RDxgw==
-X-CSE-MsgGUID: TIsX8peQStCQIa3N5cno/Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11792"; a="105667637"
-X-IronPort-AV: E=Sophos;i="6.23,244,1770624000"; d="scan'208";a="105667637"
+ bh=E4ANuDXJJo9pYbQTi9QJnK07ZECUxytc09AWrvjBa3o=;
+ b=JXyB3GGrVspcIXU3iFBuP4d5+EhFST6B58faOqRsaQBYHvSppSH8ZyxO
+ 4VX1ly+9PBJcSi+crBD8241ajt0IVxiqdzvsQv4HGxcIgcZ3VBPKiNxnk
+ /WFVDy0eAgDsP7HQqXYSUMTvc26JNW/r8y7GdpiR6oRSRFBrL8kN/OeRh
+ IHs8j5yuSeorh3Gk8KPLq07wS6ecBkz3UmYPz8+iOCwHa9N3RkAEDpCMN
+ UMVGbqgi3kavq0vU8HcRlpCLXIrCm0wXb5jxmQiL5C44FCeSItUN81row
+ Jqx43dtjmyvfs66I4VechbrPHvWQrKEXgusdLXj15eJj7XjkpfjAoDty9 w==;
+X-CSE-ConnectionGUID: 9nmfL48WTh+avifNIGh5cg==
+X-CSE-MsgGUID: xz+7oX6OSpmJID4mETBnsA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11792"; a="105667665"
+X-IronPort-AV: E=Sophos;i="6.23,244,1770624000"; d="scan'208";a="105667665"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2026 10:30:05 -0700
-X-CSE-ConnectionGUID: pdV6ophYTsSQ3m0ZjHS8fg==
-X-CSE-MsgGUID: aY1LdU0UQgqyqtFmfMbDDg==
+ 20 May 2026 10:30:13 -0700
+X-CSE-ConnectionGUID: kCZHSq1xRXiYQOHq+tAhTQ==
+X-CSE-MsgGUID: /FkP+X7BR7KSibc0dcN/YA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,244,1770624000"; d="scan'208";a="270598127"
+X-IronPort-AV: E=Sophos;i="6.23,244,1770624000"; d="scan'208";a="270598173"
 Received: from smoticic-mobl1.ger.corp.intel.com (HELO mwauld-desk.intel.com)
  ([10.245.245.159])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2026 10:30:05 -0700
+ 20 May 2026 10:30:12 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Subject: [PATCH 04/10] drm/xe/hw_engine: don't open code is_usm_hwe()
-Date: Wed, 20 May 2026 18:28:51 +0100
-Message-ID: <20260520172846.291708-16-matthew.auld@intel.com>
+Subject: [PATCH 10/10] drm/xe/guc: toggle paging engine support for NVL-S+
+Date: Wed, 20 May 2026 18:28:57 +0100
+Message-ID: <20260520172846.291708-22-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260520172846.291708-12-matthew.auld@intel.com>
 References: <20260520172846.291708-12-matthew.auld@intel.com>
@@ -67,28 +67,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Prefer is_usm_hwe() here.
+NVL-S with newest GuC should be the first platform combo to
+support the special GUC_PAGING_CLASS feature.
+
+TODO: Check the final GuC ABI version before merging
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_engine.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_guc.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 8c66ff6f3d3c..768b0cd4c16a 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -1037,8 +1037,7 @@ bool xe_hw_engine_is_reserved(struct xe_hw_engine *hwe)
- 	    hwe->logical_instance >= gt->ccs_mode)
- 		return true;
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index cdbcad79b060..16a9ea8deeb3 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -1848,6 +1848,9 @@ bool xe_guc_using_main_gamctrl_queues(struct xe_guc *guc)
  
--	return xe->info.has_usm && hwe->class == XE_ENGINE_CLASS_COPY &&
--		hwe->instance == gt->usm.reserved_bcs_instance;
-+	return xe_gt_is_usm_hwe(gt, hwe);
+ bool xe_guc_has_paging_engine(struct xe_guc *guc)
+ {
++	struct xe_gt *gt = guc_to_gt(guc);
++	struct xe_device *xe = gt_to_xe(gt);
++
+ 	/*
+ 	 * On newer platforms the GuC now has a dedicated engine class for the
+ 	 * special PAGING engine, which is the driver reserved BCS engine used
+@@ -1856,9 +1859,8 @@ bool xe_guc_has_paging_engine(struct xe_guc *guc)
+ 	 * engine here, this purely a sw view in the GuC itself, which we need
+ 	 * to respect.
+ 	 */
+-
+-	/* TODO: Have some way to query this from the GuC? */
+-	return false;
++	return GUC_SUBMIT_VER(guc) >= MAKE_GUC_VER(1, 35, 1) &&
++	       xe->info.platform >= XE_NOVALAKE_S;
  }
  
- const char *xe_hw_engine_class_to_str(enum xe_engine_class class)
+ #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
 -- 
 2.54.0
 
