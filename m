@@ -4,40 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2943ACD5BAC
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2D23CD4F3D
 	for <intel-xe@archiver.kernel.org>; Wed, 20 May 2026 23:59:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D342F10F19F;
-	Wed, 20 May 2026 23:59:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A821110F1AB;
+	Wed, 20 May 2026 23:59:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="RpURz9q3";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="bPvl419N";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EAC8C10F19E;
- Wed, 20 May 2026 23:59:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BAC0210F18E;
+ Wed, 20 May 2026 23:59:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:To:From:Sender:Reply-To:Cc:Content-Type:Content-ID:
+ Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=o0fJPbvAKGHOnCDTDq7ULeMlMC+anyrI+jJXLbe2StY=; b=RpURz9q3sgRjFKn1hsogYtdrym
- H5xojogjjCUUsdoJAZ9HXnh+Z5IeVDBynnr0n249xAfRQuQ+hAN22Ps9cKR2hEd57Nh7xhUgch5gQ
- Q7QzNufzNid5uzEm0762RJlV1Pdt6bLgL534Bq9zh3b5bOyXmTigIUPG3hCBOKxBmr4WFC0gG9U3R
- NLKT/QekGZ3t68vI1ShuABbbkpLQEQD0Q96cZ2ZnWlMXhMOgNbwOn80iUALpIvlrOv6v4N+QA9Rd6
- ThSmXXnZFerJyld9O33RYSK52V1lllIcJTKDiNQvBNV3accQqLGKEUDSDkVvIk2Nn3zPL8x4ClFJd
- ej0lkmMw==;
+ bh=gNTNgK8EaqPSEyGVF68qIxBXTqBnS0ydl149a62pCv8=; b=bPvl419Nnxxea0ggA6Tp793aVh
+ 0yc2Ge38L//SQb6lPxC+/vkBUI4emQFLaWrzNlk7/FhJfGCF5FZBJFjpzUImjcRemZ2l5nInAlnuS
+ Bo5YZ+Weod5CYhGPGAK4k49Ep8QTxd88d0zbmkDb1VTTisnK7xIJT1nYiOs7aFFeW9NbC7nkqzEYQ
+ zns0CroktR94RnsBunEXtTIk8QlLwoyLLTxyEOS8rzIao7WsPgPPqt6oybQmFQxmAm+LjwMS1x2PN
+ ZmhgtdHmcMuhGb1zWpfSsjfJoYJwkfJVuDi8OeAAtYeFhwnZbLnGLlKXKZRWp7UEUAZog004Eo2vt
+ z29WSYTg==;
 Received: from c-73-157-168-91.hsd1.or.comcast.net ([73.157.168.91]
  helo=localhost.localdomain) by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wPqpE-00456i-Vs; Thu, 21 May 2026 01:59:45 +0200
+ id 1wPqpB-00456i-Oq; Thu, 21 May 2026 01:59:42 +0200
 From: John Harrison <John.Harrison@Igalia.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [PATCH 6/9] drm/i915/display: Fix vblank wait timed out with writeback
-Date: Wed, 20 May 2026 16:58:17 -0700
-Message-ID: <20260520235820.2313192-7-John.Harrison@Igalia.com>
+Cc: Rodrigo Siqueira <siqueira@igalia.com>
+Subject: [PATCH 4/9] drm/i915/display: Add writeback transcoder offsets for
+ DG2 family
+Date: Wed, 20 May 2026 16:58:15 -0700
+Message-ID: <20260520235820.2313192-5-John.Harrison@Igalia.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260325110744.1096786-1-suraj.kandpal@intel.com>
 References: <20260325110744.1096786-1-suraj.kandpal@intel.com>
@@ -57,41 +59,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When running kms_writeback, the following warning pops up:
-[  +0.000015] xe 0000:00:02.0: [drm] vblank wait timed out on crtc 0
-[  +0.000014] WARNING: drivers/gpu/drm/drm_vblank.c:1320 at drm_crtc_wait_one_vblank+0x179/0x1e0 [drm], CPU#7: kms_writeback/1191
+From: Rodrigo Siqueira <siqueira@igalia.com>
 
-Waiting for vblank to ensure configuration changes have taken effect
-is not a relevant concept for writeback connectors. So just skip the
-wait when configuring writeback.
+Add the transcoder offsets for writeback for DG2 class devices.
 
-Signed-off-by: John Harrison <John.Harrison@Igalia.com>
+Signed-off-by: Rodrigo Siqueira <siqueira@igalia.com>
 ---
- drivers/gpu/drm/i915/display/intel_crtc.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display_device.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index 03de219f7a64..fe3384f1aaa8 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -33,6 +33,7 @@
- #include "intel_sprite.h"
- #include "intel_vblank.h"
- #include "intel_vrr.h"
-+#include "intel_writeback.h"
- #include "skl_universal_plane.h"
- 
- static void assert_vblank_disabled(struct drm_crtc *crtc)
-@@ -65,6 +66,9 @@ struct intel_crtc *intel_crtc_for_pipe(struct intel_display *display,
- 
- void intel_crtc_wait_for_next_vblank(struct intel_crtc *crtc)
- {
-+	if (intel_writeback_transcoder_is_wd(crtc->config->cpu_transcoder))
-+		return;
-+
- 	drm_crtc_wait_one_vblank(&crtc->base);
- }
- 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+index 129b1c561847..578f6ff0d663 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.c
++++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+@@ -1343,18 +1343,23 @@ static const struct platform_desc dg2_desc = {
+ 		[TRANSCODER_B] = PIPE_B_OFFSET,					\
+ 		[TRANSCODER_C] = PIPE_C_OFFSET,					\
+ 		[TRANSCODER_D] = PIPE_D_OFFSET,					\
++		[TRANSCODER_WD_0] = PIPE_WD0_OFFSET,				\
++		[TRANSCODER_WD_1] = PIPE_WD1_OFFSET,				\
+ 	},									\
+ 	.trans_offsets = {							\
+ 		[TRANSCODER_A] = TRANSCODER_A_OFFSET,				\
+ 		[TRANSCODER_B] = TRANSCODER_B_OFFSET,				\
+ 		[TRANSCODER_C] = TRANSCODER_C_OFFSET,				\
+ 		[TRANSCODER_D] = TRANSCODER_D_OFFSET,				\
++		[TRANSCODER_WD_0] = TRANSCODER_WD0_OFFSET,			\
++		[TRANSCODER_WD_1] = TRANSCODER_WD1_OFFSET,			\
+ 	},									\
+ 	TGL_CURSOR_OFFSETS,							\
+ 										\
+ 	.__runtime_defaults.cpu_transcoder_mask =				\
+ 		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |				\
+-		BIT(TRANSCODER_C) | BIT(TRANSCODER_D),				\
++		BIT(TRANSCODER_C) | BIT(TRANSCODER_D) |				\
++		BIT(TRANSCODER_WD_0) | BIT(TRANSCODER_WD_1),			\
+ 	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A) | BIT(INTEL_FBC_B),	\
+ 	.__runtime_defaults.has_dmc = 1,					\
+ 	.__runtime_defaults.has_dsc = 1,					\
 -- 
 2.43.0
 
