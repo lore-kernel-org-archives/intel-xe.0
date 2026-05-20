@@ -4,59 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89816CD5BA4
-	for <intel-xe@archiver.kernel.org>; Wed, 20 May 2026 10:50:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9887ECD4F3C
+	for <intel-xe@archiver.kernel.org>; Wed, 20 May 2026 10:56:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 461B810E5FF;
-	Wed, 20 May 2026 10:50:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CCCD10E4F8;
+	Wed, 20 May 2026 10:56:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f/OTM7bR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eppgyzWJ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C9FCC10E0EC;
- Wed, 20 May 2026 10:50:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9325F10E270;
+ Wed, 20 May 2026 10:56:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779274203; x=1810810203;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=tdd8DrRqc1c9GV8gpnJG3FO5FSffrns6/zQN9bVMCNQ=;
- b=f/OTM7bR85gQ8jmN+aZTNRzEBdozIQtpvpwhan82ntsu3Y0IU26gyIgj
- KiwgLtWKnDcg9bwEzyhot2qrONTR0ZPUrTa5r5pe/3jllKvC0ZL4ZY/1C
- pFocUlzP79T0kvDv25HdbbUBm98H+YcA9Ee4ot4f1wgL1QGXp3OzCGoDt
- Z/6gFBhw+R+KaxkwcB1GjNH/RF+DuhuHjl+cWjECuEfWe2HouJrpbP4kU
- alBuaR6KSqyciNqfxCXlSr/TLN7KvkhMzv4F969/KjDq7jH3akSNy9pTF
- TGenVYGeGM+unXRjXM/hZP9bvEd/phoWdKleIGpCdGMku38KwYu+Hzb1C A==;
-X-CSE-ConnectionGUID: 8fksENu0QGaL2pTdn4dXDg==
-X-CSE-MsgGUID: BEd6FBKzRm2l3Z8sfdcQcQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11791"; a="84023493"
-X-IronPort-AV: E=Sophos;i="6.23,244,1770624000"; d="scan'208";a="84023493"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2026 03:50:03 -0700
-X-CSE-ConnectionGUID: m9muDAsIT4GgRfl5mVTxaA==
-X-CSE-MsgGUID: SzZU8drcSca90I6UbuHpVg==
+ t=1779274591; x=1810810591;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=EVLS3bnRNYDUAIGB4KwuSCa1Sug/uhGOfw3jecBETjQ=;
+ b=eppgyzWJuMZEebK95zNgTDcuXt/mhTIqaDMo4ZJFETdTvRr8rdTD7647
+ 9Mjdg0mv8xDPF2ZoOEt4DxnqwERqSGvlR0JWoGZGyT1KIL9Sl8q/QyCkP
+ MRnILnF4SjNvzkFZOfneyBjV9r5S4qu0BQssQOnenhs8iwnkD/1FJ0dxa
+ FLZUsF/koDoc7ILETUKpiAZc/1Wx/9IS3P+mSAtIahVR0elMU/0UyH+6C
+ gQ3LtNEyujCAF6/GuFB4/Wf1q4Tj7x7nGUsmu5ZkAx/Jcvt0znhEaNGCF
+ J+BPxHDLpzitg43a/cLYEILhb6I0YNbfkMxF/tDM6ZWcg8/IPvKTINNus w==;
+X-CSE-ConnectionGUID: PohoYy3vQ+qPjKDTwt/adg==
+X-CSE-MsgGUID: +LWGLGC6SlWv4dT+AnhMAQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11791"; a="83785176"
+X-IronPort-AV: E=Sophos;i="6.23,244,1770624000"; d="scan'208";a="83785176"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2026 03:56:31 -0700
+X-CSE-ConnectionGUID: vs4fyjU7QEyf8eSwEgTO5g==
+X-CSE-MsgGUID: snC0DJfpQy+6Y28KMeLVgA==
 X-ExtLoop1: 1
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO
- jhogande-mobl3.intel.com) ([10.245.246.114])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2026 03:50:01 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
- stable@vger.kernel.org
-Subject: [PATCH v2 2/2] drm/i915/psr: Use DC_OFF wake reference to block DC6
- on vblank enable
-Date: Wed, 20 May 2026 13:49:44 +0300
-Message-ID: <20260520104944.239797-2-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260520104944.239797-1-jouni.hogander@intel.com>
-References: <20260520104944.239797-1-jouni.hogander@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,244,1770624000"; d="scan'208";a="237142445"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2026 03:56:27 -0700
+Date: Wed, 20 May 2026 12:56:24 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ rodrigo.vivi@intel.com, andrealmeid@igalia.com,
+ christian.koenig@amd.com, airlied@gmail.com, simona.vetter@ffwll.ch,
+ mripard@kernel.org, maarten.lankhorst@linux.intel.com,
+ tzimmermann@suse.de, anshuman.gupta@intel.com,
+ badal.nilawar@intel.com, riana.tauro@intel.com,
+ karthik.poosa@intel.com, sk.anirban@intel.com
+Subject: Re: [PATCH v5 5/5] drm/xe: Suppress Surprise Link Down on
+ non-hotplug device
+Message-ID: <ag2TWK3l9QOiHCXs@black.igk.intel.com>
+References: <20260512132614.1793083-7-mallesh.koujalagi@intel.com>
+ <20260512132614.1793083-12-mallesh.koujalagi@intel.com>
+ <agWJbWQXA9XJnool@black.igk.intel.com>
+ <cc73f8fd-19d3-48ca-9c1a-d645462e5286@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cc73f8fd-19d3-48ca-9c1a-d645462e5286@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,136 +76,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We are observing following warnings:
+On Wed, May 20, 2026 at 04:03:42PM +0530, Mallesh, Koujalagi wrote:
+> On 14-05-2026 02:05 pm, Raag Jadav wrote:
+> > On Tue, May 12, 2026 at 06:56:20PM +0530, Mallesh Koujalagi wrote:
+> > > If the slot is not hotplug capable, pcie_suppress_surprise_link_down()
+> > > masks the Surprise Link Down bit (PCI_ERR_UNC_SURPDN) in the USP's AER
+> > > Uncorrectable Error Mask register before punit_error_handler()
+> > > triggers the cold reset.
 
-*ERROR* power well DC_off state mismatch (refcount 0/enabled 1)
+...
 
-gen9_dc_off_power_well_enabled is considering target state DC_STATE_DISABLE
-as DC_OFF power well being enabled. Fix this by using wakeref for the
-purpose.
+> > > +#ifdef CONFIG_PCIEAER
+> > > +static bool pcie_slot_is_hotplug_capable(struct pci_dev *usp)
+> > Shouldn't all of it be part of xe_pci_error.c?
+> Happy to relocate if/when a second caller appears,
+> but for now keeping them next to their sole user in xe_ras.c
+> seems cleaner. Open to other opinions though.
 
-To achieve this we need to modify notification code as well. Currently it
-is possible that PSR gets notified vblank enable/disable twice on same
-status. This is currently not a problem as it is just triggering call to
-intel_display_power_set_target_dc_state with same target state as a
-parameter. When using wakeref this becomes a problem due to reference
-counting. Fix this storing vbank status on last notification and use that
-to ensure there are no more than one notification with same vblank status.
+We usually add the code to the component it's closest to, i.e. all the
+PCI stuff in xe_pci* files, but I'll leave it to you all.
 
-v2: ensure there is no subsequent notifications with same status
-
-Fixes: aa451abcffb5 ("drm/i915/display: Prevent DC6 while vblank is enabled for Panel Replay")
-Cc: <stable@vger.kernel.org> # v6.13+
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- .../gpu/drm/i915/display/intel_display_core.h |  1 +
- .../gpu/drm/i915/display/intel_display_irq.c  |  8 +++++--
- .../drm/i915/display/intel_display_types.h    |  2 ++
- drivers/gpu/drm/i915/display/intel_psr.c      | 24 +++++++------------
- 4 files changed, 18 insertions(+), 17 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index 3dc5ac75a98b..64c1365fb366 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -494,6 +494,7 @@ struct intel_display {
- 		u8 vblank_enabled;
- 
- 		int vblank_enable_count;
-+		bool last_vblank_status_notified;
- 
- 		struct work_struct vblank_notify_work;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index 899a38c0a7b7..57f37f9b83a5 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -1786,8 +1786,12 @@ static void intel_display_vblank_notify_work(struct work_struct *work)
- 	struct intel_display *display =
- 		container_of(work, typeof(*display), irq.vblank_notify_work);
- 	int vblank_enable_count = READ_ONCE(display->irq.vblank_enable_count);
-+	bool vblank_status = !!vblank_enable_count;
- 
--	intel_psr_notify_vblank_enable_disable(display, vblank_enable_count);
-+	if (display->irq.last_vblank_status_notified != vblank_status) {
-+		intel_psr_notify_vblank_enable_disable(display, vblank_status);
-+		display->irq.last_vblank_status_notified = vblank_status;
-+	}
- }
- 
- int bdw_enable_vblank(struct drm_crtc *_crtc)
-@@ -1800,10 +1804,10 @@ int bdw_enable_vblank(struct drm_crtc *_crtc)
- 	if (gen11_dsi_configure_te(crtc, true))
- 		return 0;
- 
-+	spin_lock_irqsave(&display->irq.lock, irqflags);
- 	if (crtc->vblank_psr_notify && display->irq.vblank_enable_count++ == 0)
- 		schedule_work(&display->irq.vblank_notify_work);
- 
--	spin_lock_irqsave(&display->irq.lock, irqflags);
- 	bdw_enable_pipe_irq(display, pipe, GEN8_PIPE_VBLANK);
- 	spin_unlock_irqrestore(&display->irq.lock, irqflags);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index f44be5c689ae..b8ccd635c575 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1790,6 +1790,8 @@ struct intel_psr {
- 	u8 active_non_psr_pipes;
- 
- 	const char *no_psr_reason;
-+
-+	struct ref_tracker *vblank_wakeref;
- };
- 
- struct intel_dp {
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 70108e0a4c0c..19cfb23fe9f8 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -4180,14 +4180,20 @@ void intel_psr_notify_vblank_enable_disable(struct intel_display *display,
- 					    bool enable)
- {
- 	struct intel_encoder *encoder;
--	bool block_dc_states = false;
- 
- 	for_each_intel_encoder_with_psr(display->drm, encoder) {
- 		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
- 
- 		mutex_lock(&intel_dp->psr.lock);
--		if (CAN_PANEL_REPLAY(intel_dp))
--			block_dc_states = true;
-+		if (CAN_PANEL_REPLAY(intel_dp)) {
-+			if (enable)
-+				intel_dp->psr.vblank_wakeref =
-+					intel_display_power_get(display,
-+								POWER_DOMAIN_DC_OFF);
-+			else
-+				intel_display_power_put(display, POWER_DOMAIN_DC_OFF,
-+							intel_dp->psr.vblank_wakeref);
-+		}
- 
- 		if (intel_dp->psr.enabled && !intel_dp->psr.panel_replay_enabled &&
- 		    intel_dp->psr.pkg_c_latency_used)
-@@ -4195,18 +4201,6 @@ void intel_psr_notify_vblank_enable_disable(struct intel_display *display,
- 
- 		mutex_unlock(&intel_dp->psr.lock);
- 	}
--
--	/*
--	 * NOTE: intel_display_power_set_target_dc_state is used
--	 * only by PSR code for DC3CO handling. DC3CO target
--	 * state is currently disabled in * PSR code. If DC3CO
--	 * is taken into use we need take that into account here
--	 * as well.
--	 */
--	if (block_dc_states)
--		intel_display_power_set_target_dc_state(display, enable ?
--							DC_STATE_DISABLE :
--							DC_STATE_EN_UPTO_DC6);
- }
- 
- static void
--- 
-2.43.0
-
+Raag
