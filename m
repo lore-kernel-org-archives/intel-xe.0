@@ -4,47 +4,95 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D494CD5BA4
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85B5ECD5BB1
 	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 12:29:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E880E10E4E7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAF9010E4D1;
 	Thu, 21 May 2026 12:29:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=milton.pro header.i=@milton.pro header.b="ZtXBTB2q";
+	dkim=pass (2048-bit key; unprotected) header.d=shazbot.org header.i=@shazbot.org header.b="xEKejN2M";
+	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="pyhZSDN/";
 	dkim-atps=neutral
-X-Greylist: delayed 302 seconds by postgrey-1.36 at gabe;
- Wed, 20 May 2026 19:49:51 UTC
-Received: from v5222.v57ae4e16.euw1.send.eu.mailgun.net
- (v5222.v57ae4e16.euw1.send.eu.mailgun.net [161.38.204.222])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F7CE10E139
- for <intel-xe@lists.freedesktop.org>; Wed, 20 May 2026 19:49:51 +0000 (UTC)
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=milton.pro; q=dns/txt;
- s=s1; t=1779306589; x=1779313789; 
- h=Content-Transfer-Encoding: Content-Type: MIME-Version: Message-ID: Date:
- Subject: Subject: Cc: To: To: From: From: Sender: Sender; 
- bh=u3yECB4BZhRkzhhdtMe3LWOTRcJ8A7sXAfXbRFilawY=;
- b=ZtXBTB2qN6o+iKHy2gLrFUaBVZQoU1ie42OIhe8wMIA7Hjas3+EcD2KxHJL/5MRJJ02qQPi7ACqM+DHuat4u88gLYXHej4z76Bw2j+hodom8jrvAUsHQHIC188Q6F4NIJKCP4tFqry9Q/6AjlrEaLEqWusgQFuTEXZaenQ0EzW0=
-X-Mailgun-Sid: WyI4ZDYzYiIsImludGVsLXhlQGxpc3RzLmZyZWVkZXNrdG9wLm9yZyIsImU3MDI3Il0=
-Received: from thinkpad-arch (ppp-124-122-133-95.revip2.asianet.co.th
- [124.122.133.95])
- by 1501f30ea100eb77ddb9d48846edcc8c8b1ad516c7bcd730380eeb9579bf1418 with SMTP
- id 6a0e0f2f155c8781d6bf8a3b (version=TLS1.3, cipher=TLS_AES_128_GCM_SHA256);
- Wed, 20 May 2026 19:44:47 GMT
-X-Mailgun-Sending-Ip: 161.38.204.222
-From: Nikolay Mikhaylov <sonny@milton.pro>
-To: intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, dri-devel@lists.freedesktop.org,
- Nikolay Mikhaylov <sonny@milton.pro>
-Subject: [PATCH v2] drm/xe/ggtt: hold FORCEWAKE while updating GGTT PTEs on LNL
-Date: Thu, 21 May 2026 02:44:12 +0700
-Message-ID: <20260520194426.1334262-1-sonny@milton.pro>
-X-Mailer: git-send-email 2.53.0
+Received: from fhigh-b3-smtp.messagingengine.com
+ (fhigh-b3-smtp.messagingengine.com [202.12.124.154])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75B8910E0C9
+ for <intel-xe@lists.freedesktop.org>; Wed, 20 May 2026 17:22:26 +0000 (UTC)
+Received: from phl-compute-12.internal (phl-compute-12.internal [10.202.2.52])
+ by mailfhigh.stl.internal (Postfix) with ESMTP id 4480D7A0088;
+ Wed, 20 May 2026 13:22:25 -0400 (EDT)
+Received: from phl-frontend-03 ([10.202.2.162])
+ by phl-compute-12.internal (MEProxy); Wed, 20 May 2026 13:22:25 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=shazbot.org; h=
+ cc:cc:content-transfer-encoding:content-type:content-type:date
+ :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to; s=fm2; t=1779297745;
+ x=1779384145; bh=s5dvkWtEODdyoI8bOKVGpIdgoX0fcCuk5jrlqtqFDrw=; b=
+ xEKejN2MNN5XlBB2sNNYbYDhnNkrWsZc/y2/sEaspFQXnhE6F0IYS2uhxR0J0oDY
+ 08oCuoP0/GOOkWxscEGyujvYH12gw8YPy5JOdLi8oCMD2QE2Ne2Ir/gEpOgrMHlw
+ wXPbRZyaZnjolilBTzhPUIbjG11YHeJT6ilEYWwWrXqCd4L8xK+HTecgP7MR0E8W
+ 7KGQuc7+eq9yvfxdoVLkWswezkMwyBijdhVANgkGID7qzxecI641UPQLHxgDkegB
+ eNXWq3X5tejU19ugLJrAZE/x9jyJwwUzW5rml5opLHTTSd5o4yUo9eVdSWUp+RgJ
+ WZEas8Ipmh9FLTOqI1aCbw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:content-type:date:date:feedback-id:feedback-id
+ :from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1779297745; x=
+ 1779384145; bh=s5dvkWtEODdyoI8bOKVGpIdgoX0fcCuk5jrlqtqFDrw=; b=p
+ yhZSDN/dlAAgS7nL+8nwGrn0furYE39opSQHn+7mhKOtr+PPdKanoY1nqU27kjGx
+ QEMWl+p47zmYNB2A5+pOglVRtEZdc9LbfnqDh/d60j9yeo84+VpzSyMaFtnJ7/Ov
+ yS5cZ2oAjHEghQXHon0AL+McOe2U2mKTfi4j/+UvfitR+YpSe3Jz+h2Dj7kR/+t8
+ pgzHcsdhOKT3GYjhQvguDVNT5nWSxNi+PyvSy4vx896odFJOxtWA7yyuNoVp4me8
+ 5BXNseW0qK2KmYm60N4bdDuql22doSBgD2c2AGezPGJqVvzlXGwEEaVMiAF7AIF/
+ qMo/nUjiZ9onLRelCczDw==
+X-ME-Sender: <xms:z-0Nap6uAGhrbWj-yDA9NHLz4V_JRy3eLkB7Cv0t3mXcTaCja4_1_w>
+ <xme:z-0NatTLPjWhLfKiToSiSHeOTuYdBuri9V53kVMPWc1W-H_1UVL2swAh2MNcgPwAZ
+ nOgNERAwELaXXM9TQNzTcT7UYPEdVr3zGJb41F2Jgsbp4a1zAIY>
+X-ME-Received: <xmr:z-0NastiPVPkiyr4wY44OJk7WgUN3XBmfqc2Ryr5vn-mfIVdW_q9sngPeEg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefhedrtddtgddugeehvddvucetufdoteggodetrf
+ dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+ rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
+ gurhepfffhvfevuffkjghfofggtgfgsehtqhertdertdejnecuhfhrohhmpeetlhgvgicu
+ hghilhhlihgrmhhsohhnuceorghlvgigsehshhgriigsohhtrdhorhhgqeenucggtffrrg
+ htthgvrhhnpeegudevhfejueefveduieeuueeifeettdekveekhffgvdetfeelueehgfdt
+ heffhfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+ grlhgvgiesshhhrgiisghothdrohhrghdpnhgspghrtghpthhtohepuddvpdhmohguvgep
+ shhmthhpohhuthdprhgtphhtthhopeiihhgrohhguhhohhgrnheskhihlhhinhhoshdrtg
+ hnpdhrtghpthhtohepmhhitghhrghlrdifihhnihgrrhhskhhisehinhhtvghlrdgtohhm
+ pdhrtghpthhtohepkhhvmhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhope
+ hinhhtvghlqdigvgeslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrghdprhgtphht
+ thhopehjghhgseiiihgvphgvrdgtrgdprhgtphhtthhopeihihhshhgrihhhsehnvhhiug
+ hirgdrtghomhdprhgtphhtthhopehskhholhhothhhuhhmthhhohesnhhvihguihgrrdgt
+ ohhmpdhrtghpthhtohepkhgvvhhinhdrthhirghnsehinhhtvghlrdgtohhmpdhrtghpth
+ htoheprhhoughrihhgohdrvhhivhhisehinhhtvghlrdgtohhm
+X-ME-Proxy: <xmx:z-0Nav8RdxoqD3ErBvEx8eGsZeEWHkWQ-wnqJpF55QzG6z8fcsjcVg>
+ <xmx:z-0NalzO25DDQ5AgJps67VEeJrUMzcMwCKyMMcKf2dfapU7_IKTFow>
+ <xmx:z-0Nah_Rdzt0SMwunZQdpQr2FewfigOgo7kqD9yCWoOUoPa2of591A>
+ <xmx:z-0NajPHZxyM38iyvL05FV1dk5lJB3HVgStAma7xB7pKjbedyzHLsQ>
+ <xmx:0e0Nag9IV7Fx8cb0O6p3-2wCg7N27qYmWt3dftVTxmfT2EULehAbvHnC>
+Feedback-ID: i03f14258:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 20 May 2026 13:22:22 -0400 (EDT)
+Date: Wed, 20 May 2026 11:22:20 -0600
+From: Alex Williamson <alex@shazbot.org>
+To: =?UTF-8?B?TWljaGHFgg==?= Winiarski <michal.winiarski@intel.com>
+Cc: zhaoguohan@kylinos.cn, kvm@vger.kernel.org,
+ intel-xe@lists.freedesktop.org, Jason Gunthorpe <jgg@ziepe.ca>, Yishai
+ Hadas <yishaih@nvidia.com>, Shameer Kolothum <skolothumtho@nvidia.com>,
+ Kevin Tian <kevin.tian@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas =?UTF-8?B?SGVsbHN0csO2bQ==?= <thomas.hellstrom@linux.intel.com>,
+ linux-kernel@vger.kernel.org, alex@shazbot.org
+Subject: Re: [PATCH v2] vfio/xe: avoid duplicate reset in
+ xe_vfio_pci_reset_done
+Message-ID: <20260520112220.274025fa@shazbot.org>
+In-Reply-To: <20260427012128.117051-1-zhaoguohan@kylinos.cn>
+References: <20260424091719.58800-1-zhaoguohan@kylinos.cn>
+ <20260427012128.117051-1-zhaoguohan@kylinos.cn>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Thu, 21 May 2026 12:29:21 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -60,112 +108,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-GGTT PTEs are written through GSM using MMIO writes. On Lunar Lake
-systems affected by the referenced issue, hangs have been observed around
-GGTT update paths while the GT may be entering RC6 under GuC control.
+On Mon, 27 Apr 2026 09:21:28 +0800
+zhaoguohan@kylinos.cn wrote:
 
-The GGTT modify paths currently rely on xe_pm_runtime_get_noresume() for
-power management protection. That prevents the device from entering D3,
-but does not keep the GT out of RC6 while the device is otherwise runtime
-PM active.
+> From: GuoHan Zhao <zhaoguohan@kylinos.cn>
+>=20
+> xe_vfio_pci_reset_done() sets deferred_reset and, when it manages to
+> acquire state_mutex itself, hands the cleanup off to
+> xe_vfio_pci_state_mutex_unlock().
+>=20
+> That helper already clears deferred_reset and runs xe_vfio_pci_reset()
+> before dropping the mutex. Calling xe_vfio_pci_reset() again right
+> afterwards repeats the reset handling unnecessarily.
+>=20
+> Fixes: 1f5556ec8b9e ("vfio/xe: Add device specific vfio_pci driver varian=
+t for Intel graphics")
+> Signed-off-by: GuoHan Zhao <zhaoguohan@kylinos.cn>
+> ---
+> v2:
+> - Correct the Fixes tag to point to 1f5556ec8b9e
 
-Hold GT FORCEWAKE across the observed GGTT PTE write batches:
 
-  - xe_ggtt_insert_node_transform() and __xe_ggtt_insert_bo_at(),
-    covering the display framebuffer pin path observed as the primary
-    trigger on LNL/Wayland systems
-  - xe_ggtt_clear(), covering the GGTT node removal/unpin path
+Micha=C5=82, any objection?  I'd prefer to include this with your ack.
+Thanks,
 
-This keeps the change limited to the paths where the hang has been
-observed. The exact code shape submitted here has been tested by multiple
-LNL users, including several weeks of uptime without reproducing the hang.
-
-Boot-time xe_ggtt_initial_clear() is also covered by the xe_ggtt_clear()
-wrap. That is incidental and not the primary load-bearing path for the
-reported issue.
-
-The insert-path FORCEWAKE wrapping was originally proposed by Márton Vigh
-(@mrtnvgh):
-https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/7513#note_3418761
-
-Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/7513
-Tested-by: Nikolay Mikhaylov <sonny@milton.pro>
-Signed-off-by: Nikolay Mikhaylov <sonny@milton.pro>
----
- drivers/gpu/drm/xe/xe_ggtt.c | 39 ++++++++++++++++++++++++++++--------
- 1 file changed, 31 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index a351c578b170..c048bad70ebf 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -20,6 +20,8 @@
- #include "regs/xe_regs.h"
- #include "xe_assert.h"
- #include "xe_bo.h"
-+#include "xe_device.h"
-+#include "xe_force_wake.h"
- #include "xe_gt_printk.h"
- #include "xe_gt_types.h"
- #include "xe_map.h"
-@@ -272,9 +274,18 @@ static void xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
- 	else
- 		scratch_pte = 0;
- 
--	while (start < end) {
--		ggtt->pt_ops->ggtt_set_pte(ggtt, start, scratch_pte);
--		start += XE_PAGE_SIZE;
-+	/*
-+	 * GSM (mapped at tile->mmio.regs + SZ_8M) is not in an always-on
-+	 * power domain. Hold FORCEWAKE for the PTE write batch to keep
-+	 * the GT awake; on LNL GuC autonomously enters RC6 via
-+	 * GUCRC_FIRMWARE_CONTROL and writeq() to GSM hangs if the GT
-+	 * is asleep.
-+	 */
-+	xe_with_force_wake(fw_ref, gt_to_fw(ggtt->tile->primary_gt), XE_FW_GT) {
-+		while (start < end) {
-+			ggtt->pt_ops->ggtt_set_pte(ggtt, start, scratch_pte);
-+			start += XE_PAGE_SIZE;
-+		}
- 	}
- }
- 
-@@ -769,10 +780,19 @@ struct xe_ggtt_node *xe_ggtt_insert_node_transform(struct xe_ggtt *ggtt,
- 	if (ret)
- 		goto err_unlock;
- 
--	if (transform)
--		transform(ggtt, node, pte_flags, ggtt->pt_ops->ggtt_set_pte, arg);
--	else
--		xe_ggtt_map_bo(ggtt, node, bo, pte_flags);
-+	/*
-+	 * Hold FORCEWAKE for the PTE write batch. xe_pm_runtime_get_noresume()
-+	 * upstack only prevents D3, not RC6: GuC may have placed the GT into
-+	 * RC6 autonomously (GUCRC_FIRMWARE_CONTROL on LNL), and writeq() to
-+	 * GSM hangs if the GT is asleep. Triggers most often from the display
-+	 * framebuffer pin path on LNL/Wayland.
-+	 */
-+	xe_with_force_wake(fw_ref, gt_to_fw(ggtt->tile->primary_gt), XE_FW_GT) {
-+		if (transform)
-+			transform(ggtt, node, pte_flags, ggtt->pt_ops->ggtt_set_pte, arg);
-+		else
-+			xe_ggtt_map_bo(ggtt, node, bo, pte_flags);
-+	}
- 
- 	mutex_unlock(&ggtt->lock);
- 	return node;
-@@ -844,7 +864,10 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
- 		u16 pat_index = xe_cache_pat_idx(tile_to_xe(ggtt->tile), cache_mode);
- 		u64 pte = ggtt->pt_ops->pte_encode_flags(bo, pat_index);
- 
--		xe_ggtt_map_bo(ggtt, bo->ggtt_node[tile_id], bo, pte);
-+		/* See xe_ggtt_insert_node_transform()/xe_ggtt_clear() */
-+		xe_with_force_wake(fw_ref, gt_to_fw(ggtt->tile->primary_gt), XE_FW_GT) {
-+			xe_ggtt_map_bo(ggtt, bo->ggtt_node[tile_id], bo, pte);
-+		}
- 	}
- 	mutex_unlock(&ggtt->lock);
- 
--- 
-2.53.0
+Alex
+=20
+>  drivers/vfio/pci/xe/main.c | 2 --
+>  1 file changed, 2 deletions(-)
+>=20
+> diff --git a/drivers/vfio/pci/xe/main.c b/drivers/vfio/pci/xe/main.c
+> index 4ecadbbfd86e..cbff5af385ef 100644
+> --- a/drivers/vfio/pci/xe/main.c
+> +++ b/drivers/vfio/pci/xe/main.c
+> @@ -135,8 +135,6 @@ static void xe_vfio_pci_reset_done(struct pci_dev *pd=
+ev)
+>  	}
+>  	spin_unlock(&xe_vdev->reset_lock);
+>  	xe_vfio_pci_state_mutex_unlock(xe_vdev);
+> -
+> -	xe_vfio_pci_reset(xe_vdev);
+>  }
+> =20
+>  static const struct pci_error_handlers xe_vfio_pci_err_handlers =3D {
 
