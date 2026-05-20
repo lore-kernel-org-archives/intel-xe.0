@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06912CD5BAC
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA501CD4F3D
 	for <intel-xe@archiver.kernel.org>; Wed, 20 May 2026 23:59:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 565A010E44B;
-	Wed, 20 May 2026 23:59:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A86E910F18C;
+	Wed, 20 May 2026 23:59:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="oQWANTrX";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="rgQP5YwX";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96CD710E43B;
- Wed, 20 May 2026 23:59:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C8D210F18C;
+ Wed, 20 May 2026 23:59:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,23 +22,23 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=ZL2o7UtBOukLYUFJLY9bVRgecr3as72B0+W7GjSZDN0=; b=oQWANTrXLhkFgtsvdwvEC6m9a6
- WN7okLQbKK8N35BDPmmY9kzO5SzT52c9yVvitRfUQg86oUhSt7xZO2G6zJd1jUUlijSxFdALUYB8i
- ueOwemQDMnyCLPEWMl5OqDGmkjL27Xlnqm6JJwERp6pXjdb1walGFpsLTNfZmDhB5p6SKExrbBbjn
- Af9CZKGyG1J06aZCcyx+rpW9iVcnSaLd2muLqaP0kFSYAgHIN7AuGAvnkVdmQ8m6fWUhVLLAS+FcF
- o7dgOaE1Jq6MjBlJ067YWn1kM0uM6hNLpjbsHos7uKNYYwdXZ4EgqSSUWCBIUUWluEZ39gVWwChY3
- K2pNXZQQ==;
+ bh=oOHCC0oyTDuvn33q6C9NcT9SfiMKm4MmWdbvyY4b3pw=; b=rgQP5YwXPB/YvfTqu1AIeU3X9+
+ hdsCZVCUibQNOiNaoMMDNUJKjFfvxnvLfMlquv5d/LXSGVjyOzr8B2ahPGcF5DUSHi60+wEebVfbj
+ /C2FYATX8NeX2xbNkmF0PEd3mNpI1QcGfUVsODK/rFnGmp6+DSgZt40jI3agqh1shPiXTePqEz5L0
+ 5Gl6TS9Y45UwFb6hYAjQFEgjmRY1F41lWN9ICPEWYL5oLLkREH9AKiSbkXuDDsmhXNDAZLRHP2ej1
+ SnKRJyNJ9H+i9cZ8/jfpC+jC9XgeoCOka1deH0HHBc9CjS5JgvUZcCHbToy5W5bQxCU+lLeEnfnVs
+ wZM+SRYg==;
 Received: from c-73-157-168-91.hsd1.or.comcast.net ([73.157.168.91]
  helo=localhost.localdomain) by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wPqp8-00456i-Jb; Thu, 21 May 2026 01:59:39 +0200
+ id 1wPqpA-00456i-5N; Thu, 21 May 2026 01:59:40 +0200
 From: John Harrison <John.Harrison@Igalia.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [PATCH 2/9] drm/i915/display: Use an unbound workqueue for atomic
- clean up
-Date: Wed, 20 May 2026 16:58:13 -0700
-Message-ID: <20260520235820.2313192-3-John.Harrison@Igalia.com>
+Subject: [PATCH 3/9] drm/i915/display: Fail writeback setup if no transcoder
+ offsets defined
+Date: Wed, 20 May 2026 16:58:14 -0700
+Message-ID: <20260520235820.2313192-4-John.Harrison@Igalia.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260325110744.1096786-1-suraj.kandpal@intel.com>
 References: <20260325110744.1096786-1-suraj.kandpal@intel.com>
@@ -58,27 +58,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Prevents this kind of message being seen:
-<4> [71024.774936] workqueue: intel_atomic_cleanup_work [xe] hogged CPU for >10000us 35 times, consider switching to WQ_UNBOUND
+Add support for writeback transcoder offsets for DG2 class devices.
+
+If the transcoder offsets are missing for a given device but writeback
+is enabled anyway, the failure mode is non-obvious. Rather than giving
+any kind of error, the setup completes successfully but then timeouts
+are seen when trying to use the writeback output followed by
+inconsistent state errors. E.g.:
+[May12 09:20] xe 0000:00:02.0: [drm] *ERROR* [CRTC:151:pipe A] flip_done timed out
+[  +0.000003] xe 0000:00:02.0: [drm] attached crtc is active, but connector isn't
+[  +0.000003] WARNING: drivers/gpu/drm/i915/display/intel_modeset_verify.c:59 at verify_connector_state+0x208/0x3b0 [xe], CPU#5: kms_writeback/1203
+
+To make the issue clearer, update the transcoder configuration to fail
+if the necessary offsets are not configured. That forces the atomic
+mode set to fail and writeback just can't be used. Hence no kernel
+ERRORs, WARNINGs or timeouts.
 
 Signed-off-by: John Harrison <John.Harrison@Igalia.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_driver.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_writeback.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index 9c2f7ad6c7b7..147661729bb2 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -242,7 +242,7 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
- 		goto cleanup_wq_modeset;
- 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_writeback.c b/drivers/gpu/drm/i915/display/intel_writeback.c
+index 2fd49405c0b6..064c6ff5bc73 100644
+--- a/drivers/gpu/drm/i915/display/intel_writeback.c
++++ b/drivers/gpu/drm/i915/display/intel_writeback.c
+@@ -465,9 +465,10 @@ intel_writeback_compute_config(struct intel_encoder *encoder,
+ 	if (!conn_state->writeback_job)
+ 		return 0;
  
--	display->wq.cleanup = alloc_workqueue("i915_cleanup", WQ_HIGHPRI | WQ_PERCPU, 0);
-+	display->wq.cleanup = alloc_workqueue("i915_cleanup", WQ_HIGHPRI | WQ_PERCPU | WQ_UNBOUND, 0);
- 	if (!display->wq.cleanup) {
- 		ret = -ENOMEM;
- 		goto cleanup_wq_flip;
+-	if (HAS_TRANSCODER(display, TRANSCODER_WD_0))
+-		pipe_config->cpu_transcoder = TRANSCODER_WD_0;
++	if (!HAS_TRANSCODER(display, TRANSCODER_WD_0))
++		return -ENODEV;
+ 
++	pipe_config->cpu_transcoder = TRANSCODER_WD_0;
+ 	pipe_config->output_types |= BIT(INTEL_OUTPUT_WRITEBACK);
+ 	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
+ 
 -- 
 2.43.0
 
