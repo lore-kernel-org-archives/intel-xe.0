@@ -4,56 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9F2CCD5BA4
-	for <intel-xe@archiver.kernel.org>; Wed, 20 May 2026 12:42:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 705BBCD4F3C
+	for <intel-xe@archiver.kernel.org>; Wed, 20 May 2026 13:00:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6373A10E8C7;
-	Wed, 20 May 2026 12:42:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D746F10E132;
+	Wed, 20 May 2026 13:00:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qtf5zsU1";
+	dkim=pass (2048-bit key; secure) header.d=elitecode.cz header.i=@elitecode.cz header.b="Z7MewCmN";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6C4710E628;
- Wed, 20 May 2026 12:42:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779280954; x=1810816954;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=JXG84T0gDqIOjzvvC9ld1fdVPogCwQOHnmLW9v1GnrI=;
- b=Qtf5zsU1wadMqYF41SmqJVZdXHU41ePy9eoE3xIH88ZChGvQrPR7HfU3
- 5mQx0TF4WX4SOQZCMwISrLw+i8fL1KONqpgr7zSgJff70J2ElBMb8QDAB
- KCQO6VPpx+ZeeP3iHnTVQXSuHDZQhnGDJXc2OzxR9ra4Lr/kVxBJhr7AK
- syqlhgqjEDAwT+qSASi/WRbIv0NNw5FwuTihX4MobQpRwLyPbjAki9hAC
- vxuNcb8xt+N5R3crgXthkcqkcFO1o3gfjTrCGTG11ZZ+LHvs3yt+VEp3P
- VX+3pESxtyO+zDG7px44kdv3KY8wOhdPlwZYbcw49V6I/slECJUkttW5M Q==;
-X-CSE-ConnectionGUID: BAcR9yvRQQ+PaQlgGoiTSQ==
-X-CSE-MsgGUID: a05e4jpTRaCb9puGc9pnzg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11791"; a="83793701"
-X-IronPort-AV: E=Sophos;i="6.23,244,1770624000"; d="scan'208";a="83793701"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2026 05:42:34 -0700
-X-CSE-ConnectionGUID: fzbt7MOSQ6aPbctLdkJehA==
-X-CSE-MsgGUID: QGeBnDHtTACaJuJWZyZ0qQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,244,1770624000"; d="scan'208";a="237164852"
-Received: from dev-417.igk.intel.com ([10.91.214.181])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2026 05:42:32 -0700
-Date: Wed, 20 May 2026 14:42:30 +0200 (CEST)
-From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
-To: =?ISO-8859-15?Q?Jouni_H=F6gander?= <jouni.hogander@intel.com>
-cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- stable@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] drm/i915/psr: Use DC_OFF wake reference to block
- DC6 on vblank enable
-In-Reply-To: <20260520104944.239797-2-jouni.hogander@intel.com>
-Message-ID: <dd038d76-36dd-a119-0a8a-46df00f062eb@intel.com>
-References: <20260520104944.239797-1-jouni.hogander@intel.com>
- <20260520104944.239797-2-jouni.hogander@intel.com>
+Received: from mail-4327.protonmail.ch (mail-4327.protonmail.ch [185.70.43.27])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FA1110E132
+ for <intel-xe@lists.freedesktop.org>; Wed, 20 May 2026 13:00:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=elitecode.cz;
+ s=protonmail; t=1779281753; x=1779540953;
+ bh=e2fcIk6vbMLyHzZitairxpCkqEdZgCdT5SJo2A/rGkw=;
+ h=Date:To:From:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+ Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+ b=Z7MewCmNurU+/oWAZdRTMlyc/cwvkFby10OTC9ZY+w5yGVTBnHfcv9uy7blvr2kqE
+ QZgXA8+c30dau+9cvChwsz/3hAjtNA+Z0O8VhC43vQ9qRj9EN7DqR/EWvsB1a0vI1d
+ 39epyjgoGjRlCwgXsEbAMYFl0YK5eQtD4JSSNewQ3hGud1e171W4ih8FnxvSqo36HS
+ HIwTgsvME+lmfqdYQB3dde7Zl9xYbp99X4lT5PAC9l5guKHBRnTiV6usd1a2ZV+oJk
+ jw8qNCFCZpmmjkisAivd5r3UojiaZzXqS7drWHuLb7M6OAYxLa1s/iS3xJ06S2zieY
+ jkn8+XLC13rCA==
+Date: Wed, 20 May 2026 12:55:48 +0000
+To: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+From: Jakub Bystron <jb@elitecode.cz>
+Subject: [BUG] xe: Meteor Lake 7d55 eDP PHY A/DPLL state mismatch,
+ flip_done timeout
+Message-ID: <pqne8IzoDMDIqi1_8iCtI-YGeB7j4hczgaNPp2JUSJbsF9ovVC3KUo9t4va0uxxDTa376ZG26AwIoltpFV41C9w-Rxf9j-CYQroVaPJZvN0=@elitecode.cz>
+Feedback-ID: 63222119:user:proton
+X-Pm-Message-ID: 7cbef20f438610a5ee6692c959319b21a145c414
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-627402715-1779280953=:1544314"
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,158 +51,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+Hi,
 
---8323329-627402715-1779280953=:1544314
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8BIT
+I hit a display-side xe failure on a Lenovo ThinkPad P1 Gen 7 with
+Meteor Lake / Core Ultra 7 165H integrated graphics.
 
-On Wed, 20 May 2026, Jouni Högander wrote:
-> We are observing following warnings:
->
-> *ERROR* power well DC_off state mismatch (refcount 0/enabled 1)
->
-> gen9_dc_off_power_well_enabled is considering target state DC_STATE_DISABLE
-> as DC_OFF power well being enabled. Fix this by using wakeref for the
-> purpose.
->
-> To achieve this we need to modify notification code as well. Currently it
-> is possible that PSR gets notified vblank enable/disable twice on same
-> status. This is currently not a problem as it is just triggering call to
-> intel_display_power_set_target_dc_state with same target state as a
-> parameter. When using wakeref this becomes a problem due to reference
-> counting. Fix this storing vbank status on last notification and use that
-> to ensure there are no more than one notification with same vblank status.
->
-> v2: ensure there is no subsequent notifications with same status
->
-> Fixes: aa451abcffb5 ("drm/i915/display: Prevent DC6 while vblank is enabled for Panel Replay")
-> Cc: <stable@vger.kernel.org> # v6.13+
-> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-> ---
-> .../gpu/drm/i915/display/intel_display_core.h |  1 +
-> .../gpu/drm/i915/display/intel_display_irq.c  |  8 +++++--
-> .../drm/i915/display/intel_display_types.h    |  2 ++
-> drivers/gpu/drm/i915/display/intel_psr.c      | 24 +++++++------------
-> 4 files changed, 18 insertions(+), 17 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-> index 3dc5ac75a98b..64c1365fb366 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-> @@ -494,6 +494,7 @@ struct intel_display {
-> 		u8 vblank_enabled;
->
-> 		int vblank_enable_count;
-> +		bool last_vblank_status_notified;
+Hardware:
+Manufacturer: LENOVO
+Product:      21KV001UCK
+BIOS:         N48ET33W (1.20)
+GPU:          Intel Meteor Lake iGPU, PCI ID 8086:7d55
 
-couple of the fields in the irq sub-struct are prepended with vblank, thus 
-wondering if we can do it here as well. Maybe
-vblank_last_status_notified? or vblank_status_last_notified?
+Kernel:
+Linux 7.0.9_1, Void Linux
 
-Anyways, for the v2:
+Environment:
+Xorg
+Internal eDP panel
 
-Reviewed-by: Michał Grzelak <michal.grzelak@intel.com>
+Kernel command line:
+i915.force_probe=3D!7d55 xe.force_probe=3D7d55 i915.enable_psr=3D0 xe.enabl=
+e_psr=3D0
 
-BR,
-Michał
+The kernel is tainted due to force_probe. i915 is explicitly blocked and xe=
+ is used for 8086:7d55.
 
->
-> 		struct work_struct vblank_notify_work;
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> index 899a38c0a7b7..57f37f9b83a5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> @@ -1786,8 +1786,12 @@ static void intel_display_vblank_notify_work(struct work_struct *work)
-> 	struct intel_display *display =
-> 		container_of(work, typeof(*display), irq.vblank_notify_work);
-> 	int vblank_enable_count = READ_ONCE(display->irq.vblank_enable_count);
-> +	bool vblank_status = !!vblank_enable_count;
->
-> -	intel_psr_notify_vblank_enable_disable(display, vblank_enable_count);
-> +	if (display->irq.last_vblank_status_notified != vblank_status) {
-> +		intel_psr_notify_vblank_enable_disable(display, vblank_status);
-> +		display->irq.last_vblank_status_notified = vblank_status;
-> +	}
-> }
->
-> int bdw_enable_vblank(struct drm_crtc *_crtc)
-> @@ -1800,10 +1804,10 @@ int bdw_enable_vblank(struct drm_crtc *_crtc)
-> 	if (gen11_dsi_configure_te(crtc, true))
-> 		return 0;
->
-> +	spin_lock_irqsave(&display->irq.lock, irqflags);
-> 	if (crtc->vblank_psr_notify && display->irq.vblank_enable_count++ == 0)
-> 		schedule_work(&display->irq.vblank_notify_work);
->
-> -	spin_lock_irqsave(&display->irq.lock, irqflags);
-> 	bdw_enable_pipe_irq(display, pipe, GEN8_PIPE_VBLANK);
-> 	spin_unlock_irqrestore(&display->irq.lock, irqflags);
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index f44be5c689ae..b8ccd635c575 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1790,6 +1790,8 @@ struct intel_psr {
-> 	u8 active_non_psr_pipes;
->
-> 	const char *no_psr_reason;
-> +
-> +	struct ref_tracker *vblank_wakeref;
-> };
->
-> struct intel_dp {
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-> index 70108e0a4c0c..19cfb23fe9f8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -4180,14 +4180,20 @@ void intel_psr_notify_vblank_enable_disable(struct intel_display *display,
-> 					    bool enable)
-> {
-> 	struct intel_encoder *encoder;
-> -	bool block_dc_states = false;
->
-> 	for_each_intel_encoder_with_psr(display->drm, encoder) {
-> 		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
->
-> 		mutex_lock(&intel_dp->psr.lock);
-> -		if (CAN_PANEL_REPLAY(intel_dp))
-> -			block_dc_states = true;
-> +		if (CAN_PANEL_REPLAY(intel_dp)) {
-> +			if (enable)
-> +				intel_dp->psr.vblank_wakeref =
-> +					intel_display_power_get(display,
-> +								POWER_DOMAIN_DC_OFF);
-> +			else
-> +				intel_display_power_put(display, POWER_DOMAIN_DC_OFF,
-> +							intel_dp->psr.vblank_wakeref);
-> +		}
->
-> 		if (intel_dp->psr.enabled && !intel_dp->psr.panel_replay_enabled &&
-> 		    intel_dp->psr.pkg_c_latency_used)
-> @@ -4195,18 +4201,6 @@ void intel_psr_notify_vblank_enable_disable(struct intel_display *display,
->
-> 		mutex_unlock(&intel_dp->psr.lock);
-> 	}
-> -
-> -	/*
-> -	 * NOTE: intel_display_power_set_target_dc_state is used
-> -	 * only by PSR code for DC3CO handling. DC3CO target
-> -	 * state is currently disabled in * PSR code. If DC3CO
-> -	 * is taken into use we need take that into account here
-> -	 * as well.
-> -	 */
-> -	if (block_dc_states)
-> -		intel_display_power_set_target_dc_state(display, enable ?
-> -							DC_STATE_DISABLE :
-> -							DC_STATE_EN_UPTO_DC6);
-> }
->
-> static void
-> -- 
-> 2.43.0
->
->
---8323329-627402715-1779280953=:1544314--
+Symptom:
+After some uptime, the internal display pipeline appears to wedge. This loo=
+ks display/modeset/eDP related, not a Mesa/3D workload issue. PSR was alrea=
+dy disabled.
+
+Relevant dmesg excerpt:
+
+[10513.839237] xe 0000:00:02.0: [drm] *ERROR* Failed to bring PHY A to idle=
+.
+[10513.844179] xe 0000:00:02.0: [drm] *ERROR* PHY A Read 0c70 failed after =
+3 retries.
+[10513.851165] xe 0000:00:02.0: [drm] *ERROR* PHY A Write 0c70 failed after=
+ 3 retries.
+[10514.042599] xe 0000:00:02.0: [drm] *ERROR* Timeout waiting for DDI BUF A=
+ to get active
+[10515.226516] xe 0000:00:02.0: [drm] *ERROR* Timed out waiting for DP idle=
+ patterns
+[10525.710458] xe 0000:00:02.0: [drm] *ERROR* [CRTC:149:pipe A] flip_done t=
+imed out
+[10525.890816] xe 0000:00:02.0: [drm] *ERROR* [CRTC:149:pipe A] mismatch in=
+ pixel_rate (expected 154130, found 38971)
+[10525.890823] xe 0000:00:02.0: [drm] *ERROR* [CRTC:149:pipe A] mismatch in=
+ dpll_hw_state
+[10525.890847] xe 0000:00:02.0: [drm] *ERROR* [CRTC:149:pipe A] mismatch in=
+ hw.pipe_mode.crtc_clock (expected 154130, found 38971)
+[10525.890849] xe 0000:00:02.0: [drm] *ERROR* [CRTC:149:pipe A] mismatch in=
+ hw.adjusted_mode.crtc_clock (expected 154130, found 38971)
+[10525.890849] xe 0000:00:02.0: [drm] *ERROR* [CRTC:149:pipe A] mismatch in=
+ port_clock (expected 243000, found 61440)
+[10525.890853] ------------[ cut here ]------------
+[10525.890853] xe 0000:00:02.0: [drm] pipe state doesn't match!
+[10525.890854] WARNING: drivers/gpu/drm/i915/display/intel_modeset_verify.c=
+:225 at intel_modeset_verify_crtc+0x325/0x550 [xe], CPU#3: Xorg/1485
+[10526.070073] ------------[ cut here ]------------
+[10526.070074] xe 0000:00:02.0: [drm] DPLL 0: pll hw state mismatch
+[10526.070076] WARNING: drivers/gpu/drm/i915/display/intel_dpll_mgr.c:4945 =
+at verify_single_dpll_state+0x199/0x540 [xe], CPU#3: Xorg/1485
+[10536.462596] xe 0000:00:02.0: [drm] *ERROR* flip_done timed out
+[10536.462615] xe 0000:00:02.0: [drm] *ERROR* [CRTC:149:pipe A] commit wait=
+ timed out
+[10546.702509] xe 0000:00:02.0: [drm] *ERROR* flip_done timed out
+[10546.702526] xe 0000:00:02.0: [drm] *ERROR* [CONNECTOR:506:eDP-1] commit =
+wait timed out
+[10556.942486] xe 0000:00:02.0: [drm] *ERROR* flip_done timed out
+[10556.942505] xe 0000:00:02.0: [drm] *ERROR* [PLANE:33:plane 1A] commit wa=
+it timed out
+[10557.966373] ------------[ cut here ]------------
+[10557.966382] xe 0000:00:02.0: [drm] vblank wait timed out on crtc 0
+[10557.966388] WARNING: drivers/gpu/drm/drm_vblank.c:1320 at drm_crtc_wait_=
+one_vblank+0x183/0x1f0 [drm], CPU#12: kworker/12:0/17806
+[10558.421946] xe 0000:00:02.0: [drm] PHY A failed to change powerdown stat=
+e
+
+I can reproduce this on this machine with the kernel and command line above=
+. In this configuration, xe is not usable for a normal Xorg desktop session=
+ on this Meteor Lake 8086:7d55 system, so I currently have to fall back to =
+i915 for stability.
+
+Regards,
+Jakub
+
