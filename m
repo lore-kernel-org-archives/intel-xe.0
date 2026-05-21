@@ -4,57 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0447CD5BAF
-	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 23:31:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D718CD5BAB
+	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 23:35:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B94410F44B;
-	Thu, 21 May 2026 23:31:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDF7610F445;
+	Thu, 21 May 2026 23:35:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Aci42pj/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ODj16dSR";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FFA010F43C;
- Thu, 21 May 2026 23:31:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=EkV1Mms1rY8hQj+82eh/W/rpdTSKaubp2j9PG9oIO2Q=; b=Aci42pj/nbWp6NXf8z4113VsDw
- utykcBG+GyK3c5PyxZnFsTQInlhz9aIxfDWdSUh9Vel5nYtXefzm/G4BSV/TVnPp7RqvAZjsbm+69
- iNktuumjocAGtjmbcdm/Uh6SZ/uuHMTw/iRT5Z8+NejZ42B/HuZ2KnaAI5THXvWuMvcrVLok19UAO
- dRS//HL501euWL+FkY9tUZBNlesZ8lUus8r8fNDBYUfx5ncKIRVeu0Rsr6zs83wsZPQR6pIp/sGuD
- KCHDFJaw4/AwbJjbNW3lddCiEwYWUL+R8BjZLcDaO1eU0KEgtKekrD173AZsP9z2e4/fbg9+edO1f
- xUhyNwoA==;
-Received: from c-73-157-168-91.hsd1.or.comcast.net ([73.157.168.91]
- helo=[192.168.1.133]) by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1wQCrn-004b2R-RW; Fri, 22 May 2026 01:31:52 +0200
-Message-ID: <9923eec8-24c8-49d7-8405-ceeb65739b2c@Igalia.com>
-Date: Thu, 21 May 2026 16:31:44 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/7] drm: writeback: Modify
- drm_writeback_signal_completion helper
-To: Suraj Kandpal <suraj.kandpal@intel.com>, freedreno@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, kernel-list@raspberrypi.com,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Cc: abhinav.kumar@linux.dev, tzimmermann@suse.de,
- marijn.suijten@somainline.org, laurent.pinchart+renesas@ideasonboard.com,
- dave.stevenson@raspberrypi.com, tomi.valkeinen+renesas@ideasonboard.com,
- kieran.bingham+renesas@ideasonboard.com,
- Louis Chauvet <louis.chauvet@bootlin.com>, kernel-dev@igalia.com,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-References: <20260521053708.1475129-1-suraj.kandpal@intel.com>
- <20260521053708.1475129-5-suraj.kandpal@intel.com>
-Content-Language: en-GB
-From: John Harrison <John.Harrison@Igalia.com>
-In-Reply-To: <20260521053708.1475129-5-suraj.kandpal@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0A6B10F445
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 May 2026 23:35:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1779406528; x=1810942528;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=fdTUgFHl3pGdS9gktrJCrSq3WkBHRIR4BKT5FKUeYJQ=;
+ b=ODj16dSRg7LCNgYtcWlIM0NqvXMSLLSSrMz9t5Vk0XDpDE26L9fKAOnE
+ chLYrIc3+gyy4py2ga6Mkp8i2zs9FCMHrDsV80bhMipBY1QR5KvF+b13k
+ ygZ/2mDLIwvXF50VNzuKQayujVGcOaKcRzDdSnzrkGayJmo/SA8ZNMQPk
+ ptInVERHYUvzb0BPYwhz0XwWsiOsxXCI5zsoyogdIjQdkndZbXvgD5HrK
+ Q/neBPtno4IqDgZwYBnjkb/bneQudRRh5uUWPzgY+fStPh36gs3WstTBq
+ 6okM2qMZrzraJPzJNELBBePhPWijPF8VMxLvx+KewNsGmykBZumMAZL6i Q==;
+X-CSE-ConnectionGUID: DSLWuYvrQmKE9UJTScnUlA==
+X-CSE-MsgGUID: dLaG6kp3QQeX3FrNQbkp6Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11793"; a="97911815"
+X-IronPort-AV: E=Sophos;i="6.24,161,1774335600"; d="scan'208";a="97911815"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2026 16:35:28 -0700
+X-CSE-ConnectionGUID: HxIp+AkrTNGWeTUGJ77Q9A==
+X-CSE-MsgGUID: 6Q0NoT1NRUSY3oLAxdUnrg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,161,1774335600"; d="scan'208";a="238092371"
+Received: from fmjohns-mobl1.amr.corp.intel.com (HELO adixit-MOBL3.intel.com)
+ ([10.125.24.143])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2026 16:35:27 -0700
+Date: Thu, 21 May 2026 16:35:25 -0700
+Message-ID: <878q9cwd36.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 1/9] drm/xe/rtp: Add RING_FORCE_TO_NONPRIV_DENY to OA
+ whitelists
+In-Reply-To: <ag+R6ndpufdiwMej@soc-5CG1426VCC.clients.intel.com>
+References: <20260518234716.1540123-1-ashutosh.dixit@intel.com>	<20260518234716.1540123-2-ashutosh.dixit@intel.com>	<ag+R6ndpufdiwMej@soc-5CG1426VCC.clients.intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/30.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,183 +70,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 5/20/26 22:37, Suraj Kandpal wrote:
-> drm_writeback_signal_completion() needs access to the parent
-> drm_connector object as well as the drm_writeback_connector object
-> itself. So, pass in the top level drm_connector and traverse down
-> to drm_writeback_connector rather than passing in the lower level
-> object and traversing back up. Update to use the top level object
-> for consistency across the writeback interface.
+On Thu, 21 May 2026 16:14:50 -0700, Umesh Nerlige Ramappa wrote:
 >
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> ---
-> v3 -> v4:
-> - Update subject line for consitency (John)
-> - Update commit message across commits for consitency (John)
+> On Mon, May 18, 2026 at 04:47:08PM -0700, Ashutosh Dixit wrote:
+> > Unconditionally whitelisting OA registers is a security violation. Set
+> > RING_FORCE_TO_NONPRIV_DENY bit in OA nonpriv slots, so that OA registers
+> > don't get whitelisted by default after probe/reset/restart.
+> >
+> > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> > ---
+> > drivers/gpu/drm/xe/xe_reg_whitelist.c | 7 ++++---
+> > 1 file changed, 4 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+> > index fb65940848d7a..d6a5d499373bc 100644
+> > --- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
+> > +++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+> > @@ -105,9 +105,10 @@ static const struct xe_rtp_entry_sr register_whitelist[] = {
+> >	},
+> >
+> > #define WHITELIST_OA_MMIO_TRG(trg, status, head) \
+> > -	WHITELIST(trg, RING_FORCE_TO_NONPRIV_ACCESS_RW), \
+> > -	WHITELIST(status, RING_FORCE_TO_NONPRIV_ACCESS_RD), \
+> > -	WHITELIST(head, RING_FORCE_TO_NONPRIV_ACCESS_RD | RING_FORCE_TO_NONPRIV_RANGE_4)
+> > +	WHITELIST(trg, RING_FORCE_TO_NONPRIV_ACCESS_RW | RING_FORCE_TO_NONPRIV_DENY), \
+> > +	WHITELIST(status, RING_FORCE_TO_NONPRIV_ACCESS_RD | RING_FORCE_TO_NONPRIV_DENY), \
+> > +	WHITELIST(head, RING_FORCE_TO_NONPRIV_ACCESS_RD | RING_FORCE_TO_NONPRIV_RANGE_4 | \
+> > +		  RING_FORCE_TO_NONPRIV_DENY)
 >
->   drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c   | 2 +-
->   drivers/gpu/drm/arm/display/komeda/komeda_crtc.c    | 2 +-
->   drivers/gpu/drm/arm/malidp_hw.c                     | 6 +++---
->   drivers/gpu/drm/drm_writeback.c                     | 6 ++++--
->   drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_wb.c | 4 ++--
->   drivers/gpu/drm/renesas/rcar-du/rcar_du_writeback.c | 2 +-
->   drivers/gpu/drm/vc4/vc4_txp.c                       | 2 +-
->   drivers/gpu/drm/vkms/vkms_composer.c                | 2 +-
->   include/drm/drm_writeback.h                         | 2 +-
->   9 files changed, 15 insertions(+), 13 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> index f5154b10e50f..730c44c53287 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> @@ -681,7 +681,7 @@ static void dm_crtc_high_irq(void *interrupt_params)
->   					     100LL, (v_total * stream->timing.h_total));
->   				mdelay(1000 / refresh_hz);
->   
-> -				drm_writeback_signal_completion(acrtc->wb_conn, 0);
-> +				drm_writeback_signal_completion(acrtc->connector, 0);
->   				dc_stream_fc_disable_writeback(adev->dm.dc,
->   							       acrtc->dm_irq_params.stream, 0);
->   			}
-> diff --git a/drivers/gpu/drm/arm/display/komeda/komeda_crtc.c b/drivers/gpu/drm/arm/display/komeda/komeda_crtc.c
-> index c64cf5d97e62..da6bfe2797aa 100644
-> --- a/drivers/gpu/drm/arm/display/komeda/komeda_crtc.c
-> +++ b/drivers/gpu/drm/arm/display/komeda/komeda_crtc.c
-> @@ -213,7 +213,7 @@ void komeda_crtc_handle_event(struct komeda_crtc   *kcrtc,
->   		struct komeda_wb_connector *wb_conn = kcrtc->wb_conn;
->   
->   		if (wb_conn)
-> -			drm_writeback_signal_completion(&wb_conn->base.writeback, 0);
-> +			drm_writeback_signal_completion(&wb_conn->base, 0);
->   		else
->   			drm_warn(drm, "CRTC[%d]: EOW happen but no wb_connector.\n",
->   				 drm_crtc_index(&kcrtc->base));
-> diff --git a/drivers/gpu/drm/arm/malidp_hw.c b/drivers/gpu/drm/arm/malidp_hw.c
-> index 5a7bd27d3718..9b845d3f34e1 100644
-> --- a/drivers/gpu/drm/arm/malidp_hw.c
-> +++ b/drivers/gpu/drm/arm/malidp_hw.c
-> @@ -1315,15 +1315,15 @@ static irqreturn_t malidp_se_irq(int irq, void *arg)
->   	if (status & se->vsync_irq) {
->   		switch (hwdev->mw_state) {
->   		case MW_ONESHOT:
-> -			drm_writeback_signal_completion(&malidp->mw_connector.writeback, 0);
-> +			drm_writeback_signal_completion(&malidp->mw_connector, 0);
->   			break;
->   		case MW_STOP:
-> -			drm_writeback_signal_completion(&malidp->mw_connector.writeback, 0);
-> +			drm_writeback_signal_completion(&malidp->mw_connector, 0);
->   			/* disable writeback after stop */
->   			hwdev->mw_state = MW_NOT_ENABLED;
->   			break;
->   		case MW_RESTART:
-> -			drm_writeback_signal_completion(&malidp->mw_connector.writeback, 0);
-> +			drm_writeback_signal_completion(&malidp->mw_connector, 0);
->   			fallthrough;	/* to a new start */
->   		case MW_START:
->   			/* writeback started, need to emulate one-shot mode */
-> diff --git a/drivers/gpu/drm/drm_writeback.c b/drivers/gpu/drm/drm_writeback.c
-> index 1c1802d87f13..f3b4371d4201 100644
-> --- a/drivers/gpu/drm/drm_writeback.c
-> +++ b/drivers/gpu/drm/drm_writeback.c
-> @@ -477,7 +477,8 @@ static void cleanup_work(struct work_struct *work)
->   
->   /**
->    * drm_writeback_signal_completion - Signal the completion of a writeback job
-> - * @wb_connector: The writeback connector whose job is complete
-> + * @connector: The drm connector whicha has the drm_writeback_connector whose
-whicha -> which
+> status and head should be clubbed into one slot, starting with status and
+> RANGE_4. Maybe that can be a patch before this one.
 
-With that fixed (and consistent wording across the patches):
-Reviewed-by: John Harrison <John.Harrison@Igalia.com>
+No, e.g. for OAG, status is 0xdafc which is not a multiple of 16, which is
+a requirement for RANGE_4.
 
-> + * job is complete
->    * @status: Status code to set in the writeback out_fence (0 for success)
->    *
->    * Drivers should call this to signal the completion of a previously queued
-> @@ -492,10 +493,11 @@ static void cleanup_work(struct work_struct *work)
->    * See also: drm_writeback_queue_job()
->    */
->   void
-> -drm_writeback_signal_completion(struct drm_writeback_connector *wb_connector,
-> +drm_writeback_signal_completion(struct drm_connector *connector,
->   				int status)
->   {
->   	unsigned long flags;
-> +	struct drm_writeback_connector *wb_connector = &connector->writeback;
->   	struct drm_writeback_job *job;
->   	struct dma_fence *out_fence;
->   
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_wb.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_wb.c
-> index 0a4026f22274..977fc0337fbd 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_wb.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_wb.c
-> @@ -370,7 +370,7 @@ static void dpu_encoder_phys_wb_done_irq(void *arg)
->   	spin_unlock_irqrestore(phys_enc->enc_spinlock, lock_flags);
->   
->   	if (wb_enc->wb_conn)
-> -		drm_writeback_signal_completion(wb_enc->wb_conn, 0);
-> +		drm_writeback_signal_completion(drm_writeback_to_connector(wb_enc->wb_conn), 0);
->   
->   	/* Signal any waiting atomic commit thread */
->   	wake_up_all(&phys_enc->pending_kickoff_wq);
-> @@ -431,7 +431,7 @@ static void _dpu_encoder_phys_wb_handle_wbdone_timeout(
->   	phys_enc->enable_state = DPU_ENC_ERR_NEEDS_HW_RESET;
->   
->   	if (wb_enc->wb_conn)
-> -		drm_writeback_signal_completion(wb_enc->wb_conn, 0);
-> +		drm_writeback_signal_completion(drm_writeback_to_connector(wb_enc->wb_conn), 0);
->   
->   	dpu_encoder_frame_done_callback(phys_enc->parent, phys_enc, frame_event);
->   }
-> diff --git a/drivers/gpu/drm/renesas/rcar-du/rcar_du_writeback.c b/drivers/gpu/drm/renesas/rcar-du/rcar_du_writeback.c
-> index 5cd6c81a9710..4b0f6cd46acb 100644
-> --- a/drivers/gpu/drm/renesas/rcar-du/rcar_du_writeback.c
-> +++ b/drivers/gpu/drm/renesas/rcar-du/rcar_du_writeback.c
-> @@ -251,5 +251,5 @@ void rcar_du_writeback_setup(struct rcar_du_crtc *rcrtc,
->   
->   void rcar_du_writeback_complete(struct rcar_du_crtc *rcrtc)
->   {
-> -	drm_writeback_signal_completion(&rcrtc->wb_connector.writeback, 0);
-> +	drm_writeback_signal_completion(&rcrtc->wb_connector, 0);
->   }
-> diff --git a/drivers/gpu/drm/vc4/vc4_txp.c b/drivers/gpu/drm/vc4/vc4_txp.c
-> index 46330b6f9a12..0d8579683c57 100644
-> --- a/drivers/gpu/drm/vc4/vc4_txp.c
-> +++ b/drivers/gpu/drm/vc4/vc4_txp.c
-> @@ -505,7 +505,7 @@ static irqreturn_t vc4_txp_interrupt(int irq, void *data)
->   	 */
->   	TXP_WRITE(TXP_DST_CTRL, TXP_READ(TXP_DST_CTRL) & ~TXP_EI);
->   	vc4_crtc_handle_vblank(vc4_crtc);
-> -	drm_writeback_signal_completion(&txp->connector.writeback, 0);
-> +	drm_writeback_signal_completion(&txp->connector, 0);
->   
->   	return IRQ_HANDLED;
->   }
-> diff --git a/drivers/gpu/drm/vkms/vkms_composer.c b/drivers/gpu/drm/vkms/vkms_composer.c
-> index 27fb6a7b55bb..83d217085ad0 100644
-> --- a/drivers/gpu/drm/vkms/vkms_composer.c
-> +++ b/drivers/gpu/drm/vkms/vkms_composer.c
-> @@ -652,7 +652,7 @@ void vkms_composer_worker(struct work_struct *work)
->   		return;
->   
->   	if (wb_pending) {
-> -		drm_writeback_signal_completion(&out->wb_connector.writeback, 0);
-> +		drm_writeback_signal_completion(&out->wb_connector, 0);
->   		spin_lock_irq(&out->composer_lock);
->   		crtc_state->wb_pending = false;
->   		spin_unlock_irq(&out->composer_lock);
-> diff --git a/include/drm/drm_writeback.h b/include/drm/drm_writeback.h
-> index b4c11d380df0..5e8ab51c2da4 100644
-> --- a/include/drm/drm_writeback.h
-> +++ b/include/drm/drm_writeback.h
-> @@ -100,7 +100,7 @@ void drm_writeback_queue_job(struct drm_connector *wb_connector,
->   void drm_writeback_cleanup_job(struct drm_writeback_job *job);
->   
->   void
-> -drm_writeback_signal_completion(struct drm_writeback_connector *wb_connector,
-> +drm_writeback_signal_completion(struct drm_connector *connector,
->   				int status);
->   
->   struct dma_fence *
+Also, about RANGE_4 above, there were different suggestions, e.g. tail and
+oabuffer should be different slots, rather than grouping in a single
+RANGE_4 above. To avoid any such controversy, I decided to focus this
+series only on removing unconditional whitelisting for OA registers. Any
+other changes, such as removing or retaining RANGE_4, we can do after this
+series is reviewed/merged.
 
+Thanks.
+--
+Ashutosh
+
+> > #define WHITELIST_OAG_MMIO_TRG \
+> >	WHITELIST_OA_MMIO_TRG(OAG_MMIOTRIGGER, OAG_OASTATUS, OAG_OAHEADPTR)
+> > --
+> > 2.54.0
+> >
