@@ -4,49 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A628CD5BB0
-	for <intel-xe@archiver.kernel.org>; Fri, 22 May 2026 12:53:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10272CD5BB1
+	for <intel-xe@archiver.kernel.org>; Fri, 22 May 2026 12:53:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 291DE10F5BF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9902E10F5DB;
 	Fri, 22 May 2026 12:53:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=mariushoch.de header.i=@mariushoch.de header.b="EXuGrg2m";
+	dkim=pass (2048-bit key; unprotected) header.d=poorly.run header.i=@poorly.run header.b="OsaLrwbN";
 	dkim-atps=neutral
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2E6310E1C9;
- Thu, 21 May 2026 18:27:03 +0000 (UTC)
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4gLxhP28rTz9vLF;
- Thu, 21 May 2026 20:27:01 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mariushoch.de;
- s=MBO0001; t=1779388021;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding;
- bh=GYkf84zKQ1koXdJ8sJbWorRHXORylD9/JuNrnSRVhMk=;
- b=EXuGrg2mnXNU2e83JRMVB5I2K3ncTReK933T4sXH6nAcQLJ+oDRgYS9VRO5qcCohfvUsHV
- 9QdC39z76pint1GOoMOjOmwPjupiX6Y0aSyap+yX5LUcchK2Lx8dGBCipWJ2PkcJj81+vN
- TBxmNdbCldjXqXxXb3+/LPpmqt7XpGpO+9k1w7p0RCnhEeCrgWpXDZlkM0rqQSRme4G5wR
- sy+B6gohE941vLOREpIsnqZRvEVQtzy+tTko9hTLjnn6lQbmbNv8NSaB+Htf65RP+tGs+g
- 8rCNO7jjrOHdqJpu2huEPhGKvurez37TrzVB/RvXGPKe2kuvTwus3osZZRMtOQ==
-From: Marius Hoch <mail@mariushoch.de>
-To: linux-kernel@vger.kernel.org
-Cc: Marius Hoch <mail@mariushoch.de>, stable@vger.kernel.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com
+ [209.85.128.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A17F410E48D
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 May 2026 19:40:24 +0000 (UTC)
+Received: by mail-yw1-f182.google.com with SMTP id
+ 00721157ae682-7bdec52f48dso59614187b3.0
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 May 2026 12:40:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=poorly.run; s=google; t=1779392424; x=1779997224; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=HmIdxc0lOd0CxowYMAnyi/yzRzGd3DC7R3Y/lI6Dr6Y=;
+ b=OsaLrwbNb+gapRHXe1AJ56dMeHVP8ygv5bSoUUo4tAiFozWo543BAzEBHcGMzh2NTl
+ B6Nb1/fWCrBmau9rcDpmZFm68btR/T8eT5wSwKR369F5v4qwF/xyVc6rUuP8+exqo+XO
+ G34p6Icl+ssTKk/hAt9JnqB9Zf42DgpkBMr/AoCrk1ybUqQUYsRm8MG/kriLeVyRFQZa
+ NUGWMT4+d+BGDIFhZb3xdnCe7zWJUX59gPqvw9AWa2RO9Hi3beSucFpn3cAo9tKWurHa
+ y6OTkRUWqNwnGkL0Xn3EdtDFj+3PHCFGipVKV/1NhW0GeLk+JuCd2p4ZMbEzwui6PCPj
+ 1CUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1779392424; x=1779997224;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=HmIdxc0lOd0CxowYMAnyi/yzRzGd3DC7R3Y/lI6Dr6Y=;
+ b=rAN4GNqjR+Ve8aOGp/1HMiWQJUpQXbY0Mlwa0r+jpauy0m09hz1X3TGu/bcNBd2Y7x
+ kk2H6B2p7ygzTMn/MrcXCtGl3fR0PxDvIu5tSe4HrLTm7LkBo3WxvkzvavHwzcttR91F
+ RUGR1D9pwvKdrolXsxiCdhN7P86tvfFCj4cbXdEkPtBFhGm4+rjaXpSyOHCrQy6EF1W6
+ 1QiARePenD7K6moSVcVIOnZCws90ks81AtmMHlcswhFQ7XNmPPMEdVvBrtym7sfHQEc/
+ v3waxilS3ivKFEDYCTlJ3WJ8C6IQ+adoQsZwPuSaXE4Oum82tr0Q7XSUBGjVmfmIE8va
+ jThQ==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ/a5DfZHF51MFyb/xCpwyMUBWDWI+8y1xjq5BZZ7/xivgvkXPqJE/7NbPhUkx40oGL5R2D4xT04GQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyOksUkaGIEmFOhGGyu1PyeopGn57xw6zESNG1dKDyxsHd478Go
+ W82N0cTxTF/eG/3cvwSEWaBh5wmm/8Gj64omYToHQJY9zKhtDOuGx7TdjjpRs/6xtkM=
+X-Gm-Gg: Acq92OGWLBiDgA/ZbCa85hYihzbBKvea0TAz2RwKvxxgoW3f/ZoXasBMX7JO56AAEed
+ J9SRyaYuX/QlputrCMS8k0zNa2p8ZqdMExKaMAEvILQbNGnOAbwvCgh/1w5XPtrr9uoO8ZkCZrQ
+ FXdZQP5SNb90/jdYG5nzOOPZ5JXdI06rvKt4zQczWu7au2OL6VnNVJY0Nwj/eBPgj6keXaKIfI7
+ CjHU0606winnhB9tpFjgWNN5OiNkYWESnpzsSKABzXFsNCrPEYTSBHCT3CCfn4N8bRLXA1JWvZC
+ H5DSfQiegK1V/UUivv73RotqDrYVJ1IdUAr1eXMDdPQ0CYGYdVV9P+yQEq+BZ4PJp4z1j3B0uHL
+ Ck+d8fC1ZeKHWwFb43o9W2M7SaVAkYSjeKIlJRoq118Ji+7wICfcrEaj5c7zunGFlZNYRSeULwj
+ skkB7Z3YxXkMugZ3l+TiU52XxbDAXRPcKIlqgrKbEoHtdNrI6Fy32vztk=
+X-Received: by 2002:a05:690c:7446:b0:7b6:783f:2122 with SMTP id
+ 00721157ae682-7d356236f08mr2231767b3.9.1779392423699; 
+ Thu, 21 May 2026 12:40:23 -0700 (PDT)
+Received: from localhost (182.221.85.34.bc.googleusercontent.com.
+ [34.85.221.182]) by smtp.gmail.com with ESMTPSA id
+ 00721157ae682-7d35f7d8684sm323507b3.25.2026.05.21.12.40.23
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 21 May 2026 12:40:23 -0700 (PDT)
+From: Sean Paul <sean@poorly.run>
+To: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@linux.intel.com, Sean Paul <seanpaul@google.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Joe Perches <joe@perches.com>,
- Mika Kahola <mika.kahola@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Simona Vetter <simona@ffwll.ch>, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
-Subject: [PATCH] drm/i915: Don't set min_cdclk in the initial crtc_state
-Date: Thu, 21 May 2026 20:07:12 +0200
-Message-ID: <20260521180722.328317-2-mail@mariushoch.de>
+Subject: [PATCH v2 2/2] drm/i915/color: Fix Pre-CSC degamma LUT bounds
+Date: Thu, 21 May 2026 15:39:45 -0400
+Message-ID: <20260521194018.2445206-2-sean@poorly.run>
+X-Mailer: git-send-email 2.54.0.794.g4f17f83d09-goog
+In-Reply-To: <20260521194018.2445206-1-sean@poorly.run>
+References: <6d8e36e2aea806f9973b3c501aad4523f7316d6a@intel.com>
+ <20260521194018.2445206-1-sean@poorly.run>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 22 May 2026 12:53:27 +0000
@@ -64,48 +94,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Setting the min_cdclk this early means that intel_cdclk_atomic_check
-(called via intel_atomic_check) will not pick up the initial min_cdclk, as
-there is no change between the old and new atomic states. This is
-problematic, especially on Gemini Lake, where the picture gets unstable if
-the CDCLK is too low (see vlv_dsi_min_cdclk).
+From: Sean Paul <seanpaul@google.com>
 
-This was introduced in 7a8d9cfa6db0, which states that the min_cdclk must
-be set before calling intel_compute_global_watermarks. However, as the
-only place that calls intel_compute_global_watermarks is
-intel_atomic_check, right after setting the min_cdclk on new_crtc_state,
-there is no need to set the min_cdclk initially.
+Fix a typo in the loop condition in xelpd_program_plane_pre_csc_lut
+for Segment 2 degamma programming, changing 'while (i++ > 130)' to
+'while (i++ < 130)'. Also clamp Segment 2 to the last user-provided
+LUT entry value instead of hardcoding it to 1.0 (1 << 24) to fix
+a step discontinuity.
 
-This surfaced as a bug on my IdeaPad Duet 3 after ba91b9eecb47, leading
-to the screen output being completely garbled initially (when asking for
-the dm-crypt passphrase). It recovers after the passphrase prompt, as this
-only affects the initial state.
+Link: https://lore.kernel.org/intel-gfx/20260521180143.2143262-1-sean@poorly.run/ #v1
+Signed-off-by: Sean Paul <seanpaul@google.com>
 
-Tested on an IdeaPad Duet 3 10IGL5-LTE (with UHD Graphics 605).
+Changes in v2:
+- Split out into separate patches for pre/post csc fixes
+- Dropped loop bounds fix in favor of [1]
 
-Cc: stable@vger.kernel.org
-Fixes: 7a8d9cfa6db0 ("drm/i915: Compute per-crtc min_cdclk earlier")
-Signed-off-by: Marius Hoch <mail@mariushoch.de>
+[1]- https://lore.kernel.org/r/20260519075245.383864-1-pranay.samala@intel.com
 ---
- drivers/gpu/drm/i915/display/intel_modeset_setup.c | 5 -----
- 1 file changed, 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_color.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-index 4086f16a12bf..9278856375e9 100644
---- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-+++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-@@ -865,11 +865,6 @@ static void intel_modeset_readout_hw_state(struct intel_display *display)
- 				    crtc_state->plane_min_cdclk[plane->id]);
- 		}
+diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+index 90d5dc2ef3e4..469011c83f9b 100644
+--- a/drivers/gpu/drm/i915/display/intel_color.c
++++ b/drivers/gpu/drm/i915/display/intel_color.c
+@@ -3953,6 +3953,7 @@ xelpd_program_plane_pre_csc_lut(struct intel_dsb *dsb,
+ 	enum plane_id plane = to_intel_plane(state->plane)->id;
+ 	const struct drm_color_lut32 *pre_csc_lut = plane_state->hw.degamma_lut->data;
+ 	u32 i, lut_size;
++	u32 lut_val = 1 << 24;
  
--		crtc_state->min_cdclk = intel_crtc_min_cdclk(crtc_state);
--
--		drm_dbg_kms(display->drm, "[CRTC:%d:%s] min_cdclk %d kHz\n",
--			    crtc->base.base.id, crtc->base.name, crtc_state->min_cdclk);
--
- 		intel_pmdemand_update_port_clock(display, pmdemand_state, pipe,
- 						 crtc_state->port_clock);
- 	}
+ 	if (icl_is_hdr_plane(display, plane)) {
+ 		lut_size = 128;
+@@ -3963,7 +3964,7 @@ xelpd_program_plane_pre_csc_lut(struct intel_dsb *dsb,
+ 
+ 		if (pre_csc_lut) {
+ 			for (i = 0; i < lut_size; i++) {
+-				u32 lut_val = drm_color_lut32_extract(pre_csc_lut[i].green, 24);
++				lut_val = drm_color_lut32_extract(pre_csc_lut[i].green, 24);
+ 
+ 				intel_de_write_dsb(display, dsb,
+ 						   PLANE_PRE_CSC_GAMC_DATA_ENH(pipe, plane, 0),
+@@ -3975,7 +3976,7 @@ xelpd_program_plane_pre_csc_lut(struct intel_dsb *dsb,
+ 			do {
+ 				intel_de_write_dsb(display, dsb,
+ 						   PLANE_PRE_CSC_GAMC_DATA_ENH(pipe, plane, 0),
+-						   (1 << 24));
++						   lut_val);
+ 			} while (i++ > 130);
+ 		} else {
+ 			for (i = 0; i < lut_size; i++) {
 -- 
-2.54.0
+Sean Paul, Software Engineer, Google / Chromium OS
 
