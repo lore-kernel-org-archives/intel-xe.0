@@ -4,27 +4,112 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DA5CCD343F
-	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 06:58:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 338A3CD343F
+	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 07:15:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D01E110F21D;
-	Thu, 21 May 2026 06:58:56 +0000 (UTC)
-Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6B0110F21D;
- Thu, 21 May 2026 06:58:55 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4013554754072610062=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1F5910E465;
+	Thu, 21 May 2026 07:15:00 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="CO4rzz9O";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="W2m8vZ1Q";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="CO4rzz9O";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="W2m8vZ1Q";
+	dkim-atps=neutral
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABCAD10F234
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 May 2026 07:14:59 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 4B5B76B251;
+ Thu, 21 May 2026 07:14:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1779347698; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=SaSIERTp3yn7OQ9va/0lj1DC5PxkP2DR5u8ubcmHH44=;
+ b=CO4rzz9ORacUxWBa+frxjJZT07Wj3zDB3smtz9Lriw11ANbEBX0LUeZcd3gZNvEmrBq++k
+ M8Uc4Rd7XUHiDOXW4hDyAXlQVBlIirHqB9y+O1jOmoMDweZIiLBN/KIHlfy0VdtR+xZ0RD
+ 0SfxcnstW0G1koFnuxbjhV6OHoC81GM=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1779347698;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=SaSIERTp3yn7OQ9va/0lj1DC5PxkP2DR5u8ubcmHH44=;
+ b=W2m8vZ1QmjvcmoHZ843EmjIzpSy8355oCMZG+8D9ODreKPuojXhhyX+sj/oOYPvglmB8/H
+ 3FqYUJfdunXNSRDQ==
+Authentication-Results: smtp-out1.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=CO4rzz9O;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=W2m8vZ1Q
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1779347698; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=SaSIERTp3yn7OQ9va/0lj1DC5PxkP2DR5u8ubcmHH44=;
+ b=CO4rzz9ORacUxWBa+frxjJZT07Wj3zDB3smtz9Lriw11ANbEBX0LUeZcd3gZNvEmrBq++k
+ M8Uc4Rd7XUHiDOXW4hDyAXlQVBlIirHqB9y+O1jOmoMDweZIiLBN/KIHlfy0VdtR+xZ0RD
+ 0SfxcnstW0G1koFnuxbjhV6OHoC81GM=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1779347698;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=SaSIERTp3yn7OQ9va/0lj1DC5PxkP2DR5u8ubcmHH44=;
+ b=W2m8vZ1QmjvcmoHZ843EmjIzpSy8355oCMZG+8D9ODreKPuojXhhyX+sj/oOYPvglmB8/H
+ 3FqYUJfdunXNSRDQ==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 1ED0A593AC;
+ Thu, 21 May 2026 07:14:58 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id Y5T6BvKwDmokLQAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Thu, 21 May 2026 07:14:58 +0000
+Date: Thu, 21 May 2026 09:14:56 +0200
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-fixes
+Message-ID: <20260521071456.GA14644@localhost.localdomain>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Fix_return_type_a?=
- =?utf-8?q?nd_adjust_variable?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mohanram Meenakshisundaram" <mohanram.meenakshisundaram@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 21 May 2026 06:58:55 -0000
-Message-ID: <177934673573.94258.12607786758895057195@5ab824fced77>
-X-Patchwork-Hint: ignore
-References: <20260521060338.2112191-1-mohanram.meenakshisundaram@intel.com>
-In-Reply-To: <20260521060338.2112191-1-mohanram.meenakshisundaram@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Action: no action
+X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MX_GOOD(-0.01)[]; ARC_NA(0.00)[];
+ FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
+ RCPT_COUNT_TWELVE(0.00)[16];
+ FUZZY_RATELIMITED(0.00)[rspamd.com]; MIME_TRACE(0.00)[0:+];
+ MISSING_XM_UA(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ RCVD_TLS_ALL(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
+ FROM_HAS_DN(0.00)[]; TO_DN_SOME(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim,suse.com:url,imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo,localhost.localdomain:mid,gitlab.freedesktop.org:url];
+ SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+ DKIM_TRACE(0.00)[suse.de:+]
+X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
+X-Rspamd-Queue-Id: 4B5B76B251
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +121,117 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4013554754072610062==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Dave, Sima,
 
-== Series Details ==
+this is this weekly PR for drm-misc-fixes.
 
-Series: drm/xe: Fix return type and adjust variable
-URL   : https://patchwork.freedesktop.org/series/166981/
-State : success
+Best regards
+Thomas
 
-== Summary ==
+drm-misc-fixes-2026-05-21:
+Short summary of fixes pull:
 
-CI Bug Log - changes from xe-5106-a7f4472d401c5c4ee7710c20b7350b6958b8bbed_BAT -> xe-pw-166981v1_BAT
-====================================================
+amdxdna:
+- remove mmap and export for ubuf
 
-Summary
--------
+bridge:
+- chipone-icn6211: managed bridge cleanup
+- lt66121: acquire reset GPIO
+- megachips: fix clean up on failed IRQ requests
 
-  **SUCCESS**
+gem:
+- clean up LRU locking
 
-  No regressions found.
+v3d:
+- fix UAF in error code paths
+- release GEM-object ref on free'd jobs
 
-  
+virtio:
+- use uninterruptible resv locking in plane updates
+The following changes since commit 0a9c56dd387605d17dabeedd9fdd2c4c1d0bab7b:
 
-Participating hosts (13 -> 13)
-------------------------------
+  drm/loongson: Use managed KMS polling (2026-05-15 08:50:54 +0200)
 
-  No changes in participating hosts
+are available in the Git repository at:
 
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2026-05-21
 
-Changes
--------
+for you to fetch changes up to 9af1b6e175c82daf4b423da339a722d8e67a735a:
 
-  No changes found
+  drm/virtio: use uninterruptible resv lock for plane updates (2026-05-20 18:12:11 +0300)
 
+----------------------------------------------------------------
+Short summary of fixes pull:
 
-Build changes
--------------
+amdxdna:
+- remove mmap and export for ubuf
 
-  * IGT: IGT_8926 -> IGT_8927
-  * Linux: xe-5106-a7f4472d401c5c4ee7710c20b7350b6958b8bbed -> xe-pw-166981v1
+bridge:
+- chipone-icn6211: managed bridge cleanup
+- lt66121: acquire reset GPIO
+- megachips: fix clean up on failed IRQ requests
 
-  IGT_8926: 8926
-  IGT_8927: 3adedfd3a52fa7cdf94df31e5da59e0fdbda92fd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5106-a7f4472d401c5c4ee7710c20b7350b6958b8bbed: a7f4472d401c5c4ee7710c20b7350b6958b8bbed
-  xe-pw-166981v1: 166981v1
+gem:
+- clean up LRU locking
 
-== Logs ==
+v3d:
+- fix UAF in error code paths
+- release GEM-object ref on free'd jobs
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166981v1/index.html
+virtio:
+- use uninterruptible resv locking in plane updates
 
---===============4013554754072610062==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+----------------------------------------------------------------
+Boris Brezillon (1):
+      drm/gem: Make the GEM LRU lock part of drm_device
 
+Deepanshu Kartikey (1):
+      drm/virtio: use uninterruptible resv lock for plane updates
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+Julien Chauveau (1):
+      drm/bridge: it66121: acquire reset GPIO in probe
 
+Lizhi Hou (1):
+      accel/amdxdna: Remove mmap and export support for ubuf
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Fix return type and adjust variable</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166981/">https://patchwork.freedesktop.org/series/166981/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+Maíra Canal (2):
+      drm/v3d: Fix use-after-free of CPU job query arrays on error path
+      drm/v3d: Release indirect CSD GEM reference on CPU job free
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166981v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166981v1/index.html</a></td></tr>
+Osama Abdelkader (2):
+      drm/bridge: chipone-icn6211: use devm_drm_bridge_add in i2c probe
+      drm/bridge: megachips: remove bridge when irq request fails
 
-</table>
+ drivers/accel/amdxdna/amdxdna_gem.c                |  9 +++-
+ drivers/accel/amdxdna/amdxdna_gem.h                |  2 +
+ drivers/accel/amdxdna/amdxdna_ubuf.c               | 50 ----------------------
+ drivers/gpu/drm/bridge/chipone-icn6211.c           |  4 +-
+ drivers/gpu/drm/bridge/ite-it66121.c               |  5 +++
+ .../drm/bridge/megachips-stdpxxxx-ge-b850v3-fw.c   | 16 ++++---
+ drivers/gpu/drm/drm_drv.c                          |  2 +
+ drivers/gpu/drm/drm_gem.c                          | 36 +++++++---------
+ drivers/gpu/drm/msm/msm_drv.c                      | 11 +++--
+ drivers/gpu/drm/msm/msm_drv.h                      |  7 ---
+ drivers/gpu/drm/msm/msm_gem.c                      | 33 +++++++-------
+ drivers/gpu/drm/msm/msm_gem_shrinker.c             |  4 +-
+ drivers/gpu/drm/msm/msm_gem_submit.c               |  6 +--
+ drivers/gpu/drm/msm/msm_gem_vma.c                  | 12 +++---
+ drivers/gpu/drm/msm/msm_ringbuffer.c               |  6 +--
+ drivers/gpu/drm/v3d/v3d_sched.c                    | 16 +------
+ drivers/gpu/drm/v3d/v3d_submit.c                   | 22 ++++++++--
+ drivers/gpu/drm/virtio/virtgpu_drv.h               |  1 +
+ drivers/gpu/drm/virtio/virtgpu_gem.c               | 17 ++++++++
+ drivers/gpu/drm/virtio/virtgpu_plane.c             | 10 ++++-
+ include/drm/drm_device.h                           |  7 +++
+ include/drm/drm_gem.h                              | 20 ++++-----
+ 22 files changed, 143 insertions(+), 153 deletions(-)
 
-
-    <h1>CI Bug Log - changes from xe-5106-a7f4472d401c5c4ee7710c20b7350b6958b8bbed_BAT -&gt; xe-pw-166981v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8926 -&gt; IGT_8927</li>
-<li>Linux: xe-5106-a7f4472d401c5c4ee7710c20b7350b6958b8bbed -&gt; xe-pw-166981v1</li>
-</ul>
-<p>IGT_8926: 8926<br />
-  IGT_8927: 3adedfd3a52fa7cdf94df31e5da59e0fdbda92fd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5106-a7f4472d401c5c4ee7710c20b7350b6958b8bbed: a7f4472d401c5c4ee7710c20b7350b6958b8bbed<br />
-  xe-pw-166981v1: 166981v1</p>
-
-</body>
-</html>
-
---===============4013554754072610062==--
+-- 
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
+GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
