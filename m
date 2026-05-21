@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37F69CD5BAC
-	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 14:49:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39F41CD4F3D
+	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 14:49:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5BE610F353;
-	Thu, 21 May 2026 14:49:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EDC8D10F36A;
+	Thu, 21 May 2026 14:49:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B0VK7GrJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JYKUR6KO";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3C1B10F353
- for <intel-xe@lists.freedesktop.org>; Thu, 21 May 2026 14:49:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA86B10F353
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 May 2026 14:49:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779374941; x=1810910941;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=LyNzqoxLQ60O27pMQFuEAr4rEdfStp2V1DQzGHRl5vs=;
- b=B0VK7GrJ2B99Pc7NT9Hu2/8Nxeeb84IcJsXUgAFTTWzPhMN4fepwmvDq
- cAgRsGWFv0GiyqRgi4iQxUs4iI73LNPajEp9EcXimKdt4/OTR0r/UrEaU
- F3tBH+OMMsuDc+YypiyYTp/daLt+hFwUAuTfO13HMgcPJUJcM5qkjsLIX
- jJ1B7CiKxHKCkOsrCUzYnuZc32eSRs4JdqZRathClelBXAEavU9kubVw3
- BoOdNgjpMjIhGzeeVRYeOihj8CUPIBQbI/J9Rc+XgnFpSHMeLnbnLxnGi
- lB2oeXnislNJLKwquv9cEINER/gPgRxH/Dz4o2HOW2FT2vB7xQmhGJzpq g==;
-X-CSE-ConnectionGUID: SlY1AlMpSkebAOd7UBawSA==
-X-CSE-MsgGUID: mCYWCQNfQlK10Qrw2Euf2g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11793"; a="80194427"
-X-IronPort-AV: E=Sophos;i="6.23,246,1770624000"; d="scan'208";a="80194427"
+ t=1779374943; x=1810910943;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=RH2ZXnuN8fZjmzBXz7CJ+Npr4lYr5kE5bWws6xUL6BU=;
+ b=JYKUR6KOVKyss2g5i7HpXG5Y+kwCKBuN21u2n7melkQ3g7Ma2iqIgk+7
+ H9ZBqCJUkK1KnhuXheU6MWa5kxpm2VPjle8bp8JAdxPfJ/7f/7CmqD0GT
+ Te8kDJgxIuSn+e5n6CKxgWLrLJhfVDSTfuOAwrP9he12pPKd/6sCN2LIH
+ KlxLazs9UqnT++przV65ThRT+ZTPB+3t8+915279ey0MSdmr0Jpv56gAE
+ b6V4V4gQsp+Uoo7bMepy/XpE/3HAbC50eYvPzlr0OL1jpDnBXaMlEtcKJ
+ 7el09R+tZhjC5oZOP8yIyGmaHG/607vOxccMjDoNsPI6S8dlXZQwfTf04 g==;
+X-CSE-ConnectionGUID: ox4u4tpjQCCnZQWBDwsyfw==
+X-CSE-MsgGUID: b+60cDzrTf+PhqOxZM6ZDA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11793"; a="80194431"
+X-IronPort-AV: E=Sophos;i="6.23,246,1770624000"; d="scan'208";a="80194431"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2026 07:49:01 -0700
-X-CSE-ConnectionGUID: JaoEq+vDRySj9adaITPkYg==
-X-CSE-MsgGUID: LgunHRBTSqyA46mwMvPqMg==
+ 21 May 2026 07:49:03 -0700
+X-CSE-ConnectionGUID: GrvPjvRwRleKGOOJlSI4dg==
+X-CSE-MsgGUID: 87nCSKVYT1aoOxGRlS/mBQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,246,1770624000"; d="scan'208";a="270893321"
+X-IronPort-AV: E=Sophos;i="6.23,246,1770624000"; d="scan'208";a="270893331"
 Received: from fpallare-mobl4.ger.corp.intel.com (HELO fedora)
  ([10.245.244.105])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2026 07:48:58 -0700
+ 21 May 2026 07:49:01 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
@@ -50,10 +50,12 @@ Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Matthew Auld <matthew.auld@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH 0/4] drm/xe: Fix LR exec queue suspend/resume for S3/S4
-Date: Thu, 21 May 2026 16:48:33 +0200
-Message-ID: <20260521144837.7363-1-thomas.hellstrom@linux.intel.com>
+Subject: [PATCH 1/4] drm/xe/guc: Add suspend refcount to exec queue ops
+Date: Thu, 21 May 2026 16:48:34 +0200
+Message-ID: <20260521144837.7363-2-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260521144837.7363-1-thomas.hellstrom@linux.intel.com>
+References: <20260521144837.7363-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -71,60 +73,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Long Running (LR) exec queues — used by compute workloads with SVM
-(fault-mode) and by preempt-fence-mode — were not surviving S3/S4
-suspend/resume correctly.  Four distinct problems are addressed:
+Concurrent call sites that suspend exec queues (PM, mode switching,
+preempt fences) each need to pair their own suspend/resume without
+caring about other callers. Without coordination, a resume from one
+path can prematurely re-enable a queue still suspended by another.
 
-1. Exec queue ops (guc_exec_queue_suspend/resume) lacked coordination
-   when multiple paths (PM, mode switching, preempt fences) needed to
-   hold the queue suspended simultaneously.  A suspend refcount ensures
-   the GuC SUSPEND message is only sent when the first caller suspends,
-   and the RESUME message only when the last caller resumes.
+Add suspend_count to xe_guc_exec_queue. The SUSPEND message is only
+sent on the 0->1 transition; the RESUME message is only sent on the
+1->0 transition. Callers simply pair suspend and resume. The existing
+sched.msg_lock spinlock serialises concurrent calls so neither side
+needs to know about the other.
 
-2. During PM suspend, guc_exec_queue_stop() banned any user exec queue
-   that had a started-but-incomplete job.  For LR queues this is always
-   true — their jobs are designed to run indefinitely — so every PM
-   suspend permanently banned the queue.  The ban is now suppressed for
-   LR VM exec queues during PM suspend or hibernation while being
-   preserved for GT reset (legitimate hang detection).
+Assisted-by: GitHub_Copilot:claude-sonnet-4.6
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_exec_queue_types.h |  7 ++++++
+ drivers/gpu/drm/xe/xe_guc_submit.c           | 24 ++++++++++++--------
+ 2 files changed, 22 insertions(+), 9 deletions(-)
 
-3. Userspace LRC buffer objects carried XE_BO_FLAG_PINNED_LATE_RESTORE,
-   deferring their VRAM restore to after xe_gt_resume().  However,
-   xe_gt_resume() drives context registration, which requires valid LRC
-   VRAM.  Dropping the flag moves the restore to xe_bo_restore_early(),
-   a CPU/BAR copy that runs before xe_gt_resume(), fixing the ordering.
-
-4. Fault-mode (SVM) VMs use GPU page faults to access memory.  A
-   running fault-mode job can re-fault pages torn down by VRAM eviction,
-   racing with the eviction.  A new xe_suspend_all_faulting_lr_jobs()
-   call in the PM notifier stops all fault-mode queues and waits for GuC
-   acknowledgement before eviction begins.  On resume,
-   xe_resume_all_faulting_lr_jobs() mirrors the same iteration to
-   re-register and resume exactly those queues.  A per-group pm_suspended
-   flag (protected by mode_sem) prevents new fault-mode exec queues from
-   slipping through unsuspended while PM suspend is in progress.
-
-Note: A prerequisite revert ("Revert drm/xe: Skip exec queue schedule
-toggle if queue is idle during suspend") was already sent as a separate
-patch and is not included here.
-
-Thomas Hellström (4):
-  drm/xe/guc: Add suspend refcount to exec queue ops
-  drm/xe/guc: Don't ban LR VM exec queues on PM suspend
-  drm/xe: Restore userspace LRC BOs early on resume
-  drm/xe: Suspend fault-mode LR jobs before VRAM eviction on S3/S4
-
- drivers/gpu/drm/xe/xe_exec_queue_types.h      |   7 +
- drivers/gpu/drm/xe/xe_guc_exec_queue_types.h  |   7 +
- drivers/gpu/drm/xe/xe_guc_submit.c            |  60 +++++--
- drivers/gpu/drm/xe/xe_guc_submit.h            |   1 +
- drivers/gpu/drm/xe/xe_hw_engine_group.c       | 158 +++++++++++++++++-
- drivers/gpu/drm/xe/xe_hw_engine_group.h       |   3 +
- drivers/gpu/drm/xe/xe_hw_engine_group_types.h |   7 +
- drivers/gpu/drm/xe/xe_lrc.c                   |   2 +-
- drivers/gpu/drm/xe/xe_pm.c                    |  15 +-
- 9 files changed, 239 insertions(+), 21 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
+index e5e53b421f29..8ee76f958dc2 100644
+--- a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
+@@ -49,6 +49,13 @@ struct xe_guc_exec_queue {
+ 	wait_queue_head_t suspend_wait;
+ 	/** @suspend_pending: a suspend of the exec_queue is pending */
+ 	bool suspend_pending;
++	/**
++	 * @suspend_count: number of active suspend requests, protected by
++	 * @sched.msg_lock. The exec_queue is kept suspended as long as this
++	 * is non-zero. Transitions 0->1 send the SUSPEND message; transitions
++	 * 1->0 send the RESUME message.
++	 */
++	int suspend_count;
+ 	/**
+ 	 * @needs_cleanup: Needs a cleanup message during VF post migration
+ 	 * recovery.
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 4d32b430bc15..50b622cf0c30 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -2131,15 +2131,18 @@ static int guc_exec_queue_set_multi_queue_priority(struct xe_exec_queue *q,
+ 
+ static int guc_exec_queue_suspend(struct xe_exec_queue *q)
+ {
+-	struct xe_gpu_scheduler *sched = &q->guc->sched;
+-	struct xe_sched_msg *msg = q->guc->static_msgs + STATIC_MSG_SUSPEND;
++	struct xe_guc_exec_queue *ge = q->guc;
++	struct xe_gpu_scheduler *sched = &ge->sched;
++	struct xe_sched_msg *msg = ge->static_msgs + STATIC_MSG_SUSPEND;
+ 
+ 	if (exec_queue_killed_or_banned_or_wedged(q))
+ 		return -EINVAL;
+ 
+ 	xe_sched_msg_lock(sched);
+-	if (guc_exec_queue_try_add_msg(q, msg, SUSPEND))
+-		q->guc->suspend_pending = true;
++	if (++ge->suspend_count == 1) {
++		if (guc_exec_queue_try_add_msg(q, msg, SUSPEND))
++			ge->suspend_pending = true;
++	}
+ 	xe_sched_msg_unlock(sched);
+ 
+ 	return 0;
+@@ -2190,14 +2193,17 @@ static int guc_exec_queue_suspend_wait(struct xe_exec_queue *q)
+ 
+ static void guc_exec_queue_resume(struct xe_exec_queue *q)
+ {
+-	struct xe_gpu_scheduler *sched = &q->guc->sched;
+-	struct xe_sched_msg *msg = q->guc->static_msgs + STATIC_MSG_RESUME;
++	struct xe_guc_exec_queue *ge = q->guc;
++	struct xe_gpu_scheduler *sched = &ge->sched;
++	struct xe_sched_msg *msg = ge->static_msgs + STATIC_MSG_RESUME;
+ 	struct xe_guc *guc = exec_queue_to_guc(q);
+ 
+-	xe_gt_assert(guc_to_gt(guc), !q->guc->suspend_pending);
+-
+ 	xe_sched_msg_lock(sched);
+-	guc_exec_queue_try_add_msg(q, msg, RESUME);
++	xe_gt_assert(guc_to_gt(guc), ge->suspend_count > 0);
++	if (--ge->suspend_count == 0) {
++		xe_gt_assert(guc_to_gt(guc), !ge->suspend_pending);
++		guc_exec_queue_try_add_msg(q, msg, RESUME);
++	}
+ 	xe_sched_msg_unlock(sched);
+ }
+ 
 -- 
 2.54.0
 
