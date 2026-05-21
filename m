@@ -4,55 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD474CD5BAC
-	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 14:49:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76CD8CD5BAC
+	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 14:49:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F4AF10F368;
-	Thu, 21 May 2026 14:49:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BEAD10F36F;
+	Thu, 21 May 2026 14:49:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lGmNo9rn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lUAE0qlU";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42D2510F368
- for <intel-xe@lists.freedesktop.org>; Thu, 21 May 2026 14:49:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3EBE510F36F
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 May 2026 14:49:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779374946; x=1810910946;
+ t=1779374948; x=1810910948;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=lqfxmaRqoNBmZhWLPAwlz0AaeOhG57bz9/+e95m2Shk=;
- b=lGmNo9rnr7HFob4Mp+qDevh6tBtwxKy/ntSnRL8ykdQQtFfMV760IWoN
- ZbgelrhRq1ocGElbswHvuAkWpI1WSTA1FIF9LbxSMJ5/MmOnRjzm86dkY
- XYVwD0+35cbhvyLpUqEVFGhM6e77L5XUk0yO9sB2l8LKkaXrSNBVlkQCv
- ee6z4xhxd/UsHtMYB9ROX5fny2eu0SJCUFfmvdayAjqjqs4mRpFB4OTje
- fTWLKMrzxZO8M9brQDTxU7hinsF9Wd4QkR83GbxKlvt004VeCKbBcsMIK
- gXmvV50BMVWykb0PqEiTBzbAtA6mc6N7sx2QDBSfB7c0xdIFwFyVkCHlM A==;
-X-CSE-ConnectionGUID: IAClwGBDQVm50jdDjE5hCw==
-X-CSE-MsgGUID: ACyztjqVRVKHM+1aROhVLg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11793"; a="80194432"
-X-IronPort-AV: E=Sophos;i="6.23,246,1770624000"; d="scan'208";a="80194432"
+ bh=gRupezAzEX8x9vdh7+uED7/KXkKE6ROWvUgRYrRboEA=;
+ b=lUAE0qlUKtYEPQDxySV5EHh8Iso0bORIOBCCP8U2g2MHelOi/pta6Cxe
+ dSfkwqnTlcNCPy2R78Zp4npbP4n7I2h3KBWEVyUJa9w0r6vYi01GMOBYL
+ SybNiBKmaYPSKZtSx//9SOf13ZMth4eK3cxkwjC5OxLnQGBQ11wHTrFT/
+ WGnIdORRtaxD1poHbJq7833wlUtLgjOFImB0ksGWa6G80w7ZVELXjSXmw
+ MWG8kNCSqPQ05QPN6XTYznLmvufv05m5czyewvUwh9hbBTKyXrf2meorh
+ kHTxRFGEb5HH+5qhyQkKXuXtTYtsDg9pL29SANCcZFvHNTH0DkSWnxy4v A==;
+X-CSE-ConnectionGUID: UUp4LPD/RJSidKe5zPRrxw==
+X-CSE-MsgGUID: jqpFPLCgSeyl6/FgYWsRoA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11793"; a="80194435"
+X-IronPort-AV: E=Sophos;i="6.23,246,1770624000"; d="scan'208";a="80194435"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2026 07:49:05 -0700
-X-CSE-ConnectionGUID: vegTjWVnSaOzoK43/jEpPg==
-X-CSE-MsgGUID: /F6YQE6hSrmt1EyO/+UPFw==
+ 21 May 2026 07:49:07 -0700
+X-CSE-ConnectionGUID: ujLuT2sOR9KPwDIhWMl8lw==
+X-CSE-MsgGUID: o6HKg4O1S2WN2zraMMZJ5w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,246,1770624000"; d="scan'208";a="270893334"
+X-IronPort-AV: E=Sophos;i="6.23,246,1770624000"; d="scan'208";a="270893337"
 Received: from fpallare-mobl4.ger.corp.intel.com (HELO fedora)
  ([10.245.244.105])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2026 07:49:03 -0700
+ 21 May 2026 07:49:05 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>, Tomasz Lis <tomasz.lis@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, stable@vger.kernel.org,
+ Matthew Brost <matthew.brost@intel.com>,
  Francois Dugast <francois.dugast@intel.com>,
  Matthew Auld <matthew.auld@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH 2/4] drm/xe/guc: Don't ban LR VM exec queues on PM suspend
-Date: Thu, 21 May 2026 16:48:35 +0200
-Message-ID: <20260521144837.7363-3-thomas.hellstrom@linux.intel.com>
+Subject: [PATCH 3/4] drm/xe: Restore userspace LRC BOs early on resume
+Date: Thu, 21 May 2026 16:48:36 +0200
+Message-ID: <20260521144837.7363-4-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260521144837.7363-1-thomas.hellstrom@linux.intel.com>
 References: <20260521144837.7363-1-thomas.hellstrom@linux.intel.com>
@@ -73,86 +73,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When xe_guc_submit_stop() is called during an S3/S4 suspend or GT reset,
-guc_exec_queue_stop() bans any user exec queue that has a job which has
-started but not yet completed.  For normal (non-LR) exec queues this is
-the correct behaviour: a started-but-incomplete job at reset time may
-indicate a hung workload.
+When GuC registers a context (REGISTER_CONTEXT G2H action), the LRC
+buffer object must already be present in VRAM with valid content.
+Userspace LRC BOs currently carry XE_BO_FLAG_PINNED_LATE_RESTORE, which
+defers their restore to xe_bo_restore_late() — a blitter copy that runs
+after xe_gt_resume().  However, xe_gt_resume() itself calls
+xe_guc_submit_start(), which drives guc_exec_queue_start() ->
+xe_sched_resubmit_jobs() -> guc_exec_queue_run_job() ->
+register_exec_queue(), all before xe_bo_restore_late() has had a chance
+to repopulate the BO.  The result is that GuC reads LRC state from
+uninitialised VRAM and raises an exception.
 
-For exec queues attached to Long Running (LR) VMs the same condition is
-always true during normal operation: LR jobs are designed to run
-indefinitely and are never "completed" in the DRM scheduler sense —
-they are preempted and resumed via the preempt-fence mechanism.
-Banning such an exec queue on PM suspend permanently prevents the job
-from restarting after resume, causing the userspace compute workload to
-fail silently.
+Fix this by dropping XE_BO_FLAG_PINNED_LATE_RESTORE from the userspace
+LRC BO flags.  Without that flag, the BO lands in the
+pinned.early.kernel_bo_present list and is restored by
+xe_bo_restore_early() via CPU/BAR copy before xe_gt_resume() is entered.
+By the time any context registration fires the LRC VRAM is valid.
 
-Fix this by skipping the ban for LR VM exec queues when a system
-suspend or hibernation is in progress (pm_sleep_transition_in_progress()).
-On GT reset the ban logic is preserved: a hung LR workload should still
-be caught.
+xe_bo_create_pin_map_novm() already adds XE_BO_FLAG_NEEDS_CPU_ACCESS and
+XE_BO_FLAG_PINNED, satisfying the requirements of the CPU copy path.
+Dropping XE_BO_FLAG_PINNED_LATE_RESTORE also makes force_contiguous()
+return true for these BOs (PINNED without LATE_RESTORE), which is already
+required for the GGTT mapping they carry.
 
-Fixes: f6375fb3aa94 ("drm/xe: Track LR jobs in DRM scheduler pending list")
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Tomasz Lis <tomasz.lis@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: <stable@vger.kernel.org> # v6.19+
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Assisted-by: GitHub_Copilot:claude-sonnet-4.6
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_exec_queue_types.h |  8 ++++----
- drivers/gpu/drm/xe/xe_guc_submit.c           | 11 ++++++++++-
- 2 files changed, 14 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_lrc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-index 8ee76f958dc2..1207d51cf770 100644
---- a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-@@ -50,10 +50,10 @@ struct xe_guc_exec_queue {
- 	/** @suspend_pending: a suspend of the exec_queue is pending */
- 	bool suspend_pending;
- 	/**
--	 * @suspend_count: number of active suspend requests, protected by
--	 * @sched.msg_lock. The exec_queue is kept suspended as long as this
--	 * is non-zero. Transitions 0->1 send the SUSPEND message; transitions
--	 * 1->0 send the RESUME message.
-+	 * @suspend_count: Reference count of active suspend requests. The
-+	 * exec_queue remains suspended while this is non-zero, allowing
-+	 * multiple concurrent callers to independently hold a suspend without
-+	 * prematurely re-enabling the queue. Protected by @sched.msg_lock.
- 	 */
- 	int suspend_count;
- 	/**
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 50b622cf0c30..d1111b80fbed 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -9,6 +9,7 @@
- #include <linux/bitmap.h>
- #include <linux/circ_buf.h>
- #include <linux/dma-fence-array.h>
-+#include <linux/suspend.h>
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index a4292a11391d..c9ea5a3e5365 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -1661,7 +1661,7 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct xe_v
+ 		   XE_BO_FLAG_GGTT_INVALIDATE;
  
- #include <drm/drm_managed.h>
+ 	if ((vm && vm->xef) || init_flags & XE_LRC_CREATE_USER_CTX) /* userspace */
+-		bo_flags |= XE_BO_FLAG_PINNED_LATE_RESTORE | XE_BO_FLAG_FORCE_USER_VRAM;
++		bo_flags |= XE_BO_FLAG_FORCE_USER_VRAM;
  
-@@ -2274,8 +2275,16 @@ static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue *q)
- 	 * Ban any engine (aside from kernel and engines used for VM ops) with a
- 	 * started but not complete job or if a job has gone through a GT reset
- 	 * more than twice.
-+	 *
-+	 * LR VM exec queues are excluded from this ban during PM suspend: their
-+	 * jobs are intentionally long-running and are preempted and resumed via
-+	 * the preempt-fence mechanism. Banning them on PM suspend would
-+	 * permanently prevent the job from restarting after resume.
-+	 * On GT reset however we do want to ban them, as that may indicate a
-+	 * genuinely hung workload.
- 	 */
--	if (!(q->flags & (EXEC_QUEUE_FLAG_KERNEL | EXEC_QUEUE_FLAG_VM))) {
-+	if (!(q->flags & (EXEC_QUEUE_FLAG_KERNEL | EXEC_QUEUE_FLAG_VM)) &&
-+	    !(q->vm && xe_vm_in_lr_mode(q->vm) && pm_sleep_transition_in_progress())) {
- 		struct xe_sched_job *job = xe_sched_first_pending_job(sched);
- 		bool ban = false;
- 
+ 	bo = xe_bo_create_pin_map_novm(xe, tile, bo_size,
+ 				       ttm_bo_type_kernel,
 -- 
 2.54.0
 
