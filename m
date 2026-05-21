@@ -4,117 +4,108 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F449CD5BAC
-	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 14:13:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9704CD5BAC
+	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 14:19:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F357210F337;
-	Thu, 21 May 2026 14:13:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BE7810F337;
+	Thu, 21 May 2026 14:19:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=fooishbar.org header.i=@fooishbar.org header.b="B0KS206S";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="ZGcdv02E";
 	dkim-atps=neutral
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com
- [209.85.210.181])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E0A010E528
- for <intel-xe@lists.freedesktop.org>; Thu, 21 May 2026 14:13:11 +0000 (UTC)
-Received: by mail-pf1-f181.google.com with SMTP id
- d2e1a72fcca58-83975e992e1so2425686b3a.2
- for <intel-xe@lists.freedesktop.org>; Thu, 21 May 2026 07:13:11 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1779372791; cv=none;
- d=google.com; s=arc-20240605;
- b=ZzWurf67UdnpiNg7TsWLIxA48YaVzlNdp4W5dXR+QTfnRr1l8/bbMOVO7h/xN2xJbx
- 1oTetDiHmvOqK1bA71cgNA1RXxarW7UiPpynz64F1vRok1UQciSz8GK9IBuscpDtjEf9
- HYK/cTgVxC8SubOjgzv1696j/AuXx/uqIEzq1oZDtDduyApmI+A2g66STYdPrCz/W/EA
- 3Xkxt7/PH/JUuV2GGbIAwnuJXn4uwBw8WLg3qbGaahHMRF5/nfh17JkQdHvOFJc6IG34
- LKyXnlUXdTba9lndtqOQR85wuZ9EZBY5ueDNzFPe0iC4HjzDQ8p/dYYsKw84hL+pwE44
- ZSZw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:dkim-signature;
- bh=REP4STaURwNBwYLUxnT2eThrBHI2vGspRNmg6btJygo=;
- fh=epuwCHiPRQD0e4zjjmtnyB0Y2znxcClajCQNwxI0Dpg=;
- b=EvnADqL/jKYNI6yOo7HHuUnsNcnK6ODtU2s/chdBGEf7EnQPeZ8cw8CC7cki6emU1U
- Urn9tcFA9cXpHV5Wb1gAgi2ru39WOMyG1t9hti2P2oIJJz0+/4qQMH7ND1FtHh6/f4Vc
- 92xWZH7UwHEPzXH1R1AEY6lDp/6sFxD9ZKWDoMe3jBfpHSy6NVajVb8LXZGcX7h+k0sc
- 1eCpefelD7YnHmrMVJ6K3Y6sZKeXMgG277Ew1UlgL3b1vhYC95mIp2aD7n4HgWYUGW9t
- JG4rFii00OkCkzXzffiseTAV9COgnox0vuiGB0FnUII+t8UjjtUuZuRtE6QAi626AG58
- 7kAg==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=fooishbar.org; s=google; t=1779372791; x=1779977591;
- darn=lists.freedesktop.org; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=REP4STaURwNBwYLUxnT2eThrBHI2vGspRNmg6btJygo=;
- b=B0KS206SJCDMlPBj3enN0FsCW+bO+4qoyBjEbW/roKfA8sJwk/nfyATTMyS+9k1Bsc
- F+j7F9k2ubY32CFqKo+cXnsazki1e1I0ster1uIDj8Kyy4sHYuZuBlDMrUX6BCpQIuSW
- Pgb5txZ6LQ53Be20KEG+ZVZN8Uf6ptBqiZqDxwOGJcu8JMOHGhkvpqFT/FA2jmj0+IHM
- OYywnIpcZYYvDnk7z367KV+anBeBUnuGIVtvFj/8dUDCFqBEwaqhHo1JrWYKDpECAt0K
- z14Hb9qOlw8IkC1saAzEr01e/V8QRYPio5xwP/XNk6oko3d7OY1/B5Baj6BS6QwTnLLk
- 6zFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1779372791; x=1779977591;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=REP4STaURwNBwYLUxnT2eThrBHI2vGspRNmg6btJygo=;
- b=sUlxEyk88MzhKouTry4HtbM5WlDr/dh4nxyBdOCkpW4UZ7ywW7IzITegd5HdK5zkQX
- GGqD9wiPP9QRiNPUyVKmJLiwtpekMOYx5KrGOLQCReiY6nhKBXNitTu36Pu8NgepqzJd
- B2uQBjX6/hCEJdBWJNnJAQ2KbsTcgSHor2PnoJCdTVaT7clYKNUyJapRPuapSdZQPA4G
- W5IGQM04x3uakqhSHRlyIQiZXOJ08k/iv1+EaRGAEHzxQnCX1ilLLEGeTR2prW0HDF4G
- CZkd0PMZpY+HGOF7WyW9fMtnqFVCqwdoMA9abgxRhGHvat9litOfn7AwZ8KhmcWx+jUk
- 1/Og==
-X-Forwarded-Encrypted: i=1;
- AFNElJ/0WS54OuQw1OTTyJ4oDspGhrieFe29ZEk5hGaBIA5K5AhXcUs8EuatYEC2eRKaiSvLUQSQJhu3yg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwKT30Vz2sKipl9rNIY4MWnhB8nyGtlumg9dYtJ3GxK2UM3wBHF
- v0HCsz9yMPb5/KQtEwN5a0k6GaV9Tn1BiqzNKHz+vHdOH2jGqgP/4dAU2LW5su+QVP0OKNQFix6
- KVdFY32cvJ17Jw0WA+Iu0rTkP0vrPuZyqZAiIEWnEBw==
-X-Gm-Gg: Acq92OHraQHdyt/8uK/+eV/vXjKLcAbr7Ma2LOIAskSlIcNIlx/AcG1VEwyTg8V4SUy
- h7Sgscb4vOEP8Ii6x6UMa7ixJtLC4UTrttGnIy9pUSmlVfX2x9R4fvTby6ONlkHP4oSmWkMVHw3
- bU2GEaH/+meWuv5LWAyDikDKxH7G8DPQrJYFoSp93xcAPlDoizY3Y3Drw8PItkYQW6Sd7pq5iK9
- nnZTZmE8RXZ5MJkjR6EvHasaz8oG6XxPqCsOS1/7h/ZhuucYNJi0AyDLi/4fV1cieUp+vEQaKfv
- NmUdRJQPDy+RReE68Gb1SJmA/PjOA3Kt7Pj05us=
-X-Received: by 2002:a05:6a00:170c:b0:83f:2568:d45f with SMTP id
- d2e1a72fcca58-8414ae0067emr3410992b3a.23.1779372790773; Thu, 21 May 2026
- 07:13:10 -0700 (PDT)
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
+ [148.163.156.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFC5810E487
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 May 2026 14:19:10 +0000 (UTC)
+Received: from pps.filterd (m0360083.ppops.net [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
+ 64L0PXGm843724; Thu, 21 May 2026 14:19:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+ :content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:sender:subject:to; s=pp1;
+ bh=aq2ziAevdOR20ZlrVFB+myc4dHn3YIrNxhMNT4jPeQg=; b=ZGcdv02EcfxQ
+ KAKbShpbWj7AgFnSwWmSfI3FTea+CgsaKOQoyarTcGR0XaRKS4BNs3hfQS6ac72Y
+ 5wqBMc/5mK2ccA/3cvKQUEGN60MisYPWy6QGnjYuIdvrvcEwM0YPGONtxlDOfI7L
+ wo1+/ILCLJ25zbLhoFOEM+dE77tR5+JnDhOTIOIHxkHAcxnkgrzeuF2f1CX5m3pd
+ bHvIsqYGP09cdYGN1Pk0p+3RqP1arLhBye+v7YjaACmhLGog4CMrmzdcC7zgagUl
+ gCiLHQ3x7jiAWbNHoGBZiLXnj3c5BTMg6g2XBuYkQhePrbp+g4NR7fA60o9d+mi3
+ 0WrCTEdDpQ==
+Received: from ppma13.dal12v.mail.ibm.com
+ (dd.9e.1632.ip4.static.sl-reverse.com [50.22.158.221])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4e6h9y7fm6-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Thu, 21 May 2026 14:19:07 +0000 (GMT)
+Received: from pps.filterd (ppma13.dal12v.mail.ibm.com [127.0.0.1])
+ by ppma13.dal12v.mail.ibm.com (8.18.1.7/8.18.1.7) with ESMTP id 64LE9JqD017826;
+ Thu, 21 May 2026 14:19:06 GMT
+Received: from smtprelay05.fra02v.mail.ibm.com ([9.218.2.225])
+ by ppma13.dal12v.mail.ibm.com (PPS) with ESMTPS id 4e754gmanj-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Thu, 21 May 2026 14:19:06 +0000 (GMT)
+Received: from smtpav07.fra02v.mail.ibm.com (smtpav07.fra02v.mail.ibm.com
+ [10.20.54.106])
+ by smtprelay05.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 64LEJ3nm49545696
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Thu, 21 May 2026 14:19:03 GMT
+Received: from smtpav07.fra02v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 2C69B20043;
+ Thu, 21 May 2026 14:19:03 +0000 (GMT)
+Received: from smtpav07.fra02v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 1954E20040;
+ Thu, 21 May 2026 14:19:03 +0000 (GMT)
+Received: from p1gen4-pw042f0m (unknown [9.52.223.163])
+ by smtpav07.fra02v.mail.ibm.com (Postfix) with ESMTPS;
+ Thu, 21 May 2026 14:19:03 +0000 (GMT)
+Received: from bblock by p1gen4-pw042f0m with local (Exim 4.99.2)
+ (envelope-from <bblock@linux.ibm.com>) id 1wQ4Eo-0000000Dcd9-2nEy;
+ Thu, 21 May 2026 16:19:02 +0200
+Date: Thu, 21 May 2026 16:19:02 +0200
+From: Benjamin Block <bblock@linux.ibm.com>
+To: Bjorn Helgaas <bhelgaas@google.com>
+Cc: linux-pci@vger.kernel.org,
+ "Ionut Nechita (Wind River)" <ionut.nechita@windriver.com>,
+ helgaas@kernel.org, schnelle@linux.ibm.com, linux@roeck-us.net,
+ lukas@wunner.de, stable@vger.kernel.org, linux-kernel@vger.kernel.org,
+ intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
+ michal.wajdeczko@intel.com, piotr.piorkowski@intel.com,
+ dtatulea@nvidia.com, mani@kernel.org, kbusch@kernel.org,
+ lkml@mageta.org, alifm@linux.ibm.com, julianr@linux.ibm.com,
+ ionut_n2001@yahoo.com, sunlightlinux@gmail.com
+Subject: Re: [PATCH v14 0/2] PCI/IOV: Fix SR-IOV locking races and AB-BA
+ deadlock
+Message-ID: <20260521141902.GD206464@p1gen4-pw042f0m>
+References: <cover.1776839248.git.ionut.nechita@windriver.com>
 MIME-Version: 1.0
-References: <20260423-color-format-v14-0-449a419ccbd4@collabora.com>
- <20260423-color-format-v14-3-449a419ccbd4@collabora.com>
-In-Reply-To: <20260423-color-format-v14-3-449a419ccbd4@collabora.com>
-From: Daniel Stone <daniel@fooishbar.org>
-Date: Thu, 21 May 2026 15:12:59 +0100
-X-Gm-Features: AVHnY4IhuE52xfR4O7ZsBvGU9UxEW_nGPaKeUuOJKbLW6yd-ftNZQIcte9EpFTU
-Message-ID: <CAPj87rOgkSAhVzzHyuKEGPxVYeDhJKLGVNrBA2BkG00gvMJjYQ@mail.gmail.com>
-Subject: Re: [PATCH v14 03/28] drm: Add new general DRM property "color format"
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang <hjc@rock-chips.com>, 
- =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Andy Yan <andy.yan@rock-chips.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>, 
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
- kernel@collabora.com, 
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, linux-doc@vger.kernel.org, 
- wayland-devel@lists.freedesktop.org, Werner Sembach <wse@tuxedocomputers.com>, 
- Andri Yngvason <andri@yngvason.is>, Marius Vlad <marius.vlad@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <cover.1776839248.git.ionut.nechita@windriver.com>
+X-TM-AS-GCONF: 00
+X-Proofpoint-Reinject: loops=2 maxloops=12
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTIxMDE0MiBTYWx0ZWRfX8WW7ICgrgEay
+ KWozYAaeNpnS6PreqGOEu9gXfNXYnuuIflenLcdGAD98uC2+q3eV3XSRFBTBT+O8100XOiy+Vkc
+ 7dRSiu33DTAJFcACrmX6NCnXYGd7LvpEqZPdOSWIBjhb8I5x1Yge/OffSeOc7zEYnQx6wGPHj6B
+ /T7YlBkQFTncQ6/eJFu5c6eTEj7qqal9zdCVCypx0SIYIlpVLmCwVcTZI6/vq7REpSB8S5275Nw
+ 8iBFDjIWf1ss5qGGdhsSW3jL+ZnZyUp+9LFkxlmkNrijY0+SwkUfcqDMSlkXLpEgBYhx6zP8ZnP
+ HZv5QjealdfK7/vzN6NkJ9xRjG6V19RszVzAV/PJvsCv6Cn/1EVC+6M5TXZV5Y/GA+vUR7BCuvq
+ pu/UyQMchEzLiHP+7Mm4DuKgM1h9IyM7Thvo8+TWP/L2muZBsni3DrpxwbPhMJFCR1utpW5+Ms8
+ nK1Tel31xbEiJ5N7aKQ==
+X-Authority-Analysis: v=2.4 cv=BNuDalQG c=1 sm=1 tr=0 ts=6a0f145b cx=c_pps
+ a=AfN7/Ok6k8XGzOShvHwTGQ==:117 a=AfN7/Ok6k8XGzOShvHwTGQ==:17
+ a=8nJEP1OIZ-IA:10 a=NGcC8JguVDcA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=RnoormkPH1_aCDwRdu11:22 a=iQ6ETzBq9ecOQQE5vZCe:22 a=VwQbUJbxAAAA:8
+ a=VnNF1IyMAAAA:8 a=t7CeM3EgAAAA:8 a=J6SQpo7RyPDJe7EV0JwA:9 a=3ZKOabzyN94A:10
+ a=wPNLvfGTeEIA:10 a=FdTzh2GWekK77mhwV6Dw:22
+X-Proofpoint-ORIG-GUID: KHf9ZanH9jMYZW6Db_6NeGxoWj_KLa6I
+X-Proofpoint-GUID: QN3mdofEJ83IA20oSJrx_2TLWc2wNWLf
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-05-21_02,2026-05-18_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 priorityscore=1501 malwarescore=0 impostorscore=0 suspectscore=0
+ lowpriorityscore=0 phishscore=0 bulkscore=0 spamscore=0 clxscore=1011
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605210142
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -129,19 +120,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+Hey Bjorn,
 
-On Thu, 23 Apr 2026 at 20:04, Nicolas Frattaroli
-<nicolas.frattaroli@collabora.com> wrote:
-> +       } else if (property == connector->color_format_property) {
-> +               if (val > INT_MAX || !drm_connector_color_format_valid(val)) {
-> +                       drm_dbg_atomic(connector->dev,
-> +                                      "[CONNECTOR:%d:%s] unknown color format %llu\n",
-> +                                      connector->base.id, connector->name, val);
-> +                       return -EINVAL;
-> +               }
+On Wed, Apr 22, 2026 at 09:32:40AM +0300, Ionut Nechita (Wind River) wrote:
+> From: Ionut Nechita <ionut.nechita@windriver.com>
+> 
+> This is v14 of the fix for the SR-IOV race between driver .remove()
+> and concurrent hotplug events.
+> 
+--8<--
+> 
+> This race has been independently observed by multiple organizations:
+>   - IBM (s390 platform-generated hot-unplug events racing with
+>     sriov_del_vfs during PF driver unload)
+>   - NVIDIA (tested by Dragos Tatulea in earlier versions)
+>   - Intel (xe driver hitting lockdep warnings and deadlocks when
+>     calling pci_disable_sriov from .remove)
+>   - Wind River (original reporter and patch author)
+> 
+> Test environment:
+>   - Tested on s390 by Benjamin Block and Niklas Schnelle (IBM)
+>   - Tested on x86_64 with Intel and NVIDIA SR-IOV devices (earlier
+>     versions)
+> 
+> Based on linux-next (next-20260420).
+> 
+--8<--
+> 
+> Ionut Nechita (Wind River) (2):
+>   PCI/IOV: Make pci_lock_rescan_remove() reentrant and protect
+>     sriov_add_vfs/sriov_del_vfs
+>   PCI: Fix AB-BA deadlock between device_lock and pci_rescan_remove_lock
+>     in remove_store
+> 
+>  drivers/pci/iov.c       |  9 +++++----
+>  drivers/pci/pci-sysfs.c | 30 +++++++++++++++++++++++++++++-
+>  drivers/pci/probe.c     | 18 ++++++++++++++++--
+>  3 files changed, 50 insertions(+), 7 deletions(-)
 
-Shouldn't this already be ensured by drm_property_change_valid_get()?
+do you think this patchset is ready integration? Or what do you think we'd
+still need to do to get there?
 
-Cheers,
-Daniel
+This race, and especially those I fix in the follow-on patchset
+https://lore.kernel.org/linux-pci/cover.1776868550.git.bblock%40linux.ibm.com/
+are pretty painful on s390 with PCI hotplug. It forces us to reboot the
+system, since there is no other way to get out of the deadlock.
+
+-- 
+Best Regards, Benjamin Block        /        Linux on IBM Z Kernel Development
+IBM Deutschland Research & Development GmbH    /   https://www.ibm.com/privacy
+Vors. Aufs.-R.: Wolfgang Wendt         /        Geschäftsführung: David Faller
+Sitz der Ges.: Ehningen     /     Registergericht: AmtsG Stuttgart, HRB 243294
