@@ -4,81 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3354ECD5BAB
-	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 20:22:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52545CD5BAF
+	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 20:24:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C54610E20B;
-	Thu, 21 May 2026 20:22:49 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="OHVXCe+g";
-	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E13010E20B;
- Thu, 21 May 2026 20:22:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
- Message-ID:Content-Type:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=dLH47khp6dTbaqV12m7BRmMvYC5A6tOGJci12TkiRzw=; b=OHVXCe+gaufJ5CtM3bc1BXHLRp
- qs3lfP3384IeaLQP9r5j2MTwtyaO8bLCrRGtge0oESsFYn0EmBfExHFgqkLRx+2Eqb7CjRIbIE9CB
- NTmMVeIrjdLxWY2Evu5eDXX+EoafgjbR5PyCUxyPGidbtPQIrwR/otn5+RQpjeMq5Wt6AHlOdHccd
- /siUwDoUJ0sEhUrW/apLlYRrwX/7karFr8CTFNHv8PbID/+XghsiybgZagMlGx2LgHTb7U0Ug1vkf
- HCksQ4zakdEEgYExMrH+oTVRP9Pm+Eq3c5OEJGeJCJR/fySjbCLLCAS3s2HQpDunnHL0FKPbED7hp
- EqskxVxA==;
-Received: from c-73-157-168-91.hsd1.or.comcast.net ([73.157.168.91]
- helo=[192.168.1.133]) by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1wQ9uh-004XCP-Tk; Thu, 21 May 2026 22:22:40 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 100A210E20B;
+	Thu, 21 May 2026 20:24:18 +0000 (UTC)
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DA7C10E20B;
+ Thu, 21 May 2026 20:24:16 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="------------s0YQ9023fgdLmWWJR6PmzlKj"
-Message-ID: <7ab49cd4-3c81-4441-bfed-c58c3e1bead0@Igalia.com>
-Date: Thu, 21 May 2026 13:22:26 -0700
+ boundary="===============1185164568062304825=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [v3,2/7] drm: writeback: Modify writeback init helpers
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "kernel-list@raspberrypi.com" <kernel-list@raspberrypi.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Cc: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- "Shankar, Uma" <uma.shankar@intel.com>,
- "dmitry.baryshkov@oss.qualcomm.com" <dmitry.baryshkov@oss.qualcomm.com>,
- "Murthy, Arun R" <arun.r.murthy@intel.com>,
- "Nikula, Jani" <jani.nikula@intel.com>,
- "harry.wentland@amd.com" <harry.wentland@amd.com>,
- "siqueira@igalia.com" <siqueira@igalia.com>,
- "alexander.deucher@amd.com" <alexander.deucher@amd.com>,
- "christian.koenig@amd.com" <christian.koenig@amd.com>,
- "airlied@gmail.com" <airlied@gmail.com>, "simona@ffwll.ch"
- <simona@ffwll.ch>, "liviu.dudau@arm.com" <liviu.dudau@arm.com>,
- "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
- "mripard@kernel.org" <mripard@kernel.org>,
- "robin.clark@oss.qualcomm.com" <robin.clark@oss.qualcomm.com>,
- "abhinav.kumar@linux.dev" <abhinav.kumar@linux.dev>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>, "sean@poorly.ru"
- <sean@poorly.ru>,
- "marijn.suijten@somainline.org" <marijn.suijten@somainline.org>,
- "laurent.pinchart+renesas@ideasonboard.com"
- <laurent.pinchart+renesas@ideasonboard.com>,
- "dave.stevenson@raspberrypi.com" <dave.stevenson@raspberrypi.com>,
- "tomi.valkeinen+renesas@ideasonboard.com"
- <tomi.valkeinen+renesas@ideasonboard.com>,
- "kieran.bingham+renesas@ideasonboard.com"
- <kieran.bingham+renesas@ideasonboard.com>,
- "kernel-dev@igalia.com" <kernel-dev@igalia.com>
-References: <20260316083008.87466-3-suraj.kandpal@intel.com>
- <9628ae91-a725-469b-976b-e66546d82214@Igalia.com>
- <DM3PPF208195D8DBB2DD0F9EEAC64C8AD2FE30E2@DM3PPF208195D8D.namprd11.prod.outlook.com>
-Content-Language: en-GB
-From: John Harrison <John.Harrison@Igalia.com>
-In-Reply-To: <DM3PPF208195D8DBB2DD0F9EEAC64C8AD2FE30E2@DM3PPF208195D8D.namprd11.prod.outlook.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dmc=3A_Test_Xe3LPD?=
+ =?utf-8?q?_DMC_v2=2E36?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gustavo Sousa" <gustavo.sousa@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 21 May 2026 20:24:16 -0000
+Message-ID: <177939505657.97871.7015514089724669823@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260521181938.72444-1-gustavo.sousa@intel.com>
+In-Reply-To: <20260521181938.72444-1-gustavo.sousa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,212 +36,130 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---------------s0YQ9023fgdLmWWJR6PmzlKj
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+--===============1185164568062304825==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 5/20/26 20:25, Kandpal, Suraj wrote:
->> -----Original Message-----
->> From: John Harrison<John.Harrison@Igalia.com>
->> Sent: Monday, May 4, 2026 11:15 PM
->> To: Kandpal, Suraj<suraj.kandpal@intel.com>;
->> freedreno@lists.freedesktop.org;dri-devel@lists.freedesktop.org; kernel-
->> list@raspberrypi.com;amd-gfx@lists.freedesktop.org; linux-
->> kernel@vger.kernel.org;intel-xe@lists.freedesktop.org; intel-
->> gfx@lists.freedesktop.org
->> Cc: Nautiyal, Ankit K<ankit.k.nautiyal@intel.com>; Shankar, Uma
->> <uma.shankar@intel.com>;dmitry.baryshkov@oss.qualcomm.com; Murthy,
->> Arun R<arun.r.murthy@intel.com>; Nikula, Jani<jani.nikula@intel.com>;
->> harry.wentland@amd.com;siqueira@igalia.com;
->> alexander.deucher@amd.com;christian.koenig@amd.com;
->> airlied@gmail.com;simona@ffwll.ch;liviu.dudau@arm.com;
->> maarten.lankhorst@linux.intel.com;mripard@kernel.org;
->> robin.clark@oss.qualcomm.com;abhinav.kumar@linux.dev;
->> tzimmermann@suse.de;sean@poorly.ru;marijn.suijten@somainline.org;
->> laurent.pinchart+renesas@ideasonboard.com;
->> dave.stevenson@raspberrypi.com;
->> tomi.valkeinen+renesas@ideasonboard.com;
->> kieran.bingham+renesas@ideasonboard.com;kernel-dev@igalia.com
->> Subject: Re: [v3,2/7] drm: writeback: Modify writeback init helpers
->>
->> On 3/16/26 01:30, Suraj Kandpal wrote:
->>> Now with drm_writeback_connector moved to drm_connector it makes
->> more
->>> sense use drm_connector as an argument rather than
->>> drm_writeback_connector. The writeback connector can easily be derived
->>> from drm_connector.
-> Hi John
-> First of all thanks for helping to move this series forward.
->
->> So this patch and all five subsequent patches are basically the same search
->> and replace of base_conn->wb_conn to base_conn in the DRM level helper
->> functions, yes? I would add a little more explanation of why "it makes more
->> sense". Something like: "Some of the writeback helper functions require
->> access to the parent drm_connector object as well as the
->> drm_writeback_connector object itself. So, pass in the top level object and
->> traverse down rather than passing in the lower level object and traversing
->> back up. Even where such is not the case, update to use the top level object
->> for consistency across the interface."
-> Sure will update the commit message.
->
->> Also, there could be better consistency across these 'modify' patches.
->> First, the subject of patches 1-5 should be 'drm/writeback: ...' not
->> 'drm: writeback: ...'. Then you have 'modify XXX helpers', 'modify XXX params'
->> and 'modify params for XXX'.
-> Sure will keep the subject consistent
->
->> It would be cleaner to pick a single variant and
->> use that for all the patches. Lastly, are the final two patches really
->> 'drm/connector:'? The header file with the function declarations being
->> updated is drm_modeset_helper_vtables.h. Which would make the prefix
->> 'drm/modeset'? Although, given that the declarations are specific to
->> writeback support, I would just stick with 'drm/writeback'
->> for all seven patches.
-> Sure will update the prefix for last two patches as well.
-> Although in regard to drm/writeback after grepping the git log it seems that
-> drm: writeback: is the correct prefix actually the correct wording would be more prevalent prefix. So I would like to keep that
-> the consistently across all my patches as well.
-Just because someone else got it wrong earlier doesn't mean we should 
-continue to get it wrong ;).
+== Series Details ==
 
-General consensus for DRM patches is "drm/xxx/yyy: zzzz" rather than 
-'drm: xxx: yyy: zzz". As demonstrated:
-   git log --oneline | grep -E 'drm: [a-z\:\ ]+:' | wc -l
-   1607
-   git log --oneline | grep -E 'drm/[a-z\/]+:' | wc -l
-   67140
+Series: drm/i915/dmc: Test Xe3LPD DMC v2.36
+URL   : https://patchwork.freedesktop.org/series/167044/
+State : success
 
-Not sure if there is an official statement in the style guide about it 
-though, and maybe it is just personal preference. So not a blocker from 
-me, but personally, I would go with the majority on this one.
+== Summary ==
 
-John.
+CI Bug Log - changes from xe-5113-f103db97c610a41177720b08aa4a2a05f9b42d49_BAT -> xe-pw-167044v1_BAT
+====================================================
 
---------------s0YQ9023fgdLmWWJR6PmzlKj
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-167044v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_live_ktest@xe_dma_buf:
+    - bat-bmg-vm:         [PASS][1] -> [ABORT][2] ([Intel XE#8007] / [Intel XE#8023]) +1 other test abort
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5113-f103db97c610a41177720b08aa4a2a05f9b42d49/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167044v1/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html
+
+  
+  [Intel XE#8007]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007
+  [Intel XE#8023]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8023
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8931 -> IGT_8932
+  * Linux: xe-5113-f103db97c610a41177720b08aa4a2a05f9b42d49 -> xe-pw-167044v1
+
+  IGT_8931: 73eddd089afd99e93ff688dfcad56b1c54d30a70 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8932: 8932
+  xe-5113-f103db97c610a41177720b08aa4a2a05f9b42d49: f103db97c610a41177720b08aa4a2a05f9b42d49
+  xe-pw-167044v1: 167044v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167044v1/index.html
+
+--===============1185164568062304825==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <div class="moz-cite-prefix">On 5/20/26 20:25, Kandpal, Suraj wrote:<span
-      style="white-space: pre-wrap">
-</span></div>
-    <blockquote type="cite"
-cite="mid:DM3PPF208195D8DBB2DD0F9EEAC64C8AD2FE30E2@DM3PPF208195D8D.namprd11.prod.outlook.com">
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">-----Original Message-----
-From: John Harrison <a class="moz-txt-link-rfc2396E" href="mailto:John.Harrison@Igalia.com">&lt;John.Harrison@Igalia.com&gt;</a>
-Sent: Monday, May 4, 2026 11:15 PM
-To: Kandpal, Suraj <a class="moz-txt-link-rfc2396E" href="mailto:suraj.kandpal@intel.com">&lt;suraj.kandpal@intel.com&gt;</a>;
-<a class="moz-txt-link-abbreviated" href="mailto:freedreno@lists.freedesktop.org">freedreno@lists.freedesktop.org</a>; <a class="moz-txt-link-abbreviated" href="mailto:dri-devel@lists.freedesktop.org">dri-devel@lists.freedesktop.org</a>; kernel-
-<a class="moz-txt-link-abbreviated" href="mailto:list@raspberrypi.com">list@raspberrypi.com</a>; <a class="moz-txt-link-abbreviated" href="mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.org</a>; linux-
-<a class="moz-txt-link-abbreviated" href="mailto:kernel@vger.kernel.org">kernel@vger.kernel.org</a>; <a class="moz-txt-link-abbreviated" href="mailto:intel-xe@lists.freedesktop.org">intel-xe@lists.freedesktop.org</a>; intel-
-<a class="moz-txt-link-abbreviated" href="mailto:gfx@lists.freedesktop.org">gfx@lists.freedesktop.org</a>
-Cc: Nautiyal, Ankit K <a class="moz-txt-link-rfc2396E" href="mailto:ankit.k.nautiyal@intel.com">&lt;ankit.k.nautiyal@intel.com&gt;</a>; Shankar, Uma
-<a class="moz-txt-link-rfc2396E" href="mailto:uma.shankar@intel.com">&lt;uma.shankar@intel.com&gt;</a>; <a class="moz-txt-link-abbreviated" href="mailto:dmitry.baryshkov@oss.qualcomm.com">dmitry.baryshkov@oss.qualcomm.com</a>; Murthy,
-Arun R <a class="moz-txt-link-rfc2396E" href="mailto:arun.r.murthy@intel.com">&lt;arun.r.murthy@intel.com&gt;</a>; Nikula, Jani <a class="moz-txt-link-rfc2396E" href="mailto:jani.nikula@intel.com">&lt;jani.nikula@intel.com&gt;</a>;
-<a class="moz-txt-link-abbreviated" href="mailto:harry.wentland@amd.com">harry.wentland@amd.com</a>; <a class="moz-txt-link-abbreviated" href="mailto:siqueira@igalia.com">siqueira@igalia.com</a>;
-<a class="moz-txt-link-abbreviated" href="mailto:alexander.deucher@amd.com">alexander.deucher@amd.com</a>; <a class="moz-txt-link-abbreviated" href="mailto:christian.koenig@amd.com">christian.koenig@amd.com</a>;
-<a class="moz-txt-link-abbreviated" href="mailto:airlied@gmail.com">airlied@gmail.com</a>; <a class="moz-txt-link-abbreviated" href="mailto:simona@ffwll.ch">simona@ffwll.ch</a>; <a class="moz-txt-link-abbreviated" href="mailto:liviu.dudau@arm.com">liviu.dudau@arm.com</a>;
-<a class="moz-txt-link-abbreviated" href="mailto:maarten.lankhorst@linux.intel.com">maarten.lankhorst@linux.intel.com</a>; <a class="moz-txt-link-abbreviated" href="mailto:mripard@kernel.org">mripard@kernel.org</a>;
-<a class="moz-txt-link-abbreviated" href="mailto:robin.clark@oss.qualcomm.com">robin.clark@oss.qualcomm.com</a>; <a class="moz-txt-link-abbreviated" href="mailto:abhinav.kumar@linux.dev">abhinav.kumar@linux.dev</a>;
-<a class="moz-txt-link-abbreviated" href="mailto:tzimmermann@suse.de">tzimmermann@suse.de</a>; <a class="moz-txt-link-abbreviated" href="mailto:sean@poorly.ru">sean@poorly.ru</a>; <a class="moz-txt-link-abbreviated" href="mailto:marijn.suijten@somainline.org">marijn.suijten@somainline.org</a>;
-<a class="moz-txt-link-abbreviated" href="mailto:laurent.pinchart+renesas@ideasonboard.com">laurent.pinchart+renesas@ideasonboard.com</a>;
-<a class="moz-txt-link-abbreviated" href="mailto:dave.stevenson@raspberrypi.com">dave.stevenson@raspberrypi.com</a>;
-<a class="moz-txt-link-abbreviated" href="mailto:tomi.valkeinen+renesas@ideasonboard.com">tomi.valkeinen+renesas@ideasonboard.com</a>;
-<a class="moz-txt-link-abbreviated" href="mailto:kieran.bingham+renesas@ideasonboard.com">kieran.bingham+renesas@ideasonboard.com</a>; <a class="moz-txt-link-abbreviated" href="mailto:kernel-dev@igalia.com">kernel-dev@igalia.com</a>
-Subject: Re: [v3,2/7] drm: writeback: Modify writeback init helpers
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
-On 3/16/26 01:30, Suraj Kandpal wrote:
-</pre>
-        <blockquote type="cite">
-          <pre wrap="" class="moz-quote-pre">Now with drm_writeback_connector moved to drm_connector it makes
-</pre>
-        </blockquote>
-        <pre wrap="" class="moz-quote-pre">more
-</pre>
-        <blockquote type="cite">
-          <pre wrap="" class="moz-quote-pre">sense use drm_connector as an argument rather than
-drm_writeback_connector. The writeback connector can easily be derived
-from drm_connector.
-</pre>
-        </blockquote>
-      </blockquote>
-      <pre wrap="" class="moz-quote-pre">
-Hi John
-First of all thanks for helping to move this series forward.
 
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">So this patch and all five subsequent patches are basically the same search
-and replace of base_conn-&gt;wb_conn to base_conn in the DRM level helper
-functions, yes? I would add a little more explanation of why "it makes more
-sense". Something like: "Some of the writeback helper functions require
-access to the parent drm_connector object as well as the
-drm_writeback_connector object itself. So, pass in the top level object and
-traverse down rather than passing in the lower level object and traversing
-back up. Even where such is not the case, update to use the top level object
-for consistency across the interface."
-</pre>
-      </blockquote>
-      <pre wrap="" class="moz-quote-pre">
-Sure will update the commit message.
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dmc: Test Xe3LPD DMC v2.36</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167044/">https://patchwork.freedesktop.org/series/167044/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
 
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">
-Also, there could be better consistency across these 'modify' patches.
-First, the subject of patches 1-5 should be 'drm/writeback: ...' not
-'drm: writeback: ...'. Then you have 'modify XXX helpers', 'modify XXX params'
-and 'modify params for XXX'. 
-</pre>
-      </blockquote>
-      <pre wrap="" class="moz-quote-pre">
-Sure will keep the subject consistent
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167044v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167044v1/index.html</a></td></tr>
 
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">It would be cleaner to pick a single variant and
-use that for all the patches. Lastly, are the final two patches really
-'drm/connector:'? The header file with the function declarations being
-updated is drm_modeset_helper_vtables.h. Which would make the prefix
-'drm/modeset'? Although, given that the declarations are specific to
-writeback support, I would just stick with 'drm/writeback'
-for all seven patches.
-</pre>
-      </blockquote>
-      <pre wrap="" class="moz-quote-pre">
-Sure will update the prefix for last two patches as well.
-Although in regard to drm/writeback after grepping the git log it seems that
-drm: writeback: is the correct prefix actually the correct wording would be more prevalent prefix. So I would like to keep that
-the consistently across all my patches as well.</pre>
-    </blockquote>
-    Just because someone else got it wrong earlier doesn't mean we
-    should continue to get it wrong ;).<br>
-    <br>
-    General consensus for DRM patches is "drm/xxx/yyy: zzzz" rather than
-    'drm: xxx: yyy: zzz". As demonstrated:<br>
-      git log --oneline | grep -E 'drm: [a-z\:\ ]+:' | wc -l<br>
-      1607<br>
-      git log --oneline | grep -E 'drm/[a-z\/]+:' | wc -l<br>
-      67140<br>
-    <br>
-    Not sure if there is an official statement in the style guide about
-    it though, and maybe it is just personal preference. So not a
-    blocker from me, but personally, I would go with the majority on
-    this one.<br>
-    <br>
-    John.<br>
-    <br>
-  </body>
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5113-f103db97c610a41177720b08aa4a2a05f9b42d49_BAT -&gt; xe-pw-167044v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-167044v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_dma_buf:<ul>
+<li>bat-bmg-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5113-f103db97c610a41177720b08aa4a2a05f9b42d49/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167044v1/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8023">Intel XE#8023</a>) +1 other test abort</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8931 -&gt; IGT_8932</li>
+<li>Linux: xe-5113-f103db97c610a41177720b08aa4a2a05f9b42d49 -&gt; xe-pw-167044v1</li>
+</ul>
+<p>IGT_8931: 73eddd089afd99e93ff688dfcad56b1c54d30a70 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8932: 8932<br />
+  xe-5113-f103db97c610a41177720b08aa4a2a05f9b42d49: f103db97c610a41177720b08aa4a2a05f9b42d49<br />
+  xe-pw-167044v1: 167044v1</p>
+
+</body>
 </html>
 
---------------s0YQ9023fgdLmWWJR6PmzlKj--
+--===============1185164568062304825==--
