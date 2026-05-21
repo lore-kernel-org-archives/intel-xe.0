@@ -4,58 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3188ECD5BAC
-	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 18:06:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E253ECD5BAC
+	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 18:19:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF4E310F3D4;
-	Thu, 21 May 2026 18:05:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FAD010E1C9;
+	Thu, 21 May 2026 18:19:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="agQpJQGG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JqeAgQWt";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A42310F3D4
- for <intel-xe@lists.freedesktop.org>; Thu, 21 May 2026 18:05:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 478AF10E1C9
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 May 2026 18:19:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779386759; x=1810922759;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:to:cc;
- bh=9CxriJTjsJNegit8HiUYuFzHYV7hw/ic8RjDH/tvhZk=;
- b=agQpJQGGaYvHT1cl1MvQkdj3dNpdZpGeQdqD0s4GJkOjwS7MXWk6dgmn
- VeFsYoN+X8h0Jsq7/w5v8dFI4z3FTsP6hhWpsV28LI27MWMxhCywfS4YM
- MnJW99Z3o39RQUOiA7kviLtVoIEJ1W93/mTmFziQ/aD1mjnm/UGI5REWO
- oh1OsFdnTp1S68WjON5jntVFaSvHHHhh+BoO9H2okTdYJkF8iJm6ocwKb
- tsa3/GBUtp6hR1CmU9lQBQ9LdbPL82IaEzyAiRlo+2D+KsOKH+M9p/Mc9
- BOTga1E9lJ5rFdeRqwKKxPQfiE6b5jV538KzGnVX/R8NTUqxGd+ARAnz0 g==;
-X-CSE-ConnectionGUID: 4Gv+HnFqSISdRDLGe7zc3Q==
-X-CSE-MsgGUID: Br/B9qCITGylQ4yt1jlpYA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11793"; a="79463575"
-X-IronPort-AV: E=Sophos;i="6.24,160,1774335600"; d="scan'208";a="79463575"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2026 11:05:58 -0700
-X-CSE-ConnectionGUID: de9JvKXfTi+RtyLb+ibQ5w==
-X-CSE-MsgGUID: 1DqXCh3ER0KmPx3hTFXB0A==
+ t=1779387590; x=1810923590;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=4CHunFLLULkhRk3vO4t9gAx6pGLkEc7hRujXQQWftJk=;
+ b=JqeAgQWtugVkw5RF0xjACPnsiWyx2iB/n7BcGVg7KOHShoXYbvoo5mSe
+ OdZDB1iK8vz6ITtbUMLxCJXr/Kd+lIFIHf8UrAHQb3AnmIj+39auQH+Qi
+ 5GMs54g2VKjrsNF5ufLuNEPbKMvvCV56I1tnR4AF0OqZhfJPSbqlDEmwd
+ H9I/oc7W0qnH/7AIiDKVSRLt+Zt9uIWgLTC15aW2elKY0kDOEE1mk2m4k
+ +ohA3FEDaQv7O1oEZxeerCwXiUh3qg0N5G6p9wPxbNfMk1zF9j2+NaMp3
+ jc9ToNiIJUgSzw0XwUaEnGcgDSPIbSK5+7T33UvR1yeVlOHfLpWOOiZAs w==;
+X-CSE-ConnectionGUID: 2qius9WnQsGlSQ4V3uyUtw==
+X-CSE-MsgGUID: gErtRP2VRfmgcILUHJNeBw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11793"; a="80347170"
+X-IronPort-AV: E=Sophos;i="6.24,160,1774335600"; d="scan'208";a="80347170"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2026 11:19:49 -0700
+X-CSE-ConnectionGUID: DscUBGSFSrOJFYX8fT22lA==
+X-CSE-MsgGUID: 3dkVwWJDTLWZwPU6z1c1LQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,160,1774335600"; d="scan'208";a="245641873"
-Received: from iherna2-mobl4.amr.corp.intel.com (HELO [192.168.1.16])
+X-IronPort-AV: E=Sophos;i="6.24,160,1774335600"; d="scan'208";a="270957746"
+Received: from iherna2-mobl4.amr.corp.intel.com (HELO gjsousa-mobl2.intel.com)
  ([10.124.223.115])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2026 11:05:57 -0700
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2026 11:19:49 -0700
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Thu, 21 May 2026 15:03:59 -0300
-Subject: [PATCH] drm/xe/nvls: Update PCI IDs
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260521-nvl-s-update-pci-ids-v1-1-ec59e5d6bf12@intel.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x2MWwqAIBAArxL73YIKPa8SfVhutRAmbkUg3T3pc
- xhmEghFJoG+SBDpZuHDZ9BlAfNm/UrILjMYZWpVGY3+3lHwCs6ehGHm7AUn3TXV4hpLroWchkg
- LP/92GN/3A9AbWJtmAAAA
-X-Change-ID: 20260521-nvl-s-update-pci-ids-b1975fd7aed8
 To: intel-xe@lists.freedesktop.org
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>
-X-Mailer: b4 0.15-dev
+Subject: [PATCH] [CI] drm/i915/dmc: Test Xe3LPD DMC v2.36
+Date: Thu, 21 May 2026 15:19:35 -0300
+Message-ID: <20260521181938.72444-1-gustavo.sousa@intel.com>
+X-Mailer: git-send-email 2.53.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,37 +64,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Bspec has been updated with respect to NVL-S PCI IDs. Update
-INTEL_NVLS_IDS() accordingly.
+NOT TO BE REVIEWED/MERGED
 
-Bspec: 74201
+Hardcode path to DMC firmware for CI purposes only.
+
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- include/drm/intel/pciids.h | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dmc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/include/drm/intel/pciids.h b/include/drm/intel/pciids.h
-index e32ef763427c..dff389b56eb3 100644
---- a/include/drm/intel/pciids.h
-+++ b/include/drm/intel/pciids.h
-@@ -893,8 +893,9 @@
- 	MACRO__(0xD741, ## __VA_ARGS__), \
- 	MACRO__(0xD742, ## __VA_ARGS__), \
- 	MACRO__(0xD743, ## __VA_ARGS__), \
--	MACRO__(0xD744, ## __VA_ARGS__), \
--	MACRO__(0xD745, ## __VA_ARGS__)
-+	MACRO__(0xD745, ## __VA_ARGS__), \
-+	MACRO__(0xD74A, ## __VA_ARGS__), \
-+	MACRO__(0xD74B, ## __VA_ARGS__)
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index 481fb65b7110..98dbaec19916 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -131,7 +131,7 @@ MODULE_FIRMWARE(XE3P_LPD_DMC_PATH);
+ #define XE3LPD_3002_DMC_PATH		DMC_PATH(xe3lpd_3002)
+ MODULE_FIRMWARE(XE3LPD_3002_DMC_PATH);
  
- /* CRI */
- #define INTEL_CRI_IDS(MACRO__, ...) \
-
----
-base-commit: 977b8c213db701a9ec0987be82f00f7d5bc0a330
-change-id: 20260521-nvl-s-update-pci-ids-b1975fd7aed8
-
-Best regards,
---  
-Gustavo Sousa <gustavo.sousa@intel.com>
+-#define XE3LPD_DMC_PATH			DMC_PATH(xe3lpd)
++#define XE3LPD_DMC_PATH			"i915/xe3lpd_dmc_ver2_36.bin"
+ MODULE_FIRMWARE(XE3LPD_DMC_PATH);
+ 
+ #define XE2LPD_DMC_PATH			DMC_PATH(xe2lpd)
+-- 
+2.53.0
 
