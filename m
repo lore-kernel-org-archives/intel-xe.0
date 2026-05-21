@@ -4,144 +4,155 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69476CD5BAF
-	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 21:01:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8349BCD5BAB
+	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 21:12:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2844310F412;
-	Thu, 21 May 2026 21:01:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04A1D10F40C;
+	Thu, 21 May 2026 21:12:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i7cpHLWB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mI++mb+x";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87BF710F400
- for <intel-xe@lists.freedesktop.org>; Thu, 21 May 2026 21:01:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1552810F400
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 May 2026 21:12:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779397270; x=1810933270;
+ t=1779397926; x=1810933926;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=hO0LgIGZkGJvgGdWrUjRvAtZ50Juriz6uwI3X1d4qdY=;
- b=i7cpHLWBxCcsSm9Is22xU8Zx6rKalejf+qgFgd/LeNDpI27TUNt+14ug
- mEfoYMJdoUi0m3UA3zDl2DGqyqUwR5Xs/56goZtO+srrONgtsZIHVi2R0
- pfRHMy8/5eh7DgLTW8qbhQ0a7JSFecdo1td6BEQtXqU6KnlVZ1MjTOwpQ
- ioZT202G0IH/fLsVamrd0pHue0UZfjaFiAYQxJsw/xir+ZdRuaCCb788u
- RvVai1oPCd2wMVOyNbpzGXhplpJnF4xDu4wX3nxw936UXbYOLRGldOfI0
- PvjyrHR4XKAgRZQP/YXn9i7q0P6FXtiFOLpqIH7QNcbrWVL1wqt9zGxsa Q==;
-X-CSE-ConnectionGUID: aIYK6sbtRbWw6NViNg6f+A==
-X-CSE-MsgGUID: VOogiHcqSniSki8jQQ/FGQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11793"; a="80359081"
-X-IronPort-AV: E=Sophos;i="6.24,161,1774335600"; d="scan'208";a="80359081"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2026 14:01:09 -0700
-X-CSE-ConnectionGUID: U2JQQs/fTPOsK95jR7eV1Q==
-X-CSE-MsgGUID: Jt/FnUJ7Sb6QTxbvJJ+DlA==
+ message-id:content-transfer-encoding:mime-version;
+ bh=G2Cq4E7VD7zgC0GuONMa+WopdgBTukDAk1ah5XV8UN0=;
+ b=mI++mb+xfJJHaSJv+SLomiH9OT2gxaCL4M2Swq+aWEneBMcMVTtqPJTD
+ pUAft0LNOl1bZijPZdUL4tkslqEXZQzmNO2e6qcYwLtbvQoAaF9eklLSx
+ /9WLlvknHQ/1eqPejXXPbWGao2q+YmRmBlML5lqJtrqmwVtC/YwPnXr+N
+ OfSNRADqiRz59Me2/3WDytHKqDJIOG1J61OvoyIRsrM7nT5cwGiKyAWc1
+ 5XH/Oy/g6kKrur72+ADsxU8TYgxAdHa3XRGrq002AAUsJk9OmghqxdJN8
+ JDWuxhV9SaBJm0QR/JwYRplKikd3k2PtwlN5GdFpBLpbn/Brzc6Y4tNsP w==;
+X-CSE-ConnectionGUID: 0WVsK70pRuGirSx4mpW2ew==
+X-CSE-MsgGUID: vSFp9XENTxegSjZWj5BXFA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11793"; a="103001379"
+X-IronPort-AV: E=Sophos;i="6.24,161,1774335600"; d="scan'208";a="103001379"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2026 14:12:05 -0700
+X-CSE-ConnectionGUID: UwlWFoXsRaOiIXYLLLmRPg==
+X-CSE-MsgGUID: cOV5SLKBSW6+gMlwNrwnCg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,161,1774335600"; d="scan'208";a="237620435"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2026 14:01:09 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.24,161,1774335600"; d="scan'208";a="245703430"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2026 14:12:05 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 21 May 2026 14:01:08 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.37; Thu, 21 May 2026 14:12:04 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Thu, 21 May 2026 14:01:08 -0700
-Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.10) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Thu, 21 May 2026 14:12:04 -0700
+Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.62) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 21 May 2026 14:01:06 -0700
+ 15.2.2562.37; Thu, 21 May 2026 14:12:04 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NYvL2z9farULmFu5X+00S5rZzp7hiZApxc5+6yqNFwxOF0rUh8QB/o8mEjhPxo4z+1LVI9LWdASvUAj2tZiYSrL6Y9qri3OIKmWgfY8MhAvKb7lmmrWyMbGN1DhDHyJ5gHIIgk/3NmMJGCKLXCMqIpZiqCIwb+5IKIPPaRprmIUCCX5xxaKTBVEFQQ8frdZCmVbKFv1INqchm5mhGSc94YRa0Nmo8XAYxwKI0ONfTaV9YR/O1RuRjGs+7snup/ph2cAjYn5Ssnl3hef9lhimvsD2EC5idLorT90Ogjw512mt9xIhZOYkii/BklLclcyLA1H3dq74JiFswvOilByEAg==
+ b=ZNuz6n2iOiiVW5KsdaWtE2kRJeRsOdHbnXB8DRCFPsvliyt+dRBvHJcsgvQby4l2Tjp7PprHwh+Lw1E16Fs9DzdfXcQe0RDiX/tsvBBElju7Y18IRmoFM8awJSB3ONCjABTN7sN2bec0+1m0E2k4+lfM94Uz0WwDlvWJYftwQhiwYgkI0q2cSjYiyP2TH2bAbeYdhuIdCi3Y6CJfizgQTeCtIizN38SjuYAPVM6TnfbObhrfmn0ZuCkxSpaZ4njlpGn+Stywy0/BobgvaDWFVeZrRsNqFWjKxAn5b/os6Uvb5gZcG1GzqB4j+jBQ8HggmkTI4iTiatwFtuFAk7Capg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=unQvmXW36nP10yU26IZkZP7KLOTKhI6WlDh1yIAicD4=;
- b=jNnEYoKpTc+uTV3mHv67NOndwtzS55KtdQCJxx4aZLouEJUbITDUq6g286LrlvlHoJUOnxhzRRgxoRaDzAjKZj1NqoiEoKoZwiLHHjjrL8r1bXe/s3EvpmLY7I0Fve0UUciV2/92iT9ylQzsR6vaNVk6dqczhNnSUVl71r5Vb2T1tKVggHUS/pRId8v5V61EyoHzUuCZvj1zPtmYnW9cp+/NaxWqZYnWqd4IIJP6IAAgkfO2Qo9a0mOXBWAb6YwCeGKR//mrv7cbkb4ryCr2J9puhsgZu8zWyP+FheeS55FhokE0yWk4B8ApaG+AP0OBeuRm1e7klqTDaweOknpCDQ==
+ bh=wxXKo/0MDtqgZZDum3abotFx2grz3oUK3AcKPGDWvFw=;
+ b=neDlkB7p/jhDQHYUHroa0Xjh3IhczS9GL+2HczxpHcsWP625I1Z48gfiO/+uDXc4KhF0ceQAsgGISuMZrxVv2QK/EAFjl6JwT3FDTt17qPFcUyh2b1DkDnKrkpRNeXera8jGrVaSQrD32p5sDWEAECy0bQSGPBfJBS+uJtMIrPfbJYHKUmJH+RDu5l/aIjCeHJT+qvjs9oaCJNQH2TiDRWFLcxBsiMwdaq/9EiyVIUuyQt8rXej9Ily0aHxFo7OAJutWnd3nM/MA6VZeFN5Hk5Ij9oN3cLOHMvGT5u6ltvwHAYRVGgpUEYAt/0TDv45UnQ4vsxr1Fy/jRknEWDm7tg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
- by LVUPR11MB9787.namprd11.prod.outlook.com (2603:10b6:408:39b::24)
- with Microsoft SMTP Server (version=TLS1_2,
+ by CO1PR11MB5139.namprd11.prod.outlook.com (2603:10b6:303:95::5) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.17; Thu, 21 May
- 2026 21:00:59 +0000
+ 2026 21:11:59 +0000
 Received: from PH8PR11MB8287.namprd11.prod.outlook.com
  ([fe80::a0e5:e99c:ee7b:620a]) by PH8PR11MB8287.namprd11.prod.outlook.com
  ([fe80::a0e5:e99c:ee7b:620a%5]) with mapi id 15.21.0048.016; Thu, 21 May 2026
- 21:00:59 +0000
+ 21:11:59 +0000
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: Violet Monti <violet.monti@intel.com>, <intel-xe@lists.freedesktop.org>
 CC: Violet Monti <violet.monti@intel.com>
-Subject: Re: [PATCH v2 4/4] drm/xe/rtp: Ensure device_oob_was only evaluates
- correct rules
-In-Reply-To: <20260519193216.546048-10-violet.monti@intel.com>
+Subject: Re: [PATCH v2 2/4] drm/xe/rtp: Ensure gt_was doesn't evaluate rules
+ with engine types
+In-Reply-To: <87bje8sers.fsf@intel.com>
 References: <20260519193216.546048-6-violet.monti@intel.com>
- <20260519193216.546048-10-violet.monti@intel.com>
-Date: Thu, 21 May 2026 18:00:55 -0300
-Message-ID: <875x4gscjc.fsf@intel.com>
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR13CA0129.namprd13.prod.outlook.com
- (2603:10b6:a03:2c6::14) To PH8PR11MB8287.namprd11.prod.outlook.com
+ <20260519193216.546048-8-violet.monti@intel.com>
+ <87bje8sers.fsf@intel.com>
+Date: Thu, 21 May 2026 18:11:55 -0300
+Message-ID: <8733zksc10.fsf@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: SJ0PR03CA0075.namprd03.prod.outlook.com
+ (2603:10b6:a03:331::20) To PH8PR11MB8287.namprd11.prod.outlook.com
  (2603:10b6:510:1c7::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|LVUPR11MB9787:EE_
-X-MS-Office365-Filtering-Correlation-Id: 35af59ac-0b73-4e83-ed55-08deb77c0f82
+X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|CO1PR11MB5139:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8f7ea00e-f4c2-4312-8bc9-08deb77d98c1
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|11063799006|6133799003|4143699003|56012099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: nx1/qcsSo/RzimcuEF4ypEjazsftVTtpFdgYEUwtXid+OkODlybV00aoRUU20/OXjSbC1wGWuGJFJfj8wCZbkTR6DHJM7XFpZb/p/ysO1hH4SvituJYLYxz8AxhkaZ7ZP0t8m8N7sjgQUr3seQC8MyNykNYWL3WSJA1i7UkZGL7mwd6oGrDrZv8z4Of3kK3BoyyTWRp4VxEfcl7cGg+2LbFIPF8gZZP1jRWVy649EFZ373KP0iyMxRqo/5rQr5IvNPGlXFkJzmHdtaacZqQ15KoJZd2FFzLNKn3XgFvtamNAYQhYAvbnRDPQPWSDkGV/7MgWXS0wpBiHr3OP3s6tnR+o05J3d2hToQkB+5kGU+nwGjnnV1i43NJLbHRl/eDyujlSIc465tAjYs40MONauaMQo0uchqTgSgCCIJ8yOJiBZCtNAX7vH03H0CU7sYMwXRy4uN1NdXFH84c6PfvuHYPdWBBANAxGYoEgjZ63EFXfZT6D1qauEkQ4wRb9OVoNc0+zbP/9rGSI/eOgKS9xbhZwJiGnp7b5UhJVsJObMjTYYVNaxdgfkw683NX4+l081DO6qV9NyilcRrMDZwisLMs7AD3os/tIm3Yo2LGygvrsdMy5SgNVWxV7b9FuYyuGsdVVhNw9aRA8B6xuNqjiGkVn9KZDI72WxhRZ9QeLLsltSKfduWyPy81mORH5gno1
+ ARA:13230040|366016|376014|1800799024|18002099003|56012099003|22082099003|11063799006|4143699003|6133799003|3023799007;
+X-Microsoft-Antispam-Message-Info: HmwQod6nvhVAzMJMbwCmdACOJ5iFJ37ogBu2xeLtzgv5mHIEyLWCoGpV5o6Pv5sTnFi7XUhztBvYeyc0Q3zmeel9LAMxwvRWZkiVHZYtkq7Hx1bRCoyS59xgpQPgeHnuHy3Pas9E8htB6nit7NxqHya73iEI+MHYXmFn/5Tu+LFstix4ICaRi3Dd/5mqi1qQyJI5UOlXQ0WShyO1aBdVNCi2ME0n0Q4pu6lWmNGzipPSlT5XsYcrFrxMtu/jObAp2Y/Vu/0tFKxvH9H47S6tr3JmsMJr1i5bxB0U/BUh6UToNdDEuJbOnxJUuaaHItrfqXcBC317W0qI8R/zmO/xPLh8JKuHapYR8ik3QHaWTFo+lnCfGlgepOu9KWvh4vLjawUWPA/fYLk0z3z2QONmn+gtl9fVK0sWN+t3EZx2R33n2odiyXzAxJN7vJplfuj75LRLn1fyGXrCn1mRlHvuuBwImjDyCEl3gCOLnXVTQhaq9DnrrPpAI6ti8HoPktMwzqZfVUDFBMmBV0NdQ4seBFYQsCt2KwlrK72+mgdRxwV4O+VNhnwQq4Hi1xPFC4oP97KzMfpeq4GSecxEP2OSDsDYMpwGq8iAb3E+QPDMobyfr/BEl5gTdpMot78Y3posK5D6T2n1BuIxyMi45b3jIS26VJvv1QwrDWieTtcCUXbFKNtwgTioVvlvoKk//xk4
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(11063799006)(6133799003)(4143699003)(56012099003)(18002099003)(22082099003);
+ SFS:(13230040)(366016)(376014)(1800799024)(18002099003)(56012099003)(22082099003)(11063799006)(4143699003)(6133799003)(3023799007);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?MthiuX8sNqht5jRLUP1/ELm+2RRejdHOKuX5H8pBwgGmVTlsodFfkVA1wM6T?=
- =?us-ascii?Q?ZTCZb35CrlIjf+q1DLHbC6whheAPthdxhpDBlGGF9OXIMOB90J0zD74+bVpo?=
- =?us-ascii?Q?i89lkUKVAM/DEpXpUmTwxjf7yBZOvs53PdRXCZCLkx1UedMhhTzb3InbGk31?=
- =?us-ascii?Q?w6chUjgY7cWNfrX3B2g0rKxbxx8jIHMVwuVRTiMRRSDaZHPtTZ46SoVyFDbu?=
- =?us-ascii?Q?FDxaLt/D0W6qfu/nRMYrp1vE0BVQSP7rU8v2plgkPVl3FoGXqCc2y6rqQxVL?=
- =?us-ascii?Q?ksSZ+oIiizyTtDuKmZsIkROvY/EUMtnmE/4LKTz6C2VmOaVT3o7HaBN2wZeA?=
- =?us-ascii?Q?rtwcMzE++imIvdDsNSe7uW+Atgb/bWTYfglVJfvl5vhdnZg8pXlexQBA48jA?=
- =?us-ascii?Q?Ai5fWxC2dHJL9Gg7Aq53zt7zbPXJRViAq/6WwtIqKRLstVEquAnC+DecCtn1?=
- =?us-ascii?Q?74uDL3/QISn3cggT7qONcZhf3ciJP6F+GIPgmyfx26UmnLO78+ZMNDwgWe83?=
- =?us-ascii?Q?lV9EByvaaiW5bgEYhF6DSWoYAIqcP5VB3HO0CrxDJIwbdZoXmKyVo5HXK2oK?=
- =?us-ascii?Q?3i2lr0xegajtAi1ZYu4zT8uVPx3WNZxbT58/nuTWHckiq2betJvE2u3HEEVx?=
- =?us-ascii?Q?xTCoWZE8uFbn6DV9+NMMlGjt7GhfLKlOziWxIIohVexWgTbrgcJ6v7tTuY28?=
- =?us-ascii?Q?Kot3LZw19JY4hpMEp0cvdv2m9QffL3Q0e6UH8YKLDcaIdoNaEcNx8VAkVX0q?=
- =?us-ascii?Q?VtPjtGlMDhPkiSPkshnofhFyScM0/HvmHABkvHmgY/5lyO1V9n04XzJRvcN9?=
- =?us-ascii?Q?PWyX4LQDMyoc6nSvz6YaZirJ7qE39FDTJu29e+0P7UgowaQkJl+cD3+u28uL?=
- =?us-ascii?Q?dPhr9Vd9proK8yRvXAjULKWI6+tIPlvzfF5kSU3BebcPYGS9kLiaYmH5pYoO?=
- =?us-ascii?Q?XsHNZIKDbLel6pXa0ZwwQYyK5unhaDFNk6YsJc0m1BS+ajBiIia69c3iVsED?=
- =?us-ascii?Q?y8a6sk0CQ1m8cQBCKNt/K2+WTUGMPlQjQ3PMPsrCRkzsMUqmkaV6oDzEjo5r?=
- =?us-ascii?Q?+5vwHPMzLZTWM+kgxMPnBgXonDb21Kn2IoO8APE4WS36pbgcGAGAOG24Fxm6?=
- =?us-ascii?Q?hjKbHzfpNCbArI+oe3lL39l36M/tIbkQ8qFaWIuoJIlTAehRfLdKKB8vX08x?=
- =?us-ascii?Q?HmWJa6wNQ5i7E3j9FMRdWboi/NljLR9ICF4NirfTpuwVuRBM7EEZ7bmVp75r?=
- =?us-ascii?Q?/FdTyZPvBXid+I06wn/Xe0fH0bX66yM9XmnMJ8p3SxUq4Vt7Y4JL/jmBhPuo?=
- =?us-ascii?Q?LJqXYOJgvwYRO9Uj8fdM9nonUob97o286cfyHQUACF9ij2NU4zF/IuyiTNz8?=
- =?us-ascii?Q?7WJiTkezjcGAXJl1gyLvA4zr/SDiL2YS7fdrC36TqWPxNRU/8dGjqXIo3Yny?=
- =?us-ascii?Q?4C1YrN/AWlCNKv+WqSfBF51VT/eHaTriSUCjPp2KSaSFhwmihsRHKTMjFYrC?=
- =?us-ascii?Q?sZlIUlHY3UHPmmMBMmZY+TkmHh6G9S22+rcxmkghzT57/e+cLFGiiFqrqdAf?=
- =?us-ascii?Q?hYaP5dDnAgktWuirpgOUO/c/sjeQjUBoeDa2O5jSS0eYqLZdjGECDKdXET9X?=
- =?us-ascii?Q?2IjTVIKw2a3c0dKcn4iUcbW2u+lqLp0aT3S6FMv4yeODJ/GFKuh0t2tMZj7d?=
- =?us-ascii?Q?jmM5q0BklCqtPQgykYkQMV0uF3gJDzj9Gck5YSZ++kwMvEqs0GB3XjbwxvEO?=
- =?us-ascii?Q?ECP8SwBzbg=3D=3D?=
-X-Exchange-RoutingPolicyChecked: lKwqsVyKgu/BrOoLbbv9wzIiOSGjWZQ/ziz7at15V3+TEQOxRdFtcZHb361jq8K6QBTFzJnES/dnsTlqZwsZlPmaNvyqcTSQB61Rz2k/Fs8RbL4ZZETw5D2zISJSIUd66vR4Vgo1/8MP0TXLmw4OcxjbBzHV7xKNSr3+Tj/HL2z+ksCXQJL8Gh+JTzI4jXgLn74yhBc4pnmAlZklBaSfEQ5gVHYGhq2REtbIJZqa2+okv2R3GbH0lsnUDYyQPkyz+IYJYK6eiJ061bzSLLZ03W4psWz2qLa/BIDYn08XbMOMwQCTMhcm9x3tpPvQ2BCC79aS96qeATNNi7XVHX4Caw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 35af59ac-0b73-4e83-ed55-08deb77c0f82
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?M1hYYTR5TWNyZ0VEbEljZkV1SWc4YkIxSy9yNlRaemxSVVBKcnREMHFXaGNP?=
+ =?utf-8?B?Njl3cTdacTc2d25BWGRSNm12YUhNTEZFbEQvaFFSK1JxbEZzV1NLSDNJMXBr?=
+ =?utf-8?B?cnlvOEgzcDVTTjlEUFUzM1d0NDRRMkdycllKZXVuQWI1UHBHMWN2bmxaNEZu?=
+ =?utf-8?B?R1l0OEFBRmoveUZ6MVhsM1RHeSt1anBuRktrMWZBdHBPbllVaGI0ZTdqY3F4?=
+ =?utf-8?B?ZWhHS09IN0tlUit4bENZaGd3dUZQYzBhYXhkZlExVklkMW85b09TQ0JHb240?=
+ =?utf-8?B?ckNMTHNtenZNUWF4NHhXcEFZc2RLdEVHSEVxMGlvb011YkhsbG9Uak5DLzBv?=
+ =?utf-8?B?VWhBNmhkM2F5SDhlVFJCVmxrWUxmSjkyY3lyZi8vTEV1dGFURlgvZGZFNkJ6?=
+ =?utf-8?B?bFBtZFF0WjBOdjZ6enRndjAzSEFKSHZyTXRDOTlFNHZFckhMSndyRXBLWjFZ?=
+ =?utf-8?B?N1pCTTc2YkdNVFZwNkZPcWI3UVpWQ0RLaFdkOUQyQlV1eXFLakNUODdiM1RM?=
+ =?utf-8?B?TjFmVUR1K3NFTjVCYkl2K3lQMmxUZkdYZmIzcVhpSVp3NFZTSko1M2lkdmFB?=
+ =?utf-8?B?cnFsNjliTndLVWFBU3Z3NFgyc2N2VFVQYjFnQzc2V0RpS204SlJHYVJGMGhW?=
+ =?utf-8?B?c3A2U0FpSWx1U2h6N3grMHdMclE4SmtyamZtSDFxUzlQS0oyVGF1NkQwRVR6?=
+ =?utf-8?B?YzBBSy9zeUNJeStNaHVJejlWcUJBK1FFSUlDOENFamU1VFV3SmpuMDFGYnpj?=
+ =?utf-8?B?b0NSbjNXekFrK2hXNURhMjYyeC80eEtja3dEeUY4NCtXaGk2SXF2bnlKOVlv?=
+ =?utf-8?B?MnNrYjZtUzdVSUxVSjcvQ3ZmQTZsVHhrd283T0pOSG0rNWxPS3lSeTBYZjlW?=
+ =?utf-8?B?VUlwN1hjS2p4bXdDcVlnS1Q2RFJJbDYxQmpFOGNDdDd0eWZPNlBjWDhINkxu?=
+ =?utf-8?B?MmZQcGNaMmU5bHZoNmt1S254bjUvQU5MdnFYZVpZWkI5bGxQNm42NzV5WStz?=
+ =?utf-8?B?aktrSTBYdjB0MXdvREFGK213MExNM3lYNjJlZ3dzL21nZTBxcmpHUkR1cDJi?=
+ =?utf-8?B?TStIUHhKbVBRUnZQNXFqWUdZOFpSa1grbHIwSUY3ckRaNTZLdHRHQ0pIY3lj?=
+ =?utf-8?B?N1AxMmNWL0NXMU0rc0lpY2VObytsM1EwU2FCR2RSTGZCUVk5SHJKekczZHRv?=
+ =?utf-8?B?NGRsNkFpU3owRWhna011THlTcFZpK2pid0xVbjlEemxwcDV0VnUzM0VacUNs?=
+ =?utf-8?B?blZXUTFnSDBxekh6LzdkcGRqQ0kwWTRkRnhFUlIzZjFycUloR1BQZTArQjBh?=
+ =?utf-8?B?c3Y2bWFQaFBRUEpuRjdQTWpjRyszSTRMcTlYd0h1cmIxWVJ6ZVRQT3Q4dlBq?=
+ =?utf-8?B?UWV3SnlBNTMzVkd2N2NqMDZPZ1ROUlMvaTUvK2t2bGNvb2xvTm1EZkJreU5I?=
+ =?utf-8?B?bDV1TjYvWnhwNVdad3pWWFdDWGNHUm03NllybmhTdTVvRjRjMEFOQkpERWZU?=
+ =?utf-8?B?ZlB5TWVySko1enlodGpTRnB6Q2NTMkdCS215SHJxSzhlOHZ3aXhVQkc3OTFv?=
+ =?utf-8?B?WU8vNW8yMUFyK3kvZTR1TGdLeHZOVE5aL3ZLM09DcFgxNmNKSG1aWTdlbW85?=
+ =?utf-8?B?Z3JZQ1B0aE4vZllUZGEvOGFLZXh3MGFjYVJxN2pDa1NJc3hLMG9vNkViaHFY?=
+ =?utf-8?B?a1d3UDBqSVJpTGQ3SFh1Y0pQallBTktCbDY2SlhXbU5IaUZsN1NZaFU1Qzls?=
+ =?utf-8?B?UmM5NXFqZE55QkhmTWFNaDJyTXhYQ1NFVGNMV1ZVQnNHaEMybWszb2JEL21M?=
+ =?utf-8?B?U1kzc1RoSE5YK0IyV0tNRHZEZUFKRnNZQVMwNFRRdlZDRktkV0hxZ2VyWDh5?=
+ =?utf-8?B?RXU1THV5eWYvbWJ2TDhac2E5M0FYdE9kdzl6UW8yRE11K1RydTVtOHBGT0h5?=
+ =?utf-8?B?VVEwVUNhMEVTQ3NkMStVRDVIM09kMHFWU3IwUTVXWEs2NkYzTTJDWEpoWm96?=
+ =?utf-8?B?aHpON2ROVVhPdm53MFp6Zit0ZXhJU241NGc4VnltOHRVdUhWU2pUMFNseks0?=
+ =?utf-8?B?UVdVL0RJM0p4ekRHUUtwYW5raHZPck93dWRablRhbTdOU1VCdTJRWW9QZTFI?=
+ =?utf-8?B?eDFSQVNSdUx6NmYzckVXbE45aWxJU2twanA5QlpyeU1ZaUt2OU1RbGd4UStm?=
+ =?utf-8?B?dXkwRG5GMVU2aE1FSGlQVHRQZzhRK1Bmc1JONU1UVXhFRUVmLytpS3ZJYlkv?=
+ =?utf-8?B?dWRQc2ZLRExwK09ZaVN6Yzd4SDRjQU5sd2NjTzJsQm9XNzB0SXpvVGlZYzJo?=
+ =?utf-8?B?czFsc1lUdjdQRzBuUDVNYnRETERJMS9tUEJyUFNxZ005bnJQWnJOQT09?=
+X-Exchange-RoutingPolicyChecked: Yf/iT6TBuwCAHTmJB+liz7JYfY443rN5fuo+ZxFdg6YMJ///7CNndCymQ4n+JUF5nOybpnDm0TI5wv/xLg8qhCDmFTRvmKw18INWrXf9ArKrlUrjXVeq60cIEHFOx+qVBfwAuC7YKUFV/Ira1IkpgBa8ghxs6QsTQEnaq9KnV3WETLIjK9cnNIwxaNnYXgIsMLkJsEF4f4RmwcTE54vA7YKpjvLStnuL9RUhxDIN5ehpYDZV3YtXN4D3E6sccBRr9FwPQ7U0wDBYVe9PrnVwQajfCNWusuxFzHStQERoFT9/agufgO/yCMSMJvJrggt6GHUfBWLAkY8mD5ZMZyflrg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8f7ea00e-f4c2-4312-8bc9-08deb77d98c1
 X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 May 2026 21:00:59.8386 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 May 2026 21:11:59.7502 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: YyE69zM3BOYvOfmSk2FFDg/FjB5vcEEBUOK7OtR4hGBt1sDAOB2nB2oJVSPqxNon24AYq98eVIye1b8T9Svnog==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LVUPR11MB9787
+X-MS-Exchange-CrossTenant-UserPrincipalName: tCbc19GHEcB7qOTEE5UnK7yvoD5NrlWDzn7AvYTvSfgOtXWR2CN0VYeLOo/RTD9wyjXC1r4vIny2EzWQaXNt7g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5139
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -157,116 +168,210 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Violet Monti <violet.monti@intel.com> writes:
+Gustavo Sousa <gustavo.sousa@intel.com> writes:
 
-> This commit builds on the implementation of the GT WA testing, increasing
-> the scope of testing to include the device OOB workaround list. As well
-> as checking for XE_RTP_ENGINE_CLASS(), this test also checks for rules
-> involving XE_RTP_GRAPHICS() and XE_RTP_MEDIA(), as well as their
-> derivatives.
+> Violet Monti <violet.monti@intel.com> writes:
 >
-> This test will raise expectation fails for any workarounds in the
-> device_oob_was list that has an invalid rule type, preventing evaluation
-> or inclusion of rules that could be applied in the wrong context.
+>> It is currently possible for a RTP rule, and subsequently a workaround,
+>> to expect contexts that may not be present when the workaround is
+>> applied. For example, the workarounds in the engine_was[] in drm/xe/xe_w=
+a.c
+>> expect an engine entity to be active. Conversely, the gt_was[] is not
+>> depending on an engine entity to implement its workarounds. This kunit
+>> test addition checks the gt_was[] workaround list for any workarounds
+>> with XEP_RTP_ENGINE_CLASS() rules. If a workaround does have one of
+>> these rules, the workaround is then checked for the "FOREACH_ENGINE" fla=
+g,
+>> which ensures the workaround is implemented properly.
+>>
+>> The result of this test is an expectation failure if a workaround has an
+>> improper XE_RTP_ENGINE_CLASS() rule setup, and aims to prevent future
+>> issues of gt_was workarounds being applied without proper contexts.
+>>
+>> v2:
+>>     - Moved contents of xe_rtp_tables_test.h to .c and removed file
+>>     - Renamed macro RTP_KUNIT_ARRAY_PARAM to RTP_TABLE_PARAM
+>>     - Removed unnecessary functions and iterative components from
+>>       generated _gen_params functions and implemented usage of table
+>>       name and WA number as entry name
+>>     - Condensed xe_rtp_table_gt_test() to use KUNIT_EXPECT_TRUE with no
+>>       message statement
+>>     - Removed xe_rtp_table_test_init() and xe_rtp_table_test_exit() as
+>>       fake device initialization is not necessary
+>>
+>> Signed-off-by: Violet Monti <violet.monti@intel.com>
+>> ---
+>>  drivers/gpu/drm/xe/tests/Makefile             |  1 +
+>>  drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c | 55 +++++++++++++++++++
+>>  drivers/gpu/drm/xe/xe_wa.c                    |  3 +-
+>>  drivers/gpu/drm/xe/xe_wa.h                    |  5 ++
+>>  4 files changed, 63 insertions(+), 1 deletion(-)
+>>  create mode 100644 drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c
+>>
+>> diff --git a/drivers/gpu/drm/xe/tests/Makefile b/drivers/gpu/drm/xe/test=
+s/Makefile
+>> index 0e3408f4952c..f7aa47f11a36 100644
+>> --- a/drivers/gpu/drm/xe/tests/Makefile
+>> +++ b/drivers/gpu/drm/xe/tests/Makefile
+>> @@ -9,5 +9,6 @@ obj-$(CONFIG_DRM_XE_KUNIT_TEST) +=3D xe_test.o
+>>  xe_test-y =3D xe_test_mod.o \
+>>  	xe_args_test.o \
+>>  	xe_pci_test.o \
+>> +	xe_rtp_tables_test.o \
+>>  	xe_rtp_test.o \
+>>  	xe_wa_test.o
+>> diff --git a/drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c b/drivers/gpu=
+/drm/xe/tests/xe_rtp_tables_test.c
+>> new file mode 100644
+>> index 000000000000..01d2bc6e8aad
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c
+>> @@ -0,0 +1,55 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Copyright =C2=A9 2026 Intel Corporation
+>> + */
+>> +
+>> +#include <drm/drm_kunit_helpers.h>
+>> +
+>> +#include "xe_kunit_helpers.h"
+>> +#include "xe_pci_test.h"
+>> +#include "xe_rtp.h"
+>> +#include "xe_wa.h"
+>> +
+>> +/**
 >
-> v2:
->     - Changed xe_rtp_table_dev_oob_test() to follow format of
->       xe_rtp_table_gt_test
->     - Changed device_oob_was generated params to follow format of
->       gt_was
+> So, the macro is used only internally and simple enough that I
+> personally think we don't need the comment.  But, if you think that will
+> be useful, I'm fine with it too (but it does not need to be a
+> kernel-doc).=20
 >
-> Signed-off-by: Violet Monti <violet.monti@intel.com>
-> ---
->  drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c | 21 +++++++++++++++++++
->  drivers/gpu/drm/xe/xe_wa.c                    |  3 ++-
->  drivers/gpu/drm/xe/xe_wa.h                    |  1 +
->  3 files changed, 24 insertions(+), 1 deletion(-)
+>> + * RTP_TABLE_PARAM() - Define test parameter generator from a RTP table=
+.
+>> + * @table: array of test parameters which includes a n_entries value
 >
-> diff --git a/drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c b/drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c
-> index eb1b3ee075c9..669163e52ebd 100644
-> --- a/drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c
-> +++ b/drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c
-> @@ -54,9 +54,30 @@ static void xe_rtp_table_oob_test(struct kunit *test)
->  
->  RTP_TABLE_PARAM(oob_was);
->  
-> +static void xe_rtp_table_dev_oob_test(struct kunit *test)
-> +{
-> +	const struct xe_rtp_entry *entry = test->param_value;
-> +
-> +	for (int i = 0; i < entry->n_rules; i++)
-> +		KUNIT_EXPECT_TRUE(test,
-> +				  entry->rules[i].match_type != XE_RTP_MATCH_ENGINE_CLASS &&
-> +				  entry->rules[i].match_type != XE_RTP_MATCH_NOT_ENGINE_CLASS &&
-> +				  entry->rules[i].match_type != XE_RTP_MATCH_GRAPHICS_VERSION &&
-> +				  entry->rules[i].match_type != XE_RTP_MATCH_GRAPHICS_VERSION_RANGE &&
-> +				  entry->rules[i].match_type != XE_RTP_MATCH_GRAPHICS_VERSION_ANY_GT &&
-> +				  entry->rules[i].match_type != XE_RTP_MATCH_GRAPHICS_STEP &&
-> +				  entry->rules[i].match_type != XE_RTP_MATCH_MEDIA_VERSION &&
-> +				  entry->rules[i].match_type != XE_RTP_MATCH_MEDIA_VERSION_RANGE &&
-> +				  entry->rules[i].match_type != XE_RTP_MATCH_MEDIA_VERSION_ANY_GT &&
-> +				  entry->rules[i].match_type != XE_RTP_MATCH_MEDIA_STEP);
+> The input is the RTP table, no? And then the function will generate the
+> test parameters from the table.
+>
+>> + *
+>> + * Define function @table_gen_params which uses @table to generate para=
+meters.
+>
+> If this were to be processed by the kernel documentation generator, it
+> would not find @table_gen_params.  Not sure about what would be the
+> alternative here.  Maybe just spell out the CPP syntax here? I.e. Define
+> function table##_gen_params().
+>
+>> + */
+>> +#define RTP_TABLE_PARAM(table)						\
+>> +	static const void *table##_gen_params(struct kunit *test,				\
+>> +					     const void *prev, char *desc)			\
+>> +	{											\
+>> +		typeof((table.entries)[0]) *__next =3D prev ?					\
+>> +			((typeof(__next))prev) + 1 : (table.entries);				\
+>> +		if (__next - table.entries < table.n_entries) {					\
+>> +			scnprintf(desc, KUNIT_PARAM_DESC_SIZE, #table "/%s", __next->name);	=
+\
+>> +			return __next;								\
+>> +		}										\
+>> +		return NULL;									\
+>> +	}
+>> +
+>> +static void xe_rtp_table_gt_test(struct kunit *test)
+>> +{
+>> +	const struct xe_rtp_entry_sr *entry =3D test->param_value;
+>> +
+>> +	for (int i =3D 0; i < entry->n_rules; i++)
+>> +		KUNIT_EXPECT_TRUE(test,
+>> +				  (entry->rules[i].match_type !=3D XE_RTP_MATCH_ENGINE_CLASS &&
+>> +				   entry->rules[i].match_type !=3D XE_RTP_MATCH_NOT_ENGINE_CLASS) |=
+|
+>> +				  entry->flags & XE_RTP_ENTRY_FLAG_FOREACH_ENGINE);
+>> +}
+>> +
+>> +RTP_TABLE_PARAM(gt_was);
 
-Hm... The checks themselves look correct, so, with VISIBLE_IF_KUNIT
-dropped from the extern variable declaration,
+Ah, another thing: it occurred to me that gt_tunings is also applicable
+for xe_rtp_table_gt_test, so we could also add
+RTP_TABLE_PARAM(gt_tunnings) here and add a new KUNIT_CASE_PARAM()
+below.
 
-   Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
-
-That said, here is an optional feedback: I guess it would be easier for
-the developer to spot exactly what the offending match type is if we
-used one expectation macro for each? I.e.:
-
-  enum xe_rtp_match_type match_type = entry->rules[i].match_type;
-  
-  KUNIT_EXPECT_NEQ(test, match_type, XE_RTP_MATCH_ENGINE_CLASS);
-  KUNIT_EXPECT_NEQ(test, match_type, XE_RTP_MATCH_NOT_ENGINE_CLASS);
-  ...
-  KUNIT_EXPECT_NEQ(test, match_type, XE_RTP_MATCH_MEDIA_STEP);
-
-This would also apply to the previous patches.
+I think it would be fine to add this to this same patch and reword it a
+bit.  But if you prefer to send it as a separate patch, that would be
+fine as well.
 
 --
 Gustavo Sousa
 
-> +}
-> +
-> +RTP_TABLE_PARAM(device_oob_was);
-> +
->  static struct kunit_case xe_rtp_table_tests[] = {
->  	KUNIT_CASE_PARAM(xe_rtp_table_gt_test, gt_was_gen_params),
->  	KUNIT_CASE_PARAM(xe_rtp_table_oob_test, oob_was_gen_params),
-> +	KUNIT_CASE_PARAM(xe_rtp_table_dev_oob_test, device_oob_was_gen_params),
->  	{}
->  };
->  
-> diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-> index 410099545f4e..635d5461f712 100644
-> --- a/drivers/gpu/drm/xe/xe_wa.c
-> +++ b/drivers/gpu/drm/xe/xe_wa.c
-> @@ -815,10 +815,11 @@ static const struct xe_rtp_entry device_oob_was_entries[] = {
->  
->  static_assert(ARRAY_SIZE(device_oob_was_entries) == _XE_DEVICE_WA_OOB_COUNT);
->  
-> -static __maybe_unused const struct xe_rtp_table device_oob_was = {
-> +VISIBLE_IF_KUNIT __maybe_unused const struct xe_rtp_table device_oob_was = {
->  	.entries = device_oob_was_entries,
->  	.n_entries = ARRAY_SIZE(device_oob_was_entries),
->  };
-> +EXPORT_SYMBOL_IF_KUNIT(device_oob_was);
->  
->  __diag_pop();
->  
-> diff --git a/drivers/gpu/drm/xe/xe_wa.h b/drivers/gpu/drm/xe/xe_wa.h
-> index 7ac6d365b65f..568e05e49bf9 100644
-> --- a/drivers/gpu/drm/xe/xe_wa.h
-> +++ b/drivers/gpu/drm/xe/xe_wa.h
-> @@ -28,6 +28,7 @@ int xe_wa_gt_dump(struct xe_gt *gt, struct drm_printer *p);
->  #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
->  extern VISIBLE_IF_KUNIT const struct xe_rtp_table_sr gt_was;
->  extern VISIBLE_IF_KUNIT __maybe_unused const struct xe_rtp_table oob_was;
-> +extern VISIBLE_IF_KUNIT __maybe_unused const struct xe_rtp_table device_oob_was;
->  #endif
->  
->  /**
-> -- 
-> 2.43.0
+>> +
+>> +static struct kunit_case xe_rtp_table_tests[] =3D {
+>> +	KUNIT_CASE_PARAM(xe_rtp_table_gt_test, gt_was_gen_params),
+>> +	{}
+>> +};
+>> +
+>> +static struct kunit_suite xe_rtp_tables_test_suite =3D {
+>> +	.name =3D "xe_rtp_tables_test",
+>> +	.test_cases =3D xe_rtp_table_tests,
+>> +};
+>> +
+>> +kunit_test_suite(xe_rtp_tables_test_suite);
+>> diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+>> index b9d9fe0801aa..1a1e04215f21 100644
+>> --- a/drivers/gpu/drm/xe/xe_wa.c
+>> +++ b/drivers/gpu/drm/xe/xe_wa.c
+>> @@ -130,7 +130,7 @@
+>>  __diag_push();
+>>  __diag_ignore_all("-Woverride-init", "Allow field overrides in table");
+>> =20
+>> -static const struct xe_rtp_table_sr gt_was =3D XE_RTP_TABLE_SR(
+>> +VISIBLE_IF_KUNIT const struct xe_rtp_table_sr gt_was =3D XE_RTP_TABLE_S=
+R(
+>>  	/* Workarounds applying over a range of IPs */
+>> =20
+>>  	{ XE_RTP_NAME("14011060649"),
+>> @@ -307,6 +307,7 @@ static const struct xe_rtp_table_sr gt_was =3D XE_RT=
+P_TABLE_SR(
+>>  	  XE_RTP_ACTIONS(SET(GUC_INTR_CHICKEN, DISABLE_SIGNALING_ENGINES))
+>>  	},
+>>  );
+>> +EXPORT_SYMBOL_IF_KUNIT(gt_was);
+>> =20
+>>  static const struct xe_rtp_table_sr engine_was =3D XE_RTP_TABLE_SR(
+>>  	/* Workarounds applying over a range of IPs */
+>> diff --git a/drivers/gpu/drm/xe/xe_wa.h b/drivers/gpu/drm/xe/xe_wa.h
+>> index a5f7d33c1b32..17dff615e507 100644
+>> --- a/drivers/gpu/drm/xe/xe_wa.h
+>> +++ b/drivers/gpu/drm/xe/xe_wa.h
+>> @@ -6,6 +6,7 @@
+>>  #ifndef _XE_WA_H_
+>>  #define _XE_WA_H_
+>> =20
+>> +#include <kunit/visibility.h>
+>>  #include "xe_assert.h"
+>> =20
+>>  struct drm_printer;
+>> @@ -24,6 +25,10 @@ void xe_wa_apply_tile_workarounds(struct xe_tile *til=
+e);
+>>  void xe_wa_device_dump(struct xe_device *xe, struct drm_printer *p);
+>>  int xe_wa_gt_dump(struct xe_gt *gt, struct drm_printer *p);
+>> =20
+>> +#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+>> +extern VISIBLE_IF_KUNIT const struct xe_rtp_table_sr gt_was;
+>
+> The VISIBLE_IF_KUNIT here is unnecessary and doesn't make much sense:
+> that macro is about adding or not the "static" keyword in the
+> declaration and should only be part of the variable definition in the .c
+> file.
+>
+>
+> --
+> Gustavo Sousa
+>
+>> +#endif
+>> +
+>>  /**
+>>   * XE_GT_WA - Out-of-band GT workarounds, to be queried and called as n=
+eeded.
+>>   * @gt__: gt instance
+>> --=20
+>> 2.43.0
