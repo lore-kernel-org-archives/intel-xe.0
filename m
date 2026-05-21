@@ -4,71 +4,158 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5F9ACD4F5E
-	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 11:45:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EB48CD5BA4
+	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 11:46:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DEA210E496;
-	Thu, 21 May 2026 11:45:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E302010E4A0;
+	Thu, 21 May 2026 11:46:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iS1QQwPB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eQgs0n+o";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BE2810E492;
- Thu, 21 May 2026 11:45:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9657F10E495;
+ Thu, 21 May 2026 11:46:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779363956; x=1810899956;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=NQFPplxomD0x/n8n9y9LQN4H3w76sftdXd7q8RgP6wo=;
- b=iS1QQwPBEuLq1ZWk+Mba3CQmxRAIhpyykGt2G6Juyl69Z/AlElLsc8VX
- aXCwniQadbgYvramlvRPTFzXDvWvlZ8xRjDgBmn/o7lMFRqXn9C1uNczE
- iFyucKm4toBsHb5Af4mw+lUPSrwBTgmVgG0L5RoMqDiYW4nnEoBgQpJF5
- OUuHMCK7uLP5hEqe3p4XJPC150fonwoc3aau18gLcp6bgQEBZYPaCinsL
- aVZw72d9aS/oL8A5A/IzSDmJb25OVNJVjZOc3UvK3TyX252Yh+AatUWFp
- nw4LybXQVUU+SZ0GZ2LosJ8puC82gtYZVR1OjKobhtv+JuuNGkz+3x48+ w==;
-X-CSE-ConnectionGUID: rgOQV+sBSzO0TV+TCeCJGQ==
-X-CSE-MsgGUID: rXJZsNyyQj+uhgJMx+Z47A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11792"; a="91670947"
-X-IronPort-AV: E=Sophos;i="6.23,246,1770624000"; d="scan'208";a="91670947"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2026 04:45:55 -0700
-X-CSE-ConnectionGUID: efRim4avTweoDSsfFU1U7g==
-X-CSE-MsgGUID: S9fI+i6jSiWPJtQNsUY7BA==
+ t=1779363983; x=1810899983;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=FbFkrgO8ASMioQ83gJIK9ara6pmLxMnDvy4CfJTLFNc=;
+ b=eQgs0n+oY+8XsaymTNDVHZmnFQFWiJAIzSmFqWBlrWnw+tlgOAC7MZjm
+ tDost9z7zlmb8Ed7v0HsojzgdscBED4HpPF6v4fvIdVVz8aW6QeeMDxc9
+ 3viVbLxthXmZHuEBJOVVG5/lLt8M2Z7y4blCax2huK74WELjRvuQ2fTIK
+ f6atfCAYs28tQwMNGIHtF88wJTG3Sb/JM0zs6FaQjc97pBjLqy3sPrIZl
+ /hJO+S8K2oY7MsGTwNOUX5iTBQSsSY5Y3Jo2RcjbiHQYDZGs7hUZMjFRa
+ ACuAQCzb4uLayHXpMvb4GGGqJ1HZkpK90GYAyJtL57dJykTwB+q7d/+zD w==;
+X-CSE-ConnectionGUID: WUGa844sR/iq2fVplGfGxw==
+X-CSE-MsgGUID: VI2lebFMTjKWhCmjSsibxg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11792"; a="91751368"
+X-IronPort-AV: E=Sophos;i="6.23,246,1770624000"; d="scan'208";a="91751368"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2026 04:46:22 -0700
+X-CSE-ConnectionGUID: Yk1EGaHqQTmkA/LwbY2maQ==
+X-CSE-MsgGUID: 9KIXK/ZbTA2/IqeOVVLqhw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,246,1770624000"; d="scan'208";a="240533509"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO [10.245.244.105])
- ([10.245.244.105])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2026 04:45:49 -0700
-Message-ID: <9266d1f9615d942c2472f5b9846247a71ab62dc7.camel@linux.intel.com>
-Subject: Re: [PATCH v2 0/4] drm/exec: drm_exec polishing
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
- intel-xe@lists.freedesktop.org
-Cc: Felix Kuehling <Felix.Kuehling@amd.com>, Alex Deucher	
- <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>, Simona
- Vetter	 <simona@ffwll.ch>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>,  Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Danilo Krummrich
- <dakr@kernel.org>,  Matthew Brost <matthew.brost@intel.com>, Alice Ryhl
- <aliceryhl@google.com>, Rob Clark	 <robin.clark@oss.qualcomm.com>, Dmitry
- Baryshkov <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul	 <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>, 
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, Natalie
- Vock	 <natalie.vock@gmx.de>
-Date: Thu, 21 May 2026 13:45:35 +0200
-In-Reply-To: <da49f6c2-5b6e-4bd6-8940-84206b5913f8@amd.com>
-References: <20260520101616.41284-1-thomas.hellstrom@linux.intel.com>
- <da49f6c2-5b6e-4bd6-8940-84206b5913f8@amd.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+X-IronPort-AV: E=Sophos;i="6.23,246,1770624000"; d="scan'208";a="240742152"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2026 04:46:22 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 21 May 2026 04:46:21 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Thu, 21 May 2026 04:46:21 -0700
+Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.30) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 21 May 2026 04:46:20 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=frfWC4WoPq+D3zlDpzC1DsUQ+NdtzOEeCkq8u6YBcUJBs1WILg4ktrJIySSsYlOK/WplrCb3pDbLSwYCHbcyJl/J3B06Z/DcyIExllOBVXwkAmffQnQv3oWCLvGjjh3mOWG3U6RPFyXrLRYEtPCapmGp64rgQbpHlFdOGavjx2up5w67L8Sqf7DK6eVBU0JzYb5NGSJ/Sfhjxth2eR01Q0DM/d1YRUb0Yase1nDxRbjm2NKBmoA/4mg3qA7OqDadwY6LEGOnKsEuhBrp9NHFBs3h5qKbIZ8X1HZqXbAcPBqk1kkgyCJHVr2EvUsCmzNNJr/CkSIIMQoWdXL5DoPaVA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7EbSspp8GM0P+pqz32NSKq7IwqKxep60jDfeh/Pk9aA=;
+ b=ewlBptyxr706jz3nou6rTUxnDtHNo4Al9NLMTNL93mChAY9fV37xPYmTeMBNduNTcvOAxL2328+Kgsqs3WIkpP0RhQcBeq9hS+ROwIZXxeML6DjhWxRWgCxpY0yYmIJ11FO3wCypOhlTd0MSMJiv/gyrn5nEFI2ymGPrCV8dLB4Ra5GzD32nu2I90EntQrnirQ9c51xeAAzMLJjjcdnjUvbWHSeSi5gLELbg8oWBsPSbPYihAgUnRAo4dTW6UOKKR+PB/8lMyC25cVssbY76iWwtOPPj+F72/+stsnA2zJpTsIBfwkPatp3jjHcviWIdUaASTrXjj5KDmzhqAQQ2BA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by CH2PR11MB8834.namprd11.prod.outlook.com (2603:10b6:610:284::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.17; Thu, 21 May
+ 2026 11:46:12 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::68b9:ea3c:8166:3cc4]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::68b9:ea3c:8166:3cc4%4]) with mapi id 15.21.0048.013; Thu, 21 May 2026
+ 11:46:12 +0000
+Message-ID: <da36b86a-067c-4d1d-91a7-8b6cc64dc95b@intel.com>
+Date: Thu, 21 May 2026 17:16:04 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915/display: use set_context_latency for DSB W2-line
+ waits
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+References: <20260518060522.2945720-1-ankit.k.nautiyal@intel.com>
+ <agsnuYVMWNSJwf4F@intel.com>
+Content-Language: en-US
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <agsnuYVMWNSJwf4F@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA5PR01CA0225.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1f3::18) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|CH2PR11MB8834:EE_
+X-MS-Office365-Filtering-Correlation-Id: d86f8166-9143-45a4-b553-08deb72e8e86
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|366016|1800799024|6133799003|18002099003|22082099003|56012099003|3023799007|11063799006|4143699003;
+X-Microsoft-Antispam-Message-Info: JxjdN8trgAQgGZ8R3A6xhio0eLKAZ3+9ViaY2TsJxE7bieZsEISVhDx3j9wpkYGxBurZJh/69IVHpsS3UsD80d16/XO6wZioHd4qDgY/JfijKtPReHesWgaZQIXTAHNJWlEunh2G/sSwYUuyqDr7XnTmxAyQWVewgP1+37CV2q1/B+oudD+njVIYdDCKcfX98qdzMX3z935OundIwTWllUVEnmZ9CJLmsHJXfTwKhJDypdr4mE7OxpKpbjGYUfeBsqCniWnXAYMjEn/wkcCiAxsbHKZhHromujm+JnaVRJGLeRmBs66QrIBb3xU931LtGU1BVxwhebc7NiETDjeBNQGXVnb4vSXMU0xlGoHltQeKWn32RAw+aZO86gyi3pIZ5a9pckf80J67R4xkZonzCt7La1bNqhV8ZvITUotKoPM9K1DzZECpGX9uWjg/TrHzt16DX4g2PS5XQpX9EJU2uSmQNxPtVwRRrNZAcV68QMttc3HzNDBXhc2ft9ZqYv9wvY07orWP5z1fwRhU7BfpSSFvDtgKtiQdIenamRQWWUq1dQi0tim90L/xeuS04a3y9fMCoYKnrKhvf6PW7y3/VZ4WKZN1Qc8frfJrHRsgiHqndoJ5lP5I7wjMwPxfxKXjcGKcDab2gAoPRY+41293FFvKgLNGr0ztIv4tAfE0HST48z2S0VKONzOAvGQxWNgx
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(6133799003)(18002099003)(22082099003)(56012099003)(3023799007)(11063799006)(4143699003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cE1LSG82NnZ6bFVTM3NucUhLM2xYVEJBNjRET2JFd3NId3dsN1c0cUV5RXpu?=
+ =?utf-8?B?UXpFbGhqQnh1dHNNMzFCSjk1Mld6MVhnNmZlTmpVd0JKYnpmQlRTT3c3bDhk?=
+ =?utf-8?B?YmNKN253NCt5WURhRjUyaEx5aE5wM2JXYzV4MzdFcmpId2VkMmxPZ2lZWk9X?=
+ =?utf-8?B?UStZNTg0Mk1saEdxcDJtY3Zka1EvRkNGblNzWWpPMjZCcTBoWllFdldQR2xL?=
+ =?utf-8?B?WGRYaGFzOFN1NTBLb2d3ODh5L2NRSVZjZjI0UVJNZUpNM3MvYXlxdk1DVEd4?=
+ =?utf-8?B?ZWxEbXR3c2txNE5kc29aTWRmNzJGaWJtSjhkd3pwRTEwcFVoekFMSGNuSEdo?=
+ =?utf-8?B?cjFsZ1FucGJLeitlcUkreWkvblI1bmpZSEFkQnBhZnlmKzNlOE9mK3Y0Z0FC?=
+ =?utf-8?B?dEZjbFdqU2grZW5CMlM1bURRaXQ0ajhEWWpVWVIvTTBhc1c4RHpyYmM1ejd5?=
+ =?utf-8?B?ZjlSZWlyc29TU0lXQ2p1Y1ZrTnhHTGhTTEhOVlh3bE5Ec0Q2WmpsZ3A5S1kx?=
+ =?utf-8?B?LzlKRXQwYzNvSWg4bityZGVjSjN1TGpOQkE1Tk02dUdyWTl1Tmw5TzRPWDl3?=
+ =?utf-8?B?MU1pU3JIaDZ6SVI4ekJTVXBjdDdUZXNRalU3b21hQ3JLMmdVVE5Sbm9pcFFv?=
+ =?utf-8?B?M2RlVEc3ZDFCRGNYZDRFRmdLZU9lRUNuV2RtREdmaFBIRkM1ald4YmdrRjdz?=
+ =?utf-8?B?elJ4b2lZMElUK2FPcUtVL0xHU0RUUVpLS0JCdTh6dFB3cWdTVDRrVWJzTGJO?=
+ =?utf-8?B?YlFlQ0RaUThnRWZweFNyVkRYVlhQN3FGUnNJeXN4cUNnNmNaUVVlM0lSOXhQ?=
+ =?utf-8?B?endsbC8wU1g2V21tQjFxckx6NFAzdVg0ajdBTy9LZHdnK0t5dVdNSGhSTGdI?=
+ =?utf-8?B?blBvYXpmbmcxOU9iUXh3bkVtZE5yTy9oaFFCZzZDeUx1NUtlZlR3U3JRWkFm?=
+ =?utf-8?B?Z21yTkQ4WHJoU2twTXlkWVRVUW1rUmlpNDExTkRtTkVVMmZQZUNCem9yZnV6?=
+ =?utf-8?B?ZHUwOEVIM0JGa29RQTJCYTdER0RqR3NONlNWaHUzeDF5S2hhSXE1SFdFSFpy?=
+ =?utf-8?B?aTA1R1ZNcWtpQlVjeUhYMGRvUTNUOElkYk5ENXNodFNIalNvTk5QSFI1VGdy?=
+ =?utf-8?B?QmNUQklzVWkxZEluWUxCL3JnWTBRTWdySG5VZ0gzUjZHTE1wSWRqeWU4aVZQ?=
+ =?utf-8?B?a01RM3hVRWlJL1NZQ0dJV2srd2xmYWE5TmVGeWNBRXlwMDh2ejluc2ZoQ0lZ?=
+ =?utf-8?B?ZkVaK2I4Vzg3c3ZNa2Y0clRCdzRZNFFtay9BNlF5OFQ5ZW9rd3dnRCtGVGpx?=
+ =?utf-8?B?ckFySmxUZ09SbTc0UDFuZXpIMi9rUlJiS3hRdmdVcmVhcWxhT0xNdDdiV3g3?=
+ =?utf-8?B?WTJ0Q0UwWG9jRWszRFYvd2drbCt6MzRJL3hYUSsyczNRRlJUYUtSNXBuVGlY?=
+ =?utf-8?B?aWl0UlEwVEU5cHlEcS80VmtLQWJ3bkJ1RzlWenhIRE5tNmJvZmlvVGxxVGdJ?=
+ =?utf-8?B?Q24wUzY5R3NzVHV5TVZ0N0FZZitHdEY0aERYL3F0eTNla0ViN2NZSkl3RDZ4?=
+ =?utf-8?B?R2E3VG96T1JnbDc5QW9CWms5TW1lbHdvdTc3L2dXTkhjZmliMWI2RTZ6Z25Z?=
+ =?utf-8?B?NklUVUxwRHBmeVhmQWEwemNSODRFMXdvOFJmTTBxMDJDMlBpUHlXZzYrWkEz?=
+ =?utf-8?B?b1NuRUVXVWtpSmpBcGk3V2x6WnkvRmJFcTQvMS9GL0w4clFUNHR6V2lzTDlh?=
+ =?utf-8?B?Ylp2UVFiTXk2VUdKNmxkU2xzK0N5RjNMMVJMUnhWZVpxb0lKN05kNU5RT0lV?=
+ =?utf-8?B?SXZOMU04SW5XUmhlbXRVejVwRUw3Y3lhR0M3MUJwS3VRTWV4ejF1U1RPcWhC?=
+ =?utf-8?B?bks4YnFUYjY4aVh2QmVMViszUUVIdExzSFI5K1NZaWJrTUIrQVJLL01jTXZu?=
+ =?utf-8?B?N3pnL3JSaWhIcU9NR094a0kydEF0cFFENkJ4UjFmditnaGJyd1g4RjJRZDhk?=
+ =?utf-8?B?VWlHSmZtVDF2Vjg5SnpKMzRoeS9VeHNDbzJieUM3Um41RHFoUUs3YjI5dlB0?=
+ =?utf-8?B?QmRkWjR2a0pIdWFpUzVFNzFtdHBjZHF6YXp0WHFTWGdmZzljWlJBeUZNa0dI?=
+ =?utf-8?B?SHhGak5wdkhNcEhLN3pQSWJHZTQ1M0ZhZkprRXY1Tk5tcDA4QWgwK1hUejM2?=
+ =?utf-8?B?UUkzK2RLTTdxNHNaUFozV1lRcWZqVjVEcjJweVN0V1BRV2QrN1A5ckZBSjk5?=
+ =?utf-8?B?WVV5eEVnbmc1VHJjdHE0Nng3bkhmQTJkNTNhSlc1SE05THhUQmlwMUU2SmlM?=
+ =?utf-8?B?UXlNMXVpMjBiQmZDZDlNTDhHNTgxeVFMRWtsN0FmOGI0bXAzUDFtOVFaa2lY?=
+ =?utf-8?Q?9i1ixEY7MNRIFfcA=3D?=
+X-Exchange-RoutingPolicyChecked: Zb0pMi96mFF97MJeLUMd8NKXwt6NHFqvnTojKQiVbL9FEhhKYyvY0s9FGV8R9rpB2JbP/Wkb3Twk4+5KpbVSOQrQYLpPseBsTHdEqE9+BqeZsRRlsXUvVLqdoCiVCHPEYr4d3EcXDYGT3SX9Lf6zZrmhAI3Q5U3EqjZGM8TVoE6BGtciE+V0u2jKWJnkWQoZlGGzyCCXh6Yh9Y/hevps2gbqLEUJ0EyLuDG1LxDBoxfUW30iwcpRI/KlWGfDpvgCK49uWWD/CyKYPJMzMrGjGHXcp6G7TFWrOGhIStbclCKG4/RYcWxG8TaUV3gsZXMs0njWpz38WTYiBjeRCuEwwg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: d86f8166-9143-45a4-b553-08deb72e8e86
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 May 2026 11:46:12.6402 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: KfJJeJfMbolWybro5uCvr2aduVPS3kD07pYkdbtYTyZkf5GlcQrJKfPpej1reigFL45OaB3+Yk7s59y4k0AcSSV1HRE0tgPtxvVRtn27IBA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR11MB8834
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,109 +170,128 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
 
-On Wed, 2026-05-20 at 13:34 +0200, Christian K=C3=B6nig wrote:
-> On 5/20/26 12:16, Thomas Hellstr=C3=B6m wrote:
-> > During the work towards enabling exhaustive eviction using full
-> > ww locking in TTM, Christian indicated that the path for the
-> > drm_exec moving forward was to be a full drm_exec helper with
-> > things like userptr validation rather than a WW transaction
-> > abstraction. The idea was then briefly discussed to craft a
-> > WW transaction helper and then subclass that with drm_exec
-> > with the idea that the WW transaction helper could be used in
-> > TTM for eviction and for other uses that didn't mandate a full
-> > exec sequence.
->=20
-> BTW Natalie is now trying to polish my TTM patches for doing that
-> because some test case for the SteamDeck is running
->  into issues with pinning buffers for display.
+On 5/18/2026 8:22 PM, Ville Syrjälä wrote:
+> On Mon, May 18, 2026 at 11:35:22AM +0530, Ankit Nautiyal wrote:
+>> set_context_latency represents W2 window/latency lines.
+>> Earlier, delayed and undelayed vblank coincided, so this matched the
+>> distance from vactive end to undelayed vblank start.
+>>
+>> After guardband optimization changes, delayed vblank start can move
+>> away from undelayed vblank. In DSB non-VRR paths, the older
+>> intel_mode_vblank_delay() is still used in some code paths.
+>>
+>> Fix this by using set_context_latency directly for W2-line waits.
+>>
+>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/display/intel_dsb.c | 11 ++---------
+>>   1 file changed, 2 insertions(+), 9 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+>> index fec8a56e21ea..8521f5969aca 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dsb.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+>> @@ -745,6 +745,7 @@ void intel_dsb_vblank_evade(struct intel_atomic_state *state,
+>>   		intel_pre_commit_crtc_state(state, crtc);
+>>   	int latency = intel_usecs_to_scanlines(&crtc_state->hw.adjusted_mode,
+>>   					       intel_dsb_arm_exec_time_us());
+>> +	int vblank_delay = crtc_state->set_context_latency;
+>>   	int start, end;
+>>   
+>>   	/*
+>> @@ -760,7 +761,6 @@ void intel_dsb_vblank_evade(struct intel_atomic_state *state,
+>>   		intel_dsb_emit_wait_dsl(dsb, DSB_OPCODE_WAIT_DSL_OUT, 0, 0);
+>>   
+>>   	if (pre_commit_is_vrr_active(state, crtc) && crtc_state->vrr.dc_balance.enable) {
+>> -		int vblank_delay = crtc_state->set_context_latency;
+>>   		int vmin_vblank_start, vmax_vblank_start;
+>>   
+>>   		vmin_vblank_start = intel_vrr_dcb_vmin_vblank_start_next(crtc_state);
+>> @@ -789,8 +789,6 @@ void intel_dsb_vblank_evade(struct intel_atomic_state *state,
+>>   		start = end - vblank_delay - latency;
+>>   		intel_dsb_wait_scanline_out(state, dsb, start, end);
+>>   	} else if (pre_commit_is_vrr_active(state, crtc)) {
+>> -		int vblank_delay = crtc_state->set_context_latency;
+>> -
+>>   		end = intel_vrr_vmin_vblank_start(crtc_state);
+>>   		start = end - vblank_delay - latency;
+>>   		intel_dsb_wait_scanline_out(state, dsb, start, end);
+>> @@ -799,8 +797,6 @@ void intel_dsb_vblank_evade(struct intel_atomic_state *state,
+>>   		start = end - vblank_delay - latency;
+>>   		intel_dsb_wait_scanline_out(state, dsb, start, end);
+>>   	} else {
+>> -		int vblank_delay = intel_mode_vblank_delay(&crtc_state->hw.adjusted_mode);
+>> -
+>>   		end = intel_mode_vblank_start(&crtc_state->hw.adjusted_mode);
+>>   		start = end - vblank_delay - latency;
+>>   		intel_dsb_wait_scanline_out(state, dsb, start, end);
+>> @@ -889,7 +885,7 @@ void intel_dsb_wait_for_delayed_vblank(struct intel_atomic_state *state,
+>>   		intel_pre_commit_crtc_state(state, crtc);
+>>   	const struct drm_display_mode *adjusted_mode =
+>>   		&crtc_state->hw.adjusted_mode;
+>> -	int wait_scanlines;
+>> +	int wait_scanlines = crtc_state->set_context_latency + 1;
+>>   
+>>   	if (pre_commit_is_vrr_active(state, crtc)) {
+>>   		/*
+>> @@ -912,9 +908,6 @@ void intel_dsb_wait_for_delayed_vblank(struct intel_atomic_state *state,
+>>   		 * scanline until the delayed vblank occurs after
+>>   		 * TRANS_PUSH has been written.
+>>   		 */
+>> -		wait_scanlines = crtc_state->set_context_latency + 1;
+>> -	} else {
+>> -		wait_scanlines = intel_mode_vblank_delay(adjusted_mode);
+> After further consideration I think the current code is in fact correct.
+> intel_dsb_wait_vblanks()/DSB_WAIT_FOR_VBLANK will wait for the undelayed
+> vblank when VRR is disabled, so this does need the full wait.
+>
+> So I think the actual issue is more of a userspace bug in that they
+> assume the event fires at vblank_start and guesstimate the deadline
+> based on the time when the event was received. What they need to do
+> is calculate the deadline based on the event timestamp.
+>
+> Another option might be to switch to using the safe window even for
+> the '!vrr && always_use_vrr_tg()' case. But that probably needs some
+> actual thought...
 
-Thanks for the review, Christian.
+Using the safe window for the above case with changing the 
+pre_commit_is_vrr_active() to return true for have always_use_vrr_tg() 
+works in general.
 
-FWIW I did a POC implementation moving drm_exec as a transaction helper
-to the dma-buf layer, and then re-implemented drm_exec on top as a
-wrapper here:
+However there seem to be an issue with non-VRR case:
 
-https://gitlab.freedesktop.org/thomash/xe-vibe/-/commits/ww_transaction?ref=
-_type=3Dheads
+It looks like WAIT_VBLANKS / DSB_WAIT_FOR_VBLANK is releasing right at 
+the vblank edge,
 
-Since this would work on any object with a refererence count and a
-dma_resv, and even mixing them, it would solve a couple of issues:
+or perhaps sometimes one scanline early (its not SCL though).
 
-1) Decouple the ttm object refcount issue from the TTM exhaustive
-eviction (Not saying we shouldn't get rid of the ttm object refcount
-anyway).
+So by the time DSB reaches the WAIT_DSL_OUT(safe_window_start, 
+vmin_safe_window_end),
 
-2) Implement any eviction locking modes (like snapshotting, object
-release after slow-lock and similar) separate from drm_exec, and keep
-exec as a pure exec-buf helper.
+PIPEDSL is sitting exactly at safe_window_start (or just below perhaps).
 
-3) Facilitate ww locking in dma_buf_map().
+When DSB instruction checks perhaps is sees that this as "not in window" 
+and the wait gets skipped.
 
-4) Directly lock VMs instead of vm objects.
+The following WAIT_USEC(SCL + 1) then starts from too early, and results 
+in DSB interrupt getting fired earlier that expected.
 
-I haven't posted the patches yet since I wanted to get some feedback
-first of whether this is a reasonable direction.
+Adding a 1 scanline delay (actually even a smaller usec delay is 
+sufficient) is helping here.
 
-Thanks,
-Thomas
+I am wondering why this is not observed with VRR case, though.
 
->=20
-> > Regardless whether that actually happens or not, this series
-> > aims to clean up abuses of drm_exec internals in drivers
-> > so that future development of drm_exec isn't blocked by
-> > such driver usage.
->=20
-> Yeah completely agree, going to review those patches now.
->=20
-> Regards,
-> Christian.
->=20
-> >=20
-> > Except for patch 2 which is a small cleanup only.
-> >=20
-> > v2:
-> > - An drm/msm patch was already merged.
-> > - Use a unique id for the loop variable (patch 1) (Christian)
-> > - Move assignment to declaration (patch 2) (Christian)
-> > - Declare the retry pointer as void *const. (patch 2)
-> > - Only allow if the drm_exec context is newly initialized. (patch
-> > 3)
-> > =C2=A0 (Christian)
-> > - Fix amdgpu compile error (patch 4) (Intel CI)
-> > - Update the commit message (patch 4)
-> >=20
-> > Thomas Hellstr=C3=B6m (4):
-> > =C2=A0 drm/exec: Remove the index parameter from
-> > =C2=A0=C2=A0=C2=A0 drm_exec_for_each_locked_obj[_reverse]
-> > =C2=A0 drm/exec: Make the drm_exec_until_all_locked() macro more
-> > readable
-> > =C2=A0 drm/exec, drm/xe: Avoid abusing the drm_exec retry pointer
-> > =C2=A0 drm/exec, drm/xe, drm/amdgpu: Add an accessor for struct
-> > =C2=A0=C2=A0=C2=A0 drm_exec::ticket
-> >=20
-> > =C2=A0.../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c=C2=A0 |=C2=A0 4 +-
-> > =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 | 15 ++--
-> > =C2=A0.../drm/amd/amdgpu/amdgpu_eviction_fence.c=C2=A0=C2=A0=C2=A0 |=C2=
-=A0 3 +-
-> > =C2=A0drivers/gpu/drm/drm_exec.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- |=C2=A0 9 +--
-> > =C2=A0drivers/gpu/drm/drm_gpuvm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=
-=C2=A0 3 +-
-> > =C2=A0drivers/gpu/drm/xe/xe_validation.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 4 +-
-> > =C2=A0drivers/gpu/drm/xe/xe_validation.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 +-
-> > =C2=A0drivers/gpu/drm/xe/xe_vm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- |=C2=A0 3 +-
-> > =C2=A0include/drm/drm_exec.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 | 71 ++++++++++++++-
-> > ----
-> > =C2=A09 files changed, 70 insertions(+), 44 deletions(-)
-> >=20
+
+Regards,
+
+Ankit
+
+
+
+>
+>>   	}
+>>   
+>>   	intel_dsb_wait_usec(dsb, intel_scanlines_to_usecs(adjusted_mode, wait_scanlines));
+>> -- 
+>> 2.45.2
