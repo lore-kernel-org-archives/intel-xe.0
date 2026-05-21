@@ -4,49 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3CD1CD5BAC
-	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 18:56:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93775CD4F3D
+	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 19:26:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4EDBF10E54C;
-	Thu, 21 May 2026 18:56:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47AAE10E1EC;
+	Thu, 21 May 2026 19:26:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="WyiW9jrJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wx6uqMt4";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8352C10E1DF;
- Thu, 21 May 2026 18:56:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Cc:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=sVjLEB7Naf89XwfAlVqfn6fiYt2mgbkC8rcKbVFM4ZQ=; b=WyiW9jrJE3IPmDbqRIByANcIDk
- F7bPShMluB90PMXEsvGSzgYTqQdg62Gi8gibiqP9BZAAN3Fs0rRSGmU2td/yfGgC7/eQlCqFwHrS/
- jC/kVuhnyxryPeT+ITnQu9D/gr65P0RO0Tk2Ww66iZDXCo9A4+TDXiilYxrMYMFjTN48j9V/oO/vt
- v6CNfXBsHE2uPMii8EiiN+niyVqrFwPPlWqtibsm06ESeCeV9E+lUUBIG4N9rMq1m7nXZktWGTpON
- ovS9a5si3THkoGFwxNCwoaK7uLdPcsxDTckPWNvy47Zli3MyjkD0xZiRkUNf5WKE83lqmKF1LY4r7
- BSVSRpaA==;
-Received: from c-73-157-168-91.hsd1.or.comcast.net ([73.157.168.91]
- helo=[192.168.1.133]) by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1wQ8ZZ-004V6y-8Z; Thu, 21 May 2026 20:56:45 +0200
-Message-ID: <add51789-7291-40d6-9c8a-f68f46f1f11c@Igalia.com>
-Date: Thu, 21 May 2026 11:56:38 -0700
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FE2910E1E9;
+ Thu, 21 May 2026 19:26:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1779391569; x=1810927569;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=SsHtvxTpztaNOsLjc/7RUHto2SwGWLMrSh8erHOqqBA=;
+ b=Wx6uqMt4iOOt/8eHI45AmTgtB0XkthCOwjer5KwN/rV9AqgN+vrjZI7Z
+ vAeflTzyGrjX+/gtMR+yNoP7xGJgYAFfAHJLiNupV2u/+TYjZYqowWsAT
+ iVX5ZeA9pb3hP12/7cJe1QfqJSVsyD/p01edvJXW96pqyURkvN0LEKiYb
+ MhwkuGo76NJLFjcuDOYlAELKUs8rMDjupAGOMxo8o7EAnjAMbprMA6Stv
+ IXevKZuJWQ8oZz9n/OljrDPGJMoGzcKRe8IWonjKbs38yczhg5e+JySW5
+ Vk1AouUIFTqZz0dlNr96lf3dWVoiDyOLMJ9msIqnnlj2mukf2dUU5qlbI g==;
+X-CSE-ConnectionGUID: hkmHScPmShapKIGEb3htAA==
+X-CSE-MsgGUID: 7qqzb6tZSa+zjlMNgIksQw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11793"; a="67841697"
+X-IronPort-AV: E=Sophos;i="6.24,161,1774335600"; d="scan'208";a="67841697"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2026 12:26:08 -0700
+X-CSE-ConnectionGUID: QETMUOy0TxaMcipZnkokXQ==
+X-CSE-MsgGUID: ILoVOG03Q4ypSPhxsFPKbA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,161,1774335600"; d="scan'208";a="245602913"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.174])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2026 12:26:05 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Marco Nenciarini <mnencia@kcore.it>, Jakub Bystron <jb@elitecode.cz>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, Aaron
+ Esau <aaron1esau@gmail.com>, Imre Deak <imre.deak@intel.com>, Mika Kahola
+ <mika.kahola@intel.com>
+Subject: Re: [BUG] xe: Meteor Lake 7d55 eDP PHY A/DPLL state mismatch,
+ flip_done timeout
+In-Reply-To: <ag9HiZKGsQcBRBot@spark.kcore.it>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <TDn3cEkpVu-dBI63qMzn4sYGIkclsctG5pYDF70-dxuekRCixI_FpRQmeJL6UjZH_MtI8PBkjEsJxc93SEV9OmQvlT_CCrD2-qDb8Ss8X-Q=@elitecode.cz>
+ <ag9HiZKGsQcBRBot@spark.kcore.it>
+Date: Thu, 21 May 2026 22:26:03 +0300
+Message-ID: <fd9fb7205ddce152b54d9dbfe10606cc2289f412@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/7] Refactor drm_writeback_connector structure
-To: Suraj Kandpal <suraj.kandpal@intel.com>, freedreno@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, kernel-list@raspberrypi.com,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-References: <20260521053708.1475129-1-suraj.kandpal@intel.com>
-Content-Language: en-GB
-From: John Harrison <John.Harrison@Igalia.com>
-In-Reply-To: <20260521053708.1475129-1-suraj.kandpal@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,74 +72,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 5/20/26 22:37, Suraj Kandpal wrote:
-> Some drivers cannot work with the current design where the connector
-> is embedded within the drm_writeback_connector such as intel and
-> some drivers that can get it working end up adding a lot of checks
-> all around the code to check if it's a writeback conenctor or not.
-> This is due to the inheritance limitation in C.
-> This series intends to solve it by moving the drm_writeback_connector
-> within the drm_connector and remove the drm_connector base which was in
-> drm_writeback_connector. This is done in union with hdmi connector
-> within drm_connector to save memory and since drm_connector cannot be
-> both hdmi and writeback it serves is well.
-> A RFC version was floated and discussion had taken place at [1] which
-> kicked of this more cleaner series.
-> We do all other required modifications that come with these changes
-> along with addition of new function which returns the drm_connector when
-> drm_writeback_connector is present.
-> This series also contains some writeback API cleanups as a consequence
-> of writeback connector moving into drm_connector
-> All drivers will be expected to allocate the drm_connector.
-> This discussion was tiggered from [2] and sits on top of Dmitry's series
-> see [3].
+On Thu, 21 May 2026, Marco Nenciarini <mnencia@kcore.it> wrote:
+> Cross-reference: Aaron Esau (Cc'd) posted a 3-patch series targeting
+> this on intel-gfx@ on 2026-05-09 [1]. The series received pushback
+> from Imre, Jani N, and Mika arguing for catching the failure pre-commit
+> so the atomic_commit can fail cleanly at check time rather than
+> mid-commit. The series is currently stalled. With Jakub's report,
+> Aaron's report, and mine, the bug reproduces on at least three
+> independent setups across i915 and xe, ARL-H and MTL, with and without
+> an active NVIDIA driver.
 >
-> [1] https://patchwork.freedesktop.org/series/152758/
-> [2] https://patchwork.freedesktop.org/series/152106/
-> [3] https://patchwork.freedesktop.org/series/152420/
-QQ: What tree is this patch set based on? I tried to apply it locally 
-but I get conflicts no matter what baseline I use. I've tried full 
-kernel, drm-tip and drm-next. Dmitry's patch set, [3] above, applies 
-fine but I get conflicts in the rcar and mali files when trying to apply 
-this set.
+> On the NVIDIA framing: Aaron's cover letter attributed the MSGBUS
+> unresponsiveness to the NVIDIA dGPU not participating in S0ix
+> (NVreg_EnableS0ixPowerManagement). That framing has two cracks. My
+> reproduction has S0ix participation enabled AND NVIDIA runtime PM
+> fully disabled (NVreg_DynamicPowerManagement=0x00, dGPU stays in D0
+> since boot, never enters D3), yet the bug still fires. Jakub's setup
+> has xe forcing the iGPU and no active NVIDIA driver in dmesg. So
+> whatever platform-side condition causes the PHY to wedge, the NVIDIA
+> module parameters are not the lever, and the bug occurs without an
+> active NVIDIA driver. The fix has to be on the i915/xe side.
 
-Thanks,
-John.
+Looks like Jakub sent the same message twice. I replied to the other one
+[1], with references to existing gitlab issues.
 
->
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
->
-> Suraj Kandpal (7):
->    drm: writeback: Refactor drm_writeback_connector structure
->    drm: writeback: Modify writeback init helpers
->    drm: writeback: Modify drm_writeback_queue_job helper
->    drm: writeback: Modify drm_writeback_signal_completion helper
->    drm: writeback: Modify drm_writeback_get_out_fence helper
->    drm: writeback: Modify prepare_writeback_job helper
->    drm: writeback: Modify cleanup_writeback_job helper
->
->   .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 10 +--
->   .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |  2 +-
->   .../drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c  | 12 +--
->   .../gpu/drm/arm/display/komeda/komeda_crtc.c  |  2 +-
->   .../gpu/drm/arm/display/komeda/komeda_kms.h   |  6 +-
->   .../arm/display/komeda/komeda_wb_connector.c  | 11 +--
->   drivers/gpu/drm/arm/malidp_crtc.c             |  2 +-
->   drivers/gpu/drm/arm/malidp_drv.h              |  2 +-
->   drivers/gpu/drm/arm/malidp_mw.c               |  7 +-
->   drivers/gpu/drm/drm_atomic_uapi.c             |  4 +-
->   drivers/gpu/drm/drm_writeback.c               | 50 +++++++-----
->   .../drm/msm/disp/dpu1/dpu_encoder_phys_wb.c   |  9 ++-
->   drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c | 10 +--
->   drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.h |  4 +-
->   .../gpu/drm/renesas/rcar-du/rcar_du_crtc.h    |  6 +-
->   .../drm/renesas/rcar-du/rcar_du_writeback.c   | 16 ++--
->   drivers/gpu/drm/vc4/vc4_txp.c                 |  8 +-
->   drivers/gpu/drm/vkms/vkms_drv.h               |  2 +-
->   drivers/gpu/drm/vkms/vkms_writeback.c         | 15 ++--
->   include/drm/drm_connector.h                   | 69 ++++++++++++++++-
->   include/drm/drm_modeset_helper_vtables.h      |  4 +-
->   include/drm/drm_writeback.h                   | 76 ++-----------------
->   22 files changed, 164 insertions(+), 163 deletions(-)
->
+I'll reiterate that 1) any combo with an out-of-tree module loaded gets
+no priority, 2) MTL/ARL with the xe driver doesn't get much priority,
+and 3) the proposed series from Aaron is not viable.
 
+That said, it does look like a regression with MTL/ARL and the i915
+driver and without out-of-tree modules loaded, and we're looking into
+it.
+
+
+BR,
+Jani.
+
+
+[1] https://lore.kernel.org/r/fb38414a888f689b96135f65706c2125059e53ca@intel.com
+
+-- 
+Jani Nikula, Intel
