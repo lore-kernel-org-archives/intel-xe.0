@@ -4,64 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 140A4CD5BAC
-	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 10:47:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5F9ACD4F5E
+	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 11:45:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E473310F2E0;
-	Thu, 21 May 2026 10:47:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DEA210E496;
+	Thu, 21 May 2026 11:45:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jNKvSuju";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iS1QQwPB";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8048310E189;
- Thu, 21 May 2026 10:47:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BE2810E492;
+ Thu, 21 May 2026 11:45:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779360459; x=1810896459;
- h=message-id:date:mime-version:from:to:cc:subject:
- content-transfer-encoding;
- bh=CQcu6k6vkEdgr3YXaYhrf0FkDkDMgcFMPdbfJKWcpjc=;
- b=jNKvSujurYeLfckhDELeQXAWKUEKdO7ymSl9JcSA4sEOPDu+P+X5oWqj
- NCJQbbkhtwTE2EWqrk3p/QbQJpYRNJoQYnQ/FhaQ9RErJk3CC0BGXROcT
- O0TrizEPaBEa1+9h5fQftpJNnMHSHo9afbbPnmjkTz1WR9rr+lxGgigwJ
- wJwLmuwxug7C56U0QAMX22IHWZACBoETPPCxWBUTMgo2UKGh4bf1wBhsw
- OH43kpiLZr71ZOCavGy670t0R8XK9CFq3ZqCSQzi+8EpziDUoK1inpxz8
- n6x6KQJebbUDeSqScEyAgKltNxk+P41/oS72Xf9WgUrC4Ik6GW6lF8AUr A==;
-X-CSE-ConnectionGUID: huTC0HxSTyaHT5+4ALt+3w==
-X-CSE-MsgGUID: MxeXkkq/REKxoFdfv2bgpw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11792"; a="80130114"
-X-IronPort-AV: E=Sophos;i="6.23,246,1770624000"; d="scan'208";a="80130114"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2026 03:47:39 -0700
-X-CSE-ConnectionGUID: skp7MCU7SwydA3I90UgT9w==
-X-CSE-MsgGUID: 60hjv++2SJGdhFlcNfypew==
+ t=1779363956; x=1810899956;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=NQFPplxomD0x/n8n9y9LQN4H3w76sftdXd7q8RgP6wo=;
+ b=iS1QQwPBEuLq1ZWk+Mba3CQmxRAIhpyykGt2G6Juyl69Z/AlElLsc8VX
+ aXCwniQadbgYvramlvRPTFzXDvWvlZ8xRjDgBmn/o7lMFRqXn9C1uNczE
+ iFyucKm4toBsHb5Af4mw+lUPSrwBTgmVgG0L5RoMqDiYW4nnEoBgQpJF5
+ OUuHMCK7uLP5hEqe3p4XJPC150fonwoc3aau18gLcp6bgQEBZYPaCinsL
+ aVZw72d9aS/oL8A5A/IzSDmJb25OVNJVjZOc3UvK3TyX252Yh+AatUWFp
+ nw4LybXQVUU+SZ0GZ2LosJ8puC82gtYZVR1OjKobhtv+JuuNGkz+3x48+ w==;
+X-CSE-ConnectionGUID: rgOQV+sBSzO0TV+TCeCJGQ==
+X-CSE-MsgGUID: rXJZsNyyQj+uhgJMx+Z47A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11792"; a="91670947"
+X-IronPort-AV: E=Sophos;i="6.23,246,1770624000"; d="scan'208";a="91670947"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2026 04:45:55 -0700
+X-CSE-ConnectionGUID: efRim4avTweoDSsfFU1U7g==
+X-CSE-MsgGUID: S9fI+i6jSiWPJtQNsUY7BA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,246,1770624000"; d="scan'208";a="242294964"
-Received: from conormcd-mobl2.ger.corp.intel.com (HELO [10.245.244.113])
- ([10.245.244.113])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2026 03:47:33 -0700
-Message-ID: <f4034e3c-8290-49e1-9410-dc1f449265f4@linux.intel.com>
-Date: Thu, 21 May 2026 12:47:22 +0200
+X-IronPort-AV: E=Sophos;i="6.23,246,1770624000"; d="scan'208";a="240533509"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO [10.245.244.105])
+ ([10.245.244.105])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2026 04:45:49 -0700
+Message-ID: <9266d1f9615d942c2472f5b9846247a71ab62dc7.camel@linux.intel.com>
+Subject: Re: [PATCH v2 0/4] drm/exec: drm_exec polishing
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
+ intel-xe@lists.freedesktop.org
+Cc: Felix Kuehling <Felix.Kuehling@amd.com>, Alex Deucher	
+ <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>, Simona
+ Vetter	 <simona@ffwll.ch>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>,  Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Danilo Krummrich
+ <dakr@kernel.org>,  Matthew Brost <matthew.brost@intel.com>, Alice Ryhl
+ <aliceryhl@google.com>, Rob Clark	 <robin.clark@oss.qualcomm.com>, Dmitry
+ Baryshkov <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul	 <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>, 
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, Natalie
+ Vock	 <natalie.vock@gmx.de>
+Date: Thu, 21 May 2026 13:45:35 +0200
+In-Reply-To: <da49f6c2-5b6e-4bd6-8940-84206b5913f8@amd.com>
+References: <20260520101616.41284-1-thomas.hellstrom@linux.intel.com>
+ <da49f6c2-5b6e-4bd6-8940-84206b5913f8@amd.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
-Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Oded Gabbay <ogabbay@kernel.org>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>, Maxime Ripard <mripard@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Subject: [PULL] drm-misc-next
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,199 +83,109 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave, Simona,
+Hi,
 
-Here's another pull request for v7.2-rc1.
+On Wed, 2026-05-20 at 13:34 +0200, Christian K=C3=B6nig wrote:
+> On 5/20/26 12:16, Thomas Hellstr=C3=B6m wrote:
+> > During the work towards enabling exhaustive eviction using full
+> > ww locking in TTM, Christian indicated that the path for the
+> > drm_exec moving forward was to be a full drm_exec helper with
+> > things like userptr validation rather than a WW transaction
+> > abstraction. The idea was then briefly discussed to craft a
+> > WW transaction helper and then subclass that with drm_exec
+> > with the idea that the WW transaction helper could be used in
+> > TTM for eviction and for other uses that didn't mandate a full
+> > exec sequence.
+>=20
+> BTW Natalie is now trying to polish my TTM patches for doing that
+> because some test case for the SteamDeck is running
+>  into issues with pinning buffers for display.
 
-Kind regards,
-~Maarten Lankhorst
+Thanks for the review, Christian.
 
-drm-misc-next-2026-05-21:
-drm-misc-next for v7.2-rc1:
+FWIW I did a POC implementation moving drm_exec as a transaction helper
+to the dma-buf layer, and then re-implemented drm_exec on top as a
+wrapper here:
 
-UAPI Changes:
-- Add VIRTIO_GPU_F_BLOB_ALIGNMENT flag.
+https://gitlab.freedesktop.org/thomash/xe-vibe/-/commits/ww_transaction?ref=
+_type=3Dheads
 
-Cross-subsystem Changes:
-- Add common TMDS character rate constants to video/hdmi and use those
-  in bridge drivers.
+Since this would work on any object with a refererence count and a
+dma_resv, and even mixing them, it would solve a couple of issues:
 
-Core Changes:
-- Fix leak in drm_syncobj_find_fence.
-- Fix OOB reads related to DP-MST.
-- Create drm_get_bridge_by_endpoint and convert drivers to use it in
-  preparation of hotplug.
+1) Decouple the ttm object refcount issue from the TTM exhaustive
+eviction (Not saying we shouldn't get rid of the ttm object refcount
+anyway).
 
-Driver Changes:
-- Assorted bugfixes and cleanups to accel/ethosu, imagination, virtio,
-  rockchip.
-- Expandable device heap support to amdxdna, bridge/chipone-icn6211.
-- Add Surface Pro 12 panels.
-- Convert ite-it6211 to use drm hdmi audio helpers.
-The following changes since commit 4c26e162947f91aa78ba57dd4fddd38fc80e7d60:
+2) Implement any eviction locking modes (like snapshotting, object
+release after slow-lock and similar) separate from drm_exec, and keep
+exec as a pure exec-buf helper.
 
-  drm/virtio: Extend blob UAPI with deferred-mapping hinting (2026-05-14 00:57:34 +0300)
+3) Facilitate ww locking in dma_buf_map().
 
-are available in the Git repository at:
+4) Directly lock VMs instead of vm objects.
 
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-2026-05-21
+I haven't posted the patches yet since I wanted to get some feedback
+first of whether this is a reasonable direction.
 
-for you to fetch changes up to bfb76105b864af5553263a2156eecd7f08d7810b:
+Thanks,
+Thomas
 
-  drm/bridge: ite-it66121: Convert to DRM HDMI Audio Helper (2026-05-21 12:03:08 +0200)
-
-----------------------------------------------------------------
-drm-misc-next for v7.2-rc1:
-
-UAPI Changes:
-- Add VIRTIO_GPU_F_BLOB_ALIGNMENT flag.
-
-Cross-subsystem Changes:
-- Add common TMDS character rate constants to video/hdmi and use those
-  in bridge drivers.
-
-Core Changes:
-- Fix leak in drm_syncobj_find_fence.
-- Fix OOB reads related to DP-MST.
-- Create drm_get_bridge_by_endpoint and convert drivers to use it in
-  preparation of hotplug.
-
-Driver Changes:
-- Assorted bugfixes and cleanups to accel/ethosu, imagination, virtio,
-  rockchip.
-- Expandable device heap support to amdxdna, bridge/chipone-icn6211.
-- Add Surface Pro 12 panels.
-- Convert ite-it6211 to use drm hdmi audio helpers.
-
-----------------------------------------------------------------
-Alexandru Dadu (1):
-      drm/imagination: Add support for trace points
-
-Ashutosh Desai (2):
-      drm/dp/mst: fix OOB reads in remote DPCD/I2C sideband reply parsers
-      drm/dp/mst: fix OOB reads on 2-byte fields in sideband reply parsers
-
-Brajesh Gupta (4):
-      drm/imagination: Populate FW common context ID before passing to the FW
-      drm/imagination: Don't timeout job if its fence has been signaled
-      drm/imagination: Rename FW booted to FW initialised
-      drm/imagination: Access FW initialised state with READ/WRITE_ONCE
-
-Deepanshu Kartikey (1):
-      drm/virtio: use uninterruptible resv lock for plane updates
-
-Harrison Vanderbyl (1):
-      drm/panel-edp: Add panel for Surface Pro 12in
-
-Javier Martinez Canillas (9):
-      drm/imagination: Fix missing argument in pvr_power_fw_{en,dis}able()
-      video/hdmi: Add common TMDS character rate constants
-      drm/bridge: dw-hdmi: Use the common TMDS char rate constant
-      drm/bridge: dw-hdmi-qp: Use the common TMDS char rate constant
-      drm/bridge: inno-hdmi: Use the common TMDS char rate constant
-      drm/sti: hdmi: Use the common TMDS char rate constants
-      drm/sun4i: hdmi: Use the common TMDS char rate constant
-      drm/msm/hdmi: Use the common TMDS char rate constants in 8996 PHY
-      drm/msm/hdmi: Use the common TMDS char rate constants in 8998 PHY
-
-Liviu Dudau (1):
-      drm/syncobj: Fix memory leak in drm_syncobj_find_fence()
-
-Lizhi Hou (1):
-      accel/amdxdna: Add expandable device heap support
-
-Luca Ceresoli (11):
-      drm/bridge: drm_bridge_put(): ignore ERR_PTR
-      drm/bridge: add of_drm_get_bridge_by_endpoint()
-      drm/msm/hdmi: switch to of_drm_get_bridge_by_endpoint()
-      drm/hisilicon/kirin: switch to of_drm_get_bridge_by_endpoint()
-      drm/bridge: chrontel-ch7033: switch to of_drm_get_bridge_by_endpoint()
-      drm/bridge: lontium-lt9611uxc: switch to of_drm_get_bridge_by_endpoint()
-      drm/bridge: lt9611: switch to of_drm_get_bridge_by_endpoint()
-      drm/bridge: adv7511: switch to of_drm_get_bridge_by_endpoint()
-      drm/bridge: lt8713sx: switch to of_drm_get_bridge_by_endpoint()
-      drm: zynqmp_dp: switch to of_drm_get_bridge_by_endpoint()
-      drm: of: forbid bridge-only calls to drm_of_find_panel_or_bridge()
-
-Osama Abdelkader (1):
-      drm/bridge: chipone-icn6211: use devm_drm_bridge_add in dsi probe
-
-Rob Herring (Arm) (1):
-      accel: ethosu: Validate SRAM size on submit
-
-Sen Wang (1):
-      drm/bridge: ite-it66121: Convert to DRM HDMI Audio Helper
-
-Sergio Lopez (3):
-      drm/virtio: support VIRTIO_GPU_F_BLOB_ALIGNMENT
-      drm/virtio: honor blob_alignment requirements
-      drm/virtio: add VIRTGPU_PARAM_BLOB_ALIGNMENT to params
-
-Vladimir Oltean (1):
-      drm/rockchip: dw_hdmi: avoid direct dereference of phy->dev.of_node
-
- drivers/accel/amdxdna/aie2_ctx.c               |  45 +++-
- drivers/accel/amdxdna/aie2_message.c           |  52 +++-
- drivers/accel/amdxdna/aie2_msg_priv.h          |   1 +
- drivers/accel/amdxdna/aie2_pci.c               |   1 +
- drivers/accel/amdxdna/aie2_pci.h               |   8 +-
- drivers/accel/amdxdna/amdxdna_ctx.c            |  82 +++++-
- drivers/accel/amdxdna/amdxdna_ctx.h            |   2 +
- drivers/accel/amdxdna/amdxdna_gem.c            | 330 +++++++++++++++++++------
- drivers/accel/amdxdna/amdxdna_gem.h            |  16 +-
- drivers/accel/amdxdna/amdxdna_pci_drv.c        |  12 +-
- drivers/accel/amdxdna/amdxdna_pci_drv.h        |   8 +-
- drivers/accel/amdxdna/npu1_regs.c              |   1 +
- drivers/accel/amdxdna/npu4_regs.c              |   2 +
- drivers/accel/amdxdna/npu5_regs.c              |   1 +
- drivers/accel/amdxdna/npu6_regs.c              |   1 +
- drivers/accel/ethosu/ethosu_job.c              |  18 +-
- drivers/gpu/drm/bridge/adv7511/adv7511.h       |   1 -
- drivers/gpu/drm/bridge/adv7511/adv7511_drv.c   |  15 +-
- drivers/gpu/drm/bridge/chipone-icn6211.c       |  11 +-
- drivers/gpu/drm/bridge/chrontel-ch7033.c       |  28 +--
- drivers/gpu/drm/bridge/inno-hdmi.c             |   4 +-
- drivers/gpu/drm/bridge/ite-it66121.c           | 138 ++++-------
- drivers/gpu/drm/bridge/lontium-lt8713sx.c      |  10 +-
- drivers/gpu/drm/bridge/lontium-lt9611.c        |   9 +-
- drivers/gpu/drm/bridge/lontium-lt9611uxc.c     |   9 +-
- drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c   |   6 +-
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.c      |  10 +-
- drivers/gpu/drm/display/drm_dp_mst_topology.c  |  23 +-
- drivers/gpu/drm/drm_bridge.c                   |  45 +++-
- drivers/gpu/drm/drm_of.c                       |  26 +-
- drivers/gpu/drm/drm_syncobj.c                  |  10 +-
- drivers/gpu/drm/hisilicon/kirin/dw_drm_dsi.c   |   9 +-
- drivers/gpu/drm/imagination/Makefile           |   3 +
- drivers/gpu/drm/imagination/pvr_context.c      |  32 +--
- drivers/gpu/drm/imagination/pvr_device.c       |   2 +-
- drivers/gpu/drm/imagination/pvr_drv.c          |   3 +
- drivers/gpu/drm/imagination/pvr_fw.c           |   4 +-
- drivers/gpu/drm/imagination/pvr_fw.h           |   7 +-
- drivers/gpu/drm/imagination/pvr_job.c          |   3 +
- drivers/gpu/drm/imagination/pvr_mmu.c          |   4 +-
- drivers/gpu/drm/imagination/pvr_power.c        |  10 +-
- drivers/gpu/drm/imagination/pvr_queue.c        |  12 +-
- drivers/gpu/drm/imagination/pvr_trace.h        | 113 +++++++++
- drivers/gpu/drm/imagination/pvr_trace_points.c |   7 +
- drivers/gpu/drm/msm/hdmi/hdmi.c                |  70 ++++--
- drivers/gpu/drm/msm/hdmi/hdmi_phy_8996.c       |   6 +-
- drivers/gpu/drm/msm/hdmi/hdmi_phy_8998.c       |   6 +-
- drivers/gpu/drm/panel/panel-edp.c              |   1 +
- drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c    |  25 +-
- drivers/gpu/drm/sti/sti_hdmi_tx3g4c28phy.c     |   6 +-
- drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c         |   4 +-
- drivers/gpu/drm/virtio/virtgpu_drv.c           |   1 +
- drivers/gpu/drm/virtio/virtgpu_drv.h           |   3 +
- drivers/gpu/drm/virtio/virtgpu_gem.c           |  17 ++
- drivers/gpu/drm/virtio/virtgpu_ioctl.c         |  10 +
- drivers/gpu/drm/virtio/virtgpu_kms.c           |  14 +-
- drivers/gpu/drm/virtio/virtgpu_plane.c         |  10 +-
- drivers/gpu/drm/xlnx/zynqmp_dp.c               |  19 +-
- include/drm/drm_bridge.h                       |   7 +
- include/linux/hdmi.h                           |   6 +
- include/uapi/drm/virtgpu_drm.h                 |   1 +
- include/uapi/linux/virtio_gpu.h                |   9 +
- 62 files changed, 976 insertions(+), 373 deletions(-)
- create mode 100644 drivers/gpu/drm/imagination/pvr_trace.h
- create mode 100644 drivers/gpu/drm/imagination/pvr_trace_points.c
+>=20
+> > Regardless whether that actually happens or not, this series
+> > aims to clean up abuses of drm_exec internals in drivers
+> > so that future development of drm_exec isn't blocked by
+> > such driver usage.
+>=20
+> Yeah completely agree, going to review those patches now.
+>=20
+> Regards,
+> Christian.
+>=20
+> >=20
+> > Except for patch 2 which is a small cleanup only.
+> >=20
+> > v2:
+> > - An drm/msm patch was already merged.
+> > - Use a unique id for the loop variable (patch 1) (Christian)
+> > - Move assignment to declaration (patch 2) (Christian)
+> > - Declare the retry pointer as void *const. (patch 2)
+> > - Only allow if the drm_exec context is newly initialized. (patch
+> > 3)
+> > =C2=A0 (Christian)
+> > - Fix amdgpu compile error (patch 4) (Intel CI)
+> > - Update the commit message (patch 4)
+> >=20
+> > Thomas Hellstr=C3=B6m (4):
+> > =C2=A0 drm/exec: Remove the index parameter from
+> > =C2=A0=C2=A0=C2=A0 drm_exec_for_each_locked_obj[_reverse]
+> > =C2=A0 drm/exec: Make the drm_exec_until_all_locked() macro more
+> > readable
+> > =C2=A0 drm/exec, drm/xe: Avoid abusing the drm_exec retry pointer
+> > =C2=A0 drm/exec, drm/xe, drm/amdgpu: Add an accessor for struct
+> > =C2=A0=C2=A0=C2=A0 drm_exec::ticket
+> >=20
+> > =C2=A0.../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c=C2=A0 |=C2=A0 4 +-
+> > =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 | 15 ++--
+> > =C2=A0.../drm/amd/amdgpu/amdgpu_eviction_fence.c=C2=A0=C2=A0=C2=A0 |=C2=
+=A0 3 +-
+> > =C2=A0drivers/gpu/drm/drm_exec.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ |=C2=A0 9 +--
+> > =C2=A0drivers/gpu/drm/drm_gpuvm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=
+=C2=A0 3 +-
+> > =C2=A0drivers/gpu/drm/xe/xe_validation.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 4 +-
+> > =C2=A0drivers/gpu/drm/xe/xe_validation.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 +-
+> > =C2=A0drivers/gpu/drm/xe/xe_vm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ |=C2=A0 3 +-
+> > =C2=A0include/drm/drm_exec.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 | 71 ++++++++++++++-
+> > ----
+> > =C2=A09 files changed, 70 insertions(+), 44 deletions(-)
+> >=20
