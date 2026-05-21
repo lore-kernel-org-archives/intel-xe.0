@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12466CD4F3C
-	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 07:48:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F6ABCD343F
+	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 07:50:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C3DB910F23C;
-	Thu, 21 May 2026 07:48:46 +0000 (UTC)
-Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70C2510F23C;
- Thu, 21 May 2026 07:48:45 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3417633285450973766=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id CED7810F236;
+	Thu, 21 May 2026 07:50:23 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mVEVpPW/";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D0C410F236
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 May 2026 07:50:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1779349823; x=1810885823;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=j/gTHCrP9Cm5wXdqMubdnUnKaSwWamTEbrkJzIb4KLE=;
+ b=mVEVpPW/4H7OMVneElcd5pbxmBugfYFHCX3CPgJ8kSvR7Kn8fv/drYS0
+ 6rZ4Nt1hVqXwNKEDvaOVKd1KYfDak67lNQ7HS9rwVxx6mcI5hXbVK3Q8h
+ G2DFuPQQiElhk1xPLuN/uXClBT/5TaC/4qmYZWNwOZDLqhJDqf/cFhgrl
+ uCuSlonU3S7C9vPbgI6+63heXPz6kL4DxvJ/R0It32nULX5rYFEGR+UMu
+ GoSE7LkXb0XzXuG3qrSAesW+Ak2LNz46lLBM26eIw4h0yIABI4Gfi/xDJ
+ ufjeuM8GLsp127bcmgQRVMio0reYlF7HvES4rAhFsLvZ8Q7ZxYTzRWiE0 g==;
+X-CSE-ConnectionGUID: gPC945wqTnGQttkhREgtNw==
+X-CSE-MsgGUID: Sy+pkpUURGyDa6i/NKibiw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11792"; a="80383465"
+X-IronPort-AV: E=Sophos;i="6.23,245,1770624000"; d="scan'208";a="80383465"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2026 00:50:22 -0700
+X-CSE-ConnectionGUID: k65LGtJnTGuV7QKMR0KcyQ==
+X-CSE-MsgGUID: 0tMaKbX3QHyN7sVKI9pSVA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,245,1770624000"; d="scan'208";a="239601835"
+Received: from cs2n1.iind.intel.com (HELO cs2n1..) ([10.223.246.13])
+ by orviesa010.jf.intel.com with ESMTP; 21 May 2026 00:50:21 -0700
+From: Mohanram Meenakshisundaram <mohanram.meenakshisundaram@intel.com>
+To: intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
+ rodrigo.vivi@intel.com
+Subject: [PATCH v2 1/2] drm/xe: Fix return type of disable_late_binding_set()
+ in debugfs
+Date: Thu, 21 May 2026 13:14:09 +0530
+Message-Id: <20260521074409.2112472-1-mohanram.meenakshisundaram@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260521060338.2112191-2-mohanram.meenakshisundaram@intel.com>
+References: <20260521060338.2112191-2-mohanram.meenakshisundaram@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Fix_return_type_o?=
- =?utf-8?q?f_disable=5Flate=5Fbinding=5Fset=28=29_in_debugfs_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mohanram Meenakshisundaram" <mohanram.meenakshisundaram@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 21 May 2026 07:48:45 -0000
-Message-ID: <177934972545.94609.8331494493843766322@5ab824fced77>
-X-Patchwork-Hint: ignore
-References: <20260520070255.2021100-1-mohanram.meenakshisundaram@intel.com>
-In-Reply-To: <20260520070255.2021100-1-mohanram.meenakshisundaram@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,130 +63,10 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3417633285450973766==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Sorry for creating this new series by mistake, I already replied [1] to original series
+Don't review this patch
 
-== Series Details ==
-
-Series: drm/xe: Fix return type of disable_late_binding_set() in debugfs (rev2)
-URL   : https://patchwork.freedesktop.org/series/166914/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-5106-a7f4472d401c5c4ee7710c20b7350b6958b8bbed_BAT -> xe-pw-166914v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-166914v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_live_ktest@xe_dma_buf:
-    - bat-bmg-vm:         [PASS][1] -> [ABORT][2] ([Intel XE#8007] / [Intel XE#8023]) +1 other test abort
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5106-a7f4472d401c5c4ee7710c20b7350b6958b8bbed/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166914v2/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html
-
-  
-  [Intel XE#8007]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007
-  [Intel XE#8023]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8023
-
-
-Build changes
--------------
-
-  * IGT: IGT_8926 -> IGT_8927
-  * Linux: xe-5106-a7f4472d401c5c4ee7710c20b7350b6958b8bbed -> xe-pw-166914v2
-
-  IGT_8926: 8926
-  IGT_8927: 3adedfd3a52fa7cdf94df31e5da59e0fdbda92fd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5106-a7f4472d401c5c4ee7710c20b7350b6958b8bbed: a7f4472d401c5c4ee7710c20b7350b6958b8bbed
-  xe-pw-166914v2: 166914v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166914v2/index.html
-
---===============3417633285450973766==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Fix return type of disable_late_binding_set() in debugfs (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166914/">https://patchwork.freedesktop.org/series/166914/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166914v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166914v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5106-a7f4472d401c5c4ee7710c20b7350b6958b8bbed_BAT -&gt; xe-pw-166914v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-166914v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_dma_buf:<ul>
-<li>bat-bmg-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5106-a7f4472d401c5c4ee7710c20b7350b6958b8bbed/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166914v2/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8023">Intel XE#8023</a>) +1 other test abort</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8926 -&gt; IGT_8927</li>
-<li>Linux: xe-5106-a7f4472d401c5c4ee7710c20b7350b6958b8bbed -&gt; xe-pw-166914v2</li>
-</ul>
-<p>IGT_8926: 8926<br />
-  IGT_8927: 3adedfd3a52fa7cdf94df31e5da59e0fdbda92fd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5106-a7f4472d401c5c4ee7710c20b7350b6958b8bbed: a7f4472d401c5c4ee7710c20b7350b6958b8bbed<br />
-  xe-pw-166914v2: 166914v2</p>
-
-</body>
-</html>
-
---===============3417633285450973766==--
+[1] https://patchwork.freedesktop.org/series/166914
