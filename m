@@ -4,66 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB4E4CD5BAF
-	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 21:13:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D614CD5BAF
+	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 21:18:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FF3210F400;
-	Thu, 21 May 2026 21:13:52 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GHlK/b9s";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A99210F400;
- Thu, 21 May 2026 21:13:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779398032; x=1810934032;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=m5GrKAL+S+WBacFu/QmvOfw1uVYvyZAumkoSJsTt3yM=;
- b=GHlK/b9smU9H/xgrJU+e8YdKhQUNqM0h7jVy07FzrSBgME/Tcd1uPjoS
- /40eUYA0ZE9TifhSBBqIDeXB8TmGT0LidOLNfXFrnFZITYG0dkCnxgTFS
- qO3EZTovMhsIjW5GB/LuTPKDxV6uQi3O3P2Z2o8/ZUVc6+r2rXgZyaNIy
- sS52iOQIVNtoN+R7lPGm0JRrXbSFBTis6vVEDGo/ePOV3B7LyRXpusq7r
- vKvuex/pJTyiL9Arv0v5S54LeIBcyMoXHR956Y+hq4R4CEa7oKqpsTkE6
- pRuZj2fxK4j6/JlawsB8eFKN1R3mxj2ELxY/Pdre5UO1XKNvug7K1gS2N g==;
-X-CSE-ConnectionGUID: X0kpUKQ8S6+hV2pQRYTZVQ==
-X-CSE-MsgGUID: Bk60Us8nSrah/y/D81gysA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11793"; a="79478475"
-X-IronPort-AV: E=Sophos;i="6.24,161,1774335600"; d="scan'208";a="79478475"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2026 14:13:51 -0700
-X-CSE-ConnectionGUID: Nu3nyo+ZQ161NLJciIj9GA==
-X-CSE-MsgGUID: K8BYKM/uRkWkxIvC75nh3g==
-X-ExtLoop1: 1
-Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.86])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2026 14:13:47 -0700
-Date: Fri, 22 May 2026 00:13:43 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Marius Hoch <mail@mariushoch.de>
-Cc: linux-kernel@vger.kernel.org, stable@vger.kernel.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Joe Perches <joe@perches.com>, Mika Kahola <mika.kahola@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915: Don't set min_cdclk in the initial crtc_state
-Message-ID: <ag91h3UbwPQ7cmXg@intel.com>
-References: <20260521180722.328317-2-mail@mariushoch.de>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C734910E25E;
+	Thu, 21 May 2026 21:18:51 +0000 (UTC)
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD8EA10E25E;
+ Thu, 21 May 2026 21:18:49 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2199886174491184446=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260521180722.328317-2-mail@mariushoch.de>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dmc=3A_Test_Xe3LPD?=
+ =?utf-8?q?=5F3002_DMC_v2=2E31?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gustavo Sousa" <gustavo.sousa@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 21 May 2026 21:18:49 -0000
+Message-ID: <177939832985.97952.3451213577501315497@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260521182024.72829-1-gustavo.sousa@intel.com>
+In-Reply-To: <20260521182024.72829-1-gustavo.sousa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,65 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, May 21, 2026 at 08:07:12PM +0200, Marius Hoch wrote:
-> Setting the min_cdclk this early means that intel_cdclk_atomic_check
-> (called via intel_atomic_check) will not pick up the initial min_cdclk, as
-> there is no change between the old and new atomic states.
+--===============2199886174491184446==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-If there is no change then there is no need to change the CDCLK.
-It's hard to say what you're really trying to work around here.
+== Series Details ==
 
-Please a file a new bug at
-https://gitlab.freedesktop.org/drm/intel/issues/new and
-attach the full dmesg from boot with 'log_buf_len=4M drm.debug=0xe'
-passed to he kernel cmdline.
+Series: drm/i915/dmc: Test Xe3LPD_3002 DMC v2.31
+URL   : https://patchwork.freedesktop.org/series/167045/
+State : success
 
-> This is
-> problematic, especially on Gemini Lake, where the picture gets unstable if
-> the CDCLK is too low (see vlv_dsi_min_cdclk).
-> 
-> This was introduced in 7a8d9cfa6db0, which states that the min_cdclk must
-> be set before calling intel_compute_global_watermarks. However, as the
-> only place that calls intel_compute_global_watermarks is
-> intel_atomic_check, right after setting the min_cdclk on new_crtc_state,
-> there is no need to set the min_cdclk initially.
-> 
-> This surfaced as a bug on my IdeaPad Duet 3 after ba91b9eecb47, leading
-> to the screen output being completely garbled initially (when asking for
-> the dm-crypt passphrase). It recovers after the passphrase prompt, as this
-> only affects the initial state.
-> 
-> Tested on an IdeaPad Duet 3 10IGL5-LTE (with UHD Graphics 605).
-> 
-> Cc: stable@vger.kernel.org
-> Fixes: 7a8d9cfa6db0 ("drm/i915: Compute per-crtc min_cdclk earlier")
-> Signed-off-by: Marius Hoch <mail@mariushoch.de>
-> ---
->  drivers/gpu/drm/i915/display/intel_modeset_setup.c | 5 -----
->  1 file changed, 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-> index 4086f16a12bf..9278856375e9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-> +++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-> @@ -865,11 +865,6 @@ static void intel_modeset_readout_hw_state(struct intel_display *display)
->  				    crtc_state->plane_min_cdclk[plane->id]);
->  		}
->  
-> -		crtc_state->min_cdclk = intel_crtc_min_cdclk(crtc_state);
-> -
-> -		drm_dbg_kms(display->drm, "[CRTC:%d:%s] min_cdclk %d kHz\n",
-> -			    crtc->base.base.id, crtc->base.name, crtc_state->min_cdclk);
-> -
->  		intel_pmdemand_update_port_clock(display, pmdemand_state, pipe,
->  						 crtc_state->port_clock);
->  	}
-> -- 
-> 2.54.0
+== Summary ==
 
--- 
-Ville Syrjälä
-Intel
+CI Bug Log - changes from xe-5113-f103db97c610a41177720b08aa4a2a05f9b42d49_BAT -> xe-pw-167045v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8931 -> IGT_8932
+  * Linux: xe-5113-f103db97c610a41177720b08aa4a2a05f9b42d49 -> xe-pw-167045v1
+
+  IGT_8931: 73eddd089afd99e93ff688dfcad56b1c54d30a70 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8932: 8932
+  xe-5113-f103db97c610a41177720b08aa4a2a05f9b42d49: f103db97c610a41177720b08aa4a2a05f9b42d49
+  xe-pw-167045v1: 167045v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167045v1/index.html
+
+--===============2199886174491184446==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dmc: Test Xe3LPD_3002 DMC v2.31</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167045/">https://patchwork.freedesktop.org/series/167045/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167045v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167045v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5113-f103db97c610a41177720b08aa4a2a05f9b42d49_BAT -&gt; xe-pw-167045v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8931 -&gt; IGT_8932</li>
+<li>Linux: xe-5113-f103db97c610a41177720b08aa4a2a05f9b42d49 -&gt; xe-pw-167045v1</li>
+</ul>
+<p>IGT_8931: 73eddd089afd99e93ff688dfcad56b1c54d30a70 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8932: 8932<br />
+  xe-5113-f103db97c610a41177720b08aa4a2a05f9b42d49: f103db97c610a41177720b08aa4a2a05f9b42d49<br />
+  xe-pw-167045v1: 167045v1</p>
+
+</body>
+</html>
+
+--===============2199886174491184446==--
