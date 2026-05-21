@@ -4,27 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5482CD4F3D
-	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 18:49:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3CD1CD5BAC
+	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 18:56:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94F4210E1DF;
-	Thu, 21 May 2026 18:49:21 +0000 (UTC)
-Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC50B10E1DF;
- Thu, 21 May 2026 18:49:20 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5865011724144949955=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EDBF10E54C;
+	Thu, 21 May 2026 18:56:53 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="WyiW9jrJ";
+	dkim-atps=neutral
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8352C10E1DF;
+ Thu, 21 May 2026 18:56:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Cc:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=sVjLEB7Naf89XwfAlVqfn6fiYt2mgbkC8rcKbVFM4ZQ=; b=WyiW9jrJE3IPmDbqRIByANcIDk
+ F7bPShMluB90PMXEsvGSzgYTqQdg62Gi8gibiqP9BZAAN3Fs0rRSGmU2td/yfGgC7/eQlCqFwHrS/
+ jC/kVuhnyxryPeT+ITnQu9D/gr65P0RO0Tk2Ww66iZDXCo9A4+TDXiilYxrMYMFjTN48j9V/oO/vt
+ v6CNfXBsHE2uPMii8EiiN+niyVqrFwPPlWqtibsm06ESeCeV9E+lUUBIG4N9rMq1m7nXZktWGTpON
+ ovS9a5si3THkoGFwxNCwoaK7uLdPcsxDTckPWNvy47Zli3MyjkD0xZiRkUNf5WKE83lqmKF1LY4r7
+ BSVSRpaA==;
+Received: from c-73-157-168-91.hsd1.or.comcast.net ([73.157.168.91]
+ helo=[192.168.1.133]) by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1wQ8ZZ-004V6y-8Z; Thu, 21 May 2026 20:56:45 +0200
+Message-ID: <add51789-7291-40d6-9c8a-f68f46f1f11c@Igalia.com>
+Date: Thu, 21 May 2026 11:56:38 -0700
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/debugfs=3A_Add_a_deb?=
- =?utf-8?q?ugfs_for_pcode_information_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Karthik Poosa" <karthik.poosa@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 21 May 2026 18:49:20 -0000
-Message-ID: <177938936080.96802.17306712620813798453@5ab824fced77>
-X-Patchwork-Hint: ignore
-References: <20260521174642.1021590-1-karthik.poosa@intel.com>
-In-Reply-To: <20260521174642.1021590-1-karthik.poosa@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/7] Refactor drm_writeback_connector structure
+To: Suraj Kandpal <suraj.kandpal@intel.com>, freedreno@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, kernel-list@raspberrypi.com,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+References: <20260521053708.1475129-1-suraj.kandpal@intel.com>
+Content-Language: en-GB
+From: John Harrison <John.Harrison@Igalia.com>
+In-Reply-To: <20260521053708.1475129-1-suraj.kandpal@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,141 +58,77 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5865011724144949955==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 5/20/26 22:37, Suraj Kandpal wrote:
+> Some drivers cannot work with the current design where the connector
+> is embedded within the drm_writeback_connector such as intel and
+> some drivers that can get it working end up adding a lot of checks
+> all around the code to check if it's a writeback conenctor or not.
+> This is due to the inheritance limitation in C.
+> This series intends to solve it by moving the drm_writeback_connector
+> within the drm_connector and remove the drm_connector base which was in
+> drm_writeback_connector. This is done in union with hdmi connector
+> within drm_connector to save memory and since drm_connector cannot be
+> both hdmi and writeback it serves is well.
+> A RFC version was floated and discussion had taken place at [1] which
+> kicked of this more cleaner series.
+> We do all other required modifications that come with these changes
+> along with addition of new function which returns the drm_connector when
+> drm_writeback_connector is present.
+> This series also contains some writeback API cleanups as a consequence
+> of writeback connector moving into drm_connector
+> All drivers will be expected to allocate the drm_connector.
+> This discussion was tiggered from [2] and sits on top of Dmitry's series
+> see [3].
+>
+> [1] https://patchwork.freedesktop.org/series/152758/
+> [2] https://patchwork.freedesktop.org/series/152106/
+> [3] https://patchwork.freedesktop.org/series/152420/
+QQ: What tree is this patch set based on? I tried to apply it locally 
+but I get conflicts no matter what baseline I use. I've tried full 
+kernel, drm-tip and drm-next. Dmitry's patch set, [3] above, applies 
+fine but I get conflicts in the rcar and mali files when trying to apply 
+this set.
 
-== Series Details ==
+Thanks,
+John.
 
-Series: drm/xe/debugfs: Add a debugfs for pcode information (rev2)
-URL   : https://patchwork.freedesktop.org/series/163703/
-State : failure
+>
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+>
+> Suraj Kandpal (7):
+>    drm: writeback: Refactor drm_writeback_connector structure
+>    drm: writeback: Modify writeback init helpers
+>    drm: writeback: Modify drm_writeback_queue_job helper
+>    drm: writeback: Modify drm_writeback_signal_completion helper
+>    drm: writeback: Modify drm_writeback_get_out_fence helper
+>    drm: writeback: Modify prepare_writeback_job helper
+>    drm: writeback: Modify cleanup_writeback_job helper
+>
+>   .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 10 +--
+>   .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |  2 +-
+>   .../drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c  | 12 +--
+>   .../gpu/drm/arm/display/komeda/komeda_crtc.c  |  2 +-
+>   .../gpu/drm/arm/display/komeda/komeda_kms.h   |  6 +-
+>   .../arm/display/komeda/komeda_wb_connector.c  | 11 +--
+>   drivers/gpu/drm/arm/malidp_crtc.c             |  2 +-
+>   drivers/gpu/drm/arm/malidp_drv.h              |  2 +-
+>   drivers/gpu/drm/arm/malidp_mw.c               |  7 +-
+>   drivers/gpu/drm/drm_atomic_uapi.c             |  4 +-
+>   drivers/gpu/drm/drm_writeback.c               | 50 +++++++-----
+>   .../drm/msm/disp/dpu1/dpu_encoder_phys_wb.c   |  9 ++-
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c | 10 +--
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.h |  4 +-
+>   .../gpu/drm/renesas/rcar-du/rcar_du_crtc.h    |  6 +-
+>   .../drm/renesas/rcar-du/rcar_du_writeback.c   | 16 ++--
+>   drivers/gpu/drm/vc4/vc4_txp.c                 |  8 +-
+>   drivers/gpu/drm/vkms/vkms_drv.h               |  2 +-
+>   drivers/gpu/drm/vkms/vkms_writeback.c         | 15 ++--
+>   include/drm/drm_connector.h                   | 69 ++++++++++++++++-
+>   include/drm/drm_modeset_helper_vtables.h      |  4 +-
+>   include/drm/drm_writeback.h                   | 76 ++-----------------
+>   22 files changed, 164 insertions(+), 163 deletions(-)
+>
 
-== Summary ==
-
-CI Bug Log - changes from xe-5111-8685faab47e7160aabc4a2761545f8604b6e3679_BAT -> xe-pw-163703v2_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-163703v2_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-163703v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-163703v2_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@core_debugfs@read-all-entries:
-    - bat-bmg-vm:         [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5111-8685faab47e7160aabc4a2761545f8604b6e3679/bat-bmg-vm/igt@core_debugfs@read-all-entries.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163703v2/bat-bmg-vm/igt@core_debugfs@read-all-entries.html
-    - bat-ptl-vm:         [PASS][3] -> [ABORT][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5111-8685faab47e7160aabc4a2761545f8604b6e3679/bat-ptl-vm/igt@core_debugfs@read-all-entries.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163703v2/bat-ptl-vm/igt@core_debugfs@read-all-entries.html
-    - bat-atsm-2:         [PASS][5] -> [DMESG-WARN][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5111-8685faab47e7160aabc4a2761545f8604b6e3679/bat-atsm-2/igt@core_debugfs@read-all-entries.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163703v2/bat-atsm-2/igt@core_debugfs@read-all-entries.html
-
-  
-
-
-Build changes
--------------
-
-  * Linux: xe-5111-8685faab47e7160aabc4a2761545f8604b6e3679 -> xe-pw-163703v2
-
-  IGT_8930: 8930
-  xe-5111-8685faab47e7160aabc4a2761545f8604b6e3679: 8685faab47e7160aabc4a2761545f8604b6e3679
-  xe-pw-163703v2: 163703v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163703v2/index.html
-
---===============5865011724144949955==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/debugfs: Add a debugfs for pcode information (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163703/">https://patchwork.freedesktop.org/series/163703/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163703v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163703v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5111-8685faab47e7160aabc4a2761545f8604b6e3679_BAT -&gt; xe-pw-163703v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-163703v2_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-163703v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-163703v2_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@core_debugfs@read-all-entries:<ul>
-<li>bat-bmg-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5111-8685faab47e7160aabc4a2761545f8604b6e3679/bat-bmg-vm/igt@core_debugfs@read-all-entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163703v2/bat-bmg-vm/igt@core_debugfs@read-all-entries.html">ABORT</a></li>
-<li>bat-ptl-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5111-8685faab47e7160aabc4a2761545f8604b6e3679/bat-ptl-vm/igt@core_debugfs@read-all-entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163703v2/bat-ptl-vm/igt@core_debugfs@read-all-entries.html">ABORT</a></li>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5111-8685faab47e7160aabc4a2761545f8604b6e3679/bat-atsm-2/igt@core_debugfs@read-all-entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163703v2/bat-atsm-2/igt@core_debugfs@read-all-entries.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5111-8685faab47e7160aabc4a2761545f8604b6e3679 -&gt; xe-pw-163703v2</li>
-</ul>
-<p>IGT_8930: 8930<br />
-  xe-5111-8685faab47e7160aabc4a2761545f8604b6e3679: 8685faab47e7160aabc4a2761545f8604b6e3679<br />
-  xe-pw-163703v2: 163703v2</p>
-
-</body>
-</html>
-
---===============5865011724144949955==--
