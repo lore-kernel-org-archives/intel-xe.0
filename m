@@ -4,53 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84276CD5BAB
-	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 23:31:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0447CD5BAF
+	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 23:31:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FD8510E044;
-	Thu, 21 May 2026 23:31:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B94410F44B;
+	Thu, 21 May 2026 23:31:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JEYkToey";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Aci42pj/";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D5A5C10F43C
- for <intel-xe@lists.freedesktop.org>; Thu, 21 May 2026 23:31:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779406300; x=1810942300;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ndgTF6QGoT5ijQON9c4kB2eMDZ5n+tu6UcVeb3F3dnQ=;
- b=JEYkToeypRNmo2IviMXNCniVrmvKP8A6Ct7+1ESmJLUE2QVtmWVCh1Z9
- VLOXHQ5LPCbbLkqD7+7iMYokaBG6pi8JX2A3YWBnvqic+4D9Ka86wA2Lp
- aot81aL5HG8nIVfo14HJY95yviRpCqSczTi81gw+GBnBxWTX6j1gGoskY
- wLnmKQ2dbMUeow0SlhL/6oMxQbZvr+/Wp2ojZ1fafB4xOAhabcboicqEB
- rPq5EaZyP22rw03sGj0xjEM+Rs5LNpUZOJugGODJ5pY70izw6qle1seVD
- Ye+NLx5fm0WnedvdQrpJPGvt05MDkyJBEyD/6NqCR1uW5RB+IyQ3yALwz w==;
-X-CSE-ConnectionGUID: TcIaJ+ePQNSD6Zmc2tbJRA==
-X-CSE-MsgGUID: qQqUh8dVTAG87wcBXTbf7g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11793"; a="79370000"
-X-IronPort-AV: E=Sophos;i="6.24,161,1774335600"; d="scan'208";a="79370000"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2026 16:31:39 -0700
-X-CSE-ConnectionGUID: w9UuW6uXQ3SqK4GtmNGu6Q==
-X-CSE-MsgGUID: knv5PP63Q52fRrzyXDB6ig==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,161,1774335600"; d="scan'208";a="240742547"
-Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2026 16:31:40 -0700
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Julia Filipchuk <julia.filipchuk@intel.com>
-Subject: [PATCH] drm/xe/pxp: PXP no longer requires HuC from media 35 onwards
-Date: Thu, 21 May 2026 16:31:33 -0700
-Message-ID: <20260521233132.883021-2-daniele.ceraolospurio@intel.com>
-X-Mailer: git-send-email 2.43.0
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FFA010F43C;
+ Thu, 21 May 2026 23:31:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=EkV1Mms1rY8hQj+82eh/W/rpdTSKaubp2j9PG9oIO2Q=; b=Aci42pj/nbWp6NXf8z4113VsDw
+ utykcBG+GyK3c5PyxZnFsTQInlhz9aIxfDWdSUh9Vel5nYtXefzm/G4BSV/TVnPp7RqvAZjsbm+69
+ iNktuumjocAGtjmbcdm/Uh6SZ/uuHMTw/iRT5Z8+NejZ42B/HuZ2KnaAI5THXvWuMvcrVLok19UAO
+ dRS//HL501euWL+FkY9tUZBNlesZ8lUus8r8fNDBYUfx5ncKIRVeu0Rsr6zs83wsZPQR6pIp/sGuD
+ KCHDFJaw4/AwbJjbNW3lddCiEwYWUL+R8BjZLcDaO1eU0KEgtKekrD173AZsP9z2e4/fbg9+edO1f
+ xUhyNwoA==;
+Received: from c-73-157-168-91.hsd1.or.comcast.net ([73.157.168.91]
+ helo=[192.168.1.133]) by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1wQCrn-004b2R-RW; Fri, 22 May 2026 01:31:52 +0200
+Message-ID: <9923eec8-24c8-49d7-8405-ceeb65739b2c@Igalia.com>
+Date: Thu, 21 May 2026 16:31:44 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 4/7] drm: writeback: Modify
+ drm_writeback_signal_completion helper
+To: Suraj Kandpal <suraj.kandpal@intel.com>, freedreno@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, kernel-list@raspberrypi.com,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Cc: abhinav.kumar@linux.dev, tzimmermann@suse.de,
+ marijn.suijten@somainline.org, laurent.pinchart+renesas@ideasonboard.com,
+ dave.stevenson@raspberrypi.com, tomi.valkeinen+renesas@ideasonboard.com,
+ kieran.bingham+renesas@ideasonboard.com,
+ Louis Chauvet <louis.chauvet@bootlin.com>, kernel-dev@igalia.com,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+References: <20260521053708.1475129-1-suraj.kandpal@intel.com>
+ <20260521053708.1475129-5-suraj.kandpal@intel.com>
+Content-Language: en-GB
+From: John Harrison <John.Harrison@Igalia.com>
+In-Reply-To: <20260521053708.1475129-5-suraj.kandpal@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,90 +69,183 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Starting from media 35 the HuC is loaded by userspace instead of the
-kernel, so it is no longer considered a requirement to start a PXP
-session.
+On 5/20/26 22:37, Suraj Kandpal wrote:
+> drm_writeback_signal_completion() needs access to the parent
+> drm_connector object as well as the drm_writeback_connector object
+> itself. So, pass in the top level drm_connector and traverse down
+> to drm_writeback_connector rather than passing in the lower level
+> object and traversing back up. Update to use the top level object
+> for consistency across the writeback interface.
+>
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> ---
+> v3 -> v4:
+> - Update subject line for consitency (John)
+> - Update commit message across commits for consitency (John)
+>
+>   drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c   | 2 +-
+>   drivers/gpu/drm/arm/display/komeda/komeda_crtc.c    | 2 +-
+>   drivers/gpu/drm/arm/malidp_hw.c                     | 6 +++---
+>   drivers/gpu/drm/drm_writeback.c                     | 6 ++++--
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_wb.c | 4 ++--
+>   drivers/gpu/drm/renesas/rcar-du/rcar_du_writeback.c | 2 +-
+>   drivers/gpu/drm/vc4/vc4_txp.c                       | 2 +-
+>   drivers/gpu/drm/vkms/vkms_composer.c                | 2 +-
+>   include/drm/drm_writeback.h                         | 2 +-
+>   9 files changed, 15 insertions(+), 13 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> index f5154b10e50f..730c44c53287 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> @@ -681,7 +681,7 @@ static void dm_crtc_high_irq(void *interrupt_params)
+>   					     100LL, (v_total * stream->timing.h_total));
+>   				mdelay(1000 / refresh_hz);
+>   
+> -				drm_writeback_signal_completion(acrtc->wb_conn, 0);
+> +				drm_writeback_signal_completion(acrtc->connector, 0);
+>   				dc_stream_fc_disable_writeback(adev->dm.dc,
+>   							       acrtc->dm_irq_params.stream, 0);
+>   			}
+> diff --git a/drivers/gpu/drm/arm/display/komeda/komeda_crtc.c b/drivers/gpu/drm/arm/display/komeda/komeda_crtc.c
+> index c64cf5d97e62..da6bfe2797aa 100644
+> --- a/drivers/gpu/drm/arm/display/komeda/komeda_crtc.c
+> +++ b/drivers/gpu/drm/arm/display/komeda/komeda_crtc.c
+> @@ -213,7 +213,7 @@ void komeda_crtc_handle_event(struct komeda_crtc   *kcrtc,
+>   		struct komeda_wb_connector *wb_conn = kcrtc->wb_conn;
+>   
+>   		if (wb_conn)
+> -			drm_writeback_signal_completion(&wb_conn->base.writeback, 0);
+> +			drm_writeback_signal_completion(&wb_conn->base, 0);
+>   		else
+>   			drm_warn(drm, "CRTC[%d]: EOW happen but no wb_connector.\n",
+>   				 drm_crtc_index(&kcrtc->base));
+> diff --git a/drivers/gpu/drm/arm/malidp_hw.c b/drivers/gpu/drm/arm/malidp_hw.c
+> index 5a7bd27d3718..9b845d3f34e1 100644
+> --- a/drivers/gpu/drm/arm/malidp_hw.c
+> +++ b/drivers/gpu/drm/arm/malidp_hw.c
+> @@ -1315,15 +1315,15 @@ static irqreturn_t malidp_se_irq(int irq, void *arg)
+>   	if (status & se->vsync_irq) {
+>   		switch (hwdev->mw_state) {
+>   		case MW_ONESHOT:
+> -			drm_writeback_signal_completion(&malidp->mw_connector.writeback, 0);
+> +			drm_writeback_signal_completion(&malidp->mw_connector, 0);
+>   			break;
+>   		case MW_STOP:
+> -			drm_writeback_signal_completion(&malidp->mw_connector.writeback, 0);
+> +			drm_writeback_signal_completion(&malidp->mw_connector, 0);
+>   			/* disable writeback after stop */
+>   			hwdev->mw_state = MW_NOT_ENABLED;
+>   			break;
+>   		case MW_RESTART:
+> -			drm_writeback_signal_completion(&malidp->mw_connector.writeback, 0);
+> +			drm_writeback_signal_completion(&malidp->mw_connector, 0);
+>   			fallthrough;	/* to a new start */
+>   		case MW_START:
+>   			/* writeback started, need to emulate one-shot mode */
+> diff --git a/drivers/gpu/drm/drm_writeback.c b/drivers/gpu/drm/drm_writeback.c
+> index 1c1802d87f13..f3b4371d4201 100644
+> --- a/drivers/gpu/drm/drm_writeback.c
+> +++ b/drivers/gpu/drm/drm_writeback.c
+> @@ -477,7 +477,8 @@ static void cleanup_work(struct work_struct *work)
+>   
+>   /**
+>    * drm_writeback_signal_completion - Signal the completion of a writeback job
+> - * @wb_connector: The writeback connector whose job is complete
+> + * @connector: The drm connector whicha has the drm_writeback_connector whose
+whicha -> which
 
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Julia Filipchuk <julia.filipchuk@intel.com>
----
- drivers/gpu/drm/xe/xe_pxp.c | 35 +++++++++++++++++++++++++----------
- 1 file changed, 25 insertions(+), 10 deletions(-)
+With that fixed (and consistent wording across the patches):
+Reviewed-by: John Harrison <John.Harrison@Igalia.com>
 
-diff --git a/drivers/gpu/drm/xe/xe_pxp.c b/drivers/gpu/drm/xe/xe_pxp.c
-index 968b7e70b3f9..fea3d8ceeddb 100644
---- a/drivers/gpu/drm/xe/xe_pxp.c
-+++ b/drivers/gpu/drm/xe/xe_pxp.c
-@@ -59,6 +59,7 @@ bool xe_pxp_is_enabled(const struct xe_pxp *pxp)
- static bool pxp_prerequisites_done(const struct xe_pxp *pxp)
- {
- 	struct xe_gt *gt = pxp->gt;
-+	bool huc_ok;
- 	bool ready;
- 
- 	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-@@ -73,9 +74,14 @@ static bool pxp_prerequisites_done(const struct xe_pxp *pxp)
- 	 */
- 	XE_WARN_ON(!xe_force_wake_ref_has_domain(fw_ref.domains, XE_FORCEWAKE_ALL));
- 
--	/* PXP requires both HuC authentication via GSC and GSC proxy initialized */
--	ready = xe_huc_is_authenticated(&gt->uc.huc, XE_HUC_AUTH_VIA_GSC) &&
--		xe_gsc_proxy_init_done(&gt->uc.gsc);
-+	/*
-+	 * PXP requires GSC proxy to be initialized. On platforms where the HuC
-+	 * is loaded by the kernel driver (i.e., pre media 35) PXP also requires
-+	 * the HuC to be authenticated by GSC.
-+	 */
-+	huc_ok = MEDIA_VER(gt_to_xe(gt)) >= 35 ||
-+		 xe_huc_is_authenticated(&gt->uc.huc, XE_HUC_AUTH_VIA_GSC);
-+	ready = huc_ok && xe_gsc_proxy_init_done(&gt->uc.gsc);
- 
- 	return ready;
- }
-@@ -97,9 +103,13 @@ int xe_pxp_get_readiness_status(struct xe_pxp *pxp)
- 	if (!xe_pxp_is_enabled(pxp))
- 		return -ENODEV;
- 
--	/* if the GSC or HuC FW are in an error state, PXP will never work */
--	if (xe_uc_fw_status_to_error(pxp->gt->uc.huc.fw.status) ||
--	    xe_uc_fw_status_to_error(pxp->gt->uc.gsc.fw.status))
-+	/* If the GSC FW is in an error state, PXP will never work */
-+	if (xe_uc_fw_status_to_error(pxp->gt->uc.gsc.fw.status))
-+		return -EIO;
-+
-+	/* Same for HuC FW, but only if the kernel owns HuC-loading (i.e. pre-NVL) */
-+	if (MEDIA_VER(gt_to_xe(pxp->gt)) < 35 &&
-+	    xe_uc_fw_status_to_error(pxp->gt->uc.huc.fw.status))
- 		return -EIO;
- 
- 	guard(xe_pm_runtime)(pxp->xe);
-@@ -361,6 +371,7 @@ static void pxp_fini(void *arg)
- int xe_pxp_init(struct xe_device *xe)
- {
- 	struct xe_gt *gt = xe->tiles[0].media_gt;
-+	bool gsc_ok, huc_ok;
- 	struct xe_pxp *pxp;
- 	int err;
- 
-@@ -375,10 +386,14 @@ int xe_pxp_init(struct xe_device *xe)
- 	if (!(gt->info.engine_mask & BIT(XE_HW_ENGINE_GSCCS0)))
- 		return 0;
- 
--	/* PXP requires both GSC and HuC firmwares to be available */
--	if (!xe_uc_fw_is_loadable(&gt->uc.gsc.fw) ||
--	    !xe_uc_fw_is_loadable(&gt->uc.huc.fw)) {
--		drm_info(&xe->drm, "skipping PXP init due to missing FW dependencies");
-+	/* PXP requires GSC FW to be available. Pre-NVL it also requires HuC FW */
-+	gsc_ok = xe_uc_fw_is_loadable(&gt->uc.gsc.fw);
-+	huc_ok = MEDIA_VER(xe) >= 35 || xe_uc_fw_is_loadable(&gt->uc.huc.fw);
-+
-+	if (!gsc_ok || !huc_ok) {
-+		drm_info(&xe->drm, "Skipping PXP due to unsatisfied FW deps - GSC=%s, HuC=%s\n",
-+			 str_yes_no(gsc_ok),
-+			 MEDIA_VER(xe) >= 35 ? "not needed" : str_yes_no(huc_ok));
- 		return 0;
- 	}
- 
--- 
-2.43.0
+> + * job is complete
+>    * @status: Status code to set in the writeback out_fence (0 for success)
+>    *
+>    * Drivers should call this to signal the completion of a previously queued
+> @@ -492,10 +493,11 @@ static void cleanup_work(struct work_struct *work)
+>    * See also: drm_writeback_queue_job()
+>    */
+>   void
+> -drm_writeback_signal_completion(struct drm_writeback_connector *wb_connector,
+> +drm_writeback_signal_completion(struct drm_connector *connector,
+>   				int status)
+>   {
+>   	unsigned long flags;
+> +	struct drm_writeback_connector *wb_connector = &connector->writeback;
+>   	struct drm_writeback_job *job;
+>   	struct dma_fence *out_fence;
+>   
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_wb.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_wb.c
+> index 0a4026f22274..977fc0337fbd 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_wb.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_wb.c
+> @@ -370,7 +370,7 @@ static void dpu_encoder_phys_wb_done_irq(void *arg)
+>   	spin_unlock_irqrestore(phys_enc->enc_spinlock, lock_flags);
+>   
+>   	if (wb_enc->wb_conn)
+> -		drm_writeback_signal_completion(wb_enc->wb_conn, 0);
+> +		drm_writeback_signal_completion(drm_writeback_to_connector(wb_enc->wb_conn), 0);
+>   
+>   	/* Signal any waiting atomic commit thread */
+>   	wake_up_all(&phys_enc->pending_kickoff_wq);
+> @@ -431,7 +431,7 @@ static void _dpu_encoder_phys_wb_handle_wbdone_timeout(
+>   	phys_enc->enable_state = DPU_ENC_ERR_NEEDS_HW_RESET;
+>   
+>   	if (wb_enc->wb_conn)
+> -		drm_writeback_signal_completion(wb_enc->wb_conn, 0);
+> +		drm_writeback_signal_completion(drm_writeback_to_connector(wb_enc->wb_conn), 0);
+>   
+>   	dpu_encoder_frame_done_callback(phys_enc->parent, phys_enc, frame_event);
+>   }
+> diff --git a/drivers/gpu/drm/renesas/rcar-du/rcar_du_writeback.c b/drivers/gpu/drm/renesas/rcar-du/rcar_du_writeback.c
+> index 5cd6c81a9710..4b0f6cd46acb 100644
+> --- a/drivers/gpu/drm/renesas/rcar-du/rcar_du_writeback.c
+> +++ b/drivers/gpu/drm/renesas/rcar-du/rcar_du_writeback.c
+> @@ -251,5 +251,5 @@ void rcar_du_writeback_setup(struct rcar_du_crtc *rcrtc,
+>   
+>   void rcar_du_writeback_complete(struct rcar_du_crtc *rcrtc)
+>   {
+> -	drm_writeback_signal_completion(&rcrtc->wb_connector.writeback, 0);
+> +	drm_writeback_signal_completion(&rcrtc->wb_connector, 0);
+>   }
+> diff --git a/drivers/gpu/drm/vc4/vc4_txp.c b/drivers/gpu/drm/vc4/vc4_txp.c
+> index 46330b6f9a12..0d8579683c57 100644
+> --- a/drivers/gpu/drm/vc4/vc4_txp.c
+> +++ b/drivers/gpu/drm/vc4/vc4_txp.c
+> @@ -505,7 +505,7 @@ static irqreturn_t vc4_txp_interrupt(int irq, void *data)
+>   	 */
+>   	TXP_WRITE(TXP_DST_CTRL, TXP_READ(TXP_DST_CTRL) & ~TXP_EI);
+>   	vc4_crtc_handle_vblank(vc4_crtc);
+> -	drm_writeback_signal_completion(&txp->connector.writeback, 0);
+> +	drm_writeback_signal_completion(&txp->connector, 0);
+>   
+>   	return IRQ_HANDLED;
+>   }
+> diff --git a/drivers/gpu/drm/vkms/vkms_composer.c b/drivers/gpu/drm/vkms/vkms_composer.c
+> index 27fb6a7b55bb..83d217085ad0 100644
+> --- a/drivers/gpu/drm/vkms/vkms_composer.c
+> +++ b/drivers/gpu/drm/vkms/vkms_composer.c
+> @@ -652,7 +652,7 @@ void vkms_composer_worker(struct work_struct *work)
+>   		return;
+>   
+>   	if (wb_pending) {
+> -		drm_writeback_signal_completion(&out->wb_connector.writeback, 0);
+> +		drm_writeback_signal_completion(&out->wb_connector, 0);
+>   		spin_lock_irq(&out->composer_lock);
+>   		crtc_state->wb_pending = false;
+>   		spin_unlock_irq(&out->composer_lock);
+> diff --git a/include/drm/drm_writeback.h b/include/drm/drm_writeback.h
+> index b4c11d380df0..5e8ab51c2da4 100644
+> --- a/include/drm/drm_writeback.h
+> +++ b/include/drm/drm_writeback.h
+> @@ -100,7 +100,7 @@ void drm_writeback_queue_job(struct drm_connector *wb_connector,
+>   void drm_writeback_cleanup_job(struct drm_writeback_job *job);
+>   
+>   void
+> -drm_writeback_signal_completion(struct drm_writeback_connector *wb_connector,
+> +drm_writeback_signal_completion(struct drm_connector *connector,
+>   				int status);
+>   
+>   struct dma_fence *
 
