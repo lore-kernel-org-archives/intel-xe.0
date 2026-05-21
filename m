@@ -4,118 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18230CD4F3D
-	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 14:41:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37F69CD5BAC
+	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 14:49:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7DE810F33A;
-	Thu, 21 May 2026 14:41:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5BE610F353;
+	Thu, 21 May 2026 14:49:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=fooishbar.org header.i=@fooishbar.org header.b="fpPt8P12";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B0VK7GrJ";
 	dkim-atps=neutral
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com
- [209.85.215.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A22B410F35D
- for <intel-xe@lists.freedesktop.org>; Thu, 21 May 2026 14:41:01 +0000 (UTC)
-Received: by mail-pg1-f171.google.com with SMTP id
- 41be03b00d2f7-c82a6278a4cso4807626a12.3
- for <intel-xe@lists.freedesktop.org>; Thu, 21 May 2026 07:41:01 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1779374461; cv=none;
- d=google.com; s=arc-20240605;
- b=DwktuFY9exPbuhKHHJ6ThoAeXkJwpCWQ0s75bTIr+xLYEJn/kpVYF//5WhCE27YjNu
- /R7o+AN3YSWTniSriN4bvBH1SsE2MSyMq4CsL0S0GD8gOwv+zXqk775G0VJOf6IYCE26
- L8J2n7eyYfMo66McRXfcOJx8otHtYSWRlbMRlxQ4JjVlFLPyi96C+VURgsCl6npuT0YP
- +ff/3bqLvm8HvTAiA5isQWFoG60jls8CKJUAmM1GszOL7dumWwgzd3vRQWBS3eJIcLCZ
- iYWQ3xy1BWE2NSa1ZBhwtSsfl1FTewje3G6T/eqrsjDA7tt+q4MkDyhf6Pd/WbhFWfnY
- FvxQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:dkim-signature;
- bh=RI8RcJrMlrGpgo/P0j5rPAmC/BUqQ0jZHOTebzV+Hvs=;
- fh=Ru55B6ZMOlZbUY7T91iBZR5nmywnNroU3ilv0LDnDhs=;
- b=g00GQVQV0+R46csJaSWqZd4pgCZpjHBm4Yzjoo+C7pa19Yyy2RVN+jXCiUBMUBQ2h4
- s2dX6NclkmpAYcP/ozHYBETTQVfcaAzABgR0jK4RIxBxWg+EiZVGlhRnJ25atSzOWHoV
- pC6cur5A+oqNR6A3apNdf2jN/n8xu2eMhx56oSqAGibC7sx6EIV60auQL/HxekGpO2cP
- bje5nbSV9G3iW5Z0N9aXbhFEvUUAF2ItsLLQIGq7TaWYZm2FK/lbFE7R4atq5NXVA3mM
- ElsCnBuPua0vOkjeUo7YJPanA17eSJLhLFJqzPXLUnU3kZW3MNui7/PMkcL7nukG4NFd
- K3Vg==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=fooishbar.org; s=google; t=1779374461; x=1779979261;
- darn=lists.freedesktop.org; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=RI8RcJrMlrGpgo/P0j5rPAmC/BUqQ0jZHOTebzV+Hvs=;
- b=fpPt8P12fUNdMUXb8E4v259pENQikVsG8rYsQX6klE1idNU7TA3Wk5GZPOs2b7o7zm
- Xnrpaw0VzDMnV4nBB5dDvF/L41ZV8nclP0R6AE4yfyZPy7LhGft291pLTtSy0bVi8Gd0
- 9RWc8Oa7nDq25dIPb8aapdWb9Rdvz2fElhEiGiAh+oTQKyChnTHv+Nrk5ZE80VT9WvPl
- J0IoNIjOB/JFLhjSv0rCuarR1wv0Wk1BfmdY+2gGNRcCrHFTiJGyYhbDyIDw8WP0Ocg8
- BlGJxSS79Cc7MXZ7k0NMtOUM13msZFeKwV9q/NCKE2igzXuQNa2shRDjz95xSWZfCE31
- X1NA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1779374461; x=1779979261;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=RI8RcJrMlrGpgo/P0j5rPAmC/BUqQ0jZHOTebzV+Hvs=;
- b=jcfGZVC7qsmGG42R3MbJSSO0GKYd2L87WWZ/mvN4wqGJ9onVMIUZkl6T/90r/QP+nl
- 63tbS0Ljbj8CkWHjBfsGEv9Jcm9W8xOIGU6T+tW42e1bdK/fa27Us0juqmQcecUgbOVA
- WFAIYQRU6BfceQbsGQlb/1YjZEFg0XH1RYUFvenkVoarAXqu9rs3XvXm5CoHXaNu6U0v
- e4uXKUfL46//GmhQupy3haO+rqYqSMJ6YBo3QazDf3voha0fyPo0aXbUPmnQaumEYS40
- ppUBNwpSpAr51WJ80DSnLGwt/+EWe3CLVndhJ1ZqqY4D6/6MrMBVWbTBKVuupE4cXqvs
- MejA==
-X-Forwarded-Encrypted: i=1;
- AFNElJ9syZWz2MyrJIDnpIlxPSAKTBY2H+zQzbRl20noajERzfpFszOgiVR+4TWWojzqbzGk8YW/eIAxog==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YweKEpWicVIqxAHt6PFOSVaFiSxL9XB8YkavX3K8ExjeFrgs7We
- CD+ErO5SldfrS5ba9vLn6xMsb0gBQWS92r05y5V/DTEheXe5fKZ1Y09eRpx80VqFWDamabCTLHX
- abdqmszBWqtvlLw79NP4JdFyXAgGfiekjJPak7ZkRug==
-X-Gm-Gg: Acq92OHqcDV/sPYu5MNZ80WopVSXac7B84NhfzQmI7HWYRbAf92K/hk6HOCdnrR6YJu
- jSkKoK+vTLW8uJ2hByTiRVMw65Pu4mn2lOLEqgI/xz6bvj8udlW8gFeCdD2v+8ViDrZ+2M2N4rg
- oANx/7MdeeJX+l5YsSKVhBf72RDRXoWRYIrTaKzRcgO6JVd5cmWvKb7Wb88cYV3OpW2S3ZglRHd
- TochMuGNTPFvKVsdRCb1q5pzniCo7g54PBh1+jVZFRxgDUKqZ9HsUM6XGxhfxQSEUm6xDhz0yfR
- uoetq9vVdISUq1v+XOEXZzDc3On5VgTXTDT6zTTaszCAU9uw3w==
-X-Received: by 2002:a17:903:1b10:b0:2bc:e62a:979b with SMTP id
- d9443c01a7336-2bea33d166emr36661465ad.30.1779374460988; Thu, 21 May 2026
- 07:41:00 -0700 (PDT)
-MIME-Version: 1.0
-References: <20260423-color-format-v14-0-449a419ccbd4@collabora.com>
- <20260423-color-format-v14-20-449a419ccbd4@collabora.com>
-In-Reply-To: <20260423-color-format-v14-20-449a419ccbd4@collabora.com>
-From: Daniel Stone <daniel@fooishbar.org>
-Date: Thu, 21 May 2026 15:40:49 +0100
-X-Gm-Features: AVHnY4LM5MR-pydhp54-iciGhQnPfxKOlxWC92SZdhfzMOyTtShVga8wCcjC3D0
-Message-ID: <CAPj87rOBvjw4v+PER+6+FMuDRajXNnPSKAke8a=tVgiSRg8QTg@mail.gmail.com>
-Subject: Re: [PATCH v14 20/28] drm/rockchip: dw_hdmi_qp: Implement "color
- format" DRM property
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang <hjc@rock-chips.com>, 
- =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Andy Yan <andy.yan@rock-chips.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3C1B10F353
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 May 2026 14:49:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1779374941; x=1810910941;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=LyNzqoxLQ60O27pMQFuEAr4rEdfStp2V1DQzGHRl5vs=;
+ b=B0VK7GrJ2B99Pc7NT9Hu2/8Nxeeb84IcJsXUgAFTTWzPhMN4fepwmvDq
+ cAgRsGWFv0GiyqRgi4iQxUs4iI73LNPajEp9EcXimKdt4/OTR0r/UrEaU
+ F3tBH+OMMsuDc+YypiyYTp/daLt+hFwUAuTfO13HMgcPJUJcM5qkjsLIX
+ jJ1B7CiKxHKCkOsrCUzYnuZc32eSRs4JdqZRathClelBXAEavU9kubVw3
+ BoOdNgjpMjIhGzeeVRYeOihj8CUPIBQbI/J9Rc+XgnFpSHMeLnbnLxnGi
+ lB2oeXnislNJLKwquv9cEINER/gPgRxH/Dz4o2HOW2FT2vB7xQmhGJzpq g==;
+X-CSE-ConnectionGUID: SlY1AlMpSkebAOd7UBawSA==
+X-CSE-MsgGUID: mCYWCQNfQlK10Qrw2Euf2g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11793"; a="80194427"
+X-IronPort-AV: E=Sophos;i="6.23,246,1770624000"; d="scan'208";a="80194427"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2026 07:49:01 -0700
+X-CSE-ConnectionGUID: JaoEq+vDRySj9adaITPkYg==
+X-CSE-MsgGUID: LgunHRBTSqyA46mwMvPqMg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,246,1770624000"; d="scan'208";a="270893321"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO fedora)
+ ([10.245.244.105])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2026 07:48:58 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Francois Dugast <francois.dugast@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>, 
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
- kernel@collabora.com, 
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, linux-doc@vger.kernel.org, 
- wayland-devel@lists.freedesktop.org, 
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: [PATCH 0/4] drm/xe: Fix LR exec queue suspend/resume for S3/S4
+Date: Thu, 21 May 2026 16:48:33 +0200
+Message-ID: <20260521144837.7363-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.54.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -130,19 +71,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+Long Running (LR) exec queues — used by compute workloads with SVM
+(fault-mode) and by preempt-fence-mode — were not surviving S3/S4
+suspend/resume correctly.  Four distinct problems are addressed:
 
-On Thu, 23 Apr 2026 at 20:06, Nicolas Frattaroli
-<nicolas.frattaroli@collabora.com> wrote:
-> +       bridge = drm_bridge_chain_get_first_bridge(encoder);
-> +       if (!bridge)
-> +               return 0;
-> +
-> +       bstate = drm_atomic_get_bridge_state(conn_state->state, bridge);
-> +       if (!bstate)
-> +               return 0;
+1. Exec queue ops (guc_exec_queue_suspend/resume) lacked coordination
+   when multiple paths (PM, mode switching, preempt fences) needed to
+   hold the queue suspended simultaneously.  A suspend refcount ensures
+   the GuC SUSPEND message is only sent when the first caller suspends,
+   and the RESUME message only when the last caller resumes.
 
-IS_ERR() + PTR_ERR()
+2. During PM suspend, guc_exec_queue_stop() banned any user exec queue
+   that had a started-but-incomplete job.  For LR queues this is always
+   true — their jobs are designed to run indefinitely — so every PM
+   suspend permanently banned the queue.  The ban is now suppressed for
+   LR VM exec queues during PM suspend or hibernation while being
+   preserved for GT reset (legitimate hang detection).
 
-Cheers,
-Daniel
+3. Userspace LRC buffer objects carried XE_BO_FLAG_PINNED_LATE_RESTORE,
+   deferring their VRAM restore to after xe_gt_resume().  However,
+   xe_gt_resume() drives context registration, which requires valid LRC
+   VRAM.  Dropping the flag moves the restore to xe_bo_restore_early(),
+   a CPU/BAR copy that runs before xe_gt_resume(), fixing the ordering.
+
+4. Fault-mode (SVM) VMs use GPU page faults to access memory.  A
+   running fault-mode job can re-fault pages torn down by VRAM eviction,
+   racing with the eviction.  A new xe_suspend_all_faulting_lr_jobs()
+   call in the PM notifier stops all fault-mode queues and waits for GuC
+   acknowledgement before eviction begins.  On resume,
+   xe_resume_all_faulting_lr_jobs() mirrors the same iteration to
+   re-register and resume exactly those queues.  A per-group pm_suspended
+   flag (protected by mode_sem) prevents new fault-mode exec queues from
+   slipping through unsuspended while PM suspend is in progress.
+
+Note: A prerequisite revert ("Revert drm/xe: Skip exec queue schedule
+toggle if queue is idle during suspend") was already sent as a separate
+patch and is not included here.
+
+Thomas Hellström (4):
+  drm/xe/guc: Add suspend refcount to exec queue ops
+  drm/xe/guc: Don't ban LR VM exec queues on PM suspend
+  drm/xe: Restore userspace LRC BOs early on resume
+  drm/xe: Suspend fault-mode LR jobs before VRAM eviction on S3/S4
+
+ drivers/gpu/drm/xe/xe_exec_queue_types.h      |   7 +
+ drivers/gpu/drm/xe/xe_guc_exec_queue_types.h  |   7 +
+ drivers/gpu/drm/xe/xe_guc_submit.c            |  60 +++++--
+ drivers/gpu/drm/xe/xe_guc_submit.h            |   1 +
+ drivers/gpu/drm/xe/xe_hw_engine_group.c       | 158 +++++++++++++++++-
+ drivers/gpu/drm/xe/xe_hw_engine_group.h       |   3 +
+ drivers/gpu/drm/xe/xe_hw_engine_group_types.h |   7 +
+ drivers/gpu/drm/xe/xe_lrc.c                   |   2 +-
+ drivers/gpu/drm/xe/xe_pm.c                    |  15 +-
+ 9 files changed, 239 insertions(+), 21 deletions(-)
+
+-- 
+2.54.0
+
