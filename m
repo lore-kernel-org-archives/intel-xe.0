@@ -4,159 +4,185 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B69ACCD5BAA
-	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 08:31:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 264EFCD5BA4
+	for <intel-xe@archiver.kernel.org>; Thu, 21 May 2026 08:37:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C28810E481;
-	Thu, 21 May 2026 08:31:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7BA110E483;
+	Thu, 21 May 2026 08:37:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Pje+9fU9";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="Trw38hpF";
+	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ik51TAlW";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8126010E47B;
- Thu, 21 May 2026 08:31:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779352288; x=1810888288;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=rtWC0pF/H47yMTglPChjHHtFq2bbsmBnuvPHbBRQvYs=;
- b=Pje+9fU9ynVgGTMRyoxmkjPNhijPfvQ5jEZG/hnvv7KVQnlEGgF9k/WX
- W+l4BUWs1Xlo2gCjs2MlY7fthzVypqVvOgwmls826ZgsZ5EdHS/cpYJGX
- +MVHmnObhiODgVkRbZ+voeccNQC6CYYCPztWSacR26yaaF+sBksTgXxqV
- 0GA9D/ABvb2gGkwctazTsBuW9kreu0HkiO5hdXdDgUyOeghewwN3t78b2
- J09nNNQcQPGG4Abyuavsig9BZbvJ1c+e5vz4pRgS0PUjHV+Lv9IoUSq6e
- e/S708GiDY7m7L6clCmC8zkQk1hahihEfOMxdG2HE6I0Cj5PCGmqr3riL w==;
-X-CSE-ConnectionGUID: zfr5yqMASK+HG7H82K3ViQ==
-X-CSE-MsgGUID: Z/BQmZ/ZR9CuOgzEKv9XXw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11792"; a="80444579"
-X-IronPort-AV: E=Sophos;i="6.23,246,1770624000"; d="scan'208";a="80444579"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2026 01:31:26 -0700
-X-CSE-ConnectionGUID: dMZFe6OdS9WWkB+EyMXqpQ==
-X-CSE-MsgGUID: /QBHZEGURHG3LO9LUjBWgw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,246,1770624000"; d="scan'208";a="237445030"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2026 01:31:25 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 21 May 2026 01:31:24 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Thu, 21 May 2026 01:31:24 -0700
-Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.61) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 21 May 2026 01:31:24 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Aagt1ly5lnjPPjugWAocuxcu87CqyFLOrviQMny2LdS9T/wvD76cay8J1VAqQlmSOTNnaUV+qvgo6ZDXWtMouhjOqEiX9Oid2lceeyX2nRI82AZ3awZ0Rxtmw+OGiBQKAjDOXswHlJ/F+5k/gteRW8+FnzC6EzATvsKbIglCPAnTIdCFp45B1l83JnB+ZGT6KZynvIkmQ7ndIQrUUbUuKE7s5IE7SCrLO1srBC+FMhtO+mq1MkOHUVCHc/lPvt/pLB3iGFCgg64Z/A7/vCNABGszbCJmcjJfAN94/bv1LHpSN4nB45lKc0WU9rNUJ7zWZwi4SkqTU3gtLppaAqQ+sQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TorkwSgrzH/fJJRgomkj04Qty19gCGQ1Ya6RFCuOnH8=;
- b=C+Gcv9J5McdNPjjz+QQysruc4PX78gbXVGff2e2KKnool3FVMbqXgiZeAV72hu7Dg1ch7/gTu82tMSHsZGjX5D20+3JyxLZ9XpfA/EyCg4VW/NNtYACIhdrQCs5KFI1IVcEfozRhYU3BIesIme9suXkpyni9CWVV0k1yW0cF7VEBuBNQJvDT6fU2HMAZ3kiKdJ0UpBAscLORWbySJEgrVDGN04yiajinqkSAIk4MGLVYDXJww8Jp1iCvWeP6h4thVZGjQnA9RrjswrQLy9Q1fyrdQGQ38UbmKhDzdZXQMZrgB2zYs+jpEUz3v/NgZf8hl4YhJcJf0/wNREB5m1z1Yg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB7183.namprd11.prod.outlook.com (2603:10b6:8:111::10)
- by DS0PR11MB6541.namprd11.prod.outlook.com (2603:10b6:8:d3::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.14; Thu, 21 May
- 2026 08:31:16 +0000
-Received: from DM4PR11MB7183.namprd11.prod.outlook.com
- ([fe80::d9c7:d2fb:680d:1ee1]) by DM4PR11MB7183.namprd11.prod.outlook.com
- ([fe80::d9c7:d2fb:680d:1ee1%5]) with mapi id 15.21.0025.022; Thu, 21 May 2026
- 08:31:16 +0000
-Message-ID: <79f55f66-805f-473c-b7f6-f3e9b1fead37@intel.com>
-Date: Thu, 21 May 2026 14:01:05 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 02/16] drm/i915/cmtg: Set CMTG clock select
-To: Animesh Manna <animesh.manna@intel.com>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-CC: <uma.shankar@intel.com>, <ville.syrjala@linux.intel.com>,
- <jani.nikula@intel.com>
-References: <20260513163857.1541888-1-animesh.manna@intel.com>
- <20260513163857.1541888-3-animesh.manna@intel.com>
-Content-Language: en-US
-From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
-In-Reply-To: <20260513163857.1541888-3-animesh.manna@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5PR01CA0218.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1f3::13) To DM4PR11MB7183.namprd11.prod.outlook.com
- (2603:10b6:8:111::10)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
+ [205.220.180.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C453B10E483
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 May 2026 08:37:09 +0000 (UTC)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
+ 64L7GNFt963885
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 May 2026 08:37:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+ cc:content-transfer-encoding:content-type:date:from:message-id
+ :mime-version:subject:to; s=qcppdkim1; bh=El4wNMt9BXL9CxxtRdtqTV
+ x+E6o7UHeoj7av7h+WfcI=; b=Trw38hpFc3Uxmsxjfu7cVuCmyXS6WZ39nWg0SE
+ akyGensBif0/ULxQcPPBG9D7sac9jKuydsTJ4IaHQocxwctnByVKYnVB4mI0toNE
+ SdpfJT9vOELGFzPNl9Az6o/kqZ08mXro8GaeDySwzyoNKFVZCLVkIYOnFsEo6KEF
+ bJmt1M7ivhKwT6Vb+fDulepmbjEGwXUo82NblLrvbrDD/5b0quMl/RUmd/yH53xR
+ P155WhEBw0FDk+ct73qt9Z1seTGTUP5Y4mlWPMO5mjtd4NasLjoDXfKeTfgsUzjo
+ 9Obr2KNaswV3iLrbA/+wijZcq69LTkyX7fshpsA/vGZdUnnA==
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
+ [209.85.219.71])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e9ejh3wbh-1
+ (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 May 2026 08:37:08 +0000 (GMT)
+Received: by mail-qv1-f71.google.com with SMTP id
+ 6a1803df08f44-8acadca1ac4so92438116d6.0
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 May 2026 01:37:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=oss.qualcomm.com; s=google; t=1779352628; x=1779957428;
+ darn=lists.freedesktop.org; 
+ h=cc:to:content-transfer-encoding:mime-version:message-id:date
+ :subject:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=El4wNMt9BXL9CxxtRdtqTVx+E6o7UHeoj7av7h+WfcI=;
+ b=ik51TAlWbLa0DQc2HLAVgEQJtQSxTnLw+yI2ZRfqzMUCTPPsgqcYffqtve+Efly4DL
+ GXyLT5ebY2nPBJ85GmCrgIhGpJ9Nc0uwGf2vvjcBkp5lESMZR0X3xEZJKDFSz5oLIL+3
+ CDplRK6CevM3qox83CLEB5hGUn3aPTBp1NXsdeaCjeXNzdpOqsqSjhlHUnSkBfiNa/4P
+ /t8SbkVZzjrRVlsV3jnAjhnrPa9z8zXoRngddnIy4lopWrN76aBUMJ0NmkoR+trA60g1
+ O38wSN/F76kr7F/KEKMDd1sAhgJiCKkwGhdcpH4i6J1gK0mdg0d3fZt/mNk2oCGgClCl
+ +GBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1779352628; x=1779957428;
+ h=cc:to:content-transfer-encoding:mime-version:message-id:date
+ :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=El4wNMt9BXL9CxxtRdtqTVx+E6o7UHeoj7av7h+WfcI=;
+ b=U11IXZnGL/Te4ZZZ/iu7j+EwTR7BuwHGm76ixfz3ZRQiG3rTNq3brnHOuwou3wDb6l
+ ALEREKMXMOhQr6Y9TM0mlUhvk5eZfK3XOcZ1TA4l7gxE9kDrVJGo/1YU4a5WLmZESdhG
+ vq7uhOzrs8zLHmx1Ks6kRx+t215L6fhaaMKIXPgotTa560KXKA9ytUoB6TZuH2/H7iXx
+ 9Qe7SYqV6uVA04k4yWFF5Peax7YGgOjs82gxqyzzmEDIDEpboyQHqxwuUs31XccGIU9o
+ 17PvkZwy4Rf/AzEqMU574x7y2F0cbMNYO74x9nDfzNHDcg5RbzDfl+W0nTVxteycsfXK
+ WUrg==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ9P+GJOACAfjMiZWNfjL3Xp53lKpUApW6XVklfYWerr9mdz8T3hJeaLXIKpCmFhrVDfYJ8qiDUwKg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwbCuB+32Hn58FBShn7+LXLKh+3Q4tnFntE03UJyVapseYo0ctu
+ NABVVLo1P8k2Uas1tiLEEq8nQQ6rsLi5mOClMghGq8+zGbz9jzt/rcLGYD07DHs6qZo56zU843K
+ J70mevWxsZtUEoNRvckVbIWlXU5TdUYiTqu6scM6zB4GbeOf3q5vaWkG/W72QncouhSkwIw==
+X-Gm-Gg: Acq92OEyw8CgXVpEu/fmn2dBedZ/E+2qKPSZruCao9tkNa+8OZQuoxxfIOjWqWU3PaA
+ xWmTzxjJGTP3++0XI6d6Wak0D+AfI49f3+6XS8kbzrQFN8Q0Jkvu/yTbJG05Qk9iSaEHAYZb31c
+ h0TxFNxLpODElyRi8qEU46/vm8MGeTq2DF3wlkeOwPd7Yc6WEkUFa71A5W17wq4TQSMsRaG1kDj
+ KKXQF/oSVUzs63MkLKcyA/JIAwVcF3xLPWh4a2JX62qHQvs7TBcLYlI62uwVIy0u0g6rpgV4gvG
+ JnQAQ8Zz+dr0kD0FidVPBN+7sGn93X2br0nSFb9J2ujUhdUc62d4RzsjbvRLfBllC7NduXbjnf5
+ 3dEEwETcGHqoAes20XqfX2dhcn3Cuj+IaX+RfCybSDBmgreCNYQT1YtqP9GvbLQ==
+X-Received: by 2002:a05:622a:514:b0:50d:900e:c1c1 with SMTP id
+ d75a77b69052e-516c5484841mr24416241cf.7.1779352627565; 
+ Thu, 21 May 2026 01:37:07 -0700 (PDT)
+X-Received: by 2002:a05:622a:514:b0:50d:900e:c1c1 with SMTP id
+ d75a77b69052e-516c5484841mr24415481cf.7.1779352626922; 
+ Thu, 21 May 2026 01:37:06 -0700 (PDT)
+Received: from brgl-qcom.local ([2a01:cb1d:dc:7e00:bb10:ae82:b7c3:d15a])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-4903caede9fsm10502405e9.14.2026.05.21.01.37.04
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 21 May 2026 01:37:06 -0700 (PDT)
+From: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Subject: [PATCH 00/23] driver core: count references of the platform
+ device's fwnode, not OF node
+Date: Thu, 21 May 2026 10:36:23 +0200
+Message-Id: <20260521-pdev-fwnode-ref-v1-0-88c324a1b8d2@oss.qualcomm.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB7183:EE_|DS0PR11MB6541:EE_
-X-MS-Office365-Filtering-Correlation-Id: cd8c3a82-eda1-4767-bcfc-08deb71352b7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|56012099003|22082099003|18002099003|4143699003|11063799006;
-X-Microsoft-Antispam-Message-Info: VTZJdNf+fRukNXWc5pIUSMH/Selm3WbHFCtqenfaTmYfG+KePCB8LmTq17OCTEfvSbFvNEwJVVhHDgUPef+x2dpb2nZ7hXQ/9qXGxPJFWpqRplLl7QtSU2bClSiYvYPfc8fNVBne24nEOGKDrxQQreKpQ/Apu4bFoKaDphxrZwBlKJdItTPwtpvTwJbO9d2bzSrrIGPORpjFRPvnkOoXGeetpoFk8aIbrsHWzLC2dXbC6VVLg+hJwHVDsvfPWc0C6q20RNXejFxdroKPU95HXMKP5ikDUniNJAqyuT1+WR2IwJfsm58RuKPXEda7BmfhAXQSR5J9T9aTJ/5R8INlzyq7BdfKGfSLw2EE6ruPgPKWl+mBQ4qiQ4FWs28JS380o1xsi+rzW+Je03r4Fyti72BAQrw4YsfMCzo4DFFyL/HzQOd1Eba1LbXgvjVJCRAHvrdmZipPiUZ5KyNlxbrTCChnQ+eMAILIgOzb1/Y1NAZzeuXLfaW7vz5WmytPFcaMaYug5bR1MXEdFc8/QPB2U1C/oIyP5ZvBF+i+KdP9KoN2AdttOSOJd9svOe1aDkqkW2UAA0VSSgS3XxYfUEhbj9PiPtm4FAdKxs2bRJdulj/Ax0SBiP6ZkaHwVJKwYZJREYPsPcZTiWKv9pSrj88liW+s5mNjrm7C8evrhIOb7DxWsFEfGsO1fGyM/D7BPzVj
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB7183.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(56012099003)(22082099003)(18002099003)(4143699003)(11063799006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Syt1UUwxdGxTbk9PaW93VjV6WFNWUmZzVUgzeWN5a3N3c0dyWkV1ZWdhSDFQ?=
- =?utf-8?B?a2JXUzVNNG5nT0FUTWFyOGVxRG1DLzlxajVQdDZDRzRwQk9ReGFNVEhtVUph?=
- =?utf-8?B?b3ZjQzZOUzBBemJMMGNaU1VFZi9tM0dyMGNYVS9ZdTZVb1BvTXB2Znh2b3JB?=
- =?utf-8?B?d1RnU2FydG1NZ2tMT2pmS3o5alNzdDhTTzdzWnJjU3JHcElKeHBGMlBtdjNQ?=
- =?utf-8?B?aDJLNzk4UnZXbGwrWDA4d3VPb3B6U2hXbmhPbG41NFpaZGFWRnpjd1pSRjAx?=
- =?utf-8?B?ZGFNZGs3YkJsT0ZZK00vV0ZCR3ZmZis4b2d3QVBPUXZ2bXZYanFiN3l4STFv?=
- =?utf-8?B?TnRyZ0pPQ3cwVld0emJnM0Z5eUNpUWZYbDBMcWVOR2RQeEFoeGV4S2hneHJN?=
- =?utf-8?B?U2dGMDdXUVpnR0pYNUk2SVhMTXRIT3NJY1hnRFZHbldDRjhLVVVjSng5b05F?=
- =?utf-8?B?eVFrMWczODFiY0pYaVd1OSs5WjlhYjJ4M0ZEM2JGcFlCVDZVck52alFkcWJr?=
- =?utf-8?B?T2lNR3FCMDB5REdrakxSR3RkbEZ6QzVDQ3Z2SmZtQ04zVW1uRHBEWDRROHlp?=
- =?utf-8?B?ZkNtckU0WUNJbGZGMFN2ckVxTzJzanI2dy9SVDZHZC90Q2x1cGtmLzBDTFE2?=
- =?utf-8?B?TnpSUzlxMG1uWDgzbVJVemVtTTFsUXdkK2dzN0xYZXg0UG9SRGc3d2JyMFdJ?=
- =?utf-8?B?RWZJYUdPbTFVbTVQM01CS1V6OGl2V08wL0hWNzM5MnJRMjRVK2xqc20renBp?=
- =?utf-8?B?TXc2alVYdjgwSnU2emdkK1I2Qitvdk5aZGRkMTE1SUlORm5ScW1rWHYwZnE1?=
- =?utf-8?B?TWN3dDJyQmE5RmdrQnlVbTlwOXo0R3g2UmNFUjl3Mk1wQ0oxTVd0dnJUdnJR?=
- =?utf-8?B?RStMbjEvRldiNnBrYVRvemlVOUprbHpQR053MnZtbTlGSU1XeEhMYzRVRy9T?=
- =?utf-8?B?dWNWM2FVd01sVFlEaEttREJ3U1VyZThDdFIwWGc0MTVvL05jK24vaUN5V0s0?=
- =?utf-8?B?bFZDVjA0b09LMXlndnRXelh2SmpGc2JDcS83OHBvdzlVVjRmV1dvNSsrVHZx?=
- =?utf-8?B?WVN0UDNXRVMxM3ZyTzFIQkwydm1WRWtXQnBZSDZzKzJIbndpRHI5dWY2RTlC?=
- =?utf-8?B?Y1dZMjYvQUlKV0YxWmtjUkQzbE9zQ0Vxb0JKWUJnc1M0eTdDeTFsVC85UTF3?=
- =?utf-8?B?OTlKTWdUbkc3LzNKVkp6K0w3cklUaENJUUFPZ25MaktKZndiWThDZVdMaWZG?=
- =?utf-8?B?SENlYmVlbkMzZmZtdHE3Z3ZEYWN1NytEM2VOMVA4aEFENVJBc05RRFdlUTZW?=
- =?utf-8?B?OCs5Zm50MFkwVTI0clNjblZFaGFlQk5aZllxd2NXRGxjalk0Y1l0QVdZWDN6?=
- =?utf-8?B?ZXFNYUhDTldMQVZieUtRY2I5RnAvem9qTVByNS9GZVhGUDUyNmtjUUV6M2Jq?=
- =?utf-8?B?OHVWM0Vpa3RYV1BxcWt5MVYxcERkK1IxaytBL3dHeWh1cGlWSERNSU9OMnk1?=
- =?utf-8?B?dmFwVzN2OTJnTDJrWHZ4ZFRwUEJ5L2hEcFFjRU9XSUxtTWxZWnBXY0JQaWhz?=
- =?utf-8?B?NEZZNkVTZEFNNVlBVjF1c1VnaDRlRStYU1ROL2xBbVFPT3RWZDVmM1NqNjlL?=
- =?utf-8?B?aWdwUjM2dDVwSHViREpxLzNUb0w4STgvUUhDR2xndWtjZ2NyRHR5V2Uzdnl1?=
- =?utf-8?B?V214Y0xJZldpQUI5dDFsTEJVbmVZWnVETVhGRWNkNGxqVWJWdkx4QkJxUkFV?=
- =?utf-8?B?d3U1STVVenV4UWRiNkRES1NCS3dFRlNaY3NrTVVYRm5oTi9yT0dyODlVVkNE?=
- =?utf-8?B?Qkt3Y1RzMlJkMEppeXBBMGtzRG1mL253dzdDdm9iVXNTMEZUSmlYcEJsK3Fs?=
- =?utf-8?B?UnBocXBZY0JMbm9DNElGUnp0MUJUU0VBTkd0UW1aOEpmekhZZXZFY3ZYSnRC?=
- =?utf-8?B?N1RkbUVOaDQ3NGFlUE1McjJPY1kybk5pSGJmQnUyckh0VFBLUlhUNXY3Mmc3?=
- =?utf-8?B?YUdyUm9SeXh1ZVVjU0R0eFV3Q0N3UDNsQzZKRmVtenZxa1lDMlQ4cXE4VEhh?=
- =?utf-8?B?UVE3TDk2NExrMEluTHJrQTJnQlV5Y2ZHRGlkbXEzby9YNG1GU21sQ3JzMmNq?=
- =?utf-8?B?bjA2YW0xTDFEYWhOLzRUTkk0NXFuTkI2NzlscXgzRzFsR2xFU1k2UUR6Tllw?=
- =?utf-8?B?NHpQTlNHN3RkcUlGZ2NuWFM3ODF6SlpYcVBqc2FjS1U0czFnWDJoNHBkQkFX?=
- =?utf-8?B?czRsRkpraHRyTWwzdEVybGczSW4xVHU5V1o0NkthcGM1QjJZbndmWitvM3NH?=
- =?utf-8?B?ZDIxZk1TTWFyNzd1ek5KTVN2ZEF5V2NEbmdqNDJnSzZjZ0ZBZy9VNjhOSjl0?=
- =?utf-8?Q?la+T44yM1V/xoT3vRPsy0HRMdFCdnay97KGaF?=
-X-Exchange-RoutingPolicyChecked: bqRYC05/TA2x2DPy4hwMzXat0XwFwyter6AnfAlZGBBpBYVGGzZBD+HEmqQu1u30vzIBQy32EStyppWie8j+RX+C5CutLUuyyvYfw/AlMjp/Ckn25k9mDRWVVmN0M/R60JnxRmWQRfC63brZHNTBU2Pw/2N4FGQMAep/VQI5C0IWDPQP2tfpcfoTRnPETILjFEoctSEAvSuxXrklYzUEEJHMfejrFL884IrKSS8YeFCF7+mK6HDRDXJdBnvRTc/ZATyV2q4aR/49vE6/giIeRhTpdhnc9dxR3YIMRZxADpabALtMU13KzX67ESQODAZkK6AkhjTpvZi+RbxDpEJsRA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: cd8c3a82-eda1-4767-bcfc-08deb71352b7
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7183.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 May 2026 08:31:15.7249 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rDWZD9iyGThYHOk07JzMI4YBRztjog8Qs9P4PVILat2loskC+rnNO0wHSks3Cy7PapcG8EP5O71KZ2Excpwu+Z+zvsdfuLp3bEFPGhATmTDgMqbbEdKMEftof/54ENWM
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB6541
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAfEDmoC/x2MQQqAIBAAvyJ7bkGNzPpKdKjcai8qChZEf086z
+ sDMA5kSU4ZRPJCocObgK6hGwHYu/iBkVxm01EZ2WmJ0VHC/fHCEiXZ01vS2NUOvaIVaxSr5/o/
+ T/L4fVuIfJWEAAAA=
+X-Change-ID: 20260520-pdev-fwnode-ref-d867836971eb
+To: Lee Jones <lee@kernel.org>,
+ Mark Brown <broonie@opensource.wolfsonmicro.com>,
+ Thierry Reding <thierry.reding@avionic-design.de>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Srinivas Kandagatla <srini@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Vinod Koul <vkoul@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,
+ Saravana Kannan <saravanak@kernel.org>,
+ Madhavan Srinivasan <maddy@linux.ibm.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>,
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+ Andi Shyti <andi.shyti@kernel.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>, Doug Berger <opendmb@gmail.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Ulf Hansson <ulfh@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Peter Chen <peter.chen@kernel.org>,
+ Paul Cercueil <paul@crapouillou.net>, Bin Liu <b-liu@ti.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Maximilian Luz <luzmaximilian@gmail.com>, Hans de Goede <hansg@kernel.org>,
+ =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>
+Cc: brgl@kernel.org, linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
+ driver-core@lists.linux.dev, devicetree@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, linux-i2c@vger.kernel.org,
+ iommu@lists.linux.dev, linux-pm@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-usb@vger.kernel.org,
+ linux-mips@vger.kernel.org, platform-driver-x86@vger.kernel.org,
+ Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
+ stable@vger.kernel.org
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5107;
+ i=bartosz.golaszewski@oss.qualcomm.com; h=from:subject:message-id;
+ bh=D3r2n74KWxEYfDl8rWFGKV6Wr7M1gfnVPwg1g1CrN84=;
+ b=owEBbQKS/ZANAwAKAQWdLsv/NoTDAcsmYgBqDsQZF3+Wnnqse1OrX9tW8YslypJ8/2vlajEr3
+ JD2ATbv3b6JAjMEAAEKAB0WIQSR5RMt5bVGHXuiZfwFnS7L/zaEwwUCag7EGQAKCRAFnS7L/zaE
+ w8EKD/9dgPJ3F9RbNULXnoMj4pWPfWo/PfTbl87hUlFmLRa5e+BZbCj7lym0G7cDSCBBxhP1m38
+ XDMPAP0b7y/NNBM5+VFFKiHSXL2ftnoZYhTiPCXqAg8yXpg2s9DUQx7N9NbBTjBZDPFloWIKRq+
+ KlrMHuxSs7HgG8kOBSK5eW4l+mXcdX07ZoH1zm3uq+BtSWd3lpPf2/lLKF+k5Cc1lpzbfNDEq7Z
+ Ykm7Kfr1bDflSUQG/fhL8ilD15sZF0ffqDCywGL+UWcM5riCnkN5/v/BOF94pxi6LYD1XBlKs9t
+ 9gnTDKdlCmzmuhXIMsvOdZbSYYaJdad0De3ClLQ1TJN9KZXrqkxtJmLL2WUv2kI+YgHoNhRxM/d
+ DoZ7lw/sbJRbjlusrb2aLa4FDl776mKWYhsIxGgIm/BEQk8ttADCJ+lCw5QMO0KC5BvtqRFoazO
+ pG82IvBTgo1DqWURzhU8JiJIsRJMdzSm/fNAHAdK3htZj4WBovzhar44MI2zYLwsIEOTWII1a/C
+ zWJCChwoCsQXVVI4H2ICRncw83pF/8yG5ToHIO30PdXPpkq36sYUdxvG/qk/pmu07MX2Gz3GGPd
+ 4HA7SKpoUAI1k/yCQzarBy1I3uysZITHV1i0mIHh5wtU/1mmf90cnXhXSuAnrIq3vTxq48wjVLg
+ wrYHri/y1wYzsQQ==
+X-Developer-Key: i=bartosz.golaszewski@oss.qualcomm.com; a=openpgp;
+ fpr=169DEB6C0BC3C46013D2C79F11A72EA01471D772
+X-Authority-Analysis: v=2.4 cv=QptuG1yd c=1 sm=1 tr=0 ts=6a0ec434 cx=c_pps
+ a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22 a=EUspDBNiAAAA:8
+ a=x7ldU9BvHY0adF9BoRAA:9 a=QEXdDO2ut3YA:10 a=1HOtulTD9v-eNWfpl4qZ:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTIxMDA4MyBTYWx0ZWRfX/wJh2bRzgEX7
+ Lh7vlntJdN/PRG5viJsBXYBld+0IDsE9fdIh5HK8FwF/99ElA9c6yPg2JdcLBBMzgmnGUy9r14e
+ HUalCWEbNNaoYQ5qQBPrFXtTDRFBYdRHzV4HGAIn9JxnyMjletNYgVhzfNOPwFobbroLOiZ9m2F
+ PmfjFY8+IemtdzAV9g4eYlV/TPLxoeWLk/PilkwTJXfLdW+q3CASZH20l/tV8mAKKIMOEibKHf1
+ 0s4ksZXPDzWuCzjAKr5Y+yCCzMo/OvPywi5WaQjUgl+iJDOwptEUEz0PWA0T58J8yrqn0HAqDhA
+ j6j2VzWMwSjDz6Yfrx2Gr+qSoRhCX52LYticdIBka3P6KpooU416mY5Q0VPMBoHuLjro62ZQ5HR
+ 9DtMfdfsXBDmlhS7LB0oC8ALRWPJSC7SKpt60GDQOl1uVlMo0K9NhzDQtL+Uj51VSx5dJc3bQOQ
+ z5AdTQ6GWKwYGWFZp8Q==
+X-Proofpoint-GUID: P7r1wj2OejQRRiZOzuY8RJFvKsJRaEET
+X-Proofpoint-ORIG-GUID: P7r1wj2OejQRRiZOzuY8RJFvKsJRaEET
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-05-21_01,2026-05-18_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 adultscore=0 bulkscore=0 lowpriorityscore=0 priorityscore=1501
+ clxscore=1015 impostorscore=0 phishscore=0 malwarescore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605210083
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -171,122 +197,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+I'd like to first apologize for the long, treewide series and an
+extensive Cc list but I think it's important to show the big picture and
+the end result of this rework.
 
-On 13-05-2026 22:08, Animesh Manna wrote:
-> Program the CMTG Clock Select register based on the transcoder used.
->
-> v2:
-> - Correct mask for PHY B. [Jani]
-> - Use REG_FIELD_PREP() for enable value. [Dibin]
-> - Extend cmtg clock select for xe3plpd. [Dibin]
->
-> v3:
-> - CMTG support removed for old platform.
->
-> v4:
-> - Optimize further with else-if. [Uma]
-> - Correct CMTG_CLK_SEL_B_MASK. [Uma]
->
-> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-> Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
-> ---
->   drivers/gpu/drm/i915/display/intel_cmtg.c     | 22 +++++++++++++++++++
->   drivers/gpu/drm/i915/display/intel_cmtg.h     |  1 +
->   .../gpu/drm/i915/display/intel_cmtg_regs.h    |  2 ++
->   drivers/gpu/drm/i915/display/intel_cx0_phy.c  |  5 +++++
->   4 files changed, 30 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_cmtg.c b/drivers/gpu/drm/i915/display/intel_cmtg.c
-> index dc039bea452c..cfe59c604506 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cmtg.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cmtg.c
-> @@ -198,3 +198,25 @@ bool intel_cmtg_is_allowed(const struct intel_crtc_state *crtc_state)
->   
->   	return false;
->   }
-> +
-> +void intel_cmtg_set_clk_select(const struct intel_crtc_state *crtc_state)
-> +{
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-> +	u32 clk_sel_clr = 0;
-> +	u32 clk_sel_set = 0;
-> +
-> +	if (!intel_cmtg_is_allowed(crtc_state))
-> +		return;
-> +
-> +	if (cpu_transcoder == TRANSCODER_A) {
-> +		clk_sel_clr = CMTG_CLK_SEL_A_MASK;
-> +		clk_sel_set = CMTG_CLK_SELECT_PHYA_ENABLE;
-> +	} else if (cpu_transcoder == TRANSCODER_B) {
-> +		clk_sel_clr = CMTG_CLK_SEL_B_MASK;
-> +		clk_sel_set = CMTG_CLK_SELECT_PHYB_ENABLE;
-> +	}
-> +
-> +	if (clk_sel_set)
-> +		intel_de_rmw(display, CMTG_CLK_SEL, clk_sel_clr, clk_sel_set);
-> +}
+Platform device core provides helper interfaces for dealing with
+dynamically created platform devices. Most users should use
+platform_device_register_full() which encapsulates most of the
+operations but some modules will want to use the split approach of
+calling platform_device_alloc() + platform_device_add() separately for
+various reasons.
 
-This comment applies to the entire CMTG programming series, but adding it here since this is the first
-TRANSCODER/PHY programming step.
+With many platform devices now using dynamic software nodes as their
+primary firmware nodes and with the platform device interface being
+extended to also better cover the use-cases of secondary software nodes,
+I believe it makes sense to switch to counting the references of all
+kinds of firmware nodes.
 
-There are IGT cases where TRANSCODER_B is not mapped to PORT_B, so the current|else if|
-flow can fail because PHY B may not be enabled.
+To that end, I identified all users of platform_device_alloc() that also
+assign dev.of_node or dev.fwnode manually. I noticed five cases where
+the references are not increased as they should (patches 1-5 fix these
+users) and provided three new functions in platform_device.h that now
+become the preferred interfaces for assigning firmware nodes to dynamic
+platform devices (in line with platform_device_add_data(),
+platform_device_add_resources(), etc.). The bulk of the patches in this
+series are small driver conversions to port all users to going through
+the new functions that now encapsulate the refcount logic. With that
+done, the final patch seamlessly switches to counting the references of
+all firmware node types.
 
-Please check whether the programming sequence here is correct and
-what TRANSCODER/PORT/PHY combinations are supported for CMTG.
+This effort is prerequisite of removing platform_device_release_full()
+and unifying the release path for dynamic platform devices using
+unmanaged software nodes.
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_cmtg.h b/drivers/gpu/drm/i915/display/intel_cmtg.h
-> index ed540581738f..87092ce6d67b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cmtg.h
-> +++ b/drivers/gpu/drm/i915/display/intel_cmtg.h
-> @@ -11,6 +11,7 @@
->   struct intel_display;
->   struct intel_crtc_state;
->   
-> +void intel_cmtg_set_clk_select(const struct intel_crtc_state *crtc_state);
->   void intel_cmtg_sanitize(struct intel_display *display);
->   bool intel_cmtg_is_allowed(const struct intel_crtc_state *crtc_state);
->   
-> diff --git a/drivers/gpu/drm/i915/display/intel_cmtg_regs.h b/drivers/gpu/drm/i915/display/intel_cmtg_regs.h
-> index 945a35578284..4a80b88d88fd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cmtg_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_cmtg_regs.h
-> @@ -10,8 +10,10 @@
->   
->   #define CMTG_CLK_SEL			_MMIO(0x46160)
->   #define CMTG_CLK_SEL_A_MASK		REG_GENMASK(31, 29)
-> +#define CMTG_CLK_SELECT_PHYA_ENABLE	REG_FIELD_PREP(CMTG_CLK_SEL_A_MASK, 0x4)
->   #define CMTG_CLK_SEL_A_DISABLED		REG_FIELD_PREP(CMTG_CLK_SEL_A_MASK, 0)
->   #define CMTG_CLK_SEL_B_MASK		REG_GENMASK(15, 13)
-> +#define CMTG_CLK_SELECT_PHYB_ENABLE	REG_FIELD_PREP(CMTG_CLK_SEL_B_MASK, 0x6)
->   #define CMTG_CLK_SEL_B_DISABLED		REG_FIELD_PREP(CMTG_CLK_SEL_B_MASK, 0)
->   
->   #define TRANS_CMTG_CTL_A		_MMIO(0x6fa88)
-> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> index d832e44ef62a..6a7481578e61 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> @@ -9,6 +9,7 @@
->   #include <drm/drm_print.h>
->   
->   #include "intel_alpm.h"
-> +#include "intel_cmtg.h"
->   #include "intel_cx0_phy.h"
->   #include "intel_cx0_phy_regs.h"
->   #include "intel_display_regs.h"
-> @@ -3418,10 +3419,14 @@ void intel_mtl_pll_enable(struct intel_encoder *encoder,
->   void intel_mtl_pll_enable_clock(struct intel_encoder *encoder,
->   				const struct intel_crtc_state *crtc_state)
->   {
-> +	struct intel_display *display = to_intel_display(encoder);
->   	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
->   
->   	if (intel_tc_port_in_tbt_alt_mode(dig_port))
->   		intel_mtl_tbt_pll_enable_clock(encoder, crtc_state->port_clock);
-> +
-> +	if (HAS_LT_PHY(display))
-> +		intel_cmtg_set_clk_select(crtc_state);
->   }
->   
->   /*
+Merging strategy: First tree patches should go directly into individual
+maintainers' trees and land in v7.1 and stable as bug fixes. The
+remaining patches touch lots of drivers but the changes are minimal and
+unlikely to cause any conflicts. I believe they should be queued in the
+driver core tree for v7.2 (possibly on an immutable branch for others to
+merge into their trees). If the subsystem maintainers object, the
+alternative is to queue the three new helpers for platform devices via
+the driver core tree. After v7.2-rc1, I'd resend individual driver
+patches to appropriate maintainers and once they're upstream, we can
+apply the final platform device change. However this would take three
+cycles to complete so my preference is the former solution.
+
+Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+---
+Bartosz Golaszewski (23):
+      mfd: tps6586x: fix OF node refcount
+      net: mv643xx: fix OF node refcount
+      slimbus: qcom-ngd-ctrl: fix OF node refcount
+      pmdomain: imx: fix OF node refcount
+      powerpc/powermac: fix OF node refcount
+      driver core: platform: provide platform_device_set_of_node()
+      driver core: platform: provide platform_device_set_fwnode()
+      driver core: platform: provide platform_device_set_of_node_from_dev()
+      of: platform: use platform_device_set_of_node()
+      powerpc/powermac: use platform_device_set_of_node()
+      i2c: pxa-pci: use platform_device_set_of_node()
+      iommu/fsl: use platform_device_set_of_node()
+      net: bcmgenet: use platform_device_set_of_node()
+      pmdomain: imx: use platform_device_set_of_node()
+      mfd: tps6586: use platform_device_set_of_node()
+      slimbus: qcom-ngd-ctrl: use platform_device_set_of_node()
+      net: mv643xx: use platform_device_set_of_node()
+      drm/xe/i2c: use platform_device_set_fwnode()
+      platform/surface: gpe: use platform_device_set_fwnode()
+      usb: chipidea: use platform_device_set_of_node_from_dev()
+      usb: musb: use platform_device_set_of_node_from_dev()
+      reset: rzg2l: use platform_device_set_of_node_from_dev()
+      driver core: platform: count references to all kinds of firmware nodes
+
+ arch/powerpc/platforms/powermac/low_i2c.c    |  2 +-
+ drivers/base/platform.c                      | 56 ++++++++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_i2c.c                  |  2 +-
+ drivers/i2c/busses/i2c-pxa-pci.c             |  3 +-
+ drivers/iommu/fsl_pamu.c                     |  7 ++--
+ drivers/mfd/tps6586x.c                       |  2 +-
+ drivers/net/ethernet/broadcom/genet/bcmmii.c | 10 +++--
+ drivers/net/ethernet/marvell/mv643xx_eth.c   |  2 +-
+ drivers/of/platform.c                        |  2 +-
+ drivers/platform/surface/surface_gpe.c       |  2 +-
+ drivers/pmdomain/imx/gpc.c                   |  3 +-
+ drivers/reset/reset-rzg2l-usbphy-ctrl.c      |  2 +-
+ drivers/slimbus/qcom-ngd-ctrl.c              |  2 +-
+ drivers/usb/chipidea/core.c                  |  2 +-
+ drivers/usb/musb/jz4740.c                    |  2 +-
+ include/linux/platform_device.h              |  8 ++++
+ 16 files changed, 84 insertions(+), 23 deletions(-)
+---
+base-commit: 687da68900cd1a46549f7d9430c7d40346cb86a0
+change-id: 20260520-pdev-fwnode-ref-d867836971eb
+
+Best regards,
+-- 
+Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+
