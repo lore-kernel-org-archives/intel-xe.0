@@ -4,61 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78BE4CD5BB5
-	for <intel-xe@archiver.kernel.org>; Fri, 22 May 2026 13:40:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE749CD5BB1
+	for <intel-xe@archiver.kernel.org>; Fri, 22 May 2026 13:43:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E10410E1ED;
-	Fri, 22 May 2026 13:40:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7967A10E1ED;
+	Fri, 22 May 2026 13:43:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QrThRZPB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JVrqYE5K";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A71710E07D;
- Fri, 22 May 2026 13:40:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91D1510E1ED;
+ Fri, 22 May 2026 13:43:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779457207; x=1810993207;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version:content-id;
- bh=AqzWIe15rSPR2qFTMV0hV+sdzraVnQlAGYI8gzdLoy0=;
- b=QrThRZPB1GCRjrIP8oUliX3be73s1vlbKS59DNtSOe4DuEYoHa5cfqGY
- B6HQLsgX28HqoHM45kv5er1yzZxWhnpWsfAovtrS2g5f8QW9HP9uXtKtA
- tOwXYXtQEx7LmbJNUo9+F/Zk22G4AUmVJ8BVd+n6SQ+ke3HX22mRth6CT
- JkrnKcJUvM0k5w46G4Xotom4YfqG2cVH80RlSVBfKu54wqnMuzpAZ0xTE
- Qq7bSMGac1O/OMn0vz/7AeRGPdR3Ygr0g29D9xUwaSaCQD6Q2861lPA7U
- muGYokJLnOxjCrAI05vqUB4Ufpxoxa8sop+g6Nw1Bgg8x7m7exMdiIiBw Q==;
-X-CSE-ConnectionGUID: E9u/wFDZSFyNUdJnOsSS4w==
-X-CSE-MsgGUID: HOLCDxRtTB2lI+RFtbjVYA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11794"; a="91778777"
-X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="91778777"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 06:40:07 -0700
-X-CSE-ConnectionGUID: yGGLmTkkQ0SkhpaPtpcYMw==
-X-CSE-MsgGUID: 0HgWlebzRxq3Mt5xv1JXfQ==
+ t=1779457383; x=1810993383;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=2YBEC4ut7dt+s4wBM3oYAlIZFsZ4zH8CkJvcRTBW5Ps=;
+ b=JVrqYE5K6W5Igjln47gOnUdt/Zg/UsC1UUmPl5egQVfyuP+VGrDcB6yK
+ PZYr6psJTo6R1MjyXgxtHUZn9FNbPzixQKWffqjIv2umMQDaMvyzxe71t
+ Q6aEff2hUMKEeC4hNk5CU5wPpUwgcFtgoDK+2pzAqhbUokjsOOOkHME7H
+ Oz+DxW7BIpuM0b+gTfM8LIT0QFQ5kJj+CCISmDy+N+iPcyyQ+gWGRe/vz
+ 0a2vbh+4FGaYolqTllTsWYZc245b8sJM+Cko4D4ACyf1rceMls13H8nPA
+ sBsXVN1MTbRGJbOXC1o/xSSNtoIgNF2iX8ne5rgABtoYj42jydjCJfvH0 A==;
+X-CSE-ConnectionGUID: iQtW+wmxSmK1hnNryJEPtQ==
+X-CSE-MsgGUID: oh7m1iDNTnSJEZ36lLpxlw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11794"; a="105850593"
+X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="105850593"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2026 06:43:03 -0700
+X-CSE-ConnectionGUID: 5NpfBQZbT5yZaJNoJoCWww==
+X-CSE-MsgGUID: 7s2VaSKCQFetscyYie5WQg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="234562688"
-Received: from dev-417.igk.intel.com ([10.91.214.181])
- by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 06:40:04 -0700
-Date: Fri, 22 May 2026 15:40:02 +0200 (CEST)
-From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-cc: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>, 
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>
-Subject: Re: [PATCH v1 2/2] drm/managed: fix drmm_add_mod_or_reset() kernel-doc
-In-Reply-To: <8b886c39-f474-463e-99c5-2cc91466f1b9@intel.com>
-Message-ID: <676b9ad7-46f7-fabe-163e-33012a23030c@intel.com>
-References: <20260521155231.1821935-1-michal.grzelak@intel.com>
- <20260521155231.1821935-3-michal.grzelak@intel.com>
- <8b886c39-f474-463e-99c5-2cc91466f1b9@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="238317161"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2026 06:43:01 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, jani.nikula@linux.intel.com,
+ navaremanasi@google.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 0/6] drm/i915/intel_panel: Fix seamless VRR mode switching for
+ DRRS panels
+Date: Fri, 22 May 2026 18:55:05 +0530
+Message-ID: <20260522132511.321540-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: multipart/mixed; BOUNDARY="8323329-969468146-1779456677=:1544314"
-Content-ID: <7e91f919-70b4-ad0c-8680-dc597dce2f86@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,51 +67,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+Currently intel_panel_fixed_mode() can return a lower refresh rate mode
+for VRR panels if the lower refresh rate mode is first in the list.
+This creates problems for seamless switch features like LRR and
+Seamless-DRRS, as it results in changes to vsync_start/end causing a
+full modeset instead of a seamless switch.
 
---8323329-969468146-1779456677=:1544314
-Content-Type: text/plain; CHARSET=ISO-8859-2; format=flowed
-Content-Transfer-Encoding: 8BIT
-Content-ID: <95e88270-d98b-7af7-d8da-c2e395bb1814@intel.com>
+This is particularly problematic for DRRS panels on platforms without
+double buffered M/N support for LNL+ (display version 20+), where
+seamless clock changes are not possible.
 
-On Fri, 22 May 2026, Borah, Chaitanya Kumar wrote:
-> On 5/21/2026 9:22 PM, Micha³ Grzelak wrote:
->> Kernel-doc of drmm_add_mode_or_reset() references @releases which is not
->> on argument list. Swap '@' between 'releases' and 'action' words to fix
->> the documentation.
->
-> s/drmm_add_mode_or_reset/drmm_add_action
->
+This series attempts to fix this by:
+1. Adding a helper to get the highest refresh rate mode from the list of
+   fixed modes for a connector.
+2. When a seamless switch to a lower mode is desired, making
+   intel_panel_fixed_mode() return the highest refresh rate mode,
+   provided the requested rate is in VRR range. The vblank is then
+   extended to provide the desired refresh rate.
 
-Title would like to see that as well...
+To determine whether a full modeset or seamless switch is intended, the
+connector state is checked for the allow_modeset flag. A nullable
+conn_state parameter is added to intel_panel_fixed_mode() and
+intel_panel_compute_config() for this purpose.
 
-BR,
-Micha³
+Rev2:
+ - Address Ville's comments to preserve Vtotal-Vsync distance while
+   adjusting VTOTAL.
+ - Address Manasi's comments to always go with highest RR mode
+   irrespective of allow_modeset flag for modes that have same clock but
+   different votal.
 
->> 
->> Signed-off-by: Micha³ Grzelak <michal.grzelak@intel.com>
->> ---
->>   include/drm/drm_managed.h | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->> 
->> diff --git a/include/drm/drm_managed.h b/include/drm/drm_managed.h
->> index 72bfac002c06..72d0d68be226 100644
->> --- a/include/drm/drm_managed.h
->> +++ b/include/drm/drm_managed.h
->> @@ -18,7 +18,7 @@ typedef void (*drmres_release_t)(struct drm_device *dev, 
->> void *res);
->>    * @action: function which should be called when @dev is released
->>    * @data: opaque pointer, passed to @action
->>    *
->> - * This function adds the @release action with optional parameter @data to 
->> the
->> + * This function adds the release @action with optional parameter @data to 
->> the
->>    * list of cleanup actions for @dev. The cleanup actions will be run in 
->> reverse
->>    * order in the final drm_dev_put() call for @dev.
->>    */
->
->
---8323329-969468146-1779456677=:1544314--
+Rev3:
+ - Drop patch to deprecate TRANS_VSYNC, instead add Vsync start/end in
+   lrr codepaths. (Ville).
+ - Fix the condition to avoid picking higher RR mode for DRRS panels
+   when allow modeset flag is set.
+
+Ankit Nautiyal (6):
+  drm/i915/display: Handle VSYNC timing in LRR path
+  drm/i915/panel: Preserve Vtotal-Vsync distance while adjusting vtotal
+  drm/i915/intel_panel: Add a helper to get the highest refresh rate
+    mode
+  drm/i915/intel_panel: Pass crtc_state to intel_panel_compute_config
+  drm/i915/intel_panel: Use highest refresh rate mode for VRR panels
+  drm/i915/intel_panel: Refine VRR fixed mode selection for DRRS panels
+
+ drivers/gpu/drm/i915/display/icl_dsi.c       |   2 +-
+ drivers/gpu/drm/i915/display/intel_display.c |   9 +-
+ drivers/gpu/drm/i915/display/intel_dp.c      |   2 +-
+ drivers/gpu/drm/i915/display/intel_dvo.c     |   2 +-
+ drivers/gpu/drm/i915/display/intel_lvds.c    |   2 +-
+ drivers/gpu/drm/i915/display/intel_panel.c   | 102 +++++++++++++++----
+ drivers/gpu/drm/i915/display/intel_panel.h   |   9 +-
+ drivers/gpu/drm/i915/display/intel_sdvo.c    |   8 +-
+ drivers/gpu/drm/i915/display/vlv_dsi.c       |   2 +-
+ 9 files changed, 108 insertions(+), 30 deletions(-)
+
+-- 
+2.45.2
+
