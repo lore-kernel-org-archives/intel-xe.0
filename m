@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA48ACD5BB1
-	for <intel-xe@archiver.kernel.org>; Fri, 22 May 2026 13:43:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 201ADCD5BB0
+	for <intel-xe@archiver.kernel.org>; Fri, 22 May 2026 13:43:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B01910F5C3;
-	Fri, 22 May 2026 13:43:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D095410F5E8;
+	Fri, 22 May 2026 13:43:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eIq+7Y4p";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ro/5QxsT";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B58610E1FF;
- Fri, 22 May 2026 13:43:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7EF910F5E8;
+ Fri, 22 May 2026 13:43:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779457385; x=1810993385;
+ t=1779457391; x=1810993391;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=iuV9yWQXg8Z9jAKbI4vke+DtXeXaUYGqpqZveiniDgc=;
- b=eIq+7Y4pnIzR8xcPRFT0hoP8sey3iLU10xtkFAKIcucZ9+AHyImT4yHB
- dxMBuNArt7YVLhqTi0Pgr+3W4yGGjDeesS2P5JaNdqAhLz2Oy07qU/vd/
- SLJTL5A7XNKPl2IQmm2eYRf3y9zx8qIemZ9reCQ/TXWPmfb1Q68AW82kl
- UA6c38ttSv69/K4KupsaqZVMkoAlousvKE41ipkPZuNBJrNPpVQzn+PFH
- 4ZTImvvDfCdAardqyJcX7NFyXAzdpipBCw9DjVKD8KVG2xN7xVKdWd4Iw
- IBhiBXqNUNjo7H+o66f5p3YCG17TUnumqRKycEgDcWV25ErmCcTftOkd+ Q==;
-X-CSE-ConnectionGUID: CxvSmFTpQqWmK5kD2V/Nvg==
-X-CSE-MsgGUID: XHufL/bfRFyFQB2qyWgTBQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11794"; a="105850596"
-X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="105850596"
+ bh=hGadmOsGND9nQUmo5SvevsvFw+92v9pzEDBUnV62Mcw=;
+ b=Ro/5QxsTe+7b3dqubx/M1RNZ3s8CgC8ogwZOQv9iJ3QUxrUyJf7kA4Fo
+ dBCGVdGUz51pBCmrZhs65u2fdeqchld0bNwLyOjSdWZ38shzmCKHnn7mm
+ Mw01O4uKu1YMe8gdXjIdqzMH0Mo/ou87HQ+06zUUI8mYRNjbt91bnrm4r
+ VaeApldlUg1VahGypJdr8Oiup5j+6tDYfc6Qgu6LCBG3tYRu7vFkVeVAK
+ IF1bXrcXHLO+LdUsAI31IAqbs95I2HXJ2XxUQ5iaXRWPTimahwg5wi1lx
+ mpv3BXDY88dapkC51cZslNHuqRqnwaihHC5YGy9Qnq739NCTJOlysNhS4 A==;
+X-CSE-ConnectionGUID: x05Q/qc8SyaqP4uCGc4C1w==
+X-CSE-MsgGUID: ykQHsGJFRLiLSpWC739J8A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11794"; a="105850605"
+X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="105850605"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 06:43:05 -0700
-X-CSE-ConnectionGUID: w1t0/0TsS16AYuEMyWeD9Q==
-X-CSE-MsgGUID: GrzJO6RwTima9tvTowooWA==
+ 22 May 2026 06:43:11 -0700
+X-CSE-ConnectionGUID: XeKaZjw4TlCvQNitVFswHA==
+X-CSE-MsgGUID: cnzIW9fyRNeS5+KnIoEEtQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="238317168"
+X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="238317219"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 06:43:03 -0700
+ 22 May 2026 06:43:09 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, jani.nikula@linux.intel.com,
  navaremanasi@google.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 1/6] drm/i915/display: Handle VSYNC timing in LRR path
-Date: Fri, 22 May 2026 18:55:06 +0530
-Message-ID: <20260522132511.321540-2-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 4/6] drm/i915/intel_panel: Pass crtc_state to
+ intel_panel_compute_config
+Date: Fri, 22 May 2026 18:55:09 +0530
+Message-ID: <20260522132511.321540-5-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260522132511.321540-1-ankit.k.nautiyal@intel.com>
 References: <20260522132511.321540-1-ankit.k.nautiyal@intel.com>
@@ -68,51 +69,149 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-LRR already updates crtc_vtotal/crtc_vblank_end seamlessly.
-Extend the same handling to crtc_vsync_start/crtc_vsync_end so
-VSYNC timing changes are programmed and accepted via the LRR path instead
-of forcing a full modeset.
+Change intel_panel_compute_config() to take intel_crtc_state instead of
+drm_display_mode, to better match the convention used by encoder
+compute_config hooks. The adjusted_mode is derived internally from
+crtc_state->hw.adjusted_mode.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/icl_dsi.c     | 2 +-
+ drivers/gpu/drm/i915/display/intel_dp.c    | 2 +-
+ drivers/gpu/drm/i915/display/intel_dvo.c   | 2 +-
+ drivers/gpu/drm/i915/display/intel_lvds.c  | 2 +-
+ drivers/gpu/drm/i915/display/intel_panel.c | 4 +++-
+ drivers/gpu/drm/i915/display/intel_panel.h | 4 +++-
+ drivers/gpu/drm/i915/display/intel_sdvo.c  | 5 +++--
+ drivers/gpu/drm/i915/display/vlv_dsi.c     | 2 +-
+ 8 files changed, 14 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 757a78c75bbf..75c998960864 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2797,6 +2797,9 @@ static void intel_set_transcoder_timings_lrr(const struct intel_crtc_state *crtc
- 	intel_de_write(display, TRANS_VBLANK(display, cpu_transcoder),
- 		       VBLANK_START(crtc_vblank_start - 1) |
- 		       VBLANK_END(crtc_vblank_end - 1));
-+	intel_de_write(display, TRANS_VSYNC(display, cpu_transcoder),
-+		       VSYNC_START(adjusted_mode->crtc_vsync_start - 1) |
-+		       VSYNC_END(adjusted_mode->crtc_vsync_end - 1));
- 	/*
- 	 * For platforms that always use VRR Timing Generator, the VTOTAL.Vtotal
- 	 * bits are not required. Since the support for these bits is going to
-@@ -5166,9 +5169,9 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 	PIPE_CONF_CHECK_I(name.crtc_vdisplay); \
- 	if (!fastset || !allow_vblank_delay_fastset(current_config)) \
- 		PIPE_CONF_CHECK_I(name.crtc_vblank_start); \
--	PIPE_CONF_CHECK_I(name.crtc_vsync_start); \
--	PIPE_CONF_CHECK_I(name.crtc_vsync_end); \
- 	if (!fastset || !pipe_config->update_lrr) { \
-+		PIPE_CONF_CHECK_I(name.crtc_vsync_start); \
-+		PIPE_CONF_CHECK_I(name.crtc_vsync_end); \
- 		PIPE_CONF_CHECK_I(name.crtc_vtotal); \
- 		PIPE_CONF_CHECK_I(name.crtc_vblank_end); \
- 	} \
-@@ -5782,6 +5785,8 @@ static bool lrr_params_changed(const struct intel_crtc_state *old_crtc_state,
+diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+index a549f1fac810..9f28c5a903a4 100644
+--- a/drivers/gpu/drm/i915/display/icl_dsi.c
++++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+@@ -1671,7 +1671,7 @@ static int gen11_dsi_compute_config(struct intel_encoder *encoder,
+ 	pipe_config->sink_format = INTEL_OUTPUT_FORMAT_RGB;
+ 	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
  
- 	return old_adjusted_mode->crtc_vblank_start != new_adjusted_mode->crtc_vblank_start ||
- 		old_adjusted_mode->crtc_vblank_end != new_adjusted_mode->crtc_vblank_end ||
-+		old_adjusted_mode->crtc_vsync_start != new_adjusted_mode->crtc_vsync_start ||
-+		old_adjusted_mode->crtc_vsync_end != new_adjusted_mode->crtc_vsync_end ||
- 		old_adjusted_mode->crtc_vtotal != new_adjusted_mode->crtc_vtotal ||
- 		old_crtc_state->set_context_latency != new_crtc_state->set_context_latency;
+-	ret = intel_panel_compute_config(intel_connector, adjusted_mode);
++	ret = intel_panel_compute_config(intel_connector, pipe_config, conn_state->state);
+ 	if (ret)
+ 		return ret;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 1920d2f02666..3f36d92580e4 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -3599,7 +3599,7 @@ intel_dp_compute_config(struct intel_encoder *encoder,
+ 	int ret = 0, link_bpp_x16;
+ 
+ 	if (intel_dp_is_edp(intel_dp)) {
+-		ret = intel_panel_compute_config(connector, adjusted_mode);
++		ret = intel_panel_compute_config(connector, pipe_config, conn_state->state);
+ 		if (ret)
+ 			return ret;
+ 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_dvo.c b/drivers/gpu/drm/i915/display/intel_dvo.c
+index dd1a995c2979..5579f0072362 100644
+--- a/drivers/gpu/drm/i915/display/intel_dvo.c
++++ b/drivers/gpu/drm/i915/display/intel_dvo.c
+@@ -256,7 +256,7 @@ static int intel_dvo_compute_config(struct intel_encoder *encoder,
+ 	 * with the panel scaling set up to source from the H/VDisplay
+ 	 * of the original mode.
+ 	 */
+-	ret = intel_panel_compute_config(connector, adjusted_mode);
++	ret = intel_panel_compute_config(connector, pipe_config, conn_state->state);
+ 	if (ret)
+ 		return ret;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
+index c8098104d853..71a4439d4af5 100644
+--- a/drivers/gpu/drm/i915/display/intel_lvds.c
++++ b/drivers/gpu/drm/i915/display/intel_lvds.c
+@@ -459,7 +459,7 @@ static int intel_lvds_compute_config(struct intel_encoder *encoder,
+ 	 * with the panel scaling set up to source from the H/VDisplay
+ 	 * of the original mode.
+ 	 */
+-	ret = intel_panel_compute_config(connector, adjusted_mode);
++	ret = intel_panel_compute_config(connector, crtc_state, conn_state->state);
+ 	if (ret)
+ 		return ret;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
+index 6577c6bf5a88..2765d87ddca7 100644
+--- a/drivers/gpu/drm/i915/display/intel_panel.c
++++ b/drivers/gpu/drm/i915/display/intel_panel.c
+@@ -213,8 +213,10 @@ enum drrs_type intel_panel_drrs_type(struct intel_connector *connector)
  }
+ 
+ int intel_panel_compute_config(struct intel_connector *connector,
+-			       struct drm_display_mode *adjusted_mode)
++			       struct intel_crtc_state *crtc_state,
++			       const struct drm_atomic_commit *state)
+ {
++	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+ 	const struct drm_display_mode *fixed_mode =
+ 		intel_panel_fixed_mode(connector, adjusted_mode);
+ 	int vrefresh, fixed_mode_vrefresh;
+diff --git a/drivers/gpu/drm/i915/display/intel_panel.h b/drivers/gpu/drm/i915/display/intel_panel.h
+index fe4d80a41d4c..3c4ff6735c21 100644
+--- a/drivers/gpu/drm/i915/display/intel_panel.h
++++ b/drivers/gpu/drm/i915/display/intel_panel.h
+@@ -10,6 +10,7 @@
+ 
+ enum drm_connector_status;
+ enum drrs_type;
++struct drm_atomic_commit;
+ struct drm_connector;
+ struct drm_connector_state;
+ struct drm_display_mode;
+@@ -48,7 +49,8 @@ intel_panel_mode_valid(struct intel_connector *connector,
+ 		       const struct drm_display_mode *mode,
+ 		       int *target_clock);
+ int intel_panel_compute_config(struct intel_connector *connector,
+-			       struct drm_display_mode *adjusted_mode);
++			       struct intel_crtc_state *crtc_state,
++			       const struct drm_atomic_commit *state);
+ void intel_panel_add_edid_fixed_modes(struct intel_connector *connector,
+ 				      bool use_alt_fixed_modes);
+ void intel_panel_add_vbt_lfp_fixed_mode(struct intel_connector *connector);
+diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
+index d83d350959d8..51746e10359f 100644
+--- a/drivers/gpu/drm/i915/display/intel_sdvo.c
++++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+@@ -797,7 +797,7 @@ intel_sdvo_create_preferred_input_timing(struct intel_sdvo *intel_sdvo,
+ 
+ 	if (IS_LVDS(intel_sdvo_connector)) {
+ 		const struct drm_display_mode *fixed_mode =
+-			intel_panel_fixed_mode(&intel_sdvo_connector->base, mode);
++intel_panel_fixed_mode(&intel_sdvo_connector->base, mode);
+ 
+ 		if (fixed_mode->hdisplay != args.width ||
+ 		    fixed_mode->vdisplay != args.height)
+@@ -1399,7 +1399,8 @@ static int intel_sdvo_compute_config(struct intel_encoder *encoder,
+ 		int ret;
+ 
+ 		ret = intel_panel_compute_config(&intel_sdvo_connector->base,
+-						 adjusted_mode);
++						 pipe_config,
++						 conn_state->state);
+ 		if (ret)
+ 			return ret;
+ 
+diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
+index 877eab75f19a..bce8a940aff9 100644
+--- a/drivers/gpu/drm/i915/display/vlv_dsi.c
++++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+@@ -280,7 +280,7 @@ static int intel_dsi_compute_config(struct intel_encoder *encoder,
+ 	pipe_config->sink_format = INTEL_OUTPUT_FORMAT_RGB;
+ 	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
+ 
+-	ret = intel_panel_compute_config(intel_connector, adjusted_mode);
++	ret = intel_panel_compute_config(intel_connector, pipe_config, conn_state->state);
+ 	if (ret)
+ 		return ret;
+ 
 -- 
 2.45.2
 
