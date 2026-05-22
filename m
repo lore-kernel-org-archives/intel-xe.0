@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15CAFCD5BB0
-	for <intel-xe@archiver.kernel.org>; Fri, 22 May 2026 08:46:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24E88CD5BAC
+	for <intel-xe@archiver.kernel.org>; Fri, 22 May 2026 08:46:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA16610F4FA;
-	Fri, 22 May 2026 08:46:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD19910F4F9;
+	Fri, 22 May 2026 08:46:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mVvj9M9y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G5FYEaHA";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A6E510F4E9
- for <intel-xe@lists.freedesktop.org>; Fri, 22 May 2026 08:46:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F290010F4F9
+ for <intel-xe@lists.freedesktop.org>; Fri, 22 May 2026 08:46:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779439560; x=1810975560;
+ t=1779439564; x=1810975564;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=/YschoAtIvTN0gK8jDYlrNnMzddudQ73OHARsoonam0=;
- b=mVvj9M9yzNmR925V9YAqN2EZQLrVf3yMX1BdR6A+6pm70KMH2+pwYZPp
- l5iIjYl3SPeuE9piPKCxwzuZvcKxJaaZgiz1hHFIYeey7b6DuaVWD5vs5
- K8p6S820WojduY/EvhfdNfFJvBei8cglzYLiAGBHDAiC+l/xaD88OSnfx
- l2iYJ9/JgDZSJIxV7D5NSQYbZCZ1Sr8laswv8Ye9yQzRZwGlpw1kpftcw
- BPeRnG8fvBzky2B6PIH/PZfooCm/MjNBxip1NZ5n/gocARTEhfFvFOde+
- gni5n3RQMjI8QAsBfo+kQZZHC4/qpTAv7sKlnsMcUFYuCu5LB07W0QduW Q==;
-X-CSE-ConnectionGUID: QFGy/8w4S7WLZEgaTX75lA==
-X-CSE-MsgGUID: Qr+B04XxSFuAvqJC9g5hAg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11793"; a="80220406"
-X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="80220406"
+ bh=6QWMvXUaZksCWVOtW3bRqny5+QJw0fM1y3+W/I8EboU=;
+ b=G5FYEaHA1BTfIIbZJlt/kGeNo6D09y0e2pqmYNDHsAiyFXhCSsBEBq2a
+ /ZbHrBSrgaT4Tgz75Nt16tHZYSPU9KV6Ep2oWgMntZxdvrGOXEXzOAemr
+ bilcsTe4xZuePRMoj0myqOumNWac3sv2HN6g9dU/JS+erBlrn6bVlkuf7
+ MnW0zO5RZssQZyT93LERxJs1+vsfAtNYcDhnfTvPVXG/RnOx9A/L3dg+P
+ KibvqwBGIJ+5mSnJHTUUR0upmqH/7F3VLBeDzNqNNzWbIwo7VmgG/VNaL
+ nXzs/mzbL+66zRskyESAJRfNNWuwjkjY6ZNnn0or+LFpgdDz2UwgHP7rD w==;
+X-CSE-ConnectionGUID: lwh/tDjZSXC1f7QRAKAl6w==
+X-CSE-MsgGUID: ZrV8CY34T0q0KHF342J3ZQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11793"; a="80220410"
+X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="80220410"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 01:46:00 -0700
-X-CSE-ConnectionGUID: 21/FqquRRz+xzJ7wXLefYA==
-X-CSE-MsgGUID: V3qGCvK6Q122loi0k8T+Hg==
+ 22 May 2026 01:46:04 -0700
+X-CSE-ConnectionGUID: vArz/OhuTY2GRdxEz8G9qw==
+X-CSE-MsgGUID: sFXSFzFHSeC/GHNBKdVKnA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="264679494"
+X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="264679507"
 Received: from lstrano-mobl6.amr.corp.intel.com (HELO [192.168.1.24])
  ([10.124.223.183])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 01:45:58 -0700
+ 22 May 2026 01:46:03 -0700
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Fri, 22 May 2026 05:45:16 -0300
-Subject: [PATCH v3 1/7] drm/xe/rtp: Write kunit test cases specific for
- rule matching
+Date: Fri, 22 May 2026 05:45:19 -0300
+Subject: [PATCH v3 4/7] drm/xe/rtp: Do not break parsing when missing context
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260522-rtp-rule-parser-v3-1-0c51039899f4@intel.com>
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260522-rtp-rule-parser-v3-4-0c51039899f4@intel.com>
 References: <20260522-rtp-rule-parser-v3-0-0c51039899f4@intel.com>
 In-Reply-To: <20260522-rtp-rule-parser-v3-0-0c51039899f4@intel.com>
 To: intel-xe@lists.freedesktop.org
@@ -70,439 +69,202 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The kunit test cases for the RTP framework are currently separated into
-those that validate xe_rtp_process_to_sr() and those that validate
-xe_rtp_process().  In both of them, we also have mixed stuff to validate
-rule matching functionality, which should rather be done in a separate
-test case group.
+With the current implementation, the RTP framework will cause parsing of
+the rule set to be interrupted if one rule requires a context item (gt
+or hwe) that is missing (i.e. when the value is NULL).
 
-Let's create such a group, specific for validating rule matching, and
-also add an initial set of cases.  In an upcoming change, we will do a
-cleanup of the other groups by migrating those cases intended for rule
-matching to this new group.
+This is arguably a semantic error instead of a syntactic one, meaning
+that RTP should not interrupt parsing the rules.  With the current
+behavior, we would miss detecting other errors that could appear in the
+remaining rules and could also prevent valid rules joined by "OR" from
+being evaluated.
+
+Make sure that we do not stop parsing the rule set when detecting
+missing context and let's add rtp_rules_test_cases to reflect that.
 
 v2:
-  - s/no-yes-or-no-yes/no-yes-or-yes-no/ (Matt)
-  - Drop leftover include of <kunit/test.h>.
+  - Add "missing-context" in the test case names to indicate that those
+    are about rules that are missing the necessary context. (Matt)
+  - Rebase: treat the new match type XE_RTP_MATCH_PLATFORM_STEP in the
+    same way when the platform is missing step information.
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com> # v1
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_rtp.c      |  38 +++++++++
- drivers/gpu/drm/xe/tests/xe_rtp_test.c | 141 +++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/tests/xe_rtp_test.h |  23 ++++++
- drivers/gpu/drm/xe/xe_rtp.c            |  57 +++++++++----
- 4 files changed, 242 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_rtp_test.c | 28 +++++++++++++++
+ drivers/gpu/drm/xe/xe_rtp.c            | 66 ++++++++++++++++++++++------------
+ 2 files changed, 72 insertions(+), 22 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_rtp.c b/drivers/gpu/drm/xe/tests/xe_rtp.c
-new file mode 100644
-index 000000000000..b3a8b75936d1
---- /dev/null
-+++ b/drivers/gpu/drm/xe/tests/xe_rtp.c
-@@ -0,0 +1,38 @@
-+// SPDX-License-Identifier: GPL-2.0 AND MIT
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+#include "tests/xe_rtp_test.h"
-+
-+#include <kunit/visibility.h>
-+
-+/**
-+ * xe_rtp_rule_matches - Check if a set of RTP rule set match against the
-+ *			 device/GT/hwe
-+ * @xe: The xe device
-+ * @gt: The GT struct (may be NULL)
-+ * @hwe: The hw_engine  (may be NULL)
-+ * @rules: The array of rules to match against
-+ * @n_rules: Number of items in @rules
-+ * @err: Pointer (may be NULL) to set error number.
-+ *
-+ * This parses the set of rules and check if they match against the passed
-+ * parameters.
-+ *
-+ * If passed, @err is updated with a non-zero negative error number or zero if
-+ * no errors were found during the parsing/evaluation of rules.
-+ *
-+ * Returns true if there is a match and false if there is no match or if an
-+ * error was found.
-+ */
-+bool xe_rtp_rule_matches(const struct xe_device *xe,
-+			 struct xe_gt *gt,
-+			 struct xe_hw_engine *hwe,
-+			 const struct xe_rtp_rule *rules,
-+			 unsigned int n_rules,
-+			 int *err)
-+{
-+	return rule_matches_with_err(xe, gt, hwe, rules, n_rules, err);
-+}
-+EXPORT_SYMBOL_IF_KUNIT(xe_rtp_rule_matches);
 diff --git a/drivers/gpu/drm/xe/tests/xe_rtp_test.c b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
-index 5d78f2283df9..c98d85a15652 100644
+index f56f005dbd98..dfb15d81d799 100644
 --- a/drivers/gpu/drm/xe/tests/xe_rtp_test.c
 +++ b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
-@@ -21,6 +21,7 @@
- #include "xe_pci_test.h"
- #include "xe_reg_sr.h"
- #include "xe_rtp.h"
-+#include "xe_rtp_test.h"
- 
- #define REGULAR_REG1		XE_REG(1)
- #define REGULAR_REG2		XE_REG(2)
-@@ -37,6 +38,14 @@
- #undef XE_REG_MCR
- #define XE_REG_MCR(...)     XE_REG(__VA_ARGS__, .mcr = 1)
- 
-+struct rtp_rules_test_case {
-+	const char *name;
-+	bool expected_match;
-+	int expected_err;
-+	const struct xe_rtp_rule *rules;
-+	u8 n_rules;
-+};
+@@ -238,6 +238,34 @@ static const struct rtp_rules_test_case rtp_rules_cases[] = {
+ 		.expected_err = -EINVAL,
+ 		XE_RTP_RULES(FUNC(match_no), OR, OR, FUNC(match_no)),
+ 	},
 +
- struct rtp_to_sr_test_case {
- 	const char *name;
- 	struct xe_reg expected_reg;
-@@ -83,6 +92,130 @@ static bool match_no(const struct xe_device *xe, const struct xe_gt *gt,
- 	return false;
- }
- 
-+static const struct rtp_rules_test_case rtp_rules_cases[] = {
++	/* No match because hwe is NULL. */
++	{
++		.name = "missing-context-engine-class",
++		.expected_match = false,
++		XE_RTP_RULES(ENGINE_CLASS(RENDER)),
++	},
++
 +	/*
-+	 * Single rules.
-+	 *
-+	 * TODO: Include other types of rules as well: GRAPHICS_VERSION(),
-+	 * MEDIA_VERSION(), etc.
++	 * Missing context (hwe==NULL) does not cause parsing to stop, hence we
++	 * expect a match.
 +	 */
 +	{
-+		.name = "no",
-+		.expected_match = false,
-+		XE_RTP_RULES(FUNC(match_no)),
-+	},
-+	{
-+		.name = "yes",
++		.name = "missing-context-engine-class-or-yes",
 +		.expected_match = true,
-+		XE_RTP_RULES(FUNC(match_yes)),
++		XE_RTP_RULES(ENGINE_CLASS(RENDER), OR, FUNC(match_yes)),
 +	},
 +
-+	/* Conjunctions with 2 operands. */
++	/*
++	 * Missing context (hwe==NULL) does not cause parsing to stop, hence we
++	 * expect a syntax error.
++	 */
 +	{
-+		.name = "no-and-no",
-+		.expected_match = false,
-+		XE_RTP_RULES(FUNC(match_no), FUNC(match_no)),
-+	},
-+	{
-+		.name = "no-and-yes",
-+		.expected_match = false,
-+		XE_RTP_RULES(FUNC(match_no), FUNC(match_yes)),
-+	},
-+	{
-+		.name = "yes-and-no",
-+		.expected_match = false,
-+		XE_RTP_RULES(FUNC(match_yes), FUNC(match_no)),
-+	},
-+	{
-+		.name = "yes-and-yes",
++		.name = "missing-context-engine-class-or-or-yes",
 +		.expected_match = true,
-+		XE_RTP_RULES(FUNC(match_yes), FUNC(match_yes)),
-+	},
-+
-+	/* Disjunctions with 2 operands. */
-+	{
-+		.name = "no-or-no",
-+		.expected_match = false,
-+		XE_RTP_RULES(FUNC(match_no), OR, FUNC(match_no)),
-+	},
-+	{
-+		.name = "no-or-yes",
-+		.expected_match = true,
-+		XE_RTP_RULES(FUNC(match_no), OR, FUNC(match_yes)),
-+	},
-+	{
-+		.name = "yes-or-no",
-+		.expected_match = true,
-+		XE_RTP_RULES(FUNC(match_yes), OR, FUNC(match_no)),
-+	},
-+	{
-+		.name = "yes-or-yes",
-+		.expected_match = true,
-+		XE_RTP_RULES(FUNC(match_yes), OR, FUNC(match_yes)),
-+	},
-+
-+	/* Conjunction and disjunctions. */
-+	{
-+		.name = "no-yes-or-yes-no",
-+		.expected_match = false,
-+		XE_RTP_RULES(FUNC(match_no), FUNC(match_yes), OR,
-+			     FUNC(match_yes), FUNC(match_no)),
-+	},
-+	{
-+		.name = "no-yes-or-yes-yes",
-+		.expected_match = true,
-+		XE_RTP_RULES(FUNC(match_no), FUNC(match_yes), OR,
-+			     FUNC(match_yes), FUNC(match_yes)),
-+	},
-+	{
-+		.name = "yes-yes-or-no-yes",
-+		.expected_match = true,
-+		XE_RTP_RULES(FUNC(match_yes), FUNC(match_yes), OR,
-+			     FUNC(match_no), FUNC(match_yes)),
-+	},
-+	{
-+		.name = "yes-yes-or-yes-yes",
-+		.expected_match = true,
-+		XE_RTP_RULES(FUNC(match_yes), FUNC(match_yes), OR,
-+			     FUNC(match_yes), FUNC(match_yes)),
-+	},
-+	{
-+		.name = "no-no-or-yes-or-no",
-+		.expected_match = true,
-+		XE_RTP_RULES(FUNC(match_no), FUNC(match_no), OR,
-+			     FUNC(match_yes), OR,
-+			     FUNC(match_no)),
-+	},
-+
-+	/* Syntax errors. */
-+	{
-+		.name = "or",
-+		.expected_match = false,
 +		.expected_err = -EINVAL,
-+		XE_RTP_RULES(OR),
++		XE_RTP_RULES(ENGINE_CLASS(RENDER), OR, OR, FUNC(match_yes)),
 +	},
-+	{
-+		.name = "or-anything",
-+		.expected_match = false,
-+		.expected_err = -EINVAL,
-+		XE_RTP_RULES(OR, FUNC(match_yes)),
-+	},
-+};
-+
-+static void xe_rtp_rules_tests(struct kunit *test)
-+{
-+	const struct rtp_rules_test_case *param = test->param_value;
-+	struct xe_device *xe = test->priv;
-+	struct xe_gt *gt = xe_device_get_root_tile(xe)->primary_gt;
-+	int err;
-+	bool match;
-+
-+	match = xe_rtp_rule_matches(xe, gt, NULL, param->rules, param->n_rules, &err);
-+
-+	KUNIT_EXPECT_EQ(test, match, param->expected_match);
-+	KUNIT_EXPECT_EQ(test, err, param->expected_err);
-+}
-+
- static const struct rtp_to_sr_test_case rtp_to_sr_cases[] = {
- 	{
- 		.name = "coalesce-same-reg",
-@@ -544,6 +677,13 @@ static void xe_rtp_process_tests(struct kunit *test)
- 	KUNIT_EXPECT_EQ(test, active, param->expected_active);
- }
+ };
  
-+static void rtp_rules_desc(const struct rtp_rules_test_case *t, char *desc)
-+{
-+	strscpy(desc, t->name, KUNIT_PARAM_DESC_SIZE);
-+}
-+
-+KUNIT_ARRAY_PARAM(rtp_rules, rtp_rules_cases, rtp_rules_desc);
-+
- static void rtp_to_sr_desc(const struct rtp_to_sr_test_case *t, char *desc)
- {
- 	strscpy(desc, t->name, KUNIT_PARAM_DESC_SIZE);
-@@ -591,6 +731,7 @@ static void xe_rtp_test_exit(struct kunit *test)
- }
- 
- static struct kunit_case xe_rtp_tests[] = {
-+	KUNIT_CASE_PARAM(xe_rtp_rules_tests, rtp_rules_gen_params),
- 	KUNIT_CASE_PARAM(xe_rtp_process_to_sr_tests, rtp_to_sr_gen_params),
- 	KUNIT_CASE_PARAM(xe_rtp_process_tests, rtp_gen_params),
- 	{}
-diff --git a/drivers/gpu/drm/xe/tests/xe_rtp_test.h b/drivers/gpu/drm/xe/tests/xe_rtp_test.h
-new file mode 100644
-index 000000000000..26becc1e2af0
---- /dev/null
-+++ b/drivers/gpu/drm/xe/tests/xe_rtp_test.h
-@@ -0,0 +1,23 @@
-+/* SPDX-License-Identifier: GPL-2.0 AND MIT */
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+#ifndef _XE_RTP_TEST_H_
-+#define _XE_RTP_TEST_H_
-+
-+#include <linux/types.h>
-+
-+struct xe_device;
-+struct xe_gt;
-+struct xe_hw_engine;
-+struct xe_rtp_rule;
-+
-+bool xe_rtp_rule_matches(const struct xe_device *xe,
-+			 struct xe_gt *gt,
-+			 struct xe_hw_engine *hwe,
-+			 const struct xe_rtp_rule *rules,
-+			 unsigned int n_rules,
-+			 int *err);
-+
-+#endif
+ static void xe_rtp_rules_tests(struct kunit *test)
 diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
-index 1a4dcbbbc176..0e1adf07e4e7 100644
+index 299fa4209a26..df72b456ab16 100644
 --- a/drivers/gpu/drm/xe/xe_rtp.c
 +++ b/drivers/gpu/drm/xe/xe_rtp.c
-@@ -30,16 +30,20 @@ static bool has_samedia(const struct xe_device *xe)
- 	return xe->info.media_verx100 >= 1300;
- }
- 
--static bool rule_matches(const struct xe_device *xe,
--			 struct xe_gt *gt,
--			 struct xe_hw_engine *hwe,
--			 const struct xe_rtp_rule *rules,
--			 unsigned int n_rules)
-+static bool rule_matches_with_err(const struct xe_device *xe,
-+				  struct xe_gt *gt,
-+				  struct xe_hw_engine *hwe,
-+				  const struct xe_rtp_rule *rules,
-+				  unsigned int n_rules,
-+				  int *err)
- {
- 	const struct xe_rtp_rule *r;
- 	unsigned int i, rcount = 0;
- 	bool match;
- 
-+	if (err)
-+		*err = 0;
-+
- 	for (r = rules, i = 0; i < n_rules; r = &rules[++i]) {
- 		switch (r->match_type) {
- 		case XE_RTP_MATCH_OR:
-@@ -58,21 +62,21 @@ static bool rule_matches(const struct xe_device *xe,
+@@ -67,67 +67,85 @@ static bool rule_matches_with_err(const struct xe_device *xe,
+ 				xe->info.subplatform == r->subplatform;
  			break;
  		case XE_RTP_MATCH_PLATFORM_STEP:
- 			if (drm_WARN_ON(&xe->drm, xe->info.step.platform == STEP_NONE))
--				return false;
-+				goto error;
+-			if (drm_WARN_ON(&xe->drm, xe->info.step.platform == STEP_NONE))
+-				goto error;
++			if (drm_WARN_ON(&xe->drm, xe->info.step.platform == STEP_NONE)) {
++				match = false;
++				break;
++			}
  
  			match = xe->info.step.platform >= r->step_start &&
  				xe->info.step.platform < r->step_end;
  			break;
  		case XE_RTP_MATCH_GRAPHICS_VERSION:
- 			if (drm_WARN_ON(&xe->drm, !gt))
--				return false;
-+				goto error;
+-			if (drm_WARN_ON(&xe->drm, !gt))
+-				goto error;
++			if (drm_WARN_ON(&xe->drm, !gt)) {
++				match = false;
++				break;
++			}
  
  			match = xe->info.graphics_verx100 == r->ver_start &&
  				(!has_samedia(xe) || !xe_gt_is_media_type(gt));
  			break;
  		case XE_RTP_MATCH_GRAPHICS_VERSION_RANGE:
- 			if (drm_WARN_ON(&xe->drm, !gt))
--				return false;
-+				goto error;
+-			if (drm_WARN_ON(&xe->drm, !gt))
+-				goto error;
++			if (drm_WARN_ON(&xe->drm, !gt)) {
++				match = false;
++				break;
++			}
  
  			match = xe->info.graphics_verx100 >= r->ver_start &&
  				xe->info.graphics_verx100 <= r->ver_end &&
-@@ -80,13 +84,13 @@ static bool rule_matches(const struct xe_device *xe,
+ 				(!has_samedia(xe) || !xe_gt_is_media_type(gt));
  			break;
  		case XE_RTP_MATCH_GRAPHICS_VERSION_ANY_GT:
- 			if (drm_WARN_ON(&xe->drm, !gt))
--				return false;
-+				goto error;
+-			if (drm_WARN_ON(&xe->drm, !gt))
+-				goto error;
++			if (drm_WARN_ON(&xe->drm, !gt)) {
++				match = false;
++				break;
++			}
  
  			match = xe->info.graphics_verx100 == r->ver_start;
  			break;
  		case XE_RTP_MATCH_GRAPHICS_STEP:
- 			if (drm_WARN_ON(&xe->drm, !gt))
--				return false;
-+				goto error;
+-			if (drm_WARN_ON(&xe->drm, !gt))
+-				goto error;
++			if (drm_WARN_ON(&xe->drm, !gt)) {
++				match = false;
++				break;
++			}
  
  			match = xe->info.step.graphics >= r->step_start &&
  				xe->info.step.graphics < r->step_end &&
-@@ -94,14 +98,14 @@ static bool rule_matches(const struct xe_device *xe,
+ 				(!has_samedia(xe) || !xe_gt_is_media_type(gt));
  			break;
  		case XE_RTP_MATCH_MEDIA_VERSION:
- 			if (drm_WARN_ON(&xe->drm, !gt))
--				return false;
-+				goto error;
+-			if (drm_WARN_ON(&xe->drm, !gt))
+-				goto error;
++			if (drm_WARN_ON(&xe->drm, !gt)) {
++				match = false;
++				break;
++			}
  
  			match = xe->info.media_verx100 == r->ver_start &&
  				(!has_samedia(xe) || xe_gt_is_media_type(gt));
  			break;
  		case XE_RTP_MATCH_MEDIA_VERSION_RANGE:
- 			if (drm_WARN_ON(&xe->drm, !gt))
--				return false;
-+				goto error;
+-			if (drm_WARN_ON(&xe->drm, !gt))
+-				goto error;
++			if (drm_WARN_ON(&xe->drm, !gt)) {
++				match = false;
++				break;
++			}
  
  			match = xe->info.media_verx100 >= r->ver_start &&
  				xe->info.media_verx100 <= r->ver_end &&
-@@ -109,7 +113,7 @@ static bool rule_matches(const struct xe_device *xe,
+ 				(!has_samedia(xe) || xe_gt_is_media_type(gt));
  			break;
  		case XE_RTP_MATCH_MEDIA_STEP:
- 			if (drm_WARN_ON(&xe->drm, !gt))
--				return false;
-+				goto error;
+-			if (drm_WARN_ON(&xe->drm, !gt))
+-				goto error;
++			if (drm_WARN_ON(&xe->drm, !gt)) {
++				match = false;
++				break;
++			}
  
  			match = xe->info.step.media >= r->step_start &&
  				xe->info.step.media < r->step_end &&
-@@ -117,7 +121,7 @@ static bool rule_matches(const struct xe_device *xe,
+ 				(!has_samedia(xe) || xe_gt_is_media_type(gt));
  			break;
  		case XE_RTP_MATCH_MEDIA_VERSION_ANY_GT:
- 			if (drm_WARN_ON(&xe->drm, !gt))
--				return false;
-+				goto error;
+-			if (drm_WARN_ON(&xe->drm, !gt))
+-				goto error;
++			if (drm_WARN_ON(&xe->drm, !gt)) {
++				match = false;
++				break;
++			}
  
  			match = xe->info.media_verx100 == r->ver_start;
  			break;
-@@ -129,13 +133,13 @@ static bool rule_matches(const struct xe_device *xe,
+@@ -138,14 +156,18 @@ static bool rule_matches_with_err(const struct xe_device *xe,
+ 			match = xe->info.is_dgfx;
  			break;
  		case XE_RTP_MATCH_ENGINE_CLASS:
- 			if (drm_WARN_ON(&xe->drm, !hwe))
--				return false;
-+				goto error;
+-			if (drm_WARN_ON(&xe->drm, !hwe))
+-				goto error;
++			if (drm_WARN_ON(&xe->drm, !hwe)) {
++				match = false;
++				break;
++			}
  
  			match = hwe->class == r->engine_class;
  			break;
  		case XE_RTP_MATCH_NOT_ENGINE_CLASS:
- 			if (drm_WARN_ON(&xe->drm, !hwe))
--				return false;
-+				goto error;
+-			if (drm_WARN_ON(&xe->drm, !hwe))
+-				goto error;
++			if (drm_WARN_ON(&xe->drm, !hwe)) {
++				match = false;
++				break;
++			}
  
  			match = hwe->class != r->engine_class;
  			break;
-@@ -167,9 +171,24 @@ static bool rule_matches(const struct xe_device *xe,
- 
- done:
- 	if (drm_WARN_ON(&xe->drm, !rcount))
--		return false;
-+		goto error;
- 
- 	return true;
-+
-+error:
-+	if (err)
-+		*err = -EINVAL;
-+
-+	return false;
-+}
-+
-+static bool rule_matches(const struct xe_device *xe,
-+			 struct xe_gt *gt,
-+			 struct xe_hw_engine *hwe,
-+			 const struct xe_rtp_rule *rules,
-+			 unsigned int n_rules)
-+{
-+	return rule_matches_with_err(xe, gt, hwe, rules, n_rules, NULL);
- }
- 
- static void rtp_add_sr_entry(const struct xe_rtp_action *action,
-@@ -412,3 +431,7 @@ bool xe_rtp_match_has_msix(const struct xe_device *xe,
- {
- 	return xe_device_has_msix(xe);
- }
-+
-+#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
-+#include "tests/xe_rtp.c"
-+#endif
 
 -- 
 2.53.0
