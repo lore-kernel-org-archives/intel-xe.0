@@ -4,54 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E32E3CD5BB8
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BBB8CD5BB5
 	for <intel-xe@archiver.kernel.org>; Fri, 22 May 2026 12:37:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9EE9A10F754;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4626210F74D;
 	Fri, 22 May 2026 12:37:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Osdn+Uys";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YVIZFwNp";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7BF0E10F746
- for <intel-xe@lists.freedesktop.org>; Fri, 22 May 2026 12:37:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B01A310F73E
+ for <intel-xe@lists.freedesktop.org>; Fri, 22 May 2026 12:37:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779453462; x=1810989462;
+ t=1779453463; x=1810989463;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=LWZ0v264dvwHJmeDTqJ5di04g69fLPSSO9YK06LJlx4=;
- b=Osdn+UysZClAdf6BdkQcskvZY+M9s4KBtlu8w7hN2HipxeIBKNMsQDPR
- juodVGkqgsoVPcMFcBQ5MwEv8fuG6R/iwKpZqHkx1ER8BFPKTo8MKTetq
- QbFNoztAjCwKRM5nbJ+5P1aMT9055/JH66J2n0lt488+DcCV7eWSpPTVc
- LlyJvaAwnG0/HJdHvM3XPshSRmFOg7jdWvTalOAjboblwuxNeD0jGEA3c
- uisIFypxK1U4m9MSUjXatGZQQG8ZeObRquJLUFeA/TbUm02o2zzriRXOK
- rxsTeA0XHb2O8rUfGvP0nxtBWePHbUDj1f3C779br3YHzmm4TrfsdXOB3 g==;
-X-CSE-ConnectionGUID: M2bmUkumRziHR1H0eiTSKg==
-X-CSE-MsgGUID: TJUIoomxTtO9Qboo32IY+Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11794"; a="84264591"
-X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="84264591"
+ bh=qECg29l1hgU4cOKsLDnt6kE0uRAXflB9ZcFgUSebRBc=;
+ b=YVIZFwNptABZ+LzVBvJwQ/UiNlJur201s8u9U1kk5CxRw/PTe3tar3AR
+ +lT9s+hFotLDKi/pNjutMhdjpNtggUvBRPZ7a9oOYk5U3d21Z6iahQpp5
+ UKrAem2O8NhHdlo+ZsJe4yTr3/P9i+nhQWiWwMGeMkjTopuo6VW3GBc9w
+ 8+4BCEJERqvQOBucl8Ef94XslWm2i+936kSaEf27oP38d6bVSowJ2Bma7
+ fE9YEO8R+D7W1659eS2KrsZz25L17RcGRQR3I88oe2oRHyexzQzR6lhqk
+ WnGxqOZRp3Suac2BoCEX0Ok3ddIzMJpoePYlNtuT5i0YqUNQHuspZQWow A==;
+X-CSE-ConnectionGUID: zckJB9hoTSaY3kDXwu2u2w==
+X-CSE-MsgGUID: Zbcs/ni2S02cDc1/bJrZ2A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11794"; a="84264592"
+X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="84264592"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 05:37:41 -0700
-X-CSE-ConnectionGUID: xOdRlOrRQE2CiToPfiBzDA==
-X-CSE-MsgGUID: fkFlapkQRn2nNmLxu/545A==
+ 22 May 2026 05:37:43 -0700
+X-CSE-ConnectionGUID: eGDjUfqDQ7e8Z7ioliUwHg==
+X-CSE-MsgGUID: fn0CuSBJRoaBgN+Tkx+NbQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="238302163"
+X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="238302169"
 Received: from kniemiec-mobl1.ger.corp.intel.com (HELO mwauld-desk.intel.com)
  ([10.245.245.22])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 05:37:40 -0700
+ 22 May 2026 05:37:41 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Subject: [PATCH v2 07/10] drm/xe/guc: handle submit mask with paging engine
-Date: Fri, 22 May 2026 13:37:28 +0100
-Message-ID: <20260522123720.39656-19-matthew.auld@intel.com>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+Subject: [PATCH v2 08/10] drm/xe/vf: wire up NUM_PAGING_ENGINE_INSTANCES
+Date: Fri, 22 May 2026 13:37:29 +0100
+Message-ID: <20260522123720.39656-20-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260522123720.39656-12-matthew.auld@intel.com>
 References: <20260522123720.39656-12-matthew.auld@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,75 +69,173 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We need to also re-map the submit mask so that we correctly account for
-the remapped logical mask of, if the GUC_PAGING_CLASS is in play.
+When host PF writes the logical configuration for the GUC PAGING engine,
+the VF is meant to query it, and mirror it. Size of N, means we have
+paging logical index range [0, N-1], with N fewer normal copy engines.
+
+Agreement is that PF will only spawn PAGING engines on NVL-S+, so this
+should be zero on older platforms, where we should simply fallback to
+the old behaviour.
+
+TODO: Check the final GuC ABI version before merging
+
+v2 (Sashiko):
+  - We can't call use the guc_has_paging_engine() this early in the VF
+    code. With that just unconditionally do the query, if the GuC is new
+    enough and take the value as-is. With that drop the -1 special case and
+    just let the upper layers figure out the rest.
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc.h        |  1 +
- drivers/gpu/drm/xe/xe_guc_ads.c    | 21 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_submit.c |  3 ++-
- 3 files changed, 24 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/abi/guc_klvs_abi.h     |  9 ++++++
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 39 +++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.h       |  1 +
+ drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |  4 +++
+ drivers/gpu/drm/xe/xe_hw_engine.c         | 18 +++++++++++
+ 5 files changed, 71 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
-index 61e3ee19a59b..dd98ceb81026 100644
---- a/drivers/gpu/drm/xe/xe_guc.h
-+++ b/drivers/gpu/drm/xe/xe_guc.h
-@@ -70,6 +70,7 @@ int xe_guc_g2g_test_notification(struct xe_guc *guc, u32 *payload, u32 len);
+diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+index 644f5a4226d7..608678f8b18c 100644
+--- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+@@ -52,6 +52,12 @@
+  * _`GUC_KLV_GLOBAL_CFG_GROUP_SCHEDULING_AVAILABLE` : 0x3001
+  *      Tells the driver whether scheduler groups are enabled or not.
+  *      Requires GuC ABI 1.26+
++ *
++ * _`GUC_KLV_GLOBAL_CFG_NUM_PAGING_ENGINE_INSTANCES` : 0x3003
++ *      Tells the driver the paging engine configuration.
++ *      Paging engine logical instances are guaranteed to be dense starting at
++ *      index 0.
++ *      Requires GuC ABI 1.35.1+
+  */
  
- u16 xe_hwe_to_guc_class(struct xe_hw_engine *hwe);
- u16 xe_hwe_guc_logical_instance(struct xe_hw_engine *hwe);
-+u32 xe_hwe_guc_logical_to_submit_mask(struct xe_hw_engine *hwe, u32 logical_mask);
+ #define GUC_KLV_GLOBAL_CFG_GMD_ID_KEY			0x3000u
+@@ -60,6 +66,9 @@
+ #define GUC_KLV_GLOBAL_CFG_GROUP_SCHEDULING_AVAILABLE_KEY	0x3001u
+ #define GUC_KLV_GLOBAL_CFG_GROUP_SCHEDULING_AVAILABLE_LEN	1u
  
- static inline struct xe_gt *guc_to_gt(struct xe_guc *guc)
- {
-diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-index 8dd6400827be..7437d443343e 100644
---- a/drivers/gpu/drm/xe/xe_guc_ads.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-@@ -552,6 +552,27 @@ u16 xe_hwe_guc_logical_instance(struct xe_hw_engine *hwe)
- 	return hwe->logical_instance;
++#define GUC_KLV_GLOBAL_CFG_NUM_PAGING_ENGINE_INSTANCES_KEY	0x3003u
++#define GUC_KLV_GLOBAL_CFG_NUM_PAGING_ENGINE_INSTANCES_LEN	1u
++
+ /**
+  * DOC: GuC Self Config KLVs
+  *
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index 0cd9d77f3351..5c1581c9e432 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -658,6 +658,41 @@ static int vf_cache_sched_groups_status(struct xe_gt *gt)
+ 	return 0;
  }
  
-+u32 xe_hwe_guc_logical_to_submit_mask(struct xe_hw_engine *hwe, u32 logical_mask)
++static int vf_cache_num_paging_engines(struct xe_gt *gt)
 +{
-+	struct xe_gt *gt = hwe->gt;
++	struct xe_guc *guc = &gt->uc.guc;
++	struct xe_uc_fw_version guc_version;
++	u32 value = 0;
++	int err;
 +
-+	if (xe_gt_is_usm_hwe(gt, hwe)) {
-+		int shift = gt->usm.paging_hwe0->logical_instance;
-+		u32 paging_logical_mask = gt->usm.paging_logical_mask;
++	xe_gt_sriov_vf_guc_versions(gt, NULL, &guc_version);
 +
-+		xe_gt_assert(gt, (logical_mask & paging_logical_mask) == logical_mask);
++	if (MAKE_GUC_VER_STRUCT(guc_version) < MAKE_GUC_VER(1, 35, 1))
++		return 0;
 +
-+		/*
-+		 * Remap to GUC_PAGING_CLASS logical instance mask, if
-+		 * applicable.
-+		 */
-+		if (xe_guc_has_paging_engine(&hwe->gt->uc.guc))
-+			return logical_mask >> shift;
++	err = guc_action_query_single_klv32(guc, GUC_KLV_GLOBAL_CFG_NUM_PAGING_ENGINE_INSTANCES_KEY,
++					    &value);
++	if (unlikely(err)) {
++		xe_gt_sriov_err(gt,
++				"Failed to obtain the number of paging instances (%pe)\n",
++				ERR_PTR(err));
++		return err;
 +	}
 +
-+	return logical_mask;
++	gt->sriov.vf.runtime.num_paging_engine_instances = value;
++
++	xe_gt_sriov_dbg(gt, "num_paging_engines %u\n", value);
++	return err;
 +}
 +
- /*
-  * Write the offsets corresponding to the golden LRCs. The actual data is
-  * populated later by guc_golden_lrc_populate()
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 1ee4f2434876..53df499df968 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -986,7 +986,8 @@ static void register_exec_queue(struct xe_exec_queue *q, int ctx_type)
- 	memset(&info, 0, sizeof(info));
- 	info.context_idx = q->guc->id;
- 	info.engine_class = xe_hwe_to_guc_class(q->hwe);
--	info.engine_submit_mask = q->logical_mask;
-+	info.engine_submit_mask =
-+		xe_hwe_guc_logical_to_submit_mask(q->hwe, q->logical_mask);
- 	info.hwlrca_lo = lower_32_bits(xe_lrc_descriptor(lrc));
- 	info.hwlrca_hi = upper_32_bits(xe_lrc_descriptor(lrc));
- 	info.flags = CONTEXT_REGISTRATION_FLAG_KMD |
++u32 xe_gt_sriov_vf_paging_engines(struct xe_gt *gt)
++{
++	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
++	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
++
++	return gt->sriov.vf.runtime.num_paging_engine_instances;
++}
++
+ /**
+  * xe_gt_sriov_vf_query_config - Query SR-IOV config data over MMIO.
+  * @gt: the &xe_gt
+@@ -694,6 +729,10 @@ int xe_gt_sriov_vf_query_config(struct xe_gt *gt)
+ 	if (has_gmdid(xe))
+ 		vf_cache_gmdid(gt);
+ 
++	err = vf_cache_num_paging_engines(gt);
++	if (unlikely(err))
++		return err;
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+index 79878f21b1da..d171a8242a34 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+@@ -31,6 +31,7 @@ u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt);
+ u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt);
+ u64 xe_gt_sriov_vf_lmem(struct xe_gt *gt);
+ bool xe_gt_sriov_vf_sched_groups_enabled(struct xe_gt *gt);
++u32 xe_gt_sriov_vf_paging_engines(struct xe_gt *gt);
+ 
+ u32 xe_gt_sriov_vf_read32(struct xe_gt *gt, struct xe_reg reg);
+ void xe_gt_sriov_vf_write32(struct xe_gt *gt, struct xe_reg reg, u32 val);
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+index 80562ffadb16..21cb9bc1a341 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+@@ -40,6 +40,10 @@ struct xe_gt_sriov_vf_runtime {
+ 		/** @regs.value: register value. */
+ 		u32 value;
+ 	} *regs;
++	/**
++	 * @num_paging_engine_instances: number of configured paging engines.
++	 */
++	u32 num_paging_engine_instances;
+ };
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 77f882cd8ff8..c279a7dc62e2 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -669,6 +669,24 @@ static void hw_engine_setup_logical_and_paging_mapping(struct xe_gt *gt)
+ 	if (num_copy_engines && xe->info.has_usm)
+ 		num_paging_engines = 1;
+ 
++	if (IS_SRIOV_VF(xe)) {
++		u32 vf_num_paging_engines;
++
++		/*
++		 * PF could in theory reserve multiple paging engines, which
++		 * internally the submission/scheduling backend can load balance
++		 * from. Not something we currently expect, but we are at the
++		 * mercy of the PF, so we just need try our best to mirror the
++		 * paging configuration.
++		 */
++		vf_num_paging_engines = xe_gt_sriov_vf_paging_engines(gt);
++		if (xe->info.platform >= XE_NOVALAKE_S)
++			num_paging_engines = vf_num_paging_engines;
++		else
++			/* This should only be non-zero on NVL-S+ */
++			xe_gt_assert(gt, !vf_num_paging_engines);
++	}
++
+ 	xe_gt_assert(gt, !(num_copy_engines || num_paging_engines) ||
+ 		     (num_paging_engines < num_copy_engines));
+ 
 -- 
 2.54.0
 
