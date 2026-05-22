@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 144EACD5BB0
-	for <intel-xe@archiver.kernel.org>; Fri, 22 May 2026 20:04:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34043CD5BB6
+	for <intel-xe@archiver.kernel.org>; Fri, 22 May 2026 20:04:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAE6E10E50E;
-	Fri, 22 May 2026 20:04:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FC1010E599;
+	Fri, 22 May 2026 20:04:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RMdTygyR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eqQRwkic";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 53DA110E2A6;
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 785F410E50E;
  Fri, 22 May 2026 20:04:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1779480252; x=1811016252;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=f8OvaonxYZSvU5Cdn1mAYdEACjjH+9DDTi1UeyOP3Uc=;
- b=RMdTygyRhAYKBQ0Efjt/7rPrvKqxyWm/N8RDqGR4dWI2bNPEy1HF3kjH
- PYiYzjJI9ComP/oXj3bc488bxT2RSrSd53Gs1nWI0Lwm9hONQoIBqRuBY
- QCOJVxSqBATcjQMspVXxqwhVRRMgLJULUTigc+Bqei2DYAsYU+moYGeQf
- r/LCN494Dgx3tGZfULF/5NNKj7d3ZPSNPhCSUq5Ie5KaLrw50us/t1BzO
- aESxbXq4/987mmdrMyqBE6QyUeTcVF1jFClZ8GBCjl0FOqxZWZFSZVAqr
- fqkvM/cCSFqyde+Ut2sPD/yYxD0GX3QdHiO0ak3nKTv1YV0evmTl5ST0f w==;
-X-CSE-ConnectionGUID: tBpTT9n3RWCH55BkBxDnrw==
-X-CSE-MsgGUID: QhnMQlyxRA6CJoN4eUF3sg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11794"; a="80396773"
-X-IronPort-AV: E=Sophos;i="6.24,163,1774335600"; d="scan'208";a="80396773"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 13:04:11 -0700
-X-CSE-ConnectionGUID: VddvLoBjSD6q9vS0oks/SA==
-X-CSE-MsgGUID: OQSRY4c9QsaiS7FJtsUXqA==
+ bh=nIT7dZ2m5Dym1o3ca7njSCnG4b83DV56nQpuNks5l14=;
+ b=eqQRwkicsBAPWwLdH8q5XgaYji7QeQDQLynSxQSUYdCSJfYXjwVJ48/i
+ E8ErZelQSQbkLJtgYxhKKVn0Ko7UTW/4/W1mxUGUMiNVRSEFQJX40X/1e
+ fu5PG4hCB+GRa2CS3X5Tz33q6WaHkUdPFzZ4fcIJc1xqvbIPhKCG39EBu
+ rvBaaSdhovThfhUplQxUTn0xVDNwU/mF/nBu6GJZCcD7F4g6qvDb3wevi
+ usnhp8uMzLWJH4VZQkq45uEb1OM6OdTPTLKOd0uCfcYHqZCe/1tfzAYuE
+ 4JYvuzCoLc0TkjB7B/L0ZXXfoi4J+3ED8PLfmpAd9fWbUf5cn2UPuGVfs g==;
+X-CSE-ConnectionGUID: f6NQ1uufRMqtLqCEzPYgVQ==
+X-CSE-MsgGUID: /FrUWk2QRL26M7p1kZV2Ew==
+X-IronPort-AV: E=McAfee;i="6800,10657,11794"; a="84299665"
+X-IronPort-AV: E=Sophos;i="6.24,163,1774335600"; d="scan'208";a="84299665"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2026 13:04:06 -0700
+X-CSE-ConnectionGUID: GLTUpphcTEG/Dm42YzgBSg==
+X-CSE-MsgGUID: xpTtiRjFTIaWQ5RDI5LaCQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,163,1774335600"; d="scan'208";a="234649081"
+X-IronPort-AV: E=Sophos;i="6.24,163,1774335600"; d="scan'208";a="245042234"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.71])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 13:04:09 -0700
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2026 13:04:04 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 04/10] drm/i915/bw: Fix 'deinterleave' rounding direction
-Date: Fri, 22 May 2026 23:03:40 +0300
-Message-ID: <20260522200346.17377-5-ville.syrjala@linux.intel.com>
+Subject: [PATCH 03/10] drm/i915/bw: Fix bw rounding direction
+Date: Fri, 22 May 2026 23:03:39 +0300
+Message-ID: <20260522200346.17377-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260522200346.17377-1-ville.syrjala@linux.intel.com>
 References: <20260522200346.17377-1-ville.syrjala@linux.intel.com>
@@ -72,31 +72,35 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-For some reason we're rounding up when calcualting the deinterleave
-value. But the spec says we should round down. Fix it.
-
-But I suppose this doesn't actually matter since the deinterleave
-values should always be power of two. The only exception is therefore
-the deinterleave==1 case, which gets handled by the max(..., 1).
+The DRAM bandwidth value should be rounded down, not up.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bw.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_bw.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index bbaafcc1b6be..da294c1722b1 100644
+index 442e6b657ca5..bbaafcc1b6be 100644
 --- a/drivers/gpu/drm/i915/display/intel_bw.c
 +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -607,7 +607,7 @@ static int tgl_get_bw_info(struct intel_display *display,
- 	qi.deinterleave = qi.deinterleave ? : DIV_ROUND_UP(num_channels, is_y_tile ? 4 : 2);
+@@ -555,7 +555,7 @@ static int icl_get_bw_info(struct intel_display *display,
+ 			 */
+ 			ct = max_t(int, sp->t_rc, sp->t_rp + sp->t_rcd +
+ 				   (clpchgroup - 1) * qi.t_bl + sp->t_rdpre);
+-			bw = DIV_ROUND_UP(sp->dclk * clpchgroup * 32 * num_channels, ct);
++			bw = sp->dclk * clpchgroup * 32 * num_channels / ct;
  
- 	if (num_channels < qi.max_numchannels && DISPLAY_VER(display) >= 12)
--		qi.deinterleave = max(DIV_ROUND_UP(qi.deinterleave, 2), 1);
-+		qi.deinterleave = max(qi.deinterleave / 2, 1);
+ 			bi->deratedbw[j] = min(maxdebw,
+ 					       bw * (100 - soc_bw_params->derating) / 100);
+@@ -658,7 +658,7 @@ static int tgl_get_bw_info(struct intel_display *display,
+ 			 */
+ 			ct = max_t(int, sp->t_rc, sp->t_rp + sp->t_rcd +
+ 				   (clpchgroup - 1) * qi.t_bl + sp->t_rdpre);
+-			bw = DIV_ROUND_UP(sp->dclk * clpchgroup * 32 * num_channels, ct);
++			bw = sp->dclk * clpchgroup * 32 * num_channels / ct;
  
- 	if (DISPLAY_VER(display) >= 12 && num_channels > qi.max_numchannels)
- 		drm_warn(display->drm, "Number of channels exceeds max number of channels.");
+ 			bi->deratedbw[j] = min(maxdebw,
+ 					       bw * (100 - soc_bw_params->derating) / 100);
 -- 
 2.52.0
 
