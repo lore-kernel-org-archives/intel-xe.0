@@ -4,50 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF055CD5BB0
-	for <intel-xe@archiver.kernel.org>; Fri, 22 May 2026 16:44:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB540CD5BB4
+	for <intel-xe@archiver.kernel.org>; Fri, 22 May 2026 16:44:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 731FD10E24F;
-	Fri, 22 May 2026 16:44:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F1D310E4EE;
+	Fri, 22 May 2026 16:44:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GLJF5buY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HrzrI1ma";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5441110E036
- for <intel-xe@lists.freedesktop.org>; Fri, 22 May 2026 16:44:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4479F10E297
+ for <intel-xe@lists.freedesktop.org>; Fri, 22 May 2026 16:44:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779468261; x=1811004261;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=mL0q2+8xcM2XmaZ4gVzQ+mHxSQofkHueecGAcJlZjm4=;
- b=GLJF5buY7G8Ds5kRo8h+y3DOEKXjCdPliHEPqX3ep5AiVAVFxL5OTNdx
- lzGm84yxeRf2lhDzjC+Oae4PgLB6kI39AChG+5dRngKdCrlAhnWiR8P9c
- EAYQbtKse3unDBlXHbhVKIGXB7nZ3vkAFbc3w1eC3LKCB5n5Nb/nKVW6J
- 3ULnqhgeJyzA+L85zE90nb4JfxJR2whTUgio8e7n+ch6WWoLD+ilrmVaI
- Z+wGi8dNch3u7ZyQ0rBJDHKAm/3XF+XSGvE5iiflFBbY+OrLCrqcbZQRK
- 5Azj4CvoBwhYx6fLq8amZVAd7qJBtVvPyBoQnutJHphCMr4AJVugKpbrO Q==;
-X-CSE-ConnectionGUID: H6wJf0wSSdajRgYNTJSntQ==
-X-CSE-MsgGUID: ZzZPQCYyQ8i4eKY++9oyhw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11794"; a="80453387"
-X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="80453387"
+ t=1779468263; x=1811004263;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=RaJyDP/djUYSkXjz3srg/SF7wDXB5pkEdgKrrEdwflQ=;
+ b=HrzrI1macSF1vQ4W9eje5PQ5Eyf27+qu1ySkoHgpE3qbB/LkbgphGyhZ
+ Hg+bYpAceQBwQjlnMH4KT3CWaQja7cvNDMvfP1DtHULYfVXNx7OTGNxYI
+ lMOAkE/RNKctRvkBnv4eUJcjVvur0Pmvub/FlVVUmssybl+0CIMJcpw6Y
+ 72Grcy0FqZQGB+c6bejBakZNaMTIK7KmmkcTi6YgKxkcpQay8B9MHg5An
+ TJ2M2xgFs68J0RQEBvo9rFuMFtoYAU83bdiM29CAZK1I9Pmq7TPubVYPt
+ o7uwVxnfbMJkye8R6A4KjDsLQk3QzwYPxtpDEZKSgYDuN+KaG6vXTp+PB g==;
+X-CSE-ConnectionGUID: rRkfkwzOR/ehoCc5f2be0Q==
+X-CSE-MsgGUID: 619H/hB0Sdy6hIdSAm0Wkg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11794"; a="80453391"
+X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="80453391"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 09:44:21 -0700
-X-CSE-ConnectionGUID: CFAGw7TdTVK0MesLIeZA+A==
-X-CSE-MsgGUID: eG6tVPiuT4CdqchPvA1Fxw==
+ 22 May 2026 09:44:23 -0700
+X-CSE-ConnectionGUID: 8n1GbaVkSrCW5BtJtmdWdA==
+X-CSE-MsgGUID: Bah9LS6aRDCjAwV0tCYVkQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="238370088"
+X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="238370102"
 Received: from vpanait-mobl.ger.corp.intel.com (HELO fedora) ([10.245.244.219])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 09:44:20 -0700
+ 22 May 2026 09:44:21 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: [PATCH 0/5] drm/xe: Fix LR exec queue suspend/resume for S3/S4
-Date: Fri, 22 May 2026 18:43:50 +0200
-Message-ID: <20260522164355.2773-1-thomas.hellstrom@linux.intel.com>
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Satyanarayana K V P <satyanarayana.k.v.p@intel.com>, stable@vger.kernel.org
+Subject: [PATCH 1/5] drm/xe/guc: Defer user exec queue scheduler start until
+ after page table restore
+Date: Fri, 22 May 2026 18:43:51 +0200
+Message-ID: <20260522164355.2773-2-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260522164355.2773-1-thomas.hellstrom@linux.intel.com>
+References: <20260522164355.2773-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -65,83 +70,272 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Long Running (LR) exec queues — used by compute workloads with SVM
-(fault-mode) and by preempt-fence-mode — were not surviving S3/S4
-suspend/resume correctly.  Five distinct problems are addressed:
+On S3/S4 and d3cold runtime PM resume, exec queue schedulers are
+restarted before xe_bo_restore_late() has restored userspace VM page
+table BOs and LRC BOs. If a pending job is submitted in this window,
+GuC will attempt to load the context using stale or invalid data in
+VRAM, leading to GuC exceptions.
 
-1. Exec queue scheduler start during resume was not deferred: user exec
-   queue schedulers were started before page table BOs and LRC BOs were
-   restored.  A job in this window would cause GuC to load a context
-   from stale or invalid VRAM.  User exec queue schedulers are now
-   deferred until after page tables and LRC BOs are restored.  Migrate
-   and kernel VM queues are still started immediately as they are
-   required by the restore process itself.
+Defer user exec queue scheduler start until after page tables and LRC
+BOs are restored, ensuring no job can be submitted before the backing
+storage is valid. Migrate and kernel VM exec queues are still started
+immediately as they are required by the restore process itself.
 
-2. Exec queue suspend/resume lacked coordination when multiple paths
-   (PM, mode switching, preempt fences) needed to hold the queue
-   suspended simultaneously.  A resume from one path could prematurely
-   re-enable a queue still held suspended by another.  Each caller can
-   now independently hold a suspend; the queue resumes only when all
-   callers have released it.
+For GT reset, VRAM is not evicted and all BOs remain valid, so user
+exec queue schedulers are started without deferral.
 
-3. During PM suspend, any user exec queue with a started-but-incomplete
-   job was banned.  For LR queues this is always true — their jobs are
-   designed to run indefinitely — so every PM suspend permanently
-   banned the queue.  The ban is now suppressed for LR VM exec queues
-   during PM suspend or hibernation while being preserved for GT reset
-   (legitimate hang detection).
+This covers both LR and non-LR userspace exec queues.
 
-4. The execution mode constant EXEC_MODE_LR in xe_hw_engine_group was
-   misleading since not all long-running queues use fault mode.  It is
-   renamed to EXEC_MODE_FAULT.  No functional change.
+Fixes: 7f387e6012b6 ("drm/xe: add XE_BO_FLAG_PINNED_LATE_RESTORE")
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Cc: <stable@vger.kernel.org> # v6.16+
+Assisted-by: GitHub_Copilot:claude-sonnet-4.6
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt.c         | 16 +++++++++++
+ drivers/gpu/drm/xe/xe_gt.h         |  2 ++
+ drivers/gpu/drm/xe/xe_guc.c        | 13 +++++++++
+ drivers/gpu/drm/xe/xe_guc.h        |  1 +
+ drivers/gpu/drm/xe/xe_guc_submit.c | 44 ++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_submit.h |  1 +
+ drivers/gpu/drm/xe/xe_pm.c         |  6 ++++
+ drivers/gpu/drm/xe/xe_uc.c         | 16 +++++++++++
+ drivers/gpu/drm/xe/xe_uc.h         |  1 +
+ 9 files changed, 100 insertions(+)
 
-5. Fault-mode (SVM) VMs use GPU page faults to access memory.  A
-   running fault-mode job can re-fault pages torn down by VRAM
-   eviction, racing with the eviction.  Fault-mode exec queues are now
-   suspended and drained before any VRAM eviction begins.  On resume,
-   they are re-registered and restarted once hardware is restored.
-   Exec queues created concurrently with PM suspend are immediately
-   suspended so the resume path picks them up.
-
-Note: A prerequisite revert ("Revert drm/xe: Skip exec queue schedule
-toggle if queue is idle during suspend") was already sent as a separate
-patch and is not included here.
-
-v2:
- - Dropped "Restore userspace LRC BOs early on resume": replaced by
-   patch 1/5 which defers user exec queue scheduler start until after
-   page tables are restored, achieving the same ordering guarantee.
- - Added patch 1/5: Defer user exec queue scheduler start until after
-   page table restore.
- - Added patch 4/5: Rename EXEC_MODE_LR to EXEC_MODE_FAULT.
- - Patch 5/5: see per-patch v2 changelog.
-
-Thomas Hellström (5):
-  drm/xe/guc: Defer user exec queue scheduler start until after page
-    table restore
-  drm/xe/guc: Don't ban LR VM exec queues on PM suspend
-  drm/xe/guc: Add suspend refcount to exec queue ops
-  drm/xe: Rename EXEC_MODE_LR to EXEC_MODE_FAULT in hw engine group
-  drm/xe: Suspend fault-mode LR jobs before VRAM eviction on S3/S4
-
- drivers/gpu/drm/xe/xe_device_types.h          |   8 +
- drivers/gpu/drm/xe/xe_exec.c                  |   2 +-
- drivers/gpu/drm/xe/xe_exec_queue_types.h      |   7 +
- drivers/gpu/drm/xe/xe_gt.c                    |  16 ++
- drivers/gpu/drm/xe/xe_gt.h                    |   2 +
- drivers/gpu/drm/xe/xe_guc.c                   |  13 ++
- drivers/gpu/drm/xe/xe_guc.h                   |   1 +
- drivers/gpu/drm/xe/xe_guc_exec_queue_types.h  |   7 +
- drivers/gpu/drm/xe/xe_guc_submit.c            | 103 ++++++++++-
- drivers/gpu/drm/xe/xe_guc_submit.h            |   2 +
- drivers/gpu/drm/xe/xe_hw_engine_group.c       | 171 ++++++++++++++++--
- drivers/gpu/drm/xe/xe_hw_engine_group.h       |   3 +
- drivers/gpu/drm/xe/xe_hw_engine_group_types.h |  11 +-
- drivers/gpu/drm/xe/xe_pm.c                    |  26 ++-
- drivers/gpu/drm/xe/xe_uc.c                    |  16 ++
- drivers/gpu/drm/xe/xe_uc.h                    |   1 +
- 16 files changed, 357 insertions(+), 32 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 783eb6d631b5..2c63e4d6a649 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -955,6 +955,8 @@ static void gt_reset_worker(struct work_struct *w)
+ 	if (err)
+ 		goto err_out;
+ 
++	xe_uc_start_user_queues(&gt->uc);
++
+ 	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+ 
+ 	/* Pair with get while enqueueing the work in xe_gt_reset_async() */
+@@ -967,6 +969,7 @@ static void gt_reset_worker(struct work_struct *w)
+ err_out:
+ 	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+ 	XE_WARN_ON(xe_uc_start(&gt->uc));
++	xe_uc_start_user_queues(&gt->uc);
+ 
+ err_fail:
+ 	xe_gt_err(gt, "reset failed (%pe)\n", ERR_PTR(err));
+@@ -1050,6 +1053,19 @@ int xe_gt_sanitize_freq(struct xe_gt *gt)
+ 	return ret;
+ }
+ 
++/**
++ * xe_gt_start_user_queues() - Start user exec queues after page table restore
++ * @gt: the GT object
++ *
++ * Starts the DRM schedulers for all user exec queues on the GT. This must be
++ * called after xe_bo_restore_late() to ensure that userspace page table BOs
++ * are valid before any job submission triggers GuC context registration.
++ */
++void xe_gt_start_user_queues(struct xe_gt *gt)
++{
++	xe_uc_start_user_queues(&gt->uc);
++}
++
+ int xe_gt_resume(struct xe_gt *gt)
+ {
+ 	int err;
+diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
+index 4150aa594f05..b6ba05a317f7 100644
+--- a/drivers/gpu/drm/xe/xe_gt.h
++++ b/drivers/gpu/drm/xe/xe_gt.h
+@@ -170,4 +170,6 @@ static inline bool xe_gt_supports_multi_queue(const struct xe_gt *gt,
+ 	return gt->info.multi_queue_engine_class_mask & BIT(class);
+ }
+ 
++void xe_gt_start_user_queues(struct xe_gt *gt);
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 4023700ff2a9..0359909b8b27 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -1717,6 +1717,19 @@ int xe_guc_start(struct xe_guc *guc)
+ 	return xe_guc_submit_start(guc);
+ }
+ 
++/**
++ * xe_guc_start_user_queues() - Start user exec queue schedulers on the GuC
++ * @guc: the GuC object
++ *
++ * Starts the DRM schedulers for all user exec queues managed by this GuC.
++ * Must be called after xe_bo_restore_late() to ensure page tables are valid
++ * before any job submission triggers GuC context registration.
++ */
++void xe_guc_start_user_queues(struct xe_guc *guc)
++{
++	xe_guc_submit_start_user_queues(guc);
++}
++
+ /**
+  * xe_guc_runtime_suspend() - GuC runtime suspend
+  * @guc: The GuC object
+diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
+index 02514914f404..ad2a6521852c 100644
+--- a/drivers/gpu/drm/xe/xe_guc.h
++++ b/drivers/gpu/drm/xe/xe_guc.h
+@@ -60,6 +60,7 @@ void xe_guc_reset_wait(struct xe_guc *guc);
+ void xe_guc_stop_prepare(struct xe_guc *guc);
+ void xe_guc_stop(struct xe_guc *guc);
+ int xe_guc_start(struct xe_guc *guc);
++void xe_guc_start_user_queues(struct xe_guc *guc);
+ void xe_guc_declare_wedged(struct xe_guc *guc);
+ bool xe_guc_using_main_gamctrl_queues(struct xe_guc *guc);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 4d32b430bc15..084ecc8e7efa 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -2535,6 +2535,16 @@ static void guc_exec_queue_start(struct xe_exec_queue *q)
+ 	xe_sched_submission_resume_tdr(sched);
+ }
+ 
++/*
++ * Returns true for user exec queues whose page tables may not yet be
++ * restored when xe_guc_submit_start() is called during GT resume.
++ * These queues must be started later, after xe_bo_restore_late().
++ */
++static bool exec_queue_needs_late_start(const struct xe_exec_queue *q)
++{
++	return !(q->flags & (EXEC_QUEUE_FLAG_MIGRATE | EXEC_QUEUE_FLAG_VM));
++}
++
+ int xe_guc_submit_start(struct xe_guc *guc)
+ {
+ 	struct xe_exec_queue *q;
+@@ -2549,6 +2559,10 @@ int xe_guc_submit_start(struct xe_guc *guc)
+ 		if (q->guc->id != index)
+ 			continue;
+ 
++		/* User queues are deferred until page tables are restored */
++		if (exec_queue_needs_late_start(q))
++			continue;
++
+ 		guc_exec_queue_start(q);
+ 	}
+ 	mutex_unlock(&guc->submission_state.lock);
+@@ -2558,6 +2572,36 @@ int xe_guc_submit_start(struct xe_guc *guc)
+ 	return 0;
+ }
+ 
++/**
++ * xe_guc_submit_start_user_queues() - Start user exec queues after late restore
++ * @guc: the GuC object
++ *
++ * Starts the DRM schedulers for all user exec queues (those not flagged as
++ * migrate or VM queues). Must be called after xe_bo_restore_late() to ensure
++ * page tables are valid before any job submission is attempted.
++ */
++void xe_guc_submit_start_user_queues(struct xe_guc *guc)
++{
++	struct xe_exec_queue *q;
++	unsigned long index;
++
++	if (!guc->submission_state.initialized)
++		return;
++
++	mutex_lock(&guc->submission_state.lock);
++	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q) {
++		/* Prevent redundant attempts to start parallel queues */
++		if (q->guc->id != index)
++			continue;
++
++		if (!exec_queue_needs_late_start(q))
++			continue;
++
++		guc_exec_queue_start(q);
++	}
++	mutex_unlock(&guc->submission_state.lock);
++}
++
+ static void guc_exec_queue_unpause_prepare(struct xe_guc *guc,
+ 					   struct xe_exec_queue *q)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
+index b3839a90c142..b210b2f6cd2d 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.h
++++ b/drivers/gpu/drm/xe/xe_guc_submit.h
+@@ -20,6 +20,7 @@ int xe_guc_submit_reset_prepare(struct xe_guc *guc);
+ void xe_guc_submit_reset_wait(struct xe_guc *guc);
+ void xe_guc_submit_stop(struct xe_guc *guc);
+ int xe_guc_submit_start(struct xe_guc *guc);
++void xe_guc_submit_start_user_queues(struct xe_guc *guc);
+ void xe_guc_submit_pause(struct xe_guc *guc);
+ void xe_guc_submit_pause_abort(struct xe_guc *guc);
+ void xe_guc_submit_pause_vf(struct xe_guc *guc);
+diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+index d4672eb07476..c203a59d7000 100644
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -282,6 +282,9 @@ int xe_pm_resume(struct xe_device *xe)
+ 	if (err)
+ 		goto err;
+ 
++	for_each_gt(gt, xe, id)
++		xe_gt_start_user_queues(gt);
++
+ 	xe_pxp_pm_resume(xe->pxp);
+ 
+ 	if (IS_VF_CCS_READY(xe))
+@@ -696,6 +699,9 @@ int xe_pm_runtime_resume(struct xe_device *xe)
+ 		err = xe_bo_restore_late(xe);
+ 		if (err)
+ 			goto out;
++
++		for_each_gt(gt, xe, id)
++			xe_gt_start_user_queues(gt);
+ 	}
+ 
+ 	xe_pxp_pm_resume(xe->pxp);
+diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
+index 75091bde0d50..12606133f5bc 100644
+--- a/drivers/gpu/drm/xe/xe_uc.c
++++ b/drivers/gpu/drm/xe/xe_uc.c
+@@ -263,6 +263,22 @@ int xe_uc_start(struct xe_uc *uc)
+ 	return xe_guc_start(&uc->guc);
+ }
+ 
++/**
++ * xe_uc_start_user_queues() - Start user exec queues after late restore
++ * @uc: the UC object
++ *
++ * Starts the DRM schedulers for all user exec queues. Must be called after
++ * xe_bo_restore_late() to ensure page tables are valid before any job
++ * submission is attempted. Has no effect if GuC submission is not enabled.
++ */
++void xe_uc_start_user_queues(struct xe_uc *uc)
++{
++	if (!xe_device_uc_enabled(uc_to_xe(uc)))
++		return;
++
++	xe_guc_start_user_queues(&uc->guc);
++}
++
+ static void uc_reset_wait(struct xe_uc *uc)
+ {
+ 	int ret;
+diff --git a/drivers/gpu/drm/xe/xe_uc.h b/drivers/gpu/drm/xe/xe_uc.h
+index 255a54a8f876..2fd056cfa1d0 100644
+--- a/drivers/gpu/drm/xe/xe_uc.h
++++ b/drivers/gpu/drm/xe/xe_uc.h
+@@ -18,6 +18,7 @@ void xe_uc_runtime_suspend(struct xe_uc *uc);
+ void xe_uc_stop_prepare(struct xe_uc *uc);
+ void xe_uc_stop(struct xe_uc *uc);
+ int xe_uc_start(struct xe_uc *uc);
++void xe_uc_start_user_queues(struct xe_uc *uc);
+ void xe_uc_suspend_prepare(struct xe_uc *uc);
+ int xe_uc_suspend(struct xe_uc *uc);
+ int xe_uc_sanitize_reset(struct xe_uc *uc);
 -- 
 2.54.0
 
