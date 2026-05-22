@@ -4,61 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 977CFCD5BB3
-	for <intel-xe@archiver.kernel.org>; Fri, 22 May 2026 15:08:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39B97CD5BB3
+	for <intel-xe@archiver.kernel.org>; Fri, 22 May 2026 15:16:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40EF310E23D;
-	Fri, 22 May 2026 15:08:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E3A3710E058;
+	Fri, 22 May 2026 15:16:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ed/pJK7l";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fCgpn7Ux";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DAE8210E23D;
- Fri, 22 May 2026 15:08:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E57E310E058
+ for <intel-xe@lists.freedesktop.org>; Fri, 22 May 2026 15:16:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779462533; x=1810998533;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=2iAajBai3wvKfiIY6Tx32lkYrEM3ANWtdvjOWFSOmEI=;
- b=Ed/pJK7lZp4CD2I1+VIUKjyXMk/pf9x6eU4Bgy84PSLuI93ETJfmcoI2
- fXBard/TOKsD+CpDVXFTqQP5opE4gs2hHJCYzR+ZH42Gyw8Iyuv1ud0CT
- t3AIA2VASuLfm/R/NjZ+HnN999OvnLN5KCisdIB+JruNYDXtxAPsECc2d
- PM3fpC4dv+ve4xAWdwMOAps28RKczufCC4hB9dY88v7qAWFT1I9bDD9NY
- Y+4dlAYMhfvZiFPau6XEvIOO+a+1v2T0KRAAzVsZ0OxZnHGxvTxM8KpFK
- KbiZvGRacyFo6bWHkY3+aLIYcfZRr21ia1E8v5x7MN8hAiwDalh0d8bes g==;
-X-CSE-ConnectionGUID: TUzMg2MaT4WreMdOFPSWrQ==
-X-CSE-MsgGUID: VqWZS3LTStKfwLOr7AawRQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11794"; a="84012174"
-X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="84012174"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 08:08:52 -0700
-X-CSE-ConnectionGUID: 5+IUBpXuR2mREo+V3qnSGw==
-X-CSE-MsgGUID: zAbnes9CRxeWZx9KGxG2sg==
+ t=1779462973; x=1810998973;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=uKNFjwzIYuNmfjh0x/swd8d59IDjd/Y4ycV2BRlTmqk=;
+ b=fCgpn7Uxc3hKT8EPt8KEvr87abP58HqvvUv6FQR8hUpfr5gcqjHXwNAw
+ 5G5WUqUj+g9e1+AjhzLpu5IvI0y2Q90BPKbRribLglkzavp/a+WuOUyW+
+ HHqDR0jVTDle+jnQfTrqJK0nEMrW3pmF7TIzAj1IFXYAFCp6RakXFlQiF
+ 6Erv7l/M0yf7m0PCe1N2WMWPTSnWhWhdn6x8AmVRUtPfBT2aEd7ZBuLkH
+ EvYmYiHtAQq+2+nkb8cyYLum6GwCVOUBG3bgtYXT18Iw+SCrf0Gak0LTn
+ cBrbNMp4QrwNbvIdBJsGUZuT4Ra3Y7gMX72cm4rhjNgKrxqTHfqLENt1k A==;
+X-CSE-ConnectionGUID: LadBz15YSIKwL3xnTeyr9Q==
+X-CSE-MsgGUID: q8zcNQYkSYmVog2Z7E5Rpw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11794"; a="67918289"
+X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="67918289"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2026 08:16:13 -0700
+X-CSE-ConnectionGUID: 24pjXbbLRPOOH/xxFvh5HQ==
+X-CSE-MsgGUID: To1KckA9RjmFA6ys3I794A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="236500651"
-Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.244.187])
- by fmviesa006-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 May 2026 08:08:50 -0700
-Date: Fri, 22 May 2026 18:08:46 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jouni.hogander@intel.com, animesh.manna@intel.com
-Subject: Re: [PATCH 07/11] drm/i915/dp: Set relevant Downspread Ctrl DPCD
- bits for PR + Auxless ALPM
-Message-ID: <ahBxfslq0xVmlGq_@intel.com>
-References: <20260518035502.2909359-1-ankit.k.nautiyal@intel.com>
- <20260518035502.2909359-8-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="246010393"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO [10.245.245.22])
+ ([10.245.245.22])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2026 08:16:12 -0700
+Message-ID: <751a91c6-66d2-4cbc-94e1-001a2b1ed4b5@intel.com>
+Date: Fri, 22 May 2026 16:16:10 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260518035502.2909359-8-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/4] drm/xe/mmio: Check MMIO BAR size when initializing
+ tiles
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ intel-xe@lists.freedesktop.org
+References: <20260522143112.10643-1-michal.wajdeczko@intel.com>
+ <20260522143112.10643-5-michal.wajdeczko@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20260522143112.10643-5-michal.wajdeczko@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,126 +71,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, May 18, 2026 at 09:24:57AM +0530, Ankit Nautiyal wrote:
-> If a Panel Replay capable sink, supports Async Video timing in
-> PR active state, then source does not necessarily need to send AS SDPs
-> during PR active.
+On 22/05/2026 15:31, Michal Wajdeczko wrote:
+> We initialized all remote tiles' xe_mmio structures with a new size
+> of 4MiB and offsets of 16MiB without sanity checks to see if mapped
+> GTTMMADR_BAR was actually at least that size.
 > 
-> However, if asynchronous video timing is not supported, then for PR with
-> Aux-less ALPM, the source must transmit Adaptive-Sync SDPs for video
-> timing synchronization while PR is active.
-> 
-> If the source needs to send AS SDP during PR active, this requires setting
-> DPCD 0x0107[6] (FIXED_VTOTAL_AS_SDP_EN_IN_PR_ACTIVE). This applies whether
-> VRR is enabled (AVT/FAVT) or fixed-timing mode is used.
-> 
-> This bit defines AS SDP timing behavior during PR Active, even if AS SDPs
-> are briefly suspended.
-> 
-> Program the relevant Downspread Ctrl DPCD bits accordingly.
-> 
-> v2: Instead of Panel Replay check simply use AS SDP enable check. (Ville)
-> v3: Since the bit is defined in context of Panel Replay and AS SDP, add
->     a check for both. (Ville)
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+
 > ---
->  .../gpu/drm/i915/display/intel_dp_link_training.c | 15 +++++++++++++--
->  .../gpu/drm/i915/display/intel_dp_link_training.h |  3 ++-
->  drivers/gpu/drm/i915/display/intel_dp_mst.c       |  2 +-
->  3 files changed, 16 insertions(+), 4 deletions(-)
+>   drivers/gpu/drm/xe/xe_mmio.c | 28 +++++++++++++++++++++-------
+>   1 file changed, 21 insertions(+), 7 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> index a26094223f78..d0b033d2cfb4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> @@ -34,8 +34,10 @@
->  #include "intel_dp.h"
->  #include "intel_dp_link_training.h"
->  #include "intel_encoder.h"
-> +#include "intel_hdmi.h"
->  #include "intel_hotplug.h"
->  #include "intel_panel.h"
-> +#include "intel_psr.h"
->  
->  #define LT_MSG_PREFIX			"[CONNECTOR:%d:%s][ENCODER:%d:%s][%s] "
->  #define LT_MSG_ARGS(_intel_dp, _dp_phy)	(_intel_dp)->attached_connector->base.base.id, \
-> @@ -710,11 +712,14 @@ static bool intel_dp_link_max_vswing_reached(struct intel_dp *intel_dp,
->  	return true;
->  }
->  
-> -void intel_dp_link_training_set_mode(struct intel_dp *intel_dp, int link_rate, bool is_vrr)
-> +void intel_dp_link_training_set_mode(struct intel_dp *intel_dp, int link_rate,
-> +				     bool is_vrr,
-> +				     bool pr_with_as_sdp_enable)
->  {
->  	u8 link_config[2];
->  
->  	link_config[0] = is_vrr ? DP_MSA_TIMING_PAR_IGNORE_EN : 0;
-> +	link_config[0] |= pr_with_as_sdp_enable ? DP_FIXED_VTOTAL_AS_SDP_EN_IN_PR_ACTIVE : 0;
->  	link_config[1] = drm_dp_is_uhbr_rate(link_rate) ?
->  			 DP_SET_ANSI_128B132B : DP_SET_ANSI_8B10B;
->  	drm_dp_dpcd_write(&intel_dp->aux, DP_DOWNSPREAD_CTRL, link_config, 2);
-> @@ -723,6 +728,10 @@ void intel_dp_link_training_set_mode(struct intel_dp *intel_dp, int link_rate, b
->  static void intel_dp_update_downspread_ctrl(struct intel_dp *intel_dp,
->  					    const struct intel_crtc_state *crtc_state)
->  {
-> +	bool pr_with_as_sdp_enable =
-> +		intel_psr_needs_alpm_aux_less(intel_dp, crtc_state) &&
-> +		crtc_state->infoframes.enable & intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC);
-
-This whole thing could be a function instead of a variable.
-
-The use of intel_psr_needs_alpm_aux_less() is a bit confusing here,
-but I guess it (at least currently) does the right thing.
-
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-
+> diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+> index 7043289a0eb9..9a7d7fb4a334 100644
+> --- a/drivers/gpu/drm/xe/xe_mmio.c
+> +++ b/drivers/gpu/drm/xe/xe_mmio.c
+> @@ -47,21 +47,35 @@ static void mmio_multi_tile_setup(struct xe_device *xe, size_t tile_mmio_size)
+>   	struct xe_tile *tile;
+>   	u8 id;
+>   
+> -	/*
+> -	 * Nothing to be done as tile 0 has already been setup earlier with the
+> -	 * entire BAR mapped - see xe_mmio_probe_early()
+> -	 */
+> -	if (xe->info.tile_count == 1)
+> -		return;
+> -
+>   	for_each_remote_tile(tile, xe, id)
+>   		xe_mmio_init(&tile->mmio, tile, xe->mmio.regs + id * tile_mmio_size, SZ_4M);
+>   }
+>   
+> +/**
+> + * xe_mmio_probe_tiles() - Initialize all tiles' MMIO
+> + * @xe: the &xe_device
+> + *
+> + * Initialize the remaining tiles' MMIO instances.
+> + *
+> + * Return: 0 on success or a negative error code on failure.
+> + */
+>   int xe_mmio_probe_tiles(struct xe_device *xe)
+>   {
+>   	size_t tile_mmio_size = SZ_16M;
+>   
+> +	/*
+> +	 * Nothing to be done as tile 0 has already been setup earlier with the
+> +	 * entire BAR mapped - see xe_mmio_probe_early()
+> +	 */
+> +	if (xe->info.tile_count == 1)
+> +		return 0;
 > +
->  	 /*
->  	  * Currently, we set the MSA ignore bit based on vrr.in_range.
->  	  * We can't really read that out during driver load since we don't have
-> @@ -737,7 +746,9 @@ static void intel_dp_update_downspread_ctrl(struct intel_dp *intel_dp,
->  	  * especially on the first real commit when clearing the inherited flag.
->  	  */
->  	intel_dp_link_training_set_mode(intel_dp,
-> -					crtc_state->port_clock, crtc_state->vrr.in_range);
-> +					crtc_state->port_clock,
-> +					crtc_state->vrr.in_range,
-> +					pr_with_as_sdp_enable);
->  }
->  
->  void intel_dp_link_training_set_bw(struct intel_dp *intel_dp,
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.h b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
-> index 33dcbde6a408..18c34c1a472f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
-> @@ -18,7 +18,8 @@ int intel_dp_init_lttpr_and_dprx_caps(struct intel_dp *intel_dp);
->  bool intel_dp_lttpr_transparent_mode_enabled(struct intel_dp *intel_dp);
->  
->  void intel_dp_link_training_set_mode(struct intel_dp *intel_dp,
-> -				     int link_rate, bool is_vrr);
-> +				     int link_rate, bool is_vrr,
-> +				     bool pr_with_as_sdp_enable);
->  void intel_dp_link_training_set_bw(struct intel_dp *intel_dp,
->  				   int link_bw, int rate_select, int lane_count,
->  				   bool enhanced_framing, bool post_lt_adj_req);
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> index 8f73e01db17c..a238f7948cec 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -2145,7 +2145,7 @@ void intel_dp_mst_prepare_probe(struct intel_dp *intel_dp)
->  
->  	intel_dp_compute_rate(intel_dp, link_rate, &link_bw, &rate_select);
->  
-> -	intel_dp_link_training_set_mode(intel_dp, link_rate, false);
-> +	intel_dp_link_training_set_mode(intel_dp, link_rate, false, false);
->  	intel_dp_link_training_set_bw(intel_dp, link_bw, rate_select, lane_count,
->  				      drm_dp_enhanced_frame_cap(intel_dp->dpcd), false);
->  
-> -- 
-> 2.45.2
+> +	if (xe->mmio.size < xe->info.tile_count * tile_mmio_size) {
+> +		xe_err(xe, "GTTMMADR_BAR is too small for %d tiles: %zd\n",
+> +		       xe->info.tile_count, xe->mmio.size);
+> +		return -EIO;
+> +	}
+> +
+>   	mmio_multi_tile_setup(xe, tile_mmio_size);
+>   	return 0;
+>   }
 
--- 
-Ville Syrjälä
-Intel
