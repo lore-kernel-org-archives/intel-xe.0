@@ -4,50 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF470CD5BB3
-	for <intel-xe@archiver.kernel.org>; Fri, 22 May 2026 16:18:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8809ACD5BB3
+	for <intel-xe@archiver.kernel.org>; Fri, 22 May 2026 16:30:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 788C410F673;
-	Fri, 22 May 2026 16:18:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4573C10E24F;
+	Fri, 22 May 2026 16:30:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="jLZHJgtj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VBg/0nho";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 596DE10F673
- for <intel-xe@lists.freedesktop.org>; Fri, 22 May 2026 16:18:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=xEzMpeV81MQM9bui3iQdcH0QakvifeBM3hts9fwCfY8=; b=jLZHJgtji1B3ctGXG97dgFFoUd
- cNFH3h4AV2yNYeyFhhL7H07MQrCQP72wgOV6yA5WULPUlp9UgtWnaYrn42QqXgJBMJxoy0KpK+krv
- HHIZ12RlRvQICzCY9qm+BKgRNk+6uZS1MN/cqK3Om0kCkgnpnp49Hp7rR+PVxjifD/6whL1JYSkwL
- Fsnj6A3Zl/FV10aSPEIdW9KnTYSMQYxWwXWqNDZ5fzzI0xkjWuTIsjqk5kgkhS4Cx6bwTBGyB9ixl
- e9a1wCXzaNPCj66ZrmVPwqSXUFdXeW2DgITKH24mCZE3OFbf+wXwEECPCIYVTi8Bes1xoimVqW3bm
- uSxxc+bA==;
-Received: from [90.240.106.137] (helo=[192.168.0.116])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1wQSaE-004xbY-Qk; Fri, 22 May 2026 18:18:46 +0200
-Message-ID: <858f5cd1-a542-4cc5-9ab3-8569e172f9ce@igalia.com>
-Date: Fri, 22 May 2026 17:18:46 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E346410E24F
+ for <intel-xe@lists.freedesktop.org>; Fri, 22 May 2026 16:30:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1779467403; x=1811003403;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=1E2m6YnEqSXcXMgpUSvwUVCcyGxC7Z/7cJyR78BCZEM=;
+ b=VBg/0nhoWJ+UHSzCRL2JB6Dl6XcSDJZCyidQtJbScl40jrbTJt33b6zN
+ NN5GHsHD9F4q2TDLIBMaWgL4p/eqo/QFBjYDFn1QLhUiOSCbFmiCiw07s
+ af6cwyNHPgX4SzclNEuNcVQxrua1xBtBRsfd+/IBkwLRWQq7olHXKakJa
+ HV4yZYgYX8tmU37v/GQaoO2TdczaN0KaHQVlVGpBrtljnZYu2K1UTbi3K
+ xlvcBtWGggJaXzMIkbXaDUrL/txSAEnA2YkKJKY6M3I6QWF6ZmUv9eLEa
+ /OZ1jIi5L3YHizNW4LQfSzYwLyC880QcH2jave6+1sQa2m5ISK4vRVQZh A==;
+X-CSE-ConnectionGUID: bRYgJWWiR32eT16yrStemQ==
+X-CSE-MsgGUID: kFnp70r1Qref00Gybpufbw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11794"; a="80580330"
+X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="80580330"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2026 09:30:02 -0700
+X-CSE-ConnectionGUID: IVnn4ZtpToGfREH30KcHdw==
+X-CSE-MsgGUID: LjBwq+NAQE+USjapJWzbkw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="246033852"
+Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2026 09:30:01 -0700
+From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Matt Roper <matthew.d.roper@intel.com>,
+ Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
+ Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Subject: [PATCH] drm/xe: Restore IDLEDLY regiter on engine reset
+Date: Fri, 22 May 2026 22:05:32 +0530
+Message-ID: <20260522163531.1365540-2-balasubramani.vivekanandan@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: Assign queue name in time for drm_sched_init
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-References: <20260522144003.12836-1-tvrtko.ursulin@igalia.com>
- <ahB_3OV1sSfrfDwY@intel.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <ahB_3OV1sSfrfDwY@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,113 +66,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Wa_16023105232 programs the register IDLEDLY. The register is reset
+whenever the engine is reset. Therefore it should be added to the GuC
+save-restore register list for it to be restored after reset.
 
-On 22/05/2026 17:10, Rodrigo Vivi wrote:
-> On Fri, May 22, 2026 at 03:40:03PM +0100, Tvrtko Ursulin wrote:
->> Currently the queue name is only assigned after the drm scheduler instance
->> has been created. This loses information with all logging or debug
->> workqueue facilities so lets re-order things a bit so the name gets
->> assigned in time.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->> Cc: Matthew Brost <matthew.brost@intel.com>
->> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> Cc: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_guc_submit.c | 24 +++++++++++-------------
->>   1 file changed, 11 insertions(+), 13 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
->> index afd8cc7bd231..28f3b23527e6 100644
->> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
->> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
->> @@ -1961,6 +1961,13 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
->>   	timeout = (q->vm && xe_vm_in_lr_mode(q->vm)) ? MAX_SCHEDULE_TIMEOUT :
->>   		  msecs_to_jiffies(q->sched_props.job_timeout_ms);
->>   
->> +	mutex_lock(&guc->submission_state.lock);
->> +	err = alloc_guc_id(guc, q);
->> +	mutex_unlock(&guc->submission_state.lock);
->> +	if (err)
->> +		goto err_free;
->> +	xe_exec_queue_assign_name(q, q->guc->id);
-> 
-> I'm afraid this might open some race conditions here.
-> 
-> First I wondering about simply moving the mutex to inside the alloc_guc_id
-> itself where the submission_state is used so it gets clear, then
-> I saw the FIXME message in there and wondered why could had made it
-> harder when it was first developed.
-> 
-> Then I read the Sashiko
-> https://sashiko.dev/#/patchset/20260522144003.12836-1-tvrtko.ursulin%40igalia.com
-> 
-> Perhaps the safest approach here is to use a unlocked xa_reserve to get
-> the id and create the name. With this you already get the GFP_NOWAIT FIXME note
-> fixed.
-> 
-> Then you keep the xa_store down later, not opening for any possible races.
-> 2-in-1 fix...
+Fixes: 7c53ff050ba8 ("drm/xe: Apply Wa_16023105232")
+Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+---
 
-Right, my bad for assuming alloc_guc_id is allocating, well, a guc id! 
-:) Thanks for looking and spotting the terrible mistake. I will have a 
-look next week to see if I can implement what you suggest.
+Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 
-Regards,
+---
+ drivers/gpu/drm/xe/xe_guc_ads.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Tvrtko
-
-> 
->> +
->>   	/*
->>   	 * Use primary queue's submit_wq for all secondary queues of a
->>   	 * multi queue group. This serialization avoids any locking around
->> @@ -1977,28 +1984,20 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
->>   			    timeout, guc_to_gt(guc)->ordered_wq, NULL,
->>   			    q->name, gt_to_xe(q->gt)->drm.dev);
->>   	if (err)
->> -		goto err_free;
->> +		goto err_release_id;
->>   
->>   	sched = &ge->sched;
->>   	err = xe_sched_entity_init(&ge->entity, sched);
->>   	if (err)
->>   		goto err_sched;
->>   
->> -	mutex_lock(&guc->submission_state.lock);
->> -
->> -	err = alloc_guc_id(guc, q);
->> -	if (err)
->> -		goto err_entity;
->> -
->>   	q->entity = &ge->entity;
->>   
->> +	mutex_lock(&guc->submission_state.lock);
->>   	if (xe_guc_read_stopped(guc) || vf_recovery(guc))
->>   		xe_sched_stop(sched);
->> -
->>   	mutex_unlock(&guc->submission_state.lock);
->>   
->> -	xe_exec_queue_assign_name(q, q->guc->id);
->> -
->>   	/*
->>   	 * Maintain secondary queues of the multi queue group in a list
->>   	 * for handling dependencies across the queues in the group.
->> @@ -2021,11 +2020,10 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
->>   
->>   	return 0;
->>   
->> -err_entity:
->> -	mutex_unlock(&guc->submission_state.lock);
->> -	xe_sched_entity_fini(&ge->entity);
->>   err_sched:
->>   	xe_sched_fini(&ge->sched);
->> +err_release_id:
->> +	release_guc_id(guc, q);
->>   err_free:
->>   	kfree(ge);
->>   
->> -- 
->> 2.54.0
->>
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index d15a17db3299..e9ceae17c794 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -787,6 +787,11 @@ static unsigned int guc_mmio_regset_write(struct xe_guc_ads *ads,
+ 		}
+ 	}
+ 
++	if (XE_GT_WA(hwe->gt, 16023105232))
++		guc_mmio_regset_write_one(ads, regset_map,
++					  RING_IDLEDLY(hwe->mmio_base),
++					  count++);
++
+ 	return count;
+ }
+ 
+-- 
+2.43.0
 
