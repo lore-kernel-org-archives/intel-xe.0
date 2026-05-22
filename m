@@ -4,59 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6AD5BCD5BB0
-	for <intel-xe@archiver.kernel.org>; Fri, 22 May 2026 19:55:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3FB6CD5BAC
+	for <intel-xe@archiver.kernel.org>; Fri, 22 May 2026 20:03:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0661B10E2BD;
-	Fri, 22 May 2026 19:55:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A22E010E2A6;
+	Fri, 22 May 2026 20:03:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fx8HNvoW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OBFDx3Ha";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F75810E29A;
- Fri, 22 May 2026 19:55:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AAE4910E2A6;
+ Fri, 22 May 2026 20:03:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779479743; x=1811015743;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=jRlsy6gF1FngYaCDEJIkgmyAf/ftC04KNWvaWoDGUlA=;
- b=fx8HNvoWhHlaUsQ97Qol3kmy+xSIn10AtlVR1uDSfn4vJ8KsjPBgn27g
- O4UW9IZXyj6b9wKeVJTCQ2iNixnmUS3X1yXp26GctER6Fs+J49eEsXB8I
- OnMzzXSUwROsBYzyNiWpfr1GOO0pIARSP32GyQEHmUrUi/8/Un2JYc5S2
- hZEB6ywzFvwswsAea4LpL92ODZQUhPSpsImICvUBQaW1L0qUzL+cO/I1b
- r8jXRtQktEFHSPt37PpVx8LT2HK6R5Kx6lvNPgtnGmZaVoZhtdUsMU5MC
- tZewPVbpOSXe5+uWUvqqRCKUhzyY2O0QNvetKibAsUIYjxzIWM+fVy/cQ g==;
-X-CSE-ConnectionGUID: TNRdypY2SR+BJ0l1SkF+2A==
-X-CSE-MsgGUID: RDYNxLlHSQ2KpEwIkzfCbw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11794"; a="91525042"
-X-IronPort-AV: E=Sophos;i="6.24,163,1774335600"; d="scan'208";a="91525042"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 12:55:42 -0700
-X-CSE-ConnectionGUID: JIg6sEssTgK2ZOWPuQqIbQ==
-X-CSE-MsgGUID: f5sZBsj5S4eWftcjrOuRPg==
+ t=1779480232; x=1811016232;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=QSKrhMWJtKQbaAcZR9NMxQqMdyFalUWu//GKIJEOAO0=;
+ b=OBFDx3HaHj4LfbErBfOqAWvS4RpfAbcq8cvgkb1Fu37llI/YX4gp6dVR
+ ZhxViQ2Tiosp8tez10WxXX3WG+mnHXAJux6d1X2gQNFMjfz4I/pioc71B
+ 31VHP8h57nvwejWCoas9pom+O6aoL6c7UjyFZD8RyOJy0kmKgbIGWWISb
+ N/GIHj2mysPzcBHOdz7yN6NuvRDNZBJ3p2IwO2QXY7jl/6scGzqEvKgkH
+ 2x+zg5xpi+LRL1j/0HWmoz4PAEpt2UnGpeFPZAGouOIz4E+53ZUYqrDG8
+ 4reor6wsIZaQnMVi3tYeWy4w5Kxk7GUkXn9x7S0n37RxU/88RTwPBxttc A==;
+X-CSE-ConnectionGUID: MgZHH2KSTVCPm8p0SfJ0Kw==
+X-CSE-MsgGUID: 6m5NghujR7qB5uy9KBccpQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11794"; a="84299642"
+X-IronPort-AV: E=Sophos;i="6.24,163,1774335600"; d="scan'208";a="84299642"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2026 13:03:52 -0700
+X-CSE-ConnectionGUID: oLRuHZrgTjOY3kmk59okoQ==
+X-CSE-MsgGUID: fSGLera/QRKEbMrNbdSqJg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,163,1774335600"; d="scan'208";a="245290660"
-Received: from dev-417.igk.intel.com ([10.91.214.181])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 12:55:40 -0700
-Date: Fri, 22 May 2026 21:55:38 +0200 (CEST)
-From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
-To: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
-cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, 
- Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-Subject: Re: [PATCH v2 1/2] drm/print: describe 6th & 9th bit of drm.debug
-In-Reply-To: <20260522135520.1862848-2-michal.grzelak@intel.com>
-Message-ID: <26630a3e-7757-4fa4-1415-7ede60d98305@intel.com>
-References: <20260522135520.1862848-1-michal.grzelak@intel.com>
- <20260522135520.1862848-2-michal.grzelak@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,163,1774335600"; d="scan'208";a="245042144"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.71])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2026 13:03:50 -0700
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: [PATCH 00/10] drm/i915/bw: Bunch of fixes
+Date: Fri, 22 May 2026 23:03:36 +0300
+Message-ID: <20260522200346.17377-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-369638617-1779479741=:1544314"
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,67 +68,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
---8323329-369638617-1779479741=:1544314
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8BIT
+The QGV code has accumulated tons of rounding
+errors and other similar things. Fix them up.
 
-On Fri, 22 May 2026, Michał Grzelak wrote:
-> Setting 6th or 9th bit of drm.debug change debug logging. Meanwhile
-> `modinfo drm` does not inform about it at all.
->
-> Add info to MODULE_PARAM_DESC(debug, ...) about setting 6th and 9th bit
-> basing on DECLARE_DYNDBG_CLASSMAP(drm_debug_classes, ...). Match
-> description of corresponding bits with enum drm_debug_category. Include
-> 9th bit in the example with enabling all possible logging provided at
-> comment at include/drm/drm_print.h.
->
-> Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
+Ville Syrjälä (10):
+  drm/i915/bw: Fix num_planes handling on TGL+
+  drm/i915/bw: Fix DCLK rounding mess
+  drm/i915/bw: Fix bw rounding direction
+  drm/i915/bw: Fix 'deinterleave' rounding direction
+  drm/i915/bw: Fix rounding direction in clperchgroup calculation
+  drm/i915/bw: Fix DEPROGBWPCLIMIT handling on BMG
+  drm/i915/bw: Fix/unify peakbw calculations
+  drm/i915/bw: Round the PM demand bandwidth down
+  drm/i915/bw: Remove deinterleave fallback for TGL+
+  drm/i915/bw: Do not consider tile4 as tileY
 
-What should have been added here is R-B: tag provided by Chaitanya,
-which currently is very much absent. The omission was not intentional.
+ drivers/gpu/drm/i915/display/intel_bw.c | 97 ++++++++++++-------------
+ 1 file changed, 47 insertions(+), 50 deletions(-)
 
-BR,
-Michał
+-- 
+2.52.0
 
-> ---
-> drivers/gpu/drm/drm_print.c | 4 +++-
-> include/drm/drm_print.h     | 2 +-
-> 2 files changed, 4 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/drm_print.c b/drivers/gpu/drm/drm_print.c
-> index ded9461df5f2..86cef1a37678 100644
-> --- a/drivers/gpu/drm/drm_print.c
-> +++ b/drivers/gpu/drm/drm_print.c
-> @@ -50,8 +50,10 @@ MODULE_PARM_DESC(debug, "Enable debug output, where each bit enables a debug cat
-> "\t\tBit 3 (0x08)  will enable PRIME messages (prime code)\n"
-> "\t\tBit 4 (0x10)  will enable ATOMIC messages (atomic code)\n"
-> "\t\tBit 5 (0x20)  will enable VBL messages (vblank code)\n"
-> +"\t\tBit 6 (0x40)  will enable STATE messages (atomic state code)\n"
-> "\t\tBit 7 (0x80)  will enable LEASE messages (leasing code)\n"
-> -"\t\tBit 8 (0x100) will enable DP messages (displayport code)");
-> +"\t\tBit 8 (0x100) will enable DP messages (displayport code)\n"
-> +"\t\tBit 9 (0x200) will enable DRMRES messages (managed resources code)");
->
-> #if !defined(CONFIG_DRM_USE_DYNAMIC_DEBUG)
-> module_param_named(debug, __drm_debug, ulong, 0600);
-> diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
-> index ab017b05e175..2adc5ac688e1 100644
-> --- a/include/drm/drm_print.h
-> +++ b/include/drm/drm_print.h
-> @@ -87,7 +87,7 @@ extern unsigned long __drm_debug;
->  *  - drm.debug=0x2 will enable DRIVER messages
->  *  - drm.debug=0x3 will enable CORE and DRIVER messages
->  *  - ...
-> - *  - drm.debug=0x1ff will enable all messages
-> + *  - drm.debug=0x3ff will enable all messages
->  *
->  * An interesting feature is that it's possible to enable verbose logging at
->  * run-time by echoing the debug value in its sysfs node::
-> -- 
-> 2.45.2
->
->
---8323329-369638617-1779479741=:1544314--
