@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39B97CD5BB3
-	for <intel-xe@archiver.kernel.org>; Fri, 22 May 2026 15:16:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46863CD5BB0
+	for <intel-xe@archiver.kernel.org>; Fri, 22 May 2026 15:16:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3A3710E058;
-	Fri, 22 May 2026 15:16:13 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fCgpn7Ux";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E57E310E058
- for <intel-xe@lists.freedesktop.org>; Fri, 22 May 2026 15:16:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779462973; x=1810998973;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=uKNFjwzIYuNmfjh0x/swd8d59IDjd/Y4ycV2BRlTmqk=;
- b=fCgpn7Uxc3hKT8EPt8KEvr87abP58HqvvUv6FQR8hUpfr5gcqjHXwNAw
- 5G5WUqUj+g9e1+AjhzLpu5IvI0y2Q90BPKbRribLglkzavp/a+WuOUyW+
- HHqDR0jVTDle+jnQfTrqJK0nEMrW3pmF7TIzAj1IFXYAFCp6RakXFlQiF
- 6Erv7l/M0yf7m0PCe1N2WMWPTSnWhWhdn6x8AmVRUtPfBT2aEd7ZBuLkH
- EvYmYiHtAQq+2+nkb8cyYLum6GwCVOUBG3bgtYXT18Iw+SCrf0Gak0LTn
- cBrbNMp4QrwNbvIdBJsGUZuT4Ra3Y7gMX72cm4rhjNgKrxqTHfqLENt1k A==;
-X-CSE-ConnectionGUID: LadBz15YSIKwL3xnTeyr9Q==
-X-CSE-MsgGUID: q8zcNQYkSYmVog2Z7E5Rpw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11794"; a="67918289"
-X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="67918289"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 08:16:13 -0700
-X-CSE-ConnectionGUID: 24pjXbbLRPOOH/xxFvh5HQ==
-X-CSE-MsgGUID: To1KckA9RjmFA6ys3I794A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="246010393"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO [10.245.245.22])
- ([10.245.245.22])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 08:16:12 -0700
-Message-ID: <751a91c6-66d2-4cbc-94e1-001a2b1ed4b5@intel.com>
-Date: Fri, 22 May 2026 16:16:10 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0526C10E058;
+	Fri, 22 May 2026 15:16:35 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1870A10E058;
+ Fri, 22 May 2026 15:16:34 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6612237431015592329=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] drm/xe/mmio: Check MMIO BAR size when initializing
- tiles
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- intel-xe@lists.freedesktop.org
-References: <20260522143112.10643-1-michal.wajdeczko@intel.com>
- <20260522143112.10643-5-michal.wajdeczko@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20260522143112.10643-5-michal.wajdeczko@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/i915/intel=5Fpanel=3A_F?=
+ =?utf-8?q?ix_seamless_VRR_mode_switching_for_DRRS_panels_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 22 May 2026 15:16:34 -0000
+Message-ID: <177946299409.289.18071035070805890150@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260522132511.321540-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20260522132511.321540-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,67 +36,159 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 22/05/2026 15:31, Michal Wajdeczko wrote:
-> We initialized all remote tiles' xe_mmio structures with a new size
-> of 4MiB and offsets of 16MiB without sanity checks to see if mapped
-> GTTMMADR_BAR was actually at least that size.
-> 
-> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+--===============6612237431015592329==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+== Series Details ==
 
-> ---
->   drivers/gpu/drm/xe/xe_mmio.c | 28 +++++++++++++++++++++-------
->   1 file changed, 21 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-> index 7043289a0eb9..9a7d7fb4a334 100644
-> --- a/drivers/gpu/drm/xe/xe_mmio.c
-> +++ b/drivers/gpu/drm/xe/xe_mmio.c
-> @@ -47,21 +47,35 @@ static void mmio_multi_tile_setup(struct xe_device *xe, size_t tile_mmio_size)
->   	struct xe_tile *tile;
->   	u8 id;
->   
-> -	/*
-> -	 * Nothing to be done as tile 0 has already been setup earlier with the
-> -	 * entire BAR mapped - see xe_mmio_probe_early()
-> -	 */
-> -	if (xe->info.tile_count == 1)
-> -		return;
-> -
->   	for_each_remote_tile(tile, xe, id)
->   		xe_mmio_init(&tile->mmio, tile, xe->mmio.regs + id * tile_mmio_size, SZ_4M);
->   }
->   
-> +/**
-> + * xe_mmio_probe_tiles() - Initialize all tiles' MMIO
-> + * @xe: the &xe_device
-> + *
-> + * Initialize the remaining tiles' MMIO instances.
-> + *
-> + * Return: 0 on success or a negative error code on failure.
-> + */
->   int xe_mmio_probe_tiles(struct xe_device *xe)
->   {
->   	size_t tile_mmio_size = SZ_16M;
->   
-> +	/*
-> +	 * Nothing to be done as tile 0 has already been setup earlier with the
-> +	 * entire BAR mapped - see xe_mmio_probe_early()
-> +	 */
-> +	if (xe->info.tile_count == 1)
-> +		return 0;
-> +
-> +	if (xe->mmio.size < xe->info.tile_count * tile_mmio_size) {
-> +		xe_err(xe, "GTTMMADR_BAR is too small for %d tiles: %zd\n",
-> +		       xe->info.tile_count, xe->mmio.size);
-> +		return -EIO;
-> +	}
-> +
->   	mmio_multi_tile_setup(xe, tile_mmio_size);
->   	return 0;
->   }
+Series: drm/i915/intel_panel: Fix seamless VRR mode switching for DRRS panels (rev3)
+URL   : https://patchwork.freedesktop.org/series/165603/
+State : failure
 
+== Summary ==
+
+CI Bug Log - changes from xe-5116-127c8434a6a018110189cdb654719a9844702ff7_BAT -> xe-pw-165603v3_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-165603v3_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-165603v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-165603v3_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1:
+    - bat-lnl-1:          [PASS][1] -> [FAIL][2] +3 other tests fail
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5116-127c8434a6a018110189cdb654719a9844702ff7/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165603v3/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-165603v3_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - bat-lnl-1:          [PASS][3] -> [FAIL][4] ([Intel XE#3149]) +3 other tests fail
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5116-127c8434a6a018110189cdb654719a9844702ff7/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165603v3/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+
+  
+  [Intel XE#3149]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3149
+
+
+Build changes
+-------------
+
+  * Linux: xe-5116-127c8434a6a018110189cdb654719a9844702ff7 -> xe-pw-165603v3
+
+  IGT_8936: 98b65acc4f6edf68cd52b30f27b83049c4c5c83b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5116-127c8434a6a018110189cdb654719a9844702ff7: 127c8434a6a018110189cdb654719a9844702ff7
+  xe-pw-165603v3: 165603v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165603v3/index.html
+
+--===============6612237431015592329==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/intel_panel: Fix seamless VRR mode switching for DRRS panels (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165603/">https://patchwork.freedesktop.org/series/165603/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165603v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165603v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5116-127c8434a6a018110189cdb654719a9844702ff7_BAT -&gt; xe-pw-165603v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-165603v3_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-165603v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-165603v3_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1:<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5116-127c8434a6a018110189cdb654719a9844702ff7/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165603v3/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html">FAIL</a> +3 other tests fail</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-165603v3_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5116-127c8434a6a018110189cdb654719a9844702ff7/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165603v3/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3149">Intel XE#3149</a>) +3 other tests fail</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5116-127c8434a6a018110189cdb654719a9844702ff7 -&gt; xe-pw-165603v3</li>
+</ul>
+<p>IGT_8936: 98b65acc4f6edf68cd52b30f27b83049c4c5c83b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5116-127c8434a6a018110189cdb654719a9844702ff7: 127c8434a6a018110189cdb654719a9844702ff7<br />
+  xe-pw-165603v3: 165603v3</p>
+
+</body>
+</html>
+
+--===============6612237431015592329==--
