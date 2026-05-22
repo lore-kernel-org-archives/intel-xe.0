@@ -4,61 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75B2ECD5BB0
-	for <intel-xe@archiver.kernel.org>; Fri, 22 May 2026 10:29:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90F60CD5BAC
+	for <intel-xe@archiver.kernel.org>; Fri, 22 May 2026 10:56:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14FD310E23F;
-	Fri, 22 May 2026 10:29:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DC9A10E23F;
+	Fri, 22 May 2026 10:56:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eX8wMRj+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Pc8aGyIv";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C0D810E1D9;
- Fri, 22 May 2026 10:29:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E91E410E1DD;
+ Fri, 22 May 2026 10:56:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779445785; x=1810981785;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=fMS1A/iD1uQbfbOfmjoWxWs9lpzqYP9T92jFlkZ2U+0=;
- b=eX8wMRj+HkKJ/e66D5Yk+gQdd5a7rjmP4ra5TxPY8M7ygYxFE9C8eadd
- Kd5lSjtoV1kT8UMQYxY6llYayCZCehwG1EsV6x2UTNeKpFfjUeSnOrg2R
- ZlUKX8BW8a2mNNUwG0p4Jh6IZVUrVhK/Aa5XGigu++eeeXnav2uQhGJGd
- 00V4xne3P4DfZnZZCgSCmHaDyRuSKxuFnvThijO26UMHT+ja1vfwYjohP
- jKw/topjSnuRoUxhbMaYlwd0BS2Kz6hGXRmz2kcymUXrHMUxqDhyQPK96
- 0lf9ovwc5XBgbDB4RnGM9KsJvv3aHQuvfVOxaP/GJTf3/RUQDy2vC9ZDu A==;
-X-CSE-ConnectionGUID: cYl0kIZKRw+c5T4ck4UeRA==
-X-CSE-MsgGUID: G+vPmFmRSKGwrzozeUrX5A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11793"; a="80427787"
-X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="80427787"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 03:29:45 -0700
-X-CSE-ConnectionGUID: 5vE4l0/oTcq6wfjJePjHvQ==
-X-CSE-MsgGUID: 6HQ7pncdTWq11n4fKUw79w==
+ t=1779447383; x=1810983383;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=0Le0sGFW5ovhB8eKgEXc5RLsefQ8SHAlMFFuEGoI4Vc=;
+ b=Pc8aGyIvemNO9F0pFs6HhpMDYZUoOoJUEtWK0+51LYIlZUtl7qRSDhq8
+ D5OaXD7kbUxkG5LiElCY+ThoKo/GOCkXv5Yza4mhq41k0sECz3qPgf3M5
+ l1izre/HoOZ2XiItJYf4tshaCRi6tgklqtoeZxshsjXn0oRwZ9hHa3G31
+ W65wQgr0PT7UoyiUrKTVtwgiuefVbuub7ltsg3qZJOeb1D3TkrwkHdMpB
+ noj5MrkK+eP2IRMYk7NuswF6hqJw44vX9D5/73P+2byzaBwu6Y0gCIu/1
+ 2+DE4p2JIVK7q2cRh7gw2DYluwahxVFtZnZPpRyNyViNkBr5i8uzTqay/ A==;
+X-CSE-ConnectionGUID: F+A3INnXSR2IqtrFSgjdQg==
+X-CSE-MsgGUID: GTjoH9+wQQSV7N73Xo5xpQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11793"; a="67900536"
+X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="67900536"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2026 03:56:23 -0700
+X-CSE-ConnectionGUID: KJVwhtpBQJO8AznvVV+uEA==
+X-CSE-MsgGUID: LUNH2tLtQSSVPJY1xsUFZg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="245152258"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.1])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 03:29:42 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: imre.deak@intel.com, Ville =?utf-8?B?U3lyasOkbMOk?=
- <ville.syrjala@linux.intel.com>
-Cc: Jouni Hogander <jouni.hogander@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 1/5] drm/i915/dp: Add helpers to reset link params
-In-Reply-To: <ahAJPJUYbSRvWPQT@ideak-desk.lan>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260518112427.2460725-1-imre.deak@intel.com>
- <20260518112427.2460725-2-imre.deak@intel.com>
- <ag962-z5WD8SVS9I@intel.com> <ahAJPJUYbSRvWPQT@ideak-desk.lan>
-Date: Fri, 22 May 2026 13:29:39 +0300
-Message-ID: <6b7498358483981472e9a9c6b0c76739de0b028a@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="240937052"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO [10.245.245.22])
+ ([10.245.245.22])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2026 03:56:21 -0700
+Message-ID: <38cc3449-b51a-4b54-bed8-8802e7b37299@intel.com>
+Date: Fri, 22 May 2026 11:56:18 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 5/5] gpu/buddy: Track per-order used blocks with a
+ scoreboard
+To: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>,
+ Francois Dugast <francois.dugast@intel.com>, intel-xe@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
+References: <20260522092600.32818-1-francois.dugast@intel.com>
+ <20260522092600.32818-6-francois.dugast@intel.com>
+ <e3022ae8-d08d-4114-b6c0-c8f0890a2dae@amd.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <e3022ae8-d08d-4114-b6c0-c8f0890a2dae@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,251 +73,216 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 22 May 2026, Imre Deak <imre.deak@intel.com> wrote:
-> On Fri, May 22, 2026 at 12:36:27AM +0300, Ville Syrj=C3=A4l=C3=A4 wrote:
->> On Mon, May 18, 2026 at 02:24:22PM +0300, Imre Deak wrote:
->> > Add helpers to defer and handle link params resets instead of
->> > open-coding the same. Rename intel_dp_reset_link_params() to
->> > intel_dp_reset_link_params_force() to align its name with the new
->> > deferred reset helpers.
->> >=20
->> > When deferring a reset, return whether a new reset was queued, used by=
- a
->> > follow-up change.
->> >=20
->> > Signed-off-by: Imre Deak <imre.deak@intel.com>
->> > ---
->> >  drivers/gpu/drm/i915/display/g4x_dp.c         |  2 +-
->> >  drivers/gpu/drm/i915/display/intel_ddi.c      |  2 +-
->> >  drivers/gpu/drm/i915/display/intel_dp.c       | 41 +++++++++++++++----
->> >  drivers/gpu/drm/i915/display/intel_dp.h       |  3 +-
->> >  .../drm/i915/display/intel_dp_link_training.c |  4 +-
->> >  5 files changed, 38 insertions(+), 14 deletions(-)
->> >=20
->> > diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i=
-915/display/g4x_dp.c
->> > index 5ff1cdf4581a5..c20a97e21419b 100644
->> > --- a/drivers/gpu/drm/i915/display/g4x_dp.c
->> > +++ b/drivers/gpu/drm/i915/display/g4x_dp.c
->> > @@ -1265,7 +1265,7 @@ static void intel_dp_encoder_reset(struct drm_en=
-coder *encoder)
->> >=20=20
->> >  	intel_dp->DP =3D intel_de_read(display, intel_dp->output_reg);
->> >=20=20
->> > -	intel_dp->reset_link_params =3D true;
->> > +	intel_dp_reset_link_params_defer(intel_dp);
->> >  	intel_dp_invalidate_source_oui(intel_dp);
->> >=20=20
->> >  	if (display->platform.valleyview || display->platform.cherryview)
->> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/dr=
-m/i915/display/intel_ddi.c
->> > index 86520848892e0..77819aaeccb76 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
->> > @@ -4664,7 +4664,7 @@ static void intel_ddi_encoder_reset(struct drm_e=
-ncoder *encoder)
->> >  	struct intel_dp *intel_dp =3D enc_to_intel_dp(to_intel_encoder(encod=
-er));
->> >  	struct intel_digital_port *dig_port =3D enc_to_dig_port(to_intel_enc=
-oder(encoder));
->> >=20=20
->> > -	intel_dp->reset_link_params =3D true;
->> > +	intel_dp_reset_link_params_defer(intel_dp);
->> >  	intel_dp_invalidate_source_oui(intel_dp);
->> >=20=20
->> >  	intel_pps_encoder_reset(intel_dp);
->> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm=
-/i915/display/intel_dp.c
->> > index 1920d2f026665..13163dd085e91 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> > @@ -3710,7 +3710,11 @@ void intel_dp_set_link_params(struct intel_dp *=
-intel_dp,
->> >  	intel_dp->lane_count =3D lane_count;
->> >  }
->> >=20=20
->> > -void intel_dp_reset_link_params(struct intel_dp *intel_dp)
->> > +/*
->> > + * Reset link params now, preserving any deferred connector
->> > + * detect-time reset request.
->> > + */
->> > +void intel_dp_reset_link_params_force(struct intel_dp *intel_dp)
->> >  {
->> >  	intel_dp->link.max_lane_count =3D intel_dp_max_common_lane_count(int=
-el_dp);
->> >  	intel_dp->link.max_rate =3D intel_dp_max_common_rate(intel_dp);
->> > @@ -3720,6 +3724,28 @@ void intel_dp_reset_link_params(struct intel_dp=
- *intel_dp)
->> >  	intel_dp->link.seq_train_failures =3D 0;
->> >  }
->> >=20=20
->> > +/*
->> > + * Reset link params during the next connector detect.
->> > + * Return %true if a new reset was queued.
->> > + */
->> > +bool intel_dp_reset_link_params_defer(struct intel_dp *intel_dp)
->>=20
->> I find the intel_dp_reset_link_params_defer() vs.
->> intel_dp_reset_link_params_force() naming rather confusing.
->>=20
->> Can't immediately think of a really good name for
->> intel_dp_reset_link_params_defer() so maybe it's better to not
->> have a function for it at all (ie. just drop this patch)?
->
-> The idea was to have an interface to reset the link params directly or
-> in a deferred way, instead of a direct access of the flag.
->
-> The names are not great yes. I could use what Jouni suggested instead,
-> or if the above argument is not good enough I can also drop this patch.
+On 22/05/2026 11:25, Arunpravin Paneer Selvam wrote:
+> 
+> 
+> On 5/22/2026 2:55 PM, Francois Dugast wrote:
+>> Extend the scoreboard approach from the previous commit to used blocks,
+>> so drm_buddy_print() can report per-order allocation pressure in O(1).
+>>
+>> Unlike free blocks, an allocated block can leave the allocated state
+>> through mark_free() (normal free and gpu_buddy_block_trim()) or be
+>> consumed directly by gpu_block_free() during coalescing. Both sites are
+>> guarded by gpu_buddy_block_is_allocated() and paired with the increment
+>> in mark_allocated().
+>>
+>> v3:
+>> - Assert scoreboard is empty at fini(), as sanity check (Matthew Auld)
+>>
+>> v2:
+>> - Update after fix for use-after-free in split_block() call sites
+>> - Change goto label to out_free_used_scoreboard for clarity
+>> - Make drm_buddy_print() and gpu_buddy_print() symmetric for used and
+>>    free
+>>
+>> Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+>> Assisted-by: GitHub Copilot:claude-sonnet-4.6
+>> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+>> ---
+>>   drivers/gpu/buddy.c         | 42 ++++++++++++++++++++++++++++---------
+>>   drivers/gpu/drm/drm_buddy.c | 18 ++++++++++------
+>>   include/linux/gpu_buddy.h   |  8 +++++++
+>>   3 files changed, 52 insertions(+), 16 deletions(-)
+>>
+>> diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
+>> index de18b63fef0a..dc81fe0301ce 100644
+>> --- a/drivers/gpu/buddy.c
+>> +++ b/drivers/gpu/buddy.c
+>> @@ -194,6 +194,7 @@ static void mark_allocated(struct gpu_buddy *mm,
+>>       block->header |= GPU_BUDDY_ALLOCATED;
+>>       mm->free_scoreboard[gpu_buddy_block_order(block)]--;
+>> +    mm->used_scoreboard[gpu_buddy_block_order(block)]++;
+> The main consumer of free_scoreboard and used_scoreboard is 
+> gpu_buddy_print(), which is a debug/diagnostic path - it only gets 
+> called during debugfs reads or error state dumps, not during regular 
+> operation.
+> However, the cost of maintaining these scoreboards is paid on every 
+> alloc and free, which is the hot path of the allocator. Even though each 
+> individual update is small, do we really need to add extra work to the
+> hot path for something that only benefits a rarely-called debug function?
+> Am I missing a use case that justifies the hot-path overhead?
 
-I suggest intel_dp_reset_link_params() keeps its name, or gets renamed
-to intel_dp_link_params_reset(). It just does the thing, no "force".
+The usecase I originally saw involved sampling this frequently during a 
+running workload to help collect some running stats. For example to 
+generate a graph of the "page usage" over time. So is there lots of 
+smaller order usage (bad), or do we get mostly larger page orders 
+(good), do we see spikes we all of sudden we start getting smaller and 
+smaller orders, perhaps due to fragmentation? In general we just wanted 
+some more visibility to get a better sense of the "page usage" at 
+runtime. At the moment we don't have much visibility into what page 
+sizes we are actually getting from the allocator, over time.
 
-Then the other two use something like:
+We originally had this at this at the driver level, but it's not quite 
+as nice implementation wise, plus having it in the allocator could then 
+be beneficial to other drivers? Also the added cost did not seem too 
+bad, it's just incrementing/decrementing a counter. What do you think here?
 
-- submit/process
-- queue/process
-- stage/handle
+> 
+> Regards,
+> Arun.
+>>       rbtree_remove(mm, block);
+>>   }
+>> @@ -203,6 +204,9 @@ static void mark_free(struct gpu_buddy *mm,
+>>   {
+>>       enum gpu_buddy_free_tree tree;
+>> +    if (gpu_buddy_block_is_allocated(block))
+>> +        mm->used_scoreboard[gpu_buddy_block_order(block)]--;
+>> +
+>>       block->header &= ~GPU_BUDDY_HEADER_STATE;
+>>       block->header |= GPU_BUDDY_FREE;
+>> @@ -281,6 +285,9 @@ static unsigned int __gpu_buddy_free(struct 
+>> gpu_buddy *mm,
+>>           if (force_merge && gpu_buddy_block_is_clear(buddy))
+>>               mm->clear_avail -= gpu_buddy_block_size(mm, buddy);
+>> +        if (gpu_buddy_block_is_allocated(block))
+>> +            mm->used_scoreboard[gpu_buddy_block_order(block)]--;
+>> +
+>>           gpu_block_free(mm, block);
+>>           gpu_block_free(mm, buddy);
+>> @@ -398,11 +405,17 @@ int gpu_buddy_init(struct gpu_buddy *mm, u64 
+>> size, u64 chunk_size)
+>>       if (!mm->free_scoreboard)
+>>           return -ENOMEM;
+>> +    mm->used_scoreboard = kcalloc(mm->max_order + 1,
+>> +                      sizeof(*mm->used_scoreboard),
+>> +                      GFP_KERNEL);
+>> +    if (!mm->used_scoreboard)
+>> +        goto out_free_free_scoreboard;
+>> +
+>>       mm->free_trees = kmalloc_array(GPU_BUDDY_MAX_FREE_TREES,
+>>                          sizeof(*mm->free_trees),
+>>                          GFP_KERNEL);
+>>       if (!mm->free_trees)
+>> -        goto out_free_scoreboard;
+>> +        goto out_free_used_scoreboard;
+>>       for_each_free_tree(i) {
+>>           mm->free_trees[i] = kmalloc_array(mm->max_order + 1,
+>> @@ -464,7 +477,9 @@ int gpu_buddy_init(struct gpu_buddy *mm, u64 size, 
+>> u64 chunk_size)
+>>       while (i--)
+>>           kfree(mm->free_trees[i]);
+>>       kfree(mm->free_trees);
+>> -out_free_scoreboard:
+>> +out_free_used_scoreboard:
+>> +    kfree(mm->used_scoreboard);
+>> +out_free_free_scoreboard:
+>>       kfree(mm->free_scoreboard);
+>>       return -ENOMEM;
+>>   }
+>> @@ -500,11 +515,15 @@ void gpu_buddy_fini(struct gpu_buddy *mm)
+>>       gpu_buddy_assert(mm->avail == mm->size);
+>> +    for (i = 0; i <= mm->max_order; ++i)
+>> +        gpu_buddy_assert(!mm->used_scoreboard[i]);
+>> +
+>>       for_each_free_tree(i)
+>>           kfree(mm->free_trees[i]);
+>>       kfree(mm->free_trees);
+>>       kfree(mm->roots);
+>>       kfree(mm->free_scoreboard);
+>> +    kfree(mm->used_scoreboard);
+>>   }
+>>   EXPORT_SYMBOL(gpu_buddy_fini);
+>> @@ -1505,15 +1524,18 @@ void gpu_buddy_print(struct gpu_buddy *mm)
+>>           mm->chunk_size >> 10, mm->size >> 20, mm->avail >> 20, mm- 
+>> >clear_avail >> 20);
+>>       for (order = mm->max_order; order >= 0; order--) {
+>> -        u64 count = mm->free_scoreboard[order];
+>> -        u64 free = count * (mm->chunk_size << order);
+>> -
+>> -        if (free < SZ_1M)
+>> -            pr_info("order-%2d free: %8llu KiB, blocks: %llu\n",
+>> -                order, free >> 10, count);
+>> +        u64 free_count = mm->free_scoreboard[order];
+>> +        u64 used_count = mm->used_scoreboard[order];
+>> +        u64 block_size = mm->chunk_size << order;
+>> +        u64 free = free_count * block_size;
+>> +        u64 used = used_count * block_size;
+>> +
+>> +        if (block_size < SZ_1M)
+>> +            pr_info("order-%2d free: %8llu KiB, used: %8llu KiB, 
+>> free_blocks: %llu, used_blocks: %llu\n",
+>> +                order, free >> 10, used >> 10, free_count, used_count);
+>>           else
+>> -            pr_info("order-%2d free: %8llu MiB, blocks: %llu\n",
+>> -                order, free >> 20, count);
+>> +            pr_info("order-%2d free: %8llu MiB, used: %8llu MiB, 
+>> free_blocks: %llu, used_blocks: %llu\n",
+>> +                order, free >> 20, used >> 20, free_count, used_count);
+>>       }
+>>   }
+>>   EXPORT_SYMBOL(gpu_buddy_print);
+>> diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+>> index eef995e08a37..1536e59c6fe7 100644
+>> --- a/drivers/gpu/drm/drm_buddy.c
+>> +++ b/drivers/gpu/drm/drm_buddy.c
+>> @@ -47,17 +47,23 @@ void drm_buddy_print(struct gpu_buddy *mm, struct 
+>> drm_printer *p)
+>>              mm->chunk_size >> 10, mm->size >> 20, mm->avail >> 20, 
+>> mm->clear_avail >> 20);
+>>       for (order = mm->max_order; order >= 0; order--) {
+>> -        u64 count = mm->free_scoreboard[order];
+>> -        u64 free = count * (mm->chunk_size << order);
+>> +        u64 free_count = mm->free_scoreboard[order];
+>> +        u64 used_count = mm->used_scoreboard[order];
+>> +        u64 block_size = mm->chunk_size << order;
+>> +        u64 free = free_count * block_size;
+>> +        u64 used = used_count * block_size;
+>>           drm_printf(p, "order-%2d ", order);
+>> -        if (free < SZ_1M)
+>> -            drm_printf(p, "free: %8llu KiB", free >> 10);
+>> +        if (block_size < SZ_1M)
+>> +            drm_printf(p, "free: %8llu KiB, used: %8llu KiB",
+>> +                   free >> 10, used >> 10);
+>>           else
+>> -            drm_printf(p, "free: %8llu MiB", free >> 20);
+>> +            drm_printf(p, "free: %8llu MiB, used: %8llu MiB",
+>> +                   free >> 20, used >> 20);
+>> -        drm_printf(p, ", blocks: %llu\n", count);
+>> +        drm_printf(p, ", free_blocks: %llu, used_blocks: %llu\n",
+>> +               free_count, used_count);
+>>       }
+>>   }
+>>   EXPORT_SYMBOL(drm_buddy_print);
+>> diff --git a/include/linux/gpu_buddy.h b/include/linux/gpu_buddy.h
+>> index a28f7d7637ca..e037714563d8 100644
+>> --- a/include/linux/gpu_buddy.h
+>> +++ b/include/linux/gpu_buddy.h
+>> @@ -180,6 +180,14 @@ struct gpu_buddy {
+>>        * called on a free block.
+>>        */
+>>       u64 *free_scoreboard;
+>> +    /*
+>> +     * Per-order used block scoreboard: used_scoreboard[order] holds the
+>> +     * number of blocks of that order currently in the allocated state.
+>> +     * Incremented in mark_allocated(), decremented in mark_free() 
+>> (guarded
+>> +     * by gpu_buddy_block_is_allocated()) and in __gpu_buddy_free() 
+>> when an
+>> +     * allocated block is consumed directly during buddy coalescing.
+>> +     */
+>> +    u64 *used_scoreboard;
+>>   /* public: */
+>>       unsigned int n_roots;
+>>       unsigned int max_order;
+> 
 
-or some combination i.e. something like:
-
-intel_dp_link_params_reset()
-intel_dp_link_params_reset_submit()
-intel_dp_link_params_reset_process()
-
-BR,
-Jani.
-
->
->> Then you at least see that it's just setting the flag. AFAICS you only
->> have a single place (in the last patch) that uses this return value
->> for anything, so could just do the check+set dance there on the spot.
->
->>=20
->> > +{
->> > +	bool reset_was_pending =3D intel_dp->reset_link_params;
->> > +
->> > +	intel_dp->reset_link_params =3D true;
->> > +
->> > +	return !reset_was_pending;
->> > +}
->> > +
->> > +static void intel_dp_handle_deferred_link_params_reset(struct intel_d=
-p *intel_dp)
->> > +{
->> > +	if (!intel_dp->reset_link_params)
->> > +		return;
->> > +
->> > +	intel_dp->reset_link_params =3D false;
->> > +	intel_dp_reset_link_params_force(intel_dp);
->> > +}
->> > +
->> >  /* Enable backlight PWM and backlight PP control. */
->> >  void intel_edp_backlight_on(const struct intel_crtc_state *crtc_state,
->> >  			    const struct drm_connector_state *conn_state)
->> > @@ -4066,7 +4092,7 @@ void intel_dp_sync_state(struct intel_encoder *e=
-ncoder,
->> >  	intel_dp_tunnel_resume(intel_dp, crtc_state, dpcd_updated);
->> >=20=20
->> >  	if (crtc_state) {
->> > -		intel_dp_reset_link_params(intel_dp);
->> > +		intel_dp_reset_link_params_force(intel_dp);
->> >  		intel_dp_set_link_params(intel_dp, crtc_state->port_clock, crtc_sta=
-te->lane_count);
->> >  		intel_dp->link.active =3D true;
->> >  	}
->> > @@ -6487,10 +6513,7 @@ intel_dp_detect(struct drm_connector *_connecto=
-r,
->> >=20=20
->> >  	intel_dp_detect_sdp_caps(intel_dp);
->> >=20=20
->> > -	if (intel_dp->reset_link_params) {
->> > -		intel_dp_reset_link_params(intel_dp);
->> > -		intel_dp->reset_link_params =3D false;
->> > -	}
->> > +	intel_dp_handle_deferred_link_params_reset(intel_dp);
->> >=20=20
->> >  	intel_dp_mst_configure(intel_dp);
->> >=20=20
->> > @@ -6944,7 +6967,7 @@ intel_dp_hpd_pulse(struct intel_digital_port *di=
-g_port, bool long_hpd)
->> >=20=20
->> >  		intel_dp_read_dprx_caps(intel_dp, dpcd);
->> >=20=20
->> > -		intel_dp->reset_link_params =3D true;
->> > +		intel_dp_reset_link_params_defer(intel_dp);
->> >  		intel_dp_invalidate_source_oui(intel_dp);
->> >=20=20
->> >  		return IRQ_NONE;
->> > @@ -7252,7 +7275,7 @@ intel_dp_init_connector(struct intel_digital_por=
-t *dig_port,
->> >  		     encoder->base.name))
->> >  		return false;
->> >=20=20
->> > -	intel_dp->reset_link_params =3D true;
->> > +	intel_dp_reset_link_params_defer(intel_dp);
->> >=20=20
->> >  	/* Preserve the current hw state. */
->> >  	intel_dp->DP =3D intel_de_read(display, intel_dp->output_reg);
->> > @@ -7317,7 +7340,7 @@ intel_dp_init_connector(struct intel_digital_por=
-t *dig_port,
->> >=20=20
->> >  	intel_dp_set_source_rates(intel_dp);
->> >  	intel_dp_set_common_rates(intel_dp);
->> > -	intel_dp_reset_link_params(intel_dp);
->> > +	intel_dp_reset_link_params_force(intel_dp);
->> >=20=20
->> >  	/* init MST on ports that can support it */
->> >  	intel_dp_mst_encoder_init(dig_port, connector->base.base.id);
->> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm=
-/i915/display/intel_dp.h
->> > index f41480d247142..7c24d3dbb6983 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_dp.h
->> > +++ b/drivers/gpu/drm/i915/display/intel_dp.h
->> > @@ -114,7 +114,8 @@ int intel_dp_rate_index(const int *rates, int len,=
- int rate);
->> >  int intel_dp_link_config_index(struct intel_dp *intel_dp, int link_ra=
-te, int lane_count);
->> >  void intel_dp_link_config_get(struct intel_dp *intel_dp, int idx, int=
- *link_rate, int *lane_count);
->> >  void intel_dp_update_sink_caps(struct intel_dp *intel_dp);
->> > -void intel_dp_reset_link_params(struct intel_dp *intel_dp);
->> > +void intel_dp_reset_link_params_force(struct intel_dp *intel_dp);
->> > +bool intel_dp_reset_link_params_defer(struct intel_dp *intel_dp);
->> >=20=20
->> >  void intel_dp_compute_rate(struct intel_dp *intel_dp, int port_clock,
->> >  			   u8 *link_bw, u8 *rate_select);
->> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/d=
-rivers/gpu/drm/i915/display/intel_dp_link_training.c
->> > index a26094223f780..b7075060e7bd3 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
->> > @@ -1935,7 +1935,7 @@ static ssize_t i915_dp_force_link_rate_write(str=
-uct file *file,
->> >  	if (err)
->> >  		return err;
->> >=20=20
->> > -	intel_dp_reset_link_params(intel_dp);
->> > +	intel_dp_reset_link_params_force(intel_dp);
->> >  	intel_dp->link.force_rate =3D rate;
->> >=20=20
->> >  	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
->> > @@ -2037,7 +2037,7 @@ static ssize_t i915_dp_force_lane_count_write(st=
-ruct file *file,
->> >  	if (err)
->> >  		return err;
->> >=20=20
->> > -	intel_dp_reset_link_params(intel_dp);
->> > +	intel_dp_reset_link_params_force(intel_dp);
->> >  	intel_dp->link.force_lane_count =3D lane_count;
->> >=20=20
->> >  	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
->> > --=20
->> > 2.49.1
->>=20
->> --=20
->> Ville Syrj=C3=A4l=C3=A4
->> Intel
-
---=20
-Jani Nikula, Intel
