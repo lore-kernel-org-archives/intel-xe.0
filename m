@@ -4,57 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BBB8CD5BB5
-	for <intel-xe@archiver.kernel.org>; Fri, 22 May 2026 12:37:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C459CD5BB1
+	for <intel-xe@archiver.kernel.org>; Fri, 22 May 2026 12:39:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4626210F74D;
-	Fri, 22 May 2026 12:37:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 400D510F75D;
+	Fri, 22 May 2026 12:39:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YVIZFwNp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aLvPwwVg";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B01A310F73E
- for <intel-xe@lists.freedesktop.org>; Fri, 22 May 2026 12:37:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADAD210F75D;
+ Fri, 22 May 2026 12:39:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779453463; x=1810989463;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=qECg29l1hgU4cOKsLDnt6kE0uRAXflB9ZcFgUSebRBc=;
- b=YVIZFwNptABZ+LzVBvJwQ/UiNlJur201s8u9U1kk5CxRw/PTe3tar3AR
- +lT9s+hFotLDKi/pNjutMhdjpNtggUvBRPZ7a9oOYk5U3d21Z6iahQpp5
- UKrAem2O8NhHdlo+ZsJe4yTr3/P9i+nhQWiWwMGeMkjTopuo6VW3GBc9w
- 8+4BCEJERqvQOBucl8Ef94XslWm2i+936kSaEf27oP38d6bVSowJ2Bma7
- fE9YEO8R+D7W1659eS2KrsZz25L17RcGRQR3I88oe2oRHyexzQzR6lhqk
- WnGxqOZRp3Suac2BoCEX0Ok3ddIzMJpoePYlNtuT5i0YqUNQHuspZQWow A==;
-X-CSE-ConnectionGUID: zckJB9hoTSaY3kDXwu2u2w==
-X-CSE-MsgGUID: Zbcs/ni2S02cDc1/bJrZ2A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11794"; a="84264592"
-X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="84264592"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 05:37:43 -0700
-X-CSE-ConnectionGUID: eGDjUfqDQ7e8Z7ioliUwHg==
-X-CSE-MsgGUID: fn0CuSBJRoaBgN+Tkx+NbQ==
+ t=1779453553; x=1810989553;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=AXXeA3dwnaCUQPVjOtiM0TJ5ElknnNEkDMrTJMAtZrM=;
+ b=aLvPwwVgPYoAs47lZ4mgjbFHAt36VMyPOC6bm/wKn+iBU0NyrvchZZT1
+ tyBWwlgZ0ZCmdWgE11Szqx1zFelr6wVD4YbVjSJz6lEBKeTKcOe0yK1ee
+ p14174GIIgGFm/GvET+T0OP1gKwkUqosmcaStT1m4o6YHTpqjbk9ovQ5W
+ cQ9e0RTRZmNrHr+ZOBrwJXlj0ARnGxWInIJ4Hrh1Jlo9lsckUq0NbVo4Y
+ YRmQRTuIxb48AeRPPs91VlwpRdgVwvat5iyP0uIBdM8pxt1E9QMCVCVTs
+ 6nCRK+bckunu10b2EDQWQRHrfQedsolvYX1Uj6E3A7nh8lGSkRKGtAiJE g==;
+X-CSE-ConnectionGUID: y2JdEPWpQ/6lXpk2s+ibeQ==
+X-CSE-MsgGUID: KnhArkCVRXa73EWfko/kHQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11794"; a="80350942"
+X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="80350942"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2026 05:39:12 -0700
+X-CSE-ConnectionGUID: GDt/fw+XSdST0Can3Fyt3g==
+X-CSE-MsgGUID: s62NoYt/TyensB2LMaML8Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="238302169"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO mwauld-desk.intel.com)
- ([10.245.245.22])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 05:37:41 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-Subject: [PATCH v2 08/10] drm/xe/vf: wire up NUM_PAGING_ENGINE_INSTANCES
-Date: Fri, 22 May 2026 13:37:29 +0100
-Message-ID: <20260522123720.39656-20-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260522123720.39656-12-matthew.auld@intel.com>
-References: <20260522123720.39656-12-matthew.auld@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="271253748"
+Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.244.187])
+ by orviesa002-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 May 2026 05:39:10 -0700
+Date: Fri, 22 May 2026 15:39:07 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: imre.deak@intel.com, Jouni Hogander <jouni.hogander@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 1/5] drm/i915/dp: Add helpers to reset link params
+Message-ID: <ahBOa-Pepaw8iTsW@intel.com>
+References: <20260518112427.2460725-1-imre.deak@intel.com>
+ <20260518112427.2460725-2-imre.deak@intel.com>
+ <ag962-z5WD8SVS9I@intel.com> <ahAJPJUYbSRvWPQT@ideak-desk.lan>
+ <6b7498358483981472e9a9c6b0c76739de0b028a@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <6b7498358483981472e9a9c6b0c76739de0b028a@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,173 +74,116 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When host PF writes the logical configuration for the GUC PAGING engine,
-the VF is meant to query it, and mirror it. Size of N, means we have
-paging logical index range [0, N-1], with N fewer normal copy engines.
+On Fri, May 22, 2026 at 01:29:39PM +0300, Jani Nikula wrote:
+> On Fri, 22 May 2026, Imre Deak <imre.deak@intel.com> wrote:
+> > On Fri, May 22, 2026 at 12:36:27AM +0300, Ville Syrj‰l‰ wrote:
+> >> On Mon, May 18, 2026 at 02:24:22PM +0300, Imre Deak wrote:
+> >> > Add helpers to defer and handle link params resets instead of
+> >> > open-coding the same. Rename intel_dp_reset_link_params() to
+> >> > intel_dp_reset_link_params_force() to align its name with the new
+> >> > deferred reset helpers.
+> >> > 
+> >> > When deferring a reset, return whether a new reset was queued, used by a
+> >> > follow-up change.
+> >> > 
+> >> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> >> > ---
+> >> >  drivers/gpu/drm/i915/display/g4x_dp.c         |  2 +-
+> >> >  drivers/gpu/drm/i915/display/intel_ddi.c      |  2 +-
+> >> >  drivers/gpu/drm/i915/display/intel_dp.c       | 41 +++++++++++++++----
+> >> >  drivers/gpu/drm/i915/display/intel_dp.h       |  3 +-
+> >> >  .../drm/i915/display/intel_dp_link_training.c |  4 +-
+> >> >  5 files changed, 38 insertions(+), 14 deletions(-)
+> >> > 
+> >> > diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
+> >> > index 5ff1cdf4581a5..c20a97e21419b 100644
+> >> > --- a/drivers/gpu/drm/i915/display/g4x_dp.c
+> >> > +++ b/drivers/gpu/drm/i915/display/g4x_dp.c
+> >> > @@ -1265,7 +1265,7 @@ static void intel_dp_encoder_reset(struct drm_encoder *encoder)
+> >> >  
+> >> >  	intel_dp->DP = intel_de_read(display, intel_dp->output_reg);
+> >> >  
+> >> > -	intel_dp->reset_link_params = true;
+> >> > +	intel_dp_reset_link_params_defer(intel_dp);
+> >> >  	intel_dp_invalidate_source_oui(intel_dp);
+> >> >  
+> >> >  	if (display->platform.valleyview || display->platform.cherryview)
+> >> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> >> > index 86520848892e0..77819aaeccb76 100644
+> >> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> >> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> >> > @@ -4664,7 +4664,7 @@ static void intel_ddi_encoder_reset(struct drm_encoder *encoder)
+> >> >  	struct intel_dp *intel_dp = enc_to_intel_dp(to_intel_encoder(encoder));
+> >> >  	struct intel_digital_port *dig_port = enc_to_dig_port(to_intel_encoder(encoder));
+> >> >  
+> >> > -	intel_dp->reset_link_params = true;
+> >> > +	intel_dp_reset_link_params_defer(intel_dp);
+> >> >  	intel_dp_invalidate_source_oui(intel_dp);
+> >> >  
+> >> >  	intel_pps_encoder_reset(intel_dp);
+> >> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> >> > index 1920d2f026665..13163dd085e91 100644
+> >> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> >> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> >> > @@ -3710,7 +3710,11 @@ void intel_dp_set_link_params(struct intel_dp *intel_dp,
+> >> >  	intel_dp->lane_count = lane_count;
+> >> >  }
+> >> >  
+> >> > -void intel_dp_reset_link_params(struct intel_dp *intel_dp)
+> >> > +/*
+> >> > + * Reset link params now, preserving any deferred connector
+> >> > + * detect-time reset request.
+> >> > + */
+> >> > +void intel_dp_reset_link_params_force(struct intel_dp *intel_dp)
+> >> >  {
+> >> >  	intel_dp->link.max_lane_count = intel_dp_max_common_lane_count(intel_dp);
+> >> >  	intel_dp->link.max_rate = intel_dp_max_common_rate(intel_dp);
+> >> > @@ -3720,6 +3724,28 @@ void intel_dp_reset_link_params(struct intel_dp *intel_dp)
+> >> >  	intel_dp->link.seq_train_failures = 0;
+> >> >  }
+> >> >  
+> >> > +/*
+> >> > + * Reset link params during the next connector detect.
+> >> > + * Return %true if a new reset was queued.
+> >> > + */
+> >> > +bool intel_dp_reset_link_params_defer(struct intel_dp *intel_dp)
+> >> 
+> >> I find the intel_dp_reset_link_params_defer() vs.
+> >> intel_dp_reset_link_params_force() naming rather confusing.
+> >> 
+> >> Can't immediately think of a really good name for
+> >> intel_dp_reset_link_params_defer() so maybe it's better to not
+> >> have a function for it at all (ie. just drop this patch)?
+> >
+> > The idea was to have an interface to reset the link params directly or
+> > in a deferred way, instead of a direct access of the flag.
+> >
+> > The names are not great yes. I could use what Jouni suggested instead,
+> > or if the above argument is not good enough I can also drop this patch.
+> 
+> I suggest intel_dp_reset_link_params() keeps its name, or gets renamed
+> to intel_dp_link_params_reset(). It just does the thing, no "force".
+> 
+> Then the other two use something like:
+> 
+> - submit/process
+> - queue/process
+> - stage/handle
+> 
+> or some combination i.e. something like:
+> 
+> intel_dp_link_params_reset()
+> intel_dp_link_params_reset_submit()
+> intel_dp_link_params_reset_process()
 
-Agreement is that PF will only spawn PAGING engines on NVL-S+, so this
-should be zero on older platforms, where we should simply fallback to
-the old behaviour.
+All of it kinda leaves it a bit unclear how these things
+are related, and then one probably has to read through
+them to figure out what they're actually doing.
 
-TODO: Check the final GuC ABI version before merging
+Hence why I think just setting/checking the flag on the
+spot might be the clearest approach. You can immediately
+find where it's set vs. checked.
 
-v2 (Sashiko):
-  - We can't call use the guc_has_paging_engine() this early in the VF
-    code. With that just unconditionally do the query, if the GuC is new
-    enough and take the value as-is. With that drop the -1 special case and
-    just let the upper layers figure out the rest.
-
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Piotr Pi√≥rkowski <piotr.piorkowski@intel.com>
----
- drivers/gpu/drm/xe/abi/guc_klvs_abi.h     |  9 ++++++
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 39 +++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_vf.h       |  1 +
- drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |  4 +++
- drivers/gpu/drm/xe/xe_hw_engine.c         | 18 +++++++++++
- 5 files changed, 71 insertions(+)
-
-diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-index 644f5a4226d7..608678f8b18c 100644
---- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-+++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-@@ -52,6 +52,12 @@
-  * _`GUC_KLV_GLOBAL_CFG_GROUP_SCHEDULING_AVAILABLE` : 0x3001
-  *      Tells the driver whether scheduler groups are enabled or not.
-  *      Requires GuC ABI 1.26+
-+ *
-+ * _`GUC_KLV_GLOBAL_CFG_NUM_PAGING_ENGINE_INSTANCES` : 0x3003
-+ *      Tells the driver the paging engine configuration.
-+ *      Paging engine logical instances are guaranteed to be dense starting at
-+ *      index 0.
-+ *      Requires GuC ABI 1.35.1+
-  */
- 
- #define GUC_KLV_GLOBAL_CFG_GMD_ID_KEY			0x3000u
-@@ -60,6 +66,9 @@
- #define GUC_KLV_GLOBAL_CFG_GROUP_SCHEDULING_AVAILABLE_KEY	0x3001u
- #define GUC_KLV_GLOBAL_CFG_GROUP_SCHEDULING_AVAILABLE_LEN	1u
- 
-+#define GUC_KLV_GLOBAL_CFG_NUM_PAGING_ENGINE_INSTANCES_KEY	0x3003u
-+#define GUC_KLV_GLOBAL_CFG_NUM_PAGING_ENGINE_INSTANCES_LEN	1u
-+
- /**
-  * DOC: GuC Self Config KLVs
-  *
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 0cd9d77f3351..5c1581c9e432 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -658,6 +658,41 @@ static int vf_cache_sched_groups_status(struct xe_gt *gt)
- 	return 0;
- }
- 
-+static int vf_cache_num_paging_engines(struct xe_gt *gt)
-+{
-+	struct xe_guc *guc = &gt->uc.guc;
-+	struct xe_uc_fw_version guc_version;
-+	u32 value = 0;
-+	int err;
-+
-+	xe_gt_sriov_vf_guc_versions(gt, NULL, &guc_version);
-+
-+	if (MAKE_GUC_VER_STRUCT(guc_version) < MAKE_GUC_VER(1, 35, 1))
-+		return 0;
-+
-+	err = guc_action_query_single_klv32(guc, GUC_KLV_GLOBAL_CFG_NUM_PAGING_ENGINE_INSTANCES_KEY,
-+					    &value);
-+	if (unlikely(err)) {
-+		xe_gt_sriov_err(gt,
-+				"Failed to obtain the number of paging instances (%pe)\n",
-+				ERR_PTR(err));
-+		return err;
-+	}
-+
-+	gt->sriov.vf.runtime.num_paging_engine_instances = value;
-+
-+	xe_gt_sriov_dbg(gt, "num_paging_engines %u\n", value);
-+	return err;
-+}
-+
-+u32 xe_gt_sriov_vf_paging_engines(struct xe_gt *gt)
-+{
-+	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-+	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
-+
-+	return gt->sriov.vf.runtime.num_paging_engine_instances;
-+}
-+
- /**
-  * xe_gt_sriov_vf_query_config - Query SR-IOV config data over MMIO.
-  * @gt: the &xe_gt
-@@ -694,6 +729,10 @@ int xe_gt_sriov_vf_query_config(struct xe_gt *gt)
- 	if (has_gmdid(xe))
- 		vf_cache_gmdid(gt);
- 
-+	err = vf_cache_num_paging_engines(gt);
-+	if (unlikely(err))
-+		return err;
-+
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-index 79878f21b1da..d171a8242a34 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-@@ -31,6 +31,7 @@ u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt);
- u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt);
- u64 xe_gt_sriov_vf_lmem(struct xe_gt *gt);
- bool xe_gt_sriov_vf_sched_groups_enabled(struct xe_gt *gt);
-+u32 xe_gt_sriov_vf_paging_engines(struct xe_gt *gt);
- 
- u32 xe_gt_sriov_vf_read32(struct xe_gt *gt, struct xe_reg reg);
- void xe_gt_sriov_vf_write32(struct xe_gt *gt, struct xe_reg reg, u32 val);
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-index 80562ffadb16..21cb9bc1a341 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-@@ -40,6 +40,10 @@ struct xe_gt_sriov_vf_runtime {
- 		/** @regs.value: register value. */
- 		u32 value;
- 	} *regs;
-+	/**
-+	 * @num_paging_engine_instances: number of configured paging engines.
-+	 */
-+	u32 num_paging_engine_instances;
- };
- 
- /**
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 77f882cd8ff8..c279a7dc62e2 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -669,6 +669,24 @@ static void hw_engine_setup_logical_and_paging_mapping(struct xe_gt *gt)
- 	if (num_copy_engines && xe->info.has_usm)
- 		num_paging_engines = 1;
- 
-+	if (IS_SRIOV_VF(xe)) {
-+		u32 vf_num_paging_engines;
-+
-+		/*
-+		 * PF could in theory reserve multiple paging engines, which
-+		 * internally the submission/scheduling backend can load balance
-+		 * from. Not something we currently expect, but we are at the
-+		 * mercy of the PF, so we just need try our best to mirror the
-+		 * paging configuration.
-+		 */
-+		vf_num_paging_engines = xe_gt_sriov_vf_paging_engines(gt);
-+		if (xe->info.platform >= XE_NOVALAKE_S)
-+			num_paging_engines = vf_num_paging_engines;
-+		else
-+			/* This should only be non-zero on NVL-S+ */
-+			xe_gt_assert(gt, !vf_num_paging_engines);
-+	}
-+
- 	xe_gt_assert(gt, !(num_copy_engines || num_paging_engines) ||
- 		     (num_paging_engines < num_copy_engines));
- 
 -- 
-2.54.0
-
+Ville Syrj‰l‰
+Intel
