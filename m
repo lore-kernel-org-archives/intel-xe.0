@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79D64CD5BB1
-	for <intel-xe@archiver.kernel.org>; Fri, 22 May 2026 13:55:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A786CD5BB0
+	for <intel-xe@archiver.kernel.org>; Fri, 22 May 2026 13:56:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3263C10F759;
-	Fri, 22 May 2026 13:55:33 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n4RWHRHp";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E620E10F77B;
- Fri, 22 May 2026 13:55:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779458131; x=1810994131;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=TeYRv6//ki3XtJSi3FCdBTQ9zri9hdzTziBNEM2uFRc=;
- b=n4RWHRHpMHBbruDWR1fUplOJwUHJkc+jUqLSYi4Fq7ZRtEy2YWFYrty3
- BKMYma2o4jcRgSKd0s0WtrJyt4FtSRlcGnMk9Ekuranfw1cLkBd4PunXN
- C+WbbGPNsGga0zNRipb8cULI7r0D4yOkhkad76r37YDyDeeHUhVCO5+hX
- AgE8xPvvNYV3HEPsWqZSUn10vS/yfHoO/gqIBV2uar0E94feL3nFSGfua
- ADD/9kiPTezRESOKJCfoaxX0WqSNn/tAO+ubsXHUYn4mMs8Jjq/FqWome
- d3E3AirIFdM2reOh6oOq30SUasun8SDLpwTapF7zHJgqSEpApIJ1PH0C9 A==;
-X-CSE-ConnectionGUID: hCviZGcJSJOamnLLBYAxjQ==
-X-CSE-MsgGUID: Fmn3jBP+Soi18uPJnDmUVw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11794"; a="97809514"
-X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="97809514"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 06:55:31 -0700
-X-CSE-ConnectionGUID: VYbRZRaUTdOn4VdXEug3Vw==
-X-CSE-MsgGUID: WrsDxV0PR46+0rospii1bg==
-X-ExtLoop1: 1
-Received: from dev-417.igk.intel.com ([10.91.214.181])
- by fmviesa003.fm.intel.com with ESMTP; 22 May 2026 06:55:29 -0700
-From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v2 2/2] drm/managed: fix drmm_add_action() kernel-doc
-Date: Fri, 22 May 2026 15:55:20 +0200
-Message-ID: <20260522135520.1862848-3-michal.grzelak@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20260522135520.1862848-1-michal.grzelak@intel.com>
-References: <20260522135520.1862848-1-michal.grzelak@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0C2D10F748;
+	Fri, 22 May 2026 13:56:15 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 027A710F748;
+ Fri, 22 May 2026 13:56:14 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3470929814509140617=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_new_general_DRM_propert?=
+ =?utf-8?q?y_=22color_format=22_=28rev12=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nicolas Frattaroli" <nicolas.frattaroli@collabora.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 22 May 2026 13:56:14 -0000
+Message-ID: <177945817400.11.13138316581862536471@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260522-color-format-v15-0-21fb136c9df2@collabora.com>
+In-Reply-To: <20260522-color-format-v15-0-21fb136c9df2@collabora.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,31 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Kernel-doc of drmm_add_action() references @releases which is not
-on argument list. Swap '@' between 'releases' and 'action' words to fix
-the documentation.
+--===============3470929814509140617==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
----
- include/drm/drm_managed.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Series Details ==
 
-diff --git a/include/drm/drm_managed.h b/include/drm/drm_managed.h
-index 72bfac002c06..72d0d68be226 100644
---- a/include/drm/drm_managed.h
-+++ b/include/drm/drm_managed.h
-@@ -18,7 +18,7 @@ typedef void (*drmres_release_t)(struct drm_device *dev, void *res);
-  * @action: function which should be called when @dev is released
-  * @data: opaque pointer, passed to @action
-  *
-- * This function adds the @release action with optional parameter @data to the
-+ * This function adds the release @action with optional parameter @data to the
-  * list of cleanup actions for @dev. The cleanup actions will be run in reverse
-  * order in the final drm_dev_put() call for @dev.
-  */
--- 
-2.45.2
+Series: Add new general DRM property "color format" (rev12)
+URL   : https://patchwork.freedesktop.org/series/157911/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-5116-127c8434a6a018110189cdb654719a9844702ff7_BAT -> xe-pw-157911v12_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5116-127c8434a6a018110189cdb654719a9844702ff7 -> xe-pw-157911v12
+
+  IGT_8936: 98b65acc4f6edf68cd52b30f27b83049c4c5c83b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5116-127c8434a6a018110189cdb654719a9844702ff7: 127c8434a6a018110189cdb654719a9844702ff7
+  xe-pw-157911v12: 157911v12
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157911v12/index.html
+
+--===============3470929814509140617==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add new general DRM property &quot;color format&quot; (rev12)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157911/">https://patchwork.freedesktop.org/series/157911/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157911v12/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157911v12/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5116-127c8434a6a018110189cdb654719a9844702ff7_BAT -&gt; xe-pw-157911v12_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5116-127c8434a6a018110189cdb654719a9844702ff7 -&gt; xe-pw-157911v12</li>
+</ul>
+<p>IGT_8936: 98b65acc4f6edf68cd52b30f27b83049c4c5c83b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5116-127c8434a6a018110189cdb654719a9844702ff7: 127c8434a6a018110189cdb654719a9844702ff7<br />
+  xe-pw-157911v12: 157911v12</p>
+
+</body>
+</html>
+
+--===============3470929814509140617==--
