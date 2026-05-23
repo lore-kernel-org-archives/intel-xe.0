@@ -4,48 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF6C7CD5BB1
-	for <intel-xe@archiver.kernel.org>; Sat, 23 May 2026 08:29:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8A4DCD4F54
+	for <intel-xe@archiver.kernel.org>; Sat, 23 May 2026 08:41:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 728E010E05D;
-	Sat, 23 May 2026 08:29:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B2DD10E2E8;
+	Sat, 23 May 2026 08:41:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="KUinc4ZV";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="qaao5P/Q";
 	dkim-atps=neutral
-Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D3F710E05D;
- Sat, 23 May 2026 08:29:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1779524975;
- bh=9SDUMtgft28p5MCL5835tAIitrsFvvpZqTuSRHohrFE=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=KUinc4ZV/jI6nAbY75NcTIumKg6SME5cG8HJ4ntmnGNFY4xhQjS1WsWS8FpTuFSNl
- W9W7zAapuGpZIt0poR2uhzPpdmU2sCiEcXiSfFc9M0YeQi0iHXr7XghkB5IKAIAM1Z
- 7n0eLQanypGQ5toZIUnlCsLmTvuDEyvS4dfhhoH7LEVW4H4ciFelsAhPx7Ts6ODERt
- tqSjxDOVpPZWJHR/Nv+rjuOtPfPbBddKQyhQeCGb0z1lk+kdb6Cd/B79Tb9a4RJwi8
- jXWVFLDx+aGSpbwt2c//g7S8EO28/hECIIqt6GP7JQ3K6jzWIIxJ+D9Y2vzH/nvKNh
- m/diaLZ0BOTrw==
-Message-ID: <af9278d3-4002-4e09-9bcf-bc75d1cf8145@lankhorst.se>
-Date: Sat, 23 May 2026 10:29:34 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: drm: xe: Kernel-submitted job timed out
-To: Linus Torvalds <torvalds@linux-foundation.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6AD4310E2E8;
+ Sat, 23 May 2026 08:41:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=desiato.20200630; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=6DnjAV+e0BPdgxX5HYfwVC6Dah6WI/Ye8CquYY2VvH8=; b=qaao5P/QcniVLHE3ME2LcbEukq
+ SrIo6hj4dvHt0G2bxbOuTRNOiXMIOo9FzfmZzFBoSaHjVL1SFtjrUoEyAWeB2v0o9c1PmcEEW+y3l
+ m8Mms7mYkFEJxD9v+J3pCZy69MI1+pRH0zosEhS6Q6Yx4Z6IA1I7tOrE6tqFSSrFie9vzJcA5EzN7
+ /qYw4J3etq3OT8eB2VfQsMzzb/bGpUsztVlX0FY0MspB+JGKA0Ua/HxPCwcC7QwtPPyFH9M8Of0Bd
+ fyOZv+EktMgKfETulP5ABe0AFwKZbLCcbAnv0Dpzw2xrrPshUHTa82a3AyFkTC8HHEcK8986InMM0
+ DkiNRYhg==;
+Received: from
+ 2001-1c00-8d85-4b00-266e-96ff-fe07-7dcc.cable.dynamic.v6.ziggo.nl
+ ([2001:1c00:8d85:4b00:266e:96ff:fe07:7dcc]
+ helo=noisy.programming.kicks-ass.net)
+ by desiato.infradead.org with esmtpsa (Exim 4.99.1 #2 (Red Hat Linux))
+ id 1wQhuj-00000006BAm-3WcE; Sat, 23 May 2026 08:40:58 +0000
+Received: by noisy.programming.kicks-ass.net (Postfix, from userid 1000)
+ id 30D8F300329; Sat, 23 May 2026 10:40:56 +0200 (CEST)
+Date: Sat, 23 May 2026 10:40:56 +0200
+From: Peter Zijlstra <peterz@infradead.org>
+To: John Hubbard <jhubbard@nvidia.com>
 Cc: Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- intel-xe@lists.freedesktop.org, dri-devel <dri-devel@lists.freedesktop.org>
-References: <CAHk-=whiv=b+dAvjaZDsZkfUEzjZMSSLExDOWVcbJ0exsCj6_Q@mail.gmail.com>
- <6874536d-ab1a-4dd7-a23f-2a071bda145e@lankhorst.se>
- <CAHk-=wj5aE1yVMb8RM2AuNUHSMnQDaGT+Vy+At5ds1vxBA+Kng@mail.gmail.com>
- <ahDAErDSE-SFA0oM@intel.com>
- <CAHk-=whX59mtUnU2ayMWoDQX6Ee2NXLK2NxQ+dZnb-Qc_mF1hw@mail.gmail.com>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <CAHk-=whX59mtUnU2ayMWoDQX6Ee2NXLK2NxQ+dZnb-Qc_mF1hw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+ Ingo Molnar <mingo@redhat.com>, Arnaldo Carvalho de Melo <acme@kernel.org>,
+ Namhyung Kim <namhyung@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>,
+ Adrian Hunter <adrian.hunter@intel.com>,
+ James Clark <james.clark@linaro.org>,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-perf-users@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 0/2] complete perf_allow_* trio and use in drm/xe
+Message-ID: <20260523084056.GE3102624@noisy.programming.kicks-ass.net>
+References: <20260523013326.129491-1-jhubbard@nvidia.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260523013326.129491-1-jhubbard@nvidia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,46 +69,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
-
-Den 2026-05-22 kl. 22:54, skrev Linus Torvalds:
-> On Fri, 22 May 2026 at 13:44, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
->>
->> Any journal saving the kernel buf log of previous boots? Preferably with
->> some drm.debug flags enabled 0xf likely
+On Fri, May 22, 2026 at 06:33:24PM -0700, John Hubbard wrote:
+> perf_allow_cpu() and perf_allow_tracepoint() are static inline and
+> reach into a non-exported sysctl, so modular drivers that want the
+> same permission model as system-wide perf end up writing partial
+> copies of this code. Let's instead export these properly so that modules
+> can call them.
 > 
-> Note that this is very much not repeatable. I have no idea what
-> triggered it, and I don't think it was necessarily brought on by
-> anything recent.
+> Commit 5e9629d0ae97 ("drivers/perf: arm_spe: Use perf_allow_kernel()
+> for permissions") already moved perf_allow_kernel() out of line and
+> exported it. Patch 1 does the same for the other two, and provides
+> !CONFIG_PERF_EVENTS stubs so the helpers stay callable when perf is
+> compiled out.
 > 
-> I've seen timeouts before, but looking at my logs, the last time it
-> caused a complete hang was Feb 3. So a few months ago...
+> Patch 2 converts drm/xe's OA and EU stall paths to call
+> perf_allow_cpu(), so xe observation now respects the system
+> perf_event_paranoid policy and consults the LSM hook. Sites that have
+> already configured an LSM perf policy or tuned the paranoid sysctl will
+> now see those settings honored on xe as well.
 > 
->> What was the last drm-fixes pull you got in this 7.1.0-rc3-00073-ga6920214ba75 ?
+> Changes since v1:
 > 
-> That's just mainline commit v7.1-rc3-71-g31e62c2ebbfd with two random
-> small patches on top that change some build flags (this is my "built
-> by clang" tree)
+> * Patch 1: add !CONFIG_PERF_EVENTS stubs that fall back to
+>   perfmon_capable() so the helpers remain callable when perf is
+>   compiled out. The sashiko-bot AI review caught that the v1 code
+>   would otherwise fail to build with PERF_EVENTS=n.
 > 
-> So the last drm merge would have been 51d24842acb9 Merge tag
-> 'drm-fixes-2026-05-08-1' of https://gitlab.freedesktop.org/drm/kernel
+> John Hubbard (2):
+>   perf/core: out-of-line and export perf_allow_cpu/tracepoint()
+>   drm/xe: gate observation streams with perf_allow_cpu()
 > 
->                     Linus
+>  drivers/gpu/drm/xe/xe_eu_stall.c    |  5 +++--
+>  drivers/gpu/drm/xe/xe_oa.c          | 25 +++++++++++++---------
+>  drivers/gpu/drm/xe/xe_observation.c | 32 ++++++++++++++++++++++++-----
+>  drivers/gpu/drm/xe/xe_observation.h |  3 +--
+>  include/linux/perf_event.h          | 31 ++++++++++++++--------------
+>  kernel/events/core.c                | 18 ++++++++++++++++
+>  6 files changed, 79 insertions(+), 35 deletions(-)
 
-Just thinking that since the guc_id=0, the most likely culprit is in the
-kernel migration code.
-
-There are 3 places you'll most likely interact with it:
-- Zeroing VRAM bo's on allocation
-- On integrated, it may clear system memory bo's CCS data.
-- Moving memory between system and VRAM.
-
-I'm assuming you only have a discrete card, so it's either happening
-on allocation or memory movement.
-
-Since it's sporadic, it *might* be more likely the latter.
-
-Does it happen more frequently when loading VRAM intensive programs?
-
-Kind regards,
-~Maarten Lankhorst
+Sure, works for me. How do you want to route these things, Xe tree or
+-tip?
