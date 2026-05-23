@@ -4,156 +4,123 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0AF9CD5BBF
-	for <intel-xe@archiver.kernel.org>; Sat, 23 May 2026 01:07:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3334CD5BB8
+	for <intel-xe@archiver.kernel.org>; Sat, 23 May 2026 01:33:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3305010E027;
-	Sat, 23 May 2026 01:07:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFF2810E0BF;
+	Sat, 23 May 2026 01:33:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iE+o+skR";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="otaAPCtV";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91FA210E027
- for <intel-xe@lists.freedesktop.org>; Sat, 23 May 2026 01:07:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779498440; x=1811034440;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=pUhBQ6EXAHpiFelFOTzjNfcfVpLmN1q7YYcAaKejb94=;
- b=iE+o+skR3XXqtb/VEu886vYbYxdRYdwLiH/JOe9lBCi+nlAyYpxXZRJF
- HsWT/99gJ1IdOZfpF8ayuTRp10hb7ylS2k87yTLsZJ22dPjUaU1/Qgvwu
- GJMIYk5maWu/3eh0APIx3K4bxGGqYxrF/MXwGIRatGlNaEj2lIRT5mENr
- +CGUl7CMBFdXqLJkJ3Sq+aYeZhldfjgSHP6fN0Oy8cHTID2ZlEDGCAw+d
- AmkdyY7wLkt4/DZg7aE8eLgTwD0CY7DshjkFn9HJRhc4+UfYsBs7nFb6R
- o0zBExK0ISCRKjxQk/bhOopTPmMsYXnVLKc+QYDRoFQbEVnq8mbFX1BFw g==;
-X-CSE-ConnectionGUID: ktil/ym7RhGtZd62DBmDrw==
-X-CSE-MsgGUID: olmMIsBcSHygAR63YjzpuQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11794"; a="91816548"
-X-IronPort-AV: E=Sophos;i="6.24,163,1774335600"; d="scan'208";a="91816548"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 18:07:20 -0700
-X-CSE-ConnectionGUID: 2jnNlC7IS8iKcTGHt7EFuQ==
-X-CSE-MsgGUID: fD1NyWUPQJaX4HL1Thpg6w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,163,1774335600"; d="scan'208";a="241121871"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 18:07:20 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 22 May 2026 18:07:19 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Fri, 22 May 2026 18:07:19 -0700
-Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.59) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 22 May 2026 18:07:19 -0700
+Received: from CY3PR05CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11013021.outbound.protection.outlook.com
+ [40.93.201.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B47A810E0BF;
+ Sat, 23 May 2026 01:33:33 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mfyJNZtQWNh5Uqv3VmtccwNkPvdDKmAUmkov0Twc2p/Z5Vn7n8awab9A8lESuqR4LGcnCZ8FHid3gVkCcBOzP8ZHJvjp1zn9NeXjAiPW4XKpjIZNipm8x/fvp/v0furCE4NDZwowB3BYbSQISTnL5u8zwPyG9VA0fmktm62Pwdm+/UPIpj/o6FOssIrP+8L9OeOODycULyuvaBjcA1qvX+HIQabgBb4X63TbBp9rtayIr7eRk/7GFJjaSWYY04S/rcTmmj3GiQilMqK9U1lx1bBczzGJjhQYzVQARzFNwqnTrZ4UqhTbkPp5W6pq5fyJpkeEnvRbhYQCY645WsI5Mw==
+ b=Wju/9O++Rit6J2Zs7YaHRPxkWUymef+5jNZEYY6RXgXiV9PdOw7B2kIpXzrZpM58hM8422E1k0IfGPOUXjg7qb5e33u6mt6NWfXfWYfnU32NpaHYTUAoLKFresDVo20JjWAIs3BpSFCYGbCF7EQH8pdiGM9vigqyvaJTM6oCah7VFIJ0e740epCWYDaVIkj+AU4nnPxVWoQY58TfGPIWv8tCwXb7lsPkC/Nqh7vsl1e+vR+UjDEz43oFUzk//Vd39gOUlF8Ii/Pb1/yZQ1cfK0Fyv9jQdBO5huCOxSUOVRMH0K3cvQnobjaZ3Klhi80ML4dwlQ0i0tmNNYaCi6qJnw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hYkpgbs0JDCWLvrA8U2KVa+z8Tky6nzrD4iKo8+tUgY=;
- b=kqNWUwSg+PWnc9lTW412BSMUK8b0DW59mBs5IVbZKR8b2Q+RgKPx5f5FUpLqZJFe+IoPzKAkpjD/Dc5P3fNg93+UkkKIaOLkEwLjzzwZ3dGZgL9Pwxz4k7+vP0CxhY8wNLOcEQkrGc712G8C0qasw7Rx47T7choQ+AYc0LCqFUhCtfnvqcWKy4iIMe9T5Ji5NFYauw0w2/YuC5Mj0d8GttUj4BaLERu21DXm9QQEkm5kiW8byQGBI+Ymart6HfHwgoZJ3L/VHQD+dyAP2rnaH2D//9WvRtdjfvy3o0JaYY3+8WcBlTDgwkwHTB5yo2Q3oCKWIa9VsCtbsK/m5TCRVw==
+ bh=5OJq5Xpec9OsRiEBZLbw/k4JAM4YZrWGH12rAr/qCUQ=;
+ b=ghEERjGG+FlZE/Vng1n5pc4VugAsl7w2OTNA6c3ozQYgBHrUXQHDgxvRl9pWFoH78gmjJc7ceudd1/Z7t6EjHlOqymUqQhMZvuqvFbwFDKendUeclx47u1gf4ShpDYedUEJ520eljKPDTsnibENvfevbiUwsnqpQisrCajThUjuGaJXUfa/uRBl1wUk1SIm1vJnFDXjNDRw3KneM4SawIAgtO6pso0/3zLdDr5BV2ETKbuMAbIyiwoWSYFvUOtL4inhmxhacgcWdsHBkCGOLuFk7A1k9IAuAP3pIQ8wNPa1C4pOhHOMvk/TRa7N5OwRxwl01TIsBoWP/jhSQEyV4Zw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5OJq5Xpec9OsRiEBZLbw/k4JAM4YZrWGH12rAr/qCUQ=;
+ b=otaAPCtVxLAA55myN4BNYabmNoF7NHG5EbFrOL15qOmBsAdNFcW8MbIrPpK1zQW/6DWD/3jrfRImHDK+UdoF/av/80gWo2lGL3p/YtgLIJbk/E2eH2LZfuwwDTflRtAi2gpZmF9bFhwCLAbb17QCBSbfwQBvxdA9pnT7hsJHhtAdCXrH2hfEHlU+VZKLPveLontwSAHDn4c7AKecimDy1SUdJS7hd7ryeF20EVTuzu20pkbqbgXlsQObFuNf4Yo5GNOL9PLdC0gnbbAN89xyPvBYGMOTCI7AYhpeeezNCge33bQaf9drJyuzybYa4S3n92VkoFE9+xGllC8ljeYGfA==
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB7605.namprd11.prod.outlook.com (2603:10b6:510:277::5)
- by IA1PR11MB6123.namprd11.prod.outlook.com (2603:10b6:208:3ed::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.14; Sat, 23 May
- 2026 01:07:09 +0000
-Received: from PH7PR11MB7605.namprd11.prod.outlook.com
- ([fe80::48d7:f2a6:b18:1b87]) by PH7PR11MB7605.namprd11.prod.outlook.com
- ([fe80::48d7:f2a6:b18:1b87%5]) with mapi id 15.21.0048.016; Sat, 23 May 2026
- 01:07:09 +0000
-Message-ID: <8b2daa25-5694-4c63-9ba0-d6a7037f7c13@intel.com>
-Date: Fri, 22 May 2026 18:07:09 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 02/10] drm/xe/guc: refactor to_guc_class() to accept hwe
-To: Matthew Auld <matthew.auld@intel.com>, <intel-xe@lists.freedesktop.org>
-References: <20260522123720.39656-12-matthew.auld@intel.com>
- <20260522123720.39656-14-matthew.auld@intel.com>
-Content-Language: en-US
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-In-Reply-To: <20260522123720.39656-14-matthew.auld@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ0PR05CA0096.namprd05.prod.outlook.com
- (2603:10b6:a03:334::11) To PH7PR11MB7605.namprd11.prod.outlook.com
- (2603:10b6:510:277::5)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from DM3PR12MB9416.namprd12.prod.outlook.com (2603:10b6:0:4b::8) by
+ CY3PR12MB9580.namprd12.prod.outlook.com (2603:10b6:930:10a::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.25.19; Sat, 23 May
+ 2026 01:33:29 +0000
+Received: from DM3PR12MB9416.namprd12.prod.outlook.com
+ ([fe80::8cdd:504c:7d2a:59c8]) by DM3PR12MB9416.namprd12.prod.outlook.com
+ ([fe80::8cdd:504c:7d2a:59c8%5]) with mapi id 15.21.0048.016; Sat, 23 May 2026
+ 01:33:28 +0000
+From: John Hubbard <jhubbard@nvidia.com>
+To: Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Peter Zijlstra <peterz@infradead.org>,
+ Ingo Molnar <mingo@redhat.com>, Arnaldo Carvalho de Melo <acme@kernel.org>,
+ Namhyung Kim <namhyung@kernel.org>
+Cc: Mark Rutland <mark.rutland@arm.com>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>,
+ Adrian Hunter <adrian.hunter@intel.com>,
+ James Clark <james.clark@linaro.org>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-perf-users@vger.kernel.org,
+ LKML <linux-kernel@vger.kernel.org>, John Hubbard <jhubbard@nvidia.com>
+Subject: [PATCH v2 0/2] complete perf_allow_* trio and use in drm/xe
+Date: Fri, 22 May 2026 18:33:24 -0700
+Message-ID: <20260523013326.129491-1-jhubbard@nvidia.com>
+X-Mailer: git-send-email 2.54.0
+X-NVConfidentiality: public
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR03CA0252.namprd03.prod.outlook.com
+ (2603:10b6:a03:3a0::17) To DM3PR12MB9416.namprd12.prod.outlook.com
+ (2603:10b6:0:4b::8)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|IA1PR11MB6123:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4128ac43-b9bd-4f19-cfce-08deb8679d0f
+X-MS-TrafficTypeDiagnostic: DM3PR12MB9416:EE_|CY3PR12MB9580:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3c752e3d-126a-4bf1-9253-08deb86b4a69
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|5023799004|4143699003|11063799006|3023799007|6133799003|22082099003|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info: m+E7svC0AZGnZPn0FAkrDQE2Y9yjHEuIR62bwBxR2ukWGCfsKmAbFm8M4zSDr4cS3dcV/mRVes+D/lNA0YOuux8sJrP/8kLHbqudaCQLJv1gQOphb3ETtAU5fPYs3cQx1GpoSehvsbEhxY4XeZw3gpDPrvKJ+PBkoxOeqV2O7JnpOirf+MjRojnPnAfnSx7sgzju41MnK5KiKroie4T85Bu4e/h06W24QLyyd/ru/Q7pt9UDSXQabt4J6jUWkPeQY1SeusJn1mGHIPNeICAlkdCMJ3ClYgM/Rj5coG+eVO311xLm1dsHo3t5pMdiQfKBhmEIkpvvxPhD8igzuYsIo0yV76WNof3WV1lSOg6G+rgzx+ljbkRF9eUKT396CHHIkkxbGJqokfNdYLkxta7Wkb8ogODDftNiPD2flNSzmVS4gKNn2JY0eaLmCtVsLj8N7LQOYjHCfyQJas4uUsHZ5jRK2JjjavJUktW0VwVsdVsHP4Es3X5nYkn3mNlLUF3aSCJbCaDmjPqI5tf5z/3k+gNgAxQPY4Zw5w/dU7oZpN49/UE2Pv6CM9yNqvnE2MsAyXZOURAYGcicOmx2LADqyAfWSsZPbiL0GzEVbYkyVVlFkbFwhWJAzM2vv1pF/zX2DkVD3PoY0AMuesZnm3cIKfJHrgLViJW2O1H5JPeaTh4Wqhq4+vdmhfHTiX0wdzcb
+ ARA:13230040|1800799024|7416014|376014|366016|18002099003|56012099003|11063799006|5023799004;
+X-Microsoft-Antispam-Message-Info: /jTjXKU/+f+9g215+Pj879pyB8RXedxwLZNFSasmXJZogr21DsCotrkaZ4a67+mGxDx36V0IIWY8fNOYt/OYO4C5F8ENfKsjPIEX2ei144N819CgXVETwTz4Vc1ifTskC0OcufJ5iRUKiKIO21qjNs760Cg3qyzQby4XIovNjNm/fd3Ooxk+XOy5wCGOpOtv828y1oXc8MMEyQEtdXQfv0BuWmPNxcEaAPIlsXERr3u43Pyrbi/aVLymUqYHGIfLBQoorFqc3hGthO5grqxXSKrTfwJiE1Icu1jlBKycyErUfiX0RKJhkPaV660bmNk46AVsoQezrw2ivwAOqp6HWFdrRdJQtfL/0J1h0r5iN3oEnAmOK1vcwHvH15EE+wTXjOysHhK5+L8iaZknJtOMvL0Ug1OhfRlyYD54usedy5w8hOnGriXrySIX2RLQhg3HgTj0kCyIOsem6ug37X1QbrZbKpdLkgETvdTuSdlpsY6V+Sho4QgX17E2cdY/WLH9EbYL00CJKHEbK4oIFDt9H1hJQxonpMS/ZNENmib35DP5iEXQH9Noplox9boWGacYTkK61GHcGel1zriIaggRUEmI1cyzcuGj+AAXmhmDl+ObfE5qWd+yIzBFWJfFZD12gSagojvOLEQSRwx9Ew3gWii6NJ5IHpK1eoayYdIatIRgjGNjDr2LWbg+kY5BMws7
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB7605.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(5023799004)(4143699003)(11063799006)(3023799007)(6133799003)(22082099003)(18002099003)(56012099003);
+ IPV:NLI; SFV:NSPM; H:DM3PR12MB9416.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(7416014)(376014)(366016)(18002099003)(56012099003)(11063799006)(5023799004);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YnhRQnplMWp3V0Yyd3hEc203VlBNUjJYeFpjb0FuelRYSmVpMG94ZGxZb2dh?=
- =?utf-8?B?TElKTzI0RnhkZDJ4U3FSZ1kvR0V0U3RMWnpwNVo0MmZrU2tTcFJLNk1DMUtT?=
- =?utf-8?B?d2dsTlRTL1RrdExBZ1pJUGZiWHNyRlA0bWF0NCtDcTF4RXFLUXdHMzUrYllt?=
- =?utf-8?B?TnV3YkMrbDhuTHo3RmkxaXJ3Zy9lcXZSRkp4VW9UOTRsNFBsL2RvQWJRbUJS?=
- =?utf-8?B?akp0aDNFYnpHRGViOUw2b3JkSmRCV2cyckpXYmdjU0hwY3BYMzNzME02VVJT?=
- =?utf-8?B?Q1R2cVExT1dCZkVqMlVtMFRpQmk4QXhCS0dkQjkySmNGMUpFTVc1YnRGTlht?=
- =?utf-8?B?U1YxdTFMT1FUc3F2Q3BoR1c5RjVTR25kMWFJY0JERDhEcThPRkx6NzVEMjZ4?=
- =?utf-8?B?d1pDSnFBdXplbWEvNW5USjZiWHV1c3IzZ0JiZDRjT2l1Y0xNU2RuZmg5d242?=
- =?utf-8?B?TEttbHhIUnJkTjYvTy82Q0taMzhHWElNemhsVnBpTHk4YUNLc0hLNGJwMkFs?=
- =?utf-8?B?RlZRV0VZL1luRGFhTmVlOXJjRHUvYTVzL1NObjg1N2hTcjJYZURZSFFNZlo3?=
- =?utf-8?B?N0tEY29ydVlsczcydG93T2NDRUZNeXpCRlVLMW4yWUU4amJaQWdqYkZ0dGxW?=
- =?utf-8?B?bFBNaEptaUo2Wnl0VFpKQVpiQVhjUTFhdjBIQllJWElPVE1wWndHREs5TDdq?=
- =?utf-8?B?QlZGNGJWZE5oemRQdi9LakNadFV4Q1ZQS2tzZ3ZvalpCOFd5Mk0vMEVzcDdZ?=
- =?utf-8?B?SGk4M09WUmxOMVdOZzNWOU9COWtrVVNScXgvNmNhcW9aU25nd3dMeUNLR0NJ?=
- =?utf-8?B?cS93THpyUlN3Vm1iVjNIRkNkUm9WTXQwUEVXNkhhL1NsT3NyeDFvT2NBVUND?=
- =?utf-8?B?Tk1Ob2ZZQkFZanA4KzFHblhlWWs0V05qR2U4SWg1QjFjaWRGNlhGWHBXd3U0?=
- =?utf-8?B?RzI1Tm5DaVhlWTV6OHgxeG1YcmZXZXVFV29jQU85MUtUcHViVHFlWWc2MFd2?=
- =?utf-8?B?MTJndVBPaW4wZ2ZobFI1czJldkVVVHcxaU1wbGFzaEtjUGd5bkJtZFoweVpG?=
- =?utf-8?B?WUpxbmE1Ym9oRHVGVVd0alFyM2JjWks3bURLZld1dWJDNmVISHlrS1UyLzIy?=
- =?utf-8?B?c2VlRDEyYWoyUmlEK3Z0NFJPY3NOc2I2Z29IdDl5QUFXZHJYd3hWSEZiYkg1?=
- =?utf-8?B?OGVIVXFMOWZLRTN3T0xMVmM4Ump2RlZoemVZS3RWMWE3Q3B2RnZmajFkbk5N?=
- =?utf-8?B?b29sTjNaU0kzNURvcUVYaERKTHNKWlhLcnhpWTVZd3V6MS9tWFNHUzhUb20z?=
- =?utf-8?B?WGhLWm14MkVXSnB5ZXBERXFHRXJLbzF1VTZzNU5UQVBvY3hObmliMWdxa0k5?=
- =?utf-8?B?Y0tYdU4xMHZvdEUySTM4TVBJQWJ4dFJaMDExUDZ6dXpsbXZoV0g4NHhEamFj?=
- =?utf-8?B?U1FVbGQ4MkFZUUk5bnZFSzNnMDdqWmRFTjZOOUVnOE1TN2xaVXdOYkhjZndz?=
- =?utf-8?B?NFAyVHFHaU1NSmZlN1VhMTFKVHZrcmlnK3hqcFZBWHE2N0JZTzZldzB6bFVB?=
- =?utf-8?B?TzB2UmFwUVVqK240SlliWlNKbEtyREVOWHlrR2ZkTzZRV3dOVUVPYjdKNVRa?=
- =?utf-8?B?WmtMOEFvbkRzZW9RK1dad2JRUzNuTWtWMVdpVUp4Um9kd2tvYm9MTElXZ2Jt?=
- =?utf-8?B?Nmw2MXZQWFA1VUx1dEFxRStUOWNWeWdON082UHN4eE9kOXV5MjJuL3ByZVB4?=
- =?utf-8?B?WDVLVWVVWmczamcycUpGWENGL3YvMFhxMGwzMm9yYXk1L1J6VkdhVCtWenMr?=
- =?utf-8?B?SWRqdHM3cTYzeXE0SmM5UUlGWWVPTjFBZ0tkTldOeGlTYnYwdkVRT1Z5ZW44?=
- =?utf-8?B?VUg5SUZEQkVTaDVqWS9QNG1remp4UGxiQjQ0Vldzd1NZTnNlVjNOdHQwL25Q?=
- =?utf-8?B?R2hxZTViWlIzMUNuMmlWdEhNUkhhOCswU0h6TmNaZE5qSnlEcVdaTldnY05S?=
- =?utf-8?B?Q016NjRtcXUzeWorTTc0UlRxR0ZNUjdiZVg3UjMwU2t0UCt1V25RMTlPb3Q3?=
- =?utf-8?B?K0VVZ3ZxM0h3ajlnaEIrZk9yRjZRQ0RDTmxvdnhva2JnOTJ3ZnVlM2haWS96?=
- =?utf-8?B?L0NOeGRXY0pMaXpUV0VUVG1mQmZSRWk0Z0xvcmhNM0E2bTI3V2p0ODljc0xy?=
- =?utf-8?B?ZG15VjdjZTZXTHRKN3oveFRUbFkrMWJRMXErRnE2aGJnV1dBYXdOM2lObllD?=
- =?utf-8?B?SjNLODlMQTBTOUtqcjJQN25IRVJuN2RmVjZIaWZTMUJYMEhNZzdrSytGalB6?=
- =?utf-8?B?dmRHbURtMkNWVS9ibEYzMDcwZDdIUXhlajRObGNNKzdvNmFvdHVkVUo4WTU4?=
- =?utf-8?Q?pemfLQr6jDyruUeQ=3D?=
-X-Exchange-RoutingPolicyChecked: XA4CzPI94kMku4dZqnQdUTp1bqV7gFJc06RqyjaKjXaAWuO/HK5o6rAve0VHECf37nqsT4Y2d51Vms3gz8WOc4zZB03xRJFBj3sUUcqMQLq1seu9Ye7zoxrasLqZpfsyHX/ftkyYzXdVAgTw5UsD5wWuC3m84GmuhbRcN7PBHKRdA8rjScxOzakd1lklXqfxNp4tCmlN2E/qWSyEnh+kbOxh/eLwDcgSXy+2PSZ3qmrZwstC2A3X/yBj707BkYt8ube5ZSFVfcyLixOjzcxQahCYuP5uk5Cprs7YNhUlq65F73hSpDxi69qb7yVFDBJvktCK8tfCyQBm8u5hauTqCg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4128ac43-b9bd-4f19-cfce-08deb8679d0f
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7605.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?mMsF+4aGSuAzVzlcgREuqyuAxDaZkbr5Shnxgw24UrjzsLrDHt0YoajSoSwG?=
+ =?us-ascii?Q?uK+QA1X3mx+NNQ6oFo+8xR296gyj6RwSddoFPvd08k7h0wfP+Pz3eZzKocAM?=
+ =?us-ascii?Q?8MnoZrmRzASWHd6ruFVuU7KYGn2ySN4SxguXTwSDOZSZVZVrR9QIBAsxALjm?=
+ =?us-ascii?Q?M2uk5Q+NNAMBnv/GinDTPidiWtZJiaDRSecshznWBzi4f1UJTYXUfBIplZ79?=
+ =?us-ascii?Q?GPTrUgKQ9Vc+bWEZb/vL2JVZLY9u8K7BC01PsYbKBXKVoDvSBSgKNJHTd6JV?=
+ =?us-ascii?Q?S0hOyPnlLyRzdHqndGhoNNnTaOWyzdt3dqTQPoPfOnUfn/DVdktxpY6Amgzw?=
+ =?us-ascii?Q?In87hJkSXcqNN4s5KcR1DPx5DtLCPNeOFtuoPgf9O6wILp0cZy4AKSwV/Vkf?=
+ =?us-ascii?Q?NNQx2uaqfPFqsMo+XOYU0CD1+jRdI2XTqXK83UiBqzes1Fyq3ac1Ih/oSB8W?=
+ =?us-ascii?Q?tar0WFPKblr/pDB5D7s06gSZJwjavjyh8MC+3nWvyExWNltcVLQrpdZB8aaL?=
+ =?us-ascii?Q?rBNGFSyMzCo2Dk3Q62RXUhVE8/VH8Ry1a7JVO7Ak2hgQPGtfy62gPBOPYINw?=
+ =?us-ascii?Q?RXiJBYPe7c8zKYiR6GfWWt+yEW/p3/rMfkaxB4czFnRz7ZuPAGa74P2/rZir?=
+ =?us-ascii?Q?BUfGd71dPvFl/+k8FbTl4qMoVanB7pOFJqjEBTOuWDPPKIrIW0bOHKcJJ19H?=
+ =?us-ascii?Q?Z8n6FCX7qg8y8eFNNZwn9kAhpTyRSPw2fs5HGaa6q6U9r/JAKDSqRBz9QzjT?=
+ =?us-ascii?Q?rd7t36eBvcszkuZ1uzNcdPgHxLhcV78b6o+/CxGQyJ/CjnjFYp/Dn/6A5kLK?=
+ =?us-ascii?Q?9LWghGFRkcGrm1xpomdqLEdXwuz93plY/QqUtwSWxtG85i3Xe6c8ojSTd5+v?=
+ =?us-ascii?Q?D1av+I2uV74DTu30/RR5TjngopghDaT3UJDokUijYR7C1ggAPUOwMwtmgt2O?=
+ =?us-ascii?Q?neQqsRHocHCHjAvR9ZLSoMAvghsiWuc5Le5LzBbSvkkXaGfqmfz6q4A4ZKLR?=
+ =?us-ascii?Q?VLcc2lma2hfZxNMpmhnOAurKPSKpDEb/tVIsNvPKZ3JxhrTrk5ksmq080XOI?=
+ =?us-ascii?Q?QGmrPaF/zKA3PHh6kpmCeHgfnhRDV/DnHshH4uMGn+j5ZoQF+KWWThR48oUN?=
+ =?us-ascii?Q?1woCWVic4YZFly3cnlzZ8qiF+/J9A5XxaN5H6D1N9RXfblq6/YZDTyhlqsOv?=
+ =?us-ascii?Q?qP3cnwdn6Le6vRkG1j7jyRRJ2bPvWMAVRNRF8gTANScAmCfq7QiI9A/NYvKn?=
+ =?us-ascii?Q?9PRK+/t9wPoyzYx8lzTb2YsnVJ+RFI71cVbUO5e1cQnomX9qU6CEcu6w1OFS?=
+ =?us-ascii?Q?WJpgXKEU5EW69n1HeyKx+QgZbD1jPubsQxPQzoUqQaMcJRc1u8IEPyQcoaYH?=
+ =?us-ascii?Q?zxxyn95Z+e8p8szE5uC2tI1QNVrO4+9SxyOSujmC3aKRYs3RoxTfAx8Mm5ir?=
+ =?us-ascii?Q?pOBMk6EhDY2+sYFK3b218qCc/j+3x8qe6OTH7LR1JwQAXdnebryS/MhBM1s0?=
+ =?us-ascii?Q?hdDNHQ023p5jr98fcYcQajTvIZpNefYp9/QPkJygngbCsqq4Kp6YhShAt+Qg?=
+ =?us-ascii?Q?EI53uBWiQYxIjRd+1CKKmQ+ojhMKEamefAxWkwEmacacxcr0NhKj0M9YstdE?=
+ =?us-ascii?Q?+OnR2veJWJDePZz+QjeMOqeQ0gnsT5SMaNaumtE42GI06ea+ZLU9Tg4Qq7aU?=
+ =?us-ascii?Q?QkAVrHGmCzzcqUQtP4+XkM8X+QDqwrjvqMie8sAAwHnHimv+plja1rWegbgU?=
+ =?us-ascii?Q?mkqYDO4+vA=3D=3D?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3c752e3d-126a-4bf1-9253-08deb86b4a69
+X-MS-Exchange-CrossTenant-AuthSource: DM3PR12MB9416.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 May 2026 01:07:09.1408 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 May 2026 01:33:28.4403 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: jlAWztPY5dsScLege07f6y6Gc1veTJB6jKZ6BEeoVaVQeCCChNjS9qmsgiUEVLUPVYpu9MxLCi99s3qPIkQC8sRfOazNkKUWxQyvfNEfxaY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6123
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-UserPrincipalName: CNdJh1jScQau2HKvtozKJsA+6nYnpjUWZ/kzSZ5fo5gO+rjCuNLOBk1M5o5c/aA/xm1TaWPxiVjX8M3uDoQ/Gg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY3PR12MB9580
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -168,260 +135,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+perf_allow_cpu() and perf_allow_tracepoint() are static inline and
+reach into a non-exported sysctl, so modular drivers that want the
+same permission model as system-wide perf end up writing partial
+copies of this code. Let's instead export these properly so that modules
+can call them.
+
+Commit 5e9629d0ae97 ("drivers/perf: arm_spe: Use perf_allow_kernel()
+for permissions") already moved perf_allow_kernel() out of line and
+exported it. Patch 1 does the same for the other two, and provides
+!CONFIG_PERF_EVENTS stubs so the helpers stay callable when perf is
+compiled out.
+
+Patch 2 converts drm/xe's OA and EU stall paths to call
+perf_allow_cpu(), so xe observation now respects the system
+perf_event_paranoid policy and consults the LSM hook. Sites that have
+already configured an LSM perf policy or tuned the paranoid sysctl will
+now see those settings honored on xe as well.
+
+Changes since v1:
+
+* Patch 1: add !CONFIG_PERF_EVENTS stubs that fall back to
+  perfmon_capable() so the helpers remain callable when perf is
+  compiled out. The sashiko-bot AI review caught that the v1 code
+  would otherwise fail to build with PERF_EVENTS=n.
+
+John Hubbard (2):
+  perf/core: out-of-line and export perf_allow_cpu/tracepoint()
+  drm/xe: gate observation streams with perf_allow_cpu()
+
+ drivers/gpu/drm/xe/xe_eu_stall.c    |  5 +++--
+ drivers/gpu/drm/xe/xe_oa.c          | 25 +++++++++++++---------
+ drivers/gpu/drm/xe/xe_observation.c | 32 ++++++++++++++++++++++++-----
+ drivers/gpu/drm/xe/xe_observation.h |  3 +--
+ include/linux/perf_event.h          | 31 ++++++++++++++--------------
+ kernel/events/core.c                | 18 ++++++++++++++++
+ 6 files changed, 79 insertions(+), 35 deletions(-)
 
 
-On 5/22/2026 5:37 AM, Matthew Auld wrote:
-> Rather then inferring the GuC engine class from the generic hw engine
-> class, pass in the hwe itself, which gives the complete view, like
-> instance etc.  On future GuC version, there is dedicated PAGING class to
-> identify the KMD reserved BCS engine, so we need more info here in order
-> to return the correct GuC specific engine class.
->
-> With this everything should now be using the new hwe based interface. No
-> functional changes.
->
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-
-Daniele
-
-> ---
->   drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c |  2 +-
->   drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c  |  2 +-
->   drivers/gpu/drm/xe/xe_guc.h                 | 21 +---------------
->   drivers/gpu/drm/xe/xe_guc_ads.c             | 27 ++++++++++++++++++---
->   drivers/gpu/drm/xe/xe_guc_capture.c         | 12 ++++-----
->   drivers/gpu/drm/xe/xe_guc_capture.h         |  4 +--
->   drivers/gpu/drm/xe/xe_guc_engine_activity.c |  4 +--
->   drivers/gpu/drm/xe/xe_guc_submit.c          |  2 +-
->   8 files changed, 38 insertions(+), 36 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-> index ffa27f66bba7..f28c7ae0e8c2 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-> @@ -381,7 +381,7 @@ static ssize_t sched_group_engines_read(struct file *file, char __user *buf,
->   
->   	if (group < num_groups) {
->   		for_each_hw_engine(hwe, gt, id) {
-> -			u8 guc_class = xe_engine_class_to_guc_class(hwe->class);
-> +			u8 guc_class = xe_hwe_to_guc_class(hwe);
->   			u32 mask = groups[group].engines[guc_class];
->   
->   			if (mask & BIT(hwe->logical_instance)) {
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
-> index e8458d63742d..cf117bf52d41 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
-> @@ -471,7 +471,7 @@ static void pf_sched_group_media_slices(struct xe_gt *gt, struct guc_sched_group
->   		return;
->   
->   	for_each_hw_engine(hwe, gt, id) {
-> -		u8 guc_class = xe_engine_class_to_guc_class(hwe->class);
-> +		u8 guc_class = xe_hwe_to_guc_class(hwe);
->   
->   		switch (hwe->class) {
->   		case XE_ENGINE_CLASS_VIDEO_DECODE:
-> diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
-> index 02514914f404..12faf0ba7229 100644
-> --- a/drivers/gpu/drm/xe/xe_guc.h
-> +++ b/drivers/gpu/drm/xe/xe_guc.h
-> @@ -67,26 +67,7 @@ bool xe_guc_using_main_gamctrl_queues(struct xe_guc *guc);
->   int xe_guc_g2g_test_notification(struct xe_guc *guc, u32 *payload, u32 len);
->   #endif
->   
-> -static inline u16 xe_engine_class_to_guc_class(enum xe_engine_class class)
-> -{
-> -	switch (class) {
-> -	case XE_ENGINE_CLASS_RENDER:
-> -		return GUC_RENDER_CLASS;
-> -	case XE_ENGINE_CLASS_VIDEO_DECODE:
-> -		return GUC_VIDEO_CLASS;
-> -	case XE_ENGINE_CLASS_VIDEO_ENHANCE:
-> -		return GUC_VIDEOENHANCE_CLASS;
-> -	case XE_ENGINE_CLASS_COPY:
-> -		return GUC_BLITTER_CLASS;
-> -	case XE_ENGINE_CLASS_COMPUTE:
-> -		return GUC_COMPUTE_CLASS;
-> -	case XE_ENGINE_CLASS_OTHER:
-> -		return GUC_GSC_OTHER_CLASS;
-> -	default:
-> -		XE_WARN_ON(class);
-> -		return -1;
-> -	}
-> -}
-> +u16 xe_hwe_to_guc_class(struct xe_hw_engine *hwe);
->   
->   static inline struct xe_gt *guc_to_gt(struct xe_guc *guc)
->   {
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-> index ffe60d77b713..6626803d75b5 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ads.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-> @@ -279,7 +279,7 @@ static u32 engine_enable_mask(struct xe_gt *gt, u16 guc_class)
->   	u32 mask = 0;
->   
->   	for_each_hw_engine(hwe, gt, id) {
-> -		if (xe_engine_class_to_guc_class(hwe->class) == guc_class)
-> +		if (xe_hwe_to_guc_class(hwe) == guc_class)
->   			mask |= BIT(hwe->instance);
->   	}
->   
-> @@ -504,6 +504,27 @@ static void fill_engine_enable_masks(struct xe_gt *gt,
->   		       engine_enable_mask(gt, GUC_GSC_OTHER_CLASS));
->   }
->   
-> +u16 xe_hwe_to_guc_class(struct xe_hw_engine *hwe)
-> +{
-> +	switch (hwe->class) {
-> +	case XE_ENGINE_CLASS_RENDER:
-> +		return GUC_RENDER_CLASS;
-> +	case XE_ENGINE_CLASS_VIDEO_DECODE:
-> +		return GUC_VIDEO_CLASS;
-> +	case XE_ENGINE_CLASS_VIDEO_ENHANCE:
-> +		return GUC_VIDEOENHANCE_CLASS;
-> +	case XE_ENGINE_CLASS_COPY:
-> +		return GUC_BLITTER_CLASS;
-> +	case XE_ENGINE_CLASS_COMPUTE:
-> +		return GUC_COMPUTE_CLASS;
-> +	case XE_ENGINE_CLASS_OTHER:
-> +		return GUC_GSC_OTHER_CLASS;
-> +	default:
-> +		XE_WARN_ON(hwe->class);
-> +		return -1;
-> +	}
-> +}
-> +
->   /*
->    * Write the offsets corresponding to the golden LRCs. The actual data is
->    * populated later by guc_golden_lrc_populate()
-> @@ -574,7 +595,7 @@ static void guc_mapping_table_init(struct xe_gt *gt,
->   	for_each_hw_engine(hwe, gt, id) {
->   		u8 guc_class;
->   
-> -		guc_class = xe_engine_class_to_guc_class(hwe->class);
-> +		guc_class = xe_hwe_to_guc_class(hwe);
->   		info_map_write(xe, info_map,
->   			       mapping_table[guc_class][hwe->logical_instance],
->   			       hwe->instance);
-> @@ -824,7 +845,7 @@ static void guc_mmio_reg_state_init(struct xe_guc_ads *ads)
->   		 * 2. Record in the header (ads.reg_state_list) the address
->   		 * location and number of entries
->   		 */
-> -		gc = xe_engine_class_to_guc_class(hwe->class);
-> +		gc = xe_hwe_to_guc_class(hwe);
->   		ads_blob_write(ads, ads.reg_state_list[gc][hwe->instance].address, addr);
->   		ads_blob_write(ads, ads.reg_state_list[gc][hwe->instance].count, count);
->   
-> diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
-> index 21f7caf9ea08..50c6b9466c14 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_capture.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_capture.c
-> @@ -440,7 +440,7 @@ static void guc_capture_alloc_steered_lists(struct xe_guc *guc)
->   	 * to be extended
->   	 */
->   	for_each_hw_engine(hwe, gt, id) {
-> -		if (xe_engine_class_to_guc_capture_class(hwe->class) ==
-> +		if (xe_hwe_to_guc_capture_class(hwe) ==
->   		    GUC_CAPTURE_LIST_CLASS_RENDER_COMPUTE) {
->   			has_rcs_ccs = true;
->   			break;
-> @@ -812,7 +812,7 @@ static int guc_capture_output_size_est(struct xe_guc *guc)
->   	for_each_hw_engine(hwe, gt, id) {
->   		enum guc_capture_list_class_type capture_class;
->   
-> -		capture_class = xe_engine_class_to_guc_capture_class(hwe->class);
-> +		capture_class = xe_hwe_to_guc_capture_class(hwe);
->   		capture_size += sizeof(struct guc_state_capture_group_header_t) +
->   					 (3 * sizeof(struct guc_state_capture_header_t));
->   
-> @@ -1620,7 +1620,7 @@ xe_engine_manual_capture(struct xe_hw_engine *hwe, struct xe_hw_engine_snapshot
->   	if (!new)
->   		return;
->   
-> -	capture_class = xe_engine_class_to_guc_capture_class(hwe->class);
-> +	capture_class = xe_hwe_to_guc_capture_class(hwe);
->   	for (type = GUC_STATE_CAPTURE_TYPE_GLOBAL; type < GUC_STATE_CAPTURE_TYPE_MAX; type++) {
->   		struct gcap_reg_list_info *reginfo = &new->reginfo[type];
->   		/*
-> @@ -1662,7 +1662,7 @@ xe_engine_manual_capture(struct xe_hw_engine *hwe, struct xe_hw_engine_snapshot
->   		}
->   	}
->   
-> -	new->eng_class = xe_engine_class_to_guc_class(hwe->class);
-> +	new->eng_class = xe_hwe_to_guc_class(hwe);
->   	new->eng_inst = hwe->instance;
->   	new->guc_id = guc_id;
->   	new->lrca = lrca;
-> @@ -1826,7 +1826,7 @@ void xe_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot, struct drm
->   
->   	xe_gt_assert(gt, snapshot->hwe);
->   
-> -	capture_class = xe_engine_class_to_guc_capture_class(snapshot->hwe->class);
-> +	capture_class = xe_hwe_to_guc_capture_class(snapshot->hwe);
->   
->   	drm_printf(p, "%s (physical), logical instance=%d\n",
->   		   snapshot->name ? snapshot->name : "",
-> @@ -1898,7 +1898,7 @@ xe_guc_capture_get_matching_and_lock(struct xe_exec_queue *q)
->   	for_each_hw_engine(hwe, q->gt, id) {
->   		if (hwe != q->hwe)
->   			continue;
-> -		guc_class = xe_engine_class_to_guc_class(hwe->class);
-> +		guc_class = xe_hwe_to_guc_class(hwe);
->   		break;
->   	}
->   
-> diff --git a/drivers/gpu/drm/xe/xe_guc_capture.h b/drivers/gpu/drm/xe/xe_guc_capture.h
-> index dca97d52b192..eb954f4d1ffd 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_capture.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_capture.h
-> @@ -35,9 +35,9 @@ static inline enum guc_capture_list_class_type xe_guc_class_to_capture_class(u16
->   }
->   
->   static inline enum guc_capture_list_class_type
-> -xe_engine_class_to_guc_capture_class(enum xe_engine_class class)
-> +xe_hwe_to_guc_capture_class(struct xe_hw_engine *hwe)
->   {
-> -	return xe_guc_class_to_capture_class(xe_engine_class_to_guc_class(class));
-> +	return xe_guc_class_to_capture_class(xe_hwe_to_guc_class(hwe));
->   }
->   
->   void xe_guc_capture_process(struct xe_guc *guc);
-> diff --git a/drivers/gpu/drm/xe/xe_guc_engine_activity.c b/drivers/gpu/drm/xe/xe_guc_engine_activity.c
-> index 2b99c1ebdd58..150d891d5a09 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_engine_activity.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_engine_activity.c
-> @@ -27,7 +27,7 @@ static struct iosys_map engine_activity_map(struct xe_guc *guc, struct xe_hw_eng
->   {
->   	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
->   	struct engine_activity_buffer *buffer;
-> -	u16 guc_class = xe_engine_class_to_guc_class(hwe->class);
-> +	u16 guc_class = xe_hwe_to_guc_class(hwe);
->   	size_t offset;
->   
->   	if (engine_activity->num_functions) {
-> @@ -150,7 +150,7 @@ static struct engine_activity *hw_engine_to_engine_activity(struct xe_hw_engine
->   {
->   	struct xe_guc *guc = &hwe->gt->uc.guc;
->   	struct engine_activity_group *eag = &guc->engine_activity.eag[index];
-> -	u16 guc_class = xe_engine_class_to_guc_class(hwe->class);
-> +	u16 guc_class = xe_hwe_to_guc_class(hwe);
->   
->   	return &eag->engine[guc_class][hwe->logical_instance];
->   }
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> index afd8cc7bd231..1ee4f2434876 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> @@ -985,7 +985,7 @@ static void register_exec_queue(struct xe_exec_queue *q, int ctx_type)
->   
->   	memset(&info, 0, sizeof(info));
->   	info.context_idx = q->guc->id;
-> -	info.engine_class = xe_engine_class_to_guc_class(q->class);
-> +	info.engine_class = xe_hwe_to_guc_class(q->hwe);
->   	info.engine_submit_mask = q->logical_mask;
->   	info.hwlrca_lo = lower_32_bits(xe_lrc_descriptor(lrc));
->   	info.hwlrca_hi = upper_32_bits(xe_lrc_descriptor(lrc));
+base-commit: 79bd2dded182b1d458b18e62684b7f82ffc682e5
+-- 
+2.54.0
 
