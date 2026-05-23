@@ -4,57 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8A4DCD4F54
-	for <intel-xe@archiver.kernel.org>; Sat, 23 May 2026 08:41:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14875CD5BB1
+	for <intel-xe@archiver.kernel.org>; Sat, 23 May 2026 10:34:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B2DD10E2E8;
-	Sat, 23 May 2026 08:41:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43AA010E02A;
+	Sat, 23 May 2026 10:34:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="qaao5P/Q";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="l992U399";
 	dkim-atps=neutral
-Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6AD4310E2E8;
- Sat, 23 May 2026 08:41:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=desiato.20200630; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=6DnjAV+e0BPdgxX5HYfwVC6Dah6WI/Ye8CquYY2VvH8=; b=qaao5P/QcniVLHE3ME2LcbEukq
- SrIo6hj4dvHt0G2bxbOuTRNOiXMIOo9FzfmZzFBoSaHjVL1SFtjrUoEyAWeB2v0o9c1PmcEEW+y3l
- m8Mms7mYkFEJxD9v+J3pCZy69MI1+pRH0zosEhS6Q6Yx4Z6IA1I7tOrE6tqFSSrFie9vzJcA5EzN7
- /qYw4J3etq3OT8eB2VfQsMzzb/bGpUsztVlX0FY0MspB+JGKA0Ua/HxPCwcC7QwtPPyFH9M8Of0Bd
- fyOZv+EktMgKfETulP5ABe0AFwKZbLCcbAnv0Dpzw2xrrPshUHTa82a3AyFkTC8HHEcK8986InMM0
- DkiNRYhg==;
-Received: from
- 2001-1c00-8d85-4b00-266e-96ff-fe07-7dcc.cable.dynamic.v6.ziggo.nl
- ([2001:1c00:8d85:4b00:266e:96ff:fe07:7dcc]
- helo=noisy.programming.kicks-ass.net)
- by desiato.infradead.org with esmtpsa (Exim 4.99.1 #2 (Red Hat Linux))
- id 1wQhuj-00000006BAm-3WcE; Sat, 23 May 2026 08:40:58 +0000
-Received: by noisy.programming.kicks-ass.net (Postfix, from userid 1000)
- id 30D8F300329; Sat, 23 May 2026 10:40:56 +0200 (CEST)
-Date: Sat, 23 May 2026 10:40:56 +0200
-From: Peter Zijlstra <peterz@infradead.org>
-To: John Hubbard <jhubbard@nvidia.com>
-Cc: Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2FAE10E02A
+ for <intel-xe@lists.freedesktop.org>; Sat, 23 May 2026 10:34:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
+ Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=67EWVI4FKPWoODafgyykYyfHbis3UufkpVLU/XfJPK8=; b=l992U3993v5e+im3s+3+mjOIQP
+ gNnlYmr5lEDSBNTwXM6ppp2UKf3spdQ4GJqQlBALSjNixIFmy/IqlILI+unLDjkQ6lEF/cgPU++y/
+ HaZ0sgBm3N84NG6YCj6M+EgHu5p6dBKHoMUphMh9mUv4cniIhGxrXKq/ZZky965IzfzIeApqkIH1f
+ w/+nhBG1ZIwqtNxdpajHaR47OHHjLcIrXJuUBNlQYk4znFLJT4E0szRn1yqBAEU48awcJ8jb5djTG
+ O/8h0vUJ+24kX8yIUymh8fWNFU0zpCBjzRt2HOuLdRL55Go3IWW0SZeHGlEQqH1bICeDyFmBPN1V9
+ d3bJ9vkg==;
+Received: from [90.240.106.137] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1wQjgS-005gSo-RE; Sat, 23 May 2026 12:34:20 +0200
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+To: intel-xe@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ Matthew Brost <matthew.brost@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Ingo Molnar <mingo@redhat.com>, Arnaldo Carvalho de Melo <acme@kernel.org>,
- Namhyung Kim <namhyung@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>,
- Adrian Hunter <adrian.hunter@intel.com>,
- James Clark <james.clark@linaro.org>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-perf-users@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 0/2] complete perf_allow_* trio and use in drm/xe
-Message-ID: <20260523084056.GE3102624@noisy.programming.kicks-ass.net>
-References: <20260523013326.129491-1-jhubbard@nvidia.com>
+ Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+Subject: [PATCH v2] drm/xe: Assign queue name in time for drm_sched_init
+Date: Sat, 23 May 2026 11:34:18 +0100
+Message-ID: <20260523103418.61832-1-tvrtko.ursulin@igalia.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260523013326.129491-1-jhubbard@nvidia.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,43 +58,184 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, May 22, 2026 at 06:33:24PM -0700, John Hubbard wrote:
-> perf_allow_cpu() and perf_allow_tracepoint() are static inline and
-> reach into a non-exported sysctl, so modular drivers that want the
-> same permission model as system-wide perf end up writing partial
-> copies of this code. Let's instead export these properly so that modules
-> can call them.
-> 
-> Commit 5e9629d0ae97 ("drivers/perf: arm_spe: Use perf_allow_kernel()
-> for permissions") already moved perf_allow_kernel() out of line and
-> exported it. Patch 1 does the same for the other two, and provides
-> !CONFIG_PERF_EVENTS stubs so the helpers stay callable when perf is
-> compiled out.
-> 
-> Patch 2 converts drm/xe's OA and EU stall paths to call
-> perf_allow_cpu(), so xe observation now respects the system
-> perf_event_paranoid policy and consults the LSM hook. Sites that have
-> already configured an LSM perf policy or tuned the paranoid sysctl will
-> now see those settings honored on xe as well.
-> 
-> Changes since v1:
-> 
-> * Patch 1: add !CONFIG_PERF_EVENTS stubs that fall back to
->   perfmon_capable() so the helpers remain callable when perf is
->   compiled out. The sashiko-bot AI review caught that the v1 code
->   would otherwise fail to build with PERF_EVENTS=n.
-> 
-> John Hubbard (2):
->   perf/core: out-of-line and export perf_allow_cpu/tracepoint()
->   drm/xe: gate observation streams with perf_allow_cpu()
-> 
->  drivers/gpu/drm/xe/xe_eu_stall.c    |  5 +++--
->  drivers/gpu/drm/xe/xe_oa.c          | 25 +++++++++++++---------
->  drivers/gpu/drm/xe/xe_observation.c | 32 ++++++++++++++++++++++++-----
->  drivers/gpu/drm/xe/xe_observation.h |  3 +--
->  include/linux/perf_event.h          | 31 ++++++++++++++--------------
->  kernel/events/core.c                | 18 ++++++++++++++++
->  6 files changed, 79 insertions(+), 35 deletions(-)
+Currently the queue name is only assigned after the drm scheduler instance
+has been created. This loses information with all logging or debug
+workqueue facilities so lets re-order things a bit so the name gets
+assigned in time.
 
-Sure, works for me. How do you want to route these things, Xe tree or
--tip?
+To be able to assign a GuC ID early we split the allocation into
+reservation and publish phases.
+
+First, with the submission state lock held, we reserve the ID in the GuC
+ID manager, which serves as an authoritative source of truth. Then we can
+drop the lock and reserve entries in the exec queue lookup XArray. This
+can be lockless since the NULL entries are invisible both to the kernel
+and userspace. Only after the queue has been fully created we replace the
+reserved entries with the queue pointer, which can be done locklessly for
+single width queues.
+
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+---
+v2:
+ * Split the id allocation into reserve and publish. (Rodrigo)
+---
+ drivers/gpu/drm/xe/xe_guc_submit.c | 72 +++++++++++++++++-------------
+ 1 file changed, 40 insertions(+), 32 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index afd8cc7bd231..ab501513d806 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -408,46 +408,43 @@ void xe_guc_submit_disable(struct xe_guc *guc)
+ 	guc->submission_state.enabled = false;
+ }
+ 
+-static void __release_guc_id(struct xe_guc *guc, struct xe_exec_queue *q, u32 xa_count)
++static void __release_guc_id(struct xe_guc *guc, struct xe_exec_queue *q,
++			     int count)
+ {
+ 	int i;
+ 
+-	lockdep_assert_held(&guc->submission_state.lock);
++	mutex_lock(&guc->submission_state.lock);
+ 
+-	for (i = 0; i < xa_count; ++i)
+-		xa_erase(&guc->submission_state.exec_queue_lookup, q->guc->id + i);
++	for (i = 0; i < count; ++i)
++		xa_erase(&guc->submission_state.exec_queue_lookup,
++			 q->guc->id + i);
+ 
+ 	xe_guc_id_mgr_release_locked(&guc->submission_state.idm,
+ 				     q->guc->id, q->width);
+ 
+ 	if (xa_empty(&guc->submission_state.exec_queue_lookup))
+ 		wake_up(&guc->submission_state.fini_wq);
++
++	mutex_unlock(&guc->submission_state.lock);
+ }
+ 
+ static int alloc_guc_id(struct xe_guc *guc, struct xe_exec_queue *q)
+ {
+-	int ret;
+-	int i;
+-
+-	/*
+-	 * Must use GFP_NOWAIT as this lock is in the dma fence signalling path,
+-	 * worse case user gets -ENOMEM on engine create and has to try again.
+-	 *
+-	 * FIXME: Have caller pre-alloc or post-alloc /w GFP_KERNEL to prevent
+-	 * failure.
+-	 */
+-	lockdep_assert_held(&guc->submission_state.lock);
++	int ret, i;
+ 
++	mutex_lock(&guc->submission_state.lock);
+ 	ret = xe_guc_id_mgr_reserve_locked(&guc->submission_state.idm,
+ 					   q->width);
++	mutex_unlock(&guc->submission_state.lock);
+ 	if (ret < 0)
+ 		return ret;
+ 
+ 	q->guc->id = ret;
+ 
++	/* Reserve empty slots. */
+ 	for (i = 0; i < q->width; ++i) {
+-		ret = xa_err(xa_store(&guc->submission_state.exec_queue_lookup,
+-				      q->guc->id + i, q, GFP_NOWAIT));
++		ret = xa_insert(&guc->submission_state.exec_queue_lookup,
++				 q->guc->id + i, NULL, GFP_KERNEL);
+ 		if (ret)
+ 			goto err_release;
+ 	}
+@@ -460,11 +457,24 @@ static int alloc_guc_id(struct xe_guc *guc, struct xe_exec_queue *q)
+ 	return ret;
+ }
+ 
++static void publish_guc_id(struct xe_guc *guc, struct xe_exec_queue *q)
++{
++	int i;
++
++	lockdep_assert_held(&guc->submission_state.lock);
++
++	for (i = 0; i < q->width; ++i) {
++		void *old;
++
++		old = xa_store(&guc->submission_state.exec_queue_lookup,
++			       q->guc->id + i, q, GFP_NOWAIT);
++		XE_WARN_ON(old || xa_is_err(old));
++	}
++}
++
+ static void release_guc_id(struct xe_guc *guc, struct xe_exec_queue *q)
+ {
+-	mutex_lock(&guc->submission_state.lock);
+ 	__release_guc_id(guc, q, q->width);
+-	mutex_unlock(&guc->submission_state.lock);
+ }
+ 
+ struct exec_queue_policy {
+@@ -1961,6 +1971,12 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+ 	timeout = (q->vm && xe_vm_in_lr_mode(q->vm)) ? MAX_SCHEDULE_TIMEOUT :
+ 		  msecs_to_jiffies(q->sched_props.job_timeout_ms);
+ 
++	err = alloc_guc_id(guc, q);
++	if (err)
++		goto err_free;
++
++	xe_exec_queue_assign_name(q, q->guc->id);
++
+ 	/*
+ 	 * Use primary queue's submit_wq for all secondary queues of a
+ 	 * multi queue group. This serialization avoids any locking around
+@@ -1977,28 +1993,21 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+ 			    timeout, guc_to_gt(guc)->ordered_wq, NULL,
+ 			    q->name, gt_to_xe(q->gt)->drm.dev);
+ 	if (err)
+-		goto err_free;
++		goto err_release_id;
+ 
+ 	sched = &ge->sched;
+ 	err = xe_sched_entity_init(&ge->entity, sched);
+ 	if (err)
+ 		goto err_sched;
+ 
+-	mutex_lock(&guc->submission_state.lock);
+-
+-	err = alloc_guc_id(guc, q);
+-	if (err)
+-		goto err_entity;
+-
+ 	q->entity = &ge->entity;
+ 
++	mutex_lock(&guc->submission_state.lock);
+ 	if (xe_guc_read_stopped(guc) || vf_recovery(guc))
+ 		xe_sched_stop(sched);
+-
++	publish_guc_id(guc, q);
+ 	mutex_unlock(&guc->submission_state.lock);
+ 
+-	xe_exec_queue_assign_name(q, q->guc->id);
+-
+ 	/*
+ 	 * Maintain secondary queues of the multi queue group in a list
+ 	 * for handling dependencies across the queues in the group.
+@@ -2021,11 +2030,10 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+ 
+ 	return 0;
+ 
+-err_entity:
+-	mutex_unlock(&guc->submission_state.lock);
+-	xe_sched_entity_fini(&ge->entity);
+ err_sched:
+ 	xe_sched_fini(&ge->sched);
++err_release_id:
++	release_guc_id(guc, q);
+ err_free:
+ 	kfree(ge);
+ 
+-- 
+2.54.0
+
