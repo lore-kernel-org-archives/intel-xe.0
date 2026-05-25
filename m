@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6B6DCD5BB1
-	for <intel-xe@archiver.kernel.org>; Mon, 25 May 2026 12:58:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DCE6CD5BD0
+	for <intel-xe@archiver.kernel.org>; Mon, 25 May 2026 12:58:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B39CE10E31B;
-	Mon, 25 May 2026 12:58:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2CFB10E31F;
+	Mon, 25 May 2026 12:58:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VIOeIUyV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DbpoQvF+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6EC110E319
- for <intel-xe@lists.freedesktop.org>; Mon, 25 May 2026 12:58:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8699E10E31B
+ for <intel-xe@lists.freedesktop.org>; Mon, 25 May 2026 12:58:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779713903; x=1811249903;
+ t=1779713904; x=1811249904;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ysEaMSNH5ItZxcxa5M+g3J8KpW3OBroS/fk7ToLj2wg=;
- b=VIOeIUyViHXB3lNoiY14VJvT5+VWNLUPeFeXrzrTh5fPF6G9j6f/f5/z
- pKNDT9MX8RhcOJ+JkDzFDvO/CMX9geNHTfEpUUBNQxPX7cYB4oFBHmC0J
- Zv9MR2LUb6S9bKGH0SS/v4vgPycH7WRdhIPgXbyTy/GtMkuEXNr9eQqgN
- ANtBy9QbYjZvQ6hAkpjZinNFQbX4hilqMaSghhHgjad2UlrjThSXmRMaq
- KMMK/ge9LB6RDg/CYS8Mbyg5C5d7uXt+uM8KOJsEAwGK+ylK6AtMpf/dp
- sG8zHhuxDbUrpj3ccaE+xWyema9a95x3C4uEsleJgx5uhEIUKJfpaCfLP Q==;
-X-CSE-ConnectionGUID: 8mhpmV83RRms/zqi/wuvVQ==
-X-CSE-MsgGUID: ByQCSGtZRXO1wIofcgI/nw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11797"; a="91223153"
-X-IronPort-AV: E=Sophos;i="6.24,167,1774335600"; d="scan'208";a="91223153"
+ bh=hPULLc1pknRgHDe1HRB9YajYbzcWou7MrACk0r+mLPk=;
+ b=DbpoQvF+D54F3jb4pguvZ7V5A3Yqy9klhVQSvK/eKm1XgRxUxeeAzXRp
+ B++u23SZSMX3rvqfkM+bP18/+kldZsez/s4J93+qQIH+O2T5RNY4deV1D
+ acE8FpvV4Fmil1vGPjYSJG21VdSCromoX/HtQ1KNYkEZ/V4r75OiFhY8A
+ 4z82LtleaT1U3QS4DLPbe1MOjYgnvWhuLt8uUc7Z/+SXLeqBqA0vtFeFP
+ 5jnCSZpB0Tb6w7b3CQleZtuLqAF2l1T1XEJBD2hHel7rp41LCO3tUqHuA
+ C/gBwjONEVjfCmC3X7mG+qD3GSIWggvRdTPCrgjifEvsPkYN241Xb9g+7 Q==;
+X-CSE-ConnectionGUID: h9UTOq6VSdO5T8V1C3G4vw==
+X-CSE-MsgGUID: EiG/zVcPTb+AAnuHhoG9Cg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11797"; a="91223154"
+X-IronPort-AV: E=Sophos;i="6.24,167,1774335600"; d="scan'208";a="91223154"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2026 05:58:22 -0700
-X-CSE-ConnectionGUID: xM14GapdQCSP2+tCENUeIA==
-X-CSE-MsgGUID: rulf0qbWRb6H/PCiBL/Rtg==
+ 25 May 2026 05:58:24 -0700
+X-CSE-ConnectionGUID: Hfgqb03ZRLewzBUlfnyypw==
+X-CSE-MsgGUID: Tfj8ocXhRGm0Ck0mO2P1eg==
 X-ExtLoop1: 1
 Received: from ilevi-vm-u24.iil.labsad.intel.com ([10.111.58.213])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2026 05:58:21 -0700
+ 25 May 2026 05:58:23 -0700
 From: Ilia Levi <ilia.levi@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: ilia.levi@intel.com, koby.elbaz@intel.com, shuicheng.lin@intel.com,
  thomas.hellstrom@intel.com
-Subject: [PATCH 3/4] drm/xe/mmio_gem: cache the dummy page per object
-Date: Mon, 25 May 2026 15:58:05 +0300
-Message-ID: <20260525125801.975038-9-ilia.levi@intel.com>
+Subject: [PATCH 4/4] drm/xe/mmio_gem: fix destroy flow
+Date: Mon, 25 May 2026 15:58:06 +0300
+Message-ID: <20260525125801.975038-10-ilia.levi@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260525125801.975038-6-ilia.levi@intel.com>
 References: <20260525125801.975038-6-ilia.levi@intel.com>
@@ -66,96 +66,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently, when the fault handler provides a dummy page, it
-allocates a new one on every invocation and ties its lifetime to
-the drm_device via drmm_add_action_or_reset(). Concurrent faults
-after hot-unplug therefore accumulate pages that persist until
-device teardown.
+xe_mmio_gem_destroy() currently frees the GEM object directly, bypassing
+reference counting.  Since existing VMAs hold a reference and the fault
+handler accesses the object through vma->vm_private_data, this is
+use-after-free.  Additionally, nothing prevents the fault handler from
+installing PTEs to the real MMIO after destroy.
 
-Cache a single dummy page in the xe_mmio_gem object; a mutex
-serializes its allocation. Free it with the object.
+Use SRCU to ensure the fault handler sees the 'destroyed' flag
+(mirroring the drm_dev_enter/exit pattern for hot-unplug), then zap
+existing PTEs to prevent continued access to the real MMIO. Use
+drm_gem_object_put() to respect the reference count.
 
+Fixes: 1ffcf8b8ae8a ("drm/xe: Support for mmap-ing mmio regions")
 Signed-off-by: Ilia Levi <ilia.levi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_mmio_gem.c | 29 +++++++++++++++--------------
- 1 file changed, 15 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/xe/xe_mmio_gem.c | 27 ++++++++++++++++++++++++++-
+ 1 file changed, 26 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_mmio_gem.c b/drivers/gpu/drm/xe/xe_mmio_gem.c
-index 07ae21dc6211..cd3e7e3ca898 100644
+index cd3e7e3ca898..b488e99a97a0 100644
 --- a/drivers/gpu/drm/xe/xe_mmio_gem.c
 +++ b/drivers/gpu/drm/xe/xe_mmio_gem.c
-@@ -7,7 +7,6 @@
+@@ -5,11 +5,15 @@
  
+ #include "xe_mmio_gem.h"
+ 
++#include <linux/srcu.h>
++
  #include <drm/drm_drv.h>
  #include <drm/drm_gem.h>
--#include <drm/drm_managed.h>
  
  #include "xe_device_types.h"
  
-@@ -38,6 +37,8 @@ struct xe_mmio_gem {
- 	struct drm_gem_object base;
- 	phys_addr_t phys_addr;
++DEFINE_STATIC_SRCU(xe_mmio_gem_srcu);
++
+ /**
+  * DOC: Exposing MMIO regions to userspace
+  *
+@@ -39,6 +43,7 @@ struct xe_mmio_gem {
  	unsigned long pgoff;
-+	struct mutex dummy_page_lock; /* protects dummy page allocation */
-+	struct page *dummy_page;
+ 	struct mutex dummy_page_lock; /* protects dummy page allocation */
+ 	struct page *dummy_page;
++	bool destroyed;
  };
  
  static const struct vm_operations_struct vm_ops = {
-@@ -86,6 +87,7 @@ struct xe_mmio_gem *xe_mmio_gem_create(struct xe_device *xe, struct drm_file *fi
- 	base = &obj->base;
- 	base->funcs = &xe_mmio_gem_funcs;
- 	obj->phys_addr = phys_addr;
-+	mutex_init(&obj->dummy_page_lock);
- 
- 	drm_gem_private_object_init(&xe->drm, base, size);
- 
-@@ -124,6 +126,9 @@ static void xe_mmio_gem_free(struct drm_gem_object *base)
+@@ -145,8 +150,23 @@ static void xe_mmio_gem_free(struct drm_gem_object *base)
+  */
+ void xe_mmio_gem_destroy(struct xe_mmio_gem *gem, struct drm_file *file)
  {
- 	struct xe_mmio_gem *obj = to_xe_mmio_gem(base);
- 
-+	if (obj->dummy_page)
-+		__free_page(obj->dummy_page);
-+	mutex_destroy(&obj->dummy_page_lock);
- 	drm_gem_object_release(base);
- 	kfree(obj);
++	struct drm_gem_object *base = &gem->base;
++	struct drm_device *dev = base->dev;
++
+ 	drm_vma_node_revoke(&gem->base.vma_node, file);
+-	xe_mmio_gem_free(&gem->base);
++
++	gem->destroyed = true;
++	synchronize_srcu(&xe_mmio_gem_srcu);
++
++	/*
++	 * At this point every subsequent fault handler will see that the
++	 * objecthas been destroyed and provide the dummy page.
++	 * Now just zap existing PTEs to prevent continued access to the real
++	 * MMIO.
++	 */
++	drm_vma_node_unmap(&base->vma_node, dev->anon_inode->i_mapping);
++
++	drm_gem_object_put(base);
  }
-@@ -160,27 +165,23 @@ static int xe_mmio_gem_mmap(struct drm_gem_object *base, struct vm_area_struct *
- 	return 0;
- }
  
--static void xe_mmio_gem_release_dummy_page(struct drm_device *dev, void *res)
--{
--	__free_page((struct page *)res);
--}
--
- static vm_fault_t xe_mmio_gem_vm_fault_dummy_page(struct vm_area_struct *vma)
- {
- 	struct drm_gem_object *base = vma->vm_private_data;
--	struct drm_device *dev = base->dev;
-+	struct xe_mmio_gem *obj = to_xe_mmio_gem(base);
- 	vm_fault_t ret = VM_FAULT_NOPAGE;
- 	unsigned long addr, pfn;
--	struct page *page;
+ static int xe_mmio_gem_mmap(struct drm_gem_object *base, struct vm_area_struct *vma)
+@@ -204,6 +224,11 @@ static vm_fault_t xe_mmio_gem_vm_fault(struct vm_fault *vmf)
+ 	unsigned long pgoff;
+ 	int idx;
  
--	page = alloc_page(GFP_KERNEL | __GFP_ZERO);
--	if (!page)
--		return VM_FAULT_OOM;
-+	scoped_guard(mutex, &obj->dummy_page_lock) {
-+		if (obj->dummy_page)
-+			break;
- 
--	if (drmm_add_action_or_reset(dev, xe_mmio_gem_release_dummy_page, page))
--		return VM_FAULT_OOM;
-+		obj->dummy_page = alloc_page(GFP_KERNEL | __GFP_ZERO);
-+		if (!obj->dummy_page)
-+			return VM_FAULT_OOM;
-+	}
- 
--	pfn = page_to_pfn(page);
-+	pfn = page_to_pfn(obj->dummy_page);
- 
- 	/* Map the entire VMA to the same dummy page */
- 	for (addr = vma->vm_start; addr < vma->vm_end; addr += PAGE_SIZE) {
++	guard(srcu)(&xe_mmio_gem_srcu);
++
++	if (obj->destroyed)
++		return xe_mmio_gem_vm_fault_dummy_page(vma);
++
+ 	if (!drm_dev_enter(dev, &idx)) {
+ 		/*
+ 		 * Provide a dummy page to avoid SIGBUS for events such as hot-unplug.
 -- 
 2.43.0
 
