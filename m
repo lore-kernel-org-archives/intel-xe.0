@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68933CD5BBF
-	for <intel-xe@archiver.kernel.org>; Mon, 25 May 2026 09:33:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B20CCD5BC9
+	for <intel-xe@archiver.kernel.org>; Mon, 25 May 2026 09:33:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E44F10E098;
-	Mon, 25 May 2026 09:33:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B7AF10E0F1;
+	Mon, 25 May 2026 09:33:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WsfUqET5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TrWLlVvJ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2FCD10E098
- for <intel-xe@lists.freedesktop.org>; Mon, 25 May 2026 09:33:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E00CE10E0F1
+ for <intel-xe@lists.freedesktop.org>; Mon, 25 May 2026 09:33:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779701588; x=1811237588;
+ t=1779701601; x=1811237601;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=qKJeH7zjkcHSf9S7cx1LjBk9lUEWEaQJcDQvHTd7GH8=;
- b=WsfUqET5vOv49FrGavOF4aLquG+jkZIoCrQvgun9hwq4GBkvRkQYuUyw
- 2Bh+gjAqfto3LYznd4VMBHzYEOYFJYKRzVPQQ3+fnq6sdJ+zbMh8/CRgj
- KXLyLybNWgIJkhFc67uiy677+QP7j6eS3C6SoaxtHzwxEL+ckhW+trePX
- cbRqfR5ZnAr2xqTdEEP0SnYHnBadUc1sQXgYc1nAapstagqBAoeAJjifs
- NJjQgkVMKnj7aKmBMqf91x3wURHKan9lWurYc/9F4nixYvx8YAn1V9bJr
- m5uU5DHXNTB0JsEejUanf7loj32dv0ycPWTbq6dHK4eieUUXYrAU/bHUG Q==;
-X-CSE-ConnectionGUID: Lw7VZFdTSFqQQkClLvuZTA==
-X-CSE-MsgGUID: MZ9hyH53Q+292eoF9mGvsg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11796"; a="68046782"
-X-IronPort-AV: E=Sophos;i="6.24,167,1774335600"; d="scan'208";a="68046782"
+ bh=m0b8CbsPnUmfSw/I0ZZgmbwzRx1wrR03iuj0PysrxY0=;
+ b=TrWLlVvJSKq/aLoxAAtFrrY3wtEa7/0XG5mHHVm70iY2UaTID5F6cQ6E
+ T7aC54weScjyYogkNwRBiJTycnuhJiAPuJMim5EbaQkylzbQPpNJJQTaj
+ +krSRvCXfEpgNaqTrb0NiFolFfHxEH0Eu8YXDtmuOpd0f2Y2VNA5R9Ppj
+ qhh8pO/Zbd2WZtBqgayboCQwF1haO+dXnk5F1LZ85XPKufsRJNfj4DMvH
+ m7r52ALkz5U/cTWUp9U/LNp2+Xig22DFSYYFdJNDW00MCR7gJhKjkfG7v
+ /3loMpwZi906l6zDzgzWoRKORvGhc9eC4erg1PP5yX5FWqhGt89EetB1B Q==;
+X-CSE-ConnectionGUID: Y/5Am1bISYiI89nOzrPRCA==
+X-CSE-MsgGUID: rrzdwycMSkWF5MtIOLfKNg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11796"; a="68046794"
+X-IronPort-AV: E=Sophos;i="6.24,167,1774335600"; d="scan'208";a="68046794"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2026 02:33:08 -0700
-X-CSE-ConnectionGUID: AqdGS/QKTgKIdaT7j/9CrQ==
-X-CSE-MsgGUID: /UGb5dwMSIqXbJBxIbP6Lg==
+ 25 May 2026 02:33:20 -0700
+X-CSE-ConnectionGUID: hrKLGoDIQP2o2jk8cJISxA==
+X-CSE-MsgGUID: x0JIjBMAR3O1mg0j49s4hw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,167,1774335600"; d="scan'208";a="279669573"
+X-IronPort-AV: E=Sophos;i="6.24,167,1774335600"; d="scan'208";a="279669608"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2026 02:33:05 -0700
+ 25 May 2026 02:33:18 -0700
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  aravind.iddamsetty@linux.intel.com, badal.nilawar@intel.com,
  raag.jadav@intel.com, ravi.kishore.koppuravuri@intel.com,
  mallesh.koujalagi@intel.com, soham.purkait@intel.com,
- Matthew Brost <matthew.brost@intel.com>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v6 05/15] drm/xe: Skip device access during PCI error recovery
-Date: Mon, 25 May 2026 15:36:24 +0530
-Message-ID: <20260525100619.3155663-22-riana.tauro@intel.com>
+ Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH v6 06/15] drm/xe/xe_drm_client: Skip run_ticks fdinfo during
+ device reset
+Date: Mon, 25 May 2026 15:36:25 +0530
+Message-ID: <20260525100619.3155663-23-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20260525100619.3155663-17-riana.tauro@intel.com>
 References: <20260525100619.3155663-17-riana.tauro@intel.com>
@@ -71,169 +71,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When a fatal error occurs and the error_detected callback is
-invoked the device is inaccessible. The error_detected callback
-wedges the device causing the jobs to timeout.
+When a user process crashes, systemd-coredump reads /proc/<pid>/fdinfo
+for every open file descriptor. If the process has the Xe file
+descriptor open, this triggers the fdinfo callback. fdinfo callback
+reads the timestamp mmio registers by acquiring a forcewake.
 
-The timedout handler acquires forcewake to dump devcoredump and
-triggers a GT reset. Since the device is inaccessible this causes
-errors. Skip all mmio accesses and gt reset when the device
-is in reset.
+When an AER is triggered and SBR is requested, xe device quiesces and
+wedges the device that causes the user application to abort.
+systemd-coredump then tries to acquire forcewake but MMIO is unreliable
+when SBR is in flight causing spurious failures.
 
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+[ 1593.570091] xe 0000:03:00.0: [drm] *ERROR* Tile0: GT0: Force wake domain 1: wake. MMIO unreliable (forcewake register returns 0xFFFFFFFF)!
+[ 1593.570218] ------------[ cut here ]------------
+[ 1593.570220] xe 0000:03:00.0: [drm] Tile0: GT0: Forcewake domain 0x2 failed to acknowledge awake request
+[ 1593.570224] WARNING: drivers/gpu/drm/xe/xe_force_wake.c:206 at xe_force_wake_get+0xe6d/0x1f20 [xe], CPU#5: systemd-coredum/9237
+[ 1593.570916] RIP: 0010:xe_force_wake_get+0xe7e/0x1f20 [xe]
+...
+[ 1593.571082] Call Trace:
+[ 1593.571084]  <TASK>
+[ 1593.571087]  ? __pfx_rpm_resume+0x10/0x10
+[ 1593.571095]  ? mark_held_locks+0x4d/0x90
+[ 1593.571104]  ? __pfx_xe_force_wake_get+0x10/0x10 [xe]
+[ 1593.571220]  ? __pm_runtime_resume+0x85/0x130
+[ 1593.571225]  ? xe_pm_runtime_get+0xfd/0x2e0 [xe]
+[ 1593.571379]  show_run_ticks.isra.0+0x31b/0xa50 [xe]
+[ 1593.571497]  ? __pfx_show_run_ticks.isra.0+0x10/0x10 [xe]
+[ 1593.571619]  xe_drm_client_fdinfo+0xde/0x120 [xe]
+
+Check if device is in reset to skip MMIO access during SBR.
+
+Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 ---
-v2: add check in worker (Mallesh)
+ drivers/gpu/drm/xe/xe_drm_client.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-v3: add in_reset calls (Raag)
-    rename in_recovery to in_reset
-
-v4: fix typo
-    combine gt reset log (Mallesh)
----
- drivers/gpu/drm/xe/xe_device.h       | 15 +++++++++++++++
- drivers/gpu/drm/xe/xe_device_types.h |  3 +++
- drivers/gpu/drm/xe/xe_gt.c           | 14 ++++++++++----
- drivers/gpu/drm/xe/xe_guc_submit.c   |  9 +++++----
- drivers/gpu/drm/xe/xe_pci_error.c    |  3 +++
- 5 files changed, 36 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index 355d69dc8f54..765e90f4220f 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -181,6 +181,21 @@ static inline bool xe_device_has_mert(const struct xe_device *xe)
- 	return xe->info.has_mert;
- }
- 
-+static inline bool xe_device_is_in_reset(struct xe_device *xe)
-+{
-+	return atomic_read(&xe->in_reset);
-+}
-+
-+static inline void xe_device_set_in_reset(struct xe_device *xe)
-+{
-+	atomic_set(&xe->in_reset, 1);
-+}
-+
-+static inline void xe_device_clear_in_reset(struct xe_device *xe)
-+{
-+	atomic_set(&xe->in_reset, 0);
-+}
-+
- u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size);
- 
- void xe_device_snapshot_print(struct xe_device *xe, struct drm_printer *p);
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 714d2e25d3b0..f64e1a149cee 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -483,6 +483,9 @@ struct xe_device {
- 	/** @needs_flr_on_fini: requests function-reset on fini */
- 	bool needs_flr_on_fini;
- 
-+	/** @in_reset: Indicates if device is in reset */
-+	atomic_t in_reset;
-+
- 	/** @wedged: Struct to control Wedged States and mode */
- 	struct {
- 		/** @wedged.flag: Xe device faced a critical error and is now blocked. */
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 783eb6d631b5..d904527a8898 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -917,6 +917,9 @@ static void gt_reset_worker(struct work_struct *w)
- 	if (xe_device_wedged(gt_to_xe(gt)))
- 		goto err_pm_put;
- 
-+	if (xe_device_is_in_reset(gt_to_xe(gt)))
-+		goto err_pm_put;
-+
- 	/* We only support GT resets with GuC submission */
- 	if (!xe_device_uc_enabled(gt_to_xe(gt)))
- 		goto err_pm_put;
-@@ -977,18 +980,21 @@ static void gt_reset_worker(struct work_struct *w)
- 
- void xe_gt_reset_async(struct xe_gt *gt)
- {
--	xe_gt_info(gt, "trying reset from %ps\n", __builtin_return_address(0));
-+	struct xe_device *xe = gt_to_xe(gt);
-+
-+	if (xe_device_is_in_reset(xe))
-+		return;
- 
- 	/* Don't do a reset while one is already in flight */
- 	if (!xe_fault_inject_gt_reset() && xe_uc_reset_prepare(&gt->uc))
+diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
+index 84b66147bf49..266ffb60412c 100644
+--- a/drivers/gpu/drm/xe/xe_drm_client.c
++++ b/drivers/gpu/drm/xe/xe_drm_client.c
+@@ -326,8 +326,12 @@ static void show_run_ticks(struct drm_printer *p, struct drm_file *file)
+ 	 * RING_TIMESTAMP registers are inaccessible in VF mode.
+ 	 * Without drm-total-cycles-*, other keys provide little value.
+ 	 * Show all or none of the optional "run_ticks" keys in this case.
++	 *
++	 * Skip also during PCI error handling when a reset is in progress, since MMIO is
++	 * unreliable. Attempting to read RING_TIMESTAMP registers would return 0xFFFFFFFF,
++	 * causing spurious errors.
+ 	 */
+-	if (IS_SRIOV_VF(xe))
++	if (IS_SRIOV_VF(xe) || xe_device_is_in_reset(xe))
  		return;
  
--	xe_gt_info(gt, "reset queued\n");
-+	xe_gt_info(gt, "reset queued from %ps\n", __builtin_return_address(0));
- 
- 	/* Pair with put in gt_reset_worker() if work is enqueued */
--	xe_pm_runtime_get_noresume(gt_to_xe(gt));
-+	xe_pm_runtime_get_noresume(xe);
- 	if (!queue_work(gt->ordered_wq, &gt->reset.worker))
--		xe_pm_runtime_put(gt_to_xe(gt));
-+		xe_pm_runtime_put(xe);
- }
- 
- void xe_gt_suspend_prepare(struct xe_gt *gt)
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index afd8cc7bd231..f21a1f709c4a 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1514,7 +1514,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 	 * If devcoredump not captured and GuC capture for the job is not ready
- 	 * do manual capture first and decide later if we need to use it
- 	 */
--	if (!exec_queue_killed(q) && !xe->devcoredump.captured &&
-+	if (!xe_device_is_in_reset(xe) && !exec_queue_killed(q) && !xe->devcoredump.captured &&
- 	    !xe_guc_capture_get_matching_and_lock(q)) {
- 		/* take force wake before engine register manual capture */
- 		CLASS(xe_force_wake, fw_ref)(gt_to_fw(q->gt), XE_FORCEWAKE_ALL);
-@@ -1536,8 +1536,8 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 	set_exec_queue_banned(q);
- 
- 	/* Kick job / queue off hardware */
--	if (!wedged && (exec_queue_enabled(primary) ||
--			exec_queue_pending_disable(primary))) {
-+	if (!xe_device_is_in_reset(xe) && !wedged &&
-+	    (exec_queue_enabled(primary) || exec_queue_pending_disable(primary))) {
- 		int ret;
- 
- 		if (exec_queue_reset(primary))
-@@ -1605,7 +1605,8 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 
- 	trace_xe_sched_job_timedout(job);
- 
--	if (!exec_queue_killed(q))
-+	/* Do not access device if in reset */
-+	if (!xe_device_is_in_reset(xe) && !exec_queue_killed(q))
- 		xe_devcoredump(q, job,
- 			       "Timedout job - seqno=%u, lrc_seqno=%u, guc_id=%d, flags=0x%lx",
- 			       xe_sched_job_seqno(job), xe_sched_job_lrc_seqno(job),
-diff --git a/drivers/gpu/drm/xe/xe_pci_error.c b/drivers/gpu/drm/xe/xe_pci_error.c
-index 7e714a02feb2..8792ccfbddf2 100644
---- a/drivers/gpu/drm/xe/xe_pci_error.c
-+++ b/drivers/gpu/drm/xe/xe_pci_error.c
-@@ -20,6 +20,8 @@ static void pci_prepare_reset(struct pci_dev *pdev)
- 	struct xe_gt *gt;
- 	u8 id;
- 
-+	xe_device_set_in_reset(xe);
-+
  	/*
- 	 * Wedge the device to prevent userspace access but don't send the event yet.
- 	 * xe_device_wedged_fini() releases runtime pm if wedged flag is set, so acquire a runtime
-@@ -89,6 +91,7 @@ static pci_ers_result_t xe_pci_error_slot_reset(struct pci_dev *pdev)
- 	 * TODO: optimize by re-initializing only the hardware state and re-creating
- 	 * kernel BOs.
- 	 */
-+	xe_device_clear_in_reset(xe);
- 	pdev->driver->remove(pdev);
- 	devres_release_group(&pdev->dev, xe->devres_group_id);
- 
 -- 
 2.47.1
 
