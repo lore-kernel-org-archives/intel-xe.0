@@ -4,101 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2184CD5BB1
-	for <intel-xe@archiver.kernel.org>; Tue, 26 May 2026 13:01:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AEB1CD5BC8
+	for <intel-xe@archiver.kernel.org>; Tue, 26 May 2026 13:02:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88A1D10E4D3;
-	Tue, 26 May 2026 13:01:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88F9210E629;
+	Tue, 26 May 2026 13:02:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="FRGkHE9j";
+	dkim=pass (2048-bit key; unprotected) header.d=poorly.run header.i=@poorly.run header.b="drl1dbHg";
 	dkim-atps=neutral
-Received: from mail-wm1-f67.google.com (mail-wm1-f67.google.com
- [209.85.128.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99BD510E34F
- for <intel-xe@lists.freedesktop.org>; Sun, 24 May 2026 21:33:21 +0000 (UTC)
-Received: by mail-wm1-f67.google.com with SMTP id
- 5b1f17b1804b1-4896c22fcbaso75458855e9.0
- for <intel-xe@lists.freedesktop.org>; Sun, 24 May 2026 14:33:21 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1779658400; cv=none;
- d=google.com; s=arc-20240605;
- b=AGs89G7KmI1N2nyWjXvqlowKdPfjQU4QLWohPgifOvtLNUJ78h9dRoWRfPHTE/q/2x
- K8c09V9LiyvGA664UG1NlId5LSnBJGJqfUS+yUDSVMENtW3Ho2USyDknVZd34Q8p/DgX
- qfatqrNPDu+P1U1gcgyW5FQ68WuLqt12IISovNUVuEDe5Sj+pVkCKPyWAelnxeW3Is0y
- 5kxZpNuUSsvncen/H14/0SK/TLV2CiGGQdlct7qYXsEEO31453FXXY+gNAkEPrV/bReC
- tQwydFVptZ3CALDpZqjO8vAGNSIBs6eQKHoDfZsccTyv0Qt+OGaVotwD+3yAzdqpOBZ1
- p8iA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=cc:to:subject:message-id:date:from:mime-version:dkim-signature;
- bh=RfBHHtWh1E5iPfg08hDGPxdg+iSUq3Vo7ZICvTuwHxk=;
- fh=X0Cfb3ty7YRhoQKtGP5iD18irW1KszGnifJSnVBLr/Y=;
- b=AvIcpSionPnLMhO//UALwRcZ2JtNNhs15EJ/9BxQTknB6UFucTVda83sID/g7lD+HJ
- J+uNLXXADlpj28TGDq1QYiZMK2+ghB40DO3PZiYrhTekDbBTbyMhi77pLn+1bbe9oxgr
- 3veJcWClSSQT8+vnHYhRG83g80JMUkaEJksShsyXlVrasfoarekXHfTJ+AzUZYs99Y9D
- uz74XR8+hIptPIlyF814ZSW4jsmUFeSyob6CBmXaFuRCTUJD4fN/6/3B7UM7mBRflZt3
- WkqBumXamPc/cHlDKFOamAwGoc3+1xtEifsGdpiO3jb6FOmWPaGe/SQcHBmk+PafpS54
- +LIg==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com
+ [209.85.128.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 882EC10E135
+ for <intel-xe@lists.freedesktop.org>; Mon, 25 May 2026 13:57:32 +0000 (UTC)
+Received: by mail-yw1-f176.google.com with SMTP id
+ 00721157ae682-7c58e6eb3edso88786207b3.2
+ for <intel-xe@lists.freedesktop.org>; Mon, 25 May 2026 06:57:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1779658400; x=1780263200; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
- :date:message-id:reply-to;
- bh=RfBHHtWh1E5iPfg08hDGPxdg+iSUq3Vo7ZICvTuwHxk=;
- b=FRGkHE9jAhuLY7lflKPlQcu98V+coRIiYtVFdgNep5JC9N/ZznUw6FrVr00qPB9klt
- 9VxoNF1Y2m0bhaqs0yk3LuQkI01ChzmYiOkiiOsavveRredKXc+RoMAozcYyNkD8KVLs
- chvgxwM0HKqd1qhS8d9xIdZxUbHh1T0sq/9fFlZCv3b6OB4SjH48h5Fbx/KsfrbVsDTg
- T4ouxZ3SYp/hz+X/gaKTKE0ajn5Fse36U/aBkeSGU20SqQMwb8Rtp72mD19TA7Jp7RA/
- 3V26W+Wja3fItUJG4UB7LJKT8JnM3jsV1BE9i//1m9AfopopnqMlqu1FHfjSrVnNHNjz
- RdAQ==
+ d=poorly.run; s=google; t=1779717451; x=1780322251; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=R2Pnx/Mi+Y/3KV/4Sc1GEttUJtfyf8f5vLDsmZdB3eA=;
+ b=drl1dbHgFn46jD9/1E+ftFwo8fyEynU0mzF7rrsOJG1h+Djaa6JbjM/0SZA7UKgPY+
+ NTP4j9vJukZhEAOb3N0Gwf2AXoIZvsjx1EYXFe1PfN5T71l3Dd2VwSYWehPWVEcAck91
+ kmxGWZvOVMf0nt+5vo2UFGKOJuGr3uP5CIG7PaSbpy8HMU7dTK2a/ozJ9KObsaZL+uE/
+ ssFFqp4gMhzStA13VF4M4lSVQr6mbknzlOJRiu31kE5AqlTvTH5Q8xhkKoYli8Qfv7vQ
+ oU/INzDTwA6xF+EeNktGhPrRBvdsytBWoBAzlnxFbTGPAkHpc8p0j2bd8fjTpncTxIDu
+ 24VQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1779658400; x=1780263200;
- h=cc:to:subject:message-id:date:from:mime-version:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=RfBHHtWh1E5iPfg08hDGPxdg+iSUq3Vo7ZICvTuwHxk=;
- b=fmeIZY4tpq/kQVdPjhy2PsMJ7EhqO/7jDuGiUGFmgHpzmquY+0cBVCmjEg4HPfQz5A
- qvdKwE7D+et0kLe4PRrG95lW6qKldZkqV42xyqDMZCFWsfyAWr/JdHNtO2JaRmX8Fbe+
- CCN5metdsa1089xdJIB1m3kiRGruUvRFDNlLq+R8G7878HDcCITVlVb6ZmzHTPExOMvr
- /G3t8lIy+B3zEKOoeLHmpCrtHhotqYVBMCdkeEqpjxI+4Byv+nbPI2NYNppGH5sCXq2o
- Ts/Hv7NxUWxw0zwmLiBAhe9elEh64v/dUJH9qrf4NpeD1fh9YvV1bPtVI8gLG3r6hk/4
- iKVg==
+ d=1e100.net; s=20251104; t=1779717451; x=1780322251;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=R2Pnx/Mi+Y/3KV/4Sc1GEttUJtfyf8f5vLDsmZdB3eA=;
+ b=ltAmrOEnNHu9r3hAYK7tlWoEiUEz0f58/H6wB4lHG6Ah1nXjsTlu67MEkLfmF5zE3g
+ SZJwvR6dhAAWn0w7Re3mYk4MB4t5Wk37ksPUFRe6BCveOfIQpGKc+S23Q2ZZilp6R16e
+ y7u9ZOJVvlc6bWWa7IxywamUCrkChsPE/ozcyw6knP2Q5/I2k/KYGrnsmjmV59vbXup+
+ U+WANL18WasUPo3vEgmJHi8zF2ftj3CdLHUAWMWSDmQxq9Dik/bOiWR37OojsbmA876O
+ NqKT/9eSn1a6n5H210RvhTWSIxqg2QZtUb0a3RZUkk7ZJ5qPpdIFUzty8fBybkzQVNiz
+ 64Dg==
 X-Forwarded-Encrypted: i=1;
- AFNElJ8bkuQQgPF81AgWxSAdGNjrxJKWoZ+aATgyFfySPweVRw0Eq5m1D184gs9iSLQ3zi2PVzTYqWgIrw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyfQZHLlIlHVuKkRTdtVgVExwds1VGde1zXcVGbRsqceEk4KLoW
- pMundVCY82nDbYnDuew87GxT2nhUh5QR6FHBd9Ca8EWE29EK9hTydbXu48k3LE6fHTNYLEmLy3F
- xiOFr7wzOhEjq/3yaeiNXrUOXk4kRwjc=
-X-Gm-Gg: Acq92OFklY60D+EML3NPKbAUoKe9fraW3Y3FEe1phpI4fd9KK+5knRP53lnyB7zdoyt
- 5VZbBGMsgH9QpDyrINTgx2/qkzI34uXfy2q0qXojavUzGO8xfwY8hP5jDkN+RM5WP5H8FqACqIv
- 3sLBoqxStJ9cFPkyM66DWokEArbVzaJdauTY+1ob4rRqpIjspUlFviY8HmANI3hL4zpB4IyiQHE
- u2Qw9KpyyAfKiTm42qWktJtcB93dujihkSzZYMdjI1OHM3DXwbM3ttzXDEPKnaTtGPLD3h4SuIt
- gp5s6MqzwG53sgoU11gozgt6ony7kONJzzgcQDSMrADx6vYQTD7H
-X-Received: by 2002:a05:600c:19cb:b0:490:507c:bdb1 with SMTP id
- 5b1f17b1804b1-490507cbed4mr133267705e9.15.1779658399829; Sun, 24 May 2026
- 14:33:19 -0700 (PDT)
+ AFNElJ9ZP4H7MCEjHIoaj1XW80AvooCGorxOBOb7b6QUJJewxYnPET2bGNc87bMpjgf48Yk/GWsu0E0ZDg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwZmbfZYKA1EGEK9mIc3xx3eNdQp3HJGRuWlwlkp/59o7L4aSJb
+ I4nA7A/83E65pyr8w7mzEe+48o7/tUDi4W02VJCrCFLd5prOE52Vml/0to8GR7XtmlU=
+X-Gm-Gg: Acq92OFnhF9F2xabViQMLI55cPEQYja15ciuhOCvxelaIEZg/FJ0KCuVT02garSrcrb
+ pV+FlClEqD5HD3L/hl+SmlWGLKu0dI7erFff5EWjzU79UN9h6KJwxrvBAHhBUXcvcKBJBa23+Hn
+ qohTeKmETjGqQ+orWBCwJjrM6huU6Nu8LtBF49+gGC/rkWWAUH3+6QOQJqTACOJAPTaI7MPb0Dn
+ rJ5gqsKP2AhHUUr4WNQnqfP40mxkSviQlsWBHLYdZSBzB8KMvNGdGTGYNIINAg8D980ufkXCsRh
+ hhSR3rqnZBveTtRMMFDPdF7C6oqC2qdZkU28qYnyQ08VdFGtOmzJMlo29YLjg6TK3ypwNhC93+V
+ g7E454Ki0nxzmQesOU7HlaclzVdZmfgLD4AuokwTr8ehMSuJlqVqP8kp1ARbE204IIeqy1/oH8s
+ g56aGBYRblgAI1lKvO/Kvc/IDs/L5Uz5bsCPpYjfctoAmWs1yjvVhr0Cg=
+X-Received: by 2002:a05:690c:338e:b0:7c9:30f5:2054 with SMTP id
+ 00721157ae682-7d33a95ca47mr156744337b3.40.1779717451418; 
+ Mon, 25 May 2026 06:57:31 -0700 (PDT)
+Received: from localhost (191.99.245.35.bc.googleusercontent.com.
+ [35.245.99.191]) by smtp.gmail.com with ESMTPSA id
+ 00721157ae682-7d389d176a9sm46721407b3.16.2026.05.25.06.57.30
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 25 May 2026 06:57:30 -0700 (PDT)
+From: Sean Paul <sean@poorly.run>
+To: intel-gfx@lists.freedesktop.org,
+	jani.nikula@linux.intel.com
+Cc: Sean Paul <seanpaul@google.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH v2.1 1/2] drm/i915/color: Fix step discontinuity in Post-CSC
+ Gamma LUT
+Date: Mon, 25 May 2026 09:56:04 -0400
+Message-ID: <20260525135730.1122696-1-sean@poorly.run>
+X-Mailer: git-send-email 2.54.0.794.g4f17f83d09-goog
 MIME-Version: 1.0
-From: Misty Robinson <11111577m@gmail.com>
-Date: Sun, 24 May 2026 17:33:09 -0400
-X-Gm-Features: AVHnY4LYUQ0Tyb2yqL4DCU3LkzUo1pVpr98xcI4oG9pyvGMAS9XPi4QkbHlPExg
-Message-ID: <CAFufjN0cNAx9=xfNOTVZzm9wi8TjWGCRd0Bu_7P_QQUHj_BYNw@mail.gmail.com>
-Subject: Re: [PATCH v5 05/19] drm/mode-config: Document drm_private_obj
- exclusion from drm_mode_config_reset()
-To: mripard@kernel.org
-Cc: Laurent.pinchart@ideasonboard.com, airlied@gmail.com, alex.hung@amd.com, 
- andrzej.hajda@intel.com, contact@emersion.fr, corbet@lwn.net, 
- daniels@collabora.com, dave.stevenson@raspberrypi.com, 
- dmitry.baryshkov@oss.qualcomm.com, dri-devel@lists.freedesktop.org, 
- harry.wentland@amd.com, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com, 
- jernej.skrabec@gmail.com, jonas@kwiboo.se, joonas.lahtinen@linux.intel.com, 
- jyri.sarha@iki.fi, kernel-list@raspberrypi.com, 
- laurent.pinchart+renesas@ideasonboard.com, 
- linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev, 
- maarten.lankhorst@linux.intel.com, mcanal@igalia.com, mwen@igalia.com, 
- neil.armstrong@linaro.org, rfoss@kernel.org, rodrigo.vivi@intel.com, 
- samuel@sholland.org, sebastian.wick@redhat.com, simona@ffwll.ch, 
- skhan@linuxfoundation.org, tomi.valkeinen@ideasonboard.com, 
- tursulin@ursulin.net, tzimmermann@suse.de, wens@kernel.org
-Content-Type: multipart/alternative; boundary="000000000000be51920652970205"
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 26 May 2026 13:01:58 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -114,14 +91,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---000000000000be51920652970205
-Content-Type: text/plain; charset="UTF-8"
+From: Sean Paul <seanpaul@google.com>
 
+Fix a step discontinuity in the Post-CSC Gamma LUT when SDR dimming
+is active by clamping Segment 2 to the last user-provided LUT entry
+value instead of hardcoding it to 1.0 (1 << 24).
 
+Link: https://lore.kernel.org/intel-gfx/20260521180143.2143262-1-sean@poorly.run/ #v1
+Signed-off-by: Sean Paul <seanpaul@google.com>
 
---000000000000be51920652970205
-Content-Type: text/html; charset="UTF-8"
+Changes in v2:
+- Split out into separate patches for pre/post csc fixes
+- Dropped loop bounds fix in favor of [1]
 
-<div dir="auto"></div>
+[1]- https://lore.kernel.org/r/20260519075245.383864-1-pranay.samala@intel.com
+---
 
---000000000000be51920652970205--
+Changes in v2.1:
+- Rebased on Pranay's patch and sending without in-reply-to
+
+ drivers/gpu/drm/i915/display/intel_color.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+index 7ef870cd9a16..7185f3628dcf 100644
+--- a/drivers/gpu/drm/i915/display/intel_color.c
++++ b/drivers/gpu/drm/i915/display/intel_color.c
+@@ -4038,11 +4038,11 @@ xelpd_program_plane_post_csc_lut(struct intel_dsb *dsb,
+ 						   lut_val);
+ 			}
+ 
+-			/* Segment 2 */
++			/* Segment 2 - clamp to the last LUT value to prevent step discontinuity */
+ 			do {
+ 				intel_de_write_dsb(display, dsb,
+ 						   PLANE_POST_CSC_GAMC_DATA_ENH(pipe, plane, 0),
+-						   (1 << 24));
++						   lut_val);
+ 			} while (i++ < 34);
+ 		} else {
+ 			/*TODO: Add for segment 0 */
+-- 
+Sean Paul, Software Engineer, Google / Chromium OS
+
