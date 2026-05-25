@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12135CD5BB1
-	for <intel-xe@archiver.kernel.org>; Mon, 25 May 2026 11:44:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E284DCD5BB1
+	for <intel-xe@archiver.kernel.org>; Mon, 25 May 2026 11:44:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2DA010E2A0;
-	Mon, 25 May 2026 11:44:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99F6B10E2B2;
+	Mon, 25 May 2026 11:44:03 +0000 (UTC)
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E425A10E0EF;
- Mon, 25 May 2026 11:43:58 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7719262726905219779=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07C9610E2AB;
+ Mon, 25 May 2026 11:44:03 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Introduce_Xe_Uncorrectable_?=
- =?utf-8?q?Error_Handling_=28rev6=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/atomic=3A_track_indiv?=
+ =?utf-8?q?idual_colorop_updates?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tauro, Riana" <riana.tauro@intel.com>
+To: "Melissa Wen" <mwen@igalia.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 25 May 2026 11:43:58 -0000
-Message-ID: <177970943892.4776.14452818933245322489@6beec6c84f66>
+Date: Mon, 25 May 2026 11:44:03 -0000
+Message-ID: <177970944302.4776.8157323976688170088@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260525100619.3155663-17-riana.tauro@intel.com>
-In-Reply-To: <20260525100619.3155663-17-riana.tauro@intel.com>
+References: <20260525100524.304263-1-mwen@igalia.com>
+In-Reply-To: <20260525100524.304263-1-mwen@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,59 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7719262726905219779==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Introduce Xe Uncorrectable Error Handling (rev6)
-URL   : https://patchwork.freedesktop.org/series/160482/
-State : success
+Series: drm/atomic: track individual colorop updates
+URL   : https://patchwork.freedesktop.org/series/167200/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-5121-a79fb6644b307c0ced7b8fe967cdcac8ea884e03_BAT -> xe-pw-160482v6_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit bcb4261d9681199721ad2efd7d626de97ac266f2
+Author: Melissa Wen <mwen@igalia.com>
+Date:   Mon May 25 11:50:01 2026 +0200
 
-Summary
--------
+    drm/amd/display: use plane color_mgmt_changed to track colorop changes
+    
+    Ensure the driver tracks changes in any colorop property of a plane
+    color pipeline by using the same mechanism of CRTC color management and
+    update plane color blocks when any colorop property changes. It fixes an
+    issue observed on gamescope settings for night mode which is done via
+    shaper/3D-LUT updates.
+    
+    Reviewed-by: Harry Wentland <harry.wentland@amd.com>
+    Signed-off-by: Melissa Wen <mwen@igalia.com>
++ /mt/dim checkpatch 099f0e417d2c6ee41a50c87e1cb9411cceaff454 drm-intel
+e06ecfed8f31 drm/colorop: Remove read-only comments from interpolation fields
+a2a6acc04ed1 drm/colorop: make lut(1/3)d_interpolation mutable
+-:22: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#22: FILE: drivers/gpu/drm/drm_atomic.c:833:
++				  drm_get_colorop_lut1d_interpolation_name(state->lut1d_interpolation));
 
-  **SUCCESS**
+-:31: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#31: FILE: drivers/gpu/drm/drm_atomic.c:845:
++				  drm_get_colorop_lut3d_interpolation_name(state->lut3d_interpolation));
 
-  No regressions found.
+total: 0 errors, 2 warnings, 0 checks, 121 lines checked
+fb0e0aec3b79 drm/atomic: track individual colorop updates
+-:65: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u64' over 'uint64_t'
+#65: FILE: drivers/gpu/drm/drm_atomic_uapi.c:724:
++					      uint64_t val,
 
-  
+-:87: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u64' over 'uint64_t'
+#87: FILE: drivers/gpu/drm/drm_atomic_uapi.c:757:
++					   uint64_t val,
 
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5121-a79fb6644b307c0ced7b8fe967cdcac8ea884e03 -> xe-pw-160482v6
-
-  IGT_8936: 98b65acc4f6edf68cd52b30f27b83049c4c5c83b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5121-a79fb6644b307c0ced7b8fe967cdcac8ea884e03: a79fb6644b307c0ced7b8fe967cdcac8ea884e03
-  xe-pw-160482v6: 160482v6
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160482v6/index.html
-
---===============7719262726905219779==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 0 warnings, 2 checks, 147 lines checked
+bcb4261d9681 drm/amd/display: use plane color_mgmt_changed to track colorop changes
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Introduce Xe Uncorrectable Error Handling (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160482/">https://patchwork.freedesktop.org/series/160482/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160482v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160482v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5121-a79fb6644b307c0ced7b8fe967cdcac8ea884e03_BAT -&gt; xe-pw-160482v6_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5121-a79fb6644b307c0ced7b8fe967cdcac8ea884e03 -&gt; xe-pw-160482v6</li>
-</ul>
-<p>IGT_8936: 98b65acc4f6edf68cd52b30f27b83049c4c5c83b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5121-a79fb6644b307c0ced7b8fe967cdcac8ea884e03: a79fb6644b307c0ced7b8fe967cdcac8ea884e03<br />
-  xe-pw-160482v6: 160482v6</p>
-
-</body>
-</html>
-
---===============7719262726905219779==--
