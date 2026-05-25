@@ -4,63 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD88DCD5BB1
-	for <intel-xe@archiver.kernel.org>; Mon, 25 May 2026 13:05:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67777CD5BB1
+	for <intel-xe@archiver.kernel.org>; Mon, 25 May 2026 13:11:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7368410E31D;
-	Mon, 25 May 2026 13:05:42 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WKIT4LGW";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6888E10E318;
- Mon, 25 May 2026 13:05:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779714342; x=1811250342;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=a8gnzDoSfgaEEDH5pXOUUXfrlR+0QEXO0LFuUGmlqGk=;
- b=WKIT4LGWVY+nJGbLZrGTzTGYjSHrauwOP34KaPP7KSXKcFOpIwE4teFt
- pwlltdXWnAxnQFHs/bx8lHarsPXKFZSJDo8VI4eLtNg66P+81sLBFirV4
- 4IDLDKStYlO5n3PLDlBgYFfx/HovM8LU8+IY2O/Mu2D2VOmQqk3lWKdd5
- 6jO5nqlP2yDsGnNqiXYdBFSCNC16fI+2TLOCRJscP4ncLW3HQvA2Anku8
- tbLMDiUi94OzAqYZ7afJC0x3i9EFWEE9jZiKEd4q8+fZZQ+MwS55vWU9A
- ExC76/QncaqH4pfUSOZE/jZAB8zb/fH+EJxz0jo4Ue8CXKzk0f3sh2fMp Q==;
-X-CSE-ConnectionGUID: 7Fp7b3DTSmWm8cKEB7iVWA==
-X-CSE-MsgGUID: ENeVoeGTQeiJ46lccR32bQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11797"; a="80719963"
-X-IronPort-AV: E=Sophos;i="6.24,167,1774335600"; d="scan'208";a="80719963"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2026 06:05:42 -0700
-X-CSE-ConnectionGUID: 9OOSjg3DTuuZ7d/AaJJqFA==
-X-CSE-MsgGUID: E8zhZ4JyTpyh0OY+GsQ0Cg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,167,1774335600"; d="scan'208";a="246571209"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.245.216])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2026 06:05:37 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Sean Paul <seanpaul@google.com>
-Cc: Sean Paul <sean@poorly.run>, intel-gfx@lists.freedesktop.org, Rodrigo
- Vivi <rodrigo.vivi@intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/color: Fix plane color pipeline programming bugs
-In-Reply-To: <CAOw6vbL-+YZED15LFH0PRbxWbKhkOohNd+fnJMmVtdvF=A31RQ@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260521180143.2143262-1-sean@poorly.run>
- <6d8e36e2aea806f9973b3c501aad4523f7316d6a@intel.com>
- <CAOw6vbL-+YZED15LFH0PRbxWbKhkOohNd+fnJMmVtdvF=A31RQ@mail.gmail.com>
-Date: Mon, 25 May 2026 16:05:34 +0300
-Message-ID: <e1f3d92808cf17842525815ee23ae0ee6e1064e4@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AF5810E323;
+	Mon, 25 May 2026 13:11:55 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D89CB10E323;
+ Mon, 25 May 2026 13:11:53 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7205299035095757951=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915=3A_crtc_iteration_?=
+ =?utf-8?q?cleanups_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 25 May 2026 13:11:53 -0000
+Message-ID: <177971471388.4776.6196912333921948641@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <cover.1778659089.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1778659089.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,122 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 21 May 2026, Sean Paul <seanpaul@google.com> wrote:
-> On Thu, May 21, 2026 at 2:39=E2=80=AFPM Jani Nikula <jani.nikula@linux.in=
-tel.com> wrote:
->>
->> On Thu, 21 May 2026, Sean Paul <sean@poorly.run> wrote:
->> > From: Sean Paul <seanpaul@google.com>
->> >
->> > Fix two bugs in the plane-level color pipeline programming:
->> > 1. Fix a step discontinuity in the Post-CSC Gamma LUT when SDR dimming
->> >    is active by clamping Segment 2 to the last user-provided LUT entry
->> >    value instead of hardcoding it to 1.0 (1 << 24).
->> > 2. Fix a typo in the loop condition in xelpd_program_plane_pre_csc_lut
->> >    for Segment 2 degamma programming, changing 'while (i++ > 130)' to
->> >    'while (i++ < 130)'. Also clamp Segment 2 to the last user-provided
->> >    LUT entry value instead of hardcoding it to 1.0 (1 << 24) to fix
->> >    a step discontinuity similar to the Post-CSC fix.
->>
->> One fix per patch, please.
->
-> Ack
->
->>
->> For #2 there's already [1].
->
-> This isn't in drm-tip or drm-intel afaict. I'll drop it out of my set,
-> but could you please apply it?
+--===============7205299035095757951==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-It's been merged.
+== Series Details ==
 
-The v2 replies here confused poor patchwork, please resend the patches
-as a new thread.
+Series: drm/i915: crtc iteration cleanups (rev3)
+URL   : https://patchwork.freedesktop.org/series/165524/
+State : success
 
-BR,
-Jani.
+== Summary ==
 
->
-> Sean
->
->>
->> BR,
->> Jani.
->>
->> [1] https://lore.kernel.org/r/20260519075245.383864-1-pranay.samala@inte=
-l.com
->>
->> >
->> > Signed-off-by: Sean Paul <seanpaul@google.com>
->> > ---
->> >  drivers/gpu/drm/i915/display/intel_color.c | 11 ++++++-----
->> >  1 file changed, 6 insertions(+), 5 deletions(-)
->> >
->> > diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/=
-drm/i915/display/intel_color.c
->> > index 2d318e922671..9b807b024ec3 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_color.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_color.c
->> > @@ -3953,6 +3953,7 @@ xelpd_program_plane_pre_csc_lut(struct intel_dsb=
- *dsb,
->> >       enum plane_id plane =3D to_intel_plane(state->plane)->id;
->> >       const struct drm_color_lut32 *pre_csc_lut =3D plane_state->hw.de=
-gamma_lut->data;
->> >       u32 i, lut_size;
->> > +     u32 lut_val =3D 1 << 24;
->> >
->> >       if (icl_is_hdr_plane(display, plane)) {
->> >               lut_size =3D 128;
->> > @@ -3963,7 +3964,7 @@ xelpd_program_plane_pre_csc_lut(struct intel_dsb=
- *dsb,
->> >
->> >               if (pre_csc_lut) {
->> >                       for (i =3D 0; i < lut_size; i++) {
->> > -                             u32 lut_val =3D drm_color_lut32_extract(=
-pre_csc_lut[i].green, 24);
->> > +                             lut_val =3D drm_color_lut32_extract(pre_=
-csc_lut[i].green, 24);
->> >
->> >                               intel_de_write_dsb(display, dsb,
->> >                                                  PLANE_PRE_CSC_GAMC_DA=
-TA_ENH(pipe, plane, 0),
->> > @@ -3975,8 +3976,8 @@ xelpd_program_plane_pre_csc_lut(struct intel_dsb=
- *dsb,
->> >                       do {
->> >                               intel_de_write_dsb(display, dsb,
->> >                                                  PLANE_PRE_CSC_GAMC_DA=
-TA_ENH(pipe, plane, 0),
->> > -                                                (1 << 24));
->> > -                     } while (i++ > 130);
->> > +                                                lut_val);
->> > +                     } while (i++ < 130);
->> >               } else {
->> >                       for (i =3D 0; i < lut_size; i++) {
->> >                               u32 v =3D (i * ((1 << 24) - 1)) / (lut_s=
-ize - 1);
->> > @@ -4023,11 +4024,11 @@ xelpd_program_plane_post_csc_lut(struct intel_=
-dsb *dsb,
->> >                                                  lut_val);
->> >                       }
->> >
->> > -                     /* Segment 2 */
->> > +                     /* Segment 2 - clamp to the last LUT value to pr=
-event step discontinuity */
->> >                       do {
->> >                               intel_de_write_dsb(display, dsb,
->> >                                                  PLANE_POST_CSC_GAMC_D=
-ATA_ENH(pipe, plane, 0),
->> > -                                                (1 << 24));
->> > +                                                lut_val);
->> >                       } while (i++ < 34);
->> >               } else {
->> >                       /*TODO: Add for segment 0 */
->>
->> --
->> Jani Nikula, Intel
+CI Bug Log - changes from xe-5122-cd7e65a9c3a38736427bbd62baf2aaa1240902a4_BAT -> xe-pw-165524v3_BAT
+====================================================
 
---=20
-Jani Nikula, Intel
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5122-cd7e65a9c3a38736427bbd62baf2aaa1240902a4 -> xe-pw-165524v3
+
+  IGT_8936: 98b65acc4f6edf68cd52b30f27b83049c4c5c83b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5122-cd7e65a9c3a38736427bbd62baf2aaa1240902a4: cd7e65a9c3a38736427bbd62baf2aaa1240902a4
+  xe-pw-165524v3: 165524v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165524v3/index.html
+
+--===============7205299035095757951==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: crtc iteration cleanups (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165524/">https://patchwork.freedesktop.org/series/165524/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165524v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165524v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5122-cd7e65a9c3a38736427bbd62baf2aaa1240902a4_BAT -&gt; xe-pw-165524v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5122-cd7e65a9c3a38736427bbd62baf2aaa1240902a4 -&gt; xe-pw-165524v3</li>
+</ul>
+<p>IGT_8936: 98b65acc4f6edf68cd52b30f27b83049c4c5c83b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5122-cd7e65a9c3a38736427bbd62baf2aaa1240902a4: cd7e65a9c3a38736427bbd62baf2aaa1240902a4<br />
+  xe-pw-165524v3: 165524v3</p>
+
+</body>
+</html>
+
+--===============7205299035095757951==--
