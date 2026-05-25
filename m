@@ -4,159 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A49CCD5BBF
-	for <intel-xe@archiver.kernel.org>; Mon, 25 May 2026 09:54:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9366FCD5BC8
+	for <intel-xe@archiver.kernel.org>; Mon, 25 May 2026 10:06:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3213610E101;
-	Mon, 25 May 2026 09:54:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F091C10E13E;
+	Mon, 25 May 2026 10:06:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jhKnoH3R";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Df2WkEyC";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 279AB10E0FF;
- Mon, 25 May 2026 09:54:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779702845; x=1811238845;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=jPf4dz2IF8hrODnas4JL+cvz8yS7RuVDRLHEc+luoeY=;
- b=jhKnoH3RCfjuGnDFQga3BrSQiS0FyIxgxT9Cn9awlPw1BdJNlIrktFEK
- 7gUfFK8zCPa7FIBxVd07H/lckyGUcd/cmgoGYaKDqZVJR+TAWCiz+qWQk
- 8VXkrMeWpGbL8ro1cEiRxPtV4ZjFXtvQhimWqZ+O1wAxWn7+LQjepDzIQ
- bhVYHLptnIjuYRYTjmJv47pHMAVpyvgiqkpcAZQlqxLoReJEuXh4kMiwv
- 1My+Y75dtJmT8S0L1DWbWvT2TBWIwLBowWHS5RXMU7CAXEQIwXS8fju1z
- EkliYSHYrqZpjlGBgjEAnDgMXk4ZVkLi3YGrYkRpmSYP93WZoqiBFRlEv A==;
-X-CSE-ConnectionGUID: N+Ab6fV8Ss6t8xr8hhd4iw==
-X-CSE-MsgGUID: 3styOjcVRM6rX5iQBL5GGQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11796"; a="80707471"
-X-IronPort-AV: E=Sophos;i="6.24,167,1774335600"; d="scan'208";a="80707471"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2026 02:54:04 -0700
-X-CSE-ConnectionGUID: lafF2Oe3Q9WsrIim3Ti4oQ==
-X-CSE-MsgGUID: c48NVVvBSxOG40uEIiKtQg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,167,1774335600"; d="scan'208";a="240525473"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2026 02:54:04 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 25 May 2026 02:54:03 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 25 May 2026 02:54:03 -0700
-Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.37) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 25 May 2026 02:54:01 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=deVZiCr0jv9zDWLxmro7BJF9mgS1OgwLMquClbAHVb7SIvCgUc3UPna89Iw3VTWM9c/gNU+3FFta9U7d9FDiDSbw0+WH8EeYS/1g3wWtvyQHjQCJ/h4AcC+7uyyBbUk03a60CLoL6LyKiEklodtLMxJblkgxHU3ZI7BYoWyU+g26RKLMkwnReWzRYAaUSpFT5GA7My16shn3n/ox6Qa+zCc8esVPXxZQ1AQ91UeOsZo7+Dld1My7muq+zbWrdAZRDats/8jXlZ/t4l5HqXz3O2BSfGPGlXWjGyhu6QeksAJ+N/BFuNapsrEhsb+Ep1EnZcuxHpiuYNB7zXIBWsn1WQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6pISUlE5eSV3z48SSMio5nQxoRMUDMMSd7maMAb1a1E=;
- b=fJvS5ZVs+yrSCblxlHIANvqMfHI79aTrECz4Ui15jjVwBI4qyxhTRTLWomKM+AyQsZXFsb135PR0YBcWAi/vBF5WK05qiTkZXaeQz4TV0NUdgfktzhS+AHo840iBpY9Ewk8ZIkJNfRaxmPIT5pQ7wGTNM6K07YDcOvRRsAWtkml1BRNDC09KUIuiVdwdd2fVJfgFUVno80ttEFVmUfFfAhv4LGaq/07Pbvew7lT5hmjsVi2a0Gpqn0Qp3crIhZ4nb+8UbqDRnZm+YMf+4Hu5H6zQrHUJRS4ufewRoyh2woArhNkBD4suHpoXxtMu46k/mepVTAXA4FSXOQPzqbGnqQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
- SA3PR11MB7656.namprd11.prod.outlook.com (2603:10b6:806:320::7) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.48.19; Mon, 25 May 2026 09:53:58 +0000
-Received: from DS0PR11MB7958.namprd11.prod.outlook.com
- ([fe80::8cb2:cffc:b684:9a99]) by DS0PR11MB7958.namprd11.prod.outlook.com
- ([fe80::8cb2:cffc:b684:9a99%6]) with mapi id 15.21.0048.019; Mon, 25 May 2026
- 09:53:58 +0000
-Message-ID: <b1c3c79d-f114-4283-b8fc-1fbcfe85576c@intel.com>
-Date: Mon, 25 May 2026 15:23:50 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] drm/ras: Cancel and free message on get counter
- failure
-To: Raag Jadav <raag.jadav@intel.com>, <intel-xe@lists.freedesktop.org>,
- <dri-devel@lists.freedesktop.org>, <netdev@vger.kernel.org>
-CC: <rodrigo.vivi@intel.com>, <dev@lankhorst.se>, <airlied@gmail.com>,
- <simona@ffwll.ch>, <kuba@kernel.org>
-References: <20260523050212.557292-1-raag.jadav@intel.com>
- <20260523050212.557292-2-raag.jadav@intel.com>
-Content-Language: en-US
-From: "Tauro, Riana" <riana.tauro@intel.com>
-In-Reply-To: <20260523050212.557292-2-raag.jadav@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5PR01CA0218.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1f3::13) To DS0PR11MB7958.namprd11.prod.outlook.com
- (2603:10b6:8:f9::19)
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EF4C10E0EC;
+ Mon, 25 May 2026 10:06:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+ Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=eBEeZMrZM7/C8pXjQYVWQa4FrwVMoSc7Wozy/Zc+UnU=; b=Df2WkEyCbxrLiwT9wGvQmP2mVS
+ h2b+hLVY6nHelGBgqaAVoFk7GGzdpE4ktnBVlbUlkdR3IXCP/aRn9X0IeRSC7wjmhoOjgrbP7/6tp
+ uvIVnxS6lM4urU/QOaPKlsJmb7nzA45v8SDIAdVbZhg1mgZhgal/FuLAnYuLegIMdlQAM4LclGhPu
+ 4pJ+2+Gy7I0/yhd5Bs0Iqe4m6u5QviOr+R9AsHhrPjMHgJGOi3np363x37z/j7xuRr7AMlSMV/H7y
+ 15FLLhZn8nBbDiO+0zIp6PVULmpf34AQ8W/P9/XN9fbR/Dwniy7JQCNsnCVlHplidpGoUX7V6HKeR
+ AaBQcL4A==;
+Received: from [79.117.146.159] (helo=killbill.home)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1wRSBo-007xuT-IW; Mon, 25 May 2026 12:05:40 +0200
+From: Melissa Wen <mwen@igalia.com>
+To: airlied@gmail.com, alexander.deucher@amd.com, christian.koenig@amd.com,
+ harry.wentland@amd.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, simona@ffwll.ch, siqueira@igalia.com,
+ sunpeng.li@amd.com, tzimmermann@suse.de
+Cc: Alex Hung <alex.hung@amd.com>, Simon Ser <contact@emersion.fr>,
+ Uma Shankar <uma.shankar@intel.com>,
+ Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ Xaver Hugl <xaver.hugl@kde.org>,
+ Pekka Paalanen <pekka.paalanen@collabora.com>,
+ Louis Chauvet <louis.chauvet@bootlin.com>,
+ Matthew Schwartz <matthew.schwartz@linux.dev>,
+ amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
+ Rob Clark <robin.clark@oss.qualcomm.com>,
+ Dmitry Baryshkov <lumag@kernel.org>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH v7 3/4] drm/atomic: track individual colorop updates
+Date: Mon, 25 May 2026 11:50:00 +0200
+Message-ID: <20260525100524.304263-4-mwen@igalia.com>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260525100524.304263-1-mwen@igalia.com>
+References: <20260525100524.304263-1-mwen@igalia.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|SA3PR11MB7656:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8c90e8e4-f67a-4f25-99be-08deba438a44
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|22082099003|56012099003|18002099003|6133799003|11063799006|4143699003;
-X-Microsoft-Antispam-Message-Info: AVi+VWLfKP7TdszybdjiFyQaWjodi9f2uUUyADKDFs2rs1bXoeRlnflLU/hNgPADnfl67Y6AlDKnX1K6AEKV4Nw15wKswjit0C3wfd/nNbx9F6B9d+wXIpe3xuRIf53GU2Crxye++U8QMVMiF7IjdhwZuvO472N/Fd4ZnxgrR9870gpSOGOE4uGIXkRNwJKBeE567aUkYJQ7T+FwhsmbSKmo/QQ+dbhnDY5Gl1v1B9dnvgmLVLNO5SMk+CxtjVJC1g53EmU4M2d3gWcsWcUlsFJfNKIS/7YeXM5j/6Xo5Mocti7YYJWk/tpOxJMhlu1kYgj39vfgt820zvWiFChFFRN6jA4nHaCLiMtxBCEe/7Jv67JIe6vutYwWNeNOjORTDEqDLJuWWWprnD/33Lpub8CUuR3aQak49zBwm6Cy2a/WqwEAUL0XOzIqq9U0tcdEWlQfayW/e0mHB+MYmE9A17RaCezFY7u763ylc20KRmxsRAhmXJDMZ74+um4+PcrqgbzR75FSLwkBGDvNQ/5a5wOsYTq5GImibW8myw88OgZ54rq7tswrVqekvOshn1pptfGNkTn0TRFH1nwLpoD+pp6zJ+vkkXOzufmaf124u6yHBzWYGnkxAKa6fZG2GqDcxgCSpaQ21iH3jZScGZYgZqfa3xxjIEhAD/szQoyuI6VuhSSveO1dAuPHmjK7tuiE
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(22082099003)(56012099003)(18002099003)(6133799003)(11063799006)(4143699003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dGtmZjNnUWM1eWlVYUFpWDRtTnllT2ZIakJOQ3J2VkhKV1o5T2EyVkdQREhx?=
- =?utf-8?B?SFBDWEp5ZWtyNWxFaU53RVE1ZEEwTXpMSzBLbS9TMG0zd24rRXFGOTkwK3dx?=
- =?utf-8?B?SFB5UFBPc0cwcS80Vno5N0NZSWpYVzBqUjZab2w0a0xXenBiT1ppWm9nWTl6?=
- =?utf-8?B?dlhaaXRJbThHYjJtblNZZ29JRDFrU2xZaEdBT2tKcWZ4NGZnamlLRks0TEgx?=
- =?utf-8?B?NWxuREtvbkZpRk9MV3NWRXR0TEdaNjlPRi9ZNDNoVDIxOURadGRHZGdJcEpl?=
- =?utf-8?B?a2p0OERtaXRNY2tUQ2RsTWFtT09Icnk1Z0RqaXFBSjV2MS9kWnJOb3dGQ2E5?=
- =?utf-8?B?MUszdC81UDlRMlR4MEVMVkV2aUM0Sys5K1hJeXVyanVsQllGaHp1bUJ0dWJR?=
- =?utf-8?B?b215K1Q3OEtHUFU5R0ZaREtnU1UzQ2xrQSt6UVIxOUlrdHhEMUdSeUpCNDFO?=
- =?utf-8?B?MENjOUxMUWkrSG5GYVQxTmdHYlEveDZUMFRqMTJUV2llb244WVFHekgzRUNB?=
- =?utf-8?B?TDhmMVduekl3WjlRMUdaWXcxbTlOWDZ2WWVRT3NYb1NlSEFXbUZSWVZycnkw?=
- =?utf-8?B?ZlVWU016S0YzQVBJM3lPM05IY2RBOUhtK0xrZ01oSWtNVlBxYkNmS1l1YzZi?=
- =?utf-8?B?dExtVVlDQnpSc1JBb2g1OWdSdFlFL2t4cDc0OS96ZXBTRE5ETGo0NERDamZ1?=
- =?utf-8?B?MVZncDZTZVlvMWRxNVdEbytidm5Vblc4RFg0MFFkNXI0amptdm9XeDl1RUxX?=
- =?utf-8?B?S2FaZUR1Vkc0Z3N3anppNmVraHR5YTdmYWUzVUtUdFJPUjQwVDkrSGNpR2g3?=
- =?utf-8?B?OE5DL0xDcE9nVkErZnJVSlloQVBFWU1xV04rZnRvUDN2elc4WGtWYXUrTjNh?=
- =?utf-8?B?WVhZbnRMa0U5TS9mTHdtUEpTd2RrUi9TUUFha3JoL01UZ0xpU1BwU25jRXJX?=
- =?utf-8?B?REVKYUp2NmdlVjB4N0h0R3VvSy9Ua0tGcVBsSHQ0TlpPdVBsQzZyQStsYWxS?=
- =?utf-8?B?b3hNYnFxVVhNeTc3QmxiZjIyOGdud1dmYXp2REpJSzc5eUNKRm5FbzI0Qktt?=
- =?utf-8?B?WS84WFZRVnVZWHFQSyt3WDNkcHZORmRFbjhEbGhzbVZuSkh6VlFzbzZaS2lq?=
- =?utf-8?B?cnhpZGJBUWNzYmdXVXkzQ2NtWkg2bWJlYnlhS1h5c2xQQ1RrSXA2L0Y2ZzRy?=
- =?utf-8?B?aDRuNjNBbW1YeUNlazB1TFRpSUs4V0JkQ2NJb0FWbnFIbkdPWE1zSzZBMTND?=
- =?utf-8?B?UjJlYnZpQzB4NkF1Qlc5dDVST1FsSFcrc2hHVXNOYWhadFlud3h5dEI2dG5H?=
- =?utf-8?B?OHZLK090SkFLcUNFc2V1aE00S05sWHZXRkdBdlBCQTIyaTFuZHpuVFIvS1Ni?=
- =?utf-8?B?b1RDbm9aV0haTk0xUmU5TEVqUHRHVTNiQS9WdlF1YUE0N3dIOEsxRFRmTCtX?=
- =?utf-8?B?TjBVZ09XM3RPTXI2bUg3aHBMYVpqcVlXNUR0ZTQwVUtiQWsyUjlpeCtEVGkv?=
- =?utf-8?B?aHdLcE9ObHVyUzhtWEVTeDhzSlJoUkRpZ2xqOHRKbVJyVE5oWmF0REZOSnhl?=
- =?utf-8?B?ZzNlNmlBSWQxNG1yQWFwTVNNTkpLK3JISVROYUJJTXp4ajlERzhpQm9oNDln?=
- =?utf-8?B?a3UzVXllcGRGL3RSQlpBbWUxUTNoRlJHZnVXSlM3MkVYTFd0SVRPSHBMb1Jw?=
- =?utf-8?B?RTF1Y3ZYNFpsckhieFU1Mnhuc0trMDUzT01LVFltVmQ0L2RRaXhxdUY3MW5W?=
- =?utf-8?B?alVkTk1wZmRvSklISFRlanRqNW1CQ2wvS2ZLRTduODAxYy9ldWlZSFhac1Vz?=
- =?utf-8?B?RjlweVZJbUkvUXpyK056SElocHd2cmxqNUkweENOWEdjRm00ZDRJSElCMmlC?=
- =?utf-8?B?Q3JpUGRDenNBWjZ5MEdZWEI2NWRyaHIwTGZqNUMyM25ZVm5CYTlHMk51VWlp?=
- =?utf-8?B?SU0yb1ZYS0M4UnlPWktJRWdocTNSYm55QitVTlEwdGk0NGFuL0ZRN2N3NFc5?=
- =?utf-8?B?OG5aVnZXZ29XWEZxUTFaKzZ0UjVUUWY3WnMyNnVGN3ZRMEl3NWhvZFNEdVc3?=
- =?utf-8?B?ZklTTUlrdlJWeEY2K1BqUjdZNkVuaStITGs0YjFLOXY0L1U5dW1lb0pOTkp6?=
- =?utf-8?B?MFZKeWRSTllsaXhhT1piQnlOYWVPc3daeVRlR0l3K3VYQk9KYjhEOVFWa2Np?=
- =?utf-8?B?YkpWbVJ0RloyUE9PN21jMk9HMXRsOHhPYmExRnArTzJIdlhrVUk3TEpFbmJq?=
- =?utf-8?B?MDU5TzlPRVJhckxjSk5CYithc05VVXgwTmVjSTh5VXNsaUJvTTlmaEJtYkQ3?=
- =?utf-8?B?Q3BvVUp5RWhKcUxaWm9LMU9rdFQ4L1p6MnVUR0EyYXdtdC82VnRQZz09?=
-X-Exchange-RoutingPolicyChecked: sdPDGp4ykpDYfi9LyNuGI32rI8cTPUALAosv7Qkry05TcgGQ5nDbOCvwhOqQcMCxZGTQYYcQCzI+yzTfIu/4ReklASPbT/gdb0aQNP2QTtubwO3tbDl4GC3DBKTW7knHzbwgMdicopCUaNRB889FcFRA1rkfOOdiZHp1dsPoTSO1mYmwPRXmDA6TIdms7bim9az8SKgMmDJW6u9cfC1mmmdF5EmDRrUqW2mh87uz4azz1i6xsaDL/mfywl+NXLu0RNe+Q+yiYgTZHevCeX05HacqXX5F24qTt4wkzfwhC27jSm6Eqr9qs12u05JbZZR57l5SrJwEGvdiwCbGi4u3Bg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8c90e8e4-f67a-4f25-99be-08deba438a44
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7958.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 May 2026 09:53:58.1754 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: OHVemxBWDvl18gWooZIDpW2dTZBbDcnOCk1qnHwmLarzlSQkKRXS0HFrIq6LcY7ebXLK0TG1ujpX2LmdYpV8SA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB7656
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -171,61 +75,190 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+As we do for CRTC color mgmt properties, use color_mgmt_changed flag to
+track any value changes in the color pipeline of a given plane, so that
+drivers can update color blocks as soon as plane color pipeline or
+individual colorop values change. Since we're here, only announce and
+track changes to plane COLOR_PIPELINE prop if its value is actually
+changing.
 
-On 5/23/2026 10:30 AM, Raag Jadav wrote:
-> doit_reply_value() directly returns on get counter failure, which results
-> in stale sk_buff and genetlink header that aren't cleaned up. Fix it and
-> while at it, consolidate error handling using goto.
->
-> Fixes: c36218dc49f5 ("drm/ras: Introduce the DRM RAS infrastructure over generic netlink")
-> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+Reviewed-by: Harry Wentland <harry.wentland@amd.com> #v1
+Reviewed-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Signed-off-by: Melissa Wen <mwen@igalia.com>
 
-Reviewed-by: Riana Tauro <riana.tauro@intel.com>
+---
 
-> ---
-> v2: Use goto (Riana)
-> ---
->   drivers/gpu/drm/drm_ras.c | 19 +++++++++++--------
->   1 file changed, 11 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/gpu/drm/drm_ras.c b/drivers/gpu/drm/drm_ras.c
-> index d6eab29a1394..467a169026fc 100644
-> --- a/drivers/gpu/drm/drm_ras.c
-> +++ b/drivers/gpu/drm/drm_ras.c
-> @@ -201,25 +201,28 @@ static int doit_reply_value(struct genl_info *info, u32 node_id,
->   
->   	hdr = genlmsg_iput(msg, info);
->   	if (!hdr) {
-> -		nlmsg_free(msg);
-> -		return -EMSGSIZE;
-> +		ret = -EMSGSIZE;
-> +		goto free_msg;
->   	}
->   
->   	ret = get_node_error_counter(node_id, error_id,
->   				     &error_name, &value);
->   	if (ret)
-> -		return ret;
-> +		goto cancel_msg;
->   
->   	ret = msg_reply_value(msg, error_id, error_name, value);
-> -	if (ret) {
-> -		genlmsg_cancel(msg, hdr);
-> -		nlmsg_free(msg);
-> -		return ret;
-> -	}
-> +	if (ret)
-> +		goto cancel_msg;
->   
->   	genlmsg_end(msg, hdr);
->   
->   	return genlmsg_reply(msg, info);
-> +
-> +cancel_msg:
-> +	genlmsg_cancel(msg, hdr);
-> +free_msg:
-> +	nlmsg_free(msg);
-> +	return ret;
->   }
->   
->   /**
+v3: track lut(1/3)d_interpolation property updates (Chaitanya)
+v6: use `|= replaced` for consistency (Chaitanya)
+---
+ drivers/gpu/drm/drm_atomic_uapi.c | 64 ++++++++++++++++++++++++-------
+ include/drm/drm_atomic_uapi.h     |  4 +-
+ 2 files changed, 54 insertions(+), 14 deletions(-)
+
+diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
+index 78423905051e..e997917819e8 100644
+--- a/drivers/gpu/drm/drm_atomic_uapi.c
++++ b/drivers/gpu/drm/drm_atomic_uapi.c
+@@ -265,13 +265,19 @@ EXPORT_SYMBOL(drm_atomic_set_fb_for_plane);
+  *
+  * Helper function to select the color pipeline on a plane by setting
+  * it to the first drm_colorop element of the pipeline.
++ *
++ * Return: true if plane color pipeline value changed, false otherwise.
+  */
+-void
++bool
+ drm_atomic_set_colorop_for_plane(struct drm_plane_state *plane_state,
+ 				 struct drm_colorop *colorop)
+ {
+ 	struct drm_plane *plane = plane_state->plane;
+ 
++	/* Color pipeline didn't change */
++	if (plane_state->color_pipeline == colorop)
++		return false;
++
+ 	if (colorop)
+ 		drm_dbg_atomic(plane->dev,
+ 			       "Set [COLOROP:%d] for [PLANE:%d:%s] state %p\n",
+@@ -283,6 +289,8 @@ drm_atomic_set_colorop_for_plane(struct drm_plane_state *plane_state,
+ 			       plane->base.id, plane->name, plane_state);
+ 
+ 	plane_state->color_pipeline = colorop;
++
++	return true;
+ }
+ EXPORT_SYMBOL(drm_atomic_set_colorop_for_plane);
+ 
+@@ -604,7 +612,7 @@ static int drm_atomic_plane_set_property(struct drm_plane *plane,
+ 		if (val && !colorop)
+ 			return -EACCES;
+ 
+-		drm_atomic_set_colorop_for_plane(state, colorop);
++		state->color_mgmt_changed |= drm_atomic_set_colorop_for_plane(state, colorop);
+ 	} else if (property == config->prop_fb_damage_clips) {
+ 		ret = drm_property_replace_blob_from_id(dev,
+ 					&state->fb_damage_clips,
+@@ -713,11 +721,11 @@ drm_atomic_plane_get_property(struct drm_plane *plane,
+ static int drm_atomic_color_set_data_property(struct drm_colorop *colorop,
+ 					      struct drm_colorop_state *state,
+ 					      struct drm_property *property,
+-					      uint64_t val)
++					      uint64_t val,
++					      bool *replaced)
+ {
+ 	ssize_t elem_size = -1;
+ 	ssize_t size = -1;
+-	bool replaced = false;
+ 
+ 	switch (colorop->type) {
+ 	case DRM_COLOROP_1D_LUT:
+@@ -739,28 +747,45 @@ static int drm_atomic_color_set_data_property(struct drm_colorop *colorop,
+ 						 &state->data,
+ 						 val,
+ 						 -1, size, elem_size,
+-						 &replaced);
++						 replaced);
+ }
+ 
+ static int drm_atomic_colorop_set_property(struct drm_colorop *colorop,
+ 					   struct drm_colorop_state *state,
+ 					   struct drm_file *file_priv,
+ 					   struct drm_property *property,
+-					   uint64_t val)
++					   uint64_t val,
++					   bool *replaced)
+ {
+ 	if (property == colorop->bypass_property) {
+-		state->bypass = val;
++		if (state->bypass != val) {
++			state->bypass = val;
++			*replaced = true;
++		}
+ 	} else if (property == colorop->lut1d_interpolation_property) {
+-		state->lut1d_interpolation = val;
++		if (state->lut1d_interpolation != val) {
++			state->lut1d_interpolation = val;
++			*replaced = true;
++		}
+ 	} else if (property == colorop->curve_1d_type_property) {
+-		state->curve_1d_type = val;
++		if (state->curve_1d_type != val) {
++			state->curve_1d_type = val;
++			*replaced = true;
++		}
+ 	} else if (property == colorop->multiplier_property) {
+-		state->multiplier = val;
++		if (state->multiplier != val) {
++			state->multiplier = val;
++			*replaced = true;
++		}
+ 	} else if (property == colorop->lut3d_interpolation_property) {
+-		state->lut3d_interpolation = val;
++		if (state->lut3d_interpolation != val) {
++			state->lut3d_interpolation = val;
++			*replaced = true;
++		}
+ 	} else if (property == colorop->data_property) {
+ 		return drm_atomic_color_set_data_property(colorop, state,
+-							  property, val);
++							  property, val,
++							  replaced);
+ 	} else {
+ 		drm_dbg_atomic(colorop->dev,
+ 			       "[COLOROP:%d:%d] unknown property [PROP:%d:%s]\n",
+@@ -1275,8 +1300,10 @@ int drm_atomic_set_property(struct drm_atomic_commit *state,
+ 		break;
+ 	}
+ 	case DRM_MODE_OBJECT_COLOROP: {
++		struct drm_plane_state *plane_state;
+ 		struct drm_colorop *colorop = obj_to_colorop(obj);
+ 		struct drm_colorop_state *colorop_state;
++		bool replaced = false;
+ 
+ 		colorop_state = drm_atomic_get_colorop_state(state, colorop);
+ 		if (IS_ERR(colorop_state)) {
+@@ -1285,7 +1312,18 @@ int drm_atomic_set_property(struct drm_atomic_commit *state,
+ 		}
+ 
+ 		ret = drm_atomic_colorop_set_property(colorop, colorop_state,
+-						      file_priv, prop, prop_value);
++						      file_priv, prop, prop_value,
++						      &replaced);
++		if (ret || !replaced)
++			break;
++
++		plane_state = drm_atomic_get_plane_state(state, colorop->plane);
++		if (IS_ERR(plane_state)) {
++			ret = PTR_ERR(plane_state);
++			break;
++		}
++		plane_state->color_mgmt_changed |= replaced;
++
+ 		break;
+ 	}
+ 	default:
+diff --git a/include/drm/drm_atomic_uapi.h b/include/drm/drm_atomic_uapi.h
+index 436315523326..4e7e78f711e2 100644
+--- a/include/drm/drm_atomic_uapi.h
++++ b/include/drm/drm_atomic_uapi.h
+@@ -29,6 +29,8 @@
+ #ifndef DRM_ATOMIC_UAPI_H_
+ #define DRM_ATOMIC_UAPI_H_
+ 
++#include <linux/types.h>
++
+ struct drm_crtc_state;
+ struct drm_display_mode;
+ struct drm_property_blob;
+@@ -50,7 +52,7 @@ drm_atomic_set_crtc_for_plane(struct drm_plane_state *plane_state,
+ 			      struct drm_crtc *crtc);
+ void drm_atomic_set_fb_for_plane(struct drm_plane_state *plane_state,
+ 				 struct drm_framebuffer *fb);
+-void drm_atomic_set_colorop_for_plane(struct drm_plane_state *plane_state,
++bool drm_atomic_set_colorop_for_plane(struct drm_plane_state *plane_state,
+ 				      struct drm_colorop *colorop);
+ int __must_check
+ drm_atomic_set_crtc_for_connector(struct drm_connector_state *conn_state,
+-- 
+2.53.0
+
