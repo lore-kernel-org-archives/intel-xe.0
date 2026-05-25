@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AECB8CD5BC9
-	for <intel-xe@archiver.kernel.org>; Mon, 25 May 2026 15:16:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90E2CCD5BC9
+	for <intel-xe@archiver.kernel.org>; Mon, 25 May 2026 15:16:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57EA610E156;
-	Mon, 25 May 2026 15:16:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56E6B10E19C;
+	Mon, 25 May 2026 15:16:09 +0000 (UTC)
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 65E0610E156;
- Mon, 25 May 2026 15:16:04 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3722702612949795878=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2E8910E19C;
+ Mon, 25 May 2026 15:16:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/mmio=5Fgem=3A_fix_fa?=
- =?utf-8?q?ult_handler_and_destroy_path?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Unify_fault_inj?=
+ =?utf-8?q?ection_hooks_for_CSC=2C_GT_reset_=28rev9=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ilia Levi" <ilia.levi@intel.com>
+To: "Mallesh Koujalagi" <mallesh.koujalagi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 25 May 2026 15:16:04 -0000
-Message-ID: <177972216439.5829.6681788297505363536@6beec6c84f66>
+Date: Mon, 25 May 2026 15:16:06 -0000
+Message-ID: <177972216672.5829.11177512247513894939@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260525125801.975038-6-ilia.levi@intel.com>
-In-Reply-To: <20260525125801.975038-6-ilia.levi@intel.com>
+References: <20260522120628.538631-2-mallesh.koujalagi@intel.com>
+In-Reply-To: <20260522120628.538631-2-mallesh.koujalagi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,54 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3722702612949795878==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/mmio_gem: fix fault handler and destroy path
-URL   : https://patchwork.freedesktop.org/series/167217/
-State : success
+Series: drm/xe: Unify fault injection hooks for CSC, GT reset (rev9)
+URL   : https://patchwork.freedesktop.org/series/164761/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-5124-04d475020800d0a1033ca89a0d6d5fc638ddc65b_BAT -> xe-pw-167217v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit e108a97adbb50ce12851acb4d439c19d8f78d761
+Author: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Date:   Fri May 22 17:36:29 2026 +0530
 
-Summary
--------
+    drm/xe: Unify fault injection hooks for CSC, GT reset
+    
+    The fault injection code was scattered: the GT reset
+    hook lived in xe_gt.h as an inline function with its own global
+    variable, the CSC hook had a separate global in xe_hw_error.c with
+    an extern declaration, and each was individually registered in
+    xe_debugfs.c. Adding a new error type meant editing many files and
+    copy-pasting the same boilerplate.
+    
+    Create a single, centralized fault injection module
+    (xe_fault_inject.c/h) that manages all fault types through
+    one table. Each type is just an entry in an enum and a one-line
+    row in a descriptor array -- no more scattered globals,
+    externs, or per-type inline helpers.
+    
+    Debugfs interface (under /sys/kernel/debug/dri/0/):
+     - fail_gt_reset         - GT reset failure
+     - inject_csc_hw_error   - CSC firmware error
+    
+    Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+    Reviewed-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
++ /mt/dim checkpatch 04d475020800d0a1033ca89a0d6d5fc638ddc65b drm-intel
+e108a97adbb5 drm/xe: Unify fault injection hooks for CSC, GT reset
+-:88: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#88: 
+new file mode 100644
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5124-04d475020800d0a1033ca89a0d6d5fc638ddc65b -> xe-pw-167217v1
-
-  IGT_8936: 98b65acc4f6edf68cd52b30f27b83049c4c5c83b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5124-04d475020800d0a1033ca89a0d6d5fc638ddc65b: 04d475020800d0a1033ca89a0d6d5fc638ddc65b
-  xe-pw-167217v1: 167217v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167217v1/index.html
-
---===============3722702612949795878==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 1 warnings, 0 checks, 245 lines checked
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/mmio_gem: fix fault handler and destroy path</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167217/">https://patchwork.freedesktop.org/series/167217/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167217v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167217v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5124-04d475020800d0a1033ca89a0d6d5fc638ddc65b_BAT -&gt; xe-pw-167217v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5124-04d475020800d0a1033ca89a0d6d5fc638ddc65b -&gt; xe-pw-167217v1</li>
-</ul>
-<p>IGT_8936: 98b65acc4f6edf68cd52b30f27b83049c4c5c83b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5124-04d475020800d0a1033ca89a0d6d5fc638ddc65b: 04d475020800d0a1033ca89a0d6d5fc638ddc65b<br />
-  xe-pw-167217v1: 167217v1</p>
-
-</body>
-</html>
-
---===============3722702612949795878==--
