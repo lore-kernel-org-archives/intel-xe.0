@@ -4,142 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9A8CCD5BB1
-	for <intel-xe@archiver.kernel.org>; Tue, 26 May 2026 16:58:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BAA24CD5BC8
+	for <intel-xe@archiver.kernel.org>; Tue, 26 May 2026 17:07:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E9AF10E6FE;
-	Tue, 26 May 2026 16:58:37 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Rhg8YZC+";
-	dkim-atps=neutral
-Received: from CH4PR04CU002.outbound.protection.outlook.com
- (mail-northcentralusazon11013067.outbound.protection.outlook.com
- [40.107.201.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD63F10E6FE;
- Tue, 26 May 2026 16:58:36 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=h+LR99m7uW25TOlMLx+9W7xYRjK2MtrDigOK3ht10ZqOz9zbEU8SG/5sbydLyuhLkTHSwMoSSfzs3kjUTRZe4K2ptixPfoCZSxBijMiVJ3ZiUiF2F5/qqPEJIiD/UXfRcFsu3Yc+FFPRq4eBCetu03YIYCVLCs79Cmrd+88zr/kY0mALX9M8T0UfWbuCG4djG1cDxlEd1si7a2L5eJiALsH21oM7pg60GPCiECFT6OvT/1qlmg3b+PZImZHIMHobRZlWkMbeCkDws37hZ6avyUW65fa68QM+3RpV60kdOaglTh7o8a8SGutJlJ6djaJffYIF5g5uGxpDTHPGif5myw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3jin9ZQEW5ieNr+p+7yj4fk5UYi8kamWaStvk8pYotc=;
- b=DUMqX1oE9SqaOpRbb96e6LFzcvjcI44PSghF3NC5+7qVyFmAqmwWhVg2RvtDYe7dirwXnWOzo+xEdfK6dpWkvRlKsmvYB1nUo0fqSUgLOhAFdZ+E6oOIJ6EBQ2ST+lG5oCwPUA35TT7Z6VNMmBUxd/Ju1IjaFXKfI1BVZ4cqm7BHc35z6FvVrL46noTShoceeThdYI6gFqQMqUmDZrA0dYrA0OydK6vlEPoI24xCZsROniMXs7SY+sSRRW2j1AuQOsj4mB+dTZPS6+iGeTtmVRQ+XqdLMQ3fNVpcafLF+MHctTBEv2OJvl3OIQKPJl9H34h0reVthqbDo6TBZzIn5A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3jin9ZQEW5ieNr+p+7yj4fk5UYi8kamWaStvk8pYotc=;
- b=Rhg8YZC+b139tKwk/uMR2gcRualUpGk6V+m+UjrbXzn7qVmKxr5v9dJ2UT92d42Npo/1uoZkN40XzMsQIRHAh6hePouHmihEAJXmUZtlfBrVlXX97fvIaP/LUzCe13OQCtxQOKBOJ+Ifl0hJ0NTKyEhvN/piYbf7IF47i4BFlHE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB8476.namprd12.prod.outlook.com (2603:10b6:8:17e::15)
- by SN7PR12MB7131.namprd12.prod.outlook.com (2603:10b6:806:2a3::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.12; Tue, 26 May
- 2026 16:58:31 +0000
-Received: from DM4PR12MB8476.namprd12.prod.outlook.com
- ([fe80::2d79:122f:c62b:1cd8]) by DM4PR12MB8476.namprd12.prod.outlook.com
- ([fe80::2d79:122f:c62b:1cd8%6]) with mapi id 15.21.0071.010; Tue, 26 May 2026
- 16:58:31 +0000
-Message-ID: <c90c7607-aa9b-4353-b900-1e8e9f2bfbda@amd.com>
-Date: Tue, 26 May 2026 10:58:28 -0600
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 4/4] drm/amd/display: use plane color_mgmt_changed to
- track colorop changes
-To: Melissa Wen <mwen@igalia.com>, airlied@gmail.com,
- alexander.deucher@amd.com, christian.koenig@amd.com, harry.wentland@amd.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, simona@ffwll.ch,
- siqueira@igalia.com, sunpeng.li@amd.com, tzimmermann@suse.de
-Cc: Simon Ser <contact@emersion.fr>, Uma Shankar <uma.shankar@intel.com>,
- Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
- Xaver Hugl <xaver.hugl@kde.org>,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Louis Chauvet <louis.chauvet@bootlin.com>,
- Matthew Schwartz <matthew.schwartz@linux.dev>,
- amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
- Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov
- <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-References: <20260525100524.304263-1-mwen@igalia.com>
- <20260525100524.304263-5-mwen@igalia.com>
- <85aad1b1-3ac8-464a-ab5a-69c92a491925@amd.com>
- <9d30ef2d-cea8-44dc-9669-492ddaa02108@igalia.com>
-Content-Language: en-US
-From: Alex Hung <alex.hung@amd.com>
-In-Reply-To: <9d30ef2d-cea8-44dc-9669-492ddaa02108@igalia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MW3PR06CA0009.namprd06.prod.outlook.com
- (2603:10b6:303:2a::14) To DM4PR12MB8476.namprd12.prod.outlook.com
- (2603:10b6:8:17e::15)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CC9710E4BE;
+	Tue, 26 May 2026 17:07:05 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4533410E1D0;
+ Tue, 26 May 2026 17:07:04 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5953422536446594051=="
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB8476:EE_|SN7PR12MB7131:EE_
-X-MS-Office365-Filtering-Correlation-Id: effca768-db33-427c-e422-08debb4803ea
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|7416014|376014|366016|18002099003|22082099003|11063799006|4143699003|56012099006|921020;
-X-Microsoft-Antispam-Message-Info: JIUlunbgtUqGT9Z1NksZicqtDJbJ6+7nEgj4skd6ffBDm69OEhWfhCubNb8WOaX8iXMo4WOyhUJFuIUsH9sQZVYu+UEkUMhr5dc2IrcW3wpm6wjATPzjiGMAnXNYrSgtBMJhrWbPZvD/jXqZnoH0EuHpNaXFuGUMzkB6xRqAlQ2iNtVo7zGvjVnM3PVryiftCDYlYQke3vbJbF+RMtsEdopUptHPmG/Eckpdr7v8NPnKcnMYvcfGFsc7PuZPW5j+JbmKF6ulwRpCezKsUdsDobyv5x3W4f1qnFEbO0siMajvCMJBL/qYtf8y3IIGGTksg7epnBYga/OxLdPW0YXNSU8F/ff4U+fKcBLfHT2Me7q5coZVkHz+Xbw8FwjDKjv8tIA+Ik4IRRGiejMDJRPJpfEW4AjOOiYY6yFsjT/MCXpBiQ9g8SDdORbn3I5v3ePDa/uCLju/NFv/hCqB439MbtUbU1pUJzInf9ANWsW+YQXaZO91lM1SduD5jVUyUaEPmXlTaKZrGDM656CA7Ux8ggUK2i6HjQwMP097tOHgrE6m6vXK23DMElUxAdLJr+z5ud8QplMV5njaBP12jcwJWJZzD5FRVO7MO1PwRiMl3B9AR2x0CPKFeNbLmTyScZnM7dBwyQK5vgu9jPx2mV3lStpaNVNCmWjBvy+OP5jZbWMCDGvmWKgk6WEVyuTavXqtUOAVFITM/Jzj4J49pF5fuwjZJt06tY8l2cJ0Tgl1F10=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB8476.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(7416014)(376014)(366016)(18002099003)(22082099003)(11063799006)(4143699003)(56012099006)(921020);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eXgzNnBRdTliNmRPZThVZWhJSDNVT3dGOXBLd2RCUTFLd2dxeGx3K1BnMDhZ?=
- =?utf-8?B?WSs0OWZSS01uMW4xdGdySmx2Wlp3blRjTWkyOEIxUkh5YVhDNVdNcUFJZWt4?=
- =?utf-8?B?YWw1RzY3ejV2cmFuT1FlUDBnZ1FaZFMxTTRWSHhZcXBUc3ZtczNpVm5lSXVi?=
- =?utf-8?B?WDdFaEVDOTQxcEZhTnpvdkpaOTlJQ1ZPamVuVWd4UjNTblJSWTh6a3RTMDlr?=
- =?utf-8?B?T0N1L3BBVndseUdKYWhtdFdZME9wa0NuWEtRd3JBdk9PSlN1aTd2VldhN1d3?=
- =?utf-8?B?WGNndWN5a2pkMmo4SzZralIzRlVncDNpbG53Vnl1UkE5WmtJQ0J1YXo1bC9K?=
- =?utf-8?B?aVREWm1vWjc2cDFOR2QvY2orUFFMMHR1WUtEK0pnRmJvemdRalp6cWl0NThq?=
- =?utf-8?B?Sy9vb09kcDBQT2dYTkRCVjBuL3FzSmdFUzluY3FtQ24rTTk2VTdIaHVMOFhr?=
- =?utf-8?B?RXlWOE5kTjA3MGROWHFkZlRTWlRXaUdkTFF5OXJBZ0Q1WVA2UUJJTEJsTnpa?=
- =?utf-8?B?ZndhM0UrNzN3bXRPSXBldnpFZ01Kem54UlFKNG1SMDEvTHZyYVBJc09Sb0V5?=
- =?utf-8?B?bVRKZFgrSVE4c0RMRlBnOWx2aUtXS0VBdVdxdnY0bCtvYlYvLzJKS2JPYUhF?=
- =?utf-8?B?bldmTXY0Zi9uUGpRb05MT2toSUdJeFduTDZlcWl4dEVZcE9BajVZRFp3U2lY?=
- =?utf-8?B?OGhxaDFyeUJ6c1RuMHdFMmNFbXhsa3l6UVBqb2lMYkdzTEtJdlptVnZ0d2gv?=
- =?utf-8?B?b3RUam1ENXpleDd6cmt3ak1kU0RHY2RnOVFnYk1tdXNtOTFRdEJSK1VNaFg1?=
- =?utf-8?B?RkplRE9DVkgxYUU5VHNYYVYrdXg5aE9zcXBGbGoyNWRCdy9UdXRDcFNqQnFt?=
- =?utf-8?B?aEtwTjI3alFhQnFpQUhlYXZWZGdvMDRKY0dHUWRyL3Nhb25CUnI0dDBGcHNj?=
- =?utf-8?B?Zi9RdXFONnJVRS9jREJ4NXRtZW9sMVdrSURRVTFqY1drdVpZNFRPSHhxblZF?=
- =?utf-8?B?RisyVjVkRzRxd2NHSWZMWDBqdVU2Vjk4b3h6dGdUbTZPNGhKVVZFeHo3OEdq?=
- =?utf-8?B?MWhHTHEwWUFSOVEvcXlOMkZYNWJCdjJPL05hVkZ3WFkvMC9panFoYXNLOTBs?=
- =?utf-8?B?TlRNcDl3Um5GZ3hOMHd6VW96aGQ0TnFCU3hDUitFYWFiL2NjWHZJZmpFSGM3?=
- =?utf-8?B?dG1QazhlMWJWdFhLcFdSVzZPYXZnWDlMblViaUNUemF5bmtBRWVlcW55a1RU?=
- =?utf-8?B?VlB5QkFpczgvSzg1eGY5bGRraXZrbEE3MkdubDYzZVoxZWd2am1udTdXbTBj?=
- =?utf-8?B?WDY3YTQybnZuaXdueFQ2TXd4Ri9KVDVyaHFncnVyMzdtV3RCVVRlQ0xTaHZD?=
- =?utf-8?B?N0cwQ3FQTCt5NXpDM3VVTTNnNW1xNUhSUFNVLytFVXl0WUN0M3Bvb2dKRHI0?=
- =?utf-8?B?ZjJlODBwRm95bFkwZm41elZPVWx0S1EweUhVQWV5eXBnZVRZUkU0Wit5SlVO?=
- =?utf-8?B?NlF3Q3crOXcyL0VDSUoyRm9jRTJCbU5ReW5mOStPeFJCbmRkcmZXUE1BMWor?=
- =?utf-8?B?WC9NYjk4SDIzTENsZkFaZlU4R0oxU3lCOWQxNTFyQ1dqTVc1aHExVFg3TXF6?=
- =?utf-8?B?MjZhZG9YZ3RhVkpjQ3c3bWRucXlMS2ZUSDJtdEs1ZlAzL1FhejF1MHVDYjRu?=
- =?utf-8?B?cUIwWmEzY0p5bWJPR1hTLzIyWEdEK2thZTJ4dW9ST1JBZDFnU2IvVU4xRVF6?=
- =?utf-8?B?YUhxbVdROVlRTVhGNldwWjdibnZIemNpbXg3Q0d3RkovSUtwRjBiTDZucExF?=
- =?utf-8?B?OElZY0RHUjFycEFFTUVrU1QzYUR6c3htNkk1R1E4aE8vVFU0SGo5a0hvMGNH?=
- =?utf-8?B?VWpnb2RUZmVLUGo4Zkh3bnlORDkxcGZNakEzejQrOHZFT2d4OWdXK0swOXRm?=
- =?utf-8?B?MnNpeDY4REJoWGJQSmlLamkwbGdzWXI1QVdjMU15Q29meE9odkxnTDVVeFBW?=
- =?utf-8?B?WGdwTElNYUpYWTFFcm1uMWNXMGpTZEJ2Mkw2Q0NxWmp3dGJwbFp6K2xQa3JB?=
- =?utf-8?B?MHp3Tk5pVjhaVlpoL2xYQ0lXejNva0dkU2RZRFRvZkd1bDU0aEsvdWJCektY?=
- =?utf-8?B?d1NuVUFuenZGV0tmQXlSVVpxdVk5MUFOczB6L0RXZVBqalhoZjVjL0NtRTF0?=
- =?utf-8?B?OW9kTGh3S05nNDl0UjREQ3g5K0c4OERQUDh4Mjl3TnljT1dmZWErZmxwcXVY?=
- =?utf-8?B?ZklsVkNWNGFLZnp0NWp1UldFQ3NRVzJwcXpNWERocHR2RGdIK3B0dEJiR1Fj?=
- =?utf-8?B?UEVacnA1OCsrdTAzdkM2Y2xMalJxdTVySG9vN202TWVnanNieVFkZz09?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: effca768-db33-427c-e422-08debb4803ea
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB8476.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 May 2026 16:58:31.3631 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ImotAoUcOb0WJK6ggbHW4pm48PqEAVtymO89y/SS+dSbiGP5j4PSocqwmJBP0AT8y8OTQN6cepa0trAWMj2Q5g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7131
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Do_not_allow_sett?=
+ =?utf-8?q?ing_the_same_exec_queue_property_twice?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 26 May 2026 17:07:04 -0000
+Message-ID: <177981522427.11680.6675630569261911759@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260526141659.13838-1-dev@lankhorst.se>
+In-Reply-To: <20260526141659.13838-1-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,78 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============5953422536446594051==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/xe: Do not allow setting the same exec queue property twice
+URL   : https://patchwork.freedesktop.org/series/167289/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-5131-ba2b29e3db52fcd75c2dc6d76d81f26eb59b7e33_BAT -> xe-pw-167289v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
 
 
-On 5/26/26 10:09, Melissa Wen wrote:
-> 
-> 
-> On 26/05/2026 05:29, Alex Hung wrote:
->> Reviewed-by: Alex Hung <alex.hung@amd.com>
-> 
-> Hi Alex,
-> 
-> Thanks for the reviews.
-> As this last patch depends on the previous one, I think the entire 
-> series should go via AMD's branch, instead of drm-misc.
-> WDYT?
+Changes
+-------
 
-More changes in drm than amdgpu so I think drm-misc will be a better 
-choice, but I am fine with either.
+  No changes found
 
-Hi Alex Deucher,
 
-Do you have any suggestions?
+Build changes
+-------------
 
-> 
-> Melissa
-> 
->>
->> On 5/25/26 03:50, Melissa Wen wrote:
->>> Ensure the driver tracks changes in any colorop property of a plane
->>> color pipeline by using the same mechanism of CRTC color management and
->>> update plane color blocks when any colorop property changes. It fixes an
->>> issue observed on gamescope settings for night mode which is done via
->>> shaper/3D-LUT updates.
->>>
->>> Reviewed-by: Harry Wentland <harry.wentland@amd.com>
->>> Signed-off-by: Melissa Wen <mwen@igalia.com>
->>> ---
->>>   drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 6 +++++-
->>>   1 file changed, 5 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/ 
->>> drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->>> index d590f0df6abd..36425d9c2a67 100644
->>> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->>> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->>> @@ -10198,7 +10198,7 @@ static void amdgpu_dm_commit_planes(struct 
->>> drm_atomic_commit *state,
->>>               continue;
->>>             bundle->surface_updates[planes_count].surface = dc_plane;
->>> -        if (new_pcrtc_state->color_mgmt_changed) {
->>> +        if (new_pcrtc_state->color_mgmt_changed || new_plane_state- 
->>> >color_mgmt_changed) {
->>>               bundle->surface_updates[planes_count].gamma = 
->>> &dc_plane->gamma_correction;
->>> bundle->surface_updates[planes_count].in_transfer_func = &dc_plane- 
->>> >in_transfer_func;
->>> bundle->surface_updates[planes_count].gamut_remap_matrix = &dc_plane- 
->>> >gamut_remap_matrix;
->>> @@ -12024,6 +12024,10 @@ static bool should_reset_plane(struct 
->>> drm_atomic_commit *state,
->>>       if (new_crtc_state->color_mgmt_changed)
->>>           return true;
->>>   +    /* Plane color pipeline or its colorop changes. */
->>> +    if (new_plane_state->color_mgmt_changed)
->>> +        return true;
->>> +
->>>       /*
->>>        * On zpos change, planes need to be reordered by removing and 
->>> re-adding
->>>        * them one by one to the dc state, in order of descending zpos.
->>
-> 
+  * IGT: IGT_8937 -> IGT_8938
+  * Linux: xe-5131-ba2b29e3db52fcd75c2dc6d76d81f26eb59b7e33 -> xe-pw-167289v1
 
+  IGT_8937: 8937
+  IGT_8938: b024a3b67372962ff6e643d3998c5cf5acc07081 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5131-ba2b29e3db52fcd75c2dc6d76d81f26eb59b7e33: ba2b29e3db52fcd75c2dc6d76d81f26eb59b7e33
+  xe-pw-167289v1: 167289v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167289v1/index.html
+
+--===============5953422536446594051==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Do not allow setting the same exec queue property twice</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167289/">https://patchwork.freedesktop.org/series/167289/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167289v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167289v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5131-ba2b29e3db52fcd75c2dc6d76d81f26eb59b7e33_BAT -&gt; xe-pw-167289v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8937 -&gt; IGT_8938</li>
+<li>Linux: xe-5131-ba2b29e3db52fcd75c2dc6d76d81f26eb59b7e33 -&gt; xe-pw-167289v1</li>
+</ul>
+<p>IGT_8937: 8937<br />
+  IGT_8938: b024a3b67372962ff6e643d3998c5cf5acc07081 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5131-ba2b29e3db52fcd75c2dc6d76d81f26eb59b7e33: ba2b29e3db52fcd75c2dc6d76d81f26eb59b7e33<br />
+  xe-pw-167289v1: 167289v1</p>
+
+</body>
+</html>
+
+--===============5953422536446594051==--
