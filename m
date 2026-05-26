@@ -4,158 +4,155 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4AE95CD5BDE
-	for <intel-xe@archiver.kernel.org>; Tue, 26 May 2026 23:21:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A774CD5BD5
+	for <intel-xe@archiver.kernel.org>; Tue, 26 May 2026 23:43:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF8CD10E14E;
-	Tue, 26 May 2026 23:21:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B374A10E082;
+	Tue, 26 May 2026 23:43:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TLXFbJwn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Gzp7QEYv";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF86810E14E
- for <intel-xe@lists.freedesktop.org>; Tue, 26 May 2026 23:21:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B61410E082
+ for <intel-xe@lists.freedesktop.org>; Tue, 26 May 2026 23:43:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779837695; x=1811373695;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=1R7wEoYg/n/2yQOzG/DTCemIzTpp72cQ3nleJrcEdF4=;
- b=TLXFbJwnwuTd8o10DF5/UpdE1UmNcHdbfOSh7dJ8kWjt2OPvsyab9eU6
- TkJJghtx/G1CVGS4E04KuR7mryp6O77/iz1t123N+8WEW/tZ7eHOFObBf
- znRsFyJfUOh/FZlqFwBuswgFesWSMA1nw9RcMZFuLksCUtYD9r04TLyef
- iVfSKTT8gFx9w89YSehKfCcFG+Vi1t5nv7wt1MLooxs81jb18ok1Zjtv3
- bnln+4T1pz05Ma7CbZKlSzj/K69hSAzQ1YXMr7tKBngq/QcZxEGpvFsTW
- wsSGylwWvYChOPoX/5z3XcG7zp2jtL3bIxpCiriSckX6AMi6va3oLSOFo w==;
-X-CSE-ConnectionGUID: TZPzkfXjR+Khw8/oEZhlkQ==
-X-CSE-MsgGUID: gbDxRaivTgug4TwbRULWcQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11798"; a="80572137"
-X-IronPort-AV: E=Sophos;i="6.24,170,1774335600"; d="scan'208";a="80572137"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2026 16:21:34 -0700
-X-CSE-ConnectionGUID: eRjHdZ2sRKmqjHZd9ONqSg==
-X-CSE-MsgGUID: SwctMFC+S+Wd78bBoJCA6w==
+ t=1779839027; x=1811375027;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=FdksO7nXjyE8We6H0HIJA2B064K5IXyOeG6c/MMTjXE=;
+ b=Gzp7QEYvCLbxKVDUWcznnULP5ZqneMkpi1fX65jhvBx5eeV+TGvgrbLy
+ inoC+ikXQDYDqqenbPxf08YM1MKAbiUvRZx+m2LDTlx7Z/LU7DjSd+XyU
+ DJvAedr7AZ2fSDn+7/9zyccrxnBA81+a6jA3USU+mKnd8+KPbkWWNj0bu
+ JvP5BhAbo7wMNxMySAqq+Yv/BA24ue6+WxnZIqK1dTV1g53rTpdudkV7R
+ wjP937xRDMFOUmabQqkHx92jSZLp7RYEkJtQymSkAERkTf1B6Nx3UhzFC
+ +RkX1+cqKS33Dd83AFqhkg3x2+M7FRX5w1q02iDMHZJRbycEtW0vOlYFB w==;
+X-CSE-ConnectionGUID: MDwd+RvNQ1OfSDUloxI53Q==
+X-CSE-MsgGUID: sdqTpHv+Sb2n905AjFtSXQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11798"; a="92137854"
+X-IronPort-AV: E=Sophos;i="6.24,170,1774335600"; d="scan'208";a="92137854"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2026 16:43:46 -0700
+X-CSE-ConnectionGUID: Bekn9/EEQcCBoHc5OAaAqg==
+X-CSE-MsgGUID: J2kqpKq5S4OxW+4/b7IXfg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,170,1774335600"; d="scan'208";a="237893401"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2026 16:21:34 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+X-IronPort-AV: E=Sophos;i="6.24,170,1774335600"; d="scan'208";a="247151637"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2026 16:43:46 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Tue, 26 May 2026 16:43:45 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 26 May 2026 16:21:33 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Tue, 26 May 2026 16:43:45 -0700
+Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.21) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Tue, 26 May 2026 16:21:33 -0700
-Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.29) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 26 May 2026 16:21:32 -0700
+ 15.2.2562.37; Tue, 26 May 2026 16:43:43 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=cMCU3d3oaXO4WTmeIfkqWjoBhYmxJmLlThxNSOmb0QwLjEier/Bp6HJf++PQMTCciQ8ARO+QUD1pOUVFVF1T9wb37Y9qMN5CuE/BmZwWHmofC+lOAXZ97uvksMR3IEsoIE7TZAVbuNOki1wBHlm91I/gYy301EbDTOCT0y52fsQ1bAkVEwPlH69b3m8G2ya50Lheb3vu/TKDIO9naghW+x/LKykmOU6A3GQR3qorTzIOIECKYJKzx/WV3sXf4hrZ6c+WYNkV/cS1E6cuDHXzbUnifY/MrxVXsjDF6xpl1XH7r+hHIBpFH+xuO2abYlNBJ/9e9GVoJVCi8s56YhUMpQ==
+ b=A54ZhLe0+/KLybWkiZ53DFBpvvFrVJiOcUoRKx3c1teKdtF8h7VIrSOizM3UDTPF8UNKCQ156bC2zQlZ+dSUn1a+tE+GU4kz1Qi/kvQWMxx+6uFRC/icZWp4Igylov12X47rTFqF6Fy55SJqWgXqmmPco0H4P9OOQ2fAbViHrUf0EmCHYdEWQp00enG0h8v5gJ7wwB2H/syfO12y24xoSXGlsxcz02a8Bz/px5cr2+va67W0jTaATDcJDK3nDh8nM9Fcubu8v2+SxYrDZsIA4Oprj/RXVXXjlvyC1a7M58Om65BDONPPX+oedbIkEb/y6sl/CxqOGnSvLzsAuTEH2w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YJ3N55UHvx7zDkpCOfAzuyN2in6DT9hcA5b05S+Vpb8=;
- b=mA6gZWCwfcUcTaokwEGjlmULiapXGOn2m0Dn32QlRQdbTi18GYaHm+CVoFzWiRrgiydOdadw3UUHjn5jl1Vr+IMibui1nVLq3PkkzAeqCkvwSupNz5r/XQbxhp2SPfw+m62ElItdFx9UecS+uqpI4D1ZsR0BpNqhDs2QRpnx9+JwutiUTSHOv8//KVEggOyDYPwhxx6KdtB6VZDaifRvx9ZccxwGawsM9wtzTuM6fLJgoYfVFRlItplDXplYF6bdV3OD5HvsAnaip/rWA3u91rp+naXaxf18D6kQg3R8EztoBSb7GQC6jxMeRRmLluXseUHmGAEDHvGRPq89U1DDYA==
+ bh=LKmPlOCF5BrZ3nYthP421FUy1CWUqMljLJEQWShYy0g=;
+ b=kHXiCaq0qSkD6lQFMfZDPOIpUN+cJXpEvN7JIfdZF+BtQxPbg8CWtYIZWTQgCKXZAfUtewDwMBU4i+6ExIyGfNsrFKnOZ3SXUFWPsWj+Q8VROA9cMNipv77ovblijvKAG989JPazm2bR/hckYgUeOYEuxpDIuPgSTC8PVIzgH/H4nutj1C18JJslSIk1L+nwxPWEeWMIvhAMuaRcoH1lloocIqAjUY2ASRq7fqqQdo15CCFrJY7yW2RnGytmHem6+wKWs2yDdgSZ4j8K4b7pkw0rr3i7WWP1T7t+YT3s4Ov4M2quVUEUxXGDoqP8nD7iKD7+JsQXVTcRFVHLgvI9Xg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB7605.namprd11.prod.outlook.com (2603:10b6:510:277::5)
- by CO1PR11MB5201.namprd11.prod.outlook.com (2603:10b6:303:95::22)
+ by MW4PR11MB7053.namprd11.prod.outlook.com (2603:10b6:303:221::7)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.11; Tue, 26 May
- 2026 23:21:31 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.20; Tue, 26 May
+ 2026 23:43:40 +0000
 Received: from PH7PR11MB7605.namprd11.prod.outlook.com
  ([fe80::48d7:f2a6:b18:1b87]) by PH7PR11MB7605.namprd11.prod.outlook.com
  ([fe80::48d7:f2a6:b18:1b87%5]) with mapi id 15.21.0071.011; Tue, 26 May 2026
- 23:21:31 +0000
-Message-ID: <5e63fc7e-7acc-4fca-9384-8f4d62ef0b19@intel.com>
-Date: Tue, 26 May 2026 16:21:31 -0700
+ 23:43:40 +0000
+Message-ID: <fc50ad6b-defd-42b3-9866-8e98b1f1b34b@intel.com>
+Date: Tue, 26 May 2026 16:43:40 -0700
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 09/10] drm/xe/hw_engine: document top-down paging
- requirement
+Subject: Re: [PATCH v3 03/10] drm/xe/guc: add the plumbing for GUC_PAGING_CLASS
 To: Matthew Auld <matthew.auld@intel.com>, <intel-xe@lists.freedesktop.org>
-CC: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>
 References: <20260526141901.62207-12-matthew.auld@intel.com>
- <20260526141901.62207-21-matthew.auld@intel.com>
+ <20260526141901.62207-15-matthew.auld@intel.com>
 Content-Language: en-US
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-In-Reply-To: <20260526141901.62207-21-matthew.auld@intel.com>
+In-Reply-To: <20260526141901.62207-15-matthew.auld@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SJ2PR07CA0024.namprd07.prod.outlook.com
- (2603:10b6:a03:505::14) To PH7PR11MB7605.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SJ0PR03CA0118.namprd03.prod.outlook.com
+ (2603:10b6:a03:333::33) To PH7PR11MB7605.namprd11.prod.outlook.com
  (2603:10b6:510:277::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|CO1PR11MB5201:EE_
-X-MS-Office365-Filtering-Correlation-Id: 21208f2a-10f7-4709-1e53-08debb7d84de
+X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|MW4PR11MB7053:EE_
+X-MS-Office365-Filtering-Correlation-Id: 660992af-c723-4b61-b69f-08debb809d21
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|11063799006|4143699003|18002099003|22082099003|56012099006;
-X-Microsoft-Antispam-Message-Info: HGZnEKBZhKKwvth799Lou61gBxJaIIdN2nCo2pCtsySFOghh2slyU/HaNbccGIMXLd31wNIWtj8lUmqn4aRtaVPXSnmPtz2aIrL0urEzNX/DbDMJcmS7u6kN39Nue83RG1ZkXbBWfLEF1OO4pTeXCHXreGzCKH4zqeyXBie7IF9r6LS7qPCkk//jvR8Dc6+UT+ug6X8CbC1BTmuwRZbkMAHEbJVfdRP+ruUWj52dOPwQb9NBZTrmZFx5pEZkio5vIbRdOEibwNnNytZTFPzCzzWP3ut4yGvMoKGddoNz3fqyKzslDSFRPru2/MhkiOh4F8cQQMxMmJQIk0tvW1NJM0WkEV8K0t5Fn2P/ppcW6z1Z4YjIOvxvWmA3Z2o7pQSpongRfk8halbRx0y5u+m4tUDlwqaVDIlArROHnb5QnZOsQU+3+gvTwvL+yZ/NqzZSiYTq56+KOgFir0+6cTmyP5cFK1XXfeeL+fSD0cZvtnSr9xraAV/jixxEWuqNdBk2G1NP+XS3Di+yQYke8Kd069s0gm96j1mMBYE4O1Nz9vDz7bojelg17dZM+hj6PCi9V8L7U3Z/CD2sfhOeduyTQ1NME/KkyMdA+E+n4r8xBGmvcGCbRwFD17WGQldhfWIbnQXONKff6nPjY4CL5FV06YRs3JPFEb2i/L28Kec7QpKVJbezuFsUFaoOzJCzOkQd
+ ARA:13230040|366016|1800799024|376014|22082099003|18002099003|11063799006|4143699003|56012099006;
+X-Microsoft-Antispam-Message-Info: ndNUKutw0UsjmQTwZWaoGg4kFqVowMuVgA1uiguBg4wroNDBwmE6g2hyKONGiUM7CKlGT0RufScMtJ1qJoitmPlrVDuLAF1QQMhUHPiO554OOt3VU0kwr6WUyYA5u4nVRTdwrRWfz7iQaJ6TDvjQ9vhgSbv42wy7MAhPY+dNDxHaTUg++OpDfHFyWwAGCAVSikVy4QNPBnOEDpjqBMEdkgj6hHz6PM8f3U1d///IP7CppFlevVuxh/lDF4LJy/1ra6GolWIPxDQa92IlU8dYBYXGjHhPRTG1e4jN5T0O6Jn64R55z4CFQxTLQmfI5hpglnUz6mAteecUWzXa1BLB6xizv3g4iNpw2rYRhfGIWripjPTVXFmS0C5G6XTFy0nZtEDEk6MoguF1ROv8ObEF06Qm5zmEi0Fh218gGV2FGuaCHP0fOD6FnzSZOTuCpnic8YoJJ1akVXz1mMP59lBvIPdYYmflkcjdby8pSpy0vZ2vAd9bkbRNmhER6PZ4bZze+Iyl3nY6qYaokLRjTWV21gDZHU2eD1vOkXLyg+HO9ylmimc2HCmWqdvOi0QBNdaA1leJl79qMP3KJ+DeEgVgbYRT43TcbjapOvDGOv7xsRW6zY15wbkUNG2K693GxBpbXpu/ltYKN7pMbl5gbKO2qzJTev8XJob4dAXzjgnFr3Abq0PcPcgKPuUT0daGqR9X
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB7605.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(11063799006)(4143699003)(18002099003)(22082099003)(56012099006);
+ SFS:(13230040)(366016)(1800799024)(376014)(22082099003)(18002099003)(11063799006)(4143699003)(56012099006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MDRxdDNGcWF2YWNTN2ZoSlRVNkwyQkZjNEV3MWN3L2pEVlJEWWJxREJYUWx1?=
- =?utf-8?B?b1o1M0w0T1ZCRU90QUdLSUlocFdEc0lVRk9OQm1MQU5pU0p3NS9kL2Zxd2dQ?=
- =?utf-8?B?SFUycHZaY0QrK3VJM09Lc3BHcm8yNzVWMHFTT1lTdVlWaW52MXpTR1JKYXNp?=
- =?utf-8?B?MkxqQTd5dUh3NDhaWGtZWUttZ05hWWFDZk8rbDdwc0xWL3ZHUlFoS29qS211?=
- =?utf-8?B?T2NCVkZQVWVoRFlvaEpDS2t3ZEdBa2RGR0ZUK0pzcWxKcE9UclpDYzJzaXpM?=
- =?utf-8?B?eGNnTjZTdmxXNllEemN4RVdacjBsVXFhNk9zSFhJR3gyUEs2QUxrdWVNYzA3?=
- =?utf-8?B?Z2NOSFRMVnVTK0k3L0h2QXRCNGtpSFhNc2xEeS9GM0h4KzlmZ3ZiV1JlUzVG?=
- =?utf-8?B?N2FLaCtheWNZQmZXS1pYMzhKbkdmRjVxaEhYUUxablNkN0RMVXZ5cHNiWk5a?=
- =?utf-8?B?ci8vY3JGMEFMRzBoNVYrejJxZ1U4RVIvSkp5M1h0eE5sRVMvMkE0b1N4dHVk?=
- =?utf-8?B?cGMrL1BTOEtVWXdQQ1NpZHZ6NE9GOU1QMkErK3hqdUNwbE1zY0xxQ3FPYXZ6?=
- =?utf-8?B?YTdMdlJzWGJscFVwb1N5TVNiQ29XVTZEMUdCUjJvcUxTMklmN2hrK2JpTlVS?=
- =?utf-8?B?dlFKaHhiRms1eWplblUrNmI0TmhTN08xT3pkbGVXVmJWVU9QWmVOVHg4ZlNi?=
- =?utf-8?B?a0o3b2VJQ0lkM3hqekU1WkEvTnJoTnZkVHRCcTJYZVBTYUsvTncvRCt2bXJo?=
- =?utf-8?B?TG8rdFV5M200VHZKaFgydU53cDhVOHVlVjkrVTZ5K2kvZXZ5OHgrTmN3YmR6?=
- =?utf-8?B?U00wK0dmeGREV0QxNVU4SU9LbTNFQ2ZFYWtGZkd0K3hzbFZYV1oxVVhlSWx1?=
- =?utf-8?B?TjJQbmtyZmxYU0pIaXVJa0F0QXFDREtpdHg1SldDYmw5dkxRekZwT0xGT202?=
- =?utf-8?B?RWphaTdiVjUwR1gxSzRjL1F6K21FcmFDZHJUMHdOZFVBQitZVGtDdzJLZXY5?=
- =?utf-8?B?blFqWFJLR3NiRUFkSUU0L0lLMENUMjA1VW1JU0JWelQrVHVwZVA0eHplUnl0?=
- =?utf-8?B?NHNpNWV0UXBjWUlscGxiVnRORmRvZjMzRkR6ZVJMODJVYnMzeTIweHBpVnc0?=
- =?utf-8?B?TFY1cXpPbktVdTBoMUJDSmRpTmhuVjdwN2RLMGFMa1lNcTFMTmNOTkJwRVNq?=
- =?utf-8?B?Y09UNXFFeTJyT3NYaG05Vm1nZkhta0FyUkxnWEdBYjh3M0ZvT3BobGsvK1Av?=
- =?utf-8?B?V0pGOUxwM1lDN2x6bUdZRXdMVVFpbWgxUXZSWXRQVS9IUDRCNVprRWFwb2Mz?=
- =?utf-8?B?UDRTOHc5NlZaa3dGOEFwbTB3dHpiVlRmbCt2Ukt1VWp2UHJOdFFROVJtTC9m?=
- =?utf-8?B?bjB3bDR0UXVsL0ViOEEySGZOU0E0amtPVUt1ejhwaG5JZ3NWU08xSitOdS9G?=
- =?utf-8?B?ZmxFWm9YVmM2M0pwZ3ZpL3lXLzQ4bFpwKzU0UkNxRGs5YzZxY2IwbFBIMFBX?=
- =?utf-8?B?c3ZVRlUxb1AvclhqMlJMdmtSNllld1p3cEdzR2hDT252M0x4RTdPbitVdzdD?=
- =?utf-8?B?SE40dUlyVGdGMzBSczhDdU9iUjJ5N3dHNTdWcFpHdGUyUERsVUJDSzIzTGpn?=
- =?utf-8?B?UWw5Rkc2cTllV3NOWnkwczJ5MG9hb2w0U0xwTW9DcXJsM0Z1blo2SytsNkJk?=
- =?utf-8?B?ZU9IU2VMQmVvaG5lai9XT00xczdqV2FqdGg5bENGR3pZZDVMa0M5RlNpeGY0?=
- =?utf-8?B?RENWOXpBZWtBOWVQVFI4VnFabTFIM0E2LzBDemVGd1dOWHFQVWNjMEM2T2lB?=
- =?utf-8?B?UVJIU2R6cVJVK0tvMk1SN2NIMUZaRnY1dnJEWkZoWHNSaks4d1hmK2ppYW50?=
- =?utf-8?B?SWZ5bjlMclE4UzROMlJhSTlNbzJ3eUw4VmsyTU5RdGUrS3dHRFVOZStUcHFX?=
- =?utf-8?B?TjRQTkF4U21rblh5UWUzaEZHMlV6NkoxWGdkemp4WE9YbWFtWjBEcy9uNlRn?=
- =?utf-8?B?YnZ4azltTWRWTXN3KzN3T2pOR0lFdWMvcDNJWVlaSjllZmpSdGlZdU4vN0Uy?=
- =?utf-8?B?N3YxMGxCVG5nM1YyMXRBNnE2S3BTcWhZYmIxYllISmsvbUc5TWJZTXVqWW5M?=
- =?utf-8?B?bi8xYWpCemRCREZOb1RsN25qMEtPbmtuR09vdTlYUHdqcUZBb2o1S2RRRU1D?=
- =?utf-8?B?YndxakI4L2k3MUhhNE5xMDRpZ2gzem4xeE5LVnBDcysydUplQUxYT0xiNys4?=
- =?utf-8?B?YXp3Mkh5dFN3dTJzUDRIQWlQY2FINnNZc3ZVN1d0R2lRTVBWVUZISGViMkVT?=
- =?utf-8?B?YzlvNzQzK0pCc2V6UDRuRFNQdWptVFVpMkpzZDZDb2ZYV2hsOGFOTjd2TG93?=
- =?utf-8?Q?XwDowiDlZDucAJM0=3D?=
-X-Exchange-RoutingPolicyChecked: VUSWERuJtBtCBRUwPh0/M8dWbniJYBN0pLXZ5npSe302t5SzqP9ACrgO42Zbh8xzxOg+5Xy7Ld3MmNtkiE8k0FYsJyahnd14l+Qz8KLV2umPD7Fsv4holAciQDYPQQKGHMzejMjQRI7ecL3QP+OtlGrmIDkXUcdIWaSL8etPZuJQxQI+465Ybu9/iiMzcgJo0R7tlO6RnPTXW7LMNy0YLaaHb0dMnfZSnauZtGtqHlILNgA7i9I2To35nmyAIHuRTwZDJQ2yTQPAcjdyVgKsNEOFdp26EFQKGm5+FzpTXgtp6tlTlMDyBirifgEq4fRZ2J8mMxgMqwCK9mDAPKGFcw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 21208f2a-10f7-4709-1e53-08debb7d84de
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RlVrQkNydVp2N2ZzNHVKbnRuZ1VqeUhDQXJzZXg3VWZhS0h3andIczJJOG90?=
+ =?utf-8?B?SmRlMFJHSlVqYTFPVDZHS0FpT1B5Q015KzBYSjdtb2JXZUIzY0FNM0dEUXkz?=
+ =?utf-8?B?QWtkQnA0VGdJMG1QckFPU3pTUVEydk0zeHdWN2cxTDAySi9mV2tjRHh5MG1l?=
+ =?utf-8?B?MUVEeW9lRFFmS200bW9PekVlNUZmRVlrVURYRTNUamlHRG1TdG0rRUc2Qjlz?=
+ =?utf-8?B?b3NZdjhKbW03cm9teUpOVkJoMlQxL2xMNU9adzNRTDJUQ1FFM01zdWVrZXkz?=
+ =?utf-8?B?T0x2eDhKUGMwTXhSbkZxRVc2SElZbVZnQ3NNendhMVArWXkxRjFJTHdLby9m?=
+ =?utf-8?B?dWRmYkRxR0VjUU5TTnpodzBLb1dUZGwxeWQyWnVCSVBRZnFNZ2ovdENFbkM0?=
+ =?utf-8?B?QmROVjN2bXUybjVlVWpBRUFaVXRYR0lSVlVFNFFtUG1nV0hDbHVrSVZFUjE4?=
+ =?utf-8?B?SmtZcktRSmZRL1hJQngrS21CeVNGRkpFblJrc2YrVVZsM0VWblF6a0dUMHBQ?=
+ =?utf-8?B?SlA4ZklxeGhZVk0rb0p1L2xJMDBac25KQUI4OHVvQS93UUZJL2IyMGxjdS9F?=
+ =?utf-8?B?ZEVjUm4rL3R3MitqNmZpTGJOVWFOU295dHpONVk3S01naWFrNjdtZWwvTVBZ?=
+ =?utf-8?B?a2phK2tSb2Z0NFVCRlJHQk90dGlmSlIwRDZFQUoxMG5ZTzJJaWt4RGhYYTRF?=
+ =?utf-8?B?UWpaanVMYVBhbTRVZ21pcUF5dGl0eWFpTFViV1hUZmc5M05ST1pPM3FnTXpW?=
+ =?utf-8?B?UjBvUzhoME5DaEY0dHRjZkRxdzloNk1qOUhHSXFPQWN4dWpKeUpCaElMN091?=
+ =?utf-8?B?N0RPSHNRd2FIK2ZlMkNERThDdHB3UlU5VkFxaHZFMkJ4eld1SS80ZVVQa3hx?=
+ =?utf-8?B?TWdnWUhYMmZkNlZXbUkzZ0pVODhFU0p0ZjE1bDVHZCtuYlh0QkJySWNyUDFN?=
+ =?utf-8?B?SnNtR0RDVy9iTndSc1V1SDl6dEtUM3FBUUl2Wi9YcnM1RklYZVR5NFhlL3dz?=
+ =?utf-8?B?bUV1WDFYY2NXVjlSaHJwTGZ1ZHc3QjBoSDNDcitmQ3RZOFBzUm9lSlVHL2Ji?=
+ =?utf-8?B?N0dzRmJMOVdhR00zWXo2djVaL05FTGlPQ2UxckgvVWhKSGR5Y2hacVRzcTVD?=
+ =?utf-8?B?b1ZsN2RVSVpnNGZhZDY5bTk0ajNpZnZDTDNoUlhQa2pIcDVlWFU3UGQvaHJn?=
+ =?utf-8?B?azc4Uk1WY0FTRnVJL3NBbnBOVjRwV2RDT1BnOXFacUZsUlNKVFhMY1dSbGhQ?=
+ =?utf-8?B?eHhDTm5vVjNwS1dhaU1kSDJHZjB0Z1FGZEdkU0wwRkhUWHlmNGpEQUpFblBO?=
+ =?utf-8?B?bE1HaWl0Qzh1MmxBK1JoSmlHUXIyVUdmazJWN2YxRDRwSi9WMDBDbWhFVEc3?=
+ =?utf-8?B?aWIyRzhrdyt6NXZmQzB6VVZFbUdMSndZODVtb2ZLaXMwRW5rY2FUVCtIWk5l?=
+ =?utf-8?B?YURXTmNMYTZpaFJhVWcvZWNsNis5amtKWUxPZ1djOEN2ZFBUQTI1YnNuamR1?=
+ =?utf-8?B?b3hRUHNlN0hyaW9rSkpGaDU1WHZEN0lycXJnWm5xYlBSRW1CSldrRHU4OS85?=
+ =?utf-8?B?OGlyWm9wRGtuN0xhQmU0b0ZVRjZsbU5oOTI0MnU1eEVQaks3cjk2akUrdlZl?=
+ =?utf-8?B?WmZJQzg0UFEyKzRzQzlqTCtBSUJCY2xvV25hSEJWdWYwdWlONkUvVkhGS3VY?=
+ =?utf-8?B?dFZwTWtCRFQ2Q1BUY04zTkIraVN5Y1UwYmpGUmNWZkVPU2dLWmVhd0pBQ0Vr?=
+ =?utf-8?B?Vjhjbk5MNjFRSEQxQk42MFM0R0lQV2dmdU9vRkY2ZUgzb0ZkV2RFOXdkZVBy?=
+ =?utf-8?B?QTR2ODI1V2c0NWVvYXJabGJEcGQwVitVS003WDVYYWswSnhvNXE3NEs2WEpo?=
+ =?utf-8?B?RVJUU2VnYWFPdjJ6aGpiY3R0OWZka1oxTHYrRE1FUUhxQnVSWndyd2dOdU5L?=
+ =?utf-8?B?RCtLRFg2QjhlNmFSdUpaYjVwVGtvNmdQVGQ2ZFVHd1hNa1UyZDY3YVdlbDRh?=
+ =?utf-8?B?cERCNkY2bDRhRkxUeEVzUVJrUkcxWFNBb0dWRmJ1WmxiNTZsRjI3S3h6Tnd4?=
+ =?utf-8?B?bElMUGRqYnRvWlEwMWRDTGlHZ1dZUjlBbnRxM2RvRlo2UDNUL0FLbkNpMlha?=
+ =?utf-8?B?MjVFbUxRbTNTNFZIQUhpRE5UZ0ZYQjRoRHQ5VnZmdHAvNWpURmwzTHpqclN5?=
+ =?utf-8?B?VVNjSExoVkovZUtFNkZVMDczS2M2Y3ZnK2hJLzdtNmtmQ2VMa2tCRG5BUmFE?=
+ =?utf-8?B?RnFVVTBoMkJYRUZHcEZkL25wanpEU28yVXYxZFd1VWlhSGxTQzRkZkptSDl2?=
+ =?utf-8?B?TWY4UmlyNmFaRjJKSDkwQUg2VDdTMGM0aVZsMHRxb3ZVR3A4VDNxS2MvUkJN?=
+ =?utf-8?Q?3Y231kD4ahWKY4Cc=3D?=
+X-Exchange-RoutingPolicyChecked: ft3IYHLp3tObIapR9gGf78QODlgVJkStTk73g5CrIHQyI4OmGKmuijMfhR/hWQ62yvo4AnJcrL1++FiTiMeM5sKjlJPJZB+dyPrZI6yuki/EOFopZFh2f3mTot8FZeZmWxOtJ11rmbhfZdvkEyj9xXPT1aK0/k5wG/uc/BPVJXpYFSOfGewtZ5Hee9+pOH/a+ezc2yqPrAI25gFQF0TNeTPtp6kGfahVoZZKqtkUoWcPatgOm/n8DN8MhxVVhkCElh6GC1pSBiyiZni2adehBf08geuMp7/jYpuZKjzl+6f3iZ0dQxvvfcnBxZqX4UzSFuTR+PFTJ7fJ9rs/yKrpqA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 660992af-c723-4b61-b69f-08debb809d21
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7605.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 May 2026 23:21:30.9357 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 May 2026 23:43:40.2387 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Mp/8UfizRrM1XxJwXly8W49l5qQIuZrJNuFgQInbfPpeiD+cF4gaUjnQGZyhmheoEBe/EQpmpX+Kwhguuuf/Wvi9t2+3R4ecS2e5yGhN4d0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5201
+X-MS-Exchange-CrossTenant-UserPrincipalName: +agZ4fE9e/vvBpyDyaefHN1Mb2XHfkx03hI8AjspWKD+sAvJz3X7BdXVunCl2ZN94oPCwsr2O9OKPACz3FgKuHjd18JC/UHVgesUXKYFIps=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB7053
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -174,57 +171,193 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 On 5/26/2026 7:19 AM, Matthew Auld wrote:
-> We were doing this anyway, but going forward for paging engines,
-> agreement is to always reserve BCS instances in top down fashion. This
-> hopefully future proofs things for VFs, where in some low-level places
-> it might only have the physical BCS instance from the hw pov. If we
-> stick to a consistent mapping scheme, it should make it possible to
-> determine if this is a special paging engine, or not.
+> On newer platforms, the GuC has a new engine class which we need to use
+> to refer to the dedicated/reserved KMD BCS engine. With that, add the
+> plumbing in the GuC backend to support GUC_PAGING_CLASS and
+> GUC_CAPTURE_LIST_CLASS_PAGING.
+>
+> Currently this is still turned off.
 >
 > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 > Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
 > ---
->   drivers/gpu/drm/xe/xe_hw_engine.c | 11 ++++++++++-
->   1 file changed, 10 insertions(+), 1 deletion(-)
+>   drivers/gpu/drm/xe/abi/guc_capture_abi.h   |  3 ++-
+>   drivers/gpu/drm/xe/abi/guc_scheduler_abi.h |  3 ++-
+>   drivers/gpu/drm/xe/xe_guc.c                | 15 +++++++++++++++
+>   drivers/gpu/drm/xe/xe_guc.h                |  1 +
+>   drivers/gpu/drm/xe/xe_guc_ads.c            | 19 +++++++++++++++++--
+>   drivers/gpu/drm/xe/xe_guc_capture.c        |  7 +++++++
+>   drivers/gpu/drm/xe/xe_guc_capture.h        |  2 ++
+>   7 files changed, 46 insertions(+), 4 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-> index 62b966bde34f..1a254e70927f 100644
-> --- a/drivers/gpu/drm/xe/xe_hw_engine.c
-> +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-> @@ -665,7 +665,6 @@ static int hw_engine_setup_logical_and_paging_mapping(struct xe_gt *gt)
->   		if (hwe->class == XE_ENGINE_CLASS_COPY)
->   			num_copy_engines++;
+> diff --git a/drivers/gpu/drm/xe/abi/guc_capture_abi.h b/drivers/gpu/drm/xe/abi/guc_capture_abi.h
+> index dd4117553739..ff9c0ae34a28 100644
+> --- a/drivers/gpu/drm/xe/abi/guc_capture_abi.h
+> +++ b/drivers/gpu/drm/xe/abi/guc_capture_abi.h
+> @@ -32,9 +32,10 @@ enum guc_capture_list_class_type {
+>   	GUC_CAPTURE_LIST_CLASS_VIDEOENHANCE = 2,
+>   	GUC_CAPTURE_LIST_CLASS_BLITTER = 3,
+>   	GUC_CAPTURE_LIST_CLASS_GSC_OTHER = 4,
+> +	GUC_CAPTURE_LIST_CLASS_PAGING = 5,
+>   };
 >   
-> -	/* We just reserve the highest BCS instance for USM */
->   	if (num_copy_engines && xe->info.has_usm)
->   		num_paging_engines = 1;
+> -#define GUC_CAPTURE_LIST_CLASS_MAX	(GUC_CAPTURE_LIST_CLASS_GSC_OTHER + 1)
+> +#define GUC_CAPTURE_LIST_CLASS_MAX	(GUC_CAPTURE_LIST_CLASS_PAGING + 1)
 >   
-> @@ -691,6 +690,16 @@ static int hw_engine_setup_logical_and_paging_mapping(struct xe_gt *gt)
->   		       num_paging_engines > num_copy_engines))
->   		return -EINVAL;
+>   /**
+>    * struct guc_mmio_reg - GuC MMIO reg state struct
+> diff --git a/drivers/gpu/drm/xe/abi/guc_scheduler_abi.h b/drivers/gpu/drm/xe/abi/guc_scheduler_abi.h
+> index 19ec89bf39c5..85bba34277ed 100644
+> --- a/drivers/gpu/drm/xe/abi/guc_scheduler_abi.h
+> +++ b/drivers/gpu/drm/xe/abi/guc_scheduler_abi.h
+> @@ -21,7 +21,8 @@
+>   #define GUC_BLITTER_CLASS		3
+>   #define GUC_COMPUTE_CLASS		4
+>   #define GUC_GSC_OTHER_CLASS		5
+> -#define GUC_LAST_ENGINE_CLASS		GUC_GSC_OTHER_CLASS
+> +#define GUC_PAGING_CLASS		6
+> +#define GUC_LAST_ENGINE_CLASS		GUC_PAGING_CLASS
+>   #define GUC_MAX_ENGINE_CLASSES		16
+>   #define GUC_MAX_INSTANCES_PER_CLASS	32
 >   
+> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+> index 4023700ff2a9..2bc9fa5fb393 100644
+> --- a/drivers/gpu/drm/xe/xe_guc.c
+> +++ b/drivers/gpu/drm/xe/xe_guc.c
+> @@ -1846,6 +1846,21 @@ bool xe_guc_using_main_gamctrl_queues(struct xe_guc *guc)
+>   	return GT_VER(gt) >= 35;
+>   }
+>   
+> +bool xe_guc_has_paging_engine(struct xe_guc *guc)
+> +{
 > +	/*
-> +	 * On PF, we just reserve the highest BCS instance for USM.
-> +	 *
-> +	 * Note: This is now a requirement going forward. The PF must ALWAYS
-> +	 * reserve BCS instances in top down order, that way the VF has a chance
-> +	 * of discovering the physical BCS instance mappings for paging engines,
-> +	 * in conjunction with vf_num_paging_engines. In some places we might
-> +	 * only have the physical instance, and from hw pov there is no such
-> +	 * thing as a paging engine.
+> +	 * On newer platforms the GuC now has a dedicated engine class for the
+> +	 * special PAGING engine, which is the driver reserved BCS engine used
+> +	 * for KMD paging/binding operations. GuC requires KMD to refer to this
+> +	 * using the special PAGING engine class. Note that there is no new hw
+> +	 * engine here, this is purely a sw view in the GuC itself, which we
+> +	 * need to respect.
 > +	 */
+> +
+> +	/* TODO: Have some way to query this from the GuC? */
+> +	return false;
+> +}
+> +
+>   #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+>   #include "tests/xe_guc_g2g_test.c"
+>   #endif
+> diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
+> index 12faf0ba7229..0934927e8254 100644
+> --- a/drivers/gpu/drm/xe/xe_guc.h
+> +++ b/drivers/gpu/drm/xe/xe_guc.h
+> @@ -62,6 +62,7 @@ void xe_guc_stop(struct xe_guc *guc);
+>   int xe_guc_start(struct xe_guc *guc);
+>   void xe_guc_declare_wedged(struct xe_guc *guc);
+>   bool xe_guc_using_main_gamctrl_queues(struct xe_guc *guc);
+> +bool xe_guc_has_paging_engine(struct xe_guc *guc);
+>   
+>   #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+>   int xe_guc_g2g_test_notification(struct xe_guc *guc, u32 *payload, u32 len);
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+> index c84b98828981..cedab0e1f798 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ads.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+> @@ -261,6 +261,7 @@ static inline enum xe_engine_class guc_class_to_engine_class(u16 guc_class)
+>   	case GUC_VIDEOENHANCE_CLASS:
+>   		return XE_ENGINE_CLASS_VIDEO_ENHANCE;
+>   	case GUC_BLITTER_CLASS:
+> +	case GUC_PAGING_CLASS:
+>   		return XE_ENGINE_CLASS_COPY;
+>   	case GUC_COMPUTE_CLASS:
+>   		return XE_ENGINE_CLASS_COMPUTE;
+> @@ -489,13 +490,24 @@ static void fill_engine_enable_masks(struct xe_gt *gt,
+>   	struct xe_device *xe = gt_to_xe(gt);
+>   	u16 guc_class;
+>   
+> -	for (guc_class = 0; guc_class <= GUC_LAST_ENGINE_CLASS; ++guc_class)
+> +	for (guc_class = 0; guc_class <= GUC_LAST_ENGINE_CLASS; ++guc_class) {
+> +		u32 mask = engine_enable_mask(gt, guc_class);
+> +
+>   		info_map_write(xe, info_map, engine_enabled_masks[guc_class],
+> -			       engine_enable_mask(gt, guc_class));
+> +			       mask);
+> +
+> +		/* We expect at most one paging engine per GuC instance, for now */
+> +		if (guc_class == GUC_PAGING_CLASS)
+> +			xe_gt_assert(gt, !mask || is_power_of_2(mask));
 
-For reference, an example of data that the VF can receive containing the 
-physical class/instance is the page fault descriptor, as that comes 
-straight from the HW.
+Maybe worth moving this assert inside engine_enable_mask()? not a blocker
 
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> +	}
+>   }
+>   
+>   u16 xe_hwe_to_guc_class(struct xe_hw_engine *hwe)
+>   {
+> +	if (xe_guc_has_paging_engine(&hwe->gt->uc.guc) &&
+> +	    xe_gt_is_usm_hwe(hwe->gt, hwe))
+> +		return GUC_PAGING_CLASS;
+> +
+>   	switch (hwe->class) {
+>   	case XE_ENGINE_CLASS_RENDER:
+>   		return GUC_RENDER_CLASS;
+> @@ -615,6 +627,9 @@ static u32 guc_get_capture_engine_mask(struct xe_gt *gt, struct iosys_map *info_
+>   	case GUC_CAPTURE_LIST_CLASS_GSC_OTHER:
+>   		mask = info_map_read(xe, info_map, engine_enabled_masks[GUC_GSC_OTHER_CLASS]);
+>   		break;
+> +	case GUC_CAPTURE_LIST_CLASS_PAGING:
+> +		mask = info_map_read(xe, info_map, engine_enabled_masks[GUC_PAGING_CLASS]);
+> +		break;
+>   	default:
+>   		mask = 0;
+>   	}
+> diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
+> index 50c6b9466c14..c13b23c45aac 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_capture.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_capture.c
+> @@ -265,6 +265,8 @@ static const struct __guc_mmio_reg_descr_group xe3p_lists[] = {
+>   	MAKE_REGLIST(xe_blt_inst_regs, PF, ENGINE_INSTANCE, GUC_CAPTURE_LIST_CLASS_BLITTER),
+>   	MAKE_REGLIST(empty_regs_list, PF, ENGINE_CLASS, GUC_CAPTURE_LIST_CLASS_GSC_OTHER),
+>   	MAKE_REGLIST(xe_lp_gsc_inst_regs, PF, ENGINE_INSTANCE, GUC_CAPTURE_LIST_CLASS_GSC_OTHER),
+> +	MAKE_REGLIST(empty_regs_list, PF, ENGINE_CLASS, GUC_CAPTURE_LIST_CLASS_PAGING),
+> +	MAKE_REGLIST(xe_blt_inst_regs, PF, ENGINE_INSTANCE, GUC_CAPTURE_LIST_CLASS_PAGING),
+>   	{}
+
+NVL-S seems to use xe_hpg_lists, so need to modify that array as well.
 
 Daniele
 
->   	reserved_logical_bcs_start = num_copy_engines - num_paging_engines;
+>   };
+>   static const char * const capture_list_type_names[] = {
+> @@ -279,6 +281,7 @@ static const char * const capture_engine_class_names[] = {
+>   	"VideoEnhance",
+>   	"Blitter",
+>   	"GSC-Other",
+> +	"Paging",
+>   };
 >   
->   	/* FIXME: Doing a simple logical mapping that works for most hardware */
+>   struct __guc_capture_ads_cache {
+> @@ -766,6 +769,10 @@ size_t xe_guc_capture_ads_input_worst_size(struct xe_guc *guc)
+>   	total_size = PAGE_SIZE;	/* Pad a page in front for empty lists */
+>   	for (i = 0; i < GUC_CAPTURE_LIST_INDEX_MAX; i++) {
+>   		for (j = 0; j < GUC_CAPTURE_LIST_CLASS_MAX; j++) {
+> +			if (!xe_guc_has_paging_engine(guc) &&
+> +			    j == GUC_CAPTURE_LIST_CLASS_PAGING)
+> +				continue;
+> +
+>   			if (xe_guc_capture_getlistsize(guc, i,
+>   						       GUC_STATE_CAPTURE_TYPE_ENGINE_CLASS,
+>   						       j, &class_size) < 0)
+> diff --git a/drivers/gpu/drm/xe/xe_guc_capture.h b/drivers/gpu/drm/xe/xe_guc_capture.h
+> index eb954f4d1ffd..fcd4f1298536 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_capture.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_capture.h
+> @@ -28,6 +28,8 @@ static inline enum guc_capture_list_class_type xe_guc_class_to_capture_class(u16
+>   	case GUC_VIDEOENHANCE_CLASS:
+>   	case GUC_BLITTER_CLASS:
+>   		return class;
+> +	case GUC_PAGING_CLASS:
+> +		return GUC_CAPTURE_LIST_CLASS_PAGING;
+>   	default:
+>   		XE_WARN_ON(class);
+>   		return GUC_CAPTURE_LIST_CLASS_MAX;
 
