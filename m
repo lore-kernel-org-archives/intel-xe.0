@@ -4,151 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C89ECD5BC8
-	for <intel-xe@archiver.kernel.org>; Tue, 26 May 2026 09:00:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D7B0CD5BD1
+	for <intel-xe@archiver.kernel.org>; Tue, 26 May 2026 09:02:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C6F210E1A5;
-	Tue, 26 May 2026 09:00:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1B3310E471;
+	Tue, 26 May 2026 09:02:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="baaPyYMv";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="CFOTXZ/J";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="Osk3/v8m";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="o3oEKfPy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NcHqdanj";
 	dkim-atps=neutral
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 082AD10E458
- for <intel-xe@lists.freedesktop.org>; Tue, 26 May 2026 09:00:01 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 363006B3E6;
- Tue, 26 May 2026 08:59:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1779785999; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=ejy15HLRULv/iHzJLGVQCrLp/AiLuLDwUgWtV4C2EU0=;
- b=baaPyYMv4yGoQHFimAxytqQjn6ho5Zd1wa0FMTwsSYl4HfumaHInOXtFRCQanNqprT5hFp
- auTBrgDJ8tUVkwo6MaC9M+qFT+nZxC/H4fWaDNQArID5i810CzAF4F5PbEZZtaZC05Nhrn
- bHaoQ2UTzpstuC6Fr9OqknOV9u9dO9o=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1779785999;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=ejy15HLRULv/iHzJLGVQCrLp/AiLuLDwUgWtV4C2EU0=;
- b=CFOTXZ/Jc28jW6gUmHAzNdWyt0f6zPZG+4PWGuwLGJUl0oh2nsUA9GcdS6AVEZhA2OrMKV
- WtkbZVOIvCyH3+BA==
-Authentication-Results: smtp-out1.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1779785998; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=ejy15HLRULv/iHzJLGVQCrLp/AiLuLDwUgWtV4C2EU0=;
- b=Osk3/v8mo9hxyPDuoXN6f41EsFVPQmCgg+ElT42l3CUUFnP0mQEO8Tf4arcKpUWI3bpw5N
- 32aTrm9kBeHRV4iUfnJ1+9hZL4oCsIj1+zudrX0f+JoDcETLgzINRl2Igclt+cV9fFFw7P
- GpQad7BUfcrYFlgjt5c27wIFwuvWm2Q=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1779785998;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=ejy15HLRULv/iHzJLGVQCrLp/AiLuLDwUgWtV4C2EU0=;
- b=o3oEKfPyVr5jbUeUmexTQStzMVEUG9KNlGA+0hMIrGHnx4fp31jKEhtkVwom+QxhKRCnN1
- ZM2Wuy20DjfNrKBA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 5162C5A10E;
- Tue, 26 May 2026 08:59:57 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id 01R4Eg1hFWqZZAAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Tue, 26 May 2026 08:59:57 +0000
-Message-ID: <0057f209-c8a6-48bc-9194-36e3b19bec67@suse.de>
-Date: Tue, 26 May 2026 10:59:56 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9402710E1A5
+ for <intel-xe@lists.freedesktop.org>; Tue, 26 May 2026 09:02:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1779786141; x=1811322141;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=3fPXg8isnKng4w5MNobInpw4WShJ5VpQa+U2OiJqwb8=;
+ b=NcHqdanjGoOmivSmnRxYGkCWk+rEcGes4MoX0+jNIxC7JsX9i63mUQfm
+ Ets2WQGX2/U5MoQA6ge4NBEzuJB6uZa56yEfDooQMnp7k6bD/M7O5WgLT
+ jPdylDlT4pQz4Zh/bZC4hvcBOOwyl7x9/8D5XQXfcvm8PqPCB/Zkyf+F+
+ y8U2OPqr6L3GftPBGKADHu8cjxH08Xu4Kfa99LLkvuh8JDDaqxW9AQh2X
+ bKXHsj9lVYLQS3MadRN8ekfTRX6xFmnBSHZA5V5LauuT7P86AqhR1p8Kh
+ C9szs1tIXIUPfBhLzWuua2iJ03gD/mc8/e6jhy7iNWO232sEbo061Hm6M g==;
+X-CSE-ConnectionGUID: U/KbcQMvQWCrO0fxk3w9pw==
+X-CSE-MsgGUID: gpIPisd7TqOIZywrVY641g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11797"; a="84449608"
+X-IronPort-AV: E=Sophos;i="6.24,169,1774335600"; d="scan'208";a="84449608"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2026 02:02:21 -0700
+X-CSE-ConnectionGUID: MklDaleBRR2K/Otvu+N35g==
+X-CSE-MsgGUID: zZKwdZRoRdWPGLl1Fd+qgA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,169,1774335600"; d="scan'208";a="246130884"
+Received: from varungup-desk.iind.intel.com ([10.190.238.71])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2026 02:02:19 -0700
+From: Arvind Yadav <arvind.yadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com,
+ thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com
+Subject: [PATCH] drm/xe/guc: Avoid self-deadlock in queue destruction
+Date: Tue, 26 May 2026 14:32:02 +0530
+Message-ID: <20260526090202.2957453-1-arvind.yadav@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 01/19] drm/atomic: Document atomic commit lifetime
-To: Maxime Ripard <mripard@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Jyri Sarha <jyri.sarha@iki.fi>,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Simon Ser <contact@emersion.fr>, Harry Wentland <harry.wentland@amd.com>,
- Melissa Wen <mwen@igalia.com>, Sebastian Wick <sebastian.wick@redhat.com>,
- Alex Hung <alex.hung@amd.com>, Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Chen-Yu Tsai <wens@kernel.org>,
- Samuel Holland <samuel@sholland.org>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
-Cc: dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org, Daniel Stone <daniels@collabora.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-References: <20260519-drm-mode-config-init-v5-0-388b03321e38@kernel.org>
- <20260519-drm-mode-config-init-v5-1-388b03321e38@kernel.org>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <20260519-drm-mode-config-init-v5-1-388b03321e38@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-2.80 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- SUSPICIOUS_RECIPS(1.50)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MIME_TRACE(0.00)[0:+]; FUZZY_RATELIMITED(0.00)[rspamd.com];
- RCVD_VIA_SMTP_AUTH(0.00)[]; ARC_NA(0.00)[];
- TAGGED_RCPT(0.00)[renesas]; RCPT_COUNT_TWELVE(0.00)[38];
- TO_DN_SOME(0.00)[];
- FREEMAIL_TO(0.00)[kernel.org,linux.intel.com,gmail.com,ffwll.ch,lwn.net,linuxfoundation.org,oss.qualcomm.com,iki.fi,ideasonboard.com,intel.com,linaro.org,kwiboo.se,emersion.fr,amd.com,igalia.com,redhat.com,ursulin.net,sholland.org,raspberrypi.com];
- FREEMAIL_ENVRCPT(0.00)[gmail.com]; MID_RHS_MATCH_FROM(0.00)[];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- R_RATELIMIT(0.00)[to_ip_from(RLyhjdboxbrjk5hnijtjs4kbm6)];
- RCVD_TLS_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- TO_MATCH_ENVRCPT_SOME(0.00)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:url, suse.de:mid,
- imap1.dmz-prg2.suse.org:helo, ideasonboard.com:email]
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -163,171 +66,179 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+GuC exec queue destruction can run on xe->destroy_wq. During queue
+cleanup, xe_exec_queue_fini() can drop the last reference to objects
+which eventually release the DRM device and run drmm cleanup actions.
 
-I left a number of comments on the style of writing. Apart from that, 
-it's great to have the lifetime documented.
+guc_submit_sw_fini(), registered as a drmm action, drains
+xe->destroy_wq. If the final drm_dev_put() happens from an
+xe->destroy_wq worker, teardown can try to drain the same workqueue
+the current worker is running on, causing a self-deadlock.
 
-Am 19.05.26 um 11:01 schrieb Maxime Ripard:
-> How drm_atomic_commit and the various entity structures are allocated
-> and freed isn't really trivial. Document it.
->
-> Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> Signed-off-by: Maxime Ripard <mripard@kernel.org>
-> ---
->   Documentation/gpu/drm-kms.rst |  6 +++++
->   drivers/gpu/drm/drm_atomic.c  | 58 +++++++++++++++++++++++++++++++++++++++++++
->   2 files changed, 64 insertions(+)
->
-> diff --git a/Documentation/gpu/drm-kms.rst b/Documentation/gpu/drm-kms.rst
-> index d22817fdf9aa..36d76e391074 100644
-> --- a/Documentation/gpu/drm-kms.rst
-> +++ b/Documentation/gpu/drm-kms.rst
-> @@ -282,10 +282,16 @@ structure, ordering of committing state changes to hardware is sequenced using
->   :c:type:`struct drm_crtc_commit <drm_crtc_commit>`.
->   
->   Read on in this chapter, and also in :ref:`drm_atomic_helper` for more detailed
->   coverage of specific topics.
->   
-> +Atomic State Lifetime
-> +---------------------
-> +
-> +.. kernel-doc:: drivers/gpu/drm/drm_atomic.c
-> +   :doc: state lifetime
-> +
->   Handling Driver Private State
->   -----------------------------
->   
->   .. kernel-doc:: drivers/gpu/drm/drm_atomic.c
->      :doc: handling driver private state
-> diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
-> index 170de30c28ae..d98586d89bbe 100644
-> --- a/drivers/gpu/drm/drm_atomic.c
-> +++ b/drivers/gpu/drm/drm_atomic.c
-> @@ -45,10 +45,68 @@
->   #include <drm/drm_colorop.h>
->   
->   #include "drm_crtc_internal.h"
->   #include "drm_internal.h"
->   
-> +/**
-> + * DOC: state lifetime
-> + *
-> + * &struct drm_atomic_commit represents an update to video pipeline
+Fix this by taking an extra drm_device reference across async exec queue
+cleanup and dropping it from system_dfl_wq. The deferred put work
+is preallocated during queue init, so the destroy worker does not need
+to allocate memory.
 
-I'd say 'modeset pipeline'. Video sounds too much like V4L.
+This keeps the final drm_dev_put() out of xe->destroy_wq while preserving
+exec queue teardown ordering.
 
-> + * state. It's a transient object that holds a state update as a
-> + * collection of pointers to individual objects' states. &struct
-> + * drm_atomic_commit has a much shorter lifetime than the objects'
-> + * states, since it's only allocated while preparing, checking or
-> + * committing the update, while object states are allocated when
-> + * preparing the update and kept alive as long as they are active in the
-> + * device.
-> + *
-> + * Their respective lifetimes are:
-> + *
-> + * - at reset time, the object reset implementation will allocate a new
-> + *   default state and will store it in the object state pointer.
+Fixes: 2d2be279f1ca ("drm/xe: fix UAF around queue destruction")
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_exec_queue_types.h |  3 +
+ drivers/gpu/drm/xe/xe_guc_submit.c           | 62 ++++++++++++++++++--
+ 2 files changed, 59 insertions(+), 6 deletions(-)
 
-Using present seems more natural, e.g., 'allocates' and 'stores'
-
-> + *
-> + * - whenever a new update is needed:
-> + *
-> + *   + A new &struct drm_atomic_commit is allocated using
-> + *     drm_atomic_commit_alloc().
-
-Active form: "drm_atomic_commit_alloc() allocates a new instance of 
-struct drm_atomic_commit."
-
-IIRC the '&' needs to go before drm_atomic_commit.
-
-> + *
-> + *   + The current active state of all entities affected by the update
-> + *     is copied into this new &struct drm_atomic_commit using
-> + *     drm_atomic_get_plane_state(), drm_atomic_get_crtc_state(),
-> + *     drm_atomic_get_connector_state(), or
-> + *     drm_atomic_get_private_obj_state(). This new state can then be
-> + *     modified.
-
-Again use active form.  Mention which helper invokes the copying. I 
-assume it's drm_atomic_commit_alloc() or the UAPI entry points.
-
-> + *
-> + *     At that point, &struct drm_atomic_commit stores three state
-> + *     pointers for any affected entity: the "old" and "new" states, and
-> + *     state_to_destroy. The old state is the state currently active in
-> + *     the hardware, which is either the one initialized by reset() or a
-> + *     newer one if a commit has been made. The new state is the state
-> + *     we just allocated and we might eventually commit to the hardware.
-> + *     The state_to_destroy points to the state we'll eventually have to
-> + *     free when the drm_atomic_commit will be destroyed, and points to
-> + *     the new state for now since the old state is still the active
-> + *     state.
-
-Ok, sounds good.
-
-> + *
-> + *   + After the state is populated, it is checked. If the check is
-
-You mean, it populated the new commit with the updated states?
-
-Where does the check happen?
-
-Again, use active form. Like: 'After ... populated the new commit with 
-the updated states, it checks by invoking atomic_check of all involved 
-pipeline stages."
-
-> + *     successful, the update is committed. Part of the commit is a call
-
-Active form: "successful, ... commits the update."
-
-> + *     to drm_atomic_helper_swap_state() which will turn the new states
-> + *     into the active states. Doing so involves updating the object's
-> + *     state pointer (&drm_crtc.state or similar) to point to the new
-> + *     state, and state_to_destroy will now point to the old states,
-> + *     that used to be active but aren't anymore.
-
-The final sentence ""Doing so..." is serviceable. For splendid writing, 
-you could write somethink like "After swapping states, each object's 
-state pointer refers to the formerly new state. The state_to_destroy 
-pointer refers to the formerly old state."
-
-> + *
-> + *   + When the commit is done, and when all references to our &struct
-> + *     drm_atomic_commit are put, __drm_atomic_commit_free() is called.
-
-Active form: "After commiting the new state to hardware, ... puts all 
-references to strut drm_atomic_commit and calls __drm_atomic_commit_free()".
-
-> + *     It will, in turn, call drm_atomic_commit_clear() that will free
-
-Present form: "It calls ... the frees ... and ...."
-
-Best regards
-Thomas
-
-> + *     all state_to_destroy (ie. old states), and finally free &struct
-> + *     drm_atomic_commit instance.
-> + *
-> + *   + Now, we don't have any active &struct drm_atomic_commit anymore,
-> + *     and only the entity active states remain allocated.
-> + */
-> +
->   void __drm_crtc_commit_free(struct kref *kref)
->   {
->   	struct drm_crtc_commit *commit =
->   		container_of(kref, struct drm_crtc_commit, ref);
->   
->
-
+diff --git a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
+index e5e53b421f29..b5dfc9c9092d 100644
+--- a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
+@@ -13,6 +13,7 @@
+ 
+ struct dma_fence;
+ struct xe_exec_queue;
++struct xe_drm_dev_put_work;
+ 
+ /**
+  * struct xe_guc_exec_queue - GuC specific state for an xe_exec_queue
+@@ -35,6 +36,8 @@ struct xe_guc_exec_queue {
+ 	struct xe_sched_msg static_msgs[MAX_STATIC_MSG_TYPE];
+ 	/** @destroy_async: do final destroy async from this worker */
+ 	struct work_struct destroy_async;
++	/** @dev_put_work: deferred drm_dev_put worker to avoid self-deadlock */
++	struct xe_drm_dev_put_work *dev_put_work;
+ 	/** @resume_time: time of last resume */
+ 	u64 resume_time;
+ 	/** @state: GuC specific state for this xe_exec_queue */
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index afd8cc7bd231..81d513d1f54d 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -10,6 +10,7 @@
+ #include <linux/circ_buf.h>
+ #include <linux/dma-fence-array.h>
+ 
++#include <drm/drm_drv.h>
+ #include <drm/drm_managed.h>
+ 
+ #include "abi/guc_actions_abi.h"
+@@ -47,6 +48,11 @@
+ 
+ #define XE_GUC_EXEC_QUEUE_CGP_CONTEXT_ERROR_LEN		6
+ 
++struct xe_drm_dev_put_work {
++	struct work_struct work;
++	struct drm_device *drm;
++};
++
+ static int guc_submit_reset_prepare(struct xe_guc *guc);
+ 
+ static struct xe_guc *
+@@ -1677,6 +1683,8 @@ static void guc_exec_queue_fini(struct xe_exec_queue *q)
+ 	xe_sched_entity_fini(&ge->entity);
+ 	xe_sched_fini(&ge->sched);
+ 
++	kfree(ge->dev_put_work);
++
+ 	/*
+ 	 * RCU free due sched being exported via DRM scheduler fences
+ 	 * (timeline name).
+@@ -1684,20 +1692,55 @@ static void guc_exec_queue_fini(struct xe_exec_queue *q)
+ 	kfree_rcu(ge, rcu);
+ }
+ 
+-static void __guc_exec_queue_destroy_async(struct work_struct *w)
++static void xe_drm_dev_put_work_func(struct work_struct *work)
+ {
+-	struct xe_guc_exec_queue *ge =
+-		container_of(w, struct xe_guc_exec_queue, destroy_async);
+-	struct xe_exec_queue *q = ge->q;
++	struct xe_drm_dev_put_work *put =
++		container_of(work, struct xe_drm_dev_put_work, work);
++
++	drm_dev_put(put->drm);
++	kfree(put);
++}
++
++static void guc_exec_queue_do_destroy(struct xe_exec_queue *q, bool defer_dev_put)
++{
++	struct xe_guc_exec_queue *ge = q->guc;
+ 	struct xe_guc *guc = exec_queue_to_guc(q);
++	struct xe_device *xe = guc_to_xe(guc);
++	struct drm_device *drm = &xe->drm;
++	struct xe_drm_dev_put_work *put_work = NULL;
+ 
+-	guard(xe_pm_runtime)(guc_to_xe(guc));
++	if (defer_dev_put) {
++		put_work = ge->dev_put_work;
++		ge->dev_put_work = NULL;
++
++		put_work->drm = drm;
++		INIT_WORK(&put_work->work, xe_drm_dev_put_work_func);
++
++		/*
++		 * Avoid running the final drm_dev_put() from xe->destroy_wq,
++		 * since guc_submit_sw_fini() drains that queue.
++		 */
++		drm_dev_get(drm);
++	}
++
++	guard(xe_pm_runtime)(xe);
+ 	trace_xe_exec_queue_destroy(q);
+ 
+ 	/* Confirm no work left behind accessing device structures */
+ 	cancel_delayed_work_sync(&ge->sched.base.work_tdr);
+ 
+ 	xe_exec_queue_fini(q);
++
++	if (put_work)
++		queue_work(system_dfl_wq, &put_work->work);
++}
++
++static void __guc_exec_queue_destroy_async(struct work_struct *w)
++{
++	struct xe_guc_exec_queue *ge =
++		container_of(w, struct xe_guc_exec_queue, destroy_async);
++
++	guc_exec_queue_do_destroy(ge->q, true);
+ }
+ 
+ static void guc_exec_queue_destroy_async(struct xe_exec_queue *q)
+@@ -1709,7 +1752,7 @@ static void guc_exec_queue_destroy_async(struct xe_exec_queue *q)
+ 
+ 	/* We must block on kernel engines so slabs are empty on driver unload */
+ 	if (q->flags & EXEC_QUEUE_FLAG_PERMANENT || exec_queue_wedged(q))
+-		__guc_exec_queue_destroy_async(&q->guc->destroy_async);
++		guc_exec_queue_do_destroy(q, false);
+ 	else
+ 		queue_work(xe->destroy_wq, &q->guc->destroy_async);
+ }
+@@ -1950,6 +1993,12 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+ 	if (!ge)
+ 		return -ENOMEM;
+ 
++	ge->dev_put_work = kmalloc_obj(*ge->dev_put_work, GFP_KERNEL);
++	if (!ge->dev_put_work) {
++		kfree(ge);
++		return -ENOMEM;
++	}
++
+ 	q->guc = ge;
+ 	ge->q = q;
+ 	init_rcu_head(&ge->rcu);
+@@ -2027,6 +2076,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+ err_sched:
+ 	xe_sched_fini(&ge->sched);
+ err_free:
++	kfree(ge->dev_put_work);
+ 	kfree(ge);
+ 
+ 	return err;
 -- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
-
+2.43.0
 
