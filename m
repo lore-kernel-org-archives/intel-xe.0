@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D9B7CD5BB4
-	for <intel-xe@archiver.kernel.org>; Tue, 26 May 2026 08:27:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DADD3CD5BB4
+	for <intel-xe@archiver.kernel.org>; Tue, 26 May 2026 08:27:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C75B810E60B;
-	Tue, 26 May 2026 08:27:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E09E10E60F;
+	Tue, 26 May 2026 08:27:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QCj7EPnK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RY6gNGc7";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3324510E60B
- for <intel-xe@lists.freedesktop.org>; Tue, 26 May 2026 08:27:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D119A10E465
+ for <intel-xe@lists.freedesktop.org>; Tue, 26 May 2026 08:27:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779784052; x=1811320052;
+ t=1779784055; x=1811320055;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=ioEZ6WvefOjoITTdAiBFdAudrLo+b9riw8aqcjV15xE=;
- b=QCj7EPnKD9B90tOH9M20Emn7ilWHbLqVSubj1etTfkTjYdbgJaQSCbid
- yLtQyQr5fSBihLQnPvbyLmphGhrHOjl5QkgiuEcuXq0WI+jQ2zsf6UlA1
- gxTWueuc/voiyQvlPYhm9K0a5vkH5LyrSEslkNnAcpRKLyBOTd2+k7hLt
- Z/Vi4viSESWhzmgIxlskmPY8+FBgdXjaSN7PdlKur3rH4k0/FWq9nNTtc
- pBiBx2ctSPuDT+cShJRkh9PTq5+pXLCO+BS3x8GpWZv1t/L90Dgp5G5Kp
- Lwpcre42uaTdCGBReiB34W67Cn4to1T+aib+44AR/jtN+yhf4vbt3piXY w==;
-X-CSE-ConnectionGUID: YaXiSoluSoGkVfPAdO28iQ==
-X-CSE-MsgGUID: jluXFmY5QyGMSy6zuY8sPA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11797"; a="91698414"
-X-IronPort-AV: E=Sophos;i="6.24,169,1774335600"; d="scan'208";a="91698414"
+ bh=+WiOAvbPTYn/L+ZEo9lY2M3Y02v3ZFBacxMl/6IJkNE=;
+ b=RY6gNGc7fB4/FsEx+x01hTiEjUiluUDSejRlb/iQyKZsBpyOGx63KLBZ
+ RZJxzTUkSBbFEYMKKRZpzwsn25OVawiaJHnOZZoKd1hXhhB0rwUPARwMG
+ PYdQsoeow6LbNcVJULeQoIankA4BOr7g61nlsWDbFiJmQLg8gbasxSyAq
+ BC326MKbW+w62gfKGUsN/wOqCRFD+WoUeG6LlWsTXAGsTC3B0odP5dgjf
+ k8GLOSo/iQQQ2LATEqF4Wu2W4oFF0EbNTom9CsSeFxr3uE9k6AhPxvCUG
+ 9VqzH+VZ7OMhQ29mj9MrjSQ5ohFvHvznEaTIuaoCCFAIYhi8Jl23OT5T1 A==;
+X-CSE-ConnectionGUID: PcobCBdmRQqOQHPKyiN4jw==
+X-CSE-MsgGUID: mJQN4eeaSVqsWZP0RsANrQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11797"; a="91698425"
+X-IronPort-AV: E=Sophos;i="6.24,169,1774335600"; d="scan'208";a="91698425"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2026 01:27:32 -0700
-X-CSE-ConnectionGUID: Lbjjs2BtRSmkDW9Wk47abQ==
-X-CSE-MsgGUID: c8Zd7BuKTX+WQgdraIcjrA==
+ 26 May 2026 01:27:34 -0700
+X-CSE-ConnectionGUID: flEXjXNmSYGRc3QWbMjKXA==
+X-CSE-MsgGUID: OZFqM7FVQ6i59RjvDDwBtw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,169,1774335600"; d="scan'208";a="239251755"
+X-IronPort-AV: E=Sophos;i="6.24,169,1774335600"; d="scan'208";a="239251765"
 Received: from tilak-z690i-a-ultra-plus.iind.intel.com ([10.190.239.38])
- by fmviesa008.fm.intel.com with ESMTP; 26 May 2026 01:27:29 -0700
+ by fmviesa008.fm.intel.com with ESMTP; 26 May 2026 01:27:32 -0700
 From: tilak.tirumalesh.tangudu@intel.com
 To: tilak.tirumalesh.tangudu@intel.com, matthew.d.roper@intel.com,
  thomas.hellstrom@intel.com, daniele.ceraolospurio@intel.com,
  matthew.auld@intel.com, stuart.summers@intel.com, x.wang@intel.com,
  brian3.nguyen@intel.com, intel-xe@lists.freedesktop.org
-Subject: [PATCH 4/5] drm/xe: add exec queue suspended ops callback
-Date: Tue, 26 May 2026 13:56:59 +0530
-Message-ID: <20260526082700.1383831-5-tilak.tirumalesh.tangudu@intel.com>
+Subject: [PATCH 5/5] drm/xe: drm/xe: include suspended queues in TLB
+ invalidation
+Date: Tue, 26 May 2026 13:57:00 +0530
+Message-ID: <20260526082700.1383831-6-tilak.tirumalesh.tangudu@intel.com>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20260526082700.1383831-1-tilak.tirumalesh.tangudu@intel.com>
 References: <20260526082700.1383831-1-tilak.tirumalesh.tangudu@intel.com>
@@ -67,77 +68,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
+From: Nguyen Brian3 <brian3.nguyen@intel.com>
 
-Add a suspended callback to xe_exec_queue_ops and a generic
-xe_exec_queue_is_suspended() helper.
+Context-based TLB invalidation currently selects only active exec
+queues. During rebind flows, queues may be suspended while still
+associated with the VM, causing them to be skipped from invalidation.
 
-Hook up exec queue suspended-state callback for GuC.
+Include suspended queues in the ctx invalidation selection path so they
+are invalidated as well.
 
-This allows callers to query suspended state through exec queue ops
+This avoids missing TLB invalidation on suspended queues in LR flows.
 
+Signed-off-by: Nguyen Brian3 <brian3.nguyen@intel.com>
 Signed-off-by: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec_queue.h       | 5 +++++
- drivers/gpu/drm/xe/xe_exec_queue_types.h | 2 ++
- drivers/gpu/drm/xe/xe_guc_submit.c       | 8 ++++++++
- 3 files changed, 15 insertions(+)
+ drivers/gpu/drm/xe/xe_guc_tlb_inval.c | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
-index 0225426c57b0..b66637325a11 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.h
-@@ -116,6 +116,11 @@ static inline struct xe_exec_queue *xe_exec_queue_multi_queue_primary(struct xe_
+diff --git a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+index ced58f46f846..d85704a5b617 100644
+--- a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
++++ b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+@@ -225,8 +225,10 @@ static int send_tlb_inval_ctx_ppgtt(struct xe_tlb_inval *tlb_inval, u32 seqno,
+ 	struct xe_vm *vm;
+ 	LIST_HEAD(tlb_inval_list);
+ 	int err = 0, id = guc_to_gt(guc)->info.id;
++	bool has_ctx_tlb_inval = xe->info.has_ctx_tlb_inval;
  
- bool xe_exec_queue_is_lr(struct xe_exec_queue *q);
+ 	lockdep_assert_held(&tlb_inval->seqno_lock);
++	xe_assert(xe, has_ctx_tlb_inval);
  
-+static inline bool xe_exec_queue_is_suspended(struct xe_exec_queue *q)
-+{
-+	return q->ops->suspended ? q->ops->suspended(q) : false;
-+}
-+
- bool xe_exec_queue_is_idle(struct xe_exec_queue *q);
+ 	if (xe->info.force_execlist)
+ 		return -ECANCELED;
+@@ -256,8 +258,8 @@ static int send_tlb_inval_ctx_ppgtt(struct xe_tlb_inval *tlb_inval, u32 seqno,
  
- void xe_exec_queue_kill(struct xe_exec_queue *q);
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index 2f5ccf294675..0cb7d49a1c83 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -320,6 +320,8 @@ struct xe_exec_queue_ops {
- 	bool (*reset_status)(struct xe_exec_queue *q);
- 	/** @active: check exec queue is active */
- 	bool (*active)(struct xe_exec_queue *q);
-+	/** @suspended: check exec queue is suspended */
-+	bool (*suspended)(struct xe_exec_queue *q);
- };
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 787a02c46652..2d7f25880cfb 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -2217,6 +2217,13 @@ static bool guc_exec_queue_active(struct xe_exec_queue *q)
- 		!exec_queue_pending_disable(primary);
- }
- 
-+static bool guc_exec_queue_suspended(struct xe_exec_queue *q)
-+{
-+	struct xe_exec_queue *primary = xe_exec_queue_multi_queue_primary(q);
-+
-+	return exec_queue_suspended(primary);
-+}
-+
- /*
-  * All of these functions are an abstraction layer which other parts of Xe can
-  * use to trap into the GuC backend. All of these functions, aside from init,
-@@ -2237,6 +2244,7 @@ static const struct xe_exec_queue_ops guc_exec_queue_ops = {
- 	.resume = guc_exec_queue_resume,
- 	.reset_status = guc_exec_queue_reset_status,
- 	.active = guc_exec_queue_active,
-+	.suspended = guc_exec_queue_suspended,
- };
- 
- static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue *q)
+ 	/*
+ 	 * Move exec queues to a temporary list to issue invalidations. The exec
+-	 * queue must active and a reference must be taken to prevent concurrent
+-	 * deregistrations.
++	 * queue must be active or suspended (ctx invalidation path only), and a
++	 * reference must be taken to prevent concurrent deregistrations.
+ 	 *
+ 	 * List modification is safe because we hold 'vm->exec_queues.lock' for
+ 	 * reading, which prevents external modifications. Using a per-GT list
+@@ -266,7 +268,9 @@ static int send_tlb_inval_ctx_ppgtt(struct xe_tlb_inval *tlb_inval, u32 seqno,
+ 	 */
+ 	list_for_each_entry_safe(q, next, &vm->exec_queues.list[id],
+ 				 vm_exec_queue_link) {
+-		if (q->ops->active(q) && xe_exec_queue_get_unless_zero(q)) {
++		if ((q->ops->active(q) ||
++		     (has_ctx_tlb_inval && xe_exec_queue_is_suspended(q))) &&
++		    xe_exec_queue_get_unless_zero(q)) {
+ 			last_q = q;
+ 			list_move_tail(&q->vm_exec_queue_link, &tlb_inval_list);
+ 		}
 -- 
 2.46.0
 
