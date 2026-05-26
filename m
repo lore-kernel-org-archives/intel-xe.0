@@ -4,158 +4,140 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9ABECD5BC8
-	for <intel-xe@archiver.kernel.org>; Tue, 26 May 2026 19:12:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 849CECD5BB1
+	for <intel-xe@archiver.kernel.org>; Tue, 26 May 2026 19:18:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95DDB10E1F4;
-	Tue, 26 May 2026 19:12:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20F3210E1DF;
+	Tue, 26 May 2026 19:18:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="meLJHLgi";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="Fakn1O5K";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4215810E1F4
- for <intel-xe@lists.freedesktop.org>; Tue, 26 May 2026 19:12:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779822759; x=1811358759;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=YVvFGLZ4qOU7l3RToENRGgbs1pFDhyQfEt2SmS1zEeM=;
- b=meLJHLgiPejDr3uuoDkyHaZAQOxrv8csMGvKqlVpu6racsbvXSAkVkOI
- FzSsQMVogehhmjPZg0msukcUxKE7/QJjpV5uyanWKX3aI/KUt4nAko0Cq
- NWkVhWKkd5JPGfgEau8M3YAyt8suAxpxd2Apk/3EWgPwQlqjcRu7SpNqB
- acF76k9XUkqGS2b1xnDqiSP0Kzhg4O3H/TyahvZ2Y3eyZrlH7ttFWsZUM
- mlW4tEsCWn50qcSEW6VannNZYo/BiewOfeCT0FFlI2tqFAxoQddQ2kxkV
- 3aQlnqS9IVC+eslb10mXY3dv+YS0p2qN7wFLQ5e6rbzbegB6pDNRqfctz A==;
-X-CSE-ConnectionGUID: KjoYVd7WTYK+9vujB76xqQ==
-X-CSE-MsgGUID: 972Q+yx+SeuM94STr+w4pA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11798"; a="106106151"
-X-IronPort-AV: E=Sophos;i="6.24,170,1774335600"; d="scan'208";a="106106151"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2026 12:12:39 -0700
-X-CSE-ConnectionGUID: qCUVdWZPQ6aa82bUrh6LGQ==
-X-CSE-MsgGUID: 8agvrEKxTJ6B3rYWx6jgpQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,170,1774335600"; d="scan'208";a="237839989"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2026 12:12:39 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 26 May 2026 12:12:38 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Tue, 26 May 2026 12:12:38 -0700
-Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.0) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 26 May 2026 12:12:38 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rjEqoS22Fd7QGkUYKjGb/k+H1sjgywYHOHV3O5SxZbotYlIDYL5frzw1HV9qKGvfKnkxQDWzGpFicd9exrp2B6DVQs09uU8h0ctcTPFQKtf1MzKZ7tj9WLlaqVp1kr5NLnfliSWKCu2/bFQnP37W2DcDvgNoMnR9h7WY0xXRpOpWR+y3zl0GFbw0Sh5CEl0iLIiJ3UI/JX1se/T0MY+/CByNs5bVbV3keJGGzw9qi3SOJv96xWTWRMZlnE58hDVHatP0nnOpSmZkxtdN/XEkT54AgO1+lHQbnJbDPVN4ln4q/6BAHLFEoutuJM2O8SFF2dWeOc+pwa9tPn5frTgKyQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SbpwBJmVlfHrm1HHb/xZRtqYgzdoOvfgjlOsfN86qms=;
- b=pbcnJyfu8P3zobk4/iHql6zq+pYmu9axNnsCzHhasSAXiWIBHNky3Zw31X52WXOGMnewUV3vfwO8eLWmL88ig3M8/0HTRCURv6fYsLhUK/2LxdqY2fF8TSRaXud9bUL4I7yaRtnoQmYo/SyAauucUboW3GvQm8zD9ULeizJn4Y+t9LnJMb10RTixy4Few0DMM0Wxa94vgfP8QyCboQPz8gc4YLGB+xNc9Oq6FJzsF5K/5ah60jlAnLQdI/iok3zu1HywSEDI9A+nboisopJYtJS08yQyM6XNMpu7Hzs2UMvbWDn2dcLjpInzlObVfLu8RrAhyiQU5xUktEBf5YTWPg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB7408.namprd11.prod.outlook.com (2603:10b6:8:136::15)
- by CO1PR11MB5074.namprd11.prod.outlook.com (2603:10b6:303:97::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.12; Tue, 26 May
- 2026 19:12:35 +0000
-Received: from DS0PR11MB7408.namprd11.prod.outlook.com
- ([fe80::53aa:3f7a:59cd:e057]) by DS0PR11MB7408.namprd11.prod.outlook.com
- ([fe80::53aa:3f7a:59cd:e057%3]) with mapi id 15.21.0071.011; Tue, 26 May 2026
- 19:12:35 +0000
-Date: Tue, 26 May 2026 12:12:33 -0700
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 1/9] drm/xe/rtp: Add RING_FORCE_TO_NONPRIV_DENY to OA
- whitelists
-Message-ID: <ahXwod5FQOxZNj20@soc-5CG1426VCC.clients.intel.com>
-References: <20260518234716.1540123-1-ashutosh.dixit@intel.com>
- <20260518234716.1540123-2-ashutosh.dixit@intel.com>
- <ag+R6ndpufdiwMej@soc-5CG1426VCC.clients.intel.com>
- <878q9cwd36.wl-ashutosh.dixit@intel.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <878q9cwd36.wl-ashutosh.dixit@intel.com>
-X-ClientProxiedBy: MW4PR03CA0062.namprd03.prod.outlook.com
- (2603:10b6:303:b6::7) To DS0PR11MB7408.namprd11.prod.outlook.com
- (2603:10b6:8:136::15)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D75D10E1DF
+ for <intel-xe@lists.freedesktop.org>; Tue, 26 May 2026 19:18:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1779823082;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=SG0VZXgnE7joBtOWfwYOMPFB5VPQhatA/6aMDA97+AE=;
+ b=Fakn1O5Kh2PlkzsWGrZftU7d4sUr6dg9WkAtk1WUfw/GWP3Vv3+Wvqk2b+MLNQjr0KZVqb
+ +BNGHXLaHY+O4ja3JmAHZbb4xb0CHcLfHvMnU+lYoAxeC/55dYkZeHBd5piUpLuBNGl2H+
+ d/+wlPLsggGt3d3dQykIf6pa6CN+X9Y=
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
+ [209.85.219.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-616-aGoAymVAP9OtVosKRnQL_Q-1; Tue, 26 May 2026 15:18:00 -0400
+X-MC-Unique: aGoAymVAP9OtVosKRnQL_Q-1
+X-Mimecast-MFC-AGG-ID: aGoAymVAP9OtVosKRnQL_Q_1779823079
+Received: by mail-qv1-f71.google.com with SMTP id
+ 6a1803df08f44-8bc5ab12bb5so79329286d6.3
+ for <intel-xe@lists.freedesktop.org>; Tue, 26 May 2026 12:18:00 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1779823079; x=1780427879;
+ h=mime-version:user-agent:content-transfer-encoding:autocrypt
+ :references:in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=LZ9mzM83+bK6+sNc7KbfJmscHayOTSlO+YYGLuPW7gs=;
+ b=ecDWZzfRrLPWjRFlhycE8MRUkCZEZoSulir1uf3fCbKMObqzsb3VgLGaykvJBswDXW
+ JDPrCrhmvqb8mZhkH71OZfWMDx+qclECNhpWYeb3wD/kFFAVbbRP9+GZPLc/eMNsn5vm
+ Ph8iK5PHuepE4X+GK4jFLivFCM9+xsLLIst196vwQEVqPpDk7fPBwSVu/Lrc+L5AkdIP
+ RTEuviGFAw1vOTxGvsHOsbEvE64qtufFLRbXCaFz8uEw0xmWG4S3J/vVqJBaD+T8x0ii
+ r8DIOH4Yl8iY+EUkJ1yMFA/s2RbHk5Kas2fkXbA0EEAy/7t+fLy0CNlhT7nop3A1+Z9Z
+ P4gg==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ8KCcsvsTkbIca5FU7UQlQhGN52r42a7oTvPtPey6/2qOUDL8CNj2pgg/kpFvDaOApS18/DNUNs7Q==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxX4VB3umJrdJIOGv4e5/23kDD1YFwdf89Neq0tEqoiORDGTmeW
+ sTrFO4dpt9lFvFamvXy/ZMLws9GVqIeqQONfG0c4C3/LZ5HcY+q+6yDPwzo8+GdMVXpqVAgkgNn
+ OOmpx+y2ITJpSBP0qcE4cBGIZfUrnfFltO/0zx8zVDG31l4Nw+3Ub95uULIu4K/wyMgnJ
+X-Gm-Gg: Acq92OG+KW3OwEdgyNNYdwy2d+2rsHHgqGDST+vTOsTpOBpHdxVPRzx4TCBUQQvUlkc
+ Wr3Hm6j9ICY+qxxrVr64f6K8IXSD3tgfv9YkeIMDcdVLZ6O0mT048JfXtLrm9SHL//rSiC5H//Y
+ 92C7gV/XU6CIc5xiHlaoa6OtIScQd6XprG7RAz2mEKb0Iz1UAIC1AGG4TATkS4Bm8br7pVpgzcu
+ xf9sbnsoRS8enI+/MVsw+A6oHgOYEE5tO6FSWUu167QvLAAXnUcd3LdGpD19Mfds0pMgSS/MFVD
+ uwQWAkiLBmQqWXBFNxpakhkBm5plO4/q3gnuGpSOEXhtz6u3gar0PwWZ4oe7+YmAg9fhXlM/F3V
+ PYcf+NYzg2oMKjf3ONnIF/xjuydJN
+X-Received: by 2002:a05:6214:4508:b0:89c:eabb:f58d with SMTP id
+ 6a1803df08f44-8cc7b5dc35bmr328432556d6.47.1779823079385; 
+ Tue, 26 May 2026 12:17:59 -0700 (PDT)
+X-Received: by 2002:a05:6214:4508:b0:89c:eabb:f58d with SMTP id
+ 6a1803df08f44-8cc7b5dc35bmr328432106d6.47.1779823078882; 
+ Tue, 26 May 2026 12:17:58 -0700 (PDT)
+Received: from [192.168.8.4] ([100.0.180.93]) by smtp.gmail.com with ESMTPSA id
+ 6a1803df08f44-8cc80decd48sm155816336d6.14.2026.05.26.12.17.57
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 26 May 2026 12:17:58 -0700 (PDT)
+Message-ID: <7fd6c044ef7f7c661cb2dfdae4806a0b7f24d02c.camel@redhat.com>
+Subject: Re: [PATCH] drm/dp: Add DSC virtual DPCD quirk for Realtek MST
+ branch device
+From: lyude@redhat.com
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Shawn C Lee <shawn.c.lee@intel.com>
+Date: Tue, 26 May 2026 15:17:57 -0400
+In-Reply-To: <20260525125516.2794636-1-imre.deak@intel.com>
+References: <20260525125516.2794636-1-imre.deak@intel.com>
+Autocrypt: addr=lyude@redhat.com; prefer-encrypt=mutual;
+ keydata=mQINBFfk58MBEADeGfHLiTy6fhMmRMyRFfbUMo5CTzt9yqwmz72SUi1IRX7Qvq7ZTVNDC
+ CDTYKt809dgl4xtUxSJJqgdljHSL5US3G72P9j9O5h0vT+XM9NavEXhNc48WzZt98opuCX23e36sa
+ PLkVFY5TrC1PZsc16swjnjUWQdIblh5IOBko9yIvyJlqmApfLYAQoY+srYIFMxGBkcsv5nMrRflFl
+ k5djg6Lyo8ogGCSRyNK4ja3lrX8niyHb90xTZWYEcn9o38xzOjpxEjVWny4QeEZBGGEvqHN5Z2Ek/
+ tXd4qNn44CGlzQk1CWJoE36TRvZAlqoUZ4m2+9YkBxILbgCxIg344OvZTLme+NraMINV014uURN/L
+ O/dyCY14jOzAo3vgCzyNHrS/4XDs3nlE33TG/YL+luwPW85NWtg8N6Lsq46Y6T94lYCY+N7rrdzCQ
+ kHWBXPUA8uGkzDO5zShkKt+qQr11Ww4xvYPr93TwseKtSEI6pyOS+iFmjOLseaxw2ml7ZCRNEKJFx
+ xbxFQNP72aumm+9U8SFnL8TVlERr8HjlAY/5l3SMM91OkQ82xCRZAJl3ff2JMaYAixn5JXY1rZL1d
+ d3DyZ8pdgfKey1QNq5M82eJOhecggOs5LBdqDkpN3Bi9hw+VW23jYmZ40shFEbUqlaShkYb8hlBlr
+ DwLV/tRb9pdzQARAQABtB1MeXVkZSBQYXVsIDxjcGF1bEByZWRoYXQuY29tPokCNwQTAQgAIQUCV+
+ TnwwIbAwULCQgHAgYVCAkKCwIEFgIDAQIeAQIXgAAKCRDFRp+4dY+cK9L7D/9MoGlkMAalilfkOv4
+ NhXWbyYXN6Hi1UqeV7/6GRvkcVtAA+Txc+LfhxCgBzH422Q9nyhC3YKvccDLblJ9pk0YbX75vKWGk
+ 5ERJjpNyoACHJ6/yO3VsXg/IMVKZKhJQv/6XkWIRd2PmIfdS9y7w9KwMsEXVktFiAFlvI5C1jIIkn
+ 9aNiAFmalFkzNiFoEeGjLUwA/mr5Ln1aNGis6IlX0O6p02L4HfR3RhdfzguRqNNMyZNJ4VSinsQr2
+ 8d9szAaayQf7IPic2PR+Lio+QGwopv3IyEzDVlZl9jTR+g1WueT4Vkc++aH4zSm+qlUDctpya5+PI
+ EDe3f5zlOVhqGdMK5iEzTJdx/+lYHizlD54u5ll+sNPwEOOXxGyE0umz4YEI5MN449d9I4mPr0BDu
+ iek0S/qFTzfXHjdwseYKyMT1pK6N8vfHSU/+5mmRK7TLfYs+Qg5XxBiqqM84yCsKR8AxuTSCKb9XD
+ sMSevCk8bsLIUjjJAHm42W4sRtVFLzToUBjvmg86x50PyKUh9oaDOcvp6rOJzOWfmMBql2rX0/rHz
+ GO+0332Q8Lb/HT3585EgRB6kRMIqW8AOAHlKfYn4rhhRbXs0K+UBSJEuDf6Wo2T8kIVn8gnrrp36b
+ ebqKuZcMZXUyHULT265BwiPEc/naRwumBKRHOG+7T3VboqraH/bQdTHl1ZGUgUGF1bCA8bHl1ZGVA
+ cmVkaGF0LmNvbT6JAjgEEwECACIFAli/Sq4CGwMGCwkIBwMCBhUIAgkKCwQWAgMBAh4BAheAAAoJE
+ MVGn7h1j5wrKfUP/R5C55A0pezHcoYVflibTBmY1faSluvNaV6oK55ymqwYxZ6DlgKOfsEY0W0Kvf
+ 5ne9F1I1RUU50pDlxBxViOui6Rnu+No0eE3B4o2v0n1pIlGlsGQoTLzKb+l+AnH3Nm2Z1lCNrebHD
+ lZm+DEV6yf1c2E/LlTOIZm0dcamuz5aLxAMsmdc5nkQU7ZZcAyH5kxy4Wj972RcSJ0PyqIfJqbaTb
+ Qd1ZEQbKPtXnhfedKSXowtPsydYp02R1hJessIywIPVoYbxA9jp65Ju4pmmt0tREa2/zLcggOgOta
+ TBLNx/b0sAtMLPP8sovkZyz/Oxw29zgugtu1JXQmTb27xtVKBBGV5Y57yWAO4fG/dl2RhUQSJ1u+h
+ kgeVJEN16nx4dQgVEYHNRoIM47VDu7iVP5+sAagw4n8FDlxOmf4WgGvnL/SmTflR01iadF7exwzDy
+ uvu+86iYHsOaTLNr2IascU2UcH9Cv45FUtbh+Eel5q63zVPBezasEXGyEbcLfGyIMXnsSVi2Pj7Xr
+ dhtZguu1d9I5dlV2c32pFGli88y4kA5vYFjpUtQPNZZwf+0onXuTcBeEl5npypMNjZnUjiEKlqRD4
+ XQiGFwwbfyG7ivoU8ISOW+g64EryNDuQk6Npgegm/nG6o3v+sOA/+dSIj090jgnD76MbocCtFvypj
+ 2Tnz0HtBhMeXVkZSA8bHl1ZGVAcmVkaGF0LmNvbT6JAjgEEwECACIFAli/TOoCGwMGCwkIBwMCBhU
+ IAgkKCwQWAgMBAh4BAheAAAoJEMVGn7h1j5wryDMP/AuY4LrFWCdp/vofq7S/qVUNj4gzxN1rY/oU
+ 8ZTp+ZQpw2xVXB1WNC8kI96vyJFJ7SKlsWSuEsS/9wzWlaT+SyF83ejGfhUSENXadR5ihQ/wqwmHx
+ W32DZFkCunvmAkUBgDgNhQpQn4Pr/rhSfzKg/cIAkKDGTg+4ahJ0Yn4VU1eIk6MAikg2vjAJMwCiK
+ 1lEb59w/eSaM8/LeVl29eJxWgYieCYZl6eGjcnbp+Ag3rka3QD91/CR0+ajnkQ434tvYL9RYqizoc
+ lhjGwNWy7YYyCg16Lkpox9Z8b4rey+MY+lH2ZbWMd56ZHeM8cAZ3WoBJ2JCgWX0Iswko4w+37lY72
+ F51iGtaJYBJwsTIe/wuGuBCvTlrCz86lNLz0MxzFNWys5zVdAJ6OBzSDFiTusFpnYYBgQk+006Fdm
+ SxsS5tlihAnSJAqBfOg6iCAFMBnDbb55MHr5PV86AmjaRtZDTNsfzkFbmtudYcVX2f4E5i4Qeaa4l
+ /a3zh4U5lovveCWLMr9TyPAWS6MO6hjQO2WZ5n9NT7B7RvW2YKON4Dc8+wjCu/3QGhXmtbUYb9LBZ
+ Hc7ULBNznyF7OK61IaiV7w3H6uSe4q0S04Hqmdo40YgVmHphucAHKbLKJAWms+0kjipHu5e80Ad8m
+ U6scMawBiJ/Eh9OKgLQKT3xafADhshbbtDJMeXVkZSBQYXVsIChQZXJzb25hbCBlbWFpbCkgPHRoY
+ XRzbHl1ZGVAZ21haWwuY29tPokCOAQTAQIAIgUCWPpUnQIbAwYLCQgHAwIGFQgCCQoLBBYCAwECHg
+ ECF4AACgkQxUafuHWPnCv+WxAA0kFzpWCv0F8Z73LRjSxxHlY7Ro3dVdXzr8JvkD2AQiukWeOlCGc
+ rrk94TipcVvMEsO8feL/BY7QTCb19/koHR9wNYjbYtkIUOatatPE+GUPNu72+gjoMsiwY7rbkNIrd
+ KRroYg9paAzwLfh6B9DVoT4ynQLjIfK8EKvC7vxZ9hyyrB84yZLZm7aSTfyyWWdhKrfyhMBQ/si+O
+ tcwNgFavtnSST7j7WmS4/7pNoUXC+tRTfSIzYK082XVgvWPw7K6uKmHDxXUsiTz/RG8t+CLH0L0Gc
+ I/rrQ7N/QGBij3476nrNNwlpuU5y9dOkD+lbAcH1PjNOGlFUjx8wbTiJTTvX9yF9B/pLE/O2SMva5
+ uLAmGLFSbj6dq60bf1+T3b8FqtMvfJ7QkArAYiDOpDz9KPVITE0E9mL04Cgk2mHjN6h3WjNwqE4F1
+ ezjtWPyKvmThxwzCVMBGoxa07aImG5/HeuyP3fsBFwu5DL8PePfkMUuCnFgYMIKbQAsj3DXC4SHBW
+ BNZ+Y1boZFlInSEDGlAenMa4pcQ2ea3jdSibQvx/fpoHiYN87DlhNLBor2KGKz176rnQp2whDdB85
+ EeQbx1S2echQ9x/SPF0/9oAB3/qvtxULmpFGaGh0J6UXYp34w79sZzmjphypJXacxHJkegFZf7I5l
+ 8doKQgPpApRcFGaE=
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7408:EE_|CO1PR11MB5074:EE_
-X-MS-Office365-Filtering-Correlation-Id: a6484e06-54ab-4f9a-3d18-08debb5abe3e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|18002099003|22082099003|11063799006|4143699003|6133799003|56012099006;
-X-Microsoft-Antispam-Message-Info: nNhvGDiLOzy7BdhaVSIX8gzXj9Xd5ZZq2ZwKA0+45iBwnio7LW+Kxrmw+Bg6FHE1OlkrqKMfaOfJbHJJDa1Z+Rfbs1uRFqKMnS9fSGhTY1y0E0IT+PQw/k5kbU8PgA1Qqhal6TbcWHnsuY4d1jDZQRv7hb+pNqycn1PFRdI5ZTh2b8QC8YfNT5UIGEwwsTPTDUUSax6Vp5dnUb5APlOTWKDuQkYPKPfYFsZ3RxhOx+GsxYAdMqKHAVfebbv4SCE0XOXYhx84sXvmjBeUXIA1/e5x5tljZBLzJ5IOIcziuv82Oy+Sz/cyaL0tyC8qeFXe3r9a+PPEV5Eoc6bL6JClf5CCjZJt6kR5cFdLIRQoxGafCMXtesazEb1SF9F7U8InDKO5h3LMf2uXJdbansrdEM0BI+TpvdQ1xqr22v9vHGYeRWhK1qPdguNJyR6p8xdLuRHSx05uTgyCCiH3nynxXys14ne7NV5YhKSfnlUAswzhkgdmOLX/1ZLFkrodtLWXXgYmdN1QAUl35neLXDEtvBgnQTlkiwaKAgWBsOI+w0sr4UjNI56yePX1eLS2XgChS/70dgN6y7bs6MAA8+kIFTH8j6eOdFink6D12iAYQa+nrXGG/ja6DRc1NR2k0i1lt5/hqtSywzUz85GHp4q4uBIw0N6cMOGlptDVSi8wi21b/KHO5960KCVhjOW5MSPt
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7408.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(18002099003)(22082099003)(11063799006)(4143699003)(6133799003)(56012099006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dFZjbktVRHZGc2FnTzM3dGVCWk5MclZZZXhtd0Vjdk4yUDI2Ynphdm13UTli?=
- =?utf-8?B?TU1CSjdoSnZ5dFV0dW5BckFwbEk0U2o1OGpJNDZWUjRLWXV1RWEvTWNoeHJW?=
- =?utf-8?B?OEFpK0NLYWhTZVpFemtaNlhaQ2puV0htdVdLdlpFa1B2U1QxLzYvMGUwWWRY?=
- =?utf-8?B?QlcwRzBUckVIU0JBVUI3WG04WVk5QkNBNlNQa2wwdm5GRkJWVExUUWZMWHNw?=
- =?utf-8?B?SmpMcHdVU3ZLNDVDTlR5SzQxUnVXWVdGMmZHOVFIZk00aUhtb09lWXdWYkUv?=
- =?utf-8?B?UHRsU0w3anZBdEVYVHpON0lvbUtlYWo3Unc5a21UcVhhSWkwcExhZURCNjgr?=
- =?utf-8?B?K1hHVHZXV1luT0NwN2J1VzdVK3N6VWlmeDkzR2NHd0QrQ3pvbXpRbHJZWWpt?=
- =?utf-8?B?SkpCVXorUHpyMWNraGVnblUzUlM1UjJFQW8xU2Z0Z2EzWG1TdmVYSTdEN0J2?=
- =?utf-8?B?ZHdaeUZXSVFzZVc5eDE3NnFQQ2VXRTBnVDBhVjYyRGNhdnhTSnhNWFZtZmlE?=
- =?utf-8?B?b2ZsKysvbURFUi84VnlRNnhVaVI2YnFvVWRKcEJCeGxhM29CRmF5QTB2U0t1?=
- =?utf-8?B?Ry94NEFWNTc0cW94dStkVFNsem40ZHpxaXdLbVBzU1MwanQ4ZGxEcUZyeVVI?=
- =?utf-8?B?MFlzOXNVVW5OK3puZ1RwL2lvdG42TDRPeDY5RU1yNWtOeEtuU1JnU3RzbGRU?=
- =?utf-8?B?WGx5c2dCTlQ5b3ljUUt4Y01OZ0VldDRCMkd4dXdSbm5Gc0I2NWxQTlRWeVRG?=
- =?utf-8?B?NXZqTlRkM2NMTEhUMFVFRmd5KzJyQXlJUktPUDhzWkV1Wm5acnlacHZ0MEto?=
- =?utf-8?B?Unh3WmZyTGVQQzZhZ3hKRjB5SE5aSkVnL1p6dURFN1ErVTlSM3YzYS9mTHRM?=
- =?utf-8?B?SHVGOVNsUVE5MUxCSzhCT0d4MzZRYWNLQU9ya05XQVZ1c0tFYWt2VjVZWitp?=
- =?utf-8?B?L0p3dCs3WjBsZEh1d3ZQWVFhMnhmSi80eXdoM1ZEQXZmcUlBUHRHRm5IUFZQ?=
- =?utf-8?B?MHFEaDdBMnN1ZTRyTm1HYmg2OUJkZE9GWWUyd2hXSStvZmFVWjNyZjNHemhq?=
- =?utf-8?B?WDF1UVcrelhGait5T1FESlVoZUZGOFdZWGoyVDFQOWxGc0tVcVg0WEJ5TlBP?=
- =?utf-8?B?ZThMZHo5Z1ZJY3BrSjFhTjZzWE1tM3NSR01PVlNJcG5jUlA5ZldtaThnRVdl?=
- =?utf-8?B?V250RzRwMjdscVd3R04yOVc3Ung5L3JWekUrUXdaQ3NPZXdtZStST21rcFpW?=
- =?utf-8?B?aWZqUkRtVXhPeG42TGFQQXR6bnFucnpwYUNHcWdzNitsUCtaamtmWmlkZ0R3?=
- =?utf-8?B?S1E3cmRleXdjY2F1clV5ZXZZcSswdTdva0tncEtBRG1xQXZReUdzYmRPRGRr?=
- =?utf-8?B?U1gzT2IrVXZVNWNaZUdlNndoNThtLzBYVnFEb2hMZ1pTbzU4TmQxaFZhU2Ev?=
- =?utf-8?B?b2J6LzRxSGNTVEV2L3F0ZkNoQytqdWtlOEdCWXFvazZ6bzhKSkxUazVWNVVw?=
- =?utf-8?B?WlZSVDM3V211M1VBRjdQUTNUUjJMUFplc0g0eXE4YUowWERwQjc3Y052eGRG?=
- =?utf-8?B?bEVpL1VpaG1Wb0tqcmZZdFJYRHE2c1pKUmVxZXMyZ3lER2lSdk5OK21HK0wv?=
- =?utf-8?B?Tlpqa3ZoVit3d3V1c0tPVVV1OW1JU1J6bm5tMHdPYXJOVlJVclN3cE9VSStY?=
- =?utf-8?B?TDM1YWZxM2lwY0p5NGppOHZoZnkzajJJQzNXVExVY25jbWhqMHUvQkNrK0ZB?=
- =?utf-8?B?TUxQL2JLTnlWWFdObmFYNFRyU0duYzcwSlkyalgvcGgwRzdxaXlKb3J1UVdn?=
- =?utf-8?B?bzNMVjVkMzJ1WGZta1hNOWMvak1BWDViekFmTkgyYW1ETWJ1RUNLK1BSMXFj?=
- =?utf-8?B?TWZSL0hMTDJ2a25aNkxxUWo2N0szdlVYK295c29UNTh2UktmNEtFdC9GR0Vn?=
- =?utf-8?B?V2FQVXdUMTIrR0VibXI5MW52ZC8zaStUaUYrQXVnSWxnRk52c0pRb0xqa2ht?=
- =?utf-8?B?WEV2ZFp0Z3BIMWdFa2hRd056SDZYY3pEckZPTEp2Z3l5UGdxWWE4OGtORFNO?=
- =?utf-8?B?SnQ3bEV5dkJJRUg0SDRNMjA3REw3NnZHRTdSRWJlU2NpK2hvUTJRWkhCVzQ3?=
- =?utf-8?B?b3FuTnphTWhNUDNQSllMZUZ1ZEFpMjFXUlFaNGF0NG9pZXd5ekNzS0pkSTdO?=
- =?utf-8?B?NEI0V0xGV2RnTy9pZzJ5SFNUejlVblJrUmZGZlRqcTI1Sk94T2FNSEJhZmlq?=
- =?utf-8?B?M0g0ampwdU1xZDBIVXVjZ3lGaEZ3Mkt1c2hEbU54N0V4Qkp1eTlrNWhPRURk?=
- =?utf-8?B?Mmh6ODZONlNnUXVHNU9tR1h1a2poQUlSbWVZWmNRNnZ1UjFTRE0veVpIMEFL?=
- =?utf-8?Q?ZCSEyE/6M5C72CHAEpKGY1diyLDW6WoPbo5Q9?=
-X-Exchange-RoutingPolicyChecked: L/34RFOeHOUWajrnSYAmRG8a1HNKoPly4H9/0WQbUnUojWn1s9vbbc8hIVP7DqubeyityJ8jiocdDtINBNbOJjWxKJ2mlbL4HLlSw8OD+SDvrbfgkND8o2dZRRp+Ey3bzY2odagUpvnd0+zEK6qIJXMitgfK8m3Tv6M2Ue3nDt+ajCySxcwnrb0jzfpOqad9QQlDra7kTSSp3BZfZzlbDfnALENZTN1BV0mptA/0UcqGMZTuv2Et0s/Iim+S23mZMHPEssNt1/FOOPMO3cC4ZiQcrNczahppe/K8F5K8cduhG41T4C8cvTZ0EH0RlDvx6S+fGpQn/HCZaqnB0smOUw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: a6484e06-54ab-4f9a-3d18-08debb5abe3e
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7408.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 May 2026 19:12:34.8480 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fvFfTCZw0jdXrItRr2f7UH6IZTC3rmMW5yG7pcQ2Up5V4NG3Mx1XQkIhU4vXUw6+uPrD3Du3lsckLNw+LUa07Hh4bXY1WL4ideGe9Zarx6U=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5074
-X-OriginatorOrg: intel.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: fLwgzsUWhE4cL1d8nS1SRhprqfL7ZxLLSNgbenNX5Qg_1779823079
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -170,64 +152,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, May 21, 2026 at 04:35:25PM -0700, Dixit, Ashutosh wrote:
->On Thu, 21 May 2026 16:14:50 -0700, Umesh Nerlige Ramappa wrote:
->>
->> On Mon, May 18, 2026 at 04:47:08PM -0700, Ashutosh Dixit wrote:
->> > Unconditionally whitelisting OA registers is a security violation. Set
->> > RING_FORCE_TO_NONPRIV_DENY bit in OA nonpriv slots, so that OA registers
->> > don't get whitelisted by default after probe/reset/restart.
->> >
->> > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
->> > ---
->> > drivers/gpu/drm/xe/xe_reg_whitelist.c | 7 ++++---
->> > 1 file changed, 4 insertions(+), 3 deletions(-)
->> >
->> > diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
->> > index fb65940848d7a..d6a5d499373bc 100644
->> > --- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
->> > +++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
->> > @@ -105,9 +105,10 @@ static const struct xe_rtp_entry_sr register_whitelist[] = {
->> >	},
->> >
->> > #define WHITELIST_OA_MMIO_TRG(trg, status, head) \
->> > -	WHITELIST(trg, RING_FORCE_TO_NONPRIV_ACCESS_RW), \
->> > -	WHITELIST(status, RING_FORCE_TO_NONPRIV_ACCESS_RD), \
->> > -	WHITELIST(head, RING_FORCE_TO_NONPRIV_ACCESS_RD | RING_FORCE_TO_NONPRIV_RANGE_4)
->> > +	WHITELIST(trg, RING_FORCE_TO_NONPRIV_ACCESS_RW | RING_FORCE_TO_NONPRIV_DENY), \
->> > +	WHITELIST(status, RING_FORCE_TO_NONPRIV_ACCESS_RD | RING_FORCE_TO_NONPRIV_DENY), \
->> > +	WHITELIST(head, RING_FORCE_TO_NONPRIV_ACCESS_RD | RING_FORCE_TO_NONPRIV_RANGE_4 | \
->> > +		  RING_FORCE_TO_NONPRIV_DENY)
->>
->> status and head should be clubbed into one slot, starting with status and
->> RANGE_4. Maybe that can be a patch before this one.
->
->No, e.g. for OAG, status is 0xdafc which is not a multiple of 16, which is
->a requirement for RANGE_4.
+Reviewed-by: Lyude Paul <lyude@redhat.com>
 
-I missed that. I thought HW compared ranges differently. In that case, 
-this is correct and the individual registers can be whitelisted 
-separately if needed. Otherwise some registers can be dropped whenever 
-you plan to do it.
+On Mon, 2026-05-25 at 15:55 +0300, Imre Deak wrote:
+> The ASUS DC301 USB-C dock containing a Realtek MST branch device
+> supports the DSC decompression functionality on each of the dock's
+> downstream connectors, even though there is no discoverable peer-to-
+> peer
+> virtual device in the MST topology (which the DP Standard
+> requires/suggests to control the DSC functionality on a per-DFP
+> basis).
+> Add the DP_DPCD_QUIRK_DSC_WITHOUT_VIRTUAL_DPCD quirk for this branch
+> device as well to enable the DSC decompression functionality on all
+> DFP
+> connectors of the dock, similarly to how this is done for dock's
+> containing older Synaptics branch devices.
+>=20
+> Cc: Lyude Paul <lyude@redhat.com>
+> Reported-and-tested-by: Shawn C Lee <shawn.c.lee@intel.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+> =C2=A0drivers/gpu/drm/display/drm_dp_helper.c | 2 ++
+> =C2=A01 file changed, 2 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c
+> b/drivers/gpu/drm/display/drm_dp_helper.c
+> index a6067471dd563..9c31e14cc413b 100644
+> --- a/drivers/gpu/drm/display/drm_dp_helper.c
+> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
+> @@ -2546,6 +2546,8 @@ static const struct dpcd_quirk
+> dpcd_quirk_list[] =3D {
+> =C2=A0=09{ OUI(0x00, 0x00, 0x00), DEVICE_ID('C', 'H', '7', '5', '1',
+> '1'), false, BIT(DP_DPCD_QUIRK_NO_SINK_COUNT) },
+> =C2=A0=09/* Synaptics DP1.4 MST hubs can support DSC without virtual
+> DPCD */
+> =C2=A0=09{ OUI(0x90, 0xCC, 0x24), DEVICE_ID_ANY, true,
+> BIT(DP_DPCD_QUIRK_DSC_WITHOUT_VIRTUAL_DPCD) },
+> +=09/* Realtek DP1.4 MST hubs can support DSC without virtual
+> DPCD */
+> +=09{ OUI(0x00, 0xe0, 0x4c), DEVICE_ID('D', 'p', '1', '.', '4',
+> 0), true, BIT(DP_DPCD_QUIRK_DSC_WITHOUT_VIRTUAL_DPCD) },
+> =C2=A0=09/* Synaptics DP1.4 MST hubs require DSC for some modes on
+> which it applies HBLANK expansion. */
+> =C2=A0=09{ OUI(0x90, 0xCC, 0x24), DEVICE_ID_ANY, true,
+> BIT(DP_DPCD_QUIRK_HBLANK_EXPANSION_REQUIRES_DSC) },
+> =C2=A0=09/* MediaTek panels (at least in U3224KBA) require DSC for
+> modes with a short HBLANK on UHBR links. */
 
-Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-
-
-Umesh.
->
->Also, about RANGE_4 above, there were different suggestions, e.g. tail and
->oabuffer should be different slots, rather than grouping in a single
->RANGE_4 above. To avoid any such controversy, I decided to focus this
->series only on removing unconditional whitelisting for OA registers. Any
->other changes, such as removing or retaining RANGE_4, we can do after this
->series is reviewed/merged.
->
->Thanks.
->--
->Ashutosh
->
->> > #define WHITELIST_OAG_MMIO_TRG \
->> >	WHITELIST_OA_MMIO_TRG(OAG_MMIOTRIGGER, OAG_OASTATUS, OAG_OAHEADPTR)
->> > --
->> > 2.54.0
->> >
