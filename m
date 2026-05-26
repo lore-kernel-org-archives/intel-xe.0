@@ -4,55 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DADD3CD5BB4
-	for <intel-xe@archiver.kernel.org>; Tue, 26 May 2026 08:27:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09FC6CD5BB4
+	for <intel-xe@archiver.kernel.org>; Tue, 26 May 2026 08:27:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E09E10E60F;
-	Tue, 26 May 2026 08:27:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF8A610E610;
+	Tue, 26 May 2026 08:27:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RY6gNGc7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AneQ5dk4";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D119A10E465
- for <intel-xe@lists.freedesktop.org>; Tue, 26 May 2026 08:27:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9423C10E465;
+ Tue, 26 May 2026 08:27:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779784055; x=1811320055;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=+WiOAvbPTYn/L+ZEo9lY2M3Y02v3ZFBacxMl/6IJkNE=;
- b=RY6gNGc7fB4/FsEx+x01hTiEjUiluUDSejRlb/iQyKZsBpyOGx63KLBZ
- RZJxzTUkSBbFEYMKKRZpzwsn25OVawiaJHnOZZoKd1hXhhB0rwUPARwMG
- PYdQsoeow6LbNcVJULeQoIankA4BOr7g61nlsWDbFiJmQLg8gbasxSyAq
- BC326MKbW+w62gfKGUsN/wOqCRFD+WoUeG6LlWsTXAGsTC3B0odP5dgjf
- k8GLOSo/iQQQ2LATEqF4Wu2W4oFF0EbNTom9CsSeFxr3uE9k6AhPxvCUG
- 9VqzH+VZ7OMhQ29mj9MrjSQ5ohFvHvznEaTIuaoCCFAIYhi8Jl23OT5T1 A==;
-X-CSE-ConnectionGUID: PcobCBdmRQqOQHPKyiN4jw==
-X-CSE-MsgGUID: mJQN4eeaSVqsWZP0RsANrQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11797"; a="91698425"
-X-IronPort-AV: E=Sophos;i="6.24,169,1774335600"; d="scan'208";a="91698425"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2026 01:27:34 -0700
-X-CSE-ConnectionGUID: flEXjXNmSYGRc3QWbMjKXA==
-X-CSE-MsgGUID: OZFqM7FVQ6i59RjvDDwBtw==
+ t=1779784058; x=1811320058;
+ h=message-id:date:mime-version:from:subject:to:cc:
+ references:in-reply-to:content-transfer-encoding;
+ bh=DgmBZfnl50mbPzvprAgrTr4A3hMm2/nN2fbwtqAYjfw=;
+ b=AneQ5dk4AmYtLRpWkTsHYUSK2YRqVd1NjyJd984sQUqvD0RSpFJ7zlxu
+ DzWqv4HBUUER5yKPYQRqEEaVzPZKNJDM1N7onMjDn2wEro6mAoGSQ2lQR
+ FTbZ0kM9QfvxmNUTgf7ToiGwF07pSWaoqKICnSbnIIj1rPYT+aLKFtST8
+ cejpcELds9r1tgUDTqXeqQUx47Io/zY5iYnmyjx09hXHElHtN0WL6fmZW
+ nhXZS9ycg80tym8RvM/feEGPajGWBkqJWShJM+FqE0ehhlMzLKGeJ6PA9
+ cf+PE8nHZXTA8mSnGwbHWMNUCvR46L8aoH5Ai0vCDvx+0IqhY8HcWC+ps A==;
+X-CSE-ConnectionGUID: mgt2UVUjStu45CYZcQnPtg==
+X-CSE-MsgGUID: WrhiAAKdT0aT8HoE9TTnVw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11797"; a="80576392"
+X-IronPort-AV: E=Sophos;i="6.24,169,1774335600"; d="scan'208";a="80576392"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2026 01:27:37 -0700
+X-CSE-ConnectionGUID: Aj32FojvT7CqXhOQVCGpLA==
+X-CSE-MsgGUID: sL6DyJ2wR3SD/LO5KmujJg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,169,1774335600"; d="scan'208";a="239251765"
-Received: from tilak-z690i-a-ultra-plus.iind.intel.com ([10.190.239.38])
- by fmviesa008.fm.intel.com with ESMTP; 26 May 2026 01:27:32 -0700
-From: tilak.tirumalesh.tangudu@intel.com
-To: tilak.tirumalesh.tangudu@intel.com, matthew.d.roper@intel.com,
- thomas.hellstrom@intel.com, daniele.ceraolospurio@intel.com,
- matthew.auld@intel.com, stuart.summers@intel.com, x.wang@intel.com,
- brian3.nguyen@intel.com, intel-xe@lists.freedesktop.org
-Subject: [PATCH 5/5] drm/xe: drm/xe: include suspended queues in TLB
- invalidation
-Date: Tue, 26 May 2026 13:57:00 +0530
-Message-ID: <20260526082700.1383831-6-tilak.tirumalesh.tangudu@intel.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20260526082700.1383831-1-tilak.tirumalesh.tangudu@intel.com>
-References: <20260526082700.1383831-1-tilak.tirumalesh.tangudu@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,169,1774335600"; d="scan'208";a="241704662"
+Received: from conormcd-mobl2.ger.corp.intel.com (HELO [10.245.244.113])
+ ([10.245.244.113])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2026 01:27:31 -0700
+Message-ID: <9fe89d8e-9c32-4b03-ac2c-a634f5d4de0c@linux.intel.com>
+Date: Tue, 26 May 2026 10:27:13 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: Re: [PATCH v4 2/5] cgroup/dmem: Add reclaim callback for lowering max
+ below current usage
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Natalie Vock <natalie.vock@gmx.de>, Johannes Weiner <hannes@cmpxchg.org>, 
+ Tejun Heo <tj@kernel.org>, =?UTF-8?Q?Michal_Koutn=C3=BD?=
+ <mkoutny@suse.com>, cgroups@vger.kernel.org, Huang Rui <ray.huang@amd.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>,
+ David Airlie <airlied@gmail.com>, =?UTF-8?Q?Christian_K=C3=B6nig?=
+ <christian.koenig@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+References: <20260512082406.44470-1-thomas.hellstrom@linux.intel.com>
+ <20260512082406.44470-3-thomas.hellstrom@linux.intel.com>
+Content-Language: en-US
+In-Reply-To: <20260512082406.44470-3-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,60 +81,318 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Nguyen Brian3 <brian3.nguyen@intel.com>
+Hello,
 
-Context-based TLB invalidation currently selects only active exec
-queues. During rebind flows, queues may be suspended while still
-associated with the VM, causing them to be skipped from invalidation.
+Den 2026-05-12 kl. 10:24, skrev Thomas Hellström:
+> Add an optional reclaim callback to struct dmem_cgroup_region. When
+> dmem.max is set below the current usage of a cgroup pool, the new limit
+> is applied immediately (so that concurrent allocations are throttled
+> while reclaim is in progress) and then the driver is asked to evict
+> memory to bring usage back below the limit.
+> 
+> Reclaim is attempted up to a bounded number of times. No error is
+> returned to userspace if usage remains above the limit after reclaim,
+> and a pending signal will abort the reclaim loop early. This matches
+> the behavior of memory.max in the memory cgroup controller.
+> 
+> Also honor O_NONBLOCK so that if that flag is set during the
+> max value write, no reclaim is initiated. The idea is to avoid
+> charging the reclaim cost to the writer of the max value.
+> 
+> v2:
+> - Write max before reclaim is attempted (Maarten)
+> - Let signals abort the reclaim without error (Maarten)
+> - If a new max value is written with the O_NONBLOCK flag,
+>   reclaim is not attempted (Maarten)
+> - Extract region from the pool parameter rather than
+>   passing it explicitly to set_resource_xxx().
+> v3:
+> - Use an rwsem to protect reclaim callback registration and
+>   region unregister against concurrent reclaim invocations,
+>   ensuring reclaim_priv is visible when the callback is
+>   invoked. (Sashiko-bot)
+> 
+> Assisted-by: GitHub_Copilot:claude-sonnet-4.6
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> ---
+>  include/linux/cgroup_dmem.h |  24 ++++++++
+>  kernel/cgroup/dmem.c        | 106 +++++++++++++++++++++++++++++++++---
+>  2 files changed, 121 insertions(+), 9 deletions(-)
+> 
+> diff --git a/include/linux/cgroup_dmem.h b/include/linux/cgroup_dmem.h
+> index dd4869f1d736..c3bce21cbe80 100644
+> --- a/include/linux/cgroup_dmem.h
+> +++ b/include/linux/cgroup_dmem.h
+> @@ -14,6 +14,21 @@ struct dmem_cgroup_pool_state;
+>  /* Opaque definition of a cgroup region, used internally */
+>  struct dmem_cgroup_region;
+>  
+> +/**
+> + * typedef dmem_cgroup_reclaim_fn_t - Reclaim callback for a dmem cgroup region.
+> + * @pool: The cgroup pool that needs memory reclaimed.
+> + * @target_bytes: Minimum number of bytes the driver should attempt to free.
+> + * @priv: Private data registered with dmem_cgroup_region_set_reclaim().
+> + *
+> + * Called by the dmem cgroup controller when dmem.max is set below the current
+> + * usage of @pool. The driver should evict at least @target_bytes of memory
+> + * from @pool. May be called multiple times if usage remains above the limit.
+> + *
+> + * Return: 0 if progress was made, negative error code otherwise.
+> + */
+> +typedef int (*dmem_cgroup_reclaim_fn_t)(struct dmem_cgroup_pool_state *pool,
+> +					u64 target_bytes, void *priv);
+> +
+>  #if IS_ENABLED(CONFIG_CGROUP_DMEM)
+>  struct dmem_cgroup_region *dmem_cgroup_register_region(u64 size, const char *name_fmt, ...) __printf(2,3);
+>  void dmem_cgroup_unregister_region(struct dmem_cgroup_region *region);
+> @@ -26,6 +41,9 @@ bool dmem_cgroup_state_evict_valuable(struct dmem_cgroup_pool_state *limit_pool,
+>  				      bool ignore_low, bool *ret_hit_low);
+>  
+>  void dmem_cgroup_pool_state_put(struct dmem_cgroup_pool_state *pool);
+> +void dmem_cgroup_region_set_reclaim(struct dmem_cgroup_region *region,
+> +				    dmem_cgroup_reclaim_fn_t reclaim,
+> +				    void *priv);
+>  #else
+>  static inline __printf(2,3) struct dmem_cgroup_region *
+>  dmem_cgroup_register_region(u64 size, const char *name_fmt, ...)
+> @@ -62,5 +80,11 @@ bool dmem_cgroup_state_evict_valuable(struct dmem_cgroup_pool_state *limit_pool,
+>  static inline void dmem_cgroup_pool_state_put(struct dmem_cgroup_pool_state *pool)
+>  { }
+>  
+> +static inline void
+> +dmem_cgroup_region_set_reclaim(struct dmem_cgroup_region *region,
+> +			       dmem_cgroup_reclaim_fn_t reclaim,
+> +			       void *priv)
+> +{ }
+> +
+>  #endif
+>  #endif	/* _CGROUP_DMEM_H */
+> diff --git a/kernel/cgroup/dmem.c b/kernel/cgroup/dmem.c
+> index 1ab1fb47f271..5fd5a1634d21 100644
+> --- a/kernel/cgroup/dmem.c
+> +++ b/kernel/cgroup/dmem.c
+> @@ -51,6 +51,20 @@ struct dmem_cgroup_region {
+>  	 * No new pools should be added to the region afterwards.
+>  	 */
+>  	bool unregistered;
+> +
+> +	/**
+> +	 * @reclaim: Optional callback invoked when dmem.max is set below the
+> +	 * current usage of a pool. The driver should attempt to free at least
+> +	 * @target_bytes from @pool. May be called multiple times if usage
+> +	 * remains above the limit after returning.
+> +	 */
+> +	dmem_cgroup_reclaim_fn_t reclaim;
+> +
+> +	/** @reclaim_priv: Private data passed to @reclaim. */
+> +	void *reclaim_priv;
+> +
+> +	/** @unregister_sem: Protect @reclaim while it is running. */
+> +	struct rw_semaphore unregister_sem;
+>  };
+>  
+>  struct dmemcg_state {
+> @@ -145,21 +159,58 @@ static void free_cg_pool(struct dmem_cgroup_pool_state *pool)
+>  }
+>  
+>  static void
+> -set_resource_min(struct dmem_cgroup_pool_state *pool, u64 val)
+> +set_resource_min(struct dmem_cgroup_pool_state *pool, u64 val, bool nonblock)
+>  {
+>  	page_counter_set_min(&pool->cnt, val);
+>  }
+>  
+>  static void
+> -set_resource_low(struct dmem_cgroup_pool_state *pool, u64 val)
+> +set_resource_low(struct dmem_cgroup_pool_state *pool, u64 val, bool nonblock)
+>  {
+>  	page_counter_set_low(&pool->cnt, val);
+>  }
+>  
+>  static void
+> -set_resource_max(struct dmem_cgroup_pool_state *pool, u64 val)
+> +set_resource_max(struct dmem_cgroup_pool_state *pool, u64 val, bool nonblock)
+>  {
+> -	page_counter_set_max(&pool->cnt, val);
+> +	struct dmem_cgroup_region *region = pool->region;
+> +
+> +	/*
+> +	 * Always update the limit, even if usage currently exceeds it.
+> +	 * Concurrent allocations will be throttled against the new limit
+> +	 * while reclaim is in progress.
+> +	 */
+> +	xchg(&pool->cnt.max, (unsigned long)val);
+> +
+> +	if (nonblock || !READ_ONCE(region->reclaim))
+> +		return;
+> +
+> +	for (int retries = 5; retries > 0; retries--) {
+Where does 5 come from? This code should retry until no longer above limit, otherwise you'll get some hard to debug issues.
 
-Include suspended queues in the ctx invalidation selection path so they
-are invalidated as well.
+> +		u64 usage = page_counter_read(&pool->cnt);
+> +		int ret;
+> +
+> +		if (usage <= val)
+> +			break;
+> +
+> +		if (signal_pending(current))
+> +			break;
+> +
+> +		/* Block unregister until the reclaim callback completes. */
+> +		if (down_read_interruptible(&region->unregister_sem))
+> +			break;
+> +
+> +		if (!region->reclaim) {
+> +			up_read(&region->unregister_sem);
+> +			break;
+> +		}
+> +
+> +		ret = region->reclaim(pool, usage - val, region->reclaim_priv);
+> +		up_read(&region->unregister_sem);
+> +		if (ret)
+> +			break;
+> +
+> +		cond_resched();
+> +	}
+>  }
+>  
+>  static u64 get_resource_low(struct dmem_cgroup_pool_state *pool)
+> @@ -184,9 +235,9 @@ static u64 get_resource_current(struct dmem_cgroup_pool_state *pool)
+>  
+>  static void reset_all_resource_limits(struct dmem_cgroup_pool_state *rpool)
+>  {
+> -	set_resource_min(rpool, 0);
+> -	set_resource_low(rpool, 0);
+> -	set_resource_max(rpool, PAGE_COUNTER_MAX);
+> +	set_resource_min(rpool, 0, false);
+> +	set_resource_low(rpool, 0, false);
+> +	set_resource_max(rpool, PAGE_COUNTER_MAX, false);
+>  }
+>  
+>  static void dmemcs_offline(struct cgroup_subsys_state *css)
+> @@ -491,6 +542,12 @@ void dmem_cgroup_unregister_region(struct dmem_cgroup_region *region)
+>  	region->unregistered = true;
+>  	spin_unlock(&dmemcg_lock);
+>  
+> +	/* Ensure all reclaim() callbacks have finished. */
+> +	down_write(&region->unregister_sem);
+> +	/* Pairs with READ_ONCE() in set_resource_max() */
+> +	WRITE_ONCE(region->reclaim, NULL);
+> +	up_write(&region->unregister_sem);
+> +
+>  	kref_put(&region->ref, dmemcg_free_region);
+>  }
+I've thought about it some more, Can we do the same as dma-buf init?
 
-This avoids missing TLB invalidation on suspended queues in LR flows.
+DEFINE_DMEMCG_REGION_INFO(info);
+info.size = size.
+info.ops = &drm_ttm_dmem_region_ops;
+info.region_priv = ttm_region;
+info.device_priv = drm_dev;
 
-Signed-off-by: Nguyen Brian3 <brian3.nguyen@intel.com>
-Signed-off-by: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_tlb_inval.c | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
+dmem_region = dmem_cgroup_register_region(&info);
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-index ced58f46f846..d85704a5b617 100644
---- a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-+++ b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-@@ -225,8 +225,10 @@ static int send_tlb_inval_ctx_ppgtt(struct xe_tlb_inval *tlb_inval, u32 seqno,
- 	struct xe_vm *vm;
- 	LIST_HEAD(tlb_inval_list);
- 	int err = 0, id = guc_to_gt(guc)->info.id;
-+	bool has_ctx_tlb_inval = xe->info.has_ctx_tlb_inval;
- 
- 	lockdep_assert_held(&tlb_inval->seqno_lock);
-+	xe_assert(xe, has_ctx_tlb_inval);
- 
- 	if (xe->info.force_execlist)
- 		return -ECANCELED;
-@@ -256,8 +258,8 @@ static int send_tlb_inval_ctx_ppgtt(struct xe_tlb_inval *tlb_inval, u32 seqno,
- 
- 	/*
- 	 * Move exec queues to a temporary list to issue invalidations. The exec
--	 * queue must active and a reference must be taken to prevent concurrent
--	 * deregistrations.
-+	 * queue must be active or suspended (ctx invalidation path only), and a
-+	 * reference must be taken to prevent concurrent deregistrations.
- 	 *
- 	 * List modification is safe because we hold 'vm->exec_queues.lock' for
- 	 * reading, which prevents external modifications. Using a per-GT list
-@@ -266,7 +268,9 @@ static int send_tlb_inval_ctx_ppgtt(struct xe_tlb_inval *tlb_inval, u32 seqno,
- 	 */
- 	list_for_each_entry_safe(q, next, &vm->exec_queues.list[id],
- 				 vm_exec_queue_link) {
--		if (q->ops->active(q) && xe_exec_queue_get_unless_zero(q)) {
-+		if ((q->ops->active(q) ||
-+		     (has_ctx_tlb_inval && xe_exec_queue_is_suspended(q))) &&
-+		    xe_exec_queue_get_unless_zero(q)) {
- 			last_q = q;
- 			list_move_tail(&q->vm_exec_queue_link, &tlb_inval_list);
- 		}
--- 
-2.46.0
+This way we don't need to have a typedef for function pointers,
+no need for READ_ONCE() and/or additional locking, which was only
+added because it wasn't set at init.
+
+If we can push the responsibility for serialization against unload
+to the driver, we should also be able to use drm_dev_enter/exit here
+for the reclaim loop?
+
+Something like below:
+
+if (!ops->device_begin(device_priv, &cookie))
+	return 0; // Device gone
+
+while (true) {
+	ops->reclaim(region_priv, ...);
+}
+
+ops->device_end(device_priv, cookie);
+
+Although we will additionally need to ensure that the region holds a refcount on
+reclaim_priv until dmemcg_free_region is called, otherwise this breaks.
+
+So 4 ops needed:
+- device_begin
+- reclaim
+- device_end
+- free (called after region refcount drops to 0, called immediately on !CONFIG_DMEMCG, drops device refcount)
+
+Relatedly, I believe perhaps we should also convert from drmm managed to devm managed,
+as all memory is already freed after the device is physically detached.
+
+Hopefully this solves all lifetime issues, and this design allows for
+additional callbacks into the device or region later on if needed.
+
+Kind regards,
+~Maarten Lankhorst
+
+>  EXPORT_SYMBOL_GPL(dmem_cgroup_unregister_region);
+> @@ -530,6 +587,7 @@ struct dmem_cgroup_region *dmem_cgroup_register_region(u64 size, const char *fmt
+>  	INIT_LIST_HEAD(&ret->pools);
+>  	ret->name = region_name;
+>  	ret->size = size;
+> +	init_rwsem(&ret->unregister_sem);
+>  	kref_init(&ret->ref);
+>  
+>  	spin_lock(&dmemcg_lock);
+> @@ -568,6 +626,34 @@ void dmem_cgroup_pool_state_put(struct dmem_cgroup_pool_state *pool)
+>  }
+>  EXPORT_SYMBOL_GPL(dmem_cgroup_pool_state_put);
+>  
+> +/**
+> + * dmem_cgroup_region_set_reclaim() - Register a reclaim callback on a region.
+> + * @region: The region to register the callback for.
+> + * @reclaim: Callback to invoke when dmem.max is set below current usage.
+> + *           Called with the pool that needs reclaiming and the number of
+> + *           bytes to free. Returns 0 on progress, negative on failure.
+> + * @priv: Opaque pointer passed back to @reclaim.
+> + *
+> + * When dmem.max is lowered below the current usage of a cgroup pool, the
+> + * dmem controller will call @reclaim with a target number of bytes to free.
+> + * After @reclaim returns the controller retries setting the limit; if usage
+> + * is still too high it calls @reclaim again, up to a bounded retry count.
+> + */
+> +void dmem_cgroup_region_set_reclaim(struct dmem_cgroup_region *region,
+> +				    dmem_cgroup_reclaim_fn_t reclaim,
+> +				    void *priv)
+> +{
+> +	if (!region)
+> +		return;
+> +
+> +	down_write(&region->unregister_sem);
+> +	region->reclaim_priv = priv;
+> +	/* Pairs with READ_ONCE() in set_resource_max() */
+> +	WRITE_ONCE(region->reclaim, reclaim);
+> +	up_write(&region->unregister_sem);
+> +}
+> +EXPORT_SYMBOL_GPL(dmem_cgroup_region_set_reclaim);
+> +
+>  static struct dmem_cgroup_pool_state *
+>  get_cg_pool_unlocked(struct dmemcg_state *cg, struct dmem_cgroup_region *region)
+>  {
+> @@ -725,9 +811,10 @@ static int dmemcg_parse_limit(char *options, u64 *new_limit)
+>  
+>  static ssize_t dmemcg_limit_write(struct kernfs_open_file *of,
+>  				 char *buf, size_t nbytes, loff_t off,
+> -				 void (*apply)(struct dmem_cgroup_pool_state *, u64))
+> +				 void (*apply)(struct dmem_cgroup_pool_state *, u64, bool))
+>  {
+>  	struct dmemcg_state *dmemcs = css_to_dmemcs(of_css(of));
+> +	bool nonblock = of->file->f_flags & O_NONBLOCK;
+>  	int err = 0;
+>  
+>  	while (buf && !err) {
+> @@ -772,7 +859,8 @@ static ssize_t dmemcg_limit_write(struct kernfs_open_file *of,
+>  		}
+>  
+>  		/* And commit */
+> -		apply(pool, new_limit);
+> +		apply(pool, new_limit, nonblock);
+> +
+>  		dmemcg_pool_put(pool);
+>  
+>  out_put:
 
