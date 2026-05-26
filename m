@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7903ACD5BCF
-	for <intel-xe@archiver.kernel.org>; Tue, 26 May 2026 07:46:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7DA0CD5BB4
+	for <intel-xe@archiver.kernel.org>; Tue, 26 May 2026 07:52:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 233B910E524;
-	Tue, 26 May 2026 07:46:09 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ggDAjtHk";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6649C10E524
- for <intel-xe@lists.freedesktop.org>; Tue, 26 May 2026 07:46:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779781568; x=1811317568;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=hoZFLwr2/zd7CZ2S5KfSXom4blhQTFb0fgh8W9Puwu4=;
- b=ggDAjtHkfmikDtmHch3NxSclR/fDlLLqNb3AoPiPomA0SoT80K9iE8NT
- PdxqTRDPTjV7UvZYs1HHZsKfbd4r/utlit59lhs2vMyylOTT+T9DhDyU0
- j7ifPFWgsD1p0Vlv1ap0H+OaGz8JgaUQ1xs+HquTTAu83zNu7RFp/Q4TU
- +CHTpdOreg0q0a2INZ/LnVYjSlT+hcvnxmDK/3iqeAZSJDnSxlwf9o0eR
- SH4u9QwzjC3UT93OWmKZHYZ8ceOplanSzaC7GDQ+Z74oWGLSaazattyuM
- ujwBpqg2ZTe0ptyEd1RWi7A0cqfdF3DR0rRDKS4VkUYHUMa459okUdojU g==;
-X-CSE-ConnectionGUID: xoMHgGJwQ+i+sZ9h/F1QGA==
-X-CSE-MsgGUID: rWNhClXEQmW7IUW3FiJOmw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11797"; a="80439615"
-X-IronPort-AV: E=Sophos;i="6.24,169,1774335600"; d="scan'208";a="80439615"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2026 00:46:08 -0700
-X-CSE-ConnectionGUID: X3hV1HbLRFiqsny/JL2J7g==
-X-CSE-MsgGUID: nHDGvU/4SiqWJpldBDPLnw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,169,1774335600"; d="scan'208";a="272159544"
-Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2026 00:46:05 -0700
-Date: Tue, 26 May 2026 09:46:02 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: "Tauro, Riana" <riana.tauro@intel.com>
-Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
- rodrigo.vivi@intel.com, aravind.iddamsetty@linux.intel.com,
- badal.nilawar@intel.com, ravi.kishore.koppuravuri@intel.com,
- mallesh.koujalagi@intel.com, soham.purkait@intel.com
-Subject: Re: [PATCH v6 3/6] drm/xe/xe_ras: Add support to clear error counter
-Message-ID: <ahVPukjUhC4Qrhs3@black.igk.intel.com>
-References: <20260514052205.1340143-8-riana.tauro@intel.com>
- <20260514052205.1340143-11-riana.tauro@intel.com>
- <agtTMBeI6mk1d7Rd@black.igk.intel.com>
- <88f42243-af5e-469f-9769-aa5dfabd6740@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8DF1010E0F0;
+	Tue, 26 May 2026 07:52:13 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E7DD10E0F0;
+ Tue, 26 May 2026 07:52:12 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4725529052051014107=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <88f42243-af5e-469f-9769-aa5dfabd6740@intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Fix_Adaptive-Sync_SDP_for_P?=
+ =?utf-8?q?R_with_Link_ON_+_Auxless-ALPM_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 26 May 2026 07:52:12 -0000
+Message-ID: <177978193231.8764.18216343915067354102@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260525052235.560741-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20260525052235.560741-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,35 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, May 26, 2026 at 10:45:24AM +0530, Tauro, Riana wrote:
-> On 5/18/2026 11:28 PM, Raag Jadav wrote:
-> > On Thu, May 14, 2026 at 10:52:09AM +0530, Riana Tauro wrote:
-> > > Add structures and helper function to clear error counter value.
+--===============4725529052051014107==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-...
+== Series Details ==
 
-> > > +static const int ras_status_to_errno_map[] = {
-> > Nit: Redundant 'map', just use 'xe' prefix.
-> > 
-> > > +	[XE_RAS_STATUS_SUCCESS]			= 0,
-> > > +	[XE_RAS_STATUS_INVALID_PARAM]		= -EINVAL,
-> > > +	[XE_RAS_STATUS_OP_NOT_SUPPORTED]	= -EOPNOTSUPP,
-> > > +	[XE_RAS_STATUS_TIMEOUT]			= -ETIMEDOUT,
-> > > +	[XE_RAS_STATUS_HARDWARE_FAILURE]	= -EIO,
-> > > +	[XE_RAS_STATUS_INSUFFICIENT_RESOURCES]	= -ENOSPC,
-> > > +	[XE_RAS_STATUS_UNKNOWN_ERROR]		= -EIO
-> > -EPROTO?
-> 
-> This is protocol error. Would be misleading to userspace. -EIO is better for
-> unknown errors
-> indicating an hardware error
+Series: Fix Adaptive-Sync SDP for PR with Link ON + Auxless-ALPM (rev5)
+URL   : https://patchwork.freedesktop.org/series/164513/
+State : success
 
-This will most likely end up in user land, so probably worth making it
-distinguishable from XE_RAS_STATUS_HARDWARE_FAILURE. We return -EPROTO
-for similar pcode cases, so I thought we'd make it consistent but I'll
-leave it to you.
+== Summary ==
 
-Raag
+CI Bug Log - changes from xe-5127-6b6931ea69504481efd3df1cc99765141feb178c_BAT -> xe-pw-164513v5_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5127-6b6931ea69504481efd3df1cc99765141feb178c -> xe-pw-164513v5
+
+  IGT_8937: 8937
+  xe-5127-6b6931ea69504481efd3df1cc99765141feb178c: 6b6931ea69504481efd3df1cc99765141feb178c
+  xe-pw-164513v5: 164513v5
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164513v5/index.html
+
+--===============4725529052051014107==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Fix Adaptive-Sync SDP for PR with Link ON + Auxless-ALPM (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164513/">https://patchwork.freedesktop.org/series/164513/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164513v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164513v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5127-6b6931ea69504481efd3df1cc99765141feb178c_BAT -&gt; xe-pw-164513v5_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5127-6b6931ea69504481efd3df1cc99765141feb178c -&gt; xe-pw-164513v5</li>
+</ul>
+<p>IGT_8937: 8937<br />
+  xe-5127-6b6931ea69504481efd3df1cc99765141feb178c: 6b6931ea69504481efd3df1cc99765141feb178c<br />
+  xe-pw-164513v5: 164513v5</p>
+
+</body>
+</html>
+
+--===============4725529052051014107==--
