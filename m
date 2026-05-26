@@ -4,26 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66C0CCD5BB1
-	for <intel-xe@archiver.kernel.org>; Tue, 26 May 2026 16:10:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65907CD5BC8
+	for <intel-xe@archiver.kernel.org>; Tue, 26 May 2026 16:28:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AA9510E51C;
-	Tue, 26 May 2026 16:10:42 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44C7110E1B7;
- Tue, 26 May 2026 16:10:41 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7762131977353196470=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BED610E1BD;
+	Tue, 26 May 2026 16:28:10 +0000 (UTC)
+X-Greylist: delayed 489 seconds by postgrey-1.36 at gabe;
+ Tue, 26 May 2026 16:28:08 UTC
+Received: from mx3.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2665A10E1B7;
+ Tue, 26 May 2026 16:28:08 +0000 (UTC)
+Received: from abreu.molgen.mpg.de (g42.guest.molgen.mpg.de [141.14.220.42])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: pmenzel)
+ by mx.molgen.mpg.de (Postfix) with ESMTPSA id 801AD4C19741A2;
+ Tue, 26 May 2026 18:19:35 +0200 (CEST)
+From: Paul Menzel <pmenzel@molgen.mpg.de>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>
+Cc: Paul Menzel <pmenzel@molgen.mpg.de>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/i915/audio: skip ELD query for force-off connectors
+Date: Tue, 26 May 2026 18:19:24 +0200
+Message-ID: <20260526161925.17041-1-pmenzel@molgen.mpg.de>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_CMTG_enablement_=28rev8=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Animesh Manna" <animesh.manna@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 26 May 2026 16:10:41 -0000
-Message-ID: <177981184127.11680.6135849911625042760@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260526133811.2621675-1-animesh.manna@intel.com>
-In-Reply-To: <20260526133811.2621675-1-animesh.manna@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,106 +47,104 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7762131977353196470==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+When a connector is forced off via the `video=` command-line parameter
+(`video=<connector>:d`), `intel_audio_component_get_eld()` returns -EINVAL
+for that port because `find_audio_state()` finds no active encoder.  The
+audio driver interprets this as an error rather than a clean “no monitor
+present” reply, and, on the Dell XPS 13 9360, at `drm.debug=0x04` the
+repeated calls generate the log below:
 
-== Series Details ==
+    i915 0000:00:02.0: [drm:intel_audio_component_get_eld [i915]] Not valid for port B
+    i915 0000:00:02.0: [drm:intel_audio_component_get_eld [i915]] Not valid for port B
+    i915 0000:00:02.0: [drm:intel_audio_component_get_eld [i915]] Not valid for port B
+    i915 0000:00:02.0: [drm:intel_audio_component_get_eld [i915]] Not valid for port C
+    i915 0000:00:02.0: [drm:intel_audio_component_get_eld [i915]] Not valid for port C
+    i915 0000:00:02.0: [drm:intel_audio_component_get_eld [i915]] Not valid for port C
+    i915 0000:00:02.0: [drm:intel_audio_component_get_eld [i915]] Not valid for port D
+    i915 0000:00:02.0: [drm:intel_audio_component_get_eld [i915]] Not valid for port D
+    i915 0000:00:02.0: [drm:intel_audio_component_get_eld [i915]] Not valid for port D
 
-Series: CMTG enablement (rev8)
-URL   : https://patchwork.freedesktop.org/series/157663/
-State : success
+Add `intel_audio_connector_is_forced_off()` which scans the connector list
+to check whether any connector on the given port has
+`force == DRM_FORCE_OFF`. When the caller finds no audio state and the
+port’s connector is forced off, report `*enabled = false` and return 0 so
+the audio driver sees a clean “not connected” answer and stops querying
+that port.
 
-== Summary ==
+With `video=DP-2:d drm.debug=0x04` the unneeded calls are gone (port C):
 
-CI Bug Log - changes from xe-5131-ba2b29e3db52fcd75c2dc6d76d81f26eb59b7e33_BAT -> xe-pw-157663v8_BAT
-====================================================
+    [   90.458772] i915 0000:00:02.0: [drm:intel_audio_component_get_eld [i915]] Not valid for port B
+    [   90.459649] i915 0000:00:02.0: [drm:intel_audio_component_get_eld [i915]] Not valid for port B
+    [   90.460547] i915 0000:00:02.0: [drm:intel_audio_component_get_eld [i915]] Not valid for port B
+    [   90.461581] i915 0000:00:02.0: [drm:intel_audio_component_get_eld [i915]] Not valid for port D
+    [   90.462509] i915 0000:00:02.0: [drm:intel_audio_component_get_eld [i915]] Not valid for port D
+    [   90.463385] i915 0000:00:02.0: [drm:intel_audio_component_get_eld [i915]] Not valid for port D
 
-Summary
--------
+Assisted-by: Claude Sonnet 4.6
+Signed-off-by: Paul Menzel <pmenzel@molgen.mpg.de>
+---
+ drivers/gpu/drm/i915/display/intel_audio.c | 29 +++++++++++++++++++++-
+ 1 file changed, 28 insertions(+), 1 deletion(-)
 
-  **SUCCESS**
+diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
+index 081627e0d917..7864b9a485d5 100644
+--- a/drivers/gpu/drm/i915/display/intel_audio.c
++++ b/drivers/gpu/drm/i915/display/intel_audio.c
+@@ -36,6 +36,7 @@
+ #include "intel_cdclk.h"
+ #include "intel_crtc.h"
+ #include "intel_de.h"
++#include "intel_display.h"
+ #include "intel_display_types.h"
+ #include "intel_display_wa.h"
+ #include "intel_lpe_audio.h"
+@@ -1211,6 +1212,28 @@ static int intel_audio_component_sync_audio_rate(struct device *kdev, int port,
+ 	return err;
+ }
+ 
++static bool intel_audio_connector_is_forced_off(struct intel_display *display,
++						int port)
++{
++	struct drm_connector_list_iter conn_iter;
++	struct intel_connector *connector;
++	bool forced_off = false;
++
++	drm_connector_list_iter_begin(display->drm, &conn_iter);
++	for_each_intel_connector_iter(connector, &conn_iter) {
++		struct intel_encoder *encoder = intel_attached_encoder(connector);
++
++		if (encoder && encoder->port == port &&
++		    connector->base.force == DRM_FORCE_OFF) {
++			forced_off = true;
++			break;
++		}
++	}
++	drm_connector_list_iter_end(&conn_iter);
++
++	return forced_off;
++}
++
+ static int intel_audio_component_get_eld(struct device *kdev, int port,
+ 					 int cpu_transcoder, bool *enabled,
+ 					 unsigned char *buf, int max_bytes)
+@@ -1223,9 +1246,13 @@ static int intel_audio_component_get_eld(struct device *kdev, int port,
+ 
+ 	audio_state = find_audio_state(display, port, cpu_transcoder);
+ 	if (!audio_state) {
++		mutex_unlock(&display->audio.mutex);
++		if (intel_audio_connector_is_forced_off(display, port)) {
++			*enabled = false;
++			return 0;
++		}
+ 		drm_dbg_kms(display->drm, "Not valid for port %c\n",
+ 			    port_name(port));
+-		mutex_unlock(&display->audio.mutex);
+ 		return -EINVAL;
+ 	}
+ 
+-- 
+2.53.0
 
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5131-ba2b29e3db52fcd75c2dc6d76d81f26eb59b7e33 -> xe-pw-157663v8
-
-  IGT_8937: 8937
-  xe-5131-ba2b29e3db52fcd75c2dc6d76d81f26eb59b7e33: ba2b29e3db52fcd75c2dc6d76d81f26eb59b7e33
-  xe-pw-157663v8: 157663v8
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157663v8/index.html
-
---===============7762131977353196470==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>CMTG enablement (rev8)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157663/">https://patchwork.freedesktop.org/series/157663/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157663v8/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157663v8/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5131-ba2b29e3db52fcd75c2dc6d76d81f26eb59b7e33_BAT -&gt; xe-pw-157663v8_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5131-ba2b29e3db52fcd75c2dc6d76d81f26eb59b7e33 -&gt; xe-pw-157663v8</li>
-</ul>
-<p>IGT_8937: 8937<br />
-  xe-5131-ba2b29e3db52fcd75c2dc6d76d81f26eb59b7e33: ba2b29e3db52fcd75c2dc6d76d81f26eb59b7e33<br />
-  xe-pw-157663v8: 157663v8</p>
-
-</body>
-</html>
-
---===============7762131977353196470==--
