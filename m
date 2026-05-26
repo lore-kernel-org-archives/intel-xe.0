@@ -4,54 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80270CD6E4B
-	for <intel-xe@archiver.kernel.org>; Thu, 28 May 2026 13:46:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E014CCD6E4A
+	for <intel-xe@archiver.kernel.org>; Thu, 28 May 2026 13:46:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4211B10F1D6;
-	Thu, 28 May 2026 13:46:29 +0000 (UTC)
-Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8866210E739;
- Wed, 27 May 2026 07:03:09 +0000 (UTC)
-Received: from dfae2b116770.home.arpa (unknown [36.110.52.3])
- by APP-03 (Coremail) with SMTP id rQCowACXt94nlxZqnACHEg--.8176S2;
- Wed, 27 May 2026 15:03:04 +0800 (CST)
-From: Wentao Liang <vulab@iscas.ac.cn>
-To: Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>
-Cc: Wentao Liang <vulab@iscas.ac.cn>,
- Ashutosh Dixit <ashutosh.dixit@intel.com>,
- Gustavo Sousa <gustavo.sousa@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org
-Subject: [PATCH] drm: xe: selftests: fix fence refcount leak in
- run_sanity_job()
-Date: Wed, 27 May 2026 07:02:44 +0000
-Message-Id: <20260527070244.858512-1-vulab@iscas.ac.cn>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E9C810F1D4;
+	Thu, 28 May 2026 13:46:28 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=leandro.ribeiro@collabora.com header.b="YsEWBvJn";
+	dkim-atps=neutral
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com
+ [136.143.188.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C008910E6BA;
+ Tue, 26 May 2026 19:33:07 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1779823986; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=H+03uf04wb1kpMPe0hNp+nB0pL1vGbOxtXFW18nZQLIRHY7BrERuLljnlXNFKvL0NT68xom9Gha24rgpXMZDafmq9v7TrbOypbgMQF6V2jsUXOjmvMkHOnAelcq4H2RlbcUcYwBeqNUf1leDv9eEYA6WQltul7Wsz31aBQtwyGs=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1779823986;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=GtcuprZ94UHAcAaoXrOE+xI/bhw9j8o4Bjc4rnleg1Q=; 
+ b=Ugo27+AATavxX1RaKEWHlWrBAnYQXsrEMJ+Dh03NoghcJrg3QeJYLYP8KcEiqQef0teOxpP1YJPKXknw6Vyg2Q70BcLj14wBt2sbzYBLq4JnsDCMVOcpxzWwD0SBmMjBiLzP3qMAX3y1Xa+mJdYCGWWnbkz3/zyhHtmEnaMWAmM=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=leandro.ribeiro@collabora.com;
+ dmarc=pass header.from=<leandro.ribeiro@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1779823986; 
+ s=zohomail; d=collabora.com; i=leandro.ribeiro@collabora.com; 
+ h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+ bh=GtcuprZ94UHAcAaoXrOE+xI/bhw9j8o4Bjc4rnleg1Q=;
+ b=YsEWBvJnqBqRwkYMZ2aL1E1RRSf/TbpxrXuUtZ0y8immSBoLTXm848mx3y4OwIWP
+ 3dd3BH68/eDGzmewYBDtX71oOqKbbOyeDcWyIKLBrvrqpORUafc4Y5eT89kkJehs8Rg
+ 7ewJJ7osDK5zu0qg5L5aDLfNU04UpHX4yS7v8of4=
+Received: by mx.zohomail.com with SMTPS id 1779823984185292.3656549840649;
+ Tue, 26 May 2026 12:33:04 -0700 (PDT)
+Message-ID: <128ff48a-bfb2-4163-a721-3625b2e2af02@collabora.com>
+Date: Tue, 26 May 2026 16:33:01 -0300
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915: Add the blend mode property to all planes that
+ support alpha blending
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+References: <20260522194935.27411-1-ville.syrjala@linux.intel.com>
+Content-Language: en-US
+From: Leandro Ribeiro <leandro.ribeiro@collabora.com>
+In-Reply-To: <20260522194935.27411-1-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: rQCowACXt94nlxZqnACHEg--.8176S2
-X-Coremail-Antispam: 1UD129KBjvJXoWrtryDXFyrZFy3ury3uw47XFb_yoW8JF1rpw
- 4xGw1jkrWDJa12q3y7AF1UXF90kw13tr9akr1vyayfuws8Xr1UJrnIq3y0qFs8A392k34f
- Zrn293s3X3WqkFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDU0xBIdaVrnRJUUU9014x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
- rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
- 1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
- 6F4UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM28EF7xvwVC2z280aVCY1x0267AKxVW0oV
- Cq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
- I7IYx2IY67AKxVWUGVWUXwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r
- 4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
- n2kIc2xKxwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7x
- kEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E
- 67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCw
- CI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1x
- MIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIda
- VFxhVjvjDU0xZFpf9x0JUQZ2fUUUUU=
-X-Originating-IP: [36.110.52.3]
-X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiBwsAA2oWPY6xmwABsr
+X-ZohoMailClient: External
 X-Mailman-Approved-At: Thu, 28 May 2026 13:46:27 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,37 +68,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-run_sanity_job() calls dma_fence_get() to take a reference on the
-fence before submitting the migration job. If the job submission fails,
-the function returns an error without calling dma_fence_put() on the
-fence, leaking the reference.
 
-Add dma_fence_put(fence) on the error path to properly release the
-reference.
 
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Cc: stable@vger.kernel.org
-Signed-off-by: Wentao Liang <vulab@iscas.ac.cn>
----
- drivers/gpu/drm/xe/tests/xe_migrate.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+On 5/22/26 16:49, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> Currently only SKL+ universal planes have the blend mode property.
+> Assuming it now becomes mandatory for all planes that support
+> alpha blending we need to add it to cursors on all platforms,
+> and VLV/CHV primary/sprite planes.
+> 
+> TODO: For VLV/CHV primary/sprite planes we could fairly easily
+> implement DRM_MODE_BLEND_PIXEL_NONE by remapping the A format
+> to the corresponding X format, and on CHV pipe B (but not pipes
+> A/C) we could probably even implement DRM_MODE_BLEND_COVERAGE.
+> 
+> Cc: Leandro Ribeiro <leandro.ribeiro@collabora.com>
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
-index 34e2f0f4631f..36d4cff00e18 100644
---- a/drivers/gpu/drm/xe/tests/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
-@@ -54,8 +54,10 @@ static int run_sanity_job(struct xe_migrate *m, struct xe_device *xe,
- 	fence = dma_fence_get(&job->drm.s_fence->finished);
- 	xe_sched_job_push(job);
- 
--	if (sanity_fence_failed(xe, fence, str, test))
-+	if (sanity_fence_failed(xe, fence, str, test)) {
-+		dma_fence_put(fence);
- 		return -ETIMEDOUT;
-+	}
- 
- 	dma_fence_put(fence);
- 	kunit_info(test, "%s: Job completed\n", str);
--- 
-2.34.1
+Ack, looks good to me (with the caveat I'm not familiar with i915 codebase).
+
+> ---
+>  drivers/gpu/drm/i915/display/i9xx_plane.c   | 4 ++++
+>  drivers/gpu/drm/i915/display/intel_cursor.c | 3 +++
+>  drivers/gpu/drm/i915/display/intel_sprite.c | 4 ++++
+>  3 files changed, 11 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
+> index 70734d32a409..490908f59141 100644
+> --- a/drivers/gpu/drm/i915/display/i9xx_plane.c
+> +++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
+> @@ -1108,6 +1108,10 @@ intel_primary_plane_create(struct intel_display *display, enum pipe pipe)
+>  						   DRM_MODE_ROTATE_0,
+>  						   supported_rotations);
+>  
+> +	if (display->platform.valleyview || display->platform.cherryview)
+> +		drm_plane_create_blend_mode_property(&plane->base,
+> +						     BIT(DRM_MODE_BLEND_PREMULTI));
+> +
+>  	zpos = 0;
+>  	drm_plane_create_zpos_immutable_property(&plane->base, zpos);
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+> index 52347668f27d..344cee13ea97 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cursor.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+> @@ -1078,6 +1078,9 @@ intel_cursor_plane_create(struct intel_display *display,
+>  
+>  	intel_cursor_add_size_hints_property(cursor);
+>  
+> +	drm_plane_create_blend_mode_property(&cursor->base,
+> +					     BIT(DRM_MODE_BLEND_PREMULTI));
+> +
+>  	zpos = DISPLAY_RUNTIME_INFO(display)->num_sprites[pipe] + 1;
+>  	drm_plane_create_zpos_immutable_property(&cursor->base, zpos);
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
+> index 6a65f92e8a03..3e38960bbbd8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
+> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+> @@ -1722,6 +1722,10 @@ intel_sprite_plane_create(struct intel_display *display,
+>  					  DRM_COLOR_YCBCR_BT709,
+>  					  DRM_COLOR_YCBCR_LIMITED_RANGE);
+>  
+> +	if (display->platform.valleyview || display->platform.cherryview)
+> +		drm_plane_create_blend_mode_property(&plane->base,
+> +						     BIT(DRM_MODE_BLEND_PREMULTI));
+> +
+>  	zpos = sprite + 1;
+>  	drm_plane_create_zpos_immutable_property(&plane->base, zpos);
+>  
 
