@@ -4,61 +4,151 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34177CD5BC8
-	for <intel-xe@archiver.kernel.org>; Tue, 26 May 2026 08:56:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C89ECD5BC8
+	for <intel-xe@archiver.kernel.org>; Tue, 26 May 2026 09:00:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D565310E1A5;
-	Tue, 26 May 2026 08:56:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C6F210E1A5;
+	Tue, 26 May 2026 09:00:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="muYTQhOS";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="baaPyYMv";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="CFOTXZ/J";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="Osk3/v8m";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="o3oEKfPy";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D24210E1A5
- for <intel-xe@lists.freedesktop.org>; Tue, 26 May 2026 08:56:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779785804; x=1811321804;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=FVDvrO81kzNswoM04L8ZmyCof7Pgfssv4BdNHov5+NE=;
- b=muYTQhOSf9y1lrmrHmbz9r/x2ouYvtX8Q1nzO9bvv+m33eqSL8wFdaPG
- ASQKMlk6b+gsmtyNwXQDIZCBnEKP6fZWSeQmOhJ6Tvm9iPIQMV23CCeJd
- w+ypwPm4eS8YgWjUFwJmCiVRPYOm1zy8AoKXzyoeooGOtXiMm+xtf2793
- I+1H6uGcLQVR125kVO5J+FZrqMslx0sAWw7wDXhgv7jHHz8Z89OXCfiAJ
- Wjmbhqx+g8XsLp4bSgJXug1G6IcRJhLizM59A9RfqRkXqKs3eOuppdkZv
- V894mBerJSzm+b/GeCcysGGZlb2nEcIlcKcU0wkAKJ9SKWAOXrmnrIu3M Q==;
-X-CSE-ConnectionGUID: EDYZbfetRK6/rWlK/NWuCw==
-X-CSE-MsgGUID: JRZbXKq2SrKV9ddtMYSmGA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11797"; a="84449233"
-X-IronPort-AV: E=Sophos;i="6.24,169,1774335600"; d="scan'208";a="84449233"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2026 01:56:43 -0700
-X-CSE-ConnectionGUID: qi3PdXR+QE+FfZJ8IXCLug==
-X-CSE-MsgGUID: IjdUWUL3Q0u/fJmKdWvkIw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,169,1774335600"; d="scan'208";a="246130433"
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO [10.245.244.128])
- ([10.245.244.128])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2026 01:56:42 -0700
-Message-ID: <a3631901-0f80-4123-8f26-b34ea9a4db92@intel.com>
-Date: Tue, 26 May 2026 09:56:40 +0100
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 082AD10E458
+ for <intel-xe@lists.freedesktop.org>; Tue, 26 May 2026 09:00:01 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 363006B3E6;
+ Tue, 26 May 2026 08:59:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1779785999; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=ejy15HLRULv/iHzJLGVQCrLp/AiLuLDwUgWtV4C2EU0=;
+ b=baaPyYMv4yGoQHFimAxytqQjn6ho5Zd1wa0FMTwsSYl4HfumaHInOXtFRCQanNqprT5hFp
+ auTBrgDJ8tUVkwo6MaC9M+qFT+nZxC/H4fWaDNQArID5i810CzAF4F5PbEZZtaZC05Nhrn
+ bHaoQ2UTzpstuC6Fr9OqknOV9u9dO9o=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1779785999;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=ejy15HLRULv/iHzJLGVQCrLp/AiLuLDwUgWtV4C2EU0=;
+ b=CFOTXZ/Jc28jW6gUmHAzNdWyt0f6zPZG+4PWGuwLGJUl0oh2nsUA9GcdS6AVEZhA2OrMKV
+ WtkbZVOIvCyH3+BA==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1779785998; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=ejy15HLRULv/iHzJLGVQCrLp/AiLuLDwUgWtV4C2EU0=;
+ b=Osk3/v8mo9hxyPDuoXN6f41EsFVPQmCgg+ElT42l3CUUFnP0mQEO8Tf4arcKpUWI3bpw5N
+ 32aTrm9kBeHRV4iUfnJ1+9hZL4oCsIj1+zudrX0f+JoDcETLgzINRl2Igclt+cV9fFFw7P
+ GpQad7BUfcrYFlgjt5c27wIFwuvWm2Q=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1779785998;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=ejy15HLRULv/iHzJLGVQCrLp/AiLuLDwUgWtV4C2EU0=;
+ b=o3oEKfPyVr5jbUeUmexTQStzMVEUG9KNlGA+0hMIrGHnx4fp31jKEhtkVwom+QxhKRCnN1
+ ZM2Wuy20DjfNrKBA==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 5162C5A10E;
+ Tue, 26 May 2026 08:59:57 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id 01R4Eg1hFWqZZAAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Tue, 26 May 2026 08:59:57 +0000
+Message-ID: <0057f209-c8a6-48bc-9194-36e3b19bec67@suse.de>
+Date: Tue, 26 May 2026 10:59:56 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] drm/xe/mmio: Map MMIO BAR using managed version of
- pci_iomap
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- intel-xe@lists.freedesktop.org
-References: <20260522143112.10643-1-michal.wajdeczko@intel.com>
- <20260522143112.10643-2-michal.wajdeczko@intel.com>
- <3c622ff9-565b-4b99-ada5-23306d4733e1@intel.com>
- <d469f6a3-ccea-4232-a75c-d4d2172bc090@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <d469f6a3-ccea-4232-a75c-d4d2172bc090@intel.com>
+Subject: Re: [PATCH v5 01/19] drm/atomic: Document atomic commit lifetime
+To: Maxime Ripard <mripard@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Jyri Sarha <jyri.sarha@iki.fi>,
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Simon Ser <contact@emersion.fr>, Harry Wentland <harry.wentland@amd.com>,
+ Melissa Wen <mwen@igalia.com>, Sebastian Wick <sebastian.wick@redhat.com>,
+ Alex Hung <alex.hung@amd.com>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Chen-Yu Tsai <wens@kernel.org>,
+ Samuel Holland <samuel@sholland.org>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
+Cc: dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Daniel Stone <daniels@collabora.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+References: <20260519-drm-mode-config-init-v5-0-388b03321e38@kernel.org>
+ <20260519-drm-mode-config-init-v5-1-388b03321e38@kernel.org>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <20260519-drm-mode-config-init-v5-1-388b03321e38@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-2.80 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ SUSPICIOUS_RECIPS(1.50)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MIME_TRACE(0.00)[0:+]; FUZZY_RATELIMITED(0.00)[rspamd.com];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; ARC_NA(0.00)[];
+ TAGGED_RCPT(0.00)[renesas]; RCPT_COUNT_TWELVE(0.00)[38];
+ TO_DN_SOME(0.00)[];
+ FREEMAIL_TO(0.00)[kernel.org,linux.intel.com,gmail.com,ffwll.ch,lwn.net,linuxfoundation.org,oss.qualcomm.com,iki.fi,ideasonboard.com,intel.com,linaro.org,kwiboo.se,emersion.fr,amd.com,igalia.com,redhat.com,ursulin.net,sholland.org,raspberrypi.com];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com]; MID_RHS_MATCH_FROM(0.00)[];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ R_RATELIMIT(0.00)[to_ip_from(RLyhjdboxbrjk5hnijtjs4kbm6)];
+ RCVD_TLS_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
+ TO_MATCH_ENVRCPT_SOME(0.00)[];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:url, suse.de:mid,
+ imap1.dmz-prg2.suse.org:helo, ideasonboard.com:email]
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,131 +163,171 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 22/05/2026 20:25, Michal Wajdeczko wrote:
-> 
-> 
-> On 5/22/2026 4:58 PM, Matthew Auld wrote:
->> On 22/05/2026 15:31, Michal Wajdeczko wrote:
->>> This will allow us to drop our custom release action. Note that
->>> pointer zeroing is not required, as there should be no active
->>> code running during a driver unwind. While around, add missing
->>> kernel-doc for the function and update error message.
->>>
->>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->>> ---
->>>    drivers/gpu/drm/xe/xe_mmio.c | 33 +++++++++++++++------------------
->>>    1 file changed, 15 insertions(+), 18 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
->>> index 78adb303b663..f4086b9ae38f 100644
->>> --- a/drivers/gpu/drm/xe/xe_mmio.c
->>> +++ b/drivers/gpu/drm/xe/xe_mmio.c
->>> @@ -16,6 +16,7 @@
->>>    #include "regs/xe_bars.h"
->>>    #include "xe_device.h"
->>>    #include "xe_gt_sriov_vf.h"
->>> +#include "xe_printk.h"
->>>    #include "xe_sriov.h"
->>>    #include "xe_trace.h"
->>>    #include "xe_wa.h"
->>> @@ -76,37 +77,33 @@ int xe_mmio_probe_tiles(struct xe_device *xe)
->>>        return devm_add_action_or_reset(xe->drm.dev, tiles_fini, xe);
->>>    }
->>>    -static void mmio_fini(void *arg)
->>> -{
->>> -    struct xe_device *xe = arg;
->>> -    struct xe_tile *root_tile = xe_device_get_root_tile(xe);
->>> -
->>> -    pci_iounmap(to_pci_dev(xe->drm.dev), xe->mmio.regs);
->>> -    xe->mmio.regs = NULL;
->>> -    root_tile->mmio.regs = NULL;
->>
->> This was intentional, since on pci unplug this get nuked, but driver instance is still alive. So, by setting to NULL, we can more easily catch misbehaving code, still trying to touch the hw post unplug. Any chance we can keep the NULL part?
-> 
-> but any access to the unmapped BAR should still end with some splash, similar to NPD one
-> 
-> this is what I got after doing immediate pci_unmap without zeroing the xe->mmio.regs pointer:
+Hi,
 
-It doesn't have to AFAIK. With the unplug, the same driver but new 
-instance, like when re-probing a new xe card, or perhaps a completely 
-different driver can map something there, post unplug. So the access 
-might by accident "work". Setting to NULL is more likely to give us a 
-splat if we trigger such an access.
+I left a number of comments on the style of writing. Apart from that, 
+it's great to have the lifetime documented.
 
-Also IMO a NULL regs is easier to spot in the splat, since the full 
-address will look bogus vs below, where the address looks normal. And 
-NULL regs would usually hint at probe issue or post unplug issue.
+Am 19.05.26 um 11:01 schrieb Maxime Ripard:
+> How drm_atomic_commit and the various entity structures are allocated
+> and freed isn't really trivial. Document it.
+>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> Signed-off-by: Maxime Ripard <mripard@kernel.org>
+> ---
+>   Documentation/gpu/drm-kms.rst |  6 +++++
+>   drivers/gpu/drm/drm_atomic.c  | 58 +++++++++++++++++++++++++++++++++++++++++++
+>   2 files changed, 64 insertions(+)
+>
+> diff --git a/Documentation/gpu/drm-kms.rst b/Documentation/gpu/drm-kms.rst
+> index d22817fdf9aa..36d76e391074 100644
+> --- a/Documentation/gpu/drm-kms.rst
+> +++ b/Documentation/gpu/drm-kms.rst
+> @@ -282,10 +282,16 @@ structure, ordering of committing state changes to hardware is sequenced using
+>   :c:type:`struct drm_crtc_commit <drm_crtc_commit>`.
+>   
+>   Read on in this chapter, and also in :ref:`drm_atomic_helper` for more detailed
+>   coverage of specific topics.
+>   
+> +Atomic State Lifetime
+> +---------------------
+> +
+> +.. kernel-doc:: drivers/gpu/drm/drm_atomic.c
+> +   :doc: state lifetime
+> +
+>   Handling Driver Private State
+>   -----------------------------
+>   
+>   .. kernel-doc:: drivers/gpu/drm/drm_atomic.c
+>      :doc: handling driver private state
+> diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
+> index 170de30c28ae..d98586d89bbe 100644
+> --- a/drivers/gpu/drm/drm_atomic.c
+> +++ b/drivers/gpu/drm/drm_atomic.c
+> @@ -45,10 +45,68 @@
+>   #include <drm/drm_colorop.h>
+>   
+>   #include "drm_crtc_internal.h"
+>   #include "drm_internal.h"
+>   
+> +/**
+> + * DOC: state lifetime
+> + *
+> + * &struct drm_atomic_commit represents an update to video pipeline
 
-> 
-> [ 1111.155480] BUG: unable to handle page fault for address: ffffc90006130030
-> [ 1111.155492] #PF: supervisor write access in kernel mode
-> [ 1111.155500] #PF: error_code(0x0002) - not-present page
-> [ 1111.155509] PGD 102400067 P4D 102400067 PUD 102c4f067 PMD 0
-> [ 1111.155533] Oops: Oops: 0002 [#1] SMP NOPTI
-> [ 1111.155558] CPU: 1 UID: 0 PID: 2853 Comm: insmod Kdump: loaded Not tainted 7.1.0-rc4-xe-sriov+ #618 PREEMPT(full)
-> [ 1111.155595] Hardware name: Intel Corporation Panther Lake Client Platform/PTL-UH LP5 T3 RVP1, BIOS PTLPFWI1.R00.3332.D05.2509011438 09/01/2025
-> [ 1111.155624] RIP: 0010:mmio_flush_pending_writes+0x28/0x50 [xe]
-> [ 1111.156004] Code: 90 90 0f 1f 44 00 00 48 8b 07 55 48 8b 00 48 89 e5 48 8b 80 d8 0f 00 00 48 8b 00 a8 02 74 16 ba 04 00 00 00 31 c9 48 8b 47 08 <89> 88 30 00 13 00 83 ea 01 75 f1 5d 31 c0 31 d2 31 c9 31 ff c3 cc
-> [ 1111.156025] RSP: 0018:ffffc90003ec36b0 EFLAGS: 00010246
-> [ 1111.156035] RAX: ffffc90006000000 RBX: ffff88810c7bace8 RCX: 0000000000000000
-> [ 1111.156045] RDX: 0000000000000004 RSI: 00000000011901f8 RDI: ffff88810c7bace8
-> [ 1111.156054] RBP: ffffc90003ec36b0 R08: 0000000000000000 R09: 0000000000000000
-> [ 1111.156063] R10: 0000000000000000 R11: 0000000000000000 R12: 00000000011901f8
-> [ 1111.156072] R13: 00000000001901f8 R14: 0000000000000000 R15: 0000000000000000
-> [ 1111.156081] FS:  00007136102acc40(0000) GS:ffff8884eb10b000(0000) knlGS:0000000000000000
-> [ 1111.156092] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> [ 1111.156101] CR2: ffffc90006130030 CR3: 000000010ec70005 CR4: 0000000108f72ef0
-> [ 1111.156110] PKRU: 55555554
-> [ 1111.156116] Call Trace:
-> [ 1111.156121]  <TASK>
-> [ 1111.156130]  xe_mmio_read32+0x32/0x150 [xe]
-> [ 1111.156392]  xe_sriov_probe_early+0x2d/0xf0 [xe]
-> [ 1111.156672]  xe_device_probe_early+0x4d/0x1a0 [xe]
-> [ 1111.157057]  xe_pci_probe+0x13e/0x530 [xe]
-> [ 1111.157374]  local_pci_probe+0x47/0xb0
-> [ 1111.157393]  pci_call_probe+0x6c/0x360
-> [ 1111.157413]  ? _raw_spin_unlock+0x22/0x50
-> [ 1111.157430]  ? pci_match_device+0x16d/0x1a0
-> [ 1111.157447]  pci_device_probe+0xa9/0x140
-> 
->>
->>> -}
->>> -
->>> +/**
->>> + * xe_mmio_probe_early() - Probe and initialize device's MMIO
->>> + * @xe: the &xe_device
->>> + *
->>> + * Map the entire GTTMMADR_BAR and initialize the first tile's MMIO instance.
->>> + *
->>> + * The first 16MB of the GTTMMADR_BAR always belongs to the root tile, and
->>> + * includes: registers (0-4MB), reserved space (4MB-8MB) and GGTT (8MB-16MB).
->>> + *
->>> + * Return: 0 on success or a negative error code on failure.
->>> + */
->>>    int xe_mmio_probe_early(struct xe_device *xe)
->>>    {
->>>        struct xe_tile *root_tile = xe_device_get_root_tile(xe);
->>>        struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
->>>    -    /*
->>> -     * Map the entire BAR.
->>> -     * The first 16MB of the BAR, belong to the root tile, and include:
->>> -     * registers (0-4MB), reserved space (4MB-8MB) and GGTT (8MB-16MB).
->>> -     */
->>>        xe->mmio.size = pci_resource_len(pdev, GTTMMADR_BAR);
->>> -    xe->mmio.regs = pci_iomap(pdev, GTTMMADR_BAR, 0);
->>> +    xe->mmio.regs = pcim_iomap(pdev, GTTMMADR_BAR, 0);
->>>        if (!xe->mmio.regs) {
->>> -        drm_err(&xe->drm, "failed to map registers\n");
->>> +        xe_err(xe, "Failed to map GTTMMADR_BAR\n");
->>>            return -EIO;
->>>        }
->>>          /* Setup first tile; other tiles (if present) will be setup later. */
->>>        xe_mmio_init(&root_tile->mmio, root_tile, xe->mmio.regs, SZ_4M);
->>>    -    return devm_add_action_or_reset(xe->drm.dev, mmio_fini, xe);
->>> +    return 0;
->>>    }
->>>    ALLOW_ERROR_INJECTION(xe_mmio_probe_early, ERRNO); /* See xe_pci_probe() */
->>>    
->>
-> 
+I'd say 'modeset pipeline'. Video sounds too much like V4L.
+
+> + * state. It's a transient object that holds a state update as a
+> + * collection of pointers to individual objects' states. &struct
+> + * drm_atomic_commit has a much shorter lifetime than the objects'
+> + * states, since it's only allocated while preparing, checking or
+> + * committing the update, while object states are allocated when
+> + * preparing the update and kept alive as long as they are active in the
+> + * device.
+> + *
+> + * Their respective lifetimes are:
+> + *
+> + * - at reset time, the object reset implementation will allocate a new
+> + *   default state and will store it in the object state pointer.
+
+Using present seems more natural, e.g., 'allocates' and 'stores'
+
+> + *
+> + * - whenever a new update is needed:
+> + *
+> + *   + A new &struct drm_atomic_commit is allocated using
+> + *     drm_atomic_commit_alloc().
+
+Active form: "drm_atomic_commit_alloc() allocates a new instance of 
+struct drm_atomic_commit."
+
+IIRC the '&' needs to go before drm_atomic_commit.
+
+> + *
+> + *   + The current active state of all entities affected by the update
+> + *     is copied into this new &struct drm_atomic_commit using
+> + *     drm_atomic_get_plane_state(), drm_atomic_get_crtc_state(),
+> + *     drm_atomic_get_connector_state(), or
+> + *     drm_atomic_get_private_obj_state(). This new state can then be
+> + *     modified.
+
+Again use active form.  Mention which helper invokes the copying. I 
+assume it's drm_atomic_commit_alloc() or the UAPI entry points.
+
+> + *
+> + *     At that point, &struct drm_atomic_commit stores three state
+> + *     pointers for any affected entity: the "old" and "new" states, and
+> + *     state_to_destroy. The old state is the state currently active in
+> + *     the hardware, which is either the one initialized by reset() or a
+> + *     newer one if a commit has been made. The new state is the state
+> + *     we just allocated and we might eventually commit to the hardware.
+> + *     The state_to_destroy points to the state we'll eventually have to
+> + *     free when the drm_atomic_commit will be destroyed, and points to
+> + *     the new state for now since the old state is still the active
+> + *     state.
+
+Ok, sounds good.
+
+> + *
+> + *   + After the state is populated, it is checked. If the check is
+
+You mean, it populated the new commit with the updated states?
+
+Where does the check happen?
+
+Again, use active form. Like: 'After ... populated the new commit with 
+the updated states, it checks by invoking atomic_check of all involved 
+pipeline stages."
+
+> + *     successful, the update is committed. Part of the commit is a call
+
+Active form: "successful, ... commits the update."
+
+> + *     to drm_atomic_helper_swap_state() which will turn the new states
+> + *     into the active states. Doing so involves updating the object's
+> + *     state pointer (&drm_crtc.state or similar) to point to the new
+> + *     state, and state_to_destroy will now point to the old states,
+> + *     that used to be active but aren't anymore.
+
+The final sentence ""Doing so..." is serviceable. For splendid writing, 
+you could write somethink like "After swapping states, each object's 
+state pointer refers to the formerly new state. The state_to_destroy 
+pointer refers to the formerly old state."
+
+> + *
+> + *   + When the commit is done, and when all references to our &struct
+> + *     drm_atomic_commit are put, __drm_atomic_commit_free() is called.
+
+Active form: "After commiting the new state to hardware, ... puts all 
+references to strut drm_atomic_commit and calls __drm_atomic_commit_free()".
+
+> + *     It will, in turn, call drm_atomic_commit_clear() that will free
+
+Present form: "It calls ... the frees ... and ...."
+
+Best regards
+Thomas
+
+> + *     all state_to_destroy (ie. old states), and finally free &struct
+> + *     drm_atomic_commit instance.
+> + *
+> + *   + Now, we don't have any active &struct drm_atomic_commit anymore,
+> + *     and only the entity active states remain allocated.
+> + */
+> +
+>   void __drm_crtc_commit_free(struct kref *kref)
+>   {
+>   	struct drm_crtc_commit *commit =
+>   		container_of(kref, struct drm_crtc_commit, ref);
+>   
+>
+
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
+GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
+
 
