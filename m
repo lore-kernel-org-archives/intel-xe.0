@@ -4,27 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95C88CD5BC8
-	for <intel-xe@archiver.kernel.org>; Tue, 26 May 2026 18:40:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B409FCD5BC8
+	for <intel-xe@archiver.kernel.org>; Tue, 26 May 2026 18:40:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32AB310E4BD;
-	Tue, 26 May 2026 18:40:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7250F10E1B1;
+	Tue, 26 May 2026 18:40:53 +0000 (UTC)
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF40310E1B1;
- Tue, 26 May 2026 18:40:21 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BD6610E1B1;
+ Tue, 26 May 2026 18:40:52 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2074710170601221810=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/atomic=3A_Rework_init?=
- =?utf-8?q?ial_state_allocation_=28rev5=29?=
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/display=3A_do_intel?=
+ =?utf-8?q?=5Fdisplay=5Fpower=5F=7Bsuspend=2C_resume=7D=28=29_on_runtime_sus?=
+ =?utf-8?q?pend/resume?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maxime Ripard" <mripard@kernel.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 26 May 2026 18:40:21 -0000
-Message-ID: <177982082184.11680.18047337927954792881@6beec6c84f66>
+Date: Tue, 26 May 2026 18:40:52 -0000
+Message-ID: <177982085230.11680.1290109574178961212@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260526-drm-mode-config-init-v6-0-852346394200@kernel.org>
-In-Reply-To: <20260526-drm-mode-config-init-v6-0-852346394200@kernel.org>
+References: <20260526144937.1199524-1-jani.nikula@intel.com>
+In-Reply-To: <20260526144937.1199524-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,101 +41,129 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============2074710170601221810==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: drm/atomic: Rework initial state allocation (rev5)
-URL   : https://patchwork.freedesktop.org/series/163606/
-State : warning
+Series: drm/xe/display: do intel_display_power_{suspend, resume}() on runtime suspend/resume
+URL   : https://patchwork.freedesktop.org/series/167299/
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-061140b9bc586ae7f40abc1249c97e1cc72d1b9d
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 1c35776ef222a5253aea1900f51cfb040316f04c
-Author: Maxime Ripard <mripard@kernel.org>
-Date:   Tue May 26 18:46:31 2026 +0200
+CI Bug Log - changes from xe-5132-1e5fbf0d628cd02dced6cfb1ebe39717f121fb4c_BAT -> xe-pw-167299v1_BAT
+====================================================
 
-    drm/bridge_connector: Convert to atomic_create_state
-    
-    The connector created by drm_bridge_connector only initializes a
-    pristine state in reset, which is equivalent to what
-    atomic_create_state would expect. Convert to it.
-    
-    Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-    Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-    Signed-off-by: Maxime Ripard <mripard@kernel.org>
-+ /mt/dim checkpatch 1e5fbf0d628cd02dced6cfb1ebe39717f121fb4c drm-intel
-fb1b8e20360a drm/atomic: Document atomic commit lifetime
--:98: WARNING:TYPO_SPELLING: 'refererence' may be misspelled - perhaps 'reference'?
-#98: FILE: drivers/gpu/drm/drm_atomic.c:111:
-+ *   + Once done, and when the last refererence to our &struct
-                                     ^^^^^^^^^^^
+Summary
+-------
 
-total: 0 errors, 1 warnings, 0 checks, 90 lines checked
-1afca3049534 drm/colorop: Fix typos in the doc
-0ae2ddf76739 drm/atomic: Drop drm_private_obj.state assignment from create_state
-ea99c9899a5f drm/atomic: Expand atomic_create_state expectations for drm_private_obj
-2adf81e42125 drm/mode-config: Document drm_private_obj exclusion from drm_mode_config_reset()
-51cea161f30b drm/colorop: Rename __drm_colorop_state_reset()
-55bd4d36a514 drm/colorop: Create drm_atomic_helper_colorop_create_state()
-0513bd53224c drm/atomic-state-helper: Fix __drm_atomic_helper_plane_reset() doc typo
-85930e869ba2 drm/atomic-state-helper: Rename __drm_atomic_helper_plane_state_reset()
--:91: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#91: FILE: include/drm/drm_atomic_state_helper.h:57:
-+void __drm_atomic_helper_plane_state_init(struct drm_plane_state *state,
- 					   struct drm_plane *plane);
+  **FAILURE**
 
-total: 0 errors, 0 warnings, 1 checks, 51 lines checked
-4c7804697a60 drm/plane: Add new atomic_create_state callback
--:50: WARNING:LONG_LINE_COMMENT: line length of 102 exceeds 100 columns
-#50: FILE: drivers/gpu/drm/drm_atomic_state_helper.c:344:
-+ * drm_atomic_helper_plane_create_state - default &drm_plane_funcs.atomic_create_state hook for planes
+  Serious unknown changes coming with xe-pw-167299v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-167299v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-total: 0 errors, 1 warnings, 0 checks, 106 lines checked
-1304b4539af8 drm/atomic-state-helper: Rename __drm_atomic_helper_crtc_state_reset()
--:88: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#88: FILE: include/drm/drm_atomic_state_helper.h:44:
-+void __drm_atomic_helper_crtc_state_init(struct drm_crtc_state *state,
- 					  struct drm_crtc *crtc);
+  
 
-total: 0 errors, 0 warnings, 1 checks, 48 lines checked
-382007cbd4cd drm/crtc: Add new atomic_create_state callback
-66cb7189d71c drm/atomic-state-helper: Rename __drm_atomic_helper_connector_state_reset()
--:76: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#76: FILE: include/drm/drm_atomic_state_helper.h:74:
-+void __drm_atomic_helper_connector_state_init(struct drm_connector_state *conn_state,
- 					       struct drm_connector *connector);
+Participating hosts (13 -> 13)
+------------------------------
 
-total: 0 errors, 0 warnings, 1 checks, 41 lines checked
-104462b6a352 drm/hdmi: Rename __drm_atomic_helper_connector_hdmi_reset()
--:51: WARNING:LONG_LINE_COMMENT: line length of 103 exceeds 100 columns
-#51: FILE: drivers/gpu/drm/display/drm_hdmi_state_helper.c:309:
-+ * __drm_atomic_helper_connector_hdmi_state_init() - Initialize all HDMI @drm_connector_state resources
+  No changes in participating hosts
 
-total: 0 errors, 1 warnings, 0 checks, 76 lines checked
-df9589cf015e drm/connector: Add new atomic_create_state callback
--:51: WARNING:LONG_LINE_COMMENT: line length of 114 exceeds 100 columns
-#51: FILE: drivers/gpu/drm/drm_atomic_state_helper.c:538:
-+ * drm_atomic_helper_connector_create_state - default &drm_connector_funcs.atomic_create_state hook for connectors
+Possible new issues
+-------------------
 
--:88: CHECK:BRACES: braces {} should be used on all arms of this statement
-#88: FILE: drivers/gpu/drm/drm_connector.c:621:
-+	if (connector->funcs->atomic_create_state) {
-[...]
-+	} else if (connector->funcs->reset)
-[...]
+  Here are the unknown changes that may have been introduced in xe-pw-167299v1_BAT:
 
-total: 0 errors, 1 warnings, 1 checks, 123 lines checked
-74fa6af3e01c drm/mode-config: Create drm_mode_config_create_initial_state()
-e995973eae70 drm/drv: Switch skeleton to drm_mode_config_create_initial_state()
-a5c2dadb0d46 drm/tidss: Convert to atomic_create_state
-1c35776ef222 drm/bridge_connector: Convert to atomic_create_state
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_query@multigpu-query-topology:
+    - bat-bmg-3:          [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5132-1e5fbf0d628cd02dced6cfb1ebe39717f121fb4c/bat-bmg-3/igt@xe_query@multigpu-query-topology.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167299v1/bat-bmg-3/igt@xe_query@multigpu-query-topology.html
+
+  
 
 
+Build changes
+-------------
+
+  * Linux: xe-5132-1e5fbf0d628cd02dced6cfb1ebe39717f121fb4c -> xe-pw-167299v1
+
+  IGT_8938: b024a3b67372962ff6e643d3998c5cf5acc07081 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5132-1e5fbf0d628cd02dced6cfb1ebe39717f121fb4c: 1e5fbf0d628cd02dced6cfb1ebe39717f121fb4c
+  xe-pw-167299v1: 167299v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167299v1/index.html
+
+--===============2074710170601221810==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/display: do intel_display_power_{suspend, resume}() on runtime suspend/resume</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167299/">https://patchwork.freedesktop.org/series/167299/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167299v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167299v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5132-1e5fbf0d628cd02dced6cfb1ebe39717f121fb4c_BAT -&gt; xe-pw-167299v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-167299v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-167299v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-167299v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_query@multigpu-query-topology:<ul>
+<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5132-1e5fbf0d628cd02dced6cfb1ebe39717f121fb4c/bat-bmg-3/igt@xe_query@multigpu-query-topology.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167299v1/bat-bmg-3/igt@xe_query@multigpu-query-topology.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5132-1e5fbf0d628cd02dced6cfb1ebe39717f121fb4c -&gt; xe-pw-167299v1</li>
+</ul>
+<p>IGT_8938: b024a3b67372962ff6e643d3998c5cf5acc07081 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5132-1e5fbf0d628cd02dced6cfb1ebe39717f121fb4c: 1e5fbf0d628cd02dced6cfb1ebe39717f121fb4c<br />
+  xe-pw-167299v1: 167299v1</p>
+
+</body>
+</html>
+
+--===============2074710170601221810==--
