@@ -4,56 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C7F0CD5BD1
-	for <intel-xe@archiver.kernel.org>; Tue, 26 May 2026 17:31:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6115ECD5BB1
+	for <intel-xe@archiver.kernel.org>; Tue, 26 May 2026 17:37:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC7DC10E502;
-	Tue, 26 May 2026 17:31:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F01E10E6F9;
+	Tue, 26 May 2026 17:37:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="No6Muyco";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Uav5uxE2";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CA1D10E1BF
- for <intel-xe@lists.freedesktop.org>; Tue, 26 May 2026 17:31:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60A4210E6F9;
+ Tue, 26 May 2026 17:37:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779816667; x=1811352667;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=V4RdCnGClSXT5xTKz2rb7yW94D6+BjTvu8SeTMMr4z8=;
- b=No6MuycoHiJKbVEh85doBW+APJH2O+yPM1YVbz5ypX4/xtzbPXkQOkOb
- n47rV8AFHSuKWyQM8QmtKXHm+9YBgpXeguBrhY82D1Cl0Bsaf4EbgAlM0
- jhwvFUA7a+HvokoKeB5j/XCcRUSaHgvb6FW0Yc8XNWAPA4386FLzDzUVA
- P3Wsr3BjKXjHixkUqqpoarBR4+RTukkHvYvjW1GPc5Mta40ZrBe4NQpxn
- teDMH74Y5p+nsWk1DjMYR5tzZiVsS7CoyDN1ZZDFjKhJSSDuaJwgMDxmT
- MsZ2A7BsEQIs1cveAAueXwzJQSyoYBZcZod9JXyd0MwZZijGDL7g8axbh A==;
-X-CSE-ConnectionGUID: Y9OPyLiJSm+BDUZ7LTOcyw==
-X-CSE-MsgGUID: fRyO0fp8RIGJHH0GUw/kDA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11798"; a="80751040"
-X-IronPort-AV: E=Sophos;i="6.24,170,1774335600"; d="scan'208";a="80751040"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2026 10:31:06 -0700
-X-CSE-ConnectionGUID: HG1zEX0URIqWBQ63+zgHrA==
-X-CSE-MsgGUID: xrs48JDkTeq5KFRLN+wr3g==
+ t=1779817044; x=1811353044;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=1ySu07nIw7e+g2Q8MAGtOiGUrGp2Uds26Q96HdIQSho=;
+ b=Uav5uxE22iUY9m8qYrh88mh9Sfm6rmhva2r/+A/w+m4C2kn8rlJvni1m
+ +li79pd24qSSlui9o/A1YFGYPTZpwEnj9kYbqX6YCB1kqdIPNaC+8A9FR
+ RpeIo0T+h0cvIsoAjjzVn5/TqcJhL2s3szDIHt5t2sjuthR0Lg2XRlOon
+ rNhuPBi1swM0b56Aw/0gBjBfXh+iNH+p2A+y9mqKnmZXqYcCjS39hNVIp
+ F01XUOC2V7ZF8llKcGGT3KQ8dCVLU6zVpN12HEElQHp8iML4w50eFCE5y
+ b0pvCULzjcVUAAO2xPfFcIuvJTACyMO0Ap8tz0SLpWC/yPC50MMSVRUm3 A==;
+X-CSE-ConnectionGUID: Leqkyfw6Rt+Qb7bcC4T/cw==
+X-CSE-MsgGUID: 9rIu0XBSR5agcc92d1/LJQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11798"; a="91331073"
+X-IronPort-AV: E=Sophos;i="6.24,170,1774335600"; d="scan'208";a="91331073"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2026 10:37:23 -0700
+X-CSE-ConnectionGUID: 6Hn/WubzQUO8lT5BCWO2UQ==
+X-CSE-MsgGUID: gYPbSzVLQrudnaiWNEPdeQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,170,1774335600"; d="scan'208";a="246954111"
-Received: from vmonti-desk.jf.intel.com ([10.88.27.136])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2026 10:31:06 -0700
-From: Violet Monti <violet.monti@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Violet Monti <violet.monti@intel.com>,
- Gustavo Sousa <gustavo.sousa@intel.com>
-Subject: [PATCH v4 3/4] drm/xe/rtp: Ensure oob_was does not evaluate engine
- type rules
-Date: Tue, 26 May 2026 10:30:59 -0700
-Message-ID: <20260526173056.967215-9-violet.monti@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260526173056.967215-6-violet.monti@intel.com>
-References: <20260526173056.967215-6-violet.monti@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,170,1774335600"; d="scan'208";a="280110625"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.182])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2026 10:37:22 -0700
+Date: Tue, 26 May 2026 20:37:17 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v2] drm/{i915,xe}: move xe_display_flush_cleanup_work()
+ to i915 display
+Message-ID: <ahXaTZD-L-koRduP@intel.com>
+References: <7aecde385b66dbf7d0e61759528c6cd643581a3d.1778659089.git.jani.nikula@intel.com>
+ <20260525110553.651208-1-jani.nikula@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260525110553.651208-1-jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,91 +73,138 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This commit builds on the implementation of the GT WA testing, increasing
-the scope of testing to include the OOB workaround list. The added test
-checks for workarounds with XE_RTP_ENGINE_CLASS() rules and raises an
-expectationfailure if any are found. Unlike the GT workarounds, there are
-no flags within this workaround list, so all invalid rules will fail.
+On Mon, May 25, 2026 at 02:05:53PM +0300, Jani Nikula wrote:
+> xe_display_flush_cleanup_work() is a bit of an oddball function in xe
+> display code. There shouldn't be anything this specific or xe
+> specific. While I'm not sure what the correct refactor for the function
+> should be, move it to shared display code for starters, next to the
+> eerily similar but slightly different intel_has_pending_fb_unpin() that
+> is only called from i915 core.
+> 
+> The main goal here is to unblock some refactors on
+> for_each_intel_crtc().
+> 
+> v2: Add FIXME comment (Ville)
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 22 ++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_display.h |  1 +
+>  drivers/gpu/drm/xe/display/xe_display.c      | 27 +++-----------------
+>  3 files changed, 26 insertions(+), 24 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 6c8935f69db1..a6cee0f81358 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -737,6 +737,28 @@ bool intel_has_pending_fb_unpin(struct intel_display *display)
+>  	return false;
+>  }
+>  
+> +/* FIXME: All callers need to be audited and unified between i915 and xe */
 
-v4:
-    - No change
+That makes me think we want to keep this. I was more thinking of
+something like
+/* FIXME remove this and just flush the cleanup wq where appropriate */
 
-v3:
-    - Removed VISIBLE_IF_KUNIT keyword from xe_wa.h
-    - Reworked KUNIT_EXPECT_TRUE for easier decoding of errors
+> +void intel_display_flush_cleanup_work(struct intel_display *display)
+> +{
+> +	struct intel_crtc *crtc;
+> +
+> +	for_each_intel_crtc(display->drm, crtc) {
+> +		struct drm_crtc_commit *commit;
+> +
+> +		spin_lock(&crtc->base.commit_lock);
+> +		commit = list_first_entry_or_null(&crtc->base.commit_list,
+> +						  struct drm_crtc_commit, commit_entry);
+> +		if (commit)
+> +			drm_crtc_commit_get(commit);
+> +		spin_unlock(&crtc->base.commit_lock);
+> +
+> +		if (commit) {
+> +			wait_for_completion(&commit->cleanup_done);
+> +			drm_crtc_commit_put(commit);
+> +		}
+> +	}
+> +}
+> +
+>  /*
+>   * Finds the encoder associated with the given CRTC. This can only be
+>   * used when we know that the CRTC isn't feeding multiple encoders!
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+> index 45a90d2fe6ec..72f33113a5a3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> @@ -402,6 +402,7 @@ void intel_disable_transcoder(const struct intel_crtc_state *old_crtc_state);
+>  void i830_enable_pipe(struct intel_display *display, enum pipe pipe);
+>  void i830_disable_pipe(struct intel_display *display, enum pipe pipe);
+>  bool intel_has_pending_fb_unpin(struct intel_display *display);
+> +void intel_display_flush_cleanup_work(struct intel_display *display);
+>  void intel_encoder_destroy(struct drm_encoder *encoder);
+>  struct drm_display_mode *
+>  intel_encoder_current_mode(struct intel_encoder *encoder);
+> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+> index 8d08da60336d..a5066de3d789 100644
+> --- a/drivers/gpu/drm/xe/display/xe_display.c
+> +++ b/drivers/gpu/drm/xe/display/xe_display.c
+> @@ -244,27 +244,6 @@ static bool suspend_to_idle(void)
+>  	return false;
+>  }
+>  
+> -static void xe_display_flush_cleanup_work(struct xe_device *xe)
+> -{
+> -	struct intel_crtc *crtc;
+> -
+> -	for_each_intel_crtc(&xe->drm, crtc) {
+> -		struct drm_crtc_commit *commit;
+> -
+> -		spin_lock(&crtc->base.commit_lock);
+> -		commit = list_first_entry_or_null(&crtc->base.commit_list,
+> -						  struct drm_crtc_commit, commit_entry);
+> -		if (commit)
+> -			drm_crtc_commit_get(commit);
+> -		spin_unlock(&crtc->base.commit_lock);
+> -
+> -		if (commit) {
+> -			wait_for_completion(&commit->cleanup_done);
+> -			drm_crtc_commit_put(commit);
+> -		}
+> -	}
+> -}
+> -
+>  static void xe_display_enable_d3cold(struct xe_device *xe)
+>  {
+>  	struct intel_display *display = xe->display;
+> @@ -278,7 +257,7 @@ static void xe_display_enable_d3cold(struct xe_device *xe)
+>  	 */
+>  	intel_power_domains_disable(display);
+>  
+> -	xe_display_flush_cleanup_work(xe);
+> +	intel_display_flush_cleanup_work(display);
+>  
+>  	intel_opregion_suspend(display, PCI_D3cold);
+>  
+> @@ -333,7 +312,7 @@ void xe_display_pm_suspend(struct xe_device *xe)
+>  		intel_display_driver_suspend(display);
+>  	}
+>  
+> -	xe_display_flush_cleanup_work(xe);
+> +	intel_display_flush_cleanup_work(display);
+>  
+>  	intel_encoder_block_all_hpds(display);
+>  
+> @@ -365,7 +344,7 @@ void xe_display_pm_shutdown(struct xe_device *xe)
+>  		intel_display_driver_suspend(display);
+>  	}
+>  
+> -	xe_display_flush_cleanup_work(xe);
+> +	intel_display_flush_cleanup_work(display);
+>  	intel_dp_mst_suspend(display);
+>  	intel_encoder_block_all_hpds(display);
+>  	intel_hpd_cancel_work(display);
+> -- 
+> 2.47.3
 
-v2:
-    - Changed xe_rtp_table_oob_test() to follow format of
-      xe_rtp_table_gt_test
-    - Changed oob_was generated params to follow format of gt_was
-      generated params
-
-Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
-Signed-off-by: Violet Monti <violet.monti@intel.com>
----
- drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c | 15 +++++++++++++++
- drivers/gpu/drm/xe/xe_wa.c                    |  3 ++-
- drivers/gpu/drm/xe/xe_wa.h                    |  1 +
- 3 files changed, 18 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c b/drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c
-index fc707d972249..e37bf896e8fe 100644
---- a/drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c
-+++ b/drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c
-@@ -41,9 +41,24 @@ static void xe_rtp_table_gt_test(struct kunit *test)
- RTP_TABLE_PARAM(gt_was);
- RTP_TABLE_PARAM(gt_tunings);
- 
-+static void xe_rtp_table_oob_test(struct kunit *test)
-+{
-+	const struct xe_rtp_entry *entry = test->param_value;
-+
-+	for (int i = 0; i < entry->n_rules; i++) {
-+		u8 match_type = entry->rules[i].match_type;
-+
-+		KUNIT_EXPECT_NE(test, match_type, XE_RTP_MATCH_ENGINE_CLASS);
-+		KUNIT_EXPECT_NE(test, match_type, XE_RTP_MATCH_NOT_ENGINE_CLASS);
-+	}
-+}
-+
-+RTP_TABLE_PARAM(oob_was);
-+
- static struct kunit_case xe_rtp_table_tests[] = {
- 	KUNIT_CASE_PARAM(xe_rtp_table_gt_test, gt_was_gen_params),
- 	KUNIT_CASE_PARAM(xe_rtp_table_gt_test, gt_tunings_gen_params),
-+	KUNIT_CASE_PARAM(xe_rtp_table_oob_test, oob_was_gen_params),
- 	{}
- };
- 
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index 1a1e04215f21..410099545f4e 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -803,10 +803,11 @@ static const struct xe_rtp_entry oob_was_entries[] = {
- 
- static_assert(ARRAY_SIZE(oob_was_entries)  == _XE_WA_OOB_COUNT);
- 
--static __maybe_unused const struct xe_rtp_table oob_was = {
-+VISIBLE_IF_KUNIT __maybe_unused const struct xe_rtp_table oob_was = {
- 	.entries = oob_was_entries,
- 	.n_entries = ARRAY_SIZE(oob_was_entries),
- };
-+EXPORT_SYMBOL_IF_KUNIT(oob_was);
- 
- static const struct xe_rtp_entry device_oob_was_entries[] = {
- #include <generated/xe_device_wa_oob.c>
-diff --git a/drivers/gpu/drm/xe/xe_wa.h b/drivers/gpu/drm/xe/xe_wa.h
-index 8784b491dde7..c5cc260621cd 100644
---- a/drivers/gpu/drm/xe/xe_wa.h
-+++ b/drivers/gpu/drm/xe/xe_wa.h
-@@ -27,6 +27,7 @@ int xe_wa_gt_dump(struct xe_gt *gt, struct drm_printer *p);
- 
- #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
- extern const struct xe_rtp_table_sr gt_was;
-+extern __maybe_unused const struct xe_rtp_table oob_was;
- #endif
- 
- /**
 -- 
-2.43.0
-
+Ville Syrjälä
+Intel
