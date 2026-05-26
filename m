@@ -4,58 +4,163 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FAD6CD5BD0
-	for <intel-xe@archiver.kernel.org>; Tue, 26 May 2026 09:21:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9644CD5BD0
+	for <intel-xe@archiver.kernel.org>; Tue, 26 May 2026 09:22:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48B7389811;
-	Tue, 26 May 2026 09:21:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D0CB10E47B;
+	Tue, 26 May 2026 09:22:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Lm54z/Gh";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="VAijS1od";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="Q6I6VFLJ";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="VAijS1od";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="Q6I6VFLJ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E9AE89811
- for <intel-xe@lists.freedesktop.org>; Tue, 26 May 2026 09:21:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779787268; x=1811323268;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=Z7PFmhjyqPd7ZEvB1tkDQ0S7vPCf4xbZ83XbWB2fHoE=;
- b=Lm54z/GhpltTnqJmb9tShXF3KtyeVP8NopprzSVfplhMCJnCDQMHis2V
- wUEkGeluP/lQHFa/yy5T8sbzk4lcuuhCS1/lDt8vC1/Kd8vI32uLGuMtQ
- Sy16oCBpQNQlBwFprrSR5cuPuRURCqFpqy76Bt+m+Xki7rPa7T92DbnQ/
- TBBZAsAbJIG73++tVXp/kK7WsQXqdb9G3db1//MmiEfeFSz08vwj+PyTE
- U4esNO+RQRykRNCScng0bq2LmbhY+yEBi36CxQGe/zY8/1Sc40TKKEGLP
- hwRMuOhSypR9dze13Gr1ZvNnrhsLFjRsNvIsOu57jFizekCiBG47boPd5 Q==;
-X-CSE-ConnectionGUID: 33YWhPq2QJquyXeuHvOxQg==
-X-CSE-MsgGUID: jzCg3Z2RTRiS6TtHScMU4A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11797"; a="90895333"
-X-IronPort-AV: E=Sophos;i="6.24,169,1774335600"; d="scan'208";a="90895333"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2026 02:21:07 -0700
-X-CSE-ConnectionGUID: qLu8stjZRrmn60j0J4Z+nQ==
-X-CSE-MsgGUID: jFRWRgjRQf6tX/JWb+RzVw==
-X-ExtLoop1: 1
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO [10.245.244.128])
- ([10.245.244.128])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2026 02:21:08 -0700
-Message-ID: <8883674e-6e63-46c0-806e-d4a14523de26@intel.com>
-Date: Tue, 26 May 2026 10:21:05 +0100
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0726710E47B
+ for <intel-xe@lists.freedesktop.org>; Tue, 26 May 2026 09:22:46 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 94B526B346;
+ Tue, 26 May 2026 09:22:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1779787364; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=dSvjQQSdD0rwF6LUM0JsPgONSlRbO3wD9RFgWm9OySo=;
+ b=VAijS1ode21962RALMpEDQvhWosJZQD54KvUSbmvsBbY7fSXj6QCrVc13ZksbrnNDb9I8s
+ c1V9fnoWbf+87mc0qDndSFsDw3McYPL1tdXqCJIU9G3cHhYfdj3Bvla/C2fL9pQPcGuo7C
+ Zo6VaV9zBe4nglfZDEvfBrHSGl7IB9o=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1779787364;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=dSvjQQSdD0rwF6LUM0JsPgONSlRbO3wD9RFgWm9OySo=;
+ b=Q6I6VFLJL7j6Ca4GX4Dp6xrpYpciDlP+JyRLy/WLruUox4Hydh39c/SxpyqYBNqgMSAbtn
+ kyG6pGULsZmxM1DA==
+Authentication-Results: smtp-out1.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=VAijS1od;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=Q6I6VFLJ
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1779787364; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=dSvjQQSdD0rwF6LUM0JsPgONSlRbO3wD9RFgWm9OySo=;
+ b=VAijS1ode21962RALMpEDQvhWosJZQD54KvUSbmvsBbY7fSXj6QCrVc13ZksbrnNDb9I8s
+ c1V9fnoWbf+87mc0qDndSFsDw3McYPL1tdXqCJIU9G3cHhYfdj3Bvla/C2fL9pQPcGuo7C
+ Zo6VaV9zBe4nglfZDEvfBrHSGl7IB9o=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1779787364;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=dSvjQQSdD0rwF6LUM0JsPgONSlRbO3wD9RFgWm9OySo=;
+ b=Q6I6VFLJL7j6Ca4GX4Dp6xrpYpciDlP+JyRLy/WLruUox4Hydh39c/SxpyqYBNqgMSAbtn
+ kyG6pGULsZmxM1DA==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 9EA955A125;
+ Tue, 26 May 2026 09:22:43 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id Mc5aJWNmFWpaewAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Tue, 26 May 2026 09:22:43 +0000
+Message-ID: <3e523040-b59a-40dc-8b60-d604c32bac88@suse.de>
+Date: Tue, 26 May 2026 11:22:43 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 01/10] drm/xe/guc: refactor ads to use guc_class
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- intel-xe@lists.freedesktop.org
-References: <20260522123720.39656-12-matthew.auld@intel.com>
- <20260522123720.39656-13-matthew.auld@intel.com>
- <4676b0be-4cfa-424e-858f-9346d633ea0e@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <4676b0be-4cfa-424e-858f-9346d633ea0e@intel.com>
+Subject: Re: [PATCH v5 12/19] drm/crtc: Add new atomic_create_state callback
+To: Maxime Ripard <mripard@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Jyri Sarha <jyri.sarha@iki.fi>,
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Simon Ser <contact@emersion.fr>, Harry Wentland <harry.wentland@amd.com>,
+ Melissa Wen <mwen@igalia.com>, Sebastian Wick <sebastian.wick@redhat.com>,
+ Alex Hung <alex.hung@amd.com>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Chen-Yu Tsai <wens@kernel.org>,
+ Samuel Holland <samuel@sholland.org>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
+Cc: dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Daniel Stone <daniels@collabora.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+References: <20260519-drm-mode-config-init-v5-0-388b03321e38@kernel.org>
+ <20260519-drm-mode-config-init-v5-12-388b03321e38@kernel.org>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <20260519-drm-mode-config-init-v5-12-388b03321e38@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 94B526B346
+X-Rspamd-Action: no action
+X-Spamd-Result: default: False [-3.01 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ SUSPICIOUS_RECIPS(1.50)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MX_GOOD(-0.01)[]; FUZZY_RATELIMITED(0.00)[rspamd.com];
+ RCPT_COUNT_TWELVE(0.00)[37]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
+ MIME_TRACE(0.00)[0:+];
+ FREEMAIL_TO(0.00)[kernel.org,linux.intel.com,gmail.com,ffwll.ch,lwn.net,linuxfoundation.org,oss.qualcomm.com,iki.fi,ideasonboard.com,intel.com,linaro.org,kwiboo.se,emersion.fr,amd.com,igalia.com,redhat.com,ursulin.net,sholland.org,raspberrypi.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ ARC_NA(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ DKIM_TRACE(0.00)[suse.de:+]; TO_DN_SOME(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2];
+ DNSWL_BLOCKED(0.00)[2a07:de40:b281:106:10:150:64:167:received];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ RCVD_TLS_ALL(0.00)[];
+ internal_greylist_whitelist(0.00)[2a07:de40:b281:104:10:150:64:97];
+ RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
+ R_RATELIMIT(0.00)[to_ip_from(RL7gneoo7ydcsn9o76mxr5d8pb)];
+ MID_RHS_MATCH_FROM(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ TAGGED_RCPT(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:url, suse.de:email, suse.de:mid,
+ suse.de:dkim, imap1.dmz-prg2.suse.org:rdns, imap1.dmz-prg2.suse.org:helo,
+ qualcomm.com:email]
+X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,194 +175,156 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 23/05/2026 02:03, Daniele Ceraolo Spurio wrote:
-> 
-> 
-> On 5/22/2026 5:37 AM, Matthew Auld wrote:
->> Currently in the lrc init flow on the ads side, we loop through each
->> generic engine class and convert that to the respective guc engine
->> class. However, with some upcoming changes, it will be better to go the
->> opposite way and loop through every guc engine class, and convert that
->> to the generic engine class.
->>
->> This also reworks engine_enable_mask to operate on the guc_class, that
->> way we can easily filter out the PAGING vs normal BSC, when applicable.
-> 
-> nit: this sentence looks like it should go after the next one, because 
-> here you mention PAGING directly but below you introduce the "new engine 
-> class".
 
-Will fix.
 
-> 
->>
->> This will be needed in an upcoming patch where we have a new guc engine
->> class that just matches up to the existing blitter/copy class, but needs
->> to be treated as separate entity from the normal copy lrc, when setting
->> up the ADS.
->>
->> As a bonus this also gets rid of two xe_engine_class_to_guc_class()
->> users which will be helpful for the next patch.
->>
->> No functional changes.
->>
->> Suggested-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
->> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_guc_ads.c | 67 ++++++++++++++++++++++-----------
->>   1 file changed, 45 insertions(+), 22 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/ 
->> xe_guc_ads.c
->> index b9bca6084a4f..ffe60d77b713 100644
->> --- a/drivers/gpu/drm/xe/xe_guc_ads.c
->> +++ b/drivers/gpu/drm/xe/xe_guc_ads.c
->> @@ -251,15 +251,37 @@ static size_t calculate_regset_size(struct xe_gt 
->> *gt)
->>       return count * sizeof(struct guc_mmio_reg);
->>   }
->> -static u32 engine_enable_mask(struct xe_gt *gt, enum xe_engine_class 
->> class)
->> +static inline enum xe_engine_class guc_class_to_engine_class(u16 
->> guc_class)
->> +{
->> +    switch (guc_class) {
->> +    case GUC_RENDER_CLASS:
->> +        return XE_ENGINE_CLASS_RENDER;
->> +    case GUC_VIDEO_CLASS:
->> +        return XE_ENGINE_CLASS_VIDEO_DECODE;
->> +    case GUC_VIDEOENHANCE_CLASS:
->> +        return XE_ENGINE_CLASS_VIDEO_ENHANCE;
->> +    case GUC_BLITTER_CLASS:
->> +        return XE_ENGINE_CLASS_COPY;
->> +    case GUC_COMPUTE_CLASS:
->> +        return XE_ENGINE_CLASS_COMPUTE;
->> +    case GUC_GSC_OTHER_CLASS:
->> +        return XE_ENGINE_CLASS_OTHER;
->> +    default:
->> +        XE_WARN_ON(guc_class);
->> +        return -1;
->> +    }
->> +}
->> +
->> +static u32 engine_enable_mask(struct xe_gt *gt, u16 guc_class)
->>   {
->>       struct xe_hw_engine *hwe;
->>       enum xe_hw_engine_id id;
->>       u32 mask = 0;
->> -    for_each_hw_engine(hwe, gt, id)
->> -        if (hwe->class == class)
->> +    for_each_hw_engine(hwe, gt, id) {
->> +        if (xe_engine_class_to_guc_class(hwe->class) == guc_class)
->>               mask |= BIT(hwe->instance);
->> +    }
-> 
-> nit: the brackets aren't really needed here.
-> 
->>       return mask;
->>   }
->> @@ -268,10 +290,13 @@ static size_t calculate_golden_lrc_size(struct 
->> xe_guc_ads *ads)
->>   {
->>       struct xe_gt *gt = ads_to_gt(ads);
->>       size_t total_size = 0, alloc_size, real_size;
->> -    int class;
->> +    u16 guc_class;
->> -    for (class = 0; class < XE_ENGINE_CLASS_MAX; ++class) {
->> -        if (!engine_enable_mask(gt, class))
->> +    for (guc_class = 0; guc_class <= GUC_LAST_ENGINE_CLASS; + 
->> +guc_class) {
->> +        enum xe_engine_class class =
->> +            guc_class_to_engine_class(guc_class);
->> +
->> +        if (!engine_enable_mask(gt, guc_class))
->>               continue;
->>           real_size = xe_gt_lrc_size(gt, class);
->> @@ -465,18 +490,18 @@ static void fill_engine_enable_masks(struct 
->> xe_gt *gt,
->>       struct xe_device *xe = gt_to_xe(gt);
->>       info_map_write(xe, info_map, 
->> engine_enabled_masks[GUC_RENDER_CLASS],
->> -               engine_enable_mask(gt, XE_ENGINE_CLASS_RENDER));
->> +               engine_enable_mask(gt, GUC_RENDER_CLASS));
->>       info_map_write(xe, info_map, 
->> engine_enabled_masks[GUC_BLITTER_CLASS],
->> -               engine_enable_mask(gt, XE_ENGINE_CLASS_COPY));
->> +               engine_enable_mask(gt, GUC_BLITTER_CLASS));
->>       info_map_write(xe, info_map, engine_enabled_masks[GUC_VIDEO_CLASS],
->> -               engine_enable_mask(gt, XE_ENGINE_CLASS_VIDEO_DECODE));
->> +               engine_enable_mask(gt, GUC_VIDEO_CLASS));
->>       info_map_write(xe, info_map,
->>                  engine_enabled_masks[GUC_VIDEOENHANCE_CLASS],
->> -               engine_enable_mask(gt, XE_ENGINE_CLASS_VIDEO_ENHANCE));
->> +               engine_enable_mask(gt, GUC_VIDEOENHANCE_CLASS));
->>       info_map_write(xe, info_map, 
->> engine_enabled_masks[GUC_COMPUTE_CLASS],
->> -               engine_enable_mask(gt, XE_ENGINE_CLASS_COMPUTE));
->> +               engine_enable_mask(gt, GUC_COMPUTE_CLASS));
->>       info_map_write(xe, info_map, 
->> engine_enabled_masks[GUC_GSC_OTHER_CLASS],
->> -               engine_enable_mask(gt, XE_ENGINE_CLASS_OTHER));
->> +               engine_enable_mask(gt, GUC_GSC_OTHER_CLASS));
-> 
-> Would it be worth making this a loop now that we use the GuC class 
-> everywhere?
-> Something like:
-> 
-> for (guc_class = 0; guc_class <= GUC_LAST_ENGINE_CLASS; ++guc_class)
->      info_map_write(xe, info_map,
->                 engine_enabled_masks[guc_class],
->                 engine_enable_mask(gt, guc_class));
- > >
-> Not a blocker.
+Am 19.05.26 um 11:01 schrieb Maxime Ripard:
+> Commit 47b5ac7daa46 ("drm/atomic: Add new atomic_create_state callback
+> to drm_private_obj") introduced a new pattern for allocating drm object
+> states.
+>
+> Instead of relying on the reset() callback, it created a new
+> atomic_create_state hook. This is helpful because reset is a bit
+> overloaded: it's used to create the initial software state, reset it,
+> but also reset the hardware.
+>
+> It can also be used either at probe time, to create the initial state
+> and possibly reset the hardware to an expected default, but also during
+> suspend/resume.
+>
+> Both these cases come with different expectations too: during the
+> initialization, we want to initialize all states, but during
+> suspend/resume, drm_private_states for example are expected to be kept
+> around.
+>
+> reset() also isn't fallible, which makes it harder to handle
+> initialization errors properly. This is only really relevant for some
+> drivers though, since all the helpers for reset only create a new
+> state, and don't touch the hardware at all.
+>
+> It was thus decided to create a new hook that would allocate and
+> initialize a pristine state without any side effect:
+> atomic_create_state to untangle a bit some of it, and to separate the
+> initialization with the actual reset one might need during a
+> suspend/resume.
+>
+> Continue the transition to the new pattern with CRTCs.
+>
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> Signed-off-by: Maxime Ripard <mripard@kernel.org>
 
-That looks a lot better. Will incorporate this. Thanks.
+Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
 
-> 
-> Apart from the nits this LGTM, so:
-> 
-> Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> 
-> Daniele
-> 
->>   }
->>   /*
->> @@ -491,15 +516,14 @@ static void guc_golden_lrc_init(struct 
->> xe_guc_ads *ads)
->>               offsetof(struct __guc_ads_blob, system_info));
->>       size_t alloc_size, real_size;
->>       u32 addr_ggtt, offset;
->> -    int class;
->> +    u16 guc_class;
->>       offset = guc_ads_golden_lrc_offset(ads);
->>       addr_ggtt = xe_bo_ggtt_addr(ads->bo) + offset;
->> -    for (class = 0; class < XE_ENGINE_CLASS_MAX; ++class) {
->> -        u8 guc_class;
->> -
->> -        guc_class = xe_engine_class_to_guc_class(class);
->> +    for (guc_class = 0; guc_class <= GUC_LAST_ENGINE_CLASS; + 
->> +guc_class) {
->> +        enum xe_engine_class class =
->> +            guc_class_to_engine_class(guc_class);
->>           if (!info_map_read(xe, &info_map,
->>                      engine_enabled_masks[guc_class]))
->> @@ -943,14 +967,13 @@ static void guc_golden_lrc_populate(struct 
->> xe_guc_ads *ads)
->>               offsetof(struct __guc_ads_blob, system_info));
->>       size_t total_size = 0, alloc_size, real_size;
->>       u32 offset;
->> -    int class;
->> +    u16 guc_class;
->>       offset = guc_ads_golden_lrc_offset(ads);
->> -    for (class = 0; class < XE_ENGINE_CLASS_MAX; ++class) {
->> -        u8 guc_class;
->> -
->> -        guc_class = xe_engine_class_to_guc_class(class);
->> +    for (guc_class = 0; guc_class <= GUC_LAST_ENGINE_CLASS; + 
->> +guc_class) {
->> +        enum xe_engine_class class =
->> +            guc_class_to_engine_class(guc_class);
->>           if (!info_map_read(xe, &info_map,
->>                      engine_enabled_masks[guc_class]))
-> 
+[...]
+> +
+> +	crtc_state = crtc->funcs->atomic_create_state(crtc);
+> +	if (IS_ERR(crtc_state))
+> +		return PTR_ERR(crtc_state);
+> +
+> +	if (drm_dev_has_vblank(crtc->dev))
+> +		drm_crtc_vblank_reset(crtc);
+
+I've recently looked at the vblank init and reset code. At some point, 
+we'll have to make the vblank reset controllable by drivers. Not an 
+issue for now though.
+
+Best regards
+Thomas
+
+> +
+> +	crtc->state = crtc_state;
+> +
+> +	return 0;
+> +}
+> +
+> +static int drm_mode_config_crtc_reset_with_create_state(struct drm_crtc *crtc)
+> +{
+> +	if (crtc->state) {
+> +		crtc->funcs->atomic_destroy_state(crtc, crtc->state);
+> +		crtc->state = NULL;
+> +	}
+> +
+> +	return drm_mode_config_crtc_create_state(crtc);
+> +}
+> +
+>   /**
+>    * drm_mode_config_reset - call ->reset callbacks
+>    * @dev: drm device
+>    *
+>    * This functions calls all the crtc's, encoder's and connector's ->reset
+> @@ -237,13 +266,16 @@ void drm_mode_config_reset(struct drm_device *dev)
+>   			plane->funcs->reset(plane);
+>   		else if (plane->funcs->atomic_create_state)
+>   			drm_mode_config_plane_reset_with_create_state(plane);
+>   	}
+>   
+> -	drm_for_each_crtc(crtc, dev)
+> +	drm_for_each_crtc(crtc, dev) {
+>   		if (crtc->funcs->reset)
+>   			crtc->funcs->reset(crtc);
+> +		else if (crtc->funcs->atomic_create_state)
+> +			drm_mode_config_crtc_reset_with_create_state(crtc);
+> +	}
+>   
+>   	drm_for_each_encoder(encoder, dev)
+>   		if (encoder->funcs && encoder->funcs->reset)
+>   			encoder->funcs->reset(encoder);
+>   
+> diff --git a/include/drm/drm_atomic_state_helper.h b/include/drm/drm_atomic_state_helper.h
+> index 0bb72453464a..213f7e298008 100644
+> --- a/include/drm/drm_atomic_state_helper.h
+> +++ b/include/drm/drm_atomic_state_helper.h
+> @@ -43,10 +43,12 @@ struct drm_device;
+>   void __drm_atomic_helper_crtc_state_init(struct drm_crtc_state *state,
+>   					  struct drm_crtc *crtc);
+>   void __drm_atomic_helper_crtc_reset(struct drm_crtc *crtc,
+>   				    struct drm_crtc_state *state);
+>   void drm_atomic_helper_crtc_reset(struct drm_crtc *crtc);
+> +struct drm_crtc_state *
+> +drm_atomic_helper_crtc_create_state(struct drm_crtc *crtc);
+>   void __drm_atomic_helper_crtc_duplicate_state(struct drm_crtc *crtc,
+>   					      struct drm_crtc_state *state);
+>   struct drm_crtc_state *
+>   drm_atomic_helper_crtc_duplicate_state(struct drm_crtc *crtc);
+>   void __drm_atomic_helper_crtc_destroy_state(struct drm_crtc_state *state);
+> diff --git a/include/drm/drm_crtc.h b/include/drm/drm_crtc.h
+> index c6dbe8b7db9e..152349f973e3 100644
+> --- a/include/drm/drm_crtc.h
+> +++ b/include/drm/drm_crtc.h
+> @@ -636,10 +636,26 @@ struct drm_crtc_funcs {
+>   	 * 0 on success or a negative error code on failure.
+>   	 */
+>   	int (*set_property)(struct drm_crtc *crtc,
+>   			    struct drm_property *property, uint64_t val);
+>   
+> +	/**
+> +	 * @atomic_create_state:
+> +	 *
+> +	 * Allocate a pristine, initialized, state for the CRTC object
+> +	 * and return it. This callback must have no side effects: in
+> +	 * particular, the returned state must not be assigned to the
+> +	 * object's state pointer and it must not affect the hardware
+> +	 * state.
+> +	 *
+> +	 * RETURNS:
+> +	 *
+> +	 * A new, pristine, CRTC state instance or an error pointer
+> +	 * on failure.
+> +	 */
+> +	struct drm_crtc_state *(*atomic_create_state)(struct drm_crtc *crtc);
+> +
+>   	/**
+>   	 * @atomic_duplicate_state:
+>   	 *
+>   	 * Duplicate the current atomic state for this CRTC and return it.
+>   	 * The core and helpers guarantee that any atomic state duplicated with
+>
+
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
+GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
+
 
