@@ -4,39 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7781CD6E42
-	for <intel-xe@archiver.kernel.org>; Tue, 26 May 2026 16:46:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B480ACD6E41
+	for <intel-xe@archiver.kernel.org>; Tue, 26 May 2026 16:46:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 571C210E6EE;
-	Tue, 26 May 2026 16:46:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 61F7710E6F6;
+	Tue, 26 May 2026 16:46:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="k4gnwfUf";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="HDOdftTZ";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D8D710E6ED;
- Tue, 26 May 2026 16:46:44 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F56210E6F2;
+ Tue, 26 May 2026 16:46:49 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 84B0E600AB;
- Tue, 26 May 2026 16:46:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B11B1F00A3A;
- Tue, 26 May 2026 16:46:42 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 035D140460;
+ Tue, 26 May 2026 16:46:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3495F1F000E9;
+ Tue, 26 May 2026 16:46:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1779814003;
- bh=RWXphynXEva1QU5MlNjAJspWGq7NF0t3Fti2JEJUh5c=;
+ s=k20260515; t=1779814008;
+ bh=/cKXnzyrX5lutQ6EZwTcZY3rLV03+GZQqQU++EjnDVU=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc;
- b=k4gnwfUfyDbCMppoNAZ/XU4juJ/EBfaN4u+KtPrp8Chzicy1xx9QL1go9+fgh4+fx
- VxrgovXI3RrV0TyfKVQRcDBMY5CR+P5Gkeb+UjwkYe63PZva+1eoCw2J61H12odxYO
- zS8VFSvDlq9kIzNbGaoNsZFxq44/X5PgcB5b7q886HC/3z8Bfg57jG1ErU1u3FIvwi
- TSfMZd+dojaXy4YnCcMuuzuKE1csvGxtTBvPSkTemVRzHuMvUuBpF604FGxkcEbwTH
- LiHIYqP4iAZn4xG23zntyctVEf7gUu2tuXN2fvOfi5FWLE5jOZTP7gPScLZv7dJZYW
- vN+HDNnfwyHkg==
+ b=HDOdftTZPvS7pfLNptRkGlwz1VGENy4v8sAEwT5F0F0rKQTmU/D2bqj9DXwVqN/Kb
+ GmQaWH9Oy0WDDMVIc+CWPcREa8dAjEU4E0cn154CkEDJQ73UmhDWugEPjUV8kOBugq
+ WbaigteXeh7UAYVhRCopE7TWEF8X0WDMDuu+1clw2qIH/+Oei6X4VaS9JfCp4Ykwys
+ /pzOShzCr23UW2IO9ACobV70WTI3bVVJ6GcH6xXPeeAUOqhnFOtnnoI6Wid3NveCpL
+ ggUuXEck0xu64Mq8nP6ZkoBCmSExg3AL0ZLzVubGBFpOwwnlqvDgND0r3iqk93vbDh
+ UdhNZLSlefd9Q==
 From: Maxime Ripard <mripard@kernel.org>
-Date: Tue, 26 May 2026 18:46:18 +0200
-Subject: [PATCH v6 06/19] drm/colorop: Rename __drm_colorop_state_reset()
+Date: Tue, 26 May 2026 18:46:20 +0200
+Subject: [PATCH v6 08/19] drm/atomic-state-helper: Fix
+ __drm_atomic_helper_plane_reset() doc typo
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260526-drm-mode-config-init-v6-6-852346394200@kernel.org>
+Message-Id: <20260526-drm-mode-config-init-v6-8-852346394200@kernel.org>
 References: <20260526-drm-mode-config-init-v6-0-852346394200@kernel.org>
 In-Reply-To: <20260526-drm-mode-config-init-v6-0-852346394200@kernel.org>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -67,12 +68,12 @@ Cc: dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
  Maxime Ripard <mripard@kernel.org>, 
  Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2371; i=mripard@kernel.org;
- h=from:subject:message-id; bh=+FwSG1hlg7MTNqbAOkk9ReNx69b57yw8164zI/GpPzc=;
- b=owGbwMvMwCmsHn9OcpHtvjLG02pJDFmi5yK7k2pV9RQ5WLml3ee5vsvmkv94wnJbjIOFrkRdq
- nn/mXcdU1kYhDkZZMUUWZ7IhJ1e3r64ysF+5Q+YOaxMIEMYuDgFYCIsGxgbjiQ4m/GvjZTj55g5
- te/wm6uzXRbNmcPk59W00XvhJ+XOnRozT864WbFQYflzbeaqd7m5jA3PJb+/V5o4f9sTtwaTm26
- TFVoLLK+8KYp6xuJy7/yMS/01n1jDV66sV5x3boFbeahf2kQA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1365; i=mripard@kernel.org;
+ h=from:subject:message-id; bh=3P/ZjAcLUex4P3oNpd5Z+isOTz0WG4WoSqpftWEhPh8=;
+ b=owGbwMvMwCmsHn9OcpHtvjLG02pJDFmi56I0ZTf4PJ+qtET3HceDSRs8g85M59nPzOl8xEVDV
+ 7xHOc6uYyoLgzAng6yYIssTmbDTy9sXVznYr/wBM4eVCWQIAxenAEzk81/GOv3z4b/tqky+h3a7
+ nIia4PbQ/NG2OK9X+7SqPOMu/77lMevlRMvL6XOmnbXlNRMpqe/lZWxo9vM/vatYb59NlFVp6nr
+ ezsv901ZtivxkZfJCKaEievHZQzY3W25H3ZdpuD6rJzOfuRcA
 X-Developer-Key: i=mripard@kernel.org; a=openpgp;
  fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -89,64 +90,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-__drm_colorop_state_reset() is used to initialize a newly allocated
-drm_colorop_state, and is being typically called by drm_colorop_reset().
+A typo has slipped through in the __drm_atomic_helper_plane_reset()
+documentation, probably due to copy and paste. It will not assign
+drm_crtc state pointer, but rather the drm_plane's.
 
-Since we want to consolidate DRM objects state allocation around the
-atomic_create_state callback that will only allocate and initialize a
-new drm_colorop_state instance, we will need to call
-__drm_colorop_state_reset() from both the reset and atomic_create paths.
-
-To avoid any confusion, we can thus rename __drm_colorop_state_reset()
-to __drm_colorop_state_init().
-
-Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
+Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
 Signed-off-by: Maxime Ripard <mripard@kernel.org>
 ---
- drivers/gpu/drm/drm_colorop.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/drm_atomic_state_helper.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/drm_colorop.c b/drivers/gpu/drm/drm_colorop.c
-index 48d0b7ae3fc9..4c4d0a953e35 100644
---- a/drivers/gpu/drm/drm_colorop.c
-+++ b/drivers/gpu/drm/drm_colorop.c
-@@ -498,19 +498,19 @@ void drm_colorop_atomic_destroy_state(struct drm_colorop *colorop,
- 	__drm_atomic_helper_colorop_destroy_state(state);
- 	kfree(state);
- }
- 
- /**
-- * __drm_colorop_state_reset - resets colorop state to default values
-+ * __drm_colorop_state_init - Initializes colorop state to default values
-  * @colorop_state: atomic colorop state, must not be NULL
-  * @colorop: colorop object, must not be NULL
+diff --git a/drivers/gpu/drm/drm_atomic_state_helper.c b/drivers/gpu/drm/drm_atomic_state_helper.c
+index a82568d87e4f..c8ccf8be5074 100644
+--- a/drivers/gpu/drm/drm_atomic_state_helper.c
++++ b/drivers/gpu/drm/drm_atomic_state_helper.c
+@@ -303,11 +303,11 @@ EXPORT_SYMBOL(__drm_atomic_helper_plane_state_reset);
+  * __drm_atomic_helper_plane_reset - reset state on plane
+  * @plane: drm plane
+  * @plane_state: plane state to assign
   *
-  * Initializes the newly allocated @colorop_state with default
-  * values. This is useful for drivers that subclass the colorop state.
+  * Initializes the newly allocated @plane_state and assigns it to
+- * the &drm_crtc->state pointer of @plane, usually required when
++ * the &drm_plane->state pointer of @plane, usually required when
+  * initializing the drivers or when called from the &drm_plane_funcs.reset
+  * hook.
+  *
+  * This is useful for drivers that subclass the plane state.
   */
--static void __drm_colorop_state_reset(struct drm_colorop_state *colorop_state,
--				      struct drm_colorop *colorop)
-+static void __drm_colorop_state_init(struct drm_colorop_state *colorop_state,
-+				     struct drm_colorop *colorop)
- {
- 	u64 val;
- 
- 	colorop_state->colorop = colorop;
- 	colorop_state->bypass = true;
-@@ -537,11 +537,11 @@ static void __drm_colorop_state_reset(struct drm_colorop_state *colorop_state,
-  */
- static void __drm_colorop_reset(struct drm_colorop *colorop,
- 				struct drm_colorop_state *colorop_state)
- {
- 	if (colorop_state)
--		__drm_colorop_state_reset(colorop_state, colorop);
-+		__drm_colorop_state_init(colorop_state, colorop);
- 
- 	colorop->state = colorop_state;
- }
- 
- void drm_colorop_reset(struct drm_colorop *colorop)
 
 -- 
 2.54.0
