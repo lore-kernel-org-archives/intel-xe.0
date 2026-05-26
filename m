@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B5DDCD5BB1
-	for <intel-xe@archiver.kernel.org>; Tue, 26 May 2026 21:44:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC8E6CD5BD2
+	for <intel-xe@archiver.kernel.org>; Tue, 26 May 2026 21:44:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3444510E57E;
-	Tue, 26 May 2026 21:44:33 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C50DF10E564;
- Tue, 26 May 2026 21:44:32 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6854310E57E;
+	Tue, 26 May 2026 21:44:56 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AByw5OS1";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E56010E564;
+ Tue, 26 May 2026 21:44:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1779831894; x=1811367894;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=iStcPGhC2vRWtyMISC18kDTunTbzDgKpRXlDpsW95iY=;
+ b=AByw5OS18Q6ZR22dIkmanmjWPY2dU9MzcoJheNL3IKf5289ycG3NfjnV
+ Q25CfgV89281tQ1561XpiwvmVmCmj+JrUsgQxQfFIoicpg06UdHyd5OJT
+ AAoQfOeJ6lEeTYid2f/8Ruqx6oCI4lhDDENYzKwv09CqK1VcpVLULSpTn
+ J0uQbL00mGMYgjPZ2+WuEGnj03Yb8pqNt6/flXZucwT/7T8awwc2hc39I
+ hxr+WOOxMOxQ+nEF4fP/v4X1brfXPiMEbXCHuvr+vqL+ntn6oT0pOjloM
+ 2/WHJ0PG/5UwSE5YbdSw3RsV+8HUIiOlOviitQvbRkj0wErB1Yh9dGnuH A==;
+X-CSE-ConnectionGUID: 6XNdjgbWSDaWNGLzqcCgmg==
+X-CSE-MsgGUID: 5D67TEuHT1Odyff5+zjW9A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11798"; a="80843889"
+X-IronPort-AV: E=Sophos;i="6.24,170,1774335600"; d="scan'208";a="80843889"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2026 14:44:53 -0700
+X-CSE-ConnectionGUID: vDnT0xmUTB25UtGOH+/60w==
+X-CSE-MsgGUID: 1GkjmqFdT46p0UNhLR4Inw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,170,1774335600"; d="scan'208";a="242110100"
+Received: from osgc-sh-dragon.sh.intel.com ([10.239.81.44])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2026 14:44:49 -0700
+From: Jonathan Cavitt <jonathan.cavitt@intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
+ mripard@kernel.org, airlied@gmail.com, simona@ffwll.ch,
+ linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org,
+ Rodrigo.vivi@intel.com, matthew.brost@intel.com,
+ maarten.lankhorst@linux.intel.com, thomas.hellstrom@linux.intel.com,
+ tzimmermann@suse.de
+Subject: [PATCH 0/2] drm/xe/pagefault: Add SRCID to pagefault reporting
+Date: Wed, 27 May 2026 05:44:44 +0800
+Message-ID: <20260526214446.3638616-1-jonathan.cavitt@intel.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Move_xe=5Fuc=5F?=
- =?utf-8?q?fw=5Fabi=2Eh_to_abi/?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 26 May 2026 21:44:32 -0000
-Message-ID: <177983187279.13256.4466718981370316818@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260526202209.20813-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20260526202209.20813-1-michal.wajdeczko@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,43 +67,26 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Add SRCID to the xe_pagefault struct, which reports the ID of the
+faulting hardware unit.  This will be passed on to the
+xe_vm_get_property_ioctl for reading per-vm faults and will assist in
+diagnosing pagefaults.
 
-Series: drm/xe: Move xe_uc_fw_abi.h to abi/
-URL   : https://patchwork.freedesktop.org/series/167324/
-State : warning
+Jonathan Cavitt (2):
+  drm/xe/pagefault: Add SRCID to pagefault struct
+  drm/xe/vm: Add srcid to xe_vm_get_property_ioctl fault report
 
-== Summary ==
+ drivers/gpu/drm/xe/xe_guc_pagefault.c   |  1 +
+ drivers/gpu/drm/xe/xe_pagefault.c       |  6 ++++--
+ drivers/gpu/drm/xe/xe_pagefault_types.h |  4 +++-
+ drivers/gpu/drm/xe/xe_vm.c              | 11 +++++++++--
+ drivers/gpu/drm/xe/xe_vm_types.h        |  2 ++
+ include/uapi/drm/xe_drm.h               |  4 ++--
+ 6 files changed, 21 insertions(+), 7 deletions(-)
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-061140b9bc586ae7f40abc1249c97e1cc72d1b9d
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit f694364a937294d6bac07acb7870474ad0e782f6
-Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Date:   Tue May 26 22:22:07 2026 +0200
-
-    drm/xe: Move xe_uc_fw_abi.h to abi/
-    
-    We aim to keep all pure ABI headers in the abi/ folder, but
-    somehow we missed this file.
-    
-    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-+ /mt/dim checkpatch db024c22fbe1c98ace7147a3d355a7afbbb2faf8 drm-intel
-f694364a9372 drm/xe: Move xe_uc_fw_abi.h to abi/
--:13: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#13: 
-rename from drivers/gpu/drm/xe/xe_uc_fw_abi.h
-
-total: 0 errors, 1 warnings, 0 checks, 28 lines checked
-
+-- 
+2.53.0
 
