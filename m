@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B03ACD5BD0
-	for <intel-xe@archiver.kernel.org>; Tue, 26 May 2026 12:51:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0EC4DCD5BD2
+	for <intel-xe@archiver.kernel.org>; Tue, 26 May 2026 12:51:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95FE710E4D2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA01510E4D3;
 	Tue, 26 May 2026 12:51:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PkSBFbmv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="An8z7S9W";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACE2010E49D
- for <intel-xe@lists.freedesktop.org>; Tue, 26 May 2026 12:51:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BA1310E4D2
+ for <intel-xe@lists.freedesktop.org>; Tue, 26 May 2026 12:51:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1779799911; x=1811335911;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=7d7iiW0lFuOUrF8umsJ2Mm6M9BYGL9oTgrPHSSV7D3c=;
- b=PkSBFbmvOGm4bbQZPv5vCTlBVuy5dxCBS+YA/wlDYKgxTCMvywxgzku7
- lA5FCDQBjrQnoOFoBZ9N5gboXlSs+3BA4d7ZPb4Jw9CkHgEy9WPpLBm8k
- kN6YMiXZHS1aDI/AUgsVPjdN545mBMRgcQ+Iy6czE1eiqo/AGsSXwct5I
- 164r2cRtNIwaObMqTKdPL3Ya5k9wNXE1/QAvFh4E6VeB//DJk2w4BkF+C
- uibu2drORdj/k+R4W7aYwsQx48L/8+IK+YAQwc6lxqxw0TQ2Nl/XU7Bfi
- k/hdKsusWIZDRmNYJnUvR1wU/cULkUEzN+Og/hziGhQwf2Lyu5QbYCeU3 A==;
-X-CSE-ConnectionGUID: lcggVrKvRFqBYSSMkKRb/w==
-X-CSE-MsgGUID: ULZ/l4HXT6SrlsF1HaFj9Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11797"; a="92082765"
-X-IronPort-AV: E=Sophos;i="6.24,169,1774335600"; d="scan'208";a="92082765"
+ bh=NSDG/AeqADF5xDoidU5BJtXLgeEOMmzWXQaHqWX4sNE=;
+ b=An8z7S9WD3iJsVtO6xgIgvI9uTD0J95yljUR5HHiAEk6+mJ1iLKG6YKm
+ HAWapVDZ1v6eyg9sZ04xRLjHCGu1mGKYOyO6ZxtZrhPJsnl9ifq14xo7c
+ hgTPkZIXqUeo4ZAZgukJdqR1l2rgPV9zUBJbG24v+4zsL5MHXdw1EMhXV
+ xxaUqQeVNYm4qIcqYSg8vZFHUiy51kWUk0vR3aa6OPj4nE/2crvIb/6x4
+ U+slHO1X81B9scDuLcWXbuJdU50pO2V9eXjWtnAEo819GBjM8EOnBBc4P
+ dunGhhWo47w2pHDiZ3QOIQavwdS601+7Fakm0pVh1cGdL/oHlWZNltIOQ w==;
+X-CSE-ConnectionGUID: CFFgsrmMT26Ath7uLvKDDw==
+X-CSE-MsgGUID: uCpHWF8kToGFqQMxN5xwDg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11797"; a="92082770"
+X-IronPort-AV: E=Sophos;i="6.24,169,1774335600"; d="scan'208";a="92082770"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2026 05:51:29 -0700
-X-CSE-ConnectionGUID: dGWXkRm5TS+bTZvbKEG3ZA==
-X-CSE-MsgGUID: f9t9EjZYTpGUDt5bX69B6Q==
+ 26 May 2026 05:51:32 -0700
+X-CSE-ConnectionGUID: sftV84VJS9SEcmhQEIO6rA==
+X-CSE-MsgGUID: teR/P9NOQ+aDcYzpHW2AXw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,169,1774335600"; d="scan'208";a="235554572"
+X-IronPort-AV: E=Sophos;i="6.24,169,1774335600"; d="scan'208";a="235554645"
 Received: from ilevi-vm-u24.iil.labsad.intel.com ([10.111.58.213])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2026 05:51:24 -0700
+ 26 May 2026 05:51:30 -0700
 From: Ilia Levi <ilia.levi@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: ilia.levi@intel.com, koby.elbaz@intel.com, shuicheng.lin@intel.com,
  thomas.hellstrom@intel.com
-Subject: [PATCH v2 2/5] drm/xe/mmio_gem: fix fault handling for split VMA
-Date: Tue, 26 May 2026 15:51:09 +0300
-Message-ID: <20260526125106.2806522-9-ilia.levi@intel.com>
+Subject: [PATCH v2 5/5] drm/xe/mmio_gem: fix destroy flow
+Date: Tue, 26 May 2026 15:51:12 +0300
+Message-ID: <20260526125106.2806522-12-ilia.levi@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260526125106.2806522-7-ilia.levi@intel.com>
 References: <20260526125106.2806522-7-ilia.levi@intel.com>
@@ -67,90 +67,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The fault handler currently assumes it always operates on a VMA spanning
-the entire GEM object. This does not hold when the VMA has been split,
-e.g. by a partial munmap or mprotect. In that case the handler may map
-wrong physical pages or cause SIGBUS.
+xe_mmio_gem_destroy() currently frees the GEM object directly, bypassing
+reference counting.  Since existing VMAs hold a reference and the fault
+handler accesses the object through vma->vm_private_data, this is
+use-after-free.  Additionally, nothing prevents the fault handler from
+installing PTEs to the real MMIO after destroy.
 
-Change the fault handler to map only the GEM subrange corresponding to
-the VMA, and do not set vm_pgoff to zero. Many DRM drivers do this
-because helpers like dma_mmap_pages() interpret vm_pgoff as an
-intra-buffer page offset; leaving the DRM fake offset there would break
-these helpers. Those drivers can get away with zeroing it because they
-map eagerly -- all PTEs are established before mmap returns, so vm_pgoff
-is never consulted again. This driver does not use such helpers and
-defers mapping to the fault handler, where vm_pgoff must be preserved:
-when the kernel splits a VMA it adjusts vm_pgoff, and the fault handler
-subtracts the GEM object's fake mmap offset to recover the page offset
-within the object.
+Use SRCU to ensure the fault handler sees the 'destroyed' flag
+(mirroring the drm_dev_enter/exit pattern for hot-unplug), then zap
+existing PTEs to prevent continued access to the real MMIO. Use
+drm_gem_object_put() to respect the reference count.
 
 Fixes: 1ffcf8b8ae8a ("drm/xe: Support for mmap-ing mmio regions")
 Assisted-by: GitHub-Copilot:claude-opus-4.6
 Signed-off-by: Ilia Levi <ilia.levi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_mmio_gem.c | 18 +++++++++++-------
- 1 file changed, 11 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/xe_mmio_gem.c | 27 ++++++++++++++++++++++++++-
+ 1 file changed, 26 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_mmio_gem.c b/drivers/gpu/drm/xe/xe_mmio_gem.c
-index c22a38e5616b..15e884ad3f1c 100644
+index 2f2ebc4fd901..b91704c51a93 100644
 --- a/drivers/gpu/drm/xe/xe_mmio_gem.c
 +++ b/drivers/gpu/drm/xe/xe_mmio_gem.c
-@@ -37,6 +37,7 @@ static vm_fault_t xe_mmio_gem_vm_fault(struct vm_fault *);
- struct xe_mmio_gem {
- 	struct drm_gem_object base;
- 	phys_addr_t phys_addr;
-+	unsigned long pgoff;
+@@ -5,11 +5,15 @@
+ 
+ #include "xe_mmio_gem.h"
+ 
++#include <linux/srcu.h>
++
+ #include <drm/drm_drv.h>
+ #include <drm/drm_gem.h>
+ 
+ #include "xe_device_types.h"
+ 
++DEFINE_STATIC_SRCU(xe_mmio_gem_srcu);
++
+ /**
+  * DOC: Exposing MMIO regions to userspace
+  *
+@@ -39,6 +43,7 @@ struct xe_mmio_gem {
+ 	unsigned long pgoff;
+ 	struct mutex dummy_page_lock; /* protects dummy page allocation */
+ 	struct page *dummy_page;
++	bool destroyed;
  };
  
  static const struct vm_operations_struct vm_ops = {
-@@ -92,6 +93,8 @@ struct xe_mmio_gem *xe_mmio_gem_create(struct xe_device *xe, struct drm_file *fi
- 	if (err)
- 		goto free_gem;
- 
-+	obj->pgoff = drm_vma_node_start(&base->vma_node);
+@@ -145,8 +150,23 @@ static void xe_mmio_gem_free(struct drm_gem_object *base)
+  */
+ void xe_mmio_gem_destroy(struct xe_mmio_gem *gem, struct drm_file *file)
+ {
++	struct drm_gem_object *base = &gem->base;
++	struct drm_device *dev = base->dev;
 +
- 	err = drm_vma_node_allow(&base->vma_node, file);
- 	if (err)
- 		goto free_gem;
-@@ -147,8 +150,6 @@ static int xe_mmio_gem_mmap(struct drm_gem_object *base, struct vm_area_struct *
- 	if ((vma->vm_flags & VM_SHARED) == 0)
- 		return -EINVAL;
+ 	drm_vma_node_revoke(&gem->base.vma_node, file);
+-	xe_mmio_gem_free(&gem->base);
++
++	gem->destroyed = true;
++	synchronize_srcu(&xe_mmio_gem_srcu);
++
++	/*
++	 * At this point every subsequent fault handler will see that the
++	 * object has been destroyed and provide the dummy page.
++	 * Now just zap existing PTEs to prevent continued access to the real
++	 * MMIO.
++	 */
++	drm_vma_node_unmap(&base->vma_node, dev->anon_inode->i_mapping);
++
++	drm_gem_object_put(base);
+ }
  
--	/* Set vm_pgoff (used as a fake buffer offset by DRM) to 0 */
--	vma->vm_pgoff = 0;
- 	vma->vm_page_prot = pgprot_noncached(vm_get_page_prot(vma->vm_flags));
- 	vm_flags_set(vma, VM_IO | VM_PFNMAP | VM_DONTEXPAND | VM_DONTDUMP |
- 		     VM_DONTCOPY | VM_NORESERVE);
-@@ -190,7 +191,8 @@ static vm_fault_t xe_mmio_gem_vm_fault(struct vm_fault *vmf)
- 	struct xe_mmio_gem *obj = to_xe_mmio_gem(base);
- 	struct drm_device *dev = base->dev;
- 	vm_fault_t ret = VM_FAULT_NOPAGE;
--	unsigned long i;
-+	unsigned long addr, pfn;
-+	unsigned long pgoff;
+ static int xe_mmio_gem_mmap(struct drm_gem_object *base, struct vm_area_struct *vma)
+@@ -196,6 +216,11 @@ static vm_fault_t xe_mmio_gem_vm_fault(struct vm_fault *vmf)
+ 	unsigned long pgoff;
  	int idx;
  
- 	if (!drm_dev_enter(dev, &idx)) {
-@@ -203,13 +205,15 @@ static vm_fault_t xe_mmio_gem_vm_fault(struct vm_fault *vmf)
- 		return xe_mmio_gem_vm_fault_dummy_page(vmf);
- 	}
- 
--	for (i = 0; i < base->size; i += PAGE_SIZE) {
--		unsigned long addr = vma->vm_start + i;
--		unsigned long phys_addr = obj->phys_addr + i;
-+	pgoff = vma->vm_pgoff - obj->pgoff;
-+	pfn = PHYS_PFN(obj->phys_addr) + pgoff;
- 
--		ret = vmf_insert_pfn(vma, addr, PHYS_PFN(phys_addr));
-+	for (addr = vma->vm_start; addr < vma->vm_end; addr += PAGE_SIZE) {
-+		ret = vmf_insert_pfn(vma, addr, pfn);
- 		if (ret & VM_FAULT_ERROR)
- 			break;
++	guard(srcu)(&xe_mmio_gem_srcu);
 +
-+		pfn++;
- 	}
- 
- 	drm_dev_exit(idx);
++	if (obj->destroyed)
++		return xe_mmio_gem_vm_fault_dummy_page(vmf);
++
+ 	if (!drm_dev_enter(dev, &idx)) {
+ 		/*
+ 		 * Provide a dummy page to avoid SIGBUS for events such as hot-unplug.
 -- 
 2.43.0
 
