@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DDA7CD6E46
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC75ECD5BDE
 	for <intel-xe@archiver.kernel.org>; Wed, 27 May 2026 04:29:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA33410E735;
-	Wed, 27 May 2026 04:29:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C3F010E739;
+	Wed, 27 May 2026 04:29:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BR6Zu9wG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nUy9hax8";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F73010E725;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B0E210E72D;
  Wed, 27 May 2026 04:29:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779856147; x=1811392147;
+ t=1779856148; x=1811392148;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=tgcXAnhJJ+6OP/++vFhKwteWWunqE+WsrDqcH+Pj+9k=;
- b=BR6Zu9wGPKpqE4RjM49JFowXg/U5uPuNKWae/l2JtlQnHXcKWiDxG0/V
- ID9y/DaGr2K81La41psCRUdGI/1DeeDlMzWFKYjVAHxgVdAgKYV1IjBud
- NFtKs6pkP6HQ3/qS5yO1igBp5QYbJyN0DUE6L+q93ErFEHQySa5jSCDaI
- fuYtJ5NqRCtZ8hAZFgJDNb/NqVTYZI4Vly+oRRTP0+lAWQktZtG87bH5l
- 9L8Niwuj4TLI6VABXaB+yZ+mCwKKkUG+VIJCAp8IEZzzXzHmUocWN3tCz
- Bb26HyOoNSphM40zHn+dXqf0rVY+X/KJrR+4t+Yq7toFPJIcsbyc2JE49 Q==;
-X-CSE-ConnectionGUID: tSPu9/mLSfC5BKyrHMJuMQ==
-X-CSE-MsgGUID: PJDwCyeoRSisbioBdwY9wQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11798"; a="80405811"
-X-IronPort-AV: E=Sophos;i="6.24,170,1774335600"; d="scan'208";a="80405811"
+ bh=VAddU59+bV4OCs4G5S3Jr84R2nLR9lUqK1x7vyvzIIA=;
+ b=nUy9hax8Nq1Q8DRsta3HIRDIFxM07Lp2Vke4EoNd6BzmMZm23SnUKHta
+ xwDO+yZ9ZIQ/8czqthQKz41MMCRHATzS6hzPF0whMJt4mvaODX8RCkFnT
+ dqEqvovU9/vCwtOMbxoQEi1jYp9ikIK0daof2aA6wRMA4nB+mBg5sGKRB
+ evvXy5yYRnE+UOhIdFP3bCSO9+VknD9k0HtuF7UAcHNl1XRV7ElJVFjGu
+ E3ds4Nwuw2ktjX5RKmJ93ojvsUlCMaMMKpFaVGnZIuHv8A04ytTo/cHEJ
+ 1ELD37xb2C0runzSdxXWyGQshiDWxmvCbhBoep4BUFsQheyWyfNcKXNwK w==;
+X-CSE-ConnectionGUID: rn2FduHqR82av8HtK+yxkA==
+X-CSE-MsgGUID: UgN3sfA0RRyi7TyQhOWTMQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11798"; a="80405823"
+X-IronPort-AV: E=Sophos;i="6.24,170,1774335600"; d="scan'208";a="80405823"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2026 21:28:59 -0700
-X-CSE-ConnectionGUID: MYQX3cjERFOv6KwcLJ6w/w==
-X-CSE-MsgGUID: QmvhzdBmQoOdiC5iE1wxEA==
+ 26 May 2026 21:29:04 -0700
+X-CSE-ConnectionGUID: i2oVTvfSShyyV6cItgJHOQ==
+X-CSE-MsgGUID: 8BSo7tLLTH6reGUFGqEiqA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,170,1774335600"; d="scan'208";a="272452393"
+X-IronPort-AV: E=Sophos;i="6.24,170,1774335600"; d="scan'208";a="272452427"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2026 21:28:55 -0700
+ 26 May 2026 21:29:02 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, jouni.hogander@intel.com,
  animesh.manna@intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 06/12] drm/i915/psr: Program Panel Replay CONFIG3 using AS SDP
- transmission time
-Date: Wed, 27 May 2026 09:40:44 +0530
-Message-ID: <20260527041050.601735-7-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 09/12] drm/i915/dp: Compute and include coasting vtotal for AS
+ SDP
+Date: Wed, 27 May 2026 09:40:47 +0530
+Message-ID: <20260527041050.601735-10-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260527041050.601735-1-ankit.k.nautiyal@intel.com>
 References: <20260527041050.601735-1-ankit.k.nautiyal@intel.com>
@@ -70,47 +70,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Panel Replay requires the AS SDP transmission time to be written into
-PANEL_REPLAY_CONFIG3. This field was previously not programmed.
+DP v2.1 allows the source to temporarily suspend Adaptive-Sync SDP
+transmission while Panel Replay is active when the sink supports
+asynchronous video timing.
 
-Use the AS SDP transmission-time helper to populate CONFIG3.
+In such cases, the sink relies on the last transmitted AS SDP timing
+information to maintain the refresh rate. To support this behavior,
+compute and populate the coasting vtotal field in the AS SDP payload.
+
+Include coasting vtotal in AS SDP packing, unpacking, and comparison,
+and set it during late AS SDP configuration for PR with Aux-less ALPM
+when asynchronous video timing is supported.
+
+Note:
+The coasting vtotal value is fully under driver control i.e. the HW does
+not overwrite these payload bytes. HW only samples the PR_ALPM_CTL[AS SDP
+Transmission in Active Disable] bit during PR active state and reflects it
+in the AS SDP payload at the appropriate time.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_display.c |  3 ++-
+ drivers/gpu/drm/i915/display/intel_dp.c      | 20 ++++++++++++++++++++
+ 2 files changed, 22 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 9ee47881c2e2..a7c012e1571d 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -794,6 +794,7 @@ static void _panel_replay_enable_sink(struct intel_dp *intel_dp,
- 				      const struct intel_crtc_state *crtc_state)
- {
- 	u8 panel_replay_config[2];
-+	u8 panel_replay_config_3;
- 
- 	panel_replay_config[0] = DP_PANEL_REPLAY_ENABLE |
- 				 DP_PANEL_REPLAY_VSC_SDP_CRC_EN |
-@@ -801,7 +802,6 @@ static void _panel_replay_enable_sink(struct intel_dp *intel_dp,
- 				 DP_PANEL_REPLAY_RFB_STORAGE_ERROR_EN |
- 				 DP_PANEL_REPLAY_ACTIVE_FRAME_CRC_ERROR_EN;
- 	panel_replay_config[1] = DP_PANEL_REPLAY_CRC_VERIFICATION;
--
- 	if (crtc_state->has_sel_update)
- 		panel_replay_config[0] |= DP_PANEL_REPLAY_SU_ENABLE;
- 
-@@ -814,6 +814,9 @@ static void _panel_replay_enable_sink(struct intel_dp *intel_dp,
- 
- 	drm_dp_dpcd_write(&intel_dp->aux, PANEL_REPLAY_CONFIG,
- 			  panel_replay_config, sizeof(panel_replay_config));
-+
-+	panel_replay_config_3 = intel_dp_as_sdp_transmission_time();
-+	drm_dp_dpcd_writeb(&intel_dp->aux, PANEL_REPLAY_CONFIG3, panel_replay_config_3);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 6c8935f69db1..514c2e5c28cd 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -4892,7 +4892,8 @@ intel_compare_dp_as_sdp(const struct drm_dp_as_sdp *a,
+ 		a->duration_incr_ms == b->duration_incr_ms &&
+ 		a->duration_decr_ms == b->duration_decr_ms &&
+ 		a->target_rr_divider == b->target_rr_divider &&
+-		a->mode == b->mode;
++		a->mode == b->mode &&
++		a->coasting_vtotal == b->coasting_vtotal;
  }
  
- static void _psr_enable_sink(struct intel_dp *intel_dp,
+ static bool
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 6aac52750798..a3aa0dadf0e1 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -3216,6 +3216,22 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
+ 	} else {
+ 		as_sdp->mode = DP_AS_SDP_AVT_FIXED_VTOTAL;
+ 	}
++
++	/*
++	 * For Panel Replay with Async Video Timing support, the source can
++	 * disable sending the AS SDP during PR Active state. In that case,
++	 * the sink needs the coasting vtotal value to maintain the refresh
++	 * rate. The HW only samples this on PR_ALPM_CTL[AS SDP Transmission
++	 * in Active Disable], which we never program, so providing the value
++	 * unconditionally when the sink advertises the capability is safe.
++	 *
++	 * #TODO:
++	 * If we ever advertise support for coasting at other refresh targets,
++	 * this logic could be revisited. For now, use the minimum refresh rate
++	 * as the only safe coasting value.
++	 */
++	if (intel_psr_pr_async_video_timing_supported(intel_dp))
++		as_sdp->coasting_vtotal = crtc_state->vrr.vmax;
+ }
+ 
+ static void intel_dp_compute_vsc_sdp(struct intel_dp *intel_dp,
+@@ -5195,6 +5211,9 @@ static ssize_t intel_dp_as_sdp_pack(const struct drm_dp_as_sdp *as_sdp,
+ 	if (as_sdp->target_rr_divider)
+ 		sdp->db[4] |= 0x20;
+ 
++	sdp->db[7] = as_sdp->coasting_vtotal & 0xFF;
++	sdp->db[8] = (as_sdp->coasting_vtotal >> 8) & 0xFF;
++
+ 	return length;
+ }
+ 
+@@ -5379,6 +5398,7 @@ int intel_dp_as_sdp_unpack(struct drm_dp_as_sdp *as_sdp,
+ 	as_sdp->vtotal = (sdp->db[2] << 8) | sdp->db[1];
+ 	as_sdp->target_rr = ((sdp->db[4] & 0x3) << 8) | sdp->db[3];
+ 	as_sdp->target_rr_divider = sdp->db[4] & 0x20 ? true : false;
++	as_sdp->coasting_vtotal = (sdp->db[8] << 8) | sdp->db[7];
+ 
+ 	return 0;
+ }
 -- 
 2.45.2
 
