@@ -4,80 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7070CD6E41
-	for <intel-xe@archiver.kernel.org>; Wed, 27 May 2026 07:20:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D73ACD6E41
+	for <intel-xe@archiver.kernel.org>; Wed, 27 May 2026 07:24:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 237C010E666;
-	Wed, 27 May 2026 07:20:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41A0D10E752;
+	Wed, 27 May 2026 07:24:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="OarkKyxm";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="opMpjJBI";
 	dkim-atps=neutral
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com
- [209.85.218.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DAF7410E74C
- for <intel-xe@lists.freedesktop.org>; Wed, 27 May 2026 07:20:25 +0000 (UTC)
-Received: by mail-ej1-f50.google.com with SMTP id
- a640c23a62f3a-bcd3c190f71so1837254266b.0
- for <intel-xe@lists.freedesktop.org>; Wed, 27 May 2026 00:20:25 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1779866424; cv=none;
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com
+ [209.85.218.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4DC710E73B
+ for <intel-xe@lists.freedesktop.org>; Wed, 27 May 2026 07:24:39 +0000 (UTC)
+Received: by mail-ej1-f43.google.com with SMTP id
+ a640c23a62f3a-bd2d8bb1068so2112836366b.1
+ for <intel-xe@lists.freedesktop.org>; Wed, 27 May 2026 00:24:39 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1779866678; cv=none;
  d=google.com; s=arc-20240605;
- b=VLnPKYwwFhr5wE/4YrjthIRO+wSSX2sj31R0NE+u6cPxE+mPMUXkxAGWsHbblqe0Pj
- ojtnr+1fk2BL/ngGfPS0VwENl5vuqSuwUxEO8Ih85U3q8VUYZk6WwgJtj2lUSA4Pnjm5
- hS/1r4kEDAFqwMfvZIMi1xpovF7ZYIjPYxZjiWOqUnId35nhM24mJreounjCnB4fNoDQ
- lGPWCItotLud5UtMEtZESsTEJU0cJPk/DN3M5fufw3W/gIwNiungqyjRQVSaftlAhoqq
- ZSIOlo1PuoRgQeMLF86/Eq3Yv7THDAGAbp5zI3+Qy9dBG0gJn2A3g1eZqtfUkF6n2cYG
- RJhg==
+ b=GVh7mcjelVG//BXFGYwfBYenrT6ASku4EsXig5p9upNcz6GLEJmdLjXiiwWvjHvqij
+ CASoC/iJo8FlCH7Vuf7Vm954TOs/7dYAsXV3Xlnf4IrB6WgS/aj5G7cHzZ2E/KsCeiGL
+ JwP4sw7YVab0feL18LRr7vgowp1szv2sIuhryxSJUUWz7+nA2BQjSuyH/t1pdArbR2jo
+ glgQ+QBi6FyGClz00DjKeoYpCqiEyjMywPNvIBJa8syE+9zTp879AASlWB6SNRwRe7SQ
+ XosZxahUO45hV9oE7h8mcv3645sSBMjRkjQsDjBmVbWtP7kMhVesJ6ds4v0uCXVaqONG
+ wapA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
  s=arc-20240605; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:dkim-signature;
- bh=Yihrcx5+tTnyEep6Jw1k4ABEOabBJsZCZvcKUlGjkKc=;
- fh=d82D6ZZq0j8tZV3K9kedoeRfdbXXrx4Fe5c10mamxy4=;
- b=KDxETP6r60g25vbR/Dn5XaSQhVBheYNiNZZ7fvCWQVr60h/PYg/GrfYZ2MMPEixSZ8
- hwWkqKJXvzq1o8JIi+1jLDu5L5HNNudL7eRWzi1JKeXWwnlwyJCfkPqs6nHHRGfsWCxr
- 8v4Lh4tjTUldDLBz8oIaNMsRtA9WHA1Dx18tG6+sIC5f/ZyTeYWGsWmbwD9RFQBrEiam
- +DxIgBdzq/xkQ+UgkJA322EFvzZew/15SnnzHE9mCbuJnJ5wW/EtkkNzcnv1Ca2tKbcd
- AnJPaw4ibm9/CW8oRA5LFzIsb2ipr3S+rquIBOjzJ/s5kblkYDieXqMQBYuK0A4RoAju
- 2bNg==; darn=lists.freedesktop.org
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=UHb/oFJuYkkTXytA5kRGkj7lGPcsOEW8fs36CkvCs2c=;
+ fh=lsZak5QWXRp6JrQ+WlGnYtO1EJDsfOW6VO/cUomLiLI=;
+ b=If5jraqgOawS/H1XylbacoOYihIwQVvCaqEujmjlmAQeW+CWMrUQobO9JZfzt6OKPi
+ 7ikh5CiLqfmbn6Ybhhp+RcPlWfZqNSXDT+dKs3WWhCD/XaHBLxniUFCsjBS8IOGv3jO5
+ GOpXSGQjZvyU/P970tjqVADB3FR1xDvMYBUEx0JIPECR7ZPmCn8QnUrI6nM73ckPsm8w
+ AlBmgwFQzRAE6IEgvXZHGKxqQdWTEKk+VAIN0uUvpJUXGayV7mf3y372mWEJjwYPOwIS
+ KWwwVrr5CN9HHdk4Q6MKKOAgGb5stfCBxGyxaI4U+dgYrPRTfsHzbLvoqpiQI1wa1A0Q
+ ADNQ==; darn=lists.freedesktop.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20251104; t=1779866424; x=1780471224;
+ d=google.com; s=20251104; t=1779866678; x=1780471478;
  darn=lists.freedesktop.org; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=Yihrcx5+tTnyEep6Jw1k4ABEOabBJsZCZvcKUlGjkKc=;
- b=OarkKyxmRdTxK3cI3MDxpKG4YmxIjYMITPRaFscvhWpehpj/5pmoBLZQsNDyjtIH/6
- Cq4V8uoVFTkJsKB1N8DC5cFL+HZGzOYtmkL/a1druOJmMOmbUJyN/vulCMZKDlpZXjAm
- LPj8vUejFTHzsgrZB3KLOybrC8Ios08IihOIJW/XSYzM6lMfNepk65okLIBVQNvohOjf
- y1GO5A3EDShMDVrSyrY23Jow8hc2ntUbk7ZQ/ScP5u23AF9IW5y1USweUAMIqBK/zhAv
- 6KqVWl/3oB1ghzVpvNV/GmkGMWiCHHqEb5C8Zos2LlKm2BZPA+hqLhbPn+Xl+TkHOsIE
- 1TBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1779866424; x=1780471224;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=Yihrcx5+tTnyEep6Jw1k4ABEOabBJsZCZvcKUlGjkKc=;
- b=HVX2wD9Cl01pUHNoACu/5+ROCg0knQ/Kk+fVAO30TcXwtHZEFcHf0ZIG6vx+WKZxC8
- IPvSGDh5VfgJ4wnZg+1/BrsVCXsozUgzJp+J05tj6rDeOrQnwEfUlQ9c1JryltNQ4CoF
- Xl9Kv7zCP246a7aZ2J9SCQD+P5f49MPgi3uPjB0JMP//0jscy6uNrEeGOlP493ms6SWp
- 329E/MWd9u2hsk8AUdLSWt/dbzGrK9tDV7gOOsaiQ3HMHoLCjthde6qM294ImavbmGUl
- tFnWWi7fvulJEfrZMgJ0La732KBBnXty5RtOv5yAWzzFlli0VyS8ZujQfKl34o4NduMP
- vubQ==
+ bh=UHb/oFJuYkkTXytA5kRGkj7lGPcsOEW8fs36CkvCs2c=;
+ b=opMpjJBIp94sBx+B7qOKCQXMseZvkP5Pktlj5O08sH7quEDmj7XXL5YeRvkRdDPNsw
+ 5T0t8DKFcF/qjKRGYs5PebHdmyoC47xEPDT91CPWkSggg3RzJeZks3x4MblZcFbVSl4y
+ V3WzTcxgRsJ6tg6JivMoX4HUt/gt4RZccq4Q2xfchW9k9oQGq4JUTfvnSCtjv2KJNR4d
+ VUXVLrk2V6Jd7CyDx598hwq/D2zftt9c9KnbazLEoyafIYI0a/q2icOixw1m3WZRMY6i
+ MZ1aNJoCZcH2RRHHOBKVWkwHC7qM66PAg+8Kk/dDx0Kcpk8dOfmk8jbsS7yFvieJAc5P
+ yuLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1779866678; x=1780471478;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=UHb/oFJuYkkTXytA5kRGkj7lGPcsOEW8fs36CkvCs2c=;
+ b=Luglslf9JR+YeOxQcZtt+hbrD7WXDzRlO16IRHh7giCUDCntdBsWiED2Tk55Y7mPPi
+ hejkGBGKkjFczeQnVJKNT/XkTS7oFc4Nr+QJ24PG8BMxhUZvn+VM2dCVbbh9GmlgCT1o
+ s5mNbvlWteejBRFWsbGiPMG+WSuw9HFdgNJ0h/d7WjIsO6MUUYGmo+aYGipaaEszHqOD
+ JKTZKlon7hbjvbBAmqok6wDopkFTvborzNOs1pWpfStkf1qmoxDurmzJ0rCFK6sBzB0J
+ lMpb+9fm2v3jfy+sBfQ78sEOKxxda/nf89ugAIYK0dE6soz3WH9MV2t9/J6cu7ZYiAYx
+ b6eg==
 X-Forwarded-Encrypted: i=1;
- AFNElJ++L2T8/uGXqOmhSRJ9dlStdLFHlSjygaZzN+9iBmCxU446QZvKCAcTwHsrxCXEy3/iOGATMda8EQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyAZ2rkV2w/ioCU6WF15cJDm/S6MUX5w0+g4P6YnmI+wrOsj6dV
- SoIyoupbpTijUU6tjXNzeJ/EhZzfXDnxMvLnXPj9KtUvV/t/ggn2wBA1h03Bs3JvGChxqWl6ccg
- 6xzQVN8TwKI3i96o/6j/nQyhc3egRBeB5PWDjCY+q
-X-Gm-Gg: Acq92OGZGuVoqcw3HSdZwqhVLGPx+ed7KNVy66uGzvxlCl1KskRjcJ09m7ehpdGe52L
- YZVSm4QGYTph91AXx8W/ICSNSvQQ/u4y9Odd6/zP4hO1UgMAxAeENYiG0+Se7aFQWXUWZNJvXXp
- 82nwdBeP2/kLQgW9VzRtVhpZMTbtjYbOfpkpZfWsMKxc8F63LcKCcXvotsucwOeKzSJo+5eVcr/
- Hlf1flEB4t+O7Wz03JBerJhhg4n0SlssHv0EouJw1JtiTxeR/bGcgzrr4bU1/kRlCs9NQsyT6IK
- nuKlFdo9nWSqMdsDnqDL9dtv9u8WVNz1lNdvOIuJkuUeS2TzY7g8ultdAKARPzcZqCFEIoAIVw0
- nE5g2ilxo7XlBI2wZ
-X-Received: by 2002:a17:907:7703:b0:be2:11d7:8b05 with SMTP id
- a640c23a62f3a-be211d79063mr442526666b.24.1779866423574; Wed, 27 May 2026
- 00:20:23 -0700 (PDT)
+ AFNElJ/w8mKit2uEgeEM+itqdafea6qktbYpq8PRYTSxoIX7E0lnKgm/ABcHlDvyurwbcDGssRW21m3hvg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Ywny+uRJEiRHDsGCnJbX0N0jJBh/LVRtEx8YBIJqNLCDbtjavj6
+ xr9qJrKTyOaHc5sxnSn50YYlGuVf4zBg9H2KXgUuDmkdktvrXBeuISnLtAYn+DyisUNl3fimJLH
+ ihrt8hZCCriKcSf98/ICtLUfMe6jtXCEFr2fgIm/9
+X-Gm-Gg: Acq92OFCAA9g3ClAvLjZLJIUkcdMc552+XWG1Mj+xPvD5YTe1ajD5FhlZ/g7cpiQrv6
+ Q2438NvMO5TILl8d86HIcfcN/16sBOj+j9aJWy0FyCYrjeI1grK9voe8wySXxoY+f3OwNRsCrJ9
+ lsvD4x4sgnnuBNDJVgtC7242yH93v4+olLIVTdrimw9mq78n12aLmjuT9nuuYKIYFUadFhh7EfK
+ NxjarRMd23eR6+gmfMen5Y8KWHclnbsJ+5VRMGzaA3794olazL47R9bfWb3SiqYDVCC6Y5EZAuY
+ Q3oaqHxOKfZspnUxoeNocKU6SmSvo5ma9R2KL4QSZvDZd/T6+mtDm+nJDGEncO78r4eYK3C3Zcp
+ uESkKv7btt23Si/7o
+X-Received: by 2002:a17:907:b59a:b0:bd3:893c:c44f with SMTP id
+ a640c23a62f3a-bdd25fd111amr982141566b.19.1779866677452; Wed, 27 May 2026
+ 00:24:37 -0700 (PDT)
 MIME-Version: 1.0
 References: <20260409-feat_link_cap-v1-0-7069e8199ce2@bootlin.com>
  <adgNxaFhbQaxC5E_@intel.com>
@@ -86,9 +87,9 @@ References: <20260409-feat_link_cap-v1-0-7069e8199ce2@bootlin.com>
  <3698b69f20481ff9c6fb1002b46f9862a1fdd03d@intel.com>
 In-Reply-To: <3698b69f20481ff9c6fb1002b46f9862a1fdd03d@intel.com>
 From: Manasi Navare <navaremanasi@google.com>
-Date: Wed, 27 May 2026 00:20:11 -0700
-X-Gm-Features: AVHnY4KnYobreH7-ThSQCNuAMjBh59KUEM83hVRy-c8a5B26QFf5ql2qRqgzYs0
-Message-ID: <CAMNLLoT=UBZq9diRTR5cFQ+-hC__Rb=KtzxqQAns8R8G0iBTYw@mail.gmail.com>
+Date: Wed, 27 May 2026 00:24:25 -0700
+X-Gm-Features: AVHnY4JySRBm-2P_CbFmaw_WGo2zCHSC-tgnDBB7us3VQxRDYsfxZLlA23v6OE0
+Message-ID: <CAMNLLoQmwW-QkuiSyageGWBeuUDUVZWmWyXRD-vkAGZbg1kTzw@mail.gmail.com>
 Subject: Re: [PATCH RFC 00/12] Add support for DisplayPort link training
  information report
 To: Jani Nikula <jani.nikula@linux.intel.com>
@@ -119,7 +120,8 @@ Cc: Kory Maincent <kory.maincent@bootlin.com>,
  intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
  linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org, 
  linux-arm-kernel@lists.infradead.org, Simona Vetter <simona.vetter@ffwll.ch>
-Content-Type: multipart/alternative; boundary="000000000000ee012f0652c771e5"
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,22 +136,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---000000000000ee012f0652c771e5
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
 Thank you Jani and Ville and others for your feedback on this approach.
-I think adding the current negotiated link rate , lane count and DSC status
-as part of a connector property is a great
-way to standardize this instead of every driver adding a debugfs for this
-same information.
+I think adding the current negotiated link rate , lane count and DSC
+status as part of a connector property is a great
+way to standardize this instead of every driver adding a debugfs for
+this same information.
 
 Please find my comments for why OS would use this information as below:
 
-On Mon, Apr 13, 2026 at 6:30=E2=80=AFAM Jani Nikula <jani.nikula@linux.inte=
-l.com>
-wrote:
 
+On Mon, Apr 13, 2026 at 6:30=E2=80=AFAM Jani Nikula <jani.nikula@linux.inte=
+l.com> wrote:
+>
 > On Mon, 13 Apr 2026, Kory Maincent <kory.maincent@bootlin.com> wrote:
 > > On Fri, 10 Apr 2026 00:36:09 +0300
 > > Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> wrote:
@@ -157,27 +155,26 @@ wrote:
 > >> On Thu, Apr 09, 2026 at 11:36:21PM +0300, Ville Syrj=C3=A4l=C3=A4 wrot=
 e:
 > >> > On Thu, Apr 09, 2026 at 07:08:16PM +0200, Kory Maincent wrote:
-> >> > > DisplayPort link training negotiates the physical-layer parameters
-> needed
+> >> > > DisplayPort link training negotiates the physical-layer parameters=
+ needed
 > >> > > for a reliable connection: lane count, link rate, voltage swing,
-> >> > > pre-emphasis, and optionally Display Stream Compression (DSC).
-> Currently,
+> >> > > pre-emphasis, and optionally Display Stream Compression (DSC). Cur=
+rently,
 > >> > > each driver exposes this state in its own way, often through
-> >> > > driver-specific debugfs entries, with no standard interface for
-> userspace
+> >> > > driver-specific debugfs entries, with no standard interface for us=
+erspace
 > >> > > diagnostic and monitoring tools.
 > >> > >
-> >> > > This series introduces a generic, DRM-managed framework for
-> exposing DP
+> >> > > This series introduces a generic, DRM-managed framework for exposi=
+ng DP
 > >> > > link training state as standard connector properties, modeled afte=
-r
-> the
+r the
 > >> > > existing HDMI helper drmm_connector_hdmi_init().
 > >> > >
-> >> > > The new drmm_connector_dp_init() helper initializes a DP connector
-> and
-> >> > > registers the following connector properties to expose the
-> negotiated link
+> >> > > The new drmm_connector_dp_init() helper initializes a DP connector=
+ and
+> >> > > registers the following connector properties to expose the negotia=
+ted link
 > >> > > state to userspace:
 > >> > >
 > >> > > - num_lanes:      negotiated lane count (1, 2 or 4)
@@ -195,60 +192,59 @@ rt
 ,
 > >> possibly reusing the Intel's format.
 > >
-> > Sorry, I completely forgot to include a paragraph explaining the
-> rationale
+> > Sorry, I completely forgot to include a paragraph explaining the ration=
+ale
 > > behind using DRM properties.
 > >
-> > This DisplayPort link information report was requested by OSes to allow
-> them to
+> > This DisplayPort link information report was requested by OSes to allow=
+ them to
 > > assess the capabilities of each DisplayPort connector on the system, an=
-d
-> to
+d to
 > > guide users from the most to least capable ones. It will also enable th=
-e
-> OS to
-> > warn the user when a cable is too long or experiencing noise (indicated
-> by high
+e OS to
+> > warn the user when a cable is too long or experiencing noise (indicated=
+ by high
 > > voltage swing and pre-emphasis levels).
 >
 > The selection of the number of lanes or link rate are at the discretion
 > of the driver, or link policy manager in DP spec terms. It does not
 > really convey the capabilities of the *connectors* but rather the
 > current *link*. Ditto for enabling DSC.
->
 
 I agree that it would be up to each driver to have a policy
 on choosing link rate/lane count and when to enable DSC and then if it fail=
 s
 fallback to lower link rate/lane count as per the VESA spec.
 
-Currently this information is only available through a debugfs and not
-standard
-across the drivers. However adding it as part of the connector property
-would
+Currently this information is only available through a debugfs and not stan=
+dard
+across the drivers. However adding it as part of the connector property wou=
+ld
 be useful for the userspace, such as DRM HWC to use this information along
 with the link status property to understand the reason for reduced
 resolutions/modes
-exposed to userspace.  This can be used to provide better diagnostics and
-useful
+exposed to userspace.  This can be used to provide better diagnostics and u=
+seful
 information up to the end user.
-DSC being enabled or not or what was the final negotiated link rate and
-lane count
-could be used to take smarter mode configuration handling choices in the
-usersapce
+DSC being enabled or not or what was the final negotiated link rate
+and lane count
+could be used to take smarter mode configuration handling choices in
+the usersapce
 For example for MST, if usersapce can know the negotiated link parameters
-usersapce can be smarter in choosing resolutions on each of the downstream
+usersapce can be smarter in choosing resolutions on each of the downstream =
 sinks
 based on the total link bandwidth between source and the hub.
 
-At the end it just helps the OSs to provide better control to the user in
-certain scenarios.
+At the end it just helps the OSs to provide better control to the user
+in certain scenarios.
 I agree that Voltage swing and pre emphasis values can be removed and we
-can focus on adding property for link rate, lane count and dsc info like
-enabled/disabled, compressed bpp etc.
+can focus on adding property for link rate, lane count and dsc info
+like enabled/disabled, compressed bpp etc.
 
 Regards
 Manasi
+
+
 
 >
 > I don't think the voltage swing and pre-emphasis are really diagnostic
@@ -283,8 +279,8 @@ Manasi
 >
 >
 > >
-> > Since this is information that OSes will consume on a regular basis,
-> exposing
+> > Since this is information that OSes will consume on a regular basis, ex=
+posing
 > > it directly as DRM properties seems the most appropriate approach.
 >
 >
@@ -293,168 +289,3 @@ Manasi
 >
 > --
 > Jani Nikula, Intel
->
-
---000000000000ee012f0652c771e5
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Thank you Jani and Ville and others for your feedback=
- on this approach.</div><div>I think adding the current negotiated link rat=
-e , lane count and DSC status as part of a connector property is a great</d=
-iv><div>way to standardize this instead of every driver adding a debugfs fo=
-r this same information.</div><div><br></div><div>Please find my comments f=
-or why OS would use this information as below:</div><br><div class=3D"gmail=
-_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Mon,=
- Apr 13, 2026 at 6:30=E2=80=AFAM Jani Nikula &lt;<a href=3D"mailto:jani.nik=
-ula@linux.intel.com">jani.nikula@linux.intel.com</a>&gt; wrote:<br></div><b=
-lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
-ft:1px solid rgb(204,204,204);padding-left:1ex">On Mon, 13 Apr 2026, Kory M=
-aincent &lt;<a href=3D"mailto:kory.maincent@bootlin.com" target=3D"_blank">=
-kory.maincent@bootlin.com</a>&gt; wrote:<br>
-&gt; On Fri, 10 Apr 2026 00:36:09 +0300<br>
-&gt; Dmitry Baryshkov &lt;<a href=3D"mailto:dmitry.baryshkov@oss.qualcomm.c=
-om" target=3D"_blank">dmitry.baryshkov@oss.qualcomm.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt;&gt; On Thu, Apr 09, 2026 at 11:36:21PM +0300, Ville Syrj=C3=A4l=C3=A4 =
-wrote:<br>
-&gt;&gt; &gt; On Thu, Apr 09, 2026 at 07:08:16PM +0200, Kory Maincent wrote=
-:=C2=A0 <br>
-&gt;&gt; &gt; &gt; DisplayPort link training negotiates the physical-layer =
-parameters needed<br>
-&gt;&gt; &gt; &gt; for a reliable connection: lane count, link rate, voltag=
-e swing,<br>
-&gt;&gt; &gt; &gt; pre-emphasis, and optionally Display Stream Compression =
-(DSC). Currently,<br>
-&gt;&gt; &gt; &gt; each driver exposes this state in its own way, often thr=
-ough<br>
-&gt;&gt; &gt; &gt; driver-specific debugfs entries, with no standard interf=
-ace for userspace<br>
-&gt;&gt; &gt; &gt; diagnostic and monitoring tools.<br>
-&gt;&gt; &gt; &gt; <br>
-&gt;&gt; &gt; &gt; This series introduces a generic, DRM-managed framework =
-for exposing DP<br>
-&gt;&gt; &gt; &gt; link training state as standard connector properties, mo=
-deled after the<br>
-&gt;&gt; &gt; &gt; existing HDMI helper drmm_connector_hdmi_init().<br>
-&gt;&gt; &gt; &gt; <br>
-&gt;&gt; &gt; &gt; The new drmm_connector_dp_init() helper initializes a DP=
- connector and<br>
-&gt;&gt; &gt; &gt; registers the following connector properties to expose t=
-he negotiated link<br>
-&gt;&gt; &gt; &gt; state to userspace:<br>
-&gt;&gt; &gt; &gt; <br>
-&gt;&gt; &gt; &gt; - num_lanes:=C2=A0 =C2=A0 =C2=A0 negotiated lane count (=
-1, 2 or 4)<br>
-&gt;&gt; &gt; &gt; - link_rate:=C2=A0 =C2=A0 =C2=A0 negotiated link rate<br=
->
-&gt;&gt; &gt; &gt; - dsc_en:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0whether Displ=
-ay Stream Compression is active<br>
-&gt;&gt; &gt; &gt; - voltage_swingN: per-lane voltage swing level (lanes 0-=
-3)<br>
-&gt;&gt; &gt; &gt; - pre_emphasisN:=C2=A0 per-lane pre-emphasis level (lane=
-s 0-3)=C2=A0 <br>
-&gt;&gt; &gt; <br>
-&gt;&gt; &gt; I don&#39;t see why any real userspace would be interested in=
- those (apart<br>
-&gt;&gt; &gt; from maybe DSC). If this is just for diagnostics and whatnot =
-then I<br>
-&gt;&gt; &gt; think sysfs/debugfs could be a better fit.=C2=A0 <br>
-&gt;&gt; <br>
-&gt;&gt; I&#39;d agree here. Please consider implementing it as a debugfs i=
-nterface,<br>
-&gt;&gt; possibly reusing the Intel&#39;s format.<br>
-&gt;<br>
-&gt; Sorry, I completely forgot to include a paragraph explaining the ratio=
-nale<br>
-&gt; behind using DRM properties.<br>
-&gt;<br>
-&gt; This DisplayPort link information report was requested by OSes to allo=
-w them to<br>
-&gt; assess the capabilities of each DisplayPort connector on the system, a=
-nd to<br>
-&gt; guide users from the most to least capable ones. It will also enable t=
-he OS to<br>
-&gt; warn the user when a cable is too long or experiencing noise (indicate=
-d by high<br>
-&gt; voltage swing and pre-emphasis levels).<br>
-<br>
-The selection of the number of lanes or link rate are at the discretion<br>
-of the driver, or link policy manager in DP spec terms. It does not<br>
-really convey the capabilities of the *connectors* but rather the<br>
-current *link*. Ditto for enabling DSC.<br></blockquote><div><br></div><div=
->I agree that it would be up to each driver to have a policy</div><div>on c=
-hoosing link rate/lane count and when to enable DSC and then if it fails</d=
-iv><div>fallback to lower link rate/lane count as per the VESA spec.</div><=
-div><br></div><div>Currently this information is only available through a d=
-ebugfs and not standard</div><div>across the drivers. However adding it as =
-part of the connector property would</div><div>be useful for the userspace,=
- such as DRM HWC to use this information along</div><div>with the link stat=
-us property to understand the reason for reduced resolutions/modes</div><di=
-v>exposed to userspace.=C2=A0 This can be used to provide better diagnostic=
-s and useful=C2=A0</div><div>information up to the end user.=C2=A0</div><di=
-v>DSC being enabled or not or what was the final negotiated link rate and l=
-ane count</div><div>could be used to take smarter mode configuration handli=
-ng choices in the usersapce</div><div>For example for MST, if usersapce can=
- know the negotiated link parameters</div><div>usersapce can be smarter in =
-choosing resolutions on each of the downstream sinks</div><div>based on the=
- total link bandwidth between source and the hub.</div><div><br></div><div>=
-At the end it just helps the OSs to provide better control to the user in c=
-ertain scenarios.</div><div>I agree that Voltage swing and pre emphasis val=
-ues can be removed and we</div><div>can focus on adding property for link r=
-ate, lane count and dsc info like enabled/disabled, compressed bpp etc.</di=
-v><div><br></div><div>Regards</div><div>Manasi=C2=A0</div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex">
-<br>
-I don&#39;t think the voltage swing and pre-emphasis are really diagnostic<=
-br>
-measures either, but a response to measuring and adapting to the<br>
-link. And if the link training failed, the driver may have already<br>
-reduced the number of lanes and link rate to compensate. So you could<br>
-appear to have the perfect link only because it was so bad at high link<br>
-rate that it was reduced already.<br>
-<br>
-The policies may also vary from driver to driver, and possibly depending<br=
->
-on what makes sense for the hardware (e.g. power consumption with or<br>
-without DSC).<br>
-<br>
-I think &quot;link information report ... requested by OSs&quot; is vague, =
-and I<br>
-don&#39;t think the concept has been completely thought through. I can&#39;=
-t see<br>
-how you could present reliable and actionable information to the user<br>
-with what the patch at hand provides. Or how it could work in a generic<br>
-manner across drivers.<br>
-<br>
-Overall sounds like an XY problem [1]. We should focus on what you&#39;re<b=
-r>
-trying to achieve first, in userspace, and only then think about what<br>
-the appropriate kernel mechanism should be.<br>
-<br>
-I don&#39;t think this is it.<br>
-<br>
-<br>
-BR,<br>
-Jani.<br>
-<br>
-<br>
-[1] <a href=3D"https://en.wikipedia.org/wiki/XY_problem" rel=3D"noreferrer"=
- target=3D"_blank">https://en.wikipedia.org/wiki/XY_problem</a><br>
-<br>
-<br>
-&gt;<br>
-&gt; Since this is information that OSes will consume on a regular basis, e=
-xposing<br>
-&gt; it directly as DRM properties seems the most appropriate approach.<br>
-<br>
-<br>
-<br>
-<br>
-<br>
--- <br>
-Jani Nikula, Intel<br>
-</blockquote></div></div>
-
---000000000000ee012f0652c771e5--
