@@ -4,53 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 174B7CD5BD0
-	for <intel-xe@archiver.kernel.org>; Wed, 27 May 2026 11:35:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32FD3CD5BD0
+	for <intel-xe@archiver.kernel.org>; Wed, 27 May 2026 11:35:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C60AB10E782;
-	Wed, 27 May 2026 11:35:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBCC110E795;
+	Wed, 27 May 2026 11:35:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kYuaou2G";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CXVyzLYZ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A276810E782
- for <intel-xe@lists.freedesktop.org>; Wed, 27 May 2026 11:35:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B113F10E795
+ for <intel-xe@lists.freedesktop.org>; Wed, 27 May 2026 11:35:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779881729; x=1811417729;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=1wo8fERZaSTxJAbuEK7EJQ3wBFFopGg3jMd9t2sW260=;
- b=kYuaou2GBgf++0fpyVgY0dmWGL5yaztcux1iYemVSiAaisLhKgzh9qfa
- heeoUkK0BFw8Zn/kz1IntbMCQIRO+5OEPmsnh/N9GN8lzH5BQtPYH1PX1
- WPTOks3T1qsV9/BrdTtuKapHTaWK+1fbEWLdoYxjxsWO0YdsTnf6gf0xg
- d22NUzn92WMXrTr30XPllXq+d+R+eOZyJyJvxV8aZv4EIq4nyJH9h0xZS
- o4rc8HIxk/G2iYLd+1crEKyWq+/DMLpriEnhda60/lXWavT75Jo6FUaZC
- Ex+EfClrSlu60VCcctUx71wO19FzqszxItyHrm5qtHoX3FypDmMOLOIBc g==;
-X-CSE-ConnectionGUID: 7EMeoEDFSd6pfK6lyjS0ig==
-X-CSE-MsgGUID: acjrysTfTjSMk303eSqFWg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11798"; a="98285496"
-X-IronPort-AV: E=Sophos;i="6.24,171,1774335600"; d="scan'208";a="98285496"
+ t=1779881739; x=1811417739;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=s3dd2TXknPwONLOCFMk+sbjZR/fyNnGUe8zCGYtYYYk=;
+ b=CXVyzLYZrJz0Z6khsObdzS6DfRptyVHjjHpFMOQDk/pW6KenAYwdFCEQ
+ CcZf/A1U5onsn5SeQs4EzemPSkHDSV1tW2muXlx0bUOGHe+sL/nMkpefC
+ EUQoyVBG8mh15pqzrgr5nrs3YCjd9ZfjPEt4g+KYE7eTmBJJ08gsIBYbK
+ HEGE6KzCb+mMtXMxrZ1IBy5FMuiLyYUw2VGsEWc92XGwOEf4RFIt2+9/G
+ vYBKadHHQEVzckk2augVMT3Yi3PYhtvbS47i/uxv03jFhmx5QJeKiPCxx
+ O7Zy9fhh+c1IswND+o2iU09DtOu3eDHkaDbp7TghTG6hSGGkpk9kLrHDP A==;
+X-CSE-ConnectionGUID: ekvsjVr3Tpe9NTMiOXI1Mg==
+X-CSE-MsgGUID: uTiHn9hYS6SWCUVwOXS9gw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11798"; a="98285504"
+X-IronPort-AV: E=Sophos;i="6.24,171,1774335600"; d="scan'208";a="98285504"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2026 04:35:28 -0700
-X-CSE-ConnectionGUID: vwYzLJt6RIGrRiy3J9VXqw==
-X-CSE-MsgGUID: WlK9xV2+RUGtu+mG+YA7sQ==
+ 27 May 2026 04:35:38 -0700
+X-CSE-ConnectionGUID: 9JzVVtvpSGCc1FuiKeotdw==
+X-CSE-MsgGUID: E+mCV6quQTyw4fskMgWx1A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,171,1774335600"; d="scan'208";a="247164446"
+X-IronPort-AV: E=Sophos;i="6.24,171,1774335600"; d="scan'208";a="247164509"
 Received: from rkoppura-z790i-aorus-ultra.iind.intel.com ([10.190.239.17])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2026 04:35:26 -0700
+ 27 May 2026 04:35:36 -0700
 From: Ravi Kishore Koppuravuri <ravi.kishore.koppuravuri@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: sk.anirban@intel.com, riana.tauro@intel.com, anshuman.gupta@intel.com,
  mallesh.koujalagi@intel.com,
  Ravi Kishore Koppuravuri <ravi.kishore.koppuravuri@intel.com>
-Subject: [PATCH v3 0/1] drm/xe: Add fault-injection support for CRI throttle
+Subject: [PATCH v3 1/1] drm/xe: Add fault-injection support for CRI throttle
  reasons
-Date: Wed, 27 May 2026 17:05:12 +0530
-Message-Id: <20260527113513.1650375-1-ravi.kishore.koppuravuri@intel.com>
+Date: Wed, 27 May 2026 17:05:13 +0530
+Message-Id: <20260527113513.1650375-2-ravi.kishore.koppuravuri@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260527113513.1650375-1-ravi.kishore.koppuravuri@intel.com>
+References: <20260527113513.1650375-1-ravi.kishore.koppuravuri@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -74,67 +76,78 @@ injection hooks that allow checking the behavior of the frequency
 throttling. It ensures that the error handling is properly implemented
 and handled.
 
-Required kernel configuration:
-CONFIG_KUNIT=m
-CONFIG_KUNIT_DEBUGFS=y
-CONFIG_FAIL_FUNCTION=y
-CONFIG_FAULT_INJECTION=y
-CONFIG_FAULT_INJECTION_DEBUG_FS=y
-CONFIG_FUNCTION_ERROR_INJECTION=y
-
-Usage example:
-Setup fault injection for throttle function
-
-FAILTYPE=fail_function
-FAILFUNC=xe_gt_throttle_inject_errno
-
-echo > /sys/kernel/debug/$FAILTYPE/inject
-echo $FAILFUNC > /sys/kernel/debug/$FAILTYPE/inject
-printf %#x -1 > /sys/kernel/debug/$FAILTYPE/$FAILFUNC/retval
-
-echo N > /sys/kernel/debug/$FAILTYPE/task-filter
-echo 10 > /sys/kernel/debug/$FAILTYPE/probability
-echo 0 > /sys/kernel/debug/$FAILTYPE/interval
-echo -1 > /sys/kernel/debug/$FAILTYPE/times
-echo 0 > /sys/kernel/debug/$FAILTYPE/space
-echo 1 > /sys/kernel/debug/$FAILTYPE/verbose
-
-Sample result of verifying throttle reasons on Battlemage platform
-```
-root@DUT2117BMGFRD:/home/gta/igt-gpu-tools# ./build/tests/xe_fault_injection --r throttle-reason-fail                                   
-IGT-Version: 2.3-gc4a3de72e (x86_64) (Linux: 7.0.0-rc2-throttle-reason-injection-test x86_64)
-Using IGT_SRANDOM=1779875098 for randomisation
-Opened device: /dev/dri/card2
-Starting subtest: throttle-reason-fail
-Running throttle-reason-fail with non-CRI mapping
-Injecting error (0) into BIT(0) in function "xe_gt_throttle_inject_errno"
-Reason for Throttling is : prochot
-Injecting error (-1) into BIT(1) in function "xe_gt_throttle_inject_errno"
-Reason for Throttling is : thermal
-Injecting error (-5) into BIT(5) in function "xe_gt_throttle_inject_errno"
-Reason for Throttling is : ratl
-Injecting error (-6) into BIT(6) in function "xe_gt_throttle_inject_errno"
-Reason for Throttling is : vr_thermalert
-Injecting error (-7) into BIT(7) in function "xe_gt_throttle_inject_errno"
-Reason for Throttling is : vr_tdc
-Injecting error (-8) into BIT(8) in function "xe_gt_throttle_inject_errno"
-Reason for Throttling is : pl4
-Injecting error (-10) into BIT(10) in function "xe_gt_throttle_inject_errno"
-Reason for Throttling is : pl1
-Injecting error (-11) into BIT(11) in function "xe_gt_throttle_inject_errno"
-Reason for Throttling is : pl2
-Subtest throttle-reason-fail: SUCCESS (0.249s)
-root@DUT2117BMGFRD:/home/gta/igt-gpu-tools#
-```
-This enables comprehensive testing of error paths in fetching the
-frequency throttle reason.
-
-Ravi Kishore Koppuravuri (1):
-  drm/xe: Add fault-injection support for CRI throttle reasons
-
+Cc: Tauro Riana <riana.tauro@intel.com>
+Cc: Gupta Anshuman <anshuman.gupta@intel.com>
+Cc: Sk Anirban <sk.anirban@intel.com>
+Signed-off-by: Ravi Kishore Koppuravuri <ravi.kishore.koppuravuri@intel.com>
+---
  drivers/gpu/drm/xe/xe_gt_throttle.c | 34 ++++++++++++++++++++++++++++-
  1 file changed, 33 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_gt_throttle.c b/drivers/gpu/drm/xe/xe_gt_throttle.c
+index 1e7e3a31aa69..02bd01069ab7 100644
+--- a/drivers/gpu/drm/xe/xe_gt_throttle.c
++++ b/drivers/gpu/drm/xe/xe_gt_throttle.c
+@@ -5,6 +5,9 @@
+ 
+ #include <drm/drm_managed.h>
+ 
++#include <linux/error-injection.h>
++#include <linux/limits.h>
++
+ #include <regs/xe_gt_regs.h>
+ #include "xe_device_types.h"
+ #include "xe_gt.h"
+@@ -81,11 +84,33 @@ static struct throttle_attribute *kobj_attribute_to_throttle(struct kobj_attribu
+ 	return container_of(attr, struct throttle_attribute, attr);
+ }
+ 
++static noinline int xe_gt_throttle_inject_errno(void)
++{
++	return INT_MAX;
++}
++ALLOW_ERROR_INJECTION(xe_gt_throttle_inject_errno, ERRNO);
++
++static u32 xe_gt_throttle_injected_limit_reasons(int err, u32 mask)
++{
++	if (err == INT_MAX || err >= 0)
++		return 0;
++
++	err = -err;
++
++	if (err < 1 || err > 32)
++		return 0;
++
++	return BIT(err - 1) & mask;
++}
++
+ u32 xe_gt_throttle_get_limit_reasons(struct xe_gt *gt)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	struct xe_reg reg;
++	int err;
++	u32 injected;
+ 	u32 mask;
++	u32 reasons_val;
+ 
+ 	if (xe_gt_is_media_type(gt))
+ 		reg = MTL_MEDIA_PERF_LIMIT_REASONS;
+@@ -98,7 +123,14 @@ u32 xe_gt_throttle_get_limit_reasons(struct xe_gt *gt)
+ 		mask = GT0_PERF_LIMIT_REASONS_MASK;
+ 
+ 	guard(xe_pm_runtime)(xe);
+-	return xe_mmio_read32(&gt->mmio, reg) & mask;
++	reasons_val = xe_mmio_read32(&gt->mmio, reg) & mask;
++
++	err = xe_gt_throttle_inject_errno();
++	injected = xe_gt_throttle_injected_limit_reasons(err, mask);
++	if (injected)
++		return injected;
++
++	return reasons_val;
+ }
+ 
+ static bool is_throttled_by(struct xe_gt *gt, u32 mask)
 -- 
 2.34.1
 
