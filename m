@@ -4,27 +4,148 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98190CD5BD0
-	for <intel-xe@archiver.kernel.org>; Wed, 27 May 2026 13:56:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26952CD6E41
+	for <intel-xe@archiver.kernel.org>; Wed, 27 May 2026 13:57:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B92710E7F3;
-	Wed, 27 May 2026 13:56:49 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB4EA10E7F3;
- Wed, 27 May 2026 13:56:47 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6188488196708647956=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE08B10E7FA;
+	Wed, 27 May 2026 13:57:03 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GyjJRxRy";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E82AA10E7F5;
+ Wed, 27 May 2026 13:57:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1779890222; x=1811426222;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ in-reply-to:mime-version;
+ bh=0fH/I6Ciwn7XgkTluuXNXC+escdA899kTun2yERBkD0=;
+ b=GyjJRxRyc0/lWMq/PDETMvwQVHVoYyfeJ2i5IDxOKXK4+bAzVLd9Nrzo
+ q5OfR+HxyBAs8CPx0yTc3q29/1Qm6rPIB5TFKty9AUa3Zm0BZV8ar83cT
+ NBMhFWCSjmrM7DpqEAy4ZHDzO7nl24dG6mxpU5nKQptOL1wnUU+45g2w0
+ XuAaNl2GPrkEp5QL1WxLbyYG/UWY2+f1P4wzy//Q52unwSQaT9GjfV/jB
+ eQq9FnWbpRWoSk34UYWOfjPDRzvSIuVXDaK7bbHi5F7UhY6mIKKVj8zV/
+ pfdxi90ccSJVR+hDWUN0JWDoFxqTyMcamG7O2Ozm4SeSRiDMonD9uoZG3 A==;
+X-CSE-ConnectionGUID: GQ73BO2xQDGoRLtVTG1ALA==
+X-CSE-MsgGUID: fZpTxTxGQzm9sFuX+qeYoQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11799"; a="68247087"
+X-IronPort-AV: E=Sophos;i="6.24,171,1774335600"; d="scan'208";a="68247087"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 May 2026 06:56:53 -0700
+X-CSE-ConnectionGUID: bV5udxkqQky25lhb81SCbg==
+X-CSE-MsgGUID: o36bmQlDR5Gq51BxBTvXKg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,171,1774335600"; d="scan'208";a="266134689"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 May 2026 06:56:53 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Wed, 27 May 2026 06:56:52 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Wed, 27 May 2026 06:56:52 -0700
+Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.52) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Wed, 27 May 2026 06:56:52 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=aEU8SoF9GVUUrBUCgTv/0yk3tYw+foBTlYd8wj/3evNpN1l9xSATBHQGK4M7eovvdiCw4/M3yzNRFT0o7rj3UC+QocIJlp48x6u9726q4TxggP4A4csTvYqG9DeN+AA74oVSd/YcLS1spmYmfnpvYBGsfKMYg1+k1MX/j+TQGda1oE12awmzvVrcHKydNcw8K8KocXElAGVutL9451SQl6WJBsPBOElSfNKHKUafXdwIWAFFvbikzixrUHUiUNYXLmStgXTS7Qu74cfaFD6toPAx0qAa08hwWYU2LWuhv9E4ss+qhG28TSyBuFXb35JrAFzyERTh/mARUrUMCFKm/g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vjf3umyk6BNjvXesymkvdGvso/ID/N3xZu+gOLn7asM=;
+ b=ruKjRMSYFoPK3cm+MkMiwxbqg7oOuzq3Qit7g8809BupvGHq5xQUMkeSasxGHGm2HJj6Ae7PQ3e15tcmRNB8uGGDL/WvamAAR89flQ/A9Kyj1nSuqzClq344N2GblmIVCsGYG5LS/+2cus+/7bN8srDO0ssTu3ygTKdgcGe1Vg/PajBnb0qcq/j2KO4snvN3viwluIBfKX4jIz3Qq8VyWGINpHqwaozu5USn0c5fJ2qGgqwoJ4/semuG8qe+DqzJDQYZ0KOHTj6i1UeHf5rqO/zNUd+r0xoZkxXnz9+LHY8dQXmu9sqRUP9ec6t2AudnwMvWoZTElYdBn1lPKIdeVA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from IA3PR11MB9273.namprd11.prod.outlook.com (2603:10b6:208:573::17)
+ by CO1PR11MB5059.namprd11.prod.outlook.com (2603:10b6:303:9a::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.11; Wed, 27 May
+ 2026 13:56:50 +0000
+Received: from IA3PR11MB9273.namprd11.prod.outlook.com
+ ([fe80::31a4:58c:e3b5:43fa]) by IA3PR11MB9273.namprd11.prod.outlook.com
+ ([fe80::31a4:58c:e3b5:43fa%4]) with mapi id 15.21.0071.011; Wed, 27 May 2026
+ 13:56:49 +0000
+Date: Wed, 27 May 2026 16:56:43 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 2/2] drm/i915: rename intel_runtime_{suspend,resume} to
+ i915_pm_runtime_{suspend,resume}
+Message-ID: <ahb4G0TjUWpbVQdX@ideak-desk.lan>
+References: <cover.1779876087.git.jani.nikula@intel.com>
+ <fc5b796a3fd764a64b257edfdbe08e54b690efbc.1779876087.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <fc5b796a3fd764a64b257edfdbe08e54b690efbc.1779876087.git.jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+X-ClientProxiedBy: GV2PEPF00023988.SWEP280.PROD.OUTLOOK.COM
+ (2603:10a6:158:400::375) To IA3PR11MB9273.namprd11.prod.outlook.com
+ (2603:10b6:208:573::17)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_GuC_paging_engine_support_?=
- =?utf-8?q?=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 27 May 2026 13:56:47 -0000
-Message-ID: <177989020776.15774.12834473120044779560@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260527111335.140000-12-matthew.auld@intel.com>
-In-Reply-To: <20260527111335.140000-12-matthew.auld@intel.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA3PR11MB9273:EE_|CO1PR11MB5059:EE_
+X-MS-Office365-Filtering-Correlation-Id: 04ed80e1-abc4-4883-ba29-08debbf7cc48
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|376014|1800799024|4143699003|11063799006|22082099003|18002099003|56012099006;
+X-Microsoft-Antispam-Message-Info: ne3AFn1v5eQV4jH5GXBdf6IUl2VpOI/RPEGMrHR+TkpTC0wPi5mcUf5rTsSHiToDp9qK28Qwu/YETsKLIV9vujNosKJy+SJV6KLM918U1Komh79WP1TT/MUialeLJkUM8VfeVhjmOC/VWpNibGoOpE3AP7kvnYYBSWa/0s8HY7mPiEPvLmF4Ck1ArjM8jBcWnpo/Rhqr8LBia/I5/kwt6FYb11YTSzBjGZekAdQCiEHBu6DNbSrixwhTLP2aun6aH8iJopY9kCC2e6ENY6Ip5GRQDWWmZTwPQemiTZgOqGbqYlPQJWiV/aRVvAQ4FNzoNP2LkajKJalaNiQs+c+f196Jxdigx/LuDmrzfZ1XMd6nENI6v7smwsMZW0qBFmC8qdBXyISJgzQkpLjM/mCI3tkocpry82kSq58+8UJdzNtKxKZVbvfgZIRImrJb10yX8sA4+ucHMuKoBwRCNqoNm6uY0rvMG8NT/0s3+WHu0FTjwe12R3B/6SsWE1kcIl8V6j6rCX/u5Oj7Zvl/Yks2c9N2TcjEXPsED0JcKpDkM/7AIw7zIwf3LcuDVyCMCA4fJuryoN+wPfUcbDXSaup0faB5z6mgE3pAvs8ihY5BwK8I87qzpgQ+poYA+Zp2uCqBJ5cSXZEejTRv5TLYdlmIFbvMONBmw3YAGk16ZWBpCkb03bnCZA/x+PWHnqkr+B1v
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA3PR11MB9273.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(4143699003)(11063799006)(22082099003)(18002099003)(56012099006);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?GThdcAd7yzoOw3AdpANoXbTQrjjqq1Kum3DAJnTMbyjiPIGKGUmmfbmnkW+c?=
+ =?us-ascii?Q?zbSWLDr5R/RJSmrOWztQEUWChQ2ZOMwgdEjxOr0HBBzc9JalMXqz39CS80C2?=
+ =?us-ascii?Q?5oAp35FIGBv2zfdgGYCRAaUjnb93vLbegjM3lQYj71Qw8kwdbXPaWkZ5SVgD?=
+ =?us-ascii?Q?POnQxbzug6Z1hkgAWUcnMJUNFPKu08pm5gxdDAfYYRp4CSsvSzvzjety98gz?=
+ =?us-ascii?Q?gZMRpP1b4oFJKQFXuIXOOtP95SLVYcFzmh+DO66Zd3gzSv0PkgsYcAxH0itz?=
+ =?us-ascii?Q?d5GmQJqwhc1vdW+covzmBDAiPwASJIAh+HwED2i0GVObb1mywaJNhq/zJ+jE?=
+ =?us-ascii?Q?ndRJcxdyVv8HHHPxGmCN1mI7fV7/gvcU8kR3fcsmKaFF4rigO5UOhdONOFEv?=
+ =?us-ascii?Q?qpHSkgTiy2+MV23vwfnVuiJDwf1EJUmk2y7PlGCreoBjbwxynkR4yCjcl/uu?=
+ =?us-ascii?Q?v1AGP/cTAehfDs5U+7t1DT0hy6/O/BuhcYkXV0C0rbBLjz7WgLAqVCgDHCAN?=
+ =?us-ascii?Q?AVsdhj3yknn4Ei77E55VEciEXvWN0EKR/Ozw/Sg+0J1MKDf9ael+gIOhCXZL?=
+ =?us-ascii?Q?0BfPgCA5o8sUs6ThwkY2byrthkqm1gBUzwOWNFWp24HHtBQBz/WfgH8v8X46?=
+ =?us-ascii?Q?xtZPOv610RB5a8s6klnelW4iLhuBaAZPiKIkkS0tbGWNDH0HfPJI+yb0jkWF?=
+ =?us-ascii?Q?gGlRzbA61nyeOo5FKVPcACRBd6LdVZcMPmvDI4RAz5e8RSNUQpyFhuPlgQmW?=
+ =?us-ascii?Q?53qIcPcN4IWlT1BeoueX8obK2jz471Yka0dg1Um38kAV7yi+Txde7GVE2mwX?=
+ =?us-ascii?Q?0wbtrqjZlmLuFOhqxfpbPUottt/3vMeSlWIokUUysCRLIvw9GJ9e1ecFImJu?=
+ =?us-ascii?Q?fStcK8xFRjSnTJeYi0+hccWn6RwFSX6kGzztxEr2htDE3glg/kFsP8oCRWwp?=
+ =?us-ascii?Q?BjdGMmp/X1357JrEJy3+OieruuS3+goKK5FMgzyiEznP3nnMyU4X2bDy86mO?=
+ =?us-ascii?Q?874K+qOGfTcwVfIHSZ+T7a4ctSvbNMuhCo3zjSet5jXNu6mcEhwc3SGzLlFS?=
+ =?us-ascii?Q?Lc+npgxtOn4PoFCYluPIQTtVQblUcHpx/jiJTl+LEDZ8MwAnpJsC1USn0Swh?=
+ =?us-ascii?Q?EL39GEyZNdLdmALjOqFgB6BfNKby4of9rX6WBskjHxuIazQevSQE1TTWeReN?=
+ =?us-ascii?Q?7rNL5BC7WRtEgcgWECVmMLJ0w1WQ61awUP07auLDBtkL3vK2aXzWmTPtXpMg?=
+ =?us-ascii?Q?5HXl9NOO7pYho31jugWBYmQETJrI/UAwVvLXH7xYITrF9sFD34R1m87Xm/Mg?=
+ =?us-ascii?Q?Px6+FfGnIINHmn/u8T1IMqbup3wT3oagmRHXsnH+Pn5o1/w0dYUynVxNPdWU?=
+ =?us-ascii?Q?26C4Y1s+62TF6UCfx8VP0E49BL+lulFmE0WIMuvGViZ4I0ibTL1VfsjLwWl2?=
+ =?us-ascii?Q?2knQah5GXlKU2hzpML068vokfVRXzcp3QtZ2yjJ7Rgk4AoUf/CzOgEUmbHnd?=
+ =?us-ascii?Q?7lKwl3iS7o78jG2wuT1qrgIUMWnJdZYRrV2i4llQJALtyhkpO0JpwmQSUul/?=
+ =?us-ascii?Q?MQliG3au29fxqKykTdjuX6QLDvdoWekHnUx56PtXcPadWNDbhLdIlqS7NSjk?=
+ =?us-ascii?Q?V0oW7ZOsp+y11CQJT553oSlxkmmBK6LhxOHlayPnpAYH2E+3WJ55m+WzrfEO?=
+ =?us-ascii?Q?mkCTEaopsTY7Xi+HUwy1Vg7pE4u/Ape+zZ4JPBtL8sX0nzqCTtEblIoUMZB1?=
+ =?us-ascii?Q?v8riLvg9Mw=3D=3D?=
+X-Exchange-RoutingPolicyChecked: goSBNv5cYimSGIe+Z/2j38yftFroUMgECWU2F0qiVhSxSsxh06KobD98jgayeFiseK9fcUpxwu+95GzWp8wOzHFEfoIywXCXnOzI65/3zmzaEhV+rJsJF/UTcwQWKqjf5FClq3dqVlCov/o/6MT8YivIRS6xIklkqsSgzLPNdAIl7669kxngoMiQ1K+6+lAGp9p0JBTlwhL1GMvFHBiKquriN5HH+cesRBHwYYXzbV2ytGTte7HxrE1ouzj/aNdXhIVZEWX5pkGAPdoIDpJbWjaAERPRrEjsT0i8w6CBnfkPZQDVmNOMKrZXn104srjqgTfLop/3iFrzKvSFIGZmjQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 04ed80e1-abc4-4883-ba29-08debbf7cc48
+X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB9273.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 May 2026 13:56:49.3183 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: XVb24wer8FhRT2e323ZHtZgAscoijHtcgNy/wdcFHFe39BpfBvAmQi0ps33GJdmP9SEsUU1DmCTgBXCXdMMHAQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5059
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,126 +157,69 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6188488196708647956==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, May 27, 2026 at 01:02:12PM +0300, Jani Nikula wrote:
+> All the other struct dev_pm_ops hooks are named i915_pm_*(), but the
+> .runtime_suspend and .runtime_resume hooks are called
+> intel_runtime_suspend() and intel_runtime_resume(), respectively.
+> 
+> Rename intel_runtime_suspend() to i915_pm_runtime_suspend() and
+> intel_runtime_resume() to i915_pm_runtime_resume() to unify.
+> 
+> Cc: Imre Deak <imre.deak@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-== Series Details ==
+Reviewed-by: Imre Deak <imre.deak@intel.com>
 
-Series: GuC paging engine support (rev4)
-URL   : https://patchwork.freedesktop.org/series/166960/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-5136-971288d0e77f7a0d356287121ce549ab5dad570a_BAT -> xe-pw-166960v4_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 12)
-------------------------------
-
-  Missing    (1): bat-lnl-2 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-166960v4_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_live_ktest@xe_dma_buf:
-    - bat-bmg-vm:         [PASS][1] -> [ABORT][2] ([Intel XE#8007] / [Intel XE#8023]) +1 other test abort
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5136-971288d0e77f7a0d356287121ce549ab5dad570a/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166960v4/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html
-
-  
-  [Intel XE#8007]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007
-  [Intel XE#8023]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8023
-
-
-Build changes
--------------
-
-  * Linux: xe-5136-971288d0e77f7a0d356287121ce549ab5dad570a -> xe-pw-166960v4
-
-  IGT_8938: b024a3b67372962ff6e643d3998c5cf5acc07081 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5136-971288d0e77f7a0d356287121ce549ab5dad570a: 971288d0e77f7a0d356287121ce549ab5dad570a
-  xe-pw-166960v4: 166960v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166960v4/index.html
-
---===============6188488196708647956==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>GuC paging engine support (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166960/">https://patchwork.freedesktop.org/series/166960/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166960v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166960v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5136-971288d0e77f7a0d356287121ce549ab5dad570a_BAT -&gt; xe-pw-166960v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 12)</h2>
-<p>Missing    (1): bat-lnl-2 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-166960v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_dma_buf:<ul>
-<li>bat-bmg-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5136-971288d0e77f7a0d356287121ce549ab5dad570a/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166960v4/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8023">Intel XE#8023</a>) +1 other test abort</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5136-971288d0e77f7a0d356287121ce549ab5dad570a -&gt; xe-pw-166960v4</li>
-</ul>
-<p>IGT_8938: b024a3b67372962ff6e643d3998c5cf5acc07081 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5136-971288d0e77f7a0d356287121ce549ab5dad570a: 971288d0e77f7a0d356287121ce549ab5dad570a<br />
-  xe-pw-166960v4: 166960v4</p>
-
-</body>
-</html>
-
---===============6188488196708647956==--
+> ---
+>  drivers/gpu/drm/i915/i915_driver.c | 10 +++++-----
+>  1 file changed, 5 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> index d6b94a29c91d..58081b52461a 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -1558,7 +1558,7 @@ static int i915_pm_restore(struct device *kdev)
+>  	return i915_pm_resume(kdev);
+>  }
+>  
+> -static int intel_runtime_suspend(struct device *kdev)
+> +static int i915_pm_runtime_suspend(struct device *kdev)
+>  {
+>  	struct drm_i915_private *dev_priv = kdev_to_i915(kdev);
+>  	struct intel_display *display = dev_priv->display;
+> @@ -1632,7 +1632,7 @@ static int intel_runtime_suspend(struct device *kdev)
+>  	if (IS_BROADWELL(dev_priv)) {
+>  		/*
+>  		 * On Broadwell, if we use PCI_D1 the PCH DDI ports will stop
+> -		 * being detected, and the call we do at intel_runtime_resume()
+> +		 * being detected, and the call we do at i915_pm_runtime_resume()
+>  		 * won't be able to restore them. Since PCI_D3hot matches the
+>  		 * actual specification and appears to be working, use it.
+>  		 */
+> @@ -1657,7 +1657,7 @@ static int intel_runtime_suspend(struct device *kdev)
+>  	return 0;
+>  }
+>  
+> -static int intel_runtime_resume(struct device *kdev)
+> +static int i915_pm_runtime_resume(struct device *kdev)
+>  {
+>  	struct drm_i915_private *dev_priv = kdev_to_i915(kdev);
+>  	struct intel_display *display = dev_priv->display;
+> @@ -1765,8 +1765,8 @@ const struct dev_pm_ops i915_pm_ops = {
+>  	.restore = i915_pm_restore,
+>  
+>  	/* S0ix (via runtime suspend) event handlers */
+> -	.runtime_suspend = intel_runtime_suspend,
+> -	.runtime_resume = intel_runtime_resume,
+> +	.runtime_suspend = i915_pm_runtime_suspend,
+> +	.runtime_resume = i915_pm_runtime_resume,
+>  };
+>  
+>  static const struct file_operations i915_driver_fops = {
+> -- 
+> 2.47.3
+> 
