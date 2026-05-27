@@ -4,54 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7724CD4F54
-	for <intel-xe@archiver.kernel.org>; Wed, 27 May 2026 11:14:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2893CD4F54
+	for <intel-xe@archiver.kernel.org>; Wed, 27 May 2026 11:26:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 986B410E7A9;
-	Wed, 27 May 2026 11:14:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 478CB10E780;
+	Wed, 27 May 2026 11:26:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N1c6RI1s";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bDsqig/X";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 160B610E786
- for <intel-xe@lists.freedesktop.org>; Wed, 27 May 2026 11:13:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0ED9F10E780
+ for <intel-xe@lists.freedesktop.org>; Wed, 27 May 2026 11:26:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779880434; x=1811416434;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=eUsyElcVWDskUDaf4ujVaffMNVBWr5l9DjBkPbkLJYM=;
- b=N1c6RI1sqE5eUGsEGcxllkog7dAqlAgb4h1eMUg7Pv3ho11G3MJ4Qi5W
- OsswGk8ceaNgrZdmzbvuCE6Kieu26FNRp+ZH8dadcihaA9SQDSD5GjB7n
- JmHtvR2jRcnhtJrQ0y95O/ZwcX4iy7NgV5cyMziqlW5Jz1cyOSmk6bP5K
- QZ9cuxB5vakbHWM4mDISWDOxGCuLFRmJDusmUsw9nRyJ/k6IpmDCsf2mI
- 9p3uDz0m6DHxKzCtzK3W+pnx7p/oPy9oV2B0HMXvh2C26s82wzCxZKfcI
- YPTD5RC6M8FxJ3ZyrrjHbhFdf4CIaJIXFT6kEdhOqxIk6q0NdAkreOmJ5 A==;
-X-CSE-ConnectionGUID: wg5YN5TTQA6yq30rsuwSXw==
-X-CSE-MsgGUID: RSspgnrWRrSxFuxoghaOUg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11798"; a="80612990"
-X-IronPort-AV: E=Sophos;i="6.24,171,1774335600"; d="scan'208";a="80612990"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2026 04:13:54 -0700
-X-CSE-ConnectionGUID: BdjVfli9RL2ExykCK9Ll1Q==
-X-CSE-MsgGUID: mMt3uNx+Rh6VgmeLRah9zg==
+ t=1779881180; x=1811417180;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=T35H+PXJcAzUBK0zgY7bN9uZ8XvvdTzhUOePvpdCm4Q=;
+ b=bDsqig/X8K8mYx+8JT00WFlh5mZvuLa1l4Lqt13bvBO6QSroOa4ltOa7
+ z5UIHhTVvunAD+Bt+dfeJJMwaPuW2du+dxw6/9ZNBvdlGUCIaDzuTZfHT
+ Cnaaizwop8FV7eRX2caPbS9FtGOPgDo1RdRZEQiDikFW7WF5v+4KXL0cf
+ fqlz5nVSjRnz0noQF1hsS5S9jLbAbMDYCU+k1wTMKWIy+bPV0INc60i/3
+ lTIE56Cer4fw3xBmFVrjbEbmyTQEfB8TNHv2ybprAP8VV+mXm8kI5eCNc
+ 6oNV4S0Sc3aEibMz1H/m2ptVhnehNwtxNypVLgtku6tQE3JExqIc05QoV Q==;
+X-CSE-ConnectionGUID: BWBkna1NRaC4/+zkkRDEjw==
+X-CSE-MsgGUID: BmI5W0lXTi62GhbO8tgFfA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11798"; a="80819588"
+X-IronPort-AV: E=Sophos;i="6.24,171,1774335600"; d="scan'208";a="80819588"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 May 2026 04:26:19 -0700
+X-CSE-ConnectionGUID: B7+dJA6tQqCSsxaAMs2WYw==
+X-CSE-MsgGUID: 5Upl39XJS1uEpnuq8740xw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,171,1774335600"; d="scan'208";a="242371097"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO mwauld-desk.intel.com)
- ([10.245.245.24])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2026 04:13:53 -0700
-From: Matthew Auld <matthew.auld@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,171,1774335600"; d="scan'208";a="241166985"
+Received: from padamowi-mobl1.ger.corp.intel.com (HELO
+ mwajdecz-hp.clients.intel.com) ([10.246.18.63])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 May 2026 04:26:18 -0700
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Subject: [PATCH v4 04/10] drm/xe/hw_engine: don't open code is_usm_hwe()
-Date: Wed, 27 May 2026 12:13:40 +0100
-Message-ID: <20260527111335.140000-16-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260527111335.140000-12-matthew.auld@intel.com>
-References: <20260527111335.140000-12-matthew.auld@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH v2] drm/xe: Move xe_uc_fw_abi.h to abi/
+Date: Wed, 27 May 2026 13:26:07 +0200
+Message-ID: <20260527112608.22448-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,29 +66,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Prefer is_usm_hwe() here.
+We aim to keep all pure ABI headers in the abi/ folder, but
+somehow we missed this file.
 
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_engine.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+v2: fix documentation link (Sashiko)
+---
+ Documentation/gpu/xe/xe_firmware.rst                   | 4 ++--
+ drivers/gpu/drm/xe/{xe_uc_fw_abi.h => abi/uc_fw_abi.h} | 4 ++--
+ drivers/gpu/drm/xe/xe_late_bind_fw_types.h             | 3 ++-
+ drivers/gpu/drm/xe/xe_uc_fw.h                          | 2 +-
+ 4 files changed, 7 insertions(+), 6 deletions(-)
+ rename drivers/gpu/drm/xe/{xe_uc_fw_abi.h => abi/uc_fw_abi.h} (99%)
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 8c66ff6f3d3c..768b0cd4c16a 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -1037,8 +1037,7 @@ bool xe_hw_engine_is_reserved(struct xe_hw_engine *hwe)
- 	    hwe->logical_instance >= gt->ccs_mode)
- 		return true;
+diff --git a/Documentation/gpu/xe/xe_firmware.rst b/Documentation/gpu/xe/xe_firmware.rst
+index 9c15a300bc62..d3030d1c9a84 100644
+--- a/Documentation/gpu/xe/xe_firmware.rst
++++ b/Documentation/gpu/xe/xe_firmware.rst
+@@ -7,10 +7,10 @@ Firmware
+ Firmware Layout
+ ===============
  
--	return xe->info.has_usm && hwe->class == XE_ENGINE_CLASS_COPY &&
--		hwe->instance == gt->usm.reserved_bcs_instance;
-+	return xe_gt_is_usm_hwe(gt, hwe);
- }
+-.. kernel-doc:: drivers/gpu/drm/xe/xe_uc_fw_abi.h
++.. kernel-doc:: drivers/gpu/drm/xe/abi/uc_fw_abi.h
+    :doc: CSS-based Firmware Layout
  
- const char *xe_hw_engine_class_to_str(enum xe_engine_class class)
+-.. kernel-doc:: drivers/gpu/drm/xe/xe_uc_fw_abi.h
++.. kernel-doc:: drivers/gpu/drm/xe/abi/uc_fw_abi.h
+    :doc: GSC-based Firmware Layout
+ 
+ Write Once Protected Content Memory (WOPCM) Layout
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw_abi.h b/drivers/gpu/drm/xe/abi/uc_fw_abi.h
+similarity index 99%
+rename from drivers/gpu/drm/xe/xe_uc_fw_abi.h
+rename to drivers/gpu/drm/xe/abi/uc_fw_abi.h
+index 74b888904fdc..198e949660e0 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw_abi.h
++++ b/drivers/gpu/drm/xe/abi/uc_fw_abi.h
+@@ -3,8 +3,8 @@
+  * Copyright © 2022 Intel Corporation
+  */
+ 
+-#ifndef _XE_UC_FW_ABI_H_
+-#define _XE_UC_FW_ABI_H_
++#ifndef _ABI_UC_FW_ABI_H
++#define _ABI_UC_FW_ABI_H
+ 
+ #include <linux/build_bug.h>
+ #include <linux/types.h>
+diff --git a/drivers/gpu/drm/xe/xe_late_bind_fw_types.h b/drivers/gpu/drm/xe/xe_late_bind_fw_types.h
+index 7fdb24e810b3..ee5efe60774e 100644
+--- a/drivers/gpu/drm/xe/xe_late_bind_fw_types.h
++++ b/drivers/gpu/drm/xe/xe_late_bind_fw_types.h
+@@ -10,7 +10,8 @@
+ #include <linux/mutex.h>
+ #include <linux/types.h>
+ #include <linux/workqueue.h>
+-#include "xe_uc_fw_abi.h"
++
++#include "abi/uc_fw_abi.h"
+ 
+ #define XE_LB_MAX_PAYLOAD_SIZE SZ_4K
+ 
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw.h b/drivers/gpu/drm/xe/xe_uc_fw.h
+index bb281b72a677..f2d3a3e7208b 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw.h
++++ b/drivers/gpu/drm/xe/xe_uc_fw.h
+@@ -8,8 +8,8 @@
+ 
+ #include <linux/errno.h>
+ 
++#include "abi/uc_fw_abi.h"
+ #include "xe_macros.h"
+-#include "xe_uc_fw_abi.h"
+ #include "xe_uc_fw_types.h"
+ 
+ struct drm_printer;
 -- 
-2.54.0
+2.47.1
 
