@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAE24CD6E4E
-	for <intel-xe@archiver.kernel.org>; Thu, 28 May 2026 05:02:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFEEBCD5BD5
+	for <intel-xe@archiver.kernel.org>; Thu, 28 May 2026 05:02:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9376C10EBFF;
-	Thu, 28 May 2026 05:02:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AE9E10EBF3;
+	Thu, 28 May 2026 05:02:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A2EGH6OL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RquWZYGd";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97C8310EBF6;
- Thu, 28 May 2026 05:02:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 281B410EC02;
+ Thu, 28 May 2026 05:02:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779944528; x=1811480528;
+ t=1779944530; x=1811480530;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=Cv4D7PckDsN4nIHEqJf9gPdXNUMQL5Lgk4XGPynVbHg=;
- b=A2EGH6OLvP86B8yihhbXF1dp4Sov+bSQFtzHlH0FdnZwrfFg5HkXpC0p
- OTODG5dYSLIdTVXQ0zNmpx1FpAfXlMHlNdLql12aCr7lF4hqE+XlYVDjr
- heJGG1FCWpHqKC26a671pqM+Rc65ZYnfvMT07YKyWGmevmeL4IYLr4B6f
- 3caGhdI6rMkXqpqeIvZCdB9ISC3wAq+FgTTM3EOLFiHxfK/6GmYEIFiiL
- r+ytAPmDpNzxXBVmfKEbHBTMetrSeiO3RYUcxJVfauDqc+75UxtFbm3yu
- HKDLBPWfmQOM23FxSXbQYLSFKwS6Iho3xtyFFwlvKNHXde2PsvnnmqOns A==;
-X-CSE-ConnectionGUID: RwpmBgOmSde0z4lSr4wz1w==
-X-CSE-MsgGUID: oFFFt25nR3q0GiaQaFGFXw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11799"; a="80895707"
-X-IronPort-AV: E=Sophos;i="6.24,172,1774335600"; d="scan'208";a="80895707"
+ bh=CmLmXM37YZQAUNc26P0DWBhkoIDUS7J4kTHrtaSpXwI=;
+ b=RquWZYGdrLO1LZZHyK48ndeeLL7GG1hnBf9AkizghPOdCpxENPvRY/7X
+ gqmC/E5N+xXP1S4FM4pUrXDbqVEGuB7M+JCDrqzeygN/jvqGyfs8VFs6n
+ FrrG3AlhRjf5loPzIGkqQ8H7Nqb/XAq5JAkZs/Y+S2f4/LBQAceWMLnQS
+ fq8LZu99iv76VTKCfusNokfIWbnJrVYXbY6iCnDws12tI+pUBXqEmV0RI
+ hQ9nSCHGpya3J21UeCyLXPcXp/euHW6wJ+cD7F5qi1jFH61i8ZUd5/VDx
+ 4wTgih7bLaT9463AoVgZ3ybg7uJOdso+TB68t+3y6idsGhKcWZfRYVGlf A==;
+X-CSE-ConnectionGUID: ezYQViy+Ql2lRTL5ME9/mQ==
+X-CSE-MsgGUID: 5ibWS/1jQTiG15FHe3psyw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11799"; a="80895710"
+X-IronPort-AV: E=Sophos;i="6.24,172,1774335600"; d="scan'208";a="80895710"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2026 22:02:08 -0700
-X-CSE-ConnectionGUID: 0kfBI3O6RJ62Sy0CxnVipA==
-X-CSE-MsgGUID: rlt00s2bQ46+iM+PN0OEQQ==
+ 27 May 2026 22:02:10 -0700
+X-CSE-ConnectionGUID: RtdPRSiaQW6wtW+KSlE9ww==
+X-CSE-MsgGUID: JvaZWkR3TUCSxbtfZVL0vQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,172,1774335600"; d="scan'208";a="238025886"
+X-IronPort-AV: E=Sophos;i="6.24,172,1774335600"; d="scan'208";a="238025895"
 Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2026 22:02:06 -0700
+ 27 May 2026 22:02:09 -0700
 From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [CI v2 05/17] drm/i915/display: Add DC3CO DC_STATE enable/disable
- support
-Date: Thu, 28 May 2026 10:31:19 +0530
-Message-ID: <20260528050131.466351-6-dibin.moolakadan.subrahmanian@intel.com>
+Subject: [CI v2 07/17] drm/i915/display: Add HAS_DC3CO() macro
+Date: Thu, 28 May 2026 10:31:21 +0530
+Message-ID: <20260528050131.466351-8-dibin.moolakadan.subrahmanian@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260528050131.466351-1-dibin.moolakadan.subrahmanian@intel.com>
 References: <20260528050131.466351-1-dibin.moolakadan.subrahmanian@intel.com>
@@ -67,59 +66,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add DC3CO handling to the dc_off power well sequencing and disable the
-DMC wakelock when exiting DC3CO.
+Add HAS_DC3CO() to identify platforms supporting DC3CO.
+DC3CO is supported from display version 35 onwards.
 
 BSpec: 75253
 Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 ---
- .../drm/i915/display/intel_display_power_well.c  | 16 +++++++++++++++-
- 1 file changed, 15 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_display_device.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index 611f784d8a7a..3ea080d0e21e 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -866,6 +866,13 @@ void gen9_set_dc_state(struct intel_display *display, u32 state)
- 	power_domains->dc_state = val & mask;
- }
- 
-+static void xe3lpd_enable_dc3co(struct intel_display *display)
-+{
-+	drm_dbg_kms(display->drm, "Enabling DC3CO\n");
-+	intel_dmc_wl_enable(display, DC_STATE_EN_UPTO_DC3CO);
-+	gen9_set_dc_state(display, DC_STATE_EN_UPTO_DC3CO);
-+}
-+
- static void assert_can_enable_dc5(struct intel_display *display)
- {
- 	enum i915_power_well_id high_pg;
-@@ -1054,9 +1061,13 @@ void gen9_disable_dc_states(struct intel_display *display)
- 	}
- 
- 	if (old_state == DC_STATE_EN_UPTO_DC5 ||
--	    old_state == DC_STATE_EN_UPTO_DC6)
-+	    old_state == DC_STATE_EN_UPTO_DC6 ||
-+	    old_state == DC_STATE_EN_UPTO_DC3CO)
- 		intel_dmc_wl_disable(display);
- 
-+	if (old_state == DC_STATE_EN_UPTO_DC3CO)
-+		return;
-+
- 	intel_cdclk_get_cdclk(display, &cdclk_config);
- 	/* Can't read out voltage_level so can't use intel_cdclk_changed() */
- 	drm_WARN_ON(display->drm,
-@@ -1092,6 +1103,9 @@ static void gen9_dc_off_power_well_disable(struct intel_display *display,
- 		return;
- 
- 	switch (power_domains->target_dc_state) {
-+	case DC_STATE_EN_UPTO_DC3CO:
-+		xe3lpd_enable_dc3co(display);
-+		break;
- 	case DC_STATE_EN_UPTO_DC6:
- 		skl_enable_dc6(display);
- 		break;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+index acb9ca87dda7..f77b3da2cff5 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.h
++++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+@@ -159,6 +159,7 @@ struct intel_display_platforms {
+ #define HAS_CUR_FBC(__display)		(!HAS_GMCH(__display) && IS_DISPLAY_VER(__display, 7, 13))
+ #define HAS_D12_PLANE_MINIMIZATION(__display)	((__display)->platform.rocketlake || (__display)->platform.alderlake_s)
+ #define HAS_DBUF_OVERLAP_DETECTION(__display)	(DISPLAY_RUNTIME_INFO(__display)->has_dbuf_overlap_detection)
++#define HAS_DC3CO(__display)		(DISPLAY_VER(__display) >= 35)
+ #define HAS_DDI(__display)		(DISPLAY_INFO(__display)->has_ddi)
+ #define HAS_DISPLAY(__display)		(DISPLAY_RUNTIME_INFO(__display)->pipe_mask != 0)
+ #define HAS_DMC(__display)		(DISPLAY_RUNTIME_INFO(__display)->has_dmc)
 -- 
 2.43.0
 
