@@ -4,27 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BEE7ECD6E44
-	for <intel-xe@archiver.kernel.org>; Thu, 28 May 2026 14:41:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A8F1CD4F54
+	for <intel-xe@archiver.kernel.org>; Thu, 28 May 2026 15:24:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82C6610F2D2;
-	Thu, 28 May 2026 14:41:46 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE44710F2CF;
- Thu, 28 May 2026 14:41:45 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8885964159333688065=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Add_wa=5F14025941?=
- =?utf-8?q?587_for_xe3_and_xe3p_platforms_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: tilak.tirumalesh.tangudu@intel.com
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 28 May 2026 14:41:45 -0000
-Message-ID: <177997930590.20757.8847642871666522174@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260528132030.2054973-1-tilak.tirumalesh.tangudu@intel.com>
-In-Reply-To: <20260528132030.2054973-1-tilak.tirumalesh.tangudu@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4B0D10F34C;
+	Thu, 28 May 2026 15:24:52 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MdnxburT";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2002B10F392;
+ Thu, 28 May 2026 15:24:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1779981891; x=1811517891;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=iEoDD9p9uw1ANVN2s1Yk4Mak2MDKLl2JMK4XsVy2rQQ=;
+ b=MdnxburTK1+6uUG4Us2/76tCuz8KSYdIBGWFuTpkrkTk8ifHBW/KqYIG
+ IVmTgEeIq+CQjxAk9n22eOztD8PetzrVzW7o5+t8Vvyg0hw5MlucnSqpN
+ UakIJKbwV93VxPhMKvzhzXFdSduecgek/eTSCjBmcdahY/tQwhJOnZkXE
+ llAgGyaAWzWt5P5qM+FD33GxJgAhKYLmcoljBwvLbRjX2Q2K1mpKrcjhW
+ XByH+fhqEmAXugbN+WSH5A18mnZwsOcJBbLsfd1jPKW2iiYLZuDPgPCL1
+ EJHgPVbdh6zRTwG7xYKNqVqW3sdIQJuZ56xFXyvNWdpSOybOkGbb9OsM1 Q==;
+X-CSE-ConnectionGUID: ZE4GG7qASw+pHA25gL1Gxg==
+X-CSE-MsgGUID: PbYWcSgrR2atqvgxABMRLQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11800"; a="80550258"
+X-IronPort-AV: E=Sophos;i="6.24,173,1774335600"; d="scan'208";a="80550258"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2026 08:24:51 -0700
+X-CSE-ConnectionGUID: yIiwNmIKS2GF9Z22aFbcaQ==
+X-CSE-MsgGUID: GTn2F/hvQdC5OMbi/sQRyA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,173,1774335600"; d="scan'208";a="239564712"
+Received: from tharipra-mobl.gar.corp.intel.com (HELO adixit-MOBL3.intel.com)
+ ([10.125.35.95])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2026 08:24:49 -0700
+Date: Thu, 28 May 2026 08:24:48 -0700
+Message-ID: <87bjdzmu9r.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: John Hubbard <jhubbard@nvidia.com>
+Cc: Peter Zijlstra <peterz@infradead.org>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Matthew Brost <matthew.brost@intel.com>, Thomas
+ =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, David
+ Airlie <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, Ingo Molnar
+ <mingo@redhat.com>, "Arnaldo Carvalho de Melo" <acme@kernel.org>, Namhyung
+ Kim <namhyung@kernel.org>, Mark Rutland <mark.rutland@arm.com>, Alexander
+ Shishkin <alexander.shishkin@linux.intel.com>, Jiri Olsa
+ <jolsa@kernel.org>, "Ian Rogers" <irogers@google.com>, Adrian Hunter
+ <adrian.hunter@intel.com>, "James Clark"
+ <james.clark@linaro.org>,<intel-xe@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>,<linux-perf-users@vger.kernel.org>, LKML
+ <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 0/2] complete perf_allow_* trio and use in drm/xe
+In-Reply-To: <542aef46-583b-412e-bd1b-50cd77c76289@nvidia.com>
+References: <20260523013326.129491-1-jhubbard@nvidia.com>	<20260523084056.GE3102624@noisy.programming.kicks-ass.net>	<8871a158-7a68-4247-a09f-bb3d970d6dc2@nvidia.com>	<87ecixv82m.wl-ashutosh.dixit@intel.com>	<ahcQ9Ns5mjsnrbEa@intel.com>	<20260527163014.GI3102624@noisy.programming.kicks-ass.net>	<87a4tkv4oo.wl-ashutosh.dixit@intel.com>	<542aef46-583b-412e-bd1b-50cd77c76289@nvidia.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/30.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +77,45 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8885964159333688065==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, 27 May 2026 17:24:36 -0700, John Hubbard wrote:
+>
+> On 5/27/26 4:00 PM, Dixit, Ashutosh wrote:
+> > On Wed, 27 May 2026 09:30:14 -0700, Peter Zijlstra wrote:
+> ...
+> >>>>>> Sure, works for me. How do you want to route these things, Xe tree or
+> >>>>>> -tip?
+> >>>>>
+> >>>>> Hi Peter,
+> >>>>>
+> >>>>> Maybe -tip, but really, either way is perfectly OK with me.
+> >>>>
+> >>>> I've R-b'd both the patches. If you want to merge via Xe tree, let me know
+> >>>> and we can get them merged.
+> >>>
+> >>> To get them through drm-xe trees we need ack from performance events subsystem
+> >>> maintainers.
+> >>>
+> >>> Peter, Ilgo, anyone, ack here?
+> >>
+> >> Acked-by: Peter Zijlstra (Intel) <peterz@infradead.org>
+> >
+> > I have submitted the patches for the Xe tree CI. Once that completes, we
+> > will merge them:
+> >
+> > https://patchwork.freedesktop.org/series/167137/#rev2
+> >
+> Thanks Ashutosh, Rodrigo, and Peter for the reviews and for sending this
+> on up!
 
-== Series Details ==
+Merged the the Xe tree:
 
-Series: drm/xe: Add wa_14025941587 for xe3 and xe3p platforms (rev2)
-URL   : https://patchwork.freedesktop.org/series/165617/
-State : success
+https://gitlab.freedesktop.org/drm/xe/kernel/-/commits/drm-xe-next
 
-== Summary ==
+Thanks John for the patches!
 
-CI Bug Log - changes from xe-5143-ad30180ef8931a910fe9ed4a5c9f7751e01ecd18_BAT -> xe-pw-165617v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8939 -> IGT_8940
-  * Linux: xe-5143-ad30180ef8931a910fe9ed4a5c9f7751e01ecd18 -> xe-pw-165617v2
-
-  IGT_8939: 8939
-  IGT_8940: 656294e257ae4a63e41dbd9d4c11c17ad2543210 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5143-ad30180ef8931a910fe9ed4a5c9f7751e01ecd18: ad30180ef8931a910fe9ed4a5c9f7751e01ecd18
-  xe-pw-165617v2: 165617v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165617v2/index.html
-
---===============8885964159333688065==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Add wa_14025941587 for xe3 and xe3p platforms (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165617/">https://patchwork.freedesktop.org/series/165617/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165617v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165617v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5143-ad30180ef8931a910fe9ed4a5c9f7751e01ecd18_BAT -&gt; xe-pw-165617v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8939 -&gt; IGT_8940</li>
-<li>Linux: xe-5143-ad30180ef8931a910fe9ed4a5c9f7751e01ecd18 -&gt; xe-pw-165617v2</li>
-</ul>
-<p>IGT_8939: 8939<br />
-  IGT_8940: 656294e257ae4a63e41dbd9d4c11c17ad2543210 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5143-ad30180ef8931a910fe9ed4a5c9f7751e01ecd18: ad30180ef8931a910fe9ed4a5c9f7751e01ecd18<br />
-  xe-pw-165617v2: 165617v2</p>
-
-</body>
-</html>
-
---===============8885964159333688065==--
+Thanks.
+--
+Ashutosh
