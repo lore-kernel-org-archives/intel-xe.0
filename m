@@ -4,63 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 620B3CD4F54
-	for <intel-xe@archiver.kernel.org>; Thu, 28 May 2026 12:57:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67758CD6E44
+	for <intel-xe@archiver.kernel.org>; Thu, 28 May 2026 13:02:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E70510F141;
-	Thu, 28 May 2026 12:57:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2044F10F14C;
+	Thu, 28 May 2026 13:02:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EBPCNbKk";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="BxuRmE4p";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0022710F13F;
- Thu, 28 May 2026 12:57:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779973059; x=1811509059;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=ygeURRrmJCOdi+g8jRLtSuNIngXWI8HSSTvcAInO7f8=;
- b=EBPCNbKksq96cxc3kVEDFAXkrm2Ip0msqkz0BP9NLfK/JBhOAIZfaiHY
- Rf3jQjCFkwzu+Mzh/BaiZCTGkiZ20gpS8esQHGcMOsAcYZAK2eR9aEBxx
- PDja7orIxDXpraSfW5T6H0rofcWItcAYOutgLJ49B4EzYcXIzKTgIoT8j
- ikxH5dtIOODXsnAf4gHHXvNPvJwiNXp6I+oUBAuTW+Knj3JsKZpycunu3
- KDVr9PtyFnLvpsri07LfwsKVLKgnMETbZmP6OBXm0dko3vSH7NCnCqvox
- PhB4wpld99p7cnqhlXlOg8yQdb0HZ8EsgaSWeGwduVeIVXcLvZIUoAIWA g==;
-X-CSE-ConnectionGUID: Q6bKRne5Q9yiqOkBAeIO8Q==
-X-CSE-MsgGUID: I+0rPYXxTzOGEjwURAa95A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11799"; a="68346466"
-X-IronPort-AV: E=Sophos;i="6.24,173,1774335600"; d="scan'208";a="68346466"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2026 05:57:38 -0700
-X-CSE-ConnectionGUID: 8eC6D8oNR+itBOIlezlUBQ==
-X-CSE-MsgGUID: rv+yjvWuR0GNDSFoUgiltA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,173,1774335600"; d="scan'208";a="236186903"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO fedora)
- ([10.245.244.41])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2026 05:57:35 -0700
-Date: Thu, 28 May 2026 14:57:26 +0200
-From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-xe-next
-Message-ID: <ahg7tgWh8djEngjM@fedora>
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D5BD10F14C
+ for <intel-xe@lists.freedesktop.org>; Thu, 28 May 2026 13:02:43 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id C1A6360553
+ for <intel-xe@lists.freedesktop.org>; Thu, 28 May 2026 13:02:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7992E1F00A3C
+ for <intel-xe@lists.freedesktop.org>; Thu, 28 May 2026 13:02:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1779973362;
+ bh=9zBMRM7knJbV+B5IyzIOMW8VBuVs+q0LiO/Usw/gaBw=;
+ h=From:In-Reply-To:References:Date:Subject:To:Cc;
+ b=BxuRmE4pOfjvzE4Zz5o9zLilN741qISwWNB9t6fWz4iCJqX3tVV7endadRmESzVtn
+ 1orlfZqkTg1VmQ+Cukq4RmFJfGuHHCF/zIOcDD1uGc69DR8zfGvWPelYvG9qGFXJEW
+ WKYrtPoU14PzR/MQjGFlmDjng67cXVNYxOho6DdZlZLAxUvVzKPuMY0aY/5Saqj3L4
+ UAar+++JJdqVTtgmabzmsHSzuPdwnlLOwS4b8V0LEp6XHZwNnhQ5+nmiOdjtlYKuyD
+ K4IveBukR1Dst/ahOzodRHbjmNTdZDua3wf9PU8EMmD3Q3yCiaA1plrDhSCxLT03WD
+ y8+yiI8l8+4dA==
+Received: by mail-lf1-f43.google.com with SMTP id
+ 2adb3069b0e04-5a8891febd2so16831587e87.1
+ for <intel-xe@lists.freedesktop.org>; Thu, 28 May 2026 06:02:42 -0700 (PDT)
+X-Forwarded-Encrypted: i=1;
+ AFNElJ84Hn0vN8bxR4WKyLzqq8eiXlX3Kg5HfX6RzEkwvpkts7YR3V8KZ5hDAYqbhEDVqQ3eonmNEQp6VA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxN/aMlPjf+GPrlL2jO8TtzlgxnkOHB0yrp7QrYJyekHJUn+avz
+ DHYjeFn2HhGUMa1GXn8HVkKREp0dLnRP0VSgpYHz9SU5K3ahepTyF2oKs6h5SkNHrt+Ltc5SRyi
+ U7/lmG/EudD1mTNgFIhmay/2DKbvhvoAylX4P/5oz6g==
+X-Received: by 2002:a05:6512:61d8:10b0:5a3:ffed:8443 with SMTP id
+ 2adb3069b0e04-5aa323bbfd8mr6446301e87.23.1779973361190; Thu, 28 May 2026
+ 06:02:41 -0700 (PDT)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 28 May 2026 09:02:40 -0400
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 28 May 2026 09:02:40 -0400
+From: Bartosz Golaszewski <brgl@kernel.org>
+In-Reply-To: <9a0d0e01-adf8-e111-49a0-580239265dbf@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20260513-swnode-remove-on-dev-unreg-v6-0-f9c58939df27@oss.qualcomm.com>
+ <20260513-swnode-remove-on-dev-unreg-v6-2-f9c58939df27@oss.qualcomm.com>
+ <9a0d0e01-adf8-e111-49a0-580239265dbf@linux.intel.com>
+Date: Thu, 28 May 2026 09:02:40 -0400
+X-Gmail-Original-Message-ID: <CAMRc=MfX+f4OVSsE9gnEccWiX2jccomhdJeMMGbVPcyzTi4SZQ@mail.gmail.com>
+X-Gm-Features: AVHnY4JLKSlVBf56eLZQmpAeLQcFReum4FF_eA-wI4Fc7-vVe2WQrN5HmsTNijA
+Message-ID: <CAMRc=MfX+f4OVSsE9gnEccWiX2jccomhdJeMMGbVPcyzTi4SZQ@mail.gmail.com>
+Subject: Re: [PATCH v6 2/6] platform/surface: gpe: use
+ platform_device_register_full()
+To: =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Danilo Krummrich <dakr@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Brendan Higgins <brendan.higgins@linux.dev>, David Gow <david@davidgow.net>, 
+ Rae Moar <raemoar63@gmail.com>, Andy Shevchenko <andy@kernel.org>, 
+ Maximilian Luz <luzmaximilian@gmail.com>, Hans de Goede <hansg@kernel.org>, 
+ Matthew Brost <matthew.brost@intel.com>, 
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, brgl@kernel.org, driver-core@lists.linux.dev, 
+ LKML <linux-kernel@vger.kernel.org>, linux-kselftest@vger.kernel.org, 
+ kunit-dev@googlegroups.com, platform-driver-x86@vger.kernel.org, 
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,139 +88,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave & Simona,
+On Thu, 28 May 2026 14:35:50 +0200, "Ilpo J=C3=A4rvinen"
+<ilpo.jarvinen@linux.intel.com> said:
+> On Wed, 13 May 2026, Bartosz Golaszewski wrote:
+>
+>> Creating a software node for a given set of properties and adding it to
+>> a platform device can be achieved with a single call to
+>> platform_device_register_full(). There's nothing in this driver that
+>> suggests using the more fine-grained interfaces was intentional so
+>> switch to using the high-level helper.
+>>
+>> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com=
+>
+>> ---
+>>  drivers/platform/surface/surface_gpe.c | 36 +++++++++++----------------=
+-------
+>>  1 file changed, 11 insertions(+), 25 deletions(-)
+>>
+>> diff --git a/drivers/platform/surface/surface_gpe.c b/drivers/platform/s=
+urface/surface_gpe.c
+>> index b359413903b13c4f8e8b284ef7ae6f6db3f47d72..b8bb47b0d91f036ee5073d21=
+534f8f26a4d5ed15 100644
+>> --- a/drivers/platform/surface/surface_gpe.c
+>> +++ b/drivers/platform/surface/surface_gpe.c
+>> @@ -290,9 +290,9 @@ static struct platform_device *surface_gpe_device;
+>>
+>>  static int __init surface_gpe_init(void)
+>>  {
+>> +	struct platform_device_info pdevinfo;
+>>  	const struct dmi_system_id *match;
+>>  	struct platform_device *pdev;
+>> -	struct fwnode_handle *fwnode;
+>>  	int status;
+>>
+>>  	match =3D dmi_first_match(dmi_lid_device_table);
+>> @@ -305,34 +305,20 @@ static int __init surface_gpe_init(void)
+>>  	if (status)
+>>  		return status;
+>>
+>> -	fwnode =3D fwnode_create_software_node(match->driver_data, NULL);
+>> -	if (IS_ERR(fwnode)) {
+>> -		status =3D PTR_ERR(fwnode);
+>> -		goto err_node;
+>> -	}
+>> -
+>> -	pdev =3D platform_device_alloc("surface_gpe", PLATFORM_DEVID_NONE);
+>> -	if (!pdev) {
+>> -		status =3D -ENOMEM;
+>> -		goto err_alloc;
+>> +	pdevinfo =3D (struct platform_device_info){
+>> +		.name =3D "surface_gpe",
+>> +		.id =3D PLATFORM_DEVID_NONE,
+>> +		.properties =3D match->driver_data,
+>> +	};
+>> +
+>> +	pdev =3D platform_device_register_full(&pdevinfo);
+>> +	if (IS_ERR(pdev)) {
+>> +		platform_driver_unregister(&surface_gpe_driver);
+>> +		return PTR_ERR(pdev);
+>>  	}
+>>
+>> -	pdev->dev.fwnode =3D fwnode;
+>> -
+>> -	status =3D platform_device_add(pdev);
+>> -	if (status)
+>> -		goto err_add;
+>> -
+>>  	surface_gpe_device =3D pdev;
+>>  	return 0;
+>> -
+>> -err_add:
+>> -	platform_device_put(pdev);
+>> -err_alloc:
+>> -	fwnode_remove_software_node(fwnode);
+>> -err_node:
+>> -	platform_driver_unregister(&surface_gpe_driver);
+>> -	return status;
+>>  }
+>>  module_init(surface_gpe_init);
+>
+> Acked-by: Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com>
+>
 
-This week's drm-xe-next PR.
+Hi!
 
-Series highlights:
+Thanks but FYI: I will replace this series with a different approach once t=
+he
+rework of node assignment for platform devices lands upstream.
 
-- drm/xe: Misc initialization improvements
-  7/7 patches pushed
-  Refactors early device initialization to improve separation of
-  concerns. Moves devid/revid and force_execlist initialization earlier,
-  separates early xe_device init from the rest, and cleans up pm
-  init_early() so it no longer accesses the device object directly.
-  Also drops an unused parameter from xe_device_create() and uses the
-  raw device ID to find the sub-platform descriptor.
-  (Michal Wajdeczko)
-
-- drm/xe/rtp: Miscellaneous improvements to rule matching
-  7/7 patches pushed
-  Improves the RTP (Register Table Processing) rule matching logic with
-  a more robust structured parser that resembles a formal grammar (eBNF
-  documented in kernel-doc), making it easier to add future extensions.
-  First reorganizes kunit tests to have cleaner separation of
-  responsibilities, then fixes short-circuit behaviour in the or-yes
-  case, improves handling of missing context, extracts rule_match_item(),
-  and introduces the full structured parser.
-  (Gustavo Sousa)
-
-Single patches:
-
-- drm/xe: Move xe_uc_fw_abi.h to abi/ (Michal Wajdeczko)
-- drm/xe: Restore IDLEDLY regiter on engine reset (Balasubramani Vivekanandan)
-- drm/xe: Assign queue name in time for drm_sched_init (Tvrtko Ursulin)
-
-
-Thanks,
-Thomas
-
-drm-xe-next-2026-05-28:
-Driver Changes:
-- drm/xe: Move xe_uc_fw_abi.h to abi/ (Michal Wajdeczko)
-- drm/xe: Restore IDLEDLY regiter on engine reset (Balasubramani Vivekanandan)
-- drm/xe/pm: Do early initialization in init_early() (Michal Wajdeczko)
-- drm/xe/pm: Don't access device in init_early() (Michal Wajdeczko)
-- drm/xe: Separate early xe_device initialization (Michal Wajdeczko)
-- drm/xe: Move xe->info.devid|revid initialization (Michal Wajdeczko)
-- drm/xe: Move xe->info.force_execlist initialization (Michal Wajdeczko)
-- drm/xe: Drop unused param from xe_device_create() (Michal Wajdeczko)
-- drm/xe: Use raw device ID to find sub-platform descriptor (Michal Wajdeczko)
-- drm/xe: Assign queue name in time for drm_sched_init (Tvrtko Ursulin)
-- drm/xe/rtp: Implement a structured parser for rule matching (Gustavo Sousa)
-- drm/xe/rtp: Fully parse the ruleset (Gustavo Sousa)
-- drm/xe/rtp: Extract rule_match_item() (Gustavo Sousa)
-- drm/xe/rtp: Do not break parsing when missing context (Gustavo Sousa)
-- drm/xe/rtp: Don't short-circuit to false in or-yes case (Gustavo Sousa)
-- drm/xe/rtp: Drop rule matching cases from rtp_to_sr_cases and rtp_cases (Gustavo Sousa)
-- drm/xe/rtp: Write kunit test cases specific for rule matching (Gustavo Sousa)
-
-The following changes since commit 339fa0be9e4a5d69fa47e91f4a36574224fb478f:
-
-  drm/xe/oa: Fix exec_queue leak on width check in stream open (2026-05-19 08:48:46 -0700)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-next-2026-05-28
-
-for you to fetch changes up to 637c8e3a525b73ac3cf765831119b02a927d11cd:
-
-  drm/xe: Move xe_uc_fw_abi.h to abi/ (2026-05-27 21:28:01 +0200)
-
-----------------------------------------------------------------
-Driver Changes:
-- drm/xe: Move xe_uc_fw_abi.h to abi/ (Michal Wajdeczko)
-- drm/xe: Restore IDLEDLY regiter on engine reset (Balasubramani Vivekanandan)
-- drm/xe/pm: Do early initialization in init_early() (Michal Wajdeczko)
-- drm/xe/pm: Don't access device in init_early() (Michal Wajdeczko)
-- drm/xe: Separate early xe_device initialization (Michal Wajdeczko)
-- drm/xe: Move xe->info.devid|revid initialization (Michal Wajdeczko)
-- drm/xe: Move xe->info.force_execlist initialization (Michal Wajdeczko)
-- drm/xe: Drop unused param from xe_device_create() (Michal Wajdeczko)
-- drm/xe: Use raw device ID to find sub-platform descriptor (Michal Wajdeczko)
-- drm/xe: Assign queue name in time for drm_sched_init (Tvrtko Ursulin)
-- drm/xe/rtp: Implement a structured parser for rule matching (Gustavo Sousa)
-- drm/xe/rtp: Fully parse the ruleset (Gustavo Sousa)
-- drm/xe/rtp: Extract rule_match_item() (Gustavo Sousa)
-- drm/xe/rtp: Do not break parsing when missing context (Gustavo Sousa)
-- drm/xe/rtp: Don't short-circuit to false in or-yes case (Gustavo Sousa)
-- drm/xe/rtp: Drop rule matching cases from rtp_to_sr_cases and rtp_cases (Gustavo Sousa)
-- drm/xe/rtp: Write kunit test cases specific for rule matching (Gustavo Sousa)
-
-----------------------------------------------------------------
-Balasubramani Vivekanandan (1):
-      drm/xe: Restore IDLEDLY regiter on engine reset
-
-Gustavo Sousa (7):
-      drm/xe/rtp: Write kunit test cases specific for rule matching
-      drm/xe/rtp: Drop rule matching cases from rtp_to_sr_cases and rtp_cases
-      drm/xe/rtp: Don't short-circuit to false in or-yes case
-      drm/xe/rtp: Do not break parsing when missing context
-      drm/xe/rtp: Extract rule_match_item()
-      drm/xe/rtp: Fully parse the ruleset
-      drm/xe/rtp: Implement a structured parser for rule matching
-
-Michal Wajdeczko (8):
-      drm/xe: Use raw device ID to find sub-platform descriptor
-      drm/xe: Drop unused param from xe_device_create()
-      drm/xe: Move xe->info.force_execlist initialization
-      drm/xe: Move xe->info.devid|revid initialization
-      drm/xe: Separate early xe_device initialization
-      drm/xe/pm: Don't access device in init_early()
-      drm/xe/pm: Do early initialization in init_early()
-      drm/xe: Move xe_uc_fw_abi.h to abi/
-
-Tvrtko Ursulin (1):
-      drm/xe: Assign queue name in time for drm_sched_init
-
- Documentation/gpu/xe/xe_firmware.rst               |   4 +-
- .../gpu/drm/xe/{xe_uc_fw_abi.h => abi/uc_fw_abi.h} |   4 +-
- drivers/gpu/drm/xe/tests/xe_pci.c                  |   6 +
- drivers/gpu/drm/xe/tests/xe_rtp.c                  |  38 +++
- drivers/gpu/drm/xe/tests/xe_rtp_test.c             | 331 +++++++++++++--------
- drivers/gpu/drm/xe/tests/xe_rtp_test.h             |  23 ++
- drivers/gpu/drm/xe/xe_device.c                     |  57 +++-
- drivers/gpu/drm/xe/xe_device.h                     |   4 +-
- drivers/gpu/drm/xe/xe_guc_ads.c                    |   5 +
- drivers/gpu/drm/xe/xe_guc_submit.c                 |  72 +++--
- drivers/gpu/drm/xe/xe_late_bind_fw_types.h         |   3 +-
- drivers/gpu/drm/xe/xe_pci.c                        |  27 +-
- drivers/gpu/drm/xe/xe_pm.c                         |  42 ++-
- drivers/gpu/drm/xe/xe_pm.h                         |   1 +
- drivers/gpu/drm/xe/xe_rtp.c                        | 325 +++++++++++---------
- drivers/gpu/drm/xe/xe_rtp.h                        |  29 +-
- drivers/gpu/drm/xe/xe_uc_fw.h                      |   2 +-
- 17 files changed, 644 insertions(+), 329 deletions(-)
- rename drivers/gpu/drm/xe/{xe_uc_fw_abi.h => abi/uc_fw_abi.h} (99%)
- create mode 100644 drivers/gpu/drm/xe/tests/xe_rtp.c
- create mode 100644 drivers/gpu/drm/xe/tests/xe_rtp_test.h
+Bart
