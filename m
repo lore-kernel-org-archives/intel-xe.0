@@ -4,99 +4,145 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14439CD4F54
-	for <intel-xe@archiver.kernel.org>; Thu, 28 May 2026 20:19:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81B3FCD5BD5
+	for <intel-xe@archiver.kernel.org>; Thu, 28 May 2026 20:24:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 351B010E6BD;
-	Thu, 28 May 2026 20:19:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32C3B10E0C4;
+	Thu, 28 May 2026 20:24:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="jGtoLau4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hxmn6Gw+";
 	dkim-atps=neutral
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com
- [209.85.160.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D21710E6BD
- for <intel-xe@lists.freedesktop.org>; Thu, 28 May 2026 20:19:07 +0000 (UTC)
-Received: by mail-oa1-f41.google.com with SMTP id
- 586e51a60fabf-43587e63a8eso8186674fac.0
- for <intel-xe@lists.freedesktop.org>; Thu, 28 May 2026 13:19:07 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1779999546; cv=none;
- d=google.com; s=arc-20240605;
- b=lDh0EiiEfpQsiaiVHD1woaOGEpQMPE6v9aaSwrQ9ewdZWELXOIu9APIo87XhSh++d0
- BG3fEuJ0PFh9V6zkxeQ5+nAXOrxkLG//uSDCPuDCUmhkbboAkHm4V/InXVVrwP7CEf50
- BcQ4kLDiGtRqzycSoptU+wF0HC5i+mHBMsDd204RDVrRppspLLVZ8+cIGRZvY+U8v3ct
- ZqY2Icg9y1u9m2UUov98M/QdpTNnjlNXrSjnUg8xRgdQjij6j05ZGvomyoE5wLN/rvZG
- NYziniJ8p7Ne8cnzFZfM9hZ/Oph5ri2tvfUc56jEe41yjeZq9iAMZ66agjGhXpPmP9wv
- 7IrQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:dkim-signature;
- bh=NEzjnv+Kp0jO+B1kdAYqSGuPLxg2TUZ6vcH1EWXCMJY=;
- fh=aoZnHJ2qVFv/HY3xsqKXGr0pk+akUEOsi+rSU9dMqjM=;
- b=gemb9MYc80pttcy0gLQdvinAbXVVMRLKwMI3IENZtFlIGqRSxqrTF3P9sIgqxunNUp
- e2+nBVKQdwrgqtTOPv+JnO90IZFR/xphIriNxk//3lwb0/+185tQUz0bqfsE67XyAOqg
- iNag2f41O/gYRYdhnxUZsx1vLkm8qvw5+FnpCLRjqp+yf4P0p5SRnZl1/a/WTD5nsYlr
- 6Whz6k53sfVHYPlz1E6sNGfmtXpnxlb0G9bkqjMoTNdLhZNAcJ8mvEs+YR4fmJEuT1PQ
- xsst4MQaUaEMQcevJucXUpjiw5aGrkm5k6mg16ZpKO7vh7iEvCvLlCrg/6LWrfcC0lgn
- 4CPw==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20251104; t=1779999546; x=1780604346;
- darn=lists.freedesktop.org; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=NEzjnv+Kp0jO+B1kdAYqSGuPLxg2TUZ6vcH1EWXCMJY=;
- b=jGtoLau4ObJUQQ46MhY4fwxt6t44MbpIZdfvmFpCAJtiKbiIFQN5gH+tftF+D1WJn2
- nT80GajDnC57Dzf2S62ckHT+OwTC1krCwbUVrmITtJ0te7vMm8dKB06bFRhvT7DGGxJu
- Um6DrDdywt/FItfEIbQupEuiUqSyM8p3O02fbgU0b5r4f5HeFUrAsSVShtj2xQUiUVuQ
- z/PCsCVY11chDdV1MDUR6vr8ipuFiBp4M74Sj1wFm7DvGb/LqalD7lme9TRIDqQvoB6q
- ehQXl4WhVb8HVV/kPtPBSLZJ4yp5+a/p+Qr3DQLnBQH9i5+IAbvDDsAABhdqMae5Yipb
- nmJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1779999546; x=1780604346;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=NEzjnv+Kp0jO+B1kdAYqSGuPLxg2TUZ6vcH1EWXCMJY=;
- b=cNeWbP9bdxHAUXwBexehxCJC5fq8GiG5GtMaJCdi9jgx/P5LpeVNDq3UBDSzaqCfPW
- eazhYarCTMxawIHyF0PqoP6s8Iz8JxqqDFgbRS1eO0G0LDwyV6ZRC7r6u27reOQKBmtY
- DqIjpFV1Xwd/3yJpPJo4Qa2iFsXzYxIV8ss5qKYwWGptiNnv4Ao7FbTwz9AShCWg+NBC
- zrU8SDlweD+OJm4P5HM2ABtZ16cHp+Ro7L9fGzX+I8Y3iwYbK80Mz/aWycO/0CfIKKza
- WILwCn9qiCveuZpNsx8tpYpP6N/iZsaPf5O2GgLrTB9U6ajmmEsPlK/jVRA24Jbg1qR6
- /dzg==
-X-Forwarded-Encrypted: i=1;
- AFNElJ84AX5rE7qxei0Z++235HlopsdkXKkVgVidI3vlg2ZL3vjIQeURMeMz4ygpGDt2GSdIiJL7m3ihNg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwQggDFrh3gV4n1ajLqTYU8PRIVqcPQCq0m6wl0MPFEQ3YcpcRl
- i6BBq6ujmaxMQcV2LzBMa9LxUwkCk66RQ5v8IQCUeaLgPHfZergcRFFGsfIwgBOxSSVSddcz3be
- JEwlqI6sMWCBF4bW4qvJe6jinmiulcotQBbIxTKjs
-X-Gm-Gg: Acq92OHbAGvCFEkYeBvM3HZTJaa9tyBlpQPtC+GL2effL0rMbM/7gZ3wKQS4wgBK5RL
- MiC2VFhXciEfYVWrJqe+053J88/k8fznUf1iro9xjpatNSCuvzg1CEeqVfmX3Txl5E/oU8vFyhy
- tKT4oU9H4fgReV0/oIJn9Kvd/leMz9jxjJvymv54Hk3zJFxQmvFoi7DPGW1kFMBxEEbWQUUyl+i
- LOkiQK3g1xyVYlqVbmNZ6PDd3WSMWRgJ5bHq66V7NK1xEvy8FQeVk8bpFKaCNFJi4G+yC3PAPm1
- blWYP0NzKCYmNzdTzWUpQPe+3UFZI3NVSqXcjc1pFr+jxmd/9AB/83YsTpQ6udqEN80Dx2mAJll
- r91HjZ7diL2sblq2qnBXY/mNgRtu7pqs23cy2wpwoWzFB/raGSPt8NbYohxYsO7IwC8UgyLA=
-X-Received: by 2002:a05:6870:e08f:b0:43b:543c:5069 with SMTP id
- 586e51a60fabf-43c85f2c4a1mr187366fac.15.1779999545649; Thu, 28 May 2026
- 13:19:05 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21A4010E0C4
+ for <intel-xe@lists.freedesktop.org>; Thu, 28 May 2026 20:24:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1779999872; x=1811535872;
+ h=from:to:cc:subject:date:message-id:
+ content-transfer-encoding:mime-version;
+ bh=v+5+IqHmxhQBagMPsu4MR9n7SXqqfkdHze6VQBYj7pk=;
+ b=hxmn6Gw+nODhdNJrsWAV5U7O01PGSx34is98XZ2W7Gge5yT3uWMe+OuT
+ z6IaxQb0lgboq4qlmCMDaFSBqTpqfg1AtOpVpNZFCtLz8ElR4v7Ld07IM
+ kXGNY9TPUNgna2C7XWmMivMyZbP0DzvBghw70iIGj0f/5McEix0Zzj7Uk
+ fNyGkGiafUWWdBtDtM6OwLSR78FAdmgTJjvkSzCnKtjgOBl5M5jsS6pm5
+ yJFNhPyz1T+jM2R33YAVITFVJ+rj/lmKOpMf4kXhOyGqxxWsd/7tq1Tq/
+ 4kvCH7FDiePnsUsVVLBn/bFrvCF2xgip9Rx4IcHDColreVLvNKYknqVeE A==;
+X-CSE-ConnectionGUID: qaVWbKGxT1iMBBs3abB6Ag==
+X-CSE-MsgGUID: nMlV+BDHTuyw6m7cm8iTqQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11800"; a="80964574"
+X-IronPort-AV: E=Sophos;i="6.24,174,1774335600"; d="scan'208";a="80964574"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2026 13:24:32 -0700
+X-CSE-ConnectionGUID: vFZuPxjiRUGdWC6bxMfjiA==
+X-CSE-MsgGUID: 9V2u0IV0RFSvSi0FlH2wGw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,174,1774335600"; d="scan'208";a="266266689"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2026 13:24:32 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 28 May 2026 13:24:31 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Thu, 28 May 2026 13:24:31 -0700
+Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.54) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 28 May 2026 13:24:31 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=hj9rfe0yokPOS+td4MvUtJQDroD5qpploINuU4GKaXutHuhAUVXHQyof0lwDWFzswF8i38dv5BnKf7DZw092PAbcIrSVFxKKzMcCvmkQRu+bk2gNJj4S4jdMtjH8ABuifwkrx4M2gMtpNOAYpEB0THmFxqa0NTHRXOHR6GbfVlrcA8Un+HRL7n8Mt/Mfp/u9z7uDDM3cuTSxSAXsOwZJ6i2c8ue0rBlqGvZk4OG6GFFNT+r4GZ8ED+Ty7BS7wRG6eTjERraLsCkFbYIMnGvU6IOf0+1BPZ1UpCNkdmXVDNALklDdLYsTgzEINv8VsRl5lQJWJ+ZUDZnWBtpb7um05A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qqaD5DYKSCWIBRKythSUPpj6iUGSH6ZxcWrMFYzB5RY=;
+ b=Fxkyyy9GuHd78NnSH31UM+vQYPoTEXHLpq3Rbn+F37Kz9H/P5js/hps7h5K21OhGY8Yd/h8hmXwAaNBpHlyqG5fAslxpkdon7NKjxo9h7Qqy9En55ae2Z6Zz9PKUWklj18EM4bhCOhkzuyMHw7vAGq5YqTVS9LV5ITiFPlW4sImv/JO/fxitgP9XNeYODjrn0offIhPLrZVSj2USxLU03s/Z4HU8eG8RK6FFPdr2n9oJfsK46xFc9RQ0btFx9xv3VyDwEdtAUDISFXAxuGaH+stXY4tfTz2lOy7gzOw2uWsEP7piWpYPPiEvfnvYFvAeYgY7T7K3pvafUeMIXLnHdg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CO1PR11MB5073.namprd11.prod.outlook.com (2603:10b6:303:92::23)
+ by LV3PR11MB8580.namprd11.prod.outlook.com (2603:10b6:408:1ae::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.12; Thu, 28 May
+ 2026 20:24:29 +0000
+Received: from CO1PR11MB5073.namprd11.prod.outlook.com
+ ([fe80::a153:939c:df8c:f4fe]) by CO1PR11MB5073.namprd11.prod.outlook.com
+ ([fe80::a153:939c:df8c:f4fe%4]) with mapi id 15.21.0071.011; Thu, 28 May 2026
+ 20:24:29 +0000
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+CC: Rodrigo Vivi <rodrigo.vivi@intel.com>, Paulo Zanoni
+ <paulo.r.zanoni@intel.com>
+Subject: [PATCH] drm/xe: improve Kconfig.profile help text for scheduler
+ timeouts
+Date: Thu, 28 May 2026 16:24:26 -0400
+Message-ID: <20260528202425.135065-2-rodrigo.vivi@intel.com>
+X-Mailer: git-send-email 2.54.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR03CA0065.namprd03.prod.outlook.com
+ (2603:10b6:a03:331::10) To CO1PR11MB5073.namprd11.prod.outlook.com
+ (2603:10b6:303:92::23)
 MIME-Version: 1.0
-References: <6d8e36e2aea806f9973b3c501aad4523f7316d6a@intel.com>
- <20260521194018.2445206-1-sean@poorly.run>
- <20260521194018.2445206-2-sean@poorly.run>
- <9b290b22-97a9-4ffc-9823-67efba98c70f@intel.com>
-In-Reply-To: <9b290b22-97a9-4ffc-9823-67efba98c70f@intel.com>
-From: Sean Paul <seanpaul@google.com>
-Date: Thu, 28 May 2026 16:18:28 -0400
-X-Gm-Features: AVHnY4Kao597dDx2SRbChuVFrf-Jrh9IUtXZpLh_1XKHqDfReuT3ymaWu95wqY8
-Message-ID: <CAOw6vbLn+-iEk_Aky9r-TWuT3WXi4xkHZ3ZUDyX7EeKPKDpf1g@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] drm/i915/color: Fix Pre-CSC degamma LUT bounds
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-Cc: Sean Paul <sean@poorly.run>, intel-gfx@lists.freedesktop.org, 
- jani.nikula@linux.intel.com, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: multipart/alternative; boundary="000000000000a05c6b0652e670b8"
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PR11MB5073:EE_|LV3PR11MB8580:EE_
+X-MS-Office365-Filtering-Correlation-Id: ae21ec83-13ca-446b-595d-08debcf71e79
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|376014|366016|18002099003|3023799007|11063799006|6133799003|56012099006;
+X-Microsoft-Antispam-Message-Info: WWd4lUl1MYyrkygqvmp5rxiQBFPGEcP+taFjuFQwDEceh4kxwRGpXSe7tsKYZQ2E0jic7NtH4JW65mr5MrM8K3I9y7/dUMhsX2aP/xLHf4l1LeWGwG9rInBhjRXPCvTLNk+RrS33ufzf6sZSc9qKNBn1RBPMEVdNGXqZv0DALqs4Q0kiP5vm5QOfyAo+N5T958N9IrHVrdjNKN+tY/mKBCDncWC/B8NwYZoK+cwku8ejnBt7BCY/tRXlEHeY6IdRMiZtPxOCoQ8t7uidazyMvRyL1rUmye+QUoVj9J18iah9NJI50AuWFo9UQyaMJGD+OzMYNCLD82/ZaqA2KkPrKpSHJ7fSMBu7sPFyl3rkDSBlfO03ggTigHC6GtJVhK/NCIWmOu3aHX+VeBHFz3ejYX9268Ga0TdJweldZzlaZBWWwNRUtnaW7akCImtenQFB+oErHWBs3HLhxUoMT+7iY1vxQmUdkJJHTCwsNFeUWDzoAqklOmu+s/jfWDzWfoo6NJSnYXm5EmbyN3HLOOpKGf2tR3S+BYAChbLgWn+LGLfhTDIhfpBsDVad5JSHFmEpyBbTF3LNqyjjEGdLsyuqw/dvbrLKEbhImLH1zqLg9HBwNEukJXBPI64oFfQ38t0Yt/YJbVg3y+aQE8DYaL3GObHMEyPKqriohiZJXNnN0jMdmqlaX7BjPq69u0wjnZpf
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CO1PR11MB5073.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(18002099003)(3023799007)(11063799006)(6133799003)(56012099006);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ksddE9yR03yI3ed3W6gmD88cwfb+NxnrkhFwNC+wxPJfMh7ZYBr5cnaUI997?=
+ =?us-ascii?Q?yG2sm0akf3dl1LfY3zrsChpflTNy3iYWLm3FShmklto36KhTz/IaNpteBbVa?=
+ =?us-ascii?Q?aFZtMf7cUG0I62TrrCFkSC3uI5n0rS8JnHWrgr6F2ExenulPM422o8wlCtFE?=
+ =?us-ascii?Q?mSXYPL+NErM27i/ZApyW1L3+mOdIRQiiqUXeyDaDprXsXp2i9+Gk2xRTqSLm?=
+ =?us-ascii?Q?HubDCnZid/6HOI1EK1Yg21TXs+ZD0m6bVufwzrwbjwsQmQx6b9/YptKvbu8N?=
+ =?us-ascii?Q?HMjyy9LZZK1ei+r+Jyg/Kqsk/kaXpa8LsGBM+TcaVItcMhi4OqyupwJRHSEe?=
+ =?us-ascii?Q?MOs5WwAYrYtN/wFPGXrPp1pmJTYg162ULlHi7arM2LRTfhHgS5cHQyX93I0m?=
+ =?us-ascii?Q?6Jx54sP/vclW3xCVotC89HtQrpNlghRzAd4lOumzOU4y5TSJklkVJw9Kl8m4?=
+ =?us-ascii?Q?qb9IU72ChIkcJrIoKhig1oIuxhicAzPi92SBYy4RGGRKRFGN993afhYayIfg?=
+ =?us-ascii?Q?4irpmhhEjIVFAmZJF710Z5uQuxhu8aHP2XND+77lhg8gPlZKJi/AjE06Qb29?=
+ =?us-ascii?Q?FfOBNnVJP7P92dl1V95xK0F4gHcMETy6A3nEurGKtucJIbDD+yrYM5ya2kWP?=
+ =?us-ascii?Q?Qp1yKcVoh3p8BmMJf/S9MALxuCaE7+PiQlLk4OzaR/ITIZEZB/w3rZcmrBQ1?=
+ =?us-ascii?Q?UlG3pkXaBoaNRT0E2TALBbGiQ/6vHCWEeqK/88ZM5iA/qYjX1gJ+QKc7mzUz?=
+ =?us-ascii?Q?z6fl8owjEHcBsseRdAtrVXt0Fq193z5t8JRjXm7MgNwLtGlPzSEBDzA88X08?=
+ =?us-ascii?Q?7xVCY/VBh+h56X9e6zqQKXdRXnY1W+oFsUDqRpFUTa7GRWUTdEHjfEnw4GJH?=
+ =?us-ascii?Q?ltetWOZQLjUEy8ptpYao9S9wPNlmH79Vnnf3LQZa8DZcC/rHlzhWRw+KFAym?=
+ =?us-ascii?Q?6TzKflil9eSfciQ6R2HoxE5tFZkGUltjF6UFUNytSOxEV+FNihB2px7vzu6D?=
+ =?us-ascii?Q?LTVlAaf0ghIPfeLJj+cUZtanHZe8+3m9qNHA3zmyJ3rPuL2uz2BrJqke9M3V?=
+ =?us-ascii?Q?1E1YNVVG59yAbPWQYmdABU5ZaO6kSf9qa2cmjOXS4adJ47MoIWjoSEczEA7L?=
+ =?us-ascii?Q?4cLS0Z8ICKIjFYX++hU2uEizrcLbc6bpefDwfZfyo+ehwoUgJh0pFckT9sl7?=
+ =?us-ascii?Q?l1FI2fQZ7OHdJqVaAY7O6hwEnI+oilv3r+Xr7V1F0r+PySjSL3zl9RIJa1cP?=
+ =?us-ascii?Q?vy2M0y4/Nu7H+NjTrPxxo5LUxRP7E/U1Fpfu7lbkiY9jrHkJB6cJu9D3ABVL?=
+ =?us-ascii?Q?P67zHKpw439QL11+TCZdhZ2JnDiFwP2PMD17IU5n2S/yn5OM3nGPmQc4lAyL?=
+ =?us-ascii?Q?+Ci/l+Q2S5SYhY93TDu31fNqmLAoGqN6BHm0bTc1umqoFDm1+X9WrkEEtgXo?=
+ =?us-ascii?Q?66fvjZsIH/5aqDLEWZ6F/KcFtE5kJXQTlZJBwyuTWPVjPouGjixW211tGbN4?=
+ =?us-ascii?Q?Bud/eU8sM62XQrh4m8mccez+WD10Bk+VAItmx/ehtBLLcrMziSQwwcIqfdwX?=
+ =?us-ascii?Q?2LzcAYY1IiaWI4eVeHglr3is+eqymAbuSrFrl6PnyVoUHFU47bCQ2zQHxtf4?=
+ =?us-ascii?Q?CQH5Y85lASDP1ChbveNaywAx3An9EyLMu52V9FNoAxz1JWu9t8luMoyTZ7cQ?=
+ =?us-ascii?Q?PfPbHvYWHKDJ7XK2ubEXjyikNwCnextubRi4S72V3YYz0zodS63NcplbAG9k?=
+ =?us-ascii?Q?e+NpLyNP1A=3D=3D?=
+X-Exchange-RoutingPolicyChecked: rxyKuRTbE8KfhDVetsdZwfue3QRiuM3t0ftH6gcubvgsSbwpjQLyYPeVt1YX1CeXD+/8dHbGvNsa6wNiPT4G8pZBz+DhCHBYV7jXyT8Bu24SrG6uGyG0nJ3lrupaLi5JPY8DcjQ/UaBN/fI90KYdqwC04G0thsy8db4Cc4Hm0jiyT7NtQXKFb12+e7kkMFfmIeNu/Jx7syJ9czTGTPOuqVyuF3uoX6PfRUjq5gib/iD32Lx5ixayZpXxb0tlg06UDHms3pC/e3nmESGe6RYnCx3/mN/dw4KiT2cIAKw0sbEXA1QjtC0vV3Ix9LuPlt4E+1k0lfCQilyAs7n5j1UkGg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: ae21ec83-13ca-446b-595d-08debcf71e79
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5073.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2026 20:24:28.9584 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: X82hWgT6Bkjcy49bQDTI1+G/FG7SLcoe98AV3ELe/DE5PvFFUQ+AgZdPs2WFD7kxYvQEPNmRAXs9Fs4mdVhp9g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR11MB8580
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,220 +157,128 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---000000000000a05c6b0652e670b8
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+The existing help texts for JOB_TIMEOUT, TIMESLICE and PREEMPT_TIMEOUT
+configs were brief and did not make clear the role each symbol plays:
 
-On Wed, May 27, 2026 at 1:23=E2=80=AFAM Borah, Chaitanya Kumar <
-chaitanya.kumar.borah@intel.com> wrote:
+ - _TIMEOUT  : the kernel default, used when no userspace application
+               overrides it via the SET_PROPERTY UAPI.
+ - _TIMEOUT_MIN: lower bound of the range accepted by the UAPI; requests
+                 below this value are rejected.
+ - _TIMEOUT_MAX: upper bound of the range accepted by the UAPI; requests
+                 above this value are rejected.
 
-> Hello Sean,
->
-> On 5/22/2026 1:09 AM, Sean Paul wrote:
-> > From: Sean Paul <seanpaul@google.com>
-> >
-> > Fix a typo in the loop condition in xelpd_program_plane_pre_csc_lut
-> > for Segment 2 degamma programming, changing 'while (i++ > 130)' to
-> > 'while (i++ < 130)'. Also clamp Segment 2 to the last user-provided
-> > LUT entry value instead of hardcoding it to 1.0 (1 << 24) to fix
-> > a step discontinuity.
->
-> The commit message needs an update.
->
+Rewrite the help texts to reflect this distinction, name the relevant
+UAPI properties explicitly, and clarify that the MIN/MAX limits are only
+enforced when DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT is enabled.
 
-Ack.
+Cc: Paulo Zanoni <paulo.r.zanoni@intel.com>
+Assisted-by: GitHub-Copilot:claude-sonnet-4.6
+Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ drivers/gpu/drm/xe/Kconfig.profile | 71 +++++++++++++++++++-----------
+ 1 file changed, 46 insertions(+), 25 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/Kconfig.profile b/drivers/gpu/drm/xe/Kconfig.profile
+index 7530df998148..e07517d120e0 100644
+--- a/drivers/gpu/drm/xe/Kconfig.profile
++++ b/drivers/gpu/drm/xe/Kconfig.profile
+@@ -1,50 +1,71 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ config DRM_XE_JOB_TIMEOUT_MAX
+-	int "Default max job timeout (ms)"
++	int "Hard upper limit for job timeout (ms)"
+ 	default 10000 # milliseconds
+ 	help
+-	  Configures the default max job timeout after which job will
+-	  be forcefully taken away from scheduler.
++	  Absolute upper bound (in milliseconds) for the per-engine-class job
++	  timeout. This is the maximum value that can be written to the sysfs
++	  job_timeout_ms knob, regardless of privileges. To raise this ceiling,
++	  increase this value and rebuild the kernel.
+ config DRM_XE_JOB_TIMEOUT_MIN
+-	int "Default min job timeout (ms)"
++	int "Hard lower limit for job timeout (ms)"
+ 	default 1 # milliseconds
+ 	help
+-	  Configures the default min job timeout after which job will
+-	  be forcefully taken away from scheduler.
++	  Absolute lower bound (in milliseconds) for the per-engine-class job
++	  timeout. This is the minimum value that can be written to the sysfs
++	  job_timeout_ms knob, regardless of privileges.
++
++	  Note: the job timeout default (5000 ms) is hardcoded in the driver
++	  and is not configurable here. Use the sysfs job_timeout_ms knob at
++	  runtime to change the engine-class default.
+ config DRM_XE_TIMESLICE_MAX
+-	int "Default max timeslice duration (us)"
++	int "Hard upper limit for timeslice duration (us)"
+ 	default 10000000 # microseconds
+ 	help
+-	  Configures the default max timeslice duration between multiple
+-	  contexts by guc scheduling.
++	  Absolute upper bound (in microseconds) for the timeslice duration.
++	  This caps both the sysfs timeslice_duration_us knob and the value
++	  accepted via the DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE UAPI for
++	  processes with CAP_SYS_NICE when DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT
++	  is enabled.
+ config DRM_XE_TIMESLICE_MIN
+-	int "Default min timeslice duration (us)"
++	int "Hard lower limit for timeslice duration (us)"
+ 	default 1 # microseconds
+ 	help
+-	  Configures the default min timeslice duration between multiple
+-	  contexts by guc scheduling.
++	  Absolute lower bound (in microseconds) for the timeslice duration.
++	  This caps both the sysfs timeslice_duration_us knob and the value
++	  accepted via the DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE UAPI for
++	  processes with CAP_SYS_NICE when DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT
++	  is enabled.
+ config DRM_XE_PREEMPT_TIMEOUT
+-	int "Preempt timeout (us, jiffy granularity)"
++	int "Default preempt timeout (us, jiffy granularity)"
+ 	default 640000 # microseconds
+ 	help
+-	  How long to wait (in microseconds) for a preemption event to occur
+-	  when submitting a new context. If the current context does not hit
+-	  an arbitration point and yield to HW before the timer expires, the
+-	  HW will be reset to allow the more important context to execute.
++	  Initial per-engine-class preemption timeout (in microseconds). This
++	  is the value the driver programs at boot; it can be changed at
++	  runtime via the sysfs preempt_timeout_us knob.
++
++	  This is how long the driver waits for the current context to reach
++	  an arbitration point and yield the GPU voluntarily when a
++	  higher-priority context becomes runnable. If the context does not
++	  yield before the timer expires, the HW is reset to allow the
++	  higher-priority context to execute.
++
++	  The range userspace may write via sysfs is bounded by
++	  DRM_XE_PREEMPT_TIMEOUT_MIN and DRM_XE_PREEMPT_TIMEOUT_MAX.
+ config DRM_XE_PREEMPT_TIMEOUT_MAX
+-	int "Default max preempt timeout (us)"
++	int "Hard upper limit for preempt timeout (us)"
+ 	default 10000000 # microseconds
+ 	help
+-	  Configures the default max preempt timeout after which context
+-	  will be forcefully taken away and higher priority context will
+-	  run.
++	  Absolute upper bound (in microseconds) for the per-engine-class
++	  preemption timeout. This is the maximum value that can be written to
++	  the sysfs preempt_timeout_us knob, regardless of privileges.
+ config DRM_XE_PREEMPT_TIMEOUT_MIN
+-	int "Default min preempt timeout (us)"
++	int "Hard lower limit for preempt timeout (us)"
+ 	default 1 # microseconds
+ 	help
+-	  Configures the default min preempt timeout after which context
+-	  will be forcefully taken away and higher priority context will
+-	  run.
++	  Absolute lower bound (in microseconds) for the per-engine-class
++	  preemption timeout. This is the minimum value that can be written to
++	  the sysfs preempt_timeout_us knob, regardless of privileges.
+ config DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT
+ 	bool "Default configuration of limitation on scheduler timeout"
+ 	default y
+-- 
+2.54.0
 
-> Is there an easy way to reproduce the problem you are seeing (e.g. IGT)?
->
-
-Unfortunately I don't have an IGT test, it's reproducing readily with our
-userspace.
-
-Sean
-
-I am wondering if we have to do the same on the pipe Gamma and Degamma.
->
-> =3D=3D
-> Chaitanya
->
-> >
-> > Link:
-> https://lore.kernel.org/intel-gfx/20260521180143.2143262-1-sean@poorly.ru=
-n/
-> #v1
-> > Signed-off-by: Sean Paul <seanpaul@google.com>
-> >
-> > Changes in v2:
-> > - Split out into separate patches for pre/post csc fixes
-> > - Dropped loop bounds fix in favor of [1]
-> >
-> > [1]-
-> https://lore.kernel.org/r/20260519075245.383864-1-pranay.samala@intel.com
-> > ---
-> >   drivers/gpu/drm/i915/display/intel_color.c | 5 +++--
-> >   1 file changed, 3 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_color.c
-> b/drivers/gpu/drm/i915/display/intel_color.c
-> > index 90d5dc2ef3e4..469011c83f9b 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_color.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_color.c
-> > @@ -3953,6 +3953,7 @@ xelpd_program_plane_pre_csc_lut(struct intel_dsb
-> *dsb,
-> >       enum plane_id plane =3D to_intel_plane(state->plane)->id;
-> >       const struct drm_color_lut32 *pre_csc_lut =3D
-> plane_state->hw.degamma_lut->data;
-> >       u32 i, lut_size;
-> > +     u32 lut_val =3D 1 << 24;
-> >
-> >       if (icl_is_hdr_plane(display, plane)) {
-> >               lut_size =3D 128;
-> > @@ -3963,7 +3964,7 @@ xelpd_program_plane_pre_csc_lut(struct intel_dsb
-> *dsb,
-> >
-> >               if (pre_csc_lut) {
-> >                       for (i =3D 0; i < lut_size; i++) {
-> > -                             u32 lut_val =3D
-> drm_color_lut32_extract(pre_csc_lut[i].green, 24);
-> > +                             lut_val =3D
-> drm_color_lut32_extract(pre_csc_lut[i].green, 24);
-> >
-> >                               intel_de_write_dsb(display, dsb,
-> >
-> PLANE_PRE_CSC_GAMC_DATA_ENH(pipe, plane, 0),
-> > @@ -3975,7 +3976,7 @@ xelpd_program_plane_pre_csc_lut(struct intel_dsb
-> *dsb,
-> >                       do {
-> >                               intel_de_write_dsb(display, dsb,
-> >
-> PLANE_PRE_CSC_GAMC_DATA_ENH(pipe, plane, 0),
-> > -                                                (1 << 24));
-> > +                                                lut_val);
-> >                       } while (i++ > 130);
-> >               } else {
-> >                       for (i =3D 0; i < lut_size; i++) {
->
->
-
---000000000000a05c6b0652e670b8
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote g=
-mail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, May 27,=
- 2026 at 1:23=E2=80=AFAM Borah, Chaitanya Kumar &lt;<a href=3D"mailto:chait=
-anya.kumar.borah@intel.com">chaitanya.kumar.borah@intel.com</a>&gt; wrote:<=
-br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
-x;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hello Sean,<br>
-<br>
-On 5/22/2026 1:09 AM, Sean Paul wrote:<br>
-&gt; From: Sean Paul &lt;<a href=3D"mailto:seanpaul@google.com" target=3D"_=
-blank">seanpaul@google.com</a>&gt;<br>
-&gt; <br>
-&gt; Fix a typo in the loop condition in xelpd_program_plane_pre_csc_lut<br=
->
-&gt; for Segment 2 degamma programming, changing &#39;while (i++ &gt; 130)&=
-#39; to<br>
-&gt; &#39;while (i++ &lt; 130)&#39;. Also clamp Segment 2 to the last user-=
-provided<br>
-&gt; LUT entry value instead of hardcoding it to 1.0 (1 &lt;&lt; 24) to fix=
-<br>
-&gt; a step discontinuity.<br>
-<br>
-The commit message needs an update.<br></blockquote><div><br></div><div>Ack=
-.</div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0=
-px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-Is there an easy way to reproduce the problem you are seeing (e.g. IGT)?<br=
-></blockquote><div><br></div><div>Unfortunately I don&#39;t have an IGT tes=
-t, it&#39;s reproducing readily with our userspace.</div><div><br></div><di=
-v>Sean</div><div><br></div><blockquote class=3D"gmail_quote" style=3D"margi=
-n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
-">
-I am wondering if we have to do the same on the pipe Gamma and Degamma.<br>
-<br>
-=3D=3D<br>
-Chaitanya<br>
-<br>
-&gt; <br>
-&gt; Link: <a href=3D"https://lore.kernel.org/intel-gfx/20260521180143.2143=
-262-1-sean@poorly.run/" rel=3D"noreferrer" target=3D"_blank">https://lore.k=
-ernel.org/intel-gfx/20260521180143.2143262-1-sean@poorly.run/</a> #v1<br>
-&gt; Signed-off-by: Sean Paul &lt;<a href=3D"mailto:seanpaul@google.com" ta=
-rget=3D"_blank">seanpaul@google.com</a>&gt;<br>
-&gt; <br>
-&gt; Changes in v2:<br>
-&gt; - Split out into separate patches for pre/post csc fixes<br>
-&gt; - Dropped loop bounds fix in favor of [1]<br>
-&gt; <br>
-&gt; [1]- <a href=3D"https://lore.kernel.org/r/20260519075245.383864-1-pran=
-ay.samala@intel.com" rel=3D"noreferrer" target=3D"_blank">https://lore.kern=
-el.org/r/20260519075245.383864-1-pranay.samala@intel.com</a><br>
-&gt; ---<br>
-&gt;=C2=A0 =C2=A0drivers/gpu/drm/i915/display/intel_color.c | 5 +++--<br>
-&gt;=C2=A0 =C2=A01 file changed, 3 insertions(+), 2 deletions(-)<br>
-&gt; <br>
-&gt; diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/=
-drm/i915/display/intel_color.c<br>
-&gt; index 90d5dc2ef3e4..469011c83f9b 100644<br>
-&gt; --- a/drivers/gpu/drm/i915/display/intel_color.c<br>
-&gt; +++ b/drivers/gpu/drm/i915/display/intel_color.c<br>
-&gt; @@ -3953,6 +3953,7 @@ xelpd_program_plane_pre_csc_lut(struct intel_dsb=
- *dsb,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0enum plane_id plane =3D to_intel_plane(state=
--&gt;plane)-&gt;id;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0const struct drm_color_lut32 *pre_csc_lut =
-=3D plane_state-&gt;hw.degamma_lut-&gt;data;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0u32 i, lut_size;<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0u32 lut_val =3D 1 &lt;&lt; 24;<br>
-&gt;=C2=A0 =C2=A0<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0if (icl_is_hdr_plane(display, plane)) {<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0lut_size =3D 128=
-;<br>
-&gt; @@ -3963,7 +3964,7 @@ xelpd_program_plane_pre_csc_lut(struct intel_dsb=
- *dsb,<br>
-&gt;=C2=A0 =C2=A0<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (pre_csc_lut)=
- {<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0for (i =3D 0; i &lt; lut_size; i++) {<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0u32 lut_val =3D drm_color_lut32_extract(=
-pre_csc_lut[i].green, 24);<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0lut_val =3D drm_color_lut32_extract(pre_=
-csc_lut[i].green, 24);<br>
-&gt;=C2=A0 =C2=A0<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0intel_de_write_dsb(display, dsb,<b=
-r>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 PLANE_PRE_CSC_GAMC_DATA_ENH(pipe, plane, 0)=
-,<br>
-&gt; @@ -3975,7 +3976,7 @@ xelpd_program_plane_pre_csc_lut(struct intel_dsb=
- *dsb,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0do {<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0intel_de_write_dsb(display, dsb,<b=
-r>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 PLANE_PRE_CSC_GAMC_DATA_ENH(pipe, plane, 0)=
-,<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 (1 &lt;&lt; 24));<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 lut_val);<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0} while (i++ &gt; 130);<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0} else {<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0for (i =3D 0; i &lt; lut_size; i++) {<br>
-<br>
-</blockquote></div></div>
-
---000000000000a05c6b0652e670b8--
