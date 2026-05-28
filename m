@@ -4,78 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2C1ECD6E64
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Jun 2026 14:40:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF1CFCD6E69
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Jun 2026 14:40:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5917A113436;
-	Mon,  1 Jun 2026 14:40:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6846B11342F;
+	Mon,  1 Jun 2026 14:40:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=poorly.run header.i=@poorly.run header.b="XI79Uu3f";
+	dkim=pass (1024-bit key; unprotected) header.d=seu.edu.cn header.i=@seu.edu.cn header.b="i+oYMtE2";
 	dkim-atps=neutral
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com
- [209.85.128.177])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85AAE10F6D2
- for <intel-xe@lists.freedesktop.org>; Thu, 28 May 2026 23:08:19 +0000 (UTC)
-Received: by mail-yw1-f177.google.com with SMTP id
- 00721157ae682-7de68222e96so78497b3.2
- for <intel-xe@lists.freedesktop.org>; Thu, 28 May 2026 16:08:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=poorly.run; s=google; t=1780009698; x=1780614498; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=WCd+eJCIusrbfetJCTMFBLKlj+qUy/ODp/mDze4wwfU=;
- b=XI79Uu3fxVmmHfcXazXplB8duYD/JPuqSQ9lGW2qTgF8+t4n8iwhVTC8y2DxQJrCqR
- qfDJu7CqLEEFi9uTbE5fIEh2WbEeenfSQVhqoPONbjwTgF7mGCf7mQ2PuLWH7I/2PAR/
- 3/0PQh9ZIZK/bDnT5PbcmLJ6NRYlUBT6QG+Fx4aFxah5lZ9kCeuf/u/LVgBTMYp7dMPA
- L509LD+Al1rXwhg2mxFBmrjlsusNBsDvSZGY/gw1BMyYSBQtmY3UoRyvoLnYqNNlgyB9
- NqjUiS/RTGlsH7Gs4bUJk/xFf9EF+5/YDApbGM7GNZcIlLcN1s53j4FpFkb7epEYTvqc
- 6WLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1780009698; x=1780614498;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=WCd+eJCIusrbfetJCTMFBLKlj+qUy/ODp/mDze4wwfU=;
- b=JK2fTMfMOxTtKpk6hpTgOHJoGVC9iP54l27AZbnbaDJ/7LTjJMH3za8LY4z6wIi6U7
- fxbqpux+TeXrI16NWnyOKuReRxeTuhbkb9s3E+/AkEbm9tHlpvKU863eZySS3sfymx/t
- kwhda1BwxvOUSw31CciF/k6UNRiv3z/P7wqrjA5yVRiEuzZ1Y82O3uD1r7gTPgUO7DPp
- 8KBimhaDFe81SDQCfoQKIgbwCSA7xlHfIZklTRi0yXc8U2Ik2CDbw8Hw0KPHumzlYXIw
- Tqhk0n1dgJTfQX52Ndpd0IA+g4K8sN5dFLG27a141F2CwfbxrxrA5j/XUlfgR2vHh824
- LbHQ==
-X-Forwarded-Encrypted: i=1;
- AFNElJ8VI8aCt2zRBc8HFsdjLHUpHb+blCWyqrjAzV+BPky80LK0BRg/GLtWNnNdskWJS4QFXoqmJCa3dA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxhDK6wQFFLeoDJhys4v0hlf+IGDiFbl0iyIavAr5LSo670UrpN
- C+Kim7+RSXWKikbaJ6KH3D2eKAAKcRZr0KU4O/BwuDW74HVaNwoNudB9ah3PjUNAaW0=
-X-Gm-Gg: Acq92OEOaQLxhudgQCqq1HJ70Dz4+egF4sX37A/XkmeZrEqgcENK6gyVqTrpjpyHW1q
- k7sYIv09nhkSempQWbawzawNfWtI1XMAy+AP5ULdjudqhkNSAKhXL0uN1HRUk97+qYr9OGTqNTk
- PuhUPmqDJUgdRyjwerVSR7vUwPjzGLMg2LB+9qX8FfZCgqyn+rwh1Juft2zJRu4k3+/65QpYbTr
- NONxlGgC2sG8rythbqPS7umz8+nI1EjuZE9BugGgknzaEelmCTH8Xknt4FF7sCED2MCdZfBucbH
- OSHBjZoXmc08HA3lYUwJ6GOblv8EpBp+PTLOymqdXeaejuN0D3CYxQP2W1J0PLKxoIwCGxaw2GI
- iOv+AfiOxSQFPIA//IloXhtSAlP+Iz3RL+yxH1G/kRjhD6mt9SeHVvecmkvvIdD5ZO5Du0EVDCU
- Tle+/QgmE5bxKtcnWjT4QGHTwvhIHXMHDyKzEF1Xt7XTqHJJZBcXQ9MnNHdVizTA5Xnw==
-X-Received: by 2002:a05:690c:6e0c:b0:7d0:4824:6411 with SMTP id
- 00721157ae682-7de4d16b634mr2397747b3.47.1780009698408; 
- Thu, 28 May 2026 16:08:18 -0700 (PDT)
-Received: from localhost (182.221.85.34.bc.googleusercontent.com.
- [34.85.221.182]) by smtp.gmail.com with ESMTPSA id
- 00721157ae682-7de6ea5d9b2sm34117b3.47.2026.05.28.16.08.17
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 28 May 2026 16:08:18 -0700 (PDT)
-From: Sean Paul <sean@poorly.run>
-To: intel-gfx@lists.freedesktop.org, jani.nikula@linux.intel.com,
- chaitanya.kumar.borah@intel.com
-Cc: Sean Paul <seanpaul@google.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH v3 1/2] drm/i915/color: Fix step discontinuity in Post-CSC
- Gamma LUT
-Date: Thu, 28 May 2026 19:07:46 -0400
-Message-ID: <20260528230817.2455072-1-sean@poorly.run>
-X-Mailer: git-send-email 2.54.0.823.g6e5bcc1fc9-goog
+X-Greylist: delayed 302 seconds by postgrey-1.36 at gabe;
+ Thu, 28 May 2026 15:51:05 UTC
+Received: from mail-m93188.xmail.ntesmail.com (mail-m93188.xmail.ntesmail.com
+ [103.126.93.188])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD0D010F2B1;
+ Thu, 28 May 2026 15:51:05 +0000 (UTC)
+Received: from PC-202605011814.localdomain (unknown
+ [IPV6:2409:8924:2013:1a6b:50af:214a:ea2b:7da2])
+ by smtp.qiye.163.com (Hmail) with ESMTP id 403418ca8;
+ Thu, 28 May 2026 23:45:58 +0800 (GMT+08:00)
+From: Runyu Xiao <runyu.xiao@seu.edu.cn>
+To: jani.nikula@linux.intel.com,
+	rodrigo.vivi@intel.com
+Cc: joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
+ simona@ffwll.ch, bigeasy@linutronix.de, clrkwllms@kernel.org,
+ rostedt@goodmis.org, jerome.anand@intel.com,
+ pierre-louis.bossart@linux.dev, tiwai@suse.de,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-rt-devel@lists.linux.dev, runyu.xiao@seu.edu.cn,
+ jianhao.xu@seu.edu.cn, stable@vger.kernel.org
+Subject: [PATCH] drm/i915/audio: use generic_handle_irq_safe() for LPE audio
+ irq
+Date: Thu, 28 May 2026 23:45:51 +0800
+Message-Id: <20260528154551.3708290-1-runyu.xiao@seu.edu.cn>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9e6f438ac703a1kunmeb945bb5695a4
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+ tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlCSExCVh0YSUkfQhkeSUwaHVYeHw
+ 5VEwETFhoSFyQUDg9ZV1kYEgtZQVlJT0tCQUNCSU9BSUtKSEFKGk0ZQU5LGh1BSUpPGkEeGkkZQU
+ wfGklZV1kWGg8SFR0UWUFZT0tIVUpLSUhOQ0NVSktLVUtZBg++
+DKIM-Signature: a=rsa-sha256;
+ b=i+oYMtE2Uw987NRwaIDLItV2PiXrfbsCTGptQqXsNBgKX6eSnYckWaW0ilkf7Z7q+7yAlojA/BSfPcWvvYgWDMC+MwDVjA1CKybUCLSlyt7b5omxUKGD8J1isNfRVgCxMr1Zzr4PoQ2O/iAqTsdK0sc00d6YEq5mSmAC+XtT38o=;
+ c=relaxed/relaxed; s=default; d=seu.edu.cn; v=1; 
+ bh=loucx8xe4IYiCrHUEihfpijKrZOkZGAVA8/7vYAgfsM=;
+ h=date:mime-version:subject:message-id:from;
 X-Mailman-Approved-At: Mon, 01 Jun 2026 14:40:04 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -91,45 +66,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Sean Paul <seanpaul@google.com>
+intel_lpe_audio_irq_handler() forwards the LPE audio child IRQ from the
+i915 parent IRQ path with generic_handle_irq(). The forwarded child top
+half is not an independent hardirq entry point; it inherits the context
+of the outer i915 interrupt dispatch path.
 
-Fix a step discontinuity in the Post-CSC Gamma LUT when SDR dimming
-is active by clamping Segment 2 to the last user-provided LUT entry
-value instead of hardcoding it to 1.0 (1 << 24).
+This becomes a problem when the parent IRQ runs in threaded context, for
+example on PREEMPT_RT or other forced-threading configurations. i915
+requests the parent IRQ with IRQF_SHARED and without IRQF_NO_THREAD, so
+the forwarded child handler can run with local IRQs enabled. That
+violates the expected top-half execution semantics and can trigger an
+"enabled interrupts" WARN.
 
-Signed-off-by: Sean Paul <seanpaul@google.com>
-Link: https://lore.kernel.org/intel-gfx/20260521180143.2143262-1-sean@poorly.run/ #v1
-Link: https://lore.kernel.org/intel-gfx/20260525135730.1122696-1-sean@poorly.run/ #v2
+The issue was identified on Linux v6.18.21 by our static analysis tool
+and then manually reviewed on the i915 child-IRQ forwarding sites after
+commit 8cadce97bf26 ("drm/i915/gsc: mei interrupt top half should be in
+irq disabled context") fixed the same helper contract for the GSC path.
 
-Changes in v2:
-- Split out into separate patches for pre/post csc fixes
-- Dropped loop bounds fix in favor of [1]
-Changes in v3:
-- None
+It was then validated with a reproducible QEMU no-device parent/child
+IRQ harness that registers a threaded parent IRQ and a child IRQ
+handler, then exercises both generic_handle_irq() and
+generic_handle_irq_safe() under the same threaded parent context. In the
+plain-helper phase, the child handler ran with irqs_disabled=0 and
+triggered an "enabled interrupts" WARN. In the safe-helper phase, the
+same child handler ran with irqs_disabled=1. This is family-level
+runtime evidence for the same IRQ forwarding misuse pattern. No
+Baytrail/Cherrytrail hardware was available to run the real i915 LPE
+path end-to-end.
 
-[1]- https://lore.kernel.org/r/20260519075245.383864-1-pranay.samala@intel.com
+Use generic_handle_irq_safe() here so the forwarded LPE audio child IRQ
+runs with local IRQs disabled even when the outer i915 dispatch path is
+threaded.
+
+Fixes: eef57324d926 ("drm/i915: setup bridge for HDMI LPE audio driver")
+Cc: stable@vger.kernel.org
+Signed-off-by: Runyu Xiao <runyu.xiao@seu.edu.cn>
 ---
- drivers/gpu/drm/i915/display/intel_color.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_lpe_audio.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-index 7ef870cd9a16..7185f3628dcf 100644
---- a/drivers/gpu/drm/i915/display/intel_color.c
-+++ b/drivers/gpu/drm/i915/display/intel_color.c
-@@ -4038,11 +4038,11 @@ xelpd_program_plane_post_csc_lut(struct intel_dsb *dsb,
- 						   lut_val);
- 			}
+diff --git a/drivers/gpu/drm/i915/display/intel_lpe_audio.c b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
+index 42284e9928f2..ac1dfd592a9f 100644
+--- a/drivers/gpu/drm/i915/display/intel_lpe_audio.c
++++ b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
+@@ -263,7 +263,7 @@ void intel_lpe_audio_irq_handler(struct intel_display *display)
+ 	if (!HAS_LPE_AUDIO(display))
+ 		return;
  
--			/* Segment 2 */
-+			/* Segment 2 - clamp to the last LUT value to prevent step discontinuity */
- 			do {
- 				intel_de_write_dsb(display, dsb,
- 						   PLANE_POST_CSC_GAMC_DATA_ENH(pipe, plane, 0),
--						   (1 << 24));
-+						   lut_val);
- 			} while (i++ < 34);
- 		} else {
- 			/*TODO: Add for segment 0 */
+-	ret = generic_handle_irq(display->audio.lpe.irq);
++	ret = generic_handle_irq_safe(display->audio.lpe.irq);
+ 	if (ret)
+ 		drm_err_ratelimited(display->drm,
+ 				    "error handling LPE audio irq: %d\n", ret);
 -- 
-Sean Paul, Software Engineer, Google / Chromium OS
-
+2.34.1
