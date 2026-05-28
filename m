@@ -4,156 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FBF1CD4F54
-	for <intel-xe@archiver.kernel.org>; Thu, 28 May 2026 19:19:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14439CD4F54
+	for <intel-xe@archiver.kernel.org>; Thu, 28 May 2026 20:19:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0503610F5BD;
-	Thu, 28 May 2026 19:19:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 351B010E6BD;
+	Thu, 28 May 2026 20:19:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ljmBlU3V";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="jGtoLau4";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62CF410F5BD
- for <intel-xe@lists.freedesktop.org>; Thu, 28 May 2026 19:19:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779995948; x=1811531948;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=eXarVsR6qNJaPC45f01wbyohpB8NYl+H4Dj2pd24DYs=;
- b=ljmBlU3VMhXqpZhtfqkS5/WHZEkybulHu/ZYhNZ6KU9f23Y7fW9XnQAQ
- c1/VAIVWhcD4iQpJ44NUeSdcIM93yjuW0N8csDU/xErpgBQ+0kHmwgvJC
- AVBlvtzmH3yQLgOQT4mFTfF8tjBHqRdljtfhXc8pAqDXStk67LYOmDSBE
- aQDDWTvtmagcKpWRYTtdp7fnrhZwx3NJJC8Lq9q4/+sPEK32P0CmUfO6r
- i3C6EXrtQJ6RJDlP/G8qwWzlb6n53mBqTZmeOMMZu1uxM0grzaU5npawt
- 3uJwVvmG4hg/ERIFqmArh/vx0RC+jRSQnbnz/xG+B8VOa5u9HrVjs2jt/ w==;
-X-CSE-ConnectionGUID: xDsieAtLQqm3STK7GfdlcQ==
-X-CSE-MsgGUID: /duZU3DvSG+X1XT+Tay+xg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11800"; a="92321659"
-X-IronPort-AV: E=Sophos;i="6.24,174,1774335600"; d="scan'208";a="92321659"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2026 12:19:07 -0700
-X-CSE-ConnectionGUID: TtERuaTTSxyvO5z/ZvrFUQ==
-X-CSE-MsgGUID: rrhXxwiJQjugZU/kffbUZg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,174,1774335600"; d="scan'208";a="266522997"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2026 12:19:07 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 28 May 2026 12:19:06 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Thu, 28 May 2026 12:19:06 -0700
-Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.4) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 28 May 2026 12:19:03 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=C6K6keqnqV8zsjlsQ8bCbm1te3C0Baqhiog0abAr94PJetrLHFhBhPMn9YqnXkiYJYzG5OQesaO1Q73Lb5JgDz4JbAzMDOqYNMm0Hyu1zuNIqrpCue0YoEfx2tgoy/ZgLHfn1SYVi9gvzYLnVENrqAJ+UKEjJYW+oczevVNEhVYp5CYh+U2C6aW0341WATQn9VJ7JFm4/l/CiZT6+X0vtVZAjSlBMC+Bn8GQDy78cLu2pu0C4IUMiYnXPP10daIrxVWksCNddjPddavEU14fK26pvbfZUXS54kCAdsxSehI1gGzxSrru/kyNM5QcazTIC+YWKkdBTQt6ogrCWox4AA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=o2/+qpLsxF/1HNYWHBO41hep0fc85KVg0FdYMB/Qf5g=;
- b=vxEovGyYNeRuTtRbqe/b/VqGKrj7BDkRsz47qqDBdcWZyVBy/Gm1Yjzz7FG7AzJP/1oChTiy6IPPVRcnmh9Crvgvg0uMbOj3CoKgLxAYTHutPP0b7Qn9ckaHw2Mmr0HNqvXYmlclDpkQhOUFXEUf7rh7lipcuVZVpbNSj0zQzeQAc7J0L22CTmrHt4eSSb1d7JTyIjPXWrzPX7xB2MCF8IcwHSEfV4g6BvyCxeyxdtPb6cv35v+tl1WiT5ZlTLGIpW+J9sxUvXQm1oHdUMyHPmcALIW2gRnWooW5DaO7hkTQT7dJ+/HXLqg5WmZ8V1yhxhMoQOFQStn3OrcAmzwRjw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
- by IA3PR11MB8967.namprd11.prod.outlook.com (2603:10b6:208:574::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.12; Thu, 28 May
- 2026 19:18:35 +0000
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::3a69:3aa4:9748:6811]) by MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::3a69:3aa4:9748:6811%6]) with mapi id 15.21.0071.011; Thu, 28 May 2026
- 19:18:32 +0000
-Message-ID: <cf526083-efe8-4e99-98a2-7c35206c9d74@intel.com>
-Date: Thu, 28 May 2026 21:18:28 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] drm/xe/guc: Reduce GuC log size from 8MB to 2MB
-To: Zhanjun Dong <zhanjun.dong@intel.com>, <intel-xe@lists.freedesktop.org>
-References: <20260511194924.2016315-1-zhanjun.dong@intel.com>
- <20260511194924.2016315-4-zhanjun.dong@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20260511194924.2016315-4-zhanjun.dong@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VE1PR08CA0016.eurprd08.prod.outlook.com
- (2603:10a6:803:104::29) To MN0PR11MB6011.namprd11.prod.outlook.com
- (2603:10b6:208:372::6)
+Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com
+ [209.85.160.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D21710E6BD
+ for <intel-xe@lists.freedesktop.org>; Thu, 28 May 2026 20:19:07 +0000 (UTC)
+Received: by mail-oa1-f41.google.com with SMTP id
+ 586e51a60fabf-43587e63a8eso8186674fac.0
+ for <intel-xe@lists.freedesktop.org>; Thu, 28 May 2026 13:19:07 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1779999546; cv=none;
+ d=google.com; s=arc-20240605;
+ b=lDh0EiiEfpQsiaiVHD1woaOGEpQMPE6v9aaSwrQ9ewdZWELXOIu9APIo87XhSh++d0
+ BG3fEuJ0PFh9V6zkxeQ5+nAXOrxkLG//uSDCPuDCUmhkbboAkHm4V/InXVVrwP7CEf50
+ BcQ4kLDiGtRqzycSoptU+wF0HC5i+mHBMsDd204RDVrRppspLLVZ8+cIGRZvY+U8v3ct
+ ZqY2Icg9y1u9m2UUov98M/QdpTNnjlNXrSjnUg8xRgdQjij6j05ZGvomyoE5wLN/rvZG
+ NYziniJ8p7Ne8cnzFZfM9hZ/Oph5ri2tvfUc56jEe41yjeZq9iAMZ66agjGhXpPmP9wv
+ 7IrQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:dkim-signature;
+ bh=NEzjnv+Kp0jO+B1kdAYqSGuPLxg2TUZ6vcH1EWXCMJY=;
+ fh=aoZnHJ2qVFv/HY3xsqKXGr0pk+akUEOsi+rSU9dMqjM=;
+ b=gemb9MYc80pttcy0gLQdvinAbXVVMRLKwMI3IENZtFlIGqRSxqrTF3P9sIgqxunNUp
+ e2+nBVKQdwrgqtTOPv+JnO90IZFR/xphIriNxk//3lwb0/+185tQUz0bqfsE67XyAOqg
+ iNag2f41O/gYRYdhnxUZsx1vLkm8qvw5+FnpCLRjqp+yf4P0p5SRnZl1/a/WTD5nsYlr
+ 6Whz6k53sfVHYPlz1E6sNGfmtXpnxlb0G9bkqjMoTNdLhZNAcJ8mvEs+YR4fmJEuT1PQ
+ xsst4MQaUaEMQcevJucXUpjiw5aGrkm5k6mg16ZpKO7vh7iEvCvLlCrg/6LWrfcC0lgn
+ 4CPw==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20251104; t=1779999546; x=1780604346;
+ darn=lists.freedesktop.org; 
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=NEzjnv+Kp0jO+B1kdAYqSGuPLxg2TUZ6vcH1EWXCMJY=;
+ b=jGtoLau4ObJUQQ46MhY4fwxt6t44MbpIZdfvmFpCAJtiKbiIFQN5gH+tftF+D1WJn2
+ nT80GajDnC57Dzf2S62ckHT+OwTC1krCwbUVrmITtJ0te7vMm8dKB06bFRhvT7DGGxJu
+ Um6DrDdywt/FItfEIbQupEuiUqSyM8p3O02fbgU0b5r4f5HeFUrAsSVShtj2xQUiUVuQ
+ z/PCsCVY11chDdV1MDUR6vr8ipuFiBp4M74Sj1wFm7DvGb/LqalD7lme9TRIDqQvoB6q
+ ehQXl4WhVb8HVV/kPtPBSLZJ4yp5+a/p+Qr3DQLnBQH9i5+IAbvDDsAABhdqMae5Yipb
+ nmJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1779999546; x=1780604346;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=NEzjnv+Kp0jO+B1kdAYqSGuPLxg2TUZ6vcH1EWXCMJY=;
+ b=cNeWbP9bdxHAUXwBexehxCJC5fq8GiG5GtMaJCdi9jgx/P5LpeVNDq3UBDSzaqCfPW
+ eazhYarCTMxawIHyF0PqoP6s8Iz8JxqqDFgbRS1eO0G0LDwyV6ZRC7r6u27reOQKBmtY
+ DqIjpFV1Xwd/3yJpPJo4Qa2iFsXzYxIV8ss5qKYwWGptiNnv4Ao7FbTwz9AShCWg+NBC
+ zrU8SDlweD+OJm4P5HM2ABtZ16cHp+Ro7L9fGzX+I8Y3iwYbK80Mz/aWycO/0CfIKKza
+ WILwCn9qiCveuZpNsx8tpYpP6N/iZsaPf5O2GgLrTB9U6ajmmEsPlK/jVRA24Jbg1qR6
+ /dzg==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ84AX5rE7qxei0Z++235HlopsdkXKkVgVidI3vlg2ZL3vjIQeURMeMz4ygpGDt2GSdIiJL7m3ihNg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwQggDFrh3gV4n1ajLqTYU8PRIVqcPQCq0m6wl0MPFEQ3YcpcRl
+ i6BBq6ujmaxMQcV2LzBMa9LxUwkCk66RQ5v8IQCUeaLgPHfZergcRFFGsfIwgBOxSSVSddcz3be
+ JEwlqI6sMWCBF4bW4qvJe6jinmiulcotQBbIxTKjs
+X-Gm-Gg: Acq92OHbAGvCFEkYeBvM3HZTJaa9tyBlpQPtC+GL2effL0rMbM/7gZ3wKQS4wgBK5RL
+ MiC2VFhXciEfYVWrJqe+053J88/k8fznUf1iro9xjpatNSCuvzg1CEeqVfmX3Txl5E/oU8vFyhy
+ tKT4oU9H4fgReV0/oIJn9Kvd/leMz9jxjJvymv54Hk3zJFxQmvFoi7DPGW1kFMBxEEbWQUUyl+i
+ LOkiQK3g1xyVYlqVbmNZ6PDd3WSMWRgJ5bHq66V7NK1xEvy8FQeVk8bpFKaCNFJi4G+yC3PAPm1
+ blWYP0NzKCYmNzdTzWUpQPe+3UFZI3NVSqXcjc1pFr+jxmd/9AB/83YsTpQ6udqEN80Dx2mAJll
+ r91HjZ7diL2sblq2qnBXY/mNgRtu7pqs23cy2wpwoWzFB/raGSPt8NbYohxYsO7IwC8UgyLA=
+X-Received: by 2002:a05:6870:e08f:b0:43b:543c:5069 with SMTP id
+ 586e51a60fabf-43c85f2c4a1mr187366fac.15.1779999545649; Thu, 28 May 2026
+ 13:19:05 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|IA3PR11MB8967:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2431a868-b95e-42d0-2e4e-08debcede857
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|6133799003|22082099003|18002099003|56012099006|11063799006|3023799007|4143699003;
-X-Microsoft-Antispam-Message-Info: P1tDECL3jkG0wfu82QH7SFg72IE9G/oBHjMKMnkwe7ZxApj4xLCUf3yP6B4P2jK8dTzoOWgOOPG6DsKsdZ/9s9lQ5h8XafcN8CQgI7l1Bk8OEtHAjbuRu/mSBfHssUZMote43SVglh+jOis+TUDq9VWPJ48htDYAcas7vPis8NNwRnzUBhIJgPbaDZ/PAEIEXMgDpf0WBzQP9WQwyaYnjGtlhRHbMY5rpTjUZf2nvhYYDBdho8XbceUQn9jECvmzBToqY/G58NvzY1XgDPZu3gndFaxZN1zGcEfXgyjOv8bLaj8MmFzWR+KMMmT09nmuE0kFI8eGq5kXaaT9+kVL0cOA9wcZDHHX7AreZLJQ55Shpjfitn29Py6D12mvhgiVbgLu1r/Yar9SkjyD7wEkJbDDub2/pn/PMbR1q+ahyWuszv/B1Mkybcb07pPz6Jc2CMnU4fYxADOM6RkqSeL/nRBtfngxmKFmfBrh52wyFLsNUbPHu31gxt0VzrxPgN/sms8rF0prEF6m3DKIFVGpDckraHXhBLAYz02oEx1I788F+E+mHUE6yFc2ZuT3h2YIkqRXXyYgBD4wUmmTAy/y1s+aDCF4RyOKSN/2/2hbV9gwTFH7fKWL5SQqVC2BUHgBEgBIkLjbtNpK0+RkL1hkOByEE0umxPEVKYnX9pS6qbeVwca4YFnPXjdnypZEfXrX
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(6133799003)(22082099003)(18002099003)(56012099006)(11063799006)(3023799007)(4143699003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Skd1Q1JTc0lwWFh1K09ybzdJWDBqVnE2NXJpRFZpeUI0RXdPSS9nNHlwWEEr?=
- =?utf-8?B?TFNwYlRTV1Q0QmplWjhXZzdtbFRsKzF5YmlrWmlxSVFsZ20zK3ZzSFFLRE1M?=
- =?utf-8?B?ZFZ1QXg3Zzg2dEs4RkRCamVDSHpabmVhQUFwN0xSWEl1VmpkQk42ck9LRkJo?=
- =?utf-8?B?ajM5UzhDOXlZV2xvZnhldk1XdXg5TjR1cjI4SHhlUFR3ODRTcTBWbGNHQlZ1?=
- =?utf-8?B?c1lPU2JFQnlGeGZDalhuSUR2UXJPYXpESE9DbHliUUt5cEdqVVQ5NHJLSEpv?=
- =?utf-8?B?WStzSTBpZ1hLcnhldHlFL011K1ZWcGlZdlhsYXhrMG1DNnhBeVkzT0JWcjN0?=
- =?utf-8?B?VnhWM1p5Nks5em5QY3h5eVRWWXNxUW5RSG9oZVNobnRtSDYwclNvczFkM1dT?=
- =?utf-8?B?UnJZUEcxR285dW5lN0wvY1pjZE56cWF5VEEvMDIwcHh1TzJta1k2UTZhVE05?=
- =?utf-8?B?cEdEL0RtSHRpQld0WStrZGRjUVRhMEZEUHZlRzJGTFB3RXJxZkdoZ0lXVGF1?=
- =?utf-8?B?M2NybnpZV3pSNVZUSThJM3J2VTE1VGx6MGZUa1lZZVp6aEdKSi9lREdndXJQ?=
- =?utf-8?B?M1hoT2lIeVBHY2JSNlJ4YXBWYTNLZEFPSzFuRko2R1Q4SkQzeTRQQjZPaVUy?=
- =?utf-8?B?dnVjLzBlMnhzeGJvVGxBeWNkVEpaYlNtT2VxaEFzMHBLQ3NFK2sySzJ5aEsr?=
- =?utf-8?B?VE83NmpPM2dpR3VpbXBaNjRzWWdGT0txbnhhSFdYUWtJSWk2OUFMWG9MZVNL?=
- =?utf-8?B?Yk9OcVhReVQxYVB0NUtNaGNGTXNxK0Zrb0V4TG1zYXl6cHEvMzBTV0Q0YnlC?=
- =?utf-8?B?VW0wTSt1V1BxTDgxdnEvMHU3U2RHTzdpWTIwOEJBVGk3eFEvbFZXMmFMN3Y3?=
- =?utf-8?B?c2xWV0M3RXhqMVkwSmZ5Y3NsOExuVVVaUDFtZFRnbHpPVHQrUTV0UnJ5eDFu?=
- =?utf-8?B?b05lcDY3d2NzeENON1BVRDU5R2lhK0xLVTJONFZSWmNhdzJ5YlpLZCtVbm9x?=
- =?utf-8?B?WnNYTkczN1ovY05tRHpsQUZNdGh4eGtPRUhTY3lvZkozVURsMzlaUTN1MkZ4?=
- =?utf-8?B?TDBGaDBEVXdGSU9aRmJ0dTJqQm5ZakZBdTN3L0w0YTFGVk4wdEFvUnJsS2to?=
- =?utf-8?B?ZnZxMldiREN1VjJ5UGtEY1N5cnJMZWRkMnFJQ3AxR2FmVzFvTHZTYWpUMVZB?=
- =?utf-8?B?RGl2bVBRbHZIU3U5Q09OcW1hdkdMSGpncW1xajNxTSt4UFJBcEpRbW9aaWpj?=
- =?utf-8?B?ckhjYmRmV3RaMzJZRG1LaWt6QVpFUEJxdjZtSzRkVlJtSFZEckpjazU5SWxx?=
- =?utf-8?B?UndOajh3TGZLRU9aN29vYll6VHgxOEY5ZFdMUWxLNmkwQk15RHdpbU1jVWFY?=
- =?utf-8?B?OERkWWxFd3FzU2Z2NThleFFIYytnVlpMdWJKQjh0SVhVR3VDTlNoU0pOUGFI?=
- =?utf-8?B?WGFhSjRGMWZ5VElGd0lpVkhabU5tZ24reCtVMlliSkVVNGNmalJPcHU3U0pP?=
- =?utf-8?B?eFdvbkQ5N1pScHZpQWtSMC9iaHNuc1Q4VjAzS01kZ3Rka3hBbVIrK3JoNE1K?=
- =?utf-8?B?bmMxc3hMQ0wwbDNQQy9qMG5WOFBrRmVlMnMxc2xhaVN1YXdDNFVnSXA5SGls?=
- =?utf-8?B?Y0dTazJZZkR2VGRSRkF1d1hHNkVSZWZNckFlSkhTMG1vb0FKdCt3MXBXMU1E?=
- =?utf-8?B?dnRYRFRYa21ERkpZYzh3eVMvWXgyVGJ1c242VzJtc3QvVU9rcTU3cU1KeWdS?=
- =?utf-8?B?RVRkS0dLdVRTOTQzOTN5NEcyeXI0T08wZ2k1akdzdmZtN3FEbllFVVozdThw?=
- =?utf-8?B?b0JxNVNrMTN0UmlkSTQycm5CQjJiQ3VFbitobFVQRWtWV25HbXdRdTE2WjNH?=
- =?utf-8?B?dGE3Y0o1SklHSlFzZVJYVGVLNGpueW9WQkpOR3U5eUtsOUtYTE9UTU5wWEhl?=
- =?utf-8?B?NWRsSUZsNHdCb3pqS25CY3drR0R3TVFjSU5kOHlGc0g2S0JTR1htMG1FdVRC?=
- =?utf-8?B?R21ieHFLNk5KcUVOdzFUSDdlMU50bUJndnRxUHVxYWZXeUhIdkhUREtXVHcr?=
- =?utf-8?B?V3QrTXhEU2VTRHhLY28rdVhJeisyRUZUQTdZVlRpSkpmVjFwdGRmMDFHYTNY?=
- =?utf-8?B?UWJHK2RneWZXbVhRTFdndkZhZEZaaUNPSWo3VStrUHJOaTZrcmxrTXhmNmxm?=
- =?utf-8?B?THdWb1pyZzhjL1AvVzJzVjRtalA2MTRoZnA1c1V2V1UrUmZYRXFRUU1jUFdB?=
- =?utf-8?B?MVFScDNXMTFFTXBsdHhhREE1b2xmVXJIM2dRY1lJSWw4Q2VMK2dhQ2pCeFBa?=
- =?utf-8?B?WW1UMTNHbkdtU1VRaTNMcnVjVWRJLzZ5K0gwWnBiMGhSclhtQ3loODFvZXRu?=
- =?utf-8?Q?aCE684+z/iMZIydM=3D?=
-X-Exchange-RoutingPolicyChecked: MCZU3QwnvDDWO9rDOu8kTDfHEZyjudz620xvIe9SknjENca+tCnf/RQiO+A5hz8jN0kITLoXKUcoskxviSj7rQxDUFEeC9tWW3iSBLO7nVs5Ig9qKSXQoNg8Ct/FtShGGSLXjKCTiTfzVqpxS9j5bZ9pHaj9T+knOt5wmciTkoFzBLDUrH3IbZ4+lubRxbv3c1xljHrtUage2pCRBXoB/icoTC/dgTJMtB71nRyP7twFz0hM9uG4Syw1zo2qZ8DrEmcmPl/ffH3UtXRHOIxGoIW8Tt6CjpgFiis4sveeTOOHKTY29WvV1LigqPH0JDot3EUErz+4j8/b+dujhQBK1g==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2431a868-b95e-42d0-2e4e-08debcede857
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2026 19:18:32.7100 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: NSjEMR3cSh22C4o/KBosCr3j22JTWjwptPekJmd6Me50L0WHc9qwovjE4Wr/1O4ukVT8QY6WvOQlFFULhqGe9e3x0WCVSFNRsAnSmxqIAyM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR11MB8967
-X-OriginatorOrg: intel.com
+References: <6d8e36e2aea806f9973b3c501aad4523f7316d6a@intel.com>
+ <20260521194018.2445206-1-sean@poorly.run>
+ <20260521194018.2445206-2-sean@poorly.run>
+ <9b290b22-97a9-4ffc-9823-67efba98c70f@intel.com>
+In-Reply-To: <9b290b22-97a9-4ffc-9823-67efba98c70f@intel.com>
+From: Sean Paul <seanpaul@google.com>
+Date: Thu, 28 May 2026 16:18:28 -0400
+X-Gm-Features: AVHnY4Kao597dDx2SRbChuVFrf-Jrh9IUtXZpLh_1XKHqDfReuT3ymaWu95wqY8
+Message-ID: <CAOw6vbLn+-iEk_Aky9r-TWuT3WXi4xkHZ3ZUDyX7EeKPKDpf1g@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] drm/i915/color: Fix Pre-CSC degamma LUT bounds
+To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+Cc: Sean Paul <sean@poorly.run>, intel-gfx@lists.freedesktop.org, 
+ jani.nikula@linux.intel.com, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: multipart/alternative; boundary="000000000000a05c6b0652e670b8"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -168,53 +111,220 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--000000000000a05c6b0652e670b8
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, May 27, 2026 at 1:23=E2=80=AFAM Borah, Chaitanya Kumar <
+chaitanya.kumar.borah@intel.com> wrote:
+
+> Hello Sean,
+>
+> On 5/22/2026 1:09 AM, Sean Paul wrote:
+> > From: Sean Paul <seanpaul@google.com>
+> >
+> > Fix a typo in the loop condition in xelpd_program_plane_pre_csc_lut
+> > for Segment 2 degamma programming, changing 'while (i++ > 130)' to
+> > 'while (i++ < 130)'. Also clamp Segment 2 to the last user-provided
+> > LUT entry value instead of hardcoding it to 1.0 (1 << 24) to fix
+> > a step discontinuity.
+>
+> The commit message needs an update.
+>
+
+Ack.
 
 
-On 5/11/2026 9:49 PM, Zhanjun Dong wrote:
-> Reduce the default log buffer size to improve system responsiveness and
+> Is there an easy way to reproduce the problem you are seeing (e.g. IGT)?
+>
 
-default log size is SZ_64K and is not changed by this patch
+Unfortunately I don't have an IGT test, it's reproducing readily with our
+userspace.
 
-> readability. The previous 8MB threshold caused significant delays during
+Sean
 
-8MB size was used in CONFIG_DRM_XE_DEBUG
+I am wondering if we have to do the same on the pipe Gamma and Degamma.
+>
+> =3D=3D
+> Chaitanya
+>
+> >
+> > Link:
+> https://lore.kernel.org/intel-gfx/20260521180143.2143262-1-sean@poorly.ru=
+n/
+> #v1
+> > Signed-off-by: Sean Paul <seanpaul@google.com>
+> >
+> > Changes in v2:
+> > - Split out into separate patches for pre/post csc fixes
+> > - Dropped loop bounds fix in favor of [1]
+> >
+> > [1]-
+> https://lore.kernel.org/r/20260519075245.383864-1-pranay.samala@intel.com
+> > ---
+> >   drivers/gpu/drm/i915/display/intel_color.c | 5 +++--
+> >   1 file changed, 3 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_color.c
+> b/drivers/gpu/drm/i915/display/intel_color.c
+> > index 90d5dc2ef3e4..469011c83f9b 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_color.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_color.c
+> > @@ -3953,6 +3953,7 @@ xelpd_program_plane_pre_csc_lut(struct intel_dsb
+> *dsb,
+> >       enum plane_id plane =3D to_intel_plane(state->plane)->id;
+> >       const struct drm_color_lut32 *pre_csc_lut =3D
+> plane_state->hw.degamma_lut->data;
+> >       u32 i, lut_size;
+> > +     u32 lut_val =3D 1 << 24;
+> >
+> >       if (icl_is_hdr_plane(display, plane)) {
+> >               lut_size =3D 128;
+> > @@ -3963,7 +3964,7 @@ xelpd_program_plane_pre_csc_lut(struct intel_dsb
+> *dsb,
+> >
+> >               if (pre_csc_lut) {
+> >                       for (i =3D 0; i < lut_size; i++) {
+> > -                             u32 lut_val =3D
+> drm_color_lut32_extract(pre_csc_lut[i].green, 24);
+> > +                             lut_val =3D
+> drm_color_lut32_extract(pre_csc_lut[i].green, 24);
+> >
+> >                               intel_de_write_dsb(display, dsb,
+> >
+> PLANE_PRE_CSC_GAMC_DATA_ENH(pipe, plane, 0),
+> > @@ -3975,7 +3976,7 @@ xelpd_program_plane_pre_csc_lut(struct intel_dsb
+> *dsb,
+> >                       do {
+> >                               intel_de_write_dsb(display, dsb,
+> >
+> PLANE_PRE_CSC_GAMC_DATA_ENH(pipe, plane, 0),
+> > -                                                (1 << 24));
+> > +                                                lut_val);
+> >                       } while (i++ > 130);
+> >               } else {
+> >                       for (i =3D 0; i < lut_size; i++) {
+>
+>
 
-> log output and imposed a heavy load when printing to dmesg.
+--000000000000a05c6b0652e670b8
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-hmm, but that was on purpose, as any extra cost caused by such dump, which
-should be sporadic anyway, we were willing to take just to be sure to do not
-lost any information from the too small log
+<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote g=
+mail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, May 27,=
+ 2026 at 1:23=E2=80=AFAM Borah, Chaitanya Kumar &lt;<a href=3D"mailto:chait=
+anya.kumar.borah@intel.com">chaitanya.kumar.borah@intel.com</a>&gt; wrote:<=
+br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
+x;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hello Sean,<br>
+<br>
+On 5/22/2026 1:09 AM, Sean Paul wrote:<br>
+&gt; From: Sean Paul &lt;<a href=3D"mailto:seanpaul@google.com" target=3D"_=
+blank">seanpaul@google.com</a>&gt;<br>
+&gt; <br>
+&gt; Fix a typo in the loop condition in xelpd_program_plane_pre_csc_lut<br=
+>
+&gt; for Segment 2 degamma programming, changing &#39;while (i++ &gt; 130)&=
+#39; to<br>
+&gt; &#39;while (i++ &lt; 130)&#39;. Also clamp Segment 2 to the last user-=
+provided<br>
+&gt; LUT entry value instead of hardcoding it to 1.0 (1 &lt;&lt; 24) to fix=
+<br>
+&gt; a step discontinuity.<br>
+<br>
+The commit message needs an update.<br></blockquote><div><br></div><div>Ack=
+.</div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0=
+px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+Is there an easy way to reproduce the problem you are seeing (e.g. IGT)?<br=
+></blockquote><div><br></div><div>Unfortunately I don&#39;t have an IGT tes=
+t, it&#39;s reproducing readily with our userspace.</div><div><br></div><di=
+v>Sean</div><div><br></div><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
+">
+I am wondering if we have to do the same on the pipe Gamma and Degamma.<br>
+<br>
+=3D=3D<br>
+Chaitanya<br>
+<br>
+&gt; <br>
+&gt; Link: <a href=3D"https://lore.kernel.org/intel-gfx/20260521180143.2143=
+262-1-sean@poorly.run/" rel=3D"noreferrer" target=3D"_blank">https://lore.k=
+ernel.org/intel-gfx/20260521180143.2143262-1-sean@poorly.run/</a> #v1<br>
+&gt; Signed-off-by: Sean Paul &lt;<a href=3D"mailto:seanpaul@google.com" ta=
+rget=3D"_blank">seanpaul@google.com</a>&gt;<br>
+&gt; <br>
+&gt; Changes in v2:<br>
+&gt; - Split out into separate patches for pre/post csc fixes<br>
+&gt; - Dropped loop bounds fix in favor of [1]<br>
+&gt; <br>
+&gt; [1]- <a href=3D"https://lore.kernel.org/r/20260519075245.383864-1-pran=
+ay.samala@intel.com" rel=3D"noreferrer" target=3D"_blank">https://lore.kern=
+el.org/r/20260519075245.383864-1-pranay.samala@intel.com</a><br>
+&gt; ---<br>
+&gt;=C2=A0 =C2=A0drivers/gpu/drm/i915/display/intel_color.c | 5 +++--<br>
+&gt;=C2=A0 =C2=A01 file changed, 3 insertions(+), 2 deletions(-)<br>
+&gt; <br>
+&gt; diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/=
+drm/i915/display/intel_color.c<br>
+&gt; index 90d5dc2ef3e4..469011c83f9b 100644<br>
+&gt; --- a/drivers/gpu/drm/i915/display/intel_color.c<br>
+&gt; +++ b/drivers/gpu/drm/i915/display/intel_color.c<br>
+&gt; @@ -3953,6 +3953,7 @@ xelpd_program_plane_pre_csc_lut(struct intel_dsb=
+ *dsb,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0enum plane_id plane =3D to_intel_plane(state=
+-&gt;plane)-&gt;id;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0const struct drm_color_lut32 *pre_csc_lut =
+=3D plane_state-&gt;hw.degamma_lut-&gt;data;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0u32 i, lut_size;<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0u32 lut_val =3D 1 &lt;&lt; 24;<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0if (icl_is_hdr_plane(display, plane)) {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0lut_size =3D 128=
+;<br>
+&gt; @@ -3963,7 +3964,7 @@ xelpd_program_plane_pre_csc_lut(struct intel_dsb=
+ *dsb,<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (pre_csc_lut)=
+ {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0for (i =3D 0; i &lt; lut_size; i++) {<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0u32 lut_val =3D drm_color_lut32_extract(=
+pre_csc_lut[i].green, 24);<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0lut_val =3D drm_color_lut32_extract(pre_=
+csc_lut[i].green, 24);<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0intel_de_write_dsb(display, dsb,<b=
+r>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 PLANE_PRE_CSC_GAMC_DATA_ENH(pipe, plane, 0)=
+,<br>
+&gt; @@ -3975,7 +3976,7 @@ xelpd_program_plane_pre_csc_lut(struct intel_dsb=
+ *dsb,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0do {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0intel_de_write_dsb(display, dsb,<b=
+r>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 PLANE_PRE_CSC_GAMC_DATA_ENH(pipe, plane, 0)=
+,<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 (1 &lt;&lt; 24));<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 lut_val);<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0} while (i++ &gt; 130);<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0} else {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0for (i =3D 0; i &lt; lut_size; i++) {<br>
+<br>
+</blockquote></div></div>
 
-> 
-> By reducing the size to 2MB, we maintain a sufficient history while
-> ensuring faster flushing. With a typical 4:1 compression ratio, this 2MB
-> buffer will result in approximately 512KB of compressed data, providing an
-> efficient balance between log depth and system performance.
-
-hmm, such dumps should be very sporadic, already after HW/FW being broken
-
-so what do you mean by the 'system performance' here?
-
-and maybe it would be sufficient just to introduce compression without
-reducing the log size?
-
-> 
-> Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_guc_log.h | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_log.h b/drivers/gpu/drm/xe/xe_guc_log.h
-> index d231def50692..44e81a54681f 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_log.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_log.h
-> @@ -17,7 +17,7 @@ struct xe_device;
->  #define XE_GUC_LOG_CRASH_DUMP_BUFFER_SIZE	SZ_1M
->  #define XE_GUC_LOG_STATE_CAPTURE_BUFFER_SIZE	SZ_2M
->  #elif IS_ENABLED(CONFIG_DRM_XE_DEBUG)
-> -#define XE_GUC_LOG_EVENT_DATA_BUFFER_SIZE	SZ_8M
-> +#define XE_GUC_LOG_EVENT_DATA_BUFFER_SIZE	SZ_2M
->  #define XE_GUC_LOG_CRASH_DUMP_BUFFER_SIZE	SZ_1M
->  #define XE_GUC_LOG_STATE_CAPTURE_BUFFER_SIZE	SZ_1M
->  #else
-
+--000000000000a05c6b0652e670b8--
