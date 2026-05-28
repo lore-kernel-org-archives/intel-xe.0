@@ -4,59 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69B09CD5BD1
-	for <intel-xe@archiver.kernel.org>; Thu, 28 May 2026 09:01:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD2F3CD5BD5
+	for <intel-xe@archiver.kernel.org>; Thu, 28 May 2026 09:13:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 247B910EE58;
-	Thu, 28 May 2026 09:01:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E7CD10EE9A;
+	Thu, 28 May 2026 09:13:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hOgCbpUS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mQIs/lWR";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7D2110EE58
- for <intel-xe@lists.freedesktop.org>; Thu, 28 May 2026 09:01:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50E0C10EE9F
+ for <intel-xe@lists.freedesktop.org>; Thu, 28 May 2026 09:13:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779958911; x=1811494911;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=Th6Wq/ktZhOq978gILkQIcYrkcQ5oNxPKELVvcfrJrg=;
- b=hOgCbpUS9EtH9EkwmNuIMNekOR7DDP6Ha1WzrTdqBP6q5+uk87GhVR3K
- 2Mox1w8pu31Orqlykm0NGA4gYx+DrVCk4JPjtY4YZXO+rppNVzp2W7tW7
- 0BZfqOYTA975eBI4J+h9THKRTWYBIM1ICyUnzTij/PqS6yey3Zmxofyul
- RsiZrX/TM+tIuF2NUdf4DGrArAN/s2EzuhARqqxEhDccrziaWKJaO1Njv
- z2VLjL1DRTiDvt67RU57Hkz88l1IHn0MEQb6wBH0UZwdB2McNWrci/KDp
- qc6NiCb3oboMSgtkNLiec/S4ArV5tJEnXpKdFlNH+RyO6lR5gLQCOU7K7 A==;
-X-CSE-ConnectionGUID: nvQLDNyNSyOin1MWkmKpdg==
-X-CSE-MsgGUID: Jl9pz4IvS7qvVOoBzUgYWw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11799"; a="106250597"
-X-IronPort-AV: E=Sophos;i="6.24,173,1774335600"; d="scan'208";a="106250597"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2026 02:01:50 -0700
-X-CSE-ConnectionGUID: UBDsaiB2Tw6XFz2EK0P7TQ==
-X-CSE-MsgGUID: kNa5KiVUSq65y7DoUx+ZGQ==
+ t=1779959614; x=1811495614;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=nNS9TrDgb8C/jSu1tUzjqfqwUZJY0b6PEypqUakhvzw=;
+ b=mQIs/lWR/JNBKU8UxJ7J7veuv16HQqnDC2a3Xf85LPO9cCatr7aGdB+/
+ RJiFEP8mynePfr75POYO+L/BNvv1IQ8uvG/xmbXZXmQu9nBtTlKi7fDIK
+ YgDtxsMwjjhlyo4gaoilgGapShfHpX7lLEMpJOKRJUmfurKMb8tOaa8e1
+ CIWXo6tTd8RkbTdui1zoqWWcTRTeWo+dcj/j88U3aEcuyGPJgokvEW+0e
+ yUSAvMBqA1GEFTW/3TxvSQ2McDp6sFDrpsYxcZoMcx0KOo0EdGvofde2T
+ J62Cak6N8Ik8UtYsG22BDIJTTCKeK1rlOSroz7mT/0ljRjR7vg44d2efh g==;
+X-CSE-ConnectionGUID: BiPTVTlRSRCGsJcFcEeHAg==
+X-CSE-MsgGUID: 9EtsGZSfQVq3ut+KLuxo+Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11799"; a="80700425"
+X-IronPort-AV: E=Sophos;i="6.24,173,1774335600"; d="scan'208";a="80700425"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2026 02:13:34 -0700
+X-CSE-ConnectionGUID: TnuJ7tcESjCBK/oJcxLLIA==
+X-CSE-MsgGUID: hvUwJl35QoqY0PTN1OsCUg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,173,1774335600"; d="scan'208";a="246770309"
-Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2026 02:01:47 -0700
-Date: Thu, 28 May 2026 11:01:45 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Riana Tauro <riana.tauro@intel.com>
-Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
- rodrigo.vivi@intel.com, aravind.iddamsetty@linux.intel.com,
- badal.nilawar@intel.com, ravi.kishore.koppuravuri@intel.com,
- mallesh.koujalagi@intel.com, soham.purkait@intel.com
-Subject: Re: [PATCH v7 2/6] drm/xe/xe_ras: Add support to get error counter
- in CRI
-Message-ID: <ahgEeXy-7frjGvdN@black.igk.intel.com>
-References: <20260527060241.3351323-8-riana.tauro@intel.com>
- <20260527060241.3351323-10-riana.tauro@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,173,1774335600"; d="scan'208";a="241466755"
+Received: from abityuts-desk.ger.corp.intel.com (HELO [10.245.245.236])
+ ([10.245.245.236])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2026 02:13:33 -0700
+Message-ID: <754ed1a5-ed12-4e0e-bafc-5775106d8e14@intel.com>
+Date: Thu, 28 May 2026 10:13:31 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260527060241.3351323-10-riana.tauro@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe/mmio: Assert MMIO is available
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ intel-xe@lists.freedesktop.org
+References: <20260527175437.22585-1-michal.wajdeczko@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20260527175437.22585-1-michal.wajdeczko@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,144 +69,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, May 27, 2026 at 11:32:44AM +0530, Riana Tauro wrote:
-
-Nit: You're using 'CRI' in subject here but not in patch 3. I personally
-think it's redundant but whatever your preference please make it consistent
-across patches.
-
-> Add request/response structures and helper functions to query system
-> controller to get error counter value.
-
-...
-
-> +static u8 drm_to_xe_ras_component(u8 component)
+On 27/05/2026 18:54, Michal Wajdeczko wrote:
+> We shouldn't access device registers after the device was unplugged.
+> Instead of relying on the NPD splat due to zeroed xe.mmio.regs, which
+> might be unreliable anyway as not all xe_mmio are using that directly,
+> add an explicit assert during xe_mmio read/write operations to catch
+> invalid accesses to MMIO after device was unplugged.
+> 
+> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> ---
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_mmio.c | 11 +++++++++++
+>   1 file changed, 11 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+> index 78adb303b663..b77a717f0556 100644
+> --- a/drivers/gpu/drm/xe/xe_mmio.c
+> +++ b/drivers/gpu/drm/xe/xe_mmio.c
+> @@ -10,6 +10,7 @@
+>   #include <linux/minmax.h>
+>   #include <linux/pci.h>
+>   
+> +#include <drm/drm_drv.h>
+>   #include <drm/drm_managed.h>
+>   #include <drm/drm_print.h>
+>   
+> @@ -128,6 +129,11 @@ void xe_mmio_init(struct xe_mmio *mmio, struct xe_tile *tile, void __iomem *ptr,
+>   	mmio->tile = tile;
+>   }
+>   
+> +static void mmio_assert_available(struct xe_mmio *mmio)
 > +{
-> +	switch (component) {
-> +	case DRM_XE_RAS_ERR_COMP_CORE_COMPUTE:
-> +		return XE_RAS_COMP_CORE_COMPUTE;
-> +	case DRM_XE_RAS_ERR_COMP_SOC_INTERNAL:
-> +		return XE_RAS_COMP_SOC_INTERNAL;
-> +	case DRM_XE_RAS_ERR_COMP_DEVICE_MEMORY:
-> +		return XE_RAS_COMP_DEVICE_MEMORY;
-> +	case DRM_XE_RAS_ERR_COMP_PCIE:
-> +		return XE_RAS_COMP_PCIE;
-> +	case DRM_XE_RAS_ERR_COMP_FABRIC:
-> +		return XE_RAS_COMP_FABRIC;
-> +	default:
-> +		return XE_RAS_COMP_NOT_SUPPORTED;
-> +	}
+> +	xe_tile_assert(mmio->tile, !drm_dev_is_unplugged(&mmio->tile->xe->drm));
+
+Yeah, I was hopeful this would work, but as per CI the unplug=true needs 
+to happen before the devm actions run, so we get a pile of false 
+positives with this. I think the best we can do is NULL, or perhaps 
+mmio.unplugged and check that here?
+
 > +}
 > +
-> +static u8 drm_to_xe_ras_severity(u8 severity)
-> +{
-> +	switch (severity) {
-> +	case DRM_XE_RAS_ERR_SEV_CORRECTABLE:
-> +		return XE_RAS_SEV_CORRECTABLE;
-> +	case DRM_XE_RAS_ERR_SEV_UNCORRECTABLE:
-> +		return XE_RAS_SEV_UNCORRECTABLE;
-> +	default:
-> +		return XE_RAS_SEV_NOT_SUPPORTED;
-> +	}
-> +}
+>   static void mmio_flush_pending_writes(struct xe_mmio *mmio)
+>   {
+>   #define DUMMY_REG_OFFSET	0x130030
+> @@ -146,6 +152,7 @@ u8 xe_mmio_read8(struct xe_mmio *mmio, struct xe_reg reg)
+>   	u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
+>   	u8 val;
+>   
+> +	mmio_assert_available(mmio);
+>   	mmio_flush_pending_writes(mmio);
+>   
+>   	val = readb(mmio->regs + addr);
+> @@ -158,6 +165,7 @@ void xe_mmio_write8(struct xe_mmio *mmio, struct xe_reg reg, u8 val)
+>   {
+>   	u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
+>   
+> +	mmio_assert_available(mmio);
+>   	trace_xe_reg_rw(mmio, true, addr, val, sizeof(val));
+>   
+>   	writeb(val, mmio->regs + addr);
+> @@ -168,6 +176,7 @@ u16 xe_mmio_read16(struct xe_mmio *mmio, struct xe_reg reg)
+>   	u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
+>   	u16 val;
+>   
+> +	mmio_assert_available(mmio);
+>   	mmio_flush_pending_writes(mmio);
+>   
+>   	val = readw(mmio->regs + addr);
+> @@ -180,6 +189,7 @@ void xe_mmio_write32(struct xe_mmio *mmio, struct xe_reg reg, u32 val)
+>   {
+>   	u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
+>   
+> +	mmio_assert_available(mmio);
+>   	trace_xe_reg_rw(mmio, true, addr, val, sizeof(val));
+>   
+>   	if (!reg.vf && IS_SRIOV_VF(mmio->tile->xe))
+> @@ -194,6 +204,7 @@ u32 xe_mmio_read32(struct xe_mmio *mmio, struct xe_reg reg)
+>   	u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
+>   	u32 val;
+>   
+> +	mmio_assert_available(mmio);
+>   	mmio_flush_pending_writes(mmio);
+>   
+>   	if (!reg.vf && IS_SRIOV_VF(mmio->tile->xe))
 
-Nit: I'd make the ordering consistent with existing code, i.e.
-drm_to_xe_ras_severity() at the top.
-
-...
-
-> +/**
-> + * xe_ras_get_counter() - Get error counter value
-> + * @xe: Xe device instance
-> + * @severity: Error severity to be queried (&enum drm_xe_ras_error_severity)
-> + * @component: Error component to be queried (&enum drm_xe_ras_error_component)
-> + * @value: Counter value
-> + *
-> + * This function retrieves the value of a specific error counter based on
-> + * the error severity and component.
-> + *
-> + * Return: 0 on success, negative error code on failure.
-> + */
-> +int xe_ras_get_counter(struct xe_device *xe, u8 severity, u8 component, u32 *value)
-> +{
-> +	struct xe_ras_error_class error_class = {0};
-
-Make this consistent with the code, i.e. 'counter'
-
-> +	error_class.common.severity = drm_to_xe_ras_severity(severity);
-> +	error_class.common.component = drm_to_xe_ras_component(component);
-> +
-> +	guard(xe_pm_runtime)(xe);
-> +	return get_counter(xe, &error_class, value);
-> +}
-
-...
-
-> +/**
-> + * struct xe_ras_get_counter_response - Response structure for get counter
-> + */
-> +struct xe_ras_get_counter_response {
-> +	/** @counter: Error counter that was queried */
-> +	struct xe_ras_error_class counter;
-> +	/** @value: Current counter value */
-> +	u32 value;
-> +	/** @timestamp: Timestamp when counter was last updated */
-> +	u64 timestamp;
-> +	/** @threshold: Threshold value for the counter */
-> +	u32 threshold;
-> +	/** @reserved: Reserved */
-> +	u32 reserved;
-> +	/** @reserved1: Reserved for future use */
-> +	u32 reserved1[56];
-
-Why not 57 and do away with the duplicate?
-
-> +} __packed;
-> +
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-> index 3caa9f15875f..bdb4611b5685 100644
-> --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-> +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-> @@ -293,6 +293,34 @@ static int sysctrl_send_command(struct xe_sysctrl *sc,
->  	return 0;
->  }
->  
-> +/**
-> + * xe_sysctrl_build_command() - Build System controller command structure
-> + * @command: Sysctrl command structure
-> + * @group: Command group ID
-> + * @cmd_id: Command ID
-> + * @request: Pointer to request buffer (can be NULL)
-> + * @request_len: Size of request buffer
-> + * @response: Pointer to response buffer
-> + * @response_len: Size of response buffer
-> + *
-> + * Helper function to build sysctrl command to be sent via %xe_sysctrl_send_command()
-> + */
-> +void xe_sysctrl_build_command(struct xe_sysctrl_mailbox_command *command, u8 group, u8 cmd_id,
-
-I think a more suitable name would be xe_sysctrl_create_command(),
-which is also a common pattern in some of the other parts of the driver.
-
-PS: Also don't forget to update the doc accordingly.
-
-> +			      void *request, size_t request_len, void *response,
-> +			      size_t response_len)
-> +{
-> +	struct xe_sysctrl_app_msg_hdr header = {0};
-> +
-> +	header.data = FIELD_PREP(APP_HDR_GROUP_ID_MASK, group) |
-
-Nit: I'd make this consistent with below, i.e. 'group_id'
-
-Reviewed-by: Raag Jadav <raag.jadav@intel.com>
-
-> +		      FIELD_PREP(APP_HDR_COMMAND_MASK, cmd_id);
-> +
-> +	command->header = header;
-> +	command->data_in = request;
-> +	command->data_in_len = request_len;
-> +	command->data_out = response;
-> +	command->data_out_len = response_len;
-> +}
