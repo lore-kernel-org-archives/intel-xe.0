@@ -4,144 +4,154 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07735CD4F54
-	for <intel-xe@archiver.kernel.org>; Thu, 28 May 2026 20:46:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 667C8CD5BD5
+	for <intel-xe@archiver.kernel.org>; Thu, 28 May 2026 20:52:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA97810E5C6;
-	Thu, 28 May 2026 20:46:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8B9D10E681;
+	Thu, 28 May 2026 20:52:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XBvFPHQb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fSSVb6hq";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C001A10E4B9
- for <intel-xe@lists.freedesktop.org>; Thu, 28 May 2026 20:46:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5682810E681
+ for <intel-xe@lists.freedesktop.org>; Thu, 28 May 2026 20:52:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780001219; x=1811537219;
+ t=1780001539; x=1811537539;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=+c2AlQcnaZK9Ysx2K2ReI+BPT7wb2wqOurZ5Bu8Mszw=;
- b=XBvFPHQbDxUoEa2U9n3Suf9CEJk9NFIzHdxTHqlcsUWpd7fBBS2byLgJ
- XZ7IJ86bZp2gjaZljSAghc0FHUrtRLDru2TsvR2uBMCrg2CNLkFY3L+dD
- PStblUY1y6usihGImKhYJXYczH4ZQVYheqL01oSOp3aJZs7KY6ONU24lb
- hqGBJ6w+CpO28SFISYu/eMlq46bI3E302Dldj64W7xVgR0BkQ82HMmUL7
- vl/7jJGjhtIR2KZ9/GrZ1pZS/zcpPWTkXqqBZ0BT/n/eLw8l91qVeFUvj
- np+Gc3l6WFGDZWAYlVo/Imx1KNbTsuFip+OF2Cp7EtwDWxDM7jKsk9OVp A==;
-X-CSE-ConnectionGUID: e+DM8LeMRdWm6odHMhAkUA==
-X-CSE-MsgGUID: xwZ+TIJMQLiRpK77z0OBxw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11800"; a="68390098"
-X-IronPort-AV: E=Sophos;i="6.24,174,1774335600"; d="scan'208";a="68390098"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2026 13:46:58 -0700
-X-CSE-ConnectionGUID: Zy82Fb4sQTi1OiYum1gmGQ==
-X-CSE-MsgGUID: UHCWiZjgSxOYnbDPAbPlog==
+ message-id:content-transfer-encoding:mime-version;
+ bh=JPLdZl2vGMtNA/067/P/z6abcFnSmsyM1ZiOBoBOUNY=;
+ b=fSSVb6hqxDOGEuJF1aBBDtr+RhW9c+gGMT92B9lqgpSxyUM4ixLranSq
+ KVTYoo1gIh1FF2l2+Wt4YJ4BrvwgselEwcBb44RV6NYAzgrgz9HEC9uD6
+ BGeh9hm/6XFazNGGBnQlvlXa6ckzlh3E0HHbVxIBMkWz+2qWhJaXrnYtG
+ CE+MN1o1c6gA8GQ4bvwtc6OgsC0OdtFUhLC682Q7p8Dx1z/CbxAz7EQ9i
+ SyxwImaRt7mhSBLh13eunnBMgSPm2j3Vp/1t3Xk1XTE8/kXyemqpSaRD/
+ plFr2sertHYe/lzpW9iAfEOqrgXdvajL/fpiPBh7TxTq9uDbxBEwguX5c w==;
+X-CSE-ConnectionGUID: aQ9LMJNSTWuvDSlo8MoEuQ==
+X-CSE-MsgGUID: 9eIfgz+DSHKwRJ5GzO2OAg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11800"; a="79887716"
+X-IronPort-AV: E=Sophos;i="6.24,174,1774335600"; d="scan'208";a="79887716"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2026 13:52:19 -0700
+X-CSE-ConnectionGUID: 8G69uOxZSwms+msi1+I6Gw==
+X-CSE-MsgGUID: UCmr9S5BRBGHWAt89IG0dQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,174,1774335600"; d="scan'208";a="238466882"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2026 13:46:58 -0700
+X-IronPort-AV: E=Sophos;i="6.24,174,1774335600"; d="scan'208";a="236299078"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2026 13:52:18 -0700
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 28 May 2026 13:46:57 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ 15.2.2562.37; Thu, 28 May 2026 13:52:17 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Thu, 28 May 2026 13:46:57 -0700
-Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.43) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Thu, 28 May 2026 13:52:17 -0700
+Received: from BN8PR05CU002.outbound.protection.outlook.com (52.101.57.45) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 28 May 2026 13:46:12 -0700
+ 15.2.2562.37; Thu, 28 May 2026 13:52:17 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wkydhW2ByjNKLZROFwxDRoUmPYlYB8kNsX0KBPeBmkaESWNrhzJ0MN82vJHs391vmGVYGsVtPsOe7XeMY2UFiP8iv63/eFC88p+rvdpeCLMnRtphqy7tpxTeq4nswu/yKujPQd9JiH5z4Fw6XR86XvYmS5/QM6eE419vAE8+nAi3ztLUO2NeCFBKc9+CfM1pGMNejTf3TiS+8D198fJLE1nOcm2Rsvp37qwzdHetwelK5v1fymsUQj8JQgFM4R093+3nAdilTK3fIUlVUWk8e7iFLveePdxy5L4O3redwTncK89mBveqxEU1IgDRoF3dUuNDVQss8XfqYppxyULAPg==
+ b=pcUDaGc4UjEhqIEs3a5yEDPCj0V3U1J2YtRq1PC57+W3D2611D0FyUBoRgp8GSUu53FHKTlWF2hG5ONZe54J7dYQ69yUQlLvkS2Voidu0HjnvP+Mcb/3j2BX4q21xh6xps5W/F763h/Xwyn+vI2Zt3e/7VD2YwHyJfyC+v8wx9D390DqEdUHF704Dj2svb+OyYsMj2LwYblpEZodzaRDGlQisxQB4eZZfy2UPfBru1GIIvGtOK/L4uIQ0zyUM2ROdO/Uu4tHvwGO5j1EnAIb9vXihbtJyr3o+JIWWO+ArpIDNXzFp4eF69UuEFgGwGCdLl12OVV9vkbPKpXG9jCdWA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=E156h5qIa9HJczwcD6AHr83t5OufPdpEVE7fnLqYdJc=;
- b=G9v5VPKYj0pX5NLf75wtu1QS5nv5P4M5LFOaP1+wQeR/vum0vwHd2Q/zJzm9lclDuhCA8mEZg5nsCekszh8pisc3++Pj9OtFkpF0Sa5S61nRKQknqJv8aQ/FNcJu51Wgfs5ZKCKP4bMafWbc57E7wjDtw3x7P9eKMGmKJHSA2GcnLWbdGL83PNYnyOISAqCZItuoG/2hrjj5UVh6D7NA7wFtHjn6FM4xkUKRBQArNhDJUSKEC83aAQaga35tKscESnbq8CMFZ8EeTpNbVTjmtNJ3pWg6wtoLlIPvgeVKsdqPN59S5SF9tsamXh70nSyubVXL/KGIkVgWHKHP+V6c+w==
+ bh=VuW7x6wOzSogzxpe5tTOcx556sNmavYoKMwBR7Ghles=;
+ b=aFZsp+f6EYe3vVLL/k9WJZSMgqehHJwga6H8TAUqaDdbLyZ+iA+8BxENxlqrinMIyXTCKXK93p+qrNd8v31Gqu1d8mB0H/zbZ8xt+gP0Qzd2WDxVfpuYXhXfxfRJZtbot2RcbmjUL63uhZK6easzKN0UByUzAoxT+DzFLbqwumFGD00EGqb4SDllRWSpMUGnVSrluNr0gUIUtenU4Yey2ZhCwrDmo4tXXBePD6iPtXpirK8f8vtIAmlAQ/1NNjSqOuT01FF4LIgMNZXBZfEGP0yi5DigYVp6QsRzc/nDpWEMv21MIgSIxo53cmiAdAJIU7S65dgA6B/4k+MILSBYKw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
- by PH8PR11MB6660.namprd11.prod.outlook.com (2603:10b6:510:1c3::13)
+ by SJ0PR11MB6671.namprd11.prod.outlook.com (2603:10b6:a03:44b::19)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.20; Thu, 28 May
- 2026 20:46:10 +0000
+ 2026 20:52:08 +0000
 Received: from PH8PR11MB8287.namprd11.prod.outlook.com
  ([fe80::a0e5:e99c:ee7b:620a]) by PH8PR11MB8287.namprd11.prod.outlook.com
  ([fe80::a0e5:e99c:ee7b:620a%5]) with mapi id 15.21.0071.011; Thu, 28 May 2026
- 20:46:10 +0000
+ 20:52:07 +0000
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: Violet Monti <violet.monti@intel.com>, <intel-xe@lists.freedesktop.org>
 CC: Violet Monti <violet.monti@intel.com>
-Subject: Re: [PATCH v5 1/4] drm/xe/rtp: Add struct types for RTP tables
-In-Reply-To: <874ijrqx06.fsf@intel.com>
+Subject: Re: [PATCH v5 2/4] drm/xe/rtp: Ensure gt_was doesn't evaluate rules
+ with engine types
+In-Reply-To: <20260528163531.834721-8-violet.monti@intel.com>
 References: <20260528163531.834721-6-violet.monti@intel.com>
- <20260528163531.834721-7-violet.monti@intel.com>
- <874ijrqx06.fsf@intel.com>
-Date: Thu, 28 May 2026 17:46:05 -0300
-Message-ID: <87se7b5kky.fsf@intel.com>
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR05CA0163.namprd05.prod.outlook.com
- (2603:10b6:a03:339::18) To PH8PR11MB8287.namprd11.prod.outlook.com
+ <20260528163531.834721-8-violet.monti@intel.com>
+Date: Thu, 28 May 2026 17:52:03 -0300
+Message-ID: <87pl2f5kb0.fsf@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: SJ0PR03CA0386.namprd03.prod.outlook.com
+ (2603:10b6:a03:3a1::31) To PH8PR11MB8287.namprd11.prod.outlook.com
  (2603:10b6:510:1c7::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|PH8PR11MB6660:EE_
-X-MS-Office365-Filtering-Correlation-Id: fb12354f-14cb-46f0-9640-08debcfa25e4
+X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|SJ0PR11MB6671:EE_
+X-MS-Office365-Filtering-Correlation-Id: c74ed45a-e0ab-47fd-eb3f-08debcfafb36
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|22082099003|18002099003|56012099006|3023799007|4143699003|6133799003|11063799006;
-X-Microsoft-Antispam-Message-Info: U4nN5uDrzUYc6N4iiKw0Wp3CfOD7Qt/BFaYJFIw7KvomV3wGblHYF9wSi/Q3k9nx1A6jz3aeYOtN+185elhlURGKVk2LL3MOkwsC7vZNiUnx919tcUkKYFWAXiCbtwA8DaFPAy84ui3NwYjJUnwaH5oAPD4JQFWCqXfEUz0NZ8haMZE3YuCBgakaNUb+WhAy+SG3v8na3owoTKwvQhisgztGK117mhdt3wj6aS0aoDMyezUawauXhWfvuWmGDN6MaAnxzNLyZHa7xiF7CwexY3rFmgDk49IX3NHDyTVGQr/DxFsX6+fexpBUMFb+QbfkTsojOBkgROgLYygPRJKLiGnAvrU3d7V/ASpGZOMtJLclNVP3utGHpme2Qx5H7o1dQr0lId1UiHuoIAJaqyPYhbefYT6bf5DASHDi7VmLa6yDbeL0tBRycK+GOeNjxPxCHJHb4aekzcXtO4rY9F0NkXKvEqw2Cj4d36h/2aucjDzTEVezqVnrXSlOSjFa/rMmkREm5ngEwTbGYBMMx3ObszpetB1lBbL7WMsTzTOrOXqxjQdGxOKbsrbXbVnMVPLJ4wfz1ingMRaBe4XmjKdlnoKvvqmUuD+wCnDPWdxYJogvt/PmTyLSqd/A8lLumikMmI20b4nPW3kEaGDmrBFp8vfn9yCP2NcqtsnSQyc2Xu0nwE+1kYnV0j49+lFmlyqD
+ ARA:13230040|1800799024|366016|376014|22082099003|18002099003|6133799003|56012099006|11063799006|4143699003|3023799007;
+X-Microsoft-Antispam-Message-Info: uke4HXh2PKG1sWAVswP6hOXNAdA0kvYxT2trYuaBo2IvtqZ0w0h/O+50PTs7LF5Tp/Gd9OweANvnyhsIf+FBqv9s0DEQKtozIWKe9K2Y9ppghlUUgKJU/4vLIeJqshLJZOgyyjuh/45ZFeoFpgxjUoV93xyMkhO4R8BDFa78oWIxXJt7L2kqQgnxk28meZ/TDXLFwkUT8y16LfEVnyRRlxIaA83MTecd5VPCYcGZlc8a2pfAFnCGSPlN7q9UTff1EqcaWxDcUBX0IsLZFNmNTK0LAcjXr1x7GPg9DcfOuAlf+hS21hjEBbhUeik3wqYEVS72CV8jU/aht/UMaX2l3jZ5do8gNHm6xkrTaOTp0k4HqNkXTHIvVNkUhzDejdgqMzOzoFaHp114Sjd2RfzWwL0XMwwzG5Dnhw9AC7shWPoU3aZGiyT1E10rl1AK5VcTSHAHZxTFSItqQwSk5Z9+aaBNWzUsWi+oOpWSdruUxnQ2VgWmqRfN0YPA/QZIpPwNbDhQrExAJ6jRycovPYoZszP8IbS4myYh4JTOGs6mMEz3Y1CNAssZcswjMyzPfFpQeLCnQPjRHb+i/HajI3oTW69qAbilHvfIbE6y2ljZuF29M5df5NoLWTpwtZQhsFnLMkuh378wI+LPqouRClFbVk9bMf35yB2fpp5sHSIZDm2TkbUag4+F5qADye5J/t/C
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(22082099003)(18002099003)(56012099006)(3023799007)(4143699003)(6133799003)(11063799006);
+ SFS:(13230040)(1800799024)(366016)(376014)(22082099003)(18002099003)(6133799003)(56012099006)(11063799006)(4143699003)(3023799007);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?HfMFzAh5kb91yU77rUfM2EYt9999mOlGavKRk6jkHDCohJi/7SDdn6f23+iS?=
- =?us-ascii?Q?fyIW3pqPH84Yaf1P/0fNL8vLaPsZsDYdnU8vkBEpl94tF6eoIwsSOl1+4ASm?=
- =?us-ascii?Q?pbFbIqGIKtPkMcRhirlRNDe7mqIy2S6DcyfgUPfRsiojqtd36XRyZ9NLSFNk?=
- =?us-ascii?Q?jyCe3bf/OBzA9sSIYvyRhPsKj888eEs8AE/4xZe+Z40MTEcV6ZVmG+dWXZgw?=
- =?us-ascii?Q?jHRJKWlMrWF8gaYfgg3JiCXCkxeZh41OIbbgNxZBArm1e9D4OQq/KTPSh3VR?=
- =?us-ascii?Q?6LrvTXpMhZe/Mh3HozGNP5ed5IDoLkX6F8xS+T9giz3FW96qg2XNCyzZkWOl?=
- =?us-ascii?Q?Pi1qrJyO4GKvpZBUawlVkjiYEahArDJO3pQQH9F+CqjMEk9gZjC5O19QH4yH?=
- =?us-ascii?Q?mJHMqjfv8QLaTtGbsfwEhyB4B2/Vx8zwd9VH+O4Yv1ICj4gOn9IDimF4RtrA?=
- =?us-ascii?Q?euQtli266N+DWuLte82szSoyexjc8oEC01mJ7sXFlr7pbA94ILpBzgU7+Dz7?=
- =?us-ascii?Q?3CfeEBaqaME/pxEo7WPqKmxzefuytpaqT+ckefoyrUkEP+6UdDwsUxtBqVKz?=
- =?us-ascii?Q?TW8EoOi6SB3J7dtZnx4rcv5YlqZY/3K5ucmlRmb1nbqPGMea2enMFNUXcWUS?=
- =?us-ascii?Q?cjfgKsBZ8lCeZU+iLzVZX3jQ6m8qTrYqf/kH7U/Jp0CusaMv5m4ffTD0EmlQ?=
- =?us-ascii?Q?Tt0GFkbF46XKEyJ0L31K3q28VadyY1PVi7RTUJSSlKeexP7q5wakYSYOXBEJ?=
- =?us-ascii?Q?4YFk5/q3rcwNfI97ZrQaZiTlgoRheukdhkD7f5wIkB5UsAMGEBtQ4XPbr7Dt?=
- =?us-ascii?Q?kLyfBBkU5ZB6y4Y7NM+3aqkfVU/mXy+286CNTCC65CU3oiSbm3dyVTIaa0DO?=
- =?us-ascii?Q?msNy2NqEXexFgWbh87MFfySh/uh9SaUgSp3NrrPvkfuPIxyYPtBIJrA7Yv6f?=
- =?us-ascii?Q?YiZLvv0GzNuHuFEkm0+ItlkFd2By5xKwryPs8qFskoX8JxocJxZv0XB/i9h8?=
- =?us-ascii?Q?mf/ggSP61AOyXDvPNE24rlla/q4U6PqoAhvfKFBymRAiQa+LkiwTN3rHdjmL?=
- =?us-ascii?Q?VQIl2KrTeep9rBhqZvDGE/ehrc2md6yzwKhENjXlFRNTfQOJtykVEieutNXJ?=
- =?us-ascii?Q?RCxJ/DMPLSejS7I5TeOozBcDGJf1hI5UurITgHOFO3nThs9HKi2Yz3h2DWga?=
- =?us-ascii?Q?de1+62KfA+vVpxWHKNEuqfo/aCHcE+wzY1Fd9JjFNfQw4J6AZ41tAepdWT1I?=
- =?us-ascii?Q?IsczgEcY574kE23d1yuPqI41Hm/L1ogaY2AMW+S7d/cLqcwNRG2Nx4MFJwER?=
- =?us-ascii?Q?qQuvrRjpzFaiKgZBWz49imEAORByg4VtzQb5XvVohq02v4oLiuXT0x6fWOEu?=
- =?us-ascii?Q?vW9uBnZEm/Qv2GlfJ8OPEn6oSXC3LkgMfzTHNGL6nV5kTbRcnPRs3AQfEFEC?=
- =?us-ascii?Q?88f/KVIUx4r4JA7szbQ9QR9nCKr9YBHUfoLM880hwydB4NsrsQzwSvDIzz+D?=
- =?us-ascii?Q?d1CaHC8iWMSs/hPn3dhZf9Tux1crc5725P0k0iQcjal72y/2ZqUlz7ydV/5j?=
- =?us-ascii?Q?z3hA374VUtTvojWJHNUwroKBM/2Dgr+nuS8Hwn17EipfovnC724jZckTj7uX?=
- =?us-ascii?Q?YuPbnpicUiKNsVKkqz/4d/LkV4cTyQqhZxONk7zkzGuFzs3ovA0nnvAzXdbb?=
- =?us-ascii?Q?2bUDn3ksnV0gcW7levXMGcHnzdZPGjg5bLlvCVAgzpQ6PNACUPmU91EbEKCP?=
- =?us-ascii?Q?U2CWJJIKVg=3D=3D?=
-X-Exchange-RoutingPolicyChecked: suNOhqT1llDZ5EYTG4fOj/ZjxvZmqXSRRuIlwd9zWYqdXAld8w/TUwpBIOuQ7YgRWlo2pAWG7hlyvay35BSJWumjNNgg9vQvh/G7evSIa9kFf2JE6U/EafS9DpzI7FF8CPByTmxmPlMsfb6S6VBv2lXHkFFJPHbrEHwGkckS6S00ekqjNsLojywPk4CBJAZhv3O53o/kOZq0TGiFw8PLAcax2JarlADS2ZOEVTtw7td8TRHq8Oz8q0K2sTKs5sv9RLMYXTLRvXOv5rXLgONCa9eSwGoxUA82P0LaZA5nhvm9/khFg7jEuScSXlhyPamaS4Acn2gBNb8wID63ZB4PuQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: fb12354f-14cb-46f0-9640-08debcfa25e4
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NVJ3TDVFaVpsUlhUWHhXWkpCazZwMUMzRG5hUWlRK2Nwd0VobmsvVDlCbDJG?=
+ =?utf-8?B?VkZ0eFV3bnVIaWtFMnd4UDZZbHdLcjgzQzVXVDJCWUttQWIyeHhocmFnbGgw?=
+ =?utf-8?B?TnFFWStoK3ErR21LT00xcVk2dFlPUWFVNFlRdnF5ODk0ZFNQRjlHTDRkL1Jn?=
+ =?utf-8?B?UU1DMmlYNHdsQnNSeHRWYXJaVnpBbFFlaFc2R0hNc294OGp2VElCVkliemx4?=
+ =?utf-8?B?emNnMHdHNWVEUWRWUXBSV2szOHJwcWpFUUFNRXJnYmVFYXFQZzlOQURUVUlV?=
+ =?utf-8?B?SlV3TzF4SjE3QWJvMzdhbldtZUFsRmU3VDkwaWQyKzR2T0QzMGgvQ2R6ZUh2?=
+ =?utf-8?B?T3BWUzdXK0M1aUY2d1Y3ZC9KMjJhaG81OUtqd2NEbmhoNWJNOHIvZUl5clJN?=
+ =?utf-8?B?RE51TENQUWFWU1p4RGRnWGtUcDIxTUZCd3B4NUtadjRZNStHQk0vaDJBYk5O?=
+ =?utf-8?B?TTB2ZFI1VFROUThQK3ljTSsrRHF3REwyM3Q4UW5tN2pkcWcwMkdSRnVNVkgr?=
+ =?utf-8?B?VEtWRFZsOFg5MHZsaFFZNWpQYUlSRWlyNXhNRjYxcjA4Zk5xdTZuRjA2aVBK?=
+ =?utf-8?B?cG42T0hHU2lreXBkVHlHQ1pjVDBLL2xGdFJkWWJlZDNaby9CQlB5dENaL2pk?=
+ =?utf-8?B?NXc3djJYbnBEVTR2bmJCMm9SMHYyOTRrSHpoVFBQV2ltcXNKUEFyQk1pL010?=
+ =?utf-8?B?MzFjSG1kWUtHUnRnV2toQzRmRk94RGF6VlBPbksrdG9EczhOTW9OVXdOOHl6?=
+ =?utf-8?B?R21Icm1Rb1RjZk55SXRJYy8xUEJVTmtmR1o3Z1FTazZXVDlOK0h0NnVSS0p1?=
+ =?utf-8?B?K1VHMmJEQVJJMmErbW8zRFptR3Z1dmZMWFJXOHpvVkU3N3pBNHBnbjhuOCs5?=
+ =?utf-8?B?RWdhYkxZVXFaMG9QdnVacUhnWFlrRERGT3dka0p1Njltb0xCTXZibmtFN3pW?=
+ =?utf-8?B?RnZlcEc3MmFmSWZXUXY0SXRsaldicG1BS3FkOEcwdHF6Z3p5MmN1RmJBbnV1?=
+ =?utf-8?B?dWtFRmNYTkU2YVpnN0ppRDNVOTdEbVU5M1hnQlRMNjFVcE9GR3RreHIwLzJG?=
+ =?utf-8?B?MGQralp5R3FCMzRXUUJDdis0b0xQVE5yOXVrcitQWXUveWVteVh6Z25vWmtl?=
+ =?utf-8?B?cnhKeXhGRytQWEtxQm5qcTJWa09KNWdzNWRRSUhpbWtwUGtkcmJtSUMzSzVs?=
+ =?utf-8?B?OXVySkhjc0VUQzMwMU56WEhnUmRWOGk5SVhqR3Ywa1RHeXR5WkNqRjhjazdN?=
+ =?utf-8?B?TW1jUzg3am1xejZyYXVkUTJKa1YzYW1JRnZvbXE4L3IrODY3QVpDaEhHU1hl?=
+ =?utf-8?B?aUlNaHRFU0x0SGVuSXFEcC9PTEg1RlY5amhlTCtSRkpGQjU5dTA3V3V6clB4?=
+ =?utf-8?B?SVVKZEhXdHFYdHpOVkFFTEJWWTBzUi85RzM0SzJueUN5empnYjExOTVLZ2tR?=
+ =?utf-8?B?bFM5WmpxMWJ3SGJ6SEZ6Wk9jYno3ZFQ3S0tQZzc3alYweDhONTdPenUza29w?=
+ =?utf-8?B?dW9mSFNHZytSWGEwUFhscUVEMFptb1hld00yNjdvKzlEdzBUQndSb1Z2Vjc4?=
+ =?utf-8?B?L2dPbmhZMUZpemFJczRmd1hhTldzZ3M2eFJWVkh6NFJPUHhVVWV6MWpVaGhZ?=
+ =?utf-8?B?NEtZajAzdFo0T0pQbDNFQjhkbXpxeUxQdUFXSDRjQnBSOFZpelc4RFUvMDdP?=
+ =?utf-8?B?SE93NFpZM0s2bUlIV2JLNlY1WkI5aFhkdlBsYXNmb0ZIa1RkK2Q3ZVJ5dFFD?=
+ =?utf-8?B?YktKTDV0aHJrb1l4UTRsYWlDdEwza3NFZUtRZStYeVpPRGxSdG9OMm04cnM4?=
+ =?utf-8?B?c05ZbWVEbEFUd1ZMMHI1VTNiTHZWUG15TnFmTnlvYU9UbWg1emRRTlEwVDlw?=
+ =?utf-8?B?SkhZYmtnakM0Zk82eXJ5cUxXcURGOGhKQ2dGMW5hNGdBMEdPK05qcHJZclp0?=
+ =?utf-8?B?Ylp3bWlOL3RjcktNa044UjN3aWd6MkRGTWlVNHh1ZndNcFNkZmF1SXFKeHly?=
+ =?utf-8?B?RGN2elEyY3NPcXVva1A3RWh6NERxblZVMFV6d0R1dTVCQlFwdWZORW9JM1Uv?=
+ =?utf-8?B?TUtxWnZvbGZ6QlZDL0lXTVphREtMbEJ3bUNpWEFoVGhKazVqRC93eWk0dXBX?=
+ =?utf-8?B?WDFhRlRTcHNMb1NCR09kUUhXS04zcGU1T1FXNW1nUW9Tc21sdmtkeXlPSUJK?=
+ =?utf-8?B?clVsdDZVS1BaaS9jNHNuMmdPUUFMNzlhcTh5RlFQWnBuS1lRM29qcTRyQjNj?=
+ =?utf-8?B?YnlaUlFxZHZCbk1Jeml6YzEybFhNTlFEZkZFMzBzU0pXYitTamdueGkwVzBX?=
+ =?utf-8?B?VWJPZmQ1MDU5ZEZHRDRtM1AxL05qdUprakduZTB6TnFMTk9JTyszZz09?=
+X-Exchange-RoutingPolicyChecked: DqVELmFO6keEBxElRdKCBJBfqmqPGpikFTnLuYKjvfTwl50j1Sc5B8kQigB/Hf8Wd/t5A2eA8RibUSpb2xR/ZfXhEtwoveYlKTlW7qZbQ7aI4MaorACSUTkLdN6CnDKaisQYXBYhrQ8ZjIBzMuH6p2+mMeE9n18zJ3fUsGRGkUOZbj2544zV+XdNEqeZPRIiB+hVFYtRJhJIgTtiVtzAWaKKRs5eicwda8An2YOoAXqiXvfiPEar9XA2hqIxpk8x2DD66GugPH9IWv78Ca7k5RZj4uJKJpUw3vCRMqjAdtmC5VSSxH2WqwisH/wDiOFpt8RtKM5p/XLd4ZArYYgZvw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: c74ed45a-e0ab-47fd-eb3f-08debcfafb36
 X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2026 20:46:10.2879 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2026 20:52:07.7990 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qda8603C96H+XwTeHkD8vk5FQGV/MuIF/jNB8x/Tj0HTwVgiwo+QafFIpoDCKhYtoRHzVMEiVfQTXmhE5elztQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6660
+X-MS-Exchange-CrossTenant-UserPrincipalName: ejoqX49vhhgB/PJQ8NcXoujYGNNgtQu7BLuyF0Q6BANn3t7bhA/x4VuzQ/JPqCdvaskX6OKqNco17urWvomhgQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB6671
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -157,961 +167,231 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Gustavo Sousa <gustavo.sousa@intel.com> writes:
+Violet Monti <violet.monti@intel.com> writes:
 
-> Violet Monti <violet.monti@intel.com> writes:
+> It is currently possible for a RTP rule, and subsequently a workaround,
+> to expect contexts that may not be present when the workaround is
+> applied. For example, the workarounds in the engine_was[] in drm/xe/xe_wa=
+.c
+> expect an engine entity to be active. Conversely, the gt_was[] is not
+> depending on an engine entity to implement its workarounds. This kunit
+> test addition checks the gt_was[] workaround list for any workarounds
+> with XEP_RTP_ENGINE_CLASS() rules. If a workaround does have one of
+> these rules, the workaround is then checked for the "FOREACH_ENGINE" flag=
+,
+> which ensures the workaround is implemented properly.
 >
->> From: Gustavo Sousa <gustavo.sousa@intel.com>
->>
->> We currently have a mixture of styles for our RTP tables with respect of
->> how we define the number of entries:
->>
->>   * xe_rtp_process_to_sr() expects to receive the number of entries as
->>     arguments;
->>   * xe_rtp_process() expects the array to have a sentinel at the end of
->>     the array;
->>   * in xe_rtp_test.c, even though xe_rtp_process_to_sr() does not
->>     require a sentinel value, we need to rely on that technique to be
->>     able to count xe_rtp_entry_sr entries because simply using
->>     ARRAY_SIZE() is not possible.
->>
->> The style used by xe_rtp_process_to_sr() makes it hard to share the
->> tables with other compilation units (e.g. kunit tests), since the number
->> of entries is calculated with ARRAY_SIZE(), which is done at compile
->> time.
->>
->> Since we use the size of the tables to create some bitmasks, using a
->> sentinel style doesn't seem great either.
->>
->> A way to reconcile things into a single style is to have a struct type
->> that would hold the entries array and the number of entries.  Since we
->> have xe_rtp_entry and xe_rtp_entry_sr, we would have one type for each.
->>
->> The advantage of the proposed approach is that now we have a nice way to
->> share the tables directly to kunit tests with information about their
->> size.
->>
->> v5:
->>     - Remove added code from conflict resolution issues
->>
->> v4:
->>     - Removed conflicts with main branch
->>
->> v3:
->>     - No changes
->>
->> v2:
->>     - Add compatibility with new xe_rtp_table_sr format for
->>       "bad-mcr-reg-forced-to-regular" and
->>       "bad-regular-reg-forced-to-mcr"
->>
->> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
->> Signed-off-by: Violet Monti <violet.monti@intel.com>
+> The result of this test is an expectation failure if a workaround has an
+> improper XE_RTP_ENGINE_CLASS() rule setup, and aims to prevent future
+> issues of gt_was workarounds being applied without proper contexts.
 >
-> Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
-
-Oops... Please dismiss this. The r-b was meant for patch #2. Sorry for
-the noise.
-
---
-Gustavo Sousa
-
+> The gt_tunings[] RTP table has the same functional layout and
+> requirements as gt_was[], so it shares the same kunit test function,
+> minimizing excessive code.
 >
->> ---
->>  drivers/gpu/drm/xe/tests/xe_rtp_test.c | 101 ++++++++++---------------
->>  drivers/gpu/drm/xe/xe_hw_engine.c      |  14 ++--
->>  drivers/gpu/drm/xe/xe_reg_whitelist.c  |   7 +-
->>  drivers/gpu/drm/xe/xe_rtp.c            |  31 ++++----
->>  drivers/gpu/drm/xe/xe_rtp.h            |  16 +++-
->>  drivers/gpu/drm/xe/xe_rtp_types.h      |  10 +++
->>  drivers/gpu/drm/xe/xe_tuning.c         |  45 +++++------
->>  drivers/gpu/drm/xe/xe_wa.c             |  89 ++++++++++++----------
->>  8 files changed, 156 insertions(+), 157 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/tests/xe_rtp_test.c b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
->> index 642f6e090ad0..16bf85033c0c 100644
->> --- a/drivers/gpu/drm/xe/tests/xe_rtp_test.c
->> +++ b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
->> @@ -54,13 +54,13 @@ struct rtp_to_sr_test_case {
->>  	unsigned long expected_count_sr_entries;
->>  	unsigned int expected_sr_errors;
->>  	unsigned long expected_active;
->> -	const struct xe_rtp_entry_sr *entries;
->> +	const struct xe_rtp_table_sr table;
->>  };
->>  
->>  struct rtp_test_case {
->>  	const char *name;
->>  	unsigned long expected_active;
->> -	const struct xe_rtp_entry *entries;
->> +	const struct xe_rtp_table table;
->>  };
->>  
->>  static bool fake_xe_gt_mcr_check_reg(struct xe_gt *gt, struct xe_reg reg)
->> @@ -289,7 +289,7 @@ static const struct rtp_to_sr_test_case rtp_to_sr_cases[] = {
->>  		.expected_active = BIT(0) | BIT(1),
->>  		.expected_count_sr_entries = 1,
->>  		/* Different bits on the same register: create a single entry */
->> -		.entries = (const struct xe_rtp_entry_sr[]) {
->> +		.table = XE_RTP_TABLE_SR(
->>  			{ XE_RTP_NAME("basic-1"),
->>  			  XE_RTP_RULES(FUNC(match_yes)),
->>  			  XE_RTP_ACTIONS(SET(REGULAR_REG1, REG_BIT(0)))
->> @@ -298,8 +298,7 @@ static const struct rtp_to_sr_test_case rtp_to_sr_cases[] = {
->>  			  XE_RTP_RULES(FUNC(match_yes)),
->>  			  XE_RTP_ACTIONS(SET(REGULAR_REG1, REG_BIT(1)))
->>  			},
->> -			{}
->> -		},
->> +		),
->>  	},
->>  	{
->>  		.name = "no-match-no-add",
->> @@ -309,7 +308,7 @@ static const struct rtp_to_sr_test_case rtp_to_sr_cases[] = {
->>  		.expected_active = BIT(0),
->>  		.expected_count_sr_entries = 1,
->>  		/* Don't coalesce second entry since rules don't match */
->> -		.entries = (const struct xe_rtp_entry_sr[]) {
->> +		.table = XE_RTP_TABLE_SR(
->>  			{ XE_RTP_NAME("basic-1"),
->>  			  XE_RTP_RULES(FUNC(match_yes)),
->>  			  XE_RTP_ACTIONS(SET(REGULAR_REG1, REG_BIT(0)))
->> @@ -318,8 +317,7 @@ static const struct rtp_to_sr_test_case rtp_to_sr_cases[] = {
->>  			  XE_RTP_RULES(FUNC(match_no)),
->>  			  XE_RTP_ACTIONS(SET(REGULAR_REG1, REG_BIT(1)))
->>  			},
->> -			{}
->> -		},
->> +		),
->>  	},
->>  	{
->>  		.name = "two-regs-two-entries",
->> @@ -329,7 +327,7 @@ static const struct rtp_to_sr_test_case rtp_to_sr_cases[] = {
->>  		.expected_active = BIT(0) | BIT(1),
->>  		.expected_count_sr_entries = 2,
->>  		/* Same bits on different registers are not coalesced */
->> -		.entries = (const struct xe_rtp_entry_sr[]) {
->> +		.table = XE_RTP_TABLE_SR(
->>  			{ XE_RTP_NAME("basic-1"),
->>  			  XE_RTP_RULES(FUNC(match_yes)),
->>  			  XE_RTP_ACTIONS(SET(REGULAR_REG1, REG_BIT(0)))
->> @@ -338,8 +336,7 @@ static const struct rtp_to_sr_test_case rtp_to_sr_cases[] = {
->>  			  XE_RTP_RULES(FUNC(match_yes)),
->>  			  XE_RTP_ACTIONS(SET(REGULAR_REG2, REG_BIT(0)))
->>  			},
->> -			{}
->> -		},
->> +		),
->>  	},
->>  	{
->>  		.name = "clr-one-set-other",
->> @@ -349,7 +346,7 @@ static const struct rtp_to_sr_test_case rtp_to_sr_cases[] = {
->>  		.expected_active = BIT(0) | BIT(1),
->>  		.expected_count_sr_entries = 1,
->>  		/* Check clr vs set actions on different bits */
->> -		.entries = (const struct xe_rtp_entry_sr[]) {
->> +		.table = XE_RTP_TABLE_SR(
->>  			{ XE_RTP_NAME("basic-1"),
->>  			  XE_RTP_RULES(FUNC(match_yes)),
->>  			  XE_RTP_ACTIONS(SET(REGULAR_REG1, REG_BIT(0)))
->> @@ -358,8 +355,7 @@ static const struct rtp_to_sr_test_case rtp_to_sr_cases[] = {
->>  			  XE_RTP_RULES(FUNC(match_yes)),
->>  			  XE_RTP_ACTIONS(CLR(REGULAR_REG1, REG_BIT(1)))
->>  			},
->> -			{}
->> -		},
->> +		),
->>  	},
->>  	{
->>  #define TEMP_MASK	REG_GENMASK(10, 8)
->> @@ -371,14 +367,13 @@ static const struct rtp_to_sr_test_case rtp_to_sr_cases[] = {
->>  		.expected_active = BIT(0),
->>  		.expected_count_sr_entries = 1,
->>  		/* Check FIELD_SET works */
->> -		.entries = (const struct xe_rtp_entry_sr[]) {
->> +		.table = XE_RTP_TABLE_SR(
->>  			{ XE_RTP_NAME("basic-1"),
->>  			  XE_RTP_RULES(FUNC(match_yes)),
->>  			  XE_RTP_ACTIONS(FIELD_SET(REGULAR_REG1,
->>  						   TEMP_MASK, TEMP_FIELD))
->>  			},
->> -			{}
->> -		},
->> +		),
->>  #undef TEMP_MASK
->>  #undef TEMP_FIELD
->>  	},
->> @@ -390,7 +385,7 @@ static const struct rtp_to_sr_test_case rtp_to_sr_cases[] = {
->>  		.expected_active = BIT(0) | BIT(1),
->>  		.expected_count_sr_entries = 1,
->>  		.expected_sr_errors = 1,
->> -		.entries = (const struct xe_rtp_entry_sr[]) {
->> +		.table = XE_RTP_TABLE_SR(
->>  			{ XE_RTP_NAME("basic-1"),
->>  			  XE_RTP_RULES(FUNC(match_yes)),
->>  			  XE_RTP_ACTIONS(SET(REGULAR_REG1, REG_BIT(0)))
->> @@ -400,8 +395,7 @@ static const struct rtp_to_sr_test_case rtp_to_sr_cases[] = {
->>  			  XE_RTP_RULES(FUNC(match_yes)),
->>  			  XE_RTP_ACTIONS(SET(REGULAR_REG1, REG_BIT(0)))
->>  			},
->> -			{}
->> -		},
->> +		),
->>  	},
->>  	{
->>  		.name = "conflict-not-disjoint",
->> @@ -411,7 +405,7 @@ static const struct rtp_to_sr_test_case rtp_to_sr_cases[] = {
->>  		.expected_active = BIT(0) | BIT(1),
->>  		.expected_count_sr_entries = 1,
->>  		.expected_sr_errors = 1,
->> -		.entries = (const struct xe_rtp_entry_sr[]) {
->> +		.table = XE_RTP_TABLE_SR(
->>  			{ XE_RTP_NAME("basic-1"),
->>  			  XE_RTP_RULES(FUNC(match_yes)),
->>  			  XE_RTP_ACTIONS(SET(REGULAR_REG1, REG_BIT(0)))
->> @@ -421,8 +415,7 @@ static const struct rtp_to_sr_test_case rtp_to_sr_cases[] = {
->>  			  XE_RTP_RULES(FUNC(match_yes)),
->>  			  XE_RTP_ACTIONS(CLR(REGULAR_REG1, REG_GENMASK(1, 0)))
->>  			},
->> -			{}
->> -		},
->> +		),
->>  	},
->>  	{
->>  		.name = "conflict-reg-type",
->> @@ -432,7 +425,7 @@ static const struct rtp_to_sr_test_case rtp_to_sr_cases[] = {
->>  		.expected_active = BIT(0) | BIT(1) | BIT(2),
->>  		.expected_count_sr_entries = 1,
->>  		.expected_sr_errors = 2,
->> -		.entries = (const struct xe_rtp_entry_sr[]) {
->> +		.table = XE_RTP_TABLE_SR(
->>  			{ XE_RTP_NAME("basic-1"),
->>  			  XE_RTP_RULES(FUNC(match_yes)),
->>  			  XE_RTP_ACTIONS(SET(REGULAR_REG1, REG_BIT(0)))
->> @@ -447,8 +440,7 @@ static const struct rtp_to_sr_test_case rtp_to_sr_cases[] = {
->>  			  XE_RTP_RULES(FUNC(match_yes)),
->>  			  XE_RTP_ACTIONS(SET(MASKED_REG1, REG_BIT(0)))
->>  			},
->> -			{}
->> -		},
->> +		),
->>  	},
->>  	{
->>  		.name = "bad-mcr-reg-forced-to-regular",
->> @@ -458,13 +450,13 @@ static const struct rtp_to_sr_test_case rtp_to_sr_cases[] = {
->>  		.expected_active = BIT(0),
->>  		.expected_count_sr_entries = 1,
->>  		.expected_sr_errors = 1,
->> -		.entries = (const struct xe_rtp_entry_sr[]) {
->> +		.table = XE_RTP_TABLE_SR(
->>  			{ XE_RTP_NAME("bad-mcr-regular-reg"),
->>  			  XE_RTP_RULES(FUNC(match_yes)),
->>  			  XE_RTP_ACTIONS(SET(BAD_MCR_REG4, REG_BIT(0)))
->>  			},
->>  			{}
->> -		},
->> +		),
->>  	},
->>  	{
->>  		.name = "bad-regular-reg-forced-to-mcr",
->> @@ -474,13 +466,13 @@ static const struct rtp_to_sr_test_case rtp_to_sr_cases[] = {
->>  		.expected_active = BIT(0),
->>  		.expected_count_sr_entries = 1,
->>  		.expected_sr_errors = 1,
->> -		.entries = (const struct xe_rtp_entry_sr[]) {
->> +		.table = XE_RTP_TABLE_SR(
->>  			{ XE_RTP_NAME("bad-regular-reg"),
->>  			  XE_RTP_RULES(FUNC(match_yes)),
->>  			  XE_RTP_ACTIONS(SET(BAD_REGULAR_REG5, REG_BIT(0)))
->>  			},
->>  			{}
->> -		},
->> +		),
->>  	},
->>  };
->>  
->> @@ -492,16 +484,12 @@ static void xe_rtp_process_to_sr_tests(struct kunit *test)
->>  	struct xe_reg_sr *reg_sr = &gt->reg_sr;
->>  	const struct xe_reg_sr_entry *sre, *sr_entry = NULL;
->>  	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(gt);
->> -	unsigned long idx, count_sr_entries = 0, count_rtp_entries = 0, active = 0;
->> +	unsigned long idx, count_sr_entries = 0, active = 0;
->>  
->>  	xe_reg_sr_init(reg_sr, "xe_rtp_to_sr_tests", xe);
->>  
->> -	while (param->entries[count_rtp_entries].rules)
->> -		count_rtp_entries++;
->> -
->> -	xe_rtp_process_ctx_enable_active_tracking(&ctx, &active, count_rtp_entries);
->> -	xe_rtp_process_to_sr(&ctx, param->entries, count_rtp_entries,
->> -			     reg_sr, false);
->> +	xe_rtp_process_ctx_enable_active_tracking(&ctx, &active, param->table.n_entries);
->> +	xe_rtp_process_to_sr(&ctx, &param->table, reg_sr, false);
->>  
->>  	xa_for_each(&reg_sr->xa, idx, sre) {
->>  		if (idx == param->expected_reg.addr)
->> @@ -534,56 +522,52 @@ static const struct rtp_test_case rtp_cases[] = {
->>  	{
->>  		.name = "active1",
->>  		.expected_active = BIT(0),
->> -		.entries = (const struct xe_rtp_entry[]) {
->> +		.table = XE_RTP_TABLE(
->>  			{ XE_RTP_NAME("r1"),
->>  			  XE_RTP_RULES(FUNC(match_yes)),
->>  			},
->> -			{}
->> -		},
->> +		),
->>  	},
->>  	{
->>  		.name = "active2",
->>  		.expected_active = BIT(0) | BIT(1),
->> -		.entries = (const struct xe_rtp_entry[]) {
->> +		.table = XE_RTP_TABLE(
->>  			{ XE_RTP_NAME("r1"),
->>  			  XE_RTP_RULES(FUNC(match_yes)),
->>  			},
->>  			{ XE_RTP_NAME("r2"),
->>  			  XE_RTP_RULES(FUNC(match_yes)),
->>  			},
->> -			{}
->> -		},
->> +		),
->>  	},
->>  	{
->>  		.name = "active-inactive",
->>  		.expected_active = BIT(0),
->> -		.entries = (const struct xe_rtp_entry[]) {
->> +		.table = XE_RTP_TABLE(
->>  			{ XE_RTP_NAME("r1"),
->>  			  XE_RTP_RULES(FUNC(match_yes)),
->>  			},
->>  			{ XE_RTP_NAME("r2"),
->>  			  XE_RTP_RULES(FUNC(match_no)),
->>  			},
->> -			{}
->> -		},
->> +		),
->>  	},
->>  	{
->>  		.name = "inactive-active",
->>  		.expected_active = BIT(1),
->> -		.entries = (const struct xe_rtp_entry[]) {
->> +		.table = XE_RTP_TABLE(
->>  			{ XE_RTP_NAME("r1"),
->>  			  XE_RTP_RULES(FUNC(match_no)),
->>  			},
->>  			{ XE_RTP_NAME("r2"),
->>  			  XE_RTP_RULES(FUNC(match_yes)),
->>  			},
->> -			{}
->> -		},
->> +		),
->>  	},
->>  	{
->>  		.name = "inactive-active-inactive",
->>  		.expected_active = BIT(1),
->> -		.entries = (const struct xe_rtp_entry[]) {
->> +		.table = XE_RTP_TABLE(
->>  			{ XE_RTP_NAME("r1"),
->>  			  XE_RTP_RULES(FUNC(match_no)),
->>  			},
->> @@ -593,13 +577,12 @@ static const struct rtp_test_case rtp_cases[] = {
->>  			{ XE_RTP_NAME("r3"),
->>  			  XE_RTP_RULES(FUNC(match_no)),
->>  			},
->> -			{}
->> -		},
->> +		),
->>  	},
->>  	{
->>  		.name = "inactive-inactive-inactive",
->>  		.expected_active = 0,
->> -		.entries = (const struct xe_rtp_entry[]) {
->> +		.table = XE_RTP_TABLE(
->>  			{ XE_RTP_NAME("r1"),
->>  			  XE_RTP_RULES(FUNC(match_no)),
->>  			},
->> @@ -609,8 +592,7 @@ static const struct rtp_test_case rtp_cases[] = {
->>  			{ XE_RTP_NAME("r3"),
->>  			  XE_RTP_RULES(FUNC(match_no)),
->>  			},
->> -			{}
->> -		},
->> +		),
->>  	},
->>  };
->>  
->> @@ -620,13 +602,10 @@ static void xe_rtp_process_tests(struct kunit *test)
->>  	struct xe_device *xe = test->priv;
->>  	struct xe_gt *gt = xe_device_get_root_tile(xe)->primary_gt;
->>  	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(gt);
->> -	unsigned long count_rtp_entries = 0, active = 0;
->> -
->> -	while (param->entries[count_rtp_entries].rules)
->> -		count_rtp_entries++;
->> +	unsigned long active = 0;
->>  
->> -	xe_rtp_process_ctx_enable_active_tracking(&ctx, &active, count_rtp_entries);
->> -	xe_rtp_process(&ctx, param->entries);
->> +	xe_rtp_process_ctx_enable_active_tracking(&ctx, &active, param->table.n_entries);
->> +	xe_rtp_process(&ctx, &param->table);
->>  
->>  	KUNIT_EXPECT_EQ(test, active, param->expected_active);
->>  }
->> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
->> index 8c66ff6f3d3c..98265293f2dc 100644
->> --- a/drivers/gpu/drm/xe/xe_hw_engine.c
->> +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
->> @@ -346,7 +346,7 @@ hw_engine_setup_default_lrc_state(struct xe_hw_engine *hwe)
->>  	u32 blit_cctl_val = REG_FIELD_PREP(BLIT_CCTL_DST_MOCS_MASK, mocs_write_idx) |
->>  			    REG_FIELD_PREP(BLIT_CCTL_SRC_MOCS_MASK, mocs_read_idx);
->>  	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(hwe);
->> -	const struct xe_rtp_entry_sr lrc_setup[] = {
->> +	const struct xe_rtp_table_sr lrc_setup = XE_RTP_TABLE_SR(
->>  		/*
->>  		 * Some blitter commands do not have a field for MOCS, those
->>  		 * commands will use MOCS index pointed by BLIT_CCTL.
->> @@ -369,10 +369,9 @@ hw_engine_setup_default_lrc_state(struct xe_hw_engine *hwe)
->>  					   PREEMPT_GPGPU_THREAD_GROUP_LEVEL)),
->>  		  XE_RTP_ENTRY_FLAG(FOREACH_ENGINE)
->>  		},
->> -	};
->> +	);
->>  
->> -	xe_rtp_process_to_sr(&ctx, lrc_setup, ARRAY_SIZE(lrc_setup),
->> -			     &hwe->reg_lrc, true);
->> +	xe_rtp_process_to_sr(&ctx, &lrc_setup, &hwe->reg_lrc, true);
->>  }
->>  
->>  void xe_hw_engine_setup_reg_lrc(struct xe_hw_engine *hwe)
->> @@ -408,7 +407,7 @@ hw_engine_setup_default_state(struct xe_hw_engine *hwe)
->>  	u32 ring_cmd_cctl_val = REG_FIELD_PREP(CMD_CCTL_WRITE_OVERRIDE_MASK, mocs_write_idx) |
->>  				REG_FIELD_PREP(CMD_CCTL_READ_OVERRIDE_MASK, mocs_read_idx);
->>  	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(hwe);
->> -	const struct xe_rtp_entry_sr engine_entries[] = {
->> +	const struct xe_rtp_table_sr engine_sr = XE_RTP_TABLE_SR(
->>  		{ XE_RTP_NAME("RING_CMD_CCTL_default_MOCS"),
->>  		  XE_RTP_RULES(FUNC(xe_rtp_match_always)),
->>  		  XE_RTP_ACTIONS(FIELD_SET(RING_CMD_CCTL(0),
->> @@ -465,10 +464,9 @@ hw_engine_setup_default_state(struct xe_hw_engine *hwe)
->>  		  XE_RTP_ACTIONS(SET(GFX_MODE(0), GFX_MSIX_INTERRUPT_ENABLE,
->>  				     XE_RTP_ACTION_FLAG(ENGINE_BASE)))
->>  		},
->> -	};
->> +	);
->>  
->> -	xe_rtp_process_to_sr(&ctx, engine_entries, ARRAY_SIZE(engine_entries),
->> -			     &hwe->reg_sr, false);
->> +	xe_rtp_process_to_sr(&ctx, &engine_sr, &hwe->reg_sr, false);
->>  }
->>  
->>  static const struct engine_info *find_engine_info(enum xe_engine_class class, int instance)
->> diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
->> index fb65940848d7..2e84b1c49f37 100644
->> --- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
->> +++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
->> @@ -41,7 +41,7 @@ static bool match_multi_queue_class(const struct xe_device *xe,
->>  	return xe_gt_supports_multi_queue(gt, hwe->class);
->>  }
->>  
->> -static const struct xe_rtp_entry_sr register_whitelist[] = {
->> +static const struct xe_rtp_table_sr register_whitelist = XE_RTP_TABLE_SR(
->>  	{ XE_RTP_NAME("WaAllowPMDepthAndInvocationCountAccessFromUMD, 1408556865"),
->>  	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210), ENGINE_CLASS(RENDER)),
->>  	  XE_RTP_ACTIONS(WHITELIST(PS_INVOCATION_COUNT,
->> @@ -154,7 +154,7 @@ static const struct xe_rtp_entry_sr register_whitelist[] = {
->>  	  XE_RTP_RULES(FUNC(match_has_mert), ENGINE_CLASS(COPY)),
->>  	  XE_RTP_ACTIONS(WHITELIST_OA_MERT_MMIO_TRG)
->>  	},
->> -};
->> +);
->>  
->>  static void whitelist_apply_to_hwe(struct xe_hw_engine *hwe)
->>  {
->> @@ -202,8 +202,7 @@ void xe_reg_whitelist_process_engine(struct xe_hw_engine *hwe)
->>  {
->>  	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(hwe);
->>  
->> -	xe_rtp_process_to_sr(&ctx, register_whitelist, ARRAY_SIZE(register_whitelist),
->> -			     &hwe->reg_whitelist, false);
->> +	xe_rtp_process_to_sr(&ctx, &register_whitelist, &hwe->reg_whitelist, false);
->>  	whitelist_apply_to_hwe(hwe);
->>  }
->>  
->> diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
->> index dec9d94e6fb0..83a40e1f9528 100644
->> --- a/drivers/gpu/drm/xe/xe_rtp.c
->> +++ b/drivers/gpu/drm/xe/xe_rtp.c
->> @@ -326,8 +326,7 @@ static void rtp_mark_active(struct xe_device *xe,
->>   * xe_rtp_process_to_sr - Process all rtp @entries, adding the matching ones to
->>   *                        the save-restore argument.
->>   * @ctx: The context for processing the table, with one of device, gt or hwe
->> - * @entries: Table with RTP definitions
->> - * @n_entries: Number of entries to process, usually ARRAY_SIZE(entries)
->> + * @table: Table with RTP definitions
->>   * @sr: Save-restore struct where matching rules execute the action. This can be
->>   *      viewed as the "coalesced view" of multiple the tables. The bits for each
->>   *      register set are expected not to collide with previously added entries
->> @@ -339,12 +338,10 @@ static void rtp_mark_active(struct xe_device *xe,
->>   * used to calculate the right register offset
->>   */
->>  void xe_rtp_process_to_sr(struct xe_rtp_process_ctx *ctx,
->> -			  const struct xe_rtp_entry_sr *entries,
->> -			  size_t n_entries,
->> +			  const struct xe_rtp_table_sr *table,
->>  			  struct xe_reg_sr *sr,
->>  			  bool process_in_vf)
->>  {
->> -	const struct xe_rtp_entry_sr *entry;
->>  	struct xe_hw_engine *hwe = NULL;
->>  	struct xe_gt *gt = NULL;
->>  	struct xe_device *xe = NULL;
->> @@ -354,9 +351,10 @@ void xe_rtp_process_to_sr(struct xe_rtp_process_ctx *ctx,
->>  	if (!process_in_vf && IS_SRIOV_VF(xe))
->>  		return;
->>  
->> -	xe_assert(xe, entries);
->> +	xe_assert(xe, table->entries);
->>  
->> -	for (entry = entries; entry - entries < n_entries; entry++) {
->> +	for (size_t i = 0; i < table->n_entries; i++) {
->> +		const struct xe_rtp_entry_sr *entry = &table->entries[i];
->>  		bool match = false;
->>  
->>  		if (entry->flags & XE_RTP_ENTRY_FLAG_FOREACH_ENGINE) {
->> @@ -371,37 +369,40 @@ void xe_rtp_process_to_sr(struct xe_rtp_process_ctx *ctx,
->>  		}
->>  
->>  		if (match)
->> -			rtp_mark_active(xe, ctx, entry - entries);
->> +			rtp_mark_active(xe, ctx, i);
->>  	}
->>  }
->>  EXPORT_SYMBOL_IF_KUNIT(xe_rtp_process_to_sr);
->>  
->>  /**
->> - * xe_rtp_process - Process all rtp @entries, without running any action
->> + * xe_rtp_process - Process all entries in rtp @table, without running any action
->>   * @ctx: The context for processing the table, with one of device, gt or hwe
->> - * @entries: Table with RTP definitions
->> + * @table: Table with RTP definitions
->>   *
->> - * Walk the table pointed by @entries (with an empty sentinel), executing the
->> + * Walk the table pointed by @table, executing the
->>   * rules. One difference from xe_rtp_process_to_sr(): there is no action
->>   * associated with each entry since this uses struct xe_rtp_entry. Its main use
->>   * is for marking active workarounds via
->>   * xe_rtp_process_ctx_enable_active_tracking().
->>   */
->>  void xe_rtp_process(struct xe_rtp_process_ctx *ctx,
->> -		    const struct xe_rtp_entry *entries)
->> +		    const struct xe_rtp_table *table)
->>  {
->> -	const struct xe_rtp_entry *entry;
->>  	struct xe_hw_engine *hwe;
->>  	struct xe_gt *gt;
->>  	struct xe_device *xe;
->>  
->>  	rtp_get_context(ctx, &hwe, &gt, &xe);
->>  
->> -	for (entry = entries; entry && entry->rules; entry++) {
->> +	xe_assert(xe, table->entries);
->> +
->> +	for (size_t i = 0; i < table->n_entries; i++) {
->> +		const struct xe_rtp_entry *entry = &table->entries[i];
->> +
->>  		if (!rule_matches(xe, gt, hwe, entry->rules, entry->n_rules))
->>  			continue;
->>  
->> -		rtp_mark_active(xe, ctx, entry - entries);
->> +		rtp_mark_active(xe, ctx, i);
->>  	}
->>  }
->>  EXPORT_SYMBOL_IF_KUNIT(xe_rtp_process);
->> diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
->> index e4f1930ca1c3..4e3cfd69f922 100644
->> --- a/drivers/gpu/drm/xe/xe_rtp.h
->> +++ b/drivers/gpu/drm/xe/xe_rtp.h
->> @@ -461,6 +461,16 @@ struct xe_reg_sr;
->>  		XE_RTP_PASTE_FOREACH(ACTION_, COMMA, (__VA_ARGS__))	\
->>  	}
->>  
->> +#define XE_RTP_TABLE_SR(...) { \
->> +	.entries = (const struct xe_rtp_entry_sr[]){__VA_ARGS__}, \
->> +	.n_entries = ARRAY_SIZE(((const struct xe_rtp_entry_sr[]){__VA_ARGS__})), \
->> +}
->> +
->> +#define XE_RTP_TABLE(...) { \
->> +	.entries = (const struct xe_rtp_entry[]){__VA_ARGS__}, \
->> +	.n_entries = ARRAY_SIZE(((const struct xe_rtp_entry[]){__VA_ARGS__})), \
->> +}
->> +
->>  #define XE_RTP_PROCESS_CTX_INITIALIZER(arg__) _Generic((arg__),							\
->>  	struct xe_hw_engine * :	(struct xe_rtp_process_ctx){ { (void *)(arg__) }, XE_RTP_PROCESS_TYPE_ENGINE },	\
->>  	struct xe_gt * :	(struct xe_rtp_process_ctx){ { (void *)(arg__) }, XE_RTP_PROCESS_TYPE_GT },	\
->> @@ -471,12 +481,12 @@ void xe_rtp_process_ctx_enable_active_tracking(struct xe_rtp_process_ctx *ctx,
->>  					       size_t n_entries);
->>  
->>  void xe_rtp_process_to_sr(struct xe_rtp_process_ctx *ctx,
->> -			  const struct xe_rtp_entry_sr *entries,
->> -			  size_t n_entries, struct xe_reg_sr *sr,
->> +			  const struct xe_rtp_table_sr *table,
->> +			  struct xe_reg_sr *sr,
->>  			  bool process_in_vf);
->>  
->>  void xe_rtp_process(struct xe_rtp_process_ctx *ctx,
->> -		    const struct xe_rtp_entry *entries);
->> +		    const struct xe_rtp_table *table);
->>  
->>  /* Match functions to be used with XE_RTP_MATCH_FUNC */
->>  
->> diff --git a/drivers/gpu/drm/xe/xe_rtp_types.h b/drivers/gpu/drm/xe/xe_rtp_types.h
->> index 0265c16d2762..58018ae4f8cc 100644
->> --- a/drivers/gpu/drm/xe/xe_rtp_types.h
->> +++ b/drivers/gpu/drm/xe/xe_rtp_types.h
->> @@ -112,6 +112,16 @@ struct xe_rtp_entry {
->>  	u8 n_rules;
->>  };
->>  
->> +struct xe_rtp_table_sr {
->> +	const struct xe_rtp_entry_sr *entries;
->> +	size_t n_entries;
->> +};
->> +
->> +struct xe_rtp_table {
->> +	const struct xe_rtp_entry *entries;
->> +	size_t n_entries;
->> +};
->> +
->>  enum xe_rtp_process_type {
->>  	XE_RTP_PROCESS_TYPE_DEVICE,
->>  	XE_RTP_PROCESS_TYPE_GT,
->> diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
->> index 9a1b3862e192..bf3fad9cdbef 100644
->> --- a/drivers/gpu/drm/xe/xe_tuning.c
->> +++ b/drivers/gpu/drm/xe/xe_tuning.c
->> @@ -20,7 +20,7 @@
->>  #undef XE_REG_MCR
->>  #define XE_REG_MCR(...)     XE_REG(__VA_ARGS__, .mcr = 1)
->>  
->> -static const struct xe_rtp_entry_sr gt_tunings[] = {
->> +static const struct xe_rtp_table_sr gt_tunings = XE_RTP_TABLE_SR(
->>  	{ XE_RTP_NAME("Tuning: Blend Fill Caching Optimization Disable"),
->>  	  XE_RTP_RULES(PLATFORM(DG2)),
->>  	  XE_RTP_ACTIONS(SET(XEHP_L3SCQREG7, BLEND_FILL_CACHING_OPT_DIS))
->> @@ -100,9 +100,9 @@ static const struct xe_rtp_entry_sr gt_tunings[] = {
->>  	  XE_RTP_ACTIONS(FIELD_SET(GAMSTLB_CTRL, BANK_HASH_MODE,
->>  				   BANK_HASH_4KB_MODE))
->>  	},
->> -};
->> +);
->>  
->> -static const struct xe_rtp_entry_sr engine_tunings[] = {
->> +static const struct xe_rtp_table_sr engine_tunings = XE_RTP_TABLE_SR(
->>  	{ XE_RTP_NAME("Tuning: L3 Hashing Mask"),
->>  	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210),
->>  		       FUNC(xe_rtp_match_first_render_or_compute)),
->> @@ -129,9 +129,9 @@ static const struct xe_rtp_entry_sr engine_tunings[] = {
->>  		       FUNC(xe_rtp_match_first_render_or_compute)),
->>  	  XE_RTP_ACTIONS(SET(TDL_TSL_CHICKEN2, TILEY_LOCALID))
->>  	},
->> -};
->> +);
->>  
->> -static const struct xe_rtp_entry_sr lrc_tunings[] = {
->> +static const struct xe_rtp_table_sr lrc_tunings = XE_RTP_TABLE_SR(
->>  	{ XE_RTP_NAME("Tuning: Windower HW Filtering"),
->>  	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3000, 3599), ENGINE_CLASS(RENDER)),
->>  	  XE_RTP_ACTIONS(SET(XEHP_COMMON_SLICE_CHICKEN4, HW_FILTERING))
->> @@ -171,7 +171,7 @@ static const struct xe_rtp_entry_sr lrc_tunings[] = {
->>  	  XE_RTP_ACTIONS(FIELD_SET(FF_MODE, VS_HIT_MAX_VALUE_MASK,
->>  				   REG_FIELD_PREP(VS_HIT_MAX_VALUE_MASK, 0x3f)))
->>  	},
->> -};
->> +);
->>  
->>  /**
->>   * xe_tuning_init - initialize gt with tunings bookkeeping
->> @@ -185,9 +185,9 @@ int xe_tuning_init(struct xe_gt *gt)
->>  	size_t n_lrc, n_engine, n_gt, total;
->>  	unsigned long *p;
->>  
->> -	n_gt = BITS_TO_LONGS(ARRAY_SIZE(gt_tunings));
->> -	n_engine = BITS_TO_LONGS(ARRAY_SIZE(engine_tunings));
->> -	n_lrc = BITS_TO_LONGS(ARRAY_SIZE(lrc_tunings));
->> +	n_gt = BITS_TO_LONGS(gt_tunings.n_entries);
->> +	n_engine = BITS_TO_LONGS(engine_tunings.n_entries);
->> +	n_lrc = BITS_TO_LONGS(lrc_tunings.n_entries);
->>  	total = n_gt + n_engine + n_lrc;
->>  
->>  	p = drmm_kzalloc(&xe->drm, sizeof(*p) * total, GFP_KERNEL);
->> @@ -210,9 +210,8 @@ void xe_tuning_process_gt(struct xe_gt *gt)
->>  
->>  	xe_rtp_process_ctx_enable_active_tracking(&ctx,
->>  						  gt->tuning_active.gt,
->> -						  ARRAY_SIZE(gt_tunings));
->> -	xe_rtp_process_to_sr(&ctx, gt_tunings, ARRAY_SIZE(gt_tunings),
->> -			     &gt->reg_sr, false);
->> +						  gt_tunings.n_entries);
->> +	xe_rtp_process_to_sr(&ctx, &gt_tunings, &gt->reg_sr, false);
->>  }
->>  EXPORT_SYMBOL_IF_KUNIT(xe_tuning_process_gt);
->>  
->> @@ -222,9 +221,8 @@ void xe_tuning_process_engine(struct xe_hw_engine *hwe)
->>  
->>  	xe_rtp_process_ctx_enable_active_tracking(&ctx,
->>  						  hwe->gt->tuning_active.engine,
->> -						  ARRAY_SIZE(engine_tunings));
->> -	xe_rtp_process_to_sr(&ctx, engine_tunings, ARRAY_SIZE(engine_tunings),
->> -			     &hwe->reg_sr, false);
->> +						  engine_tunings.n_entries);
->> +	xe_rtp_process_to_sr(&ctx, &engine_tunings, &hwe->reg_sr, false);
->>  }
->>  EXPORT_SYMBOL_IF_KUNIT(xe_tuning_process_engine);
->>  
->> @@ -242,9 +240,8 @@ void xe_tuning_process_lrc(struct xe_hw_engine *hwe)
->>  
->>  	xe_rtp_process_ctx_enable_active_tracking(&ctx,
->>  						  hwe->gt->tuning_active.lrc,
->> -						  ARRAY_SIZE(lrc_tunings));
->> -	xe_rtp_process_to_sr(&ctx, lrc_tunings, ARRAY_SIZE(lrc_tunings),
->> -			     &hwe->reg_lrc, true);
->> +						  lrc_tunings.n_entries);
->> +	xe_rtp_process_to_sr(&ctx, &lrc_tunings, &hwe->reg_lrc, true);
->>  }
->>  
->>  /**
->> @@ -259,18 +256,18 @@ int xe_tuning_dump(struct xe_gt *gt, struct drm_printer *p)
->>  	size_t idx;
->>  
->>  	drm_printf(p, "GT Tunings\n");
->> -	for_each_set_bit(idx, gt->tuning_active.gt, ARRAY_SIZE(gt_tunings))
->> -		drm_printf_indent(p, 1, "%s\n", gt_tunings[idx].name);
->> +	for_each_set_bit(idx, gt->tuning_active.gt, gt_tunings.n_entries)
->> +		drm_printf_indent(p, 1, "%s\n", gt_tunings.entries[idx].name);
->>  
->>  	drm_puts(p, "\n");
->>  	drm_printf(p, "Engine Tunings\n");
->> -	for_each_set_bit(idx, gt->tuning_active.engine, ARRAY_SIZE(engine_tunings))
->> -		drm_printf_indent(p, 1, "%s\n", engine_tunings[idx].name);
->> +	for_each_set_bit(idx, gt->tuning_active.engine, engine_tunings.n_entries)
->> +		drm_printf_indent(p, 1, "%s\n", engine_tunings.entries[idx].name);
->>  
->>  	drm_puts(p, "\n");
->>  	drm_printf(p, "LRC Tunings\n");
->> -	for_each_set_bit(idx, gt->tuning_active.lrc, ARRAY_SIZE(lrc_tunings))
->> -		drm_printf_indent(p, 1, "%s\n", lrc_tunings[idx].name);
->> +	for_each_set_bit(idx, gt->tuning_active.lrc, lrc_tunings.n_entries)
->> +		drm_printf_indent(p, 1, "%s\n", lrc_tunings.entries[idx].name);
->>  
->>  	return 0;
->>  }
->> diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
->> index cb811f8a7781..b9d9fe0801aa 100644
->> --- a/drivers/gpu/drm/xe/xe_wa.c
->> +++ b/drivers/gpu/drm/xe/xe_wa.c
->> @@ -130,7 +130,7 @@
->>  __diag_push();
->>  __diag_ignore_all("-Woverride-init", "Allow field overrides in table");
->>  
->> -static const struct xe_rtp_entry_sr gt_was[] = {
->> +static const struct xe_rtp_table_sr gt_was = XE_RTP_TABLE_SR(
->>  	/* Workarounds applying over a range of IPs */
->>  
->>  	{ XE_RTP_NAME("14011060649"),
->> @@ -306,9 +306,9 @@ static const struct xe_rtp_entry_sr gt_was[] = {
->>  	  XE_RTP_RULES(GRAPHICS_VERSION(3510), GRAPHICS_STEP(A0, B0)),
->>  	  XE_RTP_ACTIONS(SET(GUC_INTR_CHICKEN, DISABLE_SIGNALING_ENGINES))
->>  	},
->> -};
->> +);
->>  
->> -static const struct xe_rtp_entry_sr engine_was[] = {
->> +static const struct xe_rtp_table_sr engine_was = XE_RTP_TABLE_SR(
->>  	/* Workarounds applying over a range of IPs */
->>  
->>  	{ XE_RTP_NAME("22010931296, 18011464164, 14010919138"),
->> @@ -614,9 +614,9 @@ static const struct xe_rtp_entry_sr engine_was[] = {
->>  		       FUNC(xe_rtp_match_first_render_or_compute)),
->>  	  XE_RTP_ACTIONS(SET(TDL_CHICKEN, BIT_APQ_OPT_DIS))
->>  	},
->> -};
->> +);
->>  
->> -static const struct xe_rtp_entry_sr lrc_was[] = {
->> +static const struct xe_rtp_table_sr lrc_was = XE_RTP_TABLE_SR(
->>  	{ XE_RTP_NAME("16011163337"),
->>  	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210), ENGINE_CLASS(RENDER)),
->>  	  /* read verification is ignored due to 1608008084. */
->> @@ -794,21 +794,29 @@ static const struct xe_rtp_entry_sr lrc_was[] = {
->>  		       ENGINE_CLASS(RENDER)),
->>  	  XE_RTP_ACTIONS(SET(CHICKEN_RASTER_1, DIS_CLIP_NEGATIVE_BOUNDING_BOX))
->>  	},
->> -};
->> +);
->>  
->> -static __maybe_unused const struct xe_rtp_entry oob_was[] = {
->> +static const struct xe_rtp_entry oob_was_entries[] = {
->>  #include <generated/xe_wa_oob.c>
->> -	{}
->>  };
->>  
->> -static_assert(ARRAY_SIZE(oob_was) - 1 == _XE_WA_OOB_COUNT);
->> +static_assert(ARRAY_SIZE(oob_was_entries)  == _XE_WA_OOB_COUNT);
->>  
->> -static __maybe_unused const struct xe_rtp_entry device_oob_was[] = {
->> +static __maybe_unused const struct xe_rtp_table oob_was = {
->> +	.entries = oob_was_entries,
->> +	.n_entries = ARRAY_SIZE(oob_was_entries),
->> +};
->> +
->> +static const struct xe_rtp_entry device_oob_was_entries[] = {
->>  #include <generated/xe_device_wa_oob.c>
->> -	{}
->>  };
->>  
->> -static_assert(ARRAY_SIZE(device_oob_was) - 1 == _XE_DEVICE_WA_OOB_COUNT);
->> +static_assert(ARRAY_SIZE(device_oob_was_entries) == _XE_DEVICE_WA_OOB_COUNT);
->> +
->> +static __maybe_unused const struct xe_rtp_table device_oob_was = {
->> +	.entries = device_oob_was_entries,
->> +	.n_entries = ARRAY_SIZE(device_oob_was_entries),
->> +};
->>  
->>  __diag_pop();
->>  
->> @@ -824,10 +832,10 @@ void xe_wa_process_device_oob(struct xe_device *xe)
->>  {
->>  	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(xe);
->>  
->> -	xe_rtp_process_ctx_enable_active_tracking(&ctx, xe->wa_active.oob, ARRAY_SIZE(device_oob_was));
->> +	xe_rtp_process_ctx_enable_active_tracking(&ctx, xe->wa_active.oob, device_oob_was.n_entries);
->>  
->>  	xe->wa_active.oob_initialized = true;
->> -	xe_rtp_process(&ctx, device_oob_was);
->> +	xe_rtp_process(&ctx, &device_oob_was);
->>  }
->>  
->>  /**
->> @@ -842,9 +850,9 @@ void xe_wa_process_gt_oob(struct xe_gt *gt)
->>  	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(gt);
->>  
->>  	xe_rtp_process_ctx_enable_active_tracking(&ctx, gt->wa_active.oob,
->> -						  ARRAY_SIZE(oob_was));
->> +						  oob_was.n_entries);
->>  	gt->wa_active.oob_initialized = true;
->> -	xe_rtp_process(&ctx, oob_was);
->> +	xe_rtp_process(&ctx, &oob_was);
->>  }
->>  
->>  /**
->> @@ -859,9 +867,8 @@ void xe_wa_process_gt(struct xe_gt *gt)
->>  	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(gt);
->>  
->>  	xe_rtp_process_ctx_enable_active_tracking(&ctx, gt->wa_active.gt,
->> -						  ARRAY_SIZE(gt_was));
->> -	xe_rtp_process_to_sr(&ctx, gt_was, ARRAY_SIZE(gt_was),
->> -			     &gt->reg_sr, false);
->> +						  gt_was.n_entries);
->> +	xe_rtp_process_to_sr(&ctx, &gt_was, &gt->reg_sr, false);
->>  }
->>  EXPORT_SYMBOL_IF_KUNIT(xe_wa_process_gt);
->>  
->> @@ -878,9 +885,8 @@ void xe_wa_process_engine(struct xe_hw_engine *hwe)
->>  	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(hwe);
->>  
->>  	xe_rtp_process_ctx_enable_active_tracking(&ctx, hwe->gt->wa_active.engine,
->> -						  ARRAY_SIZE(engine_was));
->> -	xe_rtp_process_to_sr(&ctx, engine_was, ARRAY_SIZE(engine_was),
->> -			     &hwe->reg_sr, false);
->> +						  engine_was.n_entries);
->> +	xe_rtp_process_to_sr(&ctx, &engine_was, &hwe->reg_sr, false);
->>  }
->>  
->>  /**
->> @@ -896,9 +902,8 @@ void xe_wa_process_lrc(struct xe_hw_engine *hwe)
->>  	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(hwe);
->>  
->>  	xe_rtp_process_ctx_enable_active_tracking(&ctx, hwe->gt->wa_active.lrc,
->> -						  ARRAY_SIZE(lrc_was));
->> -	xe_rtp_process_to_sr(&ctx, lrc_was, ARRAY_SIZE(lrc_was),
->> -			     &hwe->reg_lrc, true);
->> +						  lrc_was.n_entries);
->> +	xe_rtp_process_to_sr(&ctx, &lrc_was, &hwe->reg_lrc, true);
->>  }
->>  
->>  /**
->> @@ -912,7 +917,7 @@ int xe_wa_device_init(struct xe_device *xe)
->>  	unsigned long *p;
->>  
->>  	p = drmm_kzalloc(&xe->drm,
->> -			 sizeof(*p) * BITS_TO_LONGS(ARRAY_SIZE(device_oob_was)),
->> +			 sizeof(*p) * BITS_TO_LONGS(device_oob_was.n_entries),
->>  			 GFP_KERNEL);
->>  
->>  	if (!p)
->> @@ -935,10 +940,10 @@ int xe_wa_gt_init(struct xe_gt *gt)
->>  	size_t n_oob, n_lrc, n_engine, n_gt, total;
->>  	unsigned long *p;
->>  
->> -	n_gt = BITS_TO_LONGS(ARRAY_SIZE(gt_was));
->> -	n_engine = BITS_TO_LONGS(ARRAY_SIZE(engine_was));
->> -	n_lrc = BITS_TO_LONGS(ARRAY_SIZE(lrc_was));
->> -	n_oob = BITS_TO_LONGS(ARRAY_SIZE(oob_was));
->> +	n_gt = BITS_TO_LONGS(gt_was.n_entries);
->> +	n_engine = BITS_TO_LONGS(engine_was.n_entries);
->> +	n_lrc = BITS_TO_LONGS(lrc_was.n_entries);
->> +	n_oob = BITS_TO_LONGS(oob_was.n_entries);
->>  	total = n_gt + n_engine + n_lrc + n_oob;
->>  
->>  	p = drmm_kzalloc(&xe->drm, sizeof(*p) * total, GFP_KERNEL);
->> @@ -962,9 +967,9 @@ void xe_wa_device_dump(struct xe_device *xe, struct drm_printer *p)
->>  	size_t idx;
->>  
->>  	drm_printf(p, "Device OOB Workarounds\n");
->> -	for_each_set_bit(idx, xe->wa_active.oob, ARRAY_SIZE(device_oob_was))
->> -		if (device_oob_was[idx].name)
->> -			drm_printf_indent(p, 1, "%s\n", device_oob_was[idx].name);
->> +	for_each_set_bit(idx, xe->wa_active.oob, device_oob_was.n_entries)
->> +		if (device_oob_was.entries[idx].name)
->> +			drm_printf_indent(p, 1, "%s\n", device_oob_was.entries[idx].name);
->>  }
->>  
->>  /**
->> @@ -979,24 +984,24 @@ int xe_wa_gt_dump(struct xe_gt *gt, struct drm_printer *p)
->>  	size_t idx;
->>  
->>  	drm_printf(p, "GT Workarounds\n");
->> -	for_each_set_bit(idx, gt->wa_active.gt, ARRAY_SIZE(gt_was))
->> -		drm_printf_indent(p, 1, "%s\n", gt_was[idx].name);
->> +	for_each_set_bit(idx, gt->wa_active.gt, gt_was.n_entries)
->> +		drm_printf_indent(p, 1, "%s\n", gt_was.entries[idx].name);
->>  
->>  	drm_puts(p, "\n");
->>  	drm_printf(p, "Engine Workarounds\n");
->> -	for_each_set_bit(idx, gt->wa_active.engine, ARRAY_SIZE(engine_was))
->> -		drm_printf_indent(p, 1, "%s\n", engine_was[idx].name);
->> +	for_each_set_bit(idx, gt->wa_active.engine, engine_was.n_entries)
->> +		drm_printf_indent(p, 1, "%s\n", engine_was.entries[idx].name);
->>  
->>  	drm_puts(p, "\n");
->>  	drm_printf(p, "LRC Workarounds\n");
->> -	for_each_set_bit(idx, gt->wa_active.lrc, ARRAY_SIZE(lrc_was))
->> -		drm_printf_indent(p, 1, "%s\n", lrc_was[idx].name);
->> +	for_each_set_bit(idx, gt->wa_active.lrc, lrc_was.n_entries)
->> +		drm_printf_indent(p, 1, "%s\n", lrc_was.entries[idx].name);
->>  
->>  	drm_puts(p, "\n");
->>  	drm_printf(p, "OOB Workarounds\n");
->> -	for_each_set_bit(idx, gt->wa_active.oob, ARRAY_SIZE(oob_was))
->> -		if (oob_was[idx].name)
->> -			drm_printf_indent(p, 1, "%s\n", oob_was[idx].name);
->> +	for_each_set_bit(idx, gt->wa_active.oob, oob_was.n_entries)
->> +		if (oob_was.entries[idx].name)
->> +			drm_printf_indent(p, 1, "%s\n", oob_was.entries[idx].name);
->>  	return 0;
->>  }
->>  
->> -- 
->> 2.43.0
+> v5:
+>     - Remove unnecessary headers from xe_rtp_table_test.c
+>
+> v4:
+>     - No change
+>
+> v3:
+>     - Removed "VISIBLE_IF_KUNIT" keyword from xe_wa.h
+>     - Added gt_tunings[] for testing
+>     - Reworked KUNIT_EXPECT_TRUE() for easier parsing of errors
+>
+> v2:
+>     - Moved contents of xe_rtp_tables_test.h to .c and removed file
+>     - Renamed macro RTP_KUNIT_ARRAY_PARAM to RTP_TABLE_PARAM
+>     - Removed unnecessary functions and iterative components from
+>       generated _gen_params functions and implemented usage of table
+>       name and WA number as entry name
+>     - Condensed xe_rtp_table_gt_test() to use KUNIT_EXPECT_TRUE with no
+>       message statement
+>     - Removed xe_rtp_table_test_init() and xe_rtp_table_test_exit() as
+>       fake device initialization is not necessary
+>
+> Signed-off-by: Violet Monti <violet.monti@intel.com>
+
+Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+
+> ---
+>  drivers/gpu/drm/xe/tests/Makefile             |  1 +
+>  drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c | 53 +++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_tuning.c                |  3 +-
+>  drivers/gpu/drm/xe/xe_tuning.h                |  6 +++
+>  drivers/gpu/drm/xe/xe_wa.c                    |  3 +-
+>  drivers/gpu/drm/xe/xe_wa.h                    |  5 ++
+>  6 files changed, 69 insertions(+), 2 deletions(-)
+>  create mode 100644 drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c
+>
+> diff --git a/drivers/gpu/drm/xe/tests/Makefile b/drivers/gpu/drm/xe/tests=
+/Makefile
+> index 0e3408f4952c..f7aa47f11a36 100644
+> --- a/drivers/gpu/drm/xe/tests/Makefile
+> +++ b/drivers/gpu/drm/xe/tests/Makefile
+> @@ -9,5 +9,6 @@ obj-$(CONFIG_DRM_XE_KUNIT_TEST) +=3D xe_test.o
+>  xe_test-y =3D xe_test_mod.o \
+>  	xe_args_test.o \
+>  	xe_pci_test.o \
+> +	xe_rtp_tables_test.o \
+>  	xe_rtp_test.o \
+>  	xe_wa_test.o
+> diff --git a/drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c b/drivers/gpu/=
+drm/xe/tests/xe_rtp_tables_test.c
+> new file mode 100644
+> index 000000000000..7dd77133bc42
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c
+> @@ -0,0 +1,53 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright =C2=A9 2026 Intel Corporation
+> + */
+> +
+> +#include <kunit/test.h>
+> +
+> +#include "xe_rtp_types.h"
+> +#include "xe_tuning.h"
+> +#include "xe_wa.h"
+> +
+> +#define RTP_TABLE_PARAM(table)									\
+> +	static const void *table##_gen_params(struct kunit *test,				\
+> +					     const void *prev, char *desc)			\
+> +	{											\
+> +		typeof((table.entries)[0]) *__next =3D prev ?					\
+> +			((typeof(__next))prev) + 1 : (table.entries);				\
+> +		if (__next - table.entries < table.n_entries) {					\
+> +			scnprintf(desc, KUNIT_PARAM_DESC_SIZE, #table "/%s", __next->name);	\
+> +			return __next;								\
+> +		}										\
+> +		return NULL;									\
+> +	}
+> +
+> +static void xe_rtp_table_gt_test(struct kunit *test)
+> +{
+> +	const struct xe_rtp_entry_sr *entry =3D test->param_value;
+> +
+> +	for (int i =3D 0; i < entry->n_rules; i++) {
+> +		KUNIT_EXPECT_TRUE(test,
+> +				  entry->rules[i].match_type !=3D XE_RTP_MATCH_ENGINE_CLASS ||
+> +				  entry->flags & XE_RTP_ENTRY_FLAG_FOREACH_ENGINE);
+> +		KUNIT_EXPECT_TRUE(test,
+> +				  entry->rules[i].match_type !=3D XE_RTP_MATCH_NOT_ENGINE_CLASS ||
+> +				  entry->flags & XE_RTP_ENTRY_FLAG_FOREACH_ENGINE);
+> +	}
+> +}
+> +
+> +RTP_TABLE_PARAM(gt_was);
+> +RTP_TABLE_PARAM(gt_tunings);
+> +
+> +static struct kunit_case xe_rtp_table_tests[] =3D {
+> +	KUNIT_CASE_PARAM(xe_rtp_table_gt_test, gt_was_gen_params),
+> +	KUNIT_CASE_PARAM(xe_rtp_table_gt_test, gt_tunings_gen_params),
+> +	{}
+> +};
+> +
+> +static struct kunit_suite xe_rtp_tables_test_suite =3D {
+> +	.name =3D "xe_rtp_tables_test",
+> +	.test_cases =3D xe_rtp_table_tests,
+> +};
+> +
+> +kunit_test_suite(xe_rtp_tables_test_suite);
+> diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tunin=
+g.c
+> index bf3fad9cdbef..bcec40ca2d35 100644
+> --- a/drivers/gpu/drm/xe/xe_tuning.c
+> +++ b/drivers/gpu/drm/xe/xe_tuning.c
+> @@ -20,7 +20,7 @@
+>  #undef XE_REG_MCR
+>  #define XE_REG_MCR(...)     XE_REG(__VA_ARGS__, .mcr =3D 1)
+> =20
+> -static const struct xe_rtp_table_sr gt_tunings =3D XE_RTP_TABLE_SR(
+> +VISIBLE_IF_KUNIT const struct xe_rtp_table_sr gt_tunings =3D XE_RTP_TABL=
+E_SR(
+>  	{ XE_RTP_NAME("Tuning: Blend Fill Caching Optimization Disable"),
+>  	  XE_RTP_RULES(PLATFORM(DG2)),
+>  	  XE_RTP_ACTIONS(SET(XEHP_L3SCQREG7, BLEND_FILL_CACHING_OPT_DIS))
+> @@ -101,6 +101,7 @@ static const struct xe_rtp_table_sr gt_tunings =3D XE=
+_RTP_TABLE_SR(
+>  				   BANK_HASH_4KB_MODE))
+>  	},
+>  );
+> +EXPORT_SYMBOL_IF_KUNIT(gt_tunings);
+> =20
+>  static const struct xe_rtp_table_sr engine_tunings =3D XE_RTP_TABLE_SR(
+>  	{ XE_RTP_NAME("Tuning: L3 Hashing Mask"),
+> diff --git a/drivers/gpu/drm/xe/xe_tuning.h b/drivers/gpu/drm/xe/xe_tunin=
+g.h
+> index d18e187debf6..869564e3e992 100644
+> --- a/drivers/gpu/drm/xe/xe_tuning.h
+> +++ b/drivers/gpu/drm/xe/xe_tuning.h
+> @@ -6,6 +6,8 @@
+>  #ifndef _XE_TUNING_H_
+>  #define _XE_TUNING_H_
+> =20
+> +#include <kunit/visibility.h>
+> +
+>  struct drm_printer;
+>  struct xe_gt;
+>  struct xe_hw_engine;
+> @@ -16,4 +18,8 @@ void xe_tuning_process_engine(struct xe_hw_engine *hwe)=
+;
+>  void xe_tuning_process_lrc(struct xe_hw_engine *hwe);
+>  int xe_tuning_dump(struct xe_gt *gt, struct drm_printer *p);
+> =20
+> +#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+> +extern const struct xe_rtp_table_sr gt_tunings;
+> +#endif
+> +
+>  #endif
+> diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+> index b9d9fe0801aa..1a1e04215f21 100644
+> --- a/drivers/gpu/drm/xe/xe_wa.c
+> +++ b/drivers/gpu/drm/xe/xe_wa.c
+> @@ -130,7 +130,7 @@
+>  __diag_push();
+>  __diag_ignore_all("-Woverride-init", "Allow field overrides in table");
+> =20
+> -static const struct xe_rtp_table_sr gt_was =3D XE_RTP_TABLE_SR(
+> +VISIBLE_IF_KUNIT const struct xe_rtp_table_sr gt_was =3D XE_RTP_TABLE_SR=
+(
+>  	/* Workarounds applying over a range of IPs */
+> =20
+>  	{ XE_RTP_NAME("14011060649"),
+> @@ -307,6 +307,7 @@ static const struct xe_rtp_table_sr gt_was =3D XE_RTP=
+_TABLE_SR(
+>  	  XE_RTP_ACTIONS(SET(GUC_INTR_CHICKEN, DISABLE_SIGNALING_ENGINES))
+>  	},
+>  );
+> +EXPORT_SYMBOL_IF_KUNIT(gt_was);
+> =20
+>  static const struct xe_rtp_table_sr engine_was =3D XE_RTP_TABLE_SR(
+>  	/* Workarounds applying over a range of IPs */
+> diff --git a/drivers/gpu/drm/xe/xe_wa.h b/drivers/gpu/drm/xe/xe_wa.h
+> index a5f7d33c1b32..8784b491dde7 100644
+> --- a/drivers/gpu/drm/xe/xe_wa.h
+> +++ b/drivers/gpu/drm/xe/xe_wa.h
+> @@ -6,6 +6,7 @@
+>  #ifndef _XE_WA_H_
+>  #define _XE_WA_H_
+> =20
+> +#include <kunit/visibility.h>
+>  #include "xe_assert.h"
+> =20
+>  struct drm_printer;
+> @@ -24,6 +25,10 @@ void xe_wa_apply_tile_workarounds(struct xe_tile *tile=
+);
+>  void xe_wa_device_dump(struct xe_device *xe, struct drm_printer *p);
+>  int xe_wa_gt_dump(struct xe_gt *gt, struct drm_printer *p);
+> =20
+> +#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+> +extern const struct xe_rtp_table_sr gt_was;
+> +#endif
+> +
+>  /**
+>   * XE_GT_WA - Out-of-band GT workarounds, to be queried and called as ne=
+eded.
+>   * @gt__: gt instance
+> --=20
+> 2.43.0
