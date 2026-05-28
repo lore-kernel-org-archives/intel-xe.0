@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33682CD6E44
-	for <intel-xe@archiver.kernel.org>; Thu, 28 May 2026 10:28:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D1A3CD5BD1
+	for <intel-xe@archiver.kernel.org>; Thu, 28 May 2026 10:35:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E944E10EFA7;
-	Thu, 28 May 2026 10:28:25 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B80F10EFA7;
- Thu, 28 May 2026 10:28:24 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5585861229355597847=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/i915/display=3A_harden_?=
- =?utf-8?q?some_bit-shifting_operations_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Luca Coelho" <luciano.coelho@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1776C10EFBA;
+	Thu, 28 May 2026 10:35:05 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="epTwgpKh";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C72A10EFB6;
+ Thu, 28 May 2026 10:35:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1779964504; x=1811500504;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=SDkgc6KWVN9nvvrFpnbEarQdMfwyTdYTy+nPp16z+5I=;
+ b=epTwgpKhhAYFbqsuyCjStDhxWootLsEN71lgxEMIdcePDXP4f+RJQ2Un
+ o/kLkjHUHtrDY4aWbj+GInYtbUXRBn0kTDZy0WAtfWEvTsjP0VEneUAeo
+ SMLIiquR9beEl9oDwRb/+BIrea0ROIDMCr8gJlbaYlQfsw0LZncTS7mgE
+ cwzcR5w/QYKQjHbmOF8IfmvMpC572LgMRrHiFnahMlk0TQjj8UAt70ClQ
+ g1Yev0S/ONpu4o0KYo19lVeXj2EjWMeemjPyGAnJRTSrZ02tBW+oRzomz
+ vJOp/BDKR2dZ0G5TuqdV2wDB/PbyFt0DxPXKdBiAiwoPnTNdQjZTOS+Cx A==;
+X-CSE-ConnectionGUID: Wq1gyhLwQweaRshnVDCjgw==
+X-CSE-MsgGUID: wnyMdmafTIKnzW3wKw0dKA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11799"; a="98221190"
+X-IronPort-AV: E=Sophos;i="6.24,173,1774335600"; d="scan'208";a="98221190"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2026 03:35:03 -0700
+X-CSE-ConnectionGUID: 8Lp9xg8IRGKsaPHZ3Bg+Bg==
+X-CSE-MsgGUID: TRoFaIfKRYqFsq6SjqroIQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,173,1774335600"; d="scan'208";a="241682259"
+Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.166])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2026 03:35:02 -0700
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 28 May 2026 10:28:24 -0000
-Message-ID: <177996410449.18859.3303285437024304983@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260528093222.2758007-1-luciano.coelho@intel.com>
-In-Reply-To: <20260528093222.2758007-1-luciano.coelho@intel.com>
+Subject: [PATCH 00/11] drm/i915/bw: Cleanups
+Date: Thu, 28 May 2026 13:34:47 +0300
+Message-ID: <20260528103458.18069-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.53.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,172 +65,31 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5585861229355597847==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-== Series Details ==
+Clean up some of the mess in the bw/sagv code.
 
-Series: drm/i915/display: harden some bit-shifting operations (rev2)
-URL   : https://patchwork.freedesktop.org/series/166864/
-State : failure
+Ville Syrjälä (11):
+  drm/i915/bw: Don't memcpy() pointlessly
+  drm/i915/bw: Streamline dg2_get_bw_info()
+  drm/i915/bw: Initialize num_planes sensibly for the first plane group
+    in TGL+
+  drm/i915/bw: Move 'bi_next' to tighter scope
+  drn/i915/bw: s/num_points/num_qgv_points/
+  drm/i915/bw: Move num_{qgv,psf}_points out from the plane group
+  drm/i915/bw: Move psf_bw[] out from the plane group
+  drm/i915/bw: Move peakbw[] out from the plane group
+  drm/i915/bw: Print derated bandwidth numbers for DG2
+  drm/i915/bw: Use icl_qgv_bw()
+  drm/i915/bw: Simplify the best max_data_rate search
 
-== Summary ==
+ drivers/gpu/drm/i915/display/intel_bw.c       | 168 ++++++++----------
+ .../gpu/drm/i915/display/intel_display_core.h |  12 +-
+ 2 files changed, 82 insertions(+), 98 deletions(-)
 
-CI Bug Log - changes from xe-5140-835c2bc37bdaa05618c1b73792d06676d5ca3218_BAT -> xe-pw-166864v2_BAT
-====================================================
+-- 
+2.53.0
 
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-166864v2_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-166864v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-166864v2_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_force_connector_basic@force-connector-state:
-    - bat-wcl-2:          [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5140-835c2bc37bdaa05618c1b73792d06676d5ca3218/bat-wcl-2/igt@kms_force_connector_basic@force-connector-state.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166864v2/bat-wcl-2/igt@kms_force_connector_basic@force-connector-state.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - bat-wcl-1:          [PASS][3] -> [ABORT][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5140-835c2bc37bdaa05618c1b73792d06676d5ca3218/bat-wcl-1/igt@kms_hdmi_inject@inject-audio.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166864v2/bat-wcl-1/igt@kms_hdmi_inject@inject-audio.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-166864v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_module_load@load:
-    - bat-adlp-7:         [PASS][5] -> [ABORT][6] ([Intel XE#1727])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5140-835c2bc37bdaa05618c1b73792d06676d5ca3218/bat-adlp-7/igt@xe_module_load@load.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166864v2/bat-adlp-7/igt@xe_module_load@load.html
-
-  
-  [Intel XE#1727]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1727
-
-
-Build changes
--------------
-
-  * Linux: xe-5140-835c2bc37bdaa05618c1b73792d06676d5ca3218 -> xe-pw-166864v2
-
-  IGT_8939: 8939
-  xe-5140-835c2bc37bdaa05618c1b73792d06676d5ca3218: 835c2bc37bdaa05618c1b73792d06676d5ca3218
-  xe-pw-166864v2: 166864v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166864v2/index.html
-
---===============5585861229355597847==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: harden some bit-shifting operations (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166864/">https://patchwork.freedesktop.org/series/166864/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166864v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166864v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5140-835c2bc37bdaa05618c1b73792d06676d5ca3218_BAT -&gt; xe-pw-166864v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-166864v2_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-166864v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-166864v2_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@kms_force_connector_basic@force-connector-state:</p>
-<ul>
-<li>bat-wcl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5140-835c2bc37bdaa05618c1b73792d06676d5ca3218/bat-wcl-2/igt@kms_force_connector_basic@force-connector-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166864v2/bat-wcl-2/igt@kms_force_connector_basic@force-connector-state.html">ABORT</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5140-835c2bc37bdaa05618c1b73792d06676d5ca3218/bat-wcl-1/igt@kms_hdmi_inject@inject-audio.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166864v2/bat-wcl-1/igt@kms_hdmi_inject@inject-audio.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-166864v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_module_load@load:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5140-835c2bc37bdaa05618c1b73792d06676d5ca3218/bat-adlp-7/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166864v2/bat-adlp-7/igt@xe_module_load@load.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1727">Intel XE#1727</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5140-835c2bc37bdaa05618c1b73792d06676d5ca3218 -&gt; xe-pw-166864v2</li>
-</ul>
-<p>IGT_8939: 8939<br />
-  xe-5140-835c2bc37bdaa05618c1b73792d06676d5ca3218: 835c2bc37bdaa05618c1b73792d06676d5ca3218<br />
-  xe-pw-166864v2: 166864v2</p>
-
-</body>
-</html>
-
---===============5585861229355597847==--
