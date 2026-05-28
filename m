@@ -4,58 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96CA3CD5BD5
-	for <intel-xe@archiver.kernel.org>; Thu, 28 May 2026 09:29:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88400CD6E44
+	for <intel-xe@archiver.kernel.org>; Thu, 28 May 2026 09:32:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44B4D10EEDE;
-	Thu, 28 May 2026 09:29:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43FCF10EEEB;
+	Thu, 28 May 2026 09:32:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AJYO3Zvs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fO91w4mO";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B12AC10EEDE
- for <intel-xe@lists.freedesktop.org>; Thu, 28 May 2026 09:29:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72DE910EEEA;
+ Thu, 28 May 2026 09:32:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779960551; x=1811496551;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=SpgDoqr6+f/syj5i/JhDyQArFaEbzRQmM5RfNSUUD3c=;
- b=AJYO3ZvszTy7fldIg+rZT42YgjZA+qpq5voPUTvXpD54M75nGVAbtRDp
- XhuCJXBr1ReAM5BOE5A2zAJi5nm1ApnqOsD3JhIjMZN/oGOMUSZtrmvn0
- 6gN7vPk+im8WrHv72NuAsuyCQE2NsXHUXsv8LujXfSpp9n873S/7oOcMf
- 9meG7Wg6L8ZbnXQBTYgJGfuwnDMApHgAvEjR2QGU0By7eCNmjrVJ4aQTV
- xCS9bgA8ymx75racfXOJMXmK6Wz7yMOUvtFwyw/jqcc6L/uJXo8KHGJo4
- XCGOjbDjR11c2lU94wd9SlFp3q+gx1U2T3DGj4olbApBYvl2WK182ji+e Q==;
-X-CSE-ConnectionGUID: 9Gquu186RkOhJudOcWPNWQ==
-X-CSE-MsgGUID: lrMfVNfqTc+6y5Cdy56s3A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11799"; a="91909450"
-X-IronPort-AV: E=Sophos;i="6.24,173,1774335600"; d="scan'208";a="91909450"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2026 02:29:10 -0700
-X-CSE-ConnectionGUID: gR6LwYDKQ66XT++WI8xRfQ==
-X-CSE-MsgGUID: uDyhmMHuSbC7TtPfOKA75Q==
+ t=1779960753; x=1811496753;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=0C7X3BVLwfv63u1tBUC3yfySdtWkeeEjMd0J4VA1QD8=;
+ b=fO91w4mOX0AS+RVusgn0KD/bqeEokoAQZ4jDA5R9rqa7RcfZCdykQDNx
+ v9KTrZre5Sh8b8J27RDm1jt6mnrOaJSbtqGs8AVxAAr5vKqMnQE18COIR
+ 64yTiVnOLccQYhA9IjMZtBg2B9MTj8+wVn6l1IdFbf+wG5rvun+rFOU7X
+ 4j2Yb5PnVEX2HmP1RqrfDU8HbP5Rvdln/qazeyikgN4BZtPrZli7BqW+Z
+ c4Q7Sg/30g/RoHtzRVIx0rtEWoeM4M/QqBr9rkE9wE++7E9Prjtljcf/G
+ io6qr3vd9VthvfShv+m+ruWBsXYM9SPOHpDnjBkl6vNP5j2iGnqnqVswX g==;
+X-CSE-ConnectionGUID: 9TRmBcwTSBOjhR+1yHGlIA==
+X-CSE-MsgGUID: 6+C+26ixSe+fPGFTWDRNUw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11799"; a="84426931"
+X-IronPort-AV: E=Sophos;i="6.24,173,1774335600"; d="scan'208";a="84426931"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2026 02:32:33 -0700
+X-CSE-ConnectionGUID: IRstBe8qRwSlIw2ZwHpkiw==
+X-CSE-MsgGUID: jBiJyx9XQSG82yVgD/58SA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,173,1774335600"; d="scan'208";a="244329656"
-Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2026 02:29:08 -0700
-Date: Thu, 28 May 2026 11:29:05 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Riana Tauro <riana.tauro@intel.com>
-Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
- rodrigo.vivi@intel.com, aravind.iddamsetty@linux.intel.com,
- badal.nilawar@intel.com, ravi.kishore.koppuravuri@intel.com,
- mallesh.koujalagi@intel.com, soham.purkait@intel.com
-Subject: Re: [PATCH v7 3/6] drm/xe/xe_ras: Add support to clear error counter
-Message-ID: <ahgK4dvEKdSWnN7e@black.igk.intel.com>
-References: <20260527060241.3351323-8-riana.tauro@intel.com>
- <20260527060241.3351323-11-riana.tauro@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,173,1774335600"; d="scan'208";a="242352057"
+Received: from mkosciow-mobl1.ger.corp.intel.com (HELO hazy) ([10.245.245.229])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2026 02:32:31 -0700
+From: Luca Coelho <luciano.coelho@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org,
+	jani.nikula@linux.intel.com
+Subject: [PATCH v2 0/4] drm/i915/display: harden some bit-shifting operations
+Date: Thu, 28 May 2026 12:30:24 +0300
+Message-ID: <20260528093222.2758007-1-luciano.coelho@intel.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260527060241.3351323-11-riana.tauro@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,21 +65,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, May 27, 2026 at 11:32:45AM +0530, Riana Tauro wrote:
-> Add structures and helper function to clear error counter value.
+Hi,
 
-...
+This patchset addresses a number of potential undefined behaviors in
+bit-shifting operations where the shift amount is derived from an enum
+that can in theory hold a negative value (e.g. INVALID_TRANSCODER,
+PHY_NONE), as reported by static analyzers.
 
-> +	ret = ras_status_to_errno(response.status);
-> +	if (ret) {
-> +		xe_err(xe, "sysctrl: clear counter command failed with status %u, err %d\n",
+None of these are actual problems with the current implementation,
+because the values are always valid when the code is reached, but
+it's more robust to make the shifts always well-defined.
 
-'%#x' specifier for status, it comes from the hardware. Also, I think
-err is redundant here since it's just our interpretation of status (which
-is already present) and it doesn't really help debug anything.
+In v2:
+   * Use REG_* helpers instead of BIT with casting (Jani);
+   * Remove unnecessary PHY_NULL, instead of casting it (Jani).
 
-> +		       response.status, ret);
-> +		return ret;
-> +	}
+Please review.
 
-Reviewed-by: Raag Jadav <raag.jadav@intel.com>
+Cheers,
+Luca.
+
+
+Luca Coelho (4):
+  drm/i915/display: harden masks in HSW_AUD_PIN_ELD_CP_VLD macros
+  drm/i915/display: harden shifts in ICL_DPCLKA_CFGCR0_DDI_CLK_SEL
+    macros
+  drm/i915/display: harden shift in intel_ddi_compute_config_late()
+  drm/i915/display: remove unnecessary PHY_NONE definition
+
+ drivers/gpu/drm/i915/display/intel_audio_regs.h  | 16 ++++++++++++----
+ drivers/gpu/drm/i915/display/intel_ddi.c         |  4 ++--
+ drivers/gpu/drm/i915/display/intel_display.c     | 10 ++++++----
+ drivers/gpu/drm/i915/display/intel_display.h     |  2 --
+ .../drm/i915/display/intel_display_power_well.c  |  6 +++++-
+ .../gpu/drm/i915/display/intel_display_regs.h    | 16 +++++++++++++---
+ drivers/gpu/drm/i915/display/intel_hti.c         |  3 ---
+ 7 files changed, 38 insertions(+), 19 deletions(-)
+
+-- 
+2.53.0
+
