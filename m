@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78CDACD5BD5
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80A97CD6E45
 	for <intel-xe@archiver.kernel.org>; Thu, 28 May 2026 05:02:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31D4E10EC09;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3751F10EC0A;
 	Thu, 28 May 2026 05:02:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FhkvTydH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jnudpw80";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1EBA10EC06;
- Thu, 28 May 2026 05:02:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FBBF10EBF0;
+ Thu, 28 May 2026 05:02:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779944539; x=1811480539;
+ t=1779944535; x=1811480535;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=Dt/tcLIN0u5ziWdoA0RsSxfSoWmlhoL8ZNpvQtEYKBc=;
- b=FhkvTydH9aLdq5/JxYYREbsW0k92iax8afVmnKONfgJTHSUoW+UlOnUX
- todaTa48eAeEHJLLMxRAP4qGqfQPH3rMXWhMT5kyjOzswkxaDg8S8kCBF
- x6BIetseJKulBf+iedKHh89DAuQbU1C192d2WU90itpOBbEQO+I6HPuAw
- iBKJl0Tzi4qcbpUOfPnS0OvpZ4UMyc3524d4HYe27Hd1V8iU15FE/5tc9
- ABgvSikG/c00oPism2FUWEqOxdjM/vWFg1w3bpDil8saodYMU2sUgcPU3
- GGRdVPSgLt+3XJSsNmKAtB9YFk7+L4hB8FYmmGH+jttlfAdMlsL+yR3pC A==;
-X-CSE-ConnectionGUID: 8VEPUQ0yRa+ru16E6kRj9A==
-X-CSE-MsgGUID: mCYO/BrjSRWOZUUDiy+tXA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11799"; a="80895721"
-X-IronPort-AV: E=Sophos;i="6.24,172,1774335600"; d="scan'208";a="80895721"
+ bh=CPQ6fLlml3rWBsXufp0JPr2U0Um2VUiAXhwSHEQtc9Q=;
+ b=jnudpw80ErWlEt7xMD9AfA5Jrx99B/ILG8hZlcqfWuRz1xn5yQ/zIxx4
+ 7HJbhnJo4GT21ZO4EscPoz4LEo78SOla4GSyy/8Kh8ANwzb8izcTsb+/T
+ XgwkB1kcSWL6DCQnTkRx7QrLh4PfgRWci0ca1ni/fQSXxnASCEeLYJxm4
+ JuVdRvaPGKqJmpe+EwiaT3Q1tDY46VRRvlWlMr2Wt6FyNwlYlKZIIio9x
+ 6JuB7UFUoXfdbhqDKC3MvynjJQebj7DLHfOVP5f23xpOcrYUfOYKs86zj
+ gQxJ6ZFUyM1rQmYYufZd7w9EfByc5wypC/FSSKBGEFjEjSy5yWo8pDZSN g==;
+X-CSE-ConnectionGUID: Ah7EAKNmQDC2tQ1OZ4fd3g==
+X-CSE-MsgGUID: yNDBLS1WRFOTVzehA5DleQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11799"; a="80895717"
+X-IronPort-AV: E=Sophos;i="6.24,172,1774335600"; d="scan'208";a="80895717"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2026 22:02:19 -0700
-X-CSE-ConnectionGUID: MDGG9lL4Qv6UkhlJEVxlWg==
-X-CSE-MsgGUID: VbOSI+LgRluYaafxOoPBYA==
+ 27 May 2026 22:02:15 -0700
+X-CSE-ConnectionGUID: CqOAeGtbRTqLCp5+FTIuxg==
+X-CSE-MsgGUID: VgfZvSHhRpKIjwtHev1UOA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,172,1774335600"; d="scan'208";a="238025968"
+X-IronPort-AV: E=Sophos;i="6.24,172,1774335600"; d="scan'208";a="238025926"
 Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2026 22:02:18 -0700
+ 27 May 2026 22:02:14 -0700
 From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [CI v2 14/17] drm/i915/display: Add DC3CO count and residency in dmc
- debugfs
-Date: Thu, 28 May 2026 10:31:28 +0530
-Message-ID: <20260528050131.466351-15-dibin.moolakadan.subrahmanian@intel.com>
+Subject: [CI v2 11/17] drm/i915/display: Enable DC3CO idle protocol in ALPM
+Date: Thu, 28 May 2026 10:31:25 +0530
+Message-ID: <20260528050131.466351-12-dibin.moolakadan.subrahmanian@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260528050131.466351-1-dibin.moolakadan.subrahmanian@intel.com>
 References: <20260528050131.466351-1-dibin.moolakadan.subrahmanian@intel.com>
@@ -67,51 +66,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Expose DC3CO count and residency for xe3lp platforms via debugfs.
+Add PR_ALPM_CTL_USE_DC3CO_IDLE_PROTOCOL bit definition and set it
+when DC3CO is allowed.
 
-Changes in v4:
-- Keep dc5_reg register initialization to avoid any
-  invalid access (sashiko)
+Changes in v2:
+- Squash "Define DC3CO idle protocol bit in PR_ALPM_CTL"
+  into this patch (Uma Shankar)
+- Use intel_display_power_dc3co_allowed(display)
+  instead of intel_dc3co_allowed(state)
 
+BSpec: 75253
 Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dmc.c      | 9 ++++++++-
- drivers/gpu/drm/i915/display/intel_dmc_regs.h | 2 ++
- 2 files changed, 10 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_alpm.c     | 6 ++++++
+ drivers/gpu/drm/i915/display/intel_psr_regs.h | 1 +
+ 2 files changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index a133785c815b..5ffe2b1c3c51 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -1650,7 +1650,14 @@ static int intel_dmc_debugfs_status_show(struct seq_file *m, void *unused)
- 		   DMC_VERSION_MINOR(dmc->version));
+diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
+index a7350ce8e716..6394d1568b54 100644
+--- a/drivers/gpu/drm/i915/display/intel_alpm.c
++++ b/drivers/gpu/drm/i915/display/intel_alpm.c
+@@ -389,6 +389,12 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
+ 			if (crtc_state->disable_as_sdp_when_pr_active)
+ 				pr_alpm_ctl |= PR_ALPM_CTL_AS_SDP_TRANSMISSION_IN_ACTIVE_DISABLE;
  
- 	if (DISPLAY_VER(display) >= 12) {
--		if (display->platform.dgfx || DISPLAY_VER(display) >= 14) {
-+		if (DISPLAY_VER(display) >= 35) {
-+			dc5_reg = DG1_DMC_DEBUG_DC5_COUNT;
-+			seq_printf(m, "DC3CO count: %d\n",
-+				   intel_de_read(display, XE3P_DMC_DC3CO_COUNT));
++			if (intel_display_power_dc3co_allowed(display) &&
++			    intel_display_power_dc3co_supported(display))
++				pr_alpm_ctl |= PR_ALPM_CTL_USE_DC3CO_IDLE_PROTOCOL;
++			else
++				pr_alpm_ctl &= ~PR_ALPM_CTL_USE_DC3CO_IDLE_PROTOCOL;
 +
-+			seq_printf(m, "DC3CO residency: %d\n",
-+				   intel_de_read(display, DC_STATE_DC3CO_RESIDENCY));
-+		} else if (display->platform.dgfx || DISPLAY_VER(display) >= 14) {
- 			dc5_reg = DG1_DMC_DEBUG_DC5_COUNT;
- 		} else {
- 			dc5_reg = TGL_DMC_DEBUG_DC5_COUNT;
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc_regs.h b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-index 38e342b45af0..1998549b6318 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-@@ -531,6 +531,8 @@ enum pipedmc_event_id {
- #define TGL_DMC_DEBUG3		_MMIO(0x101090)
- #define DG1_DMC_DEBUG3		_MMIO(0x13415c)
+ 			intel_de_write(display, PR_ALPM_CTL(display, cpu_transcoder),
+ 				       pr_alpm_ctl);
+ 		}
+diff --git a/drivers/gpu/drm/i915/display/intel_psr_regs.h b/drivers/gpu/drm/i915/display/intel_psr_regs.h
+index 8afbf5a38335..16a9e3af198d 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_psr_regs.h
+@@ -268,6 +268,7 @@
  
-+#define XE3P_DMC_DC3CO_COUNT	_MMIO(0x8f05C)
-+
- #define DMC_WAKELOCK_CFG	_MMIO(0x8F1B0)
- #define  DMC_WAKELOCK_CFG_ENABLE REG_BIT(31)
- #define DMC_WAKELOCK1_CTL	_MMIO(0x8F140)
+ #define _PR_ALPM_CTL_A	0x60948
+ #define PR_ALPM_CTL(dev_priv, tran)	_MMIO_TRANS2(dev_priv, tran, _PR_ALPM_CTL_A)
++#define  PR_ALPM_CTL_USE_DC3CO_IDLE_PROTOCOL			BIT(7)
+ #define  PR_ALPM_CTL_ALLOW_LINK_OFF_BETWEEN_AS_SDP_AND_SU	BIT(6)
+ #define  PR_ALPM_CTL_RFB_UPDATE_CONTROL				BIT(5)
+ #define  PR_ALPM_CTL_AS_SDP_TRANSMISSION_IN_ACTIVE_DISABLE	BIT(4)
 -- 
 2.43.0
 
