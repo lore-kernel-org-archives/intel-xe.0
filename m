@@ -4,97 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 992DACD6E44
-	for <intel-xe@archiver.kernel.org>; Thu, 28 May 2026 11:21:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7985ACD5BD1
+	for <intel-xe@archiver.kernel.org>; Thu, 28 May 2026 11:23:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4669910F044;
-	Thu, 28 May 2026 11:21:36 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jeHZ2xbi";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BFE710F043;
- Thu, 28 May 2026 11:21:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779967295; x=1811503295;
- h=from:date:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=f/lIC4TgmEzyiBDPh2iBCW6oUeY6y5+TmWqzleJFfvY=;
- b=jeHZ2xbiomaOLz47kKWLHRSM9eIvB9p3NX5f8g+8V0feOz2isSAX1hUT
- mj3hm4e//XA6fijnmncmbneB+zOfQ8ZIHVAvoRwbwECXbhtvLSuDSZQUb
- 3eZT12VVtcus/+kD6uL/+NHh71q5qIAyL8z2x6SBjZIFJiWvAgx9K08AB
- lu2xtLjtbI0taaT5x363UpAC7MY3I9cb7QMgPntterB4eI63tG0SUegvs
- rKXLaxFe3U6tsHynAYEiOcnpdNF3IG9K/Q+OLnad5Wit3tC32pdu62kqI
- TiiEhCDC+NWm9Dal8dfXfsrgCurPBBZLm1/rzQvZc/ShjI0Tx1q5nrf38 Q==;
-X-CSE-ConnectionGUID: PnzoyxGeQ9S3b36Gsm5qEQ==
-X-CSE-MsgGUID: npsN0l+zQOaXoOeWW6D2Uw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11799"; a="103480344"
-X-IronPort-AV: E=Sophos;i="6.24,173,1774335600"; d="scan'208";a="103480344"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2026 04:21:34 -0700
-X-CSE-ConnectionGUID: NhorkxbETOO3yaxAYXvTkQ==
-X-CSE-MsgGUID: vXFsgfpXQNSWfwq2pTGuRg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,173,1774335600"; d="scan'208";a="238337774"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.187])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2026 04:21:15 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Thu, 28 May 2026 14:21:11 +0300 (EEST)
-To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-cc: Lee Jones <lee@kernel.org>, 
- Mark Brown <broonie@opensource.wolfsonmicro.com>, 
- Thierry Reding <thierry.reding@avionic-design.de>, 
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
- Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, 
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
- Paolo Abeni <pabeni@redhat.com>, Srinivas Kandagatla <srini@kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Vinod Koul <vkoul@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
- Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>, 
- Saravana Kannan <saravanak@kernel.org>, 
- Madhavan Srinivasan <maddy@linux.ibm.com>, 
- Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
- "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, 
- Andi Shyti <andi.shyti@kernel.org>, 
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
- Robin Murphy <robin.murphy@arm.com>, Doug Berger <opendmb@gmail.com>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Ulf Hansson <ulfh@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, 
- Matthew Brost <matthew.brost@intel.com>, 
- =?ISO-8859-15?Q?Thomas_Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Peter Chen <peter.chen@kernel.org>, 
- Paul Cercueil <paul@crapouillou.net>, Bin Liu <b-liu@ti.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Maximilian Luz <luzmaximilian@gmail.com>, Hans de Goede <hansg@kernel.org>, 
- Krzysztof Kozlowski <krzk@kernel.org>, 
- Benjamin Herrenschmidt <benh@kernel.crashing.org>, brgl@kernel.org, 
- LKML <linux-kernel@vger.kernel.org>, Netdev <netdev@vger.kernel.org>, 
- linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org, 
- driver-core@lists.linux.dev, devicetree@vger.kernel.org, 
- linuxppc-dev@lists.ozlabs.org, linux-i2c@vger.kernel.org, 
- iommu@lists.linux.dev, linux-pm@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-usb@vger.kernel.org, 
- linux-mips@vger.kernel.org, platform-driver-x86@vger.kernel.org
-Subject: Re: [PATCH 19/23] platform/surface: gpe: use
- platform_device_set_fwnode()
-In-Reply-To: <20260521-pdev-fwnode-ref-v1-19-88c324a1b8d2@oss.qualcomm.com>
-Message-ID: <bfdbc026-b3f9-971b-aaf0-0485434b8411@linux.intel.com>
-References: <20260521-pdev-fwnode-ref-v1-0-88c324a1b8d2@oss.qualcomm.com>
- <20260521-pdev-fwnode-ref-v1-19-88c324a1b8d2@oss.qualcomm.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 231BD10F044;
+	Thu, 28 May 2026 11:23:01 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 619A110F044;
+ Thu, 28 May 2026 11:22:59 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0790406095504844836=="
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323328-947565217-1779967271=:1291"
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/bw=3A_Cleanups?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 28 May 2026 11:22:59 -0000
+Message-ID: <177996737938.19592.1738401657689130454@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260528103458.18069-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20260528103458.18069-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,48 +35,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+--===============0790406095504844836==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
---8323328-947565217-1779967271=:1291
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: QUOTED-PRINTABLE
+== Series Details ==
 
-On Thu, 21 May 2026, Bartosz Golaszewski wrote:
+Series: drm/i915/bw: Cleanups
+URL   : https://patchwork.freedesktop.org/series/167456/
+State : success
 
-> Ahead of reworking the reference counting logic for platform devices,
-> encapsulate the assignment of the firmware node for dynamically allocated
-> platform devices with the provided helper.
->=20
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-> ---
->  drivers/platform/surface/surface_gpe.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/drivers/platform/surface/surface_gpe.c b/drivers/platform/su=
-rface/surface_gpe.c
-> index b359413903b13c4f8e8b284ef7ae6f6db3f47d72..40896a8544b0a4da4261ea881=
-b1eaed62d93b32b 100644
-> --- a/drivers/platform/surface/surface_gpe.c
-> +++ b/drivers/platform/surface/surface_gpe.c
-> @@ -317,7 +317,7 @@ static int __init surface_gpe_init(void)
->  =09=09goto err_alloc;
->  =09}
-> =20
-> -=09pdev->dev.fwnode =3D fwnode;
-> +=09platform_device_set_fwnode(pdev, fwnode);
-> =20
->  =09status =3D platform_device_add(pdev);
->  =09if (status)
->=20
->=20
+== Summary ==
 
-Acked-by: Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com>
+CI Bug Log - changes from xe-5141-6825e57afcb7f15a1400e0b45b4a32a363e337b6_BAT -> xe-pw-167456v1_BAT
+====================================================
 
---=20
- i.
+Summary
+-------
 
---8323328-947565217-1779967271=:1291--
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5141-6825e57afcb7f15a1400e0b45b4a32a363e337b6 -> xe-pw-167456v1
+
+  IGT_8939: 8939
+  xe-5141-6825e57afcb7f15a1400e0b45b4a32a363e337b6: 6825e57afcb7f15a1400e0b45b4a32a363e337b6
+  xe-pw-167456v1: 167456v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167456v1/index.html
+
+--===============0790406095504844836==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/bw: Cleanups</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167456/">https://patchwork.freedesktop.org/series/167456/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167456v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167456v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5141-6825e57afcb7f15a1400e0b45b4a32a363e337b6_BAT -&gt; xe-pw-167456v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5141-6825e57afcb7f15a1400e0b45b4a32a363e337b6 -&gt; xe-pw-167456v1</li>
+</ul>
+<p>IGT_8939: 8939<br />
+  xe-5141-6825e57afcb7f15a1400e0b45b4a32a363e337b6: 6825e57afcb7f15a1400e0b45b4a32a363e337b6<br />
+  xe-pw-167456v1: 167456v1</p>
+
+</body>
+</html>
+
+--===============0790406095504844836==--
