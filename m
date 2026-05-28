@@ -4,154 +4,159 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70C82CD4F54
-	for <intel-xe@archiver.kernel.org>; Thu, 28 May 2026 13:25:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A127CD6E44
+	for <intel-xe@archiver.kernel.org>; Thu, 28 May 2026 13:37:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3088110F186;
-	Thu, 28 May 2026 13:25:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0669010F1B6;
+	Thu, 28 May 2026 13:37:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YyEDshhE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JBpAak1M";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A24A10F186
- for <intel-xe@lists.freedesktop.org>; Thu, 28 May 2026 13:25:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1081310F1B6;
+ Thu, 28 May 2026 13:37:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779974735; x=1811510735;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:content-transfer-encoding:mime-version;
- bh=KCXdv9Vquy8Pcfy/MWE/Hwc0mnOXThVaE3uSWFujtWk=;
- b=YyEDshhExnvQjS1tbM3WkeXQCaThhysmktlxAY2ZLRiVhnG+zr1pYh0x
- K07hYXwLAOIXQoDoEy2KmLQFfCv6xQvUYPHOjv3x/BC/wfLvV9NaaytbO
- xsJEXsYuyCsdnqcMfrBkF6B9qQVaOKXjkj0ccGa4EC2O4k1LD/VOO0+gF
- EkYVq0ZbkRktK2ZNRi3zqfXUTxEwYYfH4xGyrLGqGyJn7jbcJXgOrL2tw
- cYM9PsXbJRB851JqYA5F70zF59RiGJVN1rnC7lhrZtXPT7UFD48XjcA4m
- a4SPUrWSOOuPSYGu5Zw//Erhh+q+boA+oxOdmBrQ2f13CjMzfwGOBsdmv A==;
-X-CSE-ConnectionGUID: cIvm+sWvTRuvw3z3CRiRvw==
-X-CSE-MsgGUID: PP3uB+hsT1qPn6HgiZ+jCw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11799"; a="79964179"
-X-IronPort-AV: E=Sophos;i="6.24,173,1774335600"; d="scan'208";a="79964179"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2026 06:25:28 -0700
-X-CSE-ConnectionGUID: Xnf/zaqMSwiDtHthPsh4xg==
-X-CSE-MsgGUID: QphRdSC7RXmXgfQv3D+hnA==
+ t=1779975454; x=1811511454;
+ h=date:from:to:cc:subject:message-id:
+ content-transfer-encoding:mime-version;
+ bh=h2GRyqedXwqwBbMcz7ycxju533Oz82oeBOSSmQzV7ac=;
+ b=JBpAak1MjLVSeGkZaIxgDrORJ6SQBhhOqidMUFoF/s7WjCqeXBu/Dt0I
+ x5qH9DDEeiSr4bDJtULVRzwJ37fX3MKqT29xsBWL4w+xkVlzS2+4dXLyE
+ m4wCKYNez5Q/vMaJhuAqU5Y6CzPvErVhSYQPtf1213tUcQF8XvxqBWYBg
+ xR6K63l6tqxrIbVDAamZb6q/E8m3tyW5TsSjyPv8vjseVoyVf133pelaJ
+ /AvR/vcz/a+BwChBzBptLvug1smj40vuhorS4lSCQaUhGl5aL1m57ezxr
+ 0pG8DYIaWAEwEEPzoyc8BZp4ThxOgdwzbCPsaHrefU2M1u0G+YYc6Vt6d Q==;
+X-CSE-ConnectionGUID: roIaTcYVS6mx6MSXE1j0Fg==
+X-CSE-MsgGUID: kQTVFk4iR2OWIUxZJJIrwQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11799"; a="91503104"
+X-IronPort-AV: E=Sophos;i="6.24,173,1774335600"; d="scan'208";a="91503104"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2026 06:37:33 -0700
+X-CSE-ConnectionGUID: EHCUphdATOuY64i+1CBlTQ==
+X-CSE-MsgGUID: 9BVBtTEQQDGKP6IoWfm4KQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,173,1774335600"; d="scan'208";a="238361886"
+X-IronPort-AV: E=Sophos;i="6.24,173,1774335600"; d="scan'208";a="247499420"
 Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2026 06:25:29 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2026 06:37:33 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
  fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 28 May 2026 06:25:29 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.37; Thu, 28 May 2026 06:37:32 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Thu, 28 May 2026 06:25:29 -0700
-Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.49) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Thu, 28 May 2026 06:37:32 -0700
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.17)
+ by edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 28 May 2026 06:25:23 -0700
+ 15.2.2562.37; Thu, 28 May 2026 06:37:30 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=S7OdWwbA+JC/Mzm7+D2A6CCvkyRgp5GBM2vU+GnGsb6PwkroZC+KXotdK6N0QfBJQIEaefMHPC7Kgn3IKsmaJ32Hya8TMA/BAO3QeAwDM7/tLSpFXgMJUibd5wfBgs33r728OxRvgbqSvjEDZpuAgEizdOpBddA9MJ0EQOGaiGHEUWzFWDdgfOaEeDJ/Dk/cZ+EY1x9bvkFv8kJynhyXMwxDPR5NItsrrZqxU7ZUooMleBdr83u+GVpSQmrXK2dBBFZm1+DO7AJtvvAt9yd44FWKd4iFf6csRxYldWS4ZDNM8SVvuqmg3BBTb5K2XdryQiO+d8242l9Qw786EvMquA==
+ b=M4G+KwVLd4VktiyOlUGVXqq3aa3nE8kvCKPtDgLmNHeOCIJzkMpN99428Bx0iMxSzHo5+6Jkl4/Cz9rQhXyN5mQDByNzNCDFXhAVaestpC3MMMvDlX5+wdr5SLNBZAPWCZr7jSQJXQLG22qmHHeH/efcfd+MOQwpz0BxT5x6iHmq0l+A2d3BXKL/yTOIbdYoHKYumbP4XO43RoRHys0KVbw6RMQ2dHtGGEzszIQa0lVEeMPUlqePCR4NlW+q5BEAUipzwvzAZoBwGgWJjIyLDJbuPtcSl1SpGGEuuIuwhngUzY6vrw0tdHtgA6gDpMuDHQW1INdeW+BsvdurHwM0DA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lDqu8fFMrxtDa1d09261iQ2TlLpiRKND0ahpsAIvD0Y=;
- b=XapqPIeYNWqaJqh/6FMnvmZmCNIUI91+bOxFalMJdjveglRE4O7ErjV8wJckFdER5Kjf62cnzYZKukCOxmHEzX8ICrY1P+wA3YEhKerIRpSDZcWOOzVjFRq1uTXUHhKSzzi37DjfzBI5WEN0+czzmlw3eOC0I+ZpYVdOpHROet9mTgwUT8WVhRch2/0QCD8l2dvev3w7CFxSvbyDhhYwIHYHr4gykjrAgF8rHyJ4GC7R+Hx85/yDfQs10xJLiLtSeeXcoiRvCfBASZPmBzAjNcpT1wBY924ZnrgYiwPlBYu7Wq28BbGLYJ0+N5+TMPzkDpeF/1vZKsVq4CFQATq/nQ==
+ bh=3qwUOOoABab8AdLNQ2c6s1dsSXqX2VUG0G1M3hWVL6g=;
+ b=u72ly9zFN9FF3+LBUWP4PjnIDfpTEKWsYw1zPsR8FGBrY2SAzjPm0vhsWlR9rzp/hPQvHQG3bCYbj5oxRYxOaUPaVyNMjrUJvqLim8ewzQoeubX8vzteLS96fNWUfFobohFDNiAEPkMcfa1QI8k9wwGudinKVNKJ6F0Zq2Z7Tx7lWM4lZViqQHg5ve0mgyR+/BVtHA+MTNbZ3gCo2+Q2buOr4of8lfBjohjCb3OnLugfmdMPXm2cOLQX4BtvSzxph3uWVmk50Pe+vWxzHAb8/JffvQBg0xVi95ocvhVW4/Wfos4wT1UQZ8fwczhTeesDpWCR9A751M2DJzrLBTa7aw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
- by SA2PR11MB4843.namprd11.prod.outlook.com (2603:10b6:806:fb::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.14; Thu, 28 May
- 2026 13:25:21 +0000
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::a0e5:e99c:ee7b:620a]) by PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::a0e5:e99c:ee7b:620a%5]) with mapi id 15.21.0071.011; Thu, 28 May 2026
- 13:25:20 +0000
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: Violet Monti <violet.monti@intel.com>, <intel-xe@lists.freedesktop.org>
-CC: Violet Monti <violet.monti@intel.com>
-Subject: Re: [PATCH v4 2/4] drm/xe/rtp: Ensure gt_was doesn't evaluate rules
- with engine types
-In-Reply-To: <20260526173056.967215-8-violet.monti@intel.com>
-References: <20260526173056.967215-6-violet.monti@intel.com>
- <20260526173056.967215-8-violet.monti@intel.com>
-Date: Thu, 28 May 2026 10:25:16 -0300
-Message-ID: <875x47br9f.fsf@intel.com>
+Received: from CO1PR11MB5073.namprd11.prod.outlook.com (2603:10b6:303:92::23)
+ by DM6PR11MB4530.namprd11.prod.outlook.com (2603:10b6:5:2a4::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.14; Thu, 28 May
+ 2026 13:37:28 +0000
+Received: from CO1PR11MB5073.namprd11.prod.outlook.com
+ ([fe80::a153:939c:df8c:f4fe]) by CO1PR11MB5073.namprd11.prod.outlook.com
+ ([fe80::a153:939c:df8c:f4fe%4]) with mapi id 15.21.0071.011; Thu, 28 May 2026
+ 13:37:27 +0000
+Date: Thu, 28 May 2026 09:37:23 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+CC: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Matthew Brost <matthew.brost@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, "Oded
+ Gabbay" <ogabbay@kernel.org>, <dri-devel@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <dim-tools@lists.freedesktop.org>
+Subject: [PULL] drm-intel-next
+Message-ID: <ahhFE5Co5PdZQKG8@intel.com>
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: SJ0PR03CA0131.namprd03.prod.outlook.com
- (2603:10b6:a03:33c::16) To PH8PR11MB8287.namprd11.prod.outlook.com
- (2603:10b6:510:1c7::14)
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SJ0PR03CA0340.namprd03.prod.outlook.com
+ (2603:10b6:a03:39c::15) To CO1PR11MB5073.namprd11.prod.outlook.com
+ (2603:10b6:303:92::23)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|SA2PR11MB4843:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8d54f7ca-27c7-4610-dbad-08debcbc9102
+X-MS-TrafficTypeDiagnostic: CO1PR11MB5073:EE_|DM6PR11MB4530:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8cc478a5-9823-4dd1-7990-08debcbe4260
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|22082099003|18002099003|4143699003|5023799004|56012099006|3023799007|11063799006|6133799003;
-X-Microsoft-Antispam-Message-Info: AcG5hMbcL3anewT2OLDUHVaRkV+ZPHfdaLgg2RMYLlS4DrsQ9gRF3V6XcaRfEFb6hSzALntwiIP6RMCW1cipXODGDmtc8SJWv4cpRZ5gtstAeI7W5S50P1fAjPfrR3XbDW+Qp1NF3SjUJI1X0eq5ABAlonX2wp3WngYM0vXLu2wf9i2M633Latqc5sg7/mTlLoSiS1kF5311Lsko+a8lcPKa8pMcBT6VjII50mVN/zXc0J6+t7IKuwMpwS3NXpXIBXnR8ZekFnE0GZwry9eKsqo3m0+jBtF81IiPKt1XncKUv/FA67NN7Q5uOEhY43XgACLMov9Cz5Sd548TgOcthHmgMgsr0zybNbIIC5RHEMQ9qI5D+2FqmFpp9UlClVWTgIhQS3K0g6Sw2cUiRfE0cKD6G8ETCFRjRq2G59qfNVzIn9th78ZvP9ym8VZBh1S7loTQYE5/nClT5hhD4SbKm/uGTWRdHGhXiXJG7pkNLTCMZxHN0PcXgCS/j7+rSGH8PabSnZkF8EA+LJy3WznFmEJqtWIo04nsMBkkVcgR8A+e8jZIQU7u2rV7J2M1VXxkn8i5E79NrZ7c5na1bL0/XsPVzrWpn88nbramEfxCAIEYIudhwvVn3saFLdIcWXITNWAUaEWjV3Pt5FRTCPUr0hgMkaxwAP6KTNMPD3/uEdGCl/FdhC4gyUUmk2VmvRqu
+ ARA:13230040|1800799024|376014|7416014|366016|18002099003|56012099006|3023799007|6133799003|11063799006;
+X-Microsoft-Antispam-Message-Info: NBh4tJDGPjloD6EranomJyKJ7BEMDbONDEVvh5yqGvnHj/p671Eiye/xjham+dbqSbe88OR7XTfiTLgB+jSMAETgqJlxH1DWVwPfRvmP4P9r+bUAB6Om98rJ+qLmTVtYnzWpC5OIGQXTA04j+MRRTddTGnAIYERXHMJwHulVs1lAziRKzBtJh2bB8xHNfAQ6xZBMFKZW4BkwN/F8nU9WwQAAxVLCGCfna+9GJJv1rnGHrm6P0K7GjwnLMe0ppmVEjhgtYkjb6XMKjrYzmt0tm/zPiSDD3pHfs4l6UMaywMuChkX646BkARbpp/U8Krp5HKpKqkSNeV3EwoOzjeHQLOVbKDdzBjIfmDB5QTQp1ow4ahp1YgZDrWH2mw/vQSW7zWAUwF3zT7QoX4VZ5NVRhAm+Bw2lJ+H1Ud+lstDYLpOT0yO32jjleN5V6rJFwrsaA88rGWy4lIBuxMm3T5a+j+4KsOrZMvw4EAj8+iuqLrmultSS1SSPNWcUj0lrwgdc2SIvS73tWTfwoqPVALG6f8TmAyr8cpahk0qzAaCsoQIHzNKF4x7g1opbrFn9t93uro0i9enMsnMtPg8l81y7iPp68iLrrxj5ypaVnZ9Vfhfkl/09xmqJZznk/3uFo0BqUv2YokdLOc5S9KtZ8Ah/lw==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(22082099003)(18002099003)(4143699003)(5023799004)(56012099006)(3023799007)(11063799006)(6133799003);
+ IPV:NLI; SFV:NSPM; H:CO1PR11MB5073.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(7416014)(366016)(18002099003)(56012099006)(3023799007)(6133799003)(11063799006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?enFaTk1VM2NNbHlBV1lRaG1UMkFRakJjYWZpN3l6Z1Y3MnphcmVoY3YxWTRT?=
- =?utf-8?B?Sm5xSGJ1cEhGcXFsOUNRQW9BelJZTDFmblZNaXhZQlRtdXhZQ3doMUNPMUlK?=
- =?utf-8?B?Mk83VUlOYUdzbWxuNGsrdFZLaStmL2JrY2s3M29VR2VmNkNlWTBXRXZDaU9F?=
- =?utf-8?B?Mkg1bitOY0I1c3BvRFQ1aENCMkVIWlZjVWRPK2dQdkIwODQ2VitmenA2WEZT?=
- =?utf-8?B?UVVyR0dDUXhQNk5rNEI5NjdCWXU3ejFERVc4UEtsMkppak9uNHhlOFZINFdO?=
- =?utf-8?B?c3VCczdlTktrWTRSbVI3SFBBK3oxQjd1VWlWRXVzT1ZEdEtjUDBHYU15SDQ2?=
- =?utf-8?B?QndSVCswdDN6UmtYL3g3SlpPMjFVbkxuV0daNVVBWkhNbDd2M2wwOWtRZ0VU?=
- =?utf-8?B?bnBDRktZYlNsK2tUNStLd0JjQmVMdHdKMzV2THVkbjdKdGNiRWV3N3FDWXE5?=
- =?utf-8?B?dU1OczNCcWlPUEdYM1NPdkpZQjFFNUJtazJrT1ZjbUx1c2todGc5dU5VU2ph?=
- =?utf-8?B?NXl6L0IyWkt0NUNMZGRXVk1tTXJjQXBFSm1FMDcvZ0xlZUtuZ2FERldtc1ZM?=
- =?utf-8?B?dm4raW0xWUQyd2ZvQnp1a3NOTE8yemhxRFpoc2ZicElGTHo4RGoyL08vSDlm?=
- =?utf-8?B?dnhWR1hHV3djaW5XSWpLSHZtVjRVTlE1dFM0TFJscHpsYzBiSzdHbEtQT1FN?=
- =?utf-8?B?MlQ1UXQ5NU5McDB1TE9XMWhCK1AzNG8xaWVGd1NYNG5GbGF5dWJVZkJSSSsr?=
- =?utf-8?B?MHdqN0VuVTBLRENoazY4TUtWSTBGWFIydDRsbWRrNXNUVjVYOFdKTm9kdUov?=
- =?utf-8?B?VzVIa3BPY0QzbEdwY2dmQzRWb0MzUlBuRHIzcUI0REdDOUd2L2JQUUJlOEh1?=
- =?utf-8?B?RXVxZE91Mm1zdzNuSG9nN09ScFNQRFBWU1BtTGRiR3YwMjhQWFNjUE15SWc3?=
- =?utf-8?B?aW9NUlJrQlBDYVlPUGZxOHpGZTRuODJIY2V5ZjN5RmkyWWQwZEZMMDVIeSth?=
- =?utf-8?B?d0pHL25TelAxeXZDLzZOL0FCaHZteUE0UG9GcHRUanNBOUs3bTZaZW5DZjBu?=
- =?utf-8?B?WkUvUHVNU1dEYzdic2dWUHpKMytJNjUyeWhQOEpJUTMyci83QWU2bG5jaDJm?=
- =?utf-8?B?alh4eXdLVkhvem83R0FUTFc5YmdsWXUvYUpoa2VaUUNqZkhOQkx0YmtuV3VB?=
- =?utf-8?B?SUZXQXhjUE1jOU1TU2dpSTBySWx3ODhpNFRkKzd0SnJraWJ1UGR4NVFSKzZS?=
- =?utf-8?B?OTQzWlpVbU5vNEVpYy95SlY1d0JmQTJCUjNGVWN6ZDgrcUZLSy83QU8wWU0v?=
- =?utf-8?B?ekhLcFAzRCttTUhlZDlrYm4vT3c2NXkyUG5weERlc3lySlJUUzBDbW04UDFJ?=
- =?utf-8?B?SXMxS0ZLM0lhN0dLcWl4WEI2SllCd25taVFkTjkxV0VJSFRBNXZ0SVlxN25t?=
- =?utf-8?B?R3QveUMzNnpuaGdMdmwzdDYxQkNFbmFTR2lyNVNPMWhnN2U0NmJVeXV2b0xu?=
- =?utf-8?B?TUZzdnBvdG1aTFExQkVWUjNOaVpSdktLd29zTDZSMzhOUkNvVDhrbTNaMGhv?=
- =?utf-8?B?ZStNNTZ5eXZQSXZIb0JNQzBDc3RCdlBGV2VVbjJlYWtnRG43OWk5WVp1eUtR?=
- =?utf-8?B?Qy9Sdi9xUTVoaGxWV3VRYkIrc08wT2c3cEhubzBXdzZpU3Zmd253eW5MR3dh?=
- =?utf-8?B?dWo5UmRjcFFJK2NreWgrYzZFOFhLUHJNSlpOOHhxOUNmV0dmbVpmakpMSjlQ?=
- =?utf-8?B?RGZjckYvS084Q3psR01qQzNCM1RITWpOOWo0a2tvcVA2TjNjRnZOMnRCa3Zj?=
- =?utf-8?B?bkVPMitVbHhDRjRzVGgyTUM1aExGU2N0TWhyYkdXZ2p2akxlMmJFNzUrQVVY?=
- =?utf-8?B?Y1RFakJ5L1hOUi9uVHczWGtWQjhRK1lpSW5JZzFpb1RCZG4wU1ZWS2xyckJ6?=
- =?utf-8?B?NDJPbzFFK0pRUHNmb0JVQzFLNnpOQjlvS2FoeFRSUVZxckxTZWRGWjJKaHVQ?=
- =?utf-8?B?cTZ4a1psaHFtcXFBOURCak9teVMyeXcvUUtTRmI5cmk5T2NhWDArK3Bvd2Jt?=
- =?utf-8?B?LzRxcFIxZk9kUWM0WTFnbGtxbm80VnV1VzBVSzdoL3B1Q2p3NWhVSjRlZXdw?=
- =?utf-8?B?MnR0TjRBS1FoSlVTdGw1MTB2YWtHaFg2WHFJNWJyZW1CZWNlZlBWcVQwQktz?=
- =?utf-8?B?TnVLMnRvb0hFSEZTZk94ZDZ3bHpMOWRzV214VjZoU012RjdsWGgvaXFMTU1W?=
- =?utf-8?B?czk3Y3BvdHRGWGxDR0tZOVEzYnpqL0QvVlQxU1UweGRWdHE0NkdCZGpVTHJi?=
- =?utf-8?B?REdFWDN6TS9YMWk4MEEvSTdzLzJSUk1SR1ZmbjZrMDJud2thMG9DQT09?=
-X-Exchange-RoutingPolicyChecked: GlFG3WWnYo4ryjNj8lGzVsypkK5T5+MN9xH3VTmxLlUcHfbjMrdEiDlWdPCdluAT6Za1OWDVrKitwov6/IszY4uvQuM1JkTzfensN9BrisfkBo5HOPrgUxX8JG/yTkbf+qB231Wf/I3d5TG6hhjFpBaQHELsP16UJlH8pW4DwwA37CIM9d7ZkJ2/CX8Kc7+DnFxpxJEBTlTRXz578iNnJSPTUnGOfp92QbIEjZ/k+KFo5lsDtNfx/eOFE1vT/Hb9Ld0rNkKeEUKzr+GdSjqvF1RIoBbm4O0OLK4roLRxNjnccrAHE81kzrjK6TWJyj3E7r384dpIoFkrcbdiACyGQQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8d54f7ca-27c7-4610-dbad-08debcbc9102
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?M2dmT2N5Uy9HYW4wNWp5c29KRzQ4aEtTMzVOU2V1a2h2NU9UZTFRbVE1WjNB?=
+ =?utf-8?B?dVp1dEtNcTlyaHZ5STFKTmZKa3VVV0Fuai9qRWhUZldyL0s0T3k1aW9ndHox?=
+ =?utf-8?B?UGJ5NFdzZFg4bW1aalkzUkFVOUMwMUpYSkZianBsSzBWUHpqdURwaGNqa0kr?=
+ =?utf-8?B?MU94QjZkd2JOaTM3eE5CYnRxa0grTjRxcExKQ29BYldzZlZ5UXJBVkVLYkxr?=
+ =?utf-8?B?MmxpZ1FodEZNSExJNG1oeDRGcEE3SVh4U0s3dWZ0QzJucmIwR0tXZ3ZremYx?=
+ =?utf-8?B?T0JpOTAvMVdlN1NURDd1ZDc1V3Q1RC82d2dyMW5PWFl5eWx6MkwwTWR4bVBI?=
+ =?utf-8?B?N0IyYmxoM2xvZlJJeURvd2w0UzJlNzNoM0tNb1kzU3NrandUYWlQNFA2bG5v?=
+ =?utf-8?B?ZjFmb28ybnlGVU9Rc0E5akE2Mkh2cVE3aFhzb3pXQnVrRnRRam1kQXBWcnlt?=
+ =?utf-8?B?Qmk0UFRnNzBRNlc1QlMzd1cvL2RaWWdGOXEybUFheTBOSGdQR3hUaVlUQ1Vp?=
+ =?utf-8?B?Ykd2b2ZUNjdjZytTMWVnalcwRW9qSm4wdm4wSFVzUlpuNnRLZjFOY0k2SDd2?=
+ =?utf-8?B?UlhudXJnYkFSU1RBWXFPU1cyTXRvQXYrMm1mK1l0Q3Z3RWRYUyszRlBBTzhE?=
+ =?utf-8?B?ZnBzUnozanZhdVp0VFNMRHhMWG5tWXpsZFY5WnBad25UMzVpM2JJbWpzU0cr?=
+ =?utf-8?B?clNQY3kzT2RMRUMrcmpLS2xRZGxhZFVVQ0ZWTjd5Yk5HbUczMVNhYmpzTHAx?=
+ =?utf-8?B?NjBLZTB5T3VsWFRmRTdoNkZmMlAzV0Fvc3dXdTJrcG92OG01MWVnUE9nU3oy?=
+ =?utf-8?B?d0dtMFJoRHpmSE9vRk5uMzBjNk5MTlpaZ0U5RW8rdzJVb1Q5bnkwL1NmUnlp?=
+ =?utf-8?B?L3RvZTRNNHFtMlUrTmtHU2pkZEVjQXFiZCtFWDVuQnpDUU8vb0t3eHZ2UDFT?=
+ =?utf-8?B?Z1lLcEl3NXA0MEQyOVlzalFXb250QnVWWVVpZkduNXFJbDQ5OTFDYzBMbnN6?=
+ =?utf-8?B?TnlyTkNqWUhGM2F1RTVJdTByclR6QWc4bXhGS3Zwb3RZL09zSzhZa0ZNQWNO?=
+ =?utf-8?B?N2Y2UGd1UmxXTGZFVm5UMTN3a1FuSGRabzdXN2ZBdERjc1RmbHc3NkdvQXI2?=
+ =?utf-8?B?V0IwUG5JUTVmTkxHbUVxa0UyS3FvY3VvSEh4UnBENjlueU1GUVVuZVdPMWdK?=
+ =?utf-8?B?RkM0d3BDdWVSRThsTjBZMG93SUpyNEUycUI4QUlMSzNOaHZBYlFNNStkeXJK?=
+ =?utf-8?B?TFpTVG51aWtGbGFwc2RpS09iWnRlUWVnNDZNUmpsTGdCNFpkZ3FzdkhxWlpP?=
+ =?utf-8?B?OEJteEpKTkN4UVhkYjByNU90QUtaWjgrN0ZOdHEzcU1aSEE1YWtHYkJOc0ZB?=
+ =?utf-8?B?MnJmMDlVZlhCUnRIUVJBcTloK0hra0hMT0VTZ1YwekRHMjd1dUpMNjhDSDRp?=
+ =?utf-8?B?OHMzWS85U2M0RWs1OUVaV3BiS2dGdXd1MW91MlBBWHRhUlo1cDhPclc2Q3pU?=
+ =?utf-8?B?QXFvZTVBc0hYcTlDcnJKd2YyREVRUzdmV3hveXN4WkRqTE5vS21PdmhzK1NL?=
+ =?utf-8?B?U00xdUdONXNGZEdJOGtxTTZHUVhqQzNqT1pJWk9VUUZBTWhWVHMvS0N5eVBC?=
+ =?utf-8?B?b3RjcW5TNUFVVXlPc1pZbDV5MFh6Um5tbDg3Umg0Nmc1Lzk0aTd6TjB3djBl?=
+ =?utf-8?B?aFRpL2lBb2JZSnQyMjJ6OUNOMVNwOUF1Y3pWcUxzVXZPclN2VzdKbTc2MkRV?=
+ =?utf-8?B?YXE1TG9OY1ZCamViK1BMRTVYcVRUWDRqM3JwWnl6aW9ockp1RmNENXA3TzdF?=
+ =?utf-8?B?MjM0RkhORnpnbUF1VllCU1YyS1lNT2lNV0haMGFQZjVyOFdzWTRvL3hMUERj?=
+ =?utf-8?B?WVFwQXYwdGZkb2ZIUWlpSnhZZVUvNkJaVnFuY3BnY3plMnRzSmdROUdxWTVG?=
+ =?utf-8?B?MC9MRTM5b1k0S3pNL2RTWG5xVk11endLeGVLZHVaRnRJWmFCSHZROHlFWHpM?=
+ =?utf-8?B?dFhuQkFZV0hnYy9JL3hWRENSREhWNHpSMHRwVVU1OHcwL2JJNW4rbmFXUnFU?=
+ =?utf-8?B?TUFBMHV3ZGNOMFJHWllBVDlWaG04UnpMc25vRDFSc08zaVdncVpVcXBQWllz?=
+ =?utf-8?B?ZlN5STd2U3k2bmk3Mkp2RWlTQUMrd0RJc0hhVUw2NjdYYmFPOU9Dd0hTaDdN?=
+ =?utf-8?B?SHhDYnZMc3pNd00yVDMyalFBR3cxTU4xVXR3d0F1TTVWQk1oak8ydXZDL0NU?=
+ =?utf-8?B?VUdwZHo0MVYrUG84Y1JOdDFiNVlNa3FucnJoNHdiaGl2NE12VTNiYkFHY2Rq?=
+ =?utf-8?B?WThMYzhpZXlJRUpVbER3Q1Vlc2o0Vk1WdksrVWRyWmxINytBMitSUT09?=
+X-Exchange-RoutingPolicyChecked: ADBQollGUhvqwEHd/oOfp++XyOohzaxx7k7KH26xY7A9TMmOvQsmAwvHIky3702E6qvayWbv1ApvzqF/QkE5OFlGgD+Sbr8k6ruReIN3XTslv10/QwYqTypdL3D4lYIqbYbzjLJ1tO4cndU81cgSjZ1ileUYJ6C1wyCKbfOiLqn8JNNwqbaK04lLWsYlZZ0m7MYOxy2MHM9K+Ar7nKOXTwU1X+2Ll1SiFmKi2ZLJ0XUZhiy70Ze8gx7I5z9DgtlZmYRB+gbt1P7Sq/nJlqcmAsDM6THuH9rPrBPNHWW3iQphdeysUK4CVu79lctuQmcc1glBGZroSi2MFx3NefO/Tg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8cc478a5-9823-4dd1-7990-08debcbe4260
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5073.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2026 13:25:20.8236 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2026 13:37:27.8932 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ICo9SPYLQXe1nMfxpeY3HSu13X6SagiV3uZy1FJ03dE+bMt0y3AhbvB6kc1tAIMTw7dn4GhVjhVOjk28uS39Ow==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4843
+X-MS-Exchange-CrossTenant-UserPrincipalName: cUbdKKjwmnIt4EfwDRDAPaQ6u1liYGoCdjTtgIBM2oGSThrZraCltMOS/KgSKwots3nf9ekmi54wfzZhc4AUFw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4530
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -167,246 +172,221 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Violet Monti <violet.monti@intel.com> writes:
+Hi Dave and Sima,
 
-> It is currently possible for a RTP rule, and subsequently a workaround,
-> to expect contexts that may not be present when the workaround is
-> applied. For example, the workarounds in the engine_was[] in drm/xe/xe_wa=
-.c
-> expect an engine entity to be active. Conversely, the gt_was[] is not
-> depending on an engine entity to implement its workarounds. This kunit
-> test addition checks the gt_was[] workaround list for any workarounds
-> with XEP_RTP_ENGINE_CLASS() rules. If a workaround does have one of
-> these rules, the workaround is then checked for the "FOREACH_ENGINE" flag=
-,
-> which ensures the workaround is implemented properly.
->
-> The result of this test is an expectation failure if a workaround has an
-> improper XE_RTP_ENGINE_CLASS() rule setup, and aims to prevent future
-> issues of gt_was workarounds being applied without proper contexts.
->
-> The gt_tunings[] RTP table has the same functional layout and
-> requirements as gt_was[], so it shares the same kunit test function,
-> minimizing excessive code.
->
-> v4:
->     - No change
->
-> v3:
->     - Removed "VISIBLE_IF_KUNIT" keyword from xe_wa.h
->     - Added gt_tunings[] for testing
->     - Reworked KUNIT_EXPECT_TRUE() for easier parsing of errors
->
-> v2:
->     - Moved contents of xe_rtp_tables_test.h to .c and removed file
->     - Renamed macro RTP_KUNIT_ARRAY_PARAM to RTP_TABLE_PARAM
->     - Removed unnecessary functions and iterative components from
->       generated _gen_params functions and implemented usage of table
->       name and WA number as entry name
->     - Condensed xe_rtp_table_gt_test() to use KUNIT_EXPECT_TRUE with no
->       message statement
->     - Removed xe_rtp_table_test_init() and xe_rtp_table_test_exit() as
->       fake device initialization is not necessary
->
-> Signed-off-by: Violet Monti <violet.monti@intel.com>
-> ---
->  drivers/gpu/drm/xe/tests/Makefile             |  1 +
->  drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c | 55 +++++++++++++++++++
->  drivers/gpu/drm/xe/xe_tuning.c                |  3 +-
->  drivers/gpu/drm/xe/xe_tuning.h                |  6 ++
->  drivers/gpu/drm/xe/xe_wa.c                    |  3 +-
->  drivers/gpu/drm/xe/xe_wa.h                    |  5 ++
->  6 files changed, 71 insertions(+), 2 deletions(-)
->  create mode 100644 drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c
->
-> diff --git a/drivers/gpu/drm/xe/tests/Makefile b/drivers/gpu/drm/xe/tests=
-/Makefile
-> index 0e3408f4952c..f7aa47f11a36 100644
-> --- a/drivers/gpu/drm/xe/tests/Makefile
-> +++ b/drivers/gpu/drm/xe/tests/Makefile
-> @@ -9,5 +9,6 @@ obj-$(CONFIG_DRM_XE_KUNIT_TEST) +=3D xe_test.o
->  xe_test-y =3D xe_test_mod.o \
->  	xe_args_test.o \
->  	xe_pci_test.o \
-> +	xe_rtp_tables_test.o \
->  	xe_rtp_test.o \
->  	xe_wa_test.o
-> diff --git a/drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c b/drivers/gpu/=
-drm/xe/tests/xe_rtp_tables_test.c
-> new file mode 100644
-> index 000000000000..fc707d972249
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c
-> @@ -0,0 +1,55 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright =C2=A9 2026 Intel Corporation
-> + */
-> +
-> +#include <drm/drm_kunit_helpers.h>
+Here goes our last drm-intel-next towards 7.2.
 
-We are using KUNIT_* macros, but those come from <kunit/test.h> and not
-directly from <drm/drm_kunit_helpers.h>.  As such, the above include
-should be replaced to include the former.
+Thanks,
+Rodrigo.
 
-> +
-> +#include "xe_kunit_helpers.h"
-> +#include "xe_pci_test.h"
+drm-intel-next-2026-05-28:
+Xe related:
+ - Fix Xe oops in suspend/shutdown when display was disabled (Jani)
 
-We don't use stuff from any of those two headers, those include
-directives can be dropped.
+Display in general:
+ - More general refactor towards display separation (Jani)
+ - Preparation for fix Adaptive-Sync SDP for PR with Link ON + Auxless-ALPM (Ankit)
+ - PSR related fixes and improvements (Jouni)
+ - Use polling when irqs are unavailable (Michal)
+ - Split bandwidth params into platform- and display-IP-specific structs (Gustavo)
+ - Revert "drm/i915/backlight: Remove try_vesa_interface" (Suraj)
+ - Casf & scaler refactoring (Michal)
+ - Add support for pipe background color (Maarten)
+ - General clean-ups (Maarten)
+ - Sanitize DP link capability change handling (Imre)
+ - Multiple BW QGV fixes (Ville)
+The following changes since commit 1f863fe67343e2f45fc0af75ac94c3705bdf6537:
 
-> +#include "xe_rtp.h"
+  Merge tag 'drm-intel-next-2026-05-14' of https://gitlab.freedesktop.org/drm/i915/kernel into drm-next (2026-05-15 15:37:16 +1000)
 
-We are not really using xe_rtp.h directly, but rather the types defined
-by xe_rtp_types.h, so this should be replaced to rather include the
-latter.
+are available in the Git repository at:
 
-The rest looks good to me.
+  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-next-2026-05-28
 
---
-Gustavo Sousa
+for you to fetch changes up to 7185566c3db090aa5e17a17bca92dfcef9656b03:
 
-> +#include "xe_tuning.h"
-> +#include "xe_wa.h"
-> +
-> +#define RTP_TABLE_PARAM(table)									\
-> +	static const void *table##_gen_params(struct kunit *test,				\
-> +					     const void *prev, char *desc)			\
-> +	{											\
-> +		typeof((table.entries)[0]) *__next =3D prev ?					\
-> +			((typeof(__next))prev) + 1 : (table.entries);				\
-> +		if (__next - table.entries < table.n_entries) {					\
-> +			scnprintf(desc, KUNIT_PARAM_DESC_SIZE, #table "/%s", __next->name);	\
-> +			return __next;								\
-> +		}										\
-> +		return NULL;									\
-> +	}
-> +
-> +static void xe_rtp_table_gt_test(struct kunit *test)
-> +{
-> +	const struct xe_rtp_entry_sr *entry =3D test->param_value;
-> +
-> +	for (int i =3D 0; i < entry->n_rules; i++) {
-> +		KUNIT_EXPECT_TRUE(test,
-> +				  entry->rules[i].match_type !=3D XE_RTP_MATCH_ENGINE_CLASS ||
-> +				  entry->flags & XE_RTP_ENTRY_FLAG_FOREACH_ENGINE);
-> +		KUNIT_EXPECT_TRUE(test,
-> +				  entry->rules[i].match_type !=3D XE_RTP_MATCH_NOT_ENGINE_CLASS ||
-> +				  entry->flags & XE_RTP_ENTRY_FLAG_FOREACH_ENGINE);
-> +	}
-> +}
-> +
-> +RTP_TABLE_PARAM(gt_was);
-> +RTP_TABLE_PARAM(gt_tunings);
-> +
-> +static struct kunit_case xe_rtp_table_tests[] =3D {
-> +	KUNIT_CASE_PARAM(xe_rtp_table_gt_test, gt_was_gen_params),
-> +	KUNIT_CASE_PARAM(xe_rtp_table_gt_test, gt_tunings_gen_params),
-> +	{}
-> +};
-> +
-> +static struct kunit_suite xe_rtp_tables_test_suite =3D {
-> +	.name =3D "xe_rtp_tables_test",
-> +	.test_cases =3D xe_rtp_table_tests,
-> +};
-> +
-> +kunit_test_suite(xe_rtp_tables_test_suite);
-> diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tunin=
-g.c
-> index bf3fad9cdbef..bcec40ca2d35 100644
-> --- a/drivers/gpu/drm/xe/xe_tuning.c
-> +++ b/drivers/gpu/drm/xe/xe_tuning.c
-> @@ -20,7 +20,7 @@
->  #undef XE_REG_MCR
->  #define XE_REG_MCR(...)     XE_REG(__VA_ARGS__, .mcr =3D 1)
-> =20
-> -static const struct xe_rtp_table_sr gt_tunings =3D XE_RTP_TABLE_SR(
-> +VISIBLE_IF_KUNIT const struct xe_rtp_table_sr gt_tunings =3D XE_RTP_TABL=
-E_SR(
->  	{ XE_RTP_NAME("Tuning: Blend Fill Caching Optimization Disable"),
->  	  XE_RTP_RULES(PLATFORM(DG2)),
->  	  XE_RTP_ACTIONS(SET(XEHP_L3SCQREG7, BLEND_FILL_CACHING_OPT_DIS))
-> @@ -101,6 +101,7 @@ static const struct xe_rtp_table_sr gt_tunings =3D XE=
-_RTP_TABLE_SR(
->  				   BANK_HASH_4KB_MODE))
->  	},
->  );
-> +EXPORT_SYMBOL_IF_KUNIT(gt_tunings);
-> =20
->  static const struct xe_rtp_table_sr engine_tunings =3D XE_RTP_TABLE_SR(
->  	{ XE_RTP_NAME("Tuning: L3 Hashing Mask"),
-> diff --git a/drivers/gpu/drm/xe/xe_tuning.h b/drivers/gpu/drm/xe/xe_tunin=
-g.h
-> index d18e187debf6..869564e3e992 100644
-> --- a/drivers/gpu/drm/xe/xe_tuning.h
-> +++ b/drivers/gpu/drm/xe/xe_tuning.h
-> @@ -6,6 +6,8 @@
->  #ifndef _XE_TUNING_H_
->  #define _XE_TUNING_H_
-> =20
-> +#include <kunit/visibility.h>
-> +
->  struct drm_printer;
->  struct xe_gt;
->  struct xe_hw_engine;
-> @@ -16,4 +18,8 @@ void xe_tuning_process_engine(struct xe_hw_engine *hwe)=
-;
->  void xe_tuning_process_lrc(struct xe_hw_engine *hwe);
->  int xe_tuning_dump(struct xe_gt *gt, struct drm_printer *p);
-> =20
-> +#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
-> +extern const struct xe_rtp_table_sr gt_tunings;
-> +#endif
-> +
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-> index b9d9fe0801aa..1a1e04215f21 100644
-> --- a/drivers/gpu/drm/xe/xe_wa.c
-> +++ b/drivers/gpu/drm/xe/xe_wa.c
-> @@ -130,7 +130,7 @@
->  __diag_push();
->  __diag_ignore_all("-Woverride-init", "Allow field overrides in table");
-> =20
-> -static const struct xe_rtp_table_sr gt_was =3D XE_RTP_TABLE_SR(
-> +VISIBLE_IF_KUNIT const struct xe_rtp_table_sr gt_was =3D XE_RTP_TABLE_SR=
-(
->  	/* Workarounds applying over a range of IPs */
-> =20
->  	{ XE_RTP_NAME("14011060649"),
-> @@ -307,6 +307,7 @@ static const struct xe_rtp_table_sr gt_was =3D XE_RTP=
-_TABLE_SR(
->  	  XE_RTP_ACTIONS(SET(GUC_INTR_CHICKEN, DISABLE_SIGNALING_ENGINES))
->  	},
->  );
-> +EXPORT_SYMBOL_IF_KUNIT(gt_was);
-> =20
->  static const struct xe_rtp_table_sr engine_was =3D XE_RTP_TABLE_SR(
->  	/* Workarounds applying over a range of IPs */
-> diff --git a/drivers/gpu/drm/xe/xe_wa.h b/drivers/gpu/drm/xe/xe_wa.h
-> index a5f7d33c1b32..8784b491dde7 100644
-> --- a/drivers/gpu/drm/xe/xe_wa.h
-> +++ b/drivers/gpu/drm/xe/xe_wa.h
-> @@ -6,6 +6,7 @@
->  #ifndef _XE_WA_H_
->  #define _XE_WA_H_
-> =20
-> +#include <kunit/visibility.h>
->  #include "xe_assert.h"
-> =20
->  struct drm_printer;
-> @@ -24,6 +25,10 @@ void xe_wa_apply_tile_workarounds(struct xe_tile *tile=
-);
->  void xe_wa_device_dump(struct xe_device *xe, struct drm_printer *p);
->  int xe_wa_gt_dump(struct xe_gt *gt, struct drm_printer *p);
-> =20
-> +#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
-> +extern const struct xe_rtp_table_sr gt_was;
-> +#endif
-> +
->  /**
->   * XE_GT_WA - Out-of-band GT workarounds, to be queried and called as ne=
-eded.
->   * @gt__: gt instance
-> --=20
-> 2.43.0
+  drm/i915/dp: Account for AS_SDP guardband only when enabled (2026-05-28 16:48:10 +0530)
+
+----------------------------------------------------------------
+Xe related:
+ - Fix Xe oops in suspend/shutdown when display was disabled (Jani)
+
+Display in general:
+ - More general refactor towards display separation (Jani)
+ - Preparation for fix Adaptive-Sync SDP for PR with Link ON + Auxless-ALPM (Ankit)
+ - PSR related fixes and improvements (Jouni)
+ - Use polling when irqs are unavailable (Michal)
+ - Split bandwidth params into platform- and display-IP-specific structs (Gustavo)
+ - Revert "drm/i915/backlight: Remove try_vesa_interface" (Suraj)
+ - Casf & scaler refactoring (Michal)
+ - Add support for pipe background color (Maarten)
+ - General clean-ups (Maarten)
+ - Sanitize DP link capability change handling (Imre)
+ - Multiple BW QGV fixes (Ville)
+
+----------------------------------------------------------------
+Ankit Nautiyal (18):
+      drm/i915/dp: Fix readback for target_rr in Adaptive Sync SDP
+      drm/i915/dp: Use revision field of AS SDP data structure
+      drm/i915/dp: Set sdp_type in AS SDP unpack
+      drm/i915/dp: Include all relevant AS SDP fields in comparison
+      drm/i915/psr: Simplify the conditions for SCL computation
+      drm/i915/psr: Allow SCL=0 on platforms with always-on VRR TG
+      drm/i915/psr: Add helper to get Async Video timing support in PR active
+      drm/i915/dp: Add member to intel_dp to store AS SDP v2 support
+      drm/i915/dp: Allow AS SDP only if v2 is supported
+      drm/i915/psr: Write the PR config DPCDs in burst mode
+      drm/i915/display: Add helper for AS SDP transmission time selection
+      drm/i915/psr: Program Panel Replay CONFIG3 using AS SDP transmission time
+      drm/i915/dp: Set relevant Downspread Ctrl DPCD bits for PR + Auxless ALPM
+      drm/i915/dp: Program AS SDP DB[1:0] for PR with Link off
+      drm/i915/dp: Compute and include coasting vtotal for AS SDP
+      drm/i915/dp: Compute AS SDP after PSR compute config
+      drm/i915/dp: Enable AS SDP whenever VRR is possible or PR !async
+      drm/i915/dp: Account for AS_SDP guardband only when enabled
+
+Gustavo Sousa (6):
+      drm/i915/bw: Don't call intel_dram_info() too early
+      drm/i915/bw: Extract platform-specific parameters
+      drm/i915/bw: Deduplicate intel_sa_info instances
+      drm/i915/bw: Rename struct intel_sa_info to intel_display_bw_params
+      drm/i915/bw: Extract get_display_bw_params()
+      drm/i915/dmc_wl: Remove macro HAS_DMC_WAKELOCK()
+
+Imre Deak (4):
+      drm/i915/dp: Reset link params after a DPRX capability change
+      drm/i915/dp: Add helper to set common link params
+      drm/i915/dp: Cache max common lane count
+      drm/i915/dp: Detect changes in common link parameters
+
+Jani Nikula (21):
+      drm/xe/display: fix oops in suspend/shutdown without display
+      drm/i915/irq: deduplicate dg1_de_irq_postinstall() and gen11_de_irq_postinstall()
+      drm/i915/irq: constify pipe stats parameters
+      drm/i915/irq: add display irq funcs, start with intel_display_irq_reset()
+      drm/i915/irq: add intel_display_irq_postinstall() to irq funcs
+      drm/i915/irq: add platform specific display irq ack functions
+      drm/i915/irq: add platform specific display irq handler functions
+      drm/i915/irq: add intel_display_irq_ack() to irq funcs
+      drm/i915/irq: add intel_display_irq_handler() to irq funcs
+      drm/i915: relocate intel_hpd_cancel_work() call
+      drm/{i915, xe}: move xe_display_flush_cleanup_work() to i915 display
+      drm/i915/display: switch from drm_for_each_crtc() to for_each_intel_crtc()
+      drm/i915/display: always pass display->drm to for_each_intel_crtc*()
+      drm/i915/display: pass struct intel_display to all for_each_intel_crtc*() macros
+      drm/i915/display: stop passing i to for_each_*_intel_crtc_in_state() macros
+      drm/i915/display: stop passing i to for_each_pipe_crtc_modeset_{enable, disable}()
+      drm/i915/power: make intel_power_domains_{suspend, resume}() static
+      drm/i915/power: rename intel_power_domains_*() to intel_display_power_*()
+      drm/i915/power: drop resume parameter from intel_display_power_init_hw()
+      drm/i915/power: add "runtime" to intel_display_power_{suspend, resume}() names
+      drm/i915: rename intel_runtime_{suspend, resume} to i915_pm_runtime_{suspend, resume}
+
+Jouni Högander (7):
+      drm/i915/psr: Add defininitions for INTEL_WA_REGISTER_CAPS DPCD register
+      drm/i915/psr: Read Intel DPCD workaround register
+      drm/i915/psr: Apply Intel DPCD workaround when SDP on prior line used
+      drm/i915/psr: Apply SDP on prior scanline workaround for Xe3p
+      drm/i915/psr: Block DC states on vblank enable when Panel Replay supported
+      drm/i915/psr: Use DC_OFF wake reference to block DC6 on vblank enable
+      drm/i915/display: Handle odd position for planar formats in selective fetch
+
+Maarten Lankhorst (2):
+      drm/intel/display: Add support for pipe background color (v4)
+      drm/i915: Remove useless comment about MTRR.
+
+Michał Grzelak (10):
+      drm/i915/aux: use polling when irqs are unavailable
+      drm/i915/casf: fix comment typos
+      drm/i915/casf: rename *_coef*() into *_coeff*()
+      drm/i915: rename t into tap
+      drm/i915/casf: rename sumcoeff into sum_coeff
+      drm/i915/scaler: s/i/scaler_id/ where appropriate
+      drm/i915/scaler: remove id in favor of scaler_id
+      drm/i915/scaler: unloop scaler readout that is run once
+      drm/i915/scaler: abstract scaler searching loop
+      drm/i915/scaler: eliminate dead code
+
+Pranay Samala (1):
+      drm/i915/color: Fix HDR pre-CSC LUT programming loop
+
+Rodrigo Vivi (1):
+      Merge drm/drm-next into drm-intel-next
+
+Suraj Kandpal (1):
+      Revert "drm/i915/backlight: Remove try_vesa_interface"
+
+Ville Syrjälä (10):
+      drm/i915/bw: Fix num_planes handling on TGL+
+      drm/i915/bw: Fix DCLK rounding mess
+      drm/i915/bw: Fix bw rounding direction
+      drm/i915/bw: Fix 'deinterleave' rounding direction
+      drm/i915/bw: Fix rounding direction in clperchgroup calculation
+      drm/i915/bw: Fix DEPROGBWPCLIMIT handling on BMG
+      drm/i915/bw: Fix/unify peakbw calculations
+      drm/i915/bw: Round the PM demand bandwidth down
+      drm/i915/bw: Remove deinterleave fallback for TGL+
+      drm/i915/bw: Do not consider tile4 as tileY
+
+ drivers/gpu/drm/i915/display/i9xx_wm.c             |  32 +--
+ drivers/gpu/drm/i915/display/intel_alpm.c          |  20 +-
+ drivers/gpu/drm/i915/display/intel_atomic.c        |   3 +-
+ drivers/gpu/drm/i915/display/intel_bw.c            | 315 ++++++++++++---------
+ drivers/gpu/drm/i915/display/intel_casf.c          |  32 +--
+ drivers/gpu/drm/i915/display/intel_cdclk.c         |  14 +-
+ drivers/gpu/drm/i915/display/intel_color.c         |  49 ++--
+ drivers/gpu/drm/i915/display/intel_color.h         |   3 +
+ drivers/gpu/drm/i915/display/intel_crtc.c          |  17 +-
+ drivers/gpu/drm/i915/display/intel_dbuf_bw.c       |   7 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c           |  10 +-
+ drivers/gpu/drm/i915/display/intel_display.c       | 208 +++++++-------
+ drivers/gpu/drm/i915/display/intel_display.h       |  84 +++---
+ drivers/gpu/drm/i915/display/intel_display_core.h  |   4 +
+ .../gpu/drm/i915/display/intel_display_debugfs.c   |  12 +-
+ .../gpu/drm/i915/display/intel_display_device.h    |   1 -
+ .../gpu/drm/i915/display/intel_display_driver.c    |   8 +-
+ drivers/gpu/drm/i915/display/intel_display_irq.c   | 252 ++++++++++++++---
+ drivers/gpu/drm/i915/display/intel_display_irq.h   |  37 +--
+ drivers/gpu/drm/i915/display/intel_display_power.c |  90 +++---
+ drivers/gpu/drm/i915/display/intel_display_power.h |  21 +-
+ drivers/gpu/drm/i915/display/intel_display_trace.h |   6 +-
+ drivers/gpu/drm/i915/display/intel_display_types.h |   6 +
+ drivers/gpu/drm/i915/display/intel_display_wa.c    |   2 +
+ drivers/gpu/drm/i915/display/intel_display_wa.h    |   1 +
+ drivers/gpu/drm/i915/display/intel_dmc_wl.c        |   9 +-
+ drivers/gpu/drm/i915/display/intel_dp.c            | 180 ++++++++++--
+ drivers/gpu/drm/i915/display/intel_dp.h            |   2 +
+ drivers/gpu/drm/i915/display/intel_dp_aux.c        |  20 +-
+ .../gpu/drm/i915/display/intel_dp_aux_backlight.c  |  19 +-
+ .../gpu/drm/i915/display/intel_dp_link_training.c  |  20 +-
+ .../gpu/drm/i915/display/intel_dp_link_training.h  |   3 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c        |  13 +-
+ drivers/gpu/drm/i915/display/intel_dp_test.c       |   2 +-
+ drivers/gpu/drm/i915/display/intel_dp_tunnel.c     |   8 +-
+ drivers/gpu/drm/i915/display/intel_dpcd.h          |  15 +
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c      |   2 +-
+ drivers/gpu/drm/i915/display/intel_drrs.c          |   4 +-
+ drivers/gpu/drm/i915/display/intel_fbdev.c         |   6 +-
+ drivers/gpu/drm/i915/display/intel_fdi.c           |   3 +-
+ drivers/gpu/drm/i915/display/intel_fifo_underrun.c |   4 +-
+ drivers/gpu/drm/i915/display/intel_flipq.c         |   2 +-
+ drivers/gpu/drm/i915/display/intel_global_state.c  |   8 +-
+ drivers/gpu/drm/i915/display/intel_initial_plane.c |   4 +-
+ drivers/gpu/drm/i915/display/intel_link_bw.c       |   2 +-
+ drivers/gpu/drm/i915/display/intel_load_detect.c   |   2 +-
+ drivers/gpu/drm/i915/display/intel_modeset_setup.c |  36 +--
+ drivers/gpu/drm/i915/display/intel_plane.c         |   9 +-
+ drivers/gpu/drm/i915/display/intel_pmdemand.c      |   6 +-
+ drivers/gpu/drm/i915/display/intel_psr.c           | 134 ++++++---
+ drivers/gpu/drm/i915/display/intel_psr.h           |   1 +
+ drivers/gpu/drm/i915/display/intel_tc.c            |   2 +-
+ drivers/gpu/drm/i915/display/intel_vrr.c           |   4 +-
+ drivers/gpu/drm/i915/display/skl_scaler.c          |  76 ++---
+ drivers/gpu/drm/i915/display/skl_universal_plane.c |   2 +-
+ drivers/gpu/drm/i915/display/skl_watermark.c       |  38 ++-
+ drivers/gpu/drm/i915/i915_driver.c                 |  32 +--
+ drivers/gpu/drm/i915/i915_irq.c                    | 185 ++++--------
+ drivers/gpu/drm/i915/intel_runtime_pm.c            |   2 +-
+ drivers/gpu/drm/xe/display/xe_display.c            |  64 ++---
+ 60 files changed, 1284 insertions(+), 869 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_dpcd.h
