@@ -4,56 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05EA0CD6E49
-	for <intel-xe@archiver.kernel.org>; Fri, 29 May 2026 16:11:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 651ADCD6E49
+	for <intel-xe@archiver.kernel.org>; Fri, 29 May 2026 16:12:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B70C1121E4;
-	Fri, 29 May 2026 16:11:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 238E71121E7;
+	Fri, 29 May 2026 16:12:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m6Uivd2Z";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RZhDZqfF";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4A891121E3;
- Fri, 29 May 2026 16:11:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7434B1121E8;
+ Fri, 29 May 2026 16:12:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780071112; x=1811607112;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=fHopY0tRWr3ul1/rIAhcb/osqqlmB99thtv/u5Sb/uE=;
- b=m6Uivd2Zepc1o84qd6GpdRivHKnGb3LG7GAsxrpbAZFaxLz+sSPxx+gK
- sqIGR3L+/PDalX1osQ3YweknQ1qq9OsqcuKtMSmd1hN353z3l0ZSn5tI6
- UuQTpexr7E53J0LBXbdWpjzXgDMoCIaAtnAULlHdE9Hsje0e2SKHpFAGH
- ek2jMU2SmJ3lxqQ1xcHmnvy2ezfHIgMLQgIYcndEBuycAxzTJYn74pIxy
- 49XK4WwUz9FoFXhqXfbfyjmJ+kc/TpDywpS+IG/FDK3icSJ4yaLOIA89f
- oinTeH8J3k4Xs+irgPersnMU23EDpdIJ8Sw4Q2wp7r2D8a8d8FCPAnEs3 w==;
-X-CSE-ConnectionGUID: l2uEjekzQoyCYTzl8ese2g==
-X-CSE-MsgGUID: 5sCC9b7lTbmXyBmo65epRw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11801"; a="83502040"
-X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="83502040"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2026 09:11:52 -0700
-X-CSE-ConnectionGUID: Q4U8FkkuTWmKF+qtCySDDw==
-X-CSE-MsgGUID: OIkERhTwTRuPffsSg53Wjw==
+ t=1780071160; x=1811607160;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=z+Lc5O2J/Ac6/dHKEA695nu+O+xYv0X3WMs8TMgvC3k=;
+ b=RZhDZqfFHx2QwTMB6UBrxZcQy1F+ZN6x/haziIvO/NcQlzIPws/H+SCU
+ C6CKAPZAJjpNnpBuWtg8yJiIb9hZdqmyNiefz6ocUikpLKrFkU/y5uMM5
+ ROIPPdtBBsuuglBL4hVJKjcZCXiGdKzk5ferHxi5vbs6Mkdw/HZSNwZsL
+ yQRambXzQ8pcrYzYMbYNbYNfvj2t8pyixwaJtTFc5MFPZc53agbzD/LTn
+ Vsmw40IizuKpj47qtOTrhqH7A1s15I8/TJoBCCoMOaGXQsZuCjky51f1b
+ sI4PuWt62PTC1BcBlLEtKyQdT8wrl27v3T8gU0YGbxx6j+KLvfOD1S70W A==;
+X-CSE-ConnectionGUID: IfcljYXuRK2Z8Dn7Dlobag==
+X-CSE-MsgGUID: FZTna4H4RlWYN+PzWIKwqA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11801"; a="81109919"
+X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="81109919"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2026 09:12:40 -0700
+X-CSE-ConnectionGUID: GK8Gs3P/T/SpmXXC8gqm6Q==
+X-CSE-MsgGUID: rgRSwxWJSoSsaQsCrv5UAQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="236530176"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.182])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2026 09:11:51 -0700
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH] drm/i915/de: Remove the 2 usec fast timeout
-Date: Fri, 29 May 2026 19:11:47 +0300
-Message-ID: <20260529161147.17573-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.53.0
+X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="247984125"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2026 09:12:37 -0700
+Date: Fri, 29 May 2026 18:12:35 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: =?utf-8?B?5Y2gd2Vp?= <zhanwei919@gmail.com>
+Cc: Matthew Brost <matthew.brost@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Jonathan Corbet <corbet@lwn.net>,
+ Shuah Khan <skhan@linuxfoundation.org>,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] drm/xe/hwmon: document DG2 fan speed reporting quirk
+Message-ID: <ahm680G_8mf_cjG9@black.igk.intel.com>
+References: <20260527115311.13398-1-zhanwei919@gmail.com>
+ <20260529135028.20763-1-zhanwei919@gmail.com>
+ <CA+qUFckr9uC7h4S9xw0JMxGnehXyrQ8HpOYdwoFoMsLk-HM_nw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CA+qUFckr9uC7h4S9xw0JMxGnehXyrQ8HpOYdwoFoMsLk-HM_nw@mail.gmail.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,111 +74,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Fri, May 29, 2026 at 10:05:58PM +0800, 占wei wrote:
+> +Cc Raag, who authored the fan support and reviewed v1.
+> 
+> Thanks for your help, this v2 drops the code change and documents the
+> DG2 shared-tach behaviour instead, per your feedback on v1.
 
-Currently any "slow" wait will first try a "fast" wait
-with a 2 usec timeout, and then fall back to whatever
-timeout was specified originally. The "slow" wait will
-anyway start off with a mere 10 usec polling interval,
-so basically we can only save 8 usec with the "fast" wait
-(maybe a bit more given hrtimer setup costs etc.).
+IMO it's a bit verbose to have a dedicated doc for this. Just add a small
+comment in the existing ABI doc[1] under fan channel description.
 
-I don't think we really do any operations in the display
-code where that kinds of 8 usec saving would be meaningful.
-So just get rid of the whole "fast" wait complication and
-go straight for the "slow" wait.
+[1] Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_de.c | 40 ++++++-------------------
- 1 file changed, 9 insertions(+), 31 deletions(-)
+Raag
 
-diff --git a/drivers/gpu/drm/i915/display/intel_de.c b/drivers/gpu/drm/i915/display/intel_de.c
-index 6daee9e82503..a7417905192d 100644
---- a/drivers/gpu/drm/i915/display/intel_de.c
-+++ b/drivers/gpu/drm/i915/display/intel_de.c
-@@ -9,11 +9,11 @@
- 
- #include "intel_de.h"
- 
--static int __intel_de_wait_for_register(struct intel_display *display,
--					intel_reg_t reg, u32 mask, u32 value,
--					unsigned int timeout_us,
--					u32 (*read)(struct intel_display *display, intel_reg_t reg),
--					u32 *out_val, bool is_atomic)
-+static int intel_de_wait_for_register(struct intel_display *display,
-+				      intel_reg_t reg, u32 mask, u32 value,
-+				      unsigned int timeout_us,
-+				      u32 (*read)(struct intel_display *display, intel_reg_t reg),
-+				      u32 *out_val, bool is_atomic)
- {
- 	const ktime_t end = ktime_add_us(ktime_get_raw(), timeout_us);
- 	int wait_max = 1000;
-@@ -60,28 +60,6 @@ static int __intel_de_wait_for_register(struct intel_display *display,
- 	return ret;
- }
- 
--static int intel_de_wait_for_register(struct intel_display *display,
--				      intel_reg_t reg, u32 mask, u32 value,
--				      unsigned int fast_timeout_us,
--				      unsigned int slow_timeout_us,
--				      u32 (*read)(struct intel_display *display, intel_reg_t reg),
--				      u32 *out_value, bool is_atomic)
--{
--	int ret = -EINVAL;
--
--	if (fast_timeout_us)
--		ret = __intel_de_wait_for_register(display, reg, mask, value,
--						   fast_timeout_us, read,
--						   out_value, is_atomic);
--
--	if (ret && slow_timeout_us)
--		ret = __intel_de_wait_for_register(display, reg, mask, value,
--						   slow_timeout_us, read,
--						   out_value, is_atomic);
--
--	return ret;
--}
--
- int intel_de_wait_us(struct intel_display *display, intel_reg_t reg,
- 		     u32 mask, u32 value, unsigned int timeout_us,
- 		     u32 *out_value)
-@@ -91,7 +69,7 @@ int intel_de_wait_us(struct intel_display *display, intel_reg_t reg,
- 	intel_dmc_wl_get(display, reg);
- 
- 	ret = intel_de_wait_for_register(display, reg, mask, value,
--					 timeout_us, 0,
-+					 timeout_us,
- 					 intel_de_read,
- 					 out_value, false);
- 
-@@ -109,7 +87,7 @@ int intel_de_wait_ms(struct intel_display *display, intel_reg_t reg,
- 	intel_dmc_wl_get(display, reg);
- 
- 	ret = intel_de_wait_for_register(display, reg, mask, value,
--					 2, timeout_ms * 1000,
-+					 timeout_ms * 1000,
- 					 intel_de_read,
- 					 out_value, false);
- 
-@@ -123,7 +101,7 @@ int intel_de_wait_fw_ms(struct intel_display *display, intel_reg_t reg,
- 			u32 *out_value)
- {
- 	return intel_de_wait_for_register(display, reg, mask, value,
--					  2, timeout_ms * 1000,
-+					  timeout_ms * 1000,
- 					  intel_de_read_fw,
- 					  out_value, false);
- }
-@@ -133,7 +111,7 @@ int intel_de_wait_fw_us_atomic(struct intel_display *display, intel_reg_t reg,
- 			       u32 *out_value)
- {
- 	return intel_de_wait_for_register(display, reg, mask, value,
--					  timeout_us, 0,
-+					  timeout_us,
- 					  intel_de_read_fw,
- 					  out_value, true);
- }
--- 
-2.53.0
-
+> Zhan Wei <zhanwei919@gmail.com> 于2026年5月29日周五 21:50写道：
+> >
+> > The number of fanN_input attributes on DG2 is hardcoded to two because
+> > FSC_READ_NUM_FANS returns an incorrect value on some boards. How the
+> > physical fans map onto the tach channels is left to the board vendor:
+> > some OEMs route multiple physical fans through a single shared tach
+> > line, in which case the unwired channel's pulse counter never
+> > accumulates and fanN_input reads a constant 0 RPM.
+> >
+> > This is expected behaviour for such boards rather than a driver fault,
+> > and the driver has no reliable way to distinguish a shared-tach layout
+> > from a genuinely silent fan. Document this so the flat DG2 fan count is
+> > not mistaken for a bug and "fixed" by lowering it, which would hide a
+> > working fan2 on boards that do wire two tach lines.
+> >
+> > Signed-off-by: Zhan Wei <zhanwei919@gmail.com>
+> > ---
+> > v1 -> v2: Drop the code change. As pointed out in review, the same PCI
+> >   device ID ships with both shared-tach (multiple physical fans on one
+> >   channel) and 1:1 fan wiring, and FSC_READ_NUM_FANS is unreliable on
+> >   some boards, so the DG2 fan count cannot be lowered without hiding a
+> >   working fan2 on boards that do wire two tach lines. Document the
+> >   behaviour instead of changing the reported fan count.
+> >
+> > v1: https://lore.kernel.org/intel-xe/20260527115311.13398-1-zhanwei919@gmail.com/
+> >
+> >  Documentation/gpu/xe/index.rst    |  1 +
+> >  Documentation/gpu/xe/xe_hwmon.rst | 48 +++++++++++++++++++++++++++++++
+> >  2 files changed, 49 insertions(+)
+> >  create mode 100644 Documentation/gpu/xe/xe_hwmon.rst
+> >
+> > diff --git a/Documentation/gpu/xe/index.rst b/Documentation/gpu/xe/index.rst
+> > index 874ffcb6da3a..3c14cdcaa8a6 100644
+> > --- a/Documentation/gpu/xe/index.rst
+> > +++ b/Documentation/gpu/xe/index.rst
+> > @@ -30,3 +30,4 @@ DG2, etc is provided to prototype the driver.
+> >     xe-drm-usage-stats.rst
+> >     xe_configfs
+> >     xe_gt_stats
+> > +   xe_hwmon
+> > diff --git a/Documentation/gpu/xe/xe_hwmon.rst b/Documentation/gpu/xe/xe_hwmon.rst
+> > new file mode 100644
+> > index 000000000000..8cd48df59386
+> > --- /dev/null
+> > +++ b/Documentation/gpu/xe/xe_hwmon.rst
+> > @@ -0,0 +1,48 @@
+> > +.. SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +
+> > +=================
+> > +Xe HWMON support
+> > +=================
+> > +
+> > +The xe driver exposes hardware monitoring sensors (power, energy,
+> > +temperature, voltage and fan speed) through the kernel hwmon subsystem,
+> > +typically consumed via ``/sys/class/hwmon/hwmonX/`` or tools such as
+> > +``sensors``.
+> > +
+> > +Fan speed reporting
+> > +===================
+> > +
+> > +Fan speed (``fanN_input``) is reported in RPM and computed from a tach
+> > +pulse counter: the driver reads an accumulating pulse register, divides
+> > +the delta between two subsequent readings by two pulses per rotation,
+> > +and time-averages the result.
+> > +
+> > +Number of fan channels
+> > +-----------------------
+> > +
+> > +The number of ``fanN_input`` attributes exposed in sysfs is the fan
+> > +count returned by the ``FSC_READ_NUM_FANS`` pcode command. On DG2 this
+> > +command has been found to return an incorrect value on some boards, so
+> > +the driver hardcodes a fan count of two there. As a result up to
+> > +``fan1_input`` and ``fan2_input`` are always exposed on DG2 regardless
+> > +of how many tach lines are actually wired.
+> > +
+> > +Zero RPM on DG2 is not necessarily a bug
+> > +----------------------------------------
+> > +
+> > +How physical fans map onto the tach channels is left to the board
+> > +vendor. Some OEMs route several physical fans through a single shared
+> > +tach line, while others wire each fan to its own channel 1:1. The
+> > +driver has no reliable way to tell these layouts apart, and the same PCI
+> > +device ID can ship in either configuration.
+> > +
+> > +When a channel has no tach line driving it, its pulse counter never
+> > +accumulates, so the corresponding ``fanN_input`` reads a constant 0 RPM.
+> > +On DG2 this is most often seen on ``fan2_input`` for boards that drive
+> > +both physical fans from a single tach line. This is expected behaviour
+> > +for such boards, not a driver fault, and reflects the board wiring
+> > +rather than a missing or stalled fan.
+> > +
+> > +For this reason the fan count on DG2 is intentionally left at a flat
+> > +value rather than tracked per board: there is no driver-visible signal
+> > +that distinguishes a shared-tach layout from a genuinely silent fan.
+> > --
+> > 2.43.0
+> >
