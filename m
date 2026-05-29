@@ -4,27 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F062CD6E49
-	for <intel-xe@archiver.kernel.org>; Fri, 29 May 2026 17:16:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B87DCD6E49
+	for <intel-xe@archiver.kernel.org>; Fri, 29 May 2026 17:41:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C20C11122C1;
-	Fri, 29 May 2026 17:16:53 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 014F31122C1;
- Fri, 29 May 2026 17:16:52 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8595601877560662419=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78F2C11233F;
+	Fri, 29 May 2026 17:41:10 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jDW8ApJD";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AFF111233E;
+ Fri, 29 May 2026 17:41:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1780076470; x=1811612470;
+ h=message-id:date:mime-version:from:subject:to:cc:
+ references:in-reply-to:content-transfer-encoding;
+ bh=K9pLffMFCqJp1006okxYERprdr0XSFWhIpHQqySsqPQ=;
+ b=jDW8ApJD9cwxWtaeVmkDBNDYtHFjRCcZ/yHsQNjwVo1BLH5++L5YCJPj
+ vcg5c9rzSADkk5dAgGurXFbkpAnd2m2gpw1JwqmO/j4UAaTMDTwpGpsQ7
+ 1x0v4dWr1p3+3rAgEsvGmy+cWtQRC8ueabMZ/eO0oOqqavD0/9urSaftG
+ 1QDzcczSJhshyLLWKJ7sQTcIjrfm5K/l8MfTfSVWldj7AOHhur8MFtXqB
+ eekQ+DJ0eCej9MkT8PMntsiUfuLcOpu5zaNGnzcyFMd9IeIl3XtNkTxeT
+ Vx2FYXbxRwP4ZFQ4QOjd3kY7iGJZqD3RBl9IDj4Q+ujrAi7wnn+ewPnYn w==;
+X-CSE-ConnectionGUID: WRSjdSssSFK4SU0WzHLhUw==
+X-CSE-MsgGUID: TeUqshRtRt+V1fkNqRA0kw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11801"; a="98508578"
+X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="98508578"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2026 10:41:09 -0700
+X-CSE-ConnectionGUID: w2XtUBaTRgGZgJINMp6xpQ==
+X-CSE-MsgGUID: eXOYA3E6SN2XFa/+d+SFxw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="240365175"
+Received: from amilburn-desk.amilburn-desk (HELO [10.245.244.139])
+ ([10.245.244.139])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2026 10:41:07 -0700
+Message-ID: <c9cdcf8a-d531-4e79-a238-97fd39b8c108@intel.com>
+Date: Fri, 29 May 2026 18:41:05 +0100
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/de=3A_Remove_the_2?=
- =?utf-8?q?_usec_fast_timeout?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 29 May 2026 17:16:51 -0000
-Message-ID: <178007501199.23779.863095667144987742@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260529161147.17573-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20260529161147.17573-1-ville.syrjala@linux.intel.com>
+User-Agent: Mozilla Thunderbird
+From: Matthew Auld <matthew.auld@intel.com>
+Subject: Re: [PATCH v4 1/2] gpu/buddy: replace dual-tree/force_merge with
+ decoupled clear tracker
+To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
+ christian.koenig@amd.com, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+Cc: alexander.deucher@amd.com
+References: <20260527112902.3815-1-Arunpravin.PaneerSelvam@amd.com>
+Content-Language: en-GB
+In-Reply-To: <20260527112902.3815-1-Arunpravin.PaneerSelvam@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +70,83 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8595601877560662419==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi,
 
-== Series Details ==
+On 27/05/2026 12:29, Arunpravin Paneer Selvam wrote:
+> The current buddy allocator maintains separate clear_tree[] and
+> dirty_tree[] rbtrees per order, preventing coalescing between cleared
+> and dirty buddies. Under mixed workloads, this creates a merge barrier:
+> adjacent buddies frequently end up split across trees, forcing reliance
+> on __force_merge() during allocation.
+> 
+> __force_merge() performs an O(N x max_order) scan under the VRAM manager
+> lock, leading to allocation stalls and failures for large contiguous
+> requests even when sufficient total free memory is available.
 
-Series: drm/i915/de: Remove the 2 usec fast timeout
-URL   : https://patchwork.freedesktop.org/series/167560/
-State : success
+So is this contig with non power-of-two sizes?
 
-== Summary ==
+Do we know if we could force_merge everything in one go or somehow be 
+more aggressive and do more than needed now, at the first sign of 
+contention here, instead of doing it piecemeal? Downside would be losing 
+more of the clear tracking, when this happens, but more re-merging.
 
-CI Bug Log - changes from xe-5161-3718158f242e7219323c992ce141adb98bad6f7c_BAT -> xe-pw-167560v1_BAT
-====================================================
+Could we have another per-order list, of all blocks that we failed to 
+merge, when we did the free step? When doing the force merge step, we 
+maybe don't need to search blindly and can focus instead on the stuff 
+tracked in those lists? Maybe it doesn't need to be a list, but could be 
+another rb-tree?
 
-Summary
--------
+We know the size of the total allocation, if we trigger force_merge, 
+could we try to merge enough in one go for the entire allocation, 
+instead of restarting the entire thing on the next iteration? Would that 
+help at all?
 
-  **SUCCESS**
+But I guess these are more for the stalling side, and won't help much 
+with the contig angle?
 
-  No regressions found.
+For the extent idea, is there any merit in maybe doing this for all 
+contig blobs, and not just cleared stuff? Or is the workload you are 
+seeing only benefit users that want cleared stuff? Wondering if this 
+would benefit all users that want contig? Like if we hypothetically kept 
+clear and dirty separate, like we do now, but with an improved 
+force_merge, and then have extent tracking for all contig blobs and 
+replace the try_harder stuff? When you do a contig alloc, the individual 
+clear/dirty is still all there within the range, so you can skip 
+re-clearing in some cases. I guess downside is overall more fuzzy contig 
++ clear/free path, but I guess you would never get allocation failures, 
+when there is sufficient contig space?
 
-  
+> 
+> Solution
+> 
+> Replace the dual-tree design with:
+> - A single free_tree[order] rbtree for dirty and mixed free blocks
+>    (fully cleared free blocks float outside this tree)
+> - A lightweight out-of-band clear tracker (gpu_clear_tracker)
+> 
+> Fully cleared free blocks are tracked outside the buddy trees using an
+> augmented interval rbtree, enabling O(log E) lookup of the largest
+> cleared extents.
+> 
+> Buddy coalescing is now unconditional in __gpu_buddy_free(), regardless
+> of clear/dirty state. This removes the merge barrier and eliminates the
+> need for __force_merge().
+> 
+> Benefits
+> 
+> - Correct high-order allocations after mixed clear/dirty workloads
+> - Elimination of O(N x max_order) merge cost from the allocation path
+> - O(log E) cleared-extent lookup replacing O(N) scans
+> - Predictable allocation latency under fragmentation
+> - Reduced complexity with a single tree per order
 
-Participating hosts (13 -> 13)
-------------------------------
+Since there is no separate tracking for dirty stuff, is the non-cleared 
+alloc path a bit more "fuzzy" now, with it potentially stealing cleared 
+memory, or is it the same behaviour still?
 
-  No changes in participating hosts
+For drivers that don't use free tracking, is there some benefit? Are 
+there any downsides there? I assume that clear tracker is always empty.
 
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5161-3718158f242e7219323c992ce141adb98bad6f7c -> xe-pw-167560v1
-
-  IGT_8943: 8943
-  xe-5161-3718158f242e7219323c992ce141adb98bad6f7c: 3718158f242e7219323c992ce141adb98bad6f7c
-  xe-pw-167560v1: 167560v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167560v1/index.html
-
---===============8595601877560662419==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/de: Remove the 2 usec fast timeout</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167560/">https://patchwork.freedesktop.org/series/167560/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167560v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167560v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5161-3718158f242e7219323c992ce141adb98bad6f7c_BAT -&gt; xe-pw-167560v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5161-3718158f242e7219323c992ce141adb98bad6f7c -&gt; xe-pw-167560v1</li>
-</ul>
-<p>IGT_8943: 8943<br />
-  xe-5161-3718158f242e7219323c992ce141adb98bad6f7c: 3718158f242e7219323c992ce141adb98bad6f7c<br />
-  xe-pw-167560v1: 167560v1</p>
-
-</body>
-</html>
-
---===============8595601877560662419==--
