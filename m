@@ -4,53 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B71F0CD6E4A
-	for <intel-xe@archiver.kernel.org>; Fri, 29 May 2026 11:04:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9389CD6E4A
+	for <intel-xe@archiver.kernel.org>; Fri, 29 May 2026 11:04:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C33C10FD21;
-	Fri, 29 May 2026 11:04:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8AC6610FD25;
+	Fri, 29 May 2026 11:04:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XNepKXUu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i+dp71mk";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 922FA10FD12;
- Fri, 29 May 2026 11:04:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93EC810FD22;
+ Fri, 29 May 2026 11:04:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780052680; x=1811588680;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=g1OIxA7frGFKYOo6rSp2mfdOamRJ5GagUwM8JswMSoA=;
- b=XNepKXUup9zIJNE8kf24N1MgWcD+F9hIUfpA0nw/HN9awBeamWnwFgio
- 7FtjFD+s1EOQ0I0IkIzMGYQTT9graklL5AkN7KXzRtvN4bQNZrW+Thqvc
- 7gmFTQ9MpFiEkR6fQPLib7IYOzmPjlecdwyuOnSVstIIX6uP0qH8iDH82
- W3KojFQKq+Q8CPaYD84n9c1eC/Q34whuEzXO/QNGVUl+hJ+FvE4ybfRV1
- 2RuV94HnzSXtTs5Ds9iJlh6l7fxdJmWNzmbKf37emcvEGczexxURETpQa
- Fw8RQYF75yLSyMy5SLOd1x/ejh/7P0lU/FG3c0XsrkaQuQmzpIokoBbdg A==;
-X-CSE-ConnectionGUID: B1t26fDLRVKrPmiLDmWirQ==
-X-CSE-MsgGUID: ljgYguEGQZmS0a0q/fsibQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11800"; a="92377754"
-X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="92377754"
+ t=1780052684; x=1811588684;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=E1V8QBd50/f/T1UiAOu78/SlnqvLaZu2vwbedGNrMVM=;
+ b=i+dp71mkWQnCrY786LK6fM5JX6oa+VfTisFXXdCfw9ABAogzhWSUJHJX
+ Ei7Emtnh/IO87+eoGyPStlaZxbuZlUqOo4tG2nawKDhEeaMCPs/yOY3d/
+ vGaQSXp+i7rhqspsraDW/pdTu5JuBpqgzHtzY/ibFvb559xwqHclLnSJA
+ 7Gz+2TSMzZ6Og7P/wc6q14C6EP/3YsQdyNWdA07TNf9fhS+SUHHuUu7rQ
+ /tHDA0sImUDA/U+9Q6c1KE4b48uTXdE8le3nRX8Me9hnhaQ/8vH8Mh484
+ 0Qs40a/6cvuY+5hkeEnB/WZAo5jJcN1OMNcQK88itRIGGtg6laNdjuVIY g==;
+X-CSE-ConnectionGUID: M/CBBM1zQ8q52OuDeRYWvw==
+X-CSE-MsgGUID: D75iCkOeSG66ShdIB0mltw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11800"; a="92377771"
+X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="92377771"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2026 04:04:40 -0700
-X-CSE-ConnectionGUID: zsF3hfV6TImfNK/NMXjGQw==
-X-CSE-MsgGUID: psEqt/c8ReeJTmWyeZuxyQ==
+ 29 May 2026 04:04:44 -0700
+X-CSE-ConnectionGUID: 8SStyMPmRGC6sY6hZsnF+Q==
+X-CSE-MsgGUID: 1wk5GcF+RX69fPRO8I5rlQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="246840867"
+X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="246840878"
 Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.147])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2026 04:04:13 -0700
+ 29 May 2026 04:04:28 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com, imre.deak@intel.com
-Subject: [PATCH 00/24] drm/{i915,
- xe}: display (runtime) suspend/resume/shutdown unification
-Date: Fri, 29 May 2026 14:03:44 +0300
-Message-ID: <cover.1780051905.git.jani.nikula@intel.com>
+Subject: [PATCH 03/24] drm/i915: add flush_workqueue(display->wq.cleanup) on
+ shutdown
+Date: Fri, 29 May 2026 14:03:47 +0300
+Message-ID: <187ed77534a4d6ae37a4b64084d8efda744e0c6c.1780051905.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
+In-Reply-To: <cover.1780051905.git.jani.nikula@intel.com>
+References: <cover.1780051905.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
@@ -70,81 +72,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Start unifying the i915 and xe display suspend/resume/shutdown and
-runtime pm hooks. This completely superseeds the series [1] which was
-opposed by Ville. I presume this is the path of least resistance.
+We're missing the cleanup workqueue flush on the shutdown path. Add it.
 
-Patches 1-3 are functional fixes from Imre and me. They'll also help the
-refactoring.
+Unfortunately have to briefly include intel_display_core.c here. To be
+removed later.
 
-Patches 4-18 are mostly non-functional refactoring, deduplication,
-unification, and cleanups. There are minor functional changes that
-shouldn't have any impact. The changes are intentionally chopped up
-small for ease of review and to pinpoint any regressions immediately.
+Link: https://lore.kernel.org/r/agRp6Was9FCQbKee@intel.com
+Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/i915_driver.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Patches 19-21 are also intended to be non-functioal
-refactoring. However, there are bigger changes in the sequences, and
-might be more suspect.
-
-Patches 22-24 refactor runtime pm, which should be non-functional
-changes for i915, but will be functional changes for xe.
-
-I'm sending the entire thing for review, but I think I'll want to send
-smaller batches for CI before merging.
-
-
-BR,
-Jani.
-
-
-[1] https://lore.kernel.org/r/cover.1779887154.git.jani.nikula@intel.com
-
-
-Imre Deak (2):
-  drm/i915: Keep display IRQs enabled for encoder suspend/shutdown
-  drm/i915/xe: Enable HPD polling later during system resume
-
-Jani Nikula (22):
-  drm/i915: add flush_workqueue(display->wq.cleanup) on shutdown
-  drm/xe/display: remove intel_display_flush_cleanup_work() calls on
-    suspend/shutdown
-  drm/xe/display: drop duplicate intel_dp_mst_suspend() call
-  drm/i915/display: add "pm" to intel_display_driver_{suspend,resume}()
-    names
-  drm/xe/display: rename xe_display_pm_shutdown*() to
-    xe_display_shutdown*()
-  drm/xe/display: relocate the xe_display_shutdown*() functions
-  drm/xe/display: relocate the xe_display_pm_runtime_*() functions
-  drm/{i915,xe}: move more calls inside
-    intel_display_driver_pm_suspend()
-  drm/{i915,xe}: move more calls inside intel_display_driver_pm_resume()
-  drm/{i915,xe}: add
-    intel_display_driver_pm_{suspend_late,resume_early}()
-  drm/{i915,xe}: move more calls inside
-    intel_display_driver_{register,unregister}()
-  drm/{i915,xe}: add intel_display_driver_shutdown_late()
-  drm/i915: add intel_display_driver_shutdown()
-  drm/i915/display: deduplicate suspend and shutdown a bit
-  drm/xe/display: use intel_display_driver_pm_shutdown()
-  drm/{i915,xe}: move more stuff to __intel_display_driver_pm_suspend()
-  drm/{i915,xe}: make intel_dmc_suspend() part of display
-    suspend/shutdown calls
-  drm/{i915,xe}: move intel_opregion_suspend() to
-    intel_display_driver_pm_suspend_late()
-  drm/{i915,xe}: keep moving stuff to intel_display_driver_pm_resume()
-  drm/i915: add intel_display_driver_pm_runtime*() functions
-  drm/xe/display: separate d3cold handling from
-    xe_display_pm_runtime_suspend_late()
-  drm/xe/display: unify runtime suspend/resume with i915 for non-d3cold
-
- .../drm/i915/display/intel_display_driver.c   | 182 ++++++++++++++-
- .../drm/i915/display/intel_display_driver.h   |  14 +-
- drivers/gpu/drm/i915/i915_driver.c            | 138 ++----------
- drivers/gpu/drm/xe/display/xe_display.c       | 209 ++++++------------
- drivers/gpu/drm/xe/display/xe_display.h       |  10 +-
- drivers/gpu/drm/xe/xe_device.c                |   4 +-
- 6 files changed, 269 insertions(+), 288 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index 93940cfe91a0..60d5e06675ab 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -54,6 +54,7 @@
+ #include "display/intel_bw.h"
+ #include "display/intel_cdclk.h"
+ #include "display/intel_crtc.h"
++#include "display/intel_display_core.h"
+ #include "display/intel_display_device.h"
+ #include "display/intel_display_driver.h"
+ #include "display/intel_display_power.h"
+@@ -1053,6 +1054,8 @@ void i915_driver_shutdown(struct drm_i915_private *i915)
+ 		drm_atomic_helper_shutdown(&i915->drm);
+ 	}
+ 
++	flush_workqueue(display->wq.cleanup);
++
+ 	intel_dp_mst_suspend(display);
+ 
+ 	intel_encoder_block_all_hpds(display);
 -- 
 2.47.3
 
