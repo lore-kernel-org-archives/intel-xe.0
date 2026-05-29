@@ -4,64 +4,104 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE708CD6E45
-	for <intel-xe@archiver.kernel.org>; Fri, 29 May 2026 06:58:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43206CD6E45
+	for <intel-xe@archiver.kernel.org>; Fri, 29 May 2026 07:00:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9533910F9AE;
-	Fri, 29 May 2026 06:58:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA27A10F9BB;
+	Fri, 29 May 2026 07:00:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kKDppIXl";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="Pbw5qjbh";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="2WtQQmzb";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="DKi3DUJM";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="c5ZrqV52";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCCBB10F9AE
- for <intel-xe@lists.freedesktop.org>; Fri, 29 May 2026 06:58:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780037887; x=1811573887;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=LMU8zq9Kaz6u7S1c7EDrXhV6yO5pL69RSSWwVVQ6h0c=;
- b=kKDppIXlnmc1QIedYgs1tChT1S+fHQYrOl43cTJAzUC8MFE90dO+V4yW
- tHYTctA8CKZaHVMnNKCmH9ssle7hxfC7Bj859Sp1ymrscGAJSPwXoJCJd
- sHWn6DtNzJ7tjDuU8/iG05uSduoFd+V8pYMzsIwOQv87oPdJXyHI47ZuU
- 0ougfFFchPU1L+cX0JPA7F9WpZ6TMMBydBdHjV9xc2+e92BEbasZJvyu/
- aWz5iHc5728h0U1rVZ2Cr5czZK27hAaKdXVq5IyKbIv3AHh3+xLzOsObP
- 8bmk9LyG1Yq2k0x/arkH3W7P1zf0GUWdk6qG85l2UnWUdTAtc1BQ11Llw w==;
-X-CSE-ConnectionGUID: 6LbBC8jQQ06i+xMBuINNjg==
-X-CSE-MsgGUID: b/ML5dFNSou9s+/AMEP1ZA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11800"; a="80740048"
-X-IronPort-AV: E=Sophos;i="6.24,174,1774335600"; d="scan'208";a="80740048"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2026 23:58:06 -0700
-X-CSE-ConnectionGUID: coBu9lCETgG47UKmSpnPTg==
-X-CSE-MsgGUID: +5ZhL0J3QTSewlrH1U/aYw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,174,1774335600"; d="scan'208";a="238584809"
-Received: from amilburn-desk.amilburn-desk (HELO [10.245.244.139])
- ([10.245.244.139])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2026 23:58:05 -0700
-Message-ID: <b3342b9d-09d4-4d50-9ae8-ecd93c255c5a@intel.com>
-Date: Fri, 29 May 2026 07:58:03 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/mmio: Assert MMIO is available
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 956DE10F9BC
+ for <intel-xe@lists.freedesktop.org>; Fri, 29 May 2026 07:00:12 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id DE43E66F6B;
+ Fri, 29 May 2026 07:00:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1780038011; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=sx9uZgU6Uf5r1hE2m5Qd8QDIOswHFAw99qCVgtc8iOg=;
+ b=Pbw5qjbhZLsOyurQeGfy6zSuE1SXyryJ3sDKq6Hv99W3OK3g18YYE1JpvzAWkFIYzOF4o3
+ 4RA0ut1ZsnGXCUMe2i00WuWp/2jCgSwaPXeesvfwdiry25TKkYAP27DR7P++tN4WJfJann
+ 1P80dxyasSBo1F7j7J2lp+byqn5Ty4o=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1780038011;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=sx9uZgU6Uf5r1hE2m5Qd8QDIOswHFAw99qCVgtc8iOg=;
+ b=2WtQQmzbD1kpH1nyFsBY9Ya+6whC8HoUYbFjOHbKFMwIPvrNIIfJfqiISkPL6v3tTUtEJG
+ rk/MI73iTTbdYgBQ==
+Authentication-Results: smtp-out2.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1780038010; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=sx9uZgU6Uf5r1hE2m5Qd8QDIOswHFAw99qCVgtc8iOg=;
+ b=DKi3DUJMfMnYYHqcrklnHcBuT2on5KiA3EPygTMgg0dZYUDq+agB8GgQPPqIsPi2wli9xw
+ /60aH86tP4ftm0Y2ZpR70G6tDQyZMuCS+fMkUqcw1NLh/WgNoANtMyXMQEmTMvK5UVaQSe
+ tTdtWvYEan6K1wW4/tmIVSNzUxIrcRo=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1780038010;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=sx9uZgU6Uf5r1hE2m5Qd8QDIOswHFAw99qCVgtc8iOg=;
+ b=c5ZrqV52gn7zdAgtlYBcKJ7OSoFDWXh2aCzb4a239EZveAiisGU08P2hfmBrGGmsi9mEf+
+ nxYMnAOXplz8nzCw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 73F1F5B1EF;
+ Fri, 29 May 2026 07:00:10 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id gjHaGno5GWoEPgAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Fri, 29 May 2026 07:00:10 +0000
+Date: Fri, 29 May 2026 09:00:09 +0200
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
  Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-References: <20260527175437.22585-1-michal.wajdeczko@intel.com>
- <754ed1a5-ed12-4e0e-bafc-5775106d8e14@intel.com>
- <d7fd718c-413a-4a7e-83d4-cfb0401194fc@intel.com>
- <d77e39ad-2463-4947-a0d7-d366f6d45cfc@intel.com>
- <553bcab7-0fb4-4797-ba13-c872ab2b5c18@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <553bcab7-0fb4-4797-ba13-c872ab2b5c18@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-fixes
+Message-ID: <20260529070009.GA313534@linux.fritz.box>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MISSING_XM_UA(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ MIME_TRACE(0.00)[0:+]; RCPT_COUNT_TWELVE(0.00)[16];
+ FUZZY_RATELIMITED(0.00)[rspamd.com]; ARC_NA(0.00)[];
+ FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo, suse.com:url,
+ linux.fritz.box:mid, gitlab.freedesktop.org:url]
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,154 +116,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 28/05/2026 18:34, Michal Wajdeczko wrote:
-> 
-> 
-> On 5/28/2026 6:47 PM, Matthew Auld wrote:
->> On 28/05/2026 17:16, Michal Wajdeczko wrote:
->>>
->>>
->>> On 5/28/2026 11:13 AM, Matthew Auld wrote:
->>>> On 27/05/2026 18:54, Michal Wajdeczko wrote:
->>>>> We shouldn't access device registers after the device was unplugged.
->>>>> Instead of relying on the NPD splat due to zeroed xe.mmio.regs, which
->>>>> might be unreliable anyway as not all xe_mmio are using that directly,
->>>>> add an explicit assert during xe_mmio read/write operations to catch
->>>>> invalid accesses to MMIO after device was unplugged.
->>>>>
->>>>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->>>>> ---
->>>>> Cc: Matthew Auld <matthew.auld@intel.com>
->>>>> ---
->>>>>     drivers/gpu/drm/xe/xe_mmio.c | 11 +++++++++++
->>>>>     1 file changed, 11 insertions(+)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
->>>>> index 78adb303b663..b77a717f0556 100644
->>>>> --- a/drivers/gpu/drm/xe/xe_mmio.c
->>>>> +++ b/drivers/gpu/drm/xe/xe_mmio.c
->>>>> @@ -10,6 +10,7 @@
->>>>>     #include <linux/minmax.h>
->>>>>     #include <linux/pci.h>
->>>>>     +#include <drm/drm_drv.h>
->>>>>     #include <drm/drm_managed.h>
->>>>>     #include <drm/drm_print.h>
->>>>>     @@ -128,6 +129,11 @@ void xe_mmio_init(struct xe_mmio *mmio, struct xe_tile *tile, void __iomem *ptr,
->>>>>         mmio->tile = tile;
->>>>>     }
->>>>>     +static void mmio_assert_available(struct xe_mmio *mmio)
->>>>> +{
->>>>> +    xe_tile_assert(mmio->tile, !drm_dev_is_unplugged(&mmio->tile->xe->drm));
->>>>
->>>> Yeah, I was hopeful this would work, but as per CI the unplug=true needs to happen before the devm actions run,
->>>
->>> yup, we mark drm.unplugged = true in our pci.remove hook:
->>>
->>> void xe_device_remove(struct xe_device *xe)
->>> {
->>> ...    drm_dev_unplug(&xe->drm);
->>>
->>> while devm actions are called as part of the kobj.release hook:
->>>
->>> static void device_release(struct kobject *kobj)
->>> {
->>> ...    devres_release_all(dev);
->>>
->>>
->>>> so we get a pile of false positives with this. I think the best we can do is NULL, or perhaps mmio.unplugged and check that here?
->>>
->>> there is pci_dev_is_disconnected() but that one will likely cover real unplug scenarios, for which we might be completely not prepared ;(
->>
->> Yeah, I assume pci_dev_is_disconnected() is if the user literally ripped out the physical card or the hw died, without doing a software unbind first to let the driver gracefully shut down the hw state?
->>
->>>
->>> but now I'm wondering if maybe those 'false positives' are actually a good one, as it might be risky to access the HW during final SW unwind, like here:
->>>
->>> <4> [45.999577]  xe_mmio_read32+0x38/0x290 [xe]
->>> <4> [46.000710]  ggtt_node_remove+0xbb/0xf0 [xe]
->>> <4> [46.001167]  xe_ggtt_node_remove+0x40/0xa0 [xe]
->>> <4> [46.001618]  xe_ggtt_remove_bo+0x87/0x250 [xe]
->>> <4> [46.002076]  xe_ttm_bo_destroy+0xa2/0x2d0 [xe]
->>> <4> [46.002917]  ttm_bo_release+0x70/0x310 [ttm]
->>> <4> [46.004082]  ttm_bo_fini+0x3c/0x70 [ttm]
->>> <4> [46.004424]  xe_gem_object_free+0x1a/0x30 [xe]
->>> <4> [46.004857]  drm_gem_object_free+0x1d/0x40
->>> <4> [46.005231]  xe_bo_put+0x12a/0x190 [xe]
->>> <4> [46.005618]  __xe_bo_unpin_map_no_vm+0x49/0x70 [xe]
->>> <4> [46.006097]  devm_action_release+0x16/0x30
->>> <4> [46.006449]  release_nodes+0x3d/0x150
->>>
->>> and the fact that mmio.regs is still non-NULL and points to the connected HW, is just our luck?
->>>
->>> maybe we should kill the HW immediately on pci.remove, if it is still present, and just unwind SW state using devm/drmm actions?
->>
->> devm is for unwinding hw related state,
-> 
-> hmm, are we 100% sure?
+Hi Dave, Sima,
 
-Yeah, pretty sure. See also when we originally fixed the drmm vs devm 
-mixup in xe, and the comment here from Sima:
+here is this week's PR from drm-misc-fixes. There's one cross-subsys
+commit to the dma-buf code. Commit 5ab62dd3687b ("drm: prevent integer
+overflows in dumb buffer creation helpers") has not Link tag because
+it went through the security list.
 
-https://lore.kernel.org/all/ZjDyVfJ1QFKQlG_4@phenom.ffwll.local/
+Best regards
+Thomas
 
-> 
-> from [1] it looks that the devres rationale was about "leaking resources" problem and the example still shows that HW cleanup is part of the .remove hook:
-> 
-> my_remove_one()
-> {
->        unregister_from_upper_layer(d);
->        shutdown_my_hardware();
-> }
-> 
-> so maybe indeed we are little abusing the device model by touching the HW beyond the .remove?
-> 
-> [1] https://docs.kernel.org/driver-api/driver-model/devres.html
-> 
->> so we for sure need mmio etc. On normal unplug we need to gracefully shut everything down from hw pov with devm (or do it manually in .remove). Once we get as far as the mmio_fini() or whatever it is called, we should be right towards the tail end of the devm unwind actions, so nothing should be messing with mmio it at that point.
->>
->> For sw state, that is the job of drmm, at which point I don't think there should be any hw access.
->>
->> So devm is more tied to the physical pci device, and drmm is only really tied to the drm_device. They have different life cycles with unbind triggering devm and unwinding the hw state, and drmm only being triggered when there are no more driver users, like every open driver fd has been closed. We still need ioctls etc to survive but return an error, to give the UMD chance to recover, like with potentially opening a new card or so.
->>
->>>
->>>>
->>>>> +}
->>>>> +
->>>>>     static void mmio_flush_pending_writes(struct xe_mmio *mmio)
->>>>>     {
->>>>>     #define DUMMY_REG_OFFSET    0x130030
->>>>> @@ -146,6 +152,7 @@ u8 xe_mmio_read8(struct xe_mmio *mmio, struct xe_reg reg)
->>>>>         u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
->>>>>         u8 val;
->>>>>     +    mmio_assert_available(mmio);
->>>>>         mmio_flush_pending_writes(mmio);
->>>>>           val = readb(mmio->regs + addr);
->>>>> @@ -158,6 +165,7 @@ void xe_mmio_write8(struct xe_mmio *mmio, struct xe_reg reg, u8 val)
->>>>>     {
->>>>>         u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
->>>>>     +    mmio_assert_available(mmio);
->>>>>         trace_xe_reg_rw(mmio, true, addr, val, sizeof(val));
->>>>>           writeb(val, mmio->regs + addr);
->>>>> @@ -168,6 +176,7 @@ u16 xe_mmio_read16(struct xe_mmio *mmio, struct xe_reg reg)
->>>>>         u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
->>>>>         u16 val;
->>>>>     +    mmio_assert_available(mmio);
->>>>>         mmio_flush_pending_writes(mmio);
->>>>>           val = readw(mmio->regs + addr);
->>>>> @@ -180,6 +189,7 @@ void xe_mmio_write32(struct xe_mmio *mmio, struct xe_reg reg, u32 val)
->>>>>     {
->>>>>         u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
->>>>>     +    mmio_assert_available(mmio);
->>>>>         trace_xe_reg_rw(mmio, true, addr, val, sizeof(val));
->>>>>           if (!reg.vf && IS_SRIOV_VF(mmio->tile->xe))
->>>>> @@ -194,6 +204,7 @@ u32 xe_mmio_read32(struct xe_mmio *mmio, struct xe_reg reg)
->>>>>         u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
->>>>>         u32 val;
->>>>>     +    mmio_assert_available(mmio);
->>>>>         mmio_flush_pending_writes(mmio);
->>>>>           if (!reg.vf && IS_SRIOV_VF(mmio->tile->xe))
->>>>
->>>
->>
-> 
+drm-misc-fixes-2026-05-29:
+Short summary of fixes pull:
 
+amdxdna:
+- require IOMMU on AIE2
+
+dumb-buffer:
+- prevent overflows in dumb-buffer creation
+
+dma-buf:
+- fix UAF in dma_buf_fd() tracepoint
+
+hyperv:
+- improve protocol validation
+
+ivpu:
+- test write offset in debugfs
+
+rocket:
+- fix UAF in bo creation
+The following changes since commit 9af1b6e175c82daf4b423da339a722d8e67a735a:
+
+  drm/virtio: use uninterruptible resv lock for plane updates (2026-05-20 18:12:11 +0300)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2026-05-29
+
+for you to fetch changes up to 5ab62dd3687bcc2cc542b99385aabac5c996db6f:
+
+  drm: prevent integer overflows in dumb buffer creation helpers (2026-05-29 08:30:47 +0200)
+
+----------------------------------------------------------------
+Short summary of fixes pull:
+
+amdxdna:
+- require IOMMU on AIE2
+
+dumb-buffer:
+- prevent overflows in dumb-buffer creation
+
+dma-buf:
+- fix UAF in dma_buf_fd() tracepoint
+
+hyperv:
+- improve protocol validation
+
+ivpu:
+- test write offset in debugfs
+
+rocket:
+- fix UAF in bo creation
+
+----------------------------------------------------------------
+Berkant Koc (2):
+      drm/hyperv: validate resolution_count and fix WIN8 fallback
+      drm/hyperv: validate VMBus packet size in receive callback
+
+Dan Carpenter (1):
+      accel/ivpu: prevent uninitialized data bug in debugfs
+
+David Carlier (1):
+      dma-buf: fix UAF in dma_buf_fd() tracepoint
+
+Dhabaleshwar Das (1):
+      accel/rocket: fix UAF via dangling GEM handle in create_bo
+
+Lizhi Hou (1):
+      accel/amdxdna: Block running when IOMMU is off
+
+Rajat Gupta (1):
+      drm: prevent integer overflows in dumb buffer creation helpers
+
+ drivers/accel/amdxdna/aie2_pci.c          |   5 ++
+ drivers/accel/ivpu/ivpu_debugfs.c         |   2 +-
+ drivers/accel/rocket/rocket_gem.c         |  17 +++--
+ drivers/dma-buf/dma-buf.c                 |   6 +-
+ drivers/gpu/drm/drm_dumb_buffers.c        |  14 +++-
+ drivers/gpu/drm/hyperv/hyperv_drm_proto.c | 113 +++++++++++++++++++++++++-----
+ 6 files changed, 132 insertions(+), 25 deletions(-)
+
+-- 
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstr. 146, 90461 N�rnberg, Germany, www.suse.com
+GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG N�rnberg)
