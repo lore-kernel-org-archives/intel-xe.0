@@ -4,52 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A96ECD4F54
-	for <intel-xe@archiver.kernel.org>; Fri, 29 May 2026 20:32:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA39CCD4F54
+	for <intel-xe@archiver.kernel.org>; Fri, 29 May 2026 20:45:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8C251124EE;
-	Fri, 29 May 2026 20:32:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DD9D112503;
+	Fri, 29 May 2026 20:45:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DiIvxCUn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eNwZrg5e";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28D7A1124EE
- for <intel-xe@lists.freedesktop.org>; Fri, 29 May 2026 20:32:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22B57112503
+ for <intel-xe@lists.freedesktop.org>; Fri, 29 May 2026 20:45:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780086723; x=1811622723;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=NrU4fBXGV5leluB529e2TAJJHwbM/YvTBE0Ps5nhnng=;
- b=DiIvxCUnd20oGUCZYlJFGrREtAbc80fyGvzSZS/fX2+Uv2+04r4noaS3
- AEKSKPoPxnK5s0oGNsFXEo8oBgeNg302quHEPUp2onNLGRZCY3YlvsNK1
- bomaiaywsLSEs3NBV1C4440r4MePYc7xDrAnVx/dqtX/pIYT7qp/qij0/
- kpFaHimppp36r5UmH/Rj6KNF4c5YHQqWShXSMmSdA5GtkO7SX5mfmreVX
- qAw9GG+4ZF7XwjuWtqUnhVIF70uCZcDYPf1Fb0HPRL0gYDLBmvPd+CtJ0
- E2Om426QW3VvhNV4iwoutGmQViW8hTrHZLvgaXhQ4W4OEwIA1KmrrPq2u w==;
-X-CSE-ConnectionGUID: Y/YPtFD1StesYtfXs+2qaQ==
-X-CSE-MsgGUID: xkZoIOMuQh+tn6zBH8nUDQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11801"; a="106395812"
-X-IronPort-AV: E=Sophos;i="6.24,176,1774335600"; d="scan'208";a="106395812"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ t=1780087513; x=1811623513;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=PvcAcn+dKLRnsm+tCjuAD9fYrkqSFBwYR/9weDA/hJY=;
+ b=eNwZrg5eUvBvwDtQO4uBNph3s//oFmixna93uxyfHH+48ZND2K/B7BVL
+ 2NdZLv+8XdhNykTSJSKsQH35vGd4p9aJig6OsbzBOVljnbD2c+joY86W6
+ /V4uU11HHcKFOKdf+CS7D4DdW/7ppUdPp5IDmbADl5HQ86qWEOVSZ1obW
+ WxtyNSPvw4w3cOTcScW//blPCE1R+PBG0JDu+mrj08l77BwGAr8dIoEJ+
+ GjrbBDopyY3I0JR36IU13U571toOwV9g02B0eHSNoy2HwinRLdn6iHHRA
+ XrEBJjN8Q4pSaI8j7OiJFSU3F/TMzdKnkLPLU1uJzpVTbny0a3WOdcBpI Q==;
+X-CSE-ConnectionGUID: 3mUsIgtOQGGBtCNyipab0Q==
+X-CSE-MsgGUID: IJUsuLr1SgC5u/HD/Uwabw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11801"; a="106396733"
+X-IronPort-AV: E=Sophos;i="6.24,176,1774335600"; d="scan'208";a="106396733"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2026 13:32:03 -0700
-X-CSE-ConnectionGUID: 1e/uM1uoSzOzU1eRbvF1bQ==
-X-CSE-MsgGUID: DzGjgHolToegkHJ3yz/gcg==
+ 29 May 2026 13:45:12 -0700
+X-CSE-ConnectionGUID: T/zNRZZMQCikqnOZGzjgvw==
+X-CSE-MsgGUID: BrH76RHyTuGk1/7DWHSFnA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,176,1774335600"; d="scan'208";a="241904215"
-Received: from nvishwa1-desk.sc.intel.com ([172.25.29.126])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2026 13:32:02 -0700
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH] drm/xe/multi_queue: Fix secondary queue GuC scheduling in
- idle_skip_suspend path
-Date: Fri, 29 May 2026 13:31:55 -0700
-Message-ID: <20260529203154.706923-2-niranjana.vishwanathapura@intel.com>
-X-Mailer: git-send-email 2.43.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-IronPort-AV: E=Sophos;i="6.24,176,1774335600"; d="scan'208";a="238766453"
+Received: from blai1-mobl2.amr.corp.intel.com (HELO adixit-MOBL3.intel.com)
+ ([10.125.68.160])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2026 13:45:13 -0700
+Date: Fri, 29 May 2026 13:45:12 -0700
+Message-ID: <877bomlzc7.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 3/9] drm/xe/rtp: Keep track of non-OA nonpriv slots
+In-Reply-To: <ahnbSrt2ee6b/m4z@soc-5CG1426VCC.clients.intel.com>
+References: <20260518234716.1540123-1-ashutosh.dixit@intel.com>	<20260518234716.1540123-4-ashutosh.dixit@intel.com>	<ahnbSrt2ee6b/m4z@soc-5CG1426VCC.clients.intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/30.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,107 +69,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In a multi-queue group all GuC scheduling must go through the primary
-queue's GuC ID. Secondary queues have no independent GuC ID for
-scheduling purposes.
+On Fri, 29 May 2026 11:30:34 -0700, Umesh Nerlige Ramappa wrote:
+>
+> On Mon, May 18, 2026 at 04:47:10PM -0700, Ashutosh Dixit wrote:
+> > In order to dynamically whitelist/dewhitelist OA registers on OA stream
+> > open/close, we need to keep track of nonpriv slots occupied by non-OA
+> > register whitelists.
+>
+> Can we maintain the slot index within hwe, so that the caller does not need
+> to keep track of it? I am assuming this will only be used in the probe
+> path. For all other paths the *_sr registers are used directly which
+> already have the registre<->slot association stored within them.
+>
+> i.e.
+>
+> hwe->slot;
 
-The idle_skip_suspend optimisation skips the full GuC disable/enable
-round-trip for queues that are idle at suspend time. It sets
-EXEC_QUEUE_STATE_SUSPENDED (and EXEC_QUEUE_STATE_IDLE_SKIP_SUSPEND) but
-leaves the queue GuC-enabled, signalling the suspend fence immediately.
-On resume it re-enters scheduling by calling sched_context().
+Hmm, when I first wrote the code, I had this in hwe: hwe->nonpriv_slots.
+But later realized it is only needed in xe_reg_whitelist_process_engine(),
+so moved it to the local variable nonpriv_slots there.
 
-The bug: the resume handler called sched_context(q) with the secondary
-queue directly. sched_context() builds XE_GUC_ACTION_SCHED_CONTEXT
-using q->guc->id, which is the secondary's ID. GuC does not recognise
-secondary queue IDs for scheduling, hence returns and error which
-leads to GT reset.
+Also, nonpriv_slots is actually number of slots occupied by non-OA
+registers. So if it part of hwe, the question becomes more complicated:
+what do we store there, number of slots excluding OA or including OA? Since
+we only need number of slots excluding OA.
 
-Fix the resume path: when the idle_skip_suspend branch handles a
-secondary queue, commit the secondary's ring tail explicitly via
-xe_lrc_set_ring_tail() (submit_exec_queue() skips this step when the
-idle_skip_suspend flag is set), then call sched_context() on the primary
-queue so GuC is poked through the correct ID. The poke is skipped when
-exec_queue_enabled(pq) is false, meaning the primary was properly
-suspended through GuC and its own resume will re-enable scheduling and
-pick up the secondary's committed ring tail.
+Therefore, to avoid these complications, I decided that the best way was a
+temporary local variable.
 
-Also fix submit_exec_queue(): after switching to the primary via
-xe_exec_queue_multi_queue_primary(), return early if the primary is
-suspended. This can happen when the primary took the idle_skip_suspend
-path while the secondary still had a job queued on the shared submit_wq.
-The secondary's ring tail is already committed to GGTT before this
-check, so returning early is safe.
+What do you think we'd gain by maintaining it as part of hwe? If things
+change later, we could add it, but for now the local variable seems
+sufficient?
 
-Add an assertion in sched_context() that the caller is never a
-secondary queue, replacing the now-incorrect !exec_queue_pending_disable
-assertion which did not account for the cross-queue call path.
+Thanks.
+--
+Ashutosh
 
-Fixes: bc5775c59258 ("drm/xe/multi_queue: Add GuC interface for multi queue support")
-Cc: stable@vger.kernel.org # v7.0+
-Assisted-by: GitHub-Copilot:claude-sonnet-4.6
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_submit.c | 32 ++++++++++++++++++++++++++++--
- 1 file changed, 30 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index ab501513d806..e1e0d03b2678 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1171,6 +1171,9 @@ static void submit_exec_queue(struct xe_exec_queue *q, struct xe_sched_job *job)
- 	 */
- 	q = xe_exec_queue_multi_queue_primary(q);
- 
-+	if (exec_queue_suspended(q))
-+		return;
-+
- 	if (!exec_queue_enabled(q) && !exec_queue_suspended(q)) {
- 		action[len++] = XE_GUC_ACTION_SCHED_CONTEXT_MODE_SET;
- 		action[len++] = q->guc->id;
-@@ -1853,7 +1856,8 @@ static void sched_context(struct xe_exec_queue *q)
- 	xe_gt_assert(guc_to_gt(guc), !xe_exec_queue_is_parallel(q));
- 	xe_gt_assert(guc_to_gt(guc), !exec_queue_destroyed(q));
- 	xe_gt_assert(guc_to_gt(guc), exec_queue_registered(q));
--	xe_gt_assert(guc_to_gt(guc), !exec_queue_pending_disable(q));
-+	/* Secondary queues must never interface GuC directly; use primary */
-+	xe_gt_assert(guc_to_gt(guc), !xe_exec_queue_is_multi_queue_secondary(q));
- 
- 	trace_xe_exec_queue_submit(q);
- 
-@@ -1879,7 +1883,31 @@ static void __guc_exec_queue_process_msg_resume(struct xe_sched_msg *msg)
- 			enable_scheduling(q);
- 		} else if (exec_queue_idle_skip_suspend(q)) {
- 			clear_exec_queue_idle_skip_suspend(q);
--			sched_context(q);
-+			if (xe_exec_queue_is_multi_queue_secondary(q)) {
-+				struct xe_exec_queue *pq =
-+					xe_exec_queue_multi_queue_primary(q);
-+
-+				/*
-+				 * Secondary queues cannot send GuC actions
-+				 * directly; all scheduling must go through the
-+				 * primary queue's GuC ID. Commit the secondary's
-+				 * ring tail first so GuC sees the pending work
-+				 * when the primary context is next scheduled.
-+				 * Only poke GuC if the primary is fully active:
-+				 * enabled *and* not itself idle_skip_suspend
-+				 * (where its VM pages may be mid-invalidation).
-+				 * If the primary is suspended in any way, its
-+				 * own resume will re-enable GuC scheduling and
-+				 * pick up the secondary's updated ring tail.
-+				 */
-+				xe_lrc_set_ring_tail(q->lrc[0],
-+						     q->lrc[0]->ring.tail);
-+				if (exec_queue_enabled(pq) &&
-+				    !exec_queue_idle_skip_suspend(pq))
-+					sched_context(pq);
-+			} else {
-+				sched_context(q);
-+			}
- 		}
- 	} else {
- 		clear_exec_queue_suspended(q);
--- 
-2.43.0
-
+> >
+> > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> > ---
+> > drivers/gpu/drm/xe/xe_reg_whitelist.c | 8 ++++++--
+> > 1 file changed, 6 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+> > index 6cc81f53fc601..1e788e2ee4014 100644
+> > --- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
+> > +++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+> > @@ -159,7 +159,7 @@ static const struct xe_rtp_entry_sr oa_whitelist[] = {
+> >	},
+> > };
+> >
+> > -static void whitelist_apply_to_hwe(struct xe_hw_engine *hwe)
+> > +static int whitelist_apply_to_hwe(struct xe_hw_engine *hwe)
+> > {
+> >	struct xe_reg_sr *sr = &hwe->reg_whitelist;
+> >	struct xe_reg_sr_entry *entry;
+> > @@ -191,6 +191,8 @@ static void whitelist_apply_to_hwe(struct xe_hw_engine *hwe)
+> >
+> >		slot++;
+> >	}
+> > +
+> > +	return slot;
+> > }
+> >
+> > /**
+> > @@ -203,11 +205,13 @@ static void whitelist_apply_to_hwe(struct xe_hw_engine *hwe)
+> >  */
+> > void xe_reg_whitelist_process_engine(struct xe_hw_engine *hwe)
+> > {
+> > +	int nonpriv_slots;
+> > +
+> >	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(hwe);
+> >
+> >	xe_rtp_process_to_sr(&ctx, register_whitelist, ARRAY_SIZE(register_whitelist),
+> >			     &hwe->reg_whitelist, false);
+> > -	whitelist_apply_to_hwe(hwe);
+> > +	nonpriv_slots = whitelist_apply_to_hwe(hwe);
+> >
+> >	xe_rtp_process_to_sr(&ctx, oa_whitelist, ARRAY_SIZE(oa_whitelist),
+> >			     &hwe->oa_whitelist, false);
+> > --
+> > 2.54.0
+> >
