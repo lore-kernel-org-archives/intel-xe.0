@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59981CD6E4A
-	for <intel-xe@archiver.kernel.org>; Fri, 29 May 2026 12:21:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49FCECD6E4A
+	for <intel-xe@archiver.kernel.org>; Fri, 29 May 2026 12:40:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A22410FE44;
-	Fri, 29 May 2026 12:21:42 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="MKgyE5Ci";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="oHVgbi/z";
-	dkim-atps=neutral
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C47AA10FE43;
- Fri, 29 May 2026 12:21:40 +0000 (UTC)
-Date: Fri, 29 May 2026 14:21:37 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1780057299;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=Lk6J8Yay4yJw29ZMp1a44IgTYA3zIlsMamRU59bPHEk=;
- b=MKgyE5Ci4fmUYnA5JOEnB4n4ljFf5Au4EUx66ry6llbuCwmprN1bF9bi91TPTzfqcPG/rh
- UdAaxjYkl26wGci7upMeJXE4aQsyKimpRJKJgu10pRFDT9zDZe+u7U4jFReNbVB4dBmoG4
- +ng4kxcR1YkcKmhaT0vcTbtHI5S4FWmujTC9+qlywDmoNIa2BUEv9NBG1Cl8k7nAhuvhCB
- Rs15yPqHLzolELj25UgKJia8ckEm+ikv2vKE/CMgmAno0K3n3CLwIm7wE49P3BUYDRDKBz
- IxwTtVBWHzfrNu2G0QG1sHHjqzoatLBVyxmMj4OqGbYxf0X7iJojHr7fdvEkeQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1780057299;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=Lk6J8Yay4yJw29ZMp1a44IgTYA3zIlsMamRU59bPHEk=;
- b=oHVgbi/zFlD1tQdiDiwM6YKnRLFgyzv6Lnl4DT2HVyxg5F/aj3ru4qKlT7az3qQRzXBfv/
- K0fGA1qi1JoTY5AA==
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-To: Maarten Lankhorst <dev@lankhorst.se>
-Cc: Runyu Xiao <runyu.xiao@seu.edu.cn>, jani.nikula@linux.intel.com,
- rodrigo.vivi@intel.com, joonas.lahtinen@linux.intel.com,
- tursulin@ursulin.net, airlied@gmail.com, simona@ffwll.ch,
- clrkwllms@kernel.org, rostedt@goodmis.org, jerome.anand@intel.com,
- pierre-louis.bossart@linux.dev, tiwai@suse.de,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-rt-devel@lists.linux.dev, jianhao.xu@seu.edu.cn,
- stable@vger.kernel.org
-Subject: Re: [PATCH] drm/i915/audio: use generic_handle_irq_safe() for LPE
- audio irq
-Message-ID: <20260529122137.VZtFvQvw@linutronix.de>
-References: <20260528154551.3708290-1-runyu.xiao@seu.edu.cn>
- <20260529074816.k1K16jyy@linutronix.de>
- <2023cf0e-85a8-4128-857d-cae806ff0e58@lankhorst.se>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A10D10FE89;
+	Fri, 29 May 2026 12:40:21 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5137F10E35C;
+ Fri, 29 May 2026 12:40:19 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2268802782078052134=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <2023cf0e-85a8-4128-857d-cae806ff0e58@lankhorst.se>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/nvls=3A_Update_PCI_I?=
+ =?utf-8?q?Ds_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gustavo Sousa" <gustavo.sousa@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 29 May 2026 12:40:19 -0000
+Message-ID: <178005841932.23778.6871739237533295877@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260521-nvl-s-update-pci-ids-v1-1-ec59e5d6bf12@intel.com>
+In-Reply-To: <20260521-nvl-s-update-pci-ids-v1-1-ec59e5d6bf12@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,31 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 2026-05-29 11:50:18 [+0200], Maarten Lankhorst wrote:
-> Hey,
-Hi,
+--===============2268802782078052134==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> It's been absolutely rock stable since the last time I submitted it.
-> I've been using it on my local machine, and the amount of times >100us
-> (evasion failed) with and without PREEMPT_RT are identical with
-> the vblank changes.
-> It still applies cleanly when rebasing.
-> 
-> The vblank patches are the most involved change, and they ensure that
-> absolutely no lock contention happens in the critical path with irqs off.
+== Series Details ==
 
-So that is the good part.
+Series: drm/xe/nvls: Update PCI IDs (rev2)
+URL   : https://patchwork.freedesktop.org/series/167043/
+State : success
 
-> Unfortunately the status is still same as the time I submitted it before it,
-> and pending reviews on the series.
+== Summary ==
 
-my memory is that you have no work items and the auto-CI isn't worse
-than before. The series just waits for a review then?
+CI Bug Log - changes from xe-5158-8771b84f729f96c7709cf5fe96773ae5b21a9162_BAT -> xe-pw-167043v2_BAT
+====================================================
 
-> Kind regards,
-> ~Maarten Lankhorst
+Summary
+-------
 
-Sebastian
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5158-8771b84f729f96c7709cf5fe96773ae5b21a9162 -> xe-pw-167043v2
+
+  IGT_8943: 8943
+  xe-5158-8771b84f729f96c7709cf5fe96773ae5b21a9162: 8771b84f729f96c7709cf5fe96773ae5b21a9162
+  xe-pw-167043v2: 167043v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167043v2/index.html
+
+--===============2268802782078052134==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/nvls: Update PCI IDs (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167043/">https://patchwork.freedesktop.org/series/167043/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167043v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167043v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5158-8771b84f729f96c7709cf5fe96773ae5b21a9162_BAT -&gt; xe-pw-167043v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5158-8771b84f729f96c7709cf5fe96773ae5b21a9162 -&gt; xe-pw-167043v2</li>
+</ul>
+<p>IGT_8943: 8943<br />
+  xe-5158-8771b84f729f96c7709cf5fe96773ae5b21a9162: 8771b84f729f96c7709cf5fe96773ae5b21a9162<br />
+  xe-pw-167043v2: 167043v2</p>
+
+</body>
+</html>
+
+--===============2268802782078052134==--
