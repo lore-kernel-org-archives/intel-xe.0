@@ -4,82 +4,97 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C7B8CD6E66
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21EE0CD6E65
 	for <intel-xe@archiver.kernel.org>; Mon,  1 Jun 2026 14:40:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACDC811341F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB41B11341D;
 	Mon,  1 Jun 2026 14:40:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=poorly.run header.i=@poorly.run header.b="H7DeJtmS";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="n36RXo3N";
 	dkim-atps=neutral
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com
- [209.85.128.169])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2385910F6D5
- for <intel-xe@lists.freedesktop.org>; Thu, 28 May 2026 23:08:23 +0000 (UTC)
-Received: by mail-yw1-f169.google.com with SMTP id
- 00721157ae682-7dc67a5e102so11714737b3.1
- for <intel-xe@lists.freedesktop.org>; Thu, 28 May 2026 16:08:23 -0700 (PDT)
+Received: from mail-oo1-f67.google.com (mail-oo1-f67.google.com
+ [209.85.161.67])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D421410FFA3
+ for <intel-xe@lists.freedesktop.org>; Fri, 29 May 2026 14:06:10 +0000 (UTC)
+Received: by mail-oo1-f67.google.com with SMTP id
+ 006d021491bc7-69d8f70cb0cso4474365eaf.0
+ for <intel-xe@lists.freedesktop.org>; Fri, 29 May 2026 07:06:10 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1780063570; cv=none;
+ d=google.com; s=arc-20240605;
+ b=DLULjM5N8o4HKvxjR1GVWBo3vJil1+oOoNEwmdgALi8o/I5LZpNZPyaVPwFZVbxoVR
+ RDHhNhXnnVJs1qujsRL9OASXecilwLm00E0C3fcW+fMJ/b8tOn5cZ6xKpR38HmMladmJ
+ n2Ncux8XoyRIMi/6m2YASr/DksSi3VbisJZaRilpooutLXmN0AnifDxah0TeS/eKLVOZ
+ Mgh/xmFybIddPlNFI0JZXGtJrYbFe/gM+fL+XJ4f/7GPPrUtNST85kaa2dx3KCgTQUuw
+ KLX5YHB3AR67q3BfgB7Fg4PMePVOaflG4+kXFWgOGIqHY55NyC+cdLtpKsxnkmkRkGS8
+ c/+w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=dvHjpUscS3LGAt7KUFAQnACdb0jmXR2p4L+IG6VyYLM=;
+ fh=OGLoHJzKWILyClak8j+5XsUFBKPnPHK34zX0gf/WqKE=;
+ b=N76SyXxQOQheIXZwr/ladHTTHjVFuS9G/2koCfKIkINiWje6fBYMowdpzzyd+2d/ck
+ jGtKVgjazYmgnrQ1CxRsmu9YAJsPcGCaXhvdekjF5qiyizA9FqYw13tP67LmVGj+tPq6
+ VgBhDxHB72VxhSxC4s2lp4uuiv2jt1d25Su+ZG5y0ob7oGNNZXkFWzvSIu8nP/Xet3Mi
+ pu24uSMo6H0sTSSC7yfkGONtBmLlPtMwksS3N9s2MyKs07iS0SCwCADDTLIIdngSCj5l
+ CNXf2nx+/zaY4yHMZfrmu6dFfBmRfeHxnDAzMroVB3jyYHiFPv61pI2np0eZ7oNfKkCF
+ f2Rg==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=poorly.run; s=google; t=1780009702; x=1780614502; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ d=gmail.com; s=20251104; t=1780063570; x=1780668370; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=sN66wXnuf6IgvNfIu/oqHRce6wGXmhGXpBXVMToPfVY=;
- b=H7DeJtmSdgjYcYGFEG4W0E/2jM5nWRCtItczFDddM2uSl5RyQPAJSaAREkkIjpGHFy
- /jyK/kKfzZ6ysvdLIcRuZ52svHrs3e6Tbz6LoT+FBu91uQ7S2UZ2okK85tGxTUC7bYnh
- bYQOpo/o+RriTaPLBJj8Hh8iQWGa1KAs/zmUOvl5Yj2sH1VECJK5wxKzqvKfIRQl1U55
- 7VEDqd/zfPVttdojnkdCB4O2itOGnzywI5wygh+lDdoceWSU9Zsk9dA+d6FwQJulTZ7z
- neUsTcZGGp2PK9fW+V6verbLXRqqnwmRgGeRlcZyeyyyXd97sRYlRcjVQU++E/ER8t8C
- xvyA==
+ bh=dvHjpUscS3LGAt7KUFAQnACdb0jmXR2p4L+IG6VyYLM=;
+ b=n36RXo3NBv3jyb3aAqcMBJDIcQ4A/sVRJQnAaHdeXVxpCMVRla/X9vdDGEsTu0061a
+ nW41sVDWV5sF0obVSRlU8r1KRGy/ctH0WjjAoQ0vPzC2f2H7EkZB8rOK2rlX8JoY2QzH
+ asmfPri1IvpPTS2+DCsx1gJVG7NcJtlI10XQ6DdyKJCIw01dZyn+wV7P5ezE5rygXxIe
+ ZRTCkSyFkKG/YStfe1UQueQAEnr4hHUUGgEg5KqnI/r9++kh/dMbj70r6lV8lFLowNmA
+ HOH/n9e4eTvwRwUCs6SFdj1TdNIjCEVYoyFI7E7x/x7Brj5ApcK4LOIlmG46TYlvYEHF
+ GlZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1780009702; x=1780614502;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ d=1e100.net; s=20251104; t=1780063570; x=1780668370;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=sN66wXnuf6IgvNfIu/oqHRce6wGXmhGXpBXVMToPfVY=;
- b=XpMrPcddOhS3VHmUNyV0wCfOIjM8jiCKzWrCYWACzmOzdkM8FYjcjugH+6ZleV+nBj
- L0uK+TqHQjYyEe+oU3p66dcBA9aHEI8S0nwusT+YEpImC9w/LXVZgWx/G82oLCB/Cre8
- vtVMnpvWWmEHWaO3C1iodhvj7Uw++qcZhnQLVCN5fjsKH/XUX8uo+UWkKxzNcDHCVKm7
- eERWciJfy9Hu817ErgFP3/GJIbXxiqN7wRkmsOcoXk8MKldXmIeb7hOs/HoFghFYH6uB
- ioSuMhF7oDueJ2yAnYTirtuq1ScI2voOqbmvTdXUzw0Tmrtq/9zn/BpN5PjOK2umWJPz
- FfJg==
+ bh=dvHjpUscS3LGAt7KUFAQnACdb0jmXR2p4L+IG6VyYLM=;
+ b=WjuyFpDMQOWa9E0tnOND5WkOJrAxw2STDKDH4DnXdXMpe0bPWS/XZ6a3xg+jZoOhjy
+ kSV5gd6jXyGqFTtuZTaIqca1yfxokuvWQmvbwxDvKViY+O0HgbhYmUdXs4iXlt3yu0gZ
+ +5likO2FU7vkX7jbN6leuJOPwcUyhxxMYvE6MDGLKnLyu3Zt4HuOUlGPTSkzStZM/SDp
+ 1WI52Kvwf4ihJsXO85Fa89NsmDdgvC/QsbL8L+aNWLJNDiAinAdqFtNEy90+CPFXeWrr
+ rgciuNVBbTx50AYEWTHHbnOh7/+AMFfNj38XYN7mXawnZrkX99WvfmnbW0OpxQCADguV
+ jhfA==
 X-Forwarded-Encrypted: i=1;
- AFNElJ/QigcPn3E5H5OKsEu3uBIZBB0PPjuEULUlKdS7hnX8Hi7t5ztNUw6KVaogxDRjFIYpZW8AQNBJAg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwR5S9Z8YxuVFY2SCb/pRHFooPUYW2meKBmqr2GGQAWVWea23p/
- Ey9mUnT+woGpDko6MbjGHVPmfmpzgPHwMmjT7G9X9nGeigFxXAOPDw3PEP8jX5yQfDU=
-X-Gm-Gg: Acq92OFrF/wUnwLVwfCm4bYPiDilLr+8oGnwSYO0uDieszPb3e4p9929Wp3uyi0fmaV
- S0lDY9d8oznuBdofw53AwcURz9pSebif0UYiBqcVS81OPi7JoCA3AVhNCPro0BXlTw6eZjszglV
- sPaGWRtZtNrIWxn1yt15IS5QgyDl3E5tfvSCwWcEyFhO3U05DvLBAZgbiFXy0yDGRS5/ta+8lyr
- 0NVbuJNYHPFFsUapKXMgXvMBpv2s1PuCruAthY2Qj8ACzkYcnsX1JeqcW+MhwTn4cBFNSCacV2w
- 0pLPw7zytTY77ZJnpRzdkrKEi92pLNLN0NRCP8XNIM0+gF6A58LmlGtphGhlluoAWk5ceudElUV
- exKrbB+kLkxLGuS9S1QRQgfxRZ7Rsk6ajC9OQ5NDnI9pcDQ5jWHFZwKEIpboGLfGBSv4tvC+I8r
- +eRYRYvedfZYQKXYF1fALXJWGWlLDhIoC8zgo0RuRo5zr+tMYkjpuwTgX5cMD3JoYct/9S9bCNr
- TH7
-X-Received: by 2002:a05:690c:6288:b0:7dc:7b3:6326 with SMTP id
- 00721157ae682-7de4bd19fc1mr2454467b3.33.1780009702204; 
- Thu, 28 May 2026 16:08:22 -0700 (PDT)
-Received: from localhost (182.221.85.34.bc.googleusercontent.com.
- [34.85.221.182]) by smtp.gmail.com with ESMTPSA id
- 00721157ae682-7de6757e963sm167097b3.1.2026.05.28.16.08.21
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 28 May 2026 16:08:21 -0700 (PDT)
-From: Sean Paul <sean@poorly.run>
-To: intel-gfx@lists.freedesktop.org, jani.nikula@linux.intel.com,
- chaitanya.kumar.borah@intel.com
-Cc: Sean Paul <seanpaul@google.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH v3 2/2] drm/i915/color: Fix step discontinuity in Pre-CSC
- Gamma LUT
-Date: Thu, 28 May 2026 19:07:47 -0400
-Message-ID: <20260528230817.2455072-2-sean@poorly.run>
-X-Mailer: git-send-email 2.54.0.823.g6e5bcc1fc9-goog
-In-Reply-To: <20260528230817.2455072-1-sean@poorly.run>
-References: <20260528230817.2455072-1-sean@poorly.run>
+ AFNElJ9mhUqKMEYHtZSWeciStk5R1nRuVCC46stsILeI9OJFMF5XymcfdLHIzhP/YI/2tTmc/beamUb3UQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyzcCdJOrQbt19RyNiBTzNXqurt+Hfe8BUf0CVuyZEB4zshQTkJ
+ jK3EZReZ/nnefcAkEjX7rwPNnZGR4PyjmhEnuXfw7BkzcsC2G3O9AZBviPKc8dy1KW95MTYjWy7
+ 1u36BB5HUIdE4d/+6Gy8QlmNF9XZw4UI=
+X-Gm-Gg: Acq92OEGinSJQykENcvuZiRc8XAktXMj7/eUkwy6lgCBS96/yALl760y/M58pYoq+zt
+ m1TOXgvykMYt+wQoJ0gR4wYK60jOyzG5F+nN6uemd3sVDIbBMgjDtL6dc/j9kowiiC6sDBiFmRB
+ wGpTmPcHS5q6jD04v9vdfT+7eU8WWghKqewntEmAW2Jml1UfYk7u61CXdi0C2soVWqGXxXfiB0s
+ Tc0oj+qDQjqulnBvz2e/qPF3YP3osqQqopsb7gw01qXP4qW5VT7YVTpA5GEvacFMnBZ1EJ9DU9g
+ 3SBA3usQco5xcgZR1uPH
+X-Received: by 2002:a05:6820:4dc3:b0:69d:8879:b68d with SMTP id
+ 006d021491bc7-69e04031c40mr1576978eaf.47.1780063569742; Fri, 29 May 2026
+ 07:06:09 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20260527115311.13398-1-zhanwei919@gmail.com>
+ <20260529135028.20763-1-zhanwei919@gmail.com>
+In-Reply-To: <20260529135028.20763-1-zhanwei919@gmail.com>
+From: =?UTF-8?B?5Y2gd2Vp?= <zhanwei919@gmail.com>
+Date: Fri, 29 May 2026 22:05:58 +0800
+X-Gm-Features: AVHnY4JSxROazTZrUw4k9CKjlOr2tJ7BgWyUtPWVIMQB2u2A0wFiRfrZym4I1SI
+Message-ID: <CA+qUFckr9uC7h4S9xw0JMxGnehXyrQ8HpOYdwoFoMsLk-HM_nw@mail.gmail.com>
+Subject: Re: [PATCH v2] drm/xe/hwmon: document DG2 fan speed reporting quirk
+To: Matthew Brost <matthew.brost@intel.com>, 
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, 
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Raag Jadav <raag.jadav@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Mon, 01 Jun 2026 14:40:04 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -95,56 +110,109 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Sean Paul <seanpaul@google.com>
++Cc Raag, who authored the fan support and reviewed v1.
 
-Clamp Segment 2 to the last user-provided LUT entry value instead of
-hardcoding it to 1.0 (1 << 24) to fix a step discontinuity.
+Thanks for your help, this v2 drops the code change and documents the
+DG2 shared-tach behaviour instead, per your feedback on v1.
 
-Signed-off-by: Sean Paul <seanpaul@google.com>
-Link: https://lore.kernel.org/intel-gfx/20260521180143.2143262-1-sean@poorly.run/ #v1
-Link: https://lore.kernel.org/intel-gfx/20260525135730.1122696-2-sean@poorly.run/ #v2
-
-Changes in v2:
-- Split out into separate patches for pre/post csc fixes
-- Dropped loop bounds fix in favor of [1]
-Changes in v3:
-- Fix stale commit message
-
-[1]- https://lore.kernel.org/r/20260519075245.383864-1-pranay.samala@intel.com
----
- drivers/gpu/drm/i915/display/intel_color.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-index 7185f3628dcf..458508bcf1f4 100644
---- a/drivers/gpu/drm/i915/display/intel_color.c
-+++ b/drivers/gpu/drm/i915/display/intel_color.c
-@@ -3968,6 +3968,7 @@ xelpd_program_plane_pre_csc_lut(struct intel_dsb *dsb,
- 	enum plane_id plane = to_intel_plane(state->plane)->id;
- 	const struct drm_color_lut32 *pre_csc_lut = plane_state->hw.degamma_lut->data;
- 	u32 i, lut_size;
-+	u32 lut_val = 1 << 24;
- 
- 	if (icl_is_hdr_plane(display, plane)) {
- 		lut_size = 128;
-@@ -3978,7 +3979,7 @@ xelpd_program_plane_pre_csc_lut(struct intel_dsb *dsb,
- 
- 		if (pre_csc_lut) {
- 			for (i = 0; i < lut_size; i++) {
--				u32 lut_val = drm_color_lut32_extract(pre_csc_lut[i].green, 24);
-+				lut_val = drm_color_lut32_extract(pre_csc_lut[i].green, 24);
- 
- 				intel_de_write_dsb(display, dsb,
- 						   PLANE_PRE_CSC_GAMC_DATA_ENH(pipe, plane, 0),
-@@ -3990,7 +3991,7 @@ xelpd_program_plane_pre_csc_lut(struct intel_dsb *dsb,
- 			do {
- 				intel_de_write_dsb(display, dsb,
- 						   PLANE_PRE_CSC_GAMC_DATA_ENH(pipe, plane, 0),
--						   (1 << 24));
-+						   lut_val);
- 			} while (i++ < 130);
- 		} else {
- 			for (i = 0; i < lut_size; i++) {
--- 
-Sean Paul, Software Engineer, Google / Chromium OS
-
+Zhan Wei <zhanwei919@gmail.com> =E4=BA=8E2026=E5=B9=B45=E6=9C=8829=E6=97=A5=
+=E5=91=A8=E4=BA=94 21:50=E5=86=99=E9=81=93=EF=BC=9A
+>
+> The number of fanN_input attributes on DG2 is hardcoded to two because
+> FSC_READ_NUM_FANS returns an incorrect value on some boards. How the
+> physical fans map onto the tach channels is left to the board vendor:
+> some OEMs route multiple physical fans through a single shared tach
+> line, in which case the unwired channel's pulse counter never
+> accumulates and fanN_input reads a constant 0 RPM.
+>
+> This is expected behaviour for such boards rather than a driver fault,
+> and the driver has no reliable way to distinguish a shared-tach layout
+> from a genuinely silent fan. Document this so the flat DG2 fan count is
+> not mistaken for a bug and "fixed" by lowering it, which would hide a
+> working fan2 on boards that do wire two tach lines.
+>
+> Signed-off-by: Zhan Wei <zhanwei919@gmail.com>
+> ---
+> v1 -> v2: Drop the code change. As pointed out in review, the same PCI
+>   device ID ships with both shared-tach (multiple physical fans on one
+>   channel) and 1:1 fan wiring, and FSC_READ_NUM_FANS is unreliable on
+>   some boards, so the DG2 fan count cannot be lowered without hiding a
+>   working fan2 on boards that do wire two tach lines. Document the
+>   behaviour instead of changing the reported fan count.
+>
+> v1: https://lore.kernel.org/intel-xe/20260527115311.13398-1-zhanwei919@gm=
+ail.com/
+>
+>  Documentation/gpu/xe/index.rst    |  1 +
+>  Documentation/gpu/xe/xe_hwmon.rst | 48 +++++++++++++++++++++++++++++++
+>  2 files changed, 49 insertions(+)
+>  create mode 100644 Documentation/gpu/xe/xe_hwmon.rst
+>
+> diff --git a/Documentation/gpu/xe/index.rst b/Documentation/gpu/xe/index.=
+rst
+> index 874ffcb6da3a..3c14cdcaa8a6 100644
+> --- a/Documentation/gpu/xe/index.rst
+> +++ b/Documentation/gpu/xe/index.rst
+> @@ -30,3 +30,4 @@ DG2, etc is provided to prototype the driver.
+>     xe-drm-usage-stats.rst
+>     xe_configfs
+>     xe_gt_stats
+> +   xe_hwmon
+> diff --git a/Documentation/gpu/xe/xe_hwmon.rst b/Documentation/gpu/xe/xe_=
+hwmon.rst
+> new file mode 100644
+> index 000000000000..8cd48df59386
+> --- /dev/null
+> +++ b/Documentation/gpu/xe/xe_hwmon.rst
+> @@ -0,0 +1,48 @@
+> +.. SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +Xe HWMON support
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +
+> +The xe driver exposes hardware monitoring sensors (power, energy,
+> +temperature, voltage and fan speed) through the kernel hwmon subsystem,
+> +typically consumed via ``/sys/class/hwmon/hwmonX/`` or tools such as
+> +``sensors``.
+> +
+> +Fan speed reporting
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +
+> +Fan speed (``fanN_input``) is reported in RPM and computed from a tach
+> +pulse counter: the driver reads an accumulating pulse register, divides
+> +the delta between two subsequent readings by two pulses per rotation,
+> +and time-averages the result.
+> +
+> +Number of fan channels
+> +-----------------------
+> +
+> +The number of ``fanN_input`` attributes exposed in sysfs is the fan
+> +count returned by the ``FSC_READ_NUM_FANS`` pcode command. On DG2 this
+> +command has been found to return an incorrect value on some boards, so
+> +the driver hardcodes a fan count of two there. As a result up to
+> +``fan1_input`` and ``fan2_input`` are always exposed on DG2 regardless
+> +of how many tach lines are actually wired.
+> +
+> +Zero RPM on DG2 is not necessarily a bug
+> +----------------------------------------
+> +
+> +How physical fans map onto the tach channels is left to the board
+> +vendor. Some OEMs route several physical fans through a single shared
+> +tach line, while others wire each fan to its own channel 1:1. The
+> +driver has no reliable way to tell these layouts apart, and the same PCI
+> +device ID can ship in either configuration.
+> +
+> +When a channel has no tach line driving it, its pulse counter never
+> +accumulates, so the corresponding ``fanN_input`` reads a constant 0 RPM.
+> +On DG2 this is most often seen on ``fan2_input`` for boards that drive
+> +both physical fans from a single tach line. This is expected behaviour
+> +for such boards, not a driver fault, and reflects the board wiring
+> +rather than a missing or stalled fan.
+> +
+> +For this reason the fan count on DG2 is intentionally left at a flat
+> +value rather than tracked per board: there is no driver-visible signal
+> +that distinguishes a shared-tach layout from a genuinely silent fan.
+> --
+> 2.43.0
+>
