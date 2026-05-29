@@ -4,62 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A06A7CD4F54
-	for <intel-xe@archiver.kernel.org>; Fri, 29 May 2026 13:18:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02972CD6E4A
+	for <intel-xe@archiver.kernel.org>; Fri, 29 May 2026 13:29:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E95710FF02;
-	Fri, 29 May 2026 13:18:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA29610FF2F;
+	Fri, 29 May 2026 13:29:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G4XCSs+A";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MwoVQvmw";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15EBB10FF05;
- Fri, 29 May 2026 13:18:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53CCF10FF2F;
+ Fri, 29 May 2026 13:29:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780060716; x=1811596716;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=PNmBsjgBeiXTGX10VDO/DBMcYyOt3fsBAr/ikiNizME=;
- b=G4XCSs+AQk2WHA+jBBrhgMLy34gIyi2zxF9/F5T1NJi+HvgN2xGMKbJX
- sl5MDHTjj+6eMjGQqAoeLPe58GDSQB3z0dGS4HottV4wd7nR6bnaijmkn
- AOiibwxndJs3BKGqzMRDTHMAKSN2jLjiRPQQyiRPMFWpgDmGFu7hFWQWo
- Xt/XokSnHZSzCEqOzcNmggmbP6D61dAadyiMDs+73OJ3eRbsK+cdXxWgo
- JqWzRikpK+Q8ItqyGQMVxIGxZRtZpcr2QlWGx4HULqVi/57skBaZ6LvMj
- kyUww8yZXvN55G+GMKdRdCalTry1Qfi3eLK3w6BX1aVIlkMZDzy0fkm0W Q==;
-X-CSE-ConnectionGUID: it6bQLAWSyaYpp+8hqJIVg==
-X-CSE-MsgGUID: QFGQTzwVR2mOAVKTr+eOMw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11801"; a="84798721"
-X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="84798721"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2026 06:18:35 -0700
-X-CSE-ConnectionGUID: Grl2ao7HSseQsAZFS3Lwcw==
-X-CSE-MsgGUID: ttnXSKxZTleBScao3KP+sw==
+ t=1780061384; x=1811597384;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=71sOesqiaHj4JhCD+9Hp64zuCWJ5C+w+x7JVSPreLQ8=;
+ b=MwoVQvmwWJkTAmJmULcHbTWiJhCggL1nVS3mjjhjWcGTShepk/9s60Vg
+ BcN5JSPlA8E6diRO0CUn5ISmA33A3q8uuaL05WPbsOvZ1Tbm66MObpx9i
+ NADf/IhgHdfZ7+3w7ThXMk2bKhbqLkfFwm0wPBaXjlTQDDVvKX0rWifch
+ ub1R5a5AT4eoaPbXnuWDRmerCTo9Q2aMU3u3G3iHMMxJaT8urwdEoqgmQ
+ vLhWs+5qZy4iBj7wLoLpgbgqT1G/Qt7PswKhoouAVWRo0pOH1SDacNOsx
+ F1yGvk1brbYdChvlQrf0bXvABW6EoWSiFp9hxGQcU3UTZQAEeB8APDhvw A==;
+X-CSE-ConnectionGUID: kO2vYPQcQ1CCXGERuXMN8A==
+X-CSE-MsgGUID: YW+AF//0RAKyFfa+rCcCgQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11801"; a="80812827"
+X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="80812827"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2026 06:29:44 -0700
+X-CSE-ConnectionGUID: mL1xh5hPRmijtE9Oggpl3g==
+X-CSE-MsgGUID: V4M8DU/5R1GWyj/iv9P7uw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="247939210"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.182])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2026 06:18:34 -0700
-Date: Fri, 29 May 2026 16:18:31 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- imre.deak@intel.com
-Subject: Re: [PATCH 05/24] drm/xe/display: drop duplicate
- intel_dp_mst_suspend() call
-Message-ID: <ahmSJ3g5y6-eJFca@intel.com>
-References: <cover.1780051905.git.jani.nikula@intel.com>
- <fdb44e0cc7503e19703aa787ba382147e2df598b.1780051905.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="273165205"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.147])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2026 06:29:41 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Nikita Zhandarovich <n.zhandarovich@fintech.ru>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Nikita Zhandarovich <n.zhandarovich@fintech.ru>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, Simona Vetter
+ <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, lvc-project@linuxtesting.org
+Subject: Re: [PATCH] drm/i915/edp: Check supported link rates DPCD read
+In-Reply-To: <20260529120921.1633346-1-n.zhandarovich@fintech.ru>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260529120921.1633346-1-n.zhandarovich@fintech.ru>
+Date: Fri, 29 May 2026 16:29:37 +0300
+Message-ID: <f1e1c04a873c00cbc58729e09531d932c793dc00@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <fdb44e0cc7503e19703aa787ba382147e2df598b.1780051905.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,33 +73,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, May 29, 2026 at 02:03:49PM +0300, Jani Nikula wrote:
-> intel_display_driver_suspend() already calls
-> intel_dp_mst_suspend(). Remove the duplicate call.
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+On Fri, 29 May 2026, Nikita Zhandarovich <n.zhandarovich@fintech.ru> wrote:
+> intel_edp_set_sink_rates() reads DP_SUPPORTED_LINK_RATES into a local
+> stack array and then parses the array unconditionally. If the read
+> fails or returns less data than requested, the array contents are not
+> valid and may result in bogus sink link rates being used.
+>
+> Check that the full DPCD block was read before parsing it. If not, fall
+> back to the default sink rate handling.
+>
+> Found by Linux Verification Center (linuxtesting.org) with static
+> analysis tool SVACE.
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Thanks for the patch.
 
+>
+> Fixes: 68f357cb7347 ("drm/i915/dp: generate and cache sink rate array for all DP, not just eDP 1.4")
+> Signed-off-by: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
 > ---
->  drivers/gpu/drm/xe/display/xe_display.c | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-> index 6e82dc70ca89..8d55e7a37d6d 100644
-> --- a/drivers/gpu/drm/xe/display/xe_display.c
-> +++ b/drivers/gpu/drm/xe/display/xe_display.c
-> @@ -342,7 +342,6 @@ void xe_display_pm_shutdown(struct xe_device *xe)
->  		intel_display_driver_suspend(display);
->  	}
+>  drivers/gpu/drm/i915/display/intel_dp.c | 11 +++++++++--
+>  1 file changed, 9 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 6ef2a0043cda..b6650a12ca54 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -4678,10 +4678,16 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
 >  
-> -	intel_dp_mst_suspend(display);
->  	intel_encoder_block_all_hpds(display);
->  	intel_hpd_cancel_work(display);
+>  	if (intel_dp->edp_dpcd[0] >= DP_EDP_14) {
+>  		__le16 sink_rates[DP_MAX_SUPPORTED_RATES];
+> +		ssize_t ret;
+>  		int i;
 >  
-> -- 
-> 2.47.3
+> -		drm_dp_dpcd_read(&intel_dp->aux, DP_SUPPORTED_LINK_RATES,
+> -				 sink_rates, sizeof(sink_rates));
+> +		ret = drm_dp_dpcd_read(&intel_dp->aux, DP_SUPPORTED_LINK_RATES,
+> +				       sink_rates, sizeof(sink_rates));
+
+Please switch to drm_dp_dpcd_read_data(). It'll return < 0 for errors,
+and is easier to deal with.
+
+> +		if (ret != sizeof(sink_rates)) {
+> +			drm_dbg_kms(display->drm,
+> +				    "Unable to read eDP supported link rates, using default rates\n");
+> +			goto use_default_rates;
+
+I think I'd avoid the goto and use:
+
+	memset(sink_rates, 0, sizeof(sink_rates));
+
+BR,
+Jani.
+
+> +		}
+>  
+>  		for (i = 0; i < ARRAY_SIZE(sink_rates); i++) {
+>  			int rate;
+> @@ -4715,6 +4721,7 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
+>  	 * Use DP_LINK_RATE_SET if DP_SUPPORTED_LINK_RATES are available,
+>  	 * default to DP_MAX_LINK_RATE and DP_LINK_BW_SET otherwise.
+>  	 */
+> +use_default_rates:
+>  	if (intel_dp->num_sink_rates)
+>  		intel_dp->use_rate_select = true;
+>  	else
 
 -- 
-Ville Syrjälä
-Intel
+Jani Nikula, Intel
