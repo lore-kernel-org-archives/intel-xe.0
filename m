@@ -4,57 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0A8DCD6E67
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9115DCD6E66
 	for <intel-xe@archiver.kernel.org>; Mon,  1 Jun 2026 14:40:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2179F11342A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C2AB11342E;
 	Mon,  1 Jun 2026 14:40:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=seu.edu.cn header.i=@seu.edu.cn header.b="nw5t7x6/";
-	dkim-atps=neutral
-Received: from mail-m93222.xmail.ntesmail.com (mail-m93222.xmail.ntesmail.com
- [103.126.93.222])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 552F610E66B;
- Sun, 31 May 2026 15:23:20 +0000 (UTC)
-Received: from PC-202605011814.localdomain (unknown [221.228.238.82])
- by smtp.qiye.163.com (Hmail) with ESMTP id 4079b061e;
- Sun, 31 May 2026 23:23:16 +0800 (GMT+08:00)
-From: Runyu Xiao <runyu.xiao@seu.edu.cn>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Runyu Xiao <runyu.xiao@seu.edu.cn>, Maarten Lankhorst <dev@lankhorst.se>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
- simona@ffwll.ch, clrkwllms@kernel.org, rostedt@goodmis.org,
- jerome.anand@intel.com, pierre-louis.bossart@linux.dev, tiwai@suse.de,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-rt-devel@lists.linux.dev, jianhao.xu@seu.edu.cn
-Subject: Re: [PATCH] drm/i915/audio: use generic_handle_irq_safe() for LPE
- audio irq
-Date: Sun, 31 May 2026 23:23:07 +0800
-Message-Id: <20260531152307.1283430-1-runyu.xiao@seu.edu.cn>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <89e4e6258c62e0e2829038dd4f5a29cc530b4344@intel.com>
-References: <20260528154551.3708290-1-runyu.xiao@seu.edu.cn>
- <20260529074816.k1K16jyy@linutronix.de>
- <2023cf0e-85a8-4128-857d-cae806ff0e58@lankhorst.se>
- <20260529122137.VZtFvQvw@linutronix.de>
- <20260529142556.3833775-1-runyu.xiao@seu.edu.cn>
- <89e4e6258c62e0e2829038dd4f5a29cc530b4344@intel.com>
+Received: from exchange.fintech.ru (exchange.fintech.ru [195.54.195.159])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57574112067;
+ Fri, 29 May 2026 14:58:05 +0000 (UTC)
+Received: from Ex16-01.fintech.ru (10.0.10.18) by exchange.fintech.ru
+ (195.54.195.169) with Microsoft SMTP Server (TLS) id 14.3.498.0; Fri, 29 May
+ 2026 17:58:03 +0300
+Received: from localhost (10.0.253.153) by Ex16-01.fintech.ru (10.0.10.18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Fri, 29 May
+ 2026 17:58:02 +0300
+From: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
+To: Jani Nikula <jani.nikula@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+CC: Nikita Zhandarovich <n.zhandarovich@fintech.ru>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, Simona Vetter
+ <simona@ffwll.ch>, <intel-gfx@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <linux-kernel@vger.kernel.org>, <lvc-project@linuxtesting.org>
+Subject: [PATCH v2] drm/i915/edp: Check supported link rates DPCD read
+Date: Fri, 29 May 2026 17:57:58 +0300
+Message-ID: <20260529145759.1640646-1-n.zhandarovich@fintech.ru>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9e7ea1d80c03a1kunmeba3563a10bb70
-X-HM-MType: 10
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
- tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZTx0ZVhkZQkwdTEkYGhkZGFYeHw
- 5VEwETFhoSFyQUDg9ZV1kYEgtZQVlJSUpVSUlDVUlIQ1VDSVlXWRYaDxIVHRRZQVlPS0hVSktJSE
- 5DQ1VKS0tVS1kG
-DKIM-Signature: a=rsa-sha256;
- b=nw5t7x6/l8f6HAlZDcLLGMPbptweip4K4qDJP30Pu+gaL/IYyMv7uZnRnT8dWa3y/eTVDhBc5tCzQaK9o5Ktw+68G+u8WFurCa27xJjheQnYNetk/kZUXjJ5dw1i6vcdfTkRSoS/Py5/41rpG/sVcrcNkTDe2VLpLyq2oAUqE0c=;
- c=relaxed/relaxed; s=default; d=seu.edu.cn; v=1; 
- bh=MfgaZITVjf+xSp/VVqdccCnPFjcq7/aWQ93a8bo464M=;
- h=date:mime-version:subject:message-id:from;
+Content-Type: text/plain
+X-Originating-IP: [10.0.253.153]
+X-ClientProxiedBy: Ex16-02.fintech.ru (10.0.10.19) To Ex16-01.fintech.ru
+ (10.0.10.18)
 X-Mailman-Approved-At: Mon, 01 Jun 2026 14:40:04 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,14 +52,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thanks, Jani.
+intel_edp_set_sink_rates() reads DP_SUPPORTED_LINK_RATES into a local
+stack array and then parses the array unconditionally. If the read
+fails, the array contents are not valid and may result in bogus sink
+link rates being used.
 
-That makes sense. I'll keep this as a standalone patch and respin it
-without the stable tag.
+Use drm_dp_dpcd_read_data() and clear the sink rate array on failure,
+so the existing parser falls back to the default sink rate handling.
 
-Maarten, I understand the same fix is also present in your PREEMPT_RT
-series. If you think it would be helpful, I can add a Link: tag to that
-series in the next revision to make the overlap explicit.
+Found by Linux Verification Center (linuxtesting.org) with static
+analysis tool SVACE.
 
-Best regards,
-Runyu
+Fixes: 68f357cb7347 ("drm/i915/dp: generate and cache sink rate array for all DP, not just eDP 1.4")
+Signed-off-by: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
+---
+v1 -> v2:
+- Use drm_dp_dpcd_read_data() instead of drm_dp_dpcd_read().
+- Avoid the goto by clearing sink_rates on read failure, as suggested by
+  Jani Nikula.
+- Adjust patch description.
+
+ drivers/gpu/drm/i915/display/intel_dp.c | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 6ef2a0043cda..5c3e816b0135 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -4678,10 +4678,17 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
+ 
+ 	if (intel_dp->edp_dpcd[0] >= DP_EDP_14) {
+ 		__le16 sink_rates[DP_MAX_SUPPORTED_RATES];
++		int ret;
+ 		int i;
+ 
+-		drm_dp_dpcd_read(&intel_dp->aux, DP_SUPPORTED_LINK_RATES,
+-				 sink_rates, sizeof(sink_rates));
++		ret = drm_dp_dpcd_read_data(&intel_dp->aux,
++					    DP_SUPPORTED_LINK_RATES,
++					    sink_rates, sizeof(sink_rates));
++		if (ret < 0) {
++			drm_dbg_kms(display->drm,
++				    "Unable to read eDP supported link rates, using default rates\n");
++			memset(sink_rates, 0, sizeof(sink_rates));
++		}
+ 
+ 		for (i = 0; i < ARRAY_SIZE(sink_rates); i++) {
+ 			int rate;
