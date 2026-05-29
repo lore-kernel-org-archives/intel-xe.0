@@ -4,60 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3CDBCD6E49
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF395CD4F54
 	for <intel-xe@archiver.kernel.org>; Fri, 29 May 2026 19:36:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68039112481;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E643112483;
 	Fri, 29 May 2026 19:36:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YCM6caym";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RN+nELsa";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBC8D112485
- for <intel-xe@lists.freedesktop.org>; Fri, 29 May 2026 19:36:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02E98112485
+ for <intel-xe@lists.freedesktop.org>; Fri, 29 May 2026 19:36:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780083383; x=1811619383;
+ t=1780083381; x=1811619381;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=pl+tmNhZc3yZSQKToNbFn1MhTqf8MNhqFfWoh0up74Y=;
- b=YCM6caymiqK798lSuIW56nqMd+RYJXw+/PPP7PBKndO6nIoxA1fiTZfv
- f2aLLcQmO/U/c3h3hwSRxr4bK1mOTXlQ+JeWSdhIn3bsVoovXL2W8E23Y
- pjS0G9lcdiY2xoYBfJdFbmsPC7DnHKmprfLeT+4Q+H1hvs52fhWX9vP5u
- dHquV6kIS5ibHKBQ3fB0crrS3Vf3jfSzYKTsEjuWYeKKf4A2V731i+7gH
- W4+Pu1LLaekZCkdzNeD9lrArlvKtSWpRnQG07cM2t7g1T3WazWsfbyUjM
- seLs9Yy7s1sh5AGM6R+OZfONyhLgHfpxt9k/PkKYPiKjMPZ5h5W+8Snhd A==;
-X-CSE-ConnectionGUID: 04DxcZ7VTqKWKlTqzOpS1w==
-X-CSE-MsgGUID: o66pWbDlT66++sPSNiJJbQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11801"; a="80969690"
-X-IronPort-AV: E=Sophos;i="6.24,176,1774335600"; d="scan'208";a="80969690"
+ bh=b8zzpIaKliTWyPzMjOCWSEEwQwYoX+eudsc3CNNANKo=;
+ b=RN+nELsazgb+KrIYIGMidmNby96IwMZV4u/FH9DmitVjf0WNAdbWvpk0
+ gjhwn94APjOIv5/mhQUNTX6JQL2ApkdZwGEln3ldlt6kOTufg5Gsys1SE
+ z5VgySJzv61Tc3hDsV63d8umed+fI/AOqHFoUrWzEuNQApHZlq5vEre3m
+ ueuMx+E1DUqoTjF2bp56eiqSKP22p+e+u5DwLY9LXBstcwsiKjuWcDSqw
+ BbTjKUXg+PqgYe0ImS6MWy5dpPhpAhIPdA/H+6lf/9jzZsTRrdRGgoRZu
+ uMMBuiG2t0wIy5yy/vZ1/r5e1SNdsZudBxzB10Hr0wXoHBzCw6FgxSp+Y Q==;
+X-CSE-ConnectionGUID: Q/v91FKrRhGq4Vlx68cWhA==
+X-CSE-MsgGUID: FYO4Uc72RDGXeRWelgFrwA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11801"; a="80969688"
+X-IronPort-AV: E=Sophos;i="6.24,176,1774335600"; d="scan'208";a="80969688"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2026 12:36:23 -0700
-X-CSE-ConnectionGUID: 7FtsdRjSSNqQnzw05jl/Iw==
-X-CSE-MsgGUID: IfJLybJGSOu1WRgpz9aDcw==
+ 29 May 2026 12:36:21 -0700
+X-CSE-ConnectionGUID: xy5cOtx0Qva8r2FU0/jQWQ==
+X-CSE-MsgGUID: 6DaQ8MClRVqnRm7fjOH/kQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,176,1774335600"; d="scan'208";a="246943940"
+X-IronPort-AV: E=Sophos;i="6.24,176,1774335600"; d="scan'208";a="246943925"
 Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2026 12:36:23 -0700
+ 29 May 2026 12:36:21 -0700
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Julia Filipchuk <julia.filipchuk@intel.com>,
- John Harrison <John.C.Harrison@Intel.com>,
- Gustavo Sousa <gustavo.sousa@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
  Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Subject: [PATCH 6/6] topic/xe-for-CI: Define GuC firmware for NVL-P
-Date: Fri, 29 May 2026 12:36:05 -0700
-Message-ID: <20260529193558.185436-14-daniele.ceraolospurio@intel.com>
+Subject: [PATCH 4/6] topic/xe-for-CI: Define GuC firmware for NVL-S
+Date: Fri, 29 May 2026 12:36:03 -0700
+Message-ID: <20260529193558.185436-12-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260529193558.185436-8-daniele.ceraolospurio@intel.com>
 References: <20260529193558.185436-8-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,36 +70,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+From: Matt Roper <matthew.d.roper@intel.com>
 
-Novalake P has different IP on each GT and requires a different GuC
-for each. So add separate graphics and media GT entries or NVL-P.
+Although NVL-S has a similar Xe3 to PTL/WCL, it requires a unique GuC
+firmware.
 
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-References: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/7235
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Link: https://patch.msgid.link/20260202-nvl-p-upstreaming-v1-16-653e4ff105dc@intel.com
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Link: https://lore.kernel.org/r/20251016-xe3p-v3-12-3dd173a3097a@intel.com
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Julia Filipchuk <julia.filipchuk@intel.com>
+Link: https://patch.msgid.link/20260108181956.1254908-9-julia.filipchuk@intel.com
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 ---
- drivers/gpu/drm/xe/xe_uc_fw.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/xe/xe_uc_fw.c | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index 6268ca599ec4..b5a49ef9dafe 100644
+index 498c89452779..70bccbc1af82 100644
 --- a/drivers/gpu/drm/xe/xe_uc_fw.c
 +++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -115,6 +115,8 @@ struct fw_blobs_by_type {
+@@ -115,6 +115,7 @@ struct fw_blobs_by_type {
  #define XE_GT_TYPE_ANY XE_GT_TYPE_UNINITIALIZED
  
  #define XE_GUC_FIRMWARE_DEFS(fw_def, mmp_ver, major_ver)					\
-+	fw_def(NOVALAKE_P,	GT_TYPE_MAIN,	mmp_ver(xe,	guc,	nvlpg,	70, 60, 0))	\
-+	fw_def(NOVALAKE_P,	GT_TYPE_MEDIA,	mmp_ver(xe,	guc,	nvlpm,	70, 60, 0))	\
- 	fw_def(CRESCENTISLAND,	GT_TYPE_ANY,	mmp_ver(xe,	guc,	cri,	70, 55, 4))	\
- 	fw_def(NOVALAKE_S,	GT_TYPE_ANY,	mmp_ver(xe,	guc,	nvl,	70, 55, 4))	\
++	fw_def(NOVALAKE_S,	GT_TYPE_ANY,	mmp_ver(xe,	guc,	nvl,	70, 55, 4))	\
  	fw_def(PANTHERLAKE,	GT_TYPE_ANY,	major_ver(xe,	guc,	ptl,	70, 54, 0))	\
+ 	fw_def(BATTLEMAGE,	GT_TYPE_ANY,	major_ver(xe,	guc,	bmg,	70, 54, 0))	\
+ 	fw_def(LUNARLAKE,	GT_TYPE_ANY,	major_ver(xe,	guc,	lnl,	70, 53, 0))	\
 -- 
 2.43.0
 
