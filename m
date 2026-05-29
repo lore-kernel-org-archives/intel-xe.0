@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C06D9CD6E4A
-	for <intel-xe@archiver.kernel.org>; Fri, 29 May 2026 11:05:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 309E6CD6E53
+	for <intel-xe@archiver.kernel.org>; Fri, 29 May 2026 11:05:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 816A410FD60;
-	Fri, 29 May 2026 11:05:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFD6F10FD56;
+	Fri, 29 May 2026 11:05:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ihbpKOIH";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="keeig0Mf";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7620F10FD62;
- Fri, 29 May 2026 11:05:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE88910FD70;
+ Fri, 29 May 2026 11:05:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780052743; x=1811588743;
+ t=1780052749; x=1811588749;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=H/dETC9T9ABw3LAOTIjpeKIAv80BZS2nDhdAim8oAMs=;
- b=ihbpKOIHCPgd7jGMSNeuWvuHYqi+33CIYC3i39d+I5X2O/bwdRV361ar
- /qauKxC6hSfaq8022BoaIrW5c7XFo6p0GI1SIze0tnLwAayuEl8YZXXeO
- WYexpt3qWm8djGYFrmGyTg7LyxnffZEidjD8xOS7v7v3FjJPntk7J1O+c
- pGYlHwaoSr0Wjp9eTi2AoKCD8a1ffxQxxu01v0yEcMNepRmVi7lf5anvB
- 7qseAq3NU0nQR9uMsk+FzX4BY0/inPo3E+utmKPsguxPMVDugseniBfzX
- 8cUFJCT87B61P2lZoCzaIaFskV7wSo+za9rMSly/RQ2t6Sjze/c6kCb0W Q==;
-X-CSE-ConnectionGUID: segER0x1Q2KVznEa1sKI0g==
-X-CSE-MsgGUID: fg04rqUJSfyipJIoJ6Mo3Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11800"; a="92015073"
-X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="92015073"
+ bh=LCQtkyJZY38vNC5UwPmd7xfQ3z4d6nLwkcIWEdnoAC0=;
+ b=keeig0MfhyjPh0mc0iubk7jziRSTjNa01Z8QVP80z58+P3XMwSImVSK5
+ MBqzsuv7jsG3QnFmaBy8PIteT09oyyxcYo1mVZ5HwwLhhG5E4kEAYTMnC
+ tV3v1ahXtQcZeLImlEXkm/wbHws8CqA10phPbMqaG0o4lhnUeHMAPOode
+ SC9eRygLRjl4hqxmH3IZX5ASJb5xq95UvipEVb5xgibgOKeQ7T7S0V+mU
+ 3d+pL5tOH9uZZ9VQ0Ls17YGGCgmqYcayQxxhblezaVlIjX0HP4PHRjeYX
+ 48sjGry+kzqNw0WkZvi6Kmxdx05touTk18GXGBRZ5WTOPEz420xuioMdD g==;
+X-CSE-ConnectionGUID: yN/IBoYmT4SVbHvIHf+avg==
+X-CSE-MsgGUID: WBhe5ulsQmeedlDtZY897w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11800"; a="92015090"
+X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="92015090"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2026 04:05:43 -0700
-X-CSE-ConnectionGUID: MPuKskHeTEGlmdwEZG0GXg==
-X-CSE-MsgGUID: UiI/n4a2RrWoyzYYKW/E2w==
+ 29 May 2026 04:05:49 -0700
+X-CSE-ConnectionGUID: JrTGvNmTQ0KddcmFnvXAfw==
+X-CSE-MsgGUID: 5OgSFebeTR2qehx6W8GQ/g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="280942253"
+X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="280942307"
 Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.147])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2026 04:05:40 -0700
+ 29 May 2026 04:05:45 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com, imre.deak@intel.com
-Subject: [PATCH 19/24] drm/{i915,
- xe}: make intel_dmc_suspend() part of display suspend/shutdown calls
-Date: Fri, 29 May 2026 14:04:03 +0300
-Message-ID: <96b661da7cec4ef7f9c0e5e140f59990659281cf.1780051905.git.jani.nikula@intel.com>
+Subject: [PATCH 20/24] drm/{i915, xe}: move intel_opregion_suspend() to
+ intel_display_driver_pm_suspend_late()
+Date: Fri, 29 May 2026 14:04:04 +0300
+Message-ID: <ab953d87a5c4233a713b65aba9e45148bd77dbaa.1780051905.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1780051905.git.jani.nikula@intel.com>
 References: <cover.1780051905.git.jani.nikula@intel.com>
@@ -71,74 +71,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move the intel_dmc_suspend() calls from i915 and xe suspend and shutdown
-hooks all the way down to a shared location in
-__intel_display_driver_pm_suspend().
+Try to unify the suspend paths and behaviour by moving the
+intel_opregion_suspend() calls to
+intel_display_driver_pm_suspend_late().
 
-This is a change in the suspend/shutdown sequences, but hopefully one
-without problems.
+This is a change in the suspend sequences. The idea behind adding this
+to intel_display_driver_pm_suspend_late() is primarily based on not
+having to pass the s2idle parameter to more functions than that.
+
+This also changes behaviour for i915 hibernation, going for PCI_D3cold
+instead of PCI_D1 on hibernate. It's probably the correct thing to do
+anyway, I don't think it should matter all that much, but fingers
+crossed.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
  drivers/gpu/drm/i915/display/intel_display_driver.c | 2 ++
  drivers/gpu/drm/i915/i915_driver.c                  | 4 ----
- drivers/gpu/drm/xe/display/xe_display.c             | 4 ----
- 3 files changed, 2 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/display/xe_display.c             | 3 ---
+ 3 files changed, 2 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index bc632ac8c9b4..6cac36157bea 100644
+index 6cac36157bea..1525ff7a1dc2 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -755,6 +755,8 @@ static int __intel_display_driver_pm_suspend(struct intel_display *display, bool
+@@ -770,6 +770,8 @@ void intel_display_driver_pm_suspend_late(struct intel_display *display, bool s2
+ 	if (!HAS_DISPLAY(display))
+ 		return;
  
- 	intel_encoder_suspend_all(display);
- 
-+	intel_dmc_suspend(display);
++	intel_opregion_suspend(display, s2idle ? PCI_D1 : PCI_D3cold);
 +
- 	return ret;
+ 	intel_display_power_suspend_late(display, s2idle);
  }
  
 diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 209ac512455d..40fc15017486 100644
+index 40fc15017486..7d0f98cbf5d9 100644
 --- a/drivers/gpu/drm/i915/i915_driver.c
 +++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -1045,8 +1045,6 @@ void i915_driver_shutdown(struct drm_i915_private *i915)
+@@ -1096,7 +1096,6 @@ static int i915_drm_suspend(struct drm_device *dev)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(dev);
+ 	struct intel_display *display = dev_priv->display;
+-	pci_power_t opregion_target_state;
  
- 	intel_irq_suspend(i915);
+ 	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
  
--	intel_dmc_suspend(display);
+@@ -1110,9 +1109,6 @@ static int i915_drm_suspend(struct drm_device *dev)
+ 
+ 	i9xx_display_sr_save(display);
+ 
+-	opregion_target_state = suspend_to_idle(dev_priv) ? PCI_D1 : PCI_D3cold;
+-	intel_opregion_suspend(display, opregion_target_state);
 -
- 	i915_gem_suspend(i915);
- 
- 	/*
-@@ -1117,8 +1115,6 @@ static int i915_drm_suspend(struct drm_device *dev)
- 
  	dev_priv->suspend_count++;
  
--	intel_dmc_suspend(display);
--
  	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
- 
- 	i915_gem_drain_freed_objects(dev_priv);
 diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index 561ec1ed6845..9416405667d8 100644
+index 9416405667d8..73891b36341b 100644
 --- a/drivers/gpu/drm/xe/display/xe_display.c
 +++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -198,8 +198,6 @@ void xe_display_shutdown(struct xe_device *xe)
- 	intel_display_driver_shutdown(display);
+@@ -266,14 +266,11 @@ static bool suspend_to_idle(void)
+ void xe_display_pm_suspend(struct xe_device *xe)
+ {
+ 	struct intel_display *display = xe->display;
+-	bool s2idle = suspend_to_idle();
  
- 	intel_opregion_suspend(display, PCI_D3cold);
--
--	intel_dmc_suspend(display);
- }
+ 	if (!xe->info.probe_display)
+ 		return;
  
- void xe_display_shutdown_late(struct xe_device *xe)
-@@ -276,8 +274,6 @@ void xe_display_pm_suspend(struct xe_device *xe)
  	intel_display_driver_pm_suspend(display);
- 
- 	intel_opregion_suspend(display, s2idle ? PCI_D1 : PCI_D3cold);
 -
--	intel_dmc_suspend(display);
+-	intel_opregion_suspend(display, s2idle ? PCI_D1 : PCI_D3cold);
  }
  
  void xe_display_pm_suspend_late(struct xe_device *xe)
