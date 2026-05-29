@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69943CD6E4A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4DDFCD6E43
 	for <intel-xe@archiver.kernel.org>; Fri, 29 May 2026 11:05:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 232E310FD49;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76BEC10FD41;
 	Fri, 29 May 2026 11:05:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y4BoOB7T";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WRk24XBR";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C86D10FD3E;
- Fri, 29 May 2026 11:05:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31F6E10FD40;
+ Fri, 29 May 2026 11:05:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780052710; x=1811588710;
+ t=1780052706; x=1811588706;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=fpxfvlbS92QVXJOkSE0sVaJsKhfK93ZhNRcy+zxPxDo=;
- b=Y4BoOB7TVHrSUEekMr6okHPeeXNVu58dTu8PLYl5TBwXPvjKwHlb7YMY
- zc1MGWYeylaz1Wnj3oOh1inT+Fj8FFbx3GrPNiO0M1fdPbFQPTv3gE9mf
- gk4YedpyqAmdaxUlWT6dALwFYMKNr5Hcdsa0ok2VxWay0EoPawtq7VP1d
- RptNQ2jyarf12jWaM8/Mg4k5GQuT0OzsH/UfK1cd2XuhjLiquqtdTYyR5
- 3ZAT1bkoBMP9jm+bw2h+Y63NeI3sImyo5zh/jKhaFewyv4zpeyzYNRFYF
- UOpEQ4/rW7GMnfSrgplz/KyyHnYeh0iZhC2bwuvNiDSh6rZRbXZlftSH6 w==;
-X-CSE-ConnectionGUID: 5o7tqUlnRCWHj6q9SrIU1g==
-X-CSE-MsgGUID: YDBiLz3ZR/62GqX6FOhaeA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11800"; a="80629263"
-X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="80629263"
+ bh=KZ3lWg2kEcNEczczbyDUyalhx75fC6TClCZeUdPGrb4=;
+ b=WRk24XBRB0PckS+Qu2Am0SEstzeZ0Ocsn7rCe0Cooef2T2tyt88ALnNL
+ KPZrDAct49fGxD4KOU2etI6bi7Re/nYPjMacESl0h+IxzRVvGoow79VBf
+ 9NBJ0l1ZkujnTpdOHm0zzKoM82W4ge7AqFJs6L4sWk3xWvkSG8kvKG8vj
+ 64keJyo1vU3DLQWgdI2W5vpUPGgJ6/otMCe0RMF9ELdHEcWHHeBONcav9
+ rZqETO0++xL/mSY5Toyq56Q2eBJ9e4OyFz+HSwn+i8/HIK/frUd6WHW9+
+ BR2K9t+XZTy8VRUa9VnRRigQxVR5fOKwH6dscbTgVb/fg2Ozg762W68Lm Q==;
+X-CSE-ConnectionGUID: 5VRghLjQQd+iVgxK6b1Zow==
+X-CSE-MsgGUID: Q2F5SQkJQPSYtOeDKMfCjw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11800"; a="80629257"
+X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="80629257"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2026 04:05:10 -0700
-X-CSE-ConnectionGUID: 4DPWxZG+RdW+5XpiL5/PvQ==
-X-CSE-MsgGUID: DZjknaGIS16/Hz1kXBxZ1g==
+ 29 May 2026 04:05:06 -0700
+X-CSE-ConnectionGUID: z2z6ajzURvilYFFxxDH/CA==
+X-CSE-MsgGUID: il6EJ/otSPeBKwVbHzl2GA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="236470885"
+X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="236470877"
 Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.147])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2026 04:05:08 -0700
+ 29 May 2026 04:05:04 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com, imre.deak@intel.com
-Subject: [PATCH 12/24] drm/{i915,
- xe}: add intel_display_driver_pm_{suspend_late, resume_early}()
-Date: Fri, 29 May 2026 14:03:56 +0300
-Message-ID: <f1cb90066b6f28c0bb9f21cb6eefdcb42411cce8.1780051905.git.jani.nikula@intel.com>
+Subject: [PATCH 11/24] drm/{i915,
+ xe}: move more calls inside intel_display_driver_pm_resume()
+Date: Fri, 29 May 2026 14:03:55 +0300
+Message-ID: <440eb1a957a092dcd9676dfa9d679480414d10a3.1780051905.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1780051905.git.jani.nikula@intel.com>
 References: <cover.1780051905.git.jani.nikula@intel.com>
@@ -71,112 +71,128 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add new functions intel_display_driver_pm_suspend_late() and
-intel_display_driver_pm_resume_early(), to be called from the
-corresponding struct dev_pm_ops hooks.
+The intel_display_driver_pm_resume() calls are surrounded by near
+identical display calls. Move the calls inside
+intel_display_driver_pm_resume().
 
-There's a slight functional change for !HAS_DISPLAY() in that the new
-functions return early. Assume this is what we want, and there are no
-cases where display engine is present but all pipes have been fused off.
+There's a slight functional change in that
+intel_display_driver_pm_resume() returns early for
+!HAS_DISPLAY(). Assume this is what we want, and there are no cases
+where display engine is present but all pipes have been fused off.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../gpu/drm/i915/display/intel_display_driver.c  | 16 ++++++++++++++++
- .../gpu/drm/i915/display/intel_display_driver.h  |  2 ++
- drivers/gpu/drm/i915/i915_driver.c               |  6 +++---
- drivers/gpu/drm/xe/display/xe_display.c          |  4 ++--
- 4 files changed, 23 insertions(+), 5 deletions(-)
+ .../drm/i915/display/intel_display_driver.c   | 18 +++++++++++++++
+ drivers/gpu/drm/i915/i915_driver.c            | 19 ----------------
+ drivers/gpu/drm/xe/display/xe_display.c       | 22 +------------------
+ 3 files changed, 19 insertions(+), 40 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index f362532c6834..77fa4497b442 100644
+index 41a2244985fa..f362532c6834 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -714,6 +714,22 @@ int intel_display_driver_pm_suspend(struct intel_display *display)
- 	return ret;
+@@ -43,6 +43,7 @@
+ #include "intel_dp_tunnel.h"
+ #include "intel_dpll.h"
+ #include "intel_dpll_mgr.h"
++#include "intel_encoder.h"
+ #include "intel_fb.h"
+ #include "intel_fbc.h"
+ #include "intel_fbdev.h"
+@@ -761,6 +762,12 @@ void intel_display_driver_pm_resume(struct intel_display *display)
+ 	if (!HAS_DISPLAY(display))
+ 		return;
+ 
++	intel_display_driver_resume_access(display);
++
++	intel_hpd_init(display);
++
++	intel_encoder_unblock_all_hpds(display);
++
+ 	/* MST sideband requires HPD interrupts enabled */
+ 	intel_dp_mst_resume(display);
+ 
+@@ -790,4 +797,15 @@ void intel_display_driver_pm_resume(struct intel_display *display)
+ 			"Restoring old state failed with %i\n", ret);
+ 	if (state)
+ 		drm_atomic_commit_put(state);
++
++	intel_display_driver_enable_user_access(display);
++	drm_kms_helper_poll_enable(display->drm);
++
++	intel_hpd_poll_disable(display);
++
++	intel_opregion_resume(display);
++
++	drm_client_dev_resume(display->drm);
++
++	intel_display_power_enable(display);
  }
- 
-+void intel_display_driver_pm_suspend_late(struct intel_display *display, bool s2idle)
-+{
-+	if (!HAS_DISPLAY(display))
-+		return;
-+
-+	intel_display_power_suspend_late(display, s2idle);
-+}
-+
-+void intel_display_driver_pm_resume_early(struct intel_display *display)
-+{
-+	if (!HAS_DISPLAY(display))
-+		return;
-+
-+	intel_display_power_resume_early(display);
-+}
-+
- int
- __intel_display_driver_resume(struct intel_display *display,
- 			      struct drm_atomic_commit *state,
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.h b/drivers/gpu/drm/i915/display/intel_display_driver.h
-index d8a08ca68d4e..adfde02465ea 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.h
-@@ -26,6 +26,8 @@ void intel_display_driver_remove_nogem(struct intel_display *display);
- void intel_display_driver_unregister(struct intel_display *display);
- 
- int intel_display_driver_pm_suspend(struct intel_display *display);
-+void intel_display_driver_pm_suspend_late(struct intel_display *display, bool s2idle);
-+void intel_display_driver_pm_resume_early(struct intel_display *display);
- void intel_display_driver_pm_resume(struct intel_display *display);
- 
- /* interface for intel_display_reset.c */
 diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 063d4bdec2d9..6fd3e8b155b1 100644
+index f161723f653e..063d4bdec2d9 100644
 --- a/drivers/gpu/drm/i915/i915_driver.c
 +++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -1181,12 +1181,12 @@ static int i915_drm_suspend_late(struct drm_device *dev, bool hibernation)
- 	for_each_gt(gt, dev_priv, i)
- 		intel_uncore_suspend(gt->uncore);
+@@ -1309,27 +1309,8 @@ static int i915_drm_resume(struct drm_device *dev)
  
--	intel_display_power_suspend_late(display, s2idle);
-+	intel_display_driver_pm_suspend_late(display, s2idle);
+ 	intel_clock_gating_init(&dev_priv->drm);
  
- 	ret = vlv_suspend_complete(dev_priv);
- 	if (ret) {
- 		drm_err(&dev_priv->drm, "Suspend complete failed: %d\n", ret);
--		intel_display_power_resume_early(display);
-+		intel_display_driver_pm_resume_early(display);
- 	}
+-	if (intel_display_device_present(display))
+-		intel_display_driver_resume_access(display);
+-
+-	intel_hpd_init(display);
+-
+-	intel_encoder_unblock_all_hpds(display);
+-
+ 	intel_display_driver_pm_resume(display);
  
- 	enable_rpm_wakeref_asserts(rpm);
-@@ -1345,7 +1345,7 @@ static int i915_drm_resume_early(struct drm_device *dev)
- 	for_each_gt(gt, dev_priv, i)
- 		intel_gt_resume_early(gt);
- 
--	intel_display_power_resume_early(display);
-+	intel_display_driver_pm_resume_early(display);
+-	if (intel_display_device_present(display)) {
+-		intel_display_driver_enable_user_access(display);
+-		drm_kms_helper_poll_enable(dev);
+-	}
+-	intel_hpd_poll_disable(display);
+-
+-	intel_opregion_resume(display);
+-
+-	drm_client_dev_resume(dev);
+-
+-	intel_display_power_enable(display);
+-
+ 	intel_gvt_resume(dev_priv);
  
  	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
- 
 diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index f34a9d2ffc16..bbd4f527d5e3 100644
+index 027db7b6ceb5..f34a9d2ffc16 100644
 --- a/drivers/gpu/drm/xe/display/xe_display.c
 +++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -314,7 +314,7 @@ void xe_display_pm_suspend_late(struct xe_device *xe)
- 	if (!xe->info.probe_display)
- 		return;
+@@ -341,27 +341,7 @@ void xe_display_pm_resume(struct xe_device *xe)
  
--	intel_display_power_suspend_late(display, s2idle);
-+	intel_display_driver_pm_suspend_late(display, s2idle);
+ 	intel_display_driver_init_hw(display);
+ 
+-	if (intel_display_device_present(display))
+-		intel_display_driver_resume_access(display);
+-
+-	intel_hpd_init(display);
+-
+-	intel_encoder_unblock_all_hpds(display);
+-
+-	if (intel_display_device_present(display)) {
+-		intel_display_driver_pm_resume(display);
+-		intel_display_driver_enable_user_access(display);
+-		drm_kms_helper_poll_enable(&xe->drm);
+-	}
+-
+-	if (intel_display_device_present(display))
+-		intel_hpd_poll_disable(display);
+-
+-	intel_opregion_resume(display);
+-
+-	drm_client_dev_resume(&xe->drm);
+-
+-	intel_display_power_enable(display);
++	intel_display_driver_pm_resume(display);
  }
  
- void xe_display_pm_resume_early(struct xe_device *xe)
-@@ -324,7 +324,7 @@ void xe_display_pm_resume_early(struct xe_device *xe)
- 	if (!xe->info.probe_display)
- 		return;
- 
--	intel_display_power_resume_early(display);
-+	intel_display_driver_pm_resume_early(display);
- }
- 
- void xe_display_pm_resume(struct xe_device *xe)
+ static void xe_display_enable_d3cold(struct xe_device *xe)
 -- 
 2.47.3
 
