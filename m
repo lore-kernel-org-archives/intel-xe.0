@@ -4,161 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E13CCD5BD2
-	for <intel-xe@archiver.kernel.org>; Fri, 29 May 2026 06:19:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE708CD6E45
+	for <intel-xe@archiver.kernel.org>; Fri, 29 May 2026 06:58:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5590810F94A;
-	Fri, 29 May 2026 06:19:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9533910F9AE;
+	Fri, 29 May 2026 06:58:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f6L2Ve1m";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kKDppIXl";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 251F510F94A
- for <intel-xe@lists.freedesktop.org>; Fri, 29 May 2026 06:19:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCCBB10F9AE
+ for <intel-xe@lists.freedesktop.org>; Fri, 29 May 2026 06:58:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780035585; x=1811571585;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=VGBvBi9BxVH7qJYa67tjZ1veAbob7w8mikcG5IgqSds=;
- b=f6L2Ve1mhCGFKbdXvRn41NaCYF0XGwihXTuDRviHaS2MjTMSezf4TZ4H
- md401F5I4vcHlS0rTd9tQZIvzAlSDdvY6v3l6ygJ/VP1N+jCB6ez0tfOh
- m0XKc1KLr0aMyJqXh2j6HTrowV6/oVOjxlSCtNbDS82JL3Xsj5vCDWvbh
- DK8VXr/8lc2nt0PhsdSHuEVZ+1LK/KPqBAIIFHgpC/Z752h/o4lnuCI0E
- 9oQXz7MVZMAafIkAdBTC3w00KTeDBCFHvpxQHqLSEgFaHjkaqBgS3KmUV
- ACO3ucGekpEai332O9VowJ9LHPINS2IcBGT+5+GpnKukMZvDs3eRE2sDB A==;
-X-CSE-ConnectionGUID: PLLJ44a/QCS4bymcQho+dA==
-X-CSE-MsgGUID: gSetpcw9SRGIVKqrZGFQYg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11800"; a="98300056"
-X-IronPort-AV: E=Sophos;i="6.24,174,1774335600"; d="scan'208";a="98300056"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2026 23:19:44 -0700
-X-CSE-ConnectionGUID: azgqEXphSNuwb8JP4GNXiA==
-X-CSE-MsgGUID: 8Y61fvzoT/ywKbqqhL/kiA==
+ t=1780037887; x=1811573887;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=LMU8zq9Kaz6u7S1c7EDrXhV6yO5pL69RSSWwVVQ6h0c=;
+ b=kKDppIXlnmc1QIedYgs1tChT1S+fHQYrOl43cTJAzUC8MFE90dO+V4yW
+ tHYTctA8CKZaHVMnNKCmH9ssle7hxfC7Bj859Sp1ymrscGAJSPwXoJCJd
+ sHWn6DtNzJ7tjDuU8/iG05uSduoFd+V8pYMzsIwOQv87oPdJXyHI47ZuU
+ 0ougfFFchPU1L+cX0JPA7F9WpZ6TMMBydBdHjV9xc2+e92BEbasZJvyu/
+ aWz5iHc5728h0U1rVZ2Cr5czZK27hAaKdXVq5IyKbIv3AHh3+xLzOsObP
+ 8bmk9LyG1Yq2k0x/arkH3W7P1zf0GUWdk6qG85l2UnWUdTAtc1BQ11Llw w==;
+X-CSE-ConnectionGUID: 6LbBC8jQQ06i+xMBuINNjg==
+X-CSE-MsgGUID: b/ML5dFNSou9s+/AMEP1ZA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11800"; a="80740048"
+X-IronPort-AV: E=Sophos;i="6.24,174,1774335600"; d="scan'208";a="80740048"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2026 23:58:06 -0700
+X-CSE-ConnectionGUID: coBu9lCETgG47UKmSpnPTg==
+X-CSE-MsgGUID: +5ZhL0J3QTSewlrH1U/aYw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,174,1774335600"; d="scan'208";a="241945842"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2026 23:19:45 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 28 May 2026 23:19:43 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Thu, 28 May 2026 23:19:43 -0700
-Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.62) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 28 May 2026 23:19:42 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Y9P/BGSJF9snfjoc0sBTssY3GRN+I/Ebw/e2UvGkf+eg1iIXrW5CbnsB4J1rQPXBOpF8IsEl/dSN7yuK0jevGVoslyUmw+CXXoED6S5OwQUdviYhDyUGvWm9ZI8OTe+G+kOJkA159Nq1KOolZybsuF/jAMtA3Tiwj6sT4EUGPFI9XAx6Iphbl6qdyKlKw2j7NX0n6/OqT+nRkEpp4GTewP8NZr8W3cHAX8LLAkNmXitGTl6jKQSb024IGI/GAciJA2NEHdHrfDJ6oQh2p+lF334gxZ3kLqWMuGkZUSIyZyWAtK3B2sY1nv72zRC1PTP6Zbhmr9vhl4c9Yi/TwtTfrA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=R1ePjr+SE27zT/5WseZyI/6N5G6OAeHKTWVLQAOhMlE=;
- b=hONHLJJhyoNeHUVpbYok1XE+NhD1QB0MWzyX1RQEMtkG3LZ0laYrYuAH+klUKFzNuTFXgYOje05RU0T2yu1oGb9RJNXxjKCoTESLbJWnznhJfxlOk8O4ipUEenzLAb35T3bVuCbnDsew9JK4ltuUv1+rTEzbmosCgl5fUzmBEMUvtuGvXV0qZLjN0ajZI2BF/3qIjO3N01HBuitFaXYRxvSeId1ocBb7m9TRc3dTPEiyaEngKhGwOdTbU42pEOEyMudISAdsA/C7DU5cLiYiNkKJp2l4p1buvRVbRbW5jBqdsxwJWiHgx2LTn0BuI9EhYwGnNa/rWVPy5xytWP7rCg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6209.namprd11.prod.outlook.com (2603:10b6:930:27::16)
- by BL1PR11MB5319.namprd11.prod.outlook.com (2603:10b6:208:31b::9)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.15; Fri, 29 May
- 2026 06:19:39 +0000
-Received: from CY5PR11MB6209.namprd11.prod.outlook.com
- ([fe80::a805:a5ac:cf5c:8671]) by CY5PR11MB6209.namprd11.prod.outlook.com
- ([fe80::a805:a5ac:cf5c:8671%5]) with mapi id 15.21.0071.011; Fri, 29 May 2026
- 06:19:38 +0000
-Message-ID: <dcb937ee-41e8-45f1-ae03-d18a750f3190@intel.com>
-Date: Fri, 29 May 2026 11:49:29 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 02/15] drm/xe/xe_sysctrl: Make sysctrl flood limit
- reusable
-To: Riana Tauro <riana.tauro@intel.com>, <intel-xe@lists.freedesktop.org>
-CC: <anshuman.gupta@intel.com>, <rodrigo.vivi@intel.com>,
- <aravind.iddamsetty@linux.intel.com>, <badal.nilawar@intel.com>,
- <raag.jadav@intel.com>, <ravi.kishore.koppuravuri@intel.com>,
- <soham.purkait@intel.com>
-References: <20260525100619.3155663-17-riana.tauro@intel.com>
- <20260525100619.3155663-19-riana.tauro@intel.com>
-Content-Language: en-US
-From: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>
-In-Reply-To: <20260525100619.3155663-19-riana.tauro@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5PR01CA0205.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1b0::14) To CY5PR11MB6209.namprd11.prod.outlook.com
- (2603:10b6:930:27::16)
+X-IronPort-AV: E=Sophos;i="6.24,174,1774335600"; d="scan'208";a="238584809"
+Received: from amilburn-desk.amilburn-desk (HELO [10.245.244.139])
+ ([10.245.244.139])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2026 23:58:05 -0700
+Message-ID: <b3342b9d-09d4-4d50-9ae8-ecd93c255c5a@intel.com>
+Date: Fri, 29 May 2026 07:58:03 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6209:EE_|BL1PR11MB5319:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0f6d9967-1e75-4cec-26c5-08debd4a4281
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|18002099003|3023799007|4143699003|22082099003|56012099006|11063799006;
-X-Microsoft-Antispam-Message-Info: is/1kjnPYcCquIuSnE5rN1xoAzbxCyghAr4sjPqYt/7RRyzJ0CgTrvbUdPtqGV26b1NLA5Ol7/l1TwylUWDzLVjqw9BstX7CXsWwuVA2uBBKhAKZwJ+y5MrWq3yCC9BFcHHYuB9Ts8UvKRVrJW8INfCesii9pRz6wB8o53wJwn4yRXN+/qT7zJFdJsmaXM1iRfo5NRFzxayGDE7kkK0rBA0Kx6zaBYv6/K8gXY9TbZXs7Yf3gNXfLaiVVpf3TYBgk02FoKUeBUAdv1sQge09izUuAdxIfQAVag/vtiun7/0VIBGO2yj5S++F0RXj64Mg71ntKdJ7PS35YK8mzXgDIuu8wL/Sk6is3YVQwPprRgVH/sutQC4kib0zMZCAK6gox93AW5IC8qOM8otz85tYu2HRW8JV0dh1L1cvOP2J4tU5MZljO6rvEFz4b6fT/lrE7OX/6Z5OdmBtDqK63gJeJGmTFdo3vbOktbUiFvdco7SVqpUxarJbWZaCbWvsmRDNFXAGp7tloccADxUESvuryWrsSBG0y+6ZzFzIkxec1A3gKlPVj8LQIaBdmR7c0TSqUCxx2UR8zXYVcLJYHPx+3PKrqeGetHnPbyu2vBKNT4VljRYQNGS8c1y8Zsxt9GPzvECAy36X90rm6S6dTqhS6o0ZMuE5fZ1OGw3B01pE5h/0tQ3qmeUrxj1KH5D8qFsvegAwzMLfD6wLVE2qqTlsOQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6209.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(18002099003)(3023799007)(4143699003)(22082099003)(56012099006)(11063799006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZmhkVHdjSVh3U0d4QmJrYnJjeEpUZDd4WUwxNmNVZTc1b0YwQzdpL2dNTTcz?=
- =?utf-8?B?K3B0T0lSU1UwcW82Yi9KbHplZXFrUlhxbm5MdEdrQlYway9mZmp4MlBoYm5I?=
- =?utf-8?B?YlB2Z3BZb0tRMHhkUGpXSUVxZW9qOHBCdlgrdEJRTHVZVkE5TGRWSnI2eU55?=
- =?utf-8?B?UWFUNFhuZ0dZc1NRdzJsN2YyMUUrS1pnVFQ1Mjd5TlFMdjExN294WEdBMzdt?=
- =?utf-8?B?bUc2Q3JhanUyaVcwWElOWURHZk5PRy93VU90V2k4bWVXS0pWdjNJRlpXYVhp?=
- =?utf-8?B?SUU4U0hxQmJnWTB4azFwZkQ0aGhIekFlY0xvYUFXUXJRYkxCNjhNSXhsVnZJ?=
- =?utf-8?B?ZGtlVTlGU215VEErcFgvUmQrbTFGaSsrQTZrZ05PTXliU3M4eW9RaDlrbzB3?=
- =?utf-8?B?NXVSQmdOY1Juc2kvN0pvTzhoS08yRUdVWVVMRzlzZllpNlhkVFU3OUJyaEZL?=
- =?utf-8?B?bFRFbXlGTnQ5TUhYSFBvNzJXVWtpUFZvc04zOUhRK0RQcWdPYVpVSTRPTDA4?=
- =?utf-8?B?Qm5MTFg1NlJhOUdrM1NXa1docWRqUXhDa05LR0dBaGYwQ2FhL0t2aTJJdlRq?=
- =?utf-8?B?U2FiZXhFTlU0OE1OTDIzRTEycnZkVVhEOVkxUzZpQ3N5dXExcUdPcWRQMzZn?=
- =?utf-8?B?dk9vSXFsMy9iUlMzZjlLWTFJU01wMDEzNS9rMXF3eUY5cTlWRnowOER5SHgx?=
- =?utf-8?B?TVQ3T3l4NmFNWEtUQ0tIZGZxcjBZSTdocFlyZWhXMldnb1JTUGxiTG1IZWRF?=
- =?utf-8?B?WmFKSFhYUitWQi9BWEZ4akRqOG5Fa2IwbEZrRGhyTmdnSWVJbjNVWWt4cEVJ?=
- =?utf-8?B?bXIrdDV3VU5LZFpaV000QzZTRDkyYyswemFiN1I3QTZKdkE1MkY3VXJ6N0w2?=
- =?utf-8?B?YXJwSk82dEZDSVpXSHN4bm53L1hlOStJT2d1VVNUL3llanhHYVJlR1VLVWhS?=
- =?utf-8?B?L29kR01yQ3NSOXJvTURSVVp1NFZPM1dSbzNEVHN1QmdWRnBDYWhOZjkxdm1l?=
- =?utf-8?B?NlVmSFMrRUhVK0JTUElvMHVFMG9KQmdEYUdCSEdjbmJQeVB5Ulc1bWVQSk1r?=
- =?utf-8?B?Wlg3Wi9tSk9oejVRL2VJT3NtYmE2cVNnaGF2SU4xaHVwNzhMNmc2RVBFdUcy?=
- =?utf-8?B?N2lMTFRQdjZxNWNnQTJzRzcwUFhIbUwrdWladjZQVlBqRXBLa09ibnBxRTh2?=
- =?utf-8?B?Sm40M1l3azRvbkdPdDVyOGVydnordC84MVVmWEZUc2krQnhXenJxTEx1VWdp?=
- =?utf-8?B?bUFtcWlCRGhueEE0UFlpb3U1ZWx2amljVlBqenBKRHgrb1l6bnBySkNMdTl1?=
- =?utf-8?B?SWNZMWpXRnk0REU3eCtjNlFXT0x2bUgxQTAzdnVrT1BESmpCcVArcmJvREo2?=
- =?utf-8?B?eC9LNjJLbndXQW1YaEd3M1QwWnMrU3BqZTRVTFpQMlBnK1JwN0xTK3Rlc1BN?=
- =?utf-8?B?U0RYeG5oSXd4T28yTnl5VTQ3RlF3QnJUVitrUE5xVGxDemJUN3F5UVN0WGF0?=
- =?utf-8?B?VzB3SG5yeXZ5WDRxRk5WcTh1Vm4vdkhZS1NaeWg1ZnppRVVwaW5pTXMrbmE4?=
- =?utf-8?B?dVIyZVdZRGNmNERQRTNrV0RUNDR6M2ppWDNuSTVZWEFFZnNZQXM3OXVKVUlr?=
- =?utf-8?B?UDJaZGlmRWhQQUtlbDlFNU5lMHVhODFrdXYwbHp4MjFIakx0VlB5aGRMbmo4?=
- =?utf-8?B?bVpqTlRpQm1Ba3BoejFEZE9NNDh2TjMvUncyOURKQVNhK2NwUWp0SDR1a2NV?=
- =?utf-8?B?RHhmRXpkN0xHd0t0cFFucDdVa0FYMllpN0QzRnhMaGkwQ1NpcjdGT0xEeCs5?=
- =?utf-8?B?ZEFmNWx5bG9NNHA0NFN2SlA0a0swTUE2Y3kyeEsyd0E0V1VHUkE5K2RqK2x3?=
- =?utf-8?B?Nmt1NkhJNzZHL1htNFFvRmMzbXNhTytDektMamgrZCtYNEtLMCt3Z1dZRWdN?=
- =?utf-8?B?OFVRdjA5TTNuM2FLNldWTEZNd1N3THpNakhCTHhnbFV6R2RKa2JOM3ArRit6?=
- =?utf-8?B?ZldFbTREdGwvWko0dUs1RkhhSzBKRU5sekp6R2RGb0o4YVhrb0tZNVNSN2l2?=
- =?utf-8?B?bEk3RkV2MTlkTUQzcHcvaFZDb2FFUDhIUlg2S1I1djlzRThreHBFODVrS0Yr?=
- =?utf-8?B?a3l4MDhEd3UzSkU3ZnlxVzZmRWo1d1hZYndJdUhGTzJ2U1FuOVdrZHVSM05X?=
- =?utf-8?B?OVVoYjVEYmtnSHFXako0eVVrb1pvOWJ0TktBb05nMjlEVnFCMkMydzdQYkFQ?=
- =?utf-8?B?bmlFN1EzMUpqTnZNQXBNV3hTZVMrM3IzSXlRQU03ZC9aUWNCd1BxZGlSSkdu?=
- =?utf-8?B?UVNiUmgvdUVkUXhHU2NLRDZQdUpKaStXZnFMMVhNT3AwV3MwWGtxc0hSYjBi?=
- =?utf-8?Q?UOrfWkYMFn5GUchM=3D?=
-X-Exchange-RoutingPolicyChecked: VNPBFrVYZnBX/UXOQFBmxJ00fCBpoOrUg4VrIO04nMKJ/nAQ5qh/O3TLK9tu3kAuQlKHwN7V3FGuvggawaCW/b94oEmqvrqUUIdQHlZVyc3oABl6G+AV0vqBMzAldqgAq8/cweeCXaluO6fCYZ6PHJ9cEiO489+LI4713qcuXY0XkPha9Gmgf2aDfvwFnlbh4r0ts57vuhnKNoLDC8+j69sSatRZn8vJhdR8U6AMzcHD5KHkj7hUJk38rgSs8O77K8z+tKLBiI1fXD3W9G/i5LNOctRXCquT0VSme1/tHS9M8Gqi93VTRtnJJYfevw6rej4ZTg+y73sVzKyZZ4NOhw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0f6d9967-1e75-4cec-26c5-08debd4a4281
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6209.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 May 2026 06:19:38.0261 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gS+qcEq7OLi+Rpw2mjTYpkNgY5W0i+s1pPfHIE2hQ4mluq0Dv27MKAANY6MtOCPj2fksQAfQRR8ncLV7a4UmVOJ0X1Ed7nunB9AIPnn0DMU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5319
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe/mmio: Assert MMIO is available
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+References: <20260527175437.22585-1-michal.wajdeczko@intel.com>
+ <754ed1a5-ed12-4e0e-bafc-5775106d8e14@intel.com>
+ <d7fd718c-413a-4a7e-83d4-cfb0401194fc@intel.com>
+ <d77e39ad-2463-4947-a0d7-d366f6d45cfc@intel.com>
+ <553bcab7-0fb4-4797-ba13-c872ab2b5c18@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <553bcab7-0fb4-4797-ba13-c872ab2b5c18@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -173,69 +76,154 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On 28/05/2026 18:34, Michal Wajdeczko wrote:
+> 
+> 
+> On 5/28/2026 6:47 PM, Matthew Auld wrote:
+>> On 28/05/2026 17:16, Michal Wajdeczko wrote:
+>>>
+>>>
+>>> On 5/28/2026 11:13 AM, Matthew Auld wrote:
+>>>> On 27/05/2026 18:54, Michal Wajdeczko wrote:
+>>>>> We shouldn't access device registers after the device was unplugged.
+>>>>> Instead of relying on the NPD splat due to zeroed xe.mmio.regs, which
+>>>>> might be unreliable anyway as not all xe_mmio are using that directly,
+>>>>> add an explicit assert during xe_mmio read/write operations to catch
+>>>>> invalid accesses to MMIO after device was unplugged.
+>>>>>
+>>>>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>>>>> ---
+>>>>> Cc: Matthew Auld <matthew.auld@intel.com>
+>>>>> ---
+>>>>>     drivers/gpu/drm/xe/xe_mmio.c | 11 +++++++++++
+>>>>>     1 file changed, 11 insertions(+)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+>>>>> index 78adb303b663..b77a717f0556 100644
+>>>>> --- a/drivers/gpu/drm/xe/xe_mmio.c
+>>>>> +++ b/drivers/gpu/drm/xe/xe_mmio.c
+>>>>> @@ -10,6 +10,7 @@
+>>>>>     #include <linux/minmax.h>
+>>>>>     #include <linux/pci.h>
+>>>>>     +#include <drm/drm_drv.h>
+>>>>>     #include <drm/drm_managed.h>
+>>>>>     #include <drm/drm_print.h>
+>>>>>     @@ -128,6 +129,11 @@ void xe_mmio_init(struct xe_mmio *mmio, struct xe_tile *tile, void __iomem *ptr,
+>>>>>         mmio->tile = tile;
+>>>>>     }
+>>>>>     +static void mmio_assert_available(struct xe_mmio *mmio)
+>>>>> +{
+>>>>> +    xe_tile_assert(mmio->tile, !drm_dev_is_unplugged(&mmio->tile->xe->drm));
+>>>>
+>>>> Yeah, I was hopeful this would work, but as per CI the unplug=true needs to happen before the devm actions run,
+>>>
+>>> yup, we mark drm.unplugged = true in our pci.remove hook:
+>>>
+>>> void xe_device_remove(struct xe_device *xe)
+>>> {
+>>> ...    drm_dev_unplug(&xe->drm);
+>>>
+>>> while devm actions are called as part of the kobj.release hook:
+>>>
+>>> static void device_release(struct kobject *kobj)
+>>> {
+>>> ...    devres_release_all(dev);
+>>>
+>>>
+>>>> so we get a pile of false positives with this. I think the best we can do is NULL, or perhaps mmio.unplugged and check that here?
+>>>
+>>> there is pci_dev_is_disconnected() but that one will likely cover real unplug scenarios, for which we might be completely not prepared ;(
+>>
+>> Yeah, I assume pci_dev_is_disconnected() is if the user literally ripped out the physical card or the hw died, without doing a software unbind first to let the driver gracefully shut down the hw state?
+>>
+>>>
+>>> but now I'm wondering if maybe those 'false positives' are actually a good one, as it might be risky to access the HW during final SW unwind, like here:
+>>>
+>>> <4> [45.999577]  xe_mmio_read32+0x38/0x290 [xe]
+>>> <4> [46.000710]  ggtt_node_remove+0xbb/0xf0 [xe]
+>>> <4> [46.001167]  xe_ggtt_node_remove+0x40/0xa0 [xe]
+>>> <4> [46.001618]  xe_ggtt_remove_bo+0x87/0x250 [xe]
+>>> <4> [46.002076]  xe_ttm_bo_destroy+0xa2/0x2d0 [xe]
+>>> <4> [46.002917]  ttm_bo_release+0x70/0x310 [ttm]
+>>> <4> [46.004082]  ttm_bo_fini+0x3c/0x70 [ttm]
+>>> <4> [46.004424]  xe_gem_object_free+0x1a/0x30 [xe]
+>>> <4> [46.004857]  drm_gem_object_free+0x1d/0x40
+>>> <4> [46.005231]  xe_bo_put+0x12a/0x190 [xe]
+>>> <4> [46.005618]  __xe_bo_unpin_map_no_vm+0x49/0x70 [xe]
+>>> <4> [46.006097]  devm_action_release+0x16/0x30
+>>> <4> [46.006449]  release_nodes+0x3d/0x150
+>>>
+>>> and the fact that mmio.regs is still non-NULL and points to the connected HW, is just our luck?
+>>>
+>>> maybe we should kill the HW immediately on pci.remove, if it is still present, and just unwind SW state using devm/drmm actions?
+>>
+>> devm is for unwinding hw related state,
+> 
+> hmm, are we 100% sure?
 
-On 25-05-2026 03:36 pm, Riana Tauro wrote:
-> The sysctrl command flood limit was defined in an event specific header,
-> restricting its usage to event handling. Move it to the shared header
-> with a generic name so it can be re-used across all files
-nit: Please wrap it correctly.
-> using system controller commands.
->
-> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-> ---
-> v2: remove duplicate (Raag, Mallesh)
-> ---
->   drivers/gpu/drm/xe/xe_sysctrl_event.c         | 2 +-
->   drivers/gpu/drm/xe/xe_sysctrl_event_types.h   | 3 ---
->   drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h | 3 +++
->   3 files changed, 4 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_event.c b/drivers/gpu/drm/xe/xe_sysctrl_event.c
-> index b4d17329af6c..faf6ba89ce98 100644
-> --- a/drivers/gpu/drm/xe/xe_sysctrl_event.c
-> +++ b/drivers/gpu/drm/xe/xe_sysctrl_event.c
-> @@ -16,7 +16,7 @@ static void get_pending_event(struct xe_sysctrl *sc, struct xe_sysctrl_mailbox_c
->   {
->   	struct xe_sysctrl_event_response *response = command->data_out;
->   	struct xe_device *xe = sc_to_xe(sc);
-> -	u32 count = XE_SYSCTRL_EVENT_FLOOD;
-> +	u32 count = XE_SYSCTRL_FLOOD;
->   	size_t len;
->   	int ret;
->   
-> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_event_types.h b/drivers/gpu/drm/xe/xe_sysctrl_event_types.h
-> index c16c66b9fa7f..348768ca454a 100644
-> --- a/drivers/gpu/drm/xe/xe_sysctrl_event_types.h
-> +++ b/drivers/gpu/drm/xe/xe_sysctrl_event_types.h
-> @@ -10,9 +10,6 @@
->   
->   #define XE_SYSCTRL_EVENT_DATA_LEN		59
->   
-> -/* Modify as needed */
-> -#define XE_SYSCTRL_EVENT_FLOOD			16
-> -
->   /**
->    * enum xe_sysctrl_event - Events reported by System Controller
->    *
-> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-> index 84d7c647e743..0fa786a9e8c8 100644
-> --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-> +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-> @@ -48,6 +48,9 @@ struct xe_sysctrl_mailbox_command {
->   	size_t data_out_len;
->   };
->   
-> +/* Modify as needed */
-> +#define XE_SYSCTRL_FLOOD			16
+Yeah, pretty sure. See also when we originally fixed the drmm vs devm 
+mixup in xe, and the comment here from Sima:
 
-nit: Name doesn't convey what is being limited (events, iteration  or 
-cmd), so please add the _LIMIT suffix would read more naturally.
+https://lore.kernel.org/all/ZjDyVfJ1QFKQlG_4@phenom.ffwll.local/
 
-with that
+> 
+> from [1] it looks that the devres rationale was about "leaking resources" problem and the example still shows that HW cleanup is part of the .remove hook:
+> 
+> my_remove_one()
+> {
+>        unregister_from_upper_layer(d);
+>        shutdown_my_hardware();
+> }
+> 
+> so maybe indeed we are little abusing the device model by touching the HW beyond the .remove?
+> 
+> [1] https://docs.kernel.org/driver-api/driver-model/devres.html
+> 
+>> so we for sure need mmio etc. On normal unplug we need to gracefully shut everything down from hw pov with devm (or do it manually in .remove). Once we get as far as the mmio_fini() or whatever it is called, we should be right towards the tail end of the devm unwind actions, so nothing should be messing with mmio it at that point.
+>>
+>> For sw state, that is the job of drmm, at which point I don't think there should be any hw access.
+>>
+>> So devm is more tied to the physical pci device, and drmm is only really tied to the drm_device. They have different life cycles with unbind triggering devm and unwinding the hw state, and drmm only being triggered when there are no more driver users, like every open driver fd has been closed. We still need ioctls etc to survive but return an error, to give the UMD chance to recover, like with potentially opening a new card or so.
+>>
+>>>
+>>>>
+>>>>> +}
+>>>>> +
+>>>>>     static void mmio_flush_pending_writes(struct xe_mmio *mmio)
+>>>>>     {
+>>>>>     #define DUMMY_REG_OFFSET    0x130030
+>>>>> @@ -146,6 +152,7 @@ u8 xe_mmio_read8(struct xe_mmio *mmio, struct xe_reg reg)
+>>>>>         u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
+>>>>>         u8 val;
+>>>>>     +    mmio_assert_available(mmio);
+>>>>>         mmio_flush_pending_writes(mmio);
+>>>>>           val = readb(mmio->regs + addr);
+>>>>> @@ -158,6 +165,7 @@ void xe_mmio_write8(struct xe_mmio *mmio, struct xe_reg reg, u8 val)
+>>>>>     {
+>>>>>         u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
+>>>>>     +    mmio_assert_available(mmio);
+>>>>>         trace_xe_reg_rw(mmio, true, addr, val, sizeof(val));
+>>>>>           writeb(val, mmio->regs + addr);
+>>>>> @@ -168,6 +176,7 @@ u16 xe_mmio_read16(struct xe_mmio *mmio, struct xe_reg reg)
+>>>>>         u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
+>>>>>         u16 val;
+>>>>>     +    mmio_assert_available(mmio);
+>>>>>         mmio_flush_pending_writes(mmio);
+>>>>>           val = readw(mmio->regs + addr);
+>>>>> @@ -180,6 +189,7 @@ void xe_mmio_write32(struct xe_mmio *mmio, struct xe_reg reg, u32 val)
+>>>>>     {
+>>>>>         u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
+>>>>>     +    mmio_assert_available(mmio);
+>>>>>         trace_xe_reg_rw(mmio, true, addr, val, sizeof(val));
+>>>>>           if (!reg.vf && IS_SRIOV_VF(mmio->tile->xe))
+>>>>> @@ -194,6 +204,7 @@ u32 xe_mmio_read32(struct xe_mmio *mmio, struct xe_reg reg)
+>>>>>         u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
+>>>>>         u32 val;
+>>>>>     +    mmio_assert_available(mmio);
+>>>>>         mmio_flush_pending_writes(mmio);
+>>>>>           if (!reg.vf && IS_SRIOV_VF(mmio->tile->xe))
+>>>>
+>>>
+>>
+> 
 
-Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-
-> +
->   #define XE_SYSCTRL_MB_FRAME_SIZE	16
->   #define XE_SYSCTRL_MB_MAX_FRAMES	64
->   #define XE_SYSCTRL_MB_MAX_MESSAGE_SIZE	\
