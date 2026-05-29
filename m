@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA39CCD4F54
-	for <intel-xe@archiver.kernel.org>; Fri, 29 May 2026 20:45:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AB27CD6E49
+	for <intel-xe@archiver.kernel.org>; Fri, 29 May 2026 20:45:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DD9D112503;
-	Fri, 29 May 2026 20:45:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAFAD112503;
+	Fri, 29 May 2026 20:45:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eNwZrg5e";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nTySKOWp";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22B57112503
- for <intel-xe@lists.freedesktop.org>; Fri, 29 May 2026 20:45:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 601E3112503
+ for <intel-xe@lists.freedesktop.org>; Fri, 29 May 2026 20:45:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780087513; x=1811623513;
+ t=1780087540; x=1811623540;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=PvcAcn+dKLRnsm+tCjuAD9fYrkqSFBwYR/9weDA/hJY=;
- b=eNwZrg5eUvBvwDtQO4uBNph3s//oFmixna93uxyfHH+48ZND2K/B7BVL
- 2NdZLv+8XdhNykTSJSKsQH35vGd4p9aJig6OsbzBOVljnbD2c+joY86W6
- /V4uU11HHcKFOKdf+CS7D4DdW/7ppUdPp5IDmbADl5HQ86qWEOVSZ1obW
- WxtyNSPvw4w3cOTcScW//blPCE1R+PBG0JDu+mrj08l77BwGAr8dIoEJ+
- GjrbBDopyY3I0JR36IU13U571toOwV9g02B0eHSNoy2HwinRLdn6iHHRA
- XrEBJjN8Q4pSaI8j7OiJFSU3F/TMzdKnkLPLU1uJzpVTbny0a3WOdcBpI Q==;
-X-CSE-ConnectionGUID: 3mUsIgtOQGGBtCNyipab0Q==
-X-CSE-MsgGUID: IJUsuLr1SgC5u/HD/Uwabw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11801"; a="106396733"
-X-IronPort-AV: E=Sophos;i="6.24,176,1774335600"; d="scan'208";a="106396733"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2026 13:45:12 -0700
-X-CSE-ConnectionGUID: T/zNRZZMQCikqnOZGzjgvw==
-X-CSE-MsgGUID: BrH76RHyTuGk1/7DWHSFnA==
+ bh=pGgHTYyMsLDxQCOln/0vsxuRtEm1ETIn1xKrLSttrBI=;
+ b=nTySKOWpL8Cj3f/yf9lCeXTa6h5AbtpGXS5raFc/yI61qTetMirQhH1H
+ XplD9m04U2dygRa5EEnlqyFtCKf03YQ/RsElDkidq+xch+mBonAbjBP/P
+ ojjgwpSK8bGuYiP8ycGfLeTeCYBhGhucIpdisSdIepHcZwWl45i76jbab
+ UzlTRsTnOdhLp6nUtXYPmsQw7PjeHrLgN7LJKyEwJ/CY4oXboUpF4NV1y
+ H0QyVwcd6A2nI+z2Gk+hxrq65yeZvm3yhOWV8Vjf/pE4flqejCHgToLN5
+ vo1dzthmM7ot4y8ijDpyXX3S65XOOi4tj8e3n1CqfL94e0DBDGnl8iMiU g==;
+X-CSE-ConnectionGUID: nciadbznTcqzXaMZrEntiw==
+X-CSE-MsgGUID: TS/5Q6N+QlSapZtNYLALMA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11801"; a="81060013"
+X-IronPort-AV: E=Sophos;i="6.24,176,1774335600"; d="scan'208";a="81060013"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2026 13:45:40 -0700
+X-CSE-ConnectionGUID: i4am2qi9S42xliQF558Tog==
+X-CSE-MsgGUID: C9J0vT2iS5yFeQD204jMjQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,176,1774335600"; d="scan'208";a="238766453"
+X-IronPort-AV: E=Sophos;i="6.24,176,1774335600"; d="scan'208";a="242816840"
 Received: from blai1-mobl2.amr.corp.intel.com (HELO adixit-MOBL3.intel.com)
  ([10.125.68.160])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2026 13:45:13 -0700
-Date: Fri, 29 May 2026 13:45:12 -0700
-Message-ID: <877bomlzc7.wl-ashutosh.dixit@intel.com>
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2026 13:45:40 -0700
+Date: Fri, 29 May 2026 13:45:39 -0700
+Message-ID: <875x46lzbg.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 Cc: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 3/9] drm/xe/rtp: Keep track of non-OA nonpriv slots
-In-Reply-To: <ahnbSrt2ee6b/m4z@soc-5CG1426VCC.clients.intel.com>
-References: <20260518234716.1540123-1-ashutosh.dixit@intel.com>	<20260518234716.1540123-4-ashutosh.dixit@intel.com>	<ahnbSrt2ee6b/m4z@soc-5CG1426VCC.clients.intel.com>
+Subject: Re: [PATCH 5/9] drm/xe/rtp: Save OA nonpriv registers to register
+ save/restore lists
+In-Reply-To: <ahdphq5r+Z/o47Pc@soc-5CG1426VCC.clients.intel.com>
+References: <20260518234716.1540123-1-ashutosh.dixit@intel.com>	<20260518234716.1540123-6-ashutosh.dixit@intel.com>	<ahdphq5r+Z/o47Pc@soc-5CG1426VCC.clients.intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/30.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -69,85 +70,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 29 May 2026 11:30:34 -0700, Umesh Nerlige Ramappa wrote:
+On Wed, 27 May 2026 15:00:38 -0700, Umesh Nerlige Ramappa wrote:
 >
-> On Mon, May 18, 2026 at 04:47:10PM -0700, Ashutosh Dixit wrote:
-> > In order to dynamically whitelist/dewhitelist OA registers on OA stream
-> > open/close, we need to keep track of nonpriv slots occupied by non-OA
-> > register whitelists.
+> On Mon, May 18, 2026 at 04:47:12PM -0700, Ashutosh Dixit wrote:
+> > Now we can save OA whitelisting nonpriv registers to register save/restore
+> > lists. OA nonpriv registers are saved to both hwe->oa_sr as well as
+> > hwe->reg_sr, for reasons explained in coments.
+> >
+> > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> > ---
+> > drivers/gpu/drm/xe/xe_reg_whitelist.c | 11 +++++++++++
+> > 1 file changed, 11 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+> > index 6d42c00c1d75b..18053582a6afa 100644
+> > --- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
+> > +++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+> > @@ -216,6 +216,17 @@ void xe_reg_whitelist_process_engine(struct xe_hw_engine *hwe)
+> >
+> >	xe_rtp_process_to_sr(&ctx, oa_whitelist, ARRAY_SIZE(oa_whitelist),
+> >			     &hwe->oa_whitelist, false);
+> > +	/*
+> > +	 * Save oa nonpriv registers to hwe->oa_sr, from which oa registers are whitelisted
+> > +	 * or de-whitelisted, by toggling the 'deny' bit on oa stream open/close
+> > +	 */
+> > +	whitelist_apply_to_hwe(hwe, &hwe->oa_whitelist, &hwe->oa_sr, nonpriv_slots);
+> > +
+> > +	/*
+> > +	 * Also save oa nonpriv registers to hwe->reg_sr, to ensure oa registers are not
+> > +	 * whitelisted by default after probe/reset/restart
+> > +	 */
+> > +	whitelist_apply_to_hwe(hwe, &hwe->oa_whitelist, &hwe->reg_sr, nonpriv_slots);
 >
-> Can we maintain the slot index within hwe, so that the caller does not need
-> to keep track of it? I am assuming this will only be used in the probe
-> path. For all other paths the *_sr registers are used directly which
-> already have the registre<->slot association stored within them.
+> I would prefer that we fail if the registers overshoot the max slots for
+> whitelisiting, but not sure why the overshoot is just a gt error log.
+
+Yes, this is pre-existing, but I believe it is to not fail the probe if we
+overshoot. The last time I ran into a situation like this, I was told that
+it is better to continue with reduced functionality, rather than no
+functionality at all.
+
+Also, xe_gt_err() will signal a failure in our CI, so the error will not be
+missed.
+
 >
-> i.e.
->
-> hwe->slot;
+> Also, max NONPRIV slots should be bumped up to 20 for Xe.
 
-Hmm, when I first wrote the code, I had this in hwe: hwe->nonpriv_slots.
-But later realized it is only needed in xe_reg_whitelist_process_engine(),
-so moved it to the local variable nonpriv_slots there.
+There is this:
 
-Also, nonpriv_slots is actually number of slots occupied by non-OA
-registers. So if it part of hwe, the question becomes more complicated:
-what do we store there, number of slots excluding OA or including OA? Since
-we only need number of slots excluding OA.
+https://patchwork.freedesktop.org/patch/717191/?series=159772&rev=5
 
-Therefore, to avoid these complications, I decided that the best way was a
-temporary local variable.
+Though I believe the patch is incorrect, I will respond separately to
+this. A couple of other patches from the above series will also be nice to
+have.
 
-What do you think we'd gain by maintaining it as part of hwe? If things
-change later, we could add it, but for now the local variable seems
-sufficient?
+As I mentioned, I want to focus this series only on removing unconditional
+whitelisting for OA registers. Once this is merged, I am planning to have a
+follow-up series with changes such as this. E.g. the 'head' value in
+WHITELIST_OA_MERT_MMIO_TRG is incorrect (not a multiple of 16, as is
+required for RANGE_4), so that needs to be fixed too.
 
 Thanks.
 --
 Ashutosh
 
-> >
-> > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-> > ---
-> > drivers/gpu/drm/xe/xe_reg_whitelist.c | 8 ++++++--
-> > 1 file changed, 6 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-> > index 6cc81f53fc601..1e788e2ee4014 100644
-> > --- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
-> > +++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-> > @@ -159,7 +159,7 @@ static const struct xe_rtp_entry_sr oa_whitelist[] = {
-> >	},
-> > };
-> >
-> > -static void whitelist_apply_to_hwe(struct xe_hw_engine *hwe)
-> > +static int whitelist_apply_to_hwe(struct xe_hw_engine *hwe)
-> > {
-> >	struct xe_reg_sr *sr = &hwe->reg_whitelist;
-> >	struct xe_reg_sr_entry *entry;
-> > @@ -191,6 +191,8 @@ static void whitelist_apply_to_hwe(struct xe_hw_engine *hwe)
-> >
-> >		slot++;
-> >	}
-> > +
-> > +	return slot;
+
+>
+> Umesh
 > > }
 > >
 > > /**
-> > @@ -203,11 +205,13 @@ static void whitelist_apply_to_hwe(struct xe_hw_engine *hwe)
-> >  */
-> > void xe_reg_whitelist_process_engine(struct xe_hw_engine *hwe)
-> > {
-> > +	int nonpriv_slots;
-> > +
-> >	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(hwe);
-> >
-> >	xe_rtp_process_to_sr(&ctx, register_whitelist, ARRAY_SIZE(register_whitelist),
-> >			     &hwe->reg_whitelist, false);
-> > -	whitelist_apply_to_hwe(hwe);
-> > +	nonpriv_slots = whitelist_apply_to_hwe(hwe);
-> >
-> >	xe_rtp_process_to_sr(&ctx, oa_whitelist, ARRAY_SIZE(oa_whitelist),
-> >			     &hwe->oa_whitelist, false);
 > > --
 > > 2.54.0
 > >
