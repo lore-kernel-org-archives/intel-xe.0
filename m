@@ -4,59 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECF07CD4F54
-	for <intel-xe@archiver.kernel.org>; Fri, 29 May 2026 19:29:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D06FCD4F54
+	for <intel-xe@archiver.kernel.org>; Fri, 29 May 2026 19:30:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B442E112474;
-	Fri, 29 May 2026 19:29:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41325112475;
+	Fri, 29 May 2026 19:30:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B1nxjQHd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CPpiYysr";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C03C911246F;
- Fri, 29 May 2026 19:29:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E5EFA112475;
+ Fri, 29 May 2026 19:30:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780082970; x=1811618970;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=sFjdj/uHtmMAmB0yBqQayX/pdcIzTMLotdZ31REyfVo=;
- b=B1nxjQHdHl4RCLJb17KyR7fGkJbdWD9KsDoFMCl//Y7zNk7H3zYOY/K4
- MTo25ylsb0VdzwcWK8tvPgTuTVCKOSa/JGXYhMP2C2LRaATzI1k56VFbo
- aITGpXiFegdQT7933QBVy3qMslfjJc/gVLOn6tAzLefXxUg5ZoJQ7tx3I
- AZ7Xzodnm2hCbl4TGWIFrRD45iduw/PUqqccKdMMQnpMEw8uRNdWqpKxM
- J9gT+elPnB8L97ONmSsKORskJB4KK2MZkeA8otkxwW2+hNDsODo8RE2Bk
- 8bbBgqmISe6lLeNAYlWhydillxplosuDiTe3PcA91U+ltdG2j3YMN1umt g==;
-X-CSE-ConnectionGUID: jYh+oVzTRdaYz2OcoT3a4Q==
-X-CSE-MsgGUID: YjEZMxl2RJOyuhNkWJU6dA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11801"; a="103611817"
-X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="103611817"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2026 12:29:30 -0700
-X-CSE-ConnectionGUID: KQ5Vr3r0T2ukq7tP2g8o0g==
-X-CSE-MsgGUID: qtseaDHUSwiXbCDHaaNoTw==
+ t=1780083043; x=1811619043;
+ h=date:from:to:cc:subject:in-reply-to:message-id:
+ references:mime-version;
+ bh=QV59IdoRaCDAObnmRRq6u6MJ8iAGfzmfMUqDPAXtEv0=;
+ b=CPpiYysr+vmdEeYz+fZg4RR1i77QbZtzt4BkbpQlUjUbkoxqoCctaApx
+ gVjJG9tXT3ddzz/sZxwiThEl4qA9tGQDSs0mMLKj3anQHv5yQV87EGuCm
+ GkVFrcMYEHbir8ID6ZPgGt6O9hoR8AGjVOoLcIPbjFwF6w+URrDeISCJ1
+ kaZTfo87NY7DkrFcIQQjhnXC5SYjI/roufWC14hUercXgjA0qxYpM/9ww
+ oXG05qs60w32Wyyuqj6OEQBn7T/r0tRTAhe5eg6R/+MVoMkYj8S+gE/Dp
+ uq/24wUSLQUR1erjAiBSNTYSb/rK0MojGNz/dTaq1WRxQeh9PDzLxIFpG g==;
+X-CSE-ConnectionGUID: 0DWT2naFTuC4VriZ+/r0Nw==
+X-CSE-MsgGUID: JSB5U0IMQV+6qgtB0gncZg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11801"; a="83520008"
+X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="83520008"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2026 12:30:42 -0700
+X-CSE-ConnectionGUID: MieCnS/vQPKqf+wrTgNJlQ==
+X-CSE-MsgGUID: B6AZC0yPQwOFlYODhj6NLg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="240393504"
+X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="273242788"
 Received: from dev-417.igk.intel.com ([10.91.214.181])
- by fmviesa008.fm.intel.com with ESMTP; 29 May 2026 12:29:28 -0700
-From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@intel.com>,
- Suraj Kandpal <suraj.kandpal@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v4 10/10] drm/i915/bios: remove VS/PE-O warning
-Date: Fri, 29 May 2026 21:28:59 +0200
-Message-ID: <20260529192859.4172376-11-michal.grzelak@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20260529192859.4172376-1-michal.grzelak@intel.com>
-References: <20260529192859.4172376-1-michal.grzelak@intel.com>
+ by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2026 12:30:41 -0700
+Date: Fri, 29 May 2026 21:30:39 +0200 (CEST)
+From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+cc: "Kandpal, Suraj" <suraj.kandpal@intel.com>, 
+ "Grzelak, Michal" <michal.grzelak@intel.com>, 
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: RE: [PATCH v3 12/31] drm/i915/ddi: expose VS/PE-O buffers to
+ intel_encoder
+In-Reply-To: <2c9f1720aae37405b1540ebfcb0ca4fa9abbe980@intel.com>
+Message-ID: <6297c231-c00c-ef7b-9f28-abdd96db4386@intel.com>
+References: <20260507013137.527510-1-michal.grzelak@intel.com>
+ <20260507013137.527510-13-michal.grzelak@intel.com>
+ <DM3PPF208195D8DAC7B75B4A5EC5683E025E3002@DM3PPF208195D8D.namprd11.prod.outlook.com>
+ <2c9f1720aae37405b1540ebfcb0ca4fa9abbe980@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/mixed; boundary="8323329-307721347-1780083042=:1544314"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,42 +72,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There is not much use of warning when port asks to override default
-VS/PE since it is already logged. Remove drm_WARN() and child_device
-from print_ddi_port() since drm_WARN() was the only user of it.
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
----
- drivers/gpu/drm/i915/display/intel_bios.c | 9 ---------
- 1 file changed, 9 deletions(-)
+--8323329-307721347-1780083042=:1544314
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8BIT
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 6adec6e60df3..1eb588712ed3 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -2769,7 +2769,6 @@ static bool is_port_valid(struct intel_display *display, enum port port)
- static void print_ddi_port(const struct intel_bios_encoder_data *devdata)
- {
- 	struct intel_display *display = devdata->display;
--	const struct child_device_config *child = &devdata->child;
- 	bool is_dvi, is_hdmi, is_dp, is_edp, is_dsi, is_crt, supports_typec_usb, supports_tbt;
- 	int dp_boost_level, dp_max_link_rate, hdmi_boost_level, hdmi_level_shift, max_tmds_clock;
- 	enum port port;
-@@ -2842,14 +2841,6 @@ static void print_ddi_port(const struct intel_bios_encoder_data *devdata)
- 		drm_dbg_kms(display->drm,
- 			    "Port %c VBT DP max link rate: %d\n",
- 			    port_name(port), dp_max_link_rate);
--
--	/*
--	 * FIXME need to implement support for VBT
--	 * vswing/preemph tables should this ever trigger.
--	 */
--	drm_WARN(display->drm, child->use_vbt_vswing,
--		 "Port %c asks to use VBT vswing/preemph tables\n",
--		 port_name(port));
- }
- 
- static void parse_ddi_port(struct intel_bios_encoder_data *devdata)
--- 
-2.45.2
+On Tue, 19 May 2026, Jani Nikula wrote:
+> On Tue, 19 May 2026, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
+>>>
+>>> Add into intel_encoder constant pointer to intel_ddi_buf_trans. Track with it
+>>> VS/PE-O buffer from corresponding BIOS encoder.
+>>>
+>>> Add helper function into intel_bios.[ch] to extract port's intel_ddi_buf_trans
+>>> pointer. Cache the pointer by default into each intel_encoder during
+>>> intel_ddi_init().
+>>>
+>>> This is needed as devdata->buf_trans has been allocated per each port during
+>>> parsing DDI ports in intel_bios.c. Meanwhile every encoder will need to know
+>>> if VS/PE overriding is requested during intel_ddi_buf_trans_init().
+>>>
+>>> Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
+>>> ---
+>>>  drivers/gpu/drm/i915/display/intel_bios.c          | 6 ++++++
+>>>  drivers/gpu/drm/i915/display/intel_bios.h          | 2 ++
+>>>  drivers/gpu/drm/i915/display/intel_ddi.c           | 1 +
+>>>  drivers/gpu/drm/i915/display/intel_display_types.h | 1 +
+>>>  4 files changed, 10 insertions(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c
+>>> b/drivers/gpu/drm/i915/display/intel_bios.c
+>>> index 1b813a3dff245..6893aa9f01aec 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+>>> @@ -3851,6 +3851,12 @@ bool intel_bios_encoder_supports_tbt(const
+>>> struct intel_bios_encoder_data *devda
+>>>  	return devdata->display->vbt.version >= 209 && devdata->child.tbt;  }
+>>>
+>>> +const struct intel_ddi_buf_trans *
+>>> +intel_bios_encoder_extract_vswing(const struct intel_bios_encoder_data
+>>> +*devdata) {
+>>> +	return devdata->buf_trans;
+>>> +}
+>>> +
+>>>  bool intel_bios_encoder_overrides_vswing(const struct
+>>> intel_bios_encoder_data *devdata)  {
+>>>  	return devdata->display->vbt.version >= 218 && diff --git
+>>> a/drivers/gpu/drm/i915/display/intel_bios.h
+>>> b/drivers/gpu/drm/i915/display/intel_bios.h
+>>> index 50c8fc91fbe85..cf040b9b7915b 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_bios.h
+>>> +++ b/drivers/gpu/drm/i915/display/intel_bios.h
+>>> @@ -73,6 +73,8 @@ bool intel_bios_get_dsc_params(struct intel_encoder
+>>> *encoder,  const struct intel_bios_encoder_data *
+>>> intel_bios_encoder_data_lookup(struct intel_display *display, enum port
+>>> port);
+>>>
+>>> +const struct intel_ddi_buf_trans *
+>>> +intel_bios_encoder_extract_vswing(const struct intel_bios_encoder_data
+>>> +*devdata);
+>>>  bool intel_bios_encoder_overrides_vswing(const struct
+>>> intel_bios_encoder_data *devdata);  bool
+>>> intel_bios_encoder_supports_dvi(const struct intel_bios_encoder_data
+>>> *devdata);  bool intel_bios_encoder_supports_hdmi(const struct
+>>> intel_bios_encoder_data *devdata); diff --git
+>>> a/drivers/gpu/drm/i915/display/intel_ddi.c
+>>> b/drivers/gpu/drm/i915/display/intel_ddi.c
+>>> index 2681940a5cfe3..eb188b27ec96b 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+>>> @@ -5249,6 +5249,7 @@ void intel_ddi_init(struct intel_display *display,
+>>>
+>>>  	encoder = &dig_port->base;
+>>>  	encoder->devdata = devdata;
+>>> +	encoder->vspeo = intel_bios_encoder_extract_vswing(devdata);
+>>>
+>>>  	drm_encoder_init(display->drm, &encoder->base, &intel_ddi_funcs,
+>>>  			 DRM_MODE_ENCODER_TMDS, "%s",
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
+>>> b/drivers/gpu/drm/i915/display/intel_display_types.h
+>>> index 26e59110e7435..0f27bcfb69223 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+>>> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+>>> @@ -297,6 +297,7 @@ struct intel_encoder {
+>>>
+>>>  	/* VBT information for this encoder (may be NULL for older platforms)
+>>> */
+>>>  	const struct intel_bios_encoder_data *devdata;
+>>> +	const struct intel_ddi_buf_trans *vspeo;
+>>
+>> I don’t get why this is really needed you have devdata available you can get this data on fly why the helper and caching . Even after caching it points to same table.
+>
+> Agreed.
+>
 
+For whatever reasons I added this, they weren't very real. Thanks for
+pointing it out.
+
+BR,
+Michał
+
+>>
+>> Regards,
+>> Suraj Kandpal
+>>
+>>>  };
+>>>
+>>>  struct intel_panel_bl_funcs {
+>>> --
+>>> 2.45.2
+>>
+>
+> -- 
+> Jani Nikula, Intel
+>
+--8323329-307721347-1780083042=:1544314--
