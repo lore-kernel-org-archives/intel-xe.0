@@ -4,64 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96A49CD4F54
-	for <intel-xe@archiver.kernel.org>; Sat, 30 May 2026 07:40:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87CC0CD6E4A
+	for <intel-xe@archiver.kernel.org>; Sat, 30 May 2026 09:58:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57275112724;
-	Sat, 30 May 2026 07:40:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F853112766;
+	Sat, 30 May 2026 09:58:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cj6x+07A";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bd5L/ANl";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E39E6112724
- for <intel-xe@lists.freedesktop.org>; Sat, 30 May 2026 07:40:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C325112766
+ for <intel-xe@lists.freedesktop.org>; Sat, 30 May 2026 09:58:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780126829; x=1811662829;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=Xkc/MLirNZac2iYwx/QsFLBVWhVunCU2OpbToBBaJJM=;
- b=cj6x+07AKL3Xj5GsNLuq/XiZQPKBwYTckw0UKFzJTuYSiZr9oMGf8Gv6
- STdvFU6yaWp4VYSRlFlctndKOnDEtL2Ia5vvBPAYHjKNXUjb8v11axlZT
- YzLi9cJsD+KjsHw2a/JnWfRKhRprffCjIJrcfoGmzligZ+AA+H7wAP+Xl
- lVLDkaZQ+cX1qsKe9T0i0+QFb5foCVbADtD73w5si0iD/iIlxT5b2ohVp
- IhH/ClltMMUNpGURgk2wMkLYUfS7hs9mmUynso0UWaAZhfFaru9SrCLuZ
- WWZRfxI86ETf/TsVdEPKKfQRrOLU+SrccEIrB0Q8MmJka/ARBUD3lJJ3f A==;
-X-CSE-ConnectionGUID: nmGTDXgxS02OD3JEeRq8rw==
-X-CSE-MsgGUID: bLbw9wx1STu+1WN1n71QnQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11801"; a="91543387"
-X-IronPort-AV: E=Sophos;i="6.24,176,1774335600"; d="scan'208";a="91543387"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2026 00:40:24 -0700
-X-CSE-ConnectionGUID: dKk7ZCLfQmCMdjasny2E5w==
-X-CSE-MsgGUID: tiZn3+4XT22ZqrwnUdBkNQ==
+ t=1780135112; x=1811671112;
+ h=date:from:to:cc:subject:message-id;
+ bh=YwH+e3MeTc1Yf1i5Gn2UrTFyvIFPC4lGuwBVUCRRUlE=;
+ b=bd5L/ANlhuS8B+MhJPWOMrHPcsidLJQfV+tLHh6dbzfMojwgjNEewmFi
+ 8Wvs82YI7UT5BQve4ume6jzfnrd87U+48OHpC/sw77oZJ+feAYYRdhzLU
+ OHnm6BuCimM9WSEDbMQC/muthKOxuV5qFuiQGTrLI0QPgtxMpl5yWfpEt
+ 90Do3Y6Xa75mA93rrwsENpzsUx69nS0FTc8PCkTQ96fae18MpPbF1hQrD
+ 5Z4CY/mY5xXsQnh8p2542hkEtLXBe8PgZQ9RhBCVZ5A+oAY0+qxBbtMf3
+ J8/FXB7M/phDNeXpzI5pY8AWO1rmnhhphMnHJZjWHCWxa5bhNM7X7zNkM A==;
+X-CSE-ConnectionGUID: FhfcjL6NQz6iYqbia36p5w==
+X-CSE-MsgGUID: U4g4rIkWTmKoWrBRwi6t8w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11801"; a="80824152"
+X-IronPort-AV: E=Sophos;i="6.24,177,1774335600"; d="scan'208";a="80824152"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 May 2026 02:58:32 -0700
+X-CSE-ConnectionGUID: 2S2TYirsSu6lE6tkco+0mA==
+X-CSE-MsgGUID: 4FvKAL/BQpa1YjXGftfIuQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,176,1774335600"; d="scan'208";a="248151560"
-Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2026 00:40:21 -0700
-Date: Sat, 30 May 2026 09:40:17 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
- rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com,
- riana.tauro@intel.com, michal.wajdeczko@intel.com,
- matthew.d.roper@intel.com, michal.winiarski@intel.com,
- matthew.auld@intel.com, dev@lankhorst.se, jani.nikula@intel.com,
- lukasz.laguna@intel.com, zhanjun.dong@intel.com, lukas@wunner.de,
- badal.nilawar@intel.com
-Subject: Re: [PATCH v7 6/8] drm/xe/migrate: Introduce xe_migrate_reinit()
-Message-ID: <ahqUYb6ZdaBh6EP_@black.igk.intel.com>
-References: <20260516093131.27442-1-raag.jadav@intel.com>
- <20260516093131.27442-7-raag.jadav@intel.com>
- <434530c7-352b-4802-a3f8-50dc9d6486b1@intel.com>
- <ahlf9TGszMJUITJv@black.igk.intel.com>
- <a72fcd52-3590-430e-a963-ab9ae00d68b2@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a72fcd52-3590-430e-a963-ab9ae00d68b2@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,177,1774335600"; d="scan'208";a="238891513"
+Received: from lkp-server01.sh.intel.com (HELO f0d55cb201f0) ([10.239.97.150])
+ by fmviesa010.fm.intel.com with ESMTP; 30 May 2026 02:58:30 -0700
+Received: from kbuild by f0d55cb201f0 with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1wTGSa-000000008J0-2A5S;
+ Sat, 30 May 2026 09:58:28 +0000
+Date: Sat, 30 May 2026 17:57:46 +0800
+From: kernel test robot <lkp@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
+ 65b8e0ac86e48cfc9128c04dfc53ea3395d030dd
+Message-ID: <202605301736.zkh4FosA-lkp@intel.com>
+User-Agent: s-nail v14.9.25
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,138 +64,201 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, May 29, 2026 at 11:20:06AM -0700, Daniele Ceraolo Spurio wrote:
-> On 5/29/2026 2:44 AM, Raag Jadav wrote:
-> > On Wed, May 27, 2026 at 04:27:56PM -0700, Daniele Ceraolo Spurio wrote:
-> > > On 5/16/2026 2:31 AM, Raag Jadav wrote:
-> > > > In preparation of usecases which require re-initializing migrate context
-> > > > after PCIe FLR, introduce xe_migrate_reinit() helper. Migrate exec queue
-> > > > and pt_bo already exist in migrate structure but since their contents live
-> > > > on VRAM, they are lost on PCIe FLR and need re-initialization.
-> > > > 
-> > > > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> > > > Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-> > > > Tested-by: Lukasz Laguna <lukasz.laguna@intel.com>
-> > > > ---
-> > > > v2: Re-initialize migrate context (Matthew Brost)
-> > > > ---
-> > > >    drivers/gpu/drm/xe/xe_gt.c      | 10 ++++++++++
-> > > >    drivers/gpu/drm/xe/xe_migrate.c | 12 ++++++++++++
-> > > >    drivers/gpu/drm/xe/xe_migrate.h |  1 +
-> > > >    3 files changed, 23 insertions(+)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> > > > index acc28389b0d8..a60e04c4d885 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_gt.c
-> > > > +++ b/drivers/gpu/drm/xe/xe_gt.c
-> > > > @@ -928,6 +928,16 @@ void xe_gt_flr_prepare(struct xe_gt *gt)
-> > > >     */
-> > > >    int xe_gt_reinit(struct xe_gt *gt)
-> > > >    {
-> > > > +	int err;
-> > > > +
-> > > > +	if (xe_gt_is_main_type(gt)) {
-> > > > +		struct xe_tile *tile = gt_to_tile(gt);
-> > > > +
-> > > > +		err = xe_migrate_reinit(tile->migrate);
-> > > > +		if (err)
-> > > > +			return err;
-> > > > +	}
-> > > > +
-> > > >    	return xe_uc_reinit(&gt->uc);
-> > > >    }
-> > > > diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-> > > > index 9428dd5e7760..9e1754028e1f 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_migrate.c
-> > > > +++ b/drivers/gpu/drm/xe/xe_migrate.c
-> > > > @@ -454,6 +454,18 @@ static int xe_migrate_lock_prepare_vm(struct xe_tile *tile, struct xe_migrate *m
-> > > >    	return err;
-> > > >    }
-> > > > +/**
-> > > > + * xe_migrate_reinit() - Re-initialize a migrate context
-> > > > + * @m: The migration context
-> > > > + *
-> > > > + * Returns: 0 on success, negative error code otherwise.
-> > > > + */
-> > > > +int xe_migrate_reinit(struct xe_migrate *m)
-> > > > +{
-> > > > +	xe_migrate_prepare_vm(m->tile, m, m->q->vm, NULL);
-> > > > +	return xe_exec_queue_reinit(m->q);
-> > > I'm not sold on calling xe_exec_queue_reinit from here. Wouldn't it be
-> > > easier to just destroy and re-create the migration queue, instead of adding
-> > > support for a new re-init flow that's only used during FLR?
-> > This flow is to be reused for multiple usecases where we need device
-> > level reinit.
-> > 
-> > I remember trying destroy/re-create at some point but I saw TLB
-> > invalidation errors. I didn't know how to investigate those and gave
-> > up on that direction.
-> > 
-> > IMO it's more performative to just restore existing stuff without
-> > dealing with memory (which'd also make it a bit prone to failures)
-> > in this path.
-> 
-> Makes sense.
-> 
-> > > IMO the re-init would be more valuable if we went with a gt-level function
-> > > where we loop through all queues and re-init all the kernel-owned ones. That
-> > > way if we add another queue that needs to be re-initialized it will
-> > > automatically be picked up by the loop, instead of having to hook up a new
-> > > callback in the FLR flow.
-> > I went through some of the data structures and found that the queues
-> > are maintained by individual components that use them. One way I
-> > could think of would be to have a centralized list of queues (like
-> > we have for kernel bos) that we can restore without worrying about
-> > which component owns it, but it looks like something that needs to be
-> > done as a prerequisite and perhaps requires significant refactoring.
-> > 
-> > Thoughts?
-> 
-> The risk here is that a new queue is added for a new component and the
-> developer doesn't know they need to go and reinit it after the FLR. This
-> might also be difficult to catch in testing, unless we go and re-run the
-> full CI after an FLR to make sure everything still works (which is straight
-> up not possible with tests that re-load the driver).
-> 
-> Maintaining a list of kernel queues shouldn't be too bad (there are very few
-> of them), but I understand it increases the scope of this series.
-> 
-> We have a list of queues that have an assigned guc_id in
-> guc->submission_state.exec_queue_lookup, which you can navigate with
-> xa_for_each(), so a potential solution here could be to have a
-> "guc_submit_reinit" function to go and re-init all kernel queues in that
-> list. I don't really like this option because it moves the logic from the
-> generic exec_queue layer down into the guc submission back-end, but it could
-> be a stop-gap to get something working and we could then go and move the
-> loop to the generic layer as a follow-up.
-> 
-> To summarize, without creating a new list, I think we have 2 non-optimal
-> options
-> 1 - have each component handle their re-init (not future-proof)
-> 2 - handle this in a guc-specific function (layering violation)
-> 
-> I honestly can't decide which option I (dis)like more, so I'm not going to
-> block this one way or the other and leave the call to the scheduler experts.
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+branch HEAD: 65b8e0ac86e48cfc9128c04dfc53ea3395d030dd  Revert "drm/xe/nvls: Define GuC firmware for NVL-S"
 
-Or we can move forward with option 1 for now since we only have migrate
-queue to work with? We can refactor this as a follow up when we come up
-with an optimal solution with more components to reinit.
+elapsed time: 739m
 
-Raag
+configs tested: 182
+configs skipped: 2
 
-> > > > +}
-> > > > +
-> > > >    /**
-> > > >     * xe_migrate_init() - Initialize a migrate context
-> > > >     * @m: The migration context
-> > > > diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
-> > > > index 965c45889c72..49d8c717b957 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_migrate.h
-> > > > +++ b/drivers/gpu/drm/xe/xe_migrate.h
-> > > > @@ -112,6 +112,7 @@ struct xe_migrate_pt_update {
-> > > >    struct xe_migrate *xe_migrate_alloc(struct xe_tile *tile);
-> > > >    int xe_migrate_init(struct xe_migrate *m);
-> > > > +int xe_migrate_reinit(struct xe_migrate *m);
-> > > >    struct dma_fence *xe_migrate_to_vram(struct xe_migrate *m,
-> > > >    				     unsigned long npages,
-> 
+The following configs have been built successfully.
+More configs may be tested in the coming days.
+
+tested configs:
+alpha                             allnoconfig    gcc-15.2.0
+alpha                            allyesconfig    gcc-15.2.0
+alpha                               defconfig    gcc-15.2.0
+arc                              allmodconfig    clang-16
+arc                               allnoconfig    gcc-15.2.0
+arc                              allyesconfig    clang-23
+arc                                 defconfig    gcc-15.2.0
+arc                   randconfig-001-20260530    gcc-14.3.0
+arc                   randconfig-002-20260530    gcc-14.3.0
+arm                               allnoconfig    gcc-15.2.0
+arm                              allyesconfig    clang-16
+arm                                 defconfig    gcc-15.2.0
+arm                        multi_v7_defconfig    gcc-15.2.0
+arm                   randconfig-001-20260530    gcc-14.3.0
+arm                   randconfig-002-20260530    gcc-14.3.0
+arm                   randconfig-003-20260530    gcc-14.3.0
+arm                   randconfig-004-20260530    gcc-14.3.0
+arm64                            allmodconfig    clang-23
+arm64                             allnoconfig    gcc-15.2.0
+arm64                               defconfig    gcc-15.2.0
+arm64                 randconfig-001-20260530    gcc-8.5.0
+arm64                 randconfig-002-20260530    gcc-8.5.0
+arm64                 randconfig-003-20260530    gcc-8.5.0
+arm64                 randconfig-004-20260530    gcc-8.5.0
+csky                             allmodconfig    gcc-15.2.0
+csky                              allnoconfig    gcc-15.2.0
+csky                                defconfig    gcc-15.2.0
+csky                  randconfig-001-20260530    gcc-8.5.0
+csky                  randconfig-002-20260530    gcc-8.5.0
+hexagon                          allmodconfig    gcc-15.2.0
+hexagon                           allnoconfig    gcc-15.2.0
+hexagon                             defconfig    gcc-15.2.0
+hexagon               randconfig-001-20260530    clang-23
+hexagon               randconfig-002-20260530    clang-23
+i386                             allmodconfig    clang-20
+i386                              allnoconfig    gcc-15.2.0
+i386                             allyesconfig    clang-20
+i386        buildonly-randconfig-001-20260530    clang-20
+i386        buildonly-randconfig-002-20260530    clang-20
+i386        buildonly-randconfig-003-20260530    clang-20
+i386        buildonly-randconfig-004-20260530    clang-20
+i386        buildonly-randconfig-005-20260530    clang-20
+i386        buildonly-randconfig-006-20260530    clang-20
+i386                                defconfig    gcc-15.2.0
+i386                  randconfig-001-20260530    clang-20
+i386                  randconfig-002-20260530    clang-20
+i386                  randconfig-003-20260530    clang-20
+i386                  randconfig-004-20260530    clang-20
+i386                  randconfig-005-20260530    clang-20
+i386                  randconfig-006-20260530    clang-20
+i386                  randconfig-007-20260530    clang-20
+i386                           randconfig-011    clang-20
+i386                  randconfig-011-20260530    clang-20
+i386                           randconfig-012    clang-20
+i386                  randconfig-012-20260530    clang-20
+i386                           randconfig-013    clang-20
+i386                  randconfig-013-20260530    clang-20
+i386                           randconfig-014    clang-20
+i386                  randconfig-014-20260530    clang-20
+i386                           randconfig-015    clang-20
+i386                  randconfig-015-20260530    clang-20
+i386                           randconfig-016    clang-20
+i386                  randconfig-016-20260530    clang-20
+i386                           randconfig-017    clang-20
+i386                  randconfig-017-20260530    clang-20
+loongarch                        allmodconfig    clang-23
+loongarch                         allnoconfig    gcc-15.2.0
+loongarch                           defconfig    clang-19
+loongarch             randconfig-001-20260530    clang-23
+loongarch             randconfig-002-20260530    clang-23
+m68k                             allmodconfig    gcc-15.2.0
+m68k                              allnoconfig    gcc-15.2.0
+m68k                             allyesconfig    clang-16
+m68k                                defconfig    clang-19
+microblaze                        allnoconfig    gcc-15.2.0
+microblaze                       allyesconfig    gcc-15.2.0
+microblaze                          defconfig    clang-19
+mips                             allmodconfig    gcc-15.2.0
+mips                              allnoconfig    gcc-15.2.0
+mips                             allyesconfig    gcc-15.2.0
+mips                        qi_lb60_defconfig    clang-23
+nios2                            allmodconfig    clang-23
+nios2                             allnoconfig    clang-23
+nios2                               defconfig    clang-19
+nios2                 randconfig-001-20260530    clang-23
+nios2                 randconfig-002-20260530    clang-23
+openrisc                         allmodconfig    clang-23
+openrisc                          allnoconfig    clang-23
+openrisc                            defconfig    gcc-15.2.0
+parisc                           allmodconfig    gcc-15.2.0
+parisc                            allnoconfig    clang-23
+parisc                           allyesconfig    clang-19
+parisc                              defconfig    gcc-15.2.0
+parisc                         randconfig-001    gcc-8.5.0
+parisc                randconfig-001-20260530    gcc-8.5.0
+parisc                         randconfig-002    gcc-8.5.0
+parisc                randconfig-002-20260530    gcc-8.5.0
+parisc64                            defconfig    clang-19
+powerpc                          allmodconfig    gcc-15.2.0
+powerpc                           allnoconfig    clang-23
+powerpc                        randconfig-001    gcc-8.5.0
+powerpc               randconfig-001-20260530    gcc-8.5.0
+powerpc                        randconfig-002    gcc-8.5.0
+powerpc               randconfig-002-20260530    gcc-8.5.0
+powerpc64                      randconfig-001    gcc-8.5.0
+powerpc64             randconfig-001-20260530    gcc-8.5.0
+powerpc64                      randconfig-002    gcc-8.5.0
+powerpc64             randconfig-002-20260530    gcc-8.5.0
+riscv                            allmodconfig    clang-23
+riscv                             allnoconfig    clang-23
+riscv                            allyesconfig    clang-16
+riscv                               defconfig    gcc-15.2.0
+riscv                 randconfig-001-20260530    gcc-12.5.0
+riscv                 randconfig-002-20260530    gcc-12.5.0
+s390                             allmodconfig    clang-19
+s390                              allnoconfig    clang-23
+s390                             allyesconfig    gcc-15.2.0
+s390                                defconfig    gcc-15.2.0
+s390                  randconfig-001-20260530    gcc-12.5.0
+s390                  randconfig-002-20260530    gcc-12.5.0
+sh                               allmodconfig    gcc-15.2.0
+sh                                allnoconfig    clang-23
+sh                               allyesconfig    clang-19
+sh                                  defconfig    gcc-14
+sh                    randconfig-001-20260530    gcc-12.5.0
+sh                    randconfig-002-20260530    gcc-12.5.0
+sparc                             allnoconfig    clang-23
+sparc                               defconfig    gcc-15.2.0
+sparc                 randconfig-001-20260530    gcc-9.5.0
+sparc                 randconfig-002-20260530    gcc-9.5.0
+sparc64                          allmodconfig    clang-23
+sparc64                             defconfig    gcc-14
+sparc64               randconfig-001-20260530    gcc-9.5.0
+sparc64               randconfig-002-20260530    gcc-9.5.0
+um                               allmodconfig    clang-19
+um                                allnoconfig    clang-23
+um                               allyesconfig    gcc-15.2.0
+um                                  defconfig    gcc-14
+um                             i386_defconfig    gcc-14
+um                    randconfig-001-20260530    gcc-9.5.0
+um                    randconfig-002-20260530    gcc-9.5.0
+um                           x86_64_defconfig    gcc-14
+x86_64                           allmodconfig    clang-20
+x86_64                            allnoconfig    clang-23
+x86_64                           allyesconfig    clang-20
+x86_64      buildonly-randconfig-001-20260530    gcc-14
+x86_64      buildonly-randconfig-002-20260530    gcc-14
+x86_64      buildonly-randconfig-003-20260530    gcc-14
+x86_64      buildonly-randconfig-004-20260530    gcc-14
+x86_64      buildonly-randconfig-005-20260530    gcc-14
+x86_64      buildonly-randconfig-006-20260530    gcc-14
+x86_64                              defconfig    gcc-14
+x86_64                                  kexec    clang-20
+x86_64                randconfig-001-20260530    gcc-14
+x86_64                randconfig-002-20260530    gcc-14
+x86_64                randconfig-003-20260530    gcc-14
+x86_64                randconfig-004-20260530    gcc-14
+x86_64                randconfig-005-20260530    gcc-14
+x86_64                randconfig-006-20260530    gcc-14
+x86_64                randconfig-011-20260530    gcc-14
+x86_64                randconfig-012-20260530    gcc-14
+x86_64                randconfig-013-20260530    gcc-14
+x86_64                randconfig-014-20260530    gcc-14
+x86_64                randconfig-015-20260530    gcc-14
+x86_64                randconfig-016-20260530    gcc-14
+x86_64                randconfig-071-20260530    gcc-14
+x86_64                randconfig-072-20260530    gcc-14
+x86_64                randconfig-073-20260530    gcc-14
+x86_64                randconfig-074-20260530    gcc-14
+x86_64                randconfig-075-20260530    gcc-14
+x86_64                randconfig-076-20260530    gcc-14
+x86_64                               rhel-9.4    clang-20
+x86_64                           rhel-9.4-bpf    gcc-14
+x86_64                          rhel-9.4-func    clang-20
+x86_64                    rhel-9.4-kselftests    clang-20
+x86_64                         rhel-9.4-kunit    gcc-14
+x86_64                           rhel-9.4-ltp    gcc-14
+x86_64                          rhel-9.4-rust    clang-20
+xtensa                            allnoconfig    clang-23
+xtensa                           allyesconfig    clang-23
+xtensa                randconfig-001-20260530    gcc-9.5.0
+xtensa                randconfig-002-20260530    gcc-9.5.0
+
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
