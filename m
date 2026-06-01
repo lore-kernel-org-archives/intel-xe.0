@@ -4,54 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8891CD5BD1
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Jun 2026 08:42:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44E6FCD6E4C
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Jun 2026 08:42:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73177112FC1;
-	Mon,  1 Jun 2026 08:42:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 00252112FC3;
+	Mon,  1 Jun 2026 08:42:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KfCUOGIF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QuwKxOqi";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98F1D112FC1
- for <intel-xe@lists.freedesktop.org>; Mon,  1 Jun 2026 08:42:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2974D112FC3
+ for <intel-xe@lists.freedesktop.org>; Mon,  1 Jun 2026 08:42:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780303325; x=1811839325;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=l4T99Mq1JFKW6vSxNnq1fhXzf+w6P3MMeKfbhbsbCm0=;
- b=KfCUOGIFpxCTDUn2+WZ7/eNNgPKW18wjEhnaPYK6GUqr9kP8ndZBZC5L
- iqHTll+12BSPjf4ilLXLyzWCLLFbXReA+8158pNh/NxJHpBrbpc+6QpBb
- Jk6hJjxXZe7C5MSHVZy6xeAOLZL/QnQ6SMzNcJooO/BxNXKWDAmO6QLml
- V8Nc/eE1sF/4Y/Z4jycu9wzjNXOrv1MUm+/dWJN+K45vAYJRkHGNe8WEg
- 071z6Bhy/Fg7Jt4kJuG0OL6imkfZkRjahKGEQNgz2/GLafJMJExiNTvTS
- rKtPxVxhFAd2iDCCx2c/A1I7P1JluURINpPaRpkD082N+r+YcPP6NiR2A w==;
-X-CSE-ConnectionGUID: dQydML+lQsub+EKvai6zfw==
-X-CSE-MsgGUID: BuP3OOk7ToqO05qzGttJlA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11803"; a="91629469"
-X-IronPort-AV: E=Sophos;i="6.24,180,1774335600"; d="scan'208";a="91629469"
+ t=1780303334; x=1811839334;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=DUYXZw2CQLFBvKNETblf9n7xPUyufBR8ZkZNCm6A62g=;
+ b=QuwKxOqiqVI3ly9B/b2LvuUyiiRgwZKZjt6T47BzrEKmcr24tBUYNMAM
+ gSBTU7OEHKiCUd0wD4WggGQhF57VGKqG0vnQRpe4KtLhdPNh2a/2mnuZn
+ M/5NiGDNbd3hCYNEs7IJkA4uBauaZ/+62Qp3rH+zZ9LWpENwr/yTQShPs
+ YixasnfTGc+Dl1o7tRuwTOcW0Mujg3tsR1/de97mES0jBx7VnnYowSDxV
+ 5OJS1no8w6N1MkuDP5rZdypetKoKOX6WBveUXL/RQ4/SUqh9OLKqW2wLO
+ N+QHa4YQSyFUvMplmlJJdKQVmlwHW73f0lgU3f8ZG/DUq+mxyREz2ra9e Q==;
+X-CSE-ConnectionGUID: 3jHT3wPkSpOixWGBBK6WvQ==
+X-CSE-MsgGUID: nQxWOmZfQjWI+NV1GgBvLQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11803"; a="91629500"
+X-IronPort-AV: E=Sophos;i="6.24,180,1774335600"; d="scan'208";a="91629500"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2026 01:42:04 -0700
-X-CSE-ConnectionGUID: I5sdGDeOSl6vfeFQk4qjrg==
-X-CSE-MsgGUID: cwp6kO18S/qssQzVSWqL9w==
+ 01 Jun 2026 01:42:14 -0700
+X-CSE-ConnectionGUID: 1MIS5/NhQ1aDOuCDxSsumQ==
+X-CSE-MsgGUID: 7XCNSbvwQP+RdyO207THlA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,180,1774335600"; d="scan'208";a="240525249"
+X-IronPort-AV: E=Sophos;i="6.24,180,1774335600"; d="scan'208";a="240525258"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2026 01:42:01 -0700
+ 01 Jun 2026 01:42:11 -0700
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  aravind.iddamsetty@linux.intel.com, badal.nilawar@intel.com,
  raag.jadav@intel.com, ravi.kishore.koppuravuri@intel.com,
  mallesh.koujalagi@intel.com, soham.purkait@intel.com
-Subject: [PATCH v8 0/6] Add get-error-counter and clear-error-counter support
- for CRI
-Date: Mon,  1 Jun 2026 14:11:47 +0530
-Message-ID: <20260601084146.3808639-8-riana.tauro@intel.com>
+Subject: [PATCH v8 1/6] drm/xe/uapi: Add additional error components to xe
+ drm_ras
+Date: Mon,  1 Jun 2026 14:11:48 +0530
+Message-ID: <20260601084146.3808639-9-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
+In-Reply-To: <20260601084146.3808639-8-riana.tauro@intel.com>
+References: <20260601084146.3808639-8-riana.tauro@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -68,83 +70,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Define request/response structures and helper functions to query system
-controller to get/clear counter values for CRI if supported.
+Add additional Error components supported by XE drm_ras (Reliability,
+Availability and Serviceability).
 
-Integrate get-error-counter with xe_drm_ras.
+Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+Reviewed-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ include/uapi/drm/xe_drm.h | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
 
-Usage:
-
-Query all error counters using ynl
-
-$ sudo ynl --family drm_ras --dump get-error-counter --json \
-'{"node-id":0}'
-[{'error-id': 1, 'error-name': 'core-compute', 'error-value': 0},
- {'error-id': 2, 'error-name': 'soc-internal', 'error-value': 0},
- {'error-id': 3, 'error-name': 'device-memory', 'error-value': 0},
- {'error-id': 4, 'error-name': 'pcie', 'error-value': 0},
- {'error-id': 5, 'error-name': 'fabric', 'error-value': 0}]
-
-Query single error counter using ynl
-
-$ sudo ynl --family drm_ras  --do get-error-counter --json \
-  '{"node-id":1, "error-id":1}'
-{'error-id': 1, 'error-name': 'core-compute', 'error-value': 2}
-
-Clear counter using ynl
-
-$ sudo ynl --family drm_ras  --do clear-error-counter --json '\
-{"node-id":1, "error-id":1}'
-None
-
-Rev2: add helper for clear counter
-      separate get error counter for other usecases
-      move commands to sysctrl layer
-
-Rev3: integrate clear-error-counter with drm_ras
-      use drm_ras flag
-      move drm_ras registration to ras init flow
-
-Rev4: rebase
-
-Rev5: rename error_class to counter
-      add prepare comman helper to sysctrl layer
-      add a debug log on success
-      skip drm_ras flag for vf update info
-
-Rev6: simplify structure member names
-      use local variable for counter
-      rename sysctrl helper function
-      fix log
-
-Rev7: rename sysctrl helper function
-      reorder functions
-      rename error_class to counter
-      fix cosmetic review comments
-
-Riana Tauro (6):
-  drm/xe/uapi: Add additional error components to xe drm_ras
-  drm/xe/xe_ras: Add support to get error counter
-  drm/xe/xe_ras: Add support to clear error counter
-  drm/xe/xe_drm_ras: Wire get/clear counter callbacks
-  drm/xe: Move xe drm_ras initialization
-  drm/xe/xe_ras: Add drm_ras feature flag
-
- drivers/gpu/drm/xe/xe_device.c                |  20 +-
- drivers/gpu/drm/xe/xe_device_types.h          |   2 +
- drivers/gpu/drm/xe/xe_drm_ras.c               |  41 ++--
- drivers/gpu/drm/xe/xe_hw_error.c              |  13 --
- drivers/gpu/drm/xe/xe_pci.c                   |   3 +
- drivers/gpu/drm/xe/xe_pci_types.h             |   1 +
- drivers/gpu/drm/xe/xe_ras.c                   | 192 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_ras.h                   |   5 +
- drivers/gpu/drm/xe/xe_ras_types.h             |  51 +++++
- drivers/gpu/drm/xe/xe_sysctrl_mailbox.c       |  28 +++
- drivers/gpu/drm/xe/xe_sysctrl_mailbox.h       |   3 +
- drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |   4 +
- include/uapi/drm/xe_drm.h                     |  11 +-
- 13 files changed, 337 insertions(+), 37 deletions(-)
-
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 48e9f1fdb78d..50c80af4ad4e 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -2589,6 +2589,12 @@ enum drm_xe_ras_error_component {
+ 	DRM_XE_RAS_ERR_COMP_CORE_COMPUTE = 1,
+ 	/** @DRM_XE_RAS_ERR_COMP_SOC_INTERNAL: SoC Internal Error */
+ 	DRM_XE_RAS_ERR_COMP_SOC_INTERNAL,
++	/** @DRM_XE_RAS_ERR_COMP_DEVICE_MEMORY: Device Memory Error */
++	DRM_XE_RAS_ERR_COMP_DEVICE_MEMORY,
++	/** @DRM_XE_RAS_ERR_COMP_PCIE: PCIe Subsystem Error */
++	DRM_XE_RAS_ERR_COMP_PCIE,
++	/** @DRM_XE_RAS_ERR_COMP_FABRIC: Fabric Subsystem Error */
++	DRM_XE_RAS_ERR_COMP_FABRIC,
+ 	/** @DRM_XE_RAS_ERR_COMP_MAX: Max Error */
+ 	DRM_XE_RAS_ERR_COMP_MAX	/* non-ABI */
+ };
+@@ -2606,7 +2612,10 @@ enum drm_xe_ras_error_component {
+  */
+ #define DRM_XE_RAS_ERROR_COMPONENT_NAMES {				\
+ 	[DRM_XE_RAS_ERR_COMP_CORE_COMPUTE] = "core-compute",		\
+-	[DRM_XE_RAS_ERR_COMP_SOC_INTERNAL] = "soc-internal"		\
++	[DRM_XE_RAS_ERR_COMP_SOC_INTERNAL] = "soc-internal",		\
++	[DRM_XE_RAS_ERR_COMP_DEVICE_MEMORY] = "device-memory",		\
++	[DRM_XE_RAS_ERR_COMP_PCIE] = "pcie",				\
++	[DRM_XE_RAS_ERR_COMP_FABRIC] = "fabric",			\
+ }
+ 
+ #if defined(__cplusplus)
 -- 
 2.47.1
 
