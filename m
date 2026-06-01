@@ -4,54 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE042CD5BD1
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Jun 2026 14:30:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94480CD6E55
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Jun 2026 14:31:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 759BE10E80A;
-	Mon,  1 Jun 2026 14:30:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A22910E80A;
+	Mon,  1 Jun 2026 14:31:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W8K0q5y9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BfqTVKTi";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B46B10E80A
- for <intel-xe@lists.freedesktop.org>; Mon,  1 Jun 2026 14:30:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BD6910E804;
+ Mon,  1 Jun 2026 14:31:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780324231; x=1811860231;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=EHTjUAz3dJs2IFMrOmS2WieJU0rZgHfZRhWOVtYxRp4=;
- b=W8K0q5y9iVzxfA/3XLg2/r45ewdiOXvPkm257klAHL7cFmDb9TM8axvE
- xNsle1gWkgRCfCoWWJVMUzgRCXzpR2rDiAncrVCM78xC+XUpzUDbPxArE
- MoLrzjuxA5XZd308FB8SH74jKlHJ4FWRdNhj7GKjei0yezsUtfWoPCK75
- 8xAjdsxpB8ZYrh8Ft0sEm4ZpOIpAwGp8sT2hUN+OaT6aA3uURwuQLsHFl
- v54im0RQNcQH1qsdCBegoepukmPu/Zi5gY0YoB172216E6FzBxkFeWkYf
- LMn3Bzk9p7G5BgFQj6oknbHMpb6kJvy/U8H1W6ELTzBpj6npZDXeTdP00 g==;
-X-CSE-ConnectionGUID: 3YPRUGF2QsGV67MG3wxN9A==
-X-CSE-MsgGUID: WEPZ3LspRgaph8NorK8G/w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11804"; a="92195399"
-X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="92195399"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2026 07:30:31 -0700
-X-CSE-ConnectionGUID: 23QPPpe3RY6H6HbjPoTUKQ==
-X-CSE-MsgGUID: KgZVspkDSXW+ImSovBxzVg==
+ t=1780324262; x=1811860262;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=RY5vQ3nIM6Q+0ZvuSuyg9eXR4w3jXIkq3C5Ae0SIB6s=;
+ b=BfqTVKTia/FHSZYc95bAB/RiecmGpsaZBMVCRC5HJiLeEMI9gya3mcBr
+ vGoB5nyiojpWt1SUokbBvIXrEZN2+CsH2vkgBF28ZuBAFwZ/cXVHnQXFl
+ gxjCZfIEREJiYEBqCH0afUqhjVmYDknXwZrxfp+UmKkh+Tjo655PdUMue
+ TXyZ032VUmsgESmXJUvza90Qi79JYbUmSHjt5QFPqu9qrpCfagucRH3wL
+ Vi/QiHySa0E9bZujrq2Nn9wm6JQ+f3mH7356a9rYx0fpIMaQbQlb6y83I
+ EPaWFuhQUMIZBW96oT+xCb2mBf/Ky+GqHdLSwNaeVSBKTfQwBe5H8Wji7 A==;
+X-CSE-ConnectionGUID: Kd1op5NrRUuNe+u9HYRWbQ==
+X-CSE-MsgGUID: ati0/gzzR4CL3Y1gK89iiA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11804"; a="106529931"
+X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="106529931"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2026 07:31:02 -0700
+X-CSE-ConnectionGUID: 52mnO6jtQCm1pDzsal5RDw==
+X-CSE-MsgGUID: A8WUt+XQTZ+p+cMbuG2Dwg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="245408806"
-Received: from tilak-z690i-a-ultra-plus.iind.intel.com ([10.190.239.38])
- by fmviesa004.fm.intel.com with ESMTP; 01 Jun 2026 07:30:29 -0700
-From: tilak.tirumalesh.tangudu@intel.com
-To: tilak.tirumalesh.tangudu@intel.com, matthew.d.roper@intel.com,
- thomas.hellstrom@intel.com, daniele.ceraolospurio@intel.com,
- matthew.auld@intel.com, stuart.summers@intel.com, x.wang@intel.com,
- brian3.nguyen@intel.com, intel-xe@lists.freedesktop.org
-Subject: [PATCH 3/3] drm/xe: explicit TLB flush for context based tlb
- invalidation
-Date: Mon,  1 Jun 2026 20:00:00 +0530
-Message-ID: <20260601143000.2830227-4-tilak.tirumalesh.tangudu@intel.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20260601143000.2830227-1-tilak.tirumalesh.tangudu@intel.com>
-References: <20260601143000.2830227-1-tilak.tirumalesh.tangudu@intel.com>
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by fmviesa003.fm.intel.com with ESMTP; 01 Jun 2026 07:31:00 -0700
+From: Arun R Murthy <arun.r.murthy@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Arun R Murthy <arun.r.murthy@intel.com>,
+ Stephen Fuhry <fuhrysteve@gmail.com>
+Subject: [PATCH] drm/i915/display: Refcount for fec enable/disable
+Date: Mon,  1 Jun 2026 19:59:43 +0530
+Message-Id: <20260601142943.1481728-1-arun.r.murthy@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -68,56 +64,175 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
+The FEC_ENABLE bit is per port basis and is enabled/disabled on ddi
+pre_enable and post_disable. This fec is shared across the mst streams
+and can be enabled per stream basis as well.
+So have a refcount to track the usage of FEC and then enable/disable
+accordingly.
 
-In LR preempt-fence mode, on devices with context based
-TLB Invalidation, rebind operations for VMAs require
-an explicit invalidation request.
-
-Request explicit TLB Invalidation in notifier path
-and in PT path.
-
-Userptr VMAs are excluded in PT path since the notifier path
-already submits invalidation, preventing duplicate
-requests for the same rebind window.
-
-v2: Remove explicit TLB Invalidation in notifier path as
-PT path is sufficient.
-Refactor of above to remove exclusion of userptr VMAs n
-PT path.- Thomas
-
-v3: Knit-Remove unrelated change.-Thomas
-
-Assisted-by: Claude:claude-opus-4.6
-Signed-off-by: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/16073
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+Tested-by: Stephen Fuhry <fuhrysteve@gmail.com>
 ---
- drivers/gpu/drm/xe/xe_pt.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/i915/display/intel_ddi.c      | 66 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_ddi.h      |  1 +
+ .../drm/i915/display/intel_display_types.h    | 12 ++++
+ .../drm/i915/display/intel_modeset_setup.c    |  6 ++
+ 4 files changed, 85 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 2669ff5ee747..15ce77ce7793 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -2010,6 +2010,9 @@ static int bind_op_prepare(struct xe_vm *vm, struct xe_tile *tile,
- 		 * automatically when the context is re-enabled by the rebind worker,
- 		 * or in fault mode it was invalidated on PTE zapping.
- 		 *
-+		 * If rebind, we have to invalidate TLB on context based TLB invalidation
-+		 * LR vms, as they cannot be relied on context re-enable.
-+		 *
- 		 * If !rebind, and scratch enabled VMs, there is a chance the scratch
- 		 * PTE is already cached in the TLB so it needs to be invalidated.
- 		 * On !LR VMs this is done in the ring ops preceding a batch, but on
-@@ -2019,6 +2022,9 @@ static int bind_op_prepare(struct xe_vm *vm, struct xe_tile *tile,
- 		if ((!pt_op->rebind && xe_vm_has_scratch(vm) &&
- 		     xe_vm_in_lr_mode(vm)))
- 			pt_update_ops->needs_invalidation = true;
-+		else if (pt_op->rebind && xe_vm_in_preempt_fence_mode(vm) &&
-+			 vm->xe->info.has_ctx_tlb_inval)
-+			pt_update_ops->needs_invalidation = true;
- 		else if (pt_op->rebind && !xe_vm_in_lr_mode(vm))
- 			/* We bump also if batch_invalidate_tlb is true */
- 			vm->tlb_flush_seqno++;
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 86520848892e..e12a3d6d6a67 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -2096,6 +2096,47 @@ void intel_ddi_disable_clock(struct intel_encoder *encoder)
+ 		encoder->disable_clock(encoder);
+ }
+ 
++/**
++ * intel_ddi_seed_fec_refcounts - Seed per-port FEC refcounts from active CRTCs
++ * @display: display device
++ *
++ * intel_digital_port::fec_active_streams is the per-port refcount that gates
++ * programming of the shared DP_TP_CTL_FEC_ENABLE bit. After initial HW state
++ * readout (driver load, resume, GPU reset takeover), the persistent
++ * crtc_state->fec_enable values reflect what HW currently has; we need to
++ * align the refcount with that so the first paired disable doesn't underflow
++ * and the next enable doesn't incorrectly skip programming the HW bit.
++ *
++ * Must be called once after intel_modeset_readout_hw_state(), before any new
++ * modeset commit can run.
++ */
++void intel_ddi_seed_fec_refcounts(struct intel_display *display)
++{
++	struct intel_crtc *crtc;
++
++	for_each_intel_crtc(display->drm, crtc) {
++		const struct intel_crtc_state *crtc_state =
++			to_intel_crtc_state(crtc->base.state);
++		struct intel_encoder *encoder;
++
++		if (!crtc_state->hw.active || !crtc_state->fec_enable)
++			continue;
++
++		for_each_intel_encoder(display->drm, encoder) {
++			struct intel_digital_port *dig_port;
++
++			if (encoder->base.crtc != &crtc->base)
++				continue;
++			if (!intel_encoder_is_dig_port(encoder))
++				continue;
++
++			dig_port = enc_to_dig_port(encoder);
++			dig_port->fec_active_streams++;
++			break;
++		}
++	}
++}
++
+ void intel_ddi_sanitize_encoder_pll_mapping(struct intel_encoder *encoder)
+ {
+ 	struct intel_display *display = to_intel_display(encoder);
+@@ -2413,12 +2454,22 @@ static void intel_ddi_enable_fec(struct intel_encoder *encoder,
+ 				 const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(encoder);
++	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+ 	int i;
+ 	int ret;
+ 
+ 	if (!crtc_state->fec_enable)
+ 		return;
+ 
++	/*
++	 * FEC is link-wide: DP_TP_CTL_FEC_ENABLE is per-port while
++	 * crtc_state->fec_enable is per-stream. For DP MST, several streams
++	 * on this port share the bit. Only program HW on the first stream
++	 * needing FEC; subsequent streams just bump the refcount.
++	 */
++	if (dig_port->fec_active_streams++ > 0)
++		return;
++
+ 	intel_de_rmw(display, dp_tp_ctl_reg(encoder, crtc_state),
+ 		     0, DP_TP_CTL_FEC_ENABLE);
+ 
+@@ -2454,10 +2505,25 @@ static void intel_ddi_disable_fec(struct intel_encoder *encoder,
+ 				  const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(encoder);
++	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+ 
+ 	if (!crtc_state->fec_enable)
+ 		return;
+ 
++	/*
++	 * FEC is a link-wide property and DP_TP_CTL_FEC_ENABLE is a per-port
++	 * register, but crtc_state->fec_enable is per-stream. For DP MST,
++	 * multiple streams on the same port share this bit. Refcount the
++	 * active FEC users on the port and only clear the HW bit when the
++	 * last user goes away, otherwise tearing down one MST stream would
++	 * disable FEC for sibling streams still using it.
++	 */
++	if (drm_WARN_ON(display->drm, dig_port->fec_active_streams <= 0))
++		return;
++
++	if (--dig_port->fec_active_streams > 0)
++		return;
++
+ 	intel_de_rmw(display, dp_tp_ctl_reg(encoder, crtc_state),
+ 		     DP_TP_CTL_FEC_ENABLE, 0);
+ 	intel_de_posting_read(display, dp_tp_ctl_reg(encoder, crtc_state));
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.h b/drivers/gpu/drm/i915/display/intel_ddi.h
+index 580ecb09b8b6..3678c28a0dc9 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.h
++++ b/drivers/gpu/drm/i915/display/intel_ddi.h
+@@ -78,6 +78,7 @@ int intel_ddi_toggle_hdcp_bits(struct intel_encoder *intel_encoder,
+ 			       enum transcoder cpu_transcoder,
+ 			       bool enable, u32 hdcp_mask);
+ void intel_ddi_sanitize_encoder_pll_mapping(struct intel_encoder *encoder);
++void intel_ddi_seed_fec_refcounts(struct intel_display *display);
+ int intel_ddi_level(struct intel_encoder *encoder,
+ 		    const struct intel_crtc_state *crtc_state,
+ 		    int lane);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index f44be5c689ae..84bd0d993197 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1987,6 +1987,18 @@ struct intel_digital_port {
+ 	struct ref_tracker *ddi_io_wakeref;
+ 	struct ref_tracker *aux_wakeref;
+ 
++	/*
++	 * Number of active streams on this port currently using FEC.
++	 *
++	 * DP_TP_CTL_FEC_ENABLE is a per-port (link-wide) HW bit, but
++	 * crtc_state->fec_enable is per-stream. For DP MST several streams
++	 * share the same port and therefore the same FEC enable bit. Track
++	 * how many active streams want FEC so that the HW bit is only
++	 * programmed on the first enable and only cleared on the last
++	 * disable. Modified under the modeset locks.
++	 */
++	int fec_active_streams;
++
+ 	struct intel_tc_port *tc;
+ 
+ 	struct {
+diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+index e88082c8caac..14f038b8ef81 100644
+--- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
++++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+@@ -950,6 +950,12 @@ void intel_modeset_setup_hw_state(struct intel_display *display,
+ 
+ 	intel_modeset_readout_hw_state(display);
+ 
++	/*
++	 * Seed per-port FEC refcounts from the just-populated active
++	 * crtc_states before anything can issue an enable/disable.
++	 */
++	intel_ddi_seed_fec_refcounts(display);
++
+ 	/* HW state is read out, now we need to sanitize this mess. */
+ 	get_encoder_power_domains(display);
+ 
 -- 
-2.46.0
+2.25.1
 
