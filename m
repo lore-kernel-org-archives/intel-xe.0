@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85678CD6E4C
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Jun 2026 08:42:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45CC1CD6E60
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Jun 2026 08:42:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43A63112FC4;
-	Mon,  1 Jun 2026 08:42:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 050F3112FC5;
+	Mon,  1 Jun 2026 08:42:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nCgwZpdo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bJvp0aJa";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F20CA112FC5
- for <intel-xe@lists.freedesktop.org>; Mon,  1 Jun 2026 08:42:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABFB9112FC5
+ for <intel-xe@lists.freedesktop.org>; Mon,  1 Jun 2026 08:42:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780303339; x=1811839339;
+ t=1780303343; x=1811839343;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=nuYYwG+lbXnd+NYYq8io1MEs4CwJ6oM8RuF5rAENSzc=;
- b=nCgwZpdoA7MI4PL/dCURq2lGKdKbAzjJOMaSkhb3zVJU1JYKlo9wErYb
- K+orgDYqZWC7u1UNII5yo8pHUb9uJudUztaF8H8c1Rydvh53XXExLb7JC
- AosyfyhyGM6/6vqE9jQL5fkjdyGLZFj3UmY1uZ3is4jqDLBlD7I41lgDJ
- gc04Bc25FGGWBx+PycKMlYxulKrfn2uZJL06kCxNs/yhKKwJHhHV3XXnM
- XTmh/IT8RwstCjUFg3LusbsEKbesHvuUYrPOCLGVTQm2QxNsFR5ApKeL/
- jUiBXKsBwERKiBtheNw2WkmT86zQcBw0PN+jLpuu/u3Pmw+W4M2AVw9nC Q==;
-X-CSE-ConnectionGUID: KKk8ip8KSAukUQz1UhS7yQ==
-X-CSE-MsgGUID: gOu2tfh3Q02DhBtqmrwHlA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11803"; a="91629511"
-X-IronPort-AV: E=Sophos;i="6.24,180,1774335600"; d="scan'208";a="91629511"
+ bh=3U3xHsthligUBz+s6oyIGfrR959NhYFrnOTsPRAQPOo=;
+ b=bJvp0aJa4e2uchA2bJLAmw4aDdDe/DH7P3QHUgabQYPHWOKUj8ENqFZZ
+ +9dRkBoGp/tC0FxMSckuzyDbHsZveyN6VLF/J9ZuwrLsbPL8Q6qSRND1t
+ UKGCod29yFSjK+epF7zeJx/QVck0DJz1TkztGHs8puFFNxSgiYsVIiKhx
+ 7JgwOcsD1WHyE/vH7Nwa0fRfiZh9xAeC1KN4Sv6Z/Yzu/sT2v71xIk+UO
+ QEa/nAEQvUlSfaC9Qpa3E6Zsf+SWN0j4rDAkMfZB9zziP60uLVS1pJMxv
+ hV4BQu8/p6Cy2xKMlyyTVwIo6gFfhflMPONxxYSByXG3r2E09AiDTqcG4 A==;
+X-CSE-ConnectionGUID: 097YdE4yTsSXGoZpdPV60A==
+X-CSE-MsgGUID: mp78dcjoQSOmZCVS+5JVhQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11803"; a="91629535"
+X-IronPort-AV: E=Sophos;i="6.24,180,1774335600"; d="scan'208";a="91629535"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2026 01:42:19 -0700
-X-CSE-ConnectionGUID: 29DDTwt3Qxmz6iN3IND/IA==
-X-CSE-MsgGUID: ID17mcfBTwypMZYcny7jhA==
+ 01 Jun 2026 01:42:23 -0700
+X-CSE-ConnectionGUID: yON4vOXnSkqnttUvrWcLLw==
+X-CSE-MsgGUID: sbvhPj6/Ss+PjbyJo+9nYg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,180,1774335600"; d="scan'208";a="240525261"
+X-IronPort-AV: E=Sophos;i="6.24,180,1774335600"; d="scan'208";a="240525269"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2026 01:42:16 -0700
+ 01 Jun 2026 01:42:20 -0700
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  aravind.iddamsetty@linux.intel.com, badal.nilawar@intel.com,
  raag.jadav@intel.com, ravi.kishore.koppuravuri@intel.com,
  mallesh.koujalagi@intel.com, soham.purkait@intel.com
-Subject: [PATCH v8 2/6] drm/xe/xe_ras: Add support to get error counter value
-Date: Mon,  1 Jun 2026 14:11:49 +0530
-Message-ID: <20260601084146.3808639-10-riana.tauro@intel.com>
+Subject: [PATCH v8 3/6] drm/xe/xe_ras: Add support to clear error counter value
+Date: Mon,  1 Jun 2026 14:11:50 +0530
+Message-ID: <20260601084146.3808639-11-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20260601084146.3808639-8-riana.tauro@intel.com>
 References: <20260601084146.3808639-8-riana.tauro@intel.com>
@@ -69,285 +69,210 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add request/response structures and helper functions to query system
-controller to get error counter value.
+Add structures and helper function to clear error counter value.
 
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 Reviewed-by: Raag Jadav <raag.jadav@intel.com>
 ---
-v2: add structures for clear counter
-    move commands to sysctrl file
-    split functions
-    fix commit message (Raag)
+v2: add status codes (Aravind)
+    fix log message
+    squash structure patch (Raag)
 
-v3: fix log message
-    squash patches
-    change error code for sysctrl error (Raag)
+v3: rename function
+    add comma to enum members to avoid
+    redundant churn
+    align with tabs (Raag)
 
-v4: rename function
-    remove unecessary macro (Raag)
-    add documentation for enum
+v4: rebase
 
-v5: rebase
-
-v6: add sysctrl command helper
-    add debug log
-    rename error_class to counter (Raag)
-
-v7: use local variable to avoid nesting
-    simplify structure member names
-    rename sysctrl command helper (Raag)
-
-v8: reorder functions
+v5: move header prepare function to sysctrl layer
     rename error_class to counter
-    use xe_sysctrl_create_command
-    use group_id (Raag)
+    add a debug log (Raag)
+    change error codes to -ENOSPC and -EIO
+    print actual response status (Mallesh)
+
+v6: use switch for error status
+    simplify structure member names
+    use -EPROTO for default case
+    modify log (Raag)
+
+v7: use %#x format specifier
+    modify log 
+    remove err (Raag)
 ---
- drivers/gpu/drm/xe/xe_ras.c                   | 91 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_ras.h                   |  3 +
- drivers/gpu/drm/xe/xe_ras_types.h             | 26 ++++++
- drivers/gpu/drm/xe/xe_sysctrl_mailbox.c       | 28 ++++++
- drivers/gpu/drm/xe/xe_sysctrl_mailbox.h       |  3 +
+ drivers/gpu/drm/xe/xe_ras.c                   | 86 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ras.h                   |  1 +
+ drivers/gpu/drm/xe/xe_ras_types.h             | 25 ++++++
  drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |  2 +
- 6 files changed, 153 insertions(+)
+ 4 files changed, 114 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index 4cb16b419b0c..0b76467566cc 100644
+index 0b76467566cc..7a7dde9a68a8 100644
 --- a/drivers/gpu/drm/xe/xe_ras.c
 +++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -4,11 +4,14 @@
-  */
- 
- #include "xe_device.h"
-+#include "xe_pm.h"
- #include "xe_printk.h"
- #include "xe_ras.h"
- #include "xe_ras_types.h"
- #include "xe_sysctrl.h"
- #include "xe_sysctrl_event_types.h"
-+#include "xe_sysctrl_mailbox.h"
-+#include "xe_sysctrl_mailbox_types.h"
- 
- /* Severity of detected errors  */
- enum xe_ras_severity {
-@@ -50,6 +53,36 @@ static const char *const xe_ras_components[] = {
+@@ -34,6 +34,17 @@ enum xe_ras_component {
+ 	XE_RAS_COMP_MAX
  };
- static_assert(ARRAY_SIZE(xe_ras_components) == XE_RAS_COMP_MAX);
  
-+static u8 drm_to_xe_ras_severity(u8 severity)
-+{
-+	switch (severity) {
-+	case DRM_XE_RAS_ERR_SEV_CORRECTABLE:
-+		return XE_RAS_SEV_CORRECTABLE;
-+	case DRM_XE_RAS_ERR_SEV_UNCORRECTABLE:
-+		return XE_RAS_SEV_UNCORRECTABLE;
-+	default:
-+		return XE_RAS_SEV_NOT_SUPPORTED;
-+	}
-+}
++/* RAS response status codes */
++enum xe_ras_response_status {
++	XE_RAS_STATUS_SUCCESS = 0,
++	XE_RAS_STATUS_INVALID_PARAM,
++	XE_RAS_STATUS_OP_NOT_SUPPORTED,
++	XE_RAS_STATUS_TIMEOUT,
++	XE_RAS_STATUS_HARDWARE_FAILURE,
++	XE_RAS_STATUS_INSUFFICIENT_RESOURCES,
++	XE_RAS_STATUS_MAX
++};
 +
-+static u8 drm_to_xe_ras_component(u8 component)
+ static const char *const xe_ras_severities[] = {
+ 	[XE_RAS_SEV_NOT_SUPPORTED]		= "Not Supported",
+ 	[XE_RAS_SEV_CORRECTABLE]		= "Correctable Error",
+@@ -83,6 +94,26 @@ static u8 drm_to_xe_ras_component(u8 component)
+ 	}
+ }
+ 
++static int ras_status_to_errno(u32 status)
 +{
-+	switch (component) {
-+	case DRM_XE_RAS_ERR_COMP_CORE_COMPUTE:
-+		return XE_RAS_COMP_CORE_COMPUTE;
-+	case DRM_XE_RAS_ERR_COMP_SOC_INTERNAL:
-+		return XE_RAS_COMP_SOC_INTERNAL;
-+	case DRM_XE_RAS_ERR_COMP_DEVICE_MEMORY:
-+		return XE_RAS_COMP_DEVICE_MEMORY;
-+	case DRM_XE_RAS_ERR_COMP_PCIE:
-+		return XE_RAS_COMP_PCIE;
-+	case DRM_XE_RAS_ERR_COMP_FABRIC:
-+		return XE_RAS_COMP_FABRIC;
++	switch (status) {
++	case XE_RAS_STATUS_SUCCESS:
++		return 0;
++	case XE_RAS_STATUS_INVALID_PARAM:
++		return -EINVAL;
++	case XE_RAS_STATUS_OP_NOT_SUPPORTED:
++		return -EOPNOTSUPP;
++	case XE_RAS_STATUS_TIMEOUT:
++		return -ETIMEDOUT;
++	case XE_RAS_STATUS_HARDWARE_FAILURE:
++		return -EIO;
++	case XE_RAS_STATUS_INSUFFICIENT_RESOURCES:
++		return -ENOSPC;
 +	default:
-+		return XE_RAS_COMP_NOT_SUPPORTED;
++		return -EPROTO;
 +	}
 +}
 +
  static inline const char *sev_to_str(u8 severity)
  {
  	if (severity >= XE_RAS_SEV_MAX)
-@@ -91,3 +124,61 @@ void xe_ras_counter_threshold_crossed(struct xe_device *xe,
- 			comp_to_str(component), sev_to_str(severity));
- 	}
+@@ -182,3 +213,58 @@ int xe_ras_get_counter(struct xe_device *xe, u8 severity, u8 component, u32 *val
+ 	guard(xe_pm_runtime)(xe);
+ 	return get_counter(xe, &counter, value);
  }
 +
-+static int get_counter(struct xe_device *xe, struct xe_ras_error_class *counter, u32 *value)
-+{
-+	struct xe_ras_get_counter_response response = {0};
-+	struct xe_ras_get_counter_request request = {0};
-+	struct xe_sysctrl_mailbox_command command = {0};
-+	struct xe_ras_error_common *common;
-+	size_t rlen;
-+	int ret;
-+
-+	request.counter = *counter;
-+
-+	xe_sysctrl_create_command(&command, XE_SYSCTRL_GROUP_GFSP, XE_SYSCTRL_CMD_GET_COUNTER,
-+				  &request, sizeof(request), &response, sizeof(response));
-+
-+	ret = xe_sysctrl_send_command(&xe->sc, &command, &rlen);
-+	if (ret) {
-+		xe_err(xe, "sysctrl: failed to get counter %d\n", ret);
-+		return ret;
-+	}
-+
-+	if (rlen != sizeof(response)) {
-+		xe_err(xe, "sysctrl: unexpected get counter response length %zu (expected %zu)\n",
-+		       rlen, sizeof(response));
-+		return -EIO;
-+	}
-+
-+	common = &response.counter.common;
-+	*value = response.value;
-+
-+	xe_dbg(xe, "[RAS]: get counter value %u for %s %s\n", *value,
-+	       comp_to_str(common->component), sev_to_str(common->severity));
-+
-+	return 0;
-+}
-+
 +/**
-+ * xe_ras_get_counter() - Get error counter value
++ * xe_ras_clear_counter() - Clear error counter value
 + * @xe: Xe device instance
-+ * @severity: Error severity to be queried (&enum drm_xe_ras_error_severity)
-+ * @component: Error component to be queried (&enum drm_xe_ras_error_component)
-+ * @value: Counter value
++ * @severity: Error severity to be cleared (&enum drm_xe_ras_error_severity)
++ * @component: Error component to be cleared (&enum drm_xe_ras_error_component)
 + *
-+ * This function retrieves the value of a specific error counter based on
++ * This function clears the value of a specific error counter based on
 + * the error severity and component.
 + *
 + * Return: 0 on success, negative error code on failure.
 + */
-+int xe_ras_get_counter(struct xe_device *xe, u8 severity, u8 component, u32 *value)
++int xe_ras_clear_counter(struct xe_device *xe, u8 severity, u8 component)
 +{
-+	struct xe_ras_error_class counter = {0};
++	struct xe_ras_clear_counter_response response = {0};
++	struct xe_ras_clear_counter_request request = {0};
++	struct xe_sysctrl_mailbox_command command = {0};
++	struct xe_ras_error_class *counter;
++	size_t rlen;
++	int ret;
 +
-+	counter.common.severity = drm_to_xe_ras_severity(severity);
-+	counter.common.component = drm_to_xe_ras_component(component);
++	counter = &request.counter;
++	counter->common.severity = drm_to_xe_ras_severity(severity);
++	counter->common.component = drm_to_xe_ras_component(component);
++
++	xe_sysctrl_create_command(&command, XE_SYSCTRL_GROUP_GFSP, XE_SYSCTRL_CMD_CLEAR_COUNTER,
++				  &request, sizeof(request), &response, sizeof(response));
 +
 +	guard(xe_pm_runtime)(xe);
-+	return get_counter(xe, &counter, value);
++	ret = xe_sysctrl_send_command(&xe->sc, &command, &rlen);
++	if (ret) {
++		xe_err(xe, "sysctrl: failed to clear counter %d\n", ret);
++		return ret;
++	}
++
++	if (rlen != sizeof(response)) {
++		xe_err(xe, "sysctrl: unexpected clear counter response length %zu (expected %zu)\n",
++		       rlen, sizeof(response));
++		return -EIO;
++	}
++
++	ret = ras_status_to_errno(response.status);
++	if (ret) {
++		xe_err(xe, "sysctrl: clear counter command failed with status %#x\n",
++		       response.status);
++		return ret;
++	}
++
++	counter = &response.counter;
++
++	xe_dbg(xe, "[RAS]: clear counter value for %s %s\n", comp_to_str(counter->common.component),
++	       sev_to_str(counter->common.severity));
++
++	return 0;
 +}
 diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
-index ea90593b62dc..317b877e375d 100644
+index 317b877e375d..637956a33a19 100644
 --- a/drivers/gpu/drm/xe/xe_ras.h
 +++ b/drivers/gpu/drm/xe/xe_ras.h
-@@ -6,10 +6,13 @@
- #ifndef _XE_RAS_H_
- #define _XE_RAS_H_
- 
-+#include <uapi/drm/xe_drm.h>
-+
- struct xe_device;
- struct xe_sysctrl_event_response;
- 
+@@ -14,5 +14,6 @@ struct xe_sysctrl_event_response;
  void xe_ras_counter_threshold_crossed(struct xe_device *xe,
  				      struct xe_sysctrl_event_response *response);
-+int xe_ras_get_counter(struct xe_device *xe, u8 severity, u8 component, u32 *value);
+ int xe_ras_get_counter(struct xe_device *xe, u8 severity, u8 component, u32 *value);
++int xe_ras_clear_counter(struct xe_device *xe, u8 severity, u8 component);
  
  #endif
 diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
-index 4e63c67f806a..fdfebaeb5ed2 100644
+index fdfebaeb5ed2..6688e11f57a8 100644
 --- a/drivers/gpu/drm/xe/xe_ras_types.h
 +++ b/drivers/gpu/drm/xe/xe_ras_types.h
-@@ -70,4 +70,30 @@ struct xe_ras_threshold_crossed {
- 	struct xe_ras_error_class counters[XE_RAS_NUM_COUNTERS];
+@@ -96,4 +96,29 @@ struct xe_ras_get_counter_response {
+ 	u32 reserved[57];
  } __packed;
  
 +/**
-+ * struct xe_ras_get_counter_request - Request structure for get counter
++ * struct xe_ras_clear_counter_request - Request structure for clear counter
 + */
-+struct xe_ras_get_counter_request {
-+	/** @counter: Error counter to be queried */
++struct xe_ras_clear_counter_request {
++	/** @counter: Counter class to be cleared */
 +	struct xe_ras_error_class counter;
 +	/** @reserved: Reserved for future use */
 +	u32 reserved;
 +} __packed;
 +
 +/**
-+ * struct xe_ras_get_counter_response - Response structure for get counter
++ * struct xe_ras_clear_counter_response - Response structure for clear counter
 + */
-+struct xe_ras_get_counter_response {
-+	/** @counter: Error counter that was queried */
++struct xe_ras_clear_counter_response {
++	/** @counter: Counter class that was cleared */
 +	struct xe_ras_error_class counter;
-+	/** @value: Current counter value */
-+	u32 value;
-+	/** @timestamp: Timestamp when counter was last updated */
++	/** @reserved: Reserved */
++	u32 reserved;
++	/** @timestamp: Timestamp when the counter was cleared */
 +	u64 timestamp;
-+	/** @threshold: Threshold value for the counter */
-+	u32 threshold;
-+	/** @reserved: Reserved  */
-+	u32 reserved[57];
++	/** @status: Status of the clear operation */
++	u32 status;
++	/** @reserved1: Reserved for future use */
++	u32 reserved1[3];
 +} __packed;
-+
  #endif
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-index 3caa9f15875f..b9f63ed9f8e1 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-+++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-@@ -293,6 +293,34 @@ static int sysctrl_send_command(struct xe_sysctrl *sc,
- 	return 0;
- }
- 
-+/**
-+ * xe_sysctrl_create_command() - Create system controller command
-+ * @command: Sysctrl command structure
-+ * @group_id: Command group ID
-+ * @cmd_id: Command ID
-+ * @request: Pointer to request buffer (can be NULL)
-+ * @request_len: Size of request buffer
-+ * @response: Pointer to response buffer
-+ * @response_len: Size of response buffer
-+ *
-+ * Helper function to build sysctrl command to be sent via %xe_sysctrl_send_command()
-+ */
-+void xe_sysctrl_create_command(struct xe_sysctrl_mailbox_command *command, u8 group_id, u8 cmd_id,
-+			       void *request, size_t request_len, void *response,
-+			       size_t response_len)
-+{
-+	struct xe_sysctrl_app_msg_hdr header = {0};
-+
-+	header.data = FIELD_PREP(APP_HDR_GROUP_ID_MASK, group_id) |
-+		      FIELD_PREP(APP_HDR_COMMAND_MASK, cmd_id);
-+
-+	command->header = header;
-+	command->data_in = request;
-+	command->data_in_len = request_len;
-+	command->data_out = response;
-+	command->data_out_len = response_len;
-+}
-+
- /**
-  * xe_sysctrl_mailbox_init - Initialize System Controller mailbox interface
-  * @sc: System controller structure
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
-index f67e9234de48..fb434cc165b2 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
-+++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
-@@ -23,6 +23,9 @@ struct xe_sysctrl_mailbox_command;
- #define XE_SYSCTRL_APP_HDR_VERSION(hdr) \
- 	FIELD_GET(APP_HDR_VERSION_MASK, (hdr)->data)
- 
-+void xe_sysctrl_create_command(struct xe_sysctrl_mailbox_command *command, u8 group_id, u8 cmd_id,
-+			       void *request, size_t request_len, void *response,
-+			       size_t response_len);
- void xe_sysctrl_mailbox_init(struct xe_sysctrl *sc);
- int xe_sysctrl_send_command(struct xe_sysctrl *sc,
- 			    struct xe_sysctrl_mailbox_command *cmd,
 diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-index 84d7c647e743..b315847cbf64 100644
+index b315847cbf64..6e3753554510 100644
 --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
 +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-@@ -22,9 +22,11 @@ enum xe_sysctrl_group {
- /**
+@@ -23,10 +23,12 @@ enum xe_sysctrl_group {
   * enum xe_sysctrl_gfsp_cmd - Commands supported by GFSP group
   *
-+ * @XE_SYSCTRL_CMD_GET_COUNTER: Get error counter value
+  * @XE_SYSCTRL_CMD_GET_COUNTER: Get error counter value
++ * @XE_SYSCTRL_CMD_CLEAR_COUNTER: Clear error counter value
   * @XE_SYSCTRL_CMD_GET_PENDING_EVENT: Retrieve pending event
   */
  enum xe_sysctrl_gfsp_cmd {
-+	XE_SYSCTRL_CMD_GET_COUNTER		= 0x03,
+ 	XE_SYSCTRL_CMD_GET_COUNTER		= 0x03,
++	XE_SYSCTRL_CMD_CLEAR_COUNTER		= 0x04,
  	XE_SYSCTRL_CMD_GET_PENDING_EVENT	= 0x07,
  };
  
