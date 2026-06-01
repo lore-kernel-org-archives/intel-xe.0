@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F20CCD6E55
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Jun 2026 14:30:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0B64CD6E57
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Jun 2026 14:30:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EBCB10E801;
-	Mon,  1 Jun 2026 14:30:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6C1A10E804;
+	Mon,  1 Jun 2026 14:30:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a9tjpaIe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Dnkb7M0z";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0EFA10E801
- for <intel-xe@lists.freedesktop.org>; Mon,  1 Jun 2026 14:30:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A070110E804
+ for <intel-xe@lists.freedesktop.org>; Mon,  1 Jun 2026 14:30:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780324226; x=1811860226;
+ t=1780324229; x=1811860229;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=d+AKUMGoZ0GJdOKH1pLq3ysXJgxxCjztAUrFonFt8A4=;
- b=a9tjpaIepZRg50E1dNHLOmcAeMtEm/O38zZA86uR1GaQYntDZKxh4BFJ
- AUMCsmr6AL/eFafvE9NiZh0CVTAJi0g/t/BUeo/4hgkV6peoyn+vunyAh
- 2T9QUxkxd6cOaKT1+WxX2ziKUzfrG2XsM10Fwm3M8ozKtPKwpKalTaypm
- vzUxNYkEDyZ9nrxwuUw14hK5m6WXOv5xjZ41Zf6hPFlqQ8jPMNZAj+upN
- Ra7FwpZqZeEL9aJl/S4QTNEsrtXPpoFSYE4pA03qSP4MdDwm8uv8d7291
- jHxJz8JU6n0HhE0WUggHwjqRbLBoRRtnNuKEdeMYm6KUxhU8LdB6PHWDU Q==;
-X-CSE-ConnectionGUID: PPn0CwOjQ1ulhsNIchgVyA==
-X-CSE-MsgGUID: lDlJ6KeQSZ6a5WwxnO3i6Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11804"; a="92195394"
-X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="92195394"
+ bh=aa04ZKND4HgZ+B6nln0e94RLp2a6XCel7+c7Di27DWI=;
+ b=Dnkb7M0z91PMCwEZzFGpfFUoMeua6vNgWrAgNgwW6gFJMlP8w+W7VDNx
+ Y0tP9B8p0SgGRKNHAXqfblK294HrSGXbfBYrHwiEd/29+w9Jc7uhwUZTB
+ ShzeGdxNBA1PRbVeHSaDA6cNg5EVpK6f4XF1vpUJsUo+QPqiygEBwivk/
+ lCRVo6ON/Y0fH6Th4VIuo1/3/vK6ji8oogOO5O2n1n93c/cAvP7aufJAO
+ ZivEwo7rn6Alsapq5nw0jyfTpoy0/pnjeup+9JMgvg0vRVYoQekJAna65
+ ShJUVvrc3WCt9qhw58wzvuBDSGJQckUz9ZDdVjsU8MMywLDRNJP2cpkPm Q==;
+X-CSE-ConnectionGUID: w97PCWfmSO+/c/mRwQ3mOA==
+X-CSE-MsgGUID: X/88lleASgezoTWi9xUvkA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11804"; a="92195397"
+X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="92195397"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2026 07:30:26 -0700
-X-CSE-ConnectionGUID: 6k2KCHimTA+1COuC7TBZcw==
-X-CSE-MsgGUID: rTTU/aSYTcaYckifTpBpDw==
+ 01 Jun 2026 07:30:28 -0700
+X-CSE-ConnectionGUID: sppQLjG1SqW1D3p8q6UmKA==
+X-CSE-MsgGUID: dbWJ4k6nRa+QVnb68RUTcQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="245408797"
+X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="245408801"
 Received: from tilak-z690i-a-ultra-plus.iind.intel.com ([10.190.239.38])
- by fmviesa004.fm.intel.com with ESMTP; 01 Jun 2026 07:30:23 -0700
+ by fmviesa004.fm.intel.com with ESMTP; 01 Jun 2026 07:30:26 -0700
 From: tilak.tirumalesh.tangudu@intel.com
 To: tilak.tirumalesh.tangudu@intel.com, matthew.d.roper@intel.com,
  thomas.hellstrom@intel.com, daniele.ceraolospurio@intel.com,
  matthew.auld@intel.com, stuart.summers@intel.com, x.wang@intel.com,
  brian3.nguyen@intel.com, intel-xe@lists.freedesktop.org
-Subject: [PATCH 1/3] Revert "drm/xe: Skip exec queue schedule toggle if queue
- is idle during suspend"
-Date: Mon,  1 Jun 2026 19:59:58 +0530
-Message-ID: <20260601143000.2830227-2-tilak.tirumalesh.tangudu@intel.com>
+Subject: [PATCH 2/3] drm/xe: Clear pending_disable before signaling suspend
+ fence
+Date: Mon,  1 Jun 2026 19:59:59 +0530
+Message-ID: <20260601143000.2830227-3-tilak.tirumalesh.tangudu@intel.com>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20260601143000.2830227-1-tilak.tirumalesh.tangudu@intel.com>
 References: <20260601143000.2830227-1-tilak.tirumalesh.tangudu@intel.com>
@@ -70,195 +70,38 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
 
-This reverts commit 8533051ce92015e9cc6f75e0d52119b9d91610b6.
+In the schedule-disable done path for suspend, we
+signal the suspend fence before clearing pending_disable.
 
-The idle-skip optimization bypasses GuC suspend, so the GPU may not
-perform the context switch that flushes TLB entries for invalidated
-userptr VMAs. In LR/preempt-fence VM mode, this can lead to missed TLB
-invalidation and page faults during userptr invalidation tests.
+That wakeup can let suspend_wait complete and resume be queued
+immediately. The resume path may then reach enable_scheduling()
+while pending_disable is still set and hit the
+!exec_queue_pending_disable(q) assertion.
 
-Restore unconditional schedule toggling on suspend so the context-switch
-TLB flush is always performed.
+Fix this by clearing pending_disable before signaling
+the suspend fence, so any resumed transition observes a
+consistent state.
 
-This optimization will be reintroduced with a fix that does not skip
-suspend in LR/preempt-fence VM mode.
-
-Suggested-by: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
 Signed-off-by: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
 Reviewed-by: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec_queue.h      | 17 --------
- drivers/gpu/drm/xe/xe_guc_submit.c      | 55 ++-----------------------
- drivers/gpu/drm/xe/xe_hw_engine_group.c | 10 +----
- 3 files changed, 5 insertions(+), 77 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_submit.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
-index a82d99bd77bc..0225426c57b0 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.h
-@@ -162,21 +162,4 @@ int xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q, void *scratch);
- struct xe_lrc *xe_exec_queue_lrc(struct xe_exec_queue *q);
- struct xe_lrc *xe_exec_queue_get_lrc(struct xe_exec_queue *q, u16 idx);
- 
--/**
-- * xe_exec_queue_idle_skip_suspend() - Can exec queue skip suspend
-- * @q: The exec_queue
-- *
-- * If an exec queue is not parallel and is idle, the suspend steps can be
-- * skipped in the submission backend immediatley signaling the suspend fence.
-- * Parallel queues cannot skip this step due to limitations in the submission
-- * backend.
-- *
-- * Return: True if exec queue is idle and can skip suspend steps, False
-- * otherwise
-- */
--static inline bool xe_exec_queue_idle_skip_suspend(struct xe_exec_queue *q)
--{
--	return !xe_exec_queue_is_parallel(q) && xe_exec_queue_is_idle(q);
--}
--
- #endif
 diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index ab501513d806..d1ab66ca1856 100644
+index d1ab66ca1856..122a0983df18 100644
 --- a/drivers/gpu/drm/xe/xe_guc_submit.c
 +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -71,7 +71,6 @@ exec_queue_to_guc(struct xe_exec_queue *q)
- #define EXEC_QUEUE_STATE_WEDGED			(1 << 8)
- #define EXEC_QUEUE_STATE_BANNED			(1 << 9)
- #define EXEC_QUEUE_STATE_PENDING_RESUME		(1 << 10)
--#define EXEC_QUEUE_STATE_IDLE_SKIP_SUSPEND	(1 << 11)
+@@ -2791,8 +2791,8 @@ static void handle_sched_done(struct xe_guc *guc, struct xe_exec_queue *q,
+ 		xe_gt_assert(guc_to_gt(guc), exec_queue_pending_disable(q));
  
- static bool exec_queue_registered(struct xe_exec_queue *q)
- {
-@@ -218,21 +217,6 @@ static void clear_exec_queue_pending_resume(struct xe_exec_queue *q)
- 	atomic_and(~EXEC_QUEUE_STATE_PENDING_RESUME, &q->guc->state);
- }
- 
--static bool exec_queue_idle_skip_suspend(struct xe_exec_queue *q)
--{
--	return atomic_read(&q->guc->state) & EXEC_QUEUE_STATE_IDLE_SKIP_SUSPEND;
--}
--
--static void set_exec_queue_idle_skip_suspend(struct xe_exec_queue *q)
--{
--	atomic_or(EXEC_QUEUE_STATE_IDLE_SKIP_SUSPEND, &q->guc->state);
--}
--
--static void clear_exec_queue_idle_skip_suspend(struct xe_exec_queue *q)
--{
--	atomic_and(~EXEC_QUEUE_STATE_IDLE_SKIP_SUSPEND, &q->guc->state);
--}
--
- static bool exec_queue_killed_or_banned_or_wedged(struct xe_exec_queue *q)
- {
- 	return (atomic_read(&q->guc->state) &
-@@ -1157,7 +1141,7 @@ static void submit_exec_queue(struct xe_exec_queue *q, struct xe_sched_job *job)
- 	if (!job->restore_replay || job->last_replay) {
- 		if (xe_exec_queue_is_parallel(q))
- 			wq_item_append(q);
--		else if (!exec_queue_idle_skip_suspend(q))
-+		else
- 			xe_lrc_set_ring_tail(lrc, lrc->ring.tail);
- 		job->last_replay = false;
- 	}
-@@ -1812,10 +1796,9 @@ static void __guc_exec_queue_process_msg_suspend(struct xe_sched_msg *msg)
- {
- 	struct xe_exec_queue *q = msg->private_data;
- 	struct xe_guc *guc = exec_queue_to_guc(q);
--	bool idle_skip_suspend = xe_exec_queue_idle_skip_suspend(q);
- 
--	if (!idle_skip_suspend && guc_exec_queue_allowed_to_change_state(q) &&
--	    !exec_queue_suspended(q) && exec_queue_enabled(q)) {
-+	if (guc_exec_queue_allowed_to_change_state(q) && !exec_queue_suspended(q) &&
-+	    exec_queue_enabled(q)) {
- 		wait_event(guc->ct.wq, vf_recovery(guc) ||
- 			   ((q->guc->resume_time != RESUME_PENDING ||
- 			   xe_guc_read_stopped(guc)) && !exec_queue_pending_disable(q)));
-@@ -1834,33 +1817,11 @@ static void __guc_exec_queue_process_msg_suspend(struct xe_sched_msg *msg)
- 			disable_scheduling(q, false);
- 		}
- 	} else if (q->guc->suspend_pending) {
--		if (idle_skip_suspend)
--			set_exec_queue_idle_skip_suspend(q);
- 		set_exec_queue_suspended(q);
- 		suspend_fence_signal(q);
- 	}
- }
- 
--static void sched_context(struct xe_exec_queue *q)
--{
--	struct xe_guc *guc = exec_queue_to_guc(q);
--	struct xe_lrc *lrc = q->lrc[0];
--	u32 action[] = {
--		XE_GUC_ACTION_SCHED_CONTEXT,
--		q->guc->id,
--	};
--
--	xe_gt_assert(guc_to_gt(guc), !xe_exec_queue_is_parallel(q));
--	xe_gt_assert(guc_to_gt(guc), !exec_queue_destroyed(q));
--	xe_gt_assert(guc_to_gt(guc), exec_queue_registered(q));
--	xe_gt_assert(guc_to_gt(guc), !exec_queue_pending_disable(q));
--
--	trace_xe_exec_queue_submit(q);
--
--	xe_lrc_set_ring_tail(lrc, lrc->ring.tail);
--	xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action), 0, 0);
--}
--
- static void __guc_exec_queue_process_msg_resume(struct xe_sched_msg *msg)
- {
- 	struct xe_exec_queue *q = msg->private_data;
-@@ -1868,22 +1829,12 @@ static void __guc_exec_queue_process_msg_resume(struct xe_sched_msg *msg)
- 	if (guc_exec_queue_allowed_to_change_state(q)) {
- 		clear_exec_queue_suspended(q);
- 		if (!exec_queue_enabled(q)) {
--			if (exec_queue_idle_skip_suspend(q)) {
--				struct xe_lrc *lrc = q->lrc[0];
--
--				clear_exec_queue_idle_skip_suspend(q);
--				xe_lrc_set_ring_tail(lrc, lrc->ring.tail);
--			}
- 			q->guc->resume_time = RESUME_PENDING;
- 			set_exec_queue_pending_resume(q);
- 			enable_scheduling(q);
--		} else if (exec_queue_idle_skip_suspend(q)) {
--			clear_exec_queue_idle_skip_suspend(q);
--			sched_context(q);
- 		}
- 	} else {
- 		clear_exec_queue_suspended(q);
--		clear_exec_queue_idle_skip_suspend(q);
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine_group.c b/drivers/gpu/drm/xe/xe_hw_engine_group.c
-index 4c2b113364d3..02cf32ae5aa9 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine_group.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine_group.c
-@@ -208,21 +208,15 @@ static int xe_hw_engine_group_suspend_faulting_lr_jobs(struct xe_hw_engine_group
- 	lockdep_assert_held_write(&group->mode_sem);
- 
- 	list_for_each_entry(q, &group->exec_queue_list, hw_engine_group_link) {
--		bool idle_skip_suspend;
- 
- 		if (!xe_vm_in_fault_mode(q->vm))
- 			continue;
- 
--		idle_skip_suspend = xe_exec_queue_idle_skip_suspend(q);
--		if (!idle_skip_suspend && has_deps)
-+		if (has_deps)
- 			return -EAGAIN;
- 
- 		xe_gt_stats_incr(q->gt, XE_GT_STATS_ID_HW_ENGINE_GROUP_SUSPEND_LR_QUEUE_COUNT, 1);
--		if (idle_skip_suspend)
--			xe_gt_stats_incr(q->gt,
--					 XE_GT_STATS_ID_HW_ENGINE_GROUP_SKIP_LR_QUEUE_COUNT, 1);
--
--		need_resume |= !idle_skip_suspend;
-+		need_resume = true;
- 		q->ops->suspend(q);
- 		gt = q->gt;
- 	}
+ 		if (q->guc->suspend_pending) {
+-			suspend_fence_signal(q);
+ 			clear_exec_queue_pending_disable(q);
++			suspend_fence_signal(q);
+ 		} else {
+ 			if (exec_queue_banned(q)) {
+ 				smp_wmb();
 -- 
 2.46.0
 
