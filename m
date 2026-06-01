@@ -4,71 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75A39CD6E55
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Jun 2026 10:29:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEC29CD6E56
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Jun 2026 10:29:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 328A711316E;
-	Mon,  1 Jun 2026 10:29:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F964113172;
+	Mon,  1 Jun 2026 10:29:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="JUXsIdCY";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="VVzTeCBB";
 	dkim-atps=neutral
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA4CB11316E
- for <intel-xe@lists.freedesktop.org>; Mon,  1 Jun 2026 10:29:01 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 10B72113173
+ for <intel-xe@lists.freedesktop.org>; Mon,  1 Jun 2026 10:29:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1780309740;
+ s=mimecast20190719; t=1780309776;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=rR3vdJBAgyYpZ/mB0zSfLOFP8KAbUlqalAgRbWXUhZ4=;
- b=JUXsIdCYHaMB644cVInQCANPZ3J0hsuIpFo9OftWktVVNg/L5qm2DFqWxonwfix0ooe6FI
- dAFBBUNWtbixWM/bfPZZE+L8f/GUm1bQuR2SMta/PAVaPOcizW/8X0wW+fAoRNpTZxl0SD
- pwuOyGGB1LpvOQuBcRh1j+4F933uuxc=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=NR4sOBYtM0bZ0iqX/XjOc3nz+SGcL1hWjzs/0wJdl4Y=;
+ b=VVzTeCBB+XKcHZMgzGwahCNp4+EYzp+4+IpGFwTNzk7IwCk4FqTbvmEs1YZ4CEm8zm14N5
+ KmXILOGcEGk9mrcL9y2SYs3x5W9xSpAN6CDAOgqBbovGIgqiJyK/ZQ05qVEAYAeTBYJpCB
+ +6BJ+BR60bf73BeAxGsepS3tG2ZMIp8=
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
+ [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-483-5WGTkKDMMYehG1vkZN8oYw-1; Mon, 01 Jun 2026 06:28:59 -0400
-X-MC-Unique: 5WGTkKDMMYehG1vkZN8oYw-1
-X-Mimecast-MFC-AGG-ID: 5WGTkKDMMYehG1vkZN8oYw_1780309739
-Received: by mail-wm1-f72.google.com with SMTP id
- 5b1f17b1804b1-490479c2911so104322835e9.2
- for <intel-xe@lists.freedesktop.org>; Mon, 01 Jun 2026 03:28:59 -0700 (PDT)
+ us-mta-70-Rr_s69K4PwySTTqi9la1hQ-1; Mon, 01 Jun 2026 06:29:34 -0400
+X-MC-Unique: Rr_s69K4PwySTTqi9la1hQ-1
+X-Mimecast-MFC-AGG-ID: Rr_s69K4PwySTTqi9la1hQ_1780309774
+Received: by mail-wm1-f71.google.com with SMTP id
+ 5b1f17b1804b1-490ae0167ceso2061095e9.1
+ for <intel-xe@lists.freedesktop.org>; Mon, 01 Jun 2026 03:29:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1780309738; x=1780914538;
+ d=1e100.net; s=20251104; t=1780309773; x=1780914573;
  h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
  :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=rR3vdJBAgyYpZ/mB0zSfLOFP8KAbUlqalAgRbWXUhZ4=;
- b=rmilzBUmvti2yNgu9UHW3Ne+ssq7DvWv0Y92WHp89Q2cE9bta3n9cNo9MHFYSZieiY
- 5TG33UaGSmEik/9SmqDpshz+7fcjEiMLEMYCBUtCp5tIiF0cwVPh5yzSA5mj2PCO4PaL
- BaoVF2UPfZVtdAex0ZF6n5CozdQUUjIobt/L342i3u32g/GxrccTw1mKRss/NprqeUdk
- PHIQNJ7fgnIAKIG7hMWGFh6xTqfFWoRjHXuDqDcnb+4otVFdCQX9OcnX/oxmoMhDX11U
- qVgyAJVJpaT1nCkYk9TIZLztlwQHfqEPZ5QMbEaKELqpdaH2oxKQxCp7+1G0sRS7E0au
- 4NBg==
+ bh=NR4sOBYtM0bZ0iqX/XjOc3nz+SGcL1hWjzs/0wJdl4Y=;
+ b=Nu1QZNosxt9zQ9H9UX7kSstM4POYDNPkMNEGtnF8paKppsr1p0OIjgNiHWmhGFNyc0
+ be6qka9fCzmk4iQXfCqR3e+he9z27arAlUFhFRABlAqhtC8t8PxfL0VMe+zL8/zZt0gI
+ ReD0OihOA5lxhERvUFLE8J3WkDTz5b8+JeEmShDA2f7yNQvdpALqbSP/h6EmU7l4XKyg
+ YvusAoS5eOqbk4vBb6D/KWIwzlmMF32eMSzzP7jDtjaCYbMmoqUyDY7WjfW/DZeYKoyG
+ 5R/lUCCY7zLK26q427JJpUp81BXPppYxro3wxZSu6UxYgD7EO3Enm9SnO+1lajWIoulv
+ k2iA==
 X-Forwarded-Encrypted: i=1;
- AFNElJ+bYrzVvb6nPKYrjb8yoEpZRF5T1j52Ja5DaDTYrJjLKCx5YV5yvmvG2/yx3Tiw54kOBrP3uAXcuw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyl1cmmsi7qlpm2t6J15bjPcGlLHEw5gKkhVRERBsTaBn6dh2mD
- VVa78cqsPfuqIr4bnnuSP1fhD9wPSCHR9Ikbh3tCeO+2kJ56hgTt9V9FDtYIWiLE3aurPtpOXeb
- iDejgug+zqyn2a/8OJlo6jjBuHiORM3yGSHOSoVxXwPhqj1r8LHaXXuc6p5fs47YaDQ+2
-X-Gm-Gg: Acq92OG2INFryspVI0+79WiKVavr96j84WBHmiiEhezxbwvyikXtVKUXIOztqBxz+4K
- BdPvDCq1prwoNEjWWnAiH/vFtBEUE5aMkX7yoUluN1gIbr+5T0mnm+TAunYz0fsyp6lxvyFGXn2
- MQ7mE3DQYqv584mTBrCuQYVQAa5C5XidPhBe244dnpK1tjy3SoWefGA+JluRN89+Vn90F0TvnLn
- su4knbW6dafC1aZl2APpKpKlMZacDqNbC0A+pBSsHyaT6wYk2madtSvfp3USkEeBDy7um7RoGMP
- BpL93TdA4PKAp24bvSI4OdJ7Yw6KrbUwdwLGIuIChJqos26Orlv8Oi0FGwc8cVwK0udUOCQc/4x
- rP/D6uTHZPGTRlIUhEvK/+g6ppfroT1Denunbeiw6rjV0mkR4HnjxdsQj15+K4/TRZA0pxdhsJy
- 44fO+Uj0lkmSFIBWw=
-X-Received: by 2002:a05:600c:a214:b0:490:9782:3eb8 with SMTP id
- 5b1f17b1804b1-490a2948f0cmr117371335e9.25.1780309738537; 
- Mon, 01 Jun 2026 03:28:58 -0700 (PDT)
-X-Received: by 2002:a05:600c:a214:b0:490:9782:3eb8 with SMTP id
- 5b1f17b1804b1-490a2948f0cmr117370965e9.25.1780309738117; 
- Mon, 01 Jun 2026 03:28:58 -0700 (PDT)
+ AFNElJ+EhgaXk6UMpSivVhkZ/WljSQfhzfxtu/DRc2S+HfmP9VAuEsL3IdinUsvLnf4ggpJYaORgZrVCdA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwsUCCQYTnm4NcafW3JdODlxX1TFWXwoEszrPsiZr15ONS4Bcbz
+ 46baDRbGW8hMOtLjcGepXEi6g4YM+4nlVFGvsS4aHj12q5BJ6bsoWP8VEGKQ7BgTfegCTcezJsH
+ wzTHfMKSQLyNwWBLyi+gW5UmS95u3bdbji26PA7rnVcRr01R5YIeuedh1oyxXcOgAC/2Z
+X-Gm-Gg: Acq92OFu1KiAE2D4FeVuCWS3Vp6p9FVDwrkJX1wNQouquIxCzYD2a3Ba2l7e2+42VgI
+ LERdRLNCtfk6jPrZz6uYRU053ClFLSKom8WYNaOjCDwp7YcyPa5Jn8FoEKkVcv0JH4qY5+XpdiC
+ d5B7EMu8zAaPd3NKG5S1p7e19JYr4jU4Zi1TOBla21dNZVLT+UUHquLNPEwp5003zhX9TuWtF0T
+ xN2lYzi4Foaw/ZNYq75MA4SVZufgkPpGS25QfKvWGGx/fgL9XEJ8fIXT2yWkuTI4kIxvuXuDe49
+ rjHYJD3eIeZF9H8Hk+HMsJBdjFDvquxPqfBLD/tO+iCttEDdbrdQrywd6tVOeGTCML8nMZp5h4E
+ GqgekqE2aUkWzi+9JkpLiDz58+jQizwnNnCRFhjyBLQqrGWfvSxFzpvoRHM+IvCS9hU9tgY70X6
+ MDntm0Ls+wU4NfJPo=
+X-Received: by 2002:a05:600d:8444:20b0:490:44eb:c1d9 with SMTP id
+ 5b1f17b1804b1-490a2947c86mr142088455e9.28.1780309773583; 
+ Mon, 01 Jun 2026 03:29:33 -0700 (PDT)
+X-Received: by 2002:a05:600d:8444:20b0:490:44eb:c1d9 with SMTP id
+ 5b1f17b1804b1-490a2947c86mr142087935e9.28.1780309773155; 
+ Mon, 01 Jun 2026 03:29:33 -0700 (PDT)
 Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-490ae3901cesm8445615e9.7.2026.06.01.03.28.57
+ ffacd0b85a97d-45ef34a037fsm25007994f8f.4.2026.06.01.03.29.32
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 01 Jun 2026 03:28:57 -0700 (PDT)
+ Mon, 01 Jun 2026 03:29:32 -0700 (PDT)
 From: Javier Martinez Canillas <javierm@redhat.com>
 To: Thomas Zimmermann <tzimmermann@suse.de>, mripard@kernel.org,
  maarten.lankhorst@linux.intel.com, airlied@redhat.com, airlied@gmail.com,
@@ -79,16 +79,16 @@ Cc: dri-devel@lists.freedesktop.org, linux-hyperv@vger.kernel.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  linux-mips@vger.kernel.org, virtualization@lists.linux.dev, Thomas
  Zimmermann <tzimmermann@suse.de>
-Subject: Re: [PATCH v4 07/10] drm/damage-helper: Remove old state from
- drm_atomic_helper_damage_iter_init()
-In-Reply-To: <20260530185716.65688-8-tzimmermann@suse.de>
+Subject: Re: [PATCH v4 08/10] drm/damage-helper: Remove old state from
+ drm_atomic_helper_damage_merged()
+In-Reply-To: <20260530185716.65688-9-tzimmermann@suse.de>
 References: <20260530185716.65688-1-tzimmermann@suse.de>
- <20260530185716.65688-8-tzimmermann@suse.de>
-Date: Mon, 01 Jun 2026 12:28:56 +0200
-Message-ID: <87h5nmlfkn.fsf@ocarina.mail-host-address-is-not-set>
+ <20260530185716.65688-9-tzimmermann@suse.de>
+Date: Mon, 01 Jun 2026 12:29:31 +0200
+Message-ID: <87eciqlfjo.fsf@ocarina.mail-host-address-is-not-set>
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: ZBBSimr-jPExBJMZykiL16GawKkiB8DxuXMjqYn5NE8_1780309739
+X-Mimecast-MFC-PROC-ID: NEvL1bcEa9ZnB4D40Fzky-fnm2wuzNHBACAfMuBgQGA_1780309774
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -107,7 +107,7 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thomas Zimmermann <tzimmermann@suse.de> writes:
 
-> Nothing in drm_atomic_helper_damage_iter_init() requires the old
+> Nothing in drm_atomic_helper_damage_merged() requires the old
 > plane state. Remove the parameter and mass-convert callers.
 >
 > Most callers now no longer require the old plane state in their plane's
