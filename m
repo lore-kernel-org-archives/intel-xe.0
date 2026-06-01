@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E85B1CD6E55
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Jun 2026 21:42:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90070CD5BD1
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Jun 2026 21:55:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 855CF10E9DE;
-	Mon,  1 Jun 2026 21:42:26 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FILESLmv";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10D8310E9DA;
- Mon,  1 Jun 2026 21:42:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780350145; x=1811886145;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version:content-id;
- bh=+PXfDZknvvELSVF9dMITMq/WdFQOJB/tlKwlccKqPpo=;
- b=FILESLmvDJwV0P3D5NNGzsGPT0KhP5YG/Asc8YP4CXrwHhlAaMnHA6cX
- 4QuVWd9G4ymyqCZrgThjioNOfwoHRRCIgOdDvYgA2hWApE+zW5qveRj34
- h1dWj6ckYOJjSpLt0z3J8h5R6lGmR+oQuZ0GBXSDzl9eXSmkP9i6/ZxXG
- oUZKx4rwi7RmFL5+LdhlPIEnpzdJkMESUEV0wwt0LaH/y5x1dwY80hodd
- TZirCKNvvx8KouW2Dk02TjHYLBsDAf7rWhY4pF2s/VtTqPi4GnF9qZxuV
- wxv/NhU6UVg8VRCiwA/U7IlpF4kkpAwhCVFuHqgkIGo4GEdrQguhzGhZY Q==;
-X-CSE-ConnectionGUID: VOlMF7mBSmmBJGxGxwQ2rw==
-X-CSE-MsgGUID: p2Vt+Jd1TqeM+7VwxGs0bQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11804"; a="92596419"
-X-IronPort-AV: E=Sophos;i="6.24,182,1774335600"; d="scan'208";a="92596419"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2026 14:42:25 -0700
-X-CSE-ConnectionGUID: +F71jvh9SWyYUYfJhhdADg==
-X-CSE-MsgGUID: sckO5kqvRcqLjCyOqtILew==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,182,1774335600"; d="scan'208";a="245518440"
-Received: from dev-417.igk.intel.com ([10.91.214.181])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2026 14:42:23 -0700
-Date: Mon, 1 Jun 2026 23:42:21 +0200 (CEST)
-From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-cc: "Grzelak, Michal" <michal.grzelak@intel.com>, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
- "Nikula, Jani" <jani.nikula@intel.com>
-Subject: RE: [PATCH v4 06/10] drm/i915/buf_trans: abstract VS/PE-O access
- and index computation
-In-Reply-To: <DM3PPF208195D8D087EB21BFEED67636E7FE3152@DM3PPF208195D8D.namprd11.prod.outlook.com>
-Message-ID: <b8c17f36-9bcb-e634-2386-491a4d08efab@intel.com>
-References: <20260529192859.4172376-1-michal.grzelak@intel.com>
- <20260529192859.4172376-7-michal.grzelak@intel.com>
- <DM3PPF208195D8D087EB21BFEED67636E7FE3152@DM3PPF208195D8D.namprd11.prod.outlook.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4471B10E9EB;
+	Mon,  1 Jun 2026 21:55:07 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85EE310E9EB;
+ Mon,  1 Jun 2026 21:55:05 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6524040747975182022=="
 MIME-Version: 1.0
-Content-Type: multipart/mixed; BOUNDARY="8323329-866376847-1780333497=:1544314"
-Content-ID: <1e3ebfb0-da3e-a692-0025-c89bf0afcf13@intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/rtp=3A_WA_table_cont?=
+ =?utf-8?q?ext_testing?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Violet Monti" <violet.monti@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 01 Jun 2026 21:55:05 -0000
+Message-ID: <178035090554.33410.1097572620071279841@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260601200947.2032784-6-violet.monti@intel.com>
+In-Reply-To: <20260601200947.2032784-6-violet.monti@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,142 +36,193 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+--===============6524040747975182022==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
---8323329-866376847-1780333497=:1544314
-Content-Type: text/plain; CHARSET=ISO-8859-2; format=flowed
-Content-Transfer-Encoding: 8BIT
-Content-ID: <35182e82-211d-2ec4-24bd-e4f7b4336ed2@intel.com>
+== Series Details ==
 
-On Mon, 1 Jun 2026, Kandpal, Suraj wrote:
->> Subject: [PATCH v4 06/10] drm/i915/buf_trans: abstract VS/PE-O access and
->> index computation
->>
->> Lay into intel_ddi_buf_trans_get() infrastructure for VS/PE-O.
->>
->> Add (*get_phy_vspeo_index)() function hook into struct intel_encoder.
->> This function pointer is responsible for computing index of requested table
->> from VBT #57.
->>
->> Add also (*get_phy_vspeo)() function hook into struct intel_encoder.
->> This function pointer will be the accessor which parses and sets port's buffer
->> basing on VBT #57's data.
->>
->> Note that these two pointer need to be separate since they are taking place
->> during two different abstraction layers: (*get_phy_vspeo_index()) operates on
->> crtc_state, while (*get_phy_vspeo)() consumes devdata.
->>
->> Add generic function pointer indicating lack of VS/PE-O's support.
->>
->> Signed-off-by: Micha³ Grzelak <michal.grzelak@intel.com>
->> ---
->>  .../drm/i915/display/intel_ddi_buf_trans.c    | 30 ++++++++++++++++++-
->>  .../drm/i915/display/intel_display_types.h    |  5 ++++
->>  2 files changed, 34 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
->> b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
->> index 4cd1e4d76c7a..fbd5efc5ca6c 100644
->> --- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
->> +++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
->> @@ -1784,10 +1784,20 @@ xe3plpd_get_lt_buf_trans(struct intel_encoder
->> *encoder,
->>  		return intel_get_buf_trans(&xe3plpd_lt_trans_dp14,
->> n_entries);  }
->>
->> +static int
->> +_get_phy_vspeo_index(struct intel_encoder *encoder,
->> +		     const struct intel_crtc_state *crtc_state) {
->> +	return -EOPNOTSUPP;
->> +}
->> +
->>  void intel_ddi_buf_trans_init(struct intel_encoder *encoder)  {
->>  	struct intel_display *display = to_intel_display(encoder);
->>
->> +	encoder->get_phy_vspeo_index = _get_phy_vspeo_index;
->> +	encoder->get_phy_vspeo = NULL;
->> +
->>  	if (HAS_LT_PHY(display)) {
->>  		encoder->get_buf_trans = xe3plpd_get_lt_buf_trans;
->>  	} else if (DISPLAY_VER(display) >= 14) { @@ -1857,5 +1867,23 @@
->> const struct intel_ddi_buf_trans *intel_ddi_buf_trans_get(struct
->> intel_encoder *
->>  							  const struct
->> intel_crtc_state *crtc_state,
->>  							  int *n_entries)
->>  {
->> -	return encoder->get_buf_trans(encoder, crtc_state, n_entries);
->> +	struct intel_display *display = to_intel_display(encoder);
->> +	const struct intel_ddi_buf_trans *buf_trans;
->> +	bool vspeo;
->> +	int table;
->> +
->> +	vspeo = intel_bios_encoder_requests_vspeo(encoder->devdata);
->> +	if (!vspeo)
->> +		return encoder->get_buf_trans(encoder, crtc_state,
->> n_entries);
->> +
->> +	table = encoder->get_phy_vspeo_index(encoder, crtc_state);
->> +	if (table < 0) {
->> +		drm_WARN_ONCE(display->drm, 1,
->> +			      "platform does not support VS/PE-O, setting
->> default\n");
->> +
->
-> WARN does not belong here maybe a drm_dbg_kms() saying "VBT requests vspeo but does not provide index table"
-> The reason being panel vendors may have broken VBT requesting for VS/PE but not providing a table.
-> This will just cause Alarms to go off in CI, where you will be debugging broken VBTs which wont be fixed specially for the older
-> Generations.
+Series: drm/xe/rtp: WA table context testing
+URL   : https://patchwork.freedesktop.org/series/167692/
+State : success
 
-I agree that drm_dbg_kms() would suffice. I'm not sure on the phrasing
-though. Current patch series does not support DKL nor MG PHY, and this
-message was targeted to be shown when eg. TGL's DKL requests Override
-when there is no code to handle it.
+== Summary ==
 
-Now I think that probably it would be better to do what you have already
-said [1], that the debug message should be issued only when VS/PE-O would
-successfully take place, instead of spamming it all along the way.
+CI Bug Log - changes from xe-5175-70cada764231ccb4582e920560a93edd210ace01_BAT -> xe-pw-167692v1_BAT
+====================================================
 
-BR,
-Micha³
+Summary
+-------
 
-[1] https://lore.kernel.org/intel-gfx/DM3PPF208195D8D13E4ABB86F46CCE9999BE3002@DM3PPF208195D8D.namprd11.prod.outlook.com/
+  **SUCCESS**
 
->
-> Regards,
-> Suraj Kandpal
->
->> +		return encoder->get_buf_trans(encoder, crtc_state,
->> n_entries);
->> +	}
->> +
->> +	buf_trans = encoder->get_phy_vspeo(encoder->devdata, table);
->> +	return intel_get_buf_trans(buf_trans, n_entries);
->>  }
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
->> b/drivers/gpu/drm/i915/display/intel_display_types.h
->> index c21e0c0ef0b1..829e17fbfb0a 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
->> @@ -292,6 +292,11 @@ struct intel_encoder {
->>  	void (*set_signal_levels)(struct intel_encoder *encoder,
->>  				  const struct intel_crtc_state *crtc_state);
->>
->> +	int (*get_phy_vspeo_index)(struct intel_encoder *encoder,
->> +				   const struct intel_crtc_state *crtc_state);
->> +	const struct intel_ddi_buf_trans *(*get_phy_vspeo)(const struct
->> intel_bios_encoder_data *devdata,
->> +							   int idx);
->> +
->>  	enum hpd_pin hpd_pin;
->>  	enum intel_display_power_domain power_domain;
->>
->> --
->> 2.45.2
->
->
---8323329-866376847-1780333497=:1544314--
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 13)
+------------------------------
+
+  Additional (1): bat-ptl-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-167692v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_evict@evict-beng-small-cm:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][1] ([Intel XE#5764]) +10 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167692v1/bat-ptl-vm/igt@xe_evict@evict-beng-small-cm.html
+
+  * igt@xe_exec_balancer@no-exec-cm-virtual-basic:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][2] ([Intel XE#7482]) +17 other tests skip
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167692v1/bat-ptl-vm/igt@xe_exec_balancer@no-exec-cm-virtual-basic.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][3] ([Intel XE#5775])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167692v1/bat-ptl-vm/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  * igt@xe_mmap@vram:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][4] ([Intel XE#5776])
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167692v1/bat-ptl-vm/igt@xe_mmap@vram.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][5] ([Intel XE#5777] / [Intel XE#7590])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167692v1/bat-ptl-vm/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelp:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][6] ([Intel XE#5771] / [Intel XE#7590])
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167692v1/bat-ptl-vm/igt@xe_pat@pat-index-xelp.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][7] ([Intel XE#5780] / [Intel XE#7590])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167692v1/bat-ptl-vm/igt@xe_pat@pat-index-xelpg.html
+
+  
+  [Intel XE#5764]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5764
+  [Intel XE#5771]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5771
+  [Intel XE#5775]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5775
+  [Intel XE#5776]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5776
+  [Intel XE#5777]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5777
+  [Intel XE#5780]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5780
+  [Intel XE#7482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482
+  [Intel XE#7590]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590
+
+
+Build changes
+-------------
+
+  * Linux: xe-5175-70cada764231ccb4582e920560a93edd210ace01 -> xe-pw-167692v1
+
+  IGT_8944: 8944
+  xe-5175-70cada764231ccb4582e920560a93edd210ace01: 70cada764231ccb4582e920560a93edd210ace01
+  xe-pw-167692v1: 167692v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167692v1/index.html
+
+--===============6524040747975182022==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/rtp: WA table context testing</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167692/">https://patchwork.freedesktop.org/series/167692/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167692v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167692v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5175-70cada764231ccb4582e920560a93edd210ace01_BAT -&gt; xe-pw-167692v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 13)</h2>
+<p>Additional (1): bat-ptl-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-167692v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_evict@evict-beng-small-cm:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167692v1/bat-ptl-vm/igt@xe_evict@evict-beng-small-cm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5764">Intel XE#5764</a>) +10 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_balancer@no-exec-cm-virtual-basic:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167692v1/bat-ptl-vm/igt@xe_exec_balancer@no-exec-cm-virtual-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482">Intel XE#7482</a>) +17 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167692v1/bat-ptl-vm/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5775">Intel XE#5775</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_mmap@vram:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167692v1/bat-ptl-vm/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5776">Intel XE#5776</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167692v1/bat-ptl-vm/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5777">Intel XE#5777</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelp:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167692v1/bat-ptl-vm/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5771">Intel XE#5771</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167692v1/bat-ptl-vm/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5780">Intel XE#5780</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5175-70cada764231ccb4582e920560a93edd210ace01 -&gt; xe-pw-167692v1</li>
+</ul>
+<p>IGT_8944: 8944<br />
+  xe-5175-70cada764231ccb4582e920560a93edd210ace01: 70cada764231ccb4582e920560a93edd210ace01<br />
+  xe-pw-167692v1: 167692v1</p>
+
+</body>
+</html>
+
+--===============6524040747975182022==--
