@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5E20CD6E55
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Jun 2026 21:13:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DACDECD5BD1
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Jun 2026 21:14:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A96F10E9AF;
-	Mon,  1 Jun 2026 21:13:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FDEB10E9B0;
+	Mon,  1 Jun 2026 21:14:00 +0000 (UTC)
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C130410E9AF;
- Mon,  1 Jun 2026 21:13:57 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4125836190555397367=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C92A510E9B0;
+ Mon,  1 Jun 2026 21:13:59 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Revert_=22drm=3A_prevent_in?=
- =?utf-8?q?teger_overflows_in_dumb_buffer_creation_helpers=22?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/rtp=3A_WA_table_co?=
+ =?utf-8?q?ntext_testing?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
+To: "Violet Monti" <violet.monti@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 01 Jun 2026 21:13:57 -0000
-Message-ID: <178034843778.32261.16621159405839051664@6beec6c84f66>
+Date: Mon, 01 Jun 2026 21:13:59 -0000
+Message-ID: <178034843981.32261.12331267856514219429@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260601173619.348486-1-chaitanya.kumar.borah@intel.com>
-In-Reply-To: <20260601173619.348486-1-chaitanya.kumar.borah@intel.com>
+References: <20260601200947.2032784-6-violet.monti@intel.com>
+In-Reply-To: <20260601200947.2032784-6-violet.monti@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,202 +40,203 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4125836190555397367==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Revert "drm: prevent integer overflows in dumb buffer creation helpers"
-URL   : https://patchwork.freedesktop.org/series/167685/
-State : success
+Series: drm/xe/rtp: WA table context testing
+URL   : https://patchwork.freedesktop.org/series/167692/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-5175-70cada764231ccb4582e920560a93edd210ace01_BAT -> xe-pw-167685v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit d53165acd971f8acaa517449231bcb38651c9467
+Author: Violet Monti <violet.monti@intel.com>
+Date:   Mon Jun 1 13:09:50 2026 -0700
 
-Summary
--------
+    drm/xe/rtp: Ensure device_oob_was only evaluates correct rules
+    
+    This commit builds on the implementation of the GT WA testing, increasing
+    the scope of testing to include the device OOB workaround list. As well
+    as checking for XE_RTP_ENGINE_CLASS(), this test also checks for rules
+    involving XE_RTP_GRAPHICS() and XE_RTP_MEDIA(), as well as their
+    derivatives.
+    
+    This test will raise expectation fails for any workarounds in the
+    device_oob_was list that has an invalid rule type, preventing evaluation
+    or inclusion of rules that could be applied in the wrong context.
+    
+    v6:
+        - No change
+    
+    v5:
+        - No change
+    
+    v4:
+        - No change
+    
+    v3:
+        - Removed "VISIBLE_IF_KUNIT" keyword from xe_wa.h
+        - Heavily reworked rule checking within _dev_oob_test() function for
+          easier understanding and interpreting of errors
+    
+    v2:
+        - Changed xe_rtp_table_dev_oob_test() to follow format of
+          xe_rtp_table_gt_test
+        - Changed device_oob_was generated params to follow format of
+          gt_was
+    
+    Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+    Signed-off-by: Violet Monti <violet.monti@intel.com>
++ /mt/dim checkpatch 4b57b105843615beabfbc703c5b38445edac8a1a drm-intel
+da36a300f807 drm/xe/rtp: Add struct types for RTP tables
+-:80: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#80: FILE: drivers/gpu/drm/xe/tests/xe_rtp_test.c:292:
++		.table = XE_RTP_TABLE_SR(
 
-  **SUCCESS**
+-:99: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#99: FILE: drivers/gpu/drm/xe/tests/xe_rtp_test.c:311:
++		.table = XE_RTP_TABLE_SR(
 
-  No regressions found.
+-:118: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#118: FILE: drivers/gpu/drm/xe/tests/xe_rtp_test.c:330:
++		.table = XE_RTP_TABLE_SR(
 
-  
+-:137: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#137: FILE: drivers/gpu/drm/xe/tests/xe_rtp_test.c:349:
++		.table = XE_RTP_TABLE_SR(
 
-Participating hosts (12 -> 13)
-------------------------------
+-:156: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#156: FILE: drivers/gpu/drm/xe/tests/xe_rtp_test.c:370:
++		.table = XE_RTP_TABLE_SR(
 
-  Additional (1): bat-ptl-vm 
+-:173: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#173: FILE: drivers/gpu/drm/xe/tests/xe_rtp_test.c:388:
++		.table = XE_RTP_TABLE_SR(
 
-Known issues
-------------
+-:192: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#192: FILE: drivers/gpu/drm/xe/tests/xe_rtp_test.c:408:
++		.table = XE_RTP_TABLE_SR(
 
-  Here are the changes found in xe-pw-167685v1_BAT that come from known issues:
+-:211: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#211: FILE: drivers/gpu/drm/xe/tests/xe_rtp_test.c:428:
++		.table = XE_RTP_TABLE_SR(
 
-### IGT changes ###
+-:230: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#230: FILE: drivers/gpu/drm/xe/tests/xe_rtp_test.c:453:
++		.table = XE_RTP_TABLE_SR(
 
-#### Issues hit ####
+-:246: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#246: FILE: drivers/gpu/drm/xe/tests/xe_rtp_test.c:468:
++		.table = XE_RTP_TABLE_SR(
 
-  * igt@xe_evict@evict-beng-small-cm:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][1] ([Intel XE#5764]) +10 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167685v1/bat-ptl-vm/igt@xe_evict@evict-beng-small-cm.html
+-:282: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#282: FILE: drivers/gpu/drm/xe/tests/xe_rtp_test.c:523:
++		.table = XE_RTP_TABLE(
 
-  * igt@xe_exec_balancer@no-exec-cm-virtual-basic:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][2] ([Intel XE#7482]) +17 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167685v1/bat-ptl-vm/igt@xe_exec_balancer@no-exec-cm-virtual-basic.html
+-:294: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#294: FILE: drivers/gpu/drm/xe/tests/xe_rtp_test.c:532:
++		.table = XE_RTP_TABLE(
 
-  * igt@xe_live_ktest@xe_dma_buf:
-    - bat-bmg-vm:         [PASS][3] -> [ABORT][4] ([Intel XE#8007] / [Intel XE#8023]) +1 other test abort
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5175-70cada764231ccb4582e920560a93edd210ace01/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167685v1/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html
+-:309: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#309: FILE: drivers/gpu/drm/xe/tests/xe_rtp_test.c:544:
++		.table = XE_RTP_TABLE(
 
-  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][5] ([Intel XE#5775])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167685v1/bat-ptl-vm/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+-:324: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#324: FILE: drivers/gpu/drm/xe/tests/xe_rtp_test.c:556:
++		.table = XE_RTP_TABLE(
 
-  * igt@xe_mmap@vram:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][6] ([Intel XE#5776])
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167685v1/bat-ptl-vm/igt@xe_mmap@vram.html
+-:339: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#339: FILE: drivers/gpu/drm/xe/tests/xe_rtp_test.c:568:
++		.table = XE_RTP_TABLE(
 
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][7] ([Intel XE#5777] / [Intel XE#7590])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167685v1/bat-ptl-vm/igt@xe_pat@pat-index-xehpc.html
+-:355: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#355: FILE: drivers/gpu/drm/xe/tests/xe_rtp_test.c:583:
++		.table = XE_RTP_TABLE(
 
-  * igt@xe_pat@pat-index-xelp:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][8] ([Intel XE#5771] / [Intel XE#7590])
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167685v1/bat-ptl-vm/igt@xe_pat@pat-index-xelp.html
+-:395: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#395: FILE: drivers/gpu/drm/xe/xe_hw_engine.c:349:
++	const struct xe_rtp_table_sr lrc_setup = XE_RTP_TABLE_SR(
 
-  * igt@xe_pat@pat-index-xelpg:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][9] ([Intel XE#5780] / [Intel XE#7590])
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167685v1/bat-ptl-vm/igt@xe_pat@pat-index-xelpg.html
+-:417: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#417: FILE: drivers/gpu/drm/xe/xe_hw_engine.c:410:
++	const struct xe_rtp_table_sr engine_sr = XE_RTP_TABLE_SR(
 
-  
-  [Intel XE#5764]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5764
-  [Intel XE#5771]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5771
-  [Intel XE#5775]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5775
-  [Intel XE#5776]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5776
-  [Intel XE#5777]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5777
-  [Intel XE#5780]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5780
-  [Intel XE#7482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482
-  [Intel XE#7590]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590
-  [Intel XE#8007]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007
-  [Intel XE#8023]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8023
+-:443: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#443: FILE: drivers/gpu/drm/xe/xe_reg_whitelist.c:44:
++static const struct xe_rtp_table_sr register_whitelist = XE_RTP_TABLE_SR(
+
+-:623: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#623: FILE: drivers/gpu/drm/xe/xe_tuning.c:23:
++static const struct xe_rtp_table_sr gt_tunings = XE_RTP_TABLE_SR(
+
+-:635: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#635: FILE: drivers/gpu/drm/xe/xe_tuning.c:105:
++static const struct xe_rtp_table_sr engine_tunings = XE_RTP_TABLE_SR(
+
+-:647: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#647: FILE: drivers/gpu/drm/xe/xe_tuning.c:134:
++static const struct xe_rtp_table_sr lrc_tunings = XE_RTP_TABLE_SR(
+
+-:743: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#743: FILE: drivers/gpu/drm/xe/xe_wa.c:133:
++static const struct xe_rtp_table_sr gt_was = XE_RTP_TABLE_SR(
+
+-:755: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#755: FILE: drivers/gpu/drm/xe/xe_wa.c:311:
++static const struct xe_rtp_table_sr engine_was = XE_RTP_TABLE_SR(
+
+-:767: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#767: FILE: drivers/gpu/drm/xe/xe_wa.c:619:
++static const struct xe_rtp_table_sr lrc_was = XE_RTP_TABLE_SR(
+
+-:813: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#813: FILE: drivers/gpu/drm/xe/xe_wa.c:835:
++	xe_rtp_process_ctx_enable_active_tracking(&ctx, xe->wa_active.oob, device_oob_was.n_entries);
+
+total: 0 errors, 1 warnings, 25 checks, 794 lines checked
+9568d8a548f9 drm/xe/rtp: Ensure gt_was doesn't evaluate rules with engine types
+-:65: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#65: 
+new file mode 100644
+
+-:81: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'table' - possible side-effects?
+#81: FILE: drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c:12:
++#define RTP_TABLE_PARAM(table)									\
++	static const void *table##_gen_params(struct kunit *test,				\
++					     const void *prev, char *desc)			\
++	{											\
++		typeof((table.entries)[0]) *__next = prev ?					\
++			((typeof(__next))prev) + 1 : (table.entries);				\
++		if (__next - table.entries < table.n_entries) {					\
++			scnprintf(desc, KUNIT_PARAM_DESC_SIZE, #table "/%s", __next->name);	\
++			return __next;								\
++		}										\
++		return NULL;									\
++	}
+
+-:85: CHECK:SPACING: spaces preferred around that '*' (ctx:WxV)
+#85: FILE: drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c:16:
++		typeof((table.entries)[0]) *__next = prev ?					\
+ 		                           ^
+
+-:132: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#132: FILE: drivers/gpu/drm/xe/xe_tuning.c:23:
++VISIBLE_IF_KUNIT const struct xe_rtp_table_sr gt_tunings = XE_RTP_TABLE_SR(
+
+-:175: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#175: FILE: drivers/gpu/drm/xe/xe_wa.c:133:
++VISIBLE_IF_KUNIT const struct xe_rtp_table_sr gt_was = XE_RTP_TABLE_SR(
+
+total: 0 errors, 1 warnings, 4 checks, 122 lines checked
+85e3c2af729f drm/xe/rtp: Ensure oob_was does not evaluate engine type rules
+d53165acd971 drm/xe/rtp: Ensure device_oob_was only evaluates correct rules
 
 
-Build changes
--------------
-
-  * Linux: xe-5175-70cada764231ccb4582e920560a93edd210ace01 -> xe-pw-167685v1
-
-  IGT_8944: 8944
-  xe-5175-70cada764231ccb4582e920560a93edd210ace01: 70cada764231ccb4582e920560a93edd210ace01
-  xe-pw-167685v1: 167685v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167685v1/index.html
-
---===============4125836190555397367==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Revert &quot;drm: prevent integer overflows in dumb buffer creation helpers&quot;</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167685/">https://patchwork.freedesktop.org/series/167685/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167685v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167685v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5175-70cada764231ccb4582e920560a93edd210ace01_BAT -&gt; xe-pw-167685v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 13)</h2>
-<p>Additional (1): bat-ptl-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-167685v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_evict@evict-beng-small-cm:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167685v1/bat-ptl-vm/igt@xe_evict@evict-beng-small-cm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5764">Intel XE#5764</a>) +10 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_balancer@no-exec-cm-virtual-basic:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167685v1/bat-ptl-vm/igt@xe_exec_balancer@no-exec-cm-virtual-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482">Intel XE#7482</a>) +17 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_dma_buf:</p>
-<ul>
-<li>bat-bmg-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5175-70cada764231ccb4582e920560a93edd210ace01/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167685v1/bat-bmg-vm/igt@xe_live_ktest@xe_dma_buf.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8023">Intel XE#8023</a>) +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167685v1/bat-ptl-vm/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5775">Intel XE#5775</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_mmap@vram:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167685v1/bat-ptl-vm/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5776">Intel XE#5776</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167685v1/bat-ptl-vm/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5777">Intel XE#5777</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167685v1/bat-ptl-vm/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5771">Intel XE#5771</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelpg:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167685v1/bat-ptl-vm/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5780">Intel XE#5780</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5175-70cada764231ccb4582e920560a93edd210ace01 -&gt; xe-pw-167685v1</li>
-</ul>
-<p>IGT_8944: 8944<br />
-  xe-5175-70cada764231ccb4582e920560a93edd210ace01: 70cada764231ccb4582e920560a93edd210ace01<br />
-  xe-pw-167685v1: 167685v1</p>
-
-</body>
-</html>
-
---===============4125836190555397367==--
