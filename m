@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D96CCD6E56
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Jun 2026 12:13:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46FA2CD5BD1
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Jun 2026 12:17:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E44AC113293;
-	Mon,  1 Jun 2026 12:13:25 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GMNoFM5R";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4250113293
- for <intel-xe@lists.freedesktop.org>; Mon,  1 Jun 2026 12:13:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780316004; x=1811852004;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=pO2MAPtqmK9Dtev3GMIQsTJ30nvZpveeeaY+QIzHdkU=;
- b=GMNoFM5RJ6T6SGg/RsMW8aABqs01AV70BUAvf7RWnC7CRQOn0ZfGGSuF
- X78SVFBseM9YHGkG6e/PCbDI7PMeQi65pp+gRdWlm94FScSTAP3DjssFt
- efLacLce2IwN4JydfATBK8KikJg2Jm0OLW4RyyMxKrLX0gRjgORRGhF7C
- ytBzSiqR/Tqg8WXCZ3E5lZhCiBbztA4XJR6MuI7VWRyL/2owpf4jDnX1J
- cCx4mBVoMvhNUEi1m9zZmR0ac36//7bqw5uN0JPd05pi/Glr3dQm+c2Vc
- v5DgCnTFVHczueOFlJ6+ktswSgMDD75suwWLlGruhoJI0kwUpYb2jLJUd w==;
-X-CSE-ConnectionGUID: f53S3tbhQzSWN2Jth4OeRw==
-X-CSE-MsgGUID: CaZPhVarTV29BGzYWylbow==
-X-IronPort-AV: E=McAfee;i="6800,10657,11803"; a="103741211"
-X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="103741211"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2026 05:13:24 -0700
-X-CSE-ConnectionGUID: Og5HTFtaSfSM3Ku5rLNQwQ==
-X-CSE-MsgGUID: 7jje66DGRsmkiwEVLYgySw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="273839468"
-Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2026 05:13:21 -0700
-Date: Mon, 1 Jun 2026 14:13:18 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Riana Tauro <riana.tauro@intel.com>, intel-xe@lists.freedesktop.org,
- anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
- aravind.iddamsetty@linux.intel.com, badal.nilawar@intel.com,
- ravi.kishore.koppuravuri@intel.com, mallesh.koujalagi@intel.com,
- soham.purkait@intel.com, Anoop Vijay <anoop.c.vijay@intel.com>,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: Re: [PATCH v8 5/6] drm/xe: Move xe drm_ras initialization
-Message-ID: <ah13XmBaPlq2mtlO@black.igk.intel.com>
-References: <20260601084146.3808639-8-riana.tauro@intel.com>
- <20260601084146.3808639-13-riana.tauro@intel.com>
- <3857c423-2ac1-4822-ab49-cd96ae8a41f7@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 00CAE11329C;
+	Mon,  1 Jun 2026 12:17:08 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E76AB11329C;
+ Mon,  1 Jun 2026 12:17:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <3857c423-2ac1-4822-ab49-cd96ae8a41f7@intel.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Fix_UAF_in_xe?=
+ =?utf-8?q?=5Fgem=5Fprime=5Fimport=28=29_on_attach_failure?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nitin Gote" <nitin.r.gote@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 01 Jun 2026 12:17:06 -0000
+Message-ID: <178031622694.30505.11597099285285831994@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260601101536.1333480-2-nitin.r.gote@intel.com>
+In-Reply-To: <20260601101536.1333480-2-nitin.r.gote@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,37 +36,75 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jun 01, 2026 at 01:27:10PM +0200, Michal Wajdeczko wrote:
-> On 6/1/2026 10:41 AM, Riana Tauro wrote:
-> > Move xe drm_ras registration to RAS initialization flow and keep
-> > hardware error initialization for processing errors reported
-> > via irq.
-> > 
-> > Move soc remapper and system controller initialization
-> > up in xe_device_probe as RAS initialization depends on both.
+== Series Details ==
 
-...
+Series: drm/xe: Fix UAF in xe_gem_prime_import() on attach failure
+URL   : https://patchwork.freedesktop.org/series/167647/
+State : warning
 
-> > ---
-> > v2: remove unnecessary log (Raag)
-> > ---
+== Summary ==
 
-...
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 6c5788e9b5fc31868cabb0eecb85ec279b5c0c80
+Author: Nitin Gote <nitin.r.gote@intel.com>
+Date:   Mon Jun 1 15:45:37 2026 +0530
 
-> > +void xe_ras_init(struct xe_device *xe)
-> > +{
-> > +	if (xe->info.platform != XE_PVC)
-> > +		return;
-> > +
-> > +	xe_drm_ras_init(xe);
-> 
-> but here, we don't, is it really ok to ignore such errors?
+    drm/xe: Fix UAF in xe_gem_prime_import() on attach failure
+    
+    xe_dma_buf_create_obj() creates the importer BO with obj->resv
+    pointing at the exporter's dma_buf->resv. When dma_buf_dynamic_attach()
+    fails, no dma_buf reference is held so the exporter can be freed
+    immediately. Since ttm_bo_release() now always defers cleanup for
+    ttm_bo_type_sg BOs to the TTM workqueue, the worker later calls
+    dma_resv_lock() on the already-freed exporter resv, causing a UAF.
+    
+    Reset obj->resv to the BO's private _resv before calling xe_bo_put()
+    in the error path. The BO is not yet published (attach failed) and
+    carries no fences, so the switch is safe.
+    
+    Observed with igt@xe_live_ktest@xe_dma_buf_kunit on BMG (QEMU):
+    
+      Oops: general protection fault, probably for non-canonical address 0x6b6b6b6b6b6b6b9c
+      Workqueue: ttm ttm_bo_delayed_delete [ttm]
+      RIP: 0010:mutex_can_spin_on_owner+0x3f/0xc0
+      Call Trace:
+       <TASK>
+       ? __ww_mutex_lock.constprop.0+0x2dd/0x18e0
+       ? ttm_bo_delayed_delete+0x41/0xc0 [ttm]
+       ww_mutex_lock+0x3c/0xb0
+       ttm_bo_delayed_delete+0x41/0xc0 [ttm]
+       process_one_work+0x239/0x740
+       worker_thread+0x200/0x3f0
+       kthread+0x10d/0x150
+       ret_from_fork+0x3bd/0x470
+       ret_from_fork_asm+0x1a/0x30
+       </TASK>
+    
+    Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8023
+    Fixes: d99fbd9aab62 ("drm/ttm: Always take the bo delayed cleanup path for imported bos")
+    Cc: stable@vger.kernel.org # v6.8+
+    Cc: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: Matthew Auld <matthew.auld@intel.com>
+    Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
++ /mt/dim checkpatch 8133a9f4c4fd407e81df71530490836a1170bb2f drm-intel
+6c5788e9b5fc drm/xe: Fix UAF in xe_gem_prime_import() on attach failure
+-:19: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#19: 
+  Oops: general protection fault, probably for non-canonical address 0x6b6b6b6b6b6b6b9c
 
-xe_drm_ras_init() already logs it for us, so we decided to drop it in v2.
-But I'd have expected it to be explained in commit message to avoid such
-confusion.
+total: 0 errors, 1 warnings, 0 checks, 14 lines checked
 
-Raag
+
