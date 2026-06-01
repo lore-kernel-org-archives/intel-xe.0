@@ -4,54 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8CD1CD5BD1
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Jun 2026 09:40:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C644FCD5BD1
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Jun 2026 09:44:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AF5E1130AA;
-	Mon,  1 Jun 2026 09:40:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8683D1130FF;
+	Mon,  1 Jun 2026 09:44:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T6l/voAi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GbnjMxqP";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE13A1130AA
- for <intel-xe@lists.freedesktop.org>; Mon,  1 Jun 2026 09:40:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83697113108
+ for <intel-xe@lists.freedesktop.org>; Mon,  1 Jun 2026 09:44:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780306828; x=1811842828;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=+RSiV4t9ZMPDIDecXW8eTPPICHYbj/MQhsKjjWhoYsQ=;
- b=T6l/voAiKBBAwYTC2983HeH1286gMa4dbgJM+Tnvl66spsv4hBgTWDPg
- 1L/BYMkQen0FOoGrgsVnd98CmwLcM0oBGeHcCfWHeFSIATA88Iyl/j19Q
- ti8QTCnVPNMSY+qLnP1qtzOpbc4R9ZuRd353inEsMcj77SJbfpzQTbJP1
- ljhIPu4zHjMadQLgs+mQOVP6EFw2FzVpvHnq7OKjOMOU2HYxISiwjOm15
- RDCysszdnyKRHzDZi5XSwRRHNHvS7HYpLdgjjsqJirneXJh0iSzcdm/ft
- i8OyDwrh/qQqHISlg3BU4gPVAH8oiTMb+O8wA9xFXMwceiB5cQzMHIFeD A==;
-X-CSE-ConnectionGUID: Ik7EMFSjQDqsE5fSapvHTg==
-X-CSE-MsgGUID: wlXoj1E9R9efIXkDUtH/jA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11803"; a="68595817"
-X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="68595817"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2026 02:40:28 -0700
-X-CSE-ConnectionGUID: 9BJz7sp5Smmqb/5ZXjUfGg==
-X-CSE-MsgGUID: b9cZHzXPTa29C6uRfpUttw==
+ t=1780307062; x=1811843062;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=1L6KrngjH6xSLb9TvkUid5T0lspiFANgJ5/ZIMa1fO8=;
+ b=GbnjMxqPrS6CbZE766IYmddjI8drum7+iOgg98G+MjVXXGvVTZLlRTkE
+ M1CCr3vb/LCtYOA1wtGRRkH/g5FAtOfbqqT0rWzWyxyxn/I4CpBaGxRzX
+ p+92om+/Utj+/J1KxA3nNDTJVkfUmD8MlFYBr3Dgpc4Eyy++E7piy3h4l
+ 2ucxJO9HAQ/75Nl0Ygl8HXTTQiSsdok6rqLRTzTCp03vM8KUyuu8Fn9/2
+ sJUnv3x6ljvS0/hLKZIs1JeRiGhDxZVhvN0wK51rxBnuVgQAUVFkV/qnI
+ hESaErieBKoT+Y7SBoBS1CjU6j/zNdaUp1Xkkx87HLXLi4OIjzRH/tjDQ w==;
+X-CSE-ConnectionGUID: hkGXonEbQUii2FFR9OyP4w==
+X-CSE-MsgGUID: O6CedX/fSye9YmcCU62FEg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11803"; a="81121401"
+X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="81121401"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2026 02:44:21 -0700
+X-CSE-ConnectionGUID: zUB/yUtQQ0eAoOG4FBBagw==
+X-CSE-MsgGUID: 6o9FWBcyS1WypYnSqk36+w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="239344266"
-Received: from nitin-super-server.iind.intel.com ([10.190.238.72])
- by fmviesa010.fm.intel.com with ESMTP; 01 Jun 2026 02:40:26 -0700
-From: Nitin Gote <nitin.r.gote@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Nitin Gote <nitin.r.gote@intel.com>, stable@vger.kernel.org,
- Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>
-Subject: [PATCH] drm/xe: Fix UAF in xe_gem_prime_import() on attach failure
-Date: Mon,  1 Jun 2026 15:45:37 +0530
-Message-ID: <20260601101536.1333480-2-nitin.r.gote@intel.com>
-X-Mailer: git-send-email 2.50.1
+X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="239117594"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2026 02:44:19 -0700
+Date: Mon, 1 Jun 2026 11:44:16 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Riana Tauro <riana.tauro@intel.com>
+Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
+ rodrigo.vivi@intel.com, aravind.iddamsetty@linux.intel.com,
+ badal.nilawar@intel.com, ravi.kishore.koppuravuri@intel.com,
+ mallesh.koujalagi@intel.com, soham.purkait@intel.com
+Subject: Re: [PATCH v8 2/6] drm/xe/xe_ras: Add support to get error counter
+ value
+Message-ID: <ah1UcJZubg2ERgJF@black.igk.intel.com>
+References: <20260601084146.3808639-8-riana.tauro@intel.com>
+ <20260601084146.3808639-10-riana.tauro@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260601084146.3808639-10-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,65 +71,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_dma_buf_create_obj() creates the importer BO with obj->resv
-pointing at the exporter's dma_buf->resv. When dma_buf_dynamic_attach()
-fails, no dma_buf reference is held so the exporter can be freed
-immediately. Since ttm_bo_release() now always defers cleanup for
-ttm_bo_type_sg BOs to the TTM workqueue, the worker later calls
-dma_resv_lock() on the already-freed exporter resv, causing a UAF.
+On Mon, Jun 01, 2026 at 02:11:49PM +0530, Riana Tauro wrote:
+> Add request/response structures and helper functions to query system
+> controller to get error counter value.
 
-Reset obj->resv to the BO's private _resv before calling xe_bo_put()
-in the error path. The BO is not yet published (attach failed) and
-carries no fences, so the switch is safe.
+...
 
-Observed with igt@xe_live_ktest@xe_dma_buf_kunit on BMG (QEMU):
+> diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
+> index ea90593b62dc..317b877e375d 100644
+> --- a/drivers/gpu/drm/xe/xe_ras.h
+> +++ b/drivers/gpu/drm/xe/xe_ras.h
+> @@ -6,10 +6,13 @@
+>  #ifndef _XE_RAS_H_
+>  #define _XE_RAS_H_
+>  
+> +#include <uapi/drm/xe_drm.h>
 
-  Oops: general protection fault, probably for non-canonical address 0x6b6b6b6b6b6b6b9c
-  Workqueue: ttm ttm_bo_delayed_delete [ttm]
-  RIP: 0010:mutex_can_spin_on_owner+0x3f/0xc0
-  Call Trace:
-   <TASK>
-   ? __ww_mutex_lock.constprop.0+0x2dd/0x18e0
-   ? ttm_bo_delayed_delete+0x41/0xc0 [ttm]
-   ww_mutex_lock+0x3c/0xb0
-   ttm_bo_delayed_delete+0x41/0xc0 [ttm]
-   process_one_work+0x239/0x740
-   worker_thread+0x200/0x3f0
-   kthread+0x10d/0x150
-   ret_from_fork+0x3bd/0x470
-   ret_from_fork_asm+0x1a/0x30
-   </TASK>
+Why do you need this? Also, missing types.h.
 
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8023
-Fixes: d99fbd9aab62 ("drm/ttm: Always take the bo delayed cleanup path for imported bos")
-Cc: stable@vger.kernel.org # v6.8+
-Cc: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
----
- drivers/gpu/drm/xe/xe_dma_buf.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+>  struct xe_device;
+>  struct xe_sysctrl_event_response;
+>  
+>  void xe_ras_counter_threshold_crossed(struct xe_device *xe,
+>  				      struct xe_sysctrl_event_response *response);
+> +int xe_ras_get_counter(struct xe_device *xe, u8 severity, u8 component, u32 *value);
+>  
+>  #endif
 
-diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
-index 8a920e58245c..6d944bd4065c 100644
---- a/drivers/gpu/drm/xe/xe_dma_buf.c
-+++ b/drivers/gpu/drm/xe/xe_dma_buf.c
-@@ -384,6 +384,14 @@ struct drm_gem_object *xe_gem_prime_import(struct drm_device *dev,
- 
- 	attach = dma_buf_dynamic_attach(dma_buf, dev->dev, attach_ops, obj);
- 	if (IS_ERR(attach)) {
-+		/*
-+		 * The BO was created with resv = dma_buf->resv (exporter's
-+		 * resv). Since attach failed, no dma_buf reference is held and
-+		 * the exporter may be freed before TTM's delayed_delete worker
-+		 * runs. Switch to the BO's own resv to prevent a UAF when
-+		 * ttm_bo_delayed_delete() tries to lock the stale pointer.
-+		 */
-+		obj->resv = &obj->_resv;
- 		xe_bo_put(gem_to_xe_bo(obj));
- 		return ERR_CAST(attach);
- 	}
--- 
-2.50.1
+...
 
+> +/**
+> + * xe_sysctrl_create_command() - Create system controller command
+> + * @command: Sysctrl command structure
+> + * @group_id: Command group ID
+> + * @cmd_id: Command ID
+> + * @request: Pointer to request buffer (can be NULL)
+> + * @request_len: Size of request buffer
+> + * @response: Pointer to response buffer
+> + * @response_len: Size of response buffer
+> + *
+> + * Helper function to build sysctrl command to be sent via %xe_sysctrl_send_command()
+
+create
+
+Raag
+
+> + */
