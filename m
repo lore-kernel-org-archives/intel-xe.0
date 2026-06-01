@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08E5ECD6E55
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Jun 2026 20:10:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBB64CD5BD1
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Jun 2026 20:10:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B69AE10E923;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A549510E922;
 	Mon,  1 Jun 2026 20:10:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NQ5ACCA/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R2lYb+y9";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BD3410E922
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5178C10E923
  for <intel-xe@lists.freedesktop.org>; Mon,  1 Jun 2026 20:10:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1780344621; x=1811880621;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=xLJqDBJz5hwnmjb1spkP5usqJektDEi/n8BcLyka63A=;
- b=NQ5ACCA/V0lrmUSvztE6PdJBBaQObI6Bd1B541WH4irMvh9Juz4W5RfR
- XEC5Tp3bUKvpzEVuZWaHdDqxD7iJmZRHv2G0RHfAz+/AfGXAxBsbUjvRc
- jbApNw4ZRrlHONSePOnk+TupInD9iv6xe1GwaIEgyKZ6Z7CeZIkqFiWNj
- fLo3dKXFjm1I7lpHnnfvk4S5WW1RRPlbHwdoQLvCnsuEh0W8djHSXJkpq
- KesMIqBDdSSKgc5t6FfnxQRDIJ91baMdygH5sw/RmiiRmpvNFlidh3Rb6
- kOmcirQrPub1vMY8N41keDTF1o3Wj68AbGO7s7Qkxiv62IRFkIlZTYqXf w==;
-X-CSE-ConnectionGUID: OdxtidVTSEiu11PWi1QQ4A==
-X-CSE-MsgGUID: OHNUyKS4QP+4WBdWO7ED6Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11804"; a="98680841"
-X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="98680841"
+ bh=IWqHFuwv3VgiNgi8UJ1hzWrKB+/VusW5LqzI7KEqW/4=;
+ b=R2lYb+y9aLdJF/em6UPpqXxlJnfiIcs/FH9srTwPCbFhwkbo8WkesjoL
+ GjcqafIt/vpR73ThVgk99dEO2ncGwM/nBhnNSDesi+Vg5w8jW9SV8Daut
+ 1CSvOkTxzNyF0RDspWbFWjJT8G14zCXVwKGc2vNZLpa3uIQX/4jOVF4pK
+ 0LGhsie3cHgeRhJZr9oMQJBmQfXnRRBrbP2JvyC5TzGlAY90XMxxoxC9S
+ HPJ6w1jZez+b2ydz+CU6u2DYXH2e9lG34XBaE9OyqSZgefk7/ZEneBMK+
+ COdkTx4PE3POCzJOz6PC18ruB9in1oB20HsuWTDPIvJdSAZ5qtIGs7xEE g==;
+X-CSE-ConnectionGUID: d5MyFwaRRymxAOYuP8qLjw==
+X-CSE-MsgGUID: zkXOOOTpTcmQBBNhQS8uAw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11804"; a="98680840"
+X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="98680840"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Jun 2026 13:10:21 -0700
-X-CSE-ConnectionGUID: k5iCSd7bQoiVpF23mtUWzA==
-X-CSE-MsgGUID: ZjVXxui/Spq0iPQ1/OPzDQ==
+X-CSE-ConnectionGUID: JjrXGG3rQYOjqUVEDsuvoA==
+X-CSE-MsgGUID: SEBo15lBRSSybeWb14GGhg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="242852281"
+X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="242852276"
 Received: from vmonti-desk.jf.intel.com ([10.88.27.136])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Jun 2026 13:10:21 -0700
@@ -45,14 +45,15 @@ From: Violet Monti <violet.monti@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Violet Monti <violet.monti@intel.com>,
  Gustavo Sousa <gustavo.sousa@intel.com>
-Subject: [PATCH v6 4/4] drm/xe/rtp: Ensure device_oob_was only evaluates
- correct rules
-Date: Mon,  1 Jun 2026 13:09:50 -0700
-Message-ID: <20260601200947.2032784-10-violet.monti@intel.com>
+Subject: [PATCH v6 2/4] drm/xe/rtp: Ensure gt_was doesn't evaluate rules with
+ engine types
+Date: Mon,  1 Jun 2026 13:09:48 -0700
+Message-ID: <20260601200947.2032784-8-violet.monti@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260601200947.2032784-6-violet.monti@intel.com>
 References: <20260601200947.2032784-6-violet.monti@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,111 +69,218 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This commit builds on the implementation of the GT WA testing, increasing
-the scope of testing to include the device OOB workaround list. As well
-as checking for XE_RTP_ENGINE_CLASS(), this test also checks for rules
-involving XE_RTP_GRAPHICS() and XE_RTP_MEDIA(), as well as their
-derivatives.
+It is currently possible for a RTP rule, and subsequently a workaround,
+to expect contexts that may not be present when the workaround is
+applied. For example, the workarounds in the engine_was[] in drm/xe/xe_wa.c
+expect an engine entity to be active. Conversely, the gt_was[] is not
+depending on an engine entity to implement its workarounds. This kunit
+test addition checks the gt_was[] workaround list for any workarounds
+with XEP_RTP_ENGINE_CLASS() rules. If a workaround does have one of
+these rules, the workaround is then checked for the "FOREACH_ENGINE" flag,
+which ensures the workaround is implemented properly.
 
-This test will raise expectation fails for any workarounds in the
-device_oob_was list that has an invalid rule type, preventing evaluation
-or inclusion of rules that could be applied in the wrong context.
+The result of this test is an expectation failure if a workaround has an
+improper XE_RTP_ENGINE_CLASS() rule setup, and aims to prevent future
+issues of gt_was workarounds being applied without proper contexts.
+
+The gt_tunings[] RTP table has the same functional layout and
+requirements as gt_was[], so it shares the same kunit test function,
+minimizing excessive code.
 
 v6:
     - No change
 
 v5:
-    - No change
+    - Remove unnecessary headers from xe_rtp_table_test.c
 
 v4:
     - No change
 
 v3:
     - Removed "VISIBLE_IF_KUNIT" keyword from xe_wa.h
-    - Heavily reworked rule checking within _dev_oob_test() function for
-      easier understanding and interpreting of errors
+    - Added gt_tunings[] for testing
+    - Reworked KUNIT_EXPECT_TRUE() for easier parsing of errors
 
 v2:
-    - Changed xe_rtp_table_dev_oob_test() to follow format of
-      xe_rtp_table_gt_test
-    - Changed device_oob_was generated params to follow format of
-      gt_was
+    - Moved contents of xe_rtp_tables_test.h to .c and removed file
+    - Renamed macro RTP_KUNIT_ARRAY_PARAM to RTP_TABLE_PARAM
+    - Removed unnecessary functions and iterative components from
+      generated _gen_params functions and implemented usage of table
+      name and WA number as entry name
+    - Condensed xe_rtp_table_gt_test() to use KUNIT_EXPECT_TRUE with no
+      message statement
+    - Removed xe_rtp_table_test_init() and xe_rtp_table_test_exit() as
+      fake device initialization is not necessary
 
 Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 Signed-off-by: Violet Monti <violet.monti@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c | 23 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_wa.c                    |  3 ++-
- drivers/gpu/drm/xe/xe_wa.h                    |  1 +
- 3 files changed, 26 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/tests/Makefile             |  1 +
+ drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c | 53 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_tuning.c                |  3 +-
+ drivers/gpu/drm/xe/xe_tuning.h                |  6 +++
+ drivers/gpu/drm/xe/xe_wa.c                    |  3 +-
+ drivers/gpu/drm/xe/xe_wa.h                    |  5 ++
+ 6 files changed, 69 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c
 
+diff --git a/drivers/gpu/drm/xe/tests/Makefile b/drivers/gpu/drm/xe/tests/Makefile
+index 0e3408f4952c..f7aa47f11a36 100644
+--- a/drivers/gpu/drm/xe/tests/Makefile
++++ b/drivers/gpu/drm/xe/tests/Makefile
+@@ -9,5 +9,6 @@ obj-$(CONFIG_DRM_XE_KUNIT_TEST) += xe_test.o
+ xe_test-y = xe_test_mod.o \
+ 	xe_args_test.o \
+ 	xe_pci_test.o \
++	xe_rtp_tables_test.o \
+ 	xe_rtp_test.o \
+ 	xe_wa_test.o
 diff --git a/drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c b/drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c
-index ff6ff2d49ad7..ef379cbb6a86 100644
---- a/drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c
+new file mode 100644
+index 000000000000..7dd77133bc42
+--- /dev/null
 +++ b/drivers/gpu/drm/xe/tests/xe_rtp_tables_test.c
-@@ -53,10 +53,33 @@ static void xe_rtp_table_oob_test(struct kunit *test)
- 
- RTP_TABLE_PARAM(oob_was);
- 
-+static void xe_rtp_table_dev_oob_test(struct kunit *test)
+@@ -0,0 +1,53 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright © 2026 Intel Corporation
++ */
++
++#include <kunit/test.h>
++
++#include "xe_rtp_types.h"
++#include "xe_tuning.h"
++#include "xe_wa.h"
++
++#define RTP_TABLE_PARAM(table)									\
++	static const void *table##_gen_params(struct kunit *test,				\
++					     const void *prev, char *desc)			\
++	{											\
++		typeof((table.entries)[0]) *__next = prev ?					\
++			((typeof(__next))prev) + 1 : (table.entries);				\
++		if (__next - table.entries < table.n_entries) {					\
++			scnprintf(desc, KUNIT_PARAM_DESC_SIZE, #table "/%s", __next->name);	\
++			return __next;								\
++		}										\
++		return NULL;									\
++	}
++
++static void xe_rtp_table_gt_test(struct kunit *test)
 +{
-+	const struct xe_rtp_entry *entry = test->param_value;
++	const struct xe_rtp_entry_sr *entry = test->param_value;
 +
 +	for (int i = 0; i < entry->n_rules; i++) {
-+		u8 match_type = entry->rules[i].match_type;
-+
-+		KUNIT_EXPECT_NE(test, match_type, XE_RTP_MATCH_ENGINE_CLASS);
-+		KUNIT_EXPECT_NE(test, match_type, XE_RTP_MATCH_NOT_ENGINE_CLASS);
-+		KUNIT_EXPECT_NE(test, match_type, XE_RTP_MATCH_GRAPHICS_VERSION);
-+		KUNIT_EXPECT_NE(test, match_type, XE_RTP_MATCH_GRAPHICS_VERSION_RANGE);
-+		KUNIT_EXPECT_NE(test, match_type, XE_RTP_MATCH_GRAPHICS_VERSION_ANY_GT);
-+		KUNIT_EXPECT_NE(test, match_type, XE_RTP_MATCH_GRAPHICS_STEP);
-+		KUNIT_EXPECT_NE(test, match_type, XE_RTP_MATCH_MEDIA_VERSION);
-+		KUNIT_EXPECT_NE(test, match_type, XE_RTP_MATCH_MEDIA_VERSION_RANGE);
-+		KUNIT_EXPECT_NE(test, match_type, XE_RTP_MATCH_MEDIA_VERSION_ANY_GT);
-+		KUNIT_EXPECT_NE(test, match_type, XE_RTP_MATCH_MEDIA_STEP);
++		KUNIT_EXPECT_TRUE(test,
++				  entry->rules[i].match_type != XE_RTP_MATCH_ENGINE_CLASS ||
++				  entry->flags & XE_RTP_ENTRY_FLAG_FOREACH_ENGINE);
++		KUNIT_EXPECT_TRUE(test,
++				  entry->rules[i].match_type != XE_RTP_MATCH_NOT_ENGINE_CLASS ||
++				  entry->flags & XE_RTP_ENTRY_FLAG_FOREACH_ENGINE);
 +	}
 +}
 +
-+RTP_TABLE_PARAM(device_oob_was);
++RTP_TABLE_PARAM(gt_was);
++RTP_TABLE_PARAM(gt_tunings);
 +
- static struct kunit_case xe_rtp_table_tests[] = {
- 	KUNIT_CASE_PARAM(xe_rtp_table_gt_test, gt_was_gen_params),
- 	KUNIT_CASE_PARAM(xe_rtp_table_gt_test, gt_tunings_gen_params),
- 	KUNIT_CASE_PARAM(xe_rtp_table_oob_test, oob_was_gen_params),
-+	KUNIT_CASE_PARAM(xe_rtp_table_dev_oob_test, device_oob_was_gen_params),
- 	{}
- };
++static struct kunit_case xe_rtp_table_tests[] = {
++	KUNIT_CASE_PARAM(xe_rtp_table_gt_test, gt_was_gen_params),
++	KUNIT_CASE_PARAM(xe_rtp_table_gt_test, gt_tunings_gen_params),
++	{}
++};
++
++static struct kunit_suite xe_rtp_tables_test_suite = {
++	.name = "xe_rtp_tables_test",
++	.test_cases = xe_rtp_table_tests,
++};
++
++kunit_test_suite(xe_rtp_tables_test_suite);
+diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
+index bf3fad9cdbef..bcec40ca2d35 100644
+--- a/drivers/gpu/drm/xe/xe_tuning.c
++++ b/drivers/gpu/drm/xe/xe_tuning.c
+@@ -20,7 +20,7 @@
+ #undef XE_REG_MCR
+ #define XE_REG_MCR(...)     XE_REG(__VA_ARGS__, .mcr = 1)
  
+-static const struct xe_rtp_table_sr gt_tunings = XE_RTP_TABLE_SR(
++VISIBLE_IF_KUNIT const struct xe_rtp_table_sr gt_tunings = XE_RTP_TABLE_SR(
+ 	{ XE_RTP_NAME("Tuning: Blend Fill Caching Optimization Disable"),
+ 	  XE_RTP_RULES(PLATFORM(DG2)),
+ 	  XE_RTP_ACTIONS(SET(XEHP_L3SCQREG7, BLEND_FILL_CACHING_OPT_DIS))
+@@ -101,6 +101,7 @@ static const struct xe_rtp_table_sr gt_tunings = XE_RTP_TABLE_SR(
+ 				   BANK_HASH_4KB_MODE))
+ 	},
+ );
++EXPORT_SYMBOL_IF_KUNIT(gt_tunings);
+ 
+ static const struct xe_rtp_table_sr engine_tunings = XE_RTP_TABLE_SR(
+ 	{ XE_RTP_NAME("Tuning: L3 Hashing Mask"),
+diff --git a/drivers/gpu/drm/xe/xe_tuning.h b/drivers/gpu/drm/xe/xe_tuning.h
+index d18e187debf6..869564e3e992 100644
+--- a/drivers/gpu/drm/xe/xe_tuning.h
++++ b/drivers/gpu/drm/xe/xe_tuning.h
+@@ -6,6 +6,8 @@
+ #ifndef _XE_TUNING_H_
+ #define _XE_TUNING_H_
+ 
++#include <kunit/visibility.h>
++
+ struct drm_printer;
+ struct xe_gt;
+ struct xe_hw_engine;
+@@ -16,4 +18,8 @@ void xe_tuning_process_engine(struct xe_hw_engine *hwe);
+ void xe_tuning_process_lrc(struct xe_hw_engine *hwe);
+ int xe_tuning_dump(struct xe_gt *gt, struct drm_printer *p);
+ 
++#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
++extern const struct xe_rtp_table_sr gt_tunings;
++#endif
++
+ #endif
 diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index 410099545f4e..635d5461f712 100644
+index b9d9fe0801aa..1a1e04215f21 100644
 --- a/drivers/gpu/drm/xe/xe_wa.c
 +++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -815,10 +815,11 @@ static const struct xe_rtp_entry device_oob_was_entries[] = {
+@@ -130,7 +130,7 @@
+ __diag_push();
+ __diag_ignore_all("-Woverride-init", "Allow field overrides in table");
  
- static_assert(ARRAY_SIZE(device_oob_was_entries) == _XE_DEVICE_WA_OOB_COUNT);
+-static const struct xe_rtp_table_sr gt_was = XE_RTP_TABLE_SR(
++VISIBLE_IF_KUNIT const struct xe_rtp_table_sr gt_was = XE_RTP_TABLE_SR(
+ 	/* Workarounds applying over a range of IPs */
  
--static __maybe_unused const struct xe_rtp_table device_oob_was = {
-+VISIBLE_IF_KUNIT __maybe_unused const struct xe_rtp_table device_oob_was = {
- 	.entries = device_oob_was_entries,
- 	.n_entries = ARRAY_SIZE(device_oob_was_entries),
- };
-+EXPORT_SYMBOL_IF_KUNIT(device_oob_was);
+ 	{ XE_RTP_NAME("14011060649"),
+@@ -307,6 +307,7 @@ static const struct xe_rtp_table_sr gt_was = XE_RTP_TABLE_SR(
+ 	  XE_RTP_ACTIONS(SET(GUC_INTR_CHICKEN, DISABLE_SIGNALING_ENGINES))
+ 	},
+ );
++EXPORT_SYMBOL_IF_KUNIT(gt_was);
  
- __diag_pop();
- 
+ static const struct xe_rtp_table_sr engine_was = XE_RTP_TABLE_SR(
+ 	/* Workarounds applying over a range of IPs */
 diff --git a/drivers/gpu/drm/xe/xe_wa.h b/drivers/gpu/drm/xe/xe_wa.h
-index c5cc260621cd..f4da2b271396 100644
+index a5f7d33c1b32..8784b491dde7 100644
 --- a/drivers/gpu/drm/xe/xe_wa.h
 +++ b/drivers/gpu/drm/xe/xe_wa.h
-@@ -28,6 +28,7 @@ int xe_wa_gt_dump(struct xe_gt *gt, struct drm_printer *p);
- #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
- extern const struct xe_rtp_table_sr gt_was;
- extern __maybe_unused const struct xe_rtp_table oob_was;
-+extern __maybe_unused const struct xe_rtp_table device_oob_was;
- #endif
+@@ -6,6 +6,7 @@
+ #ifndef _XE_WA_H_
+ #define _XE_WA_H_
  
++#include <kunit/visibility.h>
+ #include "xe_assert.h"
+ 
+ struct drm_printer;
+@@ -24,6 +25,10 @@ void xe_wa_apply_tile_workarounds(struct xe_tile *tile);
+ void xe_wa_device_dump(struct xe_device *xe, struct drm_printer *p);
+ int xe_wa_gt_dump(struct xe_gt *gt, struct drm_printer *p);
+ 
++#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
++extern const struct xe_rtp_table_sr gt_was;
++#endif
++
  /**
+  * XE_GT_WA - Out-of-band GT workarounds, to be queried and called as needed.
+  * @gt__: gt instance
 -- 
 2.43.0
 
