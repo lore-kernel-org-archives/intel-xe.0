@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBBCBCD6E4C
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Jun 2026 08:17:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8891CD5BD1
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Jun 2026 08:42:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BF63112F74;
-	Mon,  1 Jun 2026 08:17:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73177112FC1;
+	Mon,  1 Jun 2026 08:42:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wiohujfh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KfCUOGIF";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2694112F58;
- Mon,  1 Jun 2026 08:17:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98F1D112FC1
+ for <intel-xe@lists.freedesktop.org>; Mon,  1 Jun 2026 08:42:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780301872; x=1811837872;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=d1CU6pTGG3CvDErA/fvdp7fOTsmA8oXHKJ5sjuZImh0=;
- b=Wiohujfh8Nbg3034BT7xPhh35Jeio6hBbaygneHXrauqAsEAvIwMs4+4
- zjrmWrvDbeC9VMcceNn6rvIyDYM5G4may2Yw+NaotCCcW3293ayQ4FDhy
- eS7+JnGgNUv2hVseqCvIztF18P/mEjGg9QEEdPXarp1dbPxmWAIYp8jS8
- UjJVwH5ZpIngbzEjvg0kVo2nT8xhSry8rX9PyBjNLUCDmT5entZT1Br5w
- IroEOZ5t1Cse/JR4YAC6sAyC229sdrdxt3CytiaC4hge5qeankCdoqkV3
- HL2+k3K6a6IUn2YaybsMjVJ6exf0g9Ct9YSYg0i0HY8SZ7Dy2YZDT0x94 Q==;
-X-CSE-ConnectionGUID: hvj3UoYXSiCdNI8fqps5oQ==
-X-CSE-MsgGUID: Vz9IMvSNTAC/yvIJ/MGNoQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11803"; a="80786207"
-X-IronPort-AV: E=Sophos;i="6.24,180,1774335600"; d="scan'208";a="80786207"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2026 01:17:47 -0700
-X-CSE-ConnectionGUID: njqr/4P6R+ya77jlFSPkOA==
-X-CSE-MsgGUID: /SxAA+I4RUOyTKsnOHDoYA==
+ t=1780303325; x=1811839325;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=l4T99Mq1JFKW6vSxNnq1fhXzf+w6P3MMeKfbhbsbCm0=;
+ b=KfCUOGIFpxCTDUn2+WZ7/eNNgPKW18wjEhnaPYK6GUqr9kP8ndZBZC5L
+ iqHTll+12BSPjf4ilLXLyzWCLLFbXReA+8158pNh/NxJHpBrbpc+6QpBb
+ Jk6hJjxXZe7C5MSHVZy6xeAOLZL/QnQ6SMzNcJooO/BxNXKWDAmO6QLml
+ V8Nc/eE1sF/4Y/Z4jycu9wzjNXOrv1MUm+/dWJN+K45vAYJRkHGNe8WEg
+ 071z6Bhy/Fg7Jt4kJuG0OL6imkfZkRjahKGEQNgz2/GLafJMJExiNTvTS
+ rKtPxVxhFAd2iDCCx2c/A1I7P1JluURINpPaRpkD082N+r+YcPP6NiR2A w==;
+X-CSE-ConnectionGUID: dQydML+lQsub+EKvai6zfw==
+X-CSE-MsgGUID: BuP3OOk7ToqO05qzGttJlA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11803"; a="91629469"
+X-IronPort-AV: E=Sophos;i="6.24,180,1774335600"; d="scan'208";a="91629469"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2026 01:42:04 -0700
+X-CSE-ConnectionGUID: I5sdGDeOSl6vfeFQk4qjrg==
+X-CSE-MsgGUID: cwp6kO18S/qssQzVSWqL9w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,180,1774335600"; d="scan'208";a="248602119"
-Received: from abityuts-desk.ger.corp.intel.com (HELO hazy) ([10.245.245.124])
- by fmviesa005-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Jun 2026 01:17:46 -0700
-From: Luca Coelho <luciano.coelho@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
-	jani.nikula@linux.intel.com
-Subject: [PATCH v4 4/4] drm/i915/display: remove unnecessary PHY_NONE
- definition
-Date: Mon,  1 Jun 2026 11:14:35 +0300
-Message-ID: <20260601081730.3146922-5-luciano.coelho@intel.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260601081730.3146922-1-luciano.coelho@intel.com>
-References: <20260601081730.3146922-1-luciano.coelho@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,180,1774335600"; d="scan'208";a="240525249"
+Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2026 01:42:01 -0700
+From: Riana Tauro <riana.tauro@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
+ aravind.iddamsetty@linux.intel.com, badal.nilawar@intel.com,
+ raag.jadav@intel.com, ravi.kishore.koppuravuri@intel.com,
+ mallesh.koujalagi@intel.com, soham.purkait@intel.com
+Subject: [PATCH v8 0/6] Add get-error-counter and clear-error-counter support
+ for CRI
+Date: Mon,  1 Jun 2026 14:11:47 +0530
+Message-ID: <20260601084146.3808639-8-riana.tauro@intel.com>
+X-Mailer: git-send-email 2.47.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -68,104 +68,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-PHY_NONE is not really used, but we define it and, thus, need to check
-for it in a few places we use phy.  The only potential places where
-phy may become PHY_NONE, is in intel_port_to_phy(), where it derives
-from port, which can be PORT_NONE.  Many of its callers don't check
-for PHY_NONE, which can cause unknown behavior.  Additionally, this
-can only happen if the encoder used has PORT_NONE, which should not be
-the case either, without unexpected consequences.
+Define request/response structures and helper functions to query system
+controller to get/clear counter values for CRI if supported.
 
-Remove the PHY_NONE definition entirely and add a couple of WARNs at
-the relevant places, just to be sure.
+Integrate get-error-counter with xe_drm_ras.
 
-Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c           | 10 ++++++----
- drivers/gpu/drm/i915/display/intel_display.h           |  2 --
- .../gpu/drm/i915/display/intel_display_power_well.c    |  6 +++++-
- drivers/gpu/drm/i915/display/intel_hti.c               |  3 ---
- 4 files changed, 11 insertions(+), 10 deletions(-)
+Usage:
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 8e269b71f18e..341408951dc8 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1810,9 +1810,7 @@ static void hsw_crtc_disable(struct intel_atomic_state *state,
- /* Prefer intel_encoder_is_combo() */
- bool intel_phy_is_combo(struct intel_display *display, enum phy phy)
- {
--	if (phy == PHY_NONE)
--		return false;
--	else if (display->platform.alderlake_s)
-+	if (display->platform.alderlake_s)
- 		return phy <= PHY_E;
- 	else if (display->platform.dg1 || display->platform.rocketlake)
- 		return phy <= PHY_D;
-@@ -1866,7 +1864,7 @@ bool intel_phy_is_snps(struct intel_display *display, enum phy phy)
- 	 * For DG2, and for DG2 only, all four "combo" ports and the TC1 port
- 	 * (PHY E) use Synopsis PHYs. See intel_phy_is_tc().
- 	 */
--	return display->platform.dg2 && phy > PHY_NONE && phy <= PHY_E;
-+	return display->platform.dg2 && phy <= PHY_E;
- }
- 
- /* Prefer intel_encoder_to_phy() */
-@@ -1884,6 +1882,10 @@ enum phy intel_port_to_phy(struct intel_display *display, enum port port)
- 		 port == PORT_D)
- 		return PHY_A;
- 
-+	if (drm_WARN(display->drm, port < 0,
-+		     "PHY is invalid if port < 0 (%d), assuming PHY_A\n"), port)
-+		return PHY_A;
-+
- 	return PHY_A + port - PORT_A;
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index 1963dbc80221..c55692e8aa27 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -136,8 +136,6 @@ enum tc_port {
- };
- 
- enum phy {
--	PHY_NONE = -1,
--
- 	PHY_A = 0,
- 	PHY_B,
- 	PHY_C,
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index 04bd0dde5bed..daea2452a19e 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -325,7 +325,11 @@ static enum phy icl_aux_pw_to_phy(struct intel_display *display,
- {
- 	struct intel_encoder *encoder = icl_aux_pw_to_encoder(display, power_well);
- 
--	return encoder ? intel_encoder_to_phy(encoder) : PHY_NONE;
-+	if (drm_WARN(display->drm, !encoder,
-+		     "PHY is invalid if encoder is NULL, assuming PHY_A\n"))
-+		return PHY_A;
-+
-+	return intel_encoder_to_phy(encoder);
- }
- 
- static bool icl_aux_pw_is_tc_phy(struct intel_display *display,
-diff --git a/drivers/gpu/drm/i915/display/intel_hti.c b/drivers/gpu/drm/i915/display/intel_hti.c
-index dc454420c134..56602240ceff 100644
---- a/drivers/gpu/drm/i915/display/intel_hti.c
-+++ b/drivers/gpu/drm/i915/display/intel_hti.c
-@@ -23,9 +23,6 @@ void intel_hti_init(struct intel_display *display)
- 
- bool intel_hti_uses_phy(struct intel_display *display, enum phy phy)
- {
--	if (drm_WARN_ON(display->drm, phy == PHY_NONE))
--		return false;
--
- 	return display->hti.state & HDPORT_ENABLED &&
- 		display->hti.state & HDPORT_DDI_USED(phy);
- }
+Query all error counters using ynl
+
+$ sudo ynl --family drm_ras --dump get-error-counter --json \
+'{"node-id":0}'
+[{'error-id': 1, 'error-name': 'core-compute', 'error-value': 0},
+ {'error-id': 2, 'error-name': 'soc-internal', 'error-value': 0},
+ {'error-id': 3, 'error-name': 'device-memory', 'error-value': 0},
+ {'error-id': 4, 'error-name': 'pcie', 'error-value': 0},
+ {'error-id': 5, 'error-name': 'fabric', 'error-value': 0}]
+
+Query single error counter using ynl
+
+$ sudo ynl --family drm_ras  --do get-error-counter --json \
+  '{"node-id":1, "error-id":1}'
+{'error-id': 1, 'error-name': 'core-compute', 'error-value': 2}
+
+Clear counter using ynl
+
+$ sudo ynl --family drm_ras  --do clear-error-counter --json '\
+{"node-id":1, "error-id":1}'
+None
+
+Rev2: add helper for clear counter
+      separate get error counter for other usecases
+      move commands to sysctrl layer
+
+Rev3: integrate clear-error-counter with drm_ras
+      use drm_ras flag
+      move drm_ras registration to ras init flow
+
+Rev4: rebase
+
+Rev5: rename error_class to counter
+      add prepare comman helper to sysctrl layer
+      add a debug log on success
+      skip drm_ras flag for vf update info
+
+Rev6: simplify structure member names
+      use local variable for counter
+      rename sysctrl helper function
+      fix log
+
+Rev7: rename sysctrl helper function
+      reorder functions
+      rename error_class to counter
+      fix cosmetic review comments
+
+Riana Tauro (6):
+  drm/xe/uapi: Add additional error components to xe drm_ras
+  drm/xe/xe_ras: Add support to get error counter
+  drm/xe/xe_ras: Add support to clear error counter
+  drm/xe/xe_drm_ras: Wire get/clear counter callbacks
+  drm/xe: Move xe drm_ras initialization
+  drm/xe/xe_ras: Add drm_ras feature flag
+
+ drivers/gpu/drm/xe/xe_device.c                |  20 +-
+ drivers/gpu/drm/xe/xe_device_types.h          |   2 +
+ drivers/gpu/drm/xe/xe_drm_ras.c               |  41 ++--
+ drivers/gpu/drm/xe/xe_hw_error.c              |  13 --
+ drivers/gpu/drm/xe/xe_pci.c                   |   3 +
+ drivers/gpu/drm/xe/xe_pci_types.h             |   1 +
+ drivers/gpu/drm/xe/xe_ras.c                   | 192 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ras.h                   |   5 +
+ drivers/gpu/drm/xe/xe_ras_types.h             |  51 +++++
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox.c       |  28 +++
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox.h       |   3 +
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |   4 +
+ include/uapi/drm/xe_drm.h                     |  11 +-
+ 13 files changed, 337 insertions(+), 37 deletions(-)
+
 -- 
-2.53.0
+2.47.1
 
