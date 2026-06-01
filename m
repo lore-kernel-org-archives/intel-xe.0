@@ -4,150 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08158CD6E55
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Jun 2026 11:47:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1563CD6E56
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Jun 2026 12:01:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3B4B113235;
-	Mon,  1 Jun 2026 11:47:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9D9010E7A3;
+	Mon,  1 Jun 2026 12:01:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TI1arWOg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ldjG/I2P";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 46F7F113233;
- Mon,  1 Jun 2026 11:47:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 705FE10E7A3
+ for <intel-xe@lists.freedesktop.org>; Mon,  1 Jun 2026 12:01:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780314442; x=1811850442;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- in-reply-to:mime-version;
- bh=bUeqTPIREGEni8wExMPIsMzZoUitCCzJIWa+P+gHNtY=;
- b=TI1arWOgUhQ2zT0FAhHnes+R7MRo7LJekyDJ1SnA9C9U4XS4GZSpNjUv
- Y81Bjj46WPO9xT5dE9m+aVjL2iPnbrFkjVqoHw3sch6X//tesjpA9hhrV
- PfxmheWO6V8w61tzjIcEZZaDa/08dIT1it55D3d2ydoDyoL/0ZmYyvHov
- tQMo9Y9SOUQp1p54H9LxxCLPBM2F2vkgScRjG3APSzl79duTw5azhrhyi
- iW19qfvDIcvDm3+m6lrneVbnLP4rLrmHdwIXwjN3klmikWJMeUDLWrYjm
- rWobi5bHYRptdV5RPv51dDDAfGxpk9e6XEc1awbNxND1iQqd/TPOSnbio A==;
-X-CSE-ConnectionGUID: H6fnAtTpTzuF0xDxa+Zq3w==
-X-CSE-MsgGUID: PSK/kxwNTLW/5KfkSvbUgA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11803"; a="81129647"
-X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="81129647"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2026 04:47:22 -0700
-X-CSE-ConnectionGUID: YAcqJdAOSoOQVZYV28lB3w==
-X-CSE-MsgGUID: ScIE4hOZR6StwVL651fyHg==
+ t=1780315309; x=1811851309;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=6xEhnlKK7ZlkDqcUSGtO041ICWC0sPmKbWyTpW9cEvs=;
+ b=ldjG/I2PbYVW0sllWZUKpLHtRAGy6gH/++/yQ6Emp+KVBekNIALD7p4S
+ /F9yHeVs7IBkCnzmQjZ9fPeXozGHH7KR/zhKr2ZLmkVHNUjC9xynse7XI
+ bKZv3jAAiucAaViAsyBv0PRvHiQRL7C+5O1pG4uSVv5Iq6YoG0bMQL+MG
+ cwsLOCBVQvv2k1ewfxE4Z0gyNB+cpKXzZAZf2wt6hKax9MRIMmK47cq2t
+ a0cZGnP68wZRpGSmMWNEXghM1ITdNJfyko7e2wiOH+oTHvHDi7ZY8+t7j
+ E729ozhKszXkGLAdjoH0oqMkrbQAeIxjzHOmNuWrhN6wsSP+2+T1GcIo1 g==;
+X-CSE-ConnectionGUID: c32UgjtHR+GJaoyh/nkF4w==
+X-CSE-MsgGUID: Lpk5ftuxTgKuMh2yUAi8Eg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11803"; a="92452247"
+X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="92452247"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2026 05:01:49 -0700
+X-CSE-ConnectionGUID: TtFYD29wQlCMTTH2+NgJ4w==
+X-CSE-MsgGUID: IBi+Mt/pTU6tTgPzh4/oaw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="267444521"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2026 04:47:21 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 1 Jun 2026 04:47:20 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 1 Jun 2026 04:47:20 -0700
-Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.4) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 1 Jun 2026 04:47:20 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gwA6dCc8gyL7YDRusuXv/FuAPSbBJJgRZZf2HreCpJo5BoVd61OEsRjceVTuEXah+dWVQOns8chgubM0RDLQKCWjg/2gdLfMczonKIlcH8ELnLAi6Ltmh0W5T0Xx1rS1ThWMdvfhX6DmrQt7OlOMT3PKw/05IDdtLABIVLbL1cSabD2oo2MyFzPEpCvwQh/PVn2wF9fNQO036MWn9gtnxIp1g15/GjA4QZFquRchnW2yKVYpZ+rJ1TnBhi6b7Cn9lf/PP63QkIlL5Z9V/bDsdxmK4X6Y7n267unf7XrBaGZMizMhtXQLfDyfBci4Dr46biOaVRvNSNRRuIYT4Wa2OQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sxbU3qKiTBZWKDgqCABl7h9mgEbwgjx4upHHWQ+ywL4=;
- b=CByaCByDPlG2y43cvSUM/KIAKRq1zROmwzekrJ5q+iiqTguf+Pe0/NoBNtr4trr1ITTyFG3LulvEF6a+Nf80u+IyhYvOi3VcxTFCyhGlgRa+C9VmOZTXxQUy4mDMrOpj+DhKLbUZXMzCtf+PPhnE6U7pmqURzGqISQzRLgd/Mn5wioru9bDzVpJpIV2Wd6QULPvMrCWwNFrzdLnJpX+ZuKJgMXru38WbaClQDov+6xWdWnNEtZIpEeP8t19DRMSLKx3jiO/zxvM6Qik96GieDWpDdtXhZkdN6zJzqAFmoGSm+xw09Mtu9ErH12Fsd557043LZP3VwWAz/81GfKCRvA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from IA3PR11MB9273.namprd11.prod.outlook.com (2603:10b6:208:573::17)
- by SA1PR11MB8542.namprd11.prod.outlook.com (2603:10b6:806:3a7::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.16; Mon, 1 Jun 2026
- 11:47:17 +0000
-Received: from IA3PR11MB9273.namprd11.prod.outlook.com
- ([fe80::31a4:58c:e3b5:43fa]) by IA3PR11MB9273.namprd11.prod.outlook.com
- ([fe80::31a4:58c:e3b5:43fa%4]) with mapi id 15.21.0071.011; Mon, 1 Jun 2026
- 11:47:17 +0000
-Date: Mon, 1 Jun 2026 14:47:05 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-CC: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <uma.shankar@intel.com>
-Subject: Re: [PATCH v2] drm/i915/display: Mask RO bits in gen9_write_dc_state()
-Message-ID: <ah1xA8My6FnwZm5R@ideak-desk.lan>
-References: <20260506130321.487414-1-dibin.moolakadan.subrahmanian@intel.com>
- <20260601090131.1840805-1-dibin.moolakadan.subrahmanian@intel.com>
- <4e28616f97067f232226a0fab8c2039cb124b2b8@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <4e28616f97067f232226a0fab8c2039cb124b2b8@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-X-ClientProxiedBy: GVZP280CA0005.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:150:273::6) To IA3PR11MB9273.namprd11.prod.outlook.com
- (2603:10b6:208:573::17)
+X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="242743594"
+Received: from dhhellew-desk2.ger.corp.intel.com (HELO [10.245.245.132])
+ ([10.245.245.132])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2026 05:01:47 -0700
+Message-ID: <b9b9e20f-703d-4e43-bd1a-17d8bbcead70@intel.com>
+Date: Mon, 1 Jun 2026 13:01:44 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA3PR11MB9273:EE_|SA1PR11MB8542:EE_
-X-MS-Office365-Filtering-Correlation-Id: ebe6b979-0f83-4839-c6af-08debfd3880e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|22082099003|18002099003|56012099006|4143699003|11063799006;
-X-Microsoft-Antispam-Message-Info: rEVUxA8pCRbNUKYOQznFFIxKz7NJ59UaCY9tCWvLiWjQBVUne+wrbJI3lnHEDAMMdp82md8D9tZhMKxm+JquWc+ANXZjqc4fb/WJKYI8zTuk5iwkOt9/xMZ4GZFOlqEiXJxazpp6yfzdMlAaezet2XWLedZXDJvny/UkftnXZQAPjjyJ+H4NT/Nkb4dG4i7qHdX0r5GvlG+TAX/SdX9vP6wVNy1nSNTKPTJpRyqKbVYb+mAk8xoh2Lc4Phifr0xZ1Ap4nvF+fDgEEzh8TGhFWdOZIKyvXqeDFZbSknbGDRY5Nl4vbx1poDI73yBppENncKfkHTPRg8NcDSQ0EqiAcJhdhJPeFOthKK8gkWtv4iqDGLDJ6DWDh+VGCcgEeYp3RadjGbi432OJz5NqU67ovB5vHbwhzRR0NXKGJfFTieBn/BsR5I7UStrZmjQakMAwMNxtPXVWp2uJ5oNv5txCoVAlyia57j57heCdNxY1KpuG15OMkEOLDjco2k/cuq4UlJMI+MkXb/VKfwfjKH7CGdOFsEOFFYyrrOF2ctutulmbaCfM1eRkdT6zPUR5iLM8bniEjohz1+l815UKgC4cRFt/uYo/ehPhHavptt8SFOplWw1vMAtGm8vLXj8QTjhtABmlNFvB0rEyl5HkaMawUhZqwFlojbgTXKISXYlJLXhSkBGODOC2Enmf1FfC538e4GzmwxnCjoyLi1n+PvjKVQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA3PR11MB9273.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(22082099003)(18002099003)(56012099006)(4143699003)(11063799006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?WC+EAI/0AMVC8iqmGKCthlJORxNwJ32UgC3I1rqwP55ID598mNGfvyn/BkR+?=
- =?us-ascii?Q?pDT6rjVqBV+P/2jAH8A8Nz6zWuj0O0E1sb3D0jbxGgGz+dKYMQfGEe4JG2NG?=
- =?us-ascii?Q?UKbRbdZtuh5fZ3Xq8A1+AmxymbZP7sv+U5RdiCbZP4Tv1oQ3bby+8fEkqBt8?=
- =?us-ascii?Q?vgdrTfbrRdclsBdGLERt3W9uLSH6CJj+yAa/cbbyhTQoG0PCP26in/wf37NN?=
- =?us-ascii?Q?szRZcbBvI7tHbl9evqWn7vxVg6R1Qd7LDnwICs2U/0p2Xz/owB+mT2ipo2Ko?=
- =?us-ascii?Q?eEtUbk5JG3vIVcNVrzdT4wsl4572UgjzJBMwrPc3IxwnKvrjfQZw32PyimGd?=
- =?us-ascii?Q?mwQa2dizEq3BXHnWDbXIUGJaA0c47WtaVu0vaZd3j67JHxFiHWsY/Hh7paYi?=
- =?us-ascii?Q?tG8WzSvgzbgwt4DvUvdhzorF/YnegWGxel94qEXIIWDqKoc8jpM6iEFNL9TB?=
- =?us-ascii?Q?WyNl1J3GWtFRFdujDdvwfC+UNUajzzraM+1OPWlGL3SQpwAIMJute7yHFD39?=
- =?us-ascii?Q?Hfm1uS9P1MSxyEDxD+tCAt5tXqQsuH/J/ipX4P8fcXXMwg5+et1ClGkSwGmD?=
- =?us-ascii?Q?cz+m671+W9imLsI2keOKQY+z0xyhLzX5PySjDNOHX09TYVCVcyqluOLmcTKh?=
- =?us-ascii?Q?vchjd/TwbWWjBODUKoi5wIHGmuQ5FzIGz6id5U70Noi/lDRZKUmn64AMb+c6?=
- =?us-ascii?Q?HfkzbDYN7SA3rxP/fyYPz7aHccEkmzuPLi1wEEIJWzVjxskRk+z4nKajdSD3?=
- =?us-ascii?Q?xoZzaCGOVuGMRuyfLhaUo+r6A0cPxtyAjXsuJdO4qWW50WFy2JWXwSEMSO8u?=
- =?us-ascii?Q?U9HoedxXqVTlKJyIuY6AtS8WOc+4kLFD9uKySmivxLQ7Td3NTOyXPmzo7pJi?=
- =?us-ascii?Q?hsfQMqB8A8vOq+YR55gNqOWM1kKDEtTGSKiLDIUf2wxFQT2xy+ZMYzV4adti?=
- =?us-ascii?Q?2GSV9X5f3HEgfNrPFGmAhmpokt3dfgyy+uq4Hynw7Ck2niUJrjMKLtiXWV6Q?=
- =?us-ascii?Q?ZJVN5eP+QNKk1gPJBCGw47EhCeWo2vpwV68nhYT3+G90z5H/f3z6/+rtp011?=
- =?us-ascii?Q?F00IrmAOXjgSS7wWJvDsVLwCi6Ca7tk9a1+7CVaZC0oLy6q4OZFOY9ZXTtQL?=
- =?us-ascii?Q?zf1lybsU82oJ67OW04zqeHbvAd9DmGtAoPodWujkdLAluw5KuAYsVNcZIque?=
- =?us-ascii?Q?9Wq1DvhyMdohOJlXo5LE05kRthXk0geUxL6bm6U74TzCLe56i5EGWpmetd0R?=
- =?us-ascii?Q?2VrwC3Mx5i1ixgRHgNHlzO1Gh7c/kzcLeEgX4aOFVjvi8CEHAdK2Q/k59lw7?=
- =?us-ascii?Q?m5DA80gsfdxhDyqxO53+M+eK3QtLc4hjBMriIYJe23GPMLLTZ0LOCOI2Z8q+?=
- =?us-ascii?Q?AIwRmUa4RjFvKkxuyo+vo3RZWhgtqoU0reMwkEDK8BPo1Ymg5oGguNQw2AqC?=
- =?us-ascii?Q?UJ+GxJ8CQh/aynCB+lWd0gM3Qj80KFBWZRIr7/1LEp3ZRPS8rcU+ze+b+sMW?=
- =?us-ascii?Q?EQkI93JQBSwg9ralpnNMkUWyySNA8b6/3ms8RdMUiM4wRLc7JKPJD0FEvcOW?=
- =?us-ascii?Q?97YqK+xAPdcPou0jvcIxO/e3Sjr2utCQ7bbOVT4nR72aDJ3cwxDiScCWw7rP?=
- =?us-ascii?Q?wnxEcyfalLQCtE9kqRerGrnxCGD2CAWpuBF+rs6cz0qzYb06MB4MEPnLva8E?=
- =?us-ascii?Q?/sa2dExd9hpro4yUQ7KdMkaOxWeBsn8gttt6jd8CQsLpxCD2ChP3QiHwAky1?=
- =?us-ascii?Q?rUKJgI1xXQ=3D=3D?=
-X-Exchange-RoutingPolicyChecked: KUJR0CNMsKbnyJ/QXneOG1KJYtnUTSFPzg88cuWYDNQUr7qGkXWct6OBS75oXyXxRMfiOrla8EuT/9c1jNduPfykRIJ0eu3VHa4GVqRvmwUrLr2mX2KUA3xhVOXyiKns1afHmkT9tswd7COmeiXWD21u58gatbrUzAJexiod7qOmXtZBlm/rKB5ao8kPW742JGvAzqnTK8d2dBlBoHqsz+bo5/qWXW9igw/uUMZYX1KiMP1dWr6kPKpSOlaUqmUkSqRpR4wjmXCQM39SC3uuyURQh2VjnHVg+ij2oOm7yBCTwenZ7NFD9Ul7HjGU/ct048WuMEzAnOLexks8lh3tRQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: ebe6b979-0f83-4839-c6af-08debfd3880e
-X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB9273.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jun 2026 11:47:17.6450 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: jKk1dtaV2SekerMwY3pDCOA9FNPbHCEy9c5zOx4YPxZXPQ16h/pIvImHzH+n8OABfERNpxfTwnzA8adXz34byg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB8542
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe: Fix UAF in xe_gem_prime_import() on attach failure
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Nitin Gote <nitin.r.gote@intel.com>, intel-xe@lists.freedesktop.org,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+Cc: stable@vger.kernel.org,
+ Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ "Prosyak, Vitaly" <Vitaly.Prosyak@amd.com>
+References: <20260601101536.1333480-2-nitin.r.gote@intel.com>
+ <ff4a02f0-5a59-4bad-af76-3d71146f136e@intel.com>
+ <5e3854dd-d6ad-4110-966e-9029ef7c2374@amd.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <5e3854dd-d6ad-4110-966e-9029ef7c2374@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,121 +73,95 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jun 01, 2026 at 12:38:31PM +0300, Jani Nikula wrote:
-> On Mon, 01 Jun 2026, Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com> wrote:
-> > The DC_STATE_EN register has read-only status bits that are set by
-> > hardware on some platforms. These bits may cause the read-back
-> > verification loop in gen9_write_dc_state() to spuriously retry.
-> >
-> > Mask the RO bits from both the write value and the read-back comparison
-> > to prevent unnecessary retries.
-> >
-> > Changes in v2:
-> > - Rename patch from
-> >   "drm/i915/display: Use rmw in gen9_write_dc_state() to preserve non-DC
-> > bits"
-> >   to
-> >   "drm/i915/display: Mask RO bits in gen9_write_dc_state()"
-> > - Mask only RO bits rather than masking all non DC state bits
-> >   in DC_STATE_EN.  As the register has also some clear-on-write flags,
-> >   like 'Display DC*CO State Status DSI'(Imre Deak)
-> >
-> > BSpec: 49437,69115
-> > Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
-> > ---
-> >  .../i915/display/intel_display_power_well.c   | 29 +++++++++++++++----
-> >  1 file changed, 24 insertions(+), 5 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> > index 04bd0dde5bed..4bc9e3ef738e 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> > @@ -726,14 +726,33 @@ static void assert_can_disable_dc9(struct intel_display *display)
-> >  	  */
-> >  }
-> >  
-> > +static u32 dc_state_ro_mask(struct intel_display *display)
-> > +{
-> > +	if (DISPLAY_VER(display) >= 20)
-> > +		return BIT(10) | BIT(11);
-> > +	else if (DISPLAY_VER(display) >= 13 && !display->platform.dg2)
-> > +		return BIT(10);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> >  static void gen9_write_dc_state(struct intel_display *display,
-> >  				u32 state)
+On 01/06/2026 12:39, Christian König wrote:
 > 
-> The caller already has the platform specific mask, please just pass that
-> in and use it.
-
-Imo it's better to read-back verify all the bits written to the
-DC_STATE_EN register, not only those that the caller changed. The only
-exception should be the bits that are expected to be changed by the
-firmware randomly (the read-only bits).
-
-> BR,
-> Jani.
 > 
-> >  {
-> >  	int rewrites = 0;
-> >  	int rereads = 0;
-> >  	u32 v;
-> > +	u32 ro_mask = dc_state_ro_mask(display);
-> > +	u32 val = state;
-> > +
-> > +	/*
-> > +	 * Mask out RO status bits from both the write value and the read-back
-> > +	 * comparison. HW may set these bits independently, so exclude them
-> > +	 * to prevent the verify loop from retrying due to RO bits mismatch.
-> > +	 */
-> > +	val &= ~ro_mask;
-> >  
-> > -	intel_de_write(display, DC_STATE_EN, state);
-> > +	intel_de_write(display, DC_STATE_EN, val);
-
-I would not change what is written to the register, rather use the mask
-only for comparison.
-
-> >  
-> >  	/* It has been observed that disabling the dc6 state sometimes
-> >  	 * doesn't stick and dmc keeps returning old value. Make sure
-> > @@ -741,10 +760,10 @@ static void gen9_write_dc_state(struct intel_display *display,
-> >  	 * we are confident that state is exactly what we want.
-> >  	 */
-> >  	do  {
-> > -		v = intel_de_read(display, DC_STATE_EN);
-> > +		v = intel_de_read(display, DC_STATE_EN) & ~ro_mask;
-> >  
-> > -		if (v != state) {
-
-I.e. here instead of the above masking:
-
-  if (v & ~ro_mask != state & ~ro_mask)
-
-> > -			intel_de_write(display, DC_STATE_EN, state);
-> > +		if (v != val) {
-> > +			intel_de_write(display, DC_STATE_EN, val);
-> >  			rewrites++;
-> >  			rereads = 0;
-> >  		} else if (rereads++ > 5) {
-> > @@ -753,7 +772,7 @@ static void gen9_write_dc_state(struct intel_display *display,
-> >  
-> >  	} while (rewrites < 100);
-> >  
-> > -	if (v != state)
-> > +	if (v != val)
-> >  		drm_err(display->drm,
-> >  			"Writing dc state to 0x%x failed, now 0x%x\n",
-
-This could also print the ro_mask.
-
-> >  			state, v);
+> On 6/1/26 12:46, Matthew Auld wrote:
+>> On 01/06/2026 11:15, Nitin Gote wrote:
+>>> xe_dma_buf_create_obj() creates the importer BO with obj->resv
+>>> pointing at the exporter's dma_buf->resv. When dma_buf_dynamic_attach()
+>>> fails, no dma_buf reference is held so the exporter can be freed
+>>> immediately. Since ttm_bo_release() now always defers cleanup for
+>>> ttm_bo_type_sg BOs to the TTM workqueue, the worker later calls
+>>> dma_resv_lock() on the already-freed exporter resv, causing a UAF.
+>>>
+>>> Reset obj->resv to the BO's private _resv before calling xe_bo_put()
+>>> in the error path. The BO is not yet published (attach failed) and
+>>> carries no fences, so the switch is safe.
+>>>
+>>> Observed with igt@xe_live_ktest@xe_dma_buf_kunit on BMG (QEMU):
+>>>
+>>>     Oops: general protection fault, probably for non-canonical address 0x6b6b6b6b6b6b6b9c
+>>>     Workqueue: ttm ttm_bo_delayed_delete [ttm]
+>>>     RIP: 0010:mutex_can_spin_on_owner+0x3f/0xc0
+>>>     Call Trace:
+>>>      <TASK>
+>>>      ? __ww_mutex_lock.constprop.0+0x2dd/0x18e0
+>>>      ? ttm_bo_delayed_delete+0x41/0xc0 [ttm]
+>>>      ww_mutex_lock+0x3c/0xb0
+>>>      ttm_bo_delayed_delete+0x41/0xc0 [ttm]
+>>>      process_one_work+0x239/0x740
+>>>      worker_thread+0x200/0x3f0
+>>>      kthread+0x10d/0x150
+>>>      ret_from_fork+0x3bd/0x470
+>>>      ret_from_fork_asm+0x1a/0x30
+>>>      </TASK>
+>>>
+>>> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8023
+>>> Fixes: d99fbd9aab62 ("drm/ttm: Always take the bo delayed cleanup path for imported bos")
+>>> Cc: stable@vger.kernel.org # v6.8+
+>>> Cc: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+>>> Cc: Matthew Brost <matthew.brost@intel.com>
+>>> Cc: Matthew Auld <matthew.auld@intel.com>
+>>> Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
+>>> ---
+>>>    drivers/gpu/drm/xe/xe_dma_buf.c | 8 ++++++++
+>>>    1 file changed, 8 insertions(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
+>>> index 8a920e58245c..6d944bd4065c 100644
+>>> --- a/drivers/gpu/drm/xe/xe_dma_buf.c
+>>> +++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+>>> @@ -384,6 +384,14 @@ struct drm_gem_object *xe_gem_prime_import(struct drm_device *dev,
+>>>          attach = dma_buf_dynamic_attach(dma_buf, dev->dev, attach_ops, obj);
+>>>        if (IS_ERR(attach)) {
+>>> +        /*
+>>> +         * The BO was created with resv = dma_buf->resv (exporter's
+>>> +         * resv). Since attach failed, no dma_buf reference is held and
+>>> +         * the exporter may be freed before TTM's delayed_delete worker
+>>> +         * runs. Switch to the BO's own resv to prevent a UAF when
+>>> +         * ttm_bo_delayed_delete() tries to lock the stale pointer.
+>>> +         */
+>>> +        obj->resv = &obj->_resv;
+>>
+>> +Christian, does amdgpu not have the type of same issue here? Also any thoughts here?
 > 
-> -- 
-> Jani Nikula, Intel
+> Oh, good catch. Yeah I think we have the same problem on amdgpu as well.
+
+Maybe dumb question, but why does the ttm_bo_individualize_resv() skip 
+the final switch of the resv for type_sg? It goes through the trouble of 
+copying the fences across?
+
+If we do need to handle this here, do we also need to grab the lru lock, 
+like we do in ttm_bo_individualize_resv() when doing the swap?
+
+Ideally xe and amdgpu can just have identical solutions here.
+
+> 
+> How the heck did you found that? Do we have a dummy driver (VGEM?) which could be made to always fail attachment for a test case?
+> 
+> @Vitaly can you take a look and try to come up with a test case for that? Thanks in advance.
+> 
+> Thanks for the notice,
+> Christian.
+> 
+>>
+>>>            xe_bo_put(gem_to_xe_bo(obj));
+>>>            return ERR_CAST(attach);
+>>>        }
+>>
+> 
+
