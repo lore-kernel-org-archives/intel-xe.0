@@ -4,65 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39A3DCD6E55
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Jun 2026 15:49:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAE20CD6E64
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Jun 2026 16:06:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 958D2113508;
-	Mon,  1 Jun 2026 15:49:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F500113548;
+	Mon,  1 Jun 2026 16:06:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U1IEqtJb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IhotfZaS";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B426113505;
- Mon,  1 Jun 2026 15:49:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EAED7113547;
+ Mon,  1 Jun 2026 16:06:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780328958; x=1811864958;
+ t=1780329994; x=1811865994;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=mU9NP52Txgjd/Xj8Ln8Hw8lWpp3A7JJN0mbm160/1Eo=;
- b=U1IEqtJbxZ6m3P8Poa1mQ7i4oEFf+Jm1yoErbhTxfN71ZP/7Q6qszmyc
- O4qPTH8lQXwFeDhuX0SrbDXqtUN/M3rfA0JtZxTI4rux71jzOfgjrTMoh
- AOAB1+wrHZKwlAtjGPb+4wcASvKjJunx0gZ2kUSSJl+TyQJH0e/sMU3Xm
- oV4hC8foV35IRDfpehy+ODhUeQJ5kyPpZXGM6YzfSiLOykVogUyo8LchK
- LhsgFm/FiydaxkO9P7KBUPD2/BqsrpsZBXqTyhXhcfdS8AIx30ogqNVTc
- SZ1IJKJMOvZr+RNWbHTdONU2osqtx/Njkcmt6S0KLSITwcwtP14ZFar/x A==;
-X-CSE-ConnectionGUID: FOAC+EC1RsW7Hwlq0DOGdg==
-X-CSE-MsgGUID: 41zpkB44TT+DCOuCtvOlSA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11804"; a="92203298"
-X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="92203298"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2026 08:49:17 -0700
-X-CSE-ConnectionGUID: jDHDHS1NTWevVpjgRwB6nA==
-X-CSE-MsgGUID: NMKyajc5S5GD/qQaXxPymA==
+ message-id:mime-version:content-transfer-encoding;
+ bh=YIKGmZls65LFaND2Ua7xRisHFghzgdnli7tXVJf/080=;
+ b=IhotfZaSTyNcgITKxF2cocY9wSTHt21WrBDeBXukvGx8XRaMBZ4swxDc
+ O+DYeLQaU1LJ7EKcITe6r/4r/fWxvjkR7y6wRbJV/BOkHGOUb/N31S1YA
+ mvx8YGxzu9CRRCQGno6z1eFmVAPjBomt1mnXzat1aSVINnwgI0ofLCdY2
+ AHahMUw3OptshkBhTQEOHA57DpihN1q+iSXw8ywdh6NrvZJOwZ5IcHyFJ
+ MlW39r+mGT6NkoK5u+BKj/0VDf/CVXn2Dm1k5pd2yGgta91+AE21USbhJ
+ 5xcim6Tx5e58jcWfIC46FpZY1Z3kOhZrc4T/JaxrTJwQw6xr7kiDUf7Ah Q==;
+X-CSE-ConnectionGUID: X7Tz3tm+SPKoJJsAbgcdwA==
+X-CSE-MsgGUID: FreAoyEcRsGU34dN8RU9tw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11804"; a="91778599"
+X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="91778599"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2026 09:06:33 -0700
+X-CSE-ConnectionGUID: /cWqhkn0TFSfDfR951FsQQ==
+X-CSE-MsgGUID: PEFTB6saSjuQZnFSG0Wbhw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="243715787"
+X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="239448717"
 Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.245.121])
- by orviesa009-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Jun 2026 08:49:11 -0700
+ by fmviesa010-auth.fm.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Jun 2026 09:06:31 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>, Dave Airlie
- <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas
- Zimmermann <tzimmermann@suse.de>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, Oded Gabbay <ogabbay@kernel.org>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: Re: [PULL] drm-misc-fixes
-In-Reply-To: <e1a2cc27fb04a88be23973d3cb7868f3d4471d0d@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, James Xiong
+ <james.xiong@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ gustavo.sousa@intel.com, imre.deak@intel.com
+Subject: Re: [PATCH v4] drm/i915/dmc: fix assert_dmc_loaded WARN during
+ async firmware load
+In-Reply-To: <ahmzeOA79VxnmWD3@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260529070009.GA313534@linux.fritz.box>
- <ddf0233e50044059c85279f928661563ef6a55bf@intel.com>
- <e1a2cc27fb04a88be23973d3cb7868f3d4471d0d@intel.com>
-Date: Mon, 01 Jun 2026 18:49:09 +0300
-Message-ID: <d479f1185cd1ae6eb52a7d44e944408c3447c8e4@intel.com>
+References: <20260511173101.723421-1-james.xiong@intel.com>
+ <ahmzeOA79VxnmWD3@intel.com>
+Date: Mon, 01 Jun 2026 19:06:29 +0300
+Message-ID: <4d4f6487b407c8e92860f857fb2c50ef26d0bc75@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,70 +72,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 01 Jun 2026, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> On Mon, 01 Jun 2026, Jani Nikula <jani.nikula@linux.intel.com> wrote:
->> On Fri, 29 May 2026, Thomas Zimmermann <tzimmermann@suse.de> wrote:
->>> Rajat Gupta (1):
->>>       drm: prevent integer overflows in dumb buffer creation helpers
->>
->> Looks like this commit 5ab62dd3687b ("drm: prevent integer overflows in
->> dumb buffer creation helpers") regressed in our CI, awaiting
->> confirmation.
+On Fri, 29 May 2026, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Mon, May 11, 2026 at 10:31:01AM -0700, James Xiong wrote:
+>> During driver probe, DMC firmware is loaded asynchronously via a
+>> workqueue. There is a race between parse_dmc_fw() setting the payload
+>> pointer (making has_dmc_id_fw() return true) and intel_dmc_load_program()
+>> writing the firmware to hardware registers. If the probe thread calls
+>> intel_dmc_enable_pipe() -> assert_dmc_loaded() in this window via
+>> intel_modeset_setup_hw_state(), it sees parsed payload but stale HW
+>> registers, triggering a ~20% intermittent WARNING on ADL-N warm boot.
+>>=20
+>> v2: Fix by calling intel_dmc_wait_fw_load() in
+>>     intel_modeset_setup_hw_state() before iterating the CRTCs (Gustavo
+>>     Sousa).
+>>=20
+>> v3: Move intel_dmc_wait_fw_load() into intel_dmc_enable_pipe() itself
+>>     so the function is self-contained (Jani Nikula, Gustavo Sousa).
+>>=20
+>> Fixes: 3af2ff0840be ("drm/i915: Enable a PIPEDMC whenever its correspond=
+ing pipe is enabled")
+>> Signed-off-by: James Xiong <james.xiong@intel.com>
+>> Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_dmc.c | 7 ++++++-
+>>  1 file changed, 6 insertions(+), 1 deletion(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/=
+i915/display/intel_dmc.c
+>> index 0df4f42ba3e3..4151eae92744 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+>> @@ -786,7 +786,12 @@ void intel_dmc_enable_pipe(const struct intel_crtc_=
+state *crtc_state)
+>>  	enum pipe pipe =3D crtc->pipe;
+>>  	enum intel_dmc_id dmc_id =3D PIPE_TO_DMC_ID(pipe);
+>>=20=20
+>> -	if (!is_valid_dmc_id(dmc_id) || !has_dmc_id_fw(display, dmc_id))
+>> +	if (!is_valid_dmc_id(dmc_id))
+>> +		return;
+>> +
+>> +	intel_dmc_wait_fw_load(display);
 >
-> The IGT test kms_big_fb uses max width and height from GetResources, and
-> i915 and xe use max_width 16384 and max_height 16384 in mode config.
+> I was going to say that intel_flipq_init() already did that, but
+> looks like that's called later not before.
 >
-> The regressing commit adds random hard limits not based on anything:
->
-> +       /* Reject unreasonable inputs early.  Dumb buffers are for software
-> +        * rendering; nothing legitimate needs more than 8192x8192 at 32bpp.
-> +        * This prevents overflows in downstream alignment helpers.
-> +        */
-> +       if (args->width >= 8192 || args->height >= 8192 || args->bpp > 32)
-> +               return -EINVAL;
->
-> This is now in v7.1-rc6. Please revert ASAP.
+> I think what we probably want is an unconditional
+> intel_dmc_wait_fw_load() somewhere before this so that the whole
+> thing isn't so random.
 
-Ah, missed this clue in the pull request:
+Now there's v4 doing this at [1]
 
-On Fri, 29 May 2026, Thomas Zimmermann <tzimmermann@suse.de> wrote:
-> here is this week's PR from drm-misc-fixes. There's one cross-subsys
-> commit to the dma-buf code. Commit 5ab62dd3687b ("drm: prevent integer
-> overflows in dumb buffer creation helpers") has not Link tag because
-> it went through the security list.
+I just didn't want the wait in modeset setup [2], because it just ends
+up being a pile of random calls and nobody remembers why the order is
+what it is.
 
-We have the whole review and CI processes in place to catch silly
-mistakes, and then we proceed to shoot ourselves in the foot and bypass
-all of that because "security", and expedite the regressions
-everywhere. I'll bet this will be in stable kernels in no time too. This
-is stupid.
-
-Please also read [1] with its recent updates.
-
+And when there's no need to wait for dmc loading at that point, we'll
+end up waiting anyway for no reason, slowing down boot. Hence the "wait
+where we *actually* need it".
 
 BR,
 Jani.
 
 
-[1] https://docs.kernel.org/process/security-bugs.html#what-qualifies-as-a-security-bug
+[1] https://lore.kernel.org/r/20260601154743.1127698-1-james.xiong@intel.com
+
+[2] https://lore.kernel.org/r/c071d6473256af2a2c281a4d148630269106a51a@inte=
+l.com
 
 
 >
->
-> BR,
-> Jani.
->
->
->>
->> No matter what, it's immediately suspect because AFAICT it was not
->> posted on the lists, and the commit doesn't have a Link: trailer
->> pointing at the patch.
->>
->> This is not how we're supposed to roll. What's going on?
->>
->>
->> BR,
->> Jani.
+>> +
+>> +	if (!has_dmc_id_fw(display, dmc_id))
+>>  		return;
+>>=20=20
+>>  	if (!can_enable_pipedmc(crtc_state)) {
+>> --=20
+>> 2.34.1
 
--- 
+--=20
 Jani Nikula, Intel
