@@ -4,183 +4,97 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2F6ACD6E56
-	for <intel-xe@archiver.kernel.org>; Wed,  3 Jun 2026 11:12:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94A00CD6E6A
+	for <intel-xe@archiver.kernel.org>; Wed,  3 Jun 2026 11:12:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C5CB10FC1D;
-	Wed,  3 Jun 2026 11:12:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5901B10FC1A;
+	Wed,  3 Jun 2026 11:12:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="RV/ZBQBW";
-	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="StZUOYT0";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="tK+2iabo";
 	dkim-atps=neutral
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 445FF10FB57
- for <intel-xe@lists.freedesktop.org>; Wed,  3 Jun 2026 10:15:36 +0000 (UTC)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 6536RSE71200262
- for <intel-xe@lists.freedesktop.org>; Wed, 3 Jun 2026 10:15:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
- 9n9AHlZU6kUO1j38Uc9X0HmM7AR04hZBNstxafGjgo4=; b=RV/ZBQBW1Gz7WB7g
- C36gOhNhdL+lLAmqQlpap6noJbbxHcrt5EIxi83XQdvwRajDeMt1YFcY+H3mGLXT
- 9XatmhW6r/yTEhIszMkIGbMkNaO+fyhhVMzwIGL7bcpZ9ReeDX5jEpLuRbcstKSQ
- YhnhXEg7Vp0lJ0rPhBLgdWq78t4NPOsw/LugKMhQPSnThw01mcIgA9my3R2A/CFD
- SMxSsEToum0RhiBvscPxkFsFs1FxqjfwWOQrc5lvshnJbrHXt0WtI8psq0P5nZyX
- LEs1LzosAOE89oi/Bezr5wGe+ccK2iGDRjqfsqOH5hQOImzaSe/nMOk3SRXe02I+
- vbBXAg==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
- [209.85.219.71])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ejckw1gr6-1
- (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
- for <intel-xe@lists.freedesktop.org>; Wed, 03 Jun 2026 10:15:35 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id
- 6a1803df08f44-8cce42a4e75so88606306d6.3
- for <intel-xe@lists.freedesktop.org>; Wed, 03 Jun 2026 03:15:35 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1780481735; cv=none;
+Received: from mail-yx1-f50.google.com (mail-yx1-f50.google.com
+ [74.125.224.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 016A710F3B2
+ for <intel-xe@lists.freedesktop.org>; Tue,  2 Jun 2026 16:41:15 +0000 (UTC)
+Received: by mail-yx1-f50.google.com with SMTP id
+ 956f58d0204a3-660480b3982so675624d50.0
+ for <intel-xe@lists.freedesktop.org>; Tue, 02 Jun 2026 09:41:15 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1780418475; cv=none;
  d=google.com; s=arc-20240605;
- b=iWGt9HebLosDES0YYm+FHMsCxQyzidYBpa0oMR6u1t3raQTo/EnwTvqbbV+Yg4LhgT
- 4wvH3MH1a+nrI/UkAmNaYwtqzokRMY6XpqrubXgoJXrw9DYEBC62MvenUx8zogYzJYMR
- YQ7j5iTNaT3irYNxLAjqiis7++Avox6fAgjgA3GqJwK1l1002ptw3fnxHg3vNsxlcMW5
- U07V0FojObQrKUDFEvYFG0UPkOuzBHoJuhSFAu7YjgeslahB22mmbe0P4maFyLV6Kf/X
- BalF0QaPaTQUL15Gp+8qXA861ImQujaR3K6PPYvgEkDKI/+J4ZQ/ganCKyWnPuLJv+Ix
- 3UwA==
+ b=J51KpugvtSREOMdU7sSlSgV6EbsbfMjYMEKUQMoftJYVXvmwnBs9BLb9ly2peTvteW
+ XIyfA0pTczGUYPzF9KsMpojn7A6BFwMAMDS/I+Z1p44tg3uvK4RoRuaTLotA8bxE6a6/
+ RopwAwSt0g/fBAhIreiVsVNVVXLg+zLSz8TZUC0KBX0r8XPDhCrf/pqyFvj/zyuAcJ4J
+ LHV5cfobi0kUKQRrZG1JBx3169jKJ9cda/QKOqA9MUvGaJDPkIVa0Vt5gkQ9um2L01F1
+ ia6oCTH4olUvfbH0+t+pnhcMu+9tMVDEvRHMIb3qtZT6M1PxmGvCepuG2wrRA4w4Hfiw
+ 1/+Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
  s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=9n9AHlZU6kUO1j38Uc9X0HmM7AR04hZBNstxafGjgo4=;
- fh=6APtKwSFh+x0Qca6uR4eRFsADfMTnQazuHVa7p8OIE4=;
- b=dqDN8VNqSIF244yZAjkOQ/wgASffiHoPe3n/+RlMAHL1R1jXpaYaRBsRm5kns5sdlB
- dIcWW8W7hJo2KjYzxPv2xe2pGVcQEvSACu4V1ajkKgnj5XgS5Wpj0RgfyOGNVx2pGQ4M
- TrTvMZFhmShR0oWok0LgT3Kk7pCWI2MpkoyfUjzqCOsUIxy0jVZ2jNoeDLPbfcvZlXbY
- kAtd7Zc2iT8eigxiCbW/YbMzbZnjaY6D/t4A4XP1MfJ6FnIZiCCb2h3EST3qP4MUcecz
- IbFTqMElgl00nYoAxIw29rXyUULbmelnQxmuy95bu9WTT8fnk2/lJ90rz+FmJTclMUJt
- IDpA==; darn=lists.freedesktop.org
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:dkim-signature;
+ bh=CUkgIBLCXnmBC10e8G9EVJm8spb++TEf5PGlj5i5Pdc=;
+ fh=LuzxFSrPk9dtVgQzvNN0Zik/q6OKWrsvkdmzwn5OUas=;
+ b=QHj6LYhZHdOgtUs56gbqyU0o/OHgzMNMhCRsOj2ltv+PqTi30o4C6ZbRUNszZe7kLp
+ 0NTlldvxxF/XDAIoXWXUM5wt8NwRwVYJ+ZWHaKhyVbggmcgfIaFv/lUfOLSG51s24pPh
+ LdWpkzxTWo4gN2Bqw8fqK5u0cDUe86jBNt+FddTZ1x9J2tX6X7sEuFdXzWEVUvRpV+au
+ 8j3W/gFXvXW3wvmyyWxTkLQl6tmj3A/WqXU6Ji4XX+CdNPCyheBE8FxwTyZnEakAcRkZ
+ Gh84dmBw9zV2kp4WQ99qhh1fA9ZEgTCIF/R9KuSxpd/3lIkyAlSTeKl8TNU5jVww1UXa
+ d/Sw==; darn=lists.freedesktop.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oss.qualcomm.com; s=google; t=1780481735; x=1781086535;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=9n9AHlZU6kUO1j38Uc9X0HmM7AR04hZBNstxafGjgo4=;
- b=StZUOYT0gM4ZEEzMg20VejLdytgKo+KvuXrY/fzp60cBqzwhIwm2dxGOO+xh/YsgR2
- 5ztHBMAmShUlQolvRjdL/ZEYtFQDxAWQNjA7oEibww9BjhtzqMJIT42+rb7Ma4AAtmMT
- 5YkyiS0zBHnkI8KFsKdqcaApoxsFnuMXkKJAG3J7JcloP8ZIQZjEkQFtvuvly3YJqsR2
- P33Mea+BiuPLyJMTLPMJLyDdduLEnXDbj3SWviJ5mgv5a8zHVmi2EiqTCzkdajNmE65K
- 6Ot1c+odBVcXVeaMHBHOrQElHMnyAQmG22DQHIzhqAKJbPPssfwapCgYo4nyLMEOh6kz
- hdnw==
+ d=gmail.com; s=20251104; t=1780418475; x=1781023275; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=CUkgIBLCXnmBC10e8G9EVJm8spb++TEf5PGlj5i5Pdc=;
+ b=tK+2iabon2cD0SEVCCHkifte1qpaIIiYruyu7c84catPa4Lu5PPidz+EibbCSOlQdh
+ 9eSIveW2dKFYudKTuhA9LaSqGxHL13SkjKv1aR6ufpaWei2A+5G33mIOPGA7reQ4GWVj
+ JEPtFoCCERfVT1ElGPKOsXdG3STIuEJKvDtAMEwDFY+wJfc6CyaWzexJycLanALgWKvX
+ WNMAzREA5KVpnRLWlSeMNxW+EXEfwtdrU5f17tV8pSVFzUo0vkuIEVqZp7RGZxqzUnRG
+ GkK9LLtnx011gexfY0zUqfBi+nNE6vuWvDbeDY1zGZ7D9HUUvIxrBI/T2Jcwt5Xq8cUN
+ M5OA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1780481735; x=1781086535;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=9n9AHlZU6kUO1j38Uc9X0HmM7AR04hZBNstxafGjgo4=;
- b=DEipzrwijbxtwfnDFugESNJdYL6cyAafT4gC50wWI0rBfXbcPfSvBzZQ6Reha5sdWP
- t0EiziCo9nHCfHnFjTo8eYTXXCIBChJVzq/s13nSX7A9avbCGqKyACEunV2jMOQABH0H
- a7cK8AaZBukyhO04zvZTULxLDM1S1JHk7WXl9yxbLjG18i4/xMfE5IQq49WtOiMVM9yb
- WzEo+4i7rorPtFagKqhJRBvyXRanuGjamkkywmVwemgP+lOa+qK3iNw+6gNgstvkv3Ic
- he1BL723T4nrNgkbasrs3RySoRDilg2+o5w2Ed86WhQnN9oJeaWKUYU2oXZsi5fwq7eO
- X6rA==
+ d=1e100.net; s=20251104; t=1780418475; x=1781023275;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=CUkgIBLCXnmBC10e8G9EVJm8spb++TEf5PGlj5i5Pdc=;
+ b=ht03UrOWElW+J9987/SVLO6XCYhZL13p47txZzguumODI7A6yj6LVIhnpBLhDI49uN
+ faoCzkaVtSZipJiV/bjXMYtWXd1QFpfGj8MIYej12GikQfh94NfqTKCFKzt94BMJgTSQ
+ lV5iG9JOx6OM3ZVkyV9JEPkVaX6vasLNgTbK35DV1CAc+g340LyesQe8aZFbZtKn5IlC
+ pynsZwUgYGIlWfTiZyl1Sd6HazZhW9VJqlgmKjFuYJf6w1iVGqTOOdlFa2w+M+GWPY7F
+ u89i+YucF5D9GHLETjAjnUHc7pu1Bp9Dg95r6Jzm52G4Qqi1bVKgljznUPNCJ6Qo1npk
+ Aj5g==
 X-Forwarded-Encrypted: i=1;
- AFNElJ8w3NZwOYsaH8JIYfg/7OCW/YGqzP8AX4cBdZBTzb0n8mIoYsOl5GjT4TR9qNErLikIBuTVoPfsHA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx0HyVoCh1VLRdJ4/6TG82vgWfAMyjanHPpKZx4QIcaHIGxXIWv
- docwIzZ+db8dLWC40jVATQPE2yNWmNuXnIpuv9iuyoL/0wT8Td64IRMNqJ4z4mrHuwbv2ViwEvc
- rsfAnCZ4eST/oANRCW/ywB0AKg5PVZT2CB7mxxKmNXvcYRjZCKGzMrH+yYSG4+BC83eA2J66hB3
- OZmBAljJPzU3HQ61bH+FjzU4a2mSlRkIRe/hhEGONaHMYJ
-X-Gm-Gg: Acq92OE/BVNntp1roHfFhPBYInOylOsYHMKb5oFdwNjTmCk6RFO2XSISVhQ8fXVXXxE
- CQw0oahzceS3nADZS2Amg/42Q7y7VD0bsm8Hp0VaHXwS3wG8k7tCuPE24DhH71fegiMTOlElEnp
- ECio2sKYu6gaTJu61KJSc3v8WByBgZe0XLz6j1obz3ZIrYtlvJ8AwBjpyuSFJfTpIx8cc5kQoAU
- FEX9s+3jUqo1A0K
-X-Received: by 2002:ad4:4984:0:b0:8cc:6c08:552f with SMTP id
- 6a1803df08f44-8cecdc03682mr27951786d6.9.1780481734741; 
- Wed, 03 Jun 2026 03:15:34 -0700 (PDT)
-X-Received: by 2002:ad4:4984:0:b0:8cc:6c08:552f with SMTP id
- 6a1803df08f44-8cecdc03682mr27951226d6.9.1780481734358; Wed, 03 Jun 2026
- 03:15:34 -0700 (PDT)
+ AFNElJ/MynstfOnumo8GE9mJYbpBvzL8WzRWJJubm+8pVf+RlsVZ3brbRqY09dKbcY4KyzP5OP47K5hjJg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzXfy9Cs6xo4UGLTDE6Q2fyVX3/HEpV8TTAoXq1K3zn5DyBWsGG
+ uWwjollys1fIU3JjmjU/MVh4moAJnUwUHrWU9tkd36hpV+ejzVWeekX73doBnBV8/Ofdms/3cXj
+ Q88/jRLqGny2TyW7sIKotaWInuQbHwtY=
+X-Gm-Gg: Acq92OHeQV2Osgs21B6BTCQnfvv7X5J+RA9wTg9vP6pT1h1idLL835gbRwFxp6DuJqO
+ mQyZXkBATqqu2b1z7YGz42FLT4hYdmCCz7h/Lgj3RzAsp0vHhmrza0kAPUQR/M31r/6ee26W6H7
+ XGPnvo+U/Vea4U3rBLvCRAK2iGH9B4zZvZFzzt081zBp/AneHtM4ut+utGMibBKjOfrF6/C8TiS
+ PXuH1rLxHCISVOuoa4/ddgevAoXyiFm9UqMjJGro/JnM4CYLQwJPUXQyZKSiOQgiIJWbrG0rAgB
+ wxHRkeG6gC3JQnLV1B8JNATH/BdEORc2fq+Yt5m0AiPe2m41DSQmguknDSlbBdhoi9g8hAZjZA=
+ =
+X-Received: by 2002:a05:690e:408a:b0:65c:4a2f:336e with SMTP id
+ 956f58d0204a3-660d61bcc12mr352843d50.8.1780418474621; Tue, 02 Jun 2026
+ 09:41:14 -0700 (PDT)
 MIME-Version: 1.0
-References: <20260521-pdev-fwnode-ref-v1-0-88c324a1b8d2@oss.qualcomm.com>
- <20260521-pdev-fwnode-ref-v1-4-88c324a1b8d2@oss.qualcomm.com>
-In-Reply-To: <20260521-pdev-fwnode-ref-v1-4-88c324a1b8d2@oss.qualcomm.com>
-From: Ulf Hansson <ulf.hansson@oss.qualcomm.com>
-Date: Wed, 3 Jun 2026 12:15:23 +0200
-X-Gm-Features: AVHnY4J4K5UzPNs1yW8q3X0LoIQq3c8UfPuD4kHDjf5PzjApCRf1PSF1rlsmtoU
-Message-ID: <CAPx+jO9iJBx6Yifap55NOhn5YZk8Bbwpnk+aeH+0PgYuMxke1Q@mail.gmail.com>
-Subject: Re: [PATCH 04/23] pmdomain: imx: fix OF node refcount
-To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Cc: Lee Jones <lee@kernel.org>,
- Mark Brown <broonie@opensource.wolfsonmicro.com>,
- Thierry Reding <thierry.reding@avionic-design.de>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Srinivas Kandagatla <srini@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Vinod Koul <vkoul@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,
- Saravana Kannan <saravanak@kernel.org>,
- Madhavan Srinivasan <maddy@linux.ibm.com>,
- Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>,
- "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
- Andi Shyti <andi.shyti@kernel.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>, Doug Berger <opendmb@gmail.com>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Ulf Hansson <ulfh@kernel.org>, Frank Li <Frank.Li@nxp.com>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Peter Chen <peter.chen@kernel.org>,
- Paul Cercueil <paul@crapouillou.net>, Bin Liu <b-liu@ti.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Maximilian Luz <luzmaximilian@gmail.com>, Hans de Goede <hansg@kernel.org>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Krzysztof Kozlowski <krzk@kernel.org>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>, brgl@kernel.org,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
- driver-core@lists.linux.dev, devicetree@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, linux-i2c@vger.kernel.org,
- iommu@lists.linux.dev, linux-pm@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-usb@vger.kernel.org,
- linux-mips@vger.kernel.org, platform-driver-x86@vger.kernel.org,
- stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Proofpoint-ORIG-GUID: 741RAlOMwoZFnJZs0lQRFLl6ZB942RA8
-X-Authority-Analysis: v=2.4 cv=edUNubEH c=1 sm=1 tr=0 ts=6a1ffec7 cx=c_pps
- a=UgVkIMxJMSkC9lv97toC5g==:117 a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10
- a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
- a=3WHJM1ZQz_JShphwDgj5:22 a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8
- a=RwuSGLWl7VkFDbmKPUAA:9 a=QEXdDO2ut3YA:10 a=1HOtulTD9v-eNWfpl4qZ:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjAzMDA5NyBTYWx0ZWRfX1cfpaVwUlKsA
- V4HS2bSAWjul7S7pL3S3yIRpNvuZ7sg5ixVSb95agK4LNBCAXUeSi8AYgLvwn+YzRubvBgHYX3W
- NGwfm6k1vhXEW7VzBdKc/ZVI5a+uso0XLSJd97w8PXY5LkR6W+bM53j1VMYiu9ZWJuiOkLfD5cA
- /88UkpypBgtrp/jkE8P9LcY5vWL8JXEU/IAOzxmbTdecEzJEq70eW5wFHbsILyzqTZrye2Iok7U
- 6CZ2RbgNKULo4GgADO5gOdFKDZPlh3KN5+v0tyThL8O2Po8n4d7WU4eNKSsl7wFUT/ZK2prH5mn
- vOkFOvfelVGKOp/0aCJQC5BeWmLt7ExtqpgX8ba2DlIeYclhejalPpjsLwCX9TduMyHc4omuaCG
- Yhm7gv9OU+IyUXoZnemmpp1LdsJ/+9K7w0zSGNsnA06iX76DGN7zk2g4iKcf/LX3DvxZtjyaGz3
- 1sUNACwUd5Ex9Ise4aQ==
-X-Proofpoint-GUID: 741RAlOMwoZFnJZs0lQRFLl6ZB942RA8
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-03_03,2026-05-28_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 adultscore=0 malwarescore=0 suspectscore=0 impostorscore=0
- spamscore=0 lowpriorityscore=0 bulkscore=0 phishscore=0 clxscore=1011
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2605210000 definitions=main-2606030097
+References: <20260601142943.1481728-1-arun.r.murthy@intel.com>
+ <ah60jJkzbbw25R-L@ideak-desk.lan>
+ <IA0PR11MB7307C39641297A08DB4C6A1ABA122@IA0PR11MB7307.namprd11.prod.outlook.com>
+ <ah7c59mNa4WfTJKu@ideak-desk.lan>
+ <CAEraX5wnHv5qC3fwqNmWbDCu7qxB3+ByTHK8QYpVen3Z23tJQw@mail.gmail.com>
+ <ah8GtmhJNpb8_f3G@ideak-desk.lan>
+In-Reply-To: <ah8GtmhJNpb8_f3G@ideak-desk.lan>
+From: Stephen Fuhry <fuhrysteve@gmail.com>
+Date: Tue, 2 Jun 2026 12:41:03 -0400
+X-Gm-Features: AVHnY4JNOTMb4o7mjsh4OXCp17BkzujZDhK34e6zjZn_TqJds__B5pLByJUGGVw
+Message-ID: <CAEraX5ywQeF1iEhZsSk-34RDye7Pb3HaR-GhRWh1XwrX9sw3BQ@mail.gmail.com>
+Subject: Re: [PATCH] drm/i915/display: Refcount for fec enable/disable
+To: imre.deak@intel.com
+Cc: "Murthy, Arun R" <arun.r.murthy@intel.com>, 
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Content-Type: multipart/alternative; boundary="000000000000bb3dcb065347fa7a"
 X-Mailman-Approved-At: Wed, 03 Jun 2026 11:12:01 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -196,44 +110,917 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, May 21, 2026 at 10:36=E2=80=AFAM Bartosz Golaszewski
-<bartosz.golaszewski@oss.qualcomm.com> wrote:
+--000000000000bb3dcb065347fa7a
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Thanks for looking into this. I'll build and boot an unpatched drm-tip
+kernel
+and send the log -- should have it to you within the next day or so.
+
+One thing worth noting on the USB disconnects: those are caused by a
+separate
+issue with the dock's hub controllers (17ef:a391 and 17ef:a392) triggering
+repeated U1/U2 link power management transitions. There's a fix for that
+already -- USB_QUIRK_NO_LPM for those device IDs -- which Greg KH accepted
+into usb-linus last week. On the patched kernel (USB quirk applied), the US=
+B
+disconnect cascade is gone entirely and the dock reconnects cleanly.
+
+Without the USB quirk, the repeated USB-level disconnects are what drive th=
+e
+HPD cascade and the fec_enable mismatches. So there are really two separate
+issues at play here.
+
+Stephen Fuhry
+
+On Tue, Jun 2, 2026 at 12:37=E2=80=AFPM Imre Deak <imre.deak@intel.com> wro=
+te:
+
+> On Tue, Jun 02, 2026 at 11:33:09AM -0400, Stephen Fuhry wrote:
+> > I can share some observations from the debug logs captured on the
+> affected
+> > system (drm.debug=3D0x10e, Alder Lake-P [8086:46a6], ThinkPad dock, 108=
+0p
+> on
+> > pipe B + 4K DSC on pipe C) that may help clarify the root cause.
+> >
+> > Imre's assertion about the enable/disable gating appears to be correct
+> from
+> > the logs. The active_links sequence across every modeset cycle in the
+> > captured trace is always clean:
+> >
+> >   disable: 2 -> 1 -> 0  (intel_mst_disable_dp,
+> intel_encoders_post_disable)
+> >   enable:  0 -> 1 -> 2  (intel_mst_pre_enable_dp, intel_mst_enable_dp)
+> >
+> > No interleaving, no double-calls. intel_ddi_enable_fec and
+> > intel_ddi_disable_fec are each called exactly once per link per modeset
+> > cycle, as expected.
+> >
+> > The mismatch and cascade are instead driven by repeated failures in the
+> > fastset check. In the cable-unplug log, 8 "fastset requirement not met,
+> > forcing full modeset" messages fire for both pipes between t=3D110.803s=
+ and
+> > t=3D110.899s -- before a single active_links change occurs. After replu=
+g,
+> > there are dozens more at ~20ms intervals (t=3D125.5s to t=3D126.3s) as =
+the
+> > driver re-probes the dock, each one attempting and failing to commit a
+> > modeset.
+> >
+> > The direction of the first mismatch after dock connect is notable. The
+> > very first fastset failure shows:
+> >
+> >   [CRTC:186:pipe C] fastset requirement not met in fec_enable
+> >                     (expected no, found yes)
+> >   [CRTC:186:pipe C] fastset requirement not met in
+> > hw.pipe_mode.crtc_hdisplay
+> >                     (expected 1920, found 3840)
+> >   [CRTC:186:pipe C] fastset requirement not met in dsc.config.pic_width
+> >                     (expected 0, found 3840)
+> >
+> > The SW computed state has pipe C at 1920x1080 with no DSC and no FEC,
+> while
+> > HW has it at 3840x2160 with DSC and FEC active (from the previous
+> > session/firmware state). The modeset that follows clears FEC. The next
+> > compute correctly selects DSC (and therefore FEC), triggering the
+> opposite
+> > mismatch ("expected yes, found no"). This back-and-forth drives the
+> cascade.
+> >
+> > The question of why the first SW compute produces fec_enable=3Dno for p=
+ipe
+> C
+> > when DSC is needed seems to be where the actual root cause lies --
+> whether
+> > that's a mode-negotiation timing issue (compositor requesting 1080p
+> before
+> > 4K+DSC is negotiated) or something in the compute ordering in
+> > intel_dp_mst_compute_config.
+> >
+> > Full log (drm.debug=3D0x10e, cable unplug/replug) is attached to issue
+> #16303
+> > if useful.
 >
-> for_each_child_of_node_scoped() decrements the reference count of the
-> nod after each iteration. Assigning it without incrementing the refcount
-> to a dynamically allocated platform device will result in a double put
-> in platform_device_release(). Add the missing call to of_node_get().
+> I found drm-debug-dmesg-fec-patch.txt on the ticket. This seems to be a
+> 6.12 kernel, with the change in this patch applied. There is a strange
+> delay at boot-up between 13.894595 and 148.167 when nothing seems to
+> happen.
 >
-> Cc: stable@vger.kernel.org
-> Fixes: 3e4d109ee8fc ("pmdomain: imx: gpc: Simplify with scoped for each O=
-F child loop")
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-
-Applied for fixes, thanks!
-
-Kind regards
-Uffe
-
-
-> ---
->  drivers/pmdomain/imx/gpc.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> I see indeed multiple disconnect/reconnect events for the dock starting
+> like:
 >
-> diff --git a/drivers/pmdomain/imx/gpc.c b/drivers/pmdomain/imx/gpc.c
-> index de695f1944ab31de3d37ce8000d0c577579d64f9..42e50c9b4fb9ffb96a20a462d=
-4eb5168942a893c 100644
-> --- a/drivers/pmdomain/imx/gpc.c
-> +++ b/drivers/pmdomain/imx/gpc.c
-> @@ -487,7 +487,7 @@ static int imx_gpc_probe(struct platform_device *pdev=
+> [  159.428600] usb 3-6: USB disconnect, device number 10
+> [  159.428605] usb 3-6.3: USB disconnect, device number 11
+> [  159.428607] usb 3-6.3.2: USB disconnect, device number 12
+> [  159.431529] i915 0000:00:02.0: [drm:gen11_hpd_irq_handler [i915]]
+> hotplug event received, stat 0x00040000, dig 0x00008a88, pins 0x00000800,
+> long 0x00000800
+> [  159.440423] usb 3-6.3.3: USB disconnect, device number 13
+> [  159.440430] usb 3-6.3.3.1: USB disconnect, device number 14
+> [  159.442548] usb 3-6.3.3.2: USB disconnect, device number 15
+> [  159.452345] usb 2-3: USB disconnect, device number 6
+> [  159.452352] r8152-cfgselector 2-3.1: USB disconnect, device number 7
+> [  159.521344] usb 3-6.3.3.4: USB disconnect, device number 16
+> [  159.544816] usb 2-3.3: USB disconnect, device number 8
+> [  165.839439] i915 0000:00:02.0: [drm:gen11_hpd_irq_handler [i915]]
+> hotplug event received, stat 0x00040000, dig 0x00008a88, pins 0x00000800,
+> long 0x00000800
+>
+> repeated about 5 times start at 159.428. At first look this seems like a
+> non-display related issue leading to the disconnection of the whole dock
+> with all the USB device on it.
+>
+> To get a better understanding of the root cause could you please provide
+> a log with the latest drm-tip kernel without any patch applied as I
+> requested on the ticket?
+>
+> Thanks.
+>
+> >
+> > Stephen Fuhry
+> >
+> > On Tue, Jun 2, 2026 at 9:39=E2=80=AFAM Imre Deak <imre.deak@intel.com> =
+wrote:
+> >
+> > > On Tue, Jun 02, 2026 at 04:35:42PM +0300, Murthy, Arun R wrote:
+> > > >
+> > > > > -----Original Message-----
+> > > > > From: Deak, Imre <imre.deak@intel.com>
+> > > > > Sent: Tuesday, June 2, 2026 4:17 PM
+> > > > > To: Murthy, Arun R <arun.r.murthy@intel.com>
+> > > > > Cc: intel-gfx@lists.freedesktop.org;
+> intel-xe@lists.freedesktop.org;
+> > > Stephen
+> > > > > Fuhry <fuhrysteve@gmail.com>
+> > > > > Subject: Re: [PATCH] drm/i915/display: Refcount for fec
+> enable/disable
+> > > > >
+> > > > > On Mon, Jun 01, 2026 at 07:59:43PM +0530, Arun R Murthy wrote:
+> > > > > > The FEC_ENABLE bit is per port basis and is enabled/disabled on
+> ddi
+> > > > > > pre_enable and post_disable. This fec is shared across the mst
+> > > streams
+> > > > > > and can be enabled per stream basis as well.
+> > > > > > So have a refcount to track the usage of FEC and then
+> enable/disable
+> > > > > > accordingly.
+> > > > > >
+> > > > > > Closes:
+> > > > > >
+> https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/16073
+> > > > > > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> > > > > > Tested-by: Stephen Fuhry <fuhrysteve@gmail.com>
+> > > > > > ---
+> > > > > >  drivers/gpu/drm/i915/display/intel_ddi.c      | 66
+> > > +++++++++++++++++++
+> > > > > >  drivers/gpu/drm/i915/display/intel_ddi.h      |  1 +
+> > > > > >  .../drm/i915/display/intel_display_types.h    | 12 ++++
+> > > > > >  .../drm/i915/display/intel_modeset_setup.c    |  6 ++
+> > > > > >  4 files changed, 85 insertions(+)
+> > > > > >
+> > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > > > > b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > > > > index 86520848892e..e12a3d6d6a67 100644
+> > > > > > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > > > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > > > > @@ -2096,6 +2096,47 @@ void intel_ddi_disable_clock(struct
+> > > intel_encoder
+> > > > > *encoder)
+> > > > > >           encoder->disable_clock(encoder);
+> > > > > >  }
+> > > > > >
+> > > > > > +/**
+> > > > > > + * intel_ddi_seed_fec_refcounts - Seed per-port FEC refcounts
+> from
+> > > > > > +active CRTCs
+> > > > > > + * @display: display device
+> > > > > > + *
+> > > > > > + * intel_digital_port::fec_active_streams is the per-port
+> refcount
+> > > > > > +that gates
+> > > > > > + * programming of the shared DP_TP_CTL_FEC_ENABLE bit. After
+> initial
+> > > > > > +HW state
+> > > > > > + * readout (driver load, resume, GPU reset takeover), the
+> persistent
+> > > > > > + * crtc_state->fec_enable values reflect what HW currently has=
+;
+> we
+> > > > > > +need to
+> > > > > > + * align the refcount with that so the first paired disable
+> doesn't
+> > > > > > +underflow
+> > > > > > + * and the next enable doesn't incorrectly skip programming th=
+e
+> HW
+> > > bit.
+> > > > > > + *
+> > > > > > + * Must be called once after intel_modeset_readout_hw_state(),
+> > > before
+> > > > > > +any new
+> > > > > > + * modeset commit can run.
+> > > > > > + */
+> > > > > > +void intel_ddi_seed_fec_refcounts(struct intel_display
+> *display) {
+> > > > > > + struct intel_crtc *crtc;
+> > > > > > +
+> > > > > > + for_each_intel_crtc(display->drm, crtc) {
+> > > > > > +         const struct intel_crtc_state *crtc_state =3D
+> > > > > > +                 to_intel_crtc_state(crtc->base.state);
+> > > > > > +         struct intel_encoder *encoder;
+> > > > > > +
+> > > > > > +         if (!crtc_state->hw.active || !crtc_state->fec_enable=
 )
->                         domain->ipg_rate_mhz =3D ipg_rate_mhz;
+> > > > > > +                 continue;
+> > > > > > +
+> > > > > > +         for_each_intel_encoder(display->drm, encoder) {
+> > > > > > +                 struct intel_digital_port *dig_port;
+> > > > > > +
+> > > > > > +                 if (encoder->base.crtc !=3D &crtc->base)
+> > > > > > +                         continue;
+> > > > > > +                 if (!intel_encoder_is_dig_port(encoder))
+> > > > > > +                         continue;
+> > > > > > +
+> > > > > > +                 dig_port =3D enc_to_dig_port(encoder);
+> > > > > > +                 dig_port->fec_active_streams++;
+> > > > > > +                 break;
+> > > > > > +         }
+> > > > > > + }
+> > > > > > +}
+> > > > > > +
+> > > > > >  void intel_ddi_sanitize_encoder_pll_mapping(struct intel_encod=
+er
+> > > > > > *encoder)  {
+> > > > > >   struct intel_display *display =3D to_intel_display(encoder); =
+@@
+> > > > > > -2413,12 +2454,22 @@ static void intel_ddi_enable_fec(struct
+> > > intel_encoder
+> > > > > *encoder,
+> > > > > >                            const struct intel_crtc_state
+> > > *crtc_state)  {
+> > > > > >   struct intel_display *display =3D to_intel_display(encoder);
+> > > > > > + struct intel_digital_port *dig_port =3D enc_to_dig_port(encod=
+er);
+> > > > > >   int i;
+> > > > > >   int ret;
+> > > > > >
+> > > > > >   if (!crtc_state->fec_enable)
+> > > > > >           return;
+> > > > > >
+> > > > > > + /*
+> > > > > > +  * FEC is link-wide: DP_TP_CTL_FEC_ENABLE is per-port while
+> > > > > > +  * crtc_state->fec_enable is per-stream. For DP MST, several
+> > > streams
+> > > > > > +  * on this port share the bit. Only program HW on the first
+> stream
+> > > > > > +  * needing FEC; subsequent streams just bump the refcount.
+> > > > > > +  */
+> > > > > > + if (dig_port->fec_active_streams++ > 0)
+> > > > > > +         return;
+> > > > >
+> > > > > This doesn't make sense to me. FEC is enabled for the MST link an=
+d
+> if
+> > > it's
+> > > > > enabled then fec_enabled is set in the crtc_state for all the
+> streams
+> > > in the MST
+> > > > > topology. intel_ddi_enable_fec() will be called only for the firs=
+t
+> MST
+> > > stream
+> > > > > being enabled and intel_ddi_disable_fec() will be called only for
+> the
+> > > last MST
+> > > > > stream being disabled. So I don't see why the above refcounting
+> would
+> > > be
+> > > > > needed.
+> > > >
+> > > > The  logs mentioned in the above listed gitlab issue shows mismatch
+> in
+> > > > fec enable/disable in the MST scenario. Hence added this refcount
+> > > > logic to overcome the mismatch.
+> > >
+> > > The root cause for the mismatch should be better understood then. I
+> > > still think that it's something else than the lack of refcounting.
+> > >
+> > > > Thanks and Regards,
+> > > > Arun R Murthy
+> > > > --------------------
+> > > > > > +
+> > > > > >   intel_de_rmw(display, dp_tp_ctl_reg(encoder, crtc_state),
+> > > > > >                0, DP_TP_CTL_FEC_ENABLE);
+> > > > > >
+> > > > > > @@ -2454,10 +2505,25 @@ static void intel_ddi_disable_fec(struc=
+t
+> > > > > intel_encoder *encoder,
+> > > > > >                             const struct intel_crtc_state
+> > > *crtc_state)  {
+> > > > > >   struct intel_display *display =3D to_intel_display(encoder);
+> > > > > > + struct intel_digital_port *dig_port =3D enc_to_dig_port(encod=
+er);
+> > > > > >
+> > > > > >   if (!crtc_state->fec_enable)
+> > > > > >           return;
+> > > > > >
+> > > > > > + /*
+> > > > > > +  * FEC is a link-wide property and DP_TP_CTL_FEC_ENABLE is a
+> > > per-port
+> > > > > > +  * register, but crtc_state->fec_enable is per-stream. For DP
+> MST,
+> > > > > > +  * multiple streams on the same port share this bit. Refcount
+> the
+> > > > > > +  * active FEC users on the port and only clear the HW bit whe=
+n
+> the
+> > > > > > +  * last user goes away, otherwise tearing down one MST stream
+> would
+> > > > > > +  * disable FEC for sibling streams still using it.
+> > > > > > +  */
+> > > > > > + if (drm_WARN_ON(display->drm, dig_port->fec_active_streams <=
+=3D
+> 0))
+> > > > > > +         return;
+> > > > > > +
+> > > > > > + if (--dig_port->fec_active_streams > 0)
+> > > > > > +         return;
+> > > > > > +
+> > > > > >   intel_de_rmw(display, dp_tp_ctl_reg(encoder, crtc_state),
+> > > > > >                DP_TP_CTL_FEC_ENABLE, 0);
+> > > > > >   intel_de_posting_read(display, dp_tp_ctl_reg(encoder,
+> crtc_state));
+> > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.h
+> > > > > > b/drivers/gpu/drm/i915/display/intel_ddi.h
+> > > > > > index 580ecb09b8b6..3678c28a0dc9 100644
+> > > > > > --- a/drivers/gpu/drm/i915/display/intel_ddi.h
+> > > > > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.h
+> > > > > > @@ -78,6 +78,7 @@ int intel_ddi_toggle_hdcp_bits(struct
+> intel_encoder
+> > > > > *intel_encoder,
+> > > > > >                          enum transcoder cpu_transcoder,
+> > > > > >                          bool enable, u32 hdcp_mask);  void
+> > > > > > intel_ddi_sanitize_encoder_pll_mapping(struct intel_encoder
+> > > *encoder);
+> > > > > > +void intel_ddi_seed_fec_refcounts(struct intel_display
+> *display);
+> > > > > >  int intel_ddi_level(struct intel_encoder *encoder,
+> > > > > >               const struct intel_crtc_state *crtc_state,
+> > > > > >               int lane);
+> > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > > > > b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > > > > index f44be5c689ae..84bd0d993197 100644
+> > > > > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > > > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > > > > @@ -1987,6 +1987,18 @@ struct intel_digital_port {
+> > > > > >   struct ref_tracker *ddi_io_wakeref;
+> > > > > >   struct ref_tracker *aux_wakeref;
+> > > > > >
+> > > > > > + /*
+> > > > > > +  * Number of active streams on this port currently using FEC.
+> > > > > > +  *
+> > > > > > +  * DP_TP_CTL_FEC_ENABLE is a per-port (link-wide) HW bit, but
+> > > > > > +  * crtc_state->fec_enable is per-stream. For DP MST several
+> streams
+> > > > > > +  * share the same port and therefore the same FEC enable bit.
+> Track
+> > > > > > +  * how many active streams want FEC so that the HW bit is onl=
+y
+> > > > > > +  * programmed on the first enable and only cleared on the las=
+t
+> > > > > > +  * disable. Modified under the modeset locks.
+> > > > > > +  */
+> > > > > > + int fec_active_streams;
+> > > > > > +
+> > > > > >   struct intel_tc_port *tc;
+> > > > > >
+> > > > > >   struct {
+> > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> > > > > > b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> > > > > > index e88082c8caac..14f038b8ef81 100644
+> > > > > > --- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> > > > > > +++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> > > > > > @@ -950,6 +950,12 @@ void intel_modeset_setup_hw_state(struct
+> > > > > > intel_display *display,
+> > > > > >
+> > > > > >   intel_modeset_readout_hw_state(display);
+> > > > > >
+> > > > > > + /*
+> > > > > > +  * Seed per-port FEC refcounts from the just-populated active
+> > > > > > +  * crtc_states before anything can issue an enable/disable.
+> > > > > > +  */
+> > > > > > + intel_ddi_seed_fec_refcounts(display);
+> > > > > > +
+> > > > > >   /* HW state is read out, now we need to sanitize this mess. *=
+/
+> > > > > >   get_encoder_power_domains(display);
+> > > > > >
+> > > > > > --
+> > > > > > 2.25.1
+> > > > > >
+> > >
 >
->                         pd_pdev->dev.parent =3D &pdev->dev;
-> -                       pd_pdev->dev.of_node =3D np;
-> +                       pd_pdev->dev.of_node =3D of_node_get(np);
->                         pd_pdev->dev.fwnode =3D of_fwnode_handle(np);
+
+--000000000000bb3dcb065347fa7a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Thanks for looking into this. I&#39;ll build and boot an u=
+npatched drm-tip kernel<br>and send the log -- should have it to you within=
+ the next day or so.<br><br>One thing worth noting on the USB disconnects: =
+those are caused by a separate<br>issue with the dock&#39;s hub controllers=
+ (17ef:a391 and 17ef:a392) triggering<br>repeated U1/U2 link power manageme=
+nt transitions. There&#39;s a fix for that<br>already -- USB_QUIRK_NO_LPM f=
+or those device IDs -- which Greg KH accepted<br>into usb-linus last week. =
+On the patched kernel (USB quirk applied), the USB<br>disconnect cascade is=
+ gone entirely and the dock reconnects cleanly.<br><br>Without the USB quir=
+k, the repeated USB-level disconnects are what drive the<br>HPD cascade and=
+ the fec_enable mismatches. So there are really two separate<br>issues at p=
+lay here.<br><br>Stephen Fuhry</div><br><div class=3D"gmail_quote gmail_quo=
+te_container"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Jun 2, 2026 at =
+12:37=E2=80=AFPM Imre Deak &lt;<a href=3D"mailto:imre.deak@intel.com">imre.=
+deak@intel.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" st=
+yle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padd=
+ing-left:1ex">On Tue, Jun 02, 2026 at 11:33:09AM -0400, Stephen Fuhry wrote=
+:<br>
+&gt; I can share some observations from the debug logs captured on the affe=
+cted<br>
+&gt; system (drm.debug=3D0x10e, Alder Lake-P [8086:46a6], ThinkPad dock, 10=
+80p on<br>
+&gt; pipe B + 4K DSC on pipe C) that may help clarify the root cause.<br>
+&gt; <br>
+&gt; Imre&#39;s assertion about the enable/disable gating appears to be cor=
+rect from<br>
+&gt; the logs. The active_links sequence across every modeset cycle in the<=
+br>
+&gt; captured trace is always clean:<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0disable: 2 -&gt; 1 -&gt; 0=C2=A0 (intel_mst_disable_dp, in=
+tel_encoders_post_disable)<br>
+&gt;=C2=A0 =C2=A0enable:=C2=A0 0 -&gt; 1 -&gt; 2=C2=A0 (intel_mst_pre_enabl=
+e_dp, intel_mst_enable_dp)<br>
+&gt; <br>
+&gt; No interleaving, no double-calls. intel_ddi_enable_fec and<br>
+&gt; intel_ddi_disable_fec are each called exactly once per link per modese=
+t<br>
+&gt; cycle, as expected.<br>
+&gt; <br>
+&gt; The mismatch and cascade are instead driven by repeated failures in th=
+e<br>
+&gt; fastset check. In the cable-unplug log, 8 &quot;fastset requirement no=
+t met,<br>
+&gt; forcing full modeset&quot; messages fire for both pipes between t=3D11=
+0.803s and<br>
+&gt; t=3D110.899s -- before a single active_links change occurs. After repl=
+ug,<br>
+&gt; there are dozens more at ~20ms intervals (t=3D125.5s to t=3D126.3s) as=
+ the<br>
+&gt; driver re-probes the dock, each one attempting and failing to commit a=
+<br>
+&gt; modeset.<br>
+&gt; <br>
+&gt; The direction of the first mismatch after dock connect is notable. The=
+<br>
+&gt; very first fastset failure shows:<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0[CRTC:186:pipe C] fastset requirement not met in fec_enabl=
+e<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0(expected no, found yes)<br>
+&gt;=C2=A0 =C2=A0[CRTC:186:pipe C] fastset requirement not met in<br>
+&gt; hw.pipe_mode.crtc_hdisplay<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0(expected 1920, found 3840)<br>
+&gt;=C2=A0 =C2=A0[CRTC:186:pipe C] fastset requirement not met in dsc.confi=
+g.pic_width<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0(expected 0, found 3840)<br>
+&gt; <br>
+&gt; The SW computed state has pipe C at 1920x1080 with no DSC and no FEC, =
+while<br>
+&gt; HW has it at 3840x2160 with DSC and FEC active (from the previous<br>
+&gt; session/firmware state). The modeset that follows clears FEC. The next=
+<br>
+&gt; compute correctly selects DSC (and therefore FEC), triggering the oppo=
+site<br>
+&gt; mismatch (&quot;expected yes, found no&quot;). This back-and-forth dri=
+ves the cascade.<br>
+&gt; <br>
+&gt; The question of why the first SW compute produces fec_enable=3Dno for =
+pipe C<br>
+&gt; when DSC is needed seems to be where the actual root cause lies -- whe=
+ther<br>
+&gt; that&#39;s a mode-negotiation timing issue (compositor requesting 1080=
+p before<br>
+&gt; 4K+DSC is negotiated) or something in the compute ordering in<br>
+&gt; intel_dp_mst_compute_config.<br>
+&gt; <br>
+&gt; Full log (drm.debug=3D0x10e, cable unplug/replug) is attached to issue=
+ #16303<br>
+&gt; if useful.<br>
+<br>
+I found drm-debug-dmesg-fec-patch.txt on the ticket. This seems to be a<br>
+6.12 kernel, with the change in this patch applied. There is a strange<br>
+delay at boot-up between 13.894595 and 148.167 when nothing seems to<br>
+happen.<br>
+<br>
+I see indeed multiple disconnect/reconnect events for the dock starting<br>
+like:<br>
+<br>
+[=C2=A0 159.428600] usb 3-6: USB disconnect, device number 10<br>
+[=C2=A0 159.428605] usb 3-6.3: USB disconnect, device number 11<br>
+[=C2=A0 159.428607] usb 3-6.3.2: USB disconnect, device number 12<br>
+[=C2=A0 159.431529] i915 0000:00:02.0: [drm:gen11_hpd_irq_handler [i915]] h=
+otplug event received, stat 0x00040000, dig 0x00008a88, pins 0x00000800, lo=
+ng 0x00000800<br>
+[=C2=A0 159.440423] usb 3-6.3.3: USB disconnect, device number 13<br>
+[=C2=A0 159.440430] usb 3-6.3.3.1: USB disconnect, device number 14<br>
+[=C2=A0 159.442548] usb 3-6.3.3.2: USB disconnect, device number 15<br>
+[=C2=A0 159.452345] usb 2-3: USB disconnect, device number 6<br>
+[=C2=A0 159.452352] r8152-cfgselector 2-3.1: USB disconnect, device number =
+7<br>
+[=C2=A0 159.521344] usb 3-6.3.3.4: USB disconnect, device number 16<br>
+[=C2=A0 159.544816] usb 2-3.3: USB disconnect, device number 8<br>
+[=C2=A0 165.839439] i915 0000:00:02.0: [drm:gen11_hpd_irq_handler [i915]] h=
+otplug event received, stat 0x00040000, dig 0x00008a88, pins 0x00000800, lo=
+ng 0x00000800<br>
+<br>
+repeated about 5 times start at 159.428. At first look this seems like a<br=
 >
->                         ret =3D platform_device_add(pd_pdev);
+non-display related issue leading to the disconnection of the whole dock<br=
 >
-> --
-> 2.47.3
+with all the USB device on it.<br>
+<br>
+To get a better understanding of the root cause could you please provide<br=
+>
+a log with the latest drm-tip kernel without any patch applied as I<br>
+requested on the ticket?<br>
+<br>
+Thanks.<br>
+<br>
+&gt; <br>
+&gt; Stephen Fuhry<br>
+&gt; <br>
+&gt; On Tue, Jun 2, 2026 at 9:39=E2=80=AFAM Imre Deak &lt;<a href=3D"mailto=
+:imre.deak@intel.com" target=3D"_blank">imre.deak@intel.com</a>&gt; wrote:<=
+br>
+&gt; <br>
+&gt; &gt; On Tue, Jun 02, 2026 at 04:35:42PM +0300, Murthy, Arun R wrote:<b=
+r>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt; -----Original Message-----<br>
+&gt; &gt; &gt; &gt; From: Deak, Imre &lt;<a href=3D"mailto:imre.deak@intel.=
+com" target=3D"_blank">imre.deak@intel.com</a>&gt;<br>
+&gt; &gt; &gt; &gt; Sent: Tuesday, June 2, 2026 4:17 PM<br>
+&gt; &gt; &gt; &gt; To: Murthy, Arun R &lt;<a href=3D"mailto:arun.r.murthy@=
+intel.com" target=3D"_blank">arun.r.murthy@intel.com</a>&gt;<br>
+&gt; &gt; &gt; &gt; Cc: <a href=3D"mailto:intel-gfx@lists.freedesktop.org" =
+target=3D"_blank">intel-gfx@lists.freedesktop.org</a>; <a href=3D"mailto:in=
+tel-xe@lists.freedesktop.org" target=3D"_blank">intel-xe@lists.freedesktop.=
+org</a>;<br>
+&gt; &gt; Stephen<br>
+&gt; &gt; &gt; &gt; Fuhry &lt;<a href=3D"mailto:fuhrysteve@gmail.com" targe=
+t=3D"_blank">fuhrysteve@gmail.com</a>&gt;<br>
+&gt; &gt; &gt; &gt; Subject: Re: [PATCH] drm/i915/display: Refcount for fec=
+ enable/disable<br>
+&gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt; On Mon, Jun 01, 2026 at 07:59:43PM +0530, Arun R Murthy=
+ wrote:<br>
+&gt; &gt; &gt; &gt; &gt; The FEC_ENABLE bit is per port basis and is enable=
+d/disabled on ddi<br>
+&gt; &gt; &gt; &gt; &gt; pre_enable and post_disable. This fec is shared ac=
+ross the mst<br>
+&gt; &gt; streams<br>
+&gt; &gt; &gt; &gt; &gt; and can be enabled per stream basis as well.<br>
+&gt; &gt; &gt; &gt; &gt; So have a refcount to track the usage of FEC and t=
+hen enable/disable<br>
+&gt; &gt; &gt; &gt; &gt; accordingly.<br>
+&gt; &gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt; &gt; Closes:<br>
+&gt; &gt; &gt; &gt; &gt; <a href=3D"https://gitlab.freedesktop.org/drm/i915=
+/kernel/-/work_items/16073" rel=3D"noreferrer" target=3D"_blank">https://gi=
+tlab.freedesktop.org/drm/i915/kernel/-/work_items/16073</a><br>
+&gt; &gt; &gt; &gt; &gt; Signed-off-by: Arun R Murthy &lt;<a href=3D"mailto=
+:arun.r.murthy@intel.com" target=3D"_blank">arun.r.murthy@intel.com</a>&gt;=
+<br>
+&gt; &gt; &gt; &gt; &gt; Tested-by: Stephen Fuhry &lt;<a href=3D"mailto:fuh=
+rysteve@gmail.com" target=3D"_blank">fuhrysteve@gmail.com</a>&gt;<br>
+&gt; &gt; &gt; &gt; &gt; ---<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 drivers/gpu/drm/i915/display/intel_ddi.c=C2=
+=A0 =C2=A0 =C2=A0 | 66<br>
+&gt; &gt; +++++++++++++++++++<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 drivers/gpu/drm/i915/display/intel_ddi.h=C2=
+=A0 =C2=A0 =C2=A0 |=C2=A0 1 +<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 .../drm/i915/display/intel_display_types.h=
+=C2=A0 =C2=A0 | 12 ++++<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 .../drm/i915/display/intel_modeset_setup.c=
+=C2=A0 =C2=A0 |=C2=A0 6 ++<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 4 files changed, 85 insertions(+)<br>
+&gt; &gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt; &gt; diff --git a/drivers/gpu/drm/i915/display/intel_dd=
+i.c<br>
+&gt; &gt; &gt; &gt; &gt; b/drivers/gpu/drm/i915/display/intel_ddi.c<br>
+&gt; &gt; &gt; &gt; &gt; index 86520848892e..e12a3d6d6a67 100644<br>
+&gt; &gt; &gt; &gt; &gt; --- a/drivers/gpu/drm/i915/display/intel_ddi.c<br>
+&gt; &gt; &gt; &gt; &gt; +++ b/drivers/gpu/drm/i915/display/intel_ddi.c<br>
+&gt; &gt; &gt; &gt; &gt; @@ -2096,6 +2096,47 @@ void intel_ddi_disable_cloc=
+k(struct<br>
+&gt; &gt; intel_encoder<br>
+&gt; &gt; &gt; &gt; *encoder)<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0encoder-&g=
+t;disable_clock(encoder);<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 }<br>
+&gt; &gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt; &gt; +/**<br>
+&gt; &gt; &gt; &gt; &gt; + * intel_ddi_seed_fec_refcounts - Seed per-port F=
+EC refcounts from<br>
+&gt; &gt; &gt; &gt; &gt; +active CRTCs<br>
+&gt; &gt; &gt; &gt; &gt; + * @display: display device<br>
+&gt; &gt; &gt; &gt; &gt; + *<br>
+&gt; &gt; &gt; &gt; &gt; + * intel_digital_port::fec_active_streams is the =
+per-port refcount<br>
+&gt; &gt; &gt; &gt; &gt; +that gates<br>
+&gt; &gt; &gt; &gt; &gt; + * programming of the shared DP_TP_CTL_FEC_ENABLE=
+ bit. After initial<br>
+&gt; &gt; &gt; &gt; &gt; +HW state<br>
+&gt; &gt; &gt; &gt; &gt; + * readout (driver load, resume, GPU reset takeov=
+er), the persistent<br>
+&gt; &gt; &gt; &gt; &gt; + * crtc_state-&gt;fec_enable values reflect what =
+HW currently has; we<br>
+&gt; &gt; &gt; &gt; &gt; +need to<br>
+&gt; &gt; &gt; &gt; &gt; + * align the refcount with that so the first pair=
+ed disable doesn&#39;t<br>
+&gt; &gt; &gt; &gt; &gt; +underflow<br>
+&gt; &gt; &gt; &gt; &gt; + * and the next enable doesn&#39;t incorrectly sk=
+ip programming the HW<br>
+&gt; &gt; bit.<br>
+&gt; &gt; &gt; &gt; &gt; + *<br>
+&gt; &gt; &gt; &gt; &gt; + * Must be called once after intel_modeset_readou=
+t_hw_state(),<br>
+&gt; &gt; before<br>
+&gt; &gt; &gt; &gt; &gt; +any new<br>
+&gt; &gt; &gt; &gt; &gt; + * modeset commit can run.<br>
+&gt; &gt; &gt; &gt; &gt; + */<br>
+&gt; &gt; &gt; &gt; &gt; +void intel_ddi_seed_fec_refcounts(struct intel_di=
+splay *display) {<br>
+&gt; &gt; &gt; &gt; &gt; + struct intel_crtc *crtc;<br>
+&gt; &gt; &gt; &gt; &gt; +<br>
+&gt; &gt; &gt; &gt; &gt; + for_each_intel_crtc(display-&gt;drm, crtc) {<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0const struct in=
+tel_crtc_state *crtc_state =3D<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0to_intel_crtc_state(crtc-&gt;base.state);<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0struct intel_en=
+coder *encoder;<br>
+&gt; &gt; &gt; &gt; &gt; +<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (!crtc_state=
+-&gt;hw.active || !crtc_state-&gt;fec_enable)<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0continue;<br>
+&gt; &gt; &gt; &gt; &gt; +<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0for_each_intel_=
+encoder(display-&gt;drm, encoder) {<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0struct intel_digital_port *dig_port;<br>
+&gt; &gt; &gt; &gt; &gt; +<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0if (encoder-&gt;base.crtc !=3D &amp;crtc-&gt;base)<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0continue;<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0if (!intel_encoder_is_dig_port(encoder))<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0continue;<br>
+&gt; &gt; &gt; &gt; &gt; +<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0dig_port =3D enc_to_dig_port(encoder);<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0dig_port-&gt;fec_active_streams++;<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0break;<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+&gt; &gt; &gt; &gt; &gt; + }<br>
+&gt; &gt; &gt; &gt; &gt; +}<br>
+&gt; &gt; &gt; &gt; &gt; +<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 void intel_ddi_sanitize_encoder_pll_mapping(=
+struct intel_encoder<br>
+&gt; &gt; &gt; &gt; &gt; *encoder)=C2=A0 {<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0struct intel_display *display =3D to_i=
+ntel_display(encoder); @@<br>
+&gt; &gt; &gt; &gt; &gt; -2413,12 +2454,22 @@ static void intel_ddi_enable_=
+fec(struct<br>
+&gt; &gt; intel_encoder<br>
+&gt; &gt; &gt; &gt; *encoder,<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 const struct intel_crtc_st=
+ate<br>
+&gt; &gt; *crtc_state)=C2=A0 {<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0struct intel_display *display =3D to_i=
+ntel_display(encoder);<br>
+&gt; &gt; &gt; &gt; &gt; + struct intel_digital_port *dig_port =3D enc_to_d=
+ig_port(encoder);<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0int i;<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0int ret;<br>
+&gt; &gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0if (!crtc_state-&gt;fec_enable)<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return;<br=
+>
+&gt; &gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt; &gt; + /*<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 * FEC is link-wide: DP_TP_CTL_FEC_ENABLE i=
+s per-port while<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 * crtc_state-&gt;fec_enable is per-stream.=
+ For DP MST, several<br>
+&gt; &gt; streams<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 * on this port share the bit. Only program=
+ HW on the first stream<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 * needing FEC; subsequent streams just bum=
+p the refcount.<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 */<br>
+&gt; &gt; &gt; &gt; &gt; + if (dig_port-&gt;fec_active_streams++ &gt; 0)<br=
+>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return;<br>
+&gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt; This doesn&#39;t make sense to me. FEC is enabled for t=
+he MST link and if<br>
+&gt; &gt; it&#39;s<br>
+&gt; &gt; &gt; &gt; enabled then fec_enabled is set in the crtc_state for a=
+ll the streams<br>
+&gt; &gt; in the MST<br>
+&gt; &gt; &gt; &gt; topology. intel_ddi_enable_fec() will be called only fo=
+r the first MST<br>
+&gt; &gt; stream<br>
+&gt; &gt; &gt; &gt; being enabled and intel_ddi_disable_fec() will be calle=
+d only for the<br>
+&gt; &gt; last MST<br>
+&gt; &gt; &gt; &gt; stream being disabled. So I don&#39;t see why the above=
+ refcounting would<br>
+&gt; &gt; be<br>
+&gt; &gt; &gt; &gt; needed.<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; The=C2=A0 logs mentioned in the above listed gitlab issue sh=
+ows mismatch in<br>
+&gt; &gt; &gt; fec enable/disable in the MST scenario. Hence added this ref=
+count<br>
+&gt; &gt; &gt; logic to overcome the mismatch.<br>
+&gt; &gt;<br>
+&gt; &gt; The root cause for the mismatch should be better understood then.=
+ I<br>
+&gt; &gt; still think that it&#39;s something else than the lack of refcoun=
+ting.<br>
+&gt; &gt;<br>
+&gt; &gt; &gt; Thanks and Regards,<br>
+&gt; &gt; &gt; Arun R Murthy<br>
+&gt; &gt; &gt; --------------------<br>
+&gt; &gt; &gt; &gt; &gt; +<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0intel_de_rmw(display, dp_tp_ctl_reg(en=
+coder, crtc_state),<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 0, DP_TP_CTL_FEC_ENABLE);<br>
+&gt; &gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt; &gt; @@ -2454,10 +2505,25 @@ static void intel_ddi_disa=
+ble_fec(struct<br>
+&gt; &gt; &gt; &gt; intel_encoder *encoder,<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0const struct intel_c=
+rtc_state<br>
+&gt; &gt; *crtc_state)=C2=A0 {<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0struct intel_display *display =3D to_i=
+ntel_display(encoder);<br>
+&gt; &gt; &gt; &gt; &gt; + struct intel_digital_port *dig_port =3D enc_to_d=
+ig_port(encoder);<br>
+&gt; &gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0if (!crtc_state-&gt;fec_enable)<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return;<br=
+>
+&gt; &gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt; &gt; + /*<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 * FEC is a link-wide property and DP_TP_CT=
+L_FEC_ENABLE is a<br>
+&gt; &gt; per-port<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 * register, but crtc_state-&gt;fec_enable =
+is per-stream. For DP MST,<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 * multiple streams on the same port share =
+this bit. Refcount the<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 * active FEC users on the port and only cl=
+ear the HW bit when the<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 * last user goes away, otherwise tearing d=
+own one MST stream would<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 * disable FEC for sibling streams still us=
+ing it.<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 */<br>
+&gt; &gt; &gt; &gt; &gt; + if (drm_WARN_ON(display-&gt;drm, dig_port-&gt;fe=
+c_active_streams &lt;=3D 0))<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return;<br>
+&gt; &gt; &gt; &gt; &gt; +<br>
+&gt; &gt; &gt; &gt; &gt; + if (--dig_port-&gt;fec_active_streams &gt; 0)<br=
+>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return;<br>
+&gt; &gt; &gt; &gt; &gt; +<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0intel_de_rmw(display, dp_tp_ctl_reg(en=
+coder, crtc_state),<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 DP_TP_CTL_FEC_ENABLE, 0);<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0intel_de_posting_read(display, dp_tp_c=
+tl_reg(encoder, crtc_state));<br>
+&gt; &gt; &gt; &gt; &gt; diff --git a/drivers/gpu/drm/i915/display/intel_dd=
+i.h<br>
+&gt; &gt; &gt; &gt; &gt; b/drivers/gpu/drm/i915/display/intel_ddi.h<br>
+&gt; &gt; &gt; &gt; &gt; index 580ecb09b8b6..3678c28a0dc9 100644<br>
+&gt; &gt; &gt; &gt; &gt; --- a/drivers/gpu/drm/i915/display/intel_ddi.h<br>
+&gt; &gt; &gt; &gt; &gt; +++ b/drivers/gpu/drm/i915/display/intel_ddi.h<br>
+&gt; &gt; &gt; &gt; &gt; @@ -78,6 +78,7 @@ int intel_ddi_toggle_hdcp_bits(s=
+truct intel_encoder<br>
+&gt; &gt; &gt; &gt; *intel_encoder,<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 enum transcoder cpu_transcoder,<b=
+r>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 bool enable, u32 hdcp_mask);=C2=
+=A0 void<br>
+&gt; &gt; &gt; &gt; &gt; intel_ddi_sanitize_encoder_pll_mapping(struct inte=
+l_encoder<br>
+&gt; &gt; *encoder);<br>
+&gt; &gt; &gt; &gt; &gt; +void intel_ddi_seed_fec_refcounts(struct intel_di=
+splay *display);<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 int intel_ddi_level(struct intel_encoder *en=
+coder,<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0const struct intel_crtc_state *crtc_state,<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0int lane);<br>
+&gt; &gt; &gt; &gt; &gt; diff --git a/drivers/gpu/drm/i915/display/intel_di=
+splay_types.h<br>
+&gt; &gt; &gt; &gt; &gt; b/drivers/gpu/drm/i915/display/intel_display_types=
+.h<br>
+&gt; &gt; &gt; &gt; &gt; index f44be5c689ae..84bd0d993197 100644<br>
+&gt; &gt; &gt; &gt; &gt; --- a/drivers/gpu/drm/i915/display/intel_display_t=
+ypes.h<br>
+&gt; &gt; &gt; &gt; &gt; +++ b/drivers/gpu/drm/i915/display/intel_display_t=
+ypes.h<br>
+&gt; &gt; &gt; &gt; &gt; @@ -1987,6 +1987,18 @@ struct intel_digital_port {=
+<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0struct ref_tracker *ddi_io_wakeref;<br=
+>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0struct ref_tracker *aux_wakeref;<br>
+&gt; &gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt; &gt; + /*<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 * Number of active streams on this port cu=
+rrently using FEC.<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 *<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 * DP_TP_CTL_FEC_ENABLE is a per-port (link=
+-wide) HW bit, but<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 * crtc_state-&gt;fec_enable is per-stream.=
+ For DP MST several streams<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 * share the same port and therefore the sa=
+me FEC enable bit. Track<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 * how many active streams want FEC so that=
+ the HW bit is only<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 * programmed on the first enable and only =
+cleared on the last<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 * disable. Modified under the modeset lock=
+s.<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 */<br>
+&gt; &gt; &gt; &gt; &gt; + int fec_active_streams;<br>
+&gt; &gt; &gt; &gt; &gt; +<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0struct intel_tc_port *tc;<br>
+&gt; &gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0struct {<br>
+&gt; &gt; &gt; &gt; &gt; diff --git a/drivers/gpu/drm/i915/display/intel_mo=
+deset_setup.c<br>
+&gt; &gt; &gt; &gt; &gt; b/drivers/gpu/drm/i915/display/intel_modeset_setup=
+.c<br>
+&gt; &gt; &gt; &gt; &gt; index e88082c8caac..14f038b8ef81 100644<br>
+&gt; &gt; &gt; &gt; &gt; --- a/drivers/gpu/drm/i915/display/intel_modeset_s=
+etup.c<br>
+&gt; &gt; &gt; &gt; &gt; +++ b/drivers/gpu/drm/i915/display/intel_modeset_s=
+etup.c<br>
+&gt; &gt; &gt; &gt; &gt; @@ -950,6 +950,12 @@ void intel_modeset_setup_hw_s=
+tate(struct<br>
+&gt; &gt; &gt; &gt; &gt; intel_display *display,<br>
+&gt; &gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0intel_modeset_readout_hw_state(display=
+);<br>
+&gt; &gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt; &gt; + /*<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 * Seed per-port FEC refcounts from the jus=
+t-populated active<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 * crtc_states before anything can issue an=
+ enable/disable.<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 */<br>
+&gt; &gt; &gt; &gt; &gt; + intel_ddi_seed_fec_refcounts(display);<br>
+&gt; &gt; &gt; &gt; &gt; +<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0/* HW state is read out, now we need t=
+o sanitize this mess. */<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0get_encoder_power_domains(display);<br=
+>
+&gt; &gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt; &gt; --<br>
+&gt; &gt; &gt; &gt; &gt; 2.25.1<br>
+&gt; &gt; &gt; &gt; &gt;<br>
+&gt; &gt;<br>
+</blockquote></div>
+
+--000000000000bb3dcb065347fa7a--
