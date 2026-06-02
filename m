@@ -4,56 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDE0BCD6E60
-	for <intel-xe@archiver.kernel.org>; Tue,  2 Jun 2026 04:53:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D896CD6E4A
+	for <intel-xe@archiver.kernel.org>; Tue,  2 Jun 2026 05:17:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79D1110EBC3;
-	Tue,  2 Jun 2026 04:53:34 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X6KQBg0V";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F1B110EBBB;
- Tue,  2 Jun 2026 04:53:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780376014; x=1811912014;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=LDiCs39i7sseXfcE/JedV2+W+ZuipQRkvXef9lhXc3U=;
- b=X6KQBg0VOTm+mDHTxlap2wPPxEhxgqnklrFlZcV5I1qCP6yTYgO/dSB1
- gkkCfsqji+17I2ovH8Je/uULRSMFRHT0tZvuFDOXXR5RNEK7VolvNHZI5
- DvuZ/WJJ02dgjiJWNW3MGJffncFh8LJmDI1Ag60+ykQQ9muC3SFcoTuEZ
- r9sqIWy22EJ3eBRgJkK51ynmZLfykaVz6G8AFm0djk94CO19djBQo7toF
- H+wPFu+fCw0WN6ckWxBN5LGudPsG2Y/hYz4z8p/uyaJMLVS0Drg48jwaJ
- 8By1MjNzKuqXW0qDAQkxI0VBlDEGtvjn7Pph8DQSRnewIYSzK0iOM09i0 w==;
-X-CSE-ConnectionGUID: eQwSSgiJSZSITAOHbGZweQ==
-X-CSE-MsgGUID: 8FS7kZ6iS66vVVS3+4fSDg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11804"; a="81120487"
-X-IronPort-AV: E=Sophos;i="6.24,182,1774335600"; d="scan'208";a="81120487"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2026 21:53:33 -0700
-X-CSE-ConnectionGUID: hvsyJ33IRhOS6f1+BbIqng==
-X-CSE-MsgGUID: Ky8HeC22QAmJdHD+SKqXfg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,182,1774335600"; d="scan'208";a="245604138"
-Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by fmviesa004.fm.intel.com with ESMTP; 01 Jun 2026 21:53:30 -0700
-From: Raag Jadav <raag.jadav@intel.com>
-To: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- netdev@vger.kernel.org
-Cc: rodrigo.vivi@intel.com, riana.tauro@intel.com, dev@lankhorst.se,
- airlied@gmail.com, simona@ffwll.ch, kuba@kernel.org,
- Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v3 4/4] drm/xe/hw_error: Use HW_ERR prefix in log
-Date: Tue,  2 Jun 2026 10:18:44 +0530
-Message-ID: <20260602044919.702209-5-raag.jadav@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260602044919.702209-1-raag.jadav@intel.com>
-References: <20260602044919.702209-1-raag.jadav@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1A47113835;
+	Tue,  2 Jun 2026 05:17:57 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E494B113835;
+ Tue,  2 Jun 2026 05:17:56 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_DRM_RAS_Fixes_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Raag Jadav" <raag.jadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 02 Jun 2026 05:17:56 -0000
+Message-ID: <178037747692.34044.14898051915360907723@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260602044919.702209-1-raag.jadav@intel.com>
+In-Reply-To: <20260602044919.702209-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,60 +35,48 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hardware errors should be logged with HW_ERR prefix. Make them
-consistent with existing logs.
+== Series Details ==
 
-Fixes: 01aab7e1c9d4 ("drm/xe/xe_hw_error: Add support for PVC SoC errors")
-Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-Reviewed-by: Riana Tauro <riana.tauro@intel.com>
----
- drivers/gpu/drm/xe/xe_hw_error.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+Series: DRM RAS Fixes (rev3)
+URL   : https://patchwork.freedesktop.org/series/166595/
+State : warning
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
-index 5135e8e4093f..4b72959b2276 100644
---- a/drivers/gpu/drm/xe/xe_hw_error.c
-+++ b/drivers/gpu/drm/xe/xe_hw_error.c
-@@ -223,9 +223,9 @@ static void log_hw_error(struct xe_tile *tile, const char *name,
- 	struct xe_device *xe = tile_to_xe(tile);
- 
- 	if (severity == DRM_XE_RAS_ERR_SEV_CORRECTABLE)
--		drm_warn(&xe->drm, "%s %s detected\n", name, severity_str);
-+		drm_warn(&xe->drm, HW_ERR "%s %s detected\n", name, severity_str);
- 	else
--		drm_err_ratelimited(&xe->drm, "%s %s detected\n", name, severity_str);
-+		drm_err_ratelimited(&xe->drm, HW_ERR "%s %s detected\n", name, severity_str);
- }
- 
- static void log_gt_err(struct xe_tile *tile, const char *name, int i, u32 err,
-@@ -235,10 +235,10 @@ static void log_gt_err(struct xe_tile *tile, const char *name, int i, u32 err,
- 	struct xe_device *xe = tile_to_xe(tile);
- 
- 	if (severity == DRM_XE_RAS_ERR_SEV_CORRECTABLE)
--		drm_warn(&xe->drm, "%s %s detected, ERROR_STAT_GT_VECTOR%d:0x%08x\n",
-+		drm_warn(&xe->drm, HW_ERR "%s %s detected, ERROR_STAT_GT_VECTOR%d:0x%08x\n",
- 			 name, severity_str, i, err);
- 	else
--		drm_err_ratelimited(&xe->drm, "%s %s detected, ERROR_STAT_GT_VECTOR%d:0x%08x\n",
-+		drm_err_ratelimited(&xe->drm, HW_ERR "%s %s detected, ERROR_STAT_GT_VECTOR%d:0x%08x\n",
- 				    name, severity_str, i, err);
- }
- 
-@@ -255,9 +255,9 @@ static void log_soc_error(struct xe_tile *tile, const char * const *reg_info,
- 
- 	if (strcmp(name, "Undefined")) {
- 		if (severity == DRM_XE_RAS_ERR_SEV_CORRECTABLE)
--			drm_warn(&xe->drm, "%s SOC %s detected", name, severity_str);
-+			drm_warn(&xe->drm, HW_ERR "%s SOC %s detected", name, severity_str);
- 		else
--			drm_err_ratelimited(&xe->drm, "%s SOC %s detected", name, severity_str);
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 402f56fd6ce87724f3f018dfb365a84ba5666e48
+Author: Raag Jadav <raag.jadav@intel.com>
+Date:   Tue Jun 2 10:18:44 2026 +0530
+
+    drm/xe/hw_error: Use HW_ERR prefix in log
+    
+    Hardware errors should be logged with HW_ERR prefix. Make them
+    consistent with existing logs.
+    
+    Fixes: 01aab7e1c9d4 ("drm/xe/xe_hw_error: Add support for PVC SoC errors")
+    Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+    Reviewed-by: Riana Tauro <riana.tauro@intel.com>
++ /mt/dim checkpatch a980196655477a8f5067112946401fe52e510664 drm-intel
+cb20acd8d2da drm/ras: Cancel and free message on get counter failure
+9c92f4af2bd9 drm/xe/drm_ras: Make counter allocation drm managed
+f267f2f6a311 drm/xe/drm_ras: Add per node cleanup action
+402f56fd6ce8 drm/xe/hw_error: Use HW_ERR prefix in log
+-:50: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#50: FILE: drivers/gpu/drm/xe/xe_hw_error.c:260:
 +			drm_err_ratelimited(&xe->drm, HW_ERR "%s SOC %s detected", name, severity_str);
- 		atomic_inc(&info[index].counter);
- 	}
- }
--- 
-2.43.0
+
+total: 0 errors, 1 warnings, 0 checks, 34 lines checked
+
 
