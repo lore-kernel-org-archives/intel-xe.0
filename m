@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73217CD6E60
-	for <intel-xe@archiver.kernel.org>; Tue,  2 Jun 2026 17:21:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67CB4CD6E60
+	for <intel-xe@archiver.kernel.org>; Tue,  2 Jun 2026 17:21:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1435E10F404;
-	Tue,  2 Jun 2026 17:21:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D93C10F409;
+	Tue,  2 Jun 2026 17:21:22 +0000 (UTC)
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C1BA10F404;
- Tue,  2 Jun 2026 17:21:17 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1645776766778008711=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1278910F409;
+ Tue,  2 Jun 2026 17:21:21 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_fix_LR_TLB_invalidation_gap?=
- =?utf-8?q?s_=28rev4=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Vswing_/_Preemphasis_Over?=
+ =?utf-8?q?ride?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: tilak.tirumalesh.tangudu@intel.com
+To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 02 Jun 2026 17:21:17 -0000
-Message-ID: <178042087724.36705.4183541284154686020@6beec6c84f66>
+Date: Tue, 02 Jun 2026 17:21:21 -0000
+Message-ID: <178042088107.36705.12205057359213358588@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260602163535.3124689-1-tilak.tirumalesh.tangudu@intel.com>
-In-Reply-To: <20260602163535.3124689-1-tilak.tirumalesh.tangudu@intel.com>
+References: <20260602170031.1163205-1-michal.grzelak@intel.com>
+In-Reply-To: <20260602170031.1163205-1-michal.grzelak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,49 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1645776766778008711==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: fix LR TLB invalidation gaps (rev4)
-URL   : https://patchwork.freedesktop.org/series/167262/
-State : success
+Series: Vswing / Preemphasis Override
+URL   : https://patchwork.freedesktop.org/series/167757/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-5179-5ffc4d14699b2de05ebbaa8d838f83dcf5da2b6a_BAT -> xe-pw-167262v4_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b9872c03ea1d113c2de77c48456864531b3c7590
+Author: Michał Grzelak <michal.grzelak@intel.com>
+Date:   Tue Jun 2 19:00:31 2026 +0200
 
-Summary
--------
+    drm/i915/bios: remove VS/PE-O warning
+    
+    There is not much use of warning when port asks to override default
+    VS/PE since it is already logged. Remove drm_WARN() and child_device
+    from print_ddi_port() since drm_WARN() was the only user of it.
+    
+    Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
+    Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
++ /mt/dim checkpatch 18f3d188fbfa0aeb37bb915df838becb9bfda446 drm-intel
+bbafc3017724 drm/i915/bios: search for VBT #57 by default
+49eaf6005209 drm/i915/bios: store VBT #57's metadata in intel_vbt_data
+64a5382b0bf4 drm/i915/bios: print VS/PE-O port info
+4343241484db drm/i915/bios: de/allocate VS/PE-O buffer for each port
+d9fc3a1e9bc0 drm/i915: override LT's VS/PE when requested
+a2fb2f545fcb drm/i915: override Snps's VS/PE when requested
+682d45095c57 drm/i915: override Combo's VS/PE when requested
+-:71: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#71: FILE: drivers/gpu/drm/i915/display/intel_bios.c:3945:
++	for (level = 0; level < num_rows; level++) {
++
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5179-5ffc4d14699b2de05ebbaa8d838f83dcf5da2b6a -> xe-pw-167262v4
-
-  IGT_8946: 8946
-  xe-5179-5ffc4d14699b2de05ebbaa8d838f83dcf5da2b6a: 5ffc4d14699b2de05ebbaa8d838f83dcf5da2b6a
-  xe-pw-167262v4: 167262v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167262v4/index.html
-
---===============1645776766778008711==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 0 warnings, 1 checks, 115 lines checked
+b9872c03ea1d drm/i915/bios: remove VS/PE-O warning
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>fix LR TLB invalidation gaps (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167262/">https://patchwork.freedesktop.org/series/167262/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167262v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167262v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5179-5ffc4d14699b2de05ebbaa8d838f83dcf5da2b6a_BAT -&gt; xe-pw-167262v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5179-5ffc4d14699b2de05ebbaa8d838f83dcf5da2b6a -&gt; xe-pw-167262v4</li>
-</ul>
-<p>IGT_8946: 8946<br />
-  xe-5179-5ffc4d14699b2de05ebbaa8d838f83dcf5da2b6a: 5ffc4d14699b2de05ebbaa8d838f83dcf5da2b6a<br />
-  xe-pw-167262v4: 167262v4</p>
-
-</body>
-</html>
-
---===============1645776766778008711==--
