@@ -4,149 +4,157 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F311CD6E60
-	for <intel-xe@archiver.kernel.org>; Tue,  2 Jun 2026 13:39:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69447CD5BD1
+	for <intel-xe@archiver.kernel.org>; Tue,  2 Jun 2026 13:45:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FD1310F11E;
-	Tue,  2 Jun 2026 13:39:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E40A10F13C;
+	Tue,  2 Jun 2026 13:45:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V16aj8qc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f4NtHBvE";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32B8A10F11E;
- Tue,  2 Jun 2026 13:39:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A7E810F13C
+ for <intel-xe@lists.freedesktop.org>; Tue,  2 Jun 2026 13:45:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780407559; x=1811943559;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- in-reply-to:mime-version;
- bh=GbpUsIytQayUsYVPVIvbpeWdENblSpyaQFZtkX14Sbg=;
- b=V16aj8qc8MPE1jtGOlfGihhBSZQhAA8exJEFjkRxhyeYyLA0vPyM6FoJ
- nikSIZ9q1BYU+vmQd8hD6QRlks0yido6wZmjbUOliG7W15GMtjmH78C28
- kH+fHoiFP9RtQvE85mNtfD9UVkORoZpEk0E1tj6CTdx2slTVqyttwyBIs
- bklQ8Zc8iwBd8pGHc//OyGfZn/XnlvUpeAGpuJtzazie4I9+aRjMqrwnR
- F0zUCicyXL53PJyDizXPpoDzZIFBvsduk8YCeHx6Trw+QwwX2FMwAaJiJ
- vHBRdle2w6RgLld8+HSCIlO5a2q6oO5suyQeajTBMNBMVlbV6h16k7YxP g==;
-X-CSE-ConnectionGUID: omxAIyG3SMe71CLICdqWYg==
-X-CSE-MsgGUID: sDdr0FCZTmKpBgrMyGNkAQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11804"; a="91767008"
-X-IronPort-AV: E=Sophos;i="6.24,183,1774335600"; d="scan'208";a="91767008"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2026 06:39:19 -0700
-X-CSE-ConnectionGUID: wTQRpxl2RMS3gt5rFZFKWg==
-X-CSE-MsgGUID: JeSbIqmDTzKIpemITV0ESQ==
+ t=1780407954; x=1811943954;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=YXsis7LXIWUfsEki6UGvp4xbD5CeNAKkz8S/gsfOpzw=;
+ b=f4NtHBvEygeWRUJn9jI9Rxt3FTJydFTggu3jy2btQzgeyUfg7MMqo+oU
+ sel9E9ilCE+KnMdwEzqKsFfQkUyYtltNa+vuSf5WGtHusgs6woW9+53F4
+ os3vbUoFAM3li9QG8/eEExa+k0foN2zy9G+HcBIgJlr3BJOwVKChlnRb2
+ C5fX+H07KwkopC4HisqNwSW+/OAQ0Z3ZcYNHcjiVl0gj6gyWr8HFSSaxl
+ 72G4ZkugcHyN0qzvlBdeGeb9vt6RmKHI8dH5UBAHB+sMHi/zGuSOhfQsb
+ XcBv0sFD3uZemBTKG4X/nteKkd+NCfng/MIcYiTwN0CoDAUU7patIaVGm A==;
+X-CSE-ConnectionGUID: Eas5FiZJTKKxTpcKuegvQg==
+X-CSE-MsgGUID: wXpPDv9/RoWa3NKwwotsAQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11805"; a="92303744"
+X-IronPort-AV: E=Sophos;i="6.24,183,1774335600"; d="scan'208";a="92303744"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2026 06:45:53 -0700
+X-CSE-ConnectionGUID: ZjjVaOtBT8eUQHH3XvbGeQ==
+X-CSE-MsgGUID: elVeIXP9SJKefvWoseAwgQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,183,1774335600"; d="scan'208";a="267777784"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2026 06:39:18 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.24,183,1774335600"; d="scan'208";a="242885079"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2026 06:45:53 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 2 Jun 2026 06:39:17 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.2.2562.37; Tue, 2 Jun 2026 06:45:52 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Tue, 2 Jun 2026 06:39:17 -0700
-Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.31) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Tue, 2 Jun 2026 06:45:52 -0700
+Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.24) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 2 Jun 2026 06:39:17 -0700
+ 15.2.2562.37; Tue, 2 Jun 2026 06:45:51 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=b3fPlkfHpDqD5h3kyi5wgIMEMoLKjvfcAL4nR3NXpqDqm6V3Vp9QfSyWUEWlg1fELKaeqpk2FzvOJNse8FrRGrd0tgyZ4GAkuQpUZUHKBrYUA/B+ztNKG7UbCO9GAYJOXj5Ir4fVQ11NTcUygJUK/Mv+5o3J59nLxIQASiROtMsHXXExQcnmia1kfVZx9RDmJDoxAX9WdOhFgf+kpRtN+yX1S1ALWM4QpAQlWs+IJEfyO5TYpudUNosgGSSiFLq6tgO0Qank8j1wnz1xxXF7DPiwJ1x01RJhqHZBNPjJkCxyJrW8nY44Ct68eZyWhRhVo5ONdqZtX5bQnuFzZ0jwHg==
+ b=Xehy9dYYWkZgT4q54af6EpDI32s6oTw0DVj81YxBYB0YxypHfwApUJb2Nr/0xTqBT5PLHfXlIOcAWI2XalpfkmNOovvHhdWPa5ZE4p6sy1X9C4E1ygHDiACcpl4ytQKciUlt+0L+0QFkL0kuT4Q6olxwkzFwnfu2LnVVIFCMBi0GOSnUGM/0AVxoo/D4TPiQb/KpndLfPSJQ/rUxYxFt6mlLLv9kCBauwOoo1+bchofRTofoiBTyWtoJtUdUlWjc8D0P5RHM5R0pRd445iF4BJGq0zh4lv6Rlsn6Y41RLEPUWUpKDiUzo9yifU494LCuyMIPT3cFn1FhDB4MMa0s7g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zoZVta34ouqwZlS9xeoQN2EzvFNkLWCxQvd+8jR9MKM=;
- b=m+Y8hjFd68DBnzKWK4BjhhUfPlshwZpUDwAXm3YoNqNb7tJFIQsCSDI4Ntg63zKUqTvGUTGUXeuUXLR9hrIbk1I7PCdcdfUxLFDQjnJo1cu7NTI3UM397CjrISJwWwKXjyUXVcvY4STMR7iUp8G5uOIj92F9kp+DYQ7df5DkxIsnDrbLMGJdmyXfj/XDOvWByjIubxY1ySsk1S6pawNsQK4Vk6LHZX4jdmsphUksSzajf72C0JdO4xoK1If5Vwd+Yea0XPYmKvoVuskFIc2sx0/TPdNTx8PGjtNohW9ShuUZ22UZSerR5PHPT8+5iagl5P6y3NIt77u0tp3fLqUpDw==
+ bh=D5LIPL2fIPgHOXFOpXSigqWRbapWkzAJW1sYgbvMqx0=;
+ b=psOijoEoGCchdqhNQbyaExCeE8uhaKauFpgmfePdeOuKQT/vp3gv0/X7bAcydLHSMo+kHLYSaBlNjWznN1dMXka73AgZdkKqpdBs838o+E/1m+prvSyGyuQl9bV7zEJRz6+imCMWi4EZnQvk7LBLyFdTOnN7kmJj7KdXrSEXLQq5JC0+MiUPXAodciI5CIRDcfN5sZQ0YppJ03eIW0EwON9LYPZSI6J06lf3yulQoI6Dcc3aTfk/mkJ+ilkK0V6t6Uzp/0bgFpN8odo+3ImMK7/sS1MspY3HPOcRmhuV/TR219WQN9y/IeTWbpnom4QCfL7fal3shMXVJm0sb7LbfQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from IA3PR11MB9273.namprd11.prod.outlook.com (2603:10b6:208:573::17)
- by SA2PR11MB5211.namprd11.prod.outlook.com (2603:10b6:806:fb::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.7; Tue, 2 Jun 2026
- 13:39:14 +0000
-Received: from IA3PR11MB9273.namprd11.prod.outlook.com
- ([fe80::31a4:58c:e3b5:43fa]) by IA3PR11MB9273.namprd11.prod.outlook.com
- ([fe80::31a4:58c:e3b5:43fa%4]) with mapi id 15.21.0071.011; Tue, 2 Jun 2026
- 13:39:14 +0000
-Date: Tue, 2 Jun 2026 16:38:47 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
-CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Stephen
- Fuhry" <fuhrysteve@gmail.com>
-Subject: Re: [PATCH] drm/i915/display: Refcount for fec enable/disable
-Message-ID: <ah7c59mNa4WfTJKu@ideak-desk.lan>
-References: <20260601142943.1481728-1-arun.r.murthy@intel.com>
- <ah60jJkzbbw25R-L@ideak-desk.lan>
- <IA0PR11MB7307C39641297A08DB4C6A1ABA122@IA0PR11MB7307.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <IA0PR11MB7307C39641297A08DB4C6A1ABA122@IA0PR11MB7307.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-X-ClientProxiedBy: GVZP280CA0073.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:150:274::14) To IA3PR11MB9273.namprd11.prod.outlook.com
- (2603:10b6:208:573::17)
+Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
+ by SA1PR11MB9804.namprd11.prod.outlook.com (2603:10b6:806:4d7::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.16; Tue, 2 Jun 2026
+ 13:45:44 +0000
+Received: from MN0PR11MB6011.namprd11.prod.outlook.com
+ ([fe80::3a69:3aa4:9748:6811]) by MN0PR11MB6011.namprd11.prod.outlook.com
+ ([fe80::3a69:3aa4:9748:6811%6]) with mapi id 15.21.0092.006; Tue, 2 Jun 2026
+ 13:45:44 +0000
+Message-ID: <058112cd-cad3-4cf2-b810-c85308d3a0d2@intel.com>
+Date: Tue, 2 Jun 2026 15:45:40 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] drm/xe/guc: Reduce GuC log size from 8MB to 2MB
+To: "Dong, Zhanjun" <zhanjun.dong@intel.com>, <intel-xe@lists.freedesktop.org>
+References: <20260511194924.2016315-1-zhanjun.dong@intel.com>
+ <20260511194924.2016315-4-zhanjun.dong@intel.com>
+ <cf526083-efe8-4e99-98a2-7c35206c9d74@intel.com>
+ <66dafe9c-fb46-445d-b8ed-f5e9075294c5@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <66dafe9c-fb46-445d-b8ed-f5e9075294c5@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: WA0P291CA0015.POLP291.PROD.OUTLOOK.COM
+ (2603:10a6:1d0:1::20) To MN0PR11MB6011.namprd11.prod.outlook.com
+ (2603:10b6:208:372::6)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA3PR11MB9273:EE_|SA2PR11MB5211:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7dcb1546-d859-472e-61c5-08dec0ac5613
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|SA1PR11MB9804:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3b499bb6-b8fb-4bc7-3cd9-08dec0ad3e73
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|56012099006|11063799006|4143699003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: uqRQH5fcb0j7cjXPYotA1omyc5ekDeZlokc5ngg2VXKZGhRtK4FTEK0cK5M+mTBOtIRK01JvyzGcOvgCMJUCba2Z+/S27VoGtjFrkVsA4+eaDtaKcQFpcyM3N+/ivEB90k5mfrDtNRZ3lO5X2+sOtp/YQ4dR67xMGeXLT58dS9/3hQAz3Z3vO+AiUjtvgf86xA8A+5YXfPUYkKpa59DBHgjd/TbTnOXcbMO5cdE3XKU1mKzaz9Cj53bpxXSMsXRDrjTMc2DbxV7lcImZDwurhTe+LY2nIH6I6mZNgBwGfNNMqgPoF4+pfp6CFTneiY+ZzkHd0QcyVb04HmaQKanJ8veXBrlkOLdKHytdNCs95etJzgJusvfM92l3+zFdh4OHzvxNlI/Z4lC7wqASkpcuBaRqrUHkxlq2FXmWrgrW7bF6KH60yqq2Kwqv5h6qjjOXNozl7TcexZD5wCwWyYwxW1iAWi6kmwukzfoxegXxYjPw3ORwBPFFwt4p9RCHaZXKnwHPGAL4Kryq/wS+wxuIVG7E+ZXM8RxJ5WR7g8jpMA/xneRh3HYdAL3nOkMkhjLZ9SEjbK+YUT8OUwBVdcfn4fElpszOdEsfm17eF/5rlO4aV7Y2Wm9ISPa8vxzbvITjuXvDedHQyAaMAa8yo8xIoQ==
+ ARA:13230040|1800799024|366016|376014|22082099003|3023799007|18002099003|4143699003|11063799006|6133799003|56012099006;
+X-Microsoft-Antispam-Message-Info: XbmN6stCqnL81aO+yaExIVLSi3NbbBZW4tNOP1pqeiQF2PQXwF1J38254WxnLmJ3W0NcHhYS2JHORjYH31qDiBrGQoZnozgoUpz4WVmD2ObdBPk7u6RY2IWYFAuoeKoVySuUHMdRl9tIrlmSAd7hTs8TXL9py8AghfTFV25qN/A6zJWrTRRDDRKs1qjyVr+UDxqL2sEOxgpl300xNfV5LLtMJ/U/m63p6UeeHCf7VOZjyRkJ1a8xKjyvRfPDvcVq0pnC/0i+Izg+8sDNUwY0EilJrvXrq4ltSURMx/gQwn6+PTWjxMiIIhkcBNlIfMbEFS1W3NplcdHupBhTfppsxdtwBzQ5BaltZF2lBlTVwWZSXIZz1+HboUhobqaaRD6upyI74+Jx9YM9DEm3QJkN+FDPF5k7f0E9wTgXIILBQLvaJBd9/Wf+AFnvwy2ryr1o5vyL/iBkOFgt/LlEDw8BD4sluf5OqFQM+Pz2fnO7tTPC+1Lks4LMy6YvD55xY6Rjrg6bGizpFubTcwFuyAk7TT9c21wXDcWuimc8+mfTyVyvoHOQkpwuPY9BYomwbl6jgV8G4WIhO6ENpfq8/3cZ1G8iw0CsbZCon9CHuPvJUGYEoiMBTULU9O7WYKSL+gGTH4iNmMbEnloGf/UsmwYk6f0bbM1UcCoWEhZl0kesIeWO4nU4t6tRjdKZYMiiKUh5
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA3PR11MB9273.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(56012099006)(11063799006)(4143699003)(22082099003)(18002099003);
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(22082099003)(3023799007)(18002099003)(4143699003)(11063799006)(6133799003)(56012099006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Mn4KfZ1u/ku3wlnP86mTFhB3gQWUChpi+b4dQB3QmjLOQPaGgBk8uHH80udR?=
- =?us-ascii?Q?V1PmRHQFTyTBcUM/gY42XDQF2yIFDXQtjNmJSEOskJ8NQO1RcWJIb7jNmSld?=
- =?us-ascii?Q?J19ZbMC2oijqfyKTT/HWNiAHvXrWqHJ7f54RuVIO2I/Fs2LgwRGfe2vGGOy1?=
- =?us-ascii?Q?S6YPpbDHVRIAjc7zjaDIo6JoEwhQpPDgz4qZxH5fNmoi9f3CjNm6jDxIqKRB?=
- =?us-ascii?Q?JpwrRLF52pt1woVJ29gwuxrv50uit1t72nZyPB1P/pnPKKvjAR0AZSgBGfyp?=
- =?us-ascii?Q?6TIoAnfN+nxqGm7aIjsh12KuYU16TrE8nZ/v9emseQpI8sAkghjpI8bIkTop?=
- =?us-ascii?Q?fX0Uz7RgFGwaRPFFcQVpf5J8UcN43VO1pwRy3p7ZxblvAzLokgu6DexkmJjR?=
- =?us-ascii?Q?PvlnCZ9woAN0m/WcF28yMWOn/+H6H7iXBPyTWr1jO0WK0Sslpvv0UIdol2gI?=
- =?us-ascii?Q?xuCVXOhcAPgtXzTk0/j6vdvkMH6rb+Gwn7Spv197kFOnv4nDFWYFVQWohTRV?=
- =?us-ascii?Q?/4k4z5zmAC2FDPbVyoFeIFXUwfqBvyh1cxXudsalqfPDkpSb/vPwFR1+TC8e?=
- =?us-ascii?Q?ph2vWnGYjkmq0RIV4w7wWaKtq7W4i0UaNNsQBVCNyXcGyUWnuB9ojYebS9lL?=
- =?us-ascii?Q?7ah0eyPdTeIYlcaUX+A1/J3Q3QOwr6mkpjfM7SVoAFbULCrgwvrhFmWRiXYm?=
- =?us-ascii?Q?Rv/3QdKEqkHUi6xuKqJXk52sGOikn2sFnyI7j/g0OWymUsamaUp46hKXZ/5E?=
- =?us-ascii?Q?k+mQrLx23SbQ7qu/GmZSSB9Wn2jZFJ012BiC3V1s4CEQIUHKcCDDDp/n1x/Z?=
- =?us-ascii?Q?RYjdiL28X0O17mc2tavc8b7gQWStiwlWkCSn+RfRpGs3yGEnOwIb2RxODxNb?=
- =?us-ascii?Q?1+pZqNvDaF+CxPs4jS7P8pLmgYRvYRRY46cmproGJHYT7sy717P3heVT+PNn?=
- =?us-ascii?Q?yJWlXWgXu2S68shU0jyp21BcaeaqSDF3g3lzmKD5pUChy77FPIR7fRpF5AEH?=
- =?us-ascii?Q?T/rmd8Q/FX1fcHDqgbTFKSxe4ES6rfYDb3wwQyMttjgRpwtbJ/mjKXZrSgX2?=
- =?us-ascii?Q?I8r7jhs2uTHy3wkfu9c3kzafSTu4zI8sWqk9tMHxjjPz8XPyhpFMtQKxe1ee?=
- =?us-ascii?Q?jqjBZ+97tQhLJIqkrWhy580Vx+4GDYM02DzKi6UHnnFp++GHiqil2DIS0Cwa?=
- =?us-ascii?Q?jBpoM3l+LP9d/2lSqInp7vw2bTRlZvOliT2RAsqeEA4C0hdk/sRljDPBvqvh?=
- =?us-ascii?Q?o+1nBMc5Z/Fb3iXfU/gYES93P5MBquW3wKpqTazQnq0pdrok2gpNZHlCZ3mM?=
- =?us-ascii?Q?nvvMPBX1fZdml0pn/wnlND+2buqXE9iUtBalPDcgorkgq/oPg57mXvPIUrs0?=
- =?us-ascii?Q?YrXxvqtGhitYEj4lGaz8lZ2PnfAEze41JNTKzUFp39gPHAIJzebil6y0AuF9?=
- =?us-ascii?Q?cpw0H5VnhmZRJzY1RuljbZfA5VmZxMXp3VMXFEnGMNwHNDOzEK5mLrAqspxz?=
- =?us-ascii?Q?HTocGWN3MaHnUMiJVpLnArSHZujELmvunC+wbx14P7jwWOpoim/uML8ZkOL1?=
- =?us-ascii?Q?BJcNwc1Lxm0bjV0T1yOnYDfpoPwxZFB3hqt2u77EdEEvMXkgp7sSH0Xrac0q?=
- =?us-ascii?Q?V6CuUtulZFnZm8sVVO4YxDZFyZBHz9v7sU8r6zE1fXGgMqz9E53Rvp5veVq+?=
- =?us-ascii?Q?pM0FOMSnRK5T2NUaU5RavqxcII/S1FMlrJF+2Yux3ID5Zf+ZwAKMF5KeaGUb?=
- =?us-ascii?Q?ZrZ2oQGSZg=3D=3D?=
-X-Exchange-RoutingPolicyChecked: G48QXx9hawSXyyGYlPSg+vTxtAo9PqLlIVSb59IEOLtG0PyEbDfw6P+hcbl9D/octwshUKe72BIJWxNwOWJoV8FTLHnQGLTDf0suzuhBGn8TB8BIvP/OywZY/X1yXchfevaYBDuvMw9+63NlwrK8c4jIqZUjdOE1kzY3oWe/TNG4uU188W+DEviybGFD2TzKLYU3vZdntJIB3BZLGEIyW78lsSJFwmmeBQWhiGzfVmnXe4hWgy1zMBG18gEGpXgfu4LX6uK55L7HG9SJMEEkpkUMKO4vPOUCiBZWPvUncL6ekvmHd7fKAfEMS4vraCIE5QahryWOHGzIGp5rsQ9eHw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7dcb1546-d859-472e-61c5-08dec0ac5613
-X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB9273.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?azlpemhnU2hpWEZRZnZvOXFRNVVWcUhQdWRXUWxTVTZ5MFVIWkNMaTRnSFNN?=
+ =?utf-8?B?Zm5uclM0SUdLcDY2K0oyZGlVVXRYT0ZlSXdhTDhxZ3lmbWJ3dTUxT1FyK3Bh?=
+ =?utf-8?B?dWx2eElHakoxdG5QbnFkYWg1bEtnK3N6c0ZrSnhtYnBXT0l6RERlUnZ5YjNr?=
+ =?utf-8?B?U2RlajBwWCt3c3diL3ZhOHh2VktDUUYyRFp4c3VvRFNqQ1BraHl0VzFIOENR?=
+ =?utf-8?B?L1hGWGx6VXd1WjRJTTNGUXcwY1ZXczJyWjRONVNZdm02UFZsUFZxcXZ5ZHZX?=
+ =?utf-8?B?RkFoRmdBSlk1WDFRM2tQWXJsYzV4akRIU1JZb2NsdEJsWDBKTmd0L2ErTGtC?=
+ =?utf-8?B?UUVKOTB5NXdlRDZaNjl0NS9kaWdWRVhySmxRQVZqVHhqbU04VFBLV0p1M0Qz?=
+ =?utf-8?B?blp4Q0VjOFRpNjJHT0R3R1hoVW9OdFJQNWlQRG9SU0QwNmxGR0h1ekdod2F5?=
+ =?utf-8?B?cmprelUyWTdPbnJ1OStwYVVsbW9PYThuY0xyZVdXaGdnWUZheXlkbFBpSDFU?=
+ =?utf-8?B?cER1TGJ6SURMMmlUYnE4WTJhM0RTOUZ6VERPakRGTm5LWU4xODFzZ3VaeW1x?=
+ =?utf-8?B?NnIyVzZGM1k5aFYyc0UwdjFRaVp3TCtIMW92SjY1Q1h1c3VLRnd4bVh1MHlV?=
+ =?utf-8?B?WjdaQUZCY1g5WlpyMkhSQjNCbjNPbUc2SDkvRXdUQldieTFHaDRaTFpwSzhE?=
+ =?utf-8?B?VEJtb2crekV3YWovWmR0TG5QTjBCaXZ6c1VNQmh1TFBTS0ZrTms4NHNINCtF?=
+ =?utf-8?B?TkFDdFAwcDMrVEZxMW90cVRUeXMzQmY4dXlocG1FZkJ0aElSYUdTQ1I1bU9G?=
+ =?utf-8?B?NnRTTzhBYUJjQmlGeXdPRTgxRzJDMklmMWZyVFBKZldId0RrYm4wUEhlSmtP?=
+ =?utf-8?B?a1hhcTNZd2tJUVE0SEZLSEdKSDl1eDgzOXpVaUE0STF1UUNIMEduR3Vzb3Rp?=
+ =?utf-8?B?eCtmUStKNkpoYlJmRTBKQ3JTVFc2YUhwcThIK1RtNzBFc01SVjl0cGVWL3JK?=
+ =?utf-8?B?SER2RHYvalZnRHRsZW1hQlB3V2Ntbld6Qm5aNFdtSUF1TGhlbndHLzJVb1B6?=
+ =?utf-8?B?VUFCS2tmc1J6Sjc4T2JhRjNZTndORThaRXR0WlkyUXFrMGNLeTV0UFlNZE1F?=
+ =?utf-8?B?dkZNU2JzMExzSHpNVnYvcDJrcGxETlRwUmdHaytLQlFPMEgxTldmTWN3NFpR?=
+ =?utf-8?B?ekFjSWpOZExoc01uaVFnWEFOeHQrcVZGQk5JeDhuQ1dzbTVyTDFkeDN3Z1hp?=
+ =?utf-8?B?YzcyWDZ2LzE0L004aEY0eVRlRWdRNDBvK2JzZ0pvbWlEWktHSEJOaWYraEY4?=
+ =?utf-8?B?TjZVSTlTeExaVWROdktPK3BYSVJSRzlvU3ZuMGFzY1JMcjlvQzFlbU9QOWUv?=
+ =?utf-8?B?Z0hobmFmSGwxNGNCenhDa2k2WTBJNTlRcnBIWXBzOG1od0laa0dLczY0NFg0?=
+ =?utf-8?B?aGMvOEpqaG4zc1JuaUxzT0hQRmQzL0JwVlE1cHcwcU9XQVU3UDZ3STdoRUo3?=
+ =?utf-8?B?eEpRMVI4bVpRT0JxOVhJNmFjUDM3K0pkcDkrVU1QeitqaFZsUFpKQWViUmpq?=
+ =?utf-8?B?SG1ZUUxtVHdQb25jMWZWZWUyQmlMbXB2S1c4Y0ZjMVdlRGxxckRMSFRwYmNX?=
+ =?utf-8?B?UWE0QkUwRmYyK1RqNTk0K0NOY2U4dHBJYmlUbzIzZmxRdWI3WTJ4TG1Vbk52?=
+ =?utf-8?B?U3Y4bTZ4UWRxNU9XUjRPWldRc0U0R1BQY3hxVmdmVEgxRnIzSU1wc3pkaHU4?=
+ =?utf-8?B?Z2FJR2hmN1FjeGFxbXRXNHdOQml3OVFkdUpaWWVRZzhpdDJMOFNlQVkxbUkr?=
+ =?utf-8?B?bVhibksweFErbXp6NklqaUsvT1FUWnorSWhmTGkzdDVHK3NTRitNbXoyZkNp?=
+ =?utf-8?B?bkUyTEVwa2pTRFhSMmRENHBvRlR6MGJBakRaM0dKM1hOdVhjK1BOUi9hY2Fa?=
+ =?utf-8?B?dDA5T3R5bFhxSlN1Z2lGckdEK0ZHR2gxa2FBRGg2Q0ZVK3l1NzhLWU5tbVlZ?=
+ =?utf-8?B?M0ZFdTFFUWVMYlNITlBVNXAySFExLzlkNGt4MWhtelR5NGlaZUdyemhaSlRx?=
+ =?utf-8?B?RlVGK1NrSkM0VjFiR1JUWHZyblFmZmlDQkYvM2RCb0RJVXg1cFFONTZzbndI?=
+ =?utf-8?B?RUFVenBIVTZVckVNaU5hNVJUMHRiZUNqbFhzMmlWV3ZzbkE5czdRME5FWVJB?=
+ =?utf-8?B?STZKaU1WTmluUHZHdU5OVi9BeXR1b09QR1VHU1pLVW0rb0M0cmIxSWtPN0lx?=
+ =?utf-8?B?V1hKcStnQmFURXJ2cUg5Skg5UkNyTEkwL25nS0owclF0WTFOQzNDU0Z5NFVR?=
+ =?utf-8?B?MHE3QUFmYkY1bkQ3UE5iU0FjOThHcHNlN216YlVZWitPOU9WdEpRVzlvRkNp?=
+ =?utf-8?Q?u6kqyVtfdh2XwTUs=3D?=
+X-Exchange-RoutingPolicyChecked: eqM+sro9APKRw4Yf8pd1eKnGbkmTwzKAXQXvxq00p3zhBmXUME4dMdhLh5x9HZwQhW6qEPZlTD7Ng3KCjI+giYNhYTYWQHn8qBVcqWMi2XLlOkM8WY9RY0fT3LpD/XZVFylZJhSmo10E9XhQf7Y6EvaAJZPBoiAwH0QVE4Gg2lfgeYTQ0yY9UDVgumP+3hrVxaZM88K3VjkDmylIvkXzpqLPMGJMoRO8ZcOwjmwgtJahKFwink7hEzW+wKwBnqypWed4EzYPMcgK1AYuvjYDWjzB5zn+Ip/7tMTRSqyyRFlFaDj/FbK05rkINnUOmq+fRyqud3eJpYKWfgzo0yWs9w==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3b499bb6-b8fb-4bc7-3cd9-08dec0ad3e73
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jun 2026 13:39:14.7050 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jun 2026 13:45:44.4589 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: RftRUM0pt6cp+P7y0RfkuPCLfboPy9ZOPue9K8VHPfEK2/bOwjeYCqO+r9auaMCOxvZqdgU0KC91Wdk5a515lg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5211
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7VQxkeGu5J6OgVFhcRwsJFrmkMbGjUbsmYTkb268yWEK3GTmmv8ZNXbYN9H8Q78nTVQ76LINJk6E0+jDvTB76raUKT9tlN8p7F8X8AF4R04=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB9804
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -159,221 +167,90 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jun 02, 2026 at 04:35:42PM +0300, Murthy, Arun R wrote:
+
+
+On 6/2/2026 1:20 AM, Dong, Zhanjun wrote:
 > 
-> > -----Original Message-----
-> > From: Deak, Imre <imre.deak@intel.com>
-> > Sent: Tuesday, June 2, 2026 4:17 PM
-> > To: Murthy, Arun R <arun.r.murthy@intel.com>
-> > Cc: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org; Stephen
-> > Fuhry <fuhrysteve@gmail.com>
-> > Subject: Re: [PATCH] drm/i915/display: Refcount for fec enable/disable
-> > 
-> > On Mon, Jun 01, 2026 at 07:59:43PM +0530, Arun R Murthy wrote:
-> > > The FEC_ENABLE bit is per port basis and is enabled/disabled on ddi
-> > > pre_enable and post_disable. This fec is shared across the mst streams
-> > > and can be enabled per stream basis as well.
-> > > So have a refcount to track the usage of FEC and then enable/disable
-> > > accordingly.
-> > >
-> > > Closes:
-> > > https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/16073
-> > > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> > > Tested-by: Stephen Fuhry <fuhrysteve@gmail.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_ddi.c      | 66 +++++++++++++++++++
-> > >  drivers/gpu/drm/i915/display/intel_ddi.h      |  1 +
-> > >  .../drm/i915/display/intel_display_types.h    | 12 ++++
-> > >  .../drm/i915/display/intel_modeset_setup.c    |  6 ++
-> > >  4 files changed, 85 insertions(+)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > index 86520848892e..e12a3d6d6a67 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > @@ -2096,6 +2096,47 @@ void intel_ddi_disable_clock(struct intel_encoder
-> > *encoder)
-> > >  		encoder->disable_clock(encoder);
-> > >  }
-> > >
-> > > +/**
-> > > + * intel_ddi_seed_fec_refcounts - Seed per-port FEC refcounts from
-> > > +active CRTCs
-> > > + * @display: display device
-> > > + *
-> > > + * intel_digital_port::fec_active_streams is the per-port refcount
-> > > +that gates
-> > > + * programming of the shared DP_TP_CTL_FEC_ENABLE bit. After initial
-> > > +HW state
-> > > + * readout (driver load, resume, GPU reset takeover), the persistent
-> > > + * crtc_state->fec_enable values reflect what HW currently has; we
-> > > +need to
-> > > + * align the refcount with that so the first paired disable doesn't
-> > > +underflow
-> > > + * and the next enable doesn't incorrectly skip programming the HW bit.
-> > > + *
-> > > + * Must be called once after intel_modeset_readout_hw_state(), before
-> > > +any new
-> > > + * modeset commit can run.
-> > > + */
-> > > +void intel_ddi_seed_fec_refcounts(struct intel_display *display) {
-> > > +	struct intel_crtc *crtc;
-> > > +
-> > > +	for_each_intel_crtc(display->drm, crtc) {
-> > > +		const struct intel_crtc_state *crtc_state =
-> > > +			to_intel_crtc_state(crtc->base.state);
-> > > +		struct intel_encoder *encoder;
-> > > +
-> > > +		if (!crtc_state->hw.active || !crtc_state->fec_enable)
-> > > +			continue;
-> > > +
-> > > +		for_each_intel_encoder(display->drm, encoder) {
-> > > +			struct intel_digital_port *dig_port;
-> > > +
-> > > +			if (encoder->base.crtc != &crtc->base)
-> > > +				continue;
-> > > +			if (!intel_encoder_is_dig_port(encoder))
-> > > +				continue;
-> > > +
-> > > +			dig_port = enc_to_dig_port(encoder);
-> > > +			dig_port->fec_active_streams++;
-> > > +			break;
-> > > +		}
-> > > +	}
-> > > +}
-> > > +
-> > >  void intel_ddi_sanitize_encoder_pll_mapping(struct intel_encoder
-> > > *encoder)  {
-> > >  	struct intel_display *display = to_intel_display(encoder); @@
-> > > -2413,12 +2454,22 @@ static void intel_ddi_enable_fec(struct intel_encoder
-> > *encoder,
-> > >  				 const struct intel_crtc_state *crtc_state)  {
-> > >  	struct intel_display *display = to_intel_display(encoder);
-> > > +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-> > >  	int i;
-> > >  	int ret;
-> > >
-> > >  	if (!crtc_state->fec_enable)
-> > >  		return;
-> > >
-> > > +	/*
-> > > +	 * FEC is link-wide: DP_TP_CTL_FEC_ENABLE is per-port while
-> > > +	 * crtc_state->fec_enable is per-stream. For DP MST, several streams
-> > > +	 * on this port share the bit. Only program HW on the first stream
-> > > +	 * needing FEC; subsequent streams just bump the refcount.
-> > > +	 */
-> > > +	if (dig_port->fec_active_streams++ > 0)
-> > > +		return;
-> > 
-> > This doesn't make sense to me. FEC is enabled for the MST link and if it's
-> > enabled then fec_enabled is set in the crtc_state for all the streams in the MST
-> > topology. intel_ddi_enable_fec() will be called only for the first MST stream
-> > being enabled and intel_ddi_disable_fec() will be called only for the last MST
-> > stream being disabled. So I don't see why the above refcounting would be
-> > needed.
->
-> The  logs mentioned in the above listed gitlab issue shows mismatch in
-> fec enable/disable in the MST scenario. Hence added this refcount
-> logic to overcome the mismatch.
+> 
+> On 2026-05-28 3:18 p.m., Michal Wajdeczko wrote:
+>>
+>>
+>> On 5/11/2026 9:49 PM, Zhanjun Dong wrote:
+>>> Reduce the default log buffer size to improve system responsiveness and
+>>
+>> default log size is SZ_64K and is not changed by this patch
+> Typo, here the log buffer size is for CONFIG_DRM_XE_DEBUG, to be updated in next rev.
+> 
+> Meanwhile, you raised a good point, when CONFIG_DRM_XE_DEBUG is off, the log size is only 64K, looks like no need to do compression.>
+>>> readability. The previous 8MB threshold caused significant delays during
+>>
+>> 8MB size was used in CONFIG_DRM_XE_DEBUG
+>>
+>>> log output and imposed a heavy load when printing to dmesg.
+>>
+>> hmm, but that was on purpose, as any extra cost caused by such dump, which
+>> should be sporadic anyway, we were willing to take just to be sure to do not
+>> lost any information from the too small log
+> Agree, the heavy load is sporadic and expected.>
+>>>
+>>> By reducing the size to 2MB, we maintain a sufficient history while
+>>> ensuring faster flushing. With a typical 4:1 compression ratio, this 2MB
+>>> buffer will result in approximately 512KB of compressed data, providing an
+>>> efficient balance between log depth and system performance.
+>>
+>> hmm, such dumps should be very sporadic, already after HW/FW being broken
+>>
+>> so what do you mean by the 'system performance' here?
+> Sounds like I need to add more description. Looks like the wording "performance" here is not accurate, to be updated in next rev.
+>>
+>> and maybe it would be sufficient just to introduce compression without
+>> reducing the log size?
+> When MB data level to be dump to dmesg, it take long time, 
 
-The root cause for the mismatch should be better understood then. I
-still think that it's something else than the lack of refcounting.
+but I assume we're dumping that on purpose, when there was a problem and we want to collect as much data as possible
+so even if this takes time it should be ok
 
-> Thanks and Regards,
-> Arun R Murthy
-> --------------------
-> > > +
-> > >  	intel_de_rmw(display, dp_tp_ctl_reg(encoder, crtc_state),
-> > >  		     0, DP_TP_CTL_FEC_ENABLE);
-> > >
-> > > @@ -2454,10 +2505,25 @@ static void intel_ddi_disable_fec(struct
-> > intel_encoder *encoder,
-> > >  				  const struct intel_crtc_state *crtc_state)  {
-> > >  	struct intel_display *display = to_intel_display(encoder);
-> > > +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-> > >
-> > >  	if (!crtc_state->fec_enable)
-> > >  		return;
-> > >
-> > > +	/*
-> > > +	 * FEC is a link-wide property and DP_TP_CTL_FEC_ENABLE is a per-port
-> > > +	 * register, but crtc_state->fec_enable is per-stream. For DP MST,
-> > > +	 * multiple streams on the same port share this bit. Refcount the
-> > > +	 * active FEC users on the port and only clear the HW bit when the
-> > > +	 * last user goes away, otherwise tearing down one MST stream would
-> > > +	 * disable FEC for sibling streams still using it.
-> > > +	 */
-> > > +	if (drm_WARN_ON(display->drm, dig_port->fec_active_streams <= 0))
-> > > +		return;
-> > > +
-> > > +	if (--dig_port->fec_active_streams > 0)
-> > > +		return;
-> > > +
-> > >  	intel_de_rmw(display, dp_tp_ctl_reg(encoder, crtc_state),
-> > >  		     DP_TP_CTL_FEC_ENABLE, 0);
-> > >  	intel_de_posting_read(display, dp_tp_ctl_reg(encoder, crtc_state));
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.h
-> > > b/drivers/gpu/drm/i915/display/intel_ddi.h
-> > > index 580ecb09b8b6..3678c28a0dc9 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_ddi.h
-> > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.h
-> > > @@ -78,6 +78,7 @@ int intel_ddi_toggle_hdcp_bits(struct intel_encoder
-> > *intel_encoder,
-> > >  			       enum transcoder cpu_transcoder,
-> > >  			       bool enable, u32 hdcp_mask);  void
-> > > intel_ddi_sanitize_encoder_pll_mapping(struct intel_encoder *encoder);
-> > > +void intel_ddi_seed_fec_refcounts(struct intel_display *display);
-> > >  int intel_ddi_level(struct intel_encoder *encoder,
-> > >  		    const struct intel_crtc_state *crtc_state,
-> > >  		    int lane);
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > index f44be5c689ae..84bd0d993197 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > @@ -1987,6 +1987,18 @@ struct intel_digital_port {
-> > >  	struct ref_tracker *ddi_io_wakeref;
-> > >  	struct ref_tracker *aux_wakeref;
-> > >
-> > > +	/*
-> > > +	 * Number of active streams on this port currently using FEC.
-> > > +	 *
-> > > +	 * DP_TP_CTL_FEC_ENABLE is a per-port (link-wide) HW bit, but
-> > > +	 * crtc_state->fec_enable is per-stream. For DP MST several streams
-> > > +	 * share the same port and therefore the same FEC enable bit. Track
-> > > +	 * how many active streams want FEC so that the HW bit is only
-> > > +	 * programmed on the first enable and only cleared on the last
-> > > +	 * disable. Modified under the modeset locks.
-> > > +	 */
-> > > +	int fec_active_streams;
-> > > +
-> > >  	struct intel_tc_port *tc;
-> > >
-> > >  	struct {
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-> > > b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-> > > index e88082c8caac..14f038b8ef81 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-> > > @@ -950,6 +950,12 @@ void intel_modeset_setup_hw_state(struct
-> > > intel_display *display,
-> > >
-> > >  	intel_modeset_readout_hw_state(display);
-> > >
-> > > +	/*
-> > > +	 * Seed per-port FEC refcounts from the just-populated active
-> > > +	 * crtc_states before anything can issue an enable/disable.
-> > > +	 */
-> > > +	intel_ddi_seed_fec_refcounts(display);
-> > > +
-> > >  	/* HW state is read out, now we need to sanitize this mess. */
-> > >  	get_encoder_power_domains(display);
-> > >
-> > > --
-> > > 2.25.1
-> > >
+
+> if just add code to print log for debug purpose, test shown when dump > 8MB data, some task/thread timeout triggered, 
+
+but we should dump CTB due to an actual error, and as we already hit that error, some failures are expected, no?
+maybe the problem is that we trigger CTB dump too frequently without a good reason, or the timeouts are too short?
+
+> those are noises not expected. 
+
+do you mean errors or dumps are noise?
+
+if the test triggers errors on purpose, then maybe such dumps are indeed unnecessary and could be viewed as noise
+but then we should rather introduce some mechanism to block such pointless dumps during tricky tests,
+but leave the full dump for other cases where they will be really needed and helpful ?
+
+> By compress and reduce the size, we expect this kind of noise could be reduced.
+> If you think 2M is too small under some condition, let me know, now is a good time to change it.
+> 
+> Regards,
+> Zhanjun Dong>
+>>>
+>>> Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+>>> ---
+>>>   drivers/gpu/drm/xe/xe_guc_log.h | 2 +-
+>>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_guc_log.h b/drivers/gpu/drm/xe/xe_guc_log.h
+>>> index d231def50692..44e81a54681f 100644
+>>> --- a/drivers/gpu/drm/xe/xe_guc_log.h
+>>> +++ b/drivers/gpu/drm/xe/xe_guc_log.h
+>>> @@ -17,7 +17,7 @@ struct xe_device;
+>>>   #define XE_GUC_LOG_CRASH_DUMP_BUFFER_SIZE    SZ_1M
+>>>   #define XE_GUC_LOG_STATE_CAPTURE_BUFFER_SIZE    SZ_2M
+>>>   #elif IS_ENABLED(CONFIG_DRM_XE_DEBUG)
+>>> -#define XE_GUC_LOG_EVENT_DATA_BUFFER_SIZE    SZ_8M
+>>> +#define XE_GUC_LOG_EVENT_DATA_BUFFER_SIZE    SZ_2M
+>>>   #define XE_GUC_LOG_CRASH_DUMP_BUFFER_SIZE    SZ_1M
+>>>   #define XE_GUC_LOG_STATE_CAPTURE_BUFFER_SIZE    SZ_1M
+>>>   #else
+>>
+> 
+
