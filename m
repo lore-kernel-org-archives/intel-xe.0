@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74524CD6E60
-	for <intel-xe@archiver.kernel.org>; Tue,  2 Jun 2026 22:37:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22704CD6E6A
+	for <intel-xe@archiver.kernel.org>; Tue,  2 Jun 2026 22:37:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D35EA10F62E;
-	Tue,  2 Jun 2026 22:37:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB6D510F630;
+	Tue,  2 Jun 2026 22:37:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FCQYu296";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aEnE3cxn";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D893110F62D;
- Tue,  2 Jun 2026 22:37:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 84A5110F62F;
+ Tue,  2 Jun 2026 22:37:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780439821; x=1811975821;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=cT16KCWktF+GIKO8qFgN32x9kTHlLnpcAFeNBqNzWXU=;
- b=FCQYu296oqoFvwF8lBdBSZZAKRiXspGnXqy4LI/6FVohpknoHgBBcA9q
- mx9ZoH6PBkVc18qTDAhn+gvRv/A7j0CYEkJnbVN1i2OPAxn/3QFPaCA2D
- gYW/p9WwKxA9DqJBfqNuulFrKtU1wmboZwhv2OLLZkHd/GtaOzSpbtdD9
- rQIGXOcgf0e3gSnmbmziPfPQJWy88kqt/8+bIFdAdittSUpfFdSntMOyA
- KEQ4teydz10zjz8iNK21TslKl/s0oDoxTf0X0IjCH8kYqNV46PmX5unxb
- L1e8TcKsUYxiqGkcaoNZ7igfiSru7S3Z5ELoYTKJDdSXtRlo0v3hSWk5+ g==;
-X-CSE-ConnectionGUID: IProK5OUS0ejYLKT+oB50g==
-X-CSE-MsgGUID: 2VhvEeRGT9CtcDIioTKvew==
-X-IronPort-AV: E=McAfee;i="6800,10657,11805"; a="92348346"
-X-IronPort-AV: E=Sophos;i="6.24,184,1774335600"; d="scan'208";a="92348346"
+ t=1780439824; x=1811975824;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Ak64TMxazhfpG/KQBL8iSwbrPOMvlnP/XNkrTTg1zI8=;
+ b=aEnE3cxnp0PO4+14nazgw4VxGKG7uFO4Gg7wRdmuLkuGY6AroAKaerp3
+ QoZkUDi8ajFtGUciNxwToYjGX2joTLKAOmMpAXDHIs4sERLm5rUS7x/T/
+ F4DZXIKnNhXJqco5tN8+0IDbgVc6cxlmAbeD6PiCQFP6BSFhmTMFygjof
+ LkerQ2UI/eMp8ZrsxOSeIpfwE12uAsFmh31NDHkCpA43Hoe+JK2CN34z+
+ Qxm+jC5zc+HX4meWpfx3ACW2pKAkFoIceH/X7a7MhzCPB6PYqOiELF4SQ
+ DhOJqJg9vuOIsn9Xu0PHCD43JX8YvSyAveL4UsXa/iZmX3/yY1zPYIvYe g==;
+X-CSE-ConnectionGUID: hmOyNEaCQ4SB7H5zM/sWLw==
+X-CSE-MsgGUID: FgnX1fMqTS21HfGZAXE0yA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11805"; a="92348348"
+X-IronPort-AV: E=Sophos;i="6.24,184,1774335600"; d="scan'208";a="92348348"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2026 15:37:00 -0700
-X-CSE-ConnectionGUID: zwxvzvpjQsedajIY1R5+4w==
-X-CSE-MsgGUID: 2gAFX3dJRFucfMOhXVgsXA==
+ 02 Jun 2026 15:37:03 -0700
+X-CSE-ConnectionGUID: gLbtsugiSMmHOJct+W63DA==
+X-CSE-MsgGUID: zI4ojpvbQ0y4+4jRe+lSdQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,184,1774335600"; d="scan'208";a="243879079"
+X-IronPort-AV: E=Sophos;i="6.24,184,1774335600"; d="scan'208";a="243879085"
 Received: from dev-417.igk.intel.com ([10.91.214.181])
- by orviesa008.jf.intel.com with ESMTP; 02 Jun 2026 15:36:59 -0700
+ by orviesa008.jf.intel.com with ESMTP; 02 Jun 2026 15:37:02 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@intel.com>,
  =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v4 0/2] match GEN6_/PCODE_DATA naming with spec
-Date: Wed,  3 Jun 2026 00:36:38 +0200
-Message-ID: <20260602223640.1375933-1-michal.grzelak@intel.com>
+Subject: [PATCH v4 2/2] drm/xe/pcode: match argument naming with PCODE_DATAx
+Date: Wed,  3 Jun 2026 00:36:40 +0200
+Message-ID: <20260602223640.1375933-3-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20260602223640.1375933-1-michal.grzelak@intel.com>
+References: <20260602223640.1375933-1-michal.grzelak@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
@@ -68,15 +70,13 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Next version of [1].
+Variable naming of val and val1 should match register macro naming.
 
-BR,
-Michał
+For xe, register macro naming of PCODE_DATA0 and PCODE_DATA1 is already
+synced with register name. Nevertheless there are still functions
+declaring val and val1. Rename val into val0 in functions declaring val1
+in xe.
 
-[1] https://lore.kernel.org/intel-gfx/20260507193601.533356-1-michal.grzelak@intel.com
-
----
-Changelog:
 v4->v5
 - split i915 changes from xe (Jani)
 
@@ -89,24 +89,65 @@ v2->v3
 v1->v2
 - rebase onto drm-tip (Jani)
 
+Bspec: 19978, 19979
+Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
+---
+ drivers/gpu/drm/xe/display/xe_display_pcode.c | 4 ++--
+ drivers/gpu/drm/xe/xe_pcode.c                 | 4 ++--
+ drivers/gpu/drm/xe/xe_pcode.h                 | 2 +-
+ 3 files changed, 5 insertions(+), 5 deletions(-)
 
-Michał Grzelak (2):
-  drm/i915/pcode: rename GEN6_PCODE_DATA to match spec
-  drm/xe/pcode: match argument naming with PCODE_DATAx
-
- drivers/gpu/drm/i915/display/intel_parent.c   |  4 ++--
- drivers/gpu/drm/i915/display/intel_parent.h   |  2 +-
- drivers/gpu/drm/i915/gvt/handlers.c           |  2 +-
- drivers/gpu/drm/i915/i915_reg.h               |  2 +-
- drivers/gpu/drm/i915/intel_gvt_mmio_table.c   |  2 +-
- drivers/gpu/drm/i915/intel_pcode.c            | 14 +++++++-------
- drivers/gpu/drm/i915/intel_pcode.h            |  2 +-
- drivers/gpu/drm/xe/display/xe_display_pcode.c |  4 ++--
- drivers/gpu/drm/xe/xe_pcode.c                 |  4 ++--
- drivers/gpu/drm/xe/xe_pcode.h                 |  2 +-
- include/drm/intel/display_parent_interface.h  |  2 +-
- 11 files changed, 20 insertions(+), 20 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/display/xe_display_pcode.c b/drivers/gpu/drm/xe/display/xe_display_pcode.c
+index f6820ef7e666d..8dc9cbdb18ec0 100644
+--- a/drivers/gpu/drm/xe/display/xe_display_pcode.c
++++ b/drivers/gpu/drm/xe/display/xe_display_pcode.c
+@@ -6,12 +6,12 @@
+ #include "xe_device.h"
+ #include "xe_pcode.h"
+ 
+-static int xe_display_pcode_read(struct drm_device *drm, u32 mbox, u32 *val, u32 *val1)
++static int xe_display_pcode_read(struct drm_device *drm, u32 mbox, u32 *val0, u32 *val1)
+ {
+ 	struct xe_device *xe = to_xe_device(drm);
+ 	struct xe_tile *tile = xe_device_get_root_tile(xe);
+ 
+-	return xe_pcode_read(tile, mbox, val, val1);
++	return xe_pcode_read(tile, mbox, val0, val1);
+ }
+ 
+ static int xe_display_pcode_write_timeout(struct drm_device *drm, u32 mbox, u32 val, int timeout_ms)
+diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
+index 866986694d9c4..3987ed21f397c 100644
+--- a/drivers/gpu/drm/xe/xe_pcode.c
++++ b/drivers/gpu/drm/xe/xe_pcode.c
+@@ -132,12 +132,12 @@ int xe_pcode_write64_timeout(struct xe_tile *tile, u32 mbox, u32 data0, u32 data
+ 	return err;
+ }
+ 
+-int xe_pcode_read(struct xe_tile *tile, u32 mbox, u32 *val, u32 *val1)
++int xe_pcode_read(struct xe_tile *tile, u32 mbox, u32 *val0, u32 *val1)
+ {
+ 	int err;
+ 
+ 	mutex_lock(&tile->pcode.lock);
+-	err = pcode_mailbox_rw(tile, mbox, val, val1, 1, true, false);
++	err = pcode_mailbox_rw(tile, mbox, val0, val1, 1, true, false);
+ 	mutex_unlock(&tile->pcode.lock);
+ 
+ 	return err;
+diff --git a/drivers/gpu/drm/xe/xe_pcode.h b/drivers/gpu/drm/xe/xe_pcode.h
+index 18260c29e620a..c2f549755714e 100644
+--- a/drivers/gpu/drm/xe/xe_pcode.h
++++ b/drivers/gpu/drm/xe/xe_pcode.h
+@@ -17,7 +17,7 @@ int xe_pcode_probe_early(struct xe_device *xe);
+ int xe_pcode_ready(struct xe_device *xe, bool locked);
+ int xe_pcode_init_min_freq_table(struct xe_tile *tile, u32 min_gt_freq,
+ 				 u32 max_gt_freq);
+-int xe_pcode_read(struct xe_tile *tile, u32 mbox, u32 *val, u32 *val1);
++int xe_pcode_read(struct xe_tile *tile, u32 mbox, u32 *val0, u32 *val1);
+ int xe_pcode_write_timeout(struct xe_tile *tile, u32 mbox, u32 val,
+ 			   int timeout_ms);
+ int xe_pcode_write64_timeout(struct xe_tile *tile, u32 mbox, u32 data0,
 -- 
 2.45.2
 
