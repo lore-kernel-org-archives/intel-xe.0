@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD660CD5BD1
-	for <intel-xe@archiver.kernel.org>; Tue,  2 Jun 2026 23:07:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09F0CCD5BD1
+	for <intel-xe@archiver.kernel.org>; Tue,  2 Jun 2026 23:09:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B1DA113B73;
-	Tue,  2 Jun 2026 23:07:01 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12F96113B6D;
- Tue,  2 Jun 2026 23:07:00 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5064095671361871794=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id B58E0113B75;
+	Tue,  2 Jun 2026 23:09:12 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JRuqCTHq";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB529113B75
+ for <intel-xe@lists.freedesktop.org>; Tue,  2 Jun 2026 23:09:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1780441752; x=1811977752;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=ER9XGp541+bCZAZ64LzfbPH5/rKO3IV+Jn+HA3+9Vdw=;
+ b=JRuqCTHqhgL9OpI42atxtvy/jA0knTM2H4yywH4x0hAcyOIsNxDZxYP5
+ W+XJWAoAGVjFUZtREK+k39YPlcZ2LTUkQjX6reUNKiVY/IlVw53/s6otD
+ XxAvJghNipfQVFRbtQJE2VSbbswUKjwM03pAXLPt3BcbBNIOyED+AFdSr
+ kYISofN6WsH8lmHTOt1tRPKOHglNXkh48Vel8rMGnRpeatuGMKbA84X4w
+ Ooc5ESl53b6yPk6I+r6MCOWABEtZZ+OcByoALSufmWUp+eAbWsAQuavZd
+ 2kWztwGpXtg0oY92fwJIem+G5xZa4ZF8m3FRDCmDQe29LD8G3xpNvI0dz A==;
+X-CSE-ConnectionGUID: /e3/rH1XRi2cvqhyrsqYlw==
+X-CSE-MsgGUID: zQNNIrpXQoiicwijYBoyWQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11805"; a="81215046"
+X-IronPort-AV: E=Sophos;i="6.24,184,1774335600"; d="scan'208";a="81215046"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2026 16:09:12 -0700
+X-CSE-ConnectionGUID: UIpjclxhRKqys6eNZ2ktFg==
+X-CSE-MsgGUID: 6BoarpzmRm2qxyMkIFdWYA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,184,1774335600"; d="scan'208";a="244154621"
+Received: from orsosgc001.jf.intel.com ([10.88.27.185])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2026 16:09:12 -0700
+From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH 1/2] drm/xe/oa: Rename last argument of WHITELIST_OA_MMIO_TRG
+Date: Tue,  2 Jun 2026 16:09:07 -0700
+Message-ID: <20260602230908.2350117-2-ashutosh.dixit@intel.com>
+X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260602230908.2350117-1-ashutosh.dixit@intel.com>
+References: <20260602230908.2350117-1-ashutosh.dixit@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/atomic=3A_track_individ?=
- =?utf-8?q?ual_colorop_updates?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Melissa Wen" <mwen@igalia.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 02 Jun 2026 23:07:00 -0000
-Message-ID: <178044162007.36136.13639601865599155028@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260602215743.914265-1-mwen@igalia.com>
-In-Reply-To: <20260602215743.914265-1-mwen@igalia.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +63,39 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5064095671361871794==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+OA head pointer registers are not used by UMD's and do not need to be
+whitelisted, the last argument of WHITELIST_OA_MMIO_TRG is actually used
+for whitelisting tail pointer and OA buffer registers. Rename the argument
+to tail_buf to highlight this. OA head pointer is sometimes provided to the
+WHITELIST_OA_MMIO_TRG to have the correct register offset alignment (16)
+for RING_FORCE_TO_NONPRIV_RANGE_4.
 
-== Series Details ==
+Fixes: ed455775c5a6 ("drm/xe/rtp: Refactor OAG MMIO trigger register whitelisting")
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+---
+ drivers/gpu/drm/xe/xe_reg_whitelist.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Series: drm/atomic: track individual colorop updates
-URL   : https://patchwork.freedesktop.org/series/167777/
-State : success
+diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+index 2e84b1c49f374..a17ebacc1455b 100644
+--- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
++++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+@@ -104,10 +104,10 @@ static const struct xe_rtp_table_sr register_whitelist = XE_RTP_TABLE_SR(
+ 				   RING_FORCE_TO_NONPRIV_ACCESS_RW))
+ 	},
+ 
+-#define WHITELIST_OA_MMIO_TRG(trg, status, head) \
++#define WHITELIST_OA_MMIO_TRG(trg, status, tail_buf) \
+ 	WHITELIST(trg, RING_FORCE_TO_NONPRIV_ACCESS_RW), \
+ 	WHITELIST(status, RING_FORCE_TO_NONPRIV_ACCESS_RD), \
+-	WHITELIST(head, RING_FORCE_TO_NONPRIV_ACCESS_RD | RING_FORCE_TO_NONPRIV_RANGE_4)
++	WHITELIST(tail_buf, RING_FORCE_TO_NONPRIV_ACCESS_RD | RING_FORCE_TO_NONPRIV_RANGE_4)
+ 
+ #define WHITELIST_OAG_MMIO_TRG \
+ 	WHITELIST_OA_MMIO_TRG(OAG_MMIOTRIGGER, OAG_OASTATUS, OAG_OAHEADPTR)
+-- 
+2.54.0
 
-== Summary ==
-
-CI Bug Log - changes from xe-5183-694cb596b23bda042a8c1a9b0d16aa99e850b8d8_BAT -> xe-pw-167777v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5183-694cb596b23bda042a8c1a9b0d16aa99e850b8d8 -> xe-pw-167777v1
-
-  IGT_8946: 8946
-  xe-5183-694cb596b23bda042a8c1a9b0d16aa99e850b8d8: 694cb596b23bda042a8c1a9b0d16aa99e850b8d8
-  xe-pw-167777v1: 167777v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167777v1/index.html
-
---===============5064095671361871794==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/atomic: track individual colorop updates</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167777/">https://patchwork.freedesktop.org/series/167777/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167777v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167777v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5183-694cb596b23bda042a8c1a9b0d16aa99e850b8d8_BAT -&gt; xe-pw-167777v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5183-694cb596b23bda042a8c1a9b0d16aa99e850b8d8 -&gt; xe-pw-167777v1</li>
-</ul>
-<p>IGT_8946: 8946<br />
-  xe-5183-694cb596b23bda042a8c1a9b0d16aa99e850b8d8: 694cb596b23bda042a8c1a9b0d16aa99e850b8d8<br />
-  xe-pw-167777v1: 167777v1</p>
-
-</body>
-</html>
-
---===============5064095671361871794==--
