@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87083CD6E60
-	for <intel-xe@archiver.kernel.org>; Tue,  2 Jun 2026 12:46:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A34C8CD6E60
+	for <intel-xe@archiver.kernel.org>; Tue,  2 Jun 2026 12:53:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11A7310F06F;
-	Tue,  2 Jun 2026 12:46:30 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HySsc9Dv";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A32010F06F;
- Tue,  2 Jun 2026 12:46:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780404389; x=1811940389;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=TZgAIYaorL+I96i1474hiEofnH+gH+yQUuWL6JGsIfA=;
- b=HySsc9DvZjc37FclJaoJCHXPSi4bu9z7KDtMb4o1/1x7hUu9YzfIdPc7
- suEUAisxFergRxGg4XeAby+oPkOQ1CSYGdofdx9nbz9+8wjNNpLaRAJ+d
- hrTTWGNalmznHg4oBCywcnNLrC7ZmenoD+DymPXo//bi9a28mImX8kMrK
- LUy5kGr9YbjWuy3kJnCBKA7X0iFLR/HuocztyN0XfN4T0UoSFDMuY0vow
- nhPZgXiHSljqq5dBLfZx9cXLtZFjqeB/V5YjM9uUpeQVZHifRFZLN4yBo
- Y0UADFPlsskmiLAy9R4kPi1Zno6KLV93WQeK5vBR4TsAZWRKvyCTfHTCR A==;
-X-CSE-ConnectionGUID: ldoJZAsiRQuBVGS4V7Yl4w==
-X-CSE-MsgGUID: c2aJfN2CQdOOsBJKvFg2ug==
-X-IronPort-AV: E=McAfee;i="6800,10657,11804"; a="81088953"
-X-IronPort-AV: E=Sophos;i="6.24,183,1774335600"; d="scan'208";a="81088953"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2026 05:46:28 -0700
-X-CSE-ConnectionGUID: ytMiIm4/Tw2G56+ptDSBbg==
-X-CSE-MsgGUID: 4qHCUkF9TbS1ak7hZkFxJA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,183,1774335600"; d="scan'208";a="239727499"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.245.253])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2026 05:46:26 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com, imre.deak@intel.com
-Subject: Re: =?utf-8?Q?=E2=9C=97?= i915.CI.BAT: failure for drm/{i915, xe}:
- display (runtime) suspend/resume/shutdown unification, part 2
-In-Reply-To: <178039485806.35116.2101469529268890207@6beec6c84f66>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <cover.1780389001.git.jani.nikula@intel.com>
- <178039485806.35116.2101469529268890207@6beec6c84f66>
-Date: Tue, 02 Jun 2026 15:46:23 +0300
-Message-ID: <9299478799ad973d4e1f9467fedfec2d2e8e92ef@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62A0110F08B;
+	Tue,  2 Jun 2026 12:53:20 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50C4010F08B;
+ Tue,  2 Jun 2026 12:53:19 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8218541991090885710=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Mask_RO?=
+ =?utf-8?q?_bits_in_gen9=5Fwrite=5Fdc=5Fstate=28=29_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dibin Moolakadan Subrahmanian" <dibin.moolakadan.subrahmanian@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 02 Jun 2026 12:53:19 -0000
+Message-ID: <178040479932.35116.8700869458898741333@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <<20260506130321.487414-1-dibin.moolakadan.subrahmanian@intel.com>
+In-Reply-To: <<20260506130321.487414-1-dibin.moolakadan.subrahmanian@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,28 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 02 Jun 2026, Patchwork <patchwork@emeril.freedesktop.org> wrote:
-> #### Possible regressions ####
->
->   * igt@i915_selftest@live:
->     - fi-bsw-n3050:       [PASS][1] -> [ABORT][2] +1 other test abort
->    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18602/fi-bsw-n3050/igt@i915_selftest@live.html
->    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167725v1/fi-bsw-n3050/igt@i915_selftest@live.html
->
->   * igt@i915_selftest@live@hangcheck:
->     - bat-arlh-2:         [PASS][3] -> [INCOMPLETE][4]
->    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18602/bat-arlh-2/igt@i915_selftest@live@hangcheck.html
->    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167725v1/bat-arlh-2/igt@i915_selftest@live@hangcheck.html
+--===============8218541991090885710==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Imre, Ville, any idea what in this series could cause this? Feels like
-it could be a real regression, but I can't figure it out. :(
+== Series Details ==
 
-BR,
-Jani.
+Series: drm/i915/display: Mask RO bits in gen9_write_dc_state() (rev2)
+URL   : https://patchwork.freedesktop.org/series/167642/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-5179-5ffc4d14699b2de05ebbaa8d838f83dcf5da2b6a_BAT -> xe-pw-167642v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
 
 
--- 
-Jani Nikula, Intel
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5179-5ffc4d14699b2de05ebbaa8d838f83dcf5da2b6a -> xe-pw-167642v2
+
+  IGT_8946: 8946
+  xe-5179-5ffc4d14699b2de05ebbaa8d838f83dcf5da2b6a: 5ffc4d14699b2de05ebbaa8d838f83dcf5da2b6a
+  xe-pw-167642v2: 167642v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167642v2/index.html
+
+--===============8218541991090885710==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Mask RO bits in gen9_write_dc_state() (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167642/">https://patchwork.freedesktop.org/series/167642/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167642v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167642v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5179-5ffc4d14699b2de05ebbaa8d838f83dcf5da2b6a_BAT -&gt; xe-pw-167642v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5179-5ffc4d14699b2de05ebbaa8d838f83dcf5da2b6a -&gt; xe-pw-167642v2</li>
+</ul>
+<p>IGT_8946: 8946<br />
+  xe-5179-5ffc4d14699b2de05ebbaa8d838f83dcf5da2b6a: 5ffc4d14699b2de05ebbaa8d838f83dcf5da2b6a<br />
+  xe-pw-167642v2: 167642v2</p>
+
+</body>
+</html>
+
+--===============8218541991090885710==--
