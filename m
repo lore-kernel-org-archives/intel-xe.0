@@ -4,27 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F946CD6E56
-	for <intel-xe@archiver.kernel.org>; Wed,  3 Jun 2026 11:11:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4C17CD6E56
+	for <intel-xe@archiver.kernel.org>; Wed,  3 Jun 2026 11:12:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE25C10FC0F;
-	Wed,  3 Jun 2026 11:11:18 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 406C310FC0F;
- Wed,  3 Jun 2026 11:11:18 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1499117211779499212=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B31F10FC18;
+	Wed,  3 Jun 2026 11:12:03 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Rb1oANhI";
+	dkim-atps=neutral
+Received: from mail-dl1-f66.google.com (mail-dl1-f66.google.com [74.125.82.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 528A310F328
+ for <intel-xe@lists.freedesktop.org>; Tue,  2 Jun 2026 16:17:34 +0000 (UTC)
+Received: by mail-dl1-f66.google.com with SMTP id
+ a92af1059eb24-137dd5161feso66058c88.1
+ for <intel-xe@lists.freedesktop.org>; Tue, 02 Jun 2026 09:17:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1780417053; x=1781021853; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=+ajva4//4bxspriKRwU9VltKASgTH4F65lB5PSd9V+c=;
+ b=Rb1oANhITrvJhQNO2T4oCtrclax8+7/f3Pyp6kjpqGmFssBsyMpzcrUy71xfU8vPfP
+ yD1ME2u6aWGlE4A83pF0h6VT+7ApeYLwbQrlHCkqdLfJxk6+UCVHqLi7oHBkSghgEUhH
+ q/Ks7SVt4eZDsL/gWoO6o1kMi4aBhkzAVPaitg16XcEDGkEOFtcMrrkcaeJ1qj7WTs58
+ 41vmCB9BGLqJLW0x+HqO10Wq5o1c0Ym/RHLeSzWlXSgwB+XaUWyVC5EmQUw64z+HK6un
+ PK8kIk6kbXABnabgzBnPiI4lV/QV10Z+IlYuu3FVDH9szsfyqowsUpdwa3hgC0tlgv4S
+ HVIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1780417053; x=1781021853;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=+ajva4//4bxspriKRwU9VltKASgTH4F65lB5PSd9V+c=;
+ b=aKE0/foWL856VCS4qqWRR1UymCHs0nRHjMKcmSy2t0pB54S/SkB5dXi7fwQzDQe1g3
+ erBm6iBq8zDsOnQO7U/YDWZoFd83KicUM4sjKPLHgyT1zxRHOglqu9M/vT+xOFLUdZyH
+ tcp+xvPDv/uYSB8Nug10E1B8RXnUzbpIjBat3dV2e+TRXQRl6ETzgxPBjRz6PRgbChPf
+ RPRSJW07QcG4NjWq5i9MrgllQTTcKuN0Q15qjjS1+bdEHT945r7ayUL9I4WBiAoQLaxs
+ DOJzXYUEktpvVdyoxiObaF8ZifvJ78P+wn0V5Ibl0o40YW4QENfL42e/RhfgbHkY0xMf
+ SgrQ==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ/hh5iaoWz6/m6MN9jUsOOmocLHwD/gZPKn4lFBKkPZtf3pHaPJjXlkd7m0N4TEqQkzupZN+Exm1g==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzeUDffmP0talm2ba1FKl8BvqKxgYuQ6u9cmHJA2+DIIsPXFPbW
+ stPM9BikGvoXEpEnygfqHYPQcI0GD8ykEuNgQo4oYTGf37JFiRkIQFQk
+X-Gm-Gg: Acq92OEF2U+EWAuJ3By0N4uSwf5Z/Xtfl9fxSf2vSKtm6WDYRJUu+6ApOjSelYmjKgo
+ ZejJxgIL+bRa6FRIZ9F+eRBk3mV1dvhJAz9+y5HAnw2Zna5G3M31rX28Z/3FevBlPoGHp+goTBu
+ HrEy80LJipMknOZCOULgoZ1xpoEqxnac1cOhW+9wor+bTvCDlYK6SDYEBCwLO/5ih9OrfxpAX9u
+ g91FtVBFC7JzvtlkYvQ1yh72gHu1MVv3aceL9jhc/9KitxBCrNLUxQMSgDzz67mPb4VI9gESIGJ
+ kzNwtnxP0bUm4oAxneMRkx5cqWGrwA3qG8DgzGxS+IKRSAbiUyP/mW5VV88bmycSvXDCpvDSDI6
+ 2rbXDmNbHh85GbH6OFyLH6PtkmCnW3WWUdBxATVsK5PN2XSih+Y0KCqj+yolkY0cs9WlAKG1io2
+ iGd2cPrO3etlYgTmAXLUJDJYg5cdznFf5/
+X-Received: by 2002:a05:7300:6427:b0:304:d75b:f5f4 with SMTP id
+ 5a478bee46e88-304fa67e9c3mr8513884eec.16.1780417053229; 
+ Tue, 02 Jun 2026 09:17:33 -0700 (PDT)
+Received: from zhanwei.. ([192.227.223.214]) by smtp.gmail.com with ESMTPSA id
+ 5a478bee46e88-304ed5b8fbbsm11976463eec.26.2026.06.02.09.17.29
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 02 Jun 2026 09:17:32 -0700 (PDT)
+From: Zhan Wei <zhanwei919@gmail.com>
+To: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
+ rodrigo.vivi@intel.com
+Cc: raag.jadav@intel.com, corbet@lwn.net, skhan@linuxfoundation.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Zhan Wei <zhanwei919@gmail.com>
+Subject: [PATCH v4] drm/xe/hwmon: document DG2 fan speed reporting quirk
+Date: Wed,  3 Jun 2026 00:17:07 +0800
+Message-ID: <20260602161707.18922-1-zhanwei919@gmail.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <ahqN8Esjz9SmGofH@black.igk.intel.com>
+References: <ahqN8Esjz9SmGofH@black.igk.intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Introduce_Xe_PCIe_FLR_=28re?=
- =?utf-8?q?v8=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Raag Jadav" <raag.jadav@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 03 Jun 2026 11:11:18 -0000
-Message-ID: <178048507825.39239.9661245020601965522@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260603101814.916948-1-raag.jadav@intel.com>
-In-Reply-To: <20260603101814.916948-1-raag.jadav@intel.com>
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Wed, 03 Jun 2026 11:12:01 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,205 +87,53 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1499117211779499212==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On DG2 the driver always shows two fan channels, because the
+FSC_READ_NUM_FANS command does not work on some cards. OEMs decide how
+the fans map to tach channels, so two fans can share one tach line.
+When that happens, the second channel reads 0 RPM even though the fan
+is spinning.
 
-== Series Details ==
+Note this on the fan2_input ABI entry so the steady 0 RPM is not
+mistaken for a driver bug.
 
-Series: Introduce Xe PCIe FLR (rev8)
-URL   : https://patchwork.freedesktop.org/series/162055/
-State : success
+Fixes: 28f79ac609de ("drm/xe/hwmon: expose fan speed")
+Signed-off-by: Zhan Wei <zhanwei919@gmail.com>
+Reviewed-by: Raag Jadav <raag.jadav@intel.com>
+---
+v4:
+- Add Fixes: tag and collect Reviewed-by from Raag.
+v3: https://lore.kernel.org/intel-xe/20260529172449.41504-1-zhanwei919@gmail.com/
+- Drop the dedicated Documentation/gpu/xe/xe_hwmon.rst doc and the
+  index.rst hunk; add a short note under the fan2_input entry in the
+  existing ABI doc instead, per Raag's feedback.
+v2: https://lore.kernel.org/intel-xe/20260529135028.20763-1-zhanwei919@gmail.com/
+- Drop the code change that reported a single fan on DG2; document the
+  shared-tach behaviour instead, per review feedback on v1.
+v1: https://lore.kernel.org/intel-xe/20260527115311.13398-1-zhanwei919@gmail.com/
+ Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-== Summary ==
+diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
+index 55ab45f669ac..0da739d9a816 100644
+--- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
++++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
+@@ -251,6 +251,13 @@ Description:	RO. Fan 2 speed in RPM.
+ 
+ 		Only supported for particular Intel Xe graphics platforms.
+ 
++		On DG2 the driver always shows two fan channels, because the
++		FSC_READ_NUM_FANS command does not work on some cards. OEMs
++		decide how the fans map to tach channels, so two fans can share
++		one tach line. When that happens, the second channel
++		reads 0 RPM even though the fan is spinning. This is normal, not
++		a bug.
++
+ What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/fan3_input
+ Date:		March 2025
+ KernelVersion:	6.16
+-- 
+2.43.0
 
-CI Bug Log - changes from xe-5191-6f2323e6938f804868ac52df9dfc6c73f59d224d_BAT -> xe-pw-162055v8_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 13)
-------------------------------
-
-  Additional (2): bat-bmg-vm bat-ptl-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-162055v8_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_evict@evict-beng-small-cm:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][1] ([Intel XE#5764]) +10 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162055v8/bat-ptl-vm/igt@xe_evict@evict-beng-small-cm.html
-
-  * igt@xe_exec_balancer@twice-parallel-basic:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][2] ([Intel XE#7482]) +17 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162055v8/bat-ptl-vm/igt@xe_exec_balancer@twice-parallel-basic.html
-
-  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][3] ([Intel XE#5775])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162055v8/bat-ptl-vm/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
-
-  * igt@xe_mmap@vram:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][4] ([Intel XE#5776])
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162055v8/bat-ptl-vm/igt@xe_mmap@vram.html
-
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][5] ([Intel XE#5777] / [Intel XE#7590])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162055v8/bat-ptl-vm/igt@xe_pat@pat-index-xehpc.html
-    - bat-bmg-vm:         NOTRUN -> [SKIP][6] ([Intel XE#1420] / [Intel XE#7590])
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162055v8/bat-bmg-vm/igt@xe_pat@pat-index-xehpc.html
-
-  * igt@xe_pat@pat-index-xelp:
-    - bat-bmg-vm:         NOTRUN -> [SKIP][7] ([Intel XE#2245] / [Intel XE#7590])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162055v8/bat-bmg-vm/igt@xe_pat@pat-index-xelp.html
-    - bat-ptl-vm:         NOTRUN -> [SKIP][8] ([Intel XE#5771] / [Intel XE#7590])
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162055v8/bat-ptl-vm/igt@xe_pat@pat-index-xelp.html
-
-  * igt@xe_pat@pat-index-xelpg:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][9] ([Intel XE#5780] / [Intel XE#7590])
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162055v8/bat-ptl-vm/igt@xe_pat@pat-index-xelpg.html
-    - bat-bmg-vm:         NOTRUN -> [SKIP][10] ([Intel XE#2236] / [Intel XE#7590])
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162055v8/bat-bmg-vm/igt@xe_pat@pat-index-xelpg.html
-
-  
-  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
-  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
-  [Intel XE#2245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245
-  [Intel XE#5764]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5764
-  [Intel XE#5771]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5771
-  [Intel XE#5775]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5775
-  [Intel XE#5776]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5776
-  [Intel XE#5777]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5777
-  [Intel XE#5780]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5780
-  [Intel XE#7482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482
-  [Intel XE#7590]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590
-
-
-Build changes
--------------
-
-  * Linux: xe-5191-6f2323e6938f804868ac52df9dfc6c73f59d224d -> xe-pw-162055v8
-
-  IGT_8947: e322bfd77da04314dd310da9a6cf0562b5751f1f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5191-6f2323e6938f804868ac52df9dfc6c73f59d224d: 6f2323e6938f804868ac52df9dfc6c73f59d224d
-  xe-pw-162055v8: 162055v8
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162055v8/index.html
-
---===============1499117211779499212==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Introduce Xe PCIe FLR (rev8)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/162055/">https://patchwork.freedesktop.org/series/162055/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162055v8/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162055v8/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5191-6f2323e6938f804868ac52df9dfc6c73f59d224d_BAT -&gt; xe-pw-162055v8_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 13)</h2>
-<p>Additional (2): bat-bmg-vm bat-ptl-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-162055v8_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_evict@evict-beng-small-cm:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162055v8/bat-ptl-vm/igt@xe_evict@evict-beng-small-cm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5764">Intel XE#5764</a>) +10 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_balancer@twice-parallel-basic:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162055v8/bat-ptl-vm/igt@xe_exec_balancer@twice-parallel-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482">Intel XE#7482</a>) +17 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162055v8/bat-ptl-vm/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5775">Intel XE#5775</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_mmap@vram:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162055v8/bat-ptl-vm/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5776">Intel XE#5776</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162055v8/bat-ptl-vm/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5777">Intel XE#5777</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-<li>bat-bmg-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162055v8/bat-bmg-vm/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp:</p>
-<ul>
-<li>bat-bmg-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162055v8/bat-bmg-vm/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162055v8/bat-ptl-vm/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5771">Intel XE#5771</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelpg:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162055v8/bat-ptl-vm/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5780">Intel XE#5780</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-<li>bat-bmg-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162055v8/bat-bmg-vm/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5191-6f2323e6938f804868ac52df9dfc6c73f59d224d -&gt; xe-pw-162055v8</li>
-</ul>
-<p>IGT_8947: e322bfd77da04314dd310da9a6cf0562b5751f1f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5191-6f2323e6938f804868ac52df9dfc6c73f59d224d: 6f2323e6938f804868ac52df9dfc6c73f59d224d<br />
-  xe-pw-162055v8: 162055v8</p>
-
-</body>
-</html>
-
---===============1499117211779499212==--
