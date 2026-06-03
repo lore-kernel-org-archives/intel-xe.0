@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A122CD6E64
-	for <intel-xe@archiver.kernel.org>; Wed,  3 Jun 2026 10:22:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 305B3CD6E55
+	for <intel-xe@archiver.kernel.org>; Wed,  3 Jun 2026 10:22:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E36FB10FB7C;
-	Wed,  3 Jun 2026 10:22:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7C3C10FB75;
+	Wed,  3 Jun 2026 10:22:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KSagzjdL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ok+11WMg";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36D9F10FB8E
- for <intel-xe@lists.freedesktop.org>; Wed,  3 Jun 2026 10:22:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9948910FB75
+ for <intel-xe@lists.freedesktop.org>; Wed,  3 Jun 2026 10:22:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780482133; x=1812018133;
+ t=1780482138; x=1812018138;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=SjKB7hcU0jVavlFwyBxJENIes9evQ/4KufW6V1ZBMn8=;
- b=KSagzjdLQizSCHCDa3yoPBD5JpFhqUXVucGIoSrQcH5II3fOsXh3Og/V
- WHpdyfkRFd6LZZOeVvTmuoQ+VknKMD1cbrUj87Mhj2A9c3qxDT0ubuV0c
- B5/pfompcxJaXpA3tp7VZD+gdGu36BzYeUj2D47/oVAIuxtTV7+GodkpA
- S72t8Z/S8KFES7tKKhbCayvlEe93wJCi+SBwtXxD7hm7q1etqFcuZGwlB
- /Z94Fy5GbS3Qou1aG4V+ZBWprc3m8yJEiptPc8lnpVIjyMVICx14iOMDZ
- DolZ1EMjMup6VYSZAtAvuiexNPKVsTVFxb+nrdgyguTEe7C8rQS88IlUX A==;
-X-CSE-ConnectionGUID: hk94ZqYlSd2GtVrV9PeNwg==
-X-CSE-MsgGUID: UWy0H44bR5eit0p5sPoeQA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11805"; a="81143254"
-X-IronPort-AV: E=Sophos;i="6.24,185,1774335600"; d="scan'208";a="81143254"
+ bh=pHaVYEoTc+BwB9MZne2+RW+binL1q5pGMdAUivG4gvY=;
+ b=Ok+11WMgwdg0k728S3BaSnTFkbp3cZATvgg5FIbEclbsIUWXp/a5uTqU
+ 2o15JnUOXCxrwCvC72qdIAkbZ3LiuIBAXYyo8cxep7gdbe7kMAO3xY/6L
+ MqjJWdmFHPreKHlfLdlwoyefwAiiX18/Z+XyFDS5IPY4/6VB7So4oICjM
+ J2018NV3uBFKD1kDPsEeygTwMXl6XAx+vG4F14PaxZ1q7gmDr4Hs8BudN
+ ur/BB2DgcPxLyiNcRleD/8LHT726Xonkarx5NKnzvTkmzZAn2b0ktv2XE
+ uQSkMedJ9+H6klkXhD/1JfH/iuCr/w/+hEI60cJ5zKZDsSzzu246G5kTm w==;
+X-CSE-ConnectionGUID: t+2v1tcDSS+CIxJ0cBoMog==
+X-CSE-MsgGUID: gOLcZLDIQMuU13twB7ao6Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11805"; a="81143266"
+X-IronPort-AV: E=Sophos;i="6.24,185,1774335600"; d="scan'208";a="81143266"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2026 03:22:13 -0700
-X-CSE-ConnectionGUID: +GQihetLRpORLqe5sWPglA==
-X-CSE-MsgGUID: BYEMmjiyTz2bVTEMC8mjfg==
+ 03 Jun 2026 03:22:18 -0700
+X-CSE-ConnectionGUID: Nuf8gpZLTOe9ZPP4mB/x2w==
+X-CSE-MsgGUID: VI459EIaRcGaT4pf6/2yyw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,185,1774335600"; d="scan'208";a="248495642"
+X-IronPort-AV: E=Sophos;i="6.24,185,1774335600"; d="scan'208";a="248495666"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by orviesa004.jf.intel.com with ESMTP; 03 Jun 2026 03:22:08 -0700
+ by orviesa004.jf.intel.com with ESMTP; 03 Jun 2026 03:22:13 -0700
 From: Raag Jadav <raag.jadav@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com,
@@ -49,9 +49,9 @@ Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com,
  jani.nikula@intel.com, lukasz.laguna@intel.com, zhanjun.dong@intel.com,
  lukas@wunner.de, daniele.ceraolospurio@intel.com, badal.nilawar@intel.com,
  Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v8 04/10] drm/xe/bo_evict: Introduce xe_bo_restore_map()
-Date: Wed,  3 Jun 2026 15:47:04 +0530
-Message-ID: <20260603101814.916948-5-raag.jadav@intel.com>
+Subject: [PATCH v8 05/10] drm/xe/exec_queue: Introduce xe_exec_queue_reinit()
+Date: Wed,  3 Jun 2026 15:47:05 +0530
+Message-ID: <20260603101814.916948-6-raag.jadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260603101814.916948-1-raag.jadav@intel.com>
 References: <20260603101814.916948-1-raag.jadav@intel.com>
@@ -71,111 +71,151 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-PCIe FLR clears all hardware state along with GGTT mappings of all
-existing bos. Iterate over early and late kernel bo list and restore
-their GGTT mappings in hardware, so that driver can make use of them
-during re-initialization after PCIe FLR.
+In preparation of usecases which require re-initializing exec queue
+after PCIe FLR, introduce xe_exec_queue_reinit() helper. All the exec
+queue LCRs already exist but the context is lost on PCIe FLR and needs
+re-initialization.
 
 Signed-off-by: Raag Jadav <raag.jadav@intel.com>
 Tested-by: Lukasz Laguna <lukasz.laguna@intel.com>
 ---
-v2: Add kernel doc (Matthew Brost)
+v2: Re-initialize migrate context (Matthew Brost)
+v6: Add IS_DGFX() and EXEC_QUEUE_FLAG_KERNEL asserts (Daniele)
 ---
- drivers/gpu/drm/xe/xe_bo_evict.c | 51 +++++++++++++++++++++++++++-----
- drivers/gpu/drm/xe/xe_bo_evict.h |  2 ++
- 2 files changed, 45 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/xe_exec_queue.c | 42 +++++++++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_exec_queue.h |  1 +
+ drivers/gpu/drm/xe/xe_lrc.c        | 17 ++++++++++++
+ drivers/gpu/drm/xe/xe_lrc.h        |  2 ++
+ 4 files changed, 58 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo_evict.c b/drivers/gpu/drm/xe/xe_bo_evict.c
-index 7661fca7f278..fa75140c88fe 100644
---- a/drivers/gpu/drm/xe/xe_bo_evict.c
-+++ b/drivers/gpu/drm/xe/xe_bo_evict.c
-@@ -189,14 +189,8 @@ int xe_bo_evict_all(struct xe_device *xe)
- 				     xe_bo_evict_pinned);
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 1b5ca3ce578a..91b241a7ab24 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -335,9 +335,8 @@ static void __xe_exec_queue_fini(struct xe_exec_queue *q)
+ 		xe_lrc_put(q->lrc[i]);
  }
  
--static int xe_bo_restore_and_map_ggtt(struct xe_bo *bo)
-+static int xe_bo_map_ggtt(struct xe_bo *bo)
+-static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
++static u32 xe_lrc_init_flags(struct xe_exec_queue *q, u32 exec_queue_flags)
  {
--	int ret;
--
--	ret = xe_bo_restore_pinned(bo);
--	if (ret)
--		return ret;
--
- 	if (bo->flags & XE_BO_FLAG_GGTT) {
- 		struct xe_tile *tile;
- 		u8 id;
-@@ -212,6 +206,41 @@ static int xe_bo_restore_and_map_ggtt(struct xe_bo *bo)
- 	return 0;
+-	int i, err;
+ 	u32 flags = 0;
+ 
+ 	/*
+@@ -360,6 +359,13 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
+ 	if (q->flags & EXEC_QUEUE_FLAG_DISABLE_STATE_CACHE_PERF_FIX)
+ 		flags |= XE_LRC_DISABLE_STATE_CACHE_PERF_FIX;
+ 
++	return flags;
++}
++
++static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
++{
++	int i, err;
++
+ 	err = q->ops->init(q);
+ 	if (err)
+ 		return err;
+@@ -383,8 +389,8 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
+ 
+ 			marker = xe_gt_sriov_vf_wait_valid_ggtt(q->gt);
+ 
+-			lrc = xe_lrc_create(q->hwe, q->vm, q->replay_state,
+-					    xe_lrc_ring_size(), q->msix_vec, flags);
++			lrc = xe_lrc_create(q->hwe, q->vm, q->replay_state, xe_lrc_ring_size(),
++					    q->msix_vec, xe_lrc_init_flags(q, exec_queue_flags));
+ 			if (IS_ERR(lrc)) {
+ 				err = PTR_ERR(lrc);
+ 				goto err_lrc;
+@@ -406,6 +412,34 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
+ 	return err;
  }
  
 +/**
-+ * xe_bo_restore_map() - Restore GGTT mappings of kernel bos
-+ * @xe: xe device
-+ *
-+ * PCIe FLR clears all hardware state along with GGTT mappings of all
-+ * existing bos. Iterate over early and late kernel bo list and restore
-+ * their GGTT mappings in hardware, so that driver can make use of them
-+ * during re-initialization after PCIe FLR.
++ * xe_exec_queue_reinit() - Re-initialize exec queue
++ * @q: exec queue to re-initialize
 + *
 + * Returns: 0 on success, negative error code otherwise.
 + */
-+int xe_bo_restore_map(struct xe_device *xe)
++int xe_exec_queue_reinit(struct xe_exec_queue *q)
 +{
-+	int ret;
++	int i, err;
 +
-+	ret = xe_bo_apply_to_pinned(xe, &xe->pinned.early.kernel_bo_present,
-+				    &xe->pinned.early.kernel_bo_present, xe_bo_map_ggtt);
-+	if (!ret)
-+		ret = xe_bo_apply_to_pinned(xe, &xe->pinned.late.kernel_bo_present,
-+					    &xe->pinned.late.kernel_bo_present, xe_bo_map_ggtt);
++	/* TODO: Re-initialize GSC and PXP queues */
++	xe_assert(gt_to_xe(q->gt), IS_DGFX(gt_to_xe(q->gt)));
++	/* Re-initialization only allowed for kernel queues */
++	xe_assert(gt_to_xe(q->gt), q->flags & EXEC_QUEUE_FLAG_KERNEL);
 +
-+	return ret;
-+}
++	/* Re-initialize submission backend */
++	q->ops->reinit_kernel(q);
 +
-+static int xe_bo_restore_and_map_ggtt(struct xe_bo *bo)
-+{
-+	int ret;
++	for (i = 0; i < q->width; i++) {
++		err = xe_lrc_reinit(q->lrc[i], q->hwe, q->vm, q->replay_state,
++				    q->msix_vec, xe_lrc_init_flags(q, q->flags));
++		if (err)
++			return err;
++	}
 +
-+	ret = xe_bo_restore_pinned(bo);
-+	if (ret)
-+		return ret;
-+
-+	return xe_bo_map_ggtt(bo);
++	return 0;
 +}
 +
  /**
-  * xe_bo_restore_early - restore early phase kernel BOs to VRAM
-  *
-@@ -270,7 +299,13 @@ int xe_bo_restore_late(struct xe_device *xe)
- 	return ret;
+  * xe_exec_queue_create() - Create an exec queue
+  * @xe: Xe device
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
+index a82d99bd77bc..445867d4da26 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue.h
+@@ -34,6 +34,7 @@ struct xe_exec_queue *xe_exec_queue_create_bind(struct xe_device *xe,
+ void xe_exec_queue_fini(struct xe_exec_queue *q);
+ void xe_exec_queue_destroy(struct kref *ref);
+ void xe_exec_queue_assign_name(struct xe_exec_queue *q, u32 instance);
++int xe_exec_queue_reinit(struct xe_exec_queue *q);
+ 
+ static inline struct xe_exec_queue *
+ xe_exec_queue_get_unless_zero(struct xe_exec_queue *q)
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index a4292a11391d..c425269893fe 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -1629,6 +1629,23 @@ static int xe_lrc_ctx_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct
+ 	return err;
  }
  
--static void xe_bo_pci_dev_remove_pinned(struct xe_device *xe)
 +/**
-+ * xe_bo_pci_dev_remove_pinned() - Unmap external bos
-+ * @xe: xe device
++ * xe_lrc_reinit() - Re-initialize LRC
++ * @lrc: Pointer to the LRC
++ * @hwe: Hardware Engine
++ * @vm: The VM (address space)
++ * @replay_state: GPU hang replay state
++ * @msix_vec: MSI-X interrupt vector (for platforms that support it)
++ * @init_flags: LRC initialization flags
 + *
-+ * Drop dma mappings of all external pinned bos.
++ * Returns: 0 on success, negative error code otherwise.
 + */
-+void xe_bo_pci_dev_remove_pinned(struct xe_device *xe)
++int xe_lrc_reinit(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct xe_vm *vm,
++		  void *replay_state, u16 msix_vec, u32 init_flags)
++{
++	return xe_lrc_ctx_init(lrc, hwe, vm, replay_state, msix_vec, init_flags);
++}
++
+ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct xe_vm *vm,
+ 		       void *replay_state, u32 ring_size, u16 msix_vec, u32 init_flags)
  {
- 	struct xe_tile *tile;
- 	unsigned int id;
-diff --git a/drivers/gpu/drm/xe/xe_bo_evict.h b/drivers/gpu/drm/xe/xe_bo_evict.h
-index e8385cb7f5e9..d4f5b87243e7 100644
---- a/drivers/gpu/drm/xe/xe_bo_evict.h
-+++ b/drivers/gpu/drm/xe/xe_bo_evict.h
-@@ -14,7 +14,9 @@ int xe_bo_notifier_prepare_all_pinned(struct xe_device *xe);
- void xe_bo_notifier_unprepare_all_pinned(struct xe_device *xe);
- int xe_bo_restore_early(struct xe_device *xe);
- int xe_bo_restore_late(struct xe_device *xe);
-+int xe_bo_restore_map(struct xe_device *xe);
+diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+index 0a3a611391ee..333b11f739ea 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.h
++++ b/drivers/gpu/drm/xe/xe_lrc.h
+@@ -56,6 +56,8 @@ struct xe_lrc_snapshot {
  
-+void xe_bo_pci_dev_remove_pinned(struct xe_device *xe);
- void xe_bo_pci_dev_remove_all(struct xe_device *xe);
+ struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
+ 			     void *replay_state, u32 ring_size, u16 msix_vec, u32 flags);
++int xe_lrc_reinit(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct xe_vm *vm,
++		  void *replay_state, u16 msix_vec, u32 init_flags);
+ void xe_lrc_destroy(struct kref *ref);
  
- int xe_bo_pinned_init(struct xe_device *xe);
+ /**
 -- 
 2.43.0
 
