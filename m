@@ -4,52 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB618CD6E55
-	for <intel-xe@archiver.kernel.org>; Wed,  3 Jun 2026 18:48:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4424CD6E55
+	for <intel-xe@archiver.kernel.org>; Wed,  3 Jun 2026 18:49:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE26D112282;
-	Wed,  3 Jun 2026 18:48:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C9BB112285;
+	Wed,  3 Jun 2026 18:49:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XqgiDJ87";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mnMz55oL";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E70F112282
- for <intel-xe@lists.freedesktop.org>; Wed,  3 Jun 2026 18:48:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E5CC2112285
+ for <intel-xe@lists.freedesktop.org>; Wed,  3 Jun 2026 18:49:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780512495; x=1812048495;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=PMVqXg5YbAQlv8EreuUAUSJl0WeC/kcRN3jhiwQ3s+A=;
- b=XqgiDJ87vFrX6hG7DLyJotIBXmDa1dAHt88pD5qroPCWtdTfzGPxkhZb
- +6JrfiyyymUquwON18wJyICfVRAfkOSxJKT07Guisk8sW0lfVGe2F7RNu
- sRX24nw7XNPsa6mmpnXMa4ZTxh9tdN700p+H0AqBM8zbKMDvOW5gzzG1S
- BEq1BRv8ukv52eK0Imfd4jVuuWZC/t8MzmHTHhz+CznhRypXbGXweklUD
- ueUQiWdzTrx6sm65+QHQb3K6ya2NxDneQv7saaejAm90A58Jh3ZrONAQU
- nRL/0Q5nuAgna5TsrpKACH0aPiS054cUc4BaV8gVJh3ZQfdRVhqbBq6eG g==;
-X-CSE-ConnectionGUID: ALxqDEoSS7qt+AOj60mu1Q==
-X-CSE-MsgGUID: aMMTcUX9T8y6mb9Mb3CkIA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11806"; a="68870987"
-X-IronPort-AV: E=Sophos;i="6.24,185,1774335600"; d="scan'208";a="68870987"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2026 11:48:14 -0700
-X-CSE-ConnectionGUID: 4/oPAjZPT4aXOBIs+DdwMA==
-X-CSE-MsgGUID: 0cyFBcMbRZ+Is3kC0aLOBg==
+ t=1780512588; x=1812048588;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=lpxf46/aQbOanKb9oix257rklLipzRlAELgiZOzXShg=;
+ b=mnMz55oLNEeg9CGFc5Jdt/gjbi6GBoCxSulR1YrObZ+dE63pDkD/Sy0W
+ 2Ll0WHqYDeAfaL5rdZpKe98PJlxBg+Wd7qGJ8VbSIPrapjLVBsPCVxW7a
+ qv7pc0Df2REeE6wcqeG1P6XMMlyfivYiEjOBqpPEIGg7l9Wf7jruw8T33
+ i9ggciONYt3BH1n9UKMz5D8LoRcxR3dxUe2gSiepSAe6e3nqlh0Zuj392
+ QmmtF3RHX+5Jm6hhD49ig0HGNVl1N51w+MCMX5R9yt6IULCdshyaGSZtl
+ JAd3VeR+6HBqvpyGNISVa+GkPZW40RWPmXf0D4ctGhLNPIYdMnc8b9ljS w==;
+X-CSE-ConnectionGUID: waE+LKBnRxy527GtPvP3bg==
+X-CSE-MsgGUID: Xhzy8VFpQ9Gm88fAy79V0A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11806"; a="81239302"
+X-IronPort-AV: E=Sophos;i="6.24,185,1774335600"; d="scan'208";a="81239302"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2026 11:49:48 -0700
+X-CSE-ConnectionGUID: WigN/RBNQuyWHF6GE4m3/w==
+X-CSE-MsgGUID: Gd7hTf+YSdKxGbFsqhYcFA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,185,1774335600"; d="scan'208";a="241332997"
-Received: from tilak-z690i-a-ultra-plus.iind.intel.com ([10.190.239.38])
- by fmviesa007.fm.intel.com with ESMTP; 03 Jun 2026 11:48:12 -0700
-From: tilak.tirumalesh.tangudu@intel.com
-To: tilak.tirumalesh.tangudu@intel.com, matthew.d.roper@intel.com,
- vinay.belgaumkar@intel.com, tejas.upadhyay@intel.com,
- balasubramani.vivekanandan@intel.com, intel-xe@lists.freedesktop.org
-Subject: [PATCH] drm/xe: Add wa_14025941587 to xe2, xe3 and xe3p platforms
-Date: Thu,  4 Jun 2026 00:17:52 +0530
-Message-ID: <20260603184752.3377539-1-tilak.tirumalesh.tangudu@intel.com>
-X-Mailer: git-send-email 2.46.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-IronPort-AV: E=Sophos;i="6.24,185,1774335600"; d="scan'208";a="267980679"
+Received: from apoorva1-mobl1.amr.corp.intel.com (HELO adixit-MOBL3.intel.com)
+ ([10.125.34.170])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2026 11:49:46 -0700
+Date: Wed, 03 Jun 2026 11:49:44 -0700
+Message-ID: <87h5nj792v.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 7/9] drm/xe/rtp: (De-)whitelist OA registers for all hwe's
+ for a gt
+In-Reply-To: <ah9dlDMzFrYQf5sQ@soc-5CG1426VCC.clients.intel.com>
+References: <20260518234716.1540123-1-ashutosh.dixit@intel.com>	<20260518234716.1540123-8-ashutosh.dixit@intel.com>	<ahdm2NdnwBwdYnjU@soc-5CG1426VCC.clients.intel.com>	<874ijpn7im.wl-ashutosh.dixit@intel.com>	<ah9dlDMzFrYQf5sQ@soc-5CG1426VCC.clients.intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/30.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,123 +70,150 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
+On Tue, 02 Jun 2026 15:47:48 -0700, Umesh Nerlige Ramappa wrote:
+>
+> On Fri, May 29, 2026 at 04:03:13PM -0700, Dixit, Ashutosh wrote:
+> > On Wed, 27 May 2026 14:49:12 -0700, Umesh Nerlige Ramappa wrote:
+> >>
+> >
+> > Hi Umesh,
+> >
+> >> On Mon, May 18, 2026 at 04:47:14PM -0700, Ashutosh Dixit wrote:
+> >> > Whitelist or de-whitelist OA registers for all hwe's on the gt on which the
+> >> > OA stream is opened. This simplifies the case where an oa unit has 0
+> >> > attached hwe's (but which monitors OA events on the associated GT).
+> >> >
+> >> > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> >> > ---
+> >> > drivers/gpu/drm/xe/xe_reg_whitelist.c | 32 ++++++++++++++++++++++++++-
+> >> > drivers/gpu/drm/xe/xe_reg_whitelist.h |  4 ++++
+> >> > 2 files changed, 35 insertions(+), 1 deletion(-)
+> >> >
+> >> > diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+> >> > index 0d2cf3d964a51..50b34c5008df7 100644
+> >> > --- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
+> >> > +++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+> >> > @@ -229,7 +229,7 @@ void xe_reg_whitelist_process_engine(struct xe_hw_engine *hwe)
+> >> >	whitelist_apply_to_hwe(hwe, &hwe->oa_whitelist, &hwe->reg_sr, nonpriv_slots);
+> >> > }
+> >> >
+> >> > -__maybe_unused static void __whitelist_oa_regs(struct xe_hw_engine *hwe, bool whitelist)
+> >> > +static void __whitelist_oa_regs(struct xe_hw_engine *hwe, bool whitelist)
+> >> > {
+> >> >	struct xe_reg_sr_entry *entry;
+> >> >	unsigned long reg;
+> >> > @@ -244,6 +244,36 @@ __maybe_unused static void __whitelist_oa_regs(struct xe_hw_engine *hwe, bool wh
+> >> >	xe_reg_sr_apply_mmio(&hwe->oa_sr, hwe->gt);
+> >> > }
+> >> >
+> >> > +/**
+> >> > + * xe_reg_whitelist_oa_regs - whitelist oa registers for gt
+> >> > + * @gt: gt to whitelist oa registers for
+> >> > + *
+> >> > + * Whitelist OA registers by resetting RING_FORCE_TO_NONPRIV_DENY
+> >> > + */
+> >> > +void xe_reg_whitelist_oa_regs(struct xe_gt *gt)
+> >> > +{
+> >> > +	struct xe_hw_engine *hwe;
+> >> > +	enum xe_hw_engine_id id;
+> >> > +
+> >> > +	for_each_hw_engine(hwe, gt, id)
+> >> > +		__whitelist_oa_regs(hwe, true);
+> >>
+> >> I think we should only apply the whitelist to the hwe that will use this
+> >> specific OA unit. That will help do away with the ref counting in patch 9
+> >> here.
+> >
+> > No, if we do this we will need to introduce per hwe refcounts (instead of
+> > per gt refcounts, as done in Patch 9).
+> >
+> > Each OA unit has a set of attached hwe's. Then there are OA units such as
+> > oam-sag and mertoa, which don't have any attached hwe's. For these we allow
+> > mmio triggers to be submitted on any hwe's attached to that gt. Also some
+> > hwe's like copy engines are common between OA units. Since multiple OA
+> > streams might be open simultaneously, because of these reasons, we'd have
+> > to introduce per hwe refcounts.
+> >
+> > Also, if the concern is that we are opening up all hwe's on a gt, rather
+> > than hwe's attached to the OA unit on which an OA stream is opened, I do
+> > not consider this a serious issue, because after all registers are being
+> > whitlisted by an explicit permission from root. The root, e.g. is free to
+> > load up a custom module which can whitelist whatever they want.
+> >
+> > So, if we want to implement whitelisting only hwe's attached to the an OA
+> > unit (including OA units which don't have any hwe's attached, so would
+> > include all hwe's on a gt), this is substantial increase in code
+> > complexity, that will need a separate series of patches, over and above the
+> > current series.
+> >
+> > So if we do this, that's a separate set of patches. Since the current
+> > series is already a big improvement in closing down unconditional OA
+> > register whitelisting, I'd say let's get this reviewed and merged first and
+> > then we debate if we at all need to restrict the whitelisting further and
+> > then do that if we need to, but I really don't think it is needed.
+>
+> I see what you are saying w.r.t. simplicity and reference tracking. At the
+> same time I think it's wasteful to whitelist OAM_TRIGGER from ccs/rcs or
+> and OAG register from media CS.
 
-Avoid IDLEDLY timer programming lessthan 5 micro secs.
-Apply wa_14025941587 to Graphics Versions 20.01 to 35.11
-and Media Versions 13.01 to 35.03
+Given that media is a separate gt, these scenarios cannot happen.
 
-v2: Use xe_rtp_match_not_sriov_vf, move to local variable
-    Remove warn and other knits            - Matt R
+>
+> My intention is to use the NONPRIV slots sparingly. If not, we should have
+> some sort of fallback for UMDs if we run out of NONPRIV slots (like provide
+> a query that tells them whether whitelist is supported on an OA unit or
+> not).
+>
+> We can discuss after this series is concluded.
 
-v3: Add verbose comment - Tejas
+Sure, but note that we didn't even use up 12 nonpriv slots, and should be
+able to increase them to 20. And any such optimization/query can be
+postponed till/if they are really needed.
 
-v4: Restore IDLE_DLY register on engine reset.
-    Add it to GUC save-restore list. -Vivek
+Thanks!
 
-v5: Extend WA to Media Versions 13.01 to 35.03 - Vinay
-v6: Avoid clearing inhibit switch - Bala
-    Refactor code accordingly by adding idle_reg_val.
-
-Signed-off-by: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_ads.c    |  2 +-
- drivers/gpu/drm/xe/xe_hw_engine.c  | 49 ++++++++++++++++++++++++------
- drivers/gpu/drm/xe/xe_wa_oob.rules |  2 ++
- 3 files changed, 42 insertions(+), 11 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-index c98454545a85..2080e0e650eb 100644
---- a/drivers/gpu/drm/xe/xe_guc_ads.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-@@ -768,7 +768,7 @@ static unsigned int guc_mmio_regset_write(struct xe_guc_ads *ads,
- 		}
- 	}
- 
--	if (XE_GT_WA(hwe->gt, 16023105232))
-+	if (XE_GT_WA(hwe->gt, 16023105232) || XE_GT_WA(hwe->gt, 14025941587))
- 		guc_mmio_regset_write_one(ads, regset_map,
- 					  RING_IDLEDLY(hwe->mmio_base),
- 					  count++);
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 98265293f2dc..03e977f4eb24 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -578,25 +578,54 @@ static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
- static void adjust_idledly(struct xe_hw_engine *hwe)
- {
- 	struct xe_gt *gt = hwe->gt;
--	u32 idledly, maxcnt;
-+	u32 idledly, idledly_reg_val, maxcnt;
- 	u32 idledly_units_ps = 8 * gt->info.timestamp_base;
- 	u32 maxcnt_units_ns = 640;
--	bool inhibit_switch = 0;
-+	bool inhibit_switch = false;
-+	bool wa_applied = false;
- 
--	if (!IS_SRIOV_VF(gt_to_xe(hwe->gt)) && XE_GT_WA(gt, 16023105232)) {
--		idledly = xe_mmio_read32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base));
-+	if ((!IS_SRIOV_VF(gt_to_xe(hwe->gt)) && XE_GT_WA(gt, 16023105232)) ||
-+	    XE_GT_WA(gt, 14025941587)) {
-+		u32 mincnt_idledly_ns = 5000;
-+
-+		idledly_reg_val = xe_mmio_read32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base));
- 		maxcnt = xe_mmio_read32(&gt->mmio, RING_PWRCTX_MAXCNT(hwe->mmio_base));
- 
--		inhibit_switch = idledly & INHIBIT_SWITCH_UNTIL_PREEMPTED;
--		idledly = REG_FIELD_GET(IDLE_DELAY, idledly);
-+		inhibit_switch = idledly_reg_val & INHIBIT_SWITCH_UNTIL_PREEMPTED;
-+		idledly = REG_FIELD_GET(IDLE_DELAY, idledly_reg_val);
- 		idledly = DIV_ROUND_CLOSEST(idledly * idledly_units_ps, 1000);
- 		maxcnt = REG_FIELD_GET(IDLE_WAIT_TIME, maxcnt);
- 		maxcnt *= maxcnt_units_ns;
- 
--		if (xe_gt_WARN_ON(gt, idledly >= maxcnt || inhibit_switch)) {
--			idledly = DIV_ROUND_CLOSEST(((maxcnt - 1) * 1000),
--						    idledly_units_ps);
--			xe_mmio_write32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base), idledly);
-+		/* Wa_14025941587: applied prior to Wa_16023105232,
-+		 * as the latter has higher priority, although conflict
-+		 * is not expected.
-+		 */
-+		if (XE_GT_WA(gt, 14025941587) &&
-+		    idledly < mincnt_idledly_ns) {
-+			idledly = mincnt_idledly_ns;
-+			wa_applied = true;
-+		}
-+
-+		if (XE_GT_WA(gt, 16023105232) &&
-+		    xe_gt_WARN_ON(gt, idledly >= maxcnt || inhibit_switch)) {
-+			idledly = (maxcnt - 1);
-+			wa_applied = true;
-+			/* inhibit_switch override to keep
-+			 * semantics of Wa_16023105232
-+			 */
-+			if (inhibit_switch)
-+				idledly_reg_val &= ~INHIBIT_SWITCH_UNTIL_PREEMPTED;
-+		}
-+
-+		if (wa_applied) {
-+			idledly_reg_val &= ~IDLE_DELAY;
-+			idledly_reg_val |= REG_FIELD_PREP(IDLE_DELAY,
-+						 DIV_ROUND_CLOSEST(idledly * 1000,
-+								   idledly_units_ps));
-+			xe_mmio_write32(&gt->mmio,
-+					RING_IDLEDLY(hwe->mmio_base),
-+					idledly_reg_val);
- 		}
- 	}
- }
-diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index f8a185103b80..5d5041168fa8 100644
---- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-@@ -65,3 +65,5 @@
- 
- 14025883347	MEDIA_VERSION_RANGE(1301, 3503)
- 		GRAPHICS_VERSION_RANGE(2004, 3005)
-+14025941587    GRAPHICS_VERSION_RANGE(2001, 3511), FUNC(xe_rtp_match_not_sriov_vf)
-+	       MEDIA_VERSION_RANGE(1301, 3503), FUNC(xe_rtp_match_not_sriov_vf)
--- 
-2.46.0
-
+> >
+> >> > +}
+> >> > +
+> >> > +/**
+> >> > + * xe_reg_dewhitelist_oa_regs - dewhitelist oa registers for gt
+> >> > + * @gt: gt to dewhitelist oa registers for
+> >> > + *
+> >> > + * Dewhitelist OA registers by setting RING_FORCE_TO_NONPRIV_DENY
+> >> > + */
+> >> > +void xe_reg_dewhitelist_oa_regs(struct xe_gt *gt)
+> >> > +{
+> >> > +	struct xe_hw_engine *hwe;
+> >> > +	enum xe_hw_engine_id id;
+> >> > +
+> >> > +	for_each_hw_engine(hwe, gt, id)
+> >> > +		__whitelist_oa_regs(hwe, false);
+> >> > +}
+> >> > +
+> >> > /**
+> >> >  * xe_reg_whitelist_print_entry - print one whitelist entry
+> >> >  * @p: DRM printer
+> >> > diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.h b/drivers/gpu/drm/xe/xe_reg_whitelist.h
+> >> > index 3b64b42fe96e9..e1eb1b7d5480b 100644
+> >> > --- a/drivers/gpu/drm/xe/xe_reg_whitelist.h
+> >> > +++ b/drivers/gpu/drm/xe/xe_reg_whitelist.h
+> >> > @@ -9,12 +9,16 @@
+> >> > #include <linux/types.h>
+> >> >
+> >> > struct drm_printer;
+> >> > +struct xe_gt;
+> >> > struct xe_hw_engine;
+> >> > struct xe_reg_sr;
+> >> > struct xe_reg_sr_entry;
+> >> >
+> >> > void xe_reg_whitelist_process_engine(struct xe_hw_engine *hwe);
+> >> >
+> >> > +void xe_reg_whitelist_oa_regs(struct xe_gt *gt);
+> >> > +void xe_reg_dewhitelist_oa_regs(struct xe_gt *gt);
+> >> > +
+> >> > void xe_reg_whitelist_print_entry(struct drm_printer *p, unsigned int indent,
+> >> >				  u32 reg, struct xe_reg_sr_entry *entry);
+> >> >
+> >> > --
+> >> > 2.54.0
+> >> >
