@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACE26CD6E64
-	for <intel-xe@archiver.kernel.org>; Wed,  3 Jun 2026 10:22:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CD2CCD6E55
+	for <intel-xe@archiver.kernel.org>; Wed,  3 Jun 2026 10:28:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70CF310FB7D;
-	Wed,  3 Jun 2026 10:22:45 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O9LzyxHY";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B25B310FB7C
- for <intel-xe@lists.freedesktop.org>; Wed,  3 Jun 2026 10:22:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780482163; x=1812018163;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=3LPn2GhGcIEi26mbF/Bw9Tn/ukiJnkfq5bbnRyj7ku8=;
- b=O9LzyxHYz+rSU+nSmZphRKedkViB7iYOCi9p9QeZmMVoLqJA2ly48kmi
- /IWQTyBxTRuoASa92SFumxu+FNY1IG4CWg/srHMW34s0orL1t7PTECQUR
- 35b5qMvxTUId3WQd7KTrlOuUgT2I4jjIOJZPLNNslQYFqox64X8bVPyC8
- X/FQTbr8iaWL8MJFiFpsrNAj3In3pELisv+VAsrqvOcVYhx42SRMmyKbx
- MZ6McMkMmpb4I738xTmtxsstq77MKi5qW8bT8EEdtN8l8tFns/Im6ili2
- hX7A2NEHIYjzwqKedG3K7E5LoWFchy/Z+RSdLXrnsMApYsV34OkIZWm3D w==;
-X-CSE-ConnectionGUID: 2cQc+7/sTzmpDoTZmOn8Tw==
-X-CSE-MsgGUID: j/hlKjs/TCGgys/5orAJ3w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11805"; a="81143333"
-X-IronPort-AV: E=Sophos;i="6.24,185,1774335600"; d="scan'208";a="81143333"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2026 03:22:43 -0700
-X-CSE-ConnectionGUID: nGTabt/9SmqMMXWO1imufQ==
-X-CSE-MsgGUID: PNT9iAZGToCtz+UPie2Knw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,185,1774335600"; d="scan'208";a="248495710"
-Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by orviesa004.jf.intel.com with ESMTP; 03 Jun 2026 03:22:39 -0700
-From: Raag Jadav <raag.jadav@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com,
- thomas.hellstrom@linux.intel.com, riana.tauro@intel.com,
- michal.wajdeczko@intel.com, matthew.d.roper@intel.com,
- michal.winiarski@intel.com, matthew.auld@intel.com, dev@lankhorst.se,
- jani.nikula@intel.com, lukasz.laguna@intel.com, zhanjun.dong@intel.com,
- lukas@wunner.de, daniele.ceraolospurio@intel.com, badal.nilawar@intel.com,
- Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v8 10/10] drm/xe/doc: Wire up PCI Error Handling
-Date: Wed,  3 Jun 2026 15:47:10 +0530
-Message-ID: <20260603101814.916948-11-raag.jadav@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260603101814.916948-1-raag.jadav@intel.com>
-References: <20260603101814.916948-1-raag.jadav@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F96710FB8C;
+	Wed,  3 Jun 2026 10:28:20 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B085710FB8C;
+ Wed,  3 Jun 2026 10:28:18 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Introduce_Xe_PCIe_FLR_=28?=
+ =?utf-8?q?rev8=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Raag Jadav" <raag.jadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 03 Jun 2026 10:28:18 -0000
+Message-ID: <178048249871.39181.10051346875581192676@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260603101814.916948-1-raag.jadav@intel.com>
+In-Reply-To: <20260603101814.916948-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,41 +36,56 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Wire up PCI Error Handling documentation.
+== Series Details ==
 
-Signed-off-by: Raag Jadav <raag.jadav@intel.com>
----
- Documentation/gpu/xe/index.rst        | 1 +
- Documentation/gpu/xe/xe_pci_error.rst | 8 ++++++++
- 2 files changed, 9 insertions(+)
- create mode 100644 Documentation/gpu/xe/xe_pci_error.rst
+Series: Introduce Xe PCIe FLR (rev8)
+URL   : https://patchwork.freedesktop.org/series/162055/
+State : warning
 
-diff --git a/Documentation/gpu/xe/index.rst b/Documentation/gpu/xe/index.rst
-index 874ffcb6da3a..34470ea5a32f 100644
---- a/Documentation/gpu/xe/index.rst
-+++ b/Documentation/gpu/xe/index.rst
-@@ -30,3 +30,4 @@ DG2, etc is provided to prototype the driver.
-    xe-drm-usage-stats.rst
-    xe_configfs
-    xe_gt_stats
-+   xe_pci_error
-diff --git a/Documentation/gpu/xe/xe_pci_error.rst b/Documentation/gpu/xe/xe_pci_error.rst
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 046418c1b04c831019434652ac522c307a4a3aac
+Author: Raag Jadav <raag.jadav@intel.com>
+Date:   Wed Jun 3 15:47:10 2026 +0530
+
+    drm/xe/doc: Wire up PCI Error Handling
+    
+    Wire up PCI Error Handling documentation.
+    
+    Signed-off-by: Raag Jadav <raag.jadav@intel.com>
++ /mt/dim checkpatch eb42f7e0ec818a6be55482d88145d757acf3e093 drm-intel
+f0513d2c1eae drm/xe/uc_fw: Allow re-initializing firmware
+0b7a3ff73e66 drm/xe/guc_submit: Introduce guc_exec_queue_reinit_kernel()
+c25a03a3c30b drm/xe/gt: Introduce FLR helpers
+1c9d1475cc75 drm/xe/bo_evict: Introduce xe_bo_restore_map()
+750759aa6cbb drm/xe/exec_queue: Introduce xe_exec_queue_reinit()
+716fab3524d9 drm/xe/migrate: Introduce xe_migrate_reinit()
+f6d0d0bb2221 drm/xe/pm: Introduce xe_device_suspend/resume()
+9f7893c3b7e3 drm/xe: Improve wedged state management
+39891ee3190b drm/xe/pci: Introduce PCIe FLR
+-:68: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#68: 
 new file mode 100644
-index 000000000000..93f724c555bc
---- /dev/null
-+++ b/Documentation/gpu/xe/xe_pci_error.rst
-@@ -0,0 +1,8 @@
-+.. SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+==================
-+PCI Error Handling
-+==================
-+
-+.. kernel-doc:: drivers/gpu/drm/xe/xe_pci_error.c
-+   :doc: PCI Error Handling
--- 
-2.43.0
+
+total: 0 errors, 1 warnings, 0 checks, 157 lines checked
+046418c1b04c drm/xe/doc: Wire up PCI Error Handling
+-:20: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#20: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 12 lines checked
+
 
