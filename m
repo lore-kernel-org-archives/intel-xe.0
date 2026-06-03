@@ -4,159 +4,162 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 382C0CD6E55
-	for <intel-xe@archiver.kernel.org>; Wed,  3 Jun 2026 13:44:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 687D2CD6E57
+	for <intel-xe@archiver.kernel.org>; Wed,  3 Jun 2026 13:47:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD84810FE5B;
-	Wed,  3 Jun 2026 13:44:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0299410FE71;
+	Wed,  3 Jun 2026 13:47:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mE0Xtde7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YqhQySG0";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2865B10FE5B;
- Wed,  3 Jun 2026 13:44:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 396D310FE70;
+ Wed,  3 Jun 2026 13:47:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780494266; x=1812030266;
+ t=1780494466; x=1812030466;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=WpBuct7SSggJZEuv+dEZSeFHBXQgE7rsdVltr+OQi14=;
- b=mE0Xtde7+BRVQh+irJWTQmM+5GN7eIvYj7Lk3VIMupAQ2IX7EjUOJlhF
- w/FS1B6mNBPWifCqYVVQ9rSPKxJVKlzQ/Db9WioL3SfaZ6erEVRtMEJVy
- YlX8Vt/HIdMx0vzGCHzbFLZO3KsVbrj6hyuF9cpyFYOuqY+0WlaH0t97Z
- DuBDYeGiMLSvhoDvxp1jc4oA5LCCfDUQvZ42Br/0T8Xf727DnRm8GuQLL
- 3zduX/wMPLhRmfOFesWoTHRKa6RHm23kfXzY93AFoDvlt+HZZTYJdehuK
- +ZotwaE1b5uzYjpzfi89w69lDYz6vGCwcA5vjLP46ZB15l0I/oMCeaLhx A==;
-X-CSE-ConnectionGUID: lZpP9ilFSiaWcUAg7qL2SQ==
-X-CSE-MsgGUID: 58C79iDuTQ2rDOEZ3081EQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11805"; a="85158080"
-X-IronPort-AV: E=Sophos;i="6.24,185,1774335600"; d="scan'208";a="85158080"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2026 06:44:26 -0700
-X-CSE-ConnectionGUID: Ijk+TqagQqOLloq+4Y6UdA==
-X-CSE-MsgGUID: wstHMg3hQN6geNbZpRgT3Q==
+ bh=wJLxj+t3vPUrWwGiF3M/tgt4pphxhaOGoxlazz4gkhw=;
+ b=YqhQySG0bms+EIYzVBNRHiI4a1oIdkTQ1uQTsFtXTxm4Hti/C1z6AEg3
+ defRYMOaW4w/RKKNJinY2Z0sXGDVXtnXSaHEE199HwyGEtjc44ZmPs6nh
+ nRXZcEMTquopn6HHeAzvq5QaquxDn3oDAQdoldqYIXsyw8bdhBuBCG+L6
+ 5AYjN2PmJ2X1++Hg+9dJO3ITHnXwRA9Q8CIcAxL0bobQ2KURTabfM5DvN
+ RmGCQ1QbBWNYwnrpwqY4jgmyFEsdwOyzyS60Q9zDI630J/K/nHLJXGIXO
+ Mf9jKADcLjhlx63TwOYTdDN/RT/1/GVA+SF+xLuiRxFvujHVxsyQGgXF7 A==;
+X-CSE-ConnectionGUID: v8OgYOdNQzG3j4DeB+EVnA==
+X-CSE-MsgGUID: 4aPtVkHsRlmyouJ5uAj5nQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11805"; a="81364748"
+X-IronPort-AV: E=Sophos;i="6.24,185,1774335600"; d="scan'208";a="81364748"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2026 06:47:46 -0700
+X-CSE-ConnectionGUID: jF0dyWvuRpCUbKQpS+QjcQ==
+X-CSE-MsgGUID: vCksp7kcTyOK5zIwIFJzJQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,185,1774335600"; d="scan'208";a="239770853"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2026 06:44:25 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.24,185,1774335600"; d="scan'208";a="248553315"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2026 06:47:45 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 3 Jun 2026 06:44:24 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.37; Wed, 3 Jun 2026 06:47:43 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 3 Jun 2026 06:44:24 -0700
-Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.19) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Wed, 3 Jun 2026 06:47:43 -0700
+Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.66) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 3 Jun 2026 06:44:23 -0700
+ 15.2.2562.37; Wed, 3 Jun 2026 06:47:43 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=HxEmFm2qLYLi46a/Y4Y/kKGQDUH1rnTyrjAd+MJBWoBlK3KKeEDbtfNoyuz0c/8uL7gJVWn60xTSbbtayJxedCkM+9pi7cnsMa7Vt4uu5NlGAqdB2ML155XckIZ4g9YLoeqX0ooJ2RvDysb3wF6apkSxoTMaYd6DIPfTgD8RUCy8rU1/YyJ6sEXC3BZeoZ7TvEbk+d/6Dwx03Z7/wZ/s7baHvowVCfJ39zJRW+5ZpDkAmbBBXLhXi8D5Plqkyc+hujT4WBsYImvV7GAhBwun7BqHE6fEomypKB7m1TJImnsDMviSoqKT3fVPkd2/15fBVE6jjPULmEPsnKXdrAnhtg==
+ b=aRzFJL9EN4JOThL4/LSpwd4i23IY+hA7bn6m8a3HwX+DhSKUiWgQV5rr8GcFUOFy31AkFOZiIMlK7FsmkQKKZVHeghgl1TsgHtjORvs+SKc+z1rS1OGT/8m2HucSJCmKriFMe2qMMpeYb5QjvC3dkHwf8mEi2Uv+Vc013II93QAEXU3N3Le1kTwgDF42FmVbpZYQ6PslUXqmH0D0PxXgAMv6bQlihTcp+djrAaccmugxiq3jlwZaPRueE5vrYuibMBRsWBVTiz6Y8D/2CWKsmDzea9mi+0oMVi7bQJDEu0NXmwzgedOKdnuFgNkY4Dwuk6IF3P4mExOkLUcKiEle4Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QfedpMX1P9zwALzbBsFe9XiiZogjdtra/oEsDlACAtI=;
- b=Bf9UbIW/XVVRuIJNTC9oAOAXp7Afk/UmadubH2FPqX6UZa9Eo0hRv7hsLbVT82PPgxeWZtwSavAqiMEJGFZiNRCsb/W2D0MzHUigO78FXbMQHbOsCid91Ax18FIXbGy8TgqGIKtDQh2In8DRIxV2tcVOJGi23Sn8eC5lYfPUPYOwfvte3OrdWZaFRv63S1mDS5vcG1kukt5V/hArQ/J6IUCZmCO0Lu52nIgNMy93ocdQWeTDk2J8kTZExzozsG77jut4FofdJH9VCA5/JF+u9q19hTA7c6kGpcnWIgkH9AZB8Wx0X035/NYIqz3VGupxq5hZ02+zxOkslLLvnYLR2g==
+ bh=H4JQPl8YLmRUbkYrY15T0zWk/2lt8puP5BzgKiUDX9Y=;
+ b=qNKRMn+5R8IXfDA+8x+vyQyGQOpddGpH/dLiN7R3QXyd/71/YDDLqOIm+dNxBLwls8O0y7jBPMseL35NN1Fjjpa4fbVlg2TD4rDAIUk6I3o1I8AvgV2YnXG+Nf73LWiJqSCX1rnE4fCkFKPgiUldshAl4aCbXmnqL9z7ypnmGrw5/Mxx7w+8tgYWiwvqURrH/BbSjpWEp1gX8/AMEPXRB6vvRZKkL4gGVq8s86L6oT0BaFeoOJTi+mI1yIWdBUu9LtyHDTWMeg31nQYuvHVSefP/OQNAY3yH+18aNguyNNxQIRid9g43uIfsAJRugeza7iz5+sLEeC8VGhAxcYGMJA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CO1PR11MB5073.namprd11.prod.outlook.com (2603:10b6:303:92::23)
- by CHAPR11MB9656.namprd11.prod.outlook.com (2603:10b6:610:2fe::10)
- with Microsoft SMTP Server (version=TLS1_2,
+ by DM4PR11MB7208.namprd11.prod.outlook.com (2603:10b6:8:110::18) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.7; Wed, 3 Jun 2026
- 13:44:21 +0000
+ 13:47:36 +0000
 Received: from CO1PR11MB5073.namprd11.prod.outlook.com
  ([fe80::a153:939c:df8c:f4fe]) by CO1PR11MB5073.namprd11.prod.outlook.com
  ([fe80::a153:939c:df8c:f4fe%4]) with mapi id 15.21.0092.006; Wed, 3 Jun 2026
- 13:44:21 +0000
-Date: Wed, 3 Jun 2026 09:44:17 -0400
+ 13:47:36 +0000
+Date: Wed, 3 Jun 2026 09:47:30 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-CC: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>, "Maarten
- Lankhorst" <maarten.lankhorst@linux.intel.com>
-Subject: Re: [PATCH] drm/xe/ggtt: use full-range drm_mm with reserved nodes
- on PF
-Message-ID: <aiAvsds-BPvw-Lu6@intel.com>
-References: <20260527144527.3701844-2-rodrigo.vivi@intel.com>
- <c5b06289-f353-47eb-a918-102288fac7e9@intel.com>
- <ahjBn2vYp5dppkYp@intel.com> <ahlvesSbbOdk47m3@intel.com>
- <ahn_O3ZSTE2Th-tz@intel.com> <aiAp7R00bY-pgIL0@intel.com>
+To: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <nirmoy.das@intel.com>, <umesh.nerlige.ramappa@intel.com>,
+ <thomas.hellstrom@linux.intel.com>, <matthew.brost@intel.com>,
+ <niranjana.vishwanathapura@intel.com>, <thomas.hellstrom@intel.com>,
+ <fei.yang@intel.com>, <himal.prasad.ghimiray@intel.com>,
+ <matthew.d.roper@intel.com>, <maarten.lankhorst@intel.com>,
+ <joonas.lahtinen@intel.com>, <matthew.auld@intel.com>,
+ <stable@vger.kernel.org>
+Subject: Re: [RFC PATCH 2/3] drm/sched: fix drm_sched_tdr_queue_imm to not
+ corrupt timeout value
+Message-ID: <aiAwcnWbsxUIMKbI@intel.com>
+References: <20260603120641.473434-4-sanjay.kumar.yadav@intel.com>
+ <20260603120641.473434-5-sanjay.kumar.yadav@intel.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <aiAp7R00bY-pgIL0@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0244.namprd03.prod.outlook.com
- (2603:10b6:a03:3a0::9) To CO1PR11MB5073.namprd11.prod.outlook.com
+In-Reply-To: <20260603120641.473434-5-sanjay.kumar.yadav@intel.com>
+X-ClientProxiedBy: SJ0PR13CA0078.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c4::23) To CO1PR11MB5073.namprd11.prod.outlook.com
  (2603:10b6:303:92::23)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PR11MB5073:EE_|CHAPR11MB9656:EE_
-X-MS-Office365-Filtering-Correlation-Id: 14fa9dd8-ef1d-4f1b-189b-08dec1763741
+X-MS-TrafficTypeDiagnostic: CO1PR11MB5073:EE_|DM4PR11MB7208:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4887ce9e-0f03-4e7f-2645-08dec176ab5a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|22082099003|18002099003|56012099006|4143699003|5023799004|11063799006;
-X-Microsoft-Antispam-Message-Info: wNi84lxKODbRhBlDNoHxOYlJ/V033HOmT7s6hkkbCBFH+FwIrTiPZeUTB2Si9xFvSO9v+FdLgHbkM/55mZKFh57E/K9aXFb+Hjkx5TMu6AfLHHL+g3VLdJfgMgJCad4gSWa7e1qyzzx1BC9UU2VRXcm1RkXGJ7JvOmbG736Yv0Glc/WyjGM0D8RHS0PehcZXTNE0Pk79jjb1Ji8syNxG+dcSmgWkONnjOUMWg8lJZ4XPPfrih1HZw16FgBw7kVbOMtoH5b7n6lgv10W1eEVKz+IrzbFm2o7DiZYY7yVnj5+scKrIsCTFJ5YfsCNuUDYYAYQEijiGPZ9eu/x7irNfNu6o2iFBwUaMVu0DIMTg16E0ix7zocSLMiq/ZoA8z2eS9CZDRFtAxg4KjEfMk1th0cPe93wDmUMk6cv9CcCKrZ7K0sgevULUGcCqDAA40ftkhFVVOOSCKN2nDb9eltLmUzTMtajOjIuKfx/Ufy4ykn3h2IgCMvoVD4G9q6O7AhRKM6Fr9Rmk+X5OydxEkK7OqwRd/vGvxVlM7w/4p4XMe6+KX4WdHRNQRO7lBsRGNJqygQ5dKp+mh4AzI7Uy1l3QBIkWcbCFD32q+mFGbt9xEa+1+2Um64y1i188Hj6Wey3yfxNAWVHXf6xS5yuE4FawNmvQq87RET9LJ5Y5ivqohongYtrdZ7ksUF/svR684t92QXoCDX/KNhsR4zPM3PN+rA==
+ ARA:13230040|1800799024|366016|376014|22082099003|18002099003|4143699003|56012099006|11063799006;
+X-Microsoft-Antispam-Message-Info: LjYqECUaUBacxs89Qo7kocX0JvSxrEnkdcHoahBtTLcHdynv2gRYMt0IMcmheC/hjHkLJ2I33oe+no+P4kN7Shayovh7OmPdTCFNf3AMpPiNrhX27CVee7CVQlfLyuua4+5r42RwyObcz7l5x5DzSB7Wqcia/EczTnL4l5NSmQqwaSjTdGuLemtQ8/y9YPMLJPqDqmIO6e6idAMkIMs20zGUj2hlK5ruwrxWsxuj2tzFHOlPPU8Kyq6sHTFWLBeRb3MdeHGIzcnOBTqM/UTgcOMhxkfVAimCgwgRajKz76LuhWurUa/VklszADw/YFxVIpq7SZT07ycd8nuRjkyLED+Z0+KXxmhQxhDv8u0wYQpqR6RuITotCBlzBqghefqCLg9I/2YY0v4tJ9cdKk/bORF7NzU/4GpYDOuKd/I/Gx+BenkV3ArnFbO6L6/YdPclyxGZj1GwmgrrPL45FZdGpu9iTy4CDAczQLHYh2+3G5y3OhYEm6ajMxp+zgl7yxzKoAZzp1obIN4FC5LEk4pHxD1WCu7nYbTLBayK280Y8HatUdLdJJ7eONJ9dUatlLUCfirwMKpM4SsCCOihlMDuDf1zhgrl89F5DulHWlVnA6KMaeT4LVdH40COueID0MJCgzR5Iz6eb2KtacypgwUn0esLu1l2DFyxteePxVFftkoq+B628uHncX2pEhN1z6jN
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CO1PR11MB5073.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(22082099003)(18002099003)(56012099006)(4143699003)(5023799004)(11063799006);
+ SFS:(13230040)(1800799024)(366016)(376014)(22082099003)(18002099003)(4143699003)(56012099006)(11063799006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?REN6UHFvMXE5VzNKakNIYUw3VnFyd0liMGNLczFVaWlTQXYrdWg4UWliUGI1?=
- =?utf-8?B?cE9xcGQ0OXlNaExCRm5TTlJyU1ppUDBLendBZDBOYUhYZjJjY0kvazVZMnRM?=
- =?utf-8?B?di80dHVPRXhqWUx1cmtiOFQzU3ZrSDlqRHdFd3lyZjNKQ3ZtV2NuS0w1dW5F?=
- =?utf-8?B?dVBrNVN2aGVEVjdGZCtaU21FSGYzWndHY2hFVHMwRnVXMG1qYjNqNkVuOXI2?=
- =?utf-8?B?ZkVCcndFa05IbUpRYjNXZzBuOG1keGhjSTIzNGF5QkVUS1ZFTUE0d2dJNkxm?=
- =?utf-8?B?bTZOVDh5N2pORjhJNUxJb1dGM01GOFUyM09ZNUVPTlIyb3NtYzVVeStyN2Jx?=
- =?utf-8?B?MXYyUG9TQ3psamYyUzRVMFYzWmV6eVA2OWQ1c25yenM3d1lmaU5MNlY5Q2hl?=
- =?utf-8?B?Mjg4YUhZNUpmVkRlUmtKZ2gxcWxoc1UrdWprL2lVWitueGRiR0VwTW9LbjhB?=
- =?utf-8?B?TzJycnNOejd2dzdBNm9jWUdHZ2xCTUhBWm1ZbWkzTXdDcExXdmZjTDYyVUE5?=
- =?utf-8?B?NG5tU3JrTW96VFYwZDdvNk9KbDZuSnNJWUxNN1FOajlUMTUraFN4UjUzblFv?=
- =?utf-8?B?aHlBTkZkeTVKVG1paUxQNlluRHc5TENBbDN6NmkrNTNQOTRCdHdnZGJ4WG1w?=
- =?utf-8?B?cjVmWXJuTTgzSG5ob2RpV29yd2ZQVmhoVHU5aUVGaFp2NHh0RSs4RUg4Tm9X?=
- =?utf-8?B?SnRyYUpVaEx2NkdiWllIUUF4c3lzQXJ5SUc1bW82dTYwU29RbWlyTEhkRzc1?=
- =?utf-8?B?Tm5PTFdqL3RnL2hvMUN5NmxGMEZ4NlViSUhCR0FoSDVNWU1mVkRBMHJyTEZC?=
- =?utf-8?B?Vk56U3crQlBjcExMcnNrKy94bkVBYk92UnZ6TzVhNWRVQk1uWkRqS1NQTHlF?=
- =?utf-8?B?T2RSWWR0QnJUK1c3OTdHTXpnTzBLNWUvUlpQeGdqMTRSOTZ1ZStpWkZSV1J3?=
- =?utf-8?B?Mm5tZjlaSGNncVNRdlVqSE5Jdm9qRzZmUFhCRnMwcUxkVXdYaEU0Q0ZON0Fl?=
- =?utf-8?B?TGExcnVkeDZIMzUvQ1lRWHFqaHFCTytFaHhqb1UwM0xuTy9sTFByaWNnc0l1?=
- =?utf-8?B?d0RaWWtBQlJNTUR2Nlg5R05SVmJLZ0dQejVUOTA5OTBNV3NLQ1Q5VjEwa3Fh?=
- =?utf-8?B?UWd3ODdySjBPTXVVYmhWc3lidjZoWXN6cmEvVUQvOWRjcTFqS243MC81RzRh?=
- =?utf-8?B?bXFlc3ExVG9uS1lEMGVicHVNY1lxaGk5M210QkpKczNUY2RLcWczeUl4TmJ2?=
- =?utf-8?B?a2FrNFJvK083UTAzSmt4SDZRM2wvVk5UZ1dKMUhhOEF5N1pPS2pmNmppcGlH?=
- =?utf-8?B?WExibDEwZ2Z4V1Y0WlBQT1FLYk1RQkM4N0JWNk00bXI2Vjh6ODV6S0I5TmJn?=
- =?utf-8?B?VmQzRzhRU0JzYlJXVjlITm1kdFBZcHdLNG03bnFKVmNTaGZlSzZ0YTJ3bTVy?=
- =?utf-8?B?dVhZRHJnVmgrNnhzTFpVcnpFSklXZHhhcTBJazJhN1VMb1Y1MGFvbGVobTl3?=
- =?utf-8?B?UVBwVDR0bEtkQlk4Z1RibVd6YmNVSFhuTEtuNnhqeGx6SGg2clQ1NnlDczNG?=
- =?utf-8?B?Q3B5TGF4Y1piRDZ0RnpsQUlDN3JuZnIzN21Sb3QvcURLSnF1N1o4Qm90M3Vm?=
- =?utf-8?B?Q3dPb21ramdSem1jZ2J3dkFLUG1BOTl4R21OMXNnMmxlTVdPSWFSUk4vM3dt?=
- =?utf-8?B?WWZGbVFLcitWVnFTdkZhVlFWUElpeVZ4YkFzazFFeTA3SWduRUdKZjlSdFFW?=
- =?utf-8?B?b0UvK0FOM1g1MnpqZG0wZHljTkZ6dmZVa0lTS21RL0k0VDhxTXROdHJFT2R3?=
- =?utf-8?B?Qy82U0l1bUsxN1A5ZksrTXp6OGFRcGJoMXBTRWx1L2pjOUhIVzk1K1VKeE5z?=
- =?utf-8?B?RWQ3ZlFwQnNhY0ZSQzdLWE5ueGRUME1xYnhFT2orTDgrUWtpVHh4dWxCNml1?=
- =?utf-8?B?NEVGcWdVcTVkSlc3am9vd3Z0UWhxaFk4cHJ4MGZGdkFkU2ZObEFRa1ZqOCtv?=
- =?utf-8?B?NG9WK2xwaEpLcWg3WDgvd3JWMU1XRU05RTV6NVFQbC9PSVEyNldSbmJUa0pG?=
- =?utf-8?B?Q1FndHlPMFVDSnJhYzJpRjhxYlpJVW5jRlc1NTlsSDhURE1tL0NYNjRldG5K?=
- =?utf-8?B?c3JFMldSOGJxZGNKYW1UdmtLOEhRWGNPcUVIYkRNTnh5ZlJkdW5nRmN0cmVH?=
- =?utf-8?B?TXJKNUI4Wnk1Wnl0b0FqaFNWQ1lwcWRJcS9kOFF2RjNCeXkxVmJ6UWM5bkNu?=
- =?utf-8?B?TjZUa01INVFOSkRlWEtqZ3BqTXNlMm1NdVVLc3JYWWJNaCtZMjVnREcwMkNY?=
- =?utf-8?B?a1NsMTEvQlFiT0czQTNCTkYwWTkrSEI4SG9MSFBTSU9HQ292SjdmZz09?=
-X-Exchange-RoutingPolicyChecked: l0QS1GjGbday1sVKfgcCOUh8ZIKmV4Ou/ZdYHX83zv6hMoX04utZp7MJ6OwsI+ddsxY1m1dt51n2l9jnU5o2fEj3waAoyd4Y9MD487o3myEe2uGpMDJU4BNjp/pN2sqCJSi62+63Mxq0GJgiIG7mymrMiNwHecB0HjMfIsQqRCgAmwiD0Nz/g5IkD+v2vIZzLuqK07AF+nJ56V2vxzQKHIQ3v/VyL6vYvWsDUWsbO9knr+8xYjXodZRcMPrLutkM5jcYieCIYDl9xUh/0S9U+dyxYtgJir9MgdvWLYp420U//ojH+hRhDmXlNwnN1MFk/RrnKceQ5tRDrsFja3shtQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 14fa9dd8-ef1d-4f1b-189b-08dec1763741
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cUZPMWs5Sk1yMmxRMXZXNzlKdExFd2JQM2NyV2hoSUZkb2Q0Y09RblRIRnk5?=
+ =?utf-8?B?c3pVdCtsemp6S2tPS2tQc3BwTnpjOUJzYU5xSlh3QXlWOGRERURNZUFGc1JW?=
+ =?utf-8?B?aldBaTMxUndlSWlvT2U0SEZJc0lFZ25mTzZCN1dxVnExZFR1RHFnTk9oYitF?=
+ =?utf-8?B?MkRERW9Dck5mQ0lhSVFaYVFwRCtaTDNGYmRoa0dmUWgxeTA2WjNSZkF1dFBx?=
+ =?utf-8?B?OWtIOVBxVW1hY0ZMWWpQUVpyK1YxV1BmV3RkazNPMnpiUlFDUG1OUFRGT2ZH?=
+ =?utf-8?B?bFM1T0FBRlM5WG1TN25rSXRaeEpxSGpsbFBYTEFkaERtVHNIRWcwZWZwd3pn?=
+ =?utf-8?B?Y0RsZXNUeFkxSVBnMk9QclFCM1NJekZ2UjNaVzYrUTBLSytLeFRsVmNYcXN2?=
+ =?utf-8?B?Mk5OcHN1N2d3TlVIK28vcStxNUtVTHZxdVU0d0diSWdaWDNlaGRJaEZmS2Nw?=
+ =?utf-8?B?TVlhV1QrZ3VHaHJKRmFzLzFocmRENjQ3YWRPNzFleHRNUUNlcUMrSmRHaWU3?=
+ =?utf-8?B?dHVDRnF1RU5MTEp6V2lWZlZJQUNYeUJocm54eTBLaUlyUHA2T0VmcFQzTW5P?=
+ =?utf-8?B?SnFtY1V5NHZQNzJGeGVja3NiNkkvd3RIa0xhRitET1JMaWZBYUlNWi9COWhV?=
+ =?utf-8?B?OVd4Nys5TmF3U0o0cUlBRGI1b3dkR0hlZjh4ZlV3MWpYVThEbnYxWTFTK094?=
+ =?utf-8?B?dmNyZnpHKzdYTys2bVR5ckJkY2pJUUg4cTFGSGxScGhaeWI0aGVnOFFvc2My?=
+ =?utf-8?B?YXN5Wi93Y3p2R0xPbUtBcFY5TzZxZVJIeG02WnFsVjJ3VGZyOWEwenh5ZFBx?=
+ =?utf-8?B?eXpxdW5uS2prKzNwdE1iS1c4TkhwdkEycG4wemowUCtsU1lCNGxBa3hXVU94?=
+ =?utf-8?B?Z3hjbUJSa2Z3QncxVGdrc3E2ck5DMG5uWERkZ2l5ODR1c0U0OHR6LzJLdUhI?=
+ =?utf-8?B?bjVLR1JkVkk1Y2Vzc1A0SFpJWEtWOEJCQUJtd1cxRTBLODhGeVF2VGZKRWxO?=
+ =?utf-8?B?UmdTV3k3QWRsMjd3eFdOYjRvLzlnNXZiQ1BUd1ZlVHJEZ1dXbFVjSnFvZlpK?=
+ =?utf-8?B?cXBGR2F5Tm15bEkzb01DVzVtdXpWSjZmVGNUVjFKU2J0UjlDSDgzRnVTdFVJ?=
+ =?utf-8?B?eHZ1NDJTQU1qbnQ5SWl4TktpOHhpTVN3MjVHTjN1NkNuN3FCbFNCUS91ajNE?=
+ =?utf-8?B?RzBmb0c4dTZhdmhoNEZJdFlvTGZ2VGZlcW0vdXlpNUdxQStRN3g1WWwyMzFT?=
+ =?utf-8?B?eGhiRzNqWW5PNmFwV3pMMm1PV0pid2NwN2hxUmFOclppQTRBdHpTdHZpamQy?=
+ =?utf-8?B?ZWFZZTdxZjRGSUQ2V3BmeGVORzBUcGcyS3ZBYzBrWENiQXRWbTJKZE5vTTNj?=
+ =?utf-8?B?d0dTcFF6RVlIQVRMMGhacGJXU2tKeXUwUlBMQTgrWVhlbnQ5RWdEQmRyeDV0?=
+ =?utf-8?B?b0xFRjJuazVzbmRRKy9ZNnpGa0lKdTRxODd3NGxMSmJTWW1FYTVCbk5pKzJk?=
+ =?utf-8?B?TzZFWXYwaTNmQlQ5WTR1RXlDeDBTMG0vUnprZVhueW5Gb2FmUHdvTmIrUEQ5?=
+ =?utf-8?B?WjNlblJkcG9QSWVBaHZ4eGRBVFlIcmJ6aTl2MXZGaFJHU1g4RFhUK3dyTmhQ?=
+ =?utf-8?B?RHBpVTNjZCs1eFdlcnZvS1NJNmN5TnZ1YjBtTm8zaHUyeXc4eWx3Yzl6WllN?=
+ =?utf-8?B?TmsxZjF1ckgzK2oybEhYWFg2L0FuenNnUkZkNVBVZVc2SU9SNWtTY2U3dDQx?=
+ =?utf-8?B?MktCT2RGalduVjgvck1QMnkrUkh6M1VwVS9ER3BHN1N5Uk42UytlV2FwY3E3?=
+ =?utf-8?B?Z2VCT1dxWng3RFM0clNxRzZ4UVJBaFNKa2ZXSnlJd1VWcnFOZ2ptVXg4bFYx?=
+ =?utf-8?B?M0VnZmtWVEVWYWFDL2NTRUdkaGIrV1B2bFkyT3Mxb0JhWUozL1dQRjg4anBL?=
+ =?utf-8?B?NHJTenJNN3FDb3FSamlKbXU2TjFHUDA0QkRaUTdDcTBhWU4zc2g4SVcvc3N6?=
+ =?utf-8?B?QVdoN0o0Q0p2a0ZRMVNxYTF2ZlpnRHRHSm9sZG10T3cwbmFTeWhkbGlUNHBp?=
+ =?utf-8?B?WGppNzk0UWtjWUt2eTRoWW5rZjgxRVd2dkhvVWI5WVkxMjhTeHAzMzN2TkpQ?=
+ =?utf-8?B?b0I3b1lQbERGMkU5YTFPa0dPMGxjbVB6Mm41YXhvMGF1N3d6YkZyS3Q5bk5F?=
+ =?utf-8?B?SlpTMEU0Zy9iWTJVdnlycnlCeFF3QnM4d1BMeVU0a0h4MFd4UzkyZDV4SHJo?=
+ =?utf-8?B?TWhOZlhhYy83aFAzcEZQdXZvVVI1YXhKMy9CaEtxRWdCcEhqbElkRVVpMURH?=
+ =?utf-8?B?b01Ed01weXdONmk1SkNBUTIxYzc0b0JzeFFPQTdoVzVGdEdFaHdVZz09?=
+X-Exchange-RoutingPolicyChecked: Ur10joVxROw0Sh9yW/F7YbSY1gBKqrN5xJHApUgi41AZxHD/uaxehy2oN67/9scsMT1hYyIZtx7qzfr018j3sdVaD/XCRSzAGW8MRrkFrxVTKQNRtOfDW/lhT5SHEr951xBXEk7x6y3zeyyQpzFP2UMFvzbxcGrm7Or7Qu5wk0DjY8OglttzDU2p0kLYBup+Xjw69AH3MrEwkEDiW5Wev3mnAKtXtG1WRdrUwLZEvXL82J8J2aNH+lWRQfDef1fUjcbF4fbpKOMOEd9NjwHdaM+b9l2tGMGhCAXO/QkhzxyhvzWnehR6b+uItALIvepL3WTLfwRXQ4cT9qFBA1flUg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4887ce9e-0f03-4e7f-2645-08dec176ab5a
 X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5073.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jun 2026 13:44:21.4779 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jun 2026 13:47:36.0340 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hkwRwI3+JI/bxXJNkUXjGJCcIzRAB/tfCwKlWA7xzUM8Amr3UPuAe1VMf3z+BsumfyFny7448bBHVz0zo68pNw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CHAPR11MB9656
+X-MS-Exchange-CrossTenant-UserPrincipalName: w7RBzhoDKaK3/rth2Qv11tSQOsGrWBgkfI2xPBV6z2RAZ16nbAfGC1b5dTcjIO/+b10WwtvByt91CHxP/4fD+A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB7208
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -172,245 +175,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jun 03, 2026 at 04:19:41PM +0300, Ville Syrjälä wrote:
-> On Fri, May 29, 2026 at 05:03:55PM -0400, Rodrigo Vivi wrote:
-> > On Fri, May 29, 2026 at 01:50:34PM +0300, Ville Syrjälä wrote:
-> > > On Thu, May 28, 2026 at 06:28:47PM -0400, Rodrigo Vivi wrote:
-> > > > On Fri, May 29, 2026 at 12:11:22AM +0200, Michal Wajdeczko wrote:
-> > > > > 
-> > > > > 
-> > > > > On 5/27/2026 4:45 PM, Rodrigo Vivi wrote:
-> > > > > > The PF GGTT allocator was initialised over a relative [0, usable_size)
-> > > > > > range, with ggtt->start added on every address conversion to get the
-> > > > > > actual hardware address.  Two consequences of that model were considered
-> > > > > > "horrible hacks":
-> > > > > > 
-> > > > > >   - ggtt->start (the WOPCM offset) had to be carried around and added
-> > > > > >     to every drm_mm result.
-> > > > > 
-> > > > > hmm, but this an internal detail of the xe_ggtt implementation, so why
-> > > > > would someone else complain about it?
-> > > > > 
-> > > > > >   - The GUC_GGTT_TOP ceiling silently truncated the GGTT range instead
-> > > > > 
-> > > > > hmm, for the record, this GGTT cap on the top was added back in 2023
-> > > > > 
-> > > > > commit ab10e976fbda8349163ceee2ce99b2bfc97031b8
-> > > > > Author: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> > > > > Date:   Wed Jun 14 10:47:54 2023 -0700
-> > > > > 
-> > > > >     drm/xe: limit GGTT size to GUC_GGTT_TOP
-> > > > > 
-> > > > > +        * The GuC address space is limited on both ends of the GGTT, because
-> > > > > +        * the GuC shim HW redirects accesses to those addresses to other HW
-> > > > > +        * areas instead of going through the GGTT. On the bottom end, the GuC
-> > > > > +        * can't access offsets below the WOPCM size, while on the top side the
-> > > > > +        * limit is fixed at GUC_GGTT_TOP. To keep things simple, instead of
-> > > > > +        * checking each object to see if they are accessed by GuC or not, we
-> > > > > +        * just exclude those areas from the allocator. Additionally, to
-> > > > > +        * simplify the driver load, we use the maximum WOPCM size in this logic
-> > > > > 
-> > > > > >     of being made explicit, leaving PTEs in [GUC_GGTT_TOP, total_size)
-> > > > > >     untouched during the initial clear.
-> > > > > 
-> > > > > and that likely will not be changed by this patch as after allocating 'two
-> > > > > permanent zones', the drm_mm_for_each_hole will not iterate over them
-> > > > 
-> > > > right...
-> > > > 
-> > > > > 
-> > > > > > 
-> > > > > > Fix this for the PF case by initialising drm_mm over the full hardware
-> > > > > > GGTT range [0, total_size) and permanently reserving the two forbidden
-> > > > > > zones:
-> > > > > > 
-> > > > > >   - [0, wopcm)           — inaccessible below WOPCM
-> > > > > >   - [GUC_GGTT_TOP, total_size) — inaccessible above GUC_GGTT_TOP
-> > > > > 
-> > > > > that looks odds: why pretend to claim manageability of full [0, 4GB)
-> > > > > of the GGTT and then immediately permanently reserve two end zones to
-> > > > > end up with real [wopcm, GUC_TOP) which is what we already have?
-> > > > 
-> > > > yes...
-> > > > 
-> > > > > 
-> > > > > > 
-> > > > > > A new mm_offset field (zero for PF) carries the base offset used in
-> > > > > > address conversions, unifying the existing VF relative model (where
-> > > > > > mm_offset == vf_base) with the new PF absolute model.
-> > > > > 
-> > > > > but public xe_ggtt API already uses absolute addressing in PF and VF
-> > > > 
-> > > > I know...
-> > > > 
-> > > > > 
-> > > > > >  The public
-> > > > > > xe_ggtt_start() / xe_ggtt_size() API continues to return the usable
-> > > > > > [wopcm, GUC_GGTT_TOP) boundaries, so callers such as the SR-IOV PF
-> > > > > > config code are unaffected.
-> > > > > > 
-> > > > > > xe_ggtt_shift_nodes() now updates both ggtt->start and ggtt->mm_offset
-> > > > > > so the VF recovery path remains a single O(1) WRITE_ONCE pair.
-> > > > > 
-> > > > > maybe it's just me - but I can't figure out the real rationale for this
-> > > > > patch - what did I miss?
-> > > > 
-> > > > This series:
-> > > > https://lore.kernel.org/intel-xe/20260511214122.8468-1-ville.syrjala@linux.intel.com/
-> > > > 
-> > > > And more specifically the discussion in this patch:
-> > > > https://lore.kernel.org/intel-xe/20260511214122.8468-13-ville.syrjala@linux.intel.com/
-> > > > 
-> > > > > 
-> > > > > > 
-> > > > > > Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > > > > Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> > > > > > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > > > > > Assisted-by: GitHub-Copilot:claude-sonnet-4.6
-> > > > > > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > > > > > ---
-> > > > > >  drivers/gpu/drm/xe/xe_ggtt.c | 123 ++++++++++++++++++++++++++++-------
-> > > > > >  1 file changed, 101 insertions(+), 22 deletions(-)
-> > > > > > 
-> > > > > > diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-> > > > > > index a351c578b170..00a6cd2b8a51 100644
-> > > > > > --- a/drivers/gpu/drm/xe/xe_ggtt.c
-> > > > > > +++ b/drivers/gpu/drm/xe/xe_ggtt.c
-> > > > > > @@ -137,6 +137,17 @@ struct xe_ggtt {
-> > > > > >  	const struct xe_ggtt_pt_ops *pt_ops;
-> > > > > >  	/** @mm: The memory manager used to manage individual GGTT allocations */
-> > > > > >  	struct drm_mm mm;
-> > > > > > +	/**
-> > > > > > +	 * @mm_offset: base offset added to drm_mm node addresses to obtain hardware
-> > > > > > +	 * GGTT addresses. For PF this is 0 (drm_mm uses absolute hardware addresses).
-> > > > > > +	 * For VF this equals @start (drm_mm uses relative addresses from VF base).
-> > > > > > +	 * Updated atomically by xe_ggtt_shift_nodes() during VF recovery.
-> > > > > > +	 */
-> > > > > > +	u64 mm_offset;
-> > > > > > +	/** @reserved_bottom: permanently reserved [0, WOPCM) drm_mm node for PF */
-> > > > > > +	struct drm_mm_node reserved_bottom;
-> > > > > > +	/** @reserved_top: permanently reserved [GUC_GGTT_TOP, total) drm_mm node for PF */
-> > > > > > +	struct drm_mm_node reserved_top;
-> > > > > 
-> > > > > maybe all we need is to separate concepts of:
-> > > > > 
-> > > > > * raw GGTT - fixed range [0, 4GB)
-> > > > > 
-> > > > > from
-> > > > > 
-> > > > > * allocable GGTT - configurable sub-range [start, end)
-> > > > >   * [wopcm, GUC_TOP) on PF
-> > > > >   * [base, base+size) on VF
-> > > > > 
-> > > > > and then we can continue to use drm_mm.init(0, end-start) to manage
-> > > > > that [start, end) range in a common way on both PF and VF?
-> > > > 
-> > > > we need to be able to use a ggtt buffer that comes out of this range,
-> > > > so I'm afraid it doesn't solve all the cases.
-> > > 
-> > > Basically what the display needs is:
-> > > 1. specify where in ggtt the buffer was originally placed by the GOP,
-> > >    this may be partially or fully inside these GuC reserved ranges
-> > > 2. bind the buffer to some acceptable location (assuming the original
-> > >    location wasn't acceptable) without overwriting the PTEs for the
-> > >    original location
-> > > 
-> > > I suppose this could be achieved even with this "mm doesn't cover the
-> > > ends" hack, but step 1 there becomes a bit dodgy because we can't
-> > > insert the mm node if it's fully outside the mm. I suppose it could 
-> > > still work if you hide it in a function that only validates the real
-> > > ggtt offsets, but then ignores the fact that the node can't be
-> > > inserted due to being fully inside those reserved ranges. And then
-> > > whatever cleans up that original mm node must also ignore the fact
-> > > that the node maybe wasn't even allocated. And also
-> > > xe_ggtt_initial_clear() will need special code to clear the
-> > > reserved ranges.
-> > 
-> > right, so basically we could keep the xe_ggtt as is and provide
-> > 2 hooks:
-> > 
-> > 1. one to reserve the portion of the BIOS FB that goes
-> > inside our managed ggtt area
-> > 2. a special clear for this area
-> > 
-> > And in between you do the rebind with existing infrastructure
-> > to an empty region?! Is this what you are thinking now?
-> > 
-> > > 
-> > > My original idea was that we'd just include the reserved regions
-> > > in the mm, and then the display could just keep the buffer at its
-> > > original location, and later the guc code can reserve what is
-> > > left over. So we could skip step 2 above completely. But after
-> > > a second thought we probably don't want to skip that step because
-> > > we might free the display bo later, at which point we might free
-> > > up some of the reserved ranges. So I guess we'd still want to keep
-> > > step 2. But I think it'd still result in less special cases in the
-> > > code. We'd just need the guc code to reserve what it needs, after
-> > > the display code has rebound the bo to an acceptable location.
-> > > 
-> > > So we'd end up with:
-> > > 1. insert node for the bo's original ggtt location
-> > > 2. rebind the display bo to an acceptable ggtt location
-> > > 3. undo step 1
-> > > 4. xe_ggtt_initial_clear() (now also clears the reserved ranges
-> > >    without any special code)
-> > > 5. guc steals the reserved ranges explicitly
-> > > 
-> > > So only two special cases left really, and all the rest
-> > > of the code is blissfully unaware of any of it.
-> > > 
-> > > Hmm, although hibernation might still be a slight issue for
-> > > xe_ggtt_initial_clear(). As in how would the reserved regions
-> > > get cleared during resume from hibernation? I have no idea 
-> > > how the current xe ggtt code handles resume at all...
-> > 
-> > The resume should only restore the pinned bo's one by one, nothing
-> > special.
+On Wed, Jun 03, 2026 at 05:36:41PM +0530, Sanjay Yadav wrote:
+> drm_sched_tdr_queue_imm() sets sched->timeout to 0 and never restores
+> it. This breaks all future TDR timers — jobs get timed out instantly
+> before they even start running on hardware.
 > 
-> Looks like currently xe_ggtt_initial_clear() is never even called
-> during resume from hibernation, so in that case parts of the GGTT
-> will be left with whatever garbage the GOP put there. So that's
-> one thing that needs fixing.
+> Use mod_delayed_work() directly to fire the TDR worker immediately
+> without modifying the timeout field. This preserves the original
+> timeout value for subsequent job submissions.
 > 
-> > So I guess if we keep the original code we are okay,
-> > but if we start to managing the full range with the reserved areas
-> > we might have some difficulties here on the way...
+> Fixes: 8ec5a4e5ce97 ("drm/xe: Resume TDR after GT reset")
+> Cc: <stable@vger.kernel.org> # v6.13+
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Assisted-by: Claude:claude-opus-4.6
+> Suggested-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> Signed-off-by: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+> ---
+>  drivers/gpu/drm/scheduler/sched_main.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> If we had a full range mm I suppose we'd need a bit of special code
-> to remove the reserved nodes before xe_ggtt_initial_clear() gets
-> called, at least for the resume from hibernation case.
+> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
+> index 818d3d4434b5..be144e244745 100644
+> --- a/drivers/gpu/drm/scheduler/sched_main.c
+> +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> @@ -212,8 +212,8 @@ static void drm_sched_start_timeout_unlocked(struct drm_gpu_scheduler *sched)
+>  void drm_sched_tdr_queue_imm(struct drm_gpu_scheduler *sched)
+>  {
+>  	spin_lock(&sched->job_list_lock);
+> -	sched->timeout = 0;
+> -	drm_sched_start_timeout(sched);
+> +	if (!list_empty(&sched->pending_list))
+> +		mod_delayed_work(sched->timeout_wq, &sched->work_tdr, 0);
 
-it looks like Maarten suggestion fix the clear portion.
-But for the steps 1 and 3 above we would need a special reservation
-with a node area only within our managed area?!
+No, please. If there's something wrong with the timeout clear we need
+to get that fixed at the drm layer instead of doing our own.
 
-something like (for step 1):
-
-mm_start = max(start, ggtt->start);
-mm_end = min(start + size, ggtt->start + ggtt->size);
-
-node->base.start = mm_start - ggtt->start;
-node->base.size = mm_end - mm_start;
-
-drm_mm_reserve_node(&ggtt->mm, &node->base);
-
-and another special function to delete this special node
-if needed to be created?
-
-Or what do you have on mind for the full area? I believe the full
-area is this patch, but with some additions anyway since we need
-to handle this buffer plus ensure it gets reserved when we don't
-have it...
-
-I'd like to avoid complications like the phys offset addition or
-the full range if possible.
-
-Could you please incorporate something simple in a v2 of your series?
-
-Thanks,
-Rodrigo.
-
-> 
+>  	spin_unlock(&sched->job_list_lock);
+>  }
+>  EXPORT_SYMBOL(drm_sched_tdr_queue_imm);
 > -- 
-> Ville Syrjälä
-> Intel
+> 2.52.0
+> 
