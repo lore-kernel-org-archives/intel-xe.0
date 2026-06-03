@@ -4,61 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84866CD6E6B
-	for <intel-xe@archiver.kernel.org>; Wed,  3 Jun 2026 09:00:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE1EECD6E64
+	for <intel-xe@archiver.kernel.org>; Wed,  3 Jun 2026 09:39:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23FA8113C63;
-	Wed,  3 Jun 2026 09:00:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BCE610FAD9;
+	Wed,  3 Jun 2026 09:39:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="04B6lho+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ChgNY3wr";
 	dkim-atps=neutral
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 65C11113C6D
- for <intel-xe@lists.freedesktop.org>; Wed,  3 Jun 2026 09:00:40 +0000 (UTC)
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
- by smtpout-04.galae.net (Postfix) with ESMTPS id E45A0C62216;
- Wed,  3 Jun 2026 09:00:41 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
- by smtpout-01.galae.net (Postfix) with ESMTPS id 2072C5FD24;
- Wed,  3 Jun 2026 09:00:39 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 2723110888413; 
- Wed,  3 Jun 2026 11:00:36 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1780477237; h=from:subject:date:message-id:to:cc:mime-version:content-type:
- content-transfer-encoding:in-reply-to:references;
- bh=YQGOVjJ70TJqHQ6t2vTYiGOL39RZYVDa4SJTFCWKyZo=;
- b=04B6lho+Bh//vim3TDYdAaLB6/BgNYrsH6G8def+gohQ4WgWK2QOntZiy/TTDyjGkLdJM6
- xT3A2e75f8OvhX4GZJ4pn/xI917zNPAopGnmTAanFRNzstyTO8xdSC/c1dv/kLudqcK2V0
- IDXHDfRcqjUMJMYJ6W45S/a4TkYWtA1Kb/KVVUSFkkV3yC1WcFtc5LIsLRfPbLj+swReab
- 4gXvU7+o7GdnjYoERGvFoS8i+X+aNvyQfukBvoPX7+3UxpCGHtGKiAtoB9Dwt5pw/P2ZnR
- e3YRQACR5R/Jo1pgt/HVqLEBQMF4GLybIQ4xNYkTAnN34NT3m0OnVlBSAzZDuA==
-From: Kory Maincent <kory.maincent@bootlin.com>
-Date: Wed, 03 Jun 2026 10:59:54 +0200
-Subject: [PATCH 3/3] drm/i915/display/intel_dp: Drop redundant
- intel_dp_aux_fini() on init failure
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 733C710FAD7;
+ Wed,  3 Jun 2026 09:39:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1780479568; x=1812015568;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=ai/Q0j191z64bA2k77aRNgjeIieXktAgLTqmnJOMi4Q=;
+ b=ChgNY3wrr2Lb1re3QLd5iqFhPbuVOkpkWRiK8m3xqDCFBRXTIhGplXJ/
+ UyinniRwEjKHjW+8c8X6bgU2xxeQJzfk7S9ElOWM6pOlLPJhxBSWL8HGx
+ HYb9v1FlEpVHmaRk2lEYG0MOqnZOXGOLHO2t/fBUxLC3dOylY6p1HxXlY
+ zuRCStPQ6VnimV32vwTuPdBXZj7OxNpoTY7uDWQvxtxLakUcN6ZlGQQ+3
+ fklSEGVnEJspEefC9ocLGwx0HzH93jMFyPqFKbdxugMMa6fTqvz1DLV7X
+ /qTRvMcHcrLlkX88dKY7YvtkholXDioV8RXe+aIxxsT7Q9aidTHdFG44k w==;
+X-CSE-ConnectionGUID: +f3jCFgVSieNDbfZiOMntQ==
+X-CSE-MsgGUID: vSdWeb4PTuOvQZCGQirY8w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11805"; a="85168965"
+X-IronPort-AV: E=Sophos;i="6.24,184,1774335600"; d="scan'208";a="85168965"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2026 02:39:27 -0700
+X-CSE-ConnectionGUID: thPgsvknT/2pjYKYcTbiOQ==
+X-CSE-MsgGUID: wpxLxYkFR0eajaXcSfab7A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,184,1774335600"; d="scan'208";a="241182534"
+Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.189])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2026 02:39:24 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Nikita Zhandarovich <n.zhandarovich@fintech.ru>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Nikita Zhandarovich <n.zhandarovich@fintech.ru>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, Simona Vetter
+ <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, lvc-project@linuxtesting.org
+Subject: Re: [PATCH v2] drm/i915/edp: Check supported link rates DPCD read
+In-Reply-To: <824c6ced1095635f86527709822c8af3ddff7c8c@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260529145759.1640646-1-n.zhandarovich@fintech.ru>
+ <824c6ced1095635f86527709822c8af3ddff7c8c@intel.com>
+Date: Wed, 03 Jun 2026 12:39:21 +0300
+Message-ID: <7b19689e97c8dc714d6dc28d0f92b0d6fd859c23@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260603-fix_i915-v1-3-7479ff64e705@bootlin.com>
-References: <20260603-fix_i915-v1-0-7479ff64e705@bootlin.com>
-In-Reply-To: <20260603-fix_i915-v1-0-7479ff64e705@bootlin.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Chris Wilson <chris@chris-wilson.co.uk>, 
- Eric Anholt <eric@anholt.net>, Dave Airlie <airlied@redhat.com>, 
- Jesse Barnes <jbarnes@virtuousgeek.org>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Louis Chauvet <louis.chauvet@bootlin.com>, 
- Mark Yacoub <markyacoub@google.com>, Sean Paul <seanpaul@google.com>, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- Simona Vetter <simona.vetter@ffwll.ch>, 
- Kory Maincent <kory.maincent@bootlin.com>, stable@vger.kernel.org
-X-Mailer: b4 0.15.0
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,36 +74,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-intel_dp_aux_fini() is already invoked via intel_dp_encoder_flush_work()
-in the encoder destroy path (intel_dp_encoder_destroy() and
-intel_ddi_encoder_destroy()). Calling it explicitly when
-intel_edp_init_connector() fails before jumping to the fail label
-therefore results in a double invocation. Drop the redundant call.
+On Fri, 29 May 2026, Jani Nikula <jani.nikula@linux.intel.com> wrote:
+> On Fri, 29 May 2026, Nikita Zhandarovich <n.zhandarovich@fintech.ru> wrote:
+>> intel_edp_set_sink_rates() reads DP_SUPPORTED_LINK_RATES into a local
+>> stack array and then parses the array unconditionally. If the read
+>> fails, the array contents are not valid and may result in bogus sink
+>> link rates being used.
+>>
+>> Use drm_dp_dpcd_read_data() and clear the sink rate array on failure,
+>> so the existing parser falls back to the default sink rate handling.
+>>
+>> Found by Linux Verification Center (linuxtesting.org) with static
+>> analysis tool SVACE.
+>>
+>> Fixes: 68f357cb7347 ("drm/i915/dp: generate and cache sink rate array for all DP, not just eDP 1.4")
+>> Signed-off-by: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
+>
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-Cc: stable@vger.kernel.org
-Fixes: c191eca110a37 ("drm/i915: Move intel_connector->unregister to connector->early_unregister")
-Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+And pushed to drm-intel-next, thanks for the patch.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index f01a6eed38395..f4fab568172f4 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -7310,10 +7310,8 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
- 		connector->get_hw_state = intel_connector_get_hw_state;
- 	connector->sync_state = intel_dp_connector_sync_state;
- 
--	if (!intel_edp_init_connector(intel_dp, connector)) {
--		intel_dp_aux_fini(intel_dp);
-+	if (!intel_edp_init_connector(intel_dp, connector))
- 		goto fail;
--	}
- 
- 	intel_dp_set_source_rates(intel_dp);
- 	intel_dp_set_common_rates(intel_dp);
+>
+>> ---
+>> v1 -> v2:
+>> - Use drm_dp_dpcd_read_data() instead of drm_dp_dpcd_read().
+>> - Avoid the goto by clearing sink_rates on read failure, as suggested by
+>>   Jani Nikula.
+>> - Adjust patch description.
+>>
+>>  drivers/gpu/drm/i915/display/intel_dp.c | 11 +++++++++--
+>>  1 file changed, 9 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+>> index 6ef2a0043cda..5c3e816b0135 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+>> @@ -4678,10 +4678,17 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
+>>  
+>>  	if (intel_dp->edp_dpcd[0] >= DP_EDP_14) {
+>>  		__le16 sink_rates[DP_MAX_SUPPORTED_RATES];
+>> +		int ret;
+>>  		int i;
+>>  
+>> -		drm_dp_dpcd_read(&intel_dp->aux, DP_SUPPORTED_LINK_RATES,
+>> -				 sink_rates, sizeof(sink_rates));
+>> +		ret = drm_dp_dpcd_read_data(&intel_dp->aux,
+>> +					    DP_SUPPORTED_LINK_RATES,
+>> +					    sink_rates, sizeof(sink_rates));
+>> +		if (ret < 0) {
+>> +			drm_dbg_kms(display->drm,
+>> +				    "Unable to read eDP supported link rates, using default rates\n");
+>> +			memset(sink_rates, 0, sizeof(sink_rates));
+>> +		}
+>>  
+>>  		for (i = 0; i < ARRAY_SIZE(sink_rates); i++) {
+>>  			int rate;
 
 -- 
-2.43.0
-
+Jani Nikula, Intel
