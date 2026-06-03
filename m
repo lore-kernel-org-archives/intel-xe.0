@@ -4,66 +4,155 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9445ECD6E60
-	for <intel-xe@archiver.kernel.org>; Wed,  3 Jun 2026 14:54:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADE73CD6E55
+	for <intel-xe@archiver.kernel.org>; Wed,  3 Jun 2026 15:01:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F083010FFA9;
-	Wed,  3 Jun 2026 14:54:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CA4311315D;
+	Wed,  3 Jun 2026 15:01:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N6EZqR2P";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GWNf+1yD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3168D10FFA8;
- Wed,  3 Jun 2026 14:54:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 77C1B11315D
+ for <intel-xe@lists.freedesktop.org>; Wed,  3 Jun 2026 15:01:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780498452; x=1812034452;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=pbl34bRwWQ9VbmO3Ss6Vz1WWFidxt4tsoZQ/3x74Eu4=;
- b=N6EZqR2PwH/DMIXjoo0WwZGvUyqrUAeD20BNShLYzHYea7ISkNcO/wLO
- b8LJn7eeVnII8oK59753MR1BRRnRdpf6WWg/fehX76odFlUuLRE/ZtK6A
- lI7NQ5Bi8EijByQ0QROxrsR1rIQ8LNNHbULlQscSwM2lDLt1GSGJ0mqlg
- eBmrFzPmi3vMaOP22DrtmD1ikBELsx5/qFhZrzTQsHG4ZrQqeF3CyiEvM
- B8HqznrRu/oNEd9QrY+7ZwAztT/KUI3DUEBSCbgAh/VXZLaEzfipWt9kR
- hbXT5dlp5joSuucUsw94D2YW5HS6o5zRVCUuIf+lnjGEXRu4cQPImA7gG w==;
-X-CSE-ConnectionGUID: sidtlel/RpaX+8WEtRTBGQ==
-X-CSE-MsgGUID: 9tScHauLR+K6rj+LyglqTA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11806"; a="81372300"
-X-IronPort-AV: E=Sophos;i="6.24,185,1774335600"; d="scan'208";a="81372300"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2026 07:54:11 -0700
-X-CSE-ConnectionGUID: gVfrbf8WSPaQvw+C1gySgw==
-X-CSE-MsgGUID: PgR24P98Qx6aHGz3Gmr/1w==
+ t=1780498876; x=1812034876;
+ h=from:to:cc:subject:date:message-id:
+ content-transfer-encoding:mime-version;
+ bh=+uLhawHCiRlzF0LR7ce3eOrusvUkPE4tkmOEO8Got6E=;
+ b=GWNf+1yD+zaEEDxpArgHGPkifWNWnnA9tktlzwq5WkC+2VEw8R3F411N
+ zcUc5Itmju/MtaJZ6e+LV9qMxZtLmydX2eaHQA9cGdtatdSWY8D57xCEJ
+ 0SrBrEHq8fgZMu6c/HZGuBIyfO0QzrcO0UMCXQiJIlk1HOPQj00WdNptB
+ jo0DvDScqBONy34PBMwYInAJ1uezK2RPJX7maGxN8KdZzx1U7iXEhfbeS
+ Ln5j5+nln6exUQTyOANri8nLla/2sU08EFQy708nQhItUGWbiqAcmG+VG
+ WY3BVZdtV4aMSVhqGfjigvMSyXKwGdjR8tybAA4FZ18BHUPc+KWHsHQHY w==;
+X-CSE-ConnectionGUID: QAE7jUDTRb6ZPE+t0o8c1g==
+X-CSE-MsgGUID: oGIUDglFSxaZ/Fo5QoXK6A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11806"; a="91995109"
+X-IronPort-AV: E=Sophos;i="6.24,185,1774335600"; d="scan'208";a="91995109"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2026 08:01:16 -0700
+X-CSE-ConnectionGUID: lUrb2lfcTRK5ITBSoVk48g==
+X-CSE-MsgGUID: 1xzL6OoXRk2l/kDvI6BuKg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,185,1774335600"; d="scan'208";a="241278362"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
- ([10.245.244.220])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2026 07:54:09 -0700
-Date: Wed, 3 Jun 2026 17:54:05 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: Re: [PATCH] drm/xe/ggtt: use full-range drm_mm with reserved nodes
- on PF
-Message-ID: <aiBADd0Bl267UBKI@intel.com>
-References: <20260527144527.3701844-2-rodrigo.vivi@intel.com>
- <c5b06289-f353-47eb-a918-102288fac7e9@intel.com>
- <ahjBn2vYp5dppkYp@intel.com> <ahlvesSbbOdk47m3@intel.com>
- <ahn_O3ZSTE2Th-tz@intel.com> <aiAp7R00bY-pgIL0@intel.com>
- <aiAvsds-BPvw-Lu6@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+X-IronPort-AV: E=Sophos;i="6.24,185,1774335600"; d="scan'208";a="274504461"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2026 08:01:16 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Wed, 3 Jun 2026 08:01:15 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Wed, 3 Jun 2026 08:01:15 -0700
+Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.19) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Wed, 3 Jun 2026 08:01:14 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=O1UcxMf36ojrDHF8KwPHQE/a0W7nxLRNB1F38xcXONT+n6fZKdB2ePJLpCNQ7SWsi1fKmyeAqBRViJPI+loKHjonj5fQ5FL4scFaSAR3/mLbr2oHh4J/z18/LUYcpGOSSkRTV3JVo42n5UmUnWk49QCFceawZE/1GAwyRjGUKGfKdL5yz5YuKt1f/qSOyXAfm17lIg2kId9lAjpd0KR5vhXy8hrhQYjVvYjVkK8lqJyckB9tFFI/QdKlmQAJaZER9h1LLlp/hIeZ9e/hwubYcHUgmPxVCZ/5h0g4tuM2XNTxp+Of1fLqt58cc1HfYc17viE5+tAzlqaMrT0vOKVHxA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Jkb8u0hJg0tAEfd81MxCtMa/LAz6pXwZpRvqSoklPxQ=;
+ b=YsJIZVoSYVyOKpfwco7OCVA+IFnPgtzjED+AA8PINvtj60KhBol5glWHDK6fzlA/ji+VwiYU6kpUipgHlD1c3mr3nzbfDfW9mm7uvr5vzVnWofddS9B5qFxHXlVR1qmijlNuPYKA7KtPFcZ6C3vQTOWKiB6vFSLc14uQd+BWNzhnGgYEUI+qCYi9SH2E7PsiDFCY+8TvOxS/3RawpSpmIH1xQzINB6xnH+dhXgvzqxzCl0hIPdxEe7H3UXgGFV0Xs4A9Q9CVBqqgdkxQpTjeT8ysc+EoCFE+jPImiuajQbpdNH6cR8hkX9eUHXnASnaLGXMH3kgvflYu8d3Znonn0g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CO1PR11MB5073.namprd11.prod.outlook.com (2603:10b6:303:92::23)
+ by IA0PR11MB7955.namprd11.prod.outlook.com (2603:10b6:208:3dd::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.7; Wed, 3 Jun 2026
+ 15:01:10 +0000
+Received: from CO1PR11MB5073.namprd11.prod.outlook.com
+ ([fe80::a153:939c:df8c:f4fe]) by CO1PR11MB5073.namprd11.prod.outlook.com
+ ([fe80::a153:939c:df8c:f4fe%4]) with mapi id 15.21.0092.006; Wed, 3 Jun 2026
+ 15:01:08 +0000
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+CC: Rodrigo Vivi <rodrigo.vivi@intel.com>, Matthew Auld
+ <matthew.auld@intel.com>, Sanjay Yadav <sanjay.kumar.yadav@intel.com>, "Himal
+ Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+Subject: [PATCH 1/3] drm/xe: fix job timeout recovery for unstarted jobs and
+ kernel queues
+Date: Wed, 3 Jun 2026 11:01:00 -0400
+Message-ID: <20260603150059.157355-4-rodrigo.vivi@intel.com>
+X-Mailer: git-send-email 2.54.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <aiAvsds-BPvw-Lu6@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+X-ClientProxiedBy: SJ0PR03CA0185.namprd03.prod.outlook.com
+ (2603:10b6:a03:2ef::10) To CO1PR11MB5073.namprd11.prod.outlook.com
+ (2603:10b6:303:92::23)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PR11MB5073:EE_|IA0PR11MB7955:EE_
+X-MS-Office365-Filtering-Correlation-Id: d6c91e16-d54f-4ced-9965-08dec180f13d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|376014|366016|6133799003|18002099003|56012099006|11063799006;
+X-Microsoft-Antispam-Message-Info: qY9wbwgPuqtNc9BONPu/AFITSzzJGEOMCuxqCS/INz8XPihG7MZOTjcSrs/6ronkWXLs9CsomezbrwkiKKB1YQaduQ0VC//l8PvqI9qmpZn4NrtdJSuXpSJpVTUv/E4t92FVshXZe52tQjPu513zoogPbxhW3BvGnhPJuMoNnF59+VZ/Vh1XcVqaLezZBg73btjA0fcRvKZ9TI/pnGm7S/JyBrRPoBwd3xHGOE5yFnviL5IKsbF9k5+DXzN0rmhR/JL1u9OyI3gO27D77sHb8/R+a8zt1W3v8BIX/r6h8p9QNoSFIA+dgbIunpsqXjDDzIddrfVNEsgHCCSS6Mfiwr5kSZC4HRsh1UURQzpPfEnz5u5NUTuDrNM87ZCi6ZzMUQpVyx3NnrM+Zc4sITppAGKw6X/JwoHioN7jus7UK0y9RLqhkUr61X6IedQi2kyH+gGdv/xbogmSeMjzulmnqEF3qt92NtyLl2NlnldHO2m5IR0sEyljIVErFepSXtvBmzl6Jkq6rxVh93mAl423ofpRu/mAliWg7TwLvsng+7/Ha6t25FzWjrXxXjiUoeEStxzlbB6jV+/5/U22lKdoYulrgPxq5Q273iAUGYbk+RYXZhXPnw/tbUezxdHzDCh540SmpFUi83h4nW62u44ak2E3dUPeUFz9+BRuI44qBedhVZCUDOXXjZS/7/8dn0gu
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CO1PR11MB5073.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(6133799003)(18002099003)(56012099006)(11063799006);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cjVVNDEvd2RhRGFtampSZU5oNTJOTFl2c3JMRjgwODdOUjlsUTRGcTFjemNF?=
+ =?utf-8?B?NXlENndINngwaSsxV3ZQSTY0YTNNeDBHVG1FWlBYMlRtcGhSd0c1WjE3cHNn?=
+ =?utf-8?B?MFVSWmttRmtQZkJMdy9SeXBKVm1PTlBHTTVQQzRhZEplMXFkWU9vRFhOYmZG?=
+ =?utf-8?B?VzFvdkQyQmlPdGZWNkltbnFDVHpjNm42ODlxZDNhS3pCaHJ4OVdPNXR2b2xH?=
+ =?utf-8?B?d2s2VFdpbTRnQzlYVjNOSncwenQrSDhPUGJhVDBCSXJJNENEOE0yTFArcHNV?=
+ =?utf-8?B?YXFWKzl0UDhmRmJZM0VLcThHWkk3TC95NlUyY3RneHRDMElMSjRWQTQwVElz?=
+ =?utf-8?B?MnRHdEVvdzJKV0pFSHNwclVNcklrWUx5TWpjUTBpNTdaTDB1WjRpam9lMGVP?=
+ =?utf-8?B?MXZiazdSL0FDdnRxRG9ZSFE2eldkazlkU1RhV2xZZzdKU0hsaWFXUldvcVQv?=
+ =?utf-8?B?cFNmV0ZOL2dOamgvNDh4UENvRytLU0xGOGE1aGQvZVMwaVNaWFpLamxGQjVD?=
+ =?utf-8?B?Sis3QXJ0RTMvMGxHMXl2bXBpT3J5Q2FDWmwraWN0SjNxQk9uSXJJbVZZMXhG?=
+ =?utf-8?B?UHlWenFsSkZFRzV1SS9GZDh3Z1hpblloMlExWGdCMlZtTGpGUzduU2tQRXFo?=
+ =?utf-8?B?OVpkRS8xZW1VUDBHRmdqU3c5cUtwNjNBL3dabG54R0RWdm5MUGtET0Mwcy9x?=
+ =?utf-8?B?anVkSll3YVhnOWRuNFNqWkt5RnVteUdJbm5UWTlpMzZYaU0wdmw0US9zU0Nt?=
+ =?utf-8?B?aHN5bWhiSXNWTXNYR0kwaVFFWE10dUZpbWY0ZmpBUWx5Q2h4QTY0QU1mOTc1?=
+ =?utf-8?B?LzAzZE5tZ1dEWU9wbFlCRXJ3QlAvQkZzUkpzU1k2ZGJJbEZLNThnNzh4Y204?=
+ =?utf-8?B?RFpKMmNyeWNjK1dBb053QWRMTCtOL2VnYXhXR2d5dFF4alVPcU1Xa1VUbWF6?=
+ =?utf-8?B?QmUrQVN6QmtEVnRGMnRpUU5leS9SM0VFM1ZmVUFBRHpTNzQzemZlYkFKa2w1?=
+ =?utf-8?B?WWxQMXdXd2ljSDBHMWYyNUtuVkJlRkdDUHpIbFhRRlZ4RGlqZFBFWGlFVmNi?=
+ =?utf-8?B?U1dUVUIwOThWZGpGRTF5VUVZSkgzb1dNYy85OGR2cUpBbjZVZ2EwYy9OZzha?=
+ =?utf-8?B?N2xhNEk0ZzNmZFE5OEhmTkFzQ2d3dGNBMlVZUWdHbUVLVU1UM2JZTzhtdmZn?=
+ =?utf-8?B?K1MrWjN3NWxJQVpES1pzYjdkYkJnbTNFcUR3UllVQ1UxekxlSmlKbVAzS1lV?=
+ =?utf-8?B?YlBLL3FzUld3Z3BpN0k2NEFvdnh4d3VPNC9yRUFtaUVWWWF3VURQb2tIN1dY?=
+ =?utf-8?B?WFA4TWF5N21hY1UxTHUzblFzVW5mMnlOejJ1V3l3N1ZRWENVN0U4VG1jQWZG?=
+ =?utf-8?B?UkllRGdEQnVLNFM1eHM0UzV6QnFLUC83UllvYnF4dExLL0VCbmh0dWNGT3Nq?=
+ =?utf-8?B?ZWczaW1UbjJTUDhpVlVSWWhnVlRucEJXTVZTeERDcnlDNUR5bmJJTHRrVTRm?=
+ =?utf-8?B?S01ENFF6ZHE4aGN2RktWQU9la3ZHY2lrdmdaOUhHYWtzMElYbUtSOHdPcmwx?=
+ =?utf-8?B?b3RFTEFnS3pMQXpRdUQvQWdEZzdYNUt5dTBRVmpucmU2b3lQU3FWRkowbTJt?=
+ =?utf-8?B?RnJxYW9CaDlrdytqOWlXNnBuT0VkVlRBOTlJVXZXOWE4K1ltNUh6R1gvT2c0?=
+ =?utf-8?B?alRrSTFVZ25MM09iSU03b0lyK3dNK1RrNDc4UlVGdlc1Y0JIUmxxNDdrSG1s?=
+ =?utf-8?B?RVJ4QjNHVDQ1UHc4dDd3QzdTZ0M2WlhDWGVzbFRhSGNQS3UyMFgxNEpTcXZk?=
+ =?utf-8?B?NDl3UGY5S0lxZVRpVzE4LytsendzcFZpQ3dLK3ZaaFUwOSsxenB1N285K0pG?=
+ =?utf-8?B?NWZHaENZbVFzSzVvUG1zN0pVQ1FUU1ZWQStsUEU2UGF5Y3RSeUdUMDhUb0Zz?=
+ =?utf-8?B?aldrc0k0RkVNbzd2Mkl4WmJuQ3hrZ0hya1RJSXFmNWZxTlJ5a3RrMDR4azd5?=
+ =?utf-8?B?R2JwREVqUWRHc3VGZEhneWl1d2FtNy9DT2FzejFiSjBlbk1vL1BBNFBQT3N5?=
+ =?utf-8?B?VnhKUWZBaHNhQTZqV2RURkttRys1R2RkaXBNOTFycVYyNTJaa29za1Y3aEQ2?=
+ =?utf-8?B?TmJuZGVRWmFLWGh4eU1UNjJMdnBBakNVbi9PeTUxb1VwejhvcFI4dlJwQzhi?=
+ =?utf-8?B?NlBaUEZxRjlQdEhQci9kNzNaTnQ5ckU4Tm1MZ3o5WVFkOVlyY1RQcVBsdVJv?=
+ =?utf-8?B?c3UzamRFbWwramZFVklNWFZObHRRWjJPRmRZcFB1c1BlTDd5by9RcHVBVlpW?=
+ =?utf-8?B?cWFYQ0p0WDRqUHNBWW9Qd092S2ZTcnZCbTBpQWdta3JqL0ZwbEZTZz09?=
+X-Exchange-RoutingPolicyChecked: airtM77KCC4IYWW2cKEavzakStmTRy96zL8YErLRCxigkFqq5qExRrlAM2IP6fzjQt5wdNIjcfDTzwv53TDM1do/i3T1gbXGR94TS4YZOFQHul+VaHGD6jZciKb8v5EvA6gi/krElEkr+OLC0E+db8QOSToZ3dpVf6Yy0klAG2V75ryB4Yow9oCax1By6IXvd4GiZ84vXfAp9Apb5W1caKpA+PJCUUBD71cOgn6OhSnJeRB/szdwEJNZhQFhWJRMr45OW2kTP7t2u0OEj+u/i3wOgdubGBbGDfT6Updo0lnyWL413SCZ6kDWmS037B1zGb81tuFY6kRjjNCJGEKJ6A==
+X-MS-Exchange-CrossTenant-Network-Message-Id: d6c91e16-d54f-4ced-9965-08dec180f13d
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5073.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jun 2026 15:01:08.2627 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 27AWwn3B9HwtSAycur2bKl/FGp6p6dhEGkVL7sT/K61xWFtDS4NCIM+n976h2iDeIqTRaQfs//D/p+0edh8fRA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7955
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,257 +167,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jun 03, 2026 at 09:44:17AM -0400, Rodrigo Vivi wrote:
-> On Wed, Jun 03, 2026 at 04:19:41PM +0300, Ville Syrjälä wrote:
-> > On Fri, May 29, 2026 at 05:03:55PM -0400, Rodrigo Vivi wrote:
-> > > On Fri, May 29, 2026 at 01:50:34PM +0300, Ville Syrjälä wrote:
-> > > > On Thu, May 28, 2026 at 06:28:47PM -0400, Rodrigo Vivi wrote:
-> > > > > On Fri, May 29, 2026 at 12:11:22AM +0200, Michal Wajdeczko wrote:
-> > > > > > 
-> > > > > > 
-> > > > > > On 5/27/2026 4:45 PM, Rodrigo Vivi wrote:
-> > > > > > > The PF GGTT allocator was initialised over a relative [0, usable_size)
-> > > > > > > range, with ggtt->start added on every address conversion to get the
-> > > > > > > actual hardware address.  Two consequences of that model were considered
-> > > > > > > "horrible hacks":
-> > > > > > > 
-> > > > > > >   - ggtt->start (the WOPCM offset) had to be carried around and added
-> > > > > > >     to every drm_mm result.
-> > > > > > 
-> > > > > > hmm, but this an internal detail of the xe_ggtt implementation, so why
-> > > > > > would someone else complain about it?
-> > > > > > 
-> > > > > > >   - The GUC_GGTT_TOP ceiling silently truncated the GGTT range instead
-> > > > > > 
-> > > > > > hmm, for the record, this GGTT cap on the top was added back in 2023
-> > > > > > 
-> > > > > > commit ab10e976fbda8349163ceee2ce99b2bfc97031b8
-> > > > > > Author: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> > > > > > Date:   Wed Jun 14 10:47:54 2023 -0700
-> > > > > > 
-> > > > > >     drm/xe: limit GGTT size to GUC_GGTT_TOP
-> > > > > > 
-> > > > > > +        * The GuC address space is limited on both ends of the GGTT, because
-> > > > > > +        * the GuC shim HW redirects accesses to those addresses to other HW
-> > > > > > +        * areas instead of going through the GGTT. On the bottom end, the GuC
-> > > > > > +        * can't access offsets below the WOPCM size, while on the top side the
-> > > > > > +        * limit is fixed at GUC_GGTT_TOP. To keep things simple, instead of
-> > > > > > +        * checking each object to see if they are accessed by GuC or not, we
-> > > > > > +        * just exclude those areas from the allocator. Additionally, to
-> > > > > > +        * simplify the driver load, we use the maximum WOPCM size in this logic
-> > > > > > 
-> > > > > > >     of being made explicit, leaving PTEs in [GUC_GGTT_TOP, total_size)
-> > > > > > >     untouched during the initial clear.
-> > > > > > 
-> > > > > > and that likely will not be changed by this patch as after allocating 'two
-> > > > > > permanent zones', the drm_mm_for_each_hole will not iterate over them
-> > > > > 
-> > > > > right...
-> > > > > 
-> > > > > > 
-> > > > > > > 
-> > > > > > > Fix this for the PF case by initialising drm_mm over the full hardware
-> > > > > > > GGTT range [0, total_size) and permanently reserving the two forbidden
-> > > > > > > zones:
-> > > > > > > 
-> > > > > > >   - [0, wopcm)           — inaccessible below WOPCM
-> > > > > > >   - [GUC_GGTT_TOP, total_size) — inaccessible above GUC_GGTT_TOP
-> > > > > > 
-> > > > > > that looks odds: why pretend to claim manageability of full [0, 4GB)
-> > > > > > of the GGTT and then immediately permanently reserve two end zones to
-> > > > > > end up with real [wopcm, GUC_TOP) which is what we already have?
-> > > > > 
-> > > > > yes...
-> > > > > 
-> > > > > > 
-> > > > > > > 
-> > > > > > > A new mm_offset field (zero for PF) carries the base offset used in
-> > > > > > > address conversions, unifying the existing VF relative model (where
-> > > > > > > mm_offset == vf_base) with the new PF absolute model.
-> > > > > > 
-> > > > > > but public xe_ggtt API already uses absolute addressing in PF and VF
-> > > > > 
-> > > > > I know...
-> > > > > 
-> > > > > > 
-> > > > > > >  The public
-> > > > > > > xe_ggtt_start() / xe_ggtt_size() API continues to return the usable
-> > > > > > > [wopcm, GUC_GGTT_TOP) boundaries, so callers such as the SR-IOV PF
-> > > > > > > config code are unaffected.
-> > > > > > > 
-> > > > > > > xe_ggtt_shift_nodes() now updates both ggtt->start and ggtt->mm_offset
-> > > > > > > so the VF recovery path remains a single O(1) WRITE_ONCE pair.
-> > > > > > 
-> > > > > > maybe it's just me - but I can't figure out the real rationale for this
-> > > > > > patch - what did I miss?
-> > > > > 
-> > > > > This series:
-> > > > > https://lore.kernel.org/intel-xe/20260511214122.8468-1-ville.syrjala@linux.intel.com/
-> > > > > 
-> > > > > And more specifically the discussion in this patch:
-> > > > > https://lore.kernel.org/intel-xe/20260511214122.8468-13-ville.syrjala@linux.intel.com/
-> > > > > 
-> > > > > > 
-> > > > > > > 
-> > > > > > > Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > > > > > Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> > > > > > > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > > > > > > Assisted-by: GitHub-Copilot:claude-sonnet-4.6
-> > > > > > > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > > > > > > ---
-> > > > > > >  drivers/gpu/drm/xe/xe_ggtt.c | 123 ++++++++++++++++++++++++++++-------
-> > > > > > >  1 file changed, 101 insertions(+), 22 deletions(-)
-> > > > > > > 
-> > > > > > > diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-> > > > > > > index a351c578b170..00a6cd2b8a51 100644
-> > > > > > > --- a/drivers/gpu/drm/xe/xe_ggtt.c
-> > > > > > > +++ b/drivers/gpu/drm/xe/xe_ggtt.c
-> > > > > > > @@ -137,6 +137,17 @@ struct xe_ggtt {
-> > > > > > >  	const struct xe_ggtt_pt_ops *pt_ops;
-> > > > > > >  	/** @mm: The memory manager used to manage individual GGTT allocations */
-> > > > > > >  	struct drm_mm mm;
-> > > > > > > +	/**
-> > > > > > > +	 * @mm_offset: base offset added to drm_mm node addresses to obtain hardware
-> > > > > > > +	 * GGTT addresses. For PF this is 0 (drm_mm uses absolute hardware addresses).
-> > > > > > > +	 * For VF this equals @start (drm_mm uses relative addresses from VF base).
-> > > > > > > +	 * Updated atomically by xe_ggtt_shift_nodes() during VF recovery.
-> > > > > > > +	 */
-> > > > > > > +	u64 mm_offset;
-> > > > > > > +	/** @reserved_bottom: permanently reserved [0, WOPCM) drm_mm node for PF */
-> > > > > > > +	struct drm_mm_node reserved_bottom;
-> > > > > > > +	/** @reserved_top: permanently reserved [GUC_GGTT_TOP, total) drm_mm node for PF */
-> > > > > > > +	struct drm_mm_node reserved_top;
-> > > > > > 
-> > > > > > maybe all we need is to separate concepts of:
-> > > > > > 
-> > > > > > * raw GGTT - fixed range [0, 4GB)
-> > > > > > 
-> > > > > > from
-> > > > > > 
-> > > > > > * allocable GGTT - configurable sub-range [start, end)
-> > > > > >   * [wopcm, GUC_TOP) on PF
-> > > > > >   * [base, base+size) on VF
-> > > > > > 
-> > > > > > and then we can continue to use drm_mm.init(0, end-start) to manage
-> > > > > > that [start, end) range in a common way on both PF and VF?
-> > > > > 
-> > > > > we need to be able to use a ggtt buffer that comes out of this range,
-> > > > > so I'm afraid it doesn't solve all the cases.
-> > > > 
-> > > > Basically what the display needs is:
-> > > > 1. specify where in ggtt the buffer was originally placed by the GOP,
-> > > >    this may be partially or fully inside these GuC reserved ranges
-> > > > 2. bind the buffer to some acceptable location (assuming the original
-> > > >    location wasn't acceptable) without overwriting the PTEs for the
-> > > >    original location
-> > > > 
-> > > > I suppose this could be achieved even with this "mm doesn't cover the
-> > > > ends" hack, but step 1 there becomes a bit dodgy because we can't
-> > > > insert the mm node if it's fully outside the mm. I suppose it could 
-> > > > still work if you hide it in a function that only validates the real
-> > > > ggtt offsets, but then ignores the fact that the node can't be
-> > > > inserted due to being fully inside those reserved ranges. And then
-> > > > whatever cleans up that original mm node must also ignore the fact
-> > > > that the node maybe wasn't even allocated. And also
-> > > > xe_ggtt_initial_clear() will need special code to clear the
-> > > > reserved ranges.
-> > > 
-> > > right, so basically we could keep the xe_ggtt as is and provide
-> > > 2 hooks:
-> > > 
-> > > 1. one to reserve the portion of the BIOS FB that goes
-> > > inside our managed ggtt area
-> > > 2. a special clear for this area
-> > > 
-> > > And in between you do the rebind with existing infrastructure
-> > > to an empty region?! Is this what you are thinking now?
-> > > 
-> > > > 
-> > > > My original idea was that we'd just include the reserved regions
-> > > > in the mm, and then the display could just keep the buffer at its
-> > > > original location, and later the guc code can reserve what is
-> > > > left over. So we could skip step 2 above completely. But after
-> > > > a second thought we probably don't want to skip that step because
-> > > > we might free the display bo later, at which point we might free
-> > > > up some of the reserved ranges. So I guess we'd still want to keep
-> > > > step 2. But I think it'd still result in less special cases in the
-> > > > code. We'd just need the guc code to reserve what it needs, after
-> > > > the display code has rebound the bo to an acceptable location.
-> > > > 
-> > > > So we'd end up with:
-> > > > 1. insert node for the bo's original ggtt location
-> > > > 2. rebind the display bo to an acceptable ggtt location
-> > > > 3. undo step 1
-> > > > 4. xe_ggtt_initial_clear() (now also clears the reserved ranges
-> > > >    without any special code)
-> > > > 5. guc steals the reserved ranges explicitly
-> > > > 
-> > > > So only two special cases left really, and all the rest
-> > > > of the code is blissfully unaware of any of it.
-> > > > 
-> > > > Hmm, although hibernation might still be a slight issue for
-> > > > xe_ggtt_initial_clear(). As in how would the reserved regions
-> > > > get cleared during resume from hibernation? I have no idea 
-> > > > how the current xe ggtt code handles resume at all...
-> > > 
-> > > The resume should only restore the pinned bo's one by one, nothing
-> > > special.
-> > 
-> > Looks like currently xe_ggtt_initial_clear() is never even called
-> > during resume from hibernation, so in that case parts of the GGTT
-> > will be left with whatever garbage the GOP put there. So that's
-> > one thing that needs fixing.
-> > 
-> > > So I guess if we keep the original code we are okay,
-> > > but if we start to managing the full range with the reserved areas
-> > > we might have some difficulties here on the way...
-> > 
-> > If we had a full range mm I suppose we'd need a bit of special code
-> > to remove the reserved nodes before xe_ggtt_initial_clear() gets
-> > called, at least for the resume from hibernation case.
-> 
-> it looks like Maarten suggestion fix the clear portion.
-> But for the steps 1 and 3 above we would need a special reservation
-> with a node area only within our managed area?!
-> 
-> something like (for step 1):
-> 
-> mm_start = max(start, ggtt->start);
-> mm_end = min(start + size, ggtt->start + ggtt->size);
-> 
-> node->base.start = mm_start - ggtt->start;
-> node->base.size = mm_end - mm_start;
-> 
-> drm_mm_reserve_node(&ggtt->mm, &node->base);
-> 
-> and another special function to delete this special node
-> if needed to be created?
+Jobs that GuC never scheduled were silently errored out instead of
+triggering a GT reset. Kernel jobs that exhaust all recovery attempts
+should wedge the device rather than silently fail, and userspace VM bind
+queues should stay permanently banned rather than being reset and retried.
 
-Something like that could work.
+The queue is banned early in the timeout handler to signal the G2H
+scheduling-done handler so it wakes the disable-scheduling waiter; without
+it the waiter sleeps the full 5s timeout. For kernel queues the ban is
+cleared before rearming so that guc_exec_queue_start() can resubmit jobs
+after the GT reset — a banned queue would block resubmission and cause an
+infinite TDR loop.
 
-> Or what do you have on mind for the full area? I believe the full
-> area is this patch, but with some additions anyway since we need
-> to handle this buffer plus ensure it gets reserved when we don't
-> have it...
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Assisted-by: GitHub-Copilot:claude-sonnet-4.6
+Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_submit.c | 31 +++++++++++++++++++++---------
+ 1 file changed, 22 insertions(+), 9 deletions(-)
 
-From the display side the full mm approach shouldn't really
-look any different.
-
-> 
-> I'd like to avoid complications like the phys offset addition
-
-What phys_offset addition are we talking about here?
-
-> or
-> the full range if possible.
-> 
-> Could you please incorporate something simple in a v2 of your series?
-
-If you mean me and my initial fb series then I have no plan to
-post a v2 of that. What I posted is IMO just fine as is. The
-remaining broken corner cases can be fixed afterwards once we
-get that new thing to properly protect the current PTEs.
-
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index ab501513d806..bbccba367626 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -158,6 +158,11 @@ static void set_exec_queue_banned(struct xe_exec_queue *q)
+ 	atomic_or(EXEC_QUEUE_STATE_BANNED, &q->guc->state);
+ }
+ 
++static void clear_exec_queue_banned(struct xe_exec_queue *q)
++{
++	atomic_andnot(EXEC_QUEUE_STATE_BANNED, &q->guc->state);
++}
++
+ static bool exec_queue_suspended(struct xe_exec_queue *q)
+ {
+ 	return atomic_read(&q->guc->state) & EXEC_QUEUE_STATE_SUSPENDED;
+@@ -1376,7 +1381,8 @@ static bool check_timeout(struct xe_exec_queue *q, struct xe_sched_job *job)
+ 			   xe_sched_job_seqno(job), xe_sched_job_lrc_seqno(job),
+ 			   q->guc->id);
+ 
+-		return xe_sched_invalidate_job(job, 2);
++		/* GuC never scheduled this job - let the caller trigger a GT reset. */
++		return true;
+ 	}
+ 
+ 	ctx_timestamp = lower_32_bits(xe_lrc_timestamp(q->lrc[0]));
+@@ -1622,19 +1628,26 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+ 			       q->guc->id, q->flags);
+ 
+ 	/*
+-	 * Kernel jobs should never fail, nor should VM jobs if they do
+-	 * somethings has gone wrong and the GT needs a reset
++	 * Kernel jobs should never fail permanently. Attempt GT reset and
++	 * resubmit; if karma is exhausted the hardware is unrecoverable so
++	 * wedge the device.
++	 *
++	 * Userspace VM bind queues are banned permanently on timeout
++.	 * No reset is attempted, the ban already
++	 * signals the G2H handler, and the queue stays banned so the job
++	 * errors out cleanly.
+ 	 */
+-	xe_gt_WARN(q->gt, q->flags & EXEC_QUEUE_FLAG_KERNEL,
+-		   "Kernel-submitted job timed out\n");
+-	xe_gt_WARN(q->gt, q->flags & EXEC_QUEUE_FLAG_VM && !exec_queue_killed(q),
+-		   "VM job timed out on non-killed execqueue\n");
+-	if (!wedged && (q->flags & EXEC_QUEUE_FLAG_KERNEL ||
+-			(q->flags & EXEC_QUEUE_FLAG_VM && !exec_queue_killed(q)))) {
++	if (!wedged && q->flags & EXEC_QUEUE_FLAG_KERNEL) {
+ 		if (!xe_sched_invalidate_job(job, 2)) {
++			clear_exec_queue_banned(q);
+ 			xe_gt_reset_async(q->gt);
+ 			goto rearm;
+ 		}
++		xe_gt_WARN(q->gt, true, "Kernel-submitted job timed out\n");
++		xe_device_declare_wedged(gt_to_xe(q->gt));
++	} else if (!wedged && q->flags & EXEC_QUEUE_FLAG_VM &&
++		   !exec_queue_killed(q)) {
++		xe_gt_WARN(q->gt, true, "VM job timed out on non-killed execqueue\n");
+ 	}
+ 
+ 	/* Mark all outstanding jobs as bad, thus completing them */
 -- 
-Ville Syrjälä
-Intel
+2.54.0
+
