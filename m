@@ -4,53 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 183FCCD6E57
-	for <intel-xe@archiver.kernel.org>; Wed,  3 Jun 2026 20:10:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65449CD6E57
+	for <intel-xe@archiver.kernel.org>; Wed,  3 Jun 2026 20:21:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7F5211233B;
-	Wed,  3 Jun 2026 20:10:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F16F010E204;
+	Wed,  3 Jun 2026 20:21:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hBYAX73h";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YCRMHLtM";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0AA8811233B
- for <intel-xe@lists.freedesktop.org>; Wed,  3 Jun 2026 20:10:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4116610E204
+ for <intel-xe@lists.freedesktop.org>; Wed,  3 Jun 2026 20:21:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780517412; x=1812053412;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=G2dsCtu2CRb7pjJkAkJJpwOfKu+iHX6g/T5sMbuaElE=;
- b=hBYAX73hhzAFwG7dhd4h8apmq2B2hY0zUNcgzaI8ZtxKTcrPyDPs1DOR
- 6GbYiX9oqlEXI9ALSOdxM9d/ePK2V4MfILS8xsYCq511zXU3O/qrQ2+m/
- K/I89mdf51F0JHINNuedKziYu2Ci99Aezd8HwkS0WrkJyhaLnYmJGsZTt
- UP14eSj28C3FeO9ARV5KKTDwLzOyvYJvJYZEOrHnJTrebQ3pHLe0slY6s
- 8L26PADe1F9hTsr2MFHZtd8fzCMNLoBMT5rO/BP52tqMtiFG4bfB1A5uc
- 7mmn/verpuHRPUXgCiXlmMSLyF0MkH4DibRpuHM0cK5ybNTsDLYnFbVUQ Q==;
-X-CSE-ConnectionGUID: 9FBv1qsQQTKyRi5sYDN2Zg==
-X-CSE-MsgGUID: d7DuXnOLQpqL7tdvzFHCBw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11806"; a="81336101"
-X-IronPort-AV: E=Sophos;i="6.24,185,1774335600"; d="scan'208";a="81336101"
+ t=1780518096; x=1812054096;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=xUxW75W4GbKIOOvC9wRiH3LbDwvoITpfyFRgJ/UBwp4=;
+ b=YCRMHLtMRu7JJjB1e0vEvUs7p9McoIugC3ttT9CJyc3Ce57fgd5GCfl+
+ UspS68Ef7hxvV066m+ulU+S+6aEDsaAUK6G999DV92yqVrt0nUp8ZYW7f
+ WX+zmD57PbO6rx1vtNh469EGQn546Z7qi6FQJuGyIvdUwQXy954BS3ydt
+ y/F58WEY3Zqyxk4lCCP4jBVtqTokrgC6KCMoBKpGlENkvnTVXXEMjk0y2
+ lEpveMH3Soum7l6UXQw0cXBIwkDizVQT/vs2jE9tUV4ks3/b7XGQOnFvx
+ +xZhdZKpcssca/q/KyXMi51FdUBvL2wX4K9oioPAHHKrzwaiWKrjQcBXx Q==;
+X-CSE-ConnectionGUID: C5kDyGDIQemOnTXLfODIAg==
+X-CSE-MsgGUID: sKeYZAviSuSuH+GDQ6zMVA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11806"; a="81336938"
+X-IronPort-AV: E=Sophos;i="6.24,185,1774335600"; d="scan'208";a="81336938"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2026 13:10:11 -0700
-X-CSE-ConnectionGUID: bGOkCIn1TK66KxasZfSOlg==
-X-CSE-MsgGUID: jXvgcZkvSAW4PUyW7vYyuA==
+ 03 Jun 2026 13:21:36 -0700
+X-CSE-ConnectionGUID: lpPu2wZRSHWsKgbnOy8rzQ==
+X-CSE-MsgGUID: +sywMtTpTTqvZZw1tOdoyQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,185,1774335600"; d="scan'208";a="244421991"
-Received: from osgc-sh-dragon.sh.intel.com ([10.239.81.44])
+X-IronPort-AV: E=Sophos;i="6.24,185,1774335600"; d="scan'208";a="244423814"
+Received: from apoorva1-mobl1.amr.corp.intel.com (HELO adixit-MOBL3.intel.com)
+ ([10.125.34.170])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2026 13:10:10 -0700
-From: Jonathan Cavitt <jonathan.cavitt@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
- raag.jadav@intel.com
-Subject: [PATCH] drm/xe/i2c: Report i2c irq handler issue
-Date: Thu,  4 Jun 2026 04:10:07 +0800
-Message-ID: <20260603201007.3768029-1-jonathan.cavitt@intel.com>
-X-Mailer: git-send-email 2.53.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+ 03 Jun 2026 13:21:36 -0700
+Date: Wed, 03 Jun 2026 13:21:35 -0700
+Message-ID: <87fr3374ts.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 1/2] drm/xe/oa: Rename last argument of
+ WHITELIST_OA_MMIO_TRG
+In-Reply-To: <aiB8B2FZMbYdCoFl@soc-5CG1426VCC.clients.intel.com>
+References: <20260602230908.2350117-1-ashutosh.dixit@intel.com>
+ <20260602230908.2350117-2-ashutosh.dixit@intel.com>
+ <aiB8B2FZMbYdCoFl@soc-5CG1426VCC.clients.intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/30.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,39 +72,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_i2c_irq_handler calls generic_handle_irq_safe, which can return an
-error value.  In all other cases, this is passed to a
-.*_err_ratelimited error message helper.  Add the missing error handler.
+On Wed, 03 Jun 2026 12:09:59 -0700, Umesh Nerlige Ramappa wrote:
+>
+> On Tue, Jun 02, 2026 at 04:09:07PM -0700, Ashutosh Dixit wrote:
+> > OA head pointer registers are not used by UMD's and do not need to be
+> > whitelisted, the last argument of WHITELIST_OA_MMIO_TRG is actually used
+> > for whitelisting tail pointer and OA buffer registers. Rename the argument
+> > to tail_buf to highlight this. OA head pointer is sometimes provided to the
+> > WHITELIST_OA_MMIO_TRG to have the correct register offset alignment (16)
+> > for RING_FORCE_TO_NONPRIV_RANGE_4.
+> >
+> > Fixes: ed455775c5a6 ("drm/xe/rtp: Refactor OAG MMIO trigger register whitelisting")
+> > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> > ---
+> > drivers/gpu/drm/xe/xe_reg_whitelist.c | 4 ++--
+> > 1 file changed, 2 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+> > index 2e84b1c49f374..a17ebacc1455b 100644
+> > --- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
+> > +++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+> > @@ -104,10 +104,10 @@ static const struct xe_rtp_table_sr register_whitelist = XE_RTP_TABLE_SR(
+> >				   RING_FORCE_TO_NONPRIV_ACCESS_RW))
+> >	},
+> >
+> > -#define WHITELIST_OA_MMIO_TRG(trg, status, head) \
+> > +#define WHITELIST_OA_MMIO_TRG(trg, status, tail_buf) \
+> >	WHITELIST(trg, RING_FORCE_TO_NONPRIV_ACCESS_RW), \
+> >	WHITELIST(status, RING_FORCE_TO_NONPRIV_ACCESS_RD), \
+> > -	WHITELIST(head, RING_FORCE_TO_NONPRIV_ACCESS_RD | RING_FORCE_TO_NONPRIV_RANGE_4)
+> > +	WHITELIST(tail_buf, RING_FORCE_TO_NONPRIV_ACCESS_RD | RING_FORCE_TO_NONPRIV_RANGE_4)
+>
+> I think this would be a good time to split the regs and do away with the
+> RANGE_4.  If HEAD and STATUS are not used, then we should just use 2 slots
+> - one for OA_TAIL and one for OA_BUFFER (single reg mode). Any idea if
+> STATUS is needed? I thought the KMD already returns the status in an IOCTL.
 
-This issue was caught by static analysis.
+OK, yes I think OASTATUS doesn't need to be whitelisted and we can also do
+away with RANGE_4.
 
-Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Cc: Raag Jadav <raag.jadav@intel.com>
----
- drivers/gpu/drm/xe/xe_i2c.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+But can we review and merge Patch 2 for now, since that is a bug fix and
+will need to be propagated also to previous kernel versions. So if we can
+merge that first and then make these changes, it will simplify life quite a
+bit.
 
-diff --git a/drivers/gpu/drm/xe/xe_i2c.c b/drivers/gpu/drm/xe/xe_i2c.c
-index 706783863d07..acfc171483b2 100644
---- a/drivers/gpu/drm/xe/xe_i2c.c
-+++ b/drivers/gpu/drm/xe/xe_i2c.c
-@@ -177,12 +177,15 @@ static bool xe_i2c_irq_present(struct xe_device *xe)
- void xe_i2c_irq_handler(struct xe_device *xe, u32 master_ctl)
- {
- 	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
-+	int ret;
- 
- 	if (!(master_ctl & I2C_IRQ) || !xe_i2c_irq_present(xe))
- 		return;
- 
- 	/* Forward interrupt to I2C adapter */
--	generic_handle_irq_safe(xe->i2c->adapter_irq);
-+	ret = generic_handle_irq_safe(xe->i2c->adapter_irq);
-+	if (ret)
-+		drm_err_ratelimited(&xe->drm, "error handling i2c irq: %d\n", ret);
- 
- 	/* Deassert after I2C adapter clears the interrupt */
- 	xe_mmio_rmw32(mmio, I2C_CONFIG_CMD, 0, PCI_COMMAND_INTX_DISABLE);
--- 
-2.53.0
+Thanks.
+--
+Ashutosh
 
+
+>
+> >
+> > #define WHITELIST_OAG_MMIO_TRG \
+> >	WHITELIST_OA_MMIO_TRG(OAG_MMIOTRIGGER, OAG_OASTATUS, OAG_OAHEADPTR)
+> > --
+> > 2.54.0
+> >
