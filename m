@@ -4,33 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6879DCD6E7C
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 17:15:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA692CD6E74
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 17:15:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 177D011A1E0;
-	Thu,  4 Jun 2026 17:15:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7324711A1E3;
+	Thu,  4 Jun 2026 17:15:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="Ccz3+q85";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="UeuREe1j";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1309711A1DE
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 17:15:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DFF211A1E2
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 17:15:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1780593303;
- bh=8BawDQl2DiE3EM3kNjVM/GrjzjOlFKpDNvf2O2IB5sM=;
+ s=default; t=1780593305;
+ bh=kskH3i5xtRb6zK7IaXr0CBZfgsF7zDXN8NpWebOyCgc=;
  h=From:To:Subject:Date:In-Reply-To:References:From;
- b=Ccz3+q85KB0QhfwHC0f4icc/HJ2WZFCl+KAHh/mgbLZ7+jycZArou+HHqQjD3qRRI
- bUKUW4WJFqgs2LBSfzaZn9Ph9UZxjXWKaA3DMn0Gu6jHyF9FdMs3bDxrSyp1ejMW1w
- B/eQRZCYo5HrI9RkpNcZmvpVspUiHHqj8s6EoPMremuX2TKgNOZ+eNYxWMdndBzmQ4
- xTdNB9BNs/vJS7Ld5ZS7Jjb1wz8B2daFqLG22LPJ2lg1cTZpuLEctTlwO9GqqqgtOP
- IK5XD6UVVyYVz4UfRwNvOWWMTNcBNOykhQF10ZPNYNTL0smoaC8M2Wqu9XGDQYMciL
- eGreW9hVIRGPw==
+ b=UeuREe1jQ3KPwRoaKcZQrrIJFIgudzvBcBNwhtuCdfjPukr8fyIYgo6XZjuo8cYOk
+ q3T96rSyzvhWFnwtweRGvIbK3ye5YJAUWchJaa5SuStSdULnHzsw67lh2BnNmeFh8h
+ GHVcftLHlhnXhIjZeOavSx4UJWjUEnBPJmTyFbcQkuZdMtaZfpoEPW2RTOlETOwWiW
+ j1YVGlrtxXdxYnTkG7rrKEb72RYKgLS5pmuUToiS8swXTmv+XfnsXqs9froEpjY5+7
+ cLCkfbNUD3nsZc7+Rf5KNjrWLsK8D4+i9abcyWjpbtUMaeLjemDjOmSE7EUwkyy7UC
+ bQcPPmVBZKkTA==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI v2 05/24] drm/xe: Update xe_bo_put_deferred arguments to include
- writeback flag
-Date: Thu,  4 Jun 2026 19:14:41 +0200
-Message-ID: <20260604171502.84047-6-dev@lankhorst.se>
+Subject: [CI v2 08/24] drm/xe: Add helpers to access PT ops
+Date: Thu,  4 Jun 2026 19:14:44 +0200
+Message-ID: <20260604171502.84047-9-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260604171502.84047-1-dev@lankhorst.se>
 References: <20260604171502.84047-1-dev@lankhorst.se>
@@ -52,89 +51,183 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Matthew Brost <matthew.brost@intel.com>
 
-Update the xe_bo_put_deferred arguments to include a writeback flag,
-which indicates whether the BO was added to the deferred list. This is
-useful when the caller needs to take additional actions after the BO has
-been queued for deferred release.
+Add helpers to access PT ops, making it easier to shuffle the location of
+the ops structures without requiring widespread code changes.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Francois Dugast <francois.dugast@intel.com>
-Link: https://patch.msgid.link/20260228013501.106680-6-matthew.brost@intel.com
+Link: https://patch.msgid.link/20260228013501.106680-9-matthew.brost@intel.com
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_bo.h         | 10 ++++++++--
- drivers/gpu/drm/xe/xe_drm_client.c |  2 +-
- drivers/gpu/drm/xe/xe_pt.c         |  2 +-
- 3 files changed, 10 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_pt.c | 65 ++++++++++++++++++++++++++------------
+ 1 file changed, 45 insertions(+), 20 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 6340317f7d2e6..dee2a5524039c 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -492,6 +492,8 @@ void __xe_bo_release_dummy(struct kref *kref);
-  * @bo: The bo to put.
-  * @deferred: List to which to add the buffer object if we cannot put, or
-  * NULL if the function is to put unconditionally.
-+ * @added: BO was added to deferred list, written back to caller, can be NULL if
-+ * writeback is not needed.
-  *
-  * Since the final freeing of an object includes both sleeping and (!)
-  * memory allocation in the dma_resv individualization, it's not ok
-@@ -511,7 +513,8 @@ void __xe_bo_release_dummy(struct kref *kref);
-  * false otherwise.
-  */
- static inline bool
--xe_bo_put_deferred(struct xe_bo *bo, struct llist_head *deferred)
-+xe_bo_put_deferred(struct xe_bo *bo, struct llist_head *deferred,
-+		   bool *added)
- {
- 	if (!deferred) {
- 		xe_bo_put(bo);
-@@ -521,6 +524,9 @@ xe_bo_put_deferred(struct xe_bo *bo, struct llist_head *deferred)
- 	if (!kref_put(&bo->ttm.base.refcount, __xe_bo_release_dummy))
- 		return false;
- 
-+	if (added)
-+		*added = true;
-+
- 	return llist_add(&bo->freed, deferred);
- }
- 
-@@ -537,7 +543,7 @@ xe_bo_put_async(struct xe_bo *bo)
- {
- 	struct xe_bo_dev *bo_device = &xe_bo_device(bo)->bo_device;
- 
--	if (xe_bo_put_deferred(bo, &bo_device->async_list))
-+	if (xe_bo_put_deferred(bo, &bo_device->async_list, NULL))
- 		schedule_work(&bo_device->async_free);
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
-index 84b66147bf494..45efe7a554276 100644
---- a/drivers/gpu/drm/xe/xe_drm_client.c
-+++ b/drivers/gpu/drm/xe/xe_drm_client.c
-@@ -246,7 +246,7 @@ static void show_meminfo(struct drm_printer *p, struct drm_file *file)
- 			xe_assert(xef->xe, !list_empty(&bo->client_link));
- 		}
- 
--		xe_bo_put_deferred(bo, &deferred);
-+		xe_bo_put_deferred(bo, &deferred, NULL);
- 	}
- 	spin_unlock(&client->bos_lock);
- 
 diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index dc7d74c889a1d..86b9b8e164fc6 100644
+index 86b9b8e164fc6..d595ba234c355 100644
 --- a/drivers/gpu/drm/xe/xe_pt.c
 +++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -213,7 +213,7 @@ void xe_pt_destroy(struct xe_pt *pt, u32 flags, struct llist_head *deferred)
+@@ -1928,13 +1928,37 @@ xe_pt_commit_prepare_unbind(struct xe_vma *vma,
+ 	}
+ }
  
- 	XE_WARN_ON(!list_empty(&pt->bo->ttm.base.gpuva.list));
- 	xe_bo_unpin(pt->bo);
--	xe_bo_put_deferred(pt->bo, deferred);
-+	xe_bo_put_deferred(pt->bo, deferred, NULL);
++static struct xe_vm_pgtable_update_op *
++to_pt_op(struct xe_vm_pgtable_update_ops *pt_update_ops, u32 op_idx)
++{
++	return &pt_update_ops->ops[op_idx];
++}
++
++static u32
++get_current_op(struct xe_vm_pgtable_update_ops *pt_update_ops)
++{
++	return pt_update_ops->current_op;
++}
++
++static struct xe_vm_pgtable_update_op *
++to_current_pt_op(struct xe_vm_pgtable_update_ops *pt_update_ops)
++{
++	return to_pt_op(pt_update_ops, get_current_op(pt_update_ops));
++}
++
++static void
++incr_current_op(struct xe_vm_pgtable_update_ops *pt_update_ops)
++{
++	++pt_update_ops->current_op;
++}
++
+ static void
+ xe_pt_update_ops_rfence_interval(struct xe_vm_pgtable_update_ops *pt_update_ops,
+ 				 u64 start, u64 end)
+ {
+ 	u64 last;
+-	u32 current_op = pt_update_ops->current_op;
+-	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[current_op];
++	struct xe_vm_pgtable_update_op *pt_op =
++		to_current_pt_op(pt_update_ops);
+ 	int i, level = 0;
  
- 	if (pt->level > 0 && pt->num_live) {
- 		struct xe_pt_dir *pt_dir = as_xe_pt_dir(pt);
+ 	for (i = 0; i < pt_op->num_entries; i++) {
+@@ -1969,8 +1993,8 @@ static int bind_op_prepare(struct xe_vm *vm, struct xe_tile *tile,
+ 			   struct xe_vm_pgtable_update_ops *pt_update_ops,
+ 			   struct xe_vma *vma, bool invalidate_on_bind)
+ {
+-	u32 current_op = pt_update_ops->current_op;
+-	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[current_op];
++	struct xe_vm_pgtable_update_op *pt_op =
++		to_current_pt_op(pt_update_ops);
+ 	int err;
+ 
+ 	xe_tile_assert(tile, !xe_vma_is_cpu_addr_mirror(vma));
+@@ -1999,7 +2023,7 @@ static int bind_op_prepare(struct xe_vm *vm, struct xe_tile *tile,
+ 		xe_pt_update_ops_rfence_interval(pt_update_ops,
+ 						 xe_vma_start(vma),
+ 						 xe_vma_end(vma));
+-		++pt_update_ops->current_op;
++		incr_current_op(pt_update_ops);
+ 		pt_update_ops->needs_svm_lock |= xe_vma_is_userptr(vma);
+ 
+ 		/*
+@@ -2042,8 +2066,8 @@ static int bind_range_prepare(struct xe_vm *vm, struct xe_tile *tile,
+ 			      struct xe_vm_pgtable_update_ops *pt_update_ops,
+ 			      struct xe_vma *vma, struct xe_svm_range *range)
+ {
+-	u32 current_op = pt_update_ops->current_op;
+-	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[current_op];
++	struct xe_vm_pgtable_update_op *pt_op =
++		to_current_pt_op(pt_update_ops);
+ 	int err;
+ 
+ 	xe_tile_assert(tile, xe_vma_is_cpu_addr_mirror(vma));
+@@ -2067,7 +2091,7 @@ static int bind_range_prepare(struct xe_vm *vm, struct xe_tile *tile,
+ 		xe_pt_update_ops_rfence_interval(pt_update_ops,
+ 						 xe_svm_range_start(range),
+ 						 xe_svm_range_end(range));
+-		++pt_update_ops->current_op;
++		incr_current_op(pt_update_ops);
+ 		pt_update_ops->needs_svm_lock = true;
+ 
+ 		pt_op->vma = vma;
+@@ -2085,8 +2109,8 @@ static int unbind_op_prepare(struct xe_tile *tile,
+ 			     struct xe_vma *vma)
+ {
+ 	struct xe_device *xe = tile_to_xe(tile);
+-	u32 current_op = pt_update_ops->current_op;
+-	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[current_op];
++	struct xe_vm_pgtable_update_op *pt_op =
++		to_current_pt_op(pt_update_ops);
+ 	int err;
+ 
+ 	if (!((vma->tile_present | vma->tile_staged) & BIT(tile->id)))
+@@ -2125,7 +2149,7 @@ static int unbind_op_prepare(struct xe_tile *tile,
+ 				pt_op->num_entries, false);
+ 	xe_pt_update_ops_rfence_interval(pt_update_ops, xe_vma_start(vma),
+ 					 xe_vma_end(vma));
+-	++pt_update_ops->current_op;
++	incr_current_op(pt_update_ops);
+ 	pt_update_ops->needs_svm_lock |= xe_vma_is_userptr(vma);
+ 	pt_update_ops->needs_invalidation = true;
+ 
+@@ -2165,8 +2189,8 @@ static int unbind_range_prepare(struct xe_vm *vm,
+ 				struct xe_vm_pgtable_update_ops *pt_update_ops,
+ 				struct xe_svm_range *range)
+ {
+-	u32 current_op = pt_update_ops->current_op;
+-	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[current_op];
++	struct xe_vm_pgtable_update_op *pt_op =
++		to_current_pt_op(pt_update_ops);
+ 
+ 	if (!(range->tile_present & BIT(tile->id)))
+ 		return 0;
+@@ -2187,7 +2211,7 @@ static int unbind_range_prepare(struct xe_vm *vm,
+ 				pt_op->num_entries, false);
+ 	xe_pt_update_ops_rfence_interval(pt_update_ops, xe_svm_range_start(range),
+ 					 xe_svm_range_end(range));
+-	++pt_update_ops->current_op;
++	incr_current_op(pt_update_ops);
+ 	pt_update_ops->needs_svm_lock = true;
+ 	pt_update_ops->needs_invalidation |= xe_vm_has_scratch(vm) ||
+ 		xe_vm_has_valid_gpu_mapping(tile, range->tile_present,
+@@ -2335,7 +2359,7 @@ int xe_pt_update_ops_prepare(struct xe_tile *tile, struct xe_vma_ops *vops)
+ 			return err;
+ 	}
+ 
+-	xe_tile_assert(tile, pt_update_ops->current_op <=
++	xe_tile_assert(tile, get_current_op(pt_update_ops) <=
+ 		       pt_update_ops->num_ops);
+ 
+ #ifdef TEST_VM_OPS_ERROR
+@@ -2568,7 +2592,7 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
+ 	lockdep_assert_held(&vm->lock);
+ 	xe_vm_assert_held(vm);
+ 
+-	if (!pt_update_ops->current_op) {
++	if (!get_current_op(pt_update_ops)) {
+ 		xe_tile_assert(tile, xe_vm_in_fault_mode(vm));
+ 
+ 		return dma_fence_get_stub();
+@@ -2636,8 +2660,9 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
+ 	}
+ 
+ 	/* Point of no return - VM killed if failure after this */
+-	for (i = 0; i < pt_update_ops->current_op; ++i) {
+-		struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[i];
++	for (i = 0; i < get_current_op(pt_update_ops); ++i) {
++		struct xe_vm_pgtable_update_op *pt_op =
++			to_pt_op(pt_update_ops, i);
+ 
+ 		xe_pt_commit(pt_op->vma, pt_op->entries,
+ 			     pt_op->num_entries, &pt_update_ops->deferred);
+@@ -2761,9 +2786,9 @@ void xe_pt_update_ops_abort(struct xe_tile *tile, struct xe_vma_ops *vops)
+ 
+ 	for (i = pt_update_ops->num_ops - 1; i >= 0; --i) {
+ 		struct xe_vm_pgtable_update_op *pt_op =
+-			&pt_update_ops->ops[i];
++			to_pt_op(pt_update_ops, i);
+ 
+-		if (!pt_op->vma || i >= pt_update_ops->current_op)
++		if (!pt_op->vma || i >= get_current_op(pt_update_ops))
+ 			continue;
+ 
+ 		if (pt_op->bind)
 -- 
 2.53.0
 
