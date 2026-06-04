@@ -4,106 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55435CD6E4A
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 12:34:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88F25CD6E6B
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 12:38:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12F67113FB5;
-	Thu,  4 Jun 2026 12:34:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B3A1113FCF;
+	Thu,  4 Jun 2026 12:38:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="e1ErmNFN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NhY0eZTU";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CAE37113FB5
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 12:34:19 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id B37E44466B
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 12:34:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85AF91F00A2D
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 12:34:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1780576459;
- bh=kQ6M6FDKXPf9y7Y2G+ZlFRRaP5oLHz23vLbG+bNrvo8=;
- h=From:In-Reply-To:References:Date:Subject:To:Cc;
- b=e1ErmNFNc3B2GEwYqb/P6xaZrlvHojwGUKOx+yleFIv+SrequIqnOzpFPLS1QoJOu
- M6UveWB9G9jMFR2xQgcuoOfCqwtUFLxtREEtbjlRtcR8Oiz300JksvjDpoAiEHZWl5
- DK4tJNSy64M+EydtbLB3r3qwSx6AoeXlzSDvlHLB9/hX0rPhEzKIn8xc9Bfw8dWGhh
- 8YQLs+n/OsaOYQD5t+KUjWzIRs9cKpu34ToF65wYvg8QcIy+50z8yHU8exS3cwA7GT
- lIqRVAp3Dz2GuvmZ2qOOkeo5ggbyFzMytBjaNxsOZHoXJpBb89z7x9cipR7tV9C/DW
- ReyLRDqG/Vt9Q==
-Received: by mail-lj1-f174.google.com with SMTP id
- 38308e7fff4ca-396bed274b9so5721701fa.0
- for <intel-xe@lists.freedesktop.org>; Thu, 04 Jun 2026 05:34:19 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AFNElJ8MdThWE1F4AKKCMAB7Q76+KUdOWdr5ckkiZAraj2lzkEhM2uz4OjhZ3VMP9GrpLUlYbAjsIDJQWA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzZuNuabC/JIn9n9R3/ToxkY/DTBXDW510tIRYU8gORjQ+cGnFY
- XSEUC2s9ar919krjoGkIcrkLymfDpijtgD0YH8Vt5zZfO/8osukUhfntjadY9npko/CSvGTOdP0
- Btht4MNEtibHCHGASwmhrnfRAYjLP6X0jjSQLTFpywQ==
-X-Received: by 2002:a2e:bcc1:0:b0:396:8eb1:a4a4 with SMTP id
- 38308e7fff4ca-396af436443mr25706941fa.14.1780576458112; Thu, 04 Jun 2026
- 05:34:18 -0700 (PDT)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 4 Jun 2026 08:34:16 -0400
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 4 Jun 2026 08:34:16 -0400
-From: Bartosz Golaszewski <brgl@kernel.org>
-In-Reply-To: <ah9P6Xt9SyKgc2oJ@ashevche-desk.local>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D189113FCF
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 12:38:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1780576735; x=1812112735;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=8Y7onhrUSGnKop5rdjAL/wL2kKHVQvBjYales/riuj4=;
+ b=NhY0eZTUpKwBA1l5WvmLX2xMX2hklBDyS7SRCTCll4bAA9RL+aH4wxz2
+ 6Ki7EQtchvTFCkpwogJ0gdNISqqcnCGDzD0ffNEESR8jh3PUWll0UO7o8
+ 0c4tCwnlTtfhTUevK2T2lbb1vtxEKi4FTZYNWZtAFmj6hw9g5VJn587nn
+ TM9lWjeFbiS+Sp5lBgT8h+msz2xwWpP2Z7IZbxq0O/Jortzgat0sd+mv9
+ 9YodD0cCkxDjpScaxfhUJQ/kRVwqNKEmUAhKFEoy0wIlwU11/GXMBLDBv
+ BrOqCpdBZRANhoksmjEI//CD2Z63GFX8GpGmNB4/Adi/43kXHFIJVQJvy g==;
+X-CSE-ConnectionGUID: 5AlxdUV3QqaKs+HmrzjAdw==
+X-CSE-MsgGUID: UyRpOdsRQ9ygxpUu3HFUlQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11806"; a="104062600"
+X-IronPort-AV: E=Sophos;i="6.24,187,1774335600"; d="scan'208";a="104062600"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2026 05:38:54 -0700
+X-CSE-ConnectionGUID: Crxa5DR/TX+La/nfzm4mFw==
+X-CSE-MsgGUID: AXMzfJyZSnmFiknY2XmPZQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,187,1774335600"; d="scan'208";a="243460302"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2026 05:38:53 -0700
+Date: Thu, 4 Jun 2026 14:38:50 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Cc: intel-xe@lists.freedesktop.org, saurabhg.gupta@intel.com,
+ alex.zuo@intel.com
+Subject: Re: [PATCH] drm/xe/i2c: Report i2c irq handler issue
+Message-ID: <aiFx2veqtpl9mdSo@black.igk.intel.com>
+References: <20260603201007.3768029-1-jonathan.cavitt@intel.com>
 MIME-Version: 1.0
-References: <20260521-pdev-fwnode-ref-v1-0-88c324a1b8d2@oss.qualcomm.com>
- <20260521-pdev-fwnode-ref-v1-20-88c324a1b8d2@oss.qualcomm.com>
- <ah9P6Xt9SyKgc2oJ@ashevche-desk.local>
-Date: Thu, 4 Jun 2026 08:34:16 -0400
-X-Gmail-Original-Message-ID: <CAMRc=MdhjZhGL9tEx9WEjn2f95d=ObNM0AtBNpcevm6aHgpj+Q@mail.gmail.com>
-X-Gm-Features: AVHnY4IaL6Srer7kIaxoyyrYpvf7EUQjky2qCo2_J16coVWA1ajpEEsVM7UfQA8
-Message-ID: <CAMRc=MdhjZhGL9tEx9WEjn2f95d=ObNM0AtBNpcevm6aHgpj+Q@mail.gmail.com>
-Subject: Re: [PATCH 20/23] usb: chipidea: use
- platform_device_set_of_node_from_dev()
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Lee Jones <lee@kernel.org>,
- Mark Brown <broonie@opensource.wolfsonmicro.com>, 
- Thierry Reding <thierry.reding@avionic-design.de>, 
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Srinivas Kandagatla <srini@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Vinod Koul <vkoul@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Danilo Krummrich <dakr@kernel.org>, 
- Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@kernel.org>, 
- Madhavan Srinivasan <maddy@linux.ibm.com>,
- Michael Ellerman <mpe@ellerman.id.au>, 
- Nicholas Piggin <npiggin@gmail.com>,
- "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, 
- Andi Shyti <andi.shyti@kernel.org>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, 
- Robin Murphy <robin.murphy@arm.com>, Doug Berger <opendmb@gmail.com>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
- Ulf Hansson <ulfh@kernel.org>, 
- Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, 
- Matthew Brost <matthew.brost@intel.com>, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Peter Chen <peter.chen@kernel.org>, 
- Paul Cercueil <paul@crapouillou.net>, Bin Liu <b-liu@ti.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>,
- Maximilian Luz <luzmaximilian@gmail.com>, 
- Hans de Goede <hansg@kernel.org>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
- Krzysztof Kozlowski <krzk@kernel.org>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>, brgl@kernel.org, 
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org, 
- driver-core@lists.linux.dev, devicetree@vger.kernel.org, 
- linuxppc-dev@lists.ozlabs.org, linux-i2c@vger.kernel.org, 
- iommu@lists.linux.dev, linux-pm@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-usb@vger.kernel.org, 
- linux-mips@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
- Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260603201007.3768029-1-jonathan.cavitt@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -118,23 +67,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2 Jun 2026 23:49:29 +0200, Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> said:
-> On Thu, May 21, 2026 at 10:36:43AM +0200, Bartosz Golaszewski wrote:
->> Ahead of reworking the reference counting logic for platform devices,
->> encapsulate the assignment of the OF node from another device for
->> dynamically allocated platform devices with the provided helper.
->
-> ...
->
->>  	pdev->dev.parent = dev;
->> -	device_set_of_node_from_dev(&pdev->dev, dev);
->> +	platform_device_set_of_node_from_dev(pdev, dev);
->
-> Why do they even do that? Do they have a USB connected pin control?
->
+On Thu, Jun 04, 2026 at 04:10:07AM +0800, Jonathan Cavitt wrote:
+> xe_i2c_irq_handler calls generic_handle_irq_safe, which can return an
 
-I don't know. I can't test it so I don't want to break it. If they don't need
-it, the person who can test it, can remove it later.
+Use '()' for functions.
 
-Bart
+> error value.  In all other cases, this is passed to a
+
+Why the early wrapping? Looks like the next word can fit here.
+
+> .*_err_ratelimited error message helper.  Add the missing error handler.
+
+There's no change in the code path so it wasn't "missing".
+I'd rephrase this as "Log the error".
+
+> This issue was caught by static analysis.
+
+This is redundant information but I'll leave it to you.
+
+> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> Cc: Raag Jadav <raag.jadav@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_i2c.c | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_i2c.c b/drivers/gpu/drm/xe/xe_i2c.c
+> index 706783863d07..acfc171483b2 100644
+> --- a/drivers/gpu/drm/xe/xe_i2c.c
+> +++ b/drivers/gpu/drm/xe/xe_i2c.c
+> @@ -177,12 +177,15 @@ static bool xe_i2c_irq_present(struct xe_device *xe)
+>  void xe_i2c_irq_handler(struct xe_device *xe, u32 master_ctl)
+>  {
+>  	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
+> +	int ret;
+>  
+>  	if (!(master_ctl & I2C_IRQ) || !xe_i2c_irq_present(xe))
+>  		return;
+>  
+>  	/* Forward interrupt to I2C adapter */
+> -	generic_handle_irq_safe(xe->i2c->adapter_irq);
+> +	ret = generic_handle_irq_safe(xe->i2c->adapter_irq);
+> +	if (ret)
+> +		drm_err_ratelimited(&xe->drm, "error handling i2c irq: %d\n", ret);
+
+drm_err_ratelimited() already logs "error" so I'd rephrase this as
+"failed to handle i2c irq".
+
+Raag
+
+>  	/* Deassert after I2C adapter clears the interrupt */
+>  	xe_mmio_rmw32(mmio, I2C_CONFIG_CMD, 0, PCI_COMMAND_INTX_DISABLE);
+> -- 
+> 2.53.0
+> 
