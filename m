@@ -4,158 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9C33CD6E4A
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 06:46:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08074CD6E6B
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 06:51:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 750901126E1;
-	Thu,  4 Jun 2026 06:46:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B791710E3C6;
+	Thu,  4 Jun 2026 06:51:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RVnA4Fzm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cxixIQaa";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FC8A1126E0
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 06:46:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19D4210E3C3;
+ Thu,  4 Jun 2026 06:51:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780555609; x=1812091609;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=bV+7KEZnDt2vR2l8Qcht+MVsPjNV0Dyvp4d0QcfqqWg=;
- b=RVnA4FzmC7ZjhL6jVHbUnbT2t0s7x35s7KXKuFsrLhOOhI2SfPWDiDkp
- XijLWmXRAYuUDvzjPmzG5ymXOmkH0wY4i2sTuQ2O8ild0DNtlvCJIPwR3
- JbUM+9lOACm0m58ZOrzq+9VZL5nqju3kfUon+c+fwX3FbC1kyRqQK43R+
- lCwCAf4ek5ix961nqF2Cxru5Qb+7+Ee4BQAtTfQ1kBX6Ie0njkFbqiH00
- NYwTXx85lBSdu2z0mc3RzoF2Ce8gbln4YtduLb1V4VkWHL8wtQe/hSyyQ
- AMFOAv2TRhCLJ4jxiil2BiW34ow+KcpIjBPSPwFfqDuMJMvzUvHbSNEZz A==;
-X-CSE-ConnectionGUID: tWjExuaDQUOlwJKXrx/f3Q==
-X-CSE-MsgGUID: cRt1caPARkKwXk31RwGdxg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11806"; a="80517329"
-X-IronPort-AV: E=Sophos;i="6.24,186,1774335600"; d="scan'208";a="80517329"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2026 23:46:49 -0700
-X-CSE-ConnectionGUID: hIIrAM9ET+2EgnhVuD/T3g==
-X-CSE-MsgGUID: SrsyaVQxTtmgJKGidZqtMA==
+ t=1780555913; x=1812091913;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=pNJTO+/N4E17hWTL5NAwNJ2+OxzFkMqNRUuYWcWt4PA=;
+ b=cxixIQaarG6vtX6Ib9+xF8YAhedGCFacHWiyJpGOofWT8TvYoh9SYtL6
+ jgIE9yz6eiZ6f85N2bdCwtJQXtx8CRYADEgjTygipy9e57r2Covnl5BN8
+ wySHG2yuVpO0WL1ZQowypibriZeZQiSf0+/rD/DUMGVDxmDqcyiYBiMiO
+ +r93KJiCIh3UA480Dj36I/32VcC/xDcRvMj3LL52LMgFWFFMC/vRQouc6
+ 82zqmc2qXdJuV7+4p+2dIsUnWdtwozwmRD/0Ns6Fa+0jgWgL/vxhFoNsB
+ 37rTS7qz5JLXYW7loQ5/Bw8l25yEbh4QVjWkHTmBj+6HtKNormK5OoBbz g==;
+X-CSE-ConnectionGUID: CB+sorZpQPyI7ZLkXvpSnA==
+X-CSE-MsgGUID: ifw7UVE6SumWLTMNRoNlnA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11806"; a="81557421"
+X-IronPort-AV: E=Sophos;i="6.24,186,1774335600"; d="scan'208";a="81557421"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2026 23:51:53 -0700
+X-CSE-ConnectionGUID: DH0acMbPTTa35yc/dksYmQ==
+X-CSE-MsgGUID: TbPBt3j+SRaDobaOpBqq3Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,186,1774335600"; d="scan'208";a="274697616"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2026 23:46:49 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 3 Jun 2026 23:46:48 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 3 Jun 2026 23:46:48 -0700
-Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.28) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 3 Jun 2026 23:46:48 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=dSedSdZ/PK045zHRzma85LQBXVCn6+V06H3ZrfnCH55rA226ArBX9XjKi9OEtMxU26jQfOr/XShrynieT6Wz20BuqcLgQlVuQmVrAq66xYrAKfxsFu6/wZOOPYa0I/ZtLoytQvIeJH98hgzs6Rw7ZzwUnSBtrS18u41zDvJbHEfh7cQn8UF8/4UCo4J7GZZw3dPpT8ldv+Q5vH32kqncK2P4qPByTIeMJ3nTAB9fJ7A0IFZ1jo0VDe7IyWThm5UyP5WujJocLK9sOcP7uBpRRAC1fE41hmCyyQ0QPjJXUuJ4Zxy7qdfNXr7PqN/nLBnEzf4PEYcjjkKLFktCfzrrhA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4q5yOpKAPmi9tUwz+zHmMTvChiDgNSVbWFRwFH4rkVM=;
- b=JnvjO9o4Pn5NyXfqs5IjOESmfUB8vWrVWfbhhi4rtaV76qscrp1ioIVdoOECoLpRgzG9++ici1cpE/WPWAAt1rRByUOm7xqcmthToDkhmQ0CygLT6uZutlaZiE9ZdokvRzYfrqtjXAL4rezWv8aiVu7+bAcVtdN2idZgnXF/OdpQsndOCqb8zNA5Vn2q6XrvTXsayJMLBKP8QUEWLhQQvbFccY7skGbZ1w+kDgxn6xilEEsPEjly4NA5WNTfl+jfsJ7teR1XNDk6li7BL0BrrWEEpi4Z6qk+/LF5ccBq35mA1DpLEbnrvs+ho1UmKVzXa44o3hvxi3+2qZN3lg8zsQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB8208.namprd11.prod.outlook.com (2603:10b6:8:165::18)
- by MN0PR11MB6034.namprd11.prod.outlook.com (2603:10b6:208:375::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.7; Thu, 4 Jun 2026
- 06:46:46 +0000
-Received: from DS0PR11MB8208.namprd11.prod.outlook.com
- ([fe80::ecb0:7475:84de:ca9c]) by DS0PR11MB8208.namprd11.prod.outlook.com
- ([fe80::ecb0:7475:84de:ca9c%6]) with mapi id 15.21.0092.006; Thu, 4 Jun 2026
- 06:46:46 +0000
-Message-ID: <8dfe4463-476d-4606-850c-c9c34bbf4408@intel.com>
-Date: Thu, 4 Jun 2026 12:16:38 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] drm/xe: fix job timeout recovery for unstarted jobs
- and kernel queues
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>, <intel-xe@lists.freedesktop.org>
-CC: Matthew Auld <matthew.auld@intel.com>, Himal Prasad Ghimiray
- <himal.prasad.ghimiray@intel.com>
-References: <20260603150059.157355-4-rodrigo.vivi@intel.com>
-Content-Language: en-US
-From: "Yadav, Sanjay Kumar" <sanjay.kumar.yadav@intel.com>
-In-Reply-To: <20260603150059.157355-4-rodrigo.vivi@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5P287CA0137.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1d2::13) To DS0PR11MB8208.namprd11.prod.outlook.com
- (2603:10b6:8:165::18)
+X-IronPort-AV: E=Sophos;i="6.24,186,1774335600"; d="scan'208";a="249385724"
+Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.33])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2026 23:51:51 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>, =?utf-8?Q?Micha=C5=82?= Grzelak
+ <michal.grzelak@intel.com>
+Subject: Re: [PATCH v6 5/8] drm/i915: override LT's VS/PE when requested
+In-Reply-To: <20260603230544.1993439-6-michal.grzelak@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260603230544.1993439-1-michal.grzelak@intel.com>
+ <20260603230544.1993439-6-michal.grzelak@intel.com>
+Date: Thu, 04 Jun 2026 09:51:48 +0300
+Message-ID: <e60ee78abc4044c8ecf33c2e85e89aa638bfdaaf@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8208:EE_|MN0PR11MB6034:EE_
-X-MS-Office365-Filtering-Correlation-Id: 99c8d7b4-eb36-4085-2a79-08dec2050bcb
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|6133799003|56012099006|11063799006|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: nQN1+XVWTVgeRQ6FPHqHzD9u7xmw3vbhbzPn2aHbA17UsDG/fnAsYLUI1gUkWUeaJchRPxdssgZ4IvTvHPFPJtKVbyLFFs7ml4QCFJzrkSrCiAjWbqW+iohLuGv9iWpQ2AvHpiQpgQzos8eWQeOuoNTCTkxaUAqsLMfIgX0HszLuG9Legfx9eyKOLimOz2n+D1I+BztxeiO4HoDdiznj9BtsKzphrYxeZ0qzNPz+kTzMZkvyvsD3zt4RCovZhKi/5mgrqkIYtiz+NwObbnvcFkAntNKnCxoGx9HcjVAlzT17ZUj5uzY2RaQGa5nTD5ElWfXCzi253AqXJzjosxLHWgigUcpHsRv4RdUA34WDWE9rTVgQKDfeZP+V3MF+YE1d2ZLLymdWn+0mnYeO+5PEInIY4LvbZqk5e30WnDB4tN9C+s5ihV9S9Ddj/rxhxrHRbwMobInmKRRz28D1LPq/GTujkSDQvpX2Iexd+CKkdFhKqFc9D+vq+d7dNj3RahhN+g56ZVA1CqX/XMUBLk3HI3pUNzjwEuBn1xB2m7A1Q2k1l7I8JU3S8dPbk1zTKISLSz+fRtKKG9DJknp2SNDPyuGYHSiZiSmXuHRHKBdZwHvGgmEtddEse89HgUzp3FcXYo8m1q4J44sjBFEv/BMHfVkJ4Ej4X+Ir6k/9TFaFwmBqI8CHM22yi3XXI3kPBjWx
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8208.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(6133799003)(56012099006)(11063799006)(22082099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NzBPM0dwenFSdnBPNzNrTU9BS1hBNUpkL1hYMTJoU2dHUGg2ODBMUkJxcCtJ?=
- =?utf-8?B?RnVnNE9kVzArREF3K05LZktGYy9wdXQ4dHhBUmM1TWE2SXdFQUZEZ1kwRXk3?=
- =?utf-8?B?TTFPeVJ6YVhPbEcyK29iUWNqR2U4MEpNRTNscDJMNzd0eExjcExyblRLWEw2?=
- =?utf-8?B?Zm9TTVNxOTRCckJQRWJIcWlrYjE5QTNmU1pMb1ZZblU2US9NeU5mcExNS2hC?=
- =?utf-8?B?ZW1Cd29hamVFM2VSYjBXTVRSRHJiVlg1cU9Fdm5MdUtVSlVaMGo5aHJSRDdB?=
- =?utf-8?B?S0ZCMjM1RXpvZkgzSzljeC9abzNDejNVMFg2UmF0SXhpeHlHV2hwdC9meDAx?=
- =?utf-8?B?YzZPbEN3aTU3dVJDMVBranBNb2J3Vmhrc0JteUY4dlBCUlVQczh2djJWTzlU?=
- =?utf-8?B?b0pyZW9QaFlRd29wOG1NSUNvTEJHa0pjVGlhdnJFNDY2dm1LRWZ6QUdhb3p3?=
- =?utf-8?B?SWJtVzBQN0FrTWdUcld2aVZWa0p3Y0RoN2Y1K1JLTWsyaS93ZnNJRWdyWUpZ?=
- =?utf-8?B?MEEvU1NvTVFrdm5zZDZMcGp6WmtVOGF1SkExU1dtSnVDeFI4RHFhTmtHZVpu?=
- =?utf-8?B?bTJoR0t5TlBwQTVOTFlxdFN2c1dYeHMxTmRGRmdrWXhTaFR3RzdUL3ZMeXky?=
- =?utf-8?B?WlFaSHhmZUFmazhEQ1VlOHFkN0lvczl5T0VsUW9MZzVPdDB2aUZXOHdhMkR2?=
- =?utf-8?B?dHUyV3NsZThnTWpreXY3S1d1LzZEWnhZT0ZBNGROYXN3TEVERVJQS3E4TmFR?=
- =?utf-8?B?cXJFdjBiMXd5eXhZdWtnZnhUNEhhMEVGamVKNy9jaHd6aXVOTzM3ci9TVmw3?=
- =?utf-8?B?RHJkbjRkdzZid2pyT1ovZ1IwYi85alkxbWRJOHZldTliRFJlaVM0ZWFQVWJy?=
- =?utf-8?B?am5lS3VlaHoxdEhaMjFkS3FNRmFVMUI2MmlVL0Mya2ZVT2FNeDF6czFGbDlM?=
- =?utf-8?B?UHJNWElaSk1kQjQ3K1lsNWlJNmRIM2tObWh2TVgxbVVCQjhTNVJsc3gvY01V?=
- =?utf-8?B?eEhQamxGYzJNbzBtVkI2RkFnOTkvaGtjT1o2V203MU1aejUwRWNSbmNMM2hr?=
- =?utf-8?B?ZGNpWU9vYzhod21aZEYvNjIvcU9oUjEzOUZySC9LSzlFSzFPMHZHbzlxZm10?=
- =?utf-8?B?OXNlU2Z1UDJMZTZ6QTFuZnJ0dUplNXNzb01lcmJNdVdJWXMyUW9BZUpBWUFn?=
- =?utf-8?B?Wk5rbDBTWWhZUFVBWWVLRldJeGYya0ZmZ2g5YktLQ3JVWmFSY0tmR0h5a0kx?=
- =?utf-8?B?cEtzTUp5NlhvcUJnSXFHMEtRTTVGSmtTM0N3RSt1dEZvaHp4MUgwK3k2dkxr?=
- =?utf-8?B?enJiQXVYYXI2QVJpSGc0RmIrUTZHR3FEWHBKWG11cGhNVTVONjQwN1ZYTm1i?=
- =?utf-8?B?NUI2RE9WdnpKVElJU04rRk1leTVjMWJZTVBPL1k4NGFNY1crc1JGWEVPc2Ri?=
- =?utf-8?B?MTU3czJxcFNWQ2VIWmU1Ni9oRm04K0JKeTFROXhFeDBqZEV5d3Z6ZVB0dTl1?=
- =?utf-8?B?YnlLbEJYK2wzVVVsQkNCdWpyLzBQS2xRczJXblhXU0tVYzZycStiTWJTWTlP?=
- =?utf-8?B?bUhXaUREbHVaUGh2V0tjbmxrclZaNlhrb21zYWlQUmdSd3g5UlJiLzhQYXdy?=
- =?utf-8?B?aURuUW5ZRTlFV3o3SFlyRkx4MmRnY1ByMmdlZzJwZEZnYXFVNzZzdENSL2JN?=
- =?utf-8?B?YXFMQXlRdmdUMGk0Q21yN3crOTc0MEo3ZTlqZ0lmSUg4bEtFa2w3RlU2QlVY?=
- =?utf-8?B?TTd0Q3lvelgyblBzV3cvcWMrVFErVHhwUnkrWWU3YWZHak9XTUVYOE40R2VE?=
- =?utf-8?B?U284Z25IQmJITUp6UFVCcmp6VHpibVhITXlQWS85V0F6NFNnRmZnbTVOMDV4?=
- =?utf-8?B?MXAycmhjeWFXZUNKNUsyamltU2V5Um5rWkpkRisrNmc5U3lwUUtaVStxbC9h?=
- =?utf-8?B?S1RBWTl5dFN4NG56L2lTQ3MrS2s5Z3BQSjAyeVRaYzB4L2ozMWRwczltd0hS?=
- =?utf-8?B?bCs2S2d5dWNUcldsVGNHWi9qdFdLNEhvME5qdUxEdXFYSEFXeGRwaGhsMXB3?=
- =?utf-8?B?d1A2YWZUZDZjUGdOUTFIdDdIYkJ2c2l1NCt1TlpRZ0UxOEhnenNqNWhXNUll?=
- =?utf-8?B?RGZPRFp6SjB4M2FQK1VCS0kyU3RnUWM3RmJkakpJUnFpM2hFKzkzenhnUjJO?=
- =?utf-8?B?SlVaUy91MWJwZHBNRjA3bmt5cjlHb1lnQUYrK0p3UHZvQ3BhOTdNZWc3UjVM?=
- =?utf-8?B?ZWtpRGFyS25nU2xFeXlsNTdrUXJmRHd0NE52bkNRMWRKQ0N3NHZtSFAxa1NU?=
- =?utf-8?B?d0s4N1RTbDZmVVFFWm9LcXZ2S21YTGwzTjJxQ1FrRTJMWWdFcUVTOTNwQ1JO?=
- =?utf-8?Q?Cad6s07cnAZ4/GSw=3D?=
-X-Exchange-RoutingPolicyChecked: sXhEuWlVWirerQvFQvD7sFPW/6u9uGgtefTCV+TAvgV5Dp3iCl10Mk6GVCyp1y6GmcnjWY4QyWrbQiUgti11HPGV/aVUhFZdyNbQk61uE7eDeh224+BFzfr+HEnedvI2x69TPikg+ziXHBH0+umkG0PNHd6/L5FYWW2MarIpKPyNyneeFE/xjYQpo90dKA2wVpytxgEqGnIAi+RKXh23llrYZO8Pje+t/G0EEAg/w7y6ke5xsstoMQvxOsYmWREzoX2YtR61zglTfcUgdAnA2DDuhiNLlISV2pPV0ewifJdTv7Vq5Uevu27PHe/Q6yM/mdIEKKBeUIn+GDDtVFDzag==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 99c8d7b4-eb36-4085-2a79-08dec2050bcb
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8208.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jun 2026 06:46:46.6260 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qEGSnMN17VFlM1xROagpUAi5f742w6NF2dkf+ap4kS2V40+VzWyPgKpNvB0vLUFTP3nHUzu1POLPoPwo8ApyXMWfAZswuvvx2bI2jKt+nJw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6034
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -170,91 +72,242 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-On 03-06-2026 20:31, Rodrigo Vivi wrote:
-> Jobs that GuC never scheduled were silently errored out instead of
-> triggering a GT reset. Kernel jobs that exhaust all recovery attempts
-> should wedge the device rather than silently fail, and userspace VM bind
-> queues should stay permanently banned rather than being reset and retried.
+On Thu, 04 Jun 2026, Micha=C5=82 Grzelak <michal.grzelak@intel.com> wrote:
+> Add accessor function for LT to read requested table from VBT #57.
+> Parse the requested table and transform data into port's buffer.
 >
-> The queue is banned early in the timeout handler to signal the G2H
-> scheduling-done handler so it wakes the disable-scheduling waiter; without
-> it the waiter sleeps the full 5s timeout. For kernel queues the ban is
-> cleared before rearming so that guc_exec_queue_start() can resubmit jobs
-> after the GT reset — a banned queue would block resubmission and cause an
-> infinite TDR loop.
+> Add helper for checking if devdata is safe for dereference. Proceed with
+> default values if not.
 >
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
-> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> Assisted-by: GitHub-Copilot:claude-sonnet-4.6
-> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Tested-by: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
-LGTM
-Tested with Reproducer IGT and xe_evict - No IGT stuck recovery works 
-correctly and subsequent migration tests pass.
+> Add helper to check if VS/PE-O buffer has been allocated during
+> allocate_vswing_preemph_override(). Proceed with default values if not.
+>
+> LT's VS/PE-O tables have less columns than xe3plpd_lt_phy_buf_trans
+> contains fields. Thus copy txswing and txswing_level from default VS/PE
+> values onto VS/PE-O tables.
+>
+> Use 6th table if encoder supports DP 2.0 or higher. Otherwise use 5th
+> table for DP.
+>
+> There are no changes to intel_ddi_dp_level() since selection of correct
+> row of intel_ddi_buf_trans_entry is same as when no override request has
+> been done.
+>
+> Tables 1-4 are not used at all and are most likely to be zeroed. 5th
+> table is used for any mode below DP 2.0 (exclusive). 6th table is used
+> for any mode above DP 2.0 (inclusive).
+>
+> Indices for other tables have not yet been observed to be used as of
+> now.
+>
+> v5->v6
+> - remove drm_WARN_ONCE (Suraj)
+> - pass default VS/PE tables to LT's VBT accessor (Suraj)
+> - set txswing & _level from default VS/PE tables (Suraj)
+> - add helper checking if VS/PE-O has been allocated (Suraj)
+> - check if devdata is not NULL
+>
+> v4->v5
+> - add if-ladder instead of function pointer
+> - blend index computation with table parsing
+> - remove WARN and debug messages
+> - remove enums entirely
+> - add spaces around operators (Suraj)
+> - remove spaces after type casting (Suraj)
+> - remove INTEL_DISPLAY_STATE_WARN (Suraj)
+>
+> v3->v4
+> - stick to solely changing VBT data into current structures (Jani)
+> - move iterator declaration to declaration block (Suraj)
+>
+> v2->v3
+> - remove unnecessary braces from if block (Suraj)
+> - return -EINVAL instead of -1 (Suraj)
+>
+> Signed-off-by: Micha=C5=82 Grzelak <michal.grzelak@intel.com>
 > ---
->   drivers/gpu/drm/xe/xe_guc_submit.c | 31 +++++++++++++++++++++---------
->   1 file changed, 22 insertions(+), 9 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_bios.c     | 40 +++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_bios.h     |  6 +++
+>  .../drm/i915/display/intel_ddi_buf_trans.c    | 37 ++++++++++++++++-
+>  3 files changed, 82 insertions(+), 1 deletion(-)
 >
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> index ab501513d806..bbccba367626 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> @@ -158,6 +158,11 @@ static void set_exec_queue_banned(struct xe_exec_queue *q)
->   	atomic_or(EXEC_QUEUE_STATE_BANNED, &q->guc->state);
->   }
->   
-> +static void clear_exec_queue_banned(struct xe_exec_queue *q)
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
+i915/display/intel_bios.c
+> index bc48ed9a7cbf5..302a9465a637b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> @@ -3846,6 +3846,11 @@ int intel_bios_hdmi_ddc_pin(const struct intel_bio=
+s_encoder_data *devdata)
+>  	return map_ddc_pin(devdata->display, devdata->child.ddc_pin);
+>  }
+>=20=20
+> +bool intel_bios_encoder_allocated_vspeo(const struct intel_bios_encoder_=
+data *devdata)
 > +{
-> +	atomic_andnot(EXEC_QUEUE_STATE_BANNED, &q->guc->state);
+> +	return !!devdata->vspeo;
+> +}
+
+Please don't add this function. Just return NULL from get call below and
+handle it in the caller.
+
+> +
+>  bool intel_bios_encoder_requests_vspeo(const struct intel_bios_encoder_d=
+ata *devdata)
+>  {
+>  	return devdata->display->vbt.version >=3D 218 && devdata->child.use_vbt=
+_vswing;
+> @@ -3861,6 +3866,41 @@ bool intel_bios_encoder_supports_tbt(const struct =
+intel_bios_encoder_data *devda
+>  	return devdata->display->vbt.version >=3D 209 && devdata->child.tbt;
+>  }
+>=20=20
+> +const struct intel_ddi_buf_trans *
+> +intel_bios_get_lt_vspeo(const struct intel_bios_encoder_data *devdata,
+> +			const struct intel_ddi_buf_trans *buf_trans,
+> +			int idx)
+> +{
+> +	struct intel_display *display =3D devdata->display;
+> +	struct intel_ddi_buf_trans *vspeo =3D (void *)devdata->vspeo;
+> +	union intel_ddi_buf_trans_entry *entries =3D (void *)vspeo->entries;
+
+What's with the casts?
+
+> +	const u32 *tables =3D display->vbt.vspeo.tables;
+> +	int num_columns =3D display->vbt.vspeo.num_columns;
+> +	int num_rows =3D display->vbt.vspeo.num_rows;
+> +	size_t offset =3D 0;
+> +	int level;
+> +
+> +	offset +=3D idx * num_rows * num_columns;
+
+I think the division of responsibilities is not great if the caller
+passes in an index that's tied to the VBT data format.
+
+> +
+> +	for (level =3D 0; level < num_rows; level++) {
+> +		u8 txswing =3D buf_trans->entries[level].lt.txswing;
+> +		u8 txswing_level =3D buf_trans->entries[level].lt.txswing_level;
+> +		u32 main_cursor =3D tables[offset];
+> +		u32 pre_cursor =3D tables[offset + 1];
+> +		u32 post_cursor =3D tables[offset + 2];
+> +
+> +		entries[level].lt.txswing =3D txswing;
+> +		entries[level].lt.txswing_level =3D txswing_level;
+> +		entries[level].lt.main_cursor =3D main_cursor;
+> +		entries[level].lt.pre_cursor =3D pre_cursor;
+> +		entries[level].lt.post_cursor =3D post_cursor;
+> +
+> +		offset +=3D num_columns;
+> +	}
+> +
+> +	return vspeo;
 > +}
 > +
->   static bool exec_queue_suspended(struct xe_exec_queue *q)
->   {
->   	return atomic_read(&q->guc->state) & EXEC_QUEUE_STATE_SUSPENDED;
-> @@ -1376,7 +1381,8 @@ static bool check_timeout(struct xe_exec_queue *q, struct xe_sched_job *job)
->   			   xe_sched_job_seqno(job), xe_sched_job_lrc_seqno(job),
->   			   q->guc->id);
->   
-> -		return xe_sched_invalidate_job(job, 2);
-> +		/* GuC never scheduled this job - let the caller trigger a GT reset. */
-> +		return true;
->   	}
->   
->   	ctx_timestamp = lower_32_bits(xe_lrc_timestamp(q->lrc[0]));
-> @@ -1622,19 +1628,26 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
->   			       q->guc->id, q->flags);
->   
->   	/*
-> -	 * Kernel jobs should never fail, nor should VM jobs if they do
-> -	 * somethings has gone wrong and the GT needs a reset
-> +	 * Kernel jobs should never fail permanently. Attempt GT reset and
-> +	 * resubmit; if karma is exhausted the hardware is unrecoverable so
-> +	 * wedge the device.
-> +	 *
-> +	 * Userspace VM bind queues are banned permanently on timeout
-> +.	 * No reset is attempted, the ban already
-> +	 * signals the G2H handler, and the queue stays banned so the job
-> +	 * errors out cleanly.
->   	 */
-> -	xe_gt_WARN(q->gt, q->flags & EXEC_QUEUE_FLAG_KERNEL,
-> -		   "Kernel-submitted job timed out\n");
-> -	xe_gt_WARN(q->gt, q->flags & EXEC_QUEUE_FLAG_VM && !exec_queue_killed(q),
-> -		   "VM job timed out on non-killed execqueue\n");
-> -	if (!wedged && (q->flags & EXEC_QUEUE_FLAG_KERNEL ||
-> -			(q->flags & EXEC_QUEUE_FLAG_VM && !exec_queue_killed(q)))) {
-> +	if (!wedged && q->flags & EXEC_QUEUE_FLAG_KERNEL) {
->   		if (!xe_sched_invalidate_job(job, 2)) {
-> +			clear_exec_queue_banned(q);
->   			xe_gt_reset_async(q->gt);
->   			goto rearm;
->   		}
-> +		xe_gt_WARN(q->gt, true, "Kernel-submitted job timed out\n");
-> +		xe_device_declare_wedged(gt_to_xe(q->gt));
-> +	} else if (!wedged && q->flags & EXEC_QUEUE_FLAG_VM &&
-> +		   !exec_queue_killed(q)) {
-> +		xe_gt_WARN(q->gt, true, "VM job timed out on non-killed execqueue\n");
->   	}
->   
->   	/* Mark all outstanding jobs as bad, thus completing them */
+>  bool intel_bios_encoder_is_dedicated_external(const struct intel_bios_en=
+coder_data *devdata)
+>  {
+>  	return devdata->display->vbt.version >=3D 264 &&
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/=
+i915/display/intel_bios.h
+> index 7a50a272cd27d..1a9b27d8e5789 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.h
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.h
+> @@ -73,6 +73,12 @@ bool intel_bios_get_dsc_params(struct intel_encoder *e=
+ncoder,
+>  const struct intel_bios_encoder_data *
+>  intel_bios_encoder_data_lookup(struct intel_display *display, enum port =
+port);
+>=20=20
+> +const struct intel_ddi_buf_trans *
+> +intel_bios_get_lt_vspeo(const struct intel_bios_encoder_data *devdata,
+> +			const struct intel_ddi_buf_trans *buf_trans,
+> +			int idx);
+> +
+> +bool intel_bios_encoder_allocated_vspeo(const struct intel_bios_encoder_=
+data *devdata);
+>  bool intel_bios_encoder_requests_vspeo(const struct intel_bios_encoder_d=
+ata *devdata);
+>  bool intel_bios_encoder_supports_dvi(const struct intel_bios_encoder_dat=
+a *devdata);
+>  bool intel_bios_encoder_supports_hdmi(const struct intel_bios_encoder_da=
+ta *devdata);
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers=
+/gpu/drm/i915/display/intel_ddi_buf_trans.c
+> index 4cd1e4d76c7af..f936868d6113a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+> @@ -1784,6 +1784,24 @@ xe3plpd_get_lt_buf_trans(struct intel_encoder *enc=
+oder,
+>  		return intel_get_buf_trans(&xe3plpd_lt_trans_dp14, n_entries);
+>  }
+>=20=20
+> +static const struct intel_ddi_buf_trans *
+> +xe3plpd_get_lt_vspeo_buf_trans(struct intel_encoder *encoder,
+> +			       const struct intel_crtc_state *crtc_state,
+> +			       int *n_entries)
+> +{
+> +	const struct intel_ddi_buf_trans *buf_trans;
+> +
+> +	buf_trans =3D encoder->get_buf_trans(encoder, crtc_state, n_entries);
+> +	if (intel_crtc_has_dp_encoder(crtc_state)) {
+> +		if (intel_dp_is_uhbr(crtc_state))
+> +			return intel_bios_get_lt_vspeo(encoder->devdata, buf_trans, 5);
+> +		else
+> +			return intel_bios_get_lt_vspeo(encoder->devdata, buf_trans, 4);
+> +	}
+> +
+> +	return buf_trans;
+> +}
+
+I need to think about this.
+
+Basically this approach is duplicating the platform if-else ladders
+*and* the CRTC type and port clock etc. checks already existing in this
+file. It's not great for maintainability, and it's a lot of code for the
+feature.
+
+Plus there's all the added code in intel_bios.c too.
+
+> +
+>  void intel_ddi_buf_trans_init(struct intel_encoder *encoder)
+>  {
+>  	struct intel_display *display =3D to_intel_display(encoder);
+> @@ -1857,5 +1875,22 @@ const struct intel_ddi_buf_trans *intel_ddi_buf_tr=
+ans_get(struct intel_encoder *
+>  							  const struct intel_crtc_state *crtc_state,
+>  							  int *n_entries)
+>  {
+> -	return encoder->get_buf_trans(encoder, crtc_state, n_entries);
+> +	struct intel_display *display =3D to_intel_display(encoder);
+> +	const struct intel_ddi_buf_trans *buf_trans;
+> +
+> +	if (!encoder->devdata)
+
+The intel_bios_* functions need to check that, not here.
+
+> +		return encoder->get_buf_trans(encoder, crtc_state, n_entries);
+> +
+> +	if (!intel_bios_encoder_requests_vspeo(encoder->devdata))
+> +		return encoder->get_buf_trans(encoder, crtc_state, n_entries);
+> +
+> +	if (!intel_bios_encoder_allocated_vspeo(encoder->devdata))
+> +		return encoder->get_buf_trans(encoder, crtc_state, n_entries);
+
+Ditto for the allocation, don't check here.
+
+> +
+> +	if (HAS_LT_PHY(display))
+> +		buf_trans =3D xe3plpd_get_lt_vspeo_buf_trans(encoder, crtc_state, n_en=
+tries);
+> +	else
+> +		buf_trans =3D encoder->get_buf_trans(encoder, crtc_state, n_entries);
+> +
+> +	return intel_get_buf_trans(buf_trans, n_entries);
+
+This function has four paths to call encoder->get_buf_trans(). There
+*must* be only one.
+
+>  }
+
+--=20
+Jani Nikula, Intel
