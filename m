@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BD69CD6E4A
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 15:12:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CFF5CD6E4A
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 15:17:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34ADD1124D2;
-	Thu,  4 Jun 2026 15:12:39 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e5BFR205";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EA571124C8;
- Thu,  4 Jun 2026 15:12:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780585957; x=1812121957;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=O4bH4kWajuZMw5TFa3rROCfr35wkPeI2yL9uE2TQwbA=;
- b=e5BFR205uLj8NOTy+yDBTlrjnPmZYqAATOtF7P22eHdZsngVLMgu3uNe
- FYI78/ww51OMHJNYU1pJl8WF0dY1qkSBbqcGzRk61CJ4SeGGJV8oghs10
- QrkFuLafx699QeCf/6xpJpk18V6YGthXhV33qHVIyEEgONrb4JhceTlLf
- qwJrXIkKPTBQ3Ii5NXgRxZosAW8TpcmxX2GRXHwC4I3ZE12d8yupldJrr
- WlEISQR0xctqkhOTXGaV9zeBnoafzHKz4Jn8U7nimh/uZt8bAm7coR4n/
- CA2VojzC2673Y/FnoL1H66hgo9d4MlT06e1tuhHJuy1dWnFFESLEB7SGh Q==;
-X-CSE-ConnectionGUID: TjHsN569SneV64DCjXlocQ==
-X-CSE-MsgGUID: b8UGaITwQI2uBtmbGwn/og==
-X-IronPort-AV: E=McAfee;i="6800,10657,11807"; a="91988945"
-X-IronPort-AV: E=Sophos;i="6.24,187,1774335600"; d="scan'208";a="91988945"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2026 08:12:37 -0700
-X-CSE-ConnectionGUID: jpm/r4FySbehjZmWgQqYQw==
-X-CSE-MsgGUID: 7qBU4RQqSf6E1o8NAXj3ag==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,187,1774335600"; d="scan'208";a="240383441"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.98])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2026 08:12:35 -0700
-Date: Thu, 4 Jun 2026 18:12:32 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 10/11] drm/i915/bw: Use icl_qgv_bw()
-Message-ID: <aiGV4NpQtyhCN4ct@intel.com>
-References: <20260528103458.18069-1-ville.syrjala@linux.intel.com>
- <20260528103458.18069-11-ville.syrjala@linux.intel.com>
- <8c3c70565faba998122b8092b3f3d3783328e53f.camel@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19FC2112B34;
+	Thu,  4 Jun 2026 15:17:19 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D257112A6D;
+ Thu,  4 Jun 2026 15:17:18 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4905111900007258433=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <8c3c70565faba998122b8092b3f3d3783328e53f.camel@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/ggtt=3A_clear_reserv?=
+ =?utf-8?q?ed_areas_at_init_runtime_for_!VFs_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 04 Jun 2026 15:17:18 -0000
+Message-ID: <178058623824.43098.10409773467274092929@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260604134501.17302-1-dev@lankhorst.se>
+In-Reply-To: <20260604134501.17302-1-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,54 +36,197 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jun 04, 2026 at 02:59:09PM +0000, Govindapillai, Vinod wrote:
-> On Thu, 2026-05-28 at 13:34 +0300, Ville Syrjala wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > 
-> > Replace a hand rolled copy of icl_qgv_bw() with the real thing.
-> > 
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_bw.c | 10 ++--------
-> >  1 file changed, 2 insertions(+), 8 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_bw.c
-> > b/drivers/gpu/drm/i915/display/intel_bw.c
-> > index f4121223a58b..423cae2ff208 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> > @@ -1106,14 +1106,8 @@ static int mtl_find_qgv_points(struct
-> > intel_display *display,
-> >  	 * offered per plane group
-> >  	 */
-> >  	for (i = 0; i < num_qgv_points; i++) {
-> > -		unsigned int bw_index =
-> > -			tgl_max_bw_index(display, num_active_planes,
-> > i);
-> > -		unsigned int max_data_rate;
-> > -
-> > -		if (bw_index >= ARRAY_SIZE(display->bw.max))
-> > -			continue;
-> > -
-> > -		max_data_rate = display-
-> > >bw.max[bw_index].deratedbw[i];
-> > +		unsigned int max_data_rate =
-> > +			icl_qgv_bw(display, num_active_planes, i);
-> >  
-> >  		if (max_data_rate < data_rate)
-> >  			continue;
-> 
-> Wonder if this could be squashed to patch 3 in the series for
-> completeness.
+--===============4905111900007258433==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-This has nothing to do with that other patch.
+== Series Details ==
 
-> 
-> Reviewed-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+Series: drm/xe/ggtt: clear reserved areas at init runtime for !VFs (rev2)
+URL   : https://patchwork.freedesktop.org/series/167881/
+State : failure
 
--- 
-Ville Syrjälä
-Intel
+== Summary ==
+
+CI Bug Log - changes from xe-5203-9dd27c9ba89acc30350aa57fe047b9a2fd0a5ee7_BAT -> xe-pw-167881v2_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-167881v2_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-167881v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-167881v2_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-bmg-vm:         [PASS][1] -> [DMESG-WARN][2] +1 other test dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5203-9dd27c9ba89acc30350aa57fe047b9a2fd0a5ee7/bat-bmg-vm/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167881v2/bat-bmg-vm/igt@core_hotunplug@unbind-rebind.html
+    - bat-adlp-7:         [PASS][3] -> [DMESG-WARN][4] +3 other tests dmesg-warn
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5203-9dd27c9ba89acc30350aa57fe047b9a2fd0a5ee7/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167881v2/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
+    - bat-ptl-2:          [PASS][5] -> [DMESG-WARN][6] +3 other tests dmesg-warn
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5203-9dd27c9ba89acc30350aa57fe047b9a2fd0a5ee7/bat-ptl-2/igt@core_hotunplug@unbind-rebind.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167881v2/bat-ptl-2/igt@core_hotunplug@unbind-rebind.html
+    - bat-lnl-2:          [PASS][7] -> [DMESG-WARN][8] +1 other test dmesg-warn
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5203-9dd27c9ba89acc30350aa57fe047b9a2fd0a5ee7/bat-lnl-2/igt@core_hotunplug@unbind-rebind.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167881v2/bat-lnl-2/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@sriov_basic@enable-vfs-autoprobe-on:
+    - bat-ptl-1:          [PASS][9] -> [DMESG-WARN][10] +3 other tests dmesg-warn
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5203-9dd27c9ba89acc30350aa57fe047b9a2fd0a5ee7/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167881v2/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html
+    - bat-bmg-2:          [PASS][11] -> [DMESG-WARN][12] +3 other tests dmesg-warn
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5203-9dd27c9ba89acc30350aa57fe047b9a2fd0a5ee7/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-on.html
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167881v2/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-on.html
+    - bat-bmg-1:          [PASS][13] -> [DMESG-WARN][14] +3 other tests dmesg-warn
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5203-9dd27c9ba89acc30350aa57fe047b9a2fd0a5ee7/bat-bmg-1/igt@sriov_basic@enable-vfs-autoprobe-on.html
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167881v2/bat-bmg-1/igt@sriov_basic@enable-vfs-autoprobe-on.html
+
+  * igt@xe_module_load@load:
+    - bat-atsm-2:         [PASS][15] -> [DMESG-WARN][16] +3 other tests dmesg-warn
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5203-9dd27c9ba89acc30350aa57fe047b9a2fd0a5ee7/bat-atsm-2/igt@xe_module_load@load.html
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167881v2/bat-atsm-2/igt@xe_module_load@load.html
+    - bat-wcl-1:          [PASS][17] -> [DMESG-WARN][18] +3 other tests dmesg-warn
+   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5203-9dd27c9ba89acc30350aa57fe047b9a2fd0a5ee7/bat-wcl-1/igt@xe_module_load@load.html
+   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167881v2/bat-wcl-1/igt@xe_module_load@load.html
+    - bat-ptl-vm:         [PASS][19] -> [DMESG-WARN][20] +1 other test dmesg-warn
+   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5203-9dd27c9ba89acc30350aa57fe047b9a2fd0a5ee7/bat-ptl-vm/igt@xe_module_load@load.html
+   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167881v2/bat-ptl-vm/igt@xe_module_load@load.html
+    - bat-wcl-2:          [PASS][21] -> [DMESG-WARN][22] +3 other tests dmesg-warn
+   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5203-9dd27c9ba89acc30350aa57fe047b9a2fd0a5ee7/bat-wcl-2/igt@xe_module_load@load.html
+   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167881v2/bat-wcl-2/igt@xe_module_load@load.html
+    - bat-lnl-1:          [PASS][23] -> [DMESG-WARN][24] +1 other test dmesg-warn
+   [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5203-9dd27c9ba89acc30350aa57fe047b9a2fd0a5ee7/bat-lnl-1/igt@xe_module_load@load.html
+   [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167881v2/bat-lnl-1/igt@xe_module_load@load.html
+    - bat-bmg-3:          [PASS][25] -> [DMESG-WARN][26]
+   [25]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5203-9dd27c9ba89acc30350aa57fe047b9a2fd0a5ee7/bat-bmg-3/igt@xe_module_load@load.html
+   [26]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167881v2/bat-bmg-3/igt@xe_module_load@load.html
+
+  
+
+
+Build changes
+-------------
+
+  * Linux: xe-5203-9dd27c9ba89acc30350aa57fe047b9a2fd0a5ee7 -> xe-pw-167881v2
+
+  IGT_8948: 8948
+  xe-5203-9dd27c9ba89acc30350aa57fe047b9a2fd0a5ee7: 9dd27c9ba89acc30350aa57fe047b9a2fd0a5ee7
+  xe-pw-167881v2: 167881v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167881v2/index.html
+
+--===============4905111900007258433==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/ggtt: clear reserved areas at init runtime for !VFs (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167881/">https://patchwork.freedesktop.org/series/167881/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167881v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167881v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5203-9dd27c9ba89acc30350aa57fe047b9a2fd0a5ee7_BAT -&gt; xe-pw-167881v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-167881v2_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-167881v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-167881v2_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>bat-bmg-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5203-9dd27c9ba89acc30350aa57fe047b9a2fd0a5ee7/bat-bmg-vm/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167881v2/bat-bmg-vm/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5203-9dd27c9ba89acc30350aa57fe047b9a2fd0a5ee7/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167881v2/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> +3 other tests dmesg-warn</li>
+<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5203-9dd27c9ba89acc30350aa57fe047b9a2fd0a5ee7/bat-ptl-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167881v2/bat-ptl-2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> +3 other tests dmesg-warn</li>
+<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5203-9dd27c9ba89acc30350aa57fe047b9a2fd0a5ee7/bat-lnl-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167881v2/bat-lnl-2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@sriov_basic@enable-vfs-autoprobe-on:</p>
+<ul>
+<li>bat-ptl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5203-9dd27c9ba89acc30350aa57fe047b9a2fd0a5ee7/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167881v2/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html">DMESG-WARN</a> +3 other tests dmesg-warn</li>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5203-9dd27c9ba89acc30350aa57fe047b9a2fd0a5ee7/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-on.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167881v2/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-on.html">DMESG-WARN</a> +3 other tests dmesg-warn</li>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5203-9dd27c9ba89acc30350aa57fe047b9a2fd0a5ee7/bat-bmg-1/igt@sriov_basic@enable-vfs-autoprobe-on.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167881v2/bat-bmg-1/igt@sriov_basic@enable-vfs-autoprobe-on.html">DMESG-WARN</a> +3 other tests dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_module_load@load:</p>
+<ul>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5203-9dd27c9ba89acc30350aa57fe047b9a2fd0a5ee7/bat-atsm-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167881v2/bat-atsm-2/igt@xe_module_load@load.html">DMESG-WARN</a> +3 other tests dmesg-warn</li>
+<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5203-9dd27c9ba89acc30350aa57fe047b9a2fd0a5ee7/bat-wcl-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167881v2/bat-wcl-1/igt@xe_module_load@load.html">DMESG-WARN</a> +3 other tests dmesg-warn</li>
+<li>bat-ptl-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5203-9dd27c9ba89acc30350aa57fe047b9a2fd0a5ee7/bat-ptl-vm/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167881v2/bat-ptl-vm/igt@xe_module_load@load.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
+<li>bat-wcl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5203-9dd27c9ba89acc30350aa57fe047b9a2fd0a5ee7/bat-wcl-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167881v2/bat-wcl-2/igt@xe_module_load@load.html">DMESG-WARN</a> +3 other tests dmesg-warn</li>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5203-9dd27c9ba89acc30350aa57fe047b9a2fd0a5ee7/bat-lnl-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167881v2/bat-lnl-1/igt@xe_module_load@load.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
+<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5203-9dd27c9ba89acc30350aa57fe047b9a2fd0a5ee7/bat-bmg-3/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167881v2/bat-bmg-3/igt@xe_module_load@load.html">DMESG-WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5203-9dd27c9ba89acc30350aa57fe047b9a2fd0a5ee7 -&gt; xe-pw-167881v2</li>
+</ul>
+<p>IGT_8948: 8948<br />
+  xe-5203-9dd27c9ba89acc30350aa57fe047b9a2fd0a5ee7: 9dd27c9ba89acc30350aa57fe047b9a2fd0a5ee7<br />
+  xe-pw-167881v2: 167881v2</p>
+
+</body>
+</html>
+
+--===============4905111900007258433==--
