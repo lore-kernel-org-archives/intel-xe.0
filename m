@@ -4,33 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03D71CD6E75
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 17:15:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55A88CD6E74
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 17:15:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B310F11A1D9;
-	Thu,  4 Jun 2026 17:15:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 118EA11A1DD;
+	Thu,  4 Jun 2026 17:15:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="QzAgbdP3";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="LC/PIWQq";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF6FE11A1D9
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 17:15:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 337EC11A1D9
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 17:15:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1780593300;
- bh=coAtNSf8oR7JWFU49BuO0D3d8+QibcNb75s7JcU/R2M=;
- h=From:To:Subject:Date:From;
- b=QzAgbdP3/r4gP0wFn2fdJvC5MOzpMPdmAEl9mKtJyjPQoZFtsc2S2xRnoEOcQ168E
- FhCL98AtK/vVOLhPBUHCAzAstt2wb1phe1xiHtDhlabTQbvH1AJ0PRAVmVMFyLtSyz
- nINknb7BNvfUD6wISTJeXLMCIKA16zib5sIgUfTF9ct/KkNYJEl/C/Xfigx7gAxu8Q
- mXGIUp+T2+/hHI/iaeTkyWnrWJTUM8s5aY07mRyMoXLys2TcFLpPWJz9M/wgP5J6Ny
- UFxQsmD9oLRHCNWK+dGyle2NPJaphT8xJSAYpajmuXF77a17rm8qBOpXxFv93II00p
- bH14EYN9bNZCg==
+ s=default; t=1780593302;
+ bh=dFPQRaHzSCbu6FjKDEcmQkybCau5hlhTFjVuZUKUgtM=;
+ h=From:To:Subject:Date:In-Reply-To:References:From;
+ b=LC/PIWQqhh//D8+HgFOZWSM8U212nscEsrkwIXsrkrxpcqhjS8f5aThkJNe3emsgB
+ 6fM9Wqa2QKybuo9vtag3YiuQN1cVyVIuS3KvgAkYIyLfZ0CBdl1F+8eDSnaTrztmrC
+ xdHBL/wCjIlj+l+fJXAo1xNQf8tvmYiDDoV035J++NNKWsaahDZ3isvGvxTmR3yWNj
+ HPzeDfoB+EaH9bELvZmUcoWK7e0lghfmwxaPGMXUxGyGcH5sfGY8Az9PY1NGwDUsm6
+ mqrcCSrKJzZqIV/MiojbNlYK4MYO3El9oxa2uak2jUL1KmSSMVLfAfN4rCUfnpZQTW
+ q5DoYI+SP87OQ==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI v2 00/24]CPU binds and ULLS on migration queue
-Date: Thu,  4 Jun 2026 19:14:36 +0200
-Message-ID: <20260604171502.84047-1-dev@lankhorst.se>
+Subject: [CI v2 02/24] drm/xe: Add xe_migrate_update_pgtables_cpu_execute
+ helper
+Date: Thu,  4 Jun 2026 19:14:38 +0200
+Message-ID: <20260604171502.84047-3-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260604171502.84047-1-dev@lankhorst.se>
+References: <20260604171502.84047-1-dev@lankhorst.se>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -48,93 +51,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Rebase of https://lore.kernel.org/all/20260228013501.106680-1-matthew.brost@intel.com/
+From: Matthew Brost <matthew.brost@intel.com>
 
-***Small compile fix since series no longer applied after a revert.***
+Add the xe_migrate_update_pgtables_cpu_execute helper, which performs
+the CPU-side page-table update. This will support implementing CPU
+binds, as the submission backend can call this helper once a bind job’s
+dependencies are resolved. While here, add assertions to provide basic
+sanity checks on tht function arguments.
 
-This is a test for CI to check if it's clean. Some small changes have been made
-to compile on newer kernels.
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Francois Dugast <francois.dugast@intel.com>
+Link: https://patch.msgid.link/20260228013501.106680-3-matthew.brost@intel.com
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+---
+ drivers/gpu/drm/xe/xe_migrate.c | 58 ++++++++++++++++++++-------------
+ 1 file changed, 35 insertions(+), 23 deletions(-)
 
-Of note was that max_jobs < 64 now, so I had to remove an assertion in GuC
-submission that assumed max_jobs was greater.
-
-I also fixed a SINGAL -> SIGNAL typo.
-
-No reviews or feedback please, I first want to check if the test results
-from the mostly unmodified patch series are still clean after rebasing, then
-I can work on addressing the review feedback in the original series.
-
-Matthew Brost (24):
-  drm/xe: Drop struct xe_migrate_pt_update argument from populate/clear
-    vfuns
-  drm/xe: Add xe_migrate_update_pgtables_cpu_execute helper
-  drm/xe: Decouple exec queue idle check from LRC
-  drm/xe: Add job count to GuC exec queue snapshot
-  drm/xe: Update xe_bo_put_deferred arguments to include writeback flag
-  drm/xe: Add XE_BO_FLAG_PUT_VM_ASYNC
-  drm/xe: Update scheduler job layer to support PT jobs
-  drm/xe: Add helpers to access PT ops
-  drm/xe: Add struct xe_pt_job_ops
-  drm/xe: Update GuC submission backend to run PT jobs
-  drm/xe: Store level in struct xe_vm_pgtable_update
-  drm/xe: Don't use migrate exec queue for page fault binds
-  drm/xe: Enable CPU binds for jobs
-  drm/xe: Remove unused arguments from xe_migrate_pt_update_ops
-  drm/xe: Make bind queues operate cross-tile
-  drm/xe: Add CPU bind layer
-  drm/xe: Add device flag to enable PT mirroring across tiles
-  drm/xe: Add xe_hw_engine_write_ring_tail
-  drm/xe: Add ULLS support to LRC
-  drm/xe: Add ULLS migration job support to migration layer
-  drm/xe: Add ULLS migration job support to ring ops
-  drm/xe: Add ULLS migration job support to GuC submission
-  drm/xe: Enter ULLS for migration jobs upon page fault or SVM prefetch
-  drm/xe: Add modparam to enable / disable ULLS on migrate queue
-
- drivers/gpu/drm/xe/Makefile              |   1 +
- drivers/gpu/drm/xe/xe_bo.c               |   8 +-
- drivers/gpu/drm/xe/xe_bo.h               |  11 +-
- drivers/gpu/drm/xe/xe_bo_types.h         |   2 -
- drivers/gpu/drm/xe/xe_cpu_bind.c         | 296 +++++++++
- drivers/gpu/drm/xe/xe_cpu_bind.h         | 118 ++++
- drivers/gpu/drm/xe/xe_debugfs.c          |   1 +
- drivers/gpu/drm/xe/xe_defaults.h         |   1 +
- drivers/gpu/drm/xe/xe_device.c           |  16 +-
- drivers/gpu/drm/xe/xe_device_types.h     |  11 +
- drivers/gpu/drm/xe/xe_drm_client.c       |   2 +-
- drivers/gpu/drm/xe/xe_exec_queue.c       | 164 ++---
- drivers/gpu/drm/xe/xe_exec_queue.h       |  16 +-
- drivers/gpu/drm/xe/xe_exec_queue_types.h |  20 +-
- drivers/gpu/drm/xe/xe_guc_submit.c       |  78 ++-
- drivers/gpu/drm/xe/xe_guc_submit_types.h |   2 +
- drivers/gpu/drm/xe/xe_hw_engine.c        |  20 +
- drivers/gpu/drm/xe/xe_hw_engine.h        |   1 +
- drivers/gpu/drm/xe/xe_lrc.c              |  51 ++
- drivers/gpu/drm/xe/xe_lrc.h              |   3 +
- drivers/gpu/drm/xe/xe_lrc_types.h        |   4 +
- drivers/gpu/drm/xe/xe_migrate.c          | 595 ++++++-----------
- drivers/gpu/drm/xe/xe_migrate.h          |  93 +--
- drivers/gpu/drm/xe/xe_module.c           |   4 +
- drivers/gpu/drm/xe/xe_module.h           |   1 +
- drivers/gpu/drm/xe/xe_pagefault.c        |   3 +
- drivers/gpu/drm/xe/xe_pci.c              |   2 +
- drivers/gpu/drm/xe/xe_pci_types.h        |   3 +-
- drivers/gpu/drm/xe/xe_pt.c               | 773 ++++++++++++++---------
- drivers/gpu/drm/xe/xe_pt.h               |  12 +-
- drivers/gpu/drm/xe/xe_pt_types.h         |  49 +-
- drivers/gpu/drm/xe/xe_ring_ops.c         |  31 +
- drivers/gpu/drm/xe/xe_sched_job.c        | 100 ++-
- drivers/gpu/drm/xe/xe_sched_job_types.h  |  36 +-
- drivers/gpu/drm/xe/xe_sync.c             |  20 +-
- drivers/gpu/drm/xe/xe_tlb_inval_job.c    |  28 +-
- drivers/gpu/drm/xe/xe_tlb_inval_job.h    |   4 +-
- drivers/gpu/drm/xe/xe_vm.c               | 240 +++----
- drivers/gpu/drm/xe/xe_vm.h               |   3 +
- drivers/gpu/drm/xe/xe_vm_types.h         |  22 +-
- 40 files changed, 1660 insertions(+), 1185 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_cpu_bind.c
- create mode 100644 drivers/gpu/drm/xe/xe_cpu_bind.h
-
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index d63e977b0e528..cc92633809b6d 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -1800,6 +1800,38 @@ struct migrate_test_params {
+ 	container_of(_priv, struct migrate_test_params, base)
+ #endif
+ 
++static void
++xe_migrate_update_pgtables_cpu_execute(struct xe_vm *vm, struct xe_tile *tile,
++				       const struct xe_migrate_pt_update_ops *ops,
++				       struct xe_vm_pgtable_update_op *pt_op,
++				       int num_ops)
++{
++	u32 j, i;
++
++	for (j = 0; j < num_ops; ++j, ++pt_op) {
++		for (i = 0; i < pt_op->num_entries; i++) {
++			const struct xe_vm_pgtable_update *update =
++				&pt_op->entries[i];
++
++			xe_tile_assert(tile, update);
++			xe_tile_assert(tile, update->pt_bo);
++			xe_tile_assert(tile, !iosys_map_is_null(&update->pt_bo->vmap));
++
++			if (pt_op->bind)
++				ops->populate(tile, &update->pt_bo->vmap,
++					      NULL, update->ofs, update->qwords,
++					      update);
++			else
++				ops->clear(vm, tile, &update->pt_bo->vmap,
++					   NULL, update->ofs, update->qwords,
++					   update);
++		}
++	}
++
++	trace_xe_vm_cpu_bind(vm);
++	xe_device_wmb(vm->xe);
++}
++
+ static struct dma_fence *
+ xe_migrate_update_pgtables_cpu(struct xe_migrate *m,
+ 			       struct xe_migrate_pt_update *pt_update)
+@@ -1812,7 +1844,6 @@ xe_migrate_update_pgtables_cpu(struct xe_migrate *m,
+ 	struct xe_vm_pgtable_update_ops *pt_update_ops =
+ 		&pt_update->vops->pt_update_ops[pt_update->tile_id];
+ 	int err;
+-	u32 i, j;
+ 
+ 	if (XE_TEST_ONLY(test && test->force_gpu))
+ 		return ERR_PTR(-ETIME);
+@@ -1824,28 +1855,9 @@ xe_migrate_update_pgtables_cpu(struct xe_migrate *m,
+ 			return ERR_PTR(err);
+ 	}
+ 
+-	for (i = 0; i < pt_update_ops->num_ops; ++i) {
+-		const struct xe_vm_pgtable_update_op *pt_op =
+-			&pt_update_ops->ops[i];
+-
+-		for (j = 0; j < pt_op->num_entries; j++) {
+-			const struct xe_vm_pgtable_update *update =
+-				&pt_op->entries[j];
+-
+-			if (pt_op->bind)
+-				ops->populate(m->tile,
+-					      &update->pt_bo->vmap, NULL,
+-					      update->ofs, update->qwords,
+-					      update);
+-			else
+-				ops->clear(vm, m->tile,
+-					   &update->pt_bo->vmap, NULL,
+-					   update->ofs, update->qwords, update);
+-		}
+-	}
+-
+-	trace_xe_vm_cpu_bind(vm);
+-	xe_device_wmb(vm->xe);
++	xe_migrate_update_pgtables_cpu_execute(vm, m->tile, ops,
++					       pt_update_ops->ops,
++					       pt_update_ops->num_ops);
+ 
+ 	return dma_fence_get_stub();
+ }
 -- 
 2.53.0
 
