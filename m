@@ -4,118 +4,149 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 107E1CD6E4A
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 14:06:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0720BCD6E4A
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 14:22:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1B0E11A0FD;
-	Thu,  4 Jun 2026 14:06:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B974B10E0F5;
+	Thu,  4 Jun 2026 14:22:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=leemhuis.info header.i=@leemhuis.info header.b="FQc46enO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YXN9yh+9";
 	dkim-atps=neutral
-X-Greylist: delayed 564 seconds by postgrey-1.36 at gabe;
- Thu, 04 Jun 2026 14:06:20 UTC
-Received: from relay.yourmailgateway.de (relay.yourmailgateway.de
- [188.68.63.162])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C9C8811A0FD;
- Thu,  4 Jun 2026 14:06:20 +0000 (UTC)
-Received: from mors-relay-8201.netcup.net (localhost [127.0.0.1])
- by mors-relay-8201.netcup.net (Postfix) with ESMTPS id 4gWR1406Y9z3wnR;
- Thu,  4 Jun 2026 15:55:52 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=leemhuis.info;
- s=key2; t=1780581352;
- bh=/mG7+3rgszWjpHH0CboT06IapJJ148p8+UhZJhdUQeY=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=FQc46enOsXYCpnbCJmx2moU2ysNxUR0N62GhBJNqofnrqiujLGeNKx/dw4/LaMTVY
- Q3NtEYdqw9h9A5EevWdp00AJAFzCHcIjgQ8d2eU3D9LwVMbS3eb8DAiBvjMyoajAad
- jmT7zSV+eRol3wUY2SES1DjYCL6veJ67yaCZbUMxwJfYAS5wTvF8usNJ6ELij+wOVQ
- ZUSVzITaY5FMgMN6MnyiXoSL4a/H1WuvWq+f6EuqVg908mwtTZXLd9PGBKKCTiyyPw
- VgLsmUm0GFIqdhWWVKDcmDuZxmmPobXYhEaumZwUVRrGgrbWKAsadFqREGc4RJjUu9
- 1pHGMiTg0/ieg==
-Received: from policy02-mors.netcup.net (unknown [46.38.225.35])
- by mors-relay-8201.netcup.net (Postfix) with ESMTPS id 4gWR112hhMz41Rc;
- Thu,  4 Jun 2026 15:55:49 +0200 (CEST)
-Received: from mxe9fb.netcup.net (unknown [10.243.12.53])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest
- SHA256) (No client certificate requested)
- by policy02-mors.netcup.net (Postfix) with ESMTPS id 4gWR102w2Xz8sb0;
- Thu,  4 Jun 2026 15:55:48 +0200 (CEST)
-Received: from [IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f] (unknown
- [IPv6:2a02:8108:8984:1d00:a0cf:1912:4be:477f])
- by mxe9fb.netcup.net (Postfix) with ESMTPSA id 410C160389;
- Thu,  4 Jun 2026 15:55:47 +0200 (CEST)
-Authentication-Results: mxe9fb;
- spf=pass (sender IP is 2a02:8108:8984:1d00:a0cf:1912:4be:477f)
- smtp.mailfrom=regressions@leemhuis.info
- smtp.helo=[IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f]
-Received-SPF: pass (mxe9fb: connection is authenticated)
-Message-ID: <53a2a8dd-d1b6-41c5-ade2-7ed870d074ac@leemhuis.info>
-Date: Thu, 4 Jun 2026 15:55:46 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1782910E0F5
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 14:22:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1780582956; x=1812118956;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=coZ3KkCj/cMNrCyJzgBBs69nZ+AjGftJIKPHegnQTUQ=;
+ b=YXN9yh+9w9UmnjZt6IOFst8RQRvZSURPL+WQpBntzdTS+usvRc1+u6jr
+ W5yxe3Fbr+6MTwN2PTK225muSsD9WQqKN+JDgRCUhIul4hII1kP2sdOjM
+ QtTyYWLoP0FRdnh6ddCuauYYv/HXiAEucmVwMqA1oi8J/ADYRk94anWYo
+ K7fHrRdpbzGWqB7Jod5W1gYzebhyKbkutEm/7lo9jBfv2K36WWrbY+m9L
+ FAcAJSrL6Dm+hP9NTso4LZbtIOCFmC6zWOtJfCa9evWo1GYFw2I7z4Qgj
+ CYCdBtbQgl05/9EpeyoV+muIJJEM5HN2G4j62a93QJ0oXC+5t4ZxNMatk A==;
+X-CSE-ConnectionGUID: 3e88yfKDSpqWNSdG+D94hg==
+X-CSE-MsgGUID: mqR+HONJSyyXYzmOVsLZ9Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11807"; a="85263802"
+X-IronPort-AV: E=Sophos;i="6.24,187,1774335600"; d="scan'208";a="85263802"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2026 07:22:35 -0700
+X-CSE-ConnectionGUID: WaCoColzTNqwjlPxAVTQKA==
+X-CSE-MsgGUID: r90q4LzWQNyXEb69hjiiBw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,187,1774335600"; d="scan'208";a="249477830"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2026 07:22:35 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 4 Jun 2026 07:22:35 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Thu, 4 Jun 2026 07:22:35 -0700
+Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.33) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 4 Jun 2026 07:22:33 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=QONKMxZ58XFGXZs5tER+JRMonLHDTzrFkWnMN/zW6sa66FN8wFi57FId+t8rm7vfrcJqV7b6oB43sYvlpkVpc5lwKJs60BZVwMM9pByDPF0+R0M435oiVGNDPpeJRr2oIxKbyRNz+AjFQxT3z4LLBjiv78Vu99Jt9Llvu0DZG2dIPEgaIDTkOGZb733tCbpNn9E0+qtWE991t/Zg7XefBk8iab1jDh3syOX7Yt0tP7ir+l62WsePerA7bmN8/V6NzTn7ojOj2WmTPie2bM8hrV977RHJzxG/Atxx8dXL/9y6FBSe7eRjIZIOUzg+DfRIv5UcETOq+Ln7LKZdQlTLRQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zfGeHS5aa+UzKxhi+Nh99P57hhOJJ8QZrvTLMoZtF9o=;
+ b=BmvkqnytU/5AHrn21tJGcLellAmo5DSUIuhWZgMkZcxPuYOlwDEKt/36IVh1KqGIphY9+/AzDPycIqpPFjM5mLz4okDJCOIUD1umgvsUdy2MGFNJuthFTcrzSJ1r4SrmG5MrtBMytqbuLiWuk7K/6+fdNTsFpQI3i48orI5vEzGgxKscDLy3BoVwX2ox2atHMewftpK1Ax5mwt93uuR6Q7Gz+0k5/WF3+oSI4AN0Pu5e6wwVE4LJNNI7Iz6yLEoAVbxDPpuK4+31wCuN4VwscnECUzn+aOcGRWbz3bkpOAm8Jw8OMuoGkosxJQ/X25M8dTz9AIki0aRrYZI3+dugng==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from SA3PR11MB8118.namprd11.prod.outlook.com (2603:10b6:806:2f1::13)
+ by CO1PR11MB5122.namprd11.prod.outlook.com (2603:10b6:303:95::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.7; Thu, 4 Jun 2026
+ 14:22:31 +0000
+Received: from SA3PR11MB8118.namprd11.prod.outlook.com
+ ([fe80::b2e3:da3f:6ad8:e9a5]) by SA3PR11MB8118.namprd11.prod.outlook.com
+ ([fe80::b2e3:da3f:6ad8:e9a5%4]) with mapi id 15.21.0071.015; Thu, 4 Jun 2026
+ 14:22:30 +0000
+From: "Gote, Nitin R" <nitin.r.gote@intel.com>
+To: "Sousa, Gustavo" <gustavo.sousa@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+CC: "Roper, Matthew D" <matthew.d.roper@intel.com>
+Subject: RE: [PATCH] drm/xe/xe3: Apply Wa_16029380221 to media
+Thread-Topic: [PATCH] drm/xe/xe3: Apply Wa_16029380221 to media
+Thread-Index: AQHc70v8cf5c1nQnlEunekhxEkV7cLYk81eAgAlFLOA=
+Date: Thu, 4 Jun 2026 14:22:30 +0000
+Message-ID: <SA3PR11MB8118D6D70617E735B6D64BDFD0102@SA3PR11MB8118.namprd11.prod.outlook.com>
+References: <20260529095306.443350-2-nitin.r.gote@intel.com>
+ <87h5nqs7u8.fsf@intel.com>
+In-Reply-To: <87h5nqs7u8.fsf@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SA3PR11MB8118:EE_|CO1PR11MB5122:EE_
+x-ms-office365-filtering-correlation-id: e1958b55-f572-4c64-3908-08dec244b685
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|366016|376014|1800799024|38070700021|22082099003|18002099003|11063799006|56012099006|4143699003;
+x-microsoft-antispam-message-info: TqpmUrGWbKhI88K58BQoWdgPknh2MTXBZAEQLY5+884WVhzZVFA8LuKJ50mAnPntwG8gslRn69G61mBdSslUJAUnTUTOicqbqM1hs983oiicsX9Nslz0rNB/HpmjjFQjlUNhuRJeZSw4J8fJhwf/Ovd0MkQoV6InJyl4zYGA3FQbpWufqobb1Pw41TCEGLuWOqCZ7iQsq2SPoRfr41KRJk6V2eJq2LHmyH7qiEF2F+SuUSaulad26LJ321jV/2W4xIcX4+mpoxHMMERQWYUB8rjOPJYdfPCw523Cbg8kKZ06yMtIVRTJMR453VckIcTTP9gAViXmq9R54v0pRvMsG80Vdu3HUqxIFHXXuw77Jkc8gV5YSLDYLqrarSIBZATqUvj18WD0j2l+JPX+LTELun3Irff5LEvKtn86btlT6IKmdmC+S8zxJM3RzueX7cV8OIzNMKvwa0lH1ido0TxFIg7g9/ZfNJKpjFGtJUVfOu6Snb7O8xiExy50g2QTMm0I/rTVm1/1Bz4ClUuVlWMEdWkVig5wQzVptLyOsEVPc1feKDXKXqr/qfaaQGscrmnqzBfOQgevjnKbsvpujhG3Ml4GzYCDuYu1guXDIPT87yGW05e4g5EGJbuXN9qCeVZDxqA+o3owZVZPYKMhDQB8SEbs0hWijIaiDCohIxWMTIxO8XbQ5p/SoG9ppWRR1yjHdf1j8I9dQVpB4Xd8i72INjEuv/FU+deCuMHnUN2K9l3mP9cfUmMjPE58guGfOYOw
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SA3PR11MB8118.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(38070700021)(22082099003)(18002099003)(11063799006)(56012099006)(4143699003);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?pkFt7+llKfvvWXnWPrrJaoW/2HcLhhZiGrqflqOw8r3iRCRou9xMSVwRK0N3?=
+ =?us-ascii?Q?WNSysKg5XF5ohOrmeyUjWXgLydzvvJskqiLBLiVKCeGfDYX6gYDm7tqwLyqg?=
+ =?us-ascii?Q?Lf3EPqeyToylv/7CpRPgR7yNZRL7AYy4NYjRcdsmzwUsj+SnxPgsR4IvOD4H?=
+ =?us-ascii?Q?AWbFEHC2EfYzvhtS/5hEyve/AeJAy1aGnRx3buyi+6Sji4ZeClVcKF9PA2fQ?=
+ =?us-ascii?Q?UQ028YdCESn/PzZZ90lOXyxtFLsyZUR9UPGWDg2691Xgatu2Curx4ibLgOUd?=
+ =?us-ascii?Q?8fCPCU37vHC0wp1z7BrRAG7QX/VacFqvZoX7dkXErWuDc2+7WjB9iGWplM+x?=
+ =?us-ascii?Q?RjDFAmpOKm3cwwo2ZkzX7sPFKHFAqOhc4rsejp4ymz8OqRv4X5tMgloMlTRY?=
+ =?us-ascii?Q?rp+/2jXwzL5Jk6cGMAjLf8h9diY5HkRirDdR0Ml57B9exUV16laixczaxuOa?=
+ =?us-ascii?Q?ZDGUvpGSR6OnH+pjCXywSjBpepRalzqlW4ClGzyrx/wF4SFIrecbXI6UAvWs?=
+ =?us-ascii?Q?Su+/CUws9jtwJ10bCg7eGR0mJSS8egaaSgvVom5ZnYBVO5aulhzL1v55fyzi?=
+ =?us-ascii?Q?Uv3NWiewbVNFg/8J3cB1o3BNA/2b+Hr+ILhW6A8Fgsn614dOY8eIq2FMHaaO?=
+ =?us-ascii?Q?5wdQndE0mYqf2mZAqFXcYCl09RRtis3PzP0XkeBCf9+heXdqHCokD2tfu2WC?=
+ =?us-ascii?Q?/LTcozE/QQeBp6i2ZE4K70EKwT45ctUqxLUhTdPVb+PkftGo5i1EL2cX+9LX?=
+ =?us-ascii?Q?8keHMf4pY/OeJMg/RmaV/Gom/CsivbRXyVNxnRWp/g8mC/QpJQPF7R0945k/?=
+ =?us-ascii?Q?Yxg4aoufgQLN9WPA64wrYf02EwKkWmbYOqWTSh7jNvdF/oQFy/eqx/850WOf?=
+ =?us-ascii?Q?z8SsQxMph8qHI57wxOH5aDTVWMkX0hRg53HKRGxnYpkGqMjBYOGJhCbP6rGI?=
+ =?us-ascii?Q?hKKXjwL0jsa/PDX8SulFgH5vCQBzzvOf7KGARkJbI+zH5CGw9xZWxAoOFgUi?=
+ =?us-ascii?Q?PieX2QM3surKm6ES+dRsVpt1QNcCdZhl7YvK5jglodcoG2xhg3NpuM7EZBa/?=
+ =?us-ascii?Q?HW2jMQL8XbxdyN4Duf1E6YRPOS119fxgBkVaV3PgROll6v+CZuQJirsKm+V0?=
+ =?us-ascii?Q?4O5SsUVgRXhoFpeX7o9RqQtyWhc3WpzrhKSR1qcMQBq9Bl7MoTPMBc++SKtF?=
+ =?us-ascii?Q?DOxyKfCtXQ0E1AS0id8w1XCXVPVEHZjNPLnSsaSXX57w1b7Q227eDhnLlBUG?=
+ =?us-ascii?Q?M9FfGsDRAi9v6qT3/0NIySbp0tydqcfMfaOidgezH5B4tCFAAJP1YNMZ57eZ?=
+ =?us-ascii?Q?MAGek/rUxgW6dLsch90aqAkYC/Fhd0ThY2peqOJzF/+h619X+xrQ8zLN5dXU?=
+ =?us-ascii?Q?JtKZvSmUqC9xyldV2ExRfH/tPTl2oL/9T4V7WEUKlVXL8QeoA6LUdHIaW+1r?=
+ =?us-ascii?Q?WXFJlKGGaKQyuA0n9QheyQkVQOsVIpLjxGDKMVdaEaNmIUgldeAPqLvlcek4?=
+ =?us-ascii?Q?qUFrlutISmpoXn03VoO1VKqOQlTHk3u4NlzYogsZRKCZ2VlpRsMMv8B1Trx5?=
+ =?us-ascii?Q?6ZfIE+q/JxE//Q9yN5GyjFxYWuH3mW7bjcIJWDLRomBMXia9WeoiGIizzvct?=
+ =?us-ascii?Q?IqMEvuyHhba/Un2IXT4FrufnxVEVGaW4QEo9FIq6JXIHoutz4YtiPsKuNW0E?=
+ =?us-ascii?Q?H2tdj65hNCrF+BVLBqMjzRPlC31530l+Z5gubJ5W8IG19J1C8Ese2ZCHGzNi?=
+ =?us-ascii?Q?ftdoqo5vDQ=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] Revert "drm/i915/backlight: Remove try_vesa_interface"
-To: Suraj Kandpal <suraj.kandpal@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Linux kernel regressions list <regressions@lists.linux.dev>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
-References: <20260515155340.1000997-1-suraj.kandpal@intel.com>
- <20260517024709.1016121-1-suraj.kandpal@intel.com>
-From: Thorsten Leemhuis <regressions@leemhuis.info>
-Content-Language: de-DE, en-US
-X-Enigmail-Draft-Status: N11222
-Autocrypt: addr=linux@leemhuis.info; keydata=
- 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 MEK4
-In-Reply-To: <20260517024709.1016121-1-suraj.kandpal@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-PPP-Message-ID: <178058134763.3804850.10659488935368293709@mxe9fb.netcup.net>
-X-Rspamd-Server: rspamd-worker-8404
-X-Rspamd-Queue-Id: 410C160389
-X-NC-CID: sAbt7yi+0BVXAc/p+Pgjga09iS2ApN8achznqY1jKQIhrhTqm3g=
+X-Exchange-RoutingPolicyChecked: MymWBR2yKhQjxkrKBK+JtVOzcjoSa+2OQ9Kj1nlEgiTM4V15zLme+9IFhJ5LaARPZcsWWZMHkeUe1Hyu3HxBcHJwewZchf7m5kAivjNm3CR8pSLRSVv2HMhR+l9SmFQAsjWtBxu/QMiJtRDp9QapA6CxjX2IQDrCaYj3CyEPiPkHEglzZqsgizp5C6vUDskKYOe4uKLgNK0/YvTpjc+IXdPVBla5lSYX+62tm/WVdWhB6XDGXvZMku4xzgBZzPB2wXEmT3tEAZgGoFpDAxTBJjSug6QOg6rZtUaeA9yxnf/O3zFYzdVO2lNzXAiUZ4J5BTwjr52A8xFJpnmA/TamxA==
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SA3PR11MB8118.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e1958b55-f572-4c64-3908-08dec244b685
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Jun 2026 14:22:30.8365 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: fW4Cs/maOT7+HG/CsUM8qOP9XkPwhr9WY6Xhi+fTApJGhIjP64geDOl50i6Q1cVCNPBv1IkPJG3NsGPM109C5A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5122
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -130,102 +161,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 5/17/26 04:47, Suraj Kandpal wrote:
-> This reverts commit 40d2f5820951dee818d05c14677277048bd85f9f.
-> 
-> Removing the try_vesa_interface gate caused a backlight regression on
-> panels whose VBT correctly reports INTEL_BACKLIGHT_DISPLAY_DDI and whose
-> PWM path is the actual backlight control, but whose DPCD optimistically
-> advertises DP_EDP_BACKLIGHT_AUX_ENABLE_CAP / _BRIGHTNESS_AUX_SET_CAP.
-> After the commit such panels silently bind to the VESA AUX backlight
-> funcs; AUX writes complete but the panel ignores them, leaving
-> brightness stuck (no-op backlight). Observed on at least KBL and TGL
-> eDP setups.
+Hi,
 
-Lo! What's the status of this regression fix? It's a -next for two weeks
-now as f30fddb4402313 ("Revert "drm/i915/backlight: Remove
-try_vesa_interface""), but from the outside and checking
-https://gitlab.freedesktop.org/drm/i915/kernel/-/commits/drm-intel-fixes
-it looks like it's scheduled for merging in the next cycle.
+> -----Original Message-----
+> From: Sousa, Gustavo <gustavo.sousa@intel.com>
+> Sent: Friday, May 29, 2026 6:15 PM
+> To: Gote, Nitin R <nitin.r.gote@intel.com>; intel-xe@lists.freedesktop.or=
+g
+> Cc: Gote, Nitin R <nitin.r.gote@intel.com>; Roper, Matthew D
+> <matthew.d.roper@intel.com>
+> Subject: Re: [PATCH] drm/xe/xe3: Apply Wa_16029380221 to media
+>=20
+> Nitin Gote <nitin.r.gote@intel.com> writes:
+>=20
+> > Apply Wa_16029380221 to Xe3p_LPM.
+> >
+> > The Xe3p_LPM media page walker is hard-wired NonCoherent and cannot
+> > observe CPU:WB cached page table data. Force page tables to CPU:WC by
+> > clearing has_cached_pt when MEDIA_VERSION(3500) is detected.
+> >
+> > Cc: Matt Roper <matthew.d.roper@intel.com>
+> > Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/xe_device.c     | 9 +++++++++
+> >  drivers/gpu/drm/xe/xe_wa_oob.rules | 1 +
+> >  2 files changed, 10 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/xe/xe_device.c
+> > b/drivers/gpu/drm/xe/xe_device.c index d224861b6f6f..8a6f494e11d5
+> > 100644
+> > --- a/drivers/gpu/drm/xe/xe_device.c
+> > +++ b/drivers/gpu/drm/xe/xe_device.c
+> > @@ -948,6 +948,15 @@ int xe_device_probe(struct xe_device *xe)
+> >  			return err;
+> >  	}
+> >
+> > +	/*
+> > +	 * Wa_16029380221: Xe3p_LPM media page walker is hard-wired
+> > +	 * NonCoherent, so page tables must use CPU:WC (uncached) to
+> > +	 * be visible to the media engine regardless of stepping.
+> > +	 */
+> > +	for_each_gt(gt, xe, id)
+> > +		if (XE_GT_WA(gt, 16029380221))
+> > +			xe->info.has_cached_pt =3D false;
+> > +
+>=20
+> This will also disable the feature for the primary GT. Do we really want/=
+need that?
 
-But I think it should be merged this cycle (ideally before -rc7, as
-Linus wants all known regression fixed by -rc6), as it fixes a
-regression that is known since the -rc1 days. I already asked for the
-mainlining plans in gitlab tickets about a week ago (and since then
-affected users spoke up, too), but there was no conclusive answer for
-the plans, which is why I'm trying this way now.
+Yes. On NVL-P both GTs are on the same tile (max_gt_per_tile =3D 2) and sha=
+re the same page
+Table, xe_lrc_set_ppgtt() programs vm->pt_root[tile->id] into the LRC for b=
+oth GTs.=20
+Looks like a single BO can only have one caching mode, so WC must win for t=
+he NonCoherent media walker.
 
-Ciao, Thorsten
+>=20
+> I wonder if we should change this setting to be a per-GT one instead of g=
+lobal to
+> the device.  Perhaps one problem would be page tables shared between medi=
+a
+> and primary GT.  Is that a possibility?
+>=20
 
+Page tables are allocated per-tile (xe_pt_create(vm, tile, ...)), not per-G=
+T.=20
+As of now, I see there's no mechanism to give the same PT BO different cach=
+ing per GT.
+And Yes, they are always shared on the same tile.
 
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->  .../drm/i915/display/intel_dp_aux_backlight.c | 19 ++++++++++++-------
->  1 file changed, 12 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> index a8d56ebf06a2..7a6c07f6aaeb 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> @@ -691,10 +691,9 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
->  	struct intel_dp *intel_dp = intel_attached_dp(connector);
->  	struct drm_device *dev = connector->base.dev;
->  	struct intel_panel *panel = &connector->panel;
-> -	bool try_intel_interface = false;
-> +	bool try_intel_interface = false, try_vesa_interface = false;
->  
-> -	/*
-> -	 * Check the VBT and user's module parameters to figure out which
-> +	/* Check the VBT and user's module parameters to figure out which
->  	 * interfaces to probe
->  	 */
->  	switch (display->params.enable_dpcd_backlight) {
-> @@ -703,6 +702,7 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
->  	case INTEL_DP_AUX_BACKLIGHT_AUTO:
->  		switch (panel->vbt.backlight.type) {
->  		case INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE:
-> +			try_vesa_interface = true;
->  			break;
->  		case INTEL_BACKLIGHT_DISPLAY_DDI:
->  			try_intel_interface = true;
-> @@ -715,12 +715,20 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
->  		if (panel->vbt.backlight.type != INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE)
->  			try_intel_interface = true;
->  
-> +		try_vesa_interface = true;
-> +		break;
-> +	case INTEL_DP_AUX_BACKLIGHT_FORCE_VESA:
-> +		try_vesa_interface = true;
->  		break;
->  	case INTEL_DP_AUX_BACKLIGHT_FORCE_INTEL:
->  		try_intel_interface = true;
->  		break;
->  	}
->  
-> +	/* For eDP 1.5 and above we are supposed to use VESA interface for brightness control */
-> +	if (intel_dp->edp_dpcd[0] >= DP_EDP_15)
-> +		try_vesa_interface = true;
-> +
->  	/*
->  	 * Since Intel has their own backlight control interface, the majority of machines out there
->  	 * using DPCD backlight controls with Intel GPUs will be using this interface as opposed to
-> @@ -733,9 +741,6 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
->  	 * panel with Intel's OUI - which is also required for us to be able to detect Intel's
->  	 * backlight interface at all. This means that the only sensible way for us to detect both
->  	 * interfaces is to probe for Intel's first, and VESA's second.
-> -	 *
-> -	 * Also there is a chance some VBTs may advertise false Intel backlight support even if the
-> -	 * TCON DPCD says otherwise. This means we keep VESA interface as fallback in that case.
->  	 */
->  	if (try_intel_interface && intel_dp->edp_dpcd[0] <= DP_EDP_14b &&
->  	    intel_dp_aux_supports_hdr_backlight(connector)) {
-> @@ -745,7 +750,7 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
->  		return 0;
->  	}
->  
-> -	if (intel_dp_aux_supports_vesa_backlight(connector)) {
-> +	if (try_vesa_interface && intel_dp_aux_supports_vesa_backlight(connector)) {
->  		drm_dbg_kms(dev, "[CONNECTOR:%d:%s] Using VESA eDP backlight controls\n",
->  			    connector->base.base.id, connector->base.name);
->  		panel->backlight.funcs = &intel_dp_vesa_bl_funcs;
+- Nitin
 
+> --
+> Gustavo Sousa
+>=20
+> >  	for_each_tile(tile, xe, id) {
+> >  		err =3D xe_ggtt_init_early(tile->mem.ggtt);
+> >  		if (err)
+> > diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules
+> > b/drivers/gpu/drm/xe/xe_wa_oob.rules
+> > index f8a185103b80..9027365f0043 100644
+> > --- a/drivers/gpu/drm/xe/xe_wa_oob.rules
+> > +++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+> > @@ -65,3 +65,4 @@
+> >
+> >  14025883347	MEDIA_VERSION_RANGE(1301, 3503)
+> >  		GRAPHICS_VERSION_RANGE(2004, 3005)
+> > +16029380221	MEDIA_VERSION(3500)
+> > --
+> > 2.50.1
