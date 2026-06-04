@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5CA0CD6E77
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 18:53:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6576FCD6E6E
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 18:57:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84CE311A258;
-	Thu,  4 Jun 2026 18:53:16 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z7ZA7J3H";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDE1B11A258;
- Thu,  4 Jun 2026 18:53:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780599196; x=1812135196;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=rfGd//VeiyP2jRt2AWFLFsUx04uMPwBHtye29p+2UAo=;
- b=Z7ZA7J3HB/gAflJrtykPnBXqGrT3ezJHfC6gORq/wOAEsD0mawNsW2N0
- So/Owxbnf0DgO59yGNv2+6c7h8Tw6Cq+p7r8zBpfYXvWgoeybEwiS+G8J
- ZEjrPpZQgmA5fLSHJlhS3mamUGrYbbWIvrCQ7cFAxBiTZrnGmq4COSBiH
- fsvxoG7QEwQA44TNfHo8ncGHrjgPftVSMtygLebRIXfU1AiyWcD9UZixF
- NrWSN1+9UQqHwQkfJtw37ugqK2YfafF5Nr1pyyaeT/XdOD/ALeJUmgyaG
- j2vuTDrUzEiVyIH49yyMSeJWrKTvMrhD7UIWpylMuCc5pU8qi7sQmRoNl w==;
-X-CSE-ConnectionGUID: zZw9Zvm3QXeSohaqVNxR8A==
-X-CSE-MsgGUID: F9PMRtwzSEiGCbAjZn9yTw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11807"; a="81467879"
-X-IronPort-AV: E=Sophos;i="6.24,187,1774335600"; d="scan'208";a="81467879"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2026 11:53:16 -0700
-X-CSE-ConnectionGUID: jRYnss66Sp2kA0zY6Mplgw==
-X-CSE-MsgGUID: VPW81NXDQpqJrrZeMS33cQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,187,1774335600"; d="scan'208";a="240162126"
-Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by fmviesa006.fm.intel.com with ESMTP; 04 Jun 2026 11:53:11 -0700
-From: Raag Jadav <raag.jadav@intel.com>
-To: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- netdev@vger.kernel.org
-Cc: simona.vetter@ffwll.ch, airlied@gmail.com, kuba@kernel.org,
- lijo.lazar@amd.com, Hawking.Zhang@amd.com, davem@davemloft.net,
- pabeni@redhat.com, edumazet@google.com, dev@lankhorst.se,
- zachary.mckevitt@oss.qualcomm.com, rodrigo.vivi@intel.com,
- riana.tauro@intel.com, michal.wajdeczko@intel.com,
- matthew.d.roper@intel.com, mallesh.koujalagi@intel.com,
- Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v3 4/4] drm/xe/drm_ras: Wire up error threshold callbacks
-Date: Fri,  5 Jun 2026 00:16:43 +0530
-Message-ID: <20260604184849.1011985-5-raag.jadav@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260604184849.1011985-1-raag.jadav@intel.com>
-References: <20260604184849.1011985-1-raag.jadav@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1814511A266;
+	Thu,  4 Jun 2026 18:57:06 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8629911A264;
+ Thu,  4 Jun 2026 18:57:04 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5614575071907156359=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_don=27t_allow_changes_to_in?=
+ =?utf-8?q?active_colorops_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Melissa Wen" <mwen@igalia.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 04 Jun 2026 18:57:04 -0000
+Message-ID: <178059942454.45116.2319584351834683130@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260604180457.1110110-1-mwen@igalia.com>
+In-Reply-To: <20260604180457.1110110-1-mwen@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,80 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that we have get/set error threshold support in xe driver, wire them
-up to drm_ras so that userspace can make use of the functionality.
+--===============5614575071907156359==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-$ sudo ynl --family drm_ras --do get-error-threshold \
---json '{"node-id":0, "error-id":2}'
-{'error-id': 2, 'error-name': 'soc-internal', 'error-threshold': 16}
+== Series Details ==
 
-$ sudo ynl --family drm_ras --do set-error-threshold \
---json '{"node-id":0, "error-id":2, "error-threshold":8}'
-None
+Series: don't allow changes to inactive colorops (rev2)
+URL   : https://patchwork.freedesktop.org/series/167294/
+State : success
 
-Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-Reviewed-by: Riana Tauro <riana.tauro@intel.com>
----
-v3: Return -ENOENT on info absence (Riana)
----
- drivers/gpu/drm/xe/xe_drm_ras.c | 34 +++++++++++++++++++++++++++++++++
- 1 file changed, 34 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_drm_ras.c b/drivers/gpu/drm/xe/xe_drm_ras.c
-index 7937d8ba0ed9..24e5082add37 100644
---- a/drivers/gpu/drm/xe/xe_drm_ras.c
-+++ b/drivers/gpu/drm/xe/xe_drm_ras.c
-@@ -86,6 +86,38 @@ static int clear_correctable_error_counter(struct drm_ras_node *node, u32 error_
- 	return clear_error_counter(xe, DRM_XE_RAS_ERR_SEV_CORRECTABLE, error_id);
- }
- 
-+static int query_correctable_error_threshold(struct drm_ras_node *ep, u32 error_id,
-+					     const char **name, u32 *val)
-+{
-+	struct xe_device *xe = ep->priv;
-+	struct xe_drm_ras *ras = &xe->ras;
-+	struct xe_drm_ras_counter *info = ras->info[DRM_XE_RAS_ERR_SEV_CORRECTABLE];
-+
-+	if (!info || !info[error_id].name)
-+		return -ENOENT;
-+
-+	if (!xe->info.has_sysctrl)
-+		return -EOPNOTSUPP;
-+
-+	*name = info[error_id].name;
-+	return xe_ras_get_threshold(xe, DRM_XE_RAS_ERR_SEV_CORRECTABLE, error_id, val);
-+}
-+
-+static int set_correctable_error_threshold(struct drm_ras_node *ep, u32 error_id, u32 val)
-+{
-+	struct xe_device *xe = ep->priv;
-+	struct xe_drm_ras *ras = &xe->ras;
-+	struct xe_drm_ras_counter *info = ras->info[DRM_XE_RAS_ERR_SEV_CORRECTABLE];
-+
-+	if (!info || !info[error_id].name)
-+		return -ENOENT;
-+
-+	if (!xe->info.has_sysctrl)
-+		return -EOPNOTSUPP;
-+
-+	return xe_ras_set_threshold(xe, DRM_XE_RAS_ERR_SEV_CORRECTABLE, error_id, val);
-+}
-+
- static struct xe_drm_ras_counter *allocate_and_copy_counters(struct xe_device *xe)
- {
- 	struct xe_drm_ras_counter *counter;
-@@ -134,6 +166,8 @@ static int assign_node_params(struct xe_device *xe, struct drm_ras_node *node,
- 	if (severity == DRM_XE_RAS_ERR_SEV_CORRECTABLE) {
- 		node->query_error_counter = query_correctable_error_counter;
- 		node->clear_error_counter = clear_correctable_error_counter;
-+		node->query_error_threshold = query_correctable_error_threshold;
-+		node->set_error_threshold = set_correctable_error_threshold;
- 	} else {
- 		node->query_error_counter = query_uncorrectable_error_counter;
- 		node->clear_error_counter = clear_uncorrectable_error_counter;
--- 
-2.43.0
+CI Bug Log - changes from xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3_BAT -> xe-pw-167294v2_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3 -> xe-pw-167294v2
+
+  IGT_8948: 8948
+  xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3: 406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3
+  xe-pw-167294v2: 167294v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167294v2/index.html
+
+--===============5614575071907156359==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>don&#x27;t allow changes to inactive colorops (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167294/">https://patchwork.freedesktop.org/series/167294/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167294v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167294v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3_BAT -&gt; xe-pw-167294v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3 -&gt; xe-pw-167294v2</li>
+</ul>
+<p>IGT_8948: 8948<br />
+  xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3: 406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3<br />
+  xe-pw-167294v2: 167294v2</p>
+
+</body>
+</html>
+
+--===============5614575071907156359==--
