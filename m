@@ -4,36 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0312BCD6E74
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 17:13:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03D71CD6E75
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 17:15:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BD5211A1D8;
-	Thu,  4 Jun 2026 17:13:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B310F11A1D9;
+	Thu,  4 Jun 2026 17:15:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="F+4fpcp4";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="QzAgbdP3";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB10711A1D8
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 17:13:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF6FE11A1D9
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 17:15:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1780593198;
- bh=bxsxNtNcFm86J5gk/XUsOpqpJVr0WZ9+aWLETMn8fRs=;
- h=From:To:Subject:Date:In-Reply-To:References:From;
- b=F+4fpcp4LaF/JUPgGCaKIaqGs9mDjvfIWPDLSXTFDcGnrdzk/GCoeqDOib7HoR9eK
- 6gREMXSxieZVRrue6DCaHaUSUtMPMLeB5Kk5FIbIyEQ8W5R1LQRXH38T1PrOz6gSiQ
- 3Csa9prMGwRfZK2RdobkvrlT1a23Wdpp5hzBHG+Ztyt3G+Cw1C5Hipxo98iJ7Nw4OH
- F7r8tiolU/qZcbf1pstTCCttHEZEl9jTPGbypLHvcsMNqLmTgzs9/JzodScdmU8VKk
- Vm361qDHmxqY3J80kGQVppxIbqYKT1uNPmu2BB2MZmV7zYtlf1QiPCxH/ZxxoJn88z
- RihjJdiimG9Xg==
+ s=default; t=1780593300;
+ bh=coAtNSf8oR7JWFU49BuO0D3d8+QibcNb75s7JcU/R2M=;
+ h=From:To:Subject:Date:From;
+ b=QzAgbdP3/r4gP0wFn2fdJvC5MOzpMPdmAEl9mKtJyjPQoZFtsc2S2xRnoEOcQ168E
+ FhCL98AtK/vVOLhPBUHCAzAstt2wb1phe1xiHtDhlabTQbvH1AJ0PRAVmVMFyLtSyz
+ nINknb7BNvfUD6wISTJeXLMCIKA16zib5sIgUfTF9ct/KkNYJEl/C/Xfigx7gAxu8Q
+ mXGIUp+T2+/hHI/iaeTkyWnrWJTUM8s5aY07mRyMoXLys2TcFLpPWJz9M/wgP5J6Ny
+ UFxQsmD9oLRHCNWK+dGyle2NPJaphT8xJSAYpajmuXF77a17rm8qBOpXxFv93II00p
+ bH14EYN9bNZCg==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI v1.1] drm/xe: Add ULLS migration job support to migration layer
-Date: Thu,  4 Jun 2026 19:13:20 +0200
-Message-ID: <20260604171320.83311-1-dev@lankhorst.se>
+Subject: [CI v2 00/24]CPU binds and ULLS on migration queue
+Date: Thu,  4 Jun 2026 19:14:36 +0200
+Message-ID: <20260604171502.84047-1-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260604160655.50036-21-dev@lankhorst.se>
-References: <20260604160655.50036-21-dev@lankhorst.se>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -49,387 +48,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add function to enter ULLS mode for migration job and delayed worker to
-exit (power saving). ULLS mode expected to entered upon page fault or
-SVM prefetch. ULLS mode exit delay is currently set to 5us.
+Rebase of https://lore.kernel.org/all/20260228013501.106680-1-matthew.brost@intel.com/
 
-ULLS mode only support on DGFX and USM platforms where a hardware engine
-is reserved for migrations jobs. When in ULLS mode, set several flags on
-migration jobs so submission backend / ring ops can properly submit in
-ULLS mode.
+***Small compile fix since series no longer applied after a revert.***
 
-Upon ULLS mode enter, send a job trigger waiting a semphore pipling
-initial GuC / HW conetxt switch.
+This is a test for CI to check if it's clean. Some small changes have been made
+to compile on newer kernels.
 
-Upon ULLS mode exit, send a job to trigger that current ULLS
-semaphore so the ring can be taken off the hardware.
+Of note was that max_jobs < 64 now, so I had to remove an assertion in GuC
+submission that assumed max_jobs was greater.
 
-From: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Link: https://patch.msgid.link/20260228013501.106680-21-matthew.brost@intel.com
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
----
- drivers/gpu/drm/xe/xe_exec_queue.c      |   5 +-
- drivers/gpu/drm/xe/xe_exec_queue.h      |   2 +-
- drivers/gpu/drm/xe/xe_migrate.c         | 180 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_migrate.h         |   2 +
- drivers/gpu/drm/xe/xe_pt.c              |   2 +-
- drivers/gpu/drm/xe/xe_sched_job_types.h |   6 +
- drivers/gpu/drm/xe/xe_vm.c              |   2 +-
- 7 files changed, 194 insertions(+), 5 deletions(-)
+I also fixed a SINGAL -> SIGNAL typo.
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 8b96f0868fb67..bd5fc33b268da 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -1470,6 +1470,7 @@ bool xe_exec_queue_is_lr(struct xe_exec_queue *q)
- /**
-  * xe_exec_queue_is_idle() - Whether an exec_queue is idle.
-  * @q: The exec_queue
-+ * @extra_jobs: Extra jobs on the queue
-  *
-  * FIXME: Need to determine what to use as the short-lived
-  * timeline lock for the exec_queues, so that the return value
-@@ -1481,9 +1482,9 @@ bool xe_exec_queue_is_lr(struct xe_exec_queue *q)
-  *
-  * Return: True if the exec_queue is idle, false otherwise.
-  */
--bool xe_exec_queue_is_idle(struct xe_exec_queue *q)
-+bool xe_exec_queue_is_idle(struct xe_exec_queue *q, int extra_jobs)
- {
--	return !atomic_read(&q->job_cnt);
-+	return !(atomic_read(&q->job_cnt) - extra_jobs);
- }
- 
- /**
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
-index b02a390ba9894..e8963f85cabd9 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.h
-@@ -116,7 +116,7 @@ static inline struct xe_exec_queue *xe_exec_queue_multi_queue_primary(struct xe_
- 
- bool xe_exec_queue_is_lr(struct xe_exec_queue *q);
- 
--bool xe_exec_queue_is_idle(struct xe_exec_queue *q);
-+bool xe_exec_queue_is_idle(struct xe_exec_queue *q, int extra_jobs);
- 
- void xe_exec_queue_kill(struct xe_exec_queue *q);
- 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 7cccb46699bc2..d572958ef0cf4 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -8,6 +8,7 @@
- #include <linux/bitfield.h>
- #include <linux/sizes.h>
- 
-+#include <drm/drm_drv.h>
- #include <drm/drm_managed.h>
- #include <drm/drm_pagemap.h>
- #include <drm/ttm/ttm_tt.h>
-@@ -23,6 +24,7 @@
- #include "xe_bb.h"
- #include "xe_bo.h"
- #include "xe_exec_queue.h"
-+#include "xe_force_wake.h"
- #include "xe_ggtt.h"
- #include "xe_gt.h"
- #include "xe_gt_printk.h"
-@@ -32,6 +34,7 @@
- #include "xe_mem_pool.h"
- #include "xe_mocs.h"
- #include "xe_pat.h"
-+#include "xe_pm.h"
- #include "xe_printk.h"
- #include "xe_pt.h"
- #include "xe_res_cursor.h"
-@@ -77,6 +80,14 @@ struct xe_migrate {
- 	struct dma_fence *fence;
- 	/** @min_chunk_size: For dgfx, Minimum chunk size */
- 	u64 min_chunk_size;
-+	/** @ulls: ULLS support */
-+	struct {
-+		/** @ulls.enabled: ULLS is enabled */
-+		bool enabled;
-+#define ULLS_EXIT_JIFFIES	(HZ / 50)
-+		/** @ulls.exit_work: ULLS exit worker */
-+		struct delayed_work exit_work;
-+	} ulls;
- };
- 
- #define MAX_PREEMPTDISABLE_TRANSFER SZ_8M /* Around 1ms. */
-@@ -98,6 +109,16 @@ struct xe_migrate {
- static void xe_migrate_fini(void *arg)
- {
- 	struct xe_migrate *m = arg;
-+	struct xe_device *xe = tile_to_xe(m->tile);
-+
-+	disable_delayed_work_sync(&m->ulls.exit_work);
-+	mutex_lock(&m->job_mutex);
-+	if (m->ulls.enabled) {
-+		xe_force_wake_put(gt_to_fw(m->q->hwe->gt), m->q->hwe->domain);
-+		xe_pm_runtime_put(xe);
-+		m->ulls.enabled = false;
-+	}
-+	mutex_unlock(&m->job_mutex);
- 
- 	xe_vm_lock(m->q->vm, false);
- 	xe_bo_unpin(m->pt_bo);
-@@ -431,6 +452,140 @@ static int xe_migrate_lock_prepare_vm(struct xe_tile *tile, struct xe_migrate *m
- 	return err;
- }
- 
-+/**
-+ * xe_migrate_ulls_enter() - Enter ULLS mode
-+ * @m: The migration context.
-+ *
-+ * If DGFX and not a VF, enter ULLS mode bypassing GuC / HW context
-+ * switches by utilizing semaphore and continuously running batches.
-+ */
-+void xe_migrate_ulls_enter(struct xe_migrate *m)
-+{
-+	struct xe_device *xe = tile_to_xe(m->tile);
-+	struct xe_sched_job *job = NULL;
-+	u64 batch_addr[2] = { 0, 0 };
-+	bool alloc = false;
-+
-+	xe_assert(xe, xe->info.has_usm);
-+
-+	if (!IS_DGFX(xe) || IS_SRIOV_VF(xe))
-+		return;
-+
-+job_alloc:
-+	if (alloc) {
-+		/*
-+		 * Must be done outside job_mutex as that lock is tainted with
-+		 * reclaim.
-+		 */
-+		job = xe_sched_job_create(m->q, batch_addr);
-+		if (WARN_ON_ONCE(IS_ERR(job)))
-+			return;		/* Not fatal */
-+	}
-+
-+	mutex_lock(&m->job_mutex);
-+	if (!m->ulls.enabled) {
-+		unsigned int fw_ref;
-+
-+		if (!job) {
-+			alloc = true;
-+			mutex_unlock(&m->job_mutex);
-+			goto job_alloc;
-+		}
-+
-+		/* Pairs with FW put on ULLS exit */
-+		fw_ref = xe_force_wake_get(gt_to_fw(m->q->hwe->gt),
-+					   m->q->hwe->domain);
-+		if (fw_ref) {
-+			struct xe_device *xe = tile_to_xe(m->tile);
-+			struct dma_fence *fence;
-+
-+			/* Pairs with PM put on ULLS exit */
-+			xe_pm_runtime_get_noresume(xe);
-+
-+			xe_sched_job_get(job);
-+			xe_sched_job_arm(job);
-+			job->is_ulls = true;
-+			job->is_ulls_first = true;
-+			fence = dma_fence_get(&job->drm.s_fence->finished);
-+			xe_sched_job_push(job);
-+
-+			dma_fence_put(fence);
-+
-+			xe_dbg(xe, "Migrate ULLS mode enter");
-+			m->ulls.enabled = true;
-+		}
-+	}
-+	if (job)
-+		xe_sched_job_put(job);
-+	if (m->ulls.enabled)
-+		mod_delayed_work(system_percpu_wq, &m->ulls.exit_work,
-+				 ULLS_EXIT_JIFFIES);
-+	mutex_unlock(&m->job_mutex);
-+}
-+
-+static void xe_migrate_ulls_exit(struct work_struct *work)
-+{
-+	struct xe_migrate *m = container_of(work, struct xe_migrate,
-+					    ulls.exit_work.work);
-+	struct xe_device *xe = tile_to_xe(m->tile);
-+	struct xe_sched_job *job = NULL;
-+	struct dma_fence *fence;
-+	u64 batch_addr[2] = { 0, 0 };
-+	int idx;
-+
-+	xe_assert(xe, m->ulls.enabled);
-+
-+	if (!drm_dev_enter(&xe->drm, &idx))
-+		return;
-+
-+	/*
-+	 * Must be done outside job_mutex as that lock is tainted with
-+	 * reclaim and must be done holding a pm ref.
-+	 */
-+	job = xe_sched_job_create(m->q, batch_addr);
-+	if (WARN_ON_ONCE(IS_ERR(job))) {
-+		drm_dev_exit(idx);
-+		mod_delayed_work(system_percpu_wq, &m->ulls.exit_work,
-+				 ULLS_EXIT_JIFFIES);
-+		return;		/* Not fatal */
-+	}
-+
-+	mutex_lock(&m->job_mutex);
-+
-+	if (!xe_exec_queue_is_idle(m->q, 1))
-+		goto unlock_exit;
-+
-+	xe_sched_job_get(job);
-+	xe_sched_job_arm(job);
-+	job->is_ulls = true;
-+	job->is_ulls_last = true;
-+	fence = dma_fence_get(&job->drm.s_fence->finished);
-+	xe_sched_job_push(job);
-+
-+	/* Serialize force wake put */
-+	dma_fence_wait(fence, false);
-+	dma_fence_put(fence);
-+
-+	m->ulls.enabled = false;
-+unlock_exit:
-+	if (job)
-+		xe_sched_job_put(job);
-+	if (!m->ulls.enabled) {
-+		/* Pairs with PM gets on enter */
-+		xe_force_wake_put(gt_to_fw(m->q->hwe->gt), m->q->hwe->domain);
-+		xe_pm_runtime_put(xe);
-+
-+		cancel_delayed_work(&m->ulls.exit_work);
-+		xe_dbg(xe, "Migrate ULLS mode exit");
-+	} else {
-+		mod_delayed_work(system_percpu_wq, &m->ulls.exit_work,
-+				 ULLS_EXIT_JIFFIES);
-+	}
-+
-+	drm_dev_exit(idx);
-+	mutex_unlock(&m->job_mutex);
-+}
-+
- /**
-  * xe_migrate_init() - Initialize a migrate context
-  * @m: The migration context
-@@ -494,6 +649,8 @@ int xe_migrate_init(struct xe_migrate *m)
- 	might_lock(&m->job_mutex);
- 	fs_reclaim_release(GFP_KERNEL);
- 
-+	INIT_DELAYED_WORK(&m->ulls.exit_work, xe_migrate_ulls_exit);
-+
- 	err = devm_add_action_or_reset(xe->drm.dev, xe_migrate_fini, m);
- 	if (err)
- 		return err;
-@@ -859,6 +1016,26 @@ static u32 xe_migrate_ccs_copy(struct xe_migrate *m,
- 	return flush_flags;
- }
- 
-+static bool xe_migrate_is_ulls(struct xe_migrate *m)
-+{
-+	lockdep_assert_held(&m->job_mutex);
-+
-+	return m->ulls.enabled;
-+}
-+
-+static void xe_migrate_job_set_ulls_flags(struct xe_migrate *m,
-+					  struct xe_sched_job *job)
-+{
-+	lockdep_assert_held(&m->job_mutex);
-+	xe_tile_assert(m->tile, m->q == job->q);
-+
-+	if (xe_migrate_is_ulls(m)) {
-+		job->is_ulls = true;
-+		mod_delayed_work(system_percpu_wq, &m->ulls.exit_work,
-+				 ULLS_EXIT_JIFFIES);
-+	}
-+}
-+
- static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
- 					   struct xe_bo *src_bo,
- 					   struct xe_bo *dst_bo,
-@@ -1021,6 +1198,7 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
- 		}
- 
- 		mutex_lock(&m->job_mutex);
-+		xe_migrate_job_set_ulls_flags(m, job);
- 		xe_sched_job_arm(job);
- 		dma_fence_put(fence);
- 		fence = dma_fence_get(&job->drm.s_fence->finished);
-@@ -1682,6 +1860,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
- 		}
- 
- 		mutex_lock(&m->job_mutex);
-+		xe_migrate_job_set_ulls_flags(m, job);
- 		xe_sched_job_arm(job);
- 		dma_fence_put(fence);
- 		fence = dma_fence_get(&job->drm.s_fence->finished);
-@@ -1961,6 +2140,7 @@ static struct dma_fence *xe_migrate_vram(struct xe_migrate *m,
- 	}
- 
- 	mutex_lock(&m->job_mutex);
-+	xe_migrate_job_set_ulls_flags(m, job);
- 	xe_sched_job_arm(job);
- 	fence = dma_fence_get(&job->drm.s_fence->finished);
- 	xe_sched_job_push(job);
-diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
-index 4ffd588d243ef..12e1565a3f52d 100644
---- a/drivers/gpu/drm/xe/xe_migrate.h
-+++ b/drivers/gpu/drm/xe/xe_migrate.h
-@@ -89,4 +89,6 @@ struct xe_vm *xe_migrate_get_vm(struct xe_migrate *m);
- 
- void xe_migrate_wait(struct xe_migrate *m);
- 
-+void xe_migrate_ulls_enter(struct xe_migrate *m);
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 84ed8e8712d4a..4347a81d4f809 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -1344,7 +1344,7 @@ static int xe_pt_vm_dependencies(struct xe_sched_job *job,
- 	if (!job && !no_in_syncs(vops->syncs, vops->num_syncs))
- 		return -ETIME;
- 
--	if (!job && !xe_exec_queue_is_idle(vops->q))
-+	if (!job && !xe_exec_queue_is_idle(vops->q, 0))
- 		return -ETIME;
- 
- 	if (vops->flags & (XE_VMA_OPS_FLAG_WAIT_VM_BOOKKEEP |
-diff --git a/drivers/gpu/drm/xe/xe_sched_job_types.h b/drivers/gpu/drm/xe/xe_sched_job_types.h
-index 9f527ac6df3e6..db41f5388dd0d 100644
---- a/drivers/gpu/drm/xe/xe_sched_job_types.h
-+++ b/drivers/gpu/drm/xe/xe_sched_job_types.h
-@@ -91,6 +91,12 @@ struct xe_sched_job {
- 	bool last_replay;
- 	/** @is_pt_job: is a PT job */
- 	bool is_pt_job;
-+	/** @is_ulls: is ULLS job */
-+	bool is_ulls;
-+	/** @is_ulls_first: is first ULLS job */
-+	bool is_ulls_first;
-+	/** @is_ulls_last: is last ULLS job */
-+	bool is_ulls_last;
- 	union {
- 		/** @ptrs: per instance pointers. */
- 		DECLARE_FLEX_ARRAY(struct xe_job_ptrs, ptrs);
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index d1d10946a17c2..6e9400f32b907 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -148,7 +148,7 @@ static bool xe_vm_is_idle(struct xe_vm *vm)
- 
- 	xe_vm_assert_held(vm);
- 	list_for_each_entry(q, &vm->preempt.exec_queues, lr.link) {
--		if (!xe_exec_queue_is_idle(q))
-+		if (!xe_exec_queue_is_idle(q, 0))
- 			return false;
- 	}
- 
+No reviews or feedback please, I first want to check if the test results
+from the mostly unmodified patch series are still clean after rebasing, then
+I can work on addressing the review feedback in the original series.
+
+Matthew Brost (24):
+  drm/xe: Drop struct xe_migrate_pt_update argument from populate/clear
+    vfuns
+  drm/xe: Add xe_migrate_update_pgtables_cpu_execute helper
+  drm/xe: Decouple exec queue idle check from LRC
+  drm/xe: Add job count to GuC exec queue snapshot
+  drm/xe: Update xe_bo_put_deferred arguments to include writeback flag
+  drm/xe: Add XE_BO_FLAG_PUT_VM_ASYNC
+  drm/xe: Update scheduler job layer to support PT jobs
+  drm/xe: Add helpers to access PT ops
+  drm/xe: Add struct xe_pt_job_ops
+  drm/xe: Update GuC submission backend to run PT jobs
+  drm/xe: Store level in struct xe_vm_pgtable_update
+  drm/xe: Don't use migrate exec queue for page fault binds
+  drm/xe: Enable CPU binds for jobs
+  drm/xe: Remove unused arguments from xe_migrate_pt_update_ops
+  drm/xe: Make bind queues operate cross-tile
+  drm/xe: Add CPU bind layer
+  drm/xe: Add device flag to enable PT mirroring across tiles
+  drm/xe: Add xe_hw_engine_write_ring_tail
+  drm/xe: Add ULLS support to LRC
+  drm/xe: Add ULLS migration job support to migration layer
+  drm/xe: Add ULLS migration job support to ring ops
+  drm/xe: Add ULLS migration job support to GuC submission
+  drm/xe: Enter ULLS for migration jobs upon page fault or SVM prefetch
+  drm/xe: Add modparam to enable / disable ULLS on migrate queue
+
+ drivers/gpu/drm/xe/Makefile              |   1 +
+ drivers/gpu/drm/xe/xe_bo.c               |   8 +-
+ drivers/gpu/drm/xe/xe_bo.h               |  11 +-
+ drivers/gpu/drm/xe/xe_bo_types.h         |   2 -
+ drivers/gpu/drm/xe/xe_cpu_bind.c         | 296 +++++++++
+ drivers/gpu/drm/xe/xe_cpu_bind.h         | 118 ++++
+ drivers/gpu/drm/xe/xe_debugfs.c          |   1 +
+ drivers/gpu/drm/xe/xe_defaults.h         |   1 +
+ drivers/gpu/drm/xe/xe_device.c           |  16 +-
+ drivers/gpu/drm/xe/xe_device_types.h     |  11 +
+ drivers/gpu/drm/xe/xe_drm_client.c       |   2 +-
+ drivers/gpu/drm/xe/xe_exec_queue.c       | 164 ++---
+ drivers/gpu/drm/xe/xe_exec_queue.h       |  16 +-
+ drivers/gpu/drm/xe/xe_exec_queue_types.h |  20 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c       |  78 ++-
+ drivers/gpu/drm/xe/xe_guc_submit_types.h |   2 +
+ drivers/gpu/drm/xe/xe_hw_engine.c        |  20 +
+ drivers/gpu/drm/xe/xe_hw_engine.h        |   1 +
+ drivers/gpu/drm/xe/xe_lrc.c              |  51 ++
+ drivers/gpu/drm/xe/xe_lrc.h              |   3 +
+ drivers/gpu/drm/xe/xe_lrc_types.h        |   4 +
+ drivers/gpu/drm/xe/xe_migrate.c          | 595 ++++++-----------
+ drivers/gpu/drm/xe/xe_migrate.h          |  93 +--
+ drivers/gpu/drm/xe/xe_module.c           |   4 +
+ drivers/gpu/drm/xe/xe_module.h           |   1 +
+ drivers/gpu/drm/xe/xe_pagefault.c        |   3 +
+ drivers/gpu/drm/xe/xe_pci.c              |   2 +
+ drivers/gpu/drm/xe/xe_pci_types.h        |   3 +-
+ drivers/gpu/drm/xe/xe_pt.c               | 773 ++++++++++++++---------
+ drivers/gpu/drm/xe/xe_pt.h               |  12 +-
+ drivers/gpu/drm/xe/xe_pt_types.h         |  49 +-
+ drivers/gpu/drm/xe/xe_ring_ops.c         |  31 +
+ drivers/gpu/drm/xe/xe_sched_job.c        | 100 ++-
+ drivers/gpu/drm/xe/xe_sched_job_types.h  |  36 +-
+ drivers/gpu/drm/xe/xe_sync.c             |  20 +-
+ drivers/gpu/drm/xe/xe_tlb_inval_job.c    |  28 +-
+ drivers/gpu/drm/xe/xe_tlb_inval_job.h    |   4 +-
+ drivers/gpu/drm/xe/xe_vm.c               | 240 +++----
+ drivers/gpu/drm/xe/xe_vm.h               |   3 +
+ drivers/gpu/drm/xe/xe_vm_types.h         |  22 +-
+ 40 files changed, 1660 insertions(+), 1185 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_cpu_bind.c
+ create mode 100644 drivers/gpu/drm/xe/xe_cpu_bind.h
+
 -- 
 2.53.0
 
