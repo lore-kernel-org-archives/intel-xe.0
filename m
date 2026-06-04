@@ -4,37 +4,37 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2CDACD6E4A
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 16:07:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48F20CD6E79
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 16:07:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E4B511A161;
-	Thu,  4 Jun 2026 16:07:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0204611A165;
+	Thu,  4 Jun 2026 16:07:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="nE3JVt9I";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="Plefu+RM";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F51C11A15B
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 16:06:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33D3511A15B
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 16:06:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1780589217;
- bh=3MrApgZ57FjRh3lnoNV+xerQ7wOMAlFqXNTv6oWhkc0=;
+ s=default; t=1780589215;
+ bh=dFPQRaHzSCbu6FjKDEcmQkybCau5hlhTFjVuZUKUgtM=;
  h=From:To:Subject:Date:In-Reply-To:References:From;
- b=nE3JVt9IuKhrsLtF35Cq2MO57RcGmSn98qcR/fN9zinaSnzr6QBYJTlGcJacp3vKg
- G+f/O6/iVvOAIG8AFnJEhOAAzho8Ns6gyz8VV9AxBKqOrqQ291QpBonCpRU3jFZoIi
- lws+JlSv+kgmsY1BRl+4zVDWtgap7lhOexBUhiUXzOKFh+mmEeNAI8yYrtjt4Pta8Q
- 6mR0aw4B/ZuIRiCG8Y28RJ9ACu/QdVhV/oAGeXaIl7KdnqvU8PX1D4PjyxKYdKg3mT
- guN/WyIJQYzx0Xnw/yaBfbcd/WAiDOH9IzJHq0WWTcHR7OqXv7A+qnrqBdPyYUYX0X
- bgkr9v7TZML2Q==
+ b=Plefu+RMe53VU9q5TgYCs9g6aOuur/cg4Qfuxjz/AEL+1IRYsqwAqZvpL2rB985F0
+ P8cKVrypb8hcUAQqsLfKUErTyIq4Fx88w/eeMXlvQBYy2lxhQK6g+Pov+RwbLHDtXL
+ JE/VDFH004rcB+1gueESDsmtEB5ZUaU5KE4WHOSlm28BtwOi+ycklh+fS8E043qeKu
+ 2x/foo339YaogbubSXeSiG82sg9L65tnvxwEUwxXBiHDsyKzyO63xs89HzuihWC/Zv
+ J8Z0mSDis4TpXjWuqWp9ZclV5IzbaPSbS8eXtzCKQ8PRHK6mEyrDigcyhEAN/WqiFZ
+ g4w3V4QLSnMqA==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 05/24] drm/xe: Update xe_bo_put_deferred arguments to include
- writeback flag
-Date: Thu,  4 Jun 2026 18:06:34 +0200
-Message-ID: <20260604160655.50036-6-dev@lankhorst.se>
+Subject: [CI 02/24] drm/xe: Add xe_migrate_update_pgtables_cpu_execute helper
+Date: Thu,  4 Jun 2026 18:06:31 +0200
+Message-ID: <20260604160655.50036-3-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260604160655.50036-1-dev@lankhorst.se>
 References: <20260604160655.50036-1-dev@lankhorst.se>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -52,89 +52,103 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Matthew Brost <matthew.brost@intel.com>
 
-Update the xe_bo_put_deferred arguments to include a writeback flag,
-which indicates whether the BO was added to the deferred list. This is
-useful when the caller needs to take additional actions after the BO has
-been queued for deferred release.
+Add the xe_migrate_update_pgtables_cpu_execute helper, which performs
+the CPU-side page-table update. This will support implementing CPU
+binds, as the submission backend can call this helper once a bind job’s
+dependencies are resolved. While here, add assertions to provide basic
+sanity checks on tht function arguments.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Francois Dugast <francois.dugast@intel.com>
-Link: https://patch.msgid.link/20260228013501.106680-6-matthew.brost@intel.com
+Link: https://patch.msgid.link/20260228013501.106680-3-matthew.brost@intel.com
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_bo.h         | 10 ++++++++--
- drivers/gpu/drm/xe/xe_drm_client.c |  2 +-
- drivers/gpu/drm/xe/xe_pt.c         |  2 +-
- 3 files changed, 10 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_migrate.c | 58 ++++++++++++++++++++-------------
+ 1 file changed, 35 insertions(+), 23 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 6340317f7d2e6..dee2a5524039c 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -492,6 +492,8 @@ void __xe_bo_release_dummy(struct kref *kref);
-  * @bo: The bo to put.
-  * @deferred: List to which to add the buffer object if we cannot put, or
-  * NULL if the function is to put unconditionally.
-+ * @added: BO was added to deferred list, written back to caller, can be NULL if
-+ * writeback is not needed.
-  *
-  * Since the final freeing of an object includes both sleeping and (!)
-  * memory allocation in the dma_resv individualization, it's not ok
-@@ -511,7 +513,8 @@ void __xe_bo_release_dummy(struct kref *kref);
-  * false otherwise.
-  */
- static inline bool
--xe_bo_put_deferred(struct xe_bo *bo, struct llist_head *deferred)
-+xe_bo_put_deferred(struct xe_bo *bo, struct llist_head *deferred,
-+		   bool *added)
- {
- 	if (!deferred) {
- 		xe_bo_put(bo);
-@@ -521,6 +524,9 @@ xe_bo_put_deferred(struct xe_bo *bo, struct llist_head *deferred)
- 	if (!kref_put(&bo->ttm.base.refcount, __xe_bo_release_dummy))
- 		return false;
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index d63e977b0e528..cc92633809b6d 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -1800,6 +1800,38 @@ struct migrate_test_params {
+ 	container_of(_priv, struct migrate_test_params, base)
+ #endif
  
-+	if (added)
-+		*added = true;
++static void
++xe_migrate_update_pgtables_cpu_execute(struct xe_vm *vm, struct xe_tile *tile,
++				       const struct xe_migrate_pt_update_ops *ops,
++				       struct xe_vm_pgtable_update_op *pt_op,
++				       int num_ops)
++{
++	u32 j, i;
 +
- 	return llist_add(&bo->freed, deferred);
- }
++	for (j = 0; j < num_ops; ++j, ++pt_op) {
++		for (i = 0; i < pt_op->num_entries; i++) {
++			const struct xe_vm_pgtable_update *update =
++				&pt_op->entries[i];
++
++			xe_tile_assert(tile, update);
++			xe_tile_assert(tile, update->pt_bo);
++			xe_tile_assert(tile, !iosys_map_is_null(&update->pt_bo->vmap));
++
++			if (pt_op->bind)
++				ops->populate(tile, &update->pt_bo->vmap,
++					      NULL, update->ofs, update->qwords,
++					      update);
++			else
++				ops->clear(vm, tile, &update->pt_bo->vmap,
++					   NULL, update->ofs, update->qwords,
++					   update);
++		}
++	}
++
++	trace_xe_vm_cpu_bind(vm);
++	xe_device_wmb(vm->xe);
++}
++
+ static struct dma_fence *
+ xe_migrate_update_pgtables_cpu(struct xe_migrate *m,
+ 			       struct xe_migrate_pt_update *pt_update)
+@@ -1812,7 +1844,6 @@ xe_migrate_update_pgtables_cpu(struct xe_migrate *m,
+ 	struct xe_vm_pgtable_update_ops *pt_update_ops =
+ 		&pt_update->vops->pt_update_ops[pt_update->tile_id];
+ 	int err;
+-	u32 i, j;
  
-@@ -537,7 +543,7 @@ xe_bo_put_async(struct xe_bo *bo)
- {
- 	struct xe_bo_dev *bo_device = &xe_bo_device(bo)->bo_device;
- 
--	if (xe_bo_put_deferred(bo, &bo_device->async_list))
-+	if (xe_bo_put_deferred(bo, &bo_device->async_list, NULL))
- 		schedule_work(&bo_device->async_free);
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
-index 84b66147bf494..45efe7a554276 100644
---- a/drivers/gpu/drm/xe/xe_drm_client.c
-+++ b/drivers/gpu/drm/xe/xe_drm_client.c
-@@ -246,7 +246,7 @@ static void show_meminfo(struct drm_printer *p, struct drm_file *file)
- 			xe_assert(xef->xe, !list_empty(&bo->client_link));
- 		}
- 
--		xe_bo_put_deferred(bo, &deferred);
-+		xe_bo_put_deferred(bo, &deferred, NULL);
+ 	if (XE_TEST_ONLY(test && test->force_gpu))
+ 		return ERR_PTR(-ETIME);
+@@ -1824,28 +1855,9 @@ xe_migrate_update_pgtables_cpu(struct xe_migrate *m,
+ 			return ERR_PTR(err);
  	}
- 	spin_unlock(&client->bos_lock);
  
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 37970124386cd..a627b1aaeb856 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -213,7 +213,7 @@ void xe_pt_destroy(struct xe_pt *pt, u32 flags, struct llist_head *deferred)
+-	for (i = 0; i < pt_update_ops->num_ops; ++i) {
+-		const struct xe_vm_pgtable_update_op *pt_op =
+-			&pt_update_ops->ops[i];
+-
+-		for (j = 0; j < pt_op->num_entries; j++) {
+-			const struct xe_vm_pgtable_update *update =
+-				&pt_op->entries[j];
+-
+-			if (pt_op->bind)
+-				ops->populate(m->tile,
+-					      &update->pt_bo->vmap, NULL,
+-					      update->ofs, update->qwords,
+-					      update);
+-			else
+-				ops->clear(vm, m->tile,
+-					   &update->pt_bo->vmap, NULL,
+-					   update->ofs, update->qwords, update);
+-		}
+-	}
+-
+-	trace_xe_vm_cpu_bind(vm);
+-	xe_device_wmb(vm->xe);
++	xe_migrate_update_pgtables_cpu_execute(vm, m->tile, ops,
++					       pt_update_ops->ops,
++					       pt_update_ops->num_ops);
  
- 	XE_WARN_ON(!list_empty(&pt->bo->ttm.base.gpuva.list));
- 	xe_bo_unpin(pt->bo);
--	xe_bo_put_deferred(pt->bo, deferred);
-+	xe_bo_put_deferred(pt->bo, deferred, NULL);
- 
- 	if (pt->level > 0 && pt->num_live) {
- 		struct xe_pt_dir *pt_dir = as_xe_pt_dir(pt);
+ 	return dma_fence_get_stub();
+ }
 -- 
 2.53.0
 
