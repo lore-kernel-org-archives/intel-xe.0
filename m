@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69376CD6E75
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 18:11:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8ADECD6E75
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 18:11:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B9EF112934;
-	Thu,  4 Jun 2026 18:11:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94B7A112938;
+	Thu,  4 Jun 2026 18:11:53 +0000 (UTC)
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B301112933;
- Thu,  4 Jun 2026 18:11:21 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5683234896910640909=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 344BE112934;
+ Thu,  4 Jun 2026 18:11:52 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_CPU_binds_and_ULLS_on_migra?=
- =?utf-8?q?tion_queue_=28rev5=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_don=27t_allow_changes_to_?=
+ =?utf-8?q?inactive_colorops_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
+To: "Melissa Wen" <mwen@igalia.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 04 Jun 2026 18:11:21 -0000
-Message-ID: <178059668149.44886.9080529487845195887@6beec6c84f66>
+Date: Thu, 04 Jun 2026 18:11:52 -0000
+Message-ID: <178059671220.45116.5979290343814538771@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260604171502.84047-1-dev@lankhorst.se>
-In-Reply-To: <20260604171502.84047-1-dev@lankhorst.se>
+References: <20260604180457.1110110-1-mwen@igalia.com>
+In-Reply-To: <20260604180457.1110110-1-mwen@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,138 +40,50 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5683234896910640909==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: CPU binds and ULLS on migration queue (rev5)
-URL   : https://patchwork.freedesktop.org/series/149888/
-State : success
+Series: don't allow changes to inactive colorops (rev2)
+URL   : https://patchwork.freedesktop.org/series/167294/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3_BAT -> xe-pw-149888v5_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f2743267a2299c1dc86ba42a2ca37613869db420
+Author: Melissa Wen <mwen@igalia.com>
+Date:   Thu Jun 4 19:59:07 2026 +0200
 
-Summary
--------
+    drm/atomic: reject colorop update from inactive color pipeline
+    
+    Only allow updates on colorops that are part of an active pipeline, i.e.
+    check if a colorop belongs to the color pipeline of a plane in its
+    current, new or old state. If not, reject the state change of this
+    inactive colorop. Performing this check later in drm_atomic_check_only()
+    to remove the ordering dependency that would exist if done at the time
+    of colorop property setting. Userspace is allowed to change colorops of
+    an active color pipeline, or when activating or deactivating its
+    pipeline in the same commit. However, changes in inactive color pipeline
+    is not allowed.
+    
+    Suggested-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+    Signed-off-by: Melissa Wen <mwen@igalia.com>
++ /mt/dim checkpatch 406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3 drm-intel
+a9bf6ea5069f drm/atomic: only add states of active or transient active colorops
+-:113: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'colorop' - possible side-effects?
+#113: FILE: include/drm/drm_colorop.h:462:
++#define drm_for_each_colorop_in_pipeline(colorop, pipeline) \
++	for ((colorop) = (pipeline); (colorop); (colorop) = (colorop)->next)
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-149888v5_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_exec_fault_mode@twice-rebind-imm:
-    - bat-bmg-2:          [PASS][1] -> [ABORT][2] ([Intel XE#7893])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3/bat-bmg-2/igt@xe_exec_fault_mode@twice-rebind-imm.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v5/bat-bmg-2/igt@xe_exec_fault_mode@twice-rebind-imm.html
-    - bat-bmg-1:          [PASS][3] -> [ABORT][4] ([Intel XE#7893])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3/bat-bmg-1/igt@xe_exec_fault_mode@twice-rebind-imm.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v5/bat-bmg-1/igt@xe_exec_fault_mode@twice-rebind-imm.html
-
-  * igt@xe_multigpu_svm@mgpu-xgpu-access-prefetch:
-    - bat-bmg-3:          [PASS][5] -> [ABORT][6] ([Intel XE#7893])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3/bat-bmg-3/igt@xe_multigpu_svm@mgpu-xgpu-access-prefetch.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v5/bat-bmg-3/igt@xe_multigpu_svm@mgpu-xgpu-access-prefetch.html
-
-  
-  [Intel XE#7893]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7893
+total: 0 errors, 0 warnings, 1 checks, 92 lines checked
+cbd94ef5535c drm/atomic: duplicate state of all colorops
+f2743267a229 drm/atomic: reject colorop update from inactive color pipeline
 
 
-Build changes
--------------
-
-  * Linux: xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3 -> xe-pw-149888v5
-
-  IGT_8948: 8948
-  xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3: 406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3
-  xe-pw-149888v5: 149888v5
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v5/index.html
-
---===============5683234896910640909==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>CPU binds and ULLS on migration queue (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149888/">https://patchwork.freedesktop.org/series/149888/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3_BAT -&gt; xe-pw-149888v5_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-149888v5_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_exec_fault_mode@twice-rebind-imm:</p>
-<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3/bat-bmg-2/igt@xe_exec_fault_mode@twice-rebind-imm.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v5/bat-bmg-2/igt@xe_exec_fault_mode@twice-rebind-imm.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7893">Intel XE#7893</a>)</li>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3/bat-bmg-1/igt@xe_exec_fault_mode@twice-rebind-imm.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v5/bat-bmg-1/igt@xe_exec_fault_mode@twice-rebind-imm.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7893">Intel XE#7893</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_multigpu_svm@mgpu-xgpu-access-prefetch:</p>
-<ul>
-<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3/bat-bmg-3/igt@xe_multigpu_svm@mgpu-xgpu-access-prefetch.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v5/bat-bmg-3/igt@xe_multigpu_svm@mgpu-xgpu-access-prefetch.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7893">Intel XE#7893</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3 -&gt; xe-pw-149888v5</li>
-</ul>
-<p>IGT_8948: 8948<br />
-  xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3: 406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3<br />
-  xe-pw-149888v5: 149888v5</p>
-
-</body>
-</html>
-
---===============5683234896910640909==--
