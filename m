@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0BEECD6E79
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 18:05:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69376CD6E75
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 18:11:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D3EE11292E;
-	Thu,  4 Jun 2026 18:05:55 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="MG8ZL//9";
-	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E828F112925;
- Thu,  4 Jun 2026 18:05:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=xDanblzNrKwLMIWCMdcO9/e2GrHOcHnN+e83qP8r5xg=; b=MG8ZL//9yGgx0wlwz0S4BdlORt
- i3awrnyIRGvnWqC0MRdC1x4N5GjQawwDy41RgxUEFsEOOaG8+yASE/0FO0kkleUE3AFKvRbxI1siP
- TBjJ7HGIhUQksYI1+3eTW+215xaeTqsAAjlGeWetYerw1o60vxZ/IQrxqVrWulsgdKYfOcB4dFYmN
- OJ9oXkD+TG2FzNq2E0lXbeMpSFl+bz9ED4PDOSRSMQh6vvkk+1XpV7apDcLIEBh3M6TLI2+R5dbTX
- uGyhOcUCRwmRrAmy0V/v0RLyL7RD4WT4kXhGwJvZb82XQ55nWmGamfzkl91QgROhiKMXJ0TI/kuyH
- n5+Zptgg==;
-Received: from [79.117.146.159] (helo=killbill.home)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wVCRJ-00Ckqs-Dd; Thu, 04 Jun 2026 20:05:09 +0200
-From: Melissa Wen <mwen@igalia.com>
-To: airlied@gmail.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- simona@ffwll.ch, tzimmermann@suse.de
-Cc: Alex Hung <alex.hung@amd.com>, Simon Ser <contact@emersion.fr>,
- Uma Shankar <uma.shankar@intel.com>,
- Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
- Xaver Hugl <xaver.hugl@kde.org>,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Louis Chauvet <louis.chauvet@bootlin.com>,
- Matthew Schwartz <matthew.schwartz@linux.dev>,
- Sebastian Wick <sebastian.wick@redhat.com>,
- John Harrison <John.Harrison@Igalia.com>,
- Rodrigo Siqueira <siqueira@igalia.com>, amd-gfx@lists.freedesktop.org,
- kernel-dev@igalia.com, Rob Clark <robin.clark@oss.qualcomm.com>,
- Dmitry Baryshkov <lumag@kernel.org>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH v2 3/3] drm/atomic: reject colorop update from inactive color
- pipeline
-Date: Thu,  4 Jun 2026 19:59:07 +0200
-Message-ID: <20260604180457.1110110-4-mwen@igalia.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260604180457.1110110-1-mwen@igalia.com>
-References: <20260604180457.1110110-1-mwen@igalia.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B9EF112934;
+	Thu,  4 Jun 2026 18:11:22 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B301112933;
+ Thu,  4 Jun 2026 18:11:21 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5683234896910640909=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_CPU_binds_and_ULLS_on_migra?=
+ =?utf-8?q?tion_queue_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 04 Jun 2026 18:11:21 -0000
+Message-ID: <178059668149.44886.9080529487845195887@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260604171502.84047-1-dev@lankhorst.se>
+In-Reply-To: <20260604171502.84047-1-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,110 +36,142 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Only allow updates on colorops that are part of an active pipeline, i.e.
-check if a colorop belongs to the color pipeline of a plane in its
-current, new or old state. If not, reject the state change of this
-inactive colorop. Performing this check later in drm_atomic_check_only()
-to remove the ordering dependency that would exist if done at the time
-of colorop property setting. Userspace is allowed to change colorops of
-an active color pipeline, or when activating or deactivating its
-pipeline in the same commit. However, changes in inactive color pipeline
-is not allowed.
+--===============5683234896910640909==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Suggested-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-Signed-off-by: Melissa Wen <mwen@igalia.com>
----
- drivers/gpu/drm/drm_atomic.c | 60 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 60 insertions(+)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
-index 464562861408..960b52624deb 100644
---- a/drivers/gpu/drm/drm_atomic.c
-+++ b/drivers/gpu/drm/drm_atomic.c
-@@ -943,6 +943,55 @@ drm_atomic_add_pipeline_colorops(struct drm_atomic_commit *state,
- 	return 0;
- }
- 
-+/**
-+ * drm_atomic_colorop_check - check new colorop state
-+ * @new_colorop_state: new colorop state to check
-+ *
-+ * Ensure that the colorop in @new_colorop_state belongs to an active color
-+ * pipeline, i.e. it's in the chain of colorops set to the color_pipeline
-+ * property of current, old or new plane state.
-+ *
-+ * Returns: 0 on success, -EINVAL otherwise.
-+ */
-+static int drm_atomic_colorop_check(const struct drm_colorop_state *new_colorop_state)
-+{
-+	struct drm_atomic_commit *state = new_colorop_state->state;
-+	struct drm_plane *plane = new_colorop_state->colorop->plane;
-+	struct drm_plane_state *new_plane_state, *old_plane_state;
-+	struct drm_colorop *colorop;
-+
-+	new_plane_state = drm_atomic_get_new_plane_state(state, plane);
-+	old_plane_state = drm_atomic_get_old_plane_state(state, plane);
-+
-+	/* No changes in the plane state. Check current-committed plane state */
-+	if (!new_plane_state) {
-+		for (colorop = plane->state->color_pipeline; colorop; colorop = colorop->next)
-+			if (colorop == new_colorop_state->colorop)
-+				return 0;
-+		return -EINVAL;
-+	}
-+
-+	if (WARN_ON(!old_plane_state))
-+		return -EINVAL;
-+
-+	/* Check if the colorop is active in the new plane state */
-+	for (colorop = new_plane_state->color_pipeline; colorop; colorop = colorop->next)
-+		if (colorop == new_colorop_state->colorop)
-+			return 0;
-+
-+	/* Same color pipeline as new; no point walking old. Colorop isn't active */
-+	if (new_plane_state->color_pipeline == old_plane_state->color_pipeline)
-+		return -EINVAL;
-+
-+	/* Check if the colorop was active in the old plane state */
-+	for (colorop = old_plane_state->color_pipeline; colorop; colorop = colorop->next)
-+		if (colorop == new_colorop_state->colorop)
-+			return 0;
-+
-+	/* Colorop is not part of an active color pipeline. */
-+	return -EINVAL;
-+}
-+
- static void drm_atomic_colorop_print_state(struct drm_printer *p,
- 					   const struct drm_colorop_state *state)
- {
-@@ -1792,6 +1841,8 @@ int drm_atomic_check_only(struct drm_atomic_commit *state)
- 	struct drm_plane *plane;
- 	struct drm_plane_state *old_plane_state;
- 	struct drm_plane_state *new_plane_state;
-+	struct drm_colorop *colorop;
-+	struct drm_colorop_state *new_colorop_state;
- 	struct drm_crtc *crtc;
- 	struct drm_crtc_state *old_crtc_state;
- 	struct drm_crtc_state *new_crtc_state;
-@@ -1808,6 +1859,15 @@ int drm_atomic_check_only(struct drm_atomic_commit *state)
- 			requested_crtc |= drm_crtc_mask(crtc);
- 	}
- 
-+	for_each_new_colorop_in_state(state, colorop, new_colorop_state, i) {
-+		ret = drm_atomic_colorop_check(new_colorop_state);
-+		if (ret) {
-+			drm_dbg_atomic(dev, "[COLOROP:%d:%d] isn't in an active color pipeline.\n",
-+				       colorop->base.id, colorop->type);
-+			return ret;
-+		}
-+	}
-+
- 	for_each_oldnew_plane_in_state(state, plane, old_plane_state, new_plane_state, i) {
- 		ret = drm_atomic_plane_check(old_plane_state, new_plane_state);
- 		if (ret) {
--- 
-2.53.0
+Series: CPU binds and ULLS on migration queue (rev5)
+URL   : https://patchwork.freedesktop.org/series/149888/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3_BAT -> xe-pw-149888v5_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-149888v5_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_exec_fault_mode@twice-rebind-imm:
+    - bat-bmg-2:          [PASS][1] -> [ABORT][2] ([Intel XE#7893])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3/bat-bmg-2/igt@xe_exec_fault_mode@twice-rebind-imm.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v5/bat-bmg-2/igt@xe_exec_fault_mode@twice-rebind-imm.html
+    - bat-bmg-1:          [PASS][3] -> [ABORT][4] ([Intel XE#7893])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3/bat-bmg-1/igt@xe_exec_fault_mode@twice-rebind-imm.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v5/bat-bmg-1/igt@xe_exec_fault_mode@twice-rebind-imm.html
+
+  * igt@xe_multigpu_svm@mgpu-xgpu-access-prefetch:
+    - bat-bmg-3:          [PASS][5] -> [ABORT][6] ([Intel XE#7893])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3/bat-bmg-3/igt@xe_multigpu_svm@mgpu-xgpu-access-prefetch.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v5/bat-bmg-3/igt@xe_multigpu_svm@mgpu-xgpu-access-prefetch.html
+
+  
+  [Intel XE#7893]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7893
+
+
+Build changes
+-------------
+
+  * Linux: xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3 -> xe-pw-149888v5
+
+  IGT_8948: 8948
+  xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3: 406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3
+  xe-pw-149888v5: 149888v5
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v5/index.html
+
+--===============5683234896910640909==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>CPU binds and ULLS on migration queue (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149888/">https://patchwork.freedesktop.org/series/149888/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3_BAT -&gt; xe-pw-149888v5_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-149888v5_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_exec_fault_mode@twice-rebind-imm:</p>
+<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3/bat-bmg-2/igt@xe_exec_fault_mode@twice-rebind-imm.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v5/bat-bmg-2/igt@xe_exec_fault_mode@twice-rebind-imm.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7893">Intel XE#7893</a>)</li>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3/bat-bmg-1/igt@xe_exec_fault_mode@twice-rebind-imm.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v5/bat-bmg-1/igt@xe_exec_fault_mode@twice-rebind-imm.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7893">Intel XE#7893</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_multigpu_svm@mgpu-xgpu-access-prefetch:</p>
+<ul>
+<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3/bat-bmg-3/igt@xe_multigpu_svm@mgpu-xgpu-access-prefetch.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v5/bat-bmg-3/igt@xe_multigpu_svm@mgpu-xgpu-access-prefetch.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7893">Intel XE#7893</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3 -&gt; xe-pw-149888v5</li>
+</ul>
+<p>IGT_8948: 8948<br />
+  xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3: 406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3<br />
+  xe-pw-149888v5: 149888v5</p>
+
+</body>
+</html>
+
+--===============5683234896910640909==--
