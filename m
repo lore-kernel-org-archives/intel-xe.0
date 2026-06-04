@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6576FCD6E6E
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 18:57:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93B70CD6E6E
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 19:04:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1814511A266;
-	Thu,  4 Jun 2026 18:57:06 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8629911A264;
- Thu,  4 Jun 2026 18:57:04 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5614575071907156359=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4734710E190;
+	Thu,  4 Jun 2026 19:04:34 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JXerEW5F";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5347E10E190
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 19:04:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1780599874; x=1812135874;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=xVoAbtDS3fyexR3fwGZIMDvDn70pRtTbdHfS/fooUco=;
+ b=JXerEW5FWjXesaCPZ0mHJQSxdu3hCIBEAJaBlLvIP/s+BMnov5WuY9cu
+ tDGhQ+Pp5r612rViEGoc86XcarMDV5KSx2x1Y+fWhzdVhXk4vQNKfdxoV
+ IK+b7/dcVsf+uagH/ykiVg8yxW3rGbfnEGX7Pp4vjJKXZhp56JHzvwxLi
+ oZZmrNDWUBttFK3OxgimUtNd2tTLv54OpcKUIsQCV9RXt8I9OzRnlEmpw
+ PfPcNE0QQYLzvc6SE+QwMC7fjKdlME51sG9y9z2iqwFBDV3r9U+abHKDp
+ 0xUoufreS9BqVI6Zs1Dxs8QislBJ9WOZXAxdJyEm45uGGT752xaXaMFyf g==;
+X-CSE-ConnectionGUID: xYAtcWedToWoHTBkS6Dt+g==
+X-CSE-MsgGUID: 6z0R7BLFQnurTzsNWL7xIg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11807"; a="81412557"
+X-IronPort-AV: E=Sophos;i="6.24,187,1774335600"; d="scan'208";a="81412557"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2026 12:04:33 -0700
+X-CSE-ConnectionGUID: ZXeiv2jLQiWf/aNsfiKQtw==
+X-CSE-MsgGUID: 8Dyc3JvqRxqeKvzvpI6N8g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,187,1774335600"; d="scan'208";a="282722293"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2026 12:04:32 -0700
+Date: Thu, 4 Jun 2026 21:04:29 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Gupta, Saurabhg" <saurabhg.gupta@intel.com>,
+ "Zuo, Alex" <alex.zuo@intel.com>
+Subject: Re: [PATCH] drm/xe/i2c: Report i2c irq handler issue
+Message-ID: <aiHMPVNbGDCvxjno@black.igk.intel.com>
+References: <20260603201007.3768029-1-jonathan.cavitt@intel.com>
+ <aiFx2veqtpl9mdSo@black.igk.intel.com>
+ <SN6PR11MB2717A1C01529294A3A96277CE5102@SN6PR11MB2717.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_don=27t_allow_changes_to_in?=
- =?utf-8?q?active_colorops_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Melissa Wen" <mwen@igalia.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 04 Jun 2026 18:57:04 -0000
-Message-ID: <178059942454.45116.2319584351834683130@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260604180457.1110110-1-mwen@igalia.com>
-In-Reply-To: <20260604180457.1110110-1-mwen@igalia.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <SN6PR11MB2717A1C01529294A3A96277CE5102@SN6PR11MB2717.namprd11.prod.outlook.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +67,74 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5614575071907156359==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Jun 04, 2026 at 07:52:56PM +0530, Cavitt, Jonathan wrote:
+> -----Original Message-----
+> From: Jadav, Raag <raag.jadav@intel.com> 
+> > On Thu, Jun 04, 2026 at 04:10:07AM +0800, Jonathan Cavitt wrote:
+> > > xe_i2c_irq_handler calls generic_handle_irq_safe, which can return an
+> > 
+> > Use '()' for functions.
+> > 
+> > > error value.  In all other cases, this is passed to a
+> > 
+> > Why the early wrapping? Looks like the next word can fit here.
+> > 
+> > > .*_err_ratelimited error message helper.  Add the missing error handler.
+> > 
+> > There's no change in the code path so it wasn't "missing".
+> > I'd rephrase this as "Log the error".
+> 
+> It's supposed to be there, but it isn't.  That is, by definition, "missing",
+> regardless of its effective impact.
+> But I can at least s/handler/logger.
 
-== Series Details ==
+Yes, they are different in _both_ definition and impact ;)
 
-Series: don't allow changes to inactive colorops (rev2)
-URL   : https://patchwork.freedesktop.org/series/167294/
-State : success
+> > > This issue was caught by static analysis.
+> > 
+> > This is redundant information but I'll leave it to you.
+> > 
+> > > Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> > > Cc: Raag Jadav <raag.jadav@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/xe/xe_i2c.c | 5 ++++-
+> > >  1 file changed, 4 insertions(+), 1 deletion(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/xe/xe_i2c.c b/drivers/gpu/drm/xe/xe_i2c.c
+> > > index 706783863d07..acfc171483b2 100644
+> > > --- a/drivers/gpu/drm/xe/xe_i2c.c
+> > > +++ b/drivers/gpu/drm/xe/xe_i2c.c
+> > > @@ -177,12 +177,15 @@ static bool xe_i2c_irq_present(struct xe_device *xe)
+> > >  void xe_i2c_irq_handler(struct xe_device *xe, u32 master_ctl)
+> > >  {
+> > >  	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
+> > > +	int ret;
+> > >  
+> > >  	if (!(master_ctl & I2C_IRQ) || !xe_i2c_irq_present(xe))
+> > >  		return;
+> > >  
+> > >  	/* Forward interrupt to I2C adapter */
+> > > -	generic_handle_irq_safe(xe->i2c->adapter_irq);
+> > > +	ret = generic_handle_irq_safe(xe->i2c->adapter_irq);
+> > > +	if (ret)
+> > > +		drm_err_ratelimited(&xe->drm, "error handling i2c irq: %d\n", ret);
+> > 
+> > drm_err_ratelimited() already logs "error" so I'd rephrase this as
+> > "failed to handle i2c irq".
+> 
+> The current phrasing is consistent with all other uses of .*_err_ratelimited()
+> with respect to generic_handle_irq_safe(), so I won't be changing it.
 
-== Summary ==
+They are to be refactored, I just haven't got to it yet.
 
-CI Bug Log - changes from xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3_BAT -> xe-pw-167294v2_BAT
-====================================================
+Raag
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3 -> xe-pw-167294v2
-
-  IGT_8948: 8948
-  xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3: 406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3
-  xe-pw-167294v2: 167294v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167294v2/index.html
-
---===============5614575071907156359==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>don&#x27;t allow changes to inactive colorops (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167294/">https://patchwork.freedesktop.org/series/167294/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167294v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167294v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3_BAT -&gt; xe-pw-167294v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3 -&gt; xe-pw-167294v2</li>
-</ul>
-<p>IGT_8948: 8948<br />
-  xe-5205-406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3: 406f3120fc73b6e2bd23e1884ca5e8dc05ccf9d3<br />
-  xe-pw-167294v2: 167294v2</p>
-
-</body>
-</html>
-
---===============5614575071907156359==--
+> > >  	/* Deassert after I2C adapter clears the interrupt */
+> > >  	xe_mmio_rmw32(mmio, I2C_CONFIG_CMD, 0, PCI_COMMAND_INTX_DISABLE);
+> > > -- 
+> > > 2.53.0
+> > > 
+> > 
