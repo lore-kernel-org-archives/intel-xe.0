@@ -4,32 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54A67CD6E4A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCAEACD8C81
 	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 16:07:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06D8B11A15F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8628011A175;
 	Thu,  4 Jun 2026 16:07:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="ESF0PjAg";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="Syi+Anjz";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F44011A15F
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 16:07:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC50611A167
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 16:07:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1780589228;
- bh=YepF2Q0vOz76U4rm4DKxbMzIE4DVgJ0JHzHdggmC9Z0=;
+ s=default; t=1780589227;
+ bh=KY98ggLgnGTP7jx1Nl3XEByNSSt5W8DrXzDyKFI0rLU=;
  h=From:To:Subject:Date:In-Reply-To:References:From;
- b=ESF0PjAgyszmXCK+M8WF/PD3YuTTkacdBlriq7TDxg+0vK1kfzQ9+DuRCeQs9FBIX
- lxvNwNYq4kxkO/ZeweJ/XEz+KBWoCaja069Kl2eapQH33vETKN31NTi7jicTyWj379
- E5wuVoQtpnyTSYcfTvT3yjF0k11Rzdqu0vPJ6kx2GVi1LFp1XvEV2TMiYqMKzxoUA2
- +QH8qwmhS7X9d2CjyxkNKqmaVVQL8ooJghua7Y7id624Zdf+gy/6vRGConxBzQADp1
- rIUiwT5yC6tqJkqzq9FCC+TfWsSYWGa/CGtepEXqcMan3JnhQgyRVBimOBkDuZSknf
- BAbNzDh2/zKrQ==
+ b=Syi+Anjz+kkC9SI5r/7BybfQyyL4+QfqAdl/at+OYs/d3oVF5CD+xfOu6vsxoKm57
+ 1sx2iJXXhHVZacObP/RR1Jx4B7JX6CAxfzu6IvU1ONJSPf0ysQhmNzoIpEkXq0zxcp
+ VUusORljSMiki8q9tM2DLCbOgYiqe6fOv9YPXu5jZT/5EEC0gkus6VOGuoAFoZq7y1
+ zZmxp/a59KgRG4/NzqArh7i7MPfx4e8fj+Z5yZ6bWEnUQ/MyhyxjnDbAfnaItb5sTh
+ IoUHs34GxOITbKEbJJQL4M6QuIhEXBDFv43l9pamoxwbh3WPPVBgdGaCGfmwLO4SjL
+ U80Lm4aG9FVLA==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 22/24] drm/xe: Add ULLS migration job support to GuC submission
-Date: Thu,  4 Jun 2026 18:06:51 +0200
-Message-ID: <20260604160655.50036-23-dev@lankhorst.se>
+Subject: [CI 21/24] drm/xe: Add ULLS migration job support to ring ops
+Date: Thu,  4 Jun 2026 18:06:50 +0200
+Message-ID: <20260604160655.50036-22-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260604160655.50036-1-dev@lankhorst.se>
 References: <20260604160655.50036-1-dev@lankhorst.se>
@@ -51,78 +51,85 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Matthew Brost <matthew.brost@intel.com>
 
-Add ULLS migration job support to GuC submission backend.
-
-Changes required:
-- On migration queue, reduce max jobs to the number of ULLS semaphores
-  minus one
-- Directly set the hardware engine tail via a MMIO write for ULLS jobs
-  except for first ULLS job
-- Set ULLS sempahore for current job releasing last job except for first
-  ULLS job
-- Suppress submit H2G for ULLS except for first ULLS job
+Add preamble and postamble for ULLS migrations jobs. Preamble clears
+current semaphore for reuse. Postamble waits on next semaphore which is
+set upon next job submission. The last ULLS migration job skips BB
+submission and postamble (clear current semaphore, write seqno, exit
+ULLS).
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Link: https://patch.msgid.link/20260228013501.106680-24-matthew.brost@intel.com
+Link: https://patch.msgid.link/20260228013501.106680-23-matthew.brost@intel.com
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_guc_submit.c | 16 +++++++++++++---
- 1 file changed, 13 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_ring_ops.c | 31 +++++++++++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index cfb92866fc43e..4bd8fece40b0e 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1173,6 +1173,11 @@ static void submit_exec_queue(struct xe_exec_queue *q, struct xe_sched_job *job)
- 	 */
- 	q = xe_exec_queue_multi_queue_primary(q);
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index 39a670e91ba72..88352c1e4911f 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -494,6 +494,27 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+ 	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
+ }
  
-+	if (job->is_ulls && !job->is_ulls_first) {
-+		xe_hw_engine_write_ring_tail(q->hwe, lrc->ring.tail);
-+		xe_lrc_set_ulls_semaphore(lrc, xe_sched_job_lrc_seqno(job));
-+	}
++static int emit_ulls_preamble(struct xe_lrc *lrc, u32 *dw, int i, u32 seqno)
++{
++	u32 addr = xe_lrc_ulls_semaphore_ggtt_addr(lrc, seqno);
 +
- 	if (!exec_queue_enabled(q) && !exec_queue_suspended(q)) {
- 		action[len++] = XE_GUC_ACTION_SCHED_CONTEXT_MODE_SET;
- 		action[len++] = q->guc->id;
-@@ -1186,13 +1191,14 @@ static void submit_exec_queue(struct xe_exec_queue *q, struct xe_sched_job *job)
- 		set_exec_queue_pending_enable(q);
- 		set_exec_queue_enabled(q);
- 		trace_xe_exec_queue_scheduling_enable(q);
--	} else {
-+	} else if (!job->is_ulls || job->is_ulls_first) {
- 		action[len++] = XE_GUC_ACTION_SCHED_CONTEXT;
- 		action[len++] = q->guc->id;
- 		trace_xe_exec_queue_submit(q);
- 	}
- 
--	xe_guc_ct_send(&guc->ct, action, len, g2h_len, num_g2h);
-+	if (!job->is_ulls || job->is_ulls_first || num_g2h)
-+		xe_guc_ct_send(&guc->ct, action, len, g2h_len, num_g2h);
- 
- 	if (extra_submit) {
- 		len = 0;
-@@ -2003,6 +2009,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
- 	struct xe_guc_exec_queue *ge;
- 	long timeout;
- 	int err, i;
-+	int max_jobs = (xe_lrc_ring_size() / MAX_JOB_SIZE_BYTES);
- 
- 	xe_gt_assert(guc_to_gt(guc), xe_device_uc_enabled(guc_to_xe(guc)));
- 
-@@ -2038,8 +2045,11 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
- 		submit_wq = primary->guc->sched.base.submit_wq;
- 	}
- 
-+	if (q->vm && q->vm->flags & XE_VM_FLAG_MIGRATION)
-+		max_jobs = min(max_jobs, LRC_MIGRATION_ULLS_SEMAPORE_COUNT - 1);
++	return emit_store_imm_ggtt(addr, LRC_MIGRATION_ULLS_SEMAPORE_CLEAR,
++				   dw, i);
++}
 +
- 	err = xe_sched_init(&ge->sched, &drm_sched_ops, &xe_sched_ops,
--			    submit_wq, xe_lrc_ring_size() / MAX_JOB_SIZE_BYTES, 64,
-+			    submit_wq, max_jobs, 64,
- 			    timeout, guc_to_gt(guc)->ordered_wq, NULL,
- 			    q->name, gt_to_xe(q->gt)->drm.dev);
- 	if (err)
++static int emit_ulls_postamble(struct xe_lrc *lrc, u32 *dw, int i, u32 seqno)
++{
++	dw[i++] = MI_SEMAPHORE_WAIT |
++		MI_SEMW_GGTT |
++		MI_SEMW_POLL |
++		MI_SEMW_COMPARE(SAD_EQ_SDD);
++	dw[i++] = LRC_MIGRATION_ULLS_SEMAPORE_SIGNAL;
++	dw[i++] = xe_lrc_ulls_semaphore_ggtt_addr(lrc, seqno + 1);
++	dw[i++] = 0;
++
++	return i;
++}
++
+ static void emit_migration_job_gen12(struct xe_sched_job *job,
+ 				     struct xe_lrc *lrc, u32 *head,
+ 				     u32 seqno)
+@@ -507,10 +528,16 @@ static void emit_migration_job_gen12(struct xe_sched_job *job,
+ 
+ 	xe_gt_assert(gt, !job->ring_ops_force_reset);
+ 
++	if (job->is_ulls)
++		i = emit_ulls_preamble(lrc, dw, i, seqno);
++
+ 	i = emit_copy_timestamp(xe, lrc, dw, i);
+ 
+ 	i = emit_store_imm_ggtt(saddr, seqno, dw, i);
+ 
++	if (job->is_ulls_last || job->is_ulls_first)
++		goto seqno_write;
++
+ 	dw[i++] = MI_ARB_ON_OFF | MI_ARB_DISABLE; /* Enabled again below */
+ 
+ 	i = emit_bb_start(job->ptrs[0].batch_addr, BIT(8), dw, i);
+@@ -521,12 +548,16 @@ static void emit_migration_job_gen12(struct xe_sched_job *job,
+ 
+ 	i = emit_bb_start(job->ptrs[1].batch_addr, BIT(8), dw, i);
+ 
++seqno_write:
+ 	i = emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno,
+ 				job->migrate_flush_flags,
+ 				dw, i);
+ 
+ 	i = emit_user_interrupt(dw, i);
+ 
++	if (job->is_ulls && !job->is_ulls_last)
++		i = emit_ulls_postamble(lrc, dw, i, seqno);
++
+ 	xe_gt_assert(job->q->gt, i <= MAX_JOB_SIZE_DW);
+ 
+ 	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
 -- 
 2.53.0
 
