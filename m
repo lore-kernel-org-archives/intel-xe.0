@@ -4,59 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C749CD6E6D
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 12:32:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07BA0CD6E76
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 12:33:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B6CE113FB0;
-	Thu,  4 Jun 2026 12:32:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2D58113FB5;
+	Thu,  4 Jun 2026 12:33:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Cqf3MXV4";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="fP9rNTi5";
 	dkim-atps=neutral
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC2B5113FC2
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 12:32:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA35D113FB5
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 12:33:33 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 8A2F14465B
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 12:32:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 725AF1F00898
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 12:32:30 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id A2CBF445AD
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 12:33:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 815951F008A7
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 12:33:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1780576350;
- bh=LnrtZB0iEg1z1vGOmrpOOK3Cssie/DMPDNqDCPjTdS8=;
+ s=k20260515; t=1780576413;
+ bh=5kiOPwwtw5er+j3pQh3lrbhA4I9B2m+C9oKB0UBWW9E=;
  h=From:In-Reply-To:References:Date:Subject:To:Cc;
- b=Cqf3MXV4TD52LTrKp0CEYIe9g985jGUSnNRQCoaqoWqlQrEUsixL6taFahNCfDLy3
- +Z6as+OOsL9nqoix/FyXeZFm2nSqFAgKe0UdZ200LCLfCzZOsL9e5aeERkfHQuCGQt
- lbsQ7bKitUjPcn+bHj0GDLNxKoY1a2sN6xy3To0Q9KFC5vgDE0UO/KlEqKmvCmGo2q
- tQFH3C8Z7JCY1CQ0ki8z08Rb6/Be/+yEVtXg1G5zNpIwheU8ILhcBZYHgFoWppCuwE
- gB2HgfLQ286akIY4m3Bo3GCPaJEmZyP191eGzCBLL04xi+/lRCrQ3eZvv7giv/r8Wv
- S0m1gGv5CNe1w==
-Received: by mail-lj1-f179.google.com with SMTP id
- 38308e7fff4ca-39677c80386so6893271fa.3
- for <intel-xe@lists.freedesktop.org>; Thu, 04 Jun 2026 05:32:30 -0700 (PDT)
+ b=fP9rNTi5MtE7GCGm/x/LyhMZobzDw2BPjzDPFH8vu6A2Ihc1x0gZCGx/8KHtKr+NQ
+ 9VU8hrkHxq4QD3yOaMQhJxyg5QmB193Bl0ZPkoFOqK9aG4fqijPuyGUaShi+2Kcg6Q
+ WNJyWoBtHQTw/ffnZhT2lBeH4E+j/daht+qed1ocXq5IaM7LCqk8LdZ6oiRSFoFWGH
+ qVMkffhSF4xNFZpT0RuH0BP/QIMVy9iVKoOdwGpjFzetMPvPPN/kFu3cFOoETaSWHA
+ xRtqHx+25lqBcSS+qwunrA10HLhbGycr55T5kf3P4VR83pcARAwuSQhBeLmDEXT+H3
+ auAKRLtqmlw3w==
+Received: by mail-lf1-f52.google.com with SMTP id
+ 2adb3069b0e04-5aa68dbd44fso652751e87.2
+ for <intel-xe@lists.freedesktop.org>; Thu, 04 Jun 2026 05:33:33 -0700 (PDT)
 X-Forwarded-Encrypted: i=1;
- AFNElJ/eTk6KY20tp+lDoNgR21xeg9nm0hf6MBwRDFJTRKDTkYX6h/uNOec+Xon/Krb57QQgtKiBaF19QA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxrLpgiSA1XRGrmoFBTsHFIOrhu6ILZrXTvOh6L61gNSdGpK+Tn
- 0smbgY2mDmb35mnV8eYOtTcXl9TM0HDlT93ElH3kEicygjMo6aG2Bmjze/oaUSz0eWI4VR7Nw1f
- FiWMbwAz1Z4y7qqdjtraa2VPujP6apbCDjS7H6Tj62Q==
-X-Received: by 2002:a2e:bc24:0:b0:396:9cbb:673e with SMTP id
- 38308e7fff4ca-396af48a101mr25033101fa.24.1780576348691; Thu, 04 Jun 2026
- 05:32:28 -0700 (PDT)
+ AFNElJ9f3QSITiZXLI2HgkMHXcH7kZQPi3+cF0QoSMP6O+/7p4STafqGH7vz/BMB7/REjSCZ2oTh+IciiA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyHHHCpbUh0aM/KjKuPsWTArLLTdqQRklKl165Wx9j2IBZN6LEA
+ 9/karOEr4bZEx9qjkKRb4/TiZa5ecPndfEpJQap5MYm4HbT5pvkchR2/AQ8DGO8PdzUe8xz18aB
+ tXlDNzvQhhRKqiiRnoFQuSlKY6B1D3UveOwYkpX1l2A==
+X-Received: by 2002:a05:6512:2256:b0:5aa:6bd0:b1e3 with SMTP id
+ 2adb3069b0e04-5aa7c038408mr3094935e87.8.1780576412192; Thu, 04 Jun 2026
+ 05:33:32 -0700 (PDT)
 Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 4 Jun 2026 05:32:27 -0700
+ HTTPREST; Thu, 4 Jun 2026 05:33:30 -0700
 Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 4 Jun 2026 05:32:27 -0700
+ HTTPREST; Thu, 4 Jun 2026 05:33:29 -0700
 From: Bartosz Golaszewski <brgl@kernel.org>
-In-Reply-To: <ah9OIVyrHEhcMHzN@ashevche-desk.local>
+In-Reply-To: <ah9O15bMlAYgSlHx@ashevche-desk.local>
 MIME-Version: 1.0
 References: <20260521-pdev-fwnode-ref-v1-0-88c324a1b8d2@oss.qualcomm.com>
- <20260521-pdev-fwnode-ref-v1-7-88c324a1b8d2@oss.qualcomm.com>
- <ah9OIVyrHEhcMHzN@ashevche-desk.local>
-Date: Thu, 4 Jun 2026 05:32:27 -0700
-X-Gmail-Original-Message-ID: <CAMRc=McLN9Ovoqo3om-3uC=q+=rcKCoiWMctC=yvwiaHacU0PQ@mail.gmail.com>
-X-Gm-Features: AVHnY4LlXi8ln45MTUjJfpd_YWjp19dT0a-H21-M7Hc7IKBiGWRxgS3l-OaDEEQ
-Message-ID: <CAMRc=McLN9Ovoqo3om-3uC=q+=rcKCoiWMctC=yvwiaHacU0PQ@mail.gmail.com>
-Subject: Re: [PATCH 07/23] driver core: platform: provide
- platform_device_set_fwnode()
+ <20260521-pdev-fwnode-ref-v1-8-88c324a1b8d2@oss.qualcomm.com>
+ <ah9O15bMlAYgSlHx@ashevche-desk.local>
+Date: Thu, 4 Jun 2026 05:33:29 -0700
+X-Gmail-Original-Message-ID: <CAMRc=MeFxtwwXvOD7FLmbhjpraDKa2O7KdwMaUXM-mNj7Ob2ow@mail.gmail.com>
+X-Gm-Features: AVHnY4L20t8vC6nB7rdbE5RCKEyJuG_U-L0VQ-6S9fbqED8WJ64Vn6Fpm8JRl-0
+Message-ID: <CAMRc=MeFxtwwXvOD7FLmbhjpraDKa2O7KdwMaUXM-mNj7Ob2ow@mail.gmail.com>
+Subject: Re: [PATCH 08/23] driver core: platform: provide
+ platform_device_set_of_node_from_dev()
 To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 Cc: Lee Jones <lee@kernel.org>,
  Mark Brown <broonie@opensource.wolfsonmicro.com>, 
@@ -118,19 +118,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2 Jun 2026 23:41:53 +0200, Andy Shevchenko
+On Tue, 2 Jun 2026 23:44:55 +0200, Andy Shevchenko
 <andriy.shevchenko@linux.intel.com> said:
-> On Thu, May 21, 2026 at 10:36:30AM +0200, Bartosz Golaszewski wrote:
->> Provide a helper function encapsulating the logic of assigning firmware
->> nodes to platform devices created with platform_device_alloc(). Make the
->> kerneldoc state that this is the proper interface for assigning firmware
->> nodes to dynamically allocated platform devices. This will allow us to
->> switch to counting the references of the device's firmware nodes in the
->> future, not only the OF nodes.
+> On Thu, May 21, 2026 at 10:36:31AM +0200, Bartosz Golaszewski wrote:
+>> Provide a platform-specific variant of device_set_of_node_from_dev(). In
+>> addition to bumping the reference count of the OF node being assigned,
+>> it also assigns the fwnode of the platform device.
 >
-> But why different for of_node and fwnode to begin with?!
+> Can we rather investigate the way how to make that of node reuse thingy
+> (which is used solely by pin control) differently and then drop this confusing
+> device_set_of_node_from_dev() call altogether?
 >
 
-I'm not following. What are you suggesting?
+Possibly but I can't do everything in a single series. Let's take it one step
+at a time. The goal of this is to make software node handling for platform
+devices more correct.
 
-Bartosz
+Bart
