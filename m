@@ -4,33 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04541CD6E6D
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 16:07:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D57FCD6E7C
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 16:07:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B81FF11A15E;
-	Thu,  4 Jun 2026 16:07:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AF2111A163;
+	Thu,  4 Jun 2026 16:07:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="QwlXlH6S";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="YKE0QVns";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 27AF911A15B
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 16:07:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9016311A166
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 16:07:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1780589229;
- bh=UZN1sJw3p0drVWdRDOwFIV8Y7HTavCBW7jxE9mHs8DE=;
+ s=default; t=1780589226;
+ bh=Sl/BWUJaRB/XStak7cANW6je9gSsASNMkcVkkBCYLBY=;
  h=From:To:Subject:Date:In-Reply-To:References:From;
- b=QwlXlH6SFwS3mOq5ES1jALec4QixKL9PHvcNJUvq2Q/lQjOvRxuMPoK1MI0zbsJh2
- OSQL4weDSG/uDnCMJ3IdUffmRgd7EMXQQZUpX3l0IimgQzVKWTGW7BJBuMDMuAoMRW
- IhEiEUfyWLz7bpP0CDzRtd2vxoV8EB2g+qoeFCm2Nfex4KgeKJR6epBD4F7g8OAqVK
- 5/EHecrhmNOVa0AKSOabTXDHRHT9BFVYzPQV1RHz4Ur0HFoI2Te5cREPF63pcIOd5P
- cbx5hDdrrxEzfICxiB+ciD4UMHDyKcmLdmO9aOfQL4/xCTZMA/xn14eGEtenRJ6+73
- 88t6YsHpmSD2g==
+ b=YKE0QVns9T3UDa0+6tYCxzxu010XROqD8HssmAhFP4NA5OETEU1mZaD41PAhYnAFw
+ HhwuFGvK8w+AzhFLX3GkT173AbjywbpudAhcvSeg4Ky4ATai0aeOq+gY3moAjCubH3
+ V9MAPMA0UGuhf8v+dO2FZ52am81VaaAnkhd4mxPL0banGFEuB0VJi/cM5STZq6Vrfm
+ keR2ZpBxwObcK4H9LcRIK2zFLrl7nM/s0AhL00Ge/G33kL9Eo06JYn6lW+C53A7CrG
+ XZUJY1J/eBGgo7tN+7Glc61nFthaM56Vj4nMaYJXZOIENn9po+emGgYBq4xsjPo/m7
+ S5puvvK8pztnA==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 23/24] drm/xe: Enter ULLS for migration jobs upon page fault or
- SVM prefetch
-Date: Thu,  4 Jun 2026 18:06:52 +0200
-Message-ID: <20260604160655.50036-24-dev@lankhorst.se>
+Subject: [CI 19/24] drm/xe: Add ULLS support to LRC
+Date: Thu,  4 Jun 2026 18:06:48 +0200
+Message-ID: <20260604160655.50036-20-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260604160655.50036-1-dev@lankhorst.se>
 References: <20260604160655.50036-1-dev@lankhorst.se>
@@ -52,54 +51,131 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Matthew Brost <matthew.brost@intel.com>
 
-Call xe_migration_ulls_enter upon page fault or SVM prefetch in an
-effort speed up these critical paths.
+Define memory layout for ULLS semaphores stored in LRC memory. Add
+support functions to return GGTT address and set semaphore based on a
+job's seqno.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Link: https://patch.msgid.link/20260228013501.106680-25-matthew.brost@intel.com
+Link: https://patch.msgid.link/20260228013501.106680-20-matthew.brost@intel.com
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_pagefault.c | 3 +++
- drivers/gpu/drm/xe/xe_vm.c        | 4 +++-
- 2 files changed, 6 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_lrc.c       | 51 +++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_lrc.h       |  3 ++
+ drivers/gpu/drm/xe/xe_lrc_types.h |  4 +++
+ 3 files changed, 58 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
-index dd3c068e1a399..cec7a1e6caf4a 100644
---- a/drivers/gpu/drm/xe/xe_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_pagefault.c
-@@ -14,6 +14,7 @@
- #include "xe_gt_types.h"
- #include "xe_gt_stats.h"
- #include "xe_hw_engine.h"
-+#include "xe_migrate.h"
- #include "xe_pagefault.h"
- #include "xe_pagefault_types.h"
- #include "xe_svm.h"
-@@ -184,6 +185,8 @@ static int xe_pagefault_service(struct xe_pagefault *pf)
- 	if (IS_ERR(vm))
- 		return PTR_ERR(vm);
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index a4292a11391d3..66f5704ce4454 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -706,6 +706,7 @@ u32 xe_lrc_pphwsp_offset(struct xe_lrc *lrc)
+ #define LRC_CTX_JOB_TIMESTAMP_OFFSET 512
+ #define LRC_ENGINE_ID_PPHWSP_OFFSET 1024
+ #define LRC_PARALLEL_PPHWSP_OFFSET 2048
++#define LRC_ULLS_PPHWSP_OFFSET 2048	/* Mutually exclusive with parallel */
  
-+	xe_migrate_ulls_enter(gt_to_tile(gt)->migrate);
+ #define LRC_SEQNO_OFFSET 0
+ #define LRC_START_SEQNO_OFFSET (LRC_SEQNO_OFFSET + 8)
+@@ -768,6 +769,12 @@ static inline u32 __xe_lrc_engine_id_offset(struct xe_lrc *lrc)
+ 	return xe_lrc_pphwsp_offset(lrc) + LRC_ENGINE_ID_PPHWSP_OFFSET;
+ }
+ 
++static u32 __xe_lrc_ulls_offset(struct xe_lrc *lrc)
++{
++	/* The ulls is stored in the driver-defined portion of PPHWSP */
++	return xe_lrc_pphwsp_offset(lrc) + LRC_ULLS_PPHWSP_OFFSET;
++}
 +
- 	/*
- 	 * TODO: Change to read lock? Using write lock for simplicity.
- 	 */
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 6e9400f32b907..679cce10cddd7 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2486,8 +2486,10 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
- 			ctx.devmem_possible = IS_DGFX(vm->xe) &&
- 					      IS_ENABLED(CONFIG_DRM_XE_PAGEMAP);
+ static u32 __xe_lrc_ctx_timestamp_offset(struct xe_lrc *lrc)
+ {
+ 	return __xe_lrc_regs_offset(lrc) + CTX_TIMESTAMP * sizeof(u32);
+@@ -835,6 +842,7 @@ DECL_MAP_ADDR_HELPERS(ctx_job_timestamp, lrc->bo)
+ DECL_MAP_ADDR_HELPERS(ctx_timestamp, lrc->bo)
+ DECL_MAP_ADDR_HELPERS(ctx_timestamp_udw, lrc->bo)
+ DECL_MAP_ADDR_HELPERS(parallel, lrc->bo)
++DECL_MAP_ADDR_HELPERS(ulls, lrc->bo)
+ DECL_MAP_ADDR_HELPERS(indirect_ring, lrc->bo)
+ DECL_MAP_ADDR_HELPERS(engine_id, lrc->bo)
+ DECL_MAP_ADDR_HELPERS(queue_timestamp, lrc->bo)
+@@ -1944,6 +1952,49 @@ static u32 xe_lrc_engine_id(struct xe_lrc *lrc)
+ 	return xe_map_read32(xe, &map);
+ }
  
--			for_each_tile(tile, vm->xe, id)
-+			for_each_tile(tile, vm->xe, id) {
-+				xe_migrate_ulls_enter(tile->migrate);
- 				tile_mask |= 0x1 << id;
-+			}
++#define semaphore_offset(seqno) \
++	(sizeof(u32) * ((seqno) % LRC_MIGRATION_ULLS_SEMAPORE_COUNT))
++
++/**
++ * xe_lrc_ulls_semaphore_ggtt_addr() - ULLS semaphore GGTT address
++ * @lrc: Pointer to the lrc.
++ * @seqno: seqno of current job.
++ *
++ * Calculate ULLS semaphore GGTT address based on input seqno
++ *
++ * Returns: ULLS semaphore GGTT address
++ */
++u32 xe_lrc_ulls_semaphore_ggtt_addr(struct xe_lrc *lrc, u32 seqno)
++{
++	xe_assert(lrc_to_xe(lrc), semaphore_offset(seqno) <
++		  LRC_PPHWSP_SIZE - LRC_ULLS_PPHWSP_OFFSET);
++
++	return __xe_lrc_ulls_ggtt_addr(lrc) + semaphore_offset(seqno);
++}
++
++/**
++ * xe_lrc_set_ulls_semaphore() - Set ULLS semaphore
++ * @lrc: Pointer to the lrc.
++ * @seqno: seqno of current job.
++ *
++ * Set ULLS semaphore based on input seqno
++ */
++void xe_lrc_set_ulls_semaphore(struct xe_lrc *lrc, u32 seqno)
++{
++	struct xe_device *xe = lrc_to_xe(lrc);
++	struct iosys_map map = __xe_lrc_ulls_map(lrc);
++
++	xe_assert(xe, semaphore_offset(seqno) <
++		  LRC_PPHWSP_SIZE - LRC_ULLS_PPHWSP_OFFSET);
++
++	xe_device_wmb(xe);	/* Ensure everything before in code is ordered */
++
++	iosys_map_incr(&map, semaphore_offset(seqno));
++	xe_map_write32(xe, &map, LRC_MIGRATION_ULLS_SEMAPORE_SIGNAL);
++
++	xe_device_wmb(xe);	/* Flush write to hardware */
++}
++
+ static int instr_dw(u32 cmd_header)
+ {
+ 	/* GFXPIPE "SINGLE_DW" opcodes are a single dword */
+diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+index 0a3a611391ee0..8688ecaccead1 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.h
++++ b/drivers/gpu/drm/xe/xe_lrc.h
+@@ -120,6 +120,9 @@ void xe_default_lrc_update_memirq_regs_with_address(struct xe_hw_engine *hwe);
+ void xe_lrc_update_memirq_regs_with_address(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+ 					    u32 *regs);
  
- 			xa_init_flags(&op->prefetch_range.range, XA_FLAGS_ALLOC);
- 			op->prefetch_range.ranges_count = 0;
++u32 xe_lrc_ulls_semaphore_ggtt_addr(struct xe_lrc *lrc, u32 seqno);
++void xe_lrc_set_ulls_semaphore(struct xe_lrc *lrc, u32 seqno);
++
+ u32 xe_lrc_read_ctx_reg(struct xe_lrc *lrc, int reg_nr);
+ void xe_lrc_write_ctx_reg(struct xe_lrc *lrc, int reg_nr, u32 val);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h b/drivers/gpu/drm/xe/xe_lrc_types.h
+index 53ef48feebfc9..8fe8b3511014a 100644
+--- a/drivers/gpu/drm/xe/xe_lrc_types.h
++++ b/drivers/gpu/drm/xe/xe_lrc_types.h
+@@ -12,6 +12,10 @@
+ 
+ struct xe_bo;
+ 
++#define LRC_MIGRATION_ULLS_SEMAPORE_COUNT	64	/* Must be pow2 */
++#define LRC_MIGRATION_ULLS_SEMAPORE_CLEAR	0
++#define LRC_MIGRATION_ULLS_SEMAPORE_SIGNAL	1
++
+ /**
+  * struct xe_lrc - Logical ring context (LRC) and submission ring object
+  */
 -- 
 2.53.0
 
