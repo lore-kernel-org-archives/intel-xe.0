@@ -4,63 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41988CD6E4A
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 08:40:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 865DBCD6E57
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 09:47:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC251112730;
-	Thu,  4 Jun 2026 08:40:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E50010E5BC;
+	Thu,  4 Jun 2026 09:47:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J9h19f8K";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TrfIVjHv";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F56D112730
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 08:40:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0311B10E5BC
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 09:47:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780562401; x=1812098401;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=oNfdM9iEBWTO5Dl0sxV4mwaA15Leak67axJyBveSCA0=;
- b=J9h19f8Kep5/pJRVE6P6WwR8+QznEQZ/BkjWGZVW6VKGo7GVJE/Zxpgt
- gcwxxyTa0gYnBVZJobhcw+65V+GYQ06dSozICJgf886d6elS29RsA30vx
- eMfwPkUSSBkPIz2mK1auzh7obkzyGWsYoijjevgEiUDhcoJ0x+9YulOWw
- lHB/cW1OopuSrlhygy1xG3vEUB7lJ++gsV+jT9WPE06by4DzCAT13n5gz
- 3l5fJT2Na/OvwkWM99S0TnQpk/dmE7OeL5fZwXcQL+bdOgkE0qVJfVq8W
- NcsBCjF5Z3nl+VpWH/OSun+oxE7Ihgs5380RIdg96flCei2yOfGGvYXhb g==;
-X-CSE-ConnectionGUID: gmfSY78oT/6nCWNwgQr3Zw==
-X-CSE-MsgGUID: 1xwko1arTjOVXQ2DMz7nOg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11806"; a="81446731"
-X-IronPort-AV: E=Sophos;i="6.24,186,1774335600"; d="scan'208";a="81446731"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2026 01:40:01 -0700
-X-CSE-ConnectionGUID: YxJZqykJQDaIk6jyC7PWbw==
-X-CSE-MsgGUID: eHoU6zp1QL60Fnx9gmvzQQ==
+ t=1780566446; x=1812102446;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=7zjpdh6oSs6AzbIICc9QTMPLzGWJFXjunDw5u+bcy/E=;
+ b=TrfIVjHvRXxyqH+sXMTPl87eIbjj99fKPHap0v+EdGdsMvLEoYEbHdgU
+ POXldEnWXtW6N8ig8suYWUz5DwFPnfG8X9TME2FXby8CXcLS3o0fHjlVG
+ yWvGHafX8doEAiEF/PJu6kzx/6o8MOtp+fC6r3l3s5DBAUrTLLBR3K639
+ oD3R7aA5WMu+LtGTqbJbezmuuKBSoLsiKrXAvAku4tyyMkqCU31h6qaIh
+ mswyr39qxC+H4fvu5k2Bd1oMT/UtxW5omADNNMcrgn27OywFjOydQ/lkR
+ vhvqZvn6pStDgtjLv2EUgzHHUUYc1pNKEXgTrA1HqJglkq9Wyelim8U+k g==;
+X-CSE-ConnectionGUID: AXHQ/3lGSpe5WZxoWCfgjg==
+X-CSE-MsgGUID: 1hNwbkbCTVK7a0x0UnsoLQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11806"; a="98810335"
+X-IronPort-AV: E=Sophos;i="6.24,186,1774335600"; d="scan'208";a="98810335"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2026 02:47:26 -0700
+X-CSE-ConnectionGUID: JT5USxL7SkCw0jl1p2Cv9g==
+X-CSE-MsgGUID: EA4IqH5mSg2m0bkesMFMLQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,186,1774335600"; d="scan'208";a="249579240"
-Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2026 01:39:57 -0700
-Date: Thu, 4 Jun 2026 10:39:54 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: "Tauro, Riana" <riana.tauro@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org,
- matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
- michal.wajdeczko@intel.com, matthew.d.roper@intel.com,
- michal.winiarski@intel.com, matthew.auld@intel.com,
- dev@lankhorst.se, jani.nikula@intel.com, lukasz.laguna@intel.com,
- zhanjun.dong@intel.com, lukas@wunner.de,
- daniele.ceraolospurio@intel.com, badal.nilawar@intel.com
-Subject: Re: [PATCH v8 08/10] drm/xe: Improve wedged state management
-Message-ID: <aiE52oh3F-5OOqLh@black.igk.intel.com>
-References: <20260603101814.916948-1-raag.jadav@intel.com>
- <20260603101814.916948-9-raag.jadav@intel.com>
- <aiAIcAihJhDwOj5e@intel.com>
- <9da04b52-c43e-4afd-9d1b-8248034f58ab@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,186,1774335600"; d="scan'208";a="282601718"
+Received: from nitin-super-server.iind.intel.com ([10.190.238.72])
+ by orviesa001.jf.intel.com with ESMTP; 04 Jun 2026 02:47:23 -0700
+From: Nitin Gote <nitin.r.gote@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Nitin Gote <nitin.r.gote@intel.com>, stable@vger.kernel.org,
+ Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
+ Christian Konig <christian.koenig@amd.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>
+Subject: [PATCH] drm/xe: Fix UAF in xe_gem_prime_import() on attach failure
+Date: Thu,  4 Jun 2026 15:53:20 +0530
+Message-ID: <20260604102319.1812827-2-nitin.r.gote@intel.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9da04b52-c43e-4afd-9d1b-8248034f58ab@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,110 +67,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jun 04, 2026 at 12:22:35PM +0530, Tauro, Riana wrote:
-> On 6/3/2026 4:26 PM, Rodrigo Vivi wrote:
-> > On Wed, Jun 03, 2026 at 03:47:08PM +0530, Raag Jadav wrote:
-> > > Currently, wedged state is serving a single usecase where the device is
-> > > declared wedged, but this doesn't allow any wedged state management for
-> > > runtime usecases. In preparation of usecases which requires to facilitate
-> > > temporary device wedging, convert wedged.flag to wedged.ref which serves
-> > > as a driver internal refcount and blocks critical path execution during
-> > > device lifetime and while at it, introduce wedged.fini and use it as a
-> > > cleanup indicator during driver unwind which operates independent of the
-> > > refcount.
-> > > 
-> > > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> > > ---
-> > >   drivers/gpu/drm/xe/xe_device.c       |  5 +++--
-> > >   drivers/gpu/drm/xe/xe_device.h       | 12 +++++++++++-
-> > >   drivers/gpu/drm/xe/xe_device_types.h |  6 ++++--
-> > >   3 files changed, 18 insertions(+), 5 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> > > index 9e0cbad8adb0..d77f8f054a1a 100644
-> > > --- a/drivers/gpu/drm/xe/xe_device.c
-> > > +++ b/drivers/gpu/drm/xe/xe_device.c
-> > > @@ -917,7 +917,7 @@ static void xe_device_wedged_fini(struct drm_device *drm, void *arg)
-> > >   {
-> > >   	struct xe_device *xe = arg;
-> > > -	if (atomic_read(&xe->wedged.flag))
-> > > +	if (atomic_read(&xe->wedged.fini))
-> > >   		xe_pm_runtime_put(xe);
-> > >   }
-> > > @@ -1413,7 +1413,8 @@ void xe_device_declare_wedged(struct xe_device *xe)
-> > >   		return;
-> > >   	}
-> > > -	if (!atomic_xchg(&xe->wedged.flag, 1)) {
-> > > +	if (!atomic_xchg(&xe->wedged.fini, 1)) {
-> 
-> Just curious. Why do we need runtime pm reference held throughout till the
-> end of driver unload?
-> Even if this is needed why not associate releasing runtime pm wakeref with
-> the flr_on_fini flag.
+xe_dma_buf_create_obj() creates the importer BO with obj->resv
+pointing at the exporter's dma_buf->resv. When dma_buf_dynamic_attach()
+fails, no dma_buf reference is held so the exporter can be freed
+immediately. Since ttm_bo_release() now always defers cleanup for
+ttm_bo_type_sg BOs to the TTM workqueue, the worker later calls
+dma_resv_lock() on the already-freed exporter resv, causing a UAF.
 
-I guess flr_on_fini has multiple setters and it's not always clear how many.
+Switch obj->resv to the BO's private _resv under lru_lock before
+dropping the last reference, mirroring ttm_bo_individualize_resv().
+lru_lock is needed because the BO is already on the LRU list and
+the shrinker can read bo->base.resv concurrently.
 
-> I was facing a similar issue for uncorrectable series and i was thinking of
-> releasing runtime
-> pm wakeref based on flr_fini.
+Observed with igt@xe_live_ktest@xe_dma_buf_kunit on BMG (QEMU):
 
-Sure but I'm not touching any existing behaviour in this series. Probably
-worth exploring as a follow up.
+  Oops: general protection fault, probably for non-canonical address 0x6b6b6b6b6b6b6b9c
+  Workqueue: ttm ttm_bo_delayed_delete [ttm]
+  RIP: 0010:mutex_can_spin_on_owner+0x3f/0xc0
+  Call Trace:
+   <TASK>
+   ? __ww_mutex_lock.constprop.0+0x2dd/0x18e0
+   ? ttm_bo_delayed_delete+0x41/0xc0 [ttm]
+   ww_mutex_lock+0x3c/0xb0
+   ttm_bo_delayed_delete+0x41/0xc0 [ttm]
+   process_one_work+0x239/0x740
+   worker_thread+0x200/0x3f0
+   kthread+0x10d/0x150
+   ret_from_fork+0x3bd/0x470
+   ret_from_fork_asm+0x1a/0x30
+   </TASK>
 
-Raag
+v2: Switch resv to &obj->_resv under lru_lock
+    (Matthew Auld)
 
-> > > +		xe_device_wedged_get(xe);
-> > >   		xe->needs_flr_on_fini = true;
-> > >   		xe_pm_runtime_get_noresume(xe);
-> > >   		drm_err(&xe->drm,
-> > > diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-> > > index d61fdb362f91..14677729aa24 100644
-> > > --- a/drivers/gpu/drm/xe/xe_device.h
-> > > +++ b/drivers/gpu/drm/xe/xe_device.h
-> > > @@ -194,9 +194,19 @@ bool xe_device_is_l2_flush_optimized(struct xe_device *xe);
-> > >   void xe_device_td_flush(struct xe_device *xe);
-> > >   void xe_device_l2_flush(struct xe_device *xe);
-> > > +static inline void xe_device_wedged_get(struct xe_device *xe)
-> > > +{
-> > > +	atomic_inc(&xe->wedged.ref);
-> > > +}
-> > > +
-> > > +static inline void xe_device_wedged_put(struct xe_device *xe)
-> > > +{
-> > > +	atomic_dec(&xe->wedged.ref);
-> > > +}
-> > > +
-> > >   static inline bool xe_device_wedged(struct xe_device *xe)
-> > >   {
-> > > -	return atomic_read(&xe->wedged.flag);
-> > > +	return atomic_read(&xe->wedged.ref);
-> > >   }
-> > >   void xe_device_set_wedged_method(struct xe_device *xe, unsigned long method);
-> > > diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> > > index 32dd2ffbc796..66e673e4e3e7 100644
-> > > --- a/drivers/gpu/drm/xe/xe_device_types.h
-> > > +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> > > @@ -485,8 +485,10 @@ struct xe_device {
-> > >   	/** @wedged: Struct to control Wedged States and mode */
-> > >   	struct {
-> > > -		/** @wedged.flag: Xe device faced a critical error and is now blocked. */
-> > > -		atomic_t flag;
-> > > +		/** @wedged.fini: Needs cleanup on fini */
-> > > +		atomic_t fini;
-> > to me it is easier to see this as a 'permanent' flag than
-> > a flag to 'clean' on 'fini'.
-> > 
-> > but up to you...
-> > 
-> > either way:
-> > 
-> > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > 
-> > > +		/** @wedged.ref: Refcount for wedged device, blocks critical path execution */
-> > > +		atomic_t ref;
-> > >   		/** @wedged.mode: Mode controlled by kernel parameter and debugfs */
-> > >   		enum xe_wedged_mode mode;
-> > >   		/** @wedged.method: Recovery method to be sent in the drm device wedged uevent */
-> > > -- 
-> > > 2.43.0
-> > > 
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8023
+Fixes: d99fbd9aab62 ("drm/ttm: Always take the bo delayed cleanup path for imported bos")
+Cc: stable@vger.kernel.org # v6.8+
+Cc: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+Cc: Christian Konig <christian.koenig@amd.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
+---
+ drivers/gpu/drm/xe/xe_dma_buf.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
+index 8a920e58245c..e3ccb3cc6218 100644
+--- a/drivers/gpu/drm/xe/xe_dma_buf.c
++++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+@@ -384,6 +384,16 @@ struct drm_gem_object *xe_gem_prime_import(struct drm_device *dev,
+ 
+ 	attach = dma_buf_dynamic_attach(dma_buf, dev->dev, attach_ops, obj);
+ 	if (IS_ERR(attach)) {
++		/*
++		 * Attach failed with no dma_buf ref held; switch resv to the BO's
++		 * private _resv under lru_lock before the last put, so
++		 * ttm_bo_delayed_delete() doesn't dereference the stale exporter
++		 * resv.
++		 */
++		spin_lock(&gem_to_xe_bo(obj)->ttm.bdev->lru_lock);
++		obj->resv = &obj->_resv;
++		spin_unlock(&gem_to_xe_bo(obj)->ttm.bdev->lru_lock);
++
+ 		xe_bo_put(gem_to_xe_bo(obj));
+ 		return ERR_CAST(attach);
+ 	}
+-- 
+2.50.1
+
