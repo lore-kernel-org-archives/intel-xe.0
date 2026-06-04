@@ -4,37 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC0C2CD6E6D
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 16:07:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70E25CD6E4A
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 16:07:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9525211A164;
-	Thu,  4 Jun 2026 16:07:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2EDBF11A169;
+	Thu,  4 Jun 2026 16:07:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="N+4QsDTz";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="nc8qihJm";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B95711A161
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 16:06:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FF6E11A161
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 16:07:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1780589218;
- bh=8zX/chONrqwwxQh2vhzMkz0UacRrf/HDoIs1Gh0OMec=;
+ s=default; t=1780589219;
+ bh=WuFbQcoRAyBugZX5kYVBAhgZjK6ORBUenx3RZB6H8a8=;
  h=From:To:Subject:Date:In-Reply-To:References:From;
- b=N+4QsDTzf5pM1A8G4KRNC1UOGnMGBUSJD2JL/H1OuH0ufWlApfhU0mMCJs5diCV3y
- 0bI5l38+3cTccgH6fqbO4hZQlgz+qckZf4hF/ULQqT8v8NeDaWpjrgkYxUeI8pMNxg
- a4nEXQPZgL/NG7Advcp8b+xa3i54DrV6yyk97kWuo6XhaOWlc892N0BGiFUekEJOQH
- DX/ZbXDZaTjKWEMsKtKaOEQKNm+fonNCHfJM6b33LyV5v9j1Hf+4+dWV+wnQZjCfZb
- pSh1pFBovUx6WxDUXh5UUnKw7Oq4b8GmeUsGT55uWXnLLNVAaJWd72sgOuDxbrPqZv
- gmwgweSOoN42w==
+ b=nc8qihJmLqjJBhpWoxAp9R8mWW/GjNzkVJ7QybAZUzzrfojabwRuND4ezop0YDJqx
+ Z/BK4G3neIrvceTm2EznGKj/U/TB8SkOYrIyr5xVhSvRq9W3b5BfhJy1ycK7n7m9pe
+ qFUy2fJK7IZWTI29rmMV3Cjnhb/L4wOh7y5XWB/k78KPif6reOWglC+s8ZfqoS+Cbo
+ YJflKER75BgeO4gBsMBbMa+t5QmFV3Kj7i+oPwEDF2WbsYuSlWIbtH2IKpup+7w+q6
+ fMMVxQ8BAzVyO9IE+mTHMVInfw6yjHoU/AG6D2ZTgNJaUEIYYE6INsnZu8RlF2je0i
+ IOiAh5N2mts8g==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 07/24] drm/xe: Update scheduler job layer to support PT jobs
-Date: Thu,  4 Jun 2026 18:06:36 +0200
-Message-ID: <20260604160655.50036-8-dev@lankhorst.se>
+Subject: [CI 08/24] drm/xe: Add helpers to access PT ops
+Date: Thu,  4 Jun 2026 18:06:37 +0200
+Message-ID: <20260604160655.50036-9-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260604160655.50036-1-dev@lankhorst.se>
 References: <20260604160655.50036-1-dev@lankhorst.se>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -52,239 +51,183 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Matthew Brost <matthew.brost@intel.com>
 
-Update the scheduler job layer to support PT jobs. PT jobs are executed
-entirely on the CPU and do not require LRC fences or a batch address.
-Repurpose the LRC fence storage to hold PT‑job arguments and update the
-scheduler job layer to distinguish between PT jobs and jobs that require
-an LRC.
+Add helpers to access PT ops, making it easier to shuffle the location of
+the ops structures without requiring widespread code changes.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Link: https://patch.msgid.link/20260228013501.106680-8-matthew.brost@intel.com
+Reviewed-by: Francois Dugast <francois.dugast@intel.com>
+Link: https://patch.msgid.link/20260228013501.106680-9-matthew.brost@intel.com
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_sched_job.c       | 92 ++++++++++++++++---------
- drivers/gpu/drm/xe/xe_sched_job_types.h | 31 ++++++++-
- 2 files changed, 88 insertions(+), 35 deletions(-)
+ drivers/gpu/drm/xe/xe_pt.c | 65 ++++++++++++++++++++++++++------------
+ 1 file changed, 45 insertions(+), 20 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
-index ae5b38b2a884a..a8ba7f90368f4 100644
---- a/drivers/gpu/drm/xe/xe_sched_job.c
-+++ b/drivers/gpu/drm/xe/xe_sched_job.c
-@@ -26,19 +26,22 @@ static struct kmem_cache *xe_sched_job_parallel_slab;
- 
- int __init xe_sched_job_module_init(void)
- {
-+	struct xe_sched_job *job;
-+	size_t size;
-+
-+	size = struct_size(job, ptrs, 1);
- 	xe_sched_job_slab =
--		kmem_cache_create("xe_sched_job",
--				  sizeof(struct xe_sched_job) +
--				  sizeof(struct xe_job_ptrs), 0,
-+		kmem_cache_create("xe_sched_job", size, 0,
- 				  SLAB_HWCACHE_ALIGN, NULL);
- 	if (!xe_sched_job_slab)
- 		return -ENOMEM;
- 
-+	size = max_t(size_t,
-+		     struct_size(job, ptrs,
-+				 XE_HW_ENGINE_MAX_INSTANCE),
-+		     struct_size(job, pt_update, 1));
- 	xe_sched_job_parallel_slab =
--		kmem_cache_create("xe_sched_job_parallel",
--				  sizeof(struct xe_sched_job) +
--				  sizeof(struct xe_job_ptrs) *
--				  XE_HW_ENGINE_MAX_INSTANCE, 0,
-+		kmem_cache_create("xe_sched_job_parallel", size, 0,
- 				  SLAB_HWCACHE_ALIGN, NULL);
- 	if (!xe_sched_job_parallel_slab) {
- 		kmem_cache_destroy(xe_sched_job_slab);
-@@ -84,7 +87,7 @@ static void xe_sched_job_free_fences(struct xe_sched_job *job)
- {
- 	int i;
- 
--	for (i = 0; i < job->q->width; ++i) {
-+	for (i = 0; !job->is_pt_job && i < job->q->width; ++i) {
- 		struct xe_job_ptrs *ptrs = &job->ptrs[i];
- 
- 		if (ptrs->lrc_fence)
-@@ -93,10 +96,23 @@ static void xe_sched_job_free_fences(struct xe_sched_job *job)
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index a627b1aaeb856..cc02d87656e1a 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -1928,13 +1928,37 @@ xe_pt_commit_prepare_unbind(struct xe_vma *vma,
  	}
  }
  
-+/**
-+ * xe_sched_job_create() - Create a scheduler job
-+ * @q: exec queue to create the scheduler job for
-+ * @batch: array of batch addresses for the job; must match the width of @q,
-+ *         or NULL to indicate a PT job that does not require a batch address
-+ *
-+ * Create a scheduler job for submission.
-+ *
-+ * Context: Reclaim
-+ *
-+ * Return: a &xe_sched_job object on success, or an ERR_PTR on failure.
-+ */
- struct xe_sched_job *xe_sched_job_create(struct xe_exec_queue *q,
- 					 u64 *batch_addr)
++static struct xe_vm_pgtable_update_op *
++to_pt_op(struct xe_vm_pgtable_update_ops *pt_update_ops, u32 op_idx)
++{
++	return &pt_update_ops->ops[op_idx];
++}
++
++static u32
++get_current_op(struct xe_vm_pgtable_update_ops *pt_update_ops)
++{
++	return pt_update_ops->current_op;
++}
++
++static struct xe_vm_pgtable_update_op *
++to_current_pt_op(struct xe_vm_pgtable_update_ops *pt_update_ops)
++{
++	return to_pt_op(pt_update_ops, get_current_op(pt_update_ops));
++}
++
++static void
++incr_current_op(struct xe_vm_pgtable_update_ops *pt_update_ops)
++{
++	++pt_update_ops->current_op;
++}
++
+ static void
+ xe_pt_update_ops_rfence_interval(struct xe_vm_pgtable_update_ops *pt_update_ops,
+ 				 u64 start, u64 end)
  {
- 	bool is_migration = xe_sched_job_is_migration(q);
-+	struct xe_device *xe = gt_to_xe(q->gt);
- 	struct xe_sched_job *job;
+ 	u64 last;
+-	u32 current_op = pt_update_ops->current_op;
+-	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[current_op];
++	struct xe_vm_pgtable_update_op *pt_op =
++		to_current_pt_op(pt_update_ops);
+ 	int i, level = 0;
+ 
+ 	for (i = 0; i < pt_op->num_entries; i++) {
+@@ -1969,8 +1993,8 @@ static int bind_op_prepare(struct xe_vm *vm, struct xe_tile *tile,
+ 			   struct xe_vm_pgtable_update_ops *pt_update_ops,
+ 			   struct xe_vma *vma, bool invalidate_on_bind)
+ {
+-	u32 current_op = pt_update_ops->current_op;
+-	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[current_op];
++	struct xe_vm_pgtable_update_op *pt_op =
++		to_current_pt_op(pt_update_ops);
  	int err;
- 	int i;
-@@ -105,6 +121,9 @@ struct xe_sched_job *xe_sched_job_create(struct xe_exec_queue *q,
- 	/* only a kernel context can submit a vm-less job */
- 	XE_WARN_ON(!q->vm && !(q->flags & EXEC_QUEUE_FLAG_KERNEL));
  
-+	xe_assert(xe, batch_addr ||
-+		  q->flags & (EXEC_QUEUE_FLAG_VM | EXEC_QUEUE_FLAG_MIGRATE));
-+
- 	job = job_alloc(xe_exec_queue_is_parallel(q) || is_migration);
- 	if (!job)
- 		return ERR_PTR(-ENOMEM);
-@@ -119,34 +138,39 @@ struct xe_sched_job *xe_sched_job_create(struct xe_exec_queue *q,
- 	if (err)
- 		goto err_free;
+ 	xe_tile_assert(tile, !xe_vma_is_cpu_addr_mirror(vma));
+@@ -1999,7 +2023,7 @@ static int bind_op_prepare(struct xe_vm *vm, struct xe_tile *tile,
+ 		xe_pt_update_ops_rfence_interval(pt_update_ops,
+ 						 xe_vma_start(vma),
+ 						 xe_vma_end(vma));
+-		++pt_update_ops->current_op;
++		incr_current_op(pt_update_ops);
+ 		pt_update_ops->needs_svm_lock |= xe_vma_is_userptr(vma);
  
--	for (i = 0; i < q->width; ++i) {
--		struct dma_fence *fence = xe_lrc_alloc_seqno_fence();
--		struct dma_fence_chain *chain;
--
--		if (IS_ERR(fence)) {
--			err = PTR_ERR(fence);
--			goto err_sched_job;
-+	if (!batch_addr) {
-+		job->fence = dma_fence_get_stub();
-+		job->is_pt_job = true;
-+	} else {
-+		for (i = 0; i < q->width; ++i) {
-+			struct dma_fence *fence = xe_lrc_alloc_seqno_fence();
-+			struct dma_fence_chain *chain;
-+
-+			if (IS_ERR(fence)) {
-+				err = PTR_ERR(fence);
-+				goto err_sched_job;
-+			}
-+			job->ptrs[i].lrc_fence = fence;
-+
-+			if (i + 1 == q->width)
-+				continue;
-+
-+			chain = dma_fence_chain_alloc();
-+			if (!chain) {
-+				err = -ENOMEM;
-+				goto err_sched_job;
-+			}
-+			job->ptrs[i].chain_fence = chain;
- 		}
--		job->ptrs[i].lrc_fence = fence;
- 
--		if (i + 1 == q->width)
--			continue;
-+		width = q->width;
-+		if (is_migration)
-+			width = 2;
- 
--		chain = dma_fence_chain_alloc();
--		if (!chain) {
--			err = -ENOMEM;
--			goto err_sched_job;
--		}
--		job->ptrs[i].chain_fence = chain;
-+		for (i = 0; i < width; ++i)
-+			job->ptrs[i].batch_addr = batch_addr[i];
- 	}
- 
--	width = q->width;
--	if (is_migration)
--		width = 2;
--
--	for (i = 0; i < width; ++i)
--		job->ptrs[i].batch_addr = batch_addr[i];
--
- 	atomic_inc(&q->job_cnt);
- 	xe_pm_runtime_get_noresume(job_to_xe(job));
- 	trace_xe_sched_job_create(job);
-@@ -246,7 +270,7 @@ bool xe_sched_job_completed(struct xe_sched_job *job)
- void xe_sched_job_arm(struct xe_sched_job *job)
+ 		/*
+@@ -2036,8 +2060,8 @@ static int bind_range_prepare(struct xe_vm *vm, struct xe_tile *tile,
+ 			      struct xe_vm_pgtable_update_ops *pt_update_ops,
+ 			      struct xe_vma *vma, struct xe_svm_range *range)
  {
- 	struct xe_exec_queue *q = job->q;
--	struct dma_fence *fence, *prev;
-+	struct dma_fence *fence = job->fence, *prev;
- 	struct xe_vm *vm = q->vm;
- 	u64 seqno = 0;
- 	int i;
-@@ -266,6 +290,9 @@ void xe_sched_job_arm(struct xe_sched_job *job)
- 		job->ring_ops_flush_tlb = true;
+-	u32 current_op = pt_update_ops->current_op;
+-	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[current_op];
++	struct xe_vm_pgtable_update_op *pt_op =
++		to_current_pt_op(pt_update_ops);
+ 	int err;
+ 
+ 	xe_tile_assert(tile, xe_vma_is_cpu_addr_mirror(vma));
+@@ -2061,7 +2085,7 @@ static int bind_range_prepare(struct xe_vm *vm, struct xe_tile *tile,
+ 		xe_pt_update_ops_rfence_interval(pt_update_ops,
+ 						 xe_svm_range_start(range),
+ 						 xe_svm_range_end(range));
+-		++pt_update_ops->current_op;
++		incr_current_op(pt_update_ops);
+ 		pt_update_ops->needs_svm_lock = true;
+ 
+ 		pt_op->vma = vma;
+@@ -2079,8 +2103,8 @@ static int unbind_op_prepare(struct xe_tile *tile,
+ 			     struct xe_vma *vma)
+ {
+ 	struct xe_device *xe = tile_to_xe(tile);
+-	u32 current_op = pt_update_ops->current_op;
+-	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[current_op];
++	struct xe_vm_pgtable_update_op *pt_op =
++		to_current_pt_op(pt_update_ops);
+ 	int err;
+ 
+ 	if (!((vma->tile_present | vma->tile_staged) & BIT(tile->id)))
+@@ -2119,7 +2143,7 @@ static int unbind_op_prepare(struct xe_tile *tile,
+ 				pt_op->num_entries, false);
+ 	xe_pt_update_ops_rfence_interval(pt_update_ops, xe_vma_start(vma),
+ 					 xe_vma_end(vma));
+-	++pt_update_ops->current_op;
++	incr_current_op(pt_update_ops);
+ 	pt_update_ops->needs_svm_lock |= xe_vma_is_userptr(vma);
+ 	pt_update_ops->needs_invalidation = true;
+ 
+@@ -2159,8 +2183,8 @@ static int unbind_range_prepare(struct xe_vm *vm,
+ 				struct xe_vm_pgtable_update_ops *pt_update_ops,
+ 				struct xe_svm_range *range)
+ {
+-	u32 current_op = pt_update_ops->current_op;
+-	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[current_op];
++	struct xe_vm_pgtable_update_op *pt_op =
++		to_current_pt_op(pt_update_ops);
+ 
+ 	if (!(range->tile_present & BIT(tile->id)))
+ 		return 0;
+@@ -2181,7 +2205,7 @@ static int unbind_range_prepare(struct xe_vm *vm,
+ 				pt_op->num_entries, false);
+ 	xe_pt_update_ops_rfence_interval(pt_update_ops, xe_svm_range_start(range),
+ 					 xe_svm_range_end(range));
+-	++pt_update_ops->current_op;
++	incr_current_op(pt_update_ops);
+ 	pt_update_ops->needs_svm_lock = true;
+ 	pt_update_ops->needs_invalidation |= xe_vm_has_scratch(vm) ||
+ 		xe_vm_has_valid_gpu_mapping(tile, range->tile_present,
+@@ -2329,7 +2353,7 @@ int xe_pt_update_ops_prepare(struct xe_tile *tile, struct xe_vma_ops *vops)
+ 			return err;
  	}
  
-+	if (job->is_pt_job)
-+		goto arm;
-+
- 	/* Arm the pre-allocated fences */
- 	for (i = 0; i < q->width; prev = fence, ++i) {
- 		struct dma_fence_chain *chain;
-@@ -286,6 +313,7 @@ void xe_sched_job_arm(struct xe_sched_job *job)
- 		fence = &chain->base;
+-	xe_tile_assert(tile, pt_update_ops->current_op <=
++	xe_tile_assert(tile, get_current_op(pt_update_ops) <=
+ 		       pt_update_ops->num_ops);
+ 
+ #ifdef TEST_VM_OPS_ERROR
+@@ -2562,7 +2586,7 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
+ 	lockdep_assert_held(&vm->lock);
+ 	xe_vm_assert_held(vm);
+ 
+-	if (!pt_update_ops->current_op) {
++	if (!get_current_op(pt_update_ops)) {
+ 		xe_tile_assert(tile, xe_vm_in_fault_mode(vm));
+ 
+ 		return dma_fence_get_stub();
+@@ -2630,8 +2654,9 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
  	}
  
-+arm:
- 	job->fence = dma_fence_get(fence);	/* Pairs with put in scheduler */
- 	drm_sched_job_arm(&job->drm);
- }
-diff --git a/drivers/gpu/drm/xe/xe_sched_job_types.h b/drivers/gpu/drm/xe/xe_sched_job_types.h
-index 0490b1247a6e9..5e1824c36c740 100644
---- a/drivers/gpu/drm/xe/xe_sched_job_types.h
-+++ b/drivers/gpu/drm/xe/xe_sched_job_types.h
-@@ -10,10 +10,29 @@
+ 	/* Point of no return - VM killed if failure after this */
+-	for (i = 0; i < pt_update_ops->current_op; ++i) {
+-		struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[i];
++	for (i = 0; i < get_current_op(pt_update_ops); ++i) {
++		struct xe_vm_pgtable_update_op *pt_op =
++			to_pt_op(pt_update_ops, i);
  
- #include <drm/gpu_scheduler.h>
+ 		xe_pt_commit(pt_op->vma, pt_op->entries,
+ 			     pt_op->num_entries, &pt_update_ops->deferred);
+@@ -2755,9 +2780,9 @@ void xe_pt_update_ops_abort(struct xe_tile *tile, struct xe_vma_ops *vops)
  
--struct xe_exec_queue;
- struct dma_fence;
- struct dma_fence_chain;
+ 	for (i = pt_update_ops->num_ops - 1; i >= 0; --i) {
+ 		struct xe_vm_pgtable_update_op *pt_op =
+-			&pt_update_ops->ops[i];
++			to_pt_op(pt_update_ops, i);
  
-+struct xe_exec_queue;
-+struct xe_migrate_pt_update_ops;
-+struct xe_pt_job_ops;
-+struct xe_tile;
-+struct xe_vm;
-+
-+/**
-+ * struct xe_pt_update_args - PT update arguments
-+ */
-+struct xe_pt_update_args {
-+	/** @vm: VM which is being bound */
-+	struct xe_vm *vm;
-+	/** @tile: Tile which page tables belong to */
-+	struct xe_tile *tile;
-+	/** @ops: Migrate PT update ops */
-+	const struct xe_migrate_pt_update_ops *ops;
-+	/** @pt_job_ops: PT job ops state */
-+	struct xe_pt_job_ops *pt_job_ops;
-+};
-+
- /**
-  * struct xe_job_ptrs - Per hw engine instance data
-  */
-@@ -71,8 +90,14 @@ struct xe_sched_job {
- 	bool restore_replay;
- 	/** @last_replay: last job being replayed */
- 	bool last_replay;
--	/** @ptrs: per instance pointers. */
--	struct xe_job_ptrs ptrs[];
-+	/** @is_pt_job: is a PT job */
-+	bool is_pt_job;
-+	union {
-+		/** @ptrs: per instance pointers. */
-+		DECLARE_FLEX_ARRAY(struct xe_job_ptrs, ptrs);
-+		/** @pt_update: PT update arguments */
-+		DECLARE_FLEX_ARRAY(struct xe_pt_update_args, pt_update);
-+	};
- };
+-		if (!pt_op->vma || i >= pt_update_ops->current_op)
++		if (!pt_op->vma || i >= get_current_op(pt_update_ops))
+ 			continue;
  
- struct xe_sched_job_snapshot {
+ 		if (pt_op->bind)
 -- 
 2.53.0
 
