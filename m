@@ -4,35 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85556CD6E6D
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 13:45:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C17D2CD6E6B
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 13:56:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2BAE111A0AB;
-	Thu,  4 Jun 2026 13:45:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B39111A0E5;
+	Thu,  4 Jun 2026 13:56:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="o222syOp";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="Yswz+lGY";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A9F811A0AB
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 13:45:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DEFB11A0E5
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 13:56:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1780580701;
- bh=s6+Q0KDtOXDQxxGyBJ0mzhx5oo8nPjv5QdgsEzlr9fo=;
- h=From:To:Cc:Subject:Date:From;
- b=o222syOpoEZnYk7o6TuBouIhnI43O0IpRKxqa5MfPcNxOnBuJRYn+yeXXVBalivKl
- 4rVc81e/10G3UCNR8kqtASi5vlBrdrZqJT2Fi1Zp8m+P0OkoJmHgfDPHKlrhQfv1TA
- kYDYt93OwfFTjOjCwT8h/VuMfnT5zD4hcr6evc62JerVGG2F78GVwc6iQqSNaVE8jn
- bvHSC65J9KL6mmKXpC797ioYJnhqCs0wKJPwrEKncmvgX3JeBvYKj6I8RW3tsR/de/
- 58dwjzPBWJq95YFFD3eqe+wIATZvbOTckFwRLwK54w5WVKtX6ns2twBKmXulLWcUU0
- DTdRS6+xu6w4w==
+ s=default; t=1780581394;
+ bh=d+6mP/6u34n7ml0yNaDd2aIyrxifz8FYBida8f7/mBY=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=Yswz+lGYCRUC0fQBU3upNE/oM5t+o/Z6OoPi7HmpVhY5gw0dXHaP4VlmXwBRDQXF0
+ QFPhjOHOgEnQGssW2rR+cC7vgrRK9ZfFdlizX7MR28gTcuY7xLrHVjhzUaWhiYNEkK
+ GBl0SZrq6l15fVEcyA54UyzyebiOCOSYxmyfYufJyMh7wDT3qRjSFKVd8huEgQoPCx
+ 7xFV7qv2PqFn3fah8p0SNNUgcrVeK5GPdwHwrANLZcdeJW5aGicz3Fiat2OjuTczl+
+ m8V+gct3OYtPtlLEINDVxWbCXDeUjmerjC6VbTpuAkRQD1iIaGyePYXhoYvQqlQc1+
+ SGQyxB0BGJEKg==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: Maarten Lankhorst <dev@lankhorst.se>,
  =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Subject: [PATCH v2] drm/xe/ggtt: clear reserved areas at init runtime for !VFs
-Date: Thu,  4 Jun 2026 15:45:01 +0200
-Message-ID: <20260604134501.17302-1-dev@lankhorst.se>
+Subject: [PATCH v2.1] drm/xe/ggtt: clear reserved areas at init runtime for
+ !VFs
+Date: Thu,  4 Jun 2026 15:56:29 +0200
+Message-ID: <20260604135629.30314-1-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260604134501.17302-1-dev@lankhorst.se>
+References: <20260604134501.17302-1-dev@lankhorst.se>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -62,11 +65,13 @@ assertions for those areas.
 Reported-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
+Oops, forgot to commit a tiny compile failure fixup in assertion.
+
  drivers/gpu/drm/xe/xe_ggtt.c | 52 +++++++++++++++++++++++++++++-------
  1 file changed, 42 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 8ec23862477fc..cb54984e0c35e 100644
+index 8ec23862477fc..5436cbbcdefab 100644
 --- a/drivers/gpu/drm/xe/xe_ggtt.c
 +++ b/drivers/gpu/drm/xe/xe_ggtt.c
 @@ -115,6 +115,8 @@ struct xe_ggtt {
@@ -89,7 +94,7 @@ index 8ec23862477fc..cb54984e0c35e 100644
 -	xe_tile_assert(ggtt->tile, addr < ggtt->start + ggtt->size);
 +	xe_tile_assert(ggtt->tile, !(size & (XE_PAGE_SIZE - 1)));
 +	xe_tile_assert(ggtt->tile, addr >= ggtt->start);
-+	xe_tile_assert(ggtt->tile, addr + size <= addr->start + ggtt->size);
++	xe_tile_assert(ggtt->tile, addr + size <= ggtt->start + ggtt->size);
 +}
  
 +static void xe_ggtt_set_pte(struct xe_ggtt *ggtt, u64 addr, u64 pte)
