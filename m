@@ -4,32 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F682CD8C84
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 17:15:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C480CD6E75
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 17:15:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA68311A1D9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DCB511A1F3;
 	Thu,  4 Jun 2026 17:15:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="FICMGXv7";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="RKGN39V/";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E324211A1D9
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 17:15:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6191411A1E2
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 17:15:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1780593314;
- bh=KY98ggLgnGTP7jx1Nl3XEByNSSt5W8DrXzDyKFI0rLU=;
+ s=default; t=1780593307;
+ bh=OXSwnkfiTaaHQmjhZUa2tjePB2L1F94inH6T3RAhDhc=;
  h=From:To:Subject:Date:In-Reply-To:References:From;
- b=FICMGXv731nICvygTBXDC3uRXOuzE7vWOrqx122Ly40LZH1C3RqxP4qwFkHFlQops
- Snw3Mt8hAvKy+IVbOF537GJfSHrPoF1tIJSeG2tK6XFbaQl/8WbTxxNn20X5/qriCC
- C3dvQfnzDkD3urvvJVXLRpDqyex1emzDz3rsiIpqG/WDDQ601VP3d7gzgQEPeR/Z9P
- 4v+rQ6T1IKQsF70RApJeMhC1v1wZQYu81YY6WlqN5RD415h0z1oMwcXIeY5G9et6u7
- iuONdeVN+SLNdGw7D78RbV4t1Qs9KdAknx8LoV0idU7HJc2yY7WpGVVJhPPWxYdL+N
- Yt1oZAHXz/TPg==
+ b=RKGN39V/l068NZpJIkXtWBSD5tLhRXJywL/xvjd/qIHDNd74CgVfGW6oRN2eAjGPo
+ DxmOzo9PiYl3W1RXcYDiCpO/ktz3sXEfPHP92O3vMlIp7NNV25Kz+FGZygA+Kh4Tv3
+ GV0qY9qwjz8Ud2rlnBt4iOp4Qv+tfGsT6qSHHHEpmf6dPKpUQkoea9ogi+PgdApkf1
+ ysqYXSsAjxsVz4TVlNDAv+Nez3PyH/sdTZWYPBuzfdqP/lxGv4CuxqnyrWY4OPWrVL
+ KnNzs+exvJcvS0gC5vnGiOwY6LJu7IiGZPBAe8F6x48W1MWUFjZmtJxLS9Ff/2Gsxp
+ zZ9YVRALPiryw==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI v2 21/24] drm/xe: Add ULLS migration job support to ring ops
-Date: Thu,  4 Jun 2026 19:14:57 +0200
-Message-ID: <20260604171502.84047-22-dev@lankhorst.se>
+Subject: [CI v2 10/24] drm/xe: Update GuC submission backend to run PT jobs
+Date: Thu,  4 Jun 2026 19:14:46 +0200
+Message-ID: <20260604171502.84047-11-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260604171502.84047-1-dev@lankhorst.se>
 References: <20260604171502.84047-1-dev@lankhorst.se>
@@ -51,85 +51,139 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Matthew Brost <matthew.brost@intel.com>
 
-Add preamble and postamble for ULLS migrations jobs. Preamble clears
-current semaphore for reuse. Postamble waits on next semaphore which is
-set upon next job submission. The last ULLS migration job skips BB
-submission and postamble (clear current semaphore, write seqno, exit
-ULLS).
+PT jobs bypass GPU execution for the final step of a bind job, using the
+CPU to program the required page tables. Teach the GuC submission backend
+how to execute these jobs.
+
+PT job submission is implemented in the GuC backend for simplicity. A
+follow-up patch could introduce a dedicated backend for PT jobs.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Link: https://patch.msgid.link/20260228013501.106680-23-matthew.brost@intel.com
+Link: https://patch.msgid.link/20260228013501.106680-11-matthew.brost@intel.com
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_ring_ops.c | 31 +++++++++++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+ drivers/gpu/drm/xe/xe_guc_submit.c | 37 ++++++++++++++++++++++++++----
+ drivers/gpu/drm/xe/xe_migrate.c    | 13 ++++++++++-
+ drivers/gpu/drm/xe/xe_migrate.h    |  8 +++++++
+ 3 files changed, 52 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 39a670e91ba72..88352c1e4911f 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -494,6 +494,27 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
- 	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 1780fb975e83b..546bbc9cd7b70 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -36,8 +36,10 @@
+ #include "xe_lrc.h"
+ #include "xe_macros.h"
+ #include "xe_map.h"
++#include "xe_migrate.h"
+ #include "xe_mocs.h"
+ #include "xe_pm.h"
++#include "xe_pt.h"
+ #include "xe_ring_ops_types.h"
+ #include "xe_sched_job.h"
+ #include "xe_sleep.h"
+@@ -1189,6 +1191,20 @@ static void submit_exec_queue(struct xe_exec_queue *q, struct xe_sched_job *job)
+ 	}
  }
  
-+static int emit_ulls_preamble(struct xe_lrc *lrc, u32 *dw, int i, u32 seqno)
++static bool is_pt_job(struct xe_sched_job *job)
 +{
-+	u32 addr = xe_lrc_ulls_semaphore_ggtt_addr(lrc, seqno);
-+
-+	return emit_store_imm_ggtt(addr, LRC_MIGRATION_ULLS_SEMAPORE_CLEAR,
-+				   dw, i);
++	return job->is_pt_job;
 +}
 +
-+static int emit_ulls_postamble(struct xe_lrc *lrc, u32 *dw, int i, u32 seqno)
++static void run_pt_job(struct xe_sched_job *job)
 +{
-+	dw[i++] = MI_SEMAPHORE_WAIT |
-+		MI_SEMW_GGTT |
-+		MI_SEMW_POLL |
-+		MI_SEMW_COMPARE(SAD_EQ_SDD);
-+	dw[i++] = LRC_MIGRATION_ULLS_SEMAPORE_SIGNAL;
-+	dw[i++] = xe_lrc_ulls_semaphore_ggtt_addr(lrc, seqno + 1);
-+	dw[i++] = 0;
-+
-+	return i;
++	xe_migrate_update_pgtables_cpu_execute(job->pt_update[0].vm,
++					       job->pt_update[0].tile,
++					       job->pt_update[0].ops,
++					       job->pt_update[0].pt_job_ops->ops,
++					       job->pt_update[0].pt_job_ops->current_op);
 +}
 +
- static void emit_migration_job_gen12(struct xe_sched_job *job,
- 				     struct xe_lrc *lrc, u32 *head,
- 				     u32 seqno)
-@@ -507,10 +528,16 @@ static void emit_migration_job_gen12(struct xe_sched_job *job,
+ static struct dma_fence *
+ guc_exec_queue_run_job(struct drm_sched_job *drm_job)
+ {
+@@ -1214,14 +1230,25 @@ guc_exec_queue_run_job(struct drm_sched_job *drm_job)
+ 				register_exec_queue(primary, GUC_CONTEXT_NORMAL);
+ 		}
  
- 	xe_gt_assert(gt, !job->ring_ops_force_reset);
+-		if (!exec_queue_registered(q))
+-			register_exec_queue(q, GUC_CONTEXT_NORMAL);
+-		if (!job->restore_replay)
+-			q->ring_ops->emit_job(job);
+-		submit_exec_queue(q, job);
++		if (is_pt_job(job)) {
++			xe_gt_assert(guc_to_gt(guc), !exec_queue_registered(q));
++			run_pt_job(job);
++		} else {
++			if (!exec_queue_registered(q))
++				register_exec_queue(q, GUC_CONTEXT_NORMAL);
++			if (!job->restore_replay)
++				q->ring_ops->emit_job(job);
++			submit_exec_queue(q, job);
++		}
+ 		job->restore_replay = false;
+ 	}
  
-+	if (job->is_ulls)
-+		i = emit_ulls_preamble(lrc, dw, i, seqno);
++	if (is_pt_job(job)) {
++		xe_pt_job_ops_put(job->pt_update[0].pt_job_ops);
++		dma_fence_put(job->fence);	/* Drop ref from xe_sched_job_arm */
++		return NULL;
++	}
 +
- 	i = emit_copy_timestamp(xe, lrc, dw, i);
+ run_job_out:
  
- 	i = emit_store_imm_ggtt(saddr, seqno, dw, i);
+ 	return job->fence;
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index b6316cb6a9398..9098fc36cda22 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -1800,7 +1800,18 @@ struct migrate_test_params {
+ 	container_of(_priv, struct migrate_test_params, base)
+ #endif
  
-+	if (job->is_ulls_last || job->is_ulls_first)
-+		goto seqno_write;
+-static void
++/**
++ * xe_migrate_update_pgtables_cpu_execute() - Update a VM's PTEs via the CPU
++ * @vm: The VM being updated
++ * @tile: The tile being updated
++ * @ops: The migrate PT update ops
++ * @pt_ops: The VM PT update ops
++ * @num_ops: The number of The VM PT update ops
++ *
++ * Execute the VM PT update ops array which results in a VM's PTEs being updated
++ * via the CPU.
++ */
++void
+ xe_migrate_update_pgtables_cpu_execute(struct xe_vm *vm, struct xe_tile *tile,
+ 				       const struct xe_migrate_pt_update_ops *ops,
+ 				       struct xe_vm_pgtable_update_op *pt_op,
+diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
+index 1aec7bf944d59..1e45c739883d7 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.h
++++ b/drivers/gpu/drm/xe/xe_migrate.h
+@@ -24,6 +24,7 @@ struct xe_pt;
+ struct xe_tile;
+ struct xe_vm;
+ struct xe_vm_pgtable_update;
++struct xe_vm_pgtable_update_op;
+ struct xe_vma;
+ 
+ enum xe_sriov_vf_ccs_rw_ctxs;
+@@ -161,6 +162,13 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+ 
+ struct xe_vm *xe_migrate_get_vm(struct xe_migrate *m);
+ 
 +
- 	dw[i++] = MI_ARB_ON_OFF | MI_ARB_DISABLE; /* Enabled again below */
- 
- 	i = emit_bb_start(job->ptrs[0].batch_addr, BIT(8), dw, i);
-@@ -521,12 +548,16 @@ static void emit_migration_job_gen12(struct xe_sched_job *job,
- 
- 	i = emit_bb_start(job->ptrs[1].batch_addr, BIT(8), dw, i);
- 
-+seqno_write:
- 	i = emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno,
- 				job->migrate_flush_flags,
- 				dw, i);
- 
- 	i = emit_user_interrupt(dw, i);
- 
-+	if (job->is_ulls && !job->is_ulls_last)
-+		i = emit_ulls_postamble(lrc, dw, i, seqno);
++void
++xe_migrate_update_pgtables_cpu_execute(struct xe_vm *vm, struct xe_tile *tile,
++				       const struct xe_migrate_pt_update_ops *ops,
++				       struct xe_vm_pgtable_update_op *pt_op,
++				       int num_ops);
 +
- 	xe_gt_assert(job->q->gt, i <= MAX_JOB_SIZE_DW);
- 
- 	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
+ struct dma_fence *
+ xe_migrate_update_pgtables(struct xe_migrate *m,
+ 			   struct xe_migrate_pt_update *pt_update);
 -- 
 2.53.0
 
