@@ -4,64 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77CC9CD6E74
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 17:23:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D465CD6E75
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 18:05:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32DA311A1F8;
-	Thu,  4 Jun 2026 17:23:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47B8E112917;
+	Thu,  4 Jun 2026 18:05:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BSVmYSXI";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="lcdo8Ktb";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F53211A1F8
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 17:23:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780593825; x=1812129825;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=l5asS8SpSkQYf+YuhGCpSbcTaEHoBBdWcBH67W6W3fo=;
- b=BSVmYSXIILDbAFX8gYGyjXNDSxHymqsOcTB7lyxIkqYKA/fxXqrwyVo/
- rdw94U2x98vvi6bmzUGCN/LKv4czsDjw/P1bToCecHmGBfhFw3dZ2XrSW
- t7ZRVtXPaCGf6BqmIo38qG2K8SgozMMeIaCSNIlUtSPLPV8tksc12LKuE
- Zy6NLcosuAjPTd/zm361/zvg2lA5sIeNQfQAqHttLu8smkX9lka6K00Un
- PjndCMo0jMpS8BjXO+z6J1hqgYjNsKswHNqa5TzQZi+6pHvVrxTHJgoDh
- zay+F6hGk50nu94775pxb6goWbCOBHVhWYK7rm7PT0FSUD/SzpVA55hlo g==;
-X-CSE-ConnectionGUID: 48slVVsoQP2Ggd7M4g0Rxg==
-X-CSE-MsgGUID: U3KQxcSORkKgPkZcwMCc2g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11807"; a="81333638"
-X-IronPort-AV: E=Sophos;i="6.24,187,1774335600"; d="scan'208";a="81333638"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2026 10:23:45 -0700
-X-CSE-ConnectionGUID: YW23+NPcTWm68cvRSmpMzg==
-X-CSE-MsgGUID: nRc+5WOVQ86wCWJBmU+OIg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,187,1774335600"; d="scan'208";a="242114187"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO [10.245.245.65])
- ([10.245.245.65])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2026 10:23:43 -0700
-Message-ID: <8c4d38f10b1941687314bc43cc4de40097b84b78.camel@linux.intel.com>
-Subject: Re: linux-next: build failure after merge of the drm-xe tree
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Mark Brown <broonie@kernel.org>
-Cc: DRM XE List <intel-xe@lists.freedesktop.org>, Gustavo Sousa	
- <gustavo.sousa@intel.com>, Violet Monti <violet.monti@intel.com>, Matt
- Roper	 <matthew.d.roper@intel.com>, Linux Kernel Mailing List	
- <linux-kernel@vger.kernel.org>, Linux Next Mailing List	
- <linux-next@vger.kernel.org>
-Date: Thu, 04 Jun 2026 19:23:40 +0200
-In-Reply-To: <551d384f-d151-4d1e-bcb8-a1cde0860a30@sirena.org.uk>
-References: <aiAz4DmtngY0r6Cx@sirena.org.uk>
- <bfb0dee8-b243-47ba-a89d-71472b0d51c5@sirena.org.uk>
- <f9094757b2aab617feb8fc3f8a66f46595e0ae27.camel@linux.intel.com>
- <551d384f-d151-4d1e-bcb8-a1cde0860a30@sirena.org.uk>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78A70112915;
+ Thu,  4 Jun 2026 18:05:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
+ Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=iW7MmJbWSEeEFgiTLXEtF0Skl9HYrWG5uWuRvtFvnhI=; b=lcdo8Ktbbz4OO7C+uOEXZNXuia
+ nR3hK7t3nD9fbi6T++naZ415nxApdRi/HF1o1eWr0WqRbyYlM54judA8TiRvQq1T8V4cLBowb1Ogm
+ YOOKuZ1McmNE1p/dvqBYm5wbBmVWeJuHAr3RnsWEWg1v7TCCatFIt71udo7VjemXGiqxzO4r9IPC8
+ mrb4Hpzm8aqtgpMlXXclKVAFsHksHlfdYuF6HiNe62210pic4Mo1T+Nb3dLPnAfToIIdbJhczjXLo
+ A7HanBn2OCSYqAqBV77YU9UPku2iRttLpDsL4bOKe5fLXszkc7GlyRxiCn6XYbWT6pFges3+xo4OB
+ 9X95t/Zg==;
+Received: from [79.117.146.159] (helo=killbill.home)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1wVCRG-00Ckqs-0Y; Thu, 04 Jun 2026 20:05:06 +0200
+From: Melissa Wen <mwen@igalia.com>
+To: airlied@gmail.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ simona@ffwll.ch, tzimmermann@suse.de
+Cc: Alex Hung <alex.hung@amd.com>, Simon Ser <contact@emersion.fr>,
+ Uma Shankar <uma.shankar@intel.com>,
+ Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ Xaver Hugl <xaver.hugl@kde.org>,
+ Pekka Paalanen <pekka.paalanen@collabora.com>,
+ Louis Chauvet <louis.chauvet@bootlin.com>,
+ Matthew Schwartz <matthew.schwartz@linux.dev>,
+ Sebastian Wick <sebastian.wick@redhat.com>,
+ John Harrison <John.Harrison@Igalia.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>, amd-gfx@lists.freedesktop.org,
+ kernel-dev@igalia.com, Rob Clark <robin.clark@oss.qualcomm.com>,
+ Dmitry Baryshkov <lumag@kernel.org>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH v2 0/3] don't allow changes to inactive colorops
+Date: Thu,  4 Jun 2026 19:59:04 +0200
+Message-ID: <20260604180457.1110110-1-mwen@igalia.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,37 +71,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 2026-06-04 at 15:50 +0100, Mark Brown wrote:
-> On Thu, Jun 04, 2026 at 04:43:17PM +0200, Thomas Hellstr=C3=B6m wrote:
-> > On Thu, 2026-06-04 at 15:35 +0100, Mark Brown wrote:
->=20
-> > > /tmp/next/build/include/linux/compiler.h:200:84: note: expanded
-> > > from
-> > > macro '__BUILD_BUG_ON_ZERO_MSG'
-> > > =C2=A0 200 | #define __BUILD_BUG_ON_ZERO_MSG(e, msg, ...)
-> > > ((int)sizeof(struct {_Static_assert(!(e), msg);}))
->=20
-> > Funny, I see no build errors with drm-xe-next allmodconfig. What
-> > compiler is being used? Any sha1 of the drm-xe-next top commit
-> > you're
-> > testing?
->=20
-> This is after merging the tree into -next, that'd be on top of
-> 09b893db4d9e68c2679e76624d420f438f8d3e98 for today (not published
-> yet).
-> It's possible it's some interaction with other trees (like the main
-> drm
-> tree) and works as a standalone thing, it wasn't obviously that from
-> a
-> quick investigation.=C2=A0 The toolchain is gcc from Debian stable.
+This series is a follow-up of what was discussed in [1] and on #wayland
+IRC channel regarding policy and userspace expectations on changes in
+colorop properties and the current status of the color pipeline in which
+the colorop is part of. In short, we agreed that userspace can change
+properties of colorops that are currently part of an active color
+pipeline or when the pipeline is switching status in the same commit.
+However, userspace cannot change colorop properties of inactive color
+pipeline in the expactation that it will be activated at some point in
+the future.
 
-So I merged drm-xe-next into next-20260603, and no build errors neither
-with gcc nor clang.
+Userspace also expects persistence of color pipeline already set, even
+if it becomes inactive for a while, when activated, colorop settings
+previouly set should be preserved.
 
-AI says it's confident that the error report is from clang, based on
--fmacro-backtrace-limit suggestion and the "2 errors generated."
-summary, and suggests this might be an older clang version limitation?
+In addition, I found some bugs on IGT tests when this policy is applied.
+So I sent bug fixes to kms_colorop and kms_properties to behave
+according to this contract [2]. The rest of the series in [1] was
+detached in [3] since there is no dependecy between them.
 
-Thanks,
-Thomas
+[1] https://lore.kernel.org/dri-devel/20260519211111.228303-1-mwen@igalia.com/
+[2] https://lore.kernel.org/igt-dev/20260602211259.898147-1-mwen@igalia.com
+[3] https://lore.kernel.org/igt-dev/20260526140752.503380-1-mwen@igalia.com/
+
+
+[v1] https://lore.kernel.org/dri-devel/20260526142940.504911-1-mwen@igalia.com/
+Changes:
+- define a macro to walk in the color pipeline (Alex H.)
+- fix checkpatch warning (Alex H.)
+
+Melissa
+
+Melissa Wen (3):
+  drm/atomic: only add states of active or transient active colorops
+  drm/atomic: duplicate state of all colorops
+  drm/atomic: reject colorop update from inactive color pipeline
+
+ drivers/gpu/drm/drm_atomic.c        | 125 ++++++++++++++++++++++++++--
+ drivers/gpu/drm/drm_atomic_helper.c |   9 +-
+ include/drm/drm_colorop.h           |   3 +
+ 3 files changed, 122 insertions(+), 15 deletions(-)
+
+-- 
+2.53.0
 
