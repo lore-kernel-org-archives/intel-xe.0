@@ -4,38 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55A88CD6E74
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 17:15:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5689CCD6E77
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 17:15:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 118EA11A1DD;
-	Thu,  4 Jun 2026 17:15:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08F7E11A1DF;
+	Thu,  4 Jun 2026 17:15:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="LC/PIWQq";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="EfNKzZ3J";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 337EC11A1D9
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 17:15:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79CC911A1DD
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 17:15:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1780593302;
- bh=dFPQRaHzSCbu6FjKDEcmQkybCau5hlhTFjVuZUKUgtM=;
+ s=default; t=1780593303;
+ bh=EZU9kHYes+8veWwr9bS0ra60LzeKJz7Xwp1ItOlVf9k=;
  h=From:To:Subject:Date:In-Reply-To:References:From;
- b=LC/PIWQqhh//D8+HgFOZWSM8U212nscEsrkwIXsrkrxpcqhjS8f5aThkJNe3emsgB
- 6fM9Wqa2QKybuo9vtag3YiuQN1cVyVIuS3KvgAkYIyLfZ0CBdl1F+8eDSnaTrztmrC
- xdHBL/wCjIlj+l+fJXAo1xNQf8tvmYiDDoV035J++NNKWsaahDZ3isvGvxTmR3yWNj
- HPzeDfoB+EaH9bELvZmUcoWK7e0lghfmwxaPGMXUxGyGcH5sfGY8Az9PY1NGwDUsm6
- mqrcCSrKJzZqIV/MiojbNlYK4MYO3El9oxa2uak2jUL1KmSSMVLfAfN4rCUfnpZQTW
- q5DoYI+SP87OQ==
+ b=EfNKzZ3Jx2V2H0wEKbKaXWiFsqKqVesjoIRPbvv0scOWlGR+Ju4GrT6KNt7EvRH5X
+ 9h8370wchrkWAW6bMbU/X2zZ1O/mu+V5j42PhMsrsSWMvnrHdkQkS3Y7HE+Tre+kgM
+ uofGvGqS9xaQmOp9CRSyGe2AeFIQ7Ergy3p2N4iMuUoZ6sw0YZmn8+mY1A3eDI6RhU
+ DhG3f9dggjuCd1e5dV/2gNUaviHnaVEMZDgpLNc1wCGYIX25VRPjA6p6l41wfNF0bB
+ PjlvoHJlhWWmNCumzKoBAVGvw2YLIglAOabbTBKCzuihMCf27FifrOQY4lF7kqqdIy
+ XuL0frK1Gaa6Q==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI v2 02/24] drm/xe: Add xe_migrate_update_pgtables_cpu_execute
- helper
-Date: Thu,  4 Jun 2026 19:14:38 +0200
-Message-ID: <20260604171502.84047-3-dev@lankhorst.se>
+Subject: [CI v2 04/24] drm/xe: Add job count to GuC exec queue snapshot
+Date: Thu,  4 Jun 2026 19:14:40 +0200
+Message-ID: <20260604171502.84047-5-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260604171502.84047-1-dev@lankhorst.se>
 References: <20260604171502.84047-1-dev@lankhorst.se>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -53,103 +51,51 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Matthew Brost <matthew.brost@intel.com>
 
-Add the xe_migrate_update_pgtables_cpu_execute helper, which performs
-the CPU-side page-table update. This will support implementing CPU
-binds, as the submission backend can call this helper once a bind job’s
-dependencies are resolved. While here, add assertions to provide basic
-sanity checks on tht function arguments.
+Add the job count to the GuC exec queue snapshot, as this is useful
+debug information.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Francois Dugast <francois.dugast@intel.com>
-Link: https://patch.msgid.link/20260228013501.106680-3-matthew.brost@intel.com
+Reviewed-by: Stuart Summers <stuart.summers@intel.com>
+Link: https://patch.msgid.link/20260228013501.106680-5-matthew.brost@intel.com
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_migrate.c | 58 ++++++++++++++++++++-------------
- 1 file changed, 35 insertions(+), 23 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_submit.c       | 2 ++
+ drivers/gpu/drm/xe/xe_guc_submit_types.h | 2 ++
+ 2 files changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index d63e977b0e528..cc92633809b6d 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -1800,6 +1800,38 @@ struct migrate_test_params {
- 	container_of(_priv, struct migrate_test_params, base)
- #endif
- 
-+static void
-+xe_migrate_update_pgtables_cpu_execute(struct xe_vm *vm, struct xe_tile *tile,
-+				       const struct xe_migrate_pt_update_ops *ops,
-+				       struct xe_vm_pgtable_update_op *pt_op,
-+				       int num_ops)
-+{
-+	u32 j, i;
-+
-+	for (j = 0; j < num_ops; ++j, ++pt_op) {
-+		for (i = 0; i < pt_op->num_entries; i++) {
-+			const struct xe_vm_pgtable_update *update =
-+				&pt_op->entries[i];
-+
-+			xe_tile_assert(tile, update);
-+			xe_tile_assert(tile, update->pt_bo);
-+			xe_tile_assert(tile, !iosys_map_is_null(&update->pt_bo->vmap));
-+
-+			if (pt_op->bind)
-+				ops->populate(tile, &update->pt_bo->vmap,
-+					      NULL, update->ofs, update->qwords,
-+					      update);
-+			else
-+				ops->clear(vm, tile, &update->pt_bo->vmap,
-+					   NULL, update->ofs, update->qwords,
-+					   update);
-+		}
-+	}
-+
-+	trace_xe_vm_cpu_bind(vm);
-+	xe_device_wmb(vm->xe);
-+}
-+
- static struct dma_fence *
- xe_migrate_update_pgtables_cpu(struct xe_migrate *m,
- 			       struct xe_migrate_pt_update *pt_update)
-@@ -1812,7 +1844,6 @@ xe_migrate_update_pgtables_cpu(struct xe_migrate *m,
- 	struct xe_vm_pgtable_update_ops *pt_update_ops =
- 		&pt_update->vops->pt_update_ops[pt_update->tile_id];
- 	int err;
--	u32 i, j;
- 
- 	if (XE_TEST_ONLY(test && test->force_gpu))
- 		return ERR_PTR(-ETIME);
-@@ -1824,28 +1855,9 @@ xe_migrate_update_pgtables_cpu(struct xe_migrate *m,
- 			return ERR_PTR(err);
- 	}
- 
--	for (i = 0; i < pt_update_ops->num_ops; ++i) {
--		const struct xe_vm_pgtable_update_op *pt_op =
--			&pt_update_ops->ops[i];
--
--		for (j = 0; j < pt_op->num_entries; j++) {
--			const struct xe_vm_pgtable_update *update =
--				&pt_op->entries[j];
--
--			if (pt_op->bind)
--				ops->populate(m->tile,
--					      &update->pt_bo->vmap, NULL,
--					      update->ofs, update->qwords,
--					      update);
--			else
--				ops->clear(vm, m->tile,
--					   &update->pt_bo->vmap, NULL,
--					   update->ofs, update->qwords, update);
--		}
--	}
--
--	trace_xe_vm_cpu_bind(vm);
--	xe_device_wmb(vm->xe);
-+	xe_migrate_update_pgtables_cpu_execute(vm, m->tile, ops,
-+					       pt_update_ops->ops,
-+					       pt_update_ops->num_ops);
- 
- 	return dma_fence_get_stub();
- }
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 4b247a3019d2d..1780fb975e83b 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -3171,6 +3171,7 @@ xe_guc_exec_queue_snapshot_capture(struct xe_exec_queue *q)
+ 	snapshot->logical_mask = q->logical_mask;
+ 	snapshot->width = q->width;
+ 	snapshot->refcount = kref_read(&q->refcount);
++	snapshot->jobcount = atomic_read(&q->job_cnt);
+ 	snapshot->sched_timeout = sched->base.timeout;
+ 	snapshot->sched_props.timeslice_us = q->sched_props.timeslice_us;
+ 	snapshot->sched_props.preempt_timeout_us =
+@@ -3243,6 +3244,7 @@ xe_guc_exec_queue_snapshot_print(struct xe_guc_submit_exec_queue_snapshot *snaps
+ 	drm_printf(p, "\tLogical mask: 0x%x\n", snapshot->logical_mask);
+ 	drm_printf(p, "\tWidth: %d\n", snapshot->width);
+ 	drm_printf(p, "\tRef: %d\n", snapshot->refcount);
++	drm_printf(p, "\tJob count: %d\n", snapshot->jobcount);
+ 	drm_printf(p, "\tTimeout: %ld (ms)\n", snapshot->sched_timeout);
+ 	drm_printf(p, "\tTimeslice: %u (us)\n",
+ 		   snapshot->sched_props.timeslice_us);
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit_types.h b/drivers/gpu/drm/xe/xe_guc_submit_types.h
+index 7824f61b12906..8271702e692e8 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_submit_types.h
+@@ -77,6 +77,8 @@ struct xe_guc_submit_exec_queue_snapshot {
+ 	u16 width;
+ 	/** @refcount: ref count of this exec queue */
+ 	u32 refcount;
++	/** @jobcount: job count of this exec queue */
++	u32 jobcount;
+ 	/**
+ 	 * @sched_timeout: the time after which a job is removed from the
+ 	 * scheduler.
 -- 
 2.53.0
 
