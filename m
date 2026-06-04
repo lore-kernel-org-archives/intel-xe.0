@@ -4,34 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8455DCD6E74
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 17:12:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0312BCD6E74
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 17:13:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D68D11A1D5;
-	Thu,  4 Jun 2026 17:12:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BD5211A1D8;
+	Thu,  4 Jun 2026 17:13:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="QD3miwyK";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="F+4fpcp4";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16BF211A1D5
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 17:11:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB10711A1D8
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 17:13:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1780593118;
- bh=P7Cfa37DpRvEN7RC8qV8JL1xzr9/McOcKLqN1/aDrhY=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=QD3miwyKeQitLlG5FHjV1GzvmF1dlRV/Ig7TwdWnMaIWj+CvEXgYbiVsVplMGu6C+
- MLaFj2Uh+ADuReosRjUP73y8Sm6eCvACZ7nrUvTXheuBvnjs9buKroRN0jbryeGWJk
- HLlGOVc7WAmc8ikXXIiKXOqmiPCN2CxLbeEAIoixK1nQ2j9ld43o+Tm/SVfCtGuDaz
- oLboAXYhBE9aZmYXpcqJeiNF7mtPOTUh5jOlyNEqMZBBEt/IWrnXzEOsRD/Ine2Ybt
- LnYjtSzgnzGK5rPAPgss4LKMVYzQtsQrMufGWbu8/Vaum8qbPZLs8sKYqd/Tm6fmF2
- 53UJXL2RvhVfg==
+ s=default; t=1780593198;
+ bh=bxsxNtNcFm86J5gk/XUsOpqpJVr0WZ9+aWLETMn8fRs=;
+ h=From:To:Subject:Date:In-Reply-To:References:From;
+ b=F+4fpcp4LaF/JUPgGCaKIaqGs9mDjvfIWPDLSXTFDcGnrdzk/GCoeqDOib7HoR9eK
+ 6gREMXSxieZVRrue6DCaHaUSUtMPMLeB5Kk5FIbIyEQ8W5R1LQRXH38T1PrOz6gSiQ
+ 3Csa9prMGwRfZK2RdobkvrlT1a23Wdpp5hzBHG+Ztyt3G+Cw1C5Hipxo98iJ7Nw4OH
+ F7r8tiolU/qZcbf1pstTCCttHEZEl9jTPGbypLHvcsMNqLmTgzs9/JzodScdmU8VKk
+ Vm361qDHmxqY3J80kGQVppxIbqYKT1uNPmu2BB2MZmV7zYtlf1QiPCxH/ZxxoJn88z
+ RihjJdiimG9Xg==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>,
- Maarten Lankhorst <dev@lankhorst.se>
 Subject: [CI v1.1] drm/xe: Add ULLS migration job support to migration layer
-Date: Thu,  4 Jun 2026 19:11:57 +0200
-Message-ID: <20260604171157.82892-1-dev@lankhorst.se>
+Date: Thu,  4 Jun 2026 19:13:20 +0200
+Message-ID: <20260604171320.83311-1-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260604160655.50036-21-dev@lankhorst.se>
 References: <20260604160655.50036-21-dev@lankhorst.se>
@@ -51,8 +49,6 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matthew Brost <matthew.brost@intel.com>
-
 Add function to enter ULLS mode for migration job and delayed worker to
 exit (power saving). ULLS mode expected to entered upon page fault or
 SVM prefetch. ULLS mode exit delay is currently set to 5us.
@@ -68,6 +64,7 @@ initial GuC / HW conetxt switch.
 Upon ULLS mode exit, send a job to trigger that current ULLS
 semaphore so the ring can be taken off the hardware.
 
+From: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Link: https://patch.msgid.link/20260228013501.106680-21-matthew.brost@intel.com
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
