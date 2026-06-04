@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49A7FCD6E75
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 20:16:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34F19CD6E75
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 20:25:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D8C31129B8;
-	Thu,  4 Jun 2026 20:16:34 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6506E1129B8;
- Thu,  4 Jun 2026 20:16:32 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id E20D611A2F3;
+	Thu,  4 Jun 2026 20:25:54 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l3HAEnrp";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 806D911A2F2;
+ Thu,  4 Jun 2026 20:25:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1780604754; x=1812140754;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=LEt/dJFVSJXBIJ+2oZM2oDiuvhwYMuN6wTpSfx6Q4wQ=;
+ b=l3HAEnrp5lofXYVveknNaj+1BpokHj7zmINDEXEWFbTGMah9YkZtWKWF
+ 6IaV204pIyuX5z3JClui6lg4efLcynEBfmIqfjEAZ7hZbkATEF0rT4y5I
+ AyAacLTAq7GuSAvCCGYkPuLt1ofgbVgpKfbu5XYX9stPxR8DwrZsNWwTR
+ mM/8RMXxNKGJcS8SxDVtK/sBMSadIWi3fijMxysogIARQwaM4N63M37Wc
+ yIUBecIzpQIwfoTsB1h1jVd9MLPyzu83qwLDE8b7iM+wnd/2vfPpCV6XF
+ +vuSDs07UPH/T6ACBxGPczUqbr3/kyhJRt6MWVQ71tA+QVJwty2RX6hFX w==;
+X-CSE-ConnectionGUID: bG1vVY32QvGq5GnwGMMGyQ==
+X-CSE-MsgGUID: /P+D9R0qSxeZ0OjuaQug/g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11807"; a="81184781"
+X-IronPort-AV: E=Sophos;i="6.24,187,1774335600"; d="scan'208";a="81184781"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2026 13:25:53 -0700
+X-CSE-ConnectionGUID: FViMblltSOuavhn4urqOxw==
+X-CSE-MsgGUID: aJCE1q5MTOGpwAOrxRB5JA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,187,1774335600"; d="scan'208";a="241659732"
+Received: from osgc-sh-dragon.sh.intel.com ([10.239.81.44])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2026 13:25:51 -0700
+From: Jonathan Cavitt <jonathan.cavitt@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
+ raag.jadav@intel.com
+Subject: [PATCH v2] drm/{i915,
+ xe}: Refactor generic_handle_irq_safe() error messages
+Date: Fri,  5 Jun 2026 04:25:48 +0800
+Message-ID: <20260604202548.3817343-1-jonathan.cavitt@intel.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/=7Bi915=2C_xe=7D=3A_Refact?=
- =?utf-8?q?or_generic=5Fhandle=5Firq=5Fsafe=28=29_error_messages?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 04 Jun 2026 20:16:32 -0000
-Message-ID: <178060419240.45116.16337426221286279347@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260604201005.3771198-1-jonathan.cavitt@intel.com>
-In-Reply-To: <20260604201005.3771198-1-jonathan.cavitt@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,117 +64,102 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Currently, all but one uses of generic_handle_irq_safe() report error
+messages using .*_err_ratelimited() error reporting helper functions.
+These helper functions declare their error messages in the following
+form:
 
-Series: drm/{i915, xe}: Refactor generic_handle_irq_safe() error messages
-URL   : https://patchwork.freedesktop.org/series/167909/
-State : failure
+"error handling [COMPONENT NAME] irq: %d\n"
 
-== Summary ==
+.*_err_ratelimited() already logs "error" as a part of the error
+message, so declaring the error is redundant.  Reword it.
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:In file included from ../include/linux/device.h:15,
-                 from ../include/drm/drm_print.h:31,
-                 from ../drivers/gpu/drm/xe/xe_i2c.c:8:
-../drivers/gpu/drm/xe/xe_i2c.c: In function ‘xe_i2c_irq_handler’:
-../include/drm/drm_print.h:645:22: error: passing argument 1 of ‘__drm_to_dev’ from incompatible pointer type [-Werror=incompatible-pointer-types]
-  645 |         __drm_printk((drm), err, _ratelimited, "*ERROR* " fmt, ##__VA_ARGS__)
-      |                      ^~~~~
-      |                      |
-      |                      char *
-../include/linux/dev_printk.h:110:25: note: in definition of macro ‘dev_printk_index_wrap’
-  110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
-      |                         ^~~
-../include/linux/dev_printk.h:215:17: note: in expansion of macro ‘dev_err’
-  215 |                 dev_level(dev, fmt, ##__VA_ARGS__);                     \
-      |                 ^~~~~~~~~
-../include/linux/dev_printk.h:225:9: note: in expansion of macro ‘dev_level_ratelimited’
-  225 |         dev_level_ratelimited(dev_err, dev, fmt, ##__VA_ARGS__)
-      |         ^~~~~~~~~~~~~~~~~~~~~
-../include/drm/drm_print.h:615:9: note: in expansion of macro ‘dev_err_ratelimited’
-  615 |         dev_##level##type(__drm_to_dev(drm), "[drm] " fmt, ##__VA_ARGS__)
-      |         ^~~~
-../include/drm/drm_print.h:645:9: note: in expansion of macro ‘__drm_printk’
-  645 |         __drm_printk((drm), err, _ratelimited, "*ERROR* " fmt, ##__VA_ARGS__)
-      |         ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_i2c.c:188:17: note: in expansion of macro ‘drm_err_ratelimited’
-  188 |                 drm_err_ratelimited("failed to handle i2c irq: %d\n", ret);
-      |                 ^~~~~~~~~~~~~~~~~~~
-../include/drm/drm_print.h:608:68: note: expected ‘const struct drm_device *’ but argument is of type ‘char *’
-  608 | static inline struct device *__drm_to_dev(const struct drm_device *drm)
-      |                                           ~~~~~~~~~~~~~~~~~~~~~~~~~^~~
-../drivers/gpu/drm/xe/xe_i2c.c:188:71: error: expected ‘)’ before ‘ret’
-  188 |                 drm_err_ratelimited("failed to handle i2c irq: %d\n", ret);
-      |                                                                       ^~~
-../include/linux/dev_printk.h:110:30: note: in definition of macro ‘dev_printk_index_wrap’
-  110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
-      |                              ^~~
-../include/linux/dev_printk.h:154:56: note: in expansion of macro ‘dev_fmt’
-  154 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
-      |                                                        ^~~~~~~
-../include/linux/dev_printk.h:215:17: note: in expansion of macro ‘dev_err’
-  215 |                 dev_level(dev, fmt, ##__VA_ARGS__);                     \
-      |                 ^~~~~~~~~
-../include/linux/dev_printk.h:225:9: note: in expansion of macro ‘dev_level_ratelimited’
-  225 |         dev_level_ratelimited(dev_err, dev, fmt, ##__VA_ARGS__)
-      |         ^~~~~~~~~~~~~~~~~~~~~
-../include/drm/drm_print.h:615:9: note: in expansion of macro ‘dev_err_ratelimited’
-  615 |         dev_##level##type(__drm_to_dev(drm), "[drm] " fmt, ##__VA_ARGS__)
-      |         ^~~~
-../include/drm/drm_print.h:645:9: note: in expansion of macro ‘__drm_printk’
-  645 |         __drm_printk((drm), err, _ratelimited, "*ERROR* " fmt, ##__VA_ARGS__)
-      |         ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_i2c.c:188:17: note: in expansion of macro ‘drm_err_ratelimited’
-  188 |                 drm_err_ratelimited("failed to handle i2c irq: %d\n", ret);
-      |                 ^~~~~~~~~~~~~~~~~~~
-../include/linux/dev_printk.h:110:24: note: to match this ‘(’
-  110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
-      |                        ^
-../include/linux/dev_printk.h:154:9: note: in expansion of macro ‘dev_printk_index_wrap’
-  154 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
-      |         ^~~~~~~~~~~~~~~~~~~~~
-../include/linux/dev_printk.h:215:17: note: in expansion of macro ‘dev_err’
-  215 |                 dev_level(dev, fmt, ##__VA_ARGS__);                     \
-      |                 ^~~~~~~~~
-../include/linux/dev_printk.h:225:9: note: in expansion of macro ‘dev_level_ratelimited’
-  225 |         dev_level_ratelimited(dev_err, dev, fmt, ##__VA_ARGS__)
-      |         ^~~~~~~~~~~~~~~~~~~~~
-../include/drm/drm_print.h:615:9: note: in expansion of macro ‘dev_err_ratelimited’
-  615 |         dev_##level##type(__drm_to_dev(drm), "[drm] " fmt, ##__VA_ARGS__)
-      |         ^~~~
-../include/drm/drm_print.h:645:9: note: in expansion of macro ‘__drm_printk’
-  645 |         __drm_printk((drm), err, _ratelimited, "*ERROR* " fmt, ##__VA_ARGS__)
-      |         ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_i2c.c:188:17: note: in expansion of macro ‘drm_err_ratelimited’
-  188 |                 drm_err_ratelimited("failed to handle i2c irq: %d\n", ret);
-      |                 ^~~~~~~~~~~~~~~~~~~
-cc1: some warnings being treated as errors
-make[7]: *** [../scripts/Makefile.build:289: drivers/gpu/drm/xe/xe_i2c.o] Error 1
-make[7]: *** Waiting for unfinished jobs....
-make[6]: *** [../scripts/Makefile.build:548: drivers/gpu/drm/xe] Error 2
-make[5]: *** [../scripts/Makefile.build:548: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:548: drivers/gpu] Error 2
-make[3]: *** [../scripts/Makefile.build:548: drivers] Error 2
-make[2]: *** [/kernel/Makefile:2143: .] Error 2
-make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
+The last usage of generic_handle_irq_safe() is in xe_i2c_irq_present(),
+and it currently lacks the same error reporting as in the other cases.
+This is not intentional, so put some logging here.
 
-[20:15:58] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[20:16:02] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+v2:
+- Use drm_err_ratelimited() correctly (jcavitt)
 
+Suggested-by: Raag Jadav <raag.jadav@intel.com>
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_lpe_audio.c | 2 +-
+ drivers/gpu/drm/i915/gt/intel_gsc.c            | 2 +-
+ drivers/gpu/drm/xe/xe_heci_gsc.c               | 4 ++--
+ drivers/gpu/drm/xe/xe_i2c.c                    | 5 ++++-
+ 4 files changed, 8 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_lpe_audio.c b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
+index 022ad18044bf..e756ed1d1132 100644
+--- a/drivers/gpu/drm/i915/display/intel_lpe_audio.c
++++ b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
+@@ -265,7 +265,7 @@ void intel_lpe_audio_irq_handler(struct intel_display *display)
+ 	ret = generic_handle_irq_safe(display->audio.lpe.irq);
+ 	if (ret)
+ 		drm_err_ratelimited(display->drm,
+-				    "error handling LPE audio irq: %d\n", ret);
++				    "failed to handle LPE audio irq: %d\n", ret);
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/i915/gt/intel_gsc.c b/drivers/gpu/drm/i915/gt/intel_gsc.c
+index 050d909fb4f8..c2d76b0bc5fe 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gsc.c
++++ b/drivers/gpu/drm/i915/gt/intel_gsc.c
+@@ -286,7 +286,7 @@ static void gsc_irq_handler(struct intel_gt *gt, unsigned int intf_id)
+ 
+ 	ret = generic_handle_irq_safe(gt->gsc.intf[intf_id].irq);
+ 	if (ret)
+-		gt_err_ratelimited(gt, "error handling GSC irq: %d\n", ret);
++		gt_err_ratelimited(gt, "failed to handle GSC irq: %d\n", ret);
+ }
+ 
+ void intel_gsc_irq_handler(struct intel_gt *gt, u32 iir)
+diff --git a/drivers/gpu/drm/xe/xe_heci_gsc.c b/drivers/gpu/drm/xe/xe_heci_gsc.c
+index 5af8903e10af..640db27137de 100644
+--- a/drivers/gpu/drm/xe/xe_heci_gsc.c
++++ b/drivers/gpu/drm/xe/xe_heci_gsc.c
+@@ -224,7 +224,7 @@ void xe_heci_gsc_irq_handler(struct xe_device *xe, u32 iir)
+ 
+ 	ret = generic_handle_irq_safe(xe->heci_gsc.irq);
+ 	if (ret)
+-		drm_err_ratelimited(&xe->drm, "error handling GSC irq: %d\n", ret);
++		drm_err_ratelimited(&xe->drm, "failed to handle GSC irq: %d\n", ret);
+ }
+ 
+ void xe_heci_csc_irq_handler(struct xe_device *xe, u32 iir)
+@@ -244,5 +244,5 @@ void xe_heci_csc_irq_handler(struct xe_device *xe, u32 iir)
+ 
+ 	ret = generic_handle_irq_safe(xe->heci_gsc.irq);
+ 	if (ret)
+-		drm_err_ratelimited(&xe->drm, "error handling GSC irq: %d\n", ret);
++		drm_err_ratelimited(&xe->drm, "failed to handle GSC irq: %d\n", ret);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_i2c.c b/drivers/gpu/drm/xe/xe_i2c.c
+index 706783863d07..fa5fdf3a1024 100644
+--- a/drivers/gpu/drm/xe/xe_i2c.c
++++ b/drivers/gpu/drm/xe/xe_i2c.c
+@@ -177,12 +177,15 @@ static bool xe_i2c_irq_present(struct xe_device *xe)
+ void xe_i2c_irq_handler(struct xe_device *xe, u32 master_ctl)
+ {
+ 	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
++	int ret;
+ 
+ 	if (!(master_ctl & I2C_IRQ) || !xe_i2c_irq_present(xe))
+ 		return;
+ 
+ 	/* Forward interrupt to I2C adapter */
+-	generic_handle_irq_safe(xe->i2c->adapter_irq);
++	ret = generic_handle_irq_safe(xe->i2c->adapter_irq);
++	if (ret)
++		drm_err_ratelimited(&xe->drm, "failed to handle i2c irq: %d\n", ret);
+ 
+ 	/* Deassert after I2C adapter clears the interrupt */
+ 	xe_mmio_rmw32(mmio, I2C_CONFIG_CMD, 0, PCI_COMMAND_INTX_DISABLE);
+-- 
+2.53.0
 
