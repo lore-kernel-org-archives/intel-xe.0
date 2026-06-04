@@ -4,32 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D57FCD6E7C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54A67CD6E4A
 	for <intel-xe@archiver.kernel.org>; Thu,  4 Jun 2026 16:07:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AF2111A163;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06D8B11A15F;
 	Thu,  4 Jun 2026 16:07:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="YKE0QVns";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="ESF0PjAg";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9016311A166
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 16:07:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F44011A15F
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Jun 2026 16:07:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1780589226;
- bh=Sl/BWUJaRB/XStak7cANW6je9gSsASNMkcVkkBCYLBY=;
+ s=default; t=1780589228;
+ bh=YepF2Q0vOz76U4rm4DKxbMzIE4DVgJ0JHzHdggmC9Z0=;
  h=From:To:Subject:Date:In-Reply-To:References:From;
- b=YKE0QVns9T3UDa0+6tYCxzxu010XROqD8HssmAhFP4NA5OETEU1mZaD41PAhYnAFw
- HhwuFGvK8w+AzhFLX3GkT173AbjywbpudAhcvSeg4Ky4ATai0aeOq+gY3moAjCubH3
- V9MAPMA0UGuhf8v+dO2FZ52am81VaaAnkhd4mxPL0banGFEuB0VJi/cM5STZq6Vrfm
- keR2ZpBxwObcK4H9LcRIK2zFLrl7nM/s0AhL00Ge/G33kL9Eo06JYn6lW+C53A7CrG
- XZUJY1J/eBGgo7tN+7Glc61nFthaM56Vj4nMaYJXZOIENn9po+emGgYBq4xsjPo/m7
- S5puvvK8pztnA==
+ b=ESF0PjAgyszmXCK+M8WF/PD3YuTTkacdBlriq7TDxg+0vK1kfzQ9+DuRCeQs9FBIX
+ lxvNwNYq4kxkO/ZeweJ/XEz+KBWoCaja069Kl2eapQH33vETKN31NTi7jicTyWj379
+ E5wuVoQtpnyTSYcfTvT3yjF0k11Rzdqu0vPJ6kx2GVi1LFp1XvEV2TMiYqMKzxoUA2
+ +QH8qwmhS7X9d2CjyxkNKqmaVVQL8ooJghua7Y7id624Zdf+gy/6vRGConxBzQADp1
+ rIUiwT5yC6tqJkqzq9FCC+TfWsSYWGa/CGtepEXqcMan3JnhQgyRVBimOBkDuZSknf
+ BAbNzDh2/zKrQ==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 19/24] drm/xe: Add ULLS support to LRC
-Date: Thu,  4 Jun 2026 18:06:48 +0200
-Message-ID: <20260604160655.50036-20-dev@lankhorst.se>
+Subject: [CI 22/24] drm/xe: Add ULLS migration job support to GuC submission
+Date: Thu,  4 Jun 2026 18:06:51 +0200
+Message-ID: <20260604160655.50036-23-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260604160655.50036-1-dev@lankhorst.se>
 References: <20260604160655.50036-1-dev@lankhorst.se>
@@ -51,131 +51,78 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Matthew Brost <matthew.brost@intel.com>
 
-Define memory layout for ULLS semaphores stored in LRC memory. Add
-support functions to return GGTT address and set semaphore based on a
-job's seqno.
+Add ULLS migration job support to GuC submission backend.
+
+Changes required:
+- On migration queue, reduce max jobs to the number of ULLS semaphores
+  minus one
+- Directly set the hardware engine tail via a MMIO write for ULLS jobs
+  except for first ULLS job
+- Set ULLS sempahore for current job releasing last job except for first
+  ULLS job
+- Suppress submit H2G for ULLS except for first ULLS job
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Link: https://patch.msgid.link/20260228013501.106680-20-matthew.brost@intel.com
+Link: https://patch.msgid.link/20260228013501.106680-24-matthew.brost@intel.com
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_lrc.c       | 51 +++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_lrc.h       |  3 ++
- drivers/gpu/drm/xe/xe_lrc_types.h |  4 +++
- 3 files changed, 58 insertions(+)
+ drivers/gpu/drm/xe/xe_guc_submit.c | 16 +++++++++++++---
+ 1 file changed, 13 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index a4292a11391d3..66f5704ce4454 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -706,6 +706,7 @@ u32 xe_lrc_pphwsp_offset(struct xe_lrc *lrc)
- #define LRC_CTX_JOB_TIMESTAMP_OFFSET 512
- #define LRC_ENGINE_ID_PPHWSP_OFFSET 1024
- #define LRC_PARALLEL_PPHWSP_OFFSET 2048
-+#define LRC_ULLS_PPHWSP_OFFSET 2048	/* Mutually exclusive with parallel */
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index cfb92866fc43e..4bd8fece40b0e 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1173,6 +1173,11 @@ static void submit_exec_queue(struct xe_exec_queue *q, struct xe_sched_job *job)
+ 	 */
+ 	q = xe_exec_queue_multi_queue_primary(q);
  
- #define LRC_SEQNO_OFFSET 0
- #define LRC_START_SEQNO_OFFSET (LRC_SEQNO_OFFSET + 8)
-@@ -768,6 +769,12 @@ static inline u32 __xe_lrc_engine_id_offset(struct xe_lrc *lrc)
- 	return xe_lrc_pphwsp_offset(lrc) + LRC_ENGINE_ID_PPHWSP_OFFSET;
- }
++	if (job->is_ulls && !job->is_ulls_first) {
++		xe_hw_engine_write_ring_tail(q->hwe, lrc->ring.tail);
++		xe_lrc_set_ulls_semaphore(lrc, xe_sched_job_lrc_seqno(job));
++	}
++
+ 	if (!exec_queue_enabled(q) && !exec_queue_suspended(q)) {
+ 		action[len++] = XE_GUC_ACTION_SCHED_CONTEXT_MODE_SET;
+ 		action[len++] = q->guc->id;
+@@ -1186,13 +1191,14 @@ static void submit_exec_queue(struct xe_exec_queue *q, struct xe_sched_job *job)
+ 		set_exec_queue_pending_enable(q);
+ 		set_exec_queue_enabled(q);
+ 		trace_xe_exec_queue_scheduling_enable(q);
+-	} else {
++	} else if (!job->is_ulls || job->is_ulls_first) {
+ 		action[len++] = XE_GUC_ACTION_SCHED_CONTEXT;
+ 		action[len++] = q->guc->id;
+ 		trace_xe_exec_queue_submit(q);
+ 	}
  
-+static u32 __xe_lrc_ulls_offset(struct xe_lrc *lrc)
-+{
-+	/* The ulls is stored in the driver-defined portion of PPHWSP */
-+	return xe_lrc_pphwsp_offset(lrc) + LRC_ULLS_PPHWSP_OFFSET;
-+}
-+
- static u32 __xe_lrc_ctx_timestamp_offset(struct xe_lrc *lrc)
- {
- 	return __xe_lrc_regs_offset(lrc) + CTX_TIMESTAMP * sizeof(u32);
-@@ -835,6 +842,7 @@ DECL_MAP_ADDR_HELPERS(ctx_job_timestamp, lrc->bo)
- DECL_MAP_ADDR_HELPERS(ctx_timestamp, lrc->bo)
- DECL_MAP_ADDR_HELPERS(ctx_timestamp_udw, lrc->bo)
- DECL_MAP_ADDR_HELPERS(parallel, lrc->bo)
-+DECL_MAP_ADDR_HELPERS(ulls, lrc->bo)
- DECL_MAP_ADDR_HELPERS(indirect_ring, lrc->bo)
- DECL_MAP_ADDR_HELPERS(engine_id, lrc->bo)
- DECL_MAP_ADDR_HELPERS(queue_timestamp, lrc->bo)
-@@ -1944,6 +1952,49 @@ static u32 xe_lrc_engine_id(struct xe_lrc *lrc)
- 	return xe_map_read32(xe, &map);
- }
+-	xe_guc_ct_send(&guc->ct, action, len, g2h_len, num_g2h);
++	if (!job->is_ulls || job->is_ulls_first || num_g2h)
++		xe_guc_ct_send(&guc->ct, action, len, g2h_len, num_g2h);
  
-+#define semaphore_offset(seqno) \
-+	(sizeof(u32) * ((seqno) % LRC_MIGRATION_ULLS_SEMAPORE_COUNT))
-+
-+/**
-+ * xe_lrc_ulls_semaphore_ggtt_addr() - ULLS semaphore GGTT address
-+ * @lrc: Pointer to the lrc.
-+ * @seqno: seqno of current job.
-+ *
-+ * Calculate ULLS semaphore GGTT address based on input seqno
-+ *
-+ * Returns: ULLS semaphore GGTT address
-+ */
-+u32 xe_lrc_ulls_semaphore_ggtt_addr(struct xe_lrc *lrc, u32 seqno)
-+{
-+	xe_assert(lrc_to_xe(lrc), semaphore_offset(seqno) <
-+		  LRC_PPHWSP_SIZE - LRC_ULLS_PPHWSP_OFFSET);
-+
-+	return __xe_lrc_ulls_ggtt_addr(lrc) + semaphore_offset(seqno);
-+}
-+
-+/**
-+ * xe_lrc_set_ulls_semaphore() - Set ULLS semaphore
-+ * @lrc: Pointer to the lrc.
-+ * @seqno: seqno of current job.
-+ *
-+ * Set ULLS semaphore based on input seqno
-+ */
-+void xe_lrc_set_ulls_semaphore(struct xe_lrc *lrc, u32 seqno)
-+{
-+	struct xe_device *xe = lrc_to_xe(lrc);
-+	struct iosys_map map = __xe_lrc_ulls_map(lrc);
-+
-+	xe_assert(xe, semaphore_offset(seqno) <
-+		  LRC_PPHWSP_SIZE - LRC_ULLS_PPHWSP_OFFSET);
-+
-+	xe_device_wmb(xe);	/* Ensure everything before in code is ordered */
-+
-+	iosys_map_incr(&map, semaphore_offset(seqno));
-+	xe_map_write32(xe, &map, LRC_MIGRATION_ULLS_SEMAPORE_SIGNAL);
-+
-+	xe_device_wmb(xe);	/* Flush write to hardware */
-+}
-+
- static int instr_dw(u32 cmd_header)
- {
- 	/* GFXPIPE "SINGLE_DW" opcodes are a single dword */
-diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-index 0a3a611391ee0..8688ecaccead1 100644
---- a/drivers/gpu/drm/xe/xe_lrc.h
-+++ b/drivers/gpu/drm/xe/xe_lrc.h
-@@ -120,6 +120,9 @@ void xe_default_lrc_update_memirq_regs_with_address(struct xe_hw_engine *hwe);
- void xe_lrc_update_memirq_regs_with_address(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 					    u32 *regs);
+ 	if (extra_submit) {
+ 		len = 0;
+@@ -2003,6 +2009,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+ 	struct xe_guc_exec_queue *ge;
+ 	long timeout;
+ 	int err, i;
++	int max_jobs = (xe_lrc_ring_size() / MAX_JOB_SIZE_BYTES);
  
-+u32 xe_lrc_ulls_semaphore_ggtt_addr(struct xe_lrc *lrc, u32 seqno);
-+void xe_lrc_set_ulls_semaphore(struct xe_lrc *lrc, u32 seqno);
+ 	xe_gt_assert(guc_to_gt(guc), xe_device_uc_enabled(guc_to_xe(guc)));
+ 
+@@ -2038,8 +2045,11 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+ 		submit_wq = primary->guc->sched.base.submit_wq;
+ 	}
+ 
++	if (q->vm && q->vm->flags & XE_VM_FLAG_MIGRATION)
++		max_jobs = min(max_jobs, LRC_MIGRATION_ULLS_SEMAPORE_COUNT - 1);
 +
- u32 xe_lrc_read_ctx_reg(struct xe_lrc *lrc, int reg_nr);
- void xe_lrc_write_ctx_reg(struct xe_lrc *lrc, int reg_nr, u32 val);
- 
-diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h b/drivers/gpu/drm/xe/xe_lrc_types.h
-index 53ef48feebfc9..8fe8b3511014a 100644
---- a/drivers/gpu/drm/xe/xe_lrc_types.h
-+++ b/drivers/gpu/drm/xe/xe_lrc_types.h
-@@ -12,6 +12,10 @@
- 
- struct xe_bo;
- 
-+#define LRC_MIGRATION_ULLS_SEMAPORE_COUNT	64	/* Must be pow2 */
-+#define LRC_MIGRATION_ULLS_SEMAPORE_CLEAR	0
-+#define LRC_MIGRATION_ULLS_SEMAPORE_SIGNAL	1
-+
- /**
-  * struct xe_lrc - Logical ring context (LRC) and submission ring object
-  */
+ 	err = xe_sched_init(&ge->sched, &drm_sched_ops, &xe_sched_ops,
+-			    submit_wq, xe_lrc_ring_size() / MAX_JOB_SIZE_BYTES, 64,
++			    submit_wq, max_jobs, 64,
+ 			    timeout, guc_to_gt(guc)->ordered_wq, NULL,
+ 			    q->name, gt_to_xe(q->gt)->drm.dev);
+ 	if (err)
 -- 
 2.53.0
 
