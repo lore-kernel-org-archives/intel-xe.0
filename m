@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FEDCCD6E7E
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Jun 2026 23:21:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1263DCD8C87
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Jun 2026 23:21:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D433111ABC8;
-	Fri,  5 Jun 2026 23:21:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5F4611ABCB;
+	Fri,  5 Jun 2026 23:21:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G9WN6KgY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q2ccFK1Q";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5009511ABBC
- for <intel-xe@lists.freedesktop.org>; Fri,  5 Jun 2026 23:21:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1ACF11ABBC
+ for <intel-xe@lists.freedesktop.org>; Fri,  5 Jun 2026 23:21:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1780701680; x=1812237680;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=kglvJEYvp3Y9kwUr0A+4eor+clw/asPGF/zzUOQ1O68=;
- b=G9WN6KgYyH8p36pCM6DAJQe/wckAB+MEw2krLTgZqLv26KhtT8N2q0SP
- QCyIfc6gENIkvxlmQ0seqS76VIT07Dgvlakw1X8BkpmGeUwvAcv6vgt26
- vQw1RhBSEupxAZeZiu8+vzWfndMMXSq6mCadJbOhiAlmbH55SlYUr97ra
- bUHIKwvTvRccluIMbcMaDdNHTdT+60bEXACcI+LI10wKeASH455h/8IeH
- 2glcDkMO9KKBujUQqxiyOn/gx9kbOSwK5KHEX7UAVm5gefQUt33aTFI33
- RdvFfzhK2lWR23CwcYhiMnVJBcl311SIbNgqHRHkDYwpwPT+HQriib8NZ Q==;
-X-CSE-ConnectionGUID: lIH2HcvVTSut2EVWJzU3aw==
-X-CSE-MsgGUID: s2M6qdACR7abHyEQ4EvmeA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11808"; a="81449686"
-X-IronPort-AV: E=Sophos;i="6.24,189,1774335600"; d="scan'208";a="81449686"
+ bh=6tZRIW6LuDmCf/5wULL8IKL7Y1QsoFm04dk9sbhdRTY=;
+ b=Q2ccFK1QdVshUcMOyPIoaWiDD9DodrFqfZizNJUarGuUbpjOK3L0YarX
+ +Moaz5+yXsEXBHoK+1osDAoNSFArCmmiDmR6Pmt41bE9mHQnAMfbtxw7h
+ hm+Y2j1SgEZIS5HZPMZnXb8gCzSG2hao1Ii/10/Pv0TL6a5szNwlRUl2H
+ Jglx+dU8eiMej2x07kEVB5/QdG2eMsOeKa2eesFfILLxDUiqm5s1QGL63
+ rGXZWhpL27FxwH9X29Qh8uqLqxFv//fNKvOsOUu9/rzjk/P9yKl65yDVH
+ nCzeX6BZNLcxXvid8ZbJaI72F9LMznyPqAzSIXAh5azkL9jQ3QOq1BoqI Q==;
+X-CSE-ConnectionGUID: R8LqZK6LTtqFmFk33beeXg==
+X-CSE-MsgGUID: jlPoMu6+TSK+TK3mivP3gQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11808"; a="81449680"
+X-IronPort-AV: E=Sophos;i="6.24,189,1774335600"; d="scan'208";a="81449680"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 16:21:20 -0700
-X-CSE-ConnectionGUID: ph++CDTwTBCkLe9HIEqiZg==
-X-CSE-MsgGUID: TwT8a2YGQhSuePlCIpxGjg==
+ 05 Jun 2026 16:21:19 -0700
+X-CSE-ConnectionGUID: rQVYduoSR7CkdnBBklZiRw==
+X-CSE-MsgGUID: wnmsHx5vTSyXtXlgvQx7Ig==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,189,1774335600"; d="scan'208";a="245018314"
+X-IronPort-AV: E=Sophos;i="6.24,189,1774335600"; d="scan'208";a="245018296"
 Received: from dut4385arlh.fm.intel.com ([10.105.8.91])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 16:21:20 -0700
+ 05 Jun 2026 16:21:19 -0700
 From: Stuart Summers <stuart.summers@intel.com>
 To: 
 Cc: michal.wajdeczko@intel.com, ilia.levi@intel.com, x.wang@intel.com,
  rodrigo.vivi@intel.com, intel-xe@lists.freedesktop.org,
  alan.previn.teres.alexis@intel.com,
  Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 11/12] drm/xe: Enable per-queue ufence wake in ioctl and wake
- function
-Date: Fri,  5 Jun 2026 23:21:18 +0000
-Message-ID: <20260605232108.674580-25-stuart.summers@intel.com>
+Subject: [PATCH 05/12] drm/xe: Add configfs max_msix_vecs attribute
+Date: Fri,  5 Jun 2026 23:21:12 +0000
+Message-ID: <20260605232108.674580-19-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260605232108.674580-14-stuart.summers@intel.com>
 References: <20260605232108.674580-14-stuart.summers@intel.com>
@@ -70,106 +69,213 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hook up the per-exec-queue user fence wait queue infrastructure
-introduced in the previous patches:
+Add a configfs attribute to cap the total number of MSI-X vectors used
+by the driver. This intends to cover all assigned vectors.
 
-- xe_wait_user_fence_wake(): if a specific user exec queue is supplied
-  (non-NULL, still alive), wake only that queue's ufence_wq.  If no
-  queue is supplied (default MSI-X vector), broadcast to xe->ufence_wq
-  and every queue in ufence_list so no waiter is missed.  Kernel queues
-  always use the default MSI-X vector and pass NULL, so any non-NULL @q
-  here is guaranteed to be a user queue.
+This let's us configure at runtime (prior to driver load) how many
+vectors we want to be able to allocate during driver runtime without
+changing anything in the PCIe capabilities. For VMWARE and other use
+cases where system-wide vector count is strictly maintained rather
+than per-device maximums, this helps provide this configurability
+by a system administrator.
 
-- xe_wait_user_fence_ioctl(): add and remove the wait entry on the
-  per-queue ufence_wq when a queue is provided, falling back to the
-  device-level ufence_wq otherwise.
+Example to cap the driver to 64 MSI-X vectors total:
+
+  # echo 64 > /sys/kernel/config/xe/0000:03:00.0/max_msix_vecs
 
 Signed-off-by: Stuart Summers <stuart.summers@intel.com>
 Assisted-by: Copilot:claude-sonnet-4.6
 ---
- drivers/gpu/drm/xe/xe_wait_user_fence.c | 44 +++++++++++++++++++------
- 1 file changed, 34 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/xe/xe_configfs.c | 71 ++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_configfs.h |  6 +++
+ drivers/gpu/drm/xe/xe_irq.c      |  5 ++-
+ 3 files changed, 81 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_wait_user_fence.c b/drivers/gpu/drm/xe/xe_wait_user_fence.c
-index 7c9d52b50580..1c14d89dff43 100644
---- a/drivers/gpu/drm/xe/xe_wait_user_fence.c
-+++ b/drivers/gpu/drm/xe/xe_wait_user_fence.c
-@@ -57,15 +57,39 @@ static int do_compare(u64 addr, u64 value, u64 mask, u16 op)
- /**
-  * xe_wait_user_fence_wake() - Wake user fence waiters
-  * @xe: the xe device
-- * @q: exec queue (reserved; per-queue wake-up is enabled in a later patch)
-+ * @q: exec queue whose user fence wait queue to wake, or NULL
+diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
+index 32102600a148..5dc1f8196fe1 100644
+--- a/drivers/gpu/drm/xe/xe_configfs.c
++++ b/drivers/gpu/drm/xe/xe_configfs.c
+@@ -237,6 +237,23 @@
   *
-- * Wakes all user fence waiters on the device-level wait queue.
-- * Per-exec-queue and ufence_list broadcast support are introduced in
-- * subsequent patches once the full infrastructure is in place.
-+ * If @q is non-NULL and still alive (a reference can be taken), wakes
-+ * only that queue's per-queue wait queue.  Kernel queues always use the
-+ * default MSI-X vector, which passes NULL here, so any non-NULL @q is
-+ * always a user queue.
+  * This setting only takes effect when probing the device.
+  *
++ * Max MSI-X exec queue vectors:
++ * ------------------------------
 + *
-+ * If @q is NULL (default MSI-X vector or sync path), wakes the device-level
-+ * wait queue and every per-exec-queue wait queue in ufence_list to ensure
-+ * no waiter is missed.
-  */
- void xe_wait_user_fence_wake(struct xe_device *xe, struct xe_exec_queue *q)
- {
--	wake_up_all(&xe->ufence_wq);
-+	/*
-+	 * Take a reference on the queue to guard against it being freed
-+	 * concurrently. xe_exec_queue_get_unless_zero() handles a NULL @q,
-+	 * so callers that don't specify a queue fall through to the broadcast.
-+	 */
-+	q = xe_exec_queue_get_unless_zero(q);
-+	if (q) {
-+		wake_up_all(&q->ufence_wq);
-+		xe_exec_queue_put(q);
-+	} else {
-+		struct xe_exec_queue *iter;
-+		unsigned long flags;
-+
-+		wake_up_all(&xe->ufence_wq);
-+
-+		spin_lock_irqsave(&xe->ufence_list_lock, flags);
-+		list_for_each_entry(iter, &xe->ufence_list, ufence_link)
-+			wake_up_all(&iter->ufence_wq);
-+		spin_unlock_irqrestore(&xe->ufence_list_lock, flags);
-+	}
++ * Limit the total number of MSI-X vectors used by the driver. This cap is
++ * applied at device init time and covers all vectors: GuC-to-host, the
++ * shared default HWE vector, and any per-exec-queue dedicated vectors.
++ * Once the cap is reached, no additional dynamic vectors can be allocated
++ * and exec queues fall back to sharing the default vector. The value must
++ * be a non-zero positive integer; the default matches the compile-time
++ * limit (XE_MSIX_MAX_VECS).
++ *
++ * This attribute can only be set before binding to the device.
++ *
++ * Example to cap the driver to 64 MSI-X vectors total::
++ *
++ *	# echo 64 > /sys/kernel/config/xe/0000:03:00.0/max_msix_vecs
++ *
+  * Remove devices
+  * ==============
+  *
+@@ -262,6 +279,7 @@ struct xe_config_group_device {
+ 		struct wa_bb ctx_restore_mid_bb[XE_ENGINE_CLASS_MAX];
+ 		bool survivability_mode;
+ 		bool enable_psmi;
++		unsigned int max_msix_vecs;
+ 		struct {
+ 			unsigned int max_vfs;
+ 			bool admin_only_pf;
+@@ -281,6 +299,7 @@ static const struct xe_config_device device_defaults = {
+ 	.engines_allowed = U64_MAX,
+ 	.survivability_mode = false,
+ 	.enable_psmi = false,
++	.max_msix_vecs = XE_MSIX_MAX_VECS,
+ 	.sriov = {
+ 		.max_vfs = XE_DEFAULT_MAX_VFS,
+ 		.admin_only_pf = XE_DEFAULT_ADMIN_ONLY_PF,
+@@ -794,6 +813,35 @@ static ssize_t wa_bb_store(struct wa_bb wa_bb[static XE_ENGINE_CLASS_MAX],
+ 	return len;
  }
  
- static long to_jiffies_timeout(struct xe_device *xe,
-@@ -122,9 +146,9 @@ static long to_jiffies_timeout(struct xe_device *xe,
-  * performed as (@addr & @mask) OP @value, where OP is one of the
-  * %DRM_XE_UFENCE_WAIT_OP_* operators.
-  *
-- * If an exec queue ID is provided, the wait is aborted early if the
-- * queue enters a reset state. The device-level wait queue is used for
-- * wakeups in all cases.
-+ * If an exec queue ID is provided, the wait is scoped to that queue's
-+ * per-queue wait queue and the wait is aborted early if the queue enters
-+ * a reset state. Otherwise the device-level wait queue is used.
-  *
-  * On return, @timeout is updated to reflect the remaining time (or zero
-  * on expiry), unless %DRM_XE_UFENCE_WAIT_FLAG_ABSTIME is set.
-@@ -170,7 +194,7 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
++static ssize_t max_msix_vecs_show(struct config_item *item, char *page)
++{
++	struct xe_config_device *dev = to_xe_config_device(item);
++
++	return sprintf(page, "%u\n", dev->max_msix_vecs);
++}
++
++static ssize_t max_msix_vecs_store(struct config_item *item, const char *page, size_t len)
++{
++	struct xe_config_group_device *dev = to_xe_config_group_device(item);
++	unsigned int max_msix_vecs;
++	int ret;
++
++	ret = kstrtouint(page, 0, &max_msix_vecs);
++	if (ret)
++		return ret;
++
++	if (!max_msix_vecs || max_msix_vecs > XE_MSIX_MAX_VECS)
++		return -EINVAL;
++
++	guard(mutex)(&dev->lock);
++	if (is_bound(dev))
++		return -EBUSY;
++
++	dev->config.max_msix_vecs = max_msix_vecs;
++
++	return len;
++}
++
+ static ssize_t ctx_restore_mid_bb_store(struct config_item *item,
+ 					const char *data, size_t sz)
+ {
+@@ -816,6 +864,7 @@ CONFIGFS_ATTR(, enable_psmi);
+ CONFIGFS_ATTR(, engines_allowed);
+ CONFIGFS_ATTR(, gt_types_allowed);
+ CONFIGFS_ATTR(, survivability_mode);
++CONFIGFS_ATTR(, max_msix_vecs);
  
- 	start = ktime_get();
+ static struct configfs_attribute *xe_config_device_attrs[] = {
+ 	&attr_ctx_restore_mid_bb,
+@@ -824,6 +873,7 @@ static struct configfs_attribute *xe_config_device_attrs[] = {
+ 	&attr_engines_allowed,
+ 	&attr_gt_types_allowed,
+ 	&attr_survivability_mode,
++	&attr_max_msix_vecs,
+ 	NULL,
+ };
  
--	add_wait_queue(&xe->ufence_wq, &w_wait);
-+	add_wait_queue(q ? &q->ufence_wq : &xe->ufence_wq, &w_wait);
- 	for (;;) {
- 		err = do_compare(addr, args->value, args->mask, args->op);
- 		if (err <= 0)
-@@ -203,7 +227,7 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
+@@ -1099,6 +1149,7 @@ static void dump_custom_dev_config(struct pci_dev *pdev,
+ 	PRI_CUSTOM_ATTR("%llx", engines_allowed);
+ 	PRI_CUSTOM_ATTR("%d", enable_psmi);
+ 	PRI_CUSTOM_ATTR("%d", survivability_mode);
++	PRI_CUSTOM_ATTR("%u", max_msix_vecs);
+ 	PRI_CUSTOM_ATTR("%u", sriov.admin_only_pf);
  
- 		timeout = wait_woken(&w_wait, TASK_INTERRUPTIBLE, timeout);
+ #undef PRI_CUSTOM_ATTR
+@@ -1277,6 +1328,26 @@ u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
+ 	return len;
+ }
+ 
++/**
++ * xe_configfs_get_max_msix_vecs - get configfs max_msix_vecs setting
++ * @pdev: pci device
++ *
++ * Return: maximum total number of MSI-X vectors the driver may use
++ */
++unsigned int xe_configfs_get_max_msix_vecs(struct pci_dev *pdev)
++{
++	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
++	unsigned int val;
++
++	if (!dev)
++		return device_defaults.max_msix_vecs;
++
++	val = dev->config.max_msix_vecs;
++	config_group_put(&dev->group);
++
++	return val;
++}
++
+ #ifdef CONFIG_PCI_IOV
+ /**
+  * xe_configfs_admin_only_pf() - Get PF's operational mode.
+diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
+index 07d62bf0c152..68115bff0fa0 100644
+--- a/drivers/gpu/drm/xe/xe_configfs.h
++++ b/drivers/gpu/drm/xe/xe_configfs.h
+@@ -10,6 +10,7 @@
+ 
+ #include "xe_defaults.h"
+ #include "xe_hw_engine_types.h"
++#include "xe_irq.h"
+ #include "xe_module.h"
+ 
+ struct pci_dev;
+@@ -29,6 +30,7 @@ u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
+ u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
+ 					enum xe_engine_class class,
+ 					const u32 **cs);
++unsigned int xe_configfs_get_max_msix_vecs(struct pci_dev *pdev);
+ #ifdef CONFIG_PCI_IOV
+ unsigned int xe_configfs_get_max_vfs(struct pci_dev *pdev);
+ bool xe_configfs_admin_only_pf(struct pci_dev *pdev);
+@@ -48,6 +50,10 @@ static inline u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
+ static inline u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
+ 						      enum xe_engine_class class,
+ 						      const u32 **cs) { return 0; }
++static inline unsigned int xe_configfs_get_max_msix_vecs(struct pci_dev *pdev)
++{
++	return XE_MSIX_MAX_VECS;
++}
+ #ifdef CONFIG_PCI_IOV
+ static inline unsigned int xe_configfs_get_max_vfs(struct pci_dev *pdev)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+index c84d2283dd6a..40d3d43e492f 100644
+--- a/drivers/gpu/drm/xe/xe_irq.c
++++ b/drivers/gpu/drm/xe/xe_irq.c
+@@ -11,6 +11,7 @@
+ 
+ #include "display/xe_display.h"
+ #include "regs/xe_irq_regs.h"
++#include "xe_configfs.h"
+ #include "xe_device.h"
+ #include "xe_drv.h"
+ #include "xe_exec_queue.h"
+@@ -896,7 +897,9 @@ static int xe_irq_msix_init(struct xe_device *xe)
+ 		return nvec;
  	}
--	remove_wait_queue(&xe->ufence_wq, &w_wait);
-+	remove_wait_queue(q ? &q->ufence_wq : &xe->ufence_wq, &w_wait);
  
- 	if (!(args->flags & DRM_XE_UFENCE_WAIT_FLAG_ABSTIME)) {
- 		args->timeout -= ktime_to_ns(ktime_sub(ktime_get(), start));
+-	xe->irq.msix.nvec = min_t(int, nvec, XE_MSIX_MAX_VECS);
++	xe->irq.msix.nvec =
++		min_t(int, nvec, xe_configfs_get_max_msix_vecs(pdev));
++
+ 	xa_init_flags(&xe->irq.msix.indexes, XA_FLAGS_ALLOC);
+ 	return 0;
+ }
 -- 
 2.43.0
 
