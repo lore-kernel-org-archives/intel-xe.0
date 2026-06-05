@@ -4,106 +4,161 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B1C4CD6E6B
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Jun 2026 07:32:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B2D8CD6E74
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Jun 2026 07:52:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCDE311A4E5;
-	Fri,  5 Jun 2026 07:32:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E3DDE11A52C;
+	Fri,  5 Jun 2026 07:52:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H8OBn7cH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lR4/zzs+";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A02411A4E5;
- Fri,  5 Jun 2026 07:32:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1E8C11A52C;
+ Fri,  5 Jun 2026 07:52:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780644726; x=1812180726;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=c30wbulhkBn1BOKZ95h66WcDcHsR2Lig8B6kzzR9otg=;
- b=H8OBn7cH6AHTYrDcGDteLGZttvV9k8zgMad/V+91OsGxJ5Glq2eF1dvk
- HJKZcqeJI+BVP4MKMOMLJ3vsDsJKqlIQ7icLBYbw0Nabqhgj5dAVHcRtW
- IPbX7P4ChofDiQw+iCdCDaUlgWJdbG13DHS8HRCGNjDB7WL2dVJ+2A0QN
- dio4ips4k5R0XGkryvEbAbUeakzyV1Sz2RpGAoIwUqrneaLDlr+H+CWN1
- e5myeq+vALf+7bOBvdMr+1YUxPC+fcWHVVWmGQ5AC/hsaK/JVmICTKvoB
- I8jCDkIc1iMElSz/Z1+WN9Ay2yJl2qOKsGAZ9qUi8UKPcTpC/tG/pEC/O w==;
-X-CSE-ConnectionGUID: 0jLShQzhSdm3AzmFUYqU4Q==
-X-CSE-MsgGUID: a9gj5KzKRz+z5/0xPy2ogg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11807"; a="69011999"
-X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="69011999"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 00:32:05 -0700
-X-CSE-ConnectionGUID: dgmCPLzkTKmMjNLLI2/dBg==
-X-CSE-MsgGUID: q1Bd7HPvQi+WKekTT+SBKg==
+ t=1780645950; x=1812181950;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=zEFwuLvhbT5sNAcqFgIa0PDFRqA4C3OxTSkvHBEKyC0=;
+ b=lR4/zzs+9nxup2RHKtqnspytXgcBhuZXYatLPz5O8Wi2n4YYkwxYrFSC
+ YU8LVFb8u/ptU+TdfZ+c1qhzIBGdCo5q9xKOhC8/2t3YS/ohdDwRuHbRk
+ KmK++23UPHvqz/2pZF9FDlXL4v5k7GwAI7/EQCmRni6iWq+MiAMUMiz0B
+ lXqiAlSLn8l4dlADMJ6SVNGYTe2UfE8gj3AG20h50JCtMyxh8r+R6TBRr
+ dlAv9TyGCY6kRhytkFYXQ9Qmuv9OGNndUDeFL5ioYOopZlg3A6QtmQbyE
+ Di4lGrkkcR9RDCfqp7KEu7Zp7BSn7Fjqp7G5NCA89G7OA6k7gDmmhmRgM A==;
+X-CSE-ConnectionGUID: CTNktW8vTQuWKJ3YZc2flQ==
+X-CSE-MsgGUID: Z/XTWRnZQl6hZetQSgvOUA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11807"; a="80515657"
+X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="80515657"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2026 00:52:29 -0700
+X-CSE-ConnectionGUID: RjKn/e3YQJavTXq1A8ypdw==
+X-CSE-MsgGUID: Q3rf4EbkRgG73Hix9HZJwg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="249704712"
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.245.178])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 00:31:50 -0700
-Date: Fri, 5 Jun 2026 10:31:48 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: "Peter Chen (CIX)" <peter.chen@kernel.org>
-Cc: Bartosz Golaszewski <brgl@kernel.org>, Lee Jones <lee@kernel.org>,
- Mark Brown <broonie@opensource.wolfsonmicro.com>,
- Thierry Reding <thierry.reding@avionic-design.de>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Srinivas Kandagatla <srini@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Vinod Koul <vkoul@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,
- Saravana Kannan <saravanak@kernel.org>,
- Madhavan Srinivasan <maddy@linux.ibm.com>,
- Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>,
- "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
- Andi Shyti <andi.shyti@kernel.org>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Doug Berger <opendmb@gmail.com>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Ulf Hansson <ulfh@kernel.org>, Frank Li <Frank.Li@nxp.com>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Paul Cercueil <paul@crapouillou.net>, Bin Liu <b-liu@ti.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Maximilian Luz <luzmaximilian@gmail.com>, Hans de Goede <hansg@kernel.org>,
- Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Krzysztof Kozlowski <krzk@kernel.org>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
- driver-core@lists.linux.dev, devicetree@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, linux-i2c@vger.kernel.org,
- iommu@lists.linux.dev, linux-pm@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-usb@vger.kernel.org, linux-mips@vger.kernel.org,
- platform-driver-x86@vger.kernel.org,
- Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Subject: Re: [PATCH 20/23] usb: chipidea: use
- platform_device_set_of_node_from_dev()
-Message-ID: <aiJ7ZB-J-TyJEwBb@ashevche-desk.local>
-References: <20260521-pdev-fwnode-ref-v1-0-88c324a1b8d2@oss.qualcomm.com>
- <20260521-pdev-fwnode-ref-v1-20-88c324a1b8d2@oss.qualcomm.com>
- <ah9P6Xt9SyKgc2oJ@ashevche-desk.local>
- <CAMRc=MdhjZhGL9tEx9WEjn2f95d=ObNM0AtBNpcevm6aHgpj+Q@mail.gmail.com>
- <aiJz6Ys4gE998ULp@nchen-desktop>
+X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="268709665"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2026 00:52:29 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Fri, 5 Jun 2026 00:52:29 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Fri, 5 Jun 2026 00:52:29 -0700
+Received: from PH7PR06CU001.outbound.protection.outlook.com (52.101.201.5) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Fri, 5 Jun 2026 00:52:27 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=hYHFW3y85HJec0SmkuuL4xzTybXjsaaxNld+SXgkAD/av6ER4ZgdI8RiUS+Vzve/UEw0Rt90Q1WjgVRtyH+DEoBTPxWhQzM2GbS3nyrKuqxquMBfyS28RAfsE3ENStjwMP5tgFVvizvtGeBm0snVi9MD1pD87AtacaeVQCZLgojgR1bhKn/AxbCAWjmsWntoVaxF/id7k6SDR7/kB2DkhUUSOh0zMiMTxO6pprIWujj0YQJ+UTDW36Ku0SPtE1bMAQ7QzCGoq1yCOiw3c960eQtn7G6q68IVDHnQqZnmBFF2JLt26+VtI3XafVPXeujEkuOT5Mc/BmRpKQcEJBwJBA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=x2fLStkG6LwoG/cQacKN74a/WL052/2VL7AqfkxB05s=;
+ b=kgSMTHzhcIPugJbPFCSQpRG0Bximy909DKuJIP9KSIdKVEgwcgN5BjqXG2AyRXSXKVmoYFdbV3WQeSn7pGY/NajwmeO5kM0BKcFropYPy8jeYAOrNtJF3AvrX75cE/SXzvoB96WxOyXHipWgqIrKrr3Grd1Ajq+HMaQ/6bagF6BT2Olwt7q2gNWWttiHWj2hcL6KcyD2okQhemZDenLd8+MQBKNEGH58qJlobouLPJ6wR03m9mhZJOFimX8ZfZYoBI2TPcn02wud25BezKoey2BdIMoU9cyLsYVNWaxGP/9W+qeKrjk9BCTHeHidzXe8Wxj7hkTMEvOCKhJZwC9hSg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB7183.namprd11.prod.outlook.com (2603:10b6:8:111::10)
+ by BL1PR11MB5320.namprd11.prod.outlook.com (2603:10b6:208:316::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.9; Fri, 5 Jun 2026
+ 07:52:21 +0000
+Received: from DM4PR11MB7183.namprd11.prod.outlook.com
+ ([fe80::d9c7:d2fb:680d:1ee1]) by DM4PR11MB7183.namprd11.prod.outlook.com
+ ([fe80::d9c7:d2fb:680d:1ee1%5]) with mapi id 15.21.0092.006; Fri, 5 Jun 2026
+ 07:52:21 +0000
+Message-ID: <559c9705-f959-4fe7-9c77-1247b86a3222@intel.com>
+Date: Fri, 5 Jun 2026 13:22:12 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] drm/i915/display: Mask RO bits in gen9_write_dc_state()
+To: Jani Nikula <jani.nikula@linux.intel.com>, <imre.deak@intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <uma.shankar@intel.com>
+References: <20260601090131.1840805-1-dibin.moolakadan.subrahmanian@intel.com>
+ <20260602113134.2477070-1-dibin.moolakadan.subrahmanian@intel.com>
+ <9de0611a934b0a1fcfbcb5b78822611ee45cb2b9@intel.com>
+ <aiATv_6EYar1AQHX@ideak-desk.lan>
+ <2b4a8d43bf1e2c5c578d9a3fe93c3da932bb9742@intel.com>
+Content-Language: en-US
+From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+In-Reply-To: <2b4a8d43bf1e2c5c578d9a3fe93c3da932bb9742@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA5P287CA0126.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1d0::7) To DM4PR11MB7183.namprd11.prod.outlook.com
+ (2603:10b6:8:111::10)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aiJz6Ys4gE998ULp@nchen-desktop>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB7183:EE_|BL1PR11MB5320:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6a3e8ffe-ed6f-49b9-bc7f-08dec2d75f62
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|1800799024|376014|11063799006|56012099006|4143699003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: BsT/jgmtuKxkEu/iFImrDSLYuNrAdArPbekCGCEo2fizezaBeOyYoaAKDa6TCxH4MXmePVArHSlKtUWw1rfUfGynlIiUBK2JdUTefyeb2yR2FfBjQ7RbtNwiqDOqoQFPtK0ApgxIM1KMFsIrcrawwN0aFmm0oBHL7riNFE3FDY9gtcNDRRhJ0wekHuAxJMgIvVtsMqKHLImr8DO5H4A0O4P8XdtsZfre4Gzs41QrF4ffLlLwqL5plreIYsXHxZbXiWzB03j4wddKKyQ/SyoWABxWF1+nrTsee57C85eHtbAF61ZMA+hAkLJFQpTotvZVAjFQIYjAW31sqnp8mJVk3A1DrMhsKvLKyP1FHVi2VYgO0kl914X0uvpL0aryDkTJYpriBhcmBihOhhiHXGRm6IZVzNRMoQchfDvlal3G8aairGoDQPzlBuvFW9kGT1sTJh5T0Zv4XD7qyakFowpYME3IpR58nAnAqGRZVmphWespBqOmzAeycP3ETyf4bNazHgsaoIcBPyjDrsmAtm/twZBSFneyA2jci+Qmr+t5MrxMbVL/YFjRrRCvP6DI9jsrwDoJw+kAve3GDLfS+a2aR3hRnDsHDZX/lMFO6Q9qSOnAsu972rN4wv5wn8tqXnLF1psShW2t6ElLTo+KFGtOqezWvK/64Y4hdk6l3bIDgOv4VzigdfWcC2uCAAh9Zewm
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB7183.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(11063799006)(56012099006)(4143699003)(18002099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dTRENkYvQzFxd0JVZUNueGU1WFYvbStzOWNJK2pRdGZmOXNSUVUxOE9tMTRN?=
+ =?utf-8?B?SzNzeW9YWWluK1pjMFN5WXRLV1dRejNJQUQ5UzlrbW1BRTN0UTVIbDh0S2tY?=
+ =?utf-8?B?TUJKb0lIR3lJOU5WQ1lYbE50djhoR2ZLMkg3RmZWb0hDdmo4b21VbzBsRDBK?=
+ =?utf-8?B?NVB5WE5QWE9ZYjNLZ0tZQVR1NXFqajNFMjM1RHFueURvdXZkOGhZTjNSeHh5?=
+ =?utf-8?B?MTlIZDU5ZkNBNmJiaENOQmtsM2hKQWdKSjkzQktvUnBpaWRGbm1yYWpmWlN5?=
+ =?utf-8?B?TmhDOEkrMVlOK3p6M01JL2VuZjVSa3RzZzlBYnl0THlOYWpjVmhKWjZkZER4?=
+ =?utf-8?B?TE5ScG5aZWI5aUJZNVc2TkZiY05lenNsM3dyeHVPRS8yNFk4QmpiOVFIRmtO?=
+ =?utf-8?B?d3Q1M3crNWNhNDZkRThNcjlLZWJGSzVDbTczZUsyMEVOTjJ4SmgrdWZSTjJz?=
+ =?utf-8?B?elBzd0gwTlZ4RVVEQWgyekZsTkpFdkd5MXBKZHI2TEYvTnc3cU9YTHBmTEw5?=
+ =?utf-8?B?NFZFMkp0TWJGZlM0bDNDbXBSRC90NUswMHQwdnJoQWd4TExydjJ1UmgrTUVG?=
+ =?utf-8?B?Ukh4aTZhakxiMjU5djVJWmVwNEVPazZuNVVyc29nN1RiUkpjY2RQT2hINjQ5?=
+ =?utf-8?B?RFJWcjdSa1NuUm56a1VXYlJzN1FnM3MzZlZpVWxvRFRMQUsvT1FSWC9VOHhl?=
+ =?utf-8?B?ZC91UzNBSzBYUGdPaW1UM1c0WDBSOTVQY21YQzlTdHJ3REhDdFc0ZVFjQlcx?=
+ =?utf-8?B?cSszKzhUdHQ0V01XbEZJZU0wQ3pqcGkxQWdyTkhsOEhrMkt6OHZlMWw1VElp?=
+ =?utf-8?B?aWZ1d1FwZE9FUkN5ejUvUm16a3M1RGlxMmVFWk5wME5UYVg2dTJMUlFMbG85?=
+ =?utf-8?B?cFVCaUdFYzdaV1FUdkNxRGgyNmVOdkk3ZkxsVE11eEQ0MTM0SmVRVlZpNExF?=
+ =?utf-8?B?N1lPNnVWU2VVdGhqY1ZUR1lKMDMyeElmOFRDakpNUHZKM2hKQ2Ixd25ObjRa?=
+ =?utf-8?B?d2xqc3FsZ2l0YjdkOW92cFZQOUYxUHJPdC9LVkpaMlN0ZExtVlRkSzh4b2p2?=
+ =?utf-8?B?RU1DQzQxemdwTkgwVDhsU2VQZXp0a0JjMWZ5Vy9PQzhWQloxU00vNGRoaFMx?=
+ =?utf-8?B?TkNkOXNUNmh4RWM0S0c4SnpJSlZHellrR0FXZlhxeUlOa2xleHlVc1F6QlZM?=
+ =?utf-8?B?anMwYjJ3YU9OTklFQkdTSTJHZUkxeWpXcXJOaGpQNWpqelpNVFNSSEQ3MSta?=
+ =?utf-8?B?UUxCWS8xU1RBbys5aDRCSGQ1aG1wRHIvdkU2V1c4citEalk2QkZJUVFxa1Z5?=
+ =?utf-8?B?a1c0UUYwVEtCTTRyNmhIMEhwNlRSUHNpZFpkbXZidGUzeFBSZHpUdXFDamMr?=
+ =?utf-8?B?OEFEUUpMajFwUXpObkNLS3BsUXJjNXlGZDgzZzI0MmxUalp6SFI0cytKNzRj?=
+ =?utf-8?B?WlJFM2kzb2VIQXRCbHljdkRLMW1TWFUvMWdCWWF4NWNGVjJON3h4RmQxK3Iv?=
+ =?utf-8?B?NDgrdWpzd3BWR1VIVy9qY0ZDV0M0allnZUtTSFBVSFBoUUNzRzhnZ0pISUk1?=
+ =?utf-8?B?eXZ2anRSMVN3cExTa1BRb2Z0elhMNmQ3Q2dQYjU1UTlxVVRTeGRjcktJRW1S?=
+ =?utf-8?B?ZWFBTWhmcEhhdkhJdFB5NisrSmdCL3BkODF5R3Ixckp5cUZpTTE3OUNpZ3Vq?=
+ =?utf-8?B?YlRldWQ4a0JyUGZTY2duY2M2NzhYSlF0QkgxYXVITkxPOTg5aHp5TFdjMXNW?=
+ =?utf-8?B?OWRZMDRzaUFURWlmQ2dYSm8yUURCdGR0T1lLNXRZTDVhb3BRb1R4Mjg0UXJB?=
+ =?utf-8?B?Q1F1T0VkRjNJMmZNWldMTjd0MFNJRU1KS0JrUzA4OHpRa1JGaC9RZWJ2Q29F?=
+ =?utf-8?B?bkJNWEVCZTdTelR4d3ZJcW1UUk1nLy9CclZ2QkZoMmZQcERxdDZlRXpNQVpq?=
+ =?utf-8?B?Q2dKOXg1a3ByeGZTeGxVTnQ0amU5N2ozUGVyMFlWY1I1M2dwNmQ1eHp1WjEv?=
+ =?utf-8?B?V1N3RitaUmRUSmVqVVJxb01WYnNvSU96d3o0b3RDbEY4c3ArK3ZPSFhKVis3?=
+ =?utf-8?B?QVRLNjV0TEhoa3NVeXRPM2cvOUd0K1ZFREF2Vk1lVklXRDFzV2hLMm1waVox?=
+ =?utf-8?B?NUtPTUtjMXQ3KzhYN1lPajU1ZFNZRlZlYmR1dTdjL0JEOHBlOGhmMXZ0aytr?=
+ =?utf-8?B?RitIazZrS21jVnJ1MkJ3UnhKSWN4cDUrUVVqTnBPYmpPTU5ZQ3ZIQ0JYaHJD?=
+ =?utf-8?B?NHIxSVZuMGF4MmdPeEk2a3M3dm1Sam1kM3FEeEdVR0NTMjBRNmo4OW5sT1Yz?=
+ =?utf-8?B?bUE4cDZ3c0lGNzUwOVBUakFZMUpkdEtwZ3lOUm9LQ1J3OXZnTjNYRmpUME01?=
+ =?utf-8?Q?GvG87WwCh643MVokGPzIeVlnblcQ3ybwme0It?=
+X-Exchange-RoutingPolicyChecked: eYrjaowHDRsuPP0QdoC2NIIvBGDbhqN9EQKBVha39Q4d++dPlcNfjv3EZaMvwi4GR3ppBMFnyRCyZEdG4HUL7kVDnPn4RwwHMQUovK+6oDByFpE9GsYUuvSmByj2kjPSPH4Ec5P2cuNr/tN8yZajH/CaM/cobSS595JvGD3H1Gw3bi19k4KGNjdNCZR0Oy55cAjn4fCGmAYVe1SVFeeW7oIY6bQvOpXZMPHQaxtW1fGPEUQIOtsFR5R2Iwxv68sRgoc9TiqUZWCXwqrGgA7hfY3314t4I2UBfOpo02jlg0/hkDiedx++Y9ViUPZ7wN5ofvz9s1Yap84Mhn158UGoxA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6a3e8ffe-ed6f-49b9-bc7f-08dec2d75f62
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7183.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jun 2026 07:52:21.2627 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: StIyK0u3r9pjJ/OKKprhwGifXI305zvtltfRZdfJLiLn405eY275nGOC7+gNZRpbaiAa0nJjZgwpxXJM/qYPbEM45ifCpg/dwjdP2+EvvcE0HvIyfZgCCU1gjOwLzkTi
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5320
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -118,42 +173,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jun 05, 2026 at 02:59:53PM +0800, Peter Chen (CIX) wrote:
-> On 26-06-04 08:34:16, Bartosz Golaszewski wrote:
-> > On Tue, 2 Jun 2026 23:49:29 +0200, Andy Shevchenko
-> > <andriy.shevchenko@linux.intel.com> said:
-> > > On Thu, May 21, 2026 at 10:36:43AM +0200, Bartosz Golaszewski wrote:
+On 6/3/2026 8:46 PM, Jani Nikula wrote:
+> On Wed, 03 Jun 2026, Imre Deak <imre.deak@intel.com> wrote:
+>> On Wed, Jun 03, 2026 at 11:30:04AM +0300, Jani Nikula wrote:
+>>> On Tue, 02 Jun 2026, Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com> wrote:
+>>>> +static u32 dc_state_ro_mask(struct intel_display *display)
+>>>> +{
+>>>> +	if (DISPLAY_VER(display) >= 20)
+>>>> +		return BIT(10) | BIT(11);
+>>>> +	else if (DISPLAY_VER(display) >= 13 && !display->platform.dg2)
+>>>> +		return BIT(10);
+>>> Register contents need to be defined next to the register definition.
+>>>
+>>> But even so, the caller already has the mask we want to change, I
+>>> already suggested passing that in. What's wrong with that?
+>> The mask used by the caller only contains the bits which the driver
+>> changes. However I would like to know that writing all the other bits in
+>> the register also take their effect, reflected by the read-back after the
+>> write.
+> Fair enough. The first comment still stands, let's not hardcode the bits
+> here inline.
 
-...
+Thank you Imre, Jani for confirming mask logic.
+I will keep the mask logic as is for next version and add bit definitions
+next to DC_STATE_EN register.
 
-> > >>  	pdev->dev.parent = dev;
-> > >> -	device_set_of_node_from_dev(&pdev->dev, dev);
-> > >> +	platform_device_set_of_node_from_dev(pdev, dev);
-> > >
-> > > Why do they even do that? Do they have a USB connected pin control?
-> > 
-> > I don't know. I can't test it so I don't want to break it. If they don't need
-> > it, the person who can test it, can remove it later.
-> 
-> It was introduced by below commits:
-> 
-> commit 0f153a1b8193ce768be4df0400aeb2c8f2a3b3da
-> Author: Rob Herring <robh@kernel.org>
-> Date:   Wed Dec 15 16:56:46 2021 -0600
-> 
->     usb: chipidea: Set the DT node on the child device
-> 
->     The ChipIdea glue drivers just copy the glue resources to the "ci_hdrc"
->     child device. Instead, set the child device's DT node pointer to the
->     parent device's node so that platform_get_irq() can find the IRQ
->     resources in the DT. This removes the need for statically populating the
->     IRQ resources from the DT which has been deprecated for some time.
-
-This doesn't explain why the node marked as reused. device_set_node() fits
-the above description. Rob?
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+> BR,
+> Jani.
+>
+>
 
