@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D76F5CD6E5D
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Jun 2026 11:29:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9F75CD6E5D
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Jun 2026 11:29:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E72B10E596;
-	Fri,  5 Jun 2026 11:29:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A48410E5A9;
+	Fri,  5 Jun 2026 11:29:36 +0000 (UTC)
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6695C10E546;
- Fri,  5 Jun 2026 11:29:24 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53ECB10E5A9;
+ Fri,  5 Jun 2026 11:29:35 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8610874140679074828=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Introduce_Xe_Uncorrectable_Err?=
- =?utf-8?q?or_Handling_=28rev7=29?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/rtp=3A_Fix_build_err?=
+ =?utf-8?q?or_with_clang_=3C_21_and_non-const_initializers?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Riana Tauro" <riana.tauro@intel.com>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 05 Jun 2026 11:29:24 -0000
-Message-ID: <178065896441.47432.16964839534668595860@6beec6c84f66>
+Date: Fri, 05 Jun 2026 11:29:35 -0000
+Message-ID: <178065897533.46540.2898211876533824878@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260605093446.4189929-17-riana.tauro@intel.com>
-In-Reply-To: <20260605093446.4189929-17-riana.tauro@intel.com>
+References: <20260605093305.110598-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20260605093305.110598-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,42 +40,102 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============8610874140679074828==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: Introduce Xe Uncorrectable Error Handling (rev7)
-URL   : https://patchwork.freedesktop.org/series/160482/
-State : failure
+Series: drm/xe/rtp: Fix build error with clang < 21 and non-const initializers
+URL   : https://patchwork.freedesktop.org/series/167940/
+State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:../drivers/gpu/drm/xe/xe_ras.c: In function ‘aer_unmask_and_downgrade_internal_error’:
-../drivers/gpu/drm/xe/xe_ras.c:506:24: error: ‘struct pci_dev’ has no member named ‘aer_cap’; did you mean ‘ats_cap’?
-  506 |         aer_cap = usp->aer_cap;
-      |                        ^~~~~~~
-      |                        ats_cap
-make[7]: *** [../scripts/Makefile.build:289: drivers/gpu/drm/xe/xe_ras.o] Error 1
-make[7]: *** Waiting for unfinished jobs....
-make[6]: *** [../scripts/Makefile.build:548: drivers/gpu/drm/xe] Error 2
-make[5]: *** [../scripts/Makefile.build:548: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:548: drivers/gpu] Error 2
-make[3]: *** [../scripts/Makefile.build:548: drivers] Error 2
-make[2]: *** [/kernel/Makefile:2143: .] Error 2
-make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
+CI Bug Log - changes from xe-5208-e3821511385af9b3b404fe878418937eec48de9f_BAT -> xe-pw-167940v1_BAT
+====================================================
 
-[11:28:50] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[11:28:54] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5208-e3821511385af9b3b404fe878418937eec48de9f -> xe-pw-167940v1
+
+  IGT_8949: 8949
+  xe-5208-e3821511385af9b3b404fe878418937eec48de9f: e3821511385af9b3b404fe878418937eec48de9f
+  xe-pw-167940v1: 167940v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167940v1/index.html
+
+--===============8610874140679074828==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/rtp: Fix build error with clang &lt; 21 and non-const initializers</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167940/">https://patchwork.freedesktop.org/series/167940/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167940v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167940v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5208-e3821511385af9b3b404fe878418937eec48de9f_BAT -&gt; xe-pw-167940v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5208-e3821511385af9b3b404fe878418937eec48de9f -&gt; xe-pw-167940v1</li>
+</ul>
+<p>IGT_8949: 8949<br />
+  xe-5208-e3821511385af9b3b404fe878418937eec48de9f: e3821511385af9b3b404fe878418937eec48de9f<br />
+  xe-pw-167940v1: 167940v1</p>
+
+</body>
+</html>
+
+--===============8610874140679074828==--
