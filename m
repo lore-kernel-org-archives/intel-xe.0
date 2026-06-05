@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0698CD6E7B
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Jun 2026 10:41:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 573D7CD6E7B
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Jun 2026 10:49:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A64611A728;
-	Fri,  5 Jun 2026 10:41:21 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NJ3Li/B6";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A06F11A727;
- Fri,  5 Jun 2026 10:41:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780656080; x=1812192080;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version:content-id;
- bh=Sx6lVU1L+Zsw3CUHvXxA70jueTljn6iEkxjyHDTVScs=;
- b=NJ3Li/B6XKRGLy/ttzsi8jvcx6KA+R1e4yy6Kbc3VeMjLXJqvRdZWi3c
- 4d4XEHQrmBzYNaZEkfwM9+IoUh0DHPx0Af17mrpgbetmAxmZiR/DI1K4j
- wDF82xHWrykdqJ3jpoHGALBQEzZponfyDTUlt1WcCAncjN3vJzWhIDVlJ
- FXCluZeU8daEFff8qHHdp52TmkN2LFhOQIeC/k9f2F0xVQVxh8RtHCy4u
- Zb0S22AKF0mtnhOT1nS+F+KO9QIwwyU5Cf/K5CIVkCj2e2sZDyDS9yLBV
- BMJRtg6nQ8Lr+p8/W9naDhGCxyRrpnfOmXxAo3X+9YFg7OlRoazgrAiWL g==;
-X-CSE-ConnectionGUID: xdgYQWvLSJ6ZZNy/HTOZzQ==
-X-CSE-MsgGUID: IHVQyqeMTXilhsYNn7fmNQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11807"; a="81549668"
-X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="81549668"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 03:41:20 -0700
-X-CSE-ConnectionGUID: SnvPTtbsRG+gRGnrVwad4g==
-X-CSE-MsgGUID: S7j3JnVxSoyZp52AtQHrfA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="244935357"
-Received: from dev-417.igk.intel.com ([10.91.214.181])
- by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 03:41:18 -0700
-Date: Fri, 5 Jun 2026 12:41:15 +0200 (CEST)
-From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-cc: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: Re: [PATCH v6 5/8] drm/i915: override LT's VS/PE when requested
-In-Reply-To: <e60ee78abc4044c8ecf33c2e85e89aa638bfdaaf@intel.com>
-Message-ID: <ac325364-a5bf-1038-e942-f8a6b69a05c3@intel.com>
-References: <20260603230544.1993439-1-michal.grzelak@intel.com>
- <20260603230544.1993439-6-michal.grzelak@intel.com>
- <e60ee78abc4044c8ecf33c2e85e89aa638bfdaaf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 132DE11A747;
+	Fri,  5 Jun 2026 10:49:26 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1878711A747;
+ Fri,  5 Jun 2026 10:49:25 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/mixed; BOUNDARY="8323329-566949545-1780609719=:1544314"
-Content-ID: <5751acfc-f516-8adb-78be-7774f8d681f6@intel.com>
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/rtp=3A_Fix_build_e?=
+ =?utf-8?q?rror_with_clang_=3C_21_and_non-const_initializers?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 05 Jun 2026 10:49:25 -0000
+Message-ID: <178065656509.47432.12160963297460165612@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260605093305.110598-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20260605093305.110598-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,275 +36,69 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+== Series Details ==
 
---8323329-566949545-1780609719=:1544314
-Content-Type: text/plain; CHARSET=ISO-8859-2; format=flowed
-Content-Transfer-Encoding: 8BIT
-Content-ID: <de9a46a0-efa0-11f9-34f0-862261439cb8@intel.com>
+Series: drm/xe/rtp: Fix build error with clang < 21 and non-const initializers
+URL   : https://patchwork.freedesktop.org/series/167940/
+State : warning
 
-On Thu, 4 Jun 2026, Jani Nikula wrote:
-> On Thu, 04 Jun 2026, Micha≥ Grzelak <michal.grzelak@intel.com> wrote:
->> Add accessor function for LT to read requested table from VBT #57.
->> Parse the requested table and transform data into port's buffer.
->>
->> Add helper for checking if devdata is safe for dereference. Proceed with
->> default values if not.
->>
->> Add helper to check if VS/PE-O buffer has been allocated during
->> allocate_vswing_preemph_override(). Proceed with default values if not.
->>
->> LT's VS/PE-O tables have less columns than xe3plpd_lt_phy_buf_trans
->> contains fields. Thus copy txswing and txswing_level from default VS/PE
->> values onto VS/PE-O tables.
->>
->> Use 6th table if encoder supports DP 2.0 or higher. Otherwise use 5th
->> table for DP.
->>
->> There are no changes to intel_ddi_dp_level() since selection of correct
->> row of intel_ddi_buf_trans_entry is same as when no override request has
->> been done.
->>
->> Tables 1-4 are not used at all and are most likely to be zeroed. 5th
->> table is used for any mode below DP 2.0 (exclusive). 6th table is used
->> for any mode above DP 2.0 (inclusive).
->>
->> Indices for other tables have not yet been observed to be used as of
->> now.
->>
->> v5->v6
->> - remove drm_WARN_ONCE (Suraj)
->> - pass default VS/PE tables to LT's VBT accessor (Suraj)
->> - set txswing & _level from default VS/PE tables (Suraj)
->> - add helper checking if VS/PE-O has been allocated (Suraj)
->> - check if devdata is not NULL
->>
->> v4->v5
->> - add if-ladder instead of function pointer
->> - blend index computation with table parsing
->> - remove WARN and debug messages
->> - remove enums entirely
->> - add spaces around operators (Suraj)
->> - remove spaces after type casting (Suraj)
->> - remove INTEL_DISPLAY_STATE_WARN (Suraj)
->>
->> v3->v4
->> - stick to solely changing VBT data into current structures (Jani)
->> - move iterator declaration to declaration block (Suraj)
->>
->> v2->v3
->> - remove unnecessary braces from if block (Suraj)
->> - return -EINVAL instead of -1 (Suraj)
->>
->> Signed-off-by: Micha≥ Grzelak <michal.grzelak@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_bios.c     | 40 +++++++++++++++++++
->>  drivers/gpu/drm/i915/display/intel_bios.h     |  6 +++
->>  .../drm/i915/display/intel_ddi_buf_trans.c    | 37 ++++++++++++++++-
->>  3 files changed, 82 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
->> index bc48ed9a7cbf5..302a9465a637b 100644
->> --- a/drivers/gpu/drm/i915/display/intel_bios.c
->> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
->> @@ -3846,6 +3846,11 @@ int intel_bios_hdmi_ddc_pin(const struct intel_bios_encoder_data *devdata)
->>  	return map_ddc_pin(devdata->display, devdata->child.ddc_pin);
->>  }
->>
->> +bool intel_bios_encoder_allocated_vspeo(const struct intel_bios_encoder_data *devdata)
->> +{
->> +	return !!devdata->vspeo;
->> +}
->
-> Please don't add this function. Just return NULL from get call below and
-> handle it in the caller.
->
->> +
->>  bool intel_bios_encoder_requests_vspeo(const struct intel_bios_encoder_data *devdata)
->>  {
->>  	return devdata->display->vbt.version >= 218 && devdata->child.use_vbt_vswing;
->> @@ -3861,6 +3866,41 @@ bool intel_bios_encoder_supports_tbt(const struct intel_bios_encoder_data *devda
->>  	return devdata->display->vbt.version >= 209 && devdata->child.tbt;
->>  }
->>
->> +const struct intel_ddi_buf_trans *
->> +intel_bios_get_lt_vspeo(const struct intel_bios_encoder_data *devdata,
->> +			const struct intel_ddi_buf_trans *buf_trans,
->> +			int idx)
->> +{
->> +	struct intel_display *display = devdata->display;
->> +	struct intel_ddi_buf_trans *vspeo = (void *)devdata->vspeo;
->> +	union intel_ddi_buf_trans_entry *entries = (void *)vspeo->entries;
->
-> What's with the casts?
+== Summary ==
 
-.entries from intel_ddi_buf_trans has a const qualifier which made me to
-do this sketchy cast since we need to write deparsed data into it. Other
-option would be to remove entirely const qualifier from
-intel_ddi_buf_trans definition, don't know which is actually worse.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit a92edbd3bb87b5fad6771a66cdbcb98e4c1fc4cf
+Author: Thomas Hellstr√∂m <thomas.hellstrom@linux.intel.com>
+Date:   Fri Jun 5 11:33:05 2026 +0200
 
-And vspeo = (void *)devdata->vspeo; cast isn't needed at all, will
-remove it in next version.
+    drm/xe/rtp: Fix build error with clang < 21 and non-const initializers
+    
+    Clang < 21 treats const-qualified compound literals at function scope as
+    having static storage duration, which requires all initializer elements
+    to be compile-time constants.  When xe_hw_engine.c initializes a local
+    struct xe_rtp_table_sr using XE_RTP_TABLE_SR(), the compound literals in
+    XE_RTP_TABLE_SR end up containing runtime values (e.g. blit_cctl_val
+    derived from gt->mocs.uc_index), triggering:
+    
+      xe_hw_engine.c:361: error: initializer element is not a compile-time constant
+      xe_hw_engine.c:416: error: initializer element is not a compile-time constant
+    
+    ARRAY_SIZE() cannot be used as a replacement because it expands through
+    __must_be_array() -> __BUILD_BUG_ON_ZERO_MSG() -> _Static_assert inside
+    sizeof(struct{}), which clang < 21 also rejects in the same context.
+    
+    Replace ARRAY_SIZE() with an open-coded sizeof(arr)/sizeof(elem) in
+    XE_RTP_TABLE_SR and XE_RTP_TABLE to avoid both issues.
+    
+    Fixes: 5ff004fdc737 ("drm/xe/rtp: Add struct types for RTP tables")
+    Cc: Matt Roper <matthew.d.roper@intel.com>
+    Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+    Cc: Violet Monti <violet.monti@intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: Thomas Hellstr√∂m <thomas.hellstrom@linux.intel.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
+    Cc: intel-xe@lists.freedesktop.org
+    Reported-by: Mark Brown <broonie@kernel.org>
+    Closes: https://lore.kernel.org/intel-xe/bfb0dee8-b243-47ba-a89d-71472b0d51c5@sirena.org.uk/
+    Assisted-by: GitHub_Copilot:claude-sonnet-4.6
+    Signed-off-by: Thomas Hellstr√∂m <thomas.hellstrom@linux.intel.com>
++ /mt/dim checkpatch 6be5b7e4d84efd8d8d3fbf91fcacbcb6a0df055c drm-intel
+a92edbd3bb87 drm/xe/rtp: Fix build error with clang < 21 and non-const initializers
+-:17: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#17: 
+  xe_hw_engine.c:361: error: initializer element is not a compile-time constant
 
->
->> +	const u32 *tables = display->vbt.vspeo.tables;
->> +	int num_columns = display->vbt.vspeo.num_columns;
->> +	int num_rows = display->vbt.vspeo.num_rows;
->> +	size_t offset = 0;
->> +	int level;
->> +
->> +	offset += idx * num_rows * num_columns;
->
-> I think the division of responsibilities is not great if the caller
-> passes in an index that's tied to the VBT data format.
->
->> +
->> +	for (level = 0; level < num_rows; level++) {
->> +		u8 txswing = buf_trans->entries[level].lt.txswing;
->> +		u8 txswing_level = buf_trans->entries[level].lt.txswing_level;
->> +		u32 main_cursor = tables[offset];
->> +		u32 pre_cursor = tables[offset + 1];
->> +		u32 post_cursor = tables[offset + 2];
->> +
->> +		entries[level].lt.txswing = txswing;
->> +		entries[level].lt.txswing_level = txswing_level;
->> +		entries[level].lt.main_cursor = main_cursor;
->> +		entries[level].lt.pre_cursor = pre_cursor;
->> +		entries[level].lt.post_cursor = post_cursor;
->> +
->> +		offset += num_columns;
->> +	}
->> +
->> +	return vspeo;
->> +}
->> +
->>  bool intel_bios_encoder_is_dedicated_external(const struct intel_bios_encoder_data *devdata)
->>  {
->>  	return devdata->display->vbt.version >= 264 &&
->> diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
->> index 7a50a272cd27d..1a9b27d8e5789 100644
->> --- a/drivers/gpu/drm/i915/display/intel_bios.h
->> +++ b/drivers/gpu/drm/i915/display/intel_bios.h
->> @@ -73,6 +73,12 @@ bool intel_bios_get_dsc_params(struct intel_encoder *encoder,
->>  const struct intel_bios_encoder_data *
->>  intel_bios_encoder_data_lookup(struct intel_display *display, enum port port);
->>
->> +const struct intel_ddi_buf_trans *
->> +intel_bios_get_lt_vspeo(const struct intel_bios_encoder_data *devdata,
->> +			const struct intel_ddi_buf_trans *buf_trans,
->> +			int idx);
->> +
->> +bool intel_bios_encoder_allocated_vspeo(const struct intel_bios_encoder_data *devdata);
->>  bool intel_bios_encoder_requests_vspeo(const struct intel_bios_encoder_data *devdata);
->>  bool intel_bios_encoder_supports_dvi(const struct intel_bios_encoder_data *devdata);
->>  bool intel_bios_encoder_supports_hdmi(const struct intel_bios_encoder_data *devdata);
->> diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
->> index 4cd1e4d76c7af..f936868d6113a 100644
->> --- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
->> +++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
->> @@ -1784,6 +1784,24 @@ xe3plpd_get_lt_buf_trans(struct intel_encoder *encoder,
->>  		return intel_get_buf_trans(&xe3plpd_lt_trans_dp14, n_entries);
->>  }
->>
->> +static const struct intel_ddi_buf_trans *
->> +xe3plpd_get_lt_vspeo_buf_trans(struct intel_encoder *encoder,
->> +			       const struct intel_crtc_state *crtc_state,
->> +			       int *n_entries)
->> +{
->> +	const struct intel_ddi_buf_trans *buf_trans;
->> +
->> +	buf_trans = encoder->get_buf_trans(encoder, crtc_state, n_entries);
->> +	if (intel_crtc_has_dp_encoder(crtc_state)) {
->> +		if (intel_dp_is_uhbr(crtc_state))
->> +			return intel_bios_get_lt_vspeo(encoder->devdata, buf_trans, 5);
->> +		else
->> +			return intel_bios_get_lt_vspeo(encoder->devdata, buf_trans, 4);
->> +	}
->> +
->> +	return buf_trans;
->> +}
->
-> I need to think about this.
->
-> Basically this approach is duplicating the platform if-else ladders
-> *and* the CRTC type and port clock etc. checks already existing in this
-> file. It's not great for maintainability, and it's a lot of code for the
-> feature.
->
-> Plus there's all the added code in intel_bios.c too.
+total: 0 errors, 1 warnings, 0 checks, 24 lines checked
 
-With the comments applied I can move the checks into intel_bios_get_*
-functions. Then caller will set eg. has_dp, has_edp and port_clock when
-calling those. This will spare couple lines as intel_bios_get_*
-functions then can be directly called from intel_ddi_buf_trans_get(),
-I mean something like:
 
-[...]
-if (DISPLAY_VER(display) >= 14) {
- 	if (intel_encoder_is_c10phy(encoder))
- 		buf_trans = intel_bios_get_c10_vspeo(devdata, has_dp, port_clock, has_edp);
- 	else
- 		buf_trans = intel_bios_get_c20_vspeo(devdata, has_dp, is_uhbr);
-} else if (DISPLAY_VER(display) == 11) {
- 	if (display->platform.jasperlake)
- 		buf_trans = intel_bios_get_jsl_combo_vspeo(devdata, has_dp, port_clock, low_vswing_edp);
- 	else if (display->platform.elkhartlake)
- 		buf_trans = intel_bios_get_ehl_combo_vspeo(devdata, has_dp, port_clock, has_edp);
-}
-[...]
-
-But I don't see how to remove the checks entirely nor the if-else
-ladder. I guess that's the fallout of compatibility with the other
-driver. :(
-
-BR,
-Micha≥
-
->
->> +
->>  void intel_ddi_buf_trans_init(struct intel_encoder *encoder)
->>  {
->>  	struct intel_display *display = to_intel_display(encoder);
->> @@ -1857,5 +1875,22 @@ const struct intel_ddi_buf_trans *intel_ddi_buf_trans_get(struct intel_encoder *
->>  							  const struct intel_crtc_state *crtc_state,
->>  							  int *n_entries)
->>  {
->> -	return encoder->get_buf_trans(encoder, crtc_state, n_entries);
->> +	struct intel_display *display = to_intel_display(encoder);
->> +	const struct intel_ddi_buf_trans *buf_trans;
->> +
->> +	if (!encoder->devdata)
->
-> The intel_bios_* functions need to check that, not here.
->
->> +		return encoder->get_buf_trans(encoder, crtc_state, n_entries);
->> +
->> +	if (!intel_bios_encoder_requests_vspeo(encoder->devdata))
->> +		return encoder->get_buf_trans(encoder, crtc_state, n_entries);
->> +
->> +	if (!intel_bios_encoder_allocated_vspeo(encoder->devdata))
->> +		return encoder->get_buf_trans(encoder, crtc_state, n_entries);
->
-> Ditto for the allocation, don't check here.
->
->> +
->> +	if (HAS_LT_PHY(display))
->> +		buf_trans = xe3plpd_get_lt_vspeo_buf_trans(encoder, crtc_state, n_entries);
->> +	else
->> +		buf_trans = encoder->get_buf_trans(encoder, crtc_state, n_entries);
->> +
->> +	return intel_get_buf_trans(buf_trans, n_entries);
->
-> This function has four paths to call encoder->get_buf_trans(). There
-> *must* be only one.
->
->>  }
->
-> -- 
-> Jani Nikula, Intel
->
---8323329-566949545-1780609719=:1544314--
