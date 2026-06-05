@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3183CCD6E7B
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Jun 2026 09:35:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A22FCD6E74
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Jun 2026 09:35:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E420411A66A;
-	Fri,  5 Jun 2026 09:35:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B40411A664;
+	Fri,  5 Jun 2026 09:35:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RVCGUGuT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R/05fRCH";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4244311A66E
- for <intel-xe@lists.freedesktop.org>; Fri,  5 Jun 2026 09:35:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EFDD711A669
+ for <intel-xe@lists.freedesktop.org>; Fri,  5 Jun 2026 09:35:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780652111; x=1812188111;
+ t=1780652115; x=1812188115;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=7V4fdokORRX5B2KxCvQChXKu1xWOLiwxnOoZbs6oupY=;
- b=RVCGUGuTU1kXiib6tYGg6cErXp+rCiJhNsYbmynC+EMvooQNp/gwKMEJ
- AXkQqKPoBoH6WDV2Ls0BESHwnWp2slujdGAeRDOZzjQVv6/wnjepOnu+i
- Zf0wgPLAzzzXOKSxneyr62Ypqz1+RKrKVgVf8b9yZiV3st9wkoiYz7lyh
- vPQAvt9na0DiRzGBL6ABGFFrnlSM/V/OYqySSdrTbwnSVTOd5xKXErMjh
- zDh4gQI5vfIjKtd0DeCG+2cFwve8IFCd9+FohFgqOXgGWvjrIOZAacaSX
- MZaBf/M653gxN71lvzQFX7JwFJTuqVD/MSDvBUwto17BO/NoRtHolT+eZ A==;
-X-CSE-ConnectionGUID: nI0Jh6pCTuK7VeyCAIpOwg==
-X-CSE-MsgGUID: yLpLeEqQTUupiVk9InxbsQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11807"; a="98903912"
-X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="98903912"
+ bh=eZJG9y551mOP1y6gt4x/ZICA6tHJhAwEq54bn3lLQzA=;
+ b=R/05fRCHyQ1QwRW0vfVZUEDFUHuiarKDeN0LkOVebF/qx5gbGoFvh+SG
+ a+fnSaf+ugQnubF9OBI26IsX1kWDf23c5ulF/jnxkimIWi3r1OznokeM9
+ YqkI3yhjUyrspS7QcXhiCFFspu6njPhY0R1brVhBfYDdYSDa2butcIRP/
+ hwlpj/66ggD0gvlugRC+gmF6PDWd991xsKZEUJ5EdXDpDE7T2jlWX+mwC
+ /O8a7jNJxUjPKoGmXM864IZz3d8fDDtrxfO2JrfDRBMMzExGChcnuOByc
+ ZWAzBRjDosIUMKS/wrB8DhhRgwiXyed1tWy+2uKvdrXHg0Y5tZZ3id1zT g==;
+X-CSE-ConnectionGUID: riM4TagtRs+eVUf9BFfg4Q==
+X-CSE-MsgGUID: ofZ0nekWQ1Ce5AgN6wIG9Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11807"; a="98903918"
+X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="98903918"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 02:35:11 -0700
-X-CSE-ConnectionGUID: JQgVts9tRG6tPTg2QetyZg==
-X-CSE-MsgGUID: dDF6XXzUTjW3XGyw7oQQ/g==
+ 05 Jun 2026 02:35:15 -0700
+X-CSE-ConnectionGUID: qTngU6ZVRku8rtXfbASEyg==
+X-CSE-MsgGUID: UynX1pWDQYGekwz5E125kw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="249133573"
+X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="249133579"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 02:35:09 -0700
+ 05 Jun 2026 02:35:12 -0700
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  aravind.iddamsetty@linux.intel.com, badal.nilawar@intel.com,
  raag.jadav@intel.com, ravi.kishore.koppuravuri@intel.com,
  mallesh.koujalagi@intel.com, soham.purkait@intel.com
-Subject: [PATCH v7 02/15] drm/xe/xe_sysctrl: Make sysctrl flood limit reusable
-Date: Fri,  5 Jun 2026 15:04:48 +0530
-Message-ID: <20260605093446.4189929-19-riana.tauro@intel.com>
+Subject: [PATCH v7 03/15] drm/xe: Improve wedged state management
+Date: Fri,  5 Jun 2026 15:04:49 +0530
+Message-ID: <20260605093446.4189929-20-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20260605093446.4189929-17-riana.tauro@intel.com>
 References: <20260605093446.4189929-17-riana.tauro@intel.com>
@@ -69,66 +69,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The sysctrl command flood limit was defined in an event specific header,
-restricting its usage to event handling. Move it to the shared header
-with a generic name so it can be re-used across all files using system
-controller commands.
+From: Raag Jadav <raag.jadav@intel.com>
 
-Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-Reviewed-by: Raag Jadav <raag.jadav@intel.com>
-Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Currently, wedged state is serving a single usecase where the device is
+declared wedged, but this doesn't allow any wedged state management for
+runtime usecases. In preparation of usecases which requires to facilitate
+temporary device wedging, convert wedged.flag to wedged.ref which serves
+as a driver internal refcount and blocks critical path execution during
+device lifetime and while at it, introduce wedged.fini and use it as a
+cleanup indicator during driver unwind which operates independent of the
+refcount.
+
+Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
-v2: remove duplicate (Raag, Mallesh)
+ drivers/gpu/drm/xe/xe_device.c       |  5 +++--
+ drivers/gpu/drm/xe/xe_device.h       | 12 +++++++++++-
+ drivers/gpu/drm/xe/xe_device_types.h |  6 ++++--
+ 3 files changed, 18 insertions(+), 5 deletions(-)
 
-v3: fix wrapping in commit message (Raag)
-    add limit postfix (Mallesh)
----
- drivers/gpu/drm/xe/xe_sysctrl_event.c         | 2 +-
- drivers/gpu/drm/xe/xe_sysctrl_event_types.h   | 3 ---
- drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h | 3 +++
- 3 files changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl_event.c b/drivers/gpu/drm/xe/xe_sysctrl_event.c
-index b4d17329af6c..da395148ee9d 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl_event.c
-+++ b/drivers/gpu/drm/xe/xe_sysctrl_event.c
-@@ -16,7 +16,7 @@ static void get_pending_event(struct xe_sysctrl *sc, struct xe_sysctrl_mailbox_c
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 51e3a2dd7b22..7154f356d631 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -915,7 +915,7 @@ static void xe_device_wedged_fini(struct drm_device *drm, void *arg)
  {
- 	struct xe_sysctrl_event_response *response = command->data_out;
- 	struct xe_device *xe = sc_to_xe(sc);
--	u32 count = XE_SYSCTRL_EVENT_FLOOD;
-+	u32 count = XE_SYSCTRL_FLOOD_LIMIT;
- 	size_t len;
- 	int ret;
+ 	struct xe_device *xe = arg;
  
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl_event_types.h b/drivers/gpu/drm/xe/xe_sysctrl_event_types.h
-index c16c66b9fa7f..348768ca454a 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl_event_types.h
-+++ b/drivers/gpu/drm/xe/xe_sysctrl_event_types.h
-@@ -10,9 +10,6 @@
+-	if (atomic_read(&xe->wedged.flag))
++	if (atomic_read(&xe->wedged.fini))
+ 		xe_pm_runtime_put(xe);
+ }
  
- #define XE_SYSCTRL_EVENT_DATA_LEN		59
+@@ -1411,7 +1411,8 @@ void xe_device_declare_wedged(struct xe_device *xe)
+ 		return;
+ 	}
  
--/* Modify as needed */
--#define XE_SYSCTRL_EVENT_FLOOD			16
--
- /**
-  * enum xe_sysctrl_event - Events reported by System Controller
-  *
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-index 84d7c647e743..faa973986c0d 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-+++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-@@ -48,6 +48,9 @@ struct xe_sysctrl_mailbox_command {
- 	size_t data_out_len;
- };
+-	if (!atomic_xchg(&xe->wedged.flag, 1)) {
++	if (!atomic_xchg(&xe->wedged.fini, 1)) {
++		xe_device_wedged_get(xe);
+ 		xe->needs_flr_on_fini = true;
+ 		xe_pm_runtime_get_noresume(xe);
+ 		drm_err(&xe->drm,
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index 975768a6a9c8..3e536a49388a 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -192,9 +192,19 @@ bool xe_device_is_l2_flush_optimized(struct xe_device *xe);
+ void xe_device_td_flush(struct xe_device *xe);
+ void xe_device_l2_flush(struct xe_device *xe);
  
-+/* Modify as needed */
-+#define XE_SYSCTRL_FLOOD_LIMIT		16
++static inline void xe_device_wedged_get(struct xe_device *xe)
++{
++	atomic_inc(&xe->wedged.ref);
++}
 +
- #define XE_SYSCTRL_MB_FRAME_SIZE	16
- #define XE_SYSCTRL_MB_MAX_FRAMES	64
- #define XE_SYSCTRL_MB_MAX_MESSAGE_SIZE	\
++static inline void xe_device_wedged_put(struct xe_device *xe)
++{
++	atomic_dec(&xe->wedged.ref);
++}
++
+ static inline bool xe_device_wedged(struct xe_device *xe)
+ {
+-	return atomic_read(&xe->wedged.flag);
++	return atomic_read(&xe->wedged.ref);
+ }
+ 
+ void xe_device_set_wedged_method(struct xe_device *xe, unsigned long method);
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 32dd2ffbc796..66e673e4e3e7 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -485,8 +485,10 @@ struct xe_device {
+ 
+ 	/** @wedged: Struct to control Wedged States and mode */
+ 	struct {
+-		/** @wedged.flag: Xe device faced a critical error and is now blocked. */
+-		atomic_t flag;
++		/** @wedged.fini: Needs cleanup on fini */
++		atomic_t fini;
++		/** @wedged.ref: Refcount for wedged device, blocks critical path execution */
++		atomic_t ref;
+ 		/** @wedged.mode: Mode controlled by kernel parameter and debugfs */
+ 		enum xe_wedged_mode mode;
+ 		/** @wedged.method: Recovery method to be sent in the drm device wedged uevent */
 -- 
 2.47.1
 
