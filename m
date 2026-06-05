@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86797CD6E74
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Jun 2026 12:54:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0C5DCD6E74
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Jun 2026 13:00:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C0E411A827;
-	Fri,  5 Jun 2026 12:54:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F36611A834;
+	Fri,  5 Jun 2026 13:00:03 +0000 (UTC)
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0306811A826;
- Fri,  5 Jun 2026 12:54:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 558A511A833;
+ Fri,  5 Jun 2026 13:00:03 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/i915/dp=5Ft?=
- =?utf-8?q?unnel=3A_fix_CRTC_hw_state_cleanup_ordering?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Introduce_cold_reset_reco?=
+ =?utf-8?q?very_method_=28rev7=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Guangshuo Li" <lgs201920130244@gmail.com>
+To: "Mallesh Koujalagi" <mallesh.koujalagi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 05 Jun 2026 12:54:25 -0000
-Message-ID: <178066406500.46540.17979224361305814828@6beec6c84f66>
+Date: Fri, 05 Jun 2026 13:00:03 -0000
+Message-ID: <178066440334.47432.174324114767162020@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260605060527.1443552-1-lgs201920130244@gmail.com>
-In-Reply-To: <20260605060527.1443552-1-lgs201920130244@gmail.com>
+References: <20260605122544.1021695-8-mallesh.koujalagi@intel.com>
+In-Reply-To: <20260605122544.1021695-8-mallesh.koujalagi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,15 +42,48 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/dp_tunnel: fix CRTC hw state cleanup ordering
-URL   : https://patchwork.freedesktop.org/series/167953/
-State : failure
+Series: Introduce cold reset recovery method (rev7)
+URL   : https://patchwork.freedesktop.org/series/163428/
+State : warning
 
 == Summary ==
 
-Address 'lgs201920130244@gmail.com' is not on the allowlist, which prevents CI from being triggered for this patch.
-If you want Intel GFX CI to accept this address, please contact the script maintainers at i915-ci-infra@lists.freedesktop.org.
-Exception occurred during validation, bailing out!
-Build URL: http://intel-gfx-ci-public.igk.intel.com:8080/job/xe_pw_trigger/1180256/ (on master)
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit aeeecfdf852b89d9b49caa8acd18f3635fea5053
+Author: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Date:   Fri Jun 5 17:55:50 2026 +0530
+
+    drm/xe/ras: Add debugfs entry to inject punit error
+    
+    Add a write-only debugfs file 'inject_punit_error' under the DRI device
+    root that allows triggering punit_error_handler() manually for testing.
+    Writing 1 to the file invokes the handler, which suppresses spurious
+    Surprise Link Down AER events on slots and declares the
+    device wedged for a cold reset recovery.
+    
+    Usage:
+      echo 1 > /sys/kernel/debug/dri/<N>/inject_punit_error
+    
+    Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
++ /mt/dim checkpatch fe3f27ecb39e8357b0af59cfe9402fd5cc0c07b1 drm-intel
+f6b2ff41f757 Introduce Xe Uncorrectable Error Handling
+-:297: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#297: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 1235 lines checked
+e20ab1d7f003 drm: Add DRM_WEDGE_RECOVERY_COLD_RESET recovery method
+3ee955bd6116 drm/doc: Document DRM_WEDGE_RECOVERY_COLD_RESET recovery method
+6b75213079ad drm/xe: Handle PUNIT errors by requesting cold-reset recovery
+53f55a128745 drm/xe: Suppress Surprise Link Down on device
+aeeecfdf852b drm/xe/ras: Add debugfs entry to inject punit error
 
 
