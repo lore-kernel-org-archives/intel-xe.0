@@ -4,60 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D31ACD6E5D
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Jun 2026 09:33:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDFE2CD6E5D
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Jun 2026 09:35:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C26FB11A65C;
-	Fri,  5 Jun 2026 09:33:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AABA611A664;
+	Fri,  5 Jun 2026 09:35:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e0E7BbdU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ciLmm4YQ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CC4911A65C
- for <intel-xe@lists.freedesktop.org>; Fri,  5 Jun 2026 09:33:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D02A011A664
+ for <intel-xe@lists.freedesktop.org>; Fri,  5 Jun 2026 09:35:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780652010; x=1812188010;
+ t=1780652103; x=1812188103;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=bB4nzldaagWFIfB2FYS/ygSL1XfYH/N7dO0XoA23Ae0=;
- b=e0E7BbdUJgkMLKvzKdRdKvdCpvJB1hY7YeiBRQy1Fkhp80CqEfVARVzY
- kMvyGyBBITIAFCzwCXK2UuFqXhGaDdbnN4SF3aw2smi/Z+TsUczibvL6T
- T2mtPdg1UlzldeB/UjNu7GLle8k9r1DCCOFkR7cIefNZLDfAWj3eW08Bv
- 572pCgEzNSi0TyOFH4qvW/qJObyDsFN+jY8+Zi/8+dJiqIAD0IHKMiNKJ
- 7hxitDj6BGsKGg08cmiwrOTuX44ToQuNin/5l1yw3AvZ6aDw+bT0h94Bu
- E0i5Bhvi0B2R5urGEKhk70SKU+KXXwP4G/rEhze3Ttu8YNvPqLYUkmjBw Q==;
-X-CSE-ConnectionGUID: T7GFKLngRmCILA1dEMATmg==
-X-CSE-MsgGUID: wXKZeJU7RKmnrmquDuwmjw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11807"; a="106927791"
-X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="106927791"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 02:33:29 -0700
-X-CSE-ConnectionGUID: DHIL3OEyRE20QZ2iuwZ1Bg==
-X-CSE-MsgGUID: nnC1DOc3Taqpsz+QTInb7Q==
+ bh=jW8ygBN1S2zP11+siBIuSVGIBcFzK8//tUb+CRTJfy8=;
+ b=ciLmm4YQcpmVJV200qV0fzw8T0QhU6axFLA7gt5znUbVXT+rRoZGYuRD
+ T/txJBiu3GdsThDSIhVy8kOoZHAWiWKTaWCincjPjuLo0rV7IvewR8hq8
+ p2f9rPBwpRrLLAf8Lh6EnHnIjP+fCpo/Kpbq3hC8ij8bkS/a7E+yDa1ND
+ +3R/Oizkv6hJHU26qceAL7BfMlM1a5+ttDa1x4CkTwdvZQw/f0L6tqmuf
+ a4xaWK90Ec8zheWTwcXL74Z+E7JsK9JH5uxCRYEoe2JZgdqPlh855WdLV
+ JU+/G3QRkNQ61TkbO64b1k+p6B2JiCOnLSjloQ03qoXL2S74/w5Sb4aMT w==;
+X-CSE-ConnectionGUID: Pspovv/ORheKs8g6tNCb2w==
+X-CSE-MsgGUID: oUDYSEE2Sq6II0XdkdVEkw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11807"; a="98903897"
+X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="98903897"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2026 02:35:02 -0700
+X-CSE-ConnectionGUID: j/2QIE4iQ3OvQKkeL42wcA==
+X-CSE-MsgGUID: vlLwJfFaQ+iXxT/qArl3cQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="238444485"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO fedora)
- ([10.245.245.251])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 02:33:26 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="249133541"
+Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2026 02:35:00 -0700
+From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Gustavo Sousa <gustavo.sousa@intel.com>,
- Violet Monti <violet.monti@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Ashutosh Dixit <ashutosh.dixit@intel.com>, Mark Brown <broonie@kernel.org>
-Subject: [PATCH] drm/xe/rtp: Fix build error with clang < 21 and non-const
- initializers
-Date: Fri,  5 Jun 2026 11:33:05 +0200
-Message-ID: <20260605093305.110598-1-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.54.0
+Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
+ aravind.iddamsetty@linux.intel.com, badal.nilawar@intel.com,
+ raag.jadav@intel.com, ravi.kishore.koppuravuri@intel.com,
+ mallesh.koujalagi@intel.com, soham.purkait@intel.com
+Subject: [PATCH v7 00/15] Introduce Xe Uncorrectable Error Handling
+Date: Fri,  5 Jun 2026 15:04:46 +0530
+Message-ID: <20260605093446.4189929-17-riana.tauro@intel.com>
+X-Mailer: git-send-email 2.47.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,69 +67,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Clang < 21 treats const-qualified compound literals at function scope as
-having static storage duration, which requires all initializer elements
-to be compile-time constants.  When xe_hw_engine.c initializes a local
-struct xe_rtp_table_sr using XE_RTP_TABLE_SR(), the compound literals in
-XE_RTP_TABLE_SR end up containing runtime values (e.g. blit_cctl_val
-derived from gt->mocs.uc_index), triggering:
+This series adds support for XE Uncorrectable Error Handling
 
-  xe_hw_engine.c:361: error: initializer element is not a compile-time constant
-  xe_hw_engine.c:416: error: initializer element is not a compile-time constant
+The first four patches implement PCI error recovery callbacks for AER events.
+On fatal errors, the device is wedged in error_detected and a Secondary
+Bus reset (SBR) is requested from PCI core by returning
+PCI_ERS_RESULT_NEED_RESET.
 
-ARRAY_SIZE() cannot be used as a replacement because it expands through
-__must_be_array() -> __BUILD_BUG_ON_ZERO_MSG() -> _Static_assert inside
-sizeof(struct{}), which clang < 21 also rejects in the same context.
+On non-fatal errors, the mmio_enabled callback is invoked to query the
+error and attempt the required recovery.
 
-Replace ARRAY_SIZE() with an open-coded sizeof(arr)/sizeof(elem) in
-XE_RTP_TABLE_SR and XE_RTP_TABLE to avoid both issues.
+This series adds support for handling Uncorrectable core compute,
+SoC internal and device memory errors.
 
-Fixes: 5ff004fdc737 ("drm/xe/rtp: Add struct types for RTP tables")
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>
-Cc: Violet Monti <violet.monti@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Reported-by: Mark Brown <broonie@kernel.org>
-Closes: https://lore.kernel.org/intel-xe/bfb0dee8-b243-47ba-a89d-71472b0d51c5@sirena.org.uk/
-Assisted-by: GitHub_Copilot:claude-sonnet-4.6
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_rtp.h | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
+Core Compute Errors: Uncorrectable Core-Compute errors are classified
+into Global and Local errors.
+Global error is an error that affects the entire device requiring
+a reset to recover. When an AER is reported and error_detected is invoked
+return PCI_ERS_RESULT_NEED_RESET.
+A Local error is confined to a specific component or context like a
+engine. These errors can be contained and recovered by resetting
+only the affected part without distrupting the rest of the device.
 
-diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
-index 4e3cfd69f922..2cc65053cd07 100644
---- a/drivers/gpu/drm/xe/xe_rtp.h
-+++ b/drivers/gpu/drm/xe/xe_rtp.h
-@@ -461,14 +461,22 @@ struct xe_reg_sr;
- 		XE_RTP_PASTE_FOREACH(ACTION_, COMMA, (__VA_ARGS__))	\
- 	}
- 
-+/*
-+ * Note: ARRAY_SIZE() cannot be used here because it expands through
-+ * __must_be_array() -> __BUILD_BUG_ON_ZERO_MSG() -> _Static_assert inside
-+ * sizeof(struct{}), which clang < 21 rejects when the compound literal
-+ * contains non-compile-time-constant initializers.
-+ */
- #define XE_RTP_TABLE_SR(...) { \
- 	.entries = (const struct xe_rtp_entry_sr[]){__VA_ARGS__}, \
--	.n_entries = ARRAY_SIZE(((const struct xe_rtp_entry_sr[]){__VA_ARGS__})), \
-+	.n_entries = sizeof((const struct xe_rtp_entry_sr[]){__VA_ARGS__}) / \
-+		sizeof(struct xe_rtp_entry_sr), \
- }
- 
- #define XE_RTP_TABLE(...) { \
- 	.entries = (const struct xe_rtp_entry[]){__VA_ARGS__}, \
--	.n_entries = ARRAY_SIZE(((const struct xe_rtp_entry[]){__VA_ARGS__})), \
-+	.n_entries = sizeof((const struct xe_rtp_entry[]){__VA_ARGS__}) / \
-+		sizeof(struct xe_rtp_entry), \
- }
- 
- #define XE_RTP_PROCESS_CTX_INITIALIZER(arg__) _Generic((arg__),							\
+SoC Internal errors: Most of the uncorrectable SoC internal errors
+are recovered using a SBR apart from CSC firmware and Punit errors.
+CSC firmware errors requires a firmware flash to be recovered whereas
+Punit error requires cold-reset.
+
+Device memory errors: Most of the uncorrectable memory errors are
+recovered using a SBR. However, double-bit ecc errors require page
+offlining in both s/w (done in a later patch) and firmware.
+Add helper to send offline/decline command to firmware. 
+These pages are also saved by firmware in flash and need to be offlined
+by software on module load. Add helpers to retrieve the list and queue
+from firmware.
+
+Rev2: Add support for SoC internal errors
+      fix review comments
+
+Rev3: remove in_recovery flag for disconnect error
+      prevent sysctrl flooding
+      use minimal logging
+      simplify soc structures
+      add error_count to GT structures
+
+Rev4: add device memory errors
+      add helpers for memory errors
+      fix cosmetic review comments
+
+Rev5: simplify structures in all patches
+      disconnect on wedged or survivability mode
+      rename in_recovery to in_reset
+      add minimal integration patch for device memory errors
+      rename system controller flooding macro
+      fix comments
+
+Rev6: rename function to prepare_reset.
+      call pci_prepare_reset() before requesting SBR
+      fix cosmetic review comments
+      add patch to skip run_ticks while reading fdinfo
+      when SBR is in flight
+
+Rev7: rename sysctrl build command function
+      rename pci prepare reset function
+      use wedged state management
+      split function for usp dev
+
+Raag Jadav (1):
+  drm/xe: Improve wedged state management
+
+Riana Tauro (14):
+  drm/xe/xe_survivability: Decouple survivability info from boot
+    survivability
+  drm/xe/xe_sysctrl: Make sysctrl flood limit reusable
+  drm/xe/xe_pci_error: Implement PCI error recovery callbacks
+  drm/xe/xe_pci_error: Group all devres to release them on PCIe slot
+    reset
+  drm/xe: Skip device access during PCI error recovery
+  drm/xe/xe_ras: Initialize Uncorrectable AER Registers
+  drm/xe/xe_ras: Add support for uncorrectable core-compute errors
+  drm/xe/xe_ras: Handle uncorrectable SoC Internal errors
+  drm/xe/xe_ras: Add support to query device memory errors
+  drm/xe/xe_ras: Query errors from system controller on probe
+  drm/xe/xe_pci_error: Process errors in mmio_enabled
+  drm/xe/xe_ras: Add support to query page offline queue and list
+  drm/xe/xe_ras: Add support to offline/decline a page address
+  drm/xe/xe_ras: Process pages from offlined list and queue
+
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ drivers/gpu/drm/xe/xe_device.c                |  24 +-
+ drivers/gpu/drm/xe/xe_device.h                |  27 +-
+ drivers/gpu/drm/xe/xe_device_types.h          |  12 +-
+ drivers/gpu/drm/xe/xe_gt.c                    |  14 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c            |   9 +-
+ drivers/gpu/drm/xe/xe_pci.c                   |   9 +
+ drivers/gpu/drm/xe/xe_pci_error.c             | 135 +++++
+ drivers/gpu/drm/xe/xe_pci_error.h             |  13 +
+ drivers/gpu/drm/xe/xe_ras.c                   | 475 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ras.h                   |   4 +
+ drivers/gpu/drm/xe/xe_ras_types.h             | 215 ++++++++
+ drivers/gpu/drm/xe/xe_survivability_mode.c    |  13 +-
+ drivers/gpu/drm/xe/xe_sysctrl_event.c         |   2 +-
+ drivers/gpu/drm/xe/xe_sysctrl_event_types.h   |   3 -
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox.c       |  28 ++
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox.h       |   4 +-
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |  11 +
+ 18 files changed, 971 insertions(+), 28 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_pci_error.c
+ create mode 100644 drivers/gpu/drm/xe/xe_pci_error.h
+
 -- 
-2.54.0
+2.47.1
 
