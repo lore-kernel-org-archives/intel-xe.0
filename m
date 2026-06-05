@@ -4,153 +4,106 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B7C8CD6E7D
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Jun 2026 14:36:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3327CD6E7D
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Jun 2026 14:53:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3ED5411A8FE;
-	Fri,  5 Jun 2026 14:36:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 61B7810E49E;
+	Fri,  5 Jun 2026 14:53:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZMyp8UtV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E5F52p0+";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1EE5911A8FE;
- Fri,  5 Jun 2026 14:36:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B8AF10E49E;
+ Fri,  5 Jun 2026 14:53:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780670202; x=1812206202;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- in-reply-to:mime-version;
- bh=grVQuDrsdUnZwdNGzryPQMq9aYFfJsk0Z51sVUkKYVo=;
- b=ZMyp8UtVUXwnD0BMK+Qkm59HzWL4pKjSF+azw6YIcmieyd3uYgn+k9J+
- 9nmiRWs77rDqZA9rC7bocHjVqGup0wYN3MtdFn9xoYY0Gp75KMH0+F6IM
- I5b+HPuulc3ZLMh2QJJkFjW9q2rw134o35gG07K1zghOx9D9DndM6PynC
- 6q075piZRxXwdm99b9c2+5GytnNzZ7MhaXh9uGOuRZj1LlDo/WeUb8Fwz
- C2ZKa+SwLgnpsa823aKe4dbYTtk1sPPuptBAtgFGAaBJIdvXX9r7XSKGy
- fJ/TKkA/nmJrxh12LSW29HoA/O6WIcugF50H6jyCK/7UvmVq8ZlLgShlM A==;
-X-CSE-ConnectionGUID: s7k6DOJOSeyjKfX6c1MoQw==
-X-CSE-MsgGUID: Uiyjtq9HT+C9ewvCWA+kgg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11807"; a="92612368"
-X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="92612368"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 07:36:41 -0700
-X-CSE-ConnectionGUID: 3N6AMPHWSVioi9WBzdkY6A==
-X-CSE-MsgGUID: FIlNLiYRQWiIxdmBNlaLVg==
+ t=1780671202; x=1812207202;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=S9VN2IMCqnREp7EhcUK1NJoNhMFd+IfW7xD2w5Raim8=;
+ b=E5F52p0+ucmhd7pnaA1s0YvFP4r6jZmWEp5YTLs+J7hRopPN46ZWTp6H
+ eHOY7MjTeP5zXmBYBzh2Hs2jG0NCni8socwy7PRp4G3WDh095P/Cpyean
+ PsWhgtvm4PAdwh+hCFGclmXUDu+WyyYha+XGCrLvvXeeuI8b2Gm7+PrDB
+ kmO7Rt1zJ4bGXvUInLnCCvkn0LL2mjvT4y4/+d6meCOdDvjVL0Xw0HH6f
+ SVqUnTuEx7ZbpdlzlVAyVNvs7sC9tV4aGXPpKS9snHz4e3mgEvWsEnM0I
+ kC5lKzzwQJvUu/7pCtvNyu7tj1roKlFj3vW8tWehU+9yMw9lteHCR6I4/ w==;
+X-CSE-ConnectionGUID: WhdQXF33SJ2nV7p9U166Fg==
+X-CSE-MsgGUID: w1goDHmGR/WcYLUXvUudXw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11807"; a="81565333"
+X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="81565333"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2026 07:53:21 -0700
+X-CSE-ConnectionGUID: p3R1KLajSt+9nt2FGUPoiA==
+X-CSE-MsgGUID: dy03ihVLR16TJHMTwX8Gig==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="240404907"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 07:36:41 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 5 Jun 2026 07:36:41 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Fri, 5 Jun 2026 07:36:41 -0700
-Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.21) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 5 Jun 2026 07:36:39 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gKA87yzO/Z0ab6AhMg6eCI03DyEjAfLDGlsJiS+lnj+jAHTJeLUwv5pfGmecwtfPxV+ZG/A9j8rkw/ymnQcgYA8rDa+wZcsPATOtvJbn+QNNnxcdYqgJo83uzuG1WalbMevqNP4PCE5uiC0AQyz9FY1/CXOkPgxDmOrmweMhYDdNG7Zenw4+W6kxVkZ8woRPECn6ugMP44wMC8SY0k8DUsSEDub2QMPbIl1QaEjmRXitYKDVQZF4E/TGXQTfgD/fxN6C64vcvFLkmsgNO8DERhcbB6i0AzMKvqmj1Sm03cT74/X0YjcBFDoTdCUZ99srQH1HqsYxfKzuyjr4I4YRDw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=b+ny3UNnzNPMG4KCAyVPUEL9KHhLlqOfk8JA6rVtOrg=;
- b=sXbbVBJzOtsBTPUjkI7OyqlP/P29sObXuwB/NkS2ziHzVBYBiBoVy1I3W5eQRWxfzk3uNW1+h1tr6gxdZJspdQzZkTvhpGDYwN4cgsdnb/xeOZFlS2lR1M9mTu3Q4VmZCTStC8GAJ+7spx8/L4/hsbfZ3EisDLh8wCNpXn92s4l8GiEFTui4N3WEPFMmfy0hEQrHEQnzJpGZByln6yg7tZWZfYyCLhvq3dCrYxLR6dKNfRZq226bNOvzjqPtBpUqP5FH6PDlnKhcWquWG4Dkhxvn9qz50hTT8JDe+o5MiW/WTGafJgkDuEb7672e//HL11/+ffSxIx6I6SrIuHDA5Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from IA3PR11MB9273.namprd11.prod.outlook.com (2603:10b6:208:573::17)
- by DM6PR11MB4658.namprd11.prod.outlook.com (2603:10b6:5:28f::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.9; Fri, 5 Jun 2026
- 14:36:35 +0000
-Received: from IA3PR11MB9273.namprd11.prod.outlook.com
- ([fe80::31a4:58c:e3b5:43fa]) by IA3PR11MB9273.namprd11.prod.outlook.com
- ([fe80::31a4:58c:e3b5:43fa%4]) with mapi id 15.21.0092.006; Fri, 5 Jun 2026
- 14:36:35 +0000
-Date: Fri, 5 Jun 2026 17:36:27 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Guangshuo Li <lgs201920130244@gmail.com>
-CC: Jani Nikula <jani.nikula@linux.intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Uma Shankar <uma.shankar@intel.com>,
- =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>, Ville
- =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] drm/i915/dp_tunnel: fix CRTC hw state cleanup ordering
-Message-ID: <aiLe61REFDPGvZWM@ideak-desk.lan>
-References: <20260605060527.1443552-1-lgs201920130244@gmail.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20260605060527.1443552-1-lgs201920130244@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-X-ClientProxiedBy: GV2PEPF000239B5.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:158:400::23a) To IA3PR11MB9273.namprd11.prod.outlook.com
- (2603:10b6:208:573::17)
+X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="282943735"
+Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.178])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2026 07:53:07 -0700
+Date: Fri, 5 Jun 2026 17:53:04 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Johan Hovold <johan@kernel.org>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
+ Lee Jones <lee@kernel.org>,
+ Mark Brown <broonie@opensource.wolfsonmicro.com>,
+ Thierry Reding <thierry.reding@avionic-design.de>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Srinivas Kandagatla <srini@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Vinod Koul <vkoul@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,
+ Saravana Kannan <saravanak@kernel.org>,
+ Madhavan Srinivasan <maddy@linux.ibm.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>,
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+ Andi Shyti <andi.shyti@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+ Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+ Doug Berger <opendmb@gmail.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Ulf Hansson <ulfh@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Peter Chen <peter.chen@kernel.org>,
+ Paul Cercueil <paul@crapouillou.net>, Bin Liu <b-liu@ti.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Maximilian Luz <luzmaximilian@gmail.com>, Hans de Goede <hansg@kernel.org>,
+ Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>, brgl@kernel.org,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
+ driver-core@lists.linux.dev, devicetree@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, linux-i2c@vger.kernel.org,
+ iommu@lists.linux.dev, linux-pm@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-usb@vger.kernel.org, linux-mips@vger.kernel.org,
+ platform-driver-x86@vger.kernel.org
+Subject: Re: [PATCH 08/23] driver core: platform: provide
+ platform_device_set_of_node_from_dev()
+Message-ID: <aiLi0KZskrCyEYO5@ashevche-desk.local>
+References: <20260521-pdev-fwnode-ref-v1-0-88c324a1b8d2@oss.qualcomm.com>
+ <20260521-pdev-fwnode-ref-v1-8-88c324a1b8d2@oss.qualcomm.com>
+ <ah9O15bMlAYgSlHx@ashevche-desk.local>
+ <aiK-EXwp_xhcbty9@hovoldconsulting.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA3PR11MB9273:EE_|DM6PR11MB4658:EE_
-X-MS-Office365-Filtering-Correlation-Id: 67b421b6-e735-42c0-74f0-08dec30fd844
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|7416014|18002099003|22082099003|6133799003|56012099006|11063799006;
-X-Microsoft-Antispam-Message-Info: KXxxJKS88uHcSqPcmEVQuSTdYC+tFTBhRCQKZEtCbT9ob8BlKy5Rt5FzU41fl7vFYXuZDBtW+ypjQPCMHcbqKt5YGgsGKX6TgE1R9IcFnMdKHr2tz4c1BaLl6VtuA3G6GOGM64ZZNPSKMG4IKmLl47xR71VV6wfctQUmfoNnH4KnyPVJqnph4LenKghVmcMa+q2U1J07TqQsxXPWfpwC7TR72yN9gylwEj08JCTabKEf3a4boFfB5Wbq6gk7rGhQe75irjYOvzug+jiQ9yWgbyWvyam6mHrYe6PVb4bDYcinmj7C3+oMsjOsQ8Jx1HXhOQqf0VsUNAQJdjYXBXrCt63ckUA7mpTXsa3fvCPvSqV8T+AAQ6iTrWv2hYodFlFIGHaT2np2QjmSX7St9ipBImvVnViC6WTxOUg/xba4AbjMU4xPfeqhGYWcywR90mD7T2wYQBiZmYwPnBuEvn07kDxwvbB9WhT1eZsWt64Hk8umE0q9kRoTGa07x0szycGSrKQSlnqVZVHCPB0THqui0I7sI9m9OpXcL7IMbhr+4pGvdWJBjQJlynqmqyq9JMXZ9x+6BfNfsgg6I+ZgEbxeNaCwbObom+R44nvhlHMRQD3V8CJ29lzsb0EOYUVDTcbY0VcHxhgqqrnkyAYF+/i7DS793HeX3FokNDH+VAC8lvA0xPf4p/ksL1dBu52TEwdD
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA3PR11MB9273.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(7416014)(18002099003)(22082099003)(6133799003)(56012099006)(11063799006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?uUw9dchlV+lvzgOSUXazivk0+wkIMz5O6GEbBBApd2gE/SGJ909AXl+BEkN9?=
- =?us-ascii?Q?wDInFVWOuvnRMbyL9f/yw3qMMXU1AIopgZJxRgDijUqP/jmDt7PPdK6RJVZx?=
- =?us-ascii?Q?ZBkPEpnYa6TV5sMfq7LB3CTdfDy1fWZ9TN4x0a0VDzQycuDyt/npOwGYYxpH?=
- =?us-ascii?Q?hFKS9wP4I8DK4X9ZAAZuLQzKa2csSj3s8au5BpjZ3rIWCk/S6q3iZ3jbv5V8?=
- =?us-ascii?Q?SfdrdKn+aas7uZL/RXM1TCLo1bZkNY81y7WvJq184flYU7slOp/HMcTXLF6a?=
- =?us-ascii?Q?DP3h2+lVLIRY83JEzc3QfeUdRX4QwAj/LbKGxzVR7L/wwHRKmf+g+XwXzTxA?=
- =?us-ascii?Q?GQJuAhqgJX5igAnNdgLDuwi1TWGFoGkuoW0lZVfG7ATrVLZq6NxItQJVstmj?=
- =?us-ascii?Q?BEHE0Oamvby65ismBl/sqH4ElYltQ2s491nuotoonvdbpTxP59eegIR0SlSp?=
- =?us-ascii?Q?I9/xsnORfRsF3YjROl+Qst5WFUR+OFHn2kJPvP5abTgRx2tH8dDgX1DT4qEJ?=
- =?us-ascii?Q?xjRrGbgcSZRkS5+vglr5g5yOm9PbxI2OWGie3i7nI5fJEaHHst9F470wD44D?=
- =?us-ascii?Q?olhCh1oRltSmr87/eyyorkhWQqFmG5/E1WIz45+GIGc3yaozbQc5CM5Y+moO?=
- =?us-ascii?Q?b8JXKJbJSjbCzMFbaLFDq4APipekZFBUOBaPjPlpUSwKOv2fcrIIBQVT4unW?=
- =?us-ascii?Q?cPNLncCrJ6BkfBLmwR9EaxHQ7PCDM06BcuGoFmL+dGgPPGo5lYLdS/MfEwQW?=
- =?us-ascii?Q?c4WpRIVaCpPF3sYrr194ZbJuIhQPlTIP3QDkmT/0tdeyuxwr5uYhS/CNhrVi?=
- =?us-ascii?Q?iPNLusy/w8vxkIHQfodbM1Z6R01qZJbYZVhzVwSsBuimc3QVBEHJBU9VoVx/?=
- =?us-ascii?Q?HiFdYVBmERYcL6xCfG7BAf+76iDlT1OaDobT8BZYo1IoJq7wuhLybfSgyyAQ?=
- =?us-ascii?Q?ssVV848OXtxghn1puq6uw+jymXveko+WNxseJ5Cs2Dve4Y2BvdyBG/TGRqq2?=
- =?us-ascii?Q?HIulFSA0IapZJn8YA02sRF5N/947VS8iM+6czNtUHw/CETQe42JwKQXKpvNH?=
- =?us-ascii?Q?P2POO9WFNc4mieEXHgjRbeU5YTLHFAlyhzUD4Nfhgci0bhtbeP2z7dYnn++L?=
- =?us-ascii?Q?1UIiOBxxjHoLOEbGBnzScTOT6BGFCiMcp/mn5Sw88+hlYP7ekIBYoE6yiPR8?=
- =?us-ascii?Q?vwguhmXk4C5zVOV9PYUxGsdVn7uun3uR5PSsjEHUiVJi6j7TqqGkFTpVbuqa?=
- =?us-ascii?Q?NZfEeY8ecmrXYL95jPj/rTftugpha1d8jLmUJwD0TFKpBYBCUwMbWD28SRRR?=
- =?us-ascii?Q?WHtDffVIbxr9wRsd72AFmqO1s5S39wYYcnU8DoyOZwOLaRUDPvGc+PesK9hm?=
- =?us-ascii?Q?LjyQ7gF209JLmWjaf8Dxlw2KMcli41qn3/aBd9HCdbdfeMl3S8/mL23wiyrc?=
- =?us-ascii?Q?wsVkq/w9UhL4JG/5A4sLbuqXFqsn9PrTcCfsgtEoLJXl67e6PV/LWk23QWrd?=
- =?us-ascii?Q?lL7o/yDgiyRXsZoM/O//PG23BGweiSnwy7jMVGchbnWxVGWzzulwb13a+qC/?=
- =?us-ascii?Q?bern6LaF3YgQgH1aioSG/1ngEhRkJYaZBya5okKKKmQWkU9RDYT3A4gQIEDN?=
- =?us-ascii?Q?PDipknsPI/F+Mah450PUEMksDwjA3FbRxUlmW1thS3l+YBXtMorxGwss4SZ2?=
- =?us-ascii?Q?7R5uDjBW0+vDZEY08SwmvCYmJwQUPon1VSEWP+x/ZRzW1mHiXj0uFRliWclN?=
- =?us-ascii?Q?fVrN45q87A=3D=3D?=
-X-Exchange-RoutingPolicyChecked: P4jx5vvyYWBdbVbTsdumToQyl+rdDA6CO1gHW4DeiAOoIynQ6Az3gKQ3pnrorzARohFiP6k5pCe5hvK7KKsNQI2bQ0HJswF79M4Lf4SlmWs4qdLYUkKxq0pzjKayeWXkRB9zK+ZY7coP2tzdzU24N6gMiISge6x/RGNZjZXCxLN1oGXLvSyaOJQjUKTaDgunvmAj36Q8RJ+LNPdV1zgRyGAgqSKZD6WodMRS/eQ17nCWs18wWQBFtZMk+utyglm63ZzdCDz7y/5hOvI2FiVVuPcWppm95+5wYjduPbWJsZBSFcPPIJinS+Z8TMRztskcHog8WVKS9gM0s5E+idRDdg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 67b421b6-e735-42c0-74f0-08dec30fd844
-X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB9273.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jun 2026 14:36:35.4937 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: YhbtNWQupB731HqVfbL6IGpujBA98oaYSNu9v4JCqIohCAYv3WxqyfLksCPI19DXfgc6fhzT1J9RJIi+Z2G12Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4658
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aiK-EXwp_xhcbty9@hovoldconsulting.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,59 +115,31 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jun 05, 2026 at 02:05:27PM +0800, Guangshuo Li wrote:
-> intel_crtc_prepare_cleared_state() frees the old CRTC hw state before
-> calling intel_dp_tunnel_atomic_clear_stream_bw(). The latter can fail
-> while looking up the DP tunnel group state, for example with -EDEADLK.
+On Fri, Jun 05, 2026 at 02:16:17PM +0200, Johan Hovold wrote:
+> On Wed, Jun 03, 2026 at 12:44:55AM +0300, Andy Shevchenko wrote:
+> > On Thu, May 21, 2026 at 10:36:31AM +0200, Bartosz Golaszewski wrote:
+> > > Provide a platform-specific variant of device_set_of_node_from_dev(). In
+> > > addition to bumping the reference count of the OF node being assigned,
+> > > it also assigns the fwnode of the platform device.
+> > 
+> > Can we rather investigate the way how to make that of node reuse thingy
+> > (which is used solely by pin control) differently and then drop this confusing
+> > device_set_of_node_from_dev() call altogether?
 > 
-> If that happens, the function returns without completing the cleared
-> state preparation, leaving the duplicated CRTC state with its hw color
-> blob references already dropped. The failed atomic state will then be
-> cleared by the atomic core, which can drop the same references again.
-> 
-> Move the hw state release after the DP tunnel stream BW clear has
-> succeeded. Keep the temporary state allocation before the failable DP
-> tunnel operation so an allocation failure cannot happen after the stream
-> BW has already been cleared.
-> 
-> Fixes: fb69d0076e68 ("drm/i915/dp_tunnel: Fix error handling when clearing stream BW in atomic state")
-> Signed-off-by: Guangshuo Li <lgs201920130244@gmail.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index ad2fe10b6b1f..0c015bc6c9fd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -4646,9 +4646,6 @@ intel_crtc_prepare_cleared_state(struct intel_atomic_state *state,
->  	if (!saved_state)
->  		return -ENOMEM;
->  
-> -	/* free the old crtc_state->hw members */
-> -	intel_crtc_free_hw_state(crtc_state);
+> No, that call is needed. See commit 4e75e1d7dac9 ("driver core: add
+> helper to reuse a device-tree node") for details.
 
-The fix is valid, however I think instead of this change it'd be better
-to clear the blob reference pointers in intel_crtc_free_hw_state().
+Bart fixes the problem with the platform driver. At the result this will be
+the only device_set_node() + 'reused = true'.  As for 'reused' flag, the need
+is only for pinmux/pin control stuff. The question here is if there is a better
+way to make that 'reused' be done automatically without need of setting some
+flag explicitly.
 
-> -
->  	err = intel_dp_tunnel_atomic_clear_stream_bw(state, crtc_state);
->  	if (err) {
->  		kfree(saved_state);
-> @@ -4656,6 +4653,9 @@ intel_crtc_prepare_cleared_state(struct intel_atomic_state *state,
->  		return err;
->  	}
->  
-> +	/* free the old crtc_state->hw members */
-> +	intel_crtc_free_hw_state(crtc_state);
-> +
->  	/* FIXME: before the switch to atomic started, a new pipe_config was
->  	 * kzalloc'd. Code that depends on any field being zero should be
->  	 * fixed, so that the crtc_state can be safely duplicated. For now,
-> -- 
-> 2.43.0
-> 
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
