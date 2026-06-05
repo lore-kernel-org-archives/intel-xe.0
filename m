@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11F23CD6E5D
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Jun 2026 11:28:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D76F5CD6E5D
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Jun 2026 11:29:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B573D10E546;
-	Fri,  5 Jun 2026 11:28:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E72B10E596;
+	Fri,  5 Jun 2026 11:29:25 +0000 (UTC)
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFE6310E546;
- Fri,  5 Jun 2026 11:28:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6695C10E546;
+ Fri,  5 Jun 2026 11:29:24 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Introduce_Xe_Uncorrectabl?=
- =?utf-8?q?e_Error_Handling_=28rev7=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Introduce_Xe_Uncorrectable_Err?=
+ =?utf-8?q?or_Handling_=28rev7=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Riana Tauro" <riana.tauro@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 05 Jun 2026 11:28:49 -0000
-Message-ID: <178065892971.46540.18381085113944460467@6beec6c84f66>
+Date: Fri, 05 Jun 2026 11:29:24 -0000
+Message-ID: <178065896441.47432.16964839534668595860@6beec6c84f66>
 X-Patchwork-Hint: ignore
 References: <20260605093446.4189929-17-riana.tauro@intel.com>
 In-Reply-To: <20260605093446.4189929-17-riana.tauro@intel.com>
@@ -44,57 +44,38 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Introduce Xe Uncorrectable Error Handling (rev7)
 URL   : https://patchwork.freedesktop.org/series/160482/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-061140b9bc586ae7f40abc1249c97e1cc72d1b9d
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit c986431059fe0130b6d273b728fdc0ad74c594f4
-Author: Riana Tauro <riana.tauro@intel.com>
-Date:   Fri Jun 5 15:05:01 2026 +0530
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../drivers/gpu/drm/xe/xe_ras.c: In function ‘aer_unmask_and_downgrade_internal_error’:
+../drivers/gpu/drm/xe/xe_ras.c:506:24: error: ‘struct pci_dev’ has no member named ‘aer_cap’; did you mean ‘ats_cap’?
+  506 |         aer_cap = usp->aer_cap;
+      |                        ^~~~~~~
+      |                        ats_cap
+make[7]: *** [../scripts/Makefile.build:289: drivers/gpu/drm/xe/xe_ras.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:548: drivers/gpu/drm/xe] Error 2
+make[5]: *** [../scripts/Makefile.build:548: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:548: drivers/gpu] Error 2
+make[3]: *** [../scripts/Makefile.build:548: drivers] Error 2
+make[2]: *** [/kernel/Makefile:2143: .] Error 2
+make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
 
-    drm/xe/xe_ras: Process pages from offlined list and queue
-    
-    This will be integrated with the related address-fault handling flow
-    once this patch is merged.
-    https://lore.kernel.org/intel-xe/20260506141143.4033299-12-tejas.upadhyay@intel.com/
-    Sending for initial comments.
-    
-    On module load, process pages queued by firmware for offlining by
-    reserving and sending the offline/decline command to firmware.
-    For already offlined pages in the firmware list, reserve the pages.
-    
-    Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
-    Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-    Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-+ /mt/dim checkpatch fe3f27ecb39e8357b0af59cfe9402fd5cc0c07b1 drm-intel
-083c69bc290c drm/xe/xe_survivability: Decouple survivability info from boot survivability
-83b126af89fa drm/xe/xe_sysctrl: Make sysctrl flood limit reusable
-58bdef6a5961 drm/xe: Improve wedged state management
-e9124187f42c drm/xe/xe_pci_error: Implement PCI error recovery callbacks
--:60: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#60: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 147 lines checked
-f054b3121006 drm/xe/xe_pci_error: Group all devres to release them on PCIe slot reset
-60f1ada34dab drm/xe: Skip device access during PCI error recovery
-f3ee8a1dcb61 drm/xe/xe_ras: Initialize Uncorrectable AER Registers
-c7d524619153 drm/xe/xe_ras: Add support for uncorrectable core-compute errors
-4ca18c29bb51 drm/xe/xe_ras: Handle uncorrectable SoC Internal errors
-bc818ccb2de9 drm/xe/xe_ras: Add support to query device memory errors
-b44b1b0ff548 drm/xe/xe_ras: Query errors from system controller on probe
-4a1fe18d3855 drm/xe/xe_pci_error: Process errors in mmio_enabled
-4d2cdc14ce96 drm/xe/xe_ras: Add support to query page offline queue and list
-45ea4c1d21af drm/xe/xe_ras: Add support to offline/decline a page address
-c986431059fe drm/xe/xe_ras: Process pages from offlined list and queue
+[11:28:50] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[11:28:54] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
