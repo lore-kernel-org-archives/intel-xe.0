@@ -4,93 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCAD3CD6E7E
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Jun 2026 12:23:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50DF0CD6E7C
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Jun 2026 12:29:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B59511A804;
-	Fri,  5 Jun 2026 12:23:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 061C211A818;
+	Fri,  5 Jun 2026 12:29:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="YsZyfuH0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iTPv1ONH";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4933311A4B2;
- Fri,  5 Jun 2026 07:00:07 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 2195743A71;
- Fri,  5 Jun 2026 07:00:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF3B51F00893;
- Fri,  5 Jun 2026 06:59:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1780642807;
- bh=mLaeht+14OltYjlKRnSLpPtYOk2E9Ea1Lx7tk/hcws8=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To;
- b=YsZyfuH0DNQ7mv7u3TjtJz2xyIwZsrK8oVaqlPhk64DT+j0rV42P72G1+i/iwKkjR
- NRcuOWYnbQoyKyo3l2FM69tbt1G6e/HuNgC0tjlGYq95rMPDSYtqVOPYzvnqYUPxmO
- AWjPhYcJZ6wydfSYXF/XBNDK3f5d8IIgdI55O1W1HwIefukk8kexEUl8N5fsDeXx2z
- 4BExZj5mf+2VTADoOZFYWQlBUHvbteLd4O8xGa6QVu9YQUtYookUrNQ3mqvO9CAt4H
- 08LnpIh0I2Rne5hZA1mQuw5b6DWAlajftwY4jPb1w8G4b6cEGfnkYFO9vhRvcAILg8
- LyUNuKdCiw8wA==
-Date: Fri, 5 Jun 2026 14:59:53 +0800
-From: "Peter Chen (CIX)" <peter.chen@kernel.org>
-To: Bartosz Golaszewski <brgl@kernel.org>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Lee Jones <lee@kernel.org>,
- Mark Brown <broonie@opensource.wolfsonmicro.com>,
- Thierry Reding <thierry.reding@avionic-design.de>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Srinivas Kandagatla <srini@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Vinod Koul <vkoul@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,
- Saravana Kannan <saravanak@kernel.org>,
- Madhavan Srinivasan <maddy@linux.ibm.com>,
- Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>,
- "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
- Andi Shyti <andi.shyti@kernel.org>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Doug Berger <opendmb@gmail.com>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Ulf Hansson <ulfh@kernel.org>, Frank Li <Frank.Li@nxp.com>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Paul Cercueil <paul@crapouillou.net>, Bin Liu <b-liu@ti.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Maximilian Luz <luzmaximilian@gmail.com>, Hans de Goede <hansg@kernel.org>,
- Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>,
- Krzysztof Kozlowski <krzk@kernel.org>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
- driver-core@lists.linux.dev, devicetree@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, linux-i2c@vger.kernel.org,
- iommu@lists.linux.dev, linux-pm@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-usb@vger.kernel.org, linux-mips@vger.kernel.org,
- platform-driver-x86@vger.kernel.org,
- Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Subject: Re: [PATCH 20/23] usb: chipidea: use
- platform_device_set_of_node_from_dev()
-Message-ID: <aiJz6Ys4gE998ULp@nchen-desktop>
-References: <20260521-pdev-fwnode-ref-v1-0-88c324a1b8d2@oss.qualcomm.com>
- <20260521-pdev-fwnode-ref-v1-20-88c324a1b8d2@oss.qualcomm.com>
- <ah9P6Xt9SyKgc2oJ@ashevche-desk.local>
- <CAMRc=MdhjZhGL9tEx9WEjn2f95d=ObNM0AtBNpcevm6aHgpj+Q@mail.gmail.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1DD711A818;
+ Fri,  5 Jun 2026 12:29:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1780662549; x=1812198549;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=0U/uSHltz+EjzxS9+7lQJC3mnGLSFG3pArQte2OF6lI=;
+ b=iTPv1ONHDVhU4hQWNSg9LhE3c9EycpC8DDtA2uCKaJ1UprXfXoCS+e++
+ UJPYcQh8TCxCnCk1Hhbe90cHAOdT5/M1GT9FfyOUWiRaTAgOzX/+VLZ8k
+ nbJkIwvj/rxNO+m1f7gNkjuvUat0yYxp6ZxPEJ/+EimQrJNuRZuIaZsHo
+ OJoQnxP+tbCU6mzzE59QHmyKCmW3cNuXLgiOxgmMF4ACp83ESv8V5KXIY
+ mAU274vZc95NvoJZ55KHPOORRS/cfYnDeTDPp5aR4BYU3LMOGslOEVjdz
+ R/QDHy9D7sG9Zg7bM6Wfb0IZjHLTKvFIvp3TLsTuIUiedfrBPm72TDrBo A==;
+X-CSE-ConnectionGUID: lW1kqeeJQEW8F+RSBUf+6A==
+X-CSE-MsgGUID: 9R5NqAu4TtuHW1Xejf2Www==
+X-IronPort-AV: E=McAfee;i="6800,10657,11807"; a="81527043"
+X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="81527043"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2026 05:29:08 -0700
+X-CSE-ConnectionGUID: PttipCRQQ7umIpuDwy5CEQ==
+X-CSE-MsgGUID: 4Adi2YsFS5qZNNAWB+ByxA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="240383675"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by fmviesa006.fm.intel.com with ESMTP; 05 Jun 2026 05:29:02 -0700
+From: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+To: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ rodrigo.vivi@intel.com
+Cc: andrealmeid@igalia.com, christian.koenig@amd.com, airlied@gmail.com,
+ simona.vetter@ffwll.ch, mripard@kernel.org,
+ maarten.lankhorst@linux.intel.com, tzimmermann@suse.de,
+ anshuman.gupta@intel.com, badal.nilawar@intel.com, riana.tauro@intel.com,
+ karthik.poosa@intel.com, sk.anirban@intel.com, raag.jadav@intel.com,
+ Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Subject: [PATCH v7 0/6] Introduce cold reset recovery method
+Date: Fri,  5 Jun 2026 17:55:44 +0530
+Message-ID: <20260605122544.1021695-8-mallesh.koujalagi@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAMRc=MdhjZhGL9tEx9WEjn2f95d=ObNM0AtBNpcevm6aHgpj+Q@mail.gmail.com>
-X-Mailman-Approved-At: Fri, 05 Jun 2026 12:23:19 +0000
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,48 +70,121 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 26-06-04 08:34:16, Bartosz Golaszewski wrote:
-> On Tue, 2 Jun 2026 23:49:29 +0200, Andy Shevchenko
-> <andriy.shevchenko@linux.intel.com> said:
-> > On Thu, May 21, 2026 at 10:36:43AM +0200, Bartosz Golaszewski wrote:
-> >> Ahead of reworking the reference counting logic for platform devices,
-> >> encapsulate the assignment of the OF node from another device for
-> >> dynamically allocated platform devices with the provided helper.
-> >
-> > ...
-> >
-> >>  	pdev->dev.parent = dev;
-> >> -	device_set_of_node_from_dev(&pdev->dev, dev);
-> >> +	platform_device_set_of_node_from_dev(pdev, dev);
-> >
-> > Why do they even do that? Do they have a USB connected pin control?
-> >
-> 
-> I don't know. I can't test it so I don't want to break it. If they don't need
-> it, the person who can test it, can remove it later.
-> 
+This series builds on top of Introduce Xe Uncorrectable Error Handling[1]
+and adds support for handling errors that require a complete
+device power cycle (cold reset) to recover.
 
-It was introduced by below commits:
+Certain error conditions leave the device in a persistent hardware
+error state that cannot be cleared through existing recovery mechanisms
+such as driver reload or PCIe reset. In these cases, functionality can
+only be restored by performing a cold reset.
 
-commit 0f153a1b8193ce768be4df0400aeb2c8f2a3b3da
-Author: Rob Herring <robh@kernel.org>
-Date:   Wed Dec 15 16:56:46 2021 -0600
+To support this, the series introduces a new DRM wedging recovery
+method, DRM_WEDGE_RECOVERY_COLD_RESET (BIT(4)). When a device is wedged
+with this method, the DRM core notifies userspace via a uevent that a cold
+reset is required. This allows userspace to take appropriate action to
+power-cycle the device.
 
-    usb: chipidea: Set the DT node on the child device
+Example uevent received:
+  SUBSYSTEM=drm
+  WEDGED=cold-reset
+  DEVPATH=/devices/.../drm/card0
 
-    The ChipIdea glue drivers just copy the glue resources to the "ci_hdrc"
-    child device. Instead, set the child device's DT node pointer to the
-    parent device's node so that platform_get_irq() can find the IRQ
-    resources in the DT. This removes the need for statically populating the
-    IRQ resources from the DT which has been deprecated for some time.
+Detailed description in commit message.
 
-    Acked-by: Peter Chen <peter.chen@kernel.org>
-    Signed-off-by: Rob Herring <robh@kernel.org>
-    Link: https://lore.kernel.org/r/20211215225646.1997946-1-robh@kernel.org
-    Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+[1] https://patchwork.freedesktop.org/series/160482/
+This patch series introduces a call to punit_error_handler() from
+within handle_soc_internal_errors() when PUNIT errors detected.
 
+v2:
+- Add use case: Handling errors from power management unit,
+  which requires a complete power cycle to
+  recover. (Christian)
+- Add several instead of number to avoid update. (Jani)
+
+v3:
+- Update any scenario that requires cold-reset. (Riana)
+- Update document with generic scenario. (Riana)
+- Consistent with terminology. (Raag)
+- Remove already covered information.
+- Use PUNIT instead of PMU. (Riana)
+- Use consistent wordingi.
+- Remove log. (Raag)
+
+v4:
+- Rename cold reset to power cyclce. (Raag)
+- Update doc. (Raag/Riana)
+- Change commit message. (Raag)
+- Make function static. (Raag)
+
+v5:
+- Make it consistent with consumer expectations. (Raag)
+- Update commit message.
+- Remove unbind.
+- Simplify cold-reset script.
+- Remove kdoc for static function.
+- Remove xe_ prefix for static function.
+
+v6:
+- Drop "last resort" wording. (Riana)
+- Look up the hotplug slot in DEVPATH instead of scanning
+  every PCI slot on the system. (Raag)
+- Drop arbitrary sleep values from the example script.
+- Expand commit message to explain why SUR_DN is masked. (Raag/Riana)
+- Check Slot Implemented bit before reading Slot Capabilities, per
+  PCIe spec. (Riana)
+- Add debug log.
+
+v7:
+- Update recovery script. (Raag)
+- Handle suprise link down event properly. (Aravind/Riana)
+- Update commit message. (Riana)
+- Corret log message.
+
+Cc: André Almeida <andrealmeid@igalia.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+
+Mallesh Koujalagi (5):
+  drm: Add DRM_WEDGE_RECOVERY_COLD_RESET recovery method
+  drm/doc: Document DRM_WEDGE_RECOVERY_COLD_RESET recovery method
+  drm/xe: Handle PUNIT errors by requesting cold-reset recovery
+  drm/xe: Suppress Surprise Link Down on device
+  drm/xe/ras: Add debugfs entry to inject punit error
+
+Riana Tauro (1):
+  Introduce Xe Uncorrectable Error Handling
+
+ Documentation/gpu/drm-uapi.rst                |  85 ++-
+ drivers/gpu/drm/drm_drv.c                     |   2 +
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ drivers/gpu/drm/xe/xe_debugfs.c               |   3 +
+ drivers/gpu/drm/xe/xe_device.c                |  24 +-
+ drivers/gpu/drm/xe/xe_device.h                |  27 +-
+ drivers/gpu/drm/xe/xe_device_types.h          |  12 +-
+ drivers/gpu/drm/xe/xe_gt.c                    |  14 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c            |   9 +-
+ drivers/gpu/drm/xe/xe_pci.c                   |   9 +
+ drivers/gpu/drm/xe/xe_pci_error.c             | 135 +++++
+ drivers/gpu/drm/xe/xe_pci_error.h             |  13 +
+ drivers/gpu/drm/xe/xe_ras.c                   | 556 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ras.h                   |  11 +
+ drivers/gpu/drm/xe/xe_ras_types.h             | 215 +++++++
+ drivers/gpu/drm/xe/xe_survivability_mode.c    |  13 +-
+ drivers/gpu/drm/xe/xe_sysctrl_event.c         |   2 +-
+ drivers/gpu/drm/xe/xe_sysctrl_event_types.h   |   3 -
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox.c       |  28 +
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox.h       |   4 +-
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |  11 +
+ include/drm/drm_device.h                      |   1 +
+ 22 files changed, 1149 insertions(+), 29 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_pci_error.c
+ create mode 100644 drivers/gpu/drm/xe/xe_pci_error.h
 
 -- 
+2.34.1
 
-Best regards,
-Peter
