@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3327CD6E7D
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Jun 2026 14:53:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34499CD6E7D
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Jun 2026 14:54:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61B7810E49E;
-	Fri,  5 Jun 2026 14:53:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8FE1112B4A;
+	Fri,  5 Jun 2026 14:54:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E5F52p0+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ViCrIBCD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B8AF10E49E;
- Fri,  5 Jun 2026 14:53:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3932710E4DA;
+ Fri,  5 Jun 2026 14:54:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780671202; x=1812207202;
+ t=1780671269; x=1812207269;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=S9VN2IMCqnREp7EhcUK1NJoNhMFd+IfW7xD2w5Raim8=;
- b=E5F52p0+ucmhd7pnaA1s0YvFP4r6jZmWEp5YTLs+J7hRopPN46ZWTp6H
- eHOY7MjTeP5zXmBYBzh2Hs2jG0NCni8socwy7PRp4G3WDh095P/Cpyean
- PsWhgtvm4PAdwh+hCFGclmXUDu+WyyYha+XGCrLvvXeeuI8b2Gm7+PrDB
- kmO7Rt1zJ4bGXvUInLnCCvkn0LL2mjvT4y4/+d6meCOdDvjVL0Xw0HH6f
- SVqUnTuEx7ZbpdlzlVAyVNvs7sC9tV4aGXPpKS9snHz4e3mgEvWsEnM0I
- kC5lKzzwQJvUu/7pCtvNyu7tj1roKlFj3vW8tWehU+9yMw9lteHCR6I4/ w==;
-X-CSE-ConnectionGUID: WhdQXF33SJ2nV7p9U166Fg==
-X-CSE-MsgGUID: w1goDHmGR/WcYLUXvUudXw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11807"; a="81565333"
-X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="81565333"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ bh=4tMeiKXzH2reWHQd2Do3LiCn4ypOHk0Io4ayzbOXR2A=;
+ b=ViCrIBCD8lCv6XAbtpT81FQ631uftKlCzal7av3ErRIqeaKCKymlgqn6
+ AoZVkeupiO2Xg79jhTTe77rFaGCtOmmBblSg8R0tb2lR31byKp3B6Y335
+ GzHmCh/RAMtIxamW2Ot1DumW6coJAGxX3Vv2f6pQRwLXWS8yBRVHbJkNO
+ SvAu7aJAScvOVWTCSvnnIfXc42pEaCW2PeESJFwBerwUF2SaUh2QdynjL
+ KUhMC7j1zNE5snvNw7VYH2wqff3SV/h/qaLcJm79GCnPjGAIeIkytw/fO
+ rLX/Vk9j3d+uZk9UOSchtxYi9OaNPMkWQ0LMC21U27AagpVieYbzloWS5 Q==;
+X-CSE-ConnectionGUID: JoL2NytdSuS4RRMyIoGqHA==
+X-CSE-MsgGUID: b1lTRJJ1RwugpiA09otj6A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11807"; a="81565439"
+X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="81565439"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 07:53:21 -0700
-X-CSE-ConnectionGUID: p3R1KLajSt+9nt2FGUPoiA==
-X-CSE-MsgGUID: dy03ihVLR16TJHMTwX8Gig==
+ 05 Jun 2026 07:54:28 -0700
+X-CSE-ConnectionGUID: h9Rk7ixqSzO/yh1S6oBceQ==
+X-CSE-MsgGUID: mgvGmj4gSWyogJmBey9GTw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="282943735"
+X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="243768683"
 Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.245.178])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 07:53:07 -0700
-Date: Fri, 5 Jun 2026 17:53:04 +0300
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2026 07:54:14 -0700
+Date: Fri, 5 Jun 2026 17:54:11 +0300
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Johan Hovold <johan@kernel.org>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
+Cc: Philipp Zabel <p.zabel@pengutronix.de>,
+ Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
  Lee Jones <lee@kernel.org>,
  Mark Brown <broonie@opensource.wolfsonmicro.com>,
  Thierry Reding <thierry.reding@avionic-design.de>,
@@ -77,7 +78,6 @@ Cc: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Peter Chen <peter.chen@kernel.org>,
  Paul Cercueil <paul@crapouillou.net>, Bin Liu <b-liu@ti.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
  Maximilian Luz <luzmaximilian@gmail.com>, Hans de Goede <hansg@kernel.org>,
  Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
  Krzysztof Kozlowski <krzk@kernel.org>,
@@ -91,17 +91,18 @@ Cc: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
  intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-usb@vger.kernel.org, linux-mips@vger.kernel.org,
  platform-driver-x86@vger.kernel.org
-Subject: Re: [PATCH 08/23] driver core: platform: provide
+Subject: Re: [PATCH 22/23] reset: rzg2l: use
  platform_device_set_of_node_from_dev()
-Message-ID: <aiLi0KZskrCyEYO5@ashevche-desk.local>
+Message-ID: <aiLjE0SLwrDytyw0@ashevche-desk.local>
 References: <20260521-pdev-fwnode-ref-v1-0-88c324a1b8d2@oss.qualcomm.com>
- <20260521-pdev-fwnode-ref-v1-8-88c324a1b8d2@oss.qualcomm.com>
- <ah9O15bMlAYgSlHx@ashevche-desk.local>
- <aiK-EXwp_xhcbty9@hovoldconsulting.com>
+ <20260521-pdev-fwnode-ref-v1-22-88c324a1b8d2@oss.qualcomm.com>
+ <6af284545729f03a60d06479339862a2f08c6b7e.camel@pengutronix.de>
+ <ah9QtExF2rUUTMNo@ashevche-desk.local>
+ <aiK-qZqpuC-OEigf@hovoldconsulting.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aiK-EXwp_xhcbty9@hovoldconsulting.com>
+In-Reply-To: <aiK-qZqpuC-OEigf@hovoldconsulting.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -118,25 +119,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jun 05, 2026 at 02:16:17PM +0200, Johan Hovold wrote:
-> On Wed, Jun 03, 2026 at 12:44:55AM +0300, Andy Shevchenko wrote:
-> > On Thu, May 21, 2026 at 10:36:31AM +0200, Bartosz Golaszewski wrote:
-> > > Provide a platform-specific variant of device_set_of_node_from_dev(). In
-> > > addition to bumping the reference count of the OF node being assigned,
-> > > it also assigns the fwnode of the platform device.
-> > 
-> > Can we rather investigate the way how to make that of node reuse thingy
-> > (which is used solely by pin control) differently and then drop this confusing
-> > device_set_of_node_from_dev() call altogether?
-> 
-> No, that call is needed. See commit 4e75e1d7dac9 ("driver core: add
-> helper to reuse a device-tree node") for details.
+On Fri, Jun 05, 2026 at 02:18:49PM +0200, Johan Hovold wrote:
+> On Wed, Jun 03, 2026 at 12:52:52AM +0300, Andy Shevchenko wrote:
+> > On Tue, Jun 02, 2026 at 10:24:41AM +0200, Philipp Zabel wrote:
+> > > On Do, 2026-05-21 at 10:36 +0200, Bartosz Golaszewski wrote:
 
-Bart fixes the problem with the platform driver. At the result this will be
-the only device_set_node() + 'reused = true'.  As for 'reused' flag, the need
-is only for pinmux/pin control stuff. The question here is if there is a better
-way to make that 'reused' be done automatically without need of setting some
-flag explicitly.
+...
+
+> > > > -	device_set_of_node_from_dev(&vdev->dev, dev);
+> > > > +	platform_device_set_of_node_from_dev(vdev, dev);
+> > 
+> > Same Q here, why it uses inherited call? Cargo cult?
+> > 
+> > 'reused' flag is solely pin control (provider!) thingy as far as I remember.
+> 
+> No, it's needed for pin control *consumers*, which can be any device,
+> and potentially any other resource managed by driver core or bus code.
+
+Why don't we set it for every pin control consumer automatically?
 
 -- 
 With Best Regards,
