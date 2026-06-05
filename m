@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31256CD6E7B
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Jun 2026 23:21:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3151CD6E7B
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Jun 2026 23:47:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA5EF11ABC6;
-	Fri,  5 Jun 2026 23:21:31 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bVg1JbmO";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF46311ABBF
- for <intel-xe@lists.freedesktop.org>; Fri,  5 Jun 2026 23:21:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780701680; x=1812237680;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=25D3wDMxJztTd+AyoBEzWHil5qxOkxT7usX6WGBIxa4=;
- b=bVg1JbmOoBamt4aySi5zyEj2rL6eLrjz0GPhlxVwBReJKR9eRiqaxCp4
- MgI3JtVOC59IIjYtFiLdZSAq+bxUHE2fXeHwT/N1WQfsAOs7LJmAf7ykL
- 9Fe71Hmq6E9VTfbF3qX4PQ2qCFcMb5M7DLWTXwccWBgrp0y05GUw5TonZ
- pvSTMYMqGD3yg9+Z4Au5+Y1JqGPpVq/Z2jXcS4I0lrwN4xUSoO8oe+iaq
- xwBwSepjCadp4w2cPSuhhEMVmh/Uo2CBcu07k95tpvG3XuwwADmWvbxH5
- 3ZIkTzItpGu9CwMC8GBKnF0nwOS00GecSfhp2vtjdZvTLnqOlSRl7tZN3 w==;
-X-CSE-ConnectionGUID: LR1EW4doTsmQLB6Hzd67ag==
-X-CSE-MsgGUID: 5tE9axOEQo2OBejqdJcOUA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11808"; a="81449681"
-X-IronPort-AV: E=Sophos;i="6.24,189,1774335600"; d="scan'208";a="81449681"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 16:21:19 -0700
-X-CSE-ConnectionGUID: qbxx5Jp3Sba5n6S7rrbTFg==
-X-CSE-MsgGUID: vue0g8fwT1q2muza35fT7Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,189,1774335600"; d="scan'208";a="245018299"
-Received: from dut4385arlh.fm.intel.com ([10.105.8.91])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 16:21:19 -0700
-From: Stuart Summers <stuart.summers@intel.com>
-To: 
-Cc: michal.wajdeczko@intel.com, ilia.levi@intel.com, x.wang@intel.com,
- rodrigo.vivi@intel.com, intel-xe@lists.freedesktop.org,
- alan.previn.teres.alexis@intel.com,
- Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 06/12] drm/xe: Change MSI-X assignment failure to drm_dbg
-Date: Fri,  5 Jun 2026 23:21:13 +0000
-Message-ID: <20260605232108.674580-20-stuart.summers@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260605232108.674580-14-stuart.summers@intel.com>
-References: <20260605232108.674580-14-stuart.summers@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39664112C74;
+	Fri,  5 Jun 2026 23:47:43 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06D34112C74;
+ Fri,  5 Jun 2026 23:47:42 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Enable_per_exec_queue_MSI?=
+ =?utf-8?q?-X_vector_assignment?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stuart Summers" <stuart.summers@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 05 Jun 2026 23:47:42 -0000
+Message-ID: <178070326202.49942.10249683676971670223@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260605232108.674580-14-stuart.summers@intel.com>
+In-Reply-To: <20260605232108.674580-14-stuart.summers@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,33 +36,62 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that we have queue based MSI-X vectors and a user
-can potentially create more queues than we have vectors
-available, don't spam dmesg with drm_err messages for
-every failure. Change that to a drm_dbg instead.
+== Series Details ==
 
-Signed-off-by: Stuart Summers <stuart.summers@intel.com>
-Assisted-by: Copilot:claude-sonnet-4.6
----
- drivers/gpu/drm/xe/xe_irq.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Series: Enable per exec queue MSI-X vector assignment
+URL   : https://patchwork.freedesktop.org/series/167990/
+State : warning
 
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index 40d3d43e492f..871c6c5c4fac 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -768,7 +768,7 @@ static int xe_irq_msi_request_irqs(struct xe_device *xe)
- 	irq = pci_irq_vector(pdev, 0);
- 	err = request_irq(irq, irq_handler, IRQF_SHARED, DRIVER_NAME, xe);
- 	if (err < 0) {
--		drm_err(&xe->drm, "Failed to request MSI IRQ %d\n", err);
-+		drm_dbg(&xe->drm, "Failed to request MSI IRQ %d\n", err);
- 		return err;
- 	}
- 
--- 
-2.43.0
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit abd1bc1bc702d9d727c63d70862c4a0bc1c45d13
+Author: Stuart Summers <stuart.summers@intel.com>
+Date:   Fri Jun 5 23:21:19 2026 +0000
+
+    drm/xe/memirq: Enable compute walker post-sync interrupt
+    
+    Commit 2ddedd4b7b7c ("drm/xe/memirq: Enable GT_MI_USER_INTERRUPT only")
+    narrowed the MEMIRQ enable mask to GT_MI_USER_INTERRUPT only. Add
+    the interrupt enable bit for the compute walker post sync interrupt
+    as well to allow those to go through.
+    
+    Additionally, the compute walker post sync interrupt vector offset
+    in the LRC register is currently incorrect. Fix that here.
+    
+    Bspec: 62346, 72547
+    
+    Signed-off-by: Stuart Summers <stuart.summers@intel.com>
+    Assisted-by: Copilot:claude-sonnet-4.6
++ /mt/dim checkpatch f5cb6d0bd86baaed2c093b772ddc3870429aba08 drm-intel
+2e8c016f124b drm/xe: Add kerneldoc to xe_wait_user_fence_ioctl()
+205c9371b039 drm/xe: Handle NULL in xe_exec_queue_get_unless_zero()
+b46922b18642 drm/xe: Cap MSI-X vector count to XE_MSIX_MAX_VECS
+d4e65334af87 drm/xe: Assign dedicated MSI-X vectors to exec queues
+bf262e7a4b5b drm/xe: Add configfs max_msix_vecs attribute
+8ee303fa10dd drm/xe: Change MSI-X assignment failure to drm_dbg
+fc52aea64445 drm/xe: Remove memirq status and source checks for engine interrupts
+2c8f9af482ce drm/xe: Add per-exec-queue user fence wait queue
+e3e7d0767bdf drm/xe: Track all exec queues in a device-level ufence list
+646849d94c0d drm/xe: Hook up per queue thread wake to the unique MSI-X vector allocation
+21b95375d83c drm/xe: Enable per-queue ufence wake in ioctl and wake function
+-:53: WARNING:PREFER_FALLTHROUGH: Prefer 'fallthrough;' over fallthrough comment
+#53: FILE: drivers/gpu/drm/xe/xe_wait_user_fence.c:76:
++	 * so callers that don't specify a queue fall through to the broadcast.
+
+total: 0 errors, 1 warnings, 0 checks, 72 lines checked
+abd1bc1bc702 drm/xe/memirq: Enable compute walker post-sync interrupt
+
 
