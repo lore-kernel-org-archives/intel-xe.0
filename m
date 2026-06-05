@@ -4,55 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CED5ECD6E79
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Jun 2026 12:38:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 197A1CD8C82
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Jun 2026 12:39:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94A40112AE5;
-	Fri,  5 Jun 2026 12:38:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C59B7112AE8;
+	Fri,  5 Jun 2026 12:38:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D+As4wyM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YLbJKCDZ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFF52112AE5
- for <intel-xe@lists.freedesktop.org>; Fri,  5 Jun 2026 12:38:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 906A0112AE8
+ for <intel-xe@lists.freedesktop.org>; Fri,  5 Jun 2026 12:38:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780663136; x=1812199136;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=AibUQBkqHDiDgw1+6/yRCvQfF2+kx6F9nHcKaKwpSaY=;
- b=D+As4wyMiv/Cj4er2sgO/Cuj8fK9kFgIzFhtvSFYa3GktaGUMGK4/Ala
- mUj7aa0OhCwBOohFVpp4EX3NZASUKjCxEg4eca9I1AWBGjUniVxjIh/mR
- xJ0pkObcke6Wmj50W3Pgrvgm4msjMwReOSbDyHowg8yOs6xkU7+hOlTq2
- iMMU6YQRuY3EUEYg1uACojiJJL8u2Lfaprbzo+cv0syhTaXQFqRLCXjaA
- wtPyGE8ZXlBImKeCwRS/z5mksUToyJGaMrZ3QPKnKeCSoHtCnHNLDl27A
- Lnb6O96X5FuVveSOhRoUF5W3V5ugEp7cpBLeJg0iTb+vTJoJnm7HYe8Oh g==;
-X-CSE-ConnectionGUID: XtHAuyyqTc2MN2FetBX5lA==
-X-CSE-MsgGUID: xD23Y+ysTcqslKvsgaw5Pw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11807"; a="106937331"
-X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="106937331"
+ t=1780663138; x=1812199138;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=+4SV6QfAKNgHHwntbOVK8ASqK9ERmJsqplQCOT9ZXHI=;
+ b=YLbJKCDZTHrwwIqMfHcf4DJuITbF0Tl6PF1Cu2S5K/RcDBfZ0Ym7yudE
+ RRrUqZ5jtecW+Pm/p9NViwTM6aK0v5pkdVcNzzXHU7R9pAvwlfDq1305H
+ Bm+v8Cnoey3nwAUFM9o4w80prZROM+xlxiT2yPvUaTXiV9IiTr28rivPg
+ e4IHkWoG6Fwr3QR4sG5o3gdf8Lh5JIR+wdIIY6FJ1UH3o9R0HhlurQr0e
+ 3Vv5a2/vdf5jC4RCcQ/Kjvt2JS/QYDhuxkfQTx1+/b/v2b2KmnBu0IS7m
+ r28XtoEEwXqeJdj9XeMItYakZRjre5z+zKeRQzTNCtSlXzyoDWqqyMCIW g==;
+X-CSE-ConnectionGUID: 9IE5JxqhQ8ihUsy/xHACSA==
+X-CSE-MsgGUID: MX3Ek+GaSoWGDCF5MnyoLA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11807"; a="106937336"
+X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="106937336"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 05:38:56 -0700
-X-CSE-ConnectionGUID: C9phPIEhTvKg262jVFaKUA==
-X-CSE-MsgGUID: 1s1xJJOmQi+XPurkKcfAjg==
+ 05 Jun 2026 05:38:58 -0700
+X-CSE-ConnectionGUID: QQPjeqpQSN27wY19jJt+/A==
+X-CSE-MsgGUID: AB45TXXZSZuV8IIm6sx3tA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="249938878"
+X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="249938886"
 Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
  ([10.190.239.37])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 05:38:54 -0700
+ 05 Jun 2026 05:38:57 -0700
 From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.auld@intel.com, matthew.brost@intel.com,
  thomas.hellstrom@linux.intel.com, himal.prasad.ghimiray@intel.com,
  Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH V11 00/12] Add memory page offlining support
-Date: Fri,  5 Jun 2026 18:08:38 +0530
-Message-ID: <20260605123839.236021-14-tejas.upadhyay@intel.com>
+Subject: [PATCH V11 01/12] drm/xe: Link VRAM object with gpu buddy
+Date: Fri,  5 Jun 2026 18:08:39 +0530
+Message-ID: <20260605123839.236021-15-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20260605123839.236021-14-tejas.upadhyay@intel.com>
+References: <20260605123839.236021-14-tejas.upadhyay@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,108 +69,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This functionality represents a significant step in making
-the xe driver gracefully handle hardware memory degradation.
-By integrating with the DRM Buddy allocator, the driver
-can permanently "carve out" faulty memory so it isn't reused
-by subsequent allocations.
+Setup to link TTM buffer object inside gpu buddy. This functionality
+is critical for supporting the memory page offline feature on CRI,
+where identified faulty pages must be traced back to their
+originating buffer for safe removal.
 
-This series adds memory page offlining support with following:
-1. Link VRAM object with gpu buddy
-2. Integrate lockdep for gpu buddy manager
-3. Link and track ttm BO's with physical addresses
-4. Link LRC BO and its execution Queue
-5. Extend BO purge to handle vram pages as well
-6. Handle the generated physical address error by reserving addresses 4K page
-7. Adds supporting debugfs to automate injection of physcal address error
-8. Add buddy block allocation dump for debuggin buddy related issues
-9. Add configfs for vram bad page reservation policy
-10. Sysfs entry to provide statistics of bad gpu vram pages for user info
-11. Expose ban reason in EXEC_QUEUE_GET_PROPERTY_BAN
-12. Add soft/hard offline mode for VRAM page retirement
+V2(MattB): Clear block->private in xe_ttm_vram_mgr_del as well
 
-v11:
-- Add BAN reason for UMD to know about offlining
-- Add support for soft offline mode
-v10:
-- Remove RFC
-v7:
-- Improve debugfs warning messages
-- Use scope_guard for locking(MattB)
-- Adapt addition of queue member of LRC BO(MattB)
-- Extend and use xe_ttm_bo_purge API for vram pages(MattB)
-- Handle dma_buf_map requests for native and remote(MattB)
-- Address if in never initialized block, set block to NULL
-- Add lockdep in gpu buddy (MattB)
-- Correct allocated_addr_to_block logic (MattA)
-V6:
-- Add more specific tests to noncritical bo sections
-- Handle smooth exit of user created exec queues
-- Break code and make purge specific static API
-V5:
-- Sysfs "max_pages" addition
-- Reset block->private NULL post purge
-- Remove wedge, return -EIO to system controller will initiate reset
-- Add debugfs tests to trigger different test scenarios manually and via igt
-- Rename addr_to_tbo to addr_to_block and move under gpu/buddy.c
-V4: API reworks, add configfs for policy reservation and apply config everywhere
-V3: use res_to_mem_region to avoid use of block->private (MattA)
-V2:
-- some fixes and clean up on errors
-- Added xe_vram_addr_to_region helper to avoid other use of block->private (MattB)
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+---
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Debugfs shows test of different scenarios,
-echo 0 > /sys/kernel/debug/dri/bdf/invalid_addr_vram0
-where 0 is below address types to be tested,
-enum mempage_offline_mode {
-        MEMPAGE_OFFLINE_UNALLOCATED = 0,
-        MEMPAGE_OFFLINE_USER_ALLOCATED = 1,
-        MEMPAGE_OFFLINE_KERNEL_USER_GGTT_ALLOCATED = 2,
-        MEMPAGE_OFFLINE_KERNEL_USER_PPGTT_ALLOCATED = 3,
-        MEMPAGE_OFFLINE_KERNEL_CRITICAL_ALLOCATED = 4,
-        MEMPAGE_OFFLINE_RESERVED = 5,
-};
-
-IGT tests for testing this feature standalone core memory side:
-https://patchwork.freedesktop.org/patch/714751/
-
-Tejas Upadhyay (12):
-  drm/xe: Link VRAM object with gpu buddy
-  drm/buddy: Integrate lockdep annotations for gpu buddy manager
-  drm/gpu: Add gpu_buddy_allocated_addr_to_block helper
-  drm/xe: Link LRC BO and its execution Queue
-  drm/xe: Extend BO purge to handle vram pages as well
-  drm/xe: Handle physical memory address error
-  drm/xe/cri: Add debugfs to inject faulty vram address
-  gpu/buddy: Add routine to dump allocated buddy blocks
-  drm/xe/configfs: Add vram bad page reservation policy
-  drm/xe/cri: Add sysfs interface for bad gpu vram pages
-  drm/xe/uapi: Expose ban reason in EXEC_QUEUE_GET_PROPERTY_BAN
-  drm/xe: Add soft/hard offline mode for VRAM page retirement
-
- drivers/gpu/buddy.c                        | 107 +++++
- drivers/gpu/drm/drm_buddy.c                |   1 +
- drivers/gpu/drm/xe/xe_bo.c                 |  16 +-
- drivers/gpu/drm/xe/xe_bo.h                 |   5 +-
- drivers/gpu/drm/xe/xe_bo_types.h           |   3 +
- drivers/gpu/drm/xe/xe_configfs.c           |  64 ++-
- drivers/gpu/drm/xe/xe_configfs.h           |   2 +
- drivers/gpu/drm/xe/xe_debugfs.c            | 168 ++++++++
- drivers/gpu/drm/xe/xe_device_sysfs.c       |   7 +
- drivers/gpu/drm/xe/xe_dma_buf.c            |   3 +
- drivers/gpu/drm/xe/xe_exec_queue.c         |  13 +-
- drivers/gpu/drm/xe/xe_exec_queue_types.h   |   7 +-
- drivers/gpu/drm/xe/xe_execlist.c           |   4 +-
- drivers/gpu/drm/xe/xe_guc_submit.c         |  24 +-
- drivers/gpu/drm/xe/xe_lrc.c                |   1 +
- drivers/gpu/drm/xe/xe_pt.c                 |   3 +-
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c       | 442 +++++++++++++++++++--
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.h       |   2 +
- drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h |  44 ++
- include/linux/gpu_buddy.h                  |  44 ++
- include/uapi/drm/xe_drm.h                  |  12 +-
- 21 files changed, 927 insertions(+), 45 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index 9dad5cf5b50a..ffba13961528 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -54,6 +54,7 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
+ 	struct xe_ttm_vram_mgr *mgr = to_xe_ttm_vram_mgr(man);
+ 	struct xe_ttm_vram_mgr_resource *vres;
+ 	struct gpu_buddy *mm = &mgr->mm;
++	struct gpu_buddy_block *block;
+ 	u64 size, min_page_size;
+ 	unsigned long lpfn;
+ 	int err;
+@@ -138,6 +139,8 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
+ 	}
+ 
+ 	mgr->visible_avail -= vres->used_visible_size;
++	list_for_each_entry(block, &vres->blocks, link)
++		block->private = tbo;
+ 	mutex_unlock(&mgr->lock);
+ 
+ 	if (!(vres->base.placement & TTM_PL_FLAG_CONTIGUOUS) &&
+@@ -176,8 +179,11 @@ static void xe_ttm_vram_mgr_del(struct ttm_resource_manager *man,
+ 		to_xe_ttm_vram_mgr_resource(res);
+ 	struct xe_ttm_vram_mgr *mgr = to_xe_ttm_vram_mgr(man);
+ 	struct gpu_buddy *mm = &mgr->mm;
++	struct gpu_buddy_block *block;
+ 
+ 	mutex_lock(&mgr->lock);
++	list_for_each_entry(block, &vres->blocks, link)
++		block->private = NULL;
+ 	gpu_buddy_free_list(mm, &vres->blocks, 0);
+ 	mgr->visible_avail += vres->used_visible_size;
+ 	mutex_unlock(&mgr->lock);
 -- 
 2.52.0
 
