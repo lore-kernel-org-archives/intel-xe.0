@@ -4,161 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D86C1CD6E7D
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Jun 2026 13:57:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 230AACD6E79
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Jun 2026 14:13:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 849E4112B41;
-	Fri,  5 Jun 2026 13:57:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1C0111A8BE;
+	Fri,  5 Jun 2026 14:13:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GkHQ4iWs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KQYk/WgQ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EA20112B3F;
- Fri,  5 Jun 2026 13:57:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0501011A8BE
+ for <intel-xe@lists.freedesktop.org>; Fri,  5 Jun 2026 14:13:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780667858; x=1812203858;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=/k3W3IxqPSzTt7bDYbqHBDYU/Sq56SfQ15OqOXUcRpk=;
- b=GkHQ4iWsaY+EhblOIQ9Fui6Sk4ZnXy0TACDStIKH28aED4AX8kkQkXAS
- vabvzJF2ODvuEW3WYT+IC2adUyhpyG2rNhkVXDYJxdujWTJ3PBVsHEaWf
- twQKb1v2w321qjLLrRt4pM469XpwziDjqmlr01hZccJbeWLVZASxpDMlt
- WfA8S6yA4XBJj51gNt8mPQln4JntiuXOYB3hecs635KwD7QfhfGoTgrry
- 4DwWDCdMRJY4wnPF/682OpdX9bQezsWZFGEt8gYGEvC0qt44mol6qdssu
- 1a9HuR3kFtLmiFEyEGCb30UFbMgN8oVRj7EBr29QJ/jBAvtCFOsVXMEym g==;
-X-CSE-ConnectionGUID: Co5f/QVqRzK6+V82iWbt0w==
-X-CSE-MsgGUID: mPhN+LqTQ3eVZwNBLwRb6A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11807"; a="80637625"
-X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="80637625"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 06:57:38 -0700
-X-CSE-ConnectionGUID: TZdSALsvRnSnO8e3r1zN0Q==
-X-CSE-MsgGUID: 7NbsJ2WIRzaZAG21Pqemjg==
+ t=1780668834; x=1812204834;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=1VmnZPO/CYKCwitU7813nmmMCsbAkZmWsA+q+6yOQh0=;
+ b=KQYk/WgQDgn9i948CyuUo0Y7xUFZzdq/bq8U883/+BYQ6QBt3eIZa/si
+ Tnh9Y4Dxuhw5XLICJEXEfULid/3fRw9h/1ydJ8S41gzDk3lfSx55tnaOP
+ cdYAB52It2O562JHXajw/GDfa5K5IxpAK5LIj2YD4hSVteQIXWQouC/Gs
+ sWhUFemvFBYZbAahaHmVRnm5HskxvTtBDOAo/dQ5jaYIU/NVxliJNKjEd
+ zsBGcKj59rLhoaQSrtT39+YEFUFwKYNNVIq8AXM+zxA0wjNL1fA0+nBEe
+ XF5hvO6FOQ/PVibt/FTSJgHFKlq5z7L2FkqIUezOwFfwMTyrP12oCWxCU A==;
+X-CSE-ConnectionGUID: B11YU4xvRYuft6sfyQB6iA==
+X-CSE-MsgGUID: vXL5lFdhQi6yHKZgm1hQ9g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11807"; a="92877338"
+X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="92877338"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2026 07:13:53 -0700
+X-CSE-ConnectionGUID: mwbA7UJ0STmG6ivZv1iCIg==
+X-CSE-MsgGUID: zEJ+rh0lQRaPyBkQIsvKhg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="246680524"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 06:57:37 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 5 Jun 2026 06:57:37 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Fri, 5 Jun 2026 06:57:37 -0700
-Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.3) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 5 Jun 2026 06:57:36 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rX2zSPvDy0e6+FYOn9J8ypMApvxSemaZjuj4fAY5wl+0jA8yGZIUMvr/rUWUzWMGfmqtWAh4FYSPJUsHN+iseh1BDpxOKJdeW82SwCJ4fFWrOGutnmWVTO+mKKdwNrvvpW9UpqU6checv06d4PbQ9VP7fLPcpBWaApaOf+AoI9AcrwSEvPBB2DHiMqSdU+bFm6+zs27aOrV6a1uGQYJeLth3+VGc662o/2yNK0tMVqhcwzQHahPyqIr5T1pdvNyK/3MDbz9XQXLhGiCHjpto4vtyDpBhra7LWBLM5m9A/PHZNhA7gWhFtcsdeKj5A75augXHIZBnCaP1OJMAj1dsqw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/k3W3IxqPSzTt7bDYbqHBDYU/Sq56SfQ15OqOXUcRpk=;
- b=Irfg1LSRG1ZExTbYPv1t7VgqJRBEg0OKjeKRuP1h5olCnSuSVD5zYXVqGUqyO8oOweHl6pgr2CZLObzAGkzaqnwvzq16ZuRTC/3JTuMeIcx8v39sl5SAHqU1Ce94TX901KBIT7vMw+a1AwhwUAuE5ynuvVp1T8iygVxmKx1ZbgPAdlYacuPbZxz3clYK3EKmhwxzPKRS+1Wfl2+mrQ6ukMCRlLOjHnyLhlgxz58WU1Pfygq93nW8XezLLBnPXjzjCci9j1S4v1r9EkSI5SGlzn9N3LseRL+sdGbrgj4ilZJccJQQ71Fd4yLm1fpDPb4jwLCkFkKDatd0A2vnXIueeA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DS4PPF69154114F.namprd11.prod.outlook.com
- (2603:10b6:f:fc02::28) by CY8PR11MB7195.namprd11.prod.outlook.com
- (2603:10b6:930:93::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.8; Fri, 5 Jun 2026
- 13:57:33 +0000
-Received: from DS4PPF69154114F.namprd11.prod.outlook.com
- ([fe80::88d6:ba41:128b:4081]) by DS4PPF69154114F.namprd11.prod.outlook.com
- ([fe80::88d6:ba41:128b:4081%6]) with mapi id 15.21.0092.007; Fri, 5 Jun 2026
- 13:57:33 +0000
-From: "Kahola, Mika" <mika.kahola@intel.com>
-To: "Deak, Imre" <imre.deak@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>
-CC: "Nikula, Jani" <jani.nikula@intel.com>
-Subject: RE: [PATCH v2 11/22] drm/i915/dp_link_training: Add helper to query
- pending autoretrain
-Thread-Topic: [PATCH v2 11/22] drm/i915/dp_link_training: Add helper to query
- pending autoretrain
-Thread-Index: AQHc8a4easiLJull3kKYnJk5arxjE7YwAn9Q
-Date: Fri, 5 Jun 2026 13:57:33 +0000
-Message-ID: <DS4PPF69154114F192EBB760F4F8FD07314EF112@DS4PPF69154114F.namprd11.prod.outlook.com>
-References: <20260601093836.3057345-1-imre.deak@intel.com>
- <20260601093836.3057345-12-imre.deak@intel.com>
-In-Reply-To: <20260601093836.3057345-12-imre.deak@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS4PPF69154114F:EE_|CY8PR11MB7195:EE_
-x-ms-office365-filtering-correlation-id: cf5ab5d2-e2ae-46ee-a627-08dec30a6458
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|38070700021|22082099003|18002099003|4143699003|11063799006|56012099006;
-x-microsoft-antispam-message-info: MQjKk+55COBQMUMmrhZJ7m7+b1EvaaMWR0TJcJkR3f1XHfrpAygPlJ9oMdMrmmy9ZWqYOgnB12FIaQwrFCMlWUN2jx1ggr9yOOkeAqEzhp3CWCnKfRQIZhEYZxgLGCfAfBPofn+ymSKWqms/+dzdl22TsWvEeuTQm7DFhqQfI5nvr8cbTmbWFusHvEaF7/DmxqhPuX6o4Ssk/VquQznBBCQa2kzk27iNzZpu7VGPKVZHIYxg7wBnfMvWmsNVMGH/7ixF53bMqYByqSxh4lqUH+EN5c4vHGs9oWTOepCnLQYLEYFL5RxrBKaJRJ1iowbys7JDGloNUl0wrQW42KyNzpgyu8w0+OGsFtzm714m5MZdxBW8ph9p1sdFLi9PwEw1VW8waXWDQyxz3iffQZWXE0xoVZ6SmppHhiao2hDVVjyPKoduGff5BYRgflgW8OveGnCbZcGcHBroayCtpwWVl5ZRchl5UpExwowqgPAqqMGhWQgF1rA+IYdaeLPRaBhUqyrbzb8R6PwD+/BXVjTkvVLJD3c95o/gxJeMibaipy+9AE+TkvsdiOeQhbVKfYolDdgCFKyvRX9AzUdy7yhouTXlRpZkz+DNi4CZYztIpnpJq5yog5hFpYSTPwz2YE7GFY6S7zmqlhm3qy0eXZCCUnl9rIfSgBuUDYwQ9hG/gBlERh4jFL0G2Zrf81cozCy0BHhFXiDa+UyQYXidPA6jyv6F/cKu8ylv3rotU0FD24V7HyRd5eUAfwS9lr2geYbU
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS4PPF69154114F.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(38070700021)(22082099003)(18002099003)(4143699003)(11063799006)(56012099006);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?TzVzT21uMjEzQldmY29TN09ud2UwTFBvaDl3emVHaEtFU3pXek9LaG9Oa3pm?=
- =?utf-8?B?ZGVsRG11Syt4dUkwWDZlUlNyN1ltV1BtN28rTlFNMkNXNjBuUVVRTm03Mjcz?=
- =?utf-8?B?ZkxkbTZ5dG04bG1IZTNYSmZYZ2N2VXJ5U1V1SnNQNnBXSnlZNXBvUWFSUU9C?=
- =?utf-8?B?d1ozR1NzdmZTeFk3cW9KVFdQd0FZTFdWQWd6RDYrdnNSMGVTMHhhN2RaSnV0?=
- =?utf-8?B?L1FlVHRvUmJnb2hjYWNuWkN1T3d1Z1pndk02bThPcVJwRHZ4bytPWEVVdkZ0?=
- =?utf-8?B?SmpPREgvY29vSElMQ2tiMWhxOFNUNXdTZ00vaUVVbVdXb25OTXNKb0dKYnVo?=
- =?utf-8?B?dytOK3ZPS1JTZTZyTkdFYjB6bW9KdG5oWDVJaWFvRjYrcHlCZmRoWlRWNE9F?=
- =?utf-8?B?cWNCYkRaOTgrU0plZkVKNG0zU1B2cWExL05MdVgwaUZyYW8ydmhXdDJyQmtF?=
- =?utf-8?B?NysxTzRqWGFtUi93dHZzL1V2c1VQc3Y5b3dTU3Jpbk1iOEdpS05YckxwUUd3?=
- =?utf-8?B?d2xlS1pYdVNQbUVicjJIL2E4UGU5cXBLTmozR1R1Y2ZjakFXRkh5N3VGYVNC?=
- =?utf-8?B?OFE1VnF4Q1JMdzZ4RWNzSVhFQkZzUUw5L25UblZqTGhrTkNGQzdrNjA2SGU0?=
- =?utf-8?B?YU4zSFdkVURoQXhmakdob3hyUkIzRk1NSWRpbjg1aGlNQmJOODJ0R1N5Rkpv?=
- =?utf-8?B?aitDZC9KTFZOckZkMkVWdXd4U2JjZ0hMZ3dkVkNUaTJjYlZPNEh3MHF6ZlZr?=
- =?utf-8?B?ZFZwR2RhQzd5ak5seXowNFNxTEFqdFlXNFltSkZvU2ZZQis2OHFMV2wyZitW?=
- =?utf-8?B?L3pFMG5YTTM5aWhsd1V4NjBScTU3Y2h1bm8xZ1pSbkhmckM2WlplbU1JUlI0?=
- =?utf-8?B?eEdMWWRGa0ZGQ1VRaFh6YmNCV1JPQlM1MU1LTHVVOWZ0QnhiU3FGUnMveVM1?=
- =?utf-8?B?QW45SGx6NEpEdGROcm1uYTVMdmR2VzF6a2h1TEY1Z0hOTzZNZGdsMkxlZnV3?=
- =?utf-8?B?VXlxOUVhNHlQZmxLV3dKSmkzNDFjM0Q5NHpzWU1vWXk3ZU0wRzVEUjBNWGo3?=
- =?utf-8?B?b0dQRDdtOFBpaHArdlR4NHpKa3hlZTVWY1UvSkZPaXJqREs2dk9EOHI4eTNz?=
- =?utf-8?B?cnZYOE9hSlN0enB5VlhkWlpXZlNiVEk1YnpkeVFzZmhGUGRvdEdNa3FTREkx?=
- =?utf-8?B?RjVtUGI1cWZydmNtM3RvMVlWYVNEcmgyeDBBbUtUT2NodFpieVU5MlVBU3Jn?=
- =?utf-8?B?SWlNRi9lNCtROEZ6aG5SQnNaL2xlTnhWbmZrREpER2lUWTcrV3lpRVFDVWZC?=
- =?utf-8?B?NE9WZE5JS3pHY3c0QUZDbS9zd2F4ald3cGZIN2I3YUVPclF3MjJySUtKa3lR?=
- =?utf-8?B?TFovN1h3TDVXWG5TWkNIMDNYNGRuVHJQS25jdVVVVDE0RVc4WkJIME12R2t5?=
- =?utf-8?B?dnZSRDdsNXdhV2hTYm5lVk1JOTI0dUFuZy9zY0VFVVN4U3llVkdFZU82VTJK?=
- =?utf-8?B?K1JzMzBwSHdYdklkUXJGaWFhNUt0MnI3MHV6WHNZZjBlbjJvcEprVitnNHAz?=
- =?utf-8?B?SkJkUlJpTTVSRHBDZHJmYzBuZWk5UDRUa3FLNGdzMmZqdU1CREFEOEx4MEQr?=
- =?utf-8?B?UkxldnJzSWErcThCbDZ3b3d3S21NWlp2ODF4QnpPUHdmd25jaDFwTElZYS90?=
- =?utf-8?B?cHJ5T1hVeld0YTViQi96NEZIUk5uRitmbVhCazlRTXZZNG9kMzZpR3NNRGJZ?=
- =?utf-8?B?WjNDWkk4aWtPOU9IZk9KSEJaZm1HVE5yMHpRamZhNEN5YXRZYWZDWW5HYnRw?=
- =?utf-8?B?VVc3NWZMMXByMzVKRTI0T2E0SEdYelBucm1qV1ZFR0JLVUdheW94YWk3Z05L?=
- =?utf-8?B?SUxrcXc1aVBGWE5iSjdHVVVKaS9IM1ZJYVpoSmZaSURFNU00akh5STZSMnRO?=
- =?utf-8?B?ZU5ZN2dxLzFmRG1KUjQ1b1RqTktBeEt4YkJsUDdWSHpoNXRsVndudkdERFJp?=
- =?utf-8?B?RTlvTU1SREdHM1IyRjlTUWovU2pPVENISzNqc3lzUU4vb052cGJOSzVzODhn?=
- =?utf-8?B?b2k4NTk4MGlLVDVKZ1NvRjVvN0NEM09WM1ZVb1FlSUNtbDE4ZU5YUGVIOERZ?=
- =?utf-8?B?aEJabjBPNG5sdHJtVCtJbEpvMmZuZHA5cEdxN3B6cUtmUlFBSzFKZjhHMlE5?=
- =?utf-8?B?OE1hckgwNmhBaW5GcE4xVHE5YVdvQkx5cXdhZjRMTTlmd3JmS21QTVZkU1Ru?=
- =?utf-8?B?bFlJcVVYQ2h3NEMrK2JpWVo5UmlaSmVBZ2hCV1BQMEovQ0NLblJuTlJaNy9P?=
- =?utf-8?B?UHUrd3o2QlBNSUhlVGNPd0d0RTIyc2xGaTdZWjRrUkRSRU1MWkVOQT09?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="248782376"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO [10.245.245.251])
+ ([10.245.245.251])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2026 07:13:51 -0700
+Message-ID: <d811704a4342e2f3bed4ca0ca7ce7f0df76c9bd7.camel@linux.intel.com>
+Subject: Re: [PATCH] drm/xe/rtp: Fix build error with clang < 21 and
+ non-const initializers
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Matt Roper <matthew.d.roper@intel.com>, Violet Monti	
+ <violet.monti@intel.com>, Matthew Brost <matthew.brost@intel.com>, Rodrigo
+ Vivi	 <rodrigo.vivi@intel.com>, Ashutosh Dixit <ashutosh.dixit@intel.com>,
+ Mark Brown	 <broonie@kernel.org>
+Date: Fri, 05 Jun 2026 16:13:49 +0200
+In-Reply-To: <87ecilt7lh.fsf@intel.com>
+References: <20260605093305.110598-1-thomas.hellstrom@linux.intel.com>
+ <87ecilt7lh.fsf@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: PNQJazBxiS6QNDP4LnYOQLK+USvzrtkC6YY9RqgA5cjMnvJzipwRjYQU7C70xa25YKRdMEWRZjJnXvo4UD7BDfDyRwRm2OEEqtsHTXiHe6qgIctxQ04IspvosixM9I8jwAeNSvIuHlxtJf1E/szfwklOQUuMNHe+LSoqUJQPHvsRWRJaWqz+zPEQcAvQk0Qd9U3g32kpnqwrg+htJz/pb+6ZmzwCQtCUZ+UIWfkcYypPrqsdgvwAyxi1QRjODttiFRstVynlRHjJRg+TKxMw0HP3GeC4tH3BQZckHgPimAQXz1RWGErZbpyO0WQpvgf1pMjhXdU/nDiSYT2oRjHKUg==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS4PPF69154114F.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cf5ab5d2-e2ae-46ee-a627-08dec30a6458
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Jun 2026 13:57:33.3217 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: iSRleSr/rOynqd74teFNPzwek252AU5RWBILA8/iXsyAZQKategGz+T04jSPVF3ubmAIWJjy3qeOcR8cZJp4wQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7195
-X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -173,47 +74,118 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBJbnRlbC1nZnggPGludGVsLWdm
-eC1ib3VuY2VzQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4gT24gQmVoYWxmIE9mIEltcmUgRGVhaw0K
-PiBTZW50OiBNb25kYXksIDEgSnVuZSAyMDI2IDEyLjM4DQo+IFRvOiBpbnRlbC1nZnhAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnOyBpbnRlbC14ZUBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gQ2M6IE5p
-a3VsYSwgSmFuaSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPg0KPiBTdWJqZWN0OiBbUEFUQ0ggdjIg
-MTEvMjJdIGRybS9pOTE1L2RwX2xpbmtfdHJhaW5pbmc6IEFkZCBoZWxwZXIgdG8gcXVlcnkgcGVu
-ZGluZyBhdXRvcmV0cmFpbg0KPiANCj4gQWRkIGxpbmtfcmVjb3ZlcnlfYXV0b3JldHJhaW5fcGVu
-ZGluZygpIHRvIG1ha2UgaXQgY2xlYXJlciB3aGF0IHRoZSBjb25kaXRpb24gaXMgYWJvdXQgYXQg
-aXRzIGNhbGxlcnM6IGFuIGF1dG9yZXRyYWluIHdvcmsgaGFzIGJlZW4gcXVldWVkLg0KPiANCj4g
-VGhpcyBhbHNvIHByZXBhcmVzIGZvciByZXBsYWNpbmcgdGhlIHNlcXVlbnRpYWwgbGluayB0cmFp
-bmluZyBmYWlsdXJlIGNvdW50ZXIgd2l0aCBhbiBlbnVtIGluIGEgZm9sbG93LXVwIGNoYW5nZS4N
-Cj4gDQo+IHYyOiBSZW1vdmUgdW5uZWNlc3NhcnkgZnVuY3Rpb24gZG9jdW1lbnRhdGlvbi4gKEph
-bmkpDQo+IA0KPiBDYzogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4NCg0KUmV2
-aWV3ZWQtYnk6IE1pa2EgS2Fob2xhIDxtaWthLmthaG9sYUBpbnRlbC5jb20+DQoNCj4gU2lnbmVk
-LW9mZi1ieTogSW1yZSBEZWFrIDxpbXJlLmRlYWtAaW50ZWwuY29tPg0KPiAtLS0NCj4gIGRyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbGlua190cmFpbmluZy5jIHwgMTAgKysr
-KysrKystLQ0KPiAgMSBmaWxlIGNoYW5nZWQsIDggaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMo
-LSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2RwX2xpbmtfdHJhaW5pbmcuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-ZHBfbGlua190cmFpbmluZy5jDQo+IGluZGV4IGNiYWM5YTcwZThkNWIuLmY2YTgxMDJhMzAwYzEg
-MTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbGlu
-a190cmFpbmluZy5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-ZHBfbGlua190cmFpbmluZy5jDQo+IEBAIC0xMjY0LDYgKzEyNjQsMTIgQEAgaW50ZWxfZHBfMTI4
-YjEzMmJfaW50cmFfaG9wKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAsDQo+ICAJcmV0dXJuIHNp
-bmtfc3RhdHVzICYgRFBfSU5UUkFfSE9QX0FVWF9SRVBMWV9JTkRJQ0FUSU9OID8gMSA6IDA7ICB9
-DQo+IA0KPiArc3RhdGljIGJvb2wNCj4gK2xpbmtfcmVjb3ZlcnlfYXV0b3JldHJhaW5fcGVuZGlu
-ZyhzdHJ1Y3QgaW50ZWxfZHBfbGlua190cmFpbmluZw0KPiArKmxpbmtfdHJhaW5pbmcpIHsNCj4g
-KwlyZXR1cm4gbGlua190cmFpbmluZy0+c2VxX3RyYWluX2ZhaWx1cmVzID09IDE7IH0NCj4gKw0K
-PiAgLyoqDQo+ICAgKiBpbnRlbF9kcF9zdG9wX2xpbmtfdHJhaW4gLSBzdG9wIGxpbmsgdHJhaW5p
-bmcNCj4gICAqIEBpbnRlbF9kcDogRFAgc3RydWN0DQo+IEBAIC0xMzA1LDcgKzEzMTEsNyBAQCB2
-b2lkIGludGVsX2RwX3N0b3BfbGlua190cmFpbihzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLA0K
-PiANCj4gIAlpZiAoIWRpc3BsYXktPmhvdHBsdWcuaWdub3JlX2xvbmdfaHBkICYmDQo+ICAJICAg
-IGxpbmtfdHJhaW5pbmctPnNlcV90cmFpbl9mYWlsdXJlcyA8IE1BWF9TRVFfVFJBSU5fRkFJTFVS
-RVMpIHsNCj4gLQkJaW50IGRlbGF5X21zID0gbGlua190cmFpbmluZy0+c2VxX3RyYWluX2ZhaWx1
-cmVzID09IDEgPyAwIDogMjAwMDsNCj4gKwkJaW50IGRlbGF5X21zID0gbGlua19yZWNvdmVyeV9h
-dXRvcmV0cmFpbl9wZW5kaW5nKGxpbmtfdHJhaW5pbmcpID8gMCA6DQo+ICsyMDAwOw0KPiANCj4g
-IAkJaW50ZWxfZW5jb2Rlcl9saW5rX2NoZWNrX3F1ZXVlX3dvcmsoZW5jb2RlciwgZGVsYXlfbXMp
-Ow0KPiAgCX0NCj4gQEAgLTIwMDYsNyArMjAxMiw3IEBAIGludGVsX2RwX25lZWRzX2xpbmtfcmV0
-cmFpbihzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwKQ0KPiAgCWlmIChsaW5rX3RyYWluaW5nLT5z
-ZXFfdHJhaW5fZmFpbHVyZXMgPj0gTUFYX1NFUV9UUkFJTl9GQUlMVVJFUykNCj4gIAkJcmV0dXJu
-IGZhbHNlOw0KPiANCj4gLQlpZiAobGlua190cmFpbmluZy0+c2VxX3RyYWluX2ZhaWx1cmVzID09
-IDEpDQo+ICsJaWYgKGxpbmtfcmVjb3ZlcnlfYXV0b3JldHJhaW5fcGVuZGluZyhsaW5rX3RyYWlu
-aW5nKSkNCj4gIAkJcmV0dXJuIHRydWU7DQo+IA0KPiAgCS8qIFJldHJhaW4gaWYgbGluayBub3Qg
-b2sgKi8NCj4gLS0NCj4gMi40OS4xDQoNCg==
+On Fri, 2026-06-05 at 10:55 -0300, Gustavo Sousa wrote:
+> Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com> writes:
+>=20
+> > Clang < 21 treats const-qualified compound literals at function
+> > scope as
+> > having static storage duration, which requires all initializer
+> > elements
+> > to be compile-time constants.=C2=A0 When xe_hw_engine.c initializes a
+> > local
+> > struct xe_rtp_table_sr using XE_RTP_TABLE_SR(), the compound
+> > literals in
+> > XE_RTP_TABLE_SR end up containing runtime values (e.g.
+> > blit_cctl_val
+> > derived from gt->mocs.uc_index), triggering:
+> >=20
+> > =C2=A0 xe_hw_engine.c:361: error: initializer element is not a compile-
+> > time constant
+> > =C2=A0 xe_hw_engine.c:416: error: initializer element is not a compile-
+> > time constant
+> >=20
+> > ARRAY_SIZE() cannot be used as a replacement because it expands
+> > through
+> > __must_be_array() -> __BUILD_BUG_ON_ZERO_MSG() -> _Static_assert
+> > inside
+> > sizeof(struct{}), which clang < 21 also rejects in the same
+> > context.
+> >=20
+> > Replace ARRAY_SIZE() with an open-coded sizeof(arr)/sizeof(elem) in
+> > XE_RTP_TABLE_SR and XE_RTP_TABLE to avoid both issues.
+> >=20
+> > Fixes: 5ff004fdc737 ("drm/xe/rtp: Add struct types for RTP tables")
+> > Cc: Matt Roper <matthew.d.roper@intel.com>
+> > Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+> > Cc: Violet Monti <violet.monti@intel.com>
+> > Cc: Matthew Brost <matthew.brost@intel.com>
+> > Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> > Cc: intel-xe@lists.freedesktop.org
+> > Reported-by: Mark Brown <broonie@kernel.org>
+> > Closes:
+> > https://lore.kernel.org/intel-xe/bfb0dee8-b243-47ba-a89d-71472b0d51c5@s=
+irena.org.uk/
+> > Assisted-by: GitHub_Copilot:claude-sonnet-4.6
+> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> > ---
+> > =C2=A0drivers/gpu/drm/xe/xe_rtp.h | 12 ++++++++++--
+> > =C2=A01 file changed, 10 insertions(+), 2 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/xe/xe_rtp.h
+> > b/drivers/gpu/drm/xe/xe_rtp.h
+> > index 4e3cfd69f922..2cc65053cd07 100644
+> > --- a/drivers/gpu/drm/xe/xe_rtp.h
+> > +++ b/drivers/gpu/drm/xe/xe_rtp.h
+> > @@ -461,14 +461,22 @@ struct xe_reg_sr;
+> > =C2=A0		XE_RTP_PASTE_FOREACH(ACTION_, COMMA,
+> > (__VA_ARGS__))	\
+> > =C2=A0	}
+> > =C2=A0
+> > +/*
+> > + * Note: ARRAY_SIZE() cannot be used here because it expands
+> > through
+> > + * __must_be_array() -> __BUILD_BUG_ON_ZERO_MSG() ->
+> > _Static_assert inside
+> > + * sizeof(struct{}), which clang < 21 rejects when the compound
+> > literal
+> > + * contains non-compile-time-constant initializers.
+> > + */
+> > =C2=A0#define XE_RTP_TABLE_SR(...) { \
+> > =C2=A0	.entries =3D (const struct xe_rtp_entry_sr[]){__VA_ARGS__},
+> > \
+> > -	.n_entries =3D ARRAY_SIZE(((const struct
+> > xe_rtp_entry_sr[]){__VA_ARGS__})), \
+> > +	.n_entries =3D sizeof((const struct
+> > xe_rtp_entry_sr[]){__VA_ARGS__}) / \
+> > +		sizeof(struct xe_rtp_entry_sr), \
+>=20
+> What would happen if we used
+>=20
+> =C2=A0 ARRAY_SIZE(((struct xe_rtp_entry_sr[]){__VA_ARGS__}))
+>=20
+> instead?
+
+That was the first fix attempt, but didn't work either.
+
+>=20
+> Anyways, the patch looks correct to me as-is.=C2=A0 Hopefully we'll
+> remember
+> to go back to use ARRAY_SIZE() when we bump the minimal clang version
+> required.
+>=20
+> Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+
+Thanks,
+Thomas
+
+>=20
+> --
+> Gustavo Sousa
+>=20
+> > =C2=A0}
+> > =C2=A0
+> > =C2=A0#define XE_RTP_TABLE(...) { \
+> > =C2=A0	.entries =3D (const struct xe_rtp_entry[]){__VA_ARGS__}, \
+> > -	.n_entries =3D ARRAY_SIZE(((const struct
+> > xe_rtp_entry[]){__VA_ARGS__})), \
+> > +	.n_entries =3D sizeof((const struct
+> > xe_rtp_entry[]){__VA_ARGS__}) / \
+> > +		sizeof(struct xe_rtp_entry), \
+> > =C2=A0}
+> > =C2=A0
+> > =C2=A0#define XE_RTP_PROCESS_CTX_INITIALIZER(arg__)
+> > _Generic((arg__),							\
+> > --=20
+> > 2.54.0
