@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B128CD8C8C
-	for <intel-xe@archiver.kernel.org>; Sun,  7 Jun 2026 15:48:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1644CD8C8C
+	for <intel-xe@archiver.kernel.org>; Sun,  7 Jun 2026 17:19:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9007D10E2E6;
-	Sun,  7 Jun 2026 15:48:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89C1B10EADC;
+	Sun,  7 Jun 2026 17:19:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hwonFZX3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OqgEOrIL";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70C9010E2E6
- for <intel-xe@lists.freedesktop.org>; Sun,  7 Jun 2026 15:48:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBBFF10EADC
+ for <intel-xe@lists.freedesktop.org>; Sun,  7 Jun 2026 17:19:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780847311; x=1812383311;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=5MeDPRcE6RqsQizL+Km1dhPuSFOo3HLE07k2UnyC7kk=;
- b=hwonFZX3BCVoZY29p1Pk5ogG5t9W8J+Fi1cxR3x85qmlU4DI/0tqBQKp
- T5UMIt8SDTJYHxBluhls4B2gBFUgJU43LZm5fslp3/oN3vGARNDJJpN/t
- z/NY44CNFUXoPRPH771Qev0icu3jhayxnONEWG+hRaNdUsyhHnJhMKote
- EYacHKECaI5KaQx+NKQhDzBR6z8nNELqMfYNuPIuoFrdp8hoLx30rKKk9
- NNTcPWLA7HU2JHcIy8sPMZvKUL7eCdZGDL7KkspaW8zKCAQGLbQL+nzig
- 04u3flnsNvUEZxUsCf4VzdGT67Q4Xw8wnyzYUwS00C8/z3QtNc7Waqru4 A==;
-X-CSE-ConnectionGUID: SWymmpqST9a8t72AVMs/sQ==
-X-CSE-MsgGUID: NUC2ULk1SiC3aJwcuXY7Vw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11810"; a="80628893"
-X-IronPort-AV: E=Sophos;i="6.24,192,1774335600"; d="scan'208";a="80628893"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jun 2026 08:48:31 -0700
-X-CSE-ConnectionGUID: ZimBXs6qS8iBsDAt1K+SIg==
-X-CSE-MsgGUID: +RMif5g6RY6BCozsK2aKGQ==
+ t=1780852774; x=1812388774;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=/0tAYdz4qLdlkUf8aj+0oH9PdEn1djDPSrhuWQfi47k=;
+ b=OqgEOrILm+za48G2fjUw4IPBR1YMR6ajS2PiyJHUHO1g5Q1HNSGpMFX4
+ nudE6Vol8Z5+H2sdVlPWxdGRkkDxvZGG3FgYpPSompfASsDEm90Ee5BSr
+ dklKYwA8Mjay5obF3regvvL7Kg1jHBJCRLp2jUaJ8Oqsm2gdGUVuSVTif
+ 8sfs7W66swDDZ4C0Vq1HGrhYH/JKdlLpTUS/lQfwtQJXWAoAAJ3o5KxVG
+ t2POlayux1kYPsMlhRY1LvpoEOTKgtCNdlQLBwkPEuphpc3vmQG1ssJmU
+ 46+9rIr36S5E64qwLOpTr3E0GOeIVhNQECj8xycUwpcQ/hIjBC35l7+Lr A==;
+X-CSE-ConnectionGUID: 3j3K+v3lRmi11ADHa90lAw==
+X-CSE-MsgGUID: PPJ0VhcZRfKemtDcVOLR/A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11810"; a="80737536"
+X-IronPort-AV: E=Sophos;i="6.24,193,1774335600"; d="scan'208";a="80737536"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2026 10:19:34 -0700
+X-CSE-ConnectionGUID: DBKD9PFtREuXSI/1f2pHbw==
+X-CSE-MsgGUID: APrPUTj6TOWRRSFEmFux0g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,192,1774335600"; d="scan'208";a="247157685"
-Received: from lkp-server01.sh.intel.com (HELO f0d55cb201f0) ([10.239.97.150])
- by fmviesa004.fm.intel.com with ESMTP; 07 Jun 2026 08:48:30 -0700
-Received: from kbuild by f0d55cb201f0 with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1wWFjf-00000000Hx8-0x5a;
- Sun, 07 Jun 2026 15:48:27 +0000
-Date: Sun, 07 Jun 2026 23:48:18 +0800
-From: kernel test robot <lkp@intel.com>
-To: "Thomas =?utf-8?Q?Hellstr=C3=B6m"?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD REGRESSION
- b226489de47c0eba740ef8c4857aecb06e482952
-Message-ID: <202606072307.hvBdgJ2j-lkp@intel.com>
-User-Agent: s-nail v14.9.25
+X-IronPort-AV: E=Sophos;i="6.24,193,1774335600"; d="scan'208";a="275521573"
+Received: from sinjan-super-server.iind.intel.com ([10.190.239.39])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2026 10:19:31 -0700
+From: Karthik Poosa <karthik.poosa@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com, rodrigo.vivi@intel.com,
+ raag.jadav@intel.com, riana.tauro@intel.com,
+ Karthik Poosa <karthik.poosa@intel.com>
+Subject: [PATCH v1 0/5] Add fan control support
+Date: Sun,  7 Jun 2026 22:58:43 +0530
+Message-Id: <20260607172848.2970580-1-karthik.poosa@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,240 +66,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: b226489de47c0eba740ef8c4857aecb06e482952  Merge drm/drm-next into drm-xe-next
+This series adds Xe fan control support through the hwmon sysfs ABI,
+including fan maximum reporting, direct PWM control, mode control, and
+programmable fan-curve points.
 
-Error/Warning (recently discovered and may have been fixed):
+The patches are organized from backend initialization to user-visible
+controls and full curve programming support.
 
-    https://lore.kernel.org/oe-kbuild-all/202606041255.dGo9lFkh-lkp@intel.com
+Series overview
 
-    drivers/gpu/drm/xe/xe_hw_engine.c:361:6: error: initializer element is not a compile-time constant
+de81c70f39e4 (drm/xe/hwmon: initialize fan-control backend and table cache)
+Initializes the fan-control backend, caches firmware stock/user fan tables,
+and prepares runtime state so user-facing fan controls can be safely
+exposed.
 
-Error/Warning ids grouped by kconfigs:
+18e4289bccfc (drm/xe/hwmon: expose fanN_max)
+Adds fan maximum RPM reporting through fan[1-3]_max.
 
-recent_errors
-|-- arm-randconfig-003
-|   `-- drivers-gpu-drm-xe-xe_hw_engine.c:error:initializer-element-is-not-a-compile-time-constant
-|-- i386-buildonly-randconfig-003-20260606
-|   `-- drivers-gpu-drm-xe-xe_hw_engine.c:error:initializer-element-is-not-a-compile-time-constant
-|-- i386-randconfig-004-20260606
-|   `-- drivers-gpu-drm-xe-xe_hw_engine.c:error:initializer-element-is-not-a-compile-time-constant
-|-- riscv-allyesconfig
-|   `-- drivers-gpu-drm-xe-xe_hw_engine.c:error:initializer-element-is-not-a-compile-time-constant
-|-- s390-allmodconfig
-|   `-- drivers-gpu-drm-xe-xe_hw_engine.c:error:initializer-element-is-not-a-compile-time-constant
-|-- um-allmodconfig
-|   `-- drivers-gpu-drm-xe-xe_hw_engine.c:error:initializer-element-is-not-a-compile-time-constant
-|-- x86_64-allmodconfig
-|   `-- drivers-gpu-drm-xe-xe_hw_engine.c:error:initializer-element-is-not-a-compile-time-constant
-|-- x86_64-allyesconfig
-|   `-- drivers-gpu-drm-xe-xe_hw_engine.c:error:initializer-element-is-not-a-compile-time-constant
-|-- x86_64-randconfig-073-20260606
-|   `-- drivers-gpu-drm-xe-xe_hw_engine.c:error:initializer-element-is-not-a-compile-time-constant
-|-- x86_64-randconfig-074-20260606
-|   `-- drivers-gpu-drm-xe-xe_hw_engine.c:error:initializer-element-is-not-a-compile-time-constant
-`-- x86_64-randconfig-075-20260606
-    `-- drivers-gpu-drm-xe-xe_hw_engine.c:error:initializer-element-is-not-a-compile-time-constant
+04c11a69ba6d (drm/xe/hwmon: expose pwm[1-3])
+Adds direct PWM duty control through pwm[1-3] with hwmon-compatible 0..255
+scaling.
 
-elapsed time: 2501m
+60b1f0ad9033 (drm/xe/hwmon: expose pwm[1-3]_enable)
+Adds pwm mode control through pwm[1-3]_enable:
+0 = full speed
+1 = manual user control
+2 = firmware automatic control
 
-configs tested: 192
-configs skipped: 11
+9dbda15128ca (drm/xe/hwmon: Enable fan curve control support)
+Adds programmable per-fan curve points through:
+pwm[1-3]_auto_point[1-10]_temp
+pwm[1-3]_auto_point[1-10]_pwm
 
-tested configs:
-alpha                             allnoconfig    gcc-15.2.0
-alpha                            allyesconfig    gcc-15.2.0
-alpha                               defconfig    gcc-16.1.0
-arc                              allmodconfig    gcc-15.2.0
-arc                               allnoconfig    gcc-15.2.0
-arc                              allyesconfig    gcc-16.1.0
-arc                                 defconfig    gcc-16.1.0
-arc                            randconfig-001    gcc-8.5.0
-arc                   randconfig-001-20260606    gcc-12.5.0
-arc                            randconfig-002    gcc-8.5.0
-arc                   randconfig-002-20260606    gcc-8.5.0
-arm                               allnoconfig    clang-23
-arm                              allyesconfig    gcc-15.2.0
-arm                                 defconfig    clang-23
-arm                            randconfig-001    gcc-8.5.0
-arm                   randconfig-001-20260606    clang-17
-arm                            randconfig-002    gcc-11.5.0
-arm                   randconfig-002-20260606    gcc-10.5.0
-arm                            randconfig-003    clang-20
-arm                   randconfig-003-20260606    clang-23
-arm                            randconfig-004    gcc-14.3.0
-arm                   randconfig-004-20260606    clang-23
-arm64                            allmodconfig    clang-23
-arm64                             allnoconfig    gcc-15.2.0
-arm64                               defconfig    gcc-16.1.0
-arm64                 randconfig-001-20260606    gcc-8.5.0
-arm64                 randconfig-002-20260606    gcc-8.5.0
-arm64                 randconfig-003-20260606    clang-23
-arm64                 randconfig-004-20260606    gcc-14.3.0
-csky                             allmodconfig    gcc-15.2.0
-csky                              allnoconfig    gcc-15.2.0
-csky                                defconfig    gcc-16.1.0
-csky                  randconfig-001-20260606    gcc-16.1.0
-csky                  randconfig-002-20260606    gcc-12.5.0
-hexagon                          allmodconfig    clang-17
-hexagon                           allnoconfig    clang-23
-hexagon                             defconfig    clang-23
-hexagon               randconfig-001-20260606    clang-23
-hexagon               randconfig-002-20260606    clang-23
-i386                             allmodconfig    gcc-14
-i386                              allnoconfig    gcc-14
-i386                             allyesconfig    gcc-14
-i386                 buildonly-randconfig-001    gcc-14
-i386        buildonly-randconfig-001-20260606    clang-20
-i386                 buildonly-randconfig-002    clang-20
-i386        buildonly-randconfig-002-20260606    clang-20
-i386                 buildonly-randconfig-003    clang-20
-i386        buildonly-randconfig-003-20260606    clang-20
-i386                 buildonly-randconfig-004    gcc-14
-i386        buildonly-randconfig-004-20260606    gcc-14
-i386                 buildonly-randconfig-005    gcc-14
-i386        buildonly-randconfig-005-20260606    clang-20
-i386                 buildonly-randconfig-006    gcc-14
-i386        buildonly-randconfig-006-20260606    gcc-13
-i386                                defconfig    clang-22
-i386                  randconfig-001-20260606    clang-20
-i386                  randconfig-002-20260606    gcc-14
-i386                  randconfig-003-20260606    clang-20
-i386                  randconfig-004-20260606    clang-20
-i386                  randconfig-005-20260606    gcc-14
-i386                  randconfig-006-20260606    clang-20
-i386                  randconfig-007-20260606    clang-20
-i386                  randconfig-011-20260606    clang-20
-i386                  randconfig-012-20260606    gcc-14
-i386                  randconfig-013-20260606    gcc-12
-i386                  randconfig-014-20260606    clang-20
-i386                  randconfig-015-20260606    clang-20
-i386                  randconfig-016-20260606    gcc-14
-i386                  randconfig-017-20260606    gcc-14
-loongarch                        allmodconfig    clang-19
-loongarch                         allnoconfig    clang-23
-loongarch                           defconfig    clang-23
-loongarch             randconfig-001-20260606    clang-23
-loongarch             randconfig-002-20260606    clang-23
-m68k                             allmodconfig    gcc-15.2.0
-m68k                              allnoconfig    gcc-15.2.0
-m68k                             allyesconfig    gcc-15.2.0
-m68k                                defconfig    gcc-16.1.0
-m68k                        m5407c3_defconfig    gcc-16.1.0
-microblaze                        allnoconfig    gcc-15.2.0
-microblaze                       allyesconfig    gcc-15.2.0
-microblaze                          defconfig    gcc-16.1.0
-mips                             allmodconfig    gcc-15.2.0
-mips                              allnoconfig    gcc-15.2.0
-mips                             allyesconfig    gcc-15.2.0
-nios2                            allmodconfig    gcc-11.5.0
-nios2                             allnoconfig    gcc-11.5.0
-nios2                               defconfig    gcc-11.5.0
-nios2                 randconfig-001-20260606    gcc-11.5.0
-nios2                 randconfig-002-20260606    gcc-8.5.0
-openrisc                         allmodconfig    gcc-15.2.0
-openrisc                          allnoconfig    gcc-15.2.0
-openrisc                            defconfig    gcc-16.1.0
-parisc                           allmodconfig    gcc-15.2.0
-parisc                            allnoconfig    gcc-15.2.0
-parisc                           allyesconfig    gcc-15.2.0
-parisc                              defconfig    gcc-16.1.0
-parisc                         randconfig-001    gcc-8.5.0
-parisc                randconfig-001-20260606    gcc-9.5.0
-parisc                         randconfig-002    gcc-12.5.0
-parisc                randconfig-002-20260606    gcc-11.5.0
-parisc64                            defconfig    gcc-16.1.0
-powerpc                          allmodconfig    gcc-15.2.0
-powerpc                           allnoconfig    gcc-15.2.0
-powerpc                        randconfig-001    gcc-10.5.0
-powerpc               randconfig-001-20260606    clang-18
-powerpc                        randconfig-002    gcc-8.5.0
-powerpc               randconfig-002-20260606    clang-23
-powerpc64                      randconfig-001    clang-16
-powerpc64             randconfig-001-20260606    gcc-8.5.0
-powerpc64                      randconfig-002    clang-23
-powerpc64             randconfig-002-20260606    gcc-8.5.0
-riscv                            allmodconfig    clang-23
-riscv                             allnoconfig    gcc-15.2.0
-riscv                            allyesconfig    clang-16
-riscv                               defconfig    clang-23
-riscv                          randconfig-001    gcc-8.5.0
-riscv                 randconfig-001-20260606    gcc-11.5.0
-riscv                 randconfig-001-20260607    clang-23
-riscv                          randconfig-002    clang-23
-riscv                 randconfig-002-20260606    gcc-8.5.0
-riscv                 randconfig-002-20260607    gcc-11.5.0
-s390                             allmodconfig    clang-18
-s390                              allnoconfig    clang-23
-s390                             allyesconfig    gcc-15.2.0
-s390                                defconfig    clang-18
-s390                           randconfig-001    gcc-11.5.0
-s390                  randconfig-001-20260606    gcc-10.5.0
-s390                  randconfig-001-20260607    clang-23
-s390                           randconfig-002    clang-23
-s390                  randconfig-002-20260606    gcc-13.4.0
-s390                  randconfig-002-20260607    clang-23
-sh                               allmodconfig    gcc-15.2.0
-sh                                allnoconfig    gcc-15.2.0
-sh                               allyesconfig    gcc-15.2.0
-sh                                  defconfig    gcc-16.1.0
-sh                             randconfig-001    gcc-16.1.0
-sh                    randconfig-001-20260606    gcc-10.5.0
-sh                    randconfig-001-20260607    gcc-11.5.0
-sh                             randconfig-002    gcc-14.3.0
-sh                    randconfig-002-20260607    gcc-9.5.0
-sparc                             allnoconfig    gcc-15.2.0
-sparc                               defconfig    gcc-16.1.0
-sparc                 randconfig-001-20260606    gcc-13.4.0
-sparc                 randconfig-002-20260606    gcc-16.1.0
-sparc64                          allmodconfig    clang-23
-sparc64                             defconfig    clang-23
-sparc64               randconfig-001-20260606    gcc-12.5.0
-sparc64               randconfig-002-20260606    gcc-8.5.0
-um                               allmodconfig    clang-19
-um                                allnoconfig    clang-23
-um                               allyesconfig    gcc-14
-um                                  defconfig    clang-23
-um                             i386_defconfig    gcc-14
-um                    randconfig-001-20260606    clang-23
-um                    randconfig-002-20260606    gcc-14
-um                           x86_64_defconfig    clang-23
-x86_64                           allmodconfig    clang-20
-x86_64                           allmodconfig    clang-22
-x86_64                            allnoconfig    clang-20
-x86_64                           allyesconfig    clang-20
-x86_64                           allyesconfig    clang-22
-x86_64      buildonly-randconfig-001-20260606    clang-22
-x86_64      buildonly-randconfig-002-20260606    clang-22
-x86_64      buildonly-randconfig-003-20260606    gcc-14
-x86_64      buildonly-randconfig-004-20260606    gcc-13
-x86_64      buildonly-randconfig-005-20260606    clang-22
-x86_64      buildonly-randconfig-006-20260606    gcc-14
-x86_64                              defconfig    gcc-14
-x86_64                randconfig-001-20260606    gcc-14
-x86_64                randconfig-002-20260606    gcc-14
-x86_64                randconfig-003-20260606    gcc-14
-x86_64                randconfig-004-20260606    gcc-14
-x86_64                randconfig-005-20260606    gcc-14
-x86_64                randconfig-006-20260606    gcc-14
-x86_64                randconfig-011-20260606    clang-22
-x86_64                randconfig-012-20260606    clang-22
-x86_64                randconfig-013-20260606    gcc-14
-x86_64                randconfig-014-20260606    clang-22
-x86_64                randconfig-015-20260606    clang-22
-x86_64                randconfig-016-20260606    clang-22
-x86_64                randconfig-071-20260606    clang-20
-x86_64                randconfig-072-20260606    gcc-14
-x86_64                randconfig-073-20260606    clang-20
-x86_64                randconfig-074-20260606    clang-20
-x86_64                randconfig-075-20260606    clang-20
-x86_64                randconfig-076-20260606    gcc-13
-x86_64                          rhel-9.4-rust    clang-20
-x86_64                          rhel-9.4-rust    clang-22
-xtensa                            allnoconfig    gcc-15.2.0
-xtensa                randconfig-001-20260606    gcc-8.5.0
-xtensa                randconfig-002-20260606    gcc-11.5.0
+The ABI documentation is updated accordingly in
+Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon, and implementation
+is in drivers/gpu/drm/xe/xe_hwmon.c.
 
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Sysfs nodes and usage
+
+Read fan speed and max RPM
+cat /sys/class/hwmon/hwmonX/fan1_input
+cat /sys/class/hwmon/hwmonX/fan1_max
+
+Set manual mode and direct pwm
+echo 1 > /sys/class/hwmon/hwmonX/pwm1_enable
+echo 120 > /sys/class/hwmon/hwmonX/pwm1
+
+Return to firmware automatic control
+echo 2 > /sys/class/hwmon/hwmonX/pwm1_enable
+
+Program a hardware fan curve
+echo 1 > /sys/class/hwmon/hwmonX/pwm1_enable
+echo 30000 > /sys/class/hwmon/hwmonX/pwm1_auto_point1_temp
+echo 20 > /sys/class/hwmon/hwmonX/pwm1_auto_point1_pwm
+...
+echo 85000 > /sys/class/hwmon/hwmonX/pwm1_auto_point10_temp
+echo 200 > /sys/class/hwmon/hwmonX/pwm1_auto_point10_pwm
+
+For hardware acceptance, fan curve temperatures must be in increasing
+order.
+
+Karthik Poosa (5):
+  drm/xe/hwmon: initialize fan-control backend and table cache
+  drm/xe/hwmon: expose fanN_max
+  drm/xe/hwmon: expose pwm[1-3]
+  drm/xe/hwmon: expose pwm[1-3]_enable
+  drm/xe/hwmon: Enable fan curve control support
+
+ .../ABI/testing/sysfs-driver-intel-xe-hwmon   |   44 +
+ drivers/gpu/drm/xe/xe_hwmon.c                 | 1200 ++++++++++++++++-
+ drivers/gpu/drm/xe/xe_pcode_api.h             |    9 +
+ 3 files changed, 1237 insertions(+), 16 deletions(-)
+
+-- 
+2.25.1
+
