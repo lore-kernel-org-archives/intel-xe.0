@@ -4,53 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA375CD8C8E
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 08:47:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F54ACD8C92
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 08:47:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB12E10EF79;
-	Mon,  8 Jun 2026 08:47:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A22D10EF7B;
+	Mon,  8 Jun 2026 08:47:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T0VDxr1U";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gsXFCngs";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC0B910EF79
- for <intel-xe@lists.freedesktop.org>; Mon,  8 Jun 2026 08:47:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2B1E10EF7B
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Jun 2026 08:47:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780908433; x=1812444433;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=LsxsohR65e+J/FYmaRgZOA+Q2dnZRfJRN/FMTqVLteA=;
- b=T0VDxr1UGwJZeHgciVK8ovkWNtx2QVK/jibT4vDo2r+YokJkqej2qIk5
- MhzY/ZEKrhLTYyCrJJVt56C/wg1ZNkCk6JCd91cxJSpWHN7ZGNUgU8HzA
- ZKv7LBlxX3AfIc9izR2GLacbXUgDrbNWAs7B2FCXpx0JRwd5vZMYWs66a
- 69W59Sp02e1aOau2CK2w2s7VZwX/z2lhSZ6ZNtltCc+4qdzDcnlueOPff
- CIpT3wCRdDre3KeG1/N8pMD+OChVpnT/YbcR2vt4Us1tOZSCQ6nH7rLmB
- V6x+jTT1drAZt37kbhTz7FCAyMoX1o6Zpjbm95lYyD6fYJAuKXhS2010y Q==;
-X-CSE-ConnectionGUID: ww0d6LanT1eFDCD0FxmGFg==
-X-CSE-MsgGUID: SDK3/wyVS0Kd55ek1T0UxQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11810"; a="93029050"
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="93029050"
+ t=1780908437; x=1812444437;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=oMvB53XOoKwvLOVGO6oSQM5ymPZJkrAcyHBq/tHcKo4=;
+ b=gsXFCngscqBsk+8am771aGwJn6PtUsuws7n8H/zRgdn5J3hCD7kwZH5t
+ NiNQWCMheCA42T1TVpvsYc+aMZWUkuhlC/cRNM3+Vau6pPClsW+Lcq+Xd
+ /2+6zCebfij4dp2K/laSCn5ctyXE6B/bK5JdgQZZtAqiV6X+ETPfoYHky
+ Wz19+sQqR2R8FfmyV4mZERbLOrmI8sQgBenlB9dpOXqgNHihB+XUIe7sy
+ lh20+FX6GFUpRQ52TA+rMuWQzdg8O3fZQ9bXYLNKAR/rTUe9id+cBtZrT
+ gTAyBFv2O3DD18Z8ElLEOeBwFslj1qVtHjI8IZLJ1lqSPUpQtNAWMcDfo A==;
+X-CSE-ConnectionGUID: RJ+2fiiBRc6gB9XXur49qw==
+X-CSE-MsgGUID: ZsObNFWdSHWYc6QKIDlc5Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11810"; a="93029055"
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="93029055"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 01:47:13 -0700
-X-CSE-ConnectionGUID: a888XglaTDmcsBrx0D1lpA==
-X-CSE-MsgGUID: hYuEmoaWRsKTxgN7fQ2fVA==
+ 08 Jun 2026 01:47:17 -0700
+X-CSE-ConnectionGUID: HhbScBWbSh6vYRgVZTI9Hg==
+X-CSE-MsgGUID: XXGY3aCYRtWuWpZP6ZBzpg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="269465992"
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="269466009"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 01:47:10 -0700
+ 08 Jun 2026 01:47:14 -0700
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  aravind.iddamsetty@linux.intel.com, badal.nilawar@intel.com,
  raag.jadav@intel.com, ravi.kishore.koppuravuri@intel.com,
  mallesh.koujalagi@intel.com, soham.purkait@intel.com
-Subject: [PATCH v8 00/15] Introduce Xe Uncorrectable Error Handling
-Date: Mon,  8 Jun 2026 14:17:01 +0530
-Message-ID: <20260608084700.640376-17-riana.tauro@intel.com>
+Subject: [PATCH v8 01/15] drm/xe/xe_survivability: Decouple survivability info
+ from boot survivability
+Date: Mon,  8 Jun 2026 14:17:02 +0530
+Message-ID: <20260608084700.640376-18-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
+In-Reply-To: <20260608084700.640376-17-riana.tauro@intel.com>
+References: <20260608084700.640376-17-riana.tauro@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,124 +70,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This series adds support for XE Uncorrectable Error Handling
+On CSC runtime firmware errors that requires firmware flash through SPI,
+PCODE sets the FDO mode bit in the Capability register.
+Currently the survivability_info group is created only for boot
+survivability.
 
-The first four patches implement PCI error recovery callbacks for AER
-events.
-On fatal errors, the device is wedged in error_detected and a Secondary
-Bus reset (SBR) is requested from PCI core by returning
-PCI_ERS_RESULT_NEED_RESET.
+Create survivability_info group even for runtime survivability to allow
+userspace to check FDO mode sysfs.
 
-On non-fatal errors, the mmio_enabled callback is invoked to query the
-error and attempt the required recovery.
+Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+---
+v2: Fix typo (Mallesh)
 
-This series adds support for handling Uncorrectable core compute,
-SoC internal and device memory errors.
+v3: use tab (Mallesh)
+---
+ drivers/gpu/drm/xe/xe_survivability_mode.c | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
 
-Core Compute Errors: Uncorrectable Core-Compute errors are classified
-into Global and Local errors.
-Global error is an error that affects the entire device requiring
-a reset to recover. When an AER is reported and error_detected is
-invoked
-return PCI_ERS_RESULT_NEED_RESET.
-A Local error is confined to a specific component or context like a
-engine. These errors can be contained and recovered by resetting
-only the affected part without distrupting the rest of the device.
-
-SoC Internal errors: Most of the uncorrectable SoC internal errors
-are recovered using a SBR apart from CSC firmware and Punit errors.
-CSC firmware errors requires a firmware flash to be recovered whereas
-Punit error requires cold-reset.
-
-Device memory errors: The recovery action for memory errors depends on
-the error category. Double bit ECC (Error Correcting Code) errors will be
-handled using Page offlining in a later patch. Poison and data parity
-errors are only logged. Rest of the errors require SBR
-(Secondary Bus Reset) to recover. Add helper to send offline/decline
-command to firmware. 
-
-Pages are also saved by firmware in flash and need to be offlined
-by software on module load. Add helpers to retrieve the list and queue
-from firmware.
-
-Rev2: Add support for SoC internal errors
-      fix review comments
-
-Rev3: remove in_recovery flag for disconnect error
-      prevent sysctrl flooding
-      use minimal logging
-      simplify soc structures
-      add error_count to GT structures
-
-Rev4: add device memory errors
-      add helpers for memory errors
-      fix cosmetic review comments
-
-Rev5: simplify structures in all patches
-      disconnect on wedged or survivability mode
-      rename in_recovery to in_reset
-      add minimal integration patch for device memory errors
-      rename system controller flooding macro
-      fix comments
-
-Rev6: rename function to prepare_reset.
-      call pci_prepare_reset() before requesting SBR
-      fix cosmetic review comments
-      add patch to skip run_ticks while reading fdinfo
-      when SBR is in flight
-
-Rev7: rename sysctrl build command function
-      rename pci prepare reset function
-      use wedged state management
-      split function for usp dev
-
-Rev8: fix kunit error
-      add error handling for poison and data parity memory errors
-      add request structure for page offlining list
-
-Raag Jadav (1):
-  drm/xe: Improve wedged state management
-
-Riana Tauro (14):
-  drm/xe/xe_survivability: Decouple survivability info from boot
-    survivability
-  drm/xe/xe_sysctrl: Make sysctrl flood limit reusable
-  drm/xe/xe_pci_error: Implement PCI error recovery callbacks
-  drm/xe/xe_pci_error: Group all devres to release them on PCIe slot
-    reset
-  drm/xe: Skip device access during PCI error recovery
-  drm/xe/xe_ras: Initialize Uncorrectable AER Registers
-  drm/xe/xe_ras: Add support for uncorrectable core-compute errors
-  drm/xe/xe_ras: Handle uncorrectable SoC Internal errors
-  drm/xe/xe_ras: Query errors from system controller on probe
-  drm/xe/xe_pci_error: Process errors in mmio_enabled
-  drm/xe/xe_ras: Add support to query device memory errors
-  drm/xe/xe_ras: Add support to query page offline queue and list
-  drm/xe/xe_ras: Add support to offline/decline a page address
-  drm/xe/xe_ras: Process pages from offlined list and queue
-
- drivers/gpu/drm/xe/Makefile                   |   1 +
- drivers/gpu/drm/xe/xe_device.c                |  24 +-
- drivers/gpu/drm/xe/xe_device.h                |  27 +-
- drivers/gpu/drm/xe/xe_device_types.h          |  12 +-
- drivers/gpu/drm/xe/xe_gt.c                    |  14 +-
- drivers/gpu/drm/xe/xe_guc_submit.c            |   9 +-
- drivers/gpu/drm/xe/xe_pci.c                   |   9 +
- drivers/gpu/drm/xe/xe_pci_error.c             | 135 +++++
- drivers/gpu/drm/xe/xe_pci_error.h             |  13 +
- drivers/gpu/drm/xe/xe_ras.c                   | 494 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_ras.h                   |   4 +
- drivers/gpu/drm/xe/xe_ras_types.h             | 227 ++++++++
- drivers/gpu/drm/xe/xe_survivability_mode.c    |  13 +-
- drivers/gpu/drm/xe/xe_sysctrl_event.c         |   2 +-
- drivers/gpu/drm/xe/xe_sysctrl_event_types.h   |   3 -
- drivers/gpu/drm/xe/xe_sysctrl_mailbox.c       |  28 +
- drivers/gpu/drm/xe/xe_sysctrl_mailbox.h       |   4 +-
- drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |  11 +
- 18 files changed, 1002 insertions(+), 28 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_pci_error.c
- create mode 100644 drivers/gpu/drm/xe/xe_pci_error.h
-
+diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
+index 427afd144f3a..4c506027fa94 100644
+--- a/drivers/gpu/drm/xe/xe_survivability_mode.c
++++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
+@@ -54,7 +54,6 @@
+  *	# cat /sys/bus/pci/devices/<device>/survivability_mode
+  *	  Boot
+  *
+- *
+  * Any additional debug information if present will be visible under the directory
+  * ``survivability_info``::
+  *
+@@ -98,6 +97,15 @@
+  *	# cat /sys/bus/pci/devices/<device>/survivability_mode
+  *	  Runtime
+  *
++ * On some CSC firmware errors, PCODE sets FDO mode and the only recovery possible is through
++ * firmware flash using SPI driver. Userspace can check if FDO mode is set by checking the below
++ * sysfs entry.
++ *
++ * .. code-block:: shell
++ *
++ *	# cat /sys/bus/pci/devices/<device>/survivability_info/fdo_mode
++ *	  enabled
++ *
+  * When such errors occur, userspace is notified with the drm device wedged uevent and runtime
+  * survivability mode. User can then initiate a firmware flash using userspace tools like fwupd
+  * to restore device to normal operation.
+@@ -296,7 +304,8 @@ static int create_survivability_sysfs(struct pci_dev *pdev)
+ 	if (ret)
+ 		return ret;
+ 
+-	if (check_boot_failure(xe)) {
++	/* Survivability info is not required if enabled via configfs */
++	if (!xe_configfs_get_survivability_mode(pdev)) {
+ 		ret = devm_device_add_group(dev, &survivability_info_group);
+ 		if (ret)
+ 			return ret;
 -- 
 2.47.1
 
