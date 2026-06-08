@@ -4,62 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBB5BCD8C9D
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 06:31:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B6EFCD8C9D
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 06:42:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C3B710ED77;
-	Mon,  8 Jun 2026 06:31:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32DC210ED9D;
+	Mon,  8 Jun 2026 06:42:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AWBv+Sqg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k1wUqfj9";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F50A10ED75;
- Mon,  8 Jun 2026 06:31:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6585210ED99;
+ Mon,  8 Jun 2026 06:42:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780900291; x=1812436291;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=awuMcxbXTMkZ+PyLY0+vB3624tO1jtfSCHJ8tXoxTS8=;
- b=AWBv+SqgkzL6y8zXslktHKjkUOSfvwGL6vX6ucoSaTuwvh2fx3UHtPPg
- 2TS9i2FJ+ly2CkpO4ncFZY2OqVisZEEtGLMcCRdHhOYO9pD8WInvpcdlD
- kdB1yb6583Pe+vNK0rrAV1I6Pe7+KrTErDGfDrgBS0e27jpbIOy7wwIIv
- jFYiRgrRD1kOej0a1uSudppeOsLXsHk1MoanEAudMOps15iYArK6xBj/B
- Q+/MDlvOeL09ZMtnsW7Tahqr/EetjL43xFc6iVF+UE36bTfqSheAhJSeZ
- z8xcMgKfLKjD/dsLbQU4iEVu6a0Qf4gkgUClu9OYmzObN+ZdAJ+CWKUlG g==;
-X-CSE-ConnectionGUID: qPVOEchxQZucF5jAPVti4Q==
-X-CSE-MsgGUID: t6SAl4N3Qi+b87jnXvlf2w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11810"; a="81373033"
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="81373033"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jun 2026 23:30:57 -0700
-X-CSE-ConnectionGUID: A6n/4EdHQWu+bMNOrVccOA==
-X-CSE-MsgGUID: rItbTfQJTL2/9PYrU89ndA==
+ t=1780900978; x=1812436978;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Kh9NutqJA9YrD761QzCDC/bsOahZ6lKpL8mlNTmX8Gs=;
+ b=k1wUqfj9HzTtLSYb2Z8elRWZqf548qbSXvLToTj9Yg6xU2yxHkh8WPbl
+ 3hrCNIhtpiq+5eYSGEw46w9wjXlBsl6y7CKz+w7uYkvZvHyXYECV2Ed5L
+ /pZggET63TkneKqyK1HbsE+UiuaQPsQAcqAFLd4cqLUSNHrioBqABb4oF
+ yerWrUMdlHxn9ohkUrjKmw8Eyo98C+uqjOHXo1ufVPE7MZ88IP6S3PK+i
+ 5RBxFuglw45Y/kKwj8CVJXYvGeRdupCQhMGs8jG67vI9EQHX0oOcv1ACp
+ MyvhSbN7cwVY3O+kjV15BxUgdS/XjWHXqrZtWecZz/W563kpDyXtSxS46 Q==;
+X-CSE-ConnectionGUID: w0nudX4YRwe9m8pqa0//aA==
+X-CSE-MsgGUID: G27Wz7ofTJ+G9JUEgH9nxA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11810"; a="92309258"
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="92309258"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2026 23:42:57 -0700
+X-CSE-ConnectionGUID: 7PSclGGUS5+OJSBdbeb4fA==
+X-CSE-MsgGUID: fELobZNyTzO0zAF/CpfWYA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="242479400"
-Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jun 2026 23:30:53 -0700
-Date: Mon, 8 Jun 2026 08:30:51 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- rodrigo.vivi@intel.com, andrealmeid@igalia.com,
- christian.koenig@amd.com, airlied@gmail.com, simona.vetter@ffwll.ch,
- mripard@kernel.org, maarten.lankhorst@linux.intel.com,
- tzimmermann@suse.de, anshuman.gupta@intel.com,
- badal.nilawar@intel.com, riana.tauro@intel.com,
- karthik.poosa@intel.com, sk.anirban@intel.com
-Subject: Re: [PATCH v7 3/6] drm/doc: Document DRM_WEDGE_RECOVERY_COLD_RESET
- recovery method
-Message-ID: <aiZhm1wCzTGNk4X-@black.igk.intel.com>
-References: <20260605122544.1021695-8-mallesh.koujalagi@intel.com>
- <20260605122544.1021695-11-mallesh.koujalagi@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="244348195"
+Received: from carterle-desk.ger.corp.intel.com (HELO
+ jhogande-mobl3.intel.com) ([10.245.246.213])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2026 23:42:55 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH] drm/i915/psr: Flush on cursor update also when not using
+ Selective Fetch
+Date: Mon,  8 Jun 2026 09:42:35 +0300
+Message-ID: <20260608064235.20053-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260605122544.1021695-11-mallesh.koujalagi@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,19 +70,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jun 05, 2026 at 05:55:47PM +0530, Mallesh Koujalagi wrote:
-> When ``WEDGED=cold-reset`` is sent, it indicates that the device has
-> encountered an error condition that cannot be resolved through other
-> recovery methods such as driver rebind or bus reset, and requires a
-> complete device power cycle to restore functionality.
+Currently we are not doing flush on cursor update if Selective Fetch is not
+in use. This doesn't cause problems in PSR cases as enabling VBI is
+triggering PSR exit which triggers sending update to panel. In case of
+Panel Replay this doesn't happen. This causes legacy cursor update not
+working if using Panel Replay without Selective Updates.
 
-...
+Fixes: 129a4da11707 ("drm/i915/psr: Use TRANS_PUSH to trigger frame change event")
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_psr.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-> +    if [ -e "$PCI_DEVS/$dev" ]; then
-> +        echo "Done: $dev is back online."
-> +    else
-> +        echo "WARNING: $dev did not re-appear after reset."
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 5047e3fdc9ff0..d9fcf52328eab 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -3767,9 +3767,7 @@ void intel_psr_flush(struct intel_display *display,
+ 		if (intel_dp->psr.pause_counter)
+ 			goto unlock;
+ 
+-		if (origin == ORIGIN_FLIP ||
+-		    (origin == ORIGIN_CURSOR_UPDATE &&
+-		     !intel_dp->psr.psr2_sel_fetch_enabled)) {
++		if (origin == ORIGIN_FLIP) {
+ 			tgl_dc3co_flush_locked(intel_dp, frontbuffer_bits, origin);
+ 			goto unlock;
+ 		}
+-- 
+2.43.0
 
-... after "rescan".
-
-Reviewed-by: Raag Jadav <raag.jadav@intel.com>
