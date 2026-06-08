@@ -4,50 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F07A3CD6E79
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8F17CD8CAC
 	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 22:36:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6AAA10F9FD;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85B8E10F9FB;
 	Mon,  8 Jun 2026 22:36:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z5JaCX7v";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XMRJh6yk";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93D8110F9EA
- for <intel-xe@lists.freedesktop.org>; Mon,  8 Jun 2026 22:36:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CC1D10F9EB
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Jun 2026 22:36:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780958188; x=1812494188;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=sTlfgUmDDLokbm6CoGQT90bHAwWgM0nRDpHYw2bGfR0=;
- b=Z5JaCX7vUet9ourD71XchjhAT+9BR/0GXYUYFwxTV7cdRpcwEelFkfVm
- qvyw/Isc3xK8OMEFe2tqBDlbPC9NZITvJYiqiWf8FpiT4lTlhT+U+azAT
- hjpw/emxmcf984w8Wh7ma2f13wEdvZ2SKN4cHaci2kGyz8wwUlO3C5Scv
- LkT2hlh7XpVoAntPoicw+5vsD3m/od79Ry3xwn7W1/gG6pPS/u3DVjVi3
- HG8DB+6DxlgzzXmNcbo3+T3R4rA+pqh6bOoEFVWeucFmnpqXsCGekt1rY
- 18qbj5LnwEe/pBvJYWO3+Nwi+Q1as/dpnFR+LrzmCOVhmz0IWF7lzF0Wt Q==;
-X-CSE-ConnectionGUID: W4mKmi/4Rg+WWrP+oY256w==
-X-CSE-MsgGUID: wYvGvDbYTvGFEUsu/xP6jw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11811"; a="81750971"
-X-IronPort-AV: E=Sophos;i="6.24,195,1774335600"; d="scan'208";a="81750971"
+ t=1780958189; x=1812494189;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=sONpHNAiQ+5Ni0NwVZHxFfQgbbfsxb/L3aThoTsq6cQ=;
+ b=XMRJh6yk09U+x449fDgcEVNbIOH/xMyOcn1g27pynZUQtn0VVBYW/n5/
+ Hgk0sNvjh62M5oGg0U1Mur5OsxxIECvElz8zaMNpxlWUI5THtWAVBIcjo
+ Bue/h1DxzWjiKGK2MmaxaQq/dpfc+3MtKsnkr2zv9xVN3lzan+eV9wzJJ
+ DcZUHU+bACIibwGuAOxf33b1fP8CAGn3i8989HlMzjU6kmmHqV24ueoQ0
+ 9SucT28dp/WGfL14+oPkWEvdlFoJQDZ4UIQsjDvyoCvtEEPOAs9t+wDZ3
+ +OluLZoxz5+Zxc7QEtknPzMlMYcEqu9g3EGW6nSqVWMcO3HhVJ8ExS95Z A==;
+X-CSE-ConnectionGUID: ALuFODyQTG+I7LcmgYT0qw==
+X-CSE-MsgGUID: GikS98eXSO2cvkUY9yFJpw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11811"; a="81750972"
+X-IronPort-AV: E=Sophos;i="6.24,195,1774335600"; d="scan'208";a="81750972"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  08 Jun 2026 15:36:28 -0700
-X-CSE-ConnectionGUID: uqgkEhhUSGCWVzlhML/PbQ==
-X-CSE-MsgGUID: ed8BVNSxSva0OV18mMQTbQ==
+X-CSE-ConnectionGUID: FkqQkO6KS5uc5xk9l0GeAA==
+X-CSE-MsgGUID: hoQityhjSO6gzWLPgw5+tw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,195,1774335600"; d="scan'208";a="269684735"
+X-IronPort-AV: E=Sophos;i="6.24,195,1774335600"; d="scan'208";a="269684738"
 Received: from orsosgc001.jf.intel.com ([10.88.27.185])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  08 Jun 2026 15:36:28 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: [PATCH v2 0/9] Don't whitelist OA registers unconditionally
-Date: Mon,  8 Jun 2026 15:36:15 -0700
-Message-ID: <20260608223624.3711760-1-ashutosh.dixit@intel.com>
+Subject: [PATCH v2 1/9] drm/xe/rtp: Add RING_FORCE_TO_NONPRIV_DENY to OA
+ whitelists
+Date: Mon,  8 Jun 2026 15:36:16 -0700
+Message-ID: <20260608223624.3711760-2-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260608223624.3711760-1-ashutosh.dixit@intel.com>
+References: <20260608223624.3711760-1-ashutosh.dixit@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,41 +67,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Whitelisting OA registers unconditionally is a security violation. In this
-series we resolve this issue as follows:
+Unconditionally whitelisting OA registers is a security violation. Set
+RING_FORCE_TO_NONPRIV_DENY bit in OA nonpriv slots, so that OA registers
+don't get whitelisted by default after probe, gt reset, resume and engine
+reset.
 
-* Set the 'deny' bit (bit 30) for all OA registers, ensuring OA registers
-  are not whitelisted by default after probe/reset/restart
-* Reset the 'deny' bit when an OA stream is opened and certain conditions
-  are met, whitelisting OA registers only for the duration when OA streams
-  are open for a gt
-* Set the 'deny' bit again, when OA streams are closed
-* To manage this scheme, separate out OA whitelists from non-OA whitelists
-  (into separate save-restore lists)
+v2: Add WHITELIST_DENY macro
+    Reword commit message (Umesh)
 
-v2: Address code review from Umesh. Patches changed in v2 have changelog
-    appended to commit message
+Suggested-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+---
+ drivers/gpu/drm/xe/xe_reg_whitelist.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-Ashutosh Dixit (9):
-  drm/xe/rtp: Add RING_FORCE_TO_NONPRIV_DENY to OA whitelists
-  drm/xe/rtp: Maintain OA whitelists separately
-  drm/xe/rtp: Keep track of non-OA nonpriv slots
-  drm/xe/rtp: Generalize whitelist_apply_to_hwe
-  drm/xe/rtp: Save OA nonpriv registers to register save/restore lists
-  drm/xe/rtp: Toggle 'deny' bit to (de-)whitelist OA regs
-  drm/xe/rtp: (De-)whitelist OA registers for all hwe's for a gt
-  drm/xe/oa: (De-)whitelist OA registers on OA stream open/release
-  drm/xe/rtp: Ensure locking/ref counting for OA whitelists
-
- drivers/gpu/drm/xe/xe_gt_debugfs.c      |  4 +-
- drivers/gpu/drm/xe/xe_hw_engine.c       |  2 +
- drivers/gpu/drm/xe/xe_hw_engine_types.h | 12 ++++
- drivers/gpu/drm/xe/xe_oa.c              |  7 ++
- drivers/gpu/drm/xe/xe_oa_types.h        |  3 +
- drivers/gpu/drm/xe/xe_reg_whitelist.c   | 94 ++++++++++++++++++++++---
- drivers/gpu/drm/xe/xe_reg_whitelist.h   |  4 ++
- 7 files changed, 117 insertions(+), 9 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+index 2e84b1c49f374..2d8ddb57412c2 100644
+--- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
++++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+@@ -104,10 +104,12 @@ static const struct xe_rtp_table_sr register_whitelist = XE_RTP_TABLE_SR(
+ 				   RING_FORCE_TO_NONPRIV_ACCESS_RW))
+ 	},
+ 
++#define WHITELIST_DENY(r, f) WHITELIST(r, (f) | RING_FORCE_TO_NONPRIV_DENY)
++
+ #define WHITELIST_OA_MMIO_TRG(trg, status, head) \
+-	WHITELIST(trg, RING_FORCE_TO_NONPRIV_ACCESS_RW), \
+-	WHITELIST(status, RING_FORCE_TO_NONPRIV_ACCESS_RD), \
+-	WHITELIST(head, RING_FORCE_TO_NONPRIV_ACCESS_RD | RING_FORCE_TO_NONPRIV_RANGE_4)
++	WHITELIST_DENY(trg, RING_FORCE_TO_NONPRIV_ACCESS_RW), \
++	WHITELIST_DENY(status, RING_FORCE_TO_NONPRIV_ACCESS_RD), \
++	WHITELIST_DENY(head, RING_FORCE_TO_NONPRIV_ACCESS_RD | RING_FORCE_TO_NONPRIV_RANGE_4)
+ 
+ #define WHITELIST_OAG_MMIO_TRG \
+ 	WHITELIST_OA_MMIO_TRG(OAG_MMIOTRIGGER, OAG_OASTATUS, OAG_OAHEADPTR)
 -- 
 2.54.0
 
