@@ -4,159 +4,158 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71586CD8CA7
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 09:29:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED23CCD8C9F
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 09:42:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE51810F053;
-	Mon,  8 Jun 2026 09:29:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0D0510F068;
+	Mon,  8 Jun 2026 09:42:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LBGZ9NGq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j0t+lmD0";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 168AF10F051;
- Mon,  8 Jun 2026 09:29:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 841BA10F068
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Jun 2026 09:42:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780910954; x=1812446954;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=NhhQ+MZpwbEp84zlrWDqoeZ05OHNJxkeXCB7R6lxbo0=;
- b=LBGZ9NGqwNwOYU6JOYYX/KBsUAe1jC4fXsvRTUXLvA4rj3tpXriMfNxe
- enBsHTufiKegfOs7WzpuIDtv1wn47U7PM12TUHn1TlE7EUEHt9BSWCIdV
- Bpacxr3qQwDe/ayjpjJvrDwW7dGJYAxj96zoTGtpdbjclJ1mEGiCuLzSg
- mITeH5AW7mx7l0NCMI9dgmtWhnTmRqQ6ViOMZwTqPqw2KDL8T7y2SOoYM
- 6wTGdxYklYN3FeMiInX4sJf1Lvu24gqnpV7MMgbeDB2bMk3Vk9YUezoPH
- EieBV2A88GHbPuJ1VwBRH6BP8MAufQ0qVwohfWLfODLMilm2mIhevBOq4 A==;
-X-CSE-ConnectionGUID: saGNVb2vSaalW1VCDOMEPw==
-X-CSE-MsgGUID: 0r9KQ7zfSd+Qm9VUt6KTnw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11810"; a="81386814"
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="81386814"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 02:29:14 -0700
-X-CSE-ConnectionGUID: USFdBMrqQMa1qaqADEaqLw==
-X-CSE-MsgGUID: 1LBz/tKYTcypTpYcf5oWBg==
+ t=1780911722; x=1812447722;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=mwamVeVxjbvEym7Tf6iHmluth+xHJYhJdXgJHJzUvko=;
+ b=j0t+lmD0P8bZ+QWAgPTbIkOTuOIJyxSF7bz5Uz8b30K2Q1tqQCEDHuOY
+ NiFLEoUislNjoFblVmwFiyZ5BSUNONFqs8lTjyxjcjhI3esSTnAQ5iirt
+ II9wagq0T83KVcbO0vi64wYu36vQS6hRs1ga+8Mf5Oug/o4lwvdkZCywz
+ aA41mphma3qBw+1zlUp0PNR2sY9o+k0Mtf6wBPFP0JC0/lepvRiTSwyZm
+ Y/h5nZZNW0jlaPN4rwjSyFldjIRbh3v4mCP+12nBPsJs5TvicYoUlRlFA
+ eqr7mYZj4wshtKobnIqXsKFVFcNajHCcu5je7X9VET99f/Eu2ekVVPR4I A==;
+X-CSE-ConnectionGUID: wN7YIak6T3+FkZaSwfvnTQ==
+X-CSE-MsgGUID: +fV0b4XNSZGBUbU3vCFslQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11810"; a="99225637"
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="99225637"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2026 02:42:01 -0700
+X-CSE-ConnectionGUID: /wKAXSEaS4y3YLy6HyCj2A==
+X-CSE-MsgGUID: eXng2bRRQ6aMSq4nFOiPKQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="269210214"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 02:29:13 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="242538136"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2026 02:42:01 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 8 Jun 2026 02:29:12 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.37; Mon, 8 Jun 2026 02:42:00 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 8 Jun 2026 02:29:12 -0700
-Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.38) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Mon, 8 Jun 2026 02:42:00 -0700
+Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.11) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 8 Jun 2026 02:29:12 -0700
+ 15.2.2562.37; Mon, 8 Jun 2026 02:42:00 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rsI2VwJgFbRt3z0dCvtZQAcHlBxAAao3uI0hFblAAf1p6kr+sa6/kyyDAbSreTv8PRiRJlqxeQ9HfV54Gm8n42DENDzcIOEqW4x+7tiWefNuHGPTZZWbTQ/0UYmJT/hRist4OKojnLO25DMfF3f8hX/XFR57Iml/vZCsfJur/Ly5d9y+CmgYBhAzR0RSgH9bLyDGj43breRZbsiSR0PRYYCfLxibsKFcRAOLzDk8LM0Bkpt616EOE+VZKnf6CWvDGqUjl9KKK5UaNx/4tfFboegrp4Wyl2IMpTjt/dGBJEyyQWT/9/+kZAB7qzDIXLjkzPXgdJ5titftWGWU+dOyHQ==
+ b=dFyag9PnB5XBOvG3vcyIFmsX5cE48EWtiCSBwR4fkCWFYbYb9HANA3wBWtDzdzCTK6L8x335q5ARxq48Rd7S/1rlArSh85DxFlOmYlCV6tuMElrS6+kWdyqJa1N+vkfPE1ugZEw/5A/b/EHRl0eLDnoxBYdM2johq5spzrAUgGtc7bxprpwCGwEDrqkuFnqF3LjR/fK1WOT5Kky81n5Eokx8EB9rJiXNw18ShRUvfP7+xT8ljHXB1Z3fuG1N0b4YvEloPqCQw3G8s6iVa1o3Bc8X/5AfgXNCK4AG9SqVsE1SqpnGh4qcY52v9Jg608gaPew09jiG/0ynbkJI6jzAUQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NhhQ+MZpwbEp84zlrWDqoeZ05OHNJxkeXCB7R6lxbo0=;
- b=jPVxZpoKF4o1BfLfLXorkxJ8LNJ81apn2hj9F5LnRFB3a3qfvo4hzrQql1FzvPWf3fSu6GTgMbAMpbplWJyvZHpJ3bbi30yhoEd0HNfJZ2m09iSR/D6SP3HAp4WJFBbyr8HweKbKdCkv1W34uZjthYjpLWxcqJrdcudZ3P+eKraFtJBVZXYBl1AGg41g7pkKJTawIQF4MyRRPnEnG3lmx93k/0y+B4x5rSx6WQ6FkLGu1goEtWhFnumDVLuYGEWEWU6i5ftZkXR5n8rxA9tu4cArLeu4t7lWdozr9IamO+j7zeDWVnv1ECPJS0PmCitieKbCL+FYETtwqLWNnhALMQ==
+ bh=wVOqu4bVAZk8keI8aYGv+e0jhvX9rUEVmdvm/NN7R1Y=;
+ b=A9wSk+KXKs2lJFsgDmwyCdSjzp9plu0JcWWpZO4hX4sjbnm2bOVH9nA3Ej9GDKutIfCv/29ywjXDPnYXnQfaazK0ZGfwkfAnn0DSqLxcC0srnNBmYPEo2CIifiV/JjbK6CrrsKwViuNOe0gnkubagi3X1jAxUCpL7p2VTa8sbCmO02ZeLQcFe91B0IU9YpGOWDf++KJYmx4joAv0/DMryUBWJ9qcGzaQCXhbpPTOViKCV2zoYiaiJgmd3BPbAQYBW7dMXjMYs//NUlDRfKz23FS1qcUGaiTh+pIJwsCfH3VRGJ1RXvbHrspFTgvLwpDGc6VXyXTrzYk0InXxuwW31g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from DS4PPF69154114F.namprd11.prod.outlook.com
- (2603:10b6:f:fc02::28) by IA4PR11MB9299.namprd11.prod.outlook.com
- (2603:10b6:208:565::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.12; Mon, 8 Jun 2026
- 09:29:10 +0000
-Received: from DS4PPF69154114F.namprd11.prod.outlook.com
- ([fe80::88d6:ba41:128b:4081]) by DS4PPF69154114F.namprd11.prod.outlook.com
- ([fe80::88d6:ba41:128b:4081%6]) with mapi id 15.21.0092.011; Mon, 8 Jun 2026
- 09:29:10 +0000
-From: "Kahola, Mika" <mika.kahola@intel.com>
-To: "Deak, Imre" <imre.deak@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>
-Subject: RE: [PATCH v2 18/22] drm/i915/display: Simplify
- intel_modeset_commit_pipes_for_atomic_state()
-Thread-Topic: [PATCH v2 18/22] drm/i915/display: Simplify
- intel_modeset_commit_pipes_for_atomic_state()
-Thread-Index: AQHc8av/OG/iFEQmZk2jWbKqbATfArY0bxdQ
-Date: Mon, 8 Jun 2026 09:29:10 +0000
-Message-ID: <DS4PPF69154114FC15A96A406E3313CEE36EF1C2@DS4PPF69154114F.namprd11.prod.outlook.com>
-References: <20260601093836.3057345-1-imre.deak@intel.com>
- <20260601093836.3057345-19-imre.deak@intel.com>
-In-Reply-To: <20260601093836.3057345-19-imre.deak@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS4PPF69154114F:EE_|IA4PR11MB9299:EE_
-x-ms-office365-filtering-correlation-id: 926df0e4-3020-4436-b158-08dec540658b
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|38070700021|56012099006|11063799006|4143699003|18002099003|22082099003;
-x-microsoft-antispam-message-info: EoxFA4D+TRFLPwYyq1Pe2D5Bhtl04DI2x+m5QxQJu1U0uckF+pZOIwxbX9zQSwffeSljmKbk8xZow9f8x3e92NkJaYaAeoBGjfq5pYx7Znrrak4f78btqKHonI3MM75GF0LwMKe1knZIgbsRrpcyfw3TK1HpUwgU7skl7QbwPmvTCRkSvcZv7iO4m05Mabfwdp7p/X2pyedHilrIdzQX2ywhRhfJor6ZyAYA/0weBP6g1ibUyS5wLU5eV//BmtYjW2vkzNTG2rbgbg3YIk/wXOUe7LPV3uJkVtvQ7NsvUvtgMxa3x3Lhriz+nX2B2CqM7JOWSawR5dMBpalf/n9+jtV2CbC8GH6jgwhn2yY3cenux85jS+pvZUNNHQ8H2tIolEAvG5Wb0jXzxeBud85NK+kvin/ibbTybhb7w2Q2Gc84wjHJUwc95GI0wCBpWwtfu8rToiPBLEWjFSP0pAxJVQAZgmg8yJi3/qHi/DMqNc8aEQfwmUiIkyxtgWsm4tdRIafja4G/3psLXRZKKlJpFrxB6kvQMix3a8vQbWs3UuUPLZGrLHMOwIrMVoz+mIQ1oKl7Ckv0Au5j4JVyudgH79iozopSf4t5d5524lA8+WIqlKhr5rIYuCAM/3xkH6k+8yJGNMJ4J3unMXTFCQPew1SVJ2XbhBrxxqINvtjcsrNqTXzXwGrlaPhiHYdls/TIHhHXDK78SWRPWjs1FX2ccV6zvzfYS613pKlx4TwrUN4erP2dKX3U6Y1K0bQPgZqk
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS4PPF69154114F.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(38070700021)(56012099006)(11063799006)(4143699003)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?NzZpQW1sYTRjYUh1c2x3TlJKMG5UVElaKy9qaVRRa1pvRnNaZ1R6ME92Mkpj?=
- =?utf-8?B?c3h1WncvSTh3VFU5NVlSU3FJaXJWL2NFVzB4c2lma2Nkdm5MdnQyK0pXM0xY?=
- =?utf-8?B?ZHI2eVUxaDdxREhTbTY1YkladnJXcjZNMDkxcWdLWk1KdkkzV3hwbFlCZm5K?=
- =?utf-8?B?QkJhQUZ0L2l0M2srZlRZZFQxbm1RNkdSbHRXUEIzcWlOTnVMWE1ydTJHTkE2?=
- =?utf-8?B?T2JoWlNtZTlScW5qaFpxTGs0Y1dnbWFDZVZGaFgyL2tMTi9CWDZUUjNLaXhq?=
- =?utf-8?B?OHNGaFdSd1o1SHJCejQwVUhDYUJUS2RZSVdMTkYrRkt5TjhST0tUaXd1b3FP?=
- =?utf-8?B?VWIzaWFxYnlkRkEwbldYdFZXZVJtSHEvdnUxUWM3anhQRHZVQTNNdC92d0g5?=
- =?utf-8?B?K0w1VVFzeEEyelBTSGFoNmtxakRZTEJUdWsyRU5Pc0tNeHB4NUNtOWF4M0xN?=
- =?utf-8?B?eU1hQkh5cnZ4a2F1Z0xmMWtqOGFNam8wVTJIcmh0RTgzMEwvbUQvY0JOTUpF?=
- =?utf-8?B?cUIzYnRKS2ZpalhvTmp4QWU0M0tpT3BHRGZ0bGtJRU40ejJpZUZteG1LQTcz?=
- =?utf-8?B?WUd6OGpCOXNMN0tsQlRob1lXR0gzTU5lNUZURFBMZC90RDl6RkF6QUJuNVJp?=
- =?utf-8?B?L25SUk5Fa2lVNWtIakJXclM5YThjVHdlYzV5V2EwVmFVVytES25zeTFKZVJz?=
- =?utf-8?B?WGxhcGdwZzJwLzZseUJ5QXBEU3hkcngwQnlpRmd0ejhEOXpNWHR5cTZ2YUM1?=
- =?utf-8?B?SUhMNnI3RTBibDh4NUNldU8wQ211MjBIYzBVZis0U0F6aThneSsydlh1dUo1?=
- =?utf-8?B?YXdHdllKVlh6R2wwbDYraC80Nyt1aEx5U0JueXhUTk5UNWxVZUFhUTUwMW1F?=
- =?utf-8?B?eUM5Tkg0bTBsSEZDUFNUMzBrdVpxeDhWTkxjRkp1bjNSbm1FVjYvRWlkUklN?=
- =?utf-8?B?Z0dPVGd5cDFhT0lubmRGUklvckZsdFZIbnFHanVpYXdnaTcwNVhmdWV3VjhX?=
- =?utf-8?B?WnJCZTJ5N1podUpZTTJzTnBFS1FMc2pQakRHS1ozWll1R2FrTTBmNmRycW95?=
- =?utf-8?B?ZXYyazNDOFZEM29zbnUrdEh3Q0xxT0NicFVOOFo0V1pOMmNlbGtoQ3A0M0R3?=
- =?utf-8?B?NEJuZ1dLMDh3QmVGVVc1LzNzaC9TSkNoaGlDWExXOTQ3emhOTzVSN3cvYzVj?=
- =?utf-8?B?MWNtN09GQzRTS2pUcGlZbEQ4M2dBd1hPSTlCUkM3V1hON05YVE5CNURFTG42?=
- =?utf-8?B?V0Rlb1dJNDRvS1orTWpUVmF4UWpFcndFNEl5MkZYNko2WHFWanRGaTZjb3F5?=
- =?utf-8?B?OFhWM2Iva29pMVRJcmtwdGYzU3ViaUViSVBQQVR2MlZMR0RTcWJjV2Fuenpo?=
- =?utf-8?B?U2t1STAxVGZrbVV5YjFTSW4wR3hFWWMzSERhK2JSS3N3S2QwMlRJdDhLeE8v?=
- =?utf-8?B?SmVaaFNIUHc3SFl6MWROblN4RjJPQlI5dnZMRmFOenIrVm5udWFXWVpSdkJZ?=
- =?utf-8?B?blNqVk9BUEN0OEJJQ2ltSUowSElzcTJQQkluaklEeWtmWDU2b3h0M3pNaFNh?=
- =?utf-8?B?c0g4aGlCeUhzYlFvZUR2YkNwSlNUWi9EcEZqeUE0clNRSUlhRUpSTFdkR042?=
- =?utf-8?B?K3F0YUw5SE05ZlNtT2o2WXR1VUgwM2tMUTJEeCt2VllxbUh1dEltWGJ3SWU2?=
- =?utf-8?B?bUdhRUJ6SlBpVWlsaTZ1SXUvM0szYmpLVVIvMGhheHBLMEJaZ2FDRWlJQ3By?=
- =?utf-8?B?RUNRN1NvOFFNbysvNUJPVDlieHhvbjdEVmx5c3BDWGFWSWJCenJpekRsMWJX?=
- =?utf-8?B?UTR3UHZnaEtUcWZmQ21hUFlvN0R1RkozLzFXVm5XL1Eyb0lJdjVVRnovbTZ3?=
- =?utf-8?B?K1VyTDJheUtYeWVxVHppWU56MDRkRnc1RUx2TENRNTV0T0pZWkpXYlJGakhv?=
- =?utf-8?B?K1FaTjVaeUFjVWFQT2pNZ1VSY1NvZU52KzNCNDVsK1RqcGl0TzdidzEwTm5K?=
- =?utf-8?B?UkdUanhjekk1NlBLQkkyV0JNNkgrK0VIRHNOcEttY1pqdXNyVk92aVM1RmFr?=
- =?utf-8?B?b2R3ZzB3OGp3b1hQVDY5a0I2YWFqQzRDbmRzdXlFR1N3T25ZaWVxNG54WG80?=
- =?utf-8?B?V3dSY1pHbjNLVFB6MzRaSWtYSkVSc3ZON1p3dTRHdE1GaC94aUtkSTh5SXhJ?=
- =?utf-8?B?ZWRYSXhvQy9jNUlzMEFobERSbGRJOWFYWUxOSWxCVWJmNTBsb1UyUG84b2hH?=
- =?utf-8?B?YkV2TGJFR0Fac09vcGhuZTFSeFVLanR0QksrbjdhSEpxQmx2VFRRekJXSTIx?=
- =?utf-8?Q?wMdeja6KWe8lnFmgvj?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
+ SJ0PR11MB6765.namprd11.prod.outlook.com (2603:10b6:a03:47b::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.12; Mon, 8 Jun 2026
+ 09:41:57 +0000
+Received: from DS0PR11MB7958.namprd11.prod.outlook.com
+ ([fe80::8cb2:cffc:b684:9a99]) by DS0PR11MB7958.namprd11.prod.outlook.com
+ ([fe80::8cb2:cffc:b684:9a99%4]) with mapi id 15.21.0092.011; Mon, 8 Jun 2026
+ 09:41:57 +0000
+Message-ID: <39aff126-c1ec-42ac-8b16-6f149eeab163@intel.com>
+Date: Mon, 8 Jun 2026 15:11:48 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7] drm/xe: Consolidate debugfs fault injection functions.
+To: Mallesh Koujalagi <mallesh.koujalagi@intel.com>,
+ <intel-xe@lists.freedesktop.org>, <rodrigo.vivi@intel.com>,
+ <matthew.brost@intel.com>
+CC: <anshuman.gupta@intel.com>, <badal.nilawar@intel.com>,
+ <vinay.belgaumkar@intel.com>, <karthik.poosa@intel.com>,
+ <sk.anirban@intel.com>, <raag.jadav@intel.com>
+References: <20260604132623.1000288-2-mallesh.koujalagi@intel.com>
+Content-Language: en-US
+From: "Tauro, Riana" <riana.tauro@intel.com>
+In-Reply-To: <20260604132623.1000288-2-mallesh.koujalagi@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA0PR01CA0052.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:ac::13) To DS0PR11MB7958.namprd11.prod.outlook.com
+ (2603:10b6:8:f9::19)
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: qbcutIzcV95nG9Gw+7Y065c3ldehC4oTufEzKV/zbY1EXRQfm2SbN7zWL6IFqwscsJa3vyU4KgYNF9Cnp8T/1aBXdY8J1yU+RPSUDbsVh2unq9t9P5sHNeVKa/7kfZBKMJqSXDz92vizk8qu6/K1gaL8+ERMqPzN6uRUbFn2HzQMbw360C0ISy2FUT3wmoXJlWPgWsdwYksG1/70CEwjutwZZZ7T/DlIzeWkWSn8FZ+BQHyQUegObmqZU5mAErwxgIutZ5A1TEJ6SmvoU8DJQ0FZcewQ78o2Mn8prFM+Dchip3/57ITkXJY+ZMI1DXw5RCsOexjY7UUOt5XWnpn0vg==
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|SJ0PR11MB6765:EE_
+X-MS-Office365-Filtering-Correlation-Id: d326c876-5887-485c-bf48-08dec5422e82
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|1800799024|376014|6133799003|18002099003|22082099003|56012099006|11063799006;
+X-Microsoft-Antispam-Message-Info: HKA7Sm0NpNTB49X1y4R/JvpY6xzENkrt6AtVZWjiBBdh5HT/iIv17JUhInPnmQBse2bTeM0Clfx0Rvtf8ehO7fIjfEpGVP8Q/7ngOZQktlyXGuwG844aiNRvs1ro/tTjvCELxQDDbi5QI9GAB4iuvz5dYWhTzW+TdNkVJPYkj8eQcA8qnHRNdCK8vJGlgNDIjDxbDPg0N3KxVLonbAw3SzFaWc0GhrKQACDB82nGoQjaSqXzoi5/vuiqNebvDnxbE+S+PX6z0FnU+wxf0CT9lDvZlqn2WEJ/XK2NdxyTFup0QYfm3PhChWtHPwrwPQyfsbGd9r+pU0DX/HNle0Ideetjuau3H+UfqANg22X0PZpsjO6Gr0fcTTn0d8PtBgUnGGwSWY+yc/HePyQDvV92UQfo6z9TzQ3IRHr/VuDxTYqHe4NRxsdNOHqe283k2KP8MKbtTL04v6c6cz/Z4HPSCQQzuv7BSlmEIJTeEMXaeIzBvqudWRl5mbVl5FMT8nePmwbr+oUr0ord+VAeL+aU62FzuRj8ikN6SJqVhuqhFunJkk18UglacXaLKa3+GYYyOSdvvG5Jj3jxvHvMWyn+Qh0kr3Y7Zd7wgT6dvZguZF0MVeDglzh6IY63O2oom4E4DXQnfKDwLsDtVdN2yJSomNpgAp+21EM71QL5ZjdXCpScH4Z37kSj+5Dm8wepyYoF
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(6133799003)(18002099003)(22082099003)(56012099006)(11063799006);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TFZqemVwZk1rV05oa0I5clFhblhDTm82bWI1WDl4Z0hJZExhdmRUWHVPUTRE?=
+ =?utf-8?B?d05xRmhOY0ZGK2lLU3daUFVlUmw1bFRKMlFFRXM3VC81NjJIYzhqckFlT0Y3?=
+ =?utf-8?B?YkpKZmQ2MkxhM0ZIUS9NK1hhWTZkZEtGOVJuVURHZDRBZWdHTS9hdlF4eXAx?=
+ =?utf-8?B?M0xBNHJZckhFYlF4aUdSY1VYVTdDZzVhc2Z0cFBTWUZ3aTg1bE9EenpnM2c4?=
+ =?utf-8?B?U0lOaEp5b2dadGZ2akhIY1FJZXVmT1lid3JpV0tTdExjRXVISSt0WlZ3SnhD?=
+ =?utf-8?B?U1lqWHd3MnZmYjEvWHlUYXlZVG44cDdxNjJGT0Q5dmRjeldiT3cwUjJhMnc5?=
+ =?utf-8?B?RG5TSFM0d1JxWGYveUNqalphZXIwVWl5TEh0N3Q0blFvSTV3cXVRUi8rTzhj?=
+ =?utf-8?B?R1dncFZ3cHVzeXVoQ3hsRHBrYWllYml3azhlS0tuZ2prcWsweHMwakR3MkVY?=
+ =?utf-8?B?angzTHgzTXZ6ZVQxQ2J4MlppUG15R2lPSklhaFZFQUs1c1RFdnNXK2NaTVNO?=
+ =?utf-8?B?bFBVcHk2Z202WTlXOW1xMVR2NDFVL1RCSmJoYjhCZ0FYVXZqUXNBVVFGeEVC?=
+ =?utf-8?B?bGh4U2k5NzdTLzEvQjRmZzRKcXBINUllc2tsbUtWZkhJelcrMmx2eGtweHdD?=
+ =?utf-8?B?Y0pOWHVQR2ZOWEZlc08rUmdUVklsQ20zV3VVWHRsd0ZuV0VwOERuWmZEWGRi?=
+ =?utf-8?B?ZzJLRzYvTzlYb1dBWFZmOUd5UjJ1UUJaWjFLQ3FWWWpiZHMyNkxKVjZIdXBx?=
+ =?utf-8?B?NTJYdjhqOVZYRW9vR2F4M2NHVDVxRytNYkd6eFB4T1NYNXZoajBCMkpiYWZR?=
+ =?utf-8?B?TXZ3Y2taK21ESE1RMnZlZnFTTmpxNG5HeDE3d2g4T09PbExyOExleWM0S1dM?=
+ =?utf-8?B?L0NkZGFwY2dpVlJBTTYvcERJRzRsV0haWXFDa0U2MCsyMlZ2VDdQa1YvL3Zl?=
+ =?utf-8?B?NTlLWkxrckhtVVNKZEtVVERkaTJEdE5wdVBCU2RxZjhFMmY2RnlJeUJhMzlM?=
+ =?utf-8?B?bGtLYWp0NUpEME42eW44OHVoSldaUUh5UTcxZDZJNnhJc2ZUazlYQWoxUSsw?=
+ =?utf-8?B?OHRRM3hRaU54bHdzL2c3K1FYRlZadzZZdGFMUTRKQmhuMm5RR3ZNZGxtQnUz?=
+ =?utf-8?B?YS9scGY3RTAxQTdGWWJFRnZRbzRManRkZUlueFg4Q0tmVUZFUTZMdEhRUzFr?=
+ =?utf-8?B?N2pOZk5lWUw5eFpSUzNSU1JCSGJrUlVxaVhEa0tPRFk3NTYwVWNpSDZPY3Vq?=
+ =?utf-8?B?dEdHbkdJZ1hscWlOWU5mK3hPZWtJU2prZWx6TEZyN0NveEtYU1BMMXFmTXky?=
+ =?utf-8?B?c2xGaCt1Qjl5KzUxRUdrU2VyTktSWmlZRWRPVDh5a3Y4aExMTlR5WThxcVQ0?=
+ =?utf-8?B?SDdVMVhuUlJUSHZ3czlaZGF5VXFYaHNBQ3p4VDlDc1hjWjNDYTJZZUUvMnVn?=
+ =?utf-8?B?VUExTi9DclNnRDQ1N1RyaHRYU2YyME1KdExWYlNsMURrZmIxcmdMZCt3NkNC?=
+ =?utf-8?B?QlZRbjlqNEhMR1NwU2UvMHhDWlpoUERYQ1psL3NoY3JjNU9lclprMGZaWUhK?=
+ =?utf-8?B?OHQwL0VRMXQzZ3dXQzlxRTZpMnVtVFUxQmhxSklpOWJmYWJjR3dVOGdsTXJh?=
+ =?utf-8?B?S0V3eHZFcktpU2wzbnJPM0FzNmJSbk5Sc3Jnb2w5VUU3WVBjSkIyYTVqK3JY?=
+ =?utf-8?B?M2h0VlczQ3ovcm1pU0N6b0IzTC84Z0p1cWlRbUNzODJtK2JScEpQSTcvQmw2?=
+ =?utf-8?B?dnhHQUZTakpZKzVkRVppOHFqbGZCd3pwNnFBRXpXN0xEVDNjV0FHc2ZScFhE?=
+ =?utf-8?B?YzhVb1ZwcnJ1ZVJnT1k0QnoyTUJOQ2JWSC96Q2pjNXcyZnZCb0hJVkJ2UnRm?=
+ =?utf-8?B?Q1JhckI3SWdPSE5lRmpBd2pBd1E5SEQ0YjNoV2tDcXg2dnJ1SW5zVTNXMUg5?=
+ =?utf-8?B?Y0gyZ25XZmN1RjkrOWc2Zy93azVvMDdjMzU5dnQyaCtiZzhWTUNLZXJTS0VL?=
+ =?utf-8?B?S29rUDdMRi9xckpEYXBtRDg1VEJNWmp5SzNaUDBTbFpSV3VwR2xmSE1UN2dY?=
+ =?utf-8?B?Um9wNSt1M3BMNjQvNk0vaHY1aldvY0VrYkFQb2J4UXZ4NXZyTytoeTNEYkw4?=
+ =?utf-8?B?V2lDOU1YVTdqZXZhMGYveGhLc0VxMGI2YVdJME5rQVJ1QWszQ1d2dFBaMDJN?=
+ =?utf-8?B?UXdjZ21oeExWekxvak1POVh1VVExcDg1RXR5UUpwNGFSazFGYkU4YzBuMy9M?=
+ =?utf-8?B?SjJUcldSaDFyTDFDTzdGVG9kWEN1TWF1N2ZYTng0dE1QL25qTG9LbklUK3d0?=
+ =?utf-8?B?VlgyT2lZeHZwZXJYWkJxQ1pxdjlibitVT2F0d1EvdnJxWVorZ21tZz09?=
+X-Exchange-RoutingPolicyChecked: nZNvBscXFahOJEDdsi6EIAK52jL+BWQfsZD4J8AJvlNWXPt+yTgz3V+y0FFnSvxwf2lo7lbwkr1nBijX3votKrmsAltw/OIlePjICBT2EIxOIp2a/SnsZeaj3Imgrx1PQXG80lM+qlfrAxr6n+ZSnIafSHL0aEUohnHVO2Mj2wFJ6YpjWujH7nPTCH9QidfPh9wpCc+GPzrfwmeJpb/HJ1GapQkihzCcyP0UZWxuho6jwfyFl/E0C3dlPBxtI7qjAVEgGGO2tqzFkWSRT/xk9YDWCIGeKKLXtSvUEZUI6MTk7E+AfUY9uvI7cMpXDDgqrVBZlQ02wWvY1A6STXXs1w==
+X-MS-Exchange-CrossTenant-Network-Message-Id: d326c876-5887-485c-bf48-08dec5422e82
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7958.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS4PPF69154114F.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 926df0e4-3020-4436-b158-08dec540658b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Jun 2026 09:29:10.4882 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 7tH7PHbkiQnCOafsfYdjTyuqIDAJ4oAXynueswFG/GyfG1ttph+sWFjia68aUP5iKSN8AuN/SMbgl0/5w84d0Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA4PR11MB9299
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2026 09:41:57.5794 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1pN4f+KfawVFP0Q+saPqZyg2am9PJ5KOA9nogkDD/mvajbXRHgCrqC48NmlBgqENscwxOdXfVH8UsNOCW3yGTg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB6765
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -172,48 +171,295 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBJbnRlbC1nZnggPGludGVsLWdm
-eC1ib3VuY2VzQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4gT24gQmVoYWxmIE9mIEltcmUgRGVhaw0K
-PiBTZW50OiBNb25kYXksIDEgSnVuZSAyMDI2IDEyLjM5DQo+IFRvOiBpbnRlbC1nZnhAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnOyBpbnRlbC14ZUBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gU3ViamVj
-dDogW1BBVENIIHYyIDE4LzIyXSBkcm0vaTkxNS9kaXNwbGF5OiBTaW1wbGlmeSBpbnRlbF9tb2Rl
-c2V0X2NvbW1pdF9waXBlc19mb3JfYXRvbWljX3N0YXRlKCkNCj4gDQo+IFNpbXBsaWZ5IGFjY2Vz
-c2luZyB0aGUgRFJNIGF0b21pYyBzdGF0ZSB2aWEgdGhlIGludGVsIGF0b21pYyBzdGF0ZQ0KPiBp
-biBpbnRlbF9tb2Rlc2V0X2NvbW1pdF9waXBlc19mb3JfYXRvbWljX3N0YXRlKCksIHdoaWNoIGFs
-c28gYWxsb3dzDQo+IGRyb3BwaW5nIHRoZSBjYWNoZWQgRFJNIHN0YXRlIHBvaW50ZXIuIEFsc28g
-c3RyZWFtbGluZSB0aGUgc3VjY2Vzcy9lcnJvcg0KPiByZXR1cm4gZmxvd3MuDQo+IA0KPiB2Mjog
-UmViYXNlIG9uIHVwc3RyZWFtIGRybV9hdG9taWNfc3RhdGUgLT4gZHJtX2F0b21pY19jb21taXQg
-cmVuYW1lLg0KPiANCg0KUmV2aWV3ZWQtYnk6IE1pa2EgS2Fob2xhIDxtaWthLmthaG9sYUBpbnRl
-bC5jb20+DQoNCj4gU2lnbmVkLW9mZi1ieTogSW1yZSBEZWFrIDxpbXJlLmRlYWtAaW50ZWwuY29t
-Pg0KPiAtLS0NCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5j
-IHwgMjIgKysrKysrKy0tLS0tLS0tLS0tLS0NCj4gIDEgZmlsZSBjaGFuZ2VkLCA4IGluc2VydGlv
-bnMoKyksIDE0IGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gaW5kZXggYjE1YzI4Njc1ZDI4OC4uYmRmMDJiNjdjMWQ4
-MSAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNw
-bGF5LmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5
-LmMNCj4gQEAgLTU2NTgsMzMgKzU2NTgsMjcgQEAgaW50IGludGVsX21vZGVzZXRfYWxsX3BpcGVz
-X2xhdGUoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsDQo+ICAJcmV0dXJuIDA7DQo+
-ICB9DQo+IA0KPiAtaW50IGludGVsX21vZGVzZXRfY29tbWl0X3BpcGVzX2Zvcl9hdG9taWNfc3Rh
-dGUoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqaW50ZWxfc3RhdGUsDQo+ICtpbnQgaW50ZWxf
-bW9kZXNldF9jb21taXRfcGlwZXNfZm9yX2F0b21pY19zdGF0ZShzdHJ1Y3QgaW50ZWxfYXRvbWlj
-X3N0YXRlICpzdGF0ZSwNCj4gIAkJCQkJCXU4IHBpcGVfbWFzaywNCj4gIAkJCQkJCXN0cnVjdCBk
-cm1fbW9kZXNldF9hY3F1aXJlX2N0eCAqY3R4KQ0KPiAgew0KPiAtCXN0cnVjdCBkcm1fYXRvbWlj
-X2NvbW1pdCAqc3RhdGUgPSAmaW50ZWxfc3RhdGUtPmJhc2U7DQo+IC0Jc3RydWN0IGludGVsX2Rp
-c3BsYXkgKmRpc3BsYXkgPSB0b19pbnRlbF9kaXNwbGF5KGludGVsX3N0YXRlKTsNCj4gKwlzdHJ1
-Y3QgaW50ZWxfZGlzcGxheSAqZGlzcGxheSA9IHRvX2ludGVsX2Rpc3BsYXkoc3RhdGUpOw0KPiAg
-CXN0cnVjdCBpbnRlbF9jcnRjICpjcnRjOw0KPiAtCWludCByZXQ7DQo+IA0KPiAtCXN0YXRlLT5h
-Y3F1aXJlX2N0eCA9IGN0eDsNCj4gLQl0b19pbnRlbF9hdG9taWNfc3RhdGUoc3RhdGUpLT5pbnRl
-cm5hbCA9IHRydWU7DQo+ICsJc3RhdGUtPmJhc2UuYWNxdWlyZV9jdHggPSBjdHg7DQo+ICsJc3Rh
-dGUtPmludGVybmFsID0gdHJ1ZTsNCj4gDQo+ICAJZm9yX2VhY2hfaW50ZWxfY3J0Y19pbl9waXBl
-X21hc2soZGlzcGxheSwgY3J0YywgcGlwZV9tYXNrKSB7DQo+ICAJCXN0cnVjdCBpbnRlbF9jcnRj
-X3N0YXRlICpjcnRjX3N0YXRlID0NCj4gLQkJCWludGVsX2F0b21pY19nZXRfY3J0Y19zdGF0ZShz
-dGF0ZSwgY3J0Yyk7DQo+ICsJCQlpbnRlbF9hdG9taWNfZ2V0X2NydGNfc3RhdGUoJnN0YXRlLT5i
-YXNlLCBjcnRjKTsNCj4gDQo+IC0JCWlmIChJU19FUlIoY3J0Y19zdGF0ZSkpIHsNCj4gLQkJCXJl
-dCA9IFBUUl9FUlIoY3J0Y19zdGF0ZSk7DQo+IC0JCQlnb3RvIG91dDsNCj4gLQkJfQ0KPiArCQlp
-ZiAoSVNfRVJSKGNydGNfc3RhdGUpKQ0KPiArCQkJcmV0dXJuIFBUUl9FUlIoY3J0Y19zdGF0ZSk7
-DQo+IA0KPiAgCQljcnRjX3N0YXRlLT51YXBpLmNvbm5lY3RvcnNfY2hhbmdlZCA9IHRydWU7DQo+
-ICAJfQ0KPiANCj4gLQlyZXQgPSBkcm1fYXRvbWljX2NvbW1pdChzdGF0ZSk7DQo+IC1vdXQ6DQo+
-IC0JcmV0dXJuIHJldDsNCj4gKwlyZXR1cm4gZHJtX2F0b21pY19jb21taXQoJnN0YXRlLT5iYXNl
-KTsNCj4gIH0NCj4gDQo+ICBpbnQgaW50ZWxfbW9kZXNldF9jb21taXRfcGlwZXMoc3RydWN0IGlu
-dGVsX2Rpc3BsYXkgKmRpc3BsYXksDQo+IC0tDQo+IDIuNDkuMQ0KDQo=
+
+On 6/4/2026 6:56 PM, Mallesh Koujalagi wrote:
+> The fault injection code was scattered: the GT reset
+> hook lived in xe_gt.h as an inline function with its own global
+> variable, the CSC hook had a separate global in xe_hw_error.c with
+> an extern declaration, and each was individually registered in
+> xe_debugfs.c. Adding a new error type meant editing many files and
+> copy-pasting the same boilerplate.
+>
+> Debugfs interface (under /sys/kernel/debug/dri/0/):
+>   - fail_gt_reset         - GT reset failure
+>   - inject_csc_hw_error   - CSC firmware error
+>
+> Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+> Reviewed-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+> ---
+> v2:
+> - Add multiple platform support. (Vinay)
+> - Handle VF properly.
+> - Rename to XE_FAULT_GT_RESET/XE_FAULT_CSC_HW_ERROR and
+>    create xe_fault_inject_types.h file including those name.
+>
+> v3:
+> - Solved patch apply issue on tip.
+>
+> v4:
+> - Add proper header file.
+>
+> v5:
+> - Properly refer FAULT_ATTR_INITIALIZER. (Vinay)
+> - Change xe_fault_inject_descs to xe_fault_inject_entry.
+> - Change 2025 to 2026.
+>
+> v6:
+> - Change return comments of xe_fault_inject(). (Riana)
+> - Remove full description of xe_fault_inject_debugfs_register().
+>
+> v7:
+> - Move all fault inject helper functions in xe_debugfs.c (Riana)
+> - Update commit message.
+> ---
+>   drivers/gpu/drm/xe/xe_debugfs.c  | 53 +++++++++++++++++++++++++++++---
+>   drivers/gpu/drm/xe/xe_debugfs.h  | 23 ++++++++++++++
+>   drivers/gpu/drm/xe/xe_gt.c       |  5 +--
+>   drivers/gpu/drm/xe/xe_gt.h       |  8 -----
+>   drivers/gpu/drm/xe/xe_hw_error.c | 11 ++-----
+>   5 files changed, 76 insertions(+), 24 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+> index 22b471303984..21eb673b3f27 100644
+> --- a/drivers/gpu/drm/xe/xe_debugfs.c
+> +++ b/drivers/gpu/drm/xe/xe_debugfs.c
+> @@ -5,6 +5,7 @@
+>   
+>   #include "xe_debugfs.h"
+>   
+> +#include <linux/bits.h>
+>   #include <linux/debugfs.h>
+>   #include <linux/fault-inject.h>
+>   #include <linux/string_helpers.h>
+> @@ -38,8 +39,52 @@
+>   #include "xe_vm.h"
+>   #endif
+>   
+> -DECLARE_FAULT_ATTR(gt_reset_failure);
+> -DECLARE_FAULT_ATTR(inject_csc_hw_error);
+> +#if IS_ENABLED(CONFIG_FAULT_INJECTION)
+
+Instead of using this and having big blocks based on flags in both c and 
+header files.
+Can't we retain
+
+DECLARE_FAULT_ATTR(gt_reset_failure);
+DECLARE_FAULT_ATTR(inject_csc_hw_error);
+
+and assign to .attr.  We have a fallback for this in fault_inject.h?
+
+> +static struct {
+> +	const char *name;
+> +	u32 platforms;
+> +	bool skip_on_vf;
+> +	struct fault_attr attr;
+> +} xe_fault_inject_entry[XE_FAULT_MAX] = {
+> +	[XE_FAULT_GT_RESET]	= { .name = "fail_gt_reset",
+> +				    .attr = FAULT_ATTR_INITIALIZER },
+> +	[XE_FAULT_CSC_HW_ERROR]	= { .name = "inject_csc_hw_error",
+> +				    .platforms = BIT(XE_BATTLEMAGE),
+> +				    .skip_on_vf = true,
+> +				    .attr = FAULT_ATTR_INITIALIZER },
+> +};
+> +
+> +bool xe_fault_inject(enum xe_fault_type type)
+> +{
+> +	if (type >= XE_FAULT_MAX)
+> +		return false;
+> +
+> +	return should_fail(&xe_fault_inject_entry[type].attr, 1);
+> +}
+> +
+> +static void xe_fault_inject_debugfs_register(struct xe_device *xe,
+> +					     struct dentry *root)
+> +{
+> +	int i;
+> +
+> +	for (i = 0; i < XE_FAULT_MAX; i++) {
+> +		if (IS_SRIOV_VF(xe) && xe_fault_inject_entry[i].skip_on_vf)
+> +			continue;
+> +
+> +		if (xe_fault_inject_entry[i].platforms &&
+> +		    !(xe_fault_inject_entry[i].platforms & BIT(xe->info.platform)))
+> +			continue;
+> +
+> +		fault_create_debugfs_attr(xe_fault_inject_entry[i].name, root,
+> +					  &xe_fault_inject_entry[i].attr);
+> +	}
+> +}
+> +#else
+> +static void xe_fault_inject_debugfs_register(struct xe_device *xe,
+> +					     struct dentry *root)
+> +{
+> +}
+> +#endif
+>   
+>   static void read_residency_counter(struct xe_device *xe, struct xe_mmio *mmio,
+>   				   u32 offset, const char *name, struct drm_printer *p)
+> @@ -563,8 +608,6 @@ void xe_debugfs_register(struct xe_device *xe)
+>   		drm_debugfs_create_files(debugfs_residencies,
+>   					 ARRAY_SIZE(debugfs_residencies),
+>   					 root, minor);
+> -		fault_create_debugfs_attr("inject_csc_hw_error", root,
+> -					  &inject_csc_hw_error);
+>   	}
+>   
+>   	debugfs_create_file("forcewake_all", 0400, root, xe,
+> @@ -610,7 +653,7 @@ void xe_debugfs_register(struct xe_device *xe)
+>   
+>   	xe_psmi_debugfs_register(xe);
+>   
+> -	fault_create_debugfs_attr("fail_gt_reset", root, &gt_reset_failure);
+> +	xe_fault_inject_debugfs_register(xe, root);
+>   
+>   	if (IS_SRIOV_PF(xe))
+>   		xe_sriov_pf_debugfs_register(xe, root);
+> diff --git a/drivers/gpu/drm/xe/xe_debugfs.h b/drivers/gpu/drm/xe/xe_debugfs.h
+> index 17f4c2f1b5e4..c3d6c0b47b28 100644
+> --- a/drivers/gpu/drm/xe/xe_debugfs.h
+> +++ b/drivers/gpu/drm/xe/xe_debugfs.h
+> @@ -6,8 +6,31 @@
+>   #ifndef _XE_DEBUGFS_H_
+>   #define _XE_DEBUGFS_H_
+>   
+> +#include <linux/types.h>
+> +
+>   struct xe_device;
+>   
+> +/**
+> + * enum xe_fault_type - Fault injection types
+> + * @XE_FAULT_GT_RESET: GT reset failure injection
+> + * @XE_FAULT_CSC_HW_ERROR: CSC hardware error injection
+> + * @XE_FAULT_MAX: Number of fault injection types
+> + */
+> +enum xe_fault_type {
+> +	XE_FAULT_GT_RESET,
+> +	XE_FAULT_CSC_HW_ERROR,
+> +	XE_FAULT_MAX
+> +};
+> +
+> +#if IS_ENABLED(CONFIG_FAULT_INJECTION)
+> +bool xe_fault_inject(enum xe_fault_type type);
+> +#else
+> +static inline bool xe_fault_inject(enum xe_fault_type type)
+> +{
+> +	return false;
+> +}
+> +#endif
+> +
+>   #ifdef CONFIG_DEBUG_FS
+>   void xe_debugfs_register(struct xe_device *xe);
+>   #else
+> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+> index 783eb6d631b5..eda8df8adf11 100644
+> --- a/drivers/gpu/drm/xe/xe_gt.c
+> +++ b/drivers/gpu/drm/xe/xe_gt.c
+> @@ -21,6 +21,7 @@
+>   #include "regs/xe_gt_regs.h"
+>   #include "xe_assert.h"
+>   #include "xe_bb.h"
+> +#include "xe_debugfs.h"
+>   #include "xe_device.h"
+>   #include "xe_eu_stall.h"
+>   #include "xe_exec_queue.h"
+> @@ -923,7 +924,7 @@ static void gt_reset_worker(struct work_struct *w)
+>   
+>   	xe_gt_info(gt, "reset started\n");
+>   
+> -	if (xe_fault_inject_gt_reset()) {
+> +	if (xe_fault_inject(XE_FAULT_GT_RESET)) {
+
+It would be better if the enums were abstracted (xe_fault_gt_reset())
+Maybe define macro for each type based on name
+
+Thanks
+Riana
+
+>   		err = -ECANCELED;
+>   		goto err_fail;
+>   	}
+> @@ -980,7 +981,7 @@ void xe_gt_reset_async(struct xe_gt *gt)
+>   	xe_gt_info(gt, "trying reset from %ps\n", __builtin_return_address(0));
+>   
+>   	/* Don't do a reset while one is already in flight */
+> -	if (!xe_fault_inject_gt_reset() && xe_uc_reset_prepare(&gt->uc))
+> +	if (!xe_fault_inject(XE_FAULT_GT_RESET) && xe_uc_reset_prepare(&gt->uc))
+>   		return;
+>   
+>   	xe_gt_info(gt, "reset queued\n");
+> diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
+> index 4150aa594f05..f8e3ca63aabb 100644
+> --- a/drivers/gpu/drm/xe/xe_gt.h
+> +++ b/drivers/gpu/drm/xe/xe_gt.h
+> @@ -6,8 +6,6 @@
+>   #ifndef _XE_GT_H_
+>   #define _XE_GT_H_
+>   
+> -#include <linux/fault-inject.h>
+> -
+>   #include <drm/drm_util.h>
+>   
+>   #include "xe_device.h"
+> @@ -38,12 +36,6 @@
+>   	xe_gt_is_media_type(gt_) ? MEDIA_VER(xe) : GRAPHICS_VER(xe); \
+>   })
+>   
+> -extern struct fault_attr gt_reset_failure;
+> -static inline bool xe_fault_inject_gt_reset(void)
+> -{
+> -	return IS_ENABLED(CONFIG_DEBUG_FS) && should_fail(&gt_reset_failure, 1);
+> -}
+> -
+>   struct xe_gt *xe_gt_alloc(struct xe_tile *tile);
+>   int xe_gt_init_early(struct xe_gt *gt);
+>   int xe_gt_init(struct xe_gt *gt);
+> diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
+> index 5135e8e4093f..c12f1b50e035 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_error.c
+> +++ b/drivers/gpu/drm/xe/xe_hw_error.c
+> @@ -4,7 +4,6 @@
+>    */
+>   
+>   #include <linux/bitmap.h>
+> -#include <linux/fault-inject.h>
+>   
+>   #include "regs/xe_gsc_regs.h"
+>   #include "regs/xe_hw_error_regs.h"
+> @@ -12,6 +11,7 @@
+>   
+>   #include "xe_device.h"
+>   #include "xe_drm_ras.h"
+> +#include "xe_debugfs.h"
+>   #include "xe_hw_error.h"
+>   #include "xe_mmio.h"
+>   #include "xe_survivability_mode.h"
+> @@ -25,8 +25,6 @@
+>   						 (PVC_COR_ERR_MASK & REG_BIT(err_bit)) : \
+>   						 (PVC_FAT_ERR_MASK & REG_BIT(err_bit)))
+>   
+> -extern struct fault_attr inject_csc_hw_error;
+> -
+>   static const char * const error_severity[] = DRM_XE_RAS_ERROR_SEVERITY_NAMES;
+>   
+>   static const char * const hec_uncorrected_fw_errors[] = {
+> @@ -167,11 +165,6 @@ static_assert(ARRAY_SIZE(pvc_master_local_nonfatal_err_reg) == XE_RAS_REG_SIZE);
+>   						 pvc_master_local_fatal_err_reg : \
+>   						 pvc_master_local_nonfatal_err_reg)
+>   
+> -static bool fault_inject_csc_hw_error(void)
+> -{
+> -	return IS_ENABLED(CONFIG_DEBUG_FS) && should_fail(&inject_csc_hw_error, 1);
+> -}
+> -
+>   static void csc_hw_error_work(struct work_struct *work)
+>   {
+>   	struct xe_tile *tile = container_of(work, typeof(*tile), csc_hw_error_work);
+> @@ -507,7 +500,7 @@ void xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl)
+>   {
+>   	enum hardware_error hw_err;
+>   
+> -	if (fault_inject_csc_hw_error())
+> +	if (xe_fault_inject(XE_FAULT_CSC_HW_ERROR))
+>   		schedule_work(&tile->csc_hw_error_work);
+>   
+>   	for (hw_err = 0; hw_err < HARDWARE_ERROR_MAX; hw_err++) {
