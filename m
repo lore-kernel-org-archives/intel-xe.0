@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFBDFCD8CA7
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 22:36:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B31FCD8CAE
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 22:36:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B18D910F9F3;
-	Mon,  8 Jun 2026 22:36:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0217C10FA04;
+	Mon,  8 Jun 2026 22:36:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R3zquThi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MyeiNygF";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A17CD10F9EC
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9ACDF10F9EA
  for <intel-xe@lists.freedesktop.org>; Mon,  8 Jun 2026 22:36:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1780958189; x=1812494189;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Q1BYh+PAVUvCw2/7H5Nnzyz+Au0Uh4GXtta3cc/eWEk=;
- b=R3zquThiDDeAzn6wUFLnuIh1s1YE5hHuOtWrjNrCENGvVcoNMhBiTg2+
- zEqTRp4+6rWL6hDK7MYKh0hTevtTeP39+IxtgIZfb+fUhWsXKIX3KnfaB
- YEv0mHs4duY1Dz88KzDOQD7kvg794vtHFccCTtZtt2XdNE3iQVnUkocN8
- PAzkz5XSoIUHpa0uMjdmePYt3BwE4cfhgbcZb/s4+4iegC9HQuLLFaLhk
- +hWxlYyY1TKGrCbtEX5YhOQAFefXcblckG3z2DKZQnktL5pO/j6RpK6G0
- yX2elstum8qLVolG8Wy2qykVju+6/PMl9L+XgbvT2rsNfUT1aELMRp5qm A==;
-X-CSE-ConnectionGUID: G83k5hiQQbmT46af2OfdDw==
-X-CSE-MsgGUID: Q8IgYjrWQmWtC+1Rbi5fNQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11811"; a="81750982"
-X-IronPort-AV: E=Sophos;i="6.24,195,1774335600"; d="scan'208";a="81750982"
+ bh=gPqtMNIMEQu5c6xvL1aaYg7PzendU7EaR7OMrf61AD0=;
+ b=MyeiNygFm9TX1oR/QcFR13zlazT3uN/u/pUc+KznPixrpuKe3s6eybxX
+ 4wG5dxIJ8m9kX/JQNOOWpSTDrNekqdx/6iA5UUXIe/qCowFZjheM+FLiF
+ /JpnyDZWnj7gvdyTjRo0zST3oY30pz0r/kuqClXS5BS9GMtn5K05YRwNH
+ LBxekwiBqhZ9BLVneeUezbcke4zjRFixaWy8HEZwSOxDPxmPThtkgpldQ
+ N98NKILv5kgObkeYxc8YMmx363+qtDCzmSpeQMKK06L1ukffK8YogQjB1
+ QVLlq1Mk7jw5wCva+b99lxpPvqgdbEFIAF4kTOLW5C0FCdHsfWUNBwvo7 Q==;
+X-CSE-ConnectionGUID: qlALz70PSHW1sNp+3MDi0Q==
+X-CSE-MsgGUID: PvhBLjzSQfCTuxcK+A6tdg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11811"; a="81750981"
+X-IronPort-AV: E=Sophos;i="6.24,195,1774335600"; d="scan'208";a="81750981"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  08 Jun 2026 15:36:29 -0700
-X-CSE-ConnectionGUID: OvepYUc+TMqD0UPwwHL8Mw==
-X-CSE-MsgGUID: PmbHbMSgQrGcXNvx0i2zBA==
+X-CSE-ConnectionGUID: 6FQCNL9TSbKZEglt3pQX8Q==
+X-CSE-MsgGUID: 5zF4yEFYSrexOFhW0TPbkQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,195,1774335600"; d="scan'208";a="269684765"
+X-IronPort-AV: E=Sophos;i="6.24,195,1774335600"; d="scan'208";a="269684762"
 Received: from orsosgc001.jf.intel.com ([10.88.27.185])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  08 Jun 2026 15:36:29 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: [PATCH v2 9/9] drm/xe/rtp: Ensure locking/ref counting for OA
- whitelists
-Date: Mon,  8 Jun 2026 15:36:24 -0700
-Message-ID: <20260608223624.3711760-10-ashutosh.dixit@intel.com>
+Subject: [PATCH v2 8/9] drm/xe/oa: (De-)whitelist OA registers on OA stream
+ open/release
+Date: Mon,  8 Jun 2026 15:36:23 -0700
+Message-ID: <20260608223624.3711760-9-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260608223624.3711760-1-ashutosh.dixit@intel.com>
 References: <20260608223624.3711760-1-ashutosh.dixit@intel.com>
@@ -67,58 +67,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Since multiple OA streams might be open in parallel on a gt, ensure that
-proper locking is in place. Also ensure that OA registers are whitelisted
-when the first OA stream is open and de-whitelisted after the last OA
-stream is closed.
+Whitelist OA registers on stream open and de-whitelist on stream
+close/release. Whitelisting is only done when 'stream->sample' is
+true. 'stream->sample' is only true when (a) xe_observation_paranoid is set
+to false by system admin, or (b) the process is perfmon_capable(). This
+therefore enforces the OA register whitelisting security requirements.
 
 Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_oa_types.h      | 3 +++
- drivers/gpu/drm/xe/xe_reg_whitelist.c | 9 +++++++++
- 2 files changed, 12 insertions(+)
+ drivers/gpu/drm/xe/xe_oa.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe_oa_types.h
-index 3d9ec8490899c..e876e9be92ba5 100644
---- a/drivers/gpu/drm/xe/xe_oa_types.h
-+++ b/drivers/gpu/drm/xe/xe_oa_types.h
-@@ -126,6 +126,9 @@ struct xe_oa_gt {
+diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+index 9fbd21b0ef974..b3acbcd678b7c 100644
+--- a/drivers/gpu/drm/xe/xe_oa.c
++++ b/drivers/gpu/drm/xe/xe_oa.c
+@@ -37,6 +37,7 @@
+ #include "xe_oa.h"
+ #include "xe_observation.h"
+ #include "xe_pm.h"
++#include "xe_reg_whitelist.h"
+ #include "xe_sched_job.h"
+ #include "xe_sriov.h"
+ #include "xe_sync.h"
+@@ -885,6 +886,9 @@ static void xe_oa_stream_destroy(struct xe_oa_stream *stream)
  
- 	/** @oa_unit: array of oa_units */
- 	struct xe_oa_unit *oa_unit;
+ 	mutex_destroy(&stream->stream_lock);
+ 
++	if (stream->sample)
++		xe_reg_dewhitelist_oa_regs(stream->gt);
 +
-+	/** @whitelist_count: number of open streams for which oa registers are whitelisted */
-+	u32 whitelist_count;
- };
+ 	xe_oa_disable_metric_set(stream);
+ 	xe_exec_queue_put(stream->k_exec_q);
  
- /**
-diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-index 65971e1526d0e..7e13697425c1c 100644
---- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
-+++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-@@ -256,6 +256,10 @@ void xe_reg_whitelist_oa_regs(struct xe_gt *gt)
- 	struct xe_hw_engine *hwe;
- 	enum xe_hw_engine_id id;
+@@ -1886,6 +1890,9 @@ static int xe_oa_stream_open_ioctl_locked(struct xe_oa *oa,
+ 		goto err_disable;
+ 	}
  
-+	lockdep_assert_held(&gt->oa.gt_lock);
-+	if (gt->oa.whitelist_count++)
-+		return;
++	if (stream->sample)
++		xe_reg_whitelist_oa_regs(stream->gt);
 +
- 	for_each_hw_engine(hwe, gt, id)
- 		__whitelist_oa_regs(hwe, true);
- }
-@@ -271,6 +275,11 @@ void xe_reg_dewhitelist_oa_regs(struct xe_gt *gt)
- 	struct xe_hw_engine *hwe;
- 	enum xe_hw_engine_id id;
+ 	/* Hold a reference on the drm device till stream_fd is released */
+ 	drm_dev_get(&stream->oa->xe->drm);
  
-+	lockdep_assert_held(&gt->oa.gt_lock);
-+	xe_assert(gt_to_xe(gt), gt->oa.whitelist_count);
-+	if (--gt->oa.whitelist_count)
-+		return;
-+
- 	for_each_hw_engine(hwe, gt, id)
- 		__whitelist_oa_regs(hwe, false);
- }
 -- 
 2.54.0
 
