@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB28ACD8CB2
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 16:54:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 112E5CD8C9F
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 16:54:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2E5B10F775;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAFDF10F776;
 	Mon,  8 Jun 2026 16:54:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XRv/1wlK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MjOM5sG3";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA3B710F76C
- for <intel-xe@lists.freedesktop.org>; Mon,  8 Jun 2026 16:54:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 400D210F76B
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Jun 2026 16:54:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780937690; x=1812473690;
+ t=1780937692; x=1812473692;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=5pNSGydw+CrhYuD25spGWt7SzugTq8IZNgvP7yPkBF8=;
- b=XRv/1wlK2+/rEM2m8ZV9Ff9GLJ0RoLU/7ch03esD95eS5mbZ9nf/sTUt
- BdQlOnhYPYgFUC5cH2143+Hbz1hZCdTIQA8RwtNycjxpxGjtzdheAIb+0
- 9hVzzXlCGUgJUaCT4ZG2hs5sffgH3IOSyIbfxdR8QptK9aFpLS4HrmdVH
- TYx82gna91ZpRjEb0qqNKcIJtNO1DtS3mbGBdP/6zRJTXZcjvO3CbEtqd
- y+mNk7DTPtdqkXxiCbaW9SAhynBbZj3S1RZ8gd97D1L2BpvhqXNnLVXs+
- TNKE3mvOAyxzhoMQkmiCrDOIR2Ty4rS85v3J7B/W5Cd8TLsTebq3BIGfc A==;
-X-CSE-ConnectionGUID: f3XycSHqT6Wz+54m+sSkEA==
-X-CSE-MsgGUID: z3WNM+YcQXSK4BciXFVpAA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11811"; a="81744552"
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="81744552"
+ bh=7Ii9CL5rMUdTzVJw/wgPMMtMlCB5CsjYf8NenZ/LjOw=;
+ b=MjOM5sG3RP2Av4qqCEqltKNAkIfpeWFHqgtUEciFZ81FPYyv+tM9QQXV
+ 2FregO5iWZWK7H55S6weohSXNV1KpfZYTgZXlA+vd+t/tyeTSxCJlkzyN
+ mY2vdNHHaep/uuHCCKP0PnhZjJbRIVmp5IrBLob1WVFhDkP+bYRWZpuKH
+ Osl+L2h+PSStVZlR06omdC7DnP8+UyO+KRg89emra84olgeHYHH8YuvdW
+ HcsSqIFWF+jJpxCTriGwUpiqwzJ7Y8lvbIRFyCO+Eq1yd0Z3Soid9rOwQ
+ yxvzeyaxp8IH2EcKZ1DTHVyUnM/Lp4mtvKz1PddgTmGFlghKaXkr2/xHB Q==;
+X-CSE-ConnectionGUID: 5IB6I13jR7mkhrTNKfFyQw==
+X-CSE-MsgGUID: lKJuy/C3SUC4dIw8SsUBow==
+X-IronPort-AV: E=McAfee;i="6800,10657,11811"; a="81744558"
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="81744558"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 09:54:49 -0700
-X-CSE-ConnectionGUID: Zi/F4ROvSKit70RZskDafQ==
-X-CSE-MsgGUID: AHo2BuV1QuCg85V41OwuDQ==
+ 08 Jun 2026 09:54:51 -0700
+X-CSE-ConnectionGUID: Otutiz5bRU2oIEb9rC86lg==
+X-CSE-MsgGUID: FWWNUDXxTcSd6Upxd1fk9Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="247467563"
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="247467573"
 Received: from smoudgil-mobl1.amr.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.117.247])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 09:54:47 -0700
+ 08 Jun 2026 09:54:50 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Gustavo Sousa <gustavo.sousa@intel.com>
-Subject: [PATCH 07/16] drm/xe: Add helper to detect real vs kunit xe_device
-Date: Mon,  8 Jun 2026 18:54:20 +0200
-Message-ID: <20260608165429.587-8-michal.wajdeczko@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH 09/16] drm/xe/kunit: Claim minimal RPM support for fake xe
+ device
+Date: Mon,  8 Jun 2026 18:54:22 +0200
+Message-ID: <20260608165429.587-10-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260608165429.587-1-michal.wajdeczko@intel.com>
 References: <20260608165429.587-1-michal.wajdeczko@intel.com>
@@ -68,64 +68,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In some cases we might want to know if we are running our test
-code on real vs kunit xe device; also use of static kunit stub
-might be not possible as test code might be use other threads.
-
-As only real xe_device instances will be on the true PCI bus,
-and all kunit fake devices are attached to the kunit_bus_type,
-add helper that checks underlying bus to determine xe status.
+This will allow us to use more unmodified xe code in kunit tests.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>
-Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
-v2: make if always true if no KUNIT_TEST (Michal)
----
- drivers/gpu/drm/xe/tests/xe_kunit_helpers.c | 2 ++
- drivers/gpu/drm/xe/xe_device.h              | 9 +++++++++
- 2 files changed, 11 insertions(+)
+ drivers/gpu/drm/xe/tests/xe_kunit_helpers.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c b/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
-index bc5156966ce9..28d7d1618638 100644
+index 28d7d1618638..e0eeb419e837 100644
 --- a/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
 +++ b/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
-@@ -39,6 +39,7 @@ struct xe_device *xe_kunit_helper_alloc_xe_device(struct kunit *test,
- 					       struct xe_device,
- 					       drm, DRIVER_GEM);
- 	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, xe);
-+	KUNIT_ASSERT_FALSE(test, xe_device_is_real(xe));
- 	return xe;
- }
- EXPORT_SYMBOL_IF_KUNIT(xe_kunit_helper_alloc_xe_device);
-@@ -118,6 +119,7 @@ int xe_kunit_helper_xe_device_live_test_init(struct kunit *test)
+@@ -87,6 +87,9 @@ int xe_kunit_helper_xe_device_test_init(struct kunit *test)
+ 	err = kunit_add_action_or_reset(test, kunit_action_restore_priv, test->priv);
+ 	KUNIT_ASSERT_EQ(test, err, 0);
  
- 	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, xe);
- 	kunit_info(test, "running on %s device\n", xe->info.platform_name);
-+	KUNIT_ASSERT_TRUE(test, xe_device_is_real(xe));
- 
- 	KUNIT_ASSERT_FALSE(test, xe_device_wedged(xe));
- 	xe_pm_runtime_get(xe);
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index 975768a6a9c8..0a3aa6ea2515 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -220,6 +220,15 @@ static inline bool xe_device_is_admin_only(const struct xe_device *xe)
- }
- #endif
- 
-+static inline bool xe_device_is_real(const struct xe_device *xe)
-+{
-+#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
-+	return xe->drm.dev->bus == &pci_bus_type;
-+#else
-+	return true;
-+#endif
-+}
++	pm_runtime_enable(xe->drm.dev);
++	pm_runtime_forbid(xe->drm.dev);
 +
- /*
-  * Occasionally it is seen that the G2H worker starts running after a delay of more than
-  * a second even after being queued and activated by the Linux workqueue subsystem. This
+ 	test->priv = xe;
+ 	return 0;
+ }
 -- 
 2.47.1
 
