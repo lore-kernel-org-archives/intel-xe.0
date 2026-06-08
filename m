@@ -4,94 +4,104 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C37ECD8C8E
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 08:25:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98DCBCD8C8E
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 08:40:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20E9210EF14;
-	Mon,  8 Jun 2026 08:25:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 548C810EF64;
+	Mon,  8 Jun 2026 08:40:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="EFHaqH3D";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="eNdcsljF";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="OHvI+W6n";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="RG4BbKP9";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="UtAzf/TG";
 	dkim-atps=neutral
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E762210EF15
- for <intel-xe@lists.freedesktop.org>; Mon,  8 Jun 2026 08:25:18 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 822C16A7EC;
- Mon,  8 Jun 2026 08:25:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1780907117; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
- bh=anNuN5LqnOzpjuCuA8wA3zu/54xFSv5jKNPYKkFG13o=;
- b=EFHaqH3DqpqsZ0i77uMjtn2fvsOrosW9tEzr44Q3PWQUU4Etyice9euSX3OTAAiPfBCJBj
- DNRAp4bBUvmdcQnaC/Fkxb5F6EQFr9vnwchO12nleeG+UH+qFJgqz7AYpiXJIoKVgIsw6p
- ZXXhGr5zuXdlhVa0zNMYTT45mD4B/3w=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1780907117;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
- bh=anNuN5LqnOzpjuCuA8wA3zu/54xFSv5jKNPYKkFG13o=;
- b=eNdcsljFIoatDdAGBNQfNeZ1hdiyvRJQ27t7xW0cq5oub8jdl9DV0zxxXx2UwYGkVxo9wx
- THicbAiiN6VNX/BA==
-Authentication-Results: smtp-out1.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1780907116; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
- bh=anNuN5LqnOzpjuCuA8wA3zu/54xFSv5jKNPYKkFG13o=;
- b=OHvI+W6nx8OyGHep9cEYgG6UbQtU4BWD4Y6fQBHK56gAjEOOwGLlEBFIF4lbQnCGgIu4Qg
- QCZBoETeFpVvtaGFzXS0oBTOOpINGRQsr8iIXnyUwbyXtsRYapnaEECzvlP2PPFVHkGlK+
- Iens4pxLGl2J5OZBPkNuNpATpAGwHW0=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1780907116;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
- bh=anNuN5LqnOzpjuCuA8wA3zu/54xFSv5jKNPYKkFG13o=;
- b=RG4BbKP9O0pN8hLL/xcXXvZXVYYW8HhPmrzlJqd0guoFu24YLlHHBRmhrvwzniFBlJ8NnO
- Q+BFhrL7yaD9chAg==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id E7383779A7;
- Mon,  8 Jun 2026 08:25:15 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id hRokNmt8JmpIRQAAD6G6ig
- (envelope-from <pjakobsson@suse.de>); Mon, 08 Jun 2026 08:25:15 +0000
-From: Patrik Jakobsson <pjakobsson@suse.de>
-To: ville.syrjala@linux.intel.com, Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Imre Deak <imre.deak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2] drm/i915/display: Add quirk for interlane align bit on
- CH7511
-Date: Mon,  8 Jun 2026 10:24:58 +0200
-Message-ID: <20260608082500.45902-1-pjakobsson@suse.de>
-X-Mailer: git-send-email 2.54.0
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1CF310EF5C
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Jun 2026 08:40:55 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id AA727441F0
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Jun 2026 08:40:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 859AB1F008A4
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Jun 2026 08:40:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1780908055;
+ bh=4HoT9KIsnYIDd0zvedKTYCGFgVE6ChDhK5tVcTIkXrs=;
+ h=From:In-Reply-To:References:Date:Subject:To:Cc;
+ b=UtAzf/TGWJfwCsNV2Ue5iolZ68yf3f30P6b6WmVzMzBqmmPCvh444Q2e4wBR9DYZC
+ AnxUpcvEVn2Om/u9TmAeMRVOIJcAlsFT0YmOWjrVMVfIRbPKrc9iGS0/Jgf4Qr2NYD
+ MBwOdTvIy/zAkvHr4quF7Wwq4FMCmIDH4DB7ddcjbeIN5xVcDXorm2J96nVOaL/XCC
+ r8l2OPZPij1DKq+wHQbblb/+Tt2+7PzogxDLKgACcK819/76HiKDbpBS0bXE4RuGEG
+ d69BNA98i9BydLxFP1a+/yqre2Wxr8M5vsK9LaX6cTvPy5TevPtps1emBN/QIKPBDS
+ nJrnvZt+BYY4w==
+Received: by mail-lf1-f53.google.com with SMTP id
+ 2adb3069b0e04-5aa7a7ad475so4004704e87.1
+ for <intel-xe@lists.freedesktop.org>; Mon, 08 Jun 2026 01:40:55 -0700 (PDT)
+X-Forwarded-Encrypted: i=1;
+ AFNElJ+9nz+YgC3huGkyKxnmm81MXMW2Wi31Px156H2BQ9szl4I3BOhuulg6nQJ9E6FeuC6r5GFXzYWIOQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yw8aNgHzrcmD7pMUubaYj5Nbo2DZvExp6liDP5sC8BYlJPR7TM9
+ UmPrRKhY1Ok7zKiPTMjnuWEKmAYoURrQgEakSxSBfwvvbDVX68l4n4jzRGP3DF5rHRwrQMFmazo
+ rf1m0J9Y5b86dwteg/Ucz2TMrePkh23ut0WaYoD6PrQ==
+X-Received: by 2002:a05:6512:8046:b0:5aa:6dff:cf0d with SMTP id
+ 2adb3069b0e04-5aa87bc2279mr2524415e87.28.1780908053800; Mon, 08 Jun 2026
+ 01:40:53 -0700 (PDT)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 8 Jun 2026 01:40:52 -0700
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 8 Jun 2026 01:40:52 -0700
+From: Bartosz Golaszewski <brgl@kernel.org>
+In-Reply-To: <20260521-pdev-fwnode-ref-v1-5-88c324a1b8d2@oss.qualcomm.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-2.80 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- MID_CONTAINS_FROM(1.00)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
- R_MISSING_CHARSET(0.50)[]; NEURAL_HAM_SHORT(-0.20)[-1.000];
- MIME_GOOD(-0.10)[text/plain]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- ARC_NA(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
- FROM_HAS_DN(0.00)[]; RCPT_COUNT_TWELVE(0.00)[12];
- MIME_TRACE(0.00)[0:+];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,gitlab.freedesktop.org:url,suse.de:email,suse.de:mid];
- FUZZY_RATELIMITED(0.00)[rspamd.com]; FROM_EQ_ENVFROM(0.00)[];
- RCVD_COUNT_TWO(0.00)[2];
- FREEMAIL_TO(0.00)[linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch];
- RCVD_TLS_ALL(0.00)[]; TO_DN_SOME(0.00)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FREEMAIL_ENVRCPT(0.00)[gmail.com]
+References: <20260521-pdev-fwnode-ref-v1-0-88c324a1b8d2@oss.qualcomm.com>
+ <20260521-pdev-fwnode-ref-v1-5-88c324a1b8d2@oss.qualcomm.com>
+Date: Mon, 8 Jun 2026 01:40:52 -0700
+X-Gmail-Original-Message-ID: <CAMRc=MdrfyUUyk9sMGVCedyug_JmZQZEQHuK5T6+BRv3AvNT6g@mail.gmail.com>
+X-Gm-Features: AVVi8CchM9VaksLWvpKbwHirniTnl6glReoNd3-xvchi05VK9oh9JtbFGYTDxqA
+Message-ID: <CAMRc=MdrfyUUyk9sMGVCedyug_JmZQZEQHuK5T6+BRv3AvNT6g@mail.gmail.com>
+Subject: Re: [PATCH 05/23] powerpc/powermac: fix OF node refcount
+To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Cc: brgl@kernel.org, linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org, 
+ driver-core@lists.linux.dev, devicetree@vger.kernel.org, 
+ linuxppc-dev@lists.ozlabs.org, linux-i2c@vger.kernel.org, 
+ iommu@lists.linux.dev, linux-pm@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-usb@vger.kernel.org, 
+ linux-mips@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
+ stable@vger.kernel.org, Lee Jones <lee@kernel.org>, 
+ Mark Brown <broonie@opensource.wolfsonmicro.com>, 
+ Thierry Reding <thierry.reding@avionic-design.de>, 
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Srinivas Kandagatla <srini@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Vinod Koul <vkoul@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Danilo Krummrich <dakr@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@kernel.org>, 
+ Madhavan Srinivasan <maddy@linux.ibm.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, 
+ Nicholas Piggin <npiggin@gmail.com>,
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, 
+ Andi Shyti <andi.shyti@kernel.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+ Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>, Doug Berger <opendmb@gmail.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+ Ulf Hansson <ulfh@kernel.org>, 
+ Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, 
+ Matthew Brost <matthew.brost@intel.com>, 
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Peter Chen <peter.chen@kernel.org>, 
+ Paul Cercueil <paul@crapouillou.net>, Bin Liu <b-liu@ti.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Maximilian Luz <luzmaximilian@gmail.com>, 
+ Hans de Goede <hansg@kernel.org>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,94 +116,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When disabling pattern training after successful link training the
-CH7511 bridge incorrectly clears the INTERLANE_ALIGN_DONE bit. This is
-interpreted as link failure when rechecking the link status and triggers
-an endless loop of retraining sequences.
+On Thu, 21 May 2026 10:36:28 +0200, Bartosz Golaszewski
+<bartosz.golaszewski@oss.qualcomm.com> said:
+> Platform devices created with platform_device_alloc() call
+> platform_device_release() when the last reference to the device's
+> kobject is dropped. This function calls of_node_put() unconditionally.
+> This works fine for devices created with platform_device_register_full()
+> but users of the split approach (platform_device_alloc() +
+> platform_device_add()) must bump the reference of the of_node they
+> assign manually. Add the missing call to of_node_get().
+>
+> Cc: stable@vger.kernel.org
+> Fixes: 81e5d8646ff6 ("i2c/powermac: Register i2c devices from device-tree")
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+> ---
+>  arch/powerpc/platforms/powermac/low_i2c.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/powerpc/platforms/powermac/low_i2c.c b/arch/powerpc/platforms/powermac/low_i2c.c
+> index da72a30ab8657e6dc7e6f3437af612155783d8f9..973f58771d9636605ed5d3e91b45008543b584d3 100644
+> --- a/arch/powerpc/platforms/powermac/low_i2c.c
+> +++ b/arch/powerpc/platforms/powermac/low_i2c.c
+> @@ -1471,7 +1471,7 @@ static int __init pmac_i2c_create_platform_devices(void)
+>  		if (bus->platform_dev == NULL)
+>  			return -ENOMEM;
+>  		bus->platform_dev->dev.platform_data = bus;
+> -		bus->platform_dev->dev.of_node = bus->busnode;
+> +		bus->platform_dev->dev.of_node = of_node_get(bus->busnode);
+>  		platform_device_add(bus->platform_dev);
+>  	}
+>
+>
+> --
+> 2.47.3
+>
+>
 
-This patch adds a quirk to pretend the bit is still set and no
-retraining is needed.
+Hi!
 
-Fixes: 3b3be899fc81 ("drm/i915/dp: Recheck link state after modeset")
-Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/15744
-Signed-off-by: Patrik Jakobsson <pjakobsson@suse.de>
----
+Gentle ping for that fix. Can we get this landed for v7.1 or early v7.2 and
+make getting the rest of the series upstream easier next cycle?
 
-v2 changes:
-    - Added "Closes" tag
-
- drivers/gpu/drm/i915/display/intel_dp.c     |  9 +++++++++
- drivers/gpu/drm/i915/display/intel_quirks.c | 17 +++++++++++++++++
- drivers/gpu/drm/i915/display/intel_quirks.h |  1 +
- 3 files changed, 27 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 85d3aa3b9894..5b269b1f18d7 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -5875,6 +5875,15 @@ intel_dp_needs_link_retrain(struct intel_dp *intel_dp)
- 	if (intel_dp->link.seq_train_failures)
- 		return true;
- 
-+	/*
-+	 * The CH7511 bridge incorrectly clears the INTERLANE_ALIGN_DONE bit
-+	 * when disabling training pattern.
-+	 */
-+	if (intel_has_dpcd_quirk(intel_dp, QUIRK_IGNORE_INTERLANE_ALIGN_BIT)) {
-+		link_status[DP_LANE_ALIGN_STATUS_UPDATED - DP_LANE0_1_STATUS] |=
-+			DP_INTERLANE_ALIGN_DONE;
-+	}
-+
- 	/* Retrain if link not ok */
- 	return !intel_dp_link_ok(intel_dp, link_status) &&
- 		!intel_psr_link_ok(intel_dp);
-diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
-index 33245f44c0d5..2cec0a945528 100644
---- a/drivers/gpu/drm/i915/display/intel_quirks.c
-+++ b/drivers/gpu/drm/i915/display/intel_quirks.c
-@@ -100,6 +100,14 @@ static void quirk_disable_psr2(struct intel_display *display)
- 	drm_info(display->drm, "PSR2 support not currently available for this setup, applying disable PSR2 quirk\n");
- }
- 
-+static void quirk_ignore_interlane_align_bit(struct intel_dp *intel_dp)
-+{
-+	struct intel_display *display = to_intel_display(intel_dp);
-+
-+	intel_set_dpcd_quirk(intel_dp, QUIRK_IGNORE_INTERLANE_ALIGN_BIT);
-+	drm_info(display->drm, "Applying ignore interlane align bit quirk\n");
-+}
-+
- struct intel_quirk {
- 	int device;
- 	int subsystem_vendor;
-@@ -286,6 +294,15 @@ static const struct intel_dpcd_quirk intel_dpcd_quirks[] = {
- 		.sink_oui = SINK_OUI(0x00, 0x22, 0xb9),
- 		.hook = quirk_disable_edp_panel_replay,
- 	},
-+	/* Nodka TPC6000-C152 */
-+	{
-+		.device = 0x0f31,
-+		.subsystem_vendor = 0x8086,
-+		.subsystem_device = 0x0f31,
-+		.sink_oui = SINK_OUI(0x2b, 0x02, 0xf0),
-+		.sink_device_id = SINK_DEVICE_ID('C', 'H', '7', '5', '1', '1'),
-+		.hook = quirk_ignore_interlane_align_bit,
-+	},
- };
- 
- void intel_init_quirks(struct intel_display *display)
-diff --git a/drivers/gpu/drm/i915/display/intel_quirks.h b/drivers/gpu/drm/i915/display/intel_quirks.h
-index 970a4fe52faf..7fcc3967f84f 100644
---- a/drivers/gpu/drm/i915/display/intel_quirks.h
-+++ b/drivers/gpu/drm/i915/display/intel_quirks.h
-@@ -23,6 +23,7 @@ enum intel_quirk_id {
- 	QUIRK_EDP_LIMIT_RATE_HBR2,
- 	QUIRK_DISABLE_EDP_PANEL_REPLAY,
- 	QUIRK_DISABLE_PSR2,
-+	QUIRK_IGNORE_INTERLANE_ALIGN_BIT,
- };
- 
- void intel_init_quirks(struct intel_display *display);
--- 
-2.54.0
-
+Bart
