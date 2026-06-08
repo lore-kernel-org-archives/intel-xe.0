@@ -4,156 +4,165 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EF2CCD6E79
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 17:43:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFC81CD6E79
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 18:01:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC73B10F7FF;
-	Mon,  8 Jun 2026 17:43:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1CD310F832;
+	Mon,  8 Jun 2026 18:01:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oGG2Ei/+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eYcIfOn3";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D585610F7FE
- for <intel-xe@lists.freedesktop.org>; Mon,  8 Jun 2026 17:43:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13F9F10F834
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Jun 2026 18:01:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780940605; x=1812476605;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=eo7Cg48lNXleys6QWBnYK7XYDOdZbfM5PYeiIZoDw6c=;
- b=oGG2Ei/+dMDGgBu7Lp5SAflyEg/JdkVsEnOjszOcXRJjq2ZcMQDHIEPJ
- ud0bhW8ZTdkMndU22ROQMZJw5VZrGSGFUgtWl96zdlxH8+fD2U3Uik4d0
- OPeHR68t7vOjCXjhq1U27/ysuJ31nrOWMtAKmdsi8zvS8w7ZWI8Ni1nGo
- odo+tupjGe0ZTYtakPicYgnFnQwvU+u1XaWqrWPReYD9WadJWskKaWRD5
- ZxeKowate70JyGbK3VbEEdI5m9cLaB7THEe91jIWhOf/tD4qUGWhdFn8V
- FGyckAe9ObB5B8YsJ0VVpTg7QMoMkitVHNsCEuapKDf0mI9lynlD9KoLs w==;
-X-CSE-ConnectionGUID: 1webz31CSQ2HS94NLrZEmg==
-X-CSE-MsgGUID: be/H5YFvQES/BxWgqHJuAQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11811"; a="81801593"
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="81801593"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 10:43:24 -0700
-X-CSE-ConnectionGUID: x/vbW5gyT7OBpZvvEbDrsA==
-X-CSE-MsgGUID: txHOUypBTkyGtDTdsXaX7w==
+ t=1780941667; x=1812477667;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=N5a9cTJpku8nBpSyAIx0xZJeZ/WqUWy94ipGNCsuqNE=;
+ b=eYcIfOn3arrMTwMNWBBCvQF0Pm6Te6mmM84wBaOhsO9x7Enxnu6waiAl
+ a2NgtKZZBThdCLgEzBlwMc26ulo6Il3t+Y3ZgfcYXLKMgPibHU1fbZPw/
+ tLWQG/9WlQpn+mMAIEHEDPm/tFIYOKXr7f+M8DgAY72syn/4G2t2Wn+58
+ HlVZXg2gPf0wbSvSd3RlNVGbnbSLRu0CA1DqZYZmDXaiVsEcNkYZjuf+7
+ S3HlLXshdauNVKMSIq3HFFM1gEpB09UH/8lu+BzGzsQ8Y3h4l8rKRLXeu
+ cfKgTmnN8euIZQER9MZbCUGniociXf5ZwuDyWRvw0EGL1WQ/SMjGS8lk9 g==;
+X-CSE-ConnectionGUID: 8LCh8oVIT3iPgJItUMUZOA==
+X-CSE-MsgGUID: vpPOTVNfSYu4GZp3mHBtaA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11811"; a="80821054"
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="80821054"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2026 11:01:07 -0700
+X-CSE-ConnectionGUID: 3bEQrwTeSeS3CddIxEouKQ==
+X-CSE-MsgGUID: q8Rj7ajdQfu/rsRJeAUyyA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="239284630"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 10:43:24 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="245486043"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2026 11:01:07 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 8 Jun 2026 10:43:23 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.2.2562.37; Mon, 8 Jun 2026 11:01:05 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 8 Jun 2026 10:43:23 -0700
-Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.32) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Mon, 8 Jun 2026 11:01:05 -0700
+Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.39) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 8 Jun 2026 10:43:23 -0700
+ 15.2.2562.37; Mon, 8 Jun 2026 11:01:05 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jW8SRtF/E27QQXSIW5DeOK18YLVZbbivdlhISd7GlK4FY0uD+tYZe0Mw6f0pF/6qe8mOwJlV6OJR2LJkbch75w1s/JubGOxbjruTWTvh7ty1XgQY92z0JqBa4QvW9UELg9LYFX13i8GS8WUldDWPe+ZlRdFbAE6WDcpe7tddR6ayCaeswal7f8QHR9wWFN0fN+pNi6LNC09N2zOA5eKkJS7HUYWGD65b2t7qwvjX20G6FUkZXFiugTcpruFZKZ/jHnhcnvLKcU0nxcV6eC9AWi78gRrtMKXSQnRsqQ2jakKnIunhSjlCWhJKMxQOq/N0K3nFaWIuLr++rIwSEFNhcg==
+ b=D0kTjTb52+DUrQHf1DKGXsl8ItGVuzkxaQNVD9RvKtgAgz3vT6v6tUn9e72v/3E6/E2luT/Ew+h4teAGvEjgS2WfZ7pTVUZnh0LoVL9z/Ay9lA5yWK989AomowpSF5hlgtML8eJoTsl2erKUvLKm3WgznwtySVe5MH3bURNnSgAG87FlRud5LtKvNCYTCxylbRZaSxmPbo+pqr5XR6OVs6lFujbOfrUHx+l3lDUu88qrYTFagORyMnKiQ6VJusvxdxltmLfv4B/n9HDTllG+4RWExoo1kEv8kUPM+ppvoHH9VgfP6JEc4sNg5krRYlniW7r/JwpbntOeVMrBCOtlPg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5aBdrUDBipVoLcSQk+8E+KIHnJ8kbTQbyrj3r98XiH4=;
- b=VU/dYwwDSjep61dxfua6Kz3BmR976pmMfshxB1EbaVxWS0+Cx86HJk9aq3uaX3c3/UPoFPdzM7PQaX8Vd1RIWk1zhenTjF2+wnGKJX02/2Lyw/eUhwrVElA9YC5YQXb9teFLE0ihiHjKwr1vjnbUt6gCORccsO4jHu97ItW8kpulY9rj+3GVuH50kqlMPnXA2wejwUicV6+tQ2GIYXzhZtdPw30g2YlVefVa23oXHtBTLOpcr6/YTKd+76w9c6k3EJINeokfWSm5oeV8KuwejBnYSvODC5hRQGK5oPLDXWGP1mpNSiyWgwn11HtRNI0cYjc24II1Q7WVQc+OslGpjg==
+ bh=SeTDiUIL8MOKIbgn8QYLHJdj1eWq4CvZntla7RH1fLc=;
+ b=v6TuxVJgzPA9DTgcmcvKPApymTLxBff3Qg48KKmOfKNNRWOzvQb392RqptYRTMf8nKXPHFUSnGreLDLx+IOoGHQ0z8SdfxiRIYnLkuj87qEGRn06wUZFKD9sVBQNimAt1jYV4CCOae59rLJXLtklOFZlQ/jfys6uMTdMeewgA9WWVJD/sXEz2HvtphI4lcmEQR/40Zoq0kA2Us92gNtFsa5ncYb+mYSDOnU5DEMtPtS3pQX+4ssAv+EOH5ueYgnVM7tnDISHTtd2bNr6nTHc0fm43NvfF1E9uS1xR2rGJP/Jv8HCRUk9qU3uUxDt+HU5N0PY9iSulhM9ENUvnUGNKQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by SA1PR11MB5874.namprd11.prod.outlook.com (2603:10b6:806:229::10)
+Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
+ by CY8PR11MB6866.namprd11.prod.outlook.com (2603:10b6:930:5e::12)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.8; Mon, 8 Jun 2026
- 17:43:14 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c%4]) with mapi id 15.21.0092.011; Mon, 8 Jun 2026
- 17:43:14 +0000
-Date: Mon, 8 Jun 2026 10:43:11 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Francois Dugast <francois.dugast@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Thomas Hellstrom
- <thomas.hellstrom@linux.intel.com>
-Subject: Re: [PATCH] drm/xe: Fix use-after-free race in xe_pt_zap_ptes and
- xe_pt_zap_ptes_range
-Message-ID: <aib/Ly7js2PO6NCm@gsse-cloud1.jf.intel.com>
-References: <20260605105202.1664464-1-francois.dugast@intel.com>
- <aib8+iiirtA0Wxz/@gsse-cloud1.jf.intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.12; Mon, 8 Jun 2026
+ 18:01:01 +0000
+Received: from MN0PR11MB6011.namprd11.prod.outlook.com
+ ([fe80::3a69:3aa4:9748:6811]) by MN0PR11MB6011.namprd11.prod.outlook.com
+ ([fe80::3a69:3aa4:9748:6811%6]) with mapi id 15.21.0092.011; Mon, 8 Jun 2026
+ 18:01:01 +0000
+Message-ID: <47e740b7-fcdb-4031-8118-4c6b942f788e@intel.com>
+Date: Mon, 8 Jun 2026 20:00:55 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 18/18] drm/xe: Add xe_client_debugfs and introduce
+ debug_data file
+To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
+ <intel-xe@lists.freedesktop.org>
+CC: <simona.vetter@ffwll.ch>, <matthew.brost@intel.com>,
+ <christian.koenig@amd.com>, <thomas.hellstrom@linux.intel.com>,
+ <joonas.lahtinen@linux.intel.com>, <gustavo.sousa@intel.com>,
+ <jan.maslak@intel.com>, <dominik.karol.piatkowski@intel.com>,
+ <rodrigo.vivi@intel.com>, <andrzej.hajda@intel.com>,
+ <matthew.auld@intel.com>, <maciej.patelczyk@intel.com>,
+ <gwan-gyeong.mun@intel.com>, Christoph Manszewski
+ <christoph.manszewski@intel.com>, Sunil Khatri <sunil.khatri@amd.com>
+References: <20260608161639.1652127-1-mika.kuoppala@linux.intel.com>
+ <20260608161639.1652127-19-mika.kuoppala@linux.intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20260608161639.1652127-19-mika.kuoppala@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <aib8+iiirtA0Wxz/@gsse-cloud1.jf.intel.com>
-X-ClientProxiedBy: MW4PR04CA0090.namprd04.prod.outlook.com
- (2603:10b6:303:6b::35) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+X-ClientProxiedBy: WA3PEPF00000512.POLP291.PROD.OUTLOOK.COM
+ (2603:10a6:1d8::666) To MN0PR11MB6011.namprd11.prod.outlook.com
+ (2603:10b6:208:372::6)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SA1PR11MB5874:EE_
-X-MS-Office365-Filtering-Correlation-Id: b2e133b5-8d20-471b-4c30-08dec5856a8c
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|CY8PR11MB6866:EE_
+X-MS-Office365-Filtering-Correlation-Id: c5c000f0-d0ec-4b12-dac2-08dec587e630
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|1800799024|11063799006|4143699003|56012099006|6133799003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: yl+TiKY8ofk6gofO9jcovcd8Az9GXd6cdQYc4za5PjkX+hp/F4s9PkqxWihqZHVgVGOqhtcUKqL98r0+L5HBsH9BBw9ozuUoIMxtJhPM89FtO+/GvCoHNgF39XT16TSDzBTkR650VyjCKRj02G+ZCQK71J+K2IseAzaSJSCeAJU3ybdgDoBoK+1ujmSiXXXsMDY/zK0+Eb1MAMFqxfLRZ1C0XopLbp+ZV2vMXa94HcTzsWbwP4nxFoJ3kkEbuiS6CqBtSKs9Eu6uD581t9anPcZJNAWTpmD0iSxbdvMfvoG3FdZ9pEfzgtxM5vErj7x1A8hOYEeYrgmqS+c9YgbpBsnMxRC39L6rb7UNlrywKTAJyGsnzLYUzpT9XHQ5zzSnpKETE51P/8Vx4ykEl34LqPWw46he8nOfsQ2sn+CkHYmG4OsvygnnsujljnRBgrNUxhsDLIqW/Nc0PGCwBWP+19AcmXMpxZFwOSyzU03WHBSLuDSKNKtHM6X7fW3HCjWQ3K9mO+jSewU0NWim9QAloc1B+JDEh34RDvMXP0xNDQb3bifOItysjzR1oM0q/duRZ7vBqI8KXyT+lpQgy5CE7cSW2sS2vdvw6ZXo9pXXvGoE8HSwahoH9WupI49Il9Kn5Y71BDyKJ7cy6ugKhfNKFO6Wds0aiZvyPNaRCizFY661VXGGVRckjMvP7gvH7ele
+ ARA:13230040|376014|366016|1800799024|11063799006|4143699003|56012099006|6133799003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: VWGRsCmhQ4PyhjtixhFhUolTpu7q0MAck9gfNfwuAHOQGqz4N8HJFh0NCIiMyZFUNTknZ23gJ+yV6lwGmYLNnBlrJQY2sUUotxBFh8fujHaLwUiu2d/E4ap3wmeKdRuB/bw9qXCYdvyfAXko0fnL90lj+kb7uJoGktFM9K3btwGNfSxVKtUzoIIXqOtRWaBEGFUvM+0J0euBC4S9tL+cSpgZ+nW1Q/SQQKHdkPB9YFg5/RcSdH9mdd+e3eBaaf/E9ffsV3rX8ydYVvMevSzH2Ax4wgygq5rX2XVaOYnkDugothXy1aksXDQE04LHOis5V0ilVGl51spoWN1n9W/MwCtSxz5yp134JxEOD/ldkzyaTLvtYS4ghBs3cb+vwJzdNzzAKhoIEX7eo9JqDcOGyQ3Fkuo40ZDeigIwMh9S4P1u3BWPf/WvR0y0B3AjN1aY0rMO3apES1AMSSTybm6TTZHongty8xdT1F3BvO5eq8gG2hydbLLm+RCePJkfWmYzAaP7bQ5DTULNmWSGIK85TrfNiYjFVqsUshHg6IJtw14UpVOdMSt1+SMR+VlaO4AuurUyfBfJ/Ou+f3mMEK0fLWJoqBbJbwiSaUlbXMBWFwx1ljHiQYC9ZhS5iP0ORAoCPoMZIa4o7XX37vAnl7gyErBoqyiqLrlXH9RD8g8A0Tzf8tMLlXkI+fajMysH+bEo
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(11063799006)(4143699003)(56012099006)(6133799003)(18002099003)(22082099003);
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(11063799006)(4143699003)(56012099006)(6133799003)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SzZlOG11WTd1clQ5dUh3SVBaOXhBMitzR2JTVzhmZDVpTFNjdmtSQ25CSkMv?=
- =?utf-8?B?VU9iYnpIbVZiK1JOb0hxNzd2bXhKQ0JUeTM3eXdCRVRJMDhVaXNDRVpxd2s0?=
- =?utf-8?B?bFRPbWZ6eHBEYlBWL3ljdVk1SURJVnRTbkJ2QUg0aVFObnhGVGU5Rm1wY3Bi?=
- =?utf-8?B?QjNYMjR2K0lWVE9mM2hiWDMwK1V5MHBjaEUzMzc1ZThhbXBrc042bGlzdmVm?=
- =?utf-8?B?YTl2QmZ0ekpWby85d013Mm9rREc2RFV2NlA4Z3BWNXBMU2djbTlVSjIyTCtj?=
- =?utf-8?B?NUt4eHhTOEI2N3FWU3lqdXhQNzFibUxEZENWNDZGaDBwaHhtRW40MHIwOHdw?=
- =?utf-8?B?ZnQ0UmNyK21NOE9BK1BvUkpxbk1SYzg4SGxWMFc3TUVFUDI5cHc1OXEvbit0?=
- =?utf-8?B?d3VEOEpPWEJwRGk1L1ZyVnJoVTZ6WWFLbjBKRDdGQS9teThCYXFVa1NYVDBt?=
- =?utf-8?B?c2tzTnV6R2gxMWs3RThiWEdoUmt1c0N2QkJpV3lDUkhCcHBieTU4M0x0SDVT?=
- =?utf-8?B?TWpHT3FQSklsMklnY3hZb3JMSEs4VVFsSVVYa2k5ZWZDNW4xQ3drZHUwdEdn?=
- =?utf-8?B?cDZ3Um5aa0Nmb1BwRkp3ZHF3OFlyYzZYTWNyTVBpMWYwNkp0Q2xuNUR1WHNu?=
- =?utf-8?B?OXdhZ0YxVnhXQVNKS1NCalpoQk9yejBiVk1DbngyZ2htUTlHOFp4N0loR2tL?=
- =?utf-8?B?em9DZlB2K2d1czVmZzc3a05hc3VzN0dabytjdkxESTErSGlBS3JrMVV6VGJL?=
- =?utf-8?B?Rkxzc2M0MUZ0RlcraU5YN2gyaGNJVWN5QzFwb1hnanlncFlCQmt0WXdpNmsz?=
- =?utf-8?B?TExIUnlVdEVtazFxVmdnczQ2SzlrdXdLdHNTOGZ0cWRDR0lveDlBMWlRZ3Jh?=
- =?utf-8?B?aitRaHRndjUxbmVBTU5BaWtwOGozMSt2SEpzUmNKcDV1MkpwelRacVBjT0Fq?=
- =?utf-8?B?c0R2OEgxdGl3eDV3c2R0VnE5ZTZ4ZDZrc3VHVytVRkVXcUhVRngwQkxpQXFw?=
- =?utf-8?B?UjlBMk1yTmltNjNOT1Y2dTFPdlBXU2FxdUdlQWtKM0N4Rlo1dUMrNmlZRFRX?=
- =?utf-8?B?OVRYc3I4ZFdqTkJlTlQ2K2VBSXVxWGpTelJxTjl2T3NmazJDWC9tcmVjMWRP?=
- =?utf-8?B?SzdjUVlaMWVMT3BZRHFjb1hCdlJOUVpWYXF5WWxKbTkyTEpDOUFvSjVkYzJQ?=
- =?utf-8?B?bWdsalU5ZnhORVBFaitOU0dTR3F2ejVnOG4xbnlwSnpKazY5dmI4bDNXMHVJ?=
- =?utf-8?B?Zy95bjI5ZitCdS9BT1l4YUFYeTQwcEZBREE1Y0JGbG1GUFhnSnZCR1pDdjJS?=
- =?utf-8?B?RGMvbXAyTmJZOWxOaHR2VUYxTUxJNUszRHlIYjZ4bXlib0VZbTBJMGJienFp?=
- =?utf-8?B?MGJ2eVVKN2lJb2NxMW90VDFDN0pib0pDWS9IdVFFdENjRkFBWDNEcTVocGF1?=
- =?utf-8?B?OUpQZnpaMG5xVnlCMlNvQVhuNGpkYjZEWk56aWVIMlFxRDRyQWxEN05kY0Zy?=
- =?utf-8?B?RzVaeU52OWlvN29GN1Nib25BMDdmMTJZVlltNmFBakpJWm9PZUk0RFlVUkw3?=
- =?utf-8?B?SVY2UVUwUHc3Z3BnMW5CU3d1RDVlV0JPYUc0UWRwK2xBRldYZ0VuVkJzQTV0?=
- =?utf-8?B?a2FVSDltS1E0cHVxdzRkNE5DSGNpelZTR2FYZHdrRWg2TmZSbVBaeTBMRTVm?=
- =?utf-8?B?dTk2M0VsVFBUZkJyYlQ4K2tXODdHVnhRUW8vMGNyUkkvc1RmajRGMWxQWjdD?=
- =?utf-8?B?UWtLVzBoNndaRmtaeHJtVUJvSkR0NVdVK2gyNWFMUXhXQ1ZmT1QxNmx4RVBW?=
- =?utf-8?B?TUZpdStIUUp5VGNtKzhOZ2F6R1FxcjJmOVR3QS81THNuenZUdUhFK1ozQ0pS?=
- =?utf-8?B?WnZSMGNFaU1SbDVYVnFxZE5vTDJuTnI4R1ArVjhPd0c2cEk1T08zRmsxNktk?=
- =?utf-8?B?aFh1TkpqYmtDY1hEVGZmcmtoT2hBTGdJWVpmSlQrZDNxYXEzVnY2SEhjNGVB?=
- =?utf-8?B?WDNEK2xsc0xTL01KNjRZMGhQQ3JDZVZBbm5icFFqbUVSeUJHZzdwUzVUcGdX?=
- =?utf-8?B?MlZNUGJTOVAreTVaK0xYc1NUM0hrQngxWTZXN1JhVDdrMWx1NU9GMHduNUs5?=
- =?utf-8?B?QmVwQmdkdS9SOXVSckJ6NUd0VjJUd1RZN3hDSjl2MGpjU1ZkN0pKWUVlYVFp?=
- =?utf-8?B?eEVJa2tqcXRSTGVScFRjNWR2YzFQd3hJMFgrVGtNTStKa0NGSTluWWxUU2VF?=
- =?utf-8?B?Tld5TEkrcXBsOE10Umt6SkRqbFZka2NCempVaDBsbFV0bjljN1hjT0FHK2FL?=
- =?utf-8?B?MElQekRxajM3aDgrZk5iN2RhWEJiS2FJcFZ6UTUwc3JZY05PR1d5Zz09?=
-X-Exchange-RoutingPolicyChecked: eKBssGw7FR8JR6yHWvUWJVyi+5GIIb5OTyikGAwUNr+pbupt3SMmVoGFZRhpYdf5OHOAeAI3sW183BQl/bt+NlXT/ouSEVzT4mhuuY5FIUVpZev62FGFGigUygKBUAACzrxpboHXJiD5sRMfogRf6HrgNw+H6ERRrEpVMqEGrBbZAUWxuvLChD9r+jqjGLOp2hsAmLAM1xidPiLztT6CPABj9GUBp2XNRq8i1YVdQ6UfV6rxz0IAXamk/rXLwzPbtqdEpwkRd4tBwryfVfDDrkB5lLppi6/QHu+TYMJYOYJjy5U/LjojaB8UAInig4GI5VoB9X+EYXyEi+FMaHxUVA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: b2e133b5-8d20-471b-4c30-08dec5856a8c
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dE11cG81aFZsVnEza2s3eUwzbW5UQlVjdk9KT1BqdmtINFZieGxyQlJ4dzhM?=
+ =?utf-8?B?WU80cnVmT2g1UG9VNEZjTzZZV0lQQWREUW4rM2Z0dmlVYldRenBHalZyNlhC?=
+ =?utf-8?B?OFZ1SkIya0tSY3RPV0hpVUw0U1V6SGhTcHVRRmdxc01GdldIMXZtNkordldP?=
+ =?utf-8?B?d3ZEUlBSSXRCOGhmRnBTeVlua3lheGZXOVhrZkxHZFJ5T3JualFndlNzbXdC?=
+ =?utf-8?B?alNpeHlYSHRvNnp0T1ZuU1RtMFlzNFZ2dzluMTAyWHp5WGxOREVQMzVjUzV2?=
+ =?utf-8?B?aUdlSXczd1c4ZGJ0WVdwUEJSeCtxemkrc0FPMzBCWHAyZENPMGQxTmlaejhY?=
+ =?utf-8?B?MDBkZERvazZDS2dJVkltaTIrYlN5Z051Y0JpL1VKL0Q5U20xZkZxbWVCUEtO?=
+ =?utf-8?B?ejdPaDJSejRwbUFGa0xIUGdEZ0FVVDRjbzRBOEpuOTRKY0FDU1JjVnUvNHo1?=
+ =?utf-8?B?RlZWMFRvVXhRVTBuRlFUODI0TXIrV3J5VEJ0NGp6L09PbFU2Y1kxKzJjRmln?=
+ =?utf-8?B?b2VnRnBjMFZab2RjWkFpUW5ER3kwbHdWbGJvSXg2MkVYY3ZyMWd2S0NZeGo2?=
+ =?utf-8?B?amFhSU1NR3hmVUx6WkJsMU5zaHhjd3R5NWdVNzY0YmtOYXFVcFU1Myt2N0sx?=
+ =?utf-8?B?TURKOW5ZK2loTmg0cGR4Qm1JUlJFVk0zVDVuUGpPRXdVVmNjRkc1c3lmSW1X?=
+ =?utf-8?B?bThZaWV0Tm1CWXZKL2o5ejhEMjhUa3cxcFpaSzlMMFhzcVg1dWVRZFJsc2pu?=
+ =?utf-8?B?N3dTbDR3ZnNuRGxlM1NDR0ZCNGE4SHU3UHc2VllWTW0yTnZqcXl4aEM4Y0Jj?=
+ =?utf-8?B?YUo1RDhoTWZVbXlybGZUcXpyL1VhUmN4TkRuZW1CSllBbG1aS0dzSWRQQ3hS?=
+ =?utf-8?B?cmpzMklhblBPRVcrc2UzWE5lLzN3OWVNQkdNRVdUVnIxa0lpSGhTbUtpSFNm?=
+ =?utf-8?B?NG5DSmtjU1lpSVpmdlEvbktaU0tYbnIweUZDOFd3NXVabTRsQ04vU2JLdGdB?=
+ =?utf-8?B?dVg4cXZiNUUzbFBuRzEvQmZxZHZERGlFV2h3TGhmVUYwZm1iN3NraHlwNlho?=
+ =?utf-8?B?M3hPQ1c5VEhqMUlqa0U1N09aeUVKelpremVoOE9zZTVnY1h3VWpsNllBcFV5?=
+ =?utf-8?B?NGEvbFg2RFo4bjdhWHRoLzdnbGNjTFUwa3VxWm9ZbGN5aXo3WlhQTE1ITnpj?=
+ =?utf-8?B?ZFdTbWl5L09wNC9zTW5RMTJaYUJVMkoyeGliZXB4aktLT29FRm1kK3Z4ckNO?=
+ =?utf-8?B?OTlkOU5pMFVSV1FPZGNaakdPU3hzdmpoTkx1dHJwTjZhM1BrTHFmOHdMd3VN?=
+ =?utf-8?B?RUJNcGovbkl2NlRnNksrZlhMMkVpUFV1RzdMMUVVZzlLM2liK2NkeW1RTGdV?=
+ =?utf-8?B?YmFUWVJ6alM0MGdTK3IvWkJYWC8wdVlaQVN3dyt4cjI5bVE1M1hTTkZMNTRC?=
+ =?utf-8?B?cGRRR2djbHZVNXBrcVRSQVFBZko5TDNDdWVsRG1zbmdyTkZibmgrS01UOUFv?=
+ =?utf-8?B?eUFrNXIvQm01bXU3MlBSMkpHUUdNbkFaeXUzckc0akhwSWFuWVdIZnBmSmtL?=
+ =?utf-8?B?Z2UvVWQzaitTNFRIK1hvL1RqWDhvTmNiSnorZHVjZDJVVjhBNWdrakc4TmZF?=
+ =?utf-8?B?ZVRUNzMrN01qZ3Fka0FPTVRjWUpTUzJsZHNsd2t0RXRTTEs1anBNNHNpUVBs?=
+ =?utf-8?B?TU55OXpZWkxwUFl3RjZnRDRPaVlJTm5FTzYwOEhUd2U1OS9qNFZwOXdDcjM4?=
+ =?utf-8?B?TmV5ZGJlUlFNR1hDRXlObXlSb1JlRHNJZ0g1SjBMNzdVSHVTTE5wWFpDZlB5?=
+ =?utf-8?B?STlHWm1sczEyeWF2L29KWGpmNC9RbnhySTh6MWkvNHl6ejhKNjYxOFJTRGxI?=
+ =?utf-8?B?MzdOVGNpWm11YmJ2My9Ubm1aWThLMnQxUTg0TmswaElmMlZXbFZzWTZucTNC?=
+ =?utf-8?B?MHRON0ZYYzhFdnpTQXorZ0VkZWRXdjRxOEl6a1VPNzdBV1pUYVljZzc0M2d4?=
+ =?utf-8?B?NmxiS0xMTGF3bnFnYTE3MFVINEdsS0gwWUIrbWV4RFJDYVRrSFYrSkgzdkJR?=
+ =?utf-8?B?bWFqMVcxcmZDU2I4T2M1bWhKUVlQQ0czL2kvSnI0YTJuSFkrOVByVWc0bkQr?=
+ =?utf-8?B?M2pRWUUyb2pZVTQzdWMzYjZNSUZZQWpXR1Qvd3RMVElVN3hMN2ZJYTJpZUE5?=
+ =?utf-8?B?aXR1NWtWaFc0NWkxNERkWmVaUk8xZnc1M1h1N2FIWjRzeXI1ZFl6dzVCRFpT?=
+ =?utf-8?B?UjFpSkhxNXZKTmxRWU9rNkRieGJ5ajAvT3BhNnAwZnYzZEtJZjV0bVJLdW1Y?=
+ =?utf-8?B?cEdqVThGRmRhSVF1aXpNRkJIaU9kQmQrQS9JWWYxRkdweG5jUE9RcHkrSnpT?=
+ =?utf-8?Q?FiYbdtBgu4bpsJms=3D?=
+X-Exchange-RoutingPolicyChecked: bC4w9gN5G6HsORJsF4Hpm+Ne/vwTMeHb3bLEFwZuFtAgpMO5luyyUikIvN8ooyPO0sqSLMafnthznqYh4k614ZZfaTWQnpSq4iLfuvcSFqegLLQLgSWRSlSIBR2osU5138kjyfM7rSrEzFcwTz/7tSap7zC2l2cV/a31h9C5PI7lQNv+bnOQOSxAkNAU83m8KDyDYswtsPodyt3jOceKYmDwjV1WsCJUW+IgcDp+LqGtiGafIBzwBWMp/HN6TT0daYGAJE0LFbMAQ9Xru9sen50lVgwdBxIlfj+tXRgf2xeB5IqBFRkbhWJD8D+MEBpfKJfLoZcQzIHQKpVQe8x1ng==
+X-MS-Exchange-CrossTenant-Network-Message-Id: c5c000f0-d0ec-4b12-dac2-08dec587e630
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2026 17:43:14.3392 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2026 18:01:00.9077 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: It9zEE/bGIKKP5MhJCOonTpQi2pE2p/h2brEJKIIF8Ko5KJ0IDbmSNTEraRHW0AC97Nt+7cag0Vj7LAWWhQcww==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB5874
+X-MS-Exchange-CrossTenant-UserPrincipalName: FEk2I6Urp/DGah1EwBkZ3QURj5xHUwXb7ibcc/Gbtzs4fs206xOQD/h1GTls+3QHXf5SDnXAita4R8DQGe5VWePVrQ5WKjxwzuqLmVNcpcE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6866
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -169,232 +178,273 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jun 08, 2026 at 10:33:46AM -0700, Matthew Brost wrote:
-> On Fri, Jun 05, 2026 at 12:52:02PM +0200, Francois Dugast wrote:
-> > xe_pt_zap_ptes() and xe_pt_zap_ptes_range() walk the page-table tree
-> > holding only the BO reservation or SVM notifier_lock respectively.
-> > Concurrently, xe_pt_update_ops_run() (vm->lock write) calls xe_pt_commit()
-> > which swaps children[] pointers and immediately frees the replaced xe_pt
-> > via xe_pt_destroy().  xe_vm_pt_destroy() has the same exposure during VM
-> > teardown.  Either path can produce a use-after-free when a concurrent walk
-> > dereferences a just-freed node. Fix by introducing a per-VM rw_semaphore
-> > pt_lock.
-> > 
-> 
-> This locking is very hard to reason about. I believe I understand the
-> issue—zap holds the SVM notifier_lock, but an unbind with only the VM
-> resv lock (non-userptr/SVM) could race and cause a UAF, right? These
-> operations  should be touching different PTEs or they would both hold
-> SVM notifier_lock so it ought to be safe, but perhaps I’m missing
-> something.
-> 
 
-Another case I think is BO eviction for an external BO (dedicated resv
-lock) and VM unbind of a different BO - but again the reasoning of
-operating on different PTEs here is the same as above.
 
-> Again, the existing code somewhat confusing and a bit hand-wavy. With
-> that - regardless, I’m okay with introducing a dedicated lock, as this
-> series does, to ensure safety / make the locking clear.
+On 6/8/2026 6:16 PM, Mika Kuoppala wrote:
+> From: Christoph Manszewski <christoph.manszewski@intel.com>
 > 
+> Create a debug_data file for each xe file/client which is supposed to
+> list all mapped debug data and attempts to mimic '/proc/pid/maps'.
+> Each line represents a single mapping and has the following format:
+> 
+>   <vm id> <begin>-<end> <flags> <offset> <pathname>
+> 
+> v2: trim len in debug_data_read() (Sashiko)
+> 
+> Cc: Sunil Khatri <sunil.khatri@amd.com>
+> Signed-off-by: Christoph Manszewski <christoph.manszewski@intel.com>
+> Signed-off-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
+> Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/xe/Makefile            |   3 +-
+>  drivers/gpu/drm/xe/xe_client_debugfs.c | 132 +++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_client_debugfs.h |  19 ++++
+>  drivers/gpu/drm/xe/xe_device.c         |   3 +
+>  4 files changed, 156 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/gpu/drm/xe/xe_client_debugfs.c
+>  create mode 100644 drivers/gpu/drm/xe/xe_client_debugfs.h
+> 
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index 1531ea9b3a93..e43d89a45d39 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -354,7 +354,8 @@ ifeq ($(CONFIG_DRM_FBDEV_EMULATION),y)
+>  endif
+>  
+>  ifeq ($(CONFIG_DEBUG_FS),y)
+> -	xe-y += xe_debugfs.o \
+> +	xe-y += xe_client_debugfs.o \
+> +		xe_debugfs.o \
+>  		xe_gt_debugfs.o \
+>  		xe_gt_sriov_vf_debugfs.o \
+>  		xe_gt_stats.o \
+> diff --git a/drivers/gpu/drm/xe/xe_client_debugfs.c b/drivers/gpu/drm/xe/xe_client_debugfs.c
+> new file mode 100644
+> index 000000000000..3ce9527188c4
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_client_debugfs.c
+> @@ -0,0 +1,132 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright © 2025 Intel Corporation
 
-Worth noting an alternative option could be always take the notifier
-lock on bind, unbind (read mode for these two), and zaps (write mode).
+2026 ?
 
-Not sure if this better.
+> + */
+> +
+> +#include "xe_device.h"
+> +#include "xe_client_debugfs.h"
 
-Matt
+keep then in order together with other xe includes below
 
-> A couple nits below.
-> 
-> > Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-> > Cc: Matthew Brost <matthew.brost@intel.com>
-> > Cc: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-> 
-> I’d also like Thomas’s input here before merging, as locking is
-> difficult and the more eyes on it, the better.
-> 
-> > Assisted-by: GitHub Copilot:claude-sonnet-4.6
-> > Signed-off-by: Francois Dugast <francois.dugast@intel.com>
-> > ---
-> >  drivers/gpu/drm/xe/xe_pt.c       | 47 ++++++++++++++++++++++----------
-> >  drivers/gpu/drm/xe/xe_vm.c       |  3 ++
-> >  drivers/gpu/drm/xe/xe_vm_types.h |  5 ++++
-> >  3 files changed, 40 insertions(+), 15 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-> > index 15ce77ce7793..2dada51469c9 100644
-> > --- a/drivers/gpu/drm/xe/xe_pt.c
-> > +++ b/drivers/gpu/drm/xe/xe_pt.c
-> > @@ -919,10 +919,10 @@ static const struct xe_pt_walk_ops xe_pt_zap_ptes_ops = {
-> >   * Eviction and Userptr invalidation needs to be able to zap the
-> >   * gpu ptes of a given address range in pagefaulting mode.
-> >   * In order to be able to do that, that function needs access to the shared
-> > - * page-table entrieaso it can either clear the leaf PTEs or
-> > - * clear the pointers to lower-level page-tables. The caller is required
-> > - * to hold the necessary locks to ensure neither the page-table connectivity
-> > - * nor the page-table entries of the range is updated from under us.
-> > + * page-table entries so it can either clear the leaf PTEs or
-> > + * clear the pointers to lower-level page-tables. The function acquires
-> > + * vm->pt_lock (read) to protect against concurrent page-table tree
-> > + * modifications by xe_pt_update_ops_run() and xe_vm_pt_destroy().
-> >   *
-> >   * Return: Whether ptes were actually updated and a TLB invalidation is
-> >   * required.
-> > @@ -937,19 +937,24 @@ bool xe_pt_zap_ptes(struct xe_tile *tile, struct xe_vma *vma)
-> >  		},
-> >  		.tile = tile,
-> >  	};
-> > -	struct xe_pt *pt = xe_vma_vm(vma)->pt_root[tile->id];
-> > +	struct xe_vm *vm = xe_vma_vm(vma);
-> > +	struct xe_pt *pt;
-> >  	u8 pt_mask = (vma->tile_present & ~vma->tile_invalidated);
-> >  
-> >  	if (xe_vma_bo(vma))
-> >  		xe_bo_assert_held(xe_vma_bo(vma));
-> >  	else if (xe_vma_is_userptr(vma))
-> > -		lockdep_assert_held(&xe_vma_vm(vma)->svm.gpusvm.notifier_lock);
-> > +		lockdep_assert_held(&vm->svm.gpusvm.notifier_lock);
-> >  
-> >  	if (!(pt_mask & BIT(tile->id)))
-> >  		return false;
-> >  
-> > -	(void)xe_pt_walk_shared(&pt->base, pt->level, xe_vma_start(vma),
-> > -				xe_vma_end(vma), &xe_walk.base);
-> > +	down_read(&vm->pt_lock);
-> 
-> Style nit - can we use guards or scoped guards in this series?
-> 
-> > +	pt = vm->pt_root[tile->id];
-> > +	if (pt)
-> > +		(void)xe_pt_walk_shared(&pt->base, pt->level, xe_vma_start(vma),
-> > +					xe_vma_end(vma), &xe_walk.base);
-> > +	up_read(&vm->pt_lock);
-> >  
-> >  	return xe_walk.needs_invalidate;
-> >  }
-> > @@ -963,8 +968,9 @@ bool xe_pt_zap_ptes(struct xe_tile *tile, struct xe_vma *vma)
-> >   * SVM invalidation needs to be able to zap the gpu ptes of a given address
-> >   * range. In order to be able to do that, that function needs access to the
-> >   * shared page-table entries so it can either clear the leaf PTEs or
-> > - * clear the pointers to lower-level page-tables. The caller is required
-> > - * to hold the SVM notifier lock.
-> > + * clear the pointers to lower-level page-tables. The function acquires
-> > + * vm->pt_lock (read) to protect against concurrent page-table tree
-> > + * modifications by xe_pt_update_ops_run() and xe_vm_pt_destroy().
-> >   *
-> >   * Return: Whether ptes were actually updated and a TLB invalidation is
-> >   * required.
-> > @@ -980,14 +986,16 @@ bool xe_pt_zap_ptes_range(struct xe_tile *tile, struct xe_vm *vm,
-> >  		},
-> >  		.tile = tile,
-> >  	};
-> > -	struct xe_pt *pt = vm->pt_root[tile->id];
-> > +	struct xe_pt *pt;
-> >  	u8 pt_mask = (range->tile_present & ~range->tile_invalidated);
-> >  
-> >  	/*
-> >  	 * Locking rules:
-> >  	 *
-> > -	 * - notifier_lock (write): full protection against page table changes
-> > -	 *   and MMU notifier invalidations.
-> > +	 * - notifier_lock (write): excludes concurrent MMU notifier
-> > +	 *   invalidations, but does NOT exclude xe_pt_update_ops_run() which
-> > +	 *   holds vm->lock (write).  pt_lock (read) is therefore required to
-> > +	 *   serialise against concurrent xe_pt_commit() / xe_pt_destroy() calls.
-> >  	 *
-> >  	 * - notifier_lock (read) + vm_lock (write): combined protection against
-> >  	 *   invalidations and concurrent page table modifications. (e.g., madvise)
-> > @@ -1000,8 +1008,13 @@ bool xe_pt_zap_ptes_range(struct xe_tile *tile, struct xe_vm *vm,
-> >  	if (!(pt_mask & BIT(tile->id)))
-> >  		return false;
-> >  
-> > -	(void)xe_pt_walk_shared(&pt->base, pt->level, xe_svm_range_start(range),
-> > -				xe_svm_range_end(range), &xe_walk.base);
-> > +	down_read(&vm->pt_lock);
-> 
-> Should be assert vm->pt_lock in held in xe_pt_zap_ptes_entry or do we
-> not have the VM there?
-> 
-> Matt
-> 
-> > +	pt = vm->pt_root[tile->id];
-> > +	if (pt)
-> > +		(void)xe_pt_walk_shared(&pt->base, pt->level,
-> > +					xe_svm_range_start(range),
-> > +					xe_svm_range_end(range), &xe_walk.base);
-> > +	up_read(&vm->pt_lock);
-> >  
-> >  	return xe_walk.needs_invalidate;
-> >  }
-> > @@ -1079,6 +1092,8 @@ static void xe_pt_commit_locks_assert(struct xe_vma *vma)
-> >  
-> >  	if (xe_vma_is_userptr(vma))
-> >  		xe_svm_assert_held_read(vm);
-> > +
-> > +	lockdep_assert_held_write(&vm->pt_lock);
-> >  }
-> >  
-> >  static void xe_pt_commit(struct xe_vma *vma,
-> > @@ -2638,6 +2653,7 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
-> >  	}
-> >  
-> >  	/* Point of no return - VM killed if failure after this */
-> > +	down_write(&vm->pt_lock);
-> >  	for (i = 0; i < pt_update_ops->current_op; ++i) {
-> >  		struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[i];
-> >  
-> > @@ -2645,6 +2661,7 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
-> >  			     pt_op->num_entries, &pt_update_ops->deferred);
-> >  		pt_op->vma = NULL;	/* skip in xe_pt_update_ops_abort */
-> >  	}
-> > +	up_write(&vm->pt_lock);
-> >  
-> >  	if (xe_range_fence_insert(&vm->rftree[tile->id], rfence,
-> >  				  &xe_range_fence_kfree_ops,
-> > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> > index 080c2fff0e95..b711c12bf751 100644
-> > --- a/drivers/gpu/drm/xe/xe_vm.c
-> > +++ b/drivers/gpu/drm/xe/xe_vm.c
-> > @@ -1580,12 +1580,14 @@ static void xe_vm_pt_destroy(struct xe_vm *vm)
-> >  
-> >  	xe_vm_assert_held(vm);
-> >  
-> > +	down_write(&vm->pt_lock);
-> >  	for_each_tile(tile, vm->xe, id) {
-> >  		if (vm->pt_root[id]) {
-> >  			xe_pt_destroy(vm->pt_root[id], vm->flags, NULL);
-> >  			vm->pt_root[id] = NULL;
-> >  		}
-> >  	}
-> > +	up_write(&vm->pt_lock);
-> >  }
-> >  
-> >  static void xe_vm_init_prove_locking(struct xe_device *xe, struct xe_vm *vm)
-> > @@ -1644,6 +1646,7 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags, struct xe_file *xef)
-> >  	} else {
-> >  		init_rwsem(&vm->lock);
-> >  	}
-> > +	init_rwsem(&vm->pt_lock);
-> >  	mutex_init(&vm->snap_mutex);
-> >  
-> >  	INIT_LIST_HEAD(&vm->rebind_list);
-> > diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-> > index 635ed29b9a69..3bc45991f607 100644
-> > --- a/drivers/gpu/drm/xe/xe_vm_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_vm_types.h
-> > @@ -271,6 +271,11 @@ struct xe_vm {
-> >  	 * VM
-> >  	 */
-> >  	struct rw_semaphore lock;
-> > +	/**
-> > +	 * @pt_lock: Protects page-table tree structural modifications from
-> > +	 * concurrent reads during page-table walks (e.g., xe_pt_zap_ptes).
-> > +	 */
-> > +	struct rw_semaphore pt_lock;
-> >  	/**
-> >  	 * @snap_mutex: Mutex used to guard insertions and removals from gpuva,
-> >  	 * so we can take a snapshot safely from devcoredump.
-> > -- 
-> > 2.43.0
-> > 
+> +
+> +#include <linux/debugfs.h>
+> +
+> +#include "xe_debug_data.h"
+> +#include "xe_debug_data_types.h"
+> +#include "xe_device_types.h"
+> +#include "xe_vm_types.h"
+> +
+> +#define MAX_LINE_LEN (64 + PATH_MAX)
+> +
+> +static ssize_t debug_data_read(struct file *file, char __user *buf, size_t count,
+> +			       loff_t *ppos)
+> +{
+> +	struct xe_debug_data *dd;
+> +	unsigned long vm_index;
+> +	const char *path;
+> +	char *kbuf;
+
+maybe
+
+	char *kbuf __free(kfree) = NULL
+
+to avoid leaks?
+
+> +	struct xe_vm *vm;
+
+keep vars in rev-xmas-tree order
+
+> +
+
+no spaces
+
+> +	struct xe_file *xef = file->private_data;
+> +	ssize_t total = 0;
+> +	loff_t pos = 0;
+> +
+> +	if (!xef || !buf)
+
+can xef be NULL here?
+if xe_file_get() can return NULL, then maybe .open shall fail?
+
+can buf be NULL here?
+it's unusual check
+
+> +		return -EINVAL;
+> +
+> +	kbuf = kmalloc(MAX_LINE_LEN, GFP_KERNEL);
+> +	if (!kbuf)
+> +		return -ENOMEM;
+> +
+> +	mutex_lock(&xef->vm.lock);
+
+maybe
+	guard(mutex)(&xef->vm.lock);
+
+to simplify and have more robust code?
+
+> +
+> +	xa_for_each(&xef->vm.xa, vm_index, vm) {
+> +		mutex_lock(&vm->debug_data.lock);
+
+ditto
+
+> +		list_for_each_entry(dd, &vm->debug_data.list, link) {
+> +			int len;
+> +
+> +			path = dd->flags & DRM_XE_VM_BIND_DEBUG_DATA_FLAG_PSEUDO ?
+> +				xe_debug_data_pseudo_path_to_string(dd->pseudopath) :
+> +				dd->pathname;
+> +
+> +			/* Format: <vm id> <begin>-<end> <flags> <offset> <pathname> */
+> +			len = snprintf(kbuf, MAX_LINE_LEN, "%lu 0x%llx-0x%llx 0x%llx 0x%x\t%s\n",
+> +				vm_index,
+> +				dd->addr,
+> +				dd->addr + dd->range,
+> +				dd->flags,
+> +				dd->offset,
+> +				path);
+> +
+> +			/* snprintf may return more but string is truncated to size */
+> +			if (len > MAX_LINE_LEN)
+> +				len = MAX_LINE_LEN;
+> +
+> +			if (pos + len <= *ppos) {
+> +				pos += len;
+> +				continue;
+> +			}
+> +
+> +			if (pos < *ppos) {
+> +				const int skip = *ppos - pos;
+> +
+> +				len -= skip;
+> +				memmove(kbuf, kbuf + skip, len);
+> +				pos = *ppos;
+> +			}
+> +
+> +			if (total + len > count)
+> +				len = count - total;
+> +
+> +			if (copy_to_user(buf + total, kbuf, len)) {
+> +				mutex_unlock(&vm->debug_data.lock);
+> +				mutex_unlock(&xef->vm.lock);
+> +				kfree(kbuf);
+> +				return -EFAULT;
+> +			}
+> +
+> +			total += len;
+> +			pos += len;
+> +
+> +			if (total >= count) {
+> +				mutex_unlock(&vm->debug_data.lock);
+> +				mutex_unlock(&xef->vm.lock);
+> +				kfree(kbuf);
+> +				*ppos = pos;
+> +				return total;
+> +			}
+> +		}
+> +		mutex_unlock(&vm->debug_data.lock);
+> +	}
+> +
+> +	mutex_unlock(&xef->vm.lock);
+> +	kfree(kbuf);
+> +	*ppos = pos;
+> +	return total;
+> +}
+> +
+> +static int debug_data_open(struct inode *inode, struct file *file)
+> +{
+> +	struct xe_file *xef = inode->i_private;
+> +
+> +	file->private_data = xe_file_get(xef);
+> +	return 0;
+> +}
+> +
+> +static int debug_data_release(struct inode *inode, struct file *file)
+> +{
+> +	struct xe_file *xef = inode->i_private;
+> +
+> +	xe_file_put(xef);
+> +	return 0;
+> +}
+> +
+> +static const struct file_operations maps_fops = {
+> +	.owner = THIS_MODULE,
+> +	.open = debug_data_open,
+> +	.release = debug_data_release,
+> +	.read = debug_data_read,
+> +	.llseek = default_llseek,
+> +};
+> +
+
+all public xe functions shall have kernel-doc
+
+> +void xe_client_debugfs_register(struct xe_file *xef)
+> +{
+> +	debugfs_create_file("debug_data", 0444, xef->drm->debugfs_client, xef, &maps_fops);
+> +}
+> diff --git a/drivers/gpu/drm/xe/xe_client_debugfs.h b/drivers/gpu/drm/xe/xe_client_debugfs.h
+> new file mode 100644
+> index 000000000000..9eace15c0a49
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_client_debugfs.h
+> @@ -0,0 +1,19 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2025 Intel Corporation
+> + */
+> +
+> +#ifndef _XE_CLIENT_DEBUGFS_H_
+> +#define _XE_CLIENT_DEBUGFS_H_
+> +
+> +#include <linux/debugfs.h>
+
+is this needed ?
+
+> +
+> +struct xe_file;
+> +
+> +#ifdef CONFIG_DEBUG_FS
+> +void xe_client_debugfs_register(struct xe_file *xef);
+> +#else
+> +static inline void xe_client_debugfs_register(struct xe_file *xef) { }
+> +#endif
+> +
+> +#endif // _XE_CLIENT_DEBUGFS_H_
+
+we don't use // comments
+we don't use trailing guard comments
+
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> index 02ab8b307c9f..539ce3be8d42 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -25,6 +25,7 @@
+>  #include "regs/xe_regs.h"
+>  #include "xe_bo.h"
+>  #include "xe_bo_evict.h"
+> +#include "xe_client_debugfs.h"
+>  #include "xe_configfs.h"
+>  #include "xe_debugfs.h"
+>  #include "xe_defaults.h"
+> @@ -125,6 +126,8 @@ static int xe_file_open(struct drm_device *dev, struct drm_file *file)
+>  		put_task_struct(task);
+>  	}
+>  
+> +	xe_client_debugfs_register(xef);
+> +
+>  	return 0;
+>  }
+>  
+
