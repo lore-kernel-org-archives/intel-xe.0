@@ -4,47 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 960A0CD8CA7
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 22:35:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A2D5CD8CA8
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 22:36:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 24CFD10F9EA;
-	Mon,  8 Jun 2026 22:35:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3017810F9EA;
+	Mon,  8 Jun 2026 22:36:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=sms-medipool.de header.i=@sms-medipool.de header.b="HUGQByq+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VW3X5z4v";
 	dkim-atps=neutral
-Received: from mail.sms-medipool.de (mail.sms-medipool.de [178.63.14.108])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD64010F9E9;
- Mon,  8 Jun 2026 22:35:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sms-medipool.de;
- s=mail; t=1780958149;
- bh=qnS2Rl0CqNQ+Lqtu7CcV+DZOMbWi9Dtj9JXbo93dy58=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=HUGQByq+dTMHqoMEiRhml6VVtJAGaMzDl+NQBaD3kMnr+EbDNG1IKyynMuCNmZ+ln
- Zks6Rnz9qi9oIn/k+AK3lJ2QXtGerWzbsKsu8VL94CB+1cXK2SEt4sgoKLEb4Sdp0A
- Z4tkabSqt9+lkAjii4a/Z9r/8rzCvK8/xV4HvsAY5WxBo6RP0dLH8owNAHeJhTfy+a
- rfuo71OJOUbRfoz1yS3vasCspbxLl9h2RrHbzqSngeLH0vYo4UhGfFBAFZLfmycQeU
- 5cchIjn6nARf5t/PnjFbEK1ZqPJUTc4TJm69bCNNmSz1wcW2vzVi28f9c1Q7VLhvAp
- TngcDaeILrg1A==
-Received: from mail.stoss-medica.de (mail.stoss-medica.de [213.147.17.40])
- by mail.sms-medipool.de (Postfix) with ESMTPS id ED680978C;
- Tue,  9 Jun 2026 00:35:48 +0200 (CEST)
-Received: from NUC16-Linux.sb.golima.de ([95.88.98.111])
- by mail.stoss-medica.de (Kerio Connect 10.0.8 patch 2) with ESMTP;
- Tue, 9 Jun 2026 00:35:48 +0200
-From: Alexander Kaplan <alexander.kaplan@sms-medipool.de>
-To: Imre Deak <imre.deak@intel.com>
-Cc: Alexander Kaplan <alexander.kaplan@sms-medipool.de>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH] drm/i915/tc: Disable outputs instead of modesetting them
- on link reset
-Date: Tue,  9 Jun 2026 00:35:48 +0200
-Message-ID: <20260608223548.2574-1-alexander.kaplan@sms-medipool.de>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FEAD10F9EA
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Jun 2026 22:36:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1780958189; x=1812494189;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=0aQg96mDkt5sgCd7NUjncde11AKYSluMCXpNtZlm0os=;
+ b=VW3X5z4vgbsqQNtk65S2l2P1OhQYUoo2ALD6GmOBFw1EeLAk5YAvqCSO
+ H2FyX3sCX6h2kkT+NexDLqZZkXV+v2f7h8Pd3aYjUuZNYSxpspk5HNp2i
+ Fs2+E3J2I6o82zxVKlHF/mQTKSBS4l6PBDRJArFOfnq+2iP39utJ9RloI
+ iS6sbx0rSU6i38yIJwuknDi1BB+0/RohcfXnu+RkLrNM+62aBZS1x4/gX
+ OJwqr9Ti9Knn29pNUHov37qeJaEl2ViiYe7Dfhs1vC6s7WWEkF9ohvo7c
+ kg+pn7eir2Yf4KIveqo83nahkmTLMXghmu6m9JzTyr2h0OyyVNFXYKuP4 A==;
+X-CSE-ConnectionGUID: Fj4HaHjcRqeXO8EkBkwurA==
+X-CSE-MsgGUID: Xgrp+6LYQuSEgzzJADIitw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11811"; a="81750973"
+X-IronPort-AV: E=Sophos;i="6.24,195,1774335600"; d="scan'208";a="81750973"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2026 15:36:28 -0700
+X-CSE-ConnectionGUID: VCObiYsKSqSQn4PZEVtD6Q==
+X-CSE-MsgGUID: WugfWOSnQKaeilYvKfnJow==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,195,1774335600"; d="scan'208";a="269684741"
+Received: from orsosgc001.jf.intel.com ([10.88.27.185])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2026 15:36:28 -0700
+From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH v2 2/9] drm/xe/rtp: Maintain OA whitelists separately
+Date: Mon,  8 Jun 2026 15:36:17 -0700
+Message-ID: <20260608223624.3711760-3-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.54.0
-In-Reply-To: <aia3UtOtXD65T8Eq@ideak-desk.lan>
-References: <20260605212837.4265-1-alexander.kaplan@sms-medipool.de>
- <aia3UtOtXD65T8Eq@ideak-desk.lan>
+In-Reply-To: <20260608223624.3711760-1-ashutosh.dixit@intel.com>
+References: <20260608223624.3711760-1-ashutosh.dixit@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -61,94 +66,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Imre,
+OA registers are dynamically whitelisted (and again dewhitelisted) on OA
+stream open/close. Maintaining OA whitelists separately from non-OA
+register whitlists simplifies this management of OA register
+whitelisting/dewhitelisting.
 
-first of all, thanks a lot for taking the time to look into this.
-I really appreciate it.
-This isn't really a niche case, just an early one.
-I'm one of the first with Panther Lake, and setups like this will be
-common once these machines are out there.
+v2: Rebase on upstream changes
 
-I'm afraid your patch is for a different issue, though.
-For some background: this is Panther Lake (NUC 16 Pro) driving an LG OLED
-TV through Synaptics VMM7100 based USB-C to HDMI 2.1 PCON adapters.
-I have two such dongles and a TB4 dock here, all VMM7100 based, and all
-three needed a series of fixes to work at all on this machine (DSC, FRL,
-link training quirks).
-This wedge is just the nastiest one, because almost every sink disconnect
-on these adapters loses the signal until a reboot.
-A few more fixes for the same path are on their way.
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_debugfs.c      | 4 +++-
+ drivers/gpu/drm/xe/xe_hw_engine.c       | 2 ++
+ drivers/gpu/drm/xe/xe_hw_engine_types.h | 8 ++++++++
+ drivers/gpu/drm/xe/xe_reg_whitelist.c   | 5 +++++
+ 4 files changed, 18 insertions(+), 1 deletion(-)
 
-I did the test you asked for.
-I rebooted latest drm-tip with your patch applied and drm.debug=0x15e,
-and reproduced the problem by power-cycling the TV while the output was
-active.
-The full boot log up to the wedge is on the first ticket [1], with the
-reproduction steps.
-
-On PTL this never reaches the -EINVAL / WARN you get on the ADL/MTL
-reports.
-The recovery modeset computes a valid (degraded) config and commits it
-against the dead link, link training fails, and the pipe is re-enabled
-regardless, leaving the output enabled on a disconnected port.
-After that the TC PHY ownership stays held, intel_tc_port_connected()
-returns false and AUX is rejected, so the reconnect HPD never produces a
-successful detect.
-Keeping the DSC caps doesn't help here.
-The caps we lose are dfp.*/EDID (the PCON FRL bandwidth) via
-intel_dp_unset_edid(), not dsc_dpcd, and the second failure mode above is
-independent of the sink caps anyway.
-
-Same trigger, your patch vs. this one:
-
-  with your patch (wedge):
-  link_reset_work: TypeC DP-alt sink disconnected, resetting link
-      connectors_changed=1
-      disabling pipe A
-      [DPRX] Link Training failed at link rate = 810000, lane count = 2
-      enabling pipe A
-  TV back on:
-      DP-1 hotplug event (retry 0..5), detect never succeeds, wedged
-
-  with this patch (recovers):
-  link_reset_work: TypeC DP-alt sink disconnected, resetting link
-      disabling pipe A
-      TC port mode reset (dp-alt -> disconnected), PHY released
-  TV back on:
-      DP-1 status disconnected -> connected, detect works
-      enabling pipe A, output back, no reboot
-
-> The driver cannot disable an output that userspace has enabled. The TC
-> port reset above should also result in a hotplug notification, which
-> userspace should handle reconfiguring and re-enabling the output as
-> needed.
-
-I'd argue that's effectively what this ends up doing.
-reset_link_commit() already re-drives the output today (the
-connectors_changed modeset above), it isn't only a notification, and that
-re-commit is what leaves the zombie behind.
-Disabling instead releases the PHY, and as the second snippet shows, the
-reconnect HPD then leads to a normal detect and userspace re-enables the
-output the usual way.
-With the re-commit the zombie keeps connected() false and every detect
-fails, so userspace never gets the chance.
-
-That said, if disabling from the reset work is the wrong layer for you,
-I'm happy to rework it.
-For example not re-enabling the pipe when link training fails in this
-path, or whichever direction you prefer.
-Just let me know.
-
-Also, the patch you have here isn't quite current anymore.
-I've since extended the same approach to also cover the TB4 dock (the
-tbt-alt case), so I'd like to send a v2 that's almost identical plus that
-small follow-up once we've settled the direction.
-
-One side note: the original submission didn't get CI coverage, my address
-isn't on the allowlist yet. I've asked i915-ci-infra@ to add it.
-
-[1] https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14807
-
-Thanks again,
-Alexander
+diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+index f45306308cd66..c38bcacb27e4a 100644
+--- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+@@ -149,8 +149,10 @@ static int register_save_restore(struct xe_gt *gt, struct drm_printer *p)
+ 	drm_printf(p, "\n");
+ 
+ 	drm_printf(p, "Whitelist\n");
+-	for_each_hw_engine(hwe, gt, id)
++	for_each_hw_engine(hwe, gt, id) {
+ 		xe_reg_whitelist_dump(&hwe->reg_whitelist, p);
++		xe_reg_whitelist_dump(&hwe->oa_whitelist, p);
++	}
+ 
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 98265293f2dce..55632ac4dfe7b 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -572,6 +572,8 @@ static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
+ 	hw_engine_setup_default_state(hwe);
+ 
+ 	xe_reg_sr_init(&hwe->reg_whitelist, hwe->name, gt_to_xe(gt));
++	xe_reg_sr_init(&hwe->oa_whitelist, hwe->name, gt_to_xe(gt));
++	xe_reg_sr_init(&hwe->oa_sr, hwe->name, gt_to_xe(gt));
+ 	xe_reg_whitelist_process_engine(hwe);
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+index 2cf898e682f55..84c097da9b6f2 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
++++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+@@ -130,6 +130,14 @@ struct xe_hw_engine {
+ 	 * @reg_whitelist: table with registers to be whitelisted
+ 	 */
+ 	struct xe_reg_sr reg_whitelist;
++	/**
++	 * @oa_whitelist: oa registers to be whitelisted
++	 */
++	struct xe_reg_sr oa_whitelist;
++	/**
++	 * @oa_sr: oa nonpriv whitelist registers, changed on oa stream open/close
++	 */
++	struct xe_reg_sr oa_sr;
+ 	/**
+ 	 * @reg_lrc: LRC workaround registers
+ 	 */
+diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+index 2d8ddb57412c2..6d642c2f6fd76 100644
+--- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
++++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+@@ -103,6 +103,9 @@ static const struct xe_rtp_table_sr register_whitelist = XE_RTP_TABLE_SR(
+ 			 WHITELIST(VFLSKPD,
+ 				   RING_FORCE_TO_NONPRIV_ACCESS_RW))
+ 	},
++);
++
++static const struct xe_rtp_table_sr oa_whitelist = XE_RTP_TABLE_SR(
+ 
+ #define WHITELIST_DENY(r, f) WHITELIST(r, (f) | RING_FORCE_TO_NONPRIV_DENY)
+ 
+@@ -206,6 +209,8 @@ void xe_reg_whitelist_process_engine(struct xe_hw_engine *hwe)
+ 
+ 	xe_rtp_process_to_sr(&ctx, &register_whitelist, &hwe->reg_whitelist, false);
+ 	whitelist_apply_to_hwe(hwe);
++
++	xe_rtp_process_to_sr(&ctx, &oa_whitelist, &hwe->oa_whitelist, false);
+ }
+ 
+ /**
+-- 
+2.54.0
 
