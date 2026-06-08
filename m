@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08688CD8C9F
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 12:54:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55EACCD8C9D
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 12:54:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B581A10F339;
-	Mon,  8 Jun 2026 12:54:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A00010F361;
+	Mon,  8 Jun 2026 12:54:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CEz6iVaR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lNyAtDS9";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66C4210F35D;
- Mon,  8 Jun 2026 12:54:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B655310F35B;
+ Mon,  8 Jun 2026 12:54:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780923274; x=1812459274;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=wRXV4Q39DGfj0gCd9tAAAF9UNfwrjdKxuapY18NrnIE=;
- b=CEz6iVaRuOWOG9P4B73iMJQZKkc4i7ig2k5n7KwLKckkoqglRy9e6x7R
- V4B3t+v3fVcqnxyJGH8ltCO4JE3Q7AmkKaDpxNtlX8VsyT7K8i9qP1Fr3
- artR/446gr+Z/TTiYkzFbbRJnjuVL570NLg3lQyFXcsYrQkUbXlEnWTdY
- tga4OQLvWZeyvefWhKG5YDIj4a7jDWiYp5if1nGdX7J5aCeNroYJMSclj
- 2h76W1ywiFIy9YLGw5bokPR2qAyWB2QyaQ6MMCGpoX1HtiP2OX6Ji9v35
- tUa+tWucvFTMWsKPshOEjIyooSjFxzbbeST9PvB66jpqv9CpKjol4IhBn Q==;
-X-CSE-ConnectionGUID: ND6RLcIkTy65uiQcnpK4+A==
-X-CSE-MsgGUID: Os0L+tffTji+C8JeazPdtA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11810"; a="81401593"
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="81401593"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 05:54:34 -0700
-X-CSE-ConnectionGUID: 0MT4JP9DTdG639k+Bq++vw==
-X-CSE-MsgGUID: MHl7N2s0RWyM7F2ZytP8xA==
+ t=1780923291; x=1812459291;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=zu+bX2MEcLcnmi346hj9WMOklfstSEc2z49I8Ylttno=;
+ b=lNyAtDS9CXxo/yc3QOKCwg3aZJgppMMpOe4cOPw/15Z7hGC0JdsIQnhe
+ QLgu8NSxKYu/UVt4PryTqgZQiZEGUSQKxR5VW3ikyUSx+JjRHX4OXqWZ+
+ PR1l0UTb5DfauMCEh5nTn61YlVZPsIz060yJp0AP5Wsh1StMicr7zVbmT
+ zsJ6fJUt3Y0F1UxcTWUb4R/G5qTJPWi6mZ3XLre/vu8zQDQdhTi0J68Rk
+ 3KrahrB3pSS9S1FUP1dPFK5m1wHabUvxz5P0/Lhcbx4S0je1Qfc3jLuTe
+ aoVu/D0HLc7Apvdft2+lEwjC4OvyBQO6e/Cvdwd6uzXFpEYYrOCN4H9Bd A==;
+X-CSE-ConnectionGUID: Lc9emXUFTAqlxPulkuIgPA==
+X-CSE-MsgGUID: QrJnghifTWGOne3jBRIvqQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11810"; a="85282745"
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="85282745"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2026 05:54:51 -0700
+X-CSE-ConnectionGUID: zUXzTi1zRgqfu3slRrYqeA==
+X-CSE-MsgGUID: dTutTRTgSFqWRNBoBOGi6g==
 X-ExtLoop1: 1
-Received: from nemesa.iind.intel.com ([10.190.239.22])
- by fmviesa003.fm.intel.com with ESMTP; 08 Jun 2026 05:54:32 -0700
-From: Nemesa Garg <nemesa.garg@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="242585932"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2026 05:54:49 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: Nemesa Garg <nemesa.garg@intel.com>
-Subject: [RFC PATCH 2/2] drm/i915/wm: Wait a vblank before shrinking plane DDB
-Date: Mon,  8 Jun 2026 18:20:09 +0530
-Message-Id: <20260608125009.979672-3-nemesa.garg@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260608125009.979672-1-nemesa.garg@intel.com>
-References: <20260608125009.979672-1-nemesa.garg@intel.com>
+Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH v2 0/2] Extend VRR safe window wait for VRR TG
+Date: Mon,  8 Jun 2026 18:07:08 +0530
+Message-ID: <20260608123711.1121908-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,86 +65,19 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Back-to-back atomic commits that keep the per-pipe DBUF
-allocation, MBUS join state and slice mask unchanged but
-reshuffle per-plane PLANE_BUF_CFG sub-ranges can cause
-pipe FIFO underruns. Wait a vblank on the CRTC if any plane
-is shrink (stays allocated, range got smaller) or swap (new
-range overlaps another plane's old range on the same pipe).
+Currently VRR safe window wait is only used for case where VRR is
+active. This can be extended for platforms that always run with VRR
+timing generator.
 
-Assisted-by: Claude:claude-sonnet-4.6
-Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
----
- drivers/gpu/drm/i915/display/skl_watermark.c | 49 ++++++++++++++++++++
- 1 file changed, 49 insertions(+)
+v2: Address review comments from Ville.
 
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 5a3677ea25b0..fdd09700e808 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -3648,6 +3648,53 @@ void intel_dbuf_mbus_post_ddb_update(struct intel_atomic_state *state)
- 
- }
- 
-+/*
-+ * Pre-program shrinking plane DDBs and wait a vblank so HW retires
-+ * the old (larger) ranges before the main commit places new/grown planes
-+ * into the freed space. Avoids the brief DDB overlap that causes pipe
-+ * FIFO underruns. Only handles pure shrinks (new range contained in old);
-+ * swaps are not handled here.
-+ */
-+static void skl_dbuf_pre_shrink(struct intel_atomic_state *state)
-+{
-+	struct intel_display *display = to_intel_display(state);
-+	const struct intel_crtc_state *old_cs, *new_cs;
-+	struct intel_crtc *crtc;
-+
-+	if (DISPLAY_VER(display) != 30)
-+		return;
-+
-+	for_each_oldnew_intel_crtc_in_state(state, crtc, old_cs, new_cs) {
-+		struct intel_plane *plane;
-+		bool need_wait = false;
-+
-+		if (!old_cs->hw.active || !new_cs->hw.active)
-+			continue;
-+
-+		for_each_intel_plane_on_crtc(display->drm, crtc, plane) {
-+			enum plane_id pid = plane->id;
-+			enum pipe pipe = crtc->pipe;
-+			const struct skl_ddb_entry *o = &old_cs->wm.skl.plane_ddb[pid];
-+			const struct skl_ddb_entry *n = &new_cs->wm.skl.plane_ddb[pid];
-+			u16 osz = skl_ddb_entry_size(o), nsz = skl_ddb_entry_size(n);
-+
-+			if (pid == PLANE_CURSOR || !osz || !nsz || nsz >= osz ||
-+			    n->start < o->start || n->end > o->end)
-+				continue;
-+
-+			intel_de_write(display, PLANE_BUF_CFG(pipe, pid),
-+				       PLANE_BUF_END(n->end - 1) | PLANE_BUF_START(n->start));
-+			/* Arm by re-writing PLANE_SURF (same value -> no visible flip). */
-+			intel_de_write(display, PLANE_SURF(pipe, pid),
-+				       intel_de_read(display, PLANE_SURF(pipe, pid)));
-+			need_wait = true;
-+		}
-+
-+		if (need_wait)
-+			intel_crtc_wait_for_next_vblank(crtc);
-+	}
-+}
-+
- void intel_dbuf_pre_plane_update(struct intel_atomic_state *state)
- {
- 	struct intel_display *display = to_intel_display(state);
-@@ -3660,6 +3707,8 @@ void intel_dbuf_pre_plane_update(struct intel_atomic_state *state)
- 	if (!new_dbuf_state)
- 		return;
- 
-+	skl_dbuf_pre_shrink(state);
-+
- 	old_slices = old_dbuf_state->enabled_slices;
- 	new_slices = old_dbuf_state->enabled_slices | new_dbuf_state->enabled_slices;
- 
+Ankit Nautiyal (2):
+  drm/i915/dsb: shift delayed-vblank DSL wait start by one scanline
+  drm/i915/dsb: Use safe window path when VRR TG is used
+
+ drivers/gpu/drm/i915/display/intel_dsb.c | 30 ++++++++++++++++++++----
+ 1 file changed, 25 insertions(+), 5 deletions(-)
+
 -- 
-2.25.1
+2.45.2
 
