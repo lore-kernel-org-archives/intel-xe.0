@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83909CD8CA4
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 14:12:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A109CD8C9F
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 14:12:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E32710F44D;
-	Mon,  8 Jun 2026 14:12:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2833210F458;
+	Mon,  8 Jun 2026 14:12:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SK4gDx8Y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="evLQSwL3";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2210E10F453;
- Mon,  8 Jun 2026 14:12:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72B3910F458;
+ Mon,  8 Jun 2026 14:12:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780927943; x=1812463943;
+ t=1780927946; x=1812463946;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=AG1e+PY82yvNhlV0RuhRPlJnmjXAQARdFODiz9RFZ/U=;
- b=SK4gDx8Ydh/l7E+GNRDY1jVBD2ycnm2G0aHZF+mBdAnlzj8JKFAYgW/v
- /aoy0Lsggio6kx/jHc9HQIqjKTructbdlQiMRc9mFigwtUzfBcXZsAsOl
- rBjdhwEEudstZy+Ni5apgbuyQdbqD1F3rTuOdQ0AeLXIBwDpVHezz6bpZ
- clKlnaPl6RUZtl6xIHI6whYREYXt2k2j8LQtmJqFZkUWe0O09tFpINp5p
- mD5d2G7yTEfLbChTSI8RV1soRKhFa95iQCEhONObena7AKmTBqp9ludLs
- hWk0qF7fKunqQ6eFLs099zwvirEhhf7QHBhdiaUfZvwf2Cjknz9mr7jeZ w==;
-X-CSE-ConnectionGUID: 36nSvseIQienM5UTPMDFbg==
-X-CSE-MsgGUID: ZEr+xbZMTiS5Wdp2X6IscQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11810"; a="81781309"
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="81781309"
+ bh=YSdHfduE5zGGPIGXDLCcZoefo58hmaf7zgkJf4g2R58=;
+ b=evLQSwL3gQ6LFfne6c42PL/4bOTN5udRTpTjyD46RKNj01aSyvALSAFX
+ QIO2LImHADltXIP2c/4HBSNo+YMje5+FRpoZHA3+vG5F6J7rXWVb2qQHk
+ JinR5YGWqOb1o0v+j0r17B/yeMGZXscD5YNycwM+Jq4BCHh8rMWVbpGTz
+ YPBQu3I64HDH6mF8ncZWr+VL/wFF2g8QWahXc/Kgu611S4rrz6qgXnB3E
+ /N45ujf4aVNfEQFOwoiolf0ZqQb1/+vSi16EwelYFBKvT/z89c/1LcL6S
+ Saij/tAxDrQSXtmYOek1VDIXaZpwwcvBwR24luR1AxRKFbWOUQb8yRpdU A==;
+X-CSE-ConnectionGUID: I6vW5i2BTOy+8QLYCaw+2Q==
+X-CSE-MsgGUID: m6+aNSWVQaqZRHmf7f2EKQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11810"; a="81781320"
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="81781320"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 07:12:23 -0700
-X-CSE-ConnectionGUID: CO6GvewfTIOjGSAWA1VA/w==
-X-CSE-MsgGUID: zolFDTTLRbCJtJ4m81WzfQ==
+ 08 Jun 2026 07:12:26 -0700
+X-CSE-ConnectionGUID: 8YQo9jdvTq6lrZQ8GCfviw==
+X-CSE-MsgGUID: NmeHfQ80Qsq+/tCft7MuLA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="241113709"
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="241113738"
 Received: from carterle-desk.ger.corp.intel.com (HELO
  jhogande-mobl3.intel.com) ([10.245.246.213])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 07:12:21 -0700
+ 08 Jun 2026 07:12:24 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH 4/7] drm/i915/psr: Split PSR compute config
-Date: Mon,  8 Jun 2026 17:11:21 +0300
-Message-ID: <20260608141124.144878-5-jouni.hogander@intel.com>
+Subject: [PATCH 6/7] drm/i915/psr: Add PSR specific pre compute config
+Date: Mon,  8 Jun 2026 17:11:23 +0300
+Message-ID: <20260608141124.144878-7-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260608141124.144878-1-jouni.hogander@intel.com>
 References: <20260608141124.144878-1-jouni.hogander@intel.com>
@@ -70,97 +70,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-DP Panel Replay needs FEC being enabled. Link computation needs to know if
-FEC is about to be enabled. Due to this split intel_psr_pre_compute_config
-from intel_psr_compute_config. This is a preparation to enable FEC for DP
-Panel Replay.
+Add _psr_pre_compute_config and move everything possible into it to unify
+how Panel Replay and PSR compute config is implemented.
+
+While changing this re-order psr_pre_compute_config a bit as well:
+
+It is confusing to see "PSR disabled due to joiner" on a setup that doesn't
+even support PSR or Panel Replay. Move checks for joiner and interlaced
+mode after support for PSR/Panel Replay support is checked.
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c     |  2 ++
- drivers/gpu/drm/i915/display/intel_dp_mst.c |  2 ++
- drivers/gpu/drm/i915/display/intel_psr.c    | 19 +++++++++++++++----
- drivers/gpu/drm/i915/display/intel_psr.h    |  2 ++
- 4 files changed, 21 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_psr.c | 39 +++++++++++++++++-------
+ 1 file changed, 28 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 0bbbdf10c427d..e7782d41224a4 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -3676,6 +3676,8 @@ intel_dp_compute_config(struct intel_encoder *encoder,
- 	if (intel_dp_hdisplay_bad(display, adjusted_mode->crtc_hdisplay))
- 		return -EINVAL;
- 
-+	intel_psr_pre_compute_config(intel_dp, pipe_config);
-+
- 	/*
- 	 * Try to respect downstream TMDS clock limits first, if
- 	 * that fails assume the user might know something we don't.
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index f96f26067ab71..24cc347f38ee1 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -640,6 +640,8 @@ static int mst_stream_compute_link_for_joined_pipes(struct intel_encoder *encode
- 		return -EINVAL;
- 	}
- 
-+	intel_psr_pre_compute_config(intel_dp, pipe_config);
-+
- 	/* enable compression if the mode doesn't fit available BW */
- 	if (dsc_needed) {
- 		int dsc_slice_count;
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index f58200d38ac2c..75614abac24bb 100644
+index a61fa9d0ff82c..0cd183ffb0f91 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1927,12 +1927,10 @@ void intel_psr_set_non_psr_pipes(struct intel_dp *intel_dp,
- 		~BIT(to_intel_crtc(crtc_state->uapi.crtc)->pipe);
+@@ -1779,9 +1779,6 @@ static bool _psr_compute_config(struct intel_dp *intel_dp,
+ 	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+ 	int entry_setup_frames;
+ 
+-	if (!CAN_PSR(intel_dp) || !display->params.enable_psr)
+-		return false;
+-
+ 	/*
+ 	 * Currently PSR doesn't work reliably with VRR enabled.
+ 	 */
+@@ -1907,6 +1904,15 @@ static bool _panel_replay_pre_compute_config(struct intel_dp *intel_dp,
+ 	return true;
  }
  
--void intel_psr_compute_config(struct intel_dp *intel_dp,
--			      struct intel_crtc_state *crtc_state,
--			      struct drm_connector_state *conn_state)
-+void intel_psr_pre_compute_config(struct intel_dp *intel_dp,
-+				  struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
--	struct intel_connector *connector = to_intel_connector(conn_state->connector);
- 	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
- 
- 	if (!psr_global_enabled(intel_dp)) {
-@@ -1963,6 +1961,19 @@ void intel_psr_compute_config(struct intel_dp *intel_dp,
- 		return;
- 	}
- 
-+	crtc_state->has_psr = true;
++static bool _psr_pre_compute_config(struct intel_dp *intel_dp,
++				    struct intel_crtc_state *crtc_state,
++				    struct drm_connector_state *conn_state)
++{
++	struct intel_display *display = to_intel_display(intel_dp);
++
++	return CAN_PSR(intel_dp) && display->params.enable_psr;
 +}
 +
-+void intel_psr_compute_config(struct intel_dp *intel_dp,
-+			      struct intel_crtc_state *crtc_state,
-+			      struct drm_connector_state *conn_state)
-+{
-+	struct intel_connector *connector =
-+		to_intel_connector(conn_state->connector);
+ static bool intel_psr_needs_wa_18037818876(struct intel_dp *intel_dp,
+ 					   struct intel_crtc_state *crtc_state)
+ {
+@@ -1952,19 +1958,30 @@ void intel_psr_pre_compute_config(struct intel_dp *intel_dp,
+ 
+ 	if (!psr_global_enabled(intel_dp)) {
+ 		drm_dbg_kms(display->drm, "PSR disabled by flag\n");
+-		return;
++		goto out_psr_disable;
+ 	}
+ 
+ 	if (intel_dp->psr.sink_not_reliable) {
+ 		drm_dbg_kms(display->drm,
+ 			    "PSR sink implementation is not reliable\n");
+-		return;
++		goto out_psr_disable;
+ 	}
+ 
++	crtc_state->has_psr = crtc_state->has_panel_replay =
++		_panel_replay_pre_compute_config(intel_dp, crtc_state,
++						 conn_state);
 +
 +	if (!crtc_state->has_psr)
-+		return;
++		crtc_state->has_psr = _psr_pre_compute_config(intel_dp, crtc_state,
++							      conn_state);
 +
- 	/* Only used for state verification. */
- 	crtc_state->panel_replay_dsc_support = connector->dp.panel_replay_caps.dsc_support;
- 	crtc_state->has_panel_replay = _panel_replay_compute_config(crtc_state, conn_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
-index 29723e63888f8..56af6bde68f86 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.h
-+++ b/drivers/gpu/drm/i915/display/intel_psr.h
-@@ -47,6 +47,8 @@ void intel_psr_init(struct intel_dp *intel_dp);
++	if (!crtc_state->has_psr)
++		goto out_psr_disable;
++
+ 	if (adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE) {
+ 		drm_dbg_kms(display->drm,
+ 			    "PSR condition failed: Interlaced mode enabled\n");
+-		return;
++		goto out_psr_disable;
+ 	}
+ 
+ 	/*
+@@ -1975,13 +1992,13 @@ void intel_psr_pre_compute_config(struct intel_dp *intel_dp,
+ 	if (crtc_state->joiner_pipes) {
+ 		drm_dbg_kms(display->drm,
+ 			    "PSR disabled due to joiner\n");
+-		return;
++		goto out_psr_disable;
+ 	}
+ 
+-	crtc_state->has_psr = true;
+-	crtc_state->has_panel_replay =
+-		_panel_replay_pre_compute_config(intel_dp, crtc_state,
+-						 conn_state);
++	return;
++
++out_psr_disable:
++	crtc_state->has_psr = crtc_state->has_panel_replay = false;
+ }
+ 
  void intel_psr_compute_config(struct intel_dp *intel_dp,
- 			      struct intel_crtc_state *crtc_state,
- 			      struct drm_connector_state *conn_state);
-+void intel_psr_pre_compute_config(struct intel_dp *intel_dp,
-+				  struct intel_crtc_state *crtc_state);
- void intel_psr_get_config(struct intel_encoder *encoder,
- 			  struct intel_crtc_state *pipe_config);
- void intel_psr_irq_handler(struct intel_dp *intel_dp, u32 psr_iir);
 -- 
 2.43.0
 
