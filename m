@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6094ACD6E79
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 609A3CD8CAE
 	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 16:54:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17CC010F76D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FA1E10F76E;
 	Mon,  8 Jun 2026 16:54:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N4Emw+BX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IQp1kRKi";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 442C810F76B
- for <intel-xe@lists.freedesktop.org>; Mon,  8 Jun 2026 16:54:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C576D10F76B
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Jun 2026 16:54:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780937691; x=1812473691;
+ t=1780937690; x=1812473690;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=skzP8qiz0SgKC7mWZYxrP3zIyD9zKP3ZY8c4D8FzWTQ=;
- b=N4Emw+BXbt0Y8LtHn1a3sDEtCvTHyFoAai6Xc1XOcK+PpLjqvBMbmt4J
- mZmEv7JpV/TO8SLdPUfkcJ1KhLQ1c4kXPNO/0VIufLN39cVCuKJA1pSWC
- IFPG2qJ6gHToXTGtQT7NsaJIHSSKRudK36+wYabofTbw4JWgk3NcLbMU6
- ORDo274q1mpm95/K2Tu8YW3PzaIRa745vNH+lQrom6qE/CqAh84f5KLk9
- NAH0KDgxccEPCm6L1jmVrdPtmaoyIL/f56Z6PGghp2oeSNebI6w0svQ0l
- NW9zXmyvuv1DbqcOCWbfAg7kC4lO8miIUSrXG7aLyJGToPfbNS/a+EiPt w==;
-X-CSE-ConnectionGUID: ou9EStkpSImJxz1kImMDnA==
-X-CSE-MsgGUID: Qn7WWojzT1aoDUEvGlSQTw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11811"; a="81744557"
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="81744557"
+ bh=CFQSFE7LEhnyNsCxXR5rdR9o6GHSU1BbQu+J+8k8Rwk=;
+ b=IQp1kRKi73a/ofyX7myt+zr7BcdCsmHbmdKY3zGKrUcnUY+VKrdIBIdI
+ CWhjKRXAjC8Wl6/OqaUtB2gTtFEwOXnWUKbSipaxsYcbvOz0XSUChEFGl
+ XPKhT+/rjIADOORL7dTllC5l6LXcX0PiTpDDDsw1thapmbbfa4BGRisvn
+ jWga/ZsrDKXtQbWnNcvhB2yIVEKkss1LSiDPizd8FquaERx2AI3qthb0p
+ tgmISPaOWpBtkaYcNt0gEoZlh7/qMYlstAHE5NPBQj61+dfOtvrRICx7u
+ P0PdbF57a1X0oQmHtm3lRfNXlONe3krC9S1AP9Q4UAnnYNQubZo0N7RSA w==;
+X-CSE-ConnectionGUID: g84WTGBwRgW1E9FYXHXiQg==
+X-CSE-MsgGUID: FV6EJSXUTD2G74nDPzcpYA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11811"; a="81744545"
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="81744545"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 09:54:50 -0700
-X-CSE-ConnectionGUID: +MASKiuASMC9ere+JJ06dA==
-X-CSE-MsgGUID: sjxT6CBlTJOxEQthrrvU7A==
+ 08 Jun 2026 09:54:48 -0700
+X-CSE-ConnectionGUID: B4NhKCSnQdiyqW9vDAApuQ==
+X-CSE-MsgGUID: +6c6D/w0TjSwf7n+pfE6oA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="247467569"
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="247467555"
 Received: from smoudgil-mobl1.amr.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.117.247])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 09:54:48 -0700
+ 08 Jun 2026 09:54:46 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 08/16] drm/xe/kunit: Skip forcewake operations on fake device
-Date: Mon,  8 Jun 2026 18:54:21 +0200
-Message-ID: <20260608165429.587-9-michal.wajdeczko@intel.com>
+Subject: [PATCH 06/16] drm/xe/mmio: Allow to replace xe_mmio_probe_early()
+ with stub
+Date: Mon,  8 Jun 2026 18:54:19 +0200
+Message-ID: <20260608165429.587-7-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260608165429.587-1-michal.wajdeczko@intel.com>
 References: <20260608165429.587-1-michal.wajdeczko@intel.com>
@@ -67,38 +68,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-During some of the kunit tests we might want to use unmodified xe
-functions that in turn may internally use xe_force_wake component.
-Skip low-level forcewake MMIO operations, in similar way as VFs,
-when running on the fake xe_device.
+We want to use replacement function in upcoming kunit helpers.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_force_wake.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_mmio.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_force_wake.c b/drivers/gpu/drm/xe/xe_force_wake.c
-index 197e2197bd0a..eb3519107a31 100644
---- a/drivers/gpu/drm/xe/xe_force_wake.c
-+++ b/drivers/gpu/drm/xe/xe_force_wake.c
-@@ -95,7 +95,7 @@ void xe_force_wake_init_engines(struct xe_gt *gt, struct xe_force_wake *fw)
+diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+index d53d727492c6..3f4f3c0f43fd 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.c
++++ b/drivers/gpu/drm/xe/xe_mmio.c
+@@ -10,6 +10,8 @@
+ #include <linux/minmax.h>
+ #include <linux/pci.h>
  
- static void __domain_ctl(struct xe_gt *gt, struct xe_force_wake_domain *domain, bool wake)
- {
--	if (IS_SRIOV_VF(gt_to_xe(gt)))
-+	if (IS_SRIOV_VF(gt_to_xe(gt)) || !xe_device_is_real(gt_to_xe(gt)))
- 		return;
++#include <kunit/static_stub.h>
++
+ #include <drm/drm_managed.h>
+ #include <drm/drm_print.h>
  
- 	xe_mmio_write32(&gt->mmio, domain->reg_ctl, domain->mask | (wake ? domain->val : 0));
-@@ -106,7 +106,7 @@ static int __domain_wait(struct xe_gt *gt, struct xe_force_wake_domain *domain,
- 	u32 value;
- 	int ret;
+@@ -103,6 +105,8 @@ int xe_mmio_probe_early(struct xe_device *xe)
+ 	struct xe_tile *root_tile = xe_device_get_root_tile(xe);
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
  
--	if (IS_SRIOV_VF(gt_to_xe(gt)))
-+	if (IS_SRIOV_VF(gt_to_xe(gt)) || !xe_device_is_real(gt_to_xe(gt)))
- 		return 0;
- 
- 	ret = xe_mmio_wait32(&gt->mmio, domain->reg_ack, domain->val, wake ? domain->val : 0,
++	KUNIT_STATIC_STUB_REDIRECT(xe_mmio_probe_early, xe);
++
+ 	xe->mmio.regs = pcim_iomap(pdev, GTTMMADR_BAR, 0);
+ 	if (!xe->mmio.regs) {
+ 		xe_err(xe, "Failed to map GTTMMADR_BAR\n");
 -- 
 2.47.1
 
