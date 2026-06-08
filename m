@@ -4,61 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7CBE2CD8C9D
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 13:14:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B905ECD8C9F
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 13:25:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FBDA10E60C;
-	Mon,  8 Jun 2026 13:14:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7864210F3B6;
+	Mon,  8 Jun 2026 13:25:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fqN0Y0yM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LFuXZcB2";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81A2210F39D;
- Mon,  8 Jun 2026 13:14:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07C2D10F3B6;
+ Mon,  8 Jun 2026 13:25:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780924475; x=1812460475;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=9sF+4v8YI2ZxezWNWd3vYVsqPYHQjJ0RAbV6Z99ENAA=;
- b=fqN0Y0yMWedEhsocUL3naRUSGMf8Q9mbzeQRQ/ZdwyekpJMTvEX7/8KE
- U7JIVbZTzAgENXI+QO47vGME7VW7nHF3Ho1VlfqVjozSNE0A2yns/3m0y
- PcLO8pkcEZsbJz1NeqAuDa4roKVZUz1ZSZyz39VO3KR3kuphJtlHSh8LB
- 4pCnzm3ftg24DfYI8NcvGskQPu2chLY0NZAAQn3GRu1G1OXiBRPzL8eTF
- xDKvzDc3/AULkfrAuN+Rqeby8kZ5iXPvIs4UUT9rF1OmFpxNFTFT4tN7e
- bg+mHeC+bD1SHfWe6qyJE3dbZkVabza+/tFZAk2aNsYPsseGc5f+1CtGi w==;
-X-CSE-ConnectionGUID: vs9/nhjbRd+85WL9lWHVjw==
-X-CSE-MsgGUID: UJeOWYfXRraoKn1EzPu1yw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11810"; a="80685744"
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="80685744"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 06:14:34 -0700
-X-CSE-ConnectionGUID: JSR4p8OHQzi0G+g0qWlGxg==
-X-CSE-MsgGUID: boYrYMR/Q5y/Okv5ZIqklQ==
+ t=1780925108; x=1812461108;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=90+OGpURpXUilNv4PiAZxQHU1o5EBbJSgeyu4BiXMbg=;
+ b=LFuXZcB27+9s54b8GUE7kuexnD04LuWVb7RA2tz2Rv2izzdc2eedKeBb
+ 4i7mBt5O3GWTFxo1zNqe6c/cjekFT7gMrPWZ0k1xfMPjTQyFM6dFcFvga
+ e6p9jFYItm8tRwslVS4PnLDPeb/EHxZ+A6+F8nNQM953Q4HYYDmzg40ML
+ MoVpyXp36fucZcy45jL6zPM8Da7Z/bA1QXbUlfbsKlhbFCfzgEpfQgV1c
+ mLtbDioFQq19f1LmgeR+/wqVnscGiAYtlHU8MalrokkUw5Xc2zHgasEf1
+ HnL5ejJ5tHbPUWnd4JE1m+f1k9UiEwkuReb7pbtkeZi8IcO3D1J05qfWe g==;
+X-CSE-ConnectionGUID: jUZ86IDlQ26LWdjh2sq6sQ==
+X-CSE-MsgGUID: jBMmFdFhSnOlZThwuJIMag==
+X-IronPort-AV: E=McAfee;i="6800,10657,11810"; a="81634474"
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="81634474"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2026 06:25:07 -0700
+X-CSE-ConnectionGUID: WPHVFntzSU2QzbqTx8/rqQ==
+X-CSE-MsgGUID: 0Weiyyq4TDGWfZMokDVumA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="243104293"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.244.230])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 06:14:33 -0700
-Date: Mon, 8 Jun 2026 16:14:29 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Nemesa Garg <nemesa.garg@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [RFC PATCH 2/2] drm/i915/wm: Wait a vblank before shrinking
- plane DDB
-Message-ID: <aibANUfuILwpHQA8@intel.com>
-References: <20260608125009.979672-1-nemesa.garg@intel.com>
- <20260608125009.979672-3-nemesa.garg@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="244694459"
+Received: from display-adls.igk.intel.com ([10.211.131.198])
+ by orviesa010.jf.intel.com with ESMTP; 08 Jun 2026 06:25:07 -0700
+From: Mika Kahola <mika.kahola@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Mika Kahola <mika.kahola@intel.com>
+Subject: [PATCH] drm/i915/display: Skip generic pipe dpll_hw_state compare on
+ LT PHY
+Date: Mon,  8 Jun 2026 13:25:05 +0000
+Message-ID: <20260608132505.1849158-1-mika.kahola@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260608125009.979672-3-nemesa.garg@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,94 +65,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jun 08, 2026 at 06:20:09PM +0530, Nemesa Garg wrote:
-> Back-to-back atomic commits that keep the per-pipe DBUF
-> allocation, MBUS join state and slice mask unchanged but
-> reshuffle per-plane PLANE_BUF_CFG sub-ranges can cause
-> pipe FIFO underruns. Wait a vblank on the CRTC if any plane
-> is shrink (stays allocated, range got smaller) or swap (new
-> range overlaps another plane's old range on the same pipe).
+LT PHY PLL readout is only partially reliable, and the LT PHY code
+already documents that only a subset of the state can be read back
+reliably after power gating.
 
-skl_crtc_planes_update_arm() doesn't allow DBUF overlaps to
-occur.
+The generic pipe-state verification compares dpll_hw_state as part of
+intel_pipe_config_compare(), which can trigger false-positive
+"pipe state doesn't match!" warnings on LT PHY platforms. DPLL-specific
+verification already exists via intel_dpll_state_verify().
 
-> 
-> Assisted-by: Claude:claude-sonnet-4.6
-> Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/skl_watermark.c | 49 ++++++++++++++++++++
->  1 file changed, 49 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-> index 5a3677ea25b0..fdd09700e808 100644
-> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
-> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> @@ -3648,6 +3648,53 @@ void intel_dbuf_mbus_post_ddb_update(struct intel_atomic_state *state)
->  
->  }
->  
-> +/*
-> + * Pre-program shrinking plane DDBs and wait a vblank so HW retires
-> + * the old (larger) ranges before the main commit places new/grown planes
-> + * into the freed space. Avoids the brief DDB overlap that causes pipe
-> + * FIFO underruns. Only handles pure shrinks (new range contained in old);
-> + * swaps are not handled here.
-> + */
-> +static void skl_dbuf_pre_shrink(struct intel_atomic_state *state)
-> +{
-> +	struct intel_display *display = to_intel_display(state);
-> +	const struct intel_crtc_state *old_cs, *new_cs;
-> +	struct intel_crtc *crtc;
-> +
-> +	if (DISPLAY_VER(display) != 30)
-> +		return;
-> +
-> +	for_each_oldnew_intel_crtc_in_state(state, crtc, old_cs, new_cs) {
-> +		struct intel_plane *plane;
-> +		bool need_wait = false;
-> +
-> +		if (!old_cs->hw.active || !new_cs->hw.active)
-> +			continue;
-> +
-> +		for_each_intel_plane_on_crtc(display->drm, crtc, plane) {
-> +			enum plane_id pid = plane->id;
-> +			enum pipe pipe = crtc->pipe;
-> +			const struct skl_ddb_entry *o = &old_cs->wm.skl.plane_ddb[pid];
-> +			const struct skl_ddb_entry *n = &new_cs->wm.skl.plane_ddb[pid];
-> +			u16 osz = skl_ddb_entry_size(o), nsz = skl_ddb_entry_size(n);
-> +
-> +			if (pid == PLANE_CURSOR || !osz || !nsz || nsz >= osz ||
-> +			    n->start < o->start || n->end > o->end)
-> +				continue;
-> +
-> +			intel_de_write(display, PLANE_BUF_CFG(pipe, pid),
-> +				       PLANE_BUF_END(n->end - 1) | PLANE_BUF_START(n->start));
-> +			/* Arm by re-writing PLANE_SURF (same value -> no visible flip). */
-> +			intel_de_write(display, PLANE_SURF(pipe, pid),
-> +				       intel_de_read(display, PLANE_SURF(pipe, pid)));
-> +			need_wait = true;
-> +		}
-> +
-> +		if (need_wait)
-> +			intel_crtc_wait_for_next_vblank(crtc);
-> +	}
-> +}
-> +
->  void intel_dbuf_pre_plane_update(struct intel_atomic_state *state)
->  {
->  	struct intel_display *display = to_intel_display(state);
-> @@ -3660,6 +3707,8 @@ void intel_dbuf_pre_plane_update(struct intel_atomic_state *state)
->  	if (!new_dbuf_state)
->  		return;
->  
-> +	skl_dbuf_pre_shrink(state);
-> +
->  	old_slices = old_dbuf_state->enabled_slices;
->  	new_slices = old_dbuf_state->enabled_slices | new_dbuf_state->enabled_slices;
->  
-> -- 
-> 2.25.1
+Skip the generic dpll_hw_state pipe-state compare on LT PHY platforms
+and rely on the dedicated DPLL verification path instead.
 
+Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 2fa10f858279..85ad2bc4963d 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -5374,8 +5374,12 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+ 	if (display->dpll.mgr)
+ 		PIPE_CONF_CHECK_P(intel_dpll);
+ 
+-	/* FIXME convert everything over the dpll_mgr */
+-	if (display->dpll.mgr || HAS_GMCH(display))
++	/*
++	 * LT PHY PLL readout is only partially reliable and the PLL state
++	 * is already verified via intel_dpll_state_verify(). Avoid false
++	 * positives from the generic pipe state comparison.
++	 */
++	if ((display->dpll.mgr || HAS_GMCH(display)) && !HAS_LT_PHY(display))
+ 		PIPE_CONF_CHECK_PLL(dpll_hw_state);
+ 
+ 	PIPE_CONF_CHECK_X(dsi_pll.ctrl);
 -- 
-Ville Syrjälä
-Intel
+2.43.0
+
