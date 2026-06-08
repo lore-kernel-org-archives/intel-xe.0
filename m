@@ -4,97 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CCE8CD8C8E
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 06:53:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25F6CCD8C9D
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 06:53:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B514810EDB5;
-	Mon,  8 Jun 2026 06:53:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA33D10EDBA;
+	Mon,  8 Jun 2026 06:53:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="L1813wxY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RBciAHzb";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF69710EDBF;
- Mon,  8 Jun 2026 06:53:03 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 313B943A31;
- Mon,  8 Jun 2026 06:53:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC2AF1F00893;
- Mon,  8 Jun 2026 06:53:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1780901583;
- bh=havdYnCEiwh5vTCKe1DHbkaoT5AWDXTLJ1Y7Ln7iWgw=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To;
- b=L1813wxYCSG23bMqgH0ctBCaj9Bpvn+Mzei1rNqsq0WCcwGOsXm6XM2KGxAXsFIYY
- PNDm8BVVIy+mxZVPKU4wVu6h4p0KPjoC1XxutYgkz/tkmmhAG8rVrOOKTNPIdmEki7
- ZhxSUdrBlMWLeL8QBDbyNq9XDMsiOMNBfZ2GhLV/YwyVuA/eN004Tel/YWmS0caTVI
- 1Ki3J3QunXEpB3QhQYJVMtlF0mA4AxTKTG00ZLd+5TQtr+P/xrxmp+UI8GKHBADra+
- 51Vuz5yLHqFvIOweKB/4wkDinKL1buqvy1wE9fbYOVn6sWyc24920VQdY8amOd7RLf
- 3b6jOlh5wB1iw==
-Received: from johan by xi.lan with local (Exim 4.99.3)
- (envelope-from <johan@kernel.org>) id 1wWTr1-00000000Lrw-2QFM;
- Mon, 08 Jun 2026 08:52:59 +0200
-Date: Mon, 8 Jun 2026 08:52:59 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>,
- Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
- Lee Jones <lee@kernel.org>,
- Mark Brown <broonie@opensource.wolfsonmicro.com>,
- Thierry Reding <thierry.reding@avionic-design.de>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Srinivas Kandagatla <srini@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Vinod Koul <vkoul@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,
- Saravana Kannan <saravanak@kernel.org>,
- Madhavan Srinivasan <maddy@linux.ibm.com>,
- Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>,
- "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
- Andi Shyti <andi.shyti@kernel.org>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Doug Berger <opendmb@gmail.com>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Ulf Hansson <ulfh@kernel.org>, Frank Li <Frank.Li@nxp.com>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Peter Chen <peter.chen@kernel.org>,
- Paul Cercueil <paul@crapouillou.net>, Bin Liu <b-liu@ti.com>,
- Maximilian Luz <luzmaximilian@gmail.com>, Hans de Goede <hansg@kernel.org>,
- Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>,
- Krzysztof Kozlowski <krzk@kernel.org>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>, brgl@kernel.org,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
- driver-core@lists.linux.dev, devicetree@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, linux-i2c@vger.kernel.org,
- iommu@lists.linux.dev, linux-pm@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-usb@vger.kernel.org, linux-mips@vger.kernel.org,
- platform-driver-x86@vger.kernel.org
-Subject: Re: [PATCH 22/23] reset: rzg2l: use
- platform_device_set_of_node_from_dev()
-Message-ID: <aiZmy1lxcYzMF78e@hovoldconsulting.com>
-References: <20260521-pdev-fwnode-ref-v1-0-88c324a1b8d2@oss.qualcomm.com>
- <20260521-pdev-fwnode-ref-v1-22-88c324a1b8d2@oss.qualcomm.com>
- <6af284545729f03a60d06479339862a2f08c6b7e.camel@pengutronix.de>
- <ah9QtExF2rUUTMNo@ashevche-desk.local>
- <aiK-qZqpuC-OEigf@hovoldconsulting.com>
- <aiLjE0SLwrDytyw0@ashevche-desk.local>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E2D410EDB6;
+ Mon,  8 Jun 2026 06:53:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1780901613; x=1812437613;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=4EsfKOTJe5d7JDFe8kO88W/PuOH3LEH7LI6/ve9dhFE=;
+ b=RBciAHzboAEdR9tcFgtt7VP8toPHPGtJ0L7J13+9NrKCHj8AuIxDZZEW
+ FU0FyJnKR4hX25gSrWs78a6BWdmmZMlzvklPPTwaFZxqo6+4XoTPGo8gv
+ h1+xaEBVAMRu4Y0HvxSGzgm6FThU2uzA50hGzsdbVl1a4zuxpeMg0CwB2
+ A8gs839mmE3uxpsOj3Un48Qib5Xx3y0YXyAMhMpSW/vsC18BH9gxWr721
+ 2MWYk4/C6REu+/6H9zTgQfC0OBv31lWeELF4PK9Bear5aienn6SUBOGjo
+ 4EmCAMqpS22tRkZm/WzeXFjrqloPz7+nvadtw6xaHZ9iLd6ouPttvYFGw A==;
+X-CSE-ConnectionGUID: mRejKt7dSS+KB723e8TdBw==
+X-CSE-MsgGUID: bD3hg9KpTjalLR8UM2Y35A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11810"; a="92196156"
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="92196156"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2026 23:53:32 -0700
+X-CSE-ConnectionGUID: 3a9Vh5/USPGInGzqdFlURQ==
+X-CSE-MsgGUID: knW8vuZVReyd4vo89uObmA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="249386288"
+Received: from carterle-desk.ger.corp.intel.com (HELO
+ jhogande-mobl3.intel.com) ([10.245.246.213])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2026 23:53:30 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH] drm/i915/psr: Do not check display or eDP revision for DP
+Date: Mon,  8 Jun 2026 09:53:17 +0300
+Message-ID: <20260608065317.20845-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aiLjE0SLwrDytyw0@ashevche-desk.local>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,29 +68,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jun 05, 2026 at 05:54:11PM +0300, Andy Shevchenko wrote:
-> On Fri, Jun 05, 2026 at 02:18:49PM +0200, Johan Hovold wrote:
-> > On Wed, Jun 03, 2026 at 12:52:52AM +0300, Andy Shevchenko wrote:
-> > > On Tue, Jun 02, 2026 at 10:24:41AM +0200, Philipp Zabel wrote:
-> > > > On Do, 2026-05-21 at 10:36 +0200, Bartosz Golaszewski wrote:
-> 
-> ...
-> 
-> > > > > -	device_set_of_node_from_dev(&vdev->dev, dev);
-> > > > > +	platform_device_set_of_node_from_dev(vdev, dev);
-> > > 
-> > > Same Q here, why it uses inherited call? Cargo cult?
-> > > 
-> > > 'reused' flag is solely pin control (provider!) thingy as far as I remember.
-> > 
-> > No, it's needed for pin control *consumers*, which can be any device,
-> > and potentially any other resource managed by driver core or bus code.
-> 
-> Why don't we set it for every pin control consumer automatically?
+DP Panel Replay is supported only by display version >= 14. So no need to
+check display version in case of DP when checking support for SDP on prior
+scanline. Also checking eDP version doesn't make sense in case of DP.
 
-It must only be set on the second (child) one to prevent driver core
-from trying to acquire resources already claimed by the parent.
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_psr.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-Setting it on both would break things.
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index d9fcf52328eab..d93340a9d9f9e 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -1431,8 +1431,9 @@ static bool _compute_psr2_sdp_prior_scanline_indication(struct intel_crtc_state
+ 	if ((hblank_ns - req_ns) > 100)
+ 		return true;
+ 
+-	/* Not supported <13 / Wa_22012279113:adl-p */
+-	if (DISPLAY_VER(display) < 14 || intel_dp->edp_dpcd[0] < DP_EDP_14b)
++	/* Not supported <14 / Wa_22012279113:adl-p */
++	if (intel_dp_is_edp(intel_dp) && (DISPLAY_VER(display) < 14 ||
++					  intel_dp->edp_dpcd[0] < DP_EDP_14b))
+ 		return false;
+ 
+ 	crtc_state->req_psr2_sdp_prior_scanline = true;
+-- 
+2.43.0
 
-Johan
