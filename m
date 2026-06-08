@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A0D7CD8C9D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B59DCD8CAD
 	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 16:55:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B697510F766;
-	Mon,  8 Jun 2026 16:54:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F56310F769;
+	Mon,  8 Jun 2026 16:55:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AXYz4DLW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L+QBMqcu";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E321D10F772
- for <intel-xe@lists.freedesktop.org>; Mon,  8 Jun 2026 16:54:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFAED10F77E
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Jun 2026 16:54:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780937697; x=1812473697;
+ t=1780937695; x=1812473695;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=BNLEbrbx6IwaoF/pVQtGdzKU3Q5yZVpvpplr+NDmdfU=;
- b=AXYz4DLWY2RV04DaMMCTwPKcgiuSzM7SmCLSr9060deV3bHwz1ArVgz8
- Yp8wC71NxQTmN1RkuecmIRzoWdAI70SJ8fwHzVFK0RkyQCdHKXFH/lQzj
- bjQ/dYrzSh3JVmPyFDPH4FmzcWN8P1nQhorwJCGhJDAJ7MOS+v4r0hdm8
- T0kL55VIjF0Mkb/nEmMlOI0+7IEqjVSbBJyQwTI36CYxOrBogipONyxnD
- 1LRefxlEONkw9zdkAcr93DSx+Lq6U5oUj7ntJXj/+uGrEFTeI0B7P9fw4
- fXGQvzhR+CJIz/Pb4uNawzL2LBguPP9t0Akb02+o4v0LzTIgaDSWqrnKB A==;
-X-CSE-ConnectionGUID: XGiZVogNSy6Ge1oYwEzr0g==
-X-CSE-MsgGUID: uIOWWKK+R1ypqHEuFz4/mw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11811"; a="81744575"
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="81744575"
+ bh=PKJxK0pSgWlxwLmDGuO43NHPyWeeu77lollOkb6vxXE=;
+ b=L+QBMqcuDny4Q4ZbT6DhChANewDk4HQ84E/IbkDhdVmxMMiyFN7jBDCx
+ 20CypD/Kauxy/JNlrCLt7LUqGA/yzg3MSKO7Zz6Dnc3kdXn8ap1KVKFV+
+ m8bEPt9ML3EJJ0roqNTfmm8hXMP2DtU9TrCxM5CLArXXi4cvjEheU1K40
+ pJVOcgnhkoF3P4oVtRqsH7GpJn+HuHH24domHpiHIggngzDLiMwiECpJO
+ sh2/xoPCJ8Qwn7bxVyQHQYxui8pjFj3bMU0xKUS74k6WlkdOgfg1RMzeI
+ DrIqN3t/QUWybn6FoxWVLjTXvJ9GrJt8q3SoO53mECUre6kUHexShwhTi A==;
+X-CSE-ConnectionGUID: 2sySiheaRoykC3WSAlEH+Q==
+X-CSE-MsgGUID: Vnb9ILhMRJGO0+7O/AZfbw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11811"; a="81744570"
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="81744570"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 09:54:57 -0700
-X-CSE-ConnectionGUID: 6IGl3j4VS12viSvDXAi7yA==
-X-CSE-MsgGUID: pJk/9dHaTbSV7iwDg6LqJg==
+ 08 Jun 2026 09:54:55 -0700
+X-CSE-ConnectionGUID: WeKhXrIHRVC+NOd0LRAJUg==
+X-CSE-MsgGUID: dfqXmXC7QFuRNI6pqP96Qw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="247467605"
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="247467596"
 Received: from smoudgil-mobl1.amr.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.117.247])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 09:54:55 -0700
+ 08 Jun 2026 09:54:53 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 14/16] drm/xe/kunit: Promote GGTT initialization to test_init()
-Date: Mon,  8 Jun 2026 18:54:27 +0200
-Message-ID: <20260608165429.587-15-michal.wajdeczko@intel.com>
+Subject: [PATCH 12/16] drm/xe/ggtt: Expand __xe_ggtt_init_early()
+Date: Mon,  8 Jun 2026 18:54:25 +0200
+Message-ID: <20260608165429.587-13-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260608165429.587-1-michal.wajdeczko@intel.com>
 References: <20260608165429.587-1-michal.wajdeczko@intel.com>
@@ -67,113 +67,181 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Our test_init() helper already do a minimal initialization of the
-kunit fake xe_device, including basic setup of main components like
-xe_tile and xe_gt, but some other main components, like xe_ggtt,
-were completely untouched. Move basic GGTT initialization to the
-test_init() helper function, as it does not require much work and
-will allow us to simplify other tests' init functions.
+We can do more stuff in this software-only initialization function,
+even under kunit. This will allow us to develop some xe_ggtt tests.
+Note that we keep the GGTT offline for the kunit, as we don't have
+access to the GTTMMADR (regs and gsm) from there.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c |  9 +++------
- drivers/gpu/drm/xe/tests/xe_kunit_helpers.c |  3 +++
- drivers/gpu/drm/xe/tests/xe_pci.c           | 14 ++++++++++++++
- drivers/gpu/drm/xe/tests/xe_pci_test.h      |  8 ++++++++
- 4 files changed, 28 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_ggtt.c | 106 ++++++++++++++++++++++-------------
+ 1 file changed, 66 insertions(+), 40 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c b/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
-index 64f106406844..1e41bb4831d6 100644
---- a/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
-+++ b/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
-@@ -62,19 +62,16 @@ static int guc_buf_test_init(struct kunit *test)
- 		.sriov_mode = XE_SRIOV_MODE_PF,
- 		.platform = XE_TIGERLAKE, /* some random platform */
- 		.subplatform = XE_SUBPLATFORM_NONE,
-+		.ggtt.start = DUT_GGTT_START,
-+		.ggtt.size = DUT_GGTT_SIZE,
- 	};
--	struct xe_ggtt *ggtt;
- 	struct xe_guc *guc;
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 8ec23862477f..5f4c2ae3293a 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -6,6 +6,8 @@
+ #include "xe_ggtt.h"
  
- 	test->priv = &fake;
- 	xe_kunit_helper_xe_device_test_init(test);
- 
--	ggtt = xe_device_get_root_tile(test->priv)->mem.ggtt;
- 	guc = &xe_device_get_gt(test->priv, 0)->uc.guc;
--
--	KUNIT_ASSERT_EQ(test, 0,
--			xe_ggtt_init_kunit(ggtt, DUT_GGTT_START,
--					   DUT_GGTT_SIZE));
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, guc);
- 
- 	kunit_activate_static_stub(test, xe_managed_bo_create_pin_map,
- 				   replacement_xe_managed_bo_create_pin_map);
-diff --git a/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c b/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
-index e0eeb419e837..3c80e72af69d 100644
---- a/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
-+++ b/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
-@@ -65,6 +65,9 @@ static void kunit_action_restore_priv(void *priv)
-  * in &kunit.priv pointer to the struct xe_pci_fake_data supplemented with
-  * desired parameters prior to calling this function.
-  *
-+ * If xe_pci_fake_data->ggtt.size and .start are set then this function will
-+ * also do a minimal GGTT initialization.
-+ *
-  * This function uses KUNIT_ASSERT to detect any failures.
-  *
-  * Return: Always 0.
-diff --git a/drivers/gpu/drm/xe/tests/xe_pci.c b/drivers/gpu/drm/xe/tests/xe_pci.c
-index 3a31cfe1d490..dc9999397956 100644
---- a/drivers/gpu/drm/xe/tests/xe_pci.c
-+++ b/drivers/gpu/drm/xe/tests/xe_pci.c
-@@ -14,6 +14,8 @@
- #include <kunit/test-bug.h>
  #include <kunit/visibility.h>
- 
-+#include "xe_ggtt.h"
++#include <kunit/test-bug.h>
 +
- #define PLATFORM_CASE(platform__, graphics_step__)					\
- 	{										\
- 		.platform = XE_ ## platform__,						\
-@@ -483,6 +485,18 @@ int xe_pci_fake_device_init(struct xe_device *xe)
- 	xe_info_init_early(xe, desc, subplatform_desc);
- 	xe_info_init(xe, desc);
- 
-+	if (data && data->ggtt.size) {
-+		struct xe_tile *tile;
-+		unsigned int id;
-+
-+		KUNIT_ASSERT_NE(test, 0, data->ggtt.start);
-+		for_each_tile(tile, xe, id)
-+			KUNIT_ASSERT_EQ(test, 0,
-+					xe_ggtt_init_kunit(tile->mem.ggtt,
-+							   data->ggtt.start,
-+							   data->ggtt.size));
-+	}
-+
- 	return 0;
+ #include <linux/fault-inject.h>
+ #include <linux/io-64-nonatomic-lo-hi.h>
+ #include <linux/sizes.h>
+@@ -329,6 +331,15 @@ static void ggtt_fini(void *arg)
+ 	ggtt->scratch = NULL;
  }
- EXPORT_SYMBOL_IF_KUNIT(xe_pci_fake_device_init);
-diff --git a/drivers/gpu/drm/xe/tests/xe_pci_test.h b/drivers/gpu/drm/xe/tests/xe_pci_test.h
-index 90a33bd2a72b..87d5b6cac815 100644
---- a/drivers/gpu/drm/xe/tests/xe_pci_test.h
-+++ b/drivers/gpu/drm/xe/tests/xe_pci_test.h
-@@ -27,6 +27,14 @@ struct xe_pci_fake_data {
- 		const struct logic_iomem_ops *ops;
- 		void *priv;
- 	} gttmmadr;
+ 
++static void dev_fini_ggtt(void *arg)
++{
++	struct xe_ggtt *ggtt = arg;
 +
-+	/** @ggtt: fake GGTT configuration */
-+	struct {
-+		/** @ggtt.start: start address, or 0 if unavailable */
-+		u64 start;
-+		/** @ggtt.size: size, or 0 if unavailable */
-+		u64 size;
-+	} ggtt;
++	scoped_guard(mutex, &ggtt->lock)
++		ggtt->flags &= ~XE_GGTT_FLAGS_ONLINE;
++	drain_workqueue(ggtt->wq);
++}
++
+ #ifdef CONFIG_LOCKDEP
+ void xe_ggtt_might_lock(struct xe_ggtt *ggtt)
+ {
+@@ -354,29 +365,66 @@ static const struct xe_ggtt_pt_ops xelpg_pt_wa_ops = {
+ 	.ggtt_get_pte = xe_ggtt_get_pte,
  };
  
- int xe_pci_fake_device_init(struct xe_device *xe);
+-static void __xe_ggtt_init_early(struct xe_ggtt *ggtt, u64 start, u64 size)
++static int __xe_ggtt_init_early(struct xe_ggtt *ggtt, u64 start, u64 size)
+ {
++	struct xe_device *xe = tile_to_xe(ggtt->tile);
++	int err;
++
++	xe_tile_assert(ggtt->tile, IS_ALIGNED(start, XE_PAGE_SIZE));
++	xe_tile_assert(ggtt->tile, IS_ALIGNED(size, XE_PAGE_SIZE));
++	xe_tile_assert(ggtt->tile, start >= xe_wopcm_size(xe));
++	xe_tile_assert(ggtt->tile, start + size <= GUC_GGTT_TOP);
++
+ 	ggtt->start = start;
+ 	ggtt->size = size;
++	ggtt->gsm = ggtt->tile->mmio.regs + SZ_8M;
++
++	if (IS_DGFX(xe) && xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
++		ggtt->flags |= XE_GGTT_FLAGS_64K;
++
++	if (GRAPHICS_VERx100(xe) >= 1270)
++		ggtt->pt_ops =
++			(ggtt->tile->media_gt && XE_GT_WA(ggtt->tile->media_gt, 22019338487)) ||
++			(ggtt->tile->primary_gt && XE_GT_WA(ggtt->tile->primary_gt, 22019338487)) ?
++			&xelpg_pt_wa_ops : &xelpg_pt_ops;
++	else
++		ggtt->pt_ops = &xelp_pt_ops;
++
++	ggtt->wq = alloc_workqueue("xe-ggtt-wq", WQ_MEM_RECLAIM | WQ_PERCPU, 0);
++	if (!ggtt->wq)
++		return -ENOMEM;
++
+ 	drm_mm_init(&ggtt->mm, 0, size);
++
++	err = drmm_add_action_or_reset(&xe->drm, ggtt_fini_early, ggtt);
++	if (err)
++		return err;
++
++	err = devm_add_action_or_reset(xe->drm.dev, dev_fini_ggtt, ggtt);
++	if (err)
++		return err;
++
++	ggtt->flags |= XE_GGTT_FLAGS_ONLINE;
++	return 0;
+ }
+ 
+ int xe_ggtt_init_kunit(struct xe_ggtt *ggtt, u32 start, u32 size)
+ {
+-	__xe_ggtt_init_early(ggtt, start, size);
++	int err;
++
++	/* this is kunit only function - do not abuse! */
++	xe_tile_assert(ggtt->tile, kunit_get_current_test());
++
++	err = __xe_ggtt_init_early(ggtt, start, size);
++	if (err)
++		return err;
++
++	/* we don't have GTTMMADR on kunit (yet) */
++	ggtt->flags &= ~XE_GGTT_FLAGS_ONLINE;
+ 	return 0;
+ }
+ EXPORT_SYMBOL_IF_KUNIT(xe_ggtt_init_kunit);
+ 
+-static void dev_fini_ggtt(void *arg)
+-{
+-	struct xe_ggtt *ggtt = arg;
+-
+-	scoped_guard(mutex, &ggtt->lock)
+-		ggtt->flags &= ~XE_GGTT_FLAGS_ONLINE;
+-	drain_workqueue(ggtt->wq);
+-}
+-
+ /**
+  * xe_ggtt_init_early - Early GGTT initialization
+  * @ggtt: the &xe_ggtt to be initialized
+@@ -392,9 +440,9 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
+ {
+ 	struct xe_device *xe = tile_to_xe(ggtt->tile);
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
++	u64 wopcm = xe_wopcm_size(xe);
++	u64 ggtt_start, ggtt_size;
+ 	unsigned int gsm_size;
+-	u64 ggtt_start, wopcm = xe_wopcm_size(xe), ggtt_size;
+-	int err;
+ 
+ 	if (!IS_SRIOV_VF(xe)) {
+ 		if (GRAPHICS_VERx100(xe) >= 1250)
+@@ -407,6 +455,10 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
+ 		}
+ 		ggtt_start = wopcm;
+ 		ggtt_size = (gsm_size / 8) * (u64)XE_PAGE_SIZE - ggtt_start;
++
++		if (ggtt_size + ggtt_start > GUC_GGTT_TOP)
++			ggtt_size = GUC_GGTT_TOP - ggtt_start;
++
+ 	} else {
+ 		ggtt_start = xe_tile_sriov_vf_ggtt_base(ggtt->tile);
+ 		ggtt_size = xe_tile_sriov_vf_ggtt(ggtt->tile);
+@@ -419,33 +471,7 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
+ 		}
+ 	}
+ 
+-	ggtt->gsm = ggtt->tile->mmio.regs + SZ_8M;
+-	if (IS_DGFX(xe) && xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
+-		ggtt->flags |= XE_GGTT_FLAGS_64K;
+-
+-	if (ggtt_size + ggtt_start > GUC_GGTT_TOP)
+-		ggtt_size = GUC_GGTT_TOP - ggtt_start;
+-
+-	if (GRAPHICS_VERx100(xe) >= 1270)
+-		ggtt->pt_ops =
+-			(ggtt->tile->media_gt && XE_GT_WA(ggtt->tile->media_gt, 22019338487)) ||
+-			(ggtt->tile->primary_gt && XE_GT_WA(ggtt->tile->primary_gt, 22019338487)) ?
+-			&xelpg_pt_wa_ops : &xelpg_pt_ops;
+-	else
+-		ggtt->pt_ops = &xelp_pt_ops;
+-
+-	ggtt->wq = alloc_workqueue("xe-ggtt-wq", WQ_MEM_RECLAIM | WQ_PERCPU, 0);
+-	if (!ggtt->wq)
+-		return -ENOMEM;
+-
+-	__xe_ggtt_init_early(ggtt, ggtt_start, ggtt_size);
+-
+-	err = drmm_add_action_or_reset(&xe->drm, ggtt_fini_early, ggtt);
+-	if (err)
+-		return err;
+-
+-	ggtt->flags |= XE_GGTT_FLAGS_ONLINE;
+-	return devm_add_action_or_reset(xe->drm.dev, dev_fini_ggtt, ggtt);
++	return __xe_ggtt_init_early(ggtt, ggtt_start, ggtt_size);
+ }
+ ALLOW_ERROR_INJECTION(xe_ggtt_init_early, ERRNO); /* See xe_pci_probe() */
+ 
 -- 
 2.47.1
 
