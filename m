@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C9B5CD8C9D
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 14:07:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E5B2CD8C92
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 14:11:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6D8310F437;
-	Mon,  8 Jun 2026 14:07:08 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7416C10F430;
- Mon,  8 Jun 2026 14:07:06 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0234510F44A;
+	Mon,  8 Jun 2026 14:11:55 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IDHJRqz2";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78A3710F449;
+ Mon,  8 Jun 2026 14:11:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1780927914; x=1812463914;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=58HmFEDc2MtRMabLqC3xYygIZ4QUJr/JfHM9qqLNLsI=;
+ b=IDHJRqz2EPwrkeWIVyx8Hrww1HPHTyiq3bvJz19lbgKveD7MymSRlSOU
+ AONaSFUPaXIP1PbI8VR6XKwCLPWSgPqHWVRYLkOoeeXiIfZtshBTu3HrS
+ JWkhzAf6y0HzNdLFDe9KxcBtVGfZxFP8T+4PTyZJRsw4+X49mJhmZdi/I
+ I9H4hEz4cyDdxu0xsumBWTxeK/kMoGD0ji/BtNKCBB4+/0gpgcDKr94hM
+ 4KZNXzaSy3OtlzhWR5cvQOW6hvcSYnCpLq1SiLtRZ2+M7FWrJCEw+Tphu
+ aP9CQ17yBpfrn36HTQTtlJcntc9PL2vxCOdZPVZTSiUKgiZbPPdAiEvXF Q==;
+X-CSE-ConnectionGUID: MQDknwzjTrembes6C3I7QQ==
+X-CSE-MsgGUID: m46kQBQGS5e7i1kuaej0OQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11810"; a="81519111"
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="81519111"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2026 07:11:53 -0700
+X-CSE-ConnectionGUID: W9iScFt+SKWJWdLPh173PA==
+X-CSE-MsgGUID: qxarxhFvQ5ScBKbljtm+Uw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="250482580"
+Received: from vsrini4-xps-8920.iind.intel.com ([10.223.167.75])
+ by orviesa005.jf.intel.com with ESMTP; 08 Jun 2026 07:11:50 -0700
+From: Vidya Srinivas <vidya.srinivas@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, uma.shankar@intel.com,
+ Vidya Srinivas <vidya.srinivas@intel.corp-partner.google.com>,
+ Vidya Srinivas <vidya.srinivas@intel.com>,
+ Charlton Lin <charlton.lin@intel.com>
+Subject: [PATCH] [RFC] drm/i915/display: Fix PPC-granularity and limit 2nd
+ scaler to 1:1
+Date: Mon,  8 Jun 2026 19:35:09 +0530
+Message-ID: <20260608140510.629170-1-vidya.srinivas@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/xe=3A_fix_r?=
- =?utf-8?q?efcount_leak_in_xe=5Frange=5Ffence=5Finsert=28=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Wentao Liang" <vulab@iscas.ac.cn>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 08 Jun 2026 14:07:06 -0000
-Message-ID: <178092762647.54361.11592888889252156039@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260608061540.121355-1-vulab@iscas.ac.cn>
-In-Reply-To: <20260608061540.121355-1-vulab@iscas.ac.cn>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,21 +64,130 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Vidya Srinivas <vidya.srinivas@intel.corp-partner.google.com>
 
-Series: drm/xe: fix refcount leak in xe_range_fence_insert()
-URL   : https://patchwork.freedesktop.org/series/168085/
-State : failure
+The existing icl_plane_min_cdclk() uses a simple pixel_rate/PPC
+calculation that does not account for the pipeline granularity
+adjustment when horizontal downscaling is active. The effective
+pixels-per-clock throughput is reduced due to integer pipeline
+granularity, requiring a higher CDCLK than the current one computes.
+This causes FIFO underruns on multi-pipe configurations near max CDCLK.
 
-== Summary ==
+Additionally, limit second scaler to 1:1
+(no horizontal or vertical downscaling) on DISPLAY_VER > 14
 
-Address 'vulab@iscas.ac.cn' is not on the allowlist, which prevents CI from being triggered for this patch.
-If you want Intel GFX CI to accept this address, please contact the script maintainers at i915-ci-infra@lists.freedesktop.org.
-Exception occurred during validation, bailing out!
-Build URL: http://intel-gfx-ci-public.igk.intel.com:8080/job/xe_pw_trigger/1183646/ (on master)
+Also apply CDCLK PLL disable/enable WA for DISPLAY_VER 30
 
+Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
+Signed-off-by: Charlton Lin <charlton.lin@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |  3 +-
+ drivers/gpu/drm/i915/display/skl_scaler.c     |  4 +-
+ .../drm/i915/display/skl_universal_plane.c    | 58 +++++++++++++++++--
+ 3 files changed, 57 insertions(+), 8 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index 189ae2d3cfc9..f724227c3726 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -2149,7 +2149,8 @@ static bool cdclk_compute_crawl_and_squash_midpoint(struct intel_display *displa
+ 
+ static bool pll_enable_wa_needed(struct intel_display *display)
+ {
+-	return (DISPLAY_VERx100(display) == 2000 ||
++	return (DISPLAY_VERx100(display) == 3000 ||
++		DISPLAY_VERx100(display) == 2000 ||
+ 		DISPLAY_VERx100(display) == 1400 ||
+ 		display->platform.dg2) &&
+ 		display->cdclk.hw.vco > 0;
+diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
+index 7994b983d509..3673b52de4da 100644
+--- a/drivers/gpu/drm/i915/display/skl_scaler.c
++++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+@@ -382,8 +382,10 @@ calculate_max_scale(struct intel_crtc *crtc,
+ 
+ 		if (scaler_id == 0)
+ 			*max_vscale = 0x30000 - 1;
+-		else
++		else {
++			*max_hscale = 0x10000;
+ 			*max_vscale = 0x10000;
++		}
+ 	} else if (DISPLAY_VER(display) >= 10 || !is_yuv_semiplanar) {
+ 		*max_hscale = 0x30000 - 1;
+ 		*max_vscale = 0x30000 - 1;
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index ad4bfff6903d..c49f330c4878 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -264,12 +264,58 @@ bool icl_is_hdr_plane(struct intel_display *display, enum plane_id plane_id)
+ }
+ 
+ static int icl_plane_min_cdclk(const struct intel_crtc_state *crtc_state,
+-			       const struct intel_plane_state *plane_state)
+-{
+-	unsigned int pixel_rate = intel_plane_pixel_rate(crtc_state, plane_state);
+-
+-	/* two pixels per clock */
+-	return DIV_ROUND_UP(pixel_rate, 2);
++                   const struct intel_plane_state *plane_state)
++{
++    struct intel_display *display = to_intel_display(crtc_state);
++    unsigned int pixel_rate = intel_plane_pixel_rate(crtc_state, plane_state);
++
++    if (DISPLAY_VER(display) >= 30) {
++        unsigned int src_w = drm_rect_width(&plane_state->uapi.src) >> 16;
++        unsigned int dst_w = drm_rect_width(&plane_state->uapi.dst);
++        unsigned int src_h = drm_rect_height(&plane_state->uapi.src) >> 16;
++        unsigned int dst_h = drm_rect_height(&plane_state->uapi.dst);
++        const unsigned int ppc = 2;
++
++        /*
++         * "Resolution Support" PPC-granularity:
++         *   Hscale_PPC = (src_w / dst_w) * PPC
++         *   int_part = floor(Hscale_PPC)
++         *   frac = Hscale_PPC - int_part
++         *   adjusted_frac = frac > 0 ? 1/ROUNDUP(1/frac) : 0
++         *   H_down = int_part/PPC + adjusted_frac
++         *   min_cdclk = crtc_clock * H_down * V_down / PPC
++         */
++        if (dst_w && dst_h && src_w > dst_w) {
++            unsigned int hscale_ppc = src_w * ppc;
++            unsigned int int_part = hscale_ppc / dst_w;
++            unsigned int frac_num = hscale_ppc % dst_w;
++            unsigned int v_num = max(src_h, dst_h);
++            u64 num;
++
++            if (frac_num) {
++                unsigned int recip_ceil = DIV_ROUND_UP(dst_w, frac_num);
++                /* H_down = (int_part * recip_ceil + ppc) / (ppc * recip_ceil) */
++                unsigned int h_num = int_part * recip_ceil + ppc;
++                unsigned int h_den = ppc * recip_ceil;
++
++                num = mul_u32_u32(crtc_state->pixel_rate, h_num);
++                num *= v_num;
++                return DIV_ROUND_UP_ULL(num,
++                            (u64)h_den * ppc * dst_h);
++            }
++
++            /* frac == 0: H_down = int_part / ppc exactly */
++            num = mul_u32_u32(crtc_state->pixel_rate, int_part);
++            num *= v_num;
++            return DIV_ROUND_UP_ULL(num, (u64)ppc * ppc * dst_h);
++        }
++
++        /* No horizontal downscale */
++        return DIV_ROUND_UP(pixel_rate, ppc);
++    }
++
++    /* two pixels per clock */
++    return DIV_ROUND_UP(pixel_rate, 2);
+ }
+ 
+ static void
+-- 
+2.45.2
 
