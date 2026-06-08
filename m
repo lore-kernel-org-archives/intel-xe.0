@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F54ACD8C92
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 08:47:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A849CD8C92
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 08:47:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A22D10EF7B;
-	Mon,  8 Jun 2026 08:47:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC9EE10EF7E;
+	Mon,  8 Jun 2026 08:47:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gsXFCngs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ScnO40YQ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2B1E10EF7B
- for <intel-xe@lists.freedesktop.org>; Mon,  8 Jun 2026 08:47:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4425E10EF7E
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Jun 2026 08:47:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780908437; x=1812444437;
+ t=1780908440; x=1812444440;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=oMvB53XOoKwvLOVGO6oSQM5ymPZJkrAcyHBq/tHcKo4=;
- b=gsXFCngscqBsk+8am771aGwJn6PtUsuws7n8H/zRgdn5J3hCD7kwZH5t
- NiNQWCMheCA42T1TVpvsYc+aMZWUkuhlC/cRNM3+Vau6pPClsW+Lcq+Xd
- /2+6zCebfij4dp2K/laSCn5ctyXE6B/bK5JdgQZZtAqiV6X+ETPfoYHky
- Wz19+sQqR2R8FfmyV4mZERbLOrmI8sQgBenlB9dpOXqgNHihB+XUIe7sy
- lh20+FX6GFUpRQ52TA+rMuWQzdg8O3fZQ9bXYLNKAR/rTUe9id+cBtZrT
- gTAyBFv2O3DD18Z8ElLEOeBwFslj1qVtHjI8IZLJ1lqSPUpQtNAWMcDfo A==;
-X-CSE-ConnectionGUID: RJ+2fiiBRc6gB9XXur49qw==
-X-CSE-MsgGUID: ZsObNFWdSHWYc6QKIDlc5Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11810"; a="93029055"
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="93029055"
+ bh=7V4fdokORRX5B2KxCvQChXKu1xWOLiwxnOoZbs6oupY=;
+ b=ScnO40YQCLPRslEhf3jXdy5UCwUPC4yAmHuI+ci22gJGFJ5vs2O8KO3x
+ cOCnXEW69glkmnTYHQsKRZ1ZVUP34h1jg7/PaPER6K81mVB+O+3WUUeeV
+ oJe+98yB2APNq5oR7GcUdmdTbNl1bTNtAFxiECBKSBlp8bojbtuivU9SD
+ FB2gkTs6NOcb0X/vJdbiE+dDRfYHmw3oymc8285XdKVHr8gZPDtAoKyi/
+ Z90PjTwVF0YuiEcBVnejbS6JSeFlaUYkDotrWVGoQawkvFSMefU8/uksu
+ 4rRQoRj2WISVsCiJ3grseTDJuygEoxUdxpN1u0nlViVa+5s/MX37VIQ+h w==;
+X-CSE-ConnectionGUID: Cw9xAlucRnSGvtqgSmkTfA==
+X-CSE-MsgGUID: xxeM6frvS1C68A6JTQh92Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11810"; a="93029056"
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="93029056"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 01:47:17 -0700
-X-CSE-ConnectionGUID: HhbScBWbSh6vYRgVZTI9Hg==
-X-CSE-MsgGUID: XXGY3aCYRtWuWpZP6ZBzpg==
+ 08 Jun 2026 01:47:20 -0700
+X-CSE-ConnectionGUID: 28CGFx1zTnO7cc6P5v/Aag==
+X-CSE-MsgGUID: uS4MLBI+SOKm+nvIFLU9qg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="269466009"
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="269466019"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 01:47:14 -0700
+ 08 Jun 2026 01:47:17 -0700
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  aravind.iddamsetty@linux.intel.com, badal.nilawar@intel.com,
  raag.jadav@intel.com, ravi.kishore.koppuravuri@intel.com,
  mallesh.koujalagi@intel.com, soham.purkait@intel.com
-Subject: [PATCH v8 01/15] drm/xe/xe_survivability: Decouple survivability info
- from boot survivability
-Date: Mon,  8 Jun 2026 14:17:02 +0530
-Message-ID: <20260608084700.640376-18-riana.tauro@intel.com>
+Subject: [PATCH v8 02/15] drm/xe/xe_sysctrl: Make sysctrl flood limit reusable
+Date: Mon,  8 Jun 2026 14:17:03 +0530
+Message-ID: <20260608084700.640376-19-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20260608084700.640376-17-riana.tauro@intel.com>
 References: <20260608084700.640376-17-riana.tauro@intel.com>
@@ -70,62 +69,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On CSC runtime firmware errors that requires firmware flash through SPI,
-PCODE sets the FDO mode bit in the Capability register.
-Currently the survivability_info group is created only for boot
-survivability.
-
-Create survivability_info group even for runtime survivability to allow
-userspace to check FDO mode sysfs.
+The sysctrl command flood limit was defined in an event specific header,
+restricting its usage to event handling. Move it to the shared header
+with a generic name so it can be re-used across all files using system
+controller commands.
 
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+Reviewed-by: Raag Jadav <raag.jadav@intel.com>
 Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 ---
-v2: Fix typo (Mallesh)
+v2: remove duplicate (Raag, Mallesh)
 
-v3: use tab (Mallesh)
+v3: fix wrapping in commit message (Raag)
+    add limit postfix (Mallesh)
 ---
- drivers/gpu/drm/xe/xe_survivability_mode.c | 13 +++++++++++--
- 1 file changed, 11 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_sysctrl_event.c         | 2 +-
+ drivers/gpu/drm/xe/xe_sysctrl_event_types.h   | 3 ---
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h | 3 +++
+ 3 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
-index 427afd144f3a..4c506027fa94 100644
---- a/drivers/gpu/drm/xe/xe_survivability_mode.c
-+++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
-@@ -54,7 +54,6 @@
-  *	# cat /sys/bus/pci/devices/<device>/survivability_mode
-  *	  Boot
-  *
-- *
-  * Any additional debug information if present will be visible under the directory
-  * ``survivability_info``::
-  *
-@@ -98,6 +97,15 @@
-  *	# cat /sys/bus/pci/devices/<device>/survivability_mode
-  *	  Runtime
-  *
-+ * On some CSC firmware errors, PCODE sets FDO mode and the only recovery possible is through
-+ * firmware flash using SPI driver. Userspace can check if FDO mode is set by checking the below
-+ * sysfs entry.
-+ *
-+ * .. code-block:: shell
-+ *
-+ *	# cat /sys/bus/pci/devices/<device>/survivability_info/fdo_mode
-+ *	  enabled
-+ *
-  * When such errors occur, userspace is notified with the drm device wedged uevent and runtime
-  * survivability mode. User can then initiate a firmware flash using userspace tools like fwupd
-  * to restore device to normal operation.
-@@ -296,7 +304,8 @@ static int create_survivability_sysfs(struct pci_dev *pdev)
- 	if (ret)
- 		return ret;
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl_event.c b/drivers/gpu/drm/xe/xe_sysctrl_event.c
+index b4d17329af6c..da395148ee9d 100644
+--- a/drivers/gpu/drm/xe/xe_sysctrl_event.c
++++ b/drivers/gpu/drm/xe/xe_sysctrl_event.c
+@@ -16,7 +16,7 @@ static void get_pending_event(struct xe_sysctrl *sc, struct xe_sysctrl_mailbox_c
+ {
+ 	struct xe_sysctrl_event_response *response = command->data_out;
+ 	struct xe_device *xe = sc_to_xe(sc);
+-	u32 count = XE_SYSCTRL_EVENT_FLOOD;
++	u32 count = XE_SYSCTRL_FLOOD_LIMIT;
+ 	size_t len;
+ 	int ret;
  
--	if (check_boot_failure(xe)) {
-+	/* Survivability info is not required if enabled via configfs */
-+	if (!xe_configfs_get_survivability_mode(pdev)) {
- 		ret = devm_device_add_group(dev, &survivability_info_group);
- 		if (ret)
- 			return ret;
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl_event_types.h b/drivers/gpu/drm/xe/xe_sysctrl_event_types.h
+index c16c66b9fa7f..348768ca454a 100644
+--- a/drivers/gpu/drm/xe/xe_sysctrl_event_types.h
++++ b/drivers/gpu/drm/xe/xe_sysctrl_event_types.h
+@@ -10,9 +10,6 @@
+ 
+ #define XE_SYSCTRL_EVENT_DATA_LEN		59
+ 
+-/* Modify as needed */
+-#define XE_SYSCTRL_EVENT_FLOOD			16
+-
+ /**
+  * enum xe_sysctrl_event - Events reported by System Controller
+  *
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+index 84d7c647e743..faa973986c0d 100644
+--- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
++++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+@@ -48,6 +48,9 @@ struct xe_sysctrl_mailbox_command {
+ 	size_t data_out_len;
+ };
+ 
++/* Modify as needed */
++#define XE_SYSCTRL_FLOOD_LIMIT		16
++
+ #define XE_SYSCTRL_MB_FRAME_SIZE	16
+ #define XE_SYSCTRL_MB_MAX_FRAMES	64
+ #define XE_SYSCTRL_MB_MAX_MESSAGE_SIZE	\
 -- 
 2.47.1
 
