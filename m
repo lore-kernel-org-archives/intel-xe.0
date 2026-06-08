@@ -4,54 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5E2FCD8C9D
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 16:54:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B3CBCD8C9F
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 16:54:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97A6410F765;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A62A610F769;
 	Mon,  8 Jun 2026 16:54:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dDBSyxt1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P3ORYg1E";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F3D810F766
- for <intel-xe@lists.freedesktop.org>; Mon,  8 Jun 2026 16:54:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 58EE910F766
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Jun 2026 16:54:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1780937687; x=1812473687;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=D4I2ISeIS9wzhBpLT3XZVnamPnb8Pz0HWRT4a76gemQ=;
- b=dDBSyxt1MciKdGPtjYCp+EH1ALARpojsDjY7L50/yyKtoBICJkSx9SI4
- kQhZQY5MIiZkOLfKlBVDWiPJbiAW2fuWQGpliT4fskJWD/S+jJieoIw/r
- ALsxIn4+TIc1uAZtJch/itkXpxK2s5nTXBFWItZXXbPypP4vsnUloX5zh
- BoH8oYdRRgRV4+h3wU87I5/vatZe6FguyRKGqxdcuQLB7Wl++LbVa30NS
- YPHkp9wAyakwNjZ/7HRG1jKZzbUmTgB07nIgWzfLf6/cMmwB+Sa29u036
- HS2+D+E3SzAJAErBl/a9+tPqR3KtyzApES7mAGD4pZXA8qpaIQPypldIr Q==;
-X-CSE-ConnectionGUID: MBdvllg1Td+ELs/uIei+ew==
-X-CSE-MsgGUID: usQdXw1WTHmgM3j4e13zaw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11811"; a="81744544"
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="81744544"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=XgFb4MEGgsPhylb6o/j8cFYpimCOLO/dI+iQE7ITSvY=;
+ b=P3ORYg1EjBm0Sp+2povxL5mLlPT/oZ+nUF94pcax9IPEXOxoOL2dJVyX
+ RK3g0hlbJXgxnoyXSeajCf68nlrmSJ4RkNhTVFEREOHQ2x8y17XDL8zNc
+ z3/dIBby2LPAsewf6mZ+G4gB3LsU1sxVxD3vjgrytjbout4ZtjynqSIe6
+ td68CqPNQIxcGUv6gZAvfan4D+9ZppcBMV7Cswpj6q3INJ+A/ur8HQWI4
+ Sp4jzDUg80dLFq1rfUqgAX7saMW76fTz0qKv2foIbrWunAQS2ynvDw/si
+ EotPbCex1zyFXp8+QZ0U5vV0UR/OiloubzBt9PTtIupfe+/qGE0Nwz+T6 A==;
+X-CSE-ConnectionGUID: u1UGYFjVQ5iQ2FNL4mE83A==
+X-CSE-MsgGUID: L8dCrLeNRyCeKwjxCz09vQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11811"; a="81744527"
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="81744527"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 09:54:47 -0700
-X-CSE-ConnectionGUID: UgyxKBbLTE+DDgKaFcne2Q==
-X-CSE-MsgGUID: EGMdBvwkRVeWYMoFVGA1tQ==
+ 08 Jun 2026 09:54:40 -0700
+X-CSE-ConnectionGUID: 0GQ584whRvajG2tHWgq36g==
+X-CSE-MsgGUID: MyCv9lQPQ/W+MEXE8UMnfw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="247467551"
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="247467514"
 Received: from smoudgil-mobl1.amr.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.117.247])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 09:54:45 -0700
+ 08 Jun 2026 09:54:38 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Matthew Auld <matthew.auld@intel.com>
-Subject: [PATCH 05/16] drm/xe/mmio: Check MMIO BAR size when initializing tiles
-Date: Mon,  8 Jun 2026 18:54:18 +0200
-Message-ID: <20260608165429.587-6-michal.wajdeczko@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH 00/16] drm/xe/kunit: Add fake GTTMMADR
+Date: Mon,  8 Jun 2026 18:54:13 +0200
+Message-ID: <20260608165429.587-1-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260608165429.587-1-michal.wajdeczko@intel.com>
-References: <20260608165429.587-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -68,63 +65,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We initialized all remote tiles' xe_mmio structures with a new size
-of 4MiB and offsets of 16MiB without sanity checks to see if mapped
-GTTMMADR_BAR was actually at least that size.
+By defining fake GTTMMADR we can more easily enable more xe components
+to run under kunit, and at the end we can stop using stub for the xe_bo
+allocation and we can rely on the regular function as on the real device.
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/xe/xe_mmio.c | 28 +++++++++++++++++++++-------
- 1 file changed, 21 insertions(+), 7 deletions(-)
+The fake GTTMMADR will also allow us to write more tests, where we could
+verify if the xe code is accessing registers or GGTT in the expected way.
 
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index 389685aa41db..d53d727492c6 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -47,21 +47,35 @@ static void mmio_multi_tile_setup(struct xe_device *xe, size_t tile_mmio_size)
- 	struct xe_tile *tile;
- 	u8 id;
- 
--	/*
--	 * Nothing to be done as tile 0 has already been setup earlier with the
--	 * entire BAR mapped - see xe_mmio_probe_early()
--	 */
--	if (xe->info.tile_count == 1)
--		return;
--
- 	for_each_remote_tile(tile, xe, id)
- 		xe_mmio_init(&tile->mmio, tile, xe->mmio.regs + id * tile_mmio_size, SZ_4M);
- }
- 
-+/**
-+ * xe_mmio_probe_tiles() - Initialize all tiles' MMIO
-+ * @xe: the &xe_device
-+ *
-+ * Initialize the remaining tiles' MMIO instances.
-+ *
-+ * Return: 0 on success or a negative error code on failure.
-+ */
- int xe_mmio_probe_tiles(struct xe_device *xe)
- {
- 	size_t tile_mmio_size = SZ_16M;
- 
-+	/*
-+	 * Nothing to be done as tile 0 has already been setup earlier with the
-+	 * entire BAR mapped - see xe_mmio_probe_early()
-+	 */
-+	if (xe->info.tile_count == 1)
-+		return 0;
-+
-+	if (xe->mmio.size < xe->info.tile_count * tile_mmio_size) {
-+		xe_err(xe, "GTTMMADR_BAR is too small for %d tiles: %zd\n",
-+		       xe->info.tile_count, xe->mmio.size);
-+		return -EIO;
-+	}
-+
- 	mmio_multi_tile_setup(xe, tile_mmio_size);
- 	return 0;
- }
+Michal Wajdeczko (16):
+  drm/xe/mmio: Assert MMIO is available
+  drm/xe/mmio: Map MMIO BAR using managed version of pci_iomap
+  drm/xe/mmio: Add check for minimal BAR size
+  drm/xe/mmio: Drop tiles_fini action
+  drm/xe/mmio: Check MMIO BAR size when initializing tiles
+  drm/xe/mmio: Allow to replace xe_mmio_probe_early() with stub
+  drm/xe: Add helper to detect real vs kunit xe_device
+  drm/xe/kunit: Skip forcewake operations on fake device
+  drm/xe/kunit: Claim minimal RPM support for fake xe device
+  drm/xe/tests: Fix fake xe_managed_bo_create_pin_map
+  drm/xe/tests: Increase DUT_GGTT_START
+  drm/xe/ggtt: Expand __xe_ggtt_init_early()
+  drm/xe/kunit: Add fake GTTMMADR
+  drm/xe/kunit: Promote GGTT initialization to test_init()
+  drm/xe/kunit: Assume fake GGTT is online
+  drm/xe/tests: Use regular xe_managed_bo_create_pin_map()
+
+ drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c |  62 ++++------
+ drivers/gpu/drm/xe/tests/xe_kunit_helpers.c |   8 ++
+ drivers/gpu/drm/xe/tests/xe_pci.c           | 118 ++++++++++++++++++++
+ drivers/gpu/drm/xe/tests/xe_pci_test.h      |  13 +++
+ drivers/gpu/drm/xe/xe_device.h              |   9 ++
+ drivers/gpu/drm/xe/xe_force_wake.c          |   4 +-
+ drivers/gpu/drm/xe/xe_ggtt.c                | 102 ++++++++++-------
+ drivers/gpu/drm/xe/xe_mmio.c                |  86 +++++++++-----
+ 8 files changed, 290 insertions(+), 112 deletions(-)
+
 -- 
 2.47.1
 
