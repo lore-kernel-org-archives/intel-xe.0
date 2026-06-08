@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4589CD8C9D
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 16:17:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41CD2CD8C92
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 16:17:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77B3310F6B6;
-	Mon,  8 Jun 2026 16:17:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E050710F6B3;
+	Mon,  8 Jun 2026 16:17:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ht2YU87h";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dQa8kAvx";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0047810F6B6
- for <intel-xe@lists.freedesktop.org>; Mon,  8 Jun 2026 16:17:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20E3910F6B7
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Jun 2026 16:17:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1780935438; x=1812471438;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=e0qfyY32SlSwkdPdGRM239MP2ryR608wKy3cuc50NSA=;
- b=ht2YU87hThXs0isTeev4psM2sf0u8BRrDz/ZD6BfHwSZKuTV4EF/PHqD
- p8X4oAveZVZFHrqG3lbQv8E5uwVG/Dk9U987WXZ8bCIYeUggYp0qq8x+V
- tTSOM3agwiRxnYum3FcoW/6TmAkSzeckoL2M53JYqrkqxntn/ii8wjXA3
- NrurMs2oCF5FI/QaqztSXvrgxwHsqpBy4rSAwFY2K67hq465fqjs59bXB
- +5F5OfCuSppcTdu75NqkpMbp1mBFWzl8dueUfKD58p4uOR0PHVd4tu+AO
- jZYcV6d+wHNhtcz3iF/oF/K5jpHMeEDhx1Rsgl2XglNpz2k6cEHvROARE w==;
-X-CSE-ConnectionGUID: pSZSO9XgRP+tHUOx0s6pUg==
-X-CSE-MsgGUID: L6CMTW9GR8SPYR6Dqwmetw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11811"; a="85531754"
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="85531754"
+ bh=piDyTEoB3dwfFR6020CUDbUqaTofZ+rf4w2nYeo/WUE=;
+ b=dQa8kAvx0rG6mi/Q+fi6Qnl6MzB4w9bzTZRC7PXuGyE/fosD91xPmuPp
+ NVtW1J3aro7uKI1j7t+RcBCUtL29yxKyLzKOHkQbNQ40yoE8u7h8GR/Hs
+ fYNW012MVHQghhkf0/P80vgZeWhjUfKTlIWRGIFn/nEDF9lC362lfCcsP
+ SPrEH/CuwyuhX1WGAK5IhwosizD9058/A+rIanUEdMrWzisRAp5RoM18d
+ VqsFJmAwYOdWC9nREXTH90Wr9zr3GR6vfgSoDJClMO7kBmt8i3B0b6V97
+ CWDlAIFOJCLe0IqzEnWaKiTffOiKU+iqdCPOIQRKkbrEhTCnlPYyTk6zd w==;
+X-CSE-ConnectionGUID: nopNqkSNTxeVc62BXG0q/g==
+X-CSE-MsgGUID: RRThfO7HR9epfG4Ta8Eszw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11811"; a="85531769"
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="85531769"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 09:17:13 -0700
-X-CSE-ConnectionGUID: JXPB92DkQeK+rYcxppcXfA==
-X-CSE-MsgGUID: Q76Ith59QEe3HeolvzL85w==
+ 08 Jun 2026 09:17:15 -0700
+X-CSE-ConnectionGUID: ++M3W6IPSPqujqdZo9qoCg==
+X-CSE-MsgGUID: Mckpk87PTTWO5HwIwwosWA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="247457254"
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="247457316"
 Received: from ikozitz-mobl3.ger.corp.intel.com (HELO mkuoppal-desk.intel.com)
  ([10.245.251.97])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 09:17:04 -0700
+ 08 Jun 2026 09:17:11 -0700
 From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: simona.vetter@ffwll.ch, matthew.brost@intel.com, christian.koenig@amd.com,
@@ -51,13 +51,15 @@ Cc: simona.vetter@ffwll.ch, matthew.brost@intel.com, christian.koenig@amd.com,
  andrzej.hajda@intel.com, matthew.auld@intel.com,
  maciej.patelczyk@intel.com, gwan-gyeong.mun@intel.com,
  Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Subject: [PATCH 02/18] drm/xe/eudebug: Add documentation
-Date: Mon,  8 Jun 2026 19:16:20 +0300
-Message-ID: <20260608161639.1652127-3-mika.kuoppala@linux.intel.com>
+Subject: [PATCH 03/18] drm/xe/eudebug: Add connection establishment
+ documentation
+Date: Mon,  8 Jun 2026 19:16:21 +0300
+Message-ID: <20260608161639.1652127-4-mika.kuoppala@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260608161639.1652127-1-mika.kuoppala@linux.intel.com>
 References: <20260608161639.1652127-1-mika.kuoppala@linux.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,107 +75,121 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a core documentation for connection setup and events.
-Followup patches can then incrementally add their workings.
+v2: improved Pipe and Fork documentation (Sashiko)
+
+Add documentation for connecting to a target DRM Xe client
+for debugging.
 
 Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- Documentation/gpu/xe/index.rst      |  1 +
- Documentation/gpu/xe/xe_eudebug.rst | 45 +++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_eudebug.c     | 19 ++++++++++++
- 3 files changed, 65 insertions(+)
- create mode 100644 Documentation/gpu/xe/xe_eudebug.rst
+ Documentation/gpu/xe/xe_eudebug.rst | 11 +++++
+ drivers/gpu/drm/xe/xe_eudebug.c     | 71 +++++++++++++++++++++++++++++
+ 2 files changed, 82 insertions(+)
 
-diff --git a/Documentation/gpu/xe/index.rst b/Documentation/gpu/xe/index.rst
-index 665c0e93601c..a6888245899b 100644
---- a/Documentation/gpu/xe/index.rst
-+++ b/Documentation/gpu/xe/index.rst
-@@ -35,3 +35,4 @@ The display, or :ref:`drm-kms`, support for drm/xe is provided by
-    xe-drm-usage-stats.rst
-    xe_configfs
-    xe_gt_stats
-+   xe_eudebug
 diff --git a/Documentation/gpu/xe/xe_eudebug.rst b/Documentation/gpu/xe/xe_eudebug.rst
-new file mode 100644
-index 000000000000..ff7fbc403ebb
---- /dev/null
+index ff7fbc403ebb..c21fa7c47ab8 100644
+--- a/Documentation/gpu/xe/xe_eudebug.rst
 +++ b/Documentation/gpu/xe/xe_eudebug.rst
-@@ -0,0 +1,45 @@
-+.. SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+===================================
-+Xe EU Debug (eudebug)
-+===================================
-+
-+Overview
-+========
-+
-+The EU Debug (eudebug) subsystem provides an interface for debugging
-+Execution Unit (EU) workloads on Intel Xe GPUs, independently from
-+CPU process debugging. This enables tools like GDB (via gdbserver-intelgt)
-+to debug GPU compute workloads through the Level-Zero Debug API.
-+In practice, this means that SYCL/DPC++ workloads submitted by the
-+compute-runtime can be debugged interactively at this time.
-+
-+
-+Connection Establishment
-+========================
+@@ -21,6 +21,17 @@ Connection Establishment
+ .. kernel-doc:: drivers/gpu/drm/xe/xe_eudebug.c
+    :doc: Connection Establishment
+ 
++File Descriptor Acquisition Methods
++-----------------------------------
 +
 +.. kernel-doc:: drivers/gpu/drm/xe/xe_eudebug.c
-+   :doc: Connection Establishment
++   :doc: File Descriptor Acquisition Methods
 +
-+Events
-+======
-+
++Security Model
++--------------
 +.. kernel-doc:: drivers/gpu/drm/xe/xe_eudebug.c
-+   :doc: Events
++   :doc: Security Model
 +
-+
-+Base Event Header
-+-----------------
-+
-+The debugger receives events by reading from the eudebug file descriptor
-+using an read_event ioctl. Every event has :c:type:`drm_xe_eudebug_event`
-+as a header
-+
-+.. kernel-doc:: include/uapi/drm/xe_drm_eudebug.h
-+   :identifiers: drm_xe_eudebug_event
-+
-+Resource Event Types
-+--------------------
-+
-+.. kernel-doc:: include/uapi/drm/xe_drm_eudebug.h
-+   :identifiers: drm_xe_eudebug_event_vm
+ Events
+ ======
+ 
 diff --git a/drivers/gpu/drm/xe/xe_eudebug.c b/drivers/gpu/drm/xe/xe_eudebug.c
-index 6f4ac6c83b56..4fdd4e8394da 100644
+index 4fdd4e8394da..88c6065f31d1 100644
 --- a/drivers/gpu/drm/xe/xe_eudebug.c
 +++ b/drivers/gpu/drm/xe/xe_eudebug.c
-@@ -18,6 +18,25 @@
- #include "xe_macros.h"
- #include "xe_vm.h"
+@@ -24,6 +24,77 @@
+  * To debug a target DRM client, the debugger must first establish
+  * a connection using :c:type:`drm_xe_eudebug_connect`.
+  *
++ * The debug target's DRM client file descriptor is passed into the
++ * connect ioctl via :c:member:`drm_xe_eudebug_connect.fd`.
++ * This is the fd that the target process obtained from open('/dev/dri/cardX').
++ *
++ * This file descriptor must be a valid DRM client fd in the debugger's
++ * (calling) process context. For debugging an Xe DRM client in
++ * another process, pidfd_getfd() can be used to acquire a duplicate
++ * of the file descriptor from the target process. See
++ * :ref:`File Descriptor Acquisition Methods <fd_acquisition_methods>` for
++ * details on how to obtain the target's fd.
++ *
++ */
++
++/**
++ * DOC: Security Model
++ *
++ * If you are inside the same process, you can connect to your own DRM client
++ * by simply passing its fd to drm_xe_eudebug_connect.
++ *
++ * The security model for connecting to a remote process uses
++ * file descriptor access via pidfd_getfd(). The kernel enforces
++ * credentials with ptrace_may_access(). So in order to connect to a
++ * remote DRM client, the same ptrace_may_access() checks apply
++ * as in CPU process debugging with gdb.
++ *
++ */
++
++/**
++ * DOC: File Descriptor Acquisition Methods
++ * .. _fd_acquisition_methods:
++ *
++ * There are multiple ways to get the target DRM client fd for
++ * another process:
++ *
++ * Unix domain socket
++ *     The debugger can receive the DRM client fd from the target via a Unix
++ *     domain socket using SCM_RIGHTS ancillary data. This is the standard
++ *     mechanism for passing file descriptors between processes, but requires
++ *     coordination to establish the socket connection.
++ *
++ * Pipe
++ *     The target sends the fd number through a pipe, and the debugger
++ *     duplicates it via pidfd_getfd(). This requires coordination between
++ *     the processes to establish the pipe and synchronize the transfer.
++ *
++ * Fork
++ *     If the debugger spawns the target process via fork(), a DRM client
++ *     fd can be shared across the fork boundary — either inherited by the
++ *     child from the debugger, or acquired from the child by the debugger
++ *     via pidfd_getfd() after the child opens the device. This is useful
++ *     when the debugger launches the target directly, similar to how gdb
++ *     spawns inferiors.
++ *
++ * Ptrace
++ *     The debugger can attach to the target process using ptrace. It can
++ *     intercept the return value of the target's open() or drmOpen() call
++ *     by inspecting registers at syscall exit to catch the fd when it is
++ *     created. Alternatively, if the target has already opened the device,
++ *     the debugger can read the target's memory using PTRACE_PEEKDATA to
++ *     locate the stored fd value in a known variable or data structure.
++ *     Once the fd number is known, pidfd_getfd() can be used to acquire a
++ *     duplicate in the debugger's process context.
++ *
++ * Procfs
++ *     The debugger can look through /proc/<targetpid>/fd for file descriptors
++ *     and inspect /proc/<targetpid>/fdinfo to see which of those
++ *     are for an Xe DRM client.
++ *
++ * Brute force
++ *     The debugger can traverse /proc/<targetpid>/fd descriptors
++ *     and try to connect to each to see if it succeeds.
+  */
  
-+/**
-+ * DOC: Connection Establishment
-+ *
-+ * To debug a target DRM client, the debugger must first establish
-+ * a connection using :c:type:`drm_xe_eudebug_connect`.
-+ *
-+ */
-+
-+/**
-+ * DOC: Events
-+ *
-+ * Resource creation/destruction and hardware state changes are
-+ * delivered as events for debugger.
-+ *
-+ * To read an event, ioctl DRM_XE_EUDEBUG_IOCTL_READ_EVENT command
-+ * can be issued with prefilled :c:type:`drm_xe_eudebug_event` as argument.
-+ *
-+ */
-+
- /*
-  * If there is no detected event read by userspace, during this period, assume
-  * userspace problem and disconnect debugger to allow forward progress.
+ /**
 -- 
 2.43.0
 
