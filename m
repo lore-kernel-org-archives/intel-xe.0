@@ -4,65 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C2B9CD8C9D
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 16:18:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EEA6CD8C9D
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 16:24:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D68510F6BF;
-	Mon,  8 Jun 2026 16:18:43 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TUbXZVGk";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A3C610F6BF
- for <intel-xe@lists.freedesktop.org>; Mon,  8 Jun 2026 16:18:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780935521; x=1812471521;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Sk0C99hJ1fHfnOIfQ9eiJtTQ6OLnfcl+hLtZjFRkzxc=;
- b=TUbXZVGknlBxoyclybQradfY5eB6yUfIC8ONkQHlqn2ZEKZt9iztQhqc
- rA6xk3l4sXOVdFMcv+EOadkaf78PIZgRngRO/EYwtOjlJ79oiqz4tqXsI
- EEpkuwhdFRpHpstWaLWuTSQzq8iaIt9QKwkAX2jMbzVMsBajEch3RDMNX
- wpyHKNhdAErbi/s/yUo3QAEn+Ec70KJrwRQr23V8el8wO8HwbygQtBFCJ
- zK8DTxxd5gzK6Mxa839PJO+9z+9U9jig0x2YpHcYZK7r8JamljtCc3NGl
- kvdogRtzhh1RPVsHS/Uh5xCuyx2PJvmFj7Y683l+0Df0PuwHVqzW4yhqx g==;
-X-CSE-ConnectionGUID: bi2DltqESZKVU0gvsDv55w==
-X-CSE-MsgGUID: 1XwA2hXxRuKl1QkdBUnBtg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11811"; a="85532045"
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="85532045"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 09:18:41 -0700
-X-CSE-ConnectionGUID: 9jnbfw7jSTO2oMMX+C90Dg==
-X-CSE-MsgGUID: wiRUZSUUTly1At6hCN5mHw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="247459292"
-Received: from ikozitz-mobl3.ger.corp.intel.com (HELO mkuoppal-desk.intel.com)
- ([10.245.251.97])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 09:18:34 -0700
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: simona.vetter@ffwll.ch, matthew.brost@intel.com, christian.koenig@amd.com,
- thomas.hellstrom@linux.intel.com, joonas.lahtinen@linux.intel.com,
- gustavo.sousa@intel.com, jan.maslak@intel.com,
- dominik.karol.piatkowski@intel.com, rodrigo.vivi@intel.com,
- andrzej.hajda@intel.com, matthew.auld@intel.com,
- maciej.patelczyk@intel.com, gwan-gyeong.mun@intel.com,
- Christoph Manszewski <christoph.manszewski@intel.com>,
- Sunil Khatri <sunil.khatri@amd.com>,
- Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Subject: [PATCH 18/18] drm/xe: Add xe_client_debugfs and introduce debug_data
- file
-Date: Mon,  8 Jun 2026 19:16:36 +0300
-Message-ID: <20260608161639.1652127-19-mika.kuoppala@linux.intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260608161639.1652127-1-mika.kuoppala@linux.intel.com>
-References: <20260608161639.1652127-1-mika.kuoppala@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1447710F6B3;
+	Mon,  8 Jun 2026 16:24:40 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1715D10F6B3;
+ Mon,  8 Jun 2026 16:24:39 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Intel_Xe_GPU_Debug_Suppor?=
+ =?utf-8?q?t_=28eudebug=29_v9?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mika Kuoppala" <mika.kuoppala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 08 Jun 2026 16:24:39 -0000
+Message-ID: <178093587909.54361.4064573414290405746@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260608161639.1652127-1-mika.kuoppala@linux.intel.com>
+In-Reply-To: <20260608161639.1652127-1-mika.kuoppala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,230 +36,287 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Christoph Manszewski <christoph.manszewski@intel.com>
+== Series Details ==
 
-Create a debug_data file for each xe file/client which is supposed to
-list all mapped debug data and attempts to mimic '/proc/pid/maps'.
-Each line represents a single mapping and has the following format:
+Series: Intel Xe GPU Debug Support (eudebug) v9
+URL   : https://patchwork.freedesktop.org/series/168104/
+State : warning
 
-  <vm id> <begin>-<end> <flags> <offset> <pathname>
+== Summary ==
 
-v2: trim len in debug_data_read() (Sashiko)
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 28a3a9eb917fa47d6ebfe89f126867f248576393
+Author: Christoph Manszewski <c.manszewski@gmail.com>
+Date:   Mon Jun 8 19:16:36 2026 +0300
 
-Cc: Sunil Khatri <sunil.khatri@amd.com>
-Signed-off-by: Christoph Manszewski <christoph.manszewski@intel.com>
-Signed-off-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
-Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- drivers/gpu/drm/xe/Makefile            |   3 +-
- drivers/gpu/drm/xe/xe_client_debugfs.c | 132 +++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_client_debugfs.h |  19 ++++
- drivers/gpu/drm/xe/xe_device.c         |   3 +
- 4 files changed, 156 insertions(+), 1 deletion(-)
- create mode 100644 drivers/gpu/drm/xe/xe_client_debugfs.c
- create mode 100644 drivers/gpu/drm/xe/xe_client_debugfs.h
-
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 1531ea9b3a93..e43d89a45d39 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -354,7 +354,8 @@ ifeq ($(CONFIG_DRM_FBDEV_EMULATION),y)
- endif
- 
- ifeq ($(CONFIG_DEBUG_FS),y)
--	xe-y += xe_debugfs.o \
-+	xe-y += xe_client_debugfs.o \
-+		xe_debugfs.o \
- 		xe_gt_debugfs.o \
- 		xe_gt_sriov_vf_debugfs.o \
- 		xe_gt_stats.o \
-diff --git a/drivers/gpu/drm/xe/xe_client_debugfs.c b/drivers/gpu/drm/xe/xe_client_debugfs.c
+    drm/xe: Add xe_client_debugfs and introduce debug_data file
+    
+    Create a debug_data file for each xe file/client which is supposed to
+    list all mapped debug data and attempts to mimic '/proc/pid/maps'.
+    Each line represents a single mapping and has the following format:
+    
+      <vm id> <begin>-<end> <flags> <offset> <pathname>
+    
+    v2: trim len in debug_data_read() (Sashiko)
+    
+    Cc: Sunil Khatri <sunil.khatri@amd.com>
+    Signed-off-by: Christoph Manszewski <christoph.manszewski@intel.com>
+    Signed-off-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
+    Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
++ /mt/dim checkpatch 044152a1643f7150f482c8d326caa5023ae4c397 drm-intel
+7d145466de5f drm/xe/eudebug: Introduce eudebug interface
+-:228: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#228: 
 new file mode 100644
-index 000000000000..3ce9527188c4
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_client_debugfs.c
-@@ -0,0 +1,132 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2025 Intel Corporation
-+ */
-+
-+#include "xe_device.h"
-+#include "xe_client_debugfs.h"
-+
-+#include <linux/debugfs.h>
-+
-+#include "xe_debug_data.h"
-+#include "xe_debug_data_types.h"
-+#include "xe_device_types.h"
-+#include "xe_vm_types.h"
-+
-+#define MAX_LINE_LEN (64 + PATH_MAX)
-+
-+static ssize_t debug_data_read(struct file *file, char __user *buf, size_t count,
-+			       loff_t *ppos)
-+{
-+	struct xe_debug_data *dd;
-+	unsigned long vm_index;
-+	const char *path;
-+	char *kbuf;
-+	struct xe_vm *vm;
-+
-+	struct xe_file *xef = file->private_data;
-+	ssize_t total = 0;
-+	loff_t pos = 0;
-+
-+	if (!xef || !buf)
-+		return -EINVAL;
-+
-+	kbuf = kmalloc(MAX_LINE_LEN, GFP_KERNEL);
-+	if (!kbuf)
-+		return -ENOMEM;
-+
-+	mutex_lock(&xef->vm.lock);
-+
-+	xa_for_each(&xef->vm.xa, vm_index, vm) {
-+		mutex_lock(&vm->debug_data.lock);
-+		list_for_each_entry(dd, &vm->debug_data.list, link) {
-+			int len;
-+
-+			path = dd->flags & DRM_XE_VM_BIND_DEBUG_DATA_FLAG_PSEUDO ?
-+				xe_debug_data_pseudo_path_to_string(dd->pseudopath) :
-+				dd->pathname;
-+
-+			/* Format: <vm id> <begin>-<end> <flags> <offset> <pathname> */
+
+-:349: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "!READ_ONCE"
+#349: FILE: drivers/gpu/drm/xe/xe_eudebug.c:117:
++	return READ_ONCE(d->target.xef) == NULL;
+
+-:410: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_d' - possible side-effects?
+#410: FILE: drivers/gpu/drm/xe/xe_eudebug.c:178:
++#define xe_eudebug_disconnect(_d, _err) ({ \
++	if (_xe_eudebug_disconnect((_d), (_err))) { \
++		if ((_err) == 0 || (_err) == -ETIMEDOUT) \
++			eu_dbg((_d), "Session closed (%d)", (_err));	\
++		else \
++			eu_err((_d), "Session disconnected, err = %d (%s:%d)", \
++			       (_err), __func__, __LINE__); \
++	} \
++})
+
+-:410: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_err' - possible side-effects?
+#410: FILE: drivers/gpu/drm/xe/xe_eudebug.c:178:
++#define xe_eudebug_disconnect(_d, _err) ({ \
++	if (_xe_eudebug_disconnect((_d), (_err))) { \
++		if ((_err) == 0 || (_err) == -ETIMEDOUT) \
++			eu_dbg((_d), "Session closed (%d)", (_err));	\
++		else \
++			eu_err((_d), "Session disconnected, err = %d (%s:%d)", \
++			       (_err), __func__, __LINE__); \
++	} \
++})
+
+-:1336: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#1336: FILE: drivers/gpu/drm/xe/xe_eudebug.h:20:
++#define XE_EUDEBUG_DBG_ARGS(d) (d)->session, \
++		atomic_long_read(&(d)->events.seqno), \
++		!READ_ONCE(d->target.xef) ? "disconnected" : "", \
++		current->pid, \
++		task_tgid_nr(current), \
++		READ_ONCE(d->target.xef) ? d->target.xef->pid : -1
+
+BUT SEE:
+
+   do {} while (0) advice is over-stated in a few situations:
+
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
+
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
+
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
+
+   Enjoy this qualification while we work to improve our heuristics.
+
+-:1336: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'd' - possible side-effects?
+#1336: FILE: drivers/gpu/drm/xe/xe_eudebug.h:20:
++#define XE_EUDEBUG_DBG_ARGS(d) (d)->session, \
++		atomic_long_read(&(d)->events.seqno), \
++		!READ_ONCE(d->target.xef) ? "disconnected" : "", \
++		current->pid, \
++		task_tgid_nr(current), \
++		READ_ONCE(d->target.xef) ? d->target.xef->pid : -1
+
+-:1343: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'd' - possible side-effects?
+#1343: FILE: drivers/gpu/drm/xe/xe_eudebug.h:27:
++#define eu_err(d, fmt, ...) drm_err(&(d)->xe->drm, XE_EUDEBUG_DBG_STR # fmt, \
++				    XE_EUDEBUG_DBG_ARGS(d), ##__VA_ARGS__)
+
+-:1345: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'd' - possible side-effects?
+#1345: FILE: drivers/gpu/drm/xe/xe_eudebug.h:29:
++#define eu_warn(d, fmt, ...) drm_warn(&(d)->xe->drm, XE_EUDEBUG_DBG_STR # fmt, \
++				      XE_EUDEBUG_DBG_ARGS(d), ##__VA_ARGS__)
+
+-:1347: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'd' - possible side-effects?
+#1347: FILE: drivers/gpu/drm/xe/xe_eudebug.h:31:
++#define eu_dbg(d, fmt, ...) drm_dbg(&(d)->xe->drm, XE_EUDEBUG_DBG_STR # fmt, \
++				    XE_EUDEBUG_DBG_ARGS(d), ##__VA_ARGS__)
+
+-:1569: WARNING:LONG_LINE: line length of 129 exceeds 100 columns
+#1569: FILE: include/uapi/drm/xe_drm.h:133:
++#define DRM_IOCTL_XE_EUDEBUG_CONNECT		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EUDEBUG_CONNECT, struct drm_xe_eudebug_connect)
+
+total: 1 errors, 2 warnings, 7 checks, 1534 lines checked
+e8c5c56d4c52 drm/xe/eudebug: Add documentation
+-:21: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#21: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 74 lines checked
+ead67f97b767 drm/xe/eudebug: Add connection establishment documentation
+7934fecb8a0c drm/xe/eudebug: Introduce discovery for resources
+9942530d243d drm/xe: Add EUDEBUG_ENABLE exec queue property
+5739be64f362 drm/xe/eudebug: Introduce exec_queue events
+8cabf443a121 drm/xe/eudebug: Mark guc contexts as debuggable
+73f8b036237c drm/xe: Introduce ADD_DEBUG_DATA and REMOVE_DEBUG_DATA vm bind ops
+-:47: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#47: 
+new file mode 100644
+
+-:691: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#691: FILE: drivers/gpu/drm/xe/xe_vm.c:3692:
++		if (XE_IOCTL_DBG(xe, operation != DRM_XE_VM_BIND_OP_ADD_DEBUG_DATA &&
++				     operation != DRM_XE_VM_BIND_OP_REMOVE_DEBUG_DATA &&
+
+-:694: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#694: FILE: drivers/gpu/drm/xe/xe_vm.c:3695:
++		    XE_IOCTL_DBG(xe, ext.name == XE_VM_BIND_OP_EXTENSIONS_DEBUG_DATA &&
++				     ++debug_data_count > 1))
+
+-:818: CHECK:UNCOMMENTED_DEFINITION: struct mutex definition without comment
+#818: FILE: drivers/gpu/drm/xe/xe_vm_types.h:414:
++		struct mutex lock;
+
+total: 0 errors, 1 warnings, 3 checks, 861 lines checked
+9acd4ea869b7 drm/xe/eudebug: Introduce vm bind and vm bind debug data events
+-:7: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#7: 
+This patch adds events to track the bind ioctl and associated debug data add
+
+-:427: WARNING:LONG_LINE_COMMENT: line length of 102 exceeds 100 columns
+#427: FILE: include/uapi/drm/xe_drm_eudebug.h:112:
++ *  │  EVENT_VM_BIND        ├──────────────────┬─┬┄┐
+
+-:428: WARNING:LONG_LINE_COMMENT: line length of 108 exceeds 100 columns
+#428: FILE: include/uapi/drm/xe_drm_eudebug.h:113:
++ *  └───────────────────────┘                  │ │ ┊
+
+-:429: WARNING:LONG_LINE_COMMENT: line length of 130 exceeds 100 columns
+#429: FILE: include/uapi/drm/xe_drm_eudebug.h:114:
++ *      ┌──────────────────────────────────┐   │ │ ┊
+
+-:431: WARNING:LONG_LINE_COMMENT: line length of 128 exceeds 100 columns
+#431: FILE: include/uapi/drm/xe_drm_eudebug.h:116:
++ *      └──────────────────────────────────┘     │ ┊
+
+-:433: WARNING:LONG_LINE_COMMENT: line length of 128 exceeds 100 columns
+#433: FILE: include/uapi/drm/xe_drm_eudebug.h:118:
++ *      ┌──────────────────────────────────┐     │ ┊
+
+-:435: WARNING:LONG_LINE_COMMENT: line length of 126 exceeds 100 columns
+#435: FILE: include/uapi/drm/xe_drm_eudebug.h:120:
++ *      └──────────────────────────────────┘       ┊
+
+-:437: WARNING:LONG_LINE_COMMENT: line length of 126 exceeds 100 columns
+#437: FILE: include/uapi/drm/xe_drm_eudebug.h:122:
++ *      ┌┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┐       ┊
+
+-:439: WARNING:LONG_LINE_COMMENT: line length of 116 exceeds 100 columns
+#439: FILE: include/uapi/drm/xe_drm_eudebug.h:124:
++ *      └┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┘
+
+total: 0 errors, 9 warnings, 0 checks, 440 lines checked
+ff6c4d73bab5 drm/xe/eudebug: Add ufence events with acks
+-:337: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "!ufence"
+#337: FILE: drivers/gpu/drm/xe/xe_eudebug.c:1299:
++			xe_assert(vm->xe, ufence == NULL);
+
+-:641: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
+#641: FILE: drivers/gpu/drm/xe/xe_sync_types.h:26:
++		spinlock_t lock;
+
+total: 0 errors, 0 warnings, 2 checks, 656 lines checked
+261f837fa8a5 drm/xe/eudebug: vm open/pread/pwrite
+-:182: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#182: FILE: drivers/gpu/drm/xe/xe_eudebug.h:42:
++#define xe_eudebug_for_each_hw_engine(__hwe, __gt, __id) \
++	for_each_hw_engine(__hwe, __gt, __id)	       \
++		if (xe_hw_engine_has_eudebug(__hwe))
+
+BUT SEE:
+
+   do {} while (0) advice is over-stated in a few situations:
+
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
+
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
+
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
+
+   Enjoy this qualification while we work to improve our heuristics.
+
+-:182: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__hwe' - possible side-effects?
+#182: FILE: drivers/gpu/drm/xe/xe_eudebug.h:42:
++#define xe_eudebug_for_each_hw_engine(__hwe, __gt, __id) \
++	for_each_hw_engine(__hwe, __gt, __id)	       \
++		if (xe_hw_engine_has_eudebug(__hwe))
+
+-:210: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#210: 
+new file mode 100644
+
+total: 1 errors, 1 warnings, 1 checks, 614 lines checked
+159eb0cbc906 drm/xe/eudebug: userptr vm pread/pwrite
+2cd0ca8cb89e drm/xe/eudebug: hw enablement for eudebug
+-:95: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#95: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 445 lines checked
+a1cb4ab87aaa drm/xe/eudebug: Introduce EU control interface
+-:303: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#303: FILE: drivers/gpu/drm/xe/xe_eudebug_hw.c:183:
++static bool engine_has_runalone_set(const struct xe_hw_engine * const hwe,
++				   u32 rcu_debug1)
+
+-:309: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#309: FILE: drivers/gpu/drm/xe/xe_eudebug_hw.c:189:
++static bool engine_has_context_set(const struct xe_hw_engine * const hwe,
++				  u32 rcu_debug1)
+
+total: 0 errors, 0 warnings, 2 checks, 902 lines checked
+a84a2f84a023 drm/xe/eudebug: Introduce per device attention scan worker
+93d992d05f92 drm/xe/eudebug_test: Introduce eudebug live tests
+-:18: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#18: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 213 lines checked
+4f1d68521cbf drm/xe: Implement SR-IOV and eudebug exclusivity
+28a3a9eb917f drm/xe: Add xe_client_debugfs and introduce debug_data file
+-:34: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#34: 
+new file mode 100644
+
+-:89: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#89: FILE: drivers/gpu/drm/xe/xe_client_debugfs.c:51:
 +			len = snprintf(kbuf, MAX_LINE_LEN, "%lu 0x%llx-0x%llx 0x%llx 0x%x\t%s\n",
 +				vm_index,
-+				dd->addr,
-+				dd->addr + dd->range,
-+				dd->flags,
-+				dd->offset,
-+				path);
-+
-+			/* snprintf may return more but string is truncated to size */
-+			if (len > MAX_LINE_LEN)
-+				len = MAX_LINE_LEN;
-+
-+			if (pos + len <= *ppos) {
-+				pos += len;
-+				continue;
-+			}
-+
-+			if (pos < *ppos) {
-+				const int skip = *ppos - pos;
-+
-+				len -= skip;
-+				memmove(kbuf, kbuf + skip, len);
-+				pos = *ppos;
-+			}
-+
-+			if (total + len > count)
-+				len = count - total;
-+
-+			if (copy_to_user(buf + total, kbuf, len)) {
-+				mutex_unlock(&vm->debug_data.lock);
-+				mutex_unlock(&xef->vm.lock);
-+				kfree(kbuf);
-+				return -EFAULT;
-+			}
-+
-+			total += len;
-+			pos += len;
-+
-+			if (total >= count) {
-+				mutex_unlock(&vm->debug_data.lock);
-+				mutex_unlock(&xef->vm.lock);
-+				kfree(kbuf);
-+				*ppos = pos;
-+				return total;
-+			}
-+		}
-+		mutex_unlock(&vm->debug_data.lock);
-+	}
-+
-+	mutex_unlock(&xef->vm.lock);
-+	kfree(kbuf);
-+	*ppos = pos;
-+	return total;
-+}
-+
-+static int debug_data_open(struct inode *inode, struct file *file)
-+{
-+	struct xe_file *xef = inode->i_private;
-+
-+	file->private_data = xe_file_get(xef);
-+	return 0;
-+}
-+
-+static int debug_data_release(struct inode *inode, struct file *file)
-+{
-+	struct xe_file *xef = inode->i_private;
-+
-+	xe_file_put(xef);
-+	return 0;
-+}
-+
-+static const struct file_operations maps_fops = {
-+	.owner = THIS_MODULE,
-+	.open = debug_data_open,
-+	.release = debug_data_release,
-+	.read = debug_data_read,
-+	.llseek = default_llseek,
-+};
-+
-+void xe_client_debugfs_register(struct xe_file *xef)
-+{
-+	debugfs_create_file("debug_data", 0444, xef->drm->debugfs_client, xef, &maps_fops);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_client_debugfs.h b/drivers/gpu/drm/xe/xe_client_debugfs.h
-new file mode 100644
-index 000000000000..9eace15c0a49
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_client_debugfs.h
-@@ -0,0 +1,19 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2025 Intel Corporation
-+ */
-+
-+#ifndef _XE_CLIENT_DEBUGFS_H_
-+#define _XE_CLIENT_DEBUGFS_H_
-+
-+#include <linux/debugfs.h>
-+
-+struct xe_file;
-+
-+#ifdef CONFIG_DEBUG_FS
-+void xe_client_debugfs_register(struct xe_file *xef);
-+#else
-+static inline void xe_client_debugfs_register(struct xe_file *xef) { }
-+#endif
-+
-+#endif // _XE_CLIENT_DEBUGFS_H_
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 02ab8b307c9f..539ce3be8d42 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -25,6 +25,7 @@
- #include "regs/xe_regs.h"
- #include "xe_bo.h"
- #include "xe_bo_evict.h"
-+#include "xe_client_debugfs.h"
- #include "xe_configfs.h"
- #include "xe_debugfs.h"
- #include "xe_defaults.h"
-@@ -125,6 +126,8 @@ static int xe_file_open(struct drm_device *dev, struct drm_file *file)
- 		put_task_struct(task);
- 	}
- 
-+	xe_client_debugfs_register(xef);
-+
- 	return 0;
- }
- 
--- 
-2.43.0
+
+total: 0 errors, 1 warnings, 1 checks, 175 lines checked
+
 
