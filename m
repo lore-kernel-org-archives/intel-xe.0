@@ -4,50 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2BF4CD8C9D
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 13:43:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93960CD8C9F
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Jun 2026 13:43:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87B7110F3F3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE05A10F3F4;
 	Mon,  8 Jun 2026 13:43:49 +0000 (UTC)
-X-Greylist: delayed 454 seconds by postgrey-1.36 at gabe;
- Mon, 08 Jun 2026 06:46:12 UTC
-Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F32710EDAD
- for <intel-xe@lists.freedesktop.org>; Mon,  8 Jun 2026 06:46:11 +0000 (UTC)
-Received: from dfae2b116770.home.arpa (unknown [36.110.52.2])
- by APP-01 (Coremail) with SMTP id qwCowAB3HNVpYyZqNQDgAA--.1048S2;
- Mon, 08 Jun 2026 14:38:33 +0800 (CST)
-From: Wentao Liang <vulab@iscas.ac.cn>
-To: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com, airlied@gmail.com, simona@ffwll.ch
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Wentao Liang <vulab@iscas.ac.cn>,
- stable@vger.kernel.org
-Subject: [PATCH] drm/xe: fix refcount leak in xe_range_fence_insert()
-Date: Mon,  8 Jun 2026 06:15:40 +0000
-Message-Id: <20260608061540.121355-1-vulab@iscas.ac.cn>
-X-Mailer: git-send-email 2.34.1
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=dolcini.it header.i=@dolcini.it header.b="k0CkhSSu";
+	dkim-atps=neutral
+X-Greylist: delayed 314 seconds by postgrey-1.36 at gabe;
+ Mon, 08 Jun 2026 08:44:34 UTC
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79F8910EF72;
+ Mon,  8 Jun 2026 08:44:34 +0000 (UTC)
+Received: from francesco-nb (xcpe-178-82-120-96.dyn.res.sunrise.net
+ [178.82.120.96])
+ by mail11.truemail.it (Postfix) with ESMTPA id CE9F41FC18;
+ Mon,  8 Jun 2026 10:39:15 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+ s=default; t=1780907957;
+ bh=z8UFPckcbkUDtOhYm05+yDC1pbRjWLGHos3Y900ReCg=; h=From:To:Subject;
+ b=k0CkhSSuENH6FvKBjSYNZqeeBs0nsjwzBN7/rWsUL39SC6f99XSrqQBMKFB57XHrd
+ 3I8h/qU+JaiL9PImIm+fRWgEURAlZsg+f6eiqkez2YVTzhHqLybK219HsDvkbDoqI3
+ dM4IMHjgbC49Y7YiW/j9OtVVLjStJ5biCTWGGtjXn9zPcit2UxxQjslLiDtDhtZmzZ
+ WnS/Mwz1fHg9p3qzbaIODY+ZdLF/BHd/P7MLF2aAX0JID2Crf3q5aUUGWFvUbsd9pF
+ mK+nMKrowzyVzDHOpjAZ3SxbAStwTG5WA+EKfecTWhcLrCP3Gi+iVMNM8iNungmUR7
+ MjXbLTJ+8CuiQ==
+Date: Mon, 8 Jun 2026 10:39:11 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Adrien Grassein <adrien.grassein@gmail.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Rob Clark <robin.clark@oss.qualcomm.com>,
+ Dmitry Baryshkov <lumag@kernel.org>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Pengyu Luo <mitltlatltl@gmail.com>, Nikita Travkin <nikita@trvn.ru>,
+ Yongxing Mou <yongxing.mou@oss.qualcomm.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Francesco Dolcini <francesco@dolcini.it>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-usb@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org
+Subject: Re: [PATCH v4 4/8] drm/bridge: pass extra events to the HPD callback
+Message-ID: <20260608083911.GA35760@francesco-nb>
+References: <20260608-hpd-irq-events-v4-0-30b62b335487@oss.qualcomm.com>
+ <20260608-hpd-irq-events-v4-4-30b62b335487@oss.qualcomm.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: qwCowAB3HNVpYyZqNQDgAA--.1048S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7Kr17Jr4kAF1xXr4rCFWDXFb_yoW8Gw15pw
- 4rCr4UCr9xXa9Fvw17CF4YqFyjka1agrWkKr1vk39xX3y5JFy8Xr98Aa9YgF4UArs2vF13
- CrnFyw1UW34qyF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDU0xBIdaVrnRJUUU9214x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
- rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
- 1l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26F4j
- 6r4UJwA2z4x0Y4vEx4A2jsIE14v26F4UJVW0owA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
- CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
- 2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r4UJVWxJr1lOx8S6xCaFVCjc4AY6r
- 1j6r4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02
- 628vn2kIc2xKxwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4
- IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1r
- MI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJV
- WUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAIcVCF04k26cxKx2IYs7xG6r1j
- 6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYx
- BIdaVFxhVjvjDU0xZFpf9x0JUG_M-UUUUU=
-X-Originating-IP: [36.110.52.2]
-X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiBwoMA2omIvDleAAAsB
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260608-hpd-irq-events-v4-4-30b62b335487@oss.qualcomm.com>
 X-Mailman-Approved-At: Mon, 08 Jun 2026 13:43:48 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,41 +90,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_range_fence_insert() acquires a reference on fence via
-dma_fence_get() and stores it in rfence->fence.  It then calls
-dma_fence_add_callback() and handles two cases: when the callback
-is successfully registered (err == 0) the fence is transferred to
-the tree for later cleanup; when the fence is already signaled
-(err == -ENOENT) it manually drops the extra reference with
-dma_fence_put(fence).
+On Mon, Jun 08, 2026 at 12:33:05AM +0300, Dmitry Baryshkov wrote:
+> The DisplayPort standard defines a special kind of HPD events called
+> IRQ_HPD. These events are used to notify DP Source about the events on
+> the Sink side.
+> 
+> Bridge drivers report these events through the
+> drm_bridge_hpd_notify_extra(). Pass down the extra status to the HPD
+> callback, specified during the drm_bridge_hpd_enable(), letting
+> underlying drivers (e.g. drm_bridge_connector) to receive these events.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
-However, dma_fence_add_callback() can fail with other errors
-(e.g. -EINVAL) and in that case the code falls through to the free:
-label without releasing the acquired reference, leaking it.
-
-Fix the leak by adding an else branch that calls dma_fence_put()
-before jumping to free: for any error other than -ENOENT.
-
-Cc: stable@vger.kernel.org
-Fixes: 845f64bdbfc9 ("drm/xe: Introduce a range-fence utility")
-Signed-off-by: Wentao Liang <vulab@iscas.ac.cn>
----
- drivers/gpu/drm/xe/xe_range_fence.c | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/drivers/gpu/drm/xe/xe_range_fence.c b/drivers/gpu/drm/xe/xe_range_fence.c
-index 372378e89e98..3d8fa194a7b0 100644
---- a/drivers/gpu/drm/xe/xe_range_fence.c
-+++ b/drivers/gpu/drm/xe/xe_range_fence.c
-@@ -77,6 +77,8 @@ int xe_range_fence_insert(struct xe_range_fence_tree *tree,
- 	} else if (err == 0) {
- 		xe_range_fence_tree_insert(rfence, &tree->root);
- 		return 0;
-+	} else {
-+		dma_fence_put(fence);
- 	}
- 
- free:
--- 
-2.34.1
+Acked-by: Francesco Dolcini <francesco.dolcini@toradex.com> # lt8912b
 
