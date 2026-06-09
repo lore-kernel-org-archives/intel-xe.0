@@ -4,16 +4,16 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2625ECD8CA4
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Jun 2026 12:13:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3AFE0CD8CA4
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Jun 2026 12:13:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C7D910E2F1;
-	Tue,  9 Jun 2026 12:13:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CBAB10E346;
+	Tue,  9 Jun 2026 12:13:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="IQJolVdc";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="FmEL7FWS";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21ED710E2F6;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 064D610E2F2;
  Tue,  9 Jun 2026 12:13:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
@@ -22,16 +22,16 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=UznVIFEYKC0IyDpqtfOgBPAG+0I11/IKmEt3nq+ive4=; b=IQJolVdcFmWbS7Mc/0yr9Whp9q
- qhhVeeTtgUyJR9r1u4OY18j4EUjwBSerJbSUjCUbWeXzit1MPjngl5ztNi3FuqriRIibcVP1GulJB
- PV2ktWUoWukeI6egG4cVSn9hm9RbRV+WvvD/0eAMiWmx4JrFdqc7K78+gJEywkLvA7sb0hsRYP+x/
- lKbdubTmRf5QCbHD75pGxGjs4qfABvbw9d2mL+lHhKj2x5qa+w6CGj6KcBvcHZQVZXzt+hqYxWLHG
- jPtrYBfZxgbxVzxWJeDrc0IUOlTzKa/zcAS6+LlyDrazI8dFHpR2gnUPhwxiQyyNhMy3Hc/DBGzh0
- zp7e8low==;
+ bh=rOMwe3iepfg/Vhh9MbZOiWLka6jhyTg12/cdz/MWt2g=; b=FmEL7FWSpPfDdBwgeUxiA2ZNlp
+ lgaMsEeRP555Uo/e/DgI4dToFdjzWHW54Y+G5UFrIpFJa1W9G2zcJ3Q52O4ItMDI47zFOTEZHfw2o
+ GShmdLiUxtBFU2IxuNOwa1n/lycJMKAkxgZvvKU3Q4sbAI9A/XASw5rjqr6n/NCIhfFKBuLouzlv6
+ uqlXdM2try4s+nCY92Z2fgG5WRzWpSbDjLQDgoc1OZFcQrqxajXSnnTsfRhJjLGcutOMggWlaDoWG
+ 6aiz6bEB76/YrQQQyyEfHjFqszNyLCMkm0KSd1lg/4H1+op9y7nYyhF3pbj+KdInKumkmFQmmsD07
+ O0kBd6Jg==;
 Received: from [79.117.146.159] (helo=killbill.home)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wWvK2-00EvWP-P9; Tue, 09 Jun 2026 14:12:46 +0200
+ id 1wWvK8-00EvWP-Cj; Tue, 09 Jun 2026 14:12:52 +0200
 From: Melissa Wen <mwen@igalia.com>
 To: airlied@gmail.com, alexander.deucher@amd.com, alex.hung@amd.com,
  aurabindo.pillai@amd.com, christian.koenig@amd.com, contact@emersion.fr,
@@ -50,11 +50,10 @@ Cc: Uma Shankar <uma.shankar@intel.com>,
  Marijn Suijten <marijn.suijten@somainline.org>,
  linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Sashiko <sashiko-bot@kernel.org>, dri-devel@lists.freedesktop.org
-Subject: [PATCH v3 3/7] drm/amd/display: don't check colorop status if its in
- an inactive pipeline
-Date: Tue,  9 Jun 2026 13:51:37 +0200
-Message-ID: <20260609121230.1358786-4-mwen@igalia.com>
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH v3 6/7] drm/amd/display: fix bnld colorop bypass mode
+Date: Tue,  9 Jun 2026 13:51:40 +0200
+Message-ID: <20260609121230.1358786-7-mwen@igalia.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260609121230.1358786-1-mwen@igalia.com>
 References: <20260609121230.1358786-1-mwen@igalia.com>
@@ -74,75 +73,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If colorop BYPASS property is true, but the colorop isn't part of an
-active/transient active color pipeline, this colorop status should not
-be taken into account when checking if a plane color pipeline is
-actually active. For example, if the userspace doesn't explicitly set a
-colorop obj to bypass but deactivates its color pipeline by setting
-plane COLOR_PIPELINE to bypass, it means that colorop is inactive
-regardless of its BYPASS property status.
+If userspace set blnd colorop to bypass, AMD driver just skips blnd
+transfer function configuration. Currently, this is not an issue since
+dc plane state is a reset/default state, but it's not fully correct and
+doesn't mirror shaper tf helper. Make bypass mode setup clear by
+initially set tf->type as BYPASS and let the helper change its type
+according to userspace requests.
 
-Reported-by: Sashiko <sashiko-bot@kernel.org>
-Fixes: d3a549f4df78 ("drm/amd/display: Use overlay cursor when color pipeline is active")
+Fixes: 52da8325996b ("drm/amd/display: Add support for sRGB EOTF in BLND block")
 Signed-off-by: Melissa Wen <mwen@igalia.com>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 31 +++++++++++++------
- 1 file changed, 21 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index ba7f98a87808..2edec3e1b838 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -12590,9 +12590,9 @@ static int add_affected_mst_dsc_crtcs(struct drm_atomic_commit *state, struct dr
-  * @use_old: if true, inspect the old colorop states; otherwise the new ones
-  *
-  * A color pipeline may be selected (color_pipeline != NULL) but still is
-- * inactive if every colorop in the chain is bypassed.  Only return
-- * true when at least one colorop has bypass == false, meaning the cursor
-- * would be subjected to the transformation in native mode.
-+ * inactive if every colorop in the chain is bypassed. Only return true when at
-+ * least one active colorop has bypass == false, meaning the cursor would be
-+ * subjected to the transformation in native mode.
-  *
-  * Return: true if the pipeline modifies pixels, false otherwise.
-  */
-@@ -12600,18 +12600,29 @@ static bool dm_plane_color_pipeline_active(struct drm_atomic_commit *state,
- 					   struct drm_plane *plane,
- 					   bool use_old)
- {
--	struct drm_colorop *colorop;
--	struct drm_colorop_state *old_colorop_state, *new_colorop_state;
--	int i;
-+	struct drm_plane_state *plane_state = use_old ?
-+					      drm_atomic_get_old_plane_state(state, plane) :
-+					      drm_atomic_get_new_plane_state(state, plane);
-+	struct drm_colorop *colorop, *pipeline;
-+	struct drm_colorop_state *cstate;
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
+index 2f51009b2978..2dc3951c8e39 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
+@@ -1773,6 +1773,8 @@ __set_dm_plane_colorop_blend(struct drm_plane_state *plane_state,
+ 	uint32_t blend_size = 0;
+ 	int i = 0;
  
--	for_each_oldnew_colorop_in_state(state, colorop, old_colorop_state, new_colorop_state, i) {
--		struct drm_colorop_state *cstate = use_old ? old_colorop_state : new_colorop_state;
-+	pipeline = plane_state ? plane_state->color_pipeline :
-+				 plane->state->color_pipeline;
- 
--		if (cstate->colorop->plane != plane)
--			continue;
-+	if (!pipeline)
-+		return false;
++	tf->type = TF_TYPE_BYPASS;
 +
-+	drm_for_each_colorop_in_pipeline(colorop, pipeline) {
-+		cstate = use_old ?
-+			 drm_atomic_get_old_colorop_state(state, colorop) :
-+			 drm_atomic_get_new_colorop_state(state, colorop);
-+
-+		if (!cstate)
-+			cstate = colorop->state;
- 		if (!cstate->bypass)
- 			return true;
- 	}
-+
- 	return false;
- }
- 
+ 	/* 1D Curve - BLND TF */
+ 	old_colorop = colorop;
+ 	for_each_new_colorop_in_state(state, colorop, new_colorop_state, i) {
 -- 
 2.53.0
 
