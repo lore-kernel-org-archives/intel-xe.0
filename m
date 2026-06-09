@@ -4,52 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1ABCFCD8C92
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Jun 2026 12:33:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35128CD8CA4
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Jun 2026 12:37:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE9E810E2E8;
-	Tue,  9 Jun 2026 12:33:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE6F010E2ED;
+	Tue,  9 Jun 2026 12:37:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hvNzde29";
+	dkim=pass (2048-bit key; secure) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="X4KzwdBL";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C7F2210E2ED
- for <intel-xe@lists.freedesktop.org>; Tue,  9 Jun 2026 12:33:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781008420; x=1812544420;
- h=date:from:to:cc:subject:message-id;
- bh=CjzUJkvS03PPE6yiH5jOveKy/vgqX2d38r6vFdZUS/M=;
- b=hvNzde29PoEPHkKDBUuF9fnEmE38XVFOjxzrsaodO1Zb4GcPwsC7FFcH
- 5SuH0Ib2dTu9d10SIcutEZQZShNvpwjTzheXljAbFOjYSekAq2fHhXtZw
- H8CwAo6FTvl/rKlIrCJSWhRTakq4JxumTInQXn62jPrPKrfLTBKGfex4Q
- 4y/9JU10O0x0vuaNNuNuId0/fFMtGd/bMIqPao+xiF3tvhGnHOS3QpC7Y
- WPqjT9xIf6X5TY0WaYSnpbQyH6rQJRVvYBlif6X4BOU8r3sjSrAn3dobT
- G0a1oX9i0o/t1KQPU6w2kKd3GrxXeMg34Z9tcod7OcupQwRXjhnBSIZYD A==;
-X-CSE-ConnectionGUID: owxfGJXZQ9GhzCo85e4npw==
-X-CSE-MsgGUID: 3c1cnsM1Tz+pCvQAb4SFvw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11811"; a="81513760"
-X-IronPort-AV: E=Sophos;i="6.24,196,1774335600"; d="scan'208";a="81513760"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2026 05:33:39 -0700
-X-CSE-ConnectionGUID: AVoRrrj9Tt+aLomZYVd+yw==
-X-CSE-MsgGUID: pNSjGv5/SE2o6+i5KA977g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,196,1774335600"; d="scan'208";a="242896708"
-Received: from lkp-server01.sh.intel.com (HELO f0d55cb201f0) ([10.239.97.150])
- by fmviesa007.fm.intel.com with ESMTP; 09 Jun 2026 05:33:38 -0700
-Received: from kbuild by f0d55cb201f0 with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1wWveB-00000000K0g-3dYq;
- Tue, 09 Jun 2026 12:33:35 +0000
-Date: Tue, 09 Jun 2026 20:32:52 +0800
-From: kernel test robot <lkp@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:topic/xe-for-CI] BUILD SUCCESS
- 1cf7dc778fc0682a29c228939df45bb7be27a433
-Message-ID: <202606092042.Pl0yWf2t-lkp@intel.com>
-User-Agent: s-nail v14.9.25
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B551C10E2ED
+ for <intel-xe@lists.freedesktop.org>; Tue,  9 Jun 2026 12:37:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ sang-engineering.com; h=date:from:to:cc:subject:message-id
+ :references:mime-version:content-type:in-reply-to; s=k1; bh=OjjY
+ SMPomOhwWFqEFMXz14LrPJYiz9EwEP/lmnYTl0Q=; b=X4KzwdBLdIf7wzZ/1YyW
+ 1aS+7NAQ0pKiYSXa5b4WxAtci+008jSKtGLyBhUOqDunqemK1tOy0PYbfSMeaCPg
+ CuR2acJyL9SkRBcJCWCOokMsCwn1nDTdDDCcfGV4nvMahac+OHillaEpLuCdEopw
+ 9mRmsw4RWcKpYLSyA331jVYP3hmeFZBr6MKQEei51CZN5+4zC5GuaaXKYDV48ciV
+ 8lH2coWVP+0Pv4LcovFz7hJVT8Vfwe7VIEl2aOqSW6j8hYs9sOe3bXNcX+pUQQCw
+ 8xpmYgUyOKO93QMH5R4hfxCoIuIdZGLXq1nV8yQwHZpSaT3AXsaHs35he39cZHmX
+ 8g==
+Received: (qmail 1274062 invoked from network); 9 Jun 2026 14:37:43 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted,
+ authenticated); 9 Jun 2026 14:37:43 +0200
+X-UD-Smtp-Session: l3s3148p1@fFq1ZNFTXLMujnvA
+Date: Tue, 9 Jun 2026 14:37:43 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Hardik Prakash <hardikprakash.official@gmail.com>
+Cc: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
+ linux-i2c@vger.kernel.org, linux-gpio@vger.kernel.org,
+ wsa@kernel.org, andriy.shevchenko@intel.com,
+ mario.limonciello@amd.com, brgl@bgdev.pl, basavaraj.natikar@amd.com,
+ linusw@kernel.org,
+ Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
+ "Mario Limonciello (AMD)" <superm1@kernel.org>,
+ kernel test robot <lkp@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ ravitejax.veesam@intel.com
+Subject: Re: [PATCH v8 2/2] i2c: designware: defer probe if child GpioInt
+ controllers are not bound
+Message-ID: <aigJF6hd1EjRiGc-@ninjato>
+References: <20260529100838.8896-1-hardikprakash.official@gmail.com>
+ <20260529100838.8896-3-hardikprakash.official@gmail.com>
+ <90656be5-eca0-4a09-9b19-0c6e85f1d455@intel.com>
+ <CANTFpSV7N=5U9yuXcU-D=PDpwj=kD__JU89UGL1HQOYiaL77qg@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="oHvNJz1Mkf1rfBzj"
+Content-Disposition: inline
+In-Reply-To: <CANTFpSV7N=5U9yuXcU-D=PDpwj=kD__JU89UGL1HQOYiaL77qg@mail.gmail.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,74 +69,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git topic/xe-for-CI
-branch HEAD: 1cf7dc778fc0682a29c228939df45bb7be27a433  topic/xe-for-CI: Define GuC firmware for NVL-P
 
-elapsed time: 5113m
+--oHvNJz1Mkf1rfBzj
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-configs tested: 55
-configs skipped: 0
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+> Linus, could you please drop commit ef76a3a28c79 from your fixes tree?
+> The regression affects multiple machines including Intel CI and Nathan
+> Chancellor's test systems.
+>=20
+> I will send a corrected version once the rewrite is complete.
 
-tested configs:
-alpha         allnoconfig    gcc-16.1.0
-alpha        allyesconfig    gcc-16.1.0
-arc          allmodconfig    gcc-16.1.0
-arc           allnoconfig    gcc-16.1.0
-arc          allyesconfig    gcc-16.1.0
-arm           allnoconfig    clang-23
-arm          allyesconfig    gcc-16.1.0
-arm64        allmodconfig    clang-23
-arm64         allnoconfig    gcc-16.1.0
-csky         allmodconfig    gcc-16.1.0
-csky          allnoconfig    gcc-16.1.0
-hexagon      allmodconfig    clang-23
-hexagon       allnoconfig    clang-23
-i386         allmodconfig    gcc-14
-i386          allnoconfig    gcc-14
-i386         allyesconfig    gcc-14
-loongarch    allmodconfig    clang-19
-loongarch     allnoconfig    clang-20
-m68k         allmodconfig    gcc-16.1.0
-m68k          allnoconfig    gcc-16.1.0
-m68k         allyesconfig    gcc-16.1.0
-microblaze    allnoconfig    gcc-16.1.0
-microblaze   allyesconfig    gcc-16.1.0
-mips         allmodconfig    gcc-16.1.0
-mips          allnoconfig    gcc-16.1.0
-mips         allyesconfig    gcc-16.1.0
-nios2        allmodconfig    gcc-11.5.0
-nios2         allnoconfig    gcc-11.5.0
-openrisc     allmodconfig    gcc-16.1.0
-openrisc      allnoconfig    gcc-16.1.0
-parisc       allmodconfig    gcc-16.1.0
-parisc        allnoconfig    gcc-16.1.0
-parisc       allyesconfig    gcc-16.1.0
-powerpc      allmodconfig    gcc-16.1.0
-powerpc       allnoconfig    gcc-16.1.0
-riscv        allmodconfig    clang-23
-riscv         allnoconfig    gcc-16.1.0
-riscv        allyesconfig    clang-23
-s390         allmodconfig    clang-23
-s390          allnoconfig    clang-23
-s390         allyesconfig    gcc-16.1.0
-sh           allmodconfig    gcc-16.1.0
-sh            allnoconfig    gcc-16.1.0
-sh           allyesconfig    gcc-16.1.0
-sparc         allnoconfig    gcc-16.1.0
-sparc64      allmodconfig    clang-20
-um           allmodconfig    clang-23
-um            allnoconfig    clang-16
-um           allyesconfig    gcc-14
-x86_64       allmodconfig    clang-22
-x86_64        allnoconfig    clang-22
-x86_64       allyesconfig    clang-22
-x86_64      rhel-9.4-rust    clang-22
-xtensa        allnoconfig    gcc-16.1.0
-xtensa       allyesconfig    gcc-16.1.0
+Sending a revert patch seems like the better choice to me. His fixes
+branch is probably in -next already?
 
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+
+--oHvNJz1Mkf1rfBzj
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmooCRMACgkQFA3kzBSg
+KbaI+xAAidNB6SVhGcGwfOHSnpSKOEAvybQk277VBG7P0PcEF0cttdwI7D7IsETD
+DX9cw18GsQppDW0xhQ6IF4zitAOzgLYIi3qQ8VxdnGGRFJOJP02MSwrYAgJ4Srts
+nACqtagWqZn3HuqvKcIIlHkZUxC2CHQtNU2apiXa1QZRWN7pvPoV6KJJWZLsQ8O0
+6FJ6Jho7Icukd+WIuVTChM3OS61q4EKrUy4aKuGl+NrDdA4+XerbPOuRVZm9yZ0V
+FjbWX1yQ/dVMoYZW26tgoZcvPCn3wWq83x34ZfPD07zz2AH76o7qaRMGZqmK3Y50
+8R46QLlUCeX0gWJTavefbVxj6jffv8Fsgbv0NcoSCAPblRL2JcH8lZdbz6v3KdBo
+wG1SY1bIP+xWpwZlTkoXiizvl+d1zHdsUr4KBLg0t70U1or9w4BwDCMCmVrx6Oxr
+CI/D1Gviv40dEmRkyBPCv+t5E8Xg/gzObAMVaUnBzJtdsk0+qUJofFBqUg3LKQrO
+Qr5RfQOGrBZhS1qwBuYF0pwlJIRb1Yc0vCfJcV5roR14NmWr3vihDx0Ba37Kyddt
+Sxx4Ai17oX1/RhtEPX1mUQVwNw23pArH99e5kAEEiU8n0yAeRIrG1GTTOcKZCTRE
+996PE6za+z/Tl7xk2m1uK0FsQxLn4hmso0icL9TRL3OFBBWaGvA=
+=b826
+-----END PGP SIGNATURE-----
+
+--oHvNJz1Mkf1rfBzj--
