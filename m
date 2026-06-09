@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04DD8CD8CAD
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Jun 2026 05:28:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 872C2CD8CAE
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Jun 2026 05:28:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D9BB10E08F;
-	Tue,  9 Jun 2026 05:28:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44C7610E08F;
+	Tue,  9 Jun 2026 05:28:21 +0000 (UTC)
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F94610E08F;
- Tue,  9 Jun 2026 05:28:07 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1536928750655395056=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42F8810E091;
+ Tue,  9 Jun 2026 05:28:20 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/psr=3A_Force_fasts?=
- =?utf-8?q?et_on_debugfs_write_for_each_connector_supporting_PSR?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Introduce_Xe_Uncorrectabl?=
+ =?utf-8?q?e_Error_Handling_=28rev9=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+To: "Tauro, Riana" <riana.tauro@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 09 Jun 2026 05:28:07 -0000
-Message-ID: <178098288725.57588.9886020682999392640@6beec6c84f66>
+Date: Tue, 09 Jun 2026 05:28:20 -0000
+Message-ID: <178098290026.57587.14992816946552386355@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260609044149.274249-1-jouni.hogander@intel.com>
-In-Reply-To: <20260609044149.274249-1-jouni.hogander@intel.com>
+References: <20260608084700.640376-17-riana.tauro@intel.com>
+In-Reply-To: <20260608084700.640376-17-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,106 +40,61 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1536928750655395056==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/psr: Force fastset on debugfs write for each connector supporting PSR
-URL   : https://patchwork.freedesktop.org/series/168147/
-State : success
+Series: Introduce Xe Uncorrectable Error Handling (rev9)
+URL   : https://patchwork.freedesktop.org/series/160482/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-5222-cc6ecad1583df42f635269218c08a63e79218177_BAT -> xe-pw-168147v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit eeabc60ba0df2db78739729a53b8550cc7b054a1
+Author: Riana Tauro <riana.tauro@intel.com>
+Date:   Mon Jun 8 14:17:16 2026 +0530
 
-Summary
--------
+    drm/xe/xe_ras: Process pages from offlined list and queue
+    
+    This will be integrated with the related address-fault handling flow
+    once this patch is merged.
+    https://lore.kernel.org/intel-xe/20260506141143.4033299-12-tejas.upadhyay@intel.com/
+    Sending for initial comments.
+    
+    On module load, process pages queued by firmware for offlining by
+    reserving and sending the offline/decline command to firmware.
+    For already offlined pages in the firmware list, reserve the pages.
+    
+    Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+    Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+    Signed-off-by: Riana Tauro <riana.tauro@intel.com>
++ /mt/dim checkpatch a65d94c6ee1e4e58b535d06684020f3992ccad6f drm-intel
+8411b0b25e4e drm/xe/xe_survivability: Decouple survivability info from boot survivability
+b9b0a413ff5f drm/xe/xe_sysctrl: Make sysctrl flood limit reusable
+a632a0143d88 drm/xe: Improve wedged state management
+52efc7eff237 drm/xe/xe_pci_error: Implement PCI error recovery callbacks
+-:60: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#60: 
+new file mode 100644
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8953 -> IGT_8954
-  * Linux: xe-5222-cc6ecad1583df42f635269218c08a63e79218177 -> xe-pw-168147v1
-
-  IGT_8953: 8953
-  IGT_8954: 8954
-  xe-5222-cc6ecad1583df42f635269218c08a63e79218177: cc6ecad1583df42f635269218c08a63e79218177
-  xe-pw-168147v1: 168147v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168147v1/index.html
-
---===============1536928750655395056==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 1 warnings, 0 checks, 147 lines checked
+df7cf84944d1 drm/xe/xe_pci_error: Group all devres to release them on PCIe slot reset
+c68ad1ce8080 drm/xe: Skip device access during PCI error recovery
+2b24293608db drm/xe/xe_ras: Initialize Uncorrectable AER Registers
+bce1241c2025 drm/xe/xe_ras: Add support for uncorrectable core-compute errors
+4e8515c13453 drm/xe/xe_ras: Handle uncorrectable SoC Internal errors
+362771ac5804 drm/xe/xe_ras: Query errors from system controller on probe
+a8741cb983b5 drm/xe/xe_pci_error: Process errors in mmio_enabled
+5dae86141d72 drm/xe/xe_ras: Add support to query device memory errors
+680578dfff5c drm/xe/xe_ras: Add support to query page offline queue and list
+7c3fb385a6a1 drm/xe/xe_ras: Add support to offline and decline a page address
+eeabc60ba0df drm/xe/xe_ras: Process pages from offlined list and queue
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/psr: Force fastset on debugfs write for each connector supporting PSR</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/168147/">https://patchwork.freedesktop.org/series/168147/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168147v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168147v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5222-cc6ecad1583df42f635269218c08a63e79218177_BAT -&gt; xe-pw-168147v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8953 -&gt; IGT_8954</li>
-<li>Linux: xe-5222-cc6ecad1583df42f635269218c08a63e79218177 -&gt; xe-pw-168147v1</li>
-</ul>
-<p>IGT_8953: 8953<br />
-  IGT_8954: 8954<br />
-  xe-5222-cc6ecad1583df42f635269218c08a63e79218177: cc6ecad1583df42f635269218c08a63e79218177<br />
-  xe-pw-168147v1: 168147v1</p>
-
-</body>
-</html>
-
---===============1536928750655395056==--
