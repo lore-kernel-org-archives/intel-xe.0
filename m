@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BCA5CD8CA8
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Jun 2026 20:17:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3187BCD8CA8
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Jun 2026 20:17:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF5B510E640;
-	Tue,  9 Jun 2026 20:17:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D51D310E650;
+	Tue,  9 Jun 2026 20:17:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f4f0zFN5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ldtVJtH6";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D82B010E629
- for <intel-xe@lists.freedesktop.org>; Tue,  9 Jun 2026 20:17:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC32910E64E
+ for <intel-xe@lists.freedesktop.org>; Tue,  9 Jun 2026 20:17:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781036270; x=1812572270;
+ t=1781036275; x=1812572275;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=dvRnPLsZ7ZryxORULp2r/PbhHhFKzASrv4q8bTi6XBc=;
- b=f4f0zFN5JC2ArQ0wZx+4LFpQW5MLxtFcNzcQrNjzDDyzznwEmxea3wOA
- GRl8aSxkuClvZZ4RK/T2AtovxSX1gfrXae/hafO1E00KqbM2MPUNsVBjm
- vSIlSSElZ0iRGZzRNxIKcoUSP1ZKyZoWKnNPbBu7Vk6VuxmXK8GXpHr6Q
- VOrw1FldN+iVM6/L2BHAu+XvB30H/TAMp4IXSieb0u76W9rilhmTHfjiX
- tI64Gf00G2aMJTJtbwnGPKd3mU5zeqTQemzMZFeeiEUmIlj4MMkhoAWyx
- zrdsuShSO+w19M/bsRFd92JNiJrxamqXs1BrR2UWge5W47e0MzqphTJYr Q==;
-X-CSE-ConnectionGUID: JWS3InDERpqhAemTT+Puzw==
-X-CSE-MsgGUID: TsYH38AQRFeIDeiKfYkuYw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11812"; a="84383299"
-X-IronPort-AV: E=Sophos;i="6.24,196,1774335600"; d="scan'208";a="84383299"
+ bh=uLHHD+gN9uEVLSaoDMonohm8JwkxiLfo9FIEz46B7ng=;
+ b=ldtVJtH6cvbQdZkp6qqToZlaaZCNWPiR44I9oNZr6oudse7voWgnZaP+
+ +yxR99Y1n6xgM0s+PfTa/0f6AdMNaj3nqiFrzsdy2cwKRckmOz9OEKy49
+ uEg4IgBTE1nUuD9TGRwJPUeQV7CAlMqHfZSEj7Pqw6XaWUM9phvjK/AGG
+ qt+n2jWmzJUQnYjmDQuMME0JLh7tbYxw6HoOPbrxBKqKEdmluumBDukA7
+ +EihSJ3OBO+C/VvIvOXMbxx67WhTEX9kNSsc2PGDYEFCOPL4zReF9l8zE
+ EJy+wjKVtxgYiGz9K5iABzZjCQNPzQv9IM7+/lzbor04kjKSFDAHDiDuP Q==;
+X-CSE-ConnectionGUID: Zk5HnrmmQT+Nxj4oKcG0OQ==
+X-CSE-MsgGUID: PprIV6/ORRuNwQeEwqCCFA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11812"; a="84383312"
+X-IronPort-AV: E=Sophos;i="6.24,196,1774335600"; d="scan'208";a="84383312"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2026 13:17:50 -0700
-X-CSE-ConnectionGUID: 7RqOjE6BTZmKVdIUvHrdAQ==
-X-CSE-MsgGUID: jXnVlP/pTb6GcakT1NEeAw==
+ 09 Jun 2026 13:17:55 -0700
+X-CSE-ConnectionGUID: d1R3ctCwRE+uTXxUtnsg0g==
+X-CSE-MsgGUID: AzGfj+W9QpeooWLAzziGHg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,196,1774335600"; d="scan'208";a="284027536"
+X-IronPort-AV: E=Sophos;i="6.24,196,1774335600"; d="scan'208";a="284027570"
 Received: from hanvin-mobl3.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.223.198])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2026 13:17:51 -0700
+ 09 Jun 2026 13:17:56 -0700
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Tue, 09 Jun 2026 17:17:35 -0300
-Subject: [PATCH 3/9] drm/xe: Add devid and revid to xe_probed_info
+Date: Tue, 09 Jun 2026 17:17:40 -0300
+Subject: [PATCH 8/9] drm/xe: Don't initialize tile_count in
+ xe_info_init_early()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260609-xe-probe-info-v1-3-21e83e188e60@intel.com>
+Message-Id: <20260609-xe-probe-info-v1-8-21e83e188e60@intel.com>
 References: <20260609-xe-probe-info-v1-0-21e83e188e60@intel.com>
 In-Reply-To: <20260609-xe-probe-info-v1-0-21e83e188e60@intel.com>
 To: intel-xe@lists.freedesktop.org
@@ -68,95 +69,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The PCI devid and revid fields are info that we probe from the
-hardware (indirectly via the PCI subsystem).  Add them to
-xe_probed_info and set them via xe_probe_info_early(), since the
-respective fields in xe->info are updated in xe_info_init_early().
+The value of xe->info.tile_count is only really valid after
+xe_info_probe_tile_count().  Any use of tile_count before that point
+is invalid and, consequently, initializing it in xe_info_init_early()
+is pointless.
+
+Move the initialization to xe_info_probe_tile_count().
 
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_pci.c |  6 ------
- drivers/gpu/drm/xe/xe_pci.c       | 23 ++++++++++-------------
- 2 files changed, 10 insertions(+), 19 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_pci.c |  5 +++--
+ drivers/gpu/drm/xe/xe_pci.c       | 10 ++++++----
+ 2 files changed, 9 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/tests/xe_pci.c b/drivers/gpu/drm/xe/tests/xe_pci.c
-index 51d032a9e01a..1baf3cd0d381 100644
+index cd64b1d614c8..31ec41aa997d 100644
 --- a/drivers/gpu/drm/xe/tests/xe_pci.c
 +++ b/drivers/gpu/drm/xe/tests/xe_pci.c
-@@ -311,11 +311,6 @@ const void *xe_pci_id_gen_param(struct kunit *test, const void *prev, char *desc
+@@ -311,9 +311,10 @@ const void *xe_pci_id_gen_param(struct kunit *test, const void *prev, char *desc
  }
  EXPORT_SYMBOL_IF_KUNIT(xe_pci_id_gen_param);
  
--static void fake_init_devid(struct xe_device *xe)
--{
--	/* Nothing to do, just keep zero. */
--}
--
- static int fake_read_gmdid(struct xe_device *xe, enum xe_gmdid_type type,
- 			   u32 *ver, u32 *revid)
+-static void fake_xe_info_probe_tile_count(struct xe_device *xe)
++static void fake_xe_info_probe_tile_count(struct xe_device *xe,
++					  const struct xe_device_desc *desc)
  {
-@@ -382,7 +377,6 @@ int xe_pci_fake_device_init(struct xe_device *xe)
- 	xe->sriov.__mode = data && data->sriov_mode ?
- 			   data->sriov_mode : XE_SRIOV_MODE_NONE;
+-	/* Nothing to do, just use the statically defined value. */
++	xe->info.tile_count = 1 + desc->max_remote_tiles;
+ }
  
--	kunit_activate_static_stub(test, init_devid, fake_init_devid);
- 	kunit_activate_static_stub(test, read_gmdid, fake_read_gmdid);
- 	kunit_activate_static_stub(test, xe_info_probe_tile_count,
- 				   fake_xe_info_probe_tile_count);
+ static int fake_probe_info(struct xe_device *xe,
 diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 646e04c6254f..382df59260ae 100644
+index 388771ef6a52..6b2daad87316 100644
 --- a/drivers/gpu/drm/xe/xe_pci.c
 +++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -727,18 +727,9 @@ static int handle_gmdid(struct xe_device *xe,
- 	return 0;
- }
+@@ -811,7 +811,6 @@ static int xe_info_init_early(struct xe_device *xe,
+ 	xe_assert(xe, desc->max_gt_per_tile > 0);
+ 	xe_assert(xe, desc->max_gt_per_tile <= XE_MAX_GT_PER_TILE);
+ 	xe->info.max_gt_per_tile = desc->max_gt_per_tile;
+-	xe->info.tile_count = 1 + desc->max_remote_tiles;
  
--static void init_devid(struct xe_device *xe)
--{
--	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
--
--	KUNIT_STATIC_STUB_REDIRECT(init_devid, xe);
--
--	xe->info.devid = pdev->device;
--	xe->info.revid = pdev->revision;
--}
--
- struct xe_probed_info {
--	/* Nothing for now. */
-+	u16 devid;
-+	u8 revid;
- };
- 
+ 	err = xe_tile_init_early(xe_device_get_root_tile(xe), xe, 0);
+ 	if (err)
+@@ -823,13 +822,16 @@ static int xe_info_init_early(struct xe_device *xe,
  /*
-@@ -747,6 +738,11 @@ struct xe_probed_info {
- static int xe_probe_info_early(struct xe_device *xe,
- 			       struct xe_probed_info *probed_info)
+  * Possibly override number of tile based on configuration register.
+  */
+-static void xe_info_probe_tile_count(struct xe_device *xe)
++static void xe_info_probe_tile_count(struct xe_device *xe,
++				     const struct xe_device_desc *desc)
  {
-+	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-+
-+	probed_info->devid = pdev->device;
-+	probed_info->revid = pdev->revision;
-+
- 	return 0;
- }
+ 	struct xe_mmio *mmio;
+ 	u8 tile_count;
+ 	u32 mtcfg;
  
-@@ -761,13 +757,14 @@ static int xe_info_init_early(struct xe_device *xe,
- {
- 	int err;
- 
-+	xe->info.devid = probed_info->devid;
-+	xe->info.revid = probed_info->revid;
+-	KUNIT_STATIC_STUB_REDIRECT(xe_info_probe_tile_count, xe);
++	KUNIT_STATIC_STUB_REDIRECT(xe_info_probe_tile_count, xe, desc);
 +
- 	xe->info.platform_name = desc->platform_name;
- 	xe->info.platform = desc->platform;
- 	xe->info.subplatform = subplatform_desc ?
- 		subplatform_desc->subplatform : XE_SUBPLATFORM_NONE;
++	xe->info.tile_count = 1 + desc->max_remote_tiles;
  
--	init_devid(xe);
--
- 	xe->info.dma_mask_size = desc->dma_mask_size;
- 	xe->info.va_bits = desc->va_bits;
- 	xe->info.vm_max_level = desc->vm_max_level;
+ 	/*
+ 	 * Probe for tile count only for platforms that support multiple
+@@ -1035,7 +1037,7 @@ static int xe_info_init(struct xe_device *xe,
+ 		xe->info.has_soc_remapper_telem = 0;
+ 	}
+ 
+-	xe_info_probe_tile_count(xe);
++	xe_info_probe_tile_count(xe, desc);
+ 
+ 	for_each_remote_tile(tile, xe, id) {
+ 		int err;
 
 -- 
 2.53.0
