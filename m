@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0B8ACD98C8
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Jun 2026 23:12:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DB88CD98CB
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Jun 2026 23:12:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CB9910E693;
+	by gabe.freedesktop.org (Postfix) with ESMTP id F186810E68E;
 	Tue,  9 Jun 2026 23:12:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Gn13ifep";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BuRN4Awa";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF4F710E683;
- Tue,  9 Jun 2026 23:12:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C767210E687;
+ Tue,  9 Jun 2026 23:12:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781046771; x=1812582771;
+ t=1781046774; x=1812582774;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=nDC8pT0NvrAnaDOdx4T1itHkX1YbM5/+WaYmS1hEBOw=;
- b=Gn13ifepTcsBsFKiKAmi8DNc6UckKdETbCz8u/ynM+fAfu7wVyUajAIA
- hfy9Rn6iZEZKW7Ug22l4sZZmh/YqzfYe2ECgU49vp4DqHin0PVNs6zmae
- VsByOOYD1edTlKRGyCiAXbvCMzfoUgFzW886UMkSQonLrI/Cs/uA2Wahi
- tbzTUrzDxJmUdM6t8m86R+hZ+iTaYjuFQB1hO2zVXARo51c2FafH6N1VQ
- t3ziTm1e1d8gDnYl4XVhCEnnl6dq9yblCoQG9fheQzrToI4K7PmjWHE7K
- yPxAU98rsHHr+FX5Bmh7YL/q4QKsu/M8Ss1iD1a1nepIST1aRnGUXGF6s w==;
-X-CSE-ConnectionGUID: g+OjteUeT+OsXFjFp+y96w==
-X-CSE-MsgGUID: inn35x2SRXKWxftVe4FYMA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11812"; a="104492308"
-X-IronPort-AV: E=Sophos;i="6.24,196,1774335600"; d="scan'208";a="104492308"
+ bh=sx7AwDHH3YLK1oLmS58VYiymnhy3qb5R4p/YlZFcwnE=;
+ b=BuRN4AwaTxzeGU8oE5ofCzXbpoovkiUdcdm6aq/dF7yyUT1NEOA09o4W
+ InMNI44281hy5smN/BppMly/lInJ6ZZBJNihJdkoloszoMb+ge2pDkTYe
+ Gi3DVG3KiQYioxxpsuiH/W6OApL6OLaLEC3kBWh93aI5woy845QcVoyJY
+ BTwkJq85SDOrG+NXWjRO0yB1Qqx8xPJb1xUMs7Tjz6TI1gDGOdJWdcjho
+ OX/hGNe0b83G4clLI0Z012KMdTJSp78uB4+2LJm5cNUNdTD/sIj5XOugI
+ wr9N50jN/3R0uQ5VKZy/CvMC/6bimwR3yuIXT6TtwuYRmpYLIhzYeuvB4 w==;
+X-CSE-ConnectionGUID: /BDUCj2zRByyN6IgpKsNNA==
+X-CSE-MsgGUID: vBPsMpB0RIy5GeSPn7GcBg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11812"; a="104492313"
+X-IronPort-AV: E=Sophos;i="6.24,196,1774335600"; d="scan'208";a="104492313"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2026 16:12:51 -0700
-X-CSE-ConnectionGUID: LHsF1esXSBSTopozMvfVKg==
-X-CSE-MsgGUID: VILFJbAaTFm0TRBm7CS1bQ==
+ 09 Jun 2026 16:12:54 -0700
+X-CSE-ConnectionGUID: UwHlx0ZjSN6C1EymU573GQ==
+X-CSE-MsgGUID: N5jodoDGRvqwEYvZ/p7W7g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,196,1774335600"; d="scan'208";a="276187985"
+X-IronPort-AV: E=Sophos;i="6.24,196,1774335600"; d="scan'208";a="276187992"
 Received: from dev-417.igk.intel.com ([10.91.214.181])
- by orviesa002.jf.intel.com with ESMTP; 09 Jun 2026 16:12:51 -0700
+ by orviesa002.jf.intel.com with ESMTP; 09 Jun 2026 16:12:54 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>,
  Nemesa Garg <nemesa.garg@intel.com>,
  =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Subject: [PATCH v1 6/9] drm/i915/scaler: inline CASF scaler allocation
-Date: Wed, 10 Jun 2026 01:12:14 +0200
-Message-ID: <20260609231217.208357-7-michal.grzelak@intel.com>
+Subject: [PATCH v1 8/9] drm/i915/scaler: move CASF alloc check into
+ intel_atomic_setup_scaler()
+Date: Wed, 10 Jun 2026 01:12:16 +0200
+Message-ID: <20260609231217.208357-9-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260609231217.208357-1-michal.grzelak@intel.com>
 References: <20260609231217.208357-1-michal.grzelak@intel.com>
@@ -71,44 +72,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Combine all CASF checks into one and invert it. By doing so check when
-to allocate CASF instead of checking when to fail it.
+Move CASF allocation check into only caller of intel_allocate_scaler().
+Allocate scaler as usual if CASF was not requested. Remove casf_scaler
+from intel_allocate_scaler()'s argument list. Also remove intel_display
+as both are no longer used.
+
+Benefits of doing so are not clearly visible as it is a mid-step for
+moving the check to the caller again.
 
 Cc: Nemesa Garg <nemesa.garg@intel.com>
 Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_scaler.c | 16 ++++++----------
- 1 file changed, 6 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/display/skl_scaler.c | 27 ++++++++++-------------
+ 1 file changed, 12 insertions(+), 15 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-index 29e4047c3f99..89920954c4b3 100644
+index b3c6376c8603..b40c9e500bbc 100644
 --- a/drivers/gpu/drm/i915/display/skl_scaler.c
 +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-@@ -340,17 +340,13 @@ static int intel_allocate_scaler(struct intel_crtc_scaler_state *scaler_state,
+@@ -333,22 +333,10 @@ static bool scaler_has_casf(struct intel_display *display, int scaler_id)
+ }
+ 
+ static int intel_allocate_scaler(struct intel_crtc_scaler_state *scaler_state,
+-				 struct intel_crtc *crtc,
+-				 bool casf_scaler)
++				 struct intel_crtc *crtc)
+ {
+-	struct intel_display *display = to_intel_display(crtc);
  	int scaler_id;
  
- 	if (casf_scaler) {
--		if (!HAS_CASF(display))
--			return -1;
+-	if (casf_scaler) {
+-		if (HAS_CASF(display) && crtc->num_scalers >= 2 &&
+-		    !scaler_state->scalers[1].in_use) {
+-			scaler_state->scalers[1].in_use = true;
+-			return 1;
+-		}
 -
--		if (crtc->num_scalers < 2)
--			return -1;
+-		return -1;
+-	}
 -
--		if (scaler_state->scalers[1].in_use)
--			return -1;
-+		if (HAS_CASF(display) && crtc->num_scalers >= 2 &&
-+		    !scaler_state->scalers[1].in_use) {
-+			scaler_state->scalers[1].in_use = true;
-+			return 1;
-+		}
- 
--		scaler_state->scalers[1].in_use = true;
--		return 1;
-+		return -1;
- 	}
- 
  	for (scaler_id = 0; scaler_id < crtc->num_scalers; scaler_id++) {
+ 		if (!scaler_state->scalers[scaler_id].in_use) {
+ 			scaler_state->scalers[scaler_id].in_use = true;
+@@ -409,8 +397,17 @@ static int intel_atomic_setup_scaler(struct intel_crtc_state *crtc_state,
+ 	int hscale = 0;
+ 	int vscale = 0;
+ 
+-	if (*scaler_id < 0)
+-		*scaler_id = intel_allocate_scaler(scaler_state, crtc, casf_scaler);
++	if (*scaler_id < 0) {
++		if (casf_scaler) {
++			if (HAS_CASF(display) && crtc->num_scalers >= 2 &&
++			    !scaler_state->scalers[1].in_use) {
++				scaler_state->scalers[1].in_use = true;
++				*scaler_id = 1;
++			}
++		} else {
++			*scaler_id = intel_allocate_scaler(scaler_state, crtc);
++		}
++	}
+ 
+ 	if (drm_WARN(display->drm, *scaler_id < 0,
+ 		     "Cannot find scaler for %s:%d\n", name, idx))
 -- 
 2.45.2
 
