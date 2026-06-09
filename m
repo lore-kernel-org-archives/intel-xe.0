@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF0C9CD8CAD
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Jun 2026 08:36:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A67FCD8CA7
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Jun 2026 08:36:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 687EF10E1AD;
-	Tue,  9 Jun 2026 08:36:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C030410E19D;
+	Tue,  9 Jun 2026 08:36:53 +0000 (UTC)
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 322FE10E19D;
- Tue,  9 Jun 2026 08:36:06 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D301010E19D;
+ Tue,  9 Jun 2026 08:36:52 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0804663964181662443=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_harde?=
- =?utf-8?q?n_some_bit-shifting_operations_=28rev5=29?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Add_wa=5F14025941?=
+ =?utf-8?q?587_to_xe2=2C_xe3_and_xe3p_platforms_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Luca Coelho" <luciano.coelho@intel.com>
+To: tilak.tirumalesh.tangudu@intel.com
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 09 Jun 2026 08:36:06 -0000
-Message-ID: <178099416620.58706.5500205565212850645@6beec6c84f66>
+Date: Tue, 09 Jun 2026 08:36:52 -0000
+Message-ID: <178099421285.58706.8886217718598313762@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260609082040.524725-1-luciano.coelho@intel.com>
-In-Reply-To: <20260609082040.524725-1-luciano.coelho@intel.com>
+References: <20260603184752.3377539-1-tilak.tirumalesh.tangudu@intel.com>
+In-Reply-To: <20260603184752.3377539-1-tilak.tirumalesh.tangudu@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,56 +40,102 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============0804663964181662443==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: drm/i915/display: harden some bit-shifting operations (rev5)
-URL   : https://patchwork.freedesktop.org/series/166864/
-State : warning
+Series: drm/xe: Add wa_14025941587 to xe2, xe3 and xe3p platforms (rev3)
+URL   : https://patchwork.freedesktop.org/series/167706/
+State : success
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-061140b9bc586ae7f40abc1249c97e1cc72d1b9d
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit ff3be734097c702422f23aa943355b3158a5fc2b
-Author: Luca Coelho <luciano.coelho@intel.com>
-Date:   Tue Jun 9 11:19:54 2026 +0300
+CI Bug Log - changes from xe-5223-a65d94c6ee1e4e58b535d06684020f3992ccad6f_BAT -> xe-pw-167706v3_BAT
+====================================================
 
-    drm/i915/display: remove unnecessary PHY_NONE definition
-    
-    PHY_NONE is not really used, but we define it and, thus, need to check
-    for it in a few places we use phy.  The only potential places where
-    phy may become PHY_NONE, is in intel_port_to_phy(), where it derives
-    from port, which can be PORT_NONE.  Many of its callers don't check
-    for PHY_NONE, which can cause unknown behavior.  Additionally, this
-    can only happen if the encoder used has PORT_NONE, which should not be
-    the case either, without unexpected consequences.
-    
-    Remove the PHY_NONE definition entirely and add a couple of WARNs at
-    the relevant places, just to be sure.
-    
-    Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
-+ /mt/dim checkpatch e591d473e392997b89c9ab9598bfe027c59ac21c drm-intel
-aa763f23e952 drm/i915/display: harden masks in HSW_AUD_PIN_ELD_CP_VLD macros
-91061c45f590 drm/i915/display: harden shifts in ICL_DPCLKA_CFGCR0_DDI_CLK_SEL macros
--:34: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'phy' may be better as '(phy)' to avoid precedence issues
-#34: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2878:
-+#define ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy)	_PICK(phy & 0x3, 0, 2, 4, 6)
+Summary
+-------
 
--:35: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'phy' - possible side-effects?
-#35: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2879:
-+#define ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_MASK(phy) \
-+	REG_GENMASK(ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy) + 1, \
-+		    ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy))
+  **SUCCESS**
 
-total: 0 errors, 0 warnings, 2 checks, 22 lines checked
-a47e61ccb6cd drm/i915/display: harden shift in intel_ddi_compute_config_late()
-ff3be734097c drm/i915/display: remove unnecessary PHY_NONE definition
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5223-a65d94c6ee1e4e58b535d06684020f3992ccad6f -> xe-pw-167706v3
+
+  IGT_8954: 8954
+  xe-5223-a65d94c6ee1e4e58b535d06684020f3992ccad6f: a65d94c6ee1e4e58b535d06684020f3992ccad6f
+  xe-pw-167706v3: 167706v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167706v3/index.html
+
+--===============0804663964181662443==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Add wa_14025941587 to xe2, xe3 and xe3p platforms (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167706/">https://patchwork.freedesktop.org/series/167706/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167706v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167706v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5223-a65d94c6ee1e4e58b535d06684020f3992ccad6f_BAT -&gt; xe-pw-167706v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5223-a65d94c6ee1e4e58b535d06684020f3992ccad6f -&gt; xe-pw-167706v3</li>
+</ul>
+<p>IGT_8954: 8954<br />
+  xe-5223-a65d94c6ee1e4e58b535d06684020f3992ccad6f: a65d94c6ee1e4e58b535d06684020f3992ccad6f<br />
+  xe-pw-167706v3: 167706v3</p>
+
+</body>
+</html>
+
+--===============0804663964181662443==--
