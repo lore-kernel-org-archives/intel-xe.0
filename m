@@ -4,52 +4,163 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3358DCD8CAC
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Jun 2026 08:40:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4B99CD8CA4
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Jun 2026 09:10:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DCA1C10E1AE;
-	Tue,  9 Jun 2026 08:40:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66CB810E1C7;
+	Tue,  9 Jun 2026 09:10:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AhIoRYEm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EQZuV0Br";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34CE710E1AE
- for <intel-xe@lists.freedesktop.org>; Tue,  9 Jun 2026 08:40:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55B3E10E0A6;
+ Tue,  9 Jun 2026 09:10:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780994406; x=1812530406;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=q81V/LjoOnvFxQYlrzQLAW9p9QTdH5m3g1GqN2R7qSs=;
- b=AhIoRYEmx3XwJ+8Y2BhfTvkDBq7zaIaTTihKuxXybLmOsAxJmAQr6eSV
- XYTx+8ZPuXcV0D24vJzRjxOXOM2+Pafhv8/rk/pNHDZNmeGFQWvvYfBAw
- e/oAa8NWmPsxhEh+oJgZlKWdot6goKRsfPaxCGjLCe2xshVvuULrAC7ek
- bjPDoSe6ApY3A4qAhLnLnoXIHL64BccFlBEU8EgkUoOkZcPWhMTjfEdH1
- PwPqtOr1xOrjysInMCTdNVV1wHOSd6m8uVIqMj0i+mi5/mcV9BX2WZeG1
- +Xfug/zvLkNXUPr3N/61xLGCBQHd9rNbxnswJA36dShADAJceHAoHu5VQ g==;
-X-CSE-ConnectionGUID: +wCQMJJORiafOGrqCYUw4w==
-X-CSE-MsgGUID: 6oSUaRtNSJO+5IceUSGrLw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11811"; a="81812885"
-X-IronPort-AV: E=Sophos;i="6.24,195,1774335600"; d="scan'208";a="81812885"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2026 01:40:06 -0700
-X-CSE-ConnectionGUID: SUe1KuVBT6uvyoLj0ioecQ==
-X-CSE-MsgGUID: W9iPmQOwQCKpA2a1aK7nLw==
+ t=1780996208; x=1812532208;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=aaStSoL1SlRGiP4FYircIFJuQPpSe/8O2xZHGy/aeZc=;
+ b=EQZuV0BrCctbT3/7hLR/TxtXKTvFP/UQCRgsD4VOHu9PW97bLQxjki07
+ fwsFq201xKkd6LEqiI0cX3NUXdOCBuJ3EJIG3M7FiLJ6FcyJc2JJQTwAa
+ uISW5GvSt9vRJyaVk9W0sQ+sWNw8NQ3r64/VDxyyVrny+DkIhSU2KFMwZ
+ dmiC0FD3wi8Qk60GTKElPup6Lt7shfwlSRAS0cChVk/T+ag0szHiYG9d6
+ UtnfuOj/3yzXl6iLW7MaPpd0N+vcEJpCFd2Sv5goCTQGqC/TyslNZi1rT
+ pf5A5RWQRJEARe4zC+y5YXsCOku3vBhdm+osHFx6z7Vpn+P0R1QweHFD2 g==;
+X-CSE-ConnectionGUID: Tj1WrAfASy60g29Iy1yqTA==
+X-CSE-MsgGUID: 65kNAYmPRM+PEIkqBGbcuQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11811"; a="92426525"
+X-IronPort-AV: E=Sophos;i="6.24,195,1774335600"; d="scan'208";a="92426525"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2026 02:10:08 -0700
+X-CSE-ConnectionGUID: 6Rn0WGDrTSiF1GgHpPmoIQ==
+X-CSE-MsgGUID: mLdvYHmqT72b2UTajX9iUw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,195,1774335600"; d="scan'208";a="241633020"
-Received: from dut2933pvc.iind.intel.com ([10.190.215.18])
- by fmviesa010.fm.intel.com with ESMTP; 09 Jun 2026 01:40:04 -0700
-From: Nishit Sharma <nishit.sharma@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	himal.prasad.ghimiray@intel.com
-Subject: [PATCH] [RFC]drm/xe: fix cross-tile SVM migration mapping on PVC and
- harden ENOSPC retry path
-Date: Tue,  9 Jun 2026 08:40:03 +0000
-Message-ID: <20260609084003.70975-1-nishit.sharma@intel.com>
-X-Mailer: git-send-email 2.43.0
+X-IronPort-AV: E=Sophos;i="6.24,195,1774335600"; d="scan'208";a="243364858"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2026 02:10:08 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Tue, 9 Jun 2026 02:10:07 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Tue, 9 Jun 2026 02:10:07 -0700
+Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.1) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Tue, 9 Jun 2026 02:10:06 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=UBgq2z4VABwfIeslVyxkUfKGVOfkRXgqulZtX/1iQ9cQXq8Zx9xYUxGKLtq70sbeE2DAyapGuSheji7jerCZJQad9zuZciqz4RuqOvrLCpcNK9PDhBvHuzzP/UeLDmwy7C/CU29TM4sHpoqh1AxFGp19XiH7ED+XqK2eX9AWriTqKcPX/I7CI5xt+vxoJgCyIxo2btFA/RN67pfEgNHi2UvU2r4RDEtCTRLIbKEQvDwiYP9DbU9r6T2saXF8C4dawH1yXn8Ucg1tBj5vufayPEbia1YnVA0NAc44xwN/seStHB+b52L2fZlWWqmZtYHsXMsJru6wDR6LTLqP+YkH/Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=aaStSoL1SlRGiP4FYircIFJuQPpSe/8O2xZHGy/aeZc=;
+ b=RlafsdDvoanoc9H+OIJlhklk/3QM5OCoFdbBUod1BZSrfewNqtuBIJAAR1YXJ4kIWsTj5Y3OV/5AD7vbLLq58pFOEQKaxXmgIM0YwaC2zsM6w2Zjm79X7zBHVBmhK8Y50A8nBEqIK9lfqvajSgAXkkDv28X3zu09sSN8c4Va4OF5agNYSU249AQKqedp9LxCAFLazAXPrE3u5/3fQBKlCJnHn5FLT3uHBqGiIVjVEINtkVEhGj+cnq81dIW3y3F/s75O1nJ/wDHDy/onlJiPA28hu0IeNewCBfukokkeByFH0t7BBPG5doghH169F4YdYaJBPmqZGVGOwz4serrPaw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DS4PPF69154114F.namprd11.prod.outlook.com
+ (2603:10b6:f:fc02::28) by DS7PR11MB7952.namprd11.prod.outlook.com
+ (2603:10b6:8:eb::5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.13; Tue, 9 Jun 2026
+ 09:10:04 +0000
+Received: from DS4PPF69154114F.namprd11.prod.outlook.com
+ ([fe80::88d6:ba41:128b:4081]) by DS4PPF69154114F.namprd11.prod.outlook.com
+ ([fe80::88d6:ba41:128b:4081%6]) with mapi id 15.21.0092.011; Tue, 9 Jun 2026
+ 09:10:04 +0000
+From: "Kahola, Mika" <mika.kahola@intel.com>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: RE: [PATCH] drm/i915/display: Skip generic pipe dpll_hw_state compare
+ on LT PHY
+Thread-Topic: [PATCH] drm/i915/display: Skip generic pipe dpll_hw_state
+ compare on LT PHY
+Thread-Index: AQHc90pBcgi3ql4Wx0S5t5CdcuLsmrY12HoAgAACbACAAANtwIAACEMAgAAHBlA=
+Date: Tue, 9 Jun 2026 09:10:04 +0000
+Message-ID: <DS4PPF69154114FDE8A2D0F6CF1A553F281EF1D2@DS4PPF69154114F.namprd11.prod.outlook.com>
+References: <20260608132505.1849158-1-mika.kahola@intel.com>
+ <DS4PPFE901A304F9D8A3F2373EB7BBB7209E31D2@DS4PPFE901A304F.namprd11.prod.outlook.com>
+ <DS4PPFE901A304F5E4F3186111A73F0683BE31D2@DS4PPFE901A304F.namprd11.prod.outlook.com>
+ <DS4PPF69154114F8FE08735C1DE5F963D09EF1D2@DS4PPF69154114F.namprd11.prod.outlook.com>
+ <DS4PPFE901A304FD17DE37147850239D7F9E31D2@DS4PPFE901A304F.namprd11.prod.outlook.com>
+In-Reply-To: <DS4PPFE901A304FD17DE37147850239D7F9E31D2@DS4PPFE901A304F.namprd11.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS4PPF69154114F:EE_|DS7PR11MB7952:EE_
+x-ms-office365-filtering-correlation-id: ea97a7b7-2787-481b-8fd7-08dec606e49e
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|366016|376014|1800799024|38070700021|56012099006|4143699003|11063799006|6133799003|18002099003|22082099003;
+x-microsoft-antispam-message-info: +qsS7+/JAoVS/4Njd5MWD5Mr2Y2wA3jfMgdXc0MZCECPV8QQrVskLd5w/m5iH2InjlqbCoOWGmru0i1r2LmqMzz7WmwM9sLatZ3iJY5sb3nXaeZ5PK/dkmuMhs5EHx8ETndQg1hWu/d9LnPEFaOvALhL/5JxZoM2+asrMxUXEFJnMbhOnuktu/gmhIk8B0xOx6lQvuXk7Y96M6xGib79ogEeKYxB6JGsyuYe/MDGfTVE8cS7HR/i4Eu9VwSUTvC7wU3a+/YuEIgqQlz0fBtLonQfekta1uG+UAMxVE7gknmvuHMYFZgicqY69sFuzg6WX9U6EFKtpSJBD8yztxK9DHX3v5MkI7+Jww8Im8ruZJ4G+W6ASujvSebnDstTqbPaMS1JJfvHQO4uXGstneGGxyy4U4A9E5N+b/7s5kv0FycPzzazdseIQhmuiP8fmw2wqDWz2e4UVg2a+LNXhXdoBzK/9u7iaKaAKk8qSqe+N3I2NYOUNWuq7dOFprwpbbIBeZCXH8QE7GMvB99t5P8+vCopapFXtOyIKoNLYhzDLl9dAd5XJQQ0qpny7q1iODlZ7waRZ9+USCjq2E4qecLoux/QeVWSt/7fPsU7CalNOkp5sREhS3pXiJ0YiXD5oRN16kIkXHzOWxAJT3YkeTGl7icNuhGtVBPPy14FI5r4mwzmx9/eZObsnOdQoP+HlTdbPCNraN6qQb7Na8qA9Ibfe++PLma2CwqYZDVXxRHlXKlJkuzyJcyaq5URYpXtA8Ey
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS4PPF69154114F.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(38070700021)(56012099006)(4143699003)(11063799006)(6133799003)(18002099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?dExkSlBZc2RFZFc5bWlGK2VEU3loK0Y1dk84SG12TVdrOXJvQWZZT0Z4OTRy?=
+ =?utf-8?B?ZFVLSEJhVlg5QWRHanFYdjVrTTI5TnUrVVJwS2VrS0p2VE81THZocmltSkNo?=
+ =?utf-8?B?VDd4VXk2N3diNDMwb0xVa0dFUThqNlVhRzVHcEJRY2RBN0tOR1JTSkNDM1Z3?=
+ =?utf-8?B?cW9MbjJtUDgrcElJV0kwVi92eGFUdVNTRDFlK2NhazFVb3VXa2Y1SFB1TFc3?=
+ =?utf-8?B?VFRGWnRPbDVRUk5HZGFXMnl6Mm9Ldmw4aE0zTm9HeU1EQmgrWVIweWtlSlo4?=
+ =?utf-8?B?d3U4UlZhMStsSnlNR2UwUWVsNndqM2dncjlsb2Q3V1U3Z1E1VWd6RHoxQWRC?=
+ =?utf-8?B?cVJVZFdMZ0UweTZyNUFYcUE1aWNldXY4bW1STlpCWHdnL1U4OVNrdVpRTnhj?=
+ =?utf-8?B?YWpWV3lyQit5T2JTVFpCNGdMdE55VlRYVUdnVGFHditXOWhxcjZWV0h4VUdN?=
+ =?utf-8?B?djBNZ2NTRFcrUnpMbTJWdkdudGtFbEszQnEzVXN3b3ppRzk1MWYwM3lJZ2Z2?=
+ =?utf-8?B?ZDh1dksySStvMXNGQURwVldwdm96a2RDdmNQWkt3YlR5VC9OU1JSN1Jqdmg5?=
+ =?utf-8?B?ZC9GZTF3RElnYUFQZDZtdDk0RlBnazZPTmEvR2dIV0RHTjZIOFhzS1lOT1dm?=
+ =?utf-8?B?TVFOUEdmZTVYcE5XcitHdC9hNTNlYVE1UXpQc3JraGllWXZLNmx4aTE3WE1O?=
+ =?utf-8?B?ZTdpbDNGUzZmcURtNFB5V1Q1bGl6a0JLclRQYzc0MlBWeTFHS1RTTk1LZEhK?=
+ =?utf-8?B?aTlhYmZYU25heTZHN0x6Mi9OTlI4WVd1aEpVTGozUm43RlEzMFVMQVcrVUNH?=
+ =?utf-8?B?OTJHdFN4T0Z1WDVjY3gyU2w0Wi8vR0c2YmQxaWExYXBSS2k1Z0U0S09BclZW?=
+ =?utf-8?B?dDNWMkJXNWcwNW5Ec2NNTzIyR2xuSUdtckMwQ2ovWXhOUnBMYUlCQTdoa0Nl?=
+ =?utf-8?B?UUlXVlVHWWlBQU5BMW1lRmh0WTRGTWQvWlZ5UVRKRzR5LzFBYW51UGMxcHBE?=
+ =?utf-8?B?QjhNSytsVnRnMWs1TTRVUjVyS3c5Z0R2QXlaRFVzSDZjVHFqUDlzelNXTjRD?=
+ =?utf-8?B?R29tSG10RnU1N0xqZkdUWk1VNXNmOWV4YjFHM3djQmtpblRrUVV6eVRVQ29L?=
+ =?utf-8?B?ZGhJOXNsOEQ4SDl2WTUvZVEzaTR2SnZoQlVhWEdxdml4RXAwL1ExWVpOdHZH?=
+ =?utf-8?B?TXFwQmd2Yjg5VFlwV2lDbVhwakpkeEw1RTJVd25WYVVsMWZhQWNwZVA0bGhj?=
+ =?utf-8?B?MmNlQ0QxTzRwUnFCR1RjcmpkOERnd0xFS20zWHA1TjhEOTFFY0Y3c3EvdmxU?=
+ =?utf-8?B?VkFIcUgzUCtaWU1oMVBaVDlGc1hhOVRTUU5hZWdRYWcxNENYSm55b0hldnNM?=
+ =?utf-8?B?VlFiM3MyZTlXWjJ5N1AyYWVXWkVjSlNuRE1HaGVWSURKZDI5UTgxMllDWXJx?=
+ =?utf-8?B?T290aXorMEhDeis1SW9Ea1ZGWDFMc0hsWG1YNG01N2hFakhPN3pSRTVOTGNl?=
+ =?utf-8?B?aDVPVHVBNzVVV3BsaVZSSlYyVDJzek5DVU5qODI1bG1VSTh5U1ZPMXJyVDFM?=
+ =?utf-8?B?cjlTU2tzY29QajMweFBkWDB6RUUvSGpoeE0yQVlUM2thODMzVktzZi9uTkhX?=
+ =?utf-8?B?L1RPNVBTd1NHNkF3S3NBMDg5TytHVlJhTFltcHRNUWYxUG50MWphZVNXSk5x?=
+ =?utf-8?B?cEFMZVhweW5sazRWYWJKbm9wS0hHZ3BDd0ZpTTMya01aNFU4ZnFZajRQbi9B?=
+ =?utf-8?B?TUdrTndxc2xFdWhJSzNSOG5zZTBiNHJGYUNoMWdLbm9Hb1p4Qy9pTnFRdlJC?=
+ =?utf-8?B?ZHNxUURMSjJnT01Nd0sxd3NjRndKaUZKVmhZaVV5QmhmS2NZZDg1TUhoc3FW?=
+ =?utf-8?B?TnRhY25HeThLSEpIRnJ6U2R6K2Z6RW9ZMGl1NlNodzgxQW1udUs4cHMraVQ4?=
+ =?utf-8?B?TjNxVHJmYTU2R1VLM2hvTzF3ZCt4S1FwK3hsQ2h6OGNTaDJkWUZpV1ZuUWhj?=
+ =?utf-8?B?Y3RQSldnSGFicTV2bVFXOVlZNmFtdldpQ1gxb0xob01iWGZsZjNsSXZEOVZU?=
+ =?utf-8?B?NU0zbG05QnVkNU5rVmlBSWxXRDlIZzJVMzh3R1BuR2FZNnZNNUFRbElTUTc1?=
+ =?utf-8?B?YnVhSm5ueHo0MkVOdXIwVGd2Q2lEOFkrV3BIbmNUOEhVMlVNNTl1ZmtidkZM?=
+ =?utf-8?B?RDFla2RsNXVVSEpnZ3RjeXpxTzM4ZENtOWlVSld0ZWlJeThFeXpaQ2JGNjJt?=
+ =?utf-8?B?RHhjREx2TTVMRXBwbVRUd1NQRHN3T1oyZncvNE1sY1JkeFh3TWdpbVZmUGxo?=
+ =?utf-8?B?SHJUQWpkT3NtUFN3T2Y3SkoveWVseDFXSW1GRS84WUw2Y2VxWS9ZQT09?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-Exchange-RoutingPolicyChecked: UzjU5YXAPRfYlfidbSG3X+k55qKUXXXQ2tfQ8CHxi2Adqy+rIzs7Tznqrx9tkILk3cojT0mFFCQaCj3pgjCdphbl931MO8HaAl99TMuz4FHjmjG96Fdg44dopZb2sAMnqVJxu4dlDvhlyTEscx9+CvqT6fJYrxYxR/AiCLDqOVC6jWteB9LGRJc3bDJ+L7GzRnID/qjtSuN+TTBHoPFUDoxZuajqwrUcgaGSF27yB/a7fkUOzR7cIXSSXs6jjb1GkkBVJ6LOaH3/j6eiK6LCLFIe8Nt+U3t4jr/WVqk11aOrNrAag+jdz4JLK8hFh7DO3AnexbtYaiZv9pB14AG2rw==
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DS4PPF69154114F.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ea97a7b7-2787-481b-8fd7-08dec606e49e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Jun 2026 09:10:04.0716 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Vv5pSy7pXtnv7GNQOboGyktKHmKIntQvA89Lg+TcoV8xExlrHuCYTDsMwDk2a/V/r919Dcmfr7ZoBfxYJ74n2g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB7952
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,275 +175,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This update addresses correctness and stability issues in unified memory migration on
-multi-tile (such as PVC) systems where multiple tiles share a single device context.
-In that environment, local and peer memory paths can appear equivalent at the device level,
-which may cause cross-tile traffic to use an address form that is only valid on the owning tile.
-Under page-fault-driven migration, that can intermittently fail when one tile accesses pages
-currently resident on another tile.
-The fix introduces explicit peer-aware mapping semantics so cross-tile accesses are resolved
-through a valid peer-accessible DMA path rather than tile-local addressing.
-
-Signed-off-by: Nishit Sharma <nishit.sharma@intel.com>
----
- drivers/gpu/drm/drm_pagemap.c |  6 ++-
- drivers/gpu/drm/xe/xe_pt.c    | 14 +++--
- drivers/gpu/drm/xe/xe_svm.c   | 97 ++++++++++++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_sync.c  | 13 +++++
- include/drm/drm_gpusvm.h      |  1 +
- include/drm/drm_pagemap.h     |  6 +++
- 6 files changed, 132 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
-index 15c78eca180b..e781cbdfa494 100644
---- a/drivers/gpu/drm/drm_pagemap.c
-+++ b/drivers/gpu/drm/drm_pagemap.c
-@@ -267,11 +267,15 @@ drm_pagemap_migrate_map_device_private_pages(struct device *dev,
- 				goto next;
- 
- 			num_local_pages += NR_PAGES(order);
-+			addr = dpagemap->ops->device_map(dpagemap, dev, page, order, dir);
- 		} else {
- 			num_peer_pages += NR_PAGES(order);
-+			if (dpagemap->ops->peer_map)
-+				addr = dpagemap->ops->peer_map(dpagemap, dev, page, order, dir);
-+			else
-+				addr = dpagemap->ops->device_map(dpagemap, dev, page, order, dir);
- 		}
- 
--		addr = dpagemap->ops->device_map(dpagemap, dev, page, order, dir);
- 		if (dma_mapping_error(dev, addr.addr))
- 			return -EFAULT;
- 
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 2669ff5ee747..e0aed463373b 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -564,9 +564,17 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
- 					xe_walk->vma->gpuva.flags |=
- 							XE_VMA_PTE_64K;
- 					pte |= XE_PTE_PS64;
--				} else if (XE_WARN_ON(xe_walk->needs_64K &&
--					   is_vram)) {
--					return -EINVAL;
-+				} else if (xe_walk->needs_64K &&
-+					   is_vram) {
-+					/*
-+					 * needs_64K VM requires 64K PTEs for VRAM but
-+					 * the 64K PTE cannot be formed: partial VRAM
-+					 * eviction or partial migration created a mixed
-+					 * SRAM+VRAM 64K window. Return -ENOSPC so the
-+					 * page fault handler can evict remaining VRAM
-+					 * and retry with SRAM-only mappings.
-+					 */
-+					return -ENOSPC;
- 				}
- 			}
- 		}
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index e1651e70c8f0..150391c9878b 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -602,8 +602,39 @@ static int xe_svm_copy(struct page **pages,
- 			vr = xe_page_to_vr(spage);
- 			gt = xe_migrate_exec_queue(vr->migrate)->gt;
- 			xe = vr->xe;
-+		} else if (spage && xe_page_to_vr(spage) != vr) {
-+			/*
-+			 * On multi-tile devices (e.g. PVC/Xe_HPC), migrate_vma
-+			 * may return VRAM pages from different tiles within the
-+			 * same batch because all tiles share the same
-+			 * pgmap_owner. Flush the current copy chunk using the
-+			 * old tile before switching to the new tile's VRAM region.
-+			 */
-+			if (vram_addr != XE_VRAM_ADDR_INVALID) {
-+				xe_svm_copy_kb_stats_incr(gt, dir,
-+						(i - pos) * (PAGE_SIZE / SZ_1K));
-+				if (sram)
-+					__fence = xe_migrate_from_vram(vr->migrate,
-+							i - pos, vram_addr,
-+							&pagemap_addr[pos],
-+							pre_migrate_fence);
-+				else
-+					__fence = xe_migrate_to_vram(vr->migrate,
-+							i - pos, &pagemap_addr[pos],
-+							vram_addr, pre_migrate_fence);
-+				if (IS_ERR(__fence)) {
-+					err = PTR_ERR(__fence);
-+					goto err_out;
-+				}
-+				pre_migrate_fence = NULL;
-+				dma_fence_put(fence);
-+				fence = __fence;
-+			}
-+			vr = xe_page_to_vr(spage);
-+			gt = xe_migrate_exec_queue(vr->migrate)->gt;
-+			xe = vr->xe;
-+			vram_addr = XE_VRAM_ADDR_INVALID;
- 		}
--		XE_WARN_ON(spage && xe_page_to_vr(spage) != vr);
- 
- 		/*
- 		 * CPU page and device page valid, capture physical address on
-@@ -1148,6 +1179,14 @@ bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range, struct xe_vm
- 
- 	if (range_size < SZ_64K && !supports_4K_migration(vm->xe)) {
- 		drm_dbg(&vm->xe->drm, "Platform doesn't support SZ_4K range migration\n");
-+		if (!supports_4K_migration(vm->xe) &&
-+		   (!IS_ALIGNED(xe_svm_range_start(range), SZ_64K) ||
-+		   !IS_ALIGNED(range_size, SZ_64K))) {
-+			drm_dbg(&vm->xe->drm,
-+				"Range not 64K-aligned for VRAM migration, start=0x%lx size=0x%lx\n",
-+				xe_svm_range_start(range), (unsigned long)range_size);
-+			return false;
-+		}
- 		return false;
- 	}
- 
-@@ -1227,6 +1266,7 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
- 	ktime_t start = xe_gt_stats_ktime_get(), bind_start, get_pages_start;
- 	int err;
- 
-+	ctx.local_dpagemap = xe_tile_local_pagemap(tile);
- 	lockdep_assert_held_write(&vm->lock);
- 	xe_assert(vm->xe, xe_vma_is_cpu_addr_mirror(vma));
- 
-@@ -1360,6 +1400,45 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
- 		goto retry;
- 	}
- 
-+	if (err == -ENOSPC) {
-+		/*
-+		 * 64K PTE not possible for needs_64K VM: mixed SRAM+VRAM in
-+		 * the DMA address array prevented xe_pt_scan_64K from forming
-+		 * a 64K PTE.  Three invariants must hold for recovery:
-+		 *
-+		 * 1. Evict unconditionally via drm_gpusvm_range_evict: the
-+		 *    advisory has_devmem_pages flag may be stale (false) while
-+		 *    VRAM DMA entries still exist in the dma_addr array.
-+		 *
-+		 * 2. Explicitly unmap pages after eviction.
-+		 *    drm_gpusvm_range_evict clears has_dma_mapping via the MMU
-+		 *    notifier ONLY when a migration actually occurs.  On a
-+		 *    second recovery attempt the pages may already be in SRAM
-+		 *    (no migration, no notifier), leaving has_dma_mapping true
-+		 *    with stale VRAM entries in dma_addr.
-+		 *    drm_gpusvm_range_unmap_pages clears this unconditionally,
-+		 *    guaranteeing that drm_gpusvm_get_pages takes the full HMM
-+		 *    path and returns fresh SRAM DMA entries.
-+		 *
-+		 * 3. Use goto retry (not goto get_pages) to re-lookup the
-+		 *    range with fresh dpagemap and device_private_page_owner.
-+		 *    After eviction the notifier sets tile_invalidated so
-+		 *    xe_svm_range_is_valid returns false and we proceed to
-+		 *    get_pages.  --migrate_try_count becomes -1 (< 0) at
-+		 *    retry, skipping VRAM re-migration.
-+		 */
-+		range_debug(range, "PAGE FAULT - EVICT PARTIAL VRAM RETRY");
-+		drm_gpusvm_range_evict(&vm->svm.gpusvm, &range->base);
-+		drm_gpusvm_range_unmap_pages(&vm->svm.gpusvm, &range->base,
-+				&ctx);
-+		ctx.timeslice_ms <<= 1; /* Double timeslice if we have to retry */
-+		ctx.devmem_only = false;
-+		ctx.devmem_possible = false;
-+		ctx.check_pages_threshold = 0;
-+		migrate_try_count = 0;
-+		goto retry;
-+	}
-+
- 	return err;
- }
- 
-@@ -1695,6 +1774,21 @@ xe_drm_pagemap_device_map(struct drm_pagemap *dpagemap,
- 	return drm_pagemap_addr_encode(addr, prot, order, dir);
- }
- 
-+static struct drm_pagemap_addr
-+xe_drm_pagemap_peer_map(struct drm_pagemap *dpagemap,
-+			struct device *dev,
-+			struct page *page,
-+			unsigned int order,
-+			enum dma_data_direction dir)
-+{
-+        dma_addr_t addr = dma_map_resource(dev,
-+					   xe_page_to_pcie(page),
-+					   PAGE_SIZE << order, dir,
-+					   DMA_ATTR_SKIP_CPU_SYNC);
-+
-+	return drm_pagemap_addr_encode(addr, XE_INTERCONNECT_P2P, order, dir);
-+}
-+
- static void xe_drm_pagemap_device_unmap(struct drm_pagemap *dpagemap,
- 					struct device *dev,
- 					const struct drm_pagemap_addr *addr)
-@@ -1742,6 +1836,7 @@ static void xe_pagemap_destroy(struct drm_pagemap *dpagemap, bool from_atomic_or
- 
- static const struct drm_pagemap_ops xe_drm_pagemap_ops = {
- 	.device_map = xe_drm_pagemap_device_map,
-+	.peer_map = xe_drm_pagemap_peer_map,
- 	.device_unmap = xe_drm_pagemap_device_unmap,
- 	.populate_mm = xe_drm_pagemap_populate_mm,
- 	.destroy = xe_pagemap_destroy,
-diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
-index 37866768d64c..d2aa888f2d03 100644
---- a/drivers/gpu/drm/xe/xe_sync.c
-+++ b/drivers/gpu/drm/xe/xe_sync.c
-@@ -346,6 +346,7 @@ xe_sync_in_fence_get(struct xe_sync_entry *sync, int num_sync,
- 
- 	if (q->flags & EXEC_QUEUE_FLAG_VM) {
- 		struct xe_exec_queue *__q;
-+#if 0
- 		struct xe_tile *tile;
- 		u8 id;
- 
-@@ -354,6 +355,18 @@ xe_sync_in_fence_get(struct xe_sync_entry *sync, int num_sync,
- 			for_each_tlb_inval(i)
- 				num_fence++;
- 		}
-+#endif
-+		/* Count fences for main queue */
-+		num_fence++;
-+		for_each_tlb_inval(i)
-+			num_fence++;
-+
-+		/* Count fences for main queue */
-+		list_for_each_entry(__q, &q->multi_gt_list, multi_gt_link) {
-+			num_fence++;
-+			for_each_tlb_inval(i)
-+				num_fence++;
-+		}
- 
- 		fences = kmalloc_objs(*fences, num_fence);
- 		if (!fences)
-diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
-index 8a4d7134a9a7..6f03111fc8ef 100644
---- a/include/drm/drm_gpusvm.h
-+++ b/include/drm/drm_gpusvm.h
-@@ -250,6 +250,7 @@ struct drm_gpusvm_ctx {
- 	unsigned int devmem_possible :1;
- 	unsigned int devmem_only :1;
- 	unsigned int allow_mixed :1;
-+	struct drm_pagemap *local_dpagemap;
- };
- 
- int drm_gpusvm_init(struct drm_gpusvm *gpusvm,
-diff --git a/include/drm/drm_pagemap.h b/include/drm/drm_pagemap.h
-index 95eb4b66b057..414a8a19bfe7 100644
---- a/include/drm/drm_pagemap.h
-+++ b/include/drm/drm_pagemap.h
-@@ -87,6 +87,12 @@ struct drm_pagemap_ops {
- 					      unsigned int order,
- 					      enum dma_data_direction dir);
- 
-+	struct drm_pagemap_addr (*peer_map)(struct drm_pagemap *dpagemap,
-+					    struct device *dev,
-+					    struct page *page,
-+					    unsigned int order,
-+					    enum dma_data_direction dir);
-+
- 	/**
- 	 * @device_unmap: Unmap a device address previously obtained using @device_map.
- 	 *
--- 
-2.43.0
-
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBLYW5kcGFsLCBTdXJhaiA8c3Vy
+YWoua2FuZHBhbEBpbnRlbC5jb20+DQo+IFNlbnQ6IFR1ZXNkYXksIDkgSnVuZSAyMDI2IDExLjMz
+DQo+IFRvOiBLYWhvbGEsIE1pa2EgPG1pa2Eua2Fob2xhQGludGVsLmNvbT47IGludGVsLWdmeEBs
+aXN0cy5mcmVlZGVza3RvcC5vcmc7IGludGVsLXhlQGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBT
+dWJqZWN0OiBSRTogW1BBVENIXSBkcm0vaTkxNS9kaXNwbGF5OiBTa2lwIGdlbmVyaWMgcGlwZSBk
+cGxsX2h3X3N0YXRlIGNvbXBhcmUgb24gTFQgUEhZDQo+IA0KPiANCj4gDQo+ID4gLS0tLS1Pcmln
+aW5hbCBNZXNzYWdlLS0tLS0NCj4gPiBGcm9tOiBLYWhvbGEsIE1pa2EgPG1pa2Eua2Fob2xhQGlu
+dGVsLmNvbT4NCj4gPiBTZW50OiBUdWVzZGF5LCBKdW5lIDksIDIwMjYgMTozOCBQTQ0KPiA+IFRv
+OiBLYW5kcGFsLCBTdXJhaiA8c3VyYWoua2FuZHBhbEBpbnRlbC5jb20+OyBpbnRlbC0NCj4gPiBn
+ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOyBpbnRlbC14ZUBsaXN0cy5mcmVlZGVza3RvcC5vcmcN
+Cj4gPiBTdWJqZWN0OiBSRTogW1BBVENIXSBkcm0vaTkxNS9kaXNwbGF5OiBTa2lwIGdlbmVyaWMg
+cGlwZSBkcGxsX2h3X3N0YXRlDQo+ID4gY29tcGFyZSBvbiBMVCBQSFkNCj4gPg0KPiA+ID4gLS0t
+LS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gPiA+IEZyb206IEthbmRwYWwsIFN1cmFqIDxzdXJh
+ai5rYW5kcGFsQGludGVsLmNvbT4NCj4gPiA+IFNlbnQ6IFR1ZXNkYXksIDkgSnVuZSAyMDI2IDEw
+LjUxDQo+ID4gPiBUbzogS2Fob2xhLCBNaWthIDxtaWthLmthaG9sYUBpbnRlbC5jb20+Ow0KPiA+
+ID4gaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgaW50ZWwteGVAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnDQo+ID4gPiBDYzogS2Fob2xhLCBNaWthIDxtaWthLmthaG9sYUBpbnRlbC5jb20+
+DQo+ID4gPiBTdWJqZWN0OiBSRTogW1BBVENIXSBkcm0vaTkxNS9kaXNwbGF5OiBTa2lwIGdlbmVy
+aWMgcGlwZSBkcGxsX2h3X3N0YXRlDQo+ID4gPiBjb21wYXJlIG9uIExUIFBIWQ0KPiA+ID4NCj4g
+PiA+DQo+ID4gPg0KPiA+ID4gPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiA+ID4gPiBG
+cm9tOiBLYW5kcGFsLCBTdXJhag0KPiA+ID4gPiBTZW50OiBUdWVzZGF5LCBKdW5lIDksIDIwMjYg
+MToxMyBQTQ0KPiA+ID4gPiBUbzogJ01pa2EgS2Fob2xhJyA8bWlrYS5rYWhvbGFAaW50ZWwuY29t
+PjsNCj4gPiA+ID4gaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgaW50ZWwteGVAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnDQo+ID4gPiA+IENjOiBLYWhvbGEsIE1pa2EgPG1pa2Eua2Fob2xh
+QGludGVsLmNvbT4NCj4gPiA+ID4gU3ViamVjdDogUkU6IFtQQVRDSF0gZHJtL2k5MTUvZGlzcGxh
+eTogU2tpcCBnZW5lcmljIHBpcGUNCj4gPiA+ID4gZHBsbF9od19zdGF0ZSBjb21wYXJlIG9uIExU
+IFBIWQ0KPiA+ID4gPg0KPiA+ID4gPiA+IFN1YmplY3Q6IFtQQVRDSF0gZHJtL2k5MTUvZGlzcGxh
+eTogU2tpcCBnZW5lcmljIHBpcGUgZHBsbF9od19zdGF0ZQ0KPiA+ID4gPiA+IGNvbXBhcmUgb24g
+TFQgUEhZDQo+ID4gPiA+ID4NCj4gPiA+ID4gPiBMVCBQSFkgUExMIHJlYWRvdXQgaXMgb25seSBw
+YXJ0aWFsbHkgcmVsaWFibGUsIGFuZCB0aGUgTFQgUEhZIGNvZGUNCj4gPiA+ID4gPiBhbHJlYWR5
+IGRvY3VtZW50cyB0aGF0IG9ubHkgYSBzdWJzZXQgb2YgdGhlIHN0YXRlIGNhbiBiZSByZWFkIGJh
+Y2sNCj4gPiA+ID4gPiByZWxpYWJseSBhZnRlciBwb3dlciBnYXRpbmcuDQo+ID4gPiA+ID4NCj4g
+PiA+ID4gPiBUaGUgZ2VuZXJpYyBwaXBlLXN0YXRlIHZlcmlmaWNhdGlvbiBjb21wYXJlcyBkcGxs
+X2h3X3N0YXRlIGFzIHBhcnQNCj4gPiA+ID4gPiBvZiBpbnRlbF9waXBlX2NvbmZpZ19jb21wYXJl
+KCksIHdoaWNoIGNhbiB0cmlnZ2VyIGZhbHNlLXBvc2l0aXZlDQo+ID4gPiA+ID4gInBpcGUgc3Rh
+dGUgZG9lc24ndCBtYXRjaCEiIHdhcm5pbmdzIG9uIExUIFBIWSBwbGF0Zm9ybXMuDQo+ID4gPiA+
+ID4gRFBMTC1zcGVjaWZpYyB2ZXJpZmljYXRpb24gYWxyZWFkeSBleGlzdHMgdmlhIGludGVsX2Rw
+bGxfc3RhdGVfdmVyaWZ5KCkuDQo+ID4gPiA+ID4NCj4gPiA+ID4gPiBTa2lwIHRoZSBnZW5lcmlj
+IGRwbGxfaHdfc3RhdGUgcGlwZS1zdGF0ZSBjb21wYXJlIG9uIExUIFBIWQ0KPiA+ID4gPiA+IHBs
+YXRmb3JtcyBhbmQgcmVseSBvbiB0aGUgZGVkaWNhdGVkIERQTEwgdmVyaWZpY2F0aW9uIHBhdGgg
+aW5zdGVhZC4NCj4gPiA+ID4gPg0KPiA+ID4gPiA+IFNpZ25lZC1vZmYtYnk6IE1pa2EgS2Fob2xh
+IDxtaWthLmthaG9sYUBpbnRlbC5jb20+DQo+ID4gPiA+ID4gLS0tDQo+ID4gPiA+ID4gIGRyaXZl
+cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIHwgOCArKysrKystLQ0KPiA+
+ID4gPiA+ICAxIGZpbGUgY2hhbmdlZCwgNiBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQ0K
+PiA+ID4gPiA+DQo+ID4gPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+ID4gPiA+ID4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX2Rpc3BsYXkuYw0KPiA+ID4gPiA+IGluZGV4IDJmYTEwZjg1ODI3OS4uODVh
+ZDJiYzQ5NjNkIDEwMDY0NA0KPiA+ID4gPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+ID4gPiA+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gPiA+ID4gPiBAQCAtNTM3NCw4ICs1Mzc0LDEy
+IEBAIGludGVsX3BpcGVfY29uZmlnX2NvbXBhcmUoY29uc3Qgc3RydWN0DQo+ID4gPiA+ID4gaW50
+ZWxfY3J0Y19zdGF0ZSAqY3VycmVudF9jb25maWcsDQo+ID4gPiA+ID4gIAlpZiAoZGlzcGxheS0+
+ZHBsbC5tZ3IpDQo+ID4gPiA+ID4gIAkJUElQRV9DT05GX0NIRUNLX1AoaW50ZWxfZHBsbCk7DQo+
+ID4gPiA+ID4NCj4gPiA+ID4gPiAtCS8qIEZJWE1FIGNvbnZlcnQgZXZlcnl0aGluZyBvdmVyIHRo
+ZSBkcGxsX21nciAqLw0KPiA+ID4gPiA+IC0JaWYgKGRpc3BsYXktPmRwbGwubWdyIHx8IEhBU19H
+TUNIKGRpc3BsYXkpKQ0KPiA+ID4gPiA+ICsJLyoNCj4gPiA+ID4gPiArCSAqIExUIFBIWSBQTEwg
+cmVhZG91dCBpcyBvbmx5IHBhcnRpYWxseSByZWxpYWJsZSBhbmQgdGhlIFBMTCBzdGF0ZQ0KPiA+
+ID4gPiA+ICsJICogaXMgYWxyZWFkeSB2ZXJpZmllZCB2aWEgaW50ZWxfZHBsbF9zdGF0ZV92ZXJp
+ZnkoKS4gQXZvaWQgZmFsc2UNCj4gPiA+ID4gPiArCSAqIHBvc2l0aXZlcyBmcm9tIHRoZSBnZW5l
+cmljIHBpcGUgc3RhdGUgY29tcGFyaXNvbi4NCj4gPiA+ID4gPiArCSAqLw0KPiA+ID4gPiA+ICsJ
+aWYgKChkaXNwbGF5LT5kcGxsLm1nciB8fCBIQVNfR01DSChkaXNwbGF5KSkgJiYuDQo+ID4gPiA+
+ID4gIUhBU19MVF9QSFkoZGlzcGxheSkpDQo+ID4gPiA+ID4gIAkJUElQRV9DT05GX0NIRUNLX1BM
+TChkcGxsX2h3X3N0YXRlKTsNCj4gPiA+ID4NCj4gPiA+ID4gaW50ZWxfbHRfcGh5X3BsbF9jb21w
+YXJlX2h3X3N0YXRlIG9ubHkgY2hlY2tzIHRoZSByZWxpYWJsZSBzdGF0ZQ0KPiA+ID4gPiBoZW5j
+ZSB3ZSBkb27igJl0IHdhbnQgdG8gYWRkIHRoaXMgaGVyZSBjb25maWcgMCBhbmQgY29uZmlnIDIg
+YXJlDQo+ID4gPiA+IGV4cGVjdGVkIHRvIGJlIHJlbGlhYmxlDQo+ID4gPiA+DQo+ID4gPg0KPiA+
+ID4gSWYgeW91IGFyZSBzZWVpbmcgcGlwZSBzdGF0ZSBtaXNtYXRjaCBvbiBlaXRoZXIgb2YgdGhl
+c2UgVkRSIHJlZ2lzdGVycw0KPiA+ID4gdGhlbiBpdOKAmXMgYSBpc3N1ZSB3aGVyZSBQSFkgaXMg
+bm90IGdpdmluZyB1c2UgY29ycmVjdCB2YWx1ZSBzaW5jZSB0aGVzZSB0d28NCj4gPiByZWdpc3Rl
+ciBtdXN0IGFic29sdXRlbHkgYmUgcmV0YWluZWQgYnkgTFQgUEhZLg0KPiA+DQo+ID4gVGhpcyBl
+cnJvciBzaG93ZWQgdXAgd2l0aCBUQlQgbW9uaXRvciB3aGljaCB5aWVsZHMgZW1wdHkgc3RhdGVz
+IGZvciBmb3VuZA0KPiA+IGFuZCBleHBlY3RlZCBzdGF0ZXMuIFNpbmNlIHdlIGNoZWNrIGluIHZl
+cmlmeV9zaW5nbGVfZHBsbF9zdGF0ZSgpIGZ1bmN0aW9uIFBMTA0KPiA+IHN0YXRlIHdpdGggLmNv
+bXBhcmVfaHdfc3RhdGUgaG9vayBJIHRoaW5rIHdlIHdvdWxkbid0IG5lZWQgdG8gY2hlY2sgdGhl
+IFBMTA0KPiA+IHN0YXRlIGhlcmUuDQo+IA0KPiBTbyAuY29tcGFyZV9od19zdGF0ZSB3b3VsZCBj
+YWxsIGludGVsX2x0X3BoeV9wbGxfY29tcGFyZV9od19zdGF0ZQ0KPiBXaGljaCBtZWFucyBmb3Ig
+dGJ0IG1vZGUgaXQgd291bGQgcmV0dXJuIGVhcmx5IGFueXdheXMuIFNvIHdlIGFnYWluIHdvbnQg
+cmVxdWlyZSB0aGlzIGNoZWNrLg0KPiANCj4gV2UgYWxyZWFkeSBoYXZlIHRoaXMgYml0IG9mIGNv
+ZGUgYXMgSSBtZW50aW9uZWQgYWJvdmUgaW4gdGhlIGZ1bmN0aW9uDQo+IA0KPiBpZiAoYS0+dGJ0
+X21vZGUgfHwgYi0+dGJ0X21vZGUpDQo+ICAgICAgICAgICAgICAgICByZXR1cm4gdHJ1ZTsNCj4g
+DQpJdCBsb29rcyBsaWtlIHdlIG1heSBiZSB2ZXJpZnlpbmcgUExMIHN0YXRlIHR3aWNlIGluIGlu
+dGVsX21vZGVzZXRfdmVyaWZ5X2NydGMoKS4NCg0KdmVyaWZ5X2NydGNfc3RhdGUoKSAtPiBpbnRl
+bF9waXBlX2NvbmZpZ19jb21wYXJlKCkgZG9lcyBQSVBFX0NPTkZfQ0hFQ0tfUExMKGRwbGxfaHdf
+c3RhdGUpLCB3aGljaCBpcyBhIGdlbmVyaWMgY29tcGFyZSBhbmQgZG9lcyBub3Qgc2VlbSB0byBh
+Y2NvdW50IGZvciB0aGUgTFQgUEhZL1RCVCBzcGVjaWFsIGNhc2UuDQoNCkFmdGVyIHRoYXQsIGlu
+dGVsX21vZGVzZXRfdmVyaWZ5X2NydGMoKSBhbHNvIGNhbGxzIGludGVsX2RwbGxfc3RhdGVfdmVy
+aWZ5KCksIHdoaWNoIGZvciBMVCBQSFkgZ29lcyB0aHJvdWdoIHRoZSAuY29tcGFyZV9od19zdGF0
+ZSBob29rIGFuZCB0aGVyZWZvcmUgYWxyZWFkeSBhcHBsaWVzIHRoZSBwbGF0Zm9ybS1zcGVjaWZp
+YyBoYW5kbGluZy4NCg0KQmVjYXVzZSBvZiB0aGF0LCBJIHdvbmRlciBpZiB0aGUgZ2VuZXJpYyBQ
+TEwgc3RhdGUgY29tcGFyZSBpcyByZWFsbHkgbmVlZGVkIGluIHRoaXMgY2FzZS4gQXQgdGhlIHZl
+cnkgbGVhc3QsIGl0IHdvdWxkIHNlZW0gdGhhdCBQSVBFX0NPTkZfQ0hFQ0tfUExMKCkgc2hvdWxk
+IGFsc28gaGFuZGxlIHRoZSBUQlQgY2FzZSBleHBsaWNpdGx5IGFuZCByZXR1cm4gZWFybHkgaW4g
+dGhhdCBjYXNlLCBpbiB0aGUgc2FtZSB3YXkgYXMgdGhlIExUIFBIWS1zcGVjaWZpYyAuY29tcGFy
+ZV9od19zdGF0ZSBwYXRoIGRvZXMuDQoNCi1NaWthLQ0KDQo+IFJlZ2FyZHMsDQo+IFN1cmFqIEth
+bmRwYWwNCj4gDQo+ID4NCj4gPiAtTWlrYS0NCj4gPg0KPiA+ID4NCj4gPiA+IFJlZ2FyZHMsDQo+
+ID4gPiBTdXJhaiBLYW5kcGFsDQo+ID4gPg0KPiA+ID4gPiBSZWdhcmRzLA0KPiA+ID4gPiBTdXJh
+aiBLYW5kcGFsDQo+ID4gPiA+DQo+ID4gPiA+ID4NCj4gPiA+ID4gPiAgCVBJUEVfQ09ORl9DSEVD
+S19YKGRzaV9wbGwuY3RybCk7DQo+ID4gPiA+ID4gLS0NCj4gPiA+ID4gPiAyLjQzLjANCg0K
