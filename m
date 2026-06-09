@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 947CDCD98C4
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Jun 2026 11:05:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88053CD8CA8
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Jun 2026 11:20:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE65D10E295;
-	Tue,  9 Jun 2026 11:05:19 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Vy/A20Fi";
-	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22B2410E271;
- Tue,  9 Jun 2026 11:05:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=hdXIQx3O8t+5fRWRaEGrsm+4NQb2B1dwQl8vnIUQGso=; b=Vy/A20FiViObB/9ILejxwRsAat
- 9kcmO+oqxoCf4FCdsQrKOaQkFqEGQ0hVxMXO2E8dd1pdUlQ82f7Y9vgepJmjmiX5bbXeQEdGYZD1U
- TNmhn7pm1GOG6SB0m+PrEQtVpkSWfrysYpQzxk/EntKjuQzhyWy+gQy4xTGr29jpZ6sFGdgMW54nS
- tTSYxaKGTdw6YjDWUfwGxQXZEDRGjDeh5GBAsDasm0SN35ewON4aDqbPh8ujZt9Yv3F0ea2kFlX4i
- Pxlyl3RIdo+IbHuPXZE4nct30Cok1h5F3ReijtGvP4KDIVzzKzBDvjNTRQs41lPcklHIMryzlPXFS
- xMQE8zeg==;
-Received: from [79.117.146.159] (helo=killbill.home)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wWuG2-00Etww-8q; Tue, 09 Jun 2026 13:04:34 +0200
-From: Melissa Wen <mwen@igalia.com>
-To: airlied@gmail.com, alexander.deucher@amd.com, alex.hung@amd.com,
- christian.koenig@amd.com, contact@emersion.fr, daniels@collabora.com,
- harry.wentland@amd.com, louis.chauvet@bootlin.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, mwen@igalia.com,
- sebastian.wick@redhat.com, simona@ffwll.ch, siqueira@igalia.com,
- sunpeng.li@amd.com, tzimmermann@suse.de
-Cc: Uma Shankar <uma.shankar@intel.com>,
- Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
- Xaver Hugl <xaver.hugl@kde.org>,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Matthew Schwartz <matthew.schwartz@linux.dev>,
- amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
- Rob Clark <robin.clark@oss.qualcomm.com>,
- Dmitry Baryshkov <lumag@kernel.org>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH v9 1/4] drm/colorop: Remove read-only comments from
- interpolation fields
-Date: Tue,  9 Jun 2026 12:20:18 +0200
-Message-ID: <20260609110420.1298352-2-mwen@igalia.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260609110420.1298352-1-mwen@igalia.com>
-References: <20260609110420.1298352-1-mwen@igalia.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2337B10E0EE;
+	Tue,  9 Jun 2026 11:20:07 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A46A310E0EE;
+ Tue,  9 Jun 2026 11:20:05 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6669030381751241523=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_harden_?=
+ =?utf-8?q?some_bit-shifting_operations_=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Luca Coelho" <luciano.coelho@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 09 Jun 2026 11:20:05 -0000
+Message-ID: <178100400566.59603.9674358665178366397@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260609095525.570614-1-luciano.coelho@intel.com>
+In-Reply-To: <20260609095525.570614-1-luciano.coelho@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,63 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Alex Hung <alex.hung@amd.com>
+--===============6669030381751241523==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-The lut1d_interpolation and lut3d_interpolation fields and their
-associated properties were marked as read-only, but userspace
-can set them via drm_atomic_colorop_set_property().
+== Series Details ==
 
-Fixes: 7fa3ee8c0a79 ("drm/colorop: Define LUT_1D interpolation")
-Fixes: db971856bbe0 ("drm/colorop: Add 3D LUT support to color pipeline")
-Reviewed-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-Signed-off-by: Alex Hung <alex.hung@amd.com>
-Fixes: 9ba25915efba ("drm/amd/display: Add support for sRGB EOTF in DEGAM block")
-Signed-off-by: Melissa Wen <mwen@igalia.com>
----
- include/drm/drm_colorop.h | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+Series: drm/i915/display: harden some bit-shifting operations (rev6)
+URL   : https://patchwork.freedesktop.org/series/166864/
+State : success
 
-diff --git a/include/drm/drm_colorop.h b/include/drm/drm_colorop.h
-index bd082854ca74..61cc8206b4c4 100644
---- a/include/drm/drm_colorop.h
-+++ b/include/drm/drm_colorop.h
-@@ -309,7 +309,6 @@ struct drm_colorop {
- 	/**
- 	 * @lut1d_interpolation:
- 	 *
--	 * Read-only
- 	 * Interpolation for DRM_COLOROP_1D_LUT
- 	 */
- 	enum drm_colorop_lut1d_interpolation_type lut1d_interpolation;
-@@ -317,7 +316,6 @@ struct drm_colorop {
- 	/**
- 	 * @lut3d_interpolation:
- 	 *
--	 * Read-only
- 	 * Interpolation for DRM_COLOROP_3D_LUT
- 	 */
- 	enum drm_colorop_lut3d_interpolation_type lut3d_interpolation;
-@@ -325,7 +323,7 @@ struct drm_colorop {
- 	/**
- 	 * @lut1d_interpolation_property:
- 	 *
--	 * Read-only property for DRM_COLOROP_1D_LUT interpolation
-+	 * Property for DRM_COLOROP_1D_LUT interpolation
- 	 */
- 	struct drm_property *lut1d_interpolation_property;
- 
-@@ -353,7 +351,7 @@ struct drm_colorop {
- 	/**
- 	 * @lut3d_interpolation_property:
- 	 *
--	 * Read-only property for DRM_COLOROP_3D_LUT interpolation
-+	 * Property for DRM_COLOROP_3D_LUT interpolation
- 	 */
- 	struct drm_property *lut3d_interpolation_property;
- 
--- 
-2.53.0
+== Summary ==
 
+CI Bug Log - changes from xe-5224-e591d473e392997b89c9ab9598bfe027c59ac21c_BAT -> xe-pw-166864v6_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8954 -> IGT_8955
+  * Linux: xe-5224-e591d473e392997b89c9ab9598bfe027c59ac21c -> xe-pw-166864v6
+
+  IGT_8954: 8954
+  IGT_8955: 8955
+  xe-5224-e591d473e392997b89c9ab9598bfe027c59ac21c: e591d473e392997b89c9ab9598bfe027c59ac21c
+  xe-pw-166864v6: 166864v6
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166864v6/index.html
+
+--===============6669030381751241523==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: harden some bit-shifting operations (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166864/">https://patchwork.freedesktop.org/series/166864/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166864v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166864v6/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5224-e591d473e392997b89c9ab9598bfe027c59ac21c_BAT -&gt; xe-pw-166864v6_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8954 -&gt; IGT_8955</li>
+<li>Linux: xe-5224-e591d473e392997b89c9ab9598bfe027c59ac21c -&gt; xe-pw-166864v6</li>
+</ul>
+<p>IGT_8954: 8954<br />
+  IGT_8955: 8955<br />
+  xe-5224-e591d473e392997b89c9ab9598bfe027c59ac21c: e591d473e392997b89c9ab9598bfe027c59ac21c<br />
+  xe-pw-166864v6: 166864v6</p>
+
+</body>
+</html>
+
+--===============6669030381751241523==--
