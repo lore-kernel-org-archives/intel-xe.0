@@ -4,82 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DE0FCD8CB2
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Jun 2026 11:54:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F867CD8CB9
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Jun 2026 12:10:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3882310E55D;
-	Wed, 10 Jun 2026 11:54:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B318E10E913;
+	Wed, 10 Jun 2026 12:10:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a8m9eQ+P";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YPihqZ09";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AB4010E483;
- Wed, 10 Jun 2026 11:54:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92E3F10E913
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Jun 2026 12:09:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781092485; x=1812628485;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=IBdSvbniv45jCKX2cc9fNGt2KfPPluvYcMxmenPPBM0=;
- b=a8m9eQ+PQeVhlZTCMjGLPcA2Y9U2Aw912dTp4B+8MOslLy51AuWkbKtU
- MBow95YbLgz+BaMoPWLBeB7YmLCbYg1wbbfOVynoBb84fkXCanK+SIJfr
- XGasThfEMrSvY/sDXk4w7zw+rn29XUHFEpqVtkGYWFBug1XM4P0jjJpHU
- 1JShHhInuxRKbxhmAs6R7cnNKx21NcO1R90rPZwEm5xPK+bs77TnyeWkS
- 3UvzjdUJQrBQ1FaqMokDLsZllB0zyEBHZ0hGkEHfR6sUN5gGjrTgM7AC+
- alGy5IvFrcbRAhaGiSNLEjkHq+OUHzx4xv4KYo/zD7jm58rrRv6sF3WkE A==;
-X-CSE-ConnectionGUID: mZgg+GRvQ5K+oItAoA9a1Q==
-X-CSE-MsgGUID: 3S5gGZ3wQ5OTSR2cw7bZfQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11812"; a="81789866"
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="81789866"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2026 04:54:44 -0700
-X-CSE-ConnectionGUID: YLk1Sbj9TlyqNzCagqc0RQ==
-X-CSE-MsgGUID: /M4SHBnES7ybbKKuTAV9eg==
+ t=1781093398; x=1812629398;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=pR/C1yEl4DlRcPES1dHB9D0cmRhL5siKxxYRc3cj6b0=;
+ b=YPihqZ09P1Dx5jqJZtsJsPoJipxXlYju48maysgutM48Kqq2gXttUdXQ
+ ThilrMAcgRNCOX7iXvNYaU4l+l8WP4HSr9wwWcobfUXSVR5Y5tCMXKLhA
+ e2643QF1pHelSe4PnO62Twv9GOiOFlg9uTfMHTwnvtgUjbdBdkOH4A+KL
+ NXuzPCat6lZUm8D9/CfAqMpFvHlf8oJ6KcOHTyP85R29uKx2anfpwLTb3
+ Y317a/UX8OZP8hhZZmZ0udX4/iegeTxJw241FvsPhpP0gl9jSxZ3KgQzF
+ aVvZ+EuDaAZ7PMKskypW5OvQLGabYgT8W2BCeMOsxxUD0UX3V3THHanvg A==;
+X-CSE-ConnectionGUID: K9y9thFER+azoiz+SVyKMw==
+X-CSE-MsgGUID: oq5X1C+UT5yHe9ZJxuRtDQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11812"; a="99461494"
+X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="99461494"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2026 05:09:58 -0700
+X-CSE-ConnectionGUID: IlZzu1XKRxm2l2ry22G07A==
+X-CSE-MsgGUID: 0v4fXgXbQrmg1tuapxsebA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="250439091"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
- ([10.245.244.3])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2026 04:54:32 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, Harry Wentland
- <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira
- <siqueira@igalia.com>, Alex Deucher <alexander.deucher@amd.com>, Christian
- =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Andrzej Hajda
- <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- Robert Foss <rfoss@kernel.org>, Laurent Pinchart
- <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang
- <hjc@rock-chips.com>, Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
- Andy Yan
- <andy.yan@rock-chips.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Joonas
- Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>, Jonathan Corbet
- <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, Daniel Stone
- <daniel@fooishbar.org>
-Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-doc@vger.kernel.org, wayland-devel@lists.freedesktop.org
-Subject: Re: [PATCH v17 21/28] drm/tests: bridge: Add KUnit tests for bridge
- chain format selection
-In-Reply-To: <gnicb4WkT1S4aQIC2G_naw@collabora.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260609-color-format-v17-0-35739b5782cc@collabora.com>
- <20260609-color-format-v17-21-35739b5782cc@collabora.com>
- <04ff70850213ae0f75486b1a27a7edb6fb4e71c3@intel.com>
- <gnicb4WkT1S4aQIC2G_naw@collabora.com>
-Date: Wed, 10 Jun 2026 14:54:29 +0300
-Message-ID: <596f0f063d6ef2ffb4c6640e3df5ed89d95b11dd@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="269831883"
+Received: from varungup-desk.iind.intel.com ([10.190.238.71])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2026 05:09:56 -0700
+From: Arvind Yadav <arvind.yadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com,
+ thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
+ tejas.upadhyay@intel.com
+Subject: [PATCH v2] drm/xe/guc: Avoid self-deadlock in queue destruction
+Date: Wed, 10 Jun 2026 17:39:45 +0530
+Message-ID: <20260610120945.1726638-1-arvind.yadav@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,22 +67,183 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 10 Jun 2026, Nicolas Frattaroli <nicolas.frattaroli@collabora.com> wrote:
-> If you don't want __maybe_unused, then sure, I'll move them into a new
-> .c file. Though I think the two are roughly equivalent in that I don't
-> think anyone is really trying to minimise the size of their KUnit
-> binaries.
+GuC exec queue destruction can run on xe->destroy_wq. During queue
+cleanup, xe_exec_queue_fini() can drop the last reference to objects
+which eventually release the DRM device and run drmm cleanup actions.
 
-I think placing arrays in headers is bad practice, and we shouldn't set
-that example, kunit or not.
+guc_submit_sw_fini(), registered as a drmm action, drains
+xe->destroy_wq. If the final drm_dev_put() happens from an
+xe->destroy_wq worker, teardown can try to drain the same workqueue
+the current worker is running on, causing a self-deadlock.
 
-> I'll send a patch to move them to a .c
+Fix this by taking an extra drm_device reference across async exec queue
+cleanup and dropping it from system_dfl_wq. The deferred put work is
+preallocated during queue init, so the destroy path does not need a
+failing or nofail allocation.
 
-Thanks.
+This keeps the final drm_dev_put() out of xe->destroy_wq while preserving
+exec queue teardown ordering.
 
-BR,
-Jani.
+v2:
+   - rebase
 
+Fixes: 2d2be279f1ca ("drm/xe: fix UAF around queue destruction")
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_exec_queue_types.h |  3 +
+ drivers/gpu/drm/xe/xe_guc_submit.c           | 62 ++++++++++++++++++--
+ 2 files changed, 59 insertions(+), 6 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
+index e5e53b421f29..b5dfc9c9092d 100644
+--- a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
+@@ -13,6 +13,7 @@
+ 
+ struct dma_fence;
+ struct xe_exec_queue;
++struct xe_drm_dev_put_work;
+ 
+ /**
+  * struct xe_guc_exec_queue - GuC specific state for an xe_exec_queue
+@@ -35,6 +36,8 @@ struct xe_guc_exec_queue {
+ 	struct xe_sched_msg static_msgs[MAX_STATIC_MSG_TYPE];
+ 	/** @destroy_async: do final destroy async from this worker */
+ 	struct work_struct destroy_async;
++	/** @dev_put_work: deferred drm_dev_put worker to avoid self-deadlock */
++	struct xe_drm_dev_put_work *dev_put_work;
+ 	/** @resume_time: time of last resume */
+ 	u64 resume_time;
+ 	/** @state: GuC specific state for this xe_exec_queue */
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index b29cc08e6291..d1ae4339f375 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -10,6 +10,7 @@
+ #include <linux/circ_buf.h>
+ #include <linux/dma-fence-array.h>
+ 
++#include <drm/drm_drv.h>
+ #include <drm/drm_managed.h>
+ 
+ #include "abi/guc_actions_abi.h"
+@@ -47,6 +48,11 @@
+ 
+ #define XE_GUC_EXEC_QUEUE_CGP_CONTEXT_ERROR_LEN		6
+ 
++struct xe_drm_dev_put_work {
++	struct work_struct work;
++	struct drm_device *drm;
++};
++
+ static int guc_submit_reset_prepare(struct xe_guc *guc);
+ 
+ static struct xe_guc *
+@@ -1674,6 +1680,8 @@ static void guc_exec_queue_fini(struct xe_exec_queue *q)
+ 	xe_sched_entity_fini(&ge->entity);
+ 	xe_sched_fini(&ge->sched);
+ 
++	kfree(ge->dev_put_work);
++
+ 	/*
+ 	 * RCU free due sched being exported via DRM scheduler fences
+ 	 * (timeline name).
+@@ -1681,20 +1689,55 @@ static void guc_exec_queue_fini(struct xe_exec_queue *q)
+ 	kfree_rcu(ge, rcu);
+ }
+ 
+-static void __guc_exec_queue_destroy_async(struct work_struct *w)
++static void xe_drm_dev_put_work_func(struct work_struct *work)
+ {
+-	struct xe_guc_exec_queue *ge =
+-		container_of(w, struct xe_guc_exec_queue, destroy_async);
+-	struct xe_exec_queue *q = ge->q;
++	struct xe_drm_dev_put_work *put =
++		container_of(work, struct xe_drm_dev_put_work, work);
++
++	drm_dev_put(put->drm);
++	kfree(put);
++}
++
++static void guc_exec_queue_do_destroy(struct xe_exec_queue *q, bool defer_dev_put)
++{
++	struct xe_guc_exec_queue *ge = q->guc;
+ 	struct xe_guc *guc = exec_queue_to_guc(q);
++	struct xe_device *xe = guc_to_xe(guc);
++	struct drm_device *drm = &xe->drm;
++	struct xe_drm_dev_put_work *put_work = NULL;
+ 
+-	guard(xe_pm_runtime)(guc_to_xe(guc));
++	if (defer_dev_put) {
++		put_work = ge->dev_put_work;
++		ge->dev_put_work = NULL;
++
++		put_work->drm = drm;
++		INIT_WORK(&put_work->work, xe_drm_dev_put_work_func);
++
++		/*
++		 * Avoid running the final drm_dev_put() from xe->destroy_wq,
++		 * since guc_submit_sw_fini() drains that queue.
++		 */
++		drm_dev_get(drm);
++	}
++
++	guard(xe_pm_runtime)(xe);
+ 	trace_xe_exec_queue_destroy(q);
+ 
+ 	/* Confirm no work left behind accessing device structures */
+ 	cancel_delayed_work_sync(&ge->sched.base.work_tdr);
+ 
+ 	xe_exec_queue_fini(q);
++
++	if (put_work)
++		queue_work(system_dfl_wq, &put_work->work);
++}
++
++static void __guc_exec_queue_destroy_async(struct work_struct *w)
++{
++	struct xe_guc_exec_queue *ge =
++		container_of(w, struct xe_guc_exec_queue, destroy_async);
++
++	guc_exec_queue_do_destroy(ge->q, true);
+ }
+ 
+ static void guc_exec_queue_destroy_async(struct xe_exec_queue *q)
+@@ -1706,7 +1749,7 @@ static void guc_exec_queue_destroy_async(struct xe_exec_queue *q)
+ 
+ 	/* We must block on kernel engines so slabs are empty on driver unload */
+ 	if (q->flags & EXEC_QUEUE_FLAG_PERMANENT || exec_queue_wedged(q))
+-		__guc_exec_queue_destroy_async(&q->guc->destroy_async);
++		guc_exec_queue_do_destroy(q, false);
+ 	else
+ 		queue_work(xe->destroy_wq, &q->guc->destroy_async);
+ }
+@@ -1914,6 +1957,12 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+ 	if (!ge)
+ 		return -ENOMEM;
+ 
++	ge->dev_put_work = kmalloc_obj(*ge->dev_put_work, GFP_KERNEL);
++	if (!ge->dev_put_work) {
++		kfree(ge);
++		return -ENOMEM;
++	}
++
+ 	q->guc = ge;
+ 	ge->q = q;
+ 	init_rcu_head(&ge->rcu);
+@@ -1989,6 +2038,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+ err_release_id:
+ 	release_guc_id(guc, q);
+ err_free:
++	kfree(ge->dev_put_work);
+ 	kfree(ge);
+ 
+ 	return err;
 -- 
-Jani Nikula, Intel
+2.43.0
+
