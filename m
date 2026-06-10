@@ -4,76 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CFBCCD98C6
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CF58CD8CB2
 	for <intel-xe@archiver.kernel.org>; Wed, 10 Jun 2026 14:42:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 425AA10E9F3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4721F10E9F1;
 	Wed, 10 Jun 2026 14:42:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="W/07LLuU";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="piaj78gN";
 	dkim-atps=neutral
-Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com
- [209.85.216.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A716F10E508
- for <intel-xe@lists.freedesktop.org>; Tue,  9 Jun 2026 16:21:04 +0000 (UTC)
-Received: by mail-pj1-f41.google.com with SMTP id
- 98e67ed59e1d1-36baeec21dcso3691257a91.3
- for <intel-xe@lists.freedesktop.org>; Tue, 09 Jun 2026 09:21:04 -0700 (PDT)
+Received: from mail-yx1-f42.google.com (mail-yx1-f42.google.com
+ [74.125.224.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E886210E6E4
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Jun 2026 03:56:30 +0000 (UTC)
+Received: by mail-yx1-f42.google.com with SMTP id
+ 956f58d0204a3-6608c1a4215so7089007d50.0
+ for <intel-xe@lists.freedesktop.org>; Tue, 09 Jun 2026 20:56:30 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1781063790; cv=none;
+ d=google.com; s=arc-20240605;
+ b=DES8JQnyyuHFaZ1Wy4PQai5/1kUv3auoFg2p5b5nTp78NhsoLlQJqb0vwIkQik/30S
+ 7IUlHdlIcCGYM6W76W0EN0o8X1b+0Yb/uSwdjSfZC/Q8w76urNrrlh+jopqyYLxArCm4
+ YWicwvgewaSWDUCdWiCCvreUWOKDhjJrgg4/Sx2PIESiF0O92iI4i3mPxuizYhmquLIC
+ etnS+jlwTOqP0APtarrFUXqnmiYlrrzuM8Wg2vemNTBSaHOVYo6XP988hySLLRi06EJU
+ HN+VCuRzy+D+du5O0lbF7pLM5zop1qTY3UYMObj4+rEiuvvCknwjv5/SxPQF6Ea0OTVu
+ irjw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:dkim-signature;
+ bh=o2Y71ur2j8AWeXxKEtF9d/8FWw9ai/UzloR6wLp7LdY=;
+ fh=G+mNqrmfs08wGzFSoceF72W9z4HOyKuzQdgPo2B8YQ0=;
+ b=VDPL1yElFq2rlAHrRZI7TJ/eyx0HX/QTwqJXlSzCmsLUXXiGSNdVFDpSyHHHcWicBa
+ J39ESb+5+zI2VIgLd9yim7aokgDVOX5/USxsGgpayCK9B9nFezv1CAOAHQh4EHKAfDRe
+ jwJGr21o+NA0C4ycQj+hY92gY6teqatX9Lx2sDFnm+vUYop3ol32jkIDEvbPDnozTr3o
+ XDcEW6r6AwUghsYeiL6gTgILZxkQ41FYsq3c/5rDO3+kp0ChpxDywhEYCCu6Oy4sM1z2
+ 3SY8lTV4BBiJdPsdA92PrD4pR9zyOsuYVM/uQCeuYgZtMugCLqsBZ935jy3/tS8TCysU
+ 9xkQ==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1781022064; x=1781626864; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=W/o6xoNweapTrriRmAST3RoLSBcjrFwLozoiHNOF/xU=;
- b=W/07LLuUTQThFQC97nZNMVNus22JlroYxR94EVkPcPapK5WsTudPUSSGzh5EcqAv4o
- kQK+zWNNqWpQxYLXK+6NVR5bGC8pwI3OzSWl8bzFn3dPA+C74Q20ApRccp61VGla/Jua
- EUiEBBE4zZOGydC/kxsR5/2Rr9xSQ5QUnFTFLpcIMSjVaczZIkPlkB0yqzlDtbvEScOM
- Z0kA97x5iUEYvxsk2KmttrAv8HTd8PN2SwfHDlBIkLpwIRKE5eNdK4xpg58G1N+4Lddh
- oh3aWxtH1Vr11tNWfx160TDr+YawcZ/1XNtcnj036ccVYWyV0jX64ewSc+yNBpdnoXN6
- PJWg==
+ d=gmail.com; s=20251104; t=1781063790; x=1781668590; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=o2Y71ur2j8AWeXxKEtF9d/8FWw9ai/UzloR6wLp7LdY=;
+ b=piaj78gN/m1udGdPA7m5mJ0YXW6DHfKJlv0xm9gvVSnWxdmN9JjitVR0BAqFq8to77
+ qlu4xGCfX8LoFwecNxVRqU19hdi2pHOQH/8iBOd6+ci856yvU75S7bESdrPSstnjtryd
+ SiFmZIjaL4s4czco/1tBIHlwJxcHBCY6HfEYpVDHht95K7AR6XM65zdrax6ifUqoW0v5
+ bUO0kshUyHwAzVtZwMNz3lO9GK/odbayPzjQM8TQZOfZyvBHPW9r3qPVQUPH0pU02Qbc
+ XMb++xOqrzKZdvXOyV50zvHzdleQbJ2+3uT68r7HhEsU8teMo6ybAnQ1JHON6vWsLyVW
+ mJ0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1781022064; x=1781626864;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ d=1e100.net; s=20251104; t=1781063790; x=1781668590;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=W/o6xoNweapTrriRmAST3RoLSBcjrFwLozoiHNOF/xU=;
- b=fvdSFupbLUyy34kgUXQp4ko3BmwxemTbjAdxhO9/jk2WC6u2KfraZLz5ErRHSg+QHK
- a2MRRcXl56ZLuqCpznmMyzcWAsYQ1GNiT/tEteuzzFdzeCieflz1TLk5YBPj+U0pyMsw
- kgHbF7vMhY/OXrX2lL3P21buC99sMJJAScLxjTQ0B5iGYo4FcLXht3tbU4ZtFwulEcuT
- aZayuI+Co21+PDKTH6beEaK6qyAgfW9jTq3wGtftWTlFF8cirv/yrPFwFon5POjp2QDn
- Ux8BRE8Zr0rHRg3DFl318P5SRfL7ZUHPAD44nnm+jV2pauRGL2w0gRoYb4spW9xxe/6U
- HycA==
-X-Gm-Message-State: AOJu0Yxy6IqO0Zv7H3gw0vqSJN2xFTs+fmwcNc9v8lEYgHAUeaaNMhx1
- wKlxD/jwR2/6VVp+F7/JdCM3g4pAGS3f1QuGJW17sE0kO809Kbfifcyk
-X-Gm-Gg: Acq92OGbOEgTv2X0hHj6XAoNzMeNXmGl63yVpoRwVL2Nq7v5cmOBeaNq4lK5DKsDPIl
- aRICX++aK9DoqItEIsZIY7YwogHCeKTgI2e5/2GslfbT6o2t9gI1zyRE7f8DQ3Op6NUZfSle323
- XK3kOdFCY3oZZpk0HtEgMCG8QkXNxCDDkbfZPjqaQVTH9Y8WFBwqKpICWSCV0h5cx+aSDHXyFLe
- KAJwBwi5DcdWYLfbjU8DEIAnMY4qFlfabQtZ2wUVSPqCA21zaP2OEXVe0w/6cob3Ed+Z3m5be33
- xCYZbesXsM7ZGGvIyAIj0YTVIqBhBmvmUO2S8D0tYJIjokdTRzybBoBtC1z+e6z1KTwwv1JlUXL
- uaq7Hdc95nIczeAN/dOjnB24Y7BedBh6htTIx/z3rW2uTNRRTGSGibMOtr1I1Qpx7bYaIHs/ZP4
- gRoJWk+wClwwMcT01TtBf+1IbBX28YHJ7W+iM8REdxM7XMc2cSYd+I7mD6COXjryxU
-X-Received: by 2002:a17:90b:57c4:b0:369:a9e8:dbf5 with SMTP id
- 98e67ed59e1d1-370ee643748mr22119245a91.3.1781022064062; 
- Tue, 09 Jun 2026 09:21:04 -0700 (PDT)
-Received: from haichao.tail057a43.ts.net
- ([2001:da8:e000:1206:37c9:44fa:729b:6aaa])
- by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-36f6bf830b2sm18366170a91.4.2026.06.09.09.21.00
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 09 Jun 2026 09:21:03 -0700 (PDT)
-From: Ruoyu Wang <ruoyuw560@gmail.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Ruoyu Wang <ruoyuw560@gmail.com>
-Subject: [PATCH] drm/xe: keep process name fallback for diagnostics
-Date: Wed, 10 Jun 2026 00:20:57 +0800
-Message-ID: <20260609162057.5-1-ruoyuw560@gmail.com>
-X-Mailer: git-send-email 2.51.0
+ bh=o2Y71ur2j8AWeXxKEtF9d/8FWw9ai/UzloR6wLp7LdY=;
+ b=HytgeYz0vUrNmYimW3LvskMZvlV3w1Ts08unFQSX4Rbm+unXOlkGFD9qpFduhCsxGE
+ xcaT5hz28dnIssV/ppHGl3wV3Z6vFHsW6RcyBAkTQAs00HbYz6i4jIXJGEtMQndrfNbU
+ Lz8G9jji453OWtHptT0AZRWGBcRDr9oWSxbJZ17jZ+U0cdcevTL3M5msZ8v6CE7PiHDg
+ 2KQybVp4xligBXCMC+aA4bJOiE3Zjrqi/wF1GdNc2ZbEiAa5/fj5vOJPyVSUWaotTYJT
+ lrZxXg7TNqte9qTz7qC8Y5ta2gdwOxs0vNTedsLfZj2uhsvunVU43TtIrXHPVZMnuKJ8
+ Iq8g==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ95EzsaftyJEbAVnVnkYjpsZma8LcYFHlYTbZ4QLG2rxLPTSniAzPyUTD9VSdizArg3RtGorLFOCA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwYPgMGco89KGu1wA/1YeVs2+/Yff11jV0+jIqEuNNp3oaLWPf7
+ BtTPF/UaKCPWp+XO4Btx9xSVrJi/zEq14j1UXB/byf+iqkibodc2+p7IBOHXQzPxk4HUbP878Fw
+ FGHgBGHwx+NTf4NnEfF/yR38lj83l5Kw=
+X-Gm-Gg: Acq92OFz191WW+fuZNqd9zjR2+aDJScXfvkFFIPJKHMwivXL5QRBmJEwjVtkAAwOBH4
+ 7EK2AvivYEMtb1slmrcTtKPSL5KK5Ndarf3pmwCqWaAflquNskJ5A37c9HbCcES917PGbDEYZb2
+ 0wjV94fj15phDdqdVyxMz/VgENXhvW8abGCOFIb4shRTI4tEBCvWyczEzXSSQ9N4A7zom8IVbHQ
+ DgtG3led/JvoMghazAlVl8TLrNPJ0nctfBykfslqtAQIMz94BWeJkkG6m1pfEczLmCt+2IQN207
+ Kl+o5Q33OOzfAVm4+cvRDcnabe4s7A==
+X-Received: by 2002:a05:690e:1242:b0:660:431b:8a5c with SMTP id
+ 956f58d0204a3-6610a624fa8mr15634436d50.4.1781063789814; Tue, 09 Jun 2026
+ 20:56:29 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20260605060527.1443552-1-lgs201920130244@gmail.com>
+ <aiLe61REFDPGvZWM@ideak-desk.lan>
+In-Reply-To: <aiLe61REFDPGvZWM@ideak-desk.lan>
+From: Guangshuo Li <lgs201920130244@gmail.com>
+Date: Wed, 10 Jun 2026 11:56:16 +0800
+X-Gm-Features: AVVi8Cdl7bjaaSoyIcwbk4y7y4tCXUvPuwgUj1XqVjclggrW4JUWxHkR6dTt11A
+Message-ID: <CANUHTR-gdPwagMqGbH+GfPVqWN2ygP6b-GTaUQe_AxZsi5RHfg@mail.gmail.com>
+Subject: Re: [PATCH] drm/i915/dp_tunnel: fix CRTC hw state cleanup ordering
+To: imre.deak@intel.com
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Uma Shankar <uma.shankar@intel.com>, 
+ =?UTF-8?Q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>, 
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Wed, 10 Jun 2026 14:42:31 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -89,53 +112,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_file_open() stores task->comm in xef->process_name with kstrdup(),
-but this diagnostic string is optional and the file open continues if
-the allocation fails.
+Hi Imre,
 
-The timeout and devcoredump paths initialize process_name to the safe
-"no process" fallback, then overwrite it whenever q->vm->xef exists. If
-the kstrdup() failed, the fallback is replaced with NULL and the NULL
-pointer is passed to string handling in diagnostic paths.
+Thanks for the review.
 
-Keep the fallback process name unless xef->process_name was actually
-allocated. Still report the stored pid when the xe file is available.
+On Fri, 5 Jun 2026 at 22:36, Imre Deak <imre.deak@intel.com> wrote:
+>
+> On Fri, Jun 05, 2026 at 02:05:27PM +0800, Guangshuo Li wrote:
+> > intel_crtc_prepare_cleared_state() frees the old CRTC hw state before
+> > calling intel_dp_tunnel_atomic_clear_stream_bw(). The latter can fail
+> > while looking up the DP tunnel group state, for example with -EDEADLK.
+> >
+> > If that happens, the function returns without completing the cleared
+> > state preparation, leaving the duplicated CRTC state with its hw color
+> > blob references already dropped. The failed atomic state will then be
+> > cleared by the atomic core, which can drop the same references again.
+> >
+> > Move the hw state release after the DP tunnel stream BW clear has
+> > succeeded. Keep the temporary state allocation before the failable DP
+> > tunnel operation so an allocation failure cannot happen after the stream
+> > BW has already been cleared.
+> >
+> > Fixes: fb69d0076e68 ("drm/i915/dp_tunnel: Fix error handling when clearing stream BW in atomic state")
+> > Signed-off-by: Guangshuo Li <lgs201920130244@gmail.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display.c | 6 +++---
+> >  1 file changed, 3 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > index ad2fe10b6b1f..0c015bc6c9fd 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -4646,9 +4646,6 @@ intel_crtc_prepare_cleared_state(struct intel_atomic_state *state,
+> >       if (!saved_state)
+> >               return -ENOMEM;
+> >
+> > -     /* free the old crtc_state->hw members */
+> > -     intel_crtc_free_hw_state(crtc_state);
+>
+> The fix is valid, however I think instead of this change it'd be better
+> to clear the blob reference pointers in intel_crtc_free_hw_state().
+>
+> > -
+> >       err = intel_dp_tunnel_atomic_clear_stream_bw(state, crtc_state);
+> >       if (err) {
+> >               kfree(saved_state);
+> > @@ -4656,6 +4653,9 @@ intel_crtc_prepare_cleared_state(struct intel_atomic_state *state,
+> >               return err;
+> >       }
+> >
+> > +     /* free the old crtc_state->hw members */
+> > +     intel_crtc_free_hw_state(crtc_state);
+> > +
+> >       /* FIXME: before the switch to atomic started, a new pipe_config was
+> >        * kzalloc'd. Code that depends on any field being zero should be
+> >        * fixed, so that the crtc_state can be safely duplicated. For now,
+> > --
+> > 2.43.0
+> >
 
-Fixes: 8af13c3fc125 ("drm/xe: Store process name and pid in xe file")
-Signed-off-by: Ruoyu Wang <ruoyuw560@gmail.com>
----
- drivers/gpu/drm/xe/xe_devcoredump.c | 3 ++-
- drivers/gpu/drm/xe/xe_guc_submit.c  | 3 ++-
- 2 files changed, 4 insertions(+), 2 deletions(-)
+Agreed, clearing the blob reference pointers in
+intel_crtc_free_hw_state() makes the cleanup safe against repeated calls
+and avoids changing the ordering in intel_crtc_prepare_cleared_state().
 
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
-index 11e60d6..fbe1fba 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump.c
-+++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-@@ -343,7 +343,8 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
- 	ss->boot_time = ktime_get_boottime();
- 
- 	if (q->vm && q->vm->xef) {
--		process_name = q->vm->xef->process_name;
-+		if (q->vm->xef->process_name)
-+			process_name = q->vm->xef->process_name;
- 		ss->pid = q->vm->xef->pid;
- 	}
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 2ac87ff..0892400 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1189,7 +1189,8 @@ trigger_reset:
- 	}
- 
- 	if (q->vm && q->vm->xef) {
--		process_name = q->vm->xef->process_name;
-+		if (q->vm->xef->process_name)
-+			process_name = q->vm->xef->process_name;
- 		pid = q->vm->xef->pid;
- 	}
- 
--- 
-2.51.0
+I'll send a v2 with that change.
 
+Best regards,
+Guangshuo
