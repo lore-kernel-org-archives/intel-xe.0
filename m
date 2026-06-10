@@ -4,99 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CF58CD8CB2
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2F56CD98CC
 	for <intel-xe@archiver.kernel.org>; Wed, 10 Jun 2026 14:42:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4721F10E9F1;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D01510E9F8;
 	Wed, 10 Jun 2026 14:42:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="piaj78gN";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="tOOR196l";
 	dkim-atps=neutral
-Received: from mail-yx1-f42.google.com (mail-yx1-f42.google.com
- [74.125.224.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E886210E6E4
- for <intel-xe@lists.freedesktop.org>; Wed, 10 Jun 2026 03:56:30 +0000 (UTC)
-Received: by mail-yx1-f42.google.com with SMTP id
- 956f58d0204a3-6608c1a4215so7089007d50.0
- for <intel-xe@lists.freedesktop.org>; Tue, 09 Jun 2026 20:56:30 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1781063790; cv=none;
- d=google.com; s=arc-20240605;
- b=DES8JQnyyuHFaZ1Wy4PQai5/1kUv3auoFg2p5b5nTp78NhsoLlQJqb0vwIkQik/30S
- 7IUlHdlIcCGYM6W76W0EN0o8X1b+0Yb/uSwdjSfZC/Q8w76urNrrlh+jopqyYLxArCm4
- YWicwvgewaSWDUCdWiCCvreUWOKDhjJrgg4/Sx2PIESiF0O92iI4i3mPxuizYhmquLIC
- etnS+jlwTOqP0APtarrFUXqnmiYlrrzuM8Wg2vemNTBSaHOVYo6XP988hySLLRi06EJU
- HN+VCuRzy+D+du5O0lbF7pLM5zop1qTY3UYMObj4+rEiuvvCknwjv5/SxPQF6Ea0OTVu
- irjw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:dkim-signature;
- bh=o2Y71ur2j8AWeXxKEtF9d/8FWw9ai/UzloR6wLp7LdY=;
- fh=G+mNqrmfs08wGzFSoceF72W9z4HOyKuzQdgPo2B8YQ0=;
- b=VDPL1yElFq2rlAHrRZI7TJ/eyx0HX/QTwqJXlSzCmsLUXXiGSNdVFDpSyHHHcWicBa
- J39ESb+5+zI2VIgLd9yim7aokgDVOX5/USxsGgpayCK9B9nFezv1CAOAHQh4EHKAfDRe
- jwJGr21o+NA0C4ycQj+hY92gY6teqatX9Lx2sDFnm+vUYop3ol32jkIDEvbPDnozTr3o
- XDcEW6r6AwUghsYeiL6gTgILZxkQ41FYsq3c/5rDO3+kp0ChpxDywhEYCCu6Oy4sM1z2
- 3SY8lTV4BBiJdPsdA92PrD4pR9zyOsuYVM/uQCeuYgZtMugCLqsBZ935jy3/tS8TCysU
- 9xkQ==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com
+ [209.85.216.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3241610E6DA
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Jun 2026 03:54:32 +0000 (UTC)
+Received: by mail-pj1-f42.google.com with SMTP id
+ 98e67ed59e1d1-372b4330deeso2285790a91.0
+ for <intel-xe@lists.freedesktop.org>; Tue, 09 Jun 2026 20:54:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1781063790; x=1781668590; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=o2Y71ur2j8AWeXxKEtF9d/8FWw9ai/UzloR6wLp7LdY=;
- b=piaj78gN/m1udGdPA7m5mJ0YXW6DHfKJlv0xm9gvVSnWxdmN9JjitVR0BAqFq8to77
- qlu4xGCfX8LoFwecNxVRqU19hdi2pHOQH/8iBOd6+ci856yvU75S7bESdrPSstnjtryd
- SiFmZIjaL4s4czco/1tBIHlwJxcHBCY6HfEYpVDHht95K7AR6XM65zdrax6ifUqoW0v5
- bUO0kshUyHwAzVtZwMNz3lO9GK/odbayPzjQM8TQZOfZyvBHPW9r3qPVQUPH0pU02Qbc
- XMb++xOqrzKZdvXOyV50zvHzdleQbJ2+3uT68r7HhEsU8teMo6ybAnQ1JHON6vWsLyVW
- mJ0Q==
+ d=gmail.com; s=20251104; t=1781063672; x=1781668472; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=kizIObzKL4IBfyjyeIAkjO2Eens7kW7Bizncq6rSEY4=;
+ b=tOOR196lfiqnUv7ESnPcGM6P+NUzPo0W0NLX84B83CXJtX5HqB0Cm8bgqs0XLLKqhu
+ mUriQ3PVOc3azqpsXB1L24BsFjiO+JiL7PzYSjXKxBkl5wSybA6LOeacyLINLM7L8tsI
+ Tptike8Ilm4srE1RV1sr0JlwZb1Mi4tqKPnstuQuPIQemMFNokom+N2XdLKOh7VKXwqj
+ NWdirt4pFmyXcClKwUU5ZqWjxoq8XrWhU+TsvnWpEr372Z8Um0sdcHvgHjvB2QPiUW13
+ CdKiQtC/rSYDOcH0hbG5v4tjKdb9VtG4JrlHkosEngD3V6Nlj/bxkZp7afVETTk/ActJ
+ UaaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1781063790; x=1781668590;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ d=1e100.net; s=20251104; t=1781063672; x=1781668472;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=o2Y71ur2j8AWeXxKEtF9d/8FWw9ai/UzloR6wLp7LdY=;
- b=HytgeYz0vUrNmYimW3LvskMZvlV3w1Ts08unFQSX4Rbm+unXOlkGFD9qpFduhCsxGE
- xcaT5hz28dnIssV/ppHGl3wV3Z6vFHsW6RcyBAkTQAs00HbYz6i4jIXJGEtMQndrfNbU
- Lz8G9jji453OWtHptT0AZRWGBcRDr9oWSxbJZ17jZ+U0cdcevTL3M5msZ8v6CE7PiHDg
- 2KQybVp4xligBXCMC+aA4bJOiE3Zjrqi/wF1GdNc2ZbEiAa5/fj5vOJPyVSUWaotTYJT
- lrZxXg7TNqte9qTz7qC8Y5ta2gdwOxs0vNTedsLfZj2uhsvunVU43TtIrXHPVZMnuKJ8
- Iq8g==
+ bh=kizIObzKL4IBfyjyeIAkjO2Eens7kW7Bizncq6rSEY4=;
+ b=KcN26t17NJYJF1uX2dqZjm+reFAn4yGGzMfxiOxJ2J7SqK/12t3yMuXpYnhlIQmJzU
+ 2fcRv846oFPfH2+EC6zo7xPxfm5L+bk2bSn1GsHTGzWulDiA6v2PH7Z020bFioDZGqvq
+ nHMMBkeAqb0t3Sgm4h0VneNavnDUg4VSfybdkW/lwpu0JEDSIus8yxEPTL2v9sG8yvFS
+ ib7F3FEXPTopCcBdBGhVwogixDtiJ4+N5OgWszmWZbuG1xelnqeq+/ACsYIkwvRB2zHw
+ NQTjGb0mBGfPm5LKnlPAIPI7loJSTDNbp4jOFsGfG/Sjae1AP+/pXKwabAcH8o2V2CSG
+ 5vSA==
 X-Forwarded-Encrypted: i=1;
- AFNElJ95EzsaftyJEbAVnVnkYjpsZma8LcYFHlYTbZ4QLG2rxLPTSniAzPyUTD9VSdizArg3RtGorLFOCA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwYPgMGco89KGu1wA/1YeVs2+/Yff11jV0+jIqEuNNp3oaLWPf7
- BtTPF/UaKCPWp+XO4Btx9xSVrJi/zEq14j1UXB/byf+iqkibodc2+p7IBOHXQzPxk4HUbP878Fw
- FGHgBGHwx+NTf4NnEfF/yR38lj83l5Kw=
-X-Gm-Gg: Acq92OFz191WW+fuZNqd9zjR2+aDJScXfvkFFIPJKHMwivXL5QRBmJEwjVtkAAwOBH4
- 7EK2AvivYEMtb1slmrcTtKPSL5KK5Ndarf3pmwCqWaAflquNskJ5A37c9HbCcES917PGbDEYZb2
- 0wjV94fj15phDdqdVyxMz/VgENXhvW8abGCOFIb4shRTI4tEBCvWyczEzXSSQ9N4A7zom8IVbHQ
- DgtG3led/JvoMghazAlVl8TLrNPJ0nctfBykfslqtAQIMz94BWeJkkG6m1pfEczLmCt+2IQN207
- Kl+o5Q33OOzfAVm4+cvRDcnabe4s7A==
-X-Received: by 2002:a05:690e:1242:b0:660:431b:8a5c with SMTP id
- 956f58d0204a3-6610a624fa8mr15634436d50.4.1781063789814; Tue, 09 Jun 2026
- 20:56:29 -0700 (PDT)
-MIME-Version: 1.0
-References: <20260605060527.1443552-1-lgs201920130244@gmail.com>
- <aiLe61REFDPGvZWM@ideak-desk.lan>
-In-Reply-To: <aiLe61REFDPGvZWM@ideak-desk.lan>
+ AFNElJ9exDk8RDJLgwKrrCE5P1mVHzbDUufj13jJTURG+bWiYaco5x2+nUkuS8dbKngEmr9mCSvz3EIFMA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzJzRtfGAT2JLFWsfvHYrR9OpwslR7hagKjSxtf8K+lkWari/0B
+ HKTNlWAhyJy15bitvbErDRRYT4bemKpg9IJVS4y1SdGCJUCrDfCjOMs4
+X-Gm-Gg: Acq92OGFooJ9h9l5ZyCfIMOJVDRfmGoAYUYielSK93PLw7oMuQ9X953fsomrmwSzuAD
+ YzcJVK2VMjNrqMKLCYaNmQDznYViHz57f8OLdgxbk8Js33E+rejifs98+i68FVq/hVgO+ka9DHx
+ Gzfl7BDFgcjJdGStokTyPbLaCET9aFqNABZLLwIv6uWofJ6JgqEjhRcFmEtXvwidxD20D24iK4D
+ OERk052ZZTFHeI6g3GQCIodw8D1lqNJbpqwxpUd2ANZvUNP4blVj3iRd2EdZtTBCQo22tBnlalV
+ J8dfw9MhGxog6HeFBpOR0p09bIiq0SOeJvMTCVeO1/BlFP+WRPgGtYs1FfBJVvGDj360QWSTcOB
+ 7jKS920hTxUUFHXI51/YdgWWuSuzLhQBC/dUxfcDmBZwsmL1QxX4QrdhhmNF+tXjR3PUsD1gVjH
+ mPGG5i1taoZYzRZ3X0vqsGMFE=
+X-Received: by 2002:a17:90b:4cc9:b0:36d:8e49:d8 with SMTP id
+ 98e67ed59e1d1-370f04818e9mr25545873a91.15.1781063671578; 
+ Tue, 09 Jun 2026 20:54:31 -0700 (PDT)
+Received: from lgs.. ([101.36.111.22]) by smtp.gmail.com with ESMTPSA id
+ 98e67ed59e1d1-3762128130asm1180510a91.1.2026.06.09.20.54.27
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 09 Jun 2026 20:54:31 -0700 (PDT)
 From: Guangshuo Li <lgs201920130244@gmail.com>
-Date: Wed, 10 Jun 2026 11:56:16 +0800
-X-Gm-Features: AVVi8Cdl7bjaaSoyIcwbk4y7y4tCXUvPuwgUj1XqVjclggrW4JUWxHkR6dTt11A
-Message-ID: <CANUHTR-gdPwagMqGbH+GfPVqWN2ygP6b-GTaUQe_AxZsi5RHfg@mail.gmail.com>
-Subject: Re: [PATCH] drm/i915/dp_tunnel: fix CRTC hw state cleanup ordering
-To: imre.deak@intel.com
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Uma Shankar <uma.shankar@intel.com>, 
- =?UTF-8?Q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>, 
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Uma Shankar <uma.shankar@intel.com>,
+ Imre Deak <imre.deak@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Cc: Guangshuo Li <lgs201920130244@gmail.com>
+Subject: [PATCH v2] drm/i915: clear CRTC color blob pointers after dropping
+ refs
+Date: Wed, 10 Jun 2026 11:54:19 +0800
+Message-ID: <20260610035419.1596963-1-lgs201920130244@gmail.com>
+X-Mailer: git-send-email 2.43.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 10 Jun 2026 14:42:31 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -112,70 +93,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Imre,
+intel_crtc_free_hw_state() drops the CRTC color blob references, but
+leaves the corresponding pointers unchanged.
 
-Thanks for the review.
+This can matter in intel_crtc_prepare_cleared_state(), which frees the
+old CRTC hw state before calling intel_dp_tunnel_atomic_clear_stream_bw().
+The latter can fail while looking up the DP tunnel group state, for
+example with -EDEADLK.
 
-On Fri, 5 Jun 2026 at 22:36, Imre Deak <imre.deak@intel.com> wrote:
->
-> On Fri, Jun 05, 2026 at 02:05:27PM +0800, Guangshuo Li wrote:
-> > intel_crtc_prepare_cleared_state() frees the old CRTC hw state before
-> > calling intel_dp_tunnel_atomic_clear_stream_bw(). The latter can fail
-> > while looking up the DP tunnel group state, for example with -EDEADLK.
-> >
-> > If that happens, the function returns without completing the cleared
-> > state preparation, leaving the duplicated CRTC state with its hw color
-> > blob references already dropped. The failed atomic state will then be
-> > cleared by the atomic core, which can drop the same references again.
-> >
-> > Move the hw state release after the DP tunnel stream BW clear has
-> > succeeded. Keep the temporary state allocation before the failable DP
-> > tunnel operation so an allocation failure cannot happen after the stream
-> > BW has already been cleared.
-> >
-> > Fixes: fb69d0076e68 ("drm/i915/dp_tunnel: Fix error handling when clearing stream BW in atomic state")
-> > Signed-off-by: Guangshuo Li <lgs201920130244@gmail.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display.c | 6 +++---
-> >  1 file changed, 3 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> > index ad2fe10b6b1f..0c015bc6c9fd 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -4646,9 +4646,6 @@ intel_crtc_prepare_cleared_state(struct intel_atomic_state *state,
-> >       if (!saved_state)
-> >               return -ENOMEM;
-> >
-> > -     /* free the old crtc_state->hw members */
-> > -     intel_crtc_free_hw_state(crtc_state);
->
-> The fix is valid, however I think instead of this change it'd be better
-> to clear the blob reference pointers in intel_crtc_free_hw_state().
->
-> > -
-> >       err = intel_dp_tunnel_atomic_clear_stream_bw(state, crtc_state);
-> >       if (err) {
-> >               kfree(saved_state);
-> > @@ -4656,6 +4653,9 @@ intel_crtc_prepare_cleared_state(struct intel_atomic_state *state,
-> >               return err;
-> >       }
-> >
-> > +     /* free the old crtc_state->hw members */
-> > +     intel_crtc_free_hw_state(crtc_state);
-> > +
-> >       /* FIXME: before the switch to atomic started, a new pipe_config was
-> >        * kzalloc'd. Code that depends on any field being zero should be
-> >        * fixed, so that the crtc_state can be safely duplicated. For now,
-> > --
-> > 2.43.0
-> >
+If that happens, the function returns without completing the cleared
+state preparation. The failed atomic state will then be cleared by the
+atomic core and intel_crtc_free_hw_state() can be called again for the
+same state, dropping the same blob references again.
 
-Agreed, clearing the blob reference pointers in
-intel_crtc_free_hw_state() makes the cleanup safe against repeated calls
-and avoids changing the ordering in intel_crtc_prepare_cleared_state().
+Clear the blob pointers after dropping the references so repeated cleanup
+of the same CRTC hw state is safe.
 
-I'll send a v2 with that change.
+Fixes: fb69d0076e68 ("drm/i915/dp_tunnel: Fix error handling when clearing stream BW in atomic state")
+Suggested-by: Imre Deak <imre.deak@intel.com>
+Signed-off-by: Guangshuo Li <lgs201920130244@gmail.com>
+---
+v2:
+  - Keep the original ordering in intel_crtc_prepare_cleared_state().
+  - Clear the blob reference pointers in intel_crtc_free_hw_state(), as
+    suggested by Imre.
 
-Best regards,
-Guangshuo
+ drivers/gpu/drm/i915/display/intel_atomic.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/drm/i915/display/intel_atomic.c
+index 71b7325917b6..0cdae87e4bfc 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic.c
+@@ -294,6 +294,12 @@ static void intel_crtc_put_color_blobs(struct intel_crtc_state *crtc_state)
+ void intel_crtc_free_hw_state(struct intel_crtc_state *crtc_state)
+ {
+ 	intel_crtc_put_color_blobs(crtc_state);
++
++	crtc_state->hw.degamma_lut = NULL;
++	crtc_state->hw.gamma_lut = NULL;
++	crtc_state->hw.ctm = NULL;
++	crtc_state->pre_csc_lut = NULL;
++	crtc_state->post_csc_lut = NULL;
+ }
+ 
+ /**
+-- 
+2.43.0
+
