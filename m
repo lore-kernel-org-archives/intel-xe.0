@@ -4,59 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7AE26CD98CC
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Jun 2026 17:08:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0380CCD8CB9
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Jun 2026 17:12:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CE5A10EB47;
-	Wed, 10 Jun 2026 17:08:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RFodE438";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECEF310EB43;
- Wed, 10 Jun 2026 17:08:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781111284; x=1812647284;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=zzlunuYVIRzJUtmVVNlxZlX8PgJz0p92vd6q7UVctXk=;
- b=RFodE438cBrXQWK7lBsEGCfsGUjfVaaNMJ8N1JklyGcPVBVRDZwvwbZD
- eQT3facC7HpFuuqFKgzPEvcw2W761bPgxORsQyOrxbLsed0VXvU8397/x
- evWdwqVWZZa9FuZ8e5BwW7c/oN7i3Risg4Bc+p576JepRdC1ZeiPMEz3O
- IlhtKj+2ONXqtRvHQawOZ2UlzDBPob99ur8HDIGOzuSOaIQUEJ3mvU2Sw
- VfJlNXxupWra9d25cMNPux1Pvp481waOtNPj/c7DX4jtTz/HJ8QeE+yZS
- T6QN0dZYhKUqTcQ5pif5F/fT3n0cEBV+7Rruv/w7OQ2oCYEcJlRs8fpLC Q==;
-X-CSE-ConnectionGUID: Y80PbcsKTHK8gdFY3dIGtQ==
-X-CSE-MsgGUID: mO491ealSUG3/096M7yimw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="82103773"
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="82103773"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2026 10:08:03 -0700
-X-CSE-ConnectionGUID: 7NqR2iZcQcuPmDPAxrf6+A==
-X-CSE-MsgGUID: Ugi1SYezRbK5NChbVOO4XQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="251325930"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.62])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2026 10:08:01 -0700
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 14/14] drm/i915/cdclk: Hoist intel_cdclk_{pre,
- post}_notify() calls upwards
-Date: Wed, 10 Jun 2026 20:06:51 +0300
-Message-ID: <20260610170652.5320-15-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260610170652.5320-1-ville.syrjala@linux.intel.com>
-References: <20260610170652.5320-1-ville.syrjala@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6EFD10EB49;
+	Wed, 10 Jun 2026 17:12:16 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 798CF10EB46;
+ Wed, 10 Jun 2026 17:12:15 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7522309057731624200=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1/2?=
+ =?utf-8?q?=5D_drm/xe=3A_fix_job_timeout_recovery_for_unstarted_jobs_and_ker?=
+ =?utf-8?q?nel_queues?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 10 Jun 2026 17:12:15 -0000
+Message-ID: <178111153549.65607.1524443532444680177@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260610152548.404575-3-rodrigo.vivi@intel.com>
+In-Reply-To: <20260610152548.404575-3-rodrigo.vivi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,156 +37,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+--===============7522309057731624200==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Now that intel_cdclk_{pre,post}_notify() are implemented via vfuncs
-there is no need to keep them inside the .set_cdclk() hooks. Move
-the calls one level up to intel_cdclk_set_cdclk().
+== Series Details ==
 
-We do need to adjust {skl,bxt}_cdclk_(un)init_hw() to call the wrapper
-rather than the low level implementation directly, or else they would
-not do the pcode notification anymore.
+Series: series starting with [1/2] drm/xe: fix job timeout recovery for unstarted jobs and kernel queues
+URL   : https://patchwork.freedesktop.org/series/168267/
+State : success
 
-The two slight functions changes here are:
-- bdw_set_cdclk() might theoretically bail out after doing the
-  pre notification, but that codepath would only come into play
-  if the hardware is seriously misprogrammed, so should never happen
-- cdclk hw readout is still done from .set_cdclk(), so that now
-  happens before the post notify vs. previously the readout happened
-  before it. This should not matter as the readout is not affected
-  by the post notify (since we can't actually read out anything from
-  pcode).
+== Summary ==
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_cdclk.c | 33 ++++++----------------
- 1 file changed, 9 insertions(+), 24 deletions(-)
+CI Bug Log - changes from xe-5231-fc59f76558703febba8056be87d1c97d14f7485e_BAT -> xe-pw-168267v1_BAT
+====================================================
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 4154b4888eff..617ad154505c 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -209,7 +209,12 @@ static void intel_cdclk_set_cdclk(struct intel_display *display,
- 				  const struct intel_cdclk_config *cdclk_config,
- 				  enum pipe pipe)
- {
-+	if (intel_cdclk_pre_notify(display))
-+		return;
-+
- 	display->cdclk.funcs->set_cdclk(display, cdclk_config, pipe);
-+
-+	intel_cdclk_post_notify(display, cdclk_config);
- }
- 
- static int intel_cdclk_modeset_calc_cdclk(struct intel_atomic_state *state)
-@@ -933,10 +938,6 @@ static void bdw_set_cdclk(struct intel_display *display,
- 		     "trying to change cdclk frequency with cdclk not enabled\n"))
- 		return;
- 
--	ret = intel_cdclk_pre_notify(display);
--	if (ret)
--		return;
--
- 	intel_de_rmw(display, LCPLL_CTL,
- 		     0, LCPLL_CD_SOURCE_FCLK);
- 
-@@ -960,8 +961,6 @@ static void bdw_set_cdclk(struct intel_display *display,
- 	if (ret)
- 		drm_err(display->drm, "Switching back to LCPLL failed\n");
- 
--	intel_cdclk_post_notify(display, cdclk_config);
--
- 	intel_de_write(display, CDCLK_FREQ,
- 		       DIV_ROUND_CLOSEST(cdclk, 1000) - 1);
- 
-@@ -1218,7 +1217,6 @@ static void skl_set_cdclk(struct intel_display *display,
- 	int cdclk = cdclk_config->cdclk;
- 	int vco = cdclk_config->vco;
- 	u32 freq_select, cdclk_ctl;
--	int ret;
- 
- 	/*
- 	 * Based on WA#1183 CDCLK rates 308 and 617MHz CDCLK rates are
-@@ -1231,10 +1229,6 @@ static void skl_set_cdclk(struct intel_display *display,
- 	drm_WARN_ON_ONCE(display->drm,
- 			 display->platform.skylake && vco == 8640000);
- 
--	ret = intel_cdclk_pre_notify(display);
--	if (ret)
--		return;
--
- 	freq_select = skl_cdclk_freq_sel(display, cdclk, vco);
- 
- 	if (display->cdclk.hw.vco != 0 &&
-@@ -1270,8 +1264,6 @@ static void skl_set_cdclk(struct intel_display *display,
- 	intel_de_write(display, CDCLK_CTL, cdclk_ctl);
- 	intel_de_posting_read(display, CDCLK_CTL);
- 
--	intel_cdclk_post_notify(display, cdclk_config);
--
- 	intel_update_cdclk(display);
- }
- 
-@@ -1343,7 +1335,7 @@ static void skl_cdclk_init_hw(struct intel_display *display)
- 	cdclk_config.cdclk = skl_calc_cdclk(0, cdclk_config.vco);
- 	cdclk_config.voltage_level = skl_calc_voltage_level(cdclk_config.cdclk);
- 
--	skl_set_cdclk(display, &cdclk_config, INVALID_PIPE);
-+	intel_cdclk_set_cdclk(display, &cdclk_config, INVALID_PIPE);
- }
- 
- static void skl_cdclk_uninit_hw(struct intel_display *display)
-@@ -1354,7 +1346,7 @@ static void skl_cdclk_uninit_hw(struct intel_display *display)
- 	cdclk_config.vco = 0;
- 	cdclk_config.voltage_level = skl_calc_voltage_level(cdclk_config.cdclk);
- 
--	skl_set_cdclk(display, &cdclk_config, INVALID_PIPE);
-+	intel_cdclk_set_cdclk(display, &cdclk_config, INVALID_PIPE);
- }
- 
- struct intel_cdclk_vals {
-@@ -2308,11 +2300,6 @@ static void bxt_set_cdclk(struct intel_display *display,
- {
- 	struct intel_cdclk_config mid_cdclk_config;
- 	int cdclk = cdclk_config->cdclk;
--	int ret;
--
--	ret = intel_cdclk_pre_notify(display);
--	if (ret)
--		return;
- 
- 	if (DISPLAY_VER(display) >= 20 && cdclk < display->cdclk.hw.cdclk)
- 		xe2lpd_mdclk_cdclk_ratio_program(display, cdclk_config);
-@@ -2328,8 +2315,6 @@ static void bxt_set_cdclk(struct intel_display *display,
- 	if (DISPLAY_VER(display) >= 20 && cdclk > display->cdclk.hw.cdclk)
- 		xe2lpd_mdclk_cdclk_ratio_program(display, cdclk_config);
- 
--	intel_cdclk_post_notify(display, cdclk_config);
--
- 	intel_update_cdclk(display);
- 
- 	/*
-@@ -2413,7 +2398,7 @@ static void bxt_cdclk_init_hw(struct intel_display *display)
- 	cdclk_config.voltage_level =
- 		intel_cdclk_calc_voltage_level(display, cdclk_config.cdclk);
- 
--	bxt_set_cdclk(display, &cdclk_config, INVALID_PIPE);
-+	intel_cdclk_set_cdclk(display, &cdclk_config, INVALID_PIPE);
- }
- 
- static void bxt_cdclk_uninit_hw(struct intel_display *display)
-@@ -2425,7 +2410,7 @@ static void bxt_cdclk_uninit_hw(struct intel_display *display)
- 	cdclk_config.voltage_level =
- 		intel_cdclk_calc_voltage_level(display, cdclk_config.cdclk);
- 
--	bxt_set_cdclk(display, &cdclk_config, INVALID_PIPE);
-+	intel_cdclk_set_cdclk(display, &cdclk_config, INVALID_PIPE);
- }
- 
- /**
--- 
-2.53.0
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5231-fc59f76558703febba8056be87d1c97d14f7485e -> xe-pw-168267v1
+
+  IGT_8956: 8956
+  xe-5231-fc59f76558703febba8056be87d1c97d14f7485e: fc59f76558703febba8056be87d1c97d14f7485e
+  xe-pw-168267v1: 168267v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168267v1/index.html
+
+--===============7522309057731624200==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/xe: fix job timeout recovery for unstarted jobs and kernel queues</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/168267/">https://patchwork.freedesktop.org/series/168267/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168267v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168267v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5231-fc59f76558703febba8056be87d1c97d14f7485e_BAT -&gt; xe-pw-168267v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5231-fc59f76558703febba8056be87d1c97d14f7485e -&gt; xe-pw-168267v1</li>
+</ul>
+<p>IGT_8956: 8956<br />
+  xe-5231-fc59f76558703febba8056be87d1c97d14f7485e: fc59f76558703febba8056be87d1c97d14f7485e<br />
+  xe-pw-168267v1: 168267v1</p>
+
+</body>
+</html>
+
+--===============7522309057731624200==--
