@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96656CD8CB2
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Jun 2026 14:21:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7652CD8CB9
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Jun 2026 14:23:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F7E310E9C6;
-	Wed, 10 Jun 2026 14:21:00 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hoKiwE9N";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6395910E9C8;
- Wed, 10 Jun 2026 14:20:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781101258; x=1812637258;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=D4abiVS944jvM2bXAA5HYuho73aPVDBx//8GyQv1D2M=;
- b=hoKiwE9NY9bH/YhLaVX3iWtG60U3/P5j9kvRtGb78Zu/iPezcG9PSB6F
- CJZvYnNFRXg5CJ5daTC47GUMphZwsxGhJcRhc6VopH3BoqyNwF9E8lxrI
- uFRlvndODLDXegtjCt13X/fNtX32wSHEi8eMVlbt2v9OloDeR6LRkqS5w
- rQk5SIRahX6C+ezyB92c/9c2A1AEI4StVE3m1Hwh3WHPfGIR3+swrsOac
- I3e4or/V4zaxm1Dr/sf9L+USzf8PPKqX+66gXGCrxQ23bnpK789pmifEe
- 7n1c2tCJ+tF8AC22z16n+eff9r7XlIYHcJrEKzh4EOPajMZAnZr/RcuKD A==;
-X-CSE-ConnectionGUID: GVwyWltfSEGEfhbExCbZcA==
-X-CSE-MsgGUID: Hlg4VMqZRdOaZx6DeNypLg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11812"; a="85737693"
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="85737693"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2026 07:20:58 -0700
-X-CSE-ConnectionGUID: NzCNpjSxTsK+P5yM3VPRCw==
-X-CSE-MsgGUID: mndZM0qiQTWW8zLcddbwLw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="246044530"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
- ([10.245.244.3])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2026 07:20:55 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>, Nemesa Garg
- <nemesa.garg@intel.com>, Ville =?utf-8?B?U3lyasOkbMOk?=
- <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH v1 4/9] drm/i915/scaler: move independent CASF check
-In-Reply-To: <20260609231217.208357-5-michal.grzelak@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260609231217.208357-1-michal.grzelak@intel.com>
- <20260609231217.208357-5-michal.grzelak@intel.com>
-Date: Wed, 10 Jun 2026 17:20:52 +0300
-Message-ID: <84976148ecef740231d3655f144df8e9b942681f@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 987AF10E9C6;
+	Wed, 10 Jun 2026 14:23:12 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C67110E9C6;
+ Wed, 10 Jun 2026 14:23:11 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0295046777720982272=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5BRFC?=
+ =?utf-8?q?=2C1/2=5D_drm/gpusvm=3A_Add_a_DMA-mapping_accounting_callback?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 10 Jun 2026 14:23:11 -0000
+Message-ID: <178110139150.64488.2328879504244374577@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260610133451.8930-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20260610133451.8930-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,56 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 10 Jun 2026, Micha=C5=82 Grzelak <michal.grzelak@intel.com> wrote:
-> First clause of CASF check is independent of any loop iteration and
-> causes intel_allocate_scaler() to fail when satisfied. Check it before
-> entering the loop.
->
-> Cc: Nemesa Garg <nemesa.garg@intel.com>
-> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Micha=C5=82 Grzelak <michal.grzelak@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/skl_scaler.c | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/=
-i915/display/skl_scaler.c
-> index f2216a9ea3f8..59a5a3cd3e6a 100644
-> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
-> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-> @@ -339,12 +339,14 @@ static int intel_allocate_scaler(struct intel_crtc_=
-scaler_state *scaler_state,
->  	struct intel_display *display =3D to_intel_display(crtc);
->  	int scaler_id;
->=20=20
-> +	if (casf_scaler && !HAS_CASF(display))
-> +		return -1;
+--===============0295046777720982272==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Using -1 as magic error return value is one of my pet peeves.
+== Series Details ==
 
--1 =3D=3D -EPERM, and that's hardly the case here.
+Series: series starting with [RFC,1/2] drm/gpusvm: Add a DMA-mapping accounting callback
+URL   : https://patchwork.freedesktop.org/series/168247/
+State : success
 
-I know the function returns -1 elsewhere, both should be fixed. -EINVAL
-is better.
+== Summary ==
+
+CI Bug Log - changes from xe-5230-724e06af260b571e2d970d4a806ae3d620ff0b7a_BAT -> xe-pw-168247v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 12)
+------------------------------
+
+  Missing    (1): bat-lnl-2 
 
 
-BR,
-Jani.
+Changes
+-------
 
-> +
->  	for (scaler_id =3D 0; scaler_id < crtc->num_scalers; scaler_id++) {
->  		if (scaler_state->scalers[scaler_id].in_use)
->  			continue;
->=20=20
-> -		if ((casf_scaler && !HAS_CASF(display)) ||
-> -		    (casf_scaler && scaler_id !=3D 1))
-> +		if (casf_scaler && scaler_id !=3D 1)
->  			continue;
->=20=20
->  		scaler_state->scalers[scaler_id].in_use =3D true;
+  No changes found
 
---=20
-Jani Nikula, Intel
+
+Build changes
+-------------
+
+  * Linux: xe-5230-724e06af260b571e2d970d4a806ae3d620ff0b7a -> xe-pw-168247v1
+
+  IGT_8956: 8956
+  xe-5230-724e06af260b571e2d970d4a806ae3d620ff0b7a: 724e06af260b571e2d970d4a806ae3d620ff0b7a
+  xe-pw-168247v1: 168247v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168247v1/index.html
+
+--===============0295046777720982272==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [RFC,1/2] drm/gpusvm: Add a DMA-mapping accounting callback</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/168247/">https://patchwork.freedesktop.org/series/168247/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168247v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168247v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5230-724e06af260b571e2d970d4a806ae3d620ff0b7a_BAT -&gt; xe-pw-168247v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 12)</h2>
+<p>Missing    (1): bat-lnl-2 </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5230-724e06af260b571e2d970d4a806ae3d620ff0b7a -&gt; xe-pw-168247v1</li>
+</ul>
+<p>IGT_8956: 8956<br />
+  xe-5230-724e06af260b571e2d970d4a806ae3d620ff0b7a: 724e06af260b571e2d970d4a806ae3d620ff0b7a<br />
+  xe-pw-168247v1: 168247v1</p>
+
+</body>
+</html>
+
+--===============0295046777720982272==--
