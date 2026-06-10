@@ -4,46 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 252E7CD8C90
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Jun 2026 17:48:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7924ACD8CB9
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Jun 2026 17:48:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF5F110EB6C;
-	Wed, 10 Jun 2026 17:48:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A42610EB2E;
+	Wed, 10 Jun 2026 17:48:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=sms-medipool.de header.i=@sms-medipool.de header.b="pRMYIsz+";
+	dkim=pass (2048-bit key; secure) header.d=sms-medipool.de header.i=@sms-medipool.de header.b="N3yKCXYZ";
 	dkim-atps=neutral
 Received: from mail.sms-medipool.de (mail.sms-medipool.de [178.63.14.108])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30F5A10EB4D;
- Wed, 10 Jun 2026 17:48:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CF2D10EB72;
+ Wed, 10 Jun 2026 17:48:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sms-medipool.de;
- s=mail; t=1781113690;
- bh=aG5mD1+nlsKXiZZjZ1Id268083faWF77k5f+YUeTy/o=;
+ s=mail; t=1781113701;
+ bh=atzXuJcJgIZ+RXTM3Ppz3OOpnLwVGlNucvvKzphRO+k=;
  h=From:To:Cc:Subject:Date:From;
- b=pRMYIsz+TScJHbASykALpbKSUFbzH+lzRy7JBHE+pbhp9mTvo7vByPuDTzaChGrJS
- kQIv/oeRFZPw7tT2pgSkU+vnWjMfYsimXeImTX/H75oT6fsHsLv2mdO11JuBfxek01
- 6e0rpsuZpJOAOqve1j9/6jZSCNrD05v5pCzKivlDsldytwFThJqa006C3u4+8GmiMM
- mCLIv06KRgr6qJxJxHuzy8fAd8OmMHia+ZP+Rswnx1eo4Su1kFro3iWYsfBioiqW2Y
- UYROrfwmw9tCl9AFE+PC41HtnvZhBYYXVWUq4eZJYjBBJXPTq7sxiUaGmymIYfUMxu
- eNzCzTsCbalXQ==
+ b=N3yKCXYZYdVVGIJRNDc+Hm20dYVBK1qSCyu6lx3uP+fg3kk7XAS4s95mZ5psTyWj9
+ A8n1jGiVtVnnjpv3U4tO92HbkQoKDtvEpsmLwN7UsXPMh/rxJDlbprr+Pdq2/RveDr
+ NrDaEKscah9Cjii0KPo61SXVXlH9doy1gbR8hWz1ViC9RsPExxGtwDj985IQOG3o2R
+ WRSYeA3ac9/v3bK/XN/kZzCIdHHC9GuP27eTv9tmYLFCsC8pK0vcA7Q/wcSEW5CPQK
+ UpQqOBWAEIBmhp2UE4/E6HVfHe0cetnoDTmZJ57U7XtgYt+WWWJJx9ctYM35+Q+U0S
+ grcfypUcJI6Pw==
 Received: from mail.stoss-medica.de (mail.stoss-medica.de [213.147.17.40])
- by mail.sms-medipool.de (Postfix) with ESMTPS id D2F5711B5D;
- Wed, 10 Jun 2026 19:48:09 +0200 (CEST)
+ by mail.sms-medipool.de (Postfix) with ESMTPS id C61E511D49;
+ Wed, 10 Jun 2026 19:48:21 +0200 (CEST)
 Received: from NUC16-Linux.sb.golima.de ([95.88.98.111])
  by mail.stoss-medica.de (Kerio Connect 10.0.8 patch 2) with ESMTP;
- Wed, 10 Jun 2026 19:48:08 +0200
+ Wed, 10 Jun 2026 19:48:21 +0200
 From: Alexander Kaplan <alexander.kaplan@sms-medipool.de>
 To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org
-Cc: Imre Deak <imre.deak@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+Cc: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
  Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ Imre Deak <imre.deak@intel.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Jani Nikula <jani.nikula@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>, alexander.kaplan@sms-medipool.de
-Subject: [PATCH 0/2] drm/dp: Avoid RBR on Synaptics VMM7100 PCONs failing
- channel EQ
-Date: Wed, 10 Jun 2026 19:48:05 +0200
-Message-ID: <20260610174807.6231-1-alexander.kaplan@sms-medipool.de>
+Subject: [PATCH] drm/dp: Read the PCON max FRL bandwidth only for HDMI DFPs
+Date: Wed, 10 Jun 2026 19:48:19 +0200
+Message-ID: <20260610174819.6258-1-alexander.kaplan@sms-medipool.de>
 X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -61,63 +60,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Synaptics VMM7100 based DP-to-HDMI 2.1 protocol converters with branch
-firmware 7.1 (branch dev-ID "SYNAq") deterministically fail 8b/10b
-channel equalization at the 4-lane RBR link configuration.
-i915's link config optimization picks exactly that configuration for
-low resolution modes (e.g. a 1080p boot greeter), and the resulting
-training fallback permanently degrades the link to 2 lanes, since
-these PCONs never raise a long HPD that would re-sync the link
-parameters.
-On the affected system this capped a 4k60 desktop mode at 6 bpc
-dithered output.
+The PCON max FRL bandwidth field lives in byte 2 of the DFP Detailed
+Capability Info (DPCD 0x82 for the first DFP).
+The DP standard defines the meaning of descriptor bytes 1-3 strictly
+per DFP type, and for a DisplayPort type DFP all of them are
+reserved, with "read all 0s" semantics (DP v2.0, section 2.12.3,
+Table 2-183).
+The FRL bandwidth field is an HDMI DFP extension added by the VESA
+DP-to-HDMI PCON specification.
+drm_dp_get_pcon_max_frl_bw() however parses the byte without checking
+the DFP type, the branch presence or DETAILED_CAP_INFO_AVAILABLE.
+Without the latter the port descriptors are one byte wide and
+port_cap[2] is not even the right register.
 
-The failure was isolated to the converter firmware by training the
-full rate x lane matrix via debugfs and by comparing two dongles
-based on the same VMM7100 chip (HW-rev 1.0): branch firmware 7.1
-fails 4-lane RBR, firmware 7.2 trains it fine.
-Only 4-lane RBR fails.
-Clock recovery passes, channel equalization never converges with the
-device toggling its requested vswing/pre-emphasis levels until the
-attempt limit.
-The Intel source PHY and the board's non-transparent LTTPR grant all
-requests during the failing sequence.
-Windows and macOS are unaffected as they don't train low resolution
-modes at RBR.
+All neighbouring helpers parsing the same descriptor are scoped by
+the DFP type already, see for instance drm_dp_downstream_max_bpc()
+reading the same byte and returning 0 for a DP type DFP.
+amdgpu's DC parses the field only for HDMI(/DP++) detailed types as
+well.
 
-Patch 1 adds a DPCD quirk entry for these devices.
-The matching can't distinguish firmware revisions, so devices with
-fixed firmware are matched as well, which is free since any mode
-that fits RBR also fits HBR.
-Patch 2 makes i915 skip RBR for quirked devices when computing the
-sink rates, unless RBR is the only available rate, so a hypothetical
-RBR-only device keeps its current behavior.
-The quirk itself lives in the shared DPCD quirk table, so other
-drivers can handle it as well if needed.
-Link rate selection is driver specific, hence the handling is
-implemented in i915 (the only current consumer of the table's link
-rate quirks, cf. DP_DPCD_QUIRK_CAN_DO_MAX_LINK_RATE_3_24_GBPS).
+This is not theoretical.
+A Synaptics VMM7100 based USB-C to HDMI adapter with a macOS targeted
+firmware advertises a DisplayPort type DFP with the type byte
+replicated across the whole descriptor (08 08 08 08).
+i915 decodes that as "PCON limited to 18 Gbps FRL" and prunes every
+mode above ~750 MHz dotclock, including all the 4k@100/120 modes the
+sink EDID offers, while macOS drives 4k@120 through the same adapter
+just fine via DP DSC (and amdgpu's type-scoped parser would ignore
+the bogus field as well).
 
-Tested on PTL (xe) with the affected PCON: the boot greeter now
-trains 2x270000, no training failure or fallback occurs, and the
-4k60 desktop mode trains 4x810000 from boot.
+Only parse the field for an HDMI DFP behind a branch device that
+reports detailed cap info, matching the type-scoped field layout of
+the spec and the rest of the helpers.
 
-This series is part of a set of independent fixes for the USB-C to
-DP to HDMI 2.1 protocol converter (PCON) path on the same system,
-see the first part [1] for an overview.
-Each series/patch stands on its own and can be merged independently.
-
+Fixes: ce32a6239de6 ("drm/dp_helper: Add Helpers for FRL Link Training support for DP-HDMI2.1 PCON")
+Signed-off-by: Alexander Kaplan <alexander.kaplan@sms-medipool.de>
+---
+This patch is part of a set of independent fixes for the USB-C to DP
+to HDMI 2.1 protocol converter (PCON) path, found and verified on an
+ASUS NUC 16 Pro (Panther Lake, xe) with Synaptics VMM7100 based
+adapters.
+Each part stands on its own and can be merged independently.
+The other parts:
 [1] https://lore.kernel.org/r/20260610174413.5881-1-alexander.kaplan@sms-medipool.de
+[2] https://lore.kernel.org/r/20260610174807.6231-1-alexander.kaplan@sms-medipool.de
+ drivers/gpu/drm/display/drm_dp_helper.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-Alexander Kaplan (2):
-  drm/dp: Add quirk for Synaptics PCONs failing channel EQ at RBR
-  drm/i915/dp: Skip RBR for sinks with the NO_LINK_RATE_RBR quirk
-
- drivers/gpu/drm/display/drm_dp_helper.c |  3 +++
- drivers/gpu/drm/i915/display/intel_dp.c | 23 +++++++++++++++++------
- include/drm/display/drm_dp_helper.h     |  8 ++++++++
- 3 files changed, 28 insertions(+), 6 deletions(-)
-
+diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
+index 9c31e14cc413..3328909c8db4 100644
+--- a/drivers/gpu/drm/display/drm_dp_helper.c
++++ b/drivers/gpu/drm/display/drm_dp_helper.c
+@@ -3686,6 +3686,15 @@ int drm_dp_get_pcon_max_frl_bw(const u8 dpcd[DP_RECEIVER_CAP_SIZE],
+ 	int bw;
+ 	u8 buf;
+ 
++	if (!drm_dp_is_branch(dpcd))
++		return 0;
++
++	if ((dpcd[DP_DOWNSTREAMPORT_PRESENT] & DP_DETAILED_CAP_INFO_AVAILABLE) == 0)
++		return 0;
++
++	if ((port_cap[0] & DP_DS_PORT_TYPE_MASK) != DP_DS_PORT_TYPE_HDMI)
++		return 0;
++
+ 	buf = port_cap[2];
+ 	bw = buf & DP_PCON_MAX_FRL_BW;
+ 
 -- 
 2.54.0
 
