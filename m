@@ -4,60 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 996FECD8CB9
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Jun 2026 17:39:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90327CD8CB9
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Jun 2026 17:44:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A86A10E528;
-	Wed, 10 Jun 2026 17:39:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3EDA110E6B6;
+	Wed, 10 Jun 2026 17:44:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NjpS82tt";
+	dkim=pass (2048-bit key; secure) header.d=sms-medipool.de header.i=@sms-medipool.de header.b="nUv3IEOX";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 268D010EB3D;
- Wed, 10 Jun 2026 17:39:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781113174; x=1812649174;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=CKkYCWzA3rUmk+DtPETzFGM/8+X0Hd+gq/XRrX3sfmI=;
- b=NjpS82tt9osbpImVYso0HO46FYG4knwDjSUJxSLjbve1TFXch+OdpnbS
- mKUV6oZDsGHG0vf4lNeXM6PjD25RdtMlHi2/aexu3d6SXK8G2E3i2F+Aq
- 0xtxH4ZuSC6EQKXpyrwK11o1rTtVp/CxjDAmPNQ7LPsH3L8nGR4Zdy6Jr
- oiwcyl+iXtbiIkOEQQsVKMp9Y7ZJJKafp3Kg4eAPYbbKSTsegMhtm8zEs
- cfyLEtmB11jS93nsywB9QExjuZ9ihlokr4YdDDv0bgBtQNm7tXoK3lwa9
- +FSn3ehnC1L8RFPnXyCmZaqLcT5F8iDYVhqWA0FQCrOcZTF2YrQv3wTQO g==;
-X-CSE-ConnectionGUID: o7Qne+0cT5We+XpWQ6AVVQ==
-X-CSE-MsgGUID: CODjRm6dT4OKUa/X2DTQbg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="69454544"
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="69454544"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2026 10:39:34 -0700
-X-CSE-ConnectionGUID: GPiCztEIQ7WPvPpKTULO5A==
-X-CSE-MsgGUID: 7vM/6BIZQ+qAMcI9HRjrHg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="269916374"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
- ([10.245.244.3])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2026 10:39:32 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 12/14] drm/i915/cdclk: Extract bxt_cdclk_pcode_{pre,
- post}_notify()
-In-Reply-To: <20260610170652.5320-13-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260610170652.5320-1-ville.syrjala@linux.intel.com>
- <20260610170652.5320-13-ville.syrjala@linux.intel.com>
-Date: Wed, 10 Jun 2026 20:39:30 +0300
-Message-ID: <c8197592b12f863e4492cde2f5d2e39eb38e44b3@intel.com>
+Received: from mail.sms-medipool.de (mail.sms-medipool.de [178.63.14.108])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB4E110E528;
+ Wed, 10 Jun 2026 17:44:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sms-medipool.de;
+ s=mail; t=1781113456;
+ bh=xP/kZT3mUaeUNX4TxlYlkVie+felP3LU6Vg0yA2SbC4=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=nUv3IEOX5VLfPbySMEC764y58XOKYf3BneYmkemFwdsI39v7q1KyoP8GcB2WhTsyw
+ MENeivEsg0E3AgSTW48ntE31z3jDn3HgRNaBq6kdd4Sy7Mx8jLrYjcN5iDqaLCJ0vq
+ /hWae2daoi4l2L2Ge9s7VVHMqgL07JFd888N2kxo5AgDiGTGmBu9OcmE+m+4SMZO4v
+ cq90kiKKlXJNl6RACMCgaw6Dop/lYXlVCK7ABFtZRrZBd9DG8gdSooUjGxmSpaxH17
+ xUao0tD3NG283s0bxyHl4YUekeUhrxcSCg099hIpJWIuli0e5b4ACcGBSW758ucegn
+ dv2qVtI1zZlzw==
+Received: from mail.stoss-medica.de (mail.stoss-medica.de [213.147.17.40])
+ by mail.sms-medipool.de (Postfix) with ESMTPS id D82F711B54;
+ Wed, 10 Jun 2026 19:44:15 +0200 (CEST)
+Received: from NUC16-Linux.sb.golima.de ([95.88.98.111])
+ by mail.stoss-medica.de (Kerio Connect 10.0.8 patch 2) with ESMTP;
+ Wed, 10 Jun 2026 19:44:14 +0200
+From: Alexander Kaplan <alexander.kaplan@sms-medipool.de>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Imre Deak <imre.deak@intel.com>,
+ Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, alexander.kaplan@sms-medipool.de
+Subject: [PATCH 3/3] drm/i915/dp: Check FRL bandwidth limits in the HDMI bpc
+ computation
+Date: Wed, 10 Jun 2026 19:44:13 +0200
+Message-ID: <20260610174413.5881-4-alexander.kaplan@sms-medipool.de>
+X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260610174413.5881-1-alexander.kaplan@sms-medipool.de>
+References: <20260610174413.5881-1-alexander.kaplan@sms-medipool.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,94 +65,112 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 10 Jun 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Extract the BXT/GLK pcode notify stuff to a few small helpers.
-> The plan is to unify these between all the platforms and turn
-> them into vfuncs.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+The bpc computation for HDMI sinks behind a DP branch device
+(intel_dp_hdmi_compute_bpc()) validates each bpc candidate against
+the sink's TMDS character rate limits, even if the video will be
+transmitted over an FRL link, where those limits don't apply.
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+This caps such sinks at 8bpc whenever a deep color mode's
+TMDS-equivalent character rate exceeds the TMDS limit, although the
+FRL link has plenty of bandwidth.
+E.g. 4k60 RGB 10bpc corresponds to a ~742 MHz TMDS character rate,
+above the typical 600 MHz limit, but only needs ~17.8 Gbps of e.g. a
+48 Gbps FRL link.
+Modes whose rate exceeds the TMDS limit already at 8bpc (e.g. 4k120)
+are additionally forced from RGB to YCbCr 4:2:0 output.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_cdclk.c | 42 +++++++++++++---------
->  1 file changed, 26 insertions(+), 16 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm=
-/i915/display/intel_cdclk.c
-> index bb47fc4c86ee..749e366e60ab 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> @@ -2226,6 +2226,29 @@ static u32 bxt_cdclk_ctl(struct intel_display *dis=
-play,
->  	return val;
->  }
->=20=20
-> +static int bxt_cdclk_pcode_pre_notify(struct intel_display *display)
-> +{
-> +	/*
-> +	 * BSpec requires us to wait up to 150usec, but that leads to
-> +	 * timeouts; the 2ms used here is based on experiment.
-> +	 */
-> +	return intel_parent_pcode_write_timeout(display, HSW_PCODE_DE_WRITE_FRE=
-Q_REQ,
-> +						0x80000000, 2);
-> +}
-> +
-> +static int bxt_cdclk_pcode_post_notify(struct intel_display *display,
-> +				       const struct intel_cdclk_config *cdclk_config)
-> +{
-> +	/*
-> +	 * The timeout isn't specified, the 2ms used here is based on
-> +	 * experiment.
-> +	 * FIXME: Waiting for the request completion could be delayed
-> +	 * until the next PCODE request based on BSpec.
-> +	 */
-> +	return intel_parent_pcode_write_timeout(display, HSW_PCODE_DE_WRITE_FRE=
-Q_REQ,
-> +						cdclk_config->voltage_level, 2);
-> +}
-> +
->  static void _bxt_set_cdclk(struct intel_display *display,
->  			   const struct intel_cdclk_config *cdclk_config,
->  			   enum pipe pipe)
-> @@ -2278,13 +2301,7 @@ static void bxt_set_cdclk(struct intel_display *di=
-splay,
->  	else if (DISPLAY_VER(display) >=3D 11)
->  		ret =3D skl_cdclk_pcode_pre_notify(display);
->  	else
-> -		/*
-> -		 * BSpec requires us to wait up to 150usec, but that leads to
-> -		 * timeouts; the 2ms used here is based on experiment.
-> -		 */
-> -		ret =3D intel_parent_pcode_write_timeout(display,
-> -						       HSW_PCODE_DE_WRITE_FREQ_REQ,
-> -						       0x80000000, 2);
-> +		ret =3D bxt_cdclk_pcode_pre_notify(display);
->=20=20
->  	if (ret) {
->  		drm_err(display->drm,
-> @@ -2311,15 +2328,8 @@ static void bxt_set_cdclk(struct intel_display *di=
-splay,
->  	else if (DISPLAY_VER(display) >=3D 11)
->  		ret =3D skl_cdclk_pcode_post_notify(display, cdclk_config);
->  	else
-> -		/*
-> -		 * The timeout isn't specified, the 2ms used here is based on
-> -		 * experiment.
-> -		 * FIXME: Waiting for the request completion could be delayed
-> -		 * until the next PCODE request based on BSpec.
-> -		 */
-> -		ret =3D intel_parent_pcode_write_timeout(display,
-> -						       HSW_PCODE_DE_WRITE_FREQ_REQ,
-> -						       cdclk_config->voltage_level, 2);
-> +		ret =3D bxt_cdclk_pcode_post_notify(display, cdclk_config);
-> +
->  	if (ret)
->  		drm_err(display->drm,
->  			"Failed to inform PCODE about end of CDCLK change (%d)\n", ret);
+If both the PCON and the sink support FRL, validate the required
+bandwidth against the FRL bandwidth the link will be trained with
+(the same min() of the PCON's and the sink's max FRL rate that
+intel_dp_pcon_start_frl_training() uses) instead of the TMDS limits.
+This mirrors how intel_dp_mode_valid_downstream() already validates
+modes against the FRL bandwidth for such sinks.
+Sinks without FRL support behind an FRL capable PCON keep using the
+TMDS limits, since the PCON transmits to them in TMDS mode.
 
---=20
-Jani Nikula, Intel
+The sink's deep color EDID capabilities still apply via
+intel_hdmi_bpc_possible(), and the DP link side limits are handled
+separately, as before.
+
+intel_dp_mode_valid_downstream() currently checks the FRL bandwidth
+only against the PCON's limit and also skips the TMDS checks for
+non-FRL sinks behind an FRL capable PCON.
+Aligning it with the limit used here is left for a separate change.
+
+Tested on PTL (xe) with a Synaptics VMM7100 PCON and an LG OLED G4:
+4k60 goes from RGB 8bpc (dithered 6bpc pipe) to RGB 12bpc with HDR,
+matching macOS (12bpc) and Windows (10bpc) on the same hardware.
+
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Alexander Kaplan <alexander.kaplan@sms-medipool.de>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 37 ++++++++++++++++++++++++-
+ 1 file changed, 36 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 2831b274d88a..511d99326af4 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -124,6 +124,7 @@ bool intel_dp_is_edp(struct intel_dp *intel_dp)
+ }
+ 
+ static void intel_dp_unset_edid(struct intel_dp *intel_dp);
++static int intel_dp_hdmi_sink_max_frl(struct intel_dp *intel_dp);
+ 
+ /* Is link rate UHBR and thus 128b/132b? */
+ bool intel_dp_is_uhbr(const struct intel_crtc_state *crtc_state)
+@@ -1347,6 +1348,40 @@ static int frl_required_bw(int clock, int bpc,
+ 	return clock * bpc * 3;
+ }
+ 
++static enum drm_mode_status
++intel_dp_hdmi_clock_valid(struct intel_dp *intel_dp,
++			  int clock, int bpc,
++			  enum intel_output_format sink_format,
++			  bool respect_downstream_limits)
++{
++	int max_frl_bw;
++
++	if (!respect_downstream_limits)
++		return MODE_OK;
++
++	/* The FRL bandwidth the link will be trained with */
++	max_frl_bw = min(intel_dp->dfp.pcon_max_frl_bw,
++			 intel_dp_hdmi_sink_max_frl(intel_dp));
++
++	/*
++	 * If both the PCON and the sink support FRL, the PCON transmits
++	 * to the sink in FRL mode, where the TMDS character rate limits
++	 * don't apply.
++	 */
++	if (max_frl_bw > 0) {
++		/* converting bw from Gbps to Kbps */
++		max_frl_bw = max_frl_bw * 1000000;
++
++		if (frl_required_bw(clock, bpc, sink_format) > max_frl_bw)
++			return MODE_CLOCK_HIGH;
++
++		return MODE_OK;
++	}
++
++	return intel_dp_tmds_clock_valid(intel_dp, clock, bpc,
++					 sink_format, respect_downstream_limits);
++}
++
+ static enum drm_mode_status
+ intel_dp_mode_valid_downstream(struct intel_connector *connector,
+ 			       const struct drm_display_mode *mode,
+@@ -1831,7 +1866,7 @@ static int intel_dp_hdmi_compute_bpc(struct intel_dp *intel_dp,
+ 	for (; bpc >= 8; bpc -= 2) {
+ 		if (intel_hdmi_bpc_possible(crtc_state, bpc,
+ 					    intel_dp_has_hdmi_sink(intel_dp)) &&
+-		    intel_dp_tmds_clock_valid(intel_dp, clock, bpc, crtc_state->sink_format,
++		    intel_dp_hdmi_clock_valid(intel_dp, clock, bpc, crtc_state->sink_format,
+ 					      respect_downstream_limits) == MODE_OK)
+ 			return bpc;
+ 	}
+-- 
+2.54.0
+
+
