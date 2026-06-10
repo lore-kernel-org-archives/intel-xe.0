@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E01D9CD8CB9
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Jun 2026 14:59:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BAF78CD8CB9
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Jun 2026 14:59:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98D6110E4D4;
-	Wed, 10 Jun 2026 14:59:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7DA4E10E636;
+	Wed, 10 Jun 2026 14:59:21 +0000 (UTC)
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2952310E4D4;
- Wed, 10 Jun 2026 14:59:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C9DB410E636;
+ Wed, 10 Jun 2026 14:59:19 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/xe=3A_keep_?=
- =?utf-8?q?process_name_fallback_for_diagnostics?=
+Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/i915=3A_cle?=
+ =?utf-8?q?ar_CRTC_color_blob_pointers_after_dropping_refs?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ruoyu Wang" <ruoyuw560@gmail.com>
+To: "Guangshuo Li" <lgs201920130244@gmail.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 10 Jun 2026 14:59:00 -0000
-Message-ID: <178110354016.64641.13563305910293887461@6beec6c84f66>
+Date: Wed, 10 Jun 2026 14:59:19 -0000
+Message-ID: <178110355982.64641.12124540449896886907@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260609162057.5-1-ruoyuw560@gmail.com>
-In-Reply-To: <20260609162057.5-1-ruoyuw560@gmail.com>
+References: <20260610035419.1596963-1-lgs201920130244@gmail.com>
+In-Reply-To: <20260610035419.1596963-1-lgs201920130244@gmail.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,15 +42,15 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/xe: keep process name fallback for diagnostics
-URL   : https://patchwork.freedesktop.org/series/168256/
+Series: drm/i915: clear CRTC color blob pointers after dropping refs
+URL   : https://patchwork.freedesktop.org/series/168257/
 State : failure
 
 == Summary ==
 
-Series author address 'ruoyuw560@gmail.com' is not on the allowlist, which prevents CI from being automatically triggered.
+Series author address 'lgs201920130244@gmail.com' is not on the allowlist, which prevents CI from being automatically triggered.
 If you want CI to run for this series, ask Patchwork project owners to click 'retest' on the series in Patchwork.
 Exception occurred during validation, bailing out!
-Build URL: http://intel-gfx-ci-public.igk.intel.com:8080/job/xe_pw_trigger/1185485/ (on master)
+Build URL: http://intel-gfx-ci-public.igk.intel.com:8080/job/xe_pw_trigger/1185486/ (on master)
 
 
