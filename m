@@ -4,53 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF1D0CD98C7
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Jun 2026 21:28:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27FFFCD98CC
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Jun 2026 21:28:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C44910EBF9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B90A510EBFA;
 	Wed, 10 Jun 2026 21:28:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UMg9yDPu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KhO5Egq/";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A709210EBF9
- for <intel-xe@lists.freedesktop.org>; Wed, 10 Jun 2026 21:28:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26B6B10EC02
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Jun 2026 21:28:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781126919; x=1812662919;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=LxVEpSwT5yilCmZ1yKd9a72b3H8yw/ajBXZ5Fr3qu20=;
- b=UMg9yDPu8NoIyGeeXNp5DKEocCoLXorFLTfOfx/F3I+eJEj7TBmF9E3L
- SoG8x9dLo2FRf2m+kucykoXXTo2yaW3PCPxd8wQ8W1cTTopWNfrMIiN+S
- sgY2St7o4Ive0xm7JP8g0s7UMNGBu1cjL1TNNSae8UDmi7YVjPXR+rvvF
- 0oKClE4qi5AAGxKK1mV8bSsoWtOiHpqzJnMpoWKM+zDqVDl9TAgk2XgOc
- Xr8X83DJmfMonJp/yeJYb1HQdDndafZcXU5MAuh8id+ZA3WmYC9ubf7dj
- v8zuwVeTyF1ra/byE1n2FM04gWeatn7LezBJhlLG9xqGt9TgH6WLl6oUt A==;
-X-CSE-ConnectionGUID: es+KtDN8RUuEOUvyBZHRQA==
-X-CSE-MsgGUID: mD6FA1nPRaixwu9/XLdhQA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="81934679"
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="81934679"
+ t=1781126920; x=1812662920;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=kglvJEYvp3Y9kwUr0A+4eor+clw/asPGF/zzUOQ1O68=;
+ b=KhO5Egq/+unXGQ/rRmRbAzzen5bChwVVD198scsIB74K2hkBXOYdjLO7
+ HahxMLevI/2JHlxK8lvRTqjCAf4HuW3q84bAG1mLqBcUVbaSSC9ATsD9/
+ j+I8b8aphmTtzzXohNPYB68jxghiHcXxOu6pd5A1qw3rXvTO+MdoDax7Z
+ v4NJndS4XCBAO3QhNG0VqhmSOANy4LHiQrtl6NXTbwxIeYLbFhuVEAWNr
+ rhaI58DYVaOg/TLge5XjyPW9/Kp/0FvY+WTXCbxdFZ8qV8rd0bb1ocLrt
+ WPvrUS9mV+RKLuyGVyNUypcG13df5LdrJQiyrAo0pDkOxwPOmMLitWaQ1 w==;
+X-CSE-ConnectionGUID: gI+1vwTnTnGUU3mow4pk9Q==
+X-CSE-MsgGUID: oaxFza06SyOPdxqcqUJzEQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="81934689"
+X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="81934689"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2026 14:28:38 -0700
-X-CSE-ConnectionGUID: GmwVAwB0SMOx4nkHGjnlDQ==
-X-CSE-MsgGUID: pmpukKtySCOYDg+826l6MQ==
+ 10 Jun 2026 14:28:39 -0700
+X-CSE-ConnectionGUID: tj7qPuSHRlqZyVfxsC1cmA==
+X-CSE-MsgGUID: c00szXGaTSmI1Y2vBRg2Gg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="270292046"
+X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="270292076"
 Received: from dut4425arlh.fm.intel.com ([10.1.81.65])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2026 14:28:37 -0700
+ 10 Jun 2026 14:28:38 -0700
 From: Stuart Summers <stuart.summers@intel.com>
 To: 
 Cc: michal.wajdeczko@intel.com, ilia.levi@intel.com, x.wang@intel.com,
  rodrigo.vivi@intel.com, intel-xe@lists.freedesktop.org,
  alan.previn.teres.alexis@intel.com,
  Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 00/11] Enable per exec queue MSI-X vector assignment
-Date: Wed, 10 Jun 2026 21:28:32 +0000
-Message-ID: <20260610212833.153366-13-stuart.summers@intel.com>
+Subject: [PATCH 10/11] drm/xe: Enable per-queue ufence wake in ioctl and wake
+ function
+Date: Wed, 10 Jun 2026 21:28:42 +0000
+Message-ID: <20260610212833.153366-23-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260610212833.153366-13-stuart.summers@intel.com>
+References: <20260610212833.153366-13-stuart.summers@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,64 +70,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This series adds support for per exec queue MSI-X vector
-assignment as well as a per exec queue wait queue in the
-wait user fence ioctl. MSI-X vectors are dynamically assigned
-during exec queue creation up to a set maximum. Once the max
-is reached, everything else falls back to the default vector.
+Hook up the per-exec-queue user fence wait queue infrastructure
+introduced in the previous patches:
 
-These dynamic vectors allow us to wake up a targeted wait
-queue and user thread instead of broadcasting out to all
-potential user threads like we're doing today. This is interesting
-when we have many user threads outstanding as we don't want
-to wake them up in a storm for each interrupt coming in.
+- xe_wait_user_fence_wake(): if a specific user exec queue is supplied
+  (non-NULL, still alive), wake only that queue's ufence_wq.  If no
+  queue is supplied (default MSI-X vector), broadcast to xe->ufence_wq
+  and every queue in ufence_list so no waiter is missed.  Kernel queues
+  always use the default MSI-X vector and pass NULL, so any non-NULL @q
+  here is guaranteed to be a user queue.
 
-Additionally, there have been changes in the memirq code lately
-to isolate some of the interrupts handled here. Starting with
-xe3p, however, we have new interrupts available for compute walker
-post sync interrupts. Currently these are enabled for legacy MSI
-use cases, but the bits are also available for MSI-X. Enable
-those bits here.
+- xe_wait_user_fence_ioctl(): add and remove the wait entry on the
+  per-queue ufence_wq when a queue is provided, falling back to the
+  device-level ufence_wq otherwise.
 
-v2: Drop the drm_dbg change patch
-    Directly call xe_hw_engine_handle_irq() from xe_memirq_hwe_handler()
-    Only add to ufence_list for user queues
+Signed-off-by: Stuart Summers <stuart.summers@intel.com>
+Assisted-by: Copilot:claude-sonnet-4.6
+---
+ drivers/gpu/drm/xe/xe_wait_user_fence.c | 44 +++++++++++++++++++------
+ 1 file changed, 34 insertions(+), 10 deletions(-)
 
-Stuart Summers (11):
-  drm/xe: Add kerneldoc to xe_wait_user_fence_ioctl()
-  drm/xe: Handle NULL in xe_exec_queue_get_unless_zero()
-  drm/xe: Cap MSI-X vector count to XE_MSIX_MAX_VECS
-  drm/xe: Assign dedicated MSI-X vectors to exec queues
-  drm/xe: Add configfs max_msix_vecs attribute
-  drm/xe: Remove memirq status and source checks for engine interrupts
-  drm/xe: Add per-exec-queue user fence wait queue
-  drm/xe: Track all exec queues in a device-level ufence list
-  drm/xe: Hook up per queue thread wake to the unique MSI-X vector
-    allocation
-  drm/xe: Enable per-queue ufence wake in ioctl and wake function
-  drm/xe/memirq: Enable compute walker post-sync interrupt
-
- drivers/gpu/drm/xe/regs/xe_lrc_layout.h  |  3 +
- drivers/gpu/drm/xe/xe_configfs.c         | 71 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_configfs.h         |  6 ++
- drivers/gpu/drm/xe/xe_device.c           |  2 +
- drivers/gpu/drm/xe/xe_device_types.h     | 11 ++++
- drivers/gpu/drm/xe/xe_exec_queue.c       | 51 ++++++++++++++++-
- drivers/gpu/drm/xe/xe_exec_queue.h       |  2 +-
- drivers/gpu/drm/xe/xe_exec_queue_types.h |  6 ++
- drivers/gpu/drm/xe/xe_guc_submit.c       |  6 +-
- drivers/gpu/drm/xe/xe_hw_engine.c        |  6 +-
- drivers/gpu/drm/xe/xe_hw_engine.h        |  3 +-
- drivers/gpu/drm/xe/xe_irq.c              | 36 ++++++++++--
- drivers/gpu/drm/xe/xe_irq.h              |  9 +++
- drivers/gpu/drm/xe/xe_lrc.c              | 15 ++++-
- drivers/gpu/drm/xe/xe_memirq.c           | 59 +++++++++-----------
- drivers/gpu/drm/xe/xe_memirq.h           |  4 +-
- drivers/gpu/drm/xe/xe_sync.c             |  3 +-
- drivers/gpu/drm/xe/xe_wait_user_fence.c  | 64 ++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_wait_user_fence.h  |  4 ++
- 19 files changed, 310 insertions(+), 51 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_wait_user_fence.c b/drivers/gpu/drm/xe/xe_wait_user_fence.c
+index 7c9d52b50580..1c14d89dff43 100644
+--- a/drivers/gpu/drm/xe/xe_wait_user_fence.c
++++ b/drivers/gpu/drm/xe/xe_wait_user_fence.c
+@@ -57,15 +57,39 @@ static int do_compare(u64 addr, u64 value, u64 mask, u16 op)
+ /**
+  * xe_wait_user_fence_wake() - Wake user fence waiters
+  * @xe: the xe device
+- * @q: exec queue (reserved; per-queue wake-up is enabled in a later patch)
++ * @q: exec queue whose user fence wait queue to wake, or NULL
+  *
+- * Wakes all user fence waiters on the device-level wait queue.
+- * Per-exec-queue and ufence_list broadcast support are introduced in
+- * subsequent patches once the full infrastructure is in place.
++ * If @q is non-NULL and still alive (a reference can be taken), wakes
++ * only that queue's per-queue wait queue.  Kernel queues always use the
++ * default MSI-X vector, which passes NULL here, so any non-NULL @q is
++ * always a user queue.
++ *
++ * If @q is NULL (default MSI-X vector or sync path), wakes the device-level
++ * wait queue and every per-exec-queue wait queue in ufence_list to ensure
++ * no waiter is missed.
+  */
+ void xe_wait_user_fence_wake(struct xe_device *xe, struct xe_exec_queue *q)
+ {
+-	wake_up_all(&xe->ufence_wq);
++	/*
++	 * Take a reference on the queue to guard against it being freed
++	 * concurrently. xe_exec_queue_get_unless_zero() handles a NULL @q,
++	 * so callers that don't specify a queue fall through to the broadcast.
++	 */
++	q = xe_exec_queue_get_unless_zero(q);
++	if (q) {
++		wake_up_all(&q->ufence_wq);
++		xe_exec_queue_put(q);
++	} else {
++		struct xe_exec_queue *iter;
++		unsigned long flags;
++
++		wake_up_all(&xe->ufence_wq);
++
++		spin_lock_irqsave(&xe->ufence_list_lock, flags);
++		list_for_each_entry(iter, &xe->ufence_list, ufence_link)
++			wake_up_all(&iter->ufence_wq);
++		spin_unlock_irqrestore(&xe->ufence_list_lock, flags);
++	}
+ }
+ 
+ static long to_jiffies_timeout(struct xe_device *xe,
+@@ -122,9 +146,9 @@ static long to_jiffies_timeout(struct xe_device *xe,
+  * performed as (@addr & @mask) OP @value, where OP is one of the
+  * %DRM_XE_UFENCE_WAIT_OP_* operators.
+  *
+- * If an exec queue ID is provided, the wait is aborted early if the
+- * queue enters a reset state. The device-level wait queue is used for
+- * wakeups in all cases.
++ * If an exec queue ID is provided, the wait is scoped to that queue's
++ * per-queue wait queue and the wait is aborted early if the queue enters
++ * a reset state. Otherwise the device-level wait queue is used.
+  *
+  * On return, @timeout is updated to reflect the remaining time (or zero
+  * on expiry), unless %DRM_XE_UFENCE_WAIT_FLAG_ABSTIME is set.
+@@ -170,7 +194,7 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
+ 
+ 	start = ktime_get();
+ 
+-	add_wait_queue(&xe->ufence_wq, &w_wait);
++	add_wait_queue(q ? &q->ufence_wq : &xe->ufence_wq, &w_wait);
+ 	for (;;) {
+ 		err = do_compare(addr, args->value, args->mask, args->op);
+ 		if (err <= 0)
+@@ -203,7 +227,7 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
+ 
+ 		timeout = wait_woken(&w_wait, TASK_INTERRUPTIBLE, timeout);
+ 	}
+-	remove_wait_queue(&xe->ufence_wq, &w_wait);
++	remove_wait_queue(q ? &q->ufence_wq : &xe->ufence_wq, &w_wait);
+ 
+ 	if (!(args->flags & DRM_XE_UFENCE_WAIT_FLAG_ABSTIME)) {
+ 		args->timeout -= ktime_to_ns(ktime_sub(ktime_get(), start));
 -- 
 2.43.0
 
