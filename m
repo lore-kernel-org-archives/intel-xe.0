@@ -4,33 +4,33 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90327CD8CB9
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0FA8CD8C90
 	for <intel-xe@archiver.kernel.org>; Wed, 10 Jun 2026 17:44:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EDA110E6B6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4AD2A10EB4D;
 	Wed, 10 Jun 2026 17:44:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=sms-medipool.de header.i=@sms-medipool.de header.b="nUv3IEOX";
+	dkim=pass (2048-bit key; secure) header.d=sms-medipool.de header.i=@sms-medipool.de header.b="y+FFoEgm";
 	dkim-atps=neutral
 Received: from mail.sms-medipool.de (mail.sms-medipool.de [178.63.14.108])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB4E110E528;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB56F10E6B6;
  Wed, 10 Jun 2026 17:44:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sms-medipool.de;
  s=mail; t=1781113456;
- bh=xP/kZT3mUaeUNX4TxlYlkVie+felP3LU6Vg0yA2SbC4=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=nUv3IEOX5VLfPbySMEC764y58XOKYf3BneYmkemFwdsI39v7q1KyoP8GcB2WhTsyw
- MENeivEsg0E3AgSTW48ntE31z3jDn3HgRNaBq6kdd4Sy7Mx8jLrYjcN5iDqaLCJ0vq
- /hWae2daoi4l2L2Ge9s7VVHMqgL07JFd888N2kxo5AgDiGTGmBu9OcmE+m+4SMZO4v
- cq90kiKKlXJNl6RACMCgaw6Dop/lYXlVCK7ABFtZRrZBd9DG8gdSooUjGxmSpaxH17
- xUao0tD3NG283s0bxyHl4YUekeUhrxcSCg099hIpJWIuli0e5b4ACcGBSW758ucegn
- dv2qVtI1zZlzw==
+ bh=bZFGpJySzKQnohFV+X73wcgkGlrAGFLBt7SXWrqmRUE=;
+ h=From:To:Cc:Subject:Date:From;
+ b=y+FFoEgmCKs2UtqTZ+eQF6SDY4ClnQ25/B8GOGBrrgn9GsgGWKb4nkvGmZx7WK/AT
+ h457pi8JFimLGRnhNE5sFlTaj9257qS9giPdkSCMkgBOr6wHqf4M7OqWaS74Xm+ezV
+ gJDxAn+eDxQkn/FsRH+JEg978hF/0DwQlh3xed/j/hfNptUPkWWAXvOIKkO1J3IWhW
+ V5fpv/4wgoHD58rX/rm2i0oKRnnHHDcxpE6hU2l1M7rscpdR7VDUNusnc13czTkKqs
+ NaG25aKWr+w4BOYnUiG9XqCgDeVGIdtEdVVBz82UgCSp2praSJoi3LK5AlX39I33Vf
+ CH42WS/94gncA==
 Received: from mail.stoss-medica.de (mail.stoss-medica.de [213.147.17.40])
- by mail.sms-medipool.de (Postfix) with ESMTPS id D82F711B54;
+ by mail.sms-medipool.de (Postfix) with ESMTPS id D569311B52;
  Wed, 10 Jun 2026 19:44:15 +0200 (CEST)
 Received: from NUC16-Linux.sb.golima.de ([95.88.98.111])
  by mail.stoss-medica.de (Kerio Connect 10.0.8 patch 2) with ESMTP;
- Wed, 10 Jun 2026 19:44:14 +0200
+ Wed, 10 Jun 2026 19:44:13 +0200
 From: Alexander Kaplan <alexander.kaplan@sms-medipool.de>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
@@ -41,13 +41,11 @@ Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
  Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
  Jani Nikula <jani.nikula@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>, alexander.kaplan@sms-medipool.de
-Subject: [PATCH 3/3] drm/i915/dp: Check FRL bandwidth limits in the HDMI bpc
- computation
-Date: Wed, 10 Jun 2026 19:44:13 +0200
-Message-ID: <20260610174413.5881-4-alexander.kaplan@sms-medipool.de>
+Subject: [PATCH 0/3] drm/i915/dp: Fix FRL rate selection and deep color for
+ HDMI sinks behind FRL PCONs
+Date: Wed, 10 Jun 2026 19:44:10 +0200
+Message-ID: <20260610174413.5881-1-alexander.kaplan@sms-medipool.de>
 X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260610174413.5881-1-alexander.kaplan@sms-medipool.de>
-References: <20260610174413.5881-1-alexander.kaplan@sms-medipool.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -65,111 +63,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The bpc computation for HDMI sinks behind a DP branch device
-(intel_dp_hdmi_compute_bpc()) validates each bpc candidate against
-the sink's TMDS character rate limits, even if the video will be
-transmitted over an FRL link, where those limits don't apply.
+HDMI 2.1 sinks behind a DP to HDMI 2.1 PCON are currently limited to
+8bpc, and the FRL link often trains below what the hardware supports,
+because
 
-This caps such sinks at 8bpc whenever a deep color mode's
-TMDS-equivalent character rate exceeds the TMDS limit, although the
-FRL link has plenty of bandwidth.
-E.g. 4k60 RGB 10bpc corresponds to a ~742 MHz TMDS character rate,
-above the typical 600 MHz limit, but only needs ~17.8 Gbps of e.g. a
-48 Gbps FRL link.
-Modes whose rate exceeds the TMDS limit already at 8bpc (e.g. 4k120)
-are additionally forced from RGB to YCbCr 4:2:0 output.
+ 1) the sink's DSC max FRL rate caps the trained FRL rate even when
+    the PCON has no DSC encoder and thus never produces compressed
+    transport, and
 
-If both the PCON and the sink support FRL, validate the required
-bandwidth against the FRL bandwidth the link will be trained with
-(the same min() of the PCON's and the sink's max FRL rate that
-intel_dp_pcon_start_frl_training() uses) instead of the TMDS limits.
-This mirrors how intel_dp_mode_valid_downstream() already validates
-modes against the FRL bandwidth for such sinks.
-Sinks without FRL support behind an FRL capable PCON keep using the
-TMDS limits, since the PCON transmits to them in TMDS mode.
+ 2) the bpc computation validates HDMI sinks behind a branch device
+    against the sink's TMDS character rate limits even when the video
+    is transmitted over FRL.
 
-The sink's deep color EDID capabilities still apply via
-intel_hdmi_bpc_possible(), and the DP link side limits are handled
-separately, as before.
+On a Panther Lake NUC (xe) with a Synaptics VMM7100 PCON and an LG
+OLED G4 (Max_FRL_Rate 48 Gbps, DSC_Max_FRL_Rate 24 Gbps, max TMDS
+character rate 600 MHz) this means: FRL trains at 24 instead of
+48 Gbps and 4k60 is limited to RGB 8bpc, while Windows (RGB 10bpc,
+FRL 40G) and macOS (RGB 12bpc, FRL 48G) drive the same hardware with
+deep color.
 
-intel_dp_mode_valid_downstream() currently checks the FRL bandwidth
-only against the PCON's limit and also skips the TMDS checks for
-non-FRL sinks behind an FRL capable PCON.
-Aligning it with the limit used here is left for a separate change.
+Patch 2 applies the sink's DSC max FRL rate only when the PCON
+actually has a DSC 1.2 encoder (the gate intel_dp_pcon_dsc_configure()
+already uses).
+Patch 3 makes intel_dp_hdmi_compute_bpc() validate the required
+bandwidth against the FRL bandwidth the link will be trained with,
+instead of the TMDS limits, for FRL-capable PCON+sink combos.
 
-Tested on PTL (xe) with a Synaptics VMM7100 PCON and an LG OLED G4:
-4k60 goes from RGB 8bpc (dithered 6bpc pipe) to RGB 12bpc with HDR,
-matching macOS (12bpc) and Windows (10bpc) on the same hardware.
+Patch 1 makes the link config prefer DSC over a dithered 6 bpc
+uncompressed output.
+This is a quality improvement on its own, but it is also ordered
+first for bisectability.
+Patches 2 and 3 open up RGB configurations on FRL links for which
+previously only the YCbCr 4:2:0 fallback existed, and modes which fit
+such a link uncompressed only with 6 bpc (e.g. 4k120 on a 4 lane HBR3
+link) would then select an RGB 6 bpc output.
+The tested Synaptics PCONs (two device families) cannot display a
+6 bpc stream at such pixel clocks, so without patch 1 this would
+trade the previous 4:2:0 picture for a black screen.
 
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Alexander Kaplan <alexander.kaplan@sms-medipool.de>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 37 ++++++++++++++++++++++++-
- 1 file changed, 36 insertions(+), 1 deletion(-)
+With the full series the setup above runs 4k60 at RGB 12bpc with HDR
+at FRL 48G, and 4k120 at RGB 12bpc (DSC, both SDR and HDR), stable
+across modesets, hotplugs and suspend/resume.
+This was also verified on a second Synaptics PCON device family (a
+TBT4 dock, SYNAa) and against a VMM7100 with a DP branch ID (where
+the HDMI paths stay inert).
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 2831b274d88a..511d99326af4 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -124,6 +124,7 @@ bool intel_dp_is_edp(struct intel_dp *intel_dp)
- }
- 
- static void intel_dp_unset_edid(struct intel_dp *intel_dp);
-+static int intel_dp_hdmi_sink_max_frl(struct intel_dp *intel_dp);
- 
- /* Is link rate UHBR and thus 128b/132b? */
- bool intel_dp_is_uhbr(const struct intel_crtc_state *crtc_state)
-@@ -1347,6 +1348,40 @@ static int frl_required_bw(int clock, int bpc,
- 	return clock * bpc * 3;
- }
- 
-+static enum drm_mode_status
-+intel_dp_hdmi_clock_valid(struct intel_dp *intel_dp,
-+			  int clock, int bpc,
-+			  enum intel_output_format sink_format,
-+			  bool respect_downstream_limits)
-+{
-+	int max_frl_bw;
-+
-+	if (!respect_downstream_limits)
-+		return MODE_OK;
-+
-+	/* The FRL bandwidth the link will be trained with */
-+	max_frl_bw = min(intel_dp->dfp.pcon_max_frl_bw,
-+			 intel_dp_hdmi_sink_max_frl(intel_dp));
-+
-+	/*
-+	 * If both the PCON and the sink support FRL, the PCON transmits
-+	 * to the sink in FRL mode, where the TMDS character rate limits
-+	 * don't apply.
-+	 */
-+	if (max_frl_bw > 0) {
-+		/* converting bw from Gbps to Kbps */
-+		max_frl_bw = max_frl_bw * 1000000;
-+
-+		if (frl_required_bw(clock, bpc, sink_format) > max_frl_bw)
-+			return MODE_CLOCK_HIGH;
-+
-+		return MODE_OK;
-+	}
-+
-+	return intel_dp_tmds_clock_valid(intel_dp, clock, bpc,
-+					 sink_format, respect_downstream_limits);
-+}
-+
- static enum drm_mode_status
- intel_dp_mode_valid_downstream(struct intel_connector *connector,
- 			       const struct drm_display_mode *mode,
-@@ -1831,7 +1866,7 @@ static int intel_dp_hdmi_compute_bpc(struct intel_dp *intel_dp,
- 	for (; bpc >= 8; bpc -= 2) {
- 		if (intel_hdmi_bpc_possible(crtc_state, bpc,
- 					    intel_dp_has_hdmi_sink(intel_dp)) &&
--		    intel_dp_tmds_clock_valid(intel_dp, clock, bpc, crtc_state->sink_format,
-+		    intel_dp_hdmi_clock_valid(intel_dp, clock, bpc, crtc_state->sink_format,
- 					      respect_downstream_limits) == MODE_OK)
- 			return bpc;
- 	}
+A related observation, left for a separate change:
+intel_dp_mode_valid_downstream() checks the FRL bandwidth only
+against the PCON's limit (not the sink's max FRL rate from the EDID)
+and skips the TMDS/dotclock checks even for non-FRL sinks behind an
+FRL capable PCON.
+Aligning it with the limit used in patch 3 would make .mode_valid()
+pruning consistent with the compute path.
+
+This series is the first part of a set of independent fixes for the
+USB-C to DP to HDMI 2.1 protocol converter (PCON) path, found and
+verified on an ASUS NUC 16 Pro (Panther Lake, xe driver) driving an
+LG OLED TV through Synaptics VMM7100 based adapters.
+Two dongle firmware lines and a TB4 dock were tested.
+Each series/patch stands on its own and can be merged independently.
+This series targets drm-intel, the DP helper patches of the set
+target drm-misc.
+
+The other parts, to follow shortly:
+  drm/dp: Avoid RBR on Synaptics VMM7100 PCONs failing channel EQ
+  drm/dp: Read the PCON max FRL bandwidth only for HDMI DFPs
+  drm/dp: Service the CEC tunneling IRQ flags without CEC_IRQ in ESI1
+
+Alexander Kaplan (3):
+  drm/i915/dp: Prefer DSC over a 6 bpc uncompressed output
+  drm/i915/dp: Ignore the sink's DSC max FRL rate without a PCON DSC
+    encoder
+  drm/i915/dp: Check FRL bandwidth limits in the HDMI bpc computation
+
+ drivers/gpu/drm/i915/display/intel_dp.c | 58 ++++++++++++++++++++++++-
+ 1 file changed, 56 insertions(+), 2 deletions(-)
+
 -- 
 2.54.0
 
