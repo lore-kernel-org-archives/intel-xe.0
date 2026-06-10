@@ -4,59 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 595E0CD8CB9
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Jun 2026 13:29:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DACBDCD8CB2
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Jun 2026 13:35:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B0BF10E98F;
-	Wed, 10 Jun 2026 13:29:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BEC810E06B;
+	Wed, 10 Jun 2026 13:35:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dP0nmHRJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="maBV4ucP";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C695610E99D
- for <intel-xe@lists.freedesktop.org>; Wed, 10 Jun 2026 13:29:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41A5689F35
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Jun 2026 13:35:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781098180; x=1812634180;
- h=from:to:cc:in-reply-to:references:subject:message-id:
- date:mime-version:content-transfer-encoding;
- bh=JG3JuNxSjRbujF9iMmxO24OWtssU66AA/iJqj+tOYh4=;
- b=dP0nmHRJN1ZuzfnLddAg4CgOOrA6fiZv/UDVGmlNib8WlTwr9Khf6AM9
- dzgqLsGD+xxC0OkrK9RBNe0PAJ57z3ziutOUuHPjgxHF7IAgvgH4uUIwI
- x+hmZW53HSivHw1+JGjJL6Oein3pR614FyFurj1p82K7esIEvOjLx0L92
- ejrewt/32TSJ78OzZCxebtDtJajUV2kc/Nu6aB9yfg4MAVOpF/xht4bHH
- 6+JCCUbpMgBIQhdO63THKMNPixGTivbHbrryMJNYnwDmMFE/Iw27DhfKO
- c1IwgXM3kLogvooouBpAm30swMWu0353aYQRNQWpiDx7ZuzXCM25jKJu1 g==;
-X-CSE-ConnectionGUID: DwlYf4WLS/2SrLycm8rw7g==
-X-CSE-MsgGUID: +HTwe2mWSU2l73Qek5OIuA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11812"; a="84460618"
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="84460618"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2026 06:29:39 -0700
-X-CSE-ConnectionGUID: 2R+4T5QeShSPguEEDLXkbA==
-X-CSE-MsgGUID: ai5HphkPSVGpfMoCzAbtQg==
+ t=1781098526; x=1812634526;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=rovOE6ZlHkILxYp8p6BMF1ESlZyGUX3cWZWYFYRohjU=;
+ b=maBV4ucPURhuQBhrWmupovgA54fEGluiuj2m+exXuYI/YOOG9jpaIeDu
+ gMM2CXjlCYpirgIhK1eM+WBn98oWLKDrAtluG0Glx2X937l6bfocDQ24E
+ zl9U4ARML/C6nULKMVa5P5Z6rZaETYatSSXHLr43HQ4HecpKMs21xWsBp
+ 8Ovsax06fuwgfv89irgO7/gHByQk4vfbOf6okAeAKgK7f+szg6rJa8rYE
+ gmiOZVovfBM5H0NG+/abQ9oBbrQRSi2UVG5oF44//9WW789Nm9ji7ivCW
+ tLzhhtQO0eZ8xfTL7HjVNG+BulyjeYAyAFTu5/9CydhUlcr8h1bDAFH/w w==;
+X-CSE-ConnectionGUID: 9jrBBhmhTlCSDmYPOBlvdg==
+X-CSE-MsgGUID: 0VbOjcwUTxCiYzx8BCM3Bg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11812"; a="82000104"
+X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="82000104"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2026 06:35:26 -0700
+X-CSE-ConnectionGUID: 4dPihA+2Q4uEOMYJzzFaGg==
+X-CSE-MsgGUID: XGNp2b2iT9e1UQTp3YMN2w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="243712258"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.18])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2026 06:29:38 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To: michael.j.ruhl@intel.com, "David E. Box" <david.e.box@linux.intel.com>
-Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com, 
- intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- platform-driver-x86@vger.kernel.org
-In-Reply-To: <20260529183150.129744-1-david.e.box@linux.intel.com>
-References: <20260529183150.129744-1-david.e.box@linux.intel.com>
-Subject: Re: [PATCH] platform/x86/intel/vsec: Restore BAR fallback for
- header walk
-Message-Id: <178109817239.24283.13772452562650349778.b4-ty@b4>
-Date: Wed, 10 Jun 2026 16:29:32 +0300
+X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="245326417"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO fedora)
+ ([10.245.244.27])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2026 06:35:25 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Subject: [RFC PATCH 1/2] drm/gpusvm: Add a DMA-mapping accounting callback
+Date: Wed, 10 Jun 2026 15:34:50 +0200
+Message-ID: <20260610133451.8930-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15.2
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,28 +66,109 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 29 May 2026 11:31:49 -0700, David E. Box wrote:
+Drivers that use the GPU SVM core to DMA-map system memory for GPU
+access may want to keep track of how many pages they have mapped, for
+example to expose statistics or to detect leaks. Doing this accounting
+in the driver around drm_gpusvm_get_pages() / drm_gpusvm_unmap_pages()
+is error prone: the number, order and kind of the dma_addr[] entries can
+change between map and unmap (migration, partial unmaps, the iova vs
+non-iova paths), which makes symmetric accounting hard to get right.
 
-> The base_addr refactor changed intel_vsec_walk_header() to pass
-> info->base_addr as the discovery-table base address. For the PCI VSEC
-> driver this info comes from driver_data, but exported callers may provide
-> their own static headers and leave base_addr unset.
-> 
-> For xe, this made the discovery-table base address zero instead of the BAR
-> selected by header->tbir, preventing PMT endpoints from being created.
-> 
-> [...]
+Add an optional @dma_map_account callback to struct drm_gpusvm_ops and
+invoke it once per &drm_pagemap_addr entry at the exact points where the
+entry is DMA-mapped (sign == +1) in drm_gpusvm_get_pages() and unmapped
+(sign == -1) in __drm_gpusvm_unmap_pages(). Since the map error path and
+every unmap/free path funnel through __drm_gpusvm_unmap_pages() for the
+entries that were actually mapped, the accounting is symmetric by
+construction. The callback receives the full &drm_pagemap_addr so the
+driver can use the order and the proto field to distinguish system
+memory mappings from device interconnect mappings.
 
+The callback must also be usable by the core drm_gpusvm_pages-only API
+(mm == NULL), as used e.g. for userptr-style mappings. Relax
+drm_gpusvm_init() to allow such users to pass a restricted @ops that
+only implements the page-level hooks; the full-SVM hooks (@invalidate)
+and the chunk configuration must still be unset in that mode.
 
-Thank you for your contribution, it has been applied to my local
-review-ilpo-next branch. Note it will show up in the public
-platform-drivers-x86/review-ilpo-next branch only once I've pushed my
-local branch there, which might take a while.
+Assisted-by: GitHub_Copilot:claude-opus-4.8
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+---
+ drivers/gpu/drm/drm_gpusvm.c | 17 +++++++++++++++--
+ include/drm/drm_gpusvm.h     | 19 +++++++++++++++++++
+ 2 files changed, 34 insertions(+), 2 deletions(-)
 
-The list of commits applied:
-[1/1] platform/x86/intel/vsec: Restore BAR fallback for header walk
-      commit: 375bbbbd112af028ee0b45d833a6233c23d19bbf
-
---
- i.
+diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
+index 958cb605aedd..c18f15c77e94 100644
+--- a/drivers/gpu/drm/drm_gpusvm.c
++++ b/drivers/gpu/drm/drm_gpusvm.c
+@@ -393,8 +393,15 @@ int drm_gpusvm_init(struct drm_gpusvm *gpusvm,
+ 			return -EINVAL;
+ 		mmgrab(mm);
+ 	} else {
+-		/* No full SVM mode, only core drm_gpusvm_pages API. */
+-		if (ops || num_chunks || mm_range || notifier_size)
++		/*
++		 * No full SVM mode, only core drm_gpusvm_pages API. A
++		 * restricted @ops that only implements the page-level hooks
++		 * (e.g. @dma_map_account) is allowed; the full-SVM hooks must
++		 * not be set.
++		 */
++		if (num_chunks || mm_range || notifier_size)
++			return -EINVAL;
++		if (ops && ops->invalidate)
+ 			return -EINVAL;
+ 	}
+ 
+@@ -1162,6 +1169,8 @@ static void __drm_gpusvm_unmap_pages(struct drm_gpusvm *gpusvm,
+ 			else if (dpagemap && dpagemap->ops->device_unmap)
+ 				dpagemap->ops->device_unmap(dpagemap,
+ 							    dev, addr);
++			if (gpusvm->ops && gpusvm->ops->dma_map_account)
++				gpusvm->ops->dma_map_account(gpusvm, addr, -1);
+ 			i += 1 << addr->order;
+ 		}
+ 
+@@ -1584,6 +1593,10 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
+ 				(addr, DRM_INTERCONNECT_SYSTEM, order,
+ 				 dma_dir);
+ 		}
++		if (gpusvm->ops && gpusvm->ops->dma_map_account)
++			gpusvm->ops->dma_map_account(gpusvm,
++						     &svm_pages->dma_addr[j],
++						     1);
+ 		i += 1 << order;
+ 		num_dma_mapped = i;
+ 		flags.has_dma_mapping = true;
+diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
+index 8a4d7134a9a7..87ad2dcaa7c4 100644
+--- a/include/drm/drm_gpusvm.h
++++ b/include/drm/drm_gpusvm.h
+@@ -75,6 +75,25 @@ struct drm_gpusvm_ops {
+ 	void (*invalidate)(struct drm_gpusvm *gpusvm,
+ 			   struct drm_gpusvm_notifier *notifier,
+ 			   const struct mmu_notifier_range *mmu_range);
++
++	/**
++	 * @dma_map_account: Account a DMA-mapping change (optional)
++	 * @gpusvm: Pointer to the GPU SVM
++	 * @addr: The address descriptor of the chunk being (un)mapped
++	 * @sign: +1 when @addr has just been DMA-mapped, -1 when it is being
++	 *        unmapped
++	 *
++	 * Called once per &drm_pagemap_addr entry, when the entry is
++	 * DMA-mapped by drm_gpusvm_get_pages() (@sign == +1) and when it is
++	 * unmapped (@sign == -1), so the driver can keep symmetric accounting
++	 * of the pages it has mapped for GPU access. The @addr->proto field
++	 * can be used to distinguish system-memory mappings from device
++	 * interconnect mappings. May be provided in both full SVM mode and the
++	 * core drm_gpusvm_pages-only mode.
++	 */
++	void (*dma_map_account)(struct drm_gpusvm *gpusvm,
++				const struct drm_pagemap_addr *addr,
++				int sign);
+ };
+ 
+ /**
+-- 
+2.54.0
 
