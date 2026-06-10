@@ -4,48 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4457CD98C5
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Jun 2026 19:38:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15FBCCD98C5
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Jun 2026 19:39:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82E3110E734;
-	Wed, 10 Jun 2026 19:38:28 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=sms-medipool.de header.i=@sms-medipool.de header.b="L0uqqzJY";
-	dkim-atps=neutral
-Received: from mail.sms-medipool.de (mail.sms-medipool.de [178.63.14.108])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54AA210E734;
- Wed, 10 Jun 2026 19:38:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sms-medipool.de;
- s=mail; t=1781120306;
- bh=Ta+ljJBWUCdzi4/tn1cjVN9O9u8OwI9Yw5G3fBixRgs=;
- h=From:To:Cc:Subject:Date:From;
- b=L0uqqzJYt012ujc/KbTLkMURpmkQ1NIK8ox7ATWDaRgQISvn7obrrc4OSq7rU01E4
- nVuVYFBYz1DweKm7BrCIo9+AMIQxyIPUVUJrgGUEKV3wdZ2gxrqmoTMY63NBtYKew9
- gUyJkB26/iAaIM+6KiCmmdB2C3Va9JwAzGBuF0zuy7iPna+RpRmPj/UY/uDRGmKtgk
- IliEj/1MScEMJfuNcauaqHdvYJcDbb7fk811msOu8hPXEw4R4FR3BC9kSkuPgk0zwj
- 1QvKpzK5/7CXAKa5aksiOhk5tKgKFj9s2ZCCDxLSH5jKsz03+cIAcdy3t/EvqCrxrZ
- XCZiz8cXG/vBg==
-Received: from mail.stoss-medica.de (mail.stoss-medica.de [213.147.17.40])
- by mail.sms-medipool.de (Postfix) with ESMTPS id 1314E120D4;
- Wed, 10 Jun 2026 21:38:26 +0200 (CEST)
-Received: from NUC16-Linux.sb.golima.de ([95.88.98.111])
- by mail.stoss-medica.de (Kerio Connect 10.0.8 patch 2) with ESMTP;
- Wed, 10 Jun 2026 21:38:25 +0200
-From: Alexander Kaplan <alexander.kaplan@sms-medipool.de>
-To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- Imre Deak <imre.deak@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, alexander.kaplan@sms-medipool.de
-Subject: [PATCH v2] drm/dp: Read the PCON max FRL bandwidth only for HDMI DFPs
-Date: Wed, 10 Jun 2026 21:38:25 +0200
-Message-ID: <20260610193825.2933-1-alexander.kaplan@sms-medipool.de>
-X-Mailer: git-send-email 2.54.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDF5E10E737;
+	Wed, 10 Jun 2026 19:39:19 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5882510E734;
+ Wed, 10 Jun 2026 19:39:18 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/dp=3A_Read_?=
+ =?utf-8?q?the_PCON_max_FRL_bandwidth_only_for_HDMI_DFPs_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Alexander Kaplan" <alexander.kaplan@sms-medipool.de>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 10 Jun 2026 19:39:18 -0000
+Message-ID: <178112035835.66528.5211763193080367844@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260610193825.2933-1-alexander.kaplan@sms-medipool.de>
+In-Reply-To: <20260610193825.2933-1-alexander.kaplan@sms-medipool.de>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,84 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The PCON max FRL bandwidth field lives in byte 2 of the DFP Detailed
-Capability Info (DPCD 0x82 for the first DFP).
-The DP standard defines the meaning of descriptor bytes 1-3 strictly
-per DFP type, and for a DisplayPort type DFP all of them are
-reserved, with "read all 0s" semantics (DP v2.0, section 2.12.3,
-Table 2-183).
-The FRL bandwidth field is an HDMI DFP extension added by the VESA
-DP-to-HDMI PCON specification.
-drm_dp_get_pcon_max_frl_bw() however parses the byte without checking
-the DFP type, the branch presence or DETAILED_CAP_INFO_AVAILABLE.
-Without the latter the port descriptors are one byte wide and
-port_cap[2] is not even the right register.
+== Series Details ==
 
-All neighbouring helpers parsing the same descriptor are scoped by
-the DFP type already, see for instance drm_dp_downstream_max_bpc()
-reading the same byte and returning 0 for a DP type DFP.
-amdgpu's DC parses the field only for HDMI(/DP++) detailed types as
-well.
+Series: drm/dp: Read the PCON max FRL bandwidth only for HDMI DFPs (rev2)
+URL   : https://patchwork.freedesktop.org/series/168281/
+State : failure
 
-This is not theoretical.
-A Synaptics VMM7100 based USB-C to HDMI adapter with a macOS targeted
-firmware advertises a DisplayPort type DFP with the type byte
-replicated across the whole descriptor (08 08 08 08).
-i915 decodes that as "PCON limited to 18 Gbps FRL" and prunes every
-mode above ~750 MHz dotclock, including all the 4k@100/120 modes the
-sink EDID offers, while macOS drives 4k@120 through the same adapter
-just fine via DP DSC (and amdgpu's type-scoped parser would ignore
-the bogus field as well).
+== Summary ==
 
-Only parse the field for an HDMI DFP behind a DPCD 1.1+ branch
-device that reports detailed cap info, matching the type-scoped
-field layout of the spec and the rest of the helpers.
-
-Fixes: ce32a6239de6 ("drm/dp_helper: Add Helpers for FRL Link Training support for DP-HDMI2.1 PCON")
-Signed-off-by: Alexander Kaplan <alexander.kaplan@sms-medipool.de>
----
-v2: add an explicit DPCD_REV check like the neighbouring helpers
-    have (Ville)
-v1: https://lore.kernel.org/r/20260610174819.6258-1-alexander.kaplan@sms-medipool.de
-
-This patch is part of a set of independent fixes for the USB-C to DP
-to HDMI 2.1 protocol converter (PCON) path, found and verified on an
-ASUS NUC 16 Pro (Panther Lake, xe) with Synaptics VMM7100 based
-adapters.
-Each part stands on its own and can be merged independently.
-The other parts:
-[1] https://lore.kernel.org/r/20260610174413.5881-1-alexander.kaplan@sms-medipool.de
-[2] https://lore.kernel.org/r/20260610174807.6231-1-alexander.kaplan@sms-medipool.de
- drivers/gpu/drm/display/drm_dp_helper.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
-
-diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-index 9c31e14cc413..e623ccb4c1d8 100644
---- a/drivers/gpu/drm/display/drm_dp_helper.c
-+++ b/drivers/gpu/drm/display/drm_dp_helper.c
-@@ -3686,6 +3686,18 @@ int drm_dp_get_pcon_max_frl_bw(const u8 dpcd[DP_RECEIVER_CAP_SIZE],
- 	int bw;
- 	u8 buf;
- 
-+	if (!drm_dp_is_branch(dpcd))
-+		return 0;
-+
-+	if (dpcd[DP_DPCD_REV] < 0x11)
-+		return 0;
-+
-+	if ((dpcd[DP_DOWNSTREAMPORT_PRESENT] & DP_DETAILED_CAP_INFO_AVAILABLE) == 0)
-+		return 0;
-+
-+	if ((port_cap[0] & DP_DS_PORT_TYPE_MASK) != DP_DS_PORT_TYPE_HDMI)
-+		return 0;
-+
- 	buf = port_cap[2];
- 	bw = buf & DP_PCON_MAX_FRL_BW;
- 
--- 
-2.54.0
+Series author address 'alexander.kaplan@sms-medipool.de' is not on the allowlist, which prevents CI from being automatically triggered.
+If you want CI to run for this series, ask Patchwork project owners to click 'retest' on the series in Patchwork.
+Exception occurred during validation, bailing out!
+Build URL: http://intel-gfx-ci-public.igk.intel.com:8080/job/xe_pw_trigger/1185586/ (on master)
 
 
