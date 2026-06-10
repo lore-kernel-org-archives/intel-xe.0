@@ -4,57 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B38D1CD98CC
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Jun 2026 11:35:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3F06CD8CB2
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Jun 2026 11:42:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1779E10E547;
-	Wed, 10 Jun 2026 11:35:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2517910E5AE;
+	Wed, 10 Jun 2026 11:42:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZIhtfqZ7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bC/aH73x";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9572E10E547;
- Wed, 10 Jun 2026 11:35:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C455B10E47F;
+ Wed, 10 Jun 2026 11:42:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781091346; x=1812627346;
+ t=1781091764; x=1812627764;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=sa2m75vvqPgoV0nD3tOEIbD/SNIFyUy0PiqvfFmcfwI=;
- b=ZIhtfqZ7aeqVPjNoY3fB4JJ+ZtoCBnMQq03P2rh4ywNcLg0bwtp0Cli2
- ZuoxDJKorQ0js0AiJSEhFBMpPKHe0zxwidFV7uEFIXClGpiEWwKWgS9Bw
- euNpOii/v1fKcOtP0lahrZRSENkHfDfzd8CsJk/vAUs5Hq4GAByIShCC8
- 769ao/tKGd6PqMDuoY6lSSrzocOnFYwrs7UlhF+iy4YRTtamcEQQW5mRJ
- lYP0LcZpt1KAILFMeS03hJXkLWDr7NF0pP+LGy8BJkk0M+kkE5mwXgrKv
- KD2u+X+x/9Cp+uZSEHhyToTy8FkMWfPaOsvZPOjlns7lbF18EBC+Q5GEt g==;
-X-CSE-ConnectionGUID: Jht8EBIXTnGyl02a3tYW4A==
-X-CSE-MsgGUID: ZykGxcbOSq6iAEshrbqq9A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11812"; a="93368562"
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="93368562"
+ bh=XJBj9jZyAaZc4QTyG9X60lFIGGtd8BtMCH8jck9D3ac=;
+ b=bC/aH73xloq87UWazulMyjGOa1jVbQjq41xiSzd54n+t5DAa/Fkl8Qew
+ nNfa4rygIjzaDOyzSntJVfumlCqVwZLEqFNo0MZy+xDmyT529eErNtBMP
+ 4Aomo4yurxLSmCszAx9/4Eqg52TC6jBM6nVAMAgKlhxUysg3EwGSwg994
+ lEJOIM6Z8dJ51hX8xIg9Bd7L9J8yS/j0xDR/FQmxaeNFkgvWZLM+AHM8k
+ 9QuNvwDg9SHt6dwvzenTqyQY3kipR/qtnKNch0ccMUyvEs4333oIADzzS
+ G+1g5uKuxnjtVnnchYk1wj4wBJ7/T6bw6vfYKSbplFYGMXEO4OgFuSP6d A==;
+X-CSE-ConnectionGUID: rGPWiolORY+ABjqU+Ccorw==
+X-CSE-MsgGUID: KdTCGyrtRWa+h18pWGfokg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11812"; a="93369105"
+X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="93369105"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2026 04:35:45 -0700
-X-CSE-ConnectionGUID: CT5oxfBbS220vNIVoG1AXw==
-X-CSE-MsgGUID: 4VXQ2Bx7Rx+OcWrmPO86oQ==
+ 10 Jun 2026 04:42:43 -0700
+X-CSE-ConnectionGUID: OwGuOwyBRAym/zj1uTK6mg==
+X-CSE-MsgGUID: Fkm/3at+SIy7oeurejoMrg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="251235539"
+X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="251236223"
 Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
  ([10.245.244.3])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2026 04:35:43 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Animesh Manna <animesh.manna@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: uma.shankar@intel.com, dibin.moolakadan.subrahmanian@intel.com,
- ville.syrjala@linux.intel.com, Animesh Manna <animesh.manna@intel.com>
-Subject: Re: [PATCH v8 15/20] drm/i915/cmtg: Add CMTG interrupt handling
-In-Reply-To: <20260603195416.91639-16-animesh.manna@intel.com>
+ 10 Jun 2026 04:42:42 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Alexander Kaplan <alexander.kaplan@sms-medipool.de>, Imre Deak
+ <imre.deak@intel.com>
+Cc: Alexander Kaplan <alexander.kaplan@sms-medipool.de>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ rodrigo.vivi@intel.com, Ville =?utf-8?B?U3lyasOkbMOk?=
+ <ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH] drm/i915/tc: Disable outputs instead of modesetting
+ them on link reset
+In-Reply-To: <20260609184838.4335-1-alexander.kaplan@sms-medipool.de>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260603195416.91639-1-animesh.manna@intel.com>
- <20260603195416.91639-16-animesh.manna@intel.com>
-Date: Wed, 10 Jun 2026 14:35:40 +0300
-Message-ID: <dbf952c2fa43d7313a99b8ee79ef0194a522e0cc@intel.com>
+References: <20260605212837.4265-1-alexander.kaplan@sms-medipool.de>
+ <aia3UtOtXD65T8Eq@ideak-desk.lan>
+ <20260608223548.2574-1-alexander.kaplan@sms-medipool.de>
+ <aigjtXiFqvxTGUnD@ideak-desk.lan>
+ <20260609184838.4335-1-alexander.kaplan@sms-medipool.de>
+Date: Wed, 10 Jun 2026 14:42:39 +0300
+Message-ID: <b912629b7fc5844a9e9d3262308835ec3745854e@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -71,152 +77,19 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 04 Jun 2026, Animesh Manna <animesh.manna@intel.com> wrote:
-> Add support for the CMTG vblank interrupt, which is delivered
-> through the DE port interrupt block. Enable/disable the interrupt
-> via the DE port IMR around CMTG enable/disable, and dispatch the
-> CMTG_VBLANK_{A,B} bits to the corresponding pipe vblank handler in
-> the gen8 DE IRQ handler.
->
-> Wired up for DISPLAY_VER 35. The CMTG interrupt is not enabled via
-> IER today because CMTG is brought up together with the eDP
-> transcoder; this can be revisited later.
->
-> v2:
-> - Use consistent DC3co check as used in earlier patches. [Uma]
-> - Use else-if instead of separate if block. [Uma]
-> - Merge mask and unmask function as it is similar. [Uma]
-> - Modify DISPLAY_VER() check. [Uma]
->
-> v3:
-> - Enable only vblank interrupt. [Dibin]
->
-> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_cmtg.c     | 47 +++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_cmtg.h     |  2 +
->  .../gpu/drm/i915/display/intel_display_irq.c  | 12 +++++
->  .../gpu/drm/i915/display/intel_display_regs.h |  2 +
->  4 files changed, 63 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_cmtg.c b/drivers/gpu/drm/i915/display/intel_cmtg.c
-> index 20b74c2856c4..fb57fa41f721 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cmtg.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cmtg.c
-> @@ -13,6 +13,7 @@
->  #include "intel_crtc.h"
->  #include "intel_de.h"
->  #include "intel_display_device.h"
-> +#include "intel_display_irq.h"
->  #include "intel_display_power.h"
->  #include "intel_display_regs.h"
->  #include "intel_display_types.h"
-> @@ -353,3 +354,49 @@ void intel_cmtg_enable_ddi(const struct intel_crtc_state *crtc_state)
->  	crtc->cmtg.enabled = true;
->  	drm_dbg_kms(display->drm, "CMTG: %s enabled\n", transcoder_name(cpu_transcoder));
->  }
-> +
-> +static void intel_cmtg_mask_interrupt(const struct intel_crtc_state *crtc_state, bool mask)
-> +{
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-> +	u32 interrupt_mask = 0;
-> +
-> +	if (cpu_transcoder == TRANSCODER_A)
-> +		interrupt_mask = CMTG_VBLANK_A;
-> +	else if (cpu_transcoder == TRANSCODER_B)
-> +		interrupt_mask = CMTG_VBLANK_B;
-> +
-> +	if (mask)
-> +		bdw_update_port_irq(display, interrupt_mask, 0);
-> +	else
-> +		bdw_update_port_irq(display, interrupt_mask, interrupt_mask);
+On Tue, 09 Jun 2026, Alexander Kaplan <alexander.kaplan@sms-medipool.de> wrote:
+> If you have the bandwidth I'd welcome a quick gut check, otherwise
+> I'll post them properly once I'm allowlisted:
 
-Not a fan of using these directly in more places. The direction should
-be for more abstractions.
+If you're referring to [1], please just send the patches. We can let the
+individual patches through CI.
 
-> +}
-> +
-> +void intel_cmtg_enable_interrupt(const struct intel_crtc_state *crtc_state)
-> +{
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +
-> +	if (!intel_cmtg_is_allowed(crtc_state))
-> +		return;
-> +
-> +	/*
-> +	 * TODO: Currently cmtg is enabled along with eDP transcoder so cmtg
-> +	 * interrupt is not enabled through IER, need to do some fine
-> +	 * tuning in future.
-> +	 */
-> +	spin_lock_irq(&display->irq.lock);
-> +	intel_cmtg_mask_interrupt(crtc_state, false);
-> +	spin_unlock_irq(&display->irq.lock);
-> +}
-> +
-> +void intel_cmtg_disable_interrupt(const struct intel_crtc_state *crtc_state)
-> +{
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +
-> +	if (!intel_cmtg_is_allowed(crtc_state))
-> +		return;
-> +
-> +	spin_lock_irq(&display->irq.lock);
-> +	intel_cmtg_mask_interrupt(crtc_state, true);
-> +	spin_unlock_irq(&display->irq.lock);
+BR,
+Jani.
 
-Ditto with display->irq.lock usage, the direction should be to limit to
-fewer places.
 
-> +}
-> diff --git a/drivers/gpu/drm/i915/display/intel_cmtg.h b/drivers/gpu/drm/i915/display/intel_cmtg.h
-> index 79785afccc51..8fcb44d6398f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cmtg.h
-> +++ b/drivers/gpu/drm/i915/display/intel_cmtg.h
-> @@ -21,5 +21,7 @@ void intel_cmtg_set_timings(const struct intel_crtc_state *crtc_state, bool lrr)
->  void intel_cmtg_set_clk_select(const struct intel_crtc_state *crtc_state);
->  void intel_cmtg_sanitize(struct intel_display *display);
->  bool intel_cmtg_is_allowed(const struct intel_crtc_state *crtc_state);
-> +void intel_cmtg_enable_interrupt(const struct intel_crtc_state *crtc_state);
-> +void intel_cmtg_disable_interrupt(const struct intel_crtc_state *crtc_state);
->  
->  #endif /* __INTEL_CMTG_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> index 4a821b0674fd..7ad722024c87 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> @@ -1469,6 +1469,18 @@ static void gen8_de_irq_handler(struct intel_display *display, u32 master_ctl)
->  				found = true;
->  			}
->  
-> +			if (DISPLAY_VER(display) == 35) {
-> +				if (iir & (CMTG_VBLANK_A)) {
-> +					intel_handle_vblank(display, PIPE_A);
-> +					found = true;
-> +				}
-> +
-> +				if (iir & (CMTG_VBLANK_B)) {
-> +					intel_handle_vblank(display, PIPE_B);
-> +					found = true;
-> +				}
-> +			}
-> +
->  			if (DISPLAY_VER(display) >= 11) {
->  				u32 te_trigger = iir & (DSI0_TE | DSI1_TE);
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-> index 4321f8b529da..fe851fe39222 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-> @@ -1458,6 +1458,8 @@
->  #define  GEN9_AUX_CHANNEL_B		(1 << 25)
->  #define  DSI1_TE			(1 << 24)
->  #define  DSI0_TE			(1 << 23)
-> +#define  CMTG_VBLANK_B			(1 << 17)
-> +#define  CMTG_VBLANK_A			(1 << 14)
->  #define  GEN8_DE_PORT_HOTPLUG(hpd_pin)	REG_BIT(3 + _HPD_PIN_DDI(hpd_pin))
->  #define  BXT_DE_PORT_HOTPLUG_MASK	(GEN8_DE_PORT_HOTPLUG(HPD_PORT_A) | \
->  					 GEN8_DE_PORT_HOTPLUG(HPD_PORT_B) | \
+[1] https://lore.kernel.org/r/178069746256.49942.4174969817609921951@6beec6c84f66
+
 
 -- 
 Jani Nikula, Intel
