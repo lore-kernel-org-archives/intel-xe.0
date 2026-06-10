@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD28FCD98D4
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Jun 2026 21:28:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA4C7CD98C7
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Jun 2026 21:28:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC29E10EC0B;
-	Wed, 10 Jun 2026 21:28:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A835610EC12;
+	Wed, 10 Jun 2026 21:28:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="exywZJEz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mOzNXJel";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8C0910EBFF
- for <intel-xe@lists.freedesktop.org>; Wed, 10 Jun 2026 21:28:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D4DA10EBF9
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Jun 2026 21:28:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1781126920; x=1812662920;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=sihxJi6tiW397JLqbKlbPmB5OTcAlsP8ZBNgoPzhChA=;
- b=exywZJEz59mN0PkOi9yaWnaA/c/wi9C9P/kVenCABVPE8TQMoEfuU3qU
- 5ZwQj4x1ZTWsWdsIhU2P1Yu0F2xTY6J1Wy1/M4VYlFi/KrLNwcBxktbkR
- n2UhI1UJ0Tq2yLOXkGxCvSnTJ+AqZZsXy4dXSEEkJR+1qMjqajLo9rrQY
- DJAurNwe6vbbPR5dRFR17ueTiTjEI2JpXBnDkSGCmZy00povhrz/AyPKn
- B7xU788+R4BCJexsZZeeRNLFQcbDCg8AqfZOW/sy/9gcHLbgf58Y+uLhU
- lVRyXxrtmyrGHHAPl9xOzwHUYGSz50SY3U0Q4i5MNO/4bkf00fkqtCR83 A==;
-X-CSE-ConnectionGUID: IMxYXR2lQqakwKHi/NiPkA==
-X-CSE-MsgGUID: jnkhe5GjTpGwmLOTPIiMGQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="81934686"
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="81934686"
+ bh=k7khLd2st4b1z7kVp50F5jO8DNsRfLY4+QwBvc+58rE=;
+ b=mOzNXJelQp8oA5NF2AY6etX2a0WQ4dn5efLMvRvNQU+63XbAMGYlWpeU
+ sibgyiFnquJuBwUjgynGWyyKos07oRImNFdsA19IC9X6vE/ncJRAwdw+3
+ CsvMllikoGytf6/6niozdG3w4V+dSCJ8WFNYIekuvtB9GsNweGtklZ6YI
+ Ozf5N7m9m7+Tm9gfghI/WwjP/FVDMXaM4E5g8Mz6ozqDoh5eSwwmz/41y
+ C/DOE1xJSOyTrpcmI7CEnX0VgoQa4iHkXifXo44CPISrvE/H7FjmKnGOv
+ c0g2Ldh+iJtGNSNnFnyI45aO1YsNYkqs2IwoY5BhYQ1FLyPDC6D6JaMzH A==;
+X-CSE-ConnectionGUID: 8WOV9oymQGyE0coP4F4IdQ==
+X-CSE-MsgGUID: 9sxNnL08QVaKn0IOMn/Tww==
+X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="81934690"
+X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="81934690"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Jun 2026 14:28:39 -0700
-X-CSE-ConnectionGUID: sGsmBS1fQPyVMqQmkSFpuA==
-X-CSE-MsgGUID: 4N0tCuu7RmmO6wTVyhrB2g==
+X-CSE-ConnectionGUID: 2T7VDu+JSWOCYqmut/F3Tg==
+X-CSE-MsgGUID: y8BCu8n2QBOCYfhebRgbkQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="270292068"
+X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="270292079"
 Received: from dut4425arlh.fm.intel.com ([10.1.81.65])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2026 14:28:37 -0700
+ 10 Jun 2026 14:28:38 -0700
 From: Stuart Summers <stuart.summers@intel.com>
 To: 
 Cc: michal.wajdeczko@intel.com, ilia.levi@intel.com, x.wang@intel.com,
  rodrigo.vivi@intel.com, intel-xe@lists.freedesktop.org,
  alan.previn.teres.alexis@intel.com,
  Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 07/11] drm/xe: Add per-exec-queue user fence wait queue
-Date: Wed, 10 Jun 2026 21:28:39 +0000
-Message-ID: <20260610212833.153366-20-stuart.summers@intel.com>
+Subject: [PATCH 11/11] drm/xe/memirq: Enable compute walker post-sync interrupt
+Date: Wed, 10 Jun 2026 21:28:43 +0000
+Message-ID: <20260610212833.153366-24-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260610212833.153366-13-stuart.summers@intel.com>
 References: <20260610212833.153366-13-stuart.summers@intel.com>
@@ -69,220 +69,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a new ufence_wq wait queue to struct xe_exec_queue and initialize it
-at queue allocation time. Also introduce xe_wait_user_fence_wake() to
-centralize the ufence wake call sites.
+Commit 2ddedd4b7b7c ("drm/xe/memirq: Enable GT_MI_USER_INTERRUPT only")
+narrowed the MEMIRQ enable mask to GT_MI_USER_INTERRUPT only. Add
+the interrupt enable bit for the compute walker post sync interrupt
+as well to allow those to go through.
 
-This patch just adds the infrastructure in place to do this and doesn't
-actually start using it. The reason being that we need to be careful
-when handling a case where a user does a VM bind without a bind queue
-and mistakenly passes a non-bind queue to the wait user fence. There
-are a couple of IGT cases at least that are doing this today and to
-avoid regressing any user code around this, we'll add some additional
-handling in a subsequent patch before connecting this to the actual
-wait user fence code.
+Additionally, the compute walker post sync interrupt vector offset
+in the LRC register is currently incorrect. Fix that here.
 
+Bspec: 62346, 72547
 Signed-off-by: Stuart Summers <stuart.summers@intel.com>
 Assisted-by: Copilot:claude-sonnet-4.6
 ---
- drivers/gpu/drm/xe/xe_exec_queue.c       |  1 +
- drivers/gpu/drm/xe/xe_exec_queue_types.h |  3 +++
- drivers/gpu/drm/xe/xe_guc_submit.c       |  6 ++----
- drivers/gpu/drm/xe/xe_hw_engine.c        |  6 ++++--
- drivers/gpu/drm/xe/xe_hw_engine.h        |  3 ++-
- drivers/gpu/drm/xe/xe_irq.c              |  2 +-
- drivers/gpu/drm/xe/xe_memirq.c           |  2 +-
- drivers/gpu/drm/xe/xe_sync.c             |  3 ++-
- drivers/gpu/drm/xe/xe_wait_user_fence.c  | 16 +++++++++++++++-
- drivers/gpu/drm/xe/xe_wait_user_fence.h  |  4 ++++
- 10 files changed, 35 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_lrc_layout.h |  3 +++
+ drivers/gpu/drm/xe/xe_lrc.c             | 15 ++++++++++++++-
+ drivers/gpu/drm/xe/xe_memirq.c          | 12 +++++++++---
+ 3 files changed, 26 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 6c101b4f6488..aa49400b67ba 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -260,6 +260,7 @@ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
- 	INIT_LIST_HEAD(&q->multi_gt_link);
- 	INIT_LIST_HEAD(&q->hw_engine_group_link);
- 	INIT_LIST_HEAD(&q->pxp.link);
-+	init_waitqueue_head(&q->ufence_wq);
- 	spin_lock_init(&q->multi_queue.lock);
- 	spin_lock_init(&q->lrc_lookup_lock);
- 	q->multi_queue.priority = XE_MULTI_QUEUE_PRIORITY_NORMAL;
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index d27ce24daae5..fdc7baaa952e 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -231,6 +231,9 @@ struct xe_exec_queue {
- 		struct list_head link;
- 	} pxp;
+diff --git a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+index 4ab86fc369fd..3c0babaa7902 100644
+--- a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
++++ b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+@@ -31,6 +31,9 @@
+ #define CTX_INT_SRC_REPORT_REG		(CTX_LRI_INT_REPORT_PTR + 3)
+ #define CTX_INT_SRC_REPORT_PTR		(CTX_LRI_INT_REPORT_PTR + 4)
  
-+	/** @ufence_wq: per-queue user fence wait queue */
-+	wait_queue_head_t ufence_wq;
++#define CTX_CS_INT_VEC_USER_MASK	REG_GENMASK(9, 0)
++#define CTX_CS_INT_VEC_COMPUTE_MASK	REG_GENMASK(19, 10)
 +
- 	/** @ufence_syncobj: User fence syncobj */
- 	struct drm_syncobj *ufence_syncobj;
+ #define CTX_CS_INT_VEC_REG		0x5a
+ #define CTX_CS_INT_VEC_DATA		(CTX_CS_INT_VEC_REG + 1)
  
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index b29cc08e6291..16d609e7b40f 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -21,6 +21,7 @@
- #include "xe_device.h"
- #include "xe_exec_queue.h"
- #include "xe_force_wake.h"
-+#include "xe_wait_user_fence.h"
- #include "xe_gpu_scheduler.h"
- #include "xe_gt.h"
- #include "xe_gt_clock.h"
-@@ -555,11 +556,8 @@ static bool vf_recovery(struct xe_guc *guc)
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index a4292a11391d..d6677980be2d 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -1527,11 +1527,24 @@ static int xe_lrc_ctx_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct
+ 		xe_lrc_set_ppgtt(lrc, vm);
  
- static void xe_guc_exec_queue_trigger_cleanup(struct xe_exec_queue *q)
- {
--	struct xe_guc *guc = exec_queue_to_guc(q);
--	struct xe_device *xe = guc_to_xe(guc);
--
- 	/** to wakeup xe_wait_user_fence ioctl if exec queue is reset */
--	wake_up_all(&xe->ufence_wq);
-+	xe_wait_user_fence_wake(gt_to_xe(q->gt), q);
+ 	if (xe_device_has_msix(xe)) {
++		/*
++		 * Each exec queue is only assigned one MSI-X vector, however
++		 * the LRC allows for different vectors for MI_USER_INT and
++		 * compute walker post sync interrupts. For now, just use the
++		 * same vector for each of the vector types.
++		 */
++		u32 lrc_msix_vec =
++			REG_FIELD_PREP(CTX_CS_INT_VEC_USER_MASK, msix_vec);
++
++		if (GRAPHICS_VERx100(xe) >= 3511)
++			lrc_msix_vec |=
++				REG_FIELD_PREP(CTX_CS_INT_VEC_COMPUTE_MASK, msix_vec);
++
+ 		xe_lrc_write_ctx_reg(lrc, CTX_INT_STATUS_REPORT_PTR,
+ 				     xe_memirq_status_ptr(&tile->memirq, hwe));
+ 		xe_lrc_write_ctx_reg(lrc, CTX_INT_SRC_REPORT_PTR,
+ 				     xe_memirq_source_ptr(&tile->memirq, hwe));
+-		xe_lrc_write_ctx_reg(lrc, CTX_CS_INT_VEC_DATA, msix_vec << 16 | msix_vec);
++		xe_lrc_write_ctx_reg(lrc, CTX_CS_INT_VEC_DATA, lrc_msix_vec);
+ 	}
  
- 	xe_sched_tdr_queue_imm(&q->guc->sched);
- }
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 98265293f2dc..05780bd5beba 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -42,6 +42,7 @@
- #include "xe_tuning.h"
- #include "xe_uc_fw.h"
- #include "xe_wa.h"
-+#include "xe_wait_user_fence.h"
- 
- #define MAX_MMIO_BASES 3
- struct engine_info {
-@@ -894,9 +895,10 @@ int xe_hw_engines_init(struct xe_gt *gt)
- 	return 0;
- }
- 
--void xe_hw_engine_handle_irq(struct xe_hw_engine *hwe, u16 intr_vec)
-+void xe_hw_engine_handle_irq(struct xe_hw_engine *hwe, u16 intr_vec,
-+			     struct xe_exec_queue *q)
- {
--	wake_up_all(&gt_to_xe(hwe->gt)->ufence_wq);
-+	xe_wait_user_fence_wake(gt_to_xe(hwe->gt), q);
- 
- 	if (hwe->irq_handler)
- 		hwe->irq_handler(hwe, intr_vec);
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.h b/drivers/gpu/drm/xe/xe_hw_engine.h
-index c3ee37f8cfc0..7501c9051a71 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.h
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.h
-@@ -51,7 +51,8 @@ struct xe_exec_queue;
- 
- int xe_hw_engines_init_early(struct xe_gt *gt);
- int xe_hw_engines_init(struct xe_gt *gt);
--void xe_hw_engine_handle_irq(struct xe_hw_engine *hwe, u16 intr_vec);
-+void xe_hw_engine_handle_irq(struct xe_hw_engine *hwe, u16 intr_vec,
-+			     struct xe_exec_queue *q);
- void xe_hw_engine_enable_ring(struct xe_hw_engine *hwe);
- u32 xe_hw_engine_mask_per_class(struct xe_gt *gt,
- 				enum xe_engine_class engine_class);
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index 40d3d43e492f..fc99d021405f 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -385,7 +385,7 @@ static void gt_irq_handler(struct xe_tile *tile,
- 
- 			hwe = xe_gt_hw_engine(engine_gt, class, instance, false);
- 			if (hwe) {
--				xe_hw_engine_handle_irq(hwe, intr_vec);
-+				xe_hw_engine_handle_irq(hwe, intr_vec, NULL);
- 				continue;
- 			}
- 
+ 	if (xe_gt_has_indirect_ring_state(gt)) {
 diff --git a/drivers/gpu/drm/xe/xe_memirq.c b/drivers/gpu/drm/xe/xe_memirq.c
-index 96ab2c59c5d7..318ef7c72eba 100644
+index dc21f154db71..d89f063a6c1f 100644
 --- a/drivers/gpu/drm/xe/xe_memirq.c
 +++ b/drivers/gpu/drm/xe/xe_memirq.c
-@@ -493,7 +493,7 @@ void xe_memirq_hwe_handler(struct xe_memirq *memirq, struct xe_hw_engine *hwe)
- 	 * is opportunistic, unconditionally pass MI_USER_INTERRUPT to issue
- 	 * that check.
- 	 */
--	xe_hw_engine_handle_irq(hwe, GT_MI_USER_INTERRUPT);
-+	xe_hw_engine_handle_irq(hwe, GT_MI_USER_INTERRUPT, NULL);
- }
+@@ -238,12 +238,18 @@ static int memirq_alloc_pages(struct xe_memirq *memirq)
  
- /**
-diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
-index 37866768d64c..652341f22460 100644
---- a/drivers/gpu/drm/xe/xe_sync.c
-+++ b/drivers/gpu/drm/xe/xe_sync.c
-@@ -18,6 +18,7 @@
- #include "xe_exec_queue.h"
- #include "xe_macros.h"
- #include "xe_sched_job_types.h"
-+#include "xe_wait_user_fence.h"
- 
- struct xe_user_fence {
- 	struct xe_device *xe;
-@@ -92,7 +93,7 @@ static void user_fence_worker(struct work_struct *w)
- 	 * Wake up waiters only after updating the ufence state, allowing the UMD
- 	 * to safely reuse the same ufence without encountering -EBUSY errors.
- 	 */
--	wake_up_all(&ufence->xe->ufence_wq);
-+	xe_wait_user_fence_wake(ufence->xe, NULL);
- 	user_fence_put(ufence);
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_wait_user_fence.c b/drivers/gpu/drm/xe/xe_wait_user_fence.c
-index 12ceb3efa8ea..7c9d52b50580 100644
---- a/drivers/gpu/drm/xe/xe_wait_user_fence.c
-+++ b/drivers/gpu/drm/xe/xe_wait_user_fence.c
-@@ -54,6 +54,20 @@ static int do_compare(u64 addr, u64 value, u64 mask, u16 op)
- #define VALID_FLAGS	DRM_XE_UFENCE_WAIT_FLAG_ABSTIME
- #define MAX_OP		DRM_XE_UFENCE_WAIT_OP_LTE
- 
-+/**
-+ * xe_wait_user_fence_wake() - Wake user fence waiters
-+ * @xe: the xe device
-+ * @q: exec queue (reserved; per-queue wake-up is enabled in a later patch)
-+ *
-+ * Wakes all user fence waiters on the device-level wait queue.
-+ * Per-exec-queue and ufence_list broadcast support are introduced in
-+ * subsequent patches once the full infrastructure is in place.
-+ */
-+void xe_wait_user_fence_wake(struct xe_device *xe, struct xe_exec_queue *q)
-+{
-+	wake_up_all(&xe->ufence_wq);
-+}
-+
- static long to_jiffies_timeout(struct xe_device *xe,
- 			       struct drm_xe_wait_user_fence *args)
+ static void memirq_set_enable(struct xe_memirq *memirq, bool enable)
  {
-@@ -110,7 +124,7 @@ static long to_jiffies_timeout(struct xe_device *xe,
-  *
-  * If an exec queue ID is provided, the wait is aborted early if the
-  * queue enters a reset state. The device-level wait queue is used for
-- * wakeups.
-+ * wakeups in all cases.
-  *
-  * On return, @timeout is updated to reflect the remaining time (or zero
-  * on expiry), unless %DRM_XE_UFENCE_WAIT_FLAG_ABSTIME is set.
-diff --git a/drivers/gpu/drm/xe/xe_wait_user_fence.h b/drivers/gpu/drm/xe/xe_wait_user_fence.h
-index 0e268978f9e6..64e5000eabb4 100644
---- a/drivers/gpu/drm/xe/xe_wait_user_fence.h
-+++ b/drivers/gpu/drm/xe/xe_wait_user_fence.h
-@@ -8,6 +8,10 @@
- 
- struct drm_device;
- struct drm_file;
-+struct xe_device;
-+struct xe_exec_queue;
++	struct xe_device *xe = memirq_to_xe(memirq);
++	u32 int_enables = GT_MI_USER_INTERRUPT;
 +
-+void xe_wait_user_fence_wake(struct xe_device *xe, struct xe_exec_queue *q);
++	if (GRAPHICS_VERx100(xe) >= 3511)
++		int_enables |= GT_COMPUTE_WALKER_INTERRUPT;
++
+ 	/*
+-	 * We only care about the GT_MI_USER_INTERRUPT from the engines and
+-	 * the GuC does not look at the ENABLE mask at all.
++	 * Enable MI_USER_INTERRUPT and compute walker post-sync interrupts
++	 * from engines. The GuC does not look at the ENABLE mask at all.
+ 	 */
+ 	iosys_map_wr(&memirq->bo->vmap, XE_MEMIRQ_ENABLE_OFFSET, u32,
+-		     enable ? GT_MI_USER_INTERRUPT : 0);
++		     enable ? int_enables : 0);
  
- int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
- 			     struct drm_file *file);
+ 	memirq->enabled = enable;
+ }
 -- 
 2.43.0
 
