@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86BAACD98D2
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B7E4CD98D1
 	for <intel-xe@archiver.kernel.org>; Wed, 10 Jun 2026 21:28:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B13410EC08;
-	Wed, 10 Jun 2026 21:28:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC39110EC07;
+	Wed, 10 Jun 2026 21:28:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S7WCDVUC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="amcESGAS";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A307310EBFF
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A145E10EBF9
  for <intel-xe@lists.freedesktop.org>; Wed, 10 Jun 2026 21:28:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1781126920; x=1812662920;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6tZRIW6LuDmCf/5wULL8IKL7Y1QsoFm04dk9sbhdRTY=;
- b=S7WCDVUCAKWs0ryeQ42TrGBfwUEW+npMj4V1SVtq8Kzxr9u/Of5Bcfb8
- FEJBWvl0OCEFJsG5Qpidu40GHAQVgUktSdQ1tILnoNzGvSp9umahRNnfO
- n8HH+ALmR8e3FK511JbxQQJjZ9lUpReQhE5DXtSBuyS/xhlYR1/gcfZri
- 1vtt/5Rxm66JGjOsB2km/dIyCH8CD9pOn2fewg8AKKnZ2XaWJEZVZxUQo
- GRtU8CF4BbgGeq2taOb7Kii0cTnb2fpXoTPN5du7WyRGRd7CGF49I/VGG
- OOT1mP81PWYjLNBuAQv+5nLBzK/clFAtAl6TpSOUmOqv8iDp5stl4j27k A==;
-X-CSE-ConnectionGUID: 322cSQkAThW63TqE2QBEQA==
-X-CSE-MsgGUID: sSxob7vfSN6qtaCO9Yjd0Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="81934684"
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="81934684"
+ bh=ymty2ayuay7hq2P3Dd+0hnAxSikBrzXJZeRkImNMfGk=;
+ b=amcESGASsp/9PVHHdjaW2VkG+/mdQehnezjkjaU0luCBtN4mllCl4oMy
+ z2bw8VlsCRLzbK7uow+Ap3MXhPPr8pN8P8m4cOt/gR6Z2gipKX28NXc2I
+ apPRnr+o0XYDKp2LJ9dFbDKZp+HE8aCpZuUVKn4aTv8wjZ0qm0s0UbL2x
+ zVdLlJ0llQ3Sd/TvlrVKjtYFkhVFkXh3Pz+mgZDwOgTcCgweZ1cA7dCSU
+ cukCTboI6Fnj5ghb0s74KiOxj61FVOrZ8WV4tIJwv8qMb3DL3VTkTQGRS
+ sPApSSf0Bi7aUPZHDRx7TsI3p5T90MrLz7aROuj3dhD/8I0XQXJw/T8Kd g==;
+X-CSE-ConnectionGUID: R3Sy7b+VRJqp7aJ75rLZwg==
+X-CSE-MsgGUID: 9ZzoDnu8R9iOF11KMNMUBw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="81934683"
+X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="81934683"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Jun 2026 14:28:39 -0700
-X-CSE-ConnectionGUID: NYOLrFVCRnC6Frm2RaMmwg==
-X-CSE-MsgGUID: Kh2XNdIeTRSlsEDKul+alw==
+X-CSE-ConnectionGUID: Q+4KEkPVQDyaPKs001hV5g==
+X-CSE-MsgGUID: T77C4+gpQFaN4Nd9naZwHA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="270292061"
+X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="270292058"
 Received: from dut4425arlh.fm.intel.com ([10.1.81.65])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Jun 2026 14:28:37 -0700
@@ -47,9 +47,9 @@ Cc: michal.wajdeczko@intel.com, ilia.levi@intel.com, x.wang@intel.com,
  rodrigo.vivi@intel.com, intel-xe@lists.freedesktop.org,
  alan.previn.teres.alexis@intel.com,
  Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 05/11] drm/xe: Add configfs max_msix_vecs attribute
-Date: Wed, 10 Jun 2026 21:28:37 +0000
-Message-ID: <20260610212833.153366-18-stuart.summers@intel.com>
+Subject: [PATCH 04/11] drm/xe: Assign dedicated MSI-X vectors to exec queues
+Date: Wed, 10 Jun 2026 21:28:36 +0000
+Message-ID: <20260610212833.153366-17-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260610212833.153366-13-stuart.summers@intel.com>
 References: <20260610212833.153366-13-stuart.summers@intel.com>
@@ -69,213 +69,197 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a configfs attribute to cap the total number of MSI-X vectors used
-by the driver. This intends to cover all assigned vectors.
-
-This let's us configure at runtime (prior to driver load) how many
-vectors we want to be able to allocate during driver runtime without
-changing anything in the PCIe capabilities. For VMWARE and other use
-cases where system-wide vector count is strictly maintained rather
-than per-device maximums, this helps provide this configurability
-by a system administrator.
-
-Example to cap the driver to 64 MSI-X vectors total:
-
-  # echo 64 > /sys/kernel/config/xe/0000:03:00.0/max_msix_vecs
+Assign a dedicated MSI-X interrupt vector to each user exec queue at
+creation time when the platform supports MSI-X. If allocation fails
+for any other reason, the queue silently falls back to the shared
+default MSI-X vector.
 
 Signed-off-by: Stuart Summers <stuart.summers@intel.com>
 Assisted-by: Copilot:claude-sonnet-4.6
 ---
- drivers/gpu/drm/xe/xe_configfs.c | 71 ++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_configfs.h |  6 +++
- drivers/gpu/drm/xe/xe_irq.c      |  5 ++-
- 3 files changed, 81 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_device_types.h |  5 ++++
+ drivers/gpu/drm/xe/xe_exec_queue.c   | 34 +++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_irq.c          | 27 ++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_irq.h          |  2 ++
+ 4 files changed, 65 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
-index 32102600a148..5dc1f8196fe1 100644
---- a/drivers/gpu/drm/xe/xe_configfs.c
-+++ b/drivers/gpu/drm/xe/xe_configfs.c
-@@ -237,6 +237,23 @@
-  *
-  * This setting only takes effect when probing the device.
-  *
-+ * Max MSI-X exec queue vectors:
-+ * ------------------------------
-+ *
-+ * Limit the total number of MSI-X vectors used by the driver. This cap is
-+ * applied at device init time and covers all vectors: GuC-to-host, the
-+ * shared default HWE vector, and any per-exec-queue dedicated vectors.
-+ * Once the cap is reached, no additional dynamic vectors can be allocated
-+ * and exec queues fall back to sharing the default vector. The value must
-+ * be a non-zero positive integer; the default matches the compile-time
-+ * limit (XE_MSIX_MAX_VECS).
-+ *
-+ * This attribute can only be set before binding to the device.
-+ *
-+ * Example to cap the driver to 64 MSI-X vectors total::
-+ *
-+ *	# echo 64 > /sys/kernel/config/xe/0000:03:00.0/max_msix_vecs
-+ *
-  * Remove devices
-  * ==============
-  *
-@@ -262,6 +279,7 @@ struct xe_config_group_device {
- 		struct wa_bb ctx_restore_mid_bb[XE_ENGINE_CLASS_MAX];
- 		bool survivability_mode;
- 		bool enable_psmi;
-+		unsigned int max_msix_vecs;
- 		struct {
- 			unsigned int max_vfs;
- 			bool admin_only_pf;
-@@ -281,6 +299,7 @@ static const struct xe_config_device device_defaults = {
- 	.engines_allowed = U64_MAX,
- 	.survivability_mode = false,
- 	.enable_psmi = false,
-+	.max_msix_vecs = XE_MSIX_MAX_VECS,
- 	.sriov = {
- 		.max_vfs = XE_DEFAULT_MAX_VFS,
- 		.admin_only_pf = XE_DEFAULT_ADMIN_ONLY_PF,
-@@ -794,6 +813,35 @@ static ssize_t wa_bb_store(struct wa_bb wa_bb[static XE_ENGINE_CLASS_MAX],
- 	return len;
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 32dd2ffbc796..ff15de34fd17 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -255,6 +255,11 @@ struct xe_device {
+ 			u16 nvec;
+ 			/** @irq.msix.indexes: used to allocate MSI-X indexes */
+ 			struct xarray indexes;
++			/**
++			 * @irq.msix.vec_count: total number of MSI-X vectors
++			 * currently allocated (static + dynamic)
++			 */
++			atomic_t vec_count;
+ 		} msix;
+ 	} irq;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 1b5ca3ce578a..6c101b4f6488 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -16,6 +16,7 @@
+ #include "xe_bo.h"
+ #include "xe_dep_scheduler.h"
+ #include "xe_device.h"
++#include "xe_drv.h"
+ #include "xe_gt.h"
+ #include "xe_gt_sriov_pf.h"
+ #include "xe_gt_sriov_vf.h"
+@@ -138,6 +139,34 @@ static void xe_exec_queue_group_cleanup(struct xe_exec_queue *q)
+ 	kfree(group);
  }
  
-+static ssize_t max_msix_vecs_show(struct config_item *item, char *page)
++static void exec_queue_msix_init(struct xe_device *xe, struct xe_exec_queue *q)
 +{
-+	struct xe_config_device *dev = to_xe_config_device(item);
++	int err;
++	u16 msix;
 +
-+	return sprintf(page, "%u\n", dev->max_msix_vecs);
++	if (!xe_device_has_msix(xe) || q->flags & EXEC_QUEUE_FLAG_KERNEL)
++		goto use_default;
++
++	err = xe_irq_msix_request_irq(xe, xe_irq_msix_hwe_handler, q,
++				      DRIVER_NAME "-exec-queue", true, &msix);
++	if (err)
++		goto use_default;
++
++	q->msix_vec = msix;
++	return;
++
++use_default:
++	q->msix_vec = XE_IRQ_DEFAULT_MSIX;
 +}
 +
-+static ssize_t max_msix_vecs_store(struct config_item *item, const char *page, size_t len)
++static void exec_queue_msix_fini(struct xe_exec_queue *q)
 +{
-+	struct xe_config_group_device *dev = to_xe_config_group_device(item);
-+	unsigned int max_msix_vecs;
-+	int ret;
++	struct xe_device *xe = gt_to_xe(q->gt);
 +
-+	ret = kstrtouint(page, 0, &max_msix_vecs);
-+	if (ret)
-+		return ret;
-+
-+	if (!max_msix_vecs || max_msix_vecs > XE_MSIX_MAX_VECS)
-+		return -EINVAL;
-+
-+	guard(mutex)(&dev->lock);
-+	if (is_bound(dev))
-+		return -EBUSY;
-+
-+	dev->config.max_msix_vecs = max_msix_vecs;
-+
-+	return len;
++	if (q->msix_vec != XE_IRQ_DEFAULT_MSIX)
++		xe_irq_msix_free_irq(xe, q->msix_vec);
 +}
 +
- static ssize_t ctx_restore_mid_bb_store(struct config_item *item,
- 					const char *data, size_t sz)
+ static void __xe_exec_queue_free(struct xe_exec_queue *q)
  {
-@@ -816,6 +864,7 @@ CONFIGFS_ATTR(, enable_psmi);
- CONFIGFS_ATTR(, engines_allowed);
- CONFIGFS_ATTR(, gt_types_allowed);
- CONFIGFS_ATTR(, survivability_mode);
-+CONFIGFS_ATTR(, max_msix_vecs);
+ 	int i;
+@@ -152,6 +181,8 @@ static void __xe_exec_queue_free(struct xe_exec_queue *q)
+ 	if (xe_exec_queue_is_multi_queue(q))
+ 		xe_exec_queue_group_cleanup(q);
  
- static struct configfs_attribute *xe_config_device_attrs[] = {
- 	&attr_ctx_restore_mid_bb,
-@@ -824,6 +873,7 @@ static struct configfs_attribute *xe_config_device_attrs[] = {
- 	&attr_engines_allowed,
- 	&attr_gt_types_allowed,
- 	&attr_survivability_mode,
-+	&attr_max_msix_vecs,
- 	NULL,
- };
- 
-@@ -1099,6 +1149,7 @@ static void dump_custom_dev_config(struct pci_dev *pdev,
- 	PRI_CUSTOM_ATTR("%llx", engines_allowed);
- 	PRI_CUSTOM_ATTR("%d", enable_psmi);
- 	PRI_CUSTOM_ATTR("%d", survivability_mode);
-+	PRI_CUSTOM_ATTR("%u", max_msix_vecs);
- 	PRI_CUSTOM_ATTR("%u", sriov.admin_only_pf);
- 
- #undef PRI_CUSTOM_ATTR
-@@ -1277,6 +1328,26 @@ u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
- 	return len;
- }
- 
-+/**
-+ * xe_configfs_get_max_msix_vecs - get configfs max_msix_vecs setting
-+ * @pdev: pci device
-+ *
-+ * Return: maximum total number of MSI-X vectors the driver may use
-+ */
-+unsigned int xe_configfs_get_max_msix_vecs(struct pci_dev *pdev)
-+{
-+	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
-+	unsigned int val;
++	exec_queue_msix_fini(q);
 +
-+	if (!dev)
-+		return device_defaults.max_msix_vecs;
-+
-+	val = dev->config.max_msix_vecs;
-+	config_group_put(&dev->group);
-+
-+	return val;
-+}
-+
- #ifdef CONFIG_PCI_IOV
- /**
-  * xe_configfs_admin_only_pf() - Get PF's operational mode.
-diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
-index 07d62bf0c152..68115bff0fa0 100644
---- a/drivers/gpu/drm/xe/xe_configfs.h
-+++ b/drivers/gpu/drm/xe/xe_configfs.h
-@@ -10,6 +10,7 @@
+ 	if (q->vm) {
+ 		xe_vm_remove_exec_queue(q->vm, q);
+ 		xe_vm_put(q->vm);
+@@ -220,7 +251,6 @@ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
+ 	q->gt = gt;
+ 	q->class = hwe->class;
+ 	q->width = width;
+-	q->msix_vec = XE_IRQ_DEFAULT_MSIX;
+ 	q->logical_mask = logical_mask;
+ 	q->fence_irq = &gt->fence_irq[hwe->class];
+ 	q->ring_ops = gt->ring_ops[hwe->class];
+@@ -436,6 +466,8 @@ struct xe_exec_queue *xe_exec_queue_create(struct xe_device *xe, struct xe_vm *v
+ 	if (IS_ERR(q))
+ 		return q;
  
- #include "xe_defaults.h"
- #include "xe_hw_engine_types.h"
-+#include "xe_irq.h"
- #include "xe_module.h"
- 
- struct pci_dev;
-@@ -29,6 +30,7 @@ u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
- u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
- 					enum xe_engine_class class,
- 					const u32 **cs);
-+unsigned int xe_configfs_get_max_msix_vecs(struct pci_dev *pdev);
- #ifdef CONFIG_PCI_IOV
- unsigned int xe_configfs_get_max_vfs(struct pci_dev *pdev);
- bool xe_configfs_admin_only_pf(struct pci_dev *pdev);
-@@ -48,6 +50,10 @@ static inline u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
- static inline u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
- 						      enum xe_engine_class class,
- 						      const u32 **cs) { return 0; }
-+static inline unsigned int xe_configfs_get_max_msix_vecs(struct pci_dev *pdev)
-+{
-+	return XE_MSIX_MAX_VECS;
-+}
- #ifdef CONFIG_PCI_IOV
- static inline unsigned int xe_configfs_get_max_vfs(struct pci_dev *pdev)
- {
++	exec_queue_msix_init(xe, q);
++
+ 	err = __xe_exec_queue_init(q, flags);
+ 	if (err)
+ 		goto err_post_alloc;
 diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index c84d2283dd6a..40d3d43e492f 100644
+index 3429bb305293..c84d2283dd6a 100644
 --- a/drivers/gpu/drm/xe/xe_irq.c
 +++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -11,6 +11,7 @@
- 
- #include "display/xe_display.h"
+@@ -13,6 +13,7 @@
  #include "regs/xe_irq_regs.h"
-+#include "xe_configfs.h"
  #include "xe_device.h"
  #include "xe_drv.h"
- #include "xe_exec_queue.h"
-@@ -896,7 +897,9 @@ static int xe_irq_msix_init(struct xe_device *xe)
- 		return nvec;
++#include "xe_exec_queue.h"
+ #include "xe_gsc_proxy.h"
+ #include "xe_gt.h"
+ #include "xe_guc.h"
+@@ -930,6 +931,19 @@ static irqreturn_t xe_irq_msix_default_hwe_handler(int irq, void *arg)
+ 	return IRQ_HANDLED;
+ }
+ 
++irqreturn_t xe_irq_msix_hwe_handler(int irq, void *arg)
++{
++	struct xe_exec_queue *q = arg;
++	struct xe_tile *tile = gt_to_tile(q->hwe->gt);
++
++	if (!atomic_read(&tile->xe->irq.enabled))
++		return IRQ_NONE;
++
++	xe_memirq_hwe_handler(&tile->memirq, q->hwe);
++
++	return IRQ_HANDLED;
++}
++
+ static int xe_irq_msix_alloc_vector(struct xe_device *xe, void *irq_buf,
+ 				    bool dynamic_msix, u16 *msix)
+ {
+@@ -976,18 +990,26 @@ int xe_irq_msix_request_irq(struct xe_device *xe, irq_handler_t handler, void *i
+ {
+ 	int ret;
+ 
++	if (!atomic_add_unless(&xe->irq.msix.vec_count, 1,
++			       xe->irq.msix.nvec))
++		return -ENOSPC;
++
+ 	ret = xe_irq_msix_alloc_vector(xe, irq_buf, dynamic_msix, msix);
+ 	if (ret)
+-		return ret;
++		goto err_dec;
+ 
+ 	ret = xe_irq_msix_request_irq_internal(xe, handler, irq_buf, name, *msix);
+ 	if (ret) {
+ 		drm_err(&xe->drm, "Failed to request IRQ for MSI-X %u\n", *msix);
+ 		xe_irq_msix_release_vector(xe, *msix);
+-		return ret;
++		goto err_dec;
  	}
  
--	xe->irq.msix.nvec = min_t(int, nvec, XE_MSIX_MAX_VECS);
-+	xe->irq.msix.nvec =
-+		min_t(int, nvec, xe_configfs_get_max_msix_vecs(pdev));
-+
- 	xa_init_flags(&xe->irq.msix.indexes, XA_FLAGS_ALLOC);
  	return 0;
++
++err_dec:
++	atomic_dec(&xe->irq.msix.vec_count);
++	return ret;
  }
+ 
+ void xe_irq_msix_free_irq(struct xe_device *xe, u16 msix)
+@@ -1008,6 +1030,7 @@ void xe_irq_msix_free_irq(struct xe_device *xe, u16 msix)
+ 
+ 	free_irq(irq, irq_buf);
+ 	xe_irq_msix_release_vector(xe, msix);
++	atomic_dec(&xe->irq.msix.vec_count);
+ }
+ 
+ int xe_irq_msix_request_irqs(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/xe_irq.h b/drivers/gpu/drm/xe/xe_irq.h
+index 5f48249dae8a..6c76004d6442 100644
+--- a/drivers/gpu/drm/xe/xe_irq.h
++++ b/drivers/gpu/drm/xe/xe_irq.h
+@@ -18,6 +18,7 @@
+ #define XE_MSIX_MAX_VECS 1024
+ 
+ struct xe_device;
++struct xe_exec_queue;
+ struct xe_tile;
+ struct xe_gt;
+ 
+@@ -29,5 +30,6 @@ void xe_irq_enable_hwe(struct xe_gt *gt);
+ int xe_irq_msix_request_irq(struct xe_device *xe, irq_handler_t handler, void *irq_buf,
+ 			    const char *name, bool dynamic_msix, u16 *msix);
+ void xe_irq_msix_free_irq(struct xe_device *xe, u16 msix);
++irqreturn_t xe_irq_msix_hwe_handler(int irq, void *arg);
+ 
+ #endif
 -- 
 2.43.0
 
