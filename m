@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 563A2CD98CE
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jun 2026 14:09:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 199C2CD98CE
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jun 2026 14:11:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0399310EF50;
-	Thu, 11 Jun 2026 14:09:52 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hud9iiyz";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48BBD10EF50
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Jun 2026 14:09:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781186990; x=1812722990;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=6IsuKw0bBOrtcyCSs93WMhL19+37CQE3kaLggWc0u3Y=;
- b=hud9iiyzU7dXJ7S74c/xfhBDEjjjVMX9DUEj5wJs7kOxaF429tcQ4Xud
- PNTo1qiuKLfO3bcp/zDRtYwJzrFqiLdId6uy11sn6SyApoG7CNWDTbqpg
- w4UyGVF2CBrlvXL3oq3gs2lGo9+hVVsVkhwpMDMp7QhTOi+y31MVSRZD6
- kSmbCFjzHeE3lrsPgZAwSeesMMGiOusF0TbM8xZarzFKLkyGnXVeOitz4
- uj7tg3+rVGOTJhjONle70w+PLICcBP8XGfUndQPfnupN6zEDIWVKjcv1b
- eDXekjakrLc36Os0pmhu03GTUQP3MSmKsOQEm+wm/1+/G8p+6uepLf5w6 A==;
-X-CSE-ConnectionGUID: htsXKNWASTiHnbtDpvTVNg==
-X-CSE-MsgGUID: PN4yYfofRwmR54iVMTP4ww==
-X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="82045355"
-X-IronPort-AV: E=Sophos;i="6.24,199,1774335600"; d="scan'208";a="82045355"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2026 07:09:50 -0700
-X-CSE-ConnectionGUID: LBhT/5HqStu0nO8ad/Beog==
-X-CSE-MsgGUID: mn/++YxQTV++xM8IpKhgLw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,199,1774335600"; d="scan'208";a="251581604"
-Received: from amilburn-desk.amilburn-desk (HELO [10.245.244.169])
- ([10.245.244.169])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2026 07:09:49 -0700
-Message-ID: <43c31bca8f6f8fded74c5610aa20059958e74394.camel@linux.intel.com>
-Subject: Re: [RFC PATCH 1/2] drm/gpusvm: Add a DMA-mapping accounting callback
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 11 Jun 2026 16:09:46 +0200
-In-Reply-To: <aiq933i+fJm2a/Fb@gsse-cloud1.jf.intel.com>
-References: <20260610133451.8930-1-thomas.hellstrom@linux.intel.com>
- <aimExeYtw8KZBsUq@gsse-cloud1.jf.intel.com>
- <aa4085faf0ff44e161a034e58a5150989ca6bf65.camel@linux.intel.com>
- <aiq933i+fJm2a/Fb@gsse-cloud1.jf.intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2E2910EF50;
+	Thu, 11 Jun 2026 14:11:36 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E4D510EF50;
+ Thu, 11 Jun 2026 14:11:36 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0976007801479293463=="
 MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pf=3A_Disable_displa?=
+ =?utf-8?q?y_in_admin_only_PF_mode?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 11 Jun 2026 14:11:36 -0000
+Message-ID: <178118709611.69949.16201050715371874916@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260611124206.3742717-1-satyanarayana.k.v.p@intel.com>
+In-Reply-To: <20260611124206.3742717-1-satyanarayana.k.v.p@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,249 +36,310 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 2026-06-11 at 06:53 -0700, Matthew Brost wrote:
-> On Thu, Jun 11, 2026 at 09:42:01AM +0200, Thomas Hellstr=C3=B6m wrote:
-> > On Wed, 2026-06-10 at 08:37 -0700, Matthew Brost wrote:
-> > > On Wed, Jun 10, 2026 at 03:34:50PM +0200, Thomas Hellstr=C3=B6m wrote=
-:
-> > > > Drivers that use the GPU SVM core to DMA-map system memory for
-> > > > GPU
-> > > > access may want to keep track of how many pages they have
-> > > > mapped,
-> > > > for
-> > > > example to expose statistics or to detect leaks. Doing this
-> > > > accounting
-> > > > in the driver around drm_gpusvm_get_pages() /
-> > > > drm_gpusvm_unmap_pages()
-> > > > is error prone: the number, order and kind of the dma_addr[]
-> > > > entries can
-> > > > change between map and unmap (migration, partial unmaps, the
-> > > > iova
-> > > > vs
-> > > > non-iova paths), which makes symmetric accounting hard to get
-> > > > right.
-> > > >=20
-> > > > Add an optional @dma_map_account callback to struct
-> > > > drm_gpusvm_ops
-> > > > and
-> > > > invoke it once per &drm_pagemap_addr entry at the exact points
-> > > > where the
-> > > > entry is DMA-mapped (sign =3D=3D +1) in drm_gpusvm_get_pages() and
-> > > > unmapped
-> > > > (sign =3D=3D -1) in __drm_gpusvm_unmap_pages(). Since the map error
-> > > > path and
-> > > > every unmap/free path funnel through __drm_gpusvm_unmap_pages()
-> > > > for
-> > > > the
-> > > > entries that were actually mapped, the accounting is symmetric
-> > > > by
-> > > > construction. The callback receives the full &drm_pagemap_addr
-> > > > so
-> > > > the
-> > > > driver can use the order and the proto field to distinguish
-> > > > system
-> > > > memory mappings from device interconnect mappings.
-> > > >=20
-> > > > The callback must also be usable by the core drm_gpusvm_pages-
-> > > > only
-> > > > API
-> > > > (mm =3D=3D NULL), as used e.g. for userptr-style mappings. Relax
-> > > > drm_gpusvm_init() to allow such users to pass a restricted @ops
-> > > > that
-> > > > only implements the page-level hooks; the full-SVM hooks
-> > > > (@invalidate)
-> > > > and the chunk configuration must still be unset in that mode.
-> > > >=20
-> > > > Assisted-by: GitHub_Copilot:claude-opus-4.8
-> > > > Signed-off-by: Thomas Hellstr=C3=B6m
-> > > > <thomas.hellstrom@linux.intel.com>
-> > > > ---
-> > > > =C2=A0drivers/gpu/drm/drm_gpusvm.c | 17 +++++++++++++++--
-> > >=20
-> > > I believe this makes sense and is useful for debugging/profiling
-> > > =E2=80=94
-> > > the
-> > > same applies to the next patch.
-> > >=20
-> > > I do have a question, though: drm_pagemap also performs DMA
-> > > mapping
-> > > for
-> > > migrations. Should we include those in the accounting as well, or
-> > > was
-> > > there a reason this was intentionally omitted?
-> >=20
-> > SVM migration was initially intentionally omitted, because the
-> > primary
-> > intention here is to debug UMD size-aligning's influence on the
-> > number
-> > of 2M pages we get.
-> >=20
-> > But for completeness before we merge this we might want to add the
-> > transient migration entries as well.
-> >=20
->=20
-> This makes sense. However, one benefit of including transient DMA
-> mappings in the stats is that if we leak a DMA mapping, a warning
-> will
-> appear when the driver is unloaded.
->=20
-> Either option works in my opinion, but if transient DMA mappings are
-> omitted, please mention this in the commit message letter.
->=20
-> So for this version /w an updated commit message:
-> Revieved-by: Matthew Brost <matthew.brost@intel.com.
+--===============0976007801479293463==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thanks. There is also still a unit bug in this version. All units are
-in 4K bytes, not (4K << order) bytes.
+== Series Details ==
 
-/Thomas
+Series: drm/xe/pf: Disable display in admin only PF mode
+URL   : https://patchwork.freedesktop.org/series/168356/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-5239-4fdfaadba04dc0f2f2490dbc91922caa290463a5_BAT -> xe-pw-168356v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 13)
+------------------------------
+
+  Additional (1): bat-lnl-2 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-168356v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@fbdev@nullptr:
+    - bat-lnl-2:          NOTRUN -> [SKIP][1] ([Intel XE#2134]) +4 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/bat-lnl-2/igt@fbdev@nullptr.html
+
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - bat-lnl-2:          NOTRUN -> [SKIP][2] ([Intel XE#1466] / [Intel XE#2235])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/bat-lnl-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_flip@basic-flip-vs-dpms:
+    - bat-lnl-2:          NOTRUN -> [SKIP][3] ([Intel XE#2235] / [Intel XE#2482]) +3 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/bat-lnl-2/igt@kms_flip@basic-flip-vs-dpms.html
+
+  * igt@kms_force_connector_basic@force-connector-state:
+    - bat-lnl-2:          NOTRUN -> [SKIP][4] ([Intel XE#2235] / [Intel XE#352]) +2 other tests skip
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/bat-lnl-2/igt@kms_force_connector_basic@force-connector-state.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-lnl-2:          NOTRUN -> [SKIP][5] ([Intel XE#2235] / [Intel XE#2548] / [Intel XE#7779])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/bat-lnl-2/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_hdmi_inject@inject-audio:
+    - bat-lnl-2:          NOTRUN -> [SKIP][6] ([Intel XE#1470] / [Intel XE#2235] / [Intel XE#2853])
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/bat-lnl-2/igt@kms_hdmi_inject@inject-audio.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:
+    - bat-lnl-2:          NOTRUN -> [SKIP][7] ([Intel XE#2235]) +13 other tests skip
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/bat-lnl-2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html
+
+  * igt@kms_psr@psr-cursor-plane-move:
+    - bat-lnl-2:          NOTRUN -> [SKIP][8] ([Intel XE#2850] / [Intel XE#929]) +2 other tests skip
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/bat-lnl-2/igt@kms_psr@psr-cursor-plane-move.html
+
+  * igt@sriov_basic@enable-vfs-autoprobe-off:
+    - bat-lnl-2:          NOTRUN -> [SKIP][9] ([Intel XE#1091] / [Intel XE#2849]) +1 other test skip
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/bat-lnl-2/igt@sriov_basic@enable-vfs-autoprobe-off.html
+
+  * igt@xe_evict@evict-beng-small:
+    - bat-lnl-2:          NOTRUN -> [SKIP][10] ([Intel XE#6540] / [Intel XE#688]) +11 other tests skip
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/bat-lnl-2/igt@xe_evict@evict-beng-small.html
+
+  * igt@xe_exec_balancer@no-exec-virtual-basic:
+    - bat-lnl-2:          NOTRUN -> [SKIP][11] ([Intel XE#7482]) +17 other tests skip
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/bat-lnl-2/igt@xe_exec_balancer@no-exec-virtual-basic.html
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:
+    - bat-lnl-2:          NOTRUN -> [SKIP][12] ([Intel XE#2229]) +2 other tests skip
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/bat-lnl-2/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html
+
+  * igt@xe_mmap@vram:
+    - bat-lnl-2:          NOTRUN -> [SKIP][13] ([Intel XE#1416])
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/bat-lnl-2/igt@xe_mmap@vram.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-lnl-2:          NOTRUN -> [SKIP][14] ([Intel XE#1420] / [Intel XE#2838] / [Intel XE#7590])
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/bat-lnl-2/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelp:
+    - bat-lnl-2:          NOTRUN -> [SKIP][15] ([Intel XE#7590] / [Intel XE#977])
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/bat-lnl-2/igt@xe_pat@pat-index-xelp.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-lnl-2:          NOTRUN -> [SKIP][16] ([Intel XE#2236] / [Intel XE#7590] / [Intel XE#979])
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/bat-lnl-2/igt@xe_pat@pat-index-xelpg.html
+
+  * igt@xe_sriov_flr@flr-vf1-clear:
+    - bat-lnl-2:          NOTRUN -> [SKIP][17] ([Intel XE#3342])
+   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/bat-lnl-2/igt@xe_sriov_flr@flr-vf1-clear.html
+
+  
+  [Intel XE#1091]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091
+  [Intel XE#1416]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1416
+  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
+  [Intel XE#1466]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1466
+  [Intel XE#1470]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1470
+  [Intel XE#2134]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#2235]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235
+  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
+  [Intel XE#2482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482
+  [Intel XE#2548]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548
+  [Intel XE#2838]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838
+  [Intel XE#2849]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849
+  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
+  [Intel XE#2853]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2853
+  [Intel XE#3342]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342
+  [Intel XE#352]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/352
+  [Intel XE#6540]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6540
+  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
+  [Intel XE#7482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482
+  [Intel XE#7590]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590
+  [Intel XE#7779]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7779
+  [Intel XE#929]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/929
+  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
+  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
 
 
+Build changes
+-------------
 
->=20
-> > We might also want to add similar stats for the PPGTT PTE sizes.
-> >=20
->=20
-> Yes, that is probably a good idea but PPGTT is per-user/VM, so unsure
-> if
-> global stats make sense there. IIRC at one point we had a patch to
-> dump
-> VM's via debugfs, we could look at reviving that.
->=20
-> Matt
-> =C2=A0
-> > Thanks,
-> > Thomas
-> >=20
-> >=20
-> >=20
-> > >=20
-> > > Matt
-> > >=20
-> > > > =C2=A0include/drm/drm_gpusvm.h=C2=A0=C2=A0=C2=A0=C2=A0 | 19 +++++++=
-++++++++++++
-> > > > =C2=A02 files changed, 34 insertions(+), 2 deletions(-)
-> > > >=20
-> > > > diff --git a/drivers/gpu/drm/drm_gpusvm.c
-> > > > b/drivers/gpu/drm/drm_gpusvm.c
-> > > > index 958cb605aedd..c18f15c77e94 100644
-> > > > --- a/drivers/gpu/drm/drm_gpusvm.c
-> > > > +++ b/drivers/gpu/drm/drm_gpusvm.c
-> > > > @@ -393,8 +393,15 @@ int drm_gpusvm_init(struct drm_gpusvm
-> > > > *gpusvm,
-> > > > =C2=A0			return -EINVAL;
-> > > > =C2=A0		mmgrab(mm);
-> > > > =C2=A0	} else {
-> > > > -		/* No full SVM mode, only core
-> > > > drm_gpusvm_pages
-> > > > API. */
-> > > > -		if (ops || num_chunks || mm_range ||
-> > > > notifier_size)
-> > > > +		/*
-> > > > +		 * No full SVM mode, only core
-> > > > drm_gpusvm_pages
-> > > > API. A
-> > > > +		 * restricted @ops that only implements the
-> > > > page-
-> > > > level hooks
-> > > > +		 * (e.g. @dma_map_account) is allowed; the
-> > > > full-
-> > > > SVM hooks must
-> > > > +		 * not be set.
-> > > > +		 */
-> > > > +		if (num_chunks || mm_range || notifier_size)
-> > > > +			return -EINVAL;
-> > > > +		if (ops && ops->invalidate)
-> > > > =C2=A0			return -EINVAL;
-> > > > =C2=A0	}
-> > > > =C2=A0
-> > > > @@ -1162,6 +1169,8 @@ static void
-> > > > __drm_gpusvm_unmap_pages(struct
-> > > > drm_gpusvm *gpusvm,
-> > > > =C2=A0			else if (dpagemap && dpagemap->ops-
-> > > > > device_unmap)
-> > > > =C2=A0				dpagemap->ops-
-> > > > > device_unmap(dpagemap,
-> > > > =C2=A0							=C2=A0=C2=A0=C2=A0
-> > > > dev,
-> > > > addr);
-> > > > +			if (gpusvm->ops && gpusvm->ops-
-> > > > > dma_map_account)
-> > > > +				gpusvm->ops-
-> > > > > dma_map_account(gpusvm, addr, -1);
-> > > > =C2=A0			i +=3D 1 << addr->order;
-> > > > =C2=A0		}
-> > > > =C2=A0
-> > > > @@ -1584,6 +1593,10 @@ int drm_gpusvm_get_pages(struct
-> > > > drm_gpusvm
-> > > > *gpusvm,
-> > > > =C2=A0				(addr,
-> > > > DRM_INTERCONNECT_SYSTEM,
-> > > > order,
-> > > > =C2=A0				 dma_dir);
-> > > > =C2=A0		}
-> > > > +		if (gpusvm->ops && gpusvm->ops-
-> > > > >dma_map_account)
-> > > > +			gpusvm->ops->dma_map_account(gpusvm,
-> > > > +						=C2=A0=C2=A0=C2=A0=C2=A0
-> > > > &svm_pages-
-> > > > > dma_addr[j],
-> > > > +						=C2=A0=C2=A0=C2=A0=C2=A0 1);
-> > > > =C2=A0		i +=3D 1 << order;
-> > > > =C2=A0		num_dma_mapped =3D i;
-> > > > =C2=A0		flags.has_dma_mapping =3D true;
-> > > > diff --git a/include/drm/drm_gpusvm.h
-> > > > b/include/drm/drm_gpusvm.h
-> > > > index 8a4d7134a9a7..87ad2dcaa7c4 100644
-> > > > --- a/include/drm/drm_gpusvm.h
-> > > > +++ b/include/drm/drm_gpusvm.h
-> > > > @@ -75,6 +75,25 @@ struct drm_gpusvm_ops {
-> > > > =C2=A0	void (*invalidate)(struct drm_gpusvm *gpusvm,
-> > > > =C2=A0			=C2=A0=C2=A0 struct drm_gpusvm_notifier
-> > > > *notifier,
-> > > > =C2=A0			=C2=A0=C2=A0 const struct mmu_notifier_range
-> > > > *mmu_range);
-> > > > +
-> > > > +	/**
-> > > > +	 * @dma_map_account: Account a DMA-mapping change
-> > > > (optional)
-> > > > +	 * @gpusvm: Pointer to the GPU SVM
-> > > > +	 * @addr: The address descriptor of the chunk being
-> > > > (un)mapped
-> > > > +	 * @sign: +1 when @addr has just been DMA-mapped, -1
-> > > > when
-> > > > it is being
-> > > > +	 *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unmapped
-> > > > +	 *
-> > > > +	 * Called once per &drm_pagemap_addr entry, when the
-> > > > entry
-> > > > is
-> > > > +	 * DMA-mapped by drm_gpusvm_get_pages() (@sign =3D=3D +1)
-> > > > and
-> > > > when it is
-> > > > +	 * unmapped (@sign =3D=3D -1), so the driver can keep
-> > > > symmetric accounting
-> > > > +	 * of the pages it has mapped for GPU access. The
-> > > > @addr-
-> > > > > proto field
-> > > > +	 * can be used to distinguish system-memory mappings
-> > > > from
-> > > > device
-> > > > +	 * interconnect mappings. May be provided in both full
-> > > > SVM
-> > > > mode and the
-> > > > +	 * core drm_gpusvm_pages-only mode.
-> > > > +	 */
-> > > > +	void (*dma_map_account)(struct drm_gpusvm *gpusvm,
-> > > > +				const struct drm_pagemap_addr
-> > > > *addr,
-> > > > +				int sign);
-> > > > =C2=A0};
-> > > > =C2=A0
-> > > > =C2=A0/**
-> > > > --=20
-> > > > 2.54.0
-> > > >=20
+  * Linux: xe-5239-4fdfaadba04dc0f2f2490dbc91922caa290463a5 -> xe-pw-168356v1
+
+  IGT_8958: 8958
+  xe-5239-4fdfaadba04dc0f2f2490dbc91922caa290463a5: 4fdfaadba04dc0f2f2490dbc91922caa290463a5
+  xe-pw-168356v1: 168356v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/index.html
+
+--===============0976007801479293463==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/pf: Disable display in admin only PF mode</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/168356/">https://patchwork.freedesktop.org/series/168356/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5239-4fdfaadba04dc0f2f2490dbc91922caa290463a5_BAT -&gt; xe-pw-168356v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 13)</h2>
+<p>Additional (1): bat-lnl-2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-168356v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@fbdev@nullptr:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/bat-lnl-2/igt@fbdev@nullptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134">Intel XE#2134</a>) +4 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/bat-lnl-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1466">Intel XE#1466</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235">Intel XE#2235</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-dpms:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/bat-lnl-2/igt@kms_flip@basic-flip-vs-dpms.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235">Intel XE#2235</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482">Intel XE#2482</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-connector-state:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/bat-lnl-2/igt@kms_force_connector_basic@force-connector-state.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235">Intel XE#2235</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/352">Intel XE#352</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/bat-lnl-2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235">Intel XE#2235</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548">Intel XE#2548</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7779">Intel XE#7779</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdmi_inject@inject-audio:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/bat-lnl-2/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1470">Intel XE#1470</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235">Intel XE#2235</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2853">Intel XE#2853</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/bat-lnl-2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235">Intel XE#2235</a>) +13 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-cursor-plane-move:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/bat-lnl-2/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/929">Intel XE#929</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@sriov_basic@enable-vfs-autoprobe-off:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/bat-lnl-2/igt@sriov_basic@enable-vfs-autoprobe-off.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091">Intel XE#1091</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849">Intel XE#2849</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_evict@evict-beng-small:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/bat-lnl-2/igt@xe_evict@evict-beng-small.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6540">Intel XE#6540</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +11 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_balancer@no-exec-virtual-basic:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/bat-lnl-2/igt@xe_exec_balancer@no-exec-virtual-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482">Intel XE#7482</a>) +17 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/bat-lnl-2/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_mmap@vram:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/bat-lnl-2/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1416">Intel XE#1416</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/bat-lnl-2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelp:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/bat-lnl-2/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/bat-lnl-2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_sriov_flr@flr-vf1-clear:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168356v1/bat-lnl-2/igt@xe_sriov_flr@flr-vf1-clear.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342">Intel XE#3342</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5239-4fdfaadba04dc0f2f2490dbc91922caa290463a5 -&gt; xe-pw-168356v1</li>
+</ul>
+<p>IGT_8958: 8958<br />
+  xe-5239-4fdfaadba04dc0f2f2490dbc91922caa290463a5: 4fdfaadba04dc0f2f2490dbc91922caa290463a5<br />
+  xe-pw-168356v1: 168356v1</p>
+
+</body>
+</html>
+
+--===============0976007801479293463==--
