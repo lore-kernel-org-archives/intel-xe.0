@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE521CD98D2
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jun 2026 09:16:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05242CD98D2
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jun 2026 10:01:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B68D10E739;
-	Thu, 11 Jun 2026 09:16:01 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WooWsv+4";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58F4810E739
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Jun 2026 09:16:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781169360; x=1812705360;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=uBasQU9enNl6ZxZlJI7p0ttX3yHpQ2aFk8Yav9Ae5f4=;
- b=WooWsv+4SRT+E/wnHeD7Fbxmq4tYTLHlW0s9I+aplBvSFpsY+YTaAFXa
- gjwxNdIX/rReo48t4XnBvUQWQpRwsln89N1cxk1y44qFn6A8dUjlF4VI5
- Q7RcOhzSu6/AIv52HZJ63kA5bLT5FUnv2NZjetdRkU0dRhMa4NP4pL0GM
- MhiMjdOgcj+W4zrfNSFCQgWQQBJbzAOpBCqJMbfMc4ROSmamrlf4PkKkq
- fUKU+5eGN1ClvZy6znSWIi5I3bJM6T0EM0QL3ubsqwsv7EMmYnQJVX0T4
- Ew730v7g5k3UdWg7HnCmn7AtRA4BpDq1+ctvgIfXtQzcfsNMf7QqGJobD Q==;
-X-CSE-ConnectionGUID: c3X+HC2MQbSbhysiKj3BlQ==
-X-CSE-MsgGUID: 1ybLIvVlRJazfLnk2rnDXQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="92654759"
-X-IronPort-AV: E=Sophos;i="6.24,198,1774335600"; d="scan'208";a="92654759"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2026 02:15:49 -0700
-X-CSE-ConnectionGUID: vgP0Z60/R22oNB+hmV3MQw==
-X-CSE-MsgGUID: Teesk9QCT1yQ5/B/SNGf2A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,198,1774335600"; d="scan'208";a="250346688"
-Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by orviesa003.jf.intel.com with ESMTP; 11 Jun 2026 02:15:45 -0700
-From: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-To: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
- matthew.brost@intel.com, thomas.hellstrom@linux.intel.com
-Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com,
- vinay.belgaumkar@intel.com, aravind.iddamsetty@intel.com,
- riana.tauro@intel.com, karthik.poosa@intel.com, sk.anirban@intel.com,
- raag.jadav@intel.com, Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Subject: [PATCH 2/2] drm/xe: use XE_RAS_WEDGED macro in
- xe_device_declare_wedged
-Date: Thu, 11 Jun 2026 14:42:27 +0530
-Message-ID: <20260611091224.17275-6-mallesh.koujalagi@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260611091224.17275-4-mallesh.koujalagi@intel.com>
-References: <20260611091224.17275-4-mallesh.koujalagi@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6A6510EDDA;
+	Thu, 11 Jun 2026 10:01:27 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BB5910E58F;
+ Thu, 11 Jun 2026 10:01:27 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1587812835987602202=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_support_for_Common_SDP_?=
+ =?utf-8?q?Transmission_Line_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 11 Jun 2026 10:01:27 -0000
+Message-ID: <178117208730.68367.2013422419428299192@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260611073316.1439306-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20260611073316.1439306-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,48 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Replace the open-coded drm_err() call with XE_RAS_WEDGED()
-macro so that wedge events are reported through the unified
-RAS/SIG logging path with a consistent format, CPER severity,
-and errno.
+--===============1587812835987602202==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c | 11 +++++------
- 1 file changed, 5 insertions(+), 6 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 7ee2148f1321..93a5b9202c1b 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -62,6 +62,7 @@
- #include "xe_pxp.h"
- #include "xe_query.h"
- #include "xe_ras.h"
-+#include "xe_sig_ids.h"
- #include "xe_shrinker.h"
- #include "xe_soc_remapper.h"
- #include "xe_survivability_mode.h"
-@@ -1418,12 +1419,10 @@ void xe_device_declare_wedged(struct xe_device *xe)
- 		xe_device_wedged_get(xe);
- 		xe->needs_flr_on_fini = true;
- 		xe_pm_runtime_get_noresume(xe);
--		drm_err(&xe->drm,
--			"CRITICAL: Xe has declared device %s as wedged.\n"
--			"IOCTLs and executions are blocked.\n"
--			"For recovery procedure, refer to https://docs.kernel.org/gpu/drm-uapi.html#device-wedging\n"
--			"Please file a _new_ bug report at https://gitlab.freedesktop.org/drm/xe/kernel/issues/new\n",
--			dev_name(xe->drm.dev));
-+		XE_RAS_WEDGED(xe, -EIO,
-+			      "IOCTLs and executions are blocked.\n"
-+			      "For recovery procedure, refer to https://docs.kernel.org/gpu/drm-uapi.html#device-wedging\n"
-+			      "Please file a _new_ bug report at https://gitlab.freedesktop.org/drm/xe/kernel/issues/new\n");
- 	}
- 
- 	for_each_gt(gt, xe, id)
--- 
-2.34.1
+Series: Add support for Common SDP Transmission Line (rev4)
+URL   : https://patchwork.freedesktop.org/series/162623/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-5237-b50be9fd86832954f116a099ffbe4ad107df16a5_BAT -> xe-pw-162623v4_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 12)
+------------------------------
+
+  Missing    (1): bat-lnl-2 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5237-b50be9fd86832954f116a099ffbe4ad107df16a5 -> xe-pw-162623v4
+
+  IGT_8958: 8958
+  xe-5237-b50be9fd86832954f116a099ffbe4ad107df16a5: b50be9fd86832954f116a099ffbe4ad107df16a5
+  xe-pw-162623v4: 162623v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162623v4/index.html
+
+--===============1587812835987602202==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add support for Common SDP Transmission Line (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/162623/">https://patchwork.freedesktop.org/series/162623/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162623v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162623v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5237-b50be9fd86832954f116a099ffbe4ad107df16a5_BAT -&gt; xe-pw-162623v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 12)</h2>
+<p>Missing    (1): bat-lnl-2 </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5237-b50be9fd86832954f116a099ffbe4ad107df16a5 -&gt; xe-pw-162623v4</li>
+</ul>
+<p>IGT_8958: 8958<br />
+  xe-5237-b50be9fd86832954f116a099ffbe4ad107df16a5: b50be9fd86832954f116a099ffbe4ad107df16a5<br />
+  xe-pw-162623v4: 162623v4</p>
+
+</body>
+</html>
+
+--===============1587812835987602202==--
