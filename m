@@ -4,157 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D36E8CD98CC
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jun 2026 13:53:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A11D7CD98CC
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jun 2026 14:07:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66EB410EF48;
-	Thu, 11 Jun 2026 13:53:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59D9710EF50;
+	Thu, 11 Jun 2026 14:07:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wcvl4zNB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DP7TszTD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92ACC10EF48
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Jun 2026 13:53:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F28C610EF50
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Jun 2026 14:07:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781186022; x=1812722022;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=5svI27HOlnNIiXUkg333rra374NTrp1q4kMoVknrbdA=;
- b=Wcvl4zNBumaH+XynUFElbOXL+eBAgy8u8JoaGTrJkyHxh957h7gRXrKQ
- yXTNvGOd6Ox561hH4+pZF5XdAp8xt3mTOz4fAVA0ElS729xl7dBU/vTVz
- vLs+kx0WFudUzw9Toq76hmVP+XZ7Q7wmanpwUssv2U4WGDqnXm7493Cew
- 4i53GRPE56NDmXALr5qwf1eJheMQ4rQc3NS7IvRdUKnYyC+0LJiRzks69
- uTmkr4bD6YCzMt7kH0P/7VdTemhZv3XgKfkeRhed3NehRg52IxDOSDnZ2
- Oo/bW9VYkhLWMM0CwDk7JoEErhWIH2ze6UCx7w6kCZK3Xwj2J3dQEFDji A==;
-X-CSE-ConnectionGUID: 5GgP8TzPTkyZSbr5e5ThTQ==
-X-CSE-MsgGUID: yJvwMXKESEWLSbm5/wEQtw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="107435242"
-X-IronPort-AV: E=Sophos;i="6.24,199,1774335600"; d="scan'208";a="107435242"
+ t=1781186822; x=1812722822;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=gBZS0Te04bMMP9//jwfRLibs7Mppubr/uCgbpTnA73U=;
+ b=DP7TszTDSPMc2aXGrfx28F6iP1nRmKUvZGNd5W1lSpjG4q1x52+mJT4F
+ Y8zWR3on5HXZKjjtfvMXxLxSJ+Y5mvkIY0CaP/TyQ9VudfJm4TtERVxMD
+ ZOuDsIFCNeqGIdUEqfAyMPFcbStCPdrAgtgvneYFONV1m3KDrbONaxcFL
+ kD9Fzi21koN/3Ln0tqYkvIy3NFi1wUenMsqjiexxOScw9nACUKWPfEUUK
+ OJu0TuB9xyEECNZqkvXZh8D8tYZ4Ju8Ji1ceGF1fEFjhoP8eNHas+5K53
+ 2yh0W2OL2sEpCl87g9H+KA6P8Zm4h30mxq1qNc9FM0tKWP53EovQ+u7oF A==;
+X-CSE-ConnectionGUID: VHRZWnZ3Ti6c4yug/v/trw==
+X-CSE-MsgGUID: 2Es+fw9gQcmxbTGjwcbyAA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="81133935"
+X-IronPort-AV: E=Sophos;i="6.24,199,1774335600"; d="scan'208";a="81133935"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2026 06:53:42 -0700
-X-CSE-ConnectionGUID: UYwi73IcRguucbVzjoTNaA==
-X-CSE-MsgGUID: nMvnAmlmSAWfzmftnLyMMA==
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2026 07:06:59 -0700
+X-CSE-ConnectionGUID: 5NaUAIzATfW/+lyYVkgM0w==
+X-CSE-MsgGUID: 1ZUZQoA7TwycVv7PSGWR6g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,199,1774335600"; d="scan'208";a="246520781"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2026 06:53:42 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 11 Jun 2026 06:53:41 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Thu, 11 Jun 2026 06:53:41 -0700
-Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.25) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 11 Jun 2026 06:53:41 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=U5lSfat7Ci4MGABwIzfYrXioNsXgElb8LyXKjaEJorG3yOBWiTHcZCwCKbYmWuGDQgfCZ9yu9IyRXMUeN5nBazKwMaFB6XJlYgRQuP6l55f3NxCfXR9Xq5xWQ74agdQ4j+yDUV6wFI3UZncYQ5PUlgtu/h8nr028Hy+rPlfRlvYy7in3ZKtF1zMMRmv1UACG7dUJLGrTk7vSgSbkCCpC/qPGMDtanV2Xr4xTQtFJGnkf2aGleivHztCVwvvu/4T5KfEOceX0W1iXRsWw2hiAYlYz53puHOYSVpu4o+DLi53Ajz+7gnQYmiP7fYwdUQH71dA13Fqn4E236Y/ZgyYq3g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZHD5SHzsYvItIRb7Yo3CYfoauGpEktyYOqIEWRuYqm4=;
- b=nu/dxZ+R8Gq/bwxn9qFERnHvvtgxfXd/n77Gt+F9cb9wQLEukuKYFuNQYykQ0fwzImxR4cl8fhjtW1wgBfDC7c+6odmbUshn67WNuxbQ0F4854i2mLRYI/kcsqGVrmeimtWHAM9NDGTfnhd8VrxvoQ6Nh3uq++WQppTsibbpop2gTrX+hb7KPi4C6c2XO0NoqQo4s5DSAi65rRNVzzWK5PMcVUt0SkKiiR6Uj9a2/SgswAXWl7hvSri0XVNTzdO5nKErP75ps3HD5P5aP3A7PBz5Cbel/g1Dj/714apwJVegPv0vXe8ITJHpQNzYpzero+MuJsakYqXFfi4M2L0fXw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by DM4PR11MB7325.namprd11.prod.outlook.com (2603:10b6:8:107::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.13; Thu, 11 Jun
- 2026 13:53:38 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c%4]) with mapi id 15.21.0092.016; Thu, 11 Jun 2026
- 13:53:38 +0000
-Date: Thu, 11 Jun 2026 06:53:35 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [RFC PATCH 1/2] drm/gpusvm: Add a DMA-mapping accounting callback
-Message-ID: <aiq933i+fJm2a/Fb@gsse-cloud1.jf.intel.com>
-References: <20260610133451.8930-1-thomas.hellstrom@linux.intel.com>
- <aimExeYtw8KZBsUq@gsse-cloud1.jf.intel.com>
- <aa4085faf0ff44e161a034e58a5150989ca6bf65.camel@linux.intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aa4085faf0ff44e161a034e58a5150989ca6bf65.camel@linux.intel.com>
-X-ClientProxiedBy: MW4PR04CA0142.namprd04.prod.outlook.com
- (2603:10b6:303:84::27) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+X-IronPort-AV: E=Sophos;i="6.24,199,1774335600"; d="scan'208";a="246524191"
+Received: from amilburn-desk.amilburn-desk (HELO [10.245.244.169])
+ ([10.245.244.169])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2026 07:06:57 -0700
+Message-ID: <8297b501eb32e8936750060fadfdd204c4258c7c.camel@linux.intel.com>
+Subject: Re: [PATCH] drm/xe: Fix UAF in xe_gem_prime_import() on attach failure
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: "Gote, Nitin R" <nitin.r.gote@intel.com>, Christian
+ =?ISO-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>, "Auld, Matthew" <matthew.auld@intel.com>, 
+ "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>, Christian =?ISO-8859-1?Q?K=F6nig?=
+ <ckoenig.leichtzumerken@gmail.com>
+Cc: "stable@vger.kernel.org" <stable@vger.kernel.org>, "Brost, Matthew"
+ <matthew.brost@intel.com>, "Prosyak, Vitaly" <Vitaly.Prosyak@amd.com>
+Date: Thu, 11 Jun 2026 16:06:53 +0200
+In-Reply-To: <SA3PR11MB811890F846C27185D611C1D3D01B2@SA3PR11MB8118.namprd11.prod.outlook.com>
+References: <20260601101536.1333480-2-nitin.r.gote@intel.com>
+ <ff4a02f0-5a59-4bad-af76-3d71146f136e@intel.com>
+ <5e3854dd-d6ad-4110-966e-9029ef7c2374@amd.com>
+ <b9b9e20f-703d-4e43-bd1a-17d8bbcead70@intel.com>
+ <157c5cfc-b0a5-4ee9-b91a-909e87df3080@amd.com>
+ <SA3PR11MB8118477615C02DD99CA966F7D0152@SA3PR11MB8118.namprd11.prod.outlook.com>
+ <SA3PR11MB8118C54C085BCAF117582849D0102@SA3PR11MB8118.namprd11.prod.outlook.com>
+ <9d26ec14323cb5a54e2b6e58cb177a4a7eb3652a.camel@linux.intel.com>
+ <7269ac80-1470-46d6-bf2d-75b5ab7acf91@intel.com>
+ <11a8b646-f067-46fc-9fe6-5fe7d6038870@amd.com>
+ <SA3PR11MB811890F846C27185D611C1D3D01B2@SA3PR11MB8118.namprd11.prod.outlook.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DM4PR11MB7325:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1b7beed4-14d8-4b15-1a5b-08dec7c0d694
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|23010399003|18002099003|22082099003|4143699003|5023799004|6133799003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info: DHj2SiEmutr8UVEYEXQmIo9QCkSpa0mQQZFd3jplGwRACQaTGgS8uzestL2QBq29vx2x4hv+M0nfu9sff7tl3rZ7hSVvE6OgvyGdncvctbuWZQ3XnppNdsNArPiz6Icub79Ui2wUDS9Vk7SIVApofLp/cED7HrGELTEGZ09jM2B5BoZvSa6de5IhZMACwpk0xwpuu1SDHJMkPb9kqMEVuJdC5vPbUDcDGf63tBVLUsV5xEIokTKcyhqUoZeProgiUfEoMyWvF7Fyt4UmKiq07zJe/JHCfn1eddg3Kp1nKzBJkpkhSKzyXbGKc2ZdYsL25np7HugkeMdN+LPLf1C6AfcvkmIskHFYD1rUVuQY8/n0qloa+HF2LHlk/puvEQClCC5reqCv6FPgXXvZgOvHDgrPAoRFA7czUzHQRKfPXYCgI0zSYWleE3QSE0NWNqrjrFdIeO8tHGA8z8OU/v6uWKCwNMEGZDwafd2s24EnOyEgQBDkOuQbwDq/xcgUWwT20PDKYxBxspCir66vOAW1zYdDbVZ8yDo/gx6CVU2G8tZ884YluI7GrqreYHrjuZKZ8bJ4RsBOfBi4EwPGRHo3fkIJi9y/LcY5RKpR8zgwNiNwS7OXe5jFKaz/XpFSHZHW8Sb8HCOsGbt5eA7F1NGRa2Ut6OAftQZ7qwYmPZZ6JUlb4SkvDIlCneJDP2O6vZUK
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(23010399003)(18002099003)(22082099003)(4143699003)(5023799004)(6133799003)(11063799006)(56012099006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?REhrV3g3WlBrais3Z0U2SVgzdnJyMGJqWSs3QTJKT3NKajAyT0N3a3BHZDZ3?=
- =?utf-8?B?REhqa3MwZi9XaExXR0RGRWZsNlpxdWlNM2ZYWE1helRCNWs3cThBQmlaQTYr?=
- =?utf-8?B?dVFyWTEzSEhjL2JrTjE5Nk9xeWdkaHFxZXEzNzczT3VibTAza3JYRExWb01n?=
- =?utf-8?B?NFZUOU5lME5iM3owZzhUdTFYc1E0TVlySC9FWTdKSGtkWXpWOWllbkl1eG1v?=
- =?utf-8?B?YURONFUzYWtNV3VJTG1iRjRtc21CeFFnVTQvTTJ5S1oyZWFyV1hjb1czUzVy?=
- =?utf-8?B?NzJwTWppSFluK0JuSUFSYyttZGNZZ3UybE8wMnpsMGduNmg3NGc4cHJReThu?=
- =?utf-8?B?azR3a09tNnFtQUhHcGdYdTZXeklqdkd0UFhmaURpcm5BclRsanROdXFFRG0r?=
- =?utf-8?B?V2ZoSks5LzhNOUgvNm5GK3FGdDVLZHhTZXVaMmhLMm5qVU5XMytzMnFSVEhk?=
- =?utf-8?B?TmxwUXZaZWgrMWZ3aCtWZmJ3MmpiSG1tSXhuVERMMUFjTWdBYlUyVjE3OGN6?=
- =?utf-8?B?Y2JSWGh2RTkzV1pBeXNzMktjY284elBGSVZWcCthZVhuaHJ2allpSHppL01E?=
- =?utf-8?B?elVObDJrT3VyeUxabStEQzRIdkRYeUNmL1MrZXBnbEJXV3UrVHBSNnpFT3NZ?=
- =?utf-8?B?dmh6R1lOWStLVVRhSGJQNm5HWU9POEJid2IvYUZXREZnMjRkUWQwaWNxSFBW?=
- =?utf-8?B?SkFSK2pXY1Q0RExXbk5GR3FYTmxhSFRSeTMyWUsrYUhlRUphZmpQUlBSK1lt?=
- =?utf-8?B?R3hKMlFraThha2Rvem1jOXd6RVZ0RnFGYi9tdEtCbXlhd3A5YnNRd1VkWGJn?=
- =?utf-8?B?TXl1MHM4YUdxK0trcDhKMVJyMk4ySTd0QnhiVkFVbDkxS0x2SVBId0F1US9x?=
- =?utf-8?B?Y2lPMjRwcWdsK09tTTZqeVZLbnMrVUIva3FHTlZZUlRUdzNyWFlFQ3ZucUh1?=
- =?utf-8?B?VkVUa1Y4S0FlMXJsRnM5K2VqT3NLanJFRE93d3pqb2txRTcxdTUyRmFsOGw4?=
- =?utf-8?B?T05WVkxlM0NrNTlybXZWb1o0c1dZNTNZL0MvZFFkdm9DQ1dSeTNkZTRyWU41?=
- =?utf-8?B?cHNuTWU4VzllTFZiZHVxRFRFM3NEWmhmM0VUTzI1RXhMRFlPRzBVSXJHQytC?=
- =?utf-8?B?NjdIZ1RzY0hFeXIrcHd4d2sxUzFWVVdhOWVaRWl6Q1JyUmV4ZXBsakkxbzRo?=
- =?utf-8?B?TEF0TDJUZWNzZDFjSzhJbWFoWXZraFkyWGM1Y0htTkF1YWhtdlpNcU54alhI?=
- =?utf-8?B?RkFXZVVoQjhXWWcvUFd3U01Gdno5U1lmSzlUc25PZUJFR0ZHV0xQTWdzYW1i?=
- =?utf-8?B?ckx0KzZIM1NXZnhSWUFxcThTQmcwbWRXSXZHYXAxRHMyekxhRmdtb21KK3ky?=
- =?utf-8?B?OFFWenNtSlUyL3BxZHIvUlY0VXFGUG5DQmRUUGxYL1U3azl5bDEycVo5ZEl5?=
- =?utf-8?B?NW1DalN2VmYzcmRXUXVGZVZyc2E0aVI3Z0Y2YUthczVJbnk3RjIzTEUwdjdz?=
- =?utf-8?B?S1p0NEhobGJnaWpQOXh3aXpCdzZpRWJFc2RYRHJQTG5GTkh0cHN5RDdGQytt?=
- =?utf-8?B?QmxKR0daL0pnN1hMcFdUbTgyQ2dJd1dZYXg3di9mMGFub2c2WUNyYnF3ekg2?=
- =?utf-8?B?eHhGU0U1VDVQVUMyMFlpVUgwRjVYTUpaT0Y2emdjUkhpQkJlcEFlcldVWC9n?=
- =?utf-8?B?bFRsU3dPZGVDRkRobjZMdjlvNE5MaUVWQmxwanQ2WXhoWHllRVRSd2hQVmdK?=
- =?utf-8?B?bjhuSnhWMXpUK3RKYmtlUzM5RldZMlBLQ2xXaHphZlpUYVBaWHo3bHhsZktW?=
- =?utf-8?B?aGdES2RLQ1ZwRGhzclhRVW9SVXRGRFpXV2xjd0ZRRGoyZWF4M2VGZk5Md1Bi?=
- =?utf-8?B?R1lhaEdoOGpzY2taaktrS28vc09SaDhFZUkvTnlWcDdjOXRtc3FHOHlRVTkx?=
- =?utf-8?B?VmJWTTFvdGNQdm8xeG90dmZOODBZVFk4Mk5TMUg1K1Q0d3JLcndBdGd4OHdQ?=
- =?utf-8?B?eVpjSnRaS1hZeGlEcmtCTUMxaWUrVnlHMGYycnlEK2J6OW4rRWxUM1NiMldj?=
- =?utf-8?B?NGhXNmd5MXBVWkVsQlY1WkVubi9reHdtQ2ltTzRoc25KRVI4bUtnVDhleElJ?=
- =?utf-8?B?MkJneTROOFVDamk1YkYveFZtVExTMGZjS3hsVWI2M3hDOEFmTk5IREVVTGxI?=
- =?utf-8?B?anlYZlZMdXVQUEdVUmlaQ0ptVkoxTFhYaXhNRm5GOVBSZ0YwU2xSeW1xZldO?=
- =?utf-8?B?WHl4RWtDK1FLa3E5cC9aaGpaRGFSUVVHbWdweFJYK0lwOEsyTTFBUytmZnN2?=
- =?utf-8?B?VHkxWFdRYkxmcVZEaDZ1YW11SHRGb3FCSWxZSURtbzlwM0hTMzVmRUdBaGhW?=
- =?utf-8?Q?BETA960ZLnmg4ZOQ=3D?=
-X-Exchange-RoutingPolicyChecked: fvjuYS6lvoTIZzbnheDbarE6MTKJw3s1Xoeyqu7a0WUaWNmxj1YSdeoTDROPVJXRqx4OG39CnoWB0pN1oYePBNqKoqJ0pciRtdQNwRAW5RyLagGGz6hmQBZZK/cTayMT39r8u5zomBrB35ZgAILibJPlyJn9+OT9X58G6+swcXSpiNUABvsh5CMlDA54/ac9rmYDUb8h+9R4od61dEwPj9ZNHqqwktJelYKdICWS3k01Bcq/BpbfZavYYIDfzd6vyBnCrfmUOsAx3DVZJSAW49o4TD/0yKdAnYW1kyPdXc4IYYrGIOM4QIY0TJ+VVaCf1M+wEvzvM2GjrlC8KMIOrA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1b7beed4-14d8-4b15-1a5b-08dec7c0d694
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jun 2026 13:53:38.2768 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ABzAVYTFI2aQ/9dCxo7gZ0sK1m+siIcAugV/z3J3tExaY309Zlc5iEnu9VoUDxXWRvg6bkgZdFVM82UMhTAIww==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB7325
-X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -169,198 +85,433 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jun 11, 2026 at 09:42:01AM +0200, Thomas Hellström wrote:
-> On Wed, 2026-06-10 at 08:37 -0700, Matthew Brost wrote:
-> > On Wed, Jun 10, 2026 at 03:34:50PM +0200, Thomas Hellström wrote:
-> > > Drivers that use the GPU SVM core to DMA-map system memory for GPU
-> > > access may want to keep track of how many pages they have mapped,
-> > > for
-> > > example to expose statistics or to detect leaks. Doing this
-> > > accounting
-> > > in the driver around drm_gpusvm_get_pages() /
-> > > drm_gpusvm_unmap_pages()
-> > > is error prone: the number, order and kind of the dma_addr[]
-> > > entries can
-> > > change between map and unmap (migration, partial unmaps, the iova
-> > > vs
-> > > non-iova paths), which makes symmetric accounting hard to get
-> > > right.
-> > > 
-> > > Add an optional @dma_map_account callback to struct drm_gpusvm_ops
-> > > and
-> > > invoke it once per &drm_pagemap_addr entry at the exact points
-> > > where the
-> > > entry is DMA-mapped (sign == +1) in drm_gpusvm_get_pages() and
-> > > unmapped
-> > > (sign == -1) in __drm_gpusvm_unmap_pages(). Since the map error
-> > > path and
-> > > every unmap/free path funnel through __drm_gpusvm_unmap_pages() for
-> > > the
-> > > entries that were actually mapped, the accounting is symmetric by
-> > > construction. The callback receives the full &drm_pagemap_addr so
-> > > the
-> > > driver can use the order and the proto field to distinguish system
-> > > memory mappings from device interconnect mappings.
-> > > 
-> > > The callback must also be usable by the core drm_gpusvm_pages-only
-> > > API
-> > > (mm == NULL), as used e.g. for userptr-style mappings. Relax
-> > > drm_gpusvm_init() to allow such users to pass a restricted @ops
-> > > that
-> > > only implements the page-level hooks; the full-SVM hooks
-> > > (@invalidate)
-> > > and the chunk configuration must still be unset in that mode.
-> > > 
-> > > Assisted-by: GitHub_Copilot:claude-opus-4.8
-> > > Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > > ---
-> > >  drivers/gpu/drm/drm_gpusvm.c | 17 +++++++++++++++--
-> > 
-> > I believe this makes sense and is useful for debugging/profiling —
-> > the
-> > same applies to the next patch.
-> > 
-> > I do have a question, though: drm_pagemap also performs DMA mapping
-> > for
-> > migrations. Should we include those in the accounting as well, or was
-> > there a reason this was intentionally omitted?
-> 
-> SVM migration was initially intentionally omitted, because the primary
-> intention here is to debug UMD size-aligning's influence on the number
-> of 2M pages we get.
-> 
-> But for completeness before we merge this we might want to add the
-> transient migration entries as well.
-> 
+Hi, Nitin,
 
-This makes sense. However, one benefit of including transient DMA
-mappings in the stats is that if we leak a DMA mapping, a warning will
-appear when the driver is unloaded.
+On Thu, 2026-06-11 at 13:04 +0000, Gote, Nitin R wrote:
+> Hi,
+>=20
+> > -----Original Message-----
+> > From: Christian K=C3=B6nig <christian.koenig@amd.com>
+> > Sent: Friday, June 5, 2026 3:26 PM
+> > To: Auld, Matthew <matthew.auld@intel.com>; Thomas Hellstr=C3=B6m
+> > <thomas.hellstrom@linux.intel.com>; Gote, Nitin R
+> > <nitin.r.gote@intel.com>;
+> > intel-xe@lists.freedesktop.org; Christian K=C3=B6nig
+> > <ckoenig.leichtzumerken@gmail.com>
+> > Cc: stable@vger.kernel.org; Brost, Matthew
+> > <matthew.brost@intel.com>;
+> > Prosyak, Vitaly <Vitaly.Prosyak@amd.com>
+> > Subject: Re: [PATCH] drm/xe: Fix UAF in xe_gem_prime_import() on
+> > attach failure
+> >=20
+> > On 6/4/26 13:32, Matthew Auld wrote:
+> > > On 04/06/2026 12:14, Thomas Hellstr=C3=B6m wrote:
+> > > > Hi,
+> > > >=20
+> > > > On Thu, 2026-06-04 at 04:54 +0000, Gote, Nitin R wrote:
+> > > > > Hi,
+> > > > >=20
+> > > > > > -----Original Message-----
+> > > > > > From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On
+> > > > > > Behalf
+> > > > > > Of Gote, Nitin R
+> > > > > > Sent: Monday, June 1, 2026 8:57 PM
+> > > > > > To: Christian K=C3=B6nig <christian.koenig@amd.com>; Auld,
+> > > > > > Matthew
+> > > > > > <matthew.auld@intel.com>; intel-xe@lists.freedesktop.org;
+> > > > > > Christian
+> > > > > > K=C3=B6nig <ckoenig.leichtzumerken@gmail.com>
+> > > > > > Cc: stable@vger.kernel.org; Thomas Hellstrom
+> > > > > > <thomas.hellstrom@linux.intel.com>; Brost, Matthew
+> > > > > > <matthew.brost@intel.com>; Prosyak, Vitaly
+> > > > > > <Vitaly.Prosyak@amd.com>
+> > > > > > Subject: RE: [PATCH] drm/xe: Fix UAF in
+> > > > > > xe_gem_prime_import() on
+> > > > > > attach failure
+> > > > > >=20
+> > > > > > Hi Christian,
+> > > > > >=20
+> > > > > > > -----Original Message-----
+> > > > > > > From: Christian K=C3=B6nig <christian.koenig@amd.com>
+> > > > > > > Sent: Monday, June 1, 2026 5:47 PM
+> > > > > > > To: Auld, Matthew <matthew.auld@intel.com>; Gote, Nitin R
+> > > > > > > <nitin.r.gote@intel.com>; intel-xe@lists.freedesktop.org;
+> > > > > > > Christian K=C3=B6nig <ckoenig.leichtzumerken@gmail.com>
+> > > > > > > Cc: stable@vger.kernel.org; Thomas Hellstrom
+> > > > > > > <thomas.hellstrom@linux.intel.com>; Brost, Matthew
+> > > > > > > <matthew.brost@intel.com>; Prosyak, Vitaly
+> > > > > > > <Vitaly.Prosyak@amd.com>
+> > > > > > > Subject: Re: [PATCH] drm/xe: Fix UAF in
+> > > > > > > xe_gem_prime_import() on
+> > > > > > > attach failure
+> > > > > > >=20
+> > > > > > > On 6/1/26 14:01, Matthew Auld wrote:
+> > > > > > > > On 01/06/2026 12:39, Christian K=C3=B6nig wrote:
+> > > > > > > > >=20
+> > > > > > > > >=20
+> > > > > > > > > On 6/1/26 12:46, Matthew Auld wrote:
+> > > > > > > > > > On 01/06/2026 11:15, Nitin Gote wrote:
+> > > > > > > > > > > xe_dma_buf_create_obj() creates the importer BO
+> > > > > > > > > > > with obj-
+> > > > > > > > > > > > resv
+> > > > > > > > > > > pointing at the exporter's dma_buf->resv. When
+> > > > > > > > > > > dma_buf_dynamic_attach() fails, no dma_buf
+> > > > > > > > > > > reference is held
+> > > > > > > > > > > so the exporter can be freed immediately. Since
+> > > > > > > > > > > ttm_bo_release() now
+> > > > > > > > > > > always defers cleanup for ttm_bo_type_sg BOs to
+> > > > > > > > > > > the TTM
+> > > > > > > > > > > workqueue, the worker later calls
+> > > > > > > > > > > dma_resv_lock() on the already-freed exporter
+> > > > > > > > > > > resv, causing a
+> > > > > > > > > > > UAF.
+> > > > > > > > > > >=20
+> > > > > > > > > > > Reset obj->resv to the BO's private _resv before
+> > > > > > > > > > > calling
+> > > > > > > > > > > xe_bo_put() in the error path. The BO is not yet
+> > > > > > > > > > > published
+> > > > > > > > > > > (attach
+> > > > > > > > > > > failed) and carries no fences, so the switch is
+> > > > > > > > > > > safe.
+> > > > > > > > > > >=20
+> > > > > > > > > > > Observed with igt@xe_live_ktest@xe_dma_buf_kunit
+> > > > > > > > > > > on BMG
+> > > > > > > > > > > (QEMU):
+> > > > > > > > > > >=20
+> > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0 Oops: general protection fau=
+lt, probably for
+> > > > > > > > > > > non-
+> > > > > > > > > > > canonical address 0x6b6b6b6b6b6b6b9c
+> > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0 Workqueue: ttm ttm_bo_delaye=
+d_delete [ttm]
+> > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0 RIP: 0010:mutex_can_spin_on_=
+owner+0x3f/0xc0
+> > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0 Call Trace:
+> > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <TASK>
+> > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ? __ww_mutex_lock.cons=
+tprop.0+0x2dd/0x18e0
+> > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ? ttm_bo_delayed_delet=
+e+0x41/0xc0 [ttm]
+> > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ww_mutex_lock+0x3c/0xb=
+0
+> > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ttm_bo_delayed_delete+=
+0x41/0xc0 [ttm]
+> > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 process_one_work+0x239=
+/0x740
+> > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 worker_thread+0x200/0x=
+3f0
+> > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 kthread+0x10d/0x150
+> > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ret_from_fork+0x3bd/0x=
+470
+> > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ret_from_fork_asm+0x1a=
+/0x30
+> > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </TASK>
+> > > > > > > > > > >=20
+> > > > > > > > > > > Closes:
+> > > > > > > > > > > https://gitlab.freedesktop.org/drm/xe/kernel/-/work_i=
+tems/8023
+> > > > > > > > > > > Fixes: d99fbd9aab62 ("drm/ttm: Always take the bo
+> > > > > > > > > > > delayed
+> > > > > > > > > > > cleanup path for imported bos")
+> > > > > > > > > > > Cc: stable@vger.kernel.org=C2=A0# v6.8+
+> > > > > > > > > > > Cc: Thomas Hellstrom
+> > > > > > > > > > > <thomas.hellstrom@linux.intel.com>
+> > > > > > > > > > > Cc: Matthew Brost <matthew.brost@intel.com>
+> > > > > > > > > > > Cc: Matthew Auld <matthew.auld@intel.com>
+> > > > > > > > > > > Signed-off-by: Nitin Gote
+> > > > > > > > > > > <nitin.r.gote@intel.com>
+> > > > > > > > > > > ---
+> > > > > > > > > > > =C2=A0=C2=A0=C2=A0 drivers/gpu/drm/xe/xe_dma_buf.c | =
+8 ++++++++
+> > > > > > > > > > > =C2=A0=C2=A0=C2=A0 1 file changed, 8 insertions(+)
+> > > > > > > > > > >=20
+> > > > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c
+> > > > > > > > > > > b/drivers/gpu/drm/xe/xe_dma_buf.c index
+> > > > > > > > > > > 8a920e58245c..6d944bd4065c
+> > > > > > > > > > > 100644
+> > > > > > > > > > > --- a/drivers/gpu/drm/xe/xe_dma_buf.c
+> > > > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+> > > > > > > > > > > @@ -384,6 +384,14 @@ struct drm_gem_object
+> > > > > > > > > > > *xe_gem_prime_import(struct drm_device *dev,
+> > > > > > > > > > > =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 att=
+ach =3D
+> > > > > > > > > > > dma_buf_dynamic_attach(dma_buf, dev-
+> > > > > > > > > > > > dev,
+> > > > > > > > > > > attach_ops, obj);
+> > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (IS_ERR=
+(attach)) {
+> > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /*
+> > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * T=
+he BO was created with resv =3D
+> > > > > > > > > > > dma_buf->resv
+> > > > > > > > > > > +(exporter's
+> > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * r=
+esv). Since attach failed, no
+> > > > > > > > > > > dma_buf
+> > > > > > > > > > > reference is
+> > > > > > > > > > > +held and
+> > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * t=
+he exporter may be freed before
+> > > > > > > > > > > TTM's
+> > > > > > > > > > > delayed_delete
+> > > > > > > > > > > +worker
+> > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * r=
+uns. Switch to the BO's own resv to
+> > > > > > > > > > > prevent
+> > > > > > > > > > > a UAF
+> > > > > > > > > > > +when
+> > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * t=
+tm_bo_delayed_delete() tries to lock
+> > > > > > > > > > > the
+> > > > > > > > > > > stale pointer.
+> > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
+> > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 obj->resv=
+ =3D &obj->_resv;
+> > > > > > > > > >=20
+> > > > > > > > > > +Christian, does amdgpu not have the type of same
+> > > > > > > > > > issue
+> > > > > > > > > > here? Also
+> > > > > > > > > > +any
+> > > > > > > thoughts here?
+> > > > > > > > >=20
+> > > > > > > > > Oh, good catch. Yeah I think we have the same problem
+> > > > > > > > > on amdgpu
+> > > > > > > > > as well.
+> > > > > > > >=20
+> > > > > > > > Maybe dumb question, but why does the
+> > > > > > > > ttm_bo_individualize_resv()
+> > > > > > > > skip the
+> > > > > > > final switch of the resv for type_sg?
+> > > > > > >=20
+> > > > > > > Because we need the original resv object for cleaning up
+> > > > > > > the
+> > > > > > > mapping should the initial attach and then map have
+> > > > > > > succeed.
+> > > > > > >=20
+> > > > > > > > It goes through the trouble of copying the fences
+> > > > > > > > across?
+> > > > > > >=20
+> > > > > > > Because we need to know when the import can be cleaned
+> > > > > > > up.
+> > > > > > >=20
+> > > > > > > In other words TTM takes a copy of the current fences and
+> > > > > > > only
+> > > > > > > unmap, detach and then do the final cleanup after we are
+> > > > > > > sure that
+> > > > > > > the set of fences which was active on destruction is now
+> > > > > > > signaled.
+> > > > > > >=20
+> > > > > > > If new fences are added to the resv object (maybe by the
+> > > > > > > exporter
+> > > > > > > itself or other
+> > > > > > > importers) after our reference count got down to zero
+> > > > > > > then we
+> > > > > > > don't care about that.
+> > > > > > > > If we do need to handle this here, do we also need to
+> > > > > > > > grab the
+> > > > > > > > lru lock, like we
+> > > > > > > do in ttm_bo_individualize_resv() when doing the swap?
+> > > > > > >=20
+> > > > > > > Good question, of hand I would say yes but I clearly need
+> > > > > > > to
+> > > > > > > check the
+> > > > > > > source code as well.
+> > > > > > >=20
+> > > > > > > Might be better to switch the type of the BO on error so
+> > > > > > > that the
+> > > > > > > normal cleanup will just switch over to the local
+> > > > > > > dma_resv
+> > > > > > > object.
+> > > > > > >=20
+> > > > > >=20
+> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 obj->resv =3D &obj->_resv;
+> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 gem_to_xe_bo(obj)->ttm.type =3D
+> > > > > > ttm_bo_type_kernel;
+> > > > > >=20
+> > > > > > Switching the type to ttm_bo_type_kernel lets
+> > > > > > ttm_bo_individualize_resv() swap
+> > > > > > resv to the BO's private _resv under lru_lock, which
+> > > > > > prevents UAF
+> > > > > > without
+> > > > > > needing any manual locking.
+> > > >=20
+> > > > The lru lock is IIRC only needed and safe when the ttm refcount
+> > > > is zero
+> > > > (in the TTM destruction path) to protect against a racing LRU
+> > > > walk
+> > > > trylock succeeds against the incorrect resv.
+> > > >=20
+> > > > I wonder whether this was actually why xe code initially took
+> > > > care not
+> > > > to publish the bo on the LRUs until the attachment succeeded.
+> > > >=20
+> > > > A TTM LRU walker may pick up the exporting resv as soon as the
+> > > > resource
+> > > > is published on the LRU, and then try to lock it using
+> > > > ttm_lru_walk_ticketlock(). The lru lock doesn't protect against
+> > > > that.
+> > > > =C2=A0 So we have a sort of moment22, since with that approach
+> > > > move_notify()
+> > > > could be called without the bo being fully initialized.
+> > > >=20
+> > > > One way to move forward would perhaps be to, for now, reinstate
+> > > > that
+> > > > and have move_notify check if the bo is a stub or fully
+> > > > initialized
+> > > > before doing anything.
+> > > >=20
+> > > > Also perhaps we should in the future consider allowing dma-buf
+> > > > attachment removal under a separate lower-level lock than the
+> > > > resv.
+> > >=20
+> > > Is it plausible to check for drm_gem_is_imported() in
+> > ttm_bo_individualize_resv()? If sg && !imported then it should be
+> > safe to swap
+> > out the resv?
+> >=20
+> > That's also a solution which came to my mind. We should probably
+> > completely
+> > stop checking for ttm_bo_type_sg there.
+> >=20
+>=20
+> Thank you, Matt, Christian and Thomas for the direction
+>=20
+> Will implement this as:
+>=20
+> =C2=A01. Remove the if (bo->type !=3D ttm_bo_type_sg) guard in
+> ttm_bo_individualize_resv() entirely =E2=80=94 at refcount=3D=3D0 fences =
+are
+> already copied, the swap is safe for all types.
 
-Either option works in my opinion, but if transient DMA mappings are
-omitted, please mention this in the commit message letter.
+I don't think this is safe. The imported bo needs to lock the shared
+resv when it finally releases the attachment. That's why the ttm bo,
+destruction path distinguishes between _resv and resv.
 
-So for this version /w an updated commit message:
-Revieved-by: Matthew Brost <matthew.brost@intel.com.
+> =C2=A02. In xe and amdgpu:=20
+> =C2=A0=C2=A0=C2=A0=C2=A0 Will create import BO as ttm_bo_type_kernel with=
+ private resv;
+> switch to ttm_bo_type_sg + dma_buf->resv under lru_lock only after
+> successful attach.
 
-> We might also want to add similar stats for the PPGTT PTE sizes.
->
+Problem is that once the xe object is initialized, it is published on
+the LRUs, and a LRU walker may lock the resv. We can't swich resv at
+that point. And as said before, the lru_lock is only a safe way of
+switching locks if the ttm refcount is zero, that is, it can't be used
+outside TTM.
 
-Yes, that is probably a good idea but PPGTT is per-user/VM, so unsure if
-global stats make sense there. IIRC at one point we had a patch to dump
-VM's via debugfs, we could look at reviving that.
+TBH I don't see a safe solution that doesn't involve *not* publishing
+the bo on the LRU until the attachment is in place.
 
-Matt
- 
+That is except for Matt Auld's idea of individualizing if there is no
+attachment, but then we need to somehow guarantee that the exporter
+stays alive, and that means assuming that ttm_bo_finalize() always
+individualizes synchronously and rely on the caller to keep the
+exporter alive while we finalize the ttm_bo.
+
+/Thomas
+
+
+
+> =C2=A0=C2=A0=C2=A0=C2=A0 This also eliminates the dummy_obj + drm_exec bl=
+ock in
+> xe_dma_buf_create_obj().
+>=20
 > Thanks,
-> Thomas
-> 
-> 
-> 
-> > 
-> > Matt
-> > 
-> > >  include/drm/drm_gpusvm.h     | 19 +++++++++++++++++++
-> > >  2 files changed, 34 insertions(+), 2 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/drm_gpusvm.c
-> > > b/drivers/gpu/drm/drm_gpusvm.c
-> > > index 958cb605aedd..c18f15c77e94 100644
-> > > --- a/drivers/gpu/drm/drm_gpusvm.c
-> > > +++ b/drivers/gpu/drm/drm_gpusvm.c
-> > > @@ -393,8 +393,15 @@ int drm_gpusvm_init(struct drm_gpusvm *gpusvm,
-> > >  			return -EINVAL;
-> > >  		mmgrab(mm);
-> > >  	} else {
-> > > -		/* No full SVM mode, only core drm_gpusvm_pages
-> > > API. */
-> > > -		if (ops || num_chunks || mm_range ||
-> > > notifier_size)
-> > > +		/*
-> > > +		 * No full SVM mode, only core drm_gpusvm_pages
-> > > API. A
-> > > +		 * restricted @ops that only implements the page-
-> > > level hooks
-> > > +		 * (e.g. @dma_map_account) is allowed; the full-
-> > > SVM hooks must
-> > > +		 * not be set.
-> > > +		 */
-> > > +		if (num_chunks || mm_range || notifier_size)
-> > > +			return -EINVAL;
-> > > +		if (ops && ops->invalidate)
-> > >  			return -EINVAL;
-> > >  	}
-> > >  
-> > > @@ -1162,6 +1169,8 @@ static void __drm_gpusvm_unmap_pages(struct
-> > > drm_gpusvm *gpusvm,
-> > >  			else if (dpagemap && dpagemap->ops-
-> > > >device_unmap)
-> > >  				dpagemap->ops-
-> > > >device_unmap(dpagemap,
-> > >  							    dev,
-> > > addr);
-> > > +			if (gpusvm->ops && gpusvm->ops-
-> > > >dma_map_account)
-> > > +				gpusvm->ops-
-> > > >dma_map_account(gpusvm, addr, -1);
-> > >  			i += 1 << addr->order;
-> > >  		}
-> > >  
-> > > @@ -1584,6 +1593,10 @@ int drm_gpusvm_get_pages(struct drm_gpusvm
-> > > *gpusvm,
-> > >  				(addr, DRM_INTERCONNECT_SYSTEM,
-> > > order,
-> > >  				 dma_dir);
-> > >  		}
-> > > +		if (gpusvm->ops && gpusvm->ops->dma_map_account)
-> > > +			gpusvm->ops->dma_map_account(gpusvm,
-> > > +						     &svm_pages-
-> > > >dma_addr[j],
-> > > +						     1);
-> > >  		i += 1 << order;
-> > >  		num_dma_mapped = i;
-> > >  		flags.has_dma_mapping = true;
-> > > diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
-> > > index 8a4d7134a9a7..87ad2dcaa7c4 100644
-> > > --- a/include/drm/drm_gpusvm.h
-> > > +++ b/include/drm/drm_gpusvm.h
-> > > @@ -75,6 +75,25 @@ struct drm_gpusvm_ops {
-> > >  	void (*invalidate)(struct drm_gpusvm *gpusvm,
-> > >  			   struct drm_gpusvm_notifier *notifier,
-> > >  			   const struct mmu_notifier_range
-> > > *mmu_range);
-> > > +
-> > > +	/**
-> > > +	 * @dma_map_account: Account a DMA-mapping change
-> > > (optional)
-> > > +	 * @gpusvm: Pointer to the GPU SVM
-> > > +	 * @addr: The address descriptor of the chunk being
-> > > (un)mapped
-> > > +	 * @sign: +1 when @addr has just been DMA-mapped, -1 when
-> > > it is being
-> > > +	 *        unmapped
-> > > +	 *
-> > > +	 * Called once per &drm_pagemap_addr entry, when the entry
-> > > is
-> > > +	 * DMA-mapped by drm_gpusvm_get_pages() (@sign == +1) and
-> > > when it is
-> > > +	 * unmapped (@sign == -1), so the driver can keep
-> > > symmetric accounting
-> > > +	 * of the pages it has mapped for GPU access. The @addr-
-> > > >proto field
-> > > +	 * can be used to distinguish system-memory mappings from
-> > > device
-> > > +	 * interconnect mappings. May be provided in both full SVM
-> > > mode and the
-> > > +	 * core drm_gpusvm_pages-only mode.
-> > > +	 */
-> > > +	void (*dma_map_account)(struct drm_gpusvm *gpusvm,
-> > > +				const struct drm_pagemap_addr
-> > > *addr,
-> > > +				int sign);
-> > >  };
-> > >  
-> > >  /**
-> > > -- 
-> > > 2.54.0
-> > > 
+> Nitin
+>=20
+> > Regards,
+> > Christian.
+> >=20
+> > >=20
+> > > >=20
+> > > > Thanks,
+> > > > Thomas
+> > > >=20
+> > > >=20
+> > > > >=20
+> > > > > Checked all bo->type readers (xe_evict_flags(), xe_bo_move(),
+> > > > > xe_bo_can_migrate()) and found they can be called
+> > > > > concurrently by the
+> > > > > shrinker or eviction paths without any synchronization,
+> > > > > making the
+> > > > > bo->type change unsafe.
+> > > > >=20
+> > > > > Switching resv to &obj->_resv under lru_lock, mirroring
+> > > > > ttm_bo_individualize_resv(), is the more reasonable.
+> > > > > I'll send this as v2, along with a separate patch fixing the
+> > > > > same
+> > > > > issue in amdgpu.
+> > > > >=20
+> > > > > - Nitin
+> > > > >=20
+> > > > > > > Since we don't need the original dma_resv for the cleanup
+> > > > > > > that
+> > > > > > > should work
+> > > > > > fine.
+> > > > > > >=20
+> > > > > > > > Ideally xe and amdgpu can just have identical solutions
+> > > > > > > > here.
+> > > > > > >=20
+> > > > > > > Yeah completely agree.
+> > > > > > >=20
+> > > > > > > Regards,
+> > > > > > > Christian.
+> > > > > > >=20
+> > > > > > > >=20
+> > > > > > > > >=20
+> > > > > > > > > How the heck did you found that? Do we have a dummy
+> > > > > > > > > driver
+> > > > > > > > > (VGEM?)
+> > > > > > > > > which
+> > > > > > > could be made to always fail attachment for a test case?
+> > > > > >=20
+> > > > > > The bug was found via the existing KUnit test
+> > > > > > (xe_dma_buf_kunit),
+> > > > > > which was
+> > > > > > failing on a BMG VM device. The test runs 20 parameter
+> > > > > > combinations.
+> > > > > > the failing ones use force_different_devices=3Dtrue +
+> > > > > > mem_mask=3DXE_BO_FLAG_VRAM0 + nop2p_attach_ops, where
+> > > > > > dma_buf_dynamic_attach() returns -EOPNOTSUPP, hitting the
+> > > > > > error
+> > > > > > path.
+> > > > > >=20
+> > > > > > On bare metal BMG the race window is too narrow to hit the
+> > > > > > issue.
+> > > > > > To make it
+> > > > > > more deterministic, added a small msleep(100) in
+> > > > > > ttm_bo_delayed_delete() just
+> > > > > > before the dma_resv_lock() call, which widened the race
+> > > > > > window.
+> > > > > > With KASAN enabled, that gave a clear slab-use-after-free
+> > > > > > in
+> > > > > > __ww_mutex_lock
+> > > > > > =E2=80=94 the 0x6b6b6b6b SLUB poison pattern in the faulting
+> > > > > > address
+> > > > > > confirmed the
+> > > > > > UAF.
+> > > > > >=20
+> > > > > > Thanks,
+> > > > > > Nitin
+> > > > > >=20
+> > > > > > > > >=20
+> > > > > > > > > @Vitaly can you take a look and try to come up with a
+> > > > > > > > > test
+> > > > > > > > > case for that?
+> > > > > > > Thanks in advance.
+> > > > > > > > >=20
+> > > > > > > > > Thanks for the notice,
+> > > > > > > > > Christian.
+> > > > > > > > >=20
+> > > > > > > > > >=20
+> > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 xe_bo_put(gem_to_xe_bo(obj));
+> > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 return ERR_CAST(attach);
+> > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
+> > > > > > > > > >=20
+> > > > > > > > >=20
+> > > > > > > >=20
+> > >=20
