@@ -4,56 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 849CDCD98D4
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jun 2026 07:51:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3BEBCD98C7
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jun 2026 08:09:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E8A210ED80;
-	Thu, 11 Jun 2026 07:51:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B372510E72F;
+	Thu, 11 Jun 2026 08:09:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="csfuSMLL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jYIPSPO0";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E771910ED70;
- Thu, 11 Jun 2026 07:51:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 795F910E647;
+ Thu, 11 Jun 2026 08:09:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781164279; x=1812700279;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=5mNs99XpEzgpq7VpfWhTJlQqEtUMUBFM2m8SkSM2qZQ=;
- b=csfuSMLLzfz3ELRYu3mMmDCzB5fe4ZHrCI9BdM0RiCrhw8+CYOEQv2l5
- deGO9/+KZ98ZO6a9uHPt8aJ+uIIYVG4VoHjPkM5S2u/i8Aj42gMYKed0r
- 58ZpQOGPHeQrJ3jp3O2K3C/vx7L5pTtnhk859WOuFdAqKF2l3FbzAuz1e
- AD1CJHsGWRDIGTmqlcorZ/NVd/E1u42uvkqNQipZDsNPml6Ap0qnIyWPz
- kboZy2CPUUJeiuCfbtJS8A7/ACZ38KkMlVCk4BX+RqVyb4DCsT7XlpW+n
- wL3fx9BwaiSjwu38IrB7hUUzqw2XZBx9ibkg7r5ynE58sWbX4VbdShTFV A==;
-X-CSE-ConnectionGUID: Y9b0Uw/TTvOFDpJF0wj1ZA==
-X-CSE-MsgGUID: 8KNuSQnXQj2T10WUfJRVvg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="93078766"
-X-IronPort-AV: E=Sophos;i="6.24,198,1774335600"; d="scan'208";a="93078766"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2026 00:51:19 -0700
-X-CSE-ConnectionGUID: gJqgC/SkQqifDYkNDH0o2g==
-X-CSE-MsgGUID: HXu7vjacRYCdBrZEKHXqNg==
+ t=1781165388; x=1812701388;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=L4FYyAVQZCE3K3P8p2yB3De6g3RB+38aLqosT3HGZyc=;
+ b=jYIPSPO0IKpZrtuz9cZd/b0epFytazfTc57R0SbN5VMkWJpZqZ6AWtIx
+ 0x5oXdGQxBYtEdsFZe9VkGCxVHTL549bOU6wMA2cEPRBU3XGg0NP9pFvx
+ Ej9xP5WLQNjJoJaMk4YTF6vRrVcTEBlSb1NDObf9aV/u/srw1lY/9g1Go
+ He1WN4Kuudf6d1Yg0sGHnpLfvUKeMWwJylpT/Ki55tZKQ5KyPvKK+7ALf
+ MASVft6Tji6bl1wK2tSmPJrtvR/CGCA32sStCRMFGRLQNmVLTkOQymFg5
+ SgIDVOdJ+e35muKmM9EMtkNZlvgjUUZHwoYAVJ3Iq7NjOTPFKNG2mVEfj w==;
+X-CSE-ConnectionGUID: CwwJVEseQO2tQfseBJrC4w==
+X-CSE-MsgGUID: FWcGQ1uqQAG3A2U8386btA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="85869890"
+X-IronPort-AV: E=Sophos;i="6.24,198,1774335600"; d="scan'208";a="85869890"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2026 01:09:47 -0700
+X-CSE-ConnectionGUID: dMfvpTBbQKmvi5jc5uj+Qw==
+X-CSE-MsgGUID: 3NWBx8IpT36mPP8cH8xpCA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,198,1774335600"; d="scan'208";a="251503378"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2026 00:51:16 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com, arun.r.murthy@intel.com,
- jani.nikula@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH v4 12/12] drm/i915/display: Dump DIP Transmission lines
-Date: Thu, 11 Jun 2026 13:03:14 +0530
-Message-ID: <20260611073316.1439306-13-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20260611073316.1439306-1-ankit.k.nautiyal@intel.com>
-References: <20260611073316.1439306-1-ankit.k.nautiyal@intel.com>
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.165])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2026 01:09:44 -0700
+Date: Thu, 11 Jun 2026 11:09:41 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Animesh Manna <animesh.manna@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ uma.shankar@intel.com, dibin.moolakadan.subrahmanian@intel.com,
+ jani.nikula@intel.com
+Subject: Re: [PATCH v8 04/20] drm/i915/display: Pass target transcoder to
+ intel_set_transcoder_timings()
+Message-ID: <aiptRZnAtlMivRUl@intel.com>
+References: <20260603195416.91639-1-animesh.manna@intel.com>
+ <20260603195416.91639-5-animesh.manna@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260603195416.91639-5-animesh.manna@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,33 +74,155 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add DIP transmission lines to the CRTC state dump.
+On Thu, Jun 04, 2026 at 01:24:00AM +0530, Animesh Manna wrote:
+> Let intel_set_transcoder_timings() take the target transcoder as an
+> explicit argument instead of always using crtc_state->cpu_transcoder.
+> This makes the helper reusable for callers that need to program timings
+> for a transcoder other than the CRTC's CPU transcoder.
+> 
+> Update all existing callers to pass crtc_state->cpu_transcoder so there
+> is no functional change.
+> 
+> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 35 ++++++++++----------
+>  1 file changed, 18 insertions(+), 17 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 8e269b71f18e..9031264a34fc 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -132,7 +132,8 @@
+>  #include "vlv_dsi_pll.h"
+>  #include "vlv_dsi_regs.h"
+>  
+> -static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_state);
+> +static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_state,
+> +					 enum transcoder transcoder);
+>  static void intel_set_pipe_src_size(const struct intel_crtc_state *crtc_state);
+>  static void hsw_set_transconf(const struct intel_crtc_state *crtc_state);
+>  static void bdw_set_pipe_misc(struct intel_dsb *dsb,
+> @@ -1504,7 +1505,7 @@ static void ilk_configure_cpu_transcoder(const struct intel_crtc_state *crtc_sta
+>  					       &crtc_state->dp_m2_n2);
+>  	}
+>  
+> -	intel_set_transcoder_timings(crtc_state);
+> +	intel_set_transcoder_timings(crtc_state, crtc_state->cpu_transcoder);
+>  
+>  	ilk_set_pipeconf(crtc_state);
+>  }
+> @@ -1635,7 +1636,7 @@ static void hsw_configure_cpu_transcoder(const struct intel_crtc_state *crtc_sta
+>  					       &crtc_state->dp_m2_n2);
+>  	}
+>  
+> -	intel_set_transcoder_timings(crtc_state);
+> +	intel_set_transcoder_timings(crtc_state, crtc_state->cpu_transcoder);
+>  
+>  	if (cpu_transcoder != TRANSCODER_EDP)
+>  		intel_de_write(display, TRANS_MULT(display, cpu_transcoder),
+> @@ -2048,7 +2049,7 @@ static void i9xx_configure_cpu_transcoder(const struct intel_crtc_state *crtc_st
+>  					       &crtc_state->dp_m2_n2);
+>  	}
+>  
+> -	intel_set_transcoder_timings(crtc_state);
+> +	intel_set_transcoder_timings(crtc_state, crtc_state->cpu_transcoder);
+>  
+>  	i9xx_set_pipeconf(crtc_state);
+>  }
+> @@ -2664,17 +2665,17 @@ transcoder_has_vrr(const struct intel_crtc_state *crtc_state)
+>  	return HAS_VRR(display) && !transcoder_is_dsi(cpu_transcoder);
+>  }
+>  
+> -static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
+> +static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_state,
+> +					 enum transcoder transcoder)
+>  {
+>  	struct intel_display *display = to_intel_display(crtc_state);
+>  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>  	enum pipe pipe = crtc->pipe;
+> -	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+>  	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+>  	u32 crtc_vdisplay, crtc_vtotal, crtc_vblank_start, crtc_vblank_end;
+>  	int vsyncshift = 0;
+>  
+> -	drm_WARN_ON(display->drm, transcoder_is_dsi(cpu_transcoder));
+> +	drm_WARN_ON(display->drm, transcoder_is_dsi(transcoder));
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_crtc_state_dump.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+If you want to rename the variable, then do so in a separate patch.
+Mixing the rename with other changes is destroying the signal to
+noise ratio of the patch.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-index 4493483f10a9..20d71b1c0509 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-@@ -251,6 +251,15 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
- 			   str_enabled_disabled(pipe_config->has_panel_replay),
- 			   str_enabled_disabled(pipe_config->enable_psr2_sel_fetch));
- 		drm_printf(&p, "minimum hblank: %d\n", pipe_config->min_hblank);
-+
-+		drm_printf(&p, "DIP Transmission Lines: EMP/AS SDP: %u\n",
-+			   pipe_config->dip.emp_as_sdp_tl);
-+		drm_printf(&p, "DIP Transmission Lines: Common Base SDP: %u, GMP SDP: %u, PPS SDP: %u, VSC SDP: %u, VSC_EXT SDP: %u\n",
-+			   pipe_config->dip.cmn_sdp_tl,
-+			   pipe_config->dip.gmp_sdp_tl,
-+			   pipe_config->dip.pps_sdp_tl,
-+			   pipe_config->dip.vsc_sdp_tl,
-+			   pipe_config->dip.vsc_ext_sdp_tl);
- 	}
- 
- 	drm_printf(&p, "audio: %i, infoframes: %i, infoframes enabled: 0x%x\n",
+>  
+>  	/* We need to be careful not to changed the adjusted mode, for otherwise
+>  	 * the hw state checker will get angry at the mismatch. */
+> @@ -2703,7 +2704,7 @@ static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_sta
+>  	 */
+>  	if (DISPLAY_VER(display) >= 13) {
+>  		intel_de_write(display,
+> -			       TRANS_SET_CONTEXT_LATENCY(display, cpu_transcoder),
+> +			       TRANS_SET_CONTEXT_LATENCY(display, transcoder),
+>  			       crtc_state->set_context_latency);
+>  
+>  		/*
+> @@ -2718,16 +2719,16 @@ static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_sta
+>  
+>  	if (DISPLAY_VER(display) >= 4 && DISPLAY_VER(display) < 35)
+>  		intel_de_write(display,
+> -			       TRANS_VSYNCSHIFT(display, cpu_transcoder),
+> +			       TRANS_VSYNCSHIFT(display, transcoder),
+>  			       vsyncshift);
+>  
+> -	intel_de_write(display, TRANS_HTOTAL(display, cpu_transcoder),
+> +	intel_de_write(display, TRANS_HTOTAL(display, transcoder),
+>  		       HACTIVE(adjusted_mode->crtc_hdisplay - 1) |
+>  		       HTOTAL(adjusted_mode->crtc_htotal - 1));
+> -	intel_de_write(display, TRANS_HBLANK(display, cpu_transcoder),
+> +	intel_de_write(display, TRANS_HBLANK(display, transcoder),
+>  		       HBLANK_START(adjusted_mode->crtc_hblank_start - 1) |
+>  		       HBLANK_END(adjusted_mode->crtc_hblank_end - 1));
+> -	intel_de_write(display, TRANS_HSYNC(display, cpu_transcoder),
+> +	intel_de_write(display, TRANS_HSYNC(display, transcoder),
+>  		       HSYNC_START(adjusted_mode->crtc_hsync_start - 1) |
+>  		       HSYNC_END(adjusted_mode->crtc_hsync_end - 1));
+>  
+> @@ -2740,13 +2741,13 @@ static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_sta
+>  	if (intel_vrr_always_use_vrr_tg(display))
+>  		crtc_vtotal = 1;
+>  
+> -	intel_de_write(display, TRANS_VTOTAL(display, cpu_transcoder),
+> +	intel_de_write(display, TRANS_VTOTAL(display, transcoder),
+>  		       VACTIVE(crtc_vdisplay - 1) |
+>  		       VTOTAL(crtc_vtotal - 1));
+> -	intel_de_write(display, TRANS_VBLANK(display, cpu_transcoder),
+> +	intel_de_write(display, TRANS_VBLANK(display, transcoder),
+>  		       VBLANK_START(crtc_vblank_start - 1) |
+>  		       VBLANK_END(crtc_vblank_end - 1));
+> -	intel_de_write(display, TRANS_VSYNC(display, cpu_transcoder),
+> +	intel_de_write(display, TRANS_VSYNC(display, transcoder),
+>  		       VSYNC_START(adjusted_mode->crtc_vsync_start - 1) |
+>  		       VSYNC_END(adjusted_mode->crtc_vsync_end - 1));
+>  
+> @@ -2754,7 +2755,7 @@ static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_sta
+>  	 * programmed with the VTOTAL_EDP value. Same for VTOTAL_C. This is
+>  	 * documented on the DDI_FUNC_CTL register description, EDP Input Select
+>  	 * bits. */
+> -	if (display->platform.haswell && cpu_transcoder == TRANSCODER_EDP &&
+> +	if (display->platform.haswell && transcoder == TRANSCODER_EDP &&
+>  	    (pipe == PIPE_B || pipe == PIPE_C))
+>  		intel_de_write(display, TRANS_VTOTAL(display, pipe),
+>  			       VACTIVE(crtc_vdisplay - 1) |
+> @@ -2769,7 +2770,7 @@ static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_sta
+>  		 * followed by BE which DPRX devices are unable to handle.
+>  		 * https://groups.vesa.org/wg/DP/document/20494
+>  		 */
+> -		intel_de_write(display, DP_MIN_HBLANK_CTL(cpu_transcoder),
+> +		intel_de_write(display, DP_MIN_HBLANK_CTL(transcoder),
+>  			       crtc_state->min_hblank);
+>  	}
+>  }
+> -- 
+> 2.29.0
+
 -- 
-2.45.2
-
+Ville Syrjälä
+Intel
