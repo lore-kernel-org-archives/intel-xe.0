@@ -4,82 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB3B6CD98CE
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Jun 2026 13:05:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15B07CD8CA8
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Jun 2026 13:05:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AE7510E929;
-	Fri, 12 Jun 2026 13:05:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D8E210EA1C;
+	Fri, 12 Jun 2026 13:05:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="lk6dgaTC";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="TQvUZiLt";
 	dkim-atps=neutral
-Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com
- [209.85.219.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A88AD10EF9F
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Jun 2026 14:50:00 +0000 (UTC)
-Received: by mail-qv1-f42.google.com with SMTP id
- 6a1803df08f44-8ccdc096117so13598836d6.2
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Jun 2026 07:50:00 -0700 (PDT)
+Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com
+ [209.85.222.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40D4E10EF0C
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Jun 2026 12:54:12 +0000 (UTC)
+Received: by mail-qk1-f179.google.com with SMTP id
+ af79cd13be357-91575ba2b22so66457585a.1
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Jun 2026 05:54:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1781189399; x=1781794199; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=DP19gLPJP1jpWVxngAoDyNJY7navrVqVsJRQOoZOUTs=;
- b=lk6dgaTCZS42EE4EwJTdpHyAw7btQBPHGxLvi38OKoEF7wTmLBBA6ruwtynriK1grx
- Dly+3RC+uC9/XUb5TsHgiijTng51IpvL5TGRCbHaOmrMdQZYfPoXGmSxeKa1LY6swDEG
- oJ1R2X+HimmzwIuABnbfNAwB6HnbH0lEzqnF2RU6mKPDkLCuE/zEb7YI+mBkVbjl6jeC
- rauRpXATsdZugh6cfPzYCIxlYat+nP6+DvN9kKG/JrPDqvXOcFqRlUb750bM0HEEmdc/
- /6aBkNfA8P11J37n6iHn3RsSXGpu9YVTMmhAjgNNqW7t5keOOFFl1a7XUV/pc3WtJWgK
- OK4Q==
+ d=gmail.com; s=20251104; t=1781182451; x=1781787251; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=pApUitxnpFLRw4B63hSdHQtKPDI/sltH6G53COwClfE=;
+ b=TQvUZiLt93n3vxBfF/J+7PdBQoPZWevztBgcDIgUsm1Hu0gc7l8jUsOTAAKNQ89O7c
+ jtGBdwnaz7kGnKYRJ+Vkpszwh6PqqneWtmF8QMIiwBtjT3l8zIZN8cvZwsNZDLigLrYj
+ XFs21Drp1BoIkctyPn0JyldGSo9hadUcF3AVIpj3hibH04/jB6Q05yGNUCeMgAckUvQe
+ RoEqz4vWH9PatWETIWitqRagWhTxSjUWwTp5udrzKjUjMMVPSF+HXCkO8J36L9N0tnWr
+ isU+rPAu9YDQPDD7hJ9m1miwd5f6LC99UZxEyqJop4B5tS1XuVmzrt3SrsrJYc368P8q
+ j+Ig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1781189399; x=1781794199;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=DP19gLPJP1jpWVxngAoDyNJY7navrVqVsJRQOoZOUTs=;
- b=W0witb+fD5nUWldOph9wvx/FXo9oEyXOUD13olCCcBvK2IzXQcoNQBkUPfM2AgUurc
- VEcDdR5A0X729LeZfs7TEHShtIMAkxZz7RBhwyMdy54TBUi9Nr/5VghwPY6RfVi8Ht6z
- h1F6JeV+Wsg6MZL4MddRwwWiryz4vNvErk5WckcgneNiJL9PrvSCRX9UQ+ID7YQwyoTb
- w8/RLH0Xbo4m0pVvHijtPJvk2a3xmqAv8pYLO5GP6QIfQJPL/zZ2+HPuh+6G5hRGoGqB
- R6Vy1PFrDb0y1/unzKlLYxN02JNoNRduubQcAUVXxMKz3htFKt3qxm6941DLBf5p7V3R
- evVg==
+ d=1e100.net; s=20251104; t=1781182451; x=1781787251;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=pApUitxnpFLRw4B63hSdHQtKPDI/sltH6G53COwClfE=;
+ b=fY22WhKzSIrtohJnd7JmrRqmCWySEq3M8JCeO6qvZ+7VecsscGYO7fVRaLsIvjNpLv
+ RYsDGf+COgEkAit6zijFRsQxzRr3kw/XQmnP2+W6KWRzvnohv9qr5oxrbuCcOULvU4m8
+ epuBO4EC1TiTaowDrHFU/F/QiSqle0a0k/RrLGjOm5UN2OItiUIIv1IMHNtycW6jFe9n
+ ReDaehatm02KbUs6BPip5SZ+3ruISn9uvnvxLWn6Lser1re0O/dMeT7qMboPSznrJii5
+ uuI1xfIZoNymTIQVu+uF7Wjb6jmG/Rftn802hTSt6NPS6Tl0vYabmWTrTdYF+hPvyBr2
+ 5fRQ==
 X-Forwarded-Encrypted: i=1;
- AFNElJ9DC4qmTZv1jPSvjX5bV3ZuHu/SUv4dp3ZVYfdQz+v7mpMqkk7mFpvzpwISAt6Jcr9hK9Ba/7QDag==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyy7Q9FEeYtvi5mX2q4itIyD/nNU3qXLdxR7ygbMETRx52Ae1F1
- ztF/uuMnvl9oMfGXwuXp+n7gqESRFF7eXqMxWp7xn8FETGFhzZ6koLmV
-X-Gm-Gg: Acq92OFvz8IxbB8Kb8+qT6S155HrD0uc4jbD7LWOZ30jh/rVpEWFLTTbUcNk+WXRJPA
- b4RwfUwYHwuQ+SHLsBX1diciiklCgg82xW82wVHGAQd68ShYkKLlS5zzJVsQtevFfxOyCtJPyHt
- AzulE4Vs4Jd8WP1D4LMLVuqAd6SJcr9hDJX6Jl9rKKz4QOptZKw5JovgUdJPxTmDcBOffiUxpHb
- xH0swA4+cTkUSI+NOFwSNPRjnJZmWJYrApxTaa1BvKJcsykGVnC4mUcC2n0efygWeMFn+v7cmeH
- M+0/WZKFo6lvx+bNag9ryI3Opakmfbr8c7+DffM9QBva7YvqY9a4ZPn/Wt3hZwtd0A4DLG7vHhP
- 2vsM4iyori9Kxcj7rKhxMRspm/ekwAfq6YxVIVKxriRI23CPFUA6StmK9D2kugKeIM6G+LeXqQf
- pB7uju1IZjpTfpswWcU/FQSenbwFpz9qlJ2jLPZEZJWFJ9seSnuU3bPo4E8pZBtfHv8qTXvbn8u
- b9HvlrqvvGRA4Wrhz4bOSpRZDDGRTZCTFnV/AdhXKg2wPqu96Z0ucehDGcbdQbJ9Bq9Jfo9zkMU
- /A==
-X-Received: by 2002:a05:6214:33c2:b0:8d1:d1e1:835f with SMTP id
- 6a1803df08f44-8d1dc1a2588mr28820326d6.7.1781189399264; 
- Thu, 11 Jun 2026 07:49:59 -0700 (PDT)
+ AFNElJ8YYemPCxKiStrAR5nRp0s5wsmQXBNXOAZBPYlHdFAHPP57CVXe6vVNkI0L7CJfn0hsviQBRS2kGw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yyb5NB1v9ksydLMGRNysSwJEq2IJ2Kpw0lE+YZcTj0HmSqp6GkT
+ +i/xs1zTGcDyL6IwKc2x7WKfumUxPNnaiVkJyGuHQuvFJRf/Z2aBGoKP
+X-Gm-Gg: Acq92OEvN5lMW0r8Ag8WArqTVo+DlFauh9U47pNICuHnfzI8ZyhEzITWFzgMVcCFG3b
+ mkWyfAkO6IXOVhrG0kbfRu5hQkMHdISI4DaNcAL2YIBWa/IHRq3ge6NrRSs3zTcSS9rjt5OwxtU
+ ngHOWaOD+z2Js05DSrCzVk4Mz8jnWP2soBIetPACmbet0KMmdZc2ybBqZkbWUiBGewCDkqaBP+E
+ HXF38MNhZ1SiptFr7/99FicgfAsv8lYlnq+v/vXK7ksE5HPNKs8MGch/3fBxXtoheW9+w4qjaUS
+ m0W18u0LNeyFiVRSEr2LtO6QVJsbVuh4yiVy+Th+X9R8wx9X5024Xzxy/TLz/mqSZUvJdtAFa6E
+ A1wF4kXjuKdZZvXE6xjmAxOU8xAYl2bXMF7BzKoNjYIzYXLqm5reTjECdSbLXQgCrdGbmzE13Sh
+ kYpu/5WN/dF4be/dwfO8SPTQ+x4G5qdHaCul0R6ntd+lULca9BHCZ1QfTV174x7ki94/1NhR78u
+ GkRGHE6e/b9pwBkYZAHUaum0tFHxtPol0qhNcdwVxP1qivP0Q9kB0LFI4TvtWa5n8dfA74vkC5t
+ Lg==
+X-Received: by 2002:a05:620a:6486:b0:914:ea37:6f14 with SMTP id
+ af79cd13be357-9160ab058bdmr226309185a.1.1781182451197; 
+ Thu, 11 Jun 2026 05:54:11 -0700 (PDT)
 Received: from debian-t14-gen1-fuhrysteve.fuhry.app
  (6.sub-75-230-138.myvzw.com. [75.230.138.6])
  by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-8d1e7bc32acsm20141096d6.5.2026.06.11.07.49.57
+ af79cd13be357-9160accaf7asm176311485a.19.2026.06.11.05.54.09
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 11 Jun 2026 07:49:59 -0700 (PDT)
+ Thu, 11 Jun 2026 05:54:10 -0700 (PDT)
 From: "Stephen J. Fuhry" <fuhrysteve@gmail.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
  Animesh Manna <animesh.manna@intel.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org,
- "Stephen J . Fuhry" <fuhrysteve@gmail.com>,
- sashiko AI review <sashiko-bot@kernel.org>
-Subject: [PATCH] drm/i915/display: fix ALPM error handling in psr_alpm_check()
-Date: Thu, 11 Jun 2026 10:49:56 -0400
-Message-ID: <20260611144956.710911-1-fuhrysteve@gmail.com>
+ dri-devel@lists.freedesktop.org, "Stephen J . Fuhry" <fuhrysteve@gmail.com>
+Subject: [PATCH] drm/i915/display: guard intel_alpm_get_error() against
+ non-ALPM sinks
+Date: Thu, 11 Jun 2026 08:54:08 -0400
+Message-ID: <20260611125408.676626-1-fuhrysteve@gmail.com>
 X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260611125408.676626-1-fuhrysteve@gmail.com>
-References: <20260611125408.676626-1-fuhrysteve@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 12 Jun 2026 13:05:53 +0000
@@ -97,40 +93,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-intel_dp_short_pulse() calls intel_psr_short_pulse() before the direct
-intel_alpm_get_error() check.  For PSR2-enabled panels, intel_psr_short_pulse()
-calls psr_alpm_check(), which reads and clears DP_ALPM_LOCK_TIMEOUT_ERROR via
-intel_alpm_get_error().  The subsequent direct call in intel_dp_short_pulse()
-then reads zero and skips calling intel_alpm_disable() and setting
-sink_alpm_error, leaving LOBF potentially enabled despite the ALPM error.
+intel_alpm_get_error() unconditionally reads DP_RECEIVER_ALPM_STATUS via
+AUX from any DP connection that receives a short-pulse interrupt.  However,
+alpm_dpcd is only populated by intel_edp_init_dpcd(), so it is zero for
+all external (non-eDP) DP and DP-MST connections.  On such connections the
+AUX read fails, producing a spurious
 
-Fix this by having psr_alpm_check() also call intel_alpm_disable() and set
-sink_alpm_error when it handles an ALPM error.  This mirrors what the direct
-call in intel_dp_short_pulse() would have done, ensuring correct cleanup
-regardless of which code path consumes the error bit first.
+  [drm] *ERROR* Error reading ALPM status
 
-intel_alpm_disable() is already called under psr->lock from
-intel_psr_disable_locked() for the Panel Replay path, so the lock ordering
-is established and safe.
+and setting sink_alpm_error = true, which is then visible in the ALPM
+debug output even on hardware that never enabled ALPM.
 
-Suggested-by: sashiko AI review <sashiko-bot@kernel.org>
+intel_alpm_disable() already has the same guard (DISPLAY_VER check plus
+!intel_dp->alpm_dpcd); extend the same logic to intel_alpm_get_error() so
+it returns early without attempting the AUX transaction when ALPM is not
+supported by the sink.
+
+Reproducer: ThinkPad T14 Gen1 (Alder Lake-P / i915 DISPLAY_VER 12) docked
+via Lenovo ThinkPad USB-C Dock Gen2 with external DP-MST monitors.  On
+every DPMS wake the error fires once on the dock's upstream DP port.
+
 Fixes: 2063174c22da ("drm/i915/lobf: Check for sink error and disable LOBF")
 Signed-off-by: Stephen J. Fuhry <fuhrysteve@gmail.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/i915/display/intel_alpm.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 9382ad1e01d8..0701c8b94aa2 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -3869,6 +3869,8 @@ static void psr_alpm_check(struct intel_dp *intel_dp)
- 	if (intel_alpm_get_error(intel_dp)) {
- 		intel_psr_disable_locked(intel_dp);
- 		psr->sink_not_reliable = true;
-+		intel_alpm_disable(intel_dp);
-+		intel_dp->alpm.sink_alpm_error = true;
- 	}
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
+index a7350ce8e716..4bb0c00741c4 100644
+--- a/drivers/gpu/drm/i915/display/intel_alpm.c
++++ b/drivers/gpu/drm/i915/display/intel_alpm.c
+@@ -611,6 +611,9 @@ bool intel_alpm_get_error(struct intel_dp *intel_dp)
+ 	u8 val;
+ 	int r;
+
++	if (!intel_dp->alpm_dpcd)
++		return false;
++
+ 	r = drm_dp_dpcd_readb(aux, DP_RECEIVER_ALPM_STATUS, &val);
+ 	if (r != 1) {
+ 		drm_err(display->drm, "Error reading ALPM status\n");
 --
 2.39.5
