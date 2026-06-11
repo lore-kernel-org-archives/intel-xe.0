@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02A90CD98CE
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jun 2026 16:44:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D7D7CD98CE
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jun 2026 16:46:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB7C510F00D;
-	Thu, 11 Jun 2026 16:44:08 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 423A010F004;
- Thu, 11 Jun 2026 16:44:07 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3961215310218249290=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2725C10F004;
+	Thu, 11 Jun 2026 16:46:49 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fm6a1wxB";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A659710F004
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Jun 2026 16:46:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1781196407; x=1812732407;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=kQ6y6jpxGkEjFBgUPccO9QIdQtlSoXxQc3JEpS+RRtI=;
+ b=fm6a1wxB+miFICYkCoYP2QSQi8m+/0JojbOZsX1sEHrhqlUxXKYXb4ZW
+ aaR2AnrPaEnc+rbsAScTTNhZWBWUGtBE9D/hvD2I/tLzd+sx1UeYGfF1x
+ cww4h9fJe5wOV+/VNYjGVihxkfhWthMDepr+IoxOjo2TYItM3M6p8WxHL
+ U1u56xxlIKZ0bJoqLK7iks1OpkNLHrKgeNlOE03ist6ek8BOPJFLzZIV2
+ anXLaBmDvcpsDF63RnsYfH7pFf1/I7aCgD7R447hnz7CQJfpWAr5I75By
+ TIyvjyigDsHxpvTXLGjnxRbda0CAl1gd2X0qauhiSUN56roFVzjiLH27V Q==;
+X-CSE-ConnectionGUID: 59GXhN28RdyZWF/BIBPPAg==
+X-CSE-MsgGUID: nv8dah6PSAq1Fd1uSddmWg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="81150698"
+X-IronPort-AV: E=Sophos;i="6.24,199,1774335600"; d="scan'208";a="81150698"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2026 09:46:47 -0700
+X-CSE-ConnectionGUID: o+JUTXnRSRiDXODwicNZIA==
+X-CSE-MsgGUID: mAeh2p7LTfSLTllNd5QXRA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,199,1774335600"; d="scan'208";a="244091960"
+Received: from sinjan-super-server.iind.intel.com ([10.190.239.39])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2026 09:46:45 -0700
+From: Karthik Poosa <karthik.poosa@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: rodrigo.vivi@intel.com, anshuman.gupta@intel.com, badal.nilawar@intel.com,
+ raag.jadav@intel.com, riana.tauro@intel.com, soham.purkait@intel.com,
+ michael.j.ruhl@intel.com, Karthik Poosa <karthik.poosa@intel.com>
+Subject: [PATCH v3 0/2] drm/xe/debugfs: Add a debugfs for pcode information
+Date: Thu, 11 Jun 2026 22:26:05 +0530
+Message-Id: <20260611165607.3653019-1-karthik.poosa@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_reclaim_to_the_dmem_cgr?=
- =?utf-8?q?oup_controller_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 11 Jun 2026 16:44:07 -0000
-Message-ID: <178119624726.69949.7787677428338803112@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260611142242.2529-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20260611142242.2529-1-thomas.hellstrom@linux.intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +63,33 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3961215310218249290==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Introduce a pcode_info debugfs entry to report pcode details.
+This initial implementation exposes the pcode version which is got from PMT
+telemetry.
+This can aid debugging when the pcode version is needed.
 
-== Series Details ==
+v2: Enable the debugfs only for supported platforms which is BMG and CRI
+as of now.
 
-Series: Add reclaim to the dmem cgroup controller (rev5)
-URL   : https://patchwork.freedesktop.org/series/163970/
-State : success
+v3:
+ - Move platform check from patch 2 to patch 1.
+ - Add a comment about why only BMG and CRI have pcode_info debugfs
+   enabled.
+ - To runtime reference of device before reading from PMT.
 
-== Summary ==
+Karthik Poosa (2):
+  drm/xe/pcode: Add support to get pcode version from PMT
+  drm/xe/debugfs: Add debugfs for pcode information
 
-CI Bug Log - changes from xe-5241-a472b6217138ef0942355824543a5cce12f43343_BAT -> xe-pw-163970v5_BAT
-====================================================
+ drivers/gpu/drm/xe/regs/xe_pmt.h |  2 ++
+ drivers/gpu/drm/xe/xe_debugfs.c  | 19 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_pcode.c    | 29 +++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_pcode.h    |  8 ++++++++
+ 4 files changed, 58 insertions(+)
 
-Summary
--------
+-- 
+2.25.1
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5241-a472b6217138ef0942355824543a5cce12f43343 -> xe-pw-163970v5
-
-  IGT_8959: 77337ca2d2dd470f3b32f1cf4760b0e79a52e2b7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5241-a472b6217138ef0942355824543a5cce12f43343: a472b6217138ef0942355824543a5cce12f43343
-  xe-pw-163970v5: 163970v5
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163970v5/index.html
-
---===============3961215310218249290==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add reclaim to the dmem cgroup controller (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163970/">https://patchwork.freedesktop.org/series/163970/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163970v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163970v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5241-a472b6217138ef0942355824543a5cce12f43343_BAT -&gt; xe-pw-163970v5_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5241-a472b6217138ef0942355824543a5cce12f43343 -&gt; xe-pw-163970v5</li>
-</ul>
-<p>IGT_8959: 77337ca2d2dd470f3b32f1cf4760b0e79a52e2b7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5241-a472b6217138ef0942355824543a5cce12f43343: a472b6217138ef0942355824543a5cce12f43343<br />
-  xe-pw-163970v5: 163970v5</p>
-
-</body>
-</html>
-
---===============3961215310218249290==--
