@@ -4,27 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FAEFCD98C7
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jun 2026 20:49:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EFB4CD8C9D
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jun 2026 20:50:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A62B10E865;
-	Thu, 11 Jun 2026 20:49:29 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 060E010E865;
- Thu, 11 Jun 2026 20:49:28 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8167999631024273629=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B3AD10F136;
+	Thu, 11 Jun 2026 20:50:54 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jNoiJ5i8";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D7FC710E865;
+ Thu, 11 Jun 2026 20:50:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1781211053; x=1812747053;
+ h=message-id:date:mime-version:from:to:cc:subject:
+ content-transfer-encoding;
+ bh=5Llo7vBzrlr7wNp1Fsgprz2zPMh8kmA3e6C28knK2j8=;
+ b=jNoiJ5i8974Her4QPTjwW8DN/Bwjop7ncjUE5/q6tCIALpFbAGxCflSm
+ DvlYuRY4WKpNBZu3lNdmTFPpHffjtetKDy+kwOsFOoFa3J3qsqdllN6XL
+ ehM9oCwj5Kqr5YFYL6RSOXi164vmYyoaL3KarDwSVtWeh4RW/V6EX5FuS
+ NPjxadIIWnEP48h1FIgKFepTPPjiDyYc/4eDXpvNcQua3sGF1BMWk+m2p
+ cXcRono0VEjipQek3c2hf5YnseneSzRJsM6qwSZw+fg9dGBn0B//6mSon
+ C8noWwblC2sQuls5bIg3/9lXIvToQYzPeJQZNLaumlpOlOw+WeExnlTQ5 Q==;
+X-CSE-ConnectionGUID: PPW07dNAQB2ec8HOj5SjeQ==
+X-CSE-MsgGUID: CbWkA/oCRwSsD+EaYzigvQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="81053164"
+X-IronPort-AV: E=Sophos;i="6.24,199,1774335600"; d="scan'208";a="81053164"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2026 13:50:52 -0700
+X-CSE-ConnectionGUID: 5GnosR5PRl+P/n29jqyFRw==
+X-CSE-MsgGUID: ABOLTjkATae0oR6sL2UOYw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,199,1774335600"; d="scan'208";a="246487949"
+Received: from vpanait-mobl.ger.corp.intel.com (HELO [10.245.245.22])
+ ([10.245.245.22])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2026 13:50:49 -0700
+Message-ID: <c7a9dbb0-a5c8-4e67-904e-1a52b3de9bb4@linux.intel.com>
+Date: Thu, 11 Jun 2026 22:50:58 +0200
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_reclaim_to_the_dmem_cgr?=
- =?utf-8?q?oup_controller_=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 11 Jun 2026 20:49:28 -0000
-Message-ID: <178121096801.69949.3702839913139638554@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260611173301.17473-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20260611173301.17473-1-thomas.hellstrom@linux.intel.com>
+User-Agent: Mozilla Thunderbird
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
+Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Oded Gabbay <ogabbay@kernel.org>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Subject: [PULL] drm-misc-next-fixes
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +73,54 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8167999631024273629==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Dave, Sima,
 
-== Series Details ==
+Smaller pull request for next-fixes this time!
 
-Series: Add reclaim to the dmem cgroup controller (rev6)
-URL   : https://patchwork.freedesktop.org/series/163970/
-State : success
+Kind regards,
+~Maarten Lankhorst
 
-== Summary ==
+drm-misc-next-fixes-2026-06-11:
+drm-misc-next-fixes for v7.2:
+- Fix agp_amd64_probe error propagation.
+- Require carveout when PASID is not enabled amdxdna.
+- Clear variable to prevent second unbind in amdxdna.
+- Add separate Kconfig option for DMABUF_HEAPS_SYSTEM_CC_SHARED.
+The following changes since commit 62c1671f6454ceaa80e9ceff63f821aa36f35154:
 
-CI Bug Log - changes from xe-5243-eebb2a1700eaa412ee8e0843bafce7bc5025638b_BAT -> xe-pw-163970v6_BAT
-====================================================
+  accel/amdxdna: Return errors for failed debug BO commands (2026-06-03 11:47:12 -0700)
 
-Summary
--------
+are available in the Git repository at:
 
-  **SUCCESS**
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-fixes-2026-06-11
 
-  No regressions found.
+for you to fetch changes up to f7606400f19ca0291718ce4eed5770798890ea2f:
 
-  
+  dma-buf: move system_cc_shared heap under separate Kconfig (2026-06-11 20:21:44 +0530)
 
-Participating hosts (13 -> 13)
-------------------------------
+----------------------------------------------------------------
+drm-misc-next-fixes for v7.2:
+- Fix agp_amd64_probe error propagation.
+- Require carveout when PASID is not enabled amdxdna.
+- Clear variable to prevent second unbind in amdxdna.
+- Add separate Kconfig option for DMABUF_HEAPS_SYSTEM_CC_SHARED.
 
-  No changes in participating hosts
+----------------------------------------------------------------
+Arnd Bergmann (1):
+      dma-buf: move system_cc_shared heap under separate Kconfig
 
-Known issues
-------------
+Lizhi Hou (2):
+      accel/amdxdna: Require carveout when PASID and force_iova are disabled
+      accel/amdxdna: Clear sva pointer after unbind
 
-  Here are the changes found in xe-pw-163970v6_BAT that come from known issues:
+Mingyu Wang (1):
+      agp/amd64: Fix broken error propagation in agp_amd64_probe()
 
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@engine:
-    - bat-ptl-1:          [PASS][1] -> [FAIL][2] ([Intel XE#6519])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5243-eebb2a1700eaa412ee8e0843bafce7bc5025638b/bat-ptl-1/igt@xe_waitfence@engine.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163970v6/bat-ptl-1/igt@xe_waitfence@engine.html
-
-  
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-
-
-Build changes
--------------
-
-  * Linux: xe-5243-eebb2a1700eaa412ee8e0843bafce7bc5025638b -> xe-pw-163970v6
-
-  IGT_8959: 77337ca2d2dd470f3b32f1cf4760b0e79a52e2b7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5243-eebb2a1700eaa412ee8e0843bafce7bc5025638b: eebb2a1700eaa412ee8e0843bafce7bc5025638b
-  xe-pw-163970v6: 163970v6
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163970v6/index.html
-
---===============8167999631024273629==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add reclaim to the dmem cgroup controller (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163970/">https://patchwork.freedesktop.org/series/163970/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163970v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163970v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5243-eebb2a1700eaa412ee8e0843bafce7bc5025638b_BAT -&gt; xe-pw-163970v6_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-163970v6_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_waitfence@engine:<ul>
-<li>bat-ptl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5243-eebb2a1700eaa412ee8e0843bafce7bc5025638b/bat-ptl-1/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163970v6/bat-ptl-1/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5243-eebb2a1700eaa412ee8e0843bafce7bc5025638b -&gt; xe-pw-163970v6</li>
-</ul>
-<p>IGT_8959: 77337ca2d2dd470f3b32f1cf4760b0e79a52e2b7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5243-eebb2a1700eaa412ee8e0843bafce7bc5025638b: eebb2a1700eaa412ee8e0843bafce7bc5025638b<br />
-  xe-pw-163970v6: 163970v6</p>
-
-</body>
-</html>
-
---===============8167999631024273629==--
+ drivers/accel/amdxdna/amdxdna_pci_drv.c |  9 ++++++++-
+ drivers/char/agp/amd64-agp.c            |  2 +-
+ drivers/dma-buf/heaps/Kconfig           |  8 ++++++++
+ drivers/dma-buf/heaps/system_heap.c     | 16 ++++++++++------
+ 4 files changed, 27 insertions(+), 8 deletions(-)
