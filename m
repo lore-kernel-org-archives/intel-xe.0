@@ -4,157 +4,153 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 754CDCD98C7
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jun 2026 16:27:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40487CD98CE
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jun 2026 16:40:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 242FE10E7C1;
-	Thu, 11 Jun 2026 16:27:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3EE010F004;
+	Thu, 11 Jun 2026 16:40:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bLtOXz9h";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EdgELHjk";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B97810E7C1
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Jun 2026 16:27:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E35D10F004;
+ Thu, 11 Jun 2026 16:39:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781195260; x=1812731260;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=FuS7QKmQyZERuX429lzGlEiAJL+l5Tj3jn/TDKmPFCA=;
- b=bLtOXz9hBLbGhyqTOJoKB1QPodMmhSZMpYPGJlGXqm7UtqG34KHVuQyX
- hZdu0i/A1gsRUACn4Vxn448FS70bW3aZNk5XAHdr+kZv2zRT/VgTuR0um
- 6BOF4z4C5xfTnoq3pFs1BSS5SlvRvjaMf7uyHjP9qDz35XKA+oXMaBhMj
- iNbFQfPBBLQN0nj3ETT3G19RQve918FLK1PpW0dzNxCCf6rzkEwybbwPT
- Xv+xUxQZihNRl0fnF06Neuoy159nlImKJajCK20DAiViF4dTsNieZDYX3
- ctlQaH4kPv/RzRcHYZ3XqkOYkIgpDLQP89bnKmNjcKrHTyhXKRD8OpDcF w==;
-X-CSE-ConnectionGUID: npV2sPenRfCVJ9y9HkYqJA==
-X-CSE-MsgGUID: hvICZZCWSTOKqUL5HBlWeg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="81755548"
-X-IronPort-AV: E=Sophos;i="6.24,199,1774335600"; d="scan'208";a="81755548"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2026 09:27:40 -0700
-X-CSE-ConnectionGUID: AM+veH/VSsiWdxwOpMA4Uw==
-X-CSE-MsgGUID: Kc5H7AJTTUuBUahqhKzqNQ==
+ t=1781195999; x=1812731999;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=jD4TiOtYxXl/k0/BwnNzNfZRv/iYXBLCsp3bqAnHRKo=;
+ b=EdgELHjkG8DJ2qydI2GHAA6m8XV8eRqjlWncHJvWhUkPP7xxRLGt9i9Z
+ tv9M3EUaJTcZpVzvwZxLYyzk1QzdicLChVOANy1p+cI7pqd51H/WAYYpG
+ 7IQKQMlPgfQvrZkaeiwNKTdleJANCyotmIrODkZKyQBD7MEVYk33l257w
+ gLEvhzTsoCIiop/hKqcTTNEcWzgvxYx53SDU2UC79Yk7SPCgnLizMSvnE
+ PlIM4nA7OElqYFGDWRORkd+1IT+cUcNfQhs0VtdD723Qh4nLrMq0yyj4P
+ muOtjR0ikhNl+WzxHrlR6/7d3ciNolPzm1SJ2CvlpXPW6bqD1014c9Nte Q==;
+X-CSE-ConnectionGUID: PdETkfkzTee9MeptTVNuDQ==
+X-CSE-MsgGUID: xtiUVhkzQhC2mFjrXs4Dkg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="85856550"
+X-IronPort-AV: E=Sophos;i="6.24,199,1774335600"; d="scan'208";a="85856550"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2026 09:39:59 -0700
+X-CSE-ConnectionGUID: eC1pnhfvS2GjkrZAkuohrg==
+X-CSE-MsgGUID: EczB10tFQ3iRRo8vDoVBLg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,199,1774335600"; d="scan'208";a="270198019"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2026 09:27:40 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.24,199,1774335600"; d="scan'208";a="284627265"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2026 09:40:00 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 11 Jun 2026 09:27:39 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.37; Thu, 11 Jun 2026 09:39:58 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Thu, 11 Jun 2026 09:27:39 -0700
-Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.47) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Thu, 11 Jun 2026 09:39:58 -0700
+Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.13) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 11 Jun 2026 09:27:38 -0700
+ 15.2.2562.37; Thu, 11 Jun 2026 09:39:58 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=TJnfnApshep4TBYngQL+76hET9Qw4I+4TpdSz/JoNl+iZahbsnpCVb0077iqfK3npGETSzOVslmleextNrSlFuXwqkatXbUbV7zXYMmTJZ80vUnmzQdER46mjzsrz3bd4SUS+VD/mU8fqdnl4MKHmIW3LlOuyNlZiyAVKo570cP4YeQ4cewvOGRcvXcPz0IAG9Hjd0QyD+I4VQI+ia4RKa4u/2tiIvgtOrjv89h/MNm8KtnS76NXwcDuoYJj7kJLbqjg3TJbVuau3L2Rtu/80ZvYYeO2CQD55xCsbqLbZyEj164fXj5GxaalvPc/wZ2BaWVcUOnOg73fPDFK1P/koQ==
+ b=KPIkZL3QLjIgl/nblfuf+Ag8J+EA9a0h4kzbDPSgDqnWSNuK/9boAorvh1g/m2rRiQ6V8CRQd4UoNxtVdaJKLVnBJ3Og44dOvL9z3/wdWbc0PENqtoj265CMys0Z/QeBnDLuvG4vb30YbKB+JaQA3rBYU1snVXT9g+LWxCUEJZr+vtRGyTbL2jawD5Oit/qN3FA0rldTXKKHlZ8xMNmJeA7IMhSA5LKoHCrRyoqzOCSlqBTF+XBElj3Yjr0N1pWKJxDQIRm/jmaVAlmzKqPbqFnD377cm0tQ+N8SJCwMEfir7F0Vu6zRC68hkt++hj5wvhE0Cei51xWiYWrTFuiAvg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FX15yrItCbZnG8bzhKXgWn2/iSn3Exdr0OO4eI7kpzc=;
- b=wOZnXu+VtkFH+6YpgZLxa/BuUBS0zTaOFiU8/rBL3LVrtQmcTLy6ronb3deIa+hZKI2XbEKm4Q4e31uPCLCo0sY8mTfLpuNy/6KK3rufKslahtTlI8W6l8Om+/XUmIUSEP8ZXnPCNI+wb0WaBvnborGCkTfQg34xLaV5STMarElO0vhMKou/IaQ4BZa8tR5NTiBBx+4iMxrSUxU3Xg8q6+oEAofXh1DPwzRiArTSFEU7lTVKsL+DuiDG3+GBydpsbaM9gtPi3Zci1pZvTdnuQNGhPODS3zP35MaLGJ6/RAR3eUM72lTkPpTUF06l3aRvpvOdg5Z0QUgYAHd7KCDENg==
+ bh=rHfntIw/6dH1oZhiT65tziHksLLo+Ckde7drdP6OGtg=;
+ b=FJ965Xb5VBIL+GD4ruzFxIe4fDfFZRPg3PWUNBWziufjyW38RVo8hY2ZN/5MILRvluSxHVolXY+/IL2rg9wmbEci4QopLdBEL//uDWnM8dr3LJIXgs+qRMKGvtQACx1wprEKxus6GzrpthJStSfNIADW0rdMbB1YnqNAFyq+8YvLekenqpKiRqMbPHhX4zlcavXUfl6kDmyltH6N3KP682gBWTjO/QpYfqiAPOSO9g4OwEOp45om6xEeVdUL/mu55XjGp9gaZzNWu5CVvZTAe2rksGqHayxZX3rbdp53gNkmkbYKbhAFrhy6JwXMlE5H+Lx29OwHRpQtmGCPB9cGLw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
+Received: from DM4PR11MB6360.namprd11.prod.outlook.com (2603:10b6:8:bd::12) by
+ IA1PR11MB7387.namprd11.prod.outlook.com (2603:10b6:208:421::9) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.92.18; Thu, 11 Jun 2026 16:39:54 +0000
+Received: from DM4PR11MB6360.namprd11.prod.outlook.com
+ ([fe80::22d9:ae03:5db1:680]) by DM4PR11MB6360.namprd11.prod.outlook.com
+ ([fe80::22d9:ae03:5db1:680%5]) with mapi id 15.21.0092.016; Thu, 11 Jun 2026
+ 16:39:54 +0000
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: "Manna, Animesh" <animesh.manna@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+CC: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>,
+ "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>, "Nikula,
+ Jani" <jani.nikula@intel.com>
+Subject: RE: [PATCH v8 07/20] drm/i915/cmtg: Set timings for CMTG by using
+ transcoder timing helpers
+Thread-Topic: [PATCH v8 07/20] drm/i915/cmtg: Set timings for CMTG by using
+ transcoder timing helpers
+Thread-Index: AQHc85dLceUcIu3Pfkq2a9jXhp/l+LY5lXDA
+Date: Thu, 11 Jun 2026 16:39:54 +0000
+Message-ID: <DM4PR11MB63600D482C3E8A9E90E82530F41B2@DM4PR11MB6360.namprd11.prod.outlook.com>
+References: <20260603195416.91639-1-animesh.manna@intel.com>
+ <20260603195416.91639-8-animesh.manna@intel.com>
+In-Reply-To: <20260603195416.91639-8-animesh.manna@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CO1PR11MB5073.namprd11.prod.outlook.com (2603:10b6:303:92::23)
- by DS0PR11MB7444.namprd11.prod.outlook.com (2603:10b6:8:146::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.18; Thu, 11 Jun
- 2026 16:27:36 +0000
-Received: from CO1PR11MB5073.namprd11.prod.outlook.com
- ([fe80::a153:939c:df8c:f4fe]) by CO1PR11MB5073.namprd11.prod.outlook.com
- ([fe80::a153:939c:df8c:f4fe%4]) with mapi id 15.21.0113.013; Thu, 11 Jun 2026
- 16:27:36 +0000
-Date: Thu, 11 Jun 2026 12:27:32 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
-CC: "Souza, Jose" <jose.souza@intel.com>, "Mrozek, Michal"
- <michal.mrozek@intel.com>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>, "Brost, Matthew" <matthew.brost@intel.com>, 
- "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>, "Auld, Matthew"
- <matthew.auld@intel.com>, "thomas.hellstrom@linux.intel.com"
- <thomas.hellstrom@linux.intel.com>
-Subject: Re: [PATCH V11 11/12] drm/xe/uapi: Expose ban reason in
- EXEC_QUEUE_GET_PROPERTY_BAN
-Message-ID: <airh9Efs3DRyVRG6@intel.com>
-References: <20260605123839.236021-14-tejas.upadhyay@intel.com>
- <20260605123839.236021-25-tejas.upadhyay@intel.com>
- <543ed281612b0f8b1cd289448ae917896f18200c.camel@intel.com>
- <aidgZ1zsihvCPGqq@intel.com>
- <DS0PR11MB8718ECA4E0D9067E4C41EE51811A2@DS0PR11MB8718.namprd11.prod.outlook.com>
- <aimDM0CpapzxZP9n@intel.com>
- <DS0PR11MB871835057D993500ABBB8412811B2@DS0PR11MB8718.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <DS0PR11MB871835057D993500ABBB8412811B2@DS0PR11MB8718.namprd11.prod.outlook.com>
-X-ClientProxiedBy: SJ0PR03CA0339.namprd03.prod.outlook.com
- (2603:10b6:a03:39c::14) To CO1PR11MB5073.namprd11.prod.outlook.com
- (2603:10b6:303:92::23)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PR11MB5073:EE_|DS0PR11MB7444:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8fc19d2c-7167-4b62-4a58-08dec7d658b9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|23010399003|366016|6133799003|22082099003|18002099003|4143699003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info: tkQT45wrHAECX7LNVGMSpV/vlSJ1mPY4yy/uxhdZ49FEDruIp8xjyagt4O4aqfhxW6VPtwU5VIMo17pnhXUQ4L3EjaC9m7a6Qjy9IXdxBjf3LqI+FX5Ksg79FMLR4EKJEwNprHUbncZcgPCY93pQLJPRqyxwbtmKKJJltwVB3BO9nxRs7Lhi4HuOdV0Th7n5gF2zsoMxbaN6gbh3B6aVS7psdntDakVXpcDCc5qj7k2GWdJ9YGw9hyA2e5Hw9qUwoNNgJ0kreuZ5ridZfM66fjEFrL7595qVXFqJZsObmU0b6KVZddNdM4H0gY+ttcgZxrCV54dKELIdEEnGnjYsqk6p+o9zO8KApSKKU/dWTQuwKjW6GD5ZrRabsg4EGWMk+w6YRsIexjr9Ar2I/wyl7Zdrw7si9IzOvQmNTS1xlQaAsCyh+BAfWOPJ0VkbCB7aUt+o8zuljDB1CwZjCxszX+V3QGzD2tAjDeSkjjqWqNXsQZAhtsJnKWX9O3B3Wr/wvAEX5aTzPDcvuzW1G5Qn9+L8I+BLUlRSapUjuPtZs10gGQZ2XLKPJwzHixfn1Ae4dER1z2cNozZ2GvBomKP12/3HATI+qPscYyhNIu4UBjBAUAS1CadYt+dMrLeFFhmy+gg1iz095H6Y7SBQ7Xpedg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO1PR11MB5073.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(23010399003)(366016)(6133799003)(22082099003)(18002099003)(4143699003)(11063799006)(56012099006);
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB6360:EE_|IA1PR11MB7387:EE_
+x-ms-office365-filtering-correlation-id: 0e72c576-bad8-4f8b-b5eb-08dec7d81123
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|376014|366016|23010399003|38070700021|22082099003|18002099003|4143699003|6133799003|11063799006|56012099006|5023799004;
+x-microsoft-antispam-message-info: RcNhX0Qkx2gHGtTUiJQzmyLvq2ObRn+CPNppIRSJSqVYHA1P/eylKt0oenlWmF4pDx3hfeSoLNb9Z9SWRbUVr00GIZU5yNaoIMkG4HH7/jrAzo9WVXGSPJydKPUJReAl7uxwT2lSIaH+Z3hWLLyJVywQF9KL3z+4knFxzkGfyqZyxXQN9tLNJUzCn4HCqNSF+eEFU8cYzZPu2TC0oSSwlwQTOHgNfnWzQqq/e5xq0oQKdjx+X7O7KIKR/lxhkc1+7uGEnKQmssYKiNo8JDBO74dgqSb9kMJtCzCcYYJIAcfpp0fmSL+desSklAXjV6EhTDEsnsux1dQm+r3Rof0MPw/qzhAnBAY7NLANuBivROC2CnAAL7GNY/yQ2SvDzTubvypSc+17qbUbwFa4NyAhEJNRCSpBGyiQ5demzA0+9lnB80nUgJeD99JrYWNTjas6pHEOo2SvPGV4uts6Xzgi2BYOPdTazTDvCsK7hsm0IvtIe5pOaIaQ6DsiYdaKKrwx8M3/BBAFxzXGP/W/RV9c4hsp9dIQqRESnjeGyYwWLujGmNuOlqgLMCr6usnMYjUH1OMmm6C11xLcQksYye8f7O4w9pgyR4t36R/sT9h8ms2pOx8ewairEnZp3R+vCpUhK15kSbLIoi2fzWmQyzoCB9pTOyNGZlmeBqn/sHWz/XyoxOE/HiQgR96tigVZcO2+6bB/AnJx9L1zTmMzJh9bxtKE+7oGg3o2ncq/IX5fk3H2euWAFEowQxQdoAs4lFyZ
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB6360.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(23010399003)(38070700021)(22082099003)(18002099003)(4143699003)(6133799003)(11063799006)(56012099006)(5023799004);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?0zPVUyCUv82YuMx28BYDblL1LmTAydNutkquVNhWEgHWiD1T7fK/+1UL0v?=
- =?iso-8859-1?Q?2xjvklyeBgu17GuubbZ866HHQK5jd38XLvh14vPSbM0mRQMk4eTJjbvMkd?=
- =?iso-8859-1?Q?TUKmacWs31FkEnqy9hz+LsQl4kUJ/6CYT0ANC8GJwylC6Y1vWvk1rEdBkX?=
- =?iso-8859-1?Q?T2r7QwkRREC7Ec2P3DcG0qUkfPrBlWiUZCs8FZ4VEGePMbNsTxR5fwh3qY?=
- =?iso-8859-1?Q?9VxaL3WJIO51YDgGyVNSiRLLnW/26PUESe3xO2EqZHpjMgkGspzozxqLf3?=
- =?iso-8859-1?Q?WZ6DDZO36VdZd0L0IBZJcnodI5rvN8A8TGAz5q3QRp2cTANckxasxmrn/x?=
- =?iso-8859-1?Q?OK8+PCDjOLycHn5vvZtrVIgt2IRMgZzZq/dzHOqeoTNlwRbB+6izo23N0v?=
- =?iso-8859-1?Q?8X3Ndz0zodB5JMKPSmoXSz0ZjKTiUOJdBSa9yYtdPcV6olrrnFfbVYLv9V?=
- =?iso-8859-1?Q?AGe31hThz8NjQTMD3/idU6LqUSrnnAPgMpTsfyumypjlYs+yXSQ4Iffbhj?=
- =?iso-8859-1?Q?f/vn9QG9q7nTPyGKxRPH5VMSQy+VKB1Zs/ILE9NoA4wWq5Ei4XZSbLm9ur?=
- =?iso-8859-1?Q?JnVB/TqkFR0CIvZFE+1aZNodyxrdVtMIDq8fM/RDm42zoKY69LwOqncCS1?=
- =?iso-8859-1?Q?qtAthlvNxG8XlJO1kkcJmyVqUeC4fJY0LGoRda/bxsKY/zoSDkvjikRY0F?=
- =?iso-8859-1?Q?Mc9J74+9GgthNAmvqcTqP8L95I/JiM4NZCjmla07HSpUpvgpprJ1X3efHj?=
- =?iso-8859-1?Q?PSRDfLWLBzjBesaHhNmzU4xFB31vZrXG24HS4I1n2McPZQhnKrZDPYC1hg?=
- =?iso-8859-1?Q?yL7vILRmxcqKl8eOcycMyv3wxHSI9SlOJ3CGKWy8ijbjEFa/yiPNDKY5zn?=
- =?iso-8859-1?Q?2L/19Xxd5fS9w6MIyRlasC1zViuvmQDbJAbRXv2sYzCbwzUpx1wVhiXkt9?=
- =?iso-8859-1?Q?jz45RmI+MxszWEcxA4UMwxWMncTvac9Qdg8OQdR5ryN4fMQnoQPvV4NbUU?=
- =?iso-8859-1?Q?5EKspKHLUuC/rjl4sjdkMey7aMZnu0yXDnChom5jgOCis2T3Je5YCLEsl4?=
- =?iso-8859-1?Q?SSTQPoAm09ArOa100HQtW83fzbv7d1WaEMrZt69RC6EwFmZuVJHQi0Cpie?=
- =?iso-8859-1?Q?HxplXwlex4fJtvTChvAqjxF0twpR1S6JTQaeUFJVcfuxM/TYwsWGzl812N?=
- =?iso-8859-1?Q?2/OacolZdo1DyJbIoQTriVVwx8HXY2LAA62zifY02ahh7iIgheukMQg/Yy?=
- =?iso-8859-1?Q?f5PFSnq9RL++UKSndUX8E1AJBZ6+n8WhNsa4TfRDS3dUH3p8+7zCCNT5ht?=
- =?iso-8859-1?Q?FMWX7ZpqMCvUgoWPqmQJMDU1iDj1hW8yhE6MlEH5sW1zrXmU4jZ3k0+Ny8?=
- =?iso-8859-1?Q?Rm7yaFuHAAeBwfVz/K3hET8zyTZEqCQZmJlK31hlQxdGRvOz9zF/unFnkn?=
- =?iso-8859-1?Q?nJuFlcQN4lQcaE6SE/eOE1mqrD9EXFuhPYi5hDxZPUNyNcYY6L+/CzkztT?=
- =?iso-8859-1?Q?nn91hnNodrB4kMeEp7dIj/BvHUwG0pwkfuouvX8FVyuvPbkl9OQyVflc3H?=
- =?iso-8859-1?Q?EWRxZc5pwmfHRufDAfs8DGieZW6ZhmEp0LIPqoU/Gu9uibX/XmzuSKse1u?=
- =?iso-8859-1?Q?x8SNidkOrZ/EzXYq39IWi4okCTb567lMlyRmxbp9lI+gAAlAP4doEnrqhf?=
- =?iso-8859-1?Q?jwxLimlGJ9Hv14DjcT10KV+Oq6FnUM63T+EvNaIc1HWzoBAC9bc7FNfL/p?=
- =?iso-8859-1?Q?e+BpY7QncrLlTFkFG9O+biIH0X65FpzlL+1Yz1K6WFbMGCLfQWw+JrgylC?=
- =?iso-8859-1?Q?gVGPwfZ/eA=3D=3D?=
-X-Exchange-RoutingPolicyChecked: JXqtZvpbz/nD9yUdeddrT6uJovKf6MqTqdPvBYFtknv9kYT9x0Emqa/Cpp0Sc4b+2528QcP48DD+/rUGUFPcK7QX4XmwZ2tR6EipY8isA2h4pfYLriJ/bJHzg1UiIFYfZMl9CISRnI528RNKVc/ZmYy/ndru8drfrhdVSBbRgNNgHUNV7eBOotZ5RHKJT2Xgxkp0C9qYc752uzASfY72v34qPVZIwdUYJap5UTspsBsnbThcNTY7j6GawlZIAPeRRA1T55xXXRhPfYibo0wZ7pZc9w6fj8wSoA+WKKRgjewgUDRswVmWwMCjsAOHEfxBX/QfIuIlChNWRx76HvYD4Q==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8fc19d2c-7167-4b62-4a58-08dec7d658b9
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5073.namprd11.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?hX91dzb3ytLtKtCc+A77mUtz7GJ+FL0rUsKL5hRd4koGfz7cKYC13YZWIXxK?=
+ =?us-ascii?Q?u+HBpEqEkfJkSI3nm7dHWRiz9uXMH+indWoPFgtAqocceXAVMjQBPeGCKloH?=
+ =?us-ascii?Q?YkCFqAk7lFitaIt4QdYGfMLGkj/Wgd4x7jZcJxLdCkEU0fDZRPQ/zAhPmEDO?=
+ =?us-ascii?Q?3oTX5T1h4cdjk0hTOsrQaXeoIzB7+mTSeLUSov1gxwQigh28Hi56okr2nrAb?=
+ =?us-ascii?Q?aTxYIgFBLo6uJgrfmTrs7wPfBZjg9cZxhZS7nnBPnzbb3BfqI6U+7qFXOBiD?=
+ =?us-ascii?Q?rLbCAgeBDhktITLQcCAFxx2+wDrowoTzBNCodI0ocxfywG/ptp/kB/EPMH3g?=
+ =?us-ascii?Q?u8rP6Bc0pkp6OH2bKhuwp7VeK4M/3V2pcD9xckq5fAQfsXurfJkRUDUyyC6J?=
+ =?us-ascii?Q?Ssn9KvQx64IX/KmgsZfYBkjkrTlJPSupaBsmRaF4Ow9dD8x8Wtis/ypgHuB3?=
+ =?us-ascii?Q?Q+FPjO77rI0pe38eF94cqcXWkf1H+wPFbavNWRr/r3HHhdxVdNpj2iC3LhMY?=
+ =?us-ascii?Q?lO5LCie5L5vwqAsb5tU0CFmt8T5ks+TmCDErEQxqCXtWSfd8HboRVJV0xjux?=
+ =?us-ascii?Q?DlK3M1AmBM3vB+t+mm7qFmKnZn1nb4JePEbw7UtMNJDuAPZuvp7C5LZToB/Y?=
+ =?us-ascii?Q?Q4AmnFdBxmNKDUKDJYPKtdyztE7xWnJuTeLT3k3l1tb23y0MBPZyYCMi9FvQ?=
+ =?us-ascii?Q?X7fBOomIxSDnTQ+KwZBCdyBsK/J8SlAY3HQ79ZKCSnyWvHsqaQPJglzuPW6W?=
+ =?us-ascii?Q?7r7O1KN7i/T/kuHGVGGKIjkpQkYYvuF+cdpVKauRUp7L35aftCyyiMMjGDAv?=
+ =?us-ascii?Q?7hDrKiPgKy3dlbtv2sQAbkL1dU1OFaEw6VMFvGFYFgYwhWwgUsV/VANxQSqO?=
+ =?us-ascii?Q?suXl7aVkgtsT7po0ymf85F4kF50p6yted0KHpeQFBr01+8Ix0TMu4in2D14L?=
+ =?us-ascii?Q?l/5WNGiRwXHm5t1+fTLjBu1zNUOQp5HhcXxtmDc8C0LEtc1xhb1ujjT2QWcP?=
+ =?us-ascii?Q?eNLBVRlEiVU+mHYP2NQBOWN3tkFgd0BLiH5mnpwPWBq7ESiewfly98PqDZvO?=
+ =?us-ascii?Q?CunaGI6DxEeyM6wjDo11BNWi2LP5ZvTa+c/Z3jSPoDsUdvPgc3lXILo8cBLM?=
+ =?us-ascii?Q?XyCIwRkqceXHCtyxV72DzLKoUXvLMYtTsMMCeRYMQg8LirKcexjmcLQC5s40?=
+ =?us-ascii?Q?QyMdas5/kxqb42PiPHBRMAHhNvS8Ikm3UBakYTcv0pvlJDKBlDGQ7R5cHvAy?=
+ =?us-ascii?Q?oexMng39O9NgXco0bVAuYjTfnfM9BLQaSxUA0Lx2rZq9yW7rfSCSkrNYMpck?=
+ =?us-ascii?Q?jpt945F9V4HIL8XFgEJOMSe9SvBVgzRZee7Aq+dG49/YsrvYboN1to3uxIrt?=
+ =?us-ascii?Q?XDhwlEUa3Uuq4x227o69ery4YcdEKCGnfdCckuSEMpby8RbDC1PM3lSsYUbM?=
+ =?us-ascii?Q?x1IUpRu06xnzmrDhVsU2WHZMJlRASKifjLRoTyti/FRO8qauig1xOa1z7ji0?=
+ =?us-ascii?Q?YKb5kYasfJHkcaVbwtBJlGPSL/pIm2Dar8zE4cWo8UgIaBkPe01Gr+jx/997?=
+ =?us-ascii?Q?xSTNfXFGdhNsMVmDrSruP8OrOZ1T7x7m9rUkWBtlfuo1aqbLhhidCnornOj6?=
+ =?us-ascii?Q?rmkuavutAGE/KKTdJ3tg/NXZ4YNcy3pH0ybswRi0lZdkODKqgZDd+p+9qCif?=
+ =?us-ascii?Q?wKZWIlFD78VNKT674jGh/9rYOMsmoPp9WKUXA1WshuKiBZGIkXX75FQPYDqn?=
+ =?us-ascii?Q?3CbE4g0B+A=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-Exchange-RoutingPolicyChecked: KFlHc0r+UtNDQ34m8Te6VrEXQdJIdlKZhN/yYNGDSv+oO0iub9qBAH7zQO30X5b3+TM/oNzGDIPHhqL4KY3DwtAJy8tnX3hOlYjcR69R4CHQ0pxyowjrARgkixrf3qCcKmuQtfkworP7GBuciBnSSojHtQbY+aAdBVyYjJ8joof4si7mJEzgbYS8L9SPO/o8ngm0+EMGf8PmnQiqo6zpmGN/hagKcONyCuC4IAHyCGCY4x7IO5RSaSj6c0eW7hnXvZRt/tI3RJ0mUSdicLKEsNukcU8ZxH9QBWddfkdEDktanU4X2dTY0h5+1m8BDMXzdZCY1+8zRFmI5OLPYc/VLw==
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jun 2026 16:27:36.2113 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: J3671CZAg+6xYPsfeqE576qupmei8U9APcK2MbPahd24sut3pVeRsD5cinfh3Zk6jRV0UU+sbHiyANSibANEFA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7444
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6360.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0e72c576-bad8-4f8b-b5eb-08dec7d81123
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Jun 2026 16:39:54.7515 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 8Ns0dig6nDLrTOQbZmvPFCh9iokPlb3cT1ztFJZ+OaOG+KGH9Y2j4AYEc9VrhFyVqZeSuTRNRZrs//T71a4+nQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7387
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -170,315 +166,219 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jun 11, 2026 at 06:55:56AM -0400, Upadhyay, Tejas wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Vivi, Rodrigo <rodrigo.vivi@intel.com>
-> > Sent: 10 June 2026 21:01
-> > To: Upadhyay, Tejas <tejas.upadhyay@intel.com>
-> > Cc: Souza, Jose <jose.souza@intel.com>; intel-xe@lists.freedesktop.org; Brost,
-> > Matthew <matthew.brost@intel.com>; Ghimiray, Himal Prasad
-> > <himal.prasad.ghimiray@intel.com>; Auld, Matthew
-> > <matthew.auld@intel.com>; thomas.hellstrom@linux.intel.com; Mrozek,
-> > Michal <michal.mrozek@intel.com>
-> > Subject: Re: [PATCH V11 11/12] drm/xe/uapi: Expose ban reason in
-> > EXEC_QUEUE_GET_PROPERTY_BAN
-> > 
-> > On Wed, Jun 10, 2026 at 10:17:26AM -0400, Upadhyay, Tejas wrote:
-> > >
-> > >
-> > > > -----Original Message-----
-> > > > From: Vivi, Rodrigo <rodrigo.vivi@intel.com>
-> > > > Sent: 09 June 2026 06:08
-> > > > To: Souza, Jose <jose.souza@intel.com>
-> > > > Cc: intel-xe@lists.freedesktop.org; Upadhyay, Tejas
-> > > > <tejas.upadhyay@intel.com>; Brost, Matthew
-> > > > <matthew.brost@intel.com>; Ghimiray, Himal Prasad
-> > > > <himal.prasad.ghimiray@intel.com>; Auld, Matthew
-> > > > <matthew.auld@intel.com>; thomas.hellstrom@linux.intel.com; Mrozek,
-> > > > Michal <michal.mrozek@intel.com>
-> > > > Subject: Re: [PATCH V11 11/12] drm/xe/uapi: Expose ban reason in
-> > > > EXEC_QUEUE_GET_PROPERTY_BAN
-> > > >
-> > > > On Mon, Jun 08, 2026 at 10:03:50AM -0400, Souza, Jose wrote:
-> > > > > On Fri, 2026-06-05 at 18:08 +0530, Tejas Upadhyay wrote:
-> > > > > > Extend DRM_XE_EXEC_QUEUE_GET_PROPERTY_BAN to return a
-> > bitmask
-> > > > > > indicating the reason for the ban, rather than a simple boolean.
-> > > > > > This allows userspace to distinguish between different ban causes:
-> > > > > >
-> > > > > > - DRM_XE_EXEC_QUEUE_BAN_REASON_GPU_HANG (bit 0): exec
-> > queue
-> > > > was
-> > > > > > banned
-> > > > > >   due to a GPU hang or job timeout detected by the TDR.
-> > > > > > - DRM_XE_EXEC_QUEUE_BAN_REASON_PAGE_OFFLINE (bit 1): exec
-> > > > queue was
-> > > > > >   banned because a VRAM page backing its resources was taken offline.
-> > > > > >
-> > > > > > The ban_reason field is added to struct xe_exec_queue and set at
-> > > > > > the point where the ban is triggered:
-> > > > > > - In guc_exec_queue_timedout_job() for GPU hang.
-> > > > > > - In xe_ttm_vram_purge_page() for memory page offline, before
-> > > > > > calling
-> > > > > >   xe_exec_queue_kill() or xe_vm_kill().
-> > > > > >
-> > > > > > The reset_status op is updated to return u64 with the reason bitmask.
-> > > > > > When a queue is banned but no explicit reason was recorded
-> > > > > > (e.g., from a generic CAT error), it defaults to GPU_HANG for
-> > > > > > backward compatibility.
-> > > > > > A value of 0 means the exec queue is not banned.
-> > > > > >
-> > > > >
-> > > > > Acked-by: José Roberto de Souza <jose.souza@intel.com>
-> > > >
-> > > > Do we already have a userpace change with this?
-> > >
-> > > By userspace you mean IGT or other UMD? I have thought to add simple test
-> > to offline and check for BAN reason in xe_exec_basic or somewhere. I have igt
-> > tests  https://patchwork.freedesktop.org/patch/714751/for testing
-> > mempage offline via debugfs but that does not test complete flow of
-> > mempage offline feature so not extending it with this.
-> > 
-> > I'm missing the end to end flow in here...
-> > 
-> > could you please clarify what this API is used for? Who is using it and how and
-> > when?
-> 
-> Ok. This API is used for userspace 
 
-So, please have the userspace code using this API ready and publicly available
-in a pull-request (userspace repo).
 
-Meanwhile, please do not merge this change.
+> -----Original Message-----
+> From: Manna, Animesh <animesh.manna@intel.com>
+> Sent: Thursday, June 4, 2026 1:24 AM
+> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+> Cc: Shankar, Uma <uma.shankar@intel.com>; Dibin Moolakadan Subrahmanian
+> <dibin.moolakadan.subrahmanian@intel.com>; ville.syrjala@linux.intel.com;
+> Nikula, Jani <jani.nikula@intel.com>; Manna, Animesh
+> <animesh.manna@intel.com>
+> Subject: [PATCH v8 07/20] drm/i915/cmtg: Set timings for CMTG by using
+> transcoder timing helpers
+>=20
+> Expose intel_set_transcoder_timings() & intel_set_transcoder_timings_lrr(=
+)
+> so that they can program timings on any transcoder, and use them from a n=
+ew
+> intel_cmtg_set_timings() helper instead of duplicating the timing registe=
+r write
+> sequence for CMTG.
+>=20
+> intel_cmtg_set_timings() maps the CPU transcoder to the corresponding CMT=
+G
+> transcoder (TRANSCODER_A->TRANSCODER_CMTG0, TRANSCODER_B->
+> TRANSCODER_CMTG1) and calls the shared helper, gated by
+> intel_cmtg_is_allowed(). It is invoked from hsw_configure_cpu_transcoder(=
+) for
+> the full modeset path and from intel_pipe_fastset() for the LRR update pa=
+th.
+>=20
+> v2:
+> - Use sw state instead of reading directly from hardware. [Jani]
+> - Move set_timing later after encoder enable. [Dibin]
+>=20
+> v3:
+> - Replace id with trans. [Jani]
+> - Program cmtg set_timing() along with primary transcoder timing.
+>=20
+> v4:
+> - Use _MMIO_TRANS() for cmtg registers instead of direct multiplication. =
+[Jani]
+>=20
+> v5:
+> - Modify register definition approach and match existing transcoder defin=
+ition.
+> [Ville]
+>=20
+> v6:
+> - Reuse transcoder timing helpers. [Ville]
+>=20
+> Bspec: 68989
+> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_cmtg.c    | 25 ++++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_cmtg.h    |  1 +
+>  drivers/gpu/drm/i915/display/intel_display.c | 13 +++++-----
+> drivers/gpu/drm/i915/display/intel_display.h |  4 ++++
+>  4 files changed, 37 insertions(+), 6 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_cmtg.c
+> b/drivers/gpu/drm/i915/display/intel_cmtg.c
+> index fbc8a4f2b9cb..082c04bec9ee 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cmtg.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cmtg.c
+> @@ -219,3 +219,28 @@ void intel_cmtg_set_clk_select(const struct
+> intel_crtc_state *crtc_state)
+>  	if (clk_sel_set)
+>  		intel_de_rmw(display, CMTG_CLK_SEL, clk_sel_clr, clk_sel_set);
+> }
+> +
+> +static inline enum transcoder to_cmtg_transcoder(enum transcoder
+> +cpu_transcoder) {
+> +	switch (cpu_transcoder) {
+> +	case TRANSCODER_A:
+> +		return TRANSCODER_CMTG0;
+> +	case TRANSCODER_B:
+> +		return TRANSCODER_CMTG1;
+> +	default:
+> +		return INVALID_TRANSCODER;
+> +	}
+> +}
+> +
+> +void intel_cmtg_set_timings(const struct intel_crtc_state *crtc_state,
+> +bool lrr) {
+> +	enum transcoder cmtg_transcoder =3D
+> +to_cmtg_transcoder(crtc_state->cpu_transcoder);
 
-> to know the reason why their created exec queue is banned. Earlier exec queue either can be hang/banned(non zero) or working(zero) fine. Now with this change exec queue can be banned due to memory offlining as well, so userspace can now get extra BAN reason when they query and parse like below to know BAN reason:
-> 
-> if (args.value & DRM_XE_EXEC_QUEUE_BAN_REASON_PAGE_OFFLINE)
->     /* page went offline */
-> if (args.value & DRM_XE_EXEC_QUEUE_BAN_REASON_GPU_HANG)
->     /* GPU hang - typical recovery path */
-> 
-> So you are right userspace can check this args.value with adiitional reason case at the same places wherever they are querying right now. @Mrozek, Michal @Souza, Jose FYI
-> 
-> Tejas 
-> 
-> > 
-> > Thanks,
-> > Rodrigo.
-> > 
-> > >
-> > > Tejas
-> > > >
-> > > > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > > >
-> > > > Thomas, thought on this vs the watch_queue you have or they are
-> > > > orthogonal?
-> > > >
-> > > > >
-> > > > > > Assisted-by: Copilot:claude-opus-4.6
-> > > > > > Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-> > > > > > cc: Mrozek, Michal <michal.mrozek@intel.com>
-> > > > > > cc: José Roberto de Souza <jose.souza@intel.com>
-> > > > > > cc: Vivi, Rodrigo <rodrigo.vivi@intel.com>
-> > > > > > ---
-> > > > > >  drivers/gpu/drm/xe/xe_exec_queue_types.h |  7 +++++--
-> > > > > >  drivers/gpu/drm/xe/xe_execlist.c         |  4 ++--
-> > > > > >  drivers/gpu/drm/xe/xe_guc_submit.c       | 24
-> > > > > > +++++++++++++++++++---
-> > > > > > --
-> > > > > >  drivers/gpu/drm/xe/xe_ttm_vram_mgr.c     |  7 +++++++
-> > > > > >  include/uapi/drm/xe_drm.h                | 12 +++++++++++-
-> > > > > >  5 files changed, 44 insertions(+), 10 deletions(-)
-> > > > > >
-> > > > > > diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> > > > > > b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> > > > > > index 2f5ccf294675..77a621da4487 100644
-> > > > > > --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> > > > > > +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> > > > > > @@ -143,6 +143,9 @@ struct xe_exec_queue {
-> > > > > >  	 */
-> > > > > >  	unsigned long flags;
-> > > > > >
-> > > > > > +	/** @ban_reason: Bitmask of ban reasons
-> > > > > > (DRM_XE_EXEC_QUEUE_BAN_REASON_*) */
-> > > > > > +	u32 ban_reason;
-> > > > > > +
-> > > > > >  	union {
-> > > > > >  		/** @multi_gt_list: list head for VM bind engines if multi-GT */
-> > > > > >  		struct list_head multi_gt_list; @@ -316,8 +319,8 @@ struct
-> > > > > > xe_exec_queue_ops {
-> > > > > >  	 * signalled when this function is called.
-> > > > > >  	 */
-> > > > > >  	void (*resume)(struct xe_exec_queue *q);
-> > > > > > -	/** @reset_status: check exec queue reset status */
-> > > > > > -	bool (*reset_status)(struct xe_exec_queue *q);
-> > > > > > +	/** @reset_status: check exec queue ban status, returns ban
-> > > > > > reason bitmask */
-> > > > > > +	u64 (*reset_status)(struct xe_exec_queue *q);
-> > > > > >  	/** @active: check exec queue is active */
-> > > > > >  	bool (*active)(struct xe_exec_queue *q);
-> > > > > >  };
-> > > > > > diff --git a/drivers/gpu/drm/xe/xe_execlist.c
-> > > > > > b/drivers/gpu/drm/xe/xe_execlist.c
-> > > > > > index 9fb99c038ea8..35e6e05ba418 100644
-> > > > > > --- a/drivers/gpu/drm/xe/xe_execlist.c
-> > > > > > +++ b/drivers/gpu/drm/xe/xe_execlist.c
-> > > > > > @@ -452,10 +452,10 @@ static void
-> > > > > > execlist_exec_queue_resume(struct xe_exec_queue *q)
-> > > > > >  	/* NIY */
-> > > > > >  }
-> > > > > >
-> > > > > > -static bool execlist_exec_queue_reset_status(struct
-> > > > > > xe_exec_queue
-> > > > > > *q)
-> > > > > > +static u64 execlist_exec_queue_reset_status(struct
-> > > > > > +xe_exec_queue
-> > > > > > +*q)
-> > > > > >  {
-> > > > > >  	/* NIY */
-> > > > > > -	return false;
-> > > > > > +	return 0;
-> > > > > >  }
-> > > > > >
-> > > > > >  static bool execlist_exec_queue_active(struct xe_exec_queue *q)
-> > > > > > diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c
-> > > > > > b/drivers/gpu/drm/xe/xe_guc_submit.c
-> > > > > > index 4b247a3019d2..ff28eab7cee2 100644
-> > > > > > --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> > > > > > +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> > > > > > @@ -6,6 +6,7 @@
-> > > > > >  #include "xe_guc_submit.h"
-> > > > > >
-> > > > > >  #include <linux/bitfield.h>
-> > > > > > +#include <uapi/drm/xe_drm.h>
-> > > > > >  #include <linux/bitmap.h>
-> > > > > >  #include <linux/circ_buf.h>
-> > > > > >  #include <linux/dma-fence-array.h> @@ -1530,6 +1531,7 @@
-> > > > > > guc_exec_queue_timedout_job(struct
-> > > > > > drm_sched_job *drm_job)
-> > > > > >  	if (!exec_queue_killed(q))
-> > > > > >  		wedged =
-> > > > > > guc_submit_hint_wedged(exec_queue_to_guc(q));
-> > > > > >
-> > > > > > +	q->ban_reason |=
-> > > > DRM_XE_EXEC_QUEUE_BAN_REASON_GPU_HANG;
-> > > > > >  	set_exec_queue_banned(q);
-> > > > > >
-> > > > > >  	/* Kick job / queue off hardware */ @@ -2211,13 +2213,25 @@
-> > > > static
-> > > > > > void guc_exec_queue_resume(struct xe_exec_queue *q)
-> > > > > >  	xe_sched_msg_unlock(sched);
-> > > > > >  }
-> > > > > >
-> > > > > > -static bool guc_exec_queue_reset_status(struct xe_exec_queue
-> > > > > > *q)
-> > > > > > +static u64 guc_exec_queue_reset_status(struct xe_exec_queue *q)
-> > > > > >  {
-> > > > > > -	if (xe_exec_queue_is_multi_queue_secondary(q) &&
-> > > > > > -
-> > > > > >
-> > guc_exec_queue_reset_status(xe_exec_queue_multi_queue_primary(q)))
-> > > > > > -		return true;
-> > > > > > +	if (xe_exec_queue_is_multi_queue_secondary(q)) {
-> > > > > > +		u64 status = guc_exec_queue_reset_status(
-> > > > > > +
-> > 	xe_exec_queue_multi_queue_primary(q)
-> > > > > > );
-> > > > > > +		if (status)
-> > > > > > +			return status;
-> > > > > > +	}
-> > > > > > +
-> > > > > > +	if (exec_queue_reset(q) ||
-> > > > > > exec_queue_killed_or_banned_or_wedged(q)) {
-> > > > > > +		u64 reason = q->ban_reason;
-> > > > > >
-> > > > > > -	return exec_queue_reset(q) ||
-> > > > > > exec_queue_killed_or_banned_or_wedged(q);
-> > > > > > +		/* If no specific reason was recorded, default to
-> > > > > > GPU hang */
-> > > > > > +		if (!reason)
-> > > > > > +			reason =
-> > > > > > DRM_XE_EXEC_QUEUE_BAN_REASON_GPU_HANG;
-> > > > > > +		return reason;
-> > > > > > +	}
-> > > > > > +
-> > > > > > +	return 0;
-> > > > > >  }
-> > > > > >
-> > > > > >  static bool guc_exec_queue_active(struct xe_exec_queue *q) diff
-> > > > > > --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> > > > > > b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> > > > > > index 35b5eaf590fa..3765e8fcdcec 100644
-> > > > > > --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> > > > > > +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> > > > > > @@ -7,6 +7,7 @@
-> > > > > >  #include <drm/drm_managed.h>
-> > > > > >  #include <drm/drm_drv.h>
-> > > > > >  #include <drm/drm_buddy.h>
-> > > > > > +#include <uapi/drm/xe_drm.h>
-> > > > > >
-> > > > > >  #include <drm/ttm/ttm_placement.h>
-> > > > > >  #include <drm/ttm/ttm_range_manager.h> @@ -537,10 +538,15 @@
-> > > > static
-> > > > > > int xe_ttm_vram_purge_page(struct xe_device *xe, struct xe_bo *bo)
-> > > > > >  	xe_bo_unlock(bo);
-> > > > > >  	/*  Ban VM if BO is PPGTT */
-> > > > > >  	if (vm && (flags & XE_BO_FLAG_PAGETABLE)) {
-> > > > > > +		struct xe_exec_queue *eq;
-> > > > > > +
-> > > > > >  		down_write(&vm->lock);
-> > > > > > +		list_for_each_entry(eq, &vm->preempt.exec_queues,
-> > > > > > lr.link)
-> > > > > > +			eq->ban_reason |=
-> > > > > > DRM_XE_EXEC_QUEUE_BAN_REASON_PAGE_OFFLINE;
-> > > > > >  		xe_vm_kill(vm, true);
-> > > > > >  		up_write(&vm->lock);
-> > > > > >  	}
-> > > > > > +
-> > > > > >  	if (vm)
-> > > > > >  		xe_vm_put(vm);
-> > > > > >
-> > > > > > @@ -548,6 +554,7 @@ static int xe_ttm_vram_purge_page(struct
-> > > > > > xe_device *xe, struct xe_bo *bo)
-> > > > > >  	/*  Ban exec queue if BO is lrc */
-> > > > > >  	if (bo->q && xe_exec_queue_get_unless_zero(bo->q)) {
-> > > > > >  		/* ban queue */
-> > > > > > +		bo->q->ban_reason |=
-> > > > > > DRM_XE_EXEC_QUEUE_BAN_REASON_PAGE_OFFLINE;
-> > > > > >  		xe_exec_queue_kill(bo->q);
-> > > > > >  		xe_exec_queue_put(bo->q);
-> > > > > >  	}
-> > > > > > diff --git a/include/uapi/drm/xe_drm.h
-> > > > > > b/include/uapi/drm/xe_drm.h index 48e9f1fdb78d..904d58b039fe
-> > > > > > 100644
-> > > > > > --- a/include/uapi/drm/xe_drm.h
-> > > > > > +++ b/include/uapi/drm/xe_drm.h
-> > > > > > @@ -1503,7 +1503,17 @@ struct drm_xe_exec_queue_get_property {
-> > > > > >  	/** @property: property to get */
-> > > > > >  	__u32 property;
-> > > > > >
-> > > > > > -	/** @value: property value */
-> > > > > > +	/**
-> > > > > > +	 * @value: property value
-> > > > > > +	 *
-> > > > > > +	 * For %DRM_XE_EXEC_QUEUE_GET_PROPERTY_BAN, this is a
-> > > > > > bitmask of:
-> > > > > > +	 *  - %DRM_XE_EXEC_QUEUE_BAN_REASON_GPU_HANG -
-> > banned
-> > > > due to
-> > > > > > GPU hang/timeout
-> > > > > > +	 *  - %DRM_XE_EXEC_QUEUE_BAN_REASON_PAGE_OFFLINE -
-> > banned
-> > > > > > due to memory page offline
-> > > > > > +	 *
-> > > > > > +	 * Value of 0 means the exec queue is not banned.
-> > > > > > +	 */
-> > > > > > +#define DRM_XE_EXEC_QUEUE_BAN_REASON_GPU_HANG
-> > > > 	(1 << 0)
-> > > > > > +#define DRM_XE_EXEC_QUEUE_BAN_REASON_PAGE_OFFLINE	(1 <<
-> > > > 1)
-> > > > > >  	__u64 value;
-> > > > > >
-> > > > > >  	/** @reserved: Reserved */
+This can get INVALID_TRANSCODER, we should add protection for it.
+Check below should help, but better to add an explicit check.
+
+> +
+> +	if (!intel_cmtg_is_allowed(crtc_state))
+> +		return;
+> +
+> +	if (lrr)
+> +		intel_set_transcoder_timings_lrr(crtc_state, cmtg_transcoder);
+> +	else
+> +		intel_set_transcoder_timings(crtc_state, cmtg_transcoder); }
+> diff --git a/drivers/gpu/drm/i915/display/intel_cmtg.h
+> b/drivers/gpu/drm/i915/display/intel_cmtg.h
+> index 87092ce6d67b..53a44f505dd2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cmtg.h
+> +++ b/drivers/gpu/drm/i915/display/intel_cmtg.h
+> @@ -11,6 +11,7 @@
+>  struct intel_display;
+>  struct intel_crtc_state;
+>=20
+> +void intel_cmtg_set_timings(const struct intel_crtc_state *crtc_state,
+> +bool lrr);
+>  void intel_cmtg_set_clk_select(const struct intel_crtc_state *crtc_state=
+);  void
+> intel_cmtg_sanitize(struct intel_display *display);  bool
+> intel_cmtg_is_allowed(const struct intel_crtc_state *crtc_state); diff --=
+git
+> a/drivers/gpu/drm/i915/display/intel_display.c
+> b/drivers/gpu/drm/i915/display/intel_display.c
+> index 17621f66501f..a6a1da4bd98d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -60,6 +60,7 @@
+>  #include "intel_bw.h"
+>  #include "intel_cdclk.h"
+>  #include "intel_clock_gating.h"
+> +#include "intel_cmtg.h"
+>  #include "intel_color.h"
+>  #include "intel_crt.h"
+>  #include "intel_crtc.h"
+> @@ -132,8 +133,6 @@
+>  #include "vlv_dsi_pll.h"
+>  #include "vlv_dsi_regs.h"
+>=20
+> -static void intel_set_transcoder_timings(const struct intel_crtc_state *=
+crtc_state,
+> -					 enum transcoder transcoder);
+>  static void intel_set_pipe_src_size(const struct intel_crtc_state *crtc_=
+state);
+> static void hsw_set_transconf(const struct intel_crtc_state *crtc_state);=
+  static
+> void bdw_set_pipe_misc(struct intel_dsb *dsb, @@ -1637,6 +1636,7 @@ stati=
+c
+> void hsw_configure_cpu_transcoder(const struct intel_crtc_state *crtc_sta
+>  	}
+>=20
+>  	intel_set_transcoder_timings(crtc_state, crtc_state->cpu_transcoder);
+> +	intel_cmtg_set_timings(crtc_state, false);
+>=20
+>  	if (cpu_transcoder !=3D TRANSCODER_EDP)
+>  		intel_de_write(display, TRANS_MULT(display, cpu_transcoder),
+> @@ -2665,8 +2665,8 @@ transcoder_has_vrr(const struct intel_crtc_state
+> *crtc_state)
+>  	return HAS_VRR(display) && !transcoder_is_dsi(cpu_transcoder);
+>  }
+>=20
+> -static void intel_set_transcoder_timings(const struct intel_crtc_state *=
+crtc_state,
+> -					 enum transcoder transcoder)
+> +void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_st=
+ate,
+> +				  enum transcoder transcoder)
+>  {
+>  	struct intel_display *display =3D to_intel_display(crtc_state);
+>  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> @@ -2777,8 +2777,8 @@ static void intel_set_transcoder_timings(const stru=
+ct
+> intel_crtc_state *crtc_sta
+>  	}
+>  }
+>=20
+> -static void intel_set_transcoder_timings_lrr(const struct intel_crtc_sta=
+te
+> *crtc_state,
+> -					     enum transcoder transcoder)
+> +void intel_set_transcoder_timings_lrr(const struct intel_crtc_state *crt=
+c_state,
+> +				      enum transcoder transcoder)
+>  {
+>  	struct intel_display *display =3D to_intel_display(crtc_state);
+>  	const struct drm_display_mode *adjusted_mode =3D &crtc_state-
+> >hw.adjusted_mode; @@ -6673,6 +6673,7 @@ static void
+> intel_pipe_fastset(const struct intel_crtc_state *old_crtc_state,
+>=20
+>  	if (new_crtc_state->update_lrr) {
+>  		intel_set_transcoder_timings_lrr(new_crtc_state, new_crtc_state-
+> >cpu_transcoder);
+> +		intel_cmtg_set_timings(new_crtc_state, true);
+
+Maybe instead of true and false here, an enum with explicit names can be
+used as argument.
+
+With above fixed, this is
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+
+>  		intel_vrr_set_fixed_rr_timings(new_crtc_state);
+>  		intel_vrr_transcoder_enable(new_crtc_state);
+>  	}
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.h
+> b/drivers/gpu/drm/i915/display/intel_display.h
+> index 1963dbc80221..ef7e0506f77f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> @@ -424,6 +424,10 @@ void intel_set_m_n(struct intel_display *display,
+>  		   const struct intel_link_m_n *m_n,
+>  		   intel_reg_t data_m_reg, intel_reg_t data_n_reg,
+>  		   intel_reg_t link_m_reg, intel_reg_t link_n_reg);
+> +void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_st=
+ate,
+> +				  enum transcoder transcoder);
+> +void intel_set_transcoder_timings_lrr(const struct intel_crtc_state *crt=
+c_state,
+> +				      enum transcoder transcoder);
+>  void intel_get_m_n(struct intel_display *display,
+>  		   struct intel_link_m_n *m_n,
+>  		   intel_reg_t data_m_reg, intel_reg_t data_n_reg,
+> --
+> 2.29.0
+
