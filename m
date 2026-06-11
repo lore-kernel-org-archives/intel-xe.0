@@ -4,49 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5F24CD98D2
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jun 2026 10:31:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 288FFCD98D2
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jun 2026 10:36:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5821210EE23;
-	Thu, 11 Jun 2026 10:31:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D756710EE2B;
+	Thu, 11 Jun 2026 10:36:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q8BSMTNd";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="mNZGOq0k";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F14610EE23
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Jun 2026 10:31:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781173865; x=1812709865;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=9xIqvkctS86EXchBqTgJaR+ZSB0KUFFOhFJ8RUzCbHY=;
- b=Q8BSMTNdY032wYi1bR6BEg05EeaTS+AssoVCh4xAPedK0oNZzxAye1A2
- A2FPfK7UrRVPuWfmfHHXj+0nL1DNuuOCkIE46fO7OKfhFEB2v0ImyH5+Z
- qDZ1xIb83WQG1IXxOyfo4Vy7dsNPT/yNbhufyB4DarnB1+In6zVOFPJNn
- 2cGNiLCHNFskjeT7YHD/NbXQjV/d9J53K5tDnt6J2haXko3+M3A5N9Eyn
- pII8G7Oq/JHBYzVd3pcQMbZG0mAIGXymhj8OMWjyWOTsFwQrgq5xPvYL/
- VqTa6/fgX/aFLVhJeHXf9iM8TnrUZ2Ryleyt3jUcsO85xomDGOvr6hKKT Q==;
-X-CSE-ConnectionGUID: 0aTHWi09TFyjp1575Aoe8g==
-X-CSE-MsgGUID: 4N8hy9sHSGmNPk53gDWHNg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="82027620"
-X-IronPort-AV: E=Sophos;i="6.24,198,1774335600"; d="scan'208";a="82027620"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2026 03:31:05 -0700
-X-CSE-ConnectionGUID: XNnNEsQdSf28de5PsHz+oA==
-X-CSE-MsgGUID: oOQfh9fHSPycqvKhKFodOw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,198,1774335600"; d="scan'208";a="240098264"
-Received: from tilak-z690i-a-ultra-plus.iind.intel.com ([10.190.239.38])
- by fmviesa009.fm.intel.com with ESMTP; 11 Jun 2026 03:31:04 -0700
-From: tilak.tirumalesh.tangudu@intel.com
-To: tilak.tirumalesh.tangudu@intel.com,
-	intel-xe@lists.freedesktop.org
-Subject: [PATCH] drm/xe: Add wa_14025941587 to xe2, xe3 and xe3p platforms
-Date: Thu, 11 Jun 2026 16:00:42 +0530
-Message-ID: <20260611103042.1044942-1-tilak.tirumalesh.tangudu@intel.com>
-X-Mailer: git-send-email 2.46.0
+Received: from lankhorst.se (unknown [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4120310EE1D
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Jun 2026 10:36:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1781174165;
+ bh=1lf7y5upyE4/hJH+3uTRXOg41KNRQKg7c3U6KqmlPyw=;
+ h=From:To:Cc:Subject:Date:From;
+ b=mNZGOq0k1k3Z8I5rvIRrLd1o67oFTDWMICd0beNtQXh/kTO2aQ5IWciGPShK5cKZs
+ ZPhVD79cOjKS+eYfDAw9g01v6bA7Rhdmzh70x0vUEdtMmaP9Rl0H3idOEy2qc7MF4n
+ 0bLs1iCdfNwOG+zeZJaB1WhaNpDN9Zq+SHMLF7OYe9hGankN0I8Zk9z3SB5IqzZXZM
+ 8DUyTafIY5qMRBaSZXbkEzEjc/0LIi39/kpALoblvCAv31B/Cv+S/6IwqD15a3eeHp
+ 6N/Qkd5/KNpJv14kgUzM4iu6p92hkJbYEuOI6npLalPOmMwEpMZaninevuqDWwzEvS
+ AzZllxlnUYkDw==
+From: Maarten Lankhorst <dev@lankhorst.se>
+To: intel-xe@lists.freedesktop.org
+Cc: Maarten Lankhorst <dev@lankhorst.se>
+Subject: [CI v3 0/2] drm/xe: Allow pushing more jobs into LRC.
+Date: Thu, 11 Jun 2026 12:36:11 +0200
+Message-ID: <20260611103613.191719-1-dev@lankhorst.se>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -63,124 +48,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
+We don't know beforehand how big a job will be, so we always assume
+the worst case scenario and fill the LRC based on that.
 
-Avoid IDLEDLY timer programming lessthan 5 micro secs.
-Apply wa_14025941587 to Graphics Versions 20.01 to 35.11
-and Media Versions 13.01 to 35.03
+Try an alternative approach, where we determine the space required
+in LRC right before submitting the job and pass that info to the
+drm scheduler. This does increase the size of xe_sched_job slightly,
+but does allow a bigger queue depth.
 
-v2: Use xe_rtp_match_not_sriov_vf, move to local variable
-    Remove warn and other knits            - Matt R
+Noticed when rebasing Matt Brost's series where queue depth
+dropped below 64.
 
-v3: Add verbose comment - Tejas
+Changes since v2:
+- Fix job submission.
 
-v4: Restore IDLE_DLY register on engine reset.
-    Add it to GUC save-restore list. -Vivek
+Maarten Lankhorst (2):
+  drm/xe: Convert job preparation in 2 stages
+  drm/xe: Set job credits based on LRC size
 
-v5: Extend WA to Media Versions 13.01 to 35.03 - Vinay
-v6: Avoid clearing inhibit switch - Bala
-    Refactor code accordingly by adding idle_reg_val.
+ drivers/gpu/drm/xe/xe_execlist.c        |   2 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c      |   2 +-
+ drivers/gpu/drm/xe/xe_ring_ops.c        | 150 ++++++++++++++----------
+ drivers/gpu/drm/xe/xe_ring_ops_types.h  |   3 +
+ drivers/gpu/drm/xe/xe_sched_job.c       |  10 +-
+ drivers/gpu/drm/xe/xe_sched_job_types.h |   5 +
+ 6 files changed, 103 insertions(+), 69 deletions(-)
 
-Signed-off-by: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
-Reviewed-by:  Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_ads.c    |  2 +-
- drivers/gpu/drm/xe/xe_hw_engine.c  | 49 ++++++++++++++++++++++++------
- drivers/gpu/drm/xe/xe_wa_oob.rules |  2 ++
- 3 files changed, 42 insertions(+), 11 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-index c98454545a85..2080e0e650eb 100644
---- a/drivers/gpu/drm/xe/xe_guc_ads.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-@@ -768,7 +768,7 @@ static unsigned int guc_mmio_regset_write(struct xe_guc_ads *ads,
- 		}
- 	}
- 
--	if (XE_GT_WA(hwe->gt, 16023105232))
-+	if (XE_GT_WA(hwe->gt, 16023105232) || XE_GT_WA(hwe->gt, 14025941587))
- 		guc_mmio_regset_write_one(ads, regset_map,
- 					  RING_IDLEDLY(hwe->mmio_base),
- 					  count++);
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 98265293f2dc..03e977f4eb24 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -578,25 +578,54 @@ static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
- static void adjust_idledly(struct xe_hw_engine *hwe)
- {
- 	struct xe_gt *gt = hwe->gt;
--	u32 idledly, maxcnt;
-+	u32 idledly, idledly_reg_val, maxcnt;
- 	u32 idledly_units_ps = 8 * gt->info.timestamp_base;
- 	u32 maxcnt_units_ns = 640;
--	bool inhibit_switch = 0;
-+	bool inhibit_switch = false;
-+	bool wa_applied = false;
- 
--	if (!IS_SRIOV_VF(gt_to_xe(hwe->gt)) && XE_GT_WA(gt, 16023105232)) {
--		idledly = xe_mmio_read32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base));
-+	if ((!IS_SRIOV_VF(gt_to_xe(hwe->gt)) && XE_GT_WA(gt, 16023105232)) ||
-+	    XE_GT_WA(gt, 14025941587)) {
-+		u32 mincnt_idledly_ns = 5000;
-+
-+		idledly_reg_val = xe_mmio_read32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base));
- 		maxcnt = xe_mmio_read32(&gt->mmio, RING_PWRCTX_MAXCNT(hwe->mmio_base));
- 
--		inhibit_switch = idledly & INHIBIT_SWITCH_UNTIL_PREEMPTED;
--		idledly = REG_FIELD_GET(IDLE_DELAY, idledly);
-+		inhibit_switch = idledly_reg_val & INHIBIT_SWITCH_UNTIL_PREEMPTED;
-+		idledly = REG_FIELD_GET(IDLE_DELAY, idledly_reg_val);
- 		idledly = DIV_ROUND_CLOSEST(idledly * idledly_units_ps, 1000);
- 		maxcnt = REG_FIELD_GET(IDLE_WAIT_TIME, maxcnt);
- 		maxcnt *= maxcnt_units_ns;
- 
--		if (xe_gt_WARN_ON(gt, idledly >= maxcnt || inhibit_switch)) {
--			idledly = DIV_ROUND_CLOSEST(((maxcnt - 1) * 1000),
--						    idledly_units_ps);
--			xe_mmio_write32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base), idledly);
-+		/* Wa_14025941587: applied prior to Wa_16023105232,
-+		 * as the latter has higher priority, although conflict
-+		 * is not expected.
-+		 */
-+		if (XE_GT_WA(gt, 14025941587) &&
-+		    idledly < mincnt_idledly_ns) {
-+			idledly = mincnt_idledly_ns;
-+			wa_applied = true;
-+		}
-+
-+		if (XE_GT_WA(gt, 16023105232) &&
-+		    xe_gt_WARN_ON(gt, idledly >= maxcnt || inhibit_switch)) {
-+			idledly = (maxcnt - 1);
-+			wa_applied = true;
-+			/* inhibit_switch override to keep
-+			 * semantics of Wa_16023105232
-+			 */
-+			if (inhibit_switch)
-+				idledly_reg_val &= ~INHIBIT_SWITCH_UNTIL_PREEMPTED;
-+		}
-+
-+		if (wa_applied) {
-+			idledly_reg_val &= ~IDLE_DELAY;
-+			idledly_reg_val |= REG_FIELD_PREP(IDLE_DELAY,
-+						 DIV_ROUND_CLOSEST(idledly * 1000,
-+								   idledly_units_ps));
-+			xe_mmio_write32(&gt->mmio,
-+					RING_IDLEDLY(hwe->mmio_base),
-+					idledly_reg_val);
- 		}
- 	}
- }
-diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index f8a185103b80..5d5041168fa8 100644
---- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-@@ -65,3 +65,5 @@
- 
- 14025883347	MEDIA_VERSION_RANGE(1301, 3503)
- 		GRAPHICS_VERSION_RANGE(2004, 3005)
-+14025941587    GRAPHICS_VERSION_RANGE(2001, 3511), FUNC(xe_rtp_match_not_sriov_vf)
-+	       MEDIA_VERSION_RANGE(1301, 3503), FUNC(xe_rtp_match_not_sriov_vf)
 -- 
-2.46.0
+2.53.0
 
