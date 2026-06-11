@@ -4,49 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFE27CD98CC
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jun 2026 15:20:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7E76CD98CE
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jun 2026 15:52:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8744B10EEEA;
-	Thu, 11 Jun 2026 15:20:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 939C210E7D9;
+	Thu, 11 Jun 2026 15:52:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=sms-medipool.de header.i=@sms-medipool.de header.b="opECYIuR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UUazzl4W";
 	dkim-atps=neutral
-Received: from mail.sms-medipool.de (mail.sms-medipool.de [178.63.14.108])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D66410E7BB;
- Thu, 11 Jun 2026 15:20:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sms-medipool.de;
- s=mail; t=1781191227;
- bh=xOV2aUFkVma787OXRJ1Qw2lSfZjRs5JNr/yEhO5HvRo=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=opECYIuRdPjgIpdwkhR4V7GXAEPDTsa/psaVl9SkNGp7wRp/EBzAexyYgkdyD3gsr
- NI4YBgL1Ua+wdrdmM5yTIBoSFYxX3VSz419VAM++gbCb1+be0cnFIA/hsEMJI/vrlA
- Wpgb/MKi6b2V4ZsOnaZK9nA0xdmWRS4wkm4malS0PzGS1xsrtuRgugnoCMI2xv5BUQ
- +8ctmlC8fkr7q4jJT3cqHgs/dvZ5QGF+opmGiB7nTTiXS8ZiI4Mg/kgMtqgzFtzcYJ
- ciYYHRS4dYNvGU0tCW7lGtSemZR2wjT+HiWhdqn9WN97DYbzjeYfh+Mt1aRnYAWRfw
- Tpz4ESiVte+AQ==
-Received: from mail.stoss-medica.de (mail.stoss-medica.de [213.147.17.40])
- by mail.sms-medipool.de (Postfix) with ESMTPS id CB85A151DB;
- Thu, 11 Jun 2026 17:20:27 +0200 (CEST)
-Received: from NUC16-Linux.sb.golima.de ([95.88.98.111])
- by mail.stoss-medica.de (Kerio Connect 10.0.8 patch 2) with ESMTP;
- Thu, 11 Jun 2026 17:20:25 +0200
-From: Alexander Kaplan <alexander.kaplan@sms-medipool.de>
-To: Imre Deak <imre.deak@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, alexander.kaplan@sms-medipool.de
-Subject: Re: [PATCH 2/2] drm/i915/dp: Skip RBR for sinks with the
- NO_LINK_RATE_RBR quirk
-Date: Thu, 11 Jun 2026 17:20:25 +0200
-Message-ID: <20260611152025.25115-1-alexander.kaplan@sms-medipool.de>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <airFbeAOC7_czAe5@ideak-desk.lan>
-References: <airFbeAOC7_czAe5@ideak-desk.lan>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25BC610E7D9
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Jun 2026 15:52:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1781193160; x=1812729160;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=nXeLWjRZ05oyqqNMzT6/AbLxRr6/mP3utP+wBOZjS/U=;
+ b=UUazzl4WsLh8Pcki/rANKPu54TkKmKqvLMbeqEcSHo7XRi/luc778VC8
+ Z/NdN8Ryiob25eApAPNiDIC/n8zk8kR6j2gCD6KYI+JN3Q3shIQhCQUW/
+ 9agL9JSm5VzpuJ/1J7TwD79KUhOR0cO+HhObaziKyfbhcZgYOLC82OLB6
+ EcIxntGuWQukvzXyijM2gVKEGcU5t3sX5gd/O6TP+TfTUrgQdqsbRUCq3
+ 0jy05xkg59pCGKr3Y6AYyPxizKOrZj52RtINDcUXaCzSYCOrOqOrSrMnL
+ N6vbPlWLxqNnWHypGWEJkhNRrCyP7vntcrT6VX2aWC2dDA+ZcQYLXSBpc w==;
+X-CSE-ConnectionGUID: aA0+EKukT6WH4vF5tVV6Mw==
+X-CSE-MsgGUID: NuXom302QDOGdtkMCYi8tg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="92330843"
+X-IronPort-AV: E=Sophos;i="6.24,199,1774335600"; d="scan'208";a="92330843"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2026 08:52:40 -0700
+X-CSE-ConnectionGUID: okGXgihHRXS6MLs08oV2yQ==
+X-CSE-MsgGUID: nEDVAItmRvKR5dk8ZYnIUw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,199,1774335600"; d="scan'208";a="250439466"
+Received: from nitin-super-server.iind.intel.com ([10.190.238.72])
+ by orviesa003.jf.intel.com with ESMTP; 11 Jun 2026 08:52:38 -0700
+From: Nitin Gote <nitin.r.gote@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Nitin Gote <nitin.r.gote@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Gustavo Sousa <gustavo.sousa@intel.com>
+Subject: [PATCH] drm/xe/xe3: Apply Wa_16029380221 to media
+Date: Thu, 11 Jun 2026 21:58:29 +0530
+Message-ID: <20260611162828.3879694-2-nitin.r.gote@intel.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -63,46 +65,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jun 11, 2026 at 05:25:49PM +0300, Imre Deak wrote:
-> Thanks for the tests and root causing of the issue.
->
-> I think the right solution to avoid using a problematic link
-> configuartion is to rely on the existing mechanism which is the link
-> training fallback logic. A quirk in this patch would add another way,
-> which is less generic and would potentially disable the link config on a
-> non-affected device as well (I did read your test results above, but I
-> still think it's possible that another device would use the same
-> OUI/device ID without this issue).
+Apply Wa_16029380221 to Xe3p_LPM.
 
-Hi Imre,
+The Xe3p_LPM media page walker is hard-wired NonCoherent and cannot
+observe CPU:WB cached page table data. Force page tables to CPU:WC
+by clearing has_cached_pt when MEDIA_VERSION(3500) is detected.
 
-thanks for the review, that is a fair point.
-I agree that the fallback logic is the better place for this and I am
-dropping the series.
+v2: Simplify code comment to avoid duplicating information
+    already present in xe_wa_oob.rules. (Gustavo)
 
-I read the cover letter of [1].
-If I understand the plan correctly, the follow-up switch to a
-bandwidth ordered configuration selection would already avoid the
-greeter case described here.
-A 1080p60 mode would then pick a 5.4 Gbps configuration such as
-2x270000 instead of the 6.48 Gbps 4x162000, and 2x270000 is what the
-device trains today with the quirk applied.
-The remaining modes that still compute to 4x162000 would fail
-training once and then be handled by the per-configuration fallback.
-That fully covers this device, so nothing is lost by dropping the
-quirk.
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device.c     | 9 +++++++++
+ drivers/gpu/drm/xe/xe_wa_oob.rules | 1 +
+ 2 files changed, 10 insertions(+)
 
-Until then carrying the patch locally works fine for me.
-
-One offer regarding testing.
-This PCON fails channel equalization at 4x RBR deterministically on
-every boot, so I have a reliable reproducer for the fallback paths on
-PTL with the xe driver.
-Feel free to ping me whenever the fallback rework or any other part
-of the series could use a Tested-by on real failing hardware.
-
-[1] https://lore.kernel.org/all/20260428125233.1664668-1-imre.deak@intel.com
-
-Thanks,
-Alex
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 51e3a2dd7b22..0d4d525a410b 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -948,6 +948,15 @@ int xe_device_probe(struct xe_device *xe)
+ 			return err;
+ 	}
+ 
++	/*
++	 * Wa_16029380221: The affected GT will always use non-coherent
++	 * access to page tables, so we must do uncached writes from the
++	 * CPU.
++	 */
++	for_each_gt(gt, xe, id)
++		if (XE_GT_WA(gt, 16029380221))
++			xe->info.has_cached_pt = false;
++
+ 	for_each_tile(tile, xe, id) {
+ 		err = xe_ggtt_init_early(tile->mem.ggtt);
+ 		if (err)
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index f8a185103b80..9027365f0043 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -65,3 +65,4 @@
+ 
+ 14025883347	MEDIA_VERSION_RANGE(1301, 3503)
+ 		GRAPHICS_VERSION_RANGE(2004, 3005)
++16029380221	MEDIA_VERSION(3500)
+-- 
+2.50.1
 
