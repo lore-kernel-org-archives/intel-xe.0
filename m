@@ -4,101 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7650CD98D5
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jun 2026 10:59:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DE5BCD98CC
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jun 2026 11:04:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7AF9610EE7C;
-	Thu, 11 Jun 2026 10:59:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 069D910EE75;
+	Thu, 11 Jun 2026 11:04:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="NAlhujsI";
+	dkim=pass (2048-bit key; secure) header.d=sms-medipool.de header.i=@sms-medipool.de header.b="mVoMeNkI";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EA6110EE75
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Jun 2026 10:59:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1781175591;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=OE5i5Cs1x/Y1/tYzMUIth7XXWL2BCwQTkDQ8GlOHrbw=;
- b=NAlhujsIs/QD47gCZYuAxzMY7ffp5l8qiEPIaky+2KIQQEzqojs6FYwazTJTLLfS6klIDm
- Y0/9n06U4Lwv22RidppNSHsIeejcEb7rqVkEzsnUTt+0eyCksMHzXfHLnCXEri+TYet/P1
- VBk4Fa3MohgcCizYsLNhAmqPt2dcooQ=
-Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
- [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-116-UzixBpXbO7qFXGtrhWf0AQ-1; Thu, 11 Jun 2026 06:59:48 -0400
-X-MC-Unique: UzixBpXbO7qFXGtrhWf0AQ-1
-X-Mimecast-MFC-AGG-ID: UzixBpXbO7qFXGtrhWf0AQ_1781175587
-Received: by mail-wr1-f69.google.com with SMTP id
- ffacd0b85a97d-45ef6b407b4so3399740f8f.1
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Jun 2026 03:59:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1781175587; x=1781780387;
- h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
- :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=OE5i5Cs1x/Y1/tYzMUIth7XXWL2BCwQTkDQ8GlOHrbw=;
- b=NUHq/3LjTA+WjlzWeqoa9Cv8Z0zD+bJ/E7Az5uppIxAihW+0yU6dTRStEm+Okm9QHn
- 6S7sFOkyakQ5musE8m32lhimfTQY3NMsMpVRQ03dz5ZwFFA/NH+qKxnPTyRy3dgF3QCO
- dEfQH/WUCuZiSQS10WyGczlmne1RK7VJeR4UJW4KwoyHMnXleMnmRumBXc+xMmDEI3fD
- xyMEqKTXmH/ugEjYpN5XQigBwYrmhLieHX7A/HD6FHHVEKGIvbF8Q8ccGkFZPRxTmZ/G
- Q+bEQ6dmIjpL90cItbfkMrlg3m3I/Igd20nKEjPelJzC+niWR8OrwbgllqK0z2sxwqJs
- bhUA==
-X-Forwarded-Encrypted: i=1;
- AFNElJ+UYAKp013W5cayKjuyTPtyTMZw4qLjXzdvATlK4EWsofZawKfHkkJh4Kfvvh1pfESvEv4HepgvAA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yz+GOKiSlwO2dMur4q3VmOMTQsOhDCCFS4pfVwDO/UaHI9U7cdS
- Xn8N/CQmptM2MToqVu3Q1MP8w9fOHmVnxplIJf5WQKUMo+ZbqzBeWrEkZtIPzLChBN4kli1o25y
- ve1jKUbl0hiU1i1cyygLYqZbafJFEzbKgaLyGMq3nwttz1pUKmGNbLqGSLmn0lgUoJ+5c
-X-Gm-Gg: Acq92OEzUzRQN6Yd7om6jCBB+5FmQOYf9cykzmXGgHGJx4ZDABItK3YXsNvBkSAq7lq
- Mufm0INddCb+DLDKqOj2/snKcsErWJrpjv7dPYi/v8u1Z5i0NSaRzZ1g6HchM+QAmFUWXNOE+tB
- xla67VyKi8ph7DIvvLibBlhjjTvqb3PJ17FfDW68k27Ov3hVRyj6KVT4ccVrp2oiV/mvzjRjWlh
- dD371/wdVTBwtoEOuOEQfVEG3HPJckhQC5AL4RS4/iEN1rY3XCcFdqk8762QiW6wn/x79XRAUWU
- tKlHrjGBTYRMQfIe5RH822jyKFXpNO5p0XJ3Rn9mRCqfO4wPD/cJQKs267Zhoisjg7cO8dnQObC
- dFA67oUkOqWnA+LqAhpBp62AsZATZe7LLxgSdAlOO7mWwQvP4+sNyFHeus5bMdmekqrUC5bgMb4
- sdJUcLyfBxBbGWTpE=
-X-Received: by 2002:a05:6000:710:b0:460:1c5b:f25f with SMTP id
- ffacd0b85a97d-460677b1af7mr3240533f8f.20.1781175587113; 
- Thu, 11 Jun 2026 03:59:47 -0700 (PDT)
-X-Received: by 2002:a05:6000:710:b0:460:1c5b:f25f with SMTP id
- ffacd0b85a97d-460677b1af7mr3240484f8f.20.1781175586716; 
- Thu, 11 Jun 2026 03:59:46 -0700 (PDT)
-Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-4601f2dcde3sm81947989f8f.1.2026.06.11.03.59.45
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 11 Jun 2026 03:59:46 -0700 (PDT)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>, mripard@kernel.org,
- maarten.lankhorst@linux.intel.com, airlied@redhat.com, airlied@gmail.com,
- simona@ffwll.ch, admin@kodeit.net, gargaditya08@proton.me,
- paul@crapouillou.net, jani.nikula@linux.intel.com, mhklkml@zohomail.com,
- zack.rusin@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
- harry.wentland@amd.com, sunpeng.li@amd.com, siqueira@igalia.com,
- alexander.deucher@amd.com, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net,
- dmitry.osipenko@collabora.com, gurchetansingh@chromium.org,
- olvaffe@gmail.com
-Cc: dri-devel@lists.freedesktop.org, linux-hyperv@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-mips@vger.kernel.org, virtualization@lists.linux.dev,
- amd-gfx@lists.freedesktop.org, Zack Rusin <zackr@vmware.com>,
- stable@vger.kernel.org
-Subject: Re: [PATCH v5 01/15] drm/amd/display: Handle struct
- drm_plane_state.ignore_damage_clips
-In-Reply-To: <45aec54a-ec80-48ed-9bcc-84e7bccc11eb@suse.de>
-References: <20260610152505.260172-1-tzimmermann@suse.de>
- <20260610152505.260172-2-tzimmermann@suse.de>
- <87y0gl5qw8.fsf@ocarina.mail-host-address-is-not-set>
- <45aec54a-ec80-48ed-9bcc-84e7bccc11eb@suse.de>
-Date: Thu, 11 Jun 2026 12:59:44 +0200
-Message-ID: <87mrx15om7.fsf@ocarina.mail-host-address-is-not-set>
+Received: from mail.sms-medipool.de (mail.sms-medipool.de [178.63.14.108])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D9A910EE75;
+ Thu, 11 Jun 2026 11:04:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sms-medipool.de;
+ s=mail; t=1781175846;
+ bh=sbqTH6csCbYzGVd++Hm2MAfMl1HHDKWuOAqr7ifXNfQ=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=mVoMeNkI1xgrP7xlwdAP749yeOOecY1LF/Dw+i8lNLEEUlNFugBXcR+82Mo+A3qZn
+ ag0Bl7i+iUymb+s0WruPuQgOSeksice3vxHUWTyFMx0xwJNJNMI0+QFEN+7BpbVERu
+ uLNKDTjKvpI3TA3GctnD7cbbwzhmQR+pd3n0kQA1QgAjM6FBYD9yMy1hg7ja3cDTI0
+ 6GPFsGhNIZd7X3ikXmOHXDJpuwSTopdPvbfB/ZcpSCKD6HPosnP9eoKTQtXVz8H7/y
+ LJjMPwtzkiAJWe+cqvZlORbzZKB9CF/CgDDvWBIbEUgWEMKcObXfmmdfz1dqNY15Xf
+ JtijXr5QvuNPA==
+Received: from mail.stoss-medica.de (mail.stoss-medica.de [213.147.17.40])
+ by mail.sms-medipool.de (Postfix) with ESMTPS id E3A3D141C6;
+ Thu, 11 Jun 2026 13:04:05 +0200 (CEST)
+Received: from NUC16-Linux.sb.golima.de ([95.88.98.111])
+ by mail.stoss-medica.de (Kerio Connect 10.0.8 patch 2) with ESMTP;
+ Thu, 11 Jun 2026 13:04:04 +0200
+From: Alexander Kaplan <alexander.kaplan@sms-medipool.de>
+To: Hans Verkuil <hverkuil+cisco@kernel.org>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Hans Verkuil <hverkuil@kernel.org>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Alexander Kaplan <alexander.kaplan@sms-medipool.de>
+Subject: Re: [PATCH] drm/dp: Service the CEC tunneling IRQ flags without
+ CEC_IRQ in ESI1
+Date: Thu, 11 Jun 2026 13:04:04 +0200
+Message-ID: <20260611110404.11637-1-alexander.kaplan@sms-medipool.de>
+X-Mailer: git-send-email 2.54.0
+In-Reply-To: <e3b30034-70c2-43ce-be46-938e2b07d5ba@kernel.org>
+References: <e3b30034-70c2-43ce-be46-938e2b07d5ba@kernel.org>
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: Qbzv2jdm_-3RZwwAY5a0o8RkEjM6Fgu_3vSg4zXWtlA_1781175587
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,56 +65,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thomas Zimmermann <tzimmermann@suse.de> writes:
-
-> Hi Javier
+On 11/06/2026 09:01, Hans Verkuil wrote:
+> I saw that you added a quirk for this device in this patch series:
 >
-> Am 11.06.26 um 12:10 schrieb Javier Martinez Canillas:
->> Thomas Zimmermann <tzimmermann@suse.de> writes:
->>
->> Hello Thomas,
->>
->>> The mode-setting pipeline can disabled damage clippings for a commit
->>> by setting ignore_damage_clips in struct drm_plane_state. The commit
->>> will then do a full display update.
->>>
->>> Test the flag in DCN code and do a full update in DCN code if it has
->>> been set.
->>>
->>> Commit 35ed38d58257 ("drm: Allow drivers to indicate the damage helpers
->>> to ignore damage clips") introduced ignore_damage_clips to selectively
->>> ignore damage clipping in certain framebuffer changes. This driver does
->>> not do that, but DRM's damage iterator will soon rely on the flag.
->>> Therefore supporting it here as well make sense for consistency.
->>>
->>> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
->>> Fixes: 35ed38d58257 ("drm: Allow drivers to indicate the damage helpers to ignore damage clips")
->> I don't think that a Fixes tag is correct here? Your patch series
->> is changing the 'struct drm_plane_state.ignore_damage_clips' and
->> the changes make sense, but definitely isn't a fix in my opinion.
+> https://lore.kernel.org/all/20260610174807.6231-2-alexander.kaplan@sms-medipool.de/
 >
-> But shouldn't we have added this test in amdgpu and the other drivers as 
-> part of commit 35ed38d58257 ? Sure, these drivers don't use
-> ignore_damage_clips, but it's still an inconsistency wrt damage
+> Should we add a quirk for this as well? It's not worth it if that's a lot of work,
+> but if it is easy to add, then I think that's the better approach for this.
 
-I don't think so, since the original scope of ignore_damage_clips was for DRM
-driver of virtual devices (namely virtio-gpu and vmwgfx). These do per-buffer
-uploads instead of per-plane uploads, and so there was a need to force a full
-plane update if the framebuffer attached to the plane was changed.
+Hi Hans,
 
-Your series are now extending the scope of ignore_damage_clips to be used by
-core helpers and force a full plane update when doing a modeset. This makes
-sense to me but it wasn't the original intention of the propery and that is
-why I don't think that should be considered a fix.
+thanks for the suggestion. A quirk would indeed be easy to add.
+drm_dp_cec.c already reads the branch ident for its status debugfs,
+so gating the relaxed ESI check on a DPCD quirk entry is a handful
+of lines.
 
-The only patch that IMO is really a fix for commit 35ed38d58257 is patch #6.
-Because is true that the plane state ignore_damage_clips was carried over
-when the state was duplicated.
+However, while validating which devices such a quirk should cover,
+I found a firmware problem that makes me withdraw this patch
+instead.
 
--- 
-Best regards,
+I tested all three Synaptics VMM7100 based devices I have:
 
-Javier Martinez Canillas
-Core Platforms
-Red Hat
+- Club3D CAC-2505 (branch ID "SYNAq", FW 7.1): CEC works with my
+  patch. This is the device the patch was written for.
+- A USB-C to HDMI dongle with the macOS 4K120 firmware (branch ID
+  "SYNAq", FW 7.2): announces CEC capability but never services the
+  tunneling registers. TX requests and incoming bus traffic are
+  both ignored.
+- A Thunderbolt 4 dock (branch ID "SYNAa", FW 6.5): same dead stub.
+
+On the one working device the firmware causes an audible audio
+dropout of roughly 100 ms for every CEC message it handles while
+CEC tunneling is enabled.
+This affects its own transmissions, directed traffic and even
+broadcasts it does not ack.
+My LG TV broadcasts its vendor ID and polls for playback devices
+every 14 seconds, around the clock.
+With a configured CEC adapter that means a dropout every few
+seconds during audio playback.
+I verified this by correlating heard dropouts against monitored
+CEC messages, 9 out of 9 matched to the second with no false
+positives.
+With tunneling disabled the same bus traffic causes no dropouts
+at all.
+
+The dropout length matches the frame time on the CEC wire and AUX
+stays fully responsive during the stall.
+It also reproduces with the kernel completely uninvolved when I
+drive the DPCD tunneling registers directly from userspace.
+So the stall happens inside the dongle MCU while it bit-bangs the
+CEC line and I see no host-reachable way to fix or mitigate it.
+
+That changes the picture for the patch.
+The only known device family with working CEC tunneling has this
+defect.
+Merging it would hand users working CEC plus broken audio, and
+setups like Kodi configure CEC automatically, so exactly those
+users would then have to disable CEC again to get clean audio.
+That is a bad trade, even behind a quirk.
+
+My guess is that Synaptics never shipped the CEC firmware glue
+before.
+The CAC-2505 is a recent product and probably carries the newest
+firmware branch, the other two devices are older designs.
+If a future firmware shows up with working CEC and without the
+audio stall, I will resubmit this together with the device quirk
+you suggested.
+
+Sorry for the noise, and thanks for the review.
+
+Alexander
 
