@@ -4,60 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C47CCD98CC
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jun 2026 07:31:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59219CD8CB9
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jun 2026 07:32:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3ADA510ED30;
-	Thu, 11 Jun 2026 07:31:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11E5C10ED2E;
+	Thu, 11 Jun 2026 07:32:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E+ijWLne";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="CNLmau97";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 467BA10ED44;
- Thu, 11 Jun 2026 07:31:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781163077; x=1812699077;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=4NWAuzzNKDxar22TDAFGod8yzOr6C7LgdHcPhpwV7cw=;
- b=E+ijWLnewF56E8gmM0HIXl9EK8Ox+Qmp51iaEX7s0QFnJr0mWWi1bK4K
- RJrd9BC5aDXGd9XN0ShL7NhGpkIOatGBkmj29kdIM0LbO+nLxtD8jDmvB
- WYIyF0sWPkmXaw6SfIS5DfuYiVpP/DY6NqrfYlrmpH2kxvIqbhmJjhwE3
- I+J9gnsnOPjC0LyqjO7nSoAkE9PqHRvBIzMSUN54aRoYBr0yfmNu903d0
- tE6/HWE/PeYiR6OruXxt95H+wLLDAONEOSNPfZDCr6yQch1fJyAn5OsYm
- 5JQMWtJEBMOt8SNglSF1tjZfjtB7+rKjmsFrvt5h6NH8MVsT5Gj3oP7cM g==;
-X-CSE-ConnectionGUID: y1cxrff3SpuxU+I53dhDHQ==
-X-CSE-MsgGUID: /z/x9yHkQ/mnnm6DIwgPDA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="85598090"
-X-IronPort-AV: E=Sophos;i="6.24,198,1774335600"; d="scan'208";a="85598090"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2026 00:31:17 -0700
-X-CSE-ConnectionGUID: /VWgOp+7Q6OIU64uMxxhlw==
-X-CSE-MsgGUID: v6TGclp/RwyobhVoIKOZgA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,198,1774335600"; d="scan'208";a="250685164"
-Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.160])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2026 00:31:16 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 04/14] drm/i915/cdclk: Notify DG2 pcode about pipe power
- wells regardless of CDCLK
-In-Reply-To: <20260610170652.5320-5-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260610170652.5320-1-ville.syrjala@linux.intel.com>
- <20260610170652.5320-5-ville.syrjala@linux.intel.com>
-Date: Thu, 11 Jun 2026 10:31:12 +0300
-Message-ID: <b17d1e14e4439c5695faef2e1eaebba5d72c0221@intel.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3008310ED30;
+ Thu, 11 Jun 2026 07:32:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:
+ Sender:Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=OW1rughmaPoVXzZo44yIw3sm9DaFihfWaLOUCkIpbRM=; b=CNLmau9781otmvERAXLH/LGwzg
+ uf15iwYHxE/T0EG/ITwEGu3+dbIXp6Bk8FnMKxMCiJNio3n6LybhBpfbIQYQ1onHcy3AFzRQxYVUn
+ i+7SDvql+nB8nteKWTmnYLeF83etc9JjKvFGzpqHKsbGyaoEvqQMUtV9435Dup6AEEDu2h5/lKJ0R
+ mMT0CL2fRfbHzAIcQ6TpKUwGhzbxj6aSzgZiP6CVABENN4gzFgzee6WYCgSTcZW6JCdWk7AUT9p5y
+ DtheyFH9U61c0CjFsNGUyW7YYIV83kLI9NSZg85us2dZr23natCMk3lddP6FW7e+3dbd7waz+wZlP
+ jlVQ5HDg==;
+Received: from [90.240.106.137] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1wXZtS-00G0cQ-VT; Thu, 11 Jun 2026 09:32:03 +0200
+Date: Thu, 11 Jun 2026 08:32:01 +0100
+From: Tvrtko Ursulin <tursulin@igalia.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-intel-fixes
+Message-ID: <aipkcUDnTlzre-8F@linux>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,56 +66,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 10 Jun 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> We're currently skipping the pcode notifies on DG2 if the CDCLK isn't
-> changing while the power well counts would still need updating.
-> Do the pcode notifications also for pure pipe power well changes.
 
-This kind of does more than just change the pcode stuff, since the
-conditions are higher up. Might mention something about that here.
+Hi Dave, Sima,
 
-Anyway,
+Two fixes this week - one to avoid bogus DP link rates caused by parsing
+un-iniitialized stack values if DPCD read failed, and the second one to
+fix a potential out of bound memory reads on Pentium 4 era machines cursor
+plane access via pread/pwrite.
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Tvrtko
 
+drm-intel-fixes-2026-06-11:
+- Check supported link rates DPCD read [edp] (Nikita Zhandarovich)
+- Fix phys BO pread/pwrite with offset [gem] (Joonas Lahtinen)
+The following changes since commit 4549871118cf616eecdd2d939f78e3b9e1dddc48:
 
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_cdclk.c | 8 ++++++--
->  1 file changed, 6 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm=
-/i915/display/intel_cdclk.c
-> index d60b3369b4d2..7259048361a7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> @@ -2793,7 +2793,9 @@ intel_set_cdclk_pre_plane_update(struct intel_atomi=
-c_state *state)
->  		return;
->=20=20
->  	if (!intel_cdclk_changed(&old_cdclk_state->actual,
-> -				 &new_cdclk_state->actual))
-> +				 &new_cdclk_state->actual) &&
-> +	    dg2_power_well_count(display, old_cdclk_state) =3D=3D
-> +	    dg2_power_well_count(display, new_cdclk_state))
->  		return;
->=20=20
->  	if (new_cdclk_state->disable_pipes) {
-> @@ -2848,7 +2850,9 @@ intel_set_cdclk_post_plane_update(struct intel_atom=
-ic_state *state)
->  		return;
->=20=20
->  	if (!intel_cdclk_changed(&old_cdclk_state->actual,
-> -				 &new_cdclk_state->actual))
-> +				 &new_cdclk_state->actual) &&
-> +	    dg2_power_well_count(display, old_cdclk_state) =3D=3D
-> +	    dg2_power_well_count(display, new_cdclk_state))
->  		return;
->=20=20
->  	if (!new_cdclk_state->disable_pipes &&
+  Linux 7.1-rc7 (2026-06-07 15:37:58 -0700)
 
---=20
-Jani Nikula, Intel
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-fixes-2026-06-11
+
+for you to fetch changes up to d21ad938398bca695a511307de38a65889e3b354:
+
+  drm/i915/gem: Fix phys BO pread/pwrite with offset (2026-06-10 09:23:22 +0100)
+
+----------------------------------------------------------------
+- Check supported link rates DPCD read [edp] (Nikita Zhandarovich)
+- Fix phys BO pread/pwrite with offset [gem] (Joonas Lahtinen)
+
+----------------------------------------------------------------
+Joonas Lahtinen (1):
+      drm/i915/gem: Fix phys BO pread/pwrite with offset
+
+Nikita Zhandarovich (1):
+      drm/i915/edp: Check supported link rates DPCD read
+
+ drivers/gpu/drm/i915/display/intel_dp.c  | 11 +++++++++--
+ drivers/gpu/drm/i915/gem/i915_gem_phys.c | 19 +++++++++++++++----
+ 2 files changed, 24 insertions(+), 6 deletions(-)
