@@ -4,57 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB624CD98CC
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jun 2026 07:35:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18C4FCD8CB9
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jun 2026 07:37:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9EB8110ED33;
-	Thu, 11 Jun 2026 07:35:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D297C10ED35;
+	Thu, 11 Jun 2026 07:37:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Vh8vz+Xt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a/fz1/8t";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 114D910ED31;
- Thu, 11 Jun 2026 07:35:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B8FC10ED35;
+ Thu, 11 Jun 2026 07:37:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781163352; x=1812699352;
+ t=1781163467; x=1812699467;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=NxwFuOOfBuQHRSg+AewCTBCkyEAKE3qSMNSGn2V3+M4=;
- b=Vh8vz+XtpOY4ECnihQwl+3KxIphkhlyx0p3pIu+Ti13SY3gK7vpLxWbf
- gpz4F3YmeADi/a1Y3D343xoueyKnMPGjaoQ5uJpfvUqGeQTqTaxxzHfoM
- eNZ3vaBiV59BdUQ8GaZLnn5lPUWrjRdeZJmnJNRnrjRcqu1fYEEgVnwFm
- sPZX+LzUy4L5jarBNvtXOPjEAL11u/5lVdVR2y7KkvNjdFy8zGz4c1LMF
- FkcHUpBlb4so1a7nB3Gq5hhn7rmBBJnGamA7n97zzifXdAl5FhS7OEtjA
- LVETirXJE0OTDWsD3t51r2RFJ0vIFrh1Pi1Zj7kDhB08AnjyBLN1++fA8 w==;
-X-CSE-ConnectionGUID: DBewdCjaTKaFcQ6iic5sdQ==
-X-CSE-MsgGUID: 9T64CmJdQyWc2tyC74l65A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="99393271"
-X-IronPort-AV: E=Sophos;i="6.24,198,1774335600"; d="scan'208";a="99393271"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2026 00:35:52 -0700
-X-CSE-ConnectionGUID: twHR9Y1XQ8yekJHZ3/yW5A==
-X-CSE-MsgGUID: Gu8cPF1qS06sbwhwgYQGOA==
+ bh=aJUxNZ7r1gQQ/R8W/m177IavXXVC4zX9K7OtdATX4qc=;
+ b=a/fz1/8tvQqz9c5oAXa8B2hYMlHXVr8o+NrKo5+B+tdWwHsAnSmVA9mF
+ g5wl7w5Im/sVCIVg8zT40bX7WksSawnHIZNFtJcuMK4ACKh+v0QulmvrQ
+ PGewFLvkJrxIm26I31ajtOw/zgwOoVYClmZ8qndZQgViLC6iHEc2Gc8F6
+ ld1zhC+BMatlJgvnVfRuaSsY43J07kb+XPjr/rQRbqYrP6kt4D96E8iAY
+ BPZzqAqICfx3udGJAbsC/cespbuvQwHfPfZeSKm+uF2Kj0JgXz2HCGBdg
+ ERIKlNF+l0wBnCtGW46mk8xevCr95SqoGzS5fD7sMHte7PnJTuqour0l+ w==;
+X-CSE-ConnectionGUID: G0ardqQFQbexdqYprMWGSQ==
+X-CSE-MsgGUID: 7DEP+89aRTKa+m+Nw1SgAQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="93077869"
+X-IronPort-AV: E=Sophos;i="6.24,198,1774335600"; d="scan'208";a="93077869"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2026 00:37:46 -0700
+X-CSE-ConnectionGUID: OLDUUa+PSHm77e0VxOMEOQ==
+X-CSE-MsgGUID: OPtk5qLuRwa672lTmvqxoA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,198,1774335600"; d="scan'208";a="276595125"
+X-IronPort-AV: E=Sophos;i="6.24,198,1774335600"; d="scan'208";a="251500490"
 Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.160])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2026 00:35:51 -0700
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2026 00:37:45 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 05/14] drm/i915/cdclk: Stop forcing voltage level to 3
- all the time on DG2
-In-Reply-To: <20260610170652.5320-6-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 06/14] drm/i915/cdclk: Drop pointless platform check
+ from bxt_set_cdclk()
+In-Reply-To: <20260610170652.5320-7-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 References: <20260610170652.5320-1-ville.syrjala@linux.intel.com>
- <20260610170652.5320-6-ville.syrjala@linux.intel.com>
-Date: Thu, 11 Jun 2026 10:35:47 +0300
-Message-ID: <17dfe2a76cf38cc821160283b9f87c3530250a30@intel.com>
+ <20260610170652.5320-7-ville.syrjala@linux.intel.com>
+Date: Thu, 11 Jun 2026 10:37:42 +0300
+Message-ID: <5e418b255197c951671b470cbbeb8cda5a701c6a@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -75,36 +75,47 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 On Wed, 10 Jun 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> SKL_CDCLK_PREPARE_FOR_CHANGE =3D=3D DISPLAY_TO_PCODE_VOLTAGE(3) so
-> we are currently forcing the voltage level to 3 all the time on
-> DG2. Remove SKL_CDCLK_PREPARE_FOR_CHANGE from the mask to avoid
-> this.
-
-Fixes: ?
-
-The pcode mailbox defines are a mess.
+> Overwrite cdclk.hw.voltage_level from intel_update_cdclk() at the
+> end on bxt_set_cdclk() also on bxt/glk. While this isn't actually
+> necessary due to bxt/glk not having any extra DDI based voltage
+> level requirements, it does avoid one less silly 'if' in the code.
+>
+> On icl+ the value derived by bxt_get_cdclk() may not be correct
+> if the voltage level was bumped up due to DDI requirements, thus
+> overwriting the assumed value is crucial there.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_cdclk.c | 1 -
->  1 file changed, 1 deletion(-)
+>  drivers/gpu/drm/i915/display/intel_cdclk.c | 11 +++++------
+>  1 file changed, 5 insertions(+), 6 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm=
 /i915/display/intel_cdclk.c
-> index 7259048361a7..ecb6be3383ca 100644
+> index ecb6be3383ca..bbf3603f889b 100644
 > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
 > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> @@ -2598,7 +2598,6 @@ static void intel_pcode_notify(struct intel_display=
- *display,
->  		update_mask |=3D DISPLAY_TO_PCODE_PIPE_COUNT_VALID;
+> @@ -2308,12 +2308,11 @@ static void bxt_set_cdclk(struct intel_display *d=
+isplay,
 >=20=20
->  	ret =3D intel_parent_pcode_request(display, SKL_PCODE_CDCLK_CONTROL,
-> -					 SKL_CDCLK_PREPARE_FOR_CHANGE |
->  					 update_mask,
->  					 SKL_CDCLK_READY_FOR_CHANGE,
->  					 SKL_CDCLK_READY_FOR_CHANGE, 3);
+>  	intel_update_cdclk(display);
+>=20=20
+> -	if (DISPLAY_VER(display) >=3D 11)
+> -		/*
+> -		 * Can't read out the voltage level :(
+> -		 * Let's just assume everything is as expected.
+> -		 */
+> -		display->cdclk.hw.voltage_level =3D cdclk_config->voltage_level;
+> +	/*
+> +	 * Can't read out the voltage level :(
+> +	 * Let's just assume everything is as expected.
+> +	 */
+> +	display->cdclk.hw.voltage_level =3D cdclk_config->voltage_level;
+>  }
+>=20=20
+>  static void bxt_sanitize_cdclk(struct intel_display *display)
 
 --=20
 Jani Nikula, Intel
