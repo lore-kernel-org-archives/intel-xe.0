@@ -4,147 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32A36CD98C5
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jun 2026 00:40:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1AFA2CD98C5
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jun 2026 01:03:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E619010E648;
-	Thu, 11 Jun 2026 00:40:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8D0210EC53;
+	Thu, 11 Jun 2026 01:03:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xy0l/eNd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HCQTzWIt";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9608B10E648;
- Thu, 11 Jun 2026 00:40:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16D4710EC53
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Jun 2026 01:03:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781138437; x=1812674437;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=eJYrTvG/rcJT3Qk31r2BOBlP5DFeE3AsMvj756HqgYw=;
- b=Xy0l/eNdEybZryRUlHw5obHDKzsEge+K0tgePSEhT0sIlFWuUAk5Cg8L
- +199wcChOZI5f3mQKynnbiukcTacG3OESM4rtt4PZo/gRslX+l5li6A0s
- TVfYTh+5XutQlfAbKdQrhCtqrN9TsQWf0ak09T3EcD6abGUPk6HCcDrly
- CmQtEu4cV7GPuyIMc9iU8H/BlFHPKB1KOltLPl5hihHUOv7340KXwHmAs
- zNoPlBXvfw9cJFIhUwNINdValygqlWq9E5N2Hjue8DWRmZb6Vdey3NvKt
- HYzG+adGgylvSpklb54eakiX1aaZaZwrsIV7o28TP9vDbmy9I6ed3ujRw w==;
-X-CSE-ConnectionGUID: PrcYlpQQTcuOMEyYukjhpA==
-X-CSE-MsgGUID: 6qTnZ+M0SgeWE4PkYdvkbw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="82055410"
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="82055410"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2026 17:40:36 -0700
-X-CSE-ConnectionGUID: 2GqfW+TKQX+SYeCuV00PJg==
-X-CSE-MsgGUID: bBH3G2MAQSWEBIPOdP1QIg==
+ t=1781139803; x=1812675803;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=YcW/rEcP+lLioKPY+wt+7J0YnluiXKiyVX29uoR9WtQ=;
+ b=HCQTzWItL3SRZxQMSSrknH3miErlmF8ET1QEvUhz0piIDnaCkueXZhTG
+ PTCaBmg9L4AJqiwvmasvz33+GWvO2LccQB19tVBDU0CPHjfjSb1YdHT5y
+ MWuh7N3ZV+FJHrvZwvf9aSSJOHIjbcWjjTeCP7//0xtCfdXf/devKY1Bb
+ qRM2ZdGiDfWqSQkZgmV4zGXnak6x1r6C18cEPC2C8P41ns8bbM0ZzpttO
+ Evl8wtbftCWIhV8xDHxFIZKf5cMZOcp2JPpmTVWbo0jFl0BrA4LzsegWT
+ WSX9vSynN1oDIgHnYD9PRoxPHlNcUuTpft7CkPOiOd+RfSIQ9uHPa5Dq/ g==;
+X-CSE-ConnectionGUID: +z81XLSFTsOv8Qw9xJi7Fw==
+X-CSE-MsgGUID: S4PvUrylTWGE4Raz4g+Srw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="81992937"
+X-IronPort-AV: E=Sophos;i="6.24,198,1774335600"; d="scan'208";a="81992937"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2026 18:03:23 -0700
+X-CSE-ConnectionGUID: v3MP4z68QkylyCVaDL/KAA==
+X-CSE-MsgGUID: zmhOyPYsTj+Ntmf5W+Byag==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="242185994"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2026 17:40:36 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 10 Jun 2026 17:40:35 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 10 Jun 2026 17:40:35 -0700
-Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.63) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 10 Jun 2026 17:40:35 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DlTfamH6SsLiwfS6MK0GUrWHR3yroxRYm9XrZJSIy3qiLGORgbfTplEcOox67O/7q+C67+8APYgXxm9dTGYbxi59Be1gRAqnzJ6O1qeJloaI8rSKeVdDZ44UHem8nuZSxcg0vFzzMJV0KWVq1x+L145G657xY33Lch3yVc9TPEUJybAB2qZ00NFin5p7ZUVbBFeMzIeelJSBBesML+IkuWJ3QuxWQLtRpYh01g5dewDeifXJn4tG/txgTuagirNIrt5uioGO4KuV1J9ZU0n9H0aLo3F9NyXkkT0hCqNKvMUU4c7CY1KHS56T0qe7SGJJsN3CRV4biHJ54AgQFFz/aA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=F/yTvSxaaxSn0Kn7PMX/YvI/TcQO2UCJOBErYwR27FE=;
- b=Sj6ON32/GWbXVDuePeYnumFvmxutBYbRKLX7zWRYwv6Kk/nHnZ3e4GLmknv4dR7la211skvkUcZmFun/qJuzyEUyiU9w6alaFCHMg42t+7MprdqyiIC6R3MTTx9TkKJUrloLaxOFzvi/ZDXcYJ97ePk5z49EGb6NllGSrDiHyfTyw3VihSx9Cqf337wX0uNpHFOluUdtv3D1CasxJAzH0lYq/N/XsU9lSwJc0ovMZklHb8FPqLaKyVG+0rhcWGLwfMkiSWJ2+pAs9+SbXapTYuEC8PDQ6CKv+87yHgK+8+IhvDaVVR2x1Zcm7Up1nA2c9eAKQu5GAnVwiPsLcs1sUA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by DS7PR11MB9498.namprd11.prod.outlook.com (2603:10b6:8:261::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.10; Thu, 11 Jun
- 2026 00:40:34 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c%4]) with mapi id 15.21.0092.011; Thu, 11 Jun 2026
- 00:40:33 +0000
-Date: Wed, 10 Jun 2026 17:40:30 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Wentao Liang <vulab@iscas.ac.cn>
-CC: <thomas.hellstrom@linux.intel.com>, <rodrigo.vivi@intel.com>,
- <airlied@gmail.com>, <simona@ffwll.ch>, <intel-xe@lists.freedesktop.org>,
- <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
- <stable@vger.kernel.org>
-Subject: Re: [PATCH] drm/xe: fix refcount leak in xe_range_fence_insert()
-Message-ID: <aioD/pNpMOvYnNLl@gsse-cloud1.jf.intel.com>
-References: <20260608061540.121355-1-vulab@iscas.ac.cn>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20260608061540.121355-1-vulab@iscas.ac.cn>
-X-ClientProxiedBy: MW4PR04CA0213.namprd04.prod.outlook.com
- (2603:10b6:303:87::8) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+X-IronPort-AV: E=Sophos;i="6.24,198,1774335600"; d="scan'208";a="243383621"
+Received: from dut4072bmgfrd.fm.intel.com ([10.105.8.119])
+ by fmviesa007.fm.intel.com with ESMTP; 10 Jun 2026 18:03:23 -0700
+From: Zongyao Bai <zongyao.bai@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: jia.yao@intel.com,
+	Zongyao Bai <zongyao.bai@intel.com>
+Subject: [PATCH v2] drm/xe/forcewake: add delayed-release optimization
+Date: Thu, 11 Jun 2026 01:03:20 +0000
+Message-ID: <20260611010320.1489179-1-zongyao.bai@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260601213804.707256-1-zongyao.bai@intel.com>
+References: <20260601213804.707256-1-zongyao.bai@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DS7PR11MB9498:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0a40a37c-9407-463c-70c6-08dec7520c1b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|23010399003|376014|56012099006|11063799006|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: uRLwJo4KeRgH83gOKU25DXAFCEkZPHpP+aShYguyaXYqIL6uXSDvrpEGMPFcJYeXFmYZQJEb1jUJFnBHS25lMblZKIju4KtEgkd+Nfq8YcV3jm2F56LJpZfeW5veVYZeOJBqGFvA+Qxzu+/7X1z2mLRxcJ/vrd00I1yiZunisWGCuX5xtFck5pu1eEQtMS9MzQ1ZBmpBEjJTpmh6sE8dSpJqlQLbqKZZ7lkfEYNJtRyZsYC7vEz0OLCPIpEYdp1BozYl0FxG1ykmdenayUzf1ddRUjuD1eEer8HspWLqCf0i+9hcGUkiCEjQKFrgYq2OHYXWtHuTqCqKDQ0DWvXwXjYNmDbzeX9/mKLCA1Bzk0JFdoLm52ylI/H75Vu8RelwoJeQcLCc1m/P1uIkr299XC8qJfzLLO+y0Wmisgb4NMFNwddRe7WoszXilFpwHo4lldpYChhnq+zt7NfNEaDTrCJKU42mzmWlh0WQAcXu/vXJeSNZam2rTQTCm6mRVVHdh0p5zzyMy3WOV/fZsWx5UTQPADctInkPQOpy0bjec1Y5i6/L4ApDRN0BeNSZWYpkcq5SOBWBhrLn4Hsn1CYhSmlMISVQ+DuR7uZD0+Y1SHPizZxKZTWCznq9vs/3bbwNPrkhpiiZ5scc16m7hnyNtGM7dXCjNJkijK/MgKt95XH1H4fWfxGw02t9Mo6KUeeB
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(23010399003)(376014)(56012099006)(11063799006)(22082099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?avLUcJ3g7flS7PJ0wdR2TFuHhznZaVxpe42KjAJdlOmCddooBddVdWe/wZua?=
- =?us-ascii?Q?IR+3/G+T/cxJLnY1wc2u8C+x9H1SHpyTZATq7gby/eqVsQ6rAZtPi7PloNqa?=
- =?us-ascii?Q?PZry28rgJtB06ESvxzsaeNgqbazmvRtoIQqshJJhI1rfMmu2OyJYBeo7BW4M?=
- =?us-ascii?Q?+vWGs7mFGerYY4x8HgPEbmYucVGHayi7b8rniShrahpBTSSG0c1iKCUBbmxz?=
- =?us-ascii?Q?FQ3WyBaolUFwBn1IUAeAWHnYitdv7F3u8BM11zRFHVotzohwDdlYOp2iDEYW?=
- =?us-ascii?Q?5OIASLLwFHGmYQ1Vut9uZD3W2FOCHrrPWwpfJLqqdTkq1eUV/Q+RcTJKhqLP?=
- =?us-ascii?Q?fn+7X7A2zZXV5r6XGKzYPw5ukfR6iMHFrquTsv0iLwxVN4KfNmierfYakowM?=
- =?us-ascii?Q?teRWO4AYgelm5Q6FtsCXbcaDx3NkzhKKjIJdhdbB+nOTPfHDNgqUszOL/8iJ?=
- =?us-ascii?Q?VLOqxH/oDUIMyf8BgSkvV1cRdY6wyWBp2X20NWyQQMpW0sCVQTKWXGavs1ql?=
- =?us-ascii?Q?US4aigv0V0sLrWLMFaGE0K9O0oFjmcEvWeyjx8ljdmtGU+YgvFaB8+Eem5+I?=
- =?us-ascii?Q?vP1H9KP1ukxhXqD6qNu9lJeCDLTL5Je54bgX47LKsyJDz1WIB+ZIi4ML6W+7?=
- =?us-ascii?Q?ze5tNIw/XwIhyoS/H4/85eU5M1Pdac5vxX6WHQF6QG+eXS9TO7aqzUvRB5yH?=
- =?us-ascii?Q?7O0TuOEG1RFb4NmSbrJKYDGZTq+B1vdL/VBK73kQLSZ27u5Qx1y8LxYZALo9?=
- =?us-ascii?Q?ILuuzO8pW4dE5r3aYzhu2Y3f9goqAT0E0nr69+b44zaqm+WMdu9Y0WwLqXBw?=
- =?us-ascii?Q?HJq3REVMihDSXk/FqQ0VccmFE4tWh96yzxsmkRl/H6EtKIpH4H0FWRV5mpn7?=
- =?us-ascii?Q?5QsFpUAOtqJ53RI1CF5AEljQ6dTbyWnA20XaYdIc447FtcUM16Al21oE7mfT?=
- =?us-ascii?Q?BNl6FKuZ4+7QerewXfoyuHpptoJPcR+EGsm6pmslzwPGNwBzKCQF5O3ZuzQ3?=
- =?us-ascii?Q?tz9mJ0sVS4dlhzguOG9bB1KPpSBAoyHJRN8MPCoGH6ejWmL2SzmPrTzhorB0?=
- =?us-ascii?Q?vIJBAKvj0LGT0cHi0fKEtXu62OzlDMbwN7Cyt9aMVWVKnklSjJO89y8KzCoD?=
- =?us-ascii?Q?Eu534cQ5JJOEjqHd+kdSWcUijRmC3HFrrdTvd7nR0OVqcze0OXDJYaC1C9bD?=
- =?us-ascii?Q?VMUUkeDmVzGTJSeaBXXhTocohishFj2lbUvx5TF+WJ0S3g0HPd43/JJsZXGj?=
- =?us-ascii?Q?YsP36qb+phX/uq/RIvxa3/dymzM9SIimKvZdcum7ItvAt2xgrxDzO/2xHii0?=
- =?us-ascii?Q?LFVFiMV/Cglgw37rC6+lndnx5/7ACDrkVA5kuNYTe4bJCmHNxZ0yMftMCCVj?=
- =?us-ascii?Q?LF/zocBP/qUT586GQpNFX6MZaPJHBk+NRw1DhU1vzas+VXFZpGEf6KAzKMRc?=
- =?us-ascii?Q?DjtjaPEM7oSdAqoWBxATVdkZ2kD9ShqPX/I7gdRvb2P2rjP3pr5b3mAPnzz2?=
- =?us-ascii?Q?irlLNwZEDm8+v9bTRVvI/SzkTHME+ZBjpYl4xyBLlDiJb+qx2hxyNzZj6zpN?=
- =?us-ascii?Q?zB6za3udq99JvLaiW7hZUvHmrnteGr9CSIEfRo+Ctj1YWhK9br10Zn6aD0z5?=
- =?us-ascii?Q?U1dAtUg+vtTEaN2kSf1v5G6OagqOk+DRM2DgHPM7kPOSFFO4T9i/vUAUMRuW?=
- =?us-ascii?Q?sX/yZIRRhSHqGKHCJm45UVoacOrVjShspx1gBlEoukkLwTdxVvLTeC8R0oIi?=
- =?us-ascii?Q?0x1K5M+MShnVGSi8JvZ6WY4XyBnN5ng=3D?=
-X-Exchange-RoutingPolicyChecked: cj2u2d+G0h4UvpAtaVXYZiUS+1RgkanL1Fq6/S8Joa8VK9crwk3gZswFXAgnvZe+RTb4Jqg3Cv3aKNa5PY1JN3nWkerMoxSSP8z+c6Ywwym8tvyAkrEny9m1954ObNXb9M9KSAhCMc2OYVmso9Djso9Wv+Ny7w6miKtkNwT81gMteiZXEMJV/Unn1aZMMzfkERSRaAIrjELQt6lWukEPKIbqVcbCkSNTWKvkPTuQapxpe1auunWmiz1riUv0IBer6OHjyp5r+Wo9WcAlxva1SPPw6vowXUNfp8gpPmDDJ3dlj7m+I42/ogymX2sIMgIiVkPhk5E+AuPng50CPBclmQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0a40a37c-9407-463c-70c6-08dec7520c1b
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jun 2026 00:40:33.9055 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: YvATckcG+to+nnR4MYjDjaDB5m3xttXybIiyXsM3IiZwTLZc76m0kBbnPagP60jU6l8U8nEqwfSNMYQqjAGgXg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB9498
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,47 +66,423 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jun 08, 2026 at 06:15:40AM +0000, Wentao Liang wrote:
-> xe_range_fence_insert() acquires a reference on fence via
-> dma_fence_get() and stores it in rfence->fence.  It then calls
-> dma_fence_add_callback() and handles two cases: when the callback
-> is successfully registered (err == 0) the fence is transferred to
-> the tree for later cleanup; when the fence is already signaled
-> (err == -ENOENT) it manually drops the extra reference with
-> dma_fence_put(fence).
-> 
-> However, dma_fence_add_callback() can fail with other errors
-> (e.g. -EINVAL) and in that case the code falls through to the free:
-> label without releasing the acquired reference, leaking it.
-> 
-> Fix the leak by adding an else branch that calls dma_fence_put()
-> before jumping to free: for any error other than -ENOENT.
-> 
-> Cc: stable@vger.kernel.org
-> Fixes: 845f64bdbfc9 ("drm/xe: Introduce a range-fence utility")
-> Signed-off-by: Wentao Liang <vulab@iscas.ac.cn>
+Add delayed-release optimization:
+ - Add domain sleep XE_FORCE_WAKE_HOLD_DELAY_US after xe_force_wake_put()
+ - Skip MMIO wake in xe_force_wake_get() if domain still awake.
+Reduces frequent wake/sleep cycles for back-to-back operations.
+Examples of scenarios: zeDeviceGetGlobalTimestamps read by VTune, PTI
 
-Merged to drm-xe-next.
+v2:
+ - Add xe_force_wake_flush() and call it on the runtime/system
+   suspend paths to ensure no deferred-sleep runs after GT power-off.
+   (Sashiko)
 
-Matt
+Assisted-by: GitHub-Copilot:claude-sonnet-4.6
+Assisted-by: GitHub-Copilot:claude-opus-4.8 #v2
+Signed-off-by: Zongyao Bai <zongyao.bai@intel.com>
+---
+ drivers/gpu/drm/xe/xe_force_wake.c       | 146 +++++++++++++++++++----
+ drivers/gpu/drm/xe/xe_force_wake.h       |  23 +++-
+ drivers/gpu/drm/xe/xe_force_wake_types.h |  11 ++
+ drivers/gpu/drm/xe/xe_gt.c               |  26 ++--
+ 4 files changed, 171 insertions(+), 35 deletions(-)
 
-> ---
->  drivers/gpu/drm/xe/xe_range_fence.c | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_range_fence.c b/drivers/gpu/drm/xe/xe_range_fence.c
-> index 372378e89e98..3d8fa194a7b0 100644
-> --- a/drivers/gpu/drm/xe/xe_range_fence.c
-> +++ b/drivers/gpu/drm/xe/xe_range_fence.c
-> @@ -77,6 +77,8 @@ int xe_range_fence_insert(struct xe_range_fence_tree *tree,
->  	} else if (err == 0) {
->  		xe_range_fence_tree_insert(rfence, &tree->root);
->  		return 0;
-> +	} else {
-> +		dma_fence_put(fence);
->  	}
->  
->  free:
-> -- 
-> 2.34.1
-> 
+diff --git a/drivers/gpu/drm/xe/xe_force_wake.c b/drivers/gpu/drm/xe/xe_force_wake.c
+index 197e2197bd0a..b7c674f5f69a 100644
+--- a/drivers/gpu/drm/xe/xe_force_wake.c
++++ b/drivers/gpu/drm/xe/xe_force_wake.c
+@@ -6,15 +6,20 @@
+ #include "xe_force_wake.h"
+ 
+ #include <drm/drm_util.h>
++#include <linux/device.h>
++#include <linux/hrtimer.h>
+ 
+ #include "regs/xe_gt_regs.h"
+ #include "regs/xe_reg_defs.h"
++#include "xe_device.h"
+ #include "xe_gt.h"
+ #include "xe_gt_printk.h"
+ #include "xe_mmio.h"
++#include "xe_pm.h"
+ #include "xe_sriov.h"
+ 
+ #define XE_FORCE_WAKE_ACK_TIMEOUT_MS	50
++#define XE_FORCE_WAKE_HOLD_DELAY_US	200
+ 
+ static const char *str_wake_sleep(bool wake)
+ {
+@@ -27,6 +32,8 @@ static void mark_domain_initialized(struct xe_force_wake *fw,
+ 	fw->initialized_domains |= BIT(id);
+ }
+ 
++static enum hrtimer_restart xe_force_wake_domain_timer(struct hrtimer *timer);
++
+ static void init_domain(struct xe_force_wake *fw,
+ 			enum xe_force_wake_domain_id id,
+ 			struct xe_reg reg, struct xe_reg ack)
+@@ -38,11 +45,29 @@ static void init_domain(struct xe_force_wake *fw,
+ 	domain->reg_ack = ack;
+ 	domain->val = FORCEWAKE_MT(FORCEWAKE_KERNEL);
+ 	domain->mask = FORCEWAKE_MT_MASK(FORCEWAKE_KERNEL);
++	domain->fw_back = fw;
++	hrtimer_setup(&domain->timer, xe_force_wake_domain_timer,
++		      CLOCK_MONOTONIC, HRTIMER_MODE_REL);
+ 
+ 	mark_domain_initialized(fw, id);
+ }
+ 
+-void xe_force_wake_init_gt(struct xe_gt *gt, struct xe_force_wake *fw)
++static void xe_force_wake_fini(void *arg)
++{
++	struct xe_force_wake *fw = arg;
++	struct xe_gt *gt = fw->gt;
++	struct xe_force_wake_domain *domain;
++	unsigned int tmp;
++
++	for_each_fw_domain(domain, fw, tmp) {
++		xe_gt_WARN(gt, domain->ref,
++			   "Forcewake domain %d still referenced (%u) at teardown\n",
++			   domain->id, domain->ref);
++		hrtimer_cancel(&domain->timer);
++	}
++}
++
++int xe_force_wake_init_gt(struct xe_gt *gt, struct xe_force_wake *fw)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 
+@@ -58,6 +83,8 @@ void xe_force_wake_init_gt(struct xe_gt *gt, struct xe_force_wake *fw)
+ 			    FORCEWAKE_GT,
+ 			    FORCEWAKE_ACK_GT);
+ 	}
++
++	return devm_add_action_or_reset(xe->drm.dev, xe_force_wake_fini, fw);
+ }
+ 
+ void xe_force_wake_init_engines(struct xe_gt *gt, struct xe_force_wake *fw)
+@@ -142,10 +169,37 @@ static void domain_sleep(struct xe_gt *gt, struct xe_force_wake_domain *domain)
+ 	__domain_ctl(gt, domain, false);
+ }
+ 
+-static int domain_sleep_wait(struct xe_gt *gt,
+-			     struct xe_force_wake_domain *domain)
++static enum hrtimer_restart xe_force_wake_domain_timer(struct hrtimer *timer)
+ {
+-	return __domain_wait(gt, domain, false);
++	struct xe_force_wake_domain *domain =
++		container_of(timer, struct xe_force_wake_domain, timer);
++	struct xe_force_wake *fw = domain->fw_back;
++	struct xe_gt *gt = fw->gt;
++	unsigned long flags;
++
++	xe_gt_assert(gt, !xe_pm_runtime_suspended(gt_to_xe(gt)));
++
++	spin_lock_irqsave(&fw->lock, flags);
++
++	if (!(fw->timer_domains & BIT(domain->id)) || domain->ref) {
++		spin_unlock_irqrestore(&fw->lock, flags);
++		return HRTIMER_NORESTART;
++	}
++	if (domain->timer_rearm) {
++		domain->timer_rearm = false;
++		spin_unlock_irqrestore(&fw->lock, flags);
++		hrtimer_forward_now(timer,
++				    ns_to_ktime(XE_FORCE_WAKE_HOLD_DELAY_US *
++						NSEC_PER_USEC));
++		return HRTIMER_RESTART;
++	}
++
++	fw->timer_domains &= ~BIT(domain->id);
++	domain_sleep(gt, domain);
++	fw->awake_domains &= ~BIT(domain->id);
++	spin_unlock_irqrestore(&fw->lock, flags);
++
++	return HRTIMER_NORESTART;
+ }
+ 
+ /**
+@@ -187,8 +241,13 @@ unsigned int __must_check xe_force_wake_get(struct xe_force_wake *fw,
+ 	spin_lock_irqsave(&fw->lock, flags);
+ 	for_each_fw_domain_masked(domain, ref_rqst, fw, tmp) {
+ 		if (!domain->ref++) {
+-			awake_rqst |= BIT(domain->id);
+-			domain_wake(gt, domain);
++			if (fw->awake_domains & BIT(domain->id)) {
++				fw->timer_domains &= ~BIT(domain->id);
++				hrtimer_try_to_cancel(&domain->timer);
++			} else {
++				awake_rqst |= BIT(domain->id);
++				domain_wake(gt, domain);
++			}
+ 		}
+ 		ref_incr |= BIT(domain->id);
+ 	}
+@@ -213,27 +272,23 @@ unsigned int __must_check xe_force_wake_get(struct xe_force_wake *fw,
+ }
+ 
+ /**
+- * xe_force_wake_put - Decrement the refcount and put domain to sleep if refcount becomes 0
++ * xe_force_wake_put - Decrement the refcount and arm the delayed-sleep timer
+  * @fw: Pointer to the force wake structure
+  * @fw_ref: return of xe_force_wake_get()
+  *
+- * This function reduces the reference counts for domains in fw_ref. If
+- * refcount for any of the specified domain reaches 0, it puts the domain to sleep
+- * and waits for acknowledgment for domain to sleep within 50 milisec timeout.
+- * Warns in case of timeout of ack from domain.
++ * This function reduces the reference counts for domains in fw_ref.  When a
++ * domain's refcount reaches 0 the sleep request is not issued immediately;
++ * instead a hrtimer is armed for XE_FORCE_WAKE_HOLD_DELAY_US so that a rapid
++ * xe_force_wake_get() can reuse the still-awake domain at zero MMIO cost.  On
++ * timer expiry, if the domain is still idle, the sleep request is written.
+  */
+ void xe_force_wake_put(struct xe_force_wake *fw, unsigned int fw_ref)
+ {
+ 	struct xe_gt *gt = fw->gt;
+ 	struct xe_force_wake_domain *domain;
+-	unsigned int tmp, sleep = 0;
++	unsigned int tmp;
+ 	unsigned long flags;
+-	int ack_fail = 0;
+ 
+-	/*
+-	 * Avoid unnecessary lock and unlock when the function is called
+-	 * in error path of individual domains.
+-	 */
+ 	if (!fw_ref)
+ 		return;
+ 
+@@ -245,20 +300,59 @@ void xe_force_wake_put(struct xe_force_wake *fw, unsigned int fw_ref)
+ 		xe_gt_assert(gt, domain->ref);
+ 
+ 		if (!--domain->ref) {
+-			sleep |= BIT(domain->id);
+-			domain_sleep(gt, domain);
++			fw->timer_domains |= BIT(domain->id);
++			if (hrtimer_callback_running(&domain->timer)) {
++				domain->timer_rearm = true;
++			} else {
++				domain->timer_rearm = false;
++				hrtimer_start(&domain->timer,
++					      ns_to_ktime(XE_FORCE_WAKE_HOLD_DELAY_US *
++							  NSEC_PER_USEC),
++				      HRTIMER_MODE_REL);
++			}
+ 		}
+ 	}
+-	for_each_fw_domain_masked(domain, sleep, fw, tmp) {
+-		if (domain_sleep_wait(gt, domain) == 0)
++	spin_unlock_irqrestore(&fw->lock, flags);
++}
++
++/**
++ * xe_force_wake_flush - Cancel pending delayed-sleep timers and settle domains
++ * @fw: Pointer to the force wake structure
++ *
++ * The delayed-release optimization in xe_force_wake_put() arms a short hrtimer
++ * instead of putting an idle domain to sleep immediately.  That deferred sleep
++ * performs MMIO and must not be allowed to run after the device has been
++ * powered down.  Callers on the runtime/system suspend path must therefore
++ * flush any outstanding timers once forcewake has been fully released, before
++ * the hardware is powered off.
++ *
++ * For every domain this cancels the pending timer (synchronously waiting for an
++ * in-flight callback to finish) and, if the domain is still idle with an
++ * outstanding deferred sleep, performs the sleep request right away so the
++ * domain is left in a consistent, fully-asleep state.  hrtimer_cancel() must be
++ * called without holding fw->lock, since the timer callback takes that same
++ * lock.
++ */
++void xe_force_wake_flush(struct xe_force_wake *fw)
++{
++	struct xe_gt *gt = fw->gt;
++	struct xe_force_wake_domain *domain;
++	unsigned int tmp;
++	unsigned long flags;
++
++	for_each_fw_domain(domain, fw, tmp)
++		hrtimer_cancel(&domain->timer);
++
++	spin_lock_irqsave(&fw->lock, flags);
++	for_each_fw_domain(domain, fw, tmp) {
++		domain->timer_rearm = false;
++		if ((fw->timer_domains & BIT(domain->id)) && !domain->ref) {
++			fw->timer_domains &= ~BIT(domain->id);
++			domain_sleep(gt, domain);
+ 			fw->awake_domains &= ~BIT(domain->id);
+-		else
+-			ack_fail |= BIT(domain->id);
++		}
+ 	}
+ 	spin_unlock_irqrestore(&fw->lock, flags);
+-
+-	xe_gt_WARN(gt, ack_fail, "Forcewake domain%s %#x failed to acknowledge sleep request\n",
+-		   str_plural(hweight_long(ack_fail)), ack_fail);
+ }
+ 
+ const char *xe_force_wake_domain_to_str(enum xe_force_wake_domain_id id)
+diff --git a/drivers/gpu/drm/xe/xe_force_wake.h b/drivers/gpu/drm/xe/xe_force_wake.h
+index e2721f205d6c..1b6d5efead38 100644
+--- a/drivers/gpu/drm/xe/xe_force_wake.h
++++ b/drivers/gpu/drm/xe/xe_force_wake.h
+@@ -11,13 +11,32 @@
+ 
+ struct xe_gt;
+ 
+-void xe_force_wake_init_gt(struct xe_gt *gt,
+-			   struct xe_force_wake *fw);
++int xe_force_wake_init_gt(struct xe_gt *gt,
++			  struct xe_force_wake *fw);
+ void xe_force_wake_init_engines(struct xe_gt *gt,
+ 				struct xe_force_wake *fw);
+ unsigned int __must_check xe_force_wake_get(struct xe_force_wake *fw,
+ 					    enum xe_force_wake_domains domains);
+ void xe_force_wake_put(struct xe_force_wake *fw, unsigned int fw_ref);
++void xe_force_wake_flush(struct xe_force_wake *fw);
++
++/**
++ * xe_force_wake_put_and_flush - Release forcewake and settle any deferred sleep
++ * @fw: Pointer to the force wake structure
++ * @fw_ref: return of xe_force_wake_get()
++ *
++ * Convenience helper for paths that must guarantee the domain is fully asleep
++ * before returning (typically right before the GT is powered off on
++ * runtime/system suspend). Because the flush has to run after the final put
++ * but before HW power-off, scope-based cleanup via CLASS(xe_force_wake, ...)
++ * cannot be used here.
++ */
++static inline void
++xe_force_wake_put_and_flush(struct xe_force_wake *fw, unsigned int fw_ref)
++{
++	xe_force_wake_put(fw, fw_ref);
++	xe_force_wake_flush(fw);
++}
+ 
+ const char *xe_force_wake_domain_to_str(enum xe_force_wake_domain_id id);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_force_wake_types.h b/drivers/gpu/drm/xe/xe_force_wake_types.h
+index 14b7b86e801b..ee5675069fe0 100644
+--- a/drivers/gpu/drm/xe/xe_force_wake_types.h
++++ b/drivers/gpu/drm/xe/xe_force_wake_types.h
+@@ -6,6 +6,7 @@
+ #ifndef _XE_FORCE_WAKE_TYPES_H_
+ #define _XE_FORCE_WAKE_TYPES_H_
+ 
++#include <linux/hrtimer.h>
+ #include <linux/mutex.h>
+ #include <linux/types.h>
+ 
+@@ -51,6 +52,8 @@ enum xe_force_wake_domains {
+ 	XE_FORCEWAKE_ALL	= BIT(XE_FW_DOMAIN_ID_COUNT)
+ };
+ 
++struct xe_force_wake;
++
+ /**
+  * struct xe_force_wake_domain - Xe force wake power domain
+  *
+@@ -82,6 +85,12 @@ struct xe_force_wake_domain {
+ 	u32 mask;
+ 	/** @ref: domain reference */
+ 	u32 ref;
++	/** @timer_rearm: put() ran while callback was in-flight; callback must restart timer */
++	bool timer_rearm;
++	/** @timer: hrtimer for delayed sleep request */
++	struct hrtimer timer;
++	/** @fw_back: back pointer to parent xe_force_wake */
++	struct xe_force_wake *fw_back;
+ };
+ 
+ /**
+@@ -101,6 +110,8 @@ struct xe_force_wake {
+ 	spinlock_t lock;
+ 	/** @awake_domains: mask of all domains awake */
+ 	unsigned int awake_domains;
++	/** @timer_domains: mask of domains with an outstanding delayed-sleep timer */
++	unsigned int timer_domains;
+ 	/** @initialized_domains: mask of all initialized domains */
+ 	unsigned int initialized_domains;
+ 	/** @domains: force wake domains */
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 783eb6d631b5..bba51a655b28 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -511,7 +511,9 @@ int xe_gt_init_early(struct xe_gt *gt)
+ 
+ 	xe_wa_process_gt_oob(gt);
+ 
+-	xe_force_wake_init_gt(gt, gt_to_fw(gt));
++	err = xe_force_wake_init_gt(gt, gt_to_fw(gt));
++	if (err)
++		return err;
+ 	spin_lock_init(&gt->global_invl_lock);
+ 
+ 	err = xe_gt_tlb_inval_init_early(gt);
+@@ -998,13 +1000,15 @@ void xe_gt_suspend_prepare(struct xe_gt *gt)
+ 
+ int xe_gt_suspend(struct xe_gt *gt)
+ {
++	unsigned int fw_ref;
+ 	int err;
+ 
+ 	xe_gt_dbg(gt, "suspending\n");
+ 	xe_gt_sanitize(gt);
+ 
+-	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+-	if (!xe_force_wake_ref_has_domain(fw_ref.domains, XE_FORCEWAKE_ALL)) {
++	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL)) {
++		xe_force_wake_put(gt_to_fw(gt), fw_ref);
+ 		xe_gt_err(gt, "suspend failed (%pe)\n", ERR_PTR(-ETIMEDOUT));
+ 		return -ETIMEDOUT;
+ 	}
+@@ -1012,7 +1016,7 @@ int xe_gt_suspend(struct xe_gt *gt)
+ 	err = xe_uc_suspend(&gt->uc);
+ 	if (err) {
+ 		xe_gt_err(gt, "suspend failed (%pe)\n", ERR_PTR(err));
+-		return err;
++		goto err_force_wake;
+ 	}
+ 
+ 	xe_gt_idle_disable_pg(gt);
+@@ -1021,7 +1025,10 @@ int xe_gt_suspend(struct xe_gt *gt)
+ 
+ 	xe_gt_dbg(gt, "suspended\n");
+ 
+-	return 0;
++err_force_wake:
++	xe_force_wake_put_and_flush(gt_to_fw(gt), fw_ref);
++
++	return err;
+ }
+ 
+ void xe_gt_shutdown(struct xe_gt *gt)
+@@ -1080,10 +1087,13 @@ int xe_gt_resume(struct xe_gt *gt)
+  */
+ int xe_gt_runtime_suspend(struct xe_gt *gt)
+ {
++	unsigned int fw_ref;
++
+ 	xe_gt_dbg(gt, "runtime suspending\n");
+ 
+-	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+-	if (!xe_force_wake_ref_has_domain(fw_ref.domains, XE_FORCEWAKE_ALL)) {
++	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL)) {
++		xe_force_wake_put(gt_to_fw(gt), fw_ref);
+ 		xe_gt_err(gt, "runtime suspend failed (%pe)\n", ERR_PTR(-ETIMEDOUT));
+ 		return -ETIMEDOUT;
+ 	}
+@@ -1093,6 +1103,8 @@ int xe_gt_runtime_suspend(struct xe_gt *gt)
+ 
+ 	xe_gt_dbg(gt, "runtime suspended\n");
+ 
++	xe_force_wake_put_and_flush(gt_to_fw(gt), fw_ref);
++
+ 	return 0;
+ }
+ 
+-- 
+2.43.0
+
