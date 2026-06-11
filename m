@@ -4,99 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 582EACD98D4
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jun 2026 10:13:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5F24CD98D2
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jun 2026 10:31:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1991B10EE1D;
-	Thu, 11 Jun 2026 10:13:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5821210EE23;
+	Thu, 11 Jun 2026 10:31:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="higD+1i9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q8BSMTNd";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96C3710EE1C
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Jun 2026 10:13:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1781172782;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=dFYGrtWClhfZ3Q43+mH8yJXNZwovzAkM0JScXulojb8=;
- b=higD+1i98BrnfLJuByphXdnrz89UlhmPTU2QT1ar8h1/ZoTBFvkZ0/ew8kEBimNDRxfDz+
- Mdf70WvLwFUVs/na2TyscpfiAj6U2iHWlXoiWeP6PmTCrMpGbzaOY2F1KPuGS4OtSZzJtv
- 8Cj3lopo6VHB+98EEw3f7GsbgnzJnoI=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-546-YSoda279PYCN0TBxtqQSdg-1; Thu, 11 Jun 2026 06:12:56 -0400
-X-MC-Unique: YSoda279PYCN0TBxtqQSdg-1
-X-Mimecast-MFC-AGG-ID: YSoda279PYCN0TBxtqQSdg_1781172775
-Received: by mail-wm1-f70.google.com with SMTP id
- 5b1f17b1804b1-490bfd70b0fso78222485e9.0
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Jun 2026 03:12:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1781172775; x=1781777575;
- h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
- :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=dFYGrtWClhfZ3Q43+mH8yJXNZwovzAkM0JScXulojb8=;
- b=eITHJ6AbXxAexgbHUOeOhVnTPYuehClish5y+C6UH/SlV/Aep9aidT/zYd8knFhA5R
- I8zGeHtuXSqtLXFlobsRMphpNoeUH1cU1YMnfLr/0ZmcAv3PipC5cROZzrYQn4cBUl+e
- VO5V0u5c8C+fbNP1MTv1mGRNv6s6v1j0MQypb/ZIvqMk9UJ9D9w+5AiYwyJsCm8qrVMN
- ja297CvQEWo+RYvlcSU4oxqT3iQLT94VXvEeMnp/wBDTjdajs28dbrmDvkxJSjhyBcQo
- t7c7x5YpC6agRaPlEhu70+iLwXuFf+gRwJ+Xe65AwAD4IHAG6i8d+KJWMfhrgD6/aVio
- XINg==
-X-Forwarded-Encrypted: i=1;
- AFNElJ/H58mzna5f/w4/dtTrxaemS1YDaTtB3nuau382SJO1/t/moNu7PBpuT9t2Sf97kT25k21RM6FGcg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx1QsyIgTfkfXUs8EhcSI4YnEyMYDRHw0aeLtiTo/urzfzJ5suA
- Hy99oQfULMvk3XWNqQ77o4pOeLAQvOckRDjNJC70dQ34rBLvA5uVGXN5gNILQ/apHol1FliTJPO
- 1b6s1SweIM4w5qbjTgnyAyGrFjf0pZ5be74c45SUJyroawq1aXM/VCEjo1MBUbMZFfZ1z
-X-Gm-Gg: Acq92OG57Mq9cNEIR8aJo9KijbX0yULSg3BxMmt3EnvhRYL5mIwK4R1GiPYJDSZHl5p
- 8xTG0DO5w49DSmr4gT+k+vijJ8Xr/yO51XZTKpYf0IpNMXHERct3J2tN38Wuv/8i6gfbQc/5ciE
- uzMLgjFkYgr7c7BjO3KT6yoyFGzSughrNMueSSp0nTp9poVwsN/a+Ff4FznAxMFj8s8XqLf9tGb
- HrrkPPUiDUR5CN46TEAL5poZlvBbZCAOB0vXb3S5lLtqe2ZXpJg7dI0sdS3ErmxMG82oRvT2T9m
- 2jp2b9wMrd0zGPrHc1inQLrLM6g2HPgW/eKwB+By+hHZSy6dHwG/zzbsHK3P+tmHd0H0kFpj98c
- VTUw6CupuQaTeaba3U8lZ/ahLcN8M8fD05rqzHXjBODMXPGaja/0guNE+Cz3unOnkQ4GyezWaFN
- TP495DrOr9RXe8Tfc=
-X-Received: by 2002:a05:600c:c493:b0:490:a298:3859 with SMTP id
- 5b1f17b1804b1-490e5639bf0mr26218665e9.24.1781172775421; 
- Thu, 11 Jun 2026 03:12:55 -0700 (PDT)
-X-Received: by 2002:a05:600c:c493:b0:490:a298:3859 with SMTP id
- 5b1f17b1804b1-490e5639bf0mr26217975e9.24.1781172775016; 
- Thu, 11 Jun 2026 03:12:55 -0700 (PDT)
-Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-490e532c778sm38051805e9.14.2026.06.11.03.12.54
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 11 Jun 2026 03:12:54 -0700 (PDT)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>, mripard@kernel.org,
- maarten.lankhorst@linux.intel.com, airlied@redhat.com, airlied@gmail.com,
- simona@ffwll.ch, admin@kodeit.net, gargaditya08@proton.me,
- paul@crapouillou.net, jani.nikula@linux.intel.com, mhklkml@zohomail.com,
- zack.rusin@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
- harry.wentland@amd.com, sunpeng.li@amd.com, siqueira@igalia.com,
- alexander.deucher@amd.com, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net,
- dmitry.osipenko@collabora.com, gurchetansingh@chromium.org,
- olvaffe@gmail.com
-Cc: dri-devel@lists.freedesktop.org, linux-hyperv@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-mips@vger.kernel.org, virtualization@lists.linux.dev,
- amd-gfx@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Zack Rusin <zackr@vmware.com>, stable@vger.kernel.org
-Subject: Re: [PATCH v5 04/15] drm/vmwgfx: Handle struct
- drm_plane_state.ignore_damage_clips
-In-Reply-To: <20260610152505.260172-5-tzimmermann@suse.de>
-References: <20260610152505.260172-1-tzimmermann@suse.de>
- <20260610152505.260172-5-tzimmermann@suse.de>
-Date: Thu, 11 Jun 2026 12:12:53 +0200
-Message-ID: <87pl1x5qsa.fsf@ocarina.mail-host-address-is-not-set>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F14610EE23
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Jun 2026 10:31:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1781173865; x=1812709865;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=9xIqvkctS86EXchBqTgJaR+ZSB0KUFFOhFJ8RUzCbHY=;
+ b=Q8BSMTNdY032wYi1bR6BEg05EeaTS+AssoVCh4xAPedK0oNZzxAye1A2
+ A2FPfK7UrRVPuWfmfHHXj+0nL1DNuuOCkIE46fO7OKfhFEB2v0ImyH5+Z
+ qDZ1xIb83WQG1IXxOyfo4Vy7dsNPT/yNbhufyB4DarnB1+In6zVOFPJNn
+ 2cGNiLCHNFskjeT7YHD/NbXQjV/d9J53K5tDnt6J2haXko3+M3A5N9Eyn
+ pII8G7Oq/JHBYzVd3pcQMbZG0mAIGXymhj8OMWjyWOTsFwQrgq5xPvYL/
+ VqTa6/fgX/aFLVhJeHXf9iM8TnrUZ2Ryleyt3jUcsO85xomDGOvr6hKKT Q==;
+X-CSE-ConnectionGUID: 0aTHWi09TFyjp1575Aoe8g==
+X-CSE-MsgGUID: 4N8hy9sHSGmNPk53gDWHNg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="82027620"
+X-IronPort-AV: E=Sophos;i="6.24,198,1774335600"; d="scan'208";a="82027620"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2026 03:31:05 -0700
+X-CSE-ConnectionGUID: XNnNEsQdSf28de5PsHz+oA==
+X-CSE-MsgGUID: oOQfh9fHSPycqvKhKFodOw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,198,1774335600"; d="scan'208";a="240098264"
+Received: from tilak-z690i-a-ultra-plus.iind.intel.com ([10.190.239.38])
+ by fmviesa009.fm.intel.com with ESMTP; 11 Jun 2026 03:31:04 -0700
+From: tilak.tirumalesh.tangudu@intel.com
+To: tilak.tirumalesh.tangudu@intel.com,
+	intel-xe@lists.freedesktop.org
+Subject: [PATCH] drm/xe: Add wa_14025941587 to xe2, xe3 and xe3p platforms
+Date: Thu, 11 Jun 2026 16:00:42 +0530
+Message-ID: <20260611103042.1044942-1-tilak.tirumalesh.tangudu@intel.com>
+X-Mailer: git-send-email 2.46.0
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: 6MY0ldfF7rOkSlg1oyszPVuPEMc8xU96_jUm3tVKnEc_1781172775
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,30 +63,124 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thomas Zimmermann <tzimmermann@suse.de> writes:
+From: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
 
-> The mode-setting pipeline can disabled damage clippings for a commit
-> by setting ignore_damage_clips in struct drm_plane_state. The commit
-> will then do a full display update.
->
-> Test the flag in the primary ldu plane's atomic_update and do a full
-> update if it has been set.
->
-> Commit 35ed38d58257 ("drm: Allow drivers to indicate the damage helpers
-> to ignore damage clips") introduced ignore_damage_clips to selectively
-> ignore damage clipping in certain framebuffer changes. Vmwgfx does not
-> do that, but DRM's damage iterator will soon rely on the flag. Therefore
-> supporting it here as well make sense for consistency.
->
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Fixes: 35ed38d58257 ("drm: Allow drivers to indicate the damage helpers to ignore damage clips")
+Avoid IDLEDLY timer programming lessthan 5 micro secs.
+Apply wa_14025941587 to Graphics Versions 20.01 to 35.11
+and Media Versions 13.01 to 35.03
 
-Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
+v2: Use xe_rtp_match_not_sriov_vf, move to local variable
+    Remove warn and other knits            - Matt R
 
+v3: Add verbose comment - Tejas
+
+v4: Restore IDLE_DLY register on engine reset.
+    Add it to GUC save-restore list. -Vivek
+
+v5: Extend WA to Media Versions 13.01 to 35.03 - Vinay
+v6: Avoid clearing inhibit switch - Bala
+    Refactor code accordingly by adding idle_reg_val.
+
+Signed-off-by: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
+Reviewed-by:  Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_ads.c    |  2 +-
+ drivers/gpu/drm/xe/xe_hw_engine.c  | 49 ++++++++++++++++++++++++------
+ drivers/gpu/drm/xe/xe_wa_oob.rules |  2 ++
+ 3 files changed, 42 insertions(+), 11 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index c98454545a85..2080e0e650eb 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -768,7 +768,7 @@ static unsigned int guc_mmio_regset_write(struct xe_guc_ads *ads,
+ 		}
+ 	}
+ 
+-	if (XE_GT_WA(hwe->gt, 16023105232))
++	if (XE_GT_WA(hwe->gt, 16023105232) || XE_GT_WA(hwe->gt, 14025941587))
+ 		guc_mmio_regset_write_one(ads, regset_map,
+ 					  RING_IDLEDLY(hwe->mmio_base),
+ 					  count++);
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 98265293f2dc..03e977f4eb24 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -578,25 +578,54 @@ static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
+ static void adjust_idledly(struct xe_hw_engine *hwe)
+ {
+ 	struct xe_gt *gt = hwe->gt;
+-	u32 idledly, maxcnt;
++	u32 idledly, idledly_reg_val, maxcnt;
+ 	u32 idledly_units_ps = 8 * gt->info.timestamp_base;
+ 	u32 maxcnt_units_ns = 640;
+-	bool inhibit_switch = 0;
++	bool inhibit_switch = false;
++	bool wa_applied = false;
+ 
+-	if (!IS_SRIOV_VF(gt_to_xe(hwe->gt)) && XE_GT_WA(gt, 16023105232)) {
+-		idledly = xe_mmio_read32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base));
++	if ((!IS_SRIOV_VF(gt_to_xe(hwe->gt)) && XE_GT_WA(gt, 16023105232)) ||
++	    XE_GT_WA(gt, 14025941587)) {
++		u32 mincnt_idledly_ns = 5000;
++
++		idledly_reg_val = xe_mmio_read32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base));
+ 		maxcnt = xe_mmio_read32(&gt->mmio, RING_PWRCTX_MAXCNT(hwe->mmio_base));
+ 
+-		inhibit_switch = idledly & INHIBIT_SWITCH_UNTIL_PREEMPTED;
+-		idledly = REG_FIELD_GET(IDLE_DELAY, idledly);
++		inhibit_switch = idledly_reg_val & INHIBIT_SWITCH_UNTIL_PREEMPTED;
++		idledly = REG_FIELD_GET(IDLE_DELAY, idledly_reg_val);
+ 		idledly = DIV_ROUND_CLOSEST(idledly * idledly_units_ps, 1000);
+ 		maxcnt = REG_FIELD_GET(IDLE_WAIT_TIME, maxcnt);
+ 		maxcnt *= maxcnt_units_ns;
+ 
+-		if (xe_gt_WARN_ON(gt, idledly >= maxcnt || inhibit_switch)) {
+-			idledly = DIV_ROUND_CLOSEST(((maxcnt - 1) * 1000),
+-						    idledly_units_ps);
+-			xe_mmio_write32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base), idledly);
++		/* Wa_14025941587: applied prior to Wa_16023105232,
++		 * as the latter has higher priority, although conflict
++		 * is not expected.
++		 */
++		if (XE_GT_WA(gt, 14025941587) &&
++		    idledly < mincnt_idledly_ns) {
++			idledly = mincnt_idledly_ns;
++			wa_applied = true;
++		}
++
++		if (XE_GT_WA(gt, 16023105232) &&
++		    xe_gt_WARN_ON(gt, idledly >= maxcnt || inhibit_switch)) {
++			idledly = (maxcnt - 1);
++			wa_applied = true;
++			/* inhibit_switch override to keep
++			 * semantics of Wa_16023105232
++			 */
++			if (inhibit_switch)
++				idledly_reg_val &= ~INHIBIT_SWITCH_UNTIL_PREEMPTED;
++		}
++
++		if (wa_applied) {
++			idledly_reg_val &= ~IDLE_DELAY;
++			idledly_reg_val |= REG_FIELD_PREP(IDLE_DELAY,
++						 DIV_ROUND_CLOSEST(idledly * 1000,
++								   idledly_units_ps));
++			xe_mmio_write32(&gt->mmio,
++					RING_IDLEDLY(hwe->mmio_base),
++					idledly_reg_val);
+ 		}
+ 	}
+ }
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index f8a185103b80..5d5041168fa8 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -65,3 +65,5 @@
+ 
+ 14025883347	MEDIA_VERSION_RANGE(1301, 3503)
+ 		GRAPHICS_VERSION_RANGE(2004, 3005)
++14025941587    GRAPHICS_VERSION_RANGE(2001, 3511), FUNC(xe_rtp_match_not_sriov_vf)
++	       MEDIA_VERSION_RANGE(1301, 3503), FUNC(xe_rtp_match_not_sriov_vf)
 -- 
-Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
+2.46.0
 
