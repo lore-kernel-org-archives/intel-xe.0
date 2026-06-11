@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDFABCD8C9D
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jun 2026 20:00:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 546C0CD98C7
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jun 2026 20:00:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93E2910E292;
-	Thu, 11 Jun 2026 20:00:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA33E10E292;
+	Thu, 11 Jun 2026 20:00:47 +0000 (UTC)
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D12AF10E2B0;
- Thu, 11 Jun 2026 20:00:13 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5504062559488792308=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C00F210E292;
+ Thu, 11 Jun 2026 20:00:46 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/debugfs=3A_Add_a_deb?=
- =?utf-8?q?ugfs_for_pcode_information_=28rev3=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Add_reclaim_to_the_dmem_c?=
+ =?utf-8?q?group_controller_=28rev6=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Karthik Poosa" <karthik.poosa@intel.com>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 11 Jun 2026 20:00:13 -0000
-Message-ID: <178120801384.70087.14660632967959739565@6beec6c84f66>
+Date: Thu, 11 Jun 2026 20:00:46 -0000
+Message-ID: <178120804678.69949.3768822862276442373@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260611165607.3653019-1-karthik.poosa@intel.com>
-In-Reply-To: <20260611165607.3653019-1-karthik.poosa@intel.com>
+References: <20260611173301.17473-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20260611173301.17473-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,137 +40,82 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5504062559488792308==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/debugfs: Add a debugfs for pcode information (rev3)
-URL   : https://patchwork.freedesktop.org/series/163703/
-State : failure
+Series: Add reclaim to the dmem cgroup controller (rev6)
+URL   : https://patchwork.freedesktop.org/series/163970/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-5242-c0a463345cc689fec0dbdea86cd5729123676e18_BAT -> xe-pw-163703v3_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 85e6ff634a4908a209daf61915384e395e09c1b2
+Author: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Date:   Thu Jun 11 19:33:01 2026 +0200
 
-Summary
--------
+    drm/amdgpu: Wire up dmem cgroup reclaim for VRAM manager
+    
+    Register the VRAM manager with the dmem cgroup reclaim infrastructure
+    so that lowering dmem.max below current VRAM usage triggers TTM
+    eviction rather than failing with -EBUSY.
+    
+    Guard place->flags in amdgpu_ttm_bo_eviction_valuable() against NULL,
+    as the TTM reclaim path passes a NULL place in cgroup drain mode.
+    
+    v3:
+    - Rebased on fix for uninitialized list and buddy allocator on the
+      drmm_cgroup_register_region() error path.
+    
+    v5:
+    - Rebased on the introduction of struct dmem_cgroup_init.
+    - Clear the reclaim callback in amdgpu_vram_mgr_fini() to prevent
+      use-after-free if cgroup reclaim is triggered after driver unbind
+      while userspace holds an open DRM file descriptor. (Sashiko-bot)
+    - Switch from drmm_cgroup_register_region() to the raw
+      dmem_cgroup_register_region() and store the region in
+      amdgpu_vram_mgr.cg_region. Call dmem_cgroup_unregister_region()
+      in amdgpu_vram_mgr_fini() after ttm_resource_manager_evict_all()
+      to drain in-flight reclaim callbacks, and clear man->cg afterwards.
+      This is required because amdgpu's vram manager fini is called
+      explicitly during driver unbind, which may precede the DRM device
+      release and thus precede any drmm-based cleanup. (Sashiko-bot)
+    
+    v6:
+    - Fix mgr->cg_region never being assigned, so
+      dmem_cgroup_unregister_region() in fini silently no-ops on NULL
+      and leaks the region. (Sashiko-bot)
+    - Reorder fini to call set_used(false) and evict_all() before
+      dmem_cgroup_unregister_region(), so ttm_resource_free() can
+      uncharge via man->cg during eviction; clear man->cg after
+      unregister. (Sashiko-bot)
+    
+    Assisted-by: GitHub_Copilot:claude-sonnet-4.6
+    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
++ /mt/dim checkpatch 311cbada9202146752938f54503d33980ee4f3f6 drm-intel
+21668a6cc1ce drm/amdgpu: Fix init ordering in amdgpu_vram_mgr_init()
+51ea374b60d9 cgroup/dmem: Introduce struct dmem_cgroup_init for region initialization
+2086316dfca8 cgroup/dmem: Add reclaim callback for lowering max below current usage
+40a81e3c18ae drm/ttm: Hook up a cgroup-aware reclaim callback for the dmem controller
+-:147: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#147: FILE: drivers/gpu/drm/ttm/ttm_bo.c:679:
++	evict_walk.try_low = evict_walk.hit_low = false;
 
-  **FAILURE**
+total: 0 errors, 0 warnings, 1 checks, 224 lines checked
+be08498f44d1 drm/xe: Wire up dmem cgroup reclaim for VRAM manager
+-:42: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#42: FILE: drivers/gpu/drm/xe/xe_ttm_vram_mgr.c:282:
++static int xe_ttm_vram_mgr_dmem_reclaim(struct dmem_cgroup_pool_state *pool,
++					 u64 target_bytes, void *priv)
 
-  Serious unknown changes coming with xe-pw-163703v3_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-163703v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-163703v3_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@core_debugfs@read-all-entries:
-    - bat-bmg-vm:         [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5242-c0a463345cc689fec0dbdea86cd5729123676e18/bat-bmg-vm/igt@core_debugfs@read-all-entries.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163703v3/bat-bmg-vm/igt@core_debugfs@read-all-entries.html
-    - bat-ptl-vm:         [PASS][3] -> [ABORT][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5242-c0a463345cc689fec0dbdea86cd5729123676e18/bat-ptl-vm/igt@core_debugfs@read-all-entries.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163703v3/bat-ptl-vm/igt@core_debugfs@read-all-entries.html
-    - bat-atsm-2:         [PASS][5] -> [DMESG-WARN][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5242-c0a463345cc689fec0dbdea86cd5729123676e18/bat-atsm-2/igt@core_debugfs@read-all-entries.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163703v3/bat-atsm-2/igt@core_debugfs@read-all-entries.html
-
-  
-
-
-Build changes
--------------
-
-  * Linux: xe-5242-c0a463345cc689fec0dbdea86cd5729123676e18 -> xe-pw-163703v3
-
-  IGT_8959: 77337ca2d2dd470f3b32f1cf4760b0e79a52e2b7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5242-c0a463345cc689fec0dbdea86cd5729123676e18: c0a463345cc689fec0dbdea86cd5729123676e18
-  xe-pw-163703v3: 163703v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163703v3/index.html
-
---===============5504062559488792308==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 0 warnings, 1 checks, 75 lines checked
+85e6ff634a49 drm/amdgpu: Wire up dmem cgroup reclaim for VRAM manager
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/debugfs: Add a debugfs for pcode information (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163703/">https://patchwork.freedesktop.org/series/163703/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163703v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163703v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5242-c0a463345cc689fec0dbdea86cd5729123676e18_BAT -&gt; xe-pw-163703v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-163703v3_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-163703v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-163703v3_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@core_debugfs@read-all-entries:<ul>
-<li>bat-bmg-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5242-c0a463345cc689fec0dbdea86cd5729123676e18/bat-bmg-vm/igt@core_debugfs@read-all-entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163703v3/bat-bmg-vm/igt@core_debugfs@read-all-entries.html">ABORT</a></li>
-<li>bat-ptl-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5242-c0a463345cc689fec0dbdea86cd5729123676e18/bat-ptl-vm/igt@core_debugfs@read-all-entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163703v3/bat-ptl-vm/igt@core_debugfs@read-all-entries.html">ABORT</a></li>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5242-c0a463345cc689fec0dbdea86cd5729123676e18/bat-atsm-2/igt@core_debugfs@read-all-entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163703v3/bat-atsm-2/igt@core_debugfs@read-all-entries.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5242-c0a463345cc689fec0dbdea86cd5729123676e18 -&gt; xe-pw-163703v3</li>
-</ul>
-<p>IGT_8959: 77337ca2d2dd470f3b32f1cf4760b0e79a52e2b7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5242-c0a463345cc689fec0dbdea86cd5729123676e18: c0a463345cc689fec0dbdea86cd5729123676e18<br />
-  xe-pw-163703v3: 163703v3</p>
-
-</body>
-</html>
-
---===============5504062559488792308==--
