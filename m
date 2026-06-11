@@ -4,58 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65CA3CD98C7
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jun 2026 16:17:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63A72CD98CE
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jun 2026 16:18:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2AE3310F001;
-	Thu, 11 Jun 2026 16:17:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2606110E827;
+	Thu, 11 Jun 2026 16:18:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f6bC/K+C";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TZdobaUR";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1AAFB10EFF7
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Jun 2026 16:17:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18DCA10EFF7
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Jun 2026 16:17:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781194677; x=1812730677;
+ t=1781194678; x=1812730678;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=vrCPSA8yvOtm51WfOpDP750QW0r4MfJH2mGPYdVzOtU=;
- b=f6bC/K+Ctk30dYr9bP5X5i2o6Z7PciyH7ukTfFLMBsnnmnVUwZZhPM6G
- 1k2cUeBlQs2nKzdZ0uhhVC5zovMOg2gE9Je4NVrJMg+2SDE03cpivhIRt
- dXbdbe6MFADp1CAJ4LbdtcB2EXFBYauBc8isOg7AXj70ae4fIbHei6r39
- 8l4VXgDbU3dt6tza7yIf0kF7U3bNHpv8JJOKyFE5ZS2S0o+IOYmp2MBCZ
- VN5heZtydZaH4BeQRyuOF369g89c6bYnPsYwu2KI4BI2Ae2CFbcl/daCV
- O91VtsTlw+pAz4l6Xi+G8VY5fiz01r/EwWFULumNC+uIMXiHV1fk0uO7O A==;
-X-CSE-ConnectionGUID: 75AcPe9XSqCi7aqsQNf56g==
-X-CSE-MsgGUID: YEuqwcqAQu6xYIX9fY/DUA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="93403012"
-X-IronPort-AV: E=Sophos;i="6.24,199,1774335600"; d="scan'208";a="93403012"
+ bh=SOk9eSnzqLpPqW1W5Vt2/duniclRqAfb6kihI2bl9kc=;
+ b=TZdobaURlUC0V9Q0nmHCEkJ4UsmKhrmB4dsQJkDts0i/PFtFHTj6c9jc
+ 2ijoxu6CRBP8ac5txNFOQbW2cC0rLQkgK/LElNFMh2R2M3yGxuuUIWxce
+ igUyngFH3VS3O/OzXBmxe0Cj3OhEeSFZ94OMBZ6RppbGtvYNLskEh98rC
+ GXtJHV0FaeB97aQXIEpTGyezUEtA9TOx4isrYdn1se/5GYWh2NOYCTf8V
+ tzqUz0aV8UCzKglFs7TUrPg326bpN4j1X8OzyFx0TgBJYu55Wo6kTzTfg
+ WKFUXOLAhIO32vlwNrqzk9T4SVVXzSOwYBtxC7gEwRJPpw8SDib/spJk2 g==;
+X-CSE-ConnectionGUID: ISWIGPBvQq2G4fOIW5tCDw==
+X-CSE-MsgGUID: IvHxbeTyTTqqreCnyBolAQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="93403021"
+X-IronPort-AV: E=Sophos;i="6.24,199,1774335600"; d="scan'208";a="93403021"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2026 09:17:57 -0700
-X-CSE-ConnectionGUID: Dqm17E/aSqm7wKr9ozpUlg==
-X-CSE-MsgGUID: eNuVXjuKSzerqegFa3CDng==
+ 11 Jun 2026 09:17:58 -0700
+X-CSE-ConnectionGUID: UCMqOfHiSRST71z4zggV8g==
+X-CSE-MsgGUID: daHeWc1QQTGb5CaqhAeA5Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,199,1774335600"; d="scan'208";a="251617082"
+X-IronPort-AV: E=Sophos;i="6.24,199,1774335600"; d="scan'208";a="251617094"
 Received: from ettammin-mobl3.ger.corp.intel.com (HELO mwauld-desk.intel.com)
  ([10.245.244.170])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2026 09:17:56 -0700
+ 11 Jun 2026 09:17:57 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v6 09/10] drm/xe/hw_engine: document top-down paging
- requirement
-Date: Thu, 11 Jun 2026 17:16:44 +0100
-Message-ID: <20260611161634.506476-21-matthew.auld@intel.com>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Subject: [PATCH v6 10/10] drm/xe/guc: toggle paging engine support for NVL-S+
+Date: Thu, 11 Jun 2026 17:16:45 +0100
+Message-ID: <20260611161634.506476-22-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260611161634.506476-12-matthew.auld@intel.com>
 References: <20260611161634.506476-12-matthew.auld@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,56 +67,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We were doing this anyway, but going forward for paging engines,
-agreement is to always reserve BCS instances in top down fashion. This
-hopefully future proofs things for VFs, where in some low-level places
-it might only have the physical BCS instance from the hw pov. If we
-stick to a consistent mapping scheme, it should make it possible to
-determine if this is a special paging engine, or not.
+NVL-S with latest GuC should be the first platform combo to
+support the special GUC_PAGING_CLASS feature.
 
-v2 (Daniele)
-  - Give a concrete example, like with page fault descriptor
+v2:
+  - Update with the final GuC version
+v3:
+  - Split VF vs PF versioning. Which is recommendation from GuC side.
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_engine.c | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_guc.c | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 1227b9e66fd6..9db6acc4f88c 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -663,7 +663,6 @@ static int hw_engine_setup_logical_and_paging_mapping(struct xe_gt *gt)
- 		if (hwe->class == XE_ENGINE_CLASS_COPY)
- 			num_copy_engines++;
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 847c4d74d169..feae2d4f4482 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -1848,6 +1848,9 @@ bool xe_guc_using_main_gamctrl_queues(struct xe_guc *guc)
  
--	/* We just reserve the highest BCS instance for USM */
- 	if (num_copy_engines && xe->info.has_usm)
- 		num_paging_engines = 1;
+ bool xe_guc_has_paging_engine(struct xe_guc *guc)
+ {
++	struct xe_gt *gt = guc_to_gt(guc);
++	struct xe_device *xe = gt_to_xe(gt);
++
+ 	/*
+ 	 * On newer platforms the GuC now has a dedicated engine class for the
+ 	 * special PAGING engine, which is the driver reserved BCS engine used
+@@ -1857,8 +1860,11 @@ bool xe_guc_has_paging_engine(struct xe_guc *guc)
+ 	 * need to respect.
+ 	 */
  
-@@ -688,6 +687,18 @@ static int hw_engine_setup_logical_and_paging_mapping(struct xe_gt *gt)
- 	if (xe_gt_WARN_ON(gt, num_paging_engines > num_copy_engines))
- 		return -EINVAL;
+-	/* TODO: Have some way to query this from the GuC? */
+-	return false;
++	if (IS_SRIOV_VF(xe))
++		return xe_gt_sriov_vf_paging_engines(gt);
++
++	return xe->info.platform >= XE_NOVALAKE_S &&
++	       GUC_FIRMWARE_VER_AT_LEAST(guc, 70, 69, 0);
+ }
  
-+	/*
-+	 * On PF, we just reserve the highest BCS instance for USM.
-+	 *
-+	 * Note: This is now a requirement going forward. The PF must ALWAYS
-+	 * reserve BCS instances in top-down order, that way the VF has a chance
-+	 * of discovering the physical BCS instance mappings for paging engines,
-+	 * in conjunction with vf_num_paging_engines. In some places we might
-+	 * only have the physical instance, and from hw pov there is no such
-+	 * thing as a paging engine. For example, the page fault descriptor,
-+	 * which comes directly from the hw, will use the physical engine
-+	 * instance.
-+	 */
- 	reserved_logical_bcs_start = num_copy_engines - num_paging_engines;
- 
- 	/* FIXME: Doing a simple logical mapping that works for most hardware */
+ /**
 -- 
 2.54.0
 
