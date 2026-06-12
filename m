@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03E08CD98CE
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Jun 2026 22:58:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 650B3CD98CE
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Jun 2026 23:28:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8970210E5D3;
-	Fri, 12 Jun 2026 22:58:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F54210E5D4;
+	Fri, 12 Jun 2026 23:28:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bYlgS3zc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aLPhGRnD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 135BD10E5D1;
- Fri, 12 Jun 2026 22:58:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B277D10E5D4
+ for <intel-xe@lists.freedesktop.org>; Fri, 12 Jun 2026 23:28:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781305083; x=1812841083;
+ t=1781306917; x=1812842917;
  h=from:to:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=JeagueDeW/R+PZT7hLMq2z6ytILq97Pg3wgOo7Fu8Q8=;
- b=bYlgS3zc8dQTkTgcl4xEXsG9WusGRXm2SWD0qHkpBIrx3ruwX8BKnDZA
- Sjc+6qhs/CXBf6G7hkuyEJSGziU3tlRAuIWO1xaN1uAjys4EphNhhS3WB
- +4myIQszVEhEXROf4AFxgDt2hdZRLNP9fVMKysqJYdsTofXMVJXRz+Rhy
- +4mU6Jw9hSXzBCxKrbc4JG9bdijZvRSkLydSy4GCKPTKg6SOfZsu8h2w1
- FWeCm3k3gxGJmez0yuXu+KPQ1z078WF2rPH1/b0/fuioWBLt6nw1chnZO
- QwTPFUHqLMTzR/pvC+2K4DNWFJ0PakG+PTfUSvT68x0KuMquNO3YKepen A==;
-X-CSE-ConnectionGUID: 6+Eu7eJOSMyoqMYgEucU+A==
-X-CSE-MsgGUID: 0UAvH0P8Taa0V4lx5a+veg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11815"; a="99723728"
-X-IronPort-AV: E=Sophos;i="6.24,201,1774335600"; d="scan'208";a="99723728"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2026 15:58:02 -0700
-X-CSE-ConnectionGUID: nStl3iyfTyWO/ZKf+eu7iw==
-X-CSE-MsgGUID: SisF9q4mTcKzmo4MHOTegA==
+ bh=t6mY+5aIz0r/h1r9VZMmcGB1xOdFDBwnBfm+Pswm+QM=;
+ b=aLPhGRnDziirJ9NmmSrIo3iHu8QCtRhFTPRS4RXSkB4AlHE+HXytsM5U
+ xE4blXjXYK0uioH/UDaxBijQRL3Et+4tE8dSKivg44i5/l4bPof4UwezF
+ sdo/3KnwaZ1iw5SQ9mU7QnMsk/3Rh5gRaJzSbeV0CeNxSRsIesTQ2jQNW
+ XK3q+zfl7h7p9NvOcbd/AtcLl3yl8sn5NhjbM7OW1EfotoN/gByXn3hNN
+ s74YXwiKc1cB+YP2zGK56TLMihj4GKiq9MNQJmE0QtHBzX7zHyNgPbEGf
+ hiQYeSmCVAwjvhSTC+H8LahAPLSgVI8S3bba2GqDSyaHc83vxTETAbyVb Q==;
+X-CSE-ConnectionGUID: oSCr7lnUQaShCG3vP1gFog==
+X-CSE-MsgGUID: 95MjNUsIQp6gd1m+TmwZQw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11815"; a="85778698"
+X-IronPort-AV: E=Sophos;i="6.24,201,1774335600"; d="scan'208";a="85778698"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2026 16:28:36 -0700
+X-CSE-ConnectionGUID: 4sbFUkbvSomniNgXfrW+ow==
+X-CSE-MsgGUID: cKoC4JcSQru2uqpERBnPww==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,201,1774335600"; d="scan'208";a="250855342"
+X-IronPort-AV: E=Sophos;i="6.24,201,1774335600"; d="scan'208";a="270615671"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2026 15:58:02 -0700
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2026 16:28:36 -0700
 From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Subject: [CI] drm/ttm: Issue direct reclaim at beneficial_order
-Date: Fri, 12 Jun 2026 15:57:57 -0700
-Message-Id: <20260612225757.3844350-1-matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH v3] drm/xe: Disable scheduling early on FD close to avoid CAT
+ error cascade
+Date: Fri, 12 Jun 2026 16:28:31 -0700
+Message-Id: <20260612232831.3881444-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -64,44 +64,132 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Triggering kswap at an order higher than beneficial_order makes little
-sense, as the driver has already indicated the optimal order at which
-reclaim is effective. Similarly, issuing direct reclaim or triggering
-kswap at a lower order than beneficial_order is ineffective, since the
-driver does not benefit from reclaiming lower-order pages.
+When an FD is closed with many exec queues, teardown relies on the TDR
+path to clean up scheduling. However, the TDR handling is serialized
+(i.e., only one exec queue is processed at a time), which can make it
+too slow compared to GuC scheduling activity.
 
-As a result, direct reclaim should only be issued with __GFP_NORETRY at
-exactly beneficial_order, or as a fallback, direct reclaim without
-__GFP_NORETRY at order 0 when failure is not an option.
+In this window, GuC may continue to schedule contexts backed by
+invalid page tables, leading to a cascade of CAT errors and repeated
+engine resets. This significantly increases recovery time and can
+degrade system stability.
 
+To mitigate this, eagerly disable scheduling by sending a self-message
+outside of the TDR path. This prevents further scheduling of invalid
+contexts and avoids the CAT error/reset cascade.
+
+This change improves robustness and reduces recovery latency in
+multiple queue teardown scenarios.
+
+Cc: Wang Xin <x.wang@intel.com>
+Cc: Jia Yao <jia.yao@intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Christian Koenig <christian.koenig@amd.com>
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+Tested-by: Jia Yao <jia.yao@intel.com>
 
 ---
-
-This was part of a larger shrinker series in Xe and is unlikely to be
-merged soon, as it is stuck in review. Send this reviewed, low-hanging
-TTM patch on its own, as it slightly helps address Xe's shrinker issues.
+v3:
+ - Make kill message static tomake reclaim safe (CI)
+ - Do not issue kill messages for queue which bypass cleanup messages
+   (sashiko)
 ---
- drivers/gpu/drm/ttm/ttm_pool.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_exec_queue_types.h |  2 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c           | 39 ++++++++++++++++++--
+ 2 files changed, 37 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
-index 278bbe7a11ad..e76c3a5c67bd 100644
---- a/drivers/gpu/drm/ttm/ttm_pool.c
-+++ b/drivers/gpu/drm/ttm/ttm_pool.c
-@@ -165,8 +165,8 @@ static struct page *ttm_pool_alloc_page(struct ttm_pool *pool, gfp_t gfp_flags,
- 	 * Do not add latency to the allocation path for allocations orders
- 	 * device tolds us do not bring them additional performance gains.
+diff --git a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
+index e5e53b421f29..247947fd357f 100644
+--- a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
+@@ -31,7 +31,7 @@ struct xe_guc_exec_queue {
+ 	 * a message needs to sent through the GPU scheduler but memory
+ 	 * allocations are not allowed.
  	 */
--	if (beneficial_order && order > beneficial_order)
--		gfp_flags &= ~__GFP_DIRECT_RECLAIM;
-+	if (order && beneficial_order && order != beneficial_order)
-+		gfp_flags &= ~__GFP_RECLAIM;
+-#define MAX_STATIC_MSG_TYPE	3
++#define MAX_STATIC_MSG_TYPE	4
+ 	struct xe_sched_msg static_msgs[MAX_STATIC_MSG_TYPE];
+ 	/** @destroy_async: do final destroy async from this worker */
+ 	struct work_struct destroy_async;
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index afe5d99cdd8b..28b8ecc8f2ff 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1875,11 +1875,21 @@ static void __guc_exec_queue_process_msg_set_multi_queue_priority(struct xe_sche
+ 	kfree(msg);
+ }
  
- 	if (!ttm_pool_uses_dma_alloc(pool)) {
- 		p = alloc_pages_node(pool->nid, gfp_flags, order);
++static void __guc_exec_queue_process_msg_kill(struct xe_sched_msg *msg)
++{
++	struct xe_exec_queue *q = msg->private_data;
++	struct xe_exec_queue *primary = xe_exec_queue_multi_queue_primary(q);
++
++	if (exec_queue_enabled(primary))
++		disable_scheduling(primary, true);
++}
++
+ #define CLEANUP				1	/* Non-zero values to catch uninitialized msg */
+ #define SET_SCHED_PROPS			2
+ #define SUSPEND				3
+ #define RESUME				4
+ #define SET_MULTI_QUEUE_PRIORITY	5
++#define KILL				6
+ #define OPCODE_MASK	0xf
+ #define MSG_LOCKED	BIT(8)
+ #define MSG_HEAD	BIT(9)
+@@ -1906,6 +1916,9 @@ static void guc_exec_queue_process_msg(struct xe_sched_msg *msg)
+ 	case SET_MULTI_QUEUE_PRIORITY:
+ 		__guc_exec_queue_process_msg_set_multi_queue_priority(msg);
+ 		break;
++	case KILL:
++		__guc_exec_queue_process_msg_kill(msg);
++		break;
+ 	default:
+ 		XE_WARN_ON("Unknown message type");
+ 	}
+@@ -2018,11 +2031,34 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+ 	return err;
+ }
+ 
++static bool guc_exec_queue_try_add_msg(struct xe_exec_queue *q,
++				       struct xe_sched_msg *msg,
++				       u32 opcode);
++
++#define STATIC_MSG_CLEANUP	0
++#define STATIC_MSG_SUSPEND	1
++#define STATIC_MSG_RESUME	2
++#define STATIC_MSG_KILL		3
+ static void guc_exec_queue_kill(struct xe_exec_queue *q)
+ {
++	struct xe_sched_msg *msg = q->guc->static_msgs + STATIC_MSG_KILL;
++
+ 	trace_xe_exec_queue_kill(q);
+ 	set_exec_queue_killed(q);
+ 	__suspend_fence_signal(q);
++
++	/*
++	 * We eagerly send a message to ourselves to disable scheduling, as the
++	 * TDR is serialized (i.e., only one exec queue is processed at a time).
++	 * If an FD is closed with many exec queues, the TDR can be slower than
++	 * the GuC scheduling contexts with invalid page tables, creating a
++	 * cascade of CAT errors and engine resets, which is quite slow. Avoid
++	 * this by immediately disabling scheduling outside of the TDR.
++	 */
++	if (!(q->flags & EXEC_QUEUE_FLAG_PERMANENT) &&
++	    kref_read(&q->refcount) && !exec_queue_wedged(q))
++		guc_exec_queue_try_add_msg(q, msg, KILL);
++
+ 	xe_guc_exec_queue_trigger_cleanup(q);
+ }
+ 
+@@ -2066,9 +2102,6 @@ static bool guc_exec_queue_try_add_msg(struct xe_exec_queue *q,
+ 	return true;
+ }
+ 
+-#define STATIC_MSG_CLEANUP	0
+-#define STATIC_MSG_SUSPEND	1
+-#define STATIC_MSG_RESUME	2
+ static void guc_exec_queue_destroy(struct xe_exec_queue *q)
+ {
+ 	struct xe_sched_msg *msg = q->guc->static_msgs + STATIC_MSG_CLEANUP;
 -- 
 2.34.1
 
