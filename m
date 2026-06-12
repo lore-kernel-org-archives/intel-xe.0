@@ -4,162 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E64FACD98CF
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Jun 2026 18:53:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC43ACD98CF
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Jun 2026 19:02:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AE4210E314;
-	Fri, 12 Jun 2026 18:53:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="QyzaGnik";
-	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="R+cZTqxF";
-	dkim-atps=neutral
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4945E10F669
- for <intel-xe@lists.freedesktop.org>; Fri, 12 Jun 2026 18:53:39 +0000 (UTC)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 65CGWEBQ019984
- for <intel-xe@lists.freedesktop.org>; Fri, 12 Jun 2026 18:53:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-type:date:from:in-reply-to:message-id:mime-version
- :references:subject:to; s=qcppdkim1; bh=v3/Hm6Xq7WCrgTyuR+mYm99o
- byQyGcdOpmpb0F6ke1c=; b=QyzaGnikY7lvP+gYNtF5B5gsq2WmUJGU6b/iEyc8
- SM60hoYQ877RExS0N7DGLbXtTL5/6KRJJw7ZeGH5x87tjPexRkoTotluUY0BnFoF
- HkMji3P7vnUoJFsacAa7h3IxAfTGy3w+v0t6lhiq0m2CPW7jNKXBP9dy8oZQAYes
- /x7yvsuAm61BlmQgJFdUBuRG9rWEKgjMq6Ve3gPdCoUfGxiYeVrB/2byyKH95qPH
- 2lgtErJZxVrg9WL1eI0Tx9nasXDLeiH+aWXhjUscB+gmB6mXz9YnPbeuLzbPtaHi
- OJTYOJiWMIh/LNLvFxLza8JV0OnU+OYW/dSj20tJKJptdQ==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
- [209.85.222.198])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4er1cbmk7w-1
- (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
- for <intel-xe@lists.freedesktop.org>; Fri, 12 Jun 2026 18:53:38 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id
- af79cd13be357-9158f2c4b55so204805085a.0
- for <intel-xe@lists.freedesktop.org>; Fri, 12 Jun 2026 11:53:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oss.qualcomm.com; s=google; t=1781290417; x=1781895217;
- darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=v3/Hm6Xq7WCrgTyuR+mYm99obyQyGcdOpmpb0F6ke1c=;
- b=R+cZTqxFXAND7TTnZ4gLWD4PPTVhpXdqetEi/BxK89/wW/mKLXbJBwuG/jFzf0pli/
- Bs8e2Ge4cEtW8xGKSo4eM0Z2OhRKivQb0QJcg7YYBKHIHpI0Jlbj/LPrKs7sNoXxQ+61
- //WgXvnBfsKbXNjsUPBHRAyW77TepfF1Gmttfdf40cdR8bIevL+i6sXSQTmD11jgjWhv
- OjG0AMpg46u36MI50V+RzGvbFNaJRwegljhNXzGtP5F3CopWSFe9IEoxm8RbnKIpOOZk
- O4VdyYL8M3W99IsoR2eP3vn/0XI8OAhEYutEiG7L0RGd9nWdn24AapoR7OyHMMMmKppf
- hoMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1781290417; x=1781895217;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=v3/Hm6Xq7WCrgTyuR+mYm99obyQyGcdOpmpb0F6ke1c=;
- b=CSwmThlCfTOOkMRohiZhBjhsxfiAMpErJSTECxkO3Kcf2dtAQrEzhBe1WYLKQIz7oc
- F0W9zvVKt+fhuckMondT6T9xNA2EvNo4twUzn9cvFYyujacIlCzxldizLJunQB7Sm5hd
- 9AaECw2je3v7r+YSJIvqRIjL2J6LMDqCbWoIZG2sJhTJebBxzgWO18x7fiyjXCeq8jUY
- 32QaHqznN5kl0RwuxkdtU4HgyhT6DOfzOB/qB800EikiOz24SMuS1IKMjCjK/PQp54T8
- HBcGRLYcd7iOhLkljOo1avDvnmwgxeAEUXeEz16DGPTWm2rU7KGJzRYy3tzAPotIO1co
- pWgQ==
-X-Forwarded-Encrypted: i=1;
- AFNElJ91mmWcn69X+D6ZeldkV3LAn7dMTkQ1NDpMRmallJix+sGG9gb3gh8Zsq+0CK+WYX65ddt/d6sWdQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzQ7zQpl44yTlL5XFODMv72KHiUwdv1hvLpj+hqx6fj9hWLpBRy
- j2/0eMvECZFbdRfnyqitvwGEsdDHA5NIiPGEbtDYyZf9xiE/psTAj5brmGph48Z2S46V/WaIUuv
- JM+Kt6DxYBbuuBaO5FZLhVluobETeR1y3MPJYDyKaArk1k3eK9CNK95o+Y/F7ZLll32i+uA==
-X-Gm-Gg: Acq92OHEU//5B6uN3CuJ1RJJOL2yNLBJXFsiXss3gWYzvjItBxkA7mVPdsW6x0LO0DR
- og3N4APdLVALC2U2qiKcGqp4vwpZAAhk7xSUdbE4taftSGsTP/uLR4R6diO48cjmrr4w4gTNVQP
- UJGBxQSroiO50QzRF/SrEnV1Tdm6NCtoM0uhMZDuxb4HYW6cA5v/rcvnPWuS4MCLy0vDamaqqPW
- Q/acv2DoG+S+WH8TNs8f00xrzLaupEmfi9PJNL8HvkGUhSHMZVmL6SDKN7prq9TTx3+uvtnAFG8
- pZhg5/Uz7XQjBYhoHbXtE8YwyxfGqTn9pKa/7cVhgtbo3GdSh2Ckv7eRI4wWdhjZ3MF1azSXSZL
- 8VBQRC/mLgw779ciTAX0wySTsTewjw6EhCQksLD8YiWsTBaG+lbDSqc7RFCisZziwrRBn7dpcnK
- DGX3NLYOu/mDSS72147nAfm74IhFerQ7jdSgQ=
-X-Received: by 2002:a05:620a:17a8:b0:910:db3a:7bdb with SMTP id
- af79cd13be357-9161bc8d778mr559908385a.32.1781290417454; 
- Fri, 12 Jun 2026 11:53:37 -0700 (PDT)
-X-Received: by 2002:a05:620a:17a8:b0:910:db3a:7bdb with SMTP id
- af79cd13be357-9161bc8d778mr559899485a.32.1781290416844; 
- Fri, 12 Jun 2026 11:53:36 -0700 (PDT)
-Received: from umbar.lan
- (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
- [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
- by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-5ad2e1ae1absm726479e87.59.2026.06.12.11.53.33
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 12 Jun 2026 11:53:34 -0700 (PDT)
-Date: Fri, 12 Jun 2026 21:53:32 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Adrien Grassein <adrien.grassein@gmail.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Clark <robin.clark@oss.qualcomm.com>,
- Dmitry Baryshkov <lumag@kernel.org>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Pengyu Luo <mitltlatltl@gmail.com>, Nikita Travkin <nikita@trvn.ru>,
- Yongxing Mou <yongxing.mou@oss.qualcomm.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Francesco Dolcini <francesco@dolcini.it>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-usb@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org
-Subject: Re: [PATCH v4 1/8] drm/connector: report out-of-band IRQ_HPD events
-Message-ID: <hxto2g32oyfy2tlihdgpjy7bwkhxp2cdw7qnf2rvpl7g7jczen@5js56gor3z6t>
-References: <20260608-hpd-irq-events-v4-0-30b62b335487@oss.qualcomm.com>
- <20260608-hpd-irq-events-v4-1-30b62b335487@oss.qualcomm.com>
- <20260609-bouncy-tomato-dalmatian-70ccee@houat>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9111210EAF6;
+	Fri, 12 Jun 2026 19:02:41 +0000 (UTC)
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B4D6B10EAF6;
+ Fri, 12 Jun 2026 19:02:39 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2787722268034573374=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260609-bouncy-tomato-dalmatian-70ccee@houat>
-X-Proofpoint-GUID: JPTsHNu8x9Vt_GxJDpPYppVq0mCrQw2y
-X-Proofpoint-ORIG-GUID: JPTsHNu8x9Vt_GxJDpPYppVq0mCrQw2y
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjEyMDE3NiBTYWx0ZWRfX3lmCYvE/uhBa
- IwIgLZkLva0Ytn9EL78Y2JziIDQL/AqAPxAEa4FqEAn3KaluioeHgRyj5imuXidJcQSEzLDVo6R
- BIuxDK3uuuCNfHSxdE6StD8GG1knMiU=
-X-Authority-Analysis: v=2.4 cv=S57pBosP c=1 sm=1 tr=0 ts=6a2c55b2 cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22 a=QyXUC8HyAAAA:8
- a=EUspDBNiAAAA:8 a=Qs5g3gW-Ea0FhcstOt0A:9 a=CjuIK1q_8ugA:10
- a=NFOGd7dJGGMPyQGDc5-O:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjEyMDE3NiBTYWx0ZWRfX49e82dj0/Kbo
- kbEY7IoBLM/g/m80vMebt4QxHg/zMAPNpIppycaGt1MgbVnpOs+WCwXLs0PsXU3cPAN90JedaRI
- 71u0bZA1e59by6dWBLzTKDR/Ggkiz3Of6s7PX/lV+XaJ7JKV7M0KQgbFnh3t5F2Fptvc8K/55td
- eSN6z4dO7QUtTI8p+lMO3XIOAuCLNwPsQbI381znIEPubCFnKOv680HDlbRgPBityWnbZ4SSYNb
- +GrCm0Lbun5fxtH2W4PwDMh1gNPX3lYiS0DzHpK3GHjrf/VUj8vIKlqKI1FfAsnfi9OOp/WyEK8
- JEQcC4evIos550Pa28nDEOYSIaor1pDVU7x+kml0LCNuqZ9S4AtSSpl5jYjmtCFXFnxrKbmqAMx
- sRZ/V1XrDEsIWKz5KJPE75BRuARbT893r6vNlXcDacQlKD1TcEHAUlTpRIU96nM/krXHjHxElBu
- iWsgj8rp3/mJLVls1jg==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-12_02,2026-06-12_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 impostorscore=0 adultscore=0 phishscore=0 bulkscore=0
- lowpriorityscore=0 priorityscore=1501 malwarescore=0 clxscore=1015
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606040000
- definitions=main-2606120176
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/mtl+=3A_Enable_PPS?=
+ =?utf-8?q?_before_PLL?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 12 Jun 2026 19:02:39 -0000
+Message-ID: <178129095973.75133.7866074064797915087@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260612172617.3427027-1-imre.deak@intel.com>
+In-Reply-To: <20260612172617.3427027-1-imre.deak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -171,75 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jun 09, 2026 at 03:20:01PM +0200, Maxime Ripard wrote:
-> Hi,
-> 
-> On Mon, Jun 08, 2026 at 12:33:02AM +0300, Dmitry Baryshkov wrote:
-> > The DisplayPort standard defines a special kind of events called IRQ.
-> > These events are used to notify DP Source about the events on the Sink
-> > side. It is extremely important for DP MST handling, where the MST
-> > events are reported through this IRQ.
-> > 
-> > In case of the USB-C DP AltMode there is no actual HPD pulse, but the
-> > events are reported through the bits in the AltMode VDOs.
-> > 
-> > Rename drm_connector_oob_hotplug_event() to drm_connector_dp_oob_status()
-> > and extend its interface to report IRQ events to the DisplayPort Sink
-> > drivers.
-> > 
-> > Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> > ---
-> >  drivers/gpu/drm/drm_connector.c          | 20 ++++++++++++--------
-> >  drivers/usb/typec/altmodes/displayport.c | 23 +++++++++++++++--------
-> >  include/drm/drm_connector.h              | 21 +++++++++++++++++++--
-> >  3 files changed, 46 insertions(+), 18 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
-> > index 3fa4d2082cd7..bb128dd0263a 100644
-> > --- a/drivers/gpu/drm/drm_connector.c
-> > +++ b/drivers/gpu/drm/drm_connector.c
-> > @@ -3502,20 +3502,24 @@ struct drm_connector *drm_connector_find_by_fwnode(struct fwnode_handle *fwnode)
-> >  }
-> >  
-> >  /**
-> > - * drm_connector_oob_hotplug_event - Report out-of-band hotplug event to connector
-> > + * drm_connector_dp_oob_status - Report out-of-band hotplug event to DisplayPort connector
-> >   * @connector_fwnode: fwnode_handle to report the event on
-> >   * @status: hot plug detect logical state
-> > + * @extra_status: additional information provided by the sink without changing
-> > + * the HPD state (or in addition to such a change).
-> >   *
-> > - * On some hardware a hotplug event notification may come from outside the display
-> > - * driver / device. An example of this is some USB Type-C setups where the hardware
-> > - * muxes the DisplayPort data and aux-lines but does not pass the altmode HPD
-> > - * status bit to the GPU's DP HPD pin.
-> > + * In some cases when DisplayPort signals are being routed through the USB
-> > + * Type-C port the hotplug event notifications come from outside of the display
-> > + * driver / device. In this case hardware muxes the DisplayPort data and
-> > + * AUX-lines but does not pass the altmode HPD status bit to the GPU's DP HPD
-> > + * pin.
-> >   *
-> >   * This function can be used to report these out-of-band events after obtaining
-> >   * a drm_connector reference through calling drm_connector_find_by_fwnode().
-> >   */
-> > -void drm_connector_oob_hotplug_event(struct fwnode_handle *connector_fwnode,
-> > -				     enum drm_connector_status status)
-> > +void drm_connector_dp_oob_status(struct fwnode_handle *connector_fwnode,
-> > +				 enum drm_connector_status status,
-> > +				 enum drm_connector_status_extra extra_status)
-> 
-> Thanks for the renaming, but I think we can also rename
-> drm_connector_status_extra to something a bit more descriptive now?
-> drm_connector_dp_oob_event? status?
+--===============2787722268034573374==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I did not want to introduce a DP-specific interface, keeping the HDMI
-eARC HPD in mind. But... Let's get it nice for DP first and handle eARC
-if the need arives.
+== Series Details ==
 
--- 
-With best wishes
-Dmitry
+Series: drm/i915/mtl+: Enable PPS before PLL
+URL   : https://patchwork.freedesktop.org/series/168454/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-5248-536f4e1338749a805ec4a7b82b1444dae2c6fe4d_BAT -> xe-pw-168454v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8961 -> IGT_8962
+  * Linux: xe-5248-536f4e1338749a805ec4a7b82b1444dae2c6fe4d -> xe-pw-168454v1
+
+  IGT_8961: 8961
+  IGT_8962: 8962
+  xe-5248-536f4e1338749a805ec4a7b82b1444dae2c6fe4d: 536f4e1338749a805ec4a7b82b1444dae2c6fe4d
+  xe-pw-168454v1: 168454v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168454v1/index.html
+
+--===============2787722268034573374==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/mtl+: Enable PPS before PLL</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/168454/">https://patchwork.freedesktop.org/series/168454/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168454v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168454v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5248-536f4e1338749a805ec4a7b82b1444dae2c6fe4d_BAT -&gt; xe-pw-168454v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8961 -&gt; IGT_8962</li>
+<li>Linux: xe-5248-536f4e1338749a805ec4a7b82b1444dae2c6fe4d -&gt; xe-pw-168454v1</li>
+</ul>
+<p>IGT_8961: 8961<br />
+  IGT_8962: 8962<br />
+  xe-5248-536f4e1338749a805ec4a7b82b1444dae2c6fe4d: 536f4e1338749a805ec4a7b82b1444dae2c6fe4d<br />
+  xe-pw-168454v1: 168454v1</p>
+
+</body>
+</html>
+
+--===============2787722268034573374==--
