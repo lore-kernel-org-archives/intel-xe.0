@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A74ECD98CE
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Jun 2026 07:48:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A1D4CD4F2C
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Jun 2026 08:10:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C2DD10F313;
-	Fri, 12 Jun 2026 07:48:53 +0000 (UTC)
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D384C10F311;
- Fri, 12 Jun 2026 07:48:51 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2386360254809925926=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 286A110F311;
+	Fri, 12 Jun 2026 08:10:45 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iXtOLBpm";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24C8210E995;
+ Fri, 12 Jun 2026 08:10:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1781251844; x=1812787844;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=O8/mEy2P3GJoo53+O5eq2qLKNQbaWnl6wTZT8A6xYDg=;
+ b=iXtOLBpmp5b/5boqCF7tWb1q2GhQ+zBXoF8j7lN3z7rUXLaKwiJh3zRV
+ mScXKuz3RDSYCeHqc4u1Qe7sGB/vP5UIqTdWukf+xZEePTjgxpm5mUjJR
+ XFZW9Rsp3YlqcwVsdG6RDQ8vQv1uMvTcczdQ1SlIZJDVJ0txbH5kGAJaS
+ j1B5n7PkMV25s6Y7TSSunD0VCWTgyDqxU2OrPMtjUAAUX+k9AHlGn4ueJ
+ FKGf65p/0lSHgMyB/s0xQLpgGkyREZdEFAwfnE60D+yttHd5dF7q1aSRH
+ aBx11TsYow1sVbxsql/BT8U1Zkf7/6eK0pPFt5scn2Z9k6/mDCFGMPyrS A==;
+X-CSE-ConnectionGUID: Mkko+0ZNTem7fjtQq0ETkA==
+X-CSE-MsgGUID: O+sI/0l9QDuo1KfJQVtK0A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="85921364"
+X-IronPort-AV: E=Sophos;i="6.24,200,1774335600"; d="scan'208";a="85921364"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2026 01:10:43 -0700
+X-CSE-ConnectionGUID: edPUOSDRRZ20D4tNwD9thg==
+X-CSE-MsgGUID: N6J/crCDS/W1LTTNPQe0bg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,200,1774335600"; d="scan'208";a="245667151"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by orviesa006.jf.intel.com with ESMTP; 12 Jun 2026 01:10:38 -0700
+From: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+To: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ rodrigo.vivi@intel.com
+Cc: andrealmeid@igalia.com, christian.koenig@amd.com, airlied@gmail.com,
+ simona.vetter@ffwll.ch, mripard@kernel.org,
+ maarten.lankhorst@linux.intel.com, tzimmermann@suse.de,
+ anshuman.gupta@intel.com, badal.nilawar@intel.com, riana.tauro@intel.com,
+ karthik.poosa@intel.com, sk.anirban@intel.com, raag.jadav@intel.com,
+ Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Subject: [PATCH v8 0/6] Introduce cold reset recovery method
+Date: Fri, 12 Jun 2026 13:37:23 +0530
+Message-ID: <20260612080722.26726-8-mallesh.koujalagi@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Fix_buffer_ov?=
- =?utf-8?q?erflow_in_steered_register_list_allocation_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 12 Jun 2026 07:48:51 -0000
-Message-ID: <178125053183.72562.16913016379301684036@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260612070401.543305-2-tejas.upadhyay@intel.com>
-In-Reply-To: <20260612070401.543305-2-tejas.upadhyay@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +67,128 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2386360254809925926==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This series builds on top of Introduce Xe Uncorrectable Error Handling[1]
+and adds support for handling errors that require a complete
+device power cycle (cold reset) to recover.
 
-== Series Details ==
+Certain error conditions leave the device in a persistent hardware
+error state that cannot be cleared through existing recovery mechanisms
+such as driver reload or PCIe reset. In these cases, functionality can
+only be restored by performing a cold reset.
 
-Series: drm/xe/guc: Fix buffer overflow in steered register list allocation (rev2)
-URL   : https://patchwork.freedesktop.org/series/168151/
-State : success
+To support this, the series introduces a new DRM wedging recovery
+method, DRM_WEDGE_RECOVERY_COLD_RESET (BIT(4)). When a device is wedged
+with this method, the DRM core notifies userspace via a uevent that a cold
+reset is required. This allows userspace to take appropriate action to
+power-cycle the device.
 
-== Summary ==
+Example uevent received:
+  SUBSYSTEM=drm
+  WEDGED=cold-reset
+  DEVPATH=/devices/.../drm/card0
 
-CI Bug Log - changes from xe-5246-9ce63e3d9903982c053b125686abcb7a84357ed4_BAT -> xe-pw-168151v2_BAT
-====================================================
+Detailed description in commit message.
 
-Summary
--------
+[1] https://patchwork.freedesktop.org/series/160482/
+This patch series introduces a call to punit_error_handler() from
+within handle_soc_internal_errors() when PUNIT errors detected.
 
-  **SUCCESS**
+v2:
+- Add use case: Handling errors from power management unit,
+  which requires a complete power cycle to
+  recover. (Christian)
+- Add several instead of number to avoid update. (Jani)
 
-  No regressions found.
+v3:
+- Update any scenario that requires cold-reset. (Riana)
+- Update document with generic scenario. (Riana)
+- Consistent with terminology. (Raag)
+- Remove already covered information.
+- Use PUNIT instead of PMU. (Riana)
+- Use consistent wordingi.
+- Remove log. (Raag)
 
-  
+v4:
+- Rename cold reset to power cyclce. (Raag)
+- Update doc. (Raag/Riana)
+- Change commit message. (Raag)
+- Make function static. (Raag)
 
-Participating hosts (13 -> 12)
-------------------------------
+v5:
+- Make it consistent with consumer expectations. (Raag)
+- Update commit message.
+- Remove unbind.
+- Simplify cold-reset script.
+- Remove kdoc for static function.
+- Remove xe_ prefix for static function.
 
-  Missing    (1): bat-lnl-2 
+v6:
+- Drop "last resort" wording. (Riana)
+- Look up the hotplug slot in DEVPATH instead of scanning
+  every PCI slot on the system. (Raag)
+- Drop arbitrary sleep values from the example script.
+- Expand commit message to explain why SUR_DN is masked. (Raag/Riana)
+- Check Slot Implemented bit before reading Slot Capabilities, per
+  PCIe spec. (Riana)
+- Add debug log.
 
+v7:
+- Update recovery script. (Raag)
+- Handle surprise link down event properly. (Aravind/Riana)
+- Update commit message. (Riana)
+- Correct log message.
 
-Changes
--------
+v8:
+- Add rescan instead of reset. (Raag)
+- Use find_usp_dev() in punit_error_handler() function.
 
-  No changes found
+Cc: André Almeida <andrealmeid@igalia.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
 
+Mallesh Koujalagi (5):
+  drm: Add DRM_WEDGE_RECOVERY_COLD_RESET recovery method
+  drm/doc: Document DRM_WEDGE_RECOVERY_COLD_RESET recovery method
+  drm/xe: Handle PUNIT errors by requesting cold-reset recovery
+  drm/xe: Suppress Surprise Link Down on device
+  drm/xe/ras: Add debugfs entry to inject punit error
 
-Build changes
--------------
+Riana Tauro (1):
+  Introduce Xe Uncorrectable Error Handling
 
-  * Linux: xe-5246-9ce63e3d9903982c053b125686abcb7a84357ed4 -> xe-pw-168151v2
+ Documentation/gpu/drm-uapi.rst                |  85 ++-
+ drivers/gpu/drm/drm_drv.c                     |   2 +
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ drivers/gpu/drm/xe/xe_debugfs.c               |   3 +
+ drivers/gpu/drm/xe/xe_device.c                |  24 +-
+ drivers/gpu/drm/xe/xe_device.h                |  27 +-
+ drivers/gpu/drm/xe/xe_device_types.h          |  12 +-
+ drivers/gpu/drm/xe/xe_gt.c                    |  14 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c            |   9 +-
+ drivers/gpu/drm/xe/xe_pci.c                   |   9 +
+ drivers/gpu/drm/xe/xe_pci_error.c             | 135 +++++
+ drivers/gpu/drm/xe/xe_pci_error.h             |  13 +
+ drivers/gpu/drm/xe/xe_ras.c                   | 570 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ras.h                   |  11 +
+ drivers/gpu/drm/xe/xe_ras_types.h             | 227 +++++++
+ drivers/gpu/drm/xe/xe_survivability_mode.c    |  13 +-
+ drivers/gpu/drm/xe/xe_sysctrl_event.c         |   2 +-
+ drivers/gpu/drm/xe/xe_sysctrl_event_types.h   |   3 -
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox.c       |  28 +
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox.h       |   4 +-
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |  11 +
+ include/drm/drm_device.h                      |   1 +
+ 22 files changed, 1175 insertions(+), 29 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_pci_error.c
+ create mode 100644 drivers/gpu/drm/xe/xe_pci_error.h
 
-  IGT_8960: 88bd725754990332efcd158b0429f6ac7fb63862 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5246-9ce63e3d9903982c053b125686abcb7a84357ed4: 9ce63e3d9903982c053b125686abcb7a84357ed4
-  xe-pw-168151v2: 168151v2
+-- 
+2.34.1
 
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168151v2/index.html
-
---===============2386360254809925926==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: Fix buffer overflow in steered register list allocation (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/168151/">https://patchwork.freedesktop.org/series/168151/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168151v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-168151v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5246-9ce63e3d9903982c053b125686abcb7a84357ed4_BAT -&gt; xe-pw-168151v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 12)</h2>
-<p>Missing    (1): bat-lnl-2 </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5246-9ce63e3d9903982c053b125686abcb7a84357ed4 -&gt; xe-pw-168151v2</li>
-</ul>
-<p>IGT_8960: 88bd725754990332efcd158b0429f6ac7fb63862 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5246-9ce63e3d9903982c053b125686abcb7a84357ed4: 9ce63e3d9903982c053b125686abcb7a84357ed4<br />
-  xe-pw-168151v2: 168151v2</p>
-
-</body>
-</html>
-
---===============2386360254809925926==--
