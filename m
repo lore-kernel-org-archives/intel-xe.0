@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 030BECD98CC
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Jun 2026 03:28:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35B46CD98C7
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Jun 2026 03:28:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A889510E91E;
-	Fri, 12 Jun 2026 03:28:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC23310E91B;
+	Fri, 12 Jun 2026 03:28:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mGAN10RG";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N1tCUaCZ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B9B310E916
- for <intel-xe@lists.freedesktop.org>; Fri, 12 Jun 2026 03:27:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8127A10E91B
+ for <intel-xe@lists.freedesktop.org>; Fri, 12 Jun 2026 03:27:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781234877; x=1812770877;
+ t=1781234879; x=1812770879;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Ov5AYTM//KEKvayhucmIJy6qnFcURTPVPw+upZHi+UE=;
- b=mGAN10RG5U2NFzjbf6MHNTWNgGG5S/cZhAt1wsqv77m8XcTCEcrVCQ8r
- 001RGjC1sh0r723Bak4wxyt9ZtDudog3EqFjRfWA3galdYSiu81mUeWKm
- iCPHFu8eQzgyFpWtuwAqySFX6NPoufYe2gWiKKkf54cet9ji/5xezBxAI
- 8LMj9WEqT9Dg7fzg9y1Jpl3/PceCXh+zxUtYOnhEIeQ99ItVZ83qSLOTH
- xGqhaT4jfVI47obudaDtUY+T0QIRkbunXJ441zW6t9uxPfYu9I3fzwUOa
- UmPV0zbVJAQ20frQQIxXJsbMVcesFy1K7sz2zx8Pn2NGx+ry/XP0UHKGX Q==;
-X-CSE-ConnectionGUID: D6r2q8O/SQ6xsxLe6JZbuw==
-X-CSE-MsgGUID: svzFFLUpTvK8SGCO1/hGKw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="85902933"
-X-IronPort-AV: E=Sophos;i="6.24,200,1774335600"; d="scan'208";a="85902933"
+ bh=l+Gf3zqYcZyQOYH3gKVzVHfab3IVXj+qVf8+qfYZC28=;
+ b=N1tCUaCZGr+Wrb5vh+caRC9/V4K0oy1SQR9+D3MOvSkXXDqnALZqYR3s
+ Z5MleLxBuCvGwHsYzY1Cw74VDFTXjvTy5b4jGjD8pqq30Qiqc+GaUhFHO
+ BVZBFyh/EPYez+nA3eG/NUgJLzxG9q59gE4RF8O+4bdJXRLK6F7zJGqqy
+ FQOqjBNIk9Zi/CUnycSGtEoMIzeRsPDcoOExMJ5IBCaaMUz6OtsYug5Ux
+ cNTdF9Gvy0vPHNX01rCNTyJg2206Yqfm1Hbj+kcVbZQLa7AVSBmSsvhvn
+ x4JOvKMZ2nYIFvvxL0PBor0twHR0FfNK5XNN5otGKg2ozbBH3wLyFbkZM g==;
+X-CSE-ConnectionGUID: 1cSUF7AVTD+f8c3zSX88Tw==
+X-CSE-MsgGUID: Qa4eun/NRJ+HtttGmXjJCA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="85902940"
+X-IronPort-AV: E=Sophos;i="6.24,200,1774335600"; d="scan'208";a="85902940"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2026 20:27:57 -0700
-X-CSE-ConnectionGUID: MypLLOuGQ7W5ROICNocCEA==
-X-CSE-MsgGUID: 5lHBsMJRT5OXMd0N66wk5w==
+ 11 Jun 2026 20:27:59 -0700
+X-CSE-ConnectionGUID: +5Ar2WESQS2bqgyCoLjBZw==
+X-CSE-MsgGUID: SrvrnK0uSq2Q0ibzVAKUKA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,200,1774335600"; d="scan'208";a="251789707"
+X-IronPort-AV: E=Sophos;i="6.24,200,1774335600"; d="scan'208";a="251789712"
 Received: from adarshdx-mobl1.gar.corp.intel.com (HELO
  soc-5CG5233SZH.clients.intel.com) ([10.247.178.18])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2026 20:27:55 -0700
+ 11 Jun 2026 20:27:57 -0700
 From: Gajendra Uttamchand <gajendra.uttamchand@intel.com>
 To: umesh.nerlige.ramappa@intel.com, matthew.brost@intel.com,
  intel-xe@lists.freedesktop.org
 Cc: "Uttamchand, Gajendra" <gajendra.uttamchand@intel.com>,
 	Uttamchand@freedesktop.org
-Subject: [PATCH 1/2] [PATCH] drm/xe/lrc: document sentinel and make
- CTX_TIMESTAMP read TOCTOU-safe
-Date: Fri, 12 Jun 2026 03:27:47 +0000
-Message-ID: <20260612032745.179673-5-gajendra.uttamchand@intel.com>
+Subject: [PATCH 2/2] [PATCH] drm/xe/guc: treat sentinel timestamps as no
+ elapsed time to avoid false TDR
+Date: Fri, 12 Jun 2026 03:27:48 +0000
+Message-ID: <20260612032745.179673-6-gajendra.uttamchand@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260612032745.179673-4-gajendra.uttamchand@intel.com>
 References: <20260612032745.179673-4-gajendra.uttamchand@intel.com>
@@ -72,95 +72,49 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: "Uttamchand, Gajendra" <gajendra.uttamchand@intel.com>
 
-Problem: CTX_TIMESTAMP MMIO reads could be stale if a context
-switched out between check and read; LRC stores a sentinel while
-a context starts that must not be treated as a real timestamp.
+Problem: Using LRC ctx_timestamp values 0 or the CONTEXT_ACTIVE
+sentinel in time-delta calculations can produce a large wrap-around
+result, which can trigger a false TDR.
 
-Fix: Check the LRC-stored sentinel before and after the MMIO read;
-return the LRC value if the context switched out to avoid TOCTOU.
-
-Note: Keep XE_LRC_CTX_TIMESTAMP_ACTIVE in xe_lrc.h as the
-canonical sentinel.
+Fix: Detect the sentinel values and treat them as "no elapsed time"
+(return false). Compute the delta with wrap handling when
+ctx_timestamp < ctx_job_timestamp by adding U32_MAX, ensuring
+correct diff calculation across the 32-bit wrap. Runtime logic is
+otherwise unchanged.
 
 Signed-off-by: Uttamchand, Gajendra <gajendra.uttamchand@intel.com>
 ---
- drivers/gpu/drm/xe/xe_lrc.c | 29 +++++++++++++++++++++--------
- drivers/gpu/drm/xe/xe_lrc.h |  7 +++++++
- 2 files changed, 28 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_submit.c | 17 ++++++++++++++++-
+ 1 file changed, 16 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index a4292a11391d..e284c008c126 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -1096,7 +1096,7 @@ static void xe_lrc_finish(struct xe_lrc *lrc)
-  * on until it is scheduled, we also read the ENGINE_ID MMIO in the WA BB and
-  * store it in the PPHSWP.
-  */
--#define CONTEXT_ACTIVE 1ULL
-+#define CONTEXT_ACTIVE XE_LRC_CTX_TIMESTAMP_ACTIVE
- static ssize_t setup_utilization_wa(struct xe_lrc *lrc,
- 				    struct xe_hw_engine *hwe,
- 				    u32 *batch,
-@@ -2720,21 +2720,34 @@ static u64 xe_lrc_update_multi_queue_timestamp(struct xe_lrc *lrc, u64 *old_ts)
- static u64 xe_lrc_context_timestamp(struct xe_lrc *lrc)
- {
- 	u64 reg_ts, new_ts = lrc->ctx_timestamp;
-+	u64 stored;
-
- 	/* CTX_TIMESTAMP mmio read is invalid on VF, so return the LRC value */
- 	if (IS_SRIOV_VF(lrc_to_xe(lrc)))
- 		return xe_lrc_ctx_timestamp(lrc);
-
--	if (context_active(lrc) &&
--	    !get_ctx_timestamp(lrc, xe_lrc_engine_id(lrc), &reg_ts))
-+	/*
-+	 * Safely read CTX_TIMESTAMP: check the LRC-stored value before and
-+	 * after the MMIO read to avoid a TOCTOU where a context switch makes the
-+	 * MMIO value stale. If the LRC value is not `CONTEXT_ACTIVE` return it;
-+	 * otherwise accept the MMIO value only if the context remained active.
-+	 */
-+
-+	stored = xe_lrc_ctx_timestamp(lrc);
-+	if (stored != CONTEXT_ACTIVE)
-+		return stored;
-+
-+	/* Context is active: read the live timestamp from the engine's MMIO register. */
-+	if (!get_ctx_timestamp(lrc, xe_lrc_engine_id(lrc), &reg_ts))
- 		new_ts = reg_ts;
-
--	/*
--	 * If context swicthed out while we were here, just return the latest
--	 * LRC CTX TIMESTAMP value.
-+	/* Re-check the LRC-stored timestamp: if the context switched out while
-+	 * reading MMIO the hardware saved the canonical timestamp into the LRC
-+	 * during context-save, so return that value instead of the MMIO read.
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index b29cc08e6291..b870ad30fe8c 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1389,7 +1389,22 @@ static bool check_timeout(struct xe_exec_queue *q, struct xe_sched_job *job)
  	 */
--	if (!context_active(lrc))
--		return xe_lrc_ctx_timestamp(lrc);
-+	stored = xe_lrc_ctx_timestamp(lrc);
-+	if (stored != CONTEXT_ACTIVE)
-+		return stored;
+ 	xe_gt_assert(gt, timeout_ms < 100 * MSEC_PER_SEC);
 
- 	return new_ts;
- }
-diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-index 0a3a611391ee..7be5e3da8bc8 100644
---- a/drivers/gpu/drm/xe/xe_lrc.h
-+++ b/drivers/gpu/drm/xe/xe_lrc.h
-@@ -9,6 +9,13 @@
-
- #include "xe_lrc_types.h"
-
-+/*
-+ * Sentinel value stored in lrc->ctx_timestamp while a context is starting.
-+ * The hardware hasn't yet written the real CTX_TIMESTAMP, so this is not a
-+ * valid elapsed-time sample and must not be used as one.
-+ */
-+#define XE_LRC_CTX_TIMESTAMP_ACTIVE 1ULL
+-	diff = ctx_timestamp - ctx_job_timestamp;
++	/*
++	 * Values treated as "no elapsed time":
++	 *  - 0: uninitialized / context never ran
++	 *  - 1: CONTEXT_ACTIVE sentinel set at context start; real timestamp
++	 *       hasn't been saved yet (using it in a diff can wrap and cause
++	 *       a false TDR).
++	 */
++	if (ctx_timestamp == 0 ||
++	    ctx_timestamp == lower_32_bits(XE_LRC_CTX_TIMESTAMP_ACTIVE))
++		return false;
 +
- struct drm_printer;
- struct xe_bb;
- struct xe_device;
++	if (ctx_timestamp < ctx_job_timestamp) {
++		diff = ctx_timestamp + U32_MAX - ctx_job_timestamp;
++	} else {
++		diff = ctx_timestamp - ctx_job_timestamp;
++	}
+
+ 	/*
+ 	 * Ensure timeout is within 5% to account for an GuC scheduling latency
 --
 2.43.0
 
